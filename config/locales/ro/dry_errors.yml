@@ -1,0 +1,114 @@
+---
+ro:
+  dry_errors:
+    errors:
+      add_edit_project:
+        invalid_subdomain_format: Format greșit al subdomeniului.
+        reserved_subdomain: Subdomeniul %{value} este rezervat
+        uniq_subdomain: Subdomeniul ar trebui să fie unic.
+      add_manager:
+        cannot_be_self: Utilizatorul nu poate fi desemnat ca manager propriu
+        manager_not_found: Managerul nu a fost găsit sau nu face parte din același proiect
+        user_not_found: Utilizatorul nu a fost găsit sau nu face parte din același proiect
+      admin:
+        already_added: Administrator cu e-mail deja adăugat.
+      already_assigned?: Nu se poate lega această evaluare - este deja atribuită la '%{linked_assessor_form_name}'.
+      already_invited: Acest utilizator există deja în centrul de evaluare pe care încercați să-l adăugați.
+      assessor_assessment:
+        already_added: Evaluarea evaluatorului a fost deja adăugată la campanie.
+        lead_already_added: O singură evaluare a evaluatorului principal poate fi adăugată la campanie.
+      campaign_factor:
+        code_already_exists: Un factor cu același cod există deja.
+        invalid_lua_name: ar trebui să fie un nume de variabilă lua valid
+        limit_exceeded: Ați atins limita maximă de %{limit} factori de campanie.
+        name_already_exists: Un factor cu același nume există deja.
+        rank_not_allowed: Pot fi clasificați numai factorii cu un tip numeric de ieșire.
+      campaign_factor_group:
+        group_already_exists: Un grup cu același nume există deja.
+        last_factor_group: Nu se poate șterge ultimul grup de factori de campanie.
+      campaign_idps:
+        idp_template_not_published: Acest șablon IDP nu este încă publicat, vă rugăm să -l publicați înainte de a atribui campaniei.
+      cant_be_deleted: Această înregistrare nu poate fi ștearsă
+      client_feature:
+        ai_assisted_idp_feature_error: Nu poate fi adevărat dacă funcția AI Assistants este dezactivată
+      create_superadmin:
+        uniq_email: E-mailul ar trebui să fie unic.
+      development_actions:
+        only_global_skills_allowed: Competențele selectate trebuie să fie competențe globale.
+        skills_not_belong_to_project: Competențele selectate trebuie să aparțină proiectului specificat.
+        skills_required: Vă rugăm să selectați cel puțin o competență.
+      exceeded_subjects_count: Puteți adăuga doar %{count} subiecte per invitație
+      filled?: nu poate fi gol
+      idp_template:
+        content_required: Conținutul este necesar pentru instrucțiuni
+        tag_or_skill_required: Vă rugăm să selectați fie o etichetă, fie o abilitate atunci când este aleasă opțiunea "Selectat".
+      invalid_name: Numai alfabetul, numărul, spațiile, liniuța și punctul sunt permise ca caracter valid
+      invalid_value: Declarația nevalidă '%{value}' pe numărul de linie %{row}
+      job_roles:
+        unique_within_job_group: Un rol de post cu același nume există deja.
+      json?: Ar trebui să fie JSON valid
+      key?: nu poate fi gol
+      match_regexp?: valoare nevalidă
+      mettl_schedule_record_create:
+        uniq_schedule_name: Numele programului ar trebui să fie unic
+      missed?: nu poate fi gol
+      not_allowed?: Nu este permisă modificarea
+      not_in_the_list?: valoare nevalidă transmisă
+      not_uniq_variable: Variabila '%{value}' redefinită pe numărul de linie %{row}
+      project_assessments:
+        should_be_greater_than_zero: Valabilitatea rezultatului trebuie să fie mai mare de 0 zile
+      project_feature:
+        global_skills_not_enabled_on_client: Pentru a activa abilitățile globale pentru acest proiect, vă rugăm să îl activați sub Feature Flags în setările clientului.
+      report_approval_settings:
+        report_exists: Setarea de aprobare a raportului pentru acest raport există deja.
+        validates_admins: Administratorii nu au acces la campanie.
+      report_families_reports:
+        report_exists: Acest raport face deja parte din pachetul de rapoarte
+      size?: dimensiunea ar trebui să fie mai mică %{size}
+      skill:
+        already_added: Abilitate cu același nume deja adăugată.
+      skill_alias:
+        unique_alias: Aliasul ar trebui să fie unic
+        unique_skill: Abilitățile ar trebui să fie unice
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: Competența și rolul postului trebuie să aparțină aceluiași proiect sau să fie globale.
+        unique_mappings: Există deja o corespondență cu aceleași competențe și roluri.
+      uniq: Această evaluare Mettl este deja prezentă în sistem. ID-ul acestei evaluări este %{id}
+      uniq?: ar trebui să fie unice
+      uniq_simulation: Această evaluare de simulare este deja prezentă în sistem. ID-ul acestei evaluări este %{id}
+      uniq_skillvue: Această evaluare Skillvue este deja prezentă în sistem. ID-ul acestei evaluări este %{id}
+      update_workshop:
+        bookings_exist: Nu se poate modifica programul, deoarece participanții au rezervat deja acest interval orar.
+        less_than_booked: Numărul total de locuri trebuie să fie mai mare decât cel rezervat
+      user_availability_date:
+        overlaps_date: Se suprapune cu o altă disponibilitate %{range}
+        overlaps_time: Se suprapune intervalul %{interval}
+        start_date_should_be_less: Data de începere trebuie să fie mai mică decât data de încheiere
+        start_time_should_be_less: Ora de începere ar trebui să fie mai mică decât ora de sfârșit
+      user_idp_plan:
+        idp_template_already_assigned_to_user: Acest șablon Idp este deja asociat acestui utilizator și este activ
+        idp_template_not_published: Acest șablon IDP nu este încă publicat, vă rugăm să -l publicați înainte de a atribui utilizatorului.
+      user_saved_filters:
+        limit_exceeded: Puteți avea doar %{limit} filtre salvate, vă rugăm să ștergeți filtrele salvate pentru a adăuga mai multe.
+        unique_name: Există deja un filtru cu același nume.
+      workshop_invited_subject_create:
+        already_exists: Subiectul există deja în invitație.
+      workshop_subject_create:
+        already_exists: Subiectul există deja în acest centru de evaluare.
+        part_of_other_workshop: Subiectul este deja participant la '%{workshop_name}'.
+      workshop_subject_re_enroll:
+        no_seats_available: Nu sunt locuri disponibile pentru acest atelier.
+        scheduling_lead_time_passed: A trecut timpul de programare, nu puteți reînscrie subiectul.
+        workshop_subject_not_found: Subiectul atelierului nu a fost găsit
+      workshops:
+        no_available_assessor_slots: Nu există locuri disponibile pentru evaluator %{assessor}
+        no_available_manager_slots: Nu există sloturi disponibile pentru manager %{manager}
+    users:
+      registrations:
+        new:
+          register: Înregistrează-te
+          sign_in: Conectează-te
+      sessions:
+        new:
+          register: Înregistrează-te
+          sign_in: Conectează-te

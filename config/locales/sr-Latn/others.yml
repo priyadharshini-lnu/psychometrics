@@ -395,6 +395,8 @@ sr-Latn:
               inclusion: Molimo Vas da izaberete ispravan tip norme
         user:
           attributes:
+            current_job_role:
+              not_found: "%{name} nije pronađen"
             email:
               user_exists_in_campaign: Korisnik sa ovim ID-em imejla već postoji u kampanji
               user_exists_in_project: Korisnik sa ovim ID-em imejla već postoji u projektu
@@ -414,6 +416,8 @@ sr-Latn:
               invalid_datetime: je nevažeća
             schedule_start_date:
               invalid_datetime: je nevažeća
+            target_job_role:
+              not_found: "%{name} nije pronađen"
         user_assessment:
           subject_and_assessment_exists: Procena i predmet par već postoji
         user_idp_development_action:
@@ -2158,118 +2162,6 @@ sr-Latn:
       send_paranoid_instructions: Ako vaš nalog postoji, dobićete e-poštu sa uputstvima kako da ga otključate za nekoliko minuta.
       unlocked: Vaš nalog je uspešno otključan. Molimo Vas da se prijavite da biste nastavili.
       unprocessable_entity: Vaš nalog nije mogao da se otključa sa ovim linkom. Molimo Vas da kontaktirate podršku.
-  dry_errors:
-    errors:
-      add_edit_project:
-        invalid_subdomain_format: Pogrešan format poddomene.
-        reserved_subdomain: Poddomen %{value} je rezervisan
-        uniq_subdomain: Poddomen treba da bude jedinstven.
-      add_manager:
-        cannot_be_self: Korisnik ne može biti dodeljen kao sopstveni menadžer
-        manager_not_found: Menadžer nije pronađen ili nije deo istog projekta
-        user_not_found: Korisnik nije pronađen ili nije deo istog projekta
-      admin:
-        already_added: Admin sa već dodat e-poštom.
-      already_assigned?: Ne mogu povezati ovu procenu - već je dodeljena '%{linked_assessor_form_name}'.
-      already_invited: Ovaj korisnik već postoji u centru za procenu koji pokušavate da dodate.
-      assessor_assessment:
-        already_added: Procena procenjivača već je dodana u kampanju.
-        lead_already_added: Samo jedna procena vodećeg procenjivača može se dodati u kampanju.
-      campaign_factor:
-        code_already_exists: Faktor sa istim kodom već postoji.
-        invalid_lua_name: Trebalo bi da bude važeće ime Lua promenljive
-        limit_exceeded: Dostigli ste maksimalnu granicu od %{limit} faktora kampanje.
-        name_already_exists: Faktor sa istim imenom već postoji.
-        rank_not_allowed: Mogu se rangirati samo faktori sa izlaznim tipom numeričkih.
-      campaign_factor_group:
-        group_already_exists: Grupa sa istim imenom već postoji.
-        last_factor_group: Nije moguće izbrisati poslednju grupu faktora kampanje.
-      campaign_idps:
-        idp_template_not_published: Ovaj IDP šablon još nije objavljen, molimo objavite ga pre dodele kampanji.
-      cant_be_deleted: Ovaj zapis se ne može obrisati
-      client_feature:
-        ai_assisted_idp_feature_error: Ne može biti istina ako je funkcija AI pomoćnika onemogućena
-      create_superadmin:
-        uniq_email: E-pošta treba da bude unik.
-      development_actions:
-        only_global_skills_allowed: Izabrane veštine moraju biti globalne veštine.
-        skills_not_belong_to_project: Izabrane veštine moraju pripadati navedenom projektu.
-        skills_required: Izaberite bar jednu veštinu.
-      exceeded_subjects_count: Možete dodati samo %{count} predmeta po pozivu
-      filled?: ne može biti prazan
-      idp_template:
-        content_required: Sadržaj je potreban za uputstva
-        tag_or_skill_required: Molimo vas da izaberete oznaku ili veštinu kada je izabrana opcija "Izabrano".
-      invalid_name: samo abeceda, broj, razmaci, crtica i tačka su dozvoljeni kao važeći karakter
-      invalid_value: nevažeća izjava '%{value}' na broju linije %{row}
-      job_roles:
-        unique_within_job_group: Posao sa istim imenom već postoji.
-      json?: Trebalo bi da bude važeći JSON
-      key?: ne može biti prazan
-      match_regexp?: nevažeća vrednost
-      mettl_schedule_record_create:
-        uniq_schedule_name: Ime rasporeda treba da bude jedinstveno
-      missed?: ne može biti prazan
-      not_allowed?: nije dozvoljeno da se promeni
-      not_in_the_list?: Nevažeća vrednost prošla
-      not_uniq_variable: promenljiva '%{value}' redefinisana na broju linije %{row}
-      project_assessments:
-        should_be_greater_than_zero: Validnost rezultata treba da bude veća od 0 dana
-      project_feature:
-        global_skills_not_enabled_on_client: Da biste omogućili Global Skills za ovaj projekat, aktivirajte ga pod Feature Flags u podešavanjima klijenta.
-      report_approval_settings:
-        report_exists: Postavka odobrenja izveštaja za ovaj izveštaj već postoji.
-        validates_admins: Administratori nemaju pristup kampanji.
-      report_families_reports:
-        report_exists: Ovaj izveštaj je već deo paketa izveštaja
-      size?: Veličina bi trebalo da bude manja %{size}
-      skill:
-        already_added: Veština sa istim imenom je već dodata.
-      skill_alias:
-        unique_alias: Alias treba da bude jedinstven
-        unique_skill: Veština treba da bude jedinstvena
-      skills_job_roles:
-        must_belong_to_same_project_or_be_global: Veština i uloga posla moraju pripadati istom projektu ili biti globalni.
-        unique_mappings: Mapiranje sa istom veštinom i ulogom posla već postoji.
-      uniq: Ova Mettl procena je već prisutna u sistemu. ID ove procene je %{id}
-      uniq?: treba da bude jedinstven
-      uniq_simulation: Ova procena simulacije je već prisutna u sistemu. ID ove procene je %{id}
-      uniq_skillvue: Ova procena Skillvue je već prisutna u sistemu. ID ove procene je %{id}
-      update_workshop:
-        bookings_exist: Nije moguće mijenjati raspored jer su učesnici već rezervisali ovaj termin.
-        less_than_booked: Ukupan broj mesta mora biti veći od rezervisanog
-      user_availability_date:
-        overlaps_date: Preklapa se sa drugom dostupnošću %{range}
-        overlaps_time: Preklapa interval %{interval}
-        start_date_should_be_less: Datum početka treba da bude manji od datuma završetka
-        start_time_should_be_less: Vreme početka treba da bude manje od vremena završetka
-      user_idp_plan:
-        idp_template_already_assigned_to_user: Ovaj Idp Šablon je već asisted ovom korisniku i aktivan
-        idp_template_not_published: Ovaj IDP šablon još nije objavljen, molimo objavite ga pre dodele korisniku.
-      user_saved_filters:
-        limit_exceeded: Možete imati samo %{limit} sačuvane filtere, ljubazno izbrišite sačuvane filtere da biste dodali još.
-        unique_name: Filter sa istim imenom već postoji.
-      workshop_invited_subject_create:
-        already_exists: Subjekat već postoji u pozivu.
-      workshop_subject_create:
-        already_exists: Subjekat već postoji u ovom Centru za procenu.
-        part_of_other_workshop: Subjekat je već učesnik '%{workshop_name}'.
-      workshop_subject_re_enroll:
-        no_seats_available: Nema dostupnih mesta za ovu radionicu.
-        scheduling_lead_time_passed: Vreme za zakazivanje je prošlo, ne možete ponovo upisati subjekta.
-        workshop_subject_not_found: Subjekt radionice nije pronađen
-      workshops:
-        no_available_assessor_slots: Nema slobodnih slotova za procenjivača %{assessor}
-        no_available_manager_slots: Nema slobodnih slotova za menadžera %{manager}
-    users:
-      registrations:
-        new:
-          register: Registrujete
-          sign_in: Upiši se
-      sessions:
-        new:
-          register: Registrujete
-          sign_in: Upiši se
   emails:
     nomination_approval_table:
       evaluator_name: Ime evaluatora
@@ -2599,6 +2491,7 @@ sr-Latn:
       aria_selected: Izabrali
   idp:
     actions: Radnje
+    add_comments: Dodaj komentare
     ai:
       assistant:
         failure_fallback:
@@ -2663,14 +2556,23 @@ sr-Latn:
       add_reply_placeholder: Dodaj odgovor...
       go_to_skill: Idi na veštinu
     comments:
+      clear_comments_for_skill: Jasni komentari za veštinu
       close: Zatvorite
+      comment_content: Kako da sadržaj
+      comment_for_skill: Komentar za veštinu
+      commented_at: Komentarisao na
+      commented_by: Komentar od strane
       comments: Komentare
       filter_comments: Filtriraj komentare
       mark_as_resolved: Označi kao rešeno
       mark_as_unresolved: Označi kao nerešeno
+      mark_comment_as_resolved: Označite ovaj komentar kao rešen
       replied: Odgovorio
+      replied_at: Odgovorio u
+      replied_by: Odgovorio
       replies: Odgovore
       reply: Odgovor
+      reply_content: Odgovor na sadržaj
       resolve: Rešite
       resolved: Rešen
       resolved_message: Ovaj komentar je rešen i odgovori su onemogućeni.
@@ -2679,8 +2581,13 @@ sr-Latn:
       show_only_unread: Prikaži samo nepročitano
       show_only_unresolved: Prikaži samo nerešeno
       sort_by_date: Sortiraj po datumu
+      total_comments_count: Ukupan broj komentara
+      total_count: Ukupan broj komentara
+      unread_replies_count: Broj nepročitanih odgovora
+      view_or_add: Pogledaj ili dodaj komentare za %{skillName}
       you: Vi
     convert_to_draft: Pretvori u nacrt
+    current_step: Trenutni korak %{step}
     delete_skill: Da li ste sigurni da želite da izbrišete veštinu jer će izbrisati i sve povezane razvojne akcije?
     details: Detalji
     development_actions:
@@ -2691,6 +2598,7 @@ sr-Latn:
       add_development_actions_modal_title: Biblioteka razvojnih akcija za %{skillName}
       add_from_library: Dodaj iz biblioteke
       add_more: Dodajte još razvojnih akcija
+      add_selected_development_actions: Dodajte izabrane razvojne akcije
       all: Sve
       approved: Odobrio
       board_view:
@@ -2705,10 +2613,15 @@ sr-Latn:
       custom: Prilagođene
       custom_da_description: Kreirajte prilagođenu razvojnu akciju za rešavanje jedinstvenih razvojnih potreba.
       date_range: Datum početka - Datum završetka
+      development_action_learning_style: Razvoj Akcija Stil učenja
+      development_action_name: Opis razvojne akcije
+      discard_draft: Odbaci nacrt
       edit_da_progress: Uredi napredak u razvoju
+      edit_development_action_progress: Uredi napredak u razvoju
       edit_plan_to_add_development_actions: Izmeni plan i da dodate razvojne akcije.
       enter_development_action_description: Unesite opis razvojne akcije
       enter_development_action_title: Unesite naslov razvojne akcije
+      filter_development_actions: Filtrirajte razvojne akcije
       generate_by_ai: Generišite AI
       generate_more: Generišite više
       generating_development_actions: Generisanje razvojnih akcija ...
@@ -2725,6 +2638,7 @@ sr-Latn:
       learning_from_others: Učenje od drugih
       learning_from_others_label: Učenje od drugih
       learning_on_the_job_label: Učenje na poslu
+      loading_development_actions: Učitavanje razvojnih akcija
       manage_skills: Upravljajte veštinama
       marathon: Maraton
       mark_as_complete: Označi kao kompletno
@@ -2735,6 +2649,7 @@ sr-Latn:
       publish_plan: Objavi plan
       remove: Uklonite
       save_plan: Sačuvaj plan
+      show_development_action_information: Pokaži informacije o akciji razvoja
       skill: Veљtina
       sprint: Sprint
       start_plan: Početni plan
@@ -2742,14 +2657,31 @@ sr-Latn:
       structured_learning_label: Kolaborativno učenje
       submit_plan: Pošalji plan
       success: Uspešno završene razvojne akcije
+      toggle_skill_privacy: Srpskohrvatski / srpskohrvatski
       write_here: Pišite ovde...
     direct_reportee_details: Direktni izveštavači Detalj
     download:
       description: 'Da biste preuzeli izveštaj, pratite link: <a href=''''%{url}'''' target =''''_blank''''>Dovnload</a>. Veza važi samo 10 minuta'
+    download_plan: Plan za preuzimanje
     edit_plan: Uredi plan
     edit_plan_and_add_skills: Uredite plan i kliknite na Upravljanje veštinama da biste dodali veštine.
     edit_progress: Uredi napredak
     fetching_skill_gap_report: Izveštaj o prazninama u veštinama ...
+    go_to_previous_step: Idi na prethodni korak
+    history:
+      added_da:
+        one: Dodatna razvojna akcija
+        other: Dodatne razvojne akcije
+      changes:
+        end_date: Datum završetka od %{from} do %{to}
+        progress: Napredak od %{from} do %{to}
+        start_date: Datum početka od %{from} do %{to}
+      modified_da:
+        one: Modifikovana razvojna akcija
+        other: Modifikovane razvojne akcije
+      removed_da:
+        one: Uklonjena razvojna akcija
+        other: Uklonjene razvojne akcije
     initial_steps:
       add_skill_group_description: Na osnovu vaših rezultata procene, evo nekih od oblasti prednosti i razvoja za vas. Izaberite veštine koje želite da dalje razvijate kao deo vašeg razvojnog plana.
       add_skill_group_title: Istraživanje vaših %{category} veština
@@ -2774,6 +2706,7 @@ sr-Latn:
       skill_column_header: Veљtina
       skill_gap_report: Izveštaj o jazu u veštinama
     list: Liste
+    loader_icon: Ikona utovarivača
     manage_plan: Upravljanje planom
     mark_as_complete: Označi kao kompletno
     mark_as_incomplete: Označi kao nepotpun
@@ -2871,10 +2804,16 @@ sr-Latn:
         skills_count: Broj veština
         title: Rezime izveštaja
     plan: Plan
+    plan_status: Plan Status %{status}
+    private: Privatni
     reflective_questions:
       already_completed: IDP je već završen, sada ne možete odgovoriti na pitanja.
+      answer: Odgovoriti
       answer_later: Odgovorite kasnije
+      answer_limit: Odgovor mora biti između %{min} i %{max} reči
       answer_placeholder: Napišite svoj odgovor ovde...
+      cancel_edited_answer: Otkaži izmenjeni odgovor
+      edit_answer: Uredi odgovor
       errors:
         max_words: Odgovor dozvoljava maksimalno %{count} reči
         min_words: Odgovor zahteva najmanje %{count} reči
@@ -2884,24 +2823,37 @@ sr-Latn:
       no_answer_provided: Još uvek nema odgovora
       no_reflective_questions: Nema dostupnih refleksivnih pitanja
       optional: "(Opciono)"
+      question: Pitanje
+      required: Ovo pitanje je potrebno
+      save_edited_answer: Sačuvaj uređen odgovor
       title: Refleksivna pitanja
       update_failed: Došlo je do greške tokom ažuriranja
       updated_successfully: Vaši odgovori su uspešno ažurirani
       word_limit: Mora biti između %{min} i %{max} reči
       words: Reиi
     remove_skill: Ukloni veštinu
+    remove_skill_from_plan: Uklonite veštine %{name} iz plana
+    report_preview: Pregled izveštaja
+    search_and_select_skills_of_skill_type: Pretražite i izaberite %{skillType} veštine
+    select_skills_of_skill_type: Izaberite %{skillType} veštine
+    selected_skills_of_skill_type: Odabrane %{skillType} veštine
     skill_gap_report:
+      content: Sadržaj izveštaja o jazu u veštinama
       download: Preuzmite izveštaj o jazu u veštinama
       title: Izveštaj o jazu u veštinama
+    skill_status: Veština %{name} je privatna
     skills_updated: Veštine ažurirane u Planu
     status: Status
     suggestions: Predloge
+    suggestions_for_skill_type: Predlozi za %{skillType} veštine
     technical: Tehnički
     user_idp_status:
       approved: Odobrio
       completed: Završeno
+      completion_not_started: Završetak nije započeo
       draft: Nacrt
       in_progress: U toku
+      in_review: U pregledu
       not_started: Nije započeto
       pending_approval: Čeka se odobrenje
       rejected: Odbio
@@ -4223,6 +4175,9 @@ sr-Latn:
       EntityTooLarge: Veličina datoteke treba da bude manja od%{maxFileSize} MB
       WrongFileType: Tip datoteke treba da bude jedan od sledećih %{allowedFileTypes}
     idp:
+      can_not_complete_without_approval_and_in_progress: Ne možete da završite IDP dok vaš menadžer ne odobri i vi ste ga označili kao "U toku".
+      can_not_start_without_approval: Ne možete početi da radite na vašem IDP-u dok ga vaš menadžer ne odobri.
+      no_previous_approved_plan: Nije pronađen prethodni odobreni plan IDP-a.
       reflective_questions_required: Odgovori na reflektujuća pitanja su potrebni za IDP
       status_not_permitted: nije dozvoljeno od strane korisnika.
       status_not_permitted_by_manager: Menadžer ne može da ažurira status kada je plan u stanju '%{status}'.

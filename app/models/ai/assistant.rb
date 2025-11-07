@@ -70,10 +70,22 @@ class AI::Assistant < ApplicationRecord
     IdpTemplate.exists?(['one_click_ai_assistant_id = ? OR document_analysis_ai_assistant_id = ?', id, id])
   end
 
+  def ai_provider_for_model
+    return nil if Settings.ai_providers.blank?
+
+    Settings.ai_providers.find { |provider| provider['model_id'] == model_id }
+  end
+
   private
 
   def create_chat_for_user(user)
-    chats.create!(ai_assistant: self, user: user, model_id: model_id)
+    chats.create!(
+      ai_assistant: self,
+      user: user,
+      model: ai_provider_for_model['model_id'],
+      provider: ai_provider_for_model['custom_provider'].presence,
+      assume_model_exists: ai_provider_for_model['custom_provider'].present? # Allow custom providers
+    )
   end
 
   def configure_chat(chat, options)
@@ -109,12 +121,6 @@ class AI::Assistant < ApplicationRecord
       #{output_schema_as_context}
       #{contextual_information}
     SYSTEM_PROMPT
-  end
-
-  def ai_provider_for_model
-    return nil if Settings.ai_providers.blank?
-
-    Settings.ai_providers.find { |provider| provider['model_id'] == model_id }
   end
 
   def validate_type_specific_rules

@@ -1,9 +1,8 @@
 import {
   Avatar, Badge, Button, Flex, Tooltip, Typography,
 } from 'antd'
-import { UserOutlined } from '@ant-design/icons'
 import { UserIdpComment } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
-import { ArrowRightOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { ArrowRightOutlined, CheckOutlined, UserOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { getUserName, formatDate } from './Utils'
 import { useCurrentUser } from '~/hooks/useCurrentUser'
 import styles from './Comments.less'
@@ -43,12 +42,22 @@ export const CommentItemHeader = ({
               src={comment.createdBy?.photo}
               size={32}
               icon={<UserOutlined />}
+              aria-hidden="true"
             />
             <Flex vertical>
               <Typography.Text style={{ fontSize: '0.75rem' }}>
+                <span className="sr-only">
+                  {I18n.t('idp.comments.commented_by')}
+                </span>
                 {userName}
               </Typography.Text>
-              <Typography.Text type="secondary" style={{ fontSize: '0.75rem' }}>
+              <Typography.Text
+                type="secondary"
+                style={{ fontSize: '0.75rem' }}
+              >
+                <span className="sr-only">
+                  {I18n.t('idp.comments.commented_at')}
+                </span>
                 {formatDate(comment.createdAt)}
               </Typography.Text>
             </Flex>
@@ -63,6 +72,7 @@ export const CommentItemHeader = ({
                   e.stopPropagation()
                   onResolveComment(comment.id)
                 }}
+                aria-label={I18n.t('idp.comments.mark_comment_as_resolved')}
                 iconPosition="end"
               >
                 {I18n.t('idp.comments.resolve')}
@@ -86,16 +96,25 @@ export const CommentItemHeader = ({
             </Tooltip>
           )}
         </Flex>
-        <Typography.Text style={{
-          fontSize: '0.875rem',
-          fontWeight: '500',
-        }}
+        <Typography.Text
+          style={{
+            fontSize: '0.875rem',
+            fontWeight: '500',
+          }}
         >
+          <span className="sr-only">
+            {I18n.t('idp.comments.comment_content')}
+          </span>
           {comment.content}
         </Typography.Text>
         <Flex gap={0} justify="space-between" style={{ flex: 1 }}>
           {repliesCount ? (
-            <Badge count={comment.unreadRepliesCount} size="small" color="primary">
+            <Badge
+              aria-label={I18n.t('idp.comments.unread_replies_count')}
+              count={comment.unreadRepliesCount}
+              size="small"
+              color="primary"
+            >
               <Button type="link" size="small" className="p-0">
                 <Flex align="center" gap={2}>
                   <span>{repliesCount || 0}</span>

@@ -20,6 +20,7 @@ end
 # Define export class for testing outside of the block
 class TestUserExport < PortableData::Exports::ExportFields
   include PortableData::Exports::SchemaConfiguration
+
   klass TestUser
 
   attributes :name, :email

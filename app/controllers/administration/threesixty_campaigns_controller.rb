@@ -99,6 +99,11 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
                     status: :unprocessable_entity
     end
 
+    if report_count.zero?
+      return render json: { errors: I18n.t('campaign_report.messages.bulk_download_no_reports') },
+                    status: :unprocessable_entity
+    end
+
     AdminJob.call(:bulk_download_user_reports,
                   { campaign_id: resource.campaign_id, is_threesixty: true, locales: params[:selected_locales],
                     is_bulk_action: true, ids: params[:selected_user_report_ids] },

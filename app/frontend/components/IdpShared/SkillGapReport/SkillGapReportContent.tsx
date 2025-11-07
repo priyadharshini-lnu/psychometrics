@@ -11,19 +11,24 @@ const { Content } = Layout
 const { I18n } = window
 
 export const SkillGapReportContent = ({ skillGapData, isLoading }) => (
-  <Content className={styles.reportContainer}>
+  <Content className={styles.reportContainer} role="region" aria-label={I18n.t('idp.skill_gap_report.title')}>
     {
           isLoading ? (
             <Flex gap={4} vertical style={{ height: '80vh' }} justify="center" align="center">
-              <Spin size="large" />
-              <Typography.Text style={{ color: 'var(--ant-primary-color)' }}>
+              <Spin size="large" aria-label={I18n.t('idp.loader_icon')} />
+              <Typography.Text style={{ color: 'var(--ant-primary-color)' }} role="status">
                 {I18n.t('idp.fetching_skill_gap_report')}
               </Typography.Text>
             </Flex>
           ) : (
             <>
               {skillGapData && (
-                <Flex justify="center" className="mb-5 mt-8">
+                <Flex
+                  role="region"
+                  aria-label={I18n.t('idp.skill_gap_report.content')}
+                  justify="center"
+                  className="mb-5 mt-8"
+                >
                   <Report
                     data={skillGapData.report}
                     results={skillGapData.results}

@@ -62,7 +62,7 @@ module Administration
     private
 
     def resource_params
-      params.require(:resource).permit(:name, :assessment_id, :report_id, :owner_id)
+      params.expect(resource: %i[name assessment_id report_id owner_id])
     end
 
     def set_resource_class

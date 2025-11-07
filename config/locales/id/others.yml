@@ -389,6 +389,8 @@ id:
               inclusion: Silakan pilih jenis norma yang benar
         user:
           attributes:
+            current_job_role:
+              not_found: "%{name} tidak ditemukan"
             email:
               user_exists_in_campaign: Pengguna dengan id email ini sudah ada di kampanye
               user_exists_in_project: Pengguna dengan id email ini sudah ada di project
@@ -408,6 +410,8 @@ id:
               invalid_datetime: tidak valid
             schedule_start_date:
               invalid_datetime: tidak valid
+            target_job_role:
+              not_found: "%{name} tidak ditemukan"
         user_assessment:
           subject_and_assessment_exists: Penilaian dan pasangan mata pelajaran sudah ada
         user_idp_development_action:
@@ -2144,118 +2148,6 @@ id:
       send_paranoid_instructions: Jika akun Anda ada, Anda akan menerima email dengan petunjuk tentang cara membukanya dalam beberapa menit.
       unlocked: Akun Anda telah berhasil dibuka kuncinya. Silakan login untuk melanjutkan.
       unprocessable_entity: Akun Anda tidak dapat dibuka kuncinya dengan tautan ini. Silakan hubungi dukungan.
-  dry_errors:
-    errors:
-      add_edit_project:
-        invalid_subdomain_format: Format subdomain yang salah.
-        reserved_subdomain: Subdomain %{value} dicadangkan
-        uniq_subdomain: Subdomain harus unik.
-      add_manager:
-        cannot_be_self: Pengguna tidak dapat ditugaskan sebagai manajer mereka sendiri
-        manager_not_found: Manajer tidak ditemukan atau bukan bagian dari proyek yang sama
-        user_not_found: Pengguna tidak ditemukan atau bukan bagian dari proyek yang sama
-      admin:
-        already_added: Admin dengan email sudah ditambahkan.
-      already_assigned?: Tidak dapat menautkan penilaian ini - sudah ditetapkan ke '%{linked_assessor_form_name}'.
-      already_invited: Pengguna ini sudah ada di pusat penilaian yang ingin Anda tambahkan.
-      assessor_assessment:
-        already_added: Penilaian Penilai sudah ditambahkan ke kampanye.
-        lead_already_added: Hanya satu Penilaian Penilai Prospek yang dapat ditambahkan ke kampanye.
-      campaign_factor:
-        code_already_exists: Faktor dengan kode yang sama sudah ada.
-        invalid_lua_name: Harus nama variabel lua yang valid
-        limit_exceeded: Anda telah mencapai batas maksimum %{limit} faktor kampanye.
-        name_already_exists: Faktor dengan nama yang sama sudah ada.
-        rank_not_allowed: Hanya faktor dengan jenis numerik keluaran yang dapat diberi peringkat.
-      campaign_factor_group:
-        group_already_exists: Grup dengan nama yang sama sudah ada.
-        last_factor_group: Tidak dapat menghapus grup faktor Kampanye terakhir.
-      campaign_idps:
-        idp_template_not_published: Template IDP ini belum dipublikasikan, silakan publikasikan sebelum menugaskan kampanye.
-      cant_be_deleted: Catatan ini tidak dapat dihapus
-      client_feature:
-        ai_assisted_idp_feature_error: Tidak mungkin benar jika fitur asisten ai dinonaktifkan
-      create_superadmin:
-        uniq_email: Email harus uniq.
-      development_actions:
-        only_global_skills_allowed: Keterampilan yang dipilih haruslah keterampilan global.
-        skills_not_belong_to_project: Keahlian yang dipilih harus sesuai dengan proyek yang ditentukan.
-        skills_required: Pilihlah setidaknya satu keterampilan.
-      exceeded_subjects_count: Anda hanya dapat menambahkan %{count} subjek per undangan
-      filled?: tidak bisa kosong
-      idp_template:
-        content_required: Konten diperlukan untuk instruksi
-        tag_or_skill_required: Silakan pilih tag atau keterampilan saat opsi "Dipilih" dipilih.
-      invalid_name: Hanya alfabet, angka, spasi, tanda hubung, dan titik yang diizinkan sebagai karakter yang valid
-      invalid_value: pernyataan tidak valid '%{value}' pada nomor baris %{row}
-      job_roles:
-        unique_within_job_group: Peran pekerjaan dengan nama yang sama sudah ada.
-      json?: Harus JSON yang valid
-      key?: tidak bisa kosong
-      match_regexp?: nilai tidak valid
-      mettl_schedule_record_create:
-        uniq_schedule_name: Nama jadwal harus unik
-      missed?: tidak bisa kosong
-      not_allowed?: Tidak diizinkan untuk berubah
-      not_in_the_list?: nilai tidak valid diteruskan
-      not_uniq_variable: variabel '%{value}' didefinisikan ulang pada nomor baris %{row}
-      project_assessments:
-        should_be_greater_than_zero: Validitas hasil harus lebih besar dari 0 hari
-      project_feature:
-        global_skills_not_enabled_on_client: Untuk mengaktifkan Keterampilan Global untuk proyek ini, aktifkan di bawah Bendera Fitur di pengaturan klien.
-      report_approval_settings:
-        report_exists: Pengaturan persetujuan laporan untuk laporan ini sudah ada.
-        validates_admins: Admin tidak memiliki akses ke kampanye.
-      report_families_reports:
-        report_exists: Laporan ini sudah menjadi bagian dari Report Bundle
-      size?: ukuran harus kurang %{size}
-      skill:
-        already_added: Skill dengan nama yang sama sudah ditambahkan.
-      skill_alias:
-        unique_alias: Alias harus unik
-        unique_skill: Keterampilan harus unik
-      skills_job_roles:
-        must_belong_to_same_project_or_be_global: Keahlian dan peran pekerjaan harus berasal dari proyek yang sama atau bersifat global.
-        unique_mappings: Pemetaan dengan keterampilan dan peran pekerjaan yang sama sudah ada.
-      uniq: Penilaian Mettl ini sudah ada dalam sistem. ID penilaian ini adalah %{id}
-      uniq?: harus unik
-      uniq_simulation: Penilaian Simulasi ini sudah ada dalam sistem. ID penilaian ini adalah %{id}
-      uniq_skillvue: Penilaian Skillvue ini sudah ada di dalam sistem. ID dari penilaian ini adalah %{id}
-      update_workshop:
-        bookings_exist: Tidak dapat mengubah jadwal karena peserta telah memesan slot waktu ini.
-        less_than_booked: Total kursi harus lebih besar dari yang dipesan
-      user_availability_date:
-        overlaps_date: Tumpang tindih dengan ketersediaan lain %{range}
-        overlaps_time: Tumpang tindih interval %{interval}
-        start_date_should_be_less: Tanggal mulai harus kurang dari tanggal akhir
-        start_time_should_be_less: Waktu mulai harus kurang dari waktu akhir
-      user_idp_plan:
-        idp_template_already_assigned_to_user: Template Idp ini sudah dikirimkan ke pengguna ini dan aktif
-        idp_template_not_published: Template IDP ini belum dipublikasikan, silakan publikasikannya sebelum menetapkan kepada pengguna.
-      user_saved_filters:
-        limit_exceeded: Anda hanya dapat memiliki filter tersimpan %{limit}, silakan hapus filter tersimpan untuk menambahkan lebih banyak.
-        unique_name: Filter dengan nama yang sama sudah ada.
-      workshop_invited_subject_create:
-        already_exists: Subjek sudah ada di undangan.
-      workshop_subject_create:
-        already_exists: Subjek sudah ada di Pusat Penilaian ini.
-        part_of_other_workshop: Subjek sudah menjadi peserta '%{workshop_name}'.
-      workshop_subject_re_enroll:
-        no_seats_available: Tidak ada kursi yang tersedia untuk lokakarya ini.
-        scheduling_lead_time_passed: Waktu tunggu penjadwalan telah berlalu, Anda tidak dapat mendaftarkan ulang mata pelajaran tersebut.
-        workshop_subject_not_found: Subjek lokakarya tidak ditemukan
-      workshops:
-        no_available_assessor_slots: Tidak ada slot yang tersedia untuk penilai %{assessor}
-        no_available_manager_slots: Tidak ada slot yang tersedia untuk manajer %{manager}
-    users:
-      registrations:
-        new:
-          register: Daftar
-          sign_in: Tandatangan
-      sessions:
-        new:
-          register: Daftar
-          sign_in: Tandatangan
   emails:
     nomination_approval_table:
       evaluator_name: Nama Evaluator
@@ -2585,6 +2477,7 @@ id:
       aria_selected: Dipilih
   idp:
     actions: Tindakan
+    add_comments: Tambahkan Komentar
     ai:
       assistant:
         failure_fallback:
@@ -2622,7 +2515,7 @@ id:
           option_2: Cocok untuk profesional yang sibuk
           option_3: Dapat diedit sepenuhnya setelah generasi
           title: IDP AI 1-Klik
-        sub_title: Mari buat jorney peningkatan keterampilan yang disesuaikan yang dipetakan dengan aspirasi karir Anda dan dipandu oleh AI
+        sub_title: Mari buat perjalanan peningkatan keterampilan yang disesuaikan yang dipetakan dengan aspirasi karir Anda dan dipandu oleh AI
         title: Buat Rencana Pengembangan Individu Anda
       summary:
         chat_title: Ringkasan Wawasan Obrolan
@@ -2637,7 +2530,7 @@ id:
         drop: Jatuhkan file di sini
         title: Unggah file
       welcome:
-        text: Siap untuk memetakan pertumbuhan Anda jorney? Mari kita mulai!
+        text: Siap untuk memetakan perjalanan pertumbuhan Anda? Mari kita mulai!
         title: Halo, saya asisten pengembangan Anda
     behavioral: Perilaku
     board: Papan
@@ -2649,14 +2542,23 @@ id:
       add_reply_placeholder: Tambahkan balasan...
       go_to_skill: Pergi ke keterampilan
     comments:
+      clear_comments_for_skill: Komentar yang jelas untuk keterampilan
       close: Tutup
+      comment_content: Cara konten
+      comment_for_skill: Komentar untuk keterampilan
+      commented_at: Dikomentari di
+      commented_by: Dikomentari oleh
       comments: Komentar
       filter_comments: Filter komentar
       mark_as_resolved: Tandai sebagai terselesaikan
       mark_as_unresolved: Tandai sebagai belum terselesaikan
+      mark_comment_as_resolved: Tandai komentar ini sebagai diselesaikan
       replied: Menjawab
+      replied_at: Dibalas di
+      replied_by: Dijawab oleh
       replies: Balasan
       reply: Jawab
+      reply_content: Membalas konten
       resolve: Menyelesaikan
       resolved: Diselesaikan
       resolved_message: Komentar ini telah diselesaikan dan balasan dinonaktifkan.
@@ -2665,8 +2567,13 @@ id:
       show_only_unread: Tampilkan hanya belum dibaca
       show_only_unresolved: Tampilkan hanya yang belum terselesaikan
       sort_by_date: Urutkan berdasarkan tanggal
+      total_comments_count: Total jumlah komentar
+      total_count: Jumlah total komentar
+      unread_replies_count: Jumlah balasan yang belum dibaca
+      view_or_add: Melihat atau menambahkan komentar untuk %{skillName}
       you: Kamu
     convert_to_draft: Konversi ke Draf
+    current_step: Langkah Saat Ini %{step}
     delete_skill: Apakah Anda yakin ingin menghapus keterampilan karena itu akan menghapus semua tindakan pengembangan yang terhubung juga?
     details: Rincian
     development_actions:
@@ -2677,6 +2584,7 @@ id:
       add_development_actions_modal_title: Perpustakaan Tindakan Pengembangan untuk %{skillName}
       add_from_library: Tambahkan dari Perpustakaan
       add_more: Tambahkan Lebih Banyak Tindakan Pengembangan
+      add_selected_development_actions: Tambahkan Tindakan Pengembangan yang Dipilih
       all: Semua
       approved: Disetujui
       board_view:
@@ -2691,10 +2599,15 @@ id:
       custom: Adat
       custom_da_description: Buat tindakan pengembangan khusus untuk memenuhi kebutuhan pengembangan yang unik.
       date_range: Tanggal Mulai - Tanggal Akhir
+      development_action_learning_style: Pengembangan Gaya Pembelajaran Tindakan
+      development_action_name: Deskripsi Tindakan Pengembangan
+      discard_draft: Buang Draf
       edit_da_progress: Mengedit Kemajuan Tindakan Pengembangan
+      edit_development_action_progress: Mengedit Kemajuan Tindakan Pengembangan
       edit_plan_to_add_development_actions: Edit Rencana dan untuk menambahkan Tindakan Pengembangan.
       enter_development_action_description: Masukkan Deskripsi Tindakan Pengembangan
       enter_development_action_title: Masukkan Judul Tindakan Pengembangan
+      filter_development_actions: Filter Tindakan Pengembangan
       generate_by_ai: Hasilkan oleh AI
       generate_more: Hasilkan Lebih Banyak
       generating_development_actions: Menghasilkan tindakan pembangunan...
@@ -2711,6 +2624,7 @@ id:
       learning_from_others: Belajar dari orang lain
       learning_from_others_label: Belajar dari Orang Lain
       learning_on_the_job_label: Belajar di tempat kerja
+      loading_development_actions: Memuat Tindakan Pengembangan
       manage_skills: Kelola Keterampilan
       marathon: Maraton
       mark_as_complete: Tandai sebagai Selesai
@@ -2721,6 +2635,7 @@ id:
       publish_plan: Menerbitkan Rencana
       remove: Buka
       save_plan: Simpan Paket
+      show_development_action_information: Tampilkan informasi Tindakan Pengembangan
       skill: Keahlian
       sprint: Sprint
       start_plan: Mulai Rencana
@@ -2728,14 +2643,31 @@ id:
       structured_learning_label: Pembelajaran Kolaboratif
       submit_plan: Kirim Paket
       success: Tindakan Pengembangan berhasil diselesaikan
+      toggle_skill_privacy: Beralih Privasi Keterampilan
       write_here: Tulis di sini...
     direct_reportee_details: Detail Bawahan Langsung
     download:
       description: 'Untuk mengunduh laporan, silakan ikuti tautan: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Tautan hanya berlaku selama 10 menit'
+    download_plan: Unduh Paket
     edit_plan: Edit Paket
     edit_plan_and_add_skills: Edit Rencana dan klik Kelola Keterampilan untuk menambahkan Keterampilan.
     edit_progress: Edit Kemajuan
     fetching_skill_gap_report: Laporan Kesenjangan Keterampilan Mengambil ...
+    go_to_previous_step: Pergi ke Langkah Sebelumnya
+    history:
+      added_da:
+        one: Menambahkan Tindakan Pengembangan
+        other: Menambahkan Tindakan Pengembangan
+      changes:
+        end_date: Tanggal Akhir dari %{from} ke %{to}
+        progress: Maju dari %{from} ke %{to}
+        start_date: Tanggal Mulai dari %{from} hingga %{to}
+      modified_da:
+        one: Tindakan Pengembangan yang Dimodifikasi
+        other: Tindakan Pengembangan yang Dimodifikasi
+      removed_da:
+        one: Tindakan Pengembangan yang Dihapus
+        other: Tindakan Pengembangan yang Dihapus
     initial_steps:
       add_skill_group_description: Berdasarkan hasil penilaian Anda, berikut adalah beberapa area kekuatan dan pengembangan untuk Anda. Pilih keterampilan yang ingin Anda kembangkan lebih lanjut sebagai bagian dari rencana pengembangan Anda.
       add_skill_group_title: Menjelajahi Keterampilan %{category} Anda
@@ -2760,6 +2692,7 @@ id:
       skill_column_header: Keahlian
       skill_gap_report: Laporan Kesenjangan Keterampilan
     list: Daftar
+    loader_icon: Ikon pemuat
     manage_plan: Kelola Paket
     mark_as_complete: Tandai sebagai Selesai
     mark_as_incomplete: Tandai sebagai Tidak Lengkap
@@ -2879,10 +2812,16 @@ id:
         skills_count: Jumlah Keterampilan
         title: Ringkasan Laporan
     plan: Rencana
+    plan_status: Status Paket %{status}
+    private: Swasta
     reflective_questions:
       already_completed: IDP telah selesai, Anda tidak dapat menjawab pertanyaan sekarang.
+      answer: Menjawab
       answer_later: Jawab Nanti
+      answer_limit: Jawaban harus antara %{min} dan %{max} kata
       answer_placeholder: Tulis jawaban Anda di sini...
+      cancel_edited_answer: Batalkan Jawaban yang Diedit
+      edit_answer: Edit Jawaban
       errors:
         max_words: Jawabannya memungkinkan %{count} kata maksimum
         min_words: Jawabannya membutuhkan setidaknya %{count} kata
@@ -2892,24 +2831,37 @@ id:
       no_answer_provided: Belum ada jawaban yang diberikan
       no_reflective_questions: Tidak ada pertanyaan reflektif
       optional: "(Opsional)"
+      question: Pertanyaan
+      required: Pertanyaan ini diperlukan
+      save_edited_answer: Simpan Jawaban yang Diedit
       title: Pertanyaan Reflektif
       update_failed: Terjadi kesalahan selama pembaruan
       updated_successfully: Jawaban Anda telah berhasil diperbarui
       word_limit: Harus antara %{min} dan %{max} kata
       words: Kata
     remove_skill: Hapus Keterampilan
+    remove_skill_from_plan: Hapus %{name} keterampilan dari rencana
+    report_preview: Pratinjau Laporan
+    search_and_select_skills_of_skill_type: Cari dan pilih keterampilan %{skillType}
+    select_skills_of_skill_type: Pilih keterampilan %{skillType}
+    selected_skills_of_skill_type: Keterampilan %{skillType} yang dipilih
     skill_gap_report:
+      content: Konten Laporan Kesenjangan Keterampilan
       download: Unduh Laporan Kesenjangan Keterampilan
       title: Laporan Kesenjangan Keterampilan
+    skill_status: Keterampilan %{name} bersifat pribadi
     skills_updated: Keterampilan yang diperbarui dalam Rencana
     status: Status
     suggestions: Saran
+    suggestions_for_skill_type: Saran untuk keterampilan %{skillType}
     technical: Teknis
     user_idp_status:
       approved: Disetujui
       completed: Selesai
+      completion_not_started: Penyelesaian Belum Dimulai
       draft: Bagan
       in_progress: Sedang Berlangsung
+      in_review: Dalam Tinjauan
       not_started: Belum Dimulai
       pending_approval: Menunggu Persetujuan
       rejected: Ditolak
@@ -4231,6 +4183,9 @@ id:
       EntityTooLarge: Ukuran file harus kurang dari %{maxFileSize} MB
       WrongFileType: Jenis file haruslah salah satu dari yang berikut ini %{allowedFileTypes}
     idp:
+      can_not_complete_without_approval_and_in_progress: Anda tidak dapat menyelesaikan IDP Anda sampai manajer Anda menyetujuinya dan Anda menandainya sebagai 'Sedang Berlangsung'.
+      can_not_start_without_approval: Anda tidak dapat mulai mengerjakan IDP Anda sampai manajer Anda menyetujuinya.
+      no_previous_approved_plan: Tidak ada rencana IDP yang disetujui sebelumnya yang ditemukan.
       reflective_questions_required: Jawaban atas pertanyaan reflektif diperlukan untuk IDP
       status_not_permitted: tidak diizinkan oleh pengguna.
       status_not_permitted_by_manager: Manajer tidak dapat memperbarui status saat paket dalam status '%{status}'.

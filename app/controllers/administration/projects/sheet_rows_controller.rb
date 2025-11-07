@@ -4,6 +4,7 @@ module Administration
   module Projects
     class SheetRowsController < Administration::Projects::BaseController
       include Administration::SheetRowManagement
+
       before_action :set_init_state, only: [:index]
 
       private

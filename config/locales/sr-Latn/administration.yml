@@ -3147,15 +3147,40 @@ sr-Latn:
             no_auth:
               label: Ništa
               value: no_auth
+            oauth:
+              label: OAuth
+              value: OMILjENO
+          client_credentials:
+            label: Akreditivi klijenta
+            value: client_credentials
+          client_id:
+            label: ID klijenta
+            name: oauth_client_id
+            required: ID klijenta je obavezan
+          client_secret:
+            label: Tajna klijenta
+            name: oauth_client_secret
+            required: Tajna klijenta je obavezna
           description:
             label: Opis
             name: Opis
+          grant_type:
+            label: Tip granta
+            name: oauth_grant_type
           include_locales:
             label: Uključi prevode
             name: include_locales
+          oauth_scope:
+            label: Opseg
+            name: oauth_scope
+            required: Obim je potreban
           password:
             label: Lozinka
             name: Lozinka
+          token_url:
+            label: URL tokena
+            name: oauth_token_url
+            required: URL tokena je obavezan
           topics:
             label: Događaji
             list:
@@ -3475,6 +3500,7 @@ sr-Latn:
         add_new_condition: Dodaj novi uslov
         apply_color_label: 'Zatim nanesite sledeću boju:'
         custom_factor_fields:
+          default_score: Rezultat
           percentage: Procenat
           questions_attempted: Pokuљaj
           questions_correct: Ispravan
@@ -3510,6 +3536,7 @@ sr-Latn:
         prefixes:
           and: I
           or: ILI
+        prevent_value_overlap: Sprečite preklapanje vrednosti
         skill_type_label: Filtriraj po vrsti veštine
         skill_type_placeholder: Izaberite vrstu veštine
         skill_types:
@@ -3790,6 +3817,7 @@ sr-Latn:
         start_time: Datum i vreme
         subject: Subjekat
         title: Naslov
+        view_recording: Pogledaj snimak
       errors:
         assessor_already_assigned: Procenjivač je već dodeljen ovoj proceni. Molimo Vas da izaberete drugu procenu ili procenitelja.
         date_required: Molimo Vas da izaberete datum

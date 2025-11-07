@@ -28,6 +28,8 @@ const SkillsForm = ({
 }: SkillsFormProps) => {
   const { projectId } = useParams() as { projectId: string }
 
+  const globalSkillsEnabled = idp?.meta?.projectFeatures?.globalSkills || false
+
   const baseApiConfig = {
     basePath: `projects/${projectId}`,
     trackUrl: true,
@@ -67,22 +69,27 @@ const SkillsForm = ({
       setIsLoading(true)
       const values = await form.validateFields()
 
-      const skills: Pick<Skill, 'id'>[] = _.flatten([
-        values.behavioralGlobalSkills || [],
+      const skillArrays = [
         values.behavioralClientSkills || [],
-        values.technicalGlobalSkills || [],
         values.technicalClientSkills || [],
-      ]).map((skill: string) => ({ id: skill }))
+      ]
+
+      if (globalSkillsEnabled) {
+        skillArrays.push(values.behavioralGlobalSkills || [])
+        skillArrays.push(values.technicalGlobalSkills || [])
+      }
+
+      const skills: Pick<Skill, 'id'>[] = _.flatten(skillArrays).map((skill: string) => ({ id: skill }))
 
       const payload = {
         skills,
-        behaviouralGlobalTags: values.behavioralGlobalTags || [],
+        behaviouralGlobalTags: globalSkillsEnabled ? (values.behavioralGlobalTags || []) : [],
         behaviouralClientTags: values.behavioralClientTags || [],
-        technicalGlobalTags: values.technicalGlobalTags || [],
+        technicalGlobalTags: globalSkillsEnabled ? (values.technicalGlobalTags || []) : [],
         technicalClientTags: values.technicalClientTags || [],
-        behavioralGlobalSkillSettings: values.behavioralGlobalSkillSettings,
+        behavioralGlobalSkillSettings: globalSkillsEnabled ? values.behavioralGlobalSkillSettings : SkillsOption.NONE,
         behavioralClientSkillSettings: values.behavioralClientSkillSettings,
-        technicalGlobalSkillSettings: values.technicalGlobalSkillSettings,
+        technicalGlobalSkillSettings: globalSkillsEnabled ? values.technicalGlobalSkillSettings : SkillsOption.NONE,
         technicalClientSkillSettings: values.technicalClientSkillSettings,
         project: { id: projectId, type: 'projects' },
       }
@@ -161,13 +168,15 @@ const SkillsForm = ({
             <Row gutter={16}>
               <Col xs={24} md={12}>
                 <Card title={I18n.t('administration.idp.behavioral_skills')}>
-                  <SkillsAndTagsSelection
-                    categorizedSkills={categorizedSkills}
-                    skillType="behavioral"
-                    type="Global"
-                    projectId={projectId}
-                    form={form}
-                  />
+                  {globalSkillsEnabled && (
+                    <SkillsAndTagsSelection
+                      categorizedSkills={categorizedSkills}
+                      skillType="behavioral"
+                      type="Global"
+                      projectId={projectId}
+                      form={form}
+                    />
+                  )}
                   <SkillsAndTagsSelection
                     categorizedSkills={categorizedSkills}
                     skillType="behavioral"
@@ -179,13 +188,15 @@ const SkillsForm = ({
               </Col>
               <Col xs={24} md={12}>
                 <Card title={I18n.t('administration.idp.technical_skills')}>
-                  <SkillsAndTagsSelection
-                    categorizedSkills={categorizedSkills}
-                    skillType="technical"
-                    type="Global"
-                    projectId={projectId}
-                    form={form}
-                  />
+                  {globalSkillsEnabled && (
+                    <SkillsAndTagsSelection
+                      categorizedSkills={categorizedSkills}
+                      skillType="technical"
+                      type="Global"
+                      projectId={projectId}
+                      form={form}
+                    />
+                  )}
                   <SkillsAndTagsSelection
                     categorizedSkills={categorizedSkills}
                     skillType="technical"

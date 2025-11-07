@@ -2,6 +2,7 @@
 
 class Assessors::EvaluationsController < Assessors::BaseController
   include ::Threesixty::SetAssessmentLocale
+
   skip_before_action :enforce_geo_restriction, except: :evaluate
   before_action :set_assessor_assessment, only: %i[show new_response]
   before_action :set_subject_user_assessment, only: %i[subject_assessment]

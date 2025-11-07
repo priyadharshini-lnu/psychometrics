@@ -100,7 +100,7 @@ module Administration
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :description, :type, :parent_id, :file_cache, :owner_id, files: [])
+      params.expect(resource: [:name, :description, :type, :parent_id, :file_cache, :owner_id, { files: [] }])
     end
 
     def assign_common_attributes(resource)

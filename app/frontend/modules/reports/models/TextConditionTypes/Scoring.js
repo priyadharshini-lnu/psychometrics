@@ -19,6 +19,11 @@ class Scoring extends BaseType {
     if (!scoring) { return false }
 
     const factorData = scoring[parseInt(this.condition.props.subject, 10)]
+
+    if (factorData && this.condition.props.customFactorValueField) {
+      return this.compare(factorData[this.condition.props.customFactorValueField])
+    }
+
     if (factorData && factorData.results.length) {
       const { results } = factorData
       const aggregatedData = this.aggregate(results)

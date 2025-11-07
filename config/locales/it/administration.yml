@@ -3148,15 +3148,40 @@ it:
             no_auth:
               label: Nessuno
               value: no_auth
+            oauth:
+              label: OAuth
+              value: oauth
+          client_credentials:
+            label: Credenziali client
+            value: client_credentials
+          client_id:
+            label: ID cliente
+            name: oauth_client_id
+            required: L'ID client è obbligatorio
+          client_secret:
+            label: Segreto client
+            name: oauth_client_secret
+            required: Il segreto client è obbligatorio
           description:
             label: Descrizione
             name: descrizione
+          grant_type:
+            label: Tipo di sovvenzione
+            name: oauth_grant_type
           include_locales:
             label: Includere le traduzioni
             name: include_locali
+          oauth_scope:
+            label: Portata
+            name: oauth_scope
+            required: L'ambito è obbligatorio
           password:
             label: Password
             name: password
+          token_url:
+            label: Token URL
+            name: oauth_token_url
+            required: L'URL del token è obbligatorio
           topics:
             label: Eventi
             list:
@@ -3476,6 +3501,7 @@ it:
         add_new_condition: Aggiungi nuova condizione
         apply_color_label: 'Quindi applicare il seguente colore:'
         custom_factor_fields:
+          default_score: Punteggio
           percentage: Percentuale
           questions_attempted: Tentato
           questions_correct: Corretto
@@ -3511,6 +3537,7 @@ it:
         prefixes:
           and: E
           or: O
+        prevent_value_overlap: Evitare la sovrapposizione dei valori
         skill_type_label: Filtra per tipo di abilità
         skill_type_placeholder: Seleziona il tipo di abilità
         skill_types:
@@ -3791,6 +3818,7 @@ it:
         start_time: Data e ora
         subject: Oggetto
         title: Titolo
+        view_recording: Visualizza registrazione
       errors:
         assessor_already_assigned: Il valutatore è già assegnato a questa valutazione. Selezionare un'altra valutazione o un altro valutatore.
         date_required: Selezionare una data

@@ -9,7 +9,7 @@ RSpec.describe EndUser::UserIdpCommentsController, type: :controller do
   let!(:another_user) { create(:user, project: manager.project) }
   let!(:campaign) { create(:campaign, project: manager.project) }
   let!(:user_idp_plan) do
-    create(:user_idp_plan, user: user, campaign: campaign, active: true, status: :pending_approval)
+    create(:user_idp_plan, user: user, campaign: campaign, active: true, approval_status: :pending_approval)
   end
   let!(:campaign_user) { create(:campaign_user, user: user, campaign: campaign, active: true) }
   let!(:resource) { create(:user_idp_skill) }
@@ -157,9 +157,9 @@ RSpec.describe EndUser::UserIdpCommentsController, type: :controller do
         expect(comment1_data).not_to be_nil
 
         expect(comment1_data['replies'].size).to eq(2)
-        expect(comment1_data['replies'].map { |r| r['id'] }).to include(reply1.id, reply2.id)
+        expect(comment1_data['replies'].pluck('id')).to include(reply1.id, reply2.id)
         expect(comment1_data['replies'].map { |r| r['created_by']['id'] }).to include(user.id, manager.id)
-        expect(comment1_data['replies'].map { |r| r['content'] }).to include(reply1.content, reply2.content)
+        expect(comment1_data['replies'].pluck('content')).to include(reply1.content, reply2.content)
 
         expect(comment1.reload.read_by_user_ids).to include(user.id)
         expect(reply1.reload.read_by_user_ids).to include(user.id)

@@ -12,6 +12,7 @@ RSpec.describe SoftDelete, type: :model do
 
     model do
       include SoftDelete
+
       has_many :comments, dependent: :restrict_with_error
 
       scope :archived, -> { where(archived: true) }

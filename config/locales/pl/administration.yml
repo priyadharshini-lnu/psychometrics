@@ -3147,15 +3147,40 @@ pl:
             no_auth:
               label: Żaden
               value: no_auth
+            oauth:
+              label: Uwierzytelnianie OAuth
+              value: Protokół OAuth
+          client_credentials:
+            label: Poświadczenia klienta
+            value: client_credentials
+          client_id:
+            label: Identyfikator klienta
+            name: oauth_client_id
+            required: Wymagany jest identyfikator klienta
+          client_secret:
+            label: Klucz tajny klienta
+            name: oauth_client_secret
+            required: Wymagany jest klucz tajny klienta
           description:
             label: Opis
             name: opis
+          grant_type:
+            label: Rodzaj dotacji
+            name: oauth_grant_type
           include_locales:
             label: Uwzględnij tłumaczenia
             name: include_locales
+          oauth_scope:
+            label: Zakres
+            name: oauth_scope
+            required: Zakres jest wymagany
           password:
             label: Hasło
             name: hasło
+          token_url:
+            label: Adres URL tokenu
+            name: oauth_token_url
+            required: Adres URL tokena jest wymagany
           topics:
             label: Zdarzenia
             list:
@@ -3475,6 +3500,7 @@ pl:
         add_new_condition: Dodaj nowy warunek
         apply_color_label: 'Następnie nałóż następujący kolor:'
         custom_factor_fields:
+          default_score: Wynik
           percentage: Procent
           questions_attempted: Próba
           questions_correct: Poprawny
@@ -3510,6 +3536,7 @@ pl:
         prefixes:
           and: I
           or: LUB
+        prevent_value_overlap: Zapobieganie nakładaniu się wartości
         skill_type_label: Filtruj według typu umiejętności
         skill_type_placeholder: Wybierz typ umiejętności
         skill_types:
@@ -3790,6 +3817,7 @@ pl:
         start_time: Data i godzina
         subject: Temat
         title: Tytuł
+        view_recording: Wyświetl nagranie
       errors:
         assessor_already_assigned: Asesor już przypisany do tej oceny. Proszę wybrać inną ocenę lub asesora.
         date_required: Proszę wybrać datę

@@ -22,7 +22,7 @@ import { MessageOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { DownloadButton } from '~/components/IdpShared/DownloadButton'
 import { useSearchSkills } from '~/modules/endUser/modules/campaigns/routes/idp/InitialSteps/AddSkills/useSearchSkills'
 import { PageLoadSpinner, MediaQueryContext } from '~/glint'
-import { Comments } from '~/components/IdpShared/Comments'
+import { Comments, CommentsForSkill } from '~/components/IdpShared/Comments'
 import { SkillGapReportTab }
   from '~/modules/endUser/modules/campaigns/routes/idp/InitialSteps/SkillGapReport/SkillGapReportTab'
 import styles from './styles.less'
@@ -46,6 +46,7 @@ import {
   addUserIdpCommentReply,
   showCommentsForSkillId,
   markCommentUnresolved,
+  fetchUserIdpPlanChanges,
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 
 import { RootState } from '~/modules/endUser/core/rootReducers'
@@ -93,6 +94,7 @@ const connector = connect((state: RootState) => ({
   addUserIdpCommentReply,
   showCommentsForSkillId,
   markCommentUnresolved,
+  fetchUserIdpPlanChanges,
 })
 
 type PropsFromRedux = ConnectedProps<typeof connector>
@@ -132,6 +134,7 @@ const UserDevelopmentPlanComponent = ({
   markCommentUnresolved,
   addUserIdpCommentReply,
   showCommentsForSkillId,
+  fetchUserIdpPlanChanges,
   unreadCommentsCount,
   header,
   skillGapReportAvailable,
@@ -154,6 +157,8 @@ const UserDevelopmentPlanComponent = ({
   const [isDALoading, setIsDALoading] = useState(false)
   const [isSkillsLoading, setIsSkillsLoading] = useState(false)
 
+  const [skillForComment, setSkillForComment] = useState<
+  { skillId: string, skillName: string } | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
   // Comments state - only isCommentsLoading is managed internally
@@ -193,6 +198,7 @@ const UserDevelopmentPlanComponent = ({
     setIsLoading(true)
     fetchUserIdpPlan(idpUserId).then(({ response }) => {
       setSelectedSkills(response.data.userIdpSkills)
+      fetchUserIdpPlanChanges(idpUserId)
       setIsLoading(false)
     }).catch((error) => {
       message.error(error || I18n.t('common.errors.something_wrong'))
@@ -233,6 +239,12 @@ const UserDevelopmentPlanComponent = ({
       })
     }
   }, [showAddSkill])
+
+  useEffect(() => {
+    if (skillForComment && !isMobile) {
+      setIsCommentsDrawerOpen(true)
+    }
+  }, [skillForComment])
 
   const handleAddDevelopmentAction = (developmentActionsObj) => {
     addDevelopmentActionInPlan(developmentActionsObj)
@@ -337,22 +349,22 @@ const UserDevelopmentPlanComponent = ({
     const skillElement:HTMLElement = containerRef.current?.querySelector(`#skill-${resourceId}`) as HTMLElement
     if (isMobile) {
       setIsCommentsDrawerOpen(false)
-      setTimeout(() => {
-        if (skillElement) {
-          skillElement.style.backgroundColor = 'var(--ant-primary-1)'
-          skillElement.style.transition = 'background-color 0.8s'
-          setTimeout(() => {
-            skillElement.style.backgroundColor = ''
-          }, 2000)
-          skillElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
-        }
-      }, 400)
     } else if (skillElement) {
       skillElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
       setTimeout(() => {
         showCommentsForSkillId(resourceId)
       }, 400)
     }
+    setTimeout(() => {
+      if (skillElement) {
+        skillElement.style.backgroundColor = 'var(--ant-primary-1)'
+        skillElement.style.transition = 'background-color 0.8s'
+        setTimeout(() => {
+          skillElement.style.backgroundColor = ''
+        }, 2000)
+        skillElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }
+    }, 400)
   }
 
   if (!status) {
@@ -377,12 +389,18 @@ const UserDevelopmentPlanComponent = ({
             <Tooltip title={I18n.t('idp.comment_details.add_comments')}>
               <Button
                 color="default"
+                aria-label={I18n.t('idp.add_comments')}
                 icon={<MessageOutlined />}
                 style={{
                   backgroundColor: isCommentsDrawerOpen ? '#0B0B0B' : 'transparent',
                   color: isCommentsDrawerOpen ? 'white' : 'inherit',
                 }}
-                onClick={() => setIsCommentsDrawerOpen(!isCommentsDrawerOpen)}
+                onClick={() => {
+                  setIsCommentsDrawerOpen(!isCommentsDrawerOpen)
+                  if (isCommentsDrawerOpen) {
+                    setSkillForComment(null)
+                  }
+                }}
               />
             </Tooltip>
 
@@ -455,24 +473,36 @@ const UserDevelopmentPlanComponent = ({
             onShowAvailableDevelopmentAction={handleShowAvailableDevelopmentAction}
             onAddMoreSkills={handleAddMoreSkill}
             isDALoading={isDALoading}
+            setSkillForComment={setSkillForComment}
           />
         </div>
       </div>
       {isMobile && (
-        <Drawer
-          title={null}
-          placement="right"
-          closable={false}
-          open={isCommentsDrawerOpen}
-          width="100%"
-          styles={{
-            body: {
-              padding: 0,
-            },
-          }}
-        >
-          {commentsComponent}
-        </Drawer>
+        skillForComment ? (
+          <CommentsForSkill
+            skillForComment={skillForComment}
+            onClose={() => {
+              setSkillForComment(null); setIsCommentsDrawerOpen(false)
+            }}
+            onScrollToSkill={handleScrollToSkill}
+          />
+        )
+          : (
+            <Drawer
+              title={null}
+              placement="right"
+              closable={false}
+              open={isCommentsDrawerOpen}
+              width="100%"
+              styles={{
+                body: {
+                  padding: 0,
+                },
+              }}
+            >
+              {commentsComponent}
+            </Drawer>
+          )
       )}
     </>
   ) : (
@@ -502,6 +532,7 @@ const UserDevelopmentPlanComponent = ({
             onAddMoreSkills={handleAddMoreSkill}
             isDALoading={isDALoading}
             isViewingReportee={currentUser.id !== idpUserId}
+            setSkillForComment={setSkillForComment}
           />
         </div>
       </Splitter.Panel>
@@ -512,11 +543,19 @@ const UserDevelopmentPlanComponent = ({
           size={commentsPanelSize}
           className="flex flex-column"
           style={{
-            overflowY: 'auto',
+            overflowY: 'hidden',
             maxHeight: `calc(100vh - (220px + ${headerHeight}px))`,
           }}
         >
-          {commentsComponent}
+          {skillForComment ? (
+            <CommentsForSkill
+              skillForComment={skillForComment}
+              onClose={() => {
+                setSkillForComment(null); setIsCommentsDrawerOpen(false)
+              }}
+              onScrollToSkill={handleScrollToSkill}
+            />
+          ) : commentsComponent}
         </Splitter.Panel>
       )}
     </Splitter>
@@ -561,13 +600,10 @@ const UserDevelopmentPlanComponent = ({
             className={styles.tabContainer}
             style={{
               maxHeight: 'calc(100vh - 220px)',
+              overflowY: 'auto',
             }}
           >
             <ListView />
-            <div style={{
-              minHeight: '200px',
-            }}
-            />
           </Flex>,
           },
         ]
@@ -585,7 +621,13 @@ const UserDevelopmentPlanComponent = ({
         </Space>
       </Col>
       <Col>
-        <Tag className="me-0" color={STATUS_COLORS[status]}>{I18n.t(`idp.user_idp_status.${status}`)}</Tag>
+        <Tag
+          aria-label={I18n.t('idp.plan_status', { status: I18n.t(`idp.user_idp_status.${status}`) })}
+          className="me-0"
+          color={STATUS_COLORS[status]}
+        >
+          {I18n.t(`idp.user_idp_status.${status}`)}
+        </Tag>
       </Col>
     </Row>
   )
@@ -595,9 +637,11 @@ const UserDevelopmentPlanComponent = ({
     return (
       <Flex
         vertical
-        className={styles.tabContainer}
+        className={cs(styles.tabContainer, 'p-4')}
         style={{
-          maxHeight: '100%',
+          maxHeight: 'calc(100vh - 116px)',
+          overflowY: 'auto',
+          overflowX: 'hidden',
         }}
       >
         <Button
@@ -606,7 +650,7 @@ const UserDevelopmentPlanComponent = ({
         >
           {I18n.t('common.actions.cancel')}
         </Button>
-        <Spin spinning={isSkillsLoading}>
+        <Spin spinning={isSkillsLoading} style={{ maxHeight: '100%', overflowY: 'auto' }}>
           <AddSkillsStep
             addSkillButtonText={I18n.t('idp.my_plan.save_skills')}
             skillTypes={skillTypes}

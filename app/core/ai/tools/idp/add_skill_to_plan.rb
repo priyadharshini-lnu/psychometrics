@@ -24,10 +24,11 @@ module AI
         param :reason,
               desc: 'Optional reason explaining why this skill and its development actions are being added to the IDP plan if instructed.'
 
-        private_attr_reader :user_idp_plan
+        private_attr_reader :user_idp_plan, :current_user
 
-        def initialize(user_idp_plan)
+        def initialize(user_idp_plan, current_user)
           @user_idp_plan = user_idp_plan
+          @current_user = current_user
         end
 
         def execute(skill_id:, development_actions:, reason: nil)
@@ -208,8 +209,10 @@ module AI
         end
 
         def add_development_actions(user_idp_skill, development_actions_params)
-          ::Idp::Skill::AddDevelopmentActions.call!(@user_idp_plan, user_idp_skill, development_actions_params)
-          @user_idp_plan.update!(status: :draft) unless @user_idp_plan.draft?
+          ::Idp::Skill::AddDevelopmentActions.call!(
+            @user_idp_plan, user_idp_skill, development_actions_params, current_user
+          )
+          @user_idp_plan.update!(approval_status: :draft) unless @user_idp_plan.draft?
         end
 
         def build_success_response(skill_id, user_idp_skill, development_actions_params)
@@ -218,7 +221,7 @@ module AI
             skill_id: skill_id,
             skill_name: user_idp_skill&.skill&.name,
             actions_count: development_actions_params.length,
-            status: @user_idp_plan.status
+            status: @user_idp_plan.approval_status
           }
         end
 

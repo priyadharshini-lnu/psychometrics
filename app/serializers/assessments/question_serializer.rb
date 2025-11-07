@@ -15,7 +15,7 @@ module Assessments
 
       return object.props unless translations
 
-      Utility::Hash.deep_merge(object.props, (translations['props'] || {}))
+      Utility::Hash.deep_merge(object.props, translations['props'] || {})
     end
 
     def validation
@@ -23,7 +23,7 @@ module Assessments
 
       return object.validation unless translations
 
-      Utility::Hash.deep_merge(object.validation, (translations['validation'] || {}))
+      Utility::Hash.deep_merge(object.validation, translations['validation'] || {})
     end
 
     private

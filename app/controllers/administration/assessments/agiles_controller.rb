@@ -24,9 +24,9 @@ class Administration::Assessments::AgilesController < Administration::BaseContro
   private
 
   def agile_params
-    params.require(:agile).permit(
-      config: {},
-      translations: {}
+    params.expect(
+      agile: [config: {},
+              translations: {}]
     )
   end
 

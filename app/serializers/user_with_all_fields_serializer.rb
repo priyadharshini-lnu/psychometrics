@@ -3,7 +3,7 @@
 class UserWithAllFieldsSerializer < Panko::Serializer
   attributes :id, :first_name, :last_name, :email, :age, :gender, :locale, :custom_fields, :photo, :datasheet
 
-  delegate :age, :gender, :locale, to: :user_profile
+  delegate :age, to: :user_profile
 
   def photo
     object.user_profile.photo&.url

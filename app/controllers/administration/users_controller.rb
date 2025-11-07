@@ -143,6 +143,6 @@ class Administration::UsersController < Administration::BaseController
   end
 
   def create_resource_params
-    params.require(:resource).permit(:first_name, :last_name, :email)
+    params.expect(resource: %i[first_name last_name email])
   end
 end

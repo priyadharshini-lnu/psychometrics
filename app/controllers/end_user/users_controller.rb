@@ -2,6 +2,7 @@
 
 class EndUser::UsersController < ApplicationController
   include ::Threesixty::InitialState
+
   layout 'layouts/end_user'
   before_action :skip_policy_scope
   before_action :set_locale, except: %i[change_locale]

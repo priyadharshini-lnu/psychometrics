@@ -80,7 +80,7 @@ module Administration
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :description, :full_description, :position, :icon, :purge_icon)
+      params.expect(resource: %i[name description full_description position icon purge_icon])
     end
   end
 end

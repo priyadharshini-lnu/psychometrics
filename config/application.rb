@@ -15,7 +15,7 @@ Bundler.require(*Rails.groups)
 module Psychometrics
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.0
+    config.load_defaults 8.0
     config.action_dispatch.cookies_same_site_protection = :none
     config.action_dispatch.default_headers.delete('X-XSS-Protection')
     config.active_record.belongs_to_required_by_default = false
@@ -35,7 +35,7 @@ module Psychometrics
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     config.time_zone = Settings.timezone
-    config.eager_load_paths += Rails.root.glob('lib')
+    config.autoload_lib(ignore: %w[assets tasks])
 
     # Load all translates inside folders
     #
@@ -76,6 +76,8 @@ module Psychometrics
     config.middleware.use(Middlewares::SetTimeoutHeaderMiddleware)
     config.middleware.use(Middlewares::SidekiqAuthMiddleware)
     config.action_controller.raise_on_open_redirects = false
+
+    config.active_support.to_time_preserves_timezone = :zone
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

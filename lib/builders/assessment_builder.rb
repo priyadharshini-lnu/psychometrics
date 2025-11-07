@@ -5,6 +5,7 @@ module Builders
     # Authorisation flow
     include Pundit
     include Administration::Policies
+
     ## Custom current user helper for Pundit
     def pundit_user
       current_user

@@ -5,10 +5,13 @@ class UserIdpPlanSerializer < Panko::Serializer
              :completed_date, :user_idp_skills
 
   def user_idp_skills
+    skills = object.user_idp_skills.public_skills.includes(:skill, :user_idp_development_actions)
+    skills = skills.not_deleted if without_deleted
     Panko::ArraySerializer.new(
-      object.user_idp_skills.public_skills.includes(:skill, :user_idp_development_actions),
+      skills,
       each_serializer: UserIdpSkillSerializer,
-      context: context
+      context: context,
+      without_deleted: without_deleted
     ).to_a
   end
 
@@ -46,5 +49,9 @@ class UserIdpPlanSerializer < Panko::Serializer
 
   def completed_date
     object.completed_at&.strftime('%Y-%m-%d')
+  end
+
+  def without_deleted
+    context[:without_deleted] || false
   end
 end

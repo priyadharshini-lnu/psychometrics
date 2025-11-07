@@ -11,6 +11,10 @@ RSpec.describe SkillRaterAssessments::ImportTaxonomies do
     let(:project) { create(:project) }
     let(:service) { described_class.new(file_path: file_path, project: project) }
 
+    before do
+      stub_wisper_publisher('AI::EmbeddingService', :call, :ok, [])
+    end
+
     it 'imports taxonomy data successfully from the Excel file' do
       expect { service.call }.to change { project.job_groups.count }.by(3).
         and change { project.job_roles.count }.by(1).
@@ -70,10 +74,30 @@ RSpec.describe SkillRaterAssessments::ImportTaxonomies do
         expect { service.call }.not_to(change { project.job_groups.count })
       end
     end
+
+    context 'imported skill IDs tracking' do
+      it 'returns the IDs of imported skills' do
+        imported_skill_ids = nil
+        service.on(:ok) do |skill_ids|
+          imported_skill_ids = skill_ids
+        end.call
+
+        expect(imported_skill_ids).to be_an(Array)
+        expect(imported_skill_ids.size).to eq(2)
+
+        # Verify the skill IDs correspond to the imported skills
+        imported_skills = Skill.where(id: imported_skill_ids)
+        expect(imported_skills.pluck(:name)).to match_array(['Rails framework', 'Binary search'])
+      end
+    end
   end
 
   describe 'global import' do
     let(:service) { described_class.new(file_path: file_path, project: nil) }
+
+    before do
+      stub_wisper_publisher('AI::EmbeddingService', :call, :ok, [])
+    end
 
     it 'imports taxonomy data successfully' do
       expect { service.call }.to change { JobGroup.where(project_id: nil).count }.by(3).
@@ -99,6 +123,30 @@ RSpec.describe SkillRaterAssessments::ImportTaxonomies do
       it 'does not create duplicate records' do
         expect { service.call }.not_to(change { TaxonomyLevel.where(project_id: nil).count })
         expect { service.call }.not_to(change { JobGroup.where(project_id: nil).count })
+      end
+    end
+
+    context 'embedding generation during bulk import' do
+      it 'skips individual embedding generation during import' do
+        expect(VectorEmbeddingGenerationJob).not_to receive(:perform_later)
+
+        service.call
+      end
+    end
+
+    context 'imported skill IDs tracking' do
+      it 'returns the IDs of imported skills' do
+        result = nil
+        service.on(:ok) do |imported_skill_ids|
+          result = imported_skill_ids
+        end.call
+
+        expect(result).to be_an(Array)
+        expect(result.size).to eq(2)
+
+        # Verify the skill IDs correspond to the imported skills
+        imported_skills = Skill.where(id: result, project_id: nil)
+        expect(imported_skills.pluck(:name)).to match_array(['Rails framework', 'Binary search'])
       end
     end
 

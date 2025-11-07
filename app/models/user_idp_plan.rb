@@ -1,20 +1,32 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
+
 class UserIdpPlan < ApplicationRecord
   include WorkflowActiverecord
   include ActiveStorageAttachable
+  include SafeVersionReification
+
+  has_paper_trail if: proc { |plan|
+    (plan.approval_status_changed? &&
+      %w[approved pending_approval rejected].include?(plan.approval_status)) ||
+      %w[pending_approval in_review draft].include?(plan.approval_status)
+  }
+
+  filtered_associations :public_user_idp_skills, :public_user_idp_development_actions,
+                        :public_skills, :public_development_actions
 
   belongs_to :user
   belongs_to :campaign
   belongs_to :idp_template
   belongs_to :creator, class_name: 'User'
-  has_many :user_idp_skills, dependent: :destroy
+  has_many :user_idp_skills, autosave: true, dependent: :destroy
+  has_many :skills, through: :user_idp_skills
+  has_many :user_idp_development_actions, autosave: true, dependent: :destroy
+  has_many :development_actions, through: :user_idp_development_actions
   has_many :public_user_idp_skills, -> { where(private: false) }, class_name: 'UserIdpSkill'
   has_many :public_user_idp_development_actions, -> { with_public_skills }, class_name: 'UserIdpDevelopmentAction'
-  has_many :skills, through: :user_idp_skills
   has_many :public_skills, -> { where(user_idp_skills: { private: false }) }, through: :user_idp_skills, source: :skill
-  has_many :user_idp_development_actions, dependent: :destroy
-  has_many :development_actions, through: :user_idp_development_actions
   has_many :public_development_actions, lambda {
     where(user_idp_development_actions: { private: false })
   }, through: :user_idp_development_actions, source: :development_action
@@ -43,65 +55,80 @@ class UserIdpPlan < ApplicationRecord
                      service: Settings.storage.private_storage_service,
                      content_type: %w[application/pdf]
 
-  enum :status,
+  enum :approval_status,
        {
          not_started: 0,
          draft: 1,
          pending_approval: 2,
-         approved: 3,
-         rejected: 4,
-         in_progress: 5,
-         completed: 6,
-         ai_assisted_idp_in_progress: 7
+         in_review: 3,
+         approved: 4,
+         rejected: 5,
+         ai_assisted_idp_in_progress: 6
        }
+
+  enum :completion_status,
+       {
+         not_started: 0,
+         in_progress: 1,
+         completed: 2
+       }, prefix: true
 
   scope :active, -> { where(active: true) }
 
   after_create :schedule_idp_assigned_notification
-  after_commit :schedule_idp_status_notification,
-               if: proc { saved_change_to_status? && (approved? || rejected?) },
-               on: [:update]
+  after_update :update_completed_at, if: :saved_change_to_completion_status?
 
   alias report_pdfs idp_report_pdfs
 
-  workflow_column :status
+  workflow_column :approval_status
 
   workflow do # rubocop:disable Metrics/BlockLength
-    state :draft do
-      event :submit_for_approval, transitions_to: :pending_approval
-      event :approve, transitions_to: :approved
-      event :start, transitions_to: :in_progress
-      event :start_ai_assistance, transitions_to: :ai_assisted_idp_in_progress
-    end
-    state :pending_approval do
-      event :approve, transitions_to: :approved
-      event :reject, transitions_to: :rejected
-    end
-    state :approved do
-      event :start, transitions_to: :in_progress
-      event :reject, transitions_to: :rejected
-    end
-    state :rejected do
-      event :submit_for_approval, transitions_to: :pending_approval
-      event :approve, transitions_to: :approved
-    end
-    state :in_progress do
-      event :complete, transitions_to: :completed
-    end
-    state :completed
     state :not_started do
       event :draft, transitions_to: :draft
       event :start_ai_assistance, transitions_to: :ai_assisted_idp_in_progress
     end
+    state :draft do
+      event :submit_for_approval, transitions_to: :pending_approval
+      event :approve, transitions_to: :approved, unless: ->(ua) { ua.manager_approval_required? }
+      event :not_started, transitions_to: :not_started
+    end
+    state :pending_approval do
+      event :draft, transitions_to: :draft
+      event :start_review, transitions_to: :in_review
+    end
+    state :rejected do
+      event :draft, transitions_to: :draft
+      event :approve, transition_to: :approved
+    end
+    state :in_review do
+      event :approve, transitions_to: :approved
+      event :reject, transitions_to: :rejected
+    end
+    state :approved do
+      event :draft, transitions_to: :draft, if: ->(ua) { ua.completion_status != 'completed' }
+    end
     state :ai_assisted_idp_in_progress do
-      event :complete_ai_assistance, transitions_to: :draft
+      event :draft, transitions_to: :draft
     end
 
-    on_transition do |_from, to, _event, *_|
-      update(completed_at: Time.current) if to == :completed
-      update(started_at: Time.current) if to == :in_progress
+    on_transition do |_from, to, _event, note = nil, *_|
+      if to == :approved
+        update(last_approved_at: Time.current, review_note: note)
+        destroy_soft_deleted_skills_and_actions
+      end
+      update(review_note: note) if to == :rejected
+      schedule_idp_status_notification(to) if %i[approved rejected].include?(to)
     end
-  end # rubocop:enable Metrics/BlockLength
+
+    after_transition do |_from, _to, _event, *_|
+      paper_trail.save_with_version
+    end
+  end
+
+  def destroy_soft_deleted_skills_and_actions
+    user_idp_skills.deleted.destroy_all
+    user_idp_development_actions.deleted.destroy_all
+  end
 
   def details_to_log
     {
@@ -110,8 +137,20 @@ class UserIdpPlan < ApplicationRecord
     }
   end
 
+  def status
+    if (completion_status_in_progress? || completion_status_completed?) && approved?
+      completion_status
+    else
+      approval_status
+    end
+  end
+
   def unread_comments_count_by(user)
     user_idp_comments.unread_by_user(user).count
+  end
+
+  def manager_approval_required?
+    project.idp_setting.manager_approves_idp && user.manager.present?
   end
 
   def campaign_user
@@ -151,18 +190,42 @@ class UserIdpPlan < ApplicationRecord
   end
 
   def editable?
-    not_started? || draft? || rejected?
+    draft? || rejected? || not_started?
   end
 
   def manager_editable?
-    rejected? || pending_approval?
+    rejected? || in_review?
+  end
+
+  def can_revert_to_last_approved
+    versions.where( # rubocop:disable Rails/WhereExists
+      "versions.object ->> 'approval_status' IN (?)", %w[approved]
+    ).exists? && (draft? || rejected?)
+  end
+
+  def pre_submission?
+    (draft? || not_started?) && !versions.where( # rubocop:disable Rails/WhereExists
+      "versions.object ->> 'approval_status' IN (?)", %w[approved rejected]
+    ).exists?
   end
 
   def attachment_storage_path(attribute_name, filename)
     "private/projects/#{campaign.project_id}/user_idp_plans/#{id}/#{attribute_name}/#{filename}"
   end
 
+  def pending_initial_review
+    return false unless pending_approval?
+
+    versions.where("object->>'approval_status' IN (?)", %w[in_review rejected approved]).none?
+  end
+
   private
+
+  def update_completed_at
+    return unless completion_status_completed?
+
+    update_column(:completed_at, Time.current)
+  end
 
   def schedule_idp_assigned_notification
     return if communication_emails.joins(:communication).
@@ -177,14 +240,20 @@ class UserIdpPlan < ApplicationRecord
     )
   end
 
-  def schedule_idp_status_notification
-    notification_kind = approved? ? :idp_template_approved : :idp_template_rejected
+  def schedule_idp_status_notification(status)
+    notification_kind = if status == :approved
+                          :idp_template_approved
+                        elsif status == :rejected
+                          :idp_template_rejected
+                        end
+
     return if communication_emails.joins(:communication).
               exists?(communications: { kind: notification_kind })
 
     communication = Communication.order(:created_at).
                     where(kind: notification_kind, campaign_id: campaign_id).
                     last
+
     return unless communication
 
     communication.create_communication_email_with_resources(
@@ -193,3 +262,5 @@ class UserIdpPlan < ApplicationRecord
     )
   end
 end
+
+# rubocop:enable Metrics/ClassLength

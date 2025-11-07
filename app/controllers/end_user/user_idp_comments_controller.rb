@@ -121,11 +121,11 @@ module EndUser
     end
 
     def comments_params
-      params.require(:user_idp_comment).permit(:content, :resource_type, :resource_id, :parent_id)
+      params.expect(user_idp_comment: %i[content resource_type resource_id parent_id])
     end
 
     def update_params
-      params.require(:user_idp_comment).permit(:content)
+      params.expect(user_idp_comment: [:content])
     end
 
     def pundit_authorize

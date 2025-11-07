@@ -3148,15 +3148,40 @@ ja:
             no_auth:
               label: なし
               value: no_auth
+            oauth:
+              label: OAuth
+              value: OAuth
+          client_credentials:
+            label: クライアント資格情報
+            value: client_credentials
+          client_id:
+            label: クライアントID
+            name: oauth_client_id
+            required: クライアント ID が必要です
+          client_secret:
+            label: クライアントシークレット
+            name: oauth_client_secret
+            required: クライアントシークレットが必要です
           description:
             label: 説明
             name: 記述
+          grant_type:
+            label: 助成金の種類
+            name: oauth_grant_type
           include_locales:
             label: 翻訳を含む
             name: インクルード・ローカル
+          oauth_scope:
+            label: スコープ
+            name: oauth_scope
+            required: スコープは必須です
           password:
             label: パスワード
             name: パスワード
+          token_url:
+            label: トークンURL
+            name: oauth_token_url
+            required: トークン URL は必須です
           topics:
             label: イベント
             list:
@@ -3476,6 +3501,7 @@ ja:
         add_new_condition: 新しい条件を追加する
         apply_color_label: 次に、次の色を適用します。
         custom_factor_fields:
+          default_score: スコア
           percentage: 百分率
           questions_attempted: 試行
           questions_correct: そうです
@@ -3511,6 +3537,7 @@ ja:
         prefixes:
           and: そして
           or: 又は
+        prevent_value_overlap: 値の重複を防ぐ
         skill_type_label: スキルタイプによるフィルタ
         skill_type_placeholder: スキルの種類を選択
         skill_types:
@@ -3791,6 +3818,7 @@ ja:
         start_time: 日時
         subject: テーマ
         title: タイトル
+        view_recording: 録画の表示
       errors:
         assessor_already_assigned: 別の評価または評価者を選択してください。
         date_required: 日付を選択してください

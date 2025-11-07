@@ -34,7 +34,7 @@ describe Api::V2::Administration::JobGroupsController, swagger_doc: 'v2/swagger.
           expect(response).to have_http_status(:ok)
           json_response = JSON.parse(response.body)
           expect(json_response['data'].size).to eq(2) # Returns both parent and child group
-          group_ids = json_response['data'].map { |g| g['id'] }
+          group_ids = json_response['data'].pluck('id')
           expect(group_ids).to include(parent_group.id.to_s)
           expect(group_ids).to include(child_group.id.to_s)
         end

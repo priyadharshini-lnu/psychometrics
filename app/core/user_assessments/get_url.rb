@@ -3,6 +3,7 @@
 module UserAssessments
   class GetUrl < BaseCommand
     include Rails.application.routes.url_helpers
+
     private_attr_reader :user_assessment
 
     def initialize(user_assessment)

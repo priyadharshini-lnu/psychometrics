@@ -13,14 +13,15 @@ module AI
             desc: 'JSON string containing the response with all keys available in assistant output schema and values. Keys in the json object should only include ALL keys available in assistant output schema. This will be parsed using JSON.parse method. e.g. {"key_name": "value", ...}'
       # rubocop:enable Layout/LineLength
 
-      private_attr_reader :artifact, :user, :save_results, :parsed_dependencies, :masked_data_resolutions
+      private_attr_reader :artifact, :user, :save_results, :parsed_dependencies, :masked_data_resolutions, :chat
 
-      def initialize(artifact, user, save_results: false, parsed_dependencies: nil, masked_data_resolutions: {})
+      def initialize(artifact, user, context = {})
         @artifact = artifact
         @user = user
-        @save_results = save_results
-        @parsed_dependencies = parsed_dependencies
-        @masked_data_resolutions = masked_data_resolutions || {}
+        @save_results = context.fetch(:save_results, false)
+        @parsed_dependencies = context.fetch(:parsed_dependencies, nil)
+        @masked_data_resolutions = context.fetch(:masked_data_resolutions, {}) || {}
+        @chat = context.fetch(:chat, nil)
       end
 
       def execute(results:)
@@ -36,6 +37,7 @@ module AI
 
         @artifact.results.find_or_initialize_by(user: @user).tap do |artifact_result|
           artifact_result.results = final_results
+          artifact_result.ai_assistant_chat = chat
           artifact_result.parsed_dependencies = @parsed_dependencies
           artifact_result.save!
         end

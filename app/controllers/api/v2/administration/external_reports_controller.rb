@@ -42,7 +42,7 @@ module Api
         assessment.external_settings['assessment_id']
       end.uniq
 
-      return [] unless hogan_assessment_ids.count.positive? && hogan_assessment_ids.count == assessment_ids.count
+      return [] unless hogan_assessment_ids.any? && hogan_assessment_ids.count == assessment_ids.count
 
       Settings.providers.hogan.reports.select do |report|
         report[:assessment_ids].to_set == hogan_assessment_ids.to_set
@@ -50,7 +50,7 @@ module Api
     end
 
     def saville_assessments(assessment_ids)
-      return [] unless assessment_ids.count == 1
+      return [] unless assessment_ids.one?
 
       saville_assessment_ids = Assessment.where(id: assessment_ids, type: Assessment::TYPES[:saville]).map do |a|
         a.external_settings['assessment_id']

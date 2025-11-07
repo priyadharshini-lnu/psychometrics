@@ -60,7 +60,7 @@ module EndUser
     def save_plan
       errors = validate_user_idp_development_action(user_idp_development_actions_params)
       if errors.empty?
-        Idp::DevelopmentAction::SavePlan.call!(user_idp_plan, user_idp_development_actions_params)
+        Idp::DevelopmentAction::SavePlan.call!(user_idp_plan, user_idp_development_actions_params, current_user)
 
         render json: :ok
       else
@@ -71,7 +71,7 @@ module EndUser
     def update_progress
       user_idp_development_action = user.user_idp_development_actions.find(progress_params[:id])
 
-      if user_idp_development_action.user_idp_plan.completed?
+      if user_idp_development_action.user_idp_plan.completion_status_completed?
         render json: { errors: [I18n.t('idp.errors.cannot_update_progress_plan_completed')] }, status: 422
         return
       end
@@ -140,7 +140,7 @@ module EndUser
     end
 
     def progress_params
-      params.require(:user_idp_development_action).permit(:id, :progress)
+      params.expect(user_idp_development_action: %i[id progress])
     end
 
     def load_user_idp_skill!

@@ -16,6 +16,20 @@ describe AI::AssistableService::Idp do
   let!(:plan) { create(:user_idp_plan, user: user, idp_template: idp_template, campaign: campaign) }
   let(:options) { {} }
 
+  let(:ai_provider_config) do
+    {
+      'model_id' => 'gpt-4o-mini',
+      'name' => 'OpenAI GPT-4o Mini',
+      'context' => {
+        'openai_api_key' => 'test-api-key'
+      }
+    }
+  end
+
+  before do
+    allow(Settings).to receive(:ai_providers).and_return([ai_provider_config])
+  end
+
   shared_context 'assistant service mocking' do
     let(:assistant_service_instance) { instance_double(AI::AssistantService) }
 
@@ -123,6 +137,19 @@ describe AI::AssistableService::Idp do
         end.not_to change(AI::AssistedUserIdpSession, :count)
 
         expect(plan.reload.ai_assisted_idp_session).to eq(existing_session)
+      end
+    end
+
+    context 'when calling the service' do
+      include_context 'assistant service mocking'
+
+      it 'changes assistable approval_status from not_started to ai_assisted_idp_in_progress' do
+        plan.update!(approval_status: :not_started)
+        expect(plan.approval_status).to eq('not_started')
+
+        described_class.new(plan, user, instructions, options).call
+
+        expect(plan.reload.approval_status).to eq('ai_assisted_idp_in_progress')
       end
     end
 

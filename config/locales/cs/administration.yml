@@ -3148,15 +3148,40 @@ cs:
             no_auth:
               label: Žádné
               value: no_auth
+            oauth:
+              label: OAuth
+              value: oauth
+          client_credentials:
+            label: Přihlašovací údaje klienta
+            value: client_credentials
+          client_id:
+            label: ID klienta
+            name: oauth_client_id
+            required: Je vyžadováno ID klienta
+          client_secret:
+            label: Tajný klíč klienta
+            name: oauth_client_secret
+            required: Je vyžadován tajný klíč klienta
           description:
             label: Popis
             name: popis
+          grant_type:
+            label: Typ grantu
+            name: oauth_grant_type
           include_locales:
             label: Zahrnout překlady
             name: include_locales
+          oauth_scope:
+            label: Rozsah
+            name: oauth_scope
+            required: Rozsah je povinný
           password:
             label: Heslo
             name: heslo
+          token_url:
+            label: Adresa URL tokenu
+            name: oauth_token_url
+            required: Adresa URL tokenu je povinná
           topics:
             label: Události
             list:
@@ -3476,6 +3501,7 @@ cs:
         add_new_condition: Přidat novou podmínku
         apply_color_label: 'Poté použijte následující barvu:'
         custom_factor_fields:
+          default_score: Partitura
           percentage: Procento
           questions_attempted: Pokus o
           questions_correct: Správný
@@ -3511,6 +3537,7 @@ cs:
         prefixes:
           and: A
           or: NEBO
+        prevent_value_overlap: Zabránit překrývání hodnot
         skill_type_label: Filtrovat podle typu schopnosti
         skill_type_placeholder: Vyberte typ dovednosti
         skill_types:
@@ -3791,6 +3818,7 @@ cs:
         start_time: Datum a čas
         subject: Předmět
         title: Název
+        view_recording: Zobrazit záznam
       errors:
         assessor_already_assigned: Posuzovatel je již přiřazen k tomuto posouzení. Vyberte prosím jiné posouzení nebo posuzovatele.
         date_required: Vyberte prosím datum

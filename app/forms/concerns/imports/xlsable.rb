@@ -3,6 +3,7 @@
 module Imports
   module Xlsable
     extend ActiveSupport::Concern
+
     included do
       attr_accessor :file, :owner_id
 

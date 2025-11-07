@@ -142,7 +142,7 @@ export const InitialStepsComponent = () => {
       campaignId: planPayload.campaignId.toString(),
       active: planPayload.active,
       creatorId: planPayload.creatorId.toString(),
-      status: USER_IDP_PLAN_STATUS.DRAFT,
+      approvalStatus: USER_IDP_PLAN_STATUS.DRAFT,
       ...skillPayload,
     }).then(() => {
       setIsLoading(false)
@@ -175,7 +175,6 @@ export const InitialStepsComponent = () => {
         <AdminAddSkills
           userIdpSkills={userIdpPlanData?.skills}
           next={handleNextForAddSkillsStep}
-          idpTemplateId={userIdpPlanData?.idpTemplateId as string}
           prev={handlePrevForAddSkillsStep}
         />
       )}

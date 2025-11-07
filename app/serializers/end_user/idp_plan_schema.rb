@@ -8,12 +8,18 @@ module EndUser
       Dry::Schema.JSON do
         config.validate_keys = true
 
-        required(:status).filled(:str?, included_in?: UserIdpPlan.statuses.keys)
+        required(:status).filled(
+          :str?,
+          included_in?: UserIdpPlan.approval_statuses.keys + UserIdpPlan.completion_statuses.keys
+        )
         required(:skill_gap_report_available).filled(:bool?)
         required(:self_rating_enabled).filled(:bool?)
         required(:one_click_idp_enabled).filled(:bool?)
         required(:user).hash(IdpUserSchema.schema(context, options))
         required(:unread_comments_count).filled(:int?)
+        required(:completion_status).filled(:str?)
+        required(:approval_status).filled(:str?)
+        required(:can_revert_to_last_approved).filled(:bool?)
         required(:instructions).maybe do
           hash do
             optional(:content).filled(:str?)

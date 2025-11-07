@@ -10,7 +10,8 @@ module AdminJobSteps
       track_job_run
 
       def perform(job_record)
-        user_idp_plans = UserIdpPlan.active.where(campaign_id: job_record.data['campaign_id'])
+        user_ids = Campaign.find(job_record.data['campaign_id']).user_ids
+        user_idp_plans = UserIdpPlan.active.where(campaign_id: job_record.data['campaign_id'], user_id: user_ids)
 
         raise I18n.t('admin_jobs.bulk_download_reports.errors.no_plans') if user_idp_plans.empty?
 

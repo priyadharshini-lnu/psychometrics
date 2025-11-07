@@ -5,7 +5,7 @@ namespace :threesixty do
     instruction_templates = YAML.safe_load(
       ERB.new(Rails.root.join('config/threesixty/instruction_template.yml').read).result
     )
-    instruction_template = instruction_templates.find { |it| it['name'] == args[:template_name] }
+    instruction_template = instruction_templates.find { |template| template['name'] == args[:template_name] }
 
     abort("Instruction template with name '#{args[:template_name]}' not present in yml") unless instruction_template
 

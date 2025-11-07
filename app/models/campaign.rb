@@ -153,8 +153,8 @@ class Campaign < ApplicationRecord
   end
 
   def datasheet_column_records
-    project_datasheet_columns = project.datasheet&.sheet_columns.to_a || []
-    campaign_datasheet_columns = datasheet&.sheet_columns.to_a || []
+    project_datasheet_columns = project.datasheet&.sheet_columns.to_a
+    campaign_datasheet_columns = datasheet&.sheet_columns.to_a
     column_names = (project_datasheet_columns + campaign_datasheet_columns).map(&:name).uniq
     column_names.map do |column_name|
       campaign_column = campaign_datasheet_columns.find { |dc| dc.name == column_name }

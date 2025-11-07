@@ -7,7 +7,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
   let!(:user) { create(:user, :with_project_membership, password: current_password) }
   let(:project) { Project.find(user.project.id) } # Ensure we have a proper Project instance
   let(:idp_template) { create(:idp_template) }
-  let(:user_idp_plan) { create(:user_idp_plan, user: user, idp_template: idp_template) }
+  let(:user_idp_plan) { create(:user_idp_plan, user: user, idp_template: idp_template, approval_status: :draft) }
   let(:skills) { create_list(:skill, 3, project: project) } # Create skills with project owner
   let(:development_action) { create(:development_action) }
   let!(:user_idp_skills) do
@@ -61,7 +61,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
       expect(parsed_result['meta']['record_count']).to eq(2)
 
       available_actions = parsed_result['data']
-      expect(available_actions.map { |a| a['id'] }).to match_array([development_action1.id, development_action2.id])
+      expect(available_actions.pluck('id')).to match_array([development_action1.id, development_action2.id])
       expect(available_actions.first['name']).to eq(development_action1.name)
       expect(available_actions.first['description']).to eq(development_action1.description)
       expect(available_actions.first['learning_style']).to eq(development_action1.learning_style)
@@ -86,7 +86,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
     end
 
     it 'returns 422 if the plan is completed' do
-      user_idp_development_action.user_idp_plan.completed!
+      user_idp_development_action.user_idp_plan.update!(completion_status: :completed, approval_status: :approved)
       put :update_progress,
           params: { user_idp_development_action: { id: user_idp_development_action.id, progress: 80 } }
       expect(response).to have_http_status(:unprocessable_entity)

@@ -130,11 +130,11 @@ class Administration::FactorsController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:id, :name, :description, :icon, :purge_icon, :dimension_id, :scoring_strategy,
-                                     :code, :use_percentage, :use_sub_factor_norm_score,
-                                     :scale_min, :scale_max, :custom_formula, :precision,
-                                     external_scoring: %i[type jsonpath],
-                                     factors_sub_factors_attributes:
-                                      %i[id weight _destroy sub_factor_id position predicate value])
+    params.expect(resource: [:id, :name, :description, :icon, :purge_icon, :dimension_id, :scoring_strategy,
+                             :code, :use_percentage, :use_sub_factor_norm_score,
+                             :scale_min, :scale_max, :custom_formula, :precision,
+                             { external_scoring: %i[type jsonpath],
+                               factors_sub_factors_attributes:
+                              %i[id weight _destroy sub_factor_id position predicate value] }])
   end
 end

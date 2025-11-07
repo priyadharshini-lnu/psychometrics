@@ -12,7 +12,7 @@ describe AdminJobs::BulkDownloadIdpReports do
   let(:idp_template) { create(:idp_template) }
   let(:idp_user) { create(:user) }
   let!(:user_idp_plan) do
-    create(:user_idp_plan, user: idp_user, idp_template: idp_template, active: true, status: 'draft',
+    create(:user_idp_plan, user: idp_user, idp_template: idp_template, active: true, approval_status: 'draft',
             campaign_id: campaign.id)
   end
 
@@ -95,6 +95,25 @@ describe AdminJobs::BulkDownloadIdpReports do
       expect do
         AdminJobs::BulkDownloadIdpReports.validate({ campaign_id: campaign.id, lang: 'en' }, superadmin)
       end.to raise_error(AdminJob::AlreadyExistsError)
+    end
+  end
+
+  describe 'steps configuration' do
+    it 'should have exactly 2 steps defined' do
+      expect(described_class.steps.length).to eq(2)
+    end
+
+    it 'should have the correct step names' do
+      step_names = described_class.steps.pluck(:name)
+      expect(step_names).to eq(%i[generate download])
+    end
+
+    it 'should have the correct step classes' do
+      step_classes = described_class.steps.pluck(:klass)
+      expect(step_classes).to eq([
+        AdminJobSteps::BulkDownloadIdpReports::GenerateJob,
+        AdminJobSteps::BulkDownloadIdpReports::DownloadJob
+      ])
     end
   end
 end

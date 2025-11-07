@@ -45,7 +45,7 @@ module Campaigns
             user_attributes = form.to_h.except(
               :operation, :campaign_ids, :active, :locale,
               :schedule_start_date, :schedule_start_date, :schedule_end_date, :user_external_id,
-              :campaign_user_external_id, :datasheet
+              :campaign_user_external_id, :datasheet, :current_job_role, :target_job_role
             ).merge(
               project: project,
               create_by_invite: true,
@@ -69,7 +69,9 @@ module Campaigns
         attributes = {
           active: form.active,
           schedule_start_date: form.schedule_start_date,
-          schedule_end_date: form.schedule_end_date
+          schedule_end_date: form.schedule_end_date,
+          current_job_role: find_job_role(form[:current_job_role]),
+          target_job_role: find_job_role(form[:target_job_role])
         }
         attributes[:external_id] = form.campaign_user_external_id if form.respond_to?(:campaign_user_external_id)
         campaign_user.assign_attributes(attributes)
@@ -118,6 +120,12 @@ module Campaigns
 
       def through_registration?
         current_user.nil?
+      end
+
+      def find_job_role(role_name)
+        return nil if role_name.blank?
+
+        JobRole.find_by(name: role_name, project_id: project.id)
       end
     end
   end

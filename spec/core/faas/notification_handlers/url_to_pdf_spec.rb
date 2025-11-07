@@ -11,7 +11,7 @@ describe Faas::NotificationHandlers::UrlToPdf do
   let!(:user_idp_plan) do
     create(:user_idp_plan, user: user_report.user, campaign: campaign, idp_template: idp_template)
   end
-  let(:admin_job_record) { create(:admin_job_record, completed_tasks: 0) }
+  let(:admin_job_record) { create(:admin_job_record, operation: :bulk_download_idp_reports, completed_tasks: 0) }
   let(:generaete_job_record) do
     create(:admin_job_record, completed_tasks: 0, step: :generate, parent_job_id: admin_job_record.id)
   end

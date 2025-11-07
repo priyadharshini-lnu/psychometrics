@@ -3,6 +3,7 @@
 module Threesixty
   class CampaignsController < ApplicationController
     include ::Threesixty::InitialState
+
     layout 'layouts/end_user'
     before_action :set_locale
     before_action :set_campaign, only: %i[show options]

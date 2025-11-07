@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'ruby_llm'
+
 # TODO: This service is required till https://github.com/crmne/ruby_llm/pull/325 is merged and released
 # rubocop:disable Metrics/ClassLength
 module AI
@@ -49,6 +51,14 @@ module AI
       def connection
         @connection ||= Faraday.new(url: base_url) do |conn|
           conn.request :json
+          conn.response :logger,
+                        RubyLLM.logger,
+                        bodies: false,
+                        response: false,
+                        errors: true,
+                        headers: false,
+                        log_level: :debug
+          conn.use RubyLLM::ErrorMiddleware, provider: nil # Use RubyLLM::ErrorMiddleware directly for this connection
           conn.response :json, content_type: /\bjson$/
           conn.adapter Faraday.default_adapter
 
@@ -316,7 +326,7 @@ module AI
       def ruby_llm_config
         @ruby_llm_config ||= begin
           provider_config = Settings.ai_providers.find { |provider| provider['model_id'] == assistant_chat.model.id }
-          context = provider_config&.dig('context').to_h || {}
+          context = provider_config&.dig('context').to_h
 
           config_class = Struct.new(*context.keys.map(&:to_sym), :openai_use_system_role, keyword_init: true)
           config = config_class.new(**context.transform_keys(&:to_sym))

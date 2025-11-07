@@ -7,6 +7,7 @@ if Object.const_defined?('I18n::Tasks')
   class CustomJsTsxScanner < I18n::Tasks::Scanners::FileScanner
     include I18n::Tasks::Scanners::RelativeKeys
     include I18n::Tasks::Scanners::OccurrenceFromPosition
+
     I18n.load_path += Dir.glob('config/locales/**/*.{rb,yml}')
 
     # @return [Array<[absolute key, I18n::Tasks::Scanners::Results::Occurrence]>]

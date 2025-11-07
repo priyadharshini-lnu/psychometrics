@@ -27,7 +27,7 @@ RUN apt-get update -qq && apt-get install -yq --no-install-recommends curl gnupg
 
 
 RUN apt-get update -qq &&  apt-get install -yq --no-install-recommends build-essential git ruby-dev libpq-dev \
-    postgresql-client-11 nodejs shared-mime-info imagemagick libjemalloc2 \
+    postgresql-client-11 nodejs shared-mime-info imagemagick libjemalloc2 libyaml-dev pkg-config \
     && apt-get install -yq yarn --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

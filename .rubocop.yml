@@ -54,6 +54,9 @@ AvoidActiveRecordInMigrations:
 Layout/CaseIndentation:
   IndentOneStep: true
 
+Rails/EnvLocal:
+  Enabled: false
+
 Layout/DotPosition:
   EnforcedStyle: trailing
 
@@ -125,11 +128,14 @@ Naming/MethodParameterName:
     - id
     - io
 
-Naming/PredicateName:
+Naming/PredicatePrefix:
   ForbiddenPrefixes:
     - is_
   Exclude:
     - app/serializers/**/*
+
+Naming/PredicateMethod:
+  Enabled: false  # Will ignore whether methods end with `?`
 
 ##
 ## Performance
@@ -258,6 +264,9 @@ Rails/WhereRange:
 
 # NOTE: It was decided that we will allow longer safe navigation chains
 Style/SafeNavigationChainLength:
+  Enabled: false
+
+Rails/FindByOrAssignmentMemoization:
   Enabled: false
 
 Rails/Exit:

@@ -57,7 +57,9 @@ module UserReports
 
     def report_file_name
       @report_file_name ||=
-        "#{user.email}_idp_report#{options[:include_reflective_questions] ? '_rq' : ''}.pdf"
+        "#{user.email}_idp_report_#{options[:lang] || 'en'}#{'_rq' if options[:include_reflective_questions]}_#{
+          Time.zone.now.strftime('%Y-%m-%d_%H-%M-%S')
+        }.pdf".strip
     end
 
     def report_directory

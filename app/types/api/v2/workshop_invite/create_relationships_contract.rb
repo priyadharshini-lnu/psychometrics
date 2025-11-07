@@ -11,11 +11,11 @@ module Api
         rule(:data) do
           workshop_invite = ::WorkshopInvite.find(_context[:params][:workshop_invite_id])
 
-          if value.count.zero?
+          if value.none?
             key.failure(:filled?)
           end
 
-          if workshop_invite.workshop_ids.intersection(result[:data].collect { |e| e[:id].to_i }).present?
+          if workshop_invite.workshop_ids.intersect?(result[:data].collect { |e| e[:id].to_i })
             key.failure(:already_invited)
           end
         end

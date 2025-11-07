@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import {
   Button, message,
-  Flex, Modal, Spin, Typography,
+  Flex, Spin, Typography, Modal,
 } from 'antd'
-import { SyncOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
+import {
+  SyncOutlined,
+  CloseOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import {
   ButtonWithArrow, BoxWithShadow,
 } from '~/glint'
@@ -51,6 +54,8 @@ const AIGeneratedDevelopmentActionsModalComponent: React.FC<Props> = ({
 
   const [selectedDA, setSelectedDA] = useState<Partial<DevelopmentAction>[]>([])
 
+  const btnRef = useRef<HTMLButtonElement | null>(null)
+
   const fetchAIGeneratedDevelopmentActions = (generateMore = false) => {
     if (skill) {
       setIsLoading(true)
@@ -86,6 +91,7 @@ const AIGeneratedDevelopmentActionsModalComponent: React.FC<Props> = ({
       title={I18n.t('idp.development_actions.create_development_actions_with_ai', { skillName: skill?.name })}
       open={open}
       onCancel={onCancel}
+      closeIcon={<Button style={{ border: 'none' }} ref={btnRef} icon={<CloseOutlined />} />}
       maskClosable={false}
       footer={!!developmentActions.length && [
         <Flex vertical flex={1} align="end">
@@ -112,6 +118,7 @@ const AIGeneratedDevelopmentActionsModalComponent: React.FC<Props> = ({
               style={{
                 width: '80px',
               }}
+              aria-label={I18n.t('idp.development_actions.add_selected_development_actions')}
               onClick={onAddDA}
             />
           </Flex>
@@ -120,8 +127,19 @@ const AIGeneratedDevelopmentActionsModalComponent: React.FC<Props> = ({
       ]}
       width={800}
       wrapClassName={wrapClassName}
+      afterOpenChange={(isOpen) => {
+        if (isOpen && btnRef && btnRef?.current) {
+          btnRef?.current?.focus()
+        }
+      }}
     >
-      <Spin spinning={isLoading} tip={I18n.t('idp.development_actions.generating_development_actions')} size="large">
+      <Spin
+        aria-live="polite"
+        aria-label={I18n.t('idp.development_actions.generating_development_actions')}
+        spinning={isLoading}
+        tip={I18n.t('idp.development_actions.generating_development_actions')}
+        size="large"
+      >
         <Flex
           vertical
           gap={18}

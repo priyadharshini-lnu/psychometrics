@@ -2,6 +2,7 @@
 
 class EndUser::UserAssessmentsController < ApplicationController
   include ::Threesixty::InitialState
+
   layout 'layouts/end_user'
 
   prepend_before_action :authenticate_anonymous_user!

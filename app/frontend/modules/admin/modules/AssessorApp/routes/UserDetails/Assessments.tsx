@@ -34,7 +34,7 @@ const Assessments: React.FC<Props> = ({ user, userAssessments }) => {
 
   return (
     <>
-      <div className="pl">
+      <div>
         <Row justify="space-between" align="middle">
           <Col><h2 className="fs-24">{I18n.t('common.model.assessments')}</h2></Col>
           <Col>

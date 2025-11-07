@@ -39,6 +39,14 @@ class Api::V2::Administration::Projects::IdpTemplateResource < Api::V2::Administ
             project_id: @model.project_id
           }
         )
+      },
+      project_features: lambda {
+        project_feature = ProjectFeature.find_by(project_id: @model.project_id)
+        {
+          global_skills: project_feature&.global_skills || false,
+          ai_assisted_idp: project_feature&.ai_assisted_idp || false,
+          ai_assisted: project_feature&.ai_assisted_idp || false
+        }
       }
     }
   end

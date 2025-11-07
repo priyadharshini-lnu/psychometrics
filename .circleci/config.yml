@@ -16,7 +16,8 @@ executors:
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-      - image: cimg/postgres:14.8
+      # Changed from cimg/postgres:14.8, Ref: https://github.com/CircleCI-Public/cimg-postgres/issues/120
+      - image: pgvector/pgvector:pg14
         environment:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -107,10 +108,27 @@ commands:
       node-env:
         type: string
         default: test
+      source-registry:
+        type: string
+        default: "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm"
+      target-registry:
+        type: string
+        default: "https://registry.yarnpkg.com"
     steps:
       - restore_cache:
           keys:
             - yarn-cache2-{{ .Environment.CACHE_VERSION }}-<< parameters.node-env >>-{{ arch }}-{{ checksum ".node-version" }}-{{ checksum "yarn.lock" }}
+      - run:
+          name: Rewrite yarn.lock registry
+          command: |
+            if [ -n "<< parameters.source-registry >>" ] && [ -n "<< parameters.target-registry >>" ]; then
+              echo "Replacing << parameters.source-registry >> with << parameters.target-registry >> in yarn.lock"
+              # Use backup extension for portability across GNU/BSD sed, then remove
+              sed -i.bak -e "s|<< parameters.source-registry >>|<< parameters.target-registry >>|g" yarn.lock || exit 1
+              rm -f yarn.lock.bak
+            else
+              echo "No registry replacement parameters provided; skipping registry rewrite."
+            fi
       - run:
           name: Yarn
           command: yarn install --pure-lockfile
@@ -223,13 +241,33 @@ commands:
           name: Install heroku cli
           command: |
             npm install -g heroku@9.5.1
-
+  rewrite_npm_registry:
+    parameters:
+      source-registry:
+        type: string
+        default: "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm"
+      target-registry:
+        type: string
+        default: "https://registry.yarnpkg.com"
+    steps:
+      - run:
+          name: Rewrite yarn.lock registry
+          command: |
+            if [ -n "<< parameters.source-registry >>" ] && [ -n "<< parameters.target-registry >>" ]; then
+              echo "Replacing << parameters.source-registry >> with << parameters.target-registry >> in yarn.lock"
+              # Use backup extension for portability across GNU/BSD sed, then remove
+              sed -i.bak -e "s|<< parameters.source-registry >>|<< parameters.target-registry >>|g" yarn.lock || exit 1
+              rm -f yarn.lock.bak
+            else
+              echo "No registry replacement parameters provided; skipping registry rewrite."
+            fi
 jobs:
   bundle:
     executor: tte-executor
     resource_class: medium
     steps:
       - checkout
+      - rewrite_npm_registry
       - run:
           name: Which bundler?
           command: bundle -v
@@ -246,6 +284,7 @@ jobs:
     resource_class: medium
     steps:
       - checkout
+      - rewrite_npm_registry
       - bundle_restore
       - run:
           name: Brakeman
@@ -261,6 +300,7 @@ jobs:
 
     steps:
       - checkout
+      - rewrite_npm_registry
       - yarn_restore
 
   eslint:
@@ -268,6 +308,7 @@ jobs:
     resource_class: medium
     steps:
       - checkout
+      - rewrite_npm_registry
       - assets_files
       - abort_on_assets_files
       - yarn_restore
@@ -279,6 +320,7 @@ jobs:
     executor: tte-executor
     steps:
       - checkout
+      - rewrite_npm_registry
       - assets_files
       - abort_on_assets_files
       - yarn_restore
@@ -293,6 +335,7 @@ jobs:
       DATABASE_URL: "postgres://user:pass@localhost/dbname" # dummy db link for rubocop
     steps:
       - checkout
+      - rewrite_npm_registry
       - restore_cache:
           keys:
             - rubocop-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum ".rubocop.yml" }}-{{ .Branch }}
@@ -314,6 +357,7 @@ jobs:
     executor: tte-executor-full
     steps:
       - checkout
+      - rewrite_npm_registry
       - bundle_restore
       - setup_db:
           processes: 1
@@ -334,6 +378,7 @@ jobs:
     resource_class: xlarge
     steps:
       - checkout
+      - rewrite_npm_registry
       - assets_files
       - abort_on_assets_files
       - bundle_restore
@@ -355,6 +400,7 @@ jobs:
     parallelism: 2
     steps:
       - checkout
+      - rewrite_npm_registry
       - assets_files
       - restore_cache:
           keys:
@@ -401,6 +447,7 @@ jobs:
     parallelism: << pipeline.parameters.rspec_containers >>
     steps:
       - checkout
+      - rewrite_npm_registry
       - bundle_restore
       - yarn_restore
       - assets_files
@@ -448,6 +495,7 @@ jobs:
         type: string
     steps:
       - checkout
+      - rewrite_npm_registry
       - when:
           condition:
             or:
@@ -574,6 +622,7 @@ jobs:
         default: default
     steps:
       - checkout
+      - rewrite_npm_registry
       - kubernetes/install_kubectl
       - kubernetes/install_kubeconfig
       - helm/install_helm_client
@@ -602,6 +651,7 @@ jobs:
         default: default
     steps:
       - checkout
+      - rewrite_npm_registry
       - kubernetes/install_kubectl
       - helm/install_helm_client
       - azure-cli/install
@@ -624,6 +674,7 @@ jobs:
     resource_class: medium
     steps:
       - checkout
+      - rewrite_npm_registry
       - bundle_restore
       - setup_db:
           processes: 1
@@ -874,11 +925,10 @@ workflows:
   maxmind_update:
     triggers:
       - schedule:
-          cron: "0 0 * * *"  # Daily at midnight UTC
+          cron: "0 0 * * 1-5"  # Monday–Friday at 00:00 UTC
           filters:
             branches:
               only:
                 - develop
-
     jobs:
       - maxmind_db_update

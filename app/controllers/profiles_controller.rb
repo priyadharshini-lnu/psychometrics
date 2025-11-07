@@ -22,6 +22,6 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:resource).permit(:first_name, :last_name, :password)
+    params.expect(resource: %i[first_name last_name password])
   end
 end

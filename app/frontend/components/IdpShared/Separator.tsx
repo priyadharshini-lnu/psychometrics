@@ -11,5 +11,6 @@ export const Separator = ({ borderColor = 'var(--light-grey-border)', style, ...
       ...style,
       borderColor,
     }}
+    aria-hidden="true"
   />
 )

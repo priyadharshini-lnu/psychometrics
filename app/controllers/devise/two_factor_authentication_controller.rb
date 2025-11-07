@@ -9,7 +9,7 @@ class Devise::TwoFactorAuthenticationController < DeviseController
   layout :select_layout
 
   def update
-    render :show && return if params[:code].blank?
+    return render(:show) if params[:code].blank?
 
     if resource.authenticate_otp(params[:code])
       after_two_factor_success_for(resource)
@@ -55,7 +55,9 @@ class Devise::TwoFactorAuthenticationController < DeviseController
     if expires_seconds&.positive?
       cookies.signed[TwoFactorAuthentication::REMEMBER_TFA_COOKIE_NAME] = {
         value: "#{resource.class}-#{resource.public_send(Devise.second_factor_resource_id)}",
-        expires: expires_seconds.seconds.from_now
+        expires: expires_seconds.seconds.from_now,
+        secure: !(Rails.env.test? || Rails.env.development?),
+        httponly: !(Rails.env.test? || Rails.env.development?)
       }
     end
   end
@@ -84,6 +86,6 @@ class Devise::TwoFactorAuthenticationController < DeviseController
   end
 
   def prepare_and_validate
-    redirect_to :root && return if resource.nil?
+    redirect_to(:root) if resource.nil?
   end
 end

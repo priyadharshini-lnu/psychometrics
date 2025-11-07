@@ -10,7 +10,6 @@
   flex-direction: column;
   gap: @space-4;
   flex: 1 1 auto;
-  margin-bottom: 2rem;
   overflow-y: hidden;
   height: 100%;
 
@@ -22,14 +21,19 @@
     }
   }
 
-  & :global(.ant-spin-nested-loading){
+  & > :global(.ant-spin-nested-loading){
     height: 100%;
-    overflow-y: auto;
+    overflow-y: hidden;
   }
 
   @media (max-width:768px) {
     & :global(.ant-tabs-nav-operations) {
         display: none !important;
+    }
+
+    & > :global(.ant-spin-nested-loading){
+      height: 100%;
+      overflow-y: auto;
     }
   }
 }

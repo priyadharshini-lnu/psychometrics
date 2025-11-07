@@ -7,7 +7,10 @@ RSpec.describe License, type: :model do
   let!(:license) { create(:license, client: tenancy) }
 
   context 'Relations' do
-    it { should belong_to(:client).counter_cache(true) }
+    # TODO: Remove explicit syntax once these issues are fixed in the gem:
+    # https://github.com/thoughtbot/shoulda-matchers/issues/1670,
+    # https://github.com/thoughtbot/shoulda-matchers/issues/1638
+    it { should belong_to(:client).counter_cache({ column: 'licenses_count' }) }
     it { should belong_to(:report_family) }
     it { should have_many(:license_usages) }
   end

@@ -14,10 +14,12 @@
 
 .header {
   .title {
+    margin: 0;
+    line-height: 1.1;
+    box-sizing: border-box;
     margin-bottom: 10px;
     font-size: 26px;
     font-weight: bold;
-
   }
   .subtitle {
     color: @primary-gray;
@@ -68,6 +70,9 @@
 
   .header {
     .title {
+      margin: 0;
+      padding: 0;
+      line-height: 1.1;
       font-size: 1.2em;
       font-weight: bold;
       margin-bottom: 6px;
@@ -90,6 +95,10 @@
       max-width: 70%;
       margin-inline-end: 40px;
       border-inline-start: 4px solid @primary-gray;
+      .name {
+        font-weight: bold;
+        margin-bottom: 6px;
+      }
     }
 
     .date {

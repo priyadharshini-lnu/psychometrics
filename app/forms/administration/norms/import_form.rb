@@ -60,11 +60,7 @@ module Administration
       private
 
       def process_csv_file
-        if file.is_a?(ActionDispatch::Http::UploadedFile) || file.is_a?(Rack::Test::UploadedFile)
-          CSV.read(file.path, encoding: 'bom|utf-8', headers: true)
-        else
-          CSV.new(URI(file.url).open, headers: true).read
-        end
+        ::CsvFileParser.call!(file, headers: :first_row)
       end
     end
   end

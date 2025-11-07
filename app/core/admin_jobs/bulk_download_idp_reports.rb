@@ -15,7 +15,7 @@ module AdminJobs
     def generate_title_link
       {
         href: "/admin/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}/participants",
-        label: "#{campaign.name} - IDP Reports[#{record.data['lang']}]#{record.data['include_reflective_questions'] ? ' With Reflective Questions' : ''}" # rubocop:disable Layout/LineLength
+        label: "#{campaign.name} - IDP Reports[#{record.data['lang']}]#{' With Reflective Questions' if record.data['include_reflective_questions']}" # rubocop:disable Layout/LineLength
       }
     end
 

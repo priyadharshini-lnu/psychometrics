@@ -68,7 +68,7 @@ describe CampaignFactors::ImportForm do
 
   it 'validates campaign factors count' do
     stub_const('CampaignFactor::MAX_CAMPAIGN_FACTORS', 2)
-    create_list(:campaign_factor, (CampaignFactor::MAX_CAMPAIGN_FACTORS - 2), campaign: campaign)
+    create_list(:campaign_factor, CampaignFactor::MAX_CAMPAIGN_FACTORS - 2, campaign: campaign)
     file = Rack::Test::UploadedFile.new(
       Rails.root.join('spec/fixtures/files/import_campaign_factors/valid_file.xlsx'),
       'application/xlsx'

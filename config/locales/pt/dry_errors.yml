@@ -1,0 +1,114 @@
+---
+pt:
+  dry_errors:
+    errors:
+      add_edit_project:
+        invalid_subdomain_format: Formato de subdomínio incorreto.
+        reserved_subdomain: O subdomínio %{value} está reservado
+        uniq_subdomain: O subdomínio deve ser único.
+      add_manager:
+        cannot_be_self: O utilizador não pode ser atribuído como seu próprio gestor
+        manager_not_found: O gestor não foi encontrado ou não faz parte do mesmo projeto
+        user_not_found: Utilizador não encontrado ou que não faz parte do mesmo projeto
+      admin:
+        already_added: Administrador com correio eletrónico já adicionado.
+      already_assigned?: Não é possível ligar esta avaliação - já está atribuída a '%{linked_assessor_form_name}'.
+      already_invited: Este utilizador já existe no centro de avaliação que está a tentar adicionar.
+      assessor_assessment:
+        already_added: Avaliação do assessor já adicionada à campanha.
+        lead_already_added: Só pode ser adicionada uma avaliação do avaliador principal à campanha.
+      campaign_factor:
+        code_already_exists: Já existe um fator com o mesmo código.
+        invalid_lua_name: deve ser um nome de variável lua válido
+        limit_exceeded: Atingiu o limite máximo de factores de campanha %{limit}.
+        name_already_exists: Já existe um fator com o mesmo nome.
+        rank_not_allowed: Apenas os factores com um tipo de saída numérico podem ser ordenados.
+      campaign_factor_group:
+        group_already_exists: Já existe um grupo com o mesmo nome.
+        last_factor_group: Não é possível eliminar o último grupo de factores de campanha.
+      campaign_idps:
+        idp_template_not_published: Este modelo de IDP ainda não foi publicado, publique -o antes de atribuir a campanha.
+      cant_be_deleted: Este registo não pode ser eliminado
+      client_feature:
+        ai_assisted_idp_feature_error: Não pode ser verdade se o recurso de assistentes de IA estiver desativado
+      create_superadmin:
+        uniq_email: O correio eletrónico deve ser uniq.
+      development_actions:
+        only_global_skills_allowed: As competências selecionadas devem ser competências globais.
+        skills_not_belong_to_project: As competências selecionadas devem pertencer ao projeto especificado.
+        skills_required: Selecione pelo menos uma competência.
+      exceeded_subjects_count: Só é possível adicionar %{count} temas por convite
+      filled?: não pode estar em branco
+      idp_template:
+        content_required: O conteúdo é necessário para instruções
+        tag_or_skill_required: Selecione uma etiqueta ou uma habilidade quando a opção "Selecionado" for escolhida.
+      invalid_name: apenas o alfabeto, o número, os espaços, o traço e o ponto são permitidos como caracteres válidos
+      invalid_value: declaração inválida '%{value}' na linha número %{row}
+      job_roles:
+        unique_within_job_group: Já existe um cargo com o mesmo nome neste grupo de cargos.
+      json?: Deve ser um JSON válido
+      key?: não pode estar em branco
+      match_regexp?: valor inválido
+      mettl_schedule_record_create:
+        uniq_schedule_name: O nome do calendário deve ser único
+      missed?: não pode estar em branco
+      not_allowed?: não é permitido alterar
+      not_in_the_list?: valor inválido passado
+      not_uniq_variable: variável '%{value}' redefinida na linha número %{row}
+      project_assessments:
+        should_be_greater_than_zero: A validade do resultado deve ser superior a 0 dias
+      project_feature:
+        global_skills_not_enabled_on_client: Para habilitar as Habilidades Globais para este projeto, ative-o em Sinalizadores de Recursos nas configurações do cliente.
+      report_approval_settings:
+        report_exists: Já existe uma definição de aprovação de relatório para este relatório.
+        validates_admins: Os administradores não têm acesso à campanha.
+      report_families_reports:
+        report_exists: Este relatório já faz parte do pacote de relatórios
+      size?: o tamanho deve ser inferior a %{size}
+      skill:
+        already_added: Habilidade com o mesmo nome já adicionada.
+      skill_alias:
+        unique_alias: O pseudónimo deve ser único
+        unique_skill: A competência deve ser única
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: A competência e a função devem pertencer ao mesmo projeto ou ser globais.
+        unique_mappings: Já existe um mapeamento com a mesma competência e função.
+      uniq: Esta avaliação Mettl já está presente no sistema. O ID desta avaliação é %{id}
+      uniq?: deve ser único
+      uniq_simulation: Esta avaliação de simulação já está presente no sistema. O ID desta avaliação é %{id}
+      uniq_skillvue: Esta avaliação Skillvue já está presente no sistema. O ID desta avaliação é %{id}
+      update_workshop:
+        bookings_exist: Não é possível alterar o horário porque os participantes já reservaram esta faixa horária.
+        less_than_booked: O total de lugares deve ser superior ao reservado
+      user_availability_date:
+        overlaps_date: Sobrepõe-se a outra disponibilidade %{range}
+        overlaps_time: Intervalo de sobreposições %{interval}
+        start_date_should_be_less: A data de início deve ser inferior à data de fim
+        start_time_should_be_less: A hora de início deve ser inferior à hora de fim
+      user_idp_plan:
+        idp_template_already_assigned_to_user: Este modelo de Idp já foi atribuído a este utilizador e está ativo
+        idp_template_not_published: Este modelo IDP ainda não foi publicado, publique -o antes de atribuir ao usuário.
+      user_saved_filters:
+        limit_exceeded: Só pode ter %{limit} filtros guardados, por favor elimine os filtros guardados para adicionar mais.
+        unique_name: Já existe um filtro com o mesmo nome.
+      workshop_invited_subject_create:
+        already_exists: O assunto já existe no convite.
+      workshop_subject_create:
+        already_exists: O assunto já existe neste centro de avaliação.
+        part_of_other_workshop: O sujeito já é um participante de "%{workshop_name}".
+      workshop_subject_re_enroll:
+        no_seats_available: Não há lugares disponíveis para este seminário.
+        scheduling_lead_time_passed: Se o tempo de espera para o agendamento tiver passado, não é possível voltar a inscrever a disciplina.
+        workshop_subject_not_found: Assunto do workshop não encontrado
+      workshops:
+        no_available_assessor_slots: Não existem faixas horárias disponíveis para o avaliador %{assessor}
+        no_available_manager_slots: Não há faixas horárias disponíveis para o gestor %{manager}
+    users:
+      registrations:
+        new:
+          register: Registar
+          sign_in: Iniciar sessão
+      sessions:
+        new:
+          register: Registar
+          sign_in: Iniciar sessão

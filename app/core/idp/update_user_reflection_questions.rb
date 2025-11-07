@@ -10,7 +10,7 @@ module Idp
     end
 
     def call
-      return broadcast :ok, false if @user_plan.completed?
+      return broadcast :ok, false if @user_plan.completion_status_completed?
 
       UserIdpPlan.transaction do
         reflection_questions_params.each do |reflection_question|

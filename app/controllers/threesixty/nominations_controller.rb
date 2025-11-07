@@ -3,6 +3,7 @@
 module Threesixty
   class NominationsController < ApplicationController
     include ::Threesixty::InitialState
+
     layout 'layouts/end_user'
     before_action :set_campaign
     before_action :set_subject

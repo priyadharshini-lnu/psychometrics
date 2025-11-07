@@ -4,6 +4,7 @@ class QuestionRecoding < ApplicationRecord
   audited
 
   include Copyable
+
   self.table_name = :question_recoding
 
   belongs_to :assessment

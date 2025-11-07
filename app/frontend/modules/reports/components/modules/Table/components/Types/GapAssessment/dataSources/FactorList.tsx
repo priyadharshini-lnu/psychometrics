@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import {
   Typography, Select,
+  Flex,
 } from 'antd'
 
 import { PropertiesModel } from '~/modules/reports/interfaces/tables/Gap'
@@ -22,7 +23,7 @@ export const FactorsList: FC<Props> = ({ assessmentId, value, onChange }) => {
   }))
 
   return (
-    <div>
+    <Flex vertical gap="4">
       <Typography.Text>Factor list</Typography.Text>
       <Select
         size="small"
@@ -35,6 +36,6 @@ export const FactorsList: FC<Props> = ({ assessmentId, value, onChange }) => {
         value={value}
         onChange={value => onChange('factorIds', value)}
       />
-    </div>
+    </Flex>
   )
 }

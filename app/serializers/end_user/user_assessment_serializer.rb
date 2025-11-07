@@ -3,6 +3,7 @@
 module EndUser
   class UserAssessmentSerializer < Panko::Serializer
     include Rails.application.routes.url_helpers
+
     attributes :id, :type, :url, :assessment_name, :timing, :assessment_category, :completed_at,
                :assessment_extra, :assessment_id, :status, :completion_percent, :completion_reason, :available_locales,
                :selected_locale, :assessment_icon_url, :prework, :schedule_time, :workshop_activity_duration,

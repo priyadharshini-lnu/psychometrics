@@ -3148,15 +3148,40 @@ fr:
             no_auth:
               label: Aucun
               value: no_auth
+            oauth:
+              label: OAuth
+              value: OAuth
+          client_credentials:
+            label: Informations d’identification du client
+            value: client_credentials
+          client_id:
+            label: Client ID
+            name: oauth_client_id
+            required: L’identifiant du client est requis
+          client_secret:
+            label: Client Secret
+            name: oauth_client_secret
+            required: La clé secrète client est requise
           description:
             label: Description
             name: description
+          grant_type:
+            label: Type de subvention
+            name: oauth_grant_type
           include_locales:
             label: Inclure les traductions
             name: include_locales
+          oauth_scope:
+            label: Portée
+            name: oauth_scope
+            required: La portée est requise
           password:
             label: Mot de passe
             name: mot de passe
+          token_url:
+            label: URL du jeton
+            name: oauth_token_url
+            required: L’URL du jeton est requise
           topics:
             label: Evénements
             list:
@@ -3476,6 +3501,7 @@ fr:
         add_new_condition: Ajouter une nouvelle condition
         apply_color_label: 'Appliquez ensuite la couleur suivante :'
         custom_factor_fields:
+          default_score: Score
           percentage: Pourcentage
           questions_attempted: Tenté
           questions_correct: C’est bien ça
@@ -3511,6 +3537,7 @@ fr:
         prefixes:
           and: ET
           or: OU
+        prevent_value_overlap: Éviter le chevauchement des valeurs
         skill_type_label: Filtrer par type de compétence
         skill_type_placeholder: Sélectionner le type de compétence
         skill_types:
@@ -3791,6 +3818,7 @@ fr:
         start_time: Date et heure
         subject: Sujet
         title: Titre
+        view_recording: Voir l’enregistrement
       errors:
         assessor_already_assigned: L'évaluateur est déjà affecté à cette évaluation. Veuillez sélectionner une autre évaluation ou un autre évaluateur.
         date_required: Veuillez sélectionner une date

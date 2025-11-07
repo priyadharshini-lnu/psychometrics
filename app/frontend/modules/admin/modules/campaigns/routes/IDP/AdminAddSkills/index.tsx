@@ -14,21 +14,19 @@ const { I18n } = window
 export const AdminAddSkills = ({
   userIdpSkills,
   next,
-  idpTemplateId,
   prev,
 }: {
   userIdpSkills:UserIdpSkills[],
   next: (selectedSkills:UserIdpSkills[])=>void,
-  idpTemplateId:string
   prev?: ()=> void
 }) => {
   const [skills, setSkills] = useState<UserIdpSkills[]>([])
   const [selectedSkills, setSelectedSkills] = useState<UserIdpSkills[]>(([]))
   const [isSkillsLoading, setIsSkillsLoading] = useState(false)
 
-  const searchSkillResource = useSearchSkills(idpTemplateId)
-
   const { projectId, idpPlanId } = useParams()
+
+  const searchSkillResource = useSearchSkills(idpPlanId)
 
   const {
     fetch: fetchIdpSkillDetails,
