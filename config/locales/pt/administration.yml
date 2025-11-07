@@ -208,6 +208,7 @@ pt:
           projectSettings:
             assessments: Avaliações
             design: Conceção
+            feature_flags: Sinalizadores de recursos
             idp: PDI
             integrations: Integrações
             privacy_settings: Definições de privacidade

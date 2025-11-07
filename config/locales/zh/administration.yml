@@ -208,6 +208,7 @@ zh:
           projectSettings:
             assessments: 评估
             design: 设计
+            feature_flags: 功能标志
             idp: IDP
             integrations: 集成
             privacy_settings: 隐私设置

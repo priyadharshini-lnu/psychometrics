@@ -77,6 +77,7 @@ sl:
       uniq?: mora biti edinstven
       uniq_simulation: Ta simulacijska ocena je že prisotna v sistemu. ID te ocene je %{id}
       uniq_skillvue: 'To ocenjevanje Skillvue je že v sistemu. ID ocenjevanja: %{id}'
+      uniq_yoodli: Ta ocena Yoodli je že prisotna v sistemu. ID te ocene je %{id}
       update_workshop:
         bookings_exist: Razporeda ni mogoče spremeniti, saj so udeleženci že rezervirali ta časovni interval.
         less_than_booked: Skupno število sedežev mora biti večje od rezerviranih

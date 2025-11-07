@@ -1475,6 +1475,7 @@ zh:
       export_occupations_job_scheduled: 职业 出口工作已成功安排
       export_reports_and_assessments_statuses_scheduled: 导出报告和评估工作已成功安排
       external_results_export_scheduled: 外部评估导出工作已成功安排
+      no_participants_selected: 请选择至少一名参与者继续。
       norm_results_export_scheduled: 评估标准化结果导出工作已成功安排
       normalize_factor_scores_scheduled: 因子得分标准化工作已成功调度。
       raw_factor_export_scheduled: 评估原始因子导出工作已成功安排
@@ -1619,6 +1620,7 @@ zh:
       report_bundle_placeholder: 选择报告包
     messages:
       bulk_download_error: 批量下载仅限于 1000 个报告文件。 如果您选择了多种语言，请减少下载量。
+      bulk_download_no_reports: 未找到报告。请在下载前生成报告。
       bulk_download_successful: 批量报告下载任务已成功安排
       export_report_data_scheduled: 报告数据导出任务已成功安排
     modals:
@@ -2461,6 +2463,7 @@ zh:
   idp:
     actions: 行动
     add_comments: 添加注释
+    added_development_action: 添加了开发作
     ai:
       assistant:
         failure_fallback:
@@ -2517,6 +2520,7 @@ zh:
         title: 您好，我是你们的开发助手
     behavioral: 行为
     board: 董事会
+    change_history: 更改历史
     changes_saved_to_plan: 保存到计划的更改
     comment_details:
       add_comment: 添加评论
@@ -2618,6 +2622,7 @@ zh:
       publish_plan: 发布计划
       remove: 移除
       save_plan: 保存计划
+      search_development_actions: 搜索开发作
       show_development_action_information: 显示开发作信息
       skill: 技能
       sprint: 冲刺
@@ -2679,6 +2684,7 @@ zh:
     manage_plan: 管理计划
     mark_as_complete: 标记为完成
     mark_as_incomplete: 標記為不完整
+    modified_development_action: 修改后的开发行动
     my_plan:
       development_plan: 发展计划
       graphs:
@@ -2802,7 +2808,9 @@ zh:
         title: 报告摘要
     plan: 计划
     plan_status: 计划状态%{status}
+    plan_submitted_for_manager_approval: 您的个人发展计划已提交给经理批准。
     private: 私人
+    public: 公共
     reflective_questions:
       already_completed: IDP 已经完成，现在不能回答问题。
       answer: 答
@@ -2830,6 +2838,7 @@ zh:
       words: 字数
     remove_skill: 移除技能
     remove_skill_from_plan: 从计划中删除技能%{name}
+    removed_development_action: 已删除的开发作
     report_preview: 报告预览
     search_and_select_skills_of_skill_type: 搜索并选择%{skillType}技能
     select_skills_of_skill_type: 选择%{skillType}技能
@@ -2843,6 +2852,8 @@ zh:
     status: 现状
     suggestions: 建议
     suggestions_for_skill_type: "%{skillType}技能建议"
+    summary: 总结
+    summary_logs: "%{reporteeName}的摘要日志"
     technical: 技术
     user_idp_status:
       approved: 批准
@@ -2854,6 +2865,7 @@ zh:
       not_started: 未开始
       pending_approval: 待定
       rejected: 拒绝
+      start_review: 开始复查
     users: 用户
     with_reflection_questions: 带反思问题
     without_reflection_questions: 无反射题
@@ -4174,6 +4186,7 @@ zh:
     idp:
       can_not_complete_without_approval_and_in_progress: 在您的经理批准并将其标记为“进行中”之前，您无法完成您的 IDP。
       can_not_start_without_approval: 在您的经理批准之前，您无法开始处理您的 IDP。
+      no_changes_to_compare: IDP 计划没有变化可比较。
       no_previous_approved_plan: 未找到以前批准的 IDP 计划。
       reflective_questions_required: IDP 需要回答反思性问题
       status_not_permitted: 用户不允许。

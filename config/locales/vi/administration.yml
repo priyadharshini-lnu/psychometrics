@@ -208,6 +208,7 @@ vi:
           projectSettings:
             assessments: Đánh giá
             design: Thiết kế
+            feature_flags: Cờ tính năng
             idp: IDP
             integrations: Tích hợp
             privacy_settings: Cài đặt quyền riêng tư

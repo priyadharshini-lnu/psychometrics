@@ -208,6 +208,7 @@ ko:
           projectSettings:
             assessments: 평가
             design: 디자인
+            feature_flags: 기능 플래그
             idp: IDP
             integrations: 통합
             privacy_settings: 개인정보 설정

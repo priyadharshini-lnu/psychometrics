@@ -1472,6 +1472,7 @@ hr:
       export_occupations_job_scheduled: Zanimanja Posao izvoza uspješno je zakazan
       export_reports_and_assessments_statuses_scheduled: Posao izvoza izvješća i procjena uspješno je zakazan
       external_results_export_scheduled: Uspješno je zakazan posao izvoza vanjske procjene
+      no_participants_selected: Odaberite barem jednog sudionika za nastavak.
       norm_results_export_scheduled: Uspješno je zakazan zadatak izvoza normiranih rezultata
       normalize_factor_scores_scheduled: Posao normalizacije rezultata faktora uspješno je zakazan.
       raw_factor_export_scheduled: Uspješno je zakazan posao izvoza Procjene sirovog faktora
@@ -1616,6 +1617,7 @@ hr:
       report_bundle_placeholder: Odabir paketa izvješća
     messages:
       bulk_download_error: Skupno preuzimanje ograničeno je na 1000 datoteka izvješća. Ako ste odabrali mnogo jezika, smanjite ga.
+      bulk_download_no_reports: Nije pronađen nijedan izvještaj. Molimo generirajte izvješća prije preuzimanja.
       bulk_download_successful: Zadatak masovnog preuzimanja izvješća uspješno je zakazan
       export_report_data_scheduled: Posao izvoza podataka izvješća uspješno je zakazan
     modals:
@@ -2489,6 +2491,7 @@ hr:
   idp:
     actions: Statusi
     add_comments: Dodajte komentare
+    added_development_action: Dodatna razvojna akcija
     ai:
       assistant:
         failure_fallback:
@@ -2545,6 +2548,7 @@ hr:
         title: Pozdrav, ja sam vaš razvojni asistent
     behavioral: Bihevioralne
     board: Odbor
+    change_history: Povijest promjena
     changes_saved_to_plan: Promjene spremljene u plan
     comment_details:
       add_comment: Dodaj komentar
@@ -2646,6 +2650,7 @@ hr:
       publish_plan: Objavi plan
       remove: Odstraniti
       save_plan: Spremi plan
+      search_development_actions: Radnje razvoja pretraživanja
       show_development_action_information: Prikaži informacije o razvojnoj akciji
       skill: Vještina
       sprint: Trčanje
@@ -2707,6 +2712,7 @@ hr:
     manage_plan: Upravljanje planom
     mark_as_complete: Označi kao dovršeno
     mark_as_incomplete: Označi kao nepotpuno
+    modified_development_action: Izmijenjena razvojna akcija
     my_plan:
       development_plan: Razvojni plan
       graphs:
@@ -2824,7 +2830,9 @@ hr:
         title: Sažetak izvješća
     plan: Plan
     plan_status: Status plana %{status}
+    plan_submitted_for_manager_approval: Vaš individualni razvojni plan predan je na odobrenje upravitelja.
     private: Privatan
+    public: Javnost
     reflective_questions:
       already_completed: IDP je već završen, više ne možete odgovarati na pitanja.
       answer: Odgovor
@@ -2852,6 +2860,7 @@ hr:
       words: Riječi
     remove_skill: Ukloni vještinu
     remove_skill_from_plan: Uklanjanje vještina %{name} iz plana
+    removed_development_action: Uklonjena razvojna akcija
     report_preview: Pregled izvješća
     search_and_select_skills_of_skill_type: Pretraživanje i odabir %{skillType} vještina
     select_skills_of_skill_type: Odaberite %{skillType} vještine
@@ -2865,6 +2874,8 @@ hr:
     status: Status
     suggestions: Prijedlozi
     suggestions_for_skill_type: Prijedlozi za %{skillType} vještine
+    summary: Sažetak
+    summary_logs: Sažeti zapisnici za %{reporteeName}
     technical: Tehnički
     user_idp_status:
       approved: Odobreno
@@ -2876,6 +2887,7 @@ hr:
       not_started: Nije pokrenuto
       pending_approval: Čeka se odobrenje
       rejected: Odbijeno
+      start_review: Započnite pregled
     users: Korisnici
     with_reflection_questions: S pitanjima za razmišljanje
     without_reflection_questions: Pitanja bez razmišljanja
@@ -4196,6 +4208,7 @@ hr:
     idp:
       can_not_complete_without_approval_and_in_progress: Ne možete dovršiti svoj IDP dok ga vaš menadžer ne odobri i dok ga ne označite kao 'U tijeku'.
       can_not_start_without_approval: Ne možete početi raditi na svom IDP-u dok ga vaš menadžer ne odobri.
+      no_changes_to_compare: Nema promjena za usporedbu za IDP plan.
       no_previous_approved_plan: Nije pronađen prethodno odobreni plan IDP-a.
       reflective_questions_required: Odgovori na samoreflektirajuća pitanja potrebni su za IDP
       status_not_permitted: nije dopušteno od strane korisnika.

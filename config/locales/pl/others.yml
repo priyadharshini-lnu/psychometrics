@@ -1469,6 +1469,7 @@ pl:
       export_occupations_job_scheduled: Zadania eksportu zawodów zostało zaplanowane pomyślnie
       export_reports_and_assessments_statuses_scheduled: Zadanie eksportowania raportów i ocen zostało zaplanowane pomyślnie
       external_results_export_scheduled: Zadanie eksportu oceny zewnętrznej zostało pomyślnie zaplanowane
+      no_participants_selected: Wybierz co najmniej jednego uczestnika, aby kontynuować.
       norm_results_export_scheduled: Zadanie eksportu unormowanych wyników oceny zostało pomyślnie zaplanowane
       normalize_factor_scores_scheduled: Zadanie normalizacji wyników czynnika zostało zaplanowane pomyślnie.
       raw_factor_export_scheduled: Zadanie eksportu nieprzetworzonego czynnika oceny zostało pomyślnie zaplanowane
@@ -1613,6 +1614,7 @@ pl:
       report_bundle_placeholder: Wybieranie pakietu raportów
     messages:
       bulk_download_error: Pobieranie zbiorcze jest ograniczone do 1000 plików raportów. Jeśli wybrałeś wiele języków, zmniejsz go.
+      bulk_download_no_reports: Nie znaleziono raportów. Wygeneruj raporty przed pobraniem.
       bulk_download_successful: Zadanie zbiorczego pobierania raportu zostało pomyślnie zaplanowane
       export_report_data_scheduled: Zadanie eksportu danych raportu zostało zaplanowane pomyślnie
     modals:
@@ -2478,6 +2480,7 @@ pl:
   idp:
     actions: Działania
     add_comments: Dodawanie komentarzy
+    added_development_action: Dodano akcję rozwojową
     ai:
       assistant:
         failure_fallback:
@@ -2534,6 +2537,7 @@ pl:
         title: Cześć, jestem Twoim asystentem ds. rozwoju
     behavioral: Zachowanie
     board: Tablica
+    change_history: Historia zmian
     changes_saved_to_plan: Zmiany zapisane w planie
     comment_details:
       add_comment: Dodaj komentarz
@@ -2635,6 +2639,7 @@ pl:
       publish_plan: Publikuj plan
       remove: Usuń
       save_plan: Plan oszczędzania
+      search_development_actions: Działania związane z rozwojem wyszukiwania
       show_development_action_information: Pokaż informacje o akcji rozwojowej
       skill: Umiejętność
       sprint: Sprint
@@ -2696,6 +2701,7 @@ pl:
     manage_plan: Zarządzaj planem
     mark_as_complete: Oznacz jako ukończone
     mark_as_incomplete: Oznacz jako niekompletne
+    modified_development_action: Zmodyfikowane działanie rozwojowe
     my_plan:
       development_plan: Plan rozwoju
       graphs:
@@ -2813,7 +2819,9 @@ pl:
         title: Podsumowanie raportu
     plan: Plan
     plan_status: Stan planu %{status}
+    plan_submitted_for_manager_approval: Twój Indywidualny Plan Rozwoju został przedłożony do zatwierdzenia przez menedżera.
     private: Prywatny
+    public: Publiczny
     reflective_questions:
       already_completed: IDP został już ukończony, nie możesz teraz odpowiadać na pytania.
       answer: Odpowiedź
@@ -2841,6 +2849,7 @@ pl:
       words: Słowa
     remove_skill: Usuń umiejętność
     remove_skill_from_plan: Usuwanie %{name} umiejętności z planu
+    removed_development_action: Usunięto akcję rozwojową
     report_preview: Podgląd raportu
     search_and_select_skills_of_skill_type: Wyszukiwanie i wybieranie %{skillType} umiejętności
     select_skills_of_skill_type: Wybierz %{skillType} umiejętności
@@ -2854,6 +2863,8 @@ pl:
     status: Stan
     suggestions: Sugestie
     suggestions_for_skill_type: Sugestie dotyczące umiejętności %{skillType}
+    summary: Streszczenie
+    summary_logs: Dzienniki podsumowania dla %{reporteeName}
     technical: Techniczne
     user_idp_status:
       approved: Zatwierdzony
@@ -2865,6 +2876,7 @@ pl:
       not_started: Nie rozpoczęte
       pending_approval: Oczekujące na zatwierdzenie
       rejected: Odrzucone
+      start_review: Rozpocznij recenzję
     users: Użytkowników
     with_reflection_questions: Z pytaniami do refleksji
     without_reflection_questions: Bez pytań do refleksji
@@ -4185,6 +4197,7 @@ pl:
     idp:
       can_not_complete_without_approval_and_in_progress: Nie możesz ukończyć IDP, dopóki nie zatwierdzi go Twój przełożony i nie oznaczysz go jako "W toku".
       can_not_start_without_approval: Nie możesz rozpocząć pracy nad swoim IDP, dopóki nie zatwierdzi go Twój przełożony.
+      no_changes_to_compare: Brak zmian do porównania dla planu IDP.
       no_previous_approved_plan: Nie znaleziono wcześniej zatwierdzonego planu dla osób wewnętrznie.
       reflective_questions_required: Odpowiedzi na refleksyjne pytania są wymagane dla IDP
       status_not_permitted: nie jest dozwolone przez użytkownika.

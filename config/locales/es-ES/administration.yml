@@ -208,6 +208,7 @@ es-ES:
           projectSettings:
             assessments: Evaluaciones
             design: Diseño
+            feature_flags: Marcas de características
             idp: PDI
             integrations: Integraciones
             privacy_settings: Privacidad

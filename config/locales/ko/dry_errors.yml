@@ -77,6 +77,7 @@ ko:
       uniq?: 고유해야 합니다
       uniq_simulation: 이 시뮬레이션 평가는 시스템에 이미 존재합니다. 이 평가의 ID는 %{id}입니다
       uniq_skillvue: 이 스킬뷰 평가는 이미 시스템에 존재합니다. 이 평가의 ID는 %{id}입니다.
+      uniq_yoodli: 이 Yoodli 평가는 이미 시스템에 존재합니다. 이 평가의 ID는 %{id}입니다.
       update_workshop:
         bookings_exist: 참가자가 이미 이 시간대를 예약했으므로 일정을 수정할 수 없습니다.
         less_than_booked: 총 좌석 수가 예약된 좌석 수보다 많아야 합니다

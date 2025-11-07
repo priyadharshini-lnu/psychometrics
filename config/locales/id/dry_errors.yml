@@ -77,6 +77,7 @@ id:
       uniq?: harus unik
       uniq_simulation: Penilaian Simulasi ini sudah ada dalam sistem. ID penilaian ini adalah %{id}
       uniq_skillvue: Penilaian Skillvue ini sudah ada di dalam sistem. ID dari penilaian ini adalah %{id}
+      uniq_yoodli: Penilaian Yoodli ini sudah ada dalam sistem. ID penilaian ini adalah %{id}
       update_workshop:
         bookings_exist: Tidak dapat mengubah jadwal karena peserta telah memesan slot waktu ini.
         less_than_booked: Total kursi harus lebih besar dari yang dipesan

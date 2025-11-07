@@ -1465,6 +1465,7 @@ ro:
       export_occupations_job_scheduled: Ocupații Locul de muncă la export a fost programat cu succes
       export_reports_and_assessments_statuses_scheduled: Lucrarea Exportați rapoarte și evaluări a fost programată cu succes
       external_results_export_scheduled: Activitatea de export Evaluare externă a fost programată cu succes
+      no_participants_selected: Vă rugăm să selectați cel puțin un participant pentru a continua.
       norm_results_export_scheduled: Lucrarea de export Rezultate normalizate de evaluare a fost programată cu succes
       normalize_factor_scores_scheduled: Normalizarea scorurilor factorilor a fost programată cu succes.
       raw_factor_export_scheduled: Evaluarea activității de export Raw Factor a fost programată cu succes
@@ -1609,6 +1610,7 @@ ro:
       report_bundle_placeholder: Selectați un pachet de rapoarte
     messages:
       bulk_download_error: Descărcarea în bloc este limitată la 1000 de fișiere de raport. Dacă ați selectat mai multe lamente, vă rugăm să le reduceți.
+      bulk_download_no_reports: Nu s-au găsit rapoarte. Vă rugăm să generați rapoartele înainte de descărcare.
       bulk_download_successful: Sarcina de descărcare a raportului în bloc a fost programată cu succes
       export_report_data_scheduled: Sarcina de export a datelor de raportare a fost programată cu succes
     modals:
@@ -2474,6 +2476,7 @@ ro:
   idp:
     actions: Acțiuni
     add_comments: Adaugă comentarii
+    added_development_action: Acțiune de dezvoltare adăugată
     ai:
       assistant:
         failure_fallback:
@@ -2530,6 +2533,7 @@ ro:
         title: Buna ziua, sunt asistentul tau de dezvoltare
     behavioral: Comportamental
     board: Scândură
+    change_history: Istoricul modificărilor
     changes_saved_to_plan: Modificări salvate în plan
     comment_details:
       add_comment: Adaugă comentariu
@@ -2631,6 +2635,7 @@ ro:
       publish_plan: Publicați planul
       remove: Depărta
       save_plan: Salvați planul
+      search_development_actions: Căutare Acțiuni de dezvoltare
       show_development_action_information: Afișați informațiile despre acțiunile de dezvoltare
       skill: Îndemânare
       sprint: Sprint
@@ -2692,6 +2697,7 @@ ro:
     manage_plan: Gestionați planul
     mark_as_complete: Marcați ca finalizat
     mark_as_incomplete: Marcați ca incomplet
+    modified_development_action: Acțiune de dezvoltare modificată
     my_plan:
       development_plan: Plan de dezvoltare
       graphs:
@@ -2809,7 +2815,9 @@ ro:
         title: Rezumatul raportului
     plan: Plan
     plan_status: Starea planului %{status}
+    plan_submitted_for_manager_approval: Planul dumneavoastră individual de dezvoltare a fost trimis spre aprobarea managerului.
     private: Privat
+    public: Public
     reflective_questions:
       already_completed: IDP a fost deja completat, nu puteți răspunde la întrebări acum.
       answer: Răspunde
@@ -2837,6 +2845,7 @@ ro:
       words: Cuvinte
     remove_skill: Eliminați abilitatea
     remove_skill_from_plan: Eliminați %{name} de abilități din plan
+    removed_development_action: Acțiune de dezvoltare eliminată
     report_preview: Previzualizare raport
     search_and_select_skills_of_skill_type: Căutați și selectați abilitățile %{skillType}
     select_skills_of_skill_type: Selectați %{skillType} abilități
@@ -2850,6 +2859,8 @@ ro:
     status: Stare
     suggestions: Sugestii
     suggestions_for_skill_type: Sugestii pentru abilitățile %{skillType}
+    summary: Rezumat
+    summary_logs: Jurnale sumare pentru %{reporteeName}
     technical: Tehnic
     user_idp_status:
       approved: Aprobat
@@ -2861,6 +2872,7 @@ ro:
       not_started: Neînceput
       pending_approval: În așteptarea aprobării
       rejected: Respins
+      start_review: Începeți revizuirea
     users: Utilizatorii
     with_reflection_questions: Cu întrebări de reflecție
     without_reflection_questions: Fără întrebări de reflecție
@@ -4181,6 +4193,7 @@ ro:
     idp:
       can_not_complete_without_approval_and_in_progress: Nu puteți finaliza IDP-ul până când managerul nu îl aprobă și nu l-ați marcat ca "În curs".
       can_not_start_without_approval: Nu puteți începe să lucrați la IDP până când managerul nu îl aprobă.
+      no_changes_to_compare: Nu există modificări de comparat pentru planul IDP.
       no_previous_approved_plan: Nu s-a găsit niciun plan IDP aprobat anterior.
       reflective_questions_required: Răspunsurile la întrebările reflexive sunt necesare pentru IDP
       status_not_permitted: nu este permis de utilizator.

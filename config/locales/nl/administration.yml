@@ -208,6 +208,7 @@ nl:
           projectSettings:
             assessments: Beoordeling
             design: Ontwerp
+            feature_flags: Functie vlaggen
             idp: IDP
             integrations: Integraties
             privacy_settings: Privacy-instellingen

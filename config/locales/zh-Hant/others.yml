@@ -1465,6 +1465,7 @@ zh-Hant:
       export_occupations_job_scheduled: 職業 出口工作排程成功
       export_reports_and_assessments_statuses_scheduled: 匯出報告與評估工作排程成功
       external_results_export_scheduled: 外部評估匯出工作排程成功
+      no_participants_selected: 請選擇至少一名參與者繼續。
       norm_results_export_scheduled: 評估標準化結果匯出工作排程成功
       normalize_factor_scores_scheduled: Normalizing factor scores 工作排程成功。
       raw_factor_export_scheduled: 評估原始因子匯出工作排程成功
@@ -1609,6 +1610,7 @@ zh-Hant:
       report_bundle_placeholder: 選擇報告包
     messages:
       bulk_download_error: 批量下載的報告檔案數量限制為 1000 個，如果您選擇了多種語言，請減少下載數量。
+      bulk_download_no_reports: 沒有找到報告。請在下載前生成報告。
       bulk_download_successful: 大量報告下載工作排程成功
       export_report_data_scheduled: 報告資料匯出工作排程成功
     modals:
@@ -2451,6 +2453,7 @@ zh-Hant:
   idp:
     actions: 行動
     add_comments: 新增註解
+    added_development_action: 新增開發動作
     ai:
       assistant:
         failure_fallback:
@@ -2507,6 +2510,7 @@ zh-Hant:
         title: 您好，我是你們的開發助理
     behavioral: 行為
     board: 董事會
+    change_history: 變更歷史
     changes_saved_to_plan: 儲存至計劃的變更
     comment_details:
       add_comment: 新增評論
@@ -2608,6 +2612,7 @@ zh-Hant:
       publish_plan: 發布計劃
       remove: 移除
       save_plan: 保存計劃
+      search_development_actions: 搜尋開發動作
       show_development_action_information: 顯示開發動作資訊
       skill: 技術
       sprint: 衝刺
@@ -2669,6 +2674,7 @@ zh-Hant:
     manage_plan: 管理計劃
     mark_as_complete: 標記為完成
     mark_as_incomplete: 标记为不完整
+    modified_development_action: 修改後的發展行動
     my_plan:
       development_plan: 發展計劃
       graphs:
@@ -2792,7 +2798,9 @@ zh-Hant:
         title: 報告摘要
     plan: 計劃
     plan_status: 計劃狀態%{status}
+    plan_submitted_for_manager_approval: 您的個人發展計劃已提交給經理批准。
     private: 私
+    public: 公
     reflective_questions:
       already_completed: IDP 已經完成，您現在無法回答問題。
       answer: 答
@@ -2820,6 +2828,7 @@ zh-Hant:
       words: 的話
     remove_skill: 移除技能
     remove_skill_from_plan: 從計劃中移除技能%{name}
+    removed_development_action: 已移除開發動作
     report_preview: 報告預覽
     search_and_select_skills_of_skill_type: 搜尋並選取%{skillType}技能
     select_skills_of_skill_type: 選擇%{skillType}技能
@@ -2833,6 +2842,8 @@ zh-Hant:
     status: 狀態
     suggestions: 建議
     suggestions_for_skill_type: "%{skillType}技能建議"
+    summary: 摘要
+    summary_logs: "%{reporteeName}的摘要記錄"
     technical: 技術
     user_idp_status:
       approved: 已核准
@@ -2844,6 +2855,7 @@ zh-Hant:
       not_started: 未開始
       pending_approval: 待定
       rejected: 拒絕
+      start_review: 開始審查
     users: 使用者
     with_reflection_questions: 帶反思問題
     without_reflection_questions: 無反射題
@@ -4164,6 +4176,7 @@ zh-Hant:
     idp:
       can_not_complete_without_approval_and_in_progress: 在您的經理批准並將其標記為“進行中”之前，您無法完成您的 IDP。
       can_not_start_without_approval: 在您的經理批准之前，您無法開始處理您的 IDP。
+      no_changes_to_compare: IDP 計劃沒有變化可比較。
       no_previous_approved_plan: 未找到先前批准的 IDP 計劃。
       reflective_questions_required: IDP 需要回答反思性問題
       status_not_permitted: 用戶不允許。

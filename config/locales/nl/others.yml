@@ -1465,6 +1465,7 @@ nl:
       export_occupations_job_scheduled: Beroepen Exporttaak is succesvol ingepland
       export_reports_and_assessments_statuses_scheduled: De taak Exportrapporten en beoordelingen is met succes gepland
       external_results_export_scheduled: De exporttaak voor externe beoordelingen is met succes gepland
+      no_participants_selected: Selecteer ten minste één deelnemer om door te gaan.
       norm_results_export_scheduled: Exporttaak Assessment Normed Results is met succes gepland
       normalize_factor_scores_scheduled: De taak voor het normaliseren van factorscores is met succes ingepland.
       raw_factor_export_scheduled: Beoordeling Raw Factor exporttaak is succesvol gepland
@@ -1609,6 +1610,7 @@ nl:
       report_bundle_placeholder: Selecteer een rapportbundel
     messages:
       bulk_download_error: Bulkdownload is beperkt tot 1000 rapportbestanden. Als je veel talen hebt geselecteerd, verklein dit dan.
+      bulk_download_no_reports: Geen meldingen gevonden. Genereer de rapporten voordat u ze downloadt.
       bulk_download_successful: De downloadtaak voor bulkrapporten is met succes gepland
       export_report_data_scheduled: De exporttaak voor rapportgegevens is met succes gepland
     modals:
@@ -2469,6 +2471,7 @@ nl:
   idp:
     actions: Acties
     add_comments: Opmerkingen toevoegen
+    added_development_action: Ontwikkelingsactie toegevoegd
     ai:
       assistant:
         failure_fallback:
@@ -2525,6 +2528,7 @@ nl:
         title: Hallo, ik ben je ontwikkelingsassistent
     behavioral: Gedrag
     board: Raad van bestuur
+    change_history: Geschiedenis van de wijziging
     changes_saved_to_plan: Wijzigingen die in het plan zijn opgeslagen
     comment_details:
       add_comment: Opmerking toevoegen
@@ -2626,6 +2630,7 @@ nl:
       publish_plan: Plan publiceren
       remove: Verwijder
       save_plan: Abonnement opslaan
+      search_development_actions: Acties voor zoekontwikkeling
       show_development_action_information: Toon informatie over ontwikkelingsacties
       skill: Vaardigheid
       sprint: Sprint
@@ -2687,6 +2692,7 @@ nl:
     manage_plan: Plan beheren
     mark_as_complete: Markeer als voltooid
     mark_as_incomplete: Markeren als onvolledig
+    modified_development_action: Gewijzigde ontwikkelingsactie
     my_plan:
       development_plan: Ontwikkelingsplan
       graphs:
@@ -2782,7 +2788,9 @@ nl:
         title: Samenvatting van het rapport
     plan: Plan
     plan_status: Plan Status %{status}
+    plan_submitted_for_manager_approval: Uw Individueel Ontwikkelingsplan is ter goedkeuring voorgelegd aan de manager.
     private: Privé
+    public: Publiek
     reflective_questions:
       already_completed: De IDP is al voltooid, u kunt de vragen nu niet beantwoorden.
       answer: Antwoorden
@@ -2810,6 +2818,7 @@ nl:
       words: Woorden
     remove_skill: Vaardigheid verwijderen
     remove_skill_from_plan: Vaardigheids %{name} uit plan verwijderen
+    removed_development_action: Verwijderde ontwikkelingsactie
     report_preview: Voorbeeld van rapport
     search_and_select_skills_of_skill_type: Zoek en selecteer %{skillType} vaardigheden
     select_skills_of_skill_type: Selecteer %{skillType} vaardigheden
@@ -2823,6 +2832,8 @@ nl:
     status: Status
     suggestions: Suggesties
     suggestions_for_skill_type: Suggesties voor %{skillType} vaardigheden
+    summary: Samenvatting
+    summary_logs: Overzichtslogboeken voor %{reporteeName}
     technical: Technisch
     user_idp_status:
       approved: Goedgekeurd
@@ -2834,6 +2845,7 @@ nl:
       not_started: Niet gestart
       pending_approval: In afwachting van
       rejected: Afgekeurd
+      start_review: Start beoordeling
     users: Gebruikers
     with_reflection_questions: Met reflectievragen
     without_reflection_questions: Zonder reflectievragen
@@ -4154,6 +4166,7 @@ nl:
     idp:
       can_not_complete_without_approval_and_in_progress: U kunt uw IDP pas voltooien als uw manager deze goedkeurt en u deze hebt gemarkeerd als 'In uitvoering'.
       can_not_start_without_approval: U kunt pas aan uw IDP gaan werken als uw manager deze goedkeurt.
+      no_changes_to_compare: Geen wijzigingen om te vergelijken voor IDP-plan.
       no_previous_approved_plan: Geen eerder goedgekeurd IDP-plan gevonden.
       reflective_questions_required: Antwoorden op reflectieve vragen zijn vereist voor IDP
       status_not_permitted: is niet toegestaan door de gebruiker.

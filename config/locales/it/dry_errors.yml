@@ -77,6 +77,7 @@ it:
       uniq?: dovrebbe essere unico
       uniq_simulation: Questa valutazione di simulazione è già presente nel sistema. L'ID di questa valutazione è %{id}
       uniq_skillvue: Questa valutazione Skillvue è già presente nel sistema. L'ID di questa valutazione è %{id}
+      uniq_yoodli: Questa valutazione Yoodli è già presente nel sistema. L'ID di questa valutazione è %{id}
       update_workshop:
         bookings_exist: Non è possibile modificare l'orario perché i partecipanti hanno già prenotato questa fascia oraria.
         less_than_booked: I posti totali devono essere maggiori di quelli prenotati

@@ -1465,6 +1465,7 @@ fr:
       export_occupations_job_scheduled: Professions L'exportation a été programmée avec succès
       export_reports_and_assessments_statuses_scheduled: La tâche d'exportation de rapports et d'évaluations a été programmée avec succès
       external_results_export_scheduled: La tâche d'exportation de l'évaluation externe a été programmée avec succès
+      no_participants_selected: Veuillez sélectionner au moins un participant pour continuer.
       norm_results_export_scheduled: La tâche d'exportation des résultats normalisés de l'évaluation a été programmée avec succès
       normalize_factor_scores_scheduled: Le travail de normalisation des scores factoriels a été planifié avec succès.
       raw_factor_export_scheduled: Le job d'exportation de l'évaluation des facteurs bruts a été planifié avec succès
@@ -1609,6 +1610,7 @@ fr:
       report_bundle_placeholder: Sélectionner un groupe de rapports
     messages:
       bulk_download_error: Le téléchargement en masse est limité à 1000 fichiers de rapport. Si vous avez sélectionné plusieurs langues, veuillez les réduire.
+      bulk_download_no_reports: Aucun rapport n’a été trouvé. Veuillez générer les rapports avant de les télécharger.
       bulk_download_successful: La tâche de téléchargement des rapports en bloc a été programmée avec succès
       export_report_data_scheduled: La tâche d'exportation des données du rapport a été programmée avec succès
     modals:
@@ -2469,6 +2471,7 @@ fr:
   idp:
     actions: Actions
     add_comments: Ajouter des commentaires
+    added_development_action: Ajout d’une action de développement
     ai:
       assistant:
         failure_fallback:
@@ -2525,6 +2528,7 @@ fr:
         title: Bonjour, je suis votre assistant de développement
     behavioral: Comportementale
     board: Conseil d'administration
+    change_history: Historique des modifications
     changes_saved_to_plan: Modifications enregistrées dans le plan
     comment_details:
       add_comment: Ajouter un commentaire
@@ -2626,6 +2630,7 @@ fr:
       publish_plan: Publier le plan
       remove: Retirer
       save_plan: Forfait d’épargne
+      search_development_actions: Recherche d’actions de développement
       show_development_action_information: Afficher les informations sur les actions de développement
       skill: Compétence
       sprint: Sprint
@@ -2687,6 +2692,7 @@ fr:
     manage_plan: Gérer le forfait
     mark_as_complete: Marquer comme terminé
     mark_as_incomplete: Marquer comme incomplet
+    modified_development_action: Mesures de développement modifiées
     my_plan:
       development_plan: Plan de développement
       graphs:
@@ -2810,7 +2816,9 @@ fr:
         title: Résumé du rapport
     plan: Plan
     plan_status: État du régime %{status}
+    plan_submitted_for_manager_approval: Votre plan de développement individuel a été soumis à l’approbation du gestionnaire.
     private: Privé
+    public: Public
     reflective_questions:
       already_completed: Le PDI a déjà été complété, vous ne pouvez pas répondre aux questions maintenant.
       answer: Répondre
@@ -2838,6 +2846,7 @@ fr:
       words: Mots
     remove_skill: Supprimer une compétence
     remove_skill_from_plan: Supprimer %{name} de compétences du plan
+    removed_development_action: Suppression de l’action de développement
     report_preview: Aperçu du rapport
     search_and_select_skills_of_skill_type: Recherchez et sélectionnez %{skillType} compétences
     select_skills_of_skill_type: Sélectionnez %{skillType} compétences
@@ -2851,6 +2860,8 @@ fr:
     status: Statut
     suggestions: Suggestions
     suggestions_for_skill_type: Suggestions pour %{skillType} compétences
+    summary: Résumé
+    summary_logs: Journaux récapitulatifs pour %{reporteeName}
     technical: Technique
     user_idp_status:
       approved: Approuvé
@@ -2862,6 +2873,7 @@ fr:
       not_started: Non démarré
       pending_approval: En attente
       rejected: Rejeté
+      start_review: Démarrer l’examen
     users: Utilisateurs
     with_reflection_questions: Avec des questions de réflexion
     without_reflection_questions: Sans questions de réflexion
@@ -4182,6 +4194,7 @@ fr:
     idp:
       can_not_complete_without_approval_and_in_progress: Vous ne pouvez pas terminer votre IDP tant que votre responsable ne l’a pas approuvé et que vous ne l’avez pas marqué comme « En cours ».
       can_not_start_without_approval: Vous ne pouvez pas commencer à travailler sur votre IDP tant que votre responsable ne l’a pas approuvé.
+      no_changes_to_compare: Aucun changement à comparer pour le plan IDP.
       no_previous_approved_plan: Aucun plan de PDI approuvé n’a été trouvé.
       reflective_questions_required: Des réponses à des questions de réflexion sont requises pour les PDI
       status_not_permitted: n’est pas autorisé par l’utilisateur.

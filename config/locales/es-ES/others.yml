@@ -1448,6 +1448,7 @@ es-ES:
       export_occupations_job_scheduled: Ocupaciones El trabajo de exportación se ha programado correctamente
       export_reports_and_assessments_statuses_scheduled: El trabajo de exportación de informes y evaluaciones se ha programado correctamente
       external_results_export_scheduled: El trabajo de exportación de la evaluación externa se programó correctamente
+      no_participants_selected: Seleccione al menos un participante para continuar.
       norm_results_export_scheduled: El trabajo de exportación de los resultados de la evaluación se ha programado correctamente
       normalize_factor_scores_scheduled: La tarea de normalización de las puntuaciones de los factores se ha programado correctamente.
       raw_factor_export_scheduled: Evaluación El trabajo de exportación de factores brutos se ha programado correctamente
@@ -1584,6 +1585,7 @@ es-ES:
       report_bundle_placeholder: Seleccione un paquete de informes
     messages:
       bulk_download_error: La descarga masiva está limitada a 1000 archivos de informe. Si ha seleccionado muchos idiomas, redúzcala.
+      bulk_download_no_reports: No se han encontrado informes. Genere los informes antes de descargarlos.
       bulk_download_successful: La tarea de descarga masiva de informes se ha programado correctamente
       export_report_data_scheduled: El trabajo de exportación de datos del informe se ha programado correctamente
     modals:
@@ -2434,6 +2436,7 @@ es-ES:
   idp:
     actions: Acciones
     add_comments: Agregar comentarios
+    added_development_action: Acción de desarrollo agregada
     ai:
       assistant:
         failure_fallback:
@@ -2490,6 +2493,7 @@ es-ES:
         title: Hola, soy tu asistente de desarrollo
     behavioral: Comportamiento
     board: Tablero
+    change_history: Historial de cambios
     changes_saved_to_plan: Cambios guardados en el plan
     comment_details:
       add_comment: Agregar comentario
@@ -2591,6 +2595,7 @@ es-ES:
       publish_plan: Publicar plano
       remove: Eliminar
       save_plan: Plan de ahorro
+      search_development_actions: Buscar acciones de desarrollo
       show_development_action_information: Mostrar información de Development Action
       skill: Habilidad
       sprint: Sprint
@@ -2652,6 +2657,7 @@ es-ES:
     manage_plan: Gestionar plan
     mark_as_complete: Marcar como completa
     mark_as_incomplete: Marcar como incompleta
+    modified_development_action: Acción de desarrollo modificada
     my_plan:
       development_plan: Plan de Desarrollo
       graphs:
@@ -2769,7 +2775,9 @@ es-ES:
         title: Resumen del Informe
     plan: Plan
     plan_status: Estado del plan %{status}
+    plan_submitted_for_manager_approval: Su Plan de Desarrollo Individual ha sido enviado para la aprobación del gerente.
     private: Privado
+    public: Público
     reflective_questions:
       already_completed: El PDI ya se ha completado, no puede responder a las preguntas ahora.
       answer: Respuesta
@@ -2797,6 +2805,7 @@ es-ES:
       words: Palabras
     remove_skill: Eliminar habilidad
     remove_skill_from_plan: Eliminar %{name} de aptitudes del plan
+    removed_development_action: Acción de desarrollo eliminada
     report_preview: Vista previa del informe
     search_and_select_skills_of_skill_type: Buscar y seleccionar %{skillType} habilidades
     select_skills_of_skill_type: Seleccionar %{skillType} habilidades
@@ -2810,6 +2819,8 @@ es-ES:
     status: Estado
     suggestions: Sugerencias
     suggestions_for_skill_type: Sugerencias para %{skillType} habilidades
+    summary: Resumen
+    summary_logs: Registros de resumen de %{reporteeName}
     technical: Técnico
     user_idp_status:
       approved: Aprobado
@@ -2821,6 +2832,7 @@ es-ES:
       not_started: No iniciado
       pending_approval: Pendiente
       rejected: Rechazado
+      start_review: Iniciar reseña
     users: Usuarios
     with_reflection_questions: Con preguntas de reflexión
     without_reflection_questions: Sin preguntas de reflexión
@@ -4108,6 +4120,7 @@ es-ES:
     idp:
       can_not_complete_without_approval_and_in_progress: No puede completar su IDP hasta que su gerente lo apruebe y lo haya marcado como "En curso".
       can_not_start_without_approval: No puede comenzar a trabajar en su IDP hasta que su gerente lo apruebe.
+      no_changes_to_compare: No hay cambios para comparar el plan IDP.
       no_previous_approved_plan: No se encontró ningún plan de desplazados internos aprobado previamente.
     invalid: no es válido
     issue: Problema

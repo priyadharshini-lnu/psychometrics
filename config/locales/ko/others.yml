@@ -1465,6 +1465,7 @@ ko:
       export_occupations_job_scheduled: 직업 내보내기 작업이 성공적으로 예약되었습니다
       export_reports_and_assessments_statuses_scheduled: 보고서 및 평가 내보내기 작업이 성공적으로 예약되었습니다
       external_results_export_scheduled: 외부 평가 내보내기 작업이 성공적으로 예약되었습니다
+      no_participants_selected: 진행하려면 최소 한 명의 참가자를 선택하십시오.
       norm_results_export_scheduled: 평가 표준 결과 내보내기 작업이 성공적으로 예약되었습니다
       normalize_factor_scores_scheduled: 요인 점수 정규화 작업이 성공적으로 예약되었습니다.
       raw_factor_export_scheduled: 평가 원시 팩터 내보내기 작업이 성공적으로 예약되었습니다
@@ -1609,6 +1610,7 @@ ko:
       report_bundle_placeholder: 보고서 번들 선택
     messages:
       bulk_download_error: 대량 다운로드는 보고서 파일 1,000개로 제한됩니다. 많은 언어를 선택한 경우 다운로드 횟수를 줄여주세요.
+      bulk_download_no_reports: 보고를 찾을 수 없습니다. 다운로드하기 전에 보고서를 생성하십시오.
       bulk_download_successful: 대량 보고서 다운로드 작업이 성공적으로 예약되었습니다
       export_report_data_scheduled: 보고서 데이터 내보내기 작업이 성공적으로 예약되었습니다
     modals:
@@ -2457,6 +2459,7 @@ ko:
   idp:
     actions: 작업
     add_comments: 주석 추가
+    added_development_action: 개발 작업 추가
     ai:
       assistant:
         failure_fallback:
@@ -2513,6 +2516,7 @@ ko:
         title: 안녕하세요, 저는 개발 도우미입니다
     behavioral: 행동
     board: 보드
+    change_history: 변경 내역
     changes_saved_to_plan: 계획에 저장된 변경 사항
     comment_details:
       add_comment: 댓글 추가
@@ -2614,6 +2618,7 @@ ko:
       publish_plan: 게시 계획
       remove: 제거
       save_plan: 요금제 저장
+      search_development_actions: 개발 작업 검색
       show_development_action_information: 개발 작업 정보 표시
       skill: 스킬
       sprint: 스프린트
@@ -2675,6 +2680,7 @@ ko:
     manage_plan: 계획 관리
     mark_as_complete: 완료로 표시
     mark_as_incomplete: 미완료로 표시
+    modified_development_action: 수정된 개발 작업
     my_plan:
       development_plan: 개발 계획
       graphs:
@@ -2770,7 +2776,9 @@ ko:
         title: 보고서 요약
     plan: 계획
     plan_status: 플랜 상태 %{status}
+    plan_submitted_for_manager_approval: 관리자 승인을 위해 개인 개발 계획이 제출되었습니다.
     private: 민간의
+    public: 공공의
     reflective_questions:
       already_completed: IDP가 이미 완료되었으므로 지금은 질문에 답변할 수 없습니다.
       answer: 대답
@@ -2798,6 +2806,7 @@ ko:
       words: 가사
     remove_skill: 스킬 제거
     remove_skill_from_plan: 계획에서 스킬 %{name} 제거
+    removed_development_action: 제거된 개발 작업
     report_preview: 보고서 미리보기
     search_and_select_skills_of_skill_type: "%{skillType} 스킬 검색 및 선택"
     select_skills_of_skill_type: "%{skillType} 기술 선택"
@@ -2811,6 +2820,8 @@ ko:
     status: 상태
     suggestions: 제안
     suggestions_for_skill_type: "%{skillType} 스킬에 대한 제안"
+    summary: 요약
+    summary_logs: "%{reporteeName}에 대한 요약 로그"
     technical: 기술
     user_idp_status:
       approved: 승인됨
@@ -2822,6 +2833,7 @@ ko:
       not_started: 시작되지 않음
       pending_approval: 보류 중
       rejected: 거부
+      start_review: 검토 시작
     users: 사용자
     with_reflection_questions: 성찰 질문 포함
     without_reflection_questions: 성찰 질문 없이
@@ -4142,6 +4154,7 @@ ko:
     idp:
       can_not_complete_without_approval_and_in_progress: 관리자가 IDP를 승인하고 '진행 중'으로 표시할 때까지 IDP를 완료할 수 없습니다.
       can_not_start_without_approval: 관리자가 승인할 때까지 IDP 작업을 시작할 수 없습니다.
+      no_changes_to_compare: IDP 플랜에 대해 비교할 변경 사항이 없습니다.
       no_previous_approved_plan: 이전에 승인된 IDP 계획을 찾을 수 없습니다.
       reflective_questions_required: IDP에는 성찰적 질문에 대한 답변이 필요합니다.
       status_not_permitted: 사용자가 허용하지 않습니다.

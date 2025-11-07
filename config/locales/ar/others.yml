@@ -1502,6 +1502,7 @@ ar:
       export_occupations_job_scheduled: تم جدولة وظيفة تصدير المهن بنجاح
       export_reports_and_assessments_statuses_scheduled: تمت جدولة مهمة تقارير التصدير والتقييمات بنجاح
       external_results_export_scheduled: تمت جدولة مهمة تصدير التقييم الخارجي بنجاح
+      no_participants_selected: يرجى تحديد مشارك واحد على الأقل للمتابعة.
       norm_results_export_scheduled: تمت جدولة مهمة تصدير النتائج المعيارية للتقييم بنجاح
       normalize_factor_scores_scheduled: تمت جدولة وظيفة تطبيع درجات العامل بنجاح.
       raw_factor_export_scheduled: تم جدولة مهمة تصدير العامل الخام للتقييم بنجاح
@@ -1646,6 +1647,7 @@ ar:
       report_bundle_placeholder: حدد حزمة تقارير
     messages:
       bulk_download_error: يقتصر التنزيل المجمع على 1000 ملف تقرير. إذا كنت قد اخترت العديد من اللغات ، فيرجى تقليلها.
+      bulk_download_no_reports: لم يتم العثور على تقارير. يرجى إنشاء التقارير قبل التنزيل.
       bulk_download_successful: تمت جدولة مهمة تنزيل التقرير المجمع بنجاح
       export_report_data_scheduled: تمت جدولة مهمة تصدير بيانات التقرير بنجاح
     modals:
@@ -2511,6 +2513,7 @@ ar:
   idp:
     actions: الإجراءات
     add_comments: أضف تعليقات
+    added_development_action: إجراءات إنمائية مضافة
     ai:
       assistant:
         failure_fallback:
@@ -2731,6 +2734,7 @@ ar:
     manage_plan: إدارة الخطة
     mark_as_complete: وضع علامة على أنها كاملة
     mark_as_incomplete: وضع علامة على أنها غير مكتملة
+    modified_development_action: إجراءات التنمية المعدلة
     my_plan:
       development_plan: خطة التطوير
       graphs:
@@ -2848,6 +2852,7 @@ ar:
         title: ملخص التقرير
     plan: خطة
     plan_status: حالة الباقة %{status}
+    plan_submitted_for_manager_approval: تم تقديم خطة التطوير الفردية الخاصة بك لموافقة المدير.
     private: عسكري
     public: عام
     reflective_questions:
@@ -2877,6 +2882,7 @@ ar:
       words: الكلمات
     remove_skill: إزالة المهارة
     remove_skill_from_plan: إزالة %{name} المهارة من الخطة
+    removed_development_action: إجراءات التطوير التي تمت إزالتها
     report_preview: معاينة التقرير
     search_and_select_skills_of_skill_type: ابحث وحدد مهارات %{skillType}
     select_skills_of_skill_type: حدد مهارات %{skillType}
@@ -2890,6 +2896,8 @@ ar:
     status: الحالة
     suggestions: اقتراحات
     suggestions_for_skill_type: اقتراحات لمهارات %{skillType}
+    summary: ملخص
+    summary_logs: سجلات ملخصة ل %{reporteeName}
     technical: اِصطِلاحِيّ
     user_idp_status:
       approved: تمت الموافقة
@@ -2901,6 +2909,7 @@ ar:
       not_started: لم يبدأ
       pending_approval: قيد الموافقة
       rejected: نبيذ
+      start_review: ابدأ المراجعة
     users: المستخدمون
     with_reflection_questions: مع أسئلة التفكير
     without_reflection_questions: بدون أسئلة تفكير
@@ -4224,6 +4233,7 @@ ar:
     idp:
       can_not_complete_without_approval_and_in_progress: لا يمكنك إكمال موفر الهوية الخاص بك حتى يوافق عليه مديرك وتقوم بوضع علامة عليه على أنه "قيد التقدم".
       can_not_start_without_approval: لا يمكنك البدء في العمل على موفر الهوية الخاص بك حتى يوافق عليه مديرك.
+      no_changes_to_compare: لا توجد تغييرات للمقارنة مع خطة آي دي بي.
       no_previous_approved_plan: لم يتم العثور على خطة IDP معتمدة سابقا.
       reflective_questions_required: مطلوب إجابات على الأسئلة العاكسة ل IDP
       status_not_permitted: غير مسموح به من قبل المستخدم.

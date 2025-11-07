@@ -77,6 +77,7 @@ de:
       uniq?: sollte einzigartig sein
       uniq_simulation: Diese Simulationsbeurteilung ist bereits im System vorhanden. Die ID dieser Beurteilung lautet %{id}
       uniq_skillvue: Diese Skillvue-Bewertung ist bereits im System vorhanden. Die ID dieser Beurteilung lautet %{id}
+      uniq_yoodli: Diese Yoodli-Bewertung ist bereits im System vorhanden. Die ID dieser Bewertung ist %{id}
       update_workshop:
         bookings_exist: Der Zeitplan kann nicht geändert werden, da die Teilnehmer dieses Zeitfenster bereits gebucht haben.
         less_than_booked: Die Gesamtzahl der Sitzplätze muss größer sein als die gebuchten

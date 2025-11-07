@@ -208,6 +208,7 @@ sr-Latn:
           projectSettings:
             assessments: Procene
             design: Dizajn
+            feature_flags: Feature Zastave
             idp: IDP
             integrations: Integracije
             privacy_settings: Podešavanja privatnosti

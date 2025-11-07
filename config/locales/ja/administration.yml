@@ -208,6 +208,7 @@ ja:
           projectSettings:
             assessments: アセスメント
             design: デザイン
+            feature_flags: 機能フラグ
             idp: アイディーピー
             integrations: 統合
             privacy_settings: プライバシー設定

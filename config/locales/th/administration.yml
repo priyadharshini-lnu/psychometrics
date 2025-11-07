@@ -208,6 +208,7 @@ th:
           projectSettings:
             assessments: การประเมิน
             design: ออกแบบ
+            feature_flags: แฟล็กคุณลักษณะ
             idp: IDP
             integrations: การบูรณาการ
             privacy_settings: การตั้งค่าความเป็นส่วนตัว
