@@ -1239,11 +1239,6 @@ es-ES:
         archived: Archivado
         disable: Archivo
         enable: Desarchivar
-      columns:
-        country: País
-        project_manager: Responsable de proyecto
-        type: Tipo
-        year: Año
       copy:
         successfully: La tenencia del cliente "%{name}" se ha copiado correctamente.
       create:
@@ -1252,14 +1247,6 @@ es-ES:
         successfully: La tenencia del cliente %{name} se ha eliminado correctamente.
       edit:
         header: Editar cliente
-      form:
-        client: Cliente
-        country: País
-        name: Nombre
-        number: Número
-        project_manager: Responsable de proyecto
-        type: Tipo
-        year: Año
       licenses:
         resource:
           confirmations:
@@ -2750,41 +2737,14 @@ es-ES:
     message: Mensaje
     meta_title: Panel de administración
     navigation:
-      ai_artifacts: Artefactos de IA
-      ai_assistants: Asistentes de IA
-      assessments: Evaluaciones
-      assessments_reports: Evaluaciones e informes
-      assessor_dashboard: Panel de control del evaluador
-      assessor_workshops: Assessment Center
       audit_logs: Registros de auditoría
       availability: Disponibilidad
-      back_to_main: Menú principal
-      campaign_templates: Plantillas de campaña
-      change_password: Cambiar contraseña
-      client_admins: Administradores de clientes
-      clients: Clientes
-      communication_center: Centro de comunicaciones
       dashboard: Cuadro de mandos
-      data_reports: Informes de datos
-      development_actions: Acciones de desarrollo
-      dimensions: Dimensiones
       factors: Factores
       innovation_styles: Estilos de innovación
-      libraries: Mediateca
-      norms: Normas
       occupations: Ocupaciones
-      options: Opciones
-      participants: Participantes
-      project_admins: Administradores de proyectos
-      question_center: Centro de preguntas
       registration_codes: Códigos de registro
-      report_approvals: Aprobación de informes
-      reports: Informes
-      scheduling: Programación
-      show_submenu: Mostrar submenú
       skills_taxonomy: Taxonomía de competencias
-      user_profile_details: Detalles del perfil
-      user_report_events: Informe de usuario Eventos
       users: Usuarios
     no_data_found: No se han encontrado datos
     norms:
@@ -2858,7 +2818,6 @@ es-ES:
         successfully: Norm se ha actualizado correctamente.
       update:
         successfully: La norma %{name} se ha actualizado correctamente.
-    notification_bell_icon: Icono de campana de notificación
     noty:
       error_408: Esta acción tarda demasiado. Por favor, intente recargar la página.
       error_500: Algo ha ido mal. Póngase en contacto con su administrador.
@@ -4284,7 +4243,6 @@ es-ES:
         inactive: Inactivo
         percentage: Porcentaje
         title: Evaluaciones
-      title: Estadísticas
       top_metrics:
         completed: Completado
         in_progress: En curso

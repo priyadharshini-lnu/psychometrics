@@ -1,0 +1,22 @@
+---
+sr-Latn:
+  shared:
+    action: Akcija
+    add: Dodaj
+    cancel: Otkaži
+    change_password: Promeni lozinku
+    clear_filters: Obriši filtere
+    edit: Uredi
+    id: ID
+    internet_disconnected_message: Trying to reconnect. Please check your internet connection.
+    mte_logo_alt_text: Mercer Talent Enterprise logo
+    name: Ime
+    search: Pretraži
+    table:
+      entries:
+        selected: Izabran 1 red
+        total: 'Ukupno : 1'
+    terms_conditions_privacy: Izjava o privatnosti
+    tte_terms_and_condition: Uslovi i privatnost
+    type: Tip
+    update: Ažuriraj

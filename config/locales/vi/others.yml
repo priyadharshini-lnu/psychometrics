@@ -919,8 +919,6 @@ vi:
     invalid_job: Thông báo này tương ứng với bản ghi đã xóa
     mark_as_read: Đánh dấu tất cả đã đọc
     more: Nhiều hơn
-    no_notifications: Không có thông báo
-    notifications: Thông báo
     results: Kết quả
     super_admin:
       errors:
@@ -1341,16 +1339,11 @@ vi:
     continue: Tiếp tục nhiệm vụ của bạn
     dashboard_instructions: Bạn có thể đã được giao nhiều hoạt động cần hoàn thành. Vui lòng đảm bảo kiểm tra xem tất cả các hoạt động được giao đã được hoàn thành trong tất cả các chiến dịch hay chưa.
     dashboard_menu:
-      bookings: Đặt chỗ
       campaign: Chiến dịch
-      change_password: Thay đổi mật khẩu
-      development: Phát triển
       direct_reportees: Người báo cáo trực tiếp
       home: Trang chủ
       insights: Thông tin chi tiết
-      my_plan: Kế hoạch của tôi
       profile: Hồ sơ
-      profile_details: Chi tiết
       tasks: Nhiệm vụ
     details: Chi tiết
     edit_evaluation:
@@ -1872,7 +1865,6 @@ vi:
       projects: Dự án
       report: Báo cáo
       reports: Báo cáo
-      scoring: Ghi
       sms_contact: Liên hệ SMS
       threesixty_campaign: Điểm chiến dịch Threesixty
     status:
@@ -3368,13 +3360,6 @@ vi:
   sessions:
     errors:
       recaptcha: Xác minh reCAPTCHA đã thất bại. Vui lòng thử lại.
-  shared:
-    filters:
-      clear: Xóa bộ lọc
-    internet_disconnected_message: Đang cố gắng kết nối lại. Vui lòng kiểm tra kết nối internet của bạn.
-    mte_logo_alt_text: Logo Mercer Talent Enterprise
-    terms_conditions_privacy: Tuyên bố về quyền riêng tư
-    tte_terms_and_condition: Điều khoản &amp; Quyền riêng tư
   sheet:
     import_modal:
       alert_access_sheet_removal: Tải lên Accesssheet mới với xóa tất cả bản ghi hiện có và tải lên bản ghi mới từ trang tính. Hãy đảm bảo rằng bạn có tất cả các bản ghi Accesssheet trong bảng tính.

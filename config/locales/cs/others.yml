@@ -919,8 +919,6 @@ cs:
     invalid_job: Toto oznámení odpovídá smazanému záznamu
     mark_as_read: Označte všechny přečtené
     more: Více na
-    no_notifications: Žádná oznámení
-    notifications: Oznámení
     results: Výsledky
     super_admin:
       errors:
@@ -1344,16 +1342,11 @@ cs:
     continue: Pokračujte v plnění úkolů
     dashboard_instructions: Je možné, že vám bylo přiděleno více aktivit, které musíte dokončit. Ujistěte se, že jste ve všech kampaních splnili všechny zadané aktivity.
     dashboard_menu:
-      bookings: Rezervace
       campaign: Kampaň
-      change_password: Změnit heslo
-      development: Vývoj
       direct_reportees: Přímí zástupci
       home: Domov
       insights: Poznatky
-      my_plan: Můj plán
       profile: Profil
-      profile_details: Detaily
       tasks: Úkoly
     details: Detaily
     edit_evaluation:
@@ -1890,7 +1883,6 @@ cs:
       projects: Projekty
       report: Nahlásit
       reports: Zprávy
-      scoring: Bodování
       sms_contact: SMS kontakt
       threesixty_campaign: Výsledky kampaně Threesixty
     status:
@@ -3363,13 +3355,6 @@ cs:
   sessions:
     errors:
       recaptcha: Ověření Recaptcha se nezdařilo. Zkuste to prosím znovu.
-  shared:
-    filters:
-      clear: Vymazat filtry
-    internet_disconnected_message: Probíhá pokus o opětovné připojení. Zkontrolujte připojení k internetu.
-    mte_logo_alt_text: Logo Mercer Talent Enterprise
-    terms_conditions_privacy: Prohlášení o ochraně soukromí
-    tte_terms_and_condition: Smluvní podmínky a ochrana soukromí
   sheet:
     import_modal:
       alert_access_sheet_removal: Nahrání nového listu Accesssheet s odstraněním všech stávajících záznamů a nahráním nového z listu. Ujistěte se, že máte v tabulce všechny záznamy z listu Accesssheet.

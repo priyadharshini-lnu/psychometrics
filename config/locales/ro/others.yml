@@ -919,8 +919,6 @@ ro:
     invalid_job: Această notificare corespunde înregistrării șterse
     mark_as_read: Marcați toate citite
     more: Mai mult
-    no_notifications: Fără notificări
-    notifications: Notificări
     results: Rezultatele
     super_admin:
       errors:
@@ -1341,16 +1339,11 @@ ro:
     continue: Continuați-vă sarcinile
     dashboard_instructions: Este posibil să vă fi fost atribuite mai multe activități pe care trebuie să le finalizați. Vă rugăm să verificați dacă toate activitățile atribuite au fost finalizate în toate campaniile.
     dashboard_menu:
-      bookings: Rezervări
       campaign: Campanie
-      change_password: Schimbare parolă
-      development: Dezvoltare
       direct_reportees: Raportari directi
       home: Acasă
       insights: Perspective
-      my_plan: Planul meu
       profile: Profil
-      profile_details: Detalii
       tasks: Sarcini
     details: Detalii
     edit_evaluation:
@@ -1878,7 +1871,6 @@ ro:
       projects: Proiecte
       report: Raport
       reports: Rapoarte
-      scoring: Notare
       sms_contact: SMS Contact
       threesixty_campaign: Treișaizeci de scoruri de campanie
     status:
@@ -3374,13 +3366,6 @@ ro:
   sessions:
     errors:
       recaptcha: Verificarea Recaptcha a eșuat. Vă rugăm să încercați din nou.
-  shared:
-    filters:
-      clear: Ștergeți filtrele
-    internet_disconnected_message: Încercați să vă reconectați. Vă rugăm să verificați conexiunea la internet.
-    mte_logo_alt_text: Sigla Mercer Talent Enterprise
-    terms_conditions_privacy: Declarație de confidențialitate
-    tte_terms_and_condition: Termeni și confidențialitate
   sheet:
     import_modal:
       alert_access_sheet_removal: Încărcarea unei noi foi de acces cu ștergerea tuturor înregistrărilor existente și încărcarea uneia noi din foaie. Vă rugăm să vă asigurați că aveți toate înregistrările Accesssheet în foaia de calcul.

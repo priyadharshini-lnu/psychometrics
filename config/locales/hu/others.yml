@@ -919,8 +919,6 @@ hu:
     invalid_job: Ez az értesítés a törölt rekordnak felel meg
     mark_as_read: Összes megjelölése olvasottnak
     more: Több
-    no_notifications: Nincs értesítés
-    notifications: Értesítések
     results: Eredmények
     super_admin:
       errors:
@@ -1341,16 +1339,11 @@ hu:
     continue: Folytassa feladatait
     dashboard_instructions: Előfordulhat, hogy több tevékenységet is kijelöltek Önnek, amelyeket el kell végeznie. Kérjük, ellenőrizze, hogy az összes kampányban minden kijelölt tevékenységet elvégeztek-e.
     dashboard_menu:
-      bookings: Foglalások
       campaign: Kampány
-      change_password: Jelszó módosítása
-      development: Fejlesztés
       direct_reportees: Közvetlen beosztottak
       home: Home
       insights: Betekintés
-      my_plan: A tervem
       profile: Profil
-      profile_details: Részletek
       tasks: Feladatok
     details: Részletek
     edit_evaluation:
@@ -1878,7 +1871,6 @@ hu:
       projects: Projektek
       report: Jelentés
       reports: Jelentések
-      scoring: Pontozás
       sms_contact: SMS kapcsolat
       threesixty_campaign: Threesixty kampány pontszámok
     status:
@@ -3352,13 +3344,6 @@ hu:
   sessions:
     errors:
       recaptcha: A Recaptcha ellenőrzése sikertelen. Kérjük, próbálja meg újra.
-  shared:
-    filters:
-      clear: Szűrők törlése
-    internet_disconnected_message: Próbálok újra kapcsolódni. Kérjük, ellenőrizze az internetkapcsolatát.
-    mte_logo_alt_text: Mercer Talent Enterprise logó
-    terms_conditions_privacy: Adatvédelmi nyilatkozat
-    tte_terms_and_condition: Feltételek és adatvédelem
   sheet:
     import_modal:
       alert_access_sheet_removal: Új hozzáférési lap feltöltése az összes meglévő rekord törlésével és újak feltöltésével a lapról. Kérjük, győződjön meg arról, hogy az összes Accesssheet rekord táblázatban van.

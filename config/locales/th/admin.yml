@@ -1,0 +1,51 @@
+---
+th:
+  admin:
+    admins: ผู้ดูแลระบบ
+    ai_artifacts: สิ่งประดิษฐ์ AI
+    ai_assistants: ผู้ช่วย AI
+    assessments: การประเมิน
+    assessments_reports: การประเมินและรายงาน
+    assessor_dashboard: แดชบอร์ดผู้ประเมิน
+    assessor_workshops: ศูนย์ประเมินผล
+    audit_logs: บันทึกการตรวจสอบ
+    audit_reports: รายงานการตรวจสอบ
+    availability: กำหนดการ
+    back_to_main: เมนูหลัก
+    campaign_templates: เทมเพลตแคมเปญ
+    client: การเช่าลูกค้า
+    client_admins: ผู้ดูแลระบบไคลเอ็นต์
+    clients: บัญชีลูกค้า
+    communication_center: ศูนย์สื่อสาร
+    country: ประเทศ
+    create_client: สร้างไคลเอ็นต์
+    dashboard: แดชบอร์ด
+    data_reports: รายงานข้อมูล
+    datasheet: เอกสารข้อมูลสินค้า
+    development_actions: การดําเนินการพัฒนา
+    dimensions: มิติ
+    libraries: ห้องสมุดสื่อ
+    no_notifications: ไม่มีการแจ้งเตือน
+    norms: ค่ามาตรฐาน
+    notification_bell_icon_alt_text: ไอคอนกระดิ่งแจ้งเตือน
+    notifications: แจ้ง เตือน
+    number: หมายเลข
+    occupations: อาชีพ
+    options: ตัวเลือก
+    participants: ผู้เข้าร่วม
+    profile_details: รายละเอียดโปรไฟล์
+    project_admins: ผู้ดูแลระบบโครงการ
+    project_manager: ผู้จัดการโครงการ
+    question_center: ศูนย์คําถาม
+    registration_codes: รหัสการลงทะเบียน
+    report_approvals: การอนุมัติรายงาน
+    reports: รายงาน
+    scheduling: กำหนดการ
+    scoring: การให้คะแนน
+    show_submenu: แสดงเมนูย่อย
+    skills_taxonomy: อนุกรมวิธานทักษะ
+    stats: สถิติ
+    user_report_events: เหตุการณ์รายงานผู้ใช้
+    users: ผู้เข้าร่วม
+    view_licenses: ดูใบอนุญาต
+    year: ประเทศ

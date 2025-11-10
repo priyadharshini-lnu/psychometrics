@@ -114,7 +114,7 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
           className={styles.listBox}
           locale={{
             emptyText: (
-              <Empty description={I18n.t('admin_jobs.no_notifications')} image={Empty.PRESENTED_IMAGE_SIMPLE} />
+              <Empty description={I18n.t('admin.no_notifications')} image={Empty.PRESENTED_IMAGE_SIMPLE} />
             ),
           }}
           itemLayout="vertical"
@@ -123,7 +123,7 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
           header={(
             <Row>
               <Col span="12">
-                <h3 className="pt8 pl24">{I18n.t('admin_jobs.notifications')}</h3>
+                <h3 className="pt8 pl24">{I18n.t('admin.notifications')}</h3>
               </Col>
               <Col span="12" className="text-align-r">
                 <Button
@@ -145,7 +145,7 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
   const profileSubmenuItems: MenuProps['items'] = [
     {
       key: 'profile_details',
-      label: I18n.t('administration.navigation.user_profile_details'),
+      label: I18n.t('admin.profile_details'),
       icon: <UserOutlined aria-hidden="true" />,
       onClick: () => {
         window.location.href = '/admin/profile/details'
@@ -156,7 +156,7 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
     },
     {
       key: 'change_password',
-      label: I18n.t('administration.navigation.change_password'),
+      label: I18n.t('shared.change_password'),
       icon: <LockOutlined aria-hidden="true" />,
       onClick: () => {
         window.location.href = '/admin/profile/change_password'
@@ -195,7 +195,7 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
         overlayClassName={styles.overlay}
       >
         <Button
-          aria-label={`${I18n.t('administration.notification_bell_icon')}`}
+          aria-label={`${I18n.t('admin.notification_bell_icon_alt_text')}`}
           type="text"
           onClick={handleClick}
           icon={(
@@ -206,7 +206,7 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
           className="ms-2"
         />
       </Popover>
-      <Tooltip title={I18n.t('administration.navigation.availability')}>
+      <Tooltip title={I18n.t('admin.availability')}>
         <Button
           type="text"
           onClick={() => {

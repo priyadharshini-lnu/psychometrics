@@ -207,7 +207,7 @@ export const menuItems = (
     hasSubmenu
       ? {
         key: 'showSubmenu',
-        label: I18n.t('administration.navigation.show_submenu'),
+        label: I18n.t('admin.show_submenu'),
         icon: <ArrowRightOutlined />,
       }
       : null,
@@ -216,7 +216,7 @@ export const menuItems = (
         key: 'dashboards',
         label: (
           <a tabIndex={-1} href={permissions.dashboards}>
-            {I18n.t('administration.navigation.dashboard')}
+            {I18n.t('admin.dashboard')}
           </a>
         ),
         icon: <DashboardOutlined aria-hidden="true" />,
@@ -227,7 +227,7 @@ export const menuItems = (
         key: 'assessorDashboard',
         label: (
           <a tabIndex={-1} href={permissions.assessorDashboard}>
-            {I18n.t('administration.navigation.assessor_dashboard')}
+            {I18n.t('admin.assessor_dashboard')}
           </a>
         ),
         icon: <LayoutOutlined aria-hidden="true" />,
@@ -238,7 +238,7 @@ export const menuItems = (
         key: 'assessorWorkshops',
         label: (
           <a tabIndex={-1} href={permissions.assessorWorkshops}>
-            {I18n.t('administration.navigation.assessor_workshops')}
+            {I18n.t('admin.assessor_workshops')}
           </a>
         ),
         icon: <ScheduleOutlined aria-hidden="true" />,
@@ -249,7 +249,7 @@ export const menuItems = (
         key: 'clients',
         label: (
           <Link href={permissions.clients}>
-            {I18n.t('administration.navigation.clients')}
+            {I18n.t('admin.clients')}
           </Link>
         ),
         icon: <GlobalOutlined aria-hidden="true" />,
@@ -260,7 +260,7 @@ export const menuItems = (
         key: 'users',
         label: (
           <Link href={permissions.users}>
-            {I18n.t('administration.navigation.users')}
+            {I18n.t('admin.users')}
           </Link>
         ),
         icon: <TeamOutlined aria-hidden="true" />,
@@ -276,7 +276,7 @@ export const menuItems = (
             key: 'assessments',
             label: (
               <Link href={permissions.assessments}>
-                {I18n.t('administration.navigation.assessments')}
+                {I18n.t('admin.assessments')}
               </Link>
             ),
             icon: <SolutionOutlined aria-hidden="true" />,
@@ -287,7 +287,7 @@ export const menuItems = (
             key: 'norms',
             label: (
               <a tabIndex={-1} href={permissions.norms}>
-                {I18n.t('administration.navigation.norms')}
+                {I18n.t('admin.norms')}
               </a>
             ),
             icon: <MonitorOutlined aria-hidden="true" />,
@@ -298,7 +298,7 @@ export const menuItems = (
             key: 'dimensions',
             label: (
               <a tabIndex={-1} href={permissions.dimensions}>
-                {I18n.t('administration.navigation.dimensions')}
+                {I18n.t('admin.dimensions')}
               </a>
             ),
             icon: <ClusterOutlined aria-hidden="true" />,
@@ -309,7 +309,7 @@ export const menuItems = (
             key: 'reports',
             label: (
               <Link href={permissions.reports}>
-                {I18n.t('administration.navigation.reports')}
+                {I18n.t('admin.reports')}
               </Link>
             ),
             icon: <FundProjectionScreenOutlined aria-hidden="true" />,
@@ -320,7 +320,7 @@ export const menuItems = (
             key: 'questionCenter',
             label: (
               <a tabIndex={-1} href={permissions.questionCenter}>
-                {I18n.t('administration.navigation.question_center')}
+                {I18n.t('admin.question_center')}
               </a>
             ),
             icon: (
@@ -333,7 +333,7 @@ export const menuItems = (
             key: 'libraries',
             label: (
               <a tabIndex={-1} href={permissions.libraries}>
-                {I18n.t('administration.navigation.libraries')}
+                {I18n.t('admin.libraries')}
               </a>
             ),
             icon: <FileImageOutlined aria-hidden="true" />,
@@ -351,7 +351,7 @@ export const menuItems = (
             key: 'skillsTaxonomy',
             label: (
               <Link href={permissions.skillsTaxonomy}>
-                {I18n.t('administration.navigation.skills_taxonomy')}
+                {I18n.t('admin.skills_taxonomy')}
               </Link>
             ),
             icon: <BookOutlined aria-hidden="true" />,
@@ -362,7 +362,7 @@ export const menuItems = (
             key: 'developmentActions',
             label: (
               <Link href={permissions.developmentActions}>
-                {I18n.t('administration.navigation.development_actions')}
+                {I18n.t('admin.development_actions')}
               </Link>
             ),
             icon: <CompassOutlined aria-hidden="true" />,
@@ -373,7 +373,7 @@ export const menuItems = (
             key: 'aiAssistants',
             label: (
               <Link href={permissions.aiAssistants}>
-                {I18n.t('administration.navigation.ai_assistants')}
+                {I18n.t('admin.ai_assistants')}
               </Link>
             ),
             icon: <RobotOutlined aria-hidden="true" />,
@@ -384,7 +384,7 @@ export const menuItems = (
             key: 'campaignTemplates',
             label: (
               <Link href={permissions.campaignTemplates}>
-                {I18n.t('administration.navigation.campaign_templates')}
+                {I18n.t('admin.campaign_templates')}
               </Link>
             ),
             icon: <ProfileOutlined aria-hidden="true" />,
@@ -397,7 +397,7 @@ export const menuItems = (
         key: 'communicationCenter',
         label: (
           <a tabIndex={-1} href={permissions.communicationCenter}>
-            {I18n.t('administration.navigation.communication_center')}
+            {I18n.t('admin.communication_center')}
           </a>
         ),
         icon: <MailOutlined aria-hidden="true" />,
@@ -408,7 +408,7 @@ export const menuItems = (
         key: 'reportApprovals',
         label: (
           <Link href={permissions.reportApprovals}>
-            {I18n.t('administration.navigation.report_approvals')}
+            {I18n.t('admin.report_approvals')}
           </Link>
         ),
         icon: <FileProtectOutlined aria-hidden="true" />,
@@ -419,7 +419,7 @@ export const menuItems = (
         key: 'auditLogs',
         label: (
           <Link href={permissions.auditLogs}>
-            {I18n.t('administration.navigation.audit_logs')}
+            {I18n.t('admin.audit_logs')}
           </Link>
         ),
         icon: <AuditOutlined aria-hidden="true" />,
@@ -430,7 +430,7 @@ export const menuItems = (
         key: 'dataReports',
         label: (
           <a href={permissions.dataReports}>
-            {I18n.t('administration.navigation.data_reports')}
+            {I18n.t('admin.data_reports')}
           </a>
         ),
         icon: <DatabaseOutlined aria-hidden="true" />,

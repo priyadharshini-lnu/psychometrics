@@ -1,0 +1,51 @@
+---
+fr:
+  admin:
+    admins: Administrateurs
+    ai_artifacts: Artefacts de l’IA
+    ai_assistants: Assistants IA
+    assessments: Évaluations
+    assessments_reports: Évaluations et rapports
+    assessor_dashboard: Tableau de bord de l'évaluateur
+    assessor_workshops: Centre d'évaluation
+    audit_logs: Journaux d'audit
+    audit_reports: Rapports d'audit
+    availability: Disponibilité
+    back_to_main: Menu principal
+    campaign_templates: Modèles de campagne
+    client: Location par le client
+    client_admins: Administrateurs clients
+    clients: Baux des clients
+    communication_center: Centre de communication
+    country: Pays
+    create_client: Créer un client
+    dashboard: Tableau de bord
+    data_reports: Rapports de données
+    datasheet: Fiche technique
+    development_actions: Actions de développement
+    dimensions: Dimensions
+    libraries: Bibliothèque des médias
+    no_notifications: Aucune notification
+    norms: Normes
+    notification_bell_icon_alt_text: Icône de cloche de notification
+    notifications: Notifications
+    number: Nombre
+    occupations: Professions
+    options: Options
+    participants: Les participants
+    profile_details: Détails du profil
+    project_admins: Administrateurs de projets
+    project_manager: Chef de projet
+    question_center: Centre de questions
+    registration_codes: Codes d'enregistrement
+    report_approvals: Approbation des rapports
+    reports: Rapports
+    scheduling: Programmation
+    scoring: Notation
+    show_submenu: Afficher le sous-menu
+    skills_taxonomy: Taxonomie des compétences
+    stats: Statistiques
+    user_report_events: Rapport de l'utilisateur Événements
+    users: Utilisateurs
+    view_licenses: Voir les licences
+    year: Pays

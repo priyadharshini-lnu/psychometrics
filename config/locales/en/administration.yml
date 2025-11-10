@@ -1244,11 +1244,6 @@ en:
         disable: Archive
         enable: Unarchive
       clients: Clients
-      columns:
-        country: Country
-        project_manager: Project Manager
-        type: Type
-        year: Year
       copy:
         successfully: Client Tenancy '%{name}' was copied successfully.
       create:
@@ -1257,14 +1252,6 @@ en:
         successfully: Client Tenancy %{name} was deleted successfully.
       edit:
         header: Edit Client
-      form:
-        client: Client
-        country: Country
-        name: Name
-        number: Number
-        project_manager: Project Manager
-        type: Type
-        year: Year
       licenses:
         resource:
           confirmations:
@@ -2789,44 +2776,17 @@ en:
     message: Message
     meta_title: Administration panel
     navigation:
-      ai_artifacts: AI Artifacts
-      ai_assistants: AI Assistants
-      assessments: Assessments
-      assessments_reports: Assessments & Reports
-      assessor_dashboard: Assessor Dashboard
-      assessor_workshops: Assessment Center
       audit_logs: Audit Logs
       availability: Availability
-      back_to_main: Main Menu
-      campaign_templates: Campaign Templates
-      change_password: Change Password
-      client_admins: Client Admins
-      clients: Clients
-      communication_center: Communication Center
       configuration: Configuration
       content: Content
       dashboard: Dashboard
-      data_reports: Data Reports
-      development_actions: Development Actions
-      dimensions: Dimensions
       factors: Factors
       innovation_styles: Innovation Styles
-      libraries: Media Library
       logout: Logout
-      norms: Norms
       occupations: Occupations
-      options: Options
-      participants: Participants
-      project_admins: Project Admins
-      question_center: Question Center
       registration_codes: Registration codes
-      report_approvals: Report Approvals
-      reports: Reports
-      scheduling: Scheduling
-      show_submenu: Show Sub Menu
       skills_taxonomy: Skills Taxonomy
-      user_profile_details: Profile details
-      user_report_events: User Report Events
       users: Users
     no_data_found: No data found
     norms:
@@ -2900,7 +2860,6 @@ en:
         successfully: Norm was updated successfully.
       update:
         successfully: Norm %{name} was updated successfully.
-    notification_bell_icon: Notification Bell Icon
     noty:
       error_408: This action takes too long. Please try to reload the page.
       error_500: Something went wrong. Contact your administrator.
@@ -4332,7 +4291,6 @@ en:
         inactive: Inactive
         percentage: Percentage
         title: Assessments
-      title: Stats
       top_metrics:
         completed: Completed
         in_progress: In Progress

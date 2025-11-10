@@ -1,0 +1,13 @@
+---
+th:
+  enduser:
+    bookings: การจอง
+    campaign: รณรงค์
+    development: การพัฒนา
+    direct_reportees: ผู้รายงานโดยตรง
+    home: แดชบอร์ด
+    insights: ข้อมูลเชิงลึก
+    my_plan: แผนของฉัน
+    profile: โปรไฟล์
+    profile_details: รายละเอียด
+    tasks: งาน

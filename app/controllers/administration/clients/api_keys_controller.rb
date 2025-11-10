@@ -46,11 +46,11 @@ module Administration
         client_root_breadcrumb
         add_breadcrumb(client.client.decorate.display_name, [:administration, client.client, :projects])
         if @membership.client_admin?
-          add_breadcrumb(t('administration.navigation.client_admins'), [:administration, client.client, :client_admins])
+          add_breadcrumb(t('admin.client_admins'), [:administration, client.client, :client_admins])
         end
         if @membership.project_admin?
           add_breadcrumb(client.project.decorate.display_name, [:administration, client, :campaigns])
-          add_breadcrumb(t('administration.navigation.project_admins'), [:administration, client, :project_admins])
+          add_breadcrumb(t('admin.project_admins'), [:administration, client, :project_admins])
         end
 
         add_breadcrumb t('.breadcrumb', name: @user.decorate.display_name)

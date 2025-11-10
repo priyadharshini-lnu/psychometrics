@@ -1239,11 +1239,6 @@ hu:
         archived: Archivált
         disable: Archívál
         enable: Archiválás visszavonása
-      columns:
-        country: Ország
-        project_manager: Projektmenedzser
-        type: Típus
-        year: Év
       copy:
         successfully: A(z) "%{name}" ügyfél bérleti jog másolása sikeresen megtörtént.
       create:
@@ -1252,14 +1247,6 @@ hu:
         successfully: A(z) %{name} ügyfél bérleti jog törlése sikeresen megtörtént.
       edit:
         header: Ügyfél szerkesztése
-      form:
-        client: Ügyfél
-        country: Ország
-        name: Név
-        number: Szám
-        project_manager: Projektmenedzser
-        type: Típus
-        year: Év
       licenses:
         resource:
           confirmations:
@@ -2752,41 +2739,14 @@ hu:
     message: Üzenet
     meta_title: Adminisztrációs panel
     navigation:
-      ai_artifacts: AI-összetevők
-      ai_assistants: AI asszisztensek
-      assessments: Értékelések
-      assessments_reports: Felmérések és jelentések
-      assessor_dashboard: Értékelő irányítópult
-      assessor_workshops: Értékelési központ
       audit_logs: Auditnaplók
       availability: Elérhetőség
-      back_to_main: Főmenü
-      campaign_templates: Kampány sablonok
-      change_password: Jelszó módosítása
-      client_admins: Ügyféladminisztrátorok
-      clients: Ügyfélcsoportok
-      communication_center: Kommunikációs központ
       dashboard: Irányítópult
-      data_reports: Adatjelentések
-      development_actions: Fejlesztési tevékenységek
-      dimensions: Dimenziók
       factors: Tényezők
       innovation_styles: Innovációs stílusok
-      libraries: Médiatár
-      norms: Normák
       occupations: Foglalkozások
-      options: Beállítások
-      participants: Résztvevők
-      project_admins: Projektadminisztrátorok
-      question_center: Kérdésközpont
       registration_codes: Regisztrációs kódok
-      report_approvals: Jelentés jóváhagyása
-      reports: Jelentések
-      scheduling: Ütemezés
-      show_submenu: Almenü megjelenítése
       skills_taxonomy: Készségek taxonómiája
-      user_profile_details: Profil részletei
-      user_report_events: Felhasználói jelentés eseményei
       users: Felhasználók
     no_data_found: Nem található adat
     norms:
@@ -2860,7 +2820,6 @@ hu:
         successfully: A norma frissítése sikeresen megtörtént.
       update:
         successfully: A(z) %{name} norma frissítése sikeresen megtörtént.
-    notification_bell_icon: Értesítési csengő ikon
     noty:
       error_408: Ez a művelet túl sokáig tart. Kérjük, próbálja meg újratölteni az oldalt.
       error_500: Valami elromlott. Forduljon az adminisztrátorhoz.
@@ -4277,7 +4236,6 @@ hu:
         inactive: Tétlen
         percentage: Százalék
         title: Értékelések
-      title: Statisztika
       top_metrics:
         completed: Befejezett
         in_progress: Folyamatban

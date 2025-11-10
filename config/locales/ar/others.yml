@@ -943,8 +943,6 @@ ar:
     invalid_job: يتوافق هذا الإشعار مع السجل المحذوف
     mark_as_read: ضع علامة على الكل مقروءا
     more: أكثر
-    no_notifications: لا توجد إشعارات
-    notifications: الاخطارات
     results: النتائج
     super_admin:
       errors:
@@ -1369,16 +1367,11 @@ ar:
     continue: الإستمرار في التقييم
     dashboard_instructions: لقد تم تكليفك بعدد من الأنشطة التي عليك إنجازها، يرجى التأكد من إكمالها جميعاً ضمن الفترة الزمنية المحددة لها.
     dashboard_menu:
-      bookings: الحجوزات
       campaign: الحملة
-      change_password: تغيير كلمة المرور
-      development: تطوير
       direct_reportees: الموظفين المباشرين
       home: الصفحة الرئيسية
       insights: البصائر
-      my_plan: خطتي
       profile: تفاصيلي
-      profile_details: تفاصيل
       tasks: مهامي
     details: مشاهدة التفاصيل
     edit_evaluation:
@@ -1915,7 +1908,6 @@ ar:
       projects: المشاريع
       report: تقرير
       reports: التقييم
-      scoring: سجل
       sms_contact: الاتصال بالرسائل النصية القصيرة
       threesixty_campaign: درجات حملة Threesixty
     status:
@@ -3411,13 +3403,6 @@ ar:
   sessions:
     errors:
       recaptcha: فشلت عملية التحقق من إعادة الكابتشا. يرجى المحاولة مرة أخرى.
-  shared:
-    filters:
-      clear: امسح المُرشحات
-    internet_disconnected_message: نحاول إعادة الاتصال بالإنترنت. يرجى التحقق من اتصالك بالإنترنت الخاص بك.
-    mte_logo_alt_text: شعار Mercer Talent Enterprise
-    terms_conditions_privacy: بيان الخصوصية
-    tte_terms_and_condition: " الشروط والأحكام وبيان الخصوصية الخاص بشركة"
   sheet:
     import_modal:
       alert_access_sheet_removal: تحميل ورقة وصول جديدة مع حذف جميع السجلات الموجودة وتحميل سجل جديد من الورقة. يرجى التأكد من وجود جميع سجلات جدول الوصول في جدول البيانات.

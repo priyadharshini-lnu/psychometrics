@@ -919,8 +919,6 @@ pt:
     invalid_job: Esta notificação corresponde a um registo eliminado
     mark_as_read: Marcar todas as leituras
     more: Mais
-    no_notifications: Sem notificações
-    notifications: Notificações
     results: Resultados
     super_admin:
       errors:
@@ -1345,16 +1343,11 @@ pt:
     continue: Continue as suas tarefas
     dashboard_instructions: Foram-lhe atribuídas a várias atividades que precisa de concluir. Por favor confirme verificando se todas as atividades atribuídas foram concluídas em todas as campanhas.
     dashboard_menu:
-      bookings: Reservas
       campaign: Campanha
-      change_password: Alterar a palavra-passe
-      development: Desenvolvimento
       direct_reportees: Collegati
       home: Início
       insights: Informações
-      my_plan: O meu plano
       profile: Perfil
-      profile_details: Detalhes
       tasks: Tarefas
     details: Detalhes
     edit_evaluation:
@@ -1891,7 +1884,6 @@ pt:
       projects: Projectos
       report: Relatório
       reports: Relatórios
-      scoring: Pontuação
       sms_contact: Contacto SMS
       threesixty_campaign: Pontuações da campanha Threesixty
     status:
@@ -3388,13 +3380,6 @@ pt:
   sessions:
     errors:
       recaptcha: A verificação do Recaptcha falhou. Por favor, tente novamente.
-  shared:
-    filters:
-      clear: Limpar filtros
-    internet_disconnected_message: A tentar restabelecer a ligação. Verifique a sua ligação à Internet.
-    mte_logo_alt_text: Logótipo da Mercer Talent Enterprise
-    terms_conditions_privacy: Declaração de privacidade
-    tte_terms_and_condition: Termos e privacidade
   sheet:
     import_modal:
       alert_access_sheet_removal: Carregar uma nova folha de acesso com a eliminação de todos os registos existentes e carregar um novo registo a partir da folha.

@@ -1239,11 +1239,6 @@ ro:
         archived: Arhivate
         disable: Arhivă
         enable: Dezarhivare
-      columns:
-        country: Țară
-        project_manager: Manager de proiect
-        type: Tip
-        year: An
       copy:
         successfully: Client Tenancy '%{name}' a fost copiat cu succes.
       create:
@@ -1252,14 +1247,6 @@ ro:
         successfully: Client Tenancy %{name} a fost șters cu succes.
       edit:
         header: Editați clientul
-      form:
-        client: Client
-        country: Țara
-        name: Nume și prenume
-        number: Număr
-        project_manager: Manager de proiect
-        type: Tip
-        year: Anul
       licenses:
         resource:
           confirmations:
@@ -2750,41 +2737,14 @@ ro:
     message: Mesaj
     meta_title: Panou de administrare
     navigation:
-      ai_artifacts: Artefacte AI
-      ai_assistants: Asistenți AI
-      assessments: Evaluări
-      assessments_reports: Evaluări și rapoarte
-      assessor_dashboard: Tabloul de bord al evaluatorului
-      assessor_workshops: Centrul de evaluare
       audit_logs: Jurnale de audit
       availability: Disponibilitate
-      back_to_main: Meniul principal
-      campaign_templates: Șabloane de campanie
-      change_password: Schimbați parola
-      client_admins: Administratori clienți
-      clients: Clienți
-      communication_center: Centrul de comunicare
       dashboard: Tablou
-      data_reports: Rapoarte de date
-      development_actions: Acțiune de dezvoltare
-      dimensions: Dimensiuni
       factors: Factori
       innovation_styles: Stiluri de inovație
-      libraries: Bibliotecă media
-      norms: Normele
       occupations: Ocupaţii
-      options: Opțiuni
-      participants: Participanţii
-      project_admins: Administratori de proiect
-      question_center: Centrul de întrebări
       registration_codes: Coduri de înregistrare
-      report_approvals: Aprobări de rapoarte
-      reports: Rapoarte
-      scheduling: Programarea
-      show_submenu: Afișează submeniu
       skills_taxonomy: Taxonomia abilităților
-      user_profile_details: Detalii profil
-      user_report_events: Evenimente de raportare a utilizatorilor
       users: Utilizatorii
     no_data_found: Nu s-au găsit date
     norms:
@@ -2858,7 +2818,6 @@ ro:
         successfully: Norm a fost actualizat cu succes.
       update:
         successfully: Norma %{name} a fost actualizată cu succes.
-    notification_bell_icon: Pictograma clopoțel de notificare
     noty:
       error_408: Această acțiune durează prea mult. Vă rugăm să încercați să reîncărcați pagina.
       error_500: Ceva nu a mers bine. Contactați administratorul.
@@ -4275,7 +4234,6 @@ ro:
         inactive: Inactivă
         percentage: Procent
         title: Evaluări
-      title: Statistici
       top_metrics:
         completed: Completat
         in_progress: În curs de desfășurare

@@ -171,7 +171,6 @@ sr-Cyrl:
     bulk_download_reports:
       errors:
         no_plans: Није пронађен активан ИДП планови
-    no_notifications: Нема обавештења
   administration: Администрација
   ai:
     errors:
@@ -362,15 +361,10 @@ sr-Cyrl:
     continue: Наставите са својим задацима
     dashboard_instructions: Можда вам је додељено више активности које треба да завршите. Молимо вас да проверите да ли су све додељене активности завршене у свим кампањама.
     dashboard_menu:
-      bookings: Резервације
       campaign: Кампања
-      change_password: Промена лозинке
-      development: Развој
       home: Дом
       insights: Увиди
-      my_plan: Мој план
       profile: Профил
-      profile_details: Детаљи
       tasks: Задаци
     details: Детаљи
     edit_evaluation:
@@ -1308,12 +1302,6 @@ sr-Cyrl:
   sessions:
     errors:
       recaptcha: Recaptcha верификација није успела. Покушајте поново.
-  shared:
-    filters:
-      clear: Обриши филтере
-    internet_disconnected_message: Покушавам поновно повезивање. Проверите интернет везу.
-    terms_conditions_privacy: Изјава о приватности
-    tte_terms_and_condition: Услови и приватност
   simple_form:
     labels:
       client:

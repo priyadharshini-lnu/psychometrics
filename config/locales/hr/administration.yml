@@ -1239,11 +1239,6 @@ hr:
         archived: Arhivirano
         disable: Arhiviraj
         enable: Poništi arhiviranje
-      columns:
-        country: Zemlja
-        project_manager: Voditelj projekta
-        type: Vrsta
-        year: Godina
       copy:
         successfully: Klijenti '%{name}' uspješno je kopiran.
       create:
@@ -1252,14 +1247,6 @@ hr:
         successfully: Klijenti %{name} uspješno je izbrisan.
       edit:
         header: Uredi klijenta
-      form:
-        client: Klijent
-        country: Država
-        name: Ime
-        number: Broj
-        project_manager: Voditelj projekta
-        type: Vrsta
-        year: Godina
       licenses:
         resource:
           confirmations:
@@ -2750,41 +2737,14 @@ hr:
     message: Poruka
     meta_title: Administrativna ploča
     navigation:
-      ai_artifacts: AI artefakti
-      ai_assistants: AI pomoćnici
-      assessments: Procjene
-      assessments_reports: Procjene i izvješća
-      assessor_dashboard: Nadzorna ploča procjenitelja
-      assessor_workshops: Centar za procjenu
       audit_logs: Zapisnici revizije
       availability: Raspoloživost
-      back_to_main: Glavni izbornik
-      campaign_templates: Predlošci kampanja
-      change_password: Promijeni lozinku
-      client_admins: Klijenti administratori
-      clients: Klijenti
-      communication_center: Komunikacijski centar
       dashboard: Nadzorna ploča
-      data_reports: Izvješća o podacima
-      development_actions: Razvojne akcije
-      dimensions: Dimenzije
       factors: Faktorima
       innovation_styles: Stilovi inovacija
-      libraries: Medijska biblioteka
-      norms: Norme
       occupations: Zanimanja
-      options: Mogućnosti
-      participants: Sudionici
-      project_admins: Administratori projekta
-      question_center: Centar za pitanja
       registration_codes: Registracijski kodovi
-      report_approvals: Odobrenja izvješća
-      reports: Izvješća
-      scheduling: Vremensko planiranje
-      show_submenu: Prikaži podizbornik
       skills_taxonomy: Taksonomija vještina
-      user_profile_details: Detalji profila
-      user_report_events: Događaji u izvješću korisnika
       users: Korisnici
     no_data_found: Nisu pronađeni podaci
     norms:
@@ -2858,7 +2818,6 @@ hr:
         successfully: Norm je uspješno ažuriran.
       update:
         successfully: Norma %{name} uspješno je ažurirana.
-    notification_bell_icon: Ikona zvona obavijesti
     noty:
       error_408: Ova radnja traje predugo. Pokušajte ponovno učitati stranicu.
       error_500: Nešto je pošlo po zlu. Obratite se administratoru.
@@ -4275,7 +4234,6 @@ hr:
         inactive: Neaktivan
         percentage: Postotak
         title: Procjene
-      title: Statistika
       top_metrics:
         completed: Završen
         in_progress: U tijeku

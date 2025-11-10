@@ -1,0 +1,51 @@
+---
+sr-Latn:
+  admin:
+    admins: Admini
+    ai_artifacts: AI artefakti
+    ai_assistants: AI asistenti
+    assessments: Procene
+    assessments_reports: Procene i izveštaji
+    assessor_dashboard: Kontrolna tabla procenjivača
+    assessor_workshops: Centar za procenu
+    audit_logs: Evidencije revizije
+    audit_reports: Izveštaji o reviziji
+    availability: Raspoloživost
+    back_to_main: Glavni meni
+    campaign_templates: Predlošci kampanje
+    client: Zakup klijenta
+    client_admins: Administratori klijenata
+    clients: Klijentski prostor
+    communication_center: Centar za komunikaciju
+    country: Država
+    create_client: Kreiraj klijenta
+    dashboard: Dashboard
+    data_reports: Izveštaji o podacima
+    datasheet: Mapa podataka
+    development_actions: Razvojne akcije
+    dimensions: Dimenzije
+    libraries: Biblioteka medija
+    no_notifications: Nema obaveštenja
+    norms: Norme
+    notification_bell_icon_alt_text: Ikona zvona obaveštenja
+    notifications: Obaveštenja
+    number: Broj
+    occupations: Zanimanja
+    options: Opcije
+    participants: Učesnici
+    profile_details: Detalji profila
+    project_admins: Administratori projekta
+    project_manager: Menadžer projekta
+    question_center: Centar za pitanja
+    registration_codes: Registracioni kodovi
+    report_approvals: Odobrenja izveštaja
+    reports: Izveštaji
+    scheduling: Planiranje
+    scoring: Bodovanja
+    show_submenu: Prikaži pod-meni
+    skills_taxonomy: Taksonomija veština
+    stats: Statistike
+    user_report_events: Događaji Izveštaja korisnika
+    users: Korisnici
+    view_licenses: Pogledaj licence
+    year: Država

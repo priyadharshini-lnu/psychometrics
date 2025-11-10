@@ -105,7 +105,7 @@ const ClientList: React.FC<Props> = ({
         sticky={{ offsetHeader: 50 }}
       >
         <Column
-          title={I18n.t('common.column.id')}
+          title={I18n.t('shared.id')}
           dataIndex="id"
           key="id"
           fixed={windowWidth > 800 ? 'left' : undefined}
@@ -114,7 +114,7 @@ const ClientList: React.FC<Props> = ({
           width={100}
         />
         <Column
-          title={I18n.t('common.column.name')}
+          title={I18n.t('shared.name')}
           key="name"
           width="auto"
           sorter
@@ -128,20 +128,20 @@ const ClientList: React.FC<Props> = ({
           minWidth={300}
         />
         <Column
-          title={I18n.t('administration.clients.columns.type')}
+          title={I18n.t('shared.type')}
           dataIndex="type"
           render={(_, client: Client) => I18n.t(`activerecord.attributes.client.types.${client.type}`)}
           key="type"
           minWidth={100}
         />
         <Column
-          title={I18n.t('administration.clients.columns.country')}
+          title={I18n.t('admin.country')}
           dataIndex="country"
           key="county"
           minWidth={100}
         />
         <Column
-          title={I18n.t('administration.clients.columns.year')}
+          title={I18n.t('admin.year')}
           dataIndex="year"
           key="year"
           sorter
@@ -149,13 +149,13 @@ const ClientList: React.FC<Props> = ({
           minWidth={100}
         />
         <Column
-          title={I18n.t('administration.clients.columns.project_manager')}
+          title={I18n.t('admin.project_manager')}
           dataIndex={['projectManager', 'name']}
           key="project_manager"
           minWidth={150}
         />
         <Column
-          title={I18n.t('common.column.action')}
+          title={I18n.t('shared.action')}
           key="action"
           fixed={windowWidth > 800 ? 'right' : undefined}
           render={client => (
@@ -189,29 +189,25 @@ const ClientList: React.FC<Props> = ({
   const Filter = (
     <Space>
       <Search
-        placeholder={I18n.t('common.actions.search')}
+        placeholder={I18n.t('shared.search')}
         value={getFilteredValue('filterable_fields')}
         onChange={({ target: { value } }) => {
           changeFilter('filterable_fields', value)
         }}
       />
       {isSuperAdmin(currentUser)
-        && (
-          <Button
-            type="primary"
-            disabled={tableLoading}
-            onClick={() => {
-              openModal('ClientFormModal', {
-                addClient: createResource,
-                types,
-                countries,
-              })
-            }}
-          >
-            <PlusOutlined />
-            {I18n.t('frontend.clients.actions.create.create_client')}
-          </Button>
-        )}
+          && (
+            <Button
+              type="primary"
+              disabled={tableLoading}
+              onClick={() => {
+                openModal('ClientFormModal', { addClient: createResource, types, countries })
+              }}
+            >
+              <PlusOutlined />
+              {I18n.t('admin.create_client')}
+            </Button>
+          )}
     </Space>
   )
 
@@ -221,7 +217,7 @@ const ClientList: React.FC<Props> = ({
         crumbs={[
           {
             link: () => '/admin',
-            label: () => I18n.t('administration.clients.clients'),
+            label: () => I18n.t('admin.clients'),
           },
         ]}
       />
@@ -263,15 +259,12 @@ const getActionMenuProps = ({
     meta,
   } = client
   const menuItems = [
-    isSuperAdmin && {
-      key: 'edit',
-      label: I18n.t('common.actions.edit'),
-    },
+    isSuperAdmin && { key: 'edit', label: I18n.t('shared.edit') },
     meta.permissions.viewLicenses && {
       key: 'licenses',
       label: (
         <Link to={`/admin/clients/${id}/licenses`}>
-          {I18n.t('frontend.clients.actions.menus.view_licenses')}
+          {I18n.t('admin.view_licenses')}
         </Link>
       ),
     },

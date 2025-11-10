@@ -1239,11 +1239,6 @@ th:
         archived: เก็บเข้าคลัง
         disable: หอจดหมายเหตุ
         enable: ยกเลิกการเก็บถาวร
-      columns:
-        country: ประเทศ
-        project_manager: ผู้จัดการโครงการ
-        type: ประเภท
-        year: ปี
       copy:
         successfully: การเช่าไคลเอ็นต์ '%{name}' ถูกคัดลอกเรียบร้อยแล้ว
       create:
@@ -1252,14 +1247,6 @@ th:
         successfully: การเช่าไคลเอ็นต์ %{name} ถูกลบเรียบร้อยแล้ว
       edit:
         header: แก้ไขไคลเอ็นต์
-      form:
-        client: ลูกค้า
-        country: ประเทศ
-        name: ชื่อ
-        number: หมายเลข
-        project_manager: ผู้จัดการโครงการ
-        type: ประเภท
-        year: ปี
       licenses:
         resource:
           confirmations:
@@ -2750,41 +2737,14 @@ th:
     message: ข้อความ
     meta_title: แผงการดูแลระบบ
     navigation:
-      ai_artifacts: สิ่งประดิษฐ์ AI
-      ai_assistants: ผู้ช่วย AI
-      assessments: การประเมิน
-      assessments_reports: การประเมินและรายงาน
-      assessor_dashboard: แดชบอร์ดผู้ประเมิน
-      assessor_workshops: ศูนย์ประเมินผล
       audit_logs: บันทึกการตรวจสอบ
       availability: กำหนดการ
-      back_to_main: เมนูหลัก
-      campaign_templates: เทมเพลตแคมเปญ
-      change_password: เปลี่ยนรหัสผ่าน
-      client_admins: ผู้ดูแลระบบไคลเอ็นต์
-      clients: บัญชีลูกค้า
-      communication_center: ศูนย์สื่อสาร
       dashboard: แดชบอร์ด
-      data_reports: รายงานข้อมูล
-      development_actions: การดําเนินการพัฒนา
-      dimensions: มิติ
       factors: ปัจจัย
       innovation_styles: รูปแบบนวัตกรรม
-      libraries: ห้องสมุดสื่อ
-      norms: ค่ามาตรฐาน
       occupations: อาชีพ
-      options: ตัวเลือก
-      participants: ผู้เข้าร่วม
-      project_admins: ผู้ดูแลระบบโครงการ
-      question_center: ศูนย์คําถาม
       registration_codes: รหัสการลงทะเบียน
-      report_approvals: การอนุมัติรายงาน
-      reports: รายงาน
-      scheduling: กำหนดการ
-      show_submenu: แสดงเมนูย่อย
       skills_taxonomy: อนุกรมวิธานทักษะ
-      user_profile_details: รายละเอียดโปรไฟล์
-      user_report_events: เหตุการณ์รายงานผู้ใช้
       users: ผู้เข้าร่วม
     no_data_found: ไม่พบข้อมูล
     norms:
@@ -2858,7 +2818,6 @@ th:
         successfully: ค่ามาตรฐานอัปเดตเรียบร้อยแล้ว
       update:
         successfully: ค่ามาตรฐาน %{name} อัปเดตเรียบร้อยแล้ว
-    notification_bell_icon: ไอคอนกระดิ่งแจ้งเตือน
     noty:
       error_408: การดําเนินการนี้ใช้เวลานานเกินไป โปรดลองโหลดหน้าใหม่
       error_500: มีบางอย่างผิดพลาด ติดต่อผู้ดูแลระบบ
@@ -4275,7 +4234,6 @@ th:
         inactive: ไม่ทำงาน
         percentage: เปอร์เซ็นต์
         title: การประเมิน
-      title: สถิติ
       top_metrics:
         completed: เสร็จสมบูรณ์
         in_progress: อยู่ระหว่างดําเนินการ

@@ -1,0 +1,27 @@
+---
+zh-Hant:
+  shared:
+    action: 行動
+    add: 新增
+    cancel: 取消
+    change_password: 變更密碼
+    clear_filters: 清除過濾器
+    edit: 編輯
+    id: 同上
+    internet_disconnected_message: 嘗試重新連線，請檢查您的網路連線。
+    mte_logo_alt_text: 美世人才企業標誌
+    name: 名稱
+    search: 搜尋
+    table:
+      entries:
+        selected:
+          one: 選取 1 行
+          other: 選取 {{count}} 行
+        total:
+          one: '總數 : 1'
+          other: '總數 : {{count}}'
+          zero: '總數 : 0'
+    terms_conditions_privacy: 隱私權聲明
+    tte_terms_and_condition: 條款與隱私權
+    type: 類型
+    update: 更新

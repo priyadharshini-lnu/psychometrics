@@ -214,7 +214,6 @@ zh-HK:
     bulk_download_reports:
       errors:
         no_plans: 未找到有效的 IDP 計劃
-    no_notifications: 無通知
   ai:
     errors:
       bad_request_invalid_input: 由於輸入無效，無法處理您的請求。請檢查您的要求並重試。
@@ -416,16 +415,11 @@ zh-HK:
     continue: 繼續您的任務
     dashboard_instructions: 您有多個需要完成的活動。請確保所有活動中的分配任務都已完成。
     dashboard_menu:
-      bookings: 訂單
       campaign: 市場推廣
-      change_password: 更改密碼
-      development: 發展
       direct_reportees: 直下報告
       home: 主頁
       insights: 分析
-      my_plan: 我的計劃
       profile: 個人資料
-      profile_details: 詳情
       tasks: 任務
     details: 詳情
     edit_evaluation:
@@ -1464,12 +1458,6 @@ zh-HK:
   sessions:
     errors:
       recaptcha: Recaptcha 驗證失敗。請再試一次。
-  shared:
-    filters:
-      clear: 清除篩選器
-    internet_disconnected_message: 正在嘗試重新連接。請檢查您的互聯網連接。
-    terms_conditions_privacy: 私隱聲明
-    tte_terms_and_condition: 條款和私隱
   simple_form:
     labels:
       client:

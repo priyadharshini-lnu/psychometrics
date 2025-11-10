@@ -1,0 +1,26 @@
+---
+ar:
+  shared:
+    action: نشاط
+    add: إضافة
+    cancel: إلغاء
+    change_password: تغيير كلمة المرور
+    clear_filters: امسح المُرشحات
+    edit: تعديل
+    internet_disconnected_message: نحاول إعادة الاتصال بالإنترنت. يرجى التحقق من اتصالك بالإنترنت الخاص بك.
+    mte_logo_alt_text: شعار Mercer Talent Enterprise
+    name: اسم
+    search: بحث
+    table:
+      entries:
+        selected:
+          one: 1 row selected
+          other: "{{count}} rows selected"
+        total:
+          one: 'Total : 1'
+          other: 'Total : {{count}}'
+          zero: 'Total : 0'
+    terms_conditions_privacy: بيان الخصوصية
+    tte_terms_and_condition: " الشروط والأحكام وبيان الخصوصية الخاص بشركة"
+    type: نوع
+    update: تحديث

@@ -919,8 +919,6 @@ sk:
     invalid_job: Toto oznámenie zodpovedá vymazanému záznamu
     mark_as_read: Označiť všetko ako prečítané
     more: Viacej
-    no_notifications: Žiadne upozornenia
-    notifications: Oznámenia
     results: Výsledky
     super_admin:
       errors:
@@ -1341,16 +1339,11 @@ sk:
     continue: Pokračujte v plnení úloh
     dashboard_instructions: Je možné, že vám bolo pridelených viacero aktivít, ktoré musíte dokončiť. Skontrolujte, či ste dokončili všetky pridelené aktivity vo všetkých kampaniach.
     dashboard_menu:
-      bookings: Rezervácie
       campaign: Kampaň
-      change_password: Zmena hesla
-      development: Vývoj
       direct_reportees: Priami podriadení
       home: Domov
       insights: Postrehy
-      my_plan: Môj plán
       profile: Profil
-      profile_details: Podrobnosti na
       tasks: Úlohy
     details: Podrobnosti na
     edit_evaluation:
@@ -1878,7 +1871,6 @@ sk:
       projects: Projekty
       report: Správa
       reports: Správy
-      scoring: Bodovania
       sms_contact: SMS kontakt
       threesixty_campaign: Trišesťdesiat výsledkov kampane
     status:
@@ -3374,13 +3366,6 @@ sk:
   sessions:
     errors:
       recaptcha: Overenie Recaptcha zlyhalo. Skúste to prosím znova.
-  shared:
-    filters:
-      clear: Vymazať filtre
-    internet_disconnected_message: Pokúšam sa znovu pripojiť. Skontrolujte, prosím, svoje internetové pripojenie.
-    mte_logo_alt_text: Logo Mercer Talent Enterprise
-    terms_conditions_privacy: Vyhlásenie o ochrane osobných údajov
-    tte_terms_and_condition: Podmienky a ochrana osobných údajov
   sheet:
     import_modal:
       alert_access_sheet_removal: Nahratie nového prístupového hárka s odstránením všetkých existujúcich záznamov a nahraním nového z hárka. Uistite sa, že máte všetky záznamy prístupového hárka v tabuľke.

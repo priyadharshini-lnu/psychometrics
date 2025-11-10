@@ -1239,11 +1239,6 @@ fr:
         archived: Archivé
         disable: Archives
         enable: Désarchiver
-      columns:
-        country: Pays
-        project_manager: Chef de projet
-        type: Type
-        year: Année
       copy:
         successfully: Le bail du client "%{name}" a été copié avec succès.
       create:
@@ -1252,14 +1247,6 @@ fr:
         successfully: Le contrat de location %{name} a été supprimé avec succès.
       edit:
         header: Modifier le client
-      form:
-        client: Client
-        country: Pays
-        name: Nom
-        number: Nombre
-        project_manager: Chef de projet
-        type: Type
-        year: Année
       licenses:
         resource:
           confirmations:
@@ -2750,41 +2737,14 @@ fr:
     message: Message
     meta_title: Panneau d'administration
     navigation:
-      ai_artifacts: Artefacts de l’IA
-      ai_assistants: Assistants IA
-      assessments: Évaluations
-      assessments_reports: Évaluations et rapports
-      assessor_dashboard: Tableau de bord de l'évaluateur
-      assessor_workshops: Centre d'évaluation
       audit_logs: Journaux d'audit
       availability: Disponibilité
-      back_to_main: Menu principal
-      campaign_templates: Modèles de campagne
-      change_password: Modifier le mot de passe
-      client_admins: Administrateurs clients
-      clients: Baux des clients
-      communication_center: Centre de communication
       dashboard: Tableau de bord
-      data_reports: Rapports de données
-      development_actions: Actions de développement
-      dimensions: Dimensions
       factors: Facteurs
       innovation_styles: Styles d'innovation
-      libraries: Bibliothèque des médias
-      norms: Normes
       occupations: Professions
-      options: Options
-      participants: Les participants
-      project_admins: Administrateurs de projets
-      question_center: Centre de questions
       registration_codes: Codes d'enregistrement
-      report_approvals: Approbation des rapports
-      reports: Rapports
-      scheduling: Programmation
-      show_submenu: Afficher le sous-menu
       skills_taxonomy: Taxonomie des compétences
-      user_profile_details: Détails du profil
-      user_report_events: Rapport de l'utilisateur Événements
       users: Utilisateurs
     no_data_found: Aucune donnée n'a été trouvée
     norms:
@@ -2858,7 +2818,6 @@ fr:
         successfully: Norm a été mis à jour avec succès.
       update:
         successfully: La norme %{name} a été mise à jour avec succès.
-    notification_bell_icon: Icône de cloche de notification
     noty:
       error_408: Cette action prend trop de temps. Essayez de recharger la page.
       error_500: Contactez votre administrateur.
@@ -4284,7 +4243,6 @@ fr:
         inactive: Inactif
         percentage: Pourcentage
         title: Évaluations
-      title: Statistiques
       top_metrics:
         completed: Terminé
         in_progress: En cours

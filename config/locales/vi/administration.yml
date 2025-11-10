@@ -1239,11 +1239,6 @@ vi:
         archived: Lưu trữ
         disable: Lưu trữ
         enable: Hủy lưu trữ
-      columns:
-        country: Quốc gia
-        project_manager: Quản lý dự án
-        type: Kiểu
-        year: Năm
       copy:
         successfully: Khách thuê '%{name}' đã được sao chép thành công.
       create:
@@ -1252,14 +1247,6 @@ vi:
         successfully: Thuê khách hàng %{name} đã bị xóa thành công.
       edit:
         header: Chỉnh sửa khách hàng
-      form:
-        client: Khách hàng
-        country: Quốc gia
-        name: Tên
-        number: Số
-        project_manager: Quản lý dự án
-        type: Loại
-        year: Năm
       licenses:
         resource:
           confirmations:
@@ -2750,41 +2737,14 @@ vi:
     message: Thông điệp
     meta_title: Bảng điều khiển
     navigation:
-      ai_artifacts: Đồ tạo tác AI
-      ai_assistants: Trợ lý AI
-      assessments: Đánh giá
-      assessments_reports: Đánh giá & Báo cáo
-      assessor_dashboard: Bảng điều khiển đánh giá viên
-      assessor_workshops: Trung tâm đánh giá
       audit_logs: Nhật ký kiểm tra
       availability: Sẵn sàng
-      back_to_main: Menu chính
-      campaign_templates: Mẫu chiến dịch
-      change_password: Thay đổi mật khẩu
-      client_admins: Quản trị viên khách hàng
-      clients: Thuê khách hàng
-      communication_center: Trung tâm truyền thông
       dashboard: Bảng điều khiển
-      data_reports: Báo cáo dữ liệu
-      development_actions: Hành động phát triển
-      dimensions: Kích thước
       factors: Yếu tố
       innovation_styles: Phong cách đổi mới
-      libraries: Thư viện phương tiện
-      norms: Tiêu chuẩn
       occupations: Nghề
-      options: Tùy chọn
-      participants: Tham gia
-      project_admins: Quản trị viên dự án
-      question_center: Trung tâm câu hỏi
       registration_codes: Mã đăng ký
-      report_approvals: Phê duyệt báo cáo
-      reports: Báo cáo
-      scheduling: Lập kế hoạch
-      show_submenu: Hiển thị menu phụ
       skills_taxonomy: Phân loại kỹ năng
-      user_profile_details: Chi tiết hồ sơ
-      user_report_events: Sự kiện báo cáo người dùng
       users: Người dùng
     no_data_found: Không tìm thấy dữ liệu
     norms:
@@ -2858,7 +2818,6 @@ vi:
         successfully: Norm đã được cập nhật thành công.
       update:
         successfully: Định mức %{name} đã được cập nhật thành công.
-    notification_bell_icon: Biểu tượng chuông thông báo
     noty:
       error_408: Hành động này mất quá nhiều thời gian. Vui lòng thử tải lại trang.
       error_500: Có điều gì đó không ổn. Liên hệ với quản trị viên của bạn.
@@ -4275,7 +4234,6 @@ vi:
         inactive: Không hoạt động
         percentage: Tỷ lệ phần trăm
         title: Đánh giá
-      title: Thống kê
       top_metrics:
         completed: Hoàn thành
         in_progress: Đang tiến hành

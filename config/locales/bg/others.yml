@@ -919,8 +919,6 @@ bg:
     invalid_job: Това уведомление съответства на изтрит запис
     mark_as_read: Маркиране на всички прочетени
     more: Още
-    no_notifications: Няма известия
-    notifications: Уведомления
     results: Резултати
     super_admin:
       errors:
@@ -1341,16 +1339,11 @@ bg:
     continue: Продължете изпълнението на задачите си
     dashboard_instructions: Възможно е да са Ви възложени няколко дейности, които трябва да изпълните. Моля, не забравяйте да проверите дали всички възложени дейности са изпълнени във всички кампании.
     dashboard_menu:
-      bookings: Резервации
       campaign: Кампания
-      change_password: Променете паролата
-      development: Развитие
       direct_reportees: Преки докладвани
       home: Начало
       insights: Прозрения
-      my_plan: Моят план
       profile: Профил
-      profile_details: Подробности
       tasks: Задачи
     details: Подробности
     edit_evaluation:
@@ -1878,7 +1871,6 @@ bg:
       projects: Проекти
       report: Доклад
       reports: Доклади
-      scoring: Точкуване
       sms_contact: SMS контакт
       threesixty_campaign: Тришестдесет резултата от кампанията
     status:
@@ -3374,13 +3366,6 @@ bg:
   sessions:
     errors:
       recaptcha: Проверката на Recaptcha се провали. Моля, опитайте отново.
-  shared:
-    filters:
-      clear: Изчистете филтрите
-    internet_disconnected_message: Опитвам се да възстановя връзката. Моля, проверете интернет връзката си.
-    mte_logo_alt_text: Логото на Mercer Talent Enterprise
-    terms_conditions_privacy: Декларация за поверителност
-    tte_terms_and_condition: Условия и поверителност
   sheet:
     import_modal:
       alert_access_sheet_removal: Качване на нов Accesssheet с изтриване на целия съществуващ запис и качване на нов от листа. Моля, уверете се, че имате всички записи на Accesssheet в електронна таблица.

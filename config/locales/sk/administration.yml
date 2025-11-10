@@ -1239,11 +1239,6 @@ sk:
         archived: Archivované
         disable: Archív
         enable: Zrušiť archiváciu
-      columns:
-        country: Krajina
-        project_manager: Projektový manažér
-        type: Typ
-        year: Rok
       copy:
         successfully: Klientsky nájom "%{name}" bol úspešne skopírovaný.
       create:
@@ -1252,14 +1247,6 @@ sk:
         successfully: Klientsky nájom %{name} bol úspešne odstránený.
       edit:
         header: Upraviť klienta
-      form:
-        client: Klient
-        country: Krajina
-        name: Názov
-        number: Číslo
-        project_manager: Projektový manažér
-        type: Typ
-        year: Rok
       licenses:
         resource:
           confirmations:
@@ -2750,41 +2737,14 @@ sk:
     message: Správa
     meta_title: Panel správy
     navigation:
-      ai_artifacts: Artefakty AI
-      ai_assistants: Asistenti AI
-      assessments: Hodnotenia
-      assessments_reports: Hodnotenia a správy
-      assessor_dashboard: Informačný panel hodnotiteľa
-      assessor_workshops: Hodnotiace centrum
       audit_logs: Protokoly auditu
       availability: Dostupnosť
-      back_to_main: Hlavné menu
-      campaign_templates: Šablóny kampaní
-      change_password: Zmeniť heslo
-      client_admins: Správcovia klientov
-      clients: Prenájom klientov
-      communication_center: Komunikačné centrum
       dashboard: Tabuľu
-      data_reports: Dátové zostavy
-      development_actions: Rozvojové akcie
-      dimensions: Rozmery
       factors: Faktory
       innovation_styles: Štýly inovácií
-      libraries: Knižnica médií
-      norms: Normy
       occupations: Povolania
-      options: Možnosti
-      participants: Účastníkov
-      project_admins: Správcovia projektov
-      question_center: Centrum otázok
       registration_codes: Registračné kódy
-      report_approvals: Schválenia správ
-      reports: Správy
-      scheduling: Plánovanie
-      show_submenu: Zobraziť podmenu
       skills_taxonomy: Taxonómia zručností
-      user_profile_details: Podrobnosti o profile
-      user_report_events: Udalosti v hlásení používateľa
       users: Používateľov
     no_data_found: Nenašli sa žiadne údaje
     norms:
@@ -2858,7 +2818,6 @@ sk:
         successfully: Norm bol úspešne aktualizovaný.
       update:
         successfully: Norma %{name} bola úspešne aktualizovaná.
-    notification_bell_icon: Ikona zvončeka s upozornením
     noty:
       error_408: Táto akcia trvá príliš dlho. Skúste stránku znova načítať.
       error_500: Niečo sa pokazilo. Obráťte sa na správcu.
@@ -4275,7 +4234,6 @@ sk:
         inactive: Neaktívny
         percentage: Percentá
         title: Hodnotenia
-      title: Štatistiky
       top_metrics:
         completed: Dokončený
         in_progress: Prebieha

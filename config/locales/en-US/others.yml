@@ -919,8 +919,6 @@ en-US:
     invalid_job: This notification corresponds to deleted record
     mark_as_read: Mark all read
     more: More
-    no_notifications: No notifications
-    notifications: Notifications
     results: Results
     super_admin:
       errors:
@@ -1341,16 +1339,11 @@ en-US:
     continue: Continue your tasks
     dashboard_instructions: You may have been assigned multiple activities that you need to complete. Please make sure to check that all the assigned activities have been completed across all the campaigns.
     dashboard_menu:
-      bookings: Bookings
       campaign: Campaign
-      change_password: Change Password
-      development: Development
       direct_reportees: Direct Reportees
       home: Home
       insights: Insights
-      my_plan: My Plan
       profile: Profile
-      profile_details: Details
       tasks: Tasks
     details: Details
     edit_evaluation:
@@ -1876,7 +1869,6 @@ en-US:
       projects: Projects
       report: Report
       reports: Reports
-      scoring: Scoring
       sms_contact: SMS Contact
       threesixty_campaign: Threesixty Campaign Scores
     status:
@@ -3372,13 +3364,6 @@ en-US:
   sessions:
     errors:
       recaptcha: Recaptcha verification failed. Please try again.
-  shared:
-    filters:
-      clear: Clear Filters
-    internet_disconnected_message: Trying to reconnect. Please check your internet connection.
-    mte_logo_alt_text: Mercer Talent Enterprise logo
-    terms_conditions_privacy: Privacy Statement
-    tte_terms_and_condition: Terms & Privacy
   sheet:
     import_modal:
       alert_access_sheet_removal: Uploading new Accesssheet with delete all existing record and upload new one from the sheet. Please make sure you have all Accesssheet records in spreadsheet.

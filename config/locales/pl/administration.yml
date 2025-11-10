@@ -1239,11 +1239,6 @@ pl:
         archived: Archiwizowane
         disable: Archiwum
         enable: Przywróć z archiwum
-      columns:
-        country: Kraj
-        project_manager: Kierownik Projektu
-        type: Typ
-        year: Rok
       copy:
         successfully: Dzierżawa klienta "%{name}" została skopiowana pomyślnie.
       create:
@@ -1252,14 +1247,6 @@ pl:
         successfully: Dzierżawa klienta %{name} została pomyślnie usunięta.
       edit:
         header: Edytuj klienta
-      form:
-        client: Klient
-        country: Kraj
-        name: Nazwa
-        number: Liczba
-        project_manager: Kierownik projektu
-        type: Typ
-        year: Rok
       licenses:
         resource:
           confirmations:
@@ -2750,41 +2737,14 @@ pl:
     message: Wiadomość
     meta_title: Panel administracyjny
     navigation:
-      ai_artifacts: Artefakty SI
-      ai_assistants: Asystenci AI
-      assessments: Oceny
-      assessments_reports: Oceny i raporty
-      assessor_dashboard: Pulpit nawigacyjny asesora
-      assessor_workshops: Centrum oceny zintegrowanej
       audit_logs: Dzienniki audytu
       availability: Dostępność
-      back_to_main: Menu główne
-      campaign_templates: Szablony kampanii
-      change_password: Zmień hasło
-      client_admins: Administratorzy klienta
-      clients: Umowy najmu dla klientów
-      communication_center: Centrum Komunikacyjne
       dashboard: Deska rozdzielcza
-      data_reports: Raporty danych
-      development_actions: Działania rozwojowe
-      dimensions: Wymiary
       factors: Czynników
       innovation_styles: Style innowacji
-      libraries: Biblioteka multimediów
-      norms: Normy
       occupations: Zawodów
-      options: Opcje
-      participants: Uczestników
-      project_admins: Administratorzy projektu
-      question_center: Centrum pytań
       registration_codes: Kody rejestracyjne
-      report_approvals: Zatwierdzanie raportów
-      reports: Raporty
-      scheduling: Planowania
-      show_submenu: Pokaż podmenu
       skills_taxonomy: Taksonomia umiejętności
-      user_profile_details: Szczegóły profilu
-      user_report_events: Zdarzenia zgłaszane przez użytkownika
       users: Użytkowników
     no_data_found: Nie znaleziono danych
     norms:
@@ -2858,7 +2818,6 @@ pl:
         successfully: Norm został pomyślnie zaktualizowany.
       update:
         successfully: Norma %{name} została pomyślnie zaktualizowana.
-    notification_bell_icon: Ikona dzwonka powiadomień
     noty:
       error_408: Ta akcja trwa zbyt długo. Spróbuj ponownie załadować stronę.
       error_500: Coś poszło nie tak. Skontaktuj się z administratorem.
@@ -4275,7 +4234,6 @@ pl:
         inactive: Nieaktywny
         percentage: Procent
         title: Oceny
-      title: Statystyki
       top_metrics:
         completed: Zakończone
         in_progress: W toku
