@@ -4,6 +4,7 @@ module Administration
   module Clients
     class ApiKeysController < Administration::BaseController
       include Administration::Clients
+
       prepend_before_action :set_resource_class
       prepend_before_action :set_user
       before_action :ensure_client
@@ -56,11 +57,11 @@ module Administration
       end
 
       def create_resource_params
-        params.require(:resource).permit(:token)
+        params.expect(resource: [:token])
       end
 
       def update_resource_params
-        params.require(:resource).permit(:token)
+        params.expect(resource: [:token])
       end
 
       def set_resource_class

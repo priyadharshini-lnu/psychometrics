@@ -1,0 +1,115 @@
+---
+ja:
+  dry_errors:
+    errors:
+      add_edit_project:
+        invalid_subdomain_format: サブドメインの形式が正しくない。
+        reserved_subdomain: サブドメイン %{value} は予約されています。
+        uniq_subdomain: サブドメインは一意でなければならない。
+      add_manager:
+        cannot_be_self: ユーザーは自分自身をマネージャーとして割り当てることはできません
+        manager_not_found: マネージャーが見つからないか、同じプロジェクトに属していない
+        user_not_found: ユーザーが見つからないか、同じプロジェクトに属していない
+      admin:
+        already_added: 管理者にEメールが追加されました。
+      already_assigned?: このアセスメントをリンクすることはできません - 既に '%{linked_assessor_form_name}' に割り当てられています。
+      already_invited: このユーザーは、追加しようとしている評価センターにすでに存在します。
+      assessor_assessment:
+        already_added: アセッサーの評価はすでにキャンペーンに追加されている。
+        lead_already_added: キャンペーンに追加できるリードアセッサーアセスメントは1つだけです。
+      campaign_factor:
+        code_already_exists: 同じコードを持つファクターがすでに存在する。
+        invalid_lua_name: 有効なlua変数名でなければならない
+        limit_exceeded: キャンペーン要因 %{limit} の上限に達しました。
+        name_already_exists: 同じ名前のファクターがすでに存在する。
+        rank_not_allowed: ランク付けできるのは、出力タイプが数値の要因のみである。
+      campaign_factor_group:
+        group_already_exists: 同じ名前のグループがすでに存在する。
+        last_factor_group: 最後のキャンペーン要因グループを削除できません。
+      campaign_idps:
+        idp_template_not_published: このIDPテンプレートはまだ公開されていません。キャンペーンに割り当てる前に公開してください。
+      cant_be_deleted: このレコードは削除できません
+      client_feature:
+        ai_assisted_idp_feature_error: AI アシスタント機能が無効になっている場合は当てはまりません
+      create_superadmin:
+        uniq_email: 電子メールはユニックでなければならない。
+      development_actions:
+        only_global_skills_allowed: 選択したスキルはグローバル・スキルでなければならない。
+        skills_not_belong_to_project: 選択されたスキルは、指定されたプロジェクトに属していなければならない。
+        skills_required: 少なくとも1つのスキルを選択してください。
+      exceeded_subjects_count: 1回の招待で追加できる被写体は %{count} だけです。
+      filled?: 空白は許されない
+      idp_template:
+        content_required: 指示にはコンテンツが必要です
+        tag_or_skill_required: "「選択済み」オプションを選択した場合は、タグまたはスキルのいずれかを選択してください。"
+      invalid_name: 有効な文字は、アルファベット、数字、スペース、ダッシュ、ドットのみです。
+      invalid_value: 行番号 %{row} に無効な文 '%{value}' があります。
+      job_roles:
+        unique_within_job_group: 同じ名前の職種が既に存在します。
+      json?: 有効なJSONでなければならない
+      key?: 空白は許されない
+      match_regexp?: 無効値
+      mettl_schedule_record_create:
+        uniq_schedule_name: スケジュール名は一意でなければならない
+      missed?: 空白は許されない
+      not_allowed?: 変更不可
+      not_in_the_list?: 無効な値が渡された
+      not_uniq_variable: 変数 '%{value}' が行番号 %{row} で再定義されました。
+      project_assessments:
+        should_be_greater_than_zero: 結果の有効期限は0日以上でなければならない。
+      project_feature:
+        global_skills_not_enabled_on_client: このプロジェクトでグローバルスキルを有効にするには、クライアント設定の [機能フラグ] で有効にしてください。
+      report_approval_settings:
+        report_exists: このレポートの承認設定はすでに存在します。
+        validates_admins: 管理者はキャンペーンにアクセスできません。
+      report_families_reports:
+        report_exists: このレポートはすでにレポートバンドルの一部です。
+      size?: サイズは%{size}以下でなければならない。
+      skill:
+        already_added: 同じ名前のスキルがすでに追加されています。
+      skill_alias:
+        unique_alias: エイリアスは一意でなければならない
+        unique_skill: スキルはユニークでなければならない
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: スキルと職務は同じプロジェクトに属するか、グローバルでなければならない。
+        unique_mappings: 同じスキルと職務を持つマッピングがすでに存在する。
+      uniq: このMettlアセスメントはすでにシステムに存在しています。 このアセスメントのIDは%{id}です。
+      uniq?: ユニークでなければならない
+      uniq_simulation: このシミュレーション評価はシステムに既に存在しています。 この評価のIDは%{id}です。
+      uniq_skillvue: このスキルビューアセスメントはすでにシステムに存在しています。このアセスメントのIDは %{id} です。
+      uniq_yoodli: この Yoodli 評価はすでにシステムに存在します。この評価の ID は %{id}
+      update_workshop:
+        bookings_exist: 参加者がこの時間帯をすでに予約しているため、スケジュールの変更はできません。
+        less_than_booked: 総座席数が予約席数を上回っていること
+      user_availability_date:
+        overlaps_date: 別の可用性と重なる %{range}。
+        overlaps_time: オーバーラップ間隔 %{interval}
+        start_date_should_be_less: 開始日は終了日よりも短いこと
+        start_time_should_be_less: 開始時間は終了時間より短くする
+      user_idp_plan:
+        idp_template_already_assigned_to_user: このIdpテンプレートはすでにこのユーザーに割り当てられており、アクティブです。
+        idp_template_not_published: このIDPテンプレートはまだ公開されていません。ユーザーに割り当てる前に公開してください。
+      user_saved_filters:
+        limit_exceeded: 保存できるフィルターは%{limit}までです。
+        unique_name: 同じ名前のフィルターがすでに存在する。
+      workshop_invited_subject_create:
+        already_exists: サブジェクトはすでに招待に存在している。
+      workshop_subject_create:
+        already_exists: このアセスメントセンターには既に件名が存在する。
+        part_of_other_workshop: 対象者は既に '%{workshop_name}' の参加者です。
+      workshop_subject_re_enroll:
+        no_seats_available: このワークショップに空席はありません。
+        scheduling_lead_time_passed: Scheduling Lead Timeが過ぎた場合、再登録はできません。
+        workshop_subject_not_found: ワークショップのテーマが見つかりません
+      workshops:
+        no_available_assessor_slots: 査定者の空き枠がありません %{assessor}。
+        no_available_manager_slots: マネージャ %{manager} に使用可能なスロットはありません。
+    users:
+      registrations:
+        new:
+          register: 登録
+          sign_in: ログイン
+      sessions:
+        new:
+          register: 登録
+          sign_in: ログイン

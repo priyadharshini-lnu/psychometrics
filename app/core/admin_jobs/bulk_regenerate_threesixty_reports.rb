@@ -17,7 +17,8 @@ module AdminJobs
         ids << user_report.id if Threesixty::Subjects::IsReportAvailable.call!(
           user_report.subject,
           campaign_options,
-          subject_evaluator_counters.dig(user_report.user_id, :completed) || {}
+          subject_evaluator_counters.dig(user_report.user_id, :completed) || {},
+          true
         )
         ids
       end

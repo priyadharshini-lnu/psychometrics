@@ -38,7 +38,7 @@ describe Api::V2::Administration::SkillsJobRolesController, swagger_doc: 'v2/swa
           run_test! do |response|
             expect(response).to have_http_status(:ok)
             json_response = JSON.parse(response.body)
-            expect(json_response['data'].map { |d| d['id'] }).to contain_exactly(project_mapping.id.to_s)
+            expect(json_response['data'].pluck('id')).to contain_exactly(project_mapping.id.to_s)
           end
         end
       end

@@ -208,6 +208,7 @@ id:
           projectSettings:
             assessments: Penilaian
             design: Desain
+            feature_flags: Bendera Fitur
             idp: IDP
             integrations: Integrasi
             privacy_settings: Pengaturan Privasi
@@ -3147,15 +3148,40 @@ id:
             no_auth:
               label: Tidak
               value: no_auth
+            oauth:
+              label: OAuth
+              value: Oauth
+          client_credentials:
+            label: Kredensial Klien
+            value: client_credentials
+          client_id:
+            label: ID Klien
+            name: oauth_client_id
+            required: ID Klien diperlukan
+          client_secret:
+            label: Rahasia Klien
+            name: oauth_client_secret
+            required: Rahasia klien diperlukan
           description:
             label: Deskripsi
             name: deskripsi
+          grant_type:
+            label: Jenis Hibah
+            name: oauth_grant_type
           include_locales:
             label: Sertakan Terjemahan
             name: include_locales
+          oauth_scope:
+            label: Ruang lingkup
+            name: oauth_scope
+            required: Ruang lingkup diperlukan
           password:
             label: Kata sandi
             name: kata sandi
+          token_url:
+            label: Token URL
+            name: oauth_token_url
+            required: URL token diperlukan
           topics:
             label: Peristiwa
             list:
@@ -3475,6 +3501,7 @@ id:
         add_new_condition: Tambahkan kondisi baru
         apply_color_label: 'Kemudian oleskan warna berikut:'
         custom_factor_fields:
+          default_score: Skor
           percentage: Persentase
           questions_attempted: Berusaha
           questions_correct: Benar
@@ -3510,6 +3537,7 @@ id:
         prefixes:
           and: DAN
           or: ATAU
+        prevent_value_overlap: Mencegah tumpang tindih nilai
         skill_type_label: Filter berdasarkan Jenis Keterampilan
         skill_type_placeholder: Pilih jenis keterampilan
         skill_types:
@@ -3790,6 +3818,7 @@ id:
         start_time: Tanggal & Waktu
         subject: Subyek
         title: Titel
+        view_recording: Lihat Rekaman
       errors:
         assessor_already_assigned: Penilai sudah ditugaskan untuk penilaian ini. Silakan pilih penilaian atau penilai lain.
         date_required: Silakan pilih tanggal

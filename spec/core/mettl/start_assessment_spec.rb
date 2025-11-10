@@ -4,6 +4,7 @@ require 'rails_helper'
 
 describe Mettl::StartAssessment do
   include Rails.application.routes.url_helpers
+
   let(:config) { { 'public_key' => 'public_key_value', 'private_key' => 'private_key_value' } }
   let(:user) { create(:user, :with_project_membership, :with_photo) }
   let(:user_assessment) do

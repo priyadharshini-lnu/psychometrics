@@ -389,6 +389,8 @@ ro:
               inclusion: Vă rugăm să selectați tipul corect de normă
         user:
           attributes:
+            current_job_role:
+              not_found: "%{name} nu a fost găsit"
             email:
               user_exists_in_campaign: Utilizatorul cu acest ID de e-mail există deja în campanie
               user_exists_in_project: Utilizatorul cu acest ID de e-mail există deja în proiect
@@ -408,6 +410,8 @@ ro:
               invalid_datetime: este nevalidă
             schedule_start_date:
               invalid_datetime: este nevalidă
+            target_job_role:
+              not_found: "%{name} nu a fost găsit"
         user_assessment:
           subject_and_assessment_exists: Evaluarea și perechea de subiecte există deja
         user_idp_development_action:
@@ -1461,6 +1465,7 @@ ro:
       export_occupations_job_scheduled: Ocupații Locul de muncă la export a fost programat cu succes
       export_reports_and_assessments_statuses_scheduled: Lucrarea Exportați rapoarte și evaluări a fost programată cu succes
       external_results_export_scheduled: Activitatea de export Evaluare externă a fost programată cu succes
+      no_participants_selected: Vă rugăm să selectați cel puțin un participant pentru a continua.
       norm_results_export_scheduled: Lucrarea de export Rezultate normalizate de evaluare a fost programată cu succes
       normalize_factor_scores_scheduled: Normalizarea scorurilor factorilor a fost programată cu succes.
       raw_factor_export_scheduled: Evaluarea activității de export Raw Factor a fost programată cu succes
@@ -1605,6 +1610,7 @@ ro:
       report_bundle_placeholder: Selectați un pachet de rapoarte
     messages:
       bulk_download_error: Descărcarea în bloc este limitată la 1000 de fișiere de raport. Dacă ați selectat mai multe lamente, vă rugăm să le reduceți.
+      bulk_download_no_reports: Nu s-au găsit rapoarte. Vă rugăm să generați rapoartele înainte de descărcare.
       bulk_download_successful: Sarcina de descărcare a raportului în bloc a fost programată cu succes
       export_report_data_scheduled: Sarcina de export a datelor de raportare a fost programată cu succes
     modals:
@@ -2140,118 +2146,6 @@ ro:
       send_paranoid_instructions: Dacă contul tău există, vei primi un e-mail cu instrucțiuni despre cum să-l deblochezi în câteva minute.
       unlocked: Contul tău a fost deblocat cu succes. Vă rugăm să vă conectați pentru a continua.
       unprocessable_entity: Contul tău nu a putut fi deblocat cu acest link. Vă rugăm să contactați asistența.
-  dry_errors:
-    errors:
-      add_edit_project:
-        invalid_subdomain_format: Format greșit al subdomeniului.
-        reserved_subdomain: Subdomeniul %{value} este rezervat
-        uniq_subdomain: Subdomeniul ar trebui să fie unic.
-      add_manager:
-        cannot_be_self: Utilizatorul nu poate fi desemnat ca manager propriu
-        manager_not_found: Managerul nu a fost găsit sau nu face parte din același proiect
-        user_not_found: Utilizatorul nu a fost găsit sau nu face parte din același proiect
-      admin:
-        already_added: Administrator cu e-mail deja adăugat.
-      already_assigned?: Nu se poate lega această evaluare - este deja atribuită la '%{linked_assessor_form_name}'.
-      already_invited: Acest utilizator există deja în centrul de evaluare pe care încercați să-l adăugați.
-      assessor_assessment:
-        already_added: Evaluarea evaluatorului a fost deja adăugată la campanie.
-        lead_already_added: O singură evaluare a evaluatorului principal poate fi adăugată la campanie.
-      campaign_factor:
-        code_already_exists: Un factor cu același cod există deja.
-        invalid_lua_name: ar trebui să fie un nume de variabilă lua valid
-        limit_exceeded: Ați atins limita maximă de %{limit} factori de campanie.
-        name_already_exists: Un factor cu același nume există deja.
-        rank_not_allowed: Pot fi clasificați numai factorii cu un tip numeric de ieșire.
-      campaign_factor_group:
-        group_already_exists: Un grup cu același nume există deja.
-        last_factor_group: Nu se poate șterge ultimul grup de factori de campanie.
-      campaign_idps:
-        idp_template_not_published: Acest șablon IDP nu este încă publicat, vă rugăm să -l publicați înainte de a atribui campaniei.
-      cant_be_deleted: Această înregistrare nu poate fi ștearsă
-      client_feature:
-        ai_assisted_idp_feature_error: Nu poate fi adevărat dacă funcția AI Assistants este dezactivată
-      create_superadmin:
-        uniq_email: E-mailul ar trebui să fie unic.
-      development_actions:
-        only_global_skills_allowed: Competențele selectate trebuie să fie competențe globale.
-        skills_not_belong_to_project: Competențele selectate trebuie să aparțină proiectului specificat.
-        skills_required: Vă rugăm să selectați cel puțin o competență.
-      exceeded_subjects_count: Puteți adăuga doar %{count} subiecte per invitație
-      filled?: nu poate fi gol
-      idp_template:
-        content_required: Conținutul este necesar pentru instrucțiuni
-        tag_or_skill_required: Vă rugăm să selectați fie o etichetă, fie o abilitate atunci când este aleasă opțiunea "Selectat".
-      invalid_name: Numai alfabetul, numărul, spațiile, liniuța și punctul sunt permise ca caracter valid
-      invalid_value: Declarația nevalidă '%{value}' pe numărul de linie %{row}
-      job_roles:
-        unique_within_job_group: Un rol de post cu același nume există deja.
-      json?: Ar trebui să fie JSON valid
-      key?: nu poate fi gol
-      match_regexp?: valoare nevalidă
-      mettl_schedule_record_create:
-        uniq_schedule_name: Numele programului ar trebui să fie unic
-      missed?: nu poate fi gol
-      not_allowed?: Nu este permisă modificarea
-      not_in_the_list?: valoare nevalidă transmisă
-      not_uniq_variable: Variabila '%{value}' redefinită pe numărul de linie %{row}
-      project_assessments:
-        should_be_greater_than_zero: Valabilitatea rezultatului trebuie să fie mai mare de 0 zile
-      project_feature:
-        global_skills_not_enabled_on_client: Pentru a activa abilitățile globale pentru acest proiect, vă rugăm să îl activați sub Feature Flags în setările clientului.
-      report_approval_settings:
-        report_exists: Setarea de aprobare a raportului pentru acest raport există deja.
-        validates_admins: Administratorii nu au acces la campanie.
-      report_families_reports:
-        report_exists: Acest raport face deja parte din pachetul de rapoarte
-      size?: dimensiunea ar trebui să fie mai mică %{size}
-      skill:
-        already_added: Abilitate cu același nume deja adăugată.
-      skill_alias:
-        unique_alias: Aliasul ar trebui să fie unic
-        unique_skill: Abilitățile ar trebui să fie unice
-      skills_job_roles:
-        must_belong_to_same_project_or_be_global: Competența și rolul postului trebuie să aparțină aceluiași proiect sau să fie globale.
-        unique_mappings: Există deja o corespondență cu aceleași competențe și roluri.
-      uniq: Această evaluare Mettl este deja prezentă în sistem. ID-ul acestei evaluări este %{id}
-      uniq?: ar trebui să fie unice
-      uniq_simulation: Această evaluare de simulare este deja prezentă în sistem. ID-ul acestei evaluări este %{id}
-      uniq_skillvue: Această evaluare Skillvue este deja prezentă în sistem. ID-ul acestei evaluări este %{id}
-      update_workshop:
-        bookings_exist: Nu se poate modifica programul, deoarece participanții au rezervat deja acest interval orar.
-        less_than_booked: Numărul total de locuri trebuie să fie mai mare decât cel rezervat
-      user_availability_date:
-        overlaps_date: Se suprapune cu o altă disponibilitate %{range}
-        overlaps_time: Se suprapune intervalul %{interval}
-        start_date_should_be_less: Data de începere trebuie să fie mai mică decât data de încheiere
-        start_time_should_be_less: Ora de începere ar trebui să fie mai mică decât ora de sfârșit
-      user_idp_plan:
-        idp_template_already_assigned_to_user: Acest șablon Idp este deja asociat acestui utilizator și este activ
-        idp_template_not_published: Acest șablon IDP nu este încă publicat, vă rugăm să -l publicați înainte de a atribui utilizatorului.
-      user_saved_filters:
-        limit_exceeded: Puteți avea doar %{limit} filtre salvate, vă rugăm să ștergeți filtrele salvate pentru a adăuga mai multe.
-        unique_name: Există deja un filtru cu același nume.
-      workshop_invited_subject_create:
-        already_exists: Subiectul există deja în invitație.
-      workshop_subject_create:
-        already_exists: Subiectul există deja în acest centru de evaluare.
-        part_of_other_workshop: Subiectul este deja participant la '%{workshop_name}'.
-      workshop_subject_re_enroll:
-        no_seats_available: Nu sunt locuri disponibile pentru acest atelier.
-        scheduling_lead_time_passed: A trecut timpul de programare, nu puteți reînscrie subiectul.
-        workshop_subject_not_found: Subiectul atelierului nu a fost găsit
-      workshops:
-        no_available_assessor_slots: Nu există locuri disponibile pentru evaluator %{assessor}
-        no_available_manager_slots: Nu există sloturi disponibile pentru manager %{manager}
-    users:
-      registrations:
-        new:
-          register: Înregistrează-te
-          sign_in: Conectează-te
-      sessions:
-        new:
-          register: Înregistrează-te
-          sign_in: Conectează-te
   emails:
     nomination_approval_table:
       evaluator_name: Numele evaluatorului
@@ -2581,6 +2475,8 @@ ro:
       aria_selected: Selectat
   idp:
     actions: Acțiuni
+    add_comments: Adaugă comentarii
+    added_development_action: Acțiune de dezvoltare adăugată
     ai:
       assistant:
         failure_fallback:
@@ -2618,7 +2514,7 @@ ro:
           option_2: Bun pentru profesioniștii ocupați
           option_3: Complet editabil după generare
           title: IDP AI cu 1 clic
-        sub_title: Să creăm un jorney personalizat de perfecționare, adaptat aspirației tale de carieră și ghidat de AI
+        sub_title: Să creăm o călătorie personalizată de perfecționare, adaptată aspirației tale de carieră și ghidată de AI
         title: Creați-vă planul individual de dezvoltare
       summary:
         chat_title: Rezumatul Chat Insight
@@ -2637,6 +2533,7 @@ ro:
         title: Buna ziua, sunt asistentul tau de dezvoltare
     behavioral: Comportamental
     board: Scândură
+    change_history: Istoricul modificărilor
     changes_saved_to_plan: Modificări salvate în plan
     comment_details:
       add_comment: Adaugă comentariu
@@ -2645,14 +2542,23 @@ ro:
       add_reply_placeholder: Adaugă un răspuns...
       go_to_skill: Mergi la abilitate
     comments:
+      clear_comments_for_skill: Comentarii clare pentru îndemânare
       close: Închide
+      comment_content: Cum să conțineți
+      comment_for_skill: Comentariu pentru îndemânare
+      commented_at: Comentat la
+      commented_by: Comentat de
       comments: Comentarii
       filter_comments: Filtrarea comentariilor
       mark_as_resolved: Marcați ca rezolvat
       mark_as_unresolved: Marcați ca nerezolvat
+      mark_comment_as_resolved: Marcați acest comentariu ca rezolvat
       replied: Răspuns
+      replied_at: A răspuns la
+      replied_by: Răspuns de
       replies: Răspunsurile
       reply: Răspunde
+      reply_content: Răspuns conținut
       resolve: Rezolva
       resolved: Rezolvată
       resolved_message: Acest comentariu a fost rezolvat și răspunsurile sunt dezactivate.
@@ -2661,8 +2567,13 @@ ro:
       show_only_unread: Afișează doar necitit
       show_only_unresolved: Afișează doar nerezolvat
       sort_by_date: Sortează după dată
+      total_comments_count: Numărul total de comentarii
+      total_count: Numărul total de comentarii
+      unread_replies_count: Numărul de răspunsuri necitite
+      view_or_add: Vizualizați sau adăugați comentarii pentru %{skillName}
       you: Tu
     convert_to_draft: Conversie în ciornă
+    current_step: Pasul curent %{step}
     delete_skill: Sunteți sigur că doriți să ștergeți abilitatea, deoarece va șterge și toate acțiunile de dezvoltare conectate?
     details: Detalii
     development_actions:
@@ -2673,6 +2584,7 @@ ro:
       add_development_actions_modal_title: Biblioteca de acțiuni de dezvoltare pentru %{skillName}
       add_from_library: Adăugați din bibliotecă
       add_more: Adăugați mai multe acțiuni de dezvoltare
+      add_selected_development_actions: Adăugați acțiuni de dezvoltare selectate
       all: Toți
       approved: Aprobat
       board_view:
@@ -2687,10 +2599,15 @@ ro:
       custom: Obicei
       custom_da_description: Creați o acțiune de dezvoltare personalizată pentru a răspunde nevoilor unice de dezvoltare.
       date_range: Data de începere - Data de sfârșit
+      development_action_learning_style: Dezvoltare Acțiune Stil de învățare
+      development_action_name: Descrierea acțiunii de dezvoltare
+      discard_draft: Aruncați schița
       edit_da_progress: Editați progresul acțiunii de dezvoltare
+      edit_development_action_progress: Editați progresul acțiunii de dezvoltare
       edit_plan_to_add_development_actions: Editați planul și adăugați acțiuni de dezvoltare.
       enter_development_action_description: Introduceți descrierea acțiunii de dezvoltare
       enter_development_action_title: Introduceți titlul acțiunii de dezvoltare
+      filter_development_actions: Acțiuni de dezvoltare a filtrelor
       generate_by_ai: Generați prin AI
       generate_more: Generează mai mult
       generating_development_actions: Generarea de acțiuni de dezvoltare...
@@ -2707,6 +2624,7 @@ ro:
       learning_from_others: Învățând de la alții
       learning_from_others_label: Învățarea de la alții
       learning_on_the_job_label: Învățarea la locul de muncă
+      loading_development_actions: Încărcarea acțiunilor de dezvoltare
       manage_skills: Gestionați abilitățile
       marathon: Maraton
       mark_as_complete: Marcați ca finalizat
@@ -2717,6 +2635,8 @@ ro:
       publish_plan: Publicați planul
       remove: Depărta
       save_plan: Salvați planul
+      search_development_actions: Căutare Acțiuni de dezvoltare
+      show_development_action_information: Afișați informațiile despre acțiunile de dezvoltare
       skill: Îndemânare
       sprint: Sprint
       start_plan: Începeți planul
@@ -2724,14 +2644,31 @@ ro:
       structured_learning_label: Învățare colaborativă
       submit_plan: Trimiteți planul
       success: Acțiuni de dezvoltare finalizate cu succes
+      toggle_skill_privacy: Comutați confidențialitatea abilităților
       write_here: Scrie aici...
     direct_reportee_details: Detalii raportoare directe
     download:
       description: 'Pentru a descărca raportul, vă rugăm să urmați linkul: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Linkul este valabil doar 10 minute'
+    download_plan: Descărcați planul
     edit_plan: Editați planul
     edit_plan_and_add_skills: Editați planul și faceți clic pe Gestionați abilitățile pentru a adăuga abilități.
     edit_progress: Editați progres
     fetching_skill_gap_report: Raport de preluare a lacunelor de abilități...
+    go_to_previous_step: Mergeți la pasul anterior
+    history:
+      added_da:
+        one: Acțiune de dezvoltare adăugată
+        other: Acțiuni de dezvoltare adăugate
+      changes:
+        end_date: Data de încheiere de la %{from} la %{to}
+        progress: Progresul de la %{from} la %{to}
+        start_date: Data de începere de la %{from} până la %{to}
+      modified_da:
+        one: Acțiune de dezvoltare modificată
+        other: Acțiuni de dezvoltare modificate
+      removed_da:
+        one: Acțiune de dezvoltare eliminată
+        other: Acțiuni de dezvoltare eliminate
     initial_steps:
       add_skill_group_description: Pe baza rezultatelor evaluării dvs., iată câteva dintre domeniile de puncte forte și dezvoltare pentru dvs. Alegeți abilitățile pe care doriți să le dezvoltați în continuare ca parte a planului de dezvoltare.
       add_skill_group_title: Explorarea abilităților %{category}
@@ -2756,9 +2693,11 @@ ro:
       skill_column_header: Îndemânare
       skill_gap_report: Raport privind decalajul de competențe
     list: Listă
+    loader_icon: Pictograma încărcătorului
     manage_plan: Gestionați planul
     mark_as_complete: Marcați ca finalizat
     mark_as_incomplete: Marcați ca incomplet
+    modified_development_action: Acțiune de dezvoltare modificată
     my_plan:
       development_plan: Plan de dezvoltare
       graphs:
@@ -2875,10 +2814,18 @@ ro:
         skills_count: Abilitățile contează
         title: Rezumatul raportului
     plan: Plan
+    plan_status: Starea planului %{status}
+    plan_submitted_for_manager_approval: Planul dumneavoastră individual de dezvoltare a fost trimis spre aprobarea managerului.
+    private: Privat
+    public: Public
     reflective_questions:
       already_completed: IDP a fost deja completat, nu puteți răspunde la întrebări acum.
+      answer: Răspunde
       answer_later: Răspuns mai târziu
+      answer_limit: Răspunsul trebuie să fie între %{min} și %{max} cuvinte
       answer_placeholder: Scrie-ți răspunsul aici...
+      cancel_edited_answer: Anulează răspunsul editat
+      edit_answer: Editează răspunsul
       errors:
         max_words: Răspunsul permite un maxim %{count} cuvinte
         min_words: Răspunsul necesită cel puțin %{count} cuvinte
@@ -2888,27 +2835,44 @@ ro:
       no_answer_provided: Nu s-a dat încă niciun răspuns
       no_reflective_questions: Fără întrebări reflexive
       optional: "(Opțional)"
+      question: Întrebare
+      required: Această întrebare este obligatorie
+      save_edited_answer: Salvați răspunsul editat
       title: Întrebări reflexive
       update_failed: A apărut o eroare în timpul actualizării
       updated_successfully: Răspunsurile dumneavoastră au fost actualizate cu succes
       word_limit: Trebuie să fie între %{min} și %{max} cuvinte
       words: Cuvinte
     remove_skill: Eliminați abilitatea
+    remove_skill_from_plan: Eliminați %{name} de abilități din plan
+    removed_development_action: Acțiune de dezvoltare eliminată
+    report_preview: Previzualizare raport
+    search_and_select_skills_of_skill_type: Căutați și selectați abilitățile %{skillType}
+    select_skills_of_skill_type: Selectați %{skillType} abilități
+    selected_skills_of_skill_type: Abilități %{skillType} selectate
     skill_gap_report:
+      content: Conținutul raportului privind lacunele de competențe
       download: Descărcați raportul privind lacunele de competențe
       title: Raport privind decalajul de competențe
+    skill_status: Skill %{name} este privat
     skills_updated: Competențe actualizate în plan
     status: Stare
     suggestions: Sugestii
+    suggestions_for_skill_type: Sugestii pentru abilitățile %{skillType}
+    summary: Rezumat
+    summary_logs: Jurnale sumare pentru %{reporteeName}
     technical: Tehnic
     user_idp_status:
       approved: Aprobat
       completed: Completat
+      completion_not_started: Finalizarea nu a început
       draft: Proiect
       in_progress: În curs de desfășurare
+      in_review: În recenzie
       not_started: Neînceput
       pending_approval: În așteptarea aprobării
       rejected: Respins
+      start_review: Începeți revizuirea
     users: Utilizatorii
     with_reflection_questions: Cu întrebări de reflecție
     without_reflection_questions: Fără întrebări de reflecție
@@ -4227,6 +4191,10 @@ ro:
       EntityTooLarge: Dimensiunea fișierului trebuie să fie mai mică de %{maxFileSize} MB
       WrongFileType: Tipul de fișier trebuie să fie unul dintre următoarele %{allowedFileTypes}
     idp:
+      can_not_complete_without_approval_and_in_progress: Nu puteți finaliza IDP-ul până când managerul nu îl aprobă și nu l-ați marcat ca "În curs".
+      can_not_start_without_approval: Nu puteți începe să lucrați la IDP până când managerul nu îl aprobă.
+      no_changes_to_compare: Nu există modificări de comparat pentru planul IDP.
+      no_previous_approved_plan: Nu s-a găsit niciun plan IDP aprobat anterior.
       reflective_questions_required: Răspunsurile la întrebările reflexive sunt necesare pentru IDP
       status_not_permitted: nu este permis de utilizator.
       status_not_permitted_by_manager: Managerul nu poate actualiza starea atunci când planul este în starea "%{status}".

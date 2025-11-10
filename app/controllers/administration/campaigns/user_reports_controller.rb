@@ -6,6 +6,7 @@ module Administration
   module Campaigns
     class UserReportsController < Administration::Campaigns::BaseController
       include UserReports::PdfGeneration
+
       before_action :ensure_project, except: %i[dashboard]
 
       before_action :set_resource, only: %i[show approve destroy download pdf_preview toggle_user_access

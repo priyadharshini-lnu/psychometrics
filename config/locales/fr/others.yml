@@ -389,6 +389,8 @@ fr:
               inclusion: Veuillez sélectionner le type de norme approprié
         user:
           attributes:
+            current_job_role:
+              not_found: "%{name} introuvable"
             email:
               user_exists_in_campaign: L'utilisateur avec cet identifiant e-mail existe déjà dans la campagne
               user_exists_in_project: L'utilisateur avec cet identifiant e-mail existe déjà dans le projet
@@ -408,6 +410,8 @@ fr:
               invalid_datetime: n'est pas valide
             schedule_start_date:
               invalid_datetime: n'est pas valide
+            target_job_role:
+              not_found: "%{name} introuvable"
         user_assessment:
           subject_and_assessment_exists: L'évaluation et l'appariement des matières existent déjà
         user_idp_development_action:
@@ -1461,6 +1465,7 @@ fr:
       export_occupations_job_scheduled: Professions L'exportation a été programmée avec succès
       export_reports_and_assessments_statuses_scheduled: La tâche d'exportation de rapports et d'évaluations a été programmée avec succès
       external_results_export_scheduled: La tâche d'exportation de l'évaluation externe a été programmée avec succès
+      no_participants_selected: Veuillez sélectionner au moins un participant pour continuer.
       norm_results_export_scheduled: La tâche d'exportation des résultats normalisés de l'évaluation a été programmée avec succès
       normalize_factor_scores_scheduled: Le travail de normalisation des scores factoriels a été planifié avec succès.
       raw_factor_export_scheduled: Le job d'exportation de l'évaluation des facteurs bruts a été planifié avec succès
@@ -1605,6 +1610,7 @@ fr:
       report_bundle_placeholder: Sélectionner un groupe de rapports
     messages:
       bulk_download_error: Le téléchargement en masse est limité à 1000 fichiers de rapport. Si vous avez sélectionné plusieurs langues, veuillez les réduire.
+      bulk_download_no_reports: Aucun rapport n’a été trouvé. Veuillez générer les rapports avant de les télécharger.
       bulk_download_successful: La tâche de téléchargement des rapports en bloc a été programmée avec succès
       export_report_data_scheduled: La tâche d'exportation des données du rapport a été programmée avec succès
     modals:
@@ -2135,121 +2141,6 @@ fr:
       send_paranoid_instructions: Si votre compte existe, vous recevrez dans quelques minutes un courriel contenant des instructions pour le déverrouiller.
       unlocked: Votre compte a été déverrouillé avec succès, veuillez vous connecter pour continuer.
       unprocessable_entity: Votre compte n'a pas pu être débloqué avec ce lien, veuillez contacter le support.
-  dry_errors:
-    errors:
-      add_edit_project:
-        invalid_subdomain_format: Format de sous-domaine incorrect.
-        reserved_subdomain: Le sous-domaine %{value} est réservé
-        uniq_subdomain: Le sous-domaine doit être unique.
-      add_manager:
-        cannot_be_self: L'utilisateur ne peut pas être assigné comme son propre gestionnaire
-        manager_not_found: Gestionnaire introuvable ou ne faisant pas partie du même projet
-        user_not_found: Utilisateur introuvable ou ne faisant pas partie du même projet
-      admin:
-        already_added: Admin avec email déjà ajouté.
-      already_assigned?: Impossible de lier cette évaluation - elle est déjà attribuée à "%{linked_assessor_form_name}".
-      already_invited: Cet utilisateur existe déjà dans le centre d'évaluation que vous essayez d'ajouter.
-      assessor_assessment:
-        already_added: Évaluation de l'Assesseur déjà ajoutée à la campagne.
-        lead_already_added: Une seule évaluation de l'évaluateur principal peut être ajoutée à la campagne.
-      campaign_factor:
-        code_already_exists: Un facteur portant le même code existe déjà.
-        invalid_lua_name: doit être un nom de variable lua valide
-        limit_exceeded: Vous avez atteint la limite maximale de %{limit} facteurs de campagne.
-        name_already_exists: Un facteur portant le même nom existe déjà.
-        rank_not_allowed: Seuls les facteurs dont le type de sortie est numérique peuvent être classés.
-      campaign_factor_group:
-        group_already_exists: Un groupe portant le même nom existe déjà.
-        last_factor_group: Impossible de supprimer le dernier groupe de facteurs de campagne.
-      campaign_idps:
-        idp_template_not_published: Ce modèle de PDI n'est pas encore publié, veuillez le publier avant de s'attaquer à la campagne.
-      cant_be_deleted: Cet enregistrement ne peut pas être supprimé
-      client_feature:
-        ai_assisted_idp_feature_error: Ne peut pas être vrai si la fonction des assistants d’IA est désactivée
-      create_superadmin:
-        uniq_email: L'email doit être unique.
-      development_actions:
-        only_global_skills_allowed: Les compétences sélectionnées doivent être des compétences globales.
-        skills_not_belong_to_project: Les compétences sélectionnées doivent appartenir au projet spécifié.
-        skills_required: Veuillez sélectionner au moins une compétence.
-      exceeded_subjects_count: Vous ne pouvez ajouter que %{count} sujets par invitation
-      filled?: ne peut être vide
-      idp_template:
-        content_required: Le contenu est requis pour les instructions
-        tag_or_skill_required: Veuillez sélectionner une étiquette ou une compétence lorsque l’option « Sélectionné » est sélectionnée.
-      invalid_name: seuls l'alphabet, les chiffres, les espaces, les tirets et les points sont autorisés comme caractères valides
-      invalid_value: déclaration invalide '%{value}' sur la ligne numéro %{row}
-      job_roles:
-        unique_within_job_group: Un rôle d'emploi portant le même nom existe déjà.
-      json?: Doit être un JSON valide
-      key?: ne peut être vide
-      match_regexp?: valeur non valide
-      mettl_schedule_record_create:
-        uniq_schedule_name: Le nom de l'horaire doit être unique
-      missed?: ne peut être vide
-      not_allowed?: n'est pas autorisé à changer
-      not_in_the_list?: valeur invalide transmise
-      not_uniq_variable: variable '%{value}' redéfinie sur la ligne numéro %{row}
-      project_assessments:
-        should_be_greater_than_zero: La validité du résultat doit être supérieure à 0 jour
-      project_feature:
-        global_skills_not_enabled_on_client: Pour activer les compétences globales pour ce projet, veuillez l’activer sous Feature Flags dans les paramètres du client.
-      report_approval_settings:
-        report_exists: Le paramètre d'approbation du rapport existe déjà pour ce rapport.
-        validates_admins: Les administrateurs n'ont pas accès à la campagne.
-      report_families_reports:
-        report_exists: Ce rapport fait déjà partie de l'ensemble de rapports
-      size?: doit être inférieure à %{size}
-      skill:
-        already_added: Compétence du même nom déjà ajoutée.
-      skill_alias:
-        unique_alias: L'alias doit être unique
-        unique_skill: Les compétences doivent être uniques
-      skills_job_roles:
-        must_belong_to_same_project_or_be_global: La compétence et le rôle professionnel doivent appartenir au même projet ou être globaux.
-        unique_mappings: Il existe déjà une correspondance avec les mêmes compétences et la même fonction.
-      uniq: Cette évaluation Mettl est déjà présente dans le système. L'identifiant de cette évaluation est %{id}
-      uniq?: doit être unique
-      uniq_simulation: Cette évaluation de simulation est déjà présente dans le système. L'identifiant de cette évaluation est %{id}
-      uniq_skillvue: Cette évaluation Skillvue est déjà présente dans le système. L'ID de cette évaluation est %{id}
-      update_workshop:
-        bookings_exist: Il n'est pas possible de modifier l'horaire car les participants ont déjà réservé ce créneau horaire.
-        less_than_booked: Le nombre total de places doit être supérieur au nombre de places réservées
-      user_availability_date:
-        overlaps_date: Chevauche une autre disponibilité %{range}
-        overlaps_time: Chevauchement de l'intervalle %{interval}
-        start_date_should_be_less: La date de début doit être inférieure à la date de fin
-        start_time_should_be_less: L'heure de début doit être inférieure à l'heure de fin
-      user_idp_plan:
-        idp_template_already_assigned_to_user: Ce modèle Idp est déjà attribué à cet utilisateur et est actif
-        idp_template_not_published: Ce modèle IDP n'est pas encore publié, veuillez le publier avant d'attribuer à l'utilisateur.
-      user_saved_filters:
-        limit_exceeded: Vous ne pouvez avoir qu'une %{limit} de filtres enregistrés, veuillez supprimer les filtres enregistrés pour en ajouter d'autres.
-        unique_name: Un filtre portant le même nom existe déjà.
-      workshop_invited_subject_create:
-        already_exists: Le sujet existe déjà dans l'invitation.
-      workshop_subject_create:
-        already_exists: Le sujet existe déjà dans ce centre d'évaluation.
-        part_of_other_workshop: Le sujet est déjà un participant de '%{workshop_name}'.
-      workshop_subject_re_enroll:
-        no_seats_available: Il n'y a pas de places disponibles pour cet atelier.
-        scheduling_lead_time_passed: Le délai de programmation est écoulé, vous ne pouvez pas réinscrire le sujet.
-        workshop_subject_not_found: Sujet de l'atelier non trouvé
-      workshops:
-        no_available_assessor_slots: Aucun créneau disponible pour l'évaluateur %{assessor}
-        no_available_manager_slots: Aucun emplacement disponible pour le manager %{manager}
-    idp_template:
-      content_required: Le contenu est requis pour les instructions
-      tag_or_skill_required: Seleziona un tag o un'abilità quando scegli l'opzione "Selezionato".
-    users:
-      registrations:
-        new:
-          register: Registre
-          sign_in: S'inscrire
-      sessions:
-        new:
-          register: Registre
-          sign_in: S'inscrire
   emails:
     nomination_approval_table:
       evaluator_name: Nom de l'évaluateur
@@ -2579,6 +2470,8 @@ fr:
       aria_selected: Sélectionné
   idp:
     actions: Actions
+    add_comments: Ajouter des commentaires
+    added_development_action: Ajout d’une action de développement
     ai:
       assistant:
         failure_fallback:
@@ -2635,6 +2528,7 @@ fr:
         title: Bonjour, je suis votre assistant de développement
     behavioral: Comportementale
     board: Conseil d'administration
+    change_history: Historique des modifications
     changes_saved_to_plan: Modifications enregistrées dans le plan
     comment_details:
       add_comment: Ajouter un commentaire
@@ -2643,14 +2537,23 @@ fr:
       add_reply_placeholder: Ajouter une réponse...
       go_to_skill: Aller à la compétence
     comments:
+      clear_comments_for_skill: Des commentaires clairs pour la compétence
       close: Fermer
+      comment_content: Comment content
+      comment_for_skill: Comment for skill
+      commented_at: Commenté à
+      commented_by: Commenté par
       comments: Commentaires
       filter_comments: Filtrer les commentaires
       mark_as_resolved: Marquer comme résolu
       mark_as_unresolved: Marquer comme non résolu
+      mark_comment_as_resolved: Marquer ce commentaire comme résolu
       replied: Répondu
+      replied_at: A répondu à
+      replied_by: Réponse de
       replies: Réponses
       reply: Répondre
+      reply_content: Contenu de la réponse
       resolve: Résoudre
       resolved: Résolu
       resolved_message: Ce commentaire a été résolu et les réponses sont désactivées.
@@ -2659,8 +2562,13 @@ fr:
       show_only_unread: Afficher uniquement les non lus
       show_only_unresolved: Afficher uniquement les non résolus
       sort_by_date: Trier par date
+      total_comments_count: Le nombre total de commentaires
+      total_count: Nombre total de commentaires
+      unread_replies_count: Les réponses non lues comptent
+      view_or_add: Afficher ou ajouter des commentaires pour %{skillName}
       you: Vous
     convert_to_draft: Convertir en brouillon
+    current_step: Étape actuelle %{step}
     delete_skill: Êtes-vous sûr de vouloir supprimer la compétence car cela supprimera également toutes les actions de développement connectées ?
     details: Détails
     development_actions:
@@ -2671,6 +2579,7 @@ fr:
       add_development_actions_modal_title: Bibliothèque d’actions de développement pour %{skillName}
       add_from_library: Ajouter à partir de la bibliothèque
       add_more: Ajouter d’autres actions de développement
+      add_selected_development_actions: Ajouter les actions de développement sélectionnées
       all: Tous
       approved: Approuvé
       board_view:
@@ -2685,10 +2594,15 @@ fr:
       custom: Coutume
       custom_da_description: Créez une action de développement personnalisée pour répondre à des besoins de développement uniques.
       date_range: Date de début - Date de fin
+      development_action_learning_style: Style d’apprentissage par l’action pour le développement
+      development_action_name: Description de l’action de développement
+      discard_draft: Jeter le brouillon
       edit_da_progress: Modifier l’avancement de l’action de développement
+      edit_development_action_progress: Modifier l’avancement de l’action de développement
       edit_plan_to_add_development_actions: Modifier le plan et ajouter des actions de développement.
       enter_development_action_description: Entrez la description de l’action de développement
       enter_development_action_title: Entrez le titre de l’action de développement
+      filter_development_actions: Actions de développement de filtres
       generate_by_ai: Générer par l'IA
       generate_more: Générer plus
       generating_development_actions: Générer des actions de développement...
@@ -2705,6 +2619,7 @@ fr:
       learning_from_others: Apprendre des autres
       learning_from_others_label: Apprendre des autres
       learning_on_the_job_label: Apprendre sur le tas
+      loading_development_actions: Chargement des actions de développement
       manage_skills: Gérer les compétences
       marathon: Marathon
       mark_as_complete: Marquer comme terminé
@@ -2715,6 +2630,8 @@ fr:
       publish_plan: Publier le plan
       remove: Retirer
       save_plan: Forfait d’épargne
+      search_development_actions: Recherche d’actions de développement
+      show_development_action_information: Afficher les informations sur les actions de développement
       skill: Compétence
       sprint: Sprint
       start_plan: Démarrer le plan
@@ -2722,14 +2639,31 @@ fr:
       structured_learning_label: Apprentissage collaboratif
       submit_plan: Soumettre le plan
       success: Actions de développement menées à bien
+      toggle_skill_privacy: Basculer la confidentialité des compétences
       write_here: Écrivez ici...
     direct_reportee_details: Détail des rapports directs
     download:
       description: 'Pour télécharger le rapport, veuillez suivre le lien : <a href=''''%{url}'''' target=''''_blank''''>Télécharger</a>. Le lien n’est valable que pendant 10 minutes'
+    download_plan: Télécharger le plan
     edit_plan: Modifier le plan
     edit_plan_and_add_skills: Modifiez le plan et cliquez sur Gérer les compétences pour ajouter des compétences.
     edit_progress: Modifier l'état d'avancement
     fetching_skill_gap_report: Rapport sur les écarts de compétences...
+    go_to_previous_step: Passer à l’étape précédente
+    history:
+      added_da:
+        one: Ajout d’une action de développement
+        other: Ajout d’actions de développement
+      changes:
+        end_date: Date de fin de %{from} à %{to}
+        progress: Progrès de %{from} à %{to}
+        start_date: Date de début de %{from} à %{to}
+      modified_da:
+        one: Mesures de développement modifiées
+        other: Actions de développement modifiées
+      removed_da:
+        one: Suppression de l’action de développement
+        other: Suppression des actions de développement
     initial_steps:
       add_skill_group_description: Sur la base des résultats de votre évaluation, voici quelques-uns de vos points forts et de vos domaines de développement. Choisissez les compétences que vous souhaitez développer dans le cadre de votre plan de développement.
       add_skill_group_title: Explorer vos compétences %{category}
@@ -2754,9 +2688,11 @@ fr:
       skill_column_header: Compétence
       skill_gap_report: Rapport sur les lacunes en matière de compétences
     list: Liste
+    loader_icon: Icône du chargeur
     manage_plan: Gérer le forfait
     mark_as_complete: Marquer comme terminé
     mark_as_incomplete: Marquer comme incomplet
+    modified_development_action: Mesures de développement modifiées
     my_plan:
       development_plan: Plan de développement
       graphs:
@@ -2879,10 +2815,18 @@ fr:
         skills_count: Nombre de compétences
         title: Résumé du rapport
     plan: Plan
+    plan_status: État du régime %{status}
+    plan_submitted_for_manager_approval: Votre plan de développement individuel a été soumis à l’approbation du gestionnaire.
+    private: Privé
+    public: Public
     reflective_questions:
       already_completed: Le PDI a déjà été complété, vous ne pouvez pas répondre aux questions maintenant.
+      answer: Répondre
       answer_later: Réponse plus tard
+      answer_limit: La réponse doit être comprise entre %{min} et %{max} mots
       answer_placeholder: Inscrivez votre réponse ici...
+      cancel_edited_answer: Annuler la réponse modifiée
+      edit_answer: Modifier la réponse
       errors:
         max_words: La réponse peut contenir un maximum de %{count} mots.
         min_words: La réponse nécessite au moins %{count} mots
@@ -2892,27 +2836,44 @@ fr:
       no_answer_provided: Aucune réponse n’a encore été apportée
       no_reflective_questions: Pas de questions de réflexion
       optional: "(Facultatif)"
+      question: Question
+      required: Cette question est obligatoire
+      save_edited_answer: Enregistrer la réponse modifiée
       title: Questions de réflexion
       update_failed: Une erreur s'est produite lors de la mise à jour
       updated_successfully: Vos réponses ont été mises à jour avec succès
       word_limit: Doit être compris entre %{min} et %{max} mots
       words: Mots
     remove_skill: Supprimer une compétence
+    remove_skill_from_plan: Supprimer %{name} de compétences du plan
+    removed_development_action: Suppression de l’action de développement
+    report_preview: Aperçu du rapport
+    search_and_select_skills_of_skill_type: Recherchez et sélectionnez %{skillType} compétences
+    select_skills_of_skill_type: Sélectionnez %{skillType} compétences
+    selected_skills_of_skill_type: Compétences %{skillType} sélectionnées
     skill_gap_report:
+      content: Contenu du rapport sur les écarts de compétences
       download: Télécharger le rapport sur les lacunes en matière de compétences
       title: Rapport sur les lacunes en matière de compétences
+    skill_status: La compétence %{name} est privée
     skills_updated: Compétences mises à jour dans le Plan
     status: Statut
     suggestions: Suggestions
+    suggestions_for_skill_type: Suggestions pour %{skillType} compétences
+    summary: Résumé
+    summary_logs: Journaux récapitulatifs pour %{reporteeName}
     technical: Technique
     user_idp_status:
       approved: Approuvé
       completed: Terminé
+      completion_not_started: Achèvement non commencé
       draft: Projet
       in_progress: En cours
+      in_review: En revue
       not_started: Non démarré
       pending_approval: En attente
       rejected: Rejeté
+      start_review: Démarrer l’examen
     users: Utilisateurs
     with_reflection_questions: Avec des questions de réflexion
     without_reflection_questions: Sans questions de réflexion
@@ -4231,6 +4192,10 @@ fr:
       EntityTooLarge: La taille du fichier doit être inférieure à %{maxFileSize} MB
       WrongFileType: Le type de fichier doit être l'un des suivants %{allowedFileTypes}
     idp:
+      can_not_complete_without_approval_and_in_progress: Vous ne pouvez pas terminer votre IDP tant que votre responsable ne l’a pas approuvé et que vous ne l’avez pas marqué comme « En cours ».
+      can_not_start_without_approval: Vous ne pouvez pas commencer à travailler sur votre IDP tant que votre responsable ne l’a pas approuvé.
+      no_changes_to_compare: Aucun changement à comparer pour le plan IDP.
+      no_previous_approved_plan: Aucun plan de PDI approuvé n’a été trouvé.
       reflective_questions_required: Des réponses à des questions de réflexion sont requises pour les PDI
       status_not_permitted: n’est pas autorisé par l’utilisateur.
       status_not_permitted_by_manager: Le gestionnaire ne peut pas mettre à jour le statut lorsque le plan est à l’état « %{status} ».

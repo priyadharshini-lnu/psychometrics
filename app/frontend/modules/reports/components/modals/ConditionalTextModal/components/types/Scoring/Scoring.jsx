@@ -2,8 +2,13 @@ import { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { CAMPAIGN_FACTORS, DATA_SHEET } from '~/modules/reports/models/Module'
+import {
+  CUSTOM_FACTOR_VALUE_FIELDS,
+} from '~/modules/reports/consts/Report'
 import localStyles from './Scoring.less'
 import styles from '../../Condition.less'
+
+const { I18n } = window
 
 export class Scoring extends Component {
   static propTypes = {
@@ -27,27 +32,10 @@ export class Scoring extends Component {
     return factors[assessment.dimension_id]
   }
 
-  changeSubject = (e) => {
+  changePropsValue = (e, propsKey) => {
+    if (!propsKey) return
     const { condition } = this.props
-    condition.props.subject = e.currentTarget.value
-    this.forceUpdate()
-  }
-
-  changeValue = (e) => {
-    const { condition } = this.props
-    condition.props.value = e.currentTarget.value
-    this.forceUpdate()
-  }
-
-  changePredicate = (e) => {
-    const { condition } = this.props
-    condition.props.predicate = e.currentTarget.value
-    this.forceUpdate()
-  }
-
-  changeOperation = (e) => {
-    const { condition } = this.props
-    condition.props.operation = e.currentTarget.value
+    condition.props[propsKey] = e.currentTarget.value
     this.forceUpdate()
   }
 
@@ -63,18 +51,34 @@ export class Scoring extends Component {
       <div className={styles.questionDock}>
         <select
           value={condition.props.subject}
-          onChange={this.changeSubject}
-          className={`form-control ${localStyles.subjectSelect}`}
+          onChange={e => this.changePropsValue(e, 'subject')}
+          className={`form-control ${localStyles.predicateSelect}`}
         >
           <option value="" selected hidden>{I18n.t('activemodel.attributes.scoring.select_factors')}</option>
           {subjects?.map(factor => (
             <option key={factor.id} value={factor.id}>{factor.alias || factor.name}</option>
           ))}
         </select>
+        {condition.type === 'Factor' && (
+          <select
+            value={condition.props.customFactorValueField}
+            onChange={e => this.changePropsValue(e, 'customFactorValueField')}
+            className={`form-control ${localStyles.predicateSelect}`}
+          >
+            <option value="" selected>
+              {I18n.t('administration.report_builder.property_panel.custom_factor_fields.default_score')}
+            </option>
+            {CUSTOM_FACTOR_VALUE_FIELDS.map(field => (
+              <option value={field}>
+                {I18n.t(`administration.report_builder.property_panel.custom_factor_fields.${field}`)}
+              </option>
+            ))}
+          </select>
+        )}
         <select
           value={condition.props.operation}
-          onChange={this.changeOperation}
-          className={`form-control ${localStyles.predicateSelect}`}
+          onChange={e => this.changePropsValue(e, 'operation')}
+          className={`form-control ${localStyles.predicateSelect} ${localStyles.smWidth}`}
         >
           <option value="" hidden selected>
             {I18n.t('activemodel.attributes.scoring.select_operation')}
@@ -85,8 +89,8 @@ export class Scoring extends Component {
         </select>
         <select
           value={condition.props.predicate}
-          onChange={this.changePredicate}
-          className={`form-control ${localStyles.predicateSelect}`}
+          onChange={e => this.changePropsValue(e, 'predicate')}
+          className={`form-control ${localStyles.predicateSelect} ${localStyles.lgWidth}`}
         >
           <option value="" hidden selected>{I18n.t('activemodel.attributes.scoring.select_comparison')}</option>
           <option value="EqualTo">Equal To</option>
@@ -97,9 +101,9 @@ export class Scoring extends Component {
           <option value="LessThenOrEqual">Less Than Or Equal To</option>
         </select>
         <input
-          className={`form-control ${localStyles.subjectSelect}`}
+          className={`form-control ${localStyles.predicateSelect} ${localStyles.smWidth}`}
           value={value}
-          onChange={this.changeValue}
+          onChange={e => this.changePropsValue(e, 'value')}
           placeholder={I18n.t('activemodel.attributes.numeric_comparator.enter_value')}
         />
       </div>

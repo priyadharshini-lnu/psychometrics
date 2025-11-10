@@ -22,6 +22,7 @@ const useAvoidMultipleEvaluation = (assessmentId, result, validateSession) => {
           })
       }, 15000)
 
+      // deepcode ignore InsufficientPostmessageValidation: BroadcastChannel is inherently same-origin
       evaluationSessionIdCheckChannel.addEventListener('message', (e) => {
         if (e.data.type === 'DuplicateEvaluationSessionIdFound' && e.data.evaluationSessionId === evaluationSessionId) {
           location.reload()

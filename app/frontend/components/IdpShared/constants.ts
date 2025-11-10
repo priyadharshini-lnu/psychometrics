@@ -16,6 +16,7 @@ export const USER_IDP_PLAN_STATUS = {
   NOT_STARTED: 'not_started',
   DRAFT: 'draft',
   PENDING_APPROVAL: 'pending_approval',
+  IN_REVIEW: 'in_review',
   IN_PROGRESS: 'in_progress',
   COMPLETED: 'completed',
   APPROVED: 'approved',

@@ -389,6 +389,8 @@ nl:
               inclusion: Selecteer het juiste normtype
         user:
           attributes:
+            current_job_role:
+              not_found: "%{name} niet gevonden"
             email:
               user_exists_in_campaign: Gebruiker met dit e-mailadres bestaat al in de campagne
               user_exists_in_project: Gebruiker met dit e-mailadres bestaat al in het project
@@ -408,6 +410,8 @@ nl:
               invalid_datetime: is ongeldig
             schedule_start_date:
               invalid_datetime: is ongeldig
+            target_job_role:
+              not_found: "%{name} niet gevonden"
         user_assessment:
           subject_and_assessment_exists: Er bestaat al een beoordelings- en vakkenpaar
         user_idp_development_action:
@@ -1461,6 +1465,7 @@ nl:
       export_occupations_job_scheduled: Beroepen Exporttaak is succesvol ingepland
       export_reports_and_assessments_statuses_scheduled: De taak Exportrapporten en beoordelingen is met succes gepland
       external_results_export_scheduled: De exporttaak voor externe beoordelingen is met succes gepland
+      no_participants_selected: Selecteer ten minste één deelnemer om door te gaan.
       norm_results_export_scheduled: Exporttaak Assessment Normed Results is met succes gepland
       normalize_factor_scores_scheduled: De taak voor het normaliseren van factorscores is met succes ingepland.
       raw_factor_export_scheduled: Beoordeling Raw Factor exporttaak is succesvol gepland
@@ -1605,6 +1610,7 @@ nl:
       report_bundle_placeholder: Selecteer een rapportbundel
     messages:
       bulk_download_error: Bulkdownload is beperkt tot 1000 rapportbestanden. Als je veel talen hebt geselecteerd, verklein dit dan.
+      bulk_download_no_reports: Geen meldingen gevonden. Genereer de rapporten voordat u ze downloadt.
       bulk_download_successful: De downloadtaak voor bulkrapporten is met succes gepland
       export_report_data_scheduled: De exporttaak voor rapportgegevens is met succes gepland
     modals:
@@ -2135,118 +2141,6 @@ nl:
       send_paranoid_instructions: Als je account bestaat, ontvang je binnen enkele minuten een e-mail met instructies om het te ontgrendelen.
       unlocked: Uw account is succesvol ontgrendeld. Log in om verder te gaan.
       unprocessable_entity: Uw account kon niet worden ontgrendeld met deze link. Neem contact op met ondersteuning.
-  dry_errors:
-    errors:
-      add_edit_project:
-        invalid_subdomain_format: Verkeerd subdomeinformaat.
-        reserved_subdomain: Subdomein %{value} is gereserveerd
-        uniq_subdomain: Subdomein moet uniek zijn.
-      add_manager:
-        cannot_be_self: Gebruiker kan niet worden toegewezen als zijn eigen manager
-        manager_not_found: Manager niet gevonden of geen onderdeel van hetzelfde project
-        user_not_found: Gebruiker niet gevonden of maakt geen deel uit van hetzelfde project
-      admin:
-        already_added: Admin met e-mail al toegevoegd.
-      already_assigned?: Kan deze beoordeling niet koppelen - ze is al toegewezen aan '%{linked_assessor_form_name}'.
-      already_invited: Deze gebruiker bestaat al in het beoordelingscentrum dat u probeert toe te voegen.
-      assessor_assessment:
-        already_added: Assessor Beoordeling al toegevoegd aan campagne.
-        lead_already_added: Er kan slechts één Lead Assessor Assessment aan een campagne worden toegevoegd.
-      campaign_factor:
-        code_already_exists: Er bestaat al een factor met dezelfde code.
-        invalid_lua_name: moet een geldige lua-variabele naam zijn
-        limit_exceeded: U hebt de maximale limiet van %{limit} campagnefactoren bereikt.
-        name_already_exists: Er bestaat al een factor met dezelfde naam.
-        rank_not_allowed: Alleen factoren met een uitvoertype numeriek kunnen gerangschikt worden.
-      campaign_factor_group:
-        group_already_exists: Er bestaat al een groep met dezelfde naam.
-        last_factor_group: Kan laatste Campagnefactor-groep niet verwijderen.
-      campaign_idps:
-        idp_template_not_published: Deze IDP -sjabloon is nog niet gepubliceerd, publiceer deze voordat u de campagne toewijst.
-      cant_be_deleted: Deze record kan niet worden verwijderd
-      client_feature:
-        ai_assisted_idp_feature_error: Kan niet waar zijn als de functie voor ai-assistenten is uitgeschakeld
-      create_superadmin:
-        uniq_email: E-mail moet uniek zijn.
-      development_actions:
-        only_global_skills_allowed: De geselecteerde vaardigheden moeten globale vaardigheden zijn.
-        skills_not_belong_to_project: De geselecteerde vaardigheden moeten bij het opgegeven project horen.
-        skills_required: Selecteer minstens één vaardigheid.
-      exceeded_subjects_count: Je kunt alleen %{count} onderwerpen per uitnodiging toevoegen
-      filled?: kan niet leeg zijn
-      idp_template:
-        content_required: Inhoud is vereist voor instructies
-        tag_or_skill_required: Selecteer een tag of vaardigheid wanneer de optie "Geselecteerd" wordt gekozen.
-      invalid_name: alleen alfabet, cijfer, spaties, streepje en punt zijn toegestaan als geldig teken
-      invalid_value: ongeldige instructie '%{value}' op regelnummer %{row}
-      job_roles:
-        unique_within_job_group: Er bestaat al een functierol met dezelfde naam.
-      json?: Moet geldige JSON zijn
-      key?: kan niet leeg zijn
-      match_regexp?: ongeldige waarde
-      mettl_schedule_record_create:
-        uniq_schedule_name: De naam van het schema moet uniek zijn
-      missed?: kan niet leeg zijn
-      not_allowed?: niet toegestaan om te veranderen
-      not_in_the_list?: ongeldige waarde doorgegeven
-      not_uniq_variable: variabele '%{value}' geherdefinieerd op regelnummer %{row}
-      project_assessments:
-        should_be_greater_than_zero: De geldigheidsduur van het resultaat moet groter zijn dan 0 dagen
-      project_feature:
-        global_skills_not_enabled_on_client: Om Global Skills voor dit project in te schakelen, activeert u het onder Functievlaggen in de klantinstellingen.
-      report_approval_settings:
-        report_exists: Er bestaat al een goedkeuringsinstelling voor dit rapport.
-        validates_admins: Admins hebben geen toegang tot de campagne.
-      report_families_reports:
-        report_exists: Dit rapport maakt al deel uit van Rapportbundel
-      size?: grootte moet kleiner zijn %{size}
-      skill:
-        already_added: Vaardigheid met dezelfde naam al toegevoegd.
-      skill_alias:
-        unique_alias: Alias moet uniek zijn
-        unique_skill: Vaardigheden moeten uniek zijn
-      skills_job_roles:
-        must_belong_to_same_project_or_be_global: Vaardigheid en functie moeten bij hetzelfde project horen of globaal zijn.
-        unique_mappings: Er bestaat al een mapping met dezelfde vaardigheid en functie.
-      uniq: Deze Mettl beoordeling is al aanwezig in het systeem. ID van deze beoordeling is %{id}
-      uniq?: moet uniek zijn
-      uniq_simulation: Deze Simulatie beoordeling is al aanwezig in het systeem. ID van deze beoordeling is %{id}
-      uniq_skillvue: Deze Skillvue beoordeling is al aanwezig in het systeem. ID van deze beoordeling is %{id}
-      update_workshop:
-        bookings_exist: Kan het schema niet wijzigen omdat deelnemers dit tijdslot al hebben geboekt.
-        less_than_booked: Het totaal aantal geboekte zitplaatsen moet groter zijn dan
-      user_availability_date:
-        overlaps_date: Overlapt een andere beschikbaarheid %{range}
-        overlaps_time: Overlapt interval %{interval}
-        start_date_should_be_less: De begindatum moet korter zijn dan de einddatum
-        start_time_should_be_less: Starttijd moet korter zijn dan eindtijd
-      user_idp_plan:
-        idp_template_already_assigned_to_user: Dit Idp-sjabloon is al toegewezen aan deze gebruiker en is actief
-        idp_template_not_published: Deze IDP -sjabloon is nog niet gepubliceerd, publiceer deze voordat u de gebruiker toewijst.
-      user_saved_filters:
-        limit_exceeded: Je kunt maar %{limit} opgeslagen filters hebben. Verwijder opgeslagen filters om er meer toe te voegen.
-        unique_name: Er bestaat al een filter met dezelfde naam.
-      workshop_invited_subject_create:
-        already_exists: Het onderwerp bestaat al in de uitnodiging.
-      workshop_subject_create:
-        already_exists: Het onderwerp bestaat al in dit Assessment Center.
-        part_of_other_workshop: Onderwerp is al deelnemer van '%{workshop_name}'.
-      workshop_subject_re_enroll:
-        no_seats_available: Er zijn geen plaatsen beschikbaar voor deze workshop.
-        scheduling_lead_time_passed: Als de Scheduling Lead Time voorbij is, kun je het onderwerp niet opnieuw inschrijven.
-        workshop_subject_not_found: Workshop onderwerp niet gevonden
-      workshops:
-        no_available_assessor_slots: Geen beschikbare slots voor beoordelaar %{assessor}
-        no_available_manager_slots: Geen beschikbare slots voor manager %{manager}
-    users:
-      registrations:
-        new:
-          register: Registreer
-          sign_in: Aanmelden
-      sessions:
-        new:
-          register: Registreer
-          sign_in: Aanmelden
   emails:
     nomination_approval_table:
       evaluator_name: Naam beoordelaar
@@ -2576,6 +2470,8 @@ nl:
       aria_selected: Geselecteerd
   idp:
     actions: Acties
+    add_comments: Opmerkingen toevoegen
+    added_development_action: Ontwikkelingsactie toegevoegd
     ai:
       assistant:
         failure_fallback:
@@ -2632,6 +2528,7 @@ nl:
         title: Hallo, ik ben je ontwikkelingsassistent
     behavioral: Gedrag
     board: Raad van bestuur
+    change_history: Geschiedenis van de wijziging
     changes_saved_to_plan: Wijzigingen die in het plan zijn opgeslagen
     comment_details:
       add_comment: Opmerking toevoegen
@@ -2640,14 +2537,23 @@ nl:
       add_reply_placeholder: Antwoord toevoegen...
       go_to_skill: Ga naar vaardigheid
     comments:
+      clear_comments_for_skill: Duidelijke opmerkingen voor vaardigheid
       close: Sluiten
+      comment_content: Hoe inhoud
+      comment_for_skill: Reageer voor vaardigheid
+      commented_at: Becommentarieerd op
+      commented_by: Becommentarieerd door
       comments: Opmerkingen
       filter_comments: Opmerkingen filteren
       mark_as_resolved: Markeren als opgelost
       mark_as_unresolved: Markeren als onopgelost
+      mark_comment_as_resolved: Deze opmerking markeren als opgelost
       replied: Beantwoord
+      replied_at: Gereageerd op
+      replied_by: Beantwoord door
       replies: Antwoorden
       reply: Antwoorden
+      reply_content: Inhoud beantwoorden
       resolve: Oplossen
       resolved: Opgelost
       resolved_message: Deze opmerking is opgelost en antwoorden zijn uitgeschakeld.
@@ -2656,8 +2562,13 @@ nl:
       show_only_unread: Alleen ongelezen tonen
       show_only_unresolved: Alleen onopgeloste tonen
       sort_by_date: Sorteren op datum
+      total_comments_count: Totaal aantal reacties
+      total_count: Totaal aantal reacties
+      unread_replies_count: Ongelezen antwoorden tellen mee
+      view_or_add: Opmerkingen voor %{skillName} weergeven of toevoegen
       you: Jij
     convert_to_draft: Converteren naar concept
+    current_step: Huidige stap %{step}
     delete_skill: Weet je zeker dat je vaardigheid wilt verwijderen omdat dan ook alle verbonden ontwikkelingsacties worden verwijderd?
     details: Details
     development_actions:
@@ -2668,6 +2579,7 @@ nl:
       add_development_actions_modal_title: Bibliotheek met ontwikkelingsacties voor %{skillName}
       add_from_library: Toevoegen uit bibliotheek
       add_more: Voeg meer ontwikkelingsacties toe
+      add_selected_development_actions: Geselecteerde ontwikkelingsacties toevoegen
       all: Alle
       approved: Goedgekeurd
       board_view:
@@ -2682,10 +2594,15 @@ nl:
       custom: Gewoonte
       custom_da_description: Maak een aangepaste ontwikkelingsactie om aan unieke ontwikkelingsbehoeften te voldoen.
       date_range: Startdatum - Einddatum
+      development_action_learning_style: Ontwikkeling Actie Leerstijl
+      development_action_name: Beschrijving van de ontwikkelingsactie
+      discard_draft: Ontwerp weggooien
       edit_da_progress: Voortgang ontwikkelingsactie bewerken
+      edit_development_action_progress: Voortgang ontwikkelingsactie bewerken
       edit_plan_to_add_development_actions: Plan bewerken en ontwikkelingsacties toevoegen.
       enter_development_action_description: Voer de beschrijving van de ontwikkelingsactie in
       enter_development_action_title: Voer de titel van de ontwikkelingsactie in
+      filter_development_actions: Filter ontwikkelingsacties
       generate_by_ai: Genereren door AI
       generate_more: Meer genereren
       generating_development_actions: Ontwikkelingsacties genereren...
@@ -2702,6 +2619,7 @@ nl:
       learning_from_others: Leren van anderen
       learning_from_others_label: Leren van anderen
       learning_on_the_job_label: Leren op de werkvloer
+      loading_development_actions: Ontwikkelingsacties laden
       manage_skills: Vaardigheden beheren
       marathon: Marathon
       mark_as_complete: Markeren als voltooid
@@ -2712,6 +2630,8 @@ nl:
       publish_plan: Plan publiceren
       remove: Verwijder
       save_plan: Abonnement opslaan
+      search_development_actions: Acties voor zoekontwikkeling
+      show_development_action_information: Toon informatie over ontwikkelingsacties
       skill: Vaardigheid
       sprint: Sprint
       start_plan: Start Plan
@@ -2719,14 +2639,31 @@ nl:
       structured_learning_label: Samenwerkend leren
       submit_plan: Plan indienen
       success: Ontwikkelingsacties succesvol afgerond
+      toggle_skill_privacy: Schakel Skill Privacy in
       write_here: Schrijf hier...
     direct_reportee_details: Details van directe verslaggevers
     download:
       description: 'Volg de link om het rapport te downloaden: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Link is slechts 10 minuten geldig'
+    download_plan: Abonnement downloaden
     edit_plan: Plan bewerken
     edit_plan_and_add_skills: Bewerk Plan en en klik op Vaardigheden beheren om Vaardigheden toe te voegen.
     edit_progress: Vooruitgang bewerken
     fetching_skill_gap_report: Rapport over lacunes in vaardigheden ophalen...
+    go_to_previous_step: Ga naar de vorige stap
+    history:
+      added_da:
+        one: Ontwikkelingsactie toegevoegd
+        other: Ontwikkelingsacties toegevoegd
+      changes:
+        end_date: Einddatum van %{from} tot %{to}
+        progress: Voortgang van %{from} naar %{to}
+        start_date: Startdatum van %{from} tot %{to}
+      modified_da:
+        one: Gewijzigde ontwikkelingsactie
+        other: Gewijzigde ontwikkelingsacties
+      removed_da:
+        one: Verwijderde ontwikkelingsactie
+        other: Verwijderde ontwikkelingsacties
     initial_steps:
       add_skill_group_description: Op basis van de resultaten van je assessment zijn hier een aantal sterke punten en ontwikkelingsgebieden voor jou. Kies de vaardigheden die je verder wilt ontwikkelen als onderdeel van je ontwikkelingsplan.
       add_skill_group_title: Je %{category} vaardigheden verkennen
@@ -2751,9 +2688,11 @@ nl:
       skill_column_header: Vaardigheid
       skill_gap_report: Rapport over vaardigheidskloof
     list: Lijst
+    loader_icon: Pictogram van de lader
     manage_plan: Plan beheren
     mark_as_complete: Markeer als voltooid
     mark_as_incomplete: Markeren als onvolledig
+    modified_development_action: Gewijzigde ontwikkelingsactie
     my_plan:
       development_plan: Ontwikkelingsplan
       graphs:
@@ -2848,10 +2787,18 @@ nl:
         skills_count: Vaardigheden tellen
         title: Samenvatting van het rapport
     plan: Plan
+    plan_status: Plan Status %{status}
+    plan_submitted_for_manager_approval: Uw Individueel Ontwikkelingsplan is ter goedkeuring voorgelegd aan de manager.
+    private: Privé
+    public: Publiek
     reflective_questions:
       already_completed: De IDP is al voltooid, u kunt de vragen nu niet beantwoorden.
+      answer: Antwoorden
       answer_later: Later antwoorden
+      answer_limit: Het antwoord moet tussen %{min} en %{max} woorden liggen
       answer_placeholder: Schrijf hier je antwoord...
+      cancel_edited_answer: Geannuleerd bewerkt antwoord
+      edit_answer: Antwoord bewerken
       errors:
         max_words: Het antwoord staat een maximum van %{count} woorden toe
         min_words: Het antwoord vereist ten minste %{count} woorden
@@ -2861,27 +2808,44 @@ nl:
       no_answer_provided: Nog geen antwoord gegeven
       no_reflective_questions: Geen reflectieve vragen
       optional: "(Optioneel)"
+      question: Vraag
+      required: Deze vraag is verplicht
+      save_edited_answer: Bewerkt antwoord opslaan
       title: Reflectieve vragen
       update_failed: Er is een fout opgetreden tijdens de update
       updated_successfully: Uw antwoorden zijn met succes bijgewerkt
       word_limit: Moet tussen %{min} en %{max} woorden liggen
       words: Woorden
     remove_skill: Vaardigheid verwijderen
+    remove_skill_from_plan: Vaardigheids %{name} uit plan verwijderen
+    removed_development_action: Verwijderde ontwikkelingsactie
+    report_preview: Voorbeeld van rapport
+    search_and_select_skills_of_skill_type: Zoek en selecteer %{skillType} vaardigheden
+    select_skills_of_skill_type: Selecteer %{skillType} vaardigheden
+    selected_skills_of_skill_type: Geselecteerde %{skillType} vaardigheden
     skill_gap_report:
+      content: Inhoud van het rapport over vaardigheidskloof
       download: Download het rapport over vaardigheidstekorten
       title: Rapport over vaardigheidskloof
+    skill_status: Vaardigheid %{name} privé is
     skills_updated: Vaardigheden bijgewerkt in het plan
     status: Status
     suggestions: Suggesties
+    suggestions_for_skill_type: Suggesties voor %{skillType} vaardigheden
+    summary: Samenvatting
+    summary_logs: Overzichtslogboeken voor %{reporteeName}
     technical: Technisch
     user_idp_status:
       approved: Goedgekeurd
       completed: Volbracht
+      completion_not_started: Oplevering niet gestart
       draft: Ontwerp
       in_progress: In uitvoering
+      in_review: In recensie
       not_started: Niet gestart
       pending_approval: In afwachting van
       rejected: Afgekeurd
+      start_review: Start beoordeling
     users: Gebruikers
     with_reflection_questions: Met reflectievragen
     without_reflection_questions: Zonder reflectievragen
@@ -4200,6 +4164,10 @@ nl:
       EntityTooLarge: De bestandsgrootte moet kleiner zijn dan %{maxFileSize} MB
       WrongFileType: Het bestandstype moet een van de volgende %{allowedFileTypes} zijn
     idp:
+      can_not_complete_without_approval_and_in_progress: U kunt uw IDP pas voltooien als uw manager deze goedkeurt en u deze hebt gemarkeerd als 'In uitvoering'.
+      can_not_start_without_approval: U kunt pas aan uw IDP gaan werken als uw manager deze goedkeurt.
+      no_changes_to_compare: Geen wijzigingen om te vergelijken voor IDP-plan.
+      no_previous_approved_plan: Geen eerder goedgekeurd IDP-plan gevonden.
       reflective_questions_required: Antwoorden op reflectieve vragen zijn vereist voor IDP
       status_not_permitted: is niet toegestaan door de gebruiker.
       status_not_permitted_by_manager: De manager kan de status niet bijwerken wanneer het abonnement de status '%{status}' heeft.

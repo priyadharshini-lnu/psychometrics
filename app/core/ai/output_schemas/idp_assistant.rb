@@ -14,7 +14,6 @@ module AI
         - `message`: Single message string (plain text only)
         - `suggestions`: Array of possible responses by the user to the message of assistant (can be empty)
         - `component`: One of: AssistantMessage, RequestDocument, Summary, RetakeSteps, IdpCreated
-        - `checkpoint`: Optional field for internal reasoning/state (not shown to user, can be null/empty unless specified on what to store here)
         - `data`: Object (required for Summary component only)
 
         **Summary Component Schema:**
@@ -43,10 +42,6 @@ module AI
           RetakeSteps: Should be used when user does not want to proceed with plan creation after summary generation.
           IdpCreated: Inform user that IDP has been created successfully. Should be used only AFTER the IDP is created as it redirects to user's plan page.
         DESC
-
-      string :checkpoint,
-             description: 'Optional field for internal assistant reasoning/state tracking. Not shown to user. ' \
-                          'Should be empty unless specified to add.'
 
       object :data, description: 'Additional data to be sent when using Summary component' do
         string :document_summary, description: <<~DESC

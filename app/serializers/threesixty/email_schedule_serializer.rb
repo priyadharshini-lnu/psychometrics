@@ -16,7 +16,7 @@ module Threesixty
     def recipient
       recipient_criteria = object.recipient_criteria
 
-      return user_email(recipient_ids.first) if recipient_ids.count == 1
+      return user_email(recipient_ids.first) if recipient_ids.one?
 
       subset_or_all = recipient_criteria.blank? ? 'All' : 'Subset of '
 

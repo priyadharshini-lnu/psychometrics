@@ -17,6 +17,8 @@ module Campaigns
         schedule_end_date
         created_at
         manager_email
+        current_job_role
+        target_job_role
       ].freeze
 
       def initialize(import_data, campaign)

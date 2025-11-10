@@ -67,25 +67,35 @@ const InitialStepsComponent = ({
     {
       title: I18n.t('idp.initial_steps.getting_started'),
       step: STEPS.gettingStarted,
+      ariaHidden: true,
+      ariaLabel: 'Getting Started Step',
     },
     {
       title: I18n.t('idp.initial_steps.skill_gap_report'),
       hide: !skillGapReportAvailable,
       step: STEPS.skillGapReport,
+      ariaHidden: true,
+      ariaLabel: 'Skill Gap Report Step',
     },
     {
       title: I18n.t('idp.initial_steps.add_skills_step'),
       step: STEPS.addSkills,
+      ariaHidden: true,
+      ariaLabel: 'Add Skills Step',
     },
     {
       title: I18n.t('idp.initial_steps.rate_skills'),
       hide: !selfRatingEnabled,
       step: STEPS.rateSkills,
+      ariaHidden: true,
+      ariaLabel: 'Rate Skills Step',
     },
     {
       title: I18n.t('idp.initial_steps.reflective_questions'),
       hide: reflectionQuestions.length === 0,
       step: STEPS.reflectionQuestions,
+      ariaHidden: true,
+      ariaLabel: 'Reflective Questions Step',
     },
   ]
 
@@ -158,7 +168,13 @@ const InitialStepsComponent = ({
       {isLoading ? <Flex className="h-full" align="center"><Spin size="large" /></Flex>
         : (
           <Layout.Content className={cs(styles.pageContent, isMobile && styles['padding-0'])}>
-            <div className="pt-4 mb-4">
+            <div
+              role="region"
+              aria-label={currentStep !== -1 ? `${I18n.t('idp.current_step',
+                { step: visibleSteps[currentStep].title })}`
+                : undefined}
+              className="pt-4 mb-4"
+            >
               <Steps
                 direction="horizontal"
                 responsive={false}
@@ -166,6 +182,7 @@ const InitialStepsComponent = ({
                 items={isMobile || isTablet || isDesktop ? visibleSteps.map(() => ({ title: '' }))
                   : visibleSteps.map(({ title }) => ({ title }))
                   }
+                aria-hidden="true"
               />
             </div>
             {paramStep === STEPS.gettingStarted && (

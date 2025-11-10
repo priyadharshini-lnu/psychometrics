@@ -119,10 +119,10 @@ describe AdminJobs::SkillvueResultExport do
         csv = CSV.read(active_storage_file_path(job_record.file), headers: true)
 
         expect(csv.count).to eq(2) # 2 data rows
-        scores = csv.map { |row| row['Skills Matching Percentage'] }
+        scores = csv.pluck('Skills Matching Percentage')
         expect(scores).to match_array(%w[65 75])
 
-        analyses = csv.map { |row| row['Overall Analysis'] }
+        analyses = csv.pluck('Overall Analysis')
         expect(analyses).to match_array([
           'Good teamwork and collaboration skills demonstrated',
           'Excellent communication and leadership'

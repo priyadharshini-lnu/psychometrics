@@ -208,6 +208,7 @@ vi:
           projectSettings:
             assessments: Đánh giá
             design: Thiết kế
+            feature_flags: Cờ tính năng
             idp: IDP
             integrations: Tích hợp
             privacy_settings: Cài đặt quyền riêng tư
@@ -3147,15 +3148,40 @@ vi:
             no_auth:
               label: Không ai
               value: no_auth
+            oauth:
+              label: OAuth
+              value: oauth
+          client_credentials:
+            label: Thông tin đăng nhập khách hàng
+            value: client_credentials
+          client_id:
+            label: ID khách hàng
+            name: oauth_client_id
+            required: ID khách hàng là bắt buộc
+          client_secret:
+            label: Bí mật khách hàng
+            name: oauth_client_secret
+            required: Bí mật khách hàng là bắt buộc
           description:
             label: Sự miêu tả
             name: sự miêu tả
+          grant_type:
+            label: Loại tài trợ
+            name: oauth_grant_type
           include_locales:
             label: Bao gồm bản dịch
             name: include_locales
+          oauth_scope:
+            label: Phạm vi
+            name: oauth_scope
+            required: Phạm vi là bắt buộc
           password:
             label: Mật khẩu
             name: mật khẩu
+          token_url:
+            label: URL mã thông báo
+            name: oauth_token_url
+            required: URL mã thông báo là bắt buộc
           topics:
             label: Sự kiện
             list:
@@ -3475,6 +3501,7 @@ vi:
         add_new_condition: Thêm điều kiện mới
         apply_color_label: 'Sau đó áp dụng màu sau:'
         custom_factor_fields:
+          default_score: Điểm
           percentage: Tỷ lệ phần trăm
           questions_attempted: Cố gắng
           questions_correct: Đúng
@@ -3510,6 +3537,7 @@ vi:
         prefixes:
           and: VÀ
           or: HOẶC
+        prevent_value_overlap: Ngăn chặn trùng lặp giá trị
         skill_type_label: Lọc theo loại kỹ năng
         skill_type_placeholder: Chọn loại kỹ năng
         skill_types:
@@ -3790,6 +3818,7 @@ vi:
         start_time: Ngày giờ
         subject: Chủ đề
         title: Tiêu đề
+        view_recording: Xem bản ghi
       errors:
         assessor_already_assigned: Người đánh giá đã được chỉ định cho bài đánh giá này. Vui lòng chọn một đánh giá hoặc đánh giá khác.
         date_required: Vui lòng chọn ngày

@@ -208,6 +208,7 @@ de:
           projectSettings:
             assessments: Beurteilungen
             design: Gestaltung
+            feature_flags: Feature-Flags
             idp: IDP
             integrations: Integrationen
             privacy_settings: Datenschutz-Einstellungen
@@ -3148,15 +3149,40 @@ de:
             no_auth:
               label: Keine
               value: keine_auth
+            oauth:
+              label: OAuth
+              value: OAuth
+          client_credentials:
+            label: Client-Anmeldeinformationen
+            value: client_credentials
+          client_id:
+            label: Client-ID
+            name: oauth_client_id
+            required: Client-ID ist erforderlich
+          client_secret:
+            label: Geheimer Clientschlüssel
+            name: oauth_client_secret
+            required: Geheimer Clientschlüssel ist erforderlich
           description:
             label: Beschreibung
             name: beschreibung
+          grant_type:
+            label: Art der Förderung
+            name: oauth_grant_type
           include_locales:
             label: Übersetzungen einbeziehen
             name: einschließen_Ortschaften
+          oauth_scope:
+            label: Umfang
+            name: oauth_scope
+            required: Der Umfang ist erforderlich
           password:
             label: Passwort
             name: passwort
+          token_url:
+            label: Token-URL
+            name: oauth_token_url
+            required: Token-URL ist erforderlich
           topics:
             label: Veranstaltungen
             list:
@@ -3476,6 +3502,7 @@ de:
         add_new_condition: Neue Bedingung hinzufügen
         apply_color_label: 'Tragen Sie dann die folgende Farbe auf:'
         custom_factor_fields:
+          default_score: Punktzahl
           percentage: Prozentsatz
           questions_attempted: Versucht
           questions_correct: Richtig
@@ -3511,6 +3538,7 @@ de:
         prefixes:
           and: UND
           or: ODER
+        prevent_value_overlap: Verhindern von Wertüberlappungen
         skill_type_label: Filtern nach Skill-Typ
         skill_type_placeholder: Skill-Typ auswählen
         skill_types:
@@ -3791,6 +3819,7 @@ de:
         start_time: Datum und Uhrzeit
         subject: Thema
         title: Titel
+        view_recording: Aufzeichnung anzeigen
       errors:
         assessor_already_assigned: Dieser Beurteilung ist bereits ein Beurteiler zugewiesen. Bitte wählen Sie eine andere Beurteilung oder einen anderen Beurteiler aus.
         date_required: Bitte wählen Sie ein Datum

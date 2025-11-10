@@ -439,6 +439,7 @@ export const AIChat = () => {
                   size="small"
                   type="text"
                   aria-label={I18n.t('common.actions.go_back')}
+                  onClick={() => navigate('/idp/ai_assistant/start')}
                 >
                   <DirectionalNavigateBackIcon className={styles.backIcon} />
                   {I18n.t('common.actions.go_back')}

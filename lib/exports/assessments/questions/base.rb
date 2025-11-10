@@ -5,6 +5,7 @@ module Exports
     module Questions
       class Base
         include ImportExportConst
+
         def self.headers(question)
           all_headers = question_id_and_choice_headers(question)
           question_text = ActionView::Base.full_sanitizer.sanitize(question.props['questionText'])

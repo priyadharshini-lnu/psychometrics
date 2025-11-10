@@ -1,8 +1,6 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import {
   Button,
-  Popover,
-  Tooltip,
 } from 'antd'
 import {
   MessageOutlined,
@@ -12,17 +10,23 @@ import { Comments } from '~/components/IdpShared/Comments'
 import { useSkillComments } from './useSkillsComments'
 import { MediaQueryContext, BottomSheet } from '~/glint'
 
-const { I18n } = window
-
-interface SkillCommentPopoverProps {
-  skillId: string
-  skillName: string
+interface CommentsForSkillProps {
+  skillForComment: { skillId: string, skillName: string } | null
+  onClose?: () => void
+  onScrollToSkill?: (resourceId: string) => void
 }
 
-export const SkillCommentsPopover: React.FC<SkillCommentPopoverProps> = ({
-  skillId,
-  skillName,
+export const CommentsForSkill: React.FC<CommentsForSkillProps> = ({
+  skillForComment,
+  onClose,
+  onScrollToSkill,
 }) => {
+  const [skill, setSkill] = React.useState(skillForComment || null)
+
+  useEffect(() => {
+    setSkill(skillForComment)
+  }, [skillForComment])
+
   const {
     comments,
     handleAddComment,
@@ -31,12 +35,15 @@ export const SkillCommentsPopover: React.FC<SkillCommentPopoverProps> = ({
     handleResolveComment,
     isLoading,
     handleToggleComments,
-    selectedSkillId,
     handleUnresolveComment,
     totalCount,
-  } = useSkillComments(skillId)
+  } = useSkillComments(skill?.skillId ?? '')
 
   const { isMobile } = useContext(MediaQueryContext)
+
+  const onTagClear = () => {
+    setSkill(null)
+  }
 
   const content = (
     <Comments
@@ -46,16 +53,19 @@ export const SkillCommentsPopover: React.FC<SkillCommentPopoverProps> = ({
       onAddReply={handleAddCommentReply}
       onResolveComment={handleResolveComment}
       onUnresolveComment={handleUnresolveComment}
-      onClose={() => handleToggleComments(null)}
+      onClose={() => { handleToggleComments(null); onClose?.() }}
       onFetchComments={fetchComments}
-      subtitle={skillName}
+      filteredSkillId={skill?.skillId}
+      subtitle={skill?.skillName}
       loading={isLoading}
+      onTagClear={onTagClear}
       openFirstComment
-      keyPrefix={`skill-${skillId}`}
+      keyPrefix={`skill-${skill?.skillId}`}
       style={{
         width: 400,
         maxHeight: 600,
       }}
+      onScrollToSkill={onScrollToSkill}
     />
   )
 
@@ -65,34 +75,15 @@ export const SkillCommentsPopover: React.FC<SkillCommentPopoverProps> = ({
         <Button
           type="text"
           icon={<MessageOutlined />}
-          onClick={() => handleToggleComments(skillId)}
+          onClick={() => handleToggleComments((skill as {
+            skillId: string;
+            skillName: string;
+          })?.skillId)}
         />
-        <BottomSheet isOpen={selectedSkillId === skillId}>{content}</BottomSheet>
+        <BottomSheet isOpen={Boolean(skill?.skillId)}>{content}</BottomSheet>
       </>
     )
   }
 
-  return (
-    <Popover
-      arrow={false}
-      content={content}
-      trigger="click"
-      open={selectedSkillId === skillId}
-      onOpenChange={open => handleToggleComments(open ? skillId : null)}
-      placement="leftTop"
-      zIndex={999}
-      styles={{
-        body: {
-          padding: 0,
-        },
-      }}
-    >
-      <Tooltip title={I18n.t('idp.comments.comments')}>
-        <Button
-          type="text"
-          icon={<MessageOutlined />}
-        />
-      </Tooltip>
-    </Popover>
-  )
+  return content
 }

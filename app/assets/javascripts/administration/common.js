@@ -70,7 +70,7 @@ $(function() {
 
 // Replace with return new DOM
 $.fn.replaceWithPush = function(a) {
-  var $a = $(a);
+  var $a = $($.parseHTML(a))
 
   this.replaceWith($a);
   return $a;

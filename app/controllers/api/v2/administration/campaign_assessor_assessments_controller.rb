@@ -44,7 +44,8 @@ module Api
         relationship_id: Relationship.assessor_relationship.id,
         subject_id: workshop_subject.user_id,
         campaign_id: campaign_id
-      ).includes(:assessment, assessment: %i[translations linked_assessment])
+      ).includes(:assessment, assessment: %i[translations
+                                             linked_assessment])
     end
 
     def user_assessments

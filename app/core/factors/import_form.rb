@@ -47,13 +47,8 @@ module Factors
     end
 
     def parse_csv_file
-      csv = if file.is_a?(ActionDispatch::Http::UploadedFile) || file.is_a?(Rack::Test::UploadedFile)
-              CSV.read(file.path, encoding: 'bom|utf-8', headers: true)
-            else
-              CSV.new(URI(file.url).open, headers: true).read
-            end
-
-      csv.map(&:to_h)
+      csv_result = ::CsvFileParser.call!(file, headers: :first_row)
+      csv_result.map(&:to_h)
     end
 
     def validate_headers

@@ -15,7 +15,7 @@ describe Idp::SaveUserIdpSkills do
       skills_params = [{ 'skill_id' => skill.id }, { 'skill_id' => skill2.id }]
       skills_form = Idp::SaveUserIdpSkillsForm.new(skills: skills_params)
 
-      res = described_class.call(user_idp_plan, skills_form)
+      res = described_class.call(user_idp_plan, skills_form, user)
 
       expect(res[:ok].count).to eq(2)
       expect(user_idp_plan.user_idp_skills.count).to eq(2)
@@ -31,7 +31,7 @@ describe Idp::SaveUserIdpSkills do
 
       expect(user_idp_plan.user_idp_skills.count).to eq(2)
 
-      res = described_class.call(user_idp_plan, skills_form)
+      res = described_class.call(user_idp_plan, skills_form, user)
       expect(user_idp_plan.user_idp_skills.count).to eq(1)
       expect(user_idp_plan.user_idp_skills.first.skill_id).to eq(new_skill.id)
       expect(res[:ok].first.skill_id).to eq(new_skill.id)
@@ -62,7 +62,7 @@ describe Idp::SaveUserIdpSkills do
       }
       skills_form = Idp::SaveUserIdpSkillsForm.new(skills_params)
 
-      res = described_class.call(user_idp_plan, skills_form)
+      res = described_class.call(user_idp_plan, skills_form, user)
 
       expect(res[:ok].count).to eq(2)
       expect(

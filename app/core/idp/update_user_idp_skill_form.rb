@@ -6,7 +6,7 @@ module Idp
 
     validate :self_skill_rating_enabled?
 
-    validates :initial_rating, numericality: { greater_than: 0, less_than_or_equal_to: UserIdpSkill::MAX_RATING }
+    validates :initial_rating, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: UserIdpSkill::MAX_RATING }
 
     def self_skill_rating_enabled?
       return false if idp_template.self_rating_enabled

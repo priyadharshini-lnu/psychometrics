@@ -2,6 +2,7 @@
 
 class InterviewQuestion < ApplicationRecord
   include Taggable
+
   acts_as_taggable_on :tags
   has_many :idp_template_interview_questions, dependent: :destroy
 

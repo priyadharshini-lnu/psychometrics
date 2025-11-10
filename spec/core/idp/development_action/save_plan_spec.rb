@@ -41,7 +41,7 @@ describe Idp::DevelopmentAction::SavePlan do
           }
         ]
 
-      described_class.call!(user_idp_plan, body_params)
+      described_class.call!(user_idp_plan, body_params, user)
       user_idp_development_action = UserIdpDevelopmentAction.find_by(
         development_action_id: available_development_action.id,
         user_idp_plan: user_idp_plan
@@ -66,7 +66,7 @@ describe Idp::DevelopmentAction::SavePlan do
           }
         ]
 
-      described_class.call!(user_idp_plan, body_params)
+      described_class.call!(user_idp_plan, body_params, user)
       user_idp_development_action.reload
       expect(user_idp_development_action.private).to eq(false)
       expect(user_idp_development_action.progress).to eq(77)
@@ -85,7 +85,7 @@ describe Idp::DevelopmentAction::SavePlan do
       body_params = []
 
       expect(user_idp_plan.user_idp_development_actions.count).to be > 0
-      described_class.call!(user_idp_plan, body_params)
+      described_class.call!(user_idp_plan, body_params, user)
 
       # Reload the plan to ensure we have fresh data
       user_idp_plan.reload
@@ -112,7 +112,7 @@ describe Idp::DevelopmentAction::SavePlan do
         'private' => false
       }]
 
-      described_class.call!(user_idp_plan, body_params)
+      described_class.call!(user_idp_plan, body_params, user)
       user_idp_development_action = UserIdpDevelopmentAction.joins(:development_action).
                                     where(development_actions: {
                                       description: 'New Update custom action', source_type: 'custom'
@@ -144,7 +144,7 @@ describe Idp::DevelopmentAction::SavePlan do
         'private' => false
       }]
 
-      described_class.call!(user_idp_plan, body_params)
+      described_class.call!(user_idp_plan, body_params, user)
       custom_development_action.reload
       expect(custom_development_action.development_action.description).to eq('Updated custom development action')
       expect(custom_development_action.development_action.learning_style).to eq('structured_learning')

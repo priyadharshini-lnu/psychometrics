@@ -3,6 +3,7 @@
 class Administration::AssessmentsController < Administration::BaseController
   skip_before_action :enforce_geo_restriction
   include Archivable
+
   prepend_before_action :set_resource_class
   before_action :set_resource, only: %i[
     show edit update destroy toggle_status sidebar copy import_questions
@@ -110,13 +111,13 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(
-      :type, :name, :category, :description, :dimension_id, :timing,
-      :status, :icon, :icon_color, :purge_icon, :poster, :purge_poster,
-      :enable_video_check, :enable_audio_check, :enable_network_check, :translations_migrated,
-      :owner_id, :project_id, :linked_questions,
-      external_settings: %i[assessment_id norm_id schedule_config],
-      resources: %i[assessmentId questionId], options: {}
+    params.expect(
+      resource: [:type, :name, :category, :description, :dimension_id, :timing,
+                 :status, :icon, :icon_color, :purge_icon, :poster, :purge_poster,
+                 :enable_video_check, :enable_audio_check, :enable_network_check, :translations_migrated,
+                 :owner_id, :project_id, :linked_questions,
+                 { external_settings: %i[assessment_id norm_id schedule_config],
+                   resources: %i[assessmentId questionId], options: {} }]
     )
   end
 end

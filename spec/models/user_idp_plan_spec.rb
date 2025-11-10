@@ -60,7 +60,7 @@ RSpec.describe UserIdpPlan, type: :model do
     let(:user) { create(:user) }
     let(:campaign_user) { create(:campaign_user, user: user) }
     let(:user_idp_plan) do
-      create(:user_idp_plan, user: user, campaign_id: campaign_user.campaign_id, status: :pending_approval)
+      create(:user_idp_plan, user: user, campaign_id: campaign_user.campaign_id, approval_status: :pending_approval)
     end
 
     context 'when plan is approved' do
@@ -72,8 +72,10 @@ RSpec.describe UserIdpPlan, type: :model do
         before { communication }
 
         it 'creates communication email with the resource' do
+          user_idp_plan.start_review!
+
           expect do
-            user_idp_plan.update!(status: :approved)
+            user_idp_plan.approve!
           end.to change(CommunicationEmail, :count).by(1)
 
           communication_email = CommunicationEmail.last
@@ -86,8 +88,10 @@ RSpec.describe UserIdpPlan, type: :model do
 
       context 'when no communication exists' do
         it 'does not create any communication emails' do
+          user_idp_plan.start_review!
+
           expect do
-            user_idp_plan.update!(status: :approved)
+            user_idp_plan.approve!
           end.not_to change(CommunicationEmail, :count)
         end
       end
@@ -105,8 +109,10 @@ RSpec.describe UserIdpPlan, type: :model do
         end
 
         it 'does not create another communication email' do
+          user_idp_plan.start_review!
+
           expect do
-            user_idp_plan.update!(status: :approved)
+            user_idp_plan.approve!
           end.not_to change(CommunicationEmail, :count)
         end
       end
@@ -121,8 +127,10 @@ RSpec.describe UserIdpPlan, type: :model do
         before { communication }
 
         it 'creates communication email with the resource' do
+          user_idp_plan.start_review!
+
           expect do
-            user_idp_plan.update!(status: :rejected)
+            user_idp_plan.reject!
           end.to change(CommunicationEmail, :count).by(1)
 
           communication_email = CommunicationEmail.last
@@ -137,93 +145,83 @@ RSpec.describe UserIdpPlan, type: :model do
     describe 'status workflow transitions' do
       context 'from not_started' do
         before do
-          user_idp_plan.update(status: :not_started)
+          user_idp_plan.update(approval_status: :not_started)
         end
 
         it 'can transition to draft' do
-          expect { user_idp_plan.draft! }.to change(user_idp_plan, :status).from('not_started').to('draft')
+          expect { user_idp_plan.draft! }.to change(user_idp_plan, :approval_status).from('not_started').to('draft')
         end
       end
 
       context 'from draft' do
-        before { user_idp_plan.update(status: :draft) }
+        before { user_idp_plan.update(approval_status: :draft) }
 
         it 'can transition to pending_approval' do
           expect do
             user_idp_plan.submit_for_approval!
-          end.to change(user_idp_plan, :status).from('draft').to('pending_approval')
+          end.to change(user_idp_plan, :approval_status).from('draft').to('pending_approval')
         end
 
         it 'can transition to approved' do
-          expect { user_idp_plan.approve! }.to change(user_idp_plan, :status).from('draft').to('approved')
+          expect { user_idp_plan.approve! }.to change(user_idp_plan, :approval_status).from('draft').to('approved')
         end
       end
 
       context 'from pending_approval' do
         before do
-          user_idp_plan.update(status: :pending_approval)
+          user_idp_plan.update(approval_status: :pending_approval)
+        end
+
+        it 'can transition to in_review' do
+          expect { user_idp_plan.start_review! }.to change(
+            user_idp_plan, :approval_status
+          ).from('pending_approval').to('in_review')
+        end
+      end
+
+      context 'from in_review' do
+        before do
+          user_idp_plan.update(approval_status: :in_review)
         end
 
         it 'can transition to approved' do
-          expect { user_idp_plan.approve! }.to change(user_idp_plan, :status).from('pending_approval').to('approved')
+          expect { user_idp_plan.approve! }.to change(user_idp_plan, :approval_status).from('in_review').to('approved')
         end
 
         it 'can transition to rejected' do
-          expect { user_idp_plan.reject! }.to change(user_idp_plan, :status).from('pending_approval').to('rejected')
+          expect { user_idp_plan.reject! }.to change(user_idp_plan, :approval_status).from('in_review').to('rejected')
         end
       end
 
       context 'from approved' do
         before do
-          user_idp_plan.update(status: :approved)
+          user_idp_plan.update(approval_status: :approved)
         end
 
-        it 'can transition to in_progress and set started_at' do
-          expect { user_idp_plan.start! }.to change(user_idp_plan, :status).from('approved').to('in_progress')
-          expect(user_idp_plan.started_at).to be_within(2.seconds).of(Time.current)
-        end
-
-        it 'can transition to rejected' do
-          expect { user_idp_plan.reject! }.to change(user_idp_plan, :status).from('approved').to('rejected')
-        end
-
-        it 'can not transition to draft' do
-          expect { user_idp_plan.draft! }.to raise_error(Workflow::NoTransitionAllowed)
+        it 'can to draft' do
+          expect { user_idp_plan.draft! }.to change(user_idp_plan, :approval_status).from('approved').to('draft')
         end
       end
 
       context 'from rejected' do
         before do
-          user_idp_plan.update(status: :rejected)
+          user_idp_plan.update(approval_status: :rejected)
+        end
+
+        it 'can transition to draft' do
+          expect { user_idp_plan.draft! }.to change(user_idp_plan, :approval_status).from('rejected').to('draft')
         end
 
         it 'can transition to approved' do
-          expect { user_idp_plan.approve! }.to change(user_idp_plan, :status).from('rejected').to('approved')
+          expect { user_idp_plan.approve! }.to change(user_idp_plan, :approval_status).from('rejected').to('approved')
         end
 
-        it 'can not transition to in_progress' do
-          expect { user_idp_plan.start! }.to raise_error(Workflow::NoTransitionAllowed)
-        end
-      end
-
-      context 'from in_progress' do
-        before do
-          user_idp_plan.update(status: :in_progress)
+        it 'can not transition to pending_approval' do
+          expect { user_idp_plan.submit_for_approval! }.to raise_error(Workflow::NoTransitionAllowed)
         end
 
-        it 'can transition to completed and set completed_at' do
-          expect { user_idp_plan.complete! }.to change(user_idp_plan, :status).from('in_progress').to('completed')
-          expect(user_idp_plan.completed_at).to be_within(1.second).of(Time.current)
-        end
-      end
-
-      context 'from completed' do
-        before do
-          user_idp_plan.update(status: :completed)
-        end
-
-        it 'does not allow transitioning to draft' do
-          expect { user_idp_plan.draft! }.to raise_error(Workflow::NoTransitionAllowed)
+        it 'can not transition to in_review' do
+          expect { user_idp_plan.start_review! }.to raise_error(Workflow::NoTransitionAllowed)
         end
       end
     end
@@ -258,15 +256,15 @@ RSpec.describe UserIdpPlan, type: :model do
     let(:user_idp_plan) { create(:user_idp_plan) }
 
     {
-      editable: %i[not_started draft rejected],
-      non_editable: %i[pending_approval approved in_progress completed]
+      editable: %i[draft rejected],
+      non_editable: %i[in_review approved]
     }.each do |editability, statuses|
       expected_result = editability == :editable
 
       context "#{editability} statuses" do
         statuses.each do |status|
           context "when status is #{status}" do
-            before { user_idp_plan.update(status: status) }
+            before { user_idp_plan.update(approval_status: status) }
 
             it "returns #{expected_result}" do
               expect(user_idp_plan.editable?).to be expected_result
@@ -281,15 +279,15 @@ RSpec.describe UserIdpPlan, type: :model do
     let(:user_idp_plan) { create(:user_idp_plan) }
 
     {
-      manager_editable: %i[rejected pending_approval],
-      non_manager_editable: %i[not_started draft approved in_progress completed]
+      manager_editable: %i[rejected in_review],
+      non_manager_editable: %i[draft approved]
     }.each do |editability, statuses|
       expected_result = editability == :manager_editable
 
       context "#{editability} statuses" do
         statuses.each do |status|
           context "when status is #{status}" do
-            before { user_idp_plan.update(status: status) }
+            before { user_idp_plan.update(approval_status: status) }
 
             it "returns #{expected_result}" do
               expect(user_idp_plan.manager_editable?).to be expected_result

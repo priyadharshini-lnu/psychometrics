@@ -27,12 +27,12 @@ const SingleLinePreview: FC<Props> = ({
 }) => {
   const inputRef = useRef<InputRef>(null)
   const forceUpdate = useForceUpdate()
-  const isCopyContentEnabled = useSelector(
+  const isCopyContentEnabledOnAssessment = useSelector(
     ({ preview }: AppStore) => preview.extraOptions?.enable_copy_content,
   )
   const {
     result,
-    props: { type },
+    props: { type, allowContentCopy: allowContentCopyOnQuestion },
     id: questionId,
   } = model
 
@@ -56,7 +56,13 @@ const SingleLinePreview: FC<Props> = ({
   }
 
   const handleCopyContentEvents = (e) => {
-    if (!isCopyContentEnabled) {
+    if (!isCopyContentEnabledOnAssessment && !allowContentCopyOnQuestion) {
+      e.preventDefault()
+    }
+  }
+
+  const handleConextMenu = (e) => {
+    if (!isCopyContentEnabledOnAssessment) {
       e.preventDefault()
     }
   }
@@ -77,7 +83,7 @@ const SingleLinePreview: FC<Props> = ({
             type={type === 'SingleLine' ? 'text' : 'password'}
             ref={inputRef}
             aria-labelledby={questionTextId}
-            onContextMenu={handleCopyContentEvents}
+            onContextMenu={handleConextMenu}
             onCopy={handleCopyContentEvents}
             onCut={handleCopyContentEvents}
           />

@@ -113,8 +113,8 @@ module Administration
     end
 
     def permitted_resource_params
-      params.require(:resource).permit(
-        ::Memberships::PermittedAdminParams.call!(params[:action], current_user, resource)
+      params.expect(
+        resource: ::Memberships::PermittedAdminParams.call!(params[:action], current_user, resource)
       )
     end
   end

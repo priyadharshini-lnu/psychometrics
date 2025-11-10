@@ -30,6 +30,7 @@ type DevelopmentActionLandscapeCardProps = {
   onShowAIGeneratedDevelopmentActions?: () => void
   userIdpSkillId: number
   onRemoveSkill: (userIdpSkillId: number)=>void
+  aiAssistantsEnabled: boolean
 }
 
 export const DevelopmentActionLandscapeCard:
@@ -44,7 +45,7 @@ React.FC<DevelopmentActionLandscapeCardProps> = ({
   onShowCustomDevelopmentAction,
   onShowAIGeneratedDevelopmentActions,
   onRemoveSkill,
-
+  aiAssistantsEnabled,
 }) => {
   const [openSkillDeletionModal, setOpenSkillDeletionModal] = useState(false)
 
@@ -120,14 +121,16 @@ React.FC<DevelopmentActionLandscapeCardProps> = ({
           >
             {I18n.t('administration.idp.development_actions.add_from_library')}
           </Button>
-          <Button
-            type="link"
-            icon={<PlusOutlined />}
-            onClick={onShowAIGeneratedDevelopmentActions}
-            className="p-0"
-          >
-            {I18n.t('administration.idp.development_actions.create_from_ai')}
-          </Button>
+          {aiAssistantsEnabled && (
+            <Button
+              type="link"
+              icon={<PlusOutlined />}
+              onClick={onShowAIGeneratedDevelopmentActions}
+              className="p-0"
+            >
+              {I18n.t('administration.idp.development_actions.create_from_ai')}
+            </Button>
+          )}
         </Flex>
       ) : null}
       <Modal

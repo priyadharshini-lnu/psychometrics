@@ -47,7 +47,7 @@ class JwtAuthenticator
   end
 
   def self.find_user_from_subject(subject, project)
-    if subject.to_s&.match?(Devise.email_regexp)
+    if subject.to_s.match?(Devise.email_regexp)
       Users::Regular.find_by(email: subject, project_id: project.id)
     else
       Users::Regular.find_by(id: subject, project_id: project.id)

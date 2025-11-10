@@ -17,7 +17,7 @@ module CampaignUsers
         @campaign = campaign
         @records =
           if import_data.is_a?(ActionDispatch::Http::UploadedFile) || import_data.is_a?(Rack::Test::UploadedFile)
-            CSV.read(import_data.path, encoding: 'bom|utf-8')
+            ::CsvFileParser.call!(import_data)
           else
             import_data
           end

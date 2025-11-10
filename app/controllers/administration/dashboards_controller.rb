@@ -2,6 +2,7 @@
 
 class Administration::DashboardsController < Administration::BaseController
   include AsyncRequestHandler
+
   skip_before_action :enforce_geo_restriction
 
   before_action :skip_policy_scope

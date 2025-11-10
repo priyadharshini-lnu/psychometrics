@@ -4,10 +4,11 @@ class Skill < ApplicationRecord
   extend Mobility
   include Taggable
   include RansackSearchableFields
+  include VectorEmbeddable
 
   SAMPLES_PER_SKILL_TYPE = 5
 
-  translates :name, :description
+  translates :name, :description, dirty: true
 
   belongs_to :project
   belongs_to :skill_group, optional: true
@@ -78,7 +79,43 @@ class Skill < ApplicationRecord
     parent.table[:skill_type]
   end
 
+  def embedding_text
+    parts = []
+
+    if name.present?
+      parts << "Name: #{name}"
+    end
+
+    if description.present?
+      # Maximum of 200 words from description for embedding text
+      trimmed_description = description.split.first(200).join(' ')
+
+      parts << "Description: #{trimmed_description}"
+    end
+
+    parts << "Type: #{skill_type.humanize}" if skill_type.present?
+
+    if skill_group.present?
+      parts << "Group: #{skill_group.name}"
+    end
+
+    if tag_list.any?
+      parts << "Tags: #{tag_list.join(', ')}"
+    end
+
+    parts.join('. ')
+  end
+
   private
+
+  def embedding_text_previously_changed?
+    return true if saved_change_to_id?
+
+    saved_change_to_name? ||
+      saved_change_to_description? ||
+      saved_change_to_skill_type? ||
+      saved_change_to_skill_group_id?
+  end
 
   def create_associated_entities
     Skills::CreateSkillFactorAndQuestion.call(self)

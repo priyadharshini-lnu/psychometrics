@@ -6,7 +6,7 @@ describe Idp::ToggleSkillPrivacy do
   let(:user) { create(:user) }
   let(:manager) { create(:user) }
   let(:idp_template) { create(:idp_template) }
-  let(:user_idp_plan) { create(:user_idp_plan, user: user, idp_template: idp_template) }
+  let(:user_idp_plan) { create(:user_idp_plan, user: user, idp_template: idp_template, approval_status: :draft) }
   let(:skill) { create(:skill) }
   let(:user_idp_skill) { create(:user_idp_skill, user_idp_plan: user_idp_plan, skill: skill) }
 

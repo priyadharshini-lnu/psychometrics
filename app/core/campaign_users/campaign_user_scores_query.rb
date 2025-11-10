@@ -49,7 +49,7 @@ module CampaignUsers
           u.last_name,
           #{ranking_sql}
       SQL
-      base_query += "#{factor_columns.empty? ? '' : 'ct.*,'} cu.user_id FROM campaign_users cu
+      base_query += "#{'ct.*,' unless factor_columns.empty?} cu.user_id FROM campaign_users cu
       JOIN users u ON cu.user_id = u.id "
       if factor_columns.present?
         base_query += "LEFT JOIN (#{crosstab_query}) AS ct ON cu.user_id = ct.user_id "

@@ -5,8 +5,10 @@ require 'rails_helper'
 RSpec.describe AdminJobSteps::BulkDownloadIdpReports::DownloadJob, type: :job do
   describe '#perform' do
     let(:owner) { create(:user) }
+    let(:user) { create(:user) }
     let(:campaign) { create(:campaign) }
-    let!(:user_idp_plans) { create_list(:user_idp_plan, 3, campaign: campaign, active: true) }
+    let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
+    let!(:user_idp_plans) { create(:user_idp_plan, campaign: campaign, active: true, user: user) }
     let(:parent_job_record) { create(:admin_job_record, owner: owner, data: { campaign_id: campaign.id }) }
     let(:job_record) do
       create(:admin_job_record, owner: owner, data: { campaign_id: campaign.id }, parent_job_id: parent_job_record.id)
@@ -16,7 +18,7 @@ RSpec.describe AdminJobSteps::BulkDownloadIdpReports::DownloadJob, type: :job do
     context 'when successful' do
       it 'updates job status and calls BulkDownload service' do
         expect(Idp::BulkDownload).to receive(:call).with(
-          user_idp_plans: user_idp_plans,
+          user_idp_plans: [user_idp_plans],
           current_user: job_record.owner,
           job_record: job_record
         ).and_call_original

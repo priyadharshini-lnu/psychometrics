@@ -33,7 +33,7 @@ module Devtools
           )
           tables_and_views = ActiveRecord::Base.connection.execute(tables_query)
 
-          if tables_and_views.count.zero?
+          if tables_and_views.none?
             cli_log "No tables or views found in schema '#{schema_name}'."
             return
           end
@@ -77,7 +77,7 @@ module Devtools
 
               rows = ActiveRecord::Base.connection.execute(query)
 
-              next if rows.count.zero?
+              next if rows.none?
 
               worksheet_name = truncate_worksheet_name(table_name)
               worksheet = workbook.add_worksheet(worksheet_name)

@@ -3,6 +3,7 @@
 module EndUser
   class SystemChecksSerializer < Panko::Serializer
     include Rails.application.routes.url_helpers
+
     attributes :url, :checks, :id, :config, :transcribe_supported_locales
     attributes :campaign_id
 

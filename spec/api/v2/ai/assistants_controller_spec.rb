@@ -359,7 +359,7 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
             # Mock the Service instead of the AI client directly
             allow(AI::AssistantService).
               to receive(:call).
-              with(assistant_id.to_s, superadmin, nil).
+              with(assistant_id.to_s, superadmin, nil, params: {}).
               and_return({ ok: { message: 'This is a test AI response' } })
           end
 
@@ -378,7 +378,7 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
           before do
             allow(AI::AssistantService).
               to receive(:call).
-              with('non-existent-id', superadmin, nil).
+              with('non-existent-id', superadmin, nil, params: {}).
               and_raise(ActiveRecord::RecordNotFound.new)
           end
 
@@ -398,7 +398,7 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
             # Simulate an error in the service
             allow(AI::AssistantService).
               to receive(:call).
-              with(assistant_id.to_s, superadmin, nil).
+              with(assistant_id.to_s, superadmin, nil, params: {}).
               and_raise(StandardError.new('AI provider error'))
           end
 

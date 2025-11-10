@@ -208,6 +208,7 @@ sk:
           projectSettings:
             assessments: Hodnotenia
             design: Dizajn
+            feature_flags: Príznaky funkcií
             idp: IDP
             integrations: Integrácie
             privacy_settings: Nastavenia ochrany osobných údajov
@@ -3147,15 +3148,40 @@ sk:
             no_auth:
               label: Žiadny
               value: no_auth
+            oauth:
+              label: OAuth
+              value: OAUTH
+          client_credentials:
+            label: Prihlasovacie údaje klienta
+            value: client_credentials
+          client_id:
+            label: ID klienta
+            name: oauth_client_id
+            required: Vyžaduje sa ID klienta
+          client_secret:
+            label: Tajný kľúč klienta
+            name: oauth_client_secret
+            required: Vyžaduje sa tajný kľúč klienta
           description:
             label: Popis
             name: popis
+          grant_type:
+            label: Typ grantu
+            name: oauth_grant_type
           include_locales:
             label: Zahrnúť preklady
             name: include_locales
+          oauth_scope:
+            label: Rozsah
+            name: oauth_scope
+            required: Rozsah je povinný
           password:
             label: Heslo
             name: heslo
+          token_url:
+            label: URL adresa tokenu
+            name: oauth_token_url
+            required: Vyžaduje sa adresa URL tokenu
           topics:
             label: Udalosti
             list:
@@ -3475,6 +3501,7 @@ sk:
         add_new_condition: Pridať novú podmienku
         apply_color_label: 'Potom naneste nasledujúcu farbu:'
         custom_factor_fields:
+          default_score: Skóre
           percentage: Percento
           questions_attempted: Pokúsil
           questions_correct: Správny
@@ -3510,6 +3537,7 @@ sk:
         prefixes:
           and: A
           or: ALEBO
+        prevent_value_overlap: Zabránenie prekrývaniu hodnôt
         skill_type_label: Filtrovať podľa typu zručnosti
         skill_type_placeholder: Vyberte typ zručnosti
         skill_types:
@@ -3790,6 +3818,7 @@ sk:
         start_time: Dátum a čas
         subject: Predmet
         title: Titul
+        view_recording: Zobraziť záznam
       errors:
         assessor_already_assigned: Hodnotiteľ, ktorý už bol pridelený k tomuto hodnoteniu. Vyberte si iného hodnotiteľa alebo hodnotiteľa.
         date_required: Vyberte dátum

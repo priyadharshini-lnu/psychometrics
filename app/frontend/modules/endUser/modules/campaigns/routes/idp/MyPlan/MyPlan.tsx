@@ -4,8 +4,9 @@ import {
 } from 'antd'
 import _ from 'lodash'
 import { connect, ConnectedProps } from 'react-redux'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
+import cs from 'classnames'
 import { filteredDevelopmentActions } from '../UserDevelopmentPlan/utils'
 import IdpPageLayoutWrapper from '~/components/IdpShared/IdpPageLayoutWrapper'
 import { getIdpSettings } from '~/modules/endUser/core/config'
@@ -18,11 +19,14 @@ import {
   saveUserIdpDevelopmentActions,
   AsyncDownloadTR,
   fetchUserIdpComments,
+  fetchUserIdpPlanChanges,
+  revertToApprovedIdpPlan,
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 import useAsyncRequestResponse from '~/hooks/useAsyncRequestResponse'
 import styles from './MyPlan.less'
 import { DownloadOutlined, DownOutlined, EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { SafeHTML } from '~/components/SafeHTML'
+import { MediaQueryContext } from '~/glint'
 
 const { I18n } = window
 
@@ -50,6 +54,7 @@ const { I18n } = window
 const connector = connect((state: RootState) => ({
   currentUser: state.currentUser,
   status: state.campaigns.idp.status,
+  canRevertToLastApproved: state.campaigns.idp.canRevertToLastApproved,
   idpDevelopmentActions: state.campaigns.idp.userIdpDevelopmentActions,
   idpConfig: getIdpSettings(state),
   unreadCommentsCount: state.campaigns.idp.unreadCommentsCount,
@@ -58,9 +63,11 @@ const connector = connect((state: RootState) => ({
 }),
 {
   updateUserIdpPlan,
+  revertToApprovedIdpPlan,
   fetchUserIdpPlan,
   saveUserIdpDevelopmentActions,
   fetchUserIdpComments,
+  fetchUserIdpPlanChanges,
 })
 
 type PropsFromRedux = ConnectedProps<typeof connector>
@@ -69,26 +76,36 @@ type Props = PropsFromRedux
 
 const MyPlanComponent = ({
   idpDevelopmentActions,
+  canRevertToLastApproved,
   currentUser,
   status,
   idpConfig,
   updateUserIdpPlan,
   fetchUserIdpPlan,
   saveUserIdpDevelopmentActions,
+  fetchUserIdpPlanChanges,
+  revertToApprovedIdpPlan,
 }: Props) => {
   const [editMode, setEditMode] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const { tab: paramTab } = useParams() as {tab: string}
+
+  const { isMobile } = useContext(MediaQueryContext)
+
 
   const { requireAllDevelopmentActionsComplete, managerApprovesIdp } = idpConfig
 
   const isPlanEditable = [
     USER_IDP_PLAN_STATUS.DRAFT,
     USER_IDP_PLAN_STATUS.REJECTED,
+    USER_IDP_PLAN_STATUS.APPROVED,
     USER_IDP_PLAN_STATUS.NOT_STARTED,
+    USER_IDP_PLAN_STATUS.IN_PROGRESS,
+    USER_IDP_PLAN_STATUS.PENDING_APPROVAL,
   ].includes(status)
 
   const allowSubmitting = managerApprovesIdp && [
+    USER_IDP_PLAN_STATUS.NOT_STARTED,
     USER_IDP_PLAN_STATUS.DRAFT,
     USER_IDP_PLAN_STATUS.REJECTED,
   ].includes(status)
@@ -132,7 +149,9 @@ const MyPlanComponent = ({
   const handleSubmitPlan = () => {
     setIsLoading(true)
     if (managerApprovesIdp) {
-      updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.PENDING_APPROVAL).catch((error) => {
+      updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.PENDING_APPROVAL).then(() => {
+        message.info(I18n.t('idp.plan_submitted_for_manager_approval'))
+      }).catch((error) => {
         message.error(error)
       }).finally(() => {
         setIsLoading(false)
@@ -155,13 +174,21 @@ const MyPlanComponent = ({
     })
   }
 
+  const handleShowDiscardDraft = () => {
+    revertToApprovedIdpPlan(currentUser.id).then(() => {
+      fetchUserIdpPlan(currentUser.id)
+    })
+  }
+
   const handleSave = () => {
     setEditMode(false)
     setIsLoading(true)
     const actionsArray = _.values(filteredDevelopmentActions(idpDevelopmentActions))
-    saveUserIdpDevelopmentActions(currentUser.id, actionsArray).then(() => (
-      fetchUserIdpPlan(currentUser.id)
-    )).then(() => {
+    saveUserIdpDevelopmentActions(currentUser.id, actionsArray).then(() => {
+      fetchUserIdpPlan(currentUser.id).then(() => {
+        fetchUserIdpPlanChanges(currentUser.id)
+      })
+    }).then(() => {
       message.success(I18n.t('idp.changes_saved_to_plan'))
     })
       .catch((error) => {
@@ -170,6 +197,18 @@ const MyPlanComponent = ({
       .finally(() => {
         setIsLoading(false)
       })
+  }
+
+  const handleEditPlan = () => {
+    if (isPlanEditable && status !== USER_IDP_PLAN_STATUS.DRAFT) {
+      updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.DRAFT).catch((error) => {
+        message.error(error)
+      }).finally(() => {
+        setEditMode(true)
+      })
+    } else {
+      setEditMode(true)
+    }
   }
 
   const {
@@ -217,33 +256,42 @@ const MyPlanComponent = ({
     <Flex gap={8} flex={1} justify="end">
       <Dropdown menu={menu} trigger={['click']}>
         <Tooltip title={I18n.t('common.actions.download')}>
-          <Button loading={asyncLoading} icon={<DownloadOutlined />}>
+          <Button
+            aria-label={I18n.t('idp.download_plan')}
+            loading={asyncLoading}
+            icon={<DownloadOutlined />}
+          >
             <Space>
               <DownOutlined />
             </Space>
           </Button>
         </Tooltip>
       </Dropdown>
-      {showEditPlanButton && (
-        editMode ? (
+      {showEditPlanButton && editMode ? (
+        <Button
+          onClick={handleSave}
+          type="primary"
+        >
+          {I18n.t('idp.development_actions.save_plan')}
+        </Button>
+      ) : null}
+      {showEditPlanButton && !editMode && isPlanEditable
+        ? (
           <Button
-            onClick={handleSave}
-            type="primary"
+            icon={<EditOutlined />}
+            onClick={handleEditPlan}
           >
-            {I18n.t('idp.development_actions.save_plan')}
+            {I18n.t('idp.edit_plan')}
           </Button>
-        ) : (
-          (
-            <Button
-              disabled={!isPlanEditable}
-              icon={<EditOutlined />}
-              onClick={() => setEditMode(true)}
-            >
-              {I18n.t('idp.edit_plan')}
-            </Button>
-
-          )
-        ))}
+        ) : null
+        }
+      {canRevertToLastApproved ? (
+        <Button
+          onClick={handleShowDiscardDraft}
+        >
+          {I18n.t('idp.development_actions.discard_draft')}
+        </Button>
+      ) : null}
       {!editMode && (
         <>
           {allowSubmitting && (
@@ -262,7 +310,6 @@ const MyPlanComponent = ({
               {I18n.t('idp.development_actions.publish_plan')}
             </Button>
           )}
-
           {status === USER_IDP_PLAN_STATUS.IN_PROGRESS && (
             <Button
               onClick={handleCompletion}
@@ -278,7 +325,7 @@ const MyPlanComponent = ({
 
   return (
     <IdpPageLayoutWrapper>
-      <Flex className={styles.pageContent}>
+      <Flex className={cs(styles.pageContent, !isMobile ? 'overflow-y-hidden' : '')}>
         <Spin spinning={isLoading}>
           <UserDevelopmentPlan
             idpUserId={currentUser.id}

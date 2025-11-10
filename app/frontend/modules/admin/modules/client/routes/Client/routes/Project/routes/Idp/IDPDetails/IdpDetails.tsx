@@ -24,6 +24,7 @@ const IdpDetails: React.FC = () => {
         skills: ['id', 'name', 'skill_type', 'project_id'],
       },
       include: ['skills', 'report', 'one_click_ai_assistant', 'document_analysis_ai_assistant'],
+      include_resource_meta: ['permissions', 'project_features'],
     },
   }
 

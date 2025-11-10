@@ -324,8 +324,8 @@ describe 'Projects' do
         run_test! do |response|
           projects = JSON.parse(response.body)
           expect(projects.length).to eq(2)
-          expect(projects.map { |p| p['id'] }).to match_array([client_project.id, project.id])
-          expect(projects.map { |p| p['id'] }).not_to include(other_project.id)
+          expect(projects.pluck('id')).to match_array([client_project.id, project.id])
+          expect(projects.pluck('id')).not_to include(other_project.id)
         end
       end
 

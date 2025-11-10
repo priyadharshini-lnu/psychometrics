@@ -208,6 +208,7 @@ ar:
           projectSettings:
             assessments: التقييمات
             design: التصميم
+            feature_flags: علامات الميزة
             idp: IDP
             integrations: التكاملات
             privacy_settings: إعدادات الخصوصية
@@ -3148,15 +3149,40 @@ ar:
             no_auth:
               label: None
               value: no_auth
+            oauth:
+              label: أوث
+              value: قسم
+          client_credentials:
+            label: بيانات اعتماد العميل
+            value: client_credentials
+          client_id:
+            label: معرف العميل
+            name: oauth_client_id
+            required: مطلوب معرف العميل
+          client_secret:
+            label: سر العميل
+            name: oauth_client_secret
+            required: سر العميل مطلوب
           description:
             label: Description
             name: description
+          grant_type:
+            label: نوع المنحة
+            name: oauth_grant_type
           include_locales:
             label: Include Translations
             name: include_locales
+          oauth_scope:
+            label: نطاق
+            name: oauth_scope
+            required: النطاق مطلوب
           password:
             label: Password
             name: password
+          token_url:
+            label: عنوان URL للرمز المميز
+            name: oauth_token_url
+            required: عنوان URL للرمز المميز مطلوب
           topics:
             label: Events
             list:
@@ -3476,6 +3502,7 @@ ar:
         add_new_condition: إضافة شرط جديد
         apply_color_label: 'ثم قم بتطبيق اللون التالي:'
         custom_factor_fields:
+          default_score: نقاط
           percentage: النسبه المئويه
           questions_attempted: محاوله
           questions_correct: صحيح
@@ -3511,6 +3538,7 @@ ar:
         prefixes:
           and: و
           or: أو
+        prevent_value_overlap: منع تداخل القيمة
         skill_type_label: تصفية حسب نوع المهارة
         skill_type_placeholder: حدد نوع المهارة
         skill_types:
@@ -3791,6 +3819,7 @@ ar:
         start_time: Date & Time
         subject: Subject
         title: Title
+        view_recording: عرض التسجيل
       errors:
         assessor_already_assigned: Assessor already assigned to this assessment. Please select another assessment or assessor.
         date_required: Please select a date

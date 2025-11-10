@@ -9,7 +9,7 @@ module Sheets
     validates :file, presence: true,
                      file_content_type: { allow: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                                                   'application/xlsx'], message: :invalid_format }
-    validate :has_email_column, if: :file
+    validate :ensure_email_column, if: :file
     validate :check_column_types, if: :file
     validate :check_columns_names_and_length, if: -> { file && accesssheet? }
     validate :validates_emails, if: :file
@@ -83,7 +83,7 @@ module Sheets
 
     # Checks if there is column Email Address in file
     #
-    def has_email_column # rubocop:disable Naming/PredicateName
+    def ensure_email_column
       errors.add(:file, :no_email_column) unless parsed_file.first.key?(Sheet::EMAIL_COLUMN)
     end
 

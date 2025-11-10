@@ -19,7 +19,18 @@ describe AI::Tools::Idp::AttachmentAnalysis do
   let(:ai_assistant_chat) { create(:assistant_chat, ai_assistant: ai_assistant, user: current_user) }
   let(:assistant_service) { instance_double(AI::AssistantService) }
 
+  let(:ai_provider_config) do
+    {
+      'model_id' => 'gpt-4o-mini',
+      'name' => 'OpenAI GPT-4o Mini',
+      'context' => {
+        'openai_api_key' => 'test-api-key'
+      }
+    }
+  end
+
   before do
+    allow(Settings).to receive(:ai_providers).and_return([ai_provider_config])
     user_idp_plan.user_document.attach(document_blob)
 
     allow(AI::AssistantService).to receive(:new).and_return(assistant_service)

@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
 class UserIdpDevelopmentAction < ApplicationRecord
+  include SoftDelete
+
+  has_paper_trail
+
   belongs_to :user_idp_plan
-  belongs_to :development_action, optional: true
-  belongs_to :user_idp_skill
+  belongs_to :development_action
+  belongs_to :user_idp_skill, optional: true
   has_one :skill, through: :user_idp_skill
   has_one :user, through: :user_idp_plan
   has_many :communication_email_resources, as: :resource

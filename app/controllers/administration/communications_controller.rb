@@ -228,7 +228,7 @@ module Administration
     end
 
     def translation_params
-      params.require(:communication).permit(:subject, :body)
+      params.expect(communication: %i[subject body])
     end
 
     def current_locale

@@ -4,6 +4,7 @@ module EndUser
   class CampaignsController < ApplicationController
     include ::Threesixty::InitialState
     include AuthenticateAnonymousUser
+
     layout 'layouts/end_user'
 
     prepend_before_action :authenticate_anonymous_user!

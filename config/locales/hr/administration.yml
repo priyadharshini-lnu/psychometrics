@@ -208,6 +208,7 @@ hr:
           projectSettings:
             assessments: Procjene
             design: Dizajn
+            feature_flags: Zastavice značajki
             idp: IDP
             integrations: Integracije
             privacy_settings: Postavke privatnosti
@@ -3147,15 +3148,40 @@ hr:
             no_auth:
               label: Nijedan
               value: no_auth
+            oauth:
+              label: OAuth
+              value: OAUTH
+          client_credentials:
+            label: Vjerodajnice klijenta
+            value: client_credentials
+          client_id:
+            label: ID klijenta
+            name: oauth_client_id
+            required: Potreban je ID klijenta
+          client_secret:
+            label: Tajna klijenta
+            name: oauth_client_secret
+            required: Tajna klijenta je obavezna
           description:
             label: Opis
             name: opis
+          grant_type:
+            label: Vrsta bespovratnih sredstava
+            name: oauth_grant_type
           include_locales:
             label: Uključi prijevode
             name: include_locales
+          oauth_scope:
+            label: Opseg
+            name: oauth_scope
+            required: Opseg je potreban
           password:
             label: Lozinka
             name: lozinka
+          token_url:
+            label: URL tokena
+            name: oauth_token_url
+            required: URL tokena je obavezan
           topics:
             label: Događaja
             list:
@@ -3475,6 +3501,7 @@ hr:
         add_new_condition: Dodavanje novog uvjeta
         apply_color_label: 'Zatim nanesite sljedeću boju:'
         custom_factor_fields:
+          default_score: Rezultat
           percentage: Postotak
           questions_attempted: Pokušaj
           questions_correct: Ispravan
@@ -3510,6 +3537,7 @@ hr:
         prefixes:
           and: I
           or: ILI
+        prevent_value_overlap: Sprječavanje preklapanja vrijednosti
         skill_type_label: Filtriraj prema vrsti vještine
         skill_type_placeholder: Odaberite vrstu vještine
         skill_types:
@@ -3790,6 +3818,7 @@ hr:
         start_time: Datum i vrijeme
         subject: Ispitanik
         title: Naslov
+        view_recording: Pogledajte snimku
       errors:
         assessor_already_assigned: Procjenitelj koji je već dodijeljen ovoj procjeni. Odaberite drugu procjenu ili procjenitelja.
         date_required: Molimo odaberite datum

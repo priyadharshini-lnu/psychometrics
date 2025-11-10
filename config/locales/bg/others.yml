@@ -389,6 +389,8 @@ bg:
               inclusion: Моля, изберете правилния тип норма
         user:
           attributes:
+            current_job_role:
+              not_found: "%{name} не е намерен"
             email:
               user_exists_in_campaign: Потребител с този имейл идентификатор вече съществува в кампанията
               user_exists_in_project: Потребител с този имейл идентификатор вече съществува в проекта
@@ -408,6 +410,8 @@ bg:
               invalid_datetime: е невалиден
             schedule_start_date:
               invalid_datetime: е невалиден
+            target_job_role:
+              not_found: "%{name} не е намерен"
         user_assessment:
           subject_and_assessment_exists: Оценяването и двойката предмети вече съществуват
         user_idp_development_action:
@@ -1461,6 +1465,7 @@ bg:
       export_occupations_job_scheduled: Професии Работата по износ беше планирана успешно
       export_reports_and_assessments_statuses_scheduled: Задачата за експортиране на отчети и оценки беше планирана успешно
       external_results_export_scheduled: Задачата за износ на външна оценка беше планирана успешно
+      no_participants_selected: Моля, изберете поне един участник, за да продължите.
       norm_results_export_scheduled: Задачата за експортиране на нормирани резултати за оценка беше планирана успешно
       normalize_factor_scores_scheduled: Нормализиране на факторните резултати беше планирано успешно.
       raw_factor_export_scheduled: Оценка Заданието за износ на необработен фактор беше планирано успешно
@@ -1605,6 +1610,7 @@ bg:
       report_bundle_placeholder: Изберете пакет с отчети
     messages:
       bulk_download_error: Груповото изтегляне е ограничено до 1000 файла с отчети. Ако сте избрали много езици, моля, намалете го.
+      bulk_download_no_reports: Не са намерени доклади. Моля, генерирайте отчетите преди изтегляне.
       bulk_download_successful: Задачата за групово изтегляне на отчет е планирана успешно
       export_report_data_scheduled: Задачата за експортиране на данни в отчета е планирана успешно
     modals:
@@ -2140,118 +2146,6 @@ bg:
       send_paranoid_instructions: Ако акаунтът ви съществува, ще получите имейл с инструкции как да го отключите след няколко минути.
       unlocked: Вашият акаунт е отключен успешно. Моля, влезте, за да продължите.
       unprocessable_entity: Вашият акаунт не може да бъде отключен с тази връзка. Моля, свържете се с поддръжката.
-  dry_errors:
-    errors:
-      add_edit_project:
-        invalid_subdomain_format: Грешен формат на поддомейна.
-        reserved_subdomain: Поддомейнът %{value} е запазен
-        uniq_subdomain: Поддомейнът трябва да бъде уникален.
-      add_manager:
-        cannot_be_self: Потребителят не може да бъде назначен като свой собствен мениджър
-        manager_not_found: Мениджърът не е намерен или не е част от един и същ проект
-        user_not_found: Потребител не е намерен или не е част от един и същ проект
-      admin:
-        already_added: Администратор с вече добавен имейл.
-      already_assigned?: Не може да се свърже тази оценка - тя вече е присвоена на "%{linked_assessor_form_name}".
-      already_invited: Този потребител вече съществува в центъра за оценяване, който се опитвате да добавите.
-      assessor_assessment:
-        already_added: Оценката на оценителя вече е добавена към кампанията.
-        lead_already_added: Към кампанията може да се добави само една оценка на потенциален оценител.
-      campaign_factor:
-        code_already_exists: Фактор със същия код вече съществува.
-        invalid_lua_name: трябва да е валидно име на променлива lua
-        limit_exceeded: Достигнали сте максималния лимит от %{limit} фактори на кампанията.
-        name_already_exists: Фактор със същото име вече съществува.
-        rank_not_allowed: Могат да се класират само фактори с изходен тип число.
-      campaign_factor_group:
-        group_already_exists: Група със същото име вече съществува.
-        last_factor_group: Не може да се изтрие последната група фактори на кампанията.
-      campaign_idps:
-        idp_template_not_published: Този шаблон на IDP все още не е публикуван, моля, публикувайте го преди да присвоите в кампания.
-      cant_be_deleted: Този запис не може да бъде изтрит
-      client_feature:
-        ai_assisted_idp_feature_error: Не може да е вярно, ако функцията за AI асистенти е деактивирана
-      create_superadmin:
-        uniq_email: Имейлът трябва да е uniq.
-      development_actions:
-        only_global_skills_allowed: Избраните умения трябва да са глобални.
-        skills_not_belong_to_project: Избраните умения трябва да принадлежат към посочения проект.
-        skills_required: Моля, изберете поне едно умение.
-      exceeded_subjects_count: Можете да добавяте само %{count} теми на покана
-      filled?: не може да бъде празен
-      idp_template:
-        content_required: Съдържанието е необходимо за инструкции
-        tag_or_skill_required: Моля, изберете етикет или умение, когато изберете опцията "Избрано".
-      invalid_name: Само азбука, число, интервали, тире и точка са разрешени като валиден знак
-      invalid_value: невалидно изявление "%{value}" на номер на ред %{row}
-      job_roles:
-        unique_within_job_group: Вече съществува роля за работа със същото име.
-      json?: Трябва да е валиден JSON
-      key?: не може да бъде празен
-      match_regexp?: невалидна стойност
-      mettl_schedule_record_create:
-        uniq_schedule_name: Името на графика трябва да е уникално
-      missed?: не може да бъде празен
-      not_allowed?: не е позволено да се променя
-      not_in_the_list?: предадена невалидна стойност
-      not_uniq_variable: променлива '%{value}' е предефинирана на номер на ред %{row}
-      project_assessments:
-        should_be_greater_than_zero: Валидността на резултата трябва да бъде по-голяма от 0 дни
-      project_feature:
-        global_skills_not_enabled_on_client: За да активирате Global Skills за този проект, моля, активирайте го под Флагове на функциите в настройките на клиента.
-      report_approval_settings:
-        report_exists: Настройката за одобрение на отчета за този отчет вече съществува.
-        validates_admins: Администраторите нямат достъп до кампанията.
-      report_families_reports:
-        report_exists: Този отчет вече е част от Report Bundle
-      size?: размерът трябва да бъде по-малък %{size}
-      skill:
-        already_added: Умение със същото име вече е добавено.
-      skill_alias:
-        unique_alias: Псевдонимът трябва да е уникален
-        unique_skill: Умението трябва да е уникално
-      skills_job_roles:
-        must_belong_to_same_project_or_be_global: Умението и работната роля трябва да принадлежат към един и същ проект или да са глобални.
-        unique_mappings: Вече съществува картографиране със същото умение и длъжностна роля.
-      uniq: Тази оценка на Mettl вече присъства в системата. ИД на тази оценка е %{id}
-      uniq?: трябва да бъде уникална
-      uniq_simulation: Тази оценка на симулацията вече присъства в системата. ИД на тази оценка е %{id}
-      uniq_skillvue: Тази оценка на уменията вече е налична в системата. ID на тази оценка е %{id}
-      update_workshop:
-        bookings_exist: Не може да се промени графикът, тъй като участниците вече са резервирали този времеви интервал.
-        less_than_booked: Общият брой места трябва да е по-голям от резервирания
-      user_availability_date:
-        overlaps_date: Припокрива друга наличност %{range}
-        overlaps_time: Интервал на припокриване %{interval}
-        start_date_should_be_less: Началната дата трябва да е по-малка от крайната дата
-        start_time_should_be_less: Началният час трябва да е по-малък от крайния час
-      user_idp_plan:
-        idp_template_already_assigned_to_user: Този шаблон за IDP вече е приет към този потребител и е активен
-        idp_template_not_published: Този шаблон на IDP все още не е публикуван, моля, публикувайте го, преди да зададете на потребителя.
-      user_saved_filters:
-        limit_exceeded: Можете да имате само %{limit} запазени филтри, моля, изтрийте запазените филтри, за да добавите още.
-        unique_name: Вече съществува филтър със същото име.
-      workshop_invited_subject_create:
-        already_exists: Темата вече съществува в поканата.
-      workshop_subject_create:
-        already_exists: Субектът вече съществува в този център за оценяване.
-        part_of_other_workshop: Субектът вече е участник в "%{workshop_name}".
-      workshop_subject_re_enroll:
-        no_seats_available: Няма свободни места за този семинар.
-        scheduling_lead_time_passed: Времето за планиране е изтекло, не можете да запишете отново предмета.
-        workshop_subject_not_found: Темата на семинара не е намерена
-      workshops:
-        no_available_assessor_slots: Няма свободни места за оценител %{assessor}
-        no_available_manager_slots: Няма свободни слотове за мениджър %{manager}
-    users:
-      registrations:
-        new:
-          register: Регистрирайте се
-          sign_in: Влизане
-      sessions:
-        new:
-          register: Регистрирайте се
-          sign_in: Влизане
   emails:
     nomination_approval_table:
       evaluator_name: Име на мистериозен
@@ -2581,6 +2475,8 @@ bg:
       aria_selected: Избран
   idp:
     actions: Действия
+    add_comments: Добавяне на коментари
+    added_development_action: Добавено действие за разработка
     ai:
       assistant:
         failure_fallback:
@@ -2637,6 +2533,7 @@ bg:
         title: Здравейте, аз съм вашият асистент за разработка
     behavioral: Поведенчески
     board: Съвет
+    change_history: История на промените
     changes_saved_to_plan: Промени, запазени в плана
     comment_details:
       add_comment: Добави коментар
@@ -2645,14 +2542,23 @@ bg:
       add_reply_placeholder: Добави отговор...
       go_to_skill: Отидете на умението
     comments:
+      clear_comments_for_skill: Ясни коментари за умения
       close: Затварям
+      comment_content: Как да се задоволи
+      comment_for_skill: Коментирайте за умения
+      commented_at: Коментиран в
+      commented_by: Коментиран от
       comments: Коментари
       filter_comments: Филтриране на коментарите
       mark_as_resolved: Маркиране като разрешено
       mark_as_unresolved: Маркиране като неразрешено
+      mark_comment_as_resolved: Маркирайте този коментар като разрешен
       replied: Отговори
+      replied_at: Отговори на
+      replied_by: Отговорено от
       replies: Отговори
       reply: Отговор
+      reply_content: Отговор на съдържание
       resolve: Разрешите
       resolved: Решен
       resolved_message: Този коментар е разрешен и отговорите са деактивирани.
@@ -2661,8 +2567,13 @@ bg:
       show_only_unread: Показване само на непрочетени
       show_only_unresolved: Показване само на неразрешените
       sort_by_date: Сортиране по дата
+      total_comments_count: Общ брой коментари
+      total_count: Общ брой коментари
+      unread_replies_count: Броят се непрочетените отговори
+      view_or_add: Преглед или добавяне на коментари за %{skillName}
       you: Ти
     convert_to_draft: Конвертиране в чернова
+    current_step: Текуща стъпка %{step}
     delete_skill: Сигурни ли сте, че искате да изтриете умението, защото то ще изтрие и всички свързани действия за разработка?
     details: Подробности
     development_actions:
@@ -2673,6 +2584,7 @@ bg:
       add_development_actions_modal_title: Библиотека с действия за развитие за %{skillName}
       add_from_library: Добавяне от библиотеката
       add_more: Добавяне на още действия за разработка
+      add_selected_development_actions: Добавяне на избрани действия за разработка
       all: Цял
       approved: Одобрен
       board_view:
@@ -2687,10 +2599,15 @@ bg:
       custom: Обичай
       custom_da_description: Създайте персонализирано действие за разработка, за да отговорите на уникалните нужди за разработка.
       date_range: Начална дата - Крайна дата
+      development_action_learning_style: Развитие Действие Стил на учене
+      development_action_name: Описание на действието за развитие
+      discard_draft: Изхвърляне на чернова
       edit_da_progress: Редактиране на напредъка на действието в разработката
+      edit_development_action_progress: Редактиране на напредъка на действието в разработката
       edit_plan_to_add_development_actions: Редактиране на плана и добавяне на действия за разработка.
       enter_development_action_description: Въведете описание на действието за разработка
       enter_development_action_title: Въведете заглавието на действието за разработка
+      filter_development_actions: Действия за разработване на филтри
       generate_by_ai: Генериране от AI
       generate_more: Генерирайте повече
       generating_development_actions: Генериране на действия за развитие...
@@ -2707,6 +2624,7 @@ bg:
       learning_from_others: Учене от другите
       learning_from_others_label: Да се учим от другите
       learning_on_the_job_label: Учене на работното място
+      loading_development_actions: Зареждане на действия за разработка
       manage_skills: Управление на уменията
       marathon: Маратон
       mark_as_complete: Маркиране като завършено
@@ -2717,6 +2635,8 @@ bg:
       publish_plan: Публикуване на план
       remove: Махам
       save_plan: Запазване на плана
+      search_development_actions: Търсене на действия за разработка
+      show_development_action_information: Показване на информация за действие за развитие
       skill: Умение
       sprint: Спринт
       start_plan: Стартов план
@@ -2724,14 +2644,31 @@ bg:
       structured_learning_label: Съвместно обучение
       submit_plan: Изпрати план
       success: Дейностите за развитие приключиха успешно
+      toggle_skill_privacy: Превключване на поверителността на уменията
       write_here: Пишете тук...
     direct_reportee_details: Подробности за преките докладвани
     download:
       description: 'За да изтеглите отчета, моля, последвайте връзката: <a href=''''%{url}'''' target=''''_blank''''>Изтегляне</a>. Връзката е валидна само за 10 минути'
+    download_plan: Изтегляне на план
     edit_plan: Редактиране на плана
     edit_plan_and_add_skills: Редактирайте План и щракнете върху Управление на уменията, за да добавите умения.
     edit_progress: Редактиране на напредъка
     fetching_skill_gap_report: Извличане на доклад за пропуски в уменията...
+    go_to_previous_step: Към предишната стъпка
+    history:
+      added_da:
+        one: Добавено действие за разработка
+        other: Добавени действия за развитие
+      changes:
+        end_date: Крайна дата от %{from} до %{to}
+        progress: Напредък от %{from} до %{to}
+        start_date: Начална дата от %{from} до %{to}
+      modified_da:
+        one: Модифицирано действие за развитие
+        other: Модифицирани действия за развитие
+      removed_da:
+        one: Премахнато действие за разработка
+        other: Премахнати действия за разработка
     initial_steps:
       add_skill_group_description: Въз основа на резултатите от вашата оценка, ето някои от областите на силни страни и развитие за вас. Изберете уменията, които искате да развиете допълнително, като част от вашия план за развитие.
       add_skill_group_title: Изследване на вашите умения %{category}
@@ -2756,9 +2693,11 @@ bg:
       skill_column_header: Умение
       skill_gap_report: Доклад за пропуските в уменията
     list: Списък
+    loader_icon: Икона на зареждане
     manage_plan: Управление на плана
     mark_as_complete: Маркиране като завършено
     mark_as_incomplete: Маркирайте като незавършен
+    modified_development_action: Модифицирано действие за развитие
     my_plan:
       development_plan: План за развитие
       graphs:
@@ -2875,10 +2814,18 @@ bg:
         skills_count: Брой умения
         title: Резюме на доклада
     plan: План
+    plan_status: Състояние на плана %{status}
+    plan_submitted_for_manager_approval: Вашият индивидуален план за развитие е представен за одобрение от мениджъра.
+    private: Редник
+    public: Общественост
     reflective_questions:
       already_completed: Индивидуалният план за развитие вече е попълнен, не можете да отговарите на въпросите сега.
+      answer: Отговор
       answer_later: Отговорете по-късно
+      answer_limit: Отговорът трябва да бъде между %{min} и %{max} думи
       answer_placeholder: Напишете отговора си тук...
+      cancel_edited_answer: Отмяна на редактиран отговор
+      edit_answer: Редактиране на отговора
       errors:
         max_words: Отговорът позволява максимум %{count} думи
         min_words: Отговорът изисква поне %{count} думи
@@ -2888,27 +2835,44 @@ bg:
       no_answer_provided: Все още няма отговор
       no_reflective_questions: Без отразяващи въпроси
       optional: "(По избор)"
+      question: Въпрос
+      required: Този въпрос е задължителен
+      save_edited_answer: Запазване на редактирания отговор
       title: Въпроси за размисъл
       update_failed: Възникна грешка по време на актуализацията
       updated_successfully: Вашите отговори са актуализирани успешно
       word_limit: Трябва да е между %{min} и %{max} думи
       words: Думи
     remove_skill: Премахване на умение
+    remove_skill_from_plan: Премахване на %{name} умения от плана
+    removed_development_action: Премахнато действие за разработка
+    report_preview: Преглед на доклада
+    search_and_select_skills_of_skill_type: Търсете и изберете уменията %{skillType}
+    select_skills_of_skill_type: Изберете %{skillType} умения
+    selected_skills_of_skill_type: Избрани %{skillType} умения
     skill_gap_report:
+      content: Съдържание на доклада за пропуски в уменията
       download: Изтеглете доклада за пропуски в уменията
       title: Доклад за пропуските в уменията
+    skill_status: Уменията %{name} са частни
     skills_updated: Умения, актуализирани в плана
     status: Статус
     suggestions: Предложения
+    suggestions_for_skill_type: Предложения за %{skillType} умения
+    summary: Резюме
+    summary_logs: Обобщени регистрационни файлове за %{reporteeName}
     technical: Технически
     user_idp_status:
       approved: Одобрен
       completed: Завършен
+      completion_not_started: Завършването не е започнало
       draft: Чернова
       in_progress: В процес на изпълнение
+      in_review: В преглед
       not_started: Не е започнато
       pending_approval: Очаква се одобрение
       rejected: Отхвърлени
+      start_review: Започнете преглед
     users: Потребители
     with_reflection_questions: С въпроси за размисъл
     without_reflection_questions: Без въпроси за размисъл
@@ -4227,6 +4191,10 @@ bg:
       EntityTooLarge: Размерът на файла трябва да е по-малък от %{maxFileSize} MB
       WrongFileType: Типът на файла трябва да е един от следните %{allowedFileTypes}
     idp:
+      can_not_complete_without_approval_and_in_progress: Не можете да попълните своя IDP, докато вашият мениджър не го одобри и не го маркирате като "В процес на изпълнение".
+      can_not_start_without_approval: Не можете да започнете да работите с вашия IDP, докато вашият мениджър не го одобри.
+      no_changes_to_compare: Няма промени за сравнение за план за IDP.
+      no_previous_approved_plan: Не е открит предишен одобрен план за вътрешно разселени лица.
       reflective_questions_required: За IDP са необходими отговори на въпроси за размисъл
       status_not_permitted: не е разрешено от потребителя.
       status_not_permitted_by_manager: Мениджърът не може да актуализира състоянието, когато планът е в състояние "%{status}".

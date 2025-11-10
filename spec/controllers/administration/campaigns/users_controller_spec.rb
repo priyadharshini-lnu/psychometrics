@@ -9,6 +9,8 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
     create(:user, :with_project_membership, email: 'tester@gmail.com', hogan_credential: hogan_credential)
   end
   let(:campaign) { create(:campaign, project_id: user.project_id) }
+  let!(:current_job_role) { create(:job_role, name: 'Developer', project: campaign.project) }
+  let!(:target_job_role) { create(:job_role, name: 'Senior dev', project: campaign.project) }
   let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
   let!(:proctoring_session) do
     create(:proctoring_session, campaign_user: campaign_user, started_at: 1.day.ago, completed_at: Time.zone.now,

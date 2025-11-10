@@ -3,6 +3,7 @@
 class Communication < ApplicationRecord
   include GeoFilterable
   extend Mobility
+
   translates :subject, :body
 
   audited

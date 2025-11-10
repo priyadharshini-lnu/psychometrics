@@ -33,6 +33,6 @@ export const GettingStart = ({ next, introMessage }) => (
 
 const LaunchIcon = () => (
   <div className={`${styles.iconContainer} flex justify-center items-center`}>
-    <RocketLaunchIcon height="3em" width="3em" />
+    <RocketLaunchIcon aria-hidden="true" height="3em" width="3em" />
   </div>
 )

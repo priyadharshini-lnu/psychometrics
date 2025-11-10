@@ -65,7 +65,8 @@ module Reports
 
       CampaignFactor.import(
         factors,
-        on_duplicate_key_update: { conflict_target: %i[code report_id], columns: %i[name output_type description] }
+        on_duplicate_key_update: { conflict_target: %i[code report_id], columns: %i[name output_type description] },
+        validate: false
       )
     end
 

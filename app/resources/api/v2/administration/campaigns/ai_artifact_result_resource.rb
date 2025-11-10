@@ -7,6 +7,8 @@ class Api::V2::Administration::Campaigns::AIArtifactResultResource < Api::V2::Ad
   attribute :generated_at, delegate: :updated_at
   attribute :results, delegate: :schema_keys_result
 
+  ransack_filters %i[filterable_fields]
+
   def artifact
     campaign_ai_artifact = @model.campaign_ai_artifact
     {

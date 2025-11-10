@@ -5,6 +5,20 @@ require 'rails_helper'
 RSpec.describe AI::Assistant, type: :model do
   subject(:assistant) { build(:assistant) }
 
+  let(:ai_provider_config) do
+    {
+      'model_id' => 'gpt-4o-mini',
+      'name' => 'OpenAI GPT-4o Mini',
+      'context' => {
+        'openai_api_key' => 'test-api-key'
+      }
+    }
+  end
+
+  before do
+    allow(Settings).to receive(:ai_providers).and_return([ai_provider_config])
+  end
+
   describe 'validations' do
     it { should validate_presence_of(:model_id) }
 
@@ -48,23 +62,30 @@ RSpec.describe AI::Assistant, type: :model do
   describe '#for_user' do
     let(:user) { create(:user) }
     let(:chat) { instance_double('AI::AssistantChat') }
+    let(:llm_chat) { double('LLM Chat') }
     let(:llm_context) { double('context') }
 
     before do
       allow(assistant.chats).to receive(:create!).and_return(chat)
       allow(chat).to receive(:with_instructions)
-      allow(chat).to receive(:with_context)
       allow(chat).to receive(:with_schema).and_return(chat)
       allow(chat).to receive(:with_tools).and_return(chat)
-      allow(chat).to receive(:to_llm).and_return(chat)
+      allow(chat).to receive(:with_params).and_return(chat)
+      allow(chat).to receive(:to_llm).and_return(llm_chat)
+      allow(llm_chat).to receive(:with_context)
       allow(assistant).to receive(:ruby_llm_context).and_return(llm_context)
     end
 
     it 'creates a chat for the user and sets instructions and passes the correct context' do
-      expect(assistant.chats).to receive(:create!).with(ai_assistant: assistant, user: user,
-                                                        model_id: assistant.model_id).and_return(chat)
+      expect(assistant.chats).to receive(:create!).with(
+        ai_assistant: assistant,
+        user: user,
+        model: assistant.model_id,
+        provider: nil,
+        assume_model_exists: false
+      ).and_return(chat)
       expect(chat).to receive(:with_instructions).with(assistant.system_prompt)
-      expect(chat).to receive(:with_context).with(llm_context)
+      expect(llm_chat).to receive(:with_context).with(llm_context)
 
       assistant.for_user(user)
     end
@@ -75,9 +96,9 @@ RSpec.describe AI::Assistant, type: :model do
       content_writer_assistant.assistant_output_schema_keys = [schema_key]
 
       allow(content_writer_assistant.chats).to receive(:create!).and_return(chat)
-      allow(chat).to receive(:with_context)
       allow(chat).to receive(:with_schema).and_return(chat)
-      allow(chat).to receive(:to_llm).and_return(chat)
+      allow(chat).to receive(:to_llm).and_return(llm_chat)
+      allow(llm_chat).to receive(:with_context)
       allow(content_writer_assistant).to receive(:ruby_llm_context).and_return(llm_context)
 
       captured_instructions = nil
@@ -97,9 +118,9 @@ RSpec.describe AI::Assistant, type: :model do
       idp_assistant = build(:assistant, assistant_type: 'idp_assistant')
 
       allow(idp_assistant.chats).to receive(:create!).and_return(chat)
-      allow(chat).to receive(:with_context)
       allow(chat).to receive(:with_params).and_return(chat)
-      allow(chat).to receive(:to_llm).and_return(chat)
+      allow(chat).to receive(:to_llm).and_return(llm_chat)
+      allow(llm_chat).to receive(:with_context)
       allow(idp_assistant).to receive(:ruby_llm_context).and_return(llm_context)
 
       allow(idp_assistant).to receive(:has_ruby_llm_schema?).and_return(true)
@@ -128,35 +149,37 @@ RSpec.describe AI::Assistant, type: :model do
     let(:user) { create(:user) }
     let(:assistant) { create(:assistant) }
     let(:chat) { create(:assistant_chat, ai_assistant: assistant, user: user) }
-    let(:request1) { create(:assistant_request, chat: chat) }
-    let(:request2) { create(:assistant_request, chat: chat) }
+    let(:request1) { create(:assistant_request, ai_assistant_chat: chat) }
+    let(:request2) { create(:assistant_request, ai_assistant_chat: chat) }
 
     context 'when assistant has tool calls' do
-      let!(:tool_call1) { create(:assistant_tool_call, message: request1) }
-      let!(:tool_call2) { create(:assistant_tool_call, message: request2) }
-      let!(:result_request) { create(:assistant_request, chat: chat, parent_tool_call: tool_call1) }
+      let!(:tool_call1) { create(:assistant_tool_call, ai_assistant_request: request1) }
+      let!(:tool_call2) { create(:assistant_tool_call, ai_assistant_request: request2) }
+      let!(:result_request) do
+        create(:assistant_request, ai_assistant_chat: chat, ai_assistant_tool_call_id: tool_call1.id)
+      end
 
       it 'deletes all associated records when assistant is destroyed' do
         expect(AI::AssistantChat.where(ai_assistant: assistant)).to exist
-        expect(AI::AssistantRequest.where(chat: chat)).to exist
-        expect(AI::AssistantToolCall.where(message: [request1, request2])).to exist
+        expect(AI::AssistantRequest.where(ai_assistant_chat: chat)).to exist
+        expect(AI::AssistantToolCall.where(ai_assistant_request: [request1, request2])).to exist
         expect(AI::AssistantRequest.where(parent_tool_call: tool_call1)).to exist
 
         # Delete the assistant
         expect { assistant.destroy! }.not_to raise_error
 
         expect(AI::AssistantChat.where(ai_assistant: assistant)).not_to exist
-        expect(AI::AssistantRequest.where(chat: chat)).not_to exist
-        expect(AI::AssistantToolCall.where(message: [request1, request2])).not_to exist
+        expect(AI::AssistantRequest.where(ai_assistant_chat: chat)).not_to exist
+        expect(AI::AssistantToolCall.where(ai_assistant_request: [request1, request2])).not_to exist
         expect(AI::AssistantRequest.where(parent_tool_call: tool_call1)).not_to exist
       end
 
       it 'deletes tool calls when request is deleted' do
-        expect(AI::AssistantToolCall.where(message: request1)).to exist
+        expect(AI::AssistantToolCall.where(ai_assistant_request: request1)).to exist
 
         request1.destroy!
 
-        expect(AI::AssistantToolCall.where(message: request1)).not_to exist
+        expect(AI::AssistantToolCall.where(ai_assistant_request: request1)).not_to exist
       end
 
       it 'nullifies parent_tool_call when tool call is deleted' do

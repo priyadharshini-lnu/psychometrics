@@ -62,7 +62,7 @@ module AI
         [
           AI::Tools::Idp::AttachmentAnalysis.new(assistable, current_user, document_analysis_assistant),
           AI::Tools::Idp::SkillGapReportAnalysis.new(assistable, current_user, skill_gap_report_analysis_assistant),
-          AI::Tools::Idp::AddSkillToPlan.new(assistable),
+          AI::Tools::Idp::AddSkillToPlan.new(assistable, current_user),
           AI::Tools::Idp::AvailableSkillsAndDevelopmentActions.new(idp_template)
         ]
       end
@@ -90,8 +90,9 @@ module AI
         @skill_gap_report_analysis_assistant ||= idp_template.skill_gap_report_analysis_ai_assistant
       end
 
-      def mark_assistable_in_progress!
-        assistable.update!(status: :ai_assisted_idp_in_progress) unless assistable.ai_assisted_idp_in_progress?
+      def mark_session_in_progress!
+        session.mark_as_in_progress!
+        assistable.start_ai_assistance! if assistable.not_started?
       end
 
       def idp_template

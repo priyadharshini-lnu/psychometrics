@@ -62,6 +62,12 @@ zh-HK:
               missing_value: "%{sheet_name}，第 %{row} 列：%{field} 的遺漏值"
             project:
               must_exist: 專案必須存在
+        user:
+          attributes:
+            current_job_role:
+              not_found: "%{name}未找到"
+            target_job_role:
+              not_found: "%{name}未找到"
   activerecord:
     attributes:
       assessment:
@@ -490,6 +496,8 @@ zh-HK:
       locales: 地點
       skillvue_email_id: Skillvue 候選人電子郵件 ID
       skillvue_external_assessment_id: Skillvue 評估 ID
+    messages:
+      no_participants_selected: 請選擇至少一名參與者繼續。
     modals:
       assessor_campaign_assessment_group:
         error_message: 出錯了。請聯絡管理員
@@ -509,6 +517,8 @@ zh-HK:
   campaign_report:
     column:
       locales: 地點
+    messages:
+      bulk_download_no_reports: 沒有找到報告。請在下載前生成報告。
     modals:
       update_languages:
         default_language: 預設語言
@@ -742,35 +752,6 @@ zh-HK:
     two_factor_authentication:
       attempt: 請輸入您在已註冊電郵地址收到的單次密碼
       code_has_been_sent: 您的新單次密碼已發送至您已註冊的電郵地址
-  dry_errors:
-    errors:
-      add_manager:
-        cannot_be_self: 使用者不能被指派為自己的經理
-      campaign_idps:
-        idp_template_not_published: 該IDP模板尚未發布，請在分配到廣告系列之前將其發布。
-      development_actions:
-        only_global_skills_allowed: 選取的技能必須是全球性技能。
-        skills_not_belong_to_project: 選取的技能必須屬於指定的專案。
-        skills_required: 請至少選擇一種技能。
-      idp_template:
-        content_required: 說明需要內容
-        tag_or_skill_required: 选择“已选择”选项时，请选择标签或技能。
-      job_roles:
-        unique_within_job_group: 已有相同名稱的職位角色存在。
-      project_feature:
-        global_skills_not_enabled_on_client: 若要啟用此專案的全域技能，請在用戶端設定中的功能旗標下啟用它。
-      skills_job_roles:
-        must_belong_to_same_project_or_be_global: 技能和工作角色必須屬於同一個專案，或是全球性的。
-        unique_mappings: 具有相同技能和工作角色的映射已經存在。
-      uniq_skillvue: 此 Skillvue 評估已存在於系統中。此評估的 ID 為 %{id}
-      update_workshop:
-        bookings_exist: 由於參加者已預約此時段，因此無法修改時間表。
-      user_idp_plan:
-        idp_template_not_published: 該IDP模板尚未發布，請在分配給用戶之前將其發布。
-      workshop_subject_re_enroll:
-        no_seats_available: 本工作坊沒有座位。
-        scheduling_lead_time_passed: 排程時間已過，您無法重新註冊該科目。
-        workshop_subject_not_found: 未找到研討會主題
   emails:
     subject_relationship_table:
       subject_email: 主題電子郵件
@@ -936,6 +917,8 @@ zh-HK:
     'yes': 是
   idp:
     actions: 操作
+    add_comments: 新增註解
+    added_development_action: 新增開發動作
     ai:
       assistant:
         failure_fallback:
@@ -992,6 +975,7 @@ zh-HK:
         title: 您好，我是你們的開發助理
     behavioral: 行為
     board: 看板
+    change_history: 變更歷史
     changes_saved_to_plan: 儲存至計劃的變更
     comment_details:
       add_comment: 新增評論
@@ -1000,14 +984,23 @@ zh-HK:
       add_reply_placeholder: 新增回覆...
       go_to_skill: 查看技能
     comments:
+      clear_comments_for_skill: 技能的清晰評論
       close: 關閉
+      comment_content: 如何內容
+      comment_for_skill: 技巧評論
+      commented_at: 評論於
+      commented_by: 評論者
       comments: 評論
       filter_comments: 篩選評論
       mark_as_resolved: 標記為已解決
       mark_as_unresolved: 標記為未解決
+      mark_comment_as_resolved: 將此註解標示為已解決
       replied: 已回覆
+      replied_at: 回覆於
+      replied_by: 回覆者
       replies: 回覆
       reply: 回覆
+      reply_content: 回覆內容
       resolve: 解決
       resolved: 已解決
       resolved_message: 此評論已解決，回覆已停用。
@@ -1016,8 +1009,13 @@ zh-HK:
       show_only_unread: 只顯示未讀
       show_only_unresolved: 只顯示未解決
       sort_by_date: 按日期排序
+      total_comments_count: 評論總數
+      total_count: 評論總數
+      unread_replies_count: 未讀回覆會計算在內
+      view_or_add: 檢視或新增%{skillName}的註解
       you: 您
     convert_to_draft: 轉換為草稿
+    current_step: 目前步驟 %{step}
     delete_skill: 您確定要刪除技能，因為它也會刪除所有連接的開發動作嗎？
     details: 詳情
     development_actions:
@@ -1028,6 +1026,7 @@ zh-HK:
       add_development_actions_modal_title: 適用於%{skillName}的開發動作程式庫
       add_from_library: 從庫新增
       add_more: 新增更多開發動作
+      add_selected_development_actions: 新增選取的開發動作
       all: 全部
       approved: 已批准
       board_view:
@@ -1042,10 +1041,15 @@ zh-HK:
       custom: 習慣
       custom_da_description: 建立自訂開發動作，以解決獨特的開發需求。
       date_range: 開始日期 - 結束日期
+      development_action_learning_style: 發展行動學習風格
+      development_action_name: 開發行動說明
+      discard_draft: 捨棄草稿
       edit_da_progress: 編輯開發動作進度
+      edit_development_action_progress: 編輯開發動作進度
       edit_plan_to_add_development_actions: 編輯計劃，並新增開發動作。
       enter_development_action_description: 輸入開發動作描述
       enter_development_action_title: 輸入開發動作標題
+      filter_development_actions: 篩選開發動作
       generate_by_ai: 通過AI生成
       generate_more: 生成更多
       generating_development_actions: 正在生成發展行動...
@@ -1058,6 +1062,7 @@ zh-HK:
       learning_from_others: 向他人學習
       learning_from_others_label: 向他人學習
       learning_on_the_job_label: 在工作中學習
+      loading_development_actions: 載入開發動作
       manage_skills: 管理技能
       marathon: 馬拉松
       no_development_actions: 沒有發展行動
@@ -1067,19 +1072,38 @@ zh-HK:
       publish_plan: 发布计划
       remove: 移除
       save_plan: 保存計劃
+      search_development_actions: 搜尋開發動作
+      show_development_action_information: 顯示開發動作資訊
       skill: 技能
       sprint: 衝刺
       structured_learning: 結構化學習
       structured_learning_label: 協作學習
       submit_plan: 提交計劃
       success: 發展行動順利完成
+      toggle_skill_privacy: 切換技能隱私權
       write_here: 在此處寫入...
     direct_reportee_details: 直接報告者詳細資料
     download:
       description: 要下載報告，請點擊以下鏈接：<a href=''%{url}'' target=''_blank''>下載</a>。連結有效期僅為 10 分鐘
+    download_plan: 下載方案
     edit_plan_and_add_skills: 編輯計劃，然後按一下管理技能以新增技能。
     edit_progress: 編輯進度
     fetching_skill_gap_report: 獲取技能差距報告...
+    go_to_previous_step: 轉到上一步
+    history:
+      added_da:
+        one: 新增開發動作
+        other: 新增開發動作
+      changes:
+        end_date: 結束日期從%{from}到%{to}
+        progress: 從%{from}到%{to}的進展
+        start_date: 開始日期從 %{from} 到 %{to}
+      modified_da:
+        one: 修改後的發展行動
+        other: 修改後的開發動作
+      removed_da:
+        one: 已移除開發動作
+        other: 已移除的開發動作
     initial_steps:
       add_skill_group_description: 基於你的評估結果，以下是你的一些優勢和發展領域。選擇你想作為發展計劃一部分進一步發展的技能。
       add_skill_group_title: 探索你的%{category}技能
@@ -1103,9 +1127,11 @@ zh-HK:
       skill_column_header: 技能
       skill_gap_report: 技能差距報告
     list: 列表
+    loader_icon: 載入器圖示
     manage_plan: 管理计划
     mark_as_complete: 标记为完成
     mark_as_incomplete: 標記為不完整
+    modified_development_action: 修改後的發展行動
     my_plan:
       development_plan: 發展計劃
       graphs:
@@ -1220,10 +1246,18 @@ zh-HK:
         library: IDP庫
         skills_count: 技能數量
         title: 報告摘要
+    plan_status: 計劃狀態%{status}
+    plan_submitted_for_manager_approval: 您的個人發展計劃已提交給經理批准。
+    private: 私
+    public: 公
     reflective_questions:
       already_completed: IDP 已經完成，您現在無法回答問題。
+      answer: 答
       answer_later: 稍後回答
+      answer_limit: 答案必須介於 %{min} 到 %{max} 個字之間
       answer_placeholder: 請在此寫下您的答案...
+      cancel_edited_answer: 取消已編輯的答案
+      edit_answer: 編輯答案
       errors:
         max_words: 答案最多允許 %{count} 字數
         min_words: 答案至少需要 %{count} 字數
@@ -1233,25 +1267,42 @@ zh-HK:
       no_answer_provided: 尚未提供答案
       no_reflective_questions: 沒有反思性問題
       optional: "（選用）"
+      question: 鞫
+      required: 這個問題是必填的
+      save_edited_answer: 儲存已編輯的答案
       title: 反思問題
       update_failed: 更新期間發生錯誤
       updated_successfully: 您的答案已成功更新
       word_limit: 必須介於 %{min} 到 %{max} 個字之間
       words: 詞彙
     remove_skill: 移除技能
+    remove_skill_from_plan: 從計劃中移除技能%{name}
+    removed_development_action: 已移除開發動作
+    report_preview: 報告預覽
+    search_and_select_skills_of_skill_type: 搜尋並選取%{skillType}技能
+    select_skills_of_skill_type: 選擇%{skillType}技能
+    selected_skills_of_skill_type: 精選%{skillType}技能
     skill_gap_report:
+      content: 技能差距報告內容
       download: 下載技能差距報告
       title: 技能差距報告
+    skill_status: 技能%{name}是私人的
     skills_updated: 計劃中更新的技能
     status: 狀態
     suggestions: 建議
+    suggestions_for_skill_type: "%{skillType}技能建議"
+    summary: 摘要
+    summary_logs: "%{reporteeName}的摘要記錄"
     technical: 技術
     user_idp_status:
       approved: 已批准
+      completion_not_started: 完成未開始
       draft: 草稿
       in_progress: 進行中
+      in_review: 審查中
       not_started: 未开始
       pending_approval: 待批准
+      start_review: 開始審查
     users: 用戶
   idp_templates:
     errors:
@@ -1767,6 +1818,11 @@ zh-HK:
     file_upload:
       EntityTooLarge: 檔案大小應小於 %{maxFileSize}MB
       WrongFileType: 檔案類型應為以下其中一種 %{allowedFileTypes}
+    idp:
+      can_not_complete_without_approval_and_in_progress: 在您的經理批准並將其標記為“進行中”之前，您無法完成您的 IDP。
+      can_not_start_without_approval: 在您的經理批准之前，您無法開始處理您的 IDP。
+      no_changes_to_compare: IDP 計劃沒有變化可比較。
+      no_previous_approved_plan: 未找到先前批准的 IDP 計劃。
     issue: 問題
     least: 請至少回答 %{min} 個選項。
     least_hotspot: 請至少回答 %{min} 個選項。

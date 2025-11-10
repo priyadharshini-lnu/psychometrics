@@ -389,6 +389,8 @@ cs:
               inclusion: Vyberte správný typ normy
         user:
           attributes:
+            current_job_role:
+              not_found: "%{name} nenalezeno"
             email:
               user_exists_in_campaign: Uživatel s tímto e-mailovým ID již v kampani existuje
               user_exists_in_project: Uživatel s tímto e-mailovým ID již v projektu existuje
@@ -408,6 +410,8 @@ cs:
               invalid_datetime: je neplatný
             schedule_start_date:
               invalid_datetime: je neplatný
+            target_job_role:
+              not_found: "%{name} nenalezeno"
         user_assessment:
           subject_and_assessment_exists: Hodnocení a dvojice předmětů již existuje
         user_idp_development_action:
@@ -1473,6 +1477,7 @@ cs:
       export_occupations_job_scheduled: Povolání Exportní úloha byla úspěšně naplánována
       export_reports_and_assessments_statuses_scheduled: Úloha Exportovat sestavy a hodnocení byla úspěšně naplánována
       external_results_export_scheduled: Úloha exportu externího hodnocení byla úspěšně naplánována
+      no_participants_selected: Vyberte alespoň jednoho účastníka, který má pokračovat.
       norm_results_export_scheduled: Exportní úloha Assessment Normed Results byla úspěšně naplánována
       normalize_factor_scores_scheduled: Úloha normalizace skóre faktorů byla úspěšně naplánována.
       raw_factor_export_scheduled: Úloha exportu Assessment Raw Factor byla úspěšně naplánována
@@ -1617,6 +1622,7 @@ cs:
       report_bundle_placeholder: Výběr svazku sestav
     messages:
       bulk_download_error: Hromadné stahování je omezeno na 1000 souborů zpráv. Pokud jste vybrali mnoho jazyků, snižte je.
+      bulk_download_no_reports: Nebyly nalezeny žádné zprávy. Před stažením si prosím vygenerujte zprávy.
       bulk_download_successful: Úloha hromadného stahování sestav byla úspěšně naplánována
       export_report_data_scheduled: Úloha exportu dat sestavy byla úspěšně naplánována
     modals:
@@ -2129,118 +2135,6 @@ cs:
       send_paranoid_instructions: Pokud váš účet existuje, obdržíte během několika minut e-mail s pokyny k jeho odblokování.
       unlocked: Váš účet byl úspěšně odemčen. Pro pokračování se prosím přihlaste.
       unprocessable_entity: Pomocí tohoto odkazu se nepodařilo odemknout váš účet. Kontaktujte prosím podporu.
-  dry_errors:
-    errors:
-      add_edit_project:
-        invalid_subdomain_format: Špatný formát subdomény.
-        reserved_subdomain: Subdoména %{value} je rezervována
-        uniq_subdomain: Subdoména by měla být jedinečná.
-      add_manager:
-        cannot_be_self: Uživatel nemůže být přiřazen jako svůj vlastní správce
-        manager_not_found: Správce nenalezen nebo není součástí stejného projektu
-        user_not_found: Uživatel nebyl nalezen nebo není součástí stejného projektu
-      admin:
-        already_added: Admin s již přidaným e-mailem.
-      already_assigned?: Toto hodnocení nelze propojit - je již přiřazeno k '%{linked_assessor_form_name}'.
-      already_invited: Tento uživatel již existuje v hodnotícím centru, které se pokoušíte přidat.
-      assessor_assessment:
-        already_added: Assessor Assessment již byl přidán do kampaně.
-        lead_already_added: Do kampaně lze přidat pouze jedno hodnocení hlavního hodnotitele.
-      campaign_factor:
-        code_already_exists: Faktor se stejným kódem již existuje.
-        invalid_lua_name: by měl být platný název proměnné lua
-        limit_exceeded: Dosáhli jste maximálního limitu faktorů kampaně %{limit}.
-        name_already_exists: Faktor se stejným názvem již existuje.
-        rank_not_allowed: Zařadit lze pouze faktory s výstupním typem numerickým.
-      campaign_factor_group:
-        group_already_exists: Skupina se stejným názvem již existuje.
-        last_factor_group: Nelze odstranit poslední skupinu faktorů kampaně.
-      campaign_idps:
-        idp_template_not_published: Tato šablona IDP dosud není zveřejněna, zveřejněte ji před přiřazením kampaně.
-      cant_be_deleted: Tento záznam nelze smazat
-      client_feature:
-        ai_assisted_idp_feature_error: Nemůže to být pravda, pokud je funkce asistentů ai zakázána
-      create_superadmin:
-        uniq_email: E-mail by měl být uniq.
-      development_actions:
-        only_global_skills_allowed: Vybrané dovednosti musí být globální.
-        skills_not_belong_to_project: Vybrané dovednosti musí patřit k zadanému projektu.
-        skills_required: Vyberte alespoň jednu dovednost.
-      exceeded_subjects_count: Na jednu pozvánku můžete přidat pouze %{count} subjektů
-      filled?: nemůže být prázdný
-      idp_template:
-        content_required: Pro pokyny je vyžadován obsah
-        tag_or_skill_required: Vyberte prosím buď štítek nebo dovednost, když je vybrána možnost "Vybráno".
-      invalid_name: jako platné znaky jsou povoleny pouze abeceda, číslo, mezera, pomlčka a tečka
-      invalid_value: neplatný příkaz '%{value}' na řádku číslo %{row}
-      job_roles:
-        unique_within_job_group: Pracovní role se stejným názvem již existuje.
-      json?: Měl by to být platný JSON
-      key?: nemůže být prázdný
-      match_regexp?: neplatná hodnota
-      mettl_schedule_record_create:
-        uniq_schedule_name: Název plánu by měl být jedinečný
-      missed?: nemůže být prázdný
-      not_allowed?: není dovoleno měnit
-      not_in_the_list?: předána neplatná hodnota
-      not_uniq_variable: proměnná '%{value}' nadefinována na řádku číslo %{row}
-      project_assessments:
-        should_be_greater_than_zero: Platnost výsledku by měla být delší než 0 dní
-      project_feature:
-        global_skills_not_enabled_on_client: Chcete-li pro tento projekt povolit Global Skills, aktivujte jej v části Příznaky funkcí v nastavení klienta.
-      report_approval_settings:
-        report_exists: Nastavení schválení zprávy pro tuto zprávu již existuje.
-        validates_admins: Správci nemají ke kampani přístup.
-      report_families_reports:
-        report_exists: Tato zpráva je již součástí balíčku zpráv
-      size?: velikost by měla být menší než %{size}
-      skill:
-        already_added: Dovednost se stejným jménem již byla přidána.
-      skill_alias:
-        unique_alias: Alias by měl být jedinečný
-        unique_skill: Dovednost by měla být jedinečná
-      skills_job_roles:
-        must_belong_to_same_project_or_be_global: Dovednost a pracovní role musí patřit ke stejnému projektu nebo být globální.
-        unique_mappings: Mapování se stejnou dovedností a pracovní rolí již existuje.
-      uniq: Toto posouzení Mettl je již v systému přítomno. ID tohoto posouzení je %{id}
-      uniq?: by měly být jedinečné
-      uniq_simulation: Toto posouzení simulace je již v systému přítomno. ID tohoto posouzení je %{id}
-      uniq_skillvue: Toto hodnocení dovedností je již v systému obsaženo. ID tohoto hodnocení je %{id}
-      update_workshop:
-        bookings_exist: Časový rozvrh nelze změnit, protože účastníci si tento časový úsek již rezervovali.
-        less_than_booked: Celkový počet míst musí být větší než rezervovaný
-      user_availability_date:
-        overlaps_date: Překrývá jinou dostupnost %{range}
-        overlaps_time: Překrývá interval %{interval}
-        start_date_should_be_less: Datum zahájení by mělo být kratší než datum ukončení
-        start_time_should_be_less: Čas zahájení by měl být kratší než čas ukončení
-      user_idp_plan:
-        idp_template_already_assigned_to_user: Tato šablona Idp je již přiřazena tomuto uživateli a je aktivní
-        idp_template_not_published: Tato šablona IDP dosud není zveřejněna, zveřejněte ji před přiřazením uživateli.
-      user_saved_filters:
-        limit_exceeded: Můžete mít pouze %{limit} uložených filtrů, pokud chcete přidat další, laskavě uložené filtry odstraňte.
-        unique_name: Filtr se stejným názvem již existuje.
-      workshop_invited_subject_create:
-        already_exists: Předmět již ve výzvě existuje.
-      workshop_subject_create:
-        already_exists: Předmět již v tomto středisku hodnocení existuje.
-        part_of_other_workshop: Subjekt je již účastníkem '%{workshop_name}'.
-      workshop_subject_re_enroll:
-        no_seats_available: Pro tento seminář nejsou k dispozici žádná volná místa.
-        scheduling_lead_time_passed: Čas pro plánování vypršel, předmět nelze znovu zapsat.
-        workshop_subject_not_found: Předmět semináře nebyl nalezen
-      workshops:
-        no_available_assessor_slots: Žádné volné sloty pro hodnotitele %{assessor}
-        no_available_manager_slots: Pro manažera nejsou k dispozici žádné sloty %{manager}
-    users:
-      registrations:
-        new:
-          register: Registrace
-          sign_in: Přihlásit se
-      sessions:
-        new:
-          register: Registrace
-          sign_in: Přihlásit se
   emails:
     nomination_approval_table:
       evaluator_name: Jméno hodnotitele
@@ -2570,6 +2464,8 @@ cs:
       aria_selected: Vybrané stránky
   idp:
     actions: Akce
+    add_comments: Přidat komentáře
+    added_development_action: Přidána vývojová akce
     ai:
       assistant:
         failure_fallback:
@@ -2622,10 +2518,11 @@ cs:
         drop: Sem přetáhněte soubor
         title: Vkládat
       welcome:
-        text: Jste připraveni zmapovat svůj růst, jorney? Začněme!
+        text: Jste připraveni zmapovat svou cestu růstu? Začněme!
         title: Dobrý den, jsem Váš asistent vývoje
     behavioral: Chování
     board: Přehled
+    change_history: Historie změn
     changes_saved_to_plan: Změny uložené v plánu
     comment_details:
       add_comment: Přidat komentář
@@ -2634,14 +2531,23 @@ cs:
       add_reply_placeholder: Přidat odpověď...
       go_to_skill: Přejít na dovednost
     comments:
+      clear_comments_for_skill: Jasné komentáře pro dovednost
       close: Zavřít
+      comment_content: Jak na obsah
+      comment_for_skill: Komentář pro dovednost
+      commented_at: Komentované na
+      commented_by: Přidal komentář
       comments: Komentáře
       filter_comments: Filtrovat komentáře
       mark_as_resolved: Označit jako vyřešené
       mark_as_unresolved: Označit jako nevyřešené
+      mark_comment_as_resolved: Označit tento komentář jako vyřešený
       replied: Odpovězeno
+      replied_at: Odpovězeno dne
+      replied_by: Odpověděl
       replies: Odpovědi
       reply: Odpovědět
+      reply_content: Odpovědět na obsah
       resolve: Vyřešit
       resolved: Vyřešeno
       resolved_message: Tento komentář byl vyřešen a odpovědi jsou zakázány.
@@ -2650,8 +2556,13 @@ cs:
       show_only_unread: Zobrazit nepřečtené
       show_only_unresolved: Zobrazit pouze nevyřešené
       sort_by_date: Seřadit podle data
+      total_comments_count: Celkový počet komentářů
+      total_count: Celkový počet komentářů
+      unread_replies_count: Počet nepřečtených odpovědí
+      view_or_add: Zobrazení nebo přidání komentářů k %{skillName}
       you: Vy
     convert_to_draft: Převést na koncept
+    current_step: Aktuální krok %{step}
     delete_skill: Opravdu chcete odstranit dovednost, protože tím odstraníte i všechny související vývojové akce?
     details: Podrobnosti
     development_actions:
@@ -2662,6 +2573,7 @@ cs:
       add_development_actions_modal_title: Knihovna vývojových akcí pro %{skillName}
       add_from_library: Přidat z knihovny
       add_more: Přidání dalších vývojových akcí
+      add_selected_development_actions: Přidání vybraných vývojových akcí
       all: Vše
       approved: Schváleno
       board_view:
@@ -2676,10 +2588,15 @@ cs:
       custom: Zvyk
       custom_da_description: Vytvořte vlastní vývojovou akci, která řeší jedinečné potřeby vývoje.
       date_range: Datum zahájení - Datum ukončení
+      development_action_learning_style: Rozvojový akční styl učení
+      development_action_name: Popis vývojových akcí
+      discard_draft: Zahodit koncept
       edit_da_progress: Upravit průběh vývojářské akce
+      edit_development_action_progress: Upravit průběh vývojářské akce
       edit_plan_to_add_development_actions: Upravit plán a přidat akce vývoje.
       enter_development_action_description: Zadejte popis vývojové akce
       enter_development_action_title: Zadejte název vývojové akce
+      filter_development_actions: Akce vývoje filtru
       generate_by_ai: Vygenerovat pomocí AI
       generate_more: Vygenerovat více
       generating_development_actions: Generování rozvojových akcí...
@@ -2696,6 +2613,7 @@ cs:
       learning_from_others: Učení od ostatních
       learning_from_others_label: Učíme se od ostatních
       learning_on_the_job_label: Učení za pochodu
+      loading_development_actions: Načítání vývojových akcí
       manage_skills: Spravovat dovednosti
       marathon: Maraton
       mark_as_complete: Označit jako dokončené
@@ -2706,6 +2624,8 @@ cs:
       publish_plan: Publikovat plán
       remove: Odstranit
       save_plan: Plán úspor
+      search_development_actions: Vyhledávání vývojových akcí
+      show_development_action_information: Zobrazit informace o vývojových akcích
       skill: Dovednost
       sprint: Sprint
       start_plan: Zahájit plán
@@ -2713,14 +2633,31 @@ cs:
       structured_learning_label: Kolaborativní učení
       submit_plan: Odeslat plán
       success: Vývojářské akce byly úspěšně dokončeny
+      toggle_skill_privacy: Toggle Skill Ochrana osobních údajů
       write_here: Pište zde...
     direct_reportee_details: Detail přímých reportérů
     download:
       description: 'Zprávu si můžete stáhnout pomocí následujícího odkazu: <a href=''''%{url}'''' target=''''_blank''''>Stáhnout</a>. Odkaz je platný pouze po dobu 10 minut'
+    download_plan: Stáhnout plán
     edit_plan: Upravit plán
     edit_plan_and_add_skills: Upravit plán a kliknutím na možnost Spravovat dovednosti přidejte dovednosti.
     edit_progress: Upravit pokrok
     fetching_skill_gap_report: Zpráva o načítání mezer v dovednostech...
+    go_to_previous_step: Přejít na předchozí krok
+    history:
+      added_da:
+        one: Přidána vývojová akce
+        other: Přidané akce vývoje
+      changes:
+        end_date: Datum ukončení od %{from} do %{to}
+        progress: Postup od %{from} k %{to}
+        start_date: Datum zahájení od %{from} do %{to}
+      modified_da:
+        one: Upravená vývojová akce
+        other: Upravené vývojové akce
+      removed_da:
+        one: Odebrána vývojová akce
+        other: Odebrané akce vývoje
     initial_steps:
       add_skill_group_description: Na základě výsledků vašeho hodnocení jsou zde některé oblasti vašich silných stránek a rozvoje. Vyberte dovednosti, které chcete dále rozvíjet jako součást vašeho rozvojového plánu.
       add_skill_group_title: Prozkoumání vašich %{category} dovedností
@@ -2745,9 +2682,11 @@ cs:
       skill_column_header: Dovednost
       skill_gap_report: Zpráva o mezerách v dovednostech
     list: Seznam
+    loader_icon: Ikona nástroje Loader
     manage_plan: Spravovat plán
     mark_as_complete: Označit jako dokončené
     mark_as_incomplete: Označit jako nedokončené
+    modified_development_action: Upravená vývojová akce
     my_plan:
       development_plan: Rozvojový plán
       graphs:
@@ -2864,10 +2803,18 @@ cs:
         skills_count: Počet dovedností
         title: Shrnutí zprávy
     plan: Plán
+    plan_status: Stav plánu %{status}
+    plan_submitted_for_manager_approval: Váš individuální plán rozvoje byl předložen ke schválení manažerovi.
+    private: Soukromý
+    public: Veřejný
     reflective_questions:
       already_completed: IDP již byl dokončen, nyní nemůžete na otázky odpovídat.
+      answer: Odpověď
       answer_later: Odpověď Později
+      answer_limit: Odpověď musí být mezi %{min} a %{max} slovy
       answer_placeholder: Napište sem svou odpověď...
+      cancel_edited_answer: Zrušit upravenou odpověď
+      edit_answer: Upravit odpověď
       errors:
         max_words: Odpověď umožňuje maximálně %{count} slov
         min_words: Odpověď vyžaduje alespoň %{count} slov
@@ -2877,27 +2824,44 @@ cs:
       no_answer_provided: Zatím nebyla poskytnuta žádná odpověď
       no_reflective_questions: Žádné reflektivní otázky
       optional: "(Volitelné)"
+      question: Otázka
+      required: Tato otázka je povinná
+      save_edited_answer: Uložit upravenou odpověď
       title: Reflektivní otázky
       update_failed: Během aktualizace došlo k chybě
       updated_successfully: Vaše odpovědi byly úspěšně aktualizovány
       word_limit: Musí být mezi %{min} a %{max} slovy
       words: Slova
     remove_skill: Odebrat dovednost
+    remove_skill_from_plan: Odebrání %{name} dovedností z plánu
+    removed_development_action: Odebrána vývojová akce
+    report_preview: Náhled sestavy
+    search_and_select_skills_of_skill_type: Vyhledávání a výběr dovedností %{skillType}
+    select_skills_of_skill_type: Vyberte %{skillType} dovednosti
+    selected_skills_of_skill_type: Vybrané %{skillType} dovednosti
     skill_gap_report:
+      content: Obsah zprávy o mezerách v dovednostech
       download: Stáhněte si zprávu o nedostatku dovedností
       title: Zpráva o nedostatku dovedností
+    skill_status: Dovednost %{name} je soukromá
     skills_updated: Dovednosti aktualizované v plánu
     status: Stav
     suggestions: Návrhy
+    suggestions_for_skill_type: Návrhy pro %{skillType} dovednosti
+    summary: Shrnutí
+    summary_logs: Souhrnné protokoly pro %{reporteeName}
     technical: Technická stránka
     user_idp_status:
       approved: Schváleno
       completed: Hotový
+      completion_not_started: Kompletace nebyla zahájena
       draft: Návrh
       in_progress: Probíhá
+      in_review: V recenzi
       not_started: Nezahájeno
       pending_approval: Čeká se na
       rejected: Odmítnutý
+      start_review: Zahájit recenzi
     users: Uživatelé
     with_reflection_questions: S otázkami k zamyšlení
     without_reflection_questions: Bez otázek k zamyšlení
@@ -4216,6 +4180,10 @@ cs:
       EntityTooLarge: Soubor musí být menší než %{maxFileSize} MB
       WrongFileType: Typ souboru by měl být jeden z následujících %{allowedFileTypes}
     idp:
+      can_not_complete_without_approval_and_in_progress: Svého poskytovatele identity nemůžete dokončit, dokud jej váš manažer neschválí a nevy jej označíte jako "Probíhá".
+      can_not_start_without_approval: Na svém IDP nemůžete začít pracovat, dokud jej váš manažer neschválí.
+      no_changes_to_compare: Žádné změny k porovnání pro plán IDP.
+      no_previous_approved_plan: Nebyl nalezen žádný předchozí schválený plán IDP.
       reflective_questions_required: Pro IDP jsou vyžadovány odpovědi na reflektivní otázky
       status_not_permitted: není povoleno uživatelem.
       status_not_permitted_by_manager: Manažer nemůže aktualizovat stav, pokud je plán ve stavu %{status}.

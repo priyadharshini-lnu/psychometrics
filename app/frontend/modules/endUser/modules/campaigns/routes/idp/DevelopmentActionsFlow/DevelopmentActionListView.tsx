@@ -35,6 +35,7 @@ type SkillsContainerProps = {
   onAddMoreSkills: () => void;
   isDALoading: boolean;
   isViewingReportee?:boolean
+  setSkillForComment: (skillDetails: { skillId: string; skillName: string; } | null) => void
 }
 
 export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
@@ -48,6 +49,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
   onUpdateDevelopmentActionProgress,
   isDALoading,
   isViewingReportee = false,
+  setSkillForComment,
 }) => {
   const [isAddDevelopmentActionModalOpen, setIsAddDevelopmentActionModalOpen] = useState(false)
   const [isAIGeneratedDevelopmentActionsModalOpen, setIsAIGeneratedDevelopmentActionsModalOpen] = useState(false)
@@ -168,6 +170,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
         onUpdateDevelopmentActionProgress={onUpdateDevelopmentActionProgress}
         userIdpSkillId={skill.id as number}
         isPrivate={skill.private}
+        setSkillForComment={setSkillForComment}
         {...skill}
       />
     ))
@@ -208,7 +211,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
       <Flex vertical gap={8} className={isMobile ? '' : 'ps-8 pe-8 pt-2'}>
         {categories.length === 0 && (
           <Flex justify="center" align="center" className="p-4 mt-2">
-            <Empty description="" style={{ marginLeft: '-2rem' }} />
+            <Empty aria-hidden="true" description="" style={{ marginLeft: '-2rem' }} />
             <Flex vertical align="start" style={{ marginLeft: '-2rem' }}>
               {isViewingReportee ? (
                 <strong className="ta-s">
@@ -232,15 +235,16 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
           <div key={category.skillType} className="mt-2">
             <Flex vertical gap={4}>
               <Flex align="center" gap={12}>
-                <Avatar size={24} src={renderSkillTypeIcon(category.skillType)} />
+                <Avatar aria-hidden="true" size={24} src={renderSkillTypeIcon(category.skillType)} />
                 <Typography.Title
                   className="font-semi-bold m-0 mb-0 transform-capitalize"
                   level={3}
+                  aria-label={`${I18n.t(`idp.${category.skillType.toLowerCase()}`)} skills`}
                 >
                   {I18n.t(`idp.${category.skillType.toLowerCase()}`)}
                 </Typography.Title>
               </Flex>
-              <Flex gap={12} vertical>
+              <Flex vertical>
                 {renderCards(category.skills)}
               </Flex>
             </Flex>

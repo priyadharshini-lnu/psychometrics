@@ -16,6 +16,10 @@
   & :global(.anticon-close) {
     cursor: pointer;
   }
+
+  &:focus, & *[role="button"]:focus {
+    outline: 4px solid var(--ant-primary-3) !important;
+  }
 }
 
 .skillBtnSuggestionSelected {

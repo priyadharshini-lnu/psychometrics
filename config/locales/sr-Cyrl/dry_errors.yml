@@ -1,0 +1,105 @@
+---
+sr-Cyrl:
+  dry_errors:
+    errors:
+      add_edit_project:
+        invalid_subdomain_format: Погрешан формат поддомена.
+        reserved_subdomain: Поддомена ИНТЕРПОЛАТИОН_ВАР_0 је резервисана
+        uniq_subdomain: Поддомен треба да буде јединствен.
+      add_manager:
+        cannot_be_self: Корисник не може бити постављен као свој менаџер
+        manager_not_found: Менаџер није пронађен или није део истог пројекта
+        user_not_found: Корисник није пронађен или није део истог пројекта
+      admin:
+        already_added: Администратор са е-поштом већ додат.
+      already_invited: Овај корисник већ постоји у центру за процену који покушавате да додате.
+      assessor_assessment:
+        already_added: Процена процењивача је већ додат у кампању.
+        lead_already_added: Само једна процена Леад Ассессор може бити додана у кампању.
+      campaign_factor:
+        code_already_exists: Фактор са истим кодом већ постоји.
+        invalid_lua_name: Требало би да буде важеће име луа променљиве
+        limit_exceeded: Достигли сте максималну границу од ИНТЕРПОЛАТИОН_ВАР_0 фактора кампање.
+        name_already_exists: Фактор са истим именом већ постоји.
+        rank_not_allowed: Могу се рангирати само фактори са излазним типом нумеричких.
+      campaign_factor_group:
+        group_already_exists: Група са истим именом већ постоји.
+        last_factor_group: Није могуће избрисати последњу групу фактора кампање.
+      campaign_idps:
+        idp_template_not_published: Овај ИДП образац још увек није објављен, објавите је пре додељеног кампање.
+      cant_be_deleted: Овај запис се не може избрисати
+      client_feature:
+        ai_assisted_idp_feature_error: Не може бити истина ако је функција АИ асистента онемогућена
+      create_superadmin:
+        uniq_email: Е -маил треба да буде уник.
+      development_actions:
+        only_global_skills_allowed: Одабране вештине морају бити глобалне вештине.
+        skills_not_belong_to_project: Одабране вештине морају да припадају наведеном пројекту.
+        skills_required: Изаберите бар једну вештину.
+      exceeded_subjects_count: Можете додати само ИНТЕРПОЛАТИОН_ВАР_0 предмета по позиву
+      idp_template:
+        content_required: Садржај је неопходан за упутства
+        tag_or_skill_required: Молимо вас да изаберете или ознаку или вештину када се изабере опција "Изабрано".
+      invalid_name: само абецеда, број, размаци, цртица и тачка су дозвољени као важећи карактер
+      invalid_value: Неважећа изјава 'ИНТЕРПОЛАТИОН_ВАР_0' на линији број ИНТЕРПОЛАТИОН_ВАР_1
+      job_roles:
+        unique_within_job_group: Посао улога са истим именом већ постоји.
+      mettl_schedule_record_create:
+        uniq_schedule_name: Име распореда треба да буде јединствено
+      not_uniq_variable: променљива 'ИНТЕРПОЛАТИОН_ВАР_0' редефинисана на број линије ИНТЕРПОЛАТИОН_ВАР_1
+      project_assessments:
+        should_be_greater_than_zero: Валидност резултата треба да буде већа од 0 дана
+      project_feature:
+        global_skills_not_enabled_on_client: Да бисте омогућили Глобал Скиллс за овај пројекат, активирајте га под Феатуре Флагс у подешавањима клијента.
+      report_approval_settings:
+        report_exists: Подешавање одобравања извештаја за овај извештај већ постоји.
+        validates_admins: Администратори немају приступ кампањи.
+      report_families_reports:
+        report_exists: Овај извештај је већ део Извештаја Бундле
+      skill:
+        already_added: Вештина са истим именом је већ додата.
+      skill_alias:
+        unique_alias: Алиас треба да буде јединствен
+        unique_skill: Вештина треба да буде јединствена
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: Вештина и улога посла морају припадати истом пројекту или бити глобални.
+        unique_mappings: Мапирање са истом вештином и радном улогом већ постоји.
+      uniq: Ова Меттл процена је већ присутна у систему. ИД ове процене је ИНТЕРПОЛАТИОН_ВАР_0
+      uniq_simulation: Ова процена симулације је већ присутна у систему. ИД ове процене је ИНТЕРПОЛАТИОН_ВАР_0
+      uniq_skillvue: Ова процена Скиллвуе је већ присутна у систему. ИД ове процене је ИНТЕРПОЛАТИОН_ВАР_0
+      uniq_yoodli: Ова Иоодли процена је већ присутна у систему. ИД ове процене је ИНТЕРПОЛАТИОН_ВАР_0
+      update_workshop:
+        bookings_exist: Није могуће изменити распоред јер су учесници већ резервисали овај термин.
+        less_than_booked: Укупан број места мора бити већи од резервисаног
+      user_availability_date:
+        overlaps_date: Преклапа још једну доступност ИНТЕРПОЛАТИОН_ВАР_0
+        overlaps_time: Преклапа интервал ИНТЕРПОЛАТИОН_ВАР_0
+        start_date_should_be_less: Датум почетка треба да буде мањи од датума завршетка
+        start_time_should_be_less: Време почетка треба да буде мање од времена завршетка
+      user_idp_plan:
+        idp_template_already_assigned_to_user: Овај ИДП шаблон је већ асигед на овог корисника и активан је
+        idp_template_not_published: Овај ИДП образац још увек није објављен, објавите је пре додељеног кориснику.
+      user_saved_filters:
+        limit_exceeded: Можете имати само ИНТЕРПОЛАТИОН_ВАР_0 сачуване филтере, љубазно избрисати сачуване филтере да бисте додали још.
+        unique_name: Филтер са истим именом већ постоји.
+      workshop_invited_subject_create:
+        already_exists: Субјекат већ постоји у позиву.
+      workshop_subject_create:
+        already_exists: Предмет већ постоји у овом центру за процену.
+        part_of_other_workshop: Субјекат је већ учесник 'ИНТЕРПОЛАТИОН_ВАР_0'.
+      workshop_subject_re_enroll:
+        no_seats_available: Нема слободних места за ову радионицу.
+        scheduling_lead_time_passed: Време за заказивање је истекло, не можете поново пријавити учесника.
+        workshop_subject_not_found: Учесник радионице није пронађен
+      workshops:
+        no_available_assessor_slots: Нема слободних места за процењивача ИНТЕРПОЛАТИОН_ВАР_0
+        no_available_manager_slots: Нема слободних места за менаџера ИНТЕРПОЛАТИОН_ВАР_0
+    users:
+      registrations:
+        new:
+          register: Региструјете
+          sign_in: Упиши се
+      sessions:
+        new:
+          register: Региструјете
+          sign_in: Упиши се

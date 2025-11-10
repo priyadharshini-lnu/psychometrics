@@ -4,6 +4,7 @@ require 'rails_helper'
 
 describe Skillvue::StartAssessment do
   include Rails.application.routes.url_helpers
+
   let(:config) { { 'api_key' => 'api_key' } }
   let(:user) { create(:user, :with_project_membership, :with_photo) }
   let(:user_assessment) do

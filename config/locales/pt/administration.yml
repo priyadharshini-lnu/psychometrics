@@ -208,6 +208,7 @@ pt:
           projectSettings:
             assessments: Avaliações
             design: Conceção
+            feature_flags: Sinalizadores de recursos
             idp: PDI
             integrations: Integrações
             privacy_settings: Definições de privacidade
@@ -3148,15 +3149,40 @@ pt:
             no_auth:
               label: Nenhum
               value: no_auth
+            oauth:
+              label: OAuth
+              value: OAuth
+          client_credentials:
+            label: Credenciais do cliente
+            value: client_credentials
+          client_id:
+            label: ID do cliente
+            name: oauth_client_id
+            required: O ID do cliente é obrigatório
+          client_secret:
+            label: Segredo do cliente
+            name: oauth_client_secret
+            required: O segredo do cliente é obrigatório
           description:
             label: Descrição
             name: descrição
+          grant_type:
+            label: Tipo de concessão
+            name: oauth_grant_type
           include_locales:
             label: Incluir traduções
             name: incluir_locales
+          oauth_scope:
+            label: Âmbito
+            name: oauth_scope
+            required: O escopo é necessário
           password:
             label: Palavra-passe
             name: palavra-passe
+          token_url:
+            label: Token URL
+            name: oauth_token_url
+            required: A URL do token é obrigatória
           topics:
             label: Eventos
             list:
@@ -3476,6 +3502,7 @@ pt:
         add_new_condition: Adicionar nova condição
         apply_color_label: 'Em seguida, aplique a seguinte cor:'
         custom_factor_fields:
+          default_score: Pontuação
           percentage: Porcentagem
           questions_attempted: Tentativa
           questions_correct: Correto
@@ -3511,6 +3538,7 @@ pt:
         prefixes:
           and: E
           or: OU
+        prevent_value_overlap: Evitar sobreposição de valores
         skill_type_label: Filtrar por tipo de habilidade
         skill_type_placeholder: Selecione o tipo de habilidade
         skill_types:
@@ -3791,6 +3819,7 @@ pt:
         start_time: Data e hora
         subject: Assunto
         title: Título
+        view_recording: Ver gravação
       errors:
         assessor_already_assigned: O avaliador já foi atribuído a esta avaliação. Selecione outra avaliação ou avaliador.
         date_required: Selecionar uma data

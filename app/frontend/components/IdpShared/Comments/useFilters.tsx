@@ -20,5 +20,12 @@ export const useFilters = () => {
     setFilters(newFilters)
   }
 
-  return { filters, handleMenuClick }
+  const resetFilters = () => {
+    setFilters({
+      sortBy: 'createdAt',
+      sortOrder: 'desc',
+    })
+  }
+
+  return { filters, handleMenuClick, resetFilters }
 }

@@ -1,0 +1,115 @@
+---
+ar:
+  dry_errors:
+    errors:
+      add_edit_project:
+        invalid_subdomain_format: تنسيق النطاق الفرعي خاطئ.
+        reserved_subdomain: النطاق الفرعي %{value} محجوز
+        uniq_subdomain: يجب أن يكون النطاق الفرعي فريدا.
+      add_manager:
+        cannot_be_self: لا يمكن تعيين المستخدم كمدير لنفسه
+        manager_not_found: لم يتم العثور على المدير أو لم يكن جزءا من نفس المشروع
+        user_not_found: لم يتم العثور على المستخدم أو ليس جزءا من نفس المشروع
+      admin:
+        already_added: المسؤول الذي تمت إضافة بريد إلكتروني بالفعل.
+      already_assigned?: لا يمكن ربط هذا التقييم - تم تعيينه بالفعل إلى '%{linked_assessor_form_name}'.
+      already_invited: هذا المستخدم موجود بالفعل في مركز التقييم الذي تحاول إضافته.
+      assessor_assessment:
+        already_added: تمت إضافة تقييم المقيم بالفعل إلى الحملة.
+        lead_already_added: يمكن إضافة تقييم مقيم رئيسي واحد فقط إلى الحملة.
+      campaign_factor:
+        code_already_exists: يوجد بالفعل عامل بنفس التعليمات البرمجية.
+        invalid_lua_name: يجب أن يكون اسم متغير lua صالحا
+        limit_exceeded: لقد وصلت إلى الحد الأقصى لعوامل الحملة %{limit}.
+        name_already_exists: عامل يحمل نفس الاسم موجود بالفعل.
+        rank_not_allowed: يمكن ترتيب العوامل ذات نوع الإخراج الرقمي فقط.
+      campaign_factor_group:
+        group_already_exists: مجموعة تحمل نفس الاسم موجودة بالفعل.
+        last_factor_group: لا يمكن حذف آخر مجموعة عوامل الحملة.
+      campaign_idps:
+        idp_template_not_published: لم يتم نشر قالب IDP هذا بعد ، يرجى نشره قبل التعيين إلى الحملة.
+      cant_be_deleted: لا يمكن حذف هذا السجل
+      client_feature:
+        ai_assisted_idp_feature_error: لا يمكن أن يكون صحيحا إذا تم تعطيل ميزة مساعدي الذكاء الاصطناعي
+      create_superadmin:
+        uniq_email: يجب أن يكون البريد الإلكتروني موحدا.
+      development_actions:
+        only_global_skills_allowed: يجب أن تكون المهارات المختارة مهارات عالمية.
+        skills_not_belong_to_project: يجب أن تنتمي المهارات المحددة إلى المشروع المحدد.
+        skills_required: يُرجى تحديد مهارة واحدة على الأقل.
+      exceeded_subjects_count: يمكنك فقط إضافة %{count} مواضيع لكل دعوة
+      filled?: لا يمكن أن تكون فارغة
+      idp_template:
+        content_required: المحتوى مطلوب للتعليمات
+        tag_or_skill_required: يرجى تحديد علامة أو مهارة عند اختيار خيار "محدد"
+      invalid_name: يسمح فقط بالحروف الأبجدية والرقم والمسافات والشرطة والنقطة كحرف صالح
+      invalid_value: عبارة غير صالحة '%{value}' في رقم السطر %{row}
+      job_roles:
+        unique_within_job_group: يوجد دور وظيفي بنفس الاسم بالفعل.
+      json?: يجب أن تكون JSON صالحة
+      key?: لا يمكن أن تكون فارغة
+      match_regexp?: قيمة غير صالحة
+      mettl_schedule_record_create:
+        uniq_schedule_name: يجب أن يكون اسم الجدول فريدا
+      missed?: لا يمكن أن تكون فارغة
+      not_allowed?: غير مسموح بالتغيير
+      not_in_the_list?: تم تمرير قيمة غير صالحة
+      not_uniq_variable: المتغير "%{value}" المعاد تعريفه على رقم السطر %{row}
+      project_assessments:
+        should_be_greater_than_zero: يجب أن تكون صلاحية النتيجة أكبر من 0 يوم
+      project_feature:
+        global_skills_not_enabled_on_client: لتمكين المهارات العالمية لهذا المشروع ، يرجى تنشيطه ضمن علامات الميزات في إعدادات العميل.
+      report_approval_settings:
+        report_exists: إعداد الموافقة على التقرير لهذا التقرير موجود بالفعل.
+        validates_admins: لا يمكن للمشرفين الوصول إلى الحملة.
+      report_families_reports:
+        report_exists: هذا التقرير هو بالفعل جزء من حزمة التقارير
+      size?: يجب أن يكون الحجم أقل%{size}
+      skill:
+        already_added: مهارة تحمل نفس الاسم تمت إضافتها بالفعل.
+      skill_alias:
+        unique_alias: يجب أن يكون الاسم المستعار فريدا
+        unique_skill: يجب أن تكون المهارة فريدة من نوعها
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: يجب أن تنتمي المهارة والدور الوظيفي إلى نفس المشروع أو أن يكونا عالميين.
+        unique_mappings: يوجد بالفعل تعيين بنفس المهارة والدور الوظيفي.
+      uniq: تقييم Mettl هذا موجود بالفعل في النظام. معرف هذا التقييم هو %{id}
+      uniq?: يجب أن تكون فريدة من نوعها
+      uniq_simulation: تقييم المحاكاة هذا موجود بالفعل في النظام. معرف هذا التقييم هو %{id}
+      uniq_skillvue: تقييم Skillvue هذا موجود بالفعل في النظام. معرف هذا التقييم هو %{id}
+      uniq_yoodli: تقييم Yoodli هذا موجود بالفعل في النظام. معرف هذا التقييم %{id}
+      update_workshop:
+        bookings_exist: لا يمكن تعديل الجدول الزمني لأن المشاركين قد حجزوا هذه الفترة الزمنية بالفعل.
+        less_than_booked: يجب أن يكون إجمالي المقاعد أكبر من الحجز
+      user_availability_date:
+        overlaps_date: يتداخل مع توفر آخر %{range}
+        overlaps_time: الفاصل الزمني المتداخل%{interval}
+        start_date_should_be_less: يجب أن يكون تاريخ البدء أقل من تاريخ الانتهاء
+        start_time_should_be_less: يجب أن يكون وقت البدء أقل من وقت الانتهاء
+      user_idp_plan:
+        idp_template_already_assigned_to_user: تم دمج قالب Idp هذا بالفعل لهذا المستخدم وهو نشط
+        idp_template_not_published: لم يتم نشر قالب IDP هذا بعد ، يرجى نشره قبل التعيين للمستخدم.
+      user_saved_filters:
+        limit_exceeded: يمكنك فقط الحصول على الفلاتر المحفوظة %{limit} ، يرجى حذف الفلاتر المحفوظة لإضافة المزيد.
+        unique_name: يوجد بالفعل فلتر يحمل نفس الاسم.
+      workshop_invited_subject_create:
+        already_exists: الموضوع موجود بالفعل في الدعوة.
+      workshop_subject_create:
+        already_exists: الموضوع موجود بالفعل في مركز التقييم هذا.
+        part_of_other_workshop: الموضوع مشارك بالفعل في "%{workshop_name}".
+      workshop_subject_re_enroll:
+        no_seats_available: لا توجد مقاعد متاحة لهذه الورشة.
+        scheduling_lead_time_passed: انقضت مهلة الجدولة الزمنية \ لقد انقضت المهلة الزمنية \ لا يمكنك إعادة تسجيل الموضوع.
+        workshop_subject_not_found: موضوع ورشة العمل غير موجود
+      workshops:
+        no_available_assessor_slots: لا توجد فتحات متاحة للمقيم %{assessor}
+        no_available_manager_slots: لا توجد فتحات متاحة للمدير %{manager}
+    users:
+      registrations:
+        new:
+          register: سجل
+          sign_in: تسجيل الدخول
+      sessions:
+        new:
+          register: سجل
+          sign_in: تسجيل الدخول

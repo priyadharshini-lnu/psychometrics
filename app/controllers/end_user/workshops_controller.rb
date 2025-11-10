@@ -3,6 +3,7 @@
 class EndUser::WorkshopsController < ApplicationController
   # will refactor
   include ::Threesixty::InitialState
+
   layout 'layouts/end_user'
   before_action :set_locale
   initial_state_for %i[show]

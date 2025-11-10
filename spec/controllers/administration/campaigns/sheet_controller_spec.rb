@@ -152,7 +152,7 @@ RSpec.describe Administration::Campaigns::SheetsController, type: :controller do
       expect(parsed_response).to be_an(Array)
       expect(parsed_response.length).to eq(2)
 
-      column_names = parsed_response.map { |col| col['name'] }
+      column_names = parsed_response.pluck('name')
       expect(column_names).to include('Project Column', 'Campaign Column')
     end
   end

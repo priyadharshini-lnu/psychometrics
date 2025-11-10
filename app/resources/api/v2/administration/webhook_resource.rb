@@ -5,7 +5,8 @@ class Api::V2::Administration::WebhookResource < Api::V2::Administration::BaseRe
 
   attributes :url, :description, :created_at, :updated_at, :topics, :username,
              :project_id, :auth_type, :active, :password, :api_key, :api_key_header, :include_locales,
-             :rate_limit, :rate_limit_period
+             :rate_limit, :rate_limit_period, :oauth_grant_type, :oauth_token_url, :oauth_client_id,
+             :oauth_client_secret, :oauth_scope
 
   ransack_filters %i[filterable_fields active_true]
 
@@ -54,5 +55,13 @@ class Api::V2::Administration::WebhookResource < Api::V2::Administration::BaseRe
     ::Pundit.policy_scope!(
       opts[:context][:user], [:api, :administration, Webhook]
     ).webhooks_of(opts[:context][:project_id])
+  end
+
+  def oauth_client_id
+    Utility::String.mask_secret(@model.oauth_client_id)
+  end
+
+  def oauth_client_secret
+    Utility::String.mask_secret(@model.oauth_client_secret)
   end
 end
