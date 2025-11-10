@@ -208,6 +208,7 @@ zh-Hant:
           projectSettings:
             assessments: 評估
             design: 設計
+            feature_flags: 功能旗標
             idp: IDP
             integrations: 整合
             privacy_settings: 隱私設定

@@ -97,8 +97,9 @@ module AI
         @skill_gap_report_analysis_assistant ||= idp_template.skill_gap_report_analysis_ai_assistant
       end
 
-      def mark_assistable_in_progress!
-        assistable.update!(approval_status: :ai_assisted_idp_in_progress) unless assistable.ai_assisted_idp_in_progress?
+      def mark_session_in_progress!
+        session.mark_as_in_progress!
+        assistable.start_ai_assistance! if assistable.not_started?
       end
 
       def idp_template

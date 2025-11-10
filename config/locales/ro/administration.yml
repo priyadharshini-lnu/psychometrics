@@ -208,6 +208,7 @@ ro:
           projectSettings:
             assessments: Evaluări
             design: Design
+            feature_flags: Steaguri de caracteristici
             idp: IDP
             integrations: Integrări
             privacy_settings: Setări de confidențialitate

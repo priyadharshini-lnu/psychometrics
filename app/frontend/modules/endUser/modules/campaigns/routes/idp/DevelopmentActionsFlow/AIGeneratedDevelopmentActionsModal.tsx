@@ -6,6 +6,7 @@ import {
 import { connect, ConnectedProps } from 'react-redux'
 import {
   SyncOutlined,
+  CloseOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import {
   ButtonWithArrow, BoxWithShadow,
@@ -90,6 +91,7 @@ const AIGeneratedDevelopmentActionsModalComponent: React.FC<Props> = ({
       title={I18n.t('idp.development_actions.create_development_actions_with_ai', { skillName: skill?.name })}
       open={open}
       onCancel={onCancel}
+      closeIcon={<Button style={{ border: 'none' }} ref={btnRef} icon={<CloseOutlined />} />}
       maskClosable={false}
       footer={!!developmentActions.length && [
         <Flex vertical flex={1} align="end">

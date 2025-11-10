@@ -1482,6 +1482,7 @@ en:
       export_occupations_job_scheduled: Occupations Export job was scheduled successfully
       export_reports_and_assessments_statuses_scheduled: Export Reports and assessments job was scheduled successfully
       external_results_export_scheduled: External Assessment export job was scheduled successfully
+      no_participants_selected: Please select at least one participant to proceed.
       norm_results_export_scheduled: Assessment Normed Results export job was scheduled successfully
       normalize_factor_scores_scheduled: Normalizing factor scores job was scheduled successfully.
       raw_factor_export_scheduled: Assessment Raw Factor export job was scheduled successfully
@@ -1626,6 +1627,7 @@ en:
       report_bundle_placeholder: Select a report bundle
     messages:
       bulk_download_error: Bulk download is limited to 1000 report files. If you have selected many langauges, please reduce it.
+      bulk_download_no_reports: No reports found. Please generate the reports before downloading.
       bulk_download_successful: Bulk report download job was scheduled successfully
       export_report_data_scheduled: Report data export job was scheduled successfully
     modals:
@@ -2493,6 +2495,7 @@ en:
   idp:
     actions: Actions
     add_comments: Add Comments
+    added_development_action: Added Development Action
     ai:
       assistant:
         failure_fallback:
@@ -2530,7 +2533,7 @@ en:
           option_2: Good for busy professionals
           option_3: Fully editable after generation
           title: 1-Click AI IDP
-        sub_title: Let's create a customized upskilling jorney mapped to your career aspiration and guided by AI
+        sub_title: Let's create a customized upskilling journey mapped to your career aspiration and guided by AI
         title: Create Your Individual Development Plan
       summary:
         chat_title: Chat Insight Summary
@@ -2545,10 +2548,11 @@ en:
         drop: Drop file here
         title: Upload files
       welcome:
-        text: Ready to chart your growth jorney? Let's begin!
+        text: Ready to chart your growth journey? Let's begin!
         title: Hello, I'm your development assistant
     behavioral: Behavioral
     board: Board
+    change_history: Change History
     changes_saved_to_plan: Changes saved to the plan
     comment_details:
       add_comment: Add Comment
@@ -2651,6 +2655,7 @@ en:
       publish_plan: Publish Plan
       remove: Remove Development Action
       save_plan: Save Plan
+      search_development_actions: Search Development Actions
       show_development_action_information: Show Development Action information
       skill: Skill
       sprint: Sprint
@@ -2714,6 +2719,7 @@ en:
     manage_plan: Manage Plan
     mark_as_complete: Mark as Complete
     mark_as_incomplete: Mark as Incomplete
+    modified_development_action: Modified Development Action
     my_plan:
       development_plan: Development Plan
       graphs:
@@ -2831,7 +2837,9 @@ en:
         title: Report Summary
     plan: Plan
     plan_status: Plan Status %{status}
+    plan_submitted_for_manager_approval: Your Individual Development Plan has been submitted for manager approval.
     private: Private
+    public: Public
     reflective_questions:
       already_completed: The IDP has already been completed, you cannot answer the questions now.
       answer: Answer
@@ -2859,6 +2867,7 @@ en:
       words: Words
     remove_skill: Remove Skill
     remove_skill_from_plan: Remove skill %{name} from plan
+    removed_development_action: Removed Development Action
     report_preview: Report Preview
     search_and_select_skills_of_skill_type: Search and select %{skillType} skills
     select_skills_of_skill_type: Select %{skillType} skills
@@ -2872,6 +2881,8 @@ en:
     status: Status
     suggestions: Suggestions
     suggestions_for_skill_type: Suggestions for %{skillType} skills
+    summary: Summary
+    summary_logs: Summary logs for %{reporteeName}
     technical: Technical
     user_idp_status:
       approved: Approved
@@ -2883,6 +2894,7 @@ en:
       not_started: Not Started
       pending_approval: Pending Approval
       rejected: Rejected
+      start_review: Start Review
     users: Users
     with_reflection_questions: With Reflection Questions
     without_reflection_questions: Without Reflection Questions
@@ -4293,6 +4305,7 @@ en:
     idp:
       can_not_complete_without_approval_and_in_progress: You cannot complete your IDP until your manager approves it and you have marked it as 'In Progress'.
       can_not_start_without_approval: You cannot start working on your IDP until your manager approves it.
+      no_changes_to_compare: No changes to compare for IDP plan.
       no_previous_approved_plan: No previous approved IDP plan found.
       reflective_questions_required: Answers to reflective questions are required for IDP
       status_not_permitted: is not permitted by the user.

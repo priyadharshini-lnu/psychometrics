@@ -208,6 +208,7 @@ cs:
           projectSettings:
             assessments: Hodnocení
             design: Design
+            feature_flags: Příznaky funkcí
             idp: IDP
             integrations: Integrace
             privacy_settings: Nastavení ochrany osobních údajů

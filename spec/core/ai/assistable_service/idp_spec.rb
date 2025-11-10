@@ -145,6 +145,19 @@ describe AI::AssistableService::Idp do
       end
     end
 
+    context 'when calling the service' do
+      include_context 'assistant service mocking'
+
+      it 'changes assistable approval_status from not_started to ai_assisted_idp_in_progress' do
+        plan.update!(approval_status: :not_started)
+        expect(plan.approval_status).to eq('not_started')
+
+        described_class.new(plan, user, instructions, options).call
+
+        expect(plan.reload.approval_status).to eq('ai_assisted_idp_in_progress')
+      end
+    end
+
     context 'when checking chat tools and parameters' do
       include_context 'assistant service mocking'
 

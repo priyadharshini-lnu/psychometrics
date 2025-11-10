@@ -849,26 +849,18 @@ workflows:
           context: psychometrics-prod-deployment
           requires:
             - approve_heroku_production
-      - hold:
-          name: approve_ksa_staging
-          type: approval
-          requires:
-            - build_image_staging
-            - vitest
-            - rspec
-          filters:
-            branches:
-              only:
-                - master
       - oci_oke_deploy:
           name: deploy_lhksa_staging
           release-name: lhksa
           values-file: environments/staging/values.yaml
           values-env-file: environments/staging/env.yaml
           chart-folder: /home/circleci/project/charts/ksa
+          namespace: lhksa
           context: lhksa-staging
           requires:
-            - approve_ksa_staging
+            - build_image_staging
+            - vitest
+            - rspec
           filters:
             branches:
               only:
@@ -877,19 +869,14 @@ workflows:
           name: approve_ksa_production
           type: approval
           requires:
-            - build_image_staging
-            - vitest
-            - rspec
-          filters:
-            branches:
-              only:
-                - master
+            - deploy_lhksa_staging
       - oci_oke_deploy:
           name: deploy_lhksa_production
           release-name: lhksa
           values-file: environments/production/values.yaml
           values-env-file: environments/production/env.yaml
           chart-folder: /home/circleci/project/charts/ksa
+          namespace: lhksa
           context: lhksa-prod
           requires:
             - approve_ksa_production
@@ -901,13 +888,7 @@ workflows:
           name: approve_sami
           type: approval
           requires:
-            - build_image_staging
-            - vitest
-            - rspec
-          filters:
-            branches:
-              only:
-                - master
+            - deploy_lhksa_staging
       - oci_oke_deploy:
           name: deploy_sami
           release-name: sami
@@ -926,13 +907,7 @@ workflows:
           name: approve_uae_production
           type: approval
           requires:
-            - build_image_staging
-            - vitest
-            - rspec
-          filters:
-            branches:
-              only:
-                - master
+            - deploy_lhksa_staging
       - azure_aks_deploy:
           name: deploy_aks_uae_production
           release-name: lighthouse

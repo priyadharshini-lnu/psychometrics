@@ -1455,6 +1455,7 @@ th:
       export_occupations_job_scheduled: งานส่งออกอาชีพถูกกําหนดเวลาเรียบร้อยแล้ว
       export_reports_and_assessments_statuses_scheduled: งานส่งออกรายงานและการประเมินถูกกําหนดเวลาเรียบร้อยแล้ว
       external_results_export_scheduled: งานส่งออกการประเมินภายนอกถูกกําหนดเวลาเรียบร้อยแล้ว
+      no_participants_selected: โปรดเลือกผู้เข้าร่วมอย่างน้อยหนึ่งคนเพื่อดําเนินการต่อ
       norm_results_export_scheduled: งานส่งออกผลการประเมินตามบรรทัดฐานถูกกําหนดเวลาเรียบร้อยแล้ว
       normalize_factor_scores_scheduled: งานการทําให้เป็นมาตรฐานคะแนนปัจจัยถูกกําหนดเวลาเรียบร้อยแล้ว
       raw_factor_export_scheduled: การประเมิน Raw Factor ส่งออกงานถูกกําหนดเวลาเรียบร้อยแล้ว
@@ -1599,6 +1600,7 @@ th:
       report_bundle_placeholder: เลือกชุดรายงาน
     messages:
       bulk_download_error: การดาวน์โหลดรายงานจำนวนมากจํากัดไว้ที่จำนวน 1,000 ไฟล์ หากคุณเลือกหลายภาษาโปรดลดจำนวนที่เลือกลง
+      bulk_download_no_reports: ไม่พบรายงาน โปรดสร้างรายงานก่อนดาวน์โหลด
       bulk_download_successful: กําหนดเวลางานดาวน์โหลดรายงานจํานวนมากเรียบร้อยแล้ว
       export_report_data_scheduled: งานส่งออกข้อมูลรายงานถูกกําหนดเวลาเรียบร้อยแล้ว
     modals:
@@ -2463,6 +2465,7 @@ th:
   idp:
     actions: การดําเนินการ
     add_comments: เพิ่มความคิดเห็น
+    added_development_action: เพิ่มการดําเนินการพัฒนา
     ai:
       assistant:
         failure_fallback:
@@ -2500,7 +2503,7 @@ th:
           option_2: เหมาะสําหรับมืออาชีพที่มีงานยุ่ง
           option_3: แก้ไขได้อย่างเต็มที่หลังจากสร้าง
           title: 1 คลิก AI IDP
-        sub_title: มาสร้าง jorney การเพิ่มทักษะแบบกําหนดเองที่จับคู่กับแรงบันดาลใจในอาชีพของคุณและได้รับคําแนะนําจาก AI
+        sub_title: มาสร้างการเดินทางการเพิ่มทักษะแบบกําหนดเองที่จับคู่กับแรงบันดาลใจในอาชีพของคุณและได้รับคําแนะนําจาก AI
         title: สร้างแผนการพัฒนาส่วนบุคคลของคุณ
       summary:
         chat_title: สรุปข้อมูลเชิงลึกของแชท
@@ -2519,6 +2522,7 @@ th:
         title: สวัสดี ฉันเป็นผู้ช่วยพัฒนาของคุณ
     behavioral: พฤติกรรม
     board: กระดาน
+    change_history: ประวัติการเปลี่ยนแปลง
     changes_saved_to_plan: การเปลี่ยนแปลงที่บันทึกไว้ในแผน
     comment_details:
       add_comment: เพิ่มความคิดเห็น
@@ -2620,6 +2624,7 @@ th:
       publish_plan: เผยแพร่แผน
       remove: ถอด
       save_plan: บันทึกแผน
+      search_development_actions: การดําเนินการพัฒนาการค้นหา
       show_development_action_information: แสดงข้อมูลการดําเนินการเพื่อการพัฒนา
       skill: ทักษะ
       sprint: วิ่ง
@@ -2681,6 +2686,7 @@ th:
     manage_plan: จัดการแผน
     mark_as_complete: ทําเครื่องหมายว่าเสร็จสมบูรณ์
     mark_as_incomplete: ทําเครื่องหมายว่าไม่สมบูรณ์
+    modified_development_action: การดําเนินการพัฒนาที่ปรับเปลี่ยน
     my_plan:
       development_plan: แผนพัฒนา
       graphs:
@@ -2798,7 +2804,9 @@ th:
         title: สรุปรายงาน
     plan: แผน
     plan_status: สถานะแผน %{status}
+    plan_submitted_for_manager_approval: แผนการพัฒนารายบุคคลของคุณถูกส่งเพื่อขออนุมัติจากผู้จัดการแล้ว
     private: ส่วนตัว
+    public: สาธารณะ
     reflective_questions:
       already_completed: IDP ได้ดำเนินการเสร็จสิ้นแล้ว คุณไม่สามารถตอบคำถามได้ในขณะนี้
       answer: ตอบ
@@ -2826,6 +2834,7 @@ th:
       words: นิรุกติ
     remove_skill: ลบสกิลออก
     remove_skill_from_plan: ลบ %{name} ทักษะออกจากแผน
+    removed_development_action: ลบการดําเนินการพัฒนา
     report_preview: ตัวอย่างรายงาน
     search_and_select_skills_of_skill_type: ค้นหาและเลือกทักษะ %{skillType}
     select_skills_of_skill_type: เลือกทักษะ %{skillType}
@@ -2839,6 +2848,8 @@ th:
     status: สถานะ
     suggestions: คำ แนะ นำ
     suggestions_for_skill_type: คําแนะนําสําหรับทักษะ %{skillType}
+    summary: สรุป
+    summary_logs: บันทึกสรุปสําหรับ %{reporteeName}
     technical: เทคนิค
     user_idp_status:
       approved: อนุมัติ
@@ -2850,6 +2861,7 @@ th:
       not_started: ยังไม่ได้เริ่มต้น
       pending_approval: รอการอนุมัติ
       rejected: ถูก ปฏิเสธ
+      start_review: เริ่มตรวจสอบ
     users: ผู้เข้าร่วม
     with_reflection_questions: ด้วยคําถามไตร่ตรอง
     without_reflection_questions: โดยไม่มีคําถามไตร่ตรอง
@@ -4163,6 +4175,7 @@ th:
     idp:
       can_not_complete_without_approval_and_in_progress: คุณไม่สามารถกรอก IDP ของคุณให้ครบถ้วนได้จนกว่าผู้จัดการของคุณจะอนุมัติและคุณได้ทําเครื่องหมายเป็น 'อยู่ระหว่างดําเนินการ'
       can_not_start_without_approval: คุณไม่สามารถเริ่มทํางานกับ IDP ได้จนกว่าผู้จัดการของคุณจะอนุมัติ
+      no_changes_to_compare: ไม่มีการเปลี่ยนแปลงเพื่อเปรียบเทียบสําหรับแผน IDP
       no_previous_approved_plan: ไม่พบแผน IDP ที่ได้รับอนุมัติก่อนหน้านี้
       reflective_questions_required: จําเป็นต้องมีคําตอบสําหรับคําถามไตร่ตรองสําหรับ IDP
       status_not_permitted: ไม่ได้รับอนุญาตจากผู้ใช้

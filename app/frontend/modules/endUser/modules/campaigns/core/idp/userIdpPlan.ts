@@ -3,7 +3,9 @@ import { Skill, DevelopmentAction } from 'components/IdpShared/DevelopmentAction
 import _ from 'lodash'
 import ApiAction from 'interfaces/ApiAction'
 import * as t from 'io-ts'
-import { getRequestQuery, normalizePlanChanges, updateUserIdpSkillComments } from './utils'
+import {
+  getRequestQuery, normalizePlanChanges, normalizePlanChangesForSummary, updateUserIdpSkillComments,
+} from './utils'
 import { FetchSkillGapsResponse } from
   '~/modules/endUser/modules/campaigns/core/idp/idpForm'
 
@@ -35,6 +37,7 @@ const SHOW_COMMENTS_FOR_SKILL_ID = 'IDP/MY_PLAN/SHOW_COMMENTS_FOR_SKILL_ID'
 const FETCH_SKILL_GAPS_REPORT = 'IDP/MY_PLAN/FETCH_SKILL_GAPS_REPORT'
 const FETCH_PLAN_CHANGES = 'IDP/MY_PLAN/FETCH_PLAN_CHANGES'
 const REVERT_TO_LAST_APPROVED = 'IDP/MY_PLAN/REVERT_TO_LAST_APPROVED'
+const FETCH_PLAN_CHANGES_FOR_SUMMARY = 'IDP/MY_PLAN/FETCH_PLAN_CHANGES_FOR_SUMMARY'
 
 export const AsyncDownloadTR = t.type({
   status: t.string,
@@ -73,6 +76,7 @@ interface UserIdpPlan {
   introMessage: string;
   skillGapReportData:FetchSkillGapsResponse | null
   planChanges: {}
+  summary: {}
 }
 
 export interface UserIdpComment {
@@ -329,6 +333,13 @@ export const revertToApprovedIdpPlan = (userId: string):ApiAction<{}> => ({
   request: {
     method: 'post',
     url: `/user_idp_plans/${userId}/revert_to_last_approved`,
+  },
+})
+
+export const fetchUserIdpPlanChangesForSummary = (userId: string):ApiAction<{}> => ({
+  type: FETCH_PLAN_CHANGES_FOR_SUMMARY,
+  request: {
+    url: `/user_idp_plans/${userId}/plan_changes`,
   },
 })
 
@@ -716,6 +727,11 @@ export const HANDLERS = {
     ...state,
     ...normalizePlanChanges(action.response, state),
     planChanges: action.response,
+    summary: normalizePlanChangesForSummary(action.response),
+  }),
+  [FETCH_PLAN_CHANGES_FOR_SUMMARY]: (state, action) => ({
+    ...state,
+    summary: normalizePlanChangesForSummary(action.response),
   }),
 }
 
@@ -742,6 +758,7 @@ export const defaultState: UserIdpPlan = {
   userIdpCommentsBySkillIdTotalCount: {},
   skillGapReportData: null,
   planChanges: {},
+  summary: {},
 }
 
 export default function reducer (state = defaultState, action) {

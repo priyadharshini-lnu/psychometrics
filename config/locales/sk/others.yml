@@ -1458,6 +1458,7 @@ sk:
       export_occupations_job_scheduled: Povolania Exportná práca bola úspešne naplánovaná
       export_reports_and_assessments_statuses_scheduled: Úloha exportu zostáv a hodnotení bola úspešne naplánovaná
       external_results_export_scheduled: Úloha exportu externého hodnotenia bola úspešne naplánovaná
+      no_participants_selected: Ak chcete pokračovať, vyberte aspoň jedného účastníka.
       norm_results_export_scheduled: Úloha exportu normovaných výsledkov hodnotenia bola úspešne naplánovaná
       normalize_factor_scores_scheduled: Úloha normalizácie skóre faktorov bola úspešne naplánovaná.
       raw_factor_export_scheduled: Úloha exportu Assessment Raw Factor bola úspešne naplánovaná
@@ -1602,6 +1603,7 @@ sk:
       report_bundle_placeholder: Výber balíka zostáv
     messages:
       bulk_download_error: Hromadné sťahovanie je obmedzené na 1000 súborov zostavy. Ak ste vybrali veľa jazykov, znížte ho.
+      bulk_download_no_reports: Nenašli sa žiadne správy. Pred stiahnutím vygenerujte správy.
       bulk_download_successful: Úloha hromadného stiahnutia zostavy bola úspešne naplánovaná
       export_report_data_scheduled: Úloha exportu údajov zostavy bola úspešne naplánovaná
     modals:
@@ -2466,6 +2468,7 @@ sk:
   idp:
     actions: Akcie
     add_comments: Pridať komentáre
+    added_development_action: Pridaná vývojová akcia
     ai:
       assistant:
         failure_fallback:
@@ -2522,6 +2525,7 @@ sk:
         title: Dobrý deň, som váš asistent rozvoja
     behavioral: Behaviorálne
     board: Doska
+    change_history: História zmien
     changes_saved_to_plan: Zmeny uložené v pláne
     comment_details:
       add_comment: Pridať komentár
@@ -2623,6 +2627,7 @@ sk:
       publish_plan: Plán publikovania
       remove: Odstrániť
       save_plan: Uložiť plán
+      search_development_actions: Akcie vývoja vyhľadávania
       show_development_action_information: Zobraziť informácie o vývojových akciách
       skill: Schopnosť
       sprint: Šprint
@@ -2684,6 +2689,7 @@ sk:
     manage_plan: Spravovať plán
     mark_as_complete: Označiť ako dokončené
     mark_as_incomplete: Označiť ako neúplné
+    modified_development_action: Modifikované vývojové opatrenie
     my_plan:
       development_plan: Plán rozvoja
       graphs:
@@ -2801,7 +2807,9 @@ sk:
         title: Zhrnutie správy
     plan: Plán
     plan_status: Stav plánu %{status}
+    plan_submitted_for_manager_approval: Váš individuálny plán rozvoja bol predložený na schválenie manažérom.
     private: Súkromný
+    public: Verejnosť
     reflective_questions:
       already_completed: IDP už bol dokončený, teraz nemôžete odpovedať na otázky.
       answer: Odpoveď
@@ -2829,6 +2837,7 @@ sk:
       words: Slová
     remove_skill: Odstrániť zručnosť
     remove_skill_from_plan: Odstránenie %{name} zručností z plánu
+    removed_development_action: Odstránená vývojová akcia
     report_preview: Ukážka zostavy
     search_and_select_skills_of_skill_type: Vyhľadajte a vyberte %{skillType} zručnosti
     select_skills_of_skill_type: Vyberte %{skillType} zručnosti
@@ -2842,6 +2851,8 @@ sk:
     status: Stav
     suggestions: Návrhy
     suggestions_for_skill_type: Návrhy na %{skillType} zručnosti
+    summary: Súhrn
+    summary_logs: Súhrnné denníky pre %{reporteeName}
     technical: Technické
     user_idp_status:
       approved: Schválený
@@ -2853,6 +2864,7 @@ sk:
       not_started: Nezačalo sa
       pending_approval: Čaká sa na schválenie
       rejected: Zamietnuté
+      start_review: Spustiť recenziu
     users: Používateľov
     with_reflection_questions: S otázkami na zamyslenie
     without_reflection_questions: Otázky bez reflexie
@@ -4163,6 +4175,7 @@ sk:
     idp:
       can_not_complete_without_approval_and_in_progress: IDP nemôžete dokončiť, kým ho váš manažér neschváli a neoznačíte ho ako "Prebieha".
       can_not_start_without_approval: Na svojom IDP nemôžete začať pracovať, kým ho neschváli váš manažér.
+      no_changes_to_compare: Žiadne zmeny na porovnanie pre plán IDP.
       no_previous_approved_plan: Nenašiel sa žiadny predchádzajúci schválený plán IDP.
       reflective_questions_required: Odpovede na reflexívne otázky sú potrebné pre IDP
       status_not_permitted: nie je používateľom povolené.

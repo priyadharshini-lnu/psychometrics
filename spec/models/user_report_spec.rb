@@ -92,6 +92,18 @@ RSpec.describe UserReport, type: :model do
         expect(communication_email.campaign_user).to eq(campaign_user)
         expect(communication_email.communication_email_resources.first.resource).to eq(user_report)
       end
+
+      context 'when user_access is set to true' do
+        before { user_report.update!(user_access: false, status: 'prepared') }
+
+        it 'creates communication emails' do
+          communication
+          expect(user_report).to receive(:schedule_report_available_notification).and_call_original
+          user_report.update!(user_access: true)
+
+          expect(CommunicationEmail.count).to eq(1)
+        end
+      end
     end
 
     context 'when status changes to prepared but no communication exists' do
@@ -107,6 +119,63 @@ RSpec.describe UserReport, type: :model do
         user_report.update!(status: 'not_prepared')
 
         expect(CommunicationEmail.count).to eq(0)
+      end
+    end
+  end
+
+  describe '#subject association' do
+    let(:user) { create(:user) }
+    let(:first_campaign) { create(:campaign, :threesixty) }
+    let(:second_campaign) { create(:campaign, :threesixty) }
+
+    let!(:first_subject) do
+      create(:threesixty_subject, user: user, campaign: first_campaign, evaluation_status: 'completed')
+    end
+    let!(:second_subject) do
+      create(:threesixty_subject, user: user, campaign: second_campaign, evaluation_status: 'in_progress')
+    end
+
+    let(:user_report) { create(:user_report, user: user, campaign: first_campaign) }
+
+    context 'when user is a subject in multiple campaigns' do
+      it 'returns the subject from the same campaign as the user_report' do
+        # This test would FAIL without the campaign_id scope in the association
+        # because it would just match by user_id and could return subject from any campaign
+        expect(user_report.subject).to eq(first_subject)
+        expect(user_report.subject).not_to eq(second_subject)
+      end
+
+      it 'returns the correct subject with matching campaign_id' do
+        expect(user_report.subject.campaign_id).to eq(user_report.campaign_id)
+        expect(user_report.subject.campaign_id).to eq(first_campaign.id)
+      end
+
+      it 'returns the correct subject status for the campaign' do
+        expect(user_report.subject.evaluation_status).to eq('completed')
+      end
+    end
+
+    context 'when checking subject from different campaign' do
+      let(:second_user_report) { create(:user_report, user: user, campaign: second_campaign) }
+
+      it 'returns different subjects for reports in different campaigns' do
+        expect(user_report.subject).to eq(first_subject)
+        expect(second_user_report.subject).to eq(second_subject)
+        expect(user_report.subject).not_to eq(second_user_report.subject)
+      end
+
+      it 'each subject matches its corresponding campaign' do
+        expect(user_report.subject.campaign_id).to eq(first_campaign.id)
+        expect(second_user_report.subject.campaign_id).to eq(second_campaign.id)
+      end
+    end
+
+    context 'when subject does not exist for the campaign' do
+      let(:third_campaign) { create(:campaign, :threesixty) }
+      let(:third_user_report) { create(:user_report, user: user, campaign: third_campaign) }
+
+      it 'returns nil when no subject exists for that campaign' do
+        expect(third_user_report.subject).to be_nil
       end
     end
   end

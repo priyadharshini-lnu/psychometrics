@@ -77,6 +77,7 @@ zh-Hant:
       uniq?: 應該是唯一的
       uniq_simulation: 該模擬評估已存在於系統中。 該評估的 ID 為 %{id}
       uniq_skillvue: 此 Skillvue 評估已存在於系統中。此評估的 ID 為 %{id}
+      uniq_yoodli: 這個 Yoodli 評估已經存在於系統中。此評定的 ID 為 %{id}
       update_workshop:
         bookings_exist: 由於參加者已預約此時段，因此無法修改時間表。
         less_than_booked: 總座位數必須大於預訂座位數

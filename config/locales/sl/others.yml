@@ -1467,6 +1467,7 @@ sl:
       export_occupations_job_scheduled: Poklici Izvozno delo je bilo uspešno načrtovano
       export_reports_and_assessments_statuses_scheduled: Izvoz poročil in ocen je bilo uspešno načrtovano
       external_results_export_scheduled: Izvozno delo zunanjega ocenjevanja je bilo uspešno načrtovano
+      no_participants_selected: Za nadaljevanje izberite vsaj enega udeleženca.
       norm_results_export_scheduled: Izvozno delo ocenjevanja normiranih rezultatov je bilo uspešno načrtovano
       normalize_factor_scores_scheduled: Delo normalizacije faktorjev je bilo uspešno načrtovano.
       raw_factor_export_scheduled: Izvozno delo ocenjevanja surovega faktorja je bilo uspešno načrtovano
@@ -1611,6 +1612,7 @@ sl:
       report_bundle_placeholder: Izberite Sklop poročil
     messages:
       bulk_download_error: Prenos v velikem obsegu je omejen na 1000 datotek poročil. Če ste izbrali veliko jezikov, jih zmanjšajte.
+      bulk_download_no_reports: Poročil ni bilo najdenih. Pred prenosom ustvarite poročila.
       bulk_download_successful: Opravilo prenosa poročila v velikem obsegu je bilo uspešno načrtovano
       export_report_data_scheduled: Popravilo izvoza podatkov poročila je bilo uspešno načrtovano
     modals:
@@ -2463,6 +2465,7 @@ sl:
   idp:
     actions: Aktivnosti
     add_comments: Dodajanje komentarjev
+    added_development_action: Dodano razvojno ukrepanje
     ai:
       assistant:
         failure_fallback:
@@ -2519,6 +2522,7 @@ sl:
         title: Pozdravljeni, jaz sem vaš razvojni pomočnik
     behavioral: Vedenjski
     board: Deska
+    change_history: Zgodovina sprememb
     changes_saved_to_plan: Spremembe, shranjene v paketu
     comment_details:
       add_comment: Dodaj komentar
@@ -2620,6 +2624,7 @@ sl:
       publish_plan: Načrt objave
       remove: Odstrani
       save_plan: Shrani načrt
+      search_development_actions: Iskalna razvojna dejanja
       show_development_action_information: Prikaz informacij o razvojnih ukrepih
       skill: Spretnost
       sprint: Sprint
@@ -2681,6 +2686,7 @@ sl:
     manage_plan: Upravljanje načrta
     mark_as_complete: Označi kot dokončano
     mark_as_incomplete: Označi kot nepopolno
+    modified_development_action: Spremenjeni razvojni ukrep
     my_plan:
       development_plan: Razvojni načrt
       graphs:
@@ -2798,7 +2804,9 @@ sl:
         title: Povzetek poročila
     plan: Načrt
     plan_status: Stanje načrta %{status}
+    plan_submitted_for_manager_approval: Vaš individualni razvojni načrt je bil predložen v odobritev vodje.
     private: Zaseben
+    public: Javnost
     reflective_questions:
       already_completed: IDP je že zaključen, na vprašanja ni več mogoče odgovarjati.
       answer: Odgovoriti
@@ -2826,6 +2834,7 @@ sl:
       words: Besede
     remove_skill: Odstrani spretnost
     remove_skill_from_plan: Odstranjevanje %{name} spretnosti iz načrta
+    removed_development_action: Odstranjeno razvojno dejanje
     report_preview: Predogled poročila
     search_and_select_skills_of_skill_type: Poiščite in izberite %{skillType} spretnosti
     select_skills_of_skill_type: Izberite %{skillType} spretnosti
@@ -2839,6 +2848,8 @@ sl:
     status: Status
     suggestions: Predloge
     suggestions_for_skill_type: Predlogi za %{skillType} spretnosti
+    summary: Povzetek
+    summary_logs: Povzetek dnevnikov za %{reporteeName}
     technical: Tehnični
     user_idp_status:
       approved: Odobreno
@@ -2850,6 +2861,7 @@ sl:
       not_started: Ni začeto
       pending_approval: Čaka na odobritev
       rejected: Zavrnjena
+      start_review: Začni pregled
     users: Uporabniki
     with_reflection_questions: Z vprašanji za razmislek
     without_reflection_questions: Brez vprašanj za razmislek
@@ -4163,6 +4175,7 @@ sl:
     idp:
       can_not_complete_without_approval_and_in_progress: IDP ne morete dokončati, dokler ga vaš vodja ne odobri in ga označite kot "V teku".
       can_not_start_without_approval: Ne morete začeti delati na svojem IDP, dokler ga vaš vodja ne odobri.
+      no_changes_to_compare: Ni sprememb za primerjavo za načrt IDP.
       no_previous_approved_plan: Predhodno odobren načrt IDP ni bil najden.
       reflective_questions_required: Odgovori na refleksivna vprašanja so potrebni za IDP
       status_not_permitted: uporabnik ne dovoljuje.

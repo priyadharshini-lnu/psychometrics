@@ -1471,6 +1471,7 @@ ja:
       export_occupations_job_scheduled: 職種 輸出ジョブが正常にスケジュールされました
       export_reports_and_assessments_statuses_scheduled: レポートのエクスポートと評価のジョブが正常にスケジュールされました。
       external_results_export_scheduled: 外部評価エクスポートジョブが正常にスケジュールされました
+      no_participants_selected: 少なくとも1人の参加者を選択して続行してください。
       norm_results_export_scheduled: Assessment Normed Results エクスポート・ジョブが正常にスケジュールされました。
       normalize_factor_scores_scheduled: 因子スコアの正規化ジョブは正常にスケジュールされました。
       raw_factor_export_scheduled: アセスメントRaw Factorのエクスポートジョブが正常にスケジュールされました。
@@ -1615,6 +1616,7 @@ ja:
       report_bundle_placeholder: レポートバンドルを選択する
     messages:
       bulk_download_error: 一括ダウンロードの上限は1000ファイルです。
+      bulk_download_no_reports: レポートは見つかりませんでした。ダウンロードする前にレポートを作成してください。
       bulk_download_successful: 一括レポートダウンロードジョブが正常にスケジュールされました
       export_report_data_scheduled: レポート・データ・エクスポート・ジョブが正常にスケジュールされました。
     modals:
@@ -2456,6 +2458,7 @@ ja:
   idp:
     actions: 行動
     add_comments: コメントの追加
+    added_development_action: 開発アクションの追加
     ai:
       assistant:
         failure_fallback:
@@ -2512,6 +2515,7 @@ ja:
         title: こんにちは、私はあなたの開発アシスタントです
     behavioral: ビヘイビア
     board: ボード
+    change_history: 変更履歴
     changes_saved_to_plan: プランに保存された変更
     comment_details:
       add_comment: コメントを追加
@@ -2613,6 +2617,7 @@ ja:
       publish_plan: 計画の公開
       remove: 削除
       save_plan: プランを保存
+      search_development_actions: 開発アクションの検索
       show_development_action_information: 開発アクション情報を表示する
       skill: スキル
       sprint: スプリント
@@ -2674,6 +2679,7 @@ ja:
     manage_plan: 計画の管理
     mark_as_complete: 完了としてマーク
     mark_as_incomplete: 未完了としてマークする
+    modified_development_action: 修正された開発アクション
     my_plan:
       development_plan: 開発計画
       graphs:
@@ -2791,7 +2797,9 @@ ja:
         title: レポート概要
     plan: 計画
     plan_status: プランステータス%{status}
+    plan_submitted_for_manager_approval: 個人開発計画がマネージャーの承認のために提出されました。
     private: プライベート
+    public: 公共
     reflective_questions:
       already_completed: IDPはすでに完成しているので、今質問に答えることはできない。
       answer: 答える
@@ -2819,6 +2827,7 @@ ja:
       words: 言葉
     remove_skill: スキルの削除
     remove_skill_from_plan: プランからスキル%{name}を削除する
+    removed_development_action: 削除された開発アクション
     report_preview: レポートプレビュー
     search_and_select_skills_of_skill_type: "%{skillType}スキルを検索して選択する"
     select_skills_of_skill_type: "%{skillType}スキルの選択"
@@ -2832,6 +2841,8 @@ ja:
     status: ステータス
     suggestions: 提案
     suggestions_for_skill_type: "%{skillType}スキルの提案"
+    summary: 概要
+    summary_logs: "%{reporteeName}のサマリーログ"
     technical: テクニカル
     user_idp_status:
       approved: 承認済み
@@ -2843,6 +2854,7 @@ ja:
       not_started: 未開始
       pending_approval: 申請中
       rejected: 拒否
+      start_review: レビューを開始
     users: ユーザー
     with_reflection_questions: リフレクションの質問付き
     without_reflection_questions: リフレクションの質問なし
@@ -4156,6 +4168,7 @@ ja:
     idp:
       can_not_complete_without_approval_and_in_progress: IDPは、上司が承認し、「進行中」としてマークするまで完了できません。
       can_not_start_without_approval: マネージャーが承認するまで、IDP の作業を開始することはできません。
+      no_changes_to_compare: IDPプランで比較する変更はありません。
       no_previous_approved_plan: 以前に承認されたIDPプランは見つかりませんでした。
       reflective_questions_required: IDPには、内省的な質問への回答が必要です
       status_not_permitted: ユーザーが許可していない。

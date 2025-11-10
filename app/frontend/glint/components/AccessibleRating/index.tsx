@@ -4,14 +4,14 @@ import cs from 'classnames'
 import styles from './styles.less'
 
 export const AccessibleRating = ({ ...props }: RateProps) => {
-  const [rating, setRating] = useState(props.value ?? props.defaultValue ?? 1)
+  const [rating, setRating] = useState(props.value ?? props.defaultValue ?? 0)
 
   useEffect(() => {
-    setRating(props.value ?? 1)
+    setRating(props.value ?? 0)
   }, [props.value])
 
   const handleChange = (newRating:number) => {
-    const updatedRating = newRating ?? 1
+    const updatedRating = newRating || 0
     setRating(updatedRating)
     props.onChange?.(updatedRating)
   }

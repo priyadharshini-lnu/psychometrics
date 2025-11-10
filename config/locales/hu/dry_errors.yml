@@ -77,6 +77,7 @@ hu:
       uniq?: egyedinek kell lennie
       uniq_simulation: 'Ez a szimulációs értékelés már jelen van a rendszerben. Az értékelés azonosítója: %{id}'
       uniq_skillvue: Ez a Skillvue-értékelés már jelen van a rendszerben. Az értékelés azonosítója %{id}
+      uniq_yoodli: Ez a Yoodli értékelés már jelen van a rendszerben. Az értékelés azonosítója %{id}
       update_workshop:
         bookings_exist: A menetrendet nem lehet módosítani, mivel a résztvevők már lefoglalták ezt az időpontot.
         less_than_booked: Az összes ülőhelynek nagyobbnak kell lennie, mint amennyit lefoglaltak

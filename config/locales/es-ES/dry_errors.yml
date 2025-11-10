@@ -28,6 +28,9 @@ es-ES:
         last_factor_group: No se puede eliminar el último grupo de factores de Campaña.
       campaign_idps:
         idp_template_not_published: Esta plantilla de IDP aún no se publica, publíquela antes de asignar a la campaña.
+      cant_be_deleted: Este registro no se puede eliminar
+      client_feature:
+        ai_assisted_idp_feature_error: No puede ser cierto si la función de asistentes de IA está desactivada
       create_superadmin:
         uniq_email: El correo electrónico debe ser uniq.
       development_actions:
@@ -62,6 +65,8 @@ es-ES:
       report_families_reports:
         report_exists: Este informe ya forma parte del paquete de informes
       size?: tamaño debe ser inferior a %{size}
+      skill:
+        already_added: Habilidad con el mismo nombre ya agregada.
       skill_alias:
         unique_alias: El alias debe ser único
         unique_skill: La habilidad debe ser única
@@ -72,6 +77,7 @@ es-ES:
       uniq?: debe ser único
       uniq_simulation: Esta evaluación de simulación ya está presente en el sistema. El ID de esta evaluación es %{id}
       uniq_skillvue: Esta evaluación Skillvue ya está presente en el sistema. El ID de esta evaluación es %{id}.
+      uniq_yoodli: Esta evaluación de Yoodli ya está presente en el sistema. El ID de esta evaluación es %{id}
       update_workshop:
         bookings_exist: No se puede modificar el horario porque los participantes ya han reservado esta franja horaria.
         less_than_booked: El total de plazas debe ser superior al reservado

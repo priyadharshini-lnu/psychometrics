@@ -32,6 +32,7 @@ const connector = connect((state: RootState) => ({
   projectName: getProjectName(state),
   showBookings: getShowBookings(state),
   features: getFeatures(state),
+  projectIdpEnabled: state.config.idp.idpEnabled,
   logoAltText: getLogoAltText(state),
 }))
 
@@ -42,6 +43,7 @@ type UserPageSiderProps = {
   updateProfileRequired: boolean
   showBookings?: boolean
   features?: boolean
+  projectIdpEnabled?: boolean
 } & PropsFromRedux
 
 const { I18n } = window
@@ -51,6 +53,7 @@ const getMenuItems = (
   showInsights?: boolean,
   showBookings?: boolean,
   idpEnabled?: boolean,
+  projectIdpEnabled?: boolean,
 ) => ([{
   key: 'dashboard',
   label: I18n.t('enduser.home'),
@@ -66,7 +69,7 @@ const getMenuItems = (
   ] : [{ label: I18n.t('enduser.tasks'), key: 'tasks' }],
 }] : [],
 // eslint-disable-next-line no-constant-condition
-...idpEnabled ? [{
+...(idpEnabled && projectIdpEnabled) ? [{
   key: 'idp',
   label: I18n.t('enduser.development'),
   icon: <ReadOutlined className={styles.siderIcon} />,
@@ -92,11 +95,12 @@ const getMenuItems = (
 
 const UserPageSiderComponent: FC<UserPageSiderProps> = ({
   showInsights, siderFooter, logo, projectName, updateProfileRequired, showBookings, features, logoAltText,
+  projectIdpEnabled,
 }) => {
   const location = useLocation()
   const navigate = useNavigate()
   const { pathname } = location
-  let menuItems = getMenuItems(false, false, showBookings, features?.idp_enabled)
+  let menuItems = getMenuItems(false, false, showBookings, features?.idp_enabled, projectIdpEnabled)
   let activeItem:string
   const campaignIdRef = useRef<string>('')
   const isAnonym = pathname.includes('/anonym/')
@@ -115,6 +119,7 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
       setOpenKey([...openKey, 'idp'])
     }
   }, [pathname])
+
   const handleMenuSelect = (menu) => {
     if (menu.key === 'steps') { // TODO: remove after implementation
       return navigate('/idp/steps/getting_started')

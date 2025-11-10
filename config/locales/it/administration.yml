@@ -208,6 +208,7 @@ it:
           projectSettings:
             assessments: Assessment
             design: Design
+            feature_flags: Flag di funzionalità
             idp: IDP
             integrations: Integrazioni
             privacy_settings: Impostazioni sulla privacy

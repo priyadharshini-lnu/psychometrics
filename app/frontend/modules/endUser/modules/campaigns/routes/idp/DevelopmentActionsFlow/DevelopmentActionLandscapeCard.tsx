@@ -98,8 +98,8 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
 
   const [openSkillDeletionModal, setOpenSkillDeletionModal] = useState(false)
   const handleRatingChange = (rating) => {
-    updateUserIdpSkill(userIdpSkillId, { initialRating: rating }, idpUser.id).catch((error) => {
-      message.error(error || I18n.t('common.errors.something_wrong'))
+    updateUserIdpSkill(userIdpSkillId, { initialRating: rating }, idpUser.id).catch(() => {
+      message.error(I18n.t('common.errors.something_wrong'))
     })
   }
 
@@ -133,19 +133,19 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
           <AccessibleRating
             disabled={!editMode}
             onChange={handleRatingChange}
-            defaultValue={finalRating || initialRating}
+            value={finalRating || initialRating}
             className="mt-2"
           />
         )
       }
         {changeStatus && (
-          <ChangeStatus className="self-end" status={changeStatus} />
+          <ChangeStatus className="self-end mb-1" status={changeStatus} />
         )}
         {isCurrentUserIDPUser && (
           editMode ? (
             <Switch
-              checkedChildren="Private"
-              unCheckedChildren="Public"
+              checkedChildren={I18n.t('idp.private')}
+              unCheckedChildren={I18n.t('idp.public')}
               value={isPrivateSkill}
               aria-label={I18n.t('idp.development_actions.toggle_skill_privacy')}
               onChange={updateSkillPrivacy}

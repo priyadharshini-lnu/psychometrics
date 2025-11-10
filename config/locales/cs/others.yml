@@ -1470,6 +1470,7 @@ cs:
       export_occupations_job_scheduled: Povolání Exportní úloha byla úspěšně naplánována
       export_reports_and_assessments_statuses_scheduled: Úloha Exportovat sestavy a hodnocení byla úspěšně naplánována
       external_results_export_scheduled: Úloha exportu externího hodnocení byla úspěšně naplánována
+      no_participants_selected: Vyberte alespoň jednoho účastníka, který má pokračovat.
       norm_results_export_scheduled: Exportní úloha Assessment Normed Results byla úspěšně naplánována
       normalize_factor_scores_scheduled: Úloha normalizace skóre faktorů byla úspěšně naplánována.
       raw_factor_export_scheduled: Úloha exportu Assessment Raw Factor byla úspěšně naplánována
@@ -1614,6 +1615,7 @@ cs:
       report_bundle_placeholder: Výběr svazku sestav
     messages:
       bulk_download_error: Hromadné stahování je omezeno na 1000 souborů zpráv. Pokud jste vybrali mnoho jazyků, snižte je.
+      bulk_download_no_reports: Nebyly nalezeny žádné zprávy. Před stažením si prosím vygenerujte zprávy.
       bulk_download_successful: Úloha hromadného stahování sestav byla úspěšně naplánována
       export_report_data_scheduled: Úloha exportu dat sestavy byla úspěšně naplánována
     modals:
@@ -2455,6 +2457,7 @@ cs:
   idp:
     actions: Akce
     add_comments: Přidat komentáře
+    added_development_action: Přidána vývojová akce
     ai:
       assistant:
         failure_fallback:
@@ -2507,10 +2510,11 @@ cs:
         drop: Sem přetáhněte soubor
         title: Vkládat
       welcome:
-        text: Jste připraveni zmapovat svůj růst, jorney? Začněme!
+        text: Jste připraveni zmapovat svou cestu růstu? Začněme!
         title: Dobrý den, jsem Váš asistent vývoje
     behavioral: Chování
     board: Přehled
+    change_history: Historie změn
     changes_saved_to_plan: Změny uložené v plánu
     comment_details:
       add_comment: Přidat komentář
@@ -2612,6 +2616,7 @@ cs:
       publish_plan: Publikovat plán
       remove: Odstranit
       save_plan: Plán úspor
+      search_development_actions: Vyhledávání vývojových akcí
       show_development_action_information: Zobrazit informace o vývojových akcích
       skill: Dovednost
       sprint: Sprint
@@ -2673,6 +2678,7 @@ cs:
     manage_plan: Spravovat plán
     mark_as_complete: Označit jako dokončené
     mark_as_incomplete: Označit jako nedokončené
+    modified_development_action: Upravená vývojová akce
     my_plan:
       development_plan: Rozvojový plán
       graphs:
@@ -2790,7 +2796,9 @@ cs:
         title: Shrnutí zprávy
     plan: Plán
     plan_status: Stav plánu %{status}
+    plan_submitted_for_manager_approval: Váš individuální plán rozvoje byl předložen ke schválení manažerovi.
     private: Soukromý
+    public: Veřejný
     reflective_questions:
       already_completed: IDP již byl dokončen, nyní nemůžete na otázky odpovídat.
       answer: Odpověď
@@ -2818,6 +2826,7 @@ cs:
       words: Slova
     remove_skill: Odebrat dovednost
     remove_skill_from_plan: Odebrání %{name} dovedností z plánu
+    removed_development_action: Odebrána vývojová akce
     report_preview: Náhled sestavy
     search_and_select_skills_of_skill_type: Vyhledávání a výběr dovedností %{skillType}
     select_skills_of_skill_type: Vyberte %{skillType} dovednosti
@@ -2831,6 +2840,8 @@ cs:
     status: Stav
     suggestions: Návrhy
     suggestions_for_skill_type: Návrhy pro %{skillType} dovednosti
+    summary: Shrnutí
+    summary_logs: Souhrnné protokoly pro %{reporteeName}
     technical: Technická stránka
     user_idp_status:
       approved: Schváleno
@@ -2842,6 +2853,7 @@ cs:
       not_started: Nezahájeno
       pending_approval: Čeká se na
       rejected: Odmítnutý
+      start_review: Zahájit recenzi
     users: Uživatelé
     with_reflection_questions: S otázkami k zamyšlení
     without_reflection_questions: Bez otázek k zamyšlení
@@ -4155,6 +4167,7 @@ cs:
     idp:
       can_not_complete_without_approval_and_in_progress: Svého poskytovatele identity nemůžete dokončit, dokud jej váš manažer neschválí a nevy jej označíte jako "Probíhá".
       can_not_start_without_approval: Na svém IDP nemůžete začít pracovat, dokud jej váš manažer neschválí.
+      no_changes_to_compare: Žádné změny k porovnání pro plán IDP.
       no_previous_approved_plan: Nebyl nalezen žádný předchozí schválený plán IDP.
       reflective_questions_required: Pro IDP jsou vyžadovány odpovědi na reflektivní otázky
       status_not_permitted: není povoleno uživatelem.

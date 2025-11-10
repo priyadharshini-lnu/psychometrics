@@ -9,6 +9,8 @@ class Api::V2::Administration::Campaigns::AIArtifactResource < Api::V2::Administ
   has_one :ai_assistant
   has_one :campaign
 
+  ransack_filters %i[filterable_fields]
+
   def self.records(opts)
     Api::Administration::Campaigns::AIArtifactPolicy::Scope.new(
       opts[:context][:current_user], AI::CampaignArtifact, campaign_id: opts[:context][:campaign].id

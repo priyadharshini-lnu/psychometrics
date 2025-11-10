@@ -1458,6 +1458,7 @@ hu:
       export_occupations_job_scheduled: Foglalkozások Az exportálási feladat ütemezése sikeresen megtörtént
       export_reports_and_assessments_statuses_scheduled: A jelentések és értékelések exportálása feladat ütemezése sikeresen megtörtént
       external_results_export_scheduled: A külső értékelési exportálási feladat ütemezése sikeresen megtörtént
+      no_participants_selected: Kérjük, válasszon ki legalább egy résztvevőt a folytatáshoz.
       norm_results_export_scheduled: Az értékelés Normed Results exportálási feladatának ütemezése sikeresen megtörtént
       normalize_factor_scores_scheduled: A faktor pontszámok normalizálása feladat ütemezése sikeresen megtörtént.
       raw_factor_export_scheduled: Az értékelési nyers tényező exportálási feladatának ütemezése sikeresen megtörtént
@@ -1602,6 +1603,7 @@ hu:
       report_bundle_placeholder: Jelentéscsomag kiválasztása
     messages:
       bulk_download_error: A tömeges letöltés 1000 jelentésfájlra korlátozódik. Ha sok nyelvet választott, kérjük, csökkentse azt.
+      bulk_download_no_reports: Nem található jelentés. Kérjük, hogy a letöltés előtt készítse el a jelentéseket.
       bulk_download_successful: A tömeges jelentés letöltési feladatának ütemezése sikeresen megtörtént
       export_report_data_scheduled: A jelentési adatexportálási feladat ütemezése sikeresen megtörtént
     modals:
@@ -2466,6 +2468,7 @@ hu:
   idp:
     actions: Műveletek
     add_comments: Megjegyzések hozzáadása
+    added_development_action: Hozzáadott fejlesztési intézkedés
     ai:
       assistant:
         failure_fallback:
@@ -2503,7 +2506,7 @@ hu:
           option_2: Elfoglalt szakembereknek jó
           option_3: Generálás után teljesen szerkeszthető
           title: 1 kattintásos AI IDP
-        sub_title: Hozzunk létre egy testreszabott továbbképzési jorney-t, amely az Ön karriertörekvéseihez igazodik, és a mesterséges intelligencia irányítja
+        sub_title: Hozzunk létre egy testreszabott továbbképzési utazást, amely az Ön karriertörekvéseihez igazodik, és a mesterséges intelligencia irányítja
         title: Készítse el egyéni fejlesztési tervét
       summary:
         chat_title: A Chat Insight összefoglalója
@@ -2518,10 +2521,11 @@ hu:
         drop: Dobja ide a fájlt
         title: Fájlok feltöltése
       welcome:
-        text: Készen állsz a növekedésed feltérképezésére jorney? Kezdjük!
+        text: Készen állsz a növekedési utazásod feltérképezésére? Kezdjük!
         title: Helló, én vagyok a fejlesztési asszisztensed
     behavioral: Viselkedési
     board: Beszáll
+    change_history: Változási előzmények
     changes_saved_to_plan: A tervbe mentett módosítások
     comment_details:
       add_comment: Megjegyzés hozzáadása
@@ -2623,6 +2627,7 @@ hu:
       publish_plan: Közzétételi terv
       remove: Eltávolít
       save_plan: Csomag mentése
+      search_development_actions: Keresési fejlesztési műveletek
       show_development_action_information: Fejlesztési akció információk megjelenítése
       skill: Készség
       sprint: Vágtázik
@@ -2684,6 +2689,7 @@ hu:
     manage_plan: Terv kezelése
     mark_as_complete: Megjelölés befejezettként
     mark_as_incomplete: Megjelölés befejezetlenként
+    modified_development_action: Módosított fejlesztési művelet
     my_plan:
       development_plan: Fejlesztési terv
       graphs:
@@ -2779,7 +2785,9 @@ hu:
         title: Jelentés összefoglalója
     plan: Terv
     plan_status: Terv állapota %{status}
+    plan_submitted_for_manager_approval: Az egyéni fejlesztési tervet benyújtották vezetői jóváhagyásra.
     private: Privát
+    public: Nyilvános
     reflective_questions:
       already_completed: Az IDP már elkészült, a kérdésekre most nem tud válaszolni.
       answer: Válasz
@@ -2807,6 +2815,7 @@ hu:
       words: Szöveg
     remove_skill: Képesség eltávolítása
     remove_skill_from_plan: Szakértelem %{name} eltávolítása a csomagból
+    removed_development_action: Eltávolított fejlesztési akció
     report_preview: Jelentés előnézete
     search_and_select_skills_of_skill_type: Keressen és válasszon %{skillType} készségeket
     select_skills_of_skill_type: Válasszon %{skillType} készségeket
@@ -2820,6 +2829,8 @@ hu:
     status: Állapot
     suggestions: Javaslatok
     suggestions_for_skill_type: Javaslatok %{skillType} készségekre
+    summary: Összefoglalás
+    summary_logs: Összefoglaló naplók %{reporteeName}
     technical: Műszaki
     user_idp_status:
       approved: Jóváhagyott
@@ -2831,6 +2842,7 @@ hu:
       not_started: Nincs elindítva
       pending_approval: Jóváhagyásra vár
       rejected: Elutasította
+      start_review: Felülvizsgálat indítása
     users: Felhasználók
     with_reflection_questions: Reflexiós kérdésekkel
     without_reflection_questions: Reflexiós kérdések nélkül
@@ -4144,6 +4156,7 @@ hu:
     idp:
       can_not_complete_without_approval_and_in_progress: Nem töltheti ki az IDP-t, amíg a menedzsere jóvá nem hagyja, és Ön "Folyamatban" -ként jelölte meg.
       can_not_start_without_approval: Nem kezdhet el dolgozni az IDP-n, amíg a menedzsere jóvá nem hagyja.
+      no_changes_to_compare: Nincs összehasonlítás az IDP-tervben.
       no_previous_approved_plan: Nem találtak korábban jóváhagyott IDP-tervet.
       reflective_questions_required: Az IDP-hez válaszok szükségesek a reflektív kérdésekre
       status_not_permitted: a felhasználó nem engedélyezi.

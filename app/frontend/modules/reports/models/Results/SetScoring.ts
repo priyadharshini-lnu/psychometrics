@@ -33,7 +33,7 @@ const extendScoringByData = (scoring: ResultScoring, data: RawResult, dimensionI
           name: factor.alias,
           ...CUSTOM_FACTOR_VALUE_FIELDS.reduce((acc, field) => ({
             ...acc,
-            [field]: scoringResults[field] || null,
+            [field]: scoringResults[field] ?? null,
           }), {}),
         },
       }

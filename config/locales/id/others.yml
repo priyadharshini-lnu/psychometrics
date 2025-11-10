@@ -1462,6 +1462,7 @@ id:
       export_occupations_job_scheduled: Pekerjaan Ekspor Pekerjaan berhasil dijadwalkan
       export_reports_and_assessments_statuses_scheduled: Ekspor Laporan dan tugas penilaian berhasil dijadwalkan
       external_results_export_scheduled: Tugas ekspor Penilaian Eksternal berhasil dijadwalkan
+      no_participants_selected: Silakan pilih setidaknya satu peserta untuk melanjutkan.
       norm_results_export_scheduled: Pekerjaan ekspor Hasil Bernorma Penilaian berhasil dijadwalkan
       normalize_factor_scores_scheduled: Pekerjaan skor faktor normalisasi berhasil dijadwalkan.
       raw_factor_export_scheduled: Pekerjaan ekspor Faktor Mentah Penilaian berhasil dijadwalkan
@@ -1606,6 +1607,7 @@ id:
       report_bundle_placeholder: Memilih paket laporan
     messages:
       bulk_download_error: Unduhan massal dibatasi hingga 1000 file laporan. Jika Anda telah memilih banyak bahasa, harap kurangi.
+      bulk_download_no_reports: Tidak ada laporan yang ditemukan. Silakan buat laporan sebelum mengunduh.
       bulk_download_successful: Pekerjaan pengunduhan laporan massal berhasil dijadwalkan
       export_report_data_scheduled: Tugas ekspor data laporan berhasil dijadwalkan
     modals:
@@ -2470,6 +2472,7 @@ id:
   idp:
     actions: Tindakan
     add_comments: Tambahkan Komentar
+    added_development_action: Menambahkan Tindakan Pengembangan
     ai:
       assistant:
         failure_fallback:
@@ -2507,7 +2510,7 @@ id:
           option_2: Cocok untuk profesional yang sibuk
           option_3: Dapat diedit sepenuhnya setelah generasi
           title: IDP AI 1-Klik
-        sub_title: Mari buat jorney peningkatan keterampilan yang disesuaikan yang dipetakan dengan aspirasi karir Anda dan dipandu oleh AI
+        sub_title: Mari buat perjalanan peningkatan keterampilan yang disesuaikan yang dipetakan dengan aspirasi karir Anda dan dipandu oleh AI
         title: Buat Rencana Pengembangan Individu Anda
       summary:
         chat_title: Ringkasan Wawasan Obrolan
@@ -2522,10 +2525,11 @@ id:
         drop: Jatuhkan file di sini
         title: Unggah file
       welcome:
-        text: Siap untuk memetakan pertumbuhan Anda jorney? Mari kita mulai!
+        text: Siap untuk memetakan perjalanan pertumbuhan Anda? Mari kita mulai!
         title: Halo, saya asisten pengembangan Anda
     behavioral: Perilaku
     board: Papan
+    change_history: Perubahan Riwayat
     changes_saved_to_plan: Perubahan yang disimpan pada paket
     comment_details:
       add_comment: Tambahkan Komentar
@@ -2627,6 +2631,7 @@ id:
       publish_plan: Menerbitkan Rencana
       remove: Buka
       save_plan: Simpan Paket
+      search_development_actions: Tindakan Pengembangan Pencarian
       show_development_action_information: Tampilkan informasi Tindakan Pengembangan
       skill: Keahlian
       sprint: Sprint
@@ -2688,6 +2693,7 @@ id:
     manage_plan: Kelola Paket
     mark_as_complete: Tandai sebagai Selesai
     mark_as_incomplete: Tandai sebagai Tidak Lengkap
+    modified_development_action: Tindakan Pengembangan yang Dimodifikasi
     my_plan:
       development_plan: Rencana Pengembangan
       graphs:
@@ -2805,7 +2811,9 @@ id:
         title: Ringkasan Laporan
     plan: Rencana
     plan_status: Status Paket %{status}
+    plan_submitted_for_manager_approval: Rencana Pengembangan Individu Anda telah diajukan untuk persetujuan manajer.
     private: Swasta
+    public: Umum
     reflective_questions:
       already_completed: IDP telah selesai, Anda tidak dapat menjawab pertanyaan sekarang.
       answer: Menjawab
@@ -2833,6 +2841,7 @@ id:
       words: Kata
     remove_skill: Hapus Keterampilan
     remove_skill_from_plan: Hapus %{name} keterampilan dari rencana
+    removed_development_action: Tindakan Pengembangan yang Dihapus
     report_preview: Pratinjau Laporan
     search_and_select_skills_of_skill_type: Cari dan pilih keterampilan %{skillType}
     select_skills_of_skill_type: Pilih keterampilan %{skillType}
@@ -2846,6 +2855,8 @@ id:
     status: Status
     suggestions: Saran
     suggestions_for_skill_type: Saran untuk keterampilan %{skillType}
+    summary: Ringkasan
+    summary_logs: Log ringkasan untuk %{reporteeName}
     technical: Teknis
     user_idp_status:
       approved: Disetujui
@@ -2857,6 +2868,7 @@ id:
       not_started: Belum Dimulai
       pending_approval: Menunggu Persetujuan
       rejected: Ditolak
+      start_review: Mulai Tinjauan
     users: Pengguna
     with_reflection_questions: Dengan Pertanyaan Refleksi
     without_reflection_questions: Tanpa Pertanyaan Refleksi
@@ -4170,6 +4182,7 @@ id:
     idp:
       can_not_complete_without_approval_and_in_progress: Anda tidak dapat menyelesaikan IDP Anda sampai manajer Anda menyetujuinya dan Anda menandainya sebagai 'Sedang Berlangsung'.
       can_not_start_without_approval: Anda tidak dapat mulai mengerjakan IDP Anda sampai manajer Anda menyetujuinya.
+      no_changes_to_compare: Tidak ada perubahan untuk dibandingkan untuk paket IDP.
       no_previous_approved_plan: Tidak ada rencana IDP yang disetujui sebelumnya yang ditemukan.
       reflective_questions_required: Jawaban atas pertanyaan reflektif diperlukan untuk IDP
       status_not_permitted: tidak diizinkan oleh pengguna.

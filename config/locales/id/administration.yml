@@ -208,6 +208,7 @@ id:
           projectSettings:
             assessments: Penilaian
             design: Desain
+            feature_flags: Bendera Fitur
             idp: IDP
             integrations: Integrasi
             privacy_settings: Pengaturan Privasi

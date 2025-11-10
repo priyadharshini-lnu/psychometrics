@@ -72,8 +72,10 @@ RSpec.describe UserIdpPlan, type: :model do
         before { communication }
 
         it 'creates communication email with the resource' do
+          user_idp_plan.start_review!
+
           expect do
-            user_idp_plan.update!(approval_status: :approved)
+            user_idp_plan.approve!
           end.to change(CommunicationEmail, :count).by(1)
 
           communication_email = CommunicationEmail.last
@@ -86,8 +88,10 @@ RSpec.describe UserIdpPlan, type: :model do
 
       context 'when no communication exists' do
         it 'does not create any communication emails' do
+          user_idp_plan.start_review!
+
           expect do
-            user_idp_plan.update!(approval_status: :approved)
+            user_idp_plan.approve!
           end.not_to change(CommunicationEmail, :count)
         end
       end
@@ -105,8 +109,10 @@ RSpec.describe UserIdpPlan, type: :model do
         end
 
         it 'does not create another communication email' do
+          user_idp_plan.start_review!
+
           expect do
-            user_idp_plan.update!(approval_status: :approved)
+            user_idp_plan.approve!
           end.not_to change(CommunicationEmail, :count)
         end
       end
@@ -121,8 +127,10 @@ RSpec.describe UserIdpPlan, type: :model do
         before { communication }
 
         it 'creates communication email with the resource' do
+          user_idp_plan.start_review!
+
           expect do
-            user_idp_plan.update!(approval_status: :rejected)
+            user_idp_plan.reject!
           end.to change(CommunicationEmail, :count).by(1)
 
           communication_email = CommunicationEmail.last

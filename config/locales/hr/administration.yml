@@ -208,6 +208,7 @@ hr:
           projectSettings:
             assessments: Procjene
             design: Dizajn
+            feature_flags: Zastavice značajki
             idp: IDP
             integrations: Integracije
             privacy_settings: Postavke privatnosti

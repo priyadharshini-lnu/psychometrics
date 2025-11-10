@@ -208,6 +208,7 @@ sk:
           projectSettings:
             assessments: Hodnotenia
             design: Dizajn
+            feature_flags: Príznaky funkcií
             idp: IDP
             integrations: Integrácie
             privacy_settings: Nastavenia ochrany osobných údajov

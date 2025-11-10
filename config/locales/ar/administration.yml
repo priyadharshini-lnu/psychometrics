@@ -208,6 +208,7 @@ ar:
           projectSettings:
             assessments: التقييمات
             design: التصميم
+            feature_flags: علامات الميزة
             idp: IDP
             integrations: التكاملات
             privacy_settings: إعدادات الخصوصية

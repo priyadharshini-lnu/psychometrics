@@ -6,6 +6,9 @@ exports[`initializing base assessment > init action should init assessment data 
     "availableAiProviders": [],
     "availableLocales": [],
     "features": {},
+    "project": {
+      "idpEnabled": false,
+    },
     "timezone": "",
   },
   "connection": {
@@ -479,6 +482,9 @@ exports[`initializing base assessment > middleware should call next if is not NE
     "availableAiProviders": [],
     "availableLocales": [],
     "features": {},
+    "project": {
+      "idpEnabled": false,
+    },
     "timezone": "",
   },
   "connection": {

@@ -77,6 +77,7 @@ ro:
       uniq?: ar trebui să fie unice
       uniq_simulation: Această evaluare de simulare este deja prezentă în sistem. ID-ul acestei evaluări este %{id}
       uniq_skillvue: Această evaluare Skillvue este deja prezentă în sistem. ID-ul acestei evaluări este %{id}
+      uniq_yoodli: Această evaluare Yoodli este deja prezentă în sistem. ID-ul acestei evaluări este %{id}
       update_workshop:
         bookings_exist: Nu se poate modifica programul, deoarece participanții au rezervat deja acest interval orar.
         less_than_booked: Numărul total de locuri trebuie să fie mai mare decât cel rezervat

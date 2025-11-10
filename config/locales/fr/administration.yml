@@ -208,6 +208,7 @@ fr:
           projectSettings:
             assessments: Évaluations
             design: Conception
+            feature_flags: Drapeaux de fonctionnalité
             idp: PDI
             integrations: Intégrations
             privacy_settings: Paramètres de confidentialité

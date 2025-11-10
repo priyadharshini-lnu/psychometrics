@@ -208,6 +208,7 @@ en-US:
           projectSettings:
             assessments: Assessments
             design: Design
+            feature_flags: Feature Flags
             idp: IDP
             integrations: Integrations
             privacy_settings: Privacy Settings

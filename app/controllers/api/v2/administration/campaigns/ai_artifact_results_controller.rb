@@ -6,16 +6,16 @@ module Api
     before_action :load_campaign_artifacts, only: %i[index show]
 
     def index
-      paginated_users = campaign_users.page(params[:page]).per(params[:size])
+      paginated_users = users.ransack(params[:filter]).result.page(params[:page]).per(params[:size])
 
-      records_data = paginated_users.map do |campaign_user|
+      records_data = paginated_users.map do |user|
         artifacts_results = @campaign_artifacts.map do |artifact|
-          artifact.results.find_or_initialize_by(user: campaign_user.user)
+          artifact.results.find_or_initialize_by(user: user)
         end
 
         {
-          'id' => campaign_user.user_id,
-          'user' => jsonapi_format(campaign_user.user, resource: Api::V2::Administration::UserResource),
+          'id' => user.id,
+          'user' => jsonapi_format(user, resource: Api::V2::Administration::UserResource),
           'artifacts_results' => jsonapi_format(artifacts_results),
           'generated_at' => artifacts_results.pluck(:updated_at).compact.max
         }
@@ -33,7 +33,7 @@ module Api
       response = json_api_records(records_data, :campaign_ai_artifact_results)
       response[:meta] = {
         campaign_artifacts: campaign_artifacts_meta,
-        record_count: campaign_users.count
+        record_count: users.count
       }
 
       render json: response
@@ -56,10 +56,11 @@ module Api
 
     private
 
-    def campaign_users
+    def users
       return @campaign.campaign_users.none if @campaign_artifacts.blank?
 
-      @campaign.campaign_users.includes(user: {})
+      User.joins(:campaign_users).
+        where(campaign_users: { campaign_id: @campaign.id })
     end
 
     def load_user

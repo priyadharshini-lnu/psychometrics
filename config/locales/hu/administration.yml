@@ -208,6 +208,7 @@ hu:
           projectSettings:
             assessments: Értékelések
             design: Tervezés
+            feature_flags: Funkció jelzők
             idp: IDP
             integrations: Integrációk
             privacy_settings: Adatvédelmi beállítások

@@ -1472,6 +1472,7 @@ de:
       export_occupations_job_scheduled: Berufe Exportauftrag wurde erfolgreich geplant
       export_reports_and_assessments_statuses_scheduled: Export von Berichten und Bewertungen wurde erfolgreich geplant
       external_results_export_scheduled: Der Exportauftrag für die externe Bewertung wurde erfolgreich geplant
+      no_participants_selected: Bitte wählen Sie mindestens einen Teilnehmer aus, um fortzufahren.
       norm_results_export_scheduled: Exportauftrag für genormte Bewertungsergebnisse wurde erfolgreich geplant
       normalize_factor_scores_scheduled: Der Auftrag zur Normalisierung der Faktorwerte wurde erfolgreich geplant.
       raw_factor_export_scheduled: Bewertung Raw Factor-Exportauftrag wurde erfolgreich geplant
@@ -1616,6 +1617,7 @@ de:
       report_bundle_placeholder: Wählen Sie ein Berichtsbündel
     messages:
       bulk_download_error: Der Massendownload ist auf 1000 Berichtsdateien begrenzt. Wenn Sie viele Sprachen ausgewählt haben, reduzieren Sie bitte die Anzahl.
+      bulk_download_no_reports: Keine Berichte gefunden. Bitte generieren Sie die Berichte vor dem Download.
       bulk_download_successful: Bulk-Bericht-Download-Auftrag wurde erfolgreich geplant
       export_report_data_scheduled: Exportauftrag für Berichtsdaten wurde erfolgreich geplant
     modals:
@@ -2475,6 +2477,7 @@ de:
   idp:
     actions: Aktionen
     add_comments: Kommentare hinzufügen
+    added_development_action: Zusätzliche Entwicklungsmaßnahmen
     ai:
       assistant:
         failure_fallback:
@@ -2531,6 +2534,7 @@ de:
         title: Hallo, ich bin dein Entwicklungsassistent
     behavioral: Verhaltenstipps
     board: Vorstand
+    change_history: Änderungshistorie
     changes_saved_to_plan: Änderungen, die im Plan gespeichert werden
     comment_details:
       add_comment: Kommentar hinzufügen
@@ -2632,6 +2636,7 @@ de:
       publish_plan: Plan veröffentlichen
       remove: Entfernen
       save_plan: Plan speichern
+      search_development_actions: Entwicklungsmaßnahmen für die Suche
       show_development_action_information: Informationen zu Entwicklungsmaßnahmen anzeigen
       skill: Fertigkeit
       sprint: Sprint
@@ -2693,6 +2698,7 @@ de:
     manage_plan: Plan verwalten
     mark_as_complete: Als abgeschlossen markieren
     mark_as_incomplete: Als unvollständig markieren
+    modified_development_action: Modifizierte Entwicklungsmaßnahme
     my_plan:
       development_plan: Entwicklungsplan
       graphs:
@@ -2811,7 +2817,9 @@ de:
         title: Berichtszusammenfassung
     plan: Plan
     plan_status: Planstatus %{status}
+    plan_submitted_for_manager_approval: Ihr individueller Entwicklungsplan wurde zur Genehmigung durch den Manager eingereicht.
     private: Privat
+    public: Öffentlich
     reflective_questions:
       already_completed: Der IDP ist bereits abgeschlossen, Sie können die Fragen jetzt nicht mehr beantworten.
       answer: Antwort
@@ -2839,6 +2847,7 @@ de:
       words: Wörter
     remove_skill: Skill entfernen
     remove_skill_from_plan: Entfernen von Skill-%{name} aus dem Plan
+    removed_development_action: Entwicklungsmaßnahme entfernt
     report_preview: Vorschau des Berichts
     search_and_select_skills_of_skill_type: Suchen und wählen Sie %{skillType} Skills aus
     select_skills_of_skill_type: Wählen Sie %{skillType} Skills aus
@@ -2852,6 +2861,8 @@ de:
     status: Status
     suggestions: Anregungen
     suggestions_for_skill_type: Vorschläge für %{skillType} Fähigkeiten
+    summary: Zusammenfassung
+    summary_logs: Zusammenfassungsprotokolle für %{reporteeName}
     technical: Technisch
     user_idp_status:
       approved: Genehmigt
@@ -2863,6 +2874,7 @@ de:
       not_started: Nicht gestartet
       pending_approval: Anhängig
       rejected: Zurückgewiesen
+      start_review: Bewertung starten
     users: Benutzer
     with_reflection_questions: Mit Reflexionsfragen
     without_reflection_questions: Ohne Reflexionsfragen
@@ -4176,6 +4188,7 @@ de:
     idp:
       can_not_complete_without_approval_and_in_progress: Sie können Ihren IDP erst abschließen, wenn Ihr Vorgesetzter ihn genehmigt hat und Sie ihn als "In Bearbeitung" markiert haben.
       can_not_start_without_approval: Sie können erst mit der Arbeit an Ihrem IDP beginnen, wenn Ihr Vorgesetzter ihn genehmigt hat.
+      no_changes_to_compare: Keine Änderungen zum Vergleich für den IDP-Plan.
       no_previous_approved_plan: Kein zuvor genehmigter IDP-Plan gefunden.
       reflective_questions_required: Antworten auf reflektierende Fragen sind für IDP erforderlich
       status_not_permitted: ist vom Nutzer nicht gestattet.

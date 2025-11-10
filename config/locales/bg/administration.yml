@@ -208,6 +208,7 @@ bg:
           projectSettings:
             assessments: Оценки
             design: Проектирам
+            feature_flags: Флагове на функциите
             idp: Индивидуален план за развитие
             integrations: Интеграции
             privacy_settings: Настройки за поверителност

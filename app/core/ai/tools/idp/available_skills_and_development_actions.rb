@@ -18,7 +18,7 @@ module AI
                     'manager with technical background moving to director level", "data storytelling and ' \
                     'executive presentation skills for analyst seeking promotion to senior consultant"'
         param :limit,
-              desc: 'Maximum number of top skills to return against the semantic search. Default is 10. Maximum is 10.'
+              desc: 'Maximum number of top skills to return against the semantic search. Default is 5. Maximum is 5.'
 
         private_attr_reader :idp_template
 
@@ -26,8 +26,8 @@ module AI
           @idp_template = idp_template
         end
 
-        def execute(query_text:, limit: 10)
-          result_limit = [limit.to_i, 10].min
+        def execute(query_text:, limit: 5)
+          result_limit = [limit.to_i, 5].min
           query_by_similarity_service = Skills::EmbeddingQuery.new(
             template_skills,
             query_text:,
