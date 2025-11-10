@@ -66,6 +66,8 @@ export const Result = () => {
                 generatedAt: artifactResult.generatedAt,
                 id: artifactResult.artifact.id,
                 parsedDependencies: artifactResult.parsedDependencies,
+                totalInputTokens: artifactResult.totalInputTokens,
+                totalOutputTokens: artifactResult.totalOutputTokens,
               }
 
               return { ...acc, [artifactName]: artifactData }

@@ -5,7 +5,7 @@ module EndUser
     attributes :error, :messages, :meta, :checkpoint, :status
 
     def messages
-      ai_assistant_chat = object.ai_assistant_chat
+      ai_assistant_chat = object.latest_chat
       return [] unless ai_assistant_chat
 
       messages = ai_assistant_chat.messages.

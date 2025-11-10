@@ -37,9 +37,9 @@ module AI
 
         @artifact.results.find_or_initialize_by(user: @user).tap do |artifact_result|
           artifact_result.results = final_results
-          artifact_result.ai_assistant_chat = chat
           artifact_result.parsed_dependencies = @parsed_dependencies
           artifact_result.save!
+          chat.update!(ai_assisted_user_session_id: artifact_result.id)
         end
 
         final_results

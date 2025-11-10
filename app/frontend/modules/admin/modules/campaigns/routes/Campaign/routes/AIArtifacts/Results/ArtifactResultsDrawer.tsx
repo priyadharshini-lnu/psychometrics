@@ -53,6 +53,8 @@ export const ArtifactResultsDrawer: React.FC<ArtifactResultsDrawerProps> = ({
         id: res.artifact.id,
         parsedDependencies: res.parsedDependencies,
         generatedAt: res.generatedAt,
+        totalInputTokens: res.totalInputTokens,
+        totalOutputTokens: res.totalOutputTokens,
       }
 
       return {

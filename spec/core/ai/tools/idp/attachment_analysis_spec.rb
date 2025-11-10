@@ -56,11 +56,11 @@ describe AI::Tools::Idp::AttachmentAnalysis do
       let(:ai_assisted_doc_summary_session) do
         create(:assisted_user_document_summary, :completed,
                user: current_user,
-               ai_assistant_chat: ai_assistant_chat,
                document_attachment: document_attachment)
       end
 
       before do
+        ai_assistant_chat.update!(ai_assisted_user_session: ai_assisted_doc_summary_session)
         # Mock the attachment to return the summary
         allow_any_instance_of(ActiveStorage::Attachment).to receive(:ai_assisted_user_document_summary).
           and_return(ai_assisted_doc_summary_session)
@@ -74,19 +74,8 @@ describe AI::Tools::Idp::AttachmentAnalysis do
       end
     end
 
-    context 'when document exists but no summary exists' do
-      let(:ai_assisted_doc_summary_session) do
-        create(:assisted_user_document_summary,
-               user: current_user,
-               ai_assistant_chat: ai_assistant_chat,
-               document_attachment: document_attachment)
-      end
-
-      before do
-        allow(document_blob).to receive(:url).and_return('https://example.com/document.pdf')
-      end
-
-      it 'creates a new session when none exists' do
+    context 'creates a new session' do
+      it 'when none exists' do
         stub_wisper_publisher('AI::AssistantService', :call, :ok, { message: 'AI analysis complete' })
 
         expect do
@@ -97,6 +86,19 @@ describe AI::Tools::Idp::AttachmentAnalysis do
 
         expect(summary_session).not_to be_nil
         expect(summary_session.summary).to eq('AI analysis complete')
+      end
+    end
+
+    context 'when document exists but no summary exists' do
+      let(:ai_assisted_doc_summary_session) do
+        create(:assisted_user_document_summary,
+               user: current_user,
+               document_attachment: document_attachment)
+      end
+
+      before do
+        ai_assistant_chat.update!(ai_assisted_user_session: ai_assisted_doc_summary_session)
+        allow(document_blob).to receive(:url).and_return('https://example.com/document.pdf')
       end
 
       context 'when calling assistant service' do

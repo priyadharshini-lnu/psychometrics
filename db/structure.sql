@@ -388,7 +388,10 @@ CREATE TABLE public.ai_assistant_chats (
     client_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    ai_model_registry_id bigint
+    ai_model_registry_id bigint,
+    ai_assisted_user_session_id bigint,
+    input_tokens integer DEFAULT 0,
+    output_tokens integer DEFAULT 0
 );
 
 
@@ -565,7 +568,6 @@ ALTER SEQUENCE public.ai_assistants_id_seq OWNED BY public.ai_assistants.id;
 
 CREATE TABLE public.ai_assisted_user_sessions (
     id bigint NOT NULL,
-    ai_assistant_chat_id bigint NOT NULL,
     user_id bigint NOT NULL,
     assistable_type character varying,
     assistable_id bigint,
@@ -12392,6 +12394,13 @@ CREATE INDEX index_ai_assistant_chats_on_ai_assistant_id ON public.ai_assistant_
 
 
 --
+-- Name: index_ai_assistant_chats_on_ai_assisted_user_session_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistant_chats_on_ai_assisted_user_session_id ON public.ai_assistant_chats USING btree (ai_assisted_user_session_id);
+
+
+--
 -- Name: index_ai_assistant_chats_on_ai_model_registry_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12473,13 +12482,6 @@ CREATE INDEX index_ai_assistants_on_last_modified_by_id ON public.ai_assistants 
 --
 
 CREATE INDEX index_ai_assistants_on_owner_id ON public.ai_assistants USING btree (owner_id);
-
-
---
--- Name: index_ai_assisted_user_sessions_on_ai_assistant_chat_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_ai_assisted_user_sessions_on_ai_assistant_chat_id ON public.ai_assisted_user_sessions USING btree (ai_assistant_chat_id);
 
 
 --
@@ -16271,6 +16273,14 @@ ALTER TABLE ONLY public.licenses
 
 
 --
+-- Name: ai_assistant_chats fk_rails_15a36d90ff; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_chats
+    ADD CONSTRAINT fk_rails_15a36d90ff FOREIGN KEY (ai_assisted_user_session_id) REFERENCES public.ai_assisted_user_sessions(id);
+
+
+--
 -- Name: dimensions fk_rails_16b68b71cd; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -16820,14 +16830,6 @@ ALTER TABLE ONLY public.clients
 
 ALTER TABLE ONLY public.sheets
     ADD CONSTRAINT fk_rails_481da9714d FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
-
-
---
--- Name: ai_assisted_user_sessions fk_rails_49182d1bb2; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.ai_assisted_user_sessions
-    ADD CONSTRAINT fk_rails_49182d1bb2 FOREIGN KEY (ai_assistant_chat_id) REFERENCES public.ai_assistant_chats(id);
 
 
 --
@@ -18925,6 +18927,9 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20251105093356'),
+('20251031101349'),
+('20251031094133'),
 ('20251027145358'),
 ('20251029094535'),
 ('20251029094056'),
@@ -19862,4 +19867,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

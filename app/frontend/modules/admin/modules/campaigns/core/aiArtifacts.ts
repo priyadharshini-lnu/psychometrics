@@ -46,6 +46,8 @@ export const ArtifactResultsAttributesTR = t.type({
   })),
   parsedDependencies: t.union([t.string, t.null]),
   generatedAt: t.union([t.string, t.null]),
+  totalInputTokens: t.union([t.number, t.undefined]),
+  totalOutputTokens: t.union([t.number, t.undefined]),
 })
 
 export const CampaignAiArtifactResultTR = t.type({
@@ -112,7 +114,9 @@ export type CampaignAiArtifactDataSource ={
       error: string|null
       id: number
       parsedDependencies: string | null
-      generatedAt: string | null
+      generatedAt: string | null,
+      totalInputTokens: number | undefined,
+      totalOutputTokens: number | undefined,
     }
   }
   generatedAt: string | null

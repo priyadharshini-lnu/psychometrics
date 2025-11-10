@@ -20,6 +20,8 @@ type GeneratedArtifactProps={
       error: string|null
       id: number
       parsedDependencies: string | null
+      totalInputTokens: number | undefined
+      totalOutputTokens: number | undefined
   }
     generateResult: (id: string) => Promise<void>
 }
@@ -52,7 +54,6 @@ export const GeneratedArtifact: React.FC<GeneratedArtifactProps> = ({ artifactNa
                 type="text"
                 icon={<FileTextOutlined />}
                 onClick={() => setShowParsedDependenciesModal(true)}
-                style={{ marginRight: 8 }}
               />
             </Tooltip>
           )}
@@ -68,6 +69,8 @@ export const GeneratedArtifact: React.FC<GeneratedArtifactProps> = ({ artifactNa
         isLoading={isGenerating}
         error={error}
         artifactResults={artifactData.results}
+        totalInputTokens={artifactData.totalInputTokens}
+        totalOutputTokens={artifactData.totalOutputTokens}
       />
       <ParsedDependenciesModal
         show={showParsedDependenciesModal}

@@ -334,6 +334,10 @@ en:
         settings: Settings
       test_generate: Test Generate
       unsaved_changes: Unsaved changes are present, consider submitting form to generate updated response from Playground.
+      used_tokens:
+        input_tokens: Input Tokens
+        output_tokens: Output Tokens
+        title: Token usage
     ai_assistants:
       actions:
         create: Create AI Assistant

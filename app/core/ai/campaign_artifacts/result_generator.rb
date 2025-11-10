@@ -98,9 +98,9 @@ module AI
 
       def handle_artifact_result_error(error_message)
         unless test_mode?
-          artifact_result.ai_assistant_chat = campaign_artifact_assistant_chat
           artifact_result.error = error_message
           artifact_result.save!
+          campaign_artifact_assistant_chat.update!(ai_assisted_user_session_id: artifact_result.id)
         end
 
         @error = error_message
