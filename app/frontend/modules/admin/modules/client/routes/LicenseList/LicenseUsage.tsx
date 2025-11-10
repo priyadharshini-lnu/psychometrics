@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
@@ -22,7 +21,10 @@ export type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
 const LicenseUsageComponent: React.FC<Props> = () => {
-  const { clientId, licenseId } = useParams() as { clientId: string, licenseId: string}
+  const {
+    clientId,
+    licenseId,
+  } = useParams() as { clientId: string, licenseId: string }
 
   const config = {
     trackUrl: true,
@@ -79,7 +81,8 @@ const LicenseUsageComponent: React.FC<Props> = () => {
             dataIndex="createdAt"
             sorter
             render={createdAt => (
-              dayjs(createdAt).format('lll')
+              dayjs(createdAt)
+                .format('lll')
             )}
             width={150}
           />
@@ -89,7 +92,8 @@ const LicenseUsageComponent: React.FC<Props> = () => {
             dataIndex="statusUpdatedAt"
             sorter
             render={statusUpdatedAt => (
-              statusUpdatedAt ? dayjs(statusUpdatedAt).format('lll') : null
+              statusUpdatedAt ? dayjs(statusUpdatedAt)
+                .format('lll') : null
             )}
             minWidth={200}
           />
@@ -120,7 +124,7 @@ const BreadcrumbsComponent = () => {
       crumbs={[
         {
           link: () => '/admin',
-          label: () => I18n.t('administration.clients.tenancies'),
+          label: () => I18n.t('administration.clients.clients'),
         },
         {
           link: () => `/admin/clients/${clientId}/projects`,

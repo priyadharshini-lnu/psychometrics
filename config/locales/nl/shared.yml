@@ -1,0 +1,27 @@
+---
+nl:
+  shared:
+    action: Actie
+    add: Voeg  toe
+    cancel: Annuleren
+    change_password: Wachtwoord wijzigen
+    clear_filters: Filters wissen
+    edit: Bewerk
+    id: ID
+    internet_disconnected_message: Probeer opnieuw verbinding te maken. Controleer uw internetverbinding.
+    mte_logo_alt_text: Mercer logo voor talentondernemingen
+    name: Naam
+    search: Zoek op
+    table:
+      entries:
+        selected:
+          one: 1 rij geselecteerd
+          other: "{{count}} rijen geselecteerd"
+        total:
+          one: 'Totaal : 1'
+          other: 'Totaal : {{count}}'
+          zero: 'Totaal : 0'
+    terms_conditions_privacy: Privacyverklaring
+    tte_terms_and_condition: Voorwaarden en privacy
+    type: Type
+    update: Update

@@ -1,14 +1,6 @@
 /! START X-NAVIGATION VERTICAL
 header
-  ul.x-navigation.x-navigation-horizontal.x-navigation-panel
-    /! TOGGLE NAVIGATION
-    /! END TOGGLE NAVIGATION
-    li.xn-icon-button.z-index-2#admin-job-wrapper
-    /! SIGN OUT
-    li.xn-icon-button
-      = link_to destroy_administration_session_path, method: :get, data: { confirm: { body: t('.sign_out_message.body'), title: t('.sign_out_message.title') } }, aria: { label: "Sign Out" } do
-        span.fa.fa-sign-out
-    /! END SIGN OUT
+  #admin-job-wrapper
   /! END X-NAVIGATION VERTICAL
   /! START BREADCRUMB
   - if breadcrumbs.present?

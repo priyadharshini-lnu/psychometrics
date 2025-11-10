@@ -118,7 +118,7 @@ const ResourceFormModal: React.FC<Props> = (props) => {
   const buttonName = (): string => {
     if (submitButtonName) return submitButtonName
 
-    return isEdit() ? I18n.t('common.actions.update') : I18n.t('common.actions.add')
+    return isEdit() ? I18n.t('shared.update') : I18n.t('shared.add')
   }
 
   return (
@@ -129,7 +129,7 @@ const ResourceFormModal: React.FC<Props> = (props) => {
       onCancel={close}
       footer={[
         <Button key="back" onClick={close}>
-          {I18n.t('common.actions.cancel')}
+          {I18n.t('shared.cancel')}
         </Button>,
         !hideOkButton && (
           <Button

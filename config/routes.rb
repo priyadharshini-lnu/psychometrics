@@ -988,6 +988,12 @@ as: :simulation_progress_notification
         end
       end
 
+      resources :yoodli_user_assessments, only: [] do
+        member do
+          post :pass
+        end
+      end
+
       resources :agile_user_assessments, only: %i[show update] do
         member do
           post :events
@@ -1129,6 +1135,23 @@ as: :simulation_progress_notification
     get 'invites/:id/details', to: 'end_user/users#dashboard'
     get 'idp/*path', to: 'end_user/users#dashboard'
     get 'evaluation_session_exists', to: 'end_user/users#dashboard'
+
+    namespace :lti do
+      get 'jwks', to: 'jwks#index'
+      post 'jwks', to: 'jwks#index'
+
+      get 'auth', to: 'oidc#auth'
+      post 'auth', to: 'oidc#auth'
+      get 'redirect', to: 'oidc#redirect'
+
+      post 'oauth2/token', to: 'oauth2#token'
+      get 'oauth2/token', to: 'oauth2#show'
+
+      namespace :ags do
+        get 'lineitems/:line_item_id', to: 'scores#show', as: :lineitem
+        post 'lineitems/:line_item_id/scores', to: 'scores#create'
+      end
+    end
     root to: 'end_user/users#dashboard'
   end
 
@@ -1330,6 +1353,7 @@ as: :simulation_progress_notification
 
             jsonapi_resources :registration_settings, only: %i[index update]
             jsonapi_resources :mettl_schedule_records
+            jsonapi_resources :yoodli_assessments
             jsonapi_resources :project_features, only: %i[index update]
 
             jsonapi_resources :assessments do
@@ -1561,6 +1585,7 @@ as: :simulation_progress_notification
             post :export_global, on: :collection
             post :import_global_translations, on: :collection
             post :export_global_translations, on: :collection
+            post :generate_embedding, on: :collection
           end
 
           jsonapi_resources :development_actions do

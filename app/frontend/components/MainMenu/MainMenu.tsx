@@ -58,6 +58,20 @@ const MainMenuComponent:FC<Props> = ({
     }
   }
 
+  const selectedKey = getSelected()
+
+  const isContentSubMenuOpen = ['assessments', 'norms',
+    'dimensions', 'reports', 'questionCenter', 'libraries'].includes(selectedKey) || false
+  const isConfigurationSubMenuOpen = ['skillsTaxonomy',
+    'developmentActions', 'aiAssistants', 'campaignTemplates'].includes(selectedKey) || false
+
+  let defaultOpenKeys: string[] = []
+  if (isContentSubMenuOpen) {
+    defaultOpenKeys = ['content']
+  } else if (isConfigurationSubMenuOpen) {
+    defaultOpenKeys = ['configuration']
+  }
+
   const menu = (
     <>
       <UserAvatar currentUser={currentUser} collapsed={collapsed} />
@@ -69,6 +83,7 @@ const MainMenuComponent:FC<Props> = ({
         onClick={onSelect}
         className={styles.menu}
         style={{ border: 0 }}
+        defaultOpenKeys={defaultOpenKeys}
       />
     </>
   )

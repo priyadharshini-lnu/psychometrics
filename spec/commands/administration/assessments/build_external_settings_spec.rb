@@ -71,4 +71,22 @@ describe Administration::Assessments::BuildExternalSettings do
       expect(subject).to eql(assessment_id: 'mettl_assessment_id')
     end
   end
+
+  context 'when the assessment is skillvue' do
+    let(:type) { Assessments::Skillvue }
+    let(:external_settings) { { assessment_id: 'skillvue_assessment_id' } }
+
+    it 'returns valid external_settings' do
+      expect(subject).to eql(assessment_id: 'skillvue_assessment_id')
+    end
+  end
+
+  context 'when the assessment is yoodli' do
+    let(:type) { Assessments::Yoodli }
+    let(:external_settings) { { assessment_id: 'yoodli_assessment_id' } }
+
+    it 'returns valid external_settings' do
+      expect(subject).to eql(assessment_id: 'yoodli_assessment_id')
+    end
+  end
 end

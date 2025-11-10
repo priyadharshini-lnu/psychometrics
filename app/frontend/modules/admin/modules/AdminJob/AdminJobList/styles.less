@@ -1,62 +1,3 @@
-.container {
-  position: relative;
-
-  :global(.ant-badge-multiple-words) {
-    padding: 0 5px;
-  }
-
-  :global(.ant-badge-count) {
-    font-size: 9px;
-    height: 16px;
-    line-height: 16px;
-    min-width: 16px;
-  }
-
-   &:focus-visible {
-      outline-offset: 2px;
-      outline-color: var(--ant-primary-4);
-   }
-
-  .bellIcon {
-    text-align: center;
-    line-height: 22px;
-    cursor: pointer;
-    font-size: 18px;
-
-    &:hover {
-      color: #1caf9a;
-    }
-  }
-
-  & > button {
-    position: absolute;
-    top: 10px;
-    right: 0px;
-
-    &:hover {
-      background: none !important;
-    }
-
-    &:focus-visible {
-      outline-width: 2px !important;
-      outline-color: var(--ant-primary-4) !important;
-   }
-  }
-
-  .langDropdown{
-    position: absolute;
-    top: 15px;
-    width: max-content;
-    :global(body.ltr) & {
-      right: 50px;
-    }
-    :global(body.rtl) & {
-      left: 50px;
-    }
-  }
-}
-
-
 .listBox {
   .btnText {
     color: var(--grey-text);
@@ -74,7 +15,7 @@
 
 .list {
   background: white;
-  max-height: calc(100vh - 55px);
+  max-height: calc(100vh - 100px);
   overflow-y: auto;
   width: 500px;
   border: 1px solid #d9d9d9;

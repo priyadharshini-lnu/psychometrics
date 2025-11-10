@@ -119,6 +119,7 @@ export const TYPES = [
   'mettl',
   'simulation',
   'skillvue',
+  'yoodli',
 ]
 
 export const Schema = {

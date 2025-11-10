@@ -925,8 +925,6 @@ hr:
     invalid_job: Ova obavijest odgovara izbrisanom zapisu
     mark_as_read: Označi sve kao pročitano
     more: Više
-    no_notifications: Nema obavijesti
-    notifications: Obavijesti
     results: Rezultati
     super_admin:
       errors:
@@ -1348,16 +1346,11 @@ hr:
     continue: Nastavite svoje zadatke
     dashboard_instructions: Možda Vam je dodijeljeno više aktivnosti koje morate dovršiti. Molimo, provjerite jeste li dovršili sve dodijeljene aktivnosti u svim kampanjama.
     dashboard_menu:
-      bookings: Rezervacije
       campaign: Kampanja
-      change_password: Promjena lozinke
-      development: Razvoj
       direct_reportees: Izravni izvješćenici
       home: Početna stranica
       insights: Uvidi
-      my_plan: Moj plan
       profile: Profil
-      profile_details: Detalji
       tasks: Zadaci
     details: Detalji
     edit_evaluation:
@@ -1887,7 +1880,6 @@ hr:
       projects: Projekti
       report: Izvješće
       reports: Izvješća
-      scoring: Bodovanja
       sms_contact: SMS kontakt
       threesixty_campaign: Trišezdeset rezultata kampanje
     status:
@@ -3401,13 +3393,6 @@ hr:
   sessions:
     errors:
       recaptcha: Recaptcha provjera nije uspjela. Pokušajte ponovno.
-  shared:
-    filters:
-      clear: Obriši filtere
-    internet_disconnected_message: Pokušavam ponovno povezivanje. Molimo, provjerite svoju internetsku vezu.
-    mte_logo_alt_text: Logotip Mercer Talent Enterprise
-    terms_conditions_privacy: Izjava o privatnosti
-    tte_terms_and_condition: Uvjeti i privatnost
   sheet:
     import_modal:
       alert_access_sheet_removal: Učitavanjem novog pristupnog lista obirisat će se svi postojeći zapisi te će se zamjeniti novima. Provjerite imate li sve zapise s novog pristupnog lista u proračunskoj tablici.

@@ -24,6 +24,11 @@ interface SkillvueUserAssessmentDetails {
   externalUserId: string | null
 }
 
+interface YoodliUserAssessmentDetails {
+  email: string | null
+  externalAssessmentId: string | null
+}
+
 export default interface UserAssessment {
   id: number
   name: string
@@ -45,6 +50,7 @@ export default interface UserAssessment {
   simulationUserAssessmentDetails: SimulationUserAssessmentDetails | null
   pearsonUserAssessmentDetails: PearsonUserAssessmentDetails | null
   skillvueUserAssessmentDetails: SkillvueUserAssessmentDetails | null
+  yoodliUserAssessmentDetails: YoodliUserAssessmentDetails | null
 
   permissions: {
     updateAdditionalTime: boolean

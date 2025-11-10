@@ -3,7 +3,6 @@
 FactoryBot.define do
   factory :assisted_user_document_summary, class: 'AI::AssistedUserDocumentSummary' do
     association :user
-    association :ai_assistant_chat, factory: :assistant_chat
 
     transient do
       document_attachment { nil }
@@ -24,6 +23,12 @@ FactoryBot.define do
     trait :failed do
       status { :failed }
       error { 'Analysis failed' }
+    end
+
+    trait :with_chat do
+      after(:create) do |session|
+        create(:assistant_chat, ai_assisted_user_session: session)
+      end
     end
   end
 end

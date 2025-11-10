@@ -16,6 +16,7 @@ const settings = {
     'mettl',
     'simulation',
     'skillvue',
+    'yoodli',
   ],
 }
 

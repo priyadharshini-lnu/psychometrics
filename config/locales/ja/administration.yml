@@ -765,11 +765,6 @@ ja:
       user: ユーザー
       user_agent: ユーザーエージェント
     back: バック
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>本当にログアウトしますか？</p> <p>作業を続行する場合は「いいえ」を押してください。 現在のユーザーをログアウトする場合は「はい」を押してください。</p>"
-          title: "<strong>ログアウト</strong>？"
     block_settings:
       modal:
         add_layer: レイヤーを追加
@@ -1245,11 +1240,6 @@ ja:
         archived: アーカイブ
         disable: アーカイブ
         enable: アーカイブ解除
-      columns:
-        country: 国名
-        project_manager: プロジェクトマネージャー
-        type: タイプ
-        year: 年
       copy:
         successfully: クライアント・テナンシー '%{name}' が正常にコピーされました。
       create:
@@ -1258,14 +1248,6 @@ ja:
         successfully: クライアント・テナンシー %{name} は正常に削除されました。
       edit:
         header: 編集クライアント
-      form:
-        client: クライアント
-        country: 国名
-        name: 名称
-        number: 番号
-        project_manager: プロジェクトマネージャー
-        type: タイプ
-        year: 年
       licenses:
         resource:
           confirmations:
@@ -1685,7 +1667,6 @@ ja:
             title: アーカイブ<strong>%{name}</strong>?
           enable:
             title: アーカイブ解除<strong>%{name}</strong>?
-      tenancies: 顧客契約
       threesixty_campaign: スリーシックスティ・キャンペーン
       toggle_status:
         successfully: クライアント・テナンシー %{name} が正常に更新されました。
@@ -2757,43 +2738,14 @@ ja:
     message: メッセージ
     meta_title: 管理パネル
     navigation:
-      ai_artifacts: AIアーティファクト
-      ai_assistants: AIアシスタント
-      assessments: アセスメント
-      assessments_reports: アセスメント＆レポート
-      assessor_dashboard: 査定者ダッシュボード
-      assessor_workshops: アセスメント・センター
       audit_logs: 監査ログ
       availability: 空室状況
-      back_to_main: メインメニュー
-      campaign_templates: キャンペーンテンプレート
-      change_password: パスワードの変更
-      client_admins: クライアント管理者
-      clients: 顧客契約
-      communication_center: コミュニケーション・センター
       dashboard: ダッシュボード
-      data_reports: データレポート
-      development_actions: 開発アクション
-      dimensions: 寸法
       factors: 要因
       innovation_styles: イノベーションのスタイル
-      libraries: メディアライブラリー
-      norms: 規範
       occupations: 職業
-      options: オプション
-      participants: 参加者
-      profile: プロフィール
-      profile_details: 詳細
-      project_admins: プロジェクト管理者
-      question_center: 質問センター
       registration_codes: 登録コード
-      report_approvals: レポートの承認
-      reports: レポート
-      scheduling: スケジューリング
-      show_submenu: サブメニューを表示する
       skills_taxonomy: スキル分類法
-      user_profile_details: プロフィール詳細
-      user_report_events: ユーザーレポートイベント
       users: ユーザー
     no_data_found: データなし
     norms:
@@ -2867,7 +2819,6 @@ ja:
         successfully: ノームのアップデートは成功した。
       update:
         successfully: ノーム %{name} は正常に更新されました。
-    notification_bell_icon: 通知ベルのアイコン
     noty:
       error_408: ページの再読み込みをお試しください。
       error_500: 管理者に連絡してください。
@@ -4293,7 +4244,6 @@ ja:
         inactive: 非アクティブ
         percentage: パーセント
         title: アセスメント
-      title: 統計
       top_metrics:
         completed: 完成
         in_progress: 進行中

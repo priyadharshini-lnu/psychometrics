@@ -919,8 +919,6 @@ fr:
     invalid_job: Cette notification correspond à un enregistrement supprimé
     mark_as_read: Marquer toutes les lectures
     more: Plus d'informations
-    no_notifications: Aucune notification
-    notifications: Notifications
     results: Résultats
     super_admin:
       errors:
@@ -1341,16 +1339,11 @@ fr:
     continue: Poursuivre vos tâches
     dashboard_instructions: Il se peut que plusieurs activités vous aient été attribuées. Veuillez vérifier que toutes les activités attribuées ont bien été complétées dans l’ensemble des campagnes
     dashboard_menu:
-      bookings: Réservations
       campaign: Campagne
-      change_password: Modifier le mot de passe
-      development: Développement
       direct_reportees: Subordonnés
       home: Accueil
       insights: Perspectives
-      my_plan: Mon plan
       profile: Profil
-      profile_details: Détails
       tasks: Tâches
     details: Détails
     edit_evaluation:
@@ -1880,7 +1873,6 @@ fr:
       projects: Projets
       report: Rapport
       reports: Rapports
-      scoring: Notation
       sms_contact: Contact SMS
       threesixty_campaign: Scores de la campagne Threesixty
     status:
@@ -3387,13 +3379,6 @@ fr:
   sessions:
     errors:
       recaptcha: La vérification du Recaptcha a échoué. Veuillez réessayer.
-  shared:
-    filters:
-      clear: Effacer les filtres
-    internet_disconnected_message: Essayez de vous reconnecter. Veuillez vérifier votre connexion internet.
-    mte_logo_alt_text: Logo Mercer Talent Enterprise
-    terms_conditions_privacy: Déclaration de confidentialité
-    tte_terms_and_condition: Conditions d'utilisation et protection de la vie privée
   sheet:
     import_modal:
       alert_access_sheet_removal: Le téléchargement d'une nouvelle feuille d'accès entraîne la suppression de tous les enregistrements existants et le téléchargement d'un nouvel enregistrement à partir de la feuille.

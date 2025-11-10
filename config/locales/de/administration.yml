@@ -765,11 +765,6 @@ de:
       user: Benutzer
       user_agent: Benutzer-Agent
     back: Zurück
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Sind Sie sicher, dass Sie sich abmelden wollen?</p> <p>Drücken Sie Nein, wenn Sie die Arbeit fortsetzen möchten. Drücken Sie Ja, um den aktuellen Benutzer abzumelden.</p>"
-          title: "<strong>Abmelden</strong>?"
     block_settings:
       modal:
         add_layer: Ebene hinzufügen
@@ -1245,11 +1240,6 @@ de:
         archived: Archiviert
         disable: Archiv
         enable: Nicht archivieren
-      columns:
-        country: Land
-        project_manager: Projektleiter
-        type: Typ
-        year: Jahr
       copy:
         successfully: Mandantenmietvertrag '%{name}' wurde erfolgreich kopiert.
       create:
@@ -1258,14 +1248,6 @@ de:
         successfully: Client Tenancy %{name} wurde erfolgreich gelöscht.
       edit:
         header: Client bearbeiten
-      form:
-        client: Kunde
-        country: Land
-        name: Name
-        number: Nummer
-        project_manager: Projektleiter
-        type: Typ
-        year: Jahr
       licenses:
         resource:
           confirmations:
@@ -1685,7 +1667,6 @@ de:
             title: Archiv <strong>%{name}</strong>?
           enable:
             title: Archivierung aufheben <strong>%{name}</strong>?
-      tenancies: Kunden-Mietverhältnisse
       threesixty_campaign: Threesixty-Kampagne
       toggle_status:
         successfully: Kundenmietvertrag %{name} wurde erfolgreich aktualisiert.
@@ -2757,43 +2738,14 @@ de:
     message: Nachricht
     meta_title: Verwaltungs-Panel
     navigation:
-      ai_artifacts: KI-Artefakte
-      ai_assistants: AI-Assistenten
-      assessments: Beurteilungen
-      assessments_reports: Beurteilungen und Berichte
-      assessor_dashboard: Assessor Dashboard
-      assessor_workshops: Assessment Center
       audit_logs: Audit-Protokolle
       availability: Verfügbarkeit
-      back_to_main: Hauptmenü
-      campaign_templates: Vorlagen für Kampagnen
-      change_password: Passwort ändern
-      client_admins: Client-Admins
-      clients: Kunden-Mietverhältnisse
-      communication_center: Kommunikationszentrum
       dashboard: Dashboard
-      data_reports: Datenberichte
-      development_actions: Entwicklungspolitische Maßnahmen
-      dimensions: Abmessungen
       factors: Faktoren
       innovation_styles: Innovationsstile
-      libraries: Mediathek
-      norms: Normen
       occupations: Berufe
-      options: Optionen
-      participants: Teilnehmer
-      profile: Profil
-      profile_details: Einzelheiten
-      project_admins: Projektadministratoren
-      question_center: Fragen-Center
       registration_codes: Registrierungscodes
-      report_approvals: Bericht Genehmigungen
-      reports: Berichte
-      scheduling: Terminplanung
-      show_submenu: Untermenü anzeigen
       skills_taxonomy: Fähigkeiten-Taxonomie
-      user_profile_details: Profil-Details
-      user_report_events: Benutzerbericht Ereignisse
       users: Benutzer
     no_data_found: Keine Daten gefunden
     norms:
@@ -2867,7 +2819,6 @@ de:
         successfully: Norm wurde erfolgreich aktualisiert.
       update:
         successfully: Norm %{name} wurde erfolgreich aktualisiert.
-    notification_bell_icon: Symbol für die Benachrichtigungsglocke
     noty:
       error_408: Dieser Vorgang dauert zu lange. Bitte versuchen Sie, die Seite neu zu laden.
       error_500: Es ist etwas schief gelaufen, wenden Sie sich an Ihren Administrator.
@@ -4293,7 +4244,6 @@ de:
         inactive: Inaktiv
         percentage: Prozentsatz
         title: Beurteilungen
-      title: Statistiken
       top_metrics:
         completed: Abgeschlossen
         in_progress: In Arbeit

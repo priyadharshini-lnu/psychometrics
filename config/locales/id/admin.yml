@@ -1,0 +1,51 @@
+---
+id:
+  admin:
+    admins: Admin
+    ai_artifacts: Artefak AI
+    ai_assistants: Asisten AI
+    assessments: Penilaian
+    assessments_reports: Penilaian & Laporan
+    assessor_dashboard: Dasbor Penilai
+    assessor_workshops: Pusat Penilaian
+    audit_logs: Log Audit
+    audit_reports: Laporan Audit
+    availability: Ketersediaan
+    back_to_main: Menu Utama
+    campaign_templates: Templat Kampanye
+    client: Klien Pengguna
+    client_admins: Admin Klien
+    clients: Klien Pengguna
+    communication_center: Pusat Komunikasi
+    country: Negara
+    create_client: Buat Klien
+    dashboard: Dashboard
+    data_reports: Laporan Data
+    datasheet: Lembar data
+    development_actions: Tindakan Pengembangan
+    dimensions: Dimensi
+    libraries: Perpustakaan Media
+    no_notifications: Tidak ada pemberitahuan
+    norms: Norma
+    notification_bell_icon_alt_text: Ikon Lonceng Notifikasi
+    notifications: Notifikasi
+    number: Nomor
+    occupations: Pekerjaan
+    options: Pilihan
+    participants: Peserta
+    profile_details: Detail profil
+    project_admins: Admin Proyek
+    project_manager: Manajer Proyek
+    question_center: Pusat Pertanyaan
+    registration_codes: Kode pendaftaran
+    report_approvals: Laporan Persetujuan
+    reports: Laporan
+    scheduling: Penjadwalan
+    scoring: Penilaian
+    show_submenu: Tampilkan Sub Menu
+    skills_taxonomy: Taksonomi Keterampilan
+    stats: Statistik
+    user_report_events: Peristiwa Laporan Pengguna
+    users: Pengguna
+    view_licenses: Lihat Lisensi
+    year: Negara

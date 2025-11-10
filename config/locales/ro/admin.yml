@@ -1,0 +1,51 @@
+---
+ro:
+  admin:
+    admins: Administratori
+    ai_artifacts: Artefacte AI
+    ai_assistants: Asistenți AI
+    assessments: Evaluări
+    assessments_reports: Evaluări și rapoarte
+    assessor_dashboard: Tabloul de bord al evaluatorului
+    assessor_workshops: Centrul de evaluare
+    audit_logs: Jurnale de audit
+    audit_reports: Rapoarte de audit
+    availability: Disponibilitate
+    back_to_main: Meniul principal
+    campaign_templates: Șabloane de campanie
+    client: Închirierea clientului
+    client_admins: Administratori clienți
+    clients: Clienți
+    communication_center: Centrul de comunicare
+    country: Țara
+    create_client: Creare client
+    dashboard: Tablou
+    data_reports: Rapoarte de date
+    datasheet: Fișă tehnică
+    development_actions: Acțiune de dezvoltare
+    dimensions: Dimensiuni
+    libraries: Bibliotecă media
+    no_notifications: Fără notificări
+    norms: Normele
+    notification_bell_icon_alt_text: Pictograma clopoțel de notificare
+    notifications: Notificări
+    number: Număr
+    occupations: Ocupaţii
+    options: Opțiuni
+    participants: Participanţii
+    profile_details: Detalii profil
+    project_admins: Administratori de proiect
+    project_manager: Manager de proiect
+    question_center: Centrul de întrebări
+    registration_codes: Coduri de înregistrare
+    report_approvals: Aprobări de rapoarte
+    reports: Rapoarte
+    scheduling: Programarea
+    scoring: Notare
+    show_submenu: Afișează submeniu
+    skills_taxonomy: Taxonomia abilităților
+    stats: Statistici
+    user_report_events: Evenimente de raportare a utilizatorilor
+    users: Utilizatorii
+    view_licenses: Vizualizați licențele
+    year: Țara

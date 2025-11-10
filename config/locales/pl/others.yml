@@ -919,8 +919,6 @@ pl:
     invalid_job: To powiadomienie odpowiada usuniętemu rekordowi
     mark_as_read: Oznacz wszystko jako przeczytane
     more: Więcej
-    no_notifications: Brak powiadomień
-    notifications: Powiadomienia
     results: Wyniki
     super_admin:
       errors:
@@ -1341,16 +1339,11 @@ pl:
     continue: Kontynuuj swoje zadania
     dashboard_instructions: Przydzielono Ci wiele działań, które musisz wykonać. Upewnij się, że wszystkie przypisane działania zostały wykonane we wszystkich kampaniach.
     dashboard_menu:
-      bookings: Rezerwacje
       campaign: Kampania
-      change_password: Zmień hasło
-      development: Rozwój
       direct_reportees: Direktywni
       home: Strona główna
       insights: Obserwacje
-      my_plan: Mój plan
       profile: Profil
-      profile_details: Detale
       tasks: Zadania
     details: Detale
     edit_evaluation:
@@ -1884,7 +1877,6 @@ pl:
       projects: Projekty
       report: Sprawozdanie
       reports: Raporty
-      scoring: Punktacji
       sms_contact: Kontakt SMS
       threesixty_campaign: Wyniki kampanii Threesixty
     status:
@@ -3390,13 +3382,6 @@ pl:
   sessions:
     errors:
       recaptcha: Weryfikacja Recaptcha nie powiodła się. Spróbuj ponownie.
-  shared:
-    filters:
-      clear: Wyczyść filtry
-    internet_disconnected_message: Próba ponownego połączenia. Sprawdź połączenie internetowe.
-    mte_logo_alt_text: Logo Mercer Talent Enterprise
-    terms_conditions_privacy: Oświadczenie o ochronie prywatności
-    tte_terms_and_condition: Warunki i prywatność
   sheet:
     import_modal:
       alert_access_sheet_removal: Przesyłanie nowego arkusza dostępu z usunięciem całego istniejącego rekordu i przesłaniem nowego z arkusza. Upewnij się, że masz wszystkie rekordy Accesssheet w arkuszu kalkulacyjnym.

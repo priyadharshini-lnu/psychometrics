@@ -39,7 +39,7 @@ const Campaign: React.FC<Props> = ({ campaignPermissions }) => {
         crumbs={[
           {
             link: () => '/admin',
-            label: () => I18n.t('administration.clients.tenancies'),
+            label: () => I18n.t('administration.clients.clients'),
           },
           {
             link: state => `/admin/clients/${state.client.id}/projects`,

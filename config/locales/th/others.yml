@@ -919,8 +919,6 @@ th:
     invalid_job: การแจ้งเตือนนี้สอดคล้องกับเรกคอร์ดที่ถูกลบ
     mark_as_read: ทําเครื่องหมายอ่านทั้งหมด
     more: อีก
-    no_notifications: ไม่มีการแจ้งเตือน
-    notifications: แจ้ง เตือน
     results: ผลลัพธ์
     super_admin:
       errors:
@@ -1341,16 +1339,11 @@ th:
     continue: ดำเนินงานของคุณต่อไป
     dashboard_instructions: คุณอาจได้รับมอบหมายกิจกรรมหลายรายการที่ต้องดำเนินการให้แล้วเสร็จ กรุณาตรวจสอบให้แน่ใจว่าคุณได้ทำกิจกรรมที่ได้รับมอบหมายทั้งหมดครบถ้วนในทุกแคมเปญแล้ว
     dashboard_menu:
-      bookings: การจอง
       campaign: แคมเปญ
-      change_password: เปลี่ยนรหัสผ่าน
-      development: การพัฒนา
       direct_reportees: ผู้รายงานโดยตรง
       home: บ้าน
       insights: ข้อมูลเชิงลึก
-      my_plan: แผนของฉัน
       profile: โปรไฟล์
-      profile_details: รายละเอียด
       tasks: งาน
     details: รายละเอียด
     edit_evaluation:
@@ -1877,7 +1870,6 @@ th:
       projects: โครงการ
       report: รายงาน
       reports: รายงาน
-      scoring: การให้คะแนน
       sms_contact: ติดต่อ SMS
       threesixty_campaign: คะแนนแคมเปญ Threesixty
     status:
@@ -3383,13 +3375,6 @@ th:
   sessions:
     errors:
       recaptcha: การยืนยันตัวตนด้วย Recaptcha ล้มเหลว กรุณาทำใหม่อีกครั้ง
-  shared:
-    filters:
-      clear: เคลียร์ตัวกรอง
-    internet_disconnected_message: กำลังพยายามเชื่อมต่อใหม่ โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ
-    mte_logo_alt_text: โลโก้ Mercer Talent Enterprise
-    terms_conditions_privacy: คำชี้แจงความเป็นส่วนตัว
-    tte_terms_and_condition: เงื่อนไขและความเป็นส่วนตัว
   sheet:
     import_modal:
       alert_access_sheet_removal: การอัปโหลด Accesssheet ใหม่พร้อมลบบันทึกที่มีอยู่ทั้งหมดและอัปโหลดบันทึกใหม่จากแผ่นงาน โปรดตรวจสอบให้แน่ใจว่าคุณมีระเบียน Accesssheet ทั้งหมดในสเปรดชีต

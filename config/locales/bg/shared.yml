@@ -1,0 +1,22 @@
+---
+bg:
+  shared:
+    action: Действие
+    add: Добавете
+    cancel: Отменете
+    change_password: Промяна на паролата
+    clear_filters: Изчистете филтрите
+    edit: Редактирайте
+    id: Идентификация
+    internet_disconnected_message: Опитвам се да възстановя връзката. Моля, проверете интернет връзката си.
+    mte_logo_alt_text: Логото на Mercer Talent Enterprise
+    name: Име
+    search: Търсете
+    table:
+      entries:
+        selected: Избран е 1 ред
+        total: 'Общо : 1'
+    terms_conditions_privacy: Декларация за поверителност
+    tte_terms_and_condition: Условия и поверителност
+    type: Вид
+    update: Актуализирайте

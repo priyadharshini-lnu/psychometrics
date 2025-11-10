@@ -919,8 +919,6 @@ zh-Hant:
     invalid_job: 此通知對應已刪除的記錄
     mark_as_read: 標記所有讀取
     more: 更多資訊
-    no_notifications: 沒有通知
-    notifications: 通知
     results: 結果
     super_admin:
       errors:
@@ -1341,16 +1339,11 @@ zh-Hant:
     continue: 繼續您的工作
     dashboard_instructions: 您可能被指派了多個需要完成的活動，請務必檢查所有活動是否都已完成。
     dashboard_menu:
-      bookings: 預訂
       campaign: 活動
-      change_password: 變更密碼
-      development: 發展
       direct_reportees: 直下報告
       home: 首頁
       insights: 洞察力
-      my_plan: 我的計劃
       profile: 簡介
-      profile_details: 詳細資訊
       tasks: 任務
     details: 詳細資訊
     edit_evaluation:
@@ -1880,7 +1873,6 @@ zh-Hant:
       projects: 專案
       report: 報告
       reports: 報告
-      scoring: 計分
       sms_contact: 簡訊聯絡
       threesixty_campaign: Threesixty 活動得分
     status:
@@ -3369,13 +3361,6 @@ zh-Hant:
   sessions:
     errors:
       recaptcha: Recaptcha 驗證失敗。請再試一次。
-  shared:
-    filters:
-      clear: 清除過濾器
-    internet_disconnected_message: 嘗試重新連線，請檢查您的網路連線。
-    mte_logo_alt_text: 美世人才企業標誌
-    terms_conditions_privacy: 隱私權聲明
-    tte_terms_and_condition: 條款與隱私權
   sheet:
     import_modal:
       alert_access_sheet_removal: 上載新的 Accesssheet 會刪除所有現有記錄，並從工作表中上載新記錄。 請確定電子表格中已有所有 Accesssheet 記錄。

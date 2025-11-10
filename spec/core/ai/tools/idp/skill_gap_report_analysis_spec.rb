@@ -64,11 +64,11 @@ describe AI::Tools::Idp::SkillGapReportAnalysis do
       let(:ai_assisted_doc_summary_session) do
         create(:assisted_user_document_summary,
                user: current_user,
-               ai_assistant_chat: ai_assistant_chat,
                document_attachment: document_attachment)
       end
 
       before do
+        ai_assistant_chat.update!(ai_assisted_user_session: ai_assisted_doc_summary_session)
         allow_any_instance_of(ActiveStorage::Blob).to receive(:url).and_return('https://example.com/document.pdf')
       end
 

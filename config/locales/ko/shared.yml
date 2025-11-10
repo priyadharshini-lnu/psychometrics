@@ -1,0 +1,27 @@
+---
+ko:
+  shared:
+    action: 액션
+    add: 추가
+    cancel: 취소
+    change_password: 비밀번호 변경
+    clear_filters: 필터 지우기
+    edit: 편집
+    id: ID
+    internet_disconnected_message: 다시 연결하려고 합니다. 인터넷 연결을 확인하세요.
+    mte_logo_alt_text: 머서 탤런트 엔터프라이즈 로고
+    name: 이름
+    search: 검색
+    table:
+      entries:
+        selected:
+          one: 1행 선택됨
+          other: 1행 선택됨
+        total:
+          one: '합계 : 1'
+          other: '합계 : {{count}}'
+          zero: '합계 : 0'
+    terms_conditions_privacy: 개인정보 처리방침
+    tte_terms_and_condition: 약관 및 개인정보 보호
+    type: 유형
+    update: 업데이트

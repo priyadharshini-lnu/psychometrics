@@ -1,0 +1,27 @@
+---
+en:
+  shared:
+    action: Action
+    add: Add
+    cancel: Cancel
+    change_password: Change Password
+    clear_filters: Clear Filters
+    edit: Edit
+    id: ID
+    internet_disconnected_message: Trying to reconnect. Please check your internet connection.
+    mte_logo_alt_text: Mercer Talent Enterprise logo
+    name: Name
+    search: Search
+    table:
+      entries:
+        selected:
+          one: 1 row selected
+          other: "{{count}} rows selected"
+        total:
+          one: 'Total : 1'
+          other: 'Total : {{count}}'
+          zero: 'Total : 0'
+    terms_conditions_privacy: Privacy Statement
+    tte_terms_and_condition: Terms & Privacy
+    type: Type
+    update: Update

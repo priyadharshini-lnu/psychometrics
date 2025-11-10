@@ -1,0 +1,22 @@
+---
+id:
+  shared:
+    action: Tindakan
+    add: Menambahkan
+    cancel: Batal
+    change_password: Ubah Kata Sandi
+    clear_filters: Hapus Filter
+    edit: Sunting
+    id: ID
+    internet_disconnected_message: Mencoba menyambung kembali, periksa koneksi internet Anda.
+    mte_logo_alt_text: Logo Mercer Talent Enterprise
+    name: Nama
+    search: Pencarian
+    table:
+      entries:
+        selected: 1 baris dipilih
+        total: 'Jumlah : 1'
+    terms_conditions_privacy: Pernyataan Privasi
+    tte_terms_and_condition: Ketentuan & Privasi
+    type: Jenis
+    update: Memperbarui

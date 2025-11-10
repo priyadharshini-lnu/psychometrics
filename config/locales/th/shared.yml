@@ -1,0 +1,22 @@
+---
+th:
+  shared:
+    action: ดำเนินการ
+    add: เพิ่ม
+    cancel: ยกเลิก
+    change_password: เปลี่ยนรหัสผ่าน
+    clear_filters: เคลียร์ตัวกรอง
+    edit: แก้ไข
+    id: รหัส
+    internet_disconnected_message: กำลังพยายามเชื่อมต่อใหม่ โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ
+    mte_logo_alt_text: โลโก้ Mercer Talent Enterprise
+    name: ชื่อ
+    search: ค้นหา
+    table:
+      entries:
+        selected: เลือก 1 แถว
+        total: 'รวม : 1'
+    terms_conditions_privacy: คำชี้แจงความเป็นส่วนตัว
+    tte_terms_and_condition: เงื่อนไขและความเป็นส่วนตัว
+    type: ประเภท
+    update: อัปเดต

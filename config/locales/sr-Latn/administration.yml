@@ -765,11 +765,6 @@ sr-Latn:
       user: Korisnik
       user_agent: Korisnički agent
     back: Povratak
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Da li ste sigurni da želite da se odjavite?</p> <p>Pritisnite Ne ako želite da nastavite sa radom. Pritisnite da da odjavite trenutnog korisnika.</p>"
-          title: Odjaviti <strong>se</strong> ?
     block_settings:
       modal:
         add_layer: Dodaj sloj
@@ -1245,11 +1240,6 @@ sr-Latn:
         archived: Arhivirano
         disable: Arhiviraj
         enable: Izvadi iz arhive
-      columns:
-        country: Država
-        project_manager: Menadžer projekta
-        type: Tip
-        year: Godine
       copy:
         successfully: Zakup klijenta '%{name}' je uspešno kopiran.
       create:
@@ -1258,14 +1248,6 @@ sr-Latn:
         successfully: Klijent Zakup %{name} je uspešno izbrisan.
       edit:
         header: Uredi klijenta
-      form:
-        client: Klijent
-        country: Država
-        name: Ime
-        number: Broj
-        project_manager: Menadžer projekta
-        type: Tip
-        year: Godina
       licenses:
         resource:
           confirmations:
@@ -1685,7 +1667,6 @@ sr-Latn:
             title: Arhiva <strong>%{name}</strong> ?
           enable:
             title: Izvadi iz arhive <strong>%{name}</strong> ?
-      tenancies: Klijentski prostor
       threesixty_campaign: 360 kampanja
       toggle_status:
         successfully: Zakup klijenta %{name} je uspešno ažuriran.
@@ -2757,43 +2738,14 @@ sr-Latn:
     message: Poruka
     meta_title: Administrativni panel
     navigation:
-      ai_artifacts: AI artefakti
-      ai_assistants: AI asistenti
-      assessments: Procene
-      assessments_reports: Procene i izveštaji
-      assessor_dashboard: Kontrolna tabla procenjivača
-      assessor_workshops: Centar za procenu
       audit_logs: Evidencije revizije
       availability: Raspoloživost
-      back_to_main: Glavni meni
-      campaign_templates: Predlošci kampanje
-      change_password: Promeni lozinku
-      client_admins: Administratori klijenata
-      clients: Klijentski prostor
-      communication_center: Centar za komunikaciju
       dashboard: Dashboard
-      data_reports: Izveštaji o podacima
-      development_actions: Razvojne akcije
-      dimensions: Dimenzije
       factors: Faktori
       innovation_styles: Stilovi inovacija
-      libraries: Biblioteka medija
-      norms: Norme
       occupations: Zanimanja
-      options: Opcije
-      participants: Učesnici
-      profile: Profil
-      profile_details: Detalji
-      project_admins: Administratori projekta
-      question_center: Centar za pitanja
       registration_codes: Registracioni kodovi
-      report_approvals: Odobrenja izveštaja
-      reports: Izveštaji
-      scheduling: Planiranje
-      show_submenu: Prikaži pod-meni
       skills_taxonomy: Taksonomija veština
-      user_profile_details: Detalji profila
-      user_report_events: Događaji Izveštaja korisnika
       users: Korisnici
     no_data_found: Nema pronađenih podataka
     norms:
@@ -2867,7 +2819,6 @@ sr-Latn:
         successfully: Norma je uspešno ažurirana.
       update:
         successfully: Norma %{name} je uspešno ažurirana.
-    notification_bell_icon: Ikona zvona obaveštenja
     noty:
       error_408: Ova akcija traje predugo. Pokušajte da ponovo učitate stranicu.
       error_500: Nešto je pošlo naopako. Obratite se svom administratoru.
@@ -4284,7 +4235,6 @@ sr-Latn:
         inactive: Neaktivno
         percentage: Procenat
         title: Procene
-      title: Statistike
       top_metrics:
         completed: Završeno
         in_progress: U toku

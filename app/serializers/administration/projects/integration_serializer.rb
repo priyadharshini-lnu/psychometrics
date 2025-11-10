@@ -4,7 +4,8 @@ module Administration
   module Projects
     class IntegrationSerializer < Panko::Serializer
       attributes :id, :name, :active, :iiht_integration_details,
-                 :hogan_integration_details, :mettl_integration_details, :skillvue_integration_details
+                 :hogan_integration_details, :mettl_integration_details, :skillvue_integration_details,
+                 :yoodli_integration_details
 
       def iiht_integration_details
         return nil unless object.iiht?
@@ -34,6 +35,14 @@ module Administration
         return nil unless object.skillvue?
 
         Administration::Projects::Integrations::SkillvueIntegrationSerializer.new.serialize(
+          object
+        )
+      end
+
+      def yoodli_integration_details
+        return nil unless object.yoodli?
+
+        Administration::Projects::Integrations::YoodliIntegrationSerializer.new.serialize(
           object
         )
       end

@@ -1,0 +1,27 @@
+---
+ja:
+  shared:
+    action: アクション
+    add: 追加
+    cancel: キャンセル
+    change_password: パスワードの変更
+    clear_filters: 絞り込みをクリア
+    edit: 編集
+    id: ID
+    internet_disconnected_message: 再接続の試行中です。インターネット接続を確認してください。
+    mte_logo_alt_text: マーサー・タレント・エンタープライズのロゴ
+    name: 名称
+    search: 検索
+    table:
+      entries:
+        selected:
+          one: 1行選択
+          other: 1行選択
+        total:
+          one: 合計：1
+          other: 合計：1
+          zero: 合計：0
+    terms_conditions_privacy: プライバシーに関する声明
+    tte_terms_and_condition: 利用規約とプライバシー
+    type: タイプ
+    update: 更新

@@ -919,8 +919,6 @@ de:
     invalid_job: Diese Meldung entspricht einem gelöschten Datensatz
     mark_as_read: Markieren Sie alle gelesenen
     more: Mehr
-    no_notifications: Keine Benachrichtigungen
-    notifications: Benachrichtigungen
     results: Ergebnisse
     super_admin:
       errors:
@@ -1346,16 +1344,11 @@ de:
     continue: Fahren Sie mit Ihren Aufgaben fort.
     dashboard_instructions: Dir wurden mehrere Aktivitäten zugewiesen, die du abschließen musst. Stelle sicher, dass alle dir zugewiesenen Aktivitäten in allen Events abgeschlossen sind.
     dashboard_menu:
-      bookings: Buchungen
       campaign: Event
-      change_password: Passwort ändern
-      development: Entwicklung
       direct_reportees: Direkte Berichte
       home: Startseite
       insights: Einblicke
-      my_plan: Mein Plan
       profile: Profil
-      profile_details: Details
       tasks: Aufgaben
     details: Details
     edit_evaluation:
@@ -1894,7 +1887,6 @@ de:
       projects: Projekte
       report: Bericht
       reports: Berichte
-      scoring: Punktevergabe
       sms_contact: SMS-Kontakt
       threesixty_campaign: Threesixty-Kampagne punktet
     status:
@@ -3396,13 +3388,6 @@ de:
   sessions:
     errors:
       recaptcha: Recaptcha-Überprüfung fehlgeschlagen. Bitte versuchen Sie es erneut.
-  shared:
-    filters:
-      clear: Filter löschen
-    internet_disconnected_message: Bitte überprüfen Sie Ihre Internet-Verbindung.
-    mte_logo_alt_text: Mercer Talent Enterprise Logo
-    terms_conditions_privacy: Datenschutzerklärung
-    tte_terms_and_condition: TTE – Geschäftsbedingungen und Datenschutzerklärung
   sheet:
     import_modal:
       alert_access_sheet_removal: Wenn Sie ein neues Accesssheet hochladen, werden alle vorhandenen Datensätze gelöscht und ein neuer Datensatz hochgeladen. Bitte stellen Sie sicher, dass Sie alle Accesssheet-Datensätze in der Tabelle haben.

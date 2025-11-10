@@ -919,8 +919,6 @@ ja:
     invalid_job: この通知は削除されたレコードに対応する
     mark_as_read: すべて読む
     more: もっと見る
-    no_notifications: 通知はありません
-    notifications: お知らせ
     results: 結果
     super_admin:
       errors:
@@ -1346,16 +1344,11 @@ ja:
     continue: タスクを続行してください
     dashboard_instructions: 完了すべき複数のアクティビティが割り当てられています。すべてのキャンペーンで割り当てられたアクティビティがすべて完了していることを確認してください。
     dashboard_menu:
-      bookings: 予約
       campaign: キャンペーン
-      change_password: パスワードを変更
-      development: 開発
       direct_reportees: 直下のレポート
       home: ホーム
       insights: インサイト
-      my_plan: 私の計画
       profile: プロフィール
-      profile_details: 詳細
       tasks: タスク
     details: 詳細
     edit_evaluation:
@@ -1893,7 +1886,6 @@ ja:
       projects: プロジェクト
       report: レポート
       reports: レポート
-      scoring: 採点
       sms_contact: SMSコンタクト
       threesixty_campaign: Threesixtyキャンペーンスコア
     status:
@@ -3376,13 +3368,6 @@ ja:
   sessions:
     errors:
       recaptcha: Recaptcha の検証に失敗しました。もう一度お試しください。
-  shared:
-    filters:
-      clear: 絞り込みをクリア
-    internet_disconnected_message: 再接続の試行中です。インターネット接続を確認してください。
-    mte_logo_alt_text: マーサー・タレント・エンタープライズのロゴ
-    terms_conditions_privacy: プライバシーに関する声明
-    tte_terms_and_condition: 利用規約とプライバシー
   sheet:
     import_modal:
       alert_access_sheet_removal: 新しいAccessシートをアップロードすると、既存のレコードがすべて削除され、シートから新しいレコードがアップロードされます。 スプレッドシートにすべてのAccessシートのレコードがあることを確認してください。

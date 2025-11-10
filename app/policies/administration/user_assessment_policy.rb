@@ -63,7 +63,7 @@ module Administration
     end
 
     def rescore_response?
-      has_permission?(:results, :rescore_responses)
+      has_permission?(:results, :rescore_responses) && !record.assessment.yoodli?
     end
 
     def toggle_require_scheduling?

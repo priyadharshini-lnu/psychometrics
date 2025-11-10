@@ -919,8 +919,6 @@ nl:
     invalid_job: Deze melding komt overeen met verwijderde record
     mark_as_read: Markeer alle gelezen
     more: Meer
-    no_notifications: Geen meldingen
-    notifications: Meldingen
     results: Resultaten
     super_admin:
       errors:
@@ -1341,16 +1339,11 @@ nl:
     continue: Doorgaan met je taken
     dashboard_instructions: Er kunnen meerdere activiteiten aan je zijn toegewezen die je moet voltooien. Controleer of alle toegewezen activiteiten zijn voltooid in alle campagnes.
     dashboard_menu:
-      bookings: Boekingen
       campaign: Campagne
-      change_password: Wachtwoord wijzigen
-      development: Ontwikkeling
       direct_reportees: Directe rapporten
       home: Home
       insights: Inzichten
-      my_plan: Mijn plan
       profile: Profiel
-      profile_details: Details
       tasks: Taken
     details: Details
     edit_evaluation:
@@ -1880,7 +1873,6 @@ nl:
       projects: Projecten
       report: Rapporteer
       reports: Rapporten
-      scoring: Scoren
       sms_contact: SMS contact
       threesixty_campaign: Threesixty Campagne Scores
     status:
@@ -3359,13 +3351,6 @@ nl:
   sessions:
     errors:
       recaptcha: Recaptcha verificatie mislukt. Probeer het opnieuw.
-  shared:
-    filters:
-      clear: Filters wissen
-    internet_disconnected_message: Probeer opnieuw verbinding te maken. Controleer uw internetverbinding.
-    mte_logo_alt_text: Mercer logo voor talentondernemingen
-    terms_conditions_privacy: Privacyverklaring
-    tte_terms_and_condition: Voorwaarden en privacy
   sheet:
     import_modal:
       alert_access_sheet_removal: Bij het uploaden van een nieuw Accesssheet worden alle bestaande records verwijderd en wordt een nieuwe geüpload vanuit het blad. Zorg ervoor dat alle Accesssheet-records in het spreadsheet staan.

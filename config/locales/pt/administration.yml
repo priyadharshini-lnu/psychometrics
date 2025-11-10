@@ -765,11 +765,6 @@ pt:
       user: Utilizador
       user_agent: Agente do utilizador
     back: Voltar
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Tem a certeza de que pretende terminar a sessão?</p> <p>Prima Não se quiser continuar a trabalhar. Prima Sim para terminar a sessão do utilizador atual.</p>"
-          title: "<strong>Terminar</strong> sessão ?"
     block_settings:
       modal:
         add_layer: Adicionar camada
@@ -1245,11 +1240,6 @@ pt:
         archived: Arquivado
         disable: Arquivo
         enable: Desarquivar
-      columns:
-        country: País
-        project_manager: Gestor de projectos
-        type: Tipo
-        year: Ano
       copy:
         successfully: O contrato de arrendamento do cliente "%{name}" foi copiado com êxito.
       create:
@@ -1258,14 +1248,6 @@ pt:
         successfully: O Aluguer de Cliente %{name} foi eliminado com êxito.
       edit:
         header: Editar cliente
-      form:
-        client: Cliente
-        country: País
-        name: Nome
-        number: Número
-        project_manager: Gestor de projectos
-        type: Tipo
-        year: Ano
       licenses:
         resource:
           confirmations:
@@ -1685,7 +1667,6 @@ pt:
             title: Arquivo <strong>%{name}</strong>?
           enable:
             title: Desarquivar <strong>%{name}</strong>?
-      tenancies: Clientes
       threesixty_campaign: Campanha Threesixty
       toggle_status:
         successfully: O arrendamento do cliente %{name} foi atualizado com êxito.
@@ -2757,43 +2738,14 @@ pt:
     message: Mensagem
     meta_title: Painel de administração
     navigation:
-      ai_artifacts: Artefatos de IA
-      ai_assistants: Assistentes de IA
-      assessments: Avaliações
-      assessments_reports: Avaliações e relatórios
-      assessor_dashboard: Painel de controlo do avaliador
-      assessor_workshops: Centro de avaliação
       audit_logs: Registos de auditoria
       availability: Disponibilidade
-      back_to_main: Menu principal
-      campaign_templates: Modelos de campanha
-      change_password: Alterar a palavra-passe
-      client_admins: Administradores de clientes
-      clients: Clientes
-      communication_center: Centro de Comunicação
       dashboard: Painel de controlo
-      data_reports: Relatórios de dados
-      development_actions: Acções de desenvolvimento
-      dimensions: Dimensões
       factors: Factores
       innovation_styles: Estilos de inovação
-      libraries: Biblioteca multimédia
-      norms: Normas
       occupations: Profissões
-      options: Opções
-      participants: Participantes
-      profile: Perfil
-      profile_details: Detalhes
-      project_admins: Administradores de projectos
-      question_center: Centro de perguntas
       registration_codes: Códigos de registo
-      report_approvals: Aprovações de relatórios
-      reports: Relatórios
-      scheduling: Programação
-      show_submenu: Mostrar submenu
       skills_taxonomy: Taxonomia de competências
-      user_profile_details: Detalhes do perfil
-      user_report_events: Eventos do relatório do utilizador
       users: Utilizadores
     no_data_found: Não foram encontrados dados
     norms:
@@ -2867,7 +2819,6 @@ pt:
         successfully: A norma foi actualizada com êxito.
       update:
         successfully: A norma %{name} foi actualizada com êxito.
-    notification_bell_icon: Ícone da campainha de notificação
     noty:
       error_408: Esta ação demora demasiado tempo. Tente recarregar a página.
       error_500: Algo correu mal. Contacte o seu administrador.
@@ -4293,7 +4244,6 @@ pt:
         inactive: Inativo
         percentage: Percentagem
         title: Avaliações
-      title: Estatísticas
       top_metrics:
         completed: Concluído
         in_progress: Em curso

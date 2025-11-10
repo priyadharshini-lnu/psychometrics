@@ -74,17 +74,17 @@ class BaseController < ActionController::Base
     return if @anonymous_user
 
     Users::AuthenticateUser.call(params, @current_project) do
-      on(:ok) { |user, found_by| handle_successful_authentication(user, found_by) }
+      on(:ok) { |user, found_by, auth_details| handle_successful_authentication(user, found_by, auth_details) }
       on(:invalid_sso_token) { |url| redirect_to(url) && return if url }
       on(:invalid_jwt_token) { |url| redirect_to(url) && return if url }
     end
     super
   end
 
-  def handle_successful_authentication(user, found_by)
+  def handle_successful_authentication(user, found_by, auth_details)
     handle_spoofing(found_by)
     handle_sso_or_jwt(found_by, user)
-    sign_in_and_redirect(user, found_by)
+    sign_in_and_redirect(user, found_by, auth_details)
   end
 
   def handle_spoofing(found_by)
@@ -97,7 +97,7 @@ class BaseController < ActionController::Base
   end
 
   def handle_sso_or_jwt(found_by, user)
-    if %i[sso jwt].include?(found_by)
+    if %i[sso api_jwt lighthouse_jwt].include?(found_by)
       session[:sso] = {
         'user_id' => user.id,
         'user_assessment_id' => params[:user_assessment_id],
@@ -109,13 +109,13 @@ class BaseController < ActionController::Base
     end
   end
 
-  def sign_in_and_redirect(user, found_by)
-    skip_session_limitable = found_by == :spoof
+  def sign_in_and_redirect(user, found_by, auth_details)
+    skip_session_limitable = found_by == :spoof || auth_details['skip_session_limitable'] == true
     sign_in(user, skip_session_limitable: skip_session_limitable)
 
     return Utility::Url.redirect_to_safe_internal_url(self, url_without_spoof) if found_by == :spoof
 
-    Utility::Url.redirect_to_safe_internal_url(self, url_without_jwt) if found_by == :jwt
+    Utility::Url.redirect_to_safe_internal_url(self, url_without_jwt) if %i[api_jwt lighthouse_jwt].include?(found_by)
   end
 
   def send_tmp_file(file_path, options = {})

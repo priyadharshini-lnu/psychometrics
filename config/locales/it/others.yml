@@ -919,8 +919,6 @@ it:
     invalid_job: Questa notifica corrisponde al record cancellato
     mark_as_read: Segna come già letto
     more: Di più
-    no_notifications: Nessun messaggio
-    notifications: Notifiche
     results: Risultati
     super_admin:
       errors:
@@ -1341,16 +1339,11 @@ it:
     continue: Continuare a svolgere i propri compiti
     dashboard_instructions: È possibile che ti siano state assegnate più attività. Ti invitiamo a verificare che tutte le attività assegnate siano state completate in tutte le Campagne.
     dashboard_menu:
-      bookings: Prenotazioni
       campaign: Campagne
-      change_password: Modifica la password
-      development: Sviluppo
       direct_reportees: Collegati
       home: Home
       insights: Approfondimenti
-      my_plan: Il mio piano
       profile: Profilo
-      profile_details: Dettagli
       tasks: Campagne
     details: Dettagli
     edit_evaluation:
@@ -1880,7 +1873,6 @@ it:
       projects: Progetti
       report: Rapporto
       reports: Report
-      scoring: Punteggio
       sms_contact: Contatto SMS
       threesixty_campaign: Punteggi della campagna Threesixty
     status:
@@ -3387,13 +3379,6 @@ it:
   sessions:
     errors:
       recaptcha: Verifica Recaptcha fallita. Riprovare.
-  shared:
-    filters:
-      clear: Cancella i filtri
-    internet_disconnected_message: Si prega di controllare la connessione a Internet.
-    mte_logo_alt_text: Logo Mercer Talent Enterprise
-    terms_conditions_privacy: Dichiarazione sulla privacy
-    tte_terms_and_condition: Condizioni e privacy
   sheet:
     import_modal:
       alert_access_sheet_removal: Il caricamento di un nuovo Accesssheet comporta l'eliminazione di tutti i record esistenti e il caricamento di uno nuovo dal foglio. Assicurarsi di avere tutti i record di Accesssheet nel foglio di calcolo.

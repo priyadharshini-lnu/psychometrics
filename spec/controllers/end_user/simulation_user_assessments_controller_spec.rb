@@ -55,6 +55,7 @@ RSpec.describe EndUser::SimulationUserAssessmentsController, type: :controller d
     before(:each) do
       user.update(project: campaign.project)
       allow(GetProjectBySubdomain).to receive(:call!).and_return(campaign.project)
+      allow(Utility::Url).to receive(:redirect_to_safe_internal_url).and_return(nil)
     end
 
     let(:jwt_token) do
@@ -98,10 +99,10 @@ RSpec.describe EndUser::SimulationUserAssessmentsController, type: :controller d
                    'HS256')
       end
 
-      it 'completes the user assessment' do
+      it "doesn't complete the user assessment if not is expired" do
         get :redirect, params: request_params
 
-        expect(user_assessment.reload).to be_completed
+        expect(user_assessment.reload).to be_not_started
       end
     end
   end

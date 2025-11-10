@@ -919,8 +919,6 @@ id:
     invalid_job: Notifikasi ini sesuai dengan catatan yang dihapus
     mark_as_read: Tandai semua baca
     more: Lebih
-    no_notifications: Tidak ada pemberitahuan
-    notifications: Notifikasi
     results: Hasil
     super_admin:
       errors:
@@ -1344,16 +1342,11 @@ id:
     continue: Lanjutkan tugas Anda
     dashboard_instructions: Anda mungkin telah ditugaskan beberapa aktivitas yang harus Anda selesaikan. Pastikan untuk memeriksa apakah semua aktivitas yang ditugaskan telah diselesaikan di semua kampanye.
     dashboard_menu:
-      bookings: Pemesanan
       campaign: Kampanye
-      change_password: Ubah Kata Sandi
-      development: Pengembangan
       direct_reportees: Bawahan Langsung
       home: Beranda
       insights: Wawasan
-      my_plan: Rencanaku
       profile: Profil
-      profile_details: Detail
       tasks: Tugas
     details: Detail
     edit_evaluation:
@@ -1884,7 +1877,6 @@ id:
       projects: Proyek
       report: Lapor
       reports: Laporan
-      scoring: Penilaian
       sms_contact: Kontak SMS
       threesixty_campaign: Skor Kampanye Threesixty
     status:
@@ -3390,13 +3382,6 @@ id:
   sessions:
     errors:
       recaptcha: Verifikasi recaptcha gagal. Silakan coba lagi.
-  shared:
-    filters:
-      clear: Hapus Filter
-    internet_disconnected_message: Mencoba menyambung kembali, periksa koneksi internet Anda.
-    mte_logo_alt_text: Logo Mercer Talent Enterprise
-    terms_conditions_privacy: Pernyataan Privasi
-    tte_terms_and_condition: Ketentuan & Privasi
   sheet:
     import_modal:
       alert_access_sheet_removal: Mengunggah Lembar Akses baru dengan menghapus semua catatan yang ada dan mengunggah yang baru dari lembar. Pastikan Anda memiliki semua catatan Accesssheet dalam spreadsheet.

@@ -765,11 +765,6 @@ bg:
       user: Потребител
       user_agent: Потребителски агент
     back: Назад
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Сигурни ли сте, че искате да излезете?</p> <p>Натиснете Не, ако искате да продължите работата. Натиснете Да, за да излезете от текущия потребител.</p>"
-          title: "<strong>Излизане</strong> ?"
     block_settings:
       modal:
         add_layer: Добавяне на слой
@@ -1245,11 +1240,6 @@ bg:
         archived: Архивирани
         disable: Архив
         enable: Разархивиране
-      columns:
-        country: Страна
-        project_manager: Ръководител на проекти
-        type: Вид
-        year: Година
       copy:
         successfully: Клиентският наемател '%{name}' беше копиран успешно.
       create:
@@ -1258,14 +1248,6 @@ bg:
         successfully: Клиент Tenancy %{name} беше изтрит успешно.
       edit:
         header: Редактиране на клиента
-      form:
-        client: Клиент
-        country: Държава
-        name: Име
-        number: Номер
-        project_manager: Ръководител на проект
-        type: Тип
-        year: Година
       licenses:
         resource:
           confirmations:
@@ -1685,7 +1667,6 @@ bg:
             title: Архив <strong>%{name}</strong> ?
           enable:
             title: Разархивиране <strong>%{name}</strong> ?
-      tenancies: Наеми на клиенти
       threesixty_campaign: Кампания на Threesixty
       toggle_status:
         successfully: Клиентът Tenancy %{name} беше актуализиран успешно.
@@ -2757,43 +2738,14 @@ bg:
     message: Съобщение
     meta_title: Административен панел
     navigation:
-      ai_artifacts: Артефакти с изкуствен интелект
-      ai_assistants: AI асистенти
-      assessments: Оценки
-      assessments_reports: Оценки и отчети
-      assessor_dashboard: Табло за управление на оценителя
-      assessor_workshops: Център за оценяване
       audit_logs: Регистрационни файлове за одит
       availability: Наличност
-      back_to_main: Главно меню
-      campaign_templates: Шаблони за кампании
-      change_password: Промяна на паролата
-      client_admins: Администратори на клиенти
-      clients: Наеми на клиенти
-      communication_center: Комуникационен център
       dashboard: Таблото
-      data_reports: Отчети за данни
-      development_actions: Действия за развитие
-      dimensions: Размери
       factors: Фактори
       innovation_styles: Иновационни стилове
-      libraries: Медийна библиотека
-      norms: Норми
       occupations: Професии
-      options: Опции
-      participants: Участниците
-      profile: Профил
-      profile_details: Подробности
-      project_admins: Администратори на проекти
-      question_center: Център за въпроси
       registration_codes: Регистрационни кодове
-      report_approvals: Докладване на одобрения
-      reports: Доклади
-      scheduling: Планиране
-      show_submenu: Покажи подменюто
       skills_taxonomy: Таксономия на уменията
-      user_profile_details: Детайли за профила
-      user_report_events: Събития с потребителски отчет
       users: Потребители
     no_data_found: Няма намерени данни
     norms:
@@ -2867,7 +2819,6 @@ bg:
         successfully: Норма беше актуализирана успешно.
       update:
         successfully: Norm %{name} беше актуализиран успешно.
-    notification_bell_icon: Икона на звънец за известия
     noty:
       error_408: Това действие отнема твърде много време. Моля, опитайте се да презаредите страницата.
       error_500: Нещо се обърка. Свържете се с администратора си.
@@ -4284,7 +4235,6 @@ bg:
         inactive: Неактивен
         percentage: Процент
         title: Оценки
-      title: Статистика
       top_metrics:
         completed: Завършен
         in_progress: В процес на изпълнение

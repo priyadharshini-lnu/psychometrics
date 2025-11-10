@@ -1,0 +1,51 @@
+---
+ar:
+  admin:
+    admins: المسؤولون
+    ai_artifacts: قطع الذكاء الاصطناعي
+    ai_assistants: مساعدو الذكاء الاصطناعي
+    assessments: التقييمات
+    assessments_reports: التقييمات والتقارير
+    assessor_dashboard: لوحة معلومات المقيم
+    assessor_workshops: مركز التقييم
+    audit_logs: سجلات التدقيق
+    audit_reports: تقارير التدقيق
+    availability: التوفر
+    back_to_main: القائمة الرئيسية
+    campaign_templates: قوالب الحملات
+    client: مستأجر العميل
+    client_admins: مسؤولو العملاء
+    clients: عقود العملاء
+    communication_center: مركز الاتصالات
+    country: البلد
+    create_client: إنشاء عميل
+    dashboard: لوحة القيادة
+    data_reports: تقارير البيانات
+    datasheet: ورقة البيانات
+    development_actions: إجراءات التطوير
+    dimensions: الأبعاد
+    libraries: مكتبة الوسائط
+    no_notifications: لا توجد إشعارات
+    norms: المعايير
+    notification_bell_icon_alt_text: Notification Bell Icon
+    notifications: الاخطارات
+    number: العدد
+    occupations: المهن
+    options: الخيارات
+    participants: المشاركون
+    profile_details: تفاصيل الملف الشخصي للمستخدم
+    project_admins: مسؤولو المشاريع
+    project_manager: مدير المشروع
+    question_center: مركز الأسئلة
+    registration_codes: رموز التسجيل
+    report_approvals: موافقات التقارير
+    reports: التقارير
+    scheduling: الجدولة
+    scoring: سجل
+    show_submenu: عرض القائمة الفرعية
+    skills_taxonomy: تصنيف المهارات
+    stats: الإحصائيات
+    user_report_events: أحداث تقارير المستخدم
+    users: المستخدمون
+    view_licenses: عرض التراخيص
+    year: البلد
