@@ -35,9 +35,12 @@ module AI
       rescue AI::Utils::SuccessfulCompletionSignal => e
         res = e.data
         add_license_usage(res)
+        chat = chat_with_context.reload
         response = {
           parsed_dependencies: parsed_dependencies,
-          results: res
+          results: res,
+          input_tokens: chat.input_tokens,
+          output_tokens: chat.output_tokens
         }
         broadcast(:ok, response)
       rescue AI::Utils::CampaignArtifactParser::Error, AI::Tools::Errors::MaximumRetryAttemptsExceededError => e

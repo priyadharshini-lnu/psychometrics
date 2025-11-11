@@ -21,16 +21,16 @@ interface ArtifactResultsProps {
   isLoading: boolean
   error: string | null
   artifactResults: ArtifactResult[]
-  totalInputTokens?: number | undefined
-  totalOutputTokens?: number | undefined
+  totalInputTokens: number | undefined
+  totalOutputTokens: number | undefined
 }
 
 export const ArtifactResults: React.FC<ArtifactResultsProps> = ({
   isLoading,
   error,
   artifactResults,
-  totalInputTokens,
-  totalOutputTokens,
+  totalInputTokens = 0,
+  totalOutputTokens = 0,
 }) => {
   const [rawModeStates, setRawModeStates] = useState<Record<string, boolean>>({})
 
