@@ -2358,6 +2358,7 @@ pl:
           in_progress: W toku
           not_started: Nie uruchomiono
     change_password: Zmiana hasła
+    chatwoot_info_msg: Zgłaszanie problemu technicznego
     clients:
       actions:
         create:

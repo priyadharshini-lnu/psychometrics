@@ -2351,6 +2351,7 @@ sl:
           in_progress: V teku
           not_started: Ni začeto
     change_password: Spremenite geslo
+    chatwoot_info_msg: Prijava tehnične težave
     clients:
       actions:
         create:

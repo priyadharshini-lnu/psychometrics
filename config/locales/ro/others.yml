@@ -2354,6 +2354,7 @@ ro:
           in_progress: În curs de desfășurare
           not_started: Nu a început
     change_password: Modificarea parolei
+    chatwoot_info_msg: Raportați o problemă tehnică
     clients:
       actions:
         create:

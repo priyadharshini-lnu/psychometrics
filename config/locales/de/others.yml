@@ -2363,6 +2363,7 @@ de:
           in_progress: In Arbeit
           not_started: Nicht begonnen
     change_password: Veränderung Passwort
+    chatwoot_info_msg: Melden eines technischen Problems
     clients:
       actions:
         create:

@@ -2349,6 +2349,7 @@ it:
           in_progress: In corso
           not_started: Da iniziare
     change_password: Modifica la password
+    chatwoot_info_msg: Segnala un problema tecnico
     clients:
       actions:
         create:

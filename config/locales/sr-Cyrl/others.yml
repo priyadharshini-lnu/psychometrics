@@ -804,6 +804,7 @@ sr-Cyrl:
           in_progress: У току
           not_started: Није започето
     change_password: Промени лозинку
+    chatwoot_info_msg: Пријавите технички проблем
     delete: Обриши
     edit: Измени
     lighthouse_app: Светионик Мерсер

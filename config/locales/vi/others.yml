@@ -2348,6 +2348,7 @@ vi:
           in_progress: Đang tiến hành
           not_started: Chưa bắt đầu
     change_password: Thay đổi mật khẩu
+    chatwoot_info_msg: Báo cáo sự cố kỹ thuật
     clients:
       actions:
         create:

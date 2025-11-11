@@ -23,7 +23,7 @@ legend {
   height: 100px;
 }
 
-.woot-widget-bubble.woot-elements--right {
+.woot-widget-bubble.woot-elements--right, .woot-widget-bubble.woot-elements--left {
   bottom: 30px;
 }
 
@@ -51,4 +51,102 @@ a:hover {
 
 .ant-menu-light.ant-menu-root:focus-visible{
   outline-offset: -4px;
+}
+
+.woot-widget-bubble {
+  &.chat-icon-custom {
+    overflow: visible;
+    display: flex;
+    flex-direction: row;
+    height: 80px;
+    width: 80px;
+    &.wave-animation::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      background:#02736e;
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0;
+      animation: wave 2s 3;
+      z-index: -1;
+    }
+  }
+
+  & svg.chat-svg-icon {
+    fill: none !important;
+    height: 40px !important;
+    width: 40px !important;
+    stroke: currentColor !important;
+    stroke-width: 2.5 !important;
+    stroke: #FFFFFF !important;
+  }
+
+  & .chat-info-msg {
+    position: relative;
+    max-width: 220px;
+    background: white;
+    box-shadow: 10px 10px 15px 6px #0000001a, 0 4px 6px -4px #0000001a;
+    z-index: -2;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin: auto;
+    align-self: center;
+    font-size: 14px;
+    margin-inline-start: -200px;
+    color: rgb(2, 115, 110);
+    &.hide {
+      display: none;
+    }
+  }
+
+  & .close-icon {
+    position: absolute !important;
+    top: -12px !important;
+    left: -12px !important;
+    font-size: 24px !important;
+    padding: 4px !important;
+    stroke-width: 3px !important;
+    box-shadow: 0 2px 6px 2px var(--tw-shadow-color, #0000001a) !important;
+    border-radius: 50% !important;
+    background: white !important;
+    margin: 0 !important;
+    width: 16px !important;
+    height: 16px !important;
+    stroke: black !important;
+    fill: white !important;
+  }
+}
+
+@keyframes wave {
+  0% {
+    transform: translate(-50%, -50%) scale(0.75);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.75);
+    opacity: 0;
+  }
+}
+
+.rtl {
+  & .woot-widget-bubble {
+    &.chat-icon-custom {
+      flex-direction: row-reverse;
+    }
+    & .chat-info-msg {
+      margin-inline-start: -210px;
+    }
+    .close-icon {
+      left: auto !important;
+      right: -12px !important;
+    }
+  }
 }

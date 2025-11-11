@@ -2369,6 +2369,7 @@ hr:
           in_progress: U tijeku
           not_started: Nije započeto
     change_password: Promjena lozinke
+    chatwoot_info_msg: Prijava tehničkog problema
     clients:
       actions:
         create:

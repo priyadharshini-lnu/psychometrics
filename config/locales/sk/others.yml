@@ -2354,6 +2354,7 @@ sk:
           in_progress: V štádiu rozpracovanosti
           not_started: Nezačalo sa
     change_password: Zmena hesla
+    chatwoot_info_msg: Nahlásenie technického problému
     clients:
       actions:
         create:

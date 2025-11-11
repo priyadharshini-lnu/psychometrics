@@ -2341,6 +2341,7 @@ zh:
           in_progress: 进行中
           not_started: 未开始
     change_password: 更改密码
+    chatwoot_info_msg: 报告技术问题
     clients:
       actions:
         create:

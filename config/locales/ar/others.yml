@@ -2391,6 +2391,7 @@ ar:
           in_progress: " على قيد التقدم"
           not_started: لم يبدأ بعد
     change_password: تغيير كلمة السر
+    chatwoot_info_msg: الإبلاغ عن مشكلة فنية
     clients:
       actions:
         create:

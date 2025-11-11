@@ -2354,6 +2354,7 @@ bg:
           in_progress: В процес на изпълнение
           not_started: Не е започнат
     change_password: Променете паролата
+    chatwoot_info_msg: Подаване на сигнал за технически проблем
     clients:
       actions:
         create:

@@ -40,14 +40,14 @@ html dir=dir lang="#{I18n.locale}"
         g.src= BASE_URL + "/packs/js/sdk.js";
         s.parentNode.insertBefore(g,s);
         g.onload=function(){
-          window.chatwootSDK.run({
-            websiteToken: config.token, // Settings/ENV CHATWOOT_TOKEN
-            baseUrl: BASE_URL
-          })
-          var userId = String(user.id);
-          if (localStorage.chatwootUserId !== userId) {
-            window.$chatwoot.reset()
-            localStorage.chatwootUserId = userId
+          const infoId = 'lighthouse-chatwoot-support-msg'
+          const btnSelector = '.woot-widget-bubble:not(.woot--hide)'
+          const storageKey = 'lhChatInfoDismissed'
+          function stopAnimate(cwBubble, infoEle) {
+            if(!cwBubble || !infoEle) {return}
+            cwBubble.classList.remove('wave-animation')
+            infoEle.classList.add('hide')
+            window.localStorage.setItem(storageKey, 'true')
           }
           window.addEventListener('chatwoot:ready', function () {
             window.$chatwoot.setUser(userId, {
@@ -55,7 +55,36 @@ html dir=dir lang="#{I18n.locale}"
               name: user.fullName
             })
             window.$chatwoot.setLocale('#{I18n.locale}')
+            const bubble = document.querySelector(btnSelector)
+            if(bubble) {
+              bubble.classList.add('chat-icon-custom')
+              bubble.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="" stroke-linecap="round" stroke-linejoin="round" class="chat-svg-icon" aria-hidden="true"><path d="M16 10a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 14.286V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path><path d="M20 9a2 2 0 0 1 2 2v10.286a.71.71 0 0 1-1.212.502l-2.202-2.202A2 2 0 0 0 17.172 19H10a2 2 0 0 1-2-2v-1"></path></svg>'
+                if (!(window.localStorage.getItem(storageKey) === 'true')) {
+                  bubble.classList.add('wave-animation')
+                  const infoEle = document.createElement('p')
+                  infoEle.setAttribute('id', infoId)
+                  infoEle.addEventListener('click', function(e){
+                    e.stopPropagation()
+                    stopAnimate(bubble, infoEle)
+                  })
+                  infoEle.innerHTML = `<svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x w-3.5 h-3.5 text-black" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>${"#{I18n.t('frontend.chatwoot_info_msg')}"}`
+                  infoEle.classList.add('chat-info-msg')
+                  bubble.prepend(infoEle)
+                }
+            }
           });
+          window.addEventListener('chatwoot:opened', function() {
+            stopAnimate(document.querySelector(btnSelector), document.getElementById(infoId))
+          })
+          window.chatwootSDK.run({
+            websiteToken: config.token, // Settings/ENV CHATWOOT_TOKEN
+            baseUrl: BASE_URL,
+          })
+          var userId = String(user.id);
+          if (localStorage.chatwootUserId !== userId) {
+            window.$chatwoot.reset()
+            localStorage.chatwootUserId = userId
+          }
         }
       })(document,"script");
   = render partial: 'layouts/consent_banner'

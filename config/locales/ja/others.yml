@@ -2344,6 +2344,7 @@ ja:
           in_progress: 進行中
           not_started: 開始していません
     change_password: パスワードを変更
+    chatwoot_info_msg: 技術的な問題を報告する
     clients:
       actions:
         create:

@@ -2354,6 +2354,7 @@ hu:
           in_progress: Folyamatban
           not_started: Nem indult
     change_password: Jelszó módosítása
+    chatwoot_info_msg: Technikai probléma bejelentése
     clients:
       actions:
         create:

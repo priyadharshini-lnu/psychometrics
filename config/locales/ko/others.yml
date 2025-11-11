@@ -2337,6 +2337,7 @@ ko:
           in_progress: 진행 중
           not_started: 시작되지 않음
     change_password: 비밀번호 변경
+    chatwoot_info_msg: 기술적 문제 신고
     clients:
       actions:
         create:

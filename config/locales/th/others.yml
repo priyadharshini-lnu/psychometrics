@@ -2351,6 +2351,7 @@ th:
           in_progress: อยู่ระหว่างดำเนินการ
           not_started: ยังไม่ได้เริ่มต้น
     change_password: เปลี่ยนรหัสผ่าน
+    chatwoot_info_msg: รายงานปัญหาทางเทคนิค
     clients:
       actions:
         create:

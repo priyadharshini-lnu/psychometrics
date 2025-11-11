@@ -2372,6 +2372,7 @@ sr-Latn:
           in_progress: U toku
           not_started: Nije započeto
     change_password: Promeni lozinku
+    chatwoot_info_msg: Prijavite tehnički problem
     clients:
       actions:
         create:
