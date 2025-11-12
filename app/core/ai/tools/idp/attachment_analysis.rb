@@ -10,7 +10,7 @@ module AI
 
         description 'Get detailed analysis for the document uploaded by user for their Individual Development Plan(IDP) creation purpose.'
         param :context,
-              desc: 'Context on the document by the user, can include language to be used for writing analysis. e.g. "Generate analysis of the skill gap report by user in arabic"'
+              desc: 'Additional context regarding the document to be passed to the expert assistant for analysis.'
 
         private_attr_reader :user_idp_plan, :current_user, :ai_assistant
 
