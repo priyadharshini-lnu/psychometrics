@@ -22,7 +22,11 @@ module Api
         rule(data: { attributes: { external_settings: :assessment_id } }) do
           next unless value
 
-          existing_assessment = ::Assessment.yoodli.find_by("external_settings->>'assessment_id' = ?", value)
+          project_id = values.dig(:data, :relationships, :project, :data, :id)
+
+          existing_assessment = ::Assessment.yoodli.where(project_id: project_id).find_by(
+            "external_settings->>'assessment_id' = ?", value
+          )
           key.failure(:uniq_yoodli, id: existing_assessment.id) if existing_assessment
         end
       end
