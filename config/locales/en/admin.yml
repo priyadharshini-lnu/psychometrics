@@ -25,6 +25,7 @@ en:
     development_actions: Development Actions
     dimensions: Dimensions
     libraries: Media Library
+    library_invalid_type: Invalid Library Item
     no_notifications: No Notifications
     norms: Norms
     notification_bell_icon_alt_text: Notification Bell Icon
