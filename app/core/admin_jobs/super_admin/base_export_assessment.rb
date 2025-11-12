@@ -35,6 +35,33 @@ module AdminJobs
         client&.client_privacy_setting&.disable_data_processing ||
           project&.privacy_setting&.disable_data_processing
       end
+
+      def filtered_project_ids
+        @filtered_project_ids ||= Project.joins(join_clauses).where(privacy_conditions).pluck(:id)
+      end
+
+      def filtered_campaign_ids
+        @filtered_campaign_ids ||= if campaign_ids.present?
+                                     Campaign.where(id: campaign_ids, project_id: filtered_project_ids).pluck(:id)
+                                   else
+                                     Campaign.where(project_id: filtered_project_ids).pluck(:id)
+                                   end
+      end
+
+      def join_clauses
+        <<-SQL.squish
+          LEFT JOIN clients parent_clients ON clients.ancestry = parent_clients.id::text
+          LEFT JOIN privacy_settings ON privacy_settings.project_id = clients.id
+          LEFT JOIN client_privacy_settings ON client_privacy_settings.client_id = parent_clients.id
+        SQL
+      end
+
+      def privacy_conditions
+        <<~SQL.squish
+          COALESCE(privacy_settings.disable_data_processing, FALSE) = FALSE
+          AND COALESCE(client_privacy_settings.disable_data_processing, FALSE) = FALSE
+        SQL
+      end
     end
   end
 end
