@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # Migration has been modified to deal with different pgvector versions for index creation.
+# rubocop:disable CustomRubocops/AvoidActiveRecordInMigrations
 class CreateVectorEmbeddings < ActiveRecord::Migration[7.1]
   def change
     create_table :vector_embeddings do |t|
@@ -9,13 +10,17 @@ class CreateVectorEmbeddings < ActiveRecord::Migration[7.1]
       t.timestamps
     end
 
-    begin
-      # HNSW with cosine ops (pgvector >= 0.5.0)
+    # Check pgvector version and create index only if >= 0.5.0
+    result = ActiveRecord::Base.connection.execute("SELECT extversion FROM pg_extension WHERE extname = 'vector'")
+
+    version = result.first['extversion']
+    Rails.logger.debug { "Detected pgvector version: #{version}" }
+
+    if Gem::Version.new(version) >= Gem::Version.new('0.5.0')
       add_index :vector_embeddings, :embedding, using: :hnsw, opclass: :vector_cosine_ops
-    rescue ActiveRecord::StatementInvalid => e
-      # rubocop:disable CustomRubocops/AvoidActiveRecordInMigrations
-      Rails.logger.warn { "Could not create HNSW index with cosine ops. Error: #{e.message}" }
-      # rubocop:enable CustomRubocops/AvoidActiveRecordInMigrations
+    else
+      Rails.logger.debug { "Skipping HNSW index creation - pgvector #{version} < 0.5.0 required" }
     end
   end
 end
+# rubocop:enable CustomRubocops/AvoidActiveRecordInMigrations
