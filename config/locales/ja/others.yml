@@ -2630,7 +2630,7 @@ ja:
       write_here: ここに記入してください...
     direct_reportee_details: 直属の報告者詳細
     download:
-      description: 'レポートをダウンロードするには、リンクをたどってください: <a href=''''%{url}'''' target=''''_blank''''>ダウンロード</a>。リンクは10分間のみ有効です'
+      description: 'レポートをダウンロードするには、リンクをたどってください: <a href=''%{url}'' target=''_blank''>ダウンロード</a>。リンクは10分間のみ有効です'
     download_plan: ダウンロードプラン
     edit_plan: プランの編集
     edit_plan_and_add_skills: "[プラン]を編集し、[スキルの管理]をクリックしてスキルを追加します。"

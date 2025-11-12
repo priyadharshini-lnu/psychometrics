@@ -2637,7 +2637,7 @@ sl:
       write_here: Pišite tukaj ...
     direct_reportee_details: Podrobnosti o neposrednih poročalcih
     download:
-      description: 'Za prenos poročila sledite povezavi: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Povezava velja samo 10 minut'
+      description: 'Za prenos poročila sledite povezavi: <a href=''%{url}'' target=''_blank''>Download</a>. Povezava velja samo 10 minut'
     download_plan: Prenos načrta
     edit_plan: Urejanje načrta
     edit_plan_and_add_skills: Uredite načrt in kliknite Upravljanje veščin, da dodate spretnosti.

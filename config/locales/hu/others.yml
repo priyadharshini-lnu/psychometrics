@@ -2640,7 +2640,7 @@ hu:
       write_here: Írj ide...
     direct_reportee_details: Közvetlen beosztottak részletei
     download:
-      description: 'A jelentés letöltéséhez kövesse a következő linket: <a href=''''%{url}'''' target=''''_blank''''>Letöltés</a>. A link csak 10 percig érvényes'
+      description: 'A jelentés letöltéséhez kövesse a következő linket: <a href=''%{url}'' target=''_blank''>Letöltés</a>. A link csak 10 percig érvényes'
     download_plan: Terv letöltése
     edit_plan: Terv szerkesztése
     edit_plan_and_add_skills: Szerkessze a tervet, majd kattintson a Készségek kezelése gombra a készségek hozzáadásához.

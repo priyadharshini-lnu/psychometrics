@@ -2677,7 +2677,7 @@ ar:
       write_here: اكتب هنا...
     direct_reportee_details: تفاصيل المبلغين المباشرين
     download:
-      description: 'لتنزيل التقرير ، يرجى اتباع الرابط: <a href = ''''%{url}'''' target = '''' _blank'''' > تنزيل</a>. الرابط صالح لمدة 10 دقائق فقط'
+      description: 'لتنزيل التقرير ، يرجى اتباع الرابط: <a href = ''%{url}'' target = ''_blank'' > تنزيل</a>. الرابط صالح لمدة 10 دقائق فقط'
     download_plan: تحميل الخطة
     edit_plan: تعديل الخطة
     edit_plan_and_add_skills: قم بتحرير الخطة وانقر فوق إدارة المهارات لإضافة المهارات.

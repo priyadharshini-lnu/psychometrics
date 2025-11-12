@@ -2634,7 +2634,7 @@ vi:
       write_here: Viết ở đây...
     direct_reportee_details: Chi tiết người được báo cáo trực tiếp
     download:
-      description: 'Để tải xuống báo cáo, vui lòng theo liên kết: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Link chỉ có giá trị trong 10 phút'
+      description: 'Để tải xuống báo cáo, vui lòng theo liên kết: <a href=''%{url}'' target=''_blank''>Download</a>. Link chỉ có giá trị trong 10 phút'
     download_plan: Tải xuống gói
     edit_plan: Chỉnh sửa kế hoạch
     edit_plan_and_add_skills: Chỉnh sửa Kế hoạch và nhấp vào Quản lý Kỹ năng để thêm Kỹ năng.

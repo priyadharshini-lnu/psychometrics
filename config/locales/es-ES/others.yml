@@ -2600,7 +2600,7 @@ es-ES:
       write_here: Escriba aquí...
     direct_reportee_details: Detalle de los reportados directos
     download:
-      description: 'Para descargar el informe, siga el enlace: <a href=''''%{url}'''' target=''''_blank''''>Descargar</a>. El enlace solo es válido por 10 minutos'
+      description: 'Para descargar el informe, siga el enlace: <a href=''%{url}'' target=''_blank''>Descargar</a>. El enlace solo es válido por 10 minutos'
     download_plan: Descargar plan
     edit_plan: Editar plan
     edit_plan_and_add_skills: Edite el plan y haga clic en Administrar habilidades para agregar habilidades.

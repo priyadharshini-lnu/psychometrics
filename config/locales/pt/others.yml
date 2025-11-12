@@ -2648,7 +2648,7 @@ pt:
       write_here: Escreva aqui...
     direct_reportee_details: Detalhe dos subordinados diretos
     download:
-      description: 'Para baixar o relatório, siga o link: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. O link é válido apenas por 10 minutos'
+      description: 'Para baixar o relatório, siga o link: <a href=''%{url}'' target=''_blank''>Download</a>. O link é válido apenas por 10 minutos'
     download_plan: Plano de download
     edit_plan: Editar plano
     edit_plan_and_add_skills: Edite o plano e clique em Gerenciar habilidades para adicionar habilidades.

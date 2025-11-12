@@ -2655,7 +2655,7 @@ hr:
       write_here: Napišite ovdje...
     direct_reportee_details: Detalji izravnih izvješćivanja
     download:
-      description: 'Da biste preuzeli izvješće, slijedite poveznicu: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Link vrijedi samo 10 minuta'
+      description: 'Da biste preuzeli izvješće, slijedite poveznicu: <a href=''%{url}'' target=''_blank''>Download</a>. Link vrijedi samo 10 minuta'
     download_plan: Preuzmite plan
     edit_plan: Uredi plan
     edit_plan_and_add_skills: Uredite plan i kliknite na Upravljanje vještinama da biste dodali vještine.

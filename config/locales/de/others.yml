@@ -2649,7 +2649,7 @@ de:
       write_here: Hier schreiben...
     direct_reportee_details: Detail der direkt unterstellten Mitarbeiter
     download:
-      description: 'Um den Bericht herunterzuladen, folgen Sie bitte dem Link: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Der Link ist nur 10 Minuten gültig'
+      description: 'Um den Bericht herunterzuladen, folgen Sie bitte dem Link: <a href=''%{url}'' target=''_blank''>Download</a>. Der Link ist nur 10 Minuten gültig'
     download_plan: Plan herunterladen
     edit_plan: Plan bearbeiten
     edit_plan_and_add_skills: Plan bearbeiten und klicken Sie auf Fertigkeiten verwalten, um Fertigkeiten hinzuzufügen.

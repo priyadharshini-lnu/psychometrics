@@ -2640,7 +2640,7 @@ sk:
       write_here: Napíšte sem...
     direct_reportee_details: Podrobnosti o priamych hlásiteľoch
     download:
-      description: 'Ak si chcete stiahnuť správu, kliknite na odkaz: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Odkaz je platný len 10 minút'
+      description: 'Ak si chcete stiahnuť správu, kliknite na odkaz: <a href=''%{url}'' target=''_blank''>Download</a>. Odkaz je platný len 10 minút'
     download_plan: Stiahnuť plán
     edit_plan: Upraviť plán
     edit_plan_and_add_skills: Upraviť plán a kliknutím na Spravovať zručnosti pridajte zručnosti.

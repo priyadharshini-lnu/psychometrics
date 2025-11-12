@@ -2629,7 +2629,7 @@ cs:
       write_here: Pište zde...
     direct_reportee_details: Detail přímých reportérů
     download:
-      description: 'Zprávu si můžete stáhnout pomocí následujícího odkazu: <a href=''''%{url}'''' target=''''_blank''''>Stáhnout</a>. Odkaz je platný pouze po dobu 10 minut'
+      description: 'Zprávu si můžete stáhnout pomocí následujícího odkazu: <a href=''%{url}'' target=''_blank''>Stáhnout</a>. Odkaz je platný pouze po dobu 10 minut'
     download_plan: Stáhnout plán
     edit_plan: Upravit plán
     edit_plan_and_add_skills: Upravit plán a kliknutím na možnost Spravovat dovednosti přidejte dovednosti.

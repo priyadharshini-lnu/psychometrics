@@ -2640,7 +2640,7 @@ ro:
       write_here: Scrie aici...
     direct_reportee_details: Detalii raportoare directe
     download:
-      description: 'Pentru a descărca raportul, vă rugăm să urmați linkul: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Linkul este valabil doar 10 minute'
+      description: 'Pentru a descărca raportul, vă rugăm să urmați linkul: <a href=''%{url}'' target=''_blank''>Download</a>. Linkul este valabil doar 10 minute'
     download_plan: Descărcați planul
     edit_plan: Editați planul
     edit_plan_and_add_skills: Editați planul și faceți clic pe Gestionați abilitățile pentru a adăuga abilități.

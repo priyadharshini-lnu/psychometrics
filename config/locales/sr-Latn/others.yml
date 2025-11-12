@@ -2658,7 +2658,7 @@ sr-Latn:
       write_here: Pišite ovde...
     direct_reportee_details: Direktni izveštavači Detalj
     download:
-      description: 'Da biste preuzeli izveštaj, pratite link: <a href=''''%{url}'''' target =''''_blank''''>Dovnload</a>. Veza važi samo 10 minuta'
+      description: 'Da biste preuzeli izveštaj, pratite link: <a href=''%{url}'' target =''_blank''>Dovnload</a>. Veza važi samo 10 minuta'
     download_plan: Plan za preuzimanje
     edit_plan: Uredi plan
     edit_plan_and_add_skills: Uredite plan i kliknite na Upravljanje veštinama da biste dodali veštine.
