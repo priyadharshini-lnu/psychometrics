@@ -3,6 +3,7 @@ import React, {
 } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { camelizeKeys } from '~/utils/object'
 import {
   HomeOutlined,
   UserOutlined,
@@ -99,8 +100,11 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
 }) => {
   const location = useLocation()
   const navigate = useNavigate()
+  const {
+    idpEnabled,
+  } = camelizeKeys(features)
   const { pathname } = location
-  let menuItems = getMenuItems(false, false, showBookings, features?.idp_enabled, projectIdpEnabled)
+  let menuItems = getMenuItems(false, false, showBookings, idpEnabled, projectIdpEnabled)
   let activeItem:string
   const campaignIdRef = useRef<string>('')
   const isAnonym = pathname.includes('/anonym/')
@@ -151,7 +155,7 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
       true,
       pathname.includes('/threesixty_campaigns/') ? false : showInsights,
       showBookings,
-      features?.idp_enabled,
+      idpEnabled, projectIdpEnabled,
     )
     activeItem = pathname.includes('insights') ? 'insights' : 'tasks'
   } else if (pathname.includes('/idp/')) {
