@@ -2717,7 +2717,7 @@ CREATE TABLE public.development_actions (
     development_action_type integer DEFAULT 0 NOT NULL,
     learning_style integer DEFAULT 0 NOT NULL,
     name character varying,
-    description character varying NOT NULL,
+    description character varying,
     course_url character varying,
     course_provider character varying,
     created_at timestamp(6) without time zone NOT NULL,
@@ -18927,6 +18927,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20251112120914'),
 ('20251105093356'),
 ('20251031101349'),
 ('20251031094133'),
