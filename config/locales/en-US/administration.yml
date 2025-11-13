@@ -4711,10 +4711,6 @@ en-US:
       update:
         successfully: User %{name} was updated successfully.
       user: User
-    validations:
-      idp:
-        end_date_cannot_be_in_past: End date cannot be in the past
-        start_date_cannot_be_in_past: Start date cannot be in the past
     webhook:
       connection_failure: Unable to connect to the webhook url. Please verify if webhook url is correct..
       delete_success: Webhook settings was deleted successfully

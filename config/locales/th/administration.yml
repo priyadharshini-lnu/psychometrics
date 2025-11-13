@@ -4704,10 +4704,6 @@ th:
       update:
         successfully: ผู้ใช้ %{name} อัปเดตเรียบร้อยแล้ว
       user: ผู้ใช้
-    validations:
-      idp:
-        end_date_cannot_be_in_past: วันที่สิ้นสุดไม่สามารถเป็นวันที่ผ่านมาได้
-        start_date_cannot_be_in_past: วันที่เริ่มต้นไม่สามารถเป็นอดีตได้
     webhook:
       connection_failure: ไม่สามารถเชื่อมต่อกับ URL ของเว็บฮุคได้ โปรดตรวจสอบว่า URL เว็บฮุคถูกต้องหรือไม่
       delete_success: ลบการตั้งค่าเว็บฮุคเรียบร้อยแล้ว

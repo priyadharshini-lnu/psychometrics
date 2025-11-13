@@ -4704,10 +4704,6 @@ id:
       update:
         successfully: Pengguna %{name} berhasil diperbarui.
       user: Pengguna
-    validations:
-      idp:
-        end_date_cannot_be_in_past: Tanggal akhir tidak boleh di masa lalu
-        start_date_cannot_be_in_past: Tanggal mulai tidak boleh di masa lalu
     webhook:
       connection_failure: Tidak dapat terhubung ke url webhook. Silakan verifikasi apakah url webhook sudah benar.
       delete_success: Pengaturan webhook berhasil dihapus

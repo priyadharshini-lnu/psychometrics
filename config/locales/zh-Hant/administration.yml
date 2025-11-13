@@ -4718,10 +4718,6 @@ zh-Hant:
       update:
         successfully: 使用者 %{name} 已成功更新。
       user: 使用者
-    validations:
-      idp:
-        end_date_cannot_be_in_past: 結束日期不能是過去
-        start_date_cannot_be_in_past: 開始日期不能是過去
     webhook:
       connection_failure: 無法連線至 webhook URL。 請確認 webhook URL 是否正確。
       delete_success: Webhook 設定已成功刪除

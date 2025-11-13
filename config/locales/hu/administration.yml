@@ -4706,10 +4706,6 @@ hu:
       update:
         successfully: A(z) %{name} felhasználó frissítése sikeresen megtörtént.
       user: Felhasználó
-    validations:
-      idp:
-        end_date_cannot_be_in_past: A végdátum nem lehet a múltban
-        start_date_cannot_be_in_past: A kezdeti dátum nem lehet a múltban
     webhook:
       connection_failure: Nem lehet csatlakozni a webhook URL-címéhez. Kérjük, ellenőrizze, hogy a webhook URL-je helyes-e.
       delete_success: A webhook beállításai sikeresen törölve lettek

@@ -4704,10 +4704,6 @@ vi:
       update:
         successfully: Người dùng %{name} đã được cập nhật thành công.
       user: Người dùng
-    validations:
-      idp:
-        end_date_cannot_be_in_past: Ngày kết thúc không thể nằm trong quá khứ.
-        start_date_cannot_be_in_past: Ngày bắt đầu không thể là ngày trong quá khứ.
     webhook:
       connection_failure: Không thể kết nối với url webhook. Vui lòng xác minh xem url webhook có chính xác không.
       delete_success: Cài đặt Webhook đã bị xóa thành công

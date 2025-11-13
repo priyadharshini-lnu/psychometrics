@@ -4717,10 +4717,6 @@ de:
       update:
         successfully: Benutzer %{name} wurde erfolgreich aktualisiert.
       user: Benutzer
-    validations:
-      idp:
-        end_date_cannot_be_in_past: Das Enddatum darf nicht in der Vergangenheit liegen.
-        start_date_cannot_be_in_past: Das Startdatum darf nicht in der Vergangenheit liegen.
     webhook:
       connection_failure: Es kann keine Verbindung zur Webhook-Url hergestellt werden. Bitte überprüfen Sie, ob die Webhook-Url korrekt ist.
       delete_success: Webhook-Einstellungen wurden erfolgreich gelöscht

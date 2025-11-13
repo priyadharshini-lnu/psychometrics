@@ -4704,10 +4704,6 @@ hr:
       update:
         successfully: Korisnik %{name} uspješno je ažuriran.
       user: Korisnik
-    validations:
-      idp:
-        end_date_cannot_be_in_past: Datum završetka ne može biti u prošlosti
-        start_date_cannot_be_in_past: Datum početka ne može biti u prošlosti
     webhook:
       connection_failure: Nije moguće povezati se s URL-om web-dojavnika. Provjerite je li URL webhooka točan..
       delete_success: Postavke web-dojavnika uspješno su izbrisane

@@ -4718,10 +4718,6 @@ it:
       update:
         successfully: L'utente %{name} è stato aggiornato con successo.
       user: Utente
-    validations:
-      idp:
-        end_date_cannot_be_in_past: La data di fine non può essere passata
-        start_date_cannot_be_in_past: La data di inizio non può essere passata
     webhook:
       connection_failure: Impossibile connettersi all'url del webhook. Verificare se l'url del webhook è corretto...
       delete_success: Le impostazioni dei webhook sono state cancellate con successo

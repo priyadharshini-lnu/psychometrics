@@ -4704,10 +4704,6 @@ sl:
       update:
         successfully: Uporabnik %{name} je bil uspešno posodobljen.
       user: Uporabnik
-    validations:
-      idp:
-        end_date_cannot_be_in_past: Datum zaključka ne sme biti v preteklosti.
-        start_date_cannot_be_in_past: Začetni datum ne sme biti v preteklosti.
     webhook:
       connection_failure: Povezave z URL-jem spletnega kavlja ni mogoče vzpostaviti. Preverite, ali je URL webhooka pravilen.
       delete_success: Nastavitve spletnega kavlja so bile uspešno izbrisane

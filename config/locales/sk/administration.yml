@@ -4704,10 +4704,6 @@ sk:
       update:
         successfully: Používateľ %{name} bol úspešne aktualizovaný.
       user: Užívateľ
-    validations:
-      idp:
-        end_date_cannot_be_in_past: Dátum ukončenia nemôže byť v minulosti
-        start_date_cannot_be_in_past: Dátum začiatku nesmie byť v minulosti
     webhook:
       connection_failure: Nedá sa pripojiť k URL adrese webhooku. Skontrolujte, či je adresa URL webhooku správna.
       delete_success: Nastavenia webhooku boli úspešne odstránené

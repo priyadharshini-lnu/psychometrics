@@ -4717,10 +4717,6 @@ ko:
       update:
         successfully: 사용자 %{name}이 업데이트되었습니다.
       user: 사용자
-    validations:
-      idp:
-        end_date_cannot_be_in_past: 종료 날짜는 과거일 수 없습니다.
-        start_date_cannot_be_in_past: 시작 날짜는 과거일 수 없습니다.
     webhook:
       connection_failure: 웹훅 URL에 연결할 수 없습니다. 웹훅 URL이 올바른지 확인하세요...
       delete_success: 웹훅 설정이 성공적으로 삭제되었습니다

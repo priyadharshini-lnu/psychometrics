@@ -4718,10 +4718,6 @@ nl:
       update:
         successfully: Gebruiker %{name} is succesvol bijgewerkt.
       user: Gebruiker
-    validations:
-      idp:
-        end_date_cannot_be_in_past: Einddatum kan niet in het verleden liggen
-        start_date_cannot_be_in_past: De begindatum kan niet in het verleden liggen
     webhook:
       connection_failure: Kan geen verbinding maken met de webhook url. Controleer of de webhook url correct is.
       delete_success: Webhook instellingen is succesvol verwijderd

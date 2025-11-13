@@ -4704,10 +4704,6 @@ bg:
       update:
         successfully: Потребител %{name} е актуализиран успешно.
       user: Потребител
-    validations:
-      idp:
-        end_date_cannot_be_in_past: Крайната дата не може да бъде в миналото
-        start_date_cannot_be_in_past: Началната дата не може да бъде в миналото
     webhook:
       connection_failure: Не може да се свърже с URL адреса на уеб куката. Моля, проверете дали URL адресът на уеб кукичката е правилен.
       delete_success: Настройките на уеб кукичката бяха изтрити успешно

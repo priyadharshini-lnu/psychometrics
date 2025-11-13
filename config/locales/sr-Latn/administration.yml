@@ -4704,10 +4704,6 @@ sr-Latn:
       update:
         successfully: Korisnik %{name} je uspešno ažuriran.
       user: Korisnik
-    validations:
-      idp:
-        end_date_cannot_be_in_past: Datum završetka ne može biti u prošlosti
-        start_date_cannot_be_in_past: Datum početka ne može biti u prošlosti
     webhook:
       connection_failure: Nije moguće povezati se sa URL-om webhook-a. Proverite da li je webhook URL tačan..
       delete_success: Podešavanja Webhook je uspešno izbrisano

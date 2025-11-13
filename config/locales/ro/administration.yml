@@ -4704,10 +4704,6 @@ ro:
       update:
         successfully: Utilizatorul %{name} a fost actualizat cu succes.
       user: Utilizator
-    validations:
-      idp:
-        end_date_cannot_be_in_past: Data finală nu poate fi în trecut
-        start_date_cannot_be_in_past: Data de începere nu poate fi în trecut
     webhook:
       connection_failure: Nu se poate conecta la adresa URL a webhook-ului. Vă rugăm să verificați dacă adresa URL a webhook-ului este corectă.
       delete_success: Setările webhook-ului au fost șterse cu succes
