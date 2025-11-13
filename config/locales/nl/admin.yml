@@ -40,6 +40,7 @@ nl:
     registration_codes: Registratiecodes
     report_approvals: Goedkeuringen
     reports: Rapporten
+    role: Rol
     scheduling: Planning
     scoring: Scoren
     show_submenu: Submenu weergeven

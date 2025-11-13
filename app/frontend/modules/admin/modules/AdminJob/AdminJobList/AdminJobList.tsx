@@ -1,15 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import {
   List, Badge, Button, Row, Col, Popover,
-  Empty, Dropdown, Flex, Tooltip, Modal, Space,
+  Empty, Dropdown, Flex, Tooltip, Modal,
+  Avatar, Typography,
 } from 'antd'
 import type { MenuProps } from 'antd'
-import humps from 'humps'
 import {
   CheckOutlined, CalendarOutlined, LockOutlined,
-  UserOutlined, BellOutlined, BellFilled, LogoutOutlined, DownOutlined,
+  UserOutlined, BellOutlined, BellFilled, LogoutOutlined,
+  DownOutlined,
 } from '@ant-design/icons'
+import humps from 'humps'
 import InfiniteScroll from 'react-infinite-scroller'
+import { createAvatar } from '@dicebear/core'
+import { shapes } from '@dicebear/collection'
+import { useMedia } from 'use-media'
 import { useResources } from '~/hooks/useResources'
 import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
 import styles from './styles.less'
@@ -27,6 +32,8 @@ type UserDetails = {
   LastName: string
   name: string
   email: string
+  roleTitle: string
+  photo?: string
 }
 
 const AdminJobList: React.FC<PropsFromRedux> = ({
@@ -47,6 +54,18 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
     adminLocales,
   } = window.PsyGlobalState
   const { collectionAction } = useResources('users')
+  const isMobile = useMedia({
+    maxWidth: 600,
+  })
+
+  const largeAvatar = useMemo(() => {
+    if (!user?.email) return null
+    return createAvatar(shapes, {
+      size: 48,
+      seed: user.email,
+    })
+      .toDataUri()
+  }, [user?.email])
 
   useEffect(() => {
     collectionAction({
@@ -144,6 +163,33 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
 
   const profileSubmenuItems: MenuProps['items'] = [
     {
+      key: 'user_info',
+      label: (
+        <Flex gap={16} justify="center" align="center">
+          <Avatar
+            size={48}
+            src={user?.photo || largeAvatar}
+            icon={<UserOutlined />}
+          />
+          <Flex vertical justify="center">
+            <Typography.Title level={5} className="m-0 mb-0">
+              {user?.name}
+            </Typography.Title>
+            <Typography.Text>
+              {user?.email}
+            </Typography.Text>
+            <Typography.Text style={{ fontSize: 12 }}>
+              {`${I18n.t('admin.role')} - ${user?.roleTitle}`}
+            </Typography.Text>
+          </Flex>
+        </Flex>
+      ),
+      disabled: true,
+    },
+    {
+      type: 'divider',
+    },
+    {
       key: 'profile_details',
       label: I18n.t('admin.profile_details'),
       icon: <UserOutlined aria-hidden="true" />,
@@ -192,14 +238,13 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
         trigger="click"
         open={visible}
         onOpenChange={setVisible}
-        overlayClassName={styles.overlay}
       >
         <Button
           aria-label={`${I18n.t('admin.notification_bell_icon_alt_text')}`}
           type="text"
           onClick={handleClick}
           icon={(
-            <Badge count={unread} overflowCount={9}>
+            <Badge count={unread} overflowCount={9} size="small">
               {unread > 0 ? <BellFilled aria-hidden="true" /> : <BellOutlined aria-hidden="true" />}
             </Badge>
           )}
@@ -215,16 +260,25 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
           icon={<CalendarOutlined aria-hidden="true" />}
         />
       </Tooltip>
-      <Dropdown menu={{ items: profileSubmenuItems }} trigger={['click']}>
+      <Dropdown
+        menu={{ items: profileSubmenuItems }}
+        trigger={['click']}
+        placement="bottomRight"
+      >
         <Button
-          className="ms-2 me-2"
-          icon={<UserOutlined />}
+          className="me-2 ps-1 pe-1"
+          type="text"
         >
-          {user?.firstName ? (
-            <Space>
-              {user?.firstName}
+          <Avatar
+            size={24}
+            src={user?.photo || largeAvatar}
+            icon={<UserOutlined />}
+          />
+          {!isMobile && user?.firstName ? (
+            <Flex gap={4}>
+              <Typography.Text>{user?.firstName}</Typography.Text>
               <DownOutlined />
-            </Space>
+            </Flex>
           ) : null}
         </Button>
       </Dropdown>

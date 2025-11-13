@@ -40,6 +40,8 @@
     "@aws-sdk/util-utf8-node": "^0.1.0-preview.1",
     "@codemirror/autocomplete": "^6.11.1",
     "@daily-co/daily-js": "^0.83.1",
+    "@dicebear/collection": "^9.2.4",
+    "@dicebear/core": "^9.2.4",
     "@dnd-kit/core": "^5.0.1",
     "@dnd-kit/sortable": "^6.0.0",
     "@dnd-kit/utilities": "^3.2.2",

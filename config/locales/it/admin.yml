@@ -40,6 +40,7 @@ it:
     registration_codes: Codici di registrazione
     report_approvals: Approvazione report
     reports: Report
+    role: Ruolo
     scheduling: Programmazione
     scoring: Punteggio
     show_submenu: Mostra menu secondario

@@ -40,6 +40,7 @@ th:
     registration_codes: รหัสการลงทะเบียน
     report_approvals: การอนุมัติรายงาน
     reports: รายงาน
+    role: บทบาท
     scheduling: กำหนดการ
     scoring: การให้คะแนน
     show_submenu: แสดงเมนูย่อย

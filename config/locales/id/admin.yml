@@ -40,6 +40,7 @@ id:
     registration_codes: Kode pendaftaran
     report_approvals: Laporan Persetujuan
     reports: Laporan
+    role: Peranan
     scheduling: Penjadwalan
     scoring: Penilaian
     show_submenu: Tampilkan Sub Menu

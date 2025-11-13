@@ -40,6 +40,7 @@ cs:
     registration_codes: Registrační kódy
     report_approvals: Schvalování zpráv
     reports: Zprávy
+    role: Role
     scheduling: Plánování
     scoring: Bodování
     show_submenu: Zobrazit dílčí nabídku

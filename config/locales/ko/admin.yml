@@ -40,6 +40,7 @@ ko:
     registration_codes: 등록 코드
     report_approvals: 보고서 승인
     reports: 보고서
+    role: 역할
     scheduling: 일정 예약
     scoring: 채점
     show_submenu: 하위 메뉴 표시

@@ -12,7 +12,7 @@ import {
   FileProtectOutlined,
   MailOutlined,
   FundProjectionScreenOutlined,
-  SolutionOutlined,
+  FormOutlined,
   TeamOutlined,
   ClusterOutlined,
   ScheduleOutlined,
@@ -279,7 +279,7 @@ export const menuItems = (
                 {I18n.t('admin.assessments')}
               </Link>
             ),
-            icon: <SolutionOutlined aria-hidden="true" />,
+            icon: <FormOutlined aria-hidden="true" />,
           }
           : null,
         permissions.norms
