@@ -29,6 +29,7 @@ module UserAssessments
         end
 
         user_assessment.update!(score_calculated: true, score_calculated_at: Time.zone.now)
+        user_assessment.user_reports.each(&:start_approval!)
       end
     end
   end

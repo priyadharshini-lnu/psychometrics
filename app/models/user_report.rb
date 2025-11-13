@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
+
 class UserReport < ApplicationRecord
   audited
 
@@ -116,7 +118,14 @@ class UserReport < ApplicationRecord
   end
 
   def start_approval!
-    ready! if not_ready? && has_approval_workflow?
+    return unless not_ready?
+    return unless has_approval_workflow?
+
+    if threesixty?
+      ready! if threesixty_subject.evaluation_status_completed?
+    elsif all_assessments_are_scored?
+      ready!
+    end
   end
 
   def has_approval_workflow?
@@ -252,3 +261,5 @@ class UserReport < ApplicationRecord
       pick('user_assessments.completed_at')
   end
 end
+
+# rubocop:enable Metrics/ClassLength
