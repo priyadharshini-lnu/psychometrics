@@ -1241,7 +1241,7 @@ pl:
       description: Aby utworzyć nowe hasło, wypełnij wszystkie pola
       submit: Zatwierdź
       title: Odnów swoje hasło
-    lighthouse_logo_alt_text: Logo latarni morskiej
+    lighthouse_logo_alt_text: Logo Lighthouse
     login:
       continue_btn: Kontynuować
       description: Proszę zalogować się przy użyciu danych swojego konta osobistego
@@ -2006,7 +2006,7 @@ pl:
           %{accept} Możesz też bezpiecznie zignorować ten e-mail.
 
           Nie udostępniaj nikomu swoich danych dostępowych.
-        subject: Zaproszenie do Latarni Morskiej
+        subject: Zaproszenie do Lighthouse
       confirmation_instructions:
         subject: Instrukcje dotyczące potwierdzenia
       invitation_instructions:
@@ -2018,7 +2018,7 @@ pl:
           campaign: 'Kampania: %{section_name}'
           client: 'Dzierżawa klienta: %{section_name}'
           project: 'Projekt: %{section_name}'
-        subject: Zaproszenie do Latarni Morskiej
+        subject: Zaproszenie do Lighthouse
       password_change:
         body: |-
           Witaj %{name}!
@@ -2029,7 +2029,7 @@ pl:
         regards: |-
           Pozdrawiam
           Zespół Lighthouse
-        subject: Twoje hasło do latarni morskiej uległo zmianie
+        subject: Twoje hasło do Lighthouse uległo zmianie
       reset_password_instructions:
         body: |-
           Witaj %{name}!
@@ -2379,10 +2379,9 @@ pl:
     error_warning: Ups, coś poszło nie tak z twoją oceną. Skontaktuj się z pomocą techniczną.
     hogan:
       cannot_start: Nie możesz teraz rozpocząć oceny hogana. Spróbuj po kilku minutach.
-    lighthouse_app: Mercer Lighthouse
     login: Logowanie
     maintenance:
-      notification: Latarnia zostanie wyłączona z powodu zaplanowanej konserwacji za 60 sekund
+      notification: Lighthouse wyłączona z powodu zaplanowanej konserwacji za 60 sekund
     manage: Zarządzanie
     'no': Nie
     passwordSetting:
@@ -3075,7 +3074,7 @@ pl:
     users:
       account_disable: Twoje konto zostało wyłączone z powodu braku aktywności
       warning: Twoje konto zostanie wkrótce wyłączone z powodu braku aktywności
-  maintenance_message: Latarnia morska nie będzie dostępna z powodu zaplanowanych prac konserwacyjnych w dniu %{start_date} i będzie niedostępna przez %{duration}
+  maintenance_message: Lighthouse nie będzie dostępna z powodu zaplanowanych prac konserwacyjnych w dniu %{start_date} i będzie niedostępna przez %{duration}
   maintenance_submessage: Odśwież stronę po zakończeniu konserwacji. Zostaniesz przekierowany na stronę logowania
   my: Mój
   myself: Siebie

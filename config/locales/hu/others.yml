@@ -1241,7 +1241,7 @@ hu:
       description: Kérjük, töltse ki az összes mezőt az új jelszó létrehozásához
       submit: Küldje be a
       title: Jelszó megújítása
-    lighthouse_logo_alt_text: Világítótorony logó
+    lighthouse_logo_alt_text: Lighthouse logó
     login:
       continue_btn: Folytatódik
       description: Kérjük, jelentkezzen be személyes fiókadataival
@@ -2002,19 +2002,19 @@ hu:
           %{accept} Vagy nyugodtan figyelmen kívül hagyhatod ezt az e-mailt.
 
           Kérjük, ne ossza meg hozzáférési hitelesítő adatait senkivel.
-        subject: Meghívó a világítótoronyba
+        subject: Meghívó a Lighthouse
       confirmation_instructions:
         subject: Megerősítési utasítások
       invitation_instructions:
         body: |-
           Szia %{name}!
           A következő szakasz rendszergazdaként lett hozzáadva a Lighthouse-hoz
-        login: Bejelentkezés a Lighthouse-ba
+        login: Bejelentkezés a Lighthouse
         sections:
           campaign: 'Kampány: %{section_name}'
           client: 'Ügyfél bérlete: %{section_name}'
           project: 'Projekt: %{section_name}'
-        subject: Meghívó a világítótoronyba
+        subject: Meghívó a Lighthouse
       password_change:
         body: |-
           Szia %{name}!
@@ -2024,8 +2024,8 @@ hu:
           Ha nem nyújtotta be ezt a kérést, kérjük, azonnal lépjen kapcsolatba az ügyfélszolgálattal a mte.support@mercer.com
         regards: |-
           Üdvözlettel
-          Világítótorony csapata
-        subject: Megváltozott a világítótorony jelszava
+          Lighthouse csapata
+        subject: Megváltozott a Lighthouse jelszava
       reset_password_instructions:
         body: |-
           Szia %{name}!
@@ -2035,7 +2035,7 @@ hu:
         footer: Ha nem kérte ezt, nyugodtan figyelmen kívül hagyhatja ezt az e-mailt. A jelszava nem változik, amíg nem nyitja meg a fenti linket, és nem hoz létre egy újat.
         regards: |-
           Üdvözlettel
-          Világítótorony csapata
+          Lighthouse csapata
         subject: Utasítások a jelszó visszaállításához
       unlock_instructions:
         body: |-
@@ -2047,7 +2047,7 @@ hu:
         footer: Ha nem kérte ezt, nyugodtan figyelmen kívül hagyhatja ezt az e-mailt. A jelszava nem változik, amíg nem nyitja meg a fenti linket, és nem hoz létre egy újat.
         regards: |-
           Üdvözlettel
-          Világítótorony csapata
+          Lighthouse csapata
         subject: Utasítások a fiók feloldásához
         unlock_account: Fiókom feloldása
     omniauth_callbacks:
@@ -2375,10 +2375,9 @@ hu:
     error_warning: Hoppá, valami elromlott az értékeléseddel. Kérjük, vegye fel a kapcsolatot az ügyfélszolgálattal.
     hogan:
       cannot_start: Most nem kezdheti el a hogan értékelést. Kérjük, próbálja meg néhány perc múlva.
-    lighthouse_app: Mercer világítótorony
     login: Bejelentkezés
     maintenance:
-      notification: A világítótorony 60 másodpercen belül leáll az ütemezett karbantartás miatt
+      notification: Lighthouse 60 másodpercen belül leáll az ütemezett karbantartás miatt
     manage: Kezelje a  címet
     'no': Nem
     passwordSetting:
@@ -2985,7 +2984,7 @@ hu:
       text: Lighthouse. Minden jog fenntartva
     footer:
       regards: Üdvözlettel,
-      team_name: Világítótorony csapat
+      team_name: Lighthouse csapat
       technical_support: Bármilyen technikai probléma esetén kérjük, írjon nekünk a <x>email</x> címre, és 24 órán belül válaszolunk.
     from: A tehetség vállalkozás
     idp:
@@ -3041,7 +3040,7 @@ hu:
       body:
         dear: Kedves %{name},
         greetings: Üdvözlet a mai napra!
-        instructions: Kattintson az alábbi linkre a világítótoronyba való bejelentkezéshez.
+        instructions: Kattintson az alábbi linkre a Lighthouse való bejelentkezéshez.
         signin_link: Bejelentkezési link
       subject: Bejelentkezési link a Lighthouse-hoz
     powered_by:
@@ -3049,7 +3048,7 @@ hu:
     users:
       account_disable: Fiókját inaktivitás miatt letiltották
       warning: Fiókját hamarosan letiltjuk inaktivitás miatt
-  maintenance_message: A világítótorony %{start_date}-án ütemezett karbantartás miatt leáll, és %{duration} nem lesz elérhető
+  maintenance_message: A Lighthouse %{start_date}-án ütemezett karbantartás miatt leáll, és %{duration} nem lesz elérhető
   maintenance_submessage: Kérjük, frissítse az oldalt a karbantartás befejezése után. A rendszer átirányítja a bejelentkezési oldalra
   my: M
   myself: Magam

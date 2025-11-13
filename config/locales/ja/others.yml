@@ -1246,7 +1246,7 @@ ja:
       description: 新しいパスワードを作成するには、すべての項目を記入してください
       submit: 送信
       title: パスワードを更新
-    lighthouse_logo_alt_text: ライトハウスロゴ
+    lighthouse_logo_alt_text: Lighthouse ロゴ
     login:
       continue_btn: 続ける
       description: 個人アカウント情報でログインしてください
@@ -2365,7 +2365,6 @@ ja:
     error_warning: 査定に何か問題が発生しました。 サポートにご連絡ください。
     hogan:
       cannot_start: 現在、ホーガン査定を開始することはできません。 数分後にお試しください。
-    lighthouse_app: マーサー灯台
     login: ログイン
     maintenance:
       notification: ライトハウスは60秒後に定期メンテナンスのため停止します。

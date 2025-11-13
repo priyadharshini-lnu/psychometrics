@@ -1241,7 +1241,7 @@ fr:
       description: Veuillez remplir tous les champs pour créer un nouveau mot de passe
       submit: Soumettre
       title: Renouveler votre mot de passe
-    lighthouse_logo_alt_text: Logo du phare
+    lighthouse_logo_alt_text: Logo Lighthouse
     login:
       continue_btn: Continuer
       description: Veuillez vous connecter avec vos identifiants personnels
@@ -1998,7 +1998,7 @@ fr:
       admin_invitation_instructions:
         accept: Cliquez ici pour accepter l'invitation.
         body: 'Bonjour %{name}, Vous avez été invité à accéder au panneau d''administration de Lighthouse - The Talent Enterprise assessment platform. %{accept} Ou vous pouvez ignorer cet e-mail. Veuillez ne pas partager vos identifiants d''accès avec qui que ce soit. '
-        subject: Invitation au phare
+        subject: Invitation Lighthouse
       confirmation_instructions:
         subject: Instructions de confirmation
       invitation_instructions:
@@ -2008,7 +2008,7 @@ fr:
           campaign: 'Campagne : %{section_name}'
           client: 'Location du client : %{section_name}'
           project: 'Projet : %{section_name}'
-        subject: Invitation au phare
+        subject: Invitation Lighthouse
       invitation_removed: Votre invitation a été retirée.
       invitation_token_invalid: Le jeton d'invitation fourni n'est pas valide !
       mailer:
@@ -2021,7 +2021,7 @@ fr:
           text: Lighthouse. Tous droits réservés
         powered_by:
           text: Powered by Lighthouse.
-        subject: Invitation au phare
+        subject: Invitation Lighthouse
       new:
         header: Envoyer une invitation
         submit_button: Envoyer une invitation
@@ -2370,10 +2370,9 @@ fr:
     error_warning: Oups, un problème s'est produit lors de votre évaluation. Veuillez contacter le service d'assistance.
     hogan:
       cannot_start: Vous ne pouvez pas démarrer l'évaluation hogan pour l'instant. Veuillez essayer dans quelques minutes.
-    lighthouse_app: Phare de Mercer
     login: Connexion
     maintenance:
-      notification: Le phare sera mis hors service pour une maintenance programmée dans 60 secondes
+      notification: Lighthouse sera mis hors service pour une maintenance programmée dans 60 secondes
     manage: Gérer
     'no': Non
     passwordSetting:

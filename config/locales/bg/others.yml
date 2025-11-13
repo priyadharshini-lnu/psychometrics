@@ -1241,7 +1241,7 @@ bg:
       description: Моля, попълнете всички полета, за да създадете нова парола
       submit: Предайте
       title: Подновявете паролата си
-    lighthouse_logo_alt_text: Лого на фара
+    lighthouse_logo_alt_text: Лого Lighthouse
     login:
       continue_btn: Продължавам
       description: Моля, влезте с информацията за личния си акаунт
@@ -2002,7 +2002,7 @@ bg:
           %{accept} Или можете спокойно да игнорирате този имейл.
 
           Моля, не споделяйте идентификационните си данни за достъп с никого.
-        subject: Покана за фара
+        subject: Покана за Lighthouse
       confirmation_instructions:
         subject: Инструкции за потвърждение
       invitation_instructions:
@@ -2014,7 +2014,7 @@ bg:
           campaign: 'Кампания: %{section_name}'
           client: 'Клиентски наем: %{section_name}'
           project: 'Проект: %{section_name}'
-        subject: Покана за фара
+        subject: Покана за Lighthouse
       password_change:
         body: |-
           Здравейте %{name}!
@@ -2375,10 +2375,9 @@ bg:
     error_warning: Опа, нещо се обърка с оценката ти. Моля, свържете се с поддръжката.
     hogan:
       cannot_start: Не можете да започнете оценката на хоган точно сега. Моля, опитайте след няколко минути.
-    lighthouse_app: Фар на Мърсър
     login: Вход
     maintenance:
-      notification: Фарът ще бъде свален за планирана поддръжка след 60 секунди
+      notification: Lighthouse ще бъде свален за планирана поддръжка след 60 секунди
     manage: Управление
     'no': Не
     passwordSetting:

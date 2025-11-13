@@ -1241,7 +1241,7 @@ sk:
       description: Vyplňte všetky polia, aby ste vytvorili nové heslo
       submit: Odoslať
       title: Obnovenie hesla
-    lighthouse_logo_alt_text: Logo majáka
+    lighthouse_logo_alt_text: Logo Lighthouse
     login:
       continue_btn: Pokračovať
       description: Prihláste sa pomocou údajov o svojom osobnom účte
@@ -2002,7 +2002,7 @@ sk:
           %{accept} Alebo môžete tento e-mail pokojne ignorovať.
 
           Prosím, nezdieľajte svoje prístupové údaje s nikým.
-        subject: Pozvánka na maják
+        subject: Pozvánka na Lighthouse
       confirmation_instructions:
         subject: Pokyny na potvrdenie
       invitation_instructions:
@@ -2014,7 +2014,7 @@ sk:
           campaign: 'Kampaň: %{section_name}'
           client: 'Prenájom klienta: %{section_name}'
           project: 'Projekt: %{section_name}'
-        subject: Pozvánka na maják
+        subject: Pozvánka na Lighthouse
       password_change:
         body: |-
           Ahoj %{name}!
@@ -2024,7 +2024,7 @@ sk:
           Ak ste túto žiadosť nepodali, okamžite kontaktujte podporu na adrese mte.support@mercer.com
         regards: |-
           S pozdravom
-          Tím majáka
+          Tím Lighthouse
         subject: Vaše heslo Lighthouse sa zmenilo
       reset_password_instructions:
         body: |-
@@ -2035,7 +2035,7 @@ sk:
         footer: Ak ste o to nepožiadali, môžete tento e-mail pokojne ignorovať. Vaše heslo sa nezmení, kým neotvoríte odkaz vyššie a nevytvoríte si nové.
         regards: |-
           S pozdravom
-          Tím majáka
+          Tím Lighthouse
         subject: Pokyny na obnovenie hesla
       unlock_instructions:
         body: |-
@@ -2047,7 +2047,7 @@ sk:
         footer: Ak ste o to nepožiadali, môžete tento e-mail pokojne ignorovať. Vaše heslo sa nezmení, kým neotvoríte odkaz vyššie a nevytvoríte si nové.
         regards: |-
           S pozdravom
-          Tím majáka
+          Tím Lighthouse
         subject: Pokyny na odomknutie účtu
         unlock_account: Odomknutie môjho účtu
     omniauth_callbacks:
@@ -2375,10 +2375,9 @@ sk:
     error_warning: Ups, niečo sa pokazilo s tvojím hodnotením. Obráťte sa na podporu.
     hogan:
       cannot_start: Nemôžete začať s hodnotením hogana hneď teraz. Skúste to po niekoľkých minútach.
-    lighthouse_app: Maják Mercer
     login: Prihlásenie
     maintenance:
-      notification: Maják bude mimo prevádzky kvôli plánovanej údržbe o 60 sekúnd
+      notification: Lighthouse bude mimo prevádzky kvôli plánovanej údržbe o 60 sekúnd
     manage: Spravujte stránku
     'no': Nie
     passwordSetting:
@@ -3063,7 +3062,7 @@ sk:
       body:
         dear: Vážený %{name},
         greetings: Pozdravy na dnešný deň!
-        instructions: Kliknutím na nižšie uvedené prepojenie sa prihlásite do Majáka.
+        instructions: Kliknutím na nižšie uvedené prepojenie sa prihlásite do Lighthouse.
         signin_link: Prihlasovacie prepojenie
       subject: Prihlasovacie prepojenie pre Lighthouse
     powered_by:
@@ -3071,7 +3070,7 @@ sk:
     users:
       account_disable: Váš účet bol deaktivovaný z dôvodu nečinnosti
       warning: Váš účet bude čoskoro deaktivovaný z dôvodu nečinnosti
-  maintenance_message: Maják bude %{start_date} mimo prevádzky pre plánovanú údržbu a nebude k dispozícii pre %{duration}
+  maintenance_message: Lighthouse bude %{start_date} mimo prevádzky pre plánovanú údržbu a nebude k dispozícii pre %{duration}
   maintenance_submessage: Po dokončení údržby obnovte stránku. Budete presmerovaní na prihlasovaciu stránku
   my: Môj
   myself: Seba

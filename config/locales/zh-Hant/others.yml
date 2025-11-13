@@ -1241,7 +1241,7 @@ zh-Hant:
       description: 請填寫所有欄位以建立新密碼
       submit: 提交
       title: 更新您的密碼
-    lighthouse_logo_alt_text: 燈塔標誌
+    lighthouse_logo_alt_text: Lighthouse 標誌
     login:
       continue_btn: 繼續
       description: 請使用您的個人帳戶資訊登入
@@ -1996,7 +1996,7 @@ zh-Hant:
       admin_invitation_instructions:
         accept: 點選此處接受邀請。
         body: '您好 %{name}, 您已被邀請進入 Lighthouse - The Talent Enterprise 評估平台的管理面板。 %{accept} 或者您可以安全地忽略此電子郵件。 請勿與任何人分享您的存取憑證。 '
-        subject: 燈塔邀請函
+        subject: Lighthouse邀請函
       confirmation_instructions:
         subject: 確認指示
       copyright:
@@ -2008,7 +2008,7 @@ zh-Hant:
           campaign: 活動：%{section_name}
           client: 客戶租約： %{section_name}
           project: 專案：%{section_name}
-        subject: 燈塔邀請函
+        subject: Lighthouse邀請函
       password_change:
         body: '您好 %{name}！您的密碼已經更改。 如果您沒有提出此要求，請立即聯絡支援人員 mte.support@mercer.com '
         regards: 'Lighthouse 團隊 '
@@ -2352,10 +2352,9 @@ zh-Hant:
     error_warning: 哎呀，您的評估出錯了，請聯絡支援人員。
     hogan:
       cannot_start: 您現在無法開始 Hogan 評估，請幾分鐘後再試。
-    lighthouse_app: 默瑟燈塔
     login: 登入
     maintenance:
-      notification: 燈塔將在 60 秒後進行定期維護
+      notification: Lighthouse將在 60 秒後進行定期維護
     manage: 管理
     'no': 沒有
     passwordSetting:
@@ -2990,7 +2989,7 @@ zh-Hant:
       text: Lighthouse.保留所有權利
     footer:
       regards: 關於
-      team_name: 燈塔團隊
+      team_name: Lighthouse團隊
       technical_support: 如有任何技術問題，請寫信至<x>email</x> ，我們會在 24 小時內回覆。
     from: 人才企業
     idp:

@@ -1223,7 +1223,7 @@ es-ES:
       description: Rellene todos los campos para crear una contraseña nueva
       submit: Enviar
       title: Renueve su contraseña
-    lighthouse_logo_alt_text: Logotipo del faro
+    lighthouse_logo_alt_text: Logotipo Lighthouse
     login:
       continue_btn: Continúe en
       description: Inicie sesión con la información de su cuenta personal
@@ -2335,7 +2335,6 @@ es-ES:
     error_warning: Oops, algo ha ido mal con su evaluación. Por favor, póngase en contacto con el soporte.
     hogan:
       cannot_start: No puede iniciar la evaluación de Hogan ahora mismo. Por favor, inténtelo pasados unos minutos.
-    lighthouse_app: Faro Mercer
     login: Iniciar sesión
     maintenance:
       notification: Lighthouse estará fuera de servicio por mantenimiento programado en 60 segundos

@@ -1241,7 +1241,7 @@ vi:
       description: Vui lòng điền vào tất cả các trường để tạo mật khẩu mới
       submit: Nộp
       title: Làm mới mật khẩu của bạn
-    lighthouse_logo_alt_text: Logo ngọn hải đăng
+    lighthouse_logo_alt_text: Logo Lighthouse
     login:
       continue_btn: Tiếp tục
       description: Vui lòng đăng nhập bằng thông tin tài khoản cá nhân của bạn
@@ -1996,7 +1996,7 @@ vi:
           %{accept} Hoặc bạn có thể bỏ qua email này một cách an toàn.
 
           Vui lòng không chia sẻ thông tin đăng nhập truy cập của bạn với bất kỳ ai.
-        subject: Lời mời đến ngọn hải đăng
+        subject: Lời mời đến Lighthouse
       confirmation_instructions:
         subject: Hướng dẫn xác nhận
       invitation_instructions:
@@ -2008,7 +2008,7 @@ vi:
           campaign: 'Chiến dịch: %{section_name}'
           client: 'Thuê khách hàng: %{section_name}'
           project: 'Dự án: %{section_name}'
-        subject: Lời mời đến ngọn hải đăng
+        subject: Lời mời đến Lighthouse
       password_change:
         body: |-
           Xin chào %{name}!
@@ -2018,7 +2018,7 @@ vi:
           Nếu bạn không thực hiện yêu cầu này, vui lòng liên hệ với bộ phận Hỗ trợ ngay lập tức tại mte.support@mercer.com
         regards: |-
           Thân
-          Đội ngũ ngọn hải đăng
+          Đội ngũ Lighthouse
         subject: Mật khẩu Lighthouse của bạn đã thay đổi
       reset_password_instructions:
         body: |-
@@ -2029,7 +2029,7 @@ vi:
         footer: Nếu bạn không yêu cầu điều này, bạn có thể bỏ qua email này một cách an toàn. Mật khẩu của bạn sẽ không thay đổi cho đến khi bạn truy cập vào liên kết ở trên và tạo một liên kết mới.
         regards: |-
           Thân
-          Đội ngũ ngọn hải đăng
+          Đội ngũ Lighthouse
         subject: Hướng dẫn đặt lại mật khẩu
       unlock_instructions:
         body: |-
@@ -2041,7 +2041,7 @@ vi:
         footer: Nếu bạn không yêu cầu điều này, bạn có thể bỏ qua email này một cách an toàn. Mật khẩu của bạn sẽ không thay đổi cho đến khi bạn truy cập vào liên kết ở trên và tạo một liên kết mới.
         regards: |-
           Thân
-          Đội ngũ ngọn hải đăng
+          Đội ngũ Lighthouse
         subject: Hướng dẫn mở khóa tài khoản của bạn
         unlock_account: Mở khóa tài khoản của tôi
     omniauth_callbacks:
@@ -2369,10 +2369,9 @@ vi:
     error_warning: Rất tiếc, có điều gì đó không ổn với đánh giá của bạn. Vui lòng liên hệ với bộ phận hỗ trợ.
     hogan:
       cannot_start: Bạn không thể bắt đầu đánh giá hogan ngay bây giờ. Vui lòng thử sau vài phút.
-    lighthouse_app: Ngọn hải đăng Mercer
     login: Đăng nhập
     maintenance:
-      notification: Ngọn hải đăng sẽ ngừng hoạt động để bảo trì theo lịch trình sau 60 giây
+      notification: Lighthouse sẽ ngừng hoạt động để bảo trì theo lịch trình sau 60 giây
     manage: Quản lý
     'no': KHÔNG
     passwordSetting:
@@ -3001,7 +3000,7 @@ vi:
       text: Lighthouse. Bảo lưu mọi quyền
     footer:
       regards: Trân trọng,
-      team_name: Đội Ngọn Hải Đăng
+      team_name: Đội Lighthouse
       technical_support: Đối với bất kỳ vấn đề kỹ thuật nào, vui lòng liên hệ với chúng tôi qua email <x>email</x> và chúng tôi sẽ phản hồi trong vòng 24 giờ.
     from: Doanh nghiệp nhân tài
     idp:
@@ -3065,7 +3064,7 @@ vi:
     users:
       account_disable: Tài khoản của bạn đã bị vô hiệu hóa do không hoạt động
       warning: Tài khoản của bạn sẽ sớm bị vô hiệu hóa do không hoạt động
-  maintenance_message: Ngọn hải đăng sẽ ngừng hoạt động để bảo trì theo lịch trình vào %{start_date} và sẽ không hoạt động trong %{duration}
+  maintenance_message: Lighthouse sẽ ngừng hoạt động để bảo trì theo lịch trình vào %{start_date} và sẽ không hoạt động trong %{duration}
   maintenance_submessage: Vui lòng làm mới trang sau khi bảo trì hoàn tất. Bạn sẽ được chuyển hướng đến trang đăng nhập
   my: Của tôi
   myself: Bản thân mình

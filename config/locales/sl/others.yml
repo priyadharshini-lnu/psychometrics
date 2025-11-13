@@ -1241,7 +1241,7 @@ sl:
       description: Prosimo, izpolnite vsa polja za ustvarjanje novega gesla
       submit: Pošlji
       title: Posodobite svoje geslo
-    lighthouse_logo_alt_text: Logotip svetilnika
+    lighthouse_logo_alt_text: Logotip Lighthouse
     login:
       continue_btn: Nadaljuj
       description: Za prijavo vnesite podatke svojega osebnega računa
@@ -1999,19 +1999,19 @@ sl:
           %{accept} Ali pa lahko varno prezrete to e-poštno sporočilo.
 
           Prosimo, da svojih poverilnic za dostop ne delite z nikomer.
-        subject: Povabilo na svetilnik
+        subject: Povabilo na Lighthouse
       confirmation_instructions:
         subject: Navodila za potrditev
       invitation_instructions:
         body: |-
           Pozdravljeni %{name},
           V Lighthouse ste bili dodani kot skrbnik za naslednji razdelek
-        login: Vpis v svetilnik
+        login: Vpis v Lighthouse
         sections:
           campaign: 'Oglaševalska akcija: %{section_name}'
           client: 'Najem stranke: %{section_name}'
           project: 'Projekt: %{section_name}'
-        subject: Povabilo na svetilnik
+        subject: Povabilo na Lighthouse
       password_change:
         body: |-
           Pozdravljeni %{name}!
@@ -2021,8 +2021,8 @@ sl:
           Če niste poslali te zahteve, se takoj obrnite na podporo uporabnikom na mte.support@mercer.com
         regards: |-
           Pozdrav
-          Ekipa svetilnika
-        subject: Vaše geslo za svetilnik se je spremenilo
+          Ekipa Lighthouse
+        subject: Vaše geslo za Lighthouse se je spremenilo
       reset_password_instructions:
         body: |-
           Pozdravljeni %{name}!
@@ -2032,7 +2032,7 @@ sl:
         footer: Če tega niste zahtevali, lahko to e-poštno sporočilo varno prezrete. Vaše geslo se ne bo spremenilo, dokler ne odprete zgornje povezave in ustvarite novega.
         regards: |-
           Pozdrav
-          Ekipa svetilnika
+          Ekipa Lighthouse
         subject: Navodila za ponastavitev gesla
       unlock_instructions:
         body: |-
@@ -2044,7 +2044,7 @@ sl:
         footer: Če tega niste zahtevali, lahko to e-poštno sporočilo varno prezrete. Vaše geslo se ne bo spremenilo, dokler ne odprete zgornje povezave in ustvarite novega.
         regards: |-
           Pozdrav
-          Ekipa svetilnika
+          Ekipa Lighthouse
         subject: Navodila za odklepanje računa
         unlock_account: Odkleni moj račun
     omniauth_callbacks:
@@ -2372,10 +2372,9 @@ sl:
     error_warning: Ups, nekaj je šlo narobe z vašo oceno. Obrnite se na podporo.
     hogan:
       cannot_start: Hoganove ocene ne morete začeti zdaj. Prosimo, poskusite po nekaj minutah.
-    lighthouse_app: Svetilnik Mercer
     login: Prijava
     maintenance:
-      notification: Svetilnik bo v 60 sekundah izklopljen za načrtovano vzdrževanje
+      notification: Lighthouse bo v 60 sekundah izklopljen za načrtovano vzdrževanje
     manage: Upravljaj
     'no': Ne
     passwordSetting:
@@ -3060,7 +3059,7 @@ sl:
       body:
         dear: Spoštovani %{name},
         greetings: Lep pozdrav!
-        instructions: Kliknite spodnjo povezavo za prijavo v Svetilnik.
+        instructions: Kliknite spodnjo povezavo za prijavo v Lighthouse.
         signin_link: Povezava za prijavo
       subject: Povezava za prijavo za Lighthouse
     powered_by:
@@ -3068,7 +3067,7 @@ sl:
     users:
       account_disable: Vaš račun je onemogočen zaradi nedejavnosti
       warning: Vaš račun bo kmalu onemogočen zaradi nedejavnosti
-  maintenance_message: Svetilnik bo %{start_date} zaradi načrtovanega vzdrževanja in ne bo na voljo za %{duration}
+  maintenance_message: Lighthouse bo %{start_date} zaradi načrtovanega vzdrževanja in ne bo na voljo za %{duration}
   maintenance_submessage: Prosimo, osvežite stran po končanem vzdrževanju. Preusmerjeni boste na stran za prijavo
   my: Moj
   myself: Sam

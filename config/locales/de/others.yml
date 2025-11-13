@@ -1246,7 +1246,7 @@ de:
       description: Bitte füllen Sie alle Felder aus, um ein neues Passwort zu erstellen
       submit: Einreichen
       title: Erneuern Sie Ihr Passwort
-    lighthouse_logo_alt_text: Leuchtturm-Logo
+    lighthouse_logo_alt_text: Lighthouse Logo
     login:
       continue_btn: Weiter
       description: Bitte melden Sie sich mit Ihren persönlichen Kontodaten an
@@ -2012,7 +2012,7 @@ de:
       admin_invitation_instructions:
         accept: Klicken Sie hier, um die Einladung anzunehmen.
         body: 'Hallo %{name}, Sie wurden eingeladen, auf das Admin-Panel von Lighthouse - The Talent Enterprise Assessment Platform zuzugreifen. %{accept} Oder Sie können diese E-Mail getrost ignorieren. Bitte geben Sie Ihre Zugangsdaten an niemanden weiter. '
-        subject: Einladung zum Leuchtturm
+        subject: Einladung zum Lighthouse
       confirmation_instructions:
         subject: Anweisungen zur Bestätigung
       invitation_instructions:
@@ -2022,7 +2022,7 @@ de:
           campaign: 'Kampagne: %{section_name}'
           client: 'Kundenmietverhältnis: %{section_name}'
           project: 'Projekt: %{section_name}'
-        subject: Einladung zum Leuchtturm
+        subject: Einladung zum Lighthouse
       invitation_removed: Ihre Einladung wurde entfernt.
       invitation_token_invalid: Das angegebene Einladungs-Token ist nicht gültig!
       mailer:
@@ -2035,7 +2035,7 @@ de:
           text: Lighthouse. Alle Rechte vorbehalten
         powered_by:
           text: Powered by Lighthouse.
-        subject: Einladung zum Leuchtturm
+        subject: Einladung zum Lighthouse
       new:
         header: Einladung versenden
         submit_button: Eine Einladung verschicken
@@ -2384,10 +2384,9 @@ de:
     error_warning: Ups, bei Ihrer Bewertung ist etwas schief gelaufen. Bitte wenden Sie sich an den Support.
     hogan:
       cannot_start: Sie können die Hogan-Bewertung im Moment nicht starten, bitte versuchen Sie es in ein paar Minuten.
-    lighthouse_app: Mercer-Leuchtturm
     login: Anmelden
     maintenance:
-      notification: Leuchtturm wird wegen geplanter Wartungsarbeiten in 60 Sekunden außer Betrieb sein
+      notification: Lighthouse wird wegen geplanter Wartungsarbeiten in 60 Sekunden außer Betrieb sein
     manage: Verwalten Sie
     'no': Nein
     passwordSetting:
@@ -3014,7 +3013,7 @@ de:
     used_out_of: "%{used} von %{total}"
   mailer:
     copyright:
-      text: Leuchtturm. Alle Rechte vorbehalten
+      text: Lighthouse. Alle Rechte vorbehalten
     footer:
       regards: Mit freundlichen Grüßen,
       team_name: Lighthouse-Team

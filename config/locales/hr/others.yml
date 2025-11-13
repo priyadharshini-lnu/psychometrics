@@ -1248,7 +1248,7 @@ hr:
       description: Molimo Vas da ispunite sva polja kako biste kreirali novu lozinku
       submit: Poslati
       title: Obnovite svoju lozinku
-    lighthouse_logo_alt_text: Logotip svjetionika
+    lighthouse_logo_alt_text: Logotip Lighthouse
     login:
       continue_btn: Nastaviti
       description: Molimo, prijavite se s osobnim podacima
@@ -1329,7 +1329,7 @@ hr:
     safari: Apple Safari
     support:
       instruction: Preuzmite i koristite bilo koji od sljedećih preglednika.
-      message: Preglednik koji koristite nije podržan od strane Lighthousea.
+      message: Preglednik koji koristite nije podržan od strane Lighthouse.
     upgrade:
       instruction: Nadogradite sada
       message: Koristite najnoviju verziju preglednika
@@ -2004,7 +2004,7 @@ hr:
         accept: Kliknite ovdje kako biste prihvatili poziv.
         body: |-
           Pozdrav %{name},
-          Pozvani ste da pristupite administratorskoj ploči Lighthousea - platforme za procjenu Talent Enterprise.
+          Pozvani ste da pristupite administratorskoj ploči Lighthouse - platforme za procjenu Talent Enterprise.
 
           %{accept} Ili možete sigurno ignorirati ovu e-poštu.
 
@@ -2031,7 +2031,7 @@ hr:
           Ako niste podnijeli ovaj zahtjev, odmah se obratite podršci na mte.support@mercer.com
         regards: |-
           Pozdrav
-          Svjetioničarski tim
+          Lighthouse tim
         subject: Vaša lozinka za Lighthouse je promijenjena
       reset_password_instructions:
         body: |-
@@ -2042,7 +2042,7 @@ hr:
         footer: Ako to niste zatražili, možete sigurno zanemariti ovu e-poštu. Vaša se lozinka neće promijeniti dok ne pristupite gornjoj poveznici i ne stvorite novu.
         regards: |-
           Pozdrav
-          Svjetioničarski tim
+          Lighthouse tim
         subject: Upute za ponovno postavljanje lozinke
       unlock_instructions:
         body: |-
@@ -2054,7 +2054,7 @@ hr:
         footer: Ako to niste zatražili, možete sigurno zanemariti ovu e-poštu. Vaša se lozinka neće promijeniti dok ne pristupite gornjoj poveznici i ne stvorite novu.
         regards: |-
           Pozdrav
-          Svjetioničarski tim
+          Lighthouse tim
         subject: Upute za otključavanje računa
         unlock_account: Otključaj moj račun
     omniauth_callbacks:
@@ -2390,10 +2390,9 @@ hr:
     error_warning: Ups, nešto je pošlo po zlu s tvojom procjenom. Obratite se podršci.
     hogan:
       cannot_start: Ne možete odmah započeti procjenu Hogana. Pokušajte nakon nekoliko minuta.
-    lighthouse_app: Mercer Lighthouse
     login: Prijava
     maintenance:
-      notification: Svjetionik će biti isključen zbog planiranog održavanja za 60 sekundi
+      notification: Lighthouse će biti isključen zbog planiranog održavanja za 60 sekundi
     manage: Upravljati
     'no': Ne
     passwordSetting:

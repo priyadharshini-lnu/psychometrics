@@ -1241,7 +1241,7 @@ ro:
       description: Vă rugăm să completați toate câmpurile pentru a crea o parolă nouă
       submit: Trimite
       title: Reînnoiți parola
-    lighthouse_logo_alt_text: Logo-ul farului
+    lighthouse_logo_alt_text: Logo-ul Lighthouse
     login:
       continue_btn: Continua
       description: Vă rugăm să vă conectați cu informațiile contului dvs. personal
@@ -2002,7 +2002,7 @@ ro:
           %{accept} Sau puteți ignora în siguranță acest e-mail.
 
           Vă rugăm să nu partajați acreditările de acces cu nimeni.
-        subject: Invitație la far
+        subject: Invitație la Lighthouse
       confirmation_instructions:
         subject: Instrucțiuni de confirmare
       invitation_instructions:
@@ -2014,7 +2014,7 @@ ro:
           campaign: 'Campanie: %{section_name}'
           client: 'Client Tenancy: %{section_name}'
           project: 'Proiect: %{section_name}'
-        subject: Invitație la far
+        subject: Invitație la Lighthouse
       password_change:
         body: |-
           Bună ziua %{name}!
@@ -2024,7 +2024,7 @@ ro:
           Dacă nu ați făcut această solicitare, vă rugăm să contactați imediat Asistența la mte.support@mercer.com
         regards: |-
           Cu stimă
-          Echipa Farului
+          Echipa Lighthouse
         subject: Parola Lighthouse s-a schimbat
       reset_password_instructions:
         body: |-
@@ -2035,7 +2035,7 @@ ro:
         footer: Dacă nu ați solicitat acest lucru, puteți ignora în siguranță acest e-mail. Parola nu se va schimba până când nu accesați linkul de mai sus și nu creați unul nou.
         regards: |-
           Cu stimă
-          Echipa Farului
+          Echipa Lighthouse
         subject: Instrucțiuni pentru resetarea parolei
       unlock_instructions:
         body: |-
@@ -2047,7 +2047,7 @@ ro:
         footer: Dacă nu ați solicitat acest lucru, puteți ignora în siguranță acest e-mail. Parola nu se va schimba până când nu accesați linkul de mai sus și nu creați unul nou.
         regards: |-
           Cu stimă
-          Echipa Farului
+          Echipa Lighthouse
         subject: Instrucțiuni pentru deblocarea contului
         unlock_account: Deblochează-mi contul
     omniauth_callbacks:
@@ -2375,7 +2375,6 @@ ro:
     error_warning: Ups, ceva nu a mers bine cu evaluarea ta. Vă rugăm să contactați asistența.
     hogan:
       cannot_start: Nu poți începe evaluarea hogan chiar acum. Vă rugăm să încercați după câteva minute.
-    lighthouse_app: Farul Mercer
     login: Autentificare
     maintenance:
       notification: Farul va fi oprit pentru întreținere programată în 60 de secunde
