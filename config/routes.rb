@@ -878,6 +878,10 @@ as: :simulation_progress_notification
   get 'transcribe/pre_sign_url', to: 'transcribe#pre_sign_url'
 
   constraints(subdomain: /^(?!(#{Settings.subdomain})$)(.+)$/i) do
+    get '/saml/idp/metadata' => 'saml_idp#show', as: :saml_idp_metadata
+    get '/saml/idp/auth' => 'saml_idp#new', as: :saml_idp_auth_new
+    post '/saml/idp/auth' => 'saml_idp#create', as: :saml_idp_auth
+
     scope module: :users do
       resources :mobile_number_verifications, only: [] do
         collection do

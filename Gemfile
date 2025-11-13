@@ -32,6 +32,7 @@ gem 'devise-i18n',                '~> 1.9.2'
 gem 'devise_invitable',           '~> 2.0.9'
 gem 'devise-passwordless',        '~> 1.0.1'
 gem 'devise_saml_authenticatable', '~> 1.9.1'
+gem 'saml_idp', '~> 1.0.0'
 
 gem 'dotiw', '~> 5.3.3'
 gem 'icalendar', '~> 2.9.0'

@@ -66,6 +66,7 @@ class BaseController < ActionController::Base
       return redirect_to root_url(subdomain: Settings.subdomain)
     end
 
+    Current.project = @current_project
     @current_client = @current_project.client
   end
   # rubocop:enable all

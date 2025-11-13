@@ -5964,6 +5964,46 @@ ALTER SEQUENCE public.resource_hogan_credentials_id_seq OWNED BY public.resource
 
 
 --
+-- Name: saml_service_providers; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.saml_service_providers (
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    entity_id character varying NOT NULL,
+    acs_urls text[] DEFAULT '{}'::text[],
+    certificate text,
+    encrypted_idp_certificate text,
+    encrypted_idp_private_key text,
+    enabled boolean DEFAULT true NOT NULL,
+    require_signed_requests boolean DEFAULT false NOT NULL,
+    project_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    mask_identity boolean DEFAULT false NOT NULL
+);
+
+
+--
+-- Name: saml_service_providers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.saml_service_providers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: saml_service_providers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.saml_service_providers_id_seq OWNED BY public.saml_service_providers.id;
+
+
+--
 -- Name: saml_settings; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -9715,6 +9755,13 @@ ALTER TABLE ONLY public.resource_hogan_credentials ALTER COLUMN id SET DEFAULT n
 
 
 --
+-- Name: saml_service_providers id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saml_service_providers ALTER COLUMN id SET DEFAULT nextval('public.saml_service_providers_id_seq'::regclass);
+
+
+--
 -- Name: saml_settings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -11459,6 +11506,14 @@ ALTER TABLE ONLY public.reports
 
 ALTER TABLE ONLY public.resource_hogan_credentials
     ADD CONSTRAINT resource_hogan_credentials_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: saml_service_providers saml_service_providers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saml_service_providers
+    ADD CONSTRAINT saml_service_providers_pkey PRIMARY KEY (id);
 
 
 --
@@ -14641,6 +14696,20 @@ CREATE INDEX index_resource_hogan_credentials_on_hogan_credential_id ON public.r
 
 
 --
+-- Name: index_saml_service_providers_on_entity_id_and_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_saml_service_providers_on_entity_id_and_project_id ON public.saml_service_providers USING btree (entity_id, project_id);
+
+
+--
+-- Name: index_saml_service_providers_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_saml_service_providers_on_project_id ON public.saml_service_providers USING btree (project_id);
+
+
+--
 -- Name: index_saml_settings_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -17393,6 +17462,14 @@ ALTER TABLE ONLY public.workshop_invites
 
 
 --
+-- Name: saml_service_providers fk_rails_7da955acbf; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saml_service_providers
+    ADD CONSTRAINT fk_rails_7da955acbf FOREIGN KEY (project_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: proficiency_level_translations fk_rails_7e2f5d2b33; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18928,30 +19005,32 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20251112120914'),
+('20251112112802'),
 ('20251105093356'),
+('20251101094930'),
 ('20251031101349'),
 ('20251031094133'),
-('20251027145358'),
 ('20251029094535'),
 ('20251029094056'),
 ('20251029073341'),
+('20251027145358'),
 ('20251027054548'),
 ('20251027054547'),
 ('20251024105239'),
 ('20251024030039'),
 ('20251023050642'),
 ('20251015075724'),
+('20251014070912'),
 ('20251010111349'),
 ('20251010104305'),
 ('20251008145654'),
 ('20251008145653'),
 ('20251008144511'),
 ('20251008144510'),
-('20251006071723'),
-('20251003104731'),
-('20251014070912'),
 ('20251006101155'),
 ('20251006100719'),
+('20251006071723'),
+('20251003104731'),
 ('20251001034346'),
 ('20250930153016'),
 ('20250924140546'),
@@ -19868,3 +19947,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+
