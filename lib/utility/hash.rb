@@ -30,6 +30,8 @@ module Utility
     def self.deep_merge(original, updates)
       case original
         when ::Hash
+          return original unless updates.is_a?(::Hash)
+
           original.merge(updates) do |_key, old_val, new_val|
             deep_merge(old_val, new_val)
           end
