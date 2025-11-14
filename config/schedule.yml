@@ -5,26 +5,31 @@ license_expiry_check_job:
   cron: "30 9 */1 * *" # At 09:30 on every day-of-month
   class: Licenses::ExpiryCheckJob
   queue: cron_tasks
+  active_job: true
 
 communications_other_type_job:
   cron: "*/5 * * * *" # At every 5th minute
   class: Communications::OtherTypeJob
   queue: communication
+  active_job: true
 
 new_assignment_communications:
   cron: "*/5 * * * *" # At every 5th minute
   class: Communications::NewAssignmentJob
   queue: communication
+  active_job: true
 
 workshop_upcoming_reminder_job:
   cron: "0 10 */1 * *" # At 10:00 on every day-of-month
   class: Communications::WorkshopUpcomingReminderJob
   queue_as: cron_tasks
+  active_job: true
 
 threesixty_send_scheduled_email_job:
   cron: "*/1 * * * *" # At every minute
   class: Threesixty::SendScheduledEmailJob
   queue: cron_tasks
+  active_job: true
 
 threesixty_send_reminders_job:
   cron: "0 10 */1 * *" # At 10:00 on every day-of-month
@@ -35,21 +40,25 @@ users_results_handle_expire_job:
   cron: "*/10 * * * *" # At every 10th minute
   class: HandleUserResultExpiryJob
   queue_as: cron_tasks
+  active_job: true
 
 weekly_stats_job:
   cron: "0 10 * * SUN" # At 10:00 on Sunday
   class: Licenses::WeeklyStatsJob
   queue_as: cron_tasks
+  active_job: true
 
 campaign_status_updater_job:
   cron: "*/1 * * * *" # Every 1 minutes
   class: CampaignStatusUpdaterJob
   queue_as: cron_tasks
+  active_job: true
 
 campaign_user_status_updater_job:
   cron: "*/1 * * * * " # Every minute
   class: TimeoutCampaignUserJob
   queue_as: cron_tasks
+  active_job: true
 
 cleaner_admin_job:
   cron: "0 5 * * SUN" # At 5:00 on Sunday
@@ -65,6 +74,7 @@ remove_soft_deleted_resources:
   cron: "0 6 * * SUN" # At 6:00 on Sunday
   class: RemoveSoftDeletedResources
   queue_as: cron_tasks
+  active_job: true
 
 # fetch_iiht_assessments:
 #   cron: "0 6 */1 * *" # At 06:00 on every day-of-month
@@ -80,31 +90,37 @@ recalculate_proctoring_credits:
   cron: "*/10 * * * *" # Every 10 minutes
   class: Licenses::RecalculateProctoringCredits
   queue_as: cron_tasks
+  active_job: true
 
 export_auditlogs:
   cron: "*/15 * * * *" # Every 15 minutes
   class: ClientAuditlogExportSettings::ExportAllAuditLogsJob
   queue_as: cron_tasks
+  active_job: true
 
 refresh_audit_log_cache:
   cron: "0 1 * * *"  # Every day at 01:00 AM
   class: RefreshAuditLogCacheJob
   queue_as: cron_tasks
+  active_job: true
 
 send_assessor_notifications:
   cron: "*/30 * * * *"  # Every 30 minutes
   class: SendAssessorNotificationsJob
   queue_as: cron_tasks
+  active_job: true
 
 scheduled_digest_emails:
   cron: "*/10 * * * *"  # Every 10 minutes
   class: ScheduledDigestEmailsJob
   queue_as: cron_tasks
+  active_job: true
 
 idp_deadline_notification_job:
   cron: "0 9 */1 * *" # Run at 9:00 AM every day
   class: Idp::DeadlineNotificationJob
   queue_as: cron_tasks
+  active_job: true
 
 disable_inactive_users:
   cron: "0 5 * * *"  # Runs daily at 5 AM
@@ -115,8 +131,10 @@ send_idp_comments_notifications:
   cron: "0 */12 * * *" # At every 12th hour
   class: SendIdpCommentsNotificationsJob
   queue_as: cron_tasks
+  active_job: true
 
 delete_expired_meeting_recordings_job:
   cron: "0 3 * * *" # Runs daily at 3 AM
   class: MeetingRecordings::DeleteExpiredRecordingsJob
   queue_as: cron_tasks
+  active_job: true

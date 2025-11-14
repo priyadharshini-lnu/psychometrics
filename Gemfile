@@ -5,7 +5,7 @@ ruby '3.4.6'
 
 gem 'bootsnap',                   '~> 1.18.0', require: false
 gem 'bundler',                    '~> 2.3.17'
-gem 'rack',                       '~> 2.2.20'
+gem 'rack',                       '~> 3.0'
 
 gem 'barnes',                     '~> 0.0.7'
 gem 'faraday',                    '~> 1.10.0'
@@ -17,7 +17,7 @@ gem 'panko_serializer', '~> 0.8.3'
 gem 'paper_trail'
 gem 'paper_trail-association_tracking'
 gem 'pg',                         '~> 1.4'
-gem 'puma',                       '~> 5.6.9'
+gem 'puma',                       '~> 6.0'
 gem 'rails',                      '~> 8.0.0'
 gem 'rails-i18n',                 '~> 8.0'
 gem 'sassc-rails', '~> 2.1.2'
@@ -135,7 +135,7 @@ gem 'remotipart', '~> 1.3.1'
 gem 'chronic', '~> 0.10.2'
 gem 'mustache', '~> 1.1.1'
 gem 'rectify', git: 'https://github.com/TheTalentEnterprise/rectify.git', branch: 'tte-master'
-gem 'sidekiq', '~> 6.5.12'
+gem 'sidekiq', '~> 7.0'
 
 gem 'dry-swagger', '~> 0.7.2'
 gem 'dry-validation', '~> 1.10'
@@ -149,7 +149,7 @@ gem 'csv-safe'
 
 # SOAP client
 gem 'nkf'
-gem 'savon', '~> 2.14.0'
+gem 'savon', '~> 2.15.1'
 # Abort requests that are taking too long
 gem 'rack-timeout', '~> 0.4.2'
 
@@ -248,12 +248,12 @@ end
 gem 'rqrcode', '~> 2.1.1'
 
 # a scheduling add-on for sidekiq
-gem 'sidekiq-cron', '~> 1.7.0'
+gem 'sidekiq-cron', '~> 1.12.0'
 
 gem 'xml-simple', '~> 1.1.5'
 
 # required for azure
-gem 'sidekiq_alive', '~> 2.1.4'
+gem 'sidekiq_alive', '~> 2.4'
 
 gem 'psych', '~> 5.0'
 
