@@ -7,7 +7,11 @@ ar:
     direct_reportees: الموظفين المباشرين
     home: لوحة التحكم
     insights: البصائر
+    max_word_limit: يجب أن تكون على الأكثر %{max} كلمة
+    min_word_limit: يجب أن تكون على الأقل %{min} كلمة
     my_plan: خطتي
     profile: تفاصيلي
     profile_details: تفاصيل
+    selected_count: " %{count} المحدد"
+    skill_type: نوع المهارة
     tasks: مهامي

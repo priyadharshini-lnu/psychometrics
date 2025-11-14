@@ -7,7 +7,10 @@ id:
     direct_reportees: Bawahan Langsung
     home: Dashboard
     insights: Wawasan
+    max_word_limit: Must be at most %{max} words
+    min_word_limit: Must be at least %{min} words
     my_plan: Rencanaku
     profile: Profil
     profile_details: Detail
+    skill_type: Jenis Keterampilan
     tasks: Tugas

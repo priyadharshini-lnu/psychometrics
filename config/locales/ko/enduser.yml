@@ -7,7 +7,10 @@ ko:
     direct_reportees: 직접 보고서
     home: 대시보드
     insights: 인사이트
+    max_word_limit: Must be at most %{max} words
+    min_word_limit: Must be at least %{min} words
     my_plan: 내 요금제
     profile: 프로필
     profile_details: 세부 정보
+    skill_type: 스킬 유형
     tasks: 작업

@@ -7,7 +7,10 @@ cs:
     direct_reportees: Přímí zástupci
     home: Přístrojová deska
     insights: Poznatky
+    max_word_limit: Must be at most %{max} words
+    min_word_limit: Must be at least %{min} words
     my_plan: Můj plán
     profile: Profil
     profile_details: Detaily
+    skill_type: Typ dovednosti
     tasks: Úkoly

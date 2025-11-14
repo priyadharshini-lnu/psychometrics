@@ -7,7 +7,10 @@ hr:
     direct_reportees: Izravni izvješćenici
     home: Nadzorna ploča
     insights: Uvidi
+    max_word_limit: Must be at most %{max} words
+    min_word_limit: Must be at least %{min} words
     my_plan: Moj plan
     profile: Profil
     profile_details: Detalji
+    skill_type: Vrsta vještine
     tasks: Zadaci

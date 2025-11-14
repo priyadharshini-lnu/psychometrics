@@ -386,7 +386,7 @@ const UserDevelopmentPlanComponent = ({
         <>
           {operations}
           <Badge count={unreadCommentsCount} size="small">
-            <Tooltip title={I18n.t('idp.comment_details.add_comments')}>
+            <Tooltip placement="topLeft" title={I18n.t('idp.comment_details.add_comments')}>
               <Button
                 color="default"
                 aria-label={I18n.t('idp.add_comments')}
@@ -660,6 +660,7 @@ const UserDevelopmentPlanComponent = ({
             onAddSkill={handleSelectSkill}
             searchSkillResource={searchSkillResource}
             showBackButton={false}
+            allowSkillDeletion={false}
             skillGapReportData={null}
           />
         </Spin>

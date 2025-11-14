@@ -161,9 +161,21 @@ const ReflectiveQuestion = ({
             />
           </Form.Item>
           <Flex gap={8} className="mb-4" justify="space-between">
-            <span>
-              {I18n.t('idp.reflective_questions.word_limit', { min: question.minWords, max: question.maxWords })}
-            </span>
+            {question.minWords && question.maxWords && (
+              <span>
+                {I18n.t('idp.reflective_questions.word_limit', { min: question.minWords, max: question.maxWords })}
+              </span>
+            )}
+            {question.minWords && !question.maxWords && (
+              <span>
+                {I18n.t('enduser.min_word_limit', { min: question.minWords })}
+              </span>
+            )}
+            {question.maxWords && !question.minWords && (
+              <span>
+                {I18n.t('enduser.max_word_limit', { max: question.maxWords })}
+              </span>
+            )}
             <Flex flex={1} gap={4} justify="end">
               <Button
                 size="small"

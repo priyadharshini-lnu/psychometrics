@@ -109,9 +109,15 @@ export const AddDevelopmentActionModal: React.FC<Props> = ({
       maskClosable={false}
       footer={(
         <Flex justify="flex-end" flex={1} gap={12}>
-          {selectedDA.length > 0 && <Typography.Text>{`${selectedDA.length} selected`}</Typography.Text>}
+          {selectedDA.length > 0 && (
+            <Typography.Text>
+              {I18n.t('enduser.selected_count', {
+                count: selectedDA.length,
+              })}
+            </Typography.Text>
+          )}
           <ButtonWithArrow
-            label="Add"
+            label={I18n.t('common.actions.add')}
             size="small"
             type="primary"
             disabled={selectedDA.length === 0}

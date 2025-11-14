@@ -7,7 +7,10 @@ es-ES:
     direct_reportees: Direct Reportees
     home: Cuadro de mandos
     insights: Información
+    max_word_limit: Must be at most %{max} words
+    min_word_limit: Must be at least %{min} words
     my_plan: Mi plan
     profile: Perfil
     profile_details: Datos
+    skill_type: Tipo de habilidad
     tasks: Tareas

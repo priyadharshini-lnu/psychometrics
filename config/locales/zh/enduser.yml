@@ -7,7 +7,10 @@ zh:
     direct_reportees: 直下报告
     home: 仪表板
     insights: 见解
+    max_word_limit: Must be at most %{max} words
+    min_word_limit: Must be at least %{min} words
     my_plan: 我的计划
     profile: 简介
     profile_details: 详情
+    skill_type: 技能类型
     tasks: 任务

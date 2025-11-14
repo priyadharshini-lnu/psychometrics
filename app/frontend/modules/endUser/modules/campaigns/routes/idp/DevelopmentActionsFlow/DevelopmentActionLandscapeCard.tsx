@@ -21,7 +21,9 @@ import {
   saveUserIdpSkills,
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 import styles from './DevelopmentActionLandscapeCard.less'
-import { DevelopmentAction, SkillWithDevelopmentActions, UserIdpSkill } from
+import {
+  DevelopmentAction, SkillWithDevelopmentActions, Skill,
+} from
   '~/components/IdpShared/DevelopmentActions/Types'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { developmentActionLearningStylesConfig, sourceTypeConfig }
@@ -104,8 +106,9 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
   }
 
   const onRemoveSkill = () => {
-    saveUserIdpSkills(Object.values(userIdpSkills)
-      .filter((skill: UserIdpSkill) => skill.id !== userIdpSkillId)).then(() => {
+    const selectedSkills = Object.values(userIdpSkills)
+      .filter((skill: Skill) => skill.id !== userIdpSkillId) as Skill[]
+    saveUserIdpSkills(selectedSkills).then(() => {
       setOpenSkillDeletionModal(false)
     })
   }

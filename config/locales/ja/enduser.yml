@@ -7,7 +7,10 @@ ja:
     direct_reportees: 直下のレポート
     home: ダッシュボード
     insights: インサイト
+    max_word_limit: Must be at most %{max} words
+    min_word_limit: Must be at least %{min} words
     my_plan: 私の計画
     profile: プロフィール
     profile_details: 詳細
+    skill_type: スキルの種類
     tasks: タスク

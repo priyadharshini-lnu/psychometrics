@@ -7,7 +7,10 @@ nl:
     direct_reportees: Directe rapporten
     home: Dashboard
     insights: Inzichten
+    max_word_limit: Must be at most %{max} words
+    min_word_limit: Must be at least %{min} words
     my_plan: Mijn plan
     profile: Profiel
     profile_details: Details
+    skill_type: Type vaardigheid
     tasks: Taken

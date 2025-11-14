@@ -7,7 +7,10 @@ fr:
     direct_reportees: Subordonnés
     home: Tableau de bord
     insights: Perspectives
+    max_word_limit: Must be at most %{max} words
+    min_word_limit: Must be at least %{min} words
     my_plan: Mon plan
     profile: Profil
     profile_details: Détails
+    skill_type: Type de compétence
     tasks: Tâches

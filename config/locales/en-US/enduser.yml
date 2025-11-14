@@ -7,7 +7,10 @@ en-US:
     direct_reportees: Direct Reportees
     home: Dashboard
     insights: Insights
+    max_word_limit: Must be at most %{max} words
+    min_word_limit: Must be at least %{min} words
     my_plan: My Plan
     profile: Profile
     profile_details: Details
+    skill_type: Skill Type
     tasks: Tasks

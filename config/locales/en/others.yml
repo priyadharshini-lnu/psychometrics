@@ -2656,6 +2656,7 @@ en:
       remove: Remove Development Action
       save_plan: Save Plan
       search_development_actions: Search Development Actions
+      selected_count: "%{count} selected"
       show_development_action_information: Show Development Action information
       skill: Skill
       sprint: Sprint
@@ -2852,7 +2853,9 @@ en:
         max_words: The answer allows a maximum %{count} words
         min_words: The answer requires at least %{count} words
         required: The answer to the question is required
+      max_word_limit: Must be at most %{max} words
       max_words: Max Words
+      min_word_limit: Must be at least %{min} words
       min_words: Min Words
       no_answer_provided: No answer provided yet
       no_reflective_questions: No reflective questions available
@@ -2885,6 +2888,7 @@ en:
     summary_logs: Summary logs for %{reporteeName}
     technical: Technical
     user_idp_status:
+      ai_assisted_idp_in_progress: AI Assisted IDP In Progress
       approved: Approved
       completed: Completed
       completion_not_started: Completion Not Started

@@ -2665,6 +2665,7 @@ ar:
       remove: إزالة
       save_plan: حفظ الخطة
       search_development_actions: إجراءات تطوير البحث
+      selected_count: مختارة %{count}
       show_development_action_information: إظهار معلومات إجراءات التطوير
       skill: مهارة
       sprint: سباق قصير
@@ -2859,7 +2860,9 @@ ar:
         max_words: تسمح الإجابة بحد أقصى %{count} الكلمات
         min_words: تتطلب الإجابة ما لا يقل عن %{count} الكلمات
         required: إجابة السؤال مطلوبة
+      max_word_limit: يجب أن تكون على الأكثر %{max} كلمة
       max_words: الحد الأقصى للكلمات
+      min_word_limit: يجب أن تكون على الأقل %{min} كلمة
       min_words: كلمات دقيقة
       no_answer_provided: لم يتم تقديم إجابة حتى الآن
       no_reflective_questions: لا توجد أسئلة عاكسة
@@ -2892,6 +2895,7 @@ ar:
     summary_logs: سجلات ملخصة ل %{reporteeName}
     technical: اِصطِلاحِيّ
     user_idp_status:
+      ai_assisted_idp_in_progress: الذكاء الاصطناعي يساعد IDP في التقدم
       approved: تمت الموافقة
       completed: اكمال
       completion_not_started: لم يبدأ الانتهاء
