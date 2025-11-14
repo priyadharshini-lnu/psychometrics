@@ -14,9 +14,12 @@ module Api
         def proficiency_levels
           skill = ::Skill.find_by(id: params[:id])
           result = Skills::GetProficiencyLevel.call(skill)
-
-          jsonapi_render json: result[:ok][:proficiency_level],
-                         options: { resource: Api::V2::Administration::ProficiencyLevelResource }
+          if result[:ok][:proficiency_level]
+            jsonapi_render json: result[:ok][:proficiency_level],
+                           options: { resource: Api::V2::Administration::ProficiencyLevelResource }
+          else
+            jsonapi_render_errors status: :not_found
+          end
         end
 
         def tags_search

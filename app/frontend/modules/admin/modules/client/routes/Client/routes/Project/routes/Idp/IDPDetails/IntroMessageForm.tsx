@@ -74,7 +74,6 @@ export const IntroMessageForm: FC<Props> = ({ idp, fetch }) => {
       apiConfig: {},
       responseType: IntroMessageTR,
     }).then(() => {
-      close()
       message.success(I18n.t('administration.idp.intro_message_success'))
       fetch()
     })
