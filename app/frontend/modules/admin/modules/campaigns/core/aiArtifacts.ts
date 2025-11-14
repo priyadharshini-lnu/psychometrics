@@ -99,11 +99,12 @@ export type CampaignAiArtifactResult = t.TypeOf<typeof CampaignAiArtifactResultT
 export type ArtifactResultsAttributes = t.TypeOf<typeof ArtifactResultsAttributesTR>
 
 
-export type CampaignAiArtifactDataSource ={
+export type CampaignAiArtifactDataSource = {
   id: string
   key: string
   participantId: string
   name: string
+  email: string
   artifacts: {
     [key: string]: {
       results: Array<{
@@ -111,7 +112,7 @@ export type CampaignAiArtifactDataSource ={
         value: string | null
         type: string
       }>
-      error: string|null
+      error: string | null
       id: number
       parsedDependencies: string | null
       generatedAt: string | null,

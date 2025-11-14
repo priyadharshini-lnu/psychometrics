@@ -34,7 +34,7 @@ export const ArtifactResultsDrawer: React.FC<ArtifactResultsDrawerProps> = ({
     basePath: `campaigns/${campaignId}`,
   })
 
-  const generateResult = async (id:string) => memberActionAIArtifactResults({
+  const generateResult = async (id: string) => memberActionAIArtifactResults({
     id,
     action: 'generate',
     method: 'post',
@@ -44,27 +44,29 @@ export const ArtifactResultsDrawer: React.FC<ArtifactResultsDrawerProps> = ({
         save_results: true,
       },
     },
-  }).then((res:ArtifactResultsAttributes) => {
-    setArtifactData((prevData) => {
-      const updatedArtifacts = { ...prevData.artifacts }
-      updatedArtifacts[res.artifact.name] = {
-        results: res.results,
-        error: res.error,
-        id: res.artifact.id,
-        parsedDependencies: res.parsedDependencies,
-        generatedAt: res.generatedAt,
-        totalInputTokens: res.totalInputTokens,
-        totalOutputTokens: res.totalOutputTokens,
-      }
-
-      return {
-        ...prevData,
-        artifacts: updatedArtifacts,
-      }
-    })
-  }).catch((e) => {
-    throw new Error(e.base[0].detail)
   })
+    .then((res: ArtifactResultsAttributes) => {
+      setArtifactData((prevData) => {
+        const updatedArtifacts = { ...prevData.artifacts }
+        updatedArtifacts[res.artifact.name] = {
+          results: res.results,
+          error: res.error,
+          id: res.artifact.id,
+          parsedDependencies: res.parsedDependencies,
+          generatedAt: res.generatedAt,
+          totalInputTokens: res.totalInputTokens,
+          totalOutputTokens: res.totalOutputTokens,
+        }
+
+        return {
+          ...prevData,
+          artifacts: updatedArtifacts,
+        }
+      })
+    })
+    .catch((e) => {
+      throw new Error(e.base[0].detail)
+    })
 
   return (
     <Drawer
@@ -77,18 +79,20 @@ export const ArtifactResultsDrawer: React.FC<ArtifactResultsDrawerProps> = ({
       className={styles.artifactResultsDrawer}
     >
       <Flex vertical>
-        <Flex flex={1} className="p-5">
-          <Typography.Title level={5} style={{ textAlign: 'center' }}>{artifactData.name}</Typography.Title>
+        <Flex flex={1} vertical className="p-5">
+          <Typography.Title level={5}>{artifactData.name}</Typography.Title>
+          <Typography.Text>{artifactData.email}</Typography.Text>
         </Flex>
         <Divider style={{ margin: 0 }} />
-        {Object.keys(artifactData.artifacts).map(artifactName => (
-          <GeneratedArtifact
-            key={artifactName}
-            artifactName={artifactName}
-            artifactData={artifactData.artifacts[artifactName]}
-            generateResult={generateResult}
-          />
-        ))}
+        {Object.keys(artifactData.artifacts)
+          .map(artifactName => (
+            <GeneratedArtifact
+              key={artifactName}
+              artifactName={artifactName}
+              artifactData={artifactData.artifacts[artifactName]}
+              generateResult={generateResult}
+            />
+          ))}
       </Flex>
     </Drawer>
   )
