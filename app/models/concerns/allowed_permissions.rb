@@ -78,6 +78,7 @@ module AllowedPermissions
     'auditLogs' => ['view'],
     'workshops' => %w[view manage export_status view_recordings],
     'idp_templates' => %w[view manage],
+    'user_idp_plans' => %w[view manage],
     'proficiency_levels' => %w[view manage import export import_translations export_translations],
     'job_roles' => %w[view manage import_translations export_translations],
     'reflection_questions' => %w[view manage import export],
@@ -151,6 +152,7 @@ module AllowedPermissions
     'datasheets' => %w[view manage],
     'workshops' => %w[view manage export_status view_recordings],
     'idp_templates' => %w[view manage],
+    'user_idp_plans' => %w[view manage],
     'proficiency_levels' => %w[view manage import export import_translations export_translations],
     'skills' => %w[view manage import export import_translations export_translations],
     'job_roles' => %w[view manage import_translations export_translations],
@@ -198,6 +200,7 @@ module AllowedPermissions
     ],
     'workshops' => %w[view manage view_recordings],
     'idp_templates' => %w[view manage],
+    'user_idp_plans' => %w[view manage],
     'job_roles' => %w[view],
     'proficiency_levels' => %w[view],
     'skills' => %w[view]

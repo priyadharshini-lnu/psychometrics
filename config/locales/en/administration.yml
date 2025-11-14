@@ -284,6 +284,10 @@ en:
             manage: Manage
             title: SMS Invites
             view: View
+          userIdpPlans:
+            manage: Manage
+            title: User IDP Plans
+            view: View
           users:
             reset_password: Reset Password
             title: Users
