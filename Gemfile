@@ -185,7 +185,6 @@ group :development, :test do
   gem 'awesome_print', '~> 1.9.2'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'bundler-audit', require: false
   gem 'byebug', platform: :mri
   gem 'dry-cli', '~> 1.2.0'
   gem 'factory_bot_rails'
