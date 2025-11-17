@@ -7,10 +7,13 @@ en-US:
     change_password: Change Password
     clear_filters: Clear Filters
     edit: Edit
+    edited: New
     id: ID
     internet_disconnected_message: Trying to reconnect. Please check your internet connection.
     mte_logo_alt_text: Mercer Talent Enterprise logo
     name: Name
+    new: New
+    removed: Removed
     search: Search
     table:
       entries:

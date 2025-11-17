@@ -1,16 +1,23 @@
 ---
 de:
   enduser:
+    add_idp_plan_note: Notiz hinzufügen...
+    add_idp_plan_rejection_reason: Grund hinzufügen...
+    approve_idp_plan: Plan genehmigen
     bookings: Buchungen
     campaign: Kampagne
     development: Entwicklung
     direct_reportees: Direkte Berichte
     home: Dashboard
+    idp_plan_approval_note: Genehmigungsnotiz
     insights: Einblicke
-    max_word_limit: Must be at most %{max} words
-    min_word_limit: Must be at least %{min} words
+    max_word_limit: Darf höchstens %{max} Wörter haben
+    min_word_limit: Muss mindestens %{min} Wörter haben
     my_plan: Mein Plan
     profile: Profil
     profile_details: Details
+    reason_for_idp_plan_rejection: Grund für die Ablehnung des Plans
+    reject_idp_plan: Plan ablehnen
+    selected_count: Ausgewählte
     skill_type: Fertigkeitstyp
     tasks: Aufgaben

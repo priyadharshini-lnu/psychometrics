@@ -7,9 +7,12 @@ cs:
     change_password: Změna hesla
     clear_filters: Vymazat filtry
     edit: Upravit
+    edited: Nové
     internet_disconnected_message: Probíhá pokus o opětovné připojení. Zkontrolujte připojení k internetu.
     mte_logo_alt_text: Logo Mercer Talent Enterprise
     name: Název
+    new: Nové
+    removed: Odstraněno
     search: Hledat
     table:
       entries:

@@ -7,10 +7,13 @@ zh:
     change_password: 更改密码
     clear_filters: 清除筛选
     edit: 编辑
+    edited: 新的
     id: ID
     internet_disconnected_message: 正在尝试重新连接。请检查你的互联网连接。
     mte_logo_alt_text: 美世人才企业标识
     name: 名称
+    new: 新的
+    removed: 已删除
     search: 搜索
     table:
       entries:

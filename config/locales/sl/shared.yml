@@ -7,10 +7,13 @@ sl:
     change_password: Spremeni geslo
     clear_filters: Počistite filtre
     edit: Uredi
+    edited: Novo
     id: ID
     internet_disconnected_message: Ponovno vzpostavljamo povezavo. Preverite internetno povezavo.
     mte_logo_alt_text: Logotip Mercer Talent Enterprise
     name: Ime
+    new: Novo
+    removed: Odstranjen
     search: Iskanje
     table:
       entries:

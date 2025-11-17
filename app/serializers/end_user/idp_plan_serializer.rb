@@ -5,7 +5,7 @@ module EndUser
     attributes :status, :self_rating_enabled, :one_click_idp_enabled, :skill_gap_report_available,
                :reflection_questions, :unread_comments_count, :instructions,
                :user_idp_skills, :user_idp_development_actions, :completion_status, :approval_status,
-               :can_revert_to_last_approved
+               :can_revert_to_last_approved, :review_note
 
     delegate :instructions, :self_rating_enabled, :one_click_idp_enabled, to: :idp_template
 

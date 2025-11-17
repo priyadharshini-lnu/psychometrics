@@ -7,10 +7,13 @@ zh-Hant:
     change_password: 變更密碼
     clear_filters: 清除過濾器
     edit: 編輯
+    edited: 新
     id: 同上
     internet_disconnected_message: 嘗試重新連線，請檢查您的網路連線。
     mte_logo_alt_text: 美世人才企業標誌
     name: 名稱
+    new: 新
+    removed: 已移除
     search: 搜尋
     table:
       entries:

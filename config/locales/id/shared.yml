@@ -7,10 +7,13 @@ id:
     change_password: Ubah Kata Sandi
     clear_filters: Hapus Filter
     edit: Sunting
+    edited: Baru
     id: ID
     internet_disconnected_message: Mencoba menyambung kembali, periksa koneksi internet Anda.
     mte_logo_alt_text: Logo Mercer Talent Enterprise
     name: Nama
+    new: Baru
+    removed: Dihapus
     search: Pencarian
     table:
       entries:

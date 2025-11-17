@@ -7,10 +7,13 @@ nl:
     change_password: Wachtwoord wijzigen
     clear_filters: Filters wissen
     edit: Bewerk
+    edited: Nieuw
     id: ID
     internet_disconnected_message: Probeer opnieuw verbinding te maken. Controleer uw internetverbinding.
     mte_logo_alt_text: Mercer logo voor talentondernemingen
     name: Naam
+    new: Nieuw
+    removed: Verwijderd
     search: Zoek op
     table:
       entries:

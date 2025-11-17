@@ -7,10 +7,13 @@ vi:
     change_password: Thay đổi mật khẩu
     clear_filters: Xóa bộ lọc
     edit: Biên tập
+    edited: Mới
     id: ID
     internet_disconnected_message: Đang cố gắng kết nối lại. Vui lòng kiểm tra kết nối internet của bạn.
     mte_logo_alt_text: Logo Mercer Talent Enterprise
     name: Tên
+    new: Mới
+    removed: Gỡ bỏ
     search: Tìm kiếm
     table:
       entries:

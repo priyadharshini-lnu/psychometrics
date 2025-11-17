@@ -7,10 +7,13 @@ it:
     change_password: Modifica la password
     clear_filters: Cancella i filtri
     edit: Modifica
+    edited: Nuove
     id: ID
     internet_disconnected_message: Si prega di controllare la connessione a Internet.
     mte_logo_alt_text: Logo Mercer Talent Enterprise
     name: Nome
+    new: Nuove
+    removed: Rimosso
     search: Cerca
     table:
       entries:

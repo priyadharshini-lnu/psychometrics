@@ -7,10 +7,13 @@ bg:
     change_password: Промяна на паролата
     clear_filters: Изчистете филтрите
     edit: Редактирайте
+    edited: Нов
     id: Идентификация
     internet_disconnected_message: Опитвам се да възстановя връзката. Моля, проверете интернет връзката си.
     mte_logo_alt_text: Логото на Mercer Talent Enterprise
     name: Име
+    new: Нов
+    removed: Отстранени
     search: Търсете
     table:
       entries:

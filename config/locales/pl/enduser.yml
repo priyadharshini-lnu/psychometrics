@@ -1,16 +1,21 @@
 ---
 pl:
   enduser:
+    add_idp_plan_note: Dodaj notatkę...
+    add_idp_plan_rejection_reason: Dodaj powód...
+    approve_idp_plan: Zatwierdź plan
     bookings: Rezerwacje
     campaign: Kampania
     development: Rozwój
-    direct_reportees: Direktywni
+    direct_reportees: Bezpośredni podwładni
     home: Deska rozdzielcza
+    idp_plan_approval_note: Notatka zatwierdzenia
     insights: Obserwacje
-    max_word_limit: Must be at most %{max} words
-    min_word_limit: Must be at least %{min} words
+    max_word_limit: Musi mieć maksymalnie %{max} słów
+    min_word_limit: Musi mieć co najmniej %{min} słów
     my_plan: Mój plan
     profile: Profil
-    profile_details: Detale
+    profile_details: Szczegóły
+    selected_count: Wybrane
     skill_type: Typ umiejętności
     tasks: Zadania

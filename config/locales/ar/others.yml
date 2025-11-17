@@ -2505,6 +2505,8 @@ ar:
   idp:
     actions: الإجراءات
     add_comments: أضف تعليقات
+    add_note: إضافة ملاحظة...
+    add_reason: إضافة سبب...
     added_development_action: إجراءات إنمائية مضافة
     ai:
       assistant:
@@ -2560,6 +2562,8 @@ ar:
       welcome:
         text: هل أنت مستعد لرسم نموك جوني؟ هيا نبدأ!
         title: مرحبا، أنا مساعد التطوير الخاص بك
+    approval_note: مذكرة الموافقة
+    approve_plan: الموافقة على الخطة
     behavioral: سلوكية
     board: اللوحة
     change_history: تغيير التاريخ
@@ -2848,6 +2852,7 @@ ar:
     plan_submitted_for_manager_approval: تم تقديم خطة التطوير الفردية الخاصة بك لموافقة المدير.
     private: عسكري
     public: عام
+    reason_for_rejection: سبب الرفض
     reflective_questions:
       already_completed: لقد تم الانتهاء من IDP بالفعل، ولا يمكنك الإجابة عن الأسئلة الآن.
       answer: جواب
@@ -2875,6 +2880,7 @@ ar:
       updated_successfully: تم تحديث إجاباتك بنجاح
       word_limit: يجب أن تكون بين %{min} و %{max} كلمة
       words: الكلمات
+    reject_plan: رفض الخطة
     remove_skill: إزالة المهارة
     remove_skill_from_plan: إزالة %{name} المهارة من الخطة
     removed_development_action: إجراءات التطوير التي تمت إزالتها

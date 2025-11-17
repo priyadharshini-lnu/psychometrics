@@ -7,10 +7,13 @@ ja:
     change_password: パスワードの変更
     clear_filters: 絞り込みをクリア
     edit: 編集
+    edited: 新規
     id: ID
     internet_disconnected_message: 再接続の試行中です。インターネット接続を確認してください。
     mte_logo_alt_text: マーサー・タレント・エンタープライズのロゴ
     name: 名称
+    new: 新規
+    removed: 削除
     search: 検索
     table:
       entries:

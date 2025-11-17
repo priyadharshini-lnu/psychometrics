@@ -7,10 +7,13 @@ hu:
     change_password: Jelszó módosítása
     clear_filters: Szűrők törlése
     edit: Szerkesztés
+    edited: Új
     id: ID
     internet_disconnected_message: Próbálok újra kapcsolódni. Kérjük, ellenőrizze az internetkapcsolatát.
     mte_logo_alt_text: Mercer Talent Enterprise logó
     name: Név
+    new: Új
+    removed: Eltávolított
     search: Keresés
     table:
       entries:

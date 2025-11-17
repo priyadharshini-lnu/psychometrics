@@ -1,16 +1,21 @@
 ---
 zh:
   enduser:
+    add_idp_plan_note: 添加备注...
+    add_idp_plan_rejection_reason: 添加原因...
+    approve_idp_plan: 批准计划
     bookings: 预订
     campaign: 活动
     development: 发展
-    direct_reportees: 直下报告
+    direct_reportees: 直接下属
     home: 仪表板
-    insights: 见解
-    max_word_limit: Must be at most %{max} words
-    min_word_limit: Must be at least %{min} words
+    idp_plan_approval_note: 批准备注
+    insights: 洞察
+    max_word_limit: 最多不能超过 %{max} 个字
+    min_word_limit: 最少需要 %{min} 个字
     my_plan: 我的计划
-    profile: 简介
-    profile_details: 详情
+    profile: 个人资料
+    profile_details: 详细信息
+    selected_count: 已选择
     skill_type: 技能类型
     tasks: 任务

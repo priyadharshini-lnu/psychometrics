@@ -7,10 +7,13 @@ th:
     change_password: เปลี่ยนรหัสผ่าน
     clear_filters: เคลียร์ตัวกรอง
     edit: แก้ไข
+    edited: ใหม่
     id: รหัส
     internet_disconnected_message: กำลังพยายามเชื่อมต่อใหม่ โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ
     mte_logo_alt_text: โลโก้ Mercer Talent Enterprise
     name: ชื่อ
+    new: ใหม่
+    removed: ถูก เอา ออก
     search: ค้นหา
     table:
       entries:

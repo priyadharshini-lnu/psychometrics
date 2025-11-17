@@ -1,17 +1,23 @@
 ---
 en:
   enduser:
+    add_idp_plan_note: Add Note...
+    add_idp_plan_rejection_reason: Add Reason...
+    approve_idp_plan: Approve Plan
     bookings: Bookings
     campaign: Campaign
     development: Development
     direct_reportees: Direct Reportees
     home: Home
+    idp_plan_approval_note: Approval Note
     insights: Insights
     max_word_limit: Must be at most %{max} words
     min_word_limit: Must be at least %{min} words
     my_plan: My Plan
     profile: Profile
     profile_details: Details
+    reason_for_idp_plan_rejection: Reason for Rejection
+    reject_idp_plan: Reject Plan
     selected_count: "%{count} selected"
     skill_type: Skill Type
     tasks: Tasks

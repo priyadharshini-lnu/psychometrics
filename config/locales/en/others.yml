@@ -2495,6 +2495,8 @@ en:
   idp:
     actions: Actions
     add_comments: Add Comments
+    add_note: Add Note...
+    add_reason: Add Reason...
     added_development_action: Added Development Action
     ai:
       assistant:
@@ -2550,6 +2552,8 @@ en:
       welcome:
         text: Ready to chart your growth journey? Let's begin!
         title: Hello, I'm your development assistant
+    approval_note: Approval Note
+    approve_plan: Approve Plan
     behavioral: Behavioral
     board: Board
     change_history: Change History
@@ -2841,6 +2845,7 @@ en:
     plan_submitted_for_manager_approval: Your Individual Development Plan has been submitted for manager approval.
     private: Private
     public: Public
+    reason_for_rejection: Reason for Rejection
     reflective_questions:
       already_completed: The IDP has already been completed, you cannot answer the questions now.
       answer: Answer
@@ -2868,6 +2873,7 @@ en:
       updated_successfully: Your answers have been updated successfully
       word_limit: Must be between %{min} and %{max} words
       words: Words
+    reject_plan: Reject Plan
     remove_skill: Remove Skill
     remove_skill_from_plan: Remove skill %{name} from plan
     removed_development_action: Removed Development Action

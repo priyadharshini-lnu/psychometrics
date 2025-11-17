@@ -1,16 +1,21 @@
 ---
 pt:
   enduser:
+    add_idp_plan_note: Adicionar Nota...
+    add_idp_plan_rejection_reason: Adicionar Motivo...
+    approve_idp_plan: Aprovar Plano
     bookings: Reservas
     campaign: Campanha
     development: Desenvolvimento
-    direct_reportees: Collegati
-    home: Painel de controlo
+    direct_reportees: Subordinados Diretos
+    home: Painel de controle
+    idp_plan_approval_note: Nota de Aprovação
     insights: Informações
-    max_word_limit: Must be at most %{max} words
-    min_word_limit: Must be at least %{min} words
-    my_plan: O meu plano
+    max_word_limit: Deve ter no máximo %{max} palavras
+    min_word_limit: Deve ter pelo menos %{min} palavras
+    my_plan: Meu plano
     profile: Perfil
     profile_details: Detalhes
+    selected_count: Selecionado
     skill_type: Tipo de habilidade
     tasks: Tarefas

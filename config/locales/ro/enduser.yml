@@ -1,16 +1,21 @@
 ---
 ro:
   enduser:
+    add_idp_plan_note: Adaugă notă...
+    add_idp_plan_rejection_reason: Adaugă motiv...
+    approve_idp_plan: Aprobă planul
     bookings: Rezervări
     campaign: Campanie
     development: Dezvoltare
-    direct_reportees: Raportari directi
+    direct_reportees: Raportări directe
     home: Tablou
+    idp_plan_approval_note: Notă de aprobare
     insights: Perspective
-    max_word_limit: Must be at most %{max} words
-    min_word_limit: Must be at least %{min} words
+    max_word_limit: Trebuie să aibă cel mult %{max} cuvinte
+    min_word_limit: Trebuie să aibă cel puțin %{min} cuvinte
     my_plan: Planul meu
     profile: Profil
     profile_details: Detalii
+    selected_count: Selectat
     skill_type: Tip de abilitate
     tasks: Sarcini

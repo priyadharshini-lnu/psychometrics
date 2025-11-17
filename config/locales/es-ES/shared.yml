@@ -7,10 +7,13 @@ es-ES:
     change_password: Cambiar contraseña
     clear_filters: Quitar filtros
     edit: Editar
+    edited: Nuevo/a
     id: ID
     internet_disconnected_message: Intentando volver a conectar. Compruebe su conexión a internet.
     mte_logo_alt_text: Logotipo de Mercer Talent Enterprise
     name: Nombre
+    new: Nuevo/a
+    removed: Eliminado
     search: Buscar
     table:
       entries:

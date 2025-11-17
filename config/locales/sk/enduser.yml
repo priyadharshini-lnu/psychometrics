@@ -1,16 +1,21 @@
 ---
 sk:
   enduser:
+    add_idp_plan_note: Pridať poznámku...
+    add_idp_plan_rejection_reason: Pridať dôvod...
+    approve_idp_plan: Schváliť plán
     bookings: Rezervácie
     campaign: Kampaň
     development: Vývoj
     direct_reportees: Priami podriadení
-    home: Tabuľu
+    home: Domov
+    idp_plan_approval_note: Poznámka k schváleniu
     insights: Postrehy
-    max_word_limit: Must be at most %{max} words
-    min_word_limit: Must be at least %{min} words
+    max_word_limit: Musí mať najviac %{max} slov
+    min_word_limit: Musí mať najmenej %{min} slov
     my_plan: Môj plán
     profile: Profil
-    profile_details: Podrobnosti na
+    profile_details: Podrobnosti profilu
+    selected_count: Vybrané
     skill_type: Typ zručnosti
     tasks: Úlohy

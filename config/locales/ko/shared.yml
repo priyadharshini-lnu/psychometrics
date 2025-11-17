@@ -7,10 +7,13 @@ ko:
     change_password: 비밀번호 변경
     clear_filters: 필터 지우기
     edit: 편집
+    edited: 새로 만들기
     id: ID
     internet_disconnected_message: 다시 연결하려고 합니다. 인터넷 연결을 확인하세요.
     mte_logo_alt_text: 머서 탤런트 엔터프라이즈 로고
     name: 이름
+    new: 새로 만들기
+    removed: 제거됨
     search: 검색
     table:
       entries:

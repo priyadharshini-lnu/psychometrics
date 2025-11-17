@@ -3,7 +3,7 @@ import {
   useState, FC, useContext,
 } from 'react'
 import {
-  Typography, Flex, Button, Space,
+  Typography, Flex, Button, Space, Popover,
   message,
   Tag,
   Avatar,
@@ -23,9 +23,13 @@ import {
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 import { DirectionalNavigateBackIcon, MediaQueryContext } from '~/glint'
 import styles from '../DirectReportees.less'
-import { CheckCircleOutlined, EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import {
+  CheckCircleOutlined,
+  EditOutlined, InfoCircleOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import UserDevelopmentPlan from '../../UserDevelopmentPlan'
 import { Separator } from '~/components/IdpShared/Separator'
+import { ApprovalRejectionPopover } from '../../components/ApprovalRejectionPopover'
 
 const { I18n } = window
 
@@ -34,6 +38,7 @@ const connector = connect((state: RootState) => ({
   idpSkills: state.campaigns.idp.userIdpSkills,
   idpUser: state.campaigns.idp.user,
   status: state.campaigns.idp.status,
+  reviewNote: state.campaigns.idp.reviewNote,
   unreadCommentsCount: state.campaigns.idp.unreadCommentsCount,
   availableDevelopmentActions: state.campaigns.idp.availableDevelopmentActions,
   idpSettings: getIdpSettings(state),
@@ -56,10 +61,14 @@ const DirectReportDetailsComponent: FC<Props> = ({
   updateUserIdpPlan,
   idpSettings,
   saveUserIdpDevelopmentActions,
+  reviewNote,
 }) => {
   const { userId: idpUserId } = useParams() as { userId: string }
   const [editMode, setEditMode] = useState(false)
   const [isUpdating, setIsUpdating] = useState(false)
+  const [isRejectPopoverOpen, setIsRejectPopoverOpen] = useState(false)
+  const [isApprovePopoverOpen, setIsApprovePopoverOpen] = useState(false)
+
   const { managerApprovesIdp, managerCanEditIdp } = idpSettings
   const { isMobile } = useContext(MediaQueryContext)
 
@@ -85,15 +94,16 @@ const DirectReportDetailsComponent: FC<Props> = ({
     ))
   }
 
-  const updateReporteeIdpStatus = (status: string) => {
+  const updateReporteeIdpStatus = (status: string, note = '') => {
     setIsUpdating(true)
-    updateUserIdpPlan(idpUser.id, status).then(() => {
+    updateUserIdpPlan(idpUser.id, status, note).then(() => {
       setIsUpdating(false)
     }).catch(() => {
       setIsUpdating(false)
       message.error(I18n.t('common.errors.something_wrong'))
     })
   }
+
 
   const operations = (
     <>
@@ -113,25 +123,47 @@ const DirectReportDetailsComponent: FC<Props> = ({
           {status === USER_IDP_PLAN_STATUS.IN_REVIEW
           && (
             <>
-              <Button
-                type="default"
-                onClick={() => updateReporteeIdpStatus(USER_IDP_PLAN_STATUS.REJECTED)}
-                loading={isUpdating}
-                disabled={status === USER_IDP_PLAN_STATUS.REJECTED || canNotModifyApprovalState}
+              <ApprovalRejectionPopover
+                isLoading={isUpdating}
+                isOpen={isRejectPopoverOpen}
+                setOpen={setIsRejectPopoverOpen}
+                clickHandler={
+                  (reason:string) => updateReporteeIdpStatus(USER_IDP_PLAN_STATUS.REJECTED, reason)
+                }
+                placeholder={I18n.t('enduser.add_idp_plan_rejection_reason')}
+                title={I18n.t('enduser.reject_idp_plan')}
+                allowDisabling
               >
-                {status === USER_IDP_PLAN_STATUS.REJECTED
-                  ? I18n.t('idp.user_idp_status.rejected') : I18n.t('common.actions.reject')}
-              </Button>
-              <Button
-                type="primary"
-                onClick={() => updateReporteeIdpStatus(USER_IDP_PLAN_STATUS.APPROVED)}
-                loading={isUpdating}
-                disabled={status === USER_IDP_PLAN_STATUS.APPROVED || canNotModifyApprovalState}
-                icon={status === USER_IDP_PLAN_STATUS.APPROVED && <CheckCircleOutlined style={{ color: '#52c41a' }} />}
+                <Button
+                  type="default"
+                  loading={isUpdating}
+                  disabled={status === USER_IDP_PLAN_STATUS.REJECTED || canNotModifyApprovalState}
+                >
+                  {status === USER_IDP_PLAN_STATUS.REJECTED
+                    ? I18n.t('idp.user_idp_status.rejected') : I18n.t('common.actions.reject')}
+                </Button>
+              </ApprovalRejectionPopover>
+              <ApprovalRejectionPopover
+                isLoading={isUpdating}
+                isOpen={isApprovePopoverOpen}
+                setOpen={setIsApprovePopoverOpen}
+                clickHandler={
+                  (note:string) => updateReporteeIdpStatus(USER_IDP_PLAN_STATUS.APPROVED, note)
+                }
+                placeholder={I18n.t('enduser.add_idp_plan_note')}
+                title={I18n.t('enduser.approve_idp_plan')}
               >
-                {status === USER_IDP_PLAN_STATUS.APPROVED
-                  ? I18n.t('idp.user_idp_status.approved') : I18n.t('common.actions.approve')}
-              </Button>
+                <Button
+                  type="primary"
+                  loading={isUpdating}
+                  disabled={status === USER_IDP_PLAN_STATUS.APPROVED || canNotModifyApprovalState}
+                  icon={status === USER_IDP_PLAN_STATUS.APPROVED
+                     && <CheckCircleOutlined style={{ color: '#52c41a' }} />}
+                >
+                  {status === USER_IDP_PLAN_STATUS.APPROVED
+                    ? I18n.t('idp.user_idp_status.approved') : I18n.t('common.actions.approve')}
+                </Button>
+              </ApprovalRejectionPopover>
             </>
           )}
         </>
@@ -178,11 +210,35 @@ const DirectReportDetailsComponent: FC<Props> = ({
               {I18n.t('idp.direct_reportee_details')}
             </Typography.Title>
           </Space>
-          <Space className="self-end mb-2">
-            <Tag color={STATUS_COLORS[status]}>
+          <Flex className="self-end mb-2">
+            <Tag className="me-0" color={STATUS_COLORS[status]}>
               {I18n.t(`idp.user_idp_status.${status}`)}
             </Tag>
-          </Space>
+            <Popover
+              placement="bottomLeft"
+              title={(
+                <span>
+                  {status === USER_IDP_PLAN_STATUS.REJECTED ? I18n.t('enduser.reason_for_idp_plan_rejection')
+                    : I18n.t('enduser.idp_plan_approval_note')}
+                </span>
+              )}
+              trigger={['click']}
+              content={reviewNote}
+            >
+              {reviewNote && ([USER_IDP_PLAN_STATUS.REJECTED, USER_IDP_PLAN_STATUS.APPROVED].includes(status)) && (
+                <Button
+                  style={{
+                    height: '1.4rem',
+                    width: '1rem',
+                    color: 'inherit',
+                  }}
+                  type="link"
+                  className="p-0 ms-1"
+                  icon={<InfoCircleOutlined />}
+                />
+              )}
+            </Popover>
+          </Flex>
         </Flex>
         <Separator
           className="mb-2 mt-0"
