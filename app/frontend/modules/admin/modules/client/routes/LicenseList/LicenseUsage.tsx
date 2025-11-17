@@ -37,7 +37,7 @@ const LicenseUsageComponent: React.FC<Props> = () => {
       include_meta: ['permissions', 'report_family_name'],
       fields: { users: ['id', 'name'] },
       filter: {
-        project_id_eq: projectId,
+        ...(projectId ? { project_id_eq: projectId } : {}),
       },
     },
   }
