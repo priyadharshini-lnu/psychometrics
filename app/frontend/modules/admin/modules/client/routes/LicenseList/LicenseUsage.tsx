@@ -3,7 +3,6 @@ import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useLocation, useParams } from 'react-router-dom'
 import { Radio, Space, Switch } from 'antd'
-import qs from 'qs'
 import dayjs from '~/utils/dayjs'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { LicenseUsage, LicenseUsageTR } from '~/modules/admin/modules/client/core/license_usages'
@@ -25,9 +24,9 @@ type Props = PropsFromRedux
 const LicenseUsageComponent: React.FC<Props> = () => {
   const { clientId, licenseId } = useParams() as { clientId: string, licenseId: string}
 
-  const queryParams = qs.parse(useLocation().search, { ignoreQueryPrefix: true })
-  const projectId = queryParams?.filter?.project_id
-
+  const { search } = useLocation()
+  const searchParams = new URLSearchParams(search)
+  const projectId = searchParams.get('filter[project_id]')
 
   const config = {
     trackUrl: true,
@@ -37,7 +36,9 @@ const LicenseUsageComponent: React.FC<Props> = () => {
       include: ['user', 'status_updated_by'],
       include_meta: ['permissions', 'report_family_name'],
       fields: { users: ['id', 'name'] },
-      filter: { project_id_eq: projectId },
+      filter: {
+        project_id_eq: projectId,
+      },
     },
   }
 
