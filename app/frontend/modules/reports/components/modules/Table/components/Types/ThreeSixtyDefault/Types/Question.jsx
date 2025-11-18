@@ -98,28 +98,19 @@ function FilterTable ({
   }
 
   return (
-    <tbody data-paginatable={1} data-filter-id={filter.id}>
-      <tr data-filter-header>
-        <td className={styles.filter}>
-          {I18nStore.tFilterName(filter)}
-        </td>
-      </tr>
-      <Results filterId={filterId} results={getResults()} paginationContext={paginationContext} />
-    </tbody>
+    <Results
+      filter={filter}
+      model={model}
+      filterId={filterId}
+      results={getResults()}
+      paginationContext={paginationContext}
+    />
   )
 }
 
-const Results = ({ results, filterId, paginationContext }) => {
-  if (!results || results.length === 0) {
-    return (
-      <tr data-paginatable={2}>
-        <td className={cs([styles.answer, styles.noResponse])}>
-          {I18nStore.t('reports.modules.three_sixty_default.question.no_response')}
-        </td>
-      </tr>
-    )
-  }
-
+const Results = ({
+  model, results, filter, filterId, paginationContext,
+}) => {
   if (paginationContext) {
     return (
       paginationContext.resultIndexes[filterId].map(i => (
@@ -132,13 +123,36 @@ const Results = ({ results, filterId, paginationContext }) => {
     )
   }
 
-  return results.map((r, i) => (
-    <tr key={i} data-index={i} data-paginatable={2}>
-      <td className={styles.answer}>
-        <SafeHTML html={r} />
-      </td>
-    </tr>
-  ))
+  const hasResults = results && results.length > 0
+
+  if (!hasResults && model.props.hideRolesWithNoData) {
+    return null
+  }
+
+  return (
+    <tbody data-paginatable={1} data-filter-id={filter.id}>
+      <tr data-filter-header>
+        <td className={styles.filter}>
+          {I18nStore.tFilterName(filter)}
+        </td>
+      </tr>
+      {hasResults ? (
+        results.map((r, i) => (
+          <tr key={i} data-index={i} data-paginatable={2}>
+            <td className={styles.answer}>
+              <SafeHTML html={r} />
+            </td>
+          </tr>
+        ))
+      ) : (
+        <tr data-paginatable={2}>
+          <td className={cs([styles.answer, styles.noResponse])}>
+            {I18nStore.t('reports.modules.three_sixty_default.question.no_response')}
+          </td>
+        </tr>
+      )}
+    </tbody>
+  )
 }
 
 export default connect((state, { model }) => ({
