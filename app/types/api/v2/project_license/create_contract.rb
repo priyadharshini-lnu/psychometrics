@@ -4,6 +4,8 @@ module Api
   module V2
     module ProjectLicense
       class CreateContract < Contract
+        schema Api::V2::ProjectLicense::Schema.create_request
+
         rule(data: { attributes: :license_id }) do
           license_id = value
           next unless license_id

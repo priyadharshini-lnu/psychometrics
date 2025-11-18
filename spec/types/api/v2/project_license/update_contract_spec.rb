@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe Api::V2::ProjectLicense::UpdateContract do
-  # instantiate with the same request schema the controller uses
   subject(:contract) { described_class.new(schema: Api::V2::ProjectLicense::Schema.update_request) }
 
   let(:license) { create(:license, number: 10) }
@@ -21,14 +20,9 @@ RSpec.describe Api::V2::ProjectLicense::UpdateContract do
     end
 
     it "fails validation" do
-      # use the DB-loaded instance to avoid class/association mismatches
       db_project_license = ProjectLicense.find(project_license.id)
 
       result = contract.call(params, context: { project_license: db_project_license })
-
-      # debug (optional) — uncomment to inspect during failures
-      # puts "validated: #{result.to_h.inspect}"
-      # puts "errors: #{result.errors.to_h.inspect}"
 
       expect(result.failure?).to be_truthy
       expect(result.errors.to_h).to_not be_empty

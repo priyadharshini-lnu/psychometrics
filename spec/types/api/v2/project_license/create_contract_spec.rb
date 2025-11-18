@@ -32,7 +32,6 @@ RSpec.describe Api::V2::ProjectLicense::CreateContract do
     before { create(:project_license, project: project, license: license) }
 
     it 'fails with already present error' do
-      # pass project_id in context so the contract existence check uses ids (stable for specs)
       result = contract.call(params_for(usage_limit: 1, license_id: license.id.to_s), context: { project_id: project.id })
 
       expect(result.failure?).to be_truthy
