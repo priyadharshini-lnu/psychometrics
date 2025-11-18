@@ -110,7 +110,6 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
   if (isLoading) {
     return <Spin size="large" />
   }
-
   return (
     <Flex vertical style={{ padding: '24px' }}>
       <Flex gap={24}>
@@ -146,7 +145,7 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
             <Select>
               {availableAiProviders.map(provider => (
                 <Select.Option key={provider} value={provider}>
-                  {AI_PROVIDERS[provider].name}
+                  {AI_PROVIDERS[provider]?.name}
                 </Select.Option>
               ))}
             </Select>
