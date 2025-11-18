@@ -7,6 +7,10 @@ module Skills
     # - Input array can be 2048 of size maximum
     # - Single request must be 300k tokens maximum
     #
+    # OCI limitations:
+    # - A maximum of 96 inputs are allowed for each run.
+    # - For the text and image models, you can have files and inputs that all add up to 128,000 tokens.
+    #
     # Considering 1 skill will have content like:
     # "Name: Strategic Thinker. Description: A strategic thinker excels at analyzing complex problems,
     # anticipating future challenges, and creating effective long-term plans. They balance short-term
@@ -14,9 +18,15 @@ module Skills
     # and guide others.. Type: Behavioral"
     # Maximum words allowed VectorEmbedding::EMBEDDING_TEXT_MAX_WORDS = 300
     # Maximum Token: ~400
-    # 400 Token / Skill, 300000 / 400 = 750 Skills per request
-    # Using 700 to be safe
+    # OpenAI: 400 Token / Skill, 300000 / 400 = 750 Skills per request (Using 700 to be safe)
+    # OCI:    400 Token / Skill, 128000 / 400 = 320 Skills per request (Using 96 as max allowed)
+    #
+
     MAX_BATCH_SIZE = 700
+    PROVIDER_BATCH_SIZE = {
+      'openai' => 700,
+      'oci' => 96
+    }.freeze
 
     private_attr_reader :job_record, :skills_query
 
@@ -28,7 +38,7 @@ module Skills
     def call
       job_record&.update!(status: :in_progress, total_tasks: total_tasks)
 
-      skills_query.find_in_batches(batch_size: MAX_BATCH_SIZE) do |batch|
+      skills_query.find_in_batches(batch_size: batch_size) do |batch|
         result = process_batch(batch)
 
         return broadcast(:error, result[:error]) if result[:error]
@@ -66,9 +76,17 @@ module Skills
       result
     end
 
+    def batch_size
+      PROVIDER_BATCH_SIZE[provider] || MAX_BATCH_SIZE
+    end
+
+    def provider
+      @provider ||= Settings.ai_embedding_provider[:provider]
+    end
+
     def total_tasks
       @skills_count ||= skills_query.count
-      @total_tasks ||= (@skills_count.to_f / MAX_BATCH_SIZE).ceil
+      @total_tasks ||= (@skills_count.to_f / batch_size).ceil
     end
   end
 end

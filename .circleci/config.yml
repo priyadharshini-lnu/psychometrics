@@ -17,7 +17,7 @@ executors:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
       # Changed from cimg/postgres:14.8, Ref: https://github.com/CircleCI-Public/cimg-postgres/issues/120
-      - image: pgvector/pgvector:pg14
+      - image: pgvector/pgvector:pg17
         environment:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres

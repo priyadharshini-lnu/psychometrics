@@ -15,8 +15,15 @@ module VectorEmbeddable
     scope :without_embeddings, -> { where.missing(:vector_embedding) }
     scope :with_embeddings, -> { where.associated(:vector_embedding) }
     scope :nearest_neighbors, lambda { |embedding_vector, **options|
+      vector_column = case embedding_vector.size
+                        when 512
+                          :embedding
+                        when 1536
+                          :embedding1536
+                      end
+
       joins(:vector_embedding).
-        merge(VectorEmbedding.nearest_neighbors(:embedding, embedding_vector, **options)).
+        merge(VectorEmbedding.nearest_neighbors(vector_column, embedding_vector, **options)).
         select("#{table_name}.*")
     }
 

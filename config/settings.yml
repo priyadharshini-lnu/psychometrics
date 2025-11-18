@@ -2344,7 +2344,7 @@ ai_providers:
 available_ai_providers: <%= ENV.fetch('AVAILABLE_AI_PROVIDERS', nil) %>
 
 ai_embedding_provider:
-  provider: <%= ENV.fetch('EMBEDDING_PROVIDER', 'azure_openai') %>
+  provider: <%= ENV.fetch('EMBEDDING_PROVIDER', 'openai') %>
   model: <%= ENV.fetch('EMBEDDING_MODEL', 'text-embedding-3-large') %>
   api_key: <%= ENV.fetch('EMBEDDING_API_KEY', nil) %>
   api_endpoint: <%= ENV.fetch('EMBEDDING_API_ENDPOINT', nil) %>

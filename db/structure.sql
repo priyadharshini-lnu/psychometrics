@@ -1,6 +1,7 @@
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
@@ -8,6 +9,13 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
+
+--
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
 
 --
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
@@ -1172,15 +1180,15 @@ CREATE TABLE public.sheet_rows (
 --
 
 CREATE VIEW public.c_10313_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department"
+ SELECT id,
+    email AS "Email",
+    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
+    (data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position",
+    (data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
+    (data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department"
    FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 69)
-  ORDER BY sheet_rows.id;
+  WHERE (sheet_id = 69)
+  ORDER BY id;
 
 
 --
@@ -1188,12 +1196,12 @@ CREATE VIEW public.c_10313_datasheet AS
 --
 
 CREATE VIEW public.c_10463_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade"
+ SELECT id,
+    email AS "Email",
+    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade"
    FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 65)
-  ORDER BY sheet_rows.id;
+  WHERE (sheet_id = 65)
+  ORDER BY id;
 
 
 --
@@ -1201,16 +1209,16 @@ CREATE VIEW public.c_10463_datasheet AS
 --
 
 CREATE VIEW public.c_10501_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'First Name'::text) AS "First Name",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position"
+ SELECT id,
+    email AS "Email",
+    (data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department",
+    (data_deprecated_on_11_07_2025 ->> 'First Name'::text) AS "First Name",
+    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
+    (data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
+    (data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position"
    FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 62)
-  ORDER BY sheet_rows.id;
+  WHERE (sheet_id = 62)
+  ORDER BY id;
 
 
 --
@@ -1218,16 +1226,16 @@ CREATE VIEW public.c_10501_datasheet AS
 --
 
 CREATE VIEW public.c_10542_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'First Name'::text) AS "First Name"
+ SELECT id,
+    email AS "Email",
+    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
+    (data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position",
+    (data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
+    (data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department",
+    (data_deprecated_on_11_07_2025 ->> 'First Name'::text) AS "First Name"
    FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 70)
-  ORDER BY sheet_rows.id;
+  WHERE (sheet_id = 70)
+  ORDER BY id;
 
 
 --
@@ -1235,12 +1243,12 @@ CREATE VIEW public.c_10542_datasheet AS
 --
 
 CREATE VIEW public.c_10543_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade"
+ SELECT id,
+    email AS "Email",
+    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade"
    FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 72)
-  ORDER BY sheet_rows.id;
+  WHERE (sheet_id = 72)
+  ORDER BY id;
 
 
 --
@@ -4491,13 +4499,13 @@ CREATE TABLE public.user_assessment_factor_scores (
 --
 
 CREATE VIEW public.normalized_factor_scores AS
- SELECT user_assessment_factor_scores.id,
-    user_assessment_factor_scores.factor_id,
-    user_assessment_factor_scores.user_assessment_id,
-    ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
-    ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
-    ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
-    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
+ SELECT id,
+    factor_id,
+    user_assessment_id,
+    ((scores ->> 'norm_score'::text))::double precision AS norm_score,
+    ((scores ->> 'score'::text))::double precision AS score,
+    ((scores ->> 'zscore'::text))::double precision AS zscore,
+    ((scores ->> 'percentage'::text))::double precision AS percentage
    FROM public.user_assessment_factor_scores;
 
 
@@ -8083,7 +8091,8 @@ CREATE TABLE public.vector_embeddings (
     resource_type character varying NOT NULL,
     resource_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    embedding1536 public.vector(1536)
 );
 
 
@@ -15739,6 +15748,13 @@ CREATE INDEX index_vector_embeddings_on_embedding ON public.vector_embeddings US
 
 
 --
+-- Name: index_vector_embeddings_on_embedding1536; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_vector_embeddings_on_embedding1536 ON public.vector_embeddings USING hnsw (embedding1536 public.vector_cosine_ops);
+
+
+--
 -- Name: index_vector_embeddings_on_resource; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -19004,6 +19020,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20251114123626'),
 ('20251118061850'),
 ('20251112120914'),
 ('20251112112802'),
@@ -19948,4 +19965,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

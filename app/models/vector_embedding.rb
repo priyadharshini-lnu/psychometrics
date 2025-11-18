@@ -1,16 +1,25 @@
 # frozen_string_literal: true
 
 class VectorEmbedding < ApplicationRecord
-  EMBEDDING_DIMENSIONS = 512
+  DEFAULT_EMBEDDING_DIMENSIONS = 512
 
   belongs_to :resource, polymorphic: true
 
   has_neighbors :embedding
+  has_neighbors :embedding1536
 
-  validates :embedding, presence: true
   validates :resource, presence: true
 
-  self.filter_attributes += ['embedding']
+  self.filter_attributes += %w[embedding embedding1536]
+
+  def embedding=(embedding_vector)
+    if embedding_vector&.size == DEFAULT_EMBEDDING_DIMENSIONS
+      super
+    elsif embedding_vector&.size
+      size = embedding_vector&.size
+      self[:"embedding#{size}"] = embedding_vector
+    end
+  end
 
   def self.create_or_update_for_resource(resource, embedding_vector)
     vector_embedding = find_or_initialize_by(resource: resource)

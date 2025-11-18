@@ -63,3 +63,15 @@ chat.with_tool(user_details_tool)
 
 chat.ask("Get the details for user with ID 3.")
 ```
+
+## Embedding example
+
+```ruby
+config = OpenStruct.new
+
+config.default_embedding_model = 'cohere.embed-v4.0'
+config.oci_generative_ai_api_base = 'https://inference.generativeai.me-riyadh-1.oci.oraclecloud.com'
+context = RubyLLM::Context.new(config)
+
+embedding_custom = RubyLLM.embed('hello', provider: :oci, assume_model_exists: true, context: context)
+```
