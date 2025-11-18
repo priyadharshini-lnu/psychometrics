@@ -208,6 +208,7 @@ zh:
           projectSettings:
             assessments: 评估
             design: 设计
+            feature_flags: 功能标志
             idp: IDP
             integrations: 集成
             privacy_settings: 隐私设置
@@ -764,11 +765,6 @@ zh:
       user: 用户
       user_agent: 用户代理
     back: 返回
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: <p>您确定要注销吗？</p> <p>如果要继续工作，请按 "否"；如果要注销当前用户，请按 "是"。</p>
-          title: "<strong>注销</strong>？"
     block_settings:
       modal:
         add_layer: 添加图层
@@ -1244,11 +1240,6 @@ zh:
         archived: 存档
         disable: 档案
         enable: 未存档
-      columns:
-        country: 国家
-        project_manager: 项目经理
-        type: 类型
-        year: 年份
       copy:
         successfully: 客户平台"%{name}"已成功复制。
       create:
@@ -1257,14 +1248,6 @@ zh:
         successfully: 客户平台 %{name} 已成功删除。
       edit:
         header: 编辑客户端
-      form:
-        client: 客户
-        country: 国家
-        name: 名称
-        number: 数量
-        project_manager: 项目经理
-        type: 类型
-        year: 年份
       licenses:
         resource:
           confirmations:
@@ -1684,7 +1667,6 @@ zh:
             title: 存档<strong>%{name}</strong>?
           enable:
             title: 取消存档<strong>%{name}</strong>?
-      tenancies: 客户平台
       threesixty_campaign: 三六零运动
       toggle_status:
         successfully: 客户平台 %{name} 已成功更新。
@@ -2756,43 +2738,14 @@ zh:
     message: 留言
     meta_title: 管理面板
     navigation:
-      ai_artifacts: AI 工件
-      ai_assistants: 人工智能助理
-      assessments: 评估
-      assessments_reports: 评估与报告
-      assessor_dashboard: 评估员仪表板
-      assessor_workshops: 评估中心
       audit_logs: 审计日志
       availability: 可用性
-      back_to_main: 主菜单
-      campaign_templates: 活动模板
-      change_password: 更改密码
-      client_admins: 客户管理员
-      clients: 客户平台
-      communication_center: 通信中心
       dashboard: 仪表板
-      data_reports: 数据报告
-      development_actions: 发展行动
-      dimensions: 尺寸
       factors: 因素
       innovation_styles: 创新风格
-      libraries: 媒体图书馆
-      norms: 常模
       occupations: 职业
-      options: 选项
-      participants: 参与者
-      profile: 简介
-      profile_details: 详细信息
-      project_admins: 项目管理员
-      question_center: 问题中心
       registration_codes: 注册码
-      report_approvals: 报告批准
-      reports: 报告
-      scheduling: 日程安排
-      show_submenu: 显示子菜单
       skills_taxonomy: 技能分类法
-      user_profile_details: 简介详情
-      user_report_events: 用户报告事件
       users: 用户
     no_data_found: 未找到数据
     norms:
@@ -2866,7 +2819,6 @@ zh:
         successfully: 规范已成功更新。
       update:
         successfully: 常模 %{name} 已成功更新。
-    notification_bell_icon: 通知铃图标
     noty:
       error_408: 此操作耗时过长，请尝试重新加载页面。
       error_500: 出错了，请联系管理员。
@@ -4292,7 +4244,6 @@ zh:
         inactive: 不活动
         percentage: 百分比
         title: 评估
-      title: 统计数据
       top_metrics:
         completed: 已完成
         in_progress: 进行中
@@ -4767,10 +4718,6 @@ zh:
       update:
         successfully: 用户 %{name} 已成功更新。
       user: 用户
-    validations:
-      idp:
-        end_date_cannot_be_in_past: 结束日期不能是过去
-        start_date_cannot_be_in_past: 开始日期不能是过去
     webhook:
       connection_failure: 无法连接到 webhook 网址。 请确认 webhook 网址是否正确。
       delete_success: Webhook 设置已成功删除

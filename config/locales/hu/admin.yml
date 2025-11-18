@@ -1,0 +1,52 @@
+---
+hu:
+  admin:
+    admins: Adminisztrátorok
+    ai_artifacts: AI-összetevők
+    ai_assistants: AI asszisztensek
+    assessments: Értékelések
+    assessments_reports: Felmérések és jelentések
+    assessor_dashboard: Értékelő irányítópult
+    assessor_workshops: Értékelési központ
+    audit_logs: Auditnaplók
+    audit_reports: Auditjelentések
+    availability: Elérhetőség
+    back_to_main: Főmenü
+    campaign_templates: Kampány sablonok
+    client: Ügyfél bérleti joga
+    client_admins: Ügyféladminisztrátorok
+    clients: Ügyfélcsoportok
+    communication_center: Kommunikációs központ
+    country: Ország
+    create_client: Ügyfél létrehozása
+    dashboard: Irányítópult
+    data_reports: Adatjelentések
+    datasheet: Adatlap
+    development_actions: Fejlesztési tevékenységek
+    dimensions: Dimenziók
+    libraries: Médiatár
+    no_notifications: Nincs értesítés
+    norms: Normák
+    notification_bell_icon_alt_text: Értesítési csengő ikon
+    notifications: Értesítések
+    number: Szám
+    occupations: Foglalkozások
+    options: Beállítások
+    participants: Résztvevők
+    profile_details: Profil részletei
+    project_admins: Projektadminisztrátorok
+    project_manager: Projektmenedzser
+    question_center: Kérdésközpont
+    registration_codes: Regisztrációs kódok
+    report_approvals: Jelentés jóváhagyása
+    reports: Jelentések
+    role: Szerep
+    scheduling: Ütemezés
+    scoring: Pontozás
+    show_submenu: Almenü megjelenítése
+    skills_taxonomy: Készségek taxonómiája
+    stats: Statisztika
+    user_report_events: Felhasználói jelentés eseményei
+    users: Felhasználók
+    view_licenses: Licencek megtekintése
+    year: Ország

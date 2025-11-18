@@ -5,6 +5,7 @@ class AI::AssistantChat < ApplicationRecord
   acts_as_chat messages: :messages, message_class: 'AI::AssistantRequest', model: :ai_model_registry, model_class: 'AI::ModelRegistry'
 
   belongs_to :ai_assistant, class_name: 'AI::Assistant'
+  belongs_to :ai_assisted_user_session, class_name: 'AI::AssistedUserSession', optional: true
   belongs_to :user, class_name: 'User'
 
   has_many :messages,

@@ -64,7 +64,7 @@ describe EndUser::CampaignsController, type: :controller do
       audit_log = AuditLog.last
       expect(audit_log.user_id).to eq(user.id)
       expect(audit_log.outcome).to eq('successful')
-      expect(audit_log.action).to eq('single_sign_on')
+      expect(audit_log.action).to eq('sign_in_with_jwt')
     end
 
     it 'should not have jwt and return url in the response URL after login' do
@@ -86,7 +86,7 @@ describe EndUser::CampaignsController, type: :controller do
       audit_log = AuditLog.last
 
       expect(audit_log.user_id).to eq(nil)
-      expect(audit_log.action).to eq('single_sign_on')
+      expect(audit_log.action).to eq('sign_in_with_jwt')
       expect(audit_log.outcome).to eq('failed')
       expect(audit_log.failure_reason).to eq('invalid_jwt_token')
     end

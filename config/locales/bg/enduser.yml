@@ -1,0 +1,23 @@
+---
+bg:
+  enduser:
+    add_idp_plan_note: Добави бележка...
+    add_idp_plan_rejection_reason: Добави причина...
+    approve_idp_plan: Одобри план
+    bookings: Резервации
+    campaign: Кампания
+    development: Развитие
+    direct_reportees: Преки докладвани
+    home: Табло
+    idp_plan_approval_note: Бележка за одобрение
+    insights: Прозрения
+    max_word_limit: Трябва да бъде най-много %{max} думи
+    min_word_limit: Трябва да бъде най-малко %{min} думи
+    my_plan: Моят план
+    profile: Профил
+    profile_details: Подробности
+    reason_for_idp_plan_rejection: Причина за отказ на плана
+    reject_idp_plan: Отхвърляне на плана
+    selected_count: Избран
+    skill_type: Тип умение
+    tasks: Задачи

@@ -40,7 +40,7 @@ export const ClientFormModal: React.FC<Props> = ({
     <ResourceFormModal
       resourceName="clients"
       resource={client}
-      readableResourceName={I18n.t('administration.clients.form.client')}
+      readableResourceName={I18n.t('admin.client')}
       showSuccessMessages
       close={close}
       scrollToFirstError
@@ -54,14 +54,14 @@ export const ClientFormModal: React.FC<Props> = ({
         <>
           <Form.Item
             name="name"
-            label={I18n.t('administration.clients.form.name')}
+            label={I18n.t('shared.name')}
             rules={[{ required: true }]}
           >
             <Input name="client_name" />
           </Form.Item>
           <Form.Item
             name="type"
-            label={I18n.t('administration.clients.form.type')}
+            label={I18n.t('shared.type')}
             rules={[{ required: true }]}
           >
             <Select showSearch>
@@ -71,14 +71,14 @@ export const ClientFormModal: React.FC<Props> = ({
           </Form.Item>
           <Form.Item
             name="number"
-            label={I18n.t('administration.clients.form.number')}
+            label={I18n.t('admin.number')}
             rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
             name="country"
-            label={I18n.t('administration.clients.form.country')}
+            label={I18n.t('admin.country')}
             rules={[{ required: true }]}
           >
             <Select showSearch>
@@ -88,7 +88,7 @@ export const ClientFormModal: React.FC<Props> = ({
           </Form.Item>
           <Form.Item
             name="year"
-            label={I18n.t('administration.clients.form.year')}
+            label={I18n.t('admin.year')}
             rules={[{ required: true }]}
           >
             <Select>
@@ -99,7 +99,7 @@ export const ClientFormModal: React.FC<Props> = ({
           </Form.Item>
           <Form.Item
             name="projectManagerId"
-            label={I18n.t('administration.clients.form.project_manager')}
+            label={I18n.t('admin.project_manager')}
             rules={[{ required: true }]}
           >
             <Select

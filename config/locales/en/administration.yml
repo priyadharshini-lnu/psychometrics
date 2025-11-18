@@ -208,6 +208,7 @@ en:
           projectSettings:
             assessments: Assessments
             design: Design
+            feature_flags: Feature Flags
             idp: IDP
             integrations: Integrations
             privacy_settings: Privacy Settings
@@ -285,6 +286,10 @@ en:
             manage: Manage
             title: SMS Invites
             view: View
+          userIdpPlans:
+            manage: Manage
+            title: User IDP Plans
+            view: View
           users:
             reset_password: Reset Password
             title: Users
@@ -336,6 +341,10 @@ en:
         settings: Settings
       test_generate: Test Generate
       unsaved_changes: Unsaved changes are present, consider submitting form to generate updated response from Playground.
+      used_tokens:
+        input_tokens: Input Tokens
+        output_tokens: Output Tokens
+        title: Token usage
     ai_assistants:
       actions:
         create: Create AI Assistant
@@ -766,11 +775,6 @@ en:
       user: User
       user_agent: User Agent
     back: Back
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Are you sure you want to log out?</p> <p>Press No if you want to continue work. Press Yes to logout current user.</p>"
-          title: Log <strong>Out</strong> ?
     block_settings:
       modal:
         add_layer: Add Layer
@@ -1246,11 +1250,7 @@ en:
         archived: Archived
         disable: Archive
         enable: Unarchive
-      columns:
-        country: Country
-        project_manager: Project Manager
-        type: Type
-        year: Year
+      clients: Clients
       copy:
         successfully: Client Tenancy '%{name}' was copied successfully.
       create:
@@ -1259,14 +1259,6 @@ en:
         successfully: Client Tenancy %{name} was deleted successfully.
       edit:
         header: Edit Client
-      form:
-        client: Client
-        country: Country
-        name: Name
-        number: Number
-        project_manager: Project Manager
-        type: Type
-        year: Year
       licenses:
         resource:
           confirmations:
@@ -1686,7 +1678,6 @@ en:
             title: Archive <strong>%{name}</strong> ?
           enable:
             title: Unarchive <strong>%{name}</strong> ?
-      tenancies: Client Tenancies
       threesixty_campaign: Threesixty Campaign
       toggle_status:
         successfully: Client Tenancy %{name} was updated successfully.
@@ -2279,6 +2270,10 @@ en:
           accesssheet_manage: Accesssheet Manage
           accesssheet_settings: Accesssheet Settings
           accesssheet_view: Accesssheet View
+    header:
+      logout:
+        content: Press Cancel if you want to continue work. Press Ok to logout current user.
+        title: Are you sure you want to logout.
     hogan:
       errors:
         new_assessment_response_not_allowed:
@@ -2566,6 +2561,13 @@ en:
         details: Details
         name: Integration Name
       details:
+        client_id: Client ID
+        deployment_id: Deployment ID
+        platform_access_token_url: Platform Access Token URL
+        platform_authentication_request_url: Platform Authentication Request URL
+        platform_host_name: Platform Host Name
+        platform_id: Platform ID
+        platform_public_keyset_url: Platform Public Keyset URL
         provider: Provider Name
         webhookUrl: Webhook URL
         webhookUrls: Webhook URLs
@@ -2596,11 +2598,16 @@ en:
         skillvue:
           apiKey: API Key
           apiKeyRequired: API key is required
+        yoodli:
+          keyset_url: Keyset URL
+          launch_url: Launch URL
+          login_url: Login URL
       names:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
         skillvue: Skillvue
+        yoodli: Yoodli
       validations:
         iiht:
           tenancy_name_present: Tenancy name is already present in other project
@@ -2610,6 +2617,24 @@ en:
         skillvue:
           api_key_present: API key is already present in other project
       view_all_schedules: View All Mettl Schedules
+      yoodli_assessments:
+        add_assessment: Add Yoodli Assessment
+        columns:
+          actions: Actions
+          created_at: Created At
+          name: Assessment Name
+          product_id: Product ID
+        delete_confirm: Are you sure you want to delete this Yoodli assessment?
+        edit_assessment: Edit Yoodli Assessment
+        manage_catalog: Manage Yoodli Assessments
+        messages:
+          create_success: Yoodli assessment '%{name}' was created successfully
+          delete_success: Yoodli assessment was deleted successfully
+          update_success: Yoodli assessment '%{name}' was updated successfully
+        placeholders:
+          name: Enter assessment name
+          product_id: Enter product ID
+        search: Search
     interview_questions:
       delete_confirmation: Are you sure you want to delete this Interview Question?
       description: Descripton
@@ -2758,43 +2783,17 @@ en:
     message: Message
     meta_title: Administration panel
     navigation:
-      ai_artifacts: AI Artifacts
-      ai_assistants: AI Assistants
-      assessments: Assessments
-      assessments_reports: Assessments & Reports
-      assessor_dashboard: Assessor Dashboard
-      assessor_workshops: Assessment Center
       audit_logs: Audit Logs
       availability: Availability
-      back_to_main: Main Menu
-      campaign_templates: Campaign Templates
-      change_password: Change Password
-      client_admins: Client Admins
-      clients: Client Tenancies
-      communication_center: Communication Center
+      configuration: Configuration
+      content: Content
       dashboard: Dashboard
-      data_reports: Data Reports
-      development_actions: Development Actions
-      dimensions: Dimensions
       factors: Factors
       innovation_styles: Innovation Styles
-      libraries: Media Library
-      norms: Norms
+      logout: Logout
       occupations: Occupations
-      options: Options
-      participants: Participants
-      profile: Profile
-      profile_details: Details
-      project_admins: Project Admins
-      question_center: Question Center
       registration_codes: Registration codes
-      report_approvals: Report Approvals
-      reports: Reports
-      scheduling: Scheduling
-      show_submenu: Show Sub Menu
       skills_taxonomy: Skills Taxonomy
-      user_profile_details: Profile details
-      user_report_events: User Report Events
       users: Users
     no_data_found: No data found
     norms:
@@ -2868,7 +2867,6 @@ en:
         successfully: Norm was updated successfully.
       update:
         successfully: Norm %{name} was updated successfully.
-    notification_bell_icon: Notification Bell Icon
     noty:
       error_408: This action takes too long. Please try to reload the page.
       error_500: Something went wrong. Contact your administrator.
@@ -3346,6 +3344,7 @@ en:
         mask_identity_for_pearson: Mask data for Pearson
         mask_identity_for_saville: Mask data for Saville
         mask_identity_for_skillvue: Mask data for Skillvue
+        mask_identity_for_yoodli: Mask data for Yoodli
         privacy_link: Enable Privacy Link
         privacy_link_label: Privacy Link
         privacy_link_placeholder: Enter Privacy Link
@@ -4164,6 +4163,11 @@ en:
             missing_columns: 'Missing required columns: %{columns}'
             save_failed: 'Error processing Skill ID %{id}: %{message}'
             skill_not_found: Skill with ID %{id} not found
+      vector:
+        generate_embedding: Generate Embedding
+        generate_embedding_failure_msg: Failed to queue skill embedding generation job. Please try again.
+        generate_embedding_success_msg: Skill embedding generation job has been queued successfully. Please check the status in the notifications.
+        label: Vector DB
     skills_taxonomy:
       tabs:
         job_roles: Job Roles
@@ -4294,7 +4298,6 @@ en:
         inactive: Inactive
         percentage: Percentage
         title: Assessments
-      title: Stats
       top_metrics:
         completed: Completed
         in_progress: In Progress
@@ -4768,10 +4771,6 @@ en:
       update:
         successfully: User %{name} was updated successfully.
       user: User
-    validations:
-      idp:
-        end_date_cannot_be_in_past: End date cannot be in the past
-        start_date_cannot_be_in_past: Start date cannot be in the past
     webhook:
       connection_failure: Unable to connect to the webhook url. Please verify if webhook url is correct..
       delete_success: Webhook settings was deleted successfully

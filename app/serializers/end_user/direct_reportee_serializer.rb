@@ -2,7 +2,7 @@
 
 module EndUser
   class DirectReporteeSerializer < Panko::Serializer
-    attributes :id, :status, :unread_comments_count
+    attributes :id, :status, :unread_comments_count, :pending_initial_review
     has_one :user, serializer: ::UserSerializer
 
     delegate :status, to: :object

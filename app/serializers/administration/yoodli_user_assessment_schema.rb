@@ -1,0 +1,14 @@
+# frozen_string_literal: true
+
+module Administration
+  class YoodliUserAssessmentSchema < BaseSchema
+    def self.schema(_, _)
+      Dry::Schema.JSON do
+        config.validate_keys = true
+
+        required(:email).maybe(:str?)
+        required(:external_assessment_id).filled(:str?)
+      end
+    end
+  end
+end

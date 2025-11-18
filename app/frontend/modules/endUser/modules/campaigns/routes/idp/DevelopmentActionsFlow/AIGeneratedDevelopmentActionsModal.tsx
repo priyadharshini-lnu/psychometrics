@@ -6,6 +6,7 @@ import {
 import { connect, ConnectedProps } from 'react-redux'
 import {
   SyncOutlined,
+  CloseOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import {
   ButtonWithArrow, BoxWithShadow,
@@ -90,6 +91,7 @@ const AIGeneratedDevelopmentActionsModalComponent: React.FC<Props> = ({
       title={I18n.t('idp.development_actions.create_development_actions_with_ai', { skillName: skill?.name })}
       open={open}
       onCancel={onCancel}
+      closeIcon={<Button style={{ border: 'none' }} ref={btnRef} icon={<CloseOutlined />} />}
       maskClosable={false}
       footer={!!developmentActions.length && [
         <Flex vertical flex={1} align="end">
@@ -107,9 +109,13 @@ const AIGeneratedDevelopmentActionsModalComponent: React.FC<Props> = ({
             {I18n.t('idp.development_actions.generate_more')}
           </Button>
           <Flex flex={1} gap={4}>
-            {selectedDA.length > 0 && <Typography.Text>{`${selectedDA.length} selected`}</Typography.Text>}
+            {selectedDA.length > 0 && (
+              <Typography.Text>
+                {I18n.t('enduser.selected_count', { count: selectedDA.length })}
+              </Typography.Text>
+            )}
             <ButtonWithArrow
-              label="Add"
+              label={I18n.t('common.actions.add')}
               size="small"
               type="primary"
               disabled={isLoading || selectedDA.length === 0}

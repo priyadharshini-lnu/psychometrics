@@ -3,6 +3,7 @@ import {
   Button, MenuProps,
 } from 'antd'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
+import { useParams } from 'react-router'
 import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 
@@ -30,6 +31,7 @@ export const ToolsDropdown: React.FC<Props> = ({
 )
 
 const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
+  const params = useParams()
   const menuItems:MenuItem[] = []
 
   const importMenuItems:MenuItem[] = []
@@ -77,6 +79,20 @@ const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
     label: I18n.t('common.actions.export'),
     children: exportMenuItems,
   })
+
+  if (permissions?.generateEmbedding && !params.projectId) {
+    menuItems.push({
+      type: 'group',
+      key: 'vectordb',
+      label: I18n.t('administration.skills.vector.label'),
+      children: [
+        {
+          key: 'generate_embedding_skills',
+          label: I18n.t('administration.skills.vector.generate_embedding'),
+        },
+      ],
+    })
+  }
 
   const handleMenuClick = ({ key }) => {
     onClick(key)

@@ -919,8 +919,6 @@ zh:
     invalid_job: 该通知对应已删除的记录
     mark_as_read: 标记所有已读内容
     more: 更多信息
-    no_notifications: 没有通知
-    notifications: 通知
     results: 成果
     super_admin:
       errors:
@@ -1344,16 +1342,11 @@ zh:
     continue: 继续你的任务
     dashboard_instructions: 你被分配了多个需要完成的活动。请确保本项目中所有分配活动的都已完成。
     dashboard_menu:
-      bookings: 预订
       campaign: 项目
-      change_password: 更改密码
-      development: 发展
       direct_reportees: 直下报告
       home: 首页
       insights: 见解
-      my_plan: 我的计划
       profile: 个人资料
-      profile_details: 详情
       tasks: 任务
     details: 详情
     edit_evaluation:
@@ -1475,6 +1468,7 @@ zh:
       export_occupations_job_scheduled: 职业 出口工作已成功安排
       export_reports_and_assessments_statuses_scheduled: 导出报告和评估工作已成功安排
       external_results_export_scheduled: 外部评估导出工作已成功安排
+      no_participants_selected: 请选择至少一名参与者继续。
       norm_results_export_scheduled: 评估标准化结果导出工作已成功安排
       normalize_factor_scores_scheduled: 因子得分标准化工作已成功调度。
       raw_factor_export_scheduled: 评估原始因子导出工作已成功安排
@@ -1619,6 +1613,7 @@ zh:
       report_bundle_placeholder: 选择报告包
     messages:
       bulk_download_error: 批量下载仅限于 1000 个报告文件。 如果您选择了多种语言，请减少下载量。
+      bulk_download_no_reports: 未找到报告。请在下载前生成报告。
       bulk_download_successful: 批量报告下载任务已成功安排
       export_report_data_scheduled: 报告数据导出任务已成功安排
     modals:
@@ -1888,7 +1883,6 @@ zh:
       projects: 项目
       report: 报告
       reports: 报告
-      scoring: 计分
       sms_contact: 短信联系
       threesixty_campaign: Threesixty 运动得分
     status:
@@ -2131,118 +2125,6 @@ zh:
       send_paranoid_instructions: 如果您的账户存在，您将在几分钟后收到一封电子邮件，其中包含如何解锁的说明。
       unlocked: 您的账户已成功解锁，请登录继续。
       unprocessable_entity: 您的帐户无法通过此链接解锁，请联系技术支持。
-  dry_errors:
-    errors:
-      add_edit_project:
-        invalid_subdomain_format: 子域格式错误。
-        reserved_subdomain: 子域 %{value} 已保留
-        uniq_subdomain: 子域应是唯一的。
-      add_manager:
-        cannot_be_self: 用户不能被指定为自己的经理
-        manager_not_found: 未找到管理员或管理员不属于同一项目
-        user_not_found: 未找到用户或不属于同一项目
-      admin:
-        already_added: 已添加电子邮件的管理员。
-      already_assigned?: 无法链接此评估 - 它已分配给"%{linked_assessor_form_name}"。
-      already_invited: 该用户已存在于您要添加的评估中心。
-      assessor_assessment:
-        already_added: 评估员评估已加入竞选活动。
-        lead_already_added: 活动中只能添加一个 "主要评估员评估"。
-      campaign_factor:
-        code_already_exists: 相同代码的因子已经存在。
-        invalid_lua_name: 应为有效的 lua 变量名
-        limit_exceeded: 您已达到 %{limit} 活动因素的最大限制。
-        name_already_exists: 同名的因子已经存在。
-        rank_not_allowed: 只有输出类型为数值的因子才能进行排序。
-      campaign_factor_group:
-        group_already_exists: 已存在同名组。
-        last_factor_group: 无法删除最后一个竞选因素组。
-      campaign_idps:
-        idp_template_not_published: 该IDP模板尚未发布，请在分配到广告系列之前将其发布。
-      cant_be_deleted: 无法删除此记录
-      client_feature:
-        ai_assisted_idp_feature_error: 如果禁用 AI 助手功能，则不能为 true
-      create_superadmin:
-        uniq_email: 电子邮件应为统一格式。
-      development_actions:
-        only_global_skills_allowed: 所选技能必须是全球性技能。
-        skills_not_belong_to_project: 所选技能必须属于指定项目。
-        skills_required: 请至少选择一项技能。
-      exceeded_subjects_count: 每次邀请只能添加 %{count} 主题
-      filled?: 不能空白
-      idp_template:
-        content_required: 指令需要内容
-        tag_or_skill_required: 选择"已选择"选项时，请选择标签或技能。
-      invalid_name: 只允许字母、数字、空格、破折号和点作为有效字符
-      invalid_value: 行号 %{row} 上的语句"%{value}"无效
-      job_roles:
-        unique_within_job_group: 具有相同名称的职位角色已存在。
-      json?: 应为有效的 JSON
-      key?: 不能空白
-      match_regexp?: 无效值
-      mettl_schedule_record_create:
-        uniq_schedule_name: 时间表名称应独一无二
-      missed?: 不能空白
-      not_allowed?: 不得更改
-      not_in_the_list?: 传递的值无效
-      not_uniq_variable: 变量"%{value}"在第 %{row} 行重新定义
-      project_assessments:
-        should_be_greater_than_zero: 结果有效期应大于 0 天
-      project_feature:
-        global_skills_not_enabled_on_client: 要为此项目启用全局技能，请在客户端设置中的 功能标志（Feature Flags） 下激活它。
-      report_approval_settings:
-        report_exists: 该报告的报告审批设置已经存在。
-        validates_admins: 管理员无法访问活动。
-      report_families_reports:
-        report_exists: 本报告已是报告包的一部分
-      size?: 大小应小于 %{size}
-      skill:
-        already_added: 已添加同名技能。
-      skill_alias:
-        unique_alias: 别名应是唯一的
-        unique_skill: 技能应独一无二
-      skills_job_roles:
-        must_belong_to_same_project_or_be_global: 技能和工作角色必须属于同一项目或全球项目。
-        unique_mappings: 相同技能和工作角色的映射已经存在。
-      uniq: 系统中已存在该 Mettl 评估。 该评估的 ID 是 %{id}
-      uniq?: 应是唯一的
-      uniq_simulation: 该模拟评估已存在于系统中。 该评估的 ID 是 %{id}
-      uniq_skillvue: 系统中已存在此技能评估。该评估的 ID 是 %{id}
-      update_workshop:
-        bookings_exist: 由于参与者已经预订了该时段，因此无法修改时间表。
-        less_than_booked: 总席位数必须大于预订席位数
-      user_availability_date:
-        overlaps_date: 与另一个可用性重叠 %{range}
-        overlaps_time: 重叠间隔 %{interval}
-        start_date_should_be_less: 开始日期应小于结束日期
-        start_time_should_be_less: 开始时间应小于结束时间
-      user_idp_plan:
-        idp_template_already_assigned_to_user: 此 Idp 模板已分配给该用户并处于活动状态
-        idp_template_not_published: 该IDP模板尚未发布，请在分配给用户之前将其发布。
-      user_saved_filters:
-        limit_exceeded: 您只能保存 %{limit} 过滤器，请删除已保存的过滤器以添加更多过滤器。
-        unique_name: 已存在同名过滤器。
-      workshop_invited_subject_create:
-        already_exists: 主题已存在于邀请中。
-      workshop_subject_create:
-        already_exists: 该评估中心已有主题。
-        part_of_other_workshop: 主题已是"%{workshop_name}"的参与者。
-      workshop_subject_re_enroll:
-        no_seats_available: 本次研讨会没有名额。
-        scheduling_lead_time_passed: 时间已过，您不能重新注册该科目。
-        workshop_subject_not_found: 未找到研讨会主题
-      workshops:
-        no_available_assessor_slots: 没有可供评估员使用的时段 %{assessor}
-        no_available_manager_slots: 没有可供经理使用的插槽 %{manager}
-    users:
-      registrations:
-        new:
-          register: 注册
-          sign_in: 登录
-      sessions:
-        new:
-          register: 注册
-          sign_in: 登录
   emails:
     nomination_approval_table:
       evaluator_name: 评估员姓名
@@ -2573,6 +2455,7 @@ zh:
   idp:
     actions: 行动
     add_comments: 添加注释
+    added_development_action: 添加了开发作
     ai:
       assistant:
         failure_fallback:
@@ -2629,6 +2512,7 @@ zh:
         title: 您好，我是你们的开发助手
     behavioral: 行为
     board: 董事会
+    change_history: 更改历史
     changes_saved_to_plan: 保存到计划的更改
     comment_details:
       add_comment: 添加评论
@@ -2730,6 +2614,7 @@ zh:
       publish_plan: 发布计划
       remove: 移除
       save_plan: 保存计划
+      search_development_actions: 搜索开发作
       show_development_action_information: 显示开发作信息
       skill: 技能
       sprint: 冲刺
@@ -2791,6 +2676,7 @@ zh:
     manage_plan: 管理计划
     mark_as_complete: 标记为完成
     mark_as_incomplete: 標記為不完整
+    modified_development_action: 修改后的开发行动
     my_plan:
       development_plan: 发展计划
       graphs:
@@ -2914,7 +2800,9 @@ zh:
         title: 报告摘要
     plan: 计划
     plan_status: 计划状态%{status}
+    plan_submitted_for_manager_approval: 您的个人发展计划已提交给经理批准。
     private: 私人
+    public: 公共
     reflective_questions:
       already_completed: IDP 已经完成，现在不能回答问题。
       answer: 答
@@ -2942,6 +2830,7 @@ zh:
       words: 字数
     remove_skill: 移除技能
     remove_skill_from_plan: 从计划中删除技能%{name}
+    removed_development_action: 已删除的开发作
     report_preview: 报告预览
     search_and_select_skills_of_skill_type: 搜索并选择%{skillType}技能
     select_skills_of_skill_type: 选择%{skillType}技能
@@ -2955,6 +2844,8 @@ zh:
     status: 现状
     suggestions: 建议
     suggestions_for_skill_type: "%{skillType}技能建议"
+    summary: 总结
+    summary_logs: "%{reporteeName}的摘要日志"
     technical: 技术
     user_idp_status:
       approved: 批准
@@ -2966,6 +2857,7 @@ zh:
       not_started: 未开始
       pending_approval: 待定
       rejected: 拒绝
+      start_review: 开始复查
     users: 用户
     with_reflection_questions: 带反思问题
     without_reflection_questions: 无反射题
@@ -3479,13 +3371,6 @@ zh:
   sessions:
     errors:
       recaptcha: Recaptcha 验证失败。请重试。
-  shared:
-    filters:
-      clear: 清除筛选
-    internet_disconnected_message: 正在尝试重新连接。请检查你的互联网连接。
-    mte_logo_alt_text: 美世人才企业标识
-    terms_conditions_privacy: 隐私声明
-    tte_terms_and_condition: 条款和隐私
   sheet:
     import_modal:
       alert_access_sheet_removal: 上传新的 Accesssheet 时会删除所有现有记录，然后从工作表中上传新记录。 请确保电子表格中包含所有 Accesssheet 记录。
@@ -4286,6 +4171,7 @@ zh:
     idp:
       can_not_complete_without_approval_and_in_progress: 在您的经理批准并将其标记为“进行中”之前，您无法完成您的 IDP。
       can_not_start_without_approval: 在您的经理批准之前，您无法开始处理您的 IDP。
+      no_changes_to_compare: IDP 计划没有变化可比较。
       no_previous_approved_plan: 未找到以前批准的 IDP 计划。
       reflective_questions_required: IDP 需要回答反思性问题
       status_not_permitted: 用户不允许。

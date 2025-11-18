@@ -40,12 +40,16 @@ const connecter = connect(
 )
 type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
-interface Meta extends BaseMeta{
+
+interface Meta extends BaseMeta {
   countries: string[]
   types: string[]
 }
 
-const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
+const ClientList: React.FC<Props> = ({
+  openModal,
+  currentUser,
+}) => {
   const [countries, setCoutries] = useState<Meta['countries']>([])
   const [types, setTypes] = useState<Meta['types']>([])
   const { width: windowWidth } = useWindowSize()
@@ -55,8 +59,19 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
     include_resource_meta: ['permissions'],
   }
   const {
-    data, meta, fetch, isLoading, getSortOrder, handleTableChange, changePage,
-    currentPage, pageSize, changeFilter, getFilteredValue, updateResource, removeResource,
+    data,
+    meta,
+    fetch,
+    isLoading,
+    getSortOrder,
+    handleTableChange,
+    changePage,
+    currentPage,
+    pageSize,
+    changeFilter,
+    getFilteredValue,
+    updateResource,
+    removeResource,
     createResource,
     requests,
   } = useResources<Client, Meta>(
@@ -70,10 +85,11 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
   useEffect(() => {
     fetch({
       apiConfig: _.merge(baseApiConfig, { include_meta: ['countries', 'types'] }),
-    }).then(({ meta }) => {
-      setCoutries(meta.countries)
-      setTypes(meta.types)
     })
+      .then(({ meta }) => {
+        setCoutries(meta.countries)
+        setTypes(meta.types)
+      })
   }, [])
   const tableLoading = isLoading('fetch')
 
@@ -89,7 +105,7 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
         sticky={{ offsetHeader: 50 }}
       >
         <Column
-          title={I18n.t('common.column.id')}
+          title={I18n.t('shared.id')}
           dataIndex="id"
           key="id"
           fixed={windowWidth > 800 ? 'left' : undefined}
@@ -98,31 +114,34 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
           width={100}
         />
         <Column
-          title={I18n.t('common.column.name')}
+          title={I18n.t('shared.name')}
           key="name"
           width="auto"
           sorter
           sortOrder={getSortOrder('name')}
-          render={({ name, id }) => (
+          render={({
+            name,
+            id,
+          }) => (
             <Link to={`/admin/clients/${id}/projects`}>{name}</Link>
           )}
           minWidth={300}
         />
         <Column
-          title={I18n.t('administration.clients.columns.type')}
+          title={I18n.t('shared.type')}
           dataIndex="type"
           render={(_, client: Client) => I18n.t(`activerecord.attributes.client.types.${client.type}`)}
           key="type"
           minWidth={100}
         />
         <Column
-          title={I18n.t('administration.clients.columns.country')}
+          title={I18n.t('admin.country')}
           dataIndex="country"
           key="county"
           minWidth={100}
         />
         <Column
-          title={I18n.t('administration.clients.columns.year')}
+          title={I18n.t('admin.year')}
           dataIndex="year"
           key="year"
           sorter
@@ -130,13 +149,13 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
           minWidth={100}
         />
         <Column
-          title={I18n.t('administration.clients.columns.project_manager')}
+          title={I18n.t('admin.project_manager')}
           dataIndex={['projectManager', 'name']}
           key="project_manager"
           minWidth={150}
         />
         <Column
-          title={I18n.t('common.column.action')}
+          title={I18n.t('shared.action')}
           key="action"
           fixed={windowWidth > 800 ? 'right' : undefined}
           render={client => (
@@ -170,9 +189,11 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
   const Filter = (
     <Space>
       <Search
-        placeholder={I18n.t('common.actions.search')}
+        placeholder={I18n.t('shared.search')}
         value={getFilteredValue('filterable_fields')}
-        onChange={({ target: { value } }) => { changeFilter('filterable_fields', value) }}
+        onChange={({ target: { value } }) => {
+          changeFilter('filterable_fields', value)
+        }}
       />
       {isSuperAdmin(currentUser)
           && (
@@ -184,7 +205,7 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
               }}
             >
               <PlusOutlined />
-              {I18n.t('frontend.clients.actions.create.create_client')}
+              {I18n.t('admin.create_client')}
             </Button>
           )}
     </Space>
@@ -196,7 +217,7 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
         crumbs={[
           {
             link: () => '/admin',
-            label: () => I18n.t('administration.clients.tenancies'),
+            label: () => I18n.t('admin.clients'),
           },
         ]}
       />
@@ -212,6 +233,7 @@ const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
     </>
   )
 }
+
 interface ActionMenuData {
   client: Client
   countries: Meta['countries'],
@@ -223,16 +245,26 @@ interface ActionMenuData {
 }
 
 const getActionMenuProps = ({
-  client, countries, types, updateResource, removeResource, openModal, isSuperAdmin,
+  client,
+  countries,
+  types,
+  updateResource,
+  removeResource,
+  openModal,
+  isSuperAdmin,
 }: ActionMenuData): MenuProps => {
-  const { id, name, meta } = client
+  const {
+    id,
+    name,
+    meta,
+  } = client
   const menuItems = [
-    isSuperAdmin && { key: 'edit', label: I18n.t('common.actions.edit') },
+    isSuperAdmin && { key: 'edit', label: I18n.t('shared.edit') },
     meta.permissions.viewLicenses && {
       key: 'licenses',
       label: (
         <Link to={`/admin/clients/${id}/licenses`}>
-          {I18n.t('frontend.clients.actions.menus.view_licenses')}
+          {I18n.t('admin.view_licenses')}
         </Link>
       ),
     },
@@ -241,15 +273,25 @@ const getActionMenuProps = ({
   const handleMenuClick = ({ key }) => {
     if (key === 'edit') {
       return openModal('ClientFormModal', {
-        updateClient: updateResource, types, countries, client,
+        updateClient: updateResource,
+        types,
+        countries,
+        client,
       })
     }
     if (key === 'remove') {
-      return openModal('RemoveClientModal', { id, name, removeResource })
+      return openModal('RemoveClientModal', {
+        id,
+        name,
+        removeResource,
+      })
     }
   }
 
-  return ({ items: _.compact(menuItems), onClick: handleMenuClick })
+  return ({
+    items: _.compact(menuItems),
+    onClick: handleMenuClick,
+  })
 }
 
 export default connecter(ClientList)

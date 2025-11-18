@@ -919,8 +919,6 @@ sl:
     invalid_job: To obvestilo ustreza izbrisanemu zapisu
     mark_as_read: Označi vse prebrane
     more: Več
-    no_notifications: Brez obvestil
-    notifications: Obvestila
     results: Rezultati
     super_admin:
       errors:
@@ -1341,16 +1339,11 @@ sl:
     continue: Nadaljujte z nalogami
     dashboard_instructions: Morda imate dodeljenih več nalog, ki jih morate opraviti. Prosimo, preverite, ali ste zaključili vse dodeljene naloge v različnih kampanjah.
     dashboard_menu:
-      bookings: Rezervacije
       campaign: Kampanja
-      change_password: Spremenite geslo
-      development: Razvoj
       direct_reportees: Neposredni podrejevalci
       home: Domov
       insights: Vpogledi
-      my_plan: Moj načrt
       profile: Profil
-      profile_details: Podrobnosti
       tasks: Naloge
     details: Podrobnosti
     edit_evaluation:
@@ -1474,6 +1467,7 @@ sl:
       export_occupations_job_scheduled: Poklici Izvozno delo je bilo uspešno načrtovano
       export_reports_and_assessments_statuses_scheduled: Izvoz poročil in ocen je bilo uspešno načrtovano
       external_results_export_scheduled: Izvozno delo zunanjega ocenjevanja je bilo uspešno načrtovano
+      no_participants_selected: Za nadaljevanje izberite vsaj enega udeleženca.
       norm_results_export_scheduled: Izvozno delo ocenjevanja normiranih rezultatov je bilo uspešno načrtovano
       normalize_factor_scores_scheduled: Delo normalizacije faktorjev je bilo uspešno načrtovano.
       raw_factor_export_scheduled: Izvozno delo ocenjevanja surovega faktorja je bilo uspešno načrtovano
@@ -1618,6 +1612,7 @@ sl:
       report_bundle_placeholder: Izberite Sklop poročil
     messages:
       bulk_download_error: Prenos v velikem obsegu je omejen na 1000 datotek poročil. Če ste izbrali veliko jezikov, jih zmanjšajte.
+      bulk_download_no_reports: Poročil ni bilo najdenih. Pred prenosom ustvarite poročila.
       bulk_download_successful: Opravilo prenosa poročila v velikem obsegu je bilo uspešno načrtovano
       export_report_data_scheduled: Popravilo izvoza podatkov poročila je bilo uspešno načrtovano
     modals:
@@ -1875,7 +1870,6 @@ sl:
       projects: Projekti
       report: Poročilo
       reports: Poročila
-      scoring: Točkovanja
       sms_contact: SMS stik
       threesixty_campaign: Rezultati kampanje Threesixty
     status:
@@ -2141,118 +2135,6 @@ sl:
       send_paranoid_instructions: Če vaš račun obstaja, boste v nekaj minutah prejeli e-poštno sporočilo z navodili, kako ga odkleniti.
       unlocked: Vaš račun je bil uspešno odklenjen. Prosimo, prijavite se za nadaljevanje.
       unprocessable_entity: S to povezavo ni bilo mogoče odkleniti vašega računa. Obrnite se na podporo.
-  dry_errors:
-    errors:
-      add_edit_project:
-        invalid_subdomain_format: Napačna oblika poddomene.
-        reserved_subdomain: Poddomena %{value} je rezervirana
-        uniq_subdomain: Poddomena mora biti edinstvena.
-      add_manager:
-        cannot_be_self: Uporabnik ne more biti dodeljen kot lastni vodja
-        manager_not_found: Upravitelj ni najden ali ni del istega projekta
-        user_not_found: Uporabnik ni bil najden ali ni del istega projekta
-      admin:
-        already_added: Skrbnik z že dodanim e-poštnim sporočilom.
-      already_assigned?: Te ocene ni mogoče povezati - že je dodeljena '%{linked_assessor_form_name}'.
-      already_invited: Ta uporabnik že obstaja v ocenjevalnem centru, ki ga poskušate dodati.
-      assessor_assessment:
-        already_added: Ocena ocenjevalca je že dodana v kampanjo.
-        lead_already_added: V kampanjo je mogoče dodati samo eno oceno glavnega ocenjevalca.
-      campaign_factor:
-        code_already_exists: Dejavnik z isto kodo že obstaja.
-        invalid_lua_name: Mora biti veljavno ime spremenljivke Lua
-        limit_exceeded: Dosegli ste najvišjo omejitev faktorjev oglaševalske akcije %{limit}.
-        name_already_exists: Dejavnik z istim imenom že obstaja.
-        rank_not_allowed: Razvrstijo se lahko samo dejavniki z izhodno vrsto števila.
-      campaign_factor_group:
-        group_already_exists: Skupina z istim imenom že obstaja.
-        last_factor_group: Zadnje skupine faktorjev oglaševalske akcije ni mogoče izbrisati.
-      campaign_idps:
-        idp_template_not_published: Ta predloga IDP še ni objavljena, objavite jo, preden dodelite kampanjo.
-      cant_be_deleted: Tega zapisa ni mogoče izbrisati
-      client_feature:
-        ai_assisted_idp_feature_error: Ne more biti res, če je funkcija pomočnikov AI onemogočena
-      create_superadmin:
-        uniq_email: E-pošta mora biti uniq.
-      development_actions:
-        only_global_skills_allowed: Izbrana znanja in spretnosti morajo biti globalna znanja in spretnosti.
-        skills_not_belong_to_project: Izbrana znanja morajo pripadati določenemu projektu.
-        skills_required: Izberite vsaj eno spretnost.
-      exceeded_subjects_count: Na povabilo lahko dodate samo %{count} predmetov
-      filled?: Ne more biti prazno
-      idp_template:
-        content_required: Vsebina je potrebna za navodila
-        tag_or_skill_required: Prosimo, izberite oznako ali spretnost, ko izberete možnost »Izbrano«.
-      invalid_name: Kot veljavni znak so dovoljeni samo abeceda, številka, presledki, pomišljaj in pika
-      invalid_value: Neveljavna izjava »%{value}« v vrstici številka %{row}
-      job_roles:
-        unique_within_job_group: Delovna vloga s tem imenom že obstaja.
-      json?: Mora biti veljaven JSON
-      key?: Ne more biti prazno
-      match_regexp?: Neveljavna vrednost
-      mettl_schedule_record_create:
-        uniq_schedule_name: Ime razporeda mora biti edinstveno
-      missed?: Ne more biti prazno
-      not_allowed?: ni dovoljeno spreminjati
-      not_in_the_list?: Neveljavna vrednost posredovana
-      not_uniq_variable: spremenljivka '%{value}' na novo določena v vrstici številka %{row}
-      project_assessments:
-        should_be_greater_than_zero: Veljavnost rezultata mora biti daljša od 0 dni
-      project_feature:
-        global_skills_not_enabled_on_client: Če želite omogočiti globalne spretnosti za ta projekt, jih aktivirajte v nastavitvah odjemalca v razdelku Zastavice funkcij.
-      report_approval_settings:
-        report_exists: Nastavitev odobritve poročila za to poročilo že obstaja.
-        validates_admins: Skrbniki nimajo dostopa do oglaševalske akcije.
-      report_families_reports:
-        report_exists: To poročilo je že del svežnja poročil
-      size?: velikost mora biti manjša %{size}
-      skill:
-        already_added: Spretnost z istim imenom je že dodana.
-      skill_alias:
-        unique_alias: Vzdevek mora biti edinstven
-        unique_skill: Spretnost mora biti edinstvena
-      skills_job_roles:
-        must_belong_to_same_project_or_be_global: Veščina in delovna vloga morata pripadati istemu projektu ali biti opredeljeni na globalni ravni.
-        unique_mappings: Veščina je že povezana s to delovno vlogo.
-      uniq: Ta ocena Mettl je že prisotna v sistemu. ID te ocene je %{id}
-      uniq?: mora biti edinstven
-      uniq_simulation: Ta simulacijska ocena je že prisotna v sistemu. ID te ocene je %{id}
-      uniq_skillvue: 'To ocenjevanje Skillvue je že v sistemu. ID ocenjevanja: %{id}'
-      update_workshop:
-        bookings_exist: Razporeda ni mogoče spremeniti, saj so udeleženci že rezervirali ta časovni interval.
-        less_than_booked: Skupno število sedežev mora biti večje od rezerviranih
-      user_availability_date:
-        overlaps_date: Prekriva se z drugo razpoložljivostjo %{range}
-        overlaps_time: Interval prekrivanja %{interval}
-        start_date_should_be_less: Začetni datum mora biti krajši od končnega datuma
-        start_time_should_be_less: Začetni čas mora biti krajši od končnega časa
-      user_idp_plan:
-        idp_template_already_assigned_to_user: Ta predloga za IDP je že dodeljena temu uporabniku in je aktivna
-        idp_template_not_published: Ta predloga IDP še ni objavljena, objavite jo, preden dodelite uporabniku.
-      user_saved_filters:
-        limit_exceeded: Lahko imate samo %{limit} shranjenih filtrov, prosimo, izbrišite shranjene filtre, če želite dodati več.
-        unique_name: Filter z istim imenom že obstaja.
-      workshop_invited_subject_create:
-        already_exists: Subjekt že obstaja v povabilu.
-      workshop_subject_create:
-        already_exists: Subjekt že obstaja v tem ocenjevalnem centru.
-        part_of_other_workshop: Subjekt je že udeleženec '%{workshop_name}'.
-      workshop_subject_re_enroll:
-        no_seats_available: Za to delavnico ni na voljo mest.
-        scheduling_lead_time_passed: Čas za načrtovanje je potekel, predmeta ne morete ponovno vpisati.
-        workshop_subject_not_found: Tema delavnice ni bila najdena
-      workshops:
-        no_available_assessor_slots: Ni prostih mest za ocenjevalca %{assessor}
-        no_available_manager_slots: Ni prostih mest za managerja %{manager}
-    users:
-      registrations:
-        new:
-          register: Registracija
-          sign_in: Prijava
-      sessions:
-        new:
-          register: Registracija
-          sign_in: Prijava
   emails:
     nomination_approval_table:
       evaluator_name: Ime ocenjevalca
@@ -2583,6 +2465,7 @@ sl:
   idp:
     actions: Aktivnosti
     add_comments: Dodajanje komentarjev
+    added_development_action: Dodano razvojno ukrepanje
     ai:
       assistant:
         failure_fallback:
@@ -2639,6 +2522,7 @@ sl:
         title: Pozdravljeni, jaz sem vaš razvojni pomočnik
     behavioral: Vedenjski
     board: Deska
+    change_history: Zgodovina sprememb
     changes_saved_to_plan: Spremembe, shranjene v paketu
     comment_details:
       add_comment: Dodaj komentar
@@ -2740,6 +2624,7 @@ sl:
       publish_plan: Načrt objave
       remove: Odstrani
       save_plan: Shrani načrt
+      search_development_actions: Iskalna razvojna dejanja
       show_development_action_information: Prikaz informacij o razvojnih ukrepih
       skill: Spretnost
       sprint: Sprint
@@ -2752,7 +2637,7 @@ sl:
       write_here: Pišite tukaj ...
     direct_reportee_details: Podrobnosti o neposrednih poročalcih
     download:
-      description: 'Za prenos poročila sledite povezavi: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Povezava velja samo 10 minut'
+      description: 'Za prenos poročila sledite povezavi: <a href=''%{url}'' target=''_blank''>Download</a>. Povezava velja samo 10 minut'
     download_plan: Prenos načrta
     edit_plan: Urejanje načrta
     edit_plan_and_add_skills: Uredite načrt in kliknite Upravljanje veščin, da dodate spretnosti.
@@ -2801,6 +2686,7 @@ sl:
     manage_plan: Upravljanje načrta
     mark_as_complete: Označi kot dokončano
     mark_as_incomplete: Označi kot nepopolno
+    modified_development_action: Spremenjeni razvojni ukrep
     my_plan:
       development_plan: Razvojni načrt
       graphs:
@@ -2918,7 +2804,9 @@ sl:
         title: Povzetek poročila
     plan: Načrt
     plan_status: Stanje načrta %{status}
+    plan_submitted_for_manager_approval: Vaš individualni razvojni načrt je bil predložen v odobritev vodje.
     private: Zaseben
+    public: Javnost
     reflective_questions:
       already_completed: IDP je že zaključen, na vprašanja ni več mogoče odgovarjati.
       answer: Odgovoriti
@@ -2946,6 +2834,7 @@ sl:
       words: Besede
     remove_skill: Odstrani spretnost
     remove_skill_from_plan: Odstranjevanje %{name} spretnosti iz načrta
+    removed_development_action: Odstranjeno razvojno dejanje
     report_preview: Predogled poročila
     search_and_select_skills_of_skill_type: Poiščite in izberite %{skillType} spretnosti
     select_skills_of_skill_type: Izberite %{skillType} spretnosti
@@ -2959,6 +2848,8 @@ sl:
     status: Status
     suggestions: Predloge
     suggestions_for_skill_type: Predlogi za %{skillType} spretnosti
+    summary: Povzetek
+    summary_logs: Povzetek dnevnikov za %{reporteeName}
     technical: Tehnični
     user_idp_status:
       approved: Odobreno
@@ -2970,6 +2861,7 @@ sl:
       not_started: Ni začeto
       pending_approval: Čaka na odobritev
       rejected: Zavrnjena
+      start_review: Začni pregled
     users: Uporabniki
     with_reflection_questions: Z vprašanji za razmislek
     without_reflection_questions: Brez vprašanj za razmislek
@@ -3483,13 +3375,6 @@ sl:
   sessions:
     errors:
       recaptcha: Preverjanje Recaptcha ni uspelo. Poskusite znova.
-  shared:
-    filters:
-      clear: Počistite filtre
-    internet_disconnected_message: Ponovno vzpostavljamo povezavo. Preverite internetno povezavo.
-    mte_logo_alt_text: Logotip Mercer Talent Enterprise
-    terms_conditions_privacy: Izjava o zasebnosti
-    tte_terms_and_condition: Pogoji uporabe in politika zasebnosti
   sheet:
     import_modal:
       alert_access_sheet_removal: Nalaganje novega dostopnega lista z brisanjem vseh obstoječih zapisov in prenašanjem novega s lista. Prepričajte se, da imate v preglednici vse zapise Accesssheeta.
@@ -4290,6 +4175,7 @@ sl:
     idp:
       can_not_complete_without_approval_and_in_progress: IDP ne morete dokončati, dokler ga vaš vodja ne odobri in ga označite kot "V teku".
       can_not_start_without_approval: Ne morete začeti delati na svojem IDP, dokler ga vaš vodja ne odobri.
+      no_changes_to_compare: Ni sprememb za primerjavo za načrt IDP.
       no_previous_approved_plan: Predhodno odobren načrt IDP ni bil najden.
       reflective_questions_required: Odgovori na refleksivna vprašanja so potrebni za IDP
       status_not_permitted: uporabnik ne dovoljuje.

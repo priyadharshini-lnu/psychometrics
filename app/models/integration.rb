@@ -5,9 +5,10 @@ class Integration < ApplicationRecord
 
   belongs_to :project, class_name: 'Client'
 
-  enum :name, { iiht: 0, hogan: 1, mettl: 2, skillvue: 3 }
+  enum :name, { iiht: 0, hogan: 1, mettl: 2, skillvue: 3, yoodli: 4 }
 
   scope :active, -> { where(active: true) }
+  scope :lti_tools, -> { where(name: :yoodli) }
 
   after_commit :trigger_fetch_mettl_assessments_job, if: :mettl?
   after_commit :subscribe_to_skillvue_webhook, if: :skillvue?
@@ -32,6 +33,17 @@ class Integration < ApplicationRecord
 
     decrypted_api_key = Encryptor.decrypt(Base64.decode64(config['api_key']))
     config.merge('api_key' => decrypted_api_key)
+  end
+
+  def lti_config
+    return {} unless yoodli?
+
+    # Return the stored configuration for Yoodli LTI 1.3 integration
+    # Expected config keys:
+    # - launch_url: The LTI launch endpoint
+    # - login_url: The OIDC login initiation endpoint
+    # - keyset_url: The JWKS endpoint for tool's public keys
+    config || {}
   end
 
   def log_attribute_for_delete

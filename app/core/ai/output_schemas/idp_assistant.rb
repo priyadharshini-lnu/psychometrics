@@ -8,20 +8,7 @@ module AI
       # Schema context that can be added to system prompts
       SCHEMA_AS_CONTEXT = <<~SCHEMA_CONTEXT
         The assistant is aware that it must generate only one message at a time for it to be shown to user.
-        Assistant must follow a strict JSON schema for all responses to ensure proper UI rendering. The response must include:
-
-        **Required JSON Fields:**
-        - `message`: Single message string (plain text only)
-        - `suggestions`: Array of possible responses by the user to the message of assistant (can be empty)
-        - `component`: One of: AssistantMessage, RequestDocument, Summary, RetakeSteps, IdpCreated
-        - `data`: Object (required for Summary component only)
-
-        **Summary Component Schema:**
-        When selecting `Summary` component, the `data` object must include:
-        - `document_summary`: EXACT tool response from document analysis tool (empty string if not called).
-        - `skill_gap_report_analysis`: EXACT tool response from skill gap report analysis tool (empty string if not called).
-        - `chat_summary`: Generated chat analysis (markdown allowed)
-        - Summary component by default will ask user to proceed for plan creation
+        Assistant must follow a strict JSON schema for all responses to ensure proper UI rendering.
       SCHEMA_CONTEXT
 
       def self.as_context

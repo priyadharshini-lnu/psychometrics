@@ -120,7 +120,9 @@ export const ReflectionQuestionsForm: FC<ReflectionQuestionsFormProps> = ({ idp,
           <Space direction="vertical" style={{ width: '100%' }}>
             <Flex gap={16}>
               <Select
-                style={{ width: '100%' }}
+                style={{
+                  width: '100%', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap',
+                }}
                 placeholder={I18n.t('administration.idp.select_reflection_question')}
                 showSearch
                 onSearch={(query) => {

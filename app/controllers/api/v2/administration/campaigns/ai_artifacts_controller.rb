@@ -39,11 +39,18 @@ module Api
 
       artifact_result_generator.
         on(:ok) do |assistant_response|
-          artifact_results = @artifact.results.new(user: nil, results: assistant_response[:results],
-                                                   parsed_dependencies: assistant_response[:parsed_dependencies])
+          artifact_result = @artifact.results.new(user: nil, results: assistant_response[:results],
+                                                  parsed_dependencies: assistant_response[:parsed_dependencies])
 
-          render json: jsonapi_format(artifact_results,
-                                      resource: Api::V2::Administration::Campaigns::AIArtifactResultResource)
+          json_response = jsonapi_format(
+            artifact_result,
+            resource: Api::V2::Administration::Campaigns::AIArtifactResultResource
+          )
+
+          json_response[:data]['attributes']['total_input_tokens']  = assistant_response[:input_tokens]
+          json_response[:data]['attributes']['total_output_tokens'] = assistant_response[:output_tokens]
+
+          render json: json_response
         end.
         on(:error) do |error|
           jsonapi_render_errors [{ detail: error }], status: :unprocessable_entity

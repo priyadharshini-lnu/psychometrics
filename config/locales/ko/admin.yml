@@ -1,0 +1,52 @@
+---
+ko:
+  admin:
+    admins: 관리자
+    ai_artifacts: AI 아티팩트
+    ai_assistants: AI 어시스턴트
+    assessments: 평가
+    assessments_reports: 평가 및 보고서
+    assessor_dashboard: 평가자 대시보드
+    assessor_workshops: 평가 센터
+    audit_logs: 감사 로그
+    audit_reports: 감사 보고서
+    availability: 가용성
+    back_to_main: 메인 메뉴
+    campaign_templates: 캠페인 템플릿
+    client: 클라이언트 테넌시
+    client_admins: 클라이언트 관리자
+    clients: 고객 임차
+    communication_center: 커뮤니케이션 센터
+    country: 국가
+    create_client: 클라이언트 만들기
+    dashboard: 대시보드
+    data_reports: 데이터 보고서
+    datasheet: 데이터시트
+    development_actions: 개발 작업
+    dimensions: 치수
+    libraries: 미디어 라이브러리
+    no_notifications: 알림 없음
+    norms: 규범
+    notification_bell_icon_alt_text: 알림 벨 아이콘
+    notifications: 알림
+    number: 번호
+    occupations: 직업
+    options: 옵션
+    participants: 참가자
+    profile_details: 프로필 세부 정보
+    project_admins: 프로젝트 관리자
+    project_manager: 프로젝트 관리자
+    question_center: 질문 센터
+    registration_codes: 등록 코드
+    report_approvals: 보고서 승인
+    reports: 보고서
+    role: 역할
+    scheduling: 일정 예약
+    scoring: 채점
+    show_submenu: 하위 메뉴 표시
+    skills_taxonomy: 기술 분류
+    stats: 통계
+    user_report_events: 사용자 보고서 이벤트
+    users: 사용자
+    view_licenses: 라이선스 보기
+    year: 국가

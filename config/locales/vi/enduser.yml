@@ -1,0 +1,21 @@
+---
+vi:
+  enduser:
+    add_idp_plan_note: Thêm ghi chú...
+    add_idp_plan_rejection_reason: Thêm lý do...
+    approve_idp_plan: Phê duyệt kế hoạch
+    bookings: Đặt chỗ
+    campaign: Chiến dịch
+    development: Phát triển
+    direct_reportees: Người báo cáo trực tiếp
+    home: Bảng điều khiển
+    idp_plan_approval_note: Ghi chú phê duyệt
+    insights: Thông tin chi tiết
+    max_word_limit: Phải có tối đa %{max} từ
+    min_word_limit: Phải có ít nhất %{min} từ
+    my_plan: Kế hoạch của tôi
+    profile: Hồ sơ
+    profile_details: Chi tiết
+    selected_count: Đã chọn
+    skill_type: Loại kỹ năng
+    tasks: Nhiệm vụ

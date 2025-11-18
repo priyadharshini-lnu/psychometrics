@@ -3,7 +3,6 @@
 FactoryBot.define do
   factory :campaign_ai_artifact_result, class: 'AI::CampaignArtifactResult' do
     association :user
-    association :ai_assistant_chat, factory: :assistant_chat
 
     checkpoint { {} }
     meta { {} }

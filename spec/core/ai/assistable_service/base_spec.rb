@@ -67,7 +67,7 @@ describe AI::AssistableService::Base do
           expect(session).to be_persisted
           expect(session.assistable).to eq(user_idp_skill)
           expect(session.user).to eq(user)
-          expect(session.ai_assistant_chat).to be_present
+          expect(session.latest_chat).to be_present
         end.to change(AI::AssistedUserDevelopmentActionsSession, :count).by(1)
       end
 
@@ -77,7 +77,7 @@ describe AI::AssistableService::Base do
         service = create_service
         session = service.session
 
-        expect(session.ai_assistant_chat).to be_present
+        expect(session.latest_chat).to be_present
       end
 
       it 'saves the session after creating it' do
@@ -94,8 +94,11 @@ describe AI::AssistableService::Base do
       let!(:existing_session) do
         create(:assisted_user_development_actions_session,
                assistable: user_idp_skill,
-               user: user,
-               ai_assistant_chat: existing_chat)
+               user: user)
+      end
+
+      before do
+        existing_chat.update!(ai_assisted_user_session: existing_session)
       end
 
       it 'uses the existing session without creating a new one' do
@@ -110,7 +113,7 @@ describe AI::AssistableService::Base do
         service = create_service
         session = service.session
 
-        expect(session.ai_assistant_chat).to eq(existing_chat)
+        expect(session.latest_chat).to eq(existing_chat)
       end
 
       it 'does not modify the existing session' do
@@ -129,32 +132,34 @@ describe AI::AssistableService::Base do
       let!(:existing_session) do
         create(:assisted_user_development_actions_session,
                assistable: user_idp_skill,
-               user: user,
-               ai_assistant_chat: existing_chat)
+               user: user)
+      end
+
+      before do
+        existing_chat.update!(ai_assisted_user_session: existing_session)
       end
 
       it 'creates a new chat for the existing session' do
-        original_chat = existing_session.ai_assistant_chat
+        original_chat = existing_session.latest_chat
 
         service = create_service(options: options)
         session = service.session
 
         expect(session).to eq(existing_session)
-        expect(session.ai_assistant_chat).not_to eq(original_chat)
-        expect(session.ai_assistant_chat).to be_present
+        expect(session.latest_chat).not_to eq(original_chat)
+        expect(session.latest_chat).to be_present
       end
 
       it 'saves the session with the new chat' do
-        original_chat_id = existing_session.ai_assistant_chat.id
+        original_chat_id = existing_session.latest_chat.id
 
         service = create_service(options: options)
         session = service.session
 
         existing_session.reload
-        existing_session.association(:ai_assistant_chat).reload
 
-        expect(existing_session.ai_assistant_chat.id).not_to eq(original_chat_id)
-        expect(existing_session.ai_assistant_chat.id).to eq(session.ai_assistant_chat.id)
+        expect(existing_session.latest_chat.id).not_to eq(original_chat_id)
+        expect(existing_session.latest_chat.id).to eq(session.latest_chat.id)
       end
 
       it 'creates the new chat with assistant context' do
@@ -173,7 +178,7 @@ describe AI::AssistableService::Base do
           service = create_service(options: options)
           session = service.session
           expect(session).to be_persisted
-          expect(session.ai_assistant_chat).to be_present
+          expect(session.latest_chat).to be_present
         end.to change(AI::AssistedUserDevelopmentActionsSession, :count).by(1)
       end
     end
@@ -213,8 +218,7 @@ describe AI::AssistableService::Base do
   describe '#chat_with_context' do
     it 'calls with_assistant_context on the assisted_session_chat with tools' do
       service = create_service
-      session = service.session
-      chat = session.ai_assistant_chat
+      chat = service.send(:assisted_session_chat)
 
       expect(chat).to receive(:with_assistant_context).with(tools: [])
 

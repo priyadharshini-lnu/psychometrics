@@ -38,14 +38,16 @@ module AdminJobs
       end
 
       def records_for_export
-        query = UsersResult.geo_scoped(owner_country).joins(:user_assessment).
-                where(user_assessments: { assessment_id: assessment.id }).
-                merge(UserAssessment.scored)
-
-        if campaign_ids.present?
-          query = query.where(user_assessments: { campaign_id: campaign_ids })
-        end
-        query.includes(:norm, :subject, :evaluator, user_assessment: %i[relationship]).
+        UsersResult.geo_scoped(owner_country).
+          joins(:user_assessment).
+          where(
+            user_assessments: {
+              assessment_id: assessment.id,
+              campaign_id: filtered_campaign_ids
+            }
+          ).
+          merge(UserAssessment.scored).
+          includes(:norm, :subject, :evaluator, user_assessment: %i[relationship]).
           find_each(batch_size: 100)
       end
 

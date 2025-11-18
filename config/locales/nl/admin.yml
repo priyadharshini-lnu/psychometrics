@@ -1,0 +1,52 @@
+---
+nl:
+  admin:
+    admins: Admins
+    ai_artifacts: AI-artefacten
+    ai_assistants: AI assistenten
+    assessments: Beoordeling
+    assessments_reports: Beoordelingen en rapporten
+    assessor_dashboard: Dashboard voor beoordelaars
+    assessor_workshops: Beoordelingscentrum
+    audit_logs: Controlelogboeken
+    audit_reports: Controleverslagen
+    availability: Beschikbaarheid
+    back_to_main: Hoofdmenu
+    campaign_templates: Campagnesjablonen
+    client: Huurder
+    client_admins: Klanten-admins
+    clients: Huurcontracten voor klanten
+    communication_center: Communicatiecentrum
+    country: Land
+    create_client: Klant maken
+    dashboard: Dashboard
+    data_reports: Gegevensrapporten
+    datasheet: Technische fiche
+    development_actions: Ontwikkelingsacties
+    dimensions: Afmetingen
+    libraries: Mediatheek
+    no_notifications: Geen meldingen
+    norms: Normen
+    notification_bell_icon_alt_text: Pictogram Meldingsbel
+    notifications: Meldingen
+    number: Aantal
+    occupations: Beroepen
+    options: Opties
+    participants: Deelnemers
+    profile_details: Profielgegevens
+    project_admins: Projectbeheerders
+    project_manager: Projectmanager
+    question_center: Vragencentrum
+    registration_codes: Registratiecodes
+    report_approvals: Goedkeuringen
+    reports: Rapporten
+    role: Rol
+    scheduling: Planning
+    scoring: Scoren
+    show_submenu: Submenu weergeven
+    skills_taxonomy: Taxonomie van vaardigheden
+    stats: Stats
+    user_report_events: Gebeurtenissen gebruikersrapport
+    users: Gebruikers
+    view_licenses: Licenties bekijken
+    year: Land

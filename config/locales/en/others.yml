@@ -435,6 +435,10 @@ en:
               inclusion: must be a boolean
             start_date_time:
               invalid_datetime: is invalid
+        yoodli:
+          attributes:
+            name:
+              not_unique: This integration is already present for this project.
   activerecord:
     attributes:
       administration/assessments/assign_form:
@@ -465,6 +469,7 @@ en:
           simulation: Simulation
           skillvue: Skillvue
           threesixty: 360 Campaign
+          yoodli: Yoodli
         category: Category
         created_at: Created Date
         description: Description
@@ -482,6 +487,7 @@ en:
           saville: Saville Assessment
           simulation: Simulation Assessment
           skillvue: Skillvue Assessment
+          yoodli: Yoodli Assessment
         updated_at: Modified Date
       assign:
         completed_at: Completion Date
@@ -870,6 +876,7 @@ en:
         export_user_report_events: Export User Report Events
         export_users: Campaign Users Export
         external_assessment_export: External Results Export
+        generate_embedding_skills: Generate Embedding for Skills
         import_accesssheet: Import Accessheet
         import_assessment_questions: Import Assessment Questions
         import_assessment_translations: Import Assessment Translations
@@ -932,8 +939,6 @@ en:
     invalid_job: This notification corresponds to deleted record
     mark_as_read: Mark all read
     more: More
-    no_notifications: No notifications
-    notifications: Notifications
     results: Results
     super_admin:
       errors:
@@ -1043,6 +1048,7 @@ en:
         saville_assessment_name: Saville assessment Name
         simulation_assessment_name: Simulation Assessment Name
         skillvue_assessment_name: Skillvue Assessment Name
+        yoodli_assessment_name: Yoodli Assessment Name
       translations_migrated: Translation Migrated
     create: Create
     dashboard: Dashboard
@@ -1084,6 +1090,7 @@ en:
         simulation: Simulation
         skillvue: Skillvue
         threesixty: 360 Campaign
+        yoodli: Yoodli
       status:
         finished: Finished
         in_progress: In Progress
@@ -1096,6 +1103,7 @@ en:
         saville: Saville Assessment
         simulation: Simulation Assessment
         skillvue: Skillvue Assessment
+        yoodli: Yoodli Assessment
     flow:
       end_assessment_modal:
         custom_message: Custom end of assessment message
@@ -1357,16 +1365,11 @@ en:
     continue: Continue your tasks
     dashboard_instructions: You may have been assigned multiple activities that you need to complete. Please make sure to check that all the assigned activities have been completed across all the campaigns.
     dashboard_menu:
-      bookings: Bookings
       campaign: Campaign
-      change_password: Change Password
-      development: Development
       direct_reportees: Direct Reportees
       home: Home
       insights: Insights
-      my_plan: My Plan
       profile: Profile
-      profile_details: Details
       tasks: Tasks
     details: Details
     edit_evaluation:
@@ -1482,6 +1485,8 @@ en:
       skillvue_email_id: Skillvue Candidate Email ID
       skillvue_external_assessment_id: Skillvue Assessment ID
       universal_link: Universal link
+      yoodli_email_id: Yoodli Candidate Email ID
+      yoodli_external_assessment_id: Yoodli Assessment ID
     drawer:
       mettl_schedule_name: Mettl Schedule Name
       title: Assessment Details
@@ -1490,6 +1495,7 @@ en:
       export_occupations_job_scheduled: Occupations Export job was scheduled successfully
       export_reports_and_assessments_statuses_scheduled: Export Reports and assessments job was scheduled successfully
       external_results_export_scheduled: External Assessment export job was scheduled successfully
+      no_participants_selected: Please select at least one participant to proceed.
       norm_results_export_scheduled: Assessment Normed Results export job was scheduled successfully
       normalize_factor_scores_scheduled: Normalizing factor scores job was scheduled successfully.
       raw_factor_export_scheduled: Assessment Raw Factor export job was scheduled successfully
@@ -1634,6 +1640,7 @@ en:
       report_bundle_placeholder: Select a report bundle
     messages:
       bulk_download_error: Bulk download is limited to 1000 report files. If you have selected many langauges, please reduce it.
+      bulk_download_no_reports: No reports found. Please generate the reports before downloading.
       bulk_download_successful: Bulk report download job was scheduled successfully
       export_report_data_scheduled: Report data export job was scheduled successfully
     modals:
@@ -1905,7 +1912,6 @@ en:
       projects: Projects
       report: Report
       reports: Reports
-      scoring: Scoring
       sms_contact: SMS Contact
       threesixty_campaign: Threesixty Campaign Scores
     status:
@@ -1945,6 +1951,7 @@ en:
       hide: Hide
       view: View
     validations:
+      required: This field is required
       select_locale: Please Select Some locale(s)
       should_be_whole_number: should be a whole number
   confirmation:
@@ -2171,118 +2178,6 @@ en:
       send_paranoid_instructions: If your account exists, you will receive an email with instructions for how to unlock it in a few minutes.
       unlocked: Your account has been unlocked successfully. Please login to continue.
       unprocessable_entity: Your account could not be unlocked with this link. Please contact support.
-  dry_errors:
-    errors:
-      add_edit_project:
-        invalid_subdomain_format: Wrong subdomain format.
-        reserved_subdomain: Subdomain %{value} is reserved
-        uniq_subdomain: Subdomain should be unique.
-      add_manager:
-        cannot_be_self: User cannot be assigned as their own manager
-        manager_not_found: Manager not found or not part of the same project
-        user_not_found: User not found or not part of the same project
-      admin:
-        already_added: Admin with email already added.
-      already_assigned?: Cannot link this assessment - it is already assigned to '%{linked_assessor_form_name}'.
-      already_invited: This user already exists in the assessment centre you are attempting to add.
-      assessor_assessment:
-        already_added: Assessor Assessment already added to campaign.
-        lead_already_added: Only one Lead Assessor Assessment can be added to campaign.
-      campaign_factor:
-        code_already_exists: A factor with the same code already exists.
-        invalid_lua_name: should be valid lua variable name
-        limit_exceeded: You have reached the maximum limit of %{limit} campaign factors.
-        name_already_exists: A factor with the same name already exists.
-        rank_not_allowed: Only factors with an output type of numeric can be ranked.
-      campaign_factor_group:
-        group_already_exists: A group with the same name already exists.
-        last_factor_group: Cannot delete last Campaign factor group.
-      campaign_idps:
-        idp_template_not_published: This Idp Template is not published yet, please publish it before assigning to campaign.
-      cant_be_deleted: This record can't be deleted
-      client_feature:
-        ai_assisted_idp_feature_error: Can't be true if ai assistants feature is disabled
-      create_superadmin:
-        uniq_email: Email should be uniq.
-      development_actions:
-        only_global_skills_allowed: The selected skills must be global skills.
-        skills_not_belong_to_project: The selected skills must belong to the specified project.
-        skills_required: Please select at least one skill.
-      exceeded_subjects_count: You can only add %{count} subjects per invite
-      filled?: can't be blank
-      idp_template:
-        content_required: Content is required for instructions
-        tag_or_skill_required: Please select either a tag or a skill when the "Selected" option is chosen.
-      invalid_name: only alphabet, number, spaces, dash and dot are allowed as valid character
-      invalid_value: invalid statement '%{value}' on line number %{row}
-      job_roles:
-        unique_within_job_group: A job role with the same name already exists.
-      json?: Should be valid JSON
-      key?: can't be blank
-      match_regexp?: invalid value
-      mettl_schedule_record_create:
-        uniq_schedule_name: Schedule name should be unique
-      missed?: can't be blank
-      not_allowed?: not allowed to change
-      not_in_the_list?: invalid value passed
-      not_uniq_variable: variable '%{value}' redefined on line number %{row}
-      project_assessments:
-        should_be_greater_than_zero: Result validity should be greater than 0 days
-      project_feature:
-        global_skills_not_enabled_on_client: To enable Global Skills for this project, please activate it under Feature Flags in the client settings.
-      report_approval_settings:
-        report_exists: Report approval setting for this report already exists.
-        validates_admins: Admins don't have access to the campaign.
-      report_families_reports:
-        report_exists: This Report is already a part of Report Bundle
-      size?: size should be less %{size}
-      skill:
-        already_added: Skill with the same name already added.
-      skill_alias:
-        unique_alias: Alias should be unique
-        unique_skill: Skill should be unique
-      skills_job_roles:
-        must_belong_to_same_project_or_be_global: Skill and job role must belong to same project or be global.
-        unique_mappings: A mapping with the same skill and job role already exists.
-      uniq: This Mettl assessment is already present in the system. ID of this assessment is %{id}
-      uniq?: should be unique
-      uniq_simulation: This Simulation assessment is already present in the system. ID of this assessment is %{id}
-      uniq_skillvue: This Skillvue assessment is already present in the system. ID of this assessment is %{id}
-      update_workshop:
-        bookings_exist: Cannot modify the schedule as participants have already booked this time slot.
-        less_than_booked: The total seats must be greater than booked
-      user_availability_date:
-        overlaps_date: Overlaps another availability %{range}
-        overlaps_time: Overlaps interval %{interval}
-        start_date_should_be_less: Start date should be less than end date
-        start_time_should_be_less: Start time should be less than end time
-      user_idp_plan:
-        idp_template_already_assigned_to_user: This Idp Template is already assiged to this user and is active
-        idp_template_not_published: This Idp Template is not published yet, please publish it before assigning to user.
-      user_saved_filters:
-        limit_exceeded: You can only have %{limit} saved filters, kindly delete saved filters to add more.
-        unique_name: A filter with the same name already exists.
-      workshop_invited_subject_create:
-        already_exists: Subject already exists in the invite.
-      workshop_subject_create:
-        already_exists: Subject already exists in this Assessment Center.
-        part_of_other_workshop: Subject is already a participant of '%{workshop_name}'.
-      workshop_subject_re_enroll:
-        no_seats_available: No seats available for this workshop.
-        scheduling_lead_time_passed: Scheduling Lead Time has passed, you cannot re-enroll the subject.
-        workshop_subject_not_found: Workshop subject not found
-      workshops:
-        no_available_assessor_slots: No available slots for assessor %{assessor}
-        no_available_manager_slots: No available slots for manager %{manager}
-    users:
-      registrations:
-        new:
-          register: Register
-          sign_in: Sign in
-      sessions:
-        new:
-          register: Register
-          sign_in: Sign in
   emails:
     nomination_approval_table:
       evaluator_name: Evaluator Name
@@ -2613,6 +2508,9 @@ en:
   idp:
     actions: Actions
     add_comments: Add Comments
+    add_note: Add Note...
+    add_reason: Add Reason...
+    added_development_action: Added Development Action
     ai:
       assistant:
         failure_fallback:
@@ -2650,7 +2548,7 @@ en:
           option_2: Good for busy professionals
           option_3: Fully editable after generation
           title: 1-Click AI IDP
-        sub_title: Let's create a customized upskilling jorney mapped to your career aspiration and guided by AI
+        sub_title: Let's create a customized upskilling journey mapped to your career aspiration and guided by AI
         title: Create Your Individual Development Plan
       summary:
         chat_title: Chat Insight Summary
@@ -2665,10 +2563,13 @@ en:
         drop: Drop file here
         title: Upload files
       welcome:
-        text: Ready to chart your growth jorney? Let's begin!
+        text: Ready to chart your growth journey? Let's begin!
         title: Hello, I'm your development assistant
+    approval_note: Approval Note
+    approve_plan: Approve Plan
     behavioral: Behavioral
     board: Board
+    change_history: Change History
     changes_saved_to_plan: Changes saved to the plan
     comment_details:
       add_comment: Add Comment
@@ -2771,6 +2672,8 @@ en:
       publish_plan: Publish Plan
       remove: Remove Development Action
       save_plan: Save Plan
+      search_development_actions: Search Development Actions
+      selected_count: "%{count} selected"
       show_development_action_information: Show Development Action information
       skill: Skill
       sprint: Sprint
@@ -2834,6 +2737,7 @@ en:
     manage_plan: Manage Plan
     mark_as_complete: Mark as Complete
     mark_as_incomplete: Mark as Incomplete
+    modified_development_action: Modified Development Action
     my_plan:
       development_plan: Development Plan
       graphs:
@@ -2951,7 +2855,10 @@ en:
         title: Report Summary
     plan: Plan
     plan_status: Plan Status %{status}
+    plan_submitted_for_manager_approval: Your Individual Development Plan has been submitted for manager approval.
     private: Private
+    public: Public
+    reason_for_rejection: Reason for Rejection
     reflective_questions:
       already_completed: The IDP has already been completed, you cannot answer the questions now.
       answer: Answer
@@ -2964,7 +2871,9 @@ en:
         max_words: The answer allows a maximum %{count} words
         min_words: The answer requires at least %{count} words
         required: The answer to the question is required
+      max_word_limit: Must be at most %{max} words
       max_words: Max Words
+      min_word_limit: Must be at least %{min} words
       min_words: Min Words
       no_answer_provided: No answer provided yet
       no_reflective_questions: No reflective questions available
@@ -2977,8 +2886,10 @@ en:
       updated_successfully: Your answers have been updated successfully
       word_limit: Must be between %{min} and %{max} words
       words: Words
+    reject_plan: Reject Plan
     remove_skill: Remove Skill
     remove_skill_from_plan: Remove skill %{name} from plan
+    removed_development_action: Removed Development Action
     report_preview: Report Preview
     search_and_select_skills_of_skill_type: Search and select %{skillType} skills
     select_skills_of_skill_type: Select %{skillType} skills
@@ -2992,8 +2903,11 @@ en:
     status: Status
     suggestions: Suggestions
     suggestions_for_skill_type: Suggestions for %{skillType} skills
+    summary: Summary
+    summary_logs: Summary logs for %{reporteeName}
     technical: Technical
     user_idp_status:
+      ai_assisted_idp_in_progress: AI Assisted IDP In Progress
       approved: Approved
       completed: Completed
       completion_not_started: Completion Not Started
@@ -3003,6 +2917,7 @@ en:
       not_started: Not Started
       pending_approval: Pending Approval
       rejected: Rejected
+      start_review: Start Review
     users: Users
     with_reflection_questions: With Reflection Questions
     without_reflection_questions: Without Reflection Questions
@@ -3203,6 +3118,34 @@ en:
       threesixty: Threesixty
     used_number: Used licenses
     used_out_of: "%{used} out of %{total}"
+  lti:
+    oidc_auth_form:
+      errors:
+        client_id:
+          blank: Client ID is required
+          invalid: Client ID does not match the registered tool identifier
+          validation_failed: Client ID validation failed
+        login_hint:
+          assessment_completed: User assessment is already completed
+          blank: Login hint is required
+          invalid_user_assessment: Login hint does not reference a valid user assessment
+        lti_deployment_id:
+          not_found: Deployment ID does not reference a valid integration
+        nonce:
+          blank: Nonce is required
+        redirect_uri:
+          blank: Redirect URI is required
+          has_fragment: Redirect URI must not contain a fragment
+          https_required: Redirect URI must use HTTPS in production
+          invalid_format: Redirect URI must be a valid URI format
+          missing_host: Redirect URI must include a host
+          scheme_not_allowed: Redirect URI must use HTTP or HTTPS protocol
+        response_type:
+          blank: Response type is required
+          invalid: Response type must be 'id_token'
+        scope:
+          blank: Scope is required
+          invalid: Scope must be 'openid'
   mailer:
     copyright:
       text: Lighthouse. All rights reserved
@@ -3448,10 +3391,12 @@ en:
         pearson: Pearson
         saville: Saville
         skillvue: Skillvue
+        yoodli: Yoodli
     form:
       load_from_mettl: Load from Mettl
       load_from_pearson: Load from Pearson
       load_from_skillvue: Load from Skillvue
+      load_from_yoodli: Load from Yoodli
       none_external: None - Use report builder
     language: Report Language
     language_updated: Report Language was updated successfully
@@ -3588,13 +3533,6 @@ en:
   sessions:
     errors:
       recaptcha: Recaptcha verification failed. Please try again.
-  shared:
-    filters:
-      clear: Clear Filters
-    internet_disconnected_message: Trying to reconnect. Please check your internet connection.
-    mte_logo_alt_text: Mercer Talent Enterprise logo
-    terms_conditions_privacy: Privacy Statement
-    tte_terms_and_condition: Terms & Privacy
   sheet:
     import_modal:
       alert_access_sheet_removal: Uploading new Accesssheet with delete all existing record and upload new one from the sheet. Please make sure you have all Accesssheet records in spreadsheet.
@@ -4395,6 +4333,7 @@ en:
     idp:
       can_not_complete_without_approval_and_in_progress: You cannot complete your IDP until your manager approves it and you have marked it as 'In Progress'.
       can_not_start_without_approval: You cannot start working on your IDP until your manager approves it.
+      no_changes_to_compare: No changes to compare for IDP plan.
       no_previous_approved_plan: No previous approved IDP plan found.
       reflective_questions_required: Answers to reflective questions are required for IDP
       status_not_permitted: is not permitted by the user.

@@ -170,7 +170,8 @@ class Client < ApplicationRecord
   delegate :tfa_enabled?, to: :security_setting
   delegate :mask_identity_for_pearson?, :mask_identity_for_saville?, :mask_identity_for_hogan?,
            :mask_identity_for_iiht?, :mask_identity_for_examus?,
-           :mask_identity_for_mettl?, :mask_identity_for_skillvue?, :custom_privacy_consent, to: :privacy_setting
+           :mask_identity_for_mettl?, :mask_identity_for_skillvue?, :mask_identity_for_yoodli?,
+           :custom_privacy_consent, to: :privacy_setting
   delegate :idp?, :ai_assistants?, :global_skills?, :sms_notification?,
            :ai_assisted_idp?, to: :project_feature, allow_nil: true
 

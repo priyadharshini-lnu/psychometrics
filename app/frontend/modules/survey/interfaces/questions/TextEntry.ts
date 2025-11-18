@@ -25,6 +25,7 @@ interface Props {
     dateFormat?: DateFormat
   }>
   allowDictation: boolean
+  allowContentCopy?: boolean
   dateFormat: DateFormat
   maxLength: number | null
   contactList: string[]

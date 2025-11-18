@@ -919,8 +919,6 @@ nl:
     invalid_job: Deze melding komt overeen met verwijderde record
     mark_as_read: Markeer alle gelezen
     more: Meer
-    no_notifications: Geen meldingen
-    notifications: Meldingen
     results: Resultaten
     super_admin:
       errors:
@@ -1341,16 +1339,11 @@ nl:
     continue: Doorgaan met je taken
     dashboard_instructions: Er kunnen meerdere activiteiten aan je zijn toegewezen die je moet voltooien. Controleer of alle toegewezen activiteiten zijn voltooid in alle campagnes.
     dashboard_menu:
-      bookings: Boekingen
       campaign: Campagne
-      change_password: Wachtwoord wijzigen
-      development: Ontwikkeling
       direct_reportees: Directe rapporten
       home: Home
       insights: Inzichten
-      my_plan: Mijn plan
       profile: Profiel
-      profile_details: Details
       tasks: Taken
     details: Details
     edit_evaluation:
@@ -1465,6 +1458,7 @@ nl:
       export_occupations_job_scheduled: Beroepen Exporttaak is succesvol ingepland
       export_reports_and_assessments_statuses_scheduled: De taak Exportrapporten en beoordelingen is met succes gepland
       external_results_export_scheduled: De exporttaak voor externe beoordelingen is met succes gepland
+      no_participants_selected: Selecteer ten minste één deelnemer om door te gaan.
       norm_results_export_scheduled: Exporttaak Assessment Normed Results is met succes gepland
       normalize_factor_scores_scheduled: De taak voor het normaliseren van factorscores is met succes ingepland.
       raw_factor_export_scheduled: Beoordeling Raw Factor exporttaak is succesvol gepland
@@ -1609,6 +1603,7 @@ nl:
       report_bundle_placeholder: Selecteer een rapportbundel
     messages:
       bulk_download_error: Bulkdownload is beperkt tot 1000 rapportbestanden. Als je veel talen hebt geselecteerd, verklein dit dan.
+      bulk_download_no_reports: Geen meldingen gevonden. Genereer de rapporten voordat u ze downloadt.
       bulk_download_successful: De downloadtaak voor bulkrapporten is met succes gepland
       export_report_data_scheduled: De exporttaak voor rapportgegevens is met succes gepland
     modals:
@@ -1878,7 +1873,6 @@ nl:
       projects: Projecten
       report: Rapporteer
       reports: Rapporten
-      scoring: Scoren
       sms_contact: SMS contact
       threesixty_campaign: Threesixty Campagne Scores
     status:
@@ -2139,118 +2133,6 @@ nl:
       send_paranoid_instructions: Als je account bestaat, ontvang je binnen enkele minuten een e-mail met instructies om het te ontgrendelen.
       unlocked: Uw account is succesvol ontgrendeld. Log in om verder te gaan.
       unprocessable_entity: Uw account kon niet worden ontgrendeld met deze link. Neem contact op met ondersteuning.
-  dry_errors:
-    errors:
-      add_edit_project:
-        invalid_subdomain_format: Verkeerd subdomeinformaat.
-        reserved_subdomain: Subdomein %{value} is gereserveerd
-        uniq_subdomain: Subdomein moet uniek zijn.
-      add_manager:
-        cannot_be_self: Gebruiker kan niet worden toegewezen als zijn eigen manager
-        manager_not_found: Manager niet gevonden of geen onderdeel van hetzelfde project
-        user_not_found: Gebruiker niet gevonden of maakt geen deel uit van hetzelfde project
-      admin:
-        already_added: Admin met e-mail al toegevoegd.
-      already_assigned?: Kan deze beoordeling niet koppelen - ze is al toegewezen aan '%{linked_assessor_form_name}'.
-      already_invited: Deze gebruiker bestaat al in het beoordelingscentrum dat u probeert toe te voegen.
-      assessor_assessment:
-        already_added: Assessor Beoordeling al toegevoegd aan campagne.
-        lead_already_added: Er kan slechts één Lead Assessor Assessment aan een campagne worden toegevoegd.
-      campaign_factor:
-        code_already_exists: Er bestaat al een factor met dezelfde code.
-        invalid_lua_name: moet een geldige lua-variabele naam zijn
-        limit_exceeded: U hebt de maximale limiet van %{limit} campagnefactoren bereikt.
-        name_already_exists: Er bestaat al een factor met dezelfde naam.
-        rank_not_allowed: Alleen factoren met een uitvoertype numeriek kunnen gerangschikt worden.
-      campaign_factor_group:
-        group_already_exists: Er bestaat al een groep met dezelfde naam.
-        last_factor_group: Kan laatste Campagnefactor-groep niet verwijderen.
-      campaign_idps:
-        idp_template_not_published: Deze IDP -sjabloon is nog niet gepubliceerd, publiceer deze voordat u de campagne toewijst.
-      cant_be_deleted: Deze record kan niet worden verwijderd
-      client_feature:
-        ai_assisted_idp_feature_error: Kan niet waar zijn als de functie voor ai-assistenten is uitgeschakeld
-      create_superadmin:
-        uniq_email: E-mail moet uniek zijn.
-      development_actions:
-        only_global_skills_allowed: De geselecteerde vaardigheden moeten globale vaardigheden zijn.
-        skills_not_belong_to_project: De geselecteerde vaardigheden moeten bij het opgegeven project horen.
-        skills_required: Selecteer minstens één vaardigheid.
-      exceeded_subjects_count: Je kunt alleen %{count} onderwerpen per uitnodiging toevoegen
-      filled?: kan niet leeg zijn
-      idp_template:
-        content_required: Inhoud is vereist voor instructies
-        tag_or_skill_required: Selecteer een tag of vaardigheid wanneer de optie "Geselecteerd" wordt gekozen.
-      invalid_name: alleen alfabet, cijfer, spaties, streepje en punt zijn toegestaan als geldig teken
-      invalid_value: ongeldige instructie '%{value}' op regelnummer %{row}
-      job_roles:
-        unique_within_job_group: Er bestaat al een functierol met dezelfde naam.
-      json?: Moet geldige JSON zijn
-      key?: kan niet leeg zijn
-      match_regexp?: ongeldige waarde
-      mettl_schedule_record_create:
-        uniq_schedule_name: De naam van het schema moet uniek zijn
-      missed?: kan niet leeg zijn
-      not_allowed?: niet toegestaan om te veranderen
-      not_in_the_list?: ongeldige waarde doorgegeven
-      not_uniq_variable: variabele '%{value}' geherdefinieerd op regelnummer %{row}
-      project_assessments:
-        should_be_greater_than_zero: De geldigheidsduur van het resultaat moet groter zijn dan 0 dagen
-      project_feature:
-        global_skills_not_enabled_on_client: Om Global Skills voor dit project in te schakelen, activeert u het onder Functievlaggen in de klantinstellingen.
-      report_approval_settings:
-        report_exists: Er bestaat al een goedkeuringsinstelling voor dit rapport.
-        validates_admins: Admins hebben geen toegang tot de campagne.
-      report_families_reports:
-        report_exists: Dit rapport maakt al deel uit van Rapportbundel
-      size?: grootte moet kleiner zijn %{size}
-      skill:
-        already_added: Vaardigheid met dezelfde naam al toegevoegd.
-      skill_alias:
-        unique_alias: Alias moet uniek zijn
-        unique_skill: Vaardigheden moeten uniek zijn
-      skills_job_roles:
-        must_belong_to_same_project_or_be_global: Vaardigheid en functie moeten bij hetzelfde project horen of globaal zijn.
-        unique_mappings: Er bestaat al een mapping met dezelfde vaardigheid en functie.
-      uniq: Deze Mettl beoordeling is al aanwezig in het systeem. ID van deze beoordeling is %{id}
-      uniq?: moet uniek zijn
-      uniq_simulation: Deze Simulatie beoordeling is al aanwezig in het systeem. ID van deze beoordeling is %{id}
-      uniq_skillvue: Deze Skillvue beoordeling is al aanwezig in het systeem. ID van deze beoordeling is %{id}
-      update_workshop:
-        bookings_exist: Kan het schema niet wijzigen omdat deelnemers dit tijdslot al hebben geboekt.
-        less_than_booked: Het totaal aantal geboekte zitplaatsen moet groter zijn dan
-      user_availability_date:
-        overlaps_date: Overlapt een andere beschikbaarheid %{range}
-        overlaps_time: Overlapt interval %{interval}
-        start_date_should_be_less: De begindatum moet korter zijn dan de einddatum
-        start_time_should_be_less: Starttijd moet korter zijn dan eindtijd
-      user_idp_plan:
-        idp_template_already_assigned_to_user: Dit Idp-sjabloon is al toegewezen aan deze gebruiker en is actief
-        idp_template_not_published: Deze IDP -sjabloon is nog niet gepubliceerd, publiceer deze voordat u de gebruiker toewijst.
-      user_saved_filters:
-        limit_exceeded: Je kunt maar %{limit} opgeslagen filters hebben. Verwijder opgeslagen filters om er meer toe te voegen.
-        unique_name: Er bestaat al een filter met dezelfde naam.
-      workshop_invited_subject_create:
-        already_exists: Het onderwerp bestaat al in de uitnodiging.
-      workshop_subject_create:
-        already_exists: Het onderwerp bestaat al in dit Assessment Center.
-        part_of_other_workshop: Onderwerp is al deelnemer van '%{workshop_name}'.
-      workshop_subject_re_enroll:
-        no_seats_available: Er zijn geen plaatsen beschikbaar voor deze workshop.
-        scheduling_lead_time_passed: Als de Scheduling Lead Time voorbij is, kun je het onderwerp niet opnieuw inschrijven.
-        workshop_subject_not_found: Workshop onderwerp niet gevonden
-      workshops:
-        no_available_assessor_slots: Geen beschikbare slots voor beoordelaar %{assessor}
-        no_available_manager_slots: Geen beschikbare slots voor manager %{manager}
-    users:
-      registrations:
-        new:
-          register: Registreer
-          sign_in: Aanmelden
-      sessions:
-        new:
-          register: Registreer
-          sign_in: Aanmelden
   emails:
     nomination_approval_table:
       evaluator_name: Naam beoordelaar
@@ -2581,6 +2463,7 @@ nl:
   idp:
     actions: Acties
     add_comments: Opmerkingen toevoegen
+    added_development_action: Ontwikkelingsactie toegevoegd
     ai:
       assistant:
         failure_fallback:
@@ -2637,6 +2520,7 @@ nl:
         title: Hallo, ik ben je ontwikkelingsassistent
     behavioral: Gedrag
     board: Raad van bestuur
+    change_history: Geschiedenis van de wijziging
     changes_saved_to_plan: Wijzigingen die in het plan zijn opgeslagen
     comment_details:
       add_comment: Opmerking toevoegen
@@ -2738,6 +2622,7 @@ nl:
       publish_plan: Plan publiceren
       remove: Verwijder
       save_plan: Abonnement opslaan
+      search_development_actions: Acties voor zoekontwikkeling
       show_development_action_information: Toon informatie over ontwikkelingsacties
       skill: Vaardigheid
       sprint: Sprint
@@ -2750,7 +2635,7 @@ nl:
       write_here: Schrijf hier...
     direct_reportee_details: Details van directe verslaggevers
     download:
-      description: 'Volg de link om het rapport te downloaden: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Link is slechts 10 minuten geldig'
+      description: 'Volg de link om het rapport te downloaden: <a href=''%{url}'' target=''_blank''>Download</a>. Link is slechts 10 minuten geldig'
     download_plan: Abonnement downloaden
     edit_plan: Plan bewerken
     edit_plan_and_add_skills: Bewerk Plan en en klik op Vaardigheden beheren om Vaardigheden toe te voegen.
@@ -2799,6 +2684,7 @@ nl:
     manage_plan: Plan beheren
     mark_as_complete: Markeer als voltooid
     mark_as_incomplete: Markeren als onvolledig
+    modified_development_action: Gewijzigde ontwikkelingsactie
     my_plan:
       development_plan: Ontwikkelingsplan
       graphs:
@@ -2894,7 +2780,9 @@ nl:
         title: Samenvatting van het rapport
     plan: Plan
     plan_status: Plan Status %{status}
+    plan_submitted_for_manager_approval: Uw Individueel Ontwikkelingsplan is ter goedkeuring voorgelegd aan de manager.
     private: Privé
+    public: Publiek
     reflective_questions:
       already_completed: De IDP is al voltooid, u kunt de vragen nu niet beantwoorden.
       answer: Antwoorden
@@ -2922,6 +2810,7 @@ nl:
       words: Woorden
     remove_skill: Vaardigheid verwijderen
     remove_skill_from_plan: Vaardigheids %{name} uit plan verwijderen
+    removed_development_action: Verwijderde ontwikkelingsactie
     report_preview: Voorbeeld van rapport
     search_and_select_skills_of_skill_type: Zoek en selecteer %{skillType} vaardigheden
     select_skills_of_skill_type: Selecteer %{skillType} vaardigheden
@@ -2935,6 +2824,8 @@ nl:
     status: Status
     suggestions: Suggesties
     suggestions_for_skill_type: Suggesties voor %{skillType} vaardigheden
+    summary: Samenvatting
+    summary_logs: Overzichtslogboeken voor %{reporteeName}
     technical: Technisch
     user_idp_status:
       approved: Goedgekeurd
@@ -2946,6 +2837,7 @@ nl:
       not_started: Niet gestart
       pending_approval: In afwachting van
       rejected: Afgekeurd
+      start_review: Start beoordeling
     users: Gebruikers
     with_reflection_questions: Met reflectievragen
     without_reflection_questions: Zonder reflectievragen
@@ -3459,13 +3351,6 @@ nl:
   sessions:
     errors:
       recaptcha: Recaptcha verificatie mislukt. Probeer het opnieuw.
-  shared:
-    filters:
-      clear: Filters wissen
-    internet_disconnected_message: Probeer opnieuw verbinding te maken. Controleer uw internetverbinding.
-    mte_logo_alt_text: Mercer logo voor talentondernemingen
-    terms_conditions_privacy: Privacyverklaring
-    tte_terms_and_condition: Voorwaarden en privacy
   sheet:
     import_modal:
       alert_access_sheet_removal: Bij het uploaden van een nieuw Accesssheet worden alle bestaande records verwijderd en wordt een nieuwe geüpload vanuit het blad. Zorg ervoor dat alle Accesssheet-records in het spreadsheet staan.
@@ -4266,6 +4151,7 @@ nl:
     idp:
       can_not_complete_without_approval_and_in_progress: U kunt uw IDP pas voltooien als uw manager deze goedkeurt en u deze hebt gemarkeerd als 'In uitvoering'.
       can_not_start_without_approval: U kunt pas aan uw IDP gaan werken als uw manager deze goedkeurt.
+      no_changes_to_compare: Geen wijzigingen om te vergelijken voor IDP-plan.
       no_previous_approved_plan: Geen eerder goedgekeurd IDP-plan gevonden.
       reflective_questions_required: Antwoorden op reflectieve vragen zijn vereist voor IDP
       status_not_permitted: is niet toegestaan door de gebruiker.

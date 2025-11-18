@@ -208,6 +208,7 @@ zh-Hant:
           projectSettings:
             assessments: 評估
             design: 設計
+            feature_flags: 功能旗標
             idp: IDP
             integrations: 整合
             privacy_settings: 隱私設定
@@ -764,11 +765,6 @@ zh-Hant:
       user: 使用者
       user_agent: 使用者代理
     back: 返回
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>您確定要登出嗎？</p> <p>如果要繼續工作，請按 No（否）；如果要登出目前的使用者，請按 Yes（是）。</p>"
-          title: "<strong>登出</strong>?"
     block_settings:
       modal:
         add_layer: 新增圖層
@@ -1244,11 +1240,6 @@ zh-Hant:
         archived: 存檔
         disable: 存檔
         enable: 未歸檔
-      columns:
-        country: 國家
-        project_manager: 專案經理
-        type: 類型
-        year: 年份
       copy:
         successfully: 客戶租約 '%{name}' 已成功複製。
       create:
@@ -1257,14 +1248,6 @@ zh-Hant:
         successfully: 客戶租約 %{name} 已成功刪除。
       edit:
         header: 編輯用戶端
-      form:
-        client: 客戶
-        country: 國家
-        name: 名稱
-        number: 數量
-        project_manager: 專案經理
-        type: 類型
-        year: 年份
       licenses:
         resource:
           confirmations:
@@ -1684,7 +1667,6 @@ zh-Hant:
             title: 存檔<strong>%{name}</strong>?
           enable:
             title: 解除存檔<strong>%{name}</strong>?
-      tenancies: 客戶租約
       threesixty_campaign: Threesixty 活動
       toggle_status:
         successfully: 客戶租約 %{name} 已成功更新。
@@ -2756,43 +2738,14 @@ zh-Hant:
     message: 訊息
     meta_title: 管理面板
     navigation:
-      ai_artifacts: 人工智慧神器
-      ai_assistants: AI 助理
-      assessments: 評估
-      assessments_reports: 評估與報告
-      assessor_dashboard: 評估員儀表板
-      assessor_workshops: 評估中心
       audit_logs: 稽核記錄
       availability: 可用性
-      back_to_main: 主選單
-      campaign_templates: 活動範本
-      change_password: 變更密碼
-      client_admins: 客戶端管理員
-      clients: 客戶租約
-      communication_center: 通訊中心
       dashboard: 儀表板
-      data_reports: 資料報告
-      development_actions: 發展行動
-      dimensions: 尺寸
       factors: 因素
       innovation_styles: 創新風格
-      libraries: 媒體圖書館
-      norms: 規範
       occupations: 職業
-      options: 選項
-      participants: 參與者
-      profile: 簡介
-      profile_details: 詳細資訊
-      project_admins: 專案管理員
-      question_center: 問題中心
       registration_codes: 註冊碼
-      report_approvals: 報告核准
-      reports: 報告
-      scheduling: 排程
-      show_submenu: 顯示子選單
       skills_taxonomy: 技能分類法
-      user_profile_details: 詳細資料
-      user_report_events: 使用者報告事件
       users: 使用者
     no_data_found: 未找到資料
     norms:
@@ -2866,7 +2819,6 @@ zh-Hant:
         successfully: Norm 已成功更新。
       update:
         successfully: 標準 %{name} 已成功更新。
-    notification_bell_icon: 通知鈴聲圖示
     noty:
       error_408: 此動作耗時太長，請嘗試重新載入頁面。
       error_500: 出錯了，請聯絡您的管理員。
@@ -4292,7 +4244,6 @@ zh-Hant:
         inactive: 不活動
         percentage: 百分比
         title: 評估
-      title: 統計資料
       top_metrics:
         completed: 已完成
         in_progress: 進行中
@@ -4767,10 +4718,6 @@ zh-Hant:
       update:
         successfully: 使用者 %{name} 已成功更新。
       user: 使用者
-    validations:
-      idp:
-        end_date_cannot_be_in_past: 結束日期不能是過去
-        start_date_cannot_be_in_past: 開始日期不能是過去
     webhook:
       connection_failure: 無法連線至 webhook URL。 請確認 webhook URL 是否正確。
       delete_success: Webhook 設定已成功刪除

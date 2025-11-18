@@ -2,6 +2,8 @@
 
 # STI model for AI-assisted artifact results sessions.
 class AI::CampaignArtifactResult < AI::AssistedUserSession
+  include RansackSearchableFields
+
   validates :assistable_type, inclusion: { in: ['AI::CampaignArtifact'] }
   validates :user_id, uniqueness: { scope: %i[assistable_id assistable_type] }
 
@@ -33,6 +35,10 @@ class AI::CampaignArtifactResult < AI::AssistedUserSession
 
   def campaign_ai_artifact_id
     assistable_id
+  end
+
+  def self.ransackable_scopes(_)
+    %i[filterable_fields]
   end
 
   private

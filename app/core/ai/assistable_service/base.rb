@@ -28,8 +28,8 @@ module AI
 
           if start_new_chat || session_record.new_record?
             chat = assistant.for_user(current_user, contextual_information: assistant_context)
-            session_record.ai_assistant_chat = chat
             session_record.save!
+            chat.update!(ai_assisted_user_session: session_record)
           end
 
           session_record
@@ -82,7 +82,7 @@ module AI
       end
 
       def assisted_session_chat
-        @assisted_session_chat ||= session.ai_assistant_chat
+        @assisted_session_chat ||= session.latest_chat
       end
     end
   end

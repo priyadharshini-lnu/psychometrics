@@ -10,6 +10,7 @@ module EndUser
         required(:id).filled(:int?)
         required(:status).filled(:str?)
         required(:unread_comments_count).filled(:int?)
+        required(:pending_initial_review).filled(:bool?)
         required(:user).filled(UserSchema.schema(_, _))
       end
     end

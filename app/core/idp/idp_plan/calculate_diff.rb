@@ -13,12 +13,12 @@ module Idp::IdpPlan
     def call
       from_status, to_status = determine_statuses_to_compare
 
-      return broadcast :error, 'No changes to compare' unless from_status && to_status
+      return broadcast :error, I18n.t('validations.idp.no_changes_to_compare') unless from_status && to_status
 
       from_version = find_version_by_status(from_status)
       to_version = find_version_by_status(to_status)
 
-      return broadcast :error, 'No changes to compare' unless from_version || to_version
+      return broadcast :error, I18n.t('validations.idp.no_changes_to_compare') unless from_version && to_version
 
       old = from_version&.reify(has_many: true) || @plan
       new = to_version&.reify(has_many: true)   || @plan
@@ -29,7 +29,7 @@ module Idp::IdpPlan
         skills_diff: collection_diff(old.user_idp_skills, new.user_idp_skills)
       }
 
-      broadcast :ok, { plan_changes: plan_changes }
+      broadcast :ok, @plan, { plan_changes: plan_changes }
     end
 
     private
@@ -37,11 +37,15 @@ module Idp::IdpPlan
     def determine_statuses_to_compare
       return if current_user_manager? && plan.draft?
 
-      if plan.pending_approval? || (!current_user_manager? && plan.draft?)
-        ['approved', plan.approval_status]
-      elsif plan.in_review?
-        ['pending_approval', plan.approval_status]
-      end
+      last_finalized_status = plan.versions.where(
+        "object ->> 'approval_status' IN (?)", %w[rejected approved]
+      ).last&.object&.dig('approval_status')
+
+      return unless last_finalized_status
+
+      return [last_finalized_status, plan.approval_status] if plan.pending_approval? || plan.in_review?
+
+      [last_finalized_status, plan.approval_status] if !current_user_manager? && plan.draft?
     end
 
     def current_user_manager?

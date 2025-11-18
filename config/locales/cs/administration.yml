@@ -208,6 +208,7 @@ cs:
           projectSettings:
             assessments: Hodnocení
             design: Design
+            feature_flags: Příznaky funkcí
             idp: IDP
             integrations: Integrace
             privacy_settings: Nastavení ochrany osobních údajů
@@ -764,11 +765,6 @@ cs:
       user: Uživatel
       user_agent: Uživatelský agent
     back: Zpět
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Určitě se chcete odhlásit?</p> <p>Stiskněte Ne, pokud chcete pokračovat v práci. Stiskněte Ano pro odhlášení aktuálního uživatele.</p>"
-          title: "<strong>Odhlásit se</strong>?"
     block_settings:
       modal:
         add_layer: Přidat vrstvu
@@ -1244,11 +1240,6 @@ cs:
         archived: Archivováno
         disable: Archiv
         enable: Odarchivovat
-      columns:
-        country: Země
-        project_manager: Projektový manažer
-        type: Typ
-        year: Rok
       copy:
         successfully: Klientská smlouva o pronájmu '%{name}' byla úspěšně zkopírována.
       create:
@@ -1257,14 +1248,6 @@ cs:
         successfully: Klientský nájemní vztah %{name} byl úspěšně odstraněn.
       edit:
         header: Upravit klienta
-      form:
-        client: Klient
-        country: Země
-        name: Název
-        number: Číslo
-        project_manager: Projektový manažer
-        type: Typ
-        year: Rok
       licenses:
         resource:
           confirmations:
@@ -1684,7 +1667,6 @@ cs:
             title: Archiv <strong>%{name}</strong>?
           enable:
             title: Odarchivovat <strong>%{name}</strong>?
-      tenancies: Nájemní smlouvy klientů
       threesixty_campaign: Kampaň Threesixty
       toggle_status:
         successfully: Klientská nájemní smlouva %{name} byla úspěšně aktualizována.
@@ -2756,43 +2738,14 @@ cs:
     message: Zpráva
     meta_title: Administrativní panel
     navigation:
-      ai_artifacts: Artefakty AI
-      ai_assistants: Asistenti AI
-      assessments: Hodnocení
-      assessments_reports: Hodnocení a zprávy
-      assessor_dashboard: Přístrojový panel hodnotitele
-      assessor_workshops: Hodnotící centrum
       audit_logs: Protokoly o auditu
       availability: Dostupnost
-      back_to_main: Hlavní nabídka
-      campaign_templates: Šablony kampaní
-      change_password: Změna hesla
-      client_admins: Správci klientů
-      clients: Nájemní smlouvy klientů
-      communication_center: Komunikační centrum
       dashboard: Přístrojová deska
-      data_reports: Datové zprávy
-      development_actions: Vývojové akce
-      dimensions: Rozměry
       factors: Faktory
       innovation_styles: Inovační styly
-      libraries: Knihovna médií
-      norms: Normy
       occupations: Povolání
-      options: Možnosti
-      participants: Účastníci
-      profile: Profil
-      profile_details: Podrobnosti na
-      project_admins: Správci projektů
-      question_center: Centrum otázek
       registration_codes: Registrační kódy
-      report_approvals: Schvalování zpráv
-      reports: Zprávy
-      scheduling: Plánování
-      show_submenu: Zobrazit dílčí nabídku
       skills_taxonomy: Taxonomie dovedností
-      user_profile_details: Podrobnosti o profilu
-      user_report_events: Hlášení uživatele Události
       users: Uživatelé
     no_data_found: Nebyly nalezeny žádné údaje
     norms:
@@ -2866,7 +2819,6 @@ cs:
         successfully: Norma byla úspěšně aktualizována.
       update:
         successfully: Norma %{name} byla úspěšně aktualizována.
-    notification_bell_icon: Ikona zvonku oznámení
     noty:
       error_408: Tato akce trvá příliš dlouho. Zkuste stránku načíst znovu.
       error_500: Něco se pokazilo. Kontaktujte správce.
@@ -4292,7 +4244,6 @@ cs:
         inactive: Neaktivní
         percentage: Procenta
         title: Hodnocení
-      title: Statistiky
       top_metrics:
         completed: Dokončeno
         in_progress: Probíhá
@@ -4766,11 +4717,6 @@ cs:
         title: Nástroje
       update:
         successfully: Uživatel %{name} byl úspěšně aktualizován.
-      user: Uživatel
-    validations:
-      idp:
-        end_date_cannot_be_in_past: Datum ukončení nesmí být v minulosti
-        start_date_cannot_be_in_past: Datum zahájení nesmí být v minulosti
     webhook:
       connection_failure: Nelze se připojit k url adrese webhooku. Ověřte prosím, zda je url adresa webhooku správná..
       delete_success: Nastavení webhooku bylo úspěšně odstraněno

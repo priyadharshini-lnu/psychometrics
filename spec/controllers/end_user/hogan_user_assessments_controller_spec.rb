@@ -50,6 +50,7 @@ RSpec.describe EndUser::HoganUserAssessmentsController, type: :controller do
     before(:each) do
       user.update(project: campaign.project)
       allow(GetProjectBySubdomain).to receive(:call!).and_return(campaign.project)
+      allow(Utility::Url).to receive(:redirect_to_safe_internal_url).and_return(nil)
     end
 
     context 'valid jwt token is passed' do
@@ -108,10 +109,10 @@ RSpec.describe EndUser::HoganUserAssessmentsController, type: :controller do
         }
       end
 
-      it 'updates the user assessment status to completed and show log in screen' do
+      it 'does not update status is jwt is expired' do
         get :redirect, params: params
 
-        expect(user_assessment.reload.status).to eq('completed')
+        expect(user_assessment.reload.status).to eq('not_started')
       end
     end
   end

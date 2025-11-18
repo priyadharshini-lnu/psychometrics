@@ -1,0 +1,52 @@
+---
+cs:
+  admin:
+    admins: Administrátoři
+    ai_artifacts: Artefakty AI
+    ai_assistants: Asistenti AI
+    assessments: Hodnocení
+    assessments_reports: Hodnocení a zprávy
+    assessor_dashboard: Přístrojový panel hodnotitele
+    assessor_workshops: Hodnotící centrum
+    audit_logs: Protokoly o auditu
+    audit_reports: Auditní zprávy
+    availability: Dostupnost
+    back_to_main: Hlavní nabídka
+    campaign_templates: Šablony kampaní
+    client: Nájem klienta
+    client_admins: Správci klientů
+    clients: Nájemní smlouvy klientů
+    communication_center: Komunikační centrum
+    country: Země
+    create_client: Vytvořit klienta
+    dashboard: Přístrojová deska
+    data_reports: Datové zprávy
+    datasheet: Datový list
+    development_actions: Vývojové akce
+    dimensions: Rozměry
+    libraries: Knihovna médií
+    no_notifications: Žádná oznámení
+    norms: Normy
+    notification_bell_icon_alt_text: Ikona zvonku oznámení
+    notifications: Oznámení
+    number: Číslo
+    occupations: Povolání
+    options: Možnosti
+    participants: Účastníci
+    profile_details: Podrobnosti o profilu
+    project_admins: Správci projektů
+    project_manager: Projektový manažer
+    question_center: Centrum otázek
+    registration_codes: Registrační kódy
+    report_approvals: Schvalování zpráv
+    reports: Zprávy
+    role: Role
+    scheduling: Plánování
+    scoring: Bodování
+    show_submenu: Zobrazit dílčí nabídku
+    skills_taxonomy: Taxonomie dovedností
+    stats: Statistiky
+    user_report_events: Hlášení uživatele Události
+    users: Uživatelé
+    view_licenses: Zobrazit licence
+    year: Země

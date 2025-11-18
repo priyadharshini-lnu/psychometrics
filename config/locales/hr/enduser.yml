@@ -1,0 +1,21 @@
+---
+hr:
+  enduser:
+    add_idp_plan_note: Dodaj napomenu...
+    add_idp_plan_rejection_reason: Dodaj razlog...
+    approve_idp_plan: Odobri plan
+    bookings: Rezervacije
+    campaign: Kampanja
+    development: Razvoj
+    direct_reportees: Izravni podređeni
+    home: Nadzorna ploča
+    idp_plan_approval_note: Napomena o odobrenju
+    insights: Uvidi
+    max_word_limit: Mora imati najviše %{max} riječi
+    min_word_limit: Mora imati najmanje %{min} riječi
+    my_plan: Moj plan
+    profile: Profil
+    profile_details: Detalji
+    selected_count: Odabrano
+    skill_type: Vrsta vještine
+    tasks: Zadaci

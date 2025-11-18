@@ -208,6 +208,7 @@ ar:
           projectSettings:
             assessments: التقييمات
             design: التصميم
+            feature_flags: علامات الميزة
             idp: IDP
             integrations: التكاملات
             privacy_settings: إعدادات الخصوصية
@@ -764,11 +765,6 @@ ar:
       user: المستخدم
       user_agent: وكيل المستخدم
     back: رجوع
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>هل أنت متأكد أنك تريد تسجيل الخروج؟</p> <p>اضغط على لا إذا كنت تريد متابعة العمل. اضغط على نعم لتسجيل الخروج.</p>"
-          title: تسجيل <strong>الخروج</strong>؟
     block_settings:
       modal:
         add_layer: إضافة طبقة
@@ -1244,11 +1240,6 @@ ar:
         archived: أرشيف
         disable: أرشيف
         enable: إلغاء الأرشفة
-      columns:
-        country: بلد
-        project_manager: مدير المشروع
-        type: نوع
-        year: سنة
       copy:
         successfully: تم نسخ عقد العميل '%{name}' بنجاح.
       create:
@@ -1257,14 +1248,6 @@ ar:
         successfully: تم حذف عقد العميل %{name} بنجاح.
       edit:
         header: تعديل العميل
-      form:
-        client: العميل
-        country: البلد
-        name: الاسم
-        number: العدد
-        project_manager: مدير المشروع
-        type: النوع
-        year: السنة
       licenses:
         resource:
           confirmations:
@@ -1684,7 +1667,6 @@ ar:
             title: أرشفة <strong>%{name}</strong>؟
           enable:
             title: إلغاء أرشفة <strong>%{name}</strong>؟
-      tenancies: عقود العملاء
       threesixty_campaign: حملة 360
       toggle_status:
         successfully: تم تحديث إيجار العميل %{name} بنجاح.
@@ -2756,43 +2738,14 @@ ar:
     message: الرسالة
     meta_title: Administration panel
     navigation:
-      ai_artifacts: قطع الذكاء الاصطناعي
-      ai_assistants: مساعدو الذكاء الاصطناعي
-      assessments: التقييمات
-      assessments_reports: التقييمات والتقارير
-      assessor_dashboard: لوحة معلومات المقيم
-      assessor_workshops: مركز التقييم
       audit_logs: سجلات التدقيق
       availability: التوفر
-      back_to_main: القائمة الرئيسية
-      campaign_templates: قوالب الحملات
-      change_password: تغيير كلمة المرور
-      client_admins: مسؤولو العملاء
-      clients: عقود العملاء
-      communication_center: مركز الاتصالات
       dashboard: لوحة القيادة
-      data_reports: تقارير البيانات
-      development_actions: إجراءات التطوير
-      dimensions: الأبعاد
       factors: العوامل
       innovation_styles: أنماط الابتكار
-      libraries: مكتبة الوسائط
-      norms: المعايير
       occupations: المهن
-      options: الخيارات
-      participants: المشاركون
-      profile: الملف الشخصي
-      profile_details: تفاصيل الملف الشخصي
-      project_admins: مسؤولو المشاريع
-      question_center: مركز الأسئلة
       registration_codes: رموز التسجيل
-      report_approvals: موافقات التقارير
-      reports: التقارير
-      scheduling: الجدولة
-      show_submenu: عرض القائمة الفرعية
       skills_taxonomy: تصنيف المهارات
-      user_profile_details: تفاصيل الملف الشخصي للمستخدم
-      user_report_events: أحداث تقارير المستخدم
       users: المستخدمون
     no_data_found: No data found
     norms:
@@ -2866,7 +2819,6 @@ ar:
         successfully: Norm was updated successfully.
       update:
         successfully: Norm %{name} was updated successfully.
-    notification_bell_icon: Notification Bell Icon
     noty:
       error_408: This action takes too long. Please try to reload the page.
       error_500: Something went wrong. Contact your administrator.
@@ -4292,7 +4244,6 @@ ar:
         inactive: غير نشط
         percentage: نسبة مئوية
         title: التقييمات
-      title: الإحصائيات
       top_metrics:
         completed: Completed
         in_progress: In Progress
@@ -4766,10 +4717,6 @@ ar:
       update:
         successfully: تم تحديث المستخدم %{name} بنجاح.
       user: المستخدم
-    validations:
-      idp:
-        end_date_cannot_be_in_past: لا يمكن أن يكون تاريخ الانتهاء في الماضي
-        start_date_cannot_be_in_past: لا يمكن أن يكون تاريخ البدء في الماضي
     webhook:
       connection_failure: Unable to connect to the webhook url. Please verify if webhook url is correct..
       delete_success: Webhook settings was deleted successfully

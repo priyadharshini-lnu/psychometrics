@@ -292,51 +292,6 @@ describe AI::Tools::Idp::AddSkillToPlan do
       end
     end
 
-    context 'with development action validation errors' do
-      it 'returns error for dates in the past' do
-        past_date = 1.week.ago.strftime('%Y-%m-%d %H:%M')
-
-        development_actions = [
-          {
-            'name' => 'Custom Action',
-            'description' => 'Test description',
-            'learning_style' => 'on_the_job',
-            'start_date_time' => past_date
-          }
-        ]
-
-        result = subject.execute(skill_id: skill1.id, development_actions: development_actions)
-
-        expect(result).to have_key(:error)
-        expect(result[:error]).to include('start_date_time')
-      end
-
-      it 'returns formatted validation errors for multiple actions' do
-        past_date = 1.week.ago.strftime('%Y-%m-%d %H:%M')
-
-        development_actions = [
-          {
-            'name' => 'Action 1',
-            'description' => 'Description 1',
-            'learning_style' => 'on_the_job',
-            'start_date_time' => past_date
-          },
-          {
-            'name' => 'Action 2',
-            'description' => 'Description 2',
-            'learning_style' => 'on_the_job',
-            'start_date_time' => past_date
-          }
-        ]
-
-        result = subject.execute(skill_id: skill1.id, development_actions: development_actions)
-
-        expect(result).to have_key(:error)
-        expect(result[:error]).to include('Development Action 1')
-        expect(result[:error]).to include('Development Action 2')
-      end
-    end
-
     context 'when updating existing skill' do
       let(:new_development_actions) do
         [

@@ -1,0 +1,30 @@
+---
+zh:
+  shared:
+    action: 操作
+    add: 添加
+    cancel: 取消
+    change_password: 更改密码
+    clear_filters: 清除筛选
+    edit: 编辑
+    edited: 新的
+    id: ID
+    internet_disconnected_message: 正在尝试重新连接。请检查你的互联网连接。
+    mte_logo_alt_text: 美世人才企业标识
+    name: 名称
+    new: 新的
+    removed: 已删除
+    search: 搜索
+    table:
+      entries:
+        selected:
+          one: 选中 1 行
+          other: 选中 {{count}} 行
+        total:
+          one: '共计 : 1'
+          other: '共计 : {{count}}'
+          zero: '总计 : 0'
+    terms_conditions_privacy: 隐私声明
+    tte_terms_and_condition: 条款和隐私
+    type: 类型
+    update: 更新

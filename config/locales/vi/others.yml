@@ -919,8 +919,6 @@ vi:
     invalid_job: Thông báo này tương ứng với bản ghi đã xóa
     mark_as_read: Đánh dấu tất cả đã đọc
     more: Nhiều hơn
-    no_notifications: Không có thông báo
-    notifications: Thông báo
     results: Kết quả
     super_admin:
       errors:
@@ -1341,16 +1339,11 @@ vi:
     continue: Tiếp tục nhiệm vụ của bạn
     dashboard_instructions: Bạn có thể đã được giao nhiều hoạt động cần hoàn thành. Vui lòng đảm bảo kiểm tra xem tất cả các hoạt động được giao đã được hoàn thành trong tất cả các chiến dịch hay chưa.
     dashboard_menu:
-      bookings: Đặt chỗ
       campaign: Chiến dịch
-      change_password: Thay đổi mật khẩu
-      development: Phát triển
       direct_reportees: Người báo cáo trực tiếp
       home: Trang chủ
       insights: Thông tin chi tiết
-      my_plan: Kế hoạch của tôi
       profile: Hồ sơ
-      profile_details: Chi tiết
       tasks: Nhiệm vụ
     details: Chi tiết
     edit_evaluation:
@@ -1459,6 +1452,7 @@ vi:
       export_occupations_job_scheduled: Công việc xuất khẩu nghề nghiệp đã được lên lịch thành công
       export_reports_and_assessments_statuses_scheduled: Xuất Báo cáo và công việc đánh giá đã được lên lịch thành công
       external_results_export_scheduled: Công việc xuất Đánh giá bên ngoài đã được lên lịch thành công
+      no_participants_selected: Vui lòng chọn ít nhất một người tham gia để tiếp tục.
       norm_results_export_scheduled: Công việc xuất kết quả theo tiêu chuẩn đánh giá đã được lên lịch thành công
       normalize_factor_scores_scheduled: Công việc chuẩn hóa điểm yếu tố đã được lên lịch thành công.
       raw_factor_export_scheduled: Đánh giá công việc xuất Raw Factor đã được lên lịch thành công
@@ -1603,6 +1597,7 @@ vi:
       report_bundle_placeholder: Chọn gói báo cáo
     messages:
       bulk_download_error: Tải xuống hàng loạt được giới hạn ở 1000 tệp báo cáo. Nếu bạn đã chọn nhiều ngôn ngữ, vui lòng giảm nó.
+      bulk_download_no_reports: Không tìm thấy báo cáo. Vui lòng tạo báo cáo trước khi tải xuống.
       bulk_download_successful: Tác vụ tải xuống báo cáo hàng loạt đã được lên lịch thành công
       export_report_data_scheduled: Tác vụ xuất dữ liệu báo cáo đã được lên lịch thành công
     modals:
@@ -1872,7 +1867,6 @@ vi:
       projects: Dự án
       report: Báo cáo
       reports: Báo cáo
-      scoring: Ghi
       sms_contact: Liên hệ SMS
       threesixty_campaign: Điểm chiến dịch Threesixty
     status:
@@ -2138,118 +2132,6 @@ vi:
       send_paranoid_instructions: Nếu tài khoản của bạn tồn tại, bạn sẽ nhận được email hướng dẫn cách mở khóa tài khoản sau vài phút.
       unlocked: Tài khoản của bạn đã được mở khóa thành công. Vui lòng đăng nhập để tiếp tục.
       unprocessable_entity: Tài khoản của bạn không thể được mở khóa bằng liên kết này. Vui lòng liên hệ với bộ phận hỗ trợ.
-  dry_errors:
-    errors:
-      add_edit_project:
-        invalid_subdomain_format: Định dạng tên miền phụ sai.
-        reserved_subdomain: Tên miền phụ %{value} được bảo lưu
-        uniq_subdomain: Tên miền phụ phải là duy nhất.
-      add_manager:
-        cannot_be_self: Người dùng không thể được chỉ định làm quản lý của chính mình.
-        manager_not_found: Không tìm thấy người quản lý hoặc không phải là một phần của cùng một dự án
-        user_not_found: Không tìm thấy người dùng hoặc không phải là một phần của cùng một dự án
-      admin:
-        already_added: Quản trị viên đã thêm email.
-      already_assigned?: Không thể liên kết đánh giá này - nó đã được gán cho '%{linked_assessor_form_name}'.
-      already_invited: Người dùng này đã tồn tại trong trung tâm đánh giá mà bạn đang cố gắng thêm.
-      assessor_assessment:
-        already_added: Đánh giá của người đánh giá đã được thêm vào chiến dịch.
-        lead_already_added: Chỉ có thể thêm một Đánh giá chuyên gia chính vào chiến dịch.
-      campaign_factor:
-        code_already_exists: Một yếu tố có cùng mã đã tồn tại.
-        invalid_lua_name: phải là tên biến lua hợp lệ
-        limit_exceeded: Bạn đã đạt đến giới hạn tối đa của %{limit} hệ số chiến dịch.
-        name_already_exists: Một yếu tố có cùng tên đã tồn tại.
-        rank_not_allowed: Chỉ các yếu tố có kiểu đầu ra là số mới có thể được xếp hạng.
-      campaign_factor_group:
-        group_already_exists: Một nhóm có cùng tên đã tồn tại.
-        last_factor_group: Không thể xóa nhóm yếu tố chiến dịch cuối cùng.
-      campaign_idps:
-        idp_template_not_published: Mẫu IDP này chưa được xuất bản, vui lòng xuất bản nó trước khi gán cho chiến dịch.
-      cant_be_deleted: Không thể xóa bản ghi này
-      client_feature:
-        ai_assisted_idp_feature_error: Không thể đúng nếu tính năng trợ lý ai bị tắt
-      create_superadmin:
-        uniq_email: Email nên là uniq.
-      development_actions:
-        only_global_skills_allowed: Các kỹ năng được chọn phải là kỹ năng toàn cầu.
-        skills_not_belong_to_project: Các kỹ năng được chọn phải thuộc về dự án đã được chỉ định.
-        skills_required: Vui lòng chọn ít nhất một kỹ năng.
-      exceeded_subjects_count: Bạn chỉ có thể thêm %{count} chủ đề cho mỗi lời mời
-      filled?: không thể để trống
-      idp_template:
-        content_required: Nội dung là bắt buộc để được hướng dẫn
-        tag_or_skill_required: Vui lòng chọn thẻ hoặc kỹ năng khi tùy chọn "Đã chọn".
-      invalid_name: Chỉ bảng chữ cái, số, dấu cách, dấu gạch ngang và dấu chấm mới được phép làm ký tự hợp lệ
-      invalid_value: Câu lệnh '%{value}' không hợp lệ trên số dòng %{row}
-      job_roles:
-        unique_within_job_group: Vị trí công việc có tên tương tự đã tồn tại.
-      json?: Phải là JSON hợp lệ
-      key?: không thể để trống
-      match_regexp?: Giá trị không hợp lệ
-      mettl_schedule_record_create:
-        uniq_schedule_name: Tên lịch trình phải là duy nhất
-      missed?: không thể để trống
-      not_allowed?: Không được phép thay đổi
-      not_in_the_list?: Giá trị không hợp lệ được chuyển
-      not_uniq_variable: biến '%{value}' được định nghĩa lại trên số dòng %{row}
-      project_assessments:
-        should_be_greater_than_zero: Hiệu lực của kết quả phải lớn hơn 0 ngày
-      project_feature:
-        global_skills_not_enabled_on_client: Để kích hoạt Kỹ năng toàn cầu cho dự án này, vui lòng kích hoạt nó trong Cờ tính năng trong cài đặt ứng dụng.
-      report_approval_settings:
-        report_exists: Cài đặt phê duyệt báo cáo cho báo cáo này đã tồn tại.
-        validates_admins: Quản trị viên không có quyền truy cập vào chiến dịch.
-      report_families_reports:
-        report_exists: Báo cáo này đã là một phần của Gói báo cáo
-      size?: size phải nhỏ hơn %{size}
-      skill:
-        already_added: Kỹ năng cùng tên đã được thêm vào.
-      skill_alias:
-        unique_alias: Bí danh phải là duy nhất
-        unique_skill: Kỹ năng phải là duy nhất
-      skills_job_roles:
-        must_belong_to_same_project_or_be_global: Kỹ năng và vai trò công việc phải thuộc cùng một dự án hoặc là toàn cầu.
-        unique_mappings: Một bản đồ chức năng với cùng kỹ năng và vai trò công việc đã tồn tại.
-      uniq: Đánh giá Mettl này đã có trong hệ thống. ID của đánh giá này là %{id}
-      uniq?: phải là duy nhất
-      uniq_simulation: Đánh giá mô phỏng này đã có trong hệ thống. ID của đánh giá này là %{id}
-      uniq_skillvue: Đánh giá Skillvue này đã có sẵn trong hệ thống. Mã định danh của đánh giá này là %{id}
-      update_workshop:
-        bookings_exist: Không thể thay đổi lịch trình vì các thành viên đã đặt lịch cho khung giờ này.
-        less_than_booked: Tổng số chỗ ngồi phải lớn hơn đã đặt
-      user_availability_date:
-        overlaps_date: Trùng lặp với một %{range} khác
-        overlaps_time: Khoảng trùng lặp %{interval}
-        start_date_should_be_less: Ngày bắt đầu phải nhỏ hơn ngày kết thúc
-        start_time_should_be_less: Thời gian bắt đầu phải ít hơn thời gian kết thúc
-      user_idp_plan:
-        idp_template_already_assigned_to_user: Mẫu Idp này đã được cung cấp cho người dùng này và đang hoạt động
-        idp_template_not_published: Mẫu IDP này chưa được xuất bản, vui lòng xuất bản nó trước khi gán cho người dùng.
-      user_saved_filters:
-        limit_exceeded: Bạn chỉ có thể có %{limit} bộ lọc đã lưu, vui lòng xóa các bộ lọc đã lưu để thêm nhiều hơn.
-        unique_name: Một bộ lọc có cùng tên đã tồn tại.
-      workshop_invited_subject_create:
-        already_exists: Chủ đề đã tồn tại trong lời mời.
-      workshop_subject_create:
-        already_exists: Đối tượng đã tồn tại trong Trung tâm Đánh giá này.
-        part_of_other_workshop: Đối tượng đã là người tham gia của '%{workshop_name}'.
-      workshop_subject_re_enroll:
-        no_seats_available: Không còn chỗ trống cho buổi workshop này.
-        scheduling_lead_time_passed: Thời gian chờ đăng ký đã hết, bạn không thể đăng ký lại môn học này.
-        workshop_subject_not_found: Chủ đề hội thảo không được tìm thấy
-      workshops:
-        no_available_assessor_slots: Không có vị trí trống cho người đánh giá %{assessor}
-        no_available_manager_slots: Không có vị trí khả dụng cho người quản lý %{manager}
-    users:
-      registrations:
-        new:
-          register: Đăng ký
-          sign_in: Đăng nhập
-      sessions:
-        new:
-          register: Đăng ký
-          sign_in: Đăng nhập
   emails:
     nomination_approval_table:
       evaluator_name: Tên người đánh giá
@@ -2580,6 +2462,7 @@ vi:
   idp:
     actions: Hành động
     add_comments: Thêm bình luận
+    added_development_action: Thêm hành động phát triển
     ai:
       assistant:
         failure_fallback:
@@ -2617,7 +2500,7 @@ vi:
           option_2: Tốt cho các chuyên gia bận rộn
           option_3: Hoàn toàn có thể chỉnh sửa sau khi tạo
           title: 1-Click AI IDP
-        sub_title: Hãy tạo một jorney nâng cao kỹ năng tùy chỉnh được ánh xạ theo nguyện vọng nghề nghiệp của bạn và được hướng dẫn bởi AI
+        sub_title: Hãy tạo một hành trình nâng cao kỹ năng tùy chỉnh được ánh xạ theo nguyện vọng nghề nghiệp của bạn và được hướng dẫn bởi AI
         title: Tạo kế hoạch phát triển cá nhân của bạn
       summary:
         chat_title: Tóm tắt thông tin chi tiết về trò chuyện
@@ -2636,6 +2519,7 @@ vi:
         title: Xin chào, tôi là trợ lý phát triển của bạn
     behavioral: Hành vi
     board: Ván
+    change_history: Lịch sử thay đổi
     changes_saved_to_plan: Các thay đổi đã lưu vào gói
     comment_details:
       add_comment: Thêm bình luận
@@ -2737,6 +2621,7 @@ vi:
       publish_plan: Xuất bản kế hoạch
       remove: Triệt
       save_plan: Kế hoạch tiết kiệm
+      search_development_actions: Hành động phát triển tìm kiếm
       show_development_action_information: Hiển thị thông tin Hành động Phát triển
       skill: Kỹ năng
       sprint: Chạy nước rút
@@ -2749,7 +2634,7 @@ vi:
       write_here: Viết ở đây...
     direct_reportee_details: Chi tiết người được báo cáo trực tiếp
     download:
-      description: 'Để tải xuống báo cáo, vui lòng theo liên kết: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Link chỉ có giá trị trong 10 phút'
+      description: 'Để tải xuống báo cáo, vui lòng theo liên kết: <a href=''%{url}'' target=''_blank''>Download</a>. Link chỉ có giá trị trong 10 phút'
     download_plan: Tải xuống gói
     edit_plan: Chỉnh sửa kế hoạch
     edit_plan_and_add_skills: Chỉnh sửa Kế hoạch và nhấp vào Quản lý Kỹ năng để thêm Kỹ năng.
@@ -2798,6 +2683,7 @@ vi:
     manage_plan: Quản lý kế hoạch
     mark_as_complete: Đánh dấu là hoàn thành
     mark_as_incomplete: Đánh dấu là chưa hoàn thành
+    modified_development_action: Hành động phát triển được sửa đổi
     my_plan:
       development_plan: Kế hoạch phát triển
       graphs:
@@ -2915,7 +2801,9 @@ vi:
         title: Tóm tắt báo cáo
     plan: Kế hoạch
     plan_status: Trạng thái kế hoạch %{status}
+    plan_submitted_for_manager_approval: Kế hoạch phát triển cá nhân của bạn đã được đệ trình để người quản lý phê duyệt.
     private: Tư
+    public: Công cộng
     reflective_questions:
       already_completed: IDP đã được hoàn thành, bạn không thể trả lời các câu hỏi lúc này.
       answer: Trả lời
@@ -2943,6 +2831,7 @@ vi:
       words: Từ
     remove_skill: Loại bỏ kỹ năng
     remove_skill_from_plan: Loại bỏ %{name} kỹ năng khỏi kế hoạch
+    removed_development_action: Đã xóa hành động phát triển
     report_preview: Xem trước báo cáo
     search_and_select_skills_of_skill_type: Tìm kiếm và lựa chọn kỹ năng %{skillType}
     select_skills_of_skill_type: Chọn kỹ năng %{skillType}
@@ -2956,6 +2845,8 @@ vi:
     status: Tình trạng
     suggestions: Gợi ý
     suggestions_for_skill_type: Gợi ý kỹ năng %{skillType}
+    summary: Tóm tắt
+    summary_logs: Nhật ký tóm tắt cho %{reporteeName}
     technical: Kỹ thuật
     user_idp_status:
       approved: Chấp thuận
@@ -2967,6 +2858,7 @@ vi:
       not_started: Chưa bắt đầu
       pending_approval: Đang chờ phê duyệt
       rejected: Bị từ chối
+      start_review: Bắt đầu đánh giá
     users: Người dùng
     with_reflection_questions: Với các câu hỏi suy ngẫm
     without_reflection_questions: Không có câu hỏi suy ngẫm
@@ -3480,13 +3372,6 @@ vi:
   sessions:
     errors:
       recaptcha: Xác minh reCAPTCHA đã thất bại. Vui lòng thử lại.
-  shared:
-    filters:
-      clear: Xóa bộ lọc
-    internet_disconnected_message: Đang cố gắng kết nối lại. Vui lòng kiểm tra kết nối internet của bạn.
-    mte_logo_alt_text: Logo Mercer Talent Enterprise
-    terms_conditions_privacy: Tuyên bố về quyền riêng tư
-    tte_terms_and_condition: Điều khoản &amp; Quyền riêng tư
   sheet:
     import_modal:
       alert_access_sheet_removal: Tải lên Accesssheet mới với xóa tất cả bản ghi hiện có và tải lên bản ghi mới từ trang tính. Hãy đảm bảo rằng bạn có tất cả các bản ghi Accesssheet trong bảng tính.
@@ -4287,6 +4172,7 @@ vi:
     idp:
       can_not_complete_without_approval_and_in_progress: Bạn không thể hoàn thành IDP của mình cho đến khi người quản lý của bạn phê duyệt và bạn đã đánh dấu nó là 'Đang tiến hành'.
       can_not_start_without_approval: Bạn không thể bắt đầu làm việc với IDP của mình cho đến khi người quản lý của bạn phê duyệt.
+      no_changes_to_compare: Không có thay đổi nào để so sánh đối với gói IDP.
       no_previous_approved_plan: Không tìm thấy chương trình IDP được phê duyệt trước đó.
       reflective_questions_required: Câu trả lời cho các câu hỏi phản ánh là bắt buộc đối với IDP
       status_not_permitted: không được người dùng cho phép.

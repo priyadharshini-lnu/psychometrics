@@ -208,6 +208,7 @@ es-ES:
           projectSettings:
             assessments: Evaluaciones
             design: Diseño
+            feature_flags: Marcas de características
             idp: PDI
             integrations: Integraciones
             privacy_settings: Privacidad
@@ -764,11 +765,6 @@ es-ES:
       user: Usuario
       user_agent: Agente de usuario
     back: Volver
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>¿Está seguro de que desea cerrar la sesión?</p> <p>Pulse No si desea continuar trabajando. Pulse Sí para cerrar la sesión del usuario actual.</p>"
-          title: "<strong>Cerrar</strong> sesión ?"
     block_settings:
       modal:
         add_layer: Añadir capa
@@ -1244,11 +1240,6 @@ es-ES:
         archived: Archivado
         disable: Archivo
         enable: Desarchivar
-      columns:
-        country: País
-        project_manager: Responsable de proyecto
-        type: Tipo
-        year: Año
       copy:
         successfully: La tenencia del cliente "%{name}" se ha copiado correctamente.
       create:
@@ -1257,14 +1248,6 @@ es-ES:
         successfully: La tenencia del cliente %{name} se ha eliminado correctamente.
       edit:
         header: Editar cliente
-      form:
-        client: Cliente
-        country: País
-        name: Nombre
-        number: Número
-        project_manager: Responsable de proyecto
-        type: Tipo
-        year: Año
       licenses:
         resource:
           confirmations:
@@ -1684,7 +1667,6 @@ es-ES:
             title: Archivar <strong>%{name}</strong>?
           enable:
             title: Desarchivar <strong>%{name}</strong>?
-      tenancies: Clientes
       threesixty_campaign: Campaña Threesixty
       toggle_status:
         successfully: La tenencia del cliente %{name} se ha actualizado correctamente.
@@ -2756,43 +2738,14 @@ es-ES:
     message: Mensaje
     meta_title: Panel de administración
     navigation:
-      ai_artifacts: Artefactos de IA
-      ai_assistants: Asistentes de IA
-      assessments: Evaluaciones
-      assessments_reports: Evaluaciones e informes
-      assessor_dashboard: Panel de control del evaluador
-      assessor_workshops: Assessment Center
       audit_logs: Registros de auditoría
       availability: Disponibilidad
-      back_to_main: Menú principal
-      campaign_templates: Plantillas de campaña
-      change_password: Cambiar contraseña
-      client_admins: Administradores de clientes
-      clients: Clientes
-      communication_center: Centro de comunicaciones
       dashboard: Cuadro de mandos
-      data_reports: Informes de datos
-      development_actions: Acciones de desarrollo
-      dimensions: Dimensiones
       factors: Factores
       innovation_styles: Estilos de innovación
-      libraries: Mediateca
-      norms: Normas
       occupations: Ocupaciones
-      options: Opciones
-      participants: Participantes
-      profile: Perfil
-      profile_details: Detalles
-      project_admins: Administradores de proyectos
-      question_center: Centro de preguntas
       registration_codes: Códigos de registro
-      report_approvals: Aprobación de informes
-      reports: Informes
-      scheduling: Programación
-      show_submenu: Mostrar submenú
       skills_taxonomy: Taxonomía de competencias
-      user_profile_details: Detalles del perfil
-      user_report_events: Informe de usuario Eventos
       users: Usuarios
     no_data_found: No se han encontrado datos
     norms:
@@ -2866,7 +2819,6 @@ es-ES:
         successfully: Norm se ha actualizado correctamente.
       update:
         successfully: La norma %{name} se ha actualizado correctamente.
-    notification_bell_icon: Icono de campana de notificación
     noty:
       error_408: Esta acción tarda demasiado. Por favor, intente recargar la página.
       error_500: Algo ha ido mal. Póngase en contacto con su administrador.
@@ -4292,7 +4244,6 @@ es-ES:
         inactive: Inactivo
         percentage: Porcentaje
         title: Evaluaciones
-      title: Estadísticas
       top_metrics:
         completed: Completado
         in_progress: En curso
@@ -4767,10 +4718,6 @@ es-ES:
       update:
         successfully: El usuario %{name} se ha actualizado correctamente.
       user: Usuario
-    validations:
-      idp:
-        end_date_cannot_be_in_past: La fecha de finalización no puede ser anterior
-        start_date_cannot_be_in_past: La fecha de inicio no puede ser anterior
     webhook:
       connection_failure: No se pudo conectar a la url del webhook. Por favor verifique si la url del webhook es correcta..
       delete_success: La configuración del webhook se ha eliminado correctamente

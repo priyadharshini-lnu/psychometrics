@@ -18,6 +18,8 @@ describe UsersResults::Reset do
       scoring: test,
       embedded_data: test,
       step: 100,
+      progress: 100,
+      external_results: {},
       occupations: test)
     users_result.user_assessment.update!(
       completed_at: Time.zone.now, norm_id: norm.id, status: :completed, expiry_date: Time.zone.now,
@@ -118,6 +120,8 @@ describe UsersResults::Reset do
       and change { user_assessment.status }.from('completed').to('not_started').
       and change { user_assessment.completed_at }.from(Time.zone.now).to(nil).
       and change { users_result.step }.from(100).to(0).
+      and change { users_result.progress }.from(100).to(0).
+      and change { users_result.external_results }.from({}).to(nil).
       and change { user_assessment.expiry_date }.from(Time.zone.now).to(nil).
       and change { user_assessment.last_activity_at }.from(Time.zone.now).to(nil).
       and change { user_assessment.reset_count }.from(0).to(1)

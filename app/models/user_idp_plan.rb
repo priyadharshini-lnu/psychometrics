@@ -9,7 +9,7 @@ class UserIdpPlan < ApplicationRecord
 
   has_paper_trail if: proc { |plan|
     (plan.approval_status_changed? &&
-      %w[approved pending_approval].include?(plan.approval_status)) ||
+      %w[approved pending_approval rejected].include?(plan.approval_status)) ||
       %w[pending_approval in_review draft].include?(plan.approval_status)
   }
 
@@ -77,9 +77,6 @@ class UserIdpPlan < ApplicationRecord
 
   after_create :schedule_idp_assigned_notification
   after_update :update_completed_at, if: :saved_change_to_completion_status?
-  after_commit :schedule_idp_status_notification,
-               if: proc { saved_change_to_approval_status? && (approved? || rejected?) },
-               on: [:update]
 
   alias report_pdfs idp_report_pdfs
 
@@ -110,6 +107,9 @@ class UserIdpPlan < ApplicationRecord
     state :approved do
       event :draft, transitions_to: :draft, if: ->(ua) { ua.completion_status != 'completed' }
     end
+    state :ai_assisted_idp_in_progress do
+      event :draft, transitions_to: :draft
+    end
 
     on_transition do |_from, to, _event, note = nil, *_|
       if to == :approved
@@ -117,6 +117,7 @@ class UserIdpPlan < ApplicationRecord
         destroy_soft_deleted_skills_and_actions
       end
       update(review_note: note) if to == :rejected
+      schedule_idp_status_notification(to) if %i[approved rejected].include?(to)
     end
 
     after_transition do |_from, _to, _event, *_|
@@ -212,6 +213,12 @@ class UserIdpPlan < ApplicationRecord
     "private/projects/#{campaign.project_id}/user_idp_plans/#{id}/#{attribute_name}/#{filename}"
   end
 
+  def pending_initial_review
+    return false unless pending_approval?
+
+    versions.where("object->>'approval_status' IN (?)", %w[in_review rejected approved]).none?
+  end
+
   private
 
   def update_completed_at
@@ -233,14 +240,20 @@ class UserIdpPlan < ApplicationRecord
     )
   end
 
-  def schedule_idp_status_notification
-    notification_kind = approved? ? :idp_template_approved : :idp_template_rejected
+  def schedule_idp_status_notification(status)
+    notification_kind = if status == :approved
+                          :idp_template_approved
+                        elsif status == :rejected
+                          :idp_template_rejected
+                        end
+
     return if communication_emails.joins(:communication).
               exists?(communications: { kind: notification_kind })
 
     communication = Communication.order(:created_at).
                     where(kind: notification_kind, campaign_id: campaign_id).
                     last
+
     return unless communication
 
     communication.create_communication_email_with_resources(

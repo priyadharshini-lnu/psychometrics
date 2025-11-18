@@ -60,6 +60,7 @@ module Threesixty::InitialState
           managerApprovesIdp: @idp_setting&.manager_approves_idp || false,
           managerCanEditIdp: @idp_setting&.manager_can_edit_idp || false,
           requireAllDevelopmentActionsComplete: @idp_setting&.require_all_development_actions_complete || false,
+          idpEnabled: @current_project.client.feature_enabled?(:idp) && @current_project.project_feature_enabled?(:idp),
           aiAssistants: @current_project.client.feature_enabled?(:ai_assistants) &&
                         @current_project.project_feature_enabled?(:ai_assistants)
         }

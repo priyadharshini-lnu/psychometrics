@@ -919,8 +919,6 @@ ro:
     invalid_job: Această notificare corespunde înregistrării șterse
     mark_as_read: Marcați toate citite
     more: Mai mult
-    no_notifications: Fără notificări
-    notifications: Notificări
     results: Rezultatele
     super_admin:
       errors:
@@ -1341,16 +1339,11 @@ ro:
     continue: Continuați-vă sarcinile
     dashboard_instructions: Este posibil să vă fi fost atribuite mai multe activități pe care trebuie să le finalizați. Vă rugăm să verificați dacă toate activitățile atribuite au fost finalizate în toate campaniile.
     dashboard_menu:
-      bookings: Rezervări
       campaign: Campanie
-      change_password: Schimbare parolă
-      development: Dezvoltare
       direct_reportees: Raportari directi
       home: Acasă
       insights: Perspective
-      my_plan: Planul meu
       profile: Profil
-      profile_details: Detalii
       tasks: Sarcini
     details: Detalii
     edit_evaluation:
@@ -1465,6 +1458,7 @@ ro:
       export_occupations_job_scheduled: Ocupații Locul de muncă la export a fost programat cu succes
       export_reports_and_assessments_statuses_scheduled: Lucrarea Exportați rapoarte și evaluări a fost programată cu succes
       external_results_export_scheduled: Activitatea de export Evaluare externă a fost programată cu succes
+      no_participants_selected: Vă rugăm să selectați cel puțin un participant pentru a continua.
       norm_results_export_scheduled: Lucrarea de export Rezultate normalizate de evaluare a fost programată cu succes
       normalize_factor_scores_scheduled: Normalizarea scorurilor factorilor a fost programată cu succes.
       raw_factor_export_scheduled: Evaluarea activității de export Raw Factor a fost programată cu succes
@@ -1609,6 +1603,7 @@ ro:
       report_bundle_placeholder: Selectați un pachet de rapoarte
     messages:
       bulk_download_error: Descărcarea în bloc este limitată la 1000 de fișiere de raport. Dacă ați selectat mai multe lamente, vă rugăm să le reduceți.
+      bulk_download_no_reports: Nu s-au găsit rapoarte. Vă rugăm să generați rapoartele înainte de descărcare.
       bulk_download_successful: Sarcina de descărcare a raportului în bloc a fost programată cu succes
       export_report_data_scheduled: Sarcina de export a datelor de raportare a fost programată cu succes
     modals:
@@ -1878,7 +1873,6 @@ ro:
       projects: Proiecte
       report: Raport
       reports: Rapoarte
-      scoring: Notare
       sms_contact: SMS Contact
       threesixty_campaign: Treișaizeci de scoruri de campanie
     status:
@@ -2144,118 +2138,6 @@ ro:
       send_paranoid_instructions: Dacă contul tău există, vei primi un e-mail cu instrucțiuni despre cum să-l deblochezi în câteva minute.
       unlocked: Contul tău a fost deblocat cu succes. Vă rugăm să vă conectați pentru a continua.
       unprocessable_entity: Contul tău nu a putut fi deblocat cu acest link. Vă rugăm să contactați asistența.
-  dry_errors:
-    errors:
-      add_edit_project:
-        invalid_subdomain_format: Format greșit al subdomeniului.
-        reserved_subdomain: Subdomeniul %{value} este rezervat
-        uniq_subdomain: Subdomeniul ar trebui să fie unic.
-      add_manager:
-        cannot_be_self: Utilizatorul nu poate fi desemnat ca manager propriu
-        manager_not_found: Managerul nu a fost găsit sau nu face parte din același proiect
-        user_not_found: Utilizatorul nu a fost găsit sau nu face parte din același proiect
-      admin:
-        already_added: Administrator cu e-mail deja adăugat.
-      already_assigned?: Nu se poate lega această evaluare - este deja atribuită la '%{linked_assessor_form_name}'.
-      already_invited: Acest utilizator există deja în centrul de evaluare pe care încercați să-l adăugați.
-      assessor_assessment:
-        already_added: Evaluarea evaluatorului a fost deja adăugată la campanie.
-        lead_already_added: O singură evaluare a evaluatorului principal poate fi adăugată la campanie.
-      campaign_factor:
-        code_already_exists: Un factor cu același cod există deja.
-        invalid_lua_name: ar trebui să fie un nume de variabilă lua valid
-        limit_exceeded: Ați atins limita maximă de %{limit} factori de campanie.
-        name_already_exists: Un factor cu același nume există deja.
-        rank_not_allowed: Pot fi clasificați numai factorii cu un tip numeric de ieșire.
-      campaign_factor_group:
-        group_already_exists: Un grup cu același nume există deja.
-        last_factor_group: Nu se poate șterge ultimul grup de factori de campanie.
-      campaign_idps:
-        idp_template_not_published: Acest șablon IDP nu este încă publicat, vă rugăm să -l publicați înainte de a atribui campaniei.
-      cant_be_deleted: Această înregistrare nu poate fi ștearsă
-      client_feature:
-        ai_assisted_idp_feature_error: Nu poate fi adevărat dacă funcția AI Assistants este dezactivată
-      create_superadmin:
-        uniq_email: E-mailul ar trebui să fie unic.
-      development_actions:
-        only_global_skills_allowed: Competențele selectate trebuie să fie competențe globale.
-        skills_not_belong_to_project: Competențele selectate trebuie să aparțină proiectului specificat.
-        skills_required: Vă rugăm să selectați cel puțin o competență.
-      exceeded_subjects_count: Puteți adăuga doar %{count} subiecte per invitație
-      filled?: nu poate fi gol
-      idp_template:
-        content_required: Conținutul este necesar pentru instrucțiuni
-        tag_or_skill_required: Vă rugăm să selectați fie o etichetă, fie o abilitate atunci când este aleasă opțiunea "Selectat".
-      invalid_name: Numai alfabetul, numărul, spațiile, liniuța și punctul sunt permise ca caracter valid
-      invalid_value: Declarația nevalidă '%{value}' pe numărul de linie %{row}
-      job_roles:
-        unique_within_job_group: Un rol de post cu același nume există deja.
-      json?: Ar trebui să fie JSON valid
-      key?: nu poate fi gol
-      match_regexp?: valoare nevalidă
-      mettl_schedule_record_create:
-        uniq_schedule_name: Numele programului ar trebui să fie unic
-      missed?: nu poate fi gol
-      not_allowed?: Nu este permisă modificarea
-      not_in_the_list?: valoare nevalidă transmisă
-      not_uniq_variable: Variabila '%{value}' redefinită pe numărul de linie %{row}
-      project_assessments:
-        should_be_greater_than_zero: Valabilitatea rezultatului trebuie să fie mai mare de 0 zile
-      project_feature:
-        global_skills_not_enabled_on_client: Pentru a activa abilitățile globale pentru acest proiect, vă rugăm să îl activați sub Feature Flags în setările clientului.
-      report_approval_settings:
-        report_exists: Setarea de aprobare a raportului pentru acest raport există deja.
-        validates_admins: Administratorii nu au acces la campanie.
-      report_families_reports:
-        report_exists: Acest raport face deja parte din pachetul de rapoarte
-      size?: dimensiunea ar trebui să fie mai mică %{size}
-      skill:
-        already_added: Abilitate cu același nume deja adăugată.
-      skill_alias:
-        unique_alias: Aliasul ar trebui să fie unic
-        unique_skill: Abilitățile ar trebui să fie unice
-      skills_job_roles:
-        must_belong_to_same_project_or_be_global: Competența și rolul postului trebuie să aparțină aceluiași proiect sau să fie globale.
-        unique_mappings: Există deja o corespondență cu aceleași competențe și roluri.
-      uniq: Această evaluare Mettl este deja prezentă în sistem. ID-ul acestei evaluări este %{id}
-      uniq?: ar trebui să fie unice
-      uniq_simulation: Această evaluare de simulare este deja prezentă în sistem. ID-ul acestei evaluări este %{id}
-      uniq_skillvue: Această evaluare Skillvue este deja prezentă în sistem. ID-ul acestei evaluări este %{id}
-      update_workshop:
-        bookings_exist: Nu se poate modifica programul, deoarece participanții au rezervat deja acest interval orar.
-        less_than_booked: Numărul total de locuri trebuie să fie mai mare decât cel rezervat
-      user_availability_date:
-        overlaps_date: Se suprapune cu o altă disponibilitate %{range}
-        overlaps_time: Se suprapune intervalul %{interval}
-        start_date_should_be_less: Data de începere trebuie să fie mai mică decât data de încheiere
-        start_time_should_be_less: Ora de începere ar trebui să fie mai mică decât ora de sfârșit
-      user_idp_plan:
-        idp_template_already_assigned_to_user: Acest șablon Idp este deja asociat acestui utilizator și este activ
-        idp_template_not_published: Acest șablon IDP nu este încă publicat, vă rugăm să -l publicați înainte de a atribui utilizatorului.
-      user_saved_filters:
-        limit_exceeded: Puteți avea doar %{limit} filtre salvate, vă rugăm să ștergeți filtrele salvate pentru a adăuga mai multe.
-        unique_name: Există deja un filtru cu același nume.
-      workshop_invited_subject_create:
-        already_exists: Subiectul există deja în invitație.
-      workshop_subject_create:
-        already_exists: Subiectul există deja în acest centru de evaluare.
-        part_of_other_workshop: Subiectul este deja participant la '%{workshop_name}'.
-      workshop_subject_re_enroll:
-        no_seats_available: Nu sunt locuri disponibile pentru acest atelier.
-        scheduling_lead_time_passed: A trecut timpul de programare, nu puteți reînscrie subiectul.
-        workshop_subject_not_found: Subiectul atelierului nu a fost găsit
-      workshops:
-        no_available_assessor_slots: Nu există locuri disponibile pentru evaluator %{assessor}
-        no_available_manager_slots: Nu există sloturi disponibile pentru manager %{manager}
-    users:
-      registrations:
-        new:
-          register: Înregistrează-te
-          sign_in: Conectează-te
-      sessions:
-        new:
-          register: Înregistrează-te
-          sign_in: Conectează-te
   emails:
     nomination_approval_table:
       evaluator_name: Numele evaluatorului
@@ -2586,6 +2468,7 @@ ro:
   idp:
     actions: Acțiuni
     add_comments: Adaugă comentarii
+    added_development_action: Acțiune de dezvoltare adăugată
     ai:
       assistant:
         failure_fallback:
@@ -2623,7 +2506,7 @@ ro:
           option_2: Bun pentru profesioniștii ocupați
           option_3: Complet editabil după generare
           title: IDP AI cu 1 clic
-        sub_title: Să creăm un jorney personalizat de perfecționare, adaptat aspirației tale de carieră și ghidat de AI
+        sub_title: Să creăm o călătorie personalizată de perfecționare, adaptată aspirației tale de carieră și ghidată de AI
         title: Creați-vă planul individual de dezvoltare
       summary:
         chat_title: Rezumatul Chat Insight
@@ -2642,6 +2525,7 @@ ro:
         title: Buna ziua, sunt asistentul tau de dezvoltare
     behavioral: Comportamental
     board: Scândură
+    change_history: Istoricul modificărilor
     changes_saved_to_plan: Modificări salvate în plan
     comment_details:
       add_comment: Adaugă comentariu
@@ -2743,6 +2627,7 @@ ro:
       publish_plan: Publicați planul
       remove: Depărta
       save_plan: Salvați planul
+      search_development_actions: Căutare Acțiuni de dezvoltare
       show_development_action_information: Afișați informațiile despre acțiunile de dezvoltare
       skill: Îndemânare
       sprint: Sprint
@@ -2755,7 +2640,7 @@ ro:
       write_here: Scrie aici...
     direct_reportee_details: Detalii raportoare directe
     download:
-      description: 'Pentru a descărca raportul, vă rugăm să urmați linkul: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Linkul este valabil doar 10 minute'
+      description: 'Pentru a descărca raportul, vă rugăm să urmați linkul: <a href=''%{url}'' target=''_blank''>Download</a>. Linkul este valabil doar 10 minute'
     download_plan: Descărcați planul
     edit_plan: Editați planul
     edit_plan_and_add_skills: Editați planul și faceți clic pe Gestionați abilitățile pentru a adăuga abilități.
@@ -2804,6 +2689,7 @@ ro:
     manage_plan: Gestionați planul
     mark_as_complete: Marcați ca finalizat
     mark_as_incomplete: Marcați ca incomplet
+    modified_development_action: Acțiune de dezvoltare modificată
     my_plan:
       development_plan: Plan de dezvoltare
       graphs:
@@ -2921,7 +2807,9 @@ ro:
         title: Rezumatul raportului
     plan: Plan
     plan_status: Starea planului %{status}
+    plan_submitted_for_manager_approval: Planul dumneavoastră individual de dezvoltare a fost trimis spre aprobarea managerului.
     private: Privat
+    public: Public
     reflective_questions:
       already_completed: IDP a fost deja completat, nu puteți răspunde la întrebări acum.
       answer: Răspunde
@@ -2949,6 +2837,7 @@ ro:
       words: Cuvinte
     remove_skill: Eliminați abilitatea
     remove_skill_from_plan: Eliminați %{name} de abilități din plan
+    removed_development_action: Acțiune de dezvoltare eliminată
     report_preview: Previzualizare raport
     search_and_select_skills_of_skill_type: Căutați și selectați abilitățile %{skillType}
     select_skills_of_skill_type: Selectați %{skillType} abilități
@@ -2962,6 +2851,8 @@ ro:
     status: Stare
     suggestions: Sugestii
     suggestions_for_skill_type: Sugestii pentru abilitățile %{skillType}
+    summary: Rezumat
+    summary_logs: Jurnale sumare pentru %{reporteeName}
     technical: Tehnic
     user_idp_status:
       approved: Aprobat
@@ -2973,6 +2864,7 @@ ro:
       not_started: Neînceput
       pending_approval: În așteptarea aprobării
       rejected: Respins
+      start_review: Începeți revizuirea
     users: Utilizatorii
     with_reflection_questions: Cu întrebări de reflecție
     without_reflection_questions: Fără întrebări de reflecție
@@ -3486,13 +3378,6 @@ ro:
   sessions:
     errors:
       recaptcha: Verificarea Recaptcha a eșuat. Vă rugăm să încercați din nou.
-  shared:
-    filters:
-      clear: Ștergeți filtrele
-    internet_disconnected_message: Încercați să vă reconectați. Vă rugăm să verificați conexiunea la internet.
-    mte_logo_alt_text: Sigla Mercer Talent Enterprise
-    terms_conditions_privacy: Declarație de confidențialitate
-    tte_terms_and_condition: Termeni și confidențialitate
   sheet:
     import_modal:
       alert_access_sheet_removal: Încărcarea unei noi foi de acces cu ștergerea tuturor înregistrărilor existente și încărcarea uneia noi din foaie. Vă rugăm să vă asigurați că aveți toate înregistrările Accesssheet în foaia de calcul.
@@ -4293,6 +4178,7 @@ ro:
     idp:
       can_not_complete_without_approval_and_in_progress: Nu puteți finaliza IDP-ul până când managerul nu îl aprobă și nu l-ați marcat ca "În curs".
       can_not_start_without_approval: Nu puteți începe să lucrați la IDP până când managerul nu îl aprobă.
+      no_changes_to_compare: Nu există modificări de comparat pentru planul IDP.
       no_previous_approved_plan: Nu s-a găsit niciun plan IDP aprobat anterior.
       reflective_questions_required: Răspunsurile la întrebările reflexive sunt necesare pentru IDP
       status_not_permitted: nu este permis de utilizator.

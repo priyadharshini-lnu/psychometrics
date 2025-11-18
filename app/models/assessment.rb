@@ -26,6 +26,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   MEETING = 'meeting'
   SIMULATION = 'simulation'
   SKILLVUE = 'skillvue'
+  YOODLI = 'yoodli'
 
   DEFAULT_SCORE_VALIDITY_PERIOD = 18.months.in_days
 
@@ -70,7 +71,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     mettl: METTL,
     meeting: MEETING,
     simulation: SIMULATION,
-    skillvue: SKILLVUE
+    skillvue: SKILLVUE,
+    yoodli: YOODLI
   }.freeze
 
   # Assessments constant
@@ -82,7 +84,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     iiht: 'Assessments::Iiht',
     mettl: 'Assessments::Mettl',
     simulation: 'Assessments::Simulation',
-    skillvue: 'Assessments::Skillvue'
+    skillvue: 'Assessments::Skillvue',
+    yoodli: 'Assessments::Yoodli'
   }.freeze
 
   NON_USER_ASSESSMENT_CATEGORY = [
@@ -129,6 +132,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   has_many :iiht_user_assessments, through: :user_assessments, dependent: :restrict_with_error
   has_many :mettl_user_assessments, through: :user_assessments, dependent: :restrict_with_error
   has_many :skillvue_user_assessments, through: :user_assessments, dependent: :restrict_with_error
+  has_many :yoodli_user_assessments, through: :user_assessments, dependent: :restrict_with_error
   has_many :simulation_user_assessments, through: :user_assessments, dependent: :restrict_with_error
   has_many :campaign_assessments, dependent: :restrict_with_error
   has_many :assessments_clients, dependent: :restrict_with_error
@@ -190,6 +194,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   scope :mettl, -> { where(type: TYPES[:mettl]) }
   scope :simulation, -> { where(type: TYPES[:simulation]) }
   scope :skillvue, -> { where(type: TYPES[:skillvue]) }
+  scope :yoodli, -> { where(type: TYPES[:yoodli]) }
   scope :external, -> { where.has { type.in([TYPES[:hogan]]) } }
   scope :enabled, -> { where.not(disabled: true) }
   scope :disabled, -> { where(disabled: true) }
@@ -243,7 +248,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     saville? || pearson?
   end
 
-  def external_assessment_name # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  def external_assessment_name # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
     return if external_assessment_id.nil? || common?
 
     case category
@@ -257,6 +262,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
         MettlAssessment.find_by(product_id: external_assessment_id)&.name
       when 'skillvue'
         SkillvueAssessment.find_by(product_id: external_assessment_id)&.name
+      when 'yoodli'
+        YoodliAssessment.find_by(product_id: external_assessment_id)&.name
       when 'simulation'
         Settings.providers.simulation.assessments.find { |a| a.id.casecmp?(external_assessment_id) }&.name
       when 'iiht'
@@ -357,12 +364,16 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     type == TYPES[:skillvue]
   end
 
+  def yoodli?
+    type == TYPES[:yoodli]
+  end
+
   def simulation?
     type == TYPES[:simulation]
   end
 
   def external?
-    hogan? || saville? || pearson? || iiht? || mettl? || simulation? || skillvue?
+    hogan? || saville? || pearson? || iiht? || mettl? || simulation? || skillvue? || yoodli?
   end
 
   def internal?

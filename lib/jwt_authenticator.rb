@@ -1,15 +1,26 @@
 # frozen_string_literal: true
 
 class JwtAuthenticator
-  def self.get_user_by_client_jwt(jwt_key, project)
-    _, header = JWT.decode(jwt_key, nil, false)
+  def self.get_user_by_jwt(jwt_token, project)
+    jwt_data, header = JWT.decode(jwt_token, nil, false)
+    details = jwt_data['details'] || {}
 
-    api_key = ApiKey.active.find_by(key: header['api_key'])
+    if header['api_key']
+      api_key = ApiKey.active.find_by(key: header['api_key'])
+      [:api_jwt, get_user_by_client_jwt(jwt_token, api_key, project), details]
+    else
+      [:lighthouse_jwt, get_user_by_lighthouse_jwt(jwt_token, project), details]
+    end
+  rescue JWT::DecodeError, JWT::VerificationError, JWT::InvalidPayload => e
+    Rails.logger.error "JWT authentication failed: #{e.message}"
 
+    nil
+  end
+
+  def self.get_user_by_client_jwt(jwt_token, api_key, project)
     if api_key
       secret = api_key.token
-      decoded_jwt = JWT.decode(jwt_key, secret, true, { algorithm: 'HS256' })
-
+      decoded_jwt = JWT.decode(jwt_token, secret, true, { algorithm: 'HS256' })
       check_expiration(decoded_jwt[0]['exp'])
 
       find_user_from_subject(decoded_jwt[0]['sub'], project)
@@ -20,19 +31,12 @@ class JwtAuthenticator
     nil
   end
 
-  def self.get_user_by_lighthouse_jwt(jwt_key, project)
-    decoded_jwt = JWT.decode(jwt_key, Settings.secrets.encrypted_key.to_s, true,
-                             { verify_expiration: false, algorithm: 'HS256' })
+  def self.get_user_by_lighthouse_jwt(jwt_token, project)
+    decoded_jwt = JWT.decode(jwt_token, Settings.secrets.encrypted_key.to_s, true,
+                             { verify_expiration: true, algorithm: 'HS256' })
+    check_expiration(decoded_jwt[0]['exp'])
 
-    exp = decoded_jwt[0]['exp']
-
-    raise JWT::InvalidPayload if exp.nil?
-
-    expired = Time.zone.at(exp) < Time.zone.now
-
-    user = find_user_from_subject(decoded_jwt[0]['sub'], project)
-
-    [user, expired]
+    find_user_from_subject(decoded_jwt[0]['sub'], project)
   rescue JWT::DecodeError, JWT::VerificationError, JWT::InvalidPayload => e
     Rails.logger.error "JWT authentication failed: #{e.message}"
 

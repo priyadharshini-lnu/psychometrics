@@ -63,6 +63,7 @@ export const connecter = connect(
     assessmentStatuses: getStatusesCount(state),
     loading: isRequestInProgress(state, FETCH_SINGLE),
     features: getFeatures(state),
+    projectIdpEnabled: state.config.project.idpEnabled,
   }),
   {
     fetchSingleUser,
@@ -85,6 +86,7 @@ export const UserDetails: React.FC<Props> = ({
   remove,
   extendTime,
   features,
+  projectIdpEnabled,
 }) => {
   const {
     projectId, campaignId, tab: paramTab, id: userId,
@@ -184,7 +186,7 @@ export const UserDetails: React.FC<Props> = ({
       children: <AssessmentCenterInvites />,
     })
   }
-  if (idpEnabled) {
+  if (idpEnabled && projectIdpEnabled) {
     tabs.push({
       key: 'idp',
       label: I18n.t('assessments_reports.menu.idp'),

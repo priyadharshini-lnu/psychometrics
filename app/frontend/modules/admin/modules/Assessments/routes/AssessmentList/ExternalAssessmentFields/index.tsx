@@ -6,6 +6,7 @@ import { IihtFields } from './IihtFields'
 import { MettlFields } from './MettlFields'
 import { SimulationFields } from './SimulationFields'
 import { SkillvueFields } from './SkillvueFields'
+import { YoodliFields } from './YoodliFields'
 
 export const ExternalAssessmentFields = {
   hogan: HoganFields,
@@ -15,4 +16,5 @@ export const ExternalAssessmentFields = {
   mettl: MettlFields,
   simulation: SimulationFields,
   skillvue: SkillvueFields,
+  yoodli: YoodliFields,
 }

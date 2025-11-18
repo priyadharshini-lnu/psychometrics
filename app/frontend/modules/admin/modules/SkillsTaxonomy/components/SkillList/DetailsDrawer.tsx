@@ -27,14 +27,20 @@ const DetailsDrawerComponent: FC<Props> = ({
   onClose,
 }) => {
   const {
-    data, fetch, isLoading,
+    data, setData, fetch, isLoading,
   } = useResources<ProficiencyLevel>(`skills/${skill?.id}/proficiency_levels`)
 
   const proficiencyLevel = data as unknown as ProficiencyLevel
 
   useEffect(() => {
     if (skill?.id) {
-      fetch()
+      fetch({
+        apiConfig: {
+          query: { project_id: skill.project?.id || '' },
+        },
+      }).catch(() => {
+        setData([])
+      })
     }
   }, [skill?.id])
 

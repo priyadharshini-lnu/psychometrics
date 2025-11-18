@@ -943,8 +943,6 @@ ar:
     invalid_job: يتوافق هذا الإشعار مع السجل المحذوف
     mark_as_read: ضع علامة على الكل مقروءا
     more: أكثر
-    no_notifications: لا توجد إشعارات
-    notifications: الاخطارات
     results: النتائج
     super_admin:
       errors:
@@ -1369,16 +1367,11 @@ ar:
     continue: الإستمرار في التقييم
     dashboard_instructions: لقد تم تكليفك بعدد من الأنشطة التي عليك إنجازها، يرجى التأكد من إكمالها جميعاً ضمن الفترة الزمنية المحددة لها.
     dashboard_menu:
-      bookings: الحجوزات
       campaign: الحملة
-      change_password: تغيير كلمة المرور
-      development: تطوير
       direct_reportees: الموظفين المباشرين
       home: الصفحة الرئيسية
       insights: البصائر
-      my_plan: خطتي
       profile: تفاصيلي
-      profile_details: تفاصيل
       tasks: مهامي
     details: مشاهدة التفاصيل
     edit_evaluation:
@@ -1502,6 +1495,7 @@ ar:
       export_occupations_job_scheduled: تم جدولة وظيفة تصدير المهن بنجاح
       export_reports_and_assessments_statuses_scheduled: تمت جدولة مهمة تقارير التصدير والتقييمات بنجاح
       external_results_export_scheduled: تمت جدولة مهمة تصدير التقييم الخارجي بنجاح
+      no_participants_selected: يرجى تحديد مشارك واحد على الأقل للمتابعة.
       norm_results_export_scheduled: تمت جدولة مهمة تصدير النتائج المعيارية للتقييم بنجاح
       normalize_factor_scores_scheduled: تمت جدولة وظيفة تطبيع درجات العامل بنجاح.
       raw_factor_export_scheduled: تم جدولة مهمة تصدير العامل الخام للتقييم بنجاح
@@ -1646,6 +1640,7 @@ ar:
       report_bundle_placeholder: حدد حزمة تقارير
     messages:
       bulk_download_error: يقتصر التنزيل المجمع على 1000 ملف تقرير. إذا كنت قد اخترت العديد من اللغات ، فيرجى تقليلها.
+      bulk_download_no_reports: لم يتم العثور على تقارير. يرجى إنشاء التقارير قبل التنزيل.
       bulk_download_successful: تمت جدولة مهمة تنزيل التقرير المجمع بنجاح
       export_report_data_scheduled: تمت جدولة مهمة تصدير بيانات التقرير بنجاح
     modals:
@@ -1915,7 +1910,6 @@ ar:
       projects: المشاريع
       report: تقرير
       reports: التقييم
-      scoring: سجل
       sms_contact: الاتصال بالرسائل النصية القصيرة
       threesixty_campaign: درجات حملة Threesixty
     status:
@@ -2181,118 +2175,6 @@ ar:
       send_paranoid_instructions: إذا كان حسابك موجودا ، فستتلقى رسالة بريد إلكتروني تحتوي على إرشادات حول كيفية إلغاء قفله في بضع دقائق.
       unlocked: تم إلغاء قفل حسابك بنجاح. يرجى تسجيل الدخول للمتابعة.
       unprocessable_entity: تعذر إلغاء قفل حسابك باستخدام هذا الرابط. يرجى الاتصال بالدعم.
-  dry_errors:
-    errors:
-      add_edit_project:
-        invalid_subdomain_format: تنسيق النطاق الفرعي خاطئ.
-        reserved_subdomain: النطاق الفرعي %{value} محجوز
-        uniq_subdomain: يجب أن يكون النطاق الفرعي فريدا.
-      add_manager:
-        cannot_be_self: لا يمكن تعيين المستخدم كمدير لنفسه
-        manager_not_found: لم يتم العثور على المدير أو لم يكن جزءا من نفس المشروع
-        user_not_found: لم يتم العثور على المستخدم أو ليس جزءا من نفس المشروع
-      admin:
-        already_added: المسؤول الذي تمت إضافة بريد إلكتروني بالفعل.
-      already_assigned?: لا يمكن ربط هذا التقييم - تم تعيينه بالفعل إلى '%{linked_assessor_form_name}'.
-      already_invited: هذا المستخدم موجود بالفعل في مركز التقييم الذي تحاول إضافته.
-      assessor_assessment:
-        already_added: تمت إضافة تقييم المقيم بالفعل إلى الحملة.
-        lead_already_added: يمكن إضافة تقييم مقيم رئيسي واحد فقط إلى الحملة.
-      campaign_factor:
-        code_already_exists: يوجد بالفعل عامل بنفس التعليمات البرمجية.
-        invalid_lua_name: يجب أن يكون اسم متغير lua صالحا
-        limit_exceeded: لقد وصلت إلى الحد الأقصى لعوامل الحملة %{limit}.
-        name_already_exists: عامل يحمل نفس الاسم موجود بالفعل.
-        rank_not_allowed: يمكن ترتيب العوامل ذات نوع الإخراج الرقمي فقط.
-      campaign_factor_group:
-        group_already_exists: مجموعة تحمل نفس الاسم موجودة بالفعل.
-        last_factor_group: لا يمكن حذف آخر مجموعة عوامل الحملة.
-      campaign_idps:
-        idp_template_not_published: لم يتم نشر قالب IDP هذا بعد ، يرجى نشره قبل التعيين إلى الحملة.
-      cant_be_deleted: لا يمكن حذف هذا السجل
-      client_feature:
-        ai_assisted_idp_feature_error: لا يمكن أن يكون صحيحا إذا تم تعطيل ميزة مساعدي الذكاء الاصطناعي
-      create_superadmin:
-        uniq_email: يجب أن يكون البريد الإلكتروني موحدا.
-      development_actions:
-        only_global_skills_allowed: يجب أن تكون المهارات المختارة مهارات عالمية.
-        skills_not_belong_to_project: يجب أن تنتمي المهارات المحددة إلى المشروع المحدد.
-        skills_required: يُرجى تحديد مهارة واحدة على الأقل.
-      exceeded_subjects_count: يمكنك فقط إضافة %{count} مواضيع لكل دعوة
-      filled?: لا يمكن أن تكون فارغة
-      idp_template:
-        content_required: المحتوى مطلوب للتعليمات
-        tag_or_skill_required: يرجى تحديد علامة أو مهارة عند اختيار خيار "محدد"
-      invalid_name: يسمح فقط بالحروف الأبجدية والرقم والمسافات والشرطة والنقطة كحرف صالح
-      invalid_value: عبارة غير صالحة '%{value}' في رقم السطر %{row}
-      job_roles:
-        unique_within_job_group: يوجد دور وظيفي بنفس الاسم بالفعل.
-      json?: يجب أن تكون JSON صالحة
-      key?: لا يمكن أن تكون فارغة
-      match_regexp?: قيمة غير صالحة
-      mettl_schedule_record_create:
-        uniq_schedule_name: يجب أن يكون اسم الجدول فريدا
-      missed?: لا يمكن أن تكون فارغة
-      not_allowed?: غير مسموح بالتغيير
-      not_in_the_list?: تم تمرير قيمة غير صالحة
-      not_uniq_variable: المتغير "%{value}" المعاد تعريفه على رقم السطر %{row}
-      project_assessments:
-        should_be_greater_than_zero: يجب أن تكون صلاحية النتيجة أكبر من 0 يوم
-      project_feature:
-        global_skills_not_enabled_on_client: لتمكين المهارات العالمية لهذا المشروع ، يرجى تنشيطه ضمن علامات الميزات في إعدادات العميل.
-      report_approval_settings:
-        report_exists: إعداد الموافقة على التقرير لهذا التقرير موجود بالفعل.
-        validates_admins: لا يمكن للمشرفين الوصول إلى الحملة.
-      report_families_reports:
-        report_exists: هذا التقرير هو بالفعل جزء من حزمة التقارير
-      size?: يجب أن يكون الحجم أقل%{size}
-      skill:
-        already_added: مهارة تحمل نفس الاسم تمت إضافتها بالفعل.
-      skill_alias:
-        unique_alias: يجب أن يكون الاسم المستعار فريدا
-        unique_skill: يجب أن تكون المهارة فريدة من نوعها
-      skills_job_roles:
-        must_belong_to_same_project_or_be_global: يجب أن تنتمي المهارة والدور الوظيفي إلى نفس المشروع أو أن يكونا عالميين.
-        unique_mappings: يوجد بالفعل تعيين بنفس المهارة والدور الوظيفي.
-      uniq: تقييم Mettl هذا موجود بالفعل في النظام. معرف هذا التقييم هو %{id}
-      uniq?: يجب أن تكون فريدة من نوعها
-      uniq_simulation: تقييم المحاكاة هذا موجود بالفعل في النظام. معرف هذا التقييم هو %{id}
-      uniq_skillvue: تقييم Skillvue هذا موجود بالفعل في النظام. معرف هذا التقييم هو %{id}
-      update_workshop:
-        bookings_exist: لا يمكن تعديل الجدول الزمني لأن المشاركين قد حجزوا هذه الفترة الزمنية بالفعل.
-        less_than_booked: يجب أن يكون إجمالي المقاعد أكبر من الحجز
-      user_availability_date:
-        overlaps_date: يتداخل مع توفر آخر %{range}
-        overlaps_time: الفاصل الزمني المتداخل%{interval}
-        start_date_should_be_less: يجب أن يكون تاريخ البدء أقل من تاريخ الانتهاء
-        start_time_should_be_less: يجب أن يكون وقت البدء أقل من وقت الانتهاء
-      user_idp_plan:
-        idp_template_already_assigned_to_user: تم دمج قالب Idp هذا بالفعل لهذا المستخدم وهو نشط
-        idp_template_not_published: لم يتم نشر قالب IDP هذا بعد ، يرجى نشره قبل التعيين للمستخدم.
-      user_saved_filters:
-        limit_exceeded: يمكنك فقط الحصول على الفلاتر المحفوظة %{limit} ، يرجى حذف الفلاتر المحفوظة لإضافة المزيد.
-        unique_name: يوجد بالفعل فلتر يحمل نفس الاسم.
-      workshop_invited_subject_create:
-        already_exists: الموضوع موجود بالفعل في الدعوة.
-      workshop_subject_create:
-        already_exists: الموضوع موجود بالفعل في مركز التقييم هذا.
-        part_of_other_workshop: الموضوع مشارك بالفعل في "%{workshop_name}".
-      workshop_subject_re_enroll:
-        no_seats_available: لا توجد مقاعد متاحة لهذه الورشة.
-        scheduling_lead_time_passed: انقضت مهلة الجدولة الزمنية \ لقد انقضت المهلة الزمنية \ لا يمكنك إعادة تسجيل الموضوع.
-        workshop_subject_not_found: موضوع ورشة العمل غير موجود
-      workshops:
-        no_available_assessor_slots: لا توجد فتحات متاحة للمقيم %{assessor}
-        no_available_manager_slots: لا توجد فتحات متاحة للمدير %{manager}
-    users:
-      registrations:
-        new:
-          register: سجل
-          sign_in: تسجيل الدخول
-      sessions:
-        new:
-          register: سجل
-          sign_in: تسجيل الدخول
   emails:
     nomination_approval_table:
       evaluator_name: اسم المقيم
@@ -2623,6 +2505,9 @@ ar:
   idp:
     actions: الإجراءات
     add_comments: أضف تعليقات
+    add_note: إضافة ملاحظة...
+    add_reason: إضافة سبب...
+    added_development_action: إجراءات إنمائية مضافة
     ai:
       assistant:
         failure_fallback:
@@ -2677,8 +2562,11 @@ ar:
       welcome:
         text: هل أنت مستعد لرسم نموك جوني؟ هيا نبدأ!
         title: مرحبا، أنا مساعد التطوير الخاص بك
+    approval_note: مذكرة الموافقة
+    approve_plan: الموافقة على الخطة
     behavioral: سلوكية
     board: اللوحة
+    change_history: تغيير التاريخ
     changes_saved_to_plan: التغييرات المحفوظة على الخطة
     comment_details:
       add_comment: إضافة تعليق
@@ -2780,6 +2668,8 @@ ar:
       publish_plan: نشر الخطة
       remove: إزالة
       save_plan: حفظ الخطة
+      search_development_actions: إجراءات تطوير البحث
+      selected_count: مختارة %{count}
       show_development_action_information: إظهار معلومات إجراءات التطوير
       skill: مهارة
       sprint: سباق قصير
@@ -2792,7 +2682,7 @@ ar:
       write_here: اكتب هنا...
     direct_reportee_details: تفاصيل المبلغين المباشرين
     download:
-      description: 'لتنزيل التقرير ، يرجى اتباع الرابط: <a href = ''''%{url}'''' target = '''' _blank'''' > تنزيل</a>. الرابط صالح لمدة 10 دقائق فقط'
+      description: 'لتنزيل التقرير ، يرجى اتباع الرابط: <a href = ''%{url}'' target = ''_blank'' > تنزيل</a>. الرابط صالح لمدة 10 دقائق فقط'
     download_plan: تحميل الخطة
     edit_plan: تعديل الخطة
     edit_plan_and_add_skills: قم بتحرير الخطة وانقر فوق إدارة المهارات لإضافة المهارات.
@@ -2841,6 +2731,7 @@ ar:
     manage_plan: إدارة الخطة
     mark_as_complete: وضع علامة على أنها كاملة
     mark_as_incomplete: وضع علامة على أنها غير مكتملة
+    modified_development_action: إجراءات التنمية المعدلة
     my_plan:
       development_plan: خطة التطوير
       graphs:
@@ -2958,7 +2849,10 @@ ar:
         title: ملخص التقرير
     plan: خطة
     plan_status: حالة الباقة %{status}
+    plan_submitted_for_manager_approval: تم تقديم خطة التطوير الفردية الخاصة بك لموافقة المدير.
     private: عسكري
+    public: عام
+    reason_for_rejection: سبب الرفض
     reflective_questions:
       already_completed: لقد تم الانتهاء من IDP بالفعل، ولا يمكنك الإجابة عن الأسئلة الآن.
       answer: جواب
@@ -2971,7 +2865,9 @@ ar:
         max_words: تسمح الإجابة بحد أقصى %{count} الكلمات
         min_words: تتطلب الإجابة ما لا يقل عن %{count} الكلمات
         required: إجابة السؤال مطلوبة
+      max_word_limit: يجب أن تكون على الأكثر %{max} كلمة
       max_words: الحد الأقصى للكلمات
+      min_word_limit: يجب أن تكون على الأقل %{min} كلمة
       min_words: كلمات دقيقة
       no_answer_provided: لم يتم تقديم إجابة حتى الآن
       no_reflective_questions: لا توجد أسئلة عاكسة
@@ -2984,8 +2880,10 @@ ar:
       updated_successfully: تم تحديث إجاباتك بنجاح
       word_limit: يجب أن تكون بين %{min} و %{max} كلمة
       words: الكلمات
+    reject_plan: رفض الخطة
     remove_skill: إزالة المهارة
     remove_skill_from_plan: إزالة %{name} المهارة من الخطة
+    removed_development_action: إجراءات التطوير التي تمت إزالتها
     report_preview: معاينة التقرير
     search_and_select_skills_of_skill_type: ابحث وحدد مهارات %{skillType}
     select_skills_of_skill_type: حدد مهارات %{skillType}
@@ -2999,8 +2897,11 @@ ar:
     status: الحالة
     suggestions: اقتراحات
     suggestions_for_skill_type: اقتراحات لمهارات %{skillType}
+    summary: ملخص
+    summary_logs: سجلات ملخصة ل %{reporteeName}
     technical: اِصطِلاحِيّ
     user_idp_status:
+      ai_assisted_idp_in_progress: الذكاء الاصطناعي يساعد IDP في التقدم
       approved: تمت الموافقة
       completed: اكمال
       completion_not_started: لم يبدأ الانتهاء
@@ -3010,6 +2911,7 @@ ar:
       not_started: لم يبدأ
       pending_approval: قيد الموافقة
       rejected: نبيذ
+      start_review: ابدأ المراجعة
     users: المستخدمون
     with_reflection_questions: مع أسئلة التفكير
     without_reflection_questions: بدون أسئلة تفكير
@@ -3523,13 +3425,6 @@ ar:
   sessions:
     errors:
       recaptcha: فشلت عملية التحقق من إعادة الكابتشا. يرجى المحاولة مرة أخرى.
-  shared:
-    filters:
-      clear: امسح المُرشحات
-    internet_disconnected_message: نحاول إعادة الاتصال بالإنترنت. يرجى التحقق من اتصالك بالإنترنت الخاص بك.
-    mte_logo_alt_text: شعار Mercer Talent Enterprise
-    terms_conditions_privacy: بيان الخصوصية
-    tte_terms_and_condition: " الشروط والأحكام وبيان الخصوصية الخاص بشركة"
   sheet:
     import_modal:
       alert_access_sheet_removal: تحميل ورقة وصول جديدة مع حذف جميع السجلات الموجودة وتحميل سجل جديد من الورقة. يرجى التأكد من وجود جميع سجلات جدول الوصول في جدول البيانات.
@@ -4333,6 +4228,7 @@ ar:
     idp:
       can_not_complete_without_approval_and_in_progress: لا يمكنك إكمال موفر الهوية الخاص بك حتى يوافق عليه مديرك وتقوم بوضع علامة عليه على أنه "قيد التقدم".
       can_not_start_without_approval: لا يمكنك البدء في العمل على موفر الهوية الخاص بك حتى يوافق عليه مديرك.
+      no_changes_to_compare: لا توجد تغييرات للمقارنة مع خطة آي دي بي.
       no_previous_approved_plan: لم يتم العثور على خطة IDP معتمدة سابقا.
       reflective_questions_required: مطلوب إجابات على الأسئلة العاكسة ل IDP
       status_not_permitted: غير مسموح به من قبل المستخدم.

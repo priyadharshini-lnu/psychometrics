@@ -13,12 +13,15 @@ import {
   Flex,
   Badge,
   Drawer, Tooltip,
-  Spin,
+  Spin, Popover,
 } from 'antd'
 import cs from 'classnames'
 import { useNavigate, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
-import { MessageOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import {
+  MessageOutlined,
+  InfoCircleOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { DownloadButton } from '~/components/IdpShared/DownloadButton'
 import { useSearchSkills } from '~/modules/endUser/modules/campaigns/routes/idp/InitialSteps/AddSkills/useSearchSkills'
 import { PageLoadSpinner, MediaQueryContext } from '~/glint'
@@ -28,7 +31,6 @@ import { SkillGapReportTab }
 import styles from './styles.less'
 import { useAppSelector } from '~/modules/endUser/store/hooks'
 import { getReflectiveQuestions } from '~/modules/endUser/modules/campaigns/core/idp/idpPlanRtk'
-
 
 import {
   fetchAvailableDevelopmentActions,
@@ -78,6 +80,7 @@ const connector = connect((state: RootState) => ({
   skillGapReportAvailable: state.campaigns.idp.skillGapReportAvailable,
   skillGapReportData: state.campaigns.idp.skillGapReportData,
   oneClickIdpEnabled: state.campaigns.idp.oneClickIdpEnabled,
+  reviewNote: state.campaigns.idp.reviewNote,
 }),
 {
   fetchAvailableDevelopmentActions,
@@ -141,6 +144,7 @@ const UserDevelopmentPlanComponent = ({
   skillGapReportData,
   headerHeight = 0,
   oneClickIdpEnabled,
+  reviewNote,
 }: Props) => {
   const { tab: paramTab } = useParams() as {tab: string}
 
@@ -386,7 +390,7 @@ const UserDevelopmentPlanComponent = ({
         <>
           {operations}
           <Badge count={unreadCommentsCount} size="small">
-            <Tooltip title={I18n.t('idp.comment_details.add_comments')}>
+            <Tooltip placement="topLeft" title={I18n.t('idp.comment_details.add_comments')}>
               <Button
                 color="default"
                 aria-label={I18n.t('idp.add_comments')}
@@ -628,6 +632,30 @@ const UserDevelopmentPlanComponent = ({
         >
           {I18n.t(`idp.user_idp_status.${status}`)}
         </Tag>
+        <Popover
+          placement="bottomLeft"
+          title={(
+            <span>
+              {status === USER_IDP_PLAN_STATUS.REJECTED ? I18n.t('enduser.reason_for_idp_plan_rejection')
+                : I18n.t('enduser.idp_plan_approval_note')}
+            </span>
+              )}
+          trigger={['click']}
+          content={reviewNote}
+        >
+          {reviewNote && ([USER_IDP_PLAN_STATUS.REJECTED, USER_IDP_PLAN_STATUS.APPROVED].includes(status)) && (
+            <Button
+              style={{
+                height: '1.4rem',
+                width: '1rem',
+                color: 'inherit',
+              }}
+              type="link"
+              className="p-0 ms-1"
+              icon={<InfoCircleOutlined />}
+            />
+          )}
+        </Popover>
       </Col>
     </Row>
   )
@@ -660,6 +688,7 @@ const UserDevelopmentPlanComponent = ({
             onAddSkill={handleSelectSkill}
             searchSkillResource={searchSkillResource}
             showBackButton={false}
+            allowSkillDeletion={false}
             skillGapReportData={null}
           />
         </Spin>

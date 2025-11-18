@@ -87,7 +87,7 @@ export const SubnavigationComponent:FC<PropsFromRedux> = ({
 
   const itemsWithBack = [showBack ? {
     key: 'back_to_main_menu',
-    label: I18n.t('administration.navigation.back_to_main'),
+    label: I18n.t('admin.back_to_main'),
     icon: <ArrowLeftOutlined />,
   } : null, ...items]
 

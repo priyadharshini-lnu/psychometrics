@@ -75,6 +75,10 @@ module Api
         @user.is?(:superadmin)
       end
 
+      def generate_embedding?
+        @user.is?(:superadmin)
+      end
+
       class Scope < BasePolicy::Scope
         def resolve
           scope = super.includes(:translations)

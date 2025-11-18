@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { FC, useState } from 'react'
+import { FC, useState, useContext } from 'react'
 import {
   Typography, Button, Flex,
   message, Space, Form, Empty,
@@ -8,7 +8,7 @@ import {
   useSelector,
 } from 'react-redux'
 import cs from 'classnames'
-import { PageLoadSpinner, ButtonWithArrow } from '~/glint'
+import { PageLoadSpinner, ButtonWithArrow, MediaQueryContext } from '~/glint'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import styles from './ReflectiveQuestions.less'
 import Editor from './Editor'
@@ -66,7 +66,12 @@ export const ListView: FC<Props> = ({ onSave }) => {
 
   return (
     <>
-      <Space className="ps-8 pt-8" direction="vertical" size="large" style={{ maxWidth: '1200px' }}>
+      <Space
+        className="ps-8 pe-8 pt-8"
+        direction="vertical"
+        size="large"
+        style={{ maxWidth: '1200px', width: '100%' }}
+      >
         {reflectionQuestions.map(question => (
           <ReflectiveQuestion
             key={question.id}
@@ -88,6 +93,8 @@ const ReflectiveQuestion = ({
   question, value, onChange, error, status, onSubmit,
 }) => {
   const [editMode, setEditMode] = useState(false)
+
+  const { isMobile } = useContext(MediaQueryContext)
 
   const handleSubmit = async () => {
     try {
@@ -154,9 +161,21 @@ const ReflectiveQuestion = ({
             />
           </Form.Item>
           <Flex gap={8} className="mb-4" justify="space-between">
-            <span>
-              {I18n.t('idp.reflective_questions.word_limit', { min: question.minWords, max: question.maxWords })}
-            </span>
+            {question.minWords && question.maxWords && (
+              <span>
+                {I18n.t('idp.reflective_questions.word_limit', { min: question.minWords, max: question.maxWords })}
+              </span>
+            )}
+            {question.minWords && !question.maxWords && (
+              <span>
+                {I18n.t('enduser.min_word_limit', { min: question.minWords })}
+              </span>
+            )}
+            {question.maxWords && !question.minWords && (
+              <span>
+                {I18n.t('enduser.max_word_limit', { max: question.maxWords })}
+              </span>
+            )}
             <Flex flex={1} gap={4} justify="end">
               <Button
                 size="small"
@@ -170,7 +189,7 @@ const ReflectiveQuestion = ({
                 size="small"
                 type="primary"
                 style={{
-                  alignSelf: 'flex-end',
+                  alignSelf: isMobile ? 'flex-start' : 'flex-end',
                 }}
                 aria-label={I18n.t('idp.reflective_questions.save_edited_answer')}
                 onClick={handleSubmit}

@@ -31,7 +31,7 @@ module CampaignReports
     private
 
     def bulk_download_with_faas
-      file_details = user_reports_with_pdf.preload_pdf_attachments.each_with_object([]) do |ur, acc|
+      file_details = user_reports_with_pdf.preload_pdf_attachments.uniq.each_with_object([]) do |ur, acc|
         effective_locales(ur).each do |locale|
           pdf_path = ur.pdf_path(locale: locale)
           pdf_path && (acc << {
@@ -40,6 +40,7 @@ module CampaignReports
           })
         end
       end
+
       file_name = "bulk-report-#{Time.zone.today.strftime('%F')}"
       webhook_message = { bulk_report_id: bulk_report.id, file_name: file_name, admin_job_record_id: job_record.id }
       job_record.update!(total_tasks: file_details.length)
@@ -71,7 +72,7 @@ module CampaignReports
     end
 
     def download_user_reports_from_s3
-      user_reports_with_pdf.preload_pdf_attachments.each do |user_report|
+      user_reports_with_pdf.preload_pdf_attachments.uniq.each do |user_report|
         effective_locales(user_report).each do |locale|
           pdf_url = user_report.pdf_url(locale: locale)
           next unless pdf_url

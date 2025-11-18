@@ -1,0 +1,21 @@
+---
+it:
+  enduser:
+    add_idp_plan_note: Aggiungi Nota...
+    add_idp_plan_rejection_reason: Aggiungi Motivo...
+    approve_idp_plan: Approva Piano
+    bookings: Prenotazioni
+    campaign: Campagna
+    development: Sviluppo
+    direct_reportees: Collegati
+    home: Dashboard
+    idp_plan_approval_note: Nota di Approvazione
+    insights: Approfondimenti
+    max_word_limit: Deve essere al massimo %{max} parole
+    min_word_limit: Deve essere almeno %{min} parole
+    my_plan: Il mio piano
+    profile: Profilo
+    profile_details: Dettagli
+    selected_count: Selezionato
+    skill_type: Tipo di abilità
+    tasks: Campagne

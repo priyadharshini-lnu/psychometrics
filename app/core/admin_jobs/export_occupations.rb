@@ -15,7 +15,7 @@ module AdminJobs
     ].freeze
 
     def generate_details
-      [[I18n.t('administration.navigation.occupations'), file_link]]
+      [[I18n.t('admin.occupations'), file_link]]
     end
 
     def records_for_export

@@ -168,6 +168,31 @@ data_seprator: '4-2')
     expect(pearson_user_assessment.norm_id).to eq(assessment.external_settings[:norm_id])
   end
 
+  it 'create yoodli_user_assessment if assessment is of type yoodli' do
+    assessment = create(:assessment, :yoodli)
+    report = create(:report, assessments: [assessment])
+    described_class.call!(campaign_user, report, assessments: report.assessments)
+    yoodli_user_assessment = assessment.yoodli_user_assessments.first
+
+    expect(yoodli_user_assessment).to be_present
+    expect(yoodli_user_assessment.email).to be_nil
+  end
+
+  it 'copy yoodli_user_assessment data if assessment is of type yoodli with existing_result' do
+    assessment = create(:assessment, :yoodli)
+    report = create(:report, assessments: [assessment])
+
+    existing_users_result = create(:users_result, without_user_assessment: true, evaluator: campaign_user.user)
+    existing_user_assessment = create(:user_assessment, evaluator: campaign_user.user, assessment: assessment,
+                                     users_result: existing_users_result)
+    create(:yoodli_user_assessment, user_assessment: existing_user_assessment, email: 'existing@yoodli.com')
+
+    described_class.call!(campaign_user, report, assessments: report.assessments)
+    yoodli_user_assessment = assessment.yoodli_user_assessments.last
+
+    expect(yoodli_user_assessment.email).to eq('existing@yoodli.com')
+  end
+
   it "doesn't adds UserReport if it is already added" do
     create(:user_report, report: report, campaign: campaign_user.campaign, user: campaign_user.user)
     expect { described_class.call!(campaign_user, report, assessments: report.assessments) }.

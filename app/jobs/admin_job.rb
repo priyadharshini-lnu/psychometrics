@@ -102,7 +102,8 @@ class AdminJob < ApplicationJob
     export_interview_questions: AdminJobs::ExportInterviewQuestionsJob,
     import_interview_questions: AdminJobs::ImportInterviewQuestionsJob,
     import_assessment_translations: AdminJobs::ImportAssessmentTranslations,
-    bulk_generate_user_campaign_ai_artifact_results: AdminJobs::BulkGenerateUserCampaignAIArtifactResults
+    bulk_generate_user_campaign_ai_artifact_results: AdminJobs::BulkGenerateUserCampaignAIArtifactResults,
+    generate_embedding_skills: AdminJobs::GenerateEmbeddingSkillsJob
   }.freeze
 
   def perform(record, stage = nil)

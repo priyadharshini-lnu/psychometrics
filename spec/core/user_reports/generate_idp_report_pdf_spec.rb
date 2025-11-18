@@ -7,6 +7,7 @@ describe UserReports::GenerateIdpReportPdf do
 
   let!(:user) { create(:user, :with_project_membership) }
   let!(:campaign) { create(:campaign, project_id: user.project_id) }
+  let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
   let!(:idp_template) { create(:idp_template, project: campaign.project) }
   let!(:user_idp_plan) { create(:user_idp_plan, user: user, campaign: campaign, idp_template: idp_template) }
   let!(:current_user) { create(:superadmin) }
@@ -66,7 +67,7 @@ describe UserReports::GenerateIdpReportPdf do
       output_path = described_class.call!(user_idp_plan, current_user, { lang: 'en' })[:file_path]
 
       expect(output_path).to include(
-        "tmp/idp_reports/#{user.email}/#{user.email}_idp_report.pdf"
+        "tmp/idp_reports/#{user.email}/#{user.email}_idp_report_en_#{Time.zone.now.strftime('%Y-%m-%d_%H-%M-%S')}.pdf"
       )
     end
 
@@ -75,7 +76,8 @@ describe UserReports::GenerateIdpReportPdf do
                                           { lang: 'en', include_reflective_questions: true })[:file_path]
 
       expect(output_path).to include(
-        "tmp/idp_reports/#{user.email}/#{user.email}_idp_report_rq.pdf"
+        "tmp/idp_reports/#{user.email}/#{user.email}_idp_report_en_rq_#{
+          Time.zone.now.strftime('%Y-%m-%d_%H-%M-%S')}.pdf"
       )
     end
 
@@ -83,7 +85,7 @@ describe UserReports::GenerateIdpReportPdf do
       output_path = described_class.call!(user_idp_plan, user, { lang: 'en' })[:file_path]
 
       expect(output_path).to include(
-        "tmp/idp_reports/#{user.email}/#{user.email}_idp_report.pdf"
+        "tmp/idp_reports/#{user.email}/#{user.email}_idp_report_en_#{Time.zone.now.strftime('%Y-%m-%d_%H-%M-%S')}.pdf"
       )
     end
   end

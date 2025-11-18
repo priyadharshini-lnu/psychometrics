@@ -12,6 +12,9 @@ interface FeaturesFlags {
 export interface ConfigState {
   availableLocales: string[]
   features: FeaturesFlags,
+  project: {
+    idpEnabled: boolean
+  },
   timezone: string,
   availableAiProviders: string[]
 }
@@ -20,6 +23,9 @@ export const defaultState: ConfigState = {
   availableLocales: [],
   features: {},
   timezone: '',
+  project: {
+    idpEnabled: false,
+  },
   availableAiProviders: [],
 }
 

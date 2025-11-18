@@ -1,0 +1,21 @@
+---
+nl:
+  enduser:
+    add_idp_plan_note: Notitie toevoegen...
+    add_idp_plan_rejection_reason: Reden toevoegen...
+    approve_idp_plan: Plan goedkeuren
+    bookings: Boekingen
+    campaign: Campagne
+    development: Ontwikkeling
+    direct_reportees: Directe rapporten
+    home: Dashboard
+    idp_plan_approval_note: Goedkeuringsnotitie
+    insights: Inzichten
+    max_word_limit: Mag maximaal %{max} woorden bevatten
+    min_word_limit: Moet minstens %{min} woorden bevatten
+    my_plan: Mijn plan
+    profile: Profiel
+    profile_details: Details
+    selected_count: Geselecteerd
+    skill_type: Type vaardigheid
+    tasks: Taken

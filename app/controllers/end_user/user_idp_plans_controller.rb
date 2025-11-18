@@ -47,8 +47,14 @@ module EndUser
     def plan_changes
       authorize(user, nil, policy_class: ::EndUser::UserIdpPlanPolicy)
 
-      diff = Idp::IdpPlan::CalculateDiff.call!(@user_idp_plan, current_user)
-      render json: { user_id: @user_idp_plan.user_id, plan_id: @user_idp_plan.id, diff: diff }
+      Idp::IdpPlan::CalculateDiff.call!(@user_idp_plan, current_user) do
+        on(:ok) do |user_idp_plan, diff|
+          render json: { user_id: user_idp_plan.user_id, plan_id: user_idp_plan.id, diff: diff }
+        end
+        on(:error) do |message|
+          render json: { error: message }
+        end
+      end
     end
 
     def revert_to_last_approved
@@ -78,7 +84,7 @@ module EndUser
              with_context(current_user: current_user, user_idp_plan: @user_idp_plan)
 
       if form.save!
-        render json: { status: @user_idp_plan.status }
+        render json: { status: @user_idp_plan.status, note: @user_idp_plan.review_note }
       else
         render json: { errors: form.errors.full_messages }, status: 422
       end

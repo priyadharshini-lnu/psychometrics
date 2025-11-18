@@ -8,9 +8,9 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
   let(:campaign) { create(:campaign, project_id: user.project_id) }
   let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
   let(:assessment) { create(:assessment) }
-  let(:report) { create(:report, assessments: [assessment]) }
+  let(:report_family) { create(:report_family) }
+  let(:report) { create(:report, assessments: [assessment], report_families: [report_family]) }
   let(:user_report) { create(:user_report, report: report, user: campaign_user.user, campaign: campaign) }
-  let(:report_family) { report.report_families.first }
 
   before(:each) { login_user(current_user) }
   after(:each) { sign_out(current_user) }
@@ -152,8 +152,11 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
 
   describe 'GET pdf_preview' do
     it 'renders appropriate view' do
+      allow_any_instance_of(ActionView::Base).to receive(:vite_javascript_tag).and_return('')
+
       get :pdf_preview, params: { new_campaign_id: campaign.id, id: user_report.id }
 
+      expect(response).to have_http_status(:success)
       expect(response).to render_template('layouts/pdf')
       expect(response).to render_template('shared/preview_report')
     end
@@ -171,9 +174,50 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
   end
 
   describe 'PATCH toggle_user_access' do
-    it 'toggles user_report status' do
-      patch :toggle_user_access, params: { new_campaign_id: campaign.id, id: user_report.id }
-      expect(response).to have_http_status(:success)
+    context 'with basic functionality' do
+      it 'successfully toggles user access and returns success status' do
+        patch :toggle_user_access, params: { new_campaign_id: campaign.id, id: user_report.id }
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    context 'notification scheduling' do
+      context 'when report status is prepared' do
+        it 'schedules notification when user access is enabled' do
+          user_report.update(user_access: false, status: 'prepared')
+
+          expect_any_instance_of(UserReport).to receive(:schedule_report_available_notification).and_call_original
+
+          patch :toggle_user_access, params: { new_campaign_id: campaign.id, id: user_report.id }
+
+          expect(response).to have_http_status(:success)
+          expect(user_report.reload.user_access).to be_truthy
+        end
+
+        it 'does not schedule notification when user access is disabled' do
+          user_report.update(user_access: true, status: 'prepared')
+
+          expect_any_instance_of(UserReport).not_to receive(:schedule_report_available_notification)
+
+          patch :toggle_user_access, params: { new_campaign_id: campaign.id, id: user_report.id }
+
+          expect(response).to have_http_status(:success)
+          expect(user_report.reload.user_access).to be_falsy
+        end
+      end
+
+      context 'when report status is not prepared' do
+        it 'does not schedule notification regardless of user access change' do
+          user_report.update(user_access: false, status: 'not_prepared')
+
+          expect_any_instance_of(UserReport).not_to receive(:schedule_report_available_notification)
+
+          patch :toggle_user_access, params: { new_campaign_id: campaign.id, id: user_report.id }
+
+          expect(response).to have_http_status(:success)
+          expect(user_report.reload.user_access).to be_truthy
+        end
+      end
     end
   end
 
@@ -190,8 +234,10 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
   describe 'workflow' do
     describe 'PATCH send_for_approval' do
       it 'change approval status to qc_completed' do
+        # Ensure user_report is created and persisted before updating
+        report_id = user_report.id
         user_report.update(approval_status: 'qc_in_progress')
-        patch :send_for_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
+        patch :send_for_approval, params: { new_campaign_id: campaign.id, id: report_id }
         parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('qc_completed')
         expect(response).to have_http_status(:success)
@@ -705,7 +751,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
         mettl_schedule_name mettl_schedule_record_id dimension_id
         simulation_content_variations hogan_participant_id users_result_id prework
         pearson_user_assessment_details saville_user_assessment_details simulation_user_assessment_details
-        skillvue_user_assessment_details
+        skillvue_user_assessment_details yoodli_user_assessment_details
       ]
     )
     expect(assessment_response).to include({

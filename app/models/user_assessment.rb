@@ -27,6 +27,7 @@ class UserAssessment < ApplicationRecord
   has_one :mettl_user_assessment, dependent: :destroy
   has_one :simulation_user_assessment, dependent: :destroy
   has_one :skillvue_user_assessment, dependent: :destroy
+  has_one :yoodli_user_assessment, dependent: :destroy
   has_one :project, through: :campaign
   has_one :meeting_room, as: :meetable, dependent: :destroy
   has_one :threesixty_campaign, through: :campaign
@@ -41,7 +42,7 @@ class UserAssessment < ApplicationRecord
   enum :manager_evaluation_status, { waiting: 0, approved: 1, denied: 2 }, prefix: :manager_evaluation
   enum :meeting_type, { not_available: 0, internal: 1, custom: 2 }, prefix: :meeting
 
-  delegate :saville?, :iiht?, :pearson?, :mettl?, :simulation?, :hogan?, :skillvue?, :assessor_form?,
+  delegate :saville?, :iiht?, :pearson?, :mettl?, :simulation?, :hogan?, :skillvue?, :yoodli?, :assessor_form?,
            :external?, :external_settings, :combined_hogan_assessment?, to: :assessment
   delegate :workshop_activity?, :workshop_activity, :workshop_activity_duration,
            to: :campaign_assessment, allow_nil: true

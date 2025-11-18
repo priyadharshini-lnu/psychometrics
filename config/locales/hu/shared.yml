@@ -1,0 +1,25 @@
+---
+hu:
+  shared:
+    action: Akció
+    add: Add
+    cancel: Törölje
+    change_password: Jelszó módosítása
+    clear_filters: Szűrők törlése
+    edit: Szerkesztés
+    edited: Új
+    id: ID
+    internet_disconnected_message: Próbálok újra kapcsolódni. Kérjük, ellenőrizze az internetkapcsolatát.
+    mte_logo_alt_text: Mercer Talent Enterprise logó
+    name: Név
+    new: Új
+    removed: Eltávolított
+    search: Keresés
+    table:
+      entries:
+        selected: 1 sor kiválasztva
+        total: 'Összesen : 1'
+    terms_conditions_privacy: Adatvédelmi nyilatkozat
+    tte_terms_and_condition: Feltételek és adatvédelem
+    type: Típus
+    update: Frissítés

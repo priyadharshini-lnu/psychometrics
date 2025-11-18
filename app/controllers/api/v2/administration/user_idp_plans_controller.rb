@@ -18,6 +18,10 @@ module Api
       render json: { error: e.message }, status: :unprocessable_entity
     end
 
+    def campaign_id
+      params.dig(:query, :campaign_id)
+    end
+
     private
 
     def meta_details

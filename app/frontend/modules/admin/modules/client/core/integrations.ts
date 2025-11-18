@@ -6,7 +6,7 @@ import { RootState } from '~/modules/admin/core/rootReducers'
 import { createReducer } from '~/utils/redux'
 
 export const get = (state: RootState) => _.get(state, ['project', 'integrations'])
-export const integrationNames = ['iiht', 'hogan', 'mettl', 'skillvue']
+export const integrationNames = ['iiht', 'hogan', 'mettl', 'skillvue', 'yoodli']
 
 const Integration = t.type({
   id: t.number,

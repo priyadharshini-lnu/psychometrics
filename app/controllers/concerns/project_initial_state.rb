@@ -38,7 +38,10 @@ module ProjectInitialState
       config: {
         availableLocales: I18n.available_locales,
         features: feature_flags,
-        timezone: ActiveSupport::TimeZone::MAPPING[Time.zone.name]
+        timezone: ActiveSupport::TimeZone::MAPPING[Time.zone.name],
+        project: {
+          idpEnabled: @project.client.feature_enabled?(:idp) && @project.project_feature_enabled?(:idp)
+        }
       }
     })
   end

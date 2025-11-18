@@ -21,7 +21,9 @@ import {
   saveUserIdpSkills,
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 import styles from './DevelopmentActionLandscapeCard.less'
-import { DevelopmentAction, SkillWithDevelopmentActions, UserIdpSkill } from
+import {
+  DevelopmentAction, SkillWithDevelopmentActions, Skill,
+} from
   '~/components/IdpShared/DevelopmentActions/Types'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { developmentActionLearningStylesConfig, sourceTypeConfig }
@@ -98,14 +100,15 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
 
   const [openSkillDeletionModal, setOpenSkillDeletionModal] = useState(false)
   const handleRatingChange = (rating) => {
-    updateUserIdpSkill(userIdpSkillId, { initialRating: rating }, idpUser.id).catch((error) => {
-      message.error(error || I18n.t('common.errors.something_wrong'))
+    updateUserIdpSkill(userIdpSkillId, { initialRating: rating }, idpUser.id).catch(() => {
+      message.error(I18n.t('common.errors.something_wrong'))
     })
   }
 
   const onRemoveSkill = () => {
-    saveUserIdpSkills(Object.values(userIdpSkills)
-      .filter((skill: UserIdpSkill) => skill.id !== userIdpSkillId)).then(() => {
+    const selectedSkills = Object.values(userIdpSkills)
+      .filter((skill: Skill) => skill.id !== userIdpSkillId) as Skill[]
+    saveUserIdpSkills(selectedSkills).then(() => {
       setOpenSkillDeletionModal(false)
     })
   }
@@ -133,19 +136,19 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
           <AccessibleRating
             disabled={!editMode}
             onChange={handleRatingChange}
-            defaultValue={finalRating || initialRating}
+            value={finalRating || initialRating}
             className="mt-2"
           />
         )
       }
         {changeStatus && (
-          <ChangeStatus className="self-end" status={changeStatus} />
+          <ChangeStatus className="self-end mb-1" status={changeStatus} />
         )}
         {isCurrentUserIDPUser && (
           editMode ? (
             <Switch
-              checkedChildren="Private"
-              unCheckedChildren="Public"
+              checkedChildren={I18n.t('idp.private')}
+              unCheckedChildren={I18n.t('idp.public')}
               value={isPrivateSkill}
               aria-label={I18n.t('idp.development_actions.toggle_skill_privacy')}
               onChange={updateSkillPrivacy}

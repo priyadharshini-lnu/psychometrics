@@ -1,0 +1,21 @@
+---
+zh-Hant:
+  enduser:
+    add_idp_plan_note: 新增備註...
+    add_idp_plan_rejection_reason: 新增原因...
+    approve_idp_plan: 批准計劃
+    bookings: 預訂
+    campaign: 活動
+    development: 發展
+    direct_reportees: 直屬下級
+    home: 儀表板
+    idp_plan_approval_note: 批准備註
+    insights: 洞察力
+    max_word_limit: 最多不得超過 %{max} 個字
+    min_word_limit: 至少需要 %{min} 個字
+    my_plan: 我的計劃
+    profile: 簡介
+    profile_details: 詳細資訊
+    selected_count: 已選擇
+    skill_type: 技能類型
+    tasks: 任務

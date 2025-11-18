@@ -208,6 +208,7 @@ sl:
           projectSettings:
             assessments: Ocenjevanja
             design: Dizajn
+            feature_flags: Zastavice funkcij
             idp: IDP
             integrations: Integracije
             privacy_settings: Nastavitve zasebnosti
@@ -764,11 +765,6 @@ sl:
       user: Uporabnik
       user_agent: Uporabniški posrednik
     back: Hrbet
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Ste prepričani, da se želite odjaviti?</p> <p>Izberite »Ne«, če želite nadaljevati z delom. Izberite »Da«, če želite odjaviti trenutnega uporabnika.</p>"
-          title: "<strong>Se želite odjaviti</strong> ?"
     block_settings:
       modal:
         add_layer: Dodajanje plasti
@@ -1244,11 +1240,6 @@ sl:
         archived: Arhivirani
         disable: Arhiv
         enable: Razveljavi arhiviranje
-      columns:
-        country: Država
-        project_manager: Vodja projekta
-        type: Vrsta
-        year: Leto
       copy:
         successfully: Najem odjemalca »%{name}« je bil uspešno kopiran.
       create:
@@ -1257,14 +1248,6 @@ sl:
         successfully: Najem odjemalca %{name} je bil uspešno izbrisan.
       edit:
         header: Uredi odjemalca
-      form:
-        client: Stranka
-        country: Država
-        name: Ime
-        number: Številka
-        project_manager: Vodja projekta
-        type: Tip
-        year: Leto
       licenses:
         resource:
           confirmations:
@@ -1684,7 +1667,6 @@ sl:
             title: Arhiv <strong>%{name}</strong> ?
           enable:
             title: Odstranitev <strong>arhiva %{name}</strong> ?
-      tenancies: Spletno okolje naročnika
       threesixty_campaign: Kampanja Threesixty
       toggle_status:
         successfully: Najem odjemalca %{name} je bil uspešno posodobljen.
@@ -2756,43 +2738,14 @@ sl:
     message: Sporočilo
     meta_title: Upravna plošča
     navigation:
-      ai_artifacts: Artefakti umetne inteligence
-      ai_assistants: Pomočniki za umetno inteligenco
-      assessments: Ocenjevanja
-      assessments_reports: Ocenjevanja in poročila
-      assessor_dashboard: Nadzorna plošča ocenjevalca
-      assessor_workshops: Ocenjevalni center
       audit_logs: Dnevniki nadzora
       availability: Razpoložljivost
-      back_to_main: Glavni meni
-      campaign_templates: Predloge oglaševalskih akcij
-      change_password: Spremeni geslo
-      client_admins: Skrbniki odjemalcev
-      clients: Spletno okolje naročnika
-      communication_center: Komunikacijsko središče
       dashboard: Nadzorna plošča
-      data_reports: Poročila o podatkih
-      development_actions: Razvojni ukrepi
-      dimensions: Dimenzije
       factors: Dejavniki
       innovation_styles: Inovativni slogi
-      libraries: Medijska knjižnica
-      norms: Norme
       occupations: Poklicev
-      options: Možnosti
-      participants: Udeleženci
-      profile: Profil
-      profile_details: Podrobnosti
-      project_admins: Skrbniki projekta
-      question_center: Središče za vprašanja
       registration_codes: Registracijske kode
-      report_approvals: Odobritve poročil
-      reports: Poročila
-      scheduling: Razporejanje
-      show_submenu: Pokaži podmeni
       skills_taxonomy: Taksonomija spretnosti
-      user_profile_details: Podrobnosti profila
-      user_report_events: Dogodki uporabniškega poročila
       users: Uporabniki
     no_data_found: Podatkov ni mogoče najti
     norms:
@@ -2866,7 +2819,6 @@ sl:
         successfully: Norm je bil uspešno posodobljen.
       update:
         successfully: Norma %{name} je bila uspešno posodobljena.
-    notification_bell_icon: Ikona zvonca za obvestila
     noty:
       error_408: To dejanje traja predolgo. Prosimo, poskusite ponovno naložiti stran.
       error_500: Nekaj je šlo narobe. Obrnite se na skrbnika.
@@ -4283,7 +4235,6 @@ sl:
         inactive: Neaktiven
         percentage: Procenti
         title: Ocenjevanja
-      title: Statistika
       top_metrics:
         completed: Dokončano
         in_progress: V teku
@@ -4753,10 +4704,6 @@ sl:
       update:
         successfully: Uporabnik %{name} je bil uspešno posodobljen.
       user: Uporabnik
-    validations:
-      idp:
-        end_date_cannot_be_in_past: Datum zaključka ne sme biti v preteklosti.
-        start_date_cannot_be_in_past: Začetni datum ne sme biti v preteklosti.
     webhook:
       connection_failure: Povezave z URL-jem spletnega kavlja ni mogoče vzpostaviti. Preverite, ali je URL webhooka pravilen.
       delete_success: Nastavitve spletnega kavlja so bile uspešno izbrisane

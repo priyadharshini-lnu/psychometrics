@@ -4,12 +4,13 @@ module AI
   module Utils
     module DependencyParser
       class UserData
-        private_attr_reader :user, :enable_masking_pii, :custom_field_names
+        private_attr_reader :user, :enable_masking_pii, :custom_field_names, :locale
 
-        def initialize(user, enable_masking_pii: false, custom_fields: [])
+        def initialize(user, enable_masking_pii: false, custom_fields: [], locale: nil)
           @user = user
           @enable_masking_pii = enable_masking_pii
           @custom_field_names = Array(custom_fields).map(&:to_s)
+          @locale = locale
         end
 
         def parse
@@ -113,9 +114,18 @@ module AI
             <first_name>#{display_first_name}</first_name>
             <last_name>#{display_last_name}</last_name>
             <gender>#{display_gender}</gender>
+            <language locale="#{user_locale}">#{user_language}</language>
             #{custom_fields_section}
             </subject>
           USER_DATA
+        end
+
+        def user_language
+          I18n.t("languages.#{user_locale}")
+        end
+
+        def user_locale
+          locale || user.locale || I18n.default_locale
         end
       end
     end

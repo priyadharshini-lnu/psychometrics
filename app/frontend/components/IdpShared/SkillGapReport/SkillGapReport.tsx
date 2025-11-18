@@ -27,6 +27,7 @@ export const SkillGapReport = ({
           disabled={skillGapData?.status !== 'prepared'}
           href={reportUrl}
           style={{ height: '2rem' }}
+          className="me-2"
         >
           {I18n.t('idp.skill_gap_report.download')}
         </DownloadButton>
@@ -51,7 +52,7 @@ export const SkillGapReport = ({
         <Flex gap={8} vertical={isMobile} justify="end" align="end">
           {extraContent}
           <ButtonWithArrow
-            label="Add Skills"
+            label={I18n.t('idp.initial_steps.add_skills_step')}
             type="primary"
             onClick={() => next()}
           />

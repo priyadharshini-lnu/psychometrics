@@ -214,7 +214,6 @@ zh-HK:
     bulk_download_reports:
       errors:
         no_plans: 未找到有效的 IDP 計劃
-    no_notifications: 無通知
   ai:
     errors:
       bad_request_invalid_input: 由於輸入無效，無法處理您的請求。請檢查您的要求並重試。
@@ -416,16 +415,11 @@ zh-HK:
     continue: 繼續您的任務
     dashboard_instructions: 您有多個需要完成的活動。請確保所有活動中的分配任務都已完成。
     dashboard_menu:
-      bookings: 訂單
       campaign: 市場推廣
-      change_password: 更改密碼
-      development: 發展
       direct_reportees: 直下報告
       home: 主頁
       insights: 分析
-      my_plan: 我的計劃
       profile: 個人資料
-      profile_details: 詳情
       tasks: 任務
     details: 詳情
     edit_evaluation:
@@ -496,6 +490,8 @@ zh-HK:
       locales: 地點
       skillvue_email_id: Skillvue 候選人電子郵件 ID
       skillvue_external_assessment_id: Skillvue 評估 ID
+    messages:
+      no_participants_selected: 請選擇至少一名參與者繼續。
     modals:
       assessor_campaign_assessment_group:
         error_message: 出錯了。請聯絡管理員
@@ -515,6 +511,8 @@ zh-HK:
   campaign_report:
     column:
       locales: 地點
+    messages:
+      bulk_download_no_reports: 沒有找到報告。請在下載前生成報告。
     modals:
       update_languages:
         default_language: 預設語言
@@ -748,35 +746,6 @@ zh-HK:
     two_factor_authentication:
       attempt: 請輸入您在已註冊電郵地址收到的單次密碼
       code_has_been_sent: 您的新單次密碼已發送至您已註冊的電郵地址
-  dry_errors:
-    errors:
-      add_manager:
-        cannot_be_self: 使用者不能被指派為自己的經理
-      campaign_idps:
-        idp_template_not_published: 該IDP模板尚未發布，請在分配到廣告系列之前將其發布。
-      development_actions:
-        only_global_skills_allowed: 選取的技能必須是全球性技能。
-        skills_not_belong_to_project: 選取的技能必須屬於指定的專案。
-        skills_required: 請至少選擇一種技能。
-      idp_template:
-        content_required: 說明需要內容
-        tag_or_skill_required: 选择“已选择”选项时，请选择标签或技能。
-      job_roles:
-        unique_within_job_group: 已有相同名稱的職位角色存在。
-      project_feature:
-        global_skills_not_enabled_on_client: 若要啟用此專案的全域技能，請在用戶端設定中的功能旗標下啟用它。
-      skills_job_roles:
-        must_belong_to_same_project_or_be_global: 技能和工作角色必須屬於同一個專案，或是全球性的。
-        unique_mappings: 具有相同技能和工作角色的映射已經存在。
-      uniq_skillvue: 此 Skillvue 評估已存在於系統中。此評估的 ID 為 %{id}
-      update_workshop:
-        bookings_exist: 由於參加者已預約此時段，因此無法修改時間表。
-      user_idp_plan:
-        idp_template_not_published: 該IDP模板尚未發布，請在分配給用戶之前將其發布。
-      workshop_subject_re_enroll:
-        no_seats_available: 本工作坊沒有座位。
-        scheduling_lead_time_passed: 排程時間已過，您無法重新註冊該科目。
-        workshop_subject_not_found: 未找到研討會主題
   emails:
     subject_relationship_table:
       subject_email: 主題電子郵件
@@ -943,6 +912,7 @@ zh-HK:
   idp:
     actions: 操作
     add_comments: 新增註解
+    added_development_action: 新增開發動作
     ai:
       assistant:
         failure_fallback:
@@ -999,6 +969,7 @@ zh-HK:
         title: 您好，我是你們的開發助理
     behavioral: 行為
     board: 看板
+    change_history: 變更歷史
     changes_saved_to_plan: 儲存至計劃的變更
     comment_details:
       add_comment: 新增評論
@@ -1095,6 +1066,7 @@ zh-HK:
       publish_plan: 发布计划
       remove: 移除
       save_plan: 保存計劃
+      search_development_actions: 搜尋開發動作
       show_development_action_information: 顯示開發動作資訊
       skill: 技能
       sprint: 衝刺
@@ -1153,6 +1125,7 @@ zh-HK:
     manage_plan: 管理计划
     mark_as_complete: 标记为完成
     mark_as_incomplete: 標記為不完整
+    modified_development_action: 修改後的發展行動
     my_plan:
       development_plan: 發展計劃
       graphs:
@@ -1268,7 +1241,9 @@ zh-HK:
         skills_count: 技能數量
         title: 報告摘要
     plan_status: 計劃狀態%{status}
+    plan_submitted_for_manager_approval: 您的個人發展計劃已提交給經理批准。
     private: 私
+    public: 公
     reflective_questions:
       already_completed: IDP 已經完成，您現在無法回答問題。
       answer: 答
@@ -1296,6 +1271,7 @@ zh-HK:
       words: 詞彙
     remove_skill: 移除技能
     remove_skill_from_plan: 從計劃中移除技能%{name}
+    removed_development_action: 已移除開發動作
     report_preview: 報告預覽
     search_and_select_skills_of_skill_type: 搜尋並選取%{skillType}技能
     select_skills_of_skill_type: 選擇%{skillType}技能
@@ -1309,6 +1285,8 @@ zh-HK:
     status: 狀態
     suggestions: 建議
     suggestions_for_skill_type: "%{skillType}技能建議"
+    summary: 摘要
+    summary_logs: "%{reporteeName}的摘要記錄"
     technical: 技術
     user_idp_status:
       approved: 已批准
@@ -1318,6 +1296,7 @@ zh-HK:
       in_review: 審查中
       not_started: 未开始
       pending_approval: 待批准
+      start_review: 開始審查
     users: 用戶
   idp_templates:
     errors:
@@ -1493,12 +1472,6 @@ zh-HK:
   sessions:
     errors:
       recaptcha: Recaptcha 驗證失敗。請再試一次。
-  shared:
-    filters:
-      clear: 清除篩選器
-    internet_disconnected_message: 正在嘗試重新連接。請檢查您的互聯網連接。
-    terms_conditions_privacy: 私隱聲明
-    tte_terms_and_condition: 條款和私隱
   simple_form:
     labels:
       client:
@@ -1836,6 +1809,7 @@ zh-HK:
     idp:
       can_not_complete_without_approval_and_in_progress: 在您的經理批准並將其標記為“進行中”之前，您無法完成您的 IDP。
       can_not_start_without_approval: 在您的經理批准之前，您無法開始處理您的 IDP。
+      no_changes_to_compare: IDP 計劃沒有變化可比較。
       no_previous_approved_plan: 未找到先前批准的 IDP 計劃。
     issue: 問題
     least: 請至少回答 %{min} 個選項。

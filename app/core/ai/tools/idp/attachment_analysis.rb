@@ -10,7 +10,7 @@ module AI
 
         description 'Get detailed analysis for the document uploaded by user for their Individual Development Plan(IDP) creation purpose.'
         param :context,
-              desc: 'Context regarding the document to be passed to the expert assistant for analysis which would be passed with the uploaded document e.g. Document is resume by user. If no context is provided, the expert will use the default content as context and this can be nil'
+              desc: 'Additional context regarding the document to be passed to the expert assistant for analysis.'
 
         private_attr_reader :user_idp_plan, :current_user, :ai_assistant
 

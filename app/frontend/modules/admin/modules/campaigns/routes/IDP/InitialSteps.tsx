@@ -175,7 +175,6 @@ export const InitialStepsComponent = () => {
         <AdminAddSkills
           userIdpSkills={userIdpPlanData?.skills}
           next={handleNextForAddSkillsStep}
-          idpTemplateId={userIdpPlanData?.idpTemplateId as string}
           prev={handlePrevForAddSkillsStep}
         />
       )}

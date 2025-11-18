@@ -27,7 +27,7 @@ module AdminJobs
     ].freeze
 
     def generate_details
-      [[I18n.t('administration.navigation.user_report_events'), file_link]]
+      [[I18n.t('admin.user_report_events'), file_link]]
     end
 
     def headers

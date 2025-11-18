@@ -919,8 +919,6 @@ bg:
     invalid_job: Това уведомление съответства на изтрит запис
     mark_as_read: Маркиране на всички прочетени
     more: Още
-    no_notifications: Няма известия
-    notifications: Уведомления
     results: Резултати
     super_admin:
       errors:
@@ -1341,16 +1339,11 @@ bg:
     continue: Продължете изпълнението на задачите си
     dashboard_instructions: Възможно е да са Ви възложени няколко дейности, които трябва да изпълните. Моля, не забравяйте да проверите дали всички възложени дейности са изпълнени във всички кампании.
     dashboard_menu:
-      bookings: Резервации
       campaign: Кампания
-      change_password: Променете паролата
-      development: Развитие
       direct_reportees: Преки докладвани
       home: Начало
       insights: Прозрения
-      my_plan: Моят план
       profile: Профил
-      profile_details: Подробности
       tasks: Задачи
     details: Подробности
     edit_evaluation:
@@ -1465,6 +1458,7 @@ bg:
       export_occupations_job_scheduled: Професии Работата по износ беше планирана успешно
       export_reports_and_assessments_statuses_scheduled: Задачата за експортиране на отчети и оценки беше планирана успешно
       external_results_export_scheduled: Задачата за износ на външна оценка беше планирана успешно
+      no_participants_selected: Моля, изберете поне един участник, за да продължите.
       norm_results_export_scheduled: Задачата за експортиране на нормирани резултати за оценка беше планирана успешно
       normalize_factor_scores_scheduled: Нормализиране на факторните резултати беше планирано успешно.
       raw_factor_export_scheduled: Оценка Заданието за износ на необработен фактор беше планирано успешно
@@ -1609,6 +1603,7 @@ bg:
       report_bundle_placeholder: Изберете пакет с отчети
     messages:
       bulk_download_error: Груповото изтегляне е ограничено до 1000 файла с отчети. Ако сте избрали много езици, моля, намалете го.
+      bulk_download_no_reports: Не са намерени доклади. Моля, генерирайте отчетите преди изтегляне.
       bulk_download_successful: Задачата за групово изтегляне на отчет е планирана успешно
       export_report_data_scheduled: Задачата за експортиране на данни в отчета е планирана успешно
     modals:
@@ -1878,7 +1873,6 @@ bg:
       projects: Проекти
       report: Доклад
       reports: Доклади
-      scoring: Точкуване
       sms_contact: SMS контакт
       threesixty_campaign: Тришестдесет резултата от кампанията
     status:
@@ -2144,118 +2138,6 @@ bg:
       send_paranoid_instructions: Ако акаунтът ви съществува, ще получите имейл с инструкции как да го отключите след няколко минути.
       unlocked: Вашият акаунт е отключен успешно. Моля, влезте, за да продължите.
       unprocessable_entity: Вашият акаунт не може да бъде отключен с тази връзка. Моля, свържете се с поддръжката.
-  dry_errors:
-    errors:
-      add_edit_project:
-        invalid_subdomain_format: Грешен формат на поддомейна.
-        reserved_subdomain: Поддомейнът %{value} е запазен
-        uniq_subdomain: Поддомейнът трябва да бъде уникален.
-      add_manager:
-        cannot_be_self: Потребителят не може да бъде назначен като свой собствен мениджър
-        manager_not_found: Мениджърът не е намерен или не е част от един и същ проект
-        user_not_found: Потребител не е намерен или не е част от един и същ проект
-      admin:
-        already_added: Администратор с вече добавен имейл.
-      already_assigned?: Не може да се свърже тази оценка - тя вече е присвоена на "%{linked_assessor_form_name}".
-      already_invited: Този потребител вече съществува в центъра за оценяване, който се опитвате да добавите.
-      assessor_assessment:
-        already_added: Оценката на оценителя вече е добавена към кампанията.
-        lead_already_added: Към кампанията може да се добави само една оценка на потенциален оценител.
-      campaign_factor:
-        code_already_exists: Фактор със същия код вече съществува.
-        invalid_lua_name: трябва да е валидно име на променлива lua
-        limit_exceeded: Достигнали сте максималния лимит от %{limit} фактори на кампанията.
-        name_already_exists: Фактор със същото име вече съществува.
-        rank_not_allowed: Могат да се класират само фактори с изходен тип число.
-      campaign_factor_group:
-        group_already_exists: Група със същото име вече съществува.
-        last_factor_group: Не може да се изтрие последната група фактори на кампанията.
-      campaign_idps:
-        idp_template_not_published: Този шаблон на IDP все още не е публикуван, моля, публикувайте го преди да присвоите в кампания.
-      cant_be_deleted: Този запис не може да бъде изтрит
-      client_feature:
-        ai_assisted_idp_feature_error: Не може да е вярно, ако функцията за AI асистенти е деактивирана
-      create_superadmin:
-        uniq_email: Имейлът трябва да е uniq.
-      development_actions:
-        only_global_skills_allowed: Избраните умения трябва да са глобални.
-        skills_not_belong_to_project: Избраните умения трябва да принадлежат към посочения проект.
-        skills_required: Моля, изберете поне едно умение.
-      exceeded_subjects_count: Можете да добавяте само %{count} теми на покана
-      filled?: не може да бъде празен
-      idp_template:
-        content_required: Съдържанието е необходимо за инструкции
-        tag_or_skill_required: Моля, изберете етикет или умение, когато изберете опцията "Избрано".
-      invalid_name: Само азбука, число, интервали, тире и точка са разрешени като валиден знак
-      invalid_value: невалидно изявление "%{value}" на номер на ред %{row}
-      job_roles:
-        unique_within_job_group: Вече съществува роля за работа със същото име.
-      json?: Трябва да е валиден JSON
-      key?: не може да бъде празен
-      match_regexp?: невалидна стойност
-      mettl_schedule_record_create:
-        uniq_schedule_name: Името на графика трябва да е уникално
-      missed?: не може да бъде празен
-      not_allowed?: не е позволено да се променя
-      not_in_the_list?: предадена невалидна стойност
-      not_uniq_variable: променлива '%{value}' е предефинирана на номер на ред %{row}
-      project_assessments:
-        should_be_greater_than_zero: Валидността на резултата трябва да бъде по-голяма от 0 дни
-      project_feature:
-        global_skills_not_enabled_on_client: За да активирате Global Skills за този проект, моля, активирайте го под Флагове на функциите в настройките на клиента.
-      report_approval_settings:
-        report_exists: Настройката за одобрение на отчета за този отчет вече съществува.
-        validates_admins: Администраторите нямат достъп до кампанията.
-      report_families_reports:
-        report_exists: Този отчет вече е част от Report Bundle
-      size?: размерът трябва да бъде по-малък %{size}
-      skill:
-        already_added: Умение със същото име вече е добавено.
-      skill_alias:
-        unique_alias: Псевдонимът трябва да е уникален
-        unique_skill: Умението трябва да е уникално
-      skills_job_roles:
-        must_belong_to_same_project_or_be_global: Умението и работната роля трябва да принадлежат към един и същ проект или да са глобални.
-        unique_mappings: Вече съществува картографиране със същото умение и длъжностна роля.
-      uniq: Тази оценка на Mettl вече присъства в системата. ИД на тази оценка е %{id}
-      uniq?: трябва да бъде уникална
-      uniq_simulation: Тази оценка на симулацията вече присъства в системата. ИД на тази оценка е %{id}
-      uniq_skillvue: Тази оценка на уменията вече е налична в системата. ID на тази оценка е %{id}
-      update_workshop:
-        bookings_exist: Не може да се промени графикът, тъй като участниците вече са резервирали този времеви интервал.
-        less_than_booked: Общият брой места трябва да е по-голям от резервирания
-      user_availability_date:
-        overlaps_date: Припокрива друга наличност %{range}
-        overlaps_time: Интервал на припокриване %{interval}
-        start_date_should_be_less: Началната дата трябва да е по-малка от крайната дата
-        start_time_should_be_less: Началният час трябва да е по-малък от крайния час
-      user_idp_plan:
-        idp_template_already_assigned_to_user: Този шаблон за IDP вече е приет към този потребител и е активен
-        idp_template_not_published: Този шаблон на IDP все още не е публикуван, моля, публикувайте го, преди да зададете на потребителя.
-      user_saved_filters:
-        limit_exceeded: Можете да имате само %{limit} запазени филтри, моля, изтрийте запазените филтри, за да добавите още.
-        unique_name: Вече съществува филтър със същото име.
-      workshop_invited_subject_create:
-        already_exists: Темата вече съществува в поканата.
-      workshop_subject_create:
-        already_exists: Субектът вече съществува в този център за оценяване.
-        part_of_other_workshop: Субектът вече е участник в "%{workshop_name}".
-      workshop_subject_re_enroll:
-        no_seats_available: Няма свободни места за този семинар.
-        scheduling_lead_time_passed: Времето за планиране е изтекло, не можете да запишете отново предмета.
-        workshop_subject_not_found: Темата на семинара не е намерена
-      workshops:
-        no_available_assessor_slots: Няма свободни места за оценител %{assessor}
-        no_available_manager_slots: Няма свободни слотове за мениджър %{manager}
-    users:
-      registrations:
-        new:
-          register: Регистрирайте се
-          sign_in: Влизане
-      sessions:
-        new:
-          register: Регистрирайте се
-          sign_in: Влизане
   emails:
     nomination_approval_table:
       evaluator_name: Име на мистериозен
@@ -2586,6 +2468,7 @@ bg:
   idp:
     actions: Действия
     add_comments: Добавяне на коментари
+    added_development_action: Добавено действие за разработка
     ai:
       assistant:
         failure_fallback:
@@ -2642,6 +2525,7 @@ bg:
         title: Здравейте, аз съм вашият асистент за разработка
     behavioral: Поведенчески
     board: Съвет
+    change_history: История на промените
     changes_saved_to_plan: Промени, запазени в плана
     comment_details:
       add_comment: Добави коментар
@@ -2743,6 +2627,7 @@ bg:
       publish_plan: Публикуване на план
       remove: Махам
       save_plan: Запазване на плана
+      search_development_actions: Търсене на действия за разработка
       show_development_action_information: Показване на информация за действие за развитие
       skill: Умение
       sprint: Спринт
@@ -2755,7 +2640,7 @@ bg:
       write_here: Пишете тук...
     direct_reportee_details: Подробности за преките докладвани
     download:
-      description: 'За да изтеглите отчета, моля, последвайте връзката: <a href=''''%{url}'''' target=''''_blank''''>Изтегляне</a>. Връзката е валидна само за 10 минути'
+      description: 'За да изтеглите отчета, моля, последвайте връзката: <a href=''%{url}'' target=''_blank''>Изтегляне</a>. Връзката е валидна само за 10 минути'
     download_plan: Изтегляне на план
     edit_plan: Редактиране на плана
     edit_plan_and_add_skills: Редактирайте План и щракнете върху Управление на уменията, за да добавите умения.
@@ -2804,6 +2689,7 @@ bg:
     manage_plan: Управление на плана
     mark_as_complete: Маркиране като завършено
     mark_as_incomplete: Маркирайте като незавършен
+    modified_development_action: Модифицирано действие за развитие
     my_plan:
       development_plan: План за развитие
       graphs:
@@ -2921,7 +2807,9 @@ bg:
         title: Резюме на доклада
     plan: План
     plan_status: Състояние на плана %{status}
+    plan_submitted_for_manager_approval: Вашият индивидуален план за развитие е представен за одобрение от мениджъра.
     private: Редник
+    public: Общественост
     reflective_questions:
       already_completed: Индивидуалният план за развитие вече е попълнен, не можете да отговарите на въпросите сега.
       answer: Отговор
@@ -2949,6 +2837,7 @@ bg:
       words: Думи
     remove_skill: Премахване на умение
     remove_skill_from_plan: Премахване на %{name} умения от плана
+    removed_development_action: Премахнато действие за разработка
     report_preview: Преглед на доклада
     search_and_select_skills_of_skill_type: Търсете и изберете уменията %{skillType}
     select_skills_of_skill_type: Изберете %{skillType} умения
@@ -2962,6 +2851,8 @@ bg:
     status: Статус
     suggestions: Предложения
     suggestions_for_skill_type: Предложения за %{skillType} умения
+    summary: Резюме
+    summary_logs: Обобщени регистрационни файлове за %{reporteeName}
     technical: Технически
     user_idp_status:
       approved: Одобрен
@@ -2973,6 +2864,7 @@ bg:
       not_started: Не е започнато
       pending_approval: Очаква се одобрение
       rejected: Отхвърлени
+      start_review: Започнете преглед
     users: Потребители
     with_reflection_questions: С въпроси за размисъл
     without_reflection_questions: Без въпроси за размисъл
@@ -3486,13 +3378,6 @@ bg:
   sessions:
     errors:
       recaptcha: Проверката на Recaptcha се провали. Моля, опитайте отново.
-  shared:
-    filters:
-      clear: Изчистете филтрите
-    internet_disconnected_message: Опитвам се да възстановя връзката. Моля, проверете интернет връзката си.
-    mte_logo_alt_text: Логото на Mercer Talent Enterprise
-    terms_conditions_privacy: Декларация за поверителност
-    tte_terms_and_condition: Условия и поверителност
   sheet:
     import_modal:
       alert_access_sheet_removal: Качване на нов Accesssheet с изтриване на целия съществуващ запис и качване на нов от листа. Моля, уверете се, че имате всички записи на Accesssheet в електронна таблица.
@@ -4293,6 +4178,7 @@ bg:
     idp:
       can_not_complete_without_approval_and_in_progress: Не можете да попълните своя IDP, докато вашият мениджър не го одобри и не го маркирате като "В процес на изпълнение".
       can_not_start_without_approval: Не можете да започнете да работите с вашия IDP, докато вашият мениджър не го одобри.
+      no_changes_to_compare: Няма промени за сравнение за план за IDP.
       no_previous_approved_plan: Не е открит предишен одобрен план за вътрешно разселени лица.
       reflective_questions_required: За IDP са необходими отговори на въпроси за размисъл
       status_not_permitted: не е разрешено от потребителя.

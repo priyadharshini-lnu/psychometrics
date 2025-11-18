@@ -149,7 +149,9 @@ const MyPlanComponent = ({
   const handleSubmitPlan = () => {
     setIsLoading(true)
     if (managerApprovesIdp) {
-      updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.PENDING_APPROVAL).catch((error) => {
+      updateUserIdpPlan(currentUser.id, USER_IDP_PLAN_STATUS.PENDING_APPROVAL).then(() => {
+        message.info(I18n.t('idp.plan_submitted_for_manager_approval'))
+      }).catch((error) => {
         message.error(error)
       }).finally(() => {
         setIsLoading(false)

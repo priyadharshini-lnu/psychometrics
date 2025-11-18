@@ -1,0 +1,25 @@
+---
+sk:
+  shared:
+    action: Akcia
+    add: Pridať
+    cancel: Zrušiť
+    change_password: Zmeniť heslo
+    clear_filters: Vymazať filtre
+    edit: Upraviť
+    edited: Nové
+    id: ID
+    internet_disconnected_message: Pokúšam sa znovu pripojiť. Skontrolujte, prosím, svoje internetové pripojenie.
+    mte_logo_alt_text: Logo Mercer Talent Enterprise
+    name: Meno
+    new: Nové
+    removed: Odstránený
+    search: Vyhľadávanie
+    table:
+      entries:
+        selected: Vybraný 1 riadok
+        total: 'Celkom : 1'
+    terms_conditions_privacy: Vyhlásenie o ochrane osobných údajov
+    tte_terms_and_condition: Podmienky a ochrana osobných údajov
+    type: Typ
+    update: Aktualizácia
