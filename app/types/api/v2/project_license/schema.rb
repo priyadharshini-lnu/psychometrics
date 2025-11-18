@@ -9,7 +9,6 @@ module Api
         end
 
         def self.attributes(attribute, type)
-          # byebug
           this = self
 
           proc do

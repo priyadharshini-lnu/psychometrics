@@ -5,13 +5,11 @@ module Api
         config.messages.namespace =
           'activemodel.errors.models.project_license.attributes'
 
-        # Common validations applied for both create and update
         rule(data: { attributes: :usage_limit }) do
           attrs = values[:data][:attributes]
-          usage_limit = attrs[:usage_limit]
+          usage_limit = value
           license_id  = attrs[:license_id]
 
-          # Find the parent license (whether create or update)
           parent_license =
             if _context[:project_license]
               _context[:project_license].license
@@ -21,7 +19,6 @@ module Api
 
           next unless parent_license
 
-          # Do NOT allow usage_limit > parent_license.number
           if usage_limit > parent_license.number
             key.failure(I18n.t(
                           'activemodel.errors.models.project_license.attributes.usage_limit.cant_be_more_than_available',

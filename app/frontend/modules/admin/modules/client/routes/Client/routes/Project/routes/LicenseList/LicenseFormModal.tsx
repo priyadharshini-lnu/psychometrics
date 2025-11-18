@@ -42,8 +42,8 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
   const licenseResource = license ? {
     ...license,
     id: license.projectLicenseDetails?.id ?? license.id,
-    license_id: license.id,
-    usage_limit: license.projectLicenseDetails?.usageLimit,
+    licenseId: license.id,
+    usageLimit: license.projectLicenseDetails?.usageLimit,
     enabled: license.projectLicenseDetails?.enabled,
   } : undefined
 
@@ -71,7 +71,7 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
       {() => (
         <>
           <Form.Item
-            name="license_id"
+            name="licenseId"
             label={I18n.t('licenses.report_family')}
             rules={[{ required: true }]}
           >
@@ -113,7 +113,7 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
 
 
           <Form.Item
-            name="usage_limit"
+            name="usageLimit"
             label={I18n.t('licenses.number')}
             rules={[{ required: true }]}
           >

@@ -237,7 +237,7 @@ en:
             base:
               exceeds_available: Cannot allot more than available licenses
             license_id:
-              already_present: is already present for this project
+              already_present: already present for this project
             usage_limit:
               cant_be_less_than_used: can't be set below the current usage count of %{used_count}
               cant_be_more_than_available: can't be more than the available limit on the license (%{usage_limit})
