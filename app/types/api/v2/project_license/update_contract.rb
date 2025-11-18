@@ -12,7 +12,7 @@ module Api
 
           if usage_limit < used_number
             key.failure(I18n.t(
-                          'activemodel.errors.models.project_license.attributes' +
+                          'activemodel.errors.models.project_license.attributes' \
                           '.usage_limit.cant_be_less_than_used', used_count: used_number
                         ))
           end
