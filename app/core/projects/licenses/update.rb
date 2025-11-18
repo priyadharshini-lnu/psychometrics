@@ -3,8 +3,8 @@
 module Projects
   module Licenses
     class Update < BaseCommand
-      def self.call!(form, project_license)
-        project_license.update!(form.attributes.except(:project_license))
+      def self.call!(attributes, project_license)
+        project_license.update!(attributes.except(:project_license, :license_id))
         project_license
       end
     end

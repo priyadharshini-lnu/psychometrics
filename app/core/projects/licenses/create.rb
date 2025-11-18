@@ -3,8 +3,8 @@
 module Projects
   module Licenses
     class Create < BaseCommand
-      def self.call!(form, project)
-        project.project_licenses.create!(form.attributes.except(:project_license))
+      def self.call!(attributes, project)
+        project.project_licenses.create!(attributes.except(:project_license))
       end
     end
   end

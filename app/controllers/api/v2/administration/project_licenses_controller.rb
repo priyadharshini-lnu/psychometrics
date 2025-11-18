@@ -4,29 +4,27 @@ module Api
   module V2
     module Administration
       class ProjectLicensesController < Api::V2::Administration::BaseController
-        skip_before_action :jsonapi_request_handling, only: %i[create update]
+        # skip_before_action :jsonapi_request_handling, only: %i[create update]
+        validates_request_schema :create, lambda {
+          Api::V2::ProjectLicense::CreateContract.new(
+            schema: Api::V2::ProjectLicense::Schema.create_request
+          )
+        }
+
+        validates_request_schema :update, lambda {
+          Api::V2::ProjectLicense::UpdateContract.new(
+            schema: Api::V2::ProjectLicense::Schema.update_request
+          )
+        }
 
         def create
-          form = ::Api::V2::Administration::Projects::LicenseForm.new(
-            license_params.to_h.merge(project: project)
-          )
-          if form.valid?
-            project_license = ::Projects::Licenses::Create.call!(form, project)
-            render_license(project_license.license, :created)
-          else
-            render_errors(form)
-          end
+          project_license = ::Projects::Licenses::Create.call!(license_params, project)
+          render_license(project_license.license, :created)
         end
 
         def update
-          form = ::Api::V2::Administration::Projects::LicenseForm.from_model(model)
-          form.attributes = license_params.except(:license_id).to_h.merge(project_license: model)
-          if form.valid?
-            project_license = ::Projects::Licenses::Update.call!(form, model)
-            render_license(project_license.license, :ok)
-          else
-            render_errors(form)
-          end
+          project_license = ::Projects::Licenses::Update.call!(license_params, model)
+          render_license(project_license.license, :ok)
         end
 
         private
