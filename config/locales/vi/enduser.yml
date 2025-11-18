@@ -16,6 +16,7 @@ vi:
     my_plan: Kế hoạch của tôi
     profile: Hồ sơ
     profile_details: Chi tiết
+    question_counter: Câu hỏi %{current} trong tổng số %{total}
     selected_count: Đã chọn
     skill_type: Loại kỹ năng
     tasks: Nhiệm vụ

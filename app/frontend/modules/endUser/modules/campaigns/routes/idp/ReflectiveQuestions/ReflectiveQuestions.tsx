@@ -147,7 +147,7 @@ const ReflectiveQuestion = ({
   <Flex vertical flex={1}>
     <Space direction="vertical">
       <Space className={cs(styles.questionCounter, 'mb-4')}>
-        {`Question ${index + 1} of ${total}`}
+        {I18n.t('enduser.question_counter', { current: index + 1, total })}
       </Space>
       <Typography.Text strong>
         {question.question}
@@ -173,9 +173,21 @@ const ReflectiveQuestion = ({
         justify="start"
         className="mb-4"
       >
-        <span aria-hidden="true">
-          {I18n.t('idp.reflective_questions.word_limit', { min: question.minWords, max: question.maxWords })}
-        </span>
+        {question.minWords && question.maxWords && (
+          <span>
+            {I18n.t('idp.reflective_questions.word_limit', { min: question.minWords, max: question.maxWords })}
+          </span>
+        )}
+        {question.minWords && !question.maxWords && (
+          <span>
+            {I18n.t('enduser.min_word_limit', { min: question.minWords })}
+          </span>
+        )}
+        {question.maxWords && !question.minWords && (
+          <span>
+            {I18n.t('enduser.max_word_limit', { max: question.maxWords })}
+          </span>
+        )}
       </Flex>
     </Space>
   </Flex>

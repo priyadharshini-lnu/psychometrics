@@ -16,6 +16,7 @@ sl:
     my_plan: Moj načrt
     profile: Profil
     profile_details: Podrobnosti profila
+    question_counter: Vprašanje %{current} od %{total}
     selected_count: Izbrano
     skill_type: Vrsta spretnosti
     tasks: Naloge

@@ -16,6 +16,7 @@ fr:
     my_plan: Mon plan
     profile: Profil
     profile_details: Détails
+    question_counter: Question %{current} sur %{total}
     selected_count: Sélectionné
     skill_type: Type de compétence
     tasks: Tâches

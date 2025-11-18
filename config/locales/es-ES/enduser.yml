@@ -16,6 +16,7 @@ es-ES:
     my_plan: Mi plan
     profile: Perfil
     profile_details: Datos
+    question_counter: Pregunta %{current} de %{total}
     selected_count: Selección
     skill_type: Tipo de habilidad
     tasks: Tareas

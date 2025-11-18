@@ -16,6 +16,7 @@ zh:
     my_plan: 我的计划
     profile: 个人资料
     profile_details: 详细信息
+    question_counter: 第 %{current} 题，共 %{total} 题
     selected_count: 已选择
     skill_type: 技能类型
     tasks: 任务

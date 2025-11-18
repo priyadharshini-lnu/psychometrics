@@ -16,6 +16,7 @@ ja:
     my_plan: 私の計画
     profile: プロフィール
     profile_details: 詳細
+    question_counter: 質問 %{current} / %{total}
     selected_count: 選択済み
     skill_type: スキルの種類
     tasks: タスク

@@ -16,6 +16,7 @@ en:
     my_plan: My Plan
     profile: Profile
     profile_details: Details
+    question_counter: Question %{current} of %{total}
     reason_for_idp_plan_rejection: Reason for Rejection
     reject_idp_plan: Reject Plan
     selected_count: "%{count} selected"

@@ -16,6 +16,7 @@ en-US:
     my_plan: My Plan
     profile: Profile
     profile_details: Details
+    question_counter: Question %{current} of %{total}
     selected_count: Selected
     skill_type: Skill Type
     tasks: Tasks

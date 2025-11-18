@@ -16,6 +16,7 @@ de:
     my_plan: Mein Plan
     profile: Profil
     profile_details: Details
+    question_counter: Frage %{current} von %{total}
     reason_for_idp_plan_rejection: Grund für die Ablehnung des Plans
     reject_idp_plan: Plan ablehnen
     selected_count: Ausgewählte

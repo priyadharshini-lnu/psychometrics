@@ -16,6 +16,7 @@ zh-Hant:
     my_plan: 我的計劃
     profile: 簡介
     profile_details: 詳細資訊
+    question_counter: 問題 %{current} / %{total}
     selected_count: 已選擇
     skill_type: 技能類型
     tasks: 任務

@@ -16,6 +16,7 @@ hr:
     my_plan: Moj plan
     profile: Profil
     profile_details: Detalji
+    question_counter: Pitanje %{current} od %{total}
     selected_count: Odabrano
     skill_type: Vrsta vještine
     tasks: Zadaci

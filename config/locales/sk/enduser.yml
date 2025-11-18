@@ -16,6 +16,7 @@ sk:
     my_plan: Môj plán
     profile: Profil
     profile_details: Podrobnosti profilu
+    question_counter: Otázka %{current} z %{total}
     selected_count: Vybrané
     skill_type: Typ zručnosti
     tasks: Úlohy

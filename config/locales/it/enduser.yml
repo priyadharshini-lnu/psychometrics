@@ -16,6 +16,7 @@ it:
     my_plan: Il mio piano
     profile: Profilo
     profile_details: Dettagli
+    question_counter: Domanda %{current} di %{total}
     selected_count: Selezionato
     skill_type: Tipo di abilità
     tasks: Campagne

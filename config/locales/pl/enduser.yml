@@ -16,6 +16,7 @@ pl:
     my_plan: Mój plan
     profile: Profil
     profile_details: Szczegóły
+    question_counter: Pytanie %{current} z %{total}
     selected_count: Wybrane
     skill_type: Typ umiejętności
     tasks: Zadania

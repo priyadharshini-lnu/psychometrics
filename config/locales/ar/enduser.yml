@@ -16,6 +16,7 @@ ar:
     my_plan: خطتي
     profile: تفاصيلي
     profile_details: تفاصيل
+    question_counter: السؤال %{current} من %{total}
     reason_for_idp_plan_rejection: سبب الرفض
     reject_idp_plan: رفض الخطة
     selected_count: المحدد

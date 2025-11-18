@@ -16,6 +16,7 @@ hu:
     my_plan: A tervem
     profile: Profil
     profile_details: Részletek
+    question_counter: Kérdés %{current} / %{total}
     selected_count: Kiválasztott
     skill_type: Képesség típusa
     tasks: Feladatok

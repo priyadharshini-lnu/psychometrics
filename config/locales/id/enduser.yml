@@ -16,6 +16,7 @@ id:
     my_plan: Rencanaku
     profile: Profil
     profile_details: Detail
+    question_counter: Pertanyaan %{current} dari %{total}
     selected_count: Dipilih
     skill_type: Jenis Keterampilan
     tasks: Tugas

@@ -119,7 +119,7 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
     if (pathname.includes('/profile_details') || pathname.includes('/change_password')) {
       setOpenKey([...openKey, 'profile'])
     }
-    if (pathname.includes('/idp/')) {
+    if (pathname.includes('/idp/') && openKey.indexOf('idp') === -1) {
       setOpenKey([...openKey, 'idp'])
     }
   }, [pathname])

@@ -16,6 +16,7 @@ bg:
     my_plan: Моят план
     profile: Профил
     profile_details: Подробности
+    question_counter: Въпрос %{current} от %{total}
     reason_for_idp_plan_rejection: Причина за отказ на плана
     reject_idp_plan: Отхвърляне на плана
     selected_count: Избран

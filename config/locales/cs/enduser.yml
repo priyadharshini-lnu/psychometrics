@@ -16,6 +16,7 @@ cs:
     my_plan: Můj plán
     profile: Profil
     profile_details: Detaily
+    question_counter: Otázka %{current} z %{total}
     reason_for_idp_plan_rejection: Důvod zamítnutí plánu
     reject_idp_plan: Zamítnout plán
     selected_count: Vybrané stránky

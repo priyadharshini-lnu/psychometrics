@@ -16,6 +16,7 @@ ro:
     my_plan: Planul meu
     profile: Profil
     profile_details: Detalii
+    question_counter: Întrebarea %{current} din %{total}
     selected_count: Selectat
     skill_type: Tip de abilitate
     tasks: Sarcini

@@ -16,6 +16,7 @@ ko:
     my_plan: 내 계획
     profile: 프로필
     profile_details: 세부 정보
+    question_counter: 질문 %{current} / %{total}
     selected_count: 선택됨
     skill_type: 스킬 유형
     tasks: 작업

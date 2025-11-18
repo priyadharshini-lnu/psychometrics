@@ -16,6 +16,7 @@ nl:
     my_plan: Mijn plan
     profile: Profiel
     profile_details: Details
+    question_counter: Vraag %{current} van %{total}
     selected_count: Geselecteerd
     skill_type: Type vaardigheid
     tasks: Taken
