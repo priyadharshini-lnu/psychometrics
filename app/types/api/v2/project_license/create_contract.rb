@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module Api
   module V2
     module ProjectLicense
       class CreateContract < Contract
-        rule( data: { attributes: :license_id }) do
+        rule(data: { attributes: :license_id }) do
           license_id = value
           next unless license_id
           next unless _context[:project]

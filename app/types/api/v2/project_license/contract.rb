@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   module V2
     module ProjectLicense
@@ -21,7 +23,8 @@ module Api
 
           if usage_limit > parent_license.number
             key.failure(I18n.t(
-                          'activemodel.errors.models.project_license.attributes.usage_limit.cant_be_more_than_available',
+                          'activemodel.errors.models.project_license.attributes' +
+                          '.usage_limit.cant_be_more_than_available',
                           usage_limit: parent_license.number
                         ))
           end
