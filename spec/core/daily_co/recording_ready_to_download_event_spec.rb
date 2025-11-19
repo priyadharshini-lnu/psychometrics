@@ -14,6 +14,15 @@ RSpec.describe DailyCo::RecordingReadyToDownloadEvent do
     }
   end
 
+  before do
+    allow(Settings).to receive(:storage).and_return(
+      double('storage',
+             dailyco_storage_service: :test,
+             public_storage_service: :test,
+             private_storage_service: :test)
+    )
+  end
+
   it 'creates or updates a MeetingRecording with recording ready info' do
     DailyCo::RecordingReadyToDownloadEvent.process(payload)
     recording = MeetingRecording.find_by(meeting_room: meeting_room, meeting_session_id: 'session-123')

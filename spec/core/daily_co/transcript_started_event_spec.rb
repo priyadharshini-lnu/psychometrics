@@ -4,6 +4,16 @@ require 'rails_helper'
 
 RSpec.describe DailyCo::TranscriptStartedEvent do
   let(:meeting_room) { MeetingRoom.create!(name: 'test-room', meetable: FactoryBot.create(:workshop)) }
+
+  before do
+    allow(Settings).to receive(:storage).and_return(
+      double('storage',
+             dailyco_storage_service: :test,
+             public_storage_service: :test,
+             private_storage_service: :test)
+    )
+  end
+
   let(:payload) do
     {
       'room_name' => meeting_room.name,

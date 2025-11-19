@@ -9,10 +9,12 @@ RSpec.describe Webhooks::DailyCoController, type: :controller do
   let(:transcription_s3key) { 'some/s3/transcription/key.vtt' }
 
   before do
-    allow(Settings).to receive_message_chain(:secrets, :webhook_jwt_secret).and_return('test_jwt_secret')
-    allow(Settings).to receive_message_chain(:secrets, :encrypted_key, :to_s).and_return('dummy_encrypted_key')
-    allow(Settings).to receive(:storage).and_return(double('storage', dailyco_storage_service: :test,
-      public_storage_service: :test))
+    allow(Settings).to receive(:storage).and_return(
+      double('storage',
+             dailyco_storage_service: :test,
+             public_storage_service: :test,
+             private_storage_service: :test)
+    )
     allow_any_instance_of(MeetingRecording).to receive(:recording_file).and_return(double('attachment',
                                                                                           attached?: false))
     allow_any_instance_of(MeetingRecording).to receive(:transcription_file).and_return(double('attachment',
@@ -28,7 +30,6 @@ RSpec.describe Webhooks::DailyCoController, type: :controller do
     let(:s3_key) { 'some/s3/key' }
 
     context 'when event is recording.ready-to-download' do
-      let!(:recording) { MeetingRecording.create!(meeting_room: room, external_id: recording_id, status: :started) }
       let(:payload) do
         {
           type: 'recording.ready-to-download',
@@ -41,13 +42,15 @@ RSpec.describe Webhooks::DailyCoController, type: :controller do
         }.to_json
       end
 
-      it 'updates the MeetingRecording' do
-        request.headers.merge!(headers)
-        post :recordings, body: payload
-        recording.reload
-        expect(recording.status).to eq('finished')
-        expect(recording.s3key).to eq(s3_key)
-        expect(recording.meeting_room).to eq(room)
+      it 'creates a MeetingRecording with status finished' do
+        expect do
+          request.headers.merge!(headers)
+          post :recordings, body: payload
+        end.to change(MeetingRecording, :count).by(1)
+        rec = MeetingRecording.last
+        expect(rec.meeting_room).to eq(room)
+        expect(rec.external_id).to eq(recording_id)
+        expect(rec.status).to eq('finished')
       end
     end
 
