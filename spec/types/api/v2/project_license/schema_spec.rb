@@ -20,7 +20,7 @@ RSpec.describe Api::V2::ProjectLicense::Schema do
         }
       )
 
-      expect(result.errors.to_h).to be_empty
+      expect(result.errors.to_hash).to be_empty
     end
 
     it 'response schema validates response attributes' do
@@ -37,9 +37,8 @@ RSpec.describe Api::V2::ProjectLicense::Schema do
         }
       )
 
-      expect(result.errors.to_h).to be_empty
+      expect(result.errors.to_hash).to be_empty
     end
-
   end
 
   it 'declares the correct resource name' do
@@ -48,7 +47,7 @@ RSpec.describe Api::V2::ProjectLicense::Schema do
 
   it 'exposes expected relationships for the schema' do
     rels = described_class.relationships(nil)
-    names = rels.map { |r| r[:name] }
+    names = rels.pluck(:name)
     expect(names).to include(:license, :project)
   end
 end

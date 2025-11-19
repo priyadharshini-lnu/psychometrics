@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe Api::V2::ProjectLicense::CreateContract do
   let(:project) { create(:project) }
@@ -22,7 +22,7 @@ RSpec.describe Api::V2::ProjectLicense::CreateContract do
       result = contract.call(params_for(usage_limit: 3, license_id: license.id.to_s), { project: project })
 
       expect(result.success?).to be_truthy
-      expect(result.errors.to_h).to be_empty
+      expect(result.errors.to_hash).to be_empty
     end
   end
 
@@ -35,7 +35,7 @@ RSpec.describe Api::V2::ProjectLicense::CreateContract do
       expect(result.failure?).to be_truthy
 
       expected_message = I18n.t('activemodel.errors.models.project_license.attributes.license_id.already_present')
-      error_message = result.errors.to_h.values.flatten.join(' ')
+      error_message = result.errors.to_hash.values.flatten.join(' ')
       expect(error_message).to include(expected_message)
     end
   end
@@ -46,8 +46,11 @@ RSpec.describe Api::V2::ProjectLicense::CreateContract do
 
       expect(result.failure?).to be_truthy
 
-      expected_message = I18n.t('activemodel.errors.models.project_license.attributes.usage_limit.cant_be_more_than_available', usage_limit: license.number)
-      error_message = result.errors.to_h.values.flatten.join(' ')
+      expected_message = I18n.t(
+        'activemodel.errors.models.project_license' \
+        '.attributes.usage_limit.cant_be_more_than_available', usage_limit: license.number
+      )
+      error_message = result.errors.to_hash.values.flatten.join(' ')
       expect(error_message).to include(expected_message)
     end
   end
