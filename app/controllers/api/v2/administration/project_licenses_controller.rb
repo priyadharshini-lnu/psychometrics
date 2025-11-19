@@ -37,11 +37,6 @@ module Api
             ), status: status
         end
 
-        def render_errors(form)
-          render json: { errors: form.errors.full_messages.map { |msg| { detail: msg } } },
-                 status: :unprocessable_entity
-        end
-
         def context
           super.merge(project: project, client: client)
         end

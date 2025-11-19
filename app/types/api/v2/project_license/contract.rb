@@ -4,8 +4,6 @@ module Api
   module V2
     module ProjectLicense
       class Contract < Api::Base::Contract
-        config.messages.namespace =
-          'activemodel.errors.models.project_license.attributes'
 
         rule(data: { attributes: :usage_limit }) do
           usage_limit = value

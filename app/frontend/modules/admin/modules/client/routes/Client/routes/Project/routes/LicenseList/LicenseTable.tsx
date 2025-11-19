@@ -43,13 +43,11 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
         <Resource.Column<License>
           title={I18n.t('licenses.type')}
           id="type"
-          dataIndex="type"
           render={(_, { type }) => I18n.t(`licenses.types.${type}`)}
         />
         <Resource.Column<License>
           title={I18n.t('licenses.project_specific')}
-          id="sProjectSpecific"
-          dataIndex="sProjectSpecific"
+          id="isProjectSpecific"
           render={(_, { isProjectSpecific }) => (
             <Switch checked={isProjectSpecific} disabled />
           )
