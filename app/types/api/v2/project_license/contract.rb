@@ -4,7 +4,6 @@ module Api
   module V2
     module ProjectLicense
       class Contract < Api::Base::Contract
-
         rule(data: { attributes: :usage_limit }) do
           usage_limit = value
 
