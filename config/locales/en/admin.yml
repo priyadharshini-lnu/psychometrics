@@ -2,6 +2,9 @@
 en:
   admin:
     admins: Admins
+    ai:
+      artifacts:
+        output_schema_key_constraint: Key must start with a lowercase letter and can only contain lowercase letters, numbers, and underscores
     ai_artifacts: AI Artifacts
     ai_assistant_model_id_label: Model ID
     ai_assistant_model_label: Model
