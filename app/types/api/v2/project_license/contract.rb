@@ -12,12 +12,7 @@ module Api
           usage_limit = value
           license_id  = attrs[:license_id]
 
-          parent_license =
-            if _context[:project_license]
-              _context[:project_license].license
-            else
-              ::License.find_by(id: license_id)
-            end
+          parent_license = ::License.find_by(id: license_id)
 
           next unless parent_license
 

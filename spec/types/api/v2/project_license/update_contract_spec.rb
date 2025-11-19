@@ -20,9 +20,7 @@ RSpec.describe Api::V2::ProjectLicense::UpdateContract do
     end
 
     it "fails validation" do
-      db_project_license = ProjectLicense.find(project_license.id)
-
-      result = contract.call(params, context: { project_license: db_project_license })
+      result = contract.call(params, { params: { id: project_license.id } })
 
       expect(result.failure?).to be_truthy
       expect(result.errors.to_h).to_not be_empty
@@ -40,11 +38,9 @@ RSpec.describe Api::V2::ProjectLicense::UpdateContract do
       }
     end
 
-    let(:result) do
-      contract.call(params, context: { project_license: project_license })
-    end
-
     it "passes" do
+      result = contract.call(params, { params: { id: project_license.id } })
+
       expect(result.success?).to be_truthy
       expect(result.errors.to_h).to be_empty
     end

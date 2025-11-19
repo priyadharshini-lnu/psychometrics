@@ -7,10 +7,11 @@ module Api
         schema Api::V2::ProjectLicense::Schema.update_request
 
         rule(data: { attributes: :usage_limit }) do
-          next unless _context[:project_license]
+          project_license = ::ProjectLicense.find_by(id: _context[:params][:id])
+          next unless project_license
 
           usage_limit    = value
-          used_number    = _context[:project_license].used_number
+          used_number    = project_license.used_number
 
           if used_number && usage_limit < used_number
             key.failure(I18n.t(
