@@ -18,7 +18,11 @@ module DailyCo
       end
 
       response_body = JSON.parse(response.body)
-      broadcast :ok, { id: response_body['id'], name: name }
+      broadcast :ok, {
+        id: response_body['id'],
+        name: name,
+        transcription_enabled: response_body.dig('config', 'transcription_bucket').present?
+      }
     end
 
     def room_name
@@ -53,7 +57,15 @@ module DailyCo
           assume_role_arn: Settings.secrets.daily_co[:assume_role_arn],
           allow_api_access: false
         }
-        properties[:recordings_template] = '{domain_name}/{room_name}/{recording_id}/{epoch_time}.mp4'
+        properties[:recordings_template] = '{domain_name}/{room_name}/{mtg_session_id}/{epoch_time}.mp4'
+        properties[:enable_transcription_storage] = true
+        properties[:transcription_bucket] = {
+          bucket_name: Settings.secrets.s3_compatible_storage[:dailyco_bucket],
+          bucket_region: Settings.secrets.s3_compatible_storage[:region],
+          assume_role_arn: Settings.secrets.daily_co[:assume_role_arn],
+          allow_api_access: false
+        }
+        properties[:transcription_template] = '{domain_name}/{room_name}/{mtg_session_id}/{epoch_time}'
       end
 
       {

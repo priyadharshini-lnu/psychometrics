@@ -4070,7 +4070,11 @@ CREATE TABLE public.meeting_recordings (
     s3key character varying,
     status integer DEFAULT 0 NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    transcription_status integer DEFAULT 0 NOT NULL,
+    transcription_external_id character varying,
+    transcription_s3key character varying,
+    meeting_session_id character varying
 );
 
 
@@ -4105,7 +4109,8 @@ CREATE TABLE public.meeting_rooms (
     meetable_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    dailyco_api_version character varying DEFAULT 'v2'::character varying NOT NULL
+    dailyco_api_version character varying DEFAULT 'v2'::character varying NOT NULL,
+    transcription_enabled boolean DEFAULT false NOT NULL
 );
 
 
@@ -14117,6 +14122,13 @@ CREATE INDEX index_meeting_recordings_on_meeting_room_id ON public.meeting_recor
 
 
 --
+-- Name: index_meeting_recordings_on_meeting_session_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_meeting_recordings_on_meeting_session_id ON public.meeting_recordings USING btree (meeting_session_id);
+
+
+--
 -- Name: index_meeting_rooms_on_meetable; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -19020,6 +19032,8 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20251118130440'),
+('20251118103050'),
 ('20251114123626'),
 ('20251118061850'),
 ('20251112120914'),

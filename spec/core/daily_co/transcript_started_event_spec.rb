@@ -1,0 +1,27 @@
+# frozen_string_literal: true
+
+require 'rails_helper'
+
+RSpec.describe DailyCo::TranscriptStartedEvent do
+  let(:meeting_room) { MeetingRoom.create!(name: 'test-room', meetable: FactoryBot.create(:workshop)) }
+  let(:payload) do
+    {
+      'room_name' => meeting_room.name,
+      'mtg_session_id' => 'session-123',
+      'status' => 't_in_progress',
+      'id' => 'transcript-456'
+    }
+  end
+
+  it 'creates or updates a MeetingRecording with transcript started info' do
+    DailyCo::TranscriptStartedEvent.process(payload)
+    recording = MeetingRecording.find_by(meeting_room: meeting_room, meeting_session_id: 'session-123')
+    expect(recording.transcription_status).to eq('t_in_progress')
+    expect(recording.transcription_external_id).to eq('transcript-456')
+  end
+
+  it 'logs a warning if room is not found' do
+    expect(Rails.logger).to receive(:warn).with('MeetingRoom not found for name: unknown-room')
+    DailyCo::TranscriptStartedEvent.process(payload.merge('room_name' => 'unknown-room'))
+  end
+end

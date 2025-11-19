@@ -26,6 +26,7 @@ en:
           other: 'Total : {{count}}'
           zero: 'Total : 0'
     terms_conditions_privacy: Privacy Statement
+    transcriptions: Transcriptions
     tte_terms_and_condition: Terms & Privacy
     type: Type
     update: Update

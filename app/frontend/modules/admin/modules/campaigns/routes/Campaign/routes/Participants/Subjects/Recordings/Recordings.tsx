@@ -6,6 +6,7 @@ import {
   Tooltip,
 } from 'antd'
 import { useParams } from 'react-router-dom'
+import { DownloadOutlined } from '@ant-design/icons'
 import { DateTimeWithZone } from '~/glint'
 import { Resource } from '~/modules/admin/components/Resource'
 import { UserRecordingTR } from './userRecordings'
@@ -108,6 +109,25 @@ const RecordingsTable = () => (
             serialNo={id}
           />
         )}
+      />
+      <Resource.Column
+        title={I18n.t('shared.transcriptions')}
+        id="transcription_url"
+        width="5%"
+        render={({ transcriptionUrl }) => {
+          if (!transcriptionUrl) return null
+          return (
+            <Button
+              className="ps-0"
+              href={transcriptionUrl}
+              target="_blank"
+              icon={<DownloadOutlined />}
+              type="link"
+            >
+              {I18n.t('common.text.download')}
+            </Button>
+          )
+        }}
       />
     </Resource.Table>
   </>

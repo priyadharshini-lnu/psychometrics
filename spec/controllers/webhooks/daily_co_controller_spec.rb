@@ -6,6 +6,7 @@ RSpec.describe Webhooks::DailyCoController, type: :controller do
   let(:api_key) { 'test_api_key' }
   let(:jwt_token) { JWT.encode({ sub: 'dailyco' }, Settings.secrets.webhook_jwt_secret, 'HS256') }
   let(:headers) { { 'Authorization' => "Basic #{jwt_token}" } }
+  let(:transcription_s3key) { 'some/s3/transcription/key.vtt' }
 
   before do
     allow(Settings).to receive_message_chain(:secrets, :webhook_jwt_secret).and_return('test_jwt_secret')
@@ -14,7 +15,10 @@ RSpec.describe Webhooks::DailyCoController, type: :controller do
       public_storage_service: :test))
     allow_any_instance_of(MeetingRecording).to receive(:recording_file).and_return(double('attachment',
                                                                                           attached?: false))
+    allow_any_instance_of(MeetingRecording).to receive(:transcription_file).and_return(double('attachment',
+                                                                                              attached?: false))
     allow_any_instance_of(MeetingRecording).to receive(:enqueue_attach_recording_file_job)
+    allow_any_instance_of(MeetingRecording).to receive(:enqueue_attach_transcription_file_job)
   end
 
   describe 'POST #recordings' do
@@ -23,29 +27,6 @@ RSpec.describe Webhooks::DailyCoController, type: :controller do
     let(:recording_id) { 'rec-123' }
     let(:s3_key) { 'some/s3/key' }
 
-    context 'when event is recording.started' do
-      let(:payload) do
-        {
-          type: 'recording.started',
-          payload: {
-            room_name: room.name,
-            recording_id: recording_id
-          }
-        }.to_json
-      end
-
-      it 'creates a MeetingRecording' do
-        expect do
-          request.headers.merge!(headers)
-          post :recordings, body: payload
-        end.to change(MeetingRecording, :count).by(1)
-        rec = MeetingRecording.last
-        expect(rec.meeting_room).to eq(room)
-        expect(rec.external_id).to eq(recording_id)
-        expect(rec.status).to eq('started')
-      end
-    end
-
     context 'when event is recording.ready-to-download' do
       let!(:recording) { MeetingRecording.create!(meeting_room: room, external_id: recording_id, status: :started) }
       let(:payload) do
@@ -53,8 +34,9 @@ RSpec.describe Webhooks::DailyCoController, type: :controller do
           type: 'recording.ready-to-download',
           payload: {
             recording_id: recording_id,
-            status: :finished,
-            s3_key: s3_key
+            status: 'finished',
+            s3_key: s3_key,
+            room_name: room.name
           }
         }.to_json
       end
@@ -66,6 +48,37 @@ RSpec.describe Webhooks::DailyCoController, type: :controller do
         expect(recording.status).to eq('finished')
         expect(recording.s3key).to eq(s3_key)
         expect(recording.meeting_room).to eq(room)
+      end
+    end
+
+    context 'when event is transcript.ready-to-download' do
+      let!(:recording) do
+        MeetingRecording.create!(meeting_room: room, meeting_session_id: 'session-456',
+                                 transcription_status: :t_in_progress)
+      end
+      let(:payload) do
+        {
+          type: 'transcript.ready-to-download',
+          payload: {
+            mtg_session_id: 'session-456',
+            id: 'transcript-789',
+            status: 't_finished',
+            out_params: {
+              s3: {
+                key: transcription_s3key
+              }
+            },
+            room_name: room.name
+          }
+        }.to_json
+      end
+
+      it 'updates the transcription fields' do
+        request.headers.merge!(headers)
+        post :recordings, body: payload
+        recording.reload
+        expect(recording.transcription_status).to eq('t_finished')
+        expect(recording.transcription_s3key).to eq(transcription_s3key)
       end
     end
 
