@@ -78,7 +78,7 @@ describe Api::V2::Administration::ProjectLicensesController, swagger_doc: 'v2/sw
             data: {
               type: 'licenses',
               attributes: {
-                license_id: new_license.id,
+                license_id: new_license.id.to_s,
                 usage_limit: 20,
                 enabled: true
               }

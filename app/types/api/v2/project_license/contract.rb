@@ -8,11 +8,9 @@ module Api
           'activemodel.errors.models.project_license.attributes'
 
         rule(data: { attributes: :usage_limit }) do
-          attrs = values[:data][:attributes]
           usage_limit = value
-          license_id  = attrs[:license_id]
 
-          parent_license = ::License.find_by(id: license_id)
+          parent_license = get_parent_license(values, _context)
 
           next unless parent_license
 
@@ -22,6 +20,18 @@ module Api
                           '.usage_limit.cant_be_more_than_available',
                           usage_limit: parent_license.number
                         ))
+          end
+        end
+
+        private
+
+        def get_parent_license(values, context)
+          attrs = values[:data][:attributes]
+          if attrs.key?(:license_id)
+            ::License.find_by(id: attrs[:license_id])
+          else
+            project_license = ::ProjectLicense.find_by(id: context[:params][:id])
+            project_license&.license
           end
         end
       end

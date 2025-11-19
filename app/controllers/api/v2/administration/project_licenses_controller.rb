@@ -4,7 +4,7 @@ module Api
   module V2
     module Administration
       class ProjectLicensesController < Api::V2::Administration::BaseController
-        # skip_before_action :jsonapi_request_handling, only: %i[create update]
+        skip_before_action :jsonapi_request_handling, only: %i[create update]
         validates_request_schema :create, lambda {
           Api::V2::ProjectLicense::CreateContract.new(
             schema: Api::V2::ProjectLicense::Schema.create_request
