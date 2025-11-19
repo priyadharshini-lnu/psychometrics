@@ -1354,6 +1354,9 @@ as: :simulation_progress_notification
             end
 
             jsonapi_resources :project_assessments
+            jsonapi_resources :saml_service_providers do
+              post :rotate_certificate, on: :member
+            end
 
             jsonapi_resources :registration_settings, only: %i[index update]
             jsonapi_resources :mettl_schedule_records

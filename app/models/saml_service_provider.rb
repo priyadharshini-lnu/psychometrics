@@ -9,6 +9,7 @@ class SamlServiceProvider < ApplicationRecord
   validate :validate_acs_urls_format
 
   scope :enabled, -> { where(enabled: true) }
+  scope :saml_service_providers_of, ->(project_id) { where(project_id: project_id) }
 
   before_create :generate_idp_certificate
 
@@ -18,6 +19,10 @@ class SamlServiceProvider < ApplicationRecord
 
   def issuer_uri
     "#{Utility::Url.generate(:root_url, subdomain: project.subdomain)}saml/idp/metadata"
+  end
+
+  def sso_service_url
+    "#{Utility::Url.generate(:root_url, subdomain: project.subdomain)}/saml/idp/auth"
   end
 
   def idp_certificate
@@ -31,6 +36,34 @@ class SamlServiceProvider < ApplicationRecord
 
     Encryptor.decrypt(Base64.decode64(encrypted_idp_private_key))
   end
+
+  def rotate_certificate!
+    cert_data = Saml::CertificateGenerator.generate_self_signed_certificate
+
+    self.encrypted_idp_certificate = Base64.encode64(Encryptor.encrypt(cert_data[:certificate]))
+    self.encrypted_idp_private_key = Base64.encode64(Encryptor.encrypt(cert_data[:private_key]))
+
+    save!
+  end
+
+  def self.ransackable_scopes(_)
+    %i[filterable_fields]
+  end
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name entity_id acl_urls active]
+  end
+
+  scope :filterable_fields, lambda { |query|
+    where(
+      <<~SQL.squish,
+        saml_service_providers.name ILIKE :query OR#{' '}
+        saml_service_providers.entity_id ILIKE :query OR#{' '}
+        saml_service_providers.acs_urls::text ILIKE :query
+      SQL
+      query: "%#{query}%"
+    )
+  }
 
   private
 

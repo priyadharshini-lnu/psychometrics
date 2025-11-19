@@ -1,5 +1,5 @@
 import { Smtp } from './Smtp'
-import { Saml } from './Saml'
+import { SamlTabbed } from './Saml'
 import { Integrations } from './Integrations'
 import { General } from './General'
 import { Webhooks } from './Webhooks'
@@ -20,7 +20,7 @@ export const routes = [
   },
   {
     path: '/saml',
-    component: <Saml />,
+    component: <SamlTabbed />,
   },
   {
     path: '/integrations',
@@ -46,6 +46,7 @@ export const routes = [
     path: '/webhooks',
     component: <Webhooks />,
   },
+
   {
     path: '/design',
     component: <Design />,

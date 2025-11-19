@@ -45,7 +45,7 @@ const SamlComponent: React.FC<Props> = ({
     : { ...samlSetting, emailPipetext: '{{identifier}}@example.com' }
 
   return (
-    <Row justify="space-between" className="pl">
+    <Row justify="space-between">
       <Col sm={24} md={16} xl={12} xxl={10}>
         <ResourceForm
           resourceName="samlSetting"
