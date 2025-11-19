@@ -7,13 +7,11 @@ module Api
         schema Api::V2::ProjectLicense::Schema.create_request
 
         rule(data: { attributes: :license_id }) do
-          license_id = value
-          next unless license_id
           next unless _context[:project]
 
           if ::ProjectLicense.exists?(
             project: _context[:project],
-            license_id: license_id
+            license_id: value
           )
             key.failure(
               I18n.t('activemodel.errors.models.project_license.attributes.license_id.already_present')

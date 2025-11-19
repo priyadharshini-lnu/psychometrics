@@ -5,13 +5,11 @@ module Api
     module ProjectLicense
       class Contract < Api::Base::Contract
         rule(data: { attributes: :usage_limit }) do
-          usage_limit = value
-
           parent_license = get_parent_license(values, _context)
 
           next unless parent_license
 
-          if usage_limit > parent_license.number
+          if value > parent_license.number
             key.failure(I18n.t(
                           'activemodel.errors.models.project_license.attributes' \
                           '.usage_limit.cant_be_more_than_available',
