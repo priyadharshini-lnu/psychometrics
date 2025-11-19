@@ -18,13 +18,13 @@ module Api
         }
 
         def create
-          project_license = ::Projects::Licenses::Create.call!(license_params, project)
+          project_license = project.project_licenses.create!(license_params)
           render_license(project_license.license, :created)
         end
 
         def update
-          project_license = ::Projects::Licenses::Update.call!(license_params, model)
-          render_license(project_license.license, :ok)
+          model.update!(license_params.except(:license_id))
+          render_license(model.license, :ok)
         end
 
         private
