@@ -63,7 +63,7 @@ RSpec.describe AI::AssistantChat, type: :model do
       end
 
       it 'calls OpenaiResponseApi service' do
-        expect(AI::Services::OpenaiResponseApi).to receive(:call!).with(llm_chat)
+        expect(AI::Services::OpenaiResponseApi).to receive(:call!).with(llm_chat, assistant.model_id)
 
         chat.ask(message, with: attachment_url, service: :openai_response_api)
       end

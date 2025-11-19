@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Form, Input, Select, Button, Row, Col, Typography, Flex, message, Spin,
+  Form, Input, Select, Button, Row, Col, Typography, Flex, message, Spin, Popover,
+  Descriptions,
 } from 'antd'
 import { useSelector } from 'react-redux'
-import { PlusOutlined } from '@ant-design/icons'
+import { PlusOutlined, InfoCircleOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
 import { AiAssistantTR, AiAssistant } from '~/modules/admin/modules/AiAssitant/core/aiAssistant'
 import { getAvailableAiProviders } from '~/core/config'
-import { ASSISTANT_TYPES, AI_PROVIDERS, DEPENDENCY_TYPES } from '~/modules/admin/modules/AiAssitant/core/constants'
+import { ASSISTANT_TYPES, DEPENDENCY_TYPES } from '~/modules/admin/modules/AiAssitant/core/constants'
 import { useResources } from '~/hooks/useResources/useResources'
 import { OutputSchemaKeyFields } from './OutputSchemaKeyFields'
 import { AiAssistantRevisions } from './AiAssistantRevisions'
@@ -33,6 +34,9 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
   const navigate = useNavigate()
 
   const availableAiProviders = useSelector(getAvailableAiProviders)
+
+  const selectedModelId = Form.useWatch('modelId', form)
+  const selectedProvider = availableAiProviders.find(p => p.model_id === selectedModelId)
 
   const assistantOutputSchemaKeys = Form.useWatch('assistantOutputSchemaKeysAttributes', form) || []
   const assistantType = Form.useWatch('assistantType', form)
@@ -139,13 +143,56 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
           </Form.Item>
           <Form.Item
             name="modelId"
-            label={I18n.t('administration.ai_assistants.form.provider')}
+            label={(
+              <Row align="middle" gutter={8}>
+                <Col>{I18n.t('administration.ai_assistants.form.provider')}</Col>
+                {selectedProvider && (
+                  <Col>
+                    <Popover
+                      title={selectedProvider.name}
+                      content={(
+                        <Descriptions
+                          bordered
+                          size="small"
+                          column={1}
+                          style={{ maxWidth: 280 }}
+                        >
+                          <Descriptions.Item label={I18n.t('admin.ai_assistant_model_label')}>
+                            {selectedProvider.model}
+                          </Descriptions.Item>
+                          {selectedProvider.description && (
+                            <Descriptions.Item label={I18n.t('shared.description')}>
+                              {selectedProvider.description}
+                            </Descriptions.Item>
+                          )}
+                          {selectedProvider.region && (
+                            <Descriptions.Item label={I18n.t('admin.ai_assistant_model_region_label')}>
+                              {selectedProvider.region}
+                            </Descriptions.Item>
+                          )}
+                          {selectedProvider.provider && (
+                            <Descriptions.Item label={I18n.t('admin.ai_assistant_model_provider')}>
+                              {selectedProvider.provider}
+                            </Descriptions.Item>
+                          )}
+                          <Descriptions.Item label={I18n.t('admin.ai_assistant_model_id_label')}>
+                            {selectedProvider.model_id}
+                          </Descriptions.Item>
+                        </Descriptions>
+            )}
+                    >
+                      <InfoCircleOutlined style={{ cursor: 'pointer' }} />
+                    </Popover>
+                  </Col>
+                )}
+              </Row>
+  )}
             rules={[{ required: true }]}
           >
             <Select>
               {availableAiProviders.map(provider => (
-                <Select.Option key={provider} value={provider}>
-                  {AI_PROVIDERS[provider]?.name}
+                <Select.Option key={provider.model_id} value={provider.model_id}>
+                  {provider.name}
                 </Select.Option>
               ))}
             </Select>

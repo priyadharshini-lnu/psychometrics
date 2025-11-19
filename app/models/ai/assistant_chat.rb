@@ -41,6 +41,10 @@ class AI::AssistantChat < ApplicationRecord
       with_params(**options[:params])
     end
 
+    if provider_config['headers']
+      with_headers(**provider_config['headers'])
+    end
+
     self
   end
 
@@ -83,7 +87,7 @@ class AI::AssistantChat < ApplicationRecord
   end
 
   def complete_with_response_api(llm_chat, original_message, attachment_url, persist_attachment, &block)
-    response_message = AI::Services::OpenaiResponseApi.call!(llm_chat)
+    response_message = AI::Services::OpenaiResponseApi.call!(llm_chat, ai_assistant.model_id)
 
     # Persist both user and assistant messages
     create_user_message(original_message, with: persist_attachment ? attachment_url : nil)

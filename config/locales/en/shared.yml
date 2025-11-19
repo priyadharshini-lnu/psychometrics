@@ -6,6 +6,7 @@ en:
     cancel: Cancel
     change_password: Change Password
     clear_filters: Clear Filters
+    description: Description
     edit: Edit
     edited: Edited
     id: ID

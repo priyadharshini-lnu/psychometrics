@@ -3,6 +3,10 @@ en:
   admin:
     admins: Admins
     ai_artifacts: AI Artifacts
+    ai_assistant_model_id_label: Model ID
+    ai_assistant_model_label: Model
+    ai_assistant_model_provider: Provider
+    ai_assistant_model_region_label: Region
     ai_assistants: AI Assistants
     assessments: Assessments
     assessments_reports: Assessments & Reports

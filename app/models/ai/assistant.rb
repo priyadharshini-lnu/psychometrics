@@ -62,7 +62,7 @@ class AI::Assistant < ApplicationRecord
         config.send(:"#{key}=", value) if value.present? && config.respond_to?(:"#{key}=")
       end
 
-      config.default_model = model_id
+      config.default_model = ai_provider_for_model['model']
     end
   end
 
@@ -82,7 +82,7 @@ class AI::Assistant < ApplicationRecord
     chats.create!(
       ai_assistant: self,
       user: user,
-      model: ai_provider_for_model['model_id'],
+      model: ai_provider_for_model['model'],
       provider: ai_provider_for_model['custom_provider'].presence,
       assume_model_exists: ai_provider_for_model['custom_provider'].present? # Allow custom providers
     )
@@ -99,6 +99,7 @@ class AI::Assistant < ApplicationRecord
     # Use provided params or fall back to default params for this type
     params_to_use = options[:params] || default_params
     chat.with_params(**params_to_use) if params_to_use.any?
+    chat.with_headers(**ai_provider_for_model['headers']) if ai_provider_for_model['headers']
   end
 
   def apply_system_prompt(chat, contextual_information)

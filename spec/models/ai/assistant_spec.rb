@@ -8,6 +8,7 @@ RSpec.describe AI::Assistant, type: :model do
   let(:ai_provider_config) do
     {
       'model_id' => 'gpt-4o-mini',
+      'model' => 'gpt-4o-mini',
       'name' => 'OpenAI GPT-4o Mini',
       'context' => {
         'openai_api_key' => 'test-api-key'
