@@ -137,7 +137,7 @@ commands:
           name: Copy config
           command: |
             cp config/database.yml.sample config/database.yml
-            cp config/application.yml.sample  config/application.yml
+            cp .env.sample .env
       - run:
           name: Setup DB
           command: 'PARALLEL_TEST_PROCESSORS=<<parameters.processes>> DISABLE_COVERAGE=1 bundle exec rake parallel:create parallel:load_schema'
@@ -377,7 +377,7 @@ jobs:
           name: Precompile Assets
           command: |
             cp config/database.yml.sample config/database.yml
-            cp config/application.yml.sample  config/application.yml
+            cp .env.sample .env
             bundle exec rake i18n:js:export
             (find tmp/cache/vite tmp/cache/assets/sprockets -type f -mtime +30 -delete) || echo "No old cache files to prune"
             bundle exec rails assets:precompile

@@ -75,7 +75,6 @@ gem 'i18n-js',                    '~> 3.9.2'
 gem 'draper', '~> 4.0.2'
 ### For organisation ENV variable
 gem 'config',                     '~> 5.1.0'
-gem 'figaro',                     '~> 1.2.0'
 
 gem 'premailer-rails',            '~> 1.11.1'
 
@@ -190,6 +189,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'hirb'
   gem 'parallel_tests', '~> 4.2'
+  gem 'pry', '~> 0.14.2'
   gem 'pry-byebug', '~> 3.10.1'
   gem 'pry-rails', '~> 0.3.9'
   gem 'rspec-rails', '~> 6.1'
@@ -255,8 +255,6 @@ gem 'xml-simple', '~> 1.1.5'
 gem 'sidekiq_alive', '~> 2.4'
 
 gem 'psych', '~> 5.0'
-
-gem 'pry', '~> 0.14.2'
 
 gem 'ostruct', '~> 0.6.1'
 
