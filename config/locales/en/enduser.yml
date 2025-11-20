@@ -11,6 +11,7 @@ en:
     home: Home
     idp_plan_approval_note: Approval Note
     insights: Insights
+    lighthouse_assistant: Lighthouse Assistant
     max_word_limit: Must be at most %{max} words
     min_word_limit: Must be at least %{min} words
     my_plan: My Plan

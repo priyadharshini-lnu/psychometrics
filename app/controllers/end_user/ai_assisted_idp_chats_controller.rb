@@ -12,10 +12,13 @@ class EndUser::AIAssistedIdpChatsController < ApplicationController
   async_request :upload_document, handler: AI::IdpChat::AnalyzeDocument,
                   permit_params: ->(params) {}
 
+  async_request :reset, handler: AI::IdpChat::ResetChat,
+                  permit_params: ->(params) {}
+
   def index
     session = @active_user_idp_plan.ai_assisted_idp_session || build_empty_session
 
-    render json: EndUser::AIAssistedUserSessionSerializer.new.serialize(session)
+    render json: EndUser::AIAssistedUserIdpSessionSerializer.new.serialize(session)
   end
 
   def meta_data
@@ -28,7 +31,7 @@ class EndUser::AIAssistedIdpChatsController < ApplicationController
   private
 
   def build_empty_session
-    @active_user_idp_plan.build_ai_assisted_idp_session
+    AI::IdpChat::CreateNewChatSession.call!(@active_user_idp_plan)
   end
 
   def load_active_user_idp_plan

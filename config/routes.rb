@@ -1049,6 +1049,7 @@ as: :simulation_progress_notification
         collection do
           post :ask
           post :upload_document
+          post :reset
         end
       end
 

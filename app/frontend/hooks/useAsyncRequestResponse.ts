@@ -175,7 +175,20 @@ const useAsyncRequestResponse = <T>({
 
   const startPolling = () => {
     if (storedRequest) {
-      return startPollingForStatus(storedRequest)
+      return new Promise<ApiAction<T> | null>((resolve, reject) => {
+        intervalIdRef.current = setInterval(() => {
+          startPollingForStatus(storedRequest)
+            .then((pollingResult) => {
+              if (pollingResult) {
+                clearInterval(intervalIdRef.current)
+                resolve(pollingResult)
+              }
+            })
+            .catch((error) => {
+              reject(error)
+            })
+        }, pollingInterval * 1000)
+      })
     }
     return null
   }
