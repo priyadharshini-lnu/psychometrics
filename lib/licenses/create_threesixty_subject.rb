@@ -26,8 +26,8 @@ module Licenses
       if license.is_project_specific?
         project_license = fetch_project_license?(license)
         unless project_license&.enough_licenses?
-          raise Licenses::NotEnoughError,
-                I18n.t('licenses.project_limit_reached', license_name: 'ThreeSixty License')
+          message = I18n.t('licenses.project_limit_reached', license_name: 'ThreeSixty License')
+          raise Errors::LicenseError.new(client, nil, user, message)
         end
       end
 
