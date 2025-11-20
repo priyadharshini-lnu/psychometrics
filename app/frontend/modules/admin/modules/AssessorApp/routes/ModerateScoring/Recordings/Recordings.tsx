@@ -84,21 +84,23 @@ const Recordings: React.FC<Props> = ({ userRecordings, fetchRecordings, header }
                   serialNo={recording.id}
                 />
               </div>
-              <div className={styles.groupColumn}>
-                <Typography.Text strong>
-                  {I18n.t('shared.transcriptions')}
-                  {': '}
-                </Typography.Text>
-                <Button
-                  className="ps-0"
-                  href={recording.transcriptionUrl}
-                  target="_blank"
-                  icon={<DownloadOutlined />}
-                  type="link"
-                >
-                  {I18n.t('common.text.download')}
-                </Button>
-              </div>
+              {recording.transcriptionUrl && (
+                <div className={styles.groupColumn}>
+                  <Typography.Text strong>
+                    {I18n.t('shared.transcriptions')}
+                    {': '}
+                  </Typography.Text>
+                  <Button
+                    className="ps-0"
+                    href={recording.transcriptionUrl}
+                    target="_blank"
+                    icon={<DownloadOutlined />}
+                    type="link"
+                  >
+                    {I18n.t('common.text.download')}
+                  </Button>
+                </div>
+              )}
             </div>
           ))}
         </Space>
