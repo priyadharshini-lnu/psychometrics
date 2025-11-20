@@ -381,7 +381,7 @@ const UserDevelopmentPlanComponent = ({
         skillGapReportAvailable && skillGapReportData && (
           <DownloadButton
             disabled={skillGapReportData?.status !== 'prepared'}
-            href={skillGapReportData?.reportUrl}
+            href={skillGapReportData?.report_url}
           >
             {I18n.t('idp.skill_gap_report.download')}
           </DownloadButton>

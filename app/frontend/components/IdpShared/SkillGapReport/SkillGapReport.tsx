@@ -16,7 +16,7 @@ import { SkillGapReportContent } from './SkillGapReportContent'
 const { I18n } = window
 
 export const SkillGapReport = ({
-  next, skillGapData, reportUrl, isLoading, prev,
+  next, skillGapData, reportUrl, isLoading, prev, nextLabel = I18n.t('idp.initial_steps.next'),
 }) => {
   const { isMobile } = useContext(MediaQueryContext)
 
@@ -52,7 +52,7 @@ export const SkillGapReport = ({
         <Flex gap={8} vertical={isMobile} justify="end" align="end">
           {extraContent}
           <ButtonWithArrow
-            label={I18n.t('idp.initial_steps.add_skills_step')}
+            label={nextLabel}
             type="primary"
             onClick={() => next()}
           />

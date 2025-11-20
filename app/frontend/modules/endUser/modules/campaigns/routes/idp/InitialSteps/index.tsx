@@ -195,6 +195,7 @@ const InitialStepsComponent = ({
               <SkillGapReportStep
                 next={() => next(STEPS.addSkills)}
                 prev={handlePrevForSkillGapReportStep}
+                nextLabel={I18n.t('idp.initial_steps.add_skills_step')}
               />
             )}
             {paramStep === STEPS.addSkills && (
