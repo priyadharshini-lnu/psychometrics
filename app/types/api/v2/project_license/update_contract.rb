@@ -10,7 +10,7 @@ module Api
           project_license = ::ProjectLicense.find_by(id: _context[:params][:id])
           next unless project_license
 
-          used_number    = project_license.used_number
+          used_number = project_license.used_number
 
           if used_number && value < used_number
             key.failure(I18n.t(
