@@ -97,20 +97,35 @@ function FilterTable ({
     return results
   }
 
+  const results = getResults()
+  // Hide entire row (including header) if hideRolesWithNoData is true and no results
+  if (model.props.hideRolesWithNoData && (!results || results.length === 0)) {
+    return null
+  }
+
   return (
-    <Results
-      filter={filter}
-      model={model}
-      filterId={filterId}
-      results={getResults()}
-      paginationContext={paginationContext}
-    />
+    <tbody data-paginatable={1} data-filter-id={filter.id}>
+      <tr data-filter-header>
+        <td className={styles.filter}>
+          {I18nStore.tFilterName(filter)}
+        </td>
+      </tr>
+      <Results filterId={filterId} results={results} paginationContext={paginationContext} />
+    </tbody>
   )
 }
 
-const Results = ({
-  model, results, filter, filterId, paginationContext,
-}) => {
+const Results = ({ results, filterId, paginationContext }) => {
+  if (!results || results.length === 0) {
+    return (
+      <tr data-paginatable={2}>
+        <td className={cs([styles.answer, styles.noResponse])}>
+          {I18nStore.t('reports.modules.three_sixty_default.question.no_response')}
+        </td>
+      </tr>
+    )
+  }
+
   if (paginationContext) {
     return (
       paginationContext.resultIndexes[filterId].map(i => (
@@ -123,36 +138,13 @@ const Results = ({
     )
   }
 
-  const hasResults = results && results.length > 0
-
-  if (!hasResults && model.props.hideRolesWithNoData) {
-    return null
-  }
-
-  return (
-    <tbody data-paginatable={1} data-filter-id={filter.id}>
-      <tr data-filter-header>
-        <td className={styles.filter}>
-          {I18nStore.tFilterName(filter)}
-        </td>
-      </tr>
-      {hasResults ? (
-        results.map((r, i) => (
-          <tr key={i} data-index={i} data-paginatable={2}>
-            <td className={styles.answer}>
-              <SafeHTML html={r} />
-            </td>
-          </tr>
-        ))
-      ) : (
-        <tr data-paginatable={2}>
-          <td className={cs([styles.answer, styles.noResponse])}>
-            {I18nStore.t('reports.modules.three_sixty_default.question.no_response')}
-          </td>
-        </tr>
-      )}
-    </tbody>
-  )
+  return results.map((r, i) => (
+    <tr key={i} data-index={i} data-paginatable={2}>
+      <td className={styles.answer}>
+        <SafeHTML html={r} />
+      </td>
+    </tr>
+  ))
 }
 
 export default connect((state, { model }) => ({
