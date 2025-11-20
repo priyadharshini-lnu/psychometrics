@@ -16,6 +16,7 @@ html lang="en"
     = render 'layouts/favicons'
     = vite_client_tag
     = vite_react_refresh_tag
+    = render 'shared/webspellchecker'
 
   body#administration class=(I18n.locale == :ar ? 'rtl' : 'ltr' ) data-locale="#{@selected_locale || params[:lang] || I18n.locale}"
     = render 'shared/maintenance_alert_banner'
