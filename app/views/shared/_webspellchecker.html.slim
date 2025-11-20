@@ -1,0 +1,28 @@
+script src="https://svc.webspellchecker.net/spellcheck31/wscbundle/wscbundle.js"
+
+javascript [nonce=content_security_policy_nonce]:
+  window.WEBSPELLCHECKER_CONFIG = {
+    "autoSearch": true,
+    "autoDestroy": true,
+    "autocorrect": true,
+    "autocomplete": true,
+    "serviceId": "hvt7qyVB9RFBHdL",
+    "serviceProtocol": "https",
+    "servicePort": "443",
+    "serviceHost": "svc.webspellchecker.net",
+    "servicePath": "api",
+    "globalBadge": false,
+    "proofreadDialogContainer": ".wproofreader-sidebar",
+    "lang": "auto",
+    "theme": "default",
+    "localization": "#{I18n.locale}",
+    "enableBadgeButton": true,
+    "enableLanguagesInBadgeButton": true,
+    "actionItems": [
+        "toggle",
+        "proofreadDialog"
+    ],
+    "settingsSections": [
+        "languages"
+    ]
+  }
