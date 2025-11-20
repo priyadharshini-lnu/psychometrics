@@ -184,9 +184,17 @@ export const AIChat = () => {
     })
   }
 
+  const cancelDictation = () => {
+    if (recording) {
+      stopDictation()
+      setRecording(false)
+    }
+  }
+
   const sendMessage = async (message) => {
     setRequestProcessing(true)
     try {
+      cancelDictation()
       const response = await askRequest.makeAsyncRequest({ message, restart_chat: resetChat })
       setResetChat(false)
       const { content } = response.responseData
@@ -319,6 +327,7 @@ export const AIChat = () => {
   }, [])
 
   const handleReset = () => {
+    cancelDictation()
     setResetChat(true)
     setMessages([])
     setStatus('chat')
