@@ -144,10 +144,17 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
           <Form.Item
             name="enabled"
             label={I18n.t('licenses.enabled')}
-            initialValue
             valuePropName="checked"
           >
             <Switch />
+          </Form.Item>
+
+          <Form.Item
+            name="isProjectSpecific"
+            label={I18n.t('licenses.project_specific_license')}
+            valuePropName="checked"
+          >
+            <Switch disabled={!!license} />
           </Form.Item>
         </>
       )}

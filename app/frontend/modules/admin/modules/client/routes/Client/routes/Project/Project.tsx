@@ -9,6 +9,7 @@ import {
   ExportOutlined,
   CrownOutlined,
   ApartmentOutlined,
+  UserOutlined,
 } from '@ant-design/icons'
 import some from 'lodash/some'
 import { connect, ConnectedProps } from 'react-redux'
@@ -167,7 +168,7 @@ const Project: FC<Props> = ({
   })
   currentUser.permissions.manageProjectAdmins && menuItems.push({
     key: 'admins',
-    icon: <SolutionOutlined />,
+    icon: <UserOutlined />,
     label: I18n.t('administration.breadcrumbs.project_admins'),
   })
   canShowSettingsTab() && menuItems.push({
@@ -195,6 +196,14 @@ const Project: FC<Props> = ({
         label: I18n.t('administration.taxonomy.title'),
       },
     )
+  }
+
+  if (currentUser.permissions.viewProjectLicenses) {
+    menuItems.push({
+      key: 'licenses',
+      icon: <SolutionOutlined />,
+      label: I18n.t('administration.breadcrumbs.licenses'),
+    })
   }
 
 

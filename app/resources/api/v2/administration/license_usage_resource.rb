@@ -7,7 +7,7 @@ class Api::V2::Administration::LicenseUsageResource < Api::V2::Administration::B
   has_one :user
   has_one :status_updated_by
 
-  ransack_filters %i[subject_name_or_subject_email_or_campaign_name_cont status_eq]
+  ransack_filters %i[subject_name_or_subject_email_or_campaign_name_cont status_eq project_id_eq]
 
   before_create -> { @model.client_id = context[:client].id }
 

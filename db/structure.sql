@@ -3925,7 +3925,9 @@ CREATE TABLE public.license_usages (
     proctoring_credits_credited integer,
     proctoring_session_duration integer,
     consumer_id bigint,
-    consumer_type character varying
+    consumer_type character varying,
+    project_id bigint,
+    project_license_id bigint
 );
 
 
@@ -3964,7 +3966,8 @@ CREATE TABLE public.licenses (
     start_date date NOT NULL,
     report_family_id integer,
     disabled boolean DEFAULT false,
-    type integer DEFAULT 0
+    type integer DEFAULT 0,
+    is_project_specific boolean DEFAULT false NOT NULL
 );
 
 
@@ -5308,6 +5311,41 @@ CREATE SEQUENCE public.project_features_id_seq
 --
 
 ALTER SEQUENCE public.project_features_id_seq OWNED BY public.project_features.id;
+
+
+--
+-- Name: project_licenses; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.project_licenses (
+    id bigint NOT NULL,
+    project_id bigint NOT NULL,
+    license_id bigint NOT NULL,
+    enabled boolean DEFAULT false,
+    usage_limit integer DEFAULT 0 NOT NULL,
+    used_number integer DEFAULT 0 NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: project_licenses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.project_licenses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: project_licenses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.project_licenses_id_seq OWNED BY public.project_licenses.id;
 
 
 --
@@ -9643,6 +9681,13 @@ ALTER TABLE ONLY public.project_features ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
+-- Name: project_licenses id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_licenses ALTER COLUMN id SET DEFAULT nextval('public.project_licenses_id_seq'::regclass);
+
+
+--
 -- Name: question_recoding id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -11376,6 +11421,14 @@ ALTER TABLE ONLY public.project_assessments
 
 ALTER TABLE ONLY public.project_features
     ADD CONSTRAINT project_features_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: project_licenses project_licenses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_licenses
+    ADD CONSTRAINT project_licenses_pkey PRIMARY KEY (id);
 
 
 --
@@ -14038,6 +14091,20 @@ CREATE INDEX index_license_usages_on_license_id ON public.license_usages USING b
 
 
 --
+-- Name: index_license_usages_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_license_usages_on_project_id ON public.license_usages USING btree (project_id);
+
+
+--
+-- Name: index_license_usages_on_project_license_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_license_usages_on_project_license_id ON public.license_usages USING btree (project_license_id);
+
+
+--
 -- Name: index_license_usages_on_registration_code_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14462,6 +14529,27 @@ CREATE INDEX index_project_assessments_on_project_id ON public.project_assessmen
 --
 
 CREATE UNIQUE INDEX index_project_features_on_project_id ON public.project_features USING btree (project_id);
+
+
+--
+-- Name: index_project_licenses_on_license_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_project_licenses_on_license_id ON public.project_licenses USING btree (license_id);
+
+
+--
+-- Name: index_project_licenses_on_license_id_and_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_project_licenses_on_license_id_and_project_id ON public.project_licenses USING btree (license_id, project_id);
+
+
+--
+-- Name: index_project_licenses_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_project_licenses_on_project_id ON public.project_licenses USING btree (project_id);
 
 
 --
@@ -16690,6 +16778,14 @@ ALTER TABLE ONLY public.client_features
 
 
 --
+-- Name: license_usages fk_rails_3268c52319; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.license_usages
+    ADD CONSTRAINT fk_rails_3268c52319 FOREIGN KEY (project_license_id) REFERENCES public.project_licenses(id);
+
+
+--
 -- Name: api_keys fk_rails_32c28d0dc2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17226,6 +17322,14 @@ ALTER TABLE ONLY public.campaign_factors
 
 
 --
+-- Name: project_licenses fk_rails_67e6a7fdac; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_licenses
+    ADD CONSTRAINT fk_rails_67e6a7fdac FOREIGN KEY (license_id) REFERENCES public.licenses(id);
+
+
+--
 -- Name: user_idp_comments fk_rails_67fb1b4907; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17607,6 +17711,14 @@ ALTER TABLE ONLY public.user_assessments
 
 ALTER TABLE ONLY public.user_report_events
     ADD CONSTRAINT fk_rails_899d2b3ded FOREIGN KEY (initiator_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: project_licenses fk_rails_89ca2fa15c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_licenses
+    ADD CONSTRAINT fk_rails_89ca2fa15c FOREIGN KEY (project_id) REFERENCES public.clients(id);
 
 
 --
@@ -18690,6 +18802,14 @@ ALTER TABLE ONLY public.communications_assessments
 
 
 --
+-- Name: license_usages fk_rails_e622a076e5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.license_usages
+    ADD CONSTRAINT fk_rails_e622a076e5 FOREIGN KEY (project_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: user_idp_skills fk_rails_e822374aec; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -19052,6 +19172,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20251024030039'),
 ('20251023050642'),
 ('20251015075724'),
+('20251012210205'),
+('20251007225856'),
+('20251007225411'),
 ('20251014070912'),
 ('20251010111349'),
 ('20251010104305'),

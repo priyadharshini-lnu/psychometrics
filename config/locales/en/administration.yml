@@ -220,9 +220,11 @@ en:
           projects:
             manage: Manage
             manage_admins: Manage Admins
+            manage_licenses: Manage Licenses
             manage_users: Manage Users
             title: Projects
             view: View
+            view_licenses: View Licenses
           questions:
             manage: Manage
             title: Questions

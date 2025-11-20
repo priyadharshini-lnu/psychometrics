@@ -64,6 +64,7 @@ class Client < ApplicationRecord
   has_many :members, -> { where(memberships: { role: Membership::MEMBER_ROLE }) },
            through: :memberships, source: :user
   # Licenses
+  has_many :project_licenses, dependent: :destroy, foreign_key: :project_id
   has_many :license_usages, dependent: :destroy
   has_many :licenses, inverse_of: :client, dependent: :destroy
   has_many :active_licenses, -> { active }, class_name: 'License'
@@ -335,8 +336,17 @@ class Client < ApplicationRecord
     slice(:name, :subdomain)
   end
 
-  def usable_license_id
-    active_licenses.select(&:enough_licenses?).pluck(:id)
+  def usable_license_id(project = nil)
+    scope = active_licenses.select(&:enough_licenses?)
+    return scope.pluck(:id) if project.blank?
+
+    license_ids = scope.map(&:id)
+    License.
+      left_outer_joins(:project_licenses).
+      where(id: license_ids).
+      where('licenses.is_project_specific = FALSE OR project_licenses.project_id = ?', project.id).
+      distinct.
+      pluck(:id)
   end
 
   def hogan_provider

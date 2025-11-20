@@ -232,6 +232,19 @@ en:
               contains_repeats: Password must not contain repeats
               too_short: Password is too short. Minimum %{count} character required
               too_weak: 'Password must contain: Minimum 1 lowercase, 1 uppercase, 1 number and 1 special character.'
+        project_license:
+          attributes:
+            base:
+              exceeds_available: Cannot allot more than available licenses
+            license_id:
+              already_present: already present for this project
+            usage_limit:
+              cant_be_less_than_used: can't be set below the current usage count of %{used_count}
+              cant_be_more_than_available: can't be more than the available limit on the license (%{usage_limit})
+              exceeds_available: Cannot be more than available licenses
+              less_than_used_number: Cannot be less than number of licenses used
+            used_number:
+              overused: Cannot be more than available licenses.
         questions_import_block_form:
           attributes:
             name:
@@ -3081,6 +3094,7 @@ en:
     usage_overview: View license usage
     usages: Usages
   licenses:
+    client_usage: Client Usage
     enabled: Enabled
     end_date: End date
     not_enough_idp_license: Not enough IDP licenses, please contact administrator
@@ -3089,6 +3103,10 @@ en:
     not_enough_proctoring_credits: Not enough credits to begin proctoring session
     number: Number
     overuse_number: Over use allowance
+    project_limit_reached: Usage limit reached for '%{license_name}', please contact administrator
+    project_specific: Project Specific
+    project_specific_license: Project Specific License
+    project_usage: Project Usage
     report_family: Report bundle
     start_date: Start date
     title: License
