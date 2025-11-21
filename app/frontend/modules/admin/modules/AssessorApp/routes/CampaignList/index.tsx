@@ -2,12 +2,12 @@
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Table, Row, Col, Input, Select, Pagination,
+  Table, Row, Col, Input, Select, Pagination, Typography,
 } from 'antd'
 import map from 'lodash/map'
 import capitalize from 'lodash/capitalize'
 import { AppstoreOutlined } from '@ant-design/icons'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import dayjs from '~/utils/dayjs'
 import { STATUSES, DEFAULT_PAGE_SIZE } from '~/constants/campaign'
 import { get as getCampaigns, fetch } from '~/modules/admin/modules/AssessorApp/core/campaigns'
@@ -49,6 +49,8 @@ const CampaignList: React.FC<Props> = (
     changePage,
   },
 ) => {
+  const navigate = useNavigate()
+
   useEffect(() => {
     fetch(tableConfig)
   }, [tableConfig])
@@ -94,7 +96,19 @@ const CampaignList: React.FC<Props> = (
       </Row>
       <Row>
         <Col span={24}>
-          <Table className="mtm" rowKey="id" dataSource={list} onChange={onTableChange} pagination={false}>
+          <Table
+            className="mtm"
+            rowKey="id"
+            dataSource={list}
+            onChange={onTableChange}
+            pagination={false}
+            onRow={record => ({
+              onClick: () => {
+                navigate(`/assessors/campaigns/${record.id}/users`)
+              },
+              className: styles.clickableRow,
+            })}
+          >
             <Column
               title={I18n.t('administration.campaigns.listing.id')}
               dataIndex="id"
@@ -107,8 +121,8 @@ const CampaignList: React.FC<Props> = (
               key="name"
               sorter
               sortOrder={getSortOrder('name')}
-              render={({ name, id }) => (
-                <Link to={`/assessors/campaigns/${id}/users`}>{name}</Link>
+              render={({ name }) => (
+                <Typography.Link>{name}</Typography.Link>
               )}
             />
             <Column

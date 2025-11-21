@@ -1,10 +1,11 @@
 import React from 'react'
-import { Radio } from 'antd'
+import { Radio, Typography } from 'antd'
 import { useParams } from 'react-router-dom'
 import { DateTimeWithZone } from '~/glint'
 import dayjs from '~/utils/dayjs'
 import { Workshop, WorkshopTR } from '~/modules/admin/modules/campaigns/core/assessors/workshop'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import styles from './WorkshopList.less'
 
 const { I18n } = window
 
@@ -29,7 +30,6 @@ export const WorkshopList: React.FC = () => {
   const {
     tab,
   } = useParams<{ tab: string }>()
-
   const config = {
     trackUrl: true,
     responseType: WorkshopTR,
@@ -37,7 +37,7 @@ export const WorkshopList: React.FC = () => {
     apiConfig: {
       include: ['campaign'],
       fields: {
-        workshops: ['start_time', 'duration', 'campaign'],
+        workshops: ['start_time', 'duration', 'name', 'campaign'],
         campaign: ['name'],
       },
     },
@@ -51,18 +51,30 @@ export const WorkshopList: React.FC = () => {
       <Resource config={config} name="workshops">
         <Resource.Filter hideSearch placeholder="" name="" />
         <Filters />
-        <Resource.Table pagination>
+        <Resource.Table
+          onRowChange={record => ({
+            onClick: () => {
+              const workshop = record as Workshop
+              const { projectId } = workshop?.campaign
+              const { id: campaignId } = workshop?.campaign
+              const workshopId = record.id
+              // eslint-disable-next-line max-len
+              const basePath = `/admin/projects/${parseInt(String(projectId), 10)}/new_campaigns/${parseInt(String(campaignId), 10)}`
+              const url = `${basePath}/scheduling/assessment_center/${parseInt(String(workshopId), 10)}`
+              window.location.href = url
+            },
+            className: styles.clickableRow,
+          })}
+          pagination
+        >
           <Resource.Column<Workshop>
             title={I18n.t('common.column.id')}
             id="id"
-            width="3%"
-            render={(_, { id, campaign: { id: campaignId, projectId } }) => (
-              <a
-                // eslint-disable-next-line max-len
-                href={`/admin/projects/${projectId}/new_campaigns/${campaignId}/scheduling/assessment_center/${id}`}
-              >
+            width="10%"
+            render={(_, { id }) => (
+              <Typography.Link>
                 {id}
-              </a>
+              </Typography.Link>
             )}
           />
           <Resource.Column<Workshop>
@@ -70,6 +82,12 @@ export const WorkshopList: React.FC = () => {
             id="startTime"
             width="15%"
             render={(_, { startTime }) => <DateTimeWithZone dateString={startTime} format="lll" />}
+          />
+          <Resource.Column<Workshop>
+            title={I18n.t('admin.slot_name')}
+            id="slot_name"
+            width="15%"
+            render={(_, { name }) => name}
           />
           <Resource.Column<Workshop>
             title={I18n.t('administration.scheduling.columns.duration')}
