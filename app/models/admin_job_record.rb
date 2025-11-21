@@ -109,7 +109,9 @@ class AdminJobRecord < ApplicationRecord
     import_assessment_translations: 85,
     export_interview_questions: 86,
     import_interview_questions: 87,
-    generate_embedding_skills: 88
+    generate_embedding_skills: 88,
+    export_campaign_ai_artifacts: 89,
+    import_campaign_ai_artifacts: 90
   }
 
   enum :status, { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }

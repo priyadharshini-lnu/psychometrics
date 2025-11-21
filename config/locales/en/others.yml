@@ -855,6 +855,7 @@ en:
         data_report_export: Data Report Export
         export_admin_with_permissions: Export Admin With Permissions
         export_assessment_questions: Export Assessment Questions
+        export_campaign_ai_artifacts: Export Campaign AI Artifacts
         export_campaign_factors: Export Campaign Factors
         export_campaign_scorings: Export Campaign Scorings
         export_dashboard_as_file: Export Dashboard as file
@@ -881,6 +882,7 @@ en:
         import_assessment_questions: Import Assessment Questions
         import_assessment_translations: Import Assessment Translations
         import_assessors: Import Assessors
+        import_campaign_ai_artifacts: Import Campaign AI Artifacts
         import_campaign_factors: Import Campaign Factors
         import_datasheet: Import Datasheet
         import_development_action_translations: Import Development Action Translations

@@ -1,12 +1,16 @@
 import React from 'react'
 import { useParams } from 'react-router'
+import Modals from '~/modules/admin/components/Modals'
 import { Resource } from '~/modules/admin/components/Resource'
 import { SettingsTable } from './SettingsTable'
 import { SettingsFilter } from './SettingsFilter'
 import { SettingsDrawer } from './SettingsDrawer'
 import { AiArtifact } from '~/modules/admin/modules/campaigns/core/aiArtifacts'
+import { AIArtifactsImportModal } from './AIArtifactsImportModal'
 
-
+const MODALS = {
+  AIArtifactsImportModal,
+}
 const Settings: React.FC = () => {
   const { campaignId } = useParams()
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false)
@@ -16,8 +20,10 @@ const Settings: React.FC = () => {
     trackUrl: true,
     apiConfig: {
       include: ['ai_assistant'],
+      include_meta: ['permissions'],
+      include_resource_meta: ['permissions'],
     },
-    basePath: `/campaigns/${campaignId}`,
+    basePath: `campaigns/${campaignId}`,
   }
 
   const handleOpenDrawer = (aiArtifact?: AiArtifact) => {
@@ -42,6 +48,7 @@ const Settings: React.FC = () => {
           isOpen={isDrawerOpen}
           aiArtifact={selectedAiArtifact}
         />
+        <Modals modals={MODALS} />
       </Resource>
     </>
   )

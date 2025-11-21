@@ -83,7 +83,8 @@ module AllowedPermissions
     'job_roles' => %w[view manage import_translations export_translations],
     'reflection_questions' => %w[view manage import export],
     'skills' => %w[view manage import export import_translations export_translations],
-    'development_actions' => %w[view manage import export import_translations export_translations]
+    'development_actions' => %w[view manage import export import_translations export_translations],
+    'ai_artifacts' => %w[view manage import export]
   }.freeze
 
   PROJECT_ADMIN_PERMISSIONS = {
@@ -157,6 +158,7 @@ module AllowedPermissions
     'skills' => %w[view manage import export import_translations export_translations],
     'job_roles' => %w[view manage import_translations export_translations],
     'development_actions' => %w[view manage import export import_translations export_translations],
+    'ai_artifacts' => %w[view manage import export],
     'reflection_questions' => %w[view manage import export]
   }.freeze
 
@@ -203,7 +205,8 @@ module AllowedPermissions
     'user_idp_plans' => %w[view manage],
     'job_roles' => %w[view],
     'proficiency_levels' => %w[view],
-    'skills' => %w[view]
+    'skills' => %w[view],
+    'ai_artifacts' => %w[view manage import export]
   }.freeze
 
   THREESIXTY_CAMPAIGN_ADMIN_PERMISSIONS = {

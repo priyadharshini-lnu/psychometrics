@@ -1487,6 +1487,8 @@ only: %i[index create update]
             jsonapi_resources :ai_artifacts, controller: 'campaigns/ai_artifacts' do
               collection do
                 post :bulk_generate
+                post :export
+                post :import
               end
 
               member do

@@ -103,6 +103,8 @@ class AdminJob < ApplicationJob
     import_interview_questions: AdminJobs::ImportInterviewQuestionsJob,
     import_assessment_translations: AdminJobs::ImportAssessmentTranslations,
     bulk_generate_user_campaign_ai_artifact_results: AdminJobs::BulkGenerateUserCampaignAIArtifactResults,
+    export_campaign_ai_artifacts: AdminJobs::ExportCampaignAIArtifactsJob,
+    import_campaign_ai_artifacts: AdminJobs::ImportCampaignAIArtifactsJob,
     generate_embedding_skills: AdminJobs::GenerateEmbeddingSkillsJob
   }.freeze
 

@@ -302,6 +302,9 @@ en:
     ai_artifacts:
       artifact_results: Artifact Results
       code: Code
+      export:
+        success_msg: Exporting AI artifacts in progress. Please check the status in the notifications.
+      export_ai_artifacts: Export AI Artifacts
       form:
         add_assessment: Add Assessment
         ai_assistant: AI Assistant
@@ -326,6 +329,12 @@ en:
       generated_at_time: Generated at %{time}
       generated_value: Generated Value
       id: ID
+      import:
+        download_example_csv: Download Example CSV
+        info_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+      import_action:
+        title: Import Campaign AI Artifacts
+      import_ai_artifacts: Import AI Artifacts
       key: Key
       name: Name
       parsed_dependencies:
@@ -939,6 +948,17 @@ en:
         report_update: Report is updated
         scoring_update: Scoring is updated
         trash_empty: Trash Comment empty
+    campaign_ai_artifacts:
+      export:
+        details: Campaign AI Artifacts exported successfully
+    campaign_ai_artifacts_import:
+      errors:
+        ai_assistant_not_found: 'AI Assistant not found for ID: %{id}'
+        campaign_factor_not_found: Campaign factor with code "%{code}" not found in this campaign
+        dependency_not_found: Dependency %{type} with ID %{id} not found
+        file_required: File is required for import
+        save_failed: 'Failed to save AI artifact "%{code}": %{message}'
+        sheet_column_not_found: Sheet column with name "%{name}" not found in campaign or project datasheets
     campaign_factor_import:
       errors:
         assessment_not_found_in_campaign: Assessment ID '%{assessment_id}' not found in campaign
