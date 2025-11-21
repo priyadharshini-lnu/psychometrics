@@ -70,7 +70,7 @@ module AI
           AI::Tools::Idp::AttachmentAnalysis.new(assistable, current_user, document_analysis_assistant),
           AI::Tools::Idp::SkillGapReportAnalysis.new(assistable, current_user, skill_gap_report_analysis_assistant),
           AI::Tools::Idp::AddSkillToPlan.new(assistable, current_user),
-          AI::Tools::Idp::AvailableSkillsAndDevelopmentActions.new(idp_template)
+          AI::Tools::Idp::AvailableSkillsAndDevelopmentActions.new(assistable)
         ]
       end
 

@@ -35,7 +35,15 @@ module AI
             <name>#{job_role.name}</name>
             <description>#{truncate_description(job_role.description)}</description>
             <code>#{job_role.code}</code>
+            <skills>#{format_skill_names(job_role.skills)}</skills>
           JOB_ROLE_XML
+        end
+
+        def format_skill_names(skills, limit = 5)
+          names = skills.blank? ? [] : skills.pluck(:name)
+          return '' if names.empty?
+
+          names.size <= limit ? names.join(', ') : "#{names.first(limit).join(', ')}..."
         end
 
         def truncate_description(description)

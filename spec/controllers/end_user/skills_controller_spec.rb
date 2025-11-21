@@ -5,8 +5,10 @@ require 'rails_helper'
 describe EndUser::SkillsController, type: :controller do
   let(:current_password) { 'Current@Password129' }
   let!(:user) { create(:user, :with_project_membership, password: current_password) }
-  let!(:user_idp_plan) { create(:user_idp_plan, user: user, active: true) }
   let(:project) { Project.find(user.project.id) } # Ensure we have a proper Project instance
+  let(:campaign) { create(:campaign, project: project, status: :active) }
+  let!(:user_idp_plan) { create(:user_idp_plan, user: user, active: true, campaign: campaign) }
+  let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
   let!(:idp_template) { user_idp_plan.idp_template }
   let!(:skill) { create(:skill, name: 'abc', project: project) }
   let!(:skill2) { create(:skill, name: 'cde', project: project) }

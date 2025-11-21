@@ -15,16 +15,17 @@ module AI
         param :limit,
               desc: 'Max skills to return (default: 5, max: 5)'
 
-        private_attr_reader :idp_template
+        private_attr_reader :idp_template, :user_idp_plan
 
-        def initialize(idp_template)
-          @idp_template = idp_template
+        def initialize(user_idp_plan)
+          @user_idp_plan = user_idp_plan
+          @idp_template = user_idp_plan.idp_template
         end
 
         def execute(query_text:, limit: 5)
           result_limit = [limit.to_i, 5].min
           query_by_similarity_service = Skills::EmbeddingQuery.new(
-            template_skills,
+            skills,
             query_text:,
             limit: result_limit
           )
@@ -89,13 +90,16 @@ module AI
           {
             result_count: result_count,
             query_result_by_type: skills_by_type,
-            total_skills_in_template: template_skills.count
+            total_available_skills: skills.count
           }
         end
 
-        def template_skills
-          @template_skills ||= idp_template.available_skills.with_embeddings.
-                               includes(:development_actions)
+        def available_skills
+          ::Idp::IdpPlan::AvailableSkillsQuery.new(user_idp_plan).query
+        end
+
+        def skills
+          available_skills.with_embeddings.includes(:development_actions)
         end
       end
     end

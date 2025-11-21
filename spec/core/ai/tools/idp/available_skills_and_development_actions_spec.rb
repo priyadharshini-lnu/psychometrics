@@ -3,17 +3,20 @@
 require 'rails_helper'
 
 describe AI::Tools::Idp::AvailableSkillsAndDevelopmentActions do
-  subject { described_class.new(idp_template) }
+  subject { described_class.new(user_idp_plan) }
 
   let(:user) { create(:user) }
   let!(:client) { create(:tenancy) }
   let!(:membership) { create(:client_admin_membership) }
   let!(:project) { create(:project, parent: membership.client) }
+  let(:campaign) { create(:campaign, project: project, status: :active) }
   let!(:skill_settings) do
     { 'technical_client' => 'none', 'technical_global' => 'all',
       'behavioral_client' => 'none', 'behavioral_global' => 'all' }
   end
   let(:idp_template) { create(:idp_template, :published, project: project, skill_settings: skill_settings) }
+  let(:user_idp_plan) { create(:user_idp_plan, campaign: campaign, user: user, idp_template: idp_template) }
+  let!(:campaign_user) { create(:campaign_user, campaign:, user:) }
 
   let!(:skill1) { create(:skill, name: 'Leadership', skill_type: 'behavioral', project: nil) }
   let!(:skill2) { create(:skill, name: 'Communication', skill_type: 'behavioral', project: nil) }
@@ -47,7 +50,7 @@ describe AI::Tools::Idp::AvailableSkillsAndDevelopmentActions do
           :duration, :course_url, :course_start_date, :course_end_date, :type
         )
 
-        expect(result[:meta]).to include(:result_count, :query_result_by_type, :total_skills_in_template)
+        expect(result[:meta]).to include(:result_count, :query_result_by_type, :total_available_skills)
       end
 
       it 'limits results based on limit parameter' do

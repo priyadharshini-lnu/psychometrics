@@ -53,8 +53,9 @@ class Skill < ApplicationRecord
   }
 
   scope :available_skills_by_plan_id, lambda { |plan_id|
-    idp_template = UserIdpPlan.find_by(id: plan_id)&.idp_template
-    idp_template ? idp_template.available_skills(plan_id: plan_id) : idp_template.available_skills
+    Idp::IdpPlan::AvailableSkillsQuery.new(
+      UserIdpPlan.find(plan_id)
+    ).query
   }
 
   scope :excluding_plan, lambda { |plan_id: nil|

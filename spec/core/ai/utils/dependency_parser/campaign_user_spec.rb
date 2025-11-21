@@ -47,12 +47,14 @@ describe AI::Utils::DependencyParser::CampaignUser do
             <name>Software Engineer</name>
           <description>A software engineer responsible for developing applications</description>
           <code>swe</code>
+          <skills></skills>
 
           </current_job_role>
           <target_job_role>
             <name>Senior Software Engineer</name>
           <description>A senior software engineer with leadership responsibilities</description>
           <code>senior_swe</code>
+          <skills></skills>
 
           </target_job_role>
           </campaign_user>
@@ -131,6 +133,53 @@ target_job_role: nil)
         description_text = description_match[1]
         word_count = description_text.gsub('...', '').split.count
         expect(word_count).to eq(50)
+      end
+    end
+
+    context 'when job roles have skills' do
+      let!(:technical_skill)  { create(:skill, name: 'Technical Skill') }
+      let!(:behavioral_skill) { create(:skill, name: 'Behavioral Skill') }
+      let!(:leadership_skill) { create(:skill, name: 'Leadership Skill') }
+      let!(:python_skill)     { create(:skill, name: 'Python Programming') }
+      let!(:java_skill)       { create(:skill, name: 'Java Development') }
+      let!(:sql_skill)        { create(:skill, name: 'SQL Database') }
+
+      before do
+        current_job_role.skills << technical_skill
+        current_job_role.skills << behavioral_skill
+        current_job_role.skills << python_skill
+        target_job_role.skills << leadership_skill
+        target_job_role.skills << java_skill
+      end
+
+      it 'includes skill names in the skills section' do
+        result = subject.parse
+
+        expect(result).to include('<skills>Technical Skill, Behavioral Skill, Python Programming</skills>')
+        expect(result).to include('<skills>Leadership Skill, Java Development</skills>')
+      end
+
+      context 'when job role has more than 5 skills' do
+        before do
+          current_job_role.skills << create(:skill, name: 'Ruby Programming')
+          current_job_role.skills << create(:skill, name: 'JavaScript')
+          current_job_role.skills << create(:skill, name: 'React')
+          current_job_role.skills << create(:skill, name: 'Node.js')
+          current_job_role.skills << create(:skill, name: 'AWS')
+          current_job_role.skills << create(:skill, name: 'Docker')
+        end
+
+        it 'truncates skills to 5 with ellipsis' do
+          result = subject.parse
+
+          expect(result).to include(
+            '<skills>Technical Skill, Behavioral Skill, Python Programming, Ruby Programming, JavaScript...</skills>'
+          )
+          expect(result).not_to include('React')
+          expect(result).not_to include('Node.js')
+          expect(result).not_to include('AWS')
+          expect(result).not_to include('Docker')
+        end
       end
     end
   end
