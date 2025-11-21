@@ -213,9 +213,8 @@ class CampaignFactorsTable extends Component {
 
   renderCampaignFactors () {
     const { model, module } = this.props
-    const { fontSize, fontFamily, fontColor } = module.props.style
+    const { fontFamily, fontColor } = module.props.style
     const style = {
-      fontSize,
       fontFamily,
       color: fontColor,
     }

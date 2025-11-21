@@ -3540,6 +3540,7 @@ en:
           graph_value: Graph value
         graph_value_condition_not_supported_msg: Graph Value Conditions are not supported for this graph type. This option is currently available only for below Graph types.
         graph_value_conditions_title: Graph value conditions
+        hide_responses_with_no_data: Hide responses with no data
         if_graph_value_is: 'If Graph Value is:'
         job_roles:
           current: Current Job Factors
@@ -3559,6 +3560,7 @@ en:
           and: AND
           or: OR
         prevent_value_overlap: Prevent value overlap
+        randomize_answers_order: Randomize answers order
         skill_type_label: Filter by Skill Type
         skill_type_placeholder: Select skill type
         skill_types:

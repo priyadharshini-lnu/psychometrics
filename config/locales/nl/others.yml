@@ -1239,7 +1239,7 @@ nl:
       description: Vul alle velden in om een nieuw wachtwoord aan te maken
       submit: Stuur  in
       title: Vernieuw je wachtwoord
-    lighthouse_logo_alt_text: Vuurtoren logo
+    lighthouse_logo_alt_text: Lighthouse logo
     login:
       continue_btn: Ga verder
       description: Log in met uw persoonlijke accountgegevens
@@ -2341,6 +2341,7 @@ nl:
           in_progress: In uitvoering
           not_started: Niet gestart
     change_password: Wachtwoord wijzigen
+    chatwoot_info_msg: Meld een technisch probleem
     clients:
       actions:
         create:
@@ -2361,7 +2362,6 @@ nl:
     error_warning: Oeps, er is iets misgegaan met je beoordeling. Neem contact op met de ondersteuning.
     hogan:
       cannot_start: Je kunt de hogan beoordeling nu niet starten. Probeer het na een paar minuten.
-    lighthouse_app: Vuurtoren Mercer
     login: Inloggen
     maintenance:
       notification: Lighthouse wordt over 60 seconden uitgeschakeld voor gepland onderhoud
@@ -2968,10 +2968,10 @@ nl:
     used_out_of: "%{used} van %{total}"
   mailer:
     copyright:
-      text: Vuurtoren. Alle rechten voorbehouden
+      text: Lighthouse. Alle rechten voorbehouden
     footer:
       regards: Groeten,
-      team_name: Vuurtoren Team
+      team_name: Lighthouse Team
       technical_support: Voor technische problemen kunt u ons schrijven op <x>email</x> en we zullen binnen 24 uur reageren.
     from: De talentenonderneming
     idp:

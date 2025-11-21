@@ -1242,7 +1242,7 @@ zh:
       description: 请填写所有字段以创建新密码
       submit: 提交
       title: 更新密码
-    lighthouse_logo_alt_text: 灯塔标志
+    lighthouse_logo_alt_text: Lighthouse 标志
     login:
       continue_btn: 继续
       description: 请使用你的个人账户信息登录
@@ -1998,35 +1998,35 @@ zh:
       admin_invitation_instructions:
         accept: 点击此处接受邀请。
         body: '您好 %{name}，我们已邀请您访问Lighthouse（兆光科技）人才企业测评平台的管理面板。 %{accept}或者您可以安全地忽略此邮件。 请不要与任何人共享您的访问凭证。 '
-        subject: 灯塔邀请函
+        subject: Lighthouse 邀请函
       confirmation_instructions:
         subject: 确认说明
       copyright:
         text: Lighthouse. 版权所有
       invitation_instructions:
-        body: '您好 %{name}，您已被添加到莱皓思，成为以下部分的管理员 '
-        login: 登录灯塔
+        body: '您好 %{name}，您已被添加到 Lighthouse，成为以下部分的管理员 '
+        login: 登录 Lighthouse
         sections:
           campaign: 活动： %{section_name}
           client: 客户平台： %{section_name}
           project: 项目： %{section_name}
-        subject: 灯塔邀请函
+        subject: Lighthouse 邀请函
       password_change:
         body: '您好 %{name}！您的密码已被更改。 如果您没有提出此请求，请立即通过 mte.support@mercer.com 联系支持部门。 '
-        regards: '莱皓思团队 '
-        subject: 您的灯塔密码已更改
+        regards: 'Lighthouse 团队 '
+        subject: 您的Lighthouse 密码已更改
       powered_by:
         text: Powered by Lighthouse.
       reset_password_instructions:
         body: '您好 %{name}！有人请求提供更改密码的链接。 您可以通过下面的链接进行更改。 '
         change_password: 更改密码
         footer: 如果您没有要求这样做，您可以放心地忽略这封邮件。 在您访问上面的链接并创建新密码之前，您的密码不会更改。
-        regards: '莱皓思团队 '
+        regards: 'Lighthouse 团队 '
         subject: 重置密码说明
       unlock_instructions:
         body: '您好 %{name}！由于登录失败次数过多，您的账户已被锁定。 点击下面的链接解锁您的账户： '
         footer: 如果您没有要求这样做，您可以放心地忽略这封邮件。 在您访问上面的链接并创建新密码之前，您的密码不会更改。
-        regards: '莱皓思团队 '
+        regards: 'Lighthouse 团队 '
         subject: 账户解锁说明
         unlock_account: 解锁我的账户
     omniauth_callbacks:
@@ -2333,6 +2333,7 @@ zh:
           in_progress: 进行中
           not_started: 未开始
     change_password: 更改密码
+    chatwoot_info_msg: 报告技术问题
     clients:
       actions:
         create:
@@ -2353,10 +2354,9 @@ zh:
     error_warning: 哎呀，您的评估出错了，请联系技术支持。
     hogan:
       cannot_start: 您现在无法启动霍根评估，请几分钟后再试。
-    lighthouse_app: 美世灯塔
     login: 登录
     maintenance:
-      notification: 灯塔将在 60 秒后进行定期维护
+      notification: Lighthouse 将在 60 秒后进行定期维护
     manage: 管理
     'no': 否
     passwordSetting:
@@ -2991,7 +2991,7 @@ zh:
       text: 莱皓思。保留所有权利
     footer:
       regards: 谢谢、
-      team_name: 灯塔团队
+      team_name: Lighthouse 团队
       technical_support: 如有任何技术问题，请致信<x>email</x> ，我们将在 24 小时内给予答复。
     from: 人才企业
     idp:
@@ -3047,15 +3047,15 @@ zh:
       body:
         dear: 亲爱的 %{name}、
         greetings: 希望您拥有美好的一天！
-        instructions: 点击以下链接登录灯塔测评。
+        instructions: 点击以下链接登录Lighthouse 测评。
         signin_link: 登录链接
-      subject: 灯塔登录链接
+      subject: Lighthouse 登录链接
     powered_by:
       text: 由 Lighthouse 提供技术支持。
     users:
       account_disable: 您的帐户因未活动而被禁用
       warning: 您的帐户将很快因未活动而被禁用
-  maintenance_message: 灯塔将在%{start_date}进行定期维护，并且%{duration}将无法使用
+  maintenance_message: Lighthouse 将在%{start_date}进行定期维护，并且%{duration}将无法使用
   maintenance_submessage: 维护完成后，请刷新页面。 您将被重定向到登录页面
   my: 我的
   myself: 我自己

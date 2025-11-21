@@ -2335,6 +2335,7 @@ cs:
           in_progress: Probíhající
           not_started: Nezahájeno
     change_password: Změnit heslo
+    chatwoot_info_msg: Nahlášení technického problému
     clients:
       actions:
         create:
@@ -2355,10 +2356,9 @@ cs:
     error_warning: Ups, něco se při hodnocení pokazilo. Kontaktujte prosím podporu.
     hogan:
       cannot_start: Hodnocení hogana nyní nelze spustit. Zkuste to prosím po několika minutách.
-    lighthouse_app: Mercer Lighthouse
     login: Přihlášení
     maintenance:
-      notification: Maják bude za 60 sekund odstaven z důvodu plánované údržby
+      notification: Lighthouse bude za 60 sekund odstaven z důvodu plánované údržby
     manage: Spravovat
     'no': Ne
     passwordSetting:

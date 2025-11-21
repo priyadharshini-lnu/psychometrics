@@ -1242,7 +1242,7 @@ id:
       description: Isi semua kolom untuk membuat kata sandi baru
       submit: Kirim
       title: Perbarui kata sandi Anda
-    lighthouse_logo_alt_text: Logo mercusuar
+    lighthouse_logo_alt_text: Logo Lighthouse
     login:
       continue_btn: Terus
       description: Silakan masuk dengan informasi akun pribadi Anda
@@ -1998,19 +1998,19 @@ id:
           %{accept} Atau Anda dapat mengabaikan email ini dengan aman.
 
           Harap jangan membagikan kredensial akses Anda dengan siapa pun.
-        subject: Undangan ke Mercusuar
+        subject: Undangan ke Lighthouse
       confirmation_instructions:
         subject: Instruksi konfirmasi
       invitation_instructions:
         body: |-
           Halo %{name},
           Anda telah ditambahkan ke Lighthouse sebagai Admin untuk bagian berikut
-        login: Masuk ke Mercusuar
+        login: Masuk ke Lighthouse
         sections:
           campaign: 'Kampanye: %{section_name}'
           client: 'Klien Pengguna: %{section_name}'
           project: 'Proyek: %{section_name}'
-        subject: Undangan ke Mercusuar
+        subject: Undangan ke Lighthouse
       password_change:
         body: |-
           Halo %{name}!
@@ -2020,8 +2020,8 @@ id:
           Jika Anda tidak mengajukan permintaan ini, segera hubungi Dukungan di mte.support@mercer.com
         regards: |-
           Salam
-          Tim Mercusuar
-        subject: Kata sandi Mercusuar Anda telah berubah
+          Tim Lighthouse
+        subject: Kata sandi Lighthouse Anda telah berubah
       reset_password_instructions:
         body: |-
           Halo %{name}!
@@ -2031,7 +2031,7 @@ id:
         footer: Jika Anda tidak meminta ini, Anda dapat dengan aman mengabaikan email ini. Kata sandi Anda tidak akan berubah sampai Anda mengakses tautan di atas dan membuat yang baru.
         regards: |-
           Salam
-          Tim Mercusuar
+          Tim Lighthouse
         subject: Petunjuk untuk mengatur ulang kata sandi Anda
       unlock_instructions:
         body: |-
@@ -2043,7 +2043,7 @@ id:
         footer: Jika Anda tidak meminta ini, Anda dapat dengan aman mengabaikan email ini. Kata sandi Anda tidak akan berubah sampai Anda mengakses tautan di atas dan membuat yang baru.
         regards: |-
           Salam
-          Tim Mercusuar
+          Tim Lighthouse
         subject: Petunjuk untuk Membuka Kunci Akun Anda
         unlock_account: Buka kunci akun saya
     omniauth_callbacks:
@@ -2350,6 +2350,7 @@ id:
           in_progress: Sedang Berlangsung
           not_started: Tidak Dimulai
     change_password: Mengubah kata sandi
+    chatwoot_info_msg: Melaporkan masalah teknis
     clients:
       actions:
         create:
@@ -2370,10 +2371,9 @@ id:
     error_warning: Ups, ada yang salah dengan penilaian Anda. Silakan hubungi dukungan.
     hogan:
       cannot_start: Anda tidak dapat memulai penilaian hogan sekarang. Silakan coba setelah beberapa menit.
-    lighthouse_app: Mercer Lighthouse
     login: Masuk
     maintenance:
-      notification: Mercusuar akan mati untuk pemeliharaan terjadwal dalam 60 detik
+      notification: Lighthouse akan mati untuk pemeliharaan terjadwal dalam 60 detik
     manage: Kelola
     'no': Tidak
     passwordSetting:
@@ -3002,7 +3002,7 @@ id:
       text: Lighthouse. Hak cipta dilindungi
     footer:
       regards: Salam,
-      team_name: Tim Mercusuar
+      team_name: Tim Lighthouse
       technical_support: Untuk masalah teknis apa pun, silakan kirim email kepada kami di <x>email</x> dan kami akan merespons dalam waktu 24 jam.
     from: Perusahaan Bakat
     idp:
@@ -3066,7 +3066,7 @@ id:
     users:
       account_disable: Akun Anda telah dinonaktifkan karena tidak aktif
       warning: Akun Anda akan segera dinonaktifkan karena tidak aktif
-  maintenance_message: Mercusuar akan mati untuk pemeliharaan terjadwal pada %{start_date} dan tidak akan tersedia untuk %{duration}
+  maintenance_message: Lighthouse akan mati untuk pemeliharaan terjadwal pada %{start_date} dan tidak akan tersedia untuk %{duration}
   maintenance_submessage: Silakan segarkan halaman setelah pemeliharaan selesai. Anda akan diarahkan ke halaman login
   my: Saya
   myself: Diriku

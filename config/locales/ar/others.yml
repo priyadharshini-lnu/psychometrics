@@ -1267,7 +1267,7 @@ ar:
       description: يرجى ملء جميع الحقول لإنشاء كلمة مرور جديدة
       submit: إعادة تعيين كلمة السر
       title: غير كلمة المرور الخاصة بك
-    lighthouse_logo_alt_text: شعار المنارة
+    lighthouse_logo_alt_text: شعار Lighthouse
     login:
       continue_btn: استمر
       description: الرجاء تسجيل الدخول باستخدام معلومات حسابك الشخصية
@@ -2031,19 +2031,19 @@ ar:
           %{accept} أو يمكنك تجاهل هذا البريد الإلكتروني بأمان.
 
           يرجى عدم مشاركة بيانات اعتماد الوصول الخاصة بك مع أي شخص.
-        subject: دعوة إلى المنارة
+        subject: دعوة إلى Lighthouseة
       confirmation_instructions:
         subject: تعليمات التأكيد
       invitation_instructions:
         body: |-
           مرحبا %{name},
-          تمت إضافتك إلى المنارة كمسؤول للقسم التالي
-        login: تسجيل الدخول إلى المنارة
+          تمت إضافتك إلى Lighthouseة كمسؤول للقسم التالي
+        login: تسجيل الدخول إلى Lighthouseة
         sections:
           campaign: 'الحملة: %{section_name}'
           client: 'إيجار العميل: %{section_name}'
           project: 'المشروع: %{section_name}'
-        subject: دعوة إلى المنارة
+        subject: دعوة إلى Lighthouseة
       password_change:
         body: |-
           مرحبا %{name}!
@@ -2053,7 +2053,7 @@ ar:
           إذا لم تقدم هذا الطلب، فيرجى الاتصال بالدعم على الفور على mte.support@mercer.com
         regards: |-
           يتعلق
-          فريق المنارة
+          فريق Lighthouseة
         subject: تم تغيير كلمة مرور Lighthouse الخاصة بك
       reset_password_instructions:
         body: |-
@@ -2064,7 +2064,7 @@ ar:
         footer: إذا لم تطلب ذلك ، فيمكنك تجاهل هذا البريد الإلكتروني بأمان. لن تتغير كلمة المرور الخاصة بك حتى تصل إلى الرابط أعلاه وإنشاء رابط جديد.
         regards: |-
           يتعلق
-          فريق المنارة
+          فريق Lighthouseة
         subject: تعليمات لإعادة تعيين كلمة المرور الخاصة بك
       unlock_instructions:
         body: |-
@@ -2076,7 +2076,7 @@ ar:
         footer: إذا لم تطلب ذلك ، فيمكنك تجاهل هذا البريد الإلكتروني بأمان. لن تتغير كلمة المرور الخاصة بك حتى تصل إلى الرابط أعلاه وإنشاء رابط جديد.
         regards: |-
           يتعلق
-          فريق المنارة
+          فريق Lighthouseة
         subject: تعليمات فتح حسابك
         unlock_account: فتح حسابي
     omniauth_callbacks:
@@ -2383,6 +2383,7 @@ ar:
           in_progress: " على قيد التقدم"
           not_started: لم يبدأ بعد
     change_password: تغيير كلمة السر
+    chatwoot_info_msg: الإبلاغ عن مشكلة فنية
     clients:
       actions:
         create:
@@ -2403,10 +2404,9 @@ ar:
     error_warning: عفوا ، حدث خطأ ما في تقييمك. يرجى الاتصال بالدعم.
     hogan:
       cannot_start: لا يمكنك بدء تقييم هوجان الآن. يرجى المحاولة بعد بضع دقائق.
-    lighthouse_app: ميرسر لايتهاوس
     login: تسجيل الدخول
     maintenance:
-      notification: سيتم تعطيل المنارة للصيانة المجدولة في غضون 60 ثانية
+      notification: سيتم تعطيل Lighthouseة للصيانة المجدولة في غضون 60 ثانية
     manage: " إدارة"
     'no': لا
     passwordSetting:
@@ -3042,10 +3042,10 @@ ar:
     used_out_of: "%{used} من %{total}"
   mailer:
     copyright:
-      text: لايت هاوس. جميع الحقوق محفوظة
+      text: جميع الحقوق محفوظة Lighthouse
     footer:
       regards: مع أطيب التحيات،
-      team_name: فريق لايت هاوس
+      team_name: فريق Lighthouse
       technical_support: لأي مشاكل تقنية، يرجى الكتابة إلينا على %{email} وسنرد خلال 24 ساعة.
     from: مؤسسة المواهب
     idp:
@@ -3105,7 +3105,7 @@ ar:
         signin_link: رابط تسجيل الدخول
       subject: رابط تسجيل الدخول إلى Lighthouse
     powered_by:
-      text: مدعوم من لايت هاوس.
+      text: مدعوم من Lighthouse
     users:
       account_disable: تم تعطيل حسابك بسبب عدم النشاط
       warning: سيتم تعطيل حسابك قريبا بسبب عدم النشاط

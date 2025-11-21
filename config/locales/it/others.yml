@@ -1239,7 +1239,7 @@ it:
       description: Si prega di compilare tutti i campi per creare una nuova password
       submit: Invia
       title: Rinnovare la password
-    lighthouse_logo_alt_text: Logo del faro
+    lighthouse_logo_alt_text: Logo Lighthouse
     login:
       continue_btn: Continua
       description: Effettua l'accesso con le credenziali del tuo account personale
@@ -2341,6 +2341,7 @@ it:
           in_progress: In corso
           not_started: Da iniziare
     change_password: Modifica la password
+    chatwoot_info_msg: Segnala un problema tecnico
     clients:
       actions:
         create:
@@ -2361,7 +2362,6 @@ it:
     error_warning: Oops, qualcosa è andato storto con la valutazione. Si prega di contattare il supporto.
     hogan:
       cannot_start: Non è possibile avviare la valutazione delle hogan in questo momento. Provare dopo qualche minuto.
-    lighthouse_app: Mercer Lighthouse
     login: Accesso
     maintenance:
       notification: Il Lighthouse sarà disattivato per manutenzione programmata tra 60 secondi
@@ -2999,7 +2999,7 @@ it:
       text: Faro. Tutti i diritti riservati
     footer:
       regards: Saluti,
-      team_name: Squadra del Faro
+      team_name: Squadra Lighthouse
       technical_support: Per qualsiasi problema tecnico, scriveteci a <x>email</x> e vi risponderemo entro 24 ore.
     from: L'impresa dei talenti
     idp:

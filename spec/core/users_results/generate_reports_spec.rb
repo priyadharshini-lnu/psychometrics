@@ -31,7 +31,7 @@ describe UsersResults::GenerateReports do
     described_class.call!(user_result, user, exceptUserReportIds: [user_reports[0].id])
   end
 
-  it "doesn't generate report if user_report has approval workflow and set pending_qc status for workflow" do
+  it "doesn't generate report if user_report has approval workflow" do
     user = create(:user, :with_project_membership)
     assessment = create(:assessment, :with_report)
     campaign = create(:campaign, project: user.project)
@@ -41,8 +41,7 @@ describe UsersResults::GenerateReports do
     create(:user_assessment, campaign: campaign, assessment: assessment, subject: user,
            evaluator: user, users_result: user_result)
 
-    expect(user_report.approval_status).to eq('not_ready')
     described_class.call!(user_result, user)
-    expect(user_report.reload.approval_status).to eq('pending_qc')
+    expect(UserReports::GenerateAndSavePdfJob).to_not receive(:perform_later).with(user_report, user)
   end
 end

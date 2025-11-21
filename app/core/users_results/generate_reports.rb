@@ -14,13 +14,7 @@ module UsersResults
       user_result.user_reports.each do |user_report|
         next if options[:exceptUserReportIds]&.include?(user_report.id)
 
-        if user_report.has_approval_workflow?
-          if user_report.threesixty?
-            user_report.start_approval! if user_report.threesixty_subject.evaluation_status_completed?
-          else
-            user_report.start_approval!
-          end
-        else
+        unless user_report.has_approval_workflow?
           user_report.update_attribute(:approval_status, :approved)
           UserReports::GenerateAndSavePdfJob.perform_later(user_report, current_user)
         end

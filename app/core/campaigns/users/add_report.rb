@@ -71,7 +71,7 @@ module Campaigns
       def set_approval_status_for_user_report(user_report)
         return user_report.update_attribute(:approval_status, :approved) unless user_report.has_approval_workflow?
 
-        user_report.start_approval! if user_report.all_assessments_are_scored?
+        user_report.start_approval!
       end
 
       def find_or_create_assessment_to_user(assessment)

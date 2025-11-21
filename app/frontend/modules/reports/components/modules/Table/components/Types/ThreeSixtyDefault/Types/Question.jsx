@@ -97,6 +97,12 @@ function FilterTable ({
     return results
   }
 
+  const results = getResults()
+  // Hide entire row (including header) if hideRolesWithNoData is true and no results
+  if (model.props.hideRolesWithNoData && (!results || results.length === 0)) {
+    return null
+  }
+
   return (
     <tbody data-paginatable={1} data-filter-id={filter.id}>
       <tr data-filter-header>
@@ -104,7 +110,7 @@ function FilterTable ({
           {I18nStore.tFilterName(filter)}
         </td>
       </tr>
-      <Results filterId={filterId} results={getResults()} paginationContext={paginationContext} />
+      <Results filterId={filterId} results={results} paginationContext={paginationContext} />
     </tbody>
   )
 }
