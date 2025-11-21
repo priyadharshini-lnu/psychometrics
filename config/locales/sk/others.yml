@@ -2709,7 +2709,6 @@ sk:
           name: Meno
           publish_date: Dátum zverejnenia
           review_date: Dátum revízie
-          role: Súčasná úloha
       guidelines:
         cards:
           c1:

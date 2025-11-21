@@ -2719,7 +2719,6 @@ de:
           name: Name
           publish_date: Veröffentlichungsdatum
           review_date: Überprüfungsdatum
-          role: Aktuelle Position
       guidelines:
         cards:
           c1:

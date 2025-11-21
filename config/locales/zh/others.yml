@@ -2702,7 +2702,6 @@ zh:
           name: 姓名
           publish_date: 发布日期
           review_date: 审核日期
-          role: 当前角色
       guidelines:
         cards:
           c1:

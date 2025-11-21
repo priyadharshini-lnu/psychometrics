@@ -2318,7 +2318,6 @@ de:
         name: Name
         publish_date: Datum der Veröffentlichung
         review_date: Datum der Überprüfung
-        role: Aktuelle Rolle
       fields_label: Felder
       global_skills: Globale Fertigkeiten
       idp: IDP

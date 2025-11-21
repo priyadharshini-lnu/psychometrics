@@ -2756,11 +2756,12 @@ en:
           assigned_data: Assigned Date
           assigned_date: Assigned Date
           completion_date: Completion Date
+          current_job_role: Current Job Role
           division: Division
           name: Name
           publish_date: Publish Date
           review_date: Review Date
-          role: Current Role
+          target_job_role: Target Job Role
       guidelines:
         cards:
           c1:

@@ -2318,7 +2318,6 @@ sk:
         name: Meno
         publish_date: Dátum zverejnenia
         review_date: Dátum revízie
-        role: Súčasná úloha
       fields_label: Polia
       global_skills: Globálne zručnosti
       idp: IDP

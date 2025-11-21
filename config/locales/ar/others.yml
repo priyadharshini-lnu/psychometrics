@@ -2751,7 +2751,6 @@ ar:
           name: الاسم
           publish_date: تاريخ النشر
           review_date: تاريخ المراجعة
-          role: الدور الحالي
       guidelines:
         cards:
           c1:

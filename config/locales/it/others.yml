@@ -2710,7 +2710,6 @@ it:
           name: Nome
           publish_date: Data di Pubblicazione
           review_date: Data di Revisione
-          role: Ruolo Attuale
       guidelines:
         cards:
           c1:

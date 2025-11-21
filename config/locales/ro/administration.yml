@@ -2318,7 +2318,6 @@ ro:
         name: Nume
         publish_date: Data publicării
         review_date: Data revizuirii
-        role: Rolul actual
       fields_label: Câmpuri
       global_skills: Competențe globale
       idp: IDP

@@ -2318,7 +2318,6 @@ th:
         name: ชื่อ
         publish_date: วันที่เผยแพร่
         review_date: วันที่ตรวจสอบ
-        role: บทบาทปัจจุบัน
       fields_label: ฟิลด์
       global_skills: ทักษะระดับโลก
       idp: ผู้พลัดถิ่น

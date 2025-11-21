@@ -2318,7 +2318,6 @@ sl:
         name: Ime
         publish_date: Datum objave
         review_date: Datum pregleda
-        role: Trenutna vloga
       fields_label: Polja
       global_skills: Globalne spretnosti
       idp: IDP

@@ -2318,7 +2318,6 @@ cs:
         name: Název
         publish_date: Datum zveřejnění
         review_date: Datum recenze
-        role: Současná role
       fields_label: Pole
       global_skills: Globální dovednosti
       idp: IDP

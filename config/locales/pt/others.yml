@@ -2723,7 +2723,6 @@ pt:
           name: Nome
           publish_date: Data de Publicação
           review_date: Data de Revisão
-          role: Função Atual
       guidelines:
         cards:
           c1:

@@ -2320,7 +2320,6 @@ hu:
         name: Név
         publish_date: Közzététel dátuma
         review_date: Felülvizsgálat dátuma
-        role: Jelenlegi szerepe
       fields_label: Mezők
       global_skills: Globális készségek
       idp: IDP

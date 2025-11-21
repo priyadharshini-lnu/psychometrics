@@ -2318,7 +2318,6 @@ nl:
         name: Naam
         publish_date: Publicatiedatum
         review_date: Herzieningsdatum
-        role: Huidige rol
       fields_label: Velden
       global_skills: Wereldwijde vaardigheden
       idp: IDP

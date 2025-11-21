@@ -2318,7 +2318,6 @@ it:
         name: Nome
         publish_date: Data di pubblicazione
         review_date: Data di revisione
-        role: Ruolo attuale
       fields_label: Campi
       global_skills: Competenze globali
       idp: IDP

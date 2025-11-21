@@ -2703,7 +2703,6 @@ vi:
           name: Tên
           publish_date: Ngày xuất bản
           review_date: Ngày đánh giá
-          role: Vai trò hiện tại
       guidelines:
         cards:
           c1:

@@ -2318,7 +2318,6 @@ ja:
         name: 名称
         publish_date: 発行日
         review_date: 審査日
-        role: 現在の役割
       fields_label: フィールド
       global_skills: グローバル・スキル
       idp: アイディーピー

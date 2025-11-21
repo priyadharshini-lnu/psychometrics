@@ -2318,7 +2318,6 @@ sr-Latn:
         name: Ime
         publish_date: Datum objavljivanja
         review_date: Datum pregleda
-        role: Trenutna uloga
       fields_label: Polja
       global_skills: Globalne veštine
       idp: IDP

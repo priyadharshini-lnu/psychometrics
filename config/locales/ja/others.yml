@@ -2699,7 +2699,6 @@ ja:
           name: 名前
           publish_date: 公開日
           review_date: レビュー日
-          role: 現在の役割
       guidelines:
         cards:
           c1:

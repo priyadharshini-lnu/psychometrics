@@ -2713,7 +2713,6 @@ pl:
           name: Imię i nazwisko
           publish_date: Data publikacji
           review_date: Data przeglądu
-          role: Obecna rola
       guidelines:
         cards:
           c1:

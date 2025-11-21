@@ -2318,7 +2318,6 @@ en-US:
         name: Name
         publish_date: Publish Date
         review_date: Review Date
-        role: Current Role
       fields_label: Fields
       global_skills: Global Skills
       idp: IDP

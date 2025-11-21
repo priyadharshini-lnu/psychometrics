@@ -2707,7 +2707,6 @@ en-US:
           name: Name
           publish_date: Publish Date
           review_date: Review Date
-          role: Current Role
       guidelines:
         cards:
           c1:

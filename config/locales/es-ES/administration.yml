@@ -2318,7 +2318,6 @@ es-ES:
         name: Nombre
         publish_date: Fecha de publicación
         review_date: Fecha de revisión
-        role: Función actual
       fields_label: Campos
       global_skills: Habilidades globales
       idp: PDI

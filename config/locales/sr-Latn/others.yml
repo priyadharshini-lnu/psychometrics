@@ -2727,7 +2727,6 @@ sr-Latn:
           name: Ime
           publish_date: Datum objavljivanja
           review_date: Datum pregleda
-          role: Trenutna uloga
       guidelines:
         cards:
           c1:

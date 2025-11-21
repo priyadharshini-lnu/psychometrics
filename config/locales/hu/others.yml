@@ -2709,7 +2709,6 @@ hu:
           name: Név
           publish_date: Közzététel dátuma
           review_date: Felülvizsgálat dátuma
-          role: Jelenlegi szerepe
       guidelines:
         cards:
           c1:

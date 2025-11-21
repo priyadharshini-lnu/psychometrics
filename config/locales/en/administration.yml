@@ -2349,11 +2349,12 @@ en:
         assigned_data: Assigned Data
         assigned_date: Assigned Date
         completion_date: Completion Date
+        current_job_role: Current Job Role
         division: Division
         name: Name
         publish_date: Publish Date
         review_date: Review Date
-        role: Current Role
+        target_job_role: Target Job Role
       fields_label: Fields
       global_skills: Global Skills
       idp: IDP

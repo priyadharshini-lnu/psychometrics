@@ -2669,7 +2669,6 @@ es-ES:
           name: Nombre
           publish_date: Fecha de Publicación
           review_date: Fecha de Revisión
-          role: Rol Actual
       guidelines:
         cards:
           c1:

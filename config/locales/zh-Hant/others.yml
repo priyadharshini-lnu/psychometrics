@@ -2692,7 +2692,6 @@ zh-Hant:
           name: 姓名
           publish_date: 發佈日期
           review_date: 審核日期
-          role: 當前角色
       guidelines:
         cards:
           c1:

@@ -2318,7 +2318,6 @@ ko:
         name: 이름
         publish_date: 게시 날짜
         review_date: 검토 날짜
-        role: 현재 역할
       fields_label: 필드
       global_skills: 글로벌 기술
       idp: IDP

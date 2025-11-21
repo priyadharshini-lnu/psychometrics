@@ -2318,7 +2318,6 @@ bg:
         name: Име
         publish_date: Дата на публикуване
         review_date: Дата на преглед
-        role: Настояща роля
       fields_label: Полета
       global_skills: Глобални умения
       idp: IDP

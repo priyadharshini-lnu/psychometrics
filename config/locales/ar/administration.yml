@@ -2318,7 +2318,6 @@ ar:
         name: الاسم
         publish_date: تاريخ النشر
         review_date: تاريخ المراجعة
-        role: الدور الحالي
       fields_label: الحقول
       global_skills: Global Skills
       idp: IDP

@@ -2704,7 +2704,6 @@ nl:
           name: Naam
           publish_date: Publicatiedatum
           review_date: Datum van beoordeling
-          role: Huidige rol
       guidelines:
         cards:
           c1:

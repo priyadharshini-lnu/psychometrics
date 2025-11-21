@@ -2706,7 +2706,6 @@ th:
           name: ชื่อ
           publish_date: วันที่เผยแพร่
           review_date: วันที่ตรวจสอบ
-          role: บทบาทปัจจุบัน
       guidelines:
         cards:
           c1:

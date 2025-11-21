@@ -2318,7 +2318,6 @@ zh-Hant:
         name: 名稱
         publish_date: 出版日期
         review_date: 審核日期
-        role: 目前角色
       fields_label: 字段
       global_skills: 全球技能
       idp: IDP

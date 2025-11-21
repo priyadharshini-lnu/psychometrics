@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class UserIdpPlanSerializer < Panko::Serializer
-  attributes :name, :role, :division, :reflection_questions, :status, :start_date, :assigned_date, :end_date,
-             :completed_date, :user_idp_skills
+  attributes :name, :current_job_role, :target_job_role, :division, :reflection_questions, :status, :start_date,
+             :assigned_date, :end_date, :completed_date, :user_idp_skills
 
   def user_idp_skills
     skills = object.user_idp_skills.public_skills.includes(:skill, :user_idp_development_actions)
@@ -27,8 +27,12 @@ class UserIdpPlanSerializer < Panko::Serializer
     object.user.name
   end
 
-  def role
-    object.user.user_profile.custom_fields['role']
+  def current_job_role
+    object.campaign_user.current_job_role&.name
+  end
+
+  def target_job_role
+    object.campaign_user.target_job_role&.name
   end
 
   def division

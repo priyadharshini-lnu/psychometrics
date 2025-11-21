@@ -2318,7 +2318,6 @@ pl:
         name: Nazwa
         publish_date: Data publikacji
         review_date: Data przeglądu
-        role: Obecna rola
       fields_label: Pola
       global_skills: Umiejętności globalne
       idp: IDP

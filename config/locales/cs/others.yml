@@ -2698,7 +2698,6 @@ cs:
           name: Jméno
           publish_date: Datum publikace
           review_date: Datum kontroly
-          role: Současná role
       guidelines:
         cards:
           c1:

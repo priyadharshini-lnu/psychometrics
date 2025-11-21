@@ -2709,7 +2709,6 @@ ro:
           name: Nume
           publish_date: Data publicării
           review_date: Data revizuirii
-          role: Rolul actual
       guidelines:
         cards:
           c1:

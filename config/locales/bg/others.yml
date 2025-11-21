@@ -2709,7 +2709,6 @@ bg:
           name: Име
           publish_date: Дата на публикуване
           review_date: Дата на преглед
-          role: Настояща роля
       guidelines:
         cards:
           c1:

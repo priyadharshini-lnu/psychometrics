@@ -2724,7 +2724,6 @@ hr:
           name: Ime
           publish_date: Datum objave
           review_date: Datum pregleda
-          role: Trenutna uloga
       guidelines:
         cards:
           c1:

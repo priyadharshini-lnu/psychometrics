@@ -2318,7 +2318,6 @@ zh:
         name: 名称
         publish_date: 发布日期
         review_date: 审查日期
-        role: 当前角色
       fields_label: 字段
       global_skills: 全球技能
       idp: IDP

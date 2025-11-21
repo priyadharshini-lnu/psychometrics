@@ -2318,7 +2318,6 @@ id:
         name: Nama
         publish_date: Tanggal Publikasi
         review_date: Tanggal Peninjauan
-        role: Peran Saat Ini
       fields_label: Bidang
       global_skills: Keterampilan Global
       idp: IDP

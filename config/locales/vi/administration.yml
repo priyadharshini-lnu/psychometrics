@@ -2318,7 +2318,6 @@ vi:
         name: Tên
         publish_date: Ngày xuất bản
         review_date: Ngày đánh giá
-        role: Vai trò hiện tại
       fields_label: Lĩnh vực
       global_skills: Kỹ năng toàn cầu
       idp: IDP
