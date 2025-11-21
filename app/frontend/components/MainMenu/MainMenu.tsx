@@ -9,6 +9,7 @@ import { useMedia } from 'use-media'
 import { useLocation } from 'react-router-dom'
 import cs from 'classnames'
 
+import { isRtl } from '~/utils/locales'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { getFeatures } from '~/core/config'
 import { DefaultAntThemeWrapper, AccessibleMenu } from '~/glint'
@@ -33,21 +34,29 @@ const connecter = connect(
     features: getFeatures(state),
   }),
   {
-    openSubmenu, triggerCollapse,
+    openSubmenu,
+    triggerCollapse,
   },
 )
 
 export type PropsFromRedux = ConnectedProps<typeof connecter>
 
 type Props = PropsFromRedux & {
-    selected?: string[]
+  selected?: string[]
 }
 
 const { I18n } = window
 
-const MainMenuComponent:FC<Props> = ({
-  currentUser, hasSubmenu, openSubmenu, collapsed, triggerCollapse, links,
-  showSubmenu, selected, features,
+const MainMenuComponent: FC<Props> = ({
+  currentUser,
+  hasSubmenu,
+  openSubmenu,
+  collapsed,
+  triggerCollapse,
+  links,
+  showSubmenu,
+  selected,
+  features,
 }) => {
   const isSmallScreen = useMedia({
     maxWidth: 1024,
@@ -59,6 +68,7 @@ const MainMenuComponent:FC<Props> = ({
   }
 
   const selectedKey = getSelected()
+  const rtl = isRtl(I18n.locale)
 
   const isContentSubMenuOpen = ['assessments', 'norms',
     'dimensions', 'reports', 'questionCenter', 'libraries'].includes(selectedKey) || false
@@ -111,7 +121,7 @@ const MainMenuComponent:FC<Props> = ({
           styles={{
             body: { padding: 0 },
           }}
-          placement="left"
+          placement={rtl ? 'right' : 'left'}
           width={SIDEBAR_WIDTH}
           open={!showSubmenu && !collapsed}
           onClose={() => closeMenu()}
