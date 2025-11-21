@@ -30,6 +30,7 @@ export const SavilleFields: React.FC<{
         <Select
           notFoundContent={isLoading('fetch') ? <Spin size="small" /> : null}
           showSearch
+          optionFilterProp="label"
           onSelect={(value) => {
             const selectedOption = externalAssessments.find(option => option.id === value)
 
@@ -37,11 +38,13 @@ export const SavilleFields: React.FC<{
               handleAssessmentSelect(selectedOption.name)
             }
           }}
-        >
-          {getAllExternalAssessments(externalAssessments, assessment?.externalSettings).map(({ id, name }) => (
-            <Select.Option key={id} value={id}>{name}</Select.Option>
+          options={getAllExternalAssessments(externalAssessments, assessment?.externalSettings).map(({ id, name }) => (
+            {
+              label: name,
+              value: id,
+            }
           ))}
-        </Select>
+        />
       </Form.Item>
     </>
   )
