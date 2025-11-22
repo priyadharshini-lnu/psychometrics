@@ -7,6 +7,7 @@ import { Link, useParams } from 'react-router-dom'
 import {
   PlusOutlined,
   CloseOutlined,
+  CloudDownloadOutlined,
 } from '@ant-design/icons'
 import { ConnectedProps, connect } from 'react-redux'
 import * as t from 'io-ts'
@@ -18,8 +19,12 @@ import { ResourceAvatar } from '~/glint'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import Modals from '~/modules/admin/components/Modals'
 import { SubjectAddFormModal } from './SubjectAddFormModal'
+import { SubjectBulkImportModal } from './SubjectBulkImportModal'
 import dayjs from '~/utils/dayjs'
 import { ActionsDropdown } from './ActionsDropdown'
+import { importCSV, IMPORT_CSV } from '~/modules/admin/modules/client/core/workshopInvitedSubject'
+import { isRequestInProgress } from '~/core/request'
+import { RootState } from '~/modules/admin/core/rootReducers'
 
 const { I18n } = window
 const { Text } = Typography
@@ -35,7 +40,12 @@ const STATUSES_TO_COLOR = {
   rescheduled: 'success',
 }
 
-const connector = connect(null, { openModal })
+const connector = connect(
+  (state: RootState) => ({
+    importInProgress: isRequestInProgress(state, IMPORT_CSV),
+  }),
+  { openModal, importCSV },
+)
 type Props = ConnectedProps<typeof connector>
 
 interface FilterProps {
@@ -43,14 +53,16 @@ interface FilterProps {
   openModal: (modalName: string) => void
   handleBulkConfirmAction: (action: string) => void
   selectedWorkshopInvitedSubjects: WorkshopInvitedSubject[]
+  showBulkImportModal: (show: boolean) => void
 }
 
 type Permission = {
   resendInvite?: boolean
   create?: boolean
+  importSubjectsFromCsv?: boolean
 }
 
-export const SubjectListComponent:React.FC<Props> = ({ openModal }) => {
+export const SubjectListComponent:React.FC<Props> = ({ openModal, importCSV, importInProgress }) => {
   const { inviteId, campaignId, projectId } = useParams<{ inviteId: string, projectId: string, campaignId: string }>()
   const assessmentCenterPath = `/admin/projects/${projectId}/new_campaigns/${campaignId}/scheduling/assessment_center/`
 
@@ -68,18 +80,36 @@ export const SubjectListComponent:React.FC<Props> = ({ openModal }) => {
   return (
     <>
       <Resource config={config} name="workshop_invited_subjects">
-        <SubjectsTable openModal={openModal} assessmentCenterPath={assessmentCenterPath} />
+        <SubjectsTable
+          openModal={openModal}
+          assessmentCenterPath={assessmentCenterPath}
+          importCSV={importCSV}
+          importInProgress={importInProgress}
+        />
       </Resource>
     </>
   )
 }
 
-const SubjectsTable = ({ openModal, assessmentCenterPath }) => {
+const SubjectsTable = ({
+  openModal, assessmentCenterPath, importCSV, importInProgress,
+}) => {
   const { modal, message } = App.useApp()
   const { resource } = useResourceContext<WorkshopInvitedSubject>()
-  const { collectionAction, data, meta } = resource
+  const {
+    collectionAction, data, meta, fetch,
+  } = resource
+  const { campaignId, inviteId } = useParams() as { campaignId: string, inviteId: string }
 
   const [selectedWorkshopInvitedSubjects, setSelectedWorkshopInvitedSubjects] = useState<WorkshopInvitedSubject[]>([])
+  const [bulkImportModal, showBulkImportModal] = useState(false)
+  const [csvErrors, setCsvErrors] = useState<{
+    index: number
+    email: string | null
+    workshopInviteName?: string
+    errorType?: string
+  }[]>([])
+
 
   const workshopInviteSubjectIds = selectedWorkshopInvitedSubjects.map(subject => subject.id)
 
@@ -92,6 +122,10 @@ const SubjectsTable = ({ openModal, assessmentCenterPath }) => {
   }
 
   const handleBulkConfirmAction = (action) => {
+    if (action === 'import_subjects') {
+      showBulkImportModal(true)
+      return
+    }
     const { title, content } = bulkActionDetails(action)
     modal.confirm({
       title,
@@ -115,6 +149,33 @@ const SubjectsTable = ({ openModal, assessmentCenterPath }) => {
     }
   }
 
+  const handleUpload = (file: File) => {
+    const fd = new FormData()
+    fd.append('page[size]', '300')
+    fd.append('file', file)
+
+    setCsvErrors([])
+
+    importCSV(campaignId, inviteId, fd)
+      .then(({ response }) => {
+        if (response.meta && response.meta.errors && response.meta.errors.length > 0) {
+          setCsvErrors(response.meta.errors)
+          return
+        }
+
+        if (response.meta && response.meta.jobQueued) {
+          message.success(I18n.t('admin.import_queued_success'), 8)
+        }
+
+        fetch()
+        showBulkImportModal(false)
+        setCsvErrors([])
+      })
+      .catch(() => {
+        message.error(I18n.t('admin.import_error'))
+      })
+  }
+
   return (
     <>
       <Filter
@@ -122,6 +183,7 @@ const SubjectsTable = ({ openModal, assessmentCenterPath }) => {
         openModal={openModal}
         handleBulkConfirmAction={handleBulkConfirmAction}
         selectedWorkshopInvitedSubjects={selectedWorkshopInvitedSubjects}
+        showBulkImportModal={showBulkImportModal}
       />
       <Resource.Table pagination>
         <Resource.Column
@@ -244,6 +306,16 @@ const SubjectsTable = ({ openModal, assessmentCenterPath }) => {
         />
       </Resource.Table>
       <Modals modals={{ SubjectAddFormModal }} />
+      <SubjectBulkImportModal
+        open={bulkImportModal}
+        onCancel={() => {
+          showBulkImportModal(false)
+          setCsvErrors([])
+        }}
+        onUpload={handleUpload}
+        importInProgress={importInProgress}
+        csvErrors={csvErrors}
+      />
     </>
   )
 }
@@ -254,6 +326,7 @@ const Filter: React.FC<FilterProps> = ({
   openModal,
   handleBulkConfirmAction,
   selectedWorkshopInvitedSubjects,
+  showBulkImportModal,
 }) => (
   <Resource.Filter
     placeholder="Search"
@@ -265,6 +338,13 @@ const Filter: React.FC<FilterProps> = ({
       permissions={permissions}
       isDisabled={selectedWorkshopInvitedSubjects.length === 0}
     />
+    {(permissions.importSubjectsFromCsv) && (
+      <Button onClick={() => showBulkImportModal(true)}>
+        <CloudDownloadOutlined />
+        {' '}
+        {I18n.t('admin.import_users')}
+      </Button>
+    )}
     {permissions.create && (
       <Button type="primary" onClick={() => openModal('SubjectAddFormModal')}>
         <PlusOutlined />

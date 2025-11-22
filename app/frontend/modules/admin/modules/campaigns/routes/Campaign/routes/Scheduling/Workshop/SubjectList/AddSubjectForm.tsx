@@ -22,9 +22,10 @@ export const AddSubjectForm:React.FC<Props> = ({ close }) => {
   const {
     data: users, fetch: fetchUsers, isLoading: isUsersLoading,
   } = useResources<User>('users', { basePath: `campaigns/${campaignId}`, responseType: UserTR })
+  const [form] = Form.useForm()
 
   const transformValues = values => ({
-    userId: values.subjectId,
+    userId: values.userId,
     workshopId: values.workshopId,
   })
 
@@ -38,11 +39,12 @@ export const AddSubjectForm:React.FC<Props> = ({ close }) => {
       modalProps={{ width: 720 }}
       request={{ createResource: resource.createResource }}
       transformValues={transformValues}
+      storeManager={{ form }}
     >
       {() => (
         <>
           <Form.Item
-            name="subjectId"
+            name="userId"
             label={I18n.t('administration.scheduling.campaign_participants')}
             rules={[{ required: true }]}
           >

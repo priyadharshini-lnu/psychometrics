@@ -32,6 +32,20 @@ en:
     delete_ok_text: Yes, Delete
     development_actions: Development Actions
     dimensions: Dimensions
+    empty_csv_file: CSV file does not contain any data.
+    import_csv_assessment_group_error: 'Row %{index}: user with email %{email} is already invited to ''%{workshopInviteName}'''
+    import_csv_error: 'Row %{index}: user with email %{email} is not in this campaign'
+    import_description: Import users from a CSV file. Each row must contain an email address.
+    import_download_sample: Download example CSV
+    import_error: Import failed. Please try again.
+    import_errors_title: Import Errors
+    import_file_required: Please select a CSV file to upload.
+    import_queued_success: Subjects import job was scheduled successfully. Please check your notification for status.
+    import_sample_file_label: 'Sample file:'
+    import_title: Import Subjects from CSV
+    import_upload: Upload
+    import_users: Import Users
+    invalid_csv_header: CSV file contains invalid headers.
     libraries: Media Library
     library_invalid_type: Invalid Library Item
     no_notifications: No Notifications
@@ -91,6 +105,7 @@ en:
     skills_taxonomy: Skills Taxonomy
     slot_name: Slot Name
     stats: Stats
+    subject_part_of_other_invite: Subject with email %{user_email} is already invited to '%{workshop_invite_name}'
     user_report_events: User Report Events
     users: Users
     view_licenses: View Licenses
