@@ -129,7 +129,7 @@ describe AI::Tools::Idp::AttachmentAnalysis do
           expect(result).to eq('Document analysis with default prompt complete')
         end
 
-        it 'passes correct chat and chat_params to AssistantService' do
+        it 'passes correct chat and ask_params to AssistantService' do
           stub_wisper_publisher('AI::AssistantService', :call, :ok, { message: 'AI analysis complete' })
           allow(AI::AssistantService).to receive(:new).and_call_original
 
@@ -140,8 +140,9 @@ describe AI::Tools::Idp::AttachmentAnalysis do
             current_user,
             'Document is a resume',
             chat: ai_assistant_chat.with_assistant_context,
-            chat_params: { with: 'https://example.com/document.pdf', service: :openai_response_api },
-            ignore_user_prompt: nil
+            ask_params: { with: 'https://example.com/document.pdf', service: :openai_response_api },
+            ignore_user_prompt: nil,
+            params: {}
           )
         end
       end

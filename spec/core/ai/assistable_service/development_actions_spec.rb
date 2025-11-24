@@ -149,7 +149,7 @@ describe AI::AssistableService::DevelopmentActions do
           expect(prompt).to be_a(String)
           expect(options_hash[:chat]).to eq(session.latest_chat)
           expect(options_hash[:ignore_user_prompt]).to eq(false)
-          expect(options_hash[:chat_params]).to be_nil
+          expect(options_hash[:ask_params]).to be_nil
         end
       end
     end

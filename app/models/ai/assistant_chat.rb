@@ -27,23 +27,7 @@ class AI::AssistantChat < ApplicationRecord
   def with_assistant_context(options = {})
     self.assume_model_exists = provider_config['custom_provider'].present?
 
-    to_llm.with_context(ai_assistant.ruby_llm_context)
-
-    if ai_assistant.has_ruby_llm_schema?
-      with_schema(ai_assistant.output_schema_class)
-    end
-
-    if options[:tools]
-      with_tools(*options[:tools], replace: true)
-    end
-
-    if options[:params]
-      with_params(**options[:params])
-    end
-
-    if provider_config['headers']
-      with_headers(**provider_config['headers'])
-    end
+    ai_assistant.configure_chat(self, options)
 
     self
   end

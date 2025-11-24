@@ -31,7 +31,7 @@ class AI::AssistedUserSession < ApplicationRecord
   end
 
   def mark_as_completed!(checkpoint = nil)
-    update!(status: :completed, checkpoint: checkpoint, error: nil, meta: nil)
+    update!(status: :completed, checkpoint: checkpoint, error: nil)
   end
 
   def mark_as_failed!(error_message = nil, meta: nil)

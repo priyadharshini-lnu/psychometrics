@@ -163,7 +163,7 @@ export const AIChat = () => {
     url: '/ai_assisted_idp_chats/upload_document',
     data: {},
     pollingInterval: 3,
-    numberOfTimesToPoll: 30,
+    numberOfTimesToPoll: 60,
     responseType: AsyncChatTR,
   })
 
