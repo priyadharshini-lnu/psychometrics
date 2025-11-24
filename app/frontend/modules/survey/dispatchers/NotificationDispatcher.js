@@ -14,6 +14,11 @@ function addNotification (args) {
     type: args.level || 'success',
     timeout: args.timeout || 2000,
     layout: 'topCenter',
+    callbacks: {
+      onShow () {
+        this.$el.css('z-index', 5003)
+      },
+    },
   })
 }
 
