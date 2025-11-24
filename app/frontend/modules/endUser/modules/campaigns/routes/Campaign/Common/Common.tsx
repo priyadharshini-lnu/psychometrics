@@ -298,11 +298,17 @@ const CommonComponent: FC<CommonComponentProps> = ({
                         <Col span={24} style={{ paddingInlineStart: '14px' }}>
                           {canBeginCampaign && (
                             <>
+                              <Alert
+                                type="warning"
+                                message={
+                                  getBeginOrContinueMessage(fixedTimed, proctoringEnabled, I18n.t('campaign.begin'))
+                                }
+                              />
                               <Title className={styles.beginText} level={4}>
                                 {I18n.t('campaign.begin')}
                               </Title>
                               <Button
-                                size="small"
+                                size="middle"
                                 type="primary"
                                 onClick={handleStartCampaignActivities}
                                 disabled={!allPreworkIsComplete}
@@ -319,7 +325,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
                                 {I18n.t('campaign.restart_practice')}
                               </Title>
                               <Button
-                                size="small"
+                                size="middle"
                                 type="primary"
                                 onClick={() => handleResetPracticeCampaign(campaign.id)}
                                 icon={<ReloadOutlined />}
@@ -330,11 +336,17 @@ const CommonComponent: FC<CommonComponentProps> = ({
                           )}
                           {canContinueCampaign && (
                             <>
+                              <Alert
+                                type="warning"
+                                message={
+                                  getBeginOrContinueMessage(fixedTimed, proctoringEnabled, I18n.t('campaign.continue'))
+                                }
+                              />
                               <Title className={styles.beginText} level={4}>
                                 {I18n.t('campaign.continue')}
                               </Title>
                               <Button
-                                size="small"
+                                size="middle"
                                 type="primary"
                                 onClick={handleStartCampaignActivities}
                                 disabled={!allPreworkIsComplete}
@@ -343,6 +355,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
                                 {' '}
                                 <DirectionalArrowIcon />
                               </Button>
+
                             </>
                           )}
                           {fixedTimed && !allPreworkIsComplete && (canBeginCampaign || canContinueCampaign) && (
@@ -376,6 +389,19 @@ const CommonComponent: FC<CommonComponentProps> = ({
       }
     </>
   )
+}
+
+const getBeginOrContinueMessage = (fixedTimed: boolean, proctoringEnabled: boolean, buttonText: string) => {
+  if (fixedTimed && proctoringEnabled) {
+    return I18n.t('enduser.start_campaign_message_timed_proctored', { buttonText })
+  }
+  if (proctoringEnabled) {
+    return I18n.t('enduser.start_campaign_message_proctored', { buttonText })
+  }
+  if (fixedTimed) {
+    return I18n.t('enduser.start_campaign_message_timed', { buttonText })
+  }
+  return ''
 }
 
 export const Common = connector(CommonComponent)

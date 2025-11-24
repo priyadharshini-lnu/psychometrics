@@ -21,4 +21,7 @@ de:
     reject_idp_plan: Plan ablehnen
     selected_count: Ausgewählte
     skill_type: Fertigkeitstyp
+    start_campaign_message_proctored: Dies ist eine überwachte Kampagne, bitte klicken Sie auf die Schaltfläche '%{buttonText}', um die Aktivitäten zu starten.
+    start_campaign_message_timed: Dies ist eine zeitlich begrenzte Kampagne, bitte klicken Sie auf die Schaltfläche '%{buttonText}', um die Aktivitäten zu starten.
+    start_campaign_message_timed_proctored: Dies ist eine zeitlich begrenzte und überwachte Kampagne, bitte klicken Sie auf die Schaltfläche '%{buttonText}', um die Aktivitäten zu starten.
     tasks: Aufgaben

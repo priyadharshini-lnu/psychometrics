@@ -19,4 +19,7 @@ vi:
     question_counter: Câu hỏi %{current} trong tổng số %{total}
     selected_count: Đã chọn
     skill_type: Loại kỹ năng
+    start_campaign_message_proctored: Đây là một chiến dịch có giám sát, vui lòng nhấp vào nút '%{buttonText}' để bắt đầu các hoạt động.
+    start_campaign_message_timed: Đây là một chiến dịch có thời gian, vui lòng nhấp vào nút '%{buttonText}' để bắt đầu các hoạt động.
+    start_campaign_message_timed_proctored: Đây là một chiến dịch có thời gian và giám sát, vui lòng nhấp vào nút '%{buttonText}' để bắt đầu các hoạt động.
     tasks: Nhiệm vụ

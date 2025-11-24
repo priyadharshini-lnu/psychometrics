@@ -19,4 +19,7 @@ pt:
     question_counter: Pergunta %{current} de %{total}
     selected_count: Selecionado
     skill_type: Tipo de habilidade
+    start_campaign_message_proctored: Esta é uma campanha supervisionada, por favor, clique no botão '%{buttonText}' para iniciar as atividades.
+    start_campaign_message_timed: Esta é uma campanha cronometrada, por favor clique no botão '%{buttonText}' para iniciar as atividades.
+    start_campaign_message_timed_proctored: Esta é uma campanha cronometrada e supervisionada, por favor, clique no botão '%{buttonText}' para iniciar as atividades.
     tasks: Tarefas

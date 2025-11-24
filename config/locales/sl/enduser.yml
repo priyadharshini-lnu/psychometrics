@@ -19,4 +19,7 @@ sl:
     question_counter: Vprašanje %{current} od %{total}
     selected_count: Izbrano
     skill_type: Vrsta spretnosti
+    start_campaign_message_proctored: To je nadzorovana kampanja, kliknite gumb '%{buttonText}' za začetek aktivnosti.
+    start_campaign_message_timed: To je časovno omejena kampanja, kliknite gumb '%{buttonText}' za začetek aktivnosti.
+    start_campaign_message_timed_proctored: To je časovno omejena in nadzorovana kampanja, za začetek aktivnosti kliknite gumb '%{buttonText}'.
     tasks: Naloge

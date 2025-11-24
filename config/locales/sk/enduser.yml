@@ -19,4 +19,7 @@ sk:
     question_counter: Otázka %{current} z %{total}
     selected_count: Vybrané
     skill_type: Typ zručnosti
+    start_campaign_message_proctored: Toto je dozorovaná kampaň, kliknite prosím na tlačidlo '%{buttonText}' pre spustenie aktivít.
+    start_campaign_message_timed: Toto je časovo obmedzená kampaň, kliknite prosím na tlačidlo '%{buttonText}' pre spustenie aktivít.
+    start_campaign_message_timed_proctored: Ide o časovo obmedzenú a dozorovanú kampaň, kliknite prosím na tlačidlo '%{buttonText}' pre spustenie aktivít.
     tasks: Úlohy

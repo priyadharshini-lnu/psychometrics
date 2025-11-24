@@ -19,4 +19,7 @@ en-US:
     question_counter: Question %{current} of %{total}
     selected_count: Selected
     skill_type: Skill Type
+    start_campaign_message_proctored: This is a proctored campaign, please click '%{buttonText}' button to start the activities.
+    start_campaign_message_timed: This is a timed campaign, please click '%{buttonText}' button to start the activities.
+    start_campaign_message_timed_proctored: This is a timed and proctored campaign, please click '%{buttonText}' button to start the activities.
     tasks: Tasks

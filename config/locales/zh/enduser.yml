@@ -19,4 +19,7 @@ zh:
     question_counter: 第 %{current} 题，共 %{total} 题
     selected_count: 已选择
     skill_type: 技能类型
+    start_campaign_message_proctored: 这是一个监考活动，请点击“%{buttonText}”按钮开始活动。
+    start_campaign_message_timed: 这是一个限时活动，请点击“%{buttonText}”按钮开始活动。
+    start_campaign_message_timed_proctored: 这是一个限时监考的活动，请点击“%{buttonText}”按钮开始活动。
     tasks: 任务

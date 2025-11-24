@@ -19,4 +19,7 @@ th:
     question_counter: Question %{current} of %{total}
     selected_count: เลือก
     skill_type: ประเภททักษะ
+    start_campaign_message_proctored: นี่คือแคมเปญที่มีผู้คุมสอบ โปรดคลิกปุ่ม '%{buttonText}' เพื่อเริ่มกิจกรรม
+    start_campaign_message_timed: นี่เป็นแคมเปญแบบกําหนดเวลา โปรดคลิกปุ่ม '%{buttonText}' เพื่อเริ่มกิจกรรม
+    start_campaign_message_timed_proctored: นี่คือแคมเปญแบบกําหนดเวลาและควบคุม โปรดคลิกปุ่ม '%{buttonText}' เพื่อเริ่มกิจกรรม
     tasks: งาน

@@ -21,4 +21,7 @@ ar:
     reject_idp_plan: رفض الخطة
     selected_count: المحدد
     skill_type: نوع المهارة
+    start_campaign_message_proctored: هذه حملة تحت مراقبة، يرجى الضغط على زر '%{buttonText}' لبدء الأنشطة.
+    start_campaign_message_timed: هذه حملة محددة بالوقت، يرجى الضغط على زر '%{buttonText}' لبدء الأنشطة.
+    start_campaign_message_timed_proctored: هذه حملة محددة بالوقت وتحت المراقبة، يرجى الضغط على زر '%{buttonText}' لبدء الأنشطة.
     tasks: مهامي

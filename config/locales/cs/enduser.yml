@@ -21,4 +21,7 @@ cs:
     reject_idp_plan: Zamítnout plán
     selected_count: Vybrané stránky
     skill_type: Typ dovednosti
+    start_campaign_message_proctored: Toto je dozorovaná kampaň, klikněte prosím na tlačítko '%{buttonText}' pro zahájení aktivit.
+    start_campaign_message_timed: Toto je časově omezená kampaň, klikněte prosím na tlačítko '%{buttonText}' pro zahájení aktivit.
+    start_campaign_message_timed_proctored: Jedná se o časově omezenou a dozorovanou kampaň, klikněte prosím na tlačítko '%{buttonText}' pro zahájení aktivit.
     tasks: Úkoly

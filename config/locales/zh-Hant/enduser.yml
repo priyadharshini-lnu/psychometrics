@@ -19,4 +19,7 @@ zh-Hant:
     question_counter: 問題 %{current} / %{total}
     selected_count: 已選擇
     skill_type: 技能類型
+    start_campaign_message_proctored: 這是一個監考活動，請點擊「%{buttonText}」按鈕開始活動。
+    start_campaign_message_timed: 這是一個限時的活動，請點擊「%{buttonText}」按鈕開始活動。
+    start_campaign_message_timed_proctored: 這是一個限時且監考的活動，請點擊「%{buttonText}」按鈕開始活動。
     tasks: 任務
