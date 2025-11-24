@@ -430,5 +430,9 @@ class UserAssessment < ApplicationRecord
       WorkshopInvites::SendEmail.call!(invited_subject)
     end
   end
+
+  def caching_enabled?
+    campaign_assessment&.caching_enabled?
+  end
 end
 # rubocop:enable Metrics/ClassLength

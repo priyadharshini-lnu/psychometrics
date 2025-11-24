@@ -9,7 +9,7 @@ class UsersResultSerializer < Panko::Serializer
              :prev_pages, :timed_out, :completed_at, :factors, :remaining_campaign_time,
              :remaining_assessment_time, :reset_count, :hash_id, :proctoring_enabled,
              :privacy_consent_required, :other_pending_assessments_count, :prework, :relationship, :campaign_options,
-             :media_responses, :participant, :campaign_user, :user, :evaluation_session_id
+             :media_responses, :participant, :campaign_user, :user, :evaluation_session_id, :piped_text_mapping
 
   has_one :subject, serializer: UserSerializer
 
@@ -169,6 +169,12 @@ class UsersResultSerializer < Panko::Serializer
     Threesixty::EndUser::ParticipantSerializer.new.serialize(current_participant)
   end
 
+  def piped_text_mapping
+    if generate_piped_text_mapping?
+      object.assessment.generate_piped_text_mapping(piped_text_context)
+    end
+  end
+
   private
 
   def campaign
@@ -185,6 +191,10 @@ class UsersResultSerializer < Panko::Serializer
 
   def piped_text_context
     context[:piped_text_context] || {}
+  end
+
+  def generate_piped_text_mapping?
+    context[:generate_piped_text_mapping] || false
   end
 
   def user_assessment

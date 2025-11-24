@@ -1385,7 +1385,8 @@ CREATE TABLE public.campaign_assessments (
     allow_multiple_responses boolean DEFAULT false,
     require_scheduling boolean DEFAULT false,
     auto_assign boolean DEFAULT true,
-    mettl_schedule_record_id bigint
+    mettl_schedule_record_id bigint,
+    caching_enabled boolean DEFAULT false
 );
 
 
@@ -19159,6 +19160,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20251112120914'),
 ('20251112112802'),
 ('20251105093356'),
+('20251104075938'),
 ('20251101094930'),
 ('20251031101349'),
 ('20251031094133'),

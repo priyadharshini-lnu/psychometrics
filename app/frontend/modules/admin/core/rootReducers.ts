@@ -40,6 +40,7 @@ import instructionTemplates from '../modules/threeSixtyCampaign/core/instruction
 import campaignDetails from '../modules/threeSixtyCampaign/core/campaignDetails'
 import mailHistories from '../modules/threeSixtyCampaign/core/mailHistories'
 import users from '../modules/threeSixtyCampaign/core/users'
+import campaignAssessments from '../modules/threeSixtyCampaign/core/campaignAssessments'
 import assessorsReducers from '../modules/AssessorApp/core'
 import sheetReducers from '../modules/SheetManagement/core'
 import { reducer as integrationsReducer } from '../modules/client/core/integrations'
@@ -64,6 +65,7 @@ const createRootReducer = () => combineReducers({
     instructionTemplates,
     mailHistories,
     users,
+    campaignAssessments,
   }),
   project: combineReducers({
     datasheetFields,

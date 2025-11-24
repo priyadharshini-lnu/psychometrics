@@ -21,7 +21,7 @@ class Block < ApplicationRecord
   before_save :dup_for_template, if: :save_as_template
   after_update :sync_with_template, if: :template
 
-  after_commit :invalidate_assessment_cache
+  before_commit :invalidate_assessment_cache
 
   acts_as_list scope: :assessment_id
   enum :view, { assessments: 0, templates: 1 }
@@ -87,6 +87,22 @@ class Block < ApplicationRecord
 
   def sync_with_template
     template.update(general_attributes)
+  end
+
+  def generate_piped_text_mapping(piped_text_context)
+    piped_text = {}
+
+    questions.each do |question|
+      unless skill_rater?
+        piped_text.merge!(question.generate_piped_text_mapping(piped_text_context))
+      end
+    end
+
+    return piped_text unless props && props['staticContent']
+
+    piped_text.merge!(PipedText::SubstitutionMappingGenerator.call!(props['staticContent']['value'],
+                                                                    piped_text_context))
+    piped_text
   end
 
   private

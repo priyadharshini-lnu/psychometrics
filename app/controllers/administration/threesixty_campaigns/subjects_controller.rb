@@ -148,13 +148,14 @@ module Administration
         GetPermissionsHash.call!(
           Administration::Threesixty::CampaignPolicy,
           current_user,
-          nil,
+          threesixty_campaign,
           %w[
             rescore_assessment
             export_threesixty_scores
             bulk_regenerate_reports
             bulk_download
             import_results
+            toggle_caching
           ],
           {
             project_id: threesixty_campaign.campaign.project_id,

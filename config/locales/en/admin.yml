@@ -19,6 +19,15 @@ en:
     audit_reports: Audit Reports
     availability: Availability
     back_to_main: Main Menu
+    campaign_assessment_actions_disable_caching: Disable Assessment Caching
+    campaign_assessment_actions_enable_caching: Enable Assessment Caching
+    campaign_assessment_column_caching_enabled: Assessment Caching Enabled
+    campaign_assessment_modals_disable_caching_content: Are you sure you want to disable caching for this assessment?
+    campaign_assessment_modals_disable_caching_successfully: Caching has been disabled for this assessment.
+    campaign_assessment_modals_disable_caching_title: Disable Assessment Caching?
+    campaign_assessment_modals_enable_caching_content: Are you sure you want to enable caching for this assessment?
+    campaign_assessment_modals_enable_caching_successfully: Caching has been enabled for this assessment.
+    campaign_assessment_modals_enable_caching_title: Enable Assessment Caching?
     campaign_templates: Campaign Templates
     client: Client
     client_admins: Client Admins

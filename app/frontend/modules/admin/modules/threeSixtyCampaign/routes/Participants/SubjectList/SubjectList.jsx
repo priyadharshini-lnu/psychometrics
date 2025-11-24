@@ -35,6 +35,8 @@ function SubjectList ({
   regenerateReport,
   total,
   permissions,
+  cachingEnabled,
+  allowCaching,
   searchTerm,
   editUser,
   reportAvailableLanguages,
@@ -116,6 +118,8 @@ function SubjectList ({
               excludedKeys={excludedKeys}
               isAllSelected={isAllSelected}
               normalizedSubjectsData={normalizedSubjectsData}
+              cachingEnabled={cachingEnabled}
+              allowCaching={allowCaching}
             />
           )
           }
@@ -126,6 +130,8 @@ function SubjectList ({
               excludedKeys={excludedKeys}
               isAllSelected={isAllSelected}
               normalizedSubjectsData={normalizedSubjectsData}
+              cachingEnabled={cachingEnabled}
+              allowCaching={allowCaching}
             />
           )}
           {permissions.addSubject && !template && (

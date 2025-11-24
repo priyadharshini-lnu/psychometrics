@@ -56,7 +56,7 @@ class Question < ApplicationRecord
   after_create :create_in_assessments_blocks, if: proc { block&.blocks&.any? }
   after_update :sync_with_template, if: :template
 
-  after_commit :invalidate_assessment_cache
+  before_commit :invalidate_assessment_cache
 
   #
   # Disables single column inheritance
@@ -154,6 +154,12 @@ class Question < ApplicationRecord
 
   def skill_rater?
     type == 'SkillRater'
+  end
+
+  def generate_piped_text_mapping(piped_text_context)
+    return {} if skill_rater? || props.nil? || props['questionText'].blank?
+
+    PipedText::SubstitutionMappingGenerator.call!(props['questionText'], piped_text_context)
   end
 
   private

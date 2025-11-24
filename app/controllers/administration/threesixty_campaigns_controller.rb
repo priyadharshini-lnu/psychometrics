@@ -126,6 +126,15 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
     render json: :ok
   end
 
+  def toggle_caching
+    campaign_assessment = resource.campaign.campaign_assessments.find_by(assessment: resource.assessment)
+    campaign_assessment.update!(caching_enabled: params[:caching_enabled])
+    audit! :toggle_caching, campaign_assessment, payload: { caching_enabled: campaign_assessment.caching_enabled? },
+           campaign: campaign
+
+    render json: :ok
+  end
+
   private
 
   def pundit_authorize

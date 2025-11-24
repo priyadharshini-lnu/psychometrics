@@ -7,7 +7,8 @@ module EndUser
     attributes :id, :type, :url, :assessment_name, :timing, :assessment_category, :completed_at,
                :assessment_extra, :assessment_id, :status, :completion_percent, :completion_reason, :available_locales,
                :selected_locale, :assessment_icon_url, :prework, :schedule_time, :workshop_activity_duration,
-               :workshop_activity, :meeting_time, :meeting_link, :require_scheduling, :evaluation_session_id
+               :workshop_activity, :meeting_time, :meeting_link, :require_scheduling, :evaluation_session_id,
+               :caching_enabled
 
     def evaluation_session_id
       'session_id'
@@ -92,6 +93,10 @@ module EndUser
 
     def completed_at
       object.completed_at&.iso8601
+    end
+
+    def caching_enabled
+      object.campaign_assessment&.caching_enabled
     end
 
     private

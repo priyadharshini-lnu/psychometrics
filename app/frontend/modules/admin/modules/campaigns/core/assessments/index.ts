@@ -24,6 +24,7 @@ import {
   SCHEDULE_ASSESSMENT,
   TOGGLE_REQUIRE_SCHEDULE,
   TOGGLE_AUTO_ASSIGN,
+  TOGGLE_ASSESSMENT_CACHING,
   UPDATE_METTL_SCHEDULE,
 } from './actions'
 
@@ -196,6 +197,11 @@ const HANDLERS = {
     )))
   ),
   [UPDATE_WORKSHOP_ACTIVITY]: (state: State, { response }: ApiActionResponse<Assessment>) => (
+    updateIn(state, ['list'], (assessments: Assessment[]) => _.map(assessments, assessment => (
+      assessment.id === response.id ? response : assessment
+    )))
+  ),
+  [TOGGLE_ASSESSMENT_CACHING]: (state, { response }: ApiActionResponse<Assessment>) => (
     updateIn(state, ['list'], (assessments: Assessment[]) => _.map(assessments, assessment => (
       assessment.id === response.id ? response : assessment
     )))

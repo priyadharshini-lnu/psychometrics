@@ -28,6 +28,7 @@ export const NORMALIZE_FACTOR_SCORES = 'campaigns/assessments/NORMALIZE_FACTOR_S
 export const UPDATE_CONTENT_VARIATION = 'campaigns/assessments/UPDATE_CONTENT_VARIATION'
 
 export const UPDATE_PREWORK = 'campaigns/assessments/UPDATE_PREWORK'
+export const TOGGLE_ASSESSMENT_CACHING = 'campaigns/assessments/TOGGLE_ASSESSMENT_CACHING'
 export const updatePrework = (campaignId: number, id: number, body: object) => ({
   type: UPDATE_PREWORK,
   request: {
@@ -302,5 +303,14 @@ export const updateExternalConfig = (campaignId: number, campaignAssessmentId: n
     url: `/administration/new_campaigns/${campaignId}/campaign_assessments/${campaignAssessmentId}/update_external_config`,
     body,
     loader: true,
+  },
+})
+
+export const toggleAssessmentCaching = (campaignId: number, id: number, cachingEnabled: boolean) => ({
+  type: TOGGLE_ASSESSMENT_CACHING,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${id}/toggle_caching`,
+    body: { cachingEnabled },
   },
 })

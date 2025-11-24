@@ -14,6 +14,7 @@ const BULK_MARK_AS_DONE = 'threeSixty/BULK_MARK_AS_DONE'
 const REMOVE_USER = 'threeSixty/REMOVE_USER'
 const EXPORT_COMPLETION_STATUSES = 'threeSixty/EXPORT_COMPLETION_STATUSES'
 const EXPORT_RAW_RESULTS = 'threeSixty/EXPORT_RAW_RESULT'
+const TOGGLE_CACHING = 'threeSixty/TOGGLE_CACHING'
 export const IMPORT_RAW_RESULTS = 'threeSixty/IMPORT_RAW_RESULTS'
 
 export const reset = (campaignId: number, removeLicenceUsage: boolean) => ({
@@ -132,6 +133,15 @@ export const removeUser = (campaignId: number, userId: number) => ({
   },
 })
 
+export const toggleCaching = (campaignId: number, cachingEnabled: boolean) => ({
+  type: TOGGLE_CACHING,
+  request: {
+    method: 'put',
+    url: `/administration/threesixty_campaigns/${campaignId}/toggle_caching`,
+    body: { cachingEnabled },
+  },
+})
+
 function* genReloadCurrentParticipantTab () {
   const selectedTab = yield select(getSelectedTab)
   const campaignId = yield select(getCampaignId)
@@ -152,4 +162,5 @@ export const watchers = [
   takeEvery(RESCORE_ASSESSMENT, genReloadCurrentParticipantTab),
   takeEvery(RESET, genReloadCurrentParticipantTab),
   takeEvery(REMOVE_USER, genReloadCurrentParticipantTab),
+  takeEvery(TOGGLE_CACHING, genReloadCurrentParticipantTab),
 ]

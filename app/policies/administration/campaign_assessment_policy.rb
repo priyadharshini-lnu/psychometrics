@@ -84,5 +84,9 @@ module Administration
     def toggle_auto_assign?
       can_manage_campaign_and_users?
     end
+
+    def toggle_caching?
+      has_permission?(:campaigns, :manage)
+    end
   end
 end

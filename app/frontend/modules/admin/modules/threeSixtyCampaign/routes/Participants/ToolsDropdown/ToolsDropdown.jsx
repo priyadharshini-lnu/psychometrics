@@ -4,13 +4,16 @@ import {
 import { ToolOutlined, DownOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import { useMemo } from 'react'
+import { useDispatch } from 'react-redux'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { updateCampaignAssessmentDetails } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignAssessments'
 
 const getCustomMenuProps = ({
   campaignId, resetCampaignWithConfirmation, resetAllNominationsWithConfirmation,
   permissions, onExport, handleRescoreAssessment, regenerateReports, handleExportRawResults,
   handleExportThreeSixtyScores, handleBulkDownloads, openModal, isBulk, handleBulkMarkAsDone,
-  selectedKeys, excludedKeys, isAllSelected, handleTemplateConversion,
+  selectedKeys, excludedKeys, isAllSelected, handleTemplateConversion, handleToggleCaching, cachingEnabled,
+  allowCaching,
 }) => {
   const handleMenuClick = ({ key }) => {
     if (key === 'export_raw_labels') {
@@ -48,6 +51,12 @@ const getCustomMenuProps = ({
     }
     if (key === 'convert_to_template') {
       return handleTemplateConversion()
+    }
+    if (key === 'enable_caching') {
+      return handleToggleCaching(campaignId, true)
+    }
+    if (key === 'disable_caching') {
+      return handleToggleCaching(campaignId, false)
     }
   }
 
@@ -113,6 +122,14 @@ const getCustomMenuProps = ({
       key: 'convert_to_template',
       label: I18n.t('campaign_assessment.actions.convert_to_template'),
     },
+    permissions.toggleCaching && !cachingEnabled && allowCaching && {
+      key: 'enable_caching',
+      label: I18n.t('admin.campaign_assessment_actions_enable_caching'),
+    },
+    permissions.toggleCaching && cachingEnabled && allowCaching && {
+      key: 'disable_caching',
+      label: I18n.t('admin.campaign_assessment_actions_disable_caching'),
+    },
   ]
 
   const bulkActionItems = [
@@ -134,7 +151,7 @@ export default function ToolsDropdown ({
   rescoreAssessment, permissions,
   exportCompletionStatuses, regenerateReports, exportRawResults, exportThreeSixtyScores, bulkDownloads,
   reportAvailableLanguages, reportDefaultLanguage, isBulk, markAsDone, selectedKeys,
-  excludedKeys, title, isAllSelected, normalizedSubjectsData,
+  excludedKeys, title, isAllSelected, normalizedSubjectsData, toggleCaching, cachingEnabled, allowCaching,
 }) {
   const { projectId } = useParams()
   const selectedUserReportIds = useMemo(() => selectedKeys?.map((key) => {
@@ -147,6 +164,7 @@ export default function ToolsDropdown ({
     })
   }
   const { modal, message } = App.useApp()
+  const dispatch = useDispatch()
 
 
   const handleTemplateConversion = () => {
@@ -303,6 +321,28 @@ export default function ToolsDropdown ({
     })
   }
 
+  const handleToggleCaching = (campaignId, cachingEnabled) => {
+    const toggle_type = cachingEnabled ? 'enable_caching' : 'disable_caching'
+    modal.confirm({
+      title: I18n.t(`admin.campaign_assessment_modals_${toggle_type}_title`),
+      icon: <ExclamationCircleOutlined />,
+      centered: true,
+      width: 650,
+      content: I18n.t(`admin.campaign_assessment_modals_${toggle_type}_content`),
+      okText: I18n.t('common.text.ok'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: async () => {
+        try {
+          await toggleCaching(campaignId, cachingEnabled)
+          message.success(I18n.t(`admin.campaign_assessment_modals_${toggle_type}_successfully`))
+          dispatch(updateCampaignAssessmentDetails({ cachingEnabled }))
+        } catch (error) {
+          message.error(error, 5)
+        }
+      },
+    })
+  }
+
   return (
     <ConditionalDropdown
       menu={
@@ -322,10 +362,13 @@ export default function ToolsDropdown ({
           handleBulkDownloads,
           handleBulkMarkAsDone,
           handleTemplateConversion,
+          handleToggleCaching,
           isBulk,
           selectedKeys,
           excludedKeys,
           isAllSelected,
+          cachingEnabled,
+          allowCaching,
         })
       }
       className="mrm"

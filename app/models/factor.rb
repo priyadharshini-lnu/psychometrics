@@ -36,7 +36,7 @@ class Factor < ApplicationRecord
   after_create :create_aliases
   after_update ::Callbacks::Models::Factors::UpdateAliases.new
   after_destroy ::Callbacks::Models::Factors::DestroyFactorSource.new
-  after_commit :invalidate_assessment_cache
+  before_commit :invalidate_assessment_cache
 
   enum :scoring_strategy, {
     questions: 0,

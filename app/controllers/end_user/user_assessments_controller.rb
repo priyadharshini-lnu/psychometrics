@@ -17,13 +17,19 @@ class EndUser::UserAssessmentsController < ApplicationController
   def assessment
     @selected_locale = @user_assessment.selected_locale || user_locale
 
-    render json: AssessmentSerializer.new(
-      context: {
-        selected_locale: @selected_locale,
-        piped_text_context: build_piped_context,
-        include: '**'
-      }
-    ).serialize(@user_assessment.assessment)
+    if @user_assessment.caching_enabled?
+      serialized = Assessments::CacheService.new(@user_assessment.assessment,
+                                                 @selected_locale, build_piped_context).fetch_serialized_assessment
+      render json: serialized
+    else
+      render json: AssessmentSerializer.new(
+        context: {
+          selected_locale: @selected_locale,
+          piped_text_context: build_piped_context,
+          include: '**'
+        }
+      ).serialize(@user_assessment.assessment)
+    end
   end
 
   def show

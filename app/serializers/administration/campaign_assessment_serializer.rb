@@ -7,7 +7,7 @@ module Administration
                :has_external_norm, :available_locales, :all_locales, :external_config, :campaign_assessment_id,
                :prework, :workshop_activity, :workshop_activity_duration, :allow_multiple_responses,
                :require_scheduling, :auto_assign, :mettl_schedule_name, :mettl_schedule_record_id, :dimension_id,
-               :simulation_content_variations, :pearson_variations
+               :simulation_content_variations, :pearson_variations, :caching_enabled, :allow_caching
 
     delegate :id, :name, :dimension_id, :category, to: :assessment
     delegate :name, :id, to: :linked_assessment, prefix: true, allow_nil: true
@@ -89,7 +89,8 @@ module Administration
           'update_available_locales',
           'update_pearson_variation',
           'toggle_require_scheduling',
-          'update_prework'
+          'update_prework',
+          'toggle_caching'
         ],
         {
           project_id: context[:project_id],
@@ -100,6 +101,14 @@ module Administration
 
     def assessor_form_name
       object.assessment.linked_assessor_form&.name
+    end
+
+    def caching_enabled
+      object.caching_enabled?
+    end
+
+    def allow_caching
+      object.assessment.allow_caching?
     end
 
     private

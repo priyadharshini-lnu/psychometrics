@@ -351,6 +351,7 @@ Rails.application.routes.draw do
             put :toggle_auto_assign
             put :schedule_assessment
             post :normalize_factor_scores
+            put :toggle_caching
           end
           collection do
             get :other
@@ -580,6 +581,7 @@ Rails.application.routes.draw do
         post :rescore_assessment
         post :regenerate_reports
         post :bulk_download
+        put :toggle_caching
       end
     end
 
@@ -1073,6 +1075,15 @@ as: :simulation_progress_notification
               patch :resolve
               patch :unresolve
             end
+          end
+        end
+      end
+
+      namespace :v2 do
+        resources :user_assessments do
+          member do
+            get :assessment
+            get :piped_text_data
           end
         end
       end

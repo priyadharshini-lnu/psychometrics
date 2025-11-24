@@ -252,6 +252,21 @@ module Administration
         render json: { variation: campaign_assessment.external_config['variation'] }
       end
 
+      def toggle_caching
+        campaign_assessment.update!(caching_enabled: params[:caching_enabled])
+
+        audit! :toggle_caching, campaign_assessment, payload: { caching_enabled: campaign_assessment.caching_enabled? },
+               campaign: campaign
+
+        render json: Administration::CampaignAssessmentSerializer.new(
+          context: {
+            current_user: current_user,
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
+        ).serialize(campaign_assessment)
+      end
+
       private
 
       def assessment
