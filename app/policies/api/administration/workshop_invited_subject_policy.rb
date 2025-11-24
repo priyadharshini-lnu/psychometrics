@@ -30,6 +30,10 @@ module Api
       def resend_invite?
         has_permission?(:workshops, :manage)
       end
+
+      def import_subjects_from_csv?
+        has_permission?(:workshops, :manage)
+      end
     end
   end
 end

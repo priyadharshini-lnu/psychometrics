@@ -1,0 +1,24 @@
+---
+cs:
+  enduser:
+    add_idp_plan_note: Přidat poznámku...
+    add_idp_plan_rejection_reason: Přidat důvod...
+    approve_idp_plan: Schválit plán
+    bookings: Rezervace
+    campaign: Kampaň
+    development: Vývoj
+    direct_reportees: Přímí zástupci
+    home: Přístrojová deska
+    idp_plan_approval_note: Poznámka ke schválení
+    insights: Poznatky
+    max_word_limit: Musí mít maximálně %{max} slov
+    min_word_limit: Musí mít nejméně %{min} slov
+    my_plan: Můj plán
+    profile: Profil
+    profile_details: Detaily
+    question_counter: Otázka %{current} z %{total}
+    reason_for_idp_plan_rejection: Důvod zamítnutí plánu
+    reject_idp_plan: Zamítnout plán
+    selected_count: Vybrané stránky
+    skill_type: Typ dovednosti
+    tasks: Úkoly

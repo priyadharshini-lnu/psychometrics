@@ -83,18 +83,3 @@ Warden::Manager.before_failure do |env, opts|
                           failure_reason: reason
   end
 end
-
-Warden::Manager.before_logout do |user, auth, _opts|
-  # This hook is called twice. Second time the user is nil, so skipping adding audit log for second time.
-  next if user.blank?
-
-  request = auth.request
-
-  AuditLogModule.audit! :sign_out, user,
-                        user: user,
-                        payload: { email: user.email },
-                        request_details: {
-                          ip: request.remote_ip, request_id: request.env['action_dispatch.request_id']
-                        },
-                        interface_details: { user_agent: request.user_agent }
-end

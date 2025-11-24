@@ -919,8 +919,6 @@ th:
     invalid_job: การแจ้งเตือนนี้สอดคล้องกับเรกคอร์ดที่ถูกลบ
     mark_as_read: ทําเครื่องหมายอ่านทั้งหมด
     more: อีก
-    no_notifications: ไม่มีการแจ้งเตือน
-    notifications: แจ้ง เตือน
     results: ผลลัพธ์
     super_admin:
       errors:
@@ -1241,7 +1239,7 @@ th:
       description: กรุณากรอกข้อมูลให้ครบถ้วนเพื่อสร้างรหัสผ่านใหม่
       submit: ส่ง
       title: เปลี่ยนรหัสผ่านใหม่
-    lighthouse_logo_alt_text: โลโก้ประภาคาร
+    lighthouse_logo_alt_text: โลโก้ประภ Lighthouse
     login:
       continue_btn: ต่อเนื่อง
       description: กรุณาเข้าสู่ระบบด้วยข้อมูลบัญชีส่วนตัวของคุณ
@@ -1341,16 +1339,11 @@ th:
     continue: ดำเนินงานของคุณต่อไป
     dashboard_instructions: คุณอาจได้รับมอบหมายกิจกรรมหลายรายการที่ต้องดำเนินการให้แล้วเสร็จ กรุณาตรวจสอบให้แน่ใจว่าคุณได้ทำกิจกรรมที่ได้รับมอบหมายทั้งหมดครบถ้วนในทุกแคมเปญแล้ว
     dashboard_menu:
-      bookings: การจอง
       campaign: แคมเปญ
-      change_password: เปลี่ยนรหัสผ่าน
-      development: การพัฒนา
       direct_reportees: ผู้รายงานโดยตรง
       home: บ้าน
       insights: ข้อมูลเชิงลึก
-      my_plan: แผนของฉัน
       profile: โปรไฟล์
-      profile_details: รายละเอียด
       tasks: งาน
     details: รายละเอียด
     edit_evaluation:
@@ -1462,6 +1455,7 @@ th:
       export_occupations_job_scheduled: งานส่งออกอาชีพถูกกําหนดเวลาเรียบร้อยแล้ว
       export_reports_and_assessments_statuses_scheduled: งานส่งออกรายงานและการประเมินถูกกําหนดเวลาเรียบร้อยแล้ว
       external_results_export_scheduled: งานส่งออกการประเมินภายนอกถูกกําหนดเวลาเรียบร้อยแล้ว
+      no_participants_selected: โปรดเลือกผู้เข้าร่วมอย่างน้อยหนึ่งคนเพื่อดําเนินการต่อ
       norm_results_export_scheduled: งานส่งออกผลการประเมินตามบรรทัดฐานถูกกําหนดเวลาเรียบร้อยแล้ว
       normalize_factor_scores_scheduled: งานการทําให้เป็นมาตรฐานคะแนนปัจจัยถูกกําหนดเวลาเรียบร้อยแล้ว
       raw_factor_export_scheduled: การประเมิน Raw Factor ส่งออกงานถูกกําหนดเวลาเรียบร้อยแล้ว
@@ -1606,6 +1600,7 @@ th:
       report_bundle_placeholder: เลือกชุดรายงาน
     messages:
       bulk_download_error: การดาวน์โหลดรายงานจำนวนมากจํากัดไว้ที่จำนวน 1,000 ไฟล์ หากคุณเลือกหลายภาษาโปรดลดจำนวนที่เลือกลง
+      bulk_download_no_reports: ไม่พบรายงาน โปรดสร้างรายงานก่อนดาวน์โหลด
       bulk_download_successful: กําหนดเวลางานดาวน์โหลดรายงานจํานวนมากเรียบร้อยแล้ว
       export_report_data_scheduled: งานส่งออกข้อมูลรายงานถูกกําหนดเวลาเรียบร้อยแล้ว
     modals:
@@ -1875,7 +1870,6 @@ th:
       projects: โครงการ
       report: รายงาน
       reports: รายงาน
-      scoring: การให้คะแนน
       sms_contact: ติดต่อ SMS
       threesixty_campaign: คะแนนแคมเปญ Threesixty
     status:
@@ -1997,7 +1991,7 @@ th:
           %{accept} หรือคุณสามารถเพิกเฉยต่ออีเมลนี้ได้อย่างปลอดภัย
 
           โปรดอย่าแบ่งปันข้อมูลรับรองการเข้าถึงของคุณกับใคร
-        subject: คําเชิญสู่ประภาคาร
+        subject: คําเชิญสู่ประ Lighthouse
       confirmation_instructions:
         subject: คําแนะนําในการยืนยัน
       invitation_instructions:
@@ -2009,7 +2003,7 @@ th:
           campaign: 'แคมเปญ: %{section_name}'
           client: 'การเช่าไคลเอ็นต์: %{section_name}'
           project: 'โครงการ: %{section_name}'
-        subject: คําเชิญสู่ประภาคาร
+        subject: คําเชิญสู่ประ Lighthouse
       password_change:
         body: |-
           สวัสดี %{name}!
@@ -2019,7 +2013,7 @@ th:
           หากคุณไม่ได้ส่งคําขอนี้ โปรดติดต่อฝ่ายสนับสนุนทันทีที่ mte.support@mercer.com
         regards: |-
           ขอแสดงความนับถือ
-          ทีมงานประภาคาร
+          ทีมงานประภ Lighthouse
         subject: รหัสผ่าน Lighthouse ของคุณเปลี่ยนไปแล้ว
       reset_password_instructions:
         body: |-
@@ -2030,7 +2024,7 @@ th:
         footer: หากคุณไม่ได้ร้องขอสิ่งนี้คุณสามารถเพิกเฉยต่ออีเมลนี้ได้อย่างปลอดภัย รหัสผ่านของคุณจะไม่เปลี่ยนแปลงจนกว่าคุณจะเข้าถึงลิงก์ด้านบนและสร้างรหัสผ่านใหม่
         regards: |-
           ขอแสดงความนับถือ
-          ทีมงานประภาคาร
+          ทีมงานประภ Lighthouse
         subject: คําแนะนําในการรีเซ็ตรหัสผ่านของคุณ
       unlock_instructions:
         body: |-
@@ -2042,7 +2036,7 @@ th:
         footer: หากคุณไม่ได้ร้องขอสิ่งนี้คุณสามารถเพิกเฉยต่ออีเมลนี้ได้อย่างปลอดภัย รหัสผ่านของคุณจะไม่เปลี่ยนแปลงจนกว่าคุณจะเข้าถึงลิงก์ด้านบนและสร้างรหัสผ่านใหม่
         regards: |-
           ขอแสดงความนับถือ
-          ทีมงานประภาคาร
+          ทีมงานประภ Lighthouse
         subject: คําแนะนําในการปลดล็อกบัญชีของคุณ
         unlock_account: ปลดล็อกบัญชีของฉัน
     omniauth_callbacks:
@@ -2349,6 +2343,7 @@ th:
           in_progress: อยู่ระหว่างดำเนินการ
           not_started: ยังไม่ได้เริ่มต้น
     change_password: เปลี่ยนรหัสผ่าน
+    chatwoot_info_msg: รายงานปัญหาทางเทคนิค
     clients:
       actions:
         create:
@@ -2369,10 +2364,9 @@ th:
     error_warning: อ๊ะ มีบางอย่างผิดพลาดกับการประเมินของคุณ โปรดติดต่อฝ่ายสนับสนุน
     hogan:
       cannot_start: คุณไม่สามารถเริ่มการประเมินโฮแกนได้ในตอนนี้ โปรดลองหลังจากผ่านไปสองสามนาที
-    lighthouse_app: ประภาคาร Mercer
     login: เข้าสู่ระบบ
     maintenance:
-      notification: ประภาคารจะหยุดทํางานเพื่อบํารุงรักษาตามกําหนดเวลาใน 60 วินาที
+      notification: ประภ Lighthouseจะหยุดทํางานเพื่อบํารุงรักษาตามกําหนดเวลาใน 60 วินาที
     manage: การจัดการ
     'no': เลขที่
     passwordSetting:
@@ -2471,6 +2465,7 @@ th:
   idp:
     actions: การดําเนินการ
     add_comments: เพิ่มความคิดเห็น
+    added_development_action: เพิ่มการดําเนินการพัฒนา
     ai:
       assistant:
         failure_fallback:
@@ -2527,6 +2522,7 @@ th:
         title: สวัสดี ฉันเป็นผู้ช่วยพัฒนาของคุณ
     behavioral: พฤติกรรม
     board: กระดาน
+    change_history: ประวัติการเปลี่ยนแปลง
     changes_saved_to_plan: การเปลี่ยนแปลงที่บันทึกไว้ในแผน
     comment_details:
       add_comment: เพิ่มความคิดเห็น
@@ -2628,6 +2624,7 @@ th:
       publish_plan: เผยแพร่แผน
       remove: ถอด
       save_plan: บันทึกแผน
+      search_development_actions: การดําเนินการพัฒนาการค้นหา
       show_development_action_information: แสดงข้อมูลการดําเนินการเพื่อการพัฒนา
       skill: ทักษะ
       sprint: วิ่ง
@@ -2640,7 +2637,7 @@ th:
       write_here: เขียนที่นี่...
     direct_reportee_details: รายละเอียดผู้รายงานโดยตรง
     download:
-      description: 'หากต้องการดาวน์โหลดรายงาน โปรดไปที่ลิงค์: <a href=''''%{url}'''' target=''''_blank''''>ดาวน์โหลด</a> ลิงค์ใช้ได้เพียง 10 นาทีเท่านั้น'
+      description: 'หากต้องการดาวน์โหลดรายงาน โปรดไปที่ลิงค์: <a href=''%{url}'' target=''_blank''>ดาวน์โหลด</a> ลิงค์ใช้ได้เพียง 10 นาทีเท่านั้น'
     download_plan: ดาวน์โหลดแผน
     edit_plan: แก้ไขแผน
     edit_plan_and_add_skills: แก้ไขแผนและคลิกที่จัดการทักษะเพื่อเพิ่มทักษะ
@@ -2689,6 +2686,7 @@ th:
     manage_plan: จัดการแผน
     mark_as_complete: ทําเครื่องหมายว่าเสร็จสมบูรณ์
     mark_as_incomplete: ทําเครื่องหมายว่าไม่สมบูรณ์
+    modified_development_action: การดําเนินการพัฒนาที่ปรับเปลี่ยน
     my_plan:
       development_plan: แผนพัฒนา
       graphs:
@@ -2708,7 +2706,6 @@ th:
           name: ชื่อ
           publish_date: วันที่เผยแพร่
           review_date: วันที่ตรวจสอบ
-          role: บทบาทปัจจุบัน
       guidelines:
         cards:
           c1:
@@ -2806,7 +2803,9 @@ th:
         title: สรุปรายงาน
     plan: แผน
     plan_status: สถานะแผน %{status}
+    plan_submitted_for_manager_approval: แผนการพัฒนารายบุคคลของคุณถูกส่งเพื่อขออนุมัติจากผู้จัดการแล้ว
     private: ส่วนตัว
+    public: สาธารณะ
     reflective_questions:
       already_completed: IDP ได้ดำเนินการเสร็จสิ้นแล้ว คุณไม่สามารถตอบคำถามได้ในขณะนี้
       answer: ตอบ
@@ -2834,6 +2833,7 @@ th:
       words: นิรุกติ
     remove_skill: ลบสกิลออก
     remove_skill_from_plan: ลบ %{name} ทักษะออกจากแผน
+    removed_development_action: ลบการดําเนินการพัฒนา
     report_preview: ตัวอย่างรายงาน
     search_and_select_skills_of_skill_type: ค้นหาและเลือกทักษะ %{skillType}
     select_skills_of_skill_type: เลือกทักษะ %{skillType}
@@ -2847,6 +2847,8 @@ th:
     status: สถานะ
     suggestions: คำ แนะ นำ
     suggestions_for_skill_type: คําแนะนําสําหรับทักษะ %{skillType}
+    summary: สรุป
+    summary_logs: บันทึกสรุปสําหรับ %{reporteeName}
     technical: เทคนิค
     user_idp_status:
       approved: อนุมัติ
@@ -2858,6 +2860,7 @@ th:
       not_started: ยังไม่ได้เริ่มต้น
       pending_approval: รอการอนุมัติ
       rejected: ถูก ปฏิเสธ
+      start_review: เริ่มตรวจสอบ
     users: ผู้เข้าร่วม
     with_reflection_questions: ด้วยคําถามไตร่ตรอง
     without_reflection_questions: โดยไม่มีคําถามไตร่ตรอง
@@ -2991,7 +2994,7 @@ th:
       text: Lighthouse. สงวนลิขสิทธิ์
     footer:
       regards: ขอแสดงความนับถือ
-      team_name: ทีมประภาคาร
+      team_name: ทีมประภ Lighthouse
       technical_support: หากมีปัญหาทางเทคนิคใด ๆ กรุณาติดต่อเราที่<x>email</x> และเราจะตอบกลับภายใน 24 ชั่วโมง
     from: องค์กรผู้มีความสามารถ
     idp:
@@ -3047,7 +3050,7 @@ th:
       body:
         dear: เรียน คุณ%{name}
         greetings: สวัสดีวันใหม่!
-        instructions: คลิกลิงก์ด้านล่างเพื่อลงชื่อเข้าใช้ประภาคาร
+        instructions: คลิกลิงก์ด้านล่างเพื่อลงชื่อเข้าใช้ประภ Lighthouse
         signin_link: ลิงค์ลงชื่อเข้าใช้
       subject: ลิงค์ลงชื่อเข้าใช้สำหรับ Lighthouse
     powered_by:
@@ -3055,7 +3058,7 @@ th:
     users:
       account_disable: บัญชีของคุณถูกปิดใช้งานเนื่องจากไม่มีการใช้งาน
       warning: บัญชีของคุณจะถูกปิดใช้งานในไม่ช้าเนื่องจากไม่มีการใช้งาน
-  maintenance_message: ประภาคารจะหยุดทํางานเพื่อบํารุงรักษาตามกําหนดเวลาในวันที่ %{start_date} และจะไม่สามารถใช้งานได้ %{duration}
+  maintenance_message: ประภ Lighthouseจะหยุดทํางานเพื่อบํารุงรักษาตามกําหนดเวลาในวันที่ %{start_date} และจะไม่สามารถใช้งานได้ %{duration}
   maintenance_submessage: โปรดรีเฟรชหน้าหลังจากการบํารุงรักษาเสร็จสิ้น คุณจะถูกเปลี่ยนเส้นทางไปยังหน้าเข้าสู่ระบบ
   my: ของฉัน
   myself: ฉันเอง
@@ -3371,13 +3374,6 @@ th:
   sessions:
     errors:
       recaptcha: การยืนยันตัวตนด้วย Recaptcha ล้มเหลว กรุณาทำใหม่อีกครั้ง
-  shared:
-    filters:
-      clear: เคลียร์ตัวกรอง
-    internet_disconnected_message: กำลังพยายามเชื่อมต่อใหม่ โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ
-    mte_logo_alt_text: โลโก้ Mercer Talent Enterprise
-    terms_conditions_privacy: คำชี้แจงความเป็นส่วนตัว
-    tte_terms_and_condition: เงื่อนไขและความเป็นส่วนตัว
   sheet:
     import_modal:
       alert_access_sheet_removal: การอัปโหลด Accesssheet ใหม่พร้อมลบบันทึกที่มีอยู่ทั้งหมดและอัปโหลดบันทึกใหม่จากแผ่นงาน โปรดตรวจสอบให้แน่ใจว่าคุณมีระเบียน Accesssheet ทั้งหมดในสเปรดชีต
@@ -4178,6 +4174,7 @@ th:
     idp:
       can_not_complete_without_approval_and_in_progress: คุณไม่สามารถกรอก IDP ของคุณให้ครบถ้วนได้จนกว่าผู้จัดการของคุณจะอนุมัติและคุณได้ทําเครื่องหมายเป็น 'อยู่ระหว่างดําเนินการ'
       can_not_start_without_approval: คุณไม่สามารถเริ่มทํางานกับ IDP ได้จนกว่าผู้จัดการของคุณจะอนุมัติ
+      no_changes_to_compare: ไม่มีการเปลี่ยนแปลงเพื่อเปรียบเทียบสําหรับแผน IDP
       no_previous_approved_plan: ไม่พบแผน IDP ที่ได้รับอนุมัติก่อนหน้านี้
       reflective_questions_required: จําเป็นต้องมีคําตอบสําหรับคําถามไตร่ตรองสําหรับ IDP
       status_not_permitted: ไม่ได้รับอนุญาตจากผู้ใช้

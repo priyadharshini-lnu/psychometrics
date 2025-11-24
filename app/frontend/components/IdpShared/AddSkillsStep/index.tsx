@@ -36,6 +36,7 @@ type AddSkillsStepProps = {
   skillGapReportAvailable?:boolean
   prev?: ()=>void
   isSkillsLoading?:boolean
+  allowSkillDeletion?:boolean
 }
 
 const { I18n } = window
@@ -49,6 +50,7 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
   skillGapReportAvailable = false,
   prev,
   isSkillsLoading = false,
+  allowSkillDeletion = true,
 }) => {
   const { isMobile } = useContext(MediaQueryContext)
   const location = useLocation()
@@ -86,6 +88,7 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
                 style={{
                   height: '2rem',
                 }}
+                className="me-2"
               >
                 {I18n.t('idp.skill_gap_report.download')}
               </DownloadButton>
@@ -118,6 +121,7 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
                   searchResults={searchSkillResource.searchResults
                     .filter(result => result.skillType === skillType.skillType)}
                   isSearching={searchSkillResource.isSearching}
+                  allowSkillDeletion={allowSkillDeletion}
                 />
                 {index === 0 && (
                   <Separator className="mb-4 mt-4" />

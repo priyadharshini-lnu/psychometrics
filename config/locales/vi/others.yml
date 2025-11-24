@@ -919,8 +919,6 @@ vi:
     invalid_job: Thông báo này tương ứng với bản ghi đã xóa
     mark_as_read: Đánh dấu tất cả đã đọc
     more: Nhiều hơn
-    no_notifications: Không có thông báo
-    notifications: Thông báo
     results: Kết quả
     super_admin:
       errors:
@@ -1241,7 +1239,7 @@ vi:
       description: Vui lòng điền vào tất cả các trường để tạo mật khẩu mới
       submit: Nộp
       title: Làm mới mật khẩu của bạn
-    lighthouse_logo_alt_text: Logo ngọn hải đăng
+    lighthouse_logo_alt_text: Logo Lighthouse
     login:
       continue_btn: Tiếp tục
       description: Vui lòng đăng nhập bằng thông tin tài khoản cá nhân của bạn
@@ -1341,16 +1339,11 @@ vi:
     continue: Tiếp tục nhiệm vụ của bạn
     dashboard_instructions: Bạn có thể đã được giao nhiều hoạt động cần hoàn thành. Vui lòng đảm bảo kiểm tra xem tất cả các hoạt động được giao đã được hoàn thành trong tất cả các chiến dịch hay chưa.
     dashboard_menu:
-      bookings: Đặt chỗ
       campaign: Chiến dịch
-      change_password: Thay đổi mật khẩu
-      development: Phát triển
       direct_reportees: Người báo cáo trực tiếp
       home: Trang chủ
       insights: Thông tin chi tiết
-      my_plan: Kế hoạch của tôi
       profile: Hồ sơ
-      profile_details: Chi tiết
       tasks: Nhiệm vụ
     details: Chi tiết
     edit_evaluation:
@@ -1459,6 +1452,7 @@ vi:
       export_occupations_job_scheduled: Công việc xuất khẩu nghề nghiệp đã được lên lịch thành công
       export_reports_and_assessments_statuses_scheduled: Xuất Báo cáo và công việc đánh giá đã được lên lịch thành công
       external_results_export_scheduled: Công việc xuất Đánh giá bên ngoài đã được lên lịch thành công
+      no_participants_selected: Vui lòng chọn ít nhất một người tham gia để tiếp tục.
       norm_results_export_scheduled: Công việc xuất kết quả theo tiêu chuẩn đánh giá đã được lên lịch thành công
       normalize_factor_scores_scheduled: Công việc chuẩn hóa điểm yếu tố đã được lên lịch thành công.
       raw_factor_export_scheduled: Đánh giá công việc xuất Raw Factor đã được lên lịch thành công
@@ -1603,6 +1597,7 @@ vi:
       report_bundle_placeholder: Chọn gói báo cáo
     messages:
       bulk_download_error: Tải xuống hàng loạt được giới hạn ở 1000 tệp báo cáo. Nếu bạn đã chọn nhiều ngôn ngữ, vui lòng giảm nó.
+      bulk_download_no_reports: Không tìm thấy báo cáo. Vui lòng tạo báo cáo trước khi tải xuống.
       bulk_download_successful: Tác vụ tải xuống báo cáo hàng loạt đã được lên lịch thành công
       export_report_data_scheduled: Tác vụ xuất dữ liệu báo cáo đã được lên lịch thành công
     modals:
@@ -1872,7 +1867,6 @@ vi:
       projects: Dự án
       report: Báo cáo
       reports: Báo cáo
-      scoring: Ghi
       sms_contact: Liên hệ SMS
       threesixty_campaign: Điểm chiến dịch Threesixty
     status:
@@ -1994,7 +1988,7 @@ vi:
           %{accept} Hoặc bạn có thể bỏ qua email này một cách an toàn.
 
           Vui lòng không chia sẻ thông tin đăng nhập truy cập của bạn với bất kỳ ai.
-        subject: Lời mời đến ngọn hải đăng
+        subject: Lời mời đến Lighthouse
       confirmation_instructions:
         subject: Hướng dẫn xác nhận
       invitation_instructions:
@@ -2006,7 +2000,7 @@ vi:
           campaign: 'Chiến dịch: %{section_name}'
           client: 'Thuê khách hàng: %{section_name}'
           project: 'Dự án: %{section_name}'
-        subject: Lời mời đến ngọn hải đăng
+        subject: Lời mời đến Lighthouse
       password_change:
         body: |-
           Xin chào %{name}!
@@ -2016,7 +2010,7 @@ vi:
           Nếu bạn không thực hiện yêu cầu này, vui lòng liên hệ với bộ phận Hỗ trợ ngay lập tức tại mte.support@mercer.com
         regards: |-
           Thân
-          Đội ngũ ngọn hải đăng
+          Đội ngũ Lighthouse
         subject: Mật khẩu Lighthouse của bạn đã thay đổi
       reset_password_instructions:
         body: |-
@@ -2027,7 +2021,7 @@ vi:
         footer: Nếu bạn không yêu cầu điều này, bạn có thể bỏ qua email này một cách an toàn. Mật khẩu của bạn sẽ không thay đổi cho đến khi bạn truy cập vào liên kết ở trên và tạo một liên kết mới.
         regards: |-
           Thân
-          Đội ngũ ngọn hải đăng
+          Đội ngũ Lighthouse
         subject: Hướng dẫn đặt lại mật khẩu
       unlock_instructions:
         body: |-
@@ -2039,7 +2033,7 @@ vi:
         footer: Nếu bạn không yêu cầu điều này, bạn có thể bỏ qua email này một cách an toàn. Mật khẩu của bạn sẽ không thay đổi cho đến khi bạn truy cập vào liên kết ở trên và tạo một liên kết mới.
         regards: |-
           Thân
-          Đội ngũ ngọn hải đăng
+          Đội ngũ Lighthouse
         subject: Hướng dẫn mở khóa tài khoản của bạn
         unlock_account: Mở khóa tài khoản của tôi
     omniauth_callbacks:
@@ -2346,6 +2340,7 @@ vi:
           in_progress: Đang tiến hành
           not_started: Chưa bắt đầu
     change_password: Thay đổi mật khẩu
+    chatwoot_info_msg: Báo cáo sự cố kỹ thuật
     clients:
       actions:
         create:
@@ -2366,10 +2361,9 @@ vi:
     error_warning: Rất tiếc, có điều gì đó không ổn với đánh giá của bạn. Vui lòng liên hệ với bộ phận hỗ trợ.
     hogan:
       cannot_start: Bạn không thể bắt đầu đánh giá hogan ngay bây giờ. Vui lòng thử sau vài phút.
-    lighthouse_app: Ngọn hải đăng Mercer
     login: Đăng nhập
     maintenance:
-      notification: Ngọn hải đăng sẽ ngừng hoạt động để bảo trì theo lịch trình sau 60 giây
+      notification: Lighthouse sẽ ngừng hoạt động để bảo trì theo lịch trình sau 60 giây
     manage: Quản lý
     'no': KHÔNG
     passwordSetting:
@@ -2468,6 +2462,7 @@ vi:
   idp:
     actions: Hành động
     add_comments: Thêm bình luận
+    added_development_action: Thêm hành động phát triển
     ai:
       assistant:
         failure_fallback:
@@ -2524,6 +2519,7 @@ vi:
         title: Xin chào, tôi là trợ lý phát triển của bạn
     behavioral: Hành vi
     board: Ván
+    change_history: Lịch sử thay đổi
     changes_saved_to_plan: Các thay đổi đã lưu vào gói
     comment_details:
       add_comment: Thêm bình luận
@@ -2625,6 +2621,7 @@ vi:
       publish_plan: Xuất bản kế hoạch
       remove: Triệt
       save_plan: Kế hoạch tiết kiệm
+      search_development_actions: Hành động phát triển tìm kiếm
       show_development_action_information: Hiển thị thông tin Hành động Phát triển
       skill: Kỹ năng
       sprint: Chạy nước rút
@@ -2637,7 +2634,7 @@ vi:
       write_here: Viết ở đây...
     direct_reportee_details: Chi tiết người được báo cáo trực tiếp
     download:
-      description: 'Để tải xuống báo cáo, vui lòng theo liên kết: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Link chỉ có giá trị trong 10 phút'
+      description: 'Để tải xuống báo cáo, vui lòng theo liên kết: <a href=''%{url}'' target=''_blank''>Download</a>. Link chỉ có giá trị trong 10 phút'
     download_plan: Tải xuống gói
     edit_plan: Chỉnh sửa kế hoạch
     edit_plan_and_add_skills: Chỉnh sửa Kế hoạch và nhấp vào Quản lý Kỹ năng để thêm Kỹ năng.
@@ -2686,6 +2683,7 @@ vi:
     manage_plan: Quản lý kế hoạch
     mark_as_complete: Đánh dấu là hoàn thành
     mark_as_incomplete: Đánh dấu là chưa hoàn thành
+    modified_development_action: Hành động phát triển được sửa đổi
     my_plan:
       development_plan: Kế hoạch phát triển
       graphs:
@@ -2705,7 +2703,6 @@ vi:
           name: Tên
           publish_date: Ngày xuất bản
           review_date: Ngày đánh giá
-          role: Vai trò hiện tại
       guidelines:
         cards:
           c1:
@@ -2803,7 +2800,9 @@ vi:
         title: Tóm tắt báo cáo
     plan: Kế hoạch
     plan_status: Trạng thái kế hoạch %{status}
+    plan_submitted_for_manager_approval: Kế hoạch phát triển cá nhân của bạn đã được đệ trình để người quản lý phê duyệt.
     private: Tư
+    public: Công cộng
     reflective_questions:
       already_completed: IDP đã được hoàn thành, bạn không thể trả lời các câu hỏi lúc này.
       answer: Trả lời
@@ -2831,6 +2830,7 @@ vi:
       words: Từ
     remove_skill: Loại bỏ kỹ năng
     remove_skill_from_plan: Loại bỏ %{name} kỹ năng khỏi kế hoạch
+    removed_development_action: Đã xóa hành động phát triển
     report_preview: Xem trước báo cáo
     search_and_select_skills_of_skill_type: Tìm kiếm và lựa chọn kỹ năng %{skillType}
     select_skills_of_skill_type: Chọn kỹ năng %{skillType}
@@ -2844,6 +2844,8 @@ vi:
     status: Tình trạng
     suggestions: Gợi ý
     suggestions_for_skill_type: Gợi ý kỹ năng %{skillType}
+    summary: Tóm tắt
+    summary_logs: Nhật ký tóm tắt cho %{reporteeName}
     technical: Kỹ thuật
     user_idp_status:
       approved: Chấp thuận
@@ -2855,6 +2857,7 @@ vi:
       not_started: Chưa bắt đầu
       pending_approval: Đang chờ phê duyệt
       rejected: Bị từ chối
+      start_review: Bắt đầu đánh giá
     users: Người dùng
     with_reflection_questions: Với các câu hỏi suy ngẫm
     without_reflection_questions: Không có câu hỏi suy ngẫm
@@ -2988,7 +2991,7 @@ vi:
       text: Lighthouse. Bảo lưu mọi quyền
     footer:
       regards: Trân trọng,
-      team_name: Đội Ngọn Hải Đăng
+      team_name: Đội Lighthouse
       technical_support: Đối với bất kỳ vấn đề kỹ thuật nào, vui lòng liên hệ với chúng tôi qua email <x>email</x> và chúng tôi sẽ phản hồi trong vòng 24 giờ.
     from: Doanh nghiệp nhân tài
     idp:
@@ -3052,7 +3055,7 @@ vi:
     users:
       account_disable: Tài khoản của bạn đã bị vô hiệu hóa do không hoạt động
       warning: Tài khoản của bạn sẽ sớm bị vô hiệu hóa do không hoạt động
-  maintenance_message: Ngọn hải đăng sẽ ngừng hoạt động để bảo trì theo lịch trình vào %{start_date} và sẽ không hoạt động trong %{duration}
+  maintenance_message: Lighthouse sẽ ngừng hoạt động để bảo trì theo lịch trình vào %{start_date} và sẽ không hoạt động trong %{duration}
   maintenance_submessage: Vui lòng làm mới trang sau khi bảo trì hoàn tất. Bạn sẽ được chuyển hướng đến trang đăng nhập
   my: Của tôi
   myself: Bản thân mình
@@ -3368,13 +3371,6 @@ vi:
   sessions:
     errors:
       recaptcha: Xác minh reCAPTCHA đã thất bại. Vui lòng thử lại.
-  shared:
-    filters:
-      clear: Xóa bộ lọc
-    internet_disconnected_message: Đang cố gắng kết nối lại. Vui lòng kiểm tra kết nối internet của bạn.
-    mte_logo_alt_text: Logo Mercer Talent Enterprise
-    terms_conditions_privacy: Tuyên bố về quyền riêng tư
-    tte_terms_and_condition: Điều khoản &amp; Quyền riêng tư
   sheet:
     import_modal:
       alert_access_sheet_removal: Tải lên Accesssheet mới với xóa tất cả bản ghi hiện có và tải lên bản ghi mới từ trang tính. Hãy đảm bảo rằng bạn có tất cả các bản ghi Accesssheet trong bảng tính.
@@ -4175,6 +4171,7 @@ vi:
     idp:
       can_not_complete_without_approval_and_in_progress: Bạn không thể hoàn thành IDP của mình cho đến khi người quản lý của bạn phê duyệt và bạn đã đánh dấu nó là 'Đang tiến hành'.
       can_not_start_without_approval: Bạn không thể bắt đầu làm việc với IDP của mình cho đến khi người quản lý của bạn phê duyệt.
+      no_changes_to_compare: Không có thay đổi nào để so sánh đối với gói IDP.
       no_previous_approved_plan: Không tìm thấy chương trình IDP được phê duyệt trước đó.
       reflective_questions_required: Câu trả lời cho các câu hỏi phản ánh là bắt buộc đối với IDP
       status_not_permitted: không được người dùng cho phép.

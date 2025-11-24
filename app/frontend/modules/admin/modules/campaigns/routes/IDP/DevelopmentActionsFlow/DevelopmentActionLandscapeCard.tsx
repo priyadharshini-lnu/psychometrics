@@ -144,7 +144,7 @@ React.FC<DevelopmentActionLandscapeCardProps> = ({
         )}
       >
         <Typography.Text>
-          {I18n.t('iadministration.dp.delete_skill')}
+          {I18n.t('administration.idp.delete_skill')}
         </Typography.Text>
       </Modal>
     </Flex>

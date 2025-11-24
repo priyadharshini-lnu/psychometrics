@@ -3,6 +3,7 @@ import React, {
 } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { camelizeKeys } from '~/utils/object'
 import {
   HomeOutlined,
   UserOutlined,
@@ -56,40 +57,40 @@ const getMenuItems = (
   projectIdpEnabled?: boolean,
 ) => ([{
   key: 'dashboard',
-  label: I18n.t('campaign.dashboard_menu.home'),
+  label: I18n.t('enduser.home'),
   icon: <HomeOutlined className={styles.siderIcon} />,
 },
 ...showCampaign ? [{
   key: 'campaign',
-  label: I18n.t('campaign.dashboard_menu.campaign'),
+  label: I18n.t('enduser.campaign'),
   icon: <CampaignIcon aria-label="campaign" className={styles.siderIcon} />,
   children: showInsights !== false ? [
-    { label: I18n.t('campaign.dashboard_menu.tasks'), key: 'tasks' },
-    { label: I18n.t('campaign.dashboard_menu.insights'), key: 'insights' },
-  ] : [{ label: I18n.t('campaign.dashboard_menu.tasks'), key: 'tasks' }],
+    { label: I18n.t('enduser.tasks'), key: 'tasks' },
+    { label: I18n.t('enduser.insights'), key: 'insights' },
+  ] : [{ label: I18n.t('enduser.tasks'), key: 'tasks' }],
 }] : [],
 // eslint-disable-next-line no-constant-condition
 ...(idpEnabled && projectIdpEnabled) ? [{
   key: 'idp',
-  label: I18n.t('campaign.dashboard_menu.development'),
+  label: I18n.t('enduser.development'),
   icon: <ReadOutlined className={styles.siderIcon} />,
   children: [
-    { label: I18n.t('campaign.dashboard_menu.my_plan'), key: 'my_plan' },
-    { label: I18n.t('campaign.dashboard_menu.direct_reportees'), key: 'direct_reportees' },
+    { label: I18n.t('enduser.my_plan'), key: 'my_plan' },
+    { label: I18n.t('enduser.direct_reportees'), key: 'direct_reportees' },
   ],
 }] : [],
 ...showBookings ? [{
   key: 'invites',
-  label: I18n.t('campaign.dashboard_menu.bookings'),
+  label: I18n.t('enduser.bookings'),
   icon: <CalendarOutlined className={styles.siderIcon} />,
 }] : [],
 {
   key: 'profile',
-  label: I18n.t('campaign.dashboard_menu.profile'),
+  label: I18n.t('enduser.profile'),
   icon: <UserOutlined className={styles.siderIcon} />,
   children: [
-    { label: I18n.t('campaign.dashboard_menu.profile_details'), key: 'profile_details' },
-    { label: I18n.t('campaign.dashboard_menu.change_password'), key: 'change_password' },
+    { label: I18n.t('enduser.profile_details'), key: 'profile_details' },
+    { label: I18n.t('shared.change_password'), key: 'change_password' },
   ],
 }])
 
@@ -99,8 +100,11 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
 }) => {
   const location = useLocation()
   const navigate = useNavigate()
+  const {
+    idpEnabled,
+  } = camelizeKeys(features)
   const { pathname } = location
-  let menuItems = getMenuItems(false, false, showBookings, features?.idp_enabled, projectIdpEnabled)
+  let menuItems = getMenuItems(false, false, showBookings, idpEnabled, projectIdpEnabled)
   let activeItem:string
   const campaignIdRef = useRef<string>('')
   const isAnonym = pathname.includes('/anonym/')
@@ -115,7 +119,7 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
     if (pathname.includes('/profile_details') || pathname.includes('/change_password')) {
       setOpenKey([...openKey, 'profile'])
     }
-    if (pathname.includes('/idp/')) {
+    if (pathname.includes('/idp/') && openKey.indexOf('idp') === -1) {
       setOpenKey([...openKey, 'idp'])
     }
   }, [pathname])
@@ -151,7 +155,7 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
       true,
       pathname.includes('/threesixty_campaigns/') ? false : showInsights,
       showBookings,
-      features?.idp_enabled,
+      idpEnabled, projectIdpEnabled,
     )
     activeItem = pathname.includes('insights') ? 'insights' : 'tasks'
   } else if (pathname.includes('/idp/')) {

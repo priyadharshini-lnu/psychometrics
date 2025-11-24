@@ -77,6 +77,7 @@ sr-Latn:
       uniq?: treba da bude jedinstven
       uniq_simulation: Ova procena simulacije je već prisutna u sistemu. ID ove procene je %{id}
       uniq_skillvue: Ova procena Skillvue je već prisutna u sistemu. ID ove procene je %{id}
+      uniq_yoodli: Ova Ioodli procena je već prisutna u sistemu. ID ove procene je %{id}
       update_workshop:
         bookings_exist: Nije moguće mijenjati raspored jer su učesnici već rezervisali ovaj termin.
         less_than_booked: Ukupan broj mesta mora biti veći od rezervisanog

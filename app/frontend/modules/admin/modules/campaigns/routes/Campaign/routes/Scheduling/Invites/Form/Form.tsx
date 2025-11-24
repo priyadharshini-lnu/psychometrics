@@ -26,6 +26,7 @@ export const InvitesForm = () => {
   const [submitPage, showSubmitPage] = useState(false)
   const [step, setStep] = useState(0)
   const [errors, setErrors] = useState<Errors | null>(null)
+  const [subjectValidationErrors, setSubjectValidationErrors] = useState<Array<string> | null>(null)
   const { modal } = App.useApp()
 
   useEffect(() => {
@@ -39,7 +40,33 @@ export const InvitesForm = () => {
   const { createResource, isLoading } = useResources<WorkshopInvite>('workshop_invites', {
     basePath: `/campaigns/${campaignId}`,
   })
-  const workshopInviteCreationInProgress = isLoading('add')
+
+  const { collectionAction: validateSubjectsAction } = useResources('workshop_invites', {
+    basePath: `campaigns/${campaignId}`,
+  })
+
+  const validateSubjects = () => {
+    setSubjectValidationErrors(null)
+    const subjects = form.getFieldValue('subjects') || []
+    const userIds = subjects.map(user => user.id)
+
+    return validateSubjectsAction({
+      action: 'validate_subjects',
+      method: 'post',
+      body: {
+        campaignAssessmentGroupId: form.getFieldValue('campaignAssessmentGroupId'),
+        userIds,
+      },
+    }).then((response: { validationErrors?: string[] }) => {
+      if (response?.validationErrors?.length) {
+        setSubjectValidationErrors(response.validationErrors)
+      } else {
+        setStep(step + 1)
+      }
+    }).catch(() => {
+      setSubjectValidationErrors(['An error occurred during validation'])
+    })
+  }
 
   const submitForm = () => {
     setErrors(null)
@@ -118,8 +145,9 @@ export const InvitesForm = () => {
         <AddSubjects
           form={form}
           onCancel={handleCancel}
-          next={() => setStep(step + 1)}
+          next={validateSubjects}
           prev={() => setStep(step - 1)}
+          errors={subjectValidationErrors}
         />
       )}
       {step === 2 && (submitPage
@@ -131,7 +159,7 @@ export const InvitesForm = () => {
             prev={() => setStep(step - 1)}
             errors={errors}
             onCancel={handleCancel}
-            isLoading={workshopInviteCreationInProgress}
+            isLoading={isLoading('add')}
           />
         ))}
     </div>

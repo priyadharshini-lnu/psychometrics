@@ -1,0 +1,29 @@
+---
+cs:
+  shared:
+    action: Akce
+    add: Přidat
+    cancel: Zrušit
+    change_password: Změna hesla
+    clear_filters: Vymazat filtry
+    edit: Upravit
+    edited: Nové
+    internet_disconnected_message: Probíhá pokus o opětovné připojení. Zkontrolujte připojení k internetu.
+    mte_logo_alt_text: Logo Mercer Talent Enterprise
+    name: Název
+    new: Nové
+    removed: Odstraněno
+    search: Hledat
+    table:
+      entries:
+        selected:
+          one: vybrán 1 řádek
+          other: "{{count}} řádky vybrány"
+        total:
+          one: 'Celkem : 1'
+          other: 'Celkem : {{count}}'
+          zero: 'Celkem : 0'
+    terms_conditions_privacy: Prohlášení o ochraně soukromí
+    tte_terms_and_condition: Smluvní podmínky a ochrana soukromí
+    type: Typ
+    update: Aktualizovat

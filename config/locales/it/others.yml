@@ -919,8 +919,6 @@ it:
     invalid_job: Questa notifica corrisponde al record cancellato
     mark_as_read: Segna come già letto
     more: Di più
-    no_notifications: Nessun messaggio
-    notifications: Notifiche
     results: Risultati
     super_admin:
       errors:
@@ -1241,7 +1239,7 @@ it:
       description: Si prega di compilare tutti i campi per creare una nuova password
       submit: Invia
       title: Rinnovare la password
-    lighthouse_logo_alt_text: Logo del faro
+    lighthouse_logo_alt_text: Logo Lighthouse
     login:
       continue_btn: Continua
       description: Effettua l'accesso con le credenziali del tuo account personale
@@ -1341,16 +1339,11 @@ it:
     continue: Continuare a svolgere i propri compiti
     dashboard_instructions: È possibile che ti siano state assegnate più attività. Ti invitiamo a verificare che tutte le attività assegnate siano state completate in tutte le Campagne.
     dashboard_menu:
-      bookings: Prenotazioni
       campaign: Campagne
-      change_password: Modifica la password
-      development: Sviluppo
       direct_reportees: Collegati
       home: Home
       insights: Approfondimenti
-      my_plan: Il mio piano
       profile: Profilo
-      profile_details: Dettagli
       tasks: Campagne
     details: Dettagli
     edit_evaluation:
@@ -1465,6 +1458,7 @@ it:
       export_occupations_job_scheduled: Occupazioni Il lavoro di esportazione è stato pianificato con successo
       export_reports_and_assessments_statuses_scheduled: Il lavoro di esportazione di rapporti e valutazioni è stato pianificato con successo
       external_results_export_scheduled: Il lavoro di esportazione della valutazione esterna è stato pianificato con successo
+      no_participants_selected: Si prega di selezionare almeno un partecipante per procedere.
       norm_results_export_scheduled: Il lavoro di esportazione dei risultati normalizzati della valutazione è stato pianificato con successo
       normalize_factor_scores_scheduled: Il lavoro di normalizzazione dei punteggi dei fattori è stato pianificato con successo.
       raw_factor_export_scheduled: Il lavoro di esportazione del Fattore grezzo di valutazione è stato pianificato con successo
@@ -1609,6 +1603,7 @@ it:
       report_bundle_placeholder: Selezionare un pacchetto di report
     messages:
       bulk_download_error: Il download massivo è limitato a 1000 file di report. Se avete selezionato molte lingue, riducetele.
+      bulk_download_no_reports: Nessun rapporto trovato. Si prega di generare i report prima di scaricarli.
       bulk_download_successful: Il lavoro di download dei rapporti di massa è stato pianificato con successo
       export_report_data_scheduled: Il lavoro di esportazione dei dati del report è stato pianificato con successo
     modals:
@@ -1878,7 +1873,6 @@ it:
       projects: Progetti
       report: Rapporto
       reports: Report
-      scoring: Punteggio
       sms_contact: Contatto SMS
       threesixty_campaign: Punteggi della campagna Threesixty
     status:
@@ -2347,6 +2341,7 @@ it:
           in_progress: In corso
           not_started: Da iniziare
     change_password: Modifica la password
+    chatwoot_info_msg: Segnala un problema tecnico
     clients:
       actions:
         create:
@@ -2367,7 +2362,6 @@ it:
     error_warning: Oops, qualcosa è andato storto con la valutazione. Si prega di contattare il supporto.
     hogan:
       cannot_start: Non è possibile avviare la valutazione delle hogan in questo momento. Provare dopo qualche minuto.
-    lighthouse_app: Mercer Lighthouse
     login: Accesso
     maintenance:
       notification: Il Lighthouse sarà disattivato per manutenzione programmata tra 60 secondi
@@ -2469,6 +2463,7 @@ it:
   idp:
     actions: Azioni
     add_comments: Aggiungi commenti
+    added_development_action: Aggiunta di un'azione di sviluppo
     ai:
       assistant:
         failure_fallback:
@@ -2525,6 +2520,7 @@ it:
         title: Ciao, sono il tuo assistente allo sviluppo
     behavioral: Comportamento
     board: Consiglio di amministrazione
+    change_history: Cronologia delle modifiche
     changes_saved_to_plan: Modifiche salvate nel piano
     comment_details:
       add_comment: Aggiungi commento
@@ -2626,6 +2622,7 @@ it:
       publish_plan: Pubblica piano
       remove: Rimuovere
       save_plan: Salva piano
+      search_development_actions: Cerca azioni di sviluppo
       show_development_action_information: Mostra informazioni sull'azione di sviluppo
       skill: Abilità
       sprint: Sprint
@@ -2638,7 +2635,7 @@ it:
       write_here: Scrivi qui...
     direct_reportee_details: Dettagli Reportee Diretti
     download:
-      description: 'Per scaricare il rapporto, segui il link: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Il link è valido solo per 10 minuti'
+      description: 'Per scaricare il rapporto, segui il link: <a href=''%{url}'' target=''_blank''>Download</a>. Il link è valido solo per 10 minuti'
     download_plan: Scarica il piano
     edit_plan: Modifica piano
     edit_plan_and_add_skills: Modifica piano e fai clic su Gestisci competenze per aggiungere competenze.
@@ -2687,6 +2684,7 @@ it:
     manage_plan: Gestire piano
     mark_as_complete: Contrassegna come completato
     mark_as_incomplete: Contrassegna come incompleto
+    modified_development_action: Azione di sviluppo modificata
     my_plan:
       development_plan: Piano di sviluppo
       graphs:
@@ -2712,7 +2710,6 @@ it:
           name: Nome
           publish_date: Data di Pubblicazione
           review_date: Data di Revisione
-          role: Ruolo Attuale
       guidelines:
         cards:
           c1:
@@ -2810,7 +2807,9 @@ it:
         title: Riepilogo del Report
     plan: Piano
     plan_status: Stato del piano %{status}
+    plan_submitted_for_manager_approval: Il tuo Piano di Sviluppo Individuale è stato sottoposto all'approvazione del manager.
     private: Privato
+    public: Pubblico
     reflective_questions:
       already_completed: L'IDP è già stato completato, non è possibile rispondere alle domande ora.
       answer: Risposta
@@ -2838,6 +2837,7 @@ it:
       words: Parole
     remove_skill: Rimuovi Abilità
     remove_skill_from_plan: Rimuovi %{name} di abilità dal piano
+    removed_development_action: Azione di sviluppo rimossa
     report_preview: Anteprima del rapporto
     search_and_select_skills_of_skill_type: Cerca e seleziona %{skillType} competenze
     select_skills_of_skill_type: Seleziona %{skillType} competenze
@@ -2851,6 +2851,8 @@ it:
     status: Stato
     suggestions: Suggerimenti
     suggestions_for_skill_type: Suggerimenti per %{skillType} competenze
+    summary: Sommario
+    summary_logs: Log di riepilogo per %{reporteeName}
     technical: Tecnica
     user_idp_status:
       approved: Approvati
@@ -2862,6 +2864,7 @@ it:
       not_started: Da iniziare
       pending_approval: In attesa
       rejected: Respinto
+      start_review: Inizia la recensione
     users: Utenti
     with_reflection_questions: Con domande di riflessione
     without_reflection_questions: Domande senza riflessione
@@ -2995,7 +2998,7 @@ it:
       text: Faro. Tutti i diritti riservati
     footer:
       regards: Saluti,
-      team_name: Squadra del Faro
+      team_name: Squadra Lighthouse
       technical_support: Per qualsiasi problema tecnico, scriveteci a <x>email</x> e vi risponderemo entro 24 ore.
     from: L'impresa dei talenti
     idp:
@@ -3375,13 +3378,6 @@ it:
   sessions:
     errors:
       recaptcha: Verifica Recaptcha fallita. Riprovare.
-  shared:
-    filters:
-      clear: Cancella i filtri
-    internet_disconnected_message: Si prega di controllare la connessione a Internet.
-    mte_logo_alt_text: Logo Mercer Talent Enterprise
-    terms_conditions_privacy: Dichiarazione sulla privacy
-    tte_terms_and_condition: Condizioni e privacy
   sheet:
     import_modal:
       alert_access_sheet_removal: Il caricamento di un nuovo Accesssheet comporta l'eliminazione di tutti i record esistenti e il caricamento di uno nuovo dal foglio. Assicurarsi di avere tutti i record di Accesssheet nel foglio di calcolo.
@@ -4182,6 +4178,7 @@ it:
     idp:
       can_not_complete_without_approval_and_in_progress: Non puoi completare il tuo IDP finché il tuo manager non lo approva e lo hai contrassegnato come "In corso".
       can_not_start_without_approval: Non puoi iniziare a lavorare sul tuo IDP finché il tuo manager non lo approva.
+      no_changes_to_compare: Nessuna modifica da confrontare per il piano IDP.
       no_previous_approved_plan: Non è stato trovato alcun piano IDP precedentemente approvato.
       reflective_questions_required: Per l'IDP sono necessarie risposte a domande riflessive
       status_not_permitted: non è consentito dall'utente.

@@ -5,6 +5,7 @@ class AI::AssistantChat < ApplicationRecord
   acts_as_chat messages: :messages, message_class: 'AI::AssistantRequest', model: :ai_model_registry, model_class: 'AI::ModelRegistry'
 
   belongs_to :ai_assistant, class_name: 'AI::Assistant'
+  belongs_to :ai_assisted_user_session, class_name: 'AI::AssistedUserSession', optional: true
   belongs_to :user, class_name: 'User'
 
   has_many :messages,
@@ -38,6 +39,10 @@ class AI::AssistantChat < ApplicationRecord
 
     if options[:params]
       with_params(**options[:params])
+    end
+
+    if provider_config['headers']
+      with_headers(**provider_config['headers'])
     end
 
     self
@@ -82,7 +87,7 @@ class AI::AssistantChat < ApplicationRecord
   end
 
   def complete_with_response_api(llm_chat, original_message, attachment_url, persist_attachment, &block)
-    response_message = AI::Services::OpenaiResponseApi.call!(llm_chat)
+    response_message = AI::Services::OpenaiResponseApi.call!(llm_chat, ai_assistant.model_id)
 
     # Persist both user and assistant messages
     create_user_message(original_message, with: persist_attachment ? attachment_url : nil)

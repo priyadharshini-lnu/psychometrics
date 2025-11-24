@@ -208,6 +208,7 @@ it:
           projectSettings:
             assessments: Assessment
             design: Design
+            feature_flags: Flag di funzionalità
             idp: IDP
             integrations: Integrazioni
             privacy_settings: Impostazioni sulla privacy
@@ -764,11 +765,6 @@ it:
       user: Utente
       user_agent: Agente utente
     back: Indietro
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Siete sicuri di voler effettuare il logout?</p> <p>Premere No se si desidera continuare a lavorare. Premere Sì per disconnettere l'utente corrente.</p>"
-          title: "<strong>Disconnettersi</strong>?"
     block_settings:
       modal:
         add_layer: Aggiungi strato
@@ -1244,11 +1240,6 @@ it:
         archived: Archiviati
         disable: Archivio
         enable: Disarchivio
-      columns:
-        country: Paese
-        project_manager: Responsabile di progetto
-        type: Tipo
-        year: Anno
       copy:
         successfully: Il contratto di locazione del cliente "%{name}" è stato copiato con successo.
       create:
@@ -1257,14 +1248,6 @@ it:
         successfully: Il contratto di locazione del cliente %{name} è stato cancellato con successo.
       edit:
         header: Modifica del cliente
-      form:
-        client: Cliente
-        country: Paese
-        name: Nome
-        number: Numero
-        project_manager: Responsabile di progetto
-        type: Tipo
-        year: Anno
       licenses:
         resource:
           confirmations:
@@ -1684,7 +1667,6 @@ it:
             title: Archivio <strong>%{name}</strong>?
           enable:
             title: Disarchiviare <strong>%{name}</strong>?
-      tenancies: Clienti
       threesixty_campaign: Campagna Threesixty
       toggle_status:
         successfully: Il contratto di locazione del cliente %{name} è stato aggiornato con successo.
@@ -2336,7 +2318,6 @@ it:
         name: Nome
         publish_date: Data di pubblicazione
         review_date: Data di revisione
-        role: Ruolo attuale
       fields_label: Campi
       global_skills: Competenze globali
       idp: IDP
@@ -2756,43 +2737,14 @@ it:
     message: Messaggio
     meta_title: Pannello di amministrazione
     navigation:
-      ai_artifacts: Artefatti AI
-      ai_assistants: Assistenti AI
-      assessments: Assessment
-      assessments_reports: Assessment e report
-      assessor_dashboard: Dashboard valutatore
-      assessor_workshops: Centro di valutazione
       audit_logs: Registri di controllo
       availability: Disponibilità
-      back_to_main: Menù principale
-      campaign_templates: Modelli di campagna
-      change_password: Modifica la password
-      client_admins: Amministratori clienti
-      clients: Clienti
-      communication_center: Centro di comunicazione
       dashboard: Dashboard
-      data_reports: Report sui dati
-      development_actions: Azioni di sviluppo
-      dimensions: Dimensioni
       factors: Fattori
       innovation_styles: Stili di innovazione
-      libraries: Biblioteca multimediale
-      norms: Norme
       occupations: Occupazioni
-      options: Opzioni
-      participants: Partecipanti
-      profile: Profilo
-      profile_details: Dettagli
-      project_admins: Amministratori di progetto
-      question_center: Centro domande
       registration_codes: Codici di registrazione
-      report_approvals: Approvazione report
-      reports: Report
-      scheduling: Programmazione
-      show_submenu: Mostra menu secondario
       skills_taxonomy: Tassonomia delle competenze
-      user_profile_details: Dettagli del profilo
-      user_report_events: Segnalazione di eventi da parte dell'utente
       users: Utenti
     no_data_found: Nessun dato trovato
     norms:
@@ -2866,7 +2818,6 @@ it:
         successfully: La norma è stata aggiornata con successo.
       update:
         successfully: La norma %{name} è stata aggiornata con successo.
-    notification_bell_icon: Icona Campana di Notifica
     noty:
       error_408: Questa azione richiede troppo tempo. Provare a ricaricare la pagina.
       error_500: Qualcosa è andato storto. Contattare l'amministratore.
@@ -4292,7 +4243,6 @@ it:
         inactive: Inattivi
         percentage: Percentuale
         title: Assessment
-      title: Statistiche
       top_metrics:
         completed: Completati
         in_progress: In corso
@@ -4767,10 +4717,6 @@ it:
       update:
         successfully: L'utente %{name} è stato aggiornato con successo.
       user: Utente
-    validations:
-      idp:
-        end_date_cannot_be_in_past: La data di fine non può essere passata
-        start_date_cannot_be_in_past: La data di inizio non può essere passata
     webhook:
       connection_failure: Impossibile connettersi all'url del webhook. Verificare se l'url del webhook è corretto...
       delete_success: Le impostazioni dei webhook sono state cancellate con successo

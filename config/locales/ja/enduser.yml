@@ -1,0 +1,22 @@
+---
+ja:
+  enduser:
+    add_idp_plan_note: メモを追加...
+    add_idp_plan_rejection_reason: 理由を追加...
+    approve_idp_plan: プランを承認
+    bookings: 予約
+    campaign: キャンペーン
+    development: 開発
+    direct_reportees: 直下のレポート
+    home: ダッシュボード
+    idp_plan_approval_note: 承認メモ
+    insights: インサイト
+    max_word_limit: 最大%{max}語以内にしてください
+    min_word_limit: 最小%{min}語以上にしてください
+    my_plan: 私の計画
+    profile: プロフィール
+    profile_details: 詳細
+    question_counter: 質問 %{current} / %{total}
+    selected_count: 選択済み
+    skill_type: スキルの種類
+    tasks: タスク

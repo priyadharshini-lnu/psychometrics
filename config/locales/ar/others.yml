@@ -943,8 +943,6 @@ ar:
     invalid_job: يتوافق هذا الإشعار مع السجل المحذوف
     mark_as_read: ضع علامة على الكل مقروءا
     more: أكثر
-    no_notifications: لا توجد إشعارات
-    notifications: الاخطارات
     results: النتائج
     super_admin:
       errors:
@@ -1269,7 +1267,7 @@ ar:
       description: يرجى ملء جميع الحقول لإنشاء كلمة مرور جديدة
       submit: إعادة تعيين كلمة السر
       title: غير كلمة المرور الخاصة بك
-    lighthouse_logo_alt_text: شعار المنارة
+    lighthouse_logo_alt_text: شعار Lighthouse
     login:
       continue_btn: استمر
       description: الرجاء تسجيل الدخول باستخدام معلومات حسابك الشخصية
@@ -1369,16 +1367,11 @@ ar:
     continue: الإستمرار في التقييم
     dashboard_instructions: لقد تم تكليفك بعدد من الأنشطة التي عليك إنجازها، يرجى التأكد من إكمالها جميعاً ضمن الفترة الزمنية المحددة لها.
     dashboard_menu:
-      bookings: الحجوزات
       campaign: الحملة
-      change_password: تغيير كلمة المرور
-      development: تطوير
       direct_reportees: الموظفين المباشرين
       home: الصفحة الرئيسية
       insights: البصائر
-      my_plan: خطتي
       profile: تفاصيلي
-      profile_details: تفاصيل
       tasks: مهامي
     details: مشاهدة التفاصيل
     edit_evaluation:
@@ -1502,6 +1495,7 @@ ar:
       export_occupations_job_scheduled: تم جدولة وظيفة تصدير المهن بنجاح
       export_reports_and_assessments_statuses_scheduled: تمت جدولة مهمة تقارير التصدير والتقييمات بنجاح
       external_results_export_scheduled: تمت جدولة مهمة تصدير التقييم الخارجي بنجاح
+      no_participants_selected: يرجى تحديد مشارك واحد على الأقل للمتابعة.
       norm_results_export_scheduled: تمت جدولة مهمة تصدير النتائج المعيارية للتقييم بنجاح
       normalize_factor_scores_scheduled: تمت جدولة وظيفة تطبيع درجات العامل بنجاح.
       raw_factor_export_scheduled: تم جدولة مهمة تصدير العامل الخام للتقييم بنجاح
@@ -1646,6 +1640,7 @@ ar:
       report_bundle_placeholder: حدد حزمة تقارير
     messages:
       bulk_download_error: يقتصر التنزيل المجمع على 1000 ملف تقرير. إذا كنت قد اخترت العديد من اللغات ، فيرجى تقليلها.
+      bulk_download_no_reports: لم يتم العثور على تقارير. يرجى إنشاء التقارير قبل التنزيل.
       bulk_download_successful: تمت جدولة مهمة تنزيل التقرير المجمع بنجاح
       export_report_data_scheduled: تمت جدولة مهمة تصدير بيانات التقرير بنجاح
     modals:
@@ -1915,7 +1910,6 @@ ar:
       projects: المشاريع
       report: تقرير
       reports: التقييم
-      scoring: سجل
       sms_contact: الاتصال بالرسائل النصية القصيرة
       threesixty_campaign: درجات حملة Threesixty
     status:
@@ -2037,19 +2031,19 @@ ar:
           %{accept} أو يمكنك تجاهل هذا البريد الإلكتروني بأمان.
 
           يرجى عدم مشاركة بيانات اعتماد الوصول الخاصة بك مع أي شخص.
-        subject: دعوة إلى المنارة
+        subject: دعوة إلى Lighthouseة
       confirmation_instructions:
         subject: تعليمات التأكيد
       invitation_instructions:
         body: |-
           مرحبا %{name},
-          تمت إضافتك إلى المنارة كمسؤول للقسم التالي
-        login: تسجيل الدخول إلى المنارة
+          تمت إضافتك إلى Lighthouseة كمسؤول للقسم التالي
+        login: تسجيل الدخول إلى Lighthouseة
         sections:
           campaign: 'الحملة: %{section_name}'
           client: 'إيجار العميل: %{section_name}'
           project: 'المشروع: %{section_name}'
-        subject: دعوة إلى المنارة
+        subject: دعوة إلى Lighthouseة
       password_change:
         body: |-
           مرحبا %{name}!
@@ -2059,7 +2053,7 @@ ar:
           إذا لم تقدم هذا الطلب، فيرجى الاتصال بالدعم على الفور على mte.support@mercer.com
         regards: |-
           يتعلق
-          فريق المنارة
+          فريق Lighthouseة
         subject: تم تغيير كلمة مرور Lighthouse الخاصة بك
       reset_password_instructions:
         body: |-
@@ -2070,7 +2064,7 @@ ar:
         footer: إذا لم تطلب ذلك ، فيمكنك تجاهل هذا البريد الإلكتروني بأمان. لن تتغير كلمة المرور الخاصة بك حتى تصل إلى الرابط أعلاه وإنشاء رابط جديد.
         regards: |-
           يتعلق
-          فريق المنارة
+          فريق Lighthouseة
         subject: تعليمات لإعادة تعيين كلمة المرور الخاصة بك
       unlock_instructions:
         body: |-
@@ -2082,7 +2076,7 @@ ar:
         footer: إذا لم تطلب ذلك ، فيمكنك تجاهل هذا البريد الإلكتروني بأمان. لن تتغير كلمة المرور الخاصة بك حتى تصل إلى الرابط أعلاه وإنشاء رابط جديد.
         regards: |-
           يتعلق
-          فريق المنارة
+          فريق Lighthouseة
         subject: تعليمات فتح حسابك
         unlock_account: فتح حسابي
     omniauth_callbacks:
@@ -2389,6 +2383,7 @@ ar:
           in_progress: " على قيد التقدم"
           not_started: لم يبدأ بعد
     change_password: تغيير كلمة السر
+    chatwoot_info_msg: الإبلاغ عن مشكلة فنية
     clients:
       actions:
         create:
@@ -2409,10 +2404,9 @@ ar:
     error_warning: عفوا ، حدث خطأ ما في تقييمك. يرجى الاتصال بالدعم.
     hogan:
       cannot_start: لا يمكنك بدء تقييم هوجان الآن. يرجى المحاولة بعد بضع دقائق.
-    lighthouse_app: ميرسر لايتهاوس
     login: تسجيل الدخول
     maintenance:
-      notification: سيتم تعطيل المنارة للصيانة المجدولة في غضون 60 ثانية
+      notification: سيتم تعطيل Lighthouseة للصيانة المجدولة في غضون 60 ثانية
     manage: " إدارة"
     'no': لا
     passwordSetting:
@@ -2511,6 +2505,9 @@ ar:
   idp:
     actions: الإجراءات
     add_comments: أضف تعليقات
+    add_note: إضافة ملاحظة...
+    add_reason: إضافة سبب...
+    added_development_action: إجراءات إنمائية مضافة
     ai:
       assistant:
         failure_fallback:
@@ -2565,6 +2562,8 @@ ar:
       welcome:
         text: هل أنت مستعد لرسم نموك جوني؟ هيا نبدأ!
         title: مرحبا، أنا مساعد التطوير الخاص بك
+    approval_note: مذكرة الموافقة
+    approve_plan: الموافقة على الخطة
     behavioral: سلوكية
     board: اللوحة
     change_history: تغيير التاريخ
@@ -2670,6 +2669,7 @@ ar:
       remove: إزالة
       save_plan: حفظ الخطة
       search_development_actions: إجراءات تطوير البحث
+      selected_count: مختارة %{count}
       show_development_action_information: إظهار معلومات إجراءات التطوير
       skill: مهارة
       sprint: سباق قصير
@@ -2682,7 +2682,7 @@ ar:
       write_here: اكتب هنا...
     direct_reportee_details: تفاصيل المبلغين المباشرين
     download:
-      description: 'لتنزيل التقرير ، يرجى اتباع الرابط: <a href = ''''%{url}'''' target = '''' _blank'''' > تنزيل</a>. الرابط صالح لمدة 10 دقائق فقط'
+      description: 'لتنزيل التقرير ، يرجى اتباع الرابط: <a href = ''%{url}'' target = ''_blank'' > تنزيل</a>. الرابط صالح لمدة 10 دقائق فقط'
     download_plan: تحميل الخطة
     edit_plan: تعديل الخطة
     edit_plan_and_add_skills: قم بتحرير الخطة وانقر فوق إدارة المهارات لإضافة المهارات.
@@ -2731,6 +2731,7 @@ ar:
     manage_plan: إدارة الخطة
     mark_as_complete: وضع علامة على أنها كاملة
     mark_as_incomplete: وضع علامة على أنها غير مكتملة
+    modified_development_action: إجراءات التنمية المعدلة
     my_plan:
       development_plan: خطة التطوير
       graphs:
@@ -2750,7 +2751,6 @@ ar:
           name: الاسم
           publish_date: تاريخ النشر
           review_date: تاريخ المراجعة
-          role: الدور الحالي
       guidelines:
         cards:
           c1:
@@ -2848,8 +2848,10 @@ ar:
         title: ملخص التقرير
     plan: خطة
     plan_status: حالة الباقة %{status}
+    plan_submitted_for_manager_approval: تم تقديم خطة التطوير الفردية الخاصة بك لموافقة المدير.
     private: عسكري
     public: عام
+    reason_for_rejection: سبب الرفض
     reflective_questions:
       already_completed: لقد تم الانتهاء من IDP بالفعل، ولا يمكنك الإجابة عن الأسئلة الآن.
       answer: جواب
@@ -2862,7 +2864,9 @@ ar:
         max_words: تسمح الإجابة بحد أقصى %{count} الكلمات
         min_words: تتطلب الإجابة ما لا يقل عن %{count} الكلمات
         required: إجابة السؤال مطلوبة
+      max_word_limit: يجب أن تكون على الأكثر %{max} كلمة
       max_words: الحد الأقصى للكلمات
+      min_word_limit: يجب أن تكون على الأقل %{min} كلمة
       min_words: كلمات دقيقة
       no_answer_provided: لم يتم تقديم إجابة حتى الآن
       no_reflective_questions: لا توجد أسئلة عاكسة
@@ -2875,8 +2879,10 @@ ar:
       updated_successfully: تم تحديث إجاباتك بنجاح
       word_limit: يجب أن تكون بين %{min} و %{max} كلمة
       words: الكلمات
+    reject_plan: رفض الخطة
     remove_skill: إزالة المهارة
     remove_skill_from_plan: إزالة %{name} المهارة من الخطة
+    removed_development_action: إجراءات التطوير التي تمت إزالتها
     report_preview: معاينة التقرير
     search_and_select_skills_of_skill_type: ابحث وحدد مهارات %{skillType}
     select_skills_of_skill_type: حدد مهارات %{skillType}
@@ -2890,8 +2896,11 @@ ar:
     status: الحالة
     suggestions: اقتراحات
     suggestions_for_skill_type: اقتراحات لمهارات %{skillType}
+    summary: ملخص
+    summary_logs: سجلات ملخصة ل %{reporteeName}
     technical: اِصطِلاحِيّ
     user_idp_status:
+      ai_assisted_idp_in_progress: الذكاء الاصطناعي يساعد IDP في التقدم
       approved: تمت الموافقة
       completed: اكمال
       completion_not_started: لم يبدأ الانتهاء
@@ -2901,6 +2910,7 @@ ar:
       not_started: لم يبدأ
       pending_approval: قيد الموافقة
       rejected: نبيذ
+      start_review: ابدأ المراجعة
     users: المستخدمون
     with_reflection_questions: مع أسئلة التفكير
     without_reflection_questions: بدون أسئلة تفكير
@@ -3031,10 +3041,10 @@ ar:
     used_out_of: "%{used} من %{total}"
   mailer:
     copyright:
-      text: لايت هاوس. جميع الحقوق محفوظة
+      text: جميع الحقوق محفوظة Lighthouse
     footer:
       regards: مع أطيب التحيات،
-      team_name: فريق لايت هاوس
+      team_name: فريق Lighthouse
       technical_support: لأي مشاكل تقنية، يرجى الكتابة إلينا على %{email} وسنرد خلال 24 ساعة.
     from: مؤسسة المواهب
     idp:
@@ -3094,7 +3104,7 @@ ar:
         signin_link: رابط تسجيل الدخول
       subject: رابط تسجيل الدخول إلى Lighthouse
     powered_by:
-      text: مدعوم من لايت هاوس.
+      text: مدعوم من Lighthouse
     users:
       account_disable: تم تعطيل حسابك بسبب عدم النشاط
       warning: سيتم تعطيل حسابك قريبا بسبب عدم النشاط
@@ -3414,13 +3424,6 @@ ar:
   sessions:
     errors:
       recaptcha: فشلت عملية التحقق من إعادة الكابتشا. يرجى المحاولة مرة أخرى.
-  shared:
-    filters:
-      clear: امسح المُرشحات
-    internet_disconnected_message: نحاول إعادة الاتصال بالإنترنت. يرجى التحقق من اتصالك بالإنترنت الخاص بك.
-    mte_logo_alt_text: شعار Mercer Talent Enterprise
-    terms_conditions_privacy: بيان الخصوصية
-    tte_terms_and_condition: " الشروط والأحكام وبيان الخصوصية الخاص بشركة"
   sheet:
     import_modal:
       alert_access_sheet_removal: تحميل ورقة وصول جديدة مع حذف جميع السجلات الموجودة وتحميل سجل جديد من الورقة. يرجى التأكد من وجود جميع سجلات جدول الوصول في جدول البيانات.
@@ -4224,6 +4227,7 @@ ar:
     idp:
       can_not_complete_without_approval_and_in_progress: لا يمكنك إكمال موفر الهوية الخاص بك حتى يوافق عليه مديرك وتقوم بوضع علامة عليه على أنه "قيد التقدم".
       can_not_start_without_approval: لا يمكنك البدء في العمل على موفر الهوية الخاص بك حتى يوافق عليه مديرك.
+      no_changes_to_compare: لا توجد تغييرات للمقارنة مع خطة آي دي بي.
       no_previous_approved_plan: لم يتم العثور على خطة IDP معتمدة سابقا.
       reflective_questions_required: مطلوب إجابات على الأسئلة العاكسة ل IDP
       status_not_permitted: غير مسموح به من قبل المستخدم.

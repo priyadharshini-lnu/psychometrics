@@ -169,6 +169,7 @@ export const InitialStepsComponent = () => {
           skillGapReportId={userIdpPlanData?.skillGapReportId}
           next={handleNextForSkillGapReportStep}
           prev={handlePrevForSkillGapReportStep}
+          nextLabel={I18n.t('idp.initial_steps.add_skills_step')}
         />
       )}
       {paramStep === STEPS.addSkills && (

@@ -2,7 +2,7 @@ import {
   Button, Flex, Space, Typography, Popconfirm,
 } from 'antd'
 import {
-  Attachments, Sender, Welcome, Prompts,
+  Attachments, Sender, Prompts,
 } from '@ant-design/x'
 import Icon, {
   CloudUploadOutlined, LoadingOutlined,
@@ -23,7 +23,6 @@ import { AIAssistantLayout } from '../AIAssistantLayout'
 import styles from './AIChat.less'
 import { RecordingProvider } from '~/context/RecordingContext'
 import Lighthouse from './assets/LighthouseIcon.svg?react'
-import { BotIcon } from './bubbles/BotIcon'
 import useAsyncRequestResponse from '~/hooks/useAsyncRequestResponse'
 import BubbleTypes from './bubbles'
 import { ASSISTANT_FAILURE_FALLBACK_CONTENT } from './constants'
@@ -118,7 +117,7 @@ export const AIChat = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [recording, setRecording] = useState(false)
-  const [resetChat, setResetChat] = useState(false)
+  const [resetInProgress, setResetInProgress] = useState(false)
 
   const changeValue = (value:string) => {
     setUserPrompt(value)
@@ -168,6 +167,18 @@ export const AIChat = () => {
     responseType: AsyncChatTR,
   })
 
+  const resetRequest = useAsyncRequestResponse({
+    url: '/ai_assisted_idp_chats/reset',
+    data: {},
+    pollingInterval: 3,
+    numberOfTimesToPoll: 30,
+    responseType: AsyncChatTR,
+    onFailure: () => {
+      setRequestProcessing(false)
+      setResetInProgress(false)
+    },
+  })
+
 
   const handleErrorResponse = (content) => {
     // Add error attribute to last message
@@ -177,18 +188,31 @@ export const AIChat = () => {
       if (updatedMessages.length > 0) {
         updatedMessages[updatedMessages.length - 1] = {
           ...updatedMessages[updatedMessages.length - 1],
-          error: content.message || I18n.t('idp.ai.errors.generic'),
+          error: content.message || I18n.t('ai.errors.generic'),
         }
+      } else {
+        updatedMessages.push({
+          component: 'AssistantMessage',
+          message: I18n.t('ai.errors.generic'),
+          error: content.message || I18n.t('ai.errors.generic'),
+        })
       }
       return updatedMessages
     })
   }
 
+  const cancelDictation = () => {
+    if (recording) {
+      stopDictation()
+      setRecording(false)
+    }
+  }
+
   const sendMessage = async (message) => {
     setRequestProcessing(true)
     try {
-      const response = await askRequest.makeAsyncRequest({ message, restart_chat: resetChat })
-      setResetChat(false)
+      cancelDictation()
+      const response = await askRequest.makeAsyncRequest({ message })
       const { content } = response.responseData
 
       const isErrorResponse = typeof content === 'object' && content?.component === 'Error'
@@ -215,6 +239,15 @@ export const AIChat = () => {
       return null
     }
   }
+
+  const parseMessages = messages => messages.map((msg) => {
+    const content = parseContent(msg.content)
+    const message = parseAssistantMessage(content || { message: msg.content })
+    return ({
+      ...message,
+      role: msg.role,
+    })
+  })
 
   const parseAssistantMessage = (content) => {
     // We need to ensure that even if for some reason content is not object, we let the user re-try
@@ -284,9 +317,29 @@ export const AIChat = () => {
   }, [messages])
 
   useEffect(() => {
-    askRequest.startPolling()?.then(({ responseData: { content } }) => {
-      setMessages(prev => [...prev, parseAssistantMessage(content)])
+    askRequest.startPolling()?.then((response) => {
+      if (response) {
+        const { responseData: { content } } = response
+        setMessages(prev => [...prev, parseAssistantMessage(content)])
+      }
     })
+    if (resetRequest.startPolling()?.then((response) => {
+      if (response) {
+        const { responseData: { content } } = response
+        if (content.messages) {
+          setMessages(() => parseMessages(content.messages))
+        }
+        if (content?.component === 'Error') {
+          handleErrorResponse(content)
+        }
+      }
+      setRequestProcessing(false)
+      setResetInProgress(false)
+    })) {
+      setRequestProcessing(true)
+      setResetInProgress(true)
+      return
+    }
     setRequestProcessing(true)
     fetchMessages().then(({ response }) => {
       const { messages: fetchedMessages, error: aiSessionError } = response
@@ -301,9 +354,17 @@ export const AIChat = () => {
       })
 
       if (aiSessionError) {
-        messages[messages.length - 1] = {
-          ...messages[messages.length - 1],
-          error: aiSessionError,
+        if (messages.length > 0) {
+          messages[messages.length - 1] = {
+            ...messages[messages.length - 1],
+            error: aiSessionError,
+          }
+        } else {
+          messages.push({
+            component: 'AssistantMessage',
+            message: I18n.t('ai.errors.generic'),
+            error: aiSessionError,
+          })
         }
       }
 
@@ -318,11 +379,29 @@ export const AIChat = () => {
     }
   }, [])
 
-  const handleReset = () => {
-    setResetChat(true)
+  const handleReset = async () => {
+    cancelDictation()
+    setRequestProcessing(true)
+    setResetInProgress(true)
     setMessages([])
     setStatus('chat')
     setSuggestions([])
+    try {
+      const response = await resetRequest.makeAsyncRequest()
+      const { content } = response.responseData
+      const isErrorResponse = (typeof content === 'object' && content?.component === 'Error') || content.error
+      if (isErrorResponse) {
+        return handleErrorResponse(content)
+      }
+      const messages = parseMessages(content.messages)
+      setMessages(() => messages)
+    } finally {
+      setRequestProcessing(false)
+      setResetInProgress(false)
+      if (status === 'completed') {
+        setStatus('confirmation')
+      }
+    }
   }
 
   const onAction = (action) => {
@@ -434,7 +513,7 @@ export const AIChat = () => {
             className={styles.header}
             backIcon={false}
             title={(
-              <Space>
+              <Space align="center">
                 <Button
                   size="small"
                   type="text"
@@ -442,12 +521,14 @@ export const AIChat = () => {
                   onClick={() => navigate('/idp/ai_assistant/start')}
                 >
                   <DirectionalNavigateBackIcon className={styles.backIcon} />
-                  {I18n.t('common.actions.go_back')}
                 </Button>
+                <Typography.Text strong style={{ lineHeight: '2rem' }}>
+                  {I18n.t('enduser.lighthouse_assistant')}
+                </Typography.Text>
               </Space>
             )}
             extra={(
-              messages.length > 0 && !resetChat ? (
+              messages.length > 1 && !resetInProgress ? (
                 <Popconfirm
                   disabled={requestProcessing}
                   overlayStyle={{ zIndex: 9999 }}
@@ -468,12 +549,6 @@ export const AIChat = () => {
             )}
           />
           <Flex gap="middle" vertical className={styles.messages}>
-            <Welcome
-              variant="borderless"
-              icon={<BotIcon size={50} />}
-              title={I18n.t('idp.ai.welcome.title')}
-              description={I18n.t('idp.ai.welcome.text')}
-            />
             {messages.map((message, index) => (
               <Bubble
                 key={index}

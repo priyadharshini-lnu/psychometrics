@@ -919,8 +919,6 @@ pt:
     invalid_job: Esta notificação corresponde a um registo eliminado
     mark_as_read: Marcar todas as leituras
     more: Mais
-    no_notifications: Sem notificações
-    notifications: Notificações
     results: Resultados
     super_admin:
       errors:
@@ -1245,7 +1243,7 @@ pt:
       description: Preencha todos os campos para criar uma nova palavra-passe
       submit: Enviar
       title: Renovar a sua palavra-passe
-    lighthouse_logo_alt_text: Logótipo do farol
+    lighthouse_logo_alt_text: Logótipo Lighthouse
     login:
       continue_btn: Continuar
       description: Inicie a sessão com as informações da sua conta pessoal
@@ -1345,16 +1343,11 @@ pt:
     continue: Continue as suas tarefas
     dashboard_instructions: Foram-lhe atribuídas a várias atividades que precisa de concluir. Por favor confirme verificando se todas as atividades atribuídas foram concluídas em todas as campanhas.
     dashboard_menu:
-      bookings: Reservas
       campaign: Campanha
-      change_password: Alterar a palavra-passe
-      development: Desenvolvimento
       direct_reportees: Collegati
       home: Início
       insights: Informações
-      my_plan: O meu plano
       profile: Perfil
-      profile_details: Detalhes
       tasks: Tarefas
     details: Detalhes
     edit_evaluation:
@@ -1478,6 +1471,7 @@ pt:
       export_occupations_job_scheduled: Profissões O trabalho de exportação foi agendado com êxito
       export_reports_and_assessments_statuses_scheduled: A tarefa Exportar relatórios e avaliações foi agendada com êxito
       external_results_export_scheduled: A tarefa de exportação da Avaliação Externa foi agendada com êxito
+      no_participants_selected: Selecione pelo menos um participante para prosseguir.
       norm_results_export_scheduled: A tarefa de exportação Assessment Normed Results foi agendada com êxito
       normalize_factor_scores_scheduled: A tarefa de normalização das pontuações dos factores foi agendada com êxito.
       raw_factor_export_scheduled: Avaliação O trabalho de exportação do Raw Fator foi agendado com sucesso
@@ -1622,6 +1616,7 @@ pt:
       report_bundle_placeholder: Selecionar um pacote de relatórios
     messages:
       bulk_download_error: A transferência em massa está limitada a 1000 ficheiros de relatório. Se selecionou muitos idiomas, reduza o número de ficheiros.
+      bulk_download_no_reports: Nenhum relatório encontrado. Gere os relatórios antes de fazer o download.
       bulk_download_successful: A tarefa de descarregamento de relatórios em massa foi agendada com sucesso
       export_report_data_scheduled: A tarefa de exportação de dados do relatório foi agendada com êxito
     modals:
@@ -1891,7 +1886,6 @@ pt:
       projects: Projectos
       report: Relatório
       reports: Relatórios
-      scoring: Pontuação
       sms_contact: Contacto SMS
       threesixty_campaign: Pontuações da campanha Threesixty
     status:
@@ -2039,19 +2033,19 @@ pt:
       no_invitations_remaining: Não restam convites
       password_change:
         body: 'Olá %{name}! A sua palavra-passe foi alterada. Se não fez este pedido, contacte imediatamente o Apoio ao Cliente em mte.support@mercer.com '
-        regards: 'Cumprimentos, Equipa do Farol '
+        regards: 'Cumprimentos, Equipa Lighthouse '
         subject: A sua palavra-passe do Lighthouse foi alterada
       reset_password_instructions:
         body: 'Olá %{name}! Alguém solicitou uma ligação para alterar a sua palavra-passe. Pode fazê-lo através da ligação abaixo. '
         change_password: Alterar a palavra-passe
         footer: Se não o solicitou, pode ignorar esta mensagem de correio eletrónico. A sua palavra-passe não será alterada até aceder à ligação acima e criar uma nova.
-        regards: 'Cumprimentos, Equipa do Farol '
+        regards: 'Cumprimentos, Equipa Lighthouse '
         subject: Instruções para repor a sua palavra-passe
       send_instructions: Foi enviado um convite por correio eletrónico para %{email}.
       unlock_instructions:
         body: 'Olá %{name}! A sua conta foi bloqueada devido a um número excessivo de tentativas de início de sessão sem êxito. Clique na ligação abaixo para desbloquear a sua conta: '
         footer: Se não o solicitou, pode ignorar esta mensagem de correio eletrónico. A sua palavra-passe não será alterada até aceder à ligação acima e criar uma nova.
-        regards: 'Cumprimentos, Equipa do Farol '
+        regards: 'Cumprimentos, Equipa Lighthouse '
         subject: Instruções para desbloquear a sua conta
         unlock_account: Desbloquear a minha conta
       updated: A sua palavra-passe foi definida com êxito. Está agora ligado.
@@ -2360,6 +2354,7 @@ pt:
           in_progress: Em curso
           not_started: Não iniciado
     change_password: Alterar palavra-passe
+    chatwoot_info_msg: Relatar um problema técnico
     clients:
       actions:
         create:
@@ -2380,7 +2375,6 @@ pt:
     error_warning: Oops, algo correu mal com a sua avaliação. Contacte o apoio ao cliente.
     hogan:
       cannot_start: Não é possível iniciar a avaliação hogan neste momento. Tente após alguns minutos.
-    lighthouse_app: Mercer Lighthouse
     login: Iniciar sessão
     maintenance:
       notification: O farol estará inativo para manutenção programada dentro de 60 segundos
@@ -2482,6 +2476,7 @@ pt:
   idp:
     actions: Acções
     add_comments: Adicionar comentários
+    added_development_action: Ação de desenvolvimento adicionada
     ai:
       assistant:
         failure_fallback:
@@ -2538,6 +2533,7 @@ pt:
         title: Olá, sou seu assistente de desenvolvimento
     behavioral: Comportamental
     board: Direção
+    change_history: Histórico de alterações
     changes_saved_to_plan: Alterações salvas no plano
     comment_details:
       add_comment: Adicionar comentário
@@ -2639,6 +2635,7 @@ pt:
       publish_plan: Publicar plano
       remove: Remover
       save_plan: Salvar plano
+      search_development_actions: Pesquisar Ações de Desenvolvimento
       show_development_action_information: Mostrar informações da Ação de Desenvolvimento
       skill: Habilidade
       sprint: Sprint
@@ -2651,7 +2648,7 @@ pt:
       write_here: Escreva aqui...
     direct_reportee_details: Detalhe dos subordinados diretos
     download:
-      description: 'Para baixar o relatório, siga o link: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. O link é válido apenas por 10 minutos'
+      description: 'Para baixar o relatório, siga o link: <a href=''%{url}'' target=''_blank''>Download</a>. O link é válido apenas por 10 minutos'
     download_plan: Plano de download
     edit_plan: Editar plano
     edit_plan_and_add_skills: Edite o plano e clique em Gerenciar habilidades para adicionar habilidades.
@@ -2700,6 +2697,7 @@ pt:
     manage_plan: Gerenciar plano
     mark_as_complete: Marcar como concluído
     mark_as_incomplete: Marcar como incompleto
+    modified_development_action: Ação de Desenvolvimento Modificada
     my_plan:
       development_plan: Plano de desenvolvimento
       graphs:
@@ -2725,7 +2723,6 @@ pt:
           name: Nome
           publish_date: Data de Publicação
           review_date: Data de Revisão
-          role: Função Atual
       guidelines:
         cards:
           c1:
@@ -2823,7 +2820,9 @@ pt:
         title: Resumo do Relatório
     plan: Plano
     plan_status: Status do plano %{status}
+    plan_submitted_for_manager_approval: Seu Plano de Desenvolvimento Individual foi submetido à aprovação do gerente.
     private: Privado
+    public: Público
     reflective_questions:
       already_completed: O PDI já foi concluído, não pode responder às perguntas agora.
       answer: Responder
@@ -2851,6 +2850,7 @@ pt:
       words: Palavras
     remove_skill: Remover habilidade
     remove_skill_from_plan: Remover %{name} de habilidade do plano
+    removed_development_action: Ação de desenvolvimento removida
     report_preview: Visualização do relatório
     search_and_select_skills_of_skill_type: Pesquise e selecione %{skillType} habilidades
     select_skills_of_skill_type: Selecione %{skillType} habilidades
@@ -2864,6 +2864,8 @@ pt:
     status: Estado
     suggestions: Sugestões
     suggestions_for_skill_type: Sugestões para %{skillType} habilidades
+    summary: Resumo
+    summary_logs: Logs de resumo para %{reporteeName}
     technical: Técnica
     user_idp_status:
       approved: Aprovado
@@ -2875,6 +2877,7 @@ pt:
       not_started: Não iniciado
       pending_approval: Pendente
       rejected: Rejeitado
+      start_review: Iniciar revisão
     users: Utilizadores
     with_reflection_questions: Com Perguntas de Reflexão
     without_reflection_questions: Sem perguntas de reflexão
@@ -3005,10 +3008,10 @@ pt:
     used_out_of: "%{used} de %{total}"
   mailer:
     copyright:
-      text: Farol. Todos os direitos reservados
+      text: Lighthouse. Todos os direitos reservados
     footer:
       regards: Com os meus cumprimentos,
-      team_name: Equipa do Farol
+      team_name: Equipa Lighthouse
       technical_support: Para quaisquer problemas técnicos, escreva-nos para <x>email</x> e responderemos no prazo de 24 horas.
     from: A Empresa de Talentos
     idp:
@@ -3388,13 +3391,6 @@ pt:
   sessions:
     errors:
       recaptcha: A verificação do Recaptcha falhou. Por favor, tente novamente.
-  shared:
-    filters:
-      clear: Limpar filtros
-    internet_disconnected_message: A tentar restabelecer a ligação. Verifique a sua ligação à Internet.
-    mte_logo_alt_text: Logótipo da Mercer Talent Enterprise
-    terms_conditions_privacy: Declaração de privacidade
-    tte_terms_and_condition: Termos e privacidade
   sheet:
     import_modal:
       alert_access_sheet_removal: Carregar uma nova folha de acesso com a eliminação de todos os registos existentes e carregar um novo registo a partir da folha.
@@ -4195,6 +4191,7 @@ pt:
     idp:
       can_not_complete_without_approval_and_in_progress: Você não pode concluir seu PDI até que seu gerente o aprove e você o tenha marcado como 'Em andamento'.
       can_not_start_without_approval: Você não pode começar a trabalhar em seu PDI até que seu gerente o aprove.
+      no_changes_to_compare: Nenhuma alteração para comparar com o plano IDP.
       no_previous_approved_plan: Nenhum plano IDP aprovado anteriormente encontrado.
       reflective_questions_required: Respostas a perguntas reflexivas são necessárias para o IDP
       status_not_permitted: não é permitido pelo utilizador.

@@ -208,6 +208,7 @@ nl:
           projectSettings:
             assessments: Beoordeling
             design: Ontwerp
+            feature_flags: Functie vlaggen
             idp: IDP
             integrations: Integraties
             privacy_settings: Privacy-instellingen
@@ -764,11 +765,6 @@ nl:
       user: Gebruiker
       user_agent: Gebruikersagent
     back: Terug
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Weet je zeker dat je wilt uitloggen?</p> <p>Druk op Nee als je verder wilt werken. Druk op Ja om de huidige gebruiker uit te loggen.</p>"
-          title: "<strong>Afmelden</strong>?"
     block_settings:
       modal:
         add_layer: Laag toevoegen
@@ -1244,11 +1240,6 @@ nl:
         archived: Gearchiveerd
         disable: Archief
         enable: Unarchive
-      columns:
-        country: Land
-        project_manager: Projectmanager
-        type: Type
-        year: Jaar
       copy:
         successfully: Client Tenancy '%{name}' is succesvol gekopieerd.
       create:
@@ -1257,14 +1248,6 @@ nl:
         successfully: Client Tenancy %{name} is succesvol verwijderd.
       edit:
         header: Klant bewerken
-      form:
-        client: Klant
-        country: Land
-        name: Naam
-        number: Aantal
-        project_manager: Projectmanager
-        type: Type
-        year: Jaar
       licenses:
         resource:
           confirmations:
@@ -1684,7 +1667,6 @@ nl:
             title: Archief <strong>%{name}</strong>?
           enable:
             title: Unarchive <strong>%{name}</strong>?
-      tenancies: Huurcontracten voor klanten
       threesixty_campaign: Campagne Drieënzestig
       toggle_status:
         successfully: Client Tenancy %{name} is succesvol bijgewerkt.
@@ -2336,7 +2318,6 @@ nl:
         name: Naam
         publish_date: Publicatiedatum
         review_date: Herzieningsdatum
-        role: Huidige rol
       fields_label: Velden
       global_skills: Wereldwijde vaardigheden
       idp: IDP
@@ -2756,43 +2737,14 @@ nl:
     message: Bericht
     meta_title: Administratiepaneel
     navigation:
-      ai_artifacts: AI-artefacten
-      ai_assistants: AI assistenten
-      assessments: Beoordeling
-      assessments_reports: Beoordelingen en rapporten
-      assessor_dashboard: Dashboard voor beoordelaars
-      assessor_workshops: Beoordelingscentrum
       audit_logs: Controlelogboeken
       availability: Beschikbaarheid
-      back_to_main: Hoofdmenu
-      campaign_templates: Campagnesjablonen
-      change_password: Wachtwoord wijzigen
-      client_admins: Klanten-admins
-      clients: Huurcontracten voor klanten
-      communication_center: Communicatiecentrum
       dashboard: Dashboard
-      data_reports: Gegevensrapporten
-      development_actions: Ontwikkelingsacties
-      dimensions: Afmetingen
       factors: Factoren
       innovation_styles: Innovatiestijlen
-      libraries: Mediatheek
-      norms: Normen
       occupations: Beroepen
-      options: Opties
-      participants: Deelnemers
-      profile: Profiel
-      profile_details: Details
-      project_admins: Projectbeheerders
-      question_center: Vragencentrum
       registration_codes: Registratiecodes
-      report_approvals: Goedkeuringen
-      reports: Rapporten
-      scheduling: Planning
-      show_submenu: Submenu weergeven
       skills_taxonomy: Taxonomie van vaardigheden
-      user_profile_details: Profielgegevens
-      user_report_events: Gebeurtenissen gebruikersrapport
       users: Gebruikers
     no_data_found: Geen gegevens gevonden
     norms:
@@ -2866,7 +2818,6 @@ nl:
         successfully: Norm is met succes bijgewerkt.
       update:
         successfully: Norm %{name} is bijgewerkt.
-    notification_bell_icon: Pictogram Meldingsbel
     noty:
       error_408: Deze actie duurt te lang. Probeer de pagina opnieuw te laden.
       error_500: Er is iets misgegaan. Neem contact op met uw beheerder.
@@ -4292,7 +4243,6 @@ nl:
         inactive: Inactief
         percentage: Percentage
         title: Beoordeling
-      title: Stats
       top_metrics:
         completed: Voltooid
         in_progress: In uitvoering
@@ -4767,10 +4717,6 @@ nl:
       update:
         successfully: Gebruiker %{name} is succesvol bijgewerkt.
       user: Gebruiker
-    validations:
-      idp:
-        end_date_cannot_be_in_past: Einddatum kan niet in het verleden liggen
-        start_date_cannot_be_in_past: De begindatum kan niet in het verleden liggen
     webhook:
       connection_failure: Kan geen verbinding maken met de webhook url. Controleer of de webhook url correct is.
       delete_success: Webhook instellingen is succesvol verwijderd

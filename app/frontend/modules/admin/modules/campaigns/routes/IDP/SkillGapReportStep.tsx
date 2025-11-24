@@ -22,6 +22,7 @@ type SkillGapReportWrapperProps = {
   next: () => void
   skillGapReportId: number
   prev: () => void
+  nextLabel?: string
 } & PropsFromRedux
 
 const SkillGapReportWrapper:FC<SkillGapReportWrapperProps> = ({
@@ -29,6 +30,7 @@ const SkillGapReportWrapper:FC<SkillGapReportWrapperProps> = ({
   skillGapReportId,
   next,
   prev,
+  nextLabel,
 }) => {
   const { campaignId } = useParams()
 
@@ -59,6 +61,7 @@ const SkillGapReportWrapper:FC<SkillGapReportWrapperProps> = ({
       reportUrl={skillGapData?.pdf.url}
       skillGapData={skillGapData}
       isLoading={isLoading}
+      nextLabel={nextLabel}
     />
   )
 }

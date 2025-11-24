@@ -20,6 +20,7 @@ module EndUser
         required(:completion_status).filled(:str?)
         required(:approval_status).filled(:str?)
         required(:can_revert_to_last_approved).filled(:bool?)
+        optional(:review_note).maybe(:str?)
         required(:instructions).maybe do
           hash do
             optional(:content).filled(:str?)

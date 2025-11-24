@@ -73,6 +73,10 @@ export const Idp: React.FC<{}> = () => {
         campaignId,
         idpTemplateId: selectedIdpTemplate,
         creatorId: id,
+      }, {
+        apiConfig: {
+          query: { campaign_id: campaignId },
+        },
       }).then(() => {
         const name = idpTemplates.find(idpTemplate => idpTemplate.id === selectedIdpTemplate)?.name
         message.success(`${name} assigned to user`)

@@ -232,6 +232,19 @@ en:
               contains_repeats: Password must not contain repeats
               too_short: Password is too short. Minimum %{count} character required
               too_weak: 'Password must contain: Minimum 1 lowercase, 1 uppercase, 1 number and 1 special character.'
+        project_license:
+          attributes:
+            base:
+              exceeds_available: Cannot allot more than available licenses
+            license_id:
+              already_present: already present for this project
+            usage_limit:
+              cant_be_less_than_used: can't be set below the current usage count of %{used_count}
+              cant_be_more_than_available: can't be more than the available limit on the license (%{usage_limit})
+              exceeds_available: Cannot be more than available licenses
+              less_than_used_number: Cannot be less than number of licenses used
+            used_number:
+              overused: Cannot be more than available licenses.
         questions_import_block_form:
           attributes:
             name:
@@ -422,6 +435,10 @@ en:
               inclusion: must be a boolean
             start_date_time:
               invalid_datetime: is invalid
+        yoodli:
+          attributes:
+            name:
+              not_unique: This integration is already present for this project.
   activerecord:
     attributes:
       administration/assessments/assign_form:
@@ -452,6 +469,7 @@ en:
           simulation: Simulation
           skillvue: Skillvue
           threesixty: 360 Campaign
+          yoodli: Yoodli
         category: Category
         created_at: Created Date
         description: Description
@@ -469,6 +487,7 @@ en:
           saville: Saville Assessment
           simulation: Simulation Assessment
           skillvue: Skillvue Assessment
+          yoodli: Yoodli Assessment
         updated_at: Modified Date
       assign:
         completed_at: Completion Date
@@ -836,6 +855,7 @@ en:
         data_report_export: Data Report Export
         export_admin_with_permissions: Export Admin With Permissions
         export_assessment_questions: Export Assessment Questions
+        export_campaign_ai_artifacts: Export Campaign AI Artifacts
         export_campaign_factors: Export Campaign Factors
         export_campaign_scorings: Export Campaign Scorings
         export_dashboard_as_file: Export Dashboard as file
@@ -857,10 +877,12 @@ en:
         export_user_report_events: Export User Report Events
         export_users: Campaign Users Export
         external_assessment_export: External Results Export
+        generate_embedding_skills: Generate Embedding for Skills
         import_accesssheet: Import Accessheet
         import_assessment_questions: Import Assessment Questions
         import_assessment_translations: Import Assessment Translations
         import_assessors: Import Assessors
+        import_campaign_ai_artifacts: Import Campaign AI Artifacts
         import_campaign_factors: Import Campaign Factors
         import_datasheet: Import Datasheet
         import_development_action_translations: Import Development Action Translations
@@ -919,8 +941,6 @@ en:
     invalid_job: This notification corresponds to deleted record
     mark_as_read: Mark all read
     more: More
-    no_notifications: No notifications
-    notifications: Notifications
     results: Results
     super_admin:
       errors:
@@ -1030,6 +1050,7 @@ en:
         saville_assessment_name: Saville assessment Name
         simulation_assessment_name: Simulation Assessment Name
         skillvue_assessment_name: Skillvue Assessment Name
+        yoodli_assessment_name: Yoodli Assessment Name
       translations_migrated: Translation Migrated
     create: Create
     dashboard: Dashboard
@@ -1071,6 +1092,7 @@ en:
         simulation: Simulation
         skillvue: Skillvue
         threesixty: 360 Campaign
+        yoodli: Yoodli
       status:
         finished: Finished
         in_progress: In Progress
@@ -1083,6 +1105,7 @@ en:
         saville: Saville Assessment
         simulation: Simulation Assessment
         skillvue: Skillvue Assessment
+        yoodli: Yoodli Assessment
     flow:
       end_assessment_modal:
         custom_message: Custom end of assessment message
@@ -1344,16 +1367,11 @@ en:
     continue: Continue your tasks
     dashboard_instructions: You may have been assigned multiple activities that you need to complete. Please make sure to check that all the assigned activities have been completed across all the campaigns.
     dashboard_menu:
-      bookings: Bookings
       campaign: Campaign
-      change_password: Change Password
-      development: Development
       direct_reportees: Direct Reportees
       home: Home
       insights: Insights
-      my_plan: My Plan
       profile: Profile
-      profile_details: Details
       tasks: Tasks
     details: Details
     edit_evaluation:
@@ -1469,6 +1487,8 @@ en:
       skillvue_email_id: Skillvue Candidate Email ID
       skillvue_external_assessment_id: Skillvue Assessment ID
       universal_link: Universal link
+      yoodli_email_id: Yoodli Candidate Email ID
+      yoodli_external_assessment_id: Yoodli Assessment ID
     drawer:
       mettl_schedule_name: Mettl Schedule Name
       title: Assessment Details
@@ -1894,7 +1914,6 @@ en:
       projects: Projects
       report: Report
       reports: Reports
-      scoring: Scoring
       sms_contact: SMS Contact
       threesixty_campaign: Threesixty Campaign Scores
     status:
@@ -1934,6 +1953,7 @@ en:
       hide: Hide
       view: View
     validations:
+      required: This field is required
       select_locale: Please Select Some locale(s)
       should_be_whole_number: should be a whole number
   confirmation:
@@ -2368,6 +2388,7 @@ en:
           in_progress: In Progress
           not_started: Not Started
     change_password: Change password
+    chatwoot_info_msg: Report a technical problem
     clients:
       actions:
         create:
@@ -2490,6 +2511,8 @@ en:
   idp:
     actions: Actions
     add_comments: Add Comments
+    add_note: Add Note...
+    add_reason: Add Reason...
     added_development_action: Added Development Action
     ai:
       assistant:
@@ -2545,6 +2568,8 @@ en:
       welcome:
         text: Ready to chart your growth journey? Let's begin!
         title: Hello, I'm your development assistant
+    approval_note: Approval Note
+    approve_plan: Approve Plan
     behavioral: Behavioral
     board: Board
     change_history: Change History
@@ -2651,6 +2676,7 @@ en:
       remove: Remove Development Action
       save_plan: Save Plan
       search_development_actions: Search Development Actions
+      selected_count: "%{count} selected"
       show_development_action_information: Show Development Action information
       skill: Skill
       sprint: Sprint
@@ -2730,11 +2756,12 @@ en:
           assigned_data: Assigned Date
           assigned_date: Assigned Date
           completion_date: Completion Date
+          current_job_role: Current Job Role
           division: Division
           name: Name
           publish_date: Publish Date
           review_date: Review Date
-          role: Current Role
+          target_job_role: Target Job Role
       guidelines:
         cards:
           c1:
@@ -2835,6 +2862,7 @@ en:
     plan_submitted_for_manager_approval: Your Individual Development Plan has been submitted for manager approval.
     private: Private
     public: Public
+    reason_for_rejection: Reason for Rejection
     reflective_questions:
       already_completed: The IDP has already been completed, you cannot answer the questions now.
       answer: Answer
@@ -2847,7 +2875,9 @@ en:
         max_words: The answer allows a maximum %{count} words
         min_words: The answer requires at least %{count} words
         required: The answer to the question is required
+      max_word_limit: Must be at most %{max} words
       max_words: Max Words
+      min_word_limit: Must be at least %{min} words
       min_words: Min Words
       no_answer_provided: No answer provided yet
       no_reflective_questions: No reflective questions available
@@ -2860,6 +2890,7 @@ en:
       updated_successfully: Your answers have been updated successfully
       word_limit: Must be between %{min} and %{max} words
       words: Words
+    reject_plan: Reject Plan
     remove_skill: Remove Skill
     remove_skill_from_plan: Remove skill %{name} from plan
     removed_development_action: Removed Development Action
@@ -2880,6 +2911,7 @@ en:
     summary_logs: Summary logs for %{reporteeName}
     technical: Technical
     user_idp_status:
+      ai_assisted_idp_in_progress: AI Assisted IDP In Progress
       approved: Approved
       completed: Completed
       completion_not_started: Completion Not Started
@@ -3066,6 +3098,7 @@ en:
     usage_overview: View license usage
     usages: Usages
   licenses:
+    client_usage: Client Usage
     enabled: Enabled
     end_date: End date
     not_enough_idp_license: Not enough IDP licenses, please contact administrator
@@ -3074,6 +3107,10 @@ en:
     not_enough_proctoring_credits: Not enough credits to begin proctoring session
     number: Number
     overuse_number: Over use allowance
+    project_limit_reached: Usage limit reached for '%{license_name}', please contact administrator
+    project_specific: Project Specific
+    project_specific_license: Project Specific License
+    project_usage: Project Usage
     report_family: Report bundle
     start_date: Start date
     title: License
@@ -3085,6 +3122,34 @@ en:
       threesixty: Threesixty
     used_number: Used licenses
     used_out_of: "%{used} out of %{total}"
+  lti:
+    oidc_auth_form:
+      errors:
+        client_id:
+          blank: Client ID is required
+          invalid: Client ID does not match the registered tool identifier
+          validation_failed: Client ID validation failed
+        login_hint:
+          assessment_completed: User assessment is already completed
+          blank: Login hint is required
+          invalid_user_assessment: Login hint does not reference a valid user assessment
+        lti_deployment_id:
+          not_found: Deployment ID does not reference a valid integration
+        nonce:
+          blank: Nonce is required
+        redirect_uri:
+          blank: Redirect URI is required
+          has_fragment: Redirect URI must not contain a fragment
+          https_required: Redirect URI must use HTTPS in production
+          invalid_format: Redirect URI must be a valid URI format
+          missing_host: Redirect URI must include a host
+          scheme_not_allowed: Redirect URI must use HTTP or HTTPS protocol
+        response_type:
+          blank: Response type is required
+          invalid: Response type must be 'id_token'
+        scope:
+          blank: Scope is required
+          invalid: Scope must be 'openid'
   mailer:
     copyright:
       text: Lighthouse. All rights reserved
@@ -3330,10 +3395,12 @@ en:
         pearson: Pearson
         saville: Saville
         skillvue: Skillvue
+        yoodli: Yoodli
     form:
       load_from_mettl: Load from Mettl
       load_from_pearson: Load from Pearson
       load_from_skillvue: Load from Skillvue
+      load_from_yoodli: Load from Yoodli
       none_external: None - Use report builder
     language: Report Language
     language_updated: Report Language was updated successfully
@@ -3470,13 +3537,6 @@ en:
   sessions:
     errors:
       recaptcha: Recaptcha verification failed. Please try again.
-  shared:
-    filters:
-      clear: Clear Filters
-    internet_disconnected_message: Trying to reconnect. Please check your internet connection.
-    mte_logo_alt_text: Mercer Talent Enterprise logo
-    terms_conditions_privacy: Privacy Statement
-    tte_terms_and_condition: Terms & Privacy
   sheet:
     import_modal:
       alert_access_sheet_removal: Uploading new Accesssheet with delete all existing record and upload new one from the sheet. Please make sure you have all Accesssheet records in spreadsheet.

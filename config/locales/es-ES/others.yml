@@ -896,8 +896,6 @@ es-ES:
     invalid_job: Esta notificación corresponde al registro suprimido
     mark_as_read: Marcar todo lo leído
     more: Más
-    no_notifications: Sin notificaciones
-    notifications: Notificaciones
     results: Resultados
     super_admin:
       errors:
@@ -1223,7 +1221,7 @@ es-ES:
       description: Rellene todos los campos para crear una contraseña nueva
       submit: Enviar
       title: Renueve su contraseña
-    lighthouse_logo_alt_text: Logotipo del faro
+    lighthouse_logo_alt_text: Logotipo Lighthouse
     login:
       continue_btn: Continúe en
       description: Inicie sesión con la información de su cuenta personal
@@ -1323,16 +1321,11 @@ es-ES:
     continue: Continúe con sus tareas
     dashboard_instructions: Se le han asignado varias actividades que debe completar. No olvide comprobar si ha completado todas las actividades asignadas de todas las campañas.
     dashboard_menu:
-      bookings: Reservas
       campaign: Campaña
-      change_password: Cambiar contraseña
-      development: Desarrollo
       direct_reportees: Direct Reportees
       home: Inicio
       insights: Información
-      my_plan: Mi plan
       profile: Perfil
-      profile_details: Datos
       tasks: Tareas
     details: Datos
     edit_evaluation:
@@ -1448,6 +1441,7 @@ es-ES:
       export_occupations_job_scheduled: Ocupaciones El trabajo de exportación se ha programado correctamente
       export_reports_and_assessments_statuses_scheduled: El trabajo de exportación de informes y evaluaciones se ha programado correctamente
       external_results_export_scheduled: El trabajo de exportación de la evaluación externa se programó correctamente
+      no_participants_selected: Seleccione al menos un participante para continuar.
       norm_results_export_scheduled: El trabajo de exportación de los resultados de la evaluación se ha programado correctamente
       normalize_factor_scores_scheduled: La tarea de normalización de las puntuaciones de los factores se ha programado correctamente.
       raw_factor_export_scheduled: Evaluación El trabajo de exportación de factores brutos se ha programado correctamente
@@ -1584,6 +1578,7 @@ es-ES:
       report_bundle_placeholder: Seleccione un paquete de informes
     messages:
       bulk_download_error: La descarga masiva está limitada a 1000 archivos de informe. Si ha seleccionado muchos idiomas, redúzcala.
+      bulk_download_no_reports: No se han encontrado informes. Genere los informes antes de descargarlos.
       bulk_download_successful: La tarea de descarga masiva de informes se ha programado correctamente
       export_report_data_scheduled: El trabajo de exportación de datos del informe se ha programado correctamente
     modals:
@@ -1848,7 +1843,6 @@ es-ES:
       projects: Proyectos
       report: Informe
       reports: Informes
-      scoring: Puntuación
       sms_contact: Contacto SMS
       threesixty_campaign: Resultados de la campaña Threesixty
     status:
@@ -2312,6 +2306,7 @@ es-ES:
           in_progress: En curso
           not_started: Sin empezar
     change_password: Cambiar contraseña
+    chatwoot_info_msg: Informar de un problema técnico
     clients:
       actions:
         create:
@@ -2332,7 +2327,6 @@ es-ES:
     error_warning: Oops, algo ha ido mal con su evaluación. Por favor, póngase en contacto con el soporte.
     hogan:
       cannot_start: No puede iniciar la evaluación de Hogan ahora mismo. Por favor, inténtelo pasados unos minutos.
-    lighthouse_app: Faro Mercer
     login: Iniciar sesión
     maintenance:
       notification: Lighthouse estará fuera de servicio por mantenimiento programado en 60 segundos
@@ -2434,6 +2428,7 @@ es-ES:
   idp:
     actions: Acciones
     add_comments: Agregar comentarios
+    added_development_action: Acción de desarrollo agregada
     ai:
       assistant:
         failure_fallback:
@@ -2490,6 +2485,7 @@ es-ES:
         title: Hola, soy tu asistente de desarrollo
     behavioral: Comportamiento
     board: Tablero
+    change_history: Historial de cambios
     changes_saved_to_plan: Cambios guardados en el plan
     comment_details:
       add_comment: Agregar comentario
@@ -2591,6 +2587,7 @@ es-ES:
       publish_plan: Publicar plano
       remove: Eliminar
       save_plan: Plan de ahorro
+      search_development_actions: Buscar acciones de desarrollo
       show_development_action_information: Mostrar información de Development Action
       skill: Habilidad
       sprint: Sprint
@@ -2603,7 +2600,7 @@ es-ES:
       write_here: Escriba aquí...
     direct_reportee_details: Detalle de los reportados directos
     download:
-      description: 'Para descargar el informe, siga el enlace: <a href=''''%{url}'''' target=''''_blank''''>Descargar</a>. El enlace solo es válido por 10 minutos'
+      description: 'Para descargar el informe, siga el enlace: <a href=''%{url}'' target=''_blank''>Descargar</a>. El enlace solo es válido por 10 minutos'
     download_plan: Descargar plan
     edit_plan: Editar plan
     edit_plan_and_add_skills: Edite el plan y haga clic en Administrar habilidades para agregar habilidades.
@@ -2652,6 +2649,7 @@ es-ES:
     manage_plan: Gestionar plan
     mark_as_complete: Marcar como completa
     mark_as_incomplete: Marcar como incompleta
+    modified_development_action: Acción de desarrollo modificada
     my_plan:
       development_plan: Plan de Desarrollo
       graphs:
@@ -2671,7 +2669,6 @@ es-ES:
           name: Nombre
           publish_date: Fecha de Publicación
           review_date: Fecha de Revisión
-          role: Rol Actual
       guidelines:
         cards:
           c1:
@@ -2769,7 +2766,9 @@ es-ES:
         title: Resumen del Informe
     plan: Plan
     plan_status: Estado del plan %{status}
+    plan_submitted_for_manager_approval: Su Plan de Desarrollo Individual ha sido enviado para la aprobación del gerente.
     private: Privado
+    public: Público
     reflective_questions:
       already_completed: El PDI ya se ha completado, no puede responder a las preguntas ahora.
       answer: Respuesta
@@ -2797,6 +2796,7 @@ es-ES:
       words: Palabras
     remove_skill: Eliminar habilidad
     remove_skill_from_plan: Eliminar %{name} de aptitudes del plan
+    removed_development_action: Acción de desarrollo eliminada
     report_preview: Vista previa del informe
     search_and_select_skills_of_skill_type: Buscar y seleccionar %{skillType} habilidades
     select_skills_of_skill_type: Seleccionar %{skillType} habilidades
@@ -2810,6 +2810,8 @@ es-ES:
     status: Estado
     suggestions: Sugerencias
     suggestions_for_skill_type: Sugerencias para %{skillType} habilidades
+    summary: Resumen
+    summary_logs: Registros de resumen de %{reporteeName}
     technical: Técnico
     user_idp_status:
       approved: Aprobado
@@ -2821,6 +2823,7 @@ es-ES:
       not_started: No iniciado
       pending_approval: Pendiente
       rejected: Rechazado
+      start_review: Iniciar reseña
     users: Usuarios
     with_reflection_questions: Con preguntas de reflexión
     without_reflection_questions: Sin preguntas de reflexión
@@ -3305,13 +3308,6 @@ es-ES:
   sessions:
     errors:
       recaptcha: Error en la verificación de Recaptcha. Por favor, inténtelo de nuevo.
-  shared:
-    filters:
-      clear: Quitar filtros
-    internet_disconnected_message: Intentando volver a conectar. Compruebe su conexión a internet.
-    mte_logo_alt_text: Logotipo de Mercer Talent Enterprise
-    terms_conditions_privacy: Declaración de privacidad
-    tte_terms_and_condition: Términos y privacidad
   sheet:
     import_modal:
       alert_access_sheet_removal: Al cargar una nueva Accesssheet se eliminan todos los registros existentes y se carga uno nuevo desde la hoja. Asegúrese de que tiene todos los registros de Accesssheet en la hoja de cálculo.
@@ -4108,6 +4104,7 @@ es-ES:
     idp:
       can_not_complete_without_approval_and_in_progress: No puede completar su IDP hasta que su gerente lo apruebe y lo haya marcado como "En curso".
       can_not_start_without_approval: No puede comenzar a trabajar en su IDP hasta que su gerente lo apruebe.
+      no_changes_to_compare: No hay cambios para comparar el plan IDP.
       no_previous_approved_plan: No se encontró ningún plan de desplazados internos aprobado previamente.
     invalid: no es válido
     issue: Problema

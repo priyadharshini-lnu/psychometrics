@@ -13,6 +13,8 @@ class AI::AssistantRequest < ApplicationRecord
     model_class: 'AI::ModelRegistry'
   )
 
+  after_commit :update_session_token_usage, if: -> { saved_change_to_input_tokens? || saved_change_to_output_tokens? }
+
   has_many_attachments :attachments,
                        service: Settings.storage.private_storage_service,
                        content_type: %w[application/pdf]
@@ -37,5 +39,13 @@ class AI::AssistantRequest < ApplicationRecord
   def attachment_storage_path(attribute_name, filename)
     "private/ai_assistants/#{chat.ai_assistant_id}/ai_assistant_chats/#{ai_assistant_chat_id}/" \
       "ai_assistant_requests/#{id}/#{attribute_name}/#{filename}"
+  end
+
+  def update_session_token_usage
+    AI::AssistantChat.update_counters(
+      ai_assistant_chat.id,
+      input_tokens: input_tokens.to_i,
+      output_tokens: output_tokens.to_i
+    )
   end
 end

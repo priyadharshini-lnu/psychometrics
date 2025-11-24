@@ -3,6 +3,7 @@ import App from '~/modules/admin/modules/AdminJob/App'
 import '~/utils/axiosInterceptors'
 import '~/utils/fetchRequestInterceptors'
 import '~/modules/admin/styles/common.less'
+import '~/styles/utils.less'
 import initSentry from '~/libs/initSentry'
 
 initSentry()

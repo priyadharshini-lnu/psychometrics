@@ -3,7 +3,7 @@
 module Administration
   class MeetingRecordingSerializer < Panko::Serializer
     attributes :id, :external_id, :recording_date, :recording_url, :assessors, :participants,
-               :assessment_center_date_and_time
+               :assessment_center_date_and_time, :transcription_url
 
     def recording_url
       object.recording_file.attached? ? object.recording_file.url : nil
@@ -23,6 +23,10 @@ module Administration
 
     def assessment_center_date_and_time
       object.meeting_room.assessment_center_date_and_time
+    end
+
+    def transcription_url
+      object.transcription_file.attached? ? object.transcription_file.url : nil
     end
   end
 end

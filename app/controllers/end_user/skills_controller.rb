@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
 class EndUser::SkillsController < ApplicationController
-  before_action :load_idp_template, only: :index
+  before_action :load_user_idp_plan, only: :index
 
   def index
+    available_skills = Idp::IdpPlan::AvailableSkillsQuery.new(@user_idp_plan).query
+
     skills = if params[:filters].present?
-               @idp_template.available_skills(plan_id: @user_idp_plan.id).ransack(params[:filters]).result.limit(10)
+               available_skills.ransack(params[:filters]).result.limit(10)
              else
-               @idp_template.available_skills(plan_id: @user_idp_plan.id).sample_by_skill_types
+               available_skills.sample_by_skill_types
              end
 
     render json: ::Panko::ArraySerializer.new(
@@ -18,7 +20,7 @@ class EndUser::SkillsController < ApplicationController
 
   private
 
-  def load_idp_template
+  def load_user_idp_plan
     @user_idp_plan = current_user.
                      association(:active_user_idp_plan).
                      scope.
@@ -26,6 +28,5 @@ class EndUser::SkillsController < ApplicationController
                        idp_template: :skills
                      ).
                      first
-    @idp_template = @user_idp_plan.idp_template
   end
 end

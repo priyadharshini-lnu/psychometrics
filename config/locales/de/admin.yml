@@ -1,0 +1,52 @@
+---
+de:
+  admin:
+    admins: Admins
+    ai_artifacts: KI-Artefakte
+    ai_assistants: AI-Assistenten
+    assessments: Beurteilungen
+    assessments_reports: Beurteilungen und Berichte
+    assessor_dashboard: Assessor Dashboard
+    assessor_workshops: Assessment Center
+    audit_logs: Audit-Protokolle
+    audit_reports: Audit-Berichte
+    availability: Verfügbarkeit
+    back_to_main: Hauptmenü
+    campaign_templates: Vorlagen für Kampagnen
+    client: Client Mietverhältnis
+    client_admins: Client-Admins
+    clients: Kunden-Mietverhältnisse
+    communication_center: Kommunikationszentrum
+    country: Land
+    create_client: Client erstellen
+    dashboard: Dashboard
+    data_reports: Datenberichte
+    datasheet: Datenblatt
+    development_actions: Entwicklungspolitische Maßnahmen
+    dimensions: Abmessungen
+    libraries: Mediathek
+    no_notifications: Keine Benachrichtigungen
+    norms: Normen
+    notification_bell_icon_alt_text: Symbol für die Benachrichtigungsglocke
+    notifications: Benachrichtigungen
+    number: Nummer
+    occupations: Berufe
+    options: Optionen
+    participants: Teilnehmer
+    profile_details: Profil-Details
+    project_admins: Projektadministratoren
+    project_manager: Projektleiter
+    question_center: Fragen-Center
+    registration_codes: Registrierungscodes
+    report_approvals: Bericht Genehmigungen
+    reports: Berichte
+    role: Rolle
+    scheduling: Terminplanung
+    scoring: Punktevergabe
+    show_submenu: Untermenü anzeigen
+    skills_taxonomy: Fähigkeiten-Taxonomie
+    stats: Statistiken
+    user_report_events: Benutzerbericht Ereignisse
+    users: Benutzer
+    view_licenses: Lizenzen anzeigen
+    year: Land

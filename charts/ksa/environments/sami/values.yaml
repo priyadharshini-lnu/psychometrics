@@ -18,7 +18,7 @@ services:
   name: sami-prod
   internlPort: 3030
   targetPort: 3030
-  type: ClusterIP
+  type: NodePort
   annotations: {}
 
 imagePullSecrets:
@@ -53,7 +53,7 @@ service:
   port: 80
 
 objectStorageProxy:
-  enabled: true
+  enabled: false
   vHost: "axkwa67qeaun.compat.objectstorage.me-jeddah-1.oraclecloud.com"
   ingress:
     tls:
@@ -91,20 +91,32 @@ certificate:
   issuerName: issuer-prod-sami-wildcard
   secretName: wildcard-cert-tls-prod
 
+
+httpIngress:
+  enabled: true
+  annotations:
+    oci-native-ingress.oraclecloud.com/http-listener-port: "80"
+    oci-native-ingress.oraclecloud.com/healthcheck-protocol: "HTTP"
+    oci-native-ingress.oraclecloud.com/healthcheck-port: "0"
+    oci-native-ingress.oraclecloud.com/healthcheck-path: "/up"
+    oci-native-ingress.oraclecloud.com/healthcheck-return-code: "200"
+    oci-native-ingress.oraclecloud.com/healthcheck-force-plaintext: "true"
+
 ingress:
   enabled: true
   host: "sami-talent.com"
+  className: "oci-ic-sami"
   annotations:
-    kubernetes.io/ingress.class: "nginx"
-      #certmanager.k8s.io/issuer: issuer-staging-sami-wildcard
-    nginx.ingress.kubernetes.io/proxy-body-size: 16m
-    nginx.ingress.kubernetes.io/proxy-buffer-size: 8k
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      if ($host = 'sami-talent.com' ) {
-        rewrite ^ https://www.sami-talent.com$request_uri permanent;
-      }
+    oci-native-ingress.oraclecloud.com/https-listener-port: "443"
+    oci-native-ingress.oraclecloud.com/backend-tls-enabled: "false"
+    oci-native-ingress.oraclecloud.com/healthcheck-protocol: "HTTP"
+    oci-native-ingress.oraclecloud.com/healthcheck-port: "0"
+    oci-native-ingress.oraclecloud.com/healthcheck-path: "/up"
+    oci-native-ingress.oraclecloud.com/healthcheck-return-code: "200"
+    oci-native-ingress.oraclecloud.com/healthcheck-force-plaintext: "true"
+    oci-native-ingress.oraclecloud.com/protocol: "HTTP2"
   tls:
-    - secretName: wildcard-cert-tls-prod
+    - secretName: sami-wildcard-tls
       hosts:
         - "sami-talent.com"
         - "*.sami-talent.com"

@@ -919,8 +919,6 @@ zh:
     invalid_job: 该通知对应已删除的记录
     mark_as_read: 标记所有已读内容
     more: 更多信息
-    no_notifications: 没有通知
-    notifications: 通知
     results: 成果
     super_admin:
       errors:
@@ -1244,7 +1242,7 @@ zh:
       description: 请填写所有字段以创建新密码
       submit: 提交
       title: 更新密码
-    lighthouse_logo_alt_text: 灯塔标志
+    lighthouse_logo_alt_text: Lighthouse 标志
     login:
       continue_btn: 继续
       description: 请使用你的个人账户信息登录
@@ -1344,16 +1342,11 @@ zh:
     continue: 继续你的任务
     dashboard_instructions: 你被分配了多个需要完成的活动。请确保本项目中所有分配活动的都已完成。
     dashboard_menu:
-      bookings: 预订
       campaign: 项目
-      change_password: 更改密码
-      development: 发展
       direct_reportees: 直下报告
       home: 首页
       insights: 见解
-      my_plan: 我的计划
       profile: 个人资料
-      profile_details: 详情
       tasks: 任务
     details: 详情
     edit_evaluation:
@@ -1475,6 +1468,7 @@ zh:
       export_occupations_job_scheduled: 职业 出口工作已成功安排
       export_reports_and_assessments_statuses_scheduled: 导出报告和评估工作已成功安排
       external_results_export_scheduled: 外部评估导出工作已成功安排
+      no_participants_selected: 请选择至少一名参与者继续。
       norm_results_export_scheduled: 评估标准化结果导出工作已成功安排
       normalize_factor_scores_scheduled: 因子得分标准化工作已成功调度。
       raw_factor_export_scheduled: 评估原始因子导出工作已成功安排
@@ -1619,6 +1613,7 @@ zh:
       report_bundle_placeholder: 选择报告包
     messages:
       bulk_download_error: 批量下载仅限于 1000 个报告文件。 如果您选择了多种语言，请减少下载量。
+      bulk_download_no_reports: 未找到报告。请在下载前生成报告。
       bulk_download_successful: 批量报告下载任务已成功安排
       export_report_data_scheduled: 报告数据导出任务已成功安排
     modals:
@@ -1888,7 +1883,6 @@ zh:
       projects: 项目
       report: 报告
       reports: 报告
-      scoring: 计分
       sms_contact: 短信联系
       threesixty_campaign: Threesixty 运动得分
     status:
@@ -2004,35 +1998,35 @@ zh:
       admin_invitation_instructions:
         accept: 点击此处接受邀请。
         body: '您好 %{name}，我们已邀请您访问Lighthouse（兆光科技）人才企业测评平台的管理面板。 %{accept}或者您可以安全地忽略此邮件。 请不要与任何人共享您的访问凭证。 '
-        subject: 灯塔邀请函
+        subject: Lighthouse 邀请函
       confirmation_instructions:
         subject: 确认说明
       copyright:
         text: Lighthouse. 版权所有
       invitation_instructions:
-        body: '您好 %{name}，您已被添加到莱皓思，成为以下部分的管理员 '
-        login: 登录灯塔
+        body: '您好 %{name}，您已被添加到 Lighthouse，成为以下部分的管理员 '
+        login: 登录 Lighthouse
         sections:
           campaign: 活动： %{section_name}
           client: 客户平台： %{section_name}
           project: 项目： %{section_name}
-        subject: 灯塔邀请函
+        subject: Lighthouse 邀请函
       password_change:
         body: '您好 %{name}！您的密码已被更改。 如果您没有提出此请求，请立即通过 mte.support@mercer.com 联系支持部门。 '
-        regards: '莱皓思团队 '
-        subject: 您的灯塔密码已更改
+        regards: 'Lighthouse 团队 '
+        subject: 您的Lighthouse 密码已更改
       powered_by:
         text: Powered by Lighthouse.
       reset_password_instructions:
         body: '您好 %{name}！有人请求提供更改密码的链接。 您可以通过下面的链接进行更改。 '
         change_password: 更改密码
         footer: 如果您没有要求这样做，您可以放心地忽略这封邮件。 在您访问上面的链接并创建新密码之前，您的密码不会更改。
-        regards: '莱皓思团队 '
+        regards: 'Lighthouse 团队 '
         subject: 重置密码说明
       unlock_instructions:
         body: '您好 %{name}！由于登录失败次数过多，您的账户已被锁定。 点击下面的链接解锁您的账户： '
         footer: 如果您没有要求这样做，您可以放心地忽略这封邮件。 在您访问上面的链接并创建新密码之前，您的密码不会更改。
-        regards: '莱皓思团队 '
+        regards: 'Lighthouse 团队 '
         subject: 账户解锁说明
         unlock_account: 解锁我的账户
     omniauth_callbacks:
@@ -2339,6 +2333,7 @@ zh:
           in_progress: 进行中
           not_started: 未开始
     change_password: 更改密码
+    chatwoot_info_msg: 报告技术问题
     clients:
       actions:
         create:
@@ -2359,10 +2354,9 @@ zh:
     error_warning: 哎呀，您的评估出错了，请联系技术支持。
     hogan:
       cannot_start: 您现在无法启动霍根评估，请几分钟后再试。
-    lighthouse_app: 美世灯塔
     login: 登录
     maintenance:
-      notification: 灯塔将在 60 秒后进行定期维护
+      notification: Lighthouse 将在 60 秒后进行定期维护
     manage: 管理
     'no': 否
     passwordSetting:
@@ -2461,6 +2455,7 @@ zh:
   idp:
     actions: 行动
     add_comments: 添加注释
+    added_development_action: 添加了开发作
     ai:
       assistant:
         failure_fallback:
@@ -2517,6 +2512,7 @@ zh:
         title: 您好，我是你们的开发助手
     behavioral: 行为
     board: 董事会
+    change_history: 更改历史
     changes_saved_to_plan: 保存到计划的更改
     comment_details:
       add_comment: 添加评论
@@ -2618,6 +2614,7 @@ zh:
       publish_plan: 发布计划
       remove: 移除
       save_plan: 保存计划
+      search_development_actions: 搜索开发作
       show_development_action_information: 显示开发作信息
       skill: 技能
       sprint: 冲刺
@@ -2679,6 +2676,7 @@ zh:
     manage_plan: 管理计划
     mark_as_complete: 标记为完成
     mark_as_incomplete: 標記為不完整
+    modified_development_action: 修改后的开发行动
     my_plan:
       development_plan: 发展计划
       graphs:
@@ -2704,7 +2702,6 @@ zh:
           name: 姓名
           publish_date: 发布日期
           review_date: 审核日期
-          role: 当前角色
       guidelines:
         cards:
           c1:
@@ -2802,7 +2799,9 @@ zh:
         title: 报告摘要
     plan: 计划
     plan_status: 计划状态%{status}
+    plan_submitted_for_manager_approval: 您的个人发展计划已提交给经理批准。
     private: 私人
+    public: 公共
     reflective_questions:
       already_completed: IDP 已经完成，现在不能回答问题。
       answer: 答
@@ -2830,6 +2829,7 @@ zh:
       words: 字数
     remove_skill: 移除技能
     remove_skill_from_plan: 从计划中删除技能%{name}
+    removed_development_action: 已删除的开发作
     report_preview: 报告预览
     search_and_select_skills_of_skill_type: 搜索并选择%{skillType}技能
     select_skills_of_skill_type: 选择%{skillType}技能
@@ -2843,6 +2843,8 @@ zh:
     status: 现状
     suggestions: 建议
     suggestions_for_skill_type: "%{skillType}技能建议"
+    summary: 总结
+    summary_logs: "%{reporteeName}的摘要日志"
     technical: 技术
     user_idp_status:
       approved: 批准
@@ -2854,6 +2856,7 @@ zh:
       not_started: 未开始
       pending_approval: 待定
       rejected: 拒绝
+      start_review: 开始复查
     users: 用户
     with_reflection_questions: 带反思问题
     without_reflection_questions: 无反射题
@@ -2987,7 +2990,7 @@ zh:
       text: 莱皓思。保留所有权利
     footer:
       regards: 谢谢、
-      team_name: 灯塔团队
+      team_name: Lighthouse 团队
       technical_support: 如有任何技术问题，请致信<x>email</x> ，我们将在 24 小时内给予答复。
     from: 人才企业
     idp:
@@ -3043,15 +3046,15 @@ zh:
       body:
         dear: 亲爱的 %{name}、
         greetings: 希望您拥有美好的一天！
-        instructions: 点击以下链接登录灯塔测评。
+        instructions: 点击以下链接登录Lighthouse 测评。
         signin_link: 登录链接
-      subject: 灯塔登录链接
+      subject: Lighthouse 登录链接
     powered_by:
       text: 由 Lighthouse 提供技术支持。
     users:
       account_disable: 您的帐户因未活动而被禁用
       warning: 您的帐户将很快因未活动而被禁用
-  maintenance_message: 灯塔将在%{start_date}进行定期维护，并且%{duration}将无法使用
+  maintenance_message: Lighthouse 将在%{start_date}进行定期维护，并且%{duration}将无法使用
   maintenance_submessage: 维护完成后，请刷新页面。 您将被重定向到登录页面
   my: 我的
   myself: 我自己
@@ -3367,13 +3370,6 @@ zh:
   sessions:
     errors:
       recaptcha: Recaptcha 验证失败。请重试。
-  shared:
-    filters:
-      clear: 清除筛选
-    internet_disconnected_message: 正在尝试重新连接。请检查你的互联网连接。
-    mte_logo_alt_text: 美世人才企业标识
-    terms_conditions_privacy: 隐私声明
-    tte_terms_and_condition: 条款和隐私
   sheet:
     import_modal:
       alert_access_sheet_removal: 上传新的 Accesssheet 时会删除所有现有记录，然后从工作表中上传新记录。 请确保电子表格中包含所有 Accesssheet 记录。
@@ -4174,6 +4170,7 @@ zh:
     idp:
       can_not_complete_without_approval_and_in_progress: 在您的经理批准并将其标记为“进行中”之前，您无法完成您的 IDP。
       can_not_start_without_approval: 在您的经理批准之前，您无法开始处理您的 IDP。
+      no_changes_to_compare: IDP 计划没有变化可比较。
       no_previous_approved_plan: 未找到以前批准的 IDP 计划。
       reflective_questions_required: IDP 需要回答反思性问题
       status_not_permitted: 用户不允许。

@@ -919,8 +919,6 @@ hu:
     invalid_job: Ez az értesítés a törölt rekordnak felel meg
     mark_as_read: Összes megjelölése olvasottnak
     more: Több
-    no_notifications: Nincs értesítés
-    notifications: Értesítések
     results: Eredmények
     super_admin:
       errors:
@@ -1241,7 +1239,7 @@ hu:
       description: Kérjük, töltse ki az összes mezőt az új jelszó létrehozásához
       submit: Küldje be a
       title: Jelszó megújítása
-    lighthouse_logo_alt_text: Világítótorony logó
+    lighthouse_logo_alt_text: Lighthouse logó
     login:
       continue_btn: Folytatódik
       description: Kérjük, jelentkezzen be személyes fiókadataival
@@ -1341,16 +1339,11 @@ hu:
     continue: Folytassa feladatait
     dashboard_instructions: Előfordulhat, hogy több tevékenységet is kijelöltek Önnek, amelyeket el kell végeznie. Kérjük, ellenőrizze, hogy az összes kampányban minden kijelölt tevékenységet elvégeztek-e.
     dashboard_menu:
-      bookings: Foglalások
       campaign: Kampány
-      change_password: Jelszó módosítása
-      development: Fejlesztés
       direct_reportees: Közvetlen beosztottak
       home: Home
       insights: Betekintés
-      my_plan: A tervem
       profile: Profil
-      profile_details: Részletek
       tasks: Feladatok
     details: Részletek
     edit_evaluation:
@@ -1465,6 +1458,7 @@ hu:
       export_occupations_job_scheduled: Foglalkozások Az exportálási feladat ütemezése sikeresen megtörtént
       export_reports_and_assessments_statuses_scheduled: A jelentések és értékelések exportálása feladat ütemezése sikeresen megtörtént
       external_results_export_scheduled: A külső értékelési exportálási feladat ütemezése sikeresen megtörtént
+      no_participants_selected: Kérjük, válasszon ki legalább egy résztvevőt a folytatáshoz.
       norm_results_export_scheduled: Az értékelés Normed Results exportálási feladatának ütemezése sikeresen megtörtént
       normalize_factor_scores_scheduled: A faktor pontszámok normalizálása feladat ütemezése sikeresen megtörtént.
       raw_factor_export_scheduled: Az értékelési nyers tényező exportálási feladatának ütemezése sikeresen megtörtént
@@ -1609,6 +1603,7 @@ hu:
       report_bundle_placeholder: Jelentéscsomag kiválasztása
     messages:
       bulk_download_error: A tömeges letöltés 1000 jelentésfájlra korlátozódik. Ha sok nyelvet választott, kérjük, csökkentse azt.
+      bulk_download_no_reports: Nem található jelentés. Kérjük, hogy a letöltés előtt készítse el a jelentéseket.
       bulk_download_successful: A tömeges jelentés letöltési feladatának ütemezése sikeresen megtörtént
       export_report_data_scheduled: A jelentési adatexportálási feladat ütemezése sikeresen megtörtént
     modals:
@@ -1878,7 +1873,6 @@ hu:
       projects: Projektek
       report: Jelentés
       reports: Jelentések
-      scoring: Pontozás
       sms_contact: SMS kapcsolat
       threesixty_campaign: Threesixty kampány pontszámok
     status:
@@ -2000,19 +1994,19 @@ hu:
           %{accept} Vagy nyugodtan figyelmen kívül hagyhatod ezt az e-mailt.
 
           Kérjük, ne ossza meg hozzáférési hitelesítő adatait senkivel.
-        subject: Meghívó a világítótoronyba
+        subject: Meghívó a Lighthouse
       confirmation_instructions:
         subject: Megerősítési utasítások
       invitation_instructions:
         body: |-
           Szia %{name}!
           A következő szakasz rendszergazdaként lett hozzáadva a Lighthouse-hoz
-        login: Bejelentkezés a Lighthouse-ba
+        login: Bejelentkezés a Lighthouse
         sections:
           campaign: 'Kampány: %{section_name}'
           client: 'Ügyfél bérlete: %{section_name}'
           project: 'Projekt: %{section_name}'
-        subject: Meghívó a világítótoronyba
+        subject: Meghívó a Lighthouse
       password_change:
         body: |-
           Szia %{name}!
@@ -2022,8 +2016,8 @@ hu:
           Ha nem nyújtotta be ezt a kérést, kérjük, azonnal lépjen kapcsolatba az ügyfélszolgálattal a mte.support@mercer.com
         regards: |-
           Üdvözlettel
-          Világítótorony csapata
-        subject: Megváltozott a világítótorony jelszava
+          Lighthouse csapata
+        subject: Megváltozott a Lighthouse jelszava
       reset_password_instructions:
         body: |-
           Szia %{name}!
@@ -2033,7 +2027,7 @@ hu:
         footer: Ha nem kérte ezt, nyugodtan figyelmen kívül hagyhatja ezt az e-mailt. A jelszava nem változik, amíg nem nyitja meg a fenti linket, és nem hoz létre egy újat.
         regards: |-
           Üdvözlettel
-          Világítótorony csapata
+          Lighthouse csapata
         subject: Utasítások a jelszó visszaállításához
       unlock_instructions:
         body: |-
@@ -2045,7 +2039,7 @@ hu:
         footer: Ha nem kérte ezt, nyugodtan figyelmen kívül hagyhatja ezt az e-mailt. A jelszava nem változik, amíg nem nyitja meg a fenti linket, és nem hoz létre egy újat.
         regards: |-
           Üdvözlettel
-          Világítótorony csapata
+          Lighthouse csapata
         subject: Utasítások a fiók feloldásához
         unlock_account: Fiókom feloldása
     omniauth_callbacks:
@@ -2352,6 +2346,7 @@ hu:
           in_progress: Folyamatban
           not_started: Nem indult
     change_password: Jelszó módosítása
+    chatwoot_info_msg: Technikai probléma bejelentése
     clients:
       actions:
         create:
@@ -2372,10 +2367,9 @@ hu:
     error_warning: Hoppá, valami elromlott az értékeléseddel. Kérjük, vegye fel a kapcsolatot az ügyfélszolgálattal.
     hogan:
       cannot_start: Most nem kezdheti el a hogan értékelést. Kérjük, próbálja meg néhány perc múlva.
-    lighthouse_app: Mercer világítótorony
     login: Bejelentkezés
     maintenance:
-      notification: A világítótorony 60 másodpercen belül leáll az ütemezett karbantartás miatt
+      notification: Lighthouse 60 másodpercen belül leáll az ütemezett karbantartás miatt
     manage: Kezelje a  címet
     'no': Nem
     passwordSetting:
@@ -2474,6 +2468,7 @@ hu:
   idp:
     actions: Műveletek
     add_comments: Megjegyzések hozzáadása
+    added_development_action: Hozzáadott fejlesztési intézkedés
     ai:
       assistant:
         failure_fallback:
@@ -2530,6 +2525,7 @@ hu:
         title: Helló, én vagyok a fejlesztési asszisztensed
     behavioral: Viselkedési
     board: Beszáll
+    change_history: Változási előzmények
     changes_saved_to_plan: A tervbe mentett módosítások
     comment_details:
       add_comment: Megjegyzés hozzáadása
@@ -2631,6 +2627,7 @@ hu:
       publish_plan: Közzétételi terv
       remove: Eltávolít
       save_plan: Csomag mentése
+      search_development_actions: Keresési fejlesztési műveletek
       show_development_action_information: Fejlesztési akció információk megjelenítése
       skill: Készség
       sprint: Vágtázik
@@ -2643,7 +2640,7 @@ hu:
       write_here: Írj ide...
     direct_reportee_details: Közvetlen beosztottak részletei
     download:
-      description: 'A jelentés letöltéséhez kövesse a következő linket: <a href=''''%{url}'''' target=''''_blank''''>Letöltés</a>. A link csak 10 percig érvényes'
+      description: 'A jelentés letöltéséhez kövesse a következő linket: <a href=''%{url}'' target=''_blank''>Letöltés</a>. A link csak 10 percig érvényes'
     download_plan: Terv letöltése
     edit_plan: Terv szerkesztése
     edit_plan_and_add_skills: Szerkessze a tervet, majd kattintson a Készségek kezelése gombra a készségek hozzáadásához.
@@ -2692,6 +2689,7 @@ hu:
     manage_plan: Terv kezelése
     mark_as_complete: Megjelölés befejezettként
     mark_as_incomplete: Megjelölés befejezetlenként
+    modified_development_action: Módosított fejlesztési művelet
     my_plan:
       development_plan: Fejlesztési terv
       graphs:
@@ -2711,7 +2709,6 @@ hu:
           name: Név
           publish_date: Közzététel dátuma
           review_date: Felülvizsgálat dátuma
-          role: Jelenlegi szerepe
       guidelines:
         cards:
           c1:
@@ -2787,7 +2784,9 @@ hu:
         title: Jelentés összefoglalója
     plan: Terv
     plan_status: Terv állapota %{status}
+    plan_submitted_for_manager_approval: Az egyéni fejlesztési tervet benyújtották vezetői jóváhagyásra.
     private: Privát
+    public: Nyilvános
     reflective_questions:
       already_completed: Az IDP már elkészült, a kérdésekre most nem tud válaszolni.
       answer: Válasz
@@ -2815,6 +2814,7 @@ hu:
       words: Szöveg
     remove_skill: Képesség eltávolítása
     remove_skill_from_plan: Szakértelem %{name} eltávolítása a csomagból
+    removed_development_action: Eltávolított fejlesztési akció
     report_preview: Jelentés előnézete
     search_and_select_skills_of_skill_type: Keressen és válasszon %{skillType} készségeket
     select_skills_of_skill_type: Válasszon %{skillType} készségeket
@@ -2828,6 +2828,8 @@ hu:
     status: Állapot
     suggestions: Javaslatok
     suggestions_for_skill_type: Javaslatok %{skillType} készségekre
+    summary: Összefoglalás
+    summary_logs: Összefoglaló naplók %{reporteeName}
     technical: Műszaki
     user_idp_status:
       approved: Jóváhagyott
@@ -2839,6 +2841,7 @@ hu:
       not_started: Nincs elindítva
       pending_approval: Jóváhagyásra vár
       rejected: Elutasította
+      start_review: Felülvizsgálat indítása
     users: Felhasználók
     with_reflection_questions: Reflexiós kérdésekkel
     without_reflection_questions: Reflexiós kérdések nélkül
@@ -2972,7 +2975,7 @@ hu:
       text: Lighthouse. Minden jog fenntartva
     footer:
       regards: Üdvözlettel,
-      team_name: Világítótorony csapat
+      team_name: Lighthouse csapat
       technical_support: Bármilyen technikai probléma esetén kérjük, írjon nekünk a <x>email</x> címre, és 24 órán belül válaszolunk.
     from: A tehetség vállalkozás
     idp:
@@ -3028,7 +3031,7 @@ hu:
       body:
         dear: Kedves %{name},
         greetings: Üdvözlet a mai napra!
-        instructions: Kattintson az alábbi linkre a világítótoronyba való bejelentkezéshez.
+        instructions: Kattintson az alábbi linkre a Lighthouse való bejelentkezéshez.
         signin_link: Bejelentkezési link
       subject: Bejelentkezési link a Lighthouse-hoz
     powered_by:
@@ -3036,7 +3039,7 @@ hu:
     users:
       account_disable: Fiókját inaktivitás miatt letiltották
       warning: Fiókját hamarosan letiltjuk inaktivitás miatt
-  maintenance_message: A világítótorony %{start_date}-án ütemezett karbantartás miatt leáll, és %{duration} nem lesz elérhető
+  maintenance_message: A Lighthouse %{start_date}-án ütemezett karbantartás miatt leáll, és %{duration} nem lesz elérhető
   maintenance_submessage: Kérjük, frissítse az oldalt a karbantartás befejezése után. A rendszer átirányítja a bejelentkezési oldalra
   my: M
   myself: Magam
@@ -3352,13 +3355,6 @@ hu:
   sessions:
     errors:
       recaptcha: A Recaptcha ellenőrzése sikertelen. Kérjük, próbálja meg újra.
-  shared:
-    filters:
-      clear: Szűrők törlése
-    internet_disconnected_message: Próbálok újra kapcsolódni. Kérjük, ellenőrizze az internetkapcsolatát.
-    mte_logo_alt_text: Mercer Talent Enterprise logó
-    terms_conditions_privacy: Adatvédelmi nyilatkozat
-    tte_terms_and_condition: Feltételek és adatvédelem
   sheet:
     import_modal:
       alert_access_sheet_removal: Új hozzáférési lap feltöltése az összes meglévő rekord törlésével és újak feltöltésével a lapról. Kérjük, győződjön meg arról, hogy az összes Accesssheet rekord táblázatban van.
@@ -4159,6 +4155,7 @@ hu:
     idp:
       can_not_complete_without_approval_and_in_progress: Nem töltheti ki az IDP-t, amíg a menedzsere jóvá nem hagyja, és Ön "Folyamatban" -ként jelölte meg.
       can_not_start_without_approval: Nem kezdhet el dolgozni az IDP-n, amíg a menedzsere jóvá nem hagyja.
+      no_changes_to_compare: Nincs összehasonlítás az IDP-tervben.
       no_previous_approved_plan: Nem találtak korábban jóváhagyott IDP-tervet.
       reflective_questions_required: Az IDP-hez válaszok szükségesek a reflektív kérdésekre
       status_not_permitted: a felhasználó nem engedélyezi.

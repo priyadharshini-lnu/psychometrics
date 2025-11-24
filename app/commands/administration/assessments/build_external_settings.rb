@@ -28,6 +28,8 @@ module Administration
             broadcast(:ok, build_simulation)
           when Assessment::TYPES[:skillvue]
             broadcast(:ok, build_skillvue)
+          when Assessment::TYPES[:yoodli]
+            broadcast(:ok, build_yoodli)
         end
       end
 
@@ -74,6 +76,10 @@ module Administration
       end
 
       def build_skillvue
+        { assessment_id: raw_external_settings[:assessment_id] }
+      end
+
+      def build_yoodli
         { assessment_id: raw_external_settings[:assessment_id] }
       end
     end

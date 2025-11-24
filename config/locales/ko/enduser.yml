@@ -1,0 +1,22 @@
+---
+ko:
+  enduser:
+    add_idp_plan_note: 메모 추가...
+    add_idp_plan_rejection_reason: 사유 추가...
+    approve_idp_plan: 계획 승인
+    bookings: 예약
+    campaign: 캠페인
+    development: 개발
+    direct_reportees: 직접 보고서
+    home: 대시보드
+    idp_plan_approval_note: 승인 메모
+    insights: 인사이트
+    max_word_limit: 최대 %{max}단어여야 합니다
+    min_word_limit: 최소 %{min}단어여야 합니다
+    my_plan: 내 계획
+    profile: 프로필
+    profile_details: 세부 정보
+    question_counter: 질문 %{current} / %{total}
+    selected_count: 선택됨
+    skill_type: 스킬 유형
+    tasks: 작업

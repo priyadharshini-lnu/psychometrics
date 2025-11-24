@@ -9,10 +9,11 @@ module AI
     class OpenaiResponseApi < BaseCommand
       class Error < StandardError; end
 
-      private_attr_reader :assistant_chat
+      private_attr_reader :assistant_chat, :model_id
 
-      def initialize(llm_assistant_chat)
+      def initialize(llm_assistant_chat, model_id)
         @assistant_chat = llm_assistant_chat
+        @model_id = model_id
       end
 
       def call
@@ -325,7 +326,7 @@ module AI
 
       def ruby_llm_config
         @ruby_llm_config ||= begin
-          provider_config = Settings.ai_providers.find { |provider| provider['model_id'] == assistant_chat.model.id }
+          provider_config = Settings.ai_providers.find { |provider| provider['model_id'] == model_id }
           context = provider_config&.dig('context').to_h
 
           config_class = Struct.new(*context.keys.map(&:to_sym), :openai_use_system_role, keyword_init: true)

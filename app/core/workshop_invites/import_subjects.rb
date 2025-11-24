@@ -18,11 +18,13 @@ module WorkshopInvites
 
       existing_users = User.with_campaign_user(@campaign.id).includes(:user_profile).
                        where(email: rows.pluck(0)).index_by(&:email)
+
       rows.each.with_index do |data, index|
         existing_user = existing_users[data[0]]
+
         if existing_user
           users << existing_user
-        else
+        elsif data[0]
           errors << { index: index, email: data[0] }
         end
       end

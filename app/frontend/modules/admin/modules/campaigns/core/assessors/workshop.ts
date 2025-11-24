@@ -3,6 +3,7 @@ import * as t from 'io-ts'
 export const WorkshopTR = t.type({
   id: t.string,
   startTime: t.string,
+  name: t.string,
   duration: t.number,
   campaign: t.type({
     id: t.string,

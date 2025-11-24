@@ -1,0 +1,52 @@
+---
+bg:
+  admin:
+    admins: Администратори
+    ai_artifacts: Артефакти с изкуствен интелект
+    ai_assistants: AI асистенти
+    assessments: Оценки
+    assessments_reports: Оценки и отчети
+    assessor_dashboard: Табло за управление на оценителя
+    assessor_workshops: Център за оценяване
+    audit_logs: Регистрационни файлове за одит
+    audit_reports: Одиторски доклади
+    availability: Наличност
+    back_to_main: Главно меню
+    campaign_templates: Шаблони за кампании
+    client: Наемане на клиенти
+    client_admins: Администратори на клиенти
+    clients: Наеми на клиенти
+    communication_center: Комуникационен център
+    country: Държава
+    create_client: Създайте клиент
+    dashboard: Таблото
+    data_reports: Отчети за данни
+    datasheet: Лист с данни
+    development_actions: Действия за развитие
+    dimensions: Размери
+    libraries: Медийна библиотека
+    no_notifications: Няма известия
+    norms: Норми
+    notification_bell_icon_alt_text: Икона на звънец за известия
+    notifications: Уведомления
+    number: Номер
+    occupations: Професии
+    options: Опции
+    participants: Участниците
+    profile_details: Детайли за профила
+    project_admins: Администратори на проекти
+    project_manager: Ръководител на проект
+    question_center: Център за въпроси
+    registration_codes: Регистрационни кодове
+    report_approvals: Докладване на одобрения
+    reports: Доклади
+    role: Роля
+    scheduling: Планиране
+    scoring: Точкуване
+    show_submenu: Покажи подменюто
+    skills_taxonomy: Таксономия на уменията
+    stats: Статистика
+    user_report_events: Събития с потребителски отчет
+    users: Потребители
+    view_licenses: Преглед на лицензи
+    year: Държава

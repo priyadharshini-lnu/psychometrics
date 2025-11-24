@@ -83,7 +83,7 @@ const IntegrationsComponent: React.FC<Props> = ({
   return (
     <>
       <Row className="pl">
-        <Col lg={14} md={17} sm={24}>
+        <Col>
           <Button
             type="primary"
             icon={<PlusOutlined />}
@@ -114,6 +114,7 @@ const IntegrationsComponent: React.FC<Props> = ({
                 hoganIntegrationDetails,
                 iihtIntegrationDetails,
                 skillvueIntegrationDetails,
+                yoodliIntegrationDetails,
               }) => {
                 if (name === 'hogan') {
                   return (
@@ -171,6 +172,69 @@ const IntegrationsComponent: React.FC<Props> = ({
                   )
                 }
 
+                if (name === 'yoodli') {
+                  return (
+                    <>
+                      <div>
+                        <b>
+                          {I18n.t('administration.integrations.details.platform_id')}
+                          :
+                        </b>
+                        {' '}
+                        <span>{yoodliIntegrationDetails.platformId}</span>
+                      </div>
+                      <div>
+                        <b>
+                          {I18n.t('administration.integrations.details.client_id')}
+                          :
+                        </b>
+                        {' '}
+                        <span>{yoodliIntegrationDetails.clientId}</span>
+                      </div>
+                      <div>
+                        <b>
+                          {I18n.t('administration.integrations.details.deployment_id')}
+                          :
+                        </b>
+                        {' '}
+                        <span>{yoodliIntegrationDetails.deploymentId}</span>
+                      </div>
+                      <div>
+                        <b>
+                          {I18n.t('administration.integrations.details.platform_public_keyset_url')}
+                          :
+                        </b>
+                        {' '}
+                        <span>{yoodliIntegrationDetails.platformPublicKeysetUrl}</span>
+                      </div>
+                      <div>
+                        <b>
+                          {I18n.t('administration.integrations.details.platform_access_token_url')}
+                          :
+                        </b>
+                        {' '}
+                        <span>{yoodliIntegrationDetails.platformAccessTokenUrl}</span>
+                      </div>
+                      <div>
+                        <b>
+                          {I18n.t('administration.integrations.details.platform_authentication_request_url')}
+                          :
+                        </b>
+                        {' '}
+                        <span>{yoodliIntegrationDetails.platformAuthenticationRequestUrl}</span>
+                      </div>
+                      <div>
+                        <b>
+                          {I18n.t('administration.integrations.details.platform_host_name')}
+                          :
+                        </b>
+                        {' '}
+                        <span>{yoodliIntegrationDetails.platformHostName}</span>
+                      </div>
+                    </>
+                  )
+                }
+
                 return null
               }}
             />
@@ -195,6 +259,11 @@ const IntegrationsComponent: React.FC<Props> = ({
                         <SyncOutlined onClick={handleSkillvueLoad} />
                       </Tooltip>
                     </>
+                  )}
+                  {integration.name === 'yoodli' && (
+                    <Tooltip title={I18n.t('administration.integrations.yoodli_assessments.manage_catalog')}>
+                      <EyeOutlined onClick={() => handleTabChange('integrations/yoodli_assessments')} />
+                    </Tooltip>
                   )}
                   <Tooltip title={I18n.t('common.actions.edit')}>
                     <EditOutlined onClick={() => openModal('IntegrationFormModal', { integration })} />

@@ -919,8 +919,6 @@ id:
     invalid_job: Notifikasi ini sesuai dengan catatan yang dihapus
     mark_as_read: Tandai semua baca
     more: Lebih
-    no_notifications: Tidak ada pemberitahuan
-    notifications: Notifikasi
     results: Hasil
     super_admin:
       errors:
@@ -1244,7 +1242,7 @@ id:
       description: Isi semua kolom untuk membuat kata sandi baru
       submit: Kirim
       title: Perbarui kata sandi Anda
-    lighthouse_logo_alt_text: Logo mercusuar
+    lighthouse_logo_alt_text: Logo Lighthouse
     login:
       continue_btn: Terus
       description: Silakan masuk dengan informasi akun pribadi Anda
@@ -1344,16 +1342,11 @@ id:
     continue: Lanjutkan tugas Anda
     dashboard_instructions: Anda mungkin telah ditugaskan beberapa aktivitas yang harus Anda selesaikan. Pastikan untuk memeriksa apakah semua aktivitas yang ditugaskan telah diselesaikan di semua kampanye.
     dashboard_menu:
-      bookings: Pemesanan
       campaign: Kampanye
-      change_password: Ubah Kata Sandi
-      development: Pengembangan
       direct_reportees: Bawahan Langsung
       home: Beranda
       insights: Wawasan
-      my_plan: Rencanaku
       profile: Profil
-      profile_details: Detail
       tasks: Tugas
     details: Detail
     edit_evaluation:
@@ -1469,6 +1462,7 @@ id:
       export_occupations_job_scheduled: Pekerjaan Ekspor Pekerjaan berhasil dijadwalkan
       export_reports_and_assessments_statuses_scheduled: Ekspor Laporan dan tugas penilaian berhasil dijadwalkan
       external_results_export_scheduled: Tugas ekspor Penilaian Eksternal berhasil dijadwalkan
+      no_participants_selected: Silakan pilih setidaknya satu peserta untuk melanjutkan.
       norm_results_export_scheduled: Pekerjaan ekspor Hasil Bernorma Penilaian berhasil dijadwalkan
       normalize_factor_scores_scheduled: Pekerjaan skor faktor normalisasi berhasil dijadwalkan.
       raw_factor_export_scheduled: Pekerjaan ekspor Faktor Mentah Penilaian berhasil dijadwalkan
@@ -1613,6 +1607,7 @@ id:
       report_bundle_placeholder: Memilih paket laporan
     messages:
       bulk_download_error: Unduhan massal dibatasi hingga 1000 file laporan. Jika Anda telah memilih banyak bahasa, harap kurangi.
+      bulk_download_no_reports: Tidak ada laporan yang ditemukan. Silakan buat laporan sebelum mengunduh.
       bulk_download_successful: Pekerjaan pengunduhan laporan massal berhasil dijadwalkan
       export_report_data_scheduled: Tugas ekspor data laporan berhasil dijadwalkan
     modals:
@@ -1882,7 +1877,6 @@ id:
       projects: Proyek
       report: Lapor
       reports: Laporan
-      scoring: Penilaian
       sms_contact: Kontak SMS
       threesixty_campaign: Skor Kampanye Threesixty
     status:
@@ -2004,19 +1998,19 @@ id:
           %{accept} Atau Anda dapat mengabaikan email ini dengan aman.
 
           Harap jangan membagikan kredensial akses Anda dengan siapa pun.
-        subject: Undangan ke Mercusuar
+        subject: Undangan ke Lighthouse
       confirmation_instructions:
         subject: Instruksi konfirmasi
       invitation_instructions:
         body: |-
           Halo %{name},
           Anda telah ditambahkan ke Lighthouse sebagai Admin untuk bagian berikut
-        login: Masuk ke Mercusuar
+        login: Masuk ke Lighthouse
         sections:
           campaign: 'Kampanye: %{section_name}'
           client: 'Klien Pengguna: %{section_name}'
           project: 'Proyek: %{section_name}'
-        subject: Undangan ke Mercusuar
+        subject: Undangan ke Lighthouse
       password_change:
         body: |-
           Halo %{name}!
@@ -2026,8 +2020,8 @@ id:
           Jika Anda tidak mengajukan permintaan ini, segera hubungi Dukungan di mte.support@mercer.com
         regards: |-
           Salam
-          Tim Mercusuar
-        subject: Kata sandi Mercusuar Anda telah berubah
+          Tim Lighthouse
+        subject: Kata sandi Lighthouse Anda telah berubah
       reset_password_instructions:
         body: |-
           Halo %{name}!
@@ -2037,7 +2031,7 @@ id:
         footer: Jika Anda tidak meminta ini, Anda dapat dengan aman mengabaikan email ini. Kata sandi Anda tidak akan berubah sampai Anda mengakses tautan di atas dan membuat yang baru.
         regards: |-
           Salam
-          Tim Mercusuar
+          Tim Lighthouse
         subject: Petunjuk untuk mengatur ulang kata sandi Anda
       unlock_instructions:
         body: |-
@@ -2049,7 +2043,7 @@ id:
         footer: Jika Anda tidak meminta ini, Anda dapat dengan aman mengabaikan email ini. Kata sandi Anda tidak akan berubah sampai Anda mengakses tautan di atas dan membuat yang baru.
         regards: |-
           Salam
-          Tim Mercusuar
+          Tim Lighthouse
         subject: Petunjuk untuk Membuka Kunci Akun Anda
         unlock_account: Buka kunci akun saya
     omniauth_callbacks:
@@ -2356,6 +2350,7 @@ id:
           in_progress: Sedang Berlangsung
           not_started: Tidak Dimulai
     change_password: Mengubah kata sandi
+    chatwoot_info_msg: Melaporkan masalah teknis
     clients:
       actions:
         create:
@@ -2376,10 +2371,9 @@ id:
     error_warning: Ups, ada yang salah dengan penilaian Anda. Silakan hubungi dukungan.
     hogan:
       cannot_start: Anda tidak dapat memulai penilaian hogan sekarang. Silakan coba setelah beberapa menit.
-    lighthouse_app: Mercer Lighthouse
     login: Masuk
     maintenance:
-      notification: Mercusuar akan mati untuk pemeliharaan terjadwal dalam 60 detik
+      notification: Lighthouse akan mati untuk pemeliharaan terjadwal dalam 60 detik
     manage: Kelola
     'no': Tidak
     passwordSetting:
@@ -2478,6 +2472,7 @@ id:
   idp:
     actions: Tindakan
     add_comments: Tambahkan Komentar
+    added_development_action: Menambahkan Tindakan Pengembangan
     ai:
       assistant:
         failure_fallback:
@@ -2534,6 +2529,7 @@ id:
         title: Halo, saya asisten pengembangan Anda
     behavioral: Perilaku
     board: Papan
+    change_history: Perubahan Riwayat
     changes_saved_to_plan: Perubahan yang disimpan pada paket
     comment_details:
       add_comment: Tambahkan Komentar
@@ -2635,6 +2631,7 @@ id:
       publish_plan: Menerbitkan Rencana
       remove: Buka
       save_plan: Simpan Paket
+      search_development_actions: Tindakan Pengembangan Pencarian
       show_development_action_information: Tampilkan informasi Tindakan Pengembangan
       skill: Keahlian
       sprint: Sprint
@@ -2647,7 +2644,7 @@ id:
       write_here: Tulis di sini...
     direct_reportee_details: Detail Bawahan Langsung
     download:
-      description: 'Untuk mengunduh laporan, silakan ikuti tautan: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Tautan hanya berlaku selama 10 menit'
+      description: 'Untuk mengunduh laporan, silakan ikuti tautan: <a href=''%{url}'' target=''_blank''>Download</a>. Tautan hanya berlaku selama 10 menit'
     download_plan: Unduh Paket
     edit_plan: Edit Paket
     edit_plan_and_add_skills: Edit Rencana dan klik Kelola Keterampilan untuk menambahkan Keterampilan.
@@ -2696,6 +2693,7 @@ id:
     manage_plan: Kelola Paket
     mark_as_complete: Tandai sebagai Selesai
     mark_as_incomplete: Tandai sebagai Tidak Lengkap
+    modified_development_action: Tindakan Pengembangan yang Dimodifikasi
     my_plan:
       development_plan: Rencana Pengembangan
       graphs:
@@ -2715,7 +2713,6 @@ id:
           name: Nama
           publish_date: Tanggal Publikasi
           review_date: Tanggal Peninjauan
-          role: Peran Saat Ini
       guidelines:
         cards:
           c1:
@@ -2813,7 +2810,9 @@ id:
         title: Ringkasan Laporan
     plan: Rencana
     plan_status: Status Paket %{status}
+    plan_submitted_for_manager_approval: Rencana Pengembangan Individu Anda telah diajukan untuk persetujuan manajer.
     private: Swasta
+    public: Umum
     reflective_questions:
       already_completed: IDP telah selesai, Anda tidak dapat menjawab pertanyaan sekarang.
       answer: Menjawab
@@ -2841,6 +2840,7 @@ id:
       words: Kata
     remove_skill: Hapus Keterampilan
     remove_skill_from_plan: Hapus %{name} keterampilan dari rencana
+    removed_development_action: Tindakan Pengembangan yang Dihapus
     report_preview: Pratinjau Laporan
     search_and_select_skills_of_skill_type: Cari dan pilih keterampilan %{skillType}
     select_skills_of_skill_type: Pilih keterampilan %{skillType}
@@ -2854,6 +2854,8 @@ id:
     status: Status
     suggestions: Saran
     suggestions_for_skill_type: Saran untuk keterampilan %{skillType}
+    summary: Ringkasan
+    summary_logs: Log ringkasan untuk %{reporteeName}
     technical: Teknis
     user_idp_status:
       approved: Disetujui
@@ -2865,6 +2867,7 @@ id:
       not_started: Belum Dimulai
       pending_approval: Menunggu Persetujuan
       rejected: Ditolak
+      start_review: Mulai Tinjauan
     users: Pengguna
     with_reflection_questions: Dengan Pertanyaan Refleksi
     without_reflection_questions: Tanpa Pertanyaan Refleksi
@@ -2998,7 +3001,7 @@ id:
       text: Lighthouse. Hak cipta dilindungi
     footer:
       regards: Salam,
-      team_name: Tim Mercusuar
+      team_name: Tim Lighthouse
       technical_support: Untuk masalah teknis apa pun, silakan kirim email kepada kami di <x>email</x> dan kami akan merespons dalam waktu 24 jam.
     from: Perusahaan Bakat
     idp:
@@ -3062,7 +3065,7 @@ id:
     users:
       account_disable: Akun Anda telah dinonaktifkan karena tidak aktif
       warning: Akun Anda akan segera dinonaktifkan karena tidak aktif
-  maintenance_message: Mercusuar akan mati untuk pemeliharaan terjadwal pada %{start_date} dan tidak akan tersedia untuk %{duration}
+  maintenance_message: Lighthouse akan mati untuk pemeliharaan terjadwal pada %{start_date} dan tidak akan tersedia untuk %{duration}
   maintenance_submessage: Silakan segarkan halaman setelah pemeliharaan selesai. Anda akan diarahkan ke halaman login
   my: Saya
   myself: Diriku
@@ -3378,13 +3381,6 @@ id:
   sessions:
     errors:
       recaptcha: Verifikasi recaptcha gagal. Silakan coba lagi.
-  shared:
-    filters:
-      clear: Hapus Filter
-    internet_disconnected_message: Mencoba menyambung kembali, periksa koneksi internet Anda.
-    mte_logo_alt_text: Logo Mercer Talent Enterprise
-    terms_conditions_privacy: Pernyataan Privasi
-    tte_terms_and_condition: Ketentuan & Privasi
   sheet:
     import_modal:
       alert_access_sheet_removal: Mengunggah Lembar Akses baru dengan menghapus semua catatan yang ada dan mengunggah yang baru dari lembar. Pastikan Anda memiliki semua catatan Accesssheet dalam spreadsheet.
@@ -4185,6 +4181,7 @@ id:
     idp:
       can_not_complete_without_approval_and_in_progress: Anda tidak dapat menyelesaikan IDP Anda sampai manajer Anda menyetujuinya dan Anda menandainya sebagai 'Sedang Berlangsung'.
       can_not_start_without_approval: Anda tidak dapat mulai mengerjakan IDP Anda sampai manajer Anda menyetujuinya.
+      no_changes_to_compare: Tidak ada perubahan untuk dibandingkan untuk paket IDP.
       no_previous_approved_plan: Tidak ada rencana IDP yang disetujui sebelumnya yang ditemukan.
       reflective_questions_required: Jawaban atas pertanyaan reflektif diperlukan untuk IDP
       status_not_permitted: tidak diizinkan oleh pengguna.

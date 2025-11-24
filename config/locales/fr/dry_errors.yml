@@ -77,6 +77,7 @@ fr:
       uniq?: doit être unique
       uniq_simulation: Cette évaluation de simulation est déjà présente dans le système. L'identifiant de cette évaluation est %{id}
       uniq_skillvue: Cette évaluation Skillvue est déjà présente dans le système. L'ID de cette évaluation est %{id}
+      uniq_yoodli: Cette évaluation Yoodli est déjà présente dans le système. L’identifiant de cette évaluation est %{id}
       update_workshop:
         bookings_exist: Il n'est pas possible de modifier l'horaire car les participants ont déjà réservé ce créneau horaire.
         less_than_booked: Le nombre total de places doit être supérieur au nombre de places réservées

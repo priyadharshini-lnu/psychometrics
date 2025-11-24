@@ -77,6 +77,7 @@ interface UserIdpPlan {
   skillGapReportData:FetchSkillGapsResponse | null
   planChanges: {}
   summary: {}
+  reviewNote: string
 }
 
 export interface UserIdpComment {
@@ -344,12 +345,12 @@ export const fetchUserIdpPlanChangesForSummary = (userId: string):ApiAction<{}> 
 })
 
 
-export const updateUserIdpPlan = (userId: string, status: UserIdpPlanStatus) => ({
+export const updateUserIdpPlan = (userId: string, status: UserIdpPlanStatus, note = '') => ({
   type: UPDATE_USER_IDP_PLAN,
   request: {
     url: `/user_idp_plans/${userId}`,
     method: 'put',
-    body: { status },
+    body: { status, note },
   },
 })
 
@@ -433,6 +434,7 @@ export const HANDLERS = {
       userIdpCommentsBySkillId: {},
       userIdpCommentsBySkillIdTotalCount: {},
       showCommentsForSkillId: null,
+      reviewNote: userIdpPlan.reviewNote,
     }
   },
   [FETCH_DIRECT_REPORTS]: (state, action) => ({
@@ -515,6 +517,7 @@ export const HANDLERS = {
   [UPDATE_USER_IDP_PLAN]: (state, action) => ({
     ...state,
     status: action.response.status,
+    reviewNote: action.response.note,
   }),
   [SET_USER_IDP_PLAN_STATUS]: (state, action) => ({
     ...state,
@@ -759,6 +762,7 @@ export const defaultState: UserIdpPlan = {
   skillGapReportData: null,
   planChanges: {},
   summary: {},
+  reviewNote: '',
 }
 
 export default function reducer (state = defaultState, action) {

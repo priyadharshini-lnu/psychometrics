@@ -1,0 +1,52 @@
+---
+sl:
+  admin:
+    admins: Skrbniki
+    ai_artifacts: Artefakti umetne inteligence
+    ai_assistants: Pomočniki za umetno inteligenco
+    assessments: Ocenjevanja
+    assessments_reports: Ocenjevanja in poročila
+    assessor_dashboard: Nadzorna plošča ocenjevalca
+    assessor_workshops: Ocenjevalni center
+    audit_logs: Dnevniki nadzora
+    audit_reports: Revizijska poročila
+    availability: Razpoložljivost
+    back_to_main: Glavni meni
+    campaign_templates: Predloge oglaševalskih akcij
+    client: Najem stranke
+    client_admins: Skrbniki odjemalcev
+    clients: Spletno okolje naročnika
+    communication_center: Komunikacijsko središče
+    country: Država
+    create_client: Ustvari odjemalca
+    dashboard: Nadzorna plošča
+    data_reports: Poročila o podatkih
+    datasheet: Podatkovni list
+    development_actions: Razvojni ukrepi
+    dimensions: Dimenzije
+    libraries: Medijska knjižnica
+    no_notifications: Brez obvestil
+    norms: Norme
+    notification_bell_icon_alt_text: Ikona zvonca za obvestila
+    notifications: Obvestila
+    number: Številka
+    occupations: Poklicev
+    options: Možnosti
+    participants: Udeleženci
+    profile_details: Podrobnosti profila
+    project_admins: Skrbniki projekta
+    project_manager: Vodja projekta
+    question_center: Središče za vprašanja
+    registration_codes: Registracijske kode
+    report_approvals: Odobritve poročil
+    reports: Poročila
+    role: Vloga
+    scheduling: Razporejanje
+    scoring: Točkovanja
+    show_submenu: Pokaži podmeni
+    skills_taxonomy: Taksonomija spretnosti
+    stats: Statistika
+    user_report_events: Dogodki uporabniškega poročila
+    users: Uporabniki
+    view_licenses: Ogled licenc
+    year: Država

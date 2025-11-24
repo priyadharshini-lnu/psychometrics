@@ -925,8 +925,6 @@ sr-Latn:
     invalid_job: Ovo obaveštenje odgovara izbrisanom zapisu
     mark_as_read: Označi sve pročitano
     more: Više
-    no_notifications: Nema obaveštenja
-    notifications: Obaveštenja
     results: Rezultate
     super_admin:
       errors:
@@ -1251,7 +1249,7 @@ sr-Latn:
       description: Molimo Vas da popunite sva polja da biste stvorili novu lozinku
       submit: Pošalji
       title: Obnovi lozinku
-    lighthouse_logo_alt_text: Svetionik logotip
+    lighthouse_logo_alt_text: Lighthouse logotip
     login:
       continue_btn: Nastavite
       description: Molimo Vas da se ulogujete sa informacijama sa Vašeg ličnog naloga
@@ -1351,16 +1349,11 @@ sr-Latn:
     continue: Nastavite sa svojim zadacima
     dashboard_instructions: Možda vam je dodeljeno više aktivnosti koje morate da završite. Proverite da li su sve dodeljene aktivnosti završene u svim kampanjama.
     dashboard_menu:
-      bookings: Rezervacije
       campaign: Kampanja
-      change_password: Promeni lozinku
-      development: Razvoj
       direct_reportees: Direktni izveštavalci
       home: Početna
       insights: Uvidi
-      my_plan: Moj plan
       profile: Profil
-      profile_details: Detalji
       tasks: Zadaci
     details: Detalji
     edit_evaluation:
@@ -1475,6 +1468,7 @@ sr-Latn:
       export_occupations_job_scheduled: Zanimanja Izvoz posao je uspešno zakazan
       export_reports_and_assessments_statuses_scheduled: Izvoz Izveštaji i procene posao je uspešno zakazan
       external_results_export_scheduled: Eksterna procena izvoz posao je uspešno zakazan
+      no_participants_selected: Molimo vas da izaberete najmanje jednog učesnika da biste nastavili.
       norm_results_export_scheduled: Procena Normed Rezultati izvoz posao je uspešno zakazan
       normalize_factor_scores_scheduled: Normalizacija faktora rezultata posao je uspešno zakazan.
       raw_factor_export_scheduled: Procena Sirovi faktor izvoz posao je uspešno zakazan
@@ -1619,6 +1613,7 @@ sr-Latn:
       report_bundle_placeholder: Izaberite paket izveštaja
     messages:
       bulk_download_error: Masovno preuzimanje je ograničeno na 1000 datoteka izveštaja. Ako ste odabrali mnogo jezika, molimo vas da ga smanjite.
+      bulk_download_no_reports: Nije pronađen nijedan izveštaj. Molimo Vas da generišete izveštaje pre preuzimanja.
       bulk_download_successful: Bulk izveštaj preuzimanje posao je uspešno zakazan
       export_report_data_scheduled: Izveštaj o izvozu podataka posao je uspešno zakazan
     modals:
@@ -1888,7 +1883,6 @@ sr-Latn:
       projects: Projekte
       report: Izveštaj
       reports: Izveštaji
-      scoring: Bodovanja
       sms_contact: SMS kontakt
       threesixty_campaign: Rezultati kampanje Threesixty
     status:
@@ -2010,19 +2004,19 @@ sr-Latn:
           %{accept} Ili možete bezbedno ignorisati ovaj e-mail.
 
           Molimo Vas da ne delite svoje pristupne akreditive sa bilo kim.
-        subject: Poziv za svetionik
+        subject: Poziv za Lighthouse
       confirmation_instructions:
         subject: Uputstva za potvrdu
       invitation_instructions:
         body: |-
           Pozdrav %{name},
           Vi ste dodat u Lighthouse kao Admin za sledeći odeljak
-        login: Prijavite se na svetionik
+        login: Prijavite se na Lighthouse
         sections:
           campaign: 'Kampanja: %{section_name}'
           client: 'Zakup klijenta: %{section_name}'
           project: 'Projekat: %{section_name}'
-        subject: Poziv za svetionik
+        subject: Poziv za Lighthouse
       password_change:
         body: |-
           Pozdrav %{name}!
@@ -2032,7 +2026,7 @@ sr-Latn:
           Ako niste podnijeli ovaj zahtev, molimo vas da odmah kontaktirate podršku na mte.support@mercer.com
         regards: |-
           Pozdrave
-          Svetionik tima
+          Lighthouse tima
         subject: Vaša lozinka za Lighthouse je promenjena
       reset_password_instructions:
         body: |-
@@ -2043,7 +2037,7 @@ sr-Latn:
         footer: Ako to niste tražili, možete bezbedno ignorisati ovu e-poštu. Vaša lozinka se neće promeniti dok ne pristupite gornjoj vezi i ne kreirate novu.
         regards: |-
           Pozdrave
-          Svetionik tima
+          Lighthouse tima
         subject: Uputstva za resetovanje lozinka
       unlock_instructions:
         body: |-
@@ -2055,7 +2049,7 @@ sr-Latn:
         footer: Ako to niste tražili, možete bezbedno ignorisati ovu e-poštu. Vaša lozinka se neće promeniti dok ne pristupite gornjoj vezi i ne kreirate novu.
         regards: |-
           Pozdrave
-          Svetionik tima
+          Lighthouse tima
         subject: Uputstva za otključavanje naloga
         unlock_account: Otključaj moj nalog
     omniauth_callbacks:
@@ -2370,6 +2364,7 @@ sr-Latn:
           in_progress: U toku
           not_started: Nije započeto
     change_password: Promeni lozinku
+    chatwoot_info_msg: Prijavite tehnički problem
     clients:
       actions:
         create:
@@ -2390,10 +2385,9 @@ sr-Latn:
     error_warning: Ups, nešto nije u redu sa vašom procenom. Molimo Vas da kontaktirate podršku.
     hogan:
       cannot_start: Ne možete odmah započeti procenu Hogana. Pokušajte nakon nekoliko minuta.
-    lighthouse_app: Mercer Svetionik
     login: Prijava
     maintenance:
-      notification: Svetionik će biti dole za planirano održavanje za 60 sekundi
+      notification: Lighthouse će biti dole za planirano održavanje za 60 sekundi
     manage: Podesi
     'no': Ne
     passwordSetting:
@@ -2492,6 +2486,7 @@ sr-Latn:
   idp:
     actions: Radnje
     add_comments: Dodaj komentare
+    added_development_action: Dodatna razvojna akcija
     ai:
       assistant:
         failure_fallback:
@@ -2548,6 +2543,7 @@ sr-Latn:
         title: Zdravo, ja sam vaš asistent za razvoj
     behavioral: Bihejvioralno
     board: Tablu
+    change_history: Istorija promena
     changes_saved_to_plan: Promene sačuvane u planu
     comment_details:
       add_comment: Dodaj komentar
@@ -2649,6 +2645,7 @@ sr-Latn:
       publish_plan: Objavi plan
       remove: Uklonite
       save_plan: Sačuvaj plan
+      search_development_actions: Akcije za razvoj pretraživanja
       show_development_action_information: Pokaži informacije o akciji razvoja
       skill: Veљtina
       sprint: Sprint
@@ -2661,7 +2658,7 @@ sr-Latn:
       write_here: Pišite ovde...
     direct_reportee_details: Direktni izveštavači Detalj
     download:
-      description: 'Da biste preuzeli izveštaj, pratite link: <a href=''''%{url}'''' target =''''_blank''''>Dovnload</a>. Veza važi samo 10 minuta'
+      description: 'Da biste preuzeli izveštaj, pratite link: <a href=''%{url}'' target =''_blank''>Dovnload</a>. Veza važi samo 10 minuta'
     download_plan: Plan za preuzimanje
     edit_plan: Uredi plan
     edit_plan_and_add_skills: Uredite plan i kliknite na Upravljanje veštinama da biste dodali veštine.
@@ -2710,6 +2707,7 @@ sr-Latn:
     manage_plan: Upravljanje planom
     mark_as_complete: Označi kao kompletno
     mark_as_incomplete: Označi kao nepotpun
+    modified_development_action: Modifikovana razvojna akcija
     my_plan:
       development_plan: Plan razvoja
       graphs:
@@ -2729,7 +2727,6 @@ sr-Latn:
           name: Ime
           publish_date: Datum objavljivanja
           review_date: Datum pregleda
-          role: Trenutna uloga
       guidelines:
         cards:
           c1:
@@ -2805,7 +2802,9 @@ sr-Latn:
         title: Rezime izveštaja
     plan: Plan
     plan_status: Plan Status %{status}
+    plan_submitted_for_manager_approval: Vaš individualni plan razvoja je dostavljen na odobrenje menadžera.
     private: Privatni
+    public: Javnost
     reflective_questions:
       already_completed: IDP je već završen, sada ne možete odgovoriti na pitanja.
       answer: Odgovoriti
@@ -2833,6 +2832,7 @@ sr-Latn:
       words: Reиi
     remove_skill: Ukloni veštinu
     remove_skill_from_plan: Uklonite veštine %{name} iz plana
+    removed_development_action: Uklonjena razvojna akcija
     report_preview: Pregled izveštaja
     search_and_select_skills_of_skill_type: Pretražite i izaberite %{skillType} veštine
     select_skills_of_skill_type: Izaberite %{skillType} veštine
@@ -2846,6 +2846,8 @@ sr-Latn:
     status: Status
     suggestions: Predloge
     suggestions_for_skill_type: Predlozi za %{skillType} veštine
+    summary: Rezime
+    summary_logs: Zbirni zapisi za %{reporteeName}
     technical: Tehnički
     user_idp_status:
       approved: Odobrio
@@ -2857,6 +2859,7 @@ sr-Latn:
       not_started: Nije započeto
       pending_approval: Čeka se odobrenje
       rejected: Odbio
+      start_review: Pokreni pregled
     users: Korisnici
     with_reflection_questions: Sa pitanjima za razmišljanje
     without_reflection_questions: Bez razmišljanja pitanja
@@ -3046,15 +3049,15 @@ sr-Latn:
       body:
         dear: Poštovani %{name},
         greetings: Pozdrav!
-        instructions: Kliknite ispod link da biste se prijavili na svetionik.
+        instructions: Kliknite ispod link da biste se prijavili na Lighthouse.
         signin_link: Prijavite se putem linka
-      subject: Link za prijavljivanje za svetionik
+      subject: Link za prijavljivanje za Lighthouse
     powered_by:
       text: Pokreće Lighthouse.
     users:
       account_disable: Vaš nalog je onemogućen zbog neaktivnosti
       warning: Vaš nalog će uskoro biti onemogućen zbog neaktivnosti
-  maintenance_message: Svetionik će biti isključen zbog planiranog održavanja na %{start_date} i neće biti dostupan za %{duration} sati
+  maintenance_message: Lighthouse će biti isključen zbog planiranog održavanja na %{start_date} i neće biti dostupan za %{duration} sati
   maintenance_submessage: Molimo Vas da osvežite stranicu nakon završetka održavanja. Bićete preusmereni na stranicu za prijavljivanje
   my: Moj
   myself: Sebe
@@ -3370,13 +3373,6 @@ sr-Latn:
   sessions:
     errors:
       recaptcha: Verifikacija reCAPTCHA nije uspela. Molimo pokušajte ponovo.
-  shared:
-    filters:
-      clear: Obriši filtere
-    internet_disconnected_message: Pokušavam da se ponovo povežem. Proverite svoju internet konekciju.
-    mte_logo_alt_text: Mercer Talent Enterprise logotip
-    terms_conditions_privacy: Izjava o privatnosti
-    tte_terms_and_condition: Uslovi i privatnost
   sheet:
     import_modal:
       alert_access_sheet_removal: Učitavanje novog pristupnog lista sa brisanjem svih postojećih zapisa i otpremanjem novog sa lista. Proverite da li imate sve Accesssheet zapise u tabeli.
@@ -4177,6 +4173,7 @@ sr-Latn:
     idp:
       can_not_complete_without_approval_and_in_progress: Ne možete da završite IDP dok vaš menadžer ne odobri i vi ste ga označili kao "U toku".
       can_not_start_without_approval: Ne možete početi da radite na vašem IDP-u dok ga vaš menadžer ne odobri.
+      no_changes_to_compare: Nema promena za upoređivanje za IDP plan.
       no_previous_approved_plan: Nije pronađen prethodni odobreni plan IDP-a.
       reflective_questions_required: Odgovori na reflektujuća pitanja su potrebni za IDP
       status_not_permitted: nije dozvoljeno od strane korisnika.

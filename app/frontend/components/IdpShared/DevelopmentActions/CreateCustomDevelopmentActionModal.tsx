@@ -84,7 +84,7 @@ export const CreateCustomDevelopmentActionModal = ({
                       aria-hidden="true"
                       src={developmentActionLearningStylesConfig[learningStyle].logo}
                       alt={I18n.t(`idp.development_actions.${learningStyle}`)}
-                      style={{ marginRight: 8, width: '2rem' }}
+                      style={{ marginInlineEnd: 8, width: '2rem' }}
                     />
                     {I18n.t(`idp.development_actions.${learningStyle}`)}
                   </Flex>

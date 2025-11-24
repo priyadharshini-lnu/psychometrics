@@ -1,0 +1,52 @@
+---
+zh-Hant:
+  admin:
+    admins: 管理員
+    ai_artifacts: 人工智慧神器
+    ai_assistants: AI 助理
+    assessments: 評估
+    assessments_reports: 評估與報告
+    assessor_dashboard: 評估員儀表板
+    assessor_workshops: 評估中心
+    audit_logs: 稽核記錄
+    audit_reports: 審計報告
+    availability: 可用性
+    back_to_main: 主選單
+    campaign_templates: 活動範本
+    client: 客戶租約
+    client_admins: 客戶端管理員
+    clients: 客戶租約
+    communication_center: 通訊中心
+    country: 國家
+    create_client: 建立客戶端
+    dashboard: 儀表板
+    data_reports: 資料報告
+    datasheet: 數據表
+    development_actions: 發展行動
+    dimensions: 尺寸
+    libraries: 媒體圖書館
+    no_notifications: 沒有通知
+    norms: 規範
+    notification_bell_icon_alt_text: 通知鈴聲圖示
+    notifications: 通知
+    number: 數量
+    occupations: 職業
+    options: 選項
+    participants: 參與者
+    profile_details: 詳細資料
+    project_admins: 專案管理員
+    project_manager: 專案經理
+    question_center: 問題中心
+    registration_codes: 註冊碼
+    report_approvals: 報告核准
+    reports: 報告
+    role: 角色
+    scheduling: 排程
+    scoring: 計分
+    show_submenu: 顯示子選單
+    skills_taxonomy: 技能分類法
+    stats: 統計資料
+    user_report_events: 使用者報告事件
+    users: 使用者
+    view_licenses: 檢視授權
+    year: 國家

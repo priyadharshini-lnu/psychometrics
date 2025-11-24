@@ -16,7 +16,7 @@ import styles from './AiAssistantPlayground.less'
 import { useResources } from '~/hooks/useResources/useResources'
 import { AiAssistantTR, AiAssistant } from '../../core/aiAssistant'
 import ResourceForm from '~/components/ResourceForm'
-import { ASSISTANT_TYPES, AI_PROVIDERS } from '~/modules/admin/modules/AiAssitant/core/constants'
+import { ASSISTANT_TYPES } from '~/modules/admin/modules/AiAssitant/core/constants'
 import { getAvailableAiProviders } from '~/core/config'
 
 const { Paragraph } = Typography
@@ -236,8 +236,8 @@ export const AiAssistantPlayground: React.FC = () => {
                     >
                       <Select>
                         {availableAiProviders.map(provider => (
-                          <Select.Option key={provider} value={provider}>
-                            {AI_PROVIDERS[provider].name}
+                          <Select.Option key={provider.model_id} value={provider.model_id}>
+                            {provider.name}
                           </Select.Option>
                         ))}
                       </Select>
@@ -297,7 +297,9 @@ export const AiAssistantPlayground: React.FC = () => {
                     <div className={styles.settingsSection}>
                       <div className={styles.settingsLabel}>Provider</div>
                       <Paragraph className={styles.promptText}>
-                        {AI_PROVIDERS[selectedAssistant.modelId]?.name}
+                        {availableAiProviders.find(
+                          provider => provider.model_id === selectedAssistant.modelId,
+                        )?.name}
                       </Paragraph>
                     </div>
 

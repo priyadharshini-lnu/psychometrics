@@ -19,8 +19,8 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxUnavailable: 20%
-      maxSurge: 20%
+      maxUnavailable: 50%
+      maxSurge: 50%
   template:
     metadata:
       creationTimestamp: null
@@ -58,7 +58,7 @@ spec:
           ports:
             - containerPort: {{ int .Values.services.internlPort }}
           livenessProbe:
-            initialDelaySeconds: 50
+            initialDelaySeconds: 40
             httpGet:
               path: /
               port: {{ int .Values.services.internlPort }}
@@ -66,7 +66,7 @@ spec:
               - name: Host
                 value: "{{ .Values.env.APP_SUB_DOMAIN }}.{{ .Values.env.APP_DOMAIN }}"
           readinessProbe:
-            initialDelaySeconds: 50
+            initialDelaySeconds: 40
             httpGet:
               path: /
               port: {{ int .Values.services.internlPort }}

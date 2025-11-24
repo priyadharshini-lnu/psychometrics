@@ -53,7 +53,12 @@ export const LangDropdown: React.FC<Props & { useLoading?: boolean }> = ({
   return (
     <div>
       <Space>
-        <Dropdown onOpenChange={setOpenChange} menu={{ items: menuItems, onClick: onSelect }} trigger={['click']}>
+        <Dropdown
+          overlayClassName={styles.dropdownContainer}
+          onOpenChange={setOpenChange}
+          menu={{ items: menuItems, onClick: onSelect }}
+          trigger={['click']}
+        >
           <a aria-expanded={openMenu} href="" className={styles.link} onClick={e => e.preventDefault()}>
             <Flex
               className={cs(styles.container, { [styles.containerWithBg]: withBg })}

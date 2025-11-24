@@ -59,7 +59,8 @@ module Administration
           'iiht' => ::Integrations::IihtForm,
           'hogan' => ::Integrations::HoganForm,
           'mettl' => ::Integrations::MettlForm,
-          'skillvue' => ::Integrations::SkillvueForm
+          'skillvue' => ::Integrations::SkillvueForm,
+          'yoodli' => ::Integrations::YoodliForm
         }[resource_params[:name]]
       end
 

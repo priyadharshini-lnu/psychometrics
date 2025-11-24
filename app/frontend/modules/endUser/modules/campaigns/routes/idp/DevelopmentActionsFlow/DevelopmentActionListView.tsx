@@ -64,7 +64,6 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
     'developmentActionId',
   )
 
-  // TODO: Use AI related flag here
   const selectedAIGeneratedDevelopmentActions: Partial<DevelopmentAction>[] = filter(
     selectedSkill?.developmentActions ?? [],
     'customAction',

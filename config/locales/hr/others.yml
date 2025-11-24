@@ -925,8 +925,6 @@ hr:
     invalid_job: Ova obavijest odgovara izbrisanom zapisu
     mark_as_read: Označi sve kao pročitano
     more: Više
-    no_notifications: Nema obavijesti
-    notifications: Obavijesti
     results: Rezultati
     super_admin:
       errors:
@@ -1248,7 +1246,7 @@ hr:
       description: Molimo Vas da ispunite sva polja kako biste kreirali novu lozinku
       submit: Poslati
       title: Obnovite svoju lozinku
-    lighthouse_logo_alt_text: Logotip svjetionika
+    lighthouse_logo_alt_text: Logotip Lighthouse
     login:
       continue_btn: Nastaviti
       description: Molimo, prijavite se s osobnim podacima
@@ -1329,7 +1327,7 @@ hr:
     safari: Apple Safari
     support:
       instruction: Preuzmite i koristite bilo koji od sljedećih preglednika.
-      message: Preglednik koji koristite nije podržan od strane Lighthousea.
+      message: Preglednik koji koristite nije podržan od strane Lighthouse.
     upgrade:
       instruction: Nadogradite sada
       message: Koristite najnoviju verziju preglednika
@@ -1348,16 +1346,11 @@ hr:
     continue: Nastavite svoje zadatke
     dashboard_instructions: Možda Vam je dodijeljeno više aktivnosti koje morate dovršiti. Molimo, provjerite jeste li dovršili sve dodijeljene aktivnosti u svim kampanjama.
     dashboard_menu:
-      bookings: Rezervacije
       campaign: Kampanja
-      change_password: Promjena lozinke
-      development: Razvoj
       direct_reportees: Izravni izvješćenici
       home: Početna stranica
       insights: Uvidi
-      my_plan: Moj plan
       profile: Profil
-      profile_details: Detalji
       tasks: Zadaci
     details: Detalji
     edit_evaluation:
@@ -1472,6 +1465,7 @@ hr:
       export_occupations_job_scheduled: Zanimanja Posao izvoza uspješno je zakazan
       export_reports_and_assessments_statuses_scheduled: Posao izvoza izvješća i procjena uspješno je zakazan
       external_results_export_scheduled: Uspješno je zakazan posao izvoza vanjske procjene
+      no_participants_selected: Odaberite barem jednog sudionika za nastavak.
       norm_results_export_scheduled: Uspješno je zakazan zadatak izvoza normiranih rezultata
       normalize_factor_scores_scheduled: Posao normalizacije rezultata faktora uspješno je zakazan.
       raw_factor_export_scheduled: Uspješno je zakazan posao izvoza Procjene sirovog faktora
@@ -1616,6 +1610,7 @@ hr:
       report_bundle_placeholder: Odabir paketa izvješća
     messages:
       bulk_download_error: Skupno preuzimanje ograničeno je na 1000 datoteka izvješća. Ako ste odabrali mnogo jezika, smanjite ga.
+      bulk_download_no_reports: Nije pronađen nijedan izvještaj. Molimo generirajte izvješća prije preuzimanja.
       bulk_download_successful: Zadatak masovnog preuzimanja izvješća uspješno je zakazan
       export_report_data_scheduled: Posao izvoza podataka izvješća uspješno je zakazan
     modals:
@@ -1885,7 +1880,6 @@ hr:
       projects: Projekti
       report: Izvješće
       reports: Izvješća
-      scoring: Bodovanja
       sms_contact: SMS kontakt
       threesixty_campaign: Trišezdeset rezultata kampanje
     status:
@@ -2002,7 +1996,7 @@ hr:
         accept: Kliknite ovdje kako biste prihvatili poziv.
         body: |-
           Pozdrav %{name},
-          Pozvani ste da pristupite administratorskoj ploči Lighthousea - platforme za procjenu Talent Enterprise.
+          Pozvani ste da pristupite administratorskoj ploči Lighthouse - platforme za procjenu Talent Enterprise.
 
           %{accept} Ili možete sigurno ignorirati ovu e-poštu.
 
@@ -2029,7 +2023,7 @@ hr:
           Ako niste podnijeli ovaj zahtjev, odmah se obratite podršci na mte.support@mercer.com
         regards: |-
           Pozdrav
-          Svjetioničarski tim
+          Lighthouse tim
         subject: Vaša lozinka za Lighthouse je promijenjena
       reset_password_instructions:
         body: |-
@@ -2040,7 +2034,7 @@ hr:
         footer: Ako to niste zatražili, možete sigurno zanemariti ovu e-poštu. Vaša se lozinka neće promijeniti dok ne pristupite gornjoj poveznici i ne stvorite novu.
         regards: |-
           Pozdrav
-          Svjetioničarski tim
+          Lighthouse tim
         subject: Upute za ponovno postavljanje lozinke
       unlock_instructions:
         body: |-
@@ -2052,7 +2046,7 @@ hr:
         footer: Ako to niste zatražili, možete sigurno zanemariti ovu e-poštu. Vaša se lozinka neće promijeniti dok ne pristupite gornjoj poveznici i ne stvorite novu.
         regards: |-
           Pozdrav
-          Svjetioničarski tim
+          Lighthouse tim
         subject: Upute za otključavanje računa
         unlock_account: Otključaj moj račun
     omniauth_callbacks:
@@ -2367,6 +2361,7 @@ hr:
           in_progress: U tijeku
           not_started: Nije započeto
     change_password: Promjena lozinke
+    chatwoot_info_msg: Prijava tehničkog problema
     clients:
       actions:
         create:
@@ -2387,10 +2382,9 @@ hr:
     error_warning: Ups, nešto je pošlo po zlu s tvojom procjenom. Obratite se podršci.
     hogan:
       cannot_start: Ne možete odmah započeti procjenu Hogana. Pokušajte nakon nekoliko minuta.
-    lighthouse_app: Mercer Lighthouse
     login: Prijava
     maintenance:
-      notification: Svjetionik će biti isključen zbog planiranog održavanja za 60 sekundi
+      notification: Lighthouse će biti isključen zbog planiranog održavanja za 60 sekundi
     manage: Upravljati
     'no': Ne
     passwordSetting:
@@ -2489,6 +2483,7 @@ hr:
   idp:
     actions: Statusi
     add_comments: Dodajte komentare
+    added_development_action: Dodatna razvojna akcija
     ai:
       assistant:
         failure_fallback:
@@ -2545,6 +2540,7 @@ hr:
         title: Pozdrav, ja sam vaš razvojni asistent
     behavioral: Bihevioralne
     board: Odbor
+    change_history: Povijest promjena
     changes_saved_to_plan: Promjene spremljene u plan
     comment_details:
       add_comment: Dodaj komentar
@@ -2646,6 +2642,7 @@ hr:
       publish_plan: Objavi plan
       remove: Odstraniti
       save_plan: Spremi plan
+      search_development_actions: Radnje razvoja pretraživanja
       show_development_action_information: Prikaži informacije o razvojnoj akciji
       skill: Vještina
       sprint: Trčanje
@@ -2658,7 +2655,7 @@ hr:
       write_here: Napišite ovdje...
     direct_reportee_details: Detalji izravnih izvješćivanja
     download:
-      description: 'Da biste preuzeli izvješće, slijedite poveznicu: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Link vrijedi samo 10 minuta'
+      description: 'Da biste preuzeli izvješće, slijedite poveznicu: <a href=''%{url}'' target=''_blank''>Download</a>. Link vrijedi samo 10 minuta'
     download_plan: Preuzmite plan
     edit_plan: Uredi plan
     edit_plan_and_add_skills: Uredite plan i kliknite na Upravljanje vještinama da biste dodali vještine.
@@ -2707,6 +2704,7 @@ hr:
     manage_plan: Upravljanje planom
     mark_as_complete: Označi kao dovršeno
     mark_as_incomplete: Označi kao nepotpuno
+    modified_development_action: Izmijenjena razvojna akcija
     my_plan:
       development_plan: Razvojni plan
       graphs:
@@ -2726,7 +2724,6 @@ hr:
           name: Ime
           publish_date: Datum objave
           review_date: Datum pregleda
-          role: Trenutna uloga
       guidelines:
         cards:
           c1:
@@ -2824,7 +2821,9 @@ hr:
         title: Sažetak izvješća
     plan: Plan
     plan_status: Status plana %{status}
+    plan_submitted_for_manager_approval: Vaš individualni razvojni plan predan je na odobrenje upravitelja.
     private: Privatan
+    public: Javnost
     reflective_questions:
       already_completed: IDP je već završen, više ne možete odgovarati na pitanja.
       answer: Odgovor
@@ -2852,6 +2851,7 @@ hr:
       words: Riječi
     remove_skill: Ukloni vještinu
     remove_skill_from_plan: Uklanjanje vještina %{name} iz plana
+    removed_development_action: Uklonjena razvojna akcija
     report_preview: Pregled izvješća
     search_and_select_skills_of_skill_type: Pretraživanje i odabir %{skillType} vještina
     select_skills_of_skill_type: Odaberite %{skillType} vještine
@@ -2865,6 +2865,8 @@ hr:
     status: Status
     suggestions: Prijedlozi
     suggestions_for_skill_type: Prijedlozi za %{skillType} vještine
+    summary: Sažetak
+    summary_logs: Sažeti zapisnici za %{reporteeName}
     technical: Tehnički
     user_idp_status:
       approved: Odobreno
@@ -2876,6 +2878,7 @@ hr:
       not_started: Nije pokrenuto
       pending_approval: Čeka se odobrenje
       rejected: Odbijeno
+      start_review: Započnite pregled
     users: Korisnici
     with_reflection_questions: S pitanjima za razmišljanje
     without_reflection_questions: Pitanja bez razmišljanja
@@ -3389,13 +3392,6 @@ hr:
   sessions:
     errors:
       recaptcha: Recaptcha provjera nije uspjela. Pokušajte ponovno.
-  shared:
-    filters:
-      clear: Obriši filtere
-    internet_disconnected_message: Pokušavam ponovno povezivanje. Molimo, provjerite svoju internetsku vezu.
-    mte_logo_alt_text: Logotip Mercer Talent Enterprise
-    terms_conditions_privacy: Izjava o privatnosti
-    tte_terms_and_condition: Uvjeti i privatnost
   sheet:
     import_modal:
       alert_access_sheet_removal: Učitavanjem novog pristupnog lista obirisat će se svi postojeći zapisi te će se zamjeniti novima. Provjerite imate li sve zapise s novog pristupnog lista u proračunskoj tablici.
@@ -4196,6 +4192,7 @@ hr:
     idp:
       can_not_complete_without_approval_and_in_progress: Ne možete dovršiti svoj IDP dok ga vaš menadžer ne odobri i dok ga ne označite kao 'U tijeku'.
       can_not_start_without_approval: Ne možete početi raditi na svom IDP-u dok ga vaš menadžer ne odobri.
+      no_changes_to_compare: Nema promjena za usporedbu za IDP plan.
       no_previous_approved_plan: Nije pronađen prethodno odobreni plan IDP-a.
       reflective_questions_required: Odgovori na samoreflektirajuća pitanja potrebni su za IDP
       status_not_permitted: nije dopušteno od strane korisnika.

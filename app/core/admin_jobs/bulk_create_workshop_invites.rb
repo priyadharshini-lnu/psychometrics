@@ -14,7 +14,7 @@ module AdminJobs
       [
         [
           I18n.t('administration.assessment_center.invite.subjects_count_added'),
-          workshop_invite.workshop_invited_subjects.count
+          record.data['subjects']&.count
         ]
       ]
     end

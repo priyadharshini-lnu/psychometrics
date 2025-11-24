@@ -919,8 +919,6 @@ fr:
     invalid_job: Cette notification correspond à un enregistrement supprimé
     mark_as_read: Marquer toutes les lectures
     more: Plus d'informations
-    no_notifications: Aucune notification
-    notifications: Notifications
     results: Résultats
     super_admin:
       errors:
@@ -1241,7 +1239,7 @@ fr:
       description: Veuillez remplir tous les champs pour créer un nouveau mot de passe
       submit: Soumettre
       title: Renouveler votre mot de passe
-    lighthouse_logo_alt_text: Logo du phare
+    lighthouse_logo_alt_text: Logo Lighthouse
     login:
       continue_btn: Continuer
       description: Veuillez vous connecter avec vos identifiants personnels
@@ -1341,16 +1339,11 @@ fr:
     continue: Poursuivre vos tâches
     dashboard_instructions: Il se peut que plusieurs activités vous aient été attribuées. Veuillez vérifier que toutes les activités attribuées ont bien été complétées dans l’ensemble des campagnes
     dashboard_menu:
-      bookings: Réservations
       campaign: Campagne
-      change_password: Modifier le mot de passe
-      development: Développement
       direct_reportees: Subordonnés
       home: Accueil
       insights: Perspectives
-      my_plan: Mon plan
       profile: Profil
-      profile_details: Détails
       tasks: Tâches
     details: Détails
     edit_evaluation:
@@ -1465,6 +1458,7 @@ fr:
       export_occupations_job_scheduled: Professions L'exportation a été programmée avec succès
       export_reports_and_assessments_statuses_scheduled: La tâche d'exportation de rapports et d'évaluations a été programmée avec succès
       external_results_export_scheduled: La tâche d'exportation de l'évaluation externe a été programmée avec succès
+      no_participants_selected: Veuillez sélectionner au moins un participant pour continuer.
       norm_results_export_scheduled: La tâche d'exportation des résultats normalisés de l'évaluation a été programmée avec succès
       normalize_factor_scores_scheduled: Le travail de normalisation des scores factoriels a été planifié avec succès.
       raw_factor_export_scheduled: Le job d'exportation de l'évaluation des facteurs bruts a été planifié avec succès
@@ -1609,6 +1603,7 @@ fr:
       report_bundle_placeholder: Sélectionner un groupe de rapports
     messages:
       bulk_download_error: Le téléchargement en masse est limité à 1000 fichiers de rapport. Si vous avez sélectionné plusieurs langues, veuillez les réduire.
+      bulk_download_no_reports: Aucun rapport n’a été trouvé. Veuillez générer les rapports avant de les télécharger.
       bulk_download_successful: La tâche de téléchargement des rapports en bloc a été programmée avec succès
       export_report_data_scheduled: La tâche d'exportation des données du rapport a été programmée avec succès
     modals:
@@ -1878,7 +1873,6 @@ fr:
       projects: Projets
       report: Rapport
       reports: Rapports
-      scoring: Notation
       sms_contact: Contact SMS
       threesixty_campaign: Scores de la campagne Threesixty
     status:
@@ -1996,7 +1990,7 @@ fr:
       admin_invitation_instructions:
         accept: Cliquez ici pour accepter l'invitation.
         body: 'Bonjour %{name}, Vous avez été invité à accéder au panneau d''administration de Lighthouse - The Talent Enterprise assessment platform. %{accept} Ou vous pouvez ignorer cet e-mail. Veuillez ne pas partager vos identifiants d''accès avec qui que ce soit. '
-        subject: Invitation au phare
+        subject: Invitation Lighthouse
       confirmation_instructions:
         subject: Instructions de confirmation
       invitation_instructions:
@@ -2006,7 +2000,7 @@ fr:
           campaign: 'Campagne : %{section_name}'
           client: 'Location du client : %{section_name}'
           project: 'Projet : %{section_name}'
-        subject: Invitation au phare
+        subject: Invitation Lighthouse
       invitation_removed: Votre invitation a été retirée.
       invitation_token_invalid: Le jeton d'invitation fourni n'est pas valide !
       mailer:
@@ -2019,7 +2013,7 @@ fr:
           text: Lighthouse. Tous droits réservés
         powered_by:
           text: Powered by Lighthouse.
-        subject: Invitation au phare
+        subject: Invitation Lighthouse
       new:
         header: Envoyer une invitation
         submit_button: Envoyer une invitation
@@ -2347,6 +2341,7 @@ fr:
           in_progress: En cours
           not_started: Pas commencé
     change_password: Modifier le mot de passe
+    chatwoot_info_msg: Signaler un problème technique
     clients:
       actions:
         create:
@@ -2367,10 +2362,9 @@ fr:
     error_warning: Oups, un problème s'est produit lors de votre évaluation. Veuillez contacter le service d'assistance.
     hogan:
       cannot_start: Vous ne pouvez pas démarrer l'évaluation hogan pour l'instant. Veuillez essayer dans quelques minutes.
-    lighthouse_app: Phare de Mercer
     login: Connexion
     maintenance:
-      notification: Le phare sera mis hors service pour une maintenance programmée dans 60 secondes
+      notification: Lighthouse sera mis hors service pour une maintenance programmée dans 60 secondes
     manage: Gérer
     'no': Non
     passwordSetting:
@@ -2469,6 +2463,7 @@ fr:
   idp:
     actions: Actions
     add_comments: Ajouter des commentaires
+    added_development_action: Ajout d’une action de développement
     ai:
       assistant:
         failure_fallback:
@@ -2525,6 +2520,7 @@ fr:
         title: Bonjour, je suis votre assistant de développement
     behavioral: Comportementale
     board: Conseil d'administration
+    change_history: Historique des modifications
     changes_saved_to_plan: Modifications enregistrées dans le plan
     comment_details:
       add_comment: Ajouter un commentaire
@@ -2626,6 +2622,7 @@ fr:
       publish_plan: Publier le plan
       remove: Retirer
       save_plan: Forfait d’épargne
+      search_development_actions: Recherche d’actions de développement
       show_development_action_information: Afficher les informations sur les actions de développement
       skill: Compétence
       sprint: Sprint
@@ -2638,7 +2635,7 @@ fr:
       write_here: Écrivez ici...
     direct_reportee_details: Détail des rapports directs
     download:
-      description: 'Pour télécharger le rapport, veuillez suivre le lien : <a href=''''%{url}'''' target=''''_blank''''>Télécharger</a>. Le lien n’est valable que pendant 10 minutes'
+      description: 'Pour télécharger le rapport, veuillez suivre le lien : <a href=''%{url}'' target=''_blank''>Télécharger</a>. Le lien n’est valable que pendant 10 minutes'
     download_plan: Télécharger le plan
     edit_plan: Modifier le plan
     edit_plan_and_add_skills: Modifiez le plan et cliquez sur Gérer les compétences pour ajouter des compétences.
@@ -2687,6 +2684,7 @@ fr:
     manage_plan: Gérer le forfait
     mark_as_complete: Marquer comme terminé
     mark_as_incomplete: Marquer comme incomplet
+    modified_development_action: Mesures de développement modifiées
     my_plan:
       development_plan: Plan de développement
       graphs:
@@ -2712,7 +2710,6 @@ fr:
           name: Nom
           publish_date: Date de publication
           review_date: Date de révision
-          role: Rôle actuel
       guidelines:
         cards:
           c1:
@@ -2810,7 +2807,9 @@ fr:
         title: Résumé du rapport
     plan: Plan
     plan_status: État du régime %{status}
+    plan_submitted_for_manager_approval: Votre plan de développement individuel a été soumis à l’approbation du gestionnaire.
     private: Privé
+    public: Public
     reflective_questions:
       already_completed: Le PDI a déjà été complété, vous ne pouvez pas répondre aux questions maintenant.
       answer: Répondre
@@ -2838,6 +2837,7 @@ fr:
       words: Mots
     remove_skill: Supprimer une compétence
     remove_skill_from_plan: Supprimer %{name} de compétences du plan
+    removed_development_action: Suppression de l’action de développement
     report_preview: Aperçu du rapport
     search_and_select_skills_of_skill_type: Recherchez et sélectionnez %{skillType} compétences
     select_skills_of_skill_type: Sélectionnez %{skillType} compétences
@@ -2851,6 +2851,8 @@ fr:
     status: Statut
     suggestions: Suggestions
     suggestions_for_skill_type: Suggestions pour %{skillType} compétences
+    summary: Résumé
+    summary_logs: Journaux récapitulatifs pour %{reporteeName}
     technical: Technique
     user_idp_status:
       approved: Approuvé
@@ -2862,6 +2864,7 @@ fr:
       not_started: Non démarré
       pending_approval: En attente
       rejected: Rejeté
+      start_review: Démarrer l’examen
     users: Utilisateurs
     with_reflection_questions: Avec des questions de réflexion
     without_reflection_questions: Sans questions de réflexion
@@ -3375,13 +3378,6 @@ fr:
   sessions:
     errors:
       recaptcha: La vérification du Recaptcha a échoué. Veuillez réessayer.
-  shared:
-    filters:
-      clear: Effacer les filtres
-    internet_disconnected_message: Essayez de vous reconnecter. Veuillez vérifier votre connexion internet.
-    mte_logo_alt_text: Logo Mercer Talent Enterprise
-    terms_conditions_privacy: Déclaration de confidentialité
-    tte_terms_and_condition: Conditions d'utilisation et protection de la vie privée
   sheet:
     import_modal:
       alert_access_sheet_removal: Le téléchargement d'une nouvelle feuille d'accès entraîne la suppression de tous les enregistrements existants et le téléchargement d'un nouvel enregistrement à partir de la feuille.
@@ -4182,6 +4178,7 @@ fr:
     idp:
       can_not_complete_without_approval_and_in_progress: Vous ne pouvez pas terminer votre IDP tant que votre responsable ne l’a pas approuvé et que vous ne l’avez pas marqué comme « En cours ».
       can_not_start_without_approval: Vous ne pouvez pas commencer à travailler sur votre IDP tant que votre responsable ne l’a pas approuvé.
+      no_changes_to_compare: Aucun changement à comparer pour le plan IDP.
       no_previous_approved_plan: Aucun plan de PDI approuvé n’a été trouvé.
       reflective_questions_required: Des réponses à des questions de réflexion sont requises pour les PDI
       status_not_permitted: n’est pas autorisé par l’utilisateur.

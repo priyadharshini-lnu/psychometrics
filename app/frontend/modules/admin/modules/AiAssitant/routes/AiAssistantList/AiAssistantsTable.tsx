@@ -4,110 +4,117 @@ import {
 } from 'antd'
 import { AiAssistant } from 'modules/admin/modules/AiAssitant/core/aiAssistant'
 import { useNavigate } from 'react-router-dom'
-import { AI_PROVIDERS, ASSISTANT_TYPES } from '~/modules/admin/modules/AiAssitant/core/constants'
+import { useSelector } from 'react-redux'
+import { ASSISTANT_TYPES } from '~/modules/admin/modules/AiAssitant/core/constants'
 import { MenuItem } from '~/interfaces/Antd'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { getAvailableAiProviders } from '~/core/config'
 
 const { I18n } = window
 
-export const AiAssistantsTable = () => (
-  <Resource.Table pagination>
-    <Resource.Column<AiAssistant>
-      title={I18n.t('common.column.id')}
-      id="id"
-      sorter
-      render={aiAssistant => (
-        aiAssistant.id
-      )}
-      width={100}
-    />
-    <Resource.Column<AiAssistant>
-      title={I18n.t('common.column.name')}
-      id="name"
-      render={aiAssistant => <Typography.Text>{aiAssistant.name}</Typography.Text>}
-      sorter
-      width={200}
-    />
-    <Resource.Column<AiAssistant>
-      title={I18n.t('common.column.description')}
-      id="description"
-      render={aiAssistant => (
-        <Typography.Paragraph
-          ellipsis={{
-            rows: 2,
-            expandable: true,
-            symbol: 'Show more',
-          }}
-          style={{ margin: 0 }}
-        >
-          {aiAssistant.description}
-        </Typography.Paragraph>
-      )}
-      width={200}
-      sorter
-    />
-    <Resource.Column<AiAssistant>
-      title={I18n.t('administration.common.type')}
-      id="assistantType"
-      render={aiAssistant => <Typography.Text>{ASSISTANT_TYPES[aiAssistant.assistantType]?.name}</Typography.Text>}
-      sorter
-    />
-    <Resource.Column<AiAssistant>
-      title={I18n.t('administration.ai_assistants.column.provider')}
-      id="modelId"
-      render={aiAssistant => (AI_PROVIDERS[aiAssistant.modelId]?.name)}
-      width={200}
-      sorter
-    />
-    <Resource.Column<AiAssistant>
-      title={I18n.t('administration.ai_assistants.form.system_prompt')}
-      id="system_prompt"
-      render={aiAssistant => (
-        <Typography.Paragraph
-          ellipsis={{
-            rows: 2,
-            expandable: true,
-            symbol: 'Show more',
-          }}
-          style={{ margin: 0 }}
-        >
-          {aiAssistant.systemPrompt}
-        </Typography.Paragraph>
-      )}
-      width={200}
-      sorter
-    />
-    <Resource.Column<AiAssistant>
-      title={I18n.t('administration.ai_assistants.form.user_prompt')}
-      id="user_prompt"
-      render={aiAssistant => (
-        <Typography.Paragraph
-          ellipsis={{
-            rows: 2,
-            expandable: true,
-            symbol: 'Show more',
-          }}
-          style={{ margin: 0 }}
-        >
-          {aiAssistant.userPrompt}
-        </Typography.Paragraph>
-      )}
-      width={200}
-      sorter
-    />
-    <Resource.Column<AiAssistant>
-      title={I18n.t('common.column.action')}
-      id="action"
-      render={(_, aiAssistant) => (
-        <Dropdown
-          aiAssistant={aiAssistant}
-        />
-      )}
-      width={100}
-    />
-  </Resource.Table>
-)
+
+export const AiAssistantsTable = () => {
+  const availableAiProviders = useSelector(getAvailableAiProviders)
+
+  return (
+    <Resource.Table pagination>
+      <Resource.Column<AiAssistant>
+        title={I18n.t('common.column.id')}
+        id="id"
+        sorter
+        render={aiAssistant => (
+          aiAssistant.id
+        )}
+        width={100}
+      />
+      <Resource.Column<AiAssistant>
+        title={I18n.t('common.column.name')}
+        id="name"
+        render={aiAssistant => <Typography.Text>{aiAssistant.name}</Typography.Text>}
+        sorter
+        width={200}
+      />
+      <Resource.Column<AiAssistant>
+        title={I18n.t('common.column.description')}
+        id="description"
+        render={aiAssistant => (
+          <Typography.Paragraph
+            ellipsis={{
+              rows: 2,
+              expandable: true,
+              symbol: 'Show more',
+            }}
+            style={{ margin: 0 }}
+          >
+            {aiAssistant.description}
+          </Typography.Paragraph>
+        )}
+        width={200}
+        sorter
+      />
+      <Resource.Column<AiAssistant>
+        title={I18n.t('administration.common.type')}
+        id="assistantType"
+        render={aiAssistant => <Typography.Text>{ASSISTANT_TYPES[aiAssistant.assistantType]?.name}</Typography.Text>}
+        sorter
+      />
+      <Resource.Column<AiAssistant>
+        title={I18n.t('administration.ai_assistants.column.provider')}
+        id="modelId"
+        render={aiAssistant => (availableAiProviders.find(provider => provider.model_id === aiAssistant.modelId)?.name)}
+        width={200}
+        sorter
+      />
+      <Resource.Column<AiAssistant>
+        title={I18n.t('administration.ai_assistants.form.system_prompt')}
+        id="system_prompt"
+        render={aiAssistant => (
+          <Typography.Paragraph
+            ellipsis={{
+              rows: 2,
+              expandable: true,
+              symbol: 'Show more',
+            }}
+            style={{ margin: 0 }}
+          >
+            {aiAssistant.systemPrompt}
+          </Typography.Paragraph>
+        )}
+        width={200}
+        sorter
+      />
+      <Resource.Column<AiAssistant>
+        title={I18n.t('administration.ai_assistants.form.user_prompt')}
+        id="user_prompt"
+        render={aiAssistant => (
+          <Typography.Paragraph
+            ellipsis={{
+              rows: 2,
+              expandable: true,
+              symbol: 'Show more',
+            }}
+            style={{ margin: 0 }}
+          >
+            {aiAssistant.userPrompt}
+          </Typography.Paragraph>
+        )}
+        width={200}
+        sorter
+      />
+      <Resource.Column<AiAssistant>
+        title={I18n.t('common.column.action')}
+        id="action"
+        render={(_, aiAssistant) => (
+          <Dropdown
+            aiAssistant={aiAssistant}
+          />
+        )}
+        width={100}
+      />
+    </Resource.Table>
+  )
+}
 
 type DropDownProps = {
   aiAssistant: AiAssistant,

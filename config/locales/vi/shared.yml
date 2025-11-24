@@ -1,0 +1,25 @@
+---
+vi:
+  shared:
+    action: Hoạt động
+    add: Thêm vào
+    cancel: Hủy bỏ
+    change_password: Thay đổi mật khẩu
+    clear_filters: Xóa bộ lọc
+    edit: Biên tập
+    edited: Mới
+    id: ID
+    internet_disconnected_message: Đang cố gắng kết nối lại. Vui lòng kiểm tra kết nối internet của bạn.
+    mte_logo_alt_text: Logo Mercer Talent Enterprise
+    name: Tên
+    new: Mới
+    removed: Gỡ bỏ
+    search: Tìm kiếm
+    table:
+      entries:
+        selected: 1 hàng đã chọn
+        total: 'Tổng số : 1'
+    terms_conditions_privacy: Tuyên bố về quyền riêng tư
+    tte_terms_and_condition: Điều khoản &amp; Quyền riêng tư
+    type: Kiểu
+    update: Cập nhật

@@ -25,7 +25,10 @@ module DailyCo
 
       {
         url: webhook_url,
-        eventTypes: ['recording.started', 'recording.ready-to-download'],
+        eventTypes: ['recording.started',
+                     'recording.ready-to-download',
+                     'transcript.started',
+                     'transcript.ready-to-download'],
         basicAuth: jwt_secret
       }.to_json
     end

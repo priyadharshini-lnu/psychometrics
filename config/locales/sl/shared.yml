@@ -1,0 +1,25 @@
+---
+sl:
+  shared:
+    action: Aktivnost
+    add: Dodaj
+    cancel: Prekliči
+    change_password: Spremeni geslo
+    clear_filters: Počistite filtre
+    edit: Uredi
+    edited: Novo
+    id: ID
+    internet_disconnected_message: Ponovno vzpostavljamo povezavo. Preverite internetno povezavo.
+    mte_logo_alt_text: Logotip Mercer Talent Enterprise
+    name: Ime
+    new: Novo
+    removed: Odstranjen
+    search: Iskanje
+    table:
+      entries:
+        selected: Izbrana 1 vrstica
+        total: 'Skupaj : 1'
+    terms_conditions_privacy: Izjava o zasebnosti
+    tte_terms_and_condition: Pogoji uporabe in politika zasebnosti
+    type: Vrsta
+    update: Posodobitev

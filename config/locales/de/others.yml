@@ -919,8 +919,6 @@ de:
     invalid_job: Diese Meldung entspricht einem gelöschten Datensatz
     mark_as_read: Markieren Sie alle gelesenen
     more: Mehr
-    no_notifications: Keine Benachrichtigungen
-    notifications: Benachrichtigungen
     results: Ergebnisse
     super_admin:
       errors:
@@ -1246,7 +1244,7 @@ de:
       description: Bitte füllen Sie alle Felder aus, um ein neues Passwort zu erstellen
       submit: Einreichen
       title: Erneuern Sie Ihr Passwort
-    lighthouse_logo_alt_text: Leuchtturm-Logo
+    lighthouse_logo_alt_text: Lighthouse Logo
     login:
       continue_btn: Weiter
       description: Bitte melden Sie sich mit Ihren persönlichen Kontodaten an
@@ -1346,16 +1344,11 @@ de:
     continue: Fahren Sie mit Ihren Aufgaben fort.
     dashboard_instructions: Dir wurden mehrere Aktivitäten zugewiesen, die du abschließen musst. Stelle sicher, dass alle dir zugewiesenen Aktivitäten in allen Events abgeschlossen sind.
     dashboard_menu:
-      bookings: Buchungen
       campaign: Event
-      change_password: Passwort ändern
-      development: Entwicklung
       direct_reportees: Direkte Berichte
       home: Startseite
       insights: Einblicke
-      my_plan: Mein Plan
       profile: Profil
-      profile_details: Details
       tasks: Aufgaben
     details: Details
     edit_evaluation:
@@ -1479,6 +1472,7 @@ de:
       export_occupations_job_scheduled: Berufe Exportauftrag wurde erfolgreich geplant
       export_reports_and_assessments_statuses_scheduled: Export von Berichten und Bewertungen wurde erfolgreich geplant
       external_results_export_scheduled: Der Exportauftrag für die externe Bewertung wurde erfolgreich geplant
+      no_participants_selected: Bitte wählen Sie mindestens einen Teilnehmer aus, um fortzufahren.
       norm_results_export_scheduled: Exportauftrag für genormte Bewertungsergebnisse wurde erfolgreich geplant
       normalize_factor_scores_scheduled: Der Auftrag zur Normalisierung der Faktorwerte wurde erfolgreich geplant.
       raw_factor_export_scheduled: Bewertung Raw Factor-Exportauftrag wurde erfolgreich geplant
@@ -1623,6 +1617,7 @@ de:
       report_bundle_placeholder: Wählen Sie ein Berichtsbündel
     messages:
       bulk_download_error: Der Massendownload ist auf 1000 Berichtsdateien begrenzt. Wenn Sie viele Sprachen ausgewählt haben, reduzieren Sie bitte die Anzahl.
+      bulk_download_no_reports: Keine Berichte gefunden. Bitte generieren Sie die Berichte vor dem Download.
       bulk_download_successful: Bulk-Bericht-Download-Auftrag wurde erfolgreich geplant
       export_report_data_scheduled: Exportauftrag für Berichtsdaten wurde erfolgreich geplant
     modals:
@@ -1892,7 +1887,6 @@ de:
       projects: Projekte
       report: Bericht
       reports: Berichte
-      scoring: Punktevergabe
       sms_contact: SMS-Kontakt
       threesixty_campaign: Threesixty-Kampagne punktet
     status:
@@ -2010,7 +2004,7 @@ de:
       admin_invitation_instructions:
         accept: Klicken Sie hier, um die Einladung anzunehmen.
         body: 'Hallo %{name}, Sie wurden eingeladen, auf das Admin-Panel von Lighthouse - The Talent Enterprise Assessment Platform zuzugreifen. %{accept} Oder Sie können diese E-Mail getrost ignorieren. Bitte geben Sie Ihre Zugangsdaten an niemanden weiter. '
-        subject: Einladung zum Leuchtturm
+        subject: Einladung zum Lighthouse
       confirmation_instructions:
         subject: Anweisungen zur Bestätigung
       invitation_instructions:
@@ -2020,7 +2014,7 @@ de:
           campaign: 'Kampagne: %{section_name}'
           client: 'Kundenmietverhältnis: %{section_name}'
           project: 'Projekt: %{section_name}'
-        subject: Einladung zum Leuchtturm
+        subject: Einladung zum Lighthouse
       invitation_removed: Ihre Einladung wurde entfernt.
       invitation_token_invalid: Das angegebene Einladungs-Token ist nicht gültig!
       mailer:
@@ -2033,7 +2027,7 @@ de:
           text: Lighthouse. Alle Rechte vorbehalten
         powered_by:
           text: Powered by Lighthouse.
-        subject: Einladung zum Leuchtturm
+        subject: Einladung zum Lighthouse
       new:
         header: Einladung versenden
         submit_button: Eine Einladung verschicken
@@ -2361,6 +2355,7 @@ de:
           in_progress: In Arbeit
           not_started: Nicht begonnen
     change_password: Veränderung Passwort
+    chatwoot_info_msg: Melden eines technischen Problems
     clients:
       actions:
         create:
@@ -2381,10 +2376,9 @@ de:
     error_warning: Ups, bei Ihrer Bewertung ist etwas schief gelaufen. Bitte wenden Sie sich an den Support.
     hogan:
       cannot_start: Sie können die Hogan-Bewertung im Moment nicht starten, bitte versuchen Sie es in ein paar Minuten.
-    lighthouse_app: Mercer-Leuchtturm
     login: Anmelden
     maintenance:
-      notification: Leuchtturm wird wegen geplanter Wartungsarbeiten in 60 Sekunden außer Betrieb sein
+      notification: Lighthouse wird wegen geplanter Wartungsarbeiten in 60 Sekunden außer Betrieb sein
     manage: Verwalten Sie
     'no': Nein
     passwordSetting:
@@ -2483,6 +2477,7 @@ de:
   idp:
     actions: Aktionen
     add_comments: Kommentare hinzufügen
+    added_development_action: Zusätzliche Entwicklungsmaßnahmen
     ai:
       assistant:
         failure_fallback:
@@ -2539,6 +2534,7 @@ de:
         title: Hallo, ich bin dein Entwicklungsassistent
     behavioral: Verhaltenstipps
     board: Vorstand
+    change_history: Änderungshistorie
     changes_saved_to_plan: Änderungen, die im Plan gespeichert werden
     comment_details:
       add_comment: Kommentar hinzufügen
@@ -2640,6 +2636,7 @@ de:
       publish_plan: Plan veröffentlichen
       remove: Entfernen
       save_plan: Plan speichern
+      search_development_actions: Entwicklungsmaßnahmen für die Suche
       show_development_action_information: Informationen zu Entwicklungsmaßnahmen anzeigen
       skill: Fertigkeit
       sprint: Sprint
@@ -2652,7 +2649,7 @@ de:
       write_here: Hier schreiben...
     direct_reportee_details: Detail der direkt unterstellten Mitarbeiter
     download:
-      description: 'Um den Bericht herunterzuladen, folgen Sie bitte dem Link: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Der Link ist nur 10 Minuten gültig'
+      description: 'Um den Bericht herunterzuladen, folgen Sie bitte dem Link: <a href=''%{url}'' target=''_blank''>Download</a>. Der Link ist nur 10 Minuten gültig'
     download_plan: Plan herunterladen
     edit_plan: Plan bearbeiten
     edit_plan_and_add_skills: Plan bearbeiten und klicken Sie auf Fertigkeiten verwalten, um Fertigkeiten hinzuzufügen.
@@ -2701,6 +2698,7 @@ de:
     manage_plan: Plan verwalten
     mark_as_complete: Als abgeschlossen markieren
     mark_as_incomplete: Als unvollständig markieren
+    modified_development_action: Modifizierte Entwicklungsmaßnahme
     my_plan:
       development_plan: Entwicklungsplan
       graphs:
@@ -2721,7 +2719,6 @@ de:
           name: Name
           publish_date: Veröffentlichungsdatum
           review_date: Überprüfungsdatum
-          role: Aktuelle Position
       guidelines:
         cards:
           c1:
@@ -2819,7 +2816,9 @@ de:
         title: Berichtszusammenfassung
     plan: Plan
     plan_status: Planstatus %{status}
+    plan_submitted_for_manager_approval: Ihr individueller Entwicklungsplan wurde zur Genehmigung durch den Manager eingereicht.
     private: Privat
+    public: Öffentlich
     reflective_questions:
       already_completed: Der IDP ist bereits abgeschlossen, Sie können die Fragen jetzt nicht mehr beantworten.
       answer: Antwort
@@ -2847,6 +2846,7 @@ de:
       words: Wörter
     remove_skill: Skill entfernen
     remove_skill_from_plan: Entfernen von Skill-%{name} aus dem Plan
+    removed_development_action: Entwicklungsmaßnahme entfernt
     report_preview: Vorschau des Berichts
     search_and_select_skills_of_skill_type: Suchen und wählen Sie %{skillType} Skills aus
     select_skills_of_skill_type: Wählen Sie %{skillType} Skills aus
@@ -2860,6 +2860,8 @@ de:
     status: Status
     suggestions: Anregungen
     suggestions_for_skill_type: Vorschläge für %{skillType} Fähigkeiten
+    summary: Zusammenfassung
+    summary_logs: Zusammenfassungsprotokolle für %{reporteeName}
     technical: Technisch
     user_idp_status:
       approved: Genehmigt
@@ -2871,6 +2873,7 @@ de:
       not_started: Nicht gestartet
       pending_approval: Anhängig
       rejected: Zurückgewiesen
+      start_review: Bewertung starten
     users: Benutzer
     with_reflection_questions: Mit Reflexionsfragen
     without_reflection_questions: Ohne Reflexionsfragen
@@ -3001,7 +3004,7 @@ de:
     used_out_of: "%{used} von %{total}"
   mailer:
     copyright:
-      text: Leuchtturm. Alle Rechte vorbehalten
+      text: Lighthouse. Alle Rechte vorbehalten
     footer:
       regards: Mit freundlichen Grüßen,
       team_name: Lighthouse-Team
@@ -3384,13 +3387,6 @@ de:
   sessions:
     errors:
       recaptcha: Recaptcha-Überprüfung fehlgeschlagen. Bitte versuchen Sie es erneut.
-  shared:
-    filters:
-      clear: Filter löschen
-    internet_disconnected_message: Bitte überprüfen Sie Ihre Internet-Verbindung.
-    mte_logo_alt_text: Mercer Talent Enterprise Logo
-    terms_conditions_privacy: Datenschutzerklärung
-    tte_terms_and_condition: TTE – Geschäftsbedingungen und Datenschutzerklärung
   sheet:
     import_modal:
       alert_access_sheet_removal: Wenn Sie ein neues Accesssheet hochladen, werden alle vorhandenen Datensätze gelöscht und ein neuer Datensatz hochgeladen. Bitte stellen Sie sicher, dass Sie alle Accesssheet-Datensätze in der Tabelle haben.
@@ -4191,6 +4187,7 @@ de:
     idp:
       can_not_complete_without_approval_and_in_progress: Sie können Ihren IDP erst abschließen, wenn Ihr Vorgesetzter ihn genehmigt hat und Sie ihn als "In Bearbeitung" markiert haben.
       can_not_start_without_approval: Sie können erst mit der Arbeit an Ihrem IDP beginnen, wenn Ihr Vorgesetzter ihn genehmigt hat.
+      no_changes_to_compare: Keine Änderungen zum Vergleich für den IDP-Plan.
       no_previous_approved_plan: Kein zuvor genehmigter IDP-Plan gefunden.
       reflective_questions_required: Antworten auf reflektierende Fragen sind für IDP erforderlich
       status_not_permitted: ist vom Nutzer nicht gestattet.

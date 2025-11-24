@@ -89,7 +89,7 @@ RSpec.describe EndUser::UserIdpPlansController, type: :controller do
   end
 
   describe 'PUT update' do
-    context 'when status update is successful' do
+    context 'when status and note update is successful' do
       before do
         user_idp_plan.update(completion_status: 'in_progress', approval_status: 'approved')
       end
@@ -98,7 +98,16 @@ RSpec.describe EndUser::UserIdpPlansController, type: :controller do
         put :update, params: { user_id: user.id, status: status }
 
         expect(response).to have_http_status(:ok)
-        expect(response.parsed_body).to eq({ 'status' => status })
+        expect(response.parsed_body).to eq({ 'note' => nil, 'status' => status })
+      end
+
+      it 'updates note along with status' do
+        note = 'This is a note for IDP plan'
+        user_idp_plan.update(approval_status: 'in_review', completion_status: 'not_started')
+        put :update, params: { user_id: user.id, status: 'approved', note: note }
+
+        expect(response).to have_http_status(:ok)
+        expect(response.parsed_body).to eq({ 'note' => note, 'status' => 'approved' })
       end
     end
 

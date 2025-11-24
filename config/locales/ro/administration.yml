@@ -208,6 +208,7 @@ ro:
           projectSettings:
             assessments: Evaluări
             design: Design
+            feature_flags: Steaguri de caracteristici
             idp: IDP
             integrations: Integrări
             privacy_settings: Setări de confidențialitate
@@ -764,11 +765,6 @@ ro:
       user: Utilizator
       user_agent: Agent utilizator
     back: Spate
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Sigur doriți să vă deconectați?</p> <p>Apăsați Nu dacă doriți să continuați lucrul. Apăsați Da pentru a deconecta utilizatorul curent.</p>"
-          title: Deconectare?<strong></strong>
     block_settings:
       modal:
         add_layer: Adăugare strat
@@ -1244,11 +1240,6 @@ ro:
         archived: Arhivate
         disable: Arhivă
         enable: Dezarhivare
-      columns:
-        country: Țară
-        project_manager: Manager de proiect
-        type: Tip
-        year: An
       copy:
         successfully: Client Tenancy '%{name}' a fost copiat cu succes.
       create:
@@ -1257,14 +1248,6 @@ ro:
         successfully: Client Tenancy %{name} a fost șters cu succes.
       edit:
         header: Editați clientul
-      form:
-        client: Client
-        country: Țara
-        name: Nume și prenume
-        number: Număr
-        project_manager: Manager de proiect
-        type: Tip
-        year: Anul
       licenses:
         resource:
           confirmations:
@@ -1684,7 +1667,6 @@ ro:
             title: Arhiva <strong>%{name}</strong> ?
           enable:
             title: Dezarhivează <strong>%{name}</strong> ?
-      tenancies: Clienți
       threesixty_campaign: Campania Threesixty
       toggle_status:
         successfully: Client Tenancy %{name} a fost actualizat cu succes.
@@ -2336,7 +2318,6 @@ ro:
         name: Nume
         publish_date: Data publicării
         review_date: Data revizuirii
-        role: Rolul actual
       fields_label: Câmpuri
       global_skills: Competențe globale
       idp: IDP
@@ -2756,43 +2737,14 @@ ro:
     message: Mesaj
     meta_title: Panou de administrare
     navigation:
-      ai_artifacts: Artefacte AI
-      ai_assistants: Asistenți AI
-      assessments: Evaluări
-      assessments_reports: Evaluări și rapoarte
-      assessor_dashboard: Tabloul de bord al evaluatorului
-      assessor_workshops: Centrul de evaluare
       audit_logs: Jurnale de audit
       availability: Disponibilitate
-      back_to_main: Meniul principal
-      campaign_templates: Șabloane de campanie
-      change_password: Schimbați parola
-      client_admins: Administratori clienți
-      clients: Clienți
-      communication_center: Centrul de comunicare
       dashboard: Tablou
-      data_reports: Rapoarte de date
-      development_actions: Acțiune de dezvoltare
-      dimensions: Dimensiuni
       factors: Factori
       innovation_styles: Stiluri de inovație
-      libraries: Bibliotecă media
-      norms: Normele
       occupations: Ocupaţii
-      options: Opțiuni
-      participants: Participanţii
-      profile: Profil
-      profile_details: Detalii
-      project_admins: Administratori de proiect
-      question_center: Centrul de întrebări
       registration_codes: Coduri de înregistrare
-      report_approvals: Aprobări de rapoarte
-      reports: Rapoarte
-      scheduling: Programarea
-      show_submenu: Afișează submeniu
       skills_taxonomy: Taxonomia abilităților
-      user_profile_details: Detalii profil
-      user_report_events: Evenimente de raportare a utilizatorilor
       users: Utilizatorii
     no_data_found: Nu s-au găsit date
     norms:
@@ -2866,7 +2818,6 @@ ro:
         successfully: Norm a fost actualizat cu succes.
       update:
         successfully: Norma %{name} a fost actualizată cu succes.
-    notification_bell_icon: Pictograma clopoțel de notificare
     noty:
       error_408: Această acțiune durează prea mult. Vă rugăm să încercați să reîncărcați pagina.
       error_500: Ceva nu a mers bine. Contactați administratorul.
@@ -4283,7 +4234,6 @@ ro:
         inactive: Inactivă
         percentage: Procent
         title: Evaluări
-      title: Statistici
       top_metrics:
         completed: Completat
         in_progress: În curs de desfășurare
@@ -4753,10 +4703,6 @@ ro:
       update:
         successfully: Utilizatorul %{name} a fost actualizat cu succes.
       user: Utilizator
-    validations:
-      idp:
-        end_date_cannot_be_in_past: Data finală nu poate fi în trecut
-        start_date_cannot_be_in_past: Data de începere nu poate fi în trecut
     webhook:
       connection_failure: Nu se poate conecta la adresa URL a webhook-ului. Vă rugăm să verificați dacă adresa URL a webhook-ului este corectă.
       delete_success: Setările webhook-ului au fost șterse cu succes

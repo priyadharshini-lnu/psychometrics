@@ -6,6 +6,7 @@ import { Admins } from './Admins'
 import { DataExports } from './DataExports'
 import { Idp } from './Idp'
 import { Taxonomy } from './Taxonomy'
+import LicenseList from './LicenseList'
 
 export const routes = [
   { redirect: true, from: '/', to: 'new_campaigns' },
@@ -48,5 +49,9 @@ export const routes = [
   {
     path: '/taxonomy/*',
     component: <Taxonomy />,
+  },
+  {
+    path: '/licenses',
+    component: <LicenseList />,
   },
 ]

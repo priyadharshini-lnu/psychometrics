@@ -8,9 +8,19 @@ module AI
 
     private_attr_reader :embedding_texts, :dimensions
 
-    AVAILABLE_PROVIDERS = %w[azure_openai].freeze
+    AVAILABLE_PROVIDERS = %w[openai oci].freeze
+    CUSTOM_PROVIDERS = %w[oci].freeze
 
-    def initialize(embedding_texts, dimensions: ::VectorEmbedding::EMBEDDING_DIMENSIONS)
+    CONFIG_KEYS = {
+      api_key: 'API key', api_endpoint: 'API endpoint', model: 'Model'
+    }.freeze
+
+    REQUIRED_CONFIG_BY_PROVIDER = {
+      'openai' => %i[api_key api_endpoint model],
+      'oci' => %i[model]
+    }.freeze
+
+    def initialize(embedding_texts, dimensions: ::VectorEmbedding::DEFAULT_EMBEDDING_DIMENSIONS)
       @embedding_texts = embedding_texts
       @dimensions = dimensions
     end
@@ -28,7 +38,14 @@ module AI
     private
 
     def generate_embedding_vectors
-      embedding = RubyLLM.embed(embedding_texts, context: ruby_llm_context, dimensions: dimensions)
+      provider = embedding_config[:provider]
+      embedding = RubyLLM.embed(
+        embedding_texts,
+        provider: provider,
+        context: ruby_llm_context,
+        dimensions: dimensions,
+        assume_model_exists: CUSTOM_PROVIDERS.include?(provider)
+      )
       embedding.vectors
     end
 
@@ -46,13 +63,13 @@ module AI
     end
 
     def validate_service_configured!
-      required_configs = { api_key: 'API key', api_endpoint: 'API endpoint', model: 'Model' }
+      required_configs = REQUIRED_CONFIG_BY_PROVIDER[embedding_config[:provider]] || []
 
       errors = []
-      required_configs.each do |key, description|
+      required_configs.each do |key|
         value = embedding_config[key]
         if value.nil? || value.to_s.strip.empty?
-          errors << "#{description} is missing"
+          errors << "#{CONFIG_KEYS[key]} is missing"
         end
       end
 

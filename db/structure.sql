@@ -1,6 +1,7 @@
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
@@ -8,6 +9,13 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
+
+--
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
 
 --
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
@@ -388,7 +396,10 @@ CREATE TABLE public.ai_assistant_chats (
     client_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    ai_model_registry_id bigint
+    ai_model_registry_id bigint,
+    ai_assisted_user_session_id bigint,
+    input_tokens integer DEFAULT 0,
+    output_tokens integer DEFAULT 0
 );
 
 
@@ -565,7 +576,6 @@ ALTER SEQUENCE public.ai_assistants_id_seq OWNED BY public.ai_assistants.id;
 
 CREATE TABLE public.ai_assisted_user_sessions (
     id bigint NOT NULL,
-    ai_assistant_chat_id bigint NOT NULL,
     user_id bigint NOT NULL,
     assistable_type character varying,
     assistable_id bigint,
@@ -1170,15 +1180,15 @@ CREATE TABLE public.sheet_rows (
 --
 
 CREATE VIEW public.c_10313_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department"
+ SELECT id,
+    email AS "Email",
+    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
+    (data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position",
+    (data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
+    (data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department"
    FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 69)
-  ORDER BY sheet_rows.id;
+  WHERE (sheet_id = 69)
+  ORDER BY id;
 
 
 --
@@ -1186,12 +1196,12 @@ CREATE VIEW public.c_10313_datasheet AS
 --
 
 CREATE VIEW public.c_10463_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade"
+ SELECT id,
+    email AS "Email",
+    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade"
    FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 65)
-  ORDER BY sheet_rows.id;
+  WHERE (sheet_id = 65)
+  ORDER BY id;
 
 
 --
@@ -1199,16 +1209,16 @@ CREATE VIEW public.c_10463_datasheet AS
 --
 
 CREATE VIEW public.c_10501_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'First Name'::text) AS "First Name",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position"
+ SELECT id,
+    email AS "Email",
+    (data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department",
+    (data_deprecated_on_11_07_2025 ->> 'First Name'::text) AS "First Name",
+    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
+    (data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
+    (data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position"
    FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 62)
-  ORDER BY sheet_rows.id;
+  WHERE (sheet_id = 62)
+  ORDER BY id;
 
 
 --
@@ -1216,16 +1226,16 @@ CREATE VIEW public.c_10501_datasheet AS
 --
 
 CREATE VIEW public.c_10542_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'First Name'::text) AS "First Name"
+ SELECT id,
+    email AS "Email",
+    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
+    (data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position",
+    (data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
+    (data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department",
+    (data_deprecated_on_11_07_2025 ->> 'First Name'::text) AS "First Name"
    FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 70)
-  ORDER BY sheet_rows.id;
+  WHERE (sheet_id = 70)
+  ORDER BY id;
 
 
 --
@@ -1233,12 +1243,12 @@ CREATE VIEW public.c_10542_datasheet AS
 --
 
 CREATE VIEW public.c_10543_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade"
+ SELECT id,
+    email AS "Email",
+    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade"
    FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 72)
-  ORDER BY sheet_rows.id;
+  WHERE (sheet_id = 72)
+  ORDER BY id;
 
 
 --
@@ -2715,7 +2725,7 @@ CREATE TABLE public.development_actions (
     development_action_type integer DEFAULT 0 NOT NULL,
     learning_style integer DEFAULT 0 NOT NULL,
     name character varying,
-    description character varying NOT NULL,
+    description character varying,
     course_url character varying,
     course_provider character varying,
     created_at timestamp(6) without time zone NOT NULL,
@@ -3915,7 +3925,9 @@ CREATE TABLE public.license_usages (
     proctoring_credits_credited integer,
     proctoring_session_duration integer,
     consumer_id bigint,
-    consumer_type character varying
+    consumer_type character varying,
+    project_id bigint,
+    project_license_id bigint
 );
 
 
@@ -3954,7 +3966,8 @@ CREATE TABLE public.licenses (
     start_date date NOT NULL,
     report_family_id integer,
     disabled boolean DEFAULT false,
-    type integer DEFAULT 0
+    type integer DEFAULT 0,
+    is_project_specific boolean DEFAULT false NOT NULL
 );
 
 
@@ -3975,6 +3988,43 @@ CREATE SEQUENCE public.licenses_id_seq
 --
 
 ALTER SEQUENCE public.licenses_id_seq OWNED BY public.licenses.id;
+
+
+--
+-- Name: lti_oauth2_access_tokens; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.lti_oauth2_access_tokens (
+    id bigint NOT NULL,
+    token_hash character varying NOT NULL,
+    project_id bigint,
+    integration_id character varying,
+    scope character varying,
+    expires_at timestamp(6) without time zone NOT NULL,
+    last_used_at timestamp(6) without time zone,
+    revoked boolean DEFAULT false,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: lti_oauth2_access_tokens_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.lti_oauth2_access_tokens_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: lti_oauth2_access_tokens_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.lti_oauth2_access_tokens_id_seq OWNED BY public.lti_oauth2_access_tokens.id;
 
 
 --
@@ -4023,7 +4073,11 @@ CREATE TABLE public.meeting_recordings (
     s3key character varying,
     status integer DEFAULT 0 NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    transcription_status integer DEFAULT 0 NOT NULL,
+    transcription_external_id character varying,
+    transcription_s3key character varying,
+    meeting_session_id character varying
 );
 
 
@@ -4058,7 +4112,8 @@ CREATE TABLE public.meeting_rooms (
     meetable_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    dailyco_api_version character varying DEFAULT 'v2'::character varying NOT NULL
+    dailyco_api_version character varying DEFAULT 'v2'::character varying NOT NULL,
+    transcription_enabled boolean DEFAULT false NOT NULL
 );
 
 
@@ -4452,13 +4507,13 @@ CREATE TABLE public.user_assessment_factor_scores (
 --
 
 CREATE VIEW public.normalized_factor_scores AS
- SELECT user_assessment_factor_scores.id,
-    user_assessment_factor_scores.factor_id,
-    user_assessment_factor_scores.user_assessment_id,
-    ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
-    ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
-    ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
-    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
+ SELECT id,
+    factor_id,
+    user_assessment_id,
+    ((scores ->> 'norm_score'::text))::double precision AS norm_score,
+    ((scores ->> 'score'::text))::double precision AS score,
+    ((scores ->> 'zscore'::text))::double precision AS zscore,
+    ((scores ->> 'percentage'::text))::double precision AS percentage
    FROM public.user_assessment_factor_scores;
 
 
@@ -4952,7 +5007,8 @@ CREATE TABLE public.privacy_settings (
     mask_identity_for_skillvue boolean DEFAULT false,
     allow_video_call_recording boolean DEFAULT false NOT NULL,
     enable_video_call_recording_for_all_new_campaigns boolean DEFAULT false NOT NULL,
-    video_call_recording_expiry_in_seconds integer
+    video_call_recording_expiry_in_seconds integer,
+    mask_identity_for_yoodli boolean DEFAULT false
 );
 
 
@@ -5255,6 +5311,41 @@ CREATE SEQUENCE public.project_features_id_seq
 --
 
 ALTER SEQUENCE public.project_features_id_seq OWNED BY public.project_features.id;
+
+
+--
+-- Name: project_licenses; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.project_licenses (
+    id bigint NOT NULL,
+    project_id bigint NOT NULL,
+    license_id bigint NOT NULL,
+    enabled boolean DEFAULT false,
+    usage_limit integer DEFAULT 0 NOT NULL,
+    used_number integer DEFAULT 0 NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: project_licenses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.project_licenses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: project_licenses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.project_licenses_id_seq OWNED BY public.project_licenses.id;
 
 
 --
@@ -5921,6 +6012,46 @@ CREATE SEQUENCE public.resource_hogan_credentials_id_seq
 --
 
 ALTER SEQUENCE public.resource_hogan_credentials_id_seq OWNED BY public.resource_hogan_credentials.id;
+
+
+--
+-- Name: saml_service_providers; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.saml_service_providers (
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    entity_id character varying NOT NULL,
+    acs_urls text[] DEFAULT '{}'::text[],
+    certificate text,
+    encrypted_idp_certificate text,
+    encrypted_idp_private_key text,
+    enabled boolean DEFAULT true NOT NULL,
+    require_signed_requests boolean DEFAULT false NOT NULL,
+    project_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    mask_identity boolean DEFAULT false NOT NULL
+);
+
+
+--
+-- Name: saml_service_providers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.saml_service_providers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: saml_service_providers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.saml_service_providers_id_seq OWNED BY public.saml_service_providers.id;
 
 
 --
@@ -8003,7 +8134,8 @@ CREATE TABLE public.vector_embeddings (
     resource_type character varying NOT NULL,
     resource_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    embedding1536 public.vector(1536)
 );
 
 
@@ -8571,6 +8703,71 @@ CREATE SEQUENCE public.workshops_id_seq
 --
 
 ALTER SEQUENCE public.workshops_id_seq OWNED BY public.workshops.id;
+
+
+--
+-- Name: yoodli_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.yoodli_assessments (
+    id bigint NOT NULL,
+    product_id character varying NOT NULL,
+    name character varying NOT NULL,
+    project_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: yoodli_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.yoodli_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: yoodli_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.yoodli_assessments_id_seq OWNED BY public.yoodli_assessments.id;
+
+
+--
+-- Name: yoodli_user_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.yoodli_user_assessments (
+    id bigint NOT NULL,
+    user_assessment_id bigint NOT NULL,
+    email character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: yoodli_user_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.yoodli_user_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: yoodli_user_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.yoodli_user_assessments_id_seq OWNED BY public.yoodli_user_assessments.id;
 
 
 --
@@ -9267,6 +9464,13 @@ ALTER TABLE ONLY public.licenses ALTER COLUMN id SET DEFAULT nextval('public.lic
 
 
 --
+-- Name: lti_oauth2_access_tokens id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.lti_oauth2_access_tokens ALTER COLUMN id SET DEFAULT nextval('public.lti_oauth2_access_tokens_id_seq'::regclass);
+
+
+--
 -- Name: media_responses id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -9477,6 +9681,13 @@ ALTER TABLE ONLY public.project_features ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
+-- Name: project_licenses id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_licenses ALTER COLUMN id SET DEFAULT nextval('public.project_licenses_id_seq'::regclass);
+
+
+--
 -- Name: question_recoding id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -9600,6 +9811,13 @@ ALTER TABLE ONLY public.reports_pages ALTER COLUMN id SET DEFAULT nextval('publi
 --
 
 ALTER TABLE ONLY public.resource_hogan_credentials ALTER COLUMN id SET DEFAULT nextval('public.resource_hogan_credentials_id_seq'::regclass);
+
+
+--
+-- Name: saml_service_providers id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saml_service_providers ALTER COLUMN id SET DEFAULT nextval('public.saml_service_providers_id_seq'::regclass);
 
 
 --
@@ -10125,6 +10343,20 @@ ALTER TABLE ONLY public.workshop_subjects ALTER COLUMN id SET DEFAULT nextval('p
 --
 
 ALTER TABLE ONLY public.workshops ALTER COLUMN id SET DEFAULT nextval('public.workshops_id_seq'::regclass);
+
+
+--
+-- Name: yoodli_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.yoodli_assessments ALTER COLUMN id SET DEFAULT nextval('public.yoodli_assessments_id_seq'::regclass);
+
+
+--
+-- Name: yoodli_user_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.yoodli_user_assessments ALTER COLUMN id SET DEFAULT nextval('public.yoodli_user_assessments_id_seq'::regclass);
 
 
 --
@@ -10936,6 +11168,14 @@ ALTER TABLE ONLY public.licenses
 
 
 --
+-- Name: lti_oauth2_access_tokens lti_oauth2_access_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.lti_oauth2_access_tokens
+    ADD CONSTRAINT lti_oauth2_access_tokens_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: media_responses media_responses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -11184,6 +11424,14 @@ ALTER TABLE ONLY public.project_features
 
 
 --
+-- Name: project_licenses project_licenses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_licenses
+    ADD CONSTRAINT project_licenses_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: question_recoding question_recoding_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -11325,6 +11573,14 @@ ALTER TABLE ONLY public.reports
 
 ALTER TABLE ONLY public.resource_hogan_credentials
     ADD CONSTRAINT resource_hogan_credentials_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: saml_service_providers saml_service_providers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saml_service_providers
+    ADD CONSTRAINT saml_service_providers_pkey PRIMARY KEY (id);
 
 
 --
@@ -11936,6 +12192,22 @@ ALTER TABLE ONLY public.workshops
 
 
 --
+-- Name: yoodli_assessments yoodli_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.yoodli_assessments
+    ADD CONSTRAINT yoodli_assessments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: yoodli_user_assessments yoodli_user_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.yoodli_user_assessments
+    ADD CONSTRAINT yoodli_user_assessments_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: associated_index; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12244,6 +12516,13 @@ CREATE INDEX index_ai_assistant_chats_on_ai_assistant_id ON public.ai_assistant_
 
 
 --
+-- Name: index_ai_assistant_chats_on_ai_assisted_user_session_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistant_chats_on_ai_assisted_user_session_id ON public.ai_assistant_chats USING btree (ai_assisted_user_session_id);
+
+
+--
 -- Name: index_ai_assistant_chats_on_ai_model_registry_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12325,13 +12604,6 @@ CREATE INDEX index_ai_assistants_on_last_modified_by_id ON public.ai_assistants 
 --
 
 CREATE INDEX index_ai_assistants_on_owner_id ON public.ai_assistants USING btree (owner_id);
-
-
---
--- Name: index_ai_assisted_user_sessions_on_ai_assistant_chat_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_ai_assisted_user_sessions_on_ai_assistant_chat_id ON public.ai_assisted_user_sessions USING btree (ai_assistant_chat_id);
 
 
 --
@@ -13819,6 +14091,20 @@ CREATE INDEX index_license_usages_on_license_id ON public.license_usages USING b
 
 
 --
+-- Name: index_license_usages_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_license_usages_on_project_id ON public.license_usages USING btree (project_id);
+
+
+--
+-- Name: index_license_usages_on_project_license_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_license_usages_on_project_license_id ON public.license_usages USING btree (project_license_id);
+
+
+--
 -- Name: index_license_usages_on_registration_code_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -13847,6 +14133,41 @@ CREATE INDEX index_licenses_on_client_id_and_report_family_id ON public.licenses
 
 
 --
+-- Name: index_lti_oauth2_access_tokens_on_expires_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_lti_oauth2_access_tokens_on_expires_at ON public.lti_oauth2_access_tokens USING btree (expires_at);
+
+
+--
+-- Name: index_lti_oauth2_access_tokens_on_integration_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_lti_oauth2_access_tokens_on_integration_id ON public.lti_oauth2_access_tokens USING btree (integration_id);
+
+
+--
+-- Name: index_lti_oauth2_access_tokens_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_lti_oauth2_access_tokens_on_project_id ON public.lti_oauth2_access_tokens USING btree (project_id);
+
+
+--
+-- Name: index_lti_oauth2_access_tokens_on_project_id_and_expires_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_lti_oauth2_access_tokens_on_project_id_and_expires_at ON public.lti_oauth2_access_tokens USING btree (project_id, expires_at);
+
+
+--
+-- Name: index_lti_oauth2_access_tokens_on_token_hash; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_lti_oauth2_access_tokens_on_token_hash ON public.lti_oauth2_access_tokens USING btree (token_hash);
+
+
+--
 -- Name: index_media_responses_on_question_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -13865,6 +14186,13 @@ CREATE INDEX index_media_responses_on_users_result_id ON public.media_responses 
 --
 
 CREATE INDEX index_meeting_recordings_on_meeting_room_id ON public.meeting_recordings USING btree (meeting_room_id);
+
+
+--
+-- Name: index_meeting_recordings_on_meeting_session_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_meeting_recordings_on_meeting_session_id ON public.meeting_recordings USING btree (meeting_session_id);
 
 
 --
@@ -14204,6 +14532,27 @@ CREATE UNIQUE INDEX index_project_features_on_project_id ON public.project_featu
 
 
 --
+-- Name: index_project_licenses_on_license_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_project_licenses_on_license_id ON public.project_licenses USING btree (license_id);
+
+
+--
+-- Name: index_project_licenses_on_license_id_and_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_project_licenses_on_license_id_and_project_id ON public.project_licenses USING btree (license_id, project_id);
+
+
+--
+-- Name: index_project_licenses_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_project_licenses_on_project_id ON public.project_licenses USING btree (project_id);
+
+
+--
 -- Name: index_question_recoding_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14453,6 +14802,20 @@ CREATE INDEX index_reports_pages_on_report_id ON public.reports_pages USING btre
 --
 
 CREATE INDEX index_resource_hogan_credentials_on_hogan_credential_id ON public.resource_hogan_credentials USING btree (hogan_credential_id);
+
+
+--
+-- Name: index_saml_service_providers_on_entity_id_and_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_saml_service_providers_on_entity_id_and_project_id ON public.saml_service_providers USING btree (entity_id, project_id);
+
+
+--
+-- Name: index_saml_service_providers_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_saml_service_providers_on_project_id ON public.saml_service_providers USING btree (project_id);
 
 
 --
@@ -15485,6 +15848,13 @@ CREATE INDEX index_vector_embeddings_on_embedding ON public.vector_embeddings US
 
 
 --
+-- Name: index_vector_embeddings_on_embedding1536; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_vector_embeddings_on_embedding1536 ON public.vector_embeddings USING hnsw (embedding1536 public.vector_cosine_ops);
+
+
+--
 -- Name: index_vector_embeddings_on_resource; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15755,6 +16125,27 @@ CREATE INDEX index_workshops_on_campaign_assessment_group_id ON public.workshops
 --
 
 CREATE INDEX index_workshops_on_campaign_id ON public.workshops USING btree (campaign_id);
+
+
+--
+-- Name: index_yoodli_assessments_on_product_id_and_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_yoodli_assessments_on_product_id_and_project_id ON public.yoodli_assessments USING btree (product_id, project_id);
+
+
+--
+-- Name: index_yoodli_assessments_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_yoodli_assessments_on_project_id ON public.yoodli_assessments USING btree (project_id);
+
+
+--
+-- Name: index_yoodli_user_assessments_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_yoodli_user_assessments_on_user_assessment_id ON public.yoodli_user_assessments USING btree (user_assessment_id);
 
 
 --
@@ -16064,6 +16455,14 @@ ALTER TABLE ONLY public.user_reports
 
 ALTER TABLE ONLY public.licenses
     ADD CONSTRAINT fk_rails_139c7e09c4 FOREIGN KEY (report_family_id) REFERENCES public.report_families(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: ai_assistant_chats fk_rails_15a36d90ff; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_chats
+    ADD CONSTRAINT fk_rails_15a36d90ff FOREIGN KEY (ai_assisted_user_session_id) REFERENCES public.ai_assisted_user_sessions(id);
 
 
 --
@@ -16379,6 +16778,14 @@ ALTER TABLE ONLY public.client_features
 
 
 --
+-- Name: license_usages fk_rails_3268c52319; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.license_usages
+    ADD CONSTRAINT fk_rails_3268c52319 FOREIGN KEY (project_license_id) REFERENCES public.project_licenses(id);
+
+
+--
 -- Name: api_keys fk_rails_32c28d0dc2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -16539,6 +16946,14 @@ ALTER TABLE ONLY public.campaign_reports
 
 
 --
+-- Name: yoodli_user_assessments fk_rails_41044cc377; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.yoodli_user_assessments
+    ADD CONSTRAINT fk_rails_41044cc377 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id);
+
+
+--
 -- Name: communications fk_rails_41c5e93ac9; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -16608,14 +17023,6 @@ ALTER TABLE ONLY public.clients
 
 ALTER TABLE ONLY public.sheets
     ADD CONSTRAINT fk_rails_481da9714d FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
-
-
---
--- Name: ai_assisted_user_sessions fk_rails_49182d1bb2; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.ai_assisted_user_sessions
-    ADD CONSTRAINT fk_rails_49182d1bb2 FOREIGN KEY (ai_assistant_chat_id) REFERENCES public.ai_assistant_chats(id);
 
 
 --
@@ -16731,6 +17138,14 @@ ALTER TABLE ONLY public.assessments
 
 
 --
+-- Name: yoodli_assessments fk_rails_524e020c38; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.yoodli_assessments
+    ADD CONSTRAINT fk_rails_524e020c38 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: workshop_assessors fk_rails_524f182ee9; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -16760,6 +17175,14 @@ ALTER TABLE ONLY public.sms_records
 
 ALTER TABLE ONLY public.workshop_invited_subjects
     ADD CONSTRAINT fk_rails_592e1c2e7f FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: lti_oauth2_access_tokens fk_rails_5aa1c20c50; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.lti_oauth2_access_tokens
+    ADD CONSTRAINT fk_rails_5aa1c20c50 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -16896,6 +17319,14 @@ ALTER TABLE ONLY public.workshop_managers
 
 ALTER TABLE ONLY public.campaign_factors
     ADD CONSTRAINT fk_rails_667cccdf0c FOREIGN KEY (campaign_factor_group_id) REFERENCES public.campaign_factor_groups(id);
+
+
+--
+-- Name: project_licenses fk_rails_67e6a7fdac; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_licenses
+    ADD CONSTRAINT fk_rails_67e6a7fdac FOREIGN KEY (license_id) REFERENCES public.licenses(id);
 
 
 --
@@ -17163,6 +17594,14 @@ ALTER TABLE ONLY public.workshop_invites
 
 
 --
+-- Name: saml_service_providers fk_rails_7da955acbf; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saml_service_providers
+    ADD CONSTRAINT fk_rails_7da955acbf FOREIGN KEY (project_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: proficiency_level_translations fk_rails_7e2f5d2b33; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17272,6 +17711,14 @@ ALTER TABLE ONLY public.user_assessments
 
 ALTER TABLE ONLY public.user_report_events
     ADD CONSTRAINT fk_rails_899d2b3ded FOREIGN KEY (initiator_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: project_licenses fk_rails_89ca2fa15c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_licenses
+    ADD CONSTRAINT fk_rails_89ca2fa15c FOREIGN KEY (project_id) REFERENCES public.clients(id);
 
 
 --
@@ -18355,6 +18802,14 @@ ALTER TABLE ONLY public.communications_assessments
 
 
 --
+-- Name: license_usages fk_rails_e622a076e5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.license_usages
+    ADD CONSTRAINT fk_rails_e622a076e5 FOREIGN KEY (project_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: user_idp_skills fk_rails_e822374aec; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18697,21 +19152,38 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20251118130440'),
+('20251118103050'),
+('20251114123626'),
+('20251118061850'),
+('20251112120914'),
+('20251112112802'),
+('20251105093356'),
+('20251101094930'),
+('20251031101349'),
+('20251031094133'),
 ('20251029094535'),
 ('20251029094056'),
 ('20251029073341'),
+('20251027145358'),
 ('20251027054548'),
 ('20251027054547'),
 ('20251024105239'),
 ('20251024030039'),
 ('20251023050642'),
 ('20251015075724'),
+('20251012210205'),
+('20251007225856'),
+('20251007225411'),
+('20251014070912'),
 ('20251010111349'),
 ('20251010104305'),
 ('20251008145654'),
 ('20251008145653'),
 ('20251008144511'),
 ('20251008144510'),
+('20251006101155'),
+('20251006100719'),
 ('20251006071723'),
 ('20251003104731'),
 ('20251001034346'),
@@ -19630,4 +20102,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

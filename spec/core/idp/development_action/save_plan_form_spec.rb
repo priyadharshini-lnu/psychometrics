@@ -74,35 +74,6 @@ describe Idp::DevelopmentAction::SavePlanForm do
         expect(form.valid?).to be true
       end
 
-      it 'is invalid with past start_date_time' do
-        past_date = 1.day.ago.strftime('%Y-%m-%d %H:%M')
-        attributes = valid_attributes.merge(start_date_time: past_date)
-        form = described_class.new(attributes).with_context(user_idp_plan)
-
-        expect(form.valid?).to be false
-        expect(form.errors[:start_date_time]).to include('Start date cannot be in the past')
-      end
-
-      it 'is invalid with past end_date_time' do
-        past_date = 1.day.ago.strftime('%Y-%m-%d %H:%M')
-        attributes = valid_attributes.merge(end_date_time: past_date)
-        form = described_class.new(attributes).with_context(user_idp_plan)
-
-        expect(form.valid?).to be false
-        expect(form.errors[:end_date_time]).to include('End date cannot be in the past')
-      end
-
-      it 'is invalid with both past dates' do
-        past_start = 2.days.ago.strftime('%Y-%m-%d %H:%M')
-        past_end = 1.day.ago.strftime('%Y-%m-%d %H:%M')
-        attributes = valid_attributes.merge(start_date_time: past_start, end_date_time: past_end)
-        form = described_class.new(attributes).with_context(user_idp_plan)
-
-        expect(form.valid?).to be false
-        expect(form.errors[:start_date_time]).to include('Start date cannot be in the past')
-        expect(form.errors[:end_date_time]).to include('End date cannot be in the past')
-      end
-
       it 'does not validate past dates if format is invalid' do
         invalid_date = 'invalid-date'
         attributes = valid_attributes.merge(start_date_time: invalid_date)

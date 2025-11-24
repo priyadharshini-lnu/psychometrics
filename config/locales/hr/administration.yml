@@ -208,6 +208,7 @@ hr:
           projectSettings:
             assessments: Procjene
             design: Dizajn
+            feature_flags: Zastavice značajki
             idp: IDP
             integrations: Integracije
             privacy_settings: Postavke privatnosti
@@ -764,11 +765,6 @@ hr:
       user: Korisnik
       user_agent: Korisnički agent
     back: Natrag
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Jeste li sigurni da se želite odjaviti?</p> <p>Pritisnite Ne ako želite nastaviti s radom. Pritisnite Da za odjavu trenutnog korisnika.</p>"
-          title: "<strong>Odjaviti</strong> se ?"
     block_settings:
       modal:
         add_layer: Dodaj sloj
@@ -1244,11 +1240,6 @@ hr:
         archived: Arhivirano
         disable: Arhiviraj
         enable: Poništi arhiviranje
-      columns:
-        country: Zemlja
-        project_manager: Voditelj projekta
-        type: Vrsta
-        year: Godina
       copy:
         successfully: Klijenti '%{name}' uspješno je kopiran.
       create:
@@ -1257,14 +1248,6 @@ hr:
         successfully: Klijenti %{name} uspješno je izbrisan.
       edit:
         header: Uredi klijenta
-      form:
-        client: Klijent
-        country: Država
-        name: Ime
-        number: Broj
-        project_manager: Voditelj projekta
-        type: Vrsta
-        year: Godina
       licenses:
         resource:
           confirmations:
@@ -1684,7 +1667,6 @@ hr:
             title: Arhiva <strong>%{name}</strong> ?
           enable:
             title: Poništiti arhiviranje <strong>%{name}</strong> ?
-      tenancies: Klijenti
       threesixty_campaign: Kampanja višesmjerne procjene
       toggle_status:
         successfully: Klijenti %{name} uspješno je ažuriran.
@@ -2336,7 +2318,6 @@ hr:
         name: Ime
         publish_date: Datum objave
         review_date: Datum pregleda
-        role: Trenutna uloga
       fields_label: Poljima
       global_skills: Globalne vještine
       idp: IDP
@@ -2756,43 +2737,14 @@ hr:
     message: Poruka
     meta_title: Administrativna ploča
     navigation:
-      ai_artifacts: AI artefakti
-      ai_assistants: AI pomoćnici
-      assessments: Procjene
-      assessments_reports: Procjene i izvješća
-      assessor_dashboard: Nadzorna ploča procjenitelja
-      assessor_workshops: Centar za procjenu
       audit_logs: Zapisnici revizije
       availability: Raspoloživost
-      back_to_main: Glavni izbornik
-      campaign_templates: Predlošci kampanja
-      change_password: Promijeni lozinku
-      client_admins: Klijenti administratori
-      clients: Klijenti
-      communication_center: Komunikacijski centar
       dashboard: Nadzorna ploča
-      data_reports: Izvješća o podacima
-      development_actions: Razvojne akcije
-      dimensions: Dimenzije
       factors: Faktorima
       innovation_styles: Stilovi inovacija
-      libraries: Medijska biblioteka
-      norms: Norme
       occupations: Zanimanja
-      options: Mogućnosti
-      participants: Sudionici
-      profile: Profil
-      profile_details: Detalji
-      project_admins: Administratori projekta
-      question_center: Centar za pitanja
       registration_codes: Registracijski kodovi
-      report_approvals: Odobrenja izvješća
-      reports: Izvješća
-      scheduling: Vremensko planiranje
-      show_submenu: Prikaži podizbornik
       skills_taxonomy: Taksonomija vještina
-      user_profile_details: Detalji profila
-      user_report_events: Događaji u izvješću korisnika
       users: Korisnici
     no_data_found: Nisu pronađeni podaci
     norms:
@@ -2866,7 +2818,6 @@ hr:
         successfully: Norm je uspješno ažuriran.
       update:
         successfully: Norma %{name} uspješno je ažurirana.
-    notification_bell_icon: Ikona zvona obavijesti
     noty:
       error_408: Ova radnja traje predugo. Pokušajte ponovno učitati stranicu.
       error_500: Nešto je pošlo po zlu. Obratite se administratoru.
@@ -4283,7 +4234,6 @@ hr:
         inactive: Neaktivan
         percentage: Postotak
         title: Procjene
-      title: Statistika
       top_metrics:
         completed: Završen
         in_progress: U tijeku
@@ -4753,10 +4703,6 @@ hr:
       update:
         successfully: Korisnik %{name} uspješno je ažuriran.
       user: Korisnik
-    validations:
-      idp:
-        end_date_cannot_be_in_past: Datum završetka ne može biti u prošlosti
-        start_date_cannot_be_in_past: Datum početka ne može biti u prošlosti
     webhook:
       connection_failure: Nije moguće povezati se s URL-om web-dojavnika. Provjerite je li URL webhooka točan..
       delete_success: Postavke web-dojavnika uspješno su izbrisane

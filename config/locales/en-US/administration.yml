@@ -208,6 +208,7 @@ en-US:
           projectSettings:
             assessments: Assessments
             design: Design
+            feature_flags: Feature Flags
             idp: IDP
             integrations: Integrations
             privacy_settings: Privacy Settings
@@ -764,11 +765,6 @@ en-US:
       user: User
       user_agent: User Agent
     back: Back
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Are you sure you want to log out?</p> <p>Press No if you want to continue work. Press Yes to logout current user.</p>"
-          title: Log <strong>Out</strong> ?
     block_settings:
       modal:
         add_layer: Add Layer
@@ -1244,11 +1240,6 @@ en-US:
         archived: Archived
         disable: Archive
         enable: Unarchive
-      columns:
-        country: Country
-        project_manager: Project Manager
-        type: Type
-        year: Year
       copy:
         successfully: Client Tenancy '%{name}' was copied successfully.
       create:
@@ -1257,14 +1248,6 @@ en-US:
         successfully: Client Tenancy %{name} was deleted successfully.
       edit:
         header: Edit Client
-      form:
-        client: Client
-        country: Country
-        name: Name
-        number: Number
-        project_manager: Project Manager
-        type: Type
-        year: Year
       licenses:
         resource:
           confirmations:
@@ -1684,7 +1667,6 @@ en-US:
             title: Archive <strong>%{name}</strong> ?
           enable:
             title: Unarchive <strong>%{name}</strong> ?
-      tenancies: Client Tenancies
       threesixty_campaign: Threesixty Campaign
       toggle_status:
         successfully: Client Tenancy %{name} was updated successfully.
@@ -2336,7 +2318,6 @@ en-US:
         name: Name
         publish_date: Publish Date
         review_date: Review Date
-        role: Current Role
       fields_label: Fields
       global_skills: Global Skills
       idp: IDP
@@ -2756,43 +2737,14 @@ en-US:
     message: Message
     meta_title: Administration panel
     navigation:
-      ai_artifacts: AI Artifacts
-      ai_assistants: AI Assistants
-      assessments: Assessments
-      assessments_reports: Assessments & Reports
-      assessor_dashboard: Assessor Dashboard
-      assessor_workshops: Assessment Center
       audit_logs: Audit Logs
       availability: Availability
-      back_to_main: Main Menu
-      campaign_templates: Campaign Templates
-      change_password: Change Password
-      client_admins: Client Admins
-      clients: Client Tenancies
-      communication_center: Communication Center
       dashboard: Dashboard
-      data_reports: Data Reports
-      development_actions: Development Actions
-      dimensions: Dimensions
       factors: Factors
       innovation_styles: Innovation Styles
-      libraries: Media Library
-      norms: Norms
       occupations: Occupations
-      options: Options
-      participants: Participants
-      profile: Profile
-      profile_details: Details
-      project_admins: Project Admins
-      question_center: Question Center
       registration_codes: Registration codes
-      report_approvals: Report Approvals
-      reports: Reports
-      scheduling: Scheduling
-      show_submenu: Show Sub Menu
       skills_taxonomy: Skills Taxonomy
-      user_profile_details: Profile details
-      user_report_events: User Report Events
       users: Users
     no_data_found: No data found
     norms:
@@ -2866,7 +2818,6 @@ en-US:
         successfully: Norm was updated successfully.
       update:
         successfully: Norm %{name} was updated successfully.
-    notification_bell_icon: Notification Bell Icon
     noty:
       error_408: This action takes too long. Please try to reload the page.
       error_500: Something went wrong. Contact your administrator.
@@ -4291,7 +4242,6 @@ en-US:
         inactive: Inactive
         percentage: Percentage
         title: Assessments
-      title: Stats
       top_metrics:
         completed: Completed
         in_progress: In Progress
@@ -4760,10 +4710,6 @@ en-US:
       update:
         successfully: User %{name} was updated successfully.
       user: User
-    validations:
-      idp:
-        end_date_cannot_be_in_past: End date cannot be in the past
-        start_date_cannot_be_in_past: Start date cannot be in the past
     webhook:
       connection_failure: Unable to connect to the webhook url. Please verify if webhook url is correct..
       delete_success: Webhook settings was deleted successfully

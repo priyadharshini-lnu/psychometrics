@@ -1,0 +1,22 @@
+---
+th:
+  enduser:
+    add_idp_plan_note: เพิ่มหมายเหตุ...
+    add_idp_plan_rejection_reason: เพิ่มเหตุผล...
+    approve_idp_plan: อนุมัติแผน
+    bookings: การจอง
+    campaign: รณรงค์
+    development: การพัฒนา
+    direct_reportees: ผู้รายงานโดยตรง
+    home: แดชบอร์ด
+    idp_plan_approval_note: หมายเหตุการอนุมัติ
+    insights: ข้อมูลเชิงลึก
+    max_word_limit: ต้องมีไม่เกิน %{max} คำ
+    min_word_limit: ต้องมีอย่างน้อย %{min} คำ
+    my_plan: แผนของฉัน
+    profile: โปรไฟล์
+    profile_details: รายละเอียด
+    question_counter: Question %{current} of %{total}
+    selected_count: เลือก
+    skill_type: ประเภททักษะ
+    tasks: งาน

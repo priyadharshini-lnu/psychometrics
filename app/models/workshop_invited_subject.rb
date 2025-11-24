@@ -29,6 +29,14 @@ class WorkshopInvitedSubject < ApplicationRecord
   scope :invites, -> { where(status: :pending) }
   scope :bookings, -> { where.not(status: :pending) }
   scope :filterable_fields, ->(query) { joins(:user).merge(User.filterable_fields(query)) }
+  scope :in_campaign_assessment_group, lambda { |campaign_id, campaign_assessment_group_id|
+    joins(:workshop_invite).where(
+      workshop_invites: {
+        campaign_id: campaign_id,
+        campaign_assessment_group_id: campaign_assessment_group_id
+      }
+    )
+  }
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id workshop_invite_campaign user_id]

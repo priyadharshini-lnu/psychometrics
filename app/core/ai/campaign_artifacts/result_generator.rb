@@ -35,9 +35,12 @@ module AI
       rescue AI::Utils::SuccessfulCompletionSignal => e
         res = e.data
         add_license_usage(res)
+        chat = chat_with_context.reload
         response = {
           parsed_dependencies: parsed_dependencies,
-          results: res
+          results: res,
+          input_tokens: chat.input_tokens,
+          output_tokens: chat.output_tokens
         }
         broadcast(:ok, response)
       rescue AI::Utils::CampaignArtifactParser::Error, AI::Tools::Errors::MaximumRetryAttemptsExceededError => e
@@ -98,9 +101,9 @@ module AI
 
       def handle_artifact_result_error(error_message)
         unless test_mode?
-          artifact_result.ai_assistant_chat = campaign_artifact_assistant_chat
           artifact_result.error = error_message
           artifact_result.save!
+          campaign_artifact_assistant_chat.update!(ai_assisted_user_session_id: artifact_result.id)
         end
 
         @error = error_message

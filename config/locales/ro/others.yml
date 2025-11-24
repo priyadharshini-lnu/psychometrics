@@ -919,8 +919,6 @@ ro:
     invalid_job: Această notificare corespunde înregistrării șterse
     mark_as_read: Marcați toate citite
     more: Mai mult
-    no_notifications: Fără notificări
-    notifications: Notificări
     results: Rezultatele
     super_admin:
       errors:
@@ -1241,7 +1239,7 @@ ro:
       description: Vă rugăm să completați toate câmpurile pentru a crea o parolă nouă
       submit: Trimite
       title: Reînnoiți parola
-    lighthouse_logo_alt_text: Logo-ul farului
+    lighthouse_logo_alt_text: Logo-ul Lighthouse
     login:
       continue_btn: Continua
       description: Vă rugăm să vă conectați cu informațiile contului dvs. personal
@@ -1341,16 +1339,11 @@ ro:
     continue: Continuați-vă sarcinile
     dashboard_instructions: Este posibil să vă fi fost atribuite mai multe activități pe care trebuie să le finalizați. Vă rugăm să verificați dacă toate activitățile atribuite au fost finalizate în toate campaniile.
     dashboard_menu:
-      bookings: Rezervări
       campaign: Campanie
-      change_password: Schimbare parolă
-      development: Dezvoltare
       direct_reportees: Raportari directi
       home: Acasă
       insights: Perspective
-      my_plan: Planul meu
       profile: Profil
-      profile_details: Detalii
       tasks: Sarcini
     details: Detalii
     edit_evaluation:
@@ -1465,6 +1458,7 @@ ro:
       export_occupations_job_scheduled: Ocupații Locul de muncă la export a fost programat cu succes
       export_reports_and_assessments_statuses_scheduled: Lucrarea Exportați rapoarte și evaluări a fost programată cu succes
       external_results_export_scheduled: Activitatea de export Evaluare externă a fost programată cu succes
+      no_participants_selected: Vă rugăm să selectați cel puțin un participant pentru a continua.
       norm_results_export_scheduled: Lucrarea de export Rezultate normalizate de evaluare a fost programată cu succes
       normalize_factor_scores_scheduled: Normalizarea scorurilor factorilor a fost programată cu succes.
       raw_factor_export_scheduled: Evaluarea activității de export Raw Factor a fost programată cu succes
@@ -1609,6 +1603,7 @@ ro:
       report_bundle_placeholder: Selectați un pachet de rapoarte
     messages:
       bulk_download_error: Descărcarea în bloc este limitată la 1000 de fișiere de raport. Dacă ați selectat mai multe lamente, vă rugăm să le reduceți.
+      bulk_download_no_reports: Nu s-au găsit rapoarte. Vă rugăm să generați rapoartele înainte de descărcare.
       bulk_download_successful: Sarcina de descărcare a raportului în bloc a fost programată cu succes
       export_report_data_scheduled: Sarcina de export a datelor de raportare a fost programată cu succes
     modals:
@@ -1878,7 +1873,6 @@ ro:
       projects: Proiecte
       report: Raport
       reports: Rapoarte
-      scoring: Notare
       sms_contact: SMS Contact
       threesixty_campaign: Treișaizeci de scoruri de campanie
     status:
@@ -2000,7 +1994,7 @@ ro:
           %{accept} Sau puteți ignora în siguranță acest e-mail.
 
           Vă rugăm să nu partajați acreditările de acces cu nimeni.
-        subject: Invitație la far
+        subject: Invitație la Lighthouse
       confirmation_instructions:
         subject: Instrucțiuni de confirmare
       invitation_instructions:
@@ -2012,7 +2006,7 @@ ro:
           campaign: 'Campanie: %{section_name}'
           client: 'Client Tenancy: %{section_name}'
           project: 'Proiect: %{section_name}'
-        subject: Invitație la far
+        subject: Invitație la Lighthouse
       password_change:
         body: |-
           Bună ziua %{name}!
@@ -2022,7 +2016,7 @@ ro:
           Dacă nu ați făcut această solicitare, vă rugăm să contactați imediat Asistența la mte.support@mercer.com
         regards: |-
           Cu stimă
-          Echipa Farului
+          Echipa Lighthouse
         subject: Parola Lighthouse s-a schimbat
       reset_password_instructions:
         body: |-
@@ -2033,7 +2027,7 @@ ro:
         footer: Dacă nu ați solicitat acest lucru, puteți ignora în siguranță acest e-mail. Parola nu se va schimba până când nu accesați linkul de mai sus și nu creați unul nou.
         regards: |-
           Cu stimă
-          Echipa Farului
+          Echipa Lighthouse
         subject: Instrucțiuni pentru resetarea parolei
       unlock_instructions:
         body: |-
@@ -2045,7 +2039,7 @@ ro:
         footer: Dacă nu ați solicitat acest lucru, puteți ignora în siguranță acest e-mail. Parola nu se va schimba până când nu accesați linkul de mai sus și nu creați unul nou.
         regards: |-
           Cu stimă
-          Echipa Farului
+          Echipa Lighthouse
         subject: Instrucțiuni pentru deblocarea contului
         unlock_account: Deblochează-mi contul
     omniauth_callbacks:
@@ -2352,6 +2346,7 @@ ro:
           in_progress: În curs de desfășurare
           not_started: Nu a început
     change_password: Modificarea parolei
+    chatwoot_info_msg: Raportați o problemă tehnică
     clients:
       actions:
         create:
@@ -2372,7 +2367,6 @@ ro:
     error_warning: Ups, ceva nu a mers bine cu evaluarea ta. Vă rugăm să contactați asistența.
     hogan:
       cannot_start: Nu poți începe evaluarea hogan chiar acum. Vă rugăm să încercați după câteva minute.
-    lighthouse_app: Farul Mercer
     login: Autentificare
     maintenance:
       notification: Farul va fi oprit pentru întreținere programată în 60 de secunde
@@ -2474,6 +2468,7 @@ ro:
   idp:
     actions: Acțiuni
     add_comments: Adaugă comentarii
+    added_development_action: Acțiune de dezvoltare adăugată
     ai:
       assistant:
         failure_fallback:
@@ -2530,6 +2525,7 @@ ro:
         title: Buna ziua, sunt asistentul tau de dezvoltare
     behavioral: Comportamental
     board: Scândură
+    change_history: Istoricul modificărilor
     changes_saved_to_plan: Modificări salvate în plan
     comment_details:
       add_comment: Adaugă comentariu
@@ -2631,6 +2627,7 @@ ro:
       publish_plan: Publicați planul
       remove: Depărta
       save_plan: Salvați planul
+      search_development_actions: Căutare Acțiuni de dezvoltare
       show_development_action_information: Afișați informațiile despre acțiunile de dezvoltare
       skill: Îndemânare
       sprint: Sprint
@@ -2643,7 +2640,7 @@ ro:
       write_here: Scrie aici...
     direct_reportee_details: Detalii raportoare directe
     download:
-      description: 'Pentru a descărca raportul, vă rugăm să urmați linkul: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Linkul este valabil doar 10 minute'
+      description: 'Pentru a descărca raportul, vă rugăm să urmați linkul: <a href=''%{url}'' target=''_blank''>Download</a>. Linkul este valabil doar 10 minute'
     download_plan: Descărcați planul
     edit_plan: Editați planul
     edit_plan_and_add_skills: Editați planul și faceți clic pe Gestionați abilitățile pentru a adăuga abilități.
@@ -2692,6 +2689,7 @@ ro:
     manage_plan: Gestionați planul
     mark_as_complete: Marcați ca finalizat
     mark_as_incomplete: Marcați ca incomplet
+    modified_development_action: Acțiune de dezvoltare modificată
     my_plan:
       development_plan: Plan de dezvoltare
       graphs:
@@ -2711,7 +2709,6 @@ ro:
           name: Nume
           publish_date: Data publicării
           review_date: Data revizuirii
-          role: Rolul actual
       guidelines:
         cards:
           c1:
@@ -2809,7 +2806,9 @@ ro:
         title: Rezumatul raportului
     plan: Plan
     plan_status: Starea planului %{status}
+    plan_submitted_for_manager_approval: Planul dumneavoastră individual de dezvoltare a fost trimis spre aprobarea managerului.
     private: Privat
+    public: Public
     reflective_questions:
       already_completed: IDP a fost deja completat, nu puteți răspunde la întrebări acum.
       answer: Răspunde
@@ -2837,6 +2836,7 @@ ro:
       words: Cuvinte
     remove_skill: Eliminați abilitatea
     remove_skill_from_plan: Eliminați %{name} de abilități din plan
+    removed_development_action: Acțiune de dezvoltare eliminată
     report_preview: Previzualizare raport
     search_and_select_skills_of_skill_type: Căutați și selectați abilitățile %{skillType}
     select_skills_of_skill_type: Selectați %{skillType} abilități
@@ -2850,6 +2850,8 @@ ro:
     status: Stare
     suggestions: Sugestii
     suggestions_for_skill_type: Sugestii pentru abilitățile %{skillType}
+    summary: Rezumat
+    summary_logs: Jurnale sumare pentru %{reporteeName}
     technical: Tehnic
     user_idp_status:
       approved: Aprobat
@@ -2861,6 +2863,7 @@ ro:
       not_started: Neînceput
       pending_approval: În așteptarea aprobării
       rejected: Respins
+      start_review: Începeți revizuirea
     users: Utilizatorii
     with_reflection_questions: Cu întrebări de reflecție
     without_reflection_questions: Fără întrebări de reflecție
@@ -3374,13 +3377,6 @@ ro:
   sessions:
     errors:
       recaptcha: Verificarea Recaptcha a eșuat. Vă rugăm să încercați din nou.
-  shared:
-    filters:
-      clear: Ștergeți filtrele
-    internet_disconnected_message: Încercați să vă reconectați. Vă rugăm să verificați conexiunea la internet.
-    mte_logo_alt_text: Sigla Mercer Talent Enterprise
-    terms_conditions_privacy: Declarație de confidențialitate
-    tte_terms_and_condition: Termeni și confidențialitate
   sheet:
     import_modal:
       alert_access_sheet_removal: Încărcarea unei noi foi de acces cu ștergerea tuturor înregistrărilor existente și încărcarea uneia noi din foaie. Vă rugăm să vă asigurați că aveți toate înregistrările Accesssheet în foaia de calcul.
@@ -4181,6 +4177,7 @@ ro:
     idp:
       can_not_complete_without_approval_and_in_progress: Nu puteți finaliza IDP-ul până când managerul nu îl aprobă și nu l-ați marcat ca "În curs".
       can_not_start_without_approval: Nu puteți începe să lucrați la IDP până când managerul nu îl aprobă.
+      no_changes_to_compare: Nu există modificări de comparat pentru planul IDP.
       no_previous_approved_plan: Nu s-a găsit niciun plan IDP aprobat anterior.
       reflective_questions_required: Răspunsurile la întrebările reflexive sunt necesare pentru IDP
       status_not_permitted: nu este permis de utilizator.

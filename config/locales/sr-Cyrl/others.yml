@@ -171,7 +171,6 @@ sr-Cyrl:
     bulk_download_reports:
       errors:
         no_plans: Није пронађен активан ИДП планови
-    no_notifications: Нема обавештења
   administration: Администрација
   ai:
     errors:
@@ -362,15 +361,10 @@ sr-Cyrl:
     continue: Наставите са својим задацима
     dashboard_instructions: Можда вам је додељено више активности које треба да завршите. Молимо вас да проверите да ли су све додељене активности завршене у свим кампањама.
     dashboard_menu:
-      bookings: Резервације
       campaign: Кампања
-      change_password: Промена лозинке
-      development: Развој
       home: Дом
       insights: Увиди
-      my_plan: Мој план
       profile: Профил
-      profile_details: Детаљи
       tasks: Задаци
     details: Детаљи
     edit_evaluation:
@@ -423,6 +417,8 @@ sr-Cyrl:
     assessments_heading: Ваши задаци
     column:
       locales: Локализације
+    messages:
+      no_participants_selected: Молимо вас да изаберете најмање једног учесника да бисте наставили.
     statuses:
       completed: Завршено
       in_progress: У току
@@ -436,6 +432,8 @@ sr-Cyrl:
   campaign_report:
     column:
       locales: Језици
+    messages:
+      bulk_download_no_reports: Није пронађен ниједан извештај. Молимо Вас да генеришете извештаје пре преузимања.
     modals:
       update_languages:
         default_language: Подразумевани језик
@@ -800,9 +798,9 @@ sr-Cyrl:
           in_progress: У току
           not_started: Није започето
     change_password: Промени лозинку
+    chatwoot_info_msg: Пријавите технички проблем
     delete: Обриши
     edit: Измени
-    lighthouse_app: Светионик Мерсер
     login: Пријава
     manage: Управљај
     'no': Не
@@ -833,6 +831,7 @@ sr-Cyrl:
   idp:
     actions: Акције
     add_comments: Додај коментаре
+    added_development_action: Додатна развојна акција
     ai:
       assistant:
         failure_fallback:
@@ -889,6 +888,7 @@ sr-Cyrl:
         title: Здраво , ја сам ваш асистент за развој
     behavioral: Понашајно
     board: Табла
+    change_history: Историја промена
     changes_saved_to_plan: Промене сачуване у плану
     comment_details:
       add_comment: Додај коментар
@@ -990,6 +990,7 @@ sr-Cyrl:
       publish_plan: Објави план
       remove: Уклони
       save_plan: Сачувај план
+      search_development_actions: Акције за развој претраживања
       show_development_action_information: Покажи информације о акцији развоја
       skill: Вештина
       sprint: Спринт
@@ -1002,7 +1003,7 @@ sr-Cyrl:
       write_here: Пишите овде...
     direct_reportee_details: Директни извештавачи Детаљ
     download:
-      description: 'Да бисте преузели извештај, пратите линк: < а хреф =''''ИНТЕРПОЛАТИОН_ВАР_0'''' таргет =''''_бланк''''> Довнлоад </а>. Веза важи само 10 минута'
+      description: 'Да бисте преузели извештај, пратите линк: < а хреф =''ИНТЕРПОЛАТИОН_ВАР_0'' таргет =''_бланк''> Довнлоад </а>. Веза важи само 10 минута'
     download_plan: План за преузимање
     edit_plan: Измени план
     edit_plan_and_add_skills: Уредите план и кликните на Управљање вештинама да бисте додали вештине.
@@ -1051,6 +1052,7 @@ sr-Cyrl:
     manage_plan: Управљај планом
     mark_as_complete: Означи као завршено
     mark_as_incomplete: Означи као недовршено
+    modified_development_action: Модификована развојна акција
     my_plan:
       development_plan: План развоја
       graphs:
@@ -1084,7 +1086,9 @@ sr-Cyrl:
         library: ИДП библиотека
     plan: План
     plan_status: План Статус ИНТЕРПОЛАТИОН_ВАР_0
+    plan_submitted_for_manager_approval: Ваш индивидуални план развоја је достављен на одобрење менаџера.
     private: Приватни
+    public: Јавност
     reflective_questions:
       already_completed: ИДП је већ завршен, сада не можете одговарати на питања.
       answer: Одговорити
@@ -1112,6 +1116,7 @@ sr-Cyrl:
       words: Речи
     remove_skill: Уклони вештину
     remove_skill_from_plan: Уклоните вештине ИНТЕРПОЛАТИОН_ВАР_0 из плана
+    removed_development_action: Уклоњена развојна акција
     report_preview: Преглед извештаја
     search_and_select_skills_of_skill_type: Претражите и изаберите ИНТЕРПОЛАТИОН_ВАР_0 вештине
     select_skills_of_skill_type: Изаберите ИНТЕРПОЛАТИОН_ВАР_0 вештине
@@ -1125,6 +1130,8 @@ sr-Cyrl:
     status: Статус
     suggestions: Предлоге
     suggestions_for_skill_type: Предлози за ИНТЕРПОЛАТИОН_ВАР_0 вештине
+    summary: Резиме
+    summary_logs: Збирни записи за ИНТЕРПОЛАТИОН_ВАР_0
     technical: Техничко
     user_idp_status:
       approved: Одобрено
@@ -1136,6 +1143,7 @@ sr-Cyrl:
       not_started: Није започето
       pending_approval: Чека одобрење
       rejected: Одбијено
+      start_review: Покрени преглед
     users: Корисници
     with_reflection_questions: Са рефлексивним питањима
     without_reflection_questions: Без рефлексивних питања
@@ -1308,12 +1316,6 @@ sr-Cyrl:
   sessions:
     errors:
       recaptcha: Recaptcha верификација није успела. Покушајте поново.
-  shared:
-    filters:
-      clear: Обриши филтере
-    internet_disconnected_message: Покушавам поновно повезивање. Проверите интернет везу.
-    terms_conditions_privacy: Изјава о приватности
-    tte_terms_and_condition: Услови и приватност
   simple_form:
     labels:
       client:
@@ -1651,6 +1653,7 @@ sr-Cyrl:
     idp:
       can_not_complete_without_approval_and_in_progress: Не можете да завршите ИДП док ваш менаџер не одобри и ви сте га означили као "У току".
       can_not_start_without_approval: Не можете почети да радите на вашем ИДП-у док га ваш менаџер не одобри.
+      no_changes_to_compare: Нема промена за упоређивање за ИДП план.
       no_previous_approved_plan: Није пронађен претходни одобрени план ИДП-а.
     issue: Проблем
     least: Молимо вас да одговорите на најмање %{min} одговора.

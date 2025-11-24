@@ -8,6 +8,7 @@ class License < ApplicationRecord
   belongs_to :client, counter_cache: :licenses_count
   belongs_to :report_family
   has_many :license_usages # on delete cascade
+  has_many :project_licenses, dependent: :destroy
 
   validates :start_date, :end_date, presence: true, allow_nil: false
   validates :client, presence: true, allow_nil: false
@@ -30,8 +31,36 @@ class License < ApplicationRecord
 
   enum :type, { common: 0, threesixty: 1, proctoring: 2, idp: 3, ai_assistant: 4 }, prefix: :type
 
+  scope :for_project, lambda { |project_id|
+    return all unless project_id
+
+    project = Project.find_by(id: project_id)
+    return all unless project
+
+    left_joins(:project_licenses).
+      where('licenses.is_project_specific = false OR project_licenses.project_id = ?', project.id).
+      distinct
+  }
+
+  scope :report_name_or_type_cont, lambda { |search_term|
+    return all if search_term.blank?
+
+    search_term_downcased = search_term.downcase
+    matching_enum_keys = types.keys.select { |k| k.downcase.include?(search_term_downcased) }
+
+    left_joins(:report_family).where(
+      'report_families.name ILIKE ? OR licenses.type IN (?)',
+      "%#{search_term}%",
+      types.values_at(*matching_enum_keys)
+    )
+  }
+
+  def self.ransackable_scopes(_auth_object = nil)
+    %i[project_specific report_name for_project report_name_or_type_cont]
+  end
+
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id]
+    %w[id is_project_specific]
   end
 
   def self.ransackable_associations(_auth_object = nil)

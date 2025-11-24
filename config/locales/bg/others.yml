@@ -919,8 +919,6 @@ bg:
     invalid_job: Това уведомление съответства на изтрит запис
     mark_as_read: Маркиране на всички прочетени
     more: Още
-    no_notifications: Няма известия
-    notifications: Уведомления
     results: Резултати
     super_admin:
       errors:
@@ -1241,7 +1239,7 @@ bg:
       description: Моля, попълнете всички полета, за да създадете нова парола
       submit: Предайте
       title: Подновявете паролата си
-    lighthouse_logo_alt_text: Лого на фара
+    lighthouse_logo_alt_text: Лого Lighthouse
     login:
       continue_btn: Продължавам
       description: Моля, влезте с информацията за личния си акаунт
@@ -1341,16 +1339,11 @@ bg:
     continue: Продължете изпълнението на задачите си
     dashboard_instructions: Възможно е да са Ви възложени няколко дейности, които трябва да изпълните. Моля, не забравяйте да проверите дали всички възложени дейности са изпълнени във всички кампании.
     dashboard_menu:
-      bookings: Резервации
       campaign: Кампания
-      change_password: Променете паролата
-      development: Развитие
       direct_reportees: Преки докладвани
       home: Начало
       insights: Прозрения
-      my_plan: Моят план
       profile: Профил
-      profile_details: Подробности
       tasks: Задачи
     details: Подробности
     edit_evaluation:
@@ -1465,6 +1458,7 @@ bg:
       export_occupations_job_scheduled: Професии Работата по износ беше планирана успешно
       export_reports_and_assessments_statuses_scheduled: Задачата за експортиране на отчети и оценки беше планирана успешно
       external_results_export_scheduled: Задачата за износ на външна оценка беше планирана успешно
+      no_participants_selected: Моля, изберете поне един участник, за да продължите.
       norm_results_export_scheduled: Задачата за експортиране на нормирани резултати за оценка беше планирана успешно
       normalize_factor_scores_scheduled: Нормализиране на факторните резултати беше планирано успешно.
       raw_factor_export_scheduled: Оценка Заданието за износ на необработен фактор беше планирано успешно
@@ -1609,6 +1603,7 @@ bg:
       report_bundle_placeholder: Изберете пакет с отчети
     messages:
       bulk_download_error: Груповото изтегляне е ограничено до 1000 файла с отчети. Ако сте избрали много езици, моля, намалете го.
+      bulk_download_no_reports: Не са намерени доклади. Моля, генерирайте отчетите преди изтегляне.
       bulk_download_successful: Задачата за групово изтегляне на отчет е планирана успешно
       export_report_data_scheduled: Задачата за експортиране на данни в отчета е планирана успешно
     modals:
@@ -1878,7 +1873,6 @@ bg:
       projects: Проекти
       report: Доклад
       reports: Доклади
-      scoring: Точкуване
       sms_contact: SMS контакт
       threesixty_campaign: Тришестдесет резултата от кампанията
     status:
@@ -2000,7 +1994,7 @@ bg:
           %{accept} Или можете спокойно да игнорирате този имейл.
 
           Моля, не споделяйте идентификационните си данни за достъп с никого.
-        subject: Покана за фара
+        subject: Покана за Lighthouse
       confirmation_instructions:
         subject: Инструкции за потвърждение
       invitation_instructions:
@@ -2012,7 +2006,7 @@ bg:
           campaign: 'Кампания: %{section_name}'
           client: 'Клиентски наем: %{section_name}'
           project: 'Проект: %{section_name}'
-        subject: Покана за фара
+        subject: Покана за Lighthouse
       password_change:
         body: |-
           Здравейте %{name}!
@@ -2352,6 +2346,7 @@ bg:
           in_progress: В процес на изпълнение
           not_started: Не е започнат
     change_password: Променете паролата
+    chatwoot_info_msg: Подаване на сигнал за технически проблем
     clients:
       actions:
         create:
@@ -2372,10 +2367,9 @@ bg:
     error_warning: Опа, нещо се обърка с оценката ти. Моля, свържете се с поддръжката.
     hogan:
       cannot_start: Не можете да започнете оценката на хоган точно сега. Моля, опитайте след няколко минути.
-    lighthouse_app: Фар на Мърсър
     login: Вход
     maintenance:
-      notification: Фарът ще бъде свален за планирана поддръжка след 60 секунди
+      notification: Lighthouse ще бъде свален за планирана поддръжка след 60 секунди
     manage: Управление
     'no': Не
     passwordSetting:
@@ -2474,6 +2468,7 @@ bg:
   idp:
     actions: Действия
     add_comments: Добавяне на коментари
+    added_development_action: Добавено действие за разработка
     ai:
       assistant:
         failure_fallback:
@@ -2530,6 +2525,7 @@ bg:
         title: Здравейте, аз съм вашият асистент за разработка
     behavioral: Поведенчески
     board: Съвет
+    change_history: История на промените
     changes_saved_to_plan: Промени, запазени в плана
     comment_details:
       add_comment: Добави коментар
@@ -2631,6 +2627,7 @@ bg:
       publish_plan: Публикуване на план
       remove: Махам
       save_plan: Запазване на плана
+      search_development_actions: Търсене на действия за разработка
       show_development_action_information: Показване на информация за действие за развитие
       skill: Умение
       sprint: Спринт
@@ -2643,7 +2640,7 @@ bg:
       write_here: Пишете тук...
     direct_reportee_details: Подробности за преките докладвани
     download:
-      description: 'За да изтеглите отчета, моля, последвайте връзката: <a href=''''%{url}'''' target=''''_blank''''>Изтегляне</a>. Връзката е валидна само за 10 минути'
+      description: 'За да изтеглите отчета, моля, последвайте връзката: <a href=''%{url}'' target=''_blank''>Изтегляне</a>. Връзката е валидна само за 10 минути'
     download_plan: Изтегляне на план
     edit_plan: Редактиране на плана
     edit_plan_and_add_skills: Редактирайте План и щракнете върху Управление на уменията, за да добавите умения.
@@ -2692,6 +2689,7 @@ bg:
     manage_plan: Управление на плана
     mark_as_complete: Маркиране като завършено
     mark_as_incomplete: Маркирайте като незавършен
+    modified_development_action: Модифицирано действие за развитие
     my_plan:
       development_plan: План за развитие
       graphs:
@@ -2711,7 +2709,6 @@ bg:
           name: Име
           publish_date: Дата на публикуване
           review_date: Дата на преглед
-          role: Настояща роля
       guidelines:
         cards:
           c1:
@@ -2809,7 +2806,9 @@ bg:
         title: Резюме на доклада
     plan: План
     plan_status: Състояние на плана %{status}
+    plan_submitted_for_manager_approval: Вашият индивидуален план за развитие е представен за одобрение от мениджъра.
     private: Редник
+    public: Общественост
     reflective_questions:
       already_completed: Индивидуалният план за развитие вече е попълнен, не можете да отговарите на въпросите сега.
       answer: Отговор
@@ -2837,6 +2836,7 @@ bg:
       words: Думи
     remove_skill: Премахване на умение
     remove_skill_from_plan: Премахване на %{name} умения от плана
+    removed_development_action: Премахнато действие за разработка
     report_preview: Преглед на доклада
     search_and_select_skills_of_skill_type: Търсете и изберете уменията %{skillType}
     select_skills_of_skill_type: Изберете %{skillType} умения
@@ -2850,6 +2850,8 @@ bg:
     status: Статус
     suggestions: Предложения
     suggestions_for_skill_type: Предложения за %{skillType} умения
+    summary: Резюме
+    summary_logs: Обобщени регистрационни файлове за %{reporteeName}
     technical: Технически
     user_idp_status:
       approved: Одобрен
@@ -2861,6 +2863,7 @@ bg:
       not_started: Не е започнато
       pending_approval: Очаква се одобрение
       rejected: Отхвърлени
+      start_review: Започнете преглед
     users: Потребители
     with_reflection_questions: С въпроси за размисъл
     without_reflection_questions: Без въпроси за размисъл
@@ -3374,13 +3377,6 @@ bg:
   sessions:
     errors:
       recaptcha: Проверката на Recaptcha се провали. Моля, опитайте отново.
-  shared:
-    filters:
-      clear: Изчистете филтрите
-    internet_disconnected_message: Опитвам се да възстановя връзката. Моля, проверете интернет връзката си.
-    mte_logo_alt_text: Логото на Mercer Talent Enterprise
-    terms_conditions_privacy: Декларация за поверителност
-    tte_terms_and_condition: Условия и поверителност
   sheet:
     import_modal:
       alert_access_sheet_removal: Качване на нов Accesssheet с изтриване на целия съществуващ запис и качване на нов от листа. Моля, уверете се, че имате всички записи на Accesssheet в електронна таблица.
@@ -4181,6 +4177,7 @@ bg:
     idp:
       can_not_complete_without_approval_and_in_progress: Не можете да попълните своя IDP, докато вашият мениджър не го одобри и не го маркирате като "В процес на изпълнение".
       can_not_start_without_approval: Не можете да започнете да работите с вашия IDP, докато вашият мениджър не го одобри.
+      no_changes_to_compare: Няма промени за сравнение за план за IDP.
       no_previous_approved_plan: Не е открит предишен одобрен план за вътрешно разселени лица.
       reflective_questions_required: За IDP са необходими отговори на въпроси за размисъл
       status_not_permitted: не е разрешено от потребителя.

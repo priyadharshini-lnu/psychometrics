@@ -77,6 +77,7 @@ hr:
       uniq?: trebao bi biti jedinstven
       uniq_simulation: Ova simulacijska procjena već je prisutna u sustavu. ID ove procjene je %{id}
       uniq_skillvue: Ova Skillvue procjena je već dostupna u sustavu. ID ove procjene je %{id}
+      uniq_yoodli: Ova Yoodlijeva procjena već je prisutna u sustavu. ID ove procjene je %{id}
       update_workshop:
         bookings_exist: Raspored nije moguće mijenjati jer su sudionici već rezervirali ovaj termin.
         less_than_booked: Ukupan broj sjedala mora biti veći od rezerviranog

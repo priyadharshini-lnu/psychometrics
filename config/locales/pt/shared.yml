@@ -1,0 +1,30 @@
+---
+pt:
+  shared:
+    action: Ação
+    add: Adicionar
+    cancel: Cancelar
+    change_password: Alterar a palavra-passe
+    clear_filters: Limpar filtros
+    edit: Editar
+    edited: Novo
+    id: ID
+    internet_disconnected_message: A tentar restabelecer a ligação. Verifique a sua ligação à Internet.
+    mte_logo_alt_text: Logótipo da Mercer Talent Enterprise
+    name: Nome
+    new: Novo
+    removed: Removido
+    search: Pesquisar
+    table:
+      entries:
+        selected:
+          one: 1 linha selecionada
+          other: "{{count}} linhas selecionadas"
+        total:
+          one: 'Total: 1'
+          other: 'Total: {{count}}'
+          zero: 'Total : 0'
+    terms_conditions_privacy: Declaração de privacidade
+    tte_terms_and_condition: Termos e privacidade
+    type: Tipo
+    update: Atualizar

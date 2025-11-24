@@ -1,10 +1,8 @@
 import {
   Bubble,
 } from '@ant-design/x'
-import Icon, {
-} from '@ant-design/icons'
+import Icon from '@ant-design/icons'
 import Lighthouse from '../assets/LighthouseIcon.svg?react'
-
 
 export const AssistantMessage = ({ message, isCurrent }) => (
   <Bubble

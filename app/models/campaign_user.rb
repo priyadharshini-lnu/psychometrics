@@ -67,7 +67,9 @@ class CampaignUser < ApplicationRecord
 
   def generate_or_remove_report_on_score_finalized
     if campaign_scores_finalized?
-      UserReports::GenerateAndSavePdfJob.perform_later(campaign_factor_dependent_user_reports.pluck(:id), user)
+      UserReports::GenerateAndSavePdfJob.set(wait: 30.seconds).perform_later(
+        campaign_factor_dependent_user_reports.pluck(:id), user
+      )
     else
       UserReports::RemovePdfJob.perform_later(campaign_factor_dependent_user_reports.pluck(:id))
     end

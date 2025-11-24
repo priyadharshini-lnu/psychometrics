@@ -1,4 +1,6 @@
-import { FC, useState, useRef } from 'react'
+import {
+  FC, useState, useRef,
+} from 'react'
 import {
   Button, Select, Row, Col, Space, List, Dropdown, Spin, Modal, Input, InputRef, FormInstance, Alert, message,
 } from 'antd'
@@ -25,13 +27,14 @@ const connecter = connect((state: RootState) => ({
 
 type Props = ConnectedProps<typeof connecter> & {
   form: FormInstance,
-  next: () => void
+  next: () => Promise<void> | void
   prev?: () => void
   onCancel?: () => void
+  errors?: Array<string> | null
 }
 
 export const AddSubjectsComponent: FC<Props> = ({
-  form, next, prev, uploadCSV, uploadInProgress, onCancel,
+  form, next, prev, uploadCSV, uploadInProgress, onCancel, errors,
 }) => {
   const [uploadModal, showUploadModal] = useState(false)
   const [importErrors, setImportErrors] = useState<{title: string}[]>([])
@@ -239,6 +242,19 @@ export const AddSubjectsComponent: FC<Props> = ({
             </Col>
           </Row>
         )}
+        {errors && errors.length > 0 && (
+          <Row className={styles.errors}>
+            <Col flex="1">
+              <Alert
+                message="Subject Validation Errors"
+                description={errors.map(
+                  (error, index) => <div key={index}>{error}</div>,
+                )}
+                type="error"
+              />
+            </Col>
+          </Row>
+        )}
         <List
           grid={{
             xs: 1, sm: 2, md: 4, lg: 4, xl: 4, xxl: 4, gutter: 16,
@@ -268,7 +284,9 @@ export const AddSubjectsComponent: FC<Props> = ({
             )
           }
           {prev ? <Button onClick={prev}>{I18n.t('administration.assessment_center.invite.back')}</Button> : null}
-          <Button type="primary" onClick={next}>{I18n.t('administration.assessment_center.invite.next')}</Button>
+          <Button type="primary" onClick={next}>
+            {I18n.t('administration.assessment_center.invite.next')}
+          </Button>
         </Space>
       </div>
     </div>

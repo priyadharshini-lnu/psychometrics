@@ -11,12 +11,22 @@ export const LicenseTR = t.type({
   disabled: t.boolean,
   enabled: t.boolean,
   type: t.string,
+  isProjectSpecific: t.boolean,
   reportFamily: t.union([
     t.type({
       id: t.string,
       name: t.string,
     }),
     t.undefined]),
+  projectLicenseDetails: t.union([
+    t.type({
+      id: t.number,
+      enabled: t.boolean,
+      usageLimit: t.number,
+      usedNumber: t.number,
+    }),
+    t.null,
+  ]),
 })
 export const LicenseTypes = [
   'common', 'threesixty', 'proctoring', 'idp',

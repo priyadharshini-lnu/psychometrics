@@ -63,6 +63,12 @@ FactoryBot.define do
       type { Assessments::Skillvue }
       external_settings { { assessment_id: '36d0676c454f67d39e67aee0699a2edd' } }
     end
+
+    trait :yoodli do
+      category { Assessment::CATEGORIES[:yoodli] }
+      type { Assessments::Yoodli }
+      external_settings { { assessment_id: 'assessmentId' } }
+    end
   end
 
   factory :assessment_hogan, class: 'Assessments::Hogan' do

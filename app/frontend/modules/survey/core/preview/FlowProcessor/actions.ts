@@ -163,6 +163,7 @@ export const saveResults = (preview, questionIds, currentBlockId?) => {
       body: JSON.stringify(data),
       decamelize: false,
       camelize: false,
+      retry: { count: 5, delay: 4000 },
     },
   }
 }

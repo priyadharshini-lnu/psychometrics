@@ -28,7 +28,7 @@ RSpec.describe VectorEmbeddable, type: :model do
     end
   end
 
-  let(:embedding_vector) { Array.new(VectorEmbedding::EMBEDDING_DIMENSIONS, 0.1) }
+  let(:embedding_vector) { Array.new(VectorEmbedding::DEFAULT_EMBEDDING_DIMENSIONS, 0.1) }
 
   before do
     stub_wisper_publisher('AI::EmbeddingService', :call, :ok, [embedding_vector])
@@ -124,7 +124,7 @@ RSpec.describe VectorEmbeddable, type: :model do
 
   describe '#update_embedding!' do
     let(:test_model) { TestModel.create!(name: 'Test Name') }
-    let(:new_vector) { Array.new(VectorEmbedding::EMBEDDING_DIMENSIONS, 0.5) }
+    let(:new_vector) { Array.new(VectorEmbedding::DEFAULT_EMBEDDING_DIMENSIONS, 0.5) }
 
     it 'creates or updates vector embedding' do
       expect(VectorEmbedding).to receive(:create_or_update_for_resource).with(test_model, new_vector)

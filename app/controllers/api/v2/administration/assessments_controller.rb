@@ -17,7 +17,8 @@ module Api
       'mettl' => Api::V2::Assessment::MettlContract,
       'saville' => Api::V2::Assessment::SavilleContract,
       'simulation' => Api::V2::Assessment::SimulationContract,
-      'skillvue' => Api::V2::Assessment::SkillvueContract
+      'skillvue' => Api::V2::Assessment::SkillvueContract,
+      'yoodli' => Api::V2::Assessment::YoodliContract
     }.freeze
 
     def create_contract_based_on_assessment_type

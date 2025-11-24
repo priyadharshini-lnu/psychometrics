@@ -1,0 +1,24 @@
+---
+ar:
+  enduser:
+    add_idp_plan_note: إضافة ملاحظة...
+    add_idp_plan_rejection_reason: إضافة سبب...
+    approve_idp_plan: الموافقة على الخطة
+    bookings: الحجوزات
+    campaign: الحملة
+    development: تطوير
+    direct_reportees: الموظفين المباشرين
+    home: لوحة التحكم
+    idp_plan_approval_note: مذكرة الموافقة
+    insights: البصائر
+    max_word_limit: يجب أن تكون على الأكثر %{max} كلمة
+    min_word_limit: يجب أن تكون على الأقل %{min} كلمة
+    my_plan: خطتي
+    profile: تفاصيلي
+    profile_details: تفاصيل
+    question_counter: السؤال %{current} من %{total}
+    reason_for_idp_plan_rejection: سبب الرفض
+    reject_idp_plan: رفض الخطة
+    selected_count: المحدد
+    skill_type: نوع المهارة
+    tasks: مهامي

@@ -18,12 +18,13 @@
 translations:
   - file: "app/assets/javascripts/administration/i18n/%{locale}.js"
     pretty_print: true
+    except: ['*.enduser.*']
   - file: "app/assets/javascripts/i18n/%{locale}.js"
     pretty_print: true
     only: ['*.validations.*', '*.reports.*', '*.threesixty.*', '*.helps.*', '*.subjects.*', '*.languages.*', '*.assessments.*', '*.shared.*',
            '*.anonym.*', '*.checking_wizard.*', '*.campaign.*',  '*.user_reports.*',  '*.common.*',  '*.frontend.*',  '*.administration.factors.form.*',
            '*.assessor.*', '*.profile.*', '*.navigation.*', '*.campaign_assessment.*', '*.languages_localized.*', '*.user_assessments.*', '*.administrators.*',
-           '*.auth.*', '*.users.*', '*.privacy_policy.*', '*.change_password_page.*', '*.campaigns.card.*', '*.errors.*', '*.idp.*', '*.glint.*', '*.jobs.*'
+           '*.auth.*', '*.users.*', '*.privacy_policy.*', '*.change_password_page.*', '*.campaigns.card.*', '*.errors.*', '*.idp.*', '*.glint.*', '*.jobs.*', '*.enduser.*', '*.ai.*',
           ]
 fallbacks: true
 

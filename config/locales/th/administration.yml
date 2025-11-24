@@ -208,6 +208,7 @@ th:
           projectSettings:
             assessments: การประเมิน
             design: ออกแบบ
+            feature_flags: แฟล็กคุณลักษณะ
             idp: IDP
             integrations: การบูรณาการ
             privacy_settings: การตั้งค่าความเป็นส่วนตัว
@@ -764,11 +765,6 @@ th:
       user: ผู้ใช้
       user_agent: ตัวแทนผู้ใช้
     back: ย้อนกลับ
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>คุณแน่ใจหรือไม่ว่าต้องการออกจากระบบ?</p> <p>กด No หากคุณต้องการทํางานต่อ กด Yes เพื่อออกจากระบบผู้ใช้ปัจจุบัน</p>"
-          title: ออกจาก <strong>ระบบ</strong> ?
     block_settings:
       modal:
         add_layer: เพิ่มเลเยอร์
@@ -1244,11 +1240,6 @@ th:
         archived: เก็บเข้าคลัง
         disable: หอจดหมายเหตุ
         enable: ยกเลิกการเก็บถาวร
-      columns:
-        country: ประเทศ
-        project_manager: ผู้จัดการโครงการ
-        type: ประเภท
-        year: ปี
       copy:
         successfully: การเช่าไคลเอ็นต์ '%{name}' ถูกคัดลอกเรียบร้อยแล้ว
       create:
@@ -1257,14 +1248,6 @@ th:
         successfully: การเช่าไคลเอ็นต์ %{name} ถูกลบเรียบร้อยแล้ว
       edit:
         header: แก้ไขไคลเอ็นต์
-      form:
-        client: ลูกค้า
-        country: ประเทศ
-        name: ชื่อ
-        number: หมายเลข
-        project_manager: ผู้จัดการโครงการ
-        type: ประเภท
-        year: ปี
       licenses:
         resource:
           confirmations:
@@ -1684,7 +1667,6 @@ th:
             title: เก็บถาวร <strong>%{name}</strong> ?
           enable:
             title: ยกเลิกการเก็บถาวร <strong>%{name}</strong> ?
-      tenancies: บัญชีลูกค้า
       threesixty_campaign: แคมเปญ Threesixty
       toggle_status:
         successfully: พื้นที่เช่าของลูกค้า %{name} อัปเดตเรียบร้อยแล้ว
@@ -2336,7 +2318,6 @@ th:
         name: ชื่อ
         publish_date: วันที่เผยแพร่
         review_date: วันที่ตรวจสอบ
-        role: บทบาทปัจจุบัน
       fields_label: ฟิลด์
       global_skills: ทักษะระดับโลก
       idp: ผู้พลัดถิ่น
@@ -2756,43 +2737,14 @@ th:
     message: ข้อความ
     meta_title: แผงการดูแลระบบ
     navigation:
-      ai_artifacts: สิ่งประดิษฐ์ AI
-      ai_assistants: ผู้ช่วย AI
-      assessments: การประเมิน
-      assessments_reports: การประเมินและรายงาน
-      assessor_dashboard: แดชบอร์ดผู้ประเมิน
-      assessor_workshops: ศูนย์ประเมินผล
       audit_logs: บันทึกการตรวจสอบ
       availability: กำหนดการ
-      back_to_main: เมนูหลัก
-      campaign_templates: เทมเพลตแคมเปญ
-      change_password: เปลี่ยนรหัสผ่าน
-      client_admins: ผู้ดูแลระบบไคลเอ็นต์
-      clients: บัญชีลูกค้า
-      communication_center: ศูนย์สื่อสาร
       dashboard: แดชบอร์ด
-      data_reports: รายงานข้อมูล
-      development_actions: การดําเนินการพัฒนา
-      dimensions: มิติ
       factors: ปัจจัย
       innovation_styles: รูปแบบนวัตกรรม
-      libraries: ห้องสมุดสื่อ
-      norms: ค่ามาตรฐาน
       occupations: อาชีพ
-      options: ตัวเลือก
-      participants: ผู้เข้าร่วม
-      profile: โปรไฟล์
-      profile_details: รายละเอียด
-      project_admins: ผู้ดูแลระบบโครงการ
-      question_center: ศูนย์คําถาม
       registration_codes: รหัสการลงทะเบียน
-      report_approvals: การอนุมัติรายงาน
-      reports: รายงาน
-      scheduling: กำหนดการ
-      show_submenu: แสดงเมนูย่อย
       skills_taxonomy: อนุกรมวิธานทักษะ
-      user_profile_details: รายละเอียดโปรไฟล์
-      user_report_events: เหตุการณ์รายงานผู้ใช้
       users: ผู้เข้าร่วม
     no_data_found: ไม่พบข้อมูล
     norms:
@@ -2866,7 +2818,6 @@ th:
         successfully: ค่ามาตรฐานอัปเดตเรียบร้อยแล้ว
       update:
         successfully: ค่ามาตรฐาน %{name} อัปเดตเรียบร้อยแล้ว
-    notification_bell_icon: ไอคอนกระดิ่งแจ้งเตือน
     noty:
       error_408: การดําเนินการนี้ใช้เวลานานเกินไป โปรดลองโหลดหน้าใหม่
       error_500: มีบางอย่างผิดพลาด ติดต่อผู้ดูแลระบบ
@@ -4283,7 +4234,6 @@ th:
         inactive: ไม่ทำงาน
         percentage: เปอร์เซ็นต์
         title: การประเมิน
-      title: สถิติ
       top_metrics:
         completed: เสร็จสมบูรณ์
         in_progress: อยู่ระหว่างดําเนินการ
@@ -4753,10 +4703,6 @@ th:
       update:
         successfully: ผู้ใช้ %{name} อัปเดตเรียบร้อยแล้ว
       user: ผู้ใช้
-    validations:
-      idp:
-        end_date_cannot_be_in_past: วันที่สิ้นสุดไม่สามารถเป็นวันที่ผ่านมาได้
-        start_date_cannot_be_in_past: วันที่เริ่มต้นไม่สามารถเป็นอดีตได้
     webhook:
       connection_failure: ไม่สามารถเชื่อมต่อกับ URL ของเว็บฮุคได้ โปรดตรวจสอบว่า URL เว็บฮุคถูกต้องหรือไม่
       delete_success: ลบการตั้งค่าเว็บฮุคเรียบร้อยแล้ว

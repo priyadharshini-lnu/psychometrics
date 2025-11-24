@@ -1,0 +1,30 @@
+---
+fr:
+  shared:
+    action: Action
+    add: Ajouter
+    cancel: Annuler
+    change_password: Modifier le mot de passe
+    clear_filters: Effacer les filtres
+    edit: Editer
+    edited: Nouveau
+    id: ID
+    internet_disconnected_message: Essayez de vous reconnecter. Veuillez vérifier votre connexion internet.
+    mte_logo_alt_text: Logo Mercer Talent Enterprise
+    name: Nom
+    new: Nouveau
+    removed: Supprimé
+    search: Recherche
+    table:
+      entries:
+        selected:
+          one: 1 ligne sélectionnée
+          other: "{{count}} lignes sélectionnées"
+        total:
+          one: 'Total : 1'
+          other: 'Total : {{count}}'
+          zero: 'Total : 0'
+    terms_conditions_privacy: Déclaration de confidentialité
+    tte_terms_and_condition: Conditions d'utilisation et protection de la vie privée
+    type: Type
+    update: Mettre à jour

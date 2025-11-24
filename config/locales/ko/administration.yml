@@ -208,6 +208,7 @@ ko:
           projectSettings:
             assessments: 평가
             design: 디자인
+            feature_flags: 기능 플래그
             idp: IDP
             integrations: 통합
             privacy_settings: 개인정보 설정
@@ -764,11 +765,6 @@ ko:
       user: 사용자
       user_agent: 사용자 에이전트
     back: 뒤로
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>정말 로그아웃하시겠습니까?</p> <p>작업을 계속하려면 아니요를 누릅니다. 현재 사용자를 로그아웃하려면 예를 누릅니다.</p>"
-          title: "<strong>로그아웃</strong>?"
     block_settings:
       modal:
         add_layer: 레이어 추가
@@ -1244,11 +1240,6 @@ ko:
         archived: 아카이브
         disable: 아카이브
         enable: 보관 해제
-      columns:
-        country: 국가
-        project_manager: 프로젝트 관리자
-        type: 유형
-        year: 연도
       copy:
         successfully: 클라이언트 테넌시 '%{name}'이(가) 성공적으로 복사되었습니다.
       create:
@@ -1257,14 +1248,6 @@ ko:
         successfully: 클라이언트 테넌시 %{name}이(가) 성공적으로 삭제되었습니다.
       edit:
         header: 클라이언트 편집
-      form:
-        client: 클라이언트
-        country: 국가
-        name: 이름
-        number: 번호
-        project_manager: 프로젝트 관리자
-        type: 유형
-        year: 연도
       licenses:
         resource:
           confirmations:
@@ -1684,7 +1667,6 @@ ko:
             title: 아카이브 <strong>%{name}</strong>?
           enable:
             title: "<strong>%{name}</strong> 보관 취소하시겠습니까?"
-      tenancies: 고객 임차
       threesixty_campaign: 쓰리식스티 캠페인
       toggle_status:
         successfully: 클라이언트 테넌시 %{name}이(가) 업데이트되었습니다.
@@ -2336,7 +2318,6 @@ ko:
         name: 이름
         publish_date: 게시 날짜
         review_date: 검토 날짜
-        role: 현재 역할
       fields_label: 필드
       global_skills: 글로벌 기술
       idp: IDP
@@ -2756,43 +2737,14 @@ ko:
     message: 메시지
     meta_title: 관리 패널
     navigation:
-      ai_artifacts: AI 아티팩트
-      ai_assistants: AI 어시스턴트
-      assessments: 평가
-      assessments_reports: 평가 및 보고서
-      assessor_dashboard: 평가자 대시보드
-      assessor_workshops: 평가 센터
       audit_logs: 감사 로그
       availability: 가용성
-      back_to_main: 메인 메뉴
-      campaign_templates: 캠페인 템플릿
-      change_password: 비밀번호 변경
-      client_admins: 클라이언트 관리자
-      clients: 고객 임차
-      communication_center: 커뮤니케이션 센터
       dashboard: 대시보드
-      data_reports: 데이터 보고서
-      development_actions: 개발 작업
-      dimensions: 치수
       factors: 요인
       innovation_styles: 혁신 스타일
-      libraries: 미디어 라이브러리
-      norms: 규범
       occupations: 직업
-      options: 옵션
-      participants: 참가자
-      profile: 프로필
-      profile_details: 세부 정보
-      project_admins: 프로젝트 관리자
-      question_center: 질문 센터
       registration_codes: 등록 코드
-      report_approvals: 보고서 승인
-      reports: 보고서
-      scheduling: 일정 예약
-      show_submenu: 하위 메뉴 표시
       skills_taxonomy: 기술 분류
-      user_profile_details: 프로필 세부 정보
-      user_report_events: 사용자 보고서 이벤트
       users: 사용자
     no_data_found: 데이터를 찾을 수 없습니다
     norms:
@@ -2866,7 +2818,6 @@ ko:
         successfully: 규범이 성공적으로 업데이트되었습니다.
       update:
         successfully: 규범 %{name}이 업데이트되었습니다.
-    notification_bell_icon: 알림 벨 아이콘
     noty:
       error_408: 이 작업은 너무 오래 걸립니다. 페이지를 다시 로드해 보세요.
       error_500: 문제가 발생했습니다. 관리자에게 문의하세요.
@@ -4292,7 +4243,6 @@ ko:
         inactive: 비활성
         percentage: 백분율
         title: 평가
-      title: 통계
       top_metrics:
         completed: 완료
         in_progress: 진행 중
@@ -4766,10 +4716,6 @@ ko:
       update:
         successfully: 사용자 %{name}이 업데이트되었습니다.
       user: 사용자
-    validations:
-      idp:
-        end_date_cannot_be_in_past: 종료 날짜는 과거일 수 없습니다.
-        start_date_cannot_be_in_past: 시작 날짜는 과거일 수 없습니다.
     webhook:
       connection_failure: 웹훅 URL에 연결할 수 없습니다. 웹훅 URL이 올바른지 확인하세요...
       delete_success: 웹훅 설정이 성공적으로 삭제되었습니다

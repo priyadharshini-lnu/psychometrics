@@ -1,0 +1,5 @@
+Code,Name,AIAssistantID,Instructions,IncludeAllDatasheetColumns,DependencyQuestionIDs,DependencyCampaignFactorCodes,DependencySheetColumnNames
+summary_generator,Summary Generator,5,"Generate a summary based on user responses",false,101,factor_code_1,
+detailed_report,Detailed Report,5,"Create detailed analysis",true,"101,102","factor_code_1,factor_code_2",email_column
+feedback_ai,Feedback AI,6,"Provide feedback",false,,,email_column
+

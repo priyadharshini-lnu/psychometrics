@@ -2,30 +2,104 @@
 zh-HK:
   dry_errors:
     errors:
+      add_edit_project:
+        invalid_subdomain_format: 子網域格式錯誤。
+        reserved_subdomain: 保留子網域%{value}
+        uniq_subdomain: 子網域應該是唯一的。
       add_manager:
         cannot_be_self: 使用者不能被指派為自己的經理
+        manager_not_found: 找不到管理員或不屬於相同專案
+        user_not_found: 找不到使用者或不屬於相同專案
+      admin:
+        already_added: 已新增電子郵件的管理員。
+      already_invited: 此使用者已存在於您嘗試新增的評量中心中。
+      assessor_assessment:
+        already_added: 評估員評估已新增至行銷活動。
+        lead_already_added: 只能將一個潛在客戶評估員評估新增至行銷活動。
+      campaign_factor:
+        code_already_exists: 具有相同代碼的因素已經存在。
+        invalid_lua_name: 應該是有效的 lua 變數名稱
+        limit_exceeded: 您已達到%{limit}廣告活動因素的上限。
+        name_already_exists: 已存在同名的因數。
+        rank_not_allowed: 只有輸出類型為數值的因素才能排名。
+      campaign_factor_group:
+        group_already_exists: 已存在具有相同名稱的群組。
+        last_factor_group: 無法刪除最後一個行銷活動因素群組。
       campaign_idps:
         idp_template_not_published: 該IDP模板尚未發布，請在分配到廣告系列之前將其發布。
+      cant_be_deleted: 無法刪除此記錄
+      client_feature:
+        ai_assisted_idp_feature_error: 如果 AI 助理功能被停用，則不可能是真的
+      create_superadmin:
+        uniq_email: 電子郵件應該是 uniq。
       development_actions:
         only_global_skills_allowed: 選取的技能必須是全球性技能。
         skills_not_belong_to_project: 選取的技能必須屬於指定的專案。
         skills_required: 請至少選擇一種技能。
+      exceeded_subjects_count: 每個邀請只能新增%{count}個主題
       idp_template:
         content_required: 說明需要內容
         tag_or_skill_required: 选择“已选择”选项时，请选择标签或技能。
+      invalid_name: 只允許使用字母、數字、空格、破折號和點作為有效字符
+      invalid_value: 第 %{row} 行號上的陳述式 '%{value}' 無效
       job_roles:
         unique_within_job_group: 已有相同名稱的職位角色存在。
+      mettl_schedule_record_create:
+        uniq_schedule_name: 排程名稱應該是唯一的
+      not_uniq_variable: 變數 '%{value}' 在行號 %{row} 上重新定義
+      project_assessments:
+        should_be_greater_than_zero: 結果有效期應大於 0 天
       project_feature:
         global_skills_not_enabled_on_client: 若要啟用此專案的全域技能，請在用戶端設定中的功能旗標下啟用它。
+      report_approval_settings:
+        report_exists: 此報告的報告核准設定已存在。
+        validates_admins: 管理員無權存取行銷活動。
+      report_families_reports:
+        report_exists: 此報告已是報告包的一部分
+      skill:
+        already_added: 已添加同名技能。
+      skill_alias:
+        unique_alias: 別名應該是唯一的
+        unique_skill: 技能應該是獨一無二的
       skills_job_roles:
         must_belong_to_same_project_or_be_global: 技能和工作角色必須屬於同一個專案，或是全球性的。
         unique_mappings: 具有相同技能和工作角色的映射已經存在。
+      uniq: 此 Mettl 評估已存在於系統中。此評定的 ID 為 %{id}
+      uniq_simulation: 此模擬評估已存在於系統中。此評定的 ID 為 %{id}
       uniq_skillvue: 此 Skillvue 評估已存在於系統中。此評估的 ID 為 %{id}
+      uniq_yoodli: 這個 Yoodli 評估已經存在於系統中。此評定的 ID 為 %{id}
       update_workshop:
         bookings_exist: 由於參加者已預約此時段，因此無法修改時間表。
+        less_than_booked: 總座位數必須大於預訂
+      user_availability_date:
+        overlaps_date: 與另一個可用性%{range}重疊
+        overlaps_time: 重疊間隔%{interval}
+        start_date_should_be_less: 開始日期應小於結束日期
+        start_time_should_be_less: 開始時間應小於結束時間
       user_idp_plan:
+        idp_template_already_assigned_to_user: 此Idp模板已分配給此使用者，並且處於活動狀態
         idp_template_not_published: 該IDP模板尚未發布，請在分配給用戶之前將其發布。
+      user_saved_filters:
+        limit_exceeded: 您只能保存%{limit}個過濾器，請刪除已保存的過濾器以添加更多過濾器。
+        unique_name: 具有相同名稱的過濾器已存在。
+      workshop_invited_subject_create:
+        already_exists: 邀請中已存在主旨。
+      workshop_subject_create:
+        already_exists: 受試者已存在於該評估中心。
+        part_of_other_workshop: 受試者已經是「%{workshop_name}」的參與者。
       workshop_subject_re_enroll:
         no_seats_available: 本工作坊沒有座位。
         scheduling_lead_time_passed: 排程時間已過，您無法重新註冊該科目。
         workshop_subject_not_found: 未找到研討會主題
+      workshops:
+        no_available_assessor_slots: 沒有可供評估員%{assessor}的名額
+        no_available_manager_slots: 沒有可供經理%{manager}的可用位置
+    users:
+      registrations:
+        new:
+          register: 登記
+          sign_in: 登入
+      sessions:
+        new:
+          register: 登記
+          sign_in: 登入

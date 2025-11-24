@@ -59,6 +59,9 @@ module Administration
         required(:skillvue_user_assessment_details).maybe do
           hash(Administration::SkillvueUserAssessmentSchema.schema(_, _))
         end
+        required(:yoodli_user_assessment_details).maybe do
+          hash(Administration::YoodliUserAssessmentSchema.schema(_, _))
+        end
         required(:hogan_participant_id).maybe(:str?)
       end
     end

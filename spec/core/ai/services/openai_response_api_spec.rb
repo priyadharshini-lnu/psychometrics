@@ -6,13 +6,14 @@ RSpec.describe AI::Services::OpenaiResponseApi, type: :service do
   let(:model) { double('Model', id: 'gpt-4o', provider: 'openai') }
   let(:message) { double('Message', role: :user, content: 'Test message', tool_calls: nil, tool_call_id: nil) }
   let(:llm_chat) { double('LLM Chat', model: model, messages: [message], tools: {}, params: {}) }
-  let(:service) { described_class.new(llm_chat) }
+  let(:service) { described_class.new(llm_chat, model.id) }
 
   # Mock Settings.ai_providers
   before do
     allow(Settings).to receive(:ai_providers).and_return([
       {
         'model_id' => 'gpt-4o',
+        'model' => 'gpt-4o',
         'context' => {
           'openai_api_key' => 'test-api-key',
           'openai_api_base' => 'https://test.cognitiveservices.azure.com/openai/deployments/gpt-4o?api-version=2024-08-01-preview'
@@ -121,7 +122,7 @@ RSpec.describe AI::Services::OpenaiResponseApi, type: :service do
     context 'when provider is invalid' do
       let(:invalid_model) { double('Model', id: 'gpt-4o', provider: 'anthropic') }
       let(:invalid_llm_chat) { double('LLM Chat', model: invalid_model) }
-      let(:invalid_service) { described_class.new(invalid_llm_chat) }
+      let(:invalid_service) { described_class.new(invalid_llm_chat, invalid_model.id) }
 
       it 'raises error for non-OpenAI provider' do
         expect { invalid_service.call }.to raise_error(
@@ -136,6 +137,7 @@ RSpec.describe AI::Services::OpenaiResponseApi, type: :service do
         allow(Settings).to receive(:ai_providers).and_return([
           {
             'model_id' => 'gpt-4o',
+            'model' => 'gpt-4o',
             'context' => {
               'openai_api_key' => nil,
               'openai_api_base' => nil

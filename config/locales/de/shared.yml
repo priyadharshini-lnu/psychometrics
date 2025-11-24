@@ -1,0 +1,29 @@
+---
+de:
+  shared:
+    action: Aktion
+    add: Hinzufügen
+    cancel: Stornieren
+    change_password: Passwort ändern
+    clear_filters: Filter löschen
+    edit: Bearbeiten
+    edited: Neu
+    internet_disconnected_message: Bitte überprüfen Sie Ihre Internet-Verbindung.
+    mte_logo_alt_text: Mercer Talent Enterprise Logo
+    name: Name
+    new: Neu
+    removed: Entfernt
+    search: Suchen
+    table:
+      entries:
+        selected:
+          one: 1 Zeile ausgewählt
+          other: "{{count}} Zeilen ausgewählt"
+        total:
+          one: 'Gesamt : 1'
+          other: 'Gesamt : {{count}}'
+          zero: 'Gesamt : 0'
+    terms_conditions_privacy: Datenschutzerklärung
+    tte_terms_and_condition: TTE – Geschäftsbedingungen und Datenschutzerklärung
+    type: Typ
+    update: Aktualisieren

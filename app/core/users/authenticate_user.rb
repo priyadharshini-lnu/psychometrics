@@ -13,6 +13,7 @@ module Users
     end
 
     def call
+      auth_details = {}
       # Tries auth by spoof token
       if params[SPOOF_KEY]
         authenticate_by_spoof
@@ -38,22 +39,23 @@ module Users
 
       if params[JWT_KEY]
         request.env[:sso] = 'true'
-        authenticate_by_jwt
+        jwt_type, auth_details = authenticate_by_jwt
 
+        audit_log_details = params.except('jwt').merge(jwt_type: jwt_type)
         unless user
-          audit!(:single_sign_on, nil, record_type: 'User', payload: params.except('jwt'), outcome: 'failed',
+          audit!(:sign_in_with_jwt, nil, record_type: 'User', payload: audit_log_details, outcome: 'failed',
           failure_reason: :invalid_jwt_token)
           return broadcast(:invalid_jwt_token, invalid_redirect_url)
         end
 
-        audit! :single_sign_on, user, user: user, payload: params.except('jwt'), outcome: 'successful'
-        found_by = :jwt
+        audit! :sign_in_with_jwt, user, user: user, payload: audit_log_details, outcome: 'successful'
+        found_by = jwt_type
       end
 
       # Exit if no params with token
       return broadcast :not_authenticated unless user
 
-      broadcast(:ok, user, found_by)
+      broadcast(:ok, user, found_by, auth_details)
     end
 
     private
@@ -80,7 +82,9 @@ module Users
     # Tries auth by JWT token
     #
     def authenticate_by_jwt
-      @user = JwtAuthenticator.get_user_by_client_jwt(params[JWT_KEY], project)
+      jwt_type, user, auth_details = JwtAuthenticator.get_user_by_jwt(params[JWT_KEY], project)
+      @user = user
+      [jwt_type, auth_details]
     end
 
     # Builds an url for redirection with status

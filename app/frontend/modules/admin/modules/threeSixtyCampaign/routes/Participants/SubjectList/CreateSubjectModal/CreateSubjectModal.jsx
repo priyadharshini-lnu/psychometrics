@@ -28,8 +28,6 @@ function CreateSubjectModal ({
 }) {
   const { campaignId, projectId } = useParams()
   const [form] = Form.useForm()
-  const [loading, setLoading] = useState(false)
-  const [formErrors, setFormErrors] = useState([])
   const [autocompletedUser, setAutocompletedUser] = useState('')
 
   const [jobRoleFilter, setJobRoleFilter] = useState('')
@@ -105,16 +103,9 @@ function CreateSubjectModal ({
       return
     }
 
-    setLoading(true)
-    setFormErrors([])
 
-    try {
-      await createAll(campaignId, [trimmedValues])
-      closeModal()
-    } catch (error) {
-      setFormErrors([error.message || I18n.t('common.errors.something_wrong')])
-      setLoading(false)
-    }
+    await createAll(campaignId, [trimmedValues])
+    closeModal()
   }
 
   return (
@@ -130,28 +121,20 @@ function CreateSubjectModal ({
         <Button
           key="submit"
           type="primary"
-          loading={loading || creationInProgress}
-          disabled={loading || creationInProgress}
+          disabled={creationInProgress}
           onClick={() => form.submit()}
         >
-          {(loading || creationInProgress) ? <LoadingOutlined /> : <CheckOutlined />}
+          {(creationInProgress) ? <LoadingOutlined /> : <CheckOutlined />}
           {I18n.t('common.actions.add')}
         </Button>,
       ]}
     >
-      {(formErrors.length > 0 || errors) && (
+      {(errors) && (
         <Alert
-          message={I18n.t('common.errors.validation_failed')}
-          description={(
-            <ul>
-              {formErrors.map((error, index) => (
-                <li key={index}>{error}</li>
-              ))}
-              {errors && Array.isArray(errors) && errors.map((error, index) => (
-                <li key={`redux-${index}`}>{error}</li>
-              ))}
-            </ul>
-          )}
+          message={
+            typeof errors === 'object' ? Object.values(errors).join(', ')
+              : (errors || I18n.t('common.errors.something_wrong'))
+          }
           type="error"
           className="mb-4"
           showIcon

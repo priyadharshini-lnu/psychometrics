@@ -214,7 +214,6 @@ zh-HK:
     bulk_download_reports:
       errors:
         no_plans: 未找到有效的 IDP 計劃
-    no_notifications: 無通知
   ai:
     errors:
       bad_request_invalid_input: 由於輸入無效，無法處理您的請求。請檢查您的要求並重試。
@@ -416,16 +415,11 @@ zh-HK:
     continue: 繼續您的任務
     dashboard_instructions: 您有多個需要完成的活動。請確保所有活動中的分配任務都已完成。
     dashboard_menu:
-      bookings: 訂單
       campaign: 市場推廣
-      change_password: 更改密碼
-      development: 發展
       direct_reportees: 直下報告
       home: 主頁
       insights: 分析
-      my_plan: 我的計劃
       profile: 個人資料
-      profile_details: 詳情
       tasks: 任務
     details: 詳情
     edit_evaluation:
@@ -496,6 +490,8 @@ zh-HK:
       locales: 地點
       skillvue_email_id: Skillvue 候選人電子郵件 ID
       skillvue_external_assessment_id: Skillvue 評估 ID
+    messages:
+      no_participants_selected: 請選擇至少一名參與者繼續。
     modals:
       assessor_campaign_assessment_group:
         error_message: 出錯了。請聯絡管理員
@@ -515,6 +511,8 @@ zh-HK:
   campaign_report:
     column:
       locales: 地點
+    messages:
+      bulk_download_no_reports: 沒有找到報告。請在下載前生成報告。
     modals:
       update_languages:
         default_language: 預設語言
@@ -881,9 +879,9 @@ zh-HK:
           in_progress: 進行中
           not_started: 未開始
     change_password: 更改密碼
+    chatwoot_info_msg: 回報技術問題
     delete: 刪除
     edit: 編輯
-    lighthouse_app: 默瑟燈塔
     login: 登入
     manage: 管理
     'no': 否
@@ -914,6 +912,7 @@ zh-HK:
   idp:
     actions: 操作
     add_comments: 新增註解
+    added_development_action: 新增開發動作
     ai:
       assistant:
         failure_fallback:
@@ -970,6 +969,7 @@ zh-HK:
         title: 您好，我是你們的開發助理
     behavioral: 行為
     board: 看板
+    change_history: 變更歷史
     changes_saved_to_plan: 儲存至計劃的變更
     comment_details:
       add_comment: 新增評論
@@ -1066,6 +1066,7 @@ zh-HK:
       publish_plan: 发布计划
       remove: 移除
       save_plan: 保存計劃
+      search_development_actions: 搜尋開發動作
       show_development_action_information: 顯示開發動作資訊
       skill: 技能
       sprint: 衝刺
@@ -1124,6 +1125,7 @@ zh-HK:
     manage_plan: 管理计划
     mark_as_complete: 标记为完成
     mark_as_incomplete: 標記為不完整
+    modified_development_action: 修改後的發展行動
     my_plan:
       development_plan: 發展計劃
       graphs:
@@ -1142,7 +1144,6 @@ zh-HK:
           name: 姓名
           publish_date: 發佈日期
           review_date: 審核日期
-          role: 當前角色
       guidelines:
         cards:
           c1:
@@ -1239,7 +1240,9 @@ zh-HK:
         skills_count: 技能數量
         title: 報告摘要
     plan_status: 計劃狀態%{status}
+    plan_submitted_for_manager_approval: 您的個人發展計劃已提交給經理批准。
     private: 私
+    public: 公
     reflective_questions:
       already_completed: IDP 已經完成，您現在無法回答問題。
       answer: 答
@@ -1267,6 +1270,7 @@ zh-HK:
       words: 詞彙
     remove_skill: 移除技能
     remove_skill_from_plan: 從計劃中移除技能%{name}
+    removed_development_action: 已移除開發動作
     report_preview: 報告預覽
     search_and_select_skills_of_skill_type: 搜尋並選取%{skillType}技能
     select_skills_of_skill_type: 選擇%{skillType}技能
@@ -1280,6 +1284,8 @@ zh-HK:
     status: 狀態
     suggestions: 建議
     suggestions_for_skill_type: "%{skillType}技能建議"
+    summary: 摘要
+    summary_logs: "%{reporteeName}的摘要記錄"
     technical: 技術
     user_idp_status:
       approved: 已批准
@@ -1289,6 +1295,7 @@ zh-HK:
       in_review: 審查中
       not_started: 未开始
       pending_approval: 待批准
+      start_review: 開始審查
     users: 用戶
   idp_templates:
     errors:
@@ -1464,12 +1471,6 @@ zh-HK:
   sessions:
     errors:
       recaptcha: Recaptcha 驗證失敗。請再試一次。
-  shared:
-    filters:
-      clear: 清除篩選器
-    internet_disconnected_message: 正在嘗試重新連接。請檢查您的互聯網連接。
-    terms_conditions_privacy: 私隱聲明
-    tte_terms_and_condition: 條款和私隱
   simple_form:
     labels:
       client:
@@ -1807,6 +1808,7 @@ zh-HK:
     idp:
       can_not_complete_without_approval_and_in_progress: 在您的經理批准並將其標記為“進行中”之前，您無法完成您的 IDP。
       can_not_start_without_approval: 在您的經理批准之前，您無法開始處理您的 IDP。
+      no_changes_to_compare: IDP 計劃沒有變化可比較。
       no_previous_approved_plan: 未找到先前批准的 IDP 計劃。
     issue: 問題
     least: 請至少回答 %{min} 個選項。

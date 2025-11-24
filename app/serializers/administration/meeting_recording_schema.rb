@@ -13,6 +13,7 @@ module Administration
         required(:assessors).maybe(:array?)
         required(:participants).maybe(:array?)
         required(:assessment_center_date_and_time).maybe(:str?)
+        required(:transcription_url).maybe(:str?)
       end
     end
   end

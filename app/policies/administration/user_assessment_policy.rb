@@ -63,7 +63,7 @@ module Administration
     end
 
     def rescore_response?
-      has_permission?(:results, :rescore_responses)
+      has_permission?(:results, :rescore_responses) && !record.assessment.yoodli?
     end
 
     def toggle_require_scheduling?
@@ -79,14 +79,7 @@ module Administration
     end
 
     def reset?
-      assessment = record.assessment
-      has_permission_to_reset_assessment? &&
-        (assessment.common? ||
-          assessment.saville? ||
-          assessment.simulation? ||
-          assessment.skillvue? ||
-          (assessment.mettl? && record.reset_count < UserAssessment::MAX_RESET_COUNT && record.completed?) ||
-           (assessment.iiht? && record.completed?))
+      UsersResults::CanReset.call!(record, @user, project_id: project_id, campaign_id: campaign_id)
     end
 
     def reset_progress?
@@ -96,14 +89,6 @@ module Administration
 
     def normalize_factor_scores?
       has_permission?(:results, :scores) && record.normalize_factor_scores?
-    end
-
-    private
-
-    def has_permission_to_reset_assessment?
-      @user.has_permission?(
-        :results, :reset_responses, project_id: project_id, campaign_id: campaign_id
-      )
     end
   end
 end

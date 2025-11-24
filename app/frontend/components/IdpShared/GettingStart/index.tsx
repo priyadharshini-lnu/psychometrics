@@ -16,7 +16,9 @@ export const GettingStart = ({ next, introMessage }) => (
       <Typography.Title className="mb-0" level={4}>{I18n.t('idp.initial_steps.getting_started')}</Typography.Title>
     </Flex>
     <Separator className="mb-4 mt-0" />
-    <SafeHTML html={introMessage} config="adminRichText" />
+    <section className={styles.contentContainer}>
+      <SafeHTML html={introMessage} config="adminRichText" />
+    </section>
     <Separator />
     <div className="flex justify-center mb-4">
       <ButtonWithArrow

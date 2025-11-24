@@ -9,6 +9,15 @@ interface FeaturesFlags {
   [name: string]: boolean
 }
 
+export interface AiModel {
+  model_id: string
+  description?: string
+  name: string
+  region?: string
+  model: string
+  provider?: string
+}
+
 export interface ConfigState {
   availableLocales: string[]
   features: FeaturesFlags,
@@ -16,7 +25,7 @@ export interface ConfigState {
     idpEnabled: boolean
   },
   timezone: string,
-  availableAiProviders: string[]
+  availableAiProviders: AiModel[]
 }
 
 export const defaultState: ConfigState = {
@@ -36,7 +45,7 @@ type FetchType = ApiActionResponse<{
 export const getFeatures = (state): FeaturesFlags => _.get(state, ['config', 'features'], {})
 export const getTimezone = (state): string => _.get(state, ['config', 'timezone'])
 export const availableLocales = (state: RootState): string[] => _.get(state, ['config', 'availableLocales'], [])
-export const getAvailableAiProviders = (state: RootState): string[] => _.get(state,
+export const getAvailableAiProviders = (state: RootState): AiModel[] => _.get(state,
   ['config', 'availableAiProviders'], [])
 
 const HANDLERS = {

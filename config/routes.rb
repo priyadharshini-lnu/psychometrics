@@ -878,6 +878,10 @@ as: :simulation_progress_notification
   get 'transcribe/pre_sign_url', to: 'transcribe#pre_sign_url'
 
   constraints(subdomain: /^(?!(#{Settings.subdomain})$)(.+)$/i) do
+    get '/saml/idp/metadata' => 'saml_idp#show', as: :saml_idp_metadata
+    get '/saml/idp/auth' => 'saml_idp#new', as: :saml_idp_auth_new
+    post '/saml/idp/auth' => 'saml_idp#create', as: :saml_idp_auth
+
     scope module: :users do
       resources :mobile_number_verifications, only: [] do
         collection do
@@ -988,6 +992,12 @@ as: :simulation_progress_notification
         end
       end
 
+      resources :yoodli_user_assessments, only: [] do
+        member do
+          post :pass
+        end
+      end
+
       resources :agile_user_assessments, only: %i[show update] do
         member do
           post :events
@@ -1039,6 +1049,7 @@ as: :simulation_progress_notification
         collection do
           post :ask
           post :upload_document
+          post :reset
         end
       end
 
@@ -1129,6 +1140,23 @@ as: :simulation_progress_notification
     get 'invites/:id/details', to: 'end_user/users#dashboard'
     get 'idp/*path', to: 'end_user/users#dashboard'
     get 'evaluation_session_exists', to: 'end_user/users#dashboard'
+
+    namespace :lti do
+      get 'jwks', to: 'jwks#index'
+      post 'jwks', to: 'jwks#index'
+
+      get 'auth', to: 'oidc#auth'
+      post 'auth', to: 'oidc#auth'
+      get 'redirect', to: 'oidc#redirect'
+
+      post 'oauth2/token', to: 'oauth2#token'
+      get 'oauth2/token', to: 'oauth2#show'
+
+      namespace :ags do
+        get 'lineitems/:line_item_id', to: 'scores#show', as: :lineitem
+        post 'lineitems/:line_item_id/scores', to: 'scores#create'
+      end
+    end
     root to: 'end_user/users#dashboard'
   end
 
@@ -1327,10 +1355,16 @@ as: :simulation_progress_notification
             end
 
             jsonapi_resources :project_assessments
+            jsonapi_resources :saml_service_providers do
+              post :rotate_certificate, on: :member
+            end
 
             jsonapi_resources :registration_settings, only: %i[index update]
             jsonapi_resources :mettl_schedule_records
+            jsonapi_resources :yoodli_assessments
             jsonapi_resources :project_features, only: %i[index update]
+            jsonapi_resources :licenses, controller: 'project_licenses', as: :project_licenses,
+only: %i[index create update]
 
             jsonapi_resources :assessments do
               scope module: :assessments do
@@ -1416,10 +1450,12 @@ as: :simulation_progress_notification
               collection do
                 get :import_subjects_from_campaign
                 post :import_subjects_from_csv
+                post :validate_subjects
               end
               jsonapi_resources :workshop_invited_subjects, only: %i[index create destroy] do
                 collection do
                   post :resend_invite
+                  post :import_subjects_from_csv
                 end
               end
             end
@@ -1453,6 +1489,8 @@ as: :simulation_progress_notification
             jsonapi_resources :ai_artifacts, controller: 'campaigns/ai_artifacts' do
               collection do
                 post :bulk_generate
+                post :export
+                post :import
               end
 
               member do
@@ -1561,6 +1599,7 @@ as: :simulation_progress_notification
             post :export_global, on: :collection
             post :import_global_translations, on: :collection
             post :export_global_translations, on: :collection
+            post :generate_embedding, on: :collection
           end
 
           jsonapi_resources :development_actions do

@@ -1,18 +1,18 @@
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: {{ .Values.certificate.name }}
-spec:
-  # Secret names are always required.
-  secretName: {{ .Values.certificate.secretName }}
-  duration: 2160h # 90d
-  renewBefore: 720h # 15d
-  subject:
-    organizations:
-      - Mercer Talent Enterprise
-  dnsNames:
-    - "{{ .Values.domain }}"
-    - "*.{{ .Values.domain }}"
-  issuerRef:
-    name: "{{ .Values.certificate.issuerName }}"
-    kind: {{ ternary "Issuer" "ClusterIssuer" .Values.issuer.enabled }}
+# apiVersion: cert-manager.io/v1
+# kind: Certificate
+# metadata:
+#   name: {{ .Values.certificate.name }}
+# spec:
+#   # Secret names are always required.
+#   secretName: {{ .Values.certificate.secretName }}
+#   duration: 2160h # 90d
+#   renewBefore: 720h # 15d
+#   subject:
+#     organizations:
+#       - Mercer Talent Enterprise
+#   dnsNames:
+#     - "{{ .Values.domain }}"
+#     - "*.{{ .Values.domain }}"
+#   issuerRef:
+#     name: "{{ .Values.certificate.issuerName }}"
+#     kind: {{ ternary "Issuer" "ClusterIssuer" .Values.issuer.enabled }}

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/ModuleLength
 # Ref: https://docs.oracle.com/en-us/iaas/api/#/en/generative-ai-inference/20231130/datatypes/CohereChatRequest
 module AI
   module Providers
@@ -8,6 +7,7 @@ module AI
       module Chat
         include Config
         include Tools
+        include Errors
 
         DEFAULT_MAX_TOKENS = 600
         CITATION_QUALITY = 'FAST'
@@ -258,42 +258,7 @@ module AI
         def extract_output_tokens(chat_response)
           chat_response.usage&.completion_tokens || 0
         end
-
-        def handle_oci_service_error(error)
-          Rails.logger.error("OCI Generative AI Error: #{error}")
-
-          error_message = extract_oci_error_message(error)
-
-          case error.status_code
-            when 400
-              raise RubyLLM::BadRequestError.new(nil, error_message)
-            when 401
-              raise RubyLLM::UnauthorizedError.new(nil, error_message)
-            when 403
-              raise RubyLLM::ForbiddenError.new(nil, error_message)
-            when 429
-              raise RubyLLM::RateLimitError.new(nil, error_message)
-            when 500
-              raise RubyLLM::ServerError.new(nil, error_message)
-            when 502, 503
-              raise RubyLLM::ServiceUnavailableError.new(nil, error_message)
-            when 529
-              raise RubyLLM::OverloadedError.new(nil, error_message)
-            else
-              raise RubyLLM::Error.new(nil, error_message)
-          end
-        end
-
-        def extract_oci_error_message(error)
-          return "OCI Service Error: #{error.message}" if error.message.present?
-          return "OCI Service Error (#{error.status_code})" if error.status_code.present?
-
-          'OCI Service Error: Unknown error occurred'
-        rescue StandardError
-          'OCI Service Error: Unable to parse error message'
-        end
       end
     end
   end
 end
-# rubocop:enable Metrics/ModuleLength

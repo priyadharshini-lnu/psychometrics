@@ -1,0 +1,52 @@
+---
+zh:
+  admin:
+    admins: 管理员
+    ai_artifacts: AI 工件
+    ai_assistants: 人工智能助理
+    assessments: 评估
+    assessments_reports: 评估与报告
+    assessor_dashboard: 评估员仪表板
+    assessor_workshops: 评估中心
+    audit_logs: 审计日志
+    audit_reports: 审计报告
+    availability: 可用性
+    back_to_main: 主菜单
+    campaign_templates: 活动模板
+    client: 客户平台
+    client_admins: 客户管理员
+    clients: 客户平台
+    communication_center: 通信中心
+    country: 国家
+    create_client: 创建客户
+    dashboard: 仪表板
+    data_reports: 数据报告
+    datasheet: 数据表
+    development_actions: 发展行动
+    dimensions: 尺寸
+    libraries: 媒体图书馆
+    no_notifications: 没有通知
+    norms: 常模
+    notification_bell_icon_alt_text: 通知铃图标
+    notifications: 通知
+    number: 数量
+    occupations: 职业
+    options: 选项
+    participants: 参与者
+    profile_details: 简介详情
+    project_admins: 项目管理员
+    project_manager: 项目经理
+    question_center: 问题中心
+    registration_codes: 注册码
+    report_approvals: 报告批准
+    reports: 报告
+    role: 角色
+    scheduling: 日程安排
+    scoring: 计分
+    show_submenu: 显示子菜单
+    skills_taxonomy: 技能分类法
+    stats: 统计数据
+    user_report_events: 用户报告事件
+    users: 用户
+    view_licenses: 查看许可证
+    year: 国家

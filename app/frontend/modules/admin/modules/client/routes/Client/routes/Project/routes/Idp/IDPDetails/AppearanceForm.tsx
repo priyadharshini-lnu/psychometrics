@@ -23,7 +23,8 @@ const LOGO_TYPE = {
 
 const FIELDS = [
   'name',
-  'role',
+  'current_job_role',
+  'target_job_role',
   'assigned_date',
   'division',
   'review_date',

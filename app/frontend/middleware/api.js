@@ -5,11 +5,14 @@ import _ from 'lodash'
 import fileDownload from 'js-file-download'
 import { isRight } from 'fp-ts/Either'
 import { PathReporter } from 'io-ts/PathReporter'
+import { axiosWithRetry } from '~/utils/axiosWithRetry'
 import { LOADING, LOADING_COMPLETE, setResponseDataMismatched } from '~/core/request'
 import { setIn } from '~/utils/immutable'
 import { camelizeKeys } from '~/utils/object'
 import { isLiveEnvironment } from '~/utils/isLiveEnvironment'
 import { captureSchemaValidationError } from '~/utils/schemaValidationError'
+
+const MAX_ALLOWED_RETRY_DELAY = 30000
 
 const debounceTimers = {}
 const buildUrl = ({
@@ -71,19 +74,26 @@ const apiMiddleware = () => next => (action) => {
     request,
     request: {
       method = 'get', body = {}, loader, camelize = true, decamelize = true, responseType, typedResponse,
-      camelizeErrors = true, camelizeExcept, camelizeOnly,
+      camelizeErrors = true, camelizeExcept, camelizeOnly, retry = { count: 0, delay: 0 },
     },
   } = action
   const REQUEST = `${action.type}_REQUEST`
   const SUCCESS = action.type
   const FAILURE = `${action.type}_FAILURE`
 
+  const retryConfig = {
+    retries: retry.count,
+    retryDelay: retryCount => Math.min(retry.delay * (2 ** (retryCount - 1)), MAX_ALLOWED_RETRY_DELAY),
+  }
+
+  const axiosInstance = retry.count > 0 ? axiosWithRetry(retryConfig) : axios
+
   next({ ...action, type: REQUEST })
   if (loader) {
     next({ type: LOADING, payload: { name: SUCCESS } })
   }
 
-  const processApi = () => axios
+  const processApi = () => axiosInstance
     .request({
       method,
       url: buildUrl(request),

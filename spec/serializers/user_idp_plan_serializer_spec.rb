@@ -7,6 +7,7 @@ RSpec.describe UserIdpPlanSerializer do
   let(:campaign) { create(:campaign, project_id: client.id) }
   let(:idp_template) { create(:idp_template, project_id: client.id) }
   let(:user) { create(:user) }
+  let!(:campaign_user) { create(:campaign_user, user: user, campaign: campaign) }
   let(:user_idp_plan) { create(:user_idp_plan, user: user, campaign: campaign, idp_template: idp_template) }
 
   let!(:public_skill) { create(:skill, project_id: client.id, name: 'Public Skill') }

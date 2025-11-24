@@ -54,6 +54,7 @@ RSpec.describe EndUser::PearsonUserAssessmentsController, type: :controller do
     before(:each) do
       user.update!(project: campaign.project)
       allow(GetProjectBySubdomain).to receive(:call!).and_return(campaign.project)
+      allow(Utility::Url).to receive(:redirect_to_safe_internal_url).and_return(nil)
     end
 
     let(:jwt_token) do

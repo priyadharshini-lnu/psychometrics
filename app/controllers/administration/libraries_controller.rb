@@ -29,6 +29,12 @@ module Administration
     end
 
     def new
+      allowed_types = Library.types.keys.map(&:to_s)
+      unless allowed_types.include?(params[:type])
+        return render json: { errors: I18n.t('admin.library_invalid_type') },
+                      status: :unprocessable_entity
+      end
+
       @_resource = resource_class.new(type: params[:type], parent_id: params[:parent_id])
       @custom_header = t('administration.libraries.index.new_folder') if params[:type] == 'folder'
     end

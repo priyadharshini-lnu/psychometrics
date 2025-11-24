@@ -13,6 +13,8 @@ import SourceTypeButtonGroup from '../../SourceTypeButtonGroup'
 
 const ALLOWED_QUESTION = ['TextEntry', 'FactorSelect']
 
+const { I18n } = window
+
 function FactorList ({ model, onChange }) {
   const assessment = AppStore.getAssessmentById(model.assessment_id)
   const options = _.map(AppStore.factors[assessment.dimensionId] || [],
@@ -88,7 +90,13 @@ class Properties extends Component {
             onChange={e => this.onChange('randomizeAnswers', e.target.checked)}
             checked={model.props.randomizeAnswers}
           >
-            Randomize answers order
+            {I18n.t('administration.report_builder.property_panel.randomize_answers_order')}
+          </Checkbox>
+          <Checkbox
+            onChange={e => this.onChange('hideRolesWithNoData', e.target.checked)}
+            checked={model.props.hideRolesWithNoData}
+          >
+            {I18n.t('administration.report_builder.property_panel.hide_responses_with_no_data')}
           </Checkbox>
         </div>
         <div className={styles.divider} />

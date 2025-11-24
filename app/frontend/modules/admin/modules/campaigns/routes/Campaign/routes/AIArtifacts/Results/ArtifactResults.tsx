@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {
   Flex, Typography, Row, Col, Alert, Skeleton, Button,
+  Statistic,
 } from 'antd'
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons'
 import cs from 'classnames'
@@ -20,12 +21,16 @@ interface ArtifactResultsProps {
   isLoading: boolean
   error: string | null
   artifactResults: ArtifactResult[]
+  totalInputTokens: number | undefined
+  totalOutputTokens: number | undefined
 }
 
 export const ArtifactResults: React.FC<ArtifactResultsProps> = ({
   isLoading,
   error,
   artifactResults,
+  totalInputTokens = 0,
+  totalOutputTokens = 0,
 }) => {
   const [rawModeStates, setRawModeStates] = useState<Record<string, boolean>>({})
 
@@ -113,6 +118,36 @@ export const ArtifactResults: React.FC<ArtifactResultsProps> = ({
               </Col>
             </Row>
           ))}
+          <Row>
+            <Col span={24} className={cs('p-4', styles.borderLight)}>
+              <Skeleton loading={isLoading} active title paragraph={false}>
+                <Typography.Text strong>
+                  {I18n.t('administration.ai_artifacts.used_tokens.title')}
+                </Typography.Text>
+              </Skeleton>
+            </Col>
+          </Row>
+
+          <Row className={cs(styles.borderLight)} style={{ padding: 12 }}>
+            <Col span={12}>
+              <Skeleton loading={isLoading} active title paragraph={false}>
+                <Statistic
+                  title={I18n.t('administration.ai_artifacts.used_tokens.input_tokens')}
+                  value={totalInputTokens}
+                  valueStyle={{ fontSize: 14 }}
+                />
+              </Skeleton>
+            </Col>
+            <Col span={12}>
+              <Skeleton loading={isLoading} active title paragraph={false}>
+                <Statistic
+                  title={I18n.t('administration.ai_artifacts.used_tokens.output_tokens')}
+                  value={totalOutputTokens}
+                  valueStyle={{ fontSize: 14 }}
+                />
+              </Skeleton>
+            </Col>
+          </Row>
         </Flex>
       )}
     </>

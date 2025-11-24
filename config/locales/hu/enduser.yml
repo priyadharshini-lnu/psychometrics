@@ -1,0 +1,22 @@
+---
+hu:
+  enduser:
+    add_idp_plan_note: Megjegyzés hozzáadása...
+    add_idp_plan_rejection_reason: Elutasítási ok hozzáadása...
+    approve_idp_plan: Terv jóváhagyása
+    bookings: Foglalások
+    campaign: Kampány
+    development: Fejlesztés
+    direct_reportees: Közvetlen beosztottak
+    home: Irányítópult
+    idp_plan_approval_note: Jóváhagyási megjegyzés
+    insights: Betekintés
+    max_word_limit: Legfeljebb %{max} szó lehet
+    min_word_limit: Legalább %{min} szó kell
+    my_plan: A tervem
+    profile: Profil
+    profile_details: Részletek
+    question_counter: Kérdés %{current} / %{total}
+    selected_count: Kiválasztott
+    skill_type: Képesség típusa
+    tasks: Feladatok

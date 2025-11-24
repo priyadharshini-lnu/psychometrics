@@ -48,6 +48,7 @@ export const SettingsForm = forwardRef<SettingsFormRef, Props>(({ aiArtifact, on
   const [form] = Form.useForm()
   const [codeManuallyEdited, setCodeManuallyEdited] = React.useState(false)
   const [results, setResults] = React.useState<Array<{key: string, value: string | null, type: string}> | null>(null)
+  const [tokens, setTokens] = useState<{ input: number; output: number } | null>(null)
   const [error, setError] = React.useState<string | null>(null)
   const [testData, setTestData] = React.useState('')
   const [isGenerating, setIsGenerating] = React.useState(false)
@@ -220,8 +221,11 @@ export const SettingsForm = forwardRef<SettingsFormRef, Props>(({ aiArtifact, on
       body: {
         test_data: testData,
       },
-    }).then(({ results }: {results: Array<{key: string, value: string | null, type: string}>}) => {
+    }).then(({ results, total_input_tokens, total_output_tokens }:
+      {results: Array<{key: string, value: string | null, type: string}>,
+      total_input_tokens: number, total_output_tokens: number}) => {
       setResults(results)
+      setTokens({ input: total_input_tokens, output: total_output_tokens })
     }).catch((e) => {
       setError(e.base[0].detail)
     }).finally(() => {
@@ -373,6 +377,8 @@ export const SettingsForm = forwardRef<SettingsFormRef, Props>(({ aiArtifact, on
                       isLoading={false}
                       error={error}
                       artifactResults={results || []}
+                      totalInputTokens={tokens?.input}
+                      totalOutputTokens={tokens?.output}
                     />
                   </Flex>
                 )}

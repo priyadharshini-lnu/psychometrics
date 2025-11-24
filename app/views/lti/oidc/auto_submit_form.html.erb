@@ -1,0 +1,12 @@
+<form action="<%= html_escape(redirect_uri) %>" method="POST" id="lti-form" 
+      enctype="application/x-www-form-urlencoded" accept-charset="UTF-8">
+  <input type="hidden" name="id_token" value="<%= html_escape(id_token) %>">
+  <input type="hidden" name="state" value="<%= html_escape(state) %>">
+</form>
+
+<script nonce="<%= content_security_policy_nonce %>">
+  // Auto-submit the form immediately
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('lti-form').submit();
+  });
+</script>

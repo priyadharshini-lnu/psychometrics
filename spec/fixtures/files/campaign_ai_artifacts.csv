@@ -1,0 +1,2 @@
+ID,Code,Name,AIAssistantID,Instructions,IncludeAllDatasheetColumns,DependencyQuestionIDs,DependencyCampaignFactorIDs,DependencySheetColumnIDs
+1,summary,Summary Generator,5,Instructions,false,101 102,201,301
