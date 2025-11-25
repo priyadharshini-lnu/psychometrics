@@ -22,7 +22,8 @@ SamlIdp.configure do |config| # rubocop:disable Metrics/BlockLength
     email: {
       name: 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress',
       name_format: 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
-      friendly_name: 'Email Address'
+      friendly_name: 'Email Address',
+      getter: ->(principal) { principal.email }
     },
     name: {
       name: 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name',
@@ -33,12 +34,14 @@ SamlIdp.configure do |config| # rubocop:disable Metrics/BlockLength
     first_name: {
       name: 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname',
       name_format: 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
-      friendly_name: 'First Name'
+      friendly_name: 'First Name',
+      getter: ->(principal) { principal.first_name }
     },
     last_name: {
       name: 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname',
       name_format: 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
-      friendly_name: 'Last Name'
+      friendly_name: 'Last Name',
+      getter: ->(principal) { principal.last_name }
     },
 
     email_basic: {
@@ -52,6 +55,18 @@ SamlIdp.configure do |config| # rubocop:disable Metrics/BlockLength
       name_format: 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic',
       friendly_name: 'Name',
       getter: ->(principal) { principal.name }
+    },
+    groups: {
+      name: 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/groups',
+      name_format: 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+      friendly_name: 'Groups',
+      getter: lambda { |principal|
+        if principal.respond_to?(:groups) && principal.groups.present?
+          principal.groups
+        else
+          []
+        end
+      }
     }
   }
 

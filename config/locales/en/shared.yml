@@ -3,6 +3,7 @@ en:
   shared:
     action: Action
     add: Add
+    authentication_failed: Authentication failed. Please try again.
     cancel: Cancel
     change_password: Change Password
     clear_filters: Clear Filters

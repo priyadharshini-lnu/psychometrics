@@ -146,6 +146,13 @@ const SamlServiceProvidersListComponent: React.FC<Props> = ({ openModal }) => {
           )}
         />
         <Column
+          key="integration_type"
+          title={I18n.t('admin.saml_service_provider_integration_type')}
+          render={saml_service_provider => (
+            <span>{I18n.t(`admin.saml_service_provider_integration_${saml_service_provider.integrationType}`)}</span>
+          )}
+        />
+        <Column
           key="mask_identity"
           title={I18n.t('admin.saml_service_provider_mask_identity')}
           render={saml_service_provider => (

@@ -19,6 +19,7 @@ module UsersResults
         Mettl::ResetCandidateAssessment.call!(user_assessment) if user_assessment.mettl?
         Simulation::ResetAssessment.call!(user_assessment) if user_assessment.simulation?
         Skillvue::ResetAssessment.call!(user_assessment) if user_assessment.skillvue?
+        Yoodli::ResetAssessment.call!(user_assessment) if user_assessment.yoodli?
       end
 
       broadcast :ok

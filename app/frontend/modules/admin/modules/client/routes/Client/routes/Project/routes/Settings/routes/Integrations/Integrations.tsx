@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Row, Col, Button, Table, Badge, Space, Tooltip, message,
+  Row, Col, Button, Table, Badge, Space, Tooltip, message, Typography,
 } from 'antd'
 import {
   DeleteOutlined, EditOutlined, PlusOutlined, LoadingOutlined, SyncOutlined, EyeOutlined,
@@ -123,7 +123,11 @@ const IntegrationsComponent: React.FC<Props> = ({
                         {I18n.t('administration.integrations.details.provider')}
                         :
                       </b>
-                      <div>{hoganIntegrationDetails.provider}</div>
+                      <div>
+                        <Typography.Text copyable={{ text: hoganIntegrationDetails.provider }}>
+                          {hoganIntegrationDetails.provider}
+                        </Typography.Text>
+                      </div>
                     </>
                   )
                 }
@@ -136,8 +140,16 @@ const IntegrationsComponent: React.FC<Props> = ({
                         :
                       </b>
                       <div>
-                        <div>{mettlIntegrationDetails.completionWebhookUrl}</div>
-                        <div>{mettlIntegrationDetails.resultsWebhookUrl}</div>
+                        <div>
+                          <Typography.Text copyable={{ text: mettlIntegrationDetails.completionWebhookUrl }}>
+                            {mettlIntegrationDetails.completionWebhookUrl}
+                          </Typography.Text>
+                        </div>
+                        <div>
+                          <Typography.Text copyable={{ text: mettlIntegrationDetails.resultsWebhookUrl }}>
+                            {mettlIntegrationDetails.resultsWebhookUrl}
+                          </Typography.Text>
+                        </div>
                       </div>
                     </>
                   )
@@ -151,8 +163,16 @@ const IntegrationsComponent: React.FC<Props> = ({
                         :
                       </b>
                       <div>
-                        <div>{skillvueIntegrationDetails.completionWebhookUrl}</div>
-                        <div>{skillvueIntegrationDetails.resultsWebhookUrl}</div>
+                        <div>
+                          <Typography.Text copyable={{ text: skillvueIntegrationDetails.completionWebhookUrl }}>
+                            {skillvueIntegrationDetails.completionWebhookUrl}
+                          </Typography.Text>
+                        </div>
+                        <div>
+                          <Typography.Text copyable={{ text: skillvueIntegrationDetails.resultsWebhookUrl }}>
+                            {skillvueIntegrationDetails.resultsWebhookUrl}
+                          </Typography.Text>
+                        </div>
                       </div>
                     </>
                   )
@@ -166,7 +186,11 @@ const IntegrationsComponent: React.FC<Props> = ({
                         :
                       </b>
                       <div>
-                        <div>{iihtIntegrationDetails.webhookUrl}</div>
+                        <div>
+                          <Typography.Text copyable={{ text: iihtIntegrationDetails.webhookUrl }}>
+                            {iihtIntegrationDetails.webhookUrl}
+                          </Typography.Text>
+                        </div>
                       </div>
                     </>
                   )
@@ -181,7 +205,9 @@ const IntegrationsComponent: React.FC<Props> = ({
                           :
                         </b>
                         {' '}
-                        <span>{yoodliIntegrationDetails.platformId}</span>
+                        <Typography.Text copyable={{ text: yoodliIntegrationDetails.platformId }}>
+                          {yoodliIntegrationDetails.platformId}
+                        </Typography.Text>
                       </div>
                       <div>
                         <b>
@@ -189,7 +215,9 @@ const IntegrationsComponent: React.FC<Props> = ({
                           :
                         </b>
                         {' '}
-                        <span>{yoodliIntegrationDetails.clientId}</span>
+                        <Typography.Text copyable={{ text: yoodliIntegrationDetails.clientId }}>
+                          {yoodliIntegrationDetails.clientId}
+                        </Typography.Text>
                       </div>
                       <div>
                         <b>
@@ -197,7 +225,9 @@ const IntegrationsComponent: React.FC<Props> = ({
                           :
                         </b>
                         {' '}
-                        <span>{yoodliIntegrationDetails.deploymentId}</span>
+                        <Typography.Text copyable={{ text: yoodliIntegrationDetails.deploymentId }}>
+                          {yoodliIntegrationDetails.deploymentId}
+                        </Typography.Text>
                       </div>
                       <div>
                         <b>
@@ -205,7 +235,9 @@ const IntegrationsComponent: React.FC<Props> = ({
                           :
                         </b>
                         {' '}
-                        <span>{yoodliIntegrationDetails.platformPublicKeysetUrl}</span>
+                        <Typography.Text copyable={{ text: yoodliIntegrationDetails.platformPublicKeysetUrl }}>
+                          {yoodliIntegrationDetails.platformPublicKeysetUrl}
+                        </Typography.Text>
                       </div>
                       <div>
                         <b>
@@ -213,7 +245,9 @@ const IntegrationsComponent: React.FC<Props> = ({
                           :
                         </b>
                         {' '}
-                        <span>{yoodliIntegrationDetails.platformAccessTokenUrl}</span>
+                        <Typography.Text copyable={{ text: yoodliIntegrationDetails.platformAccessTokenUrl }}>
+                          {yoodliIntegrationDetails.platformAccessTokenUrl}
+                        </Typography.Text>
                       </div>
                       <div>
                         <b>
@@ -221,7 +255,9 @@ const IntegrationsComponent: React.FC<Props> = ({
                           :
                         </b>
                         {' '}
-                        <span>{yoodliIntegrationDetails.platformAuthenticationRequestUrl}</span>
+                        <Typography.Text copyable={{ text: yoodliIntegrationDetails.platformAuthenticationRequestUrl }}>
+                          {yoodliIntegrationDetails.platformAuthenticationRequestUrl}
+                        </Typography.Text>
                       </div>
                       <div>
                         <b>
@@ -229,7 +265,9 @@ const IntegrationsComponent: React.FC<Props> = ({
                           :
                         </b>
                         {' '}
-                        <span>{yoodliIntegrationDetails.platformHostName}</span>
+                        <Typography.Text copyable={{ text: yoodliIntegrationDetails.platformHostName }}>
+                          {yoodliIntegrationDetails.platformHostName}
+                        </Typography.Text>
                       </div>
                     </>
                   )

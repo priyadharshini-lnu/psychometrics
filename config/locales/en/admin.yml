@@ -91,9 +91,16 @@ en:
     saml_service_provider_entity_id_placeholder: Enter entity ID
     saml_service_provider_entity_id_required: Entity ID is required
     saml_service_provider_idp_config: IdP Configuration
+    saml_service_provider_integration_generic: Generic
+    saml_service_provider_integration_type: Integration Type
+    saml_service_provider_integration_type_placeholder: Select integration type
+    saml_service_provider_integration_type_required: Integration type is required
+    saml_service_provider_integration_yoodli: Yoodli
     saml_service_provider_manage: Actions
     saml_service_provider_mask_identity: Mask Identity
     saml_service_provider_masking_enabled: Enable Masking
+    saml_service_provider_masking_help_generic: Enable to mask user identities in SAML responses
+    saml_service_provider_masking_help_integration: Integration provider masking will be applied
     saml_service_provider_name: Name
     saml_service_provider_name_placeholder: Enter service provider name
     saml_service_provider_name_required: Name is required

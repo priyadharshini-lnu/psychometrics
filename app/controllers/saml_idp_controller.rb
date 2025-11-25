@@ -70,7 +70,7 @@ class SamlIdpController < ApplicationController
     render template: 'saml_idp/saml_post'
   rescue StandardError => e
     Rails.logger.error "SAML response generation failed: #{e.message}"
-    render plain: I18n.t('saml_idp.errors.response_generation_failed'), status: :internal_server_error
+    render plain: I18n.t('shared.authentication_failed'), status: :internal_server_error
   end
 
   def service_provider
@@ -98,11 +98,13 @@ class SamlIdpController < ApplicationController
   end
 
   def determine_user_principal
-    if service_provider.mask_identity?
-      maskable_identity
-    else
-      current_user
-    end
+    result = SamlIdp::DeterminePrincipal.call(
+      service_provider: service_provider,
+      current_user: current_user,
+      request: request
+    )
+
+    result[:ok] || raise(StandardError, "Authentication failed: #{result[:error]}")
   end
 
   def maskable_identity

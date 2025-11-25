@@ -11,13 +11,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
--- *not* creating schema, since initdb creates it
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -6032,7 +6025,8 @@ CREATE TABLE public.saml_service_providers (
     project_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    mask_identity boolean DEFAULT false NOT NULL
+    mask_identity boolean DEFAULT false NOT NULL,
+    integration_type integer DEFAULT 0 NOT NULL
 );
 
 
@@ -8748,7 +8742,9 @@ CREATE TABLE public.yoodli_user_assessments (
     user_assessment_id bigint NOT NULL,
     email character varying,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    yoodli_activity_id character varying,
+    active boolean DEFAULT true NOT NULL
 );
 
 
@@ -14813,6 +14809,13 @@ CREATE UNIQUE INDEX index_saml_service_providers_on_entity_id_and_project_id ON 
 
 
 --
+-- Name: index_saml_service_providers_on_integration_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_saml_service_providers_on_integration_type ON public.saml_service_providers USING btree (integration_type);
+
+
+--
 -- Name: index_saml_service_providers_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16140,6 +16143,13 @@ CREATE UNIQUE INDEX index_yoodli_assessments_on_product_id_and_project_id ON pub
 --
 
 CREATE INDEX index_yoodli_assessments_on_project_id ON public.yoodli_assessments USING btree (project_id);
+
+
+--
+-- Name: index_yoodli_user_assessments_on_active; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_yoodli_user_assessments_on_active ON public.yoodli_user_assessments USING btree (active);
 
 
 --
@@ -19153,10 +19163,13 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20251121123824'),
+('20251121093812'),
+('20251120061522'),
 ('20251118130440'),
 ('20251118103050'),
-('20251114123626'),
 ('20251118061850'),
+('20251114123626'),
 ('20251112120914'),
 ('20251112112802'),
 ('20251105093356'),
@@ -20104,3 +20117,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+
