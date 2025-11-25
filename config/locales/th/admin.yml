@@ -3,6 +3,10 @@ th:
   admin:
     admins: ผู้ดูแลระบบ
     ai_artifacts: สิ่งประดิษฐ์ AI
+    ai_assistant_model_id_label: รหัสรุ่น
+    ai_assistant_model_label: แบบ
+    ai_assistant_model_provider: ผู้จัดหา
+    ai_assistant_model_region_label: บริเวณ
     ai_assistants: ผู้ช่วย AI
     assessments: การประเมิน
     assessments_reports: การประเมินและรายงาน
@@ -22,9 +26,25 @@ th:
     dashboard: แดชบอร์ด
     data_reports: รายงานข้อมูล
     datasheet: เอกสารข้อมูลสินค้า
+    delete_ok_text: ใช่ ลบ
     development_actions: การดําเนินการพัฒนา
     dimensions: มิติ
+    empty_csv_file: ไฟล์ CSV ไม่มีข้อมูลใดๆ
+    import_csv_assessment_group_error: 'แถวที่ %{index}: ผู้ใช้ที่มีอีเมล %{email} ได้รับเชิญให้ ''%{workshopInviteName}'' แล้ว'
+    import_csv_error: 'แถวที่ %{index}: ผู้ใช้ที่มี %{email} อีเมลไม่ได้อยู่ในแคมเปญนี้'
+    import_description: นําเข้าผู้ใช้จากไฟล์ CSV แต่ละแถวต้องมีที่อยู่อีเมล
+    import_download_sample: ดาวน์โหลดตัวอย่าง CSV
+    import_error: การนําเข้าล้มเหลว โปรดลองอีกครั้ง
+    import_errors_title: ข้อผิดพลาดในการนําเข้า
+    import_file_required: โปรดเลือกไฟล์ CSV ที่จะอัปโหลด
+    import_queued_success: งานนําเข้าหัวเรื่องถูกจัดกําหนดการเรียบร้อยแล้ว โปรดตรวจสอบสถานะการแจ้งเตือนของคุณ
+    import_sample_file_label: 'ไฟล์ตัวอย่าง:'
+    import_title: นําเข้าหัวเรื่องจาก CSV
+    import_upload: อัปโหลด
+    import_users: นําเข้าผู้ใช้
+    invalid_csv_header: ไฟล์ CSV มีส่วนหัวที่ไม่ถูกต้อง
     libraries: ห้องสมุดสื่อ
+    library_invalid_type: รายการไลบรารีไม่ถูกต้อง
     no_notifications: ไม่มีการแจ้งเตือน
     norms: ค่ามาตรฐาน
     notification_bell_icon_alt_text: ไอคอนกระดิ่งแจ้งเตือน
@@ -41,11 +61,48 @@ th:
     report_approvals: การอนุมัติรายงาน
     reports: รายงาน
     role: บทบาท
+    saml_idp_certificate_available: มีจําหน่าย (คลิกเพื่อคัดลอก)
+    saml_idp_certificate_label: ใบรับรอง
+    saml_idp_entity_id_label: รหัสเอนทิตี/ผู้ออก
+    saml_idp_sso_url_label: URL ของบริการ SSO
+    saml_service_provider: ผู้ให้บริการ SAML
+    saml_service_provider_acs_urls: URL ของ ACS
+    saml_service_provider_acs_urls_placeholder: ป้อน URL ที่คั่นด้วยเครื่องหมายจุลภาค เช่น https://app1.com/saml/acs https://app2.com/saml/acs
+    saml_service_provider_acs_urls_required: ต้องมี URL ของ ACS
+    saml_service_provider_action_delete_label: ลบ
+    saml_service_provider_action_edit_label: แก้ไข
+    saml_service_provider_action_rotate_certificate_label: หมุนใบรับรอง
+    saml_service_provider_add: เพิ่มผู้ให้บริการ SAML
+    saml_service_provider_delete_success: ลบผู้ให้บริการ SAML เรียบร้อยแล้ว
+    saml_service_provider_enabled: เปิด
+    saml_service_provider_entity_id: รหัสเอนทิตี
+    saml_service_provider_entity_id_placeholder: ป้อนรหัสเอนทิตี
+    saml_service_provider_entity_id_required: ต้องระบุรหัสเอนทิตี
+    saml_service_provider_idp_config: การกําหนดค่า IdP
+    saml_service_provider_manage: การดําเนินการ
+    saml_service_provider_mask_identity: เอกลักษณ์ของหน้ากาก
+    saml_service_provider_masking_enabled: เปิดใช้งานการมาสก์
+    saml_service_provider_name: ชื่อ
+    saml_service_provider_name_placeholder: ป้อนชื่อผู้ให้บริการ
+    saml_service_provider_name_required: ต้องระบุชื่อ
+    saml_service_provider_remove_content: 'คุณแน่ใจหรือไม่ว่าต้องการลบผู้ให้บริการ SAML: %{name}'
+    saml_service_provider_remove_title: ลบผู้ให้บริการ SAML
+    saml_service_provider_rotate_certificate_content: คุณแน่ใจหรือไม่ว่าต้องการหมุนเวียนใบรับรองสําหรับ %{name}? การดําเนินการนี้จะสร้างใบรับรองใหม่และทําให้ใบรับรองปัจจุบันเป็นโมฆะ
+    saml_service_provider_rotate_certificate_error: ไม่สามารถหมุนเวียนใบรับรองได้
+    saml_service_provider_rotate_certificate_ok: หมุนใบรับรอง
+    saml_service_provider_rotate_certificate_success: ใบรับรองหมุนเวียนสําเร็จ
+    saml_service_provider_rotate_certificate_title: หมุนใบรับรอง
+    saml_service_provider_search: ค้นหาผู้ให้บริการ SAML...
+    saml_service_provider_updated_date: วันที่อัพเดท
+    saml_service_providers: บริการ
+    saml_settings: การตั้งค่า SAML
     scheduling: กำหนดการ
     scoring: การให้คะแนน
     show_submenu: แสดงเมนูย่อย
     skills_taxonomy: อนุกรมวิธานทักษะ
+    slot_name: ชื่อสล็อต
     stats: สถิติ
+    subject_part_of_other_invite: หัวเรื่องพร้อมอีเมล %{user_email} ได้รับเชิญให้ '%{workshop_invite_name}' แล้ว
     user_report_events: เหตุการณ์รายงานผู้ใช้
     users: ผู้เข้าร่วม
     view_licenses: ดูใบอนุญาต

@@ -11,12 +11,15 @@ pt:
     home: Painel de controle
     idp_plan_approval_note: Nota de Aprovação
     insights: Informações
+    lighthouse_assistant: Assistente de Farol
     max_word_limit: Deve ter no máximo %{max} palavras
     min_word_limit: Deve ter pelo menos %{min} palavras
     my_plan: Meu plano
     profile: Perfil
     profile_details: Detalhes
     question_counter: Pergunta %{current} de %{total}
+    reason_for_idp_plan_rejection: Motivo da Rejeição
+    reject_idp_plan: Rejeitar o Plano
     selected_count: Selecionado
     skill_type: Tipo de habilidade
     start_campaign_message_proctored: Esta é uma campanha supervisionada, por favor, clique no botão '%{buttonText}' para iniciar as atividades.

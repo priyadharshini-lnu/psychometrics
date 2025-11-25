@@ -11,12 +11,15 @@ nl:
     home: Dashboard
     idp_plan_approval_note: Goedkeuringsnotitie
     insights: Inzichten
+    lighthouse_assistant: Vuurtorenassistent
     max_word_limit: Mag maximaal %{max} woorden bevatten
     min_word_limit: Moet minstens %{min} woorden bevatten
     my_plan: Mijn plan
     profile: Profiel
     profile_details: Details
     question_counter: Vraag %{current} van %{total}
+    reason_for_idp_plan_rejection: Reden voor afwijzing
+    reject_idp_plan: Plan afwijzen
     selected_count: Geselecteerd
     skill_type: Type vaardigheid
     start_campaign_message_proctored: Dit is een campagne met toezicht, klik op de knop '%{buttonText}' om de activiteiten te starten.

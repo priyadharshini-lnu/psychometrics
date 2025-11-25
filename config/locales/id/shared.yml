@@ -6,6 +6,7 @@ id:
     cancel: Batal
     change_password: Ubah Kata Sandi
     clear_filters: Hapus Filter
+    description: Deskripsi
     edit: Sunting
     edited: Baru
     id: ID
@@ -20,6 +21,7 @@ id:
         selected: 1 baris dipilih
         total: 'Jumlah : 1'
     terms_conditions_privacy: Pernyataan Privasi
+    transcriptions: Transkripsi
     tte_terms_and_condition: Ketentuan & Privasi
     type: Jenis
     update: Memperbarui

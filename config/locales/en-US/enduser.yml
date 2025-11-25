@@ -11,12 +11,15 @@ en-US:
     home: Dashboard
     idp_plan_approval_note: Approval Note
     insights: Insights
+    lighthouse_assistant: Lighthouse Assistant
     max_word_limit: Must be at most %{max} words
     min_word_limit: Must be at least %{min} words
     my_plan: My Plan
     profile: Profile
     profile_details: Details
     question_counter: Question %{current} of %{total}
+    reason_for_idp_plan_rejection: Reason for Rejection
+    reject_idp_plan: Reject Plan
     selected_count: Selected
     skill_type: Skill Type
     start_campaign_message_proctored: This is a proctored campaign, please click '%{buttonText}' button to start the activities.

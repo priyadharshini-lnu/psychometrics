@@ -6,6 +6,7 @@ nl:
     cancel: Annuleren
     change_password: Wachtwoord wijzigen
     clear_filters: Filters wissen
+    description: Beschrijving
     edit: Bewerk
     edited: Nieuw
     id: ID
@@ -25,6 +26,7 @@ nl:
           other: 'Totaal : {{count}}'
           zero: 'Totaal : 0'
     terms_conditions_privacy: Privacyverklaring
+    transcriptions: Transcripties
     tte_terms_and_condition: Voorwaarden en privacy
     type: Type
     update: Update

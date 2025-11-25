@@ -1,6 +1,32 @@
 ---
 zh-HK:
   shared:
+    action: 動作
+    add: 加
+    cancel: 銷
+    change_password: 更改密碼
+    clear_filters: 透明過濾器
+    description: 描述
+    edit: 編輯
+    edited: 編輯
+    id: 身分證
     internet_disconnected_message: 正在嘗試重新連接。請檢查您的互聯網連接。
+    mte_logo_alt_text: 默瑟人才企業標誌
+    name: 名字
+    new: 新
+    removed: 已移除
+    search: 尋
+    table:
+      entries:
+        selected:
+          one: 選出1排
+          other: "{{count}} 選取的列"
+        total:
+          one: 總計：1
+          other: 總計：{{count}}
+          zero: 總計：0
     terms_conditions_privacy: 私隱聲明
+    transcriptions: 轉錄
     tte_terms_and_condition: 條款和私隱
+    type: 型
+    update: 更新

@@ -3,6 +3,10 @@ ro:
   admin:
     admins: Administratori
     ai_artifacts: Artefacte AI
+    ai_assistant_model_id_label: Model ID
+    ai_assistant_model_label: Model
+    ai_assistant_model_provider: Furnizor
+    ai_assistant_model_region_label: Regiune
     ai_assistants: Asistenți AI
     assessments: Evaluări
     assessments_reports: Evaluări și rapoarte
@@ -22,9 +26,25 @@ ro:
     dashboard: Tablou
     data_reports: Rapoarte de date
     datasheet: Fișă tehnică
+    delete_ok_text: Da, șterge
     development_actions: Acțiune de dezvoltare
     dimensions: Dimensiuni
+    empty_csv_file: Fișierul CSV nu conține niciun fel de date.
+    import_csv_assessment_group_error: 'Rândul %{index}: utilizatorul cu %{email} de email este deja invitat să "%{workshopInviteName}".'
+    import_csv_error: 'Rândul %{index}: utilizator cu email %{email} nu face parte din această campanie'
+    import_description: Importă utilizatori dintr-un fișier CSV. Fiecare rând trebuie să conțină o adresă de email.
+    import_download_sample: Descarcă exemplu CSV
+    import_error: Importul a eșuat. Vă rog să încercați din nou.
+    import_errors_title: Erori de import
+    import_file_required: Vă rugăm să selectați un fișier CSV pentru a încărca.
+    import_queued_success: Munca de import a subiecților a fost programată cu succes. Vă rugăm să verificați notificarea pentru status.
+    import_sample_file_label: 'Fișier exemplu:'
+    import_title: Subiecte de import din CSV
+    import_upload: Încărca
+    import_users: Importă utilizatori
+    invalid_csv_header: CSV conține antete invalide.
     libraries: Bibliotecă media
+    library_invalid_type: Element invalid din bibliotecă
     no_notifications: Fără notificări
     norms: Normele
     notification_bell_icon_alt_text: Pictograma clopoțel de notificare
@@ -41,11 +61,48 @@ ro:
     report_approvals: Aprobări de rapoarte
     reports: Rapoarte
     role: Rol
+    saml_idp_certificate_available: Disponibil (click pentru copiere)
+    saml_idp_certificate_label: Certificat
+    saml_idp_entity_id_label: ID entități/Emitent
+    saml_idp_sso_url_label: URL-ul serviciului SSO
+    saml_service_provider: Furnizor de servicii SAML
+    saml_service_provider_acs_urls: URL-uri ACS
+    saml_service_provider_acs_urls_placeholder: Introduceți URL-uri separate prin virgule, de exemplu https://app1.com/saml/acs, https://app2.com/saml/acs
+    saml_service_provider_acs_urls_required: URL-urile ACS sunt obligatorii
+    saml_service_provider_action_delete_label: Șterge
+    saml_service_provider_action_edit_label: Editare
+    saml_service_provider_action_rotate_certificate_label: Certificatul de rotație
+    saml_service_provider_add: Adaugă furnizor de servicii SAML
+    saml_service_provider_delete_success: Furnizorul de servicii SAML a fost șters cu succes
+    saml_service_provider_enabled: Activat
+    saml_service_provider_entity_id: ID entității
+    saml_service_provider_entity_id_placeholder: Introduceți ID-ul entității
+    saml_service_provider_entity_id_required: Este necesar ID-ul entității
+    saml_service_provider_idp_config: Configurarea IdP
+    saml_service_provider_manage: Acțiuni
+    saml_service_provider_mask_identity: Identitatea măștii
+    saml_service_provider_masking_enabled: Activează masca
+    saml_service_provider_name: Nume
+    saml_service_provider_name_placeholder: Introduceți numele furnizorului de servicii
+    saml_service_provider_name_required: Este necesar numele
+    saml_service_provider_remove_content: 'Ești sigur că vrei să elimini SAML Service Provider: %{name}?'
+    saml_service_provider_remove_title: Eliminarea furnizorului de servicii SAML
+    saml_service_provider_rotate_certificate_content: Ești sigur că vrei să rotești certificatul pentru %{name}? Acest lucru va genera un certificat nou și va invalida pe cel actual.
+    saml_service_provider_rotate_certificate_error: A eșuat să rotească certificatul
+    saml_service_provider_rotate_certificate_ok: Certificatul de rotație
+    saml_service_provider_rotate_certificate_success: Certificatul a fost rotit cu succes
+    saml_service_provider_rotate_certificate_title: Certificatul de rotație
+    saml_service_provider_search: Caută furnizori de servicii SAML...
+    saml_service_provider_updated_date: Data actualizării
+    saml_service_providers: Furnizori de servicii
+    saml_settings: Setări SAML
     scheduling: Programarea
     scoring: Notare
     show_submenu: Afișează submeniu
     skills_taxonomy: Taxonomia abilităților
+    slot_name: Numele slotului
     stats: Statistici
+    subject_part_of_other_invite: Subiectul cu email %{user_email} este deja invitat la "%{workshop_invite_name}"
     user_report_events: Evenimente de raportare a utilizatorilor
     users: Utilizatorii
     view_licenses: Vizualizați licențele

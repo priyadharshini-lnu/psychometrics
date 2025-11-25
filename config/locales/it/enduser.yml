@@ -11,12 +11,15 @@ it:
     home: Dashboard
     idp_plan_approval_note: Nota di Approvazione
     insights: Approfondimenti
+    lighthouse_assistant: Assistente al faro
     max_word_limit: Deve essere al massimo %{max} parole
     min_word_limit: Deve essere almeno %{min} parole
     my_plan: Il mio piano
     profile: Profilo
     profile_details: Dettagli
     question_counter: Domanda %{current} di %{total}
+    reason_for_idp_plan_rejection: Motivo del rifiuto
+    reject_idp_plan: Rifiuta il piano
     selected_count: Selezionato
     skill_type: Tipo di abilità
     start_campaign_message_proctored: Questa è una campagna sorvegliata, clicca sul pulsante '%{buttonText}' per avviare le attività.

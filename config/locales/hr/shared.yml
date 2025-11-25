@@ -6,6 +6,7 @@ hr:
     cancel: Otkazati
     change_password: Promijeni lozinku
     clear_filters: Obriši filtere
+    description: Opis
     edit: Urediti
     edited: Novi
     id: ID
@@ -20,6 +21,7 @@ hr:
         selected: Odabran 1 redak
         total: 'Ukupno : 1'
     terms_conditions_privacy: Izjava o privatnosti
+    transcriptions: Prijepisa
     tte_terms_and_condition: Uvjeti i privatnost
     type: Tip
     update: Ažurirati

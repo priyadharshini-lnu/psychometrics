@@ -11,12 +11,15 @@ es-ES:
     home: Cuadro de mandos
     idp_plan_approval_note: Nota de Aprobación
     insights: Información
+    lighthouse_assistant: Asistente de Faro
     max_word_limit: Debe tener como máximo %{max} palabras
     min_word_limit: Debe tener al menos %{min} palabras
     my_plan: Mi plan
     profile: Perfil
     profile_details: Datos
     question_counter: Pregunta %{current} de %{total}
+    reason_for_idp_plan_rejection: Motivo del rechazo
+    reject_idp_plan: Plan de rechazo
     selected_count: Selección
     skill_type: Tipo de habilidad
     start_campaign_message_proctored: Esta es una campaña supervisada, por favor haz clic en el botón '%{buttonText}' para iniciar las actividades.

@@ -6,6 +6,7 @@ pl:
     cancel: Anuluj
     change_password: Zmień hasło
     clear_filters: Wyczyść filtry
+    description: Opis
     edit: Edytuj
     edited: Nowy
     id: ID
@@ -20,6 +21,7 @@ pl:
         selected: Wybrano 1 wiersz
         total: 'Ogółem : 1'
     terms_conditions_privacy: Oświadczenie o ochronie prywatności
+    transcriptions: Transkrypcje
     tte_terms_and_condition: Warunki i prywatność
     type: Typ
     update: Odarchiwizuj

@@ -6,6 +6,7 @@ sr-Latn:
     cancel: Otkaži
     change_password: Promeni lozinku
     clear_filters: Obriši filtere
+    description: Opis
     edit: Uredi
     edited: Novi
     id: ID
@@ -20,6 +21,7 @@ sr-Latn:
         selected: Izabran 1 red
         total: 'Ukupno : 1'
     terms_conditions_privacy: Izjava o privatnosti
+    transcriptions: Transkripcije
     tte_terms_and_condition: Uslovi i privatnost
     type: Tip
     update: Ažuriraj

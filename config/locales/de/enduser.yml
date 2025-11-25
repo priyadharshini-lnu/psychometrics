@@ -11,6 +11,7 @@ de:
     home: Dashboard
     idp_plan_approval_note: Genehmigungsnotiz
     insights: Einblicke
+    lighthouse_assistant: Leuchtturmassistent
     max_word_limit: Darf höchstens %{max} Wörter haben
     min_word_limit: Muss mindestens %{min} Wörter haben
     my_plan: Mein Plan

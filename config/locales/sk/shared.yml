@@ -6,6 +6,7 @@ sk:
     cancel: Zrušiť
     change_password: Zmeniť heslo
     clear_filters: Vymazať filtre
+    description: Popis
     edit: Upraviť
     edited: Nové
     id: ID
@@ -20,6 +21,7 @@ sk:
         selected: Vybraný 1 riadok
         total: 'Celkom : 1'
     terms_conditions_privacy: Vyhlásenie o ochrane osobných údajov
+    transcriptions: Prepisy
     tte_terms_and_condition: Podmienky a ochrana osobných údajov
     type: Typ
     update: Aktualizácia

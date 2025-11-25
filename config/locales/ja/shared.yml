@@ -6,6 +6,7 @@ ja:
     cancel: キャンセル
     change_password: パスワードの変更
     clear_filters: 絞り込みをクリア
+    description: 形容
     edit: 編集
     edited: 新規
     id: ID
@@ -25,6 +26,7 @@ ja:
           other: 合計：1
           zero: 合計：0
     terms_conditions_privacy: プライバシーに関する声明
+    transcriptions: 編曲
     tte_terms_and_condition: 利用規約とプライバシー
     type: タイプ
     update: 更新

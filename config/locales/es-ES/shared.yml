@@ -6,6 +6,7 @@ es-ES:
     cancel: Cancelar
     change_password: Cambiar contraseña
     clear_filters: Quitar filtros
+    description: Descripción
     edit: Editar
     edited: Nuevo/a
     id: ID
@@ -25,6 +26,7 @@ es-ES:
           other: 'Total : {{count}}'
           zero: 'Total : 0'
     terms_conditions_privacy: Declaración de privacidad
+    transcriptions: Transcripciones
     tte_terms_and_condition: Términos y privacidad
     type: Tipo
     update: Actualizar

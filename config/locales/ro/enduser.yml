@@ -11,12 +11,15 @@ ro:
     home: Tablou
     idp_plan_approval_note: Notă de aprobare
     insights: Perspective
+    lighthouse_assistant: Asistent de far
     max_word_limit: Trebuie să aibă cel mult %{max} cuvinte
     min_word_limit: Trebuie să aibă cel puțin %{min} cuvinte
     my_plan: Planul meu
     profile: Profil
     profile_details: Detalii
     question_counter: Întrebarea %{current} din %{total}
+    reason_for_idp_plan_rejection: Motivul respingerii
+    reject_idp_plan: Planul de respingere
     selected_count: Selectat
     skill_type: Tip de abilitate
     start_campaign_message_proctored: Aceasta este o campanie supravegheată, vă rugăm să apăsați butonul "%{buttonText}" pentru a începe activitățile.

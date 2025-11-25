@@ -3,6 +3,10 @@ ja:
   admin:
     admins: 管理者
     ai_artifacts: AIアーティファクト
+    ai_assistant_model_id_label: モデルID
+    ai_assistant_model_label: モデル
+    ai_assistant_model_provider: 供給者
+    ai_assistant_model_region_label: 地域
     ai_assistants: AIアシスタント
     assessments: アセスメント
     assessments_reports: アセスメント＆レポート
@@ -22,9 +26,25 @@ ja:
     dashboard: ダッシュボード
     data_reports: データレポート
     datasheet: データシート
+    delete_ok_text: はい、削除してください
     development_actions: 開発アクション
     dimensions: 寸法
+    empty_csv_file: CSVファイルにはデータが含まれていません。
+    import_csv_assessment_group_error: "%{index}行:メールアドレス%{email}のユーザーはすでに「%{workshopInviteName}」に招待されています"
+    import_csv_error: "%{index}行:メールアドレス%{email}のユーザーはこのキャンペーンに参加していません"
+    import_description: CSVファイルからユーザーをインポートします。各行にはメールアドレスが必要です。
+    import_download_sample: CSV サンプルをダウンロードしてください
+    import_error: インポートは失敗しました。もう一度お試しください。
+    import_errors_title: インポートエラー
+    import_file_required: アップロードするCSVファイルを選択してください。
+    import_queued_success: 被験者のインポートジョブは無事にスケジュールされました。状況については通知をご確認ください。
+    import_sample_file_label: 'サンプルファイル:'
+    import_title: CSVから主題をインポートする
+    import_upload: アップロード
+    import_users: インポートユーザー
+    invalid_csv_header: CSVファイルには無効なヘッダーが含まれています。
     libraries: メディアライブラリー
+    library_invalid_type: 無効なライブラリ項目
     no_notifications: 通知はありません
     norms: 規範
     notification_bell_icon_alt_text: 通知ベルのアイコン
@@ -41,11 +61,48 @@ ja:
     report_approvals: レポートの承認
     reports: レポート
     role: 役割
+    saml_idp_certificate_available: 利用可能(クリックしてコピー)
+    saml_idp_certificate_label: 証書
+    saml_idp_entity_id_label: 事業体ID/発行者
+    saml_idp_sso_url_label: SSOサービスURL
+    saml_service_provider: SAMLサービスプロバイダー
+    saml_service_provider_acs_urls: ACSのURL
+    saml_service_provider_acs_urls_placeholder: URLはコンマで区切って入力してください。例:https://app1.com/saml/acs、https://app2.com/saml/acs
+    saml_service_provider_acs_urls_required: ACSのURLは必須です
+    saml_service_provider_action_delete_label: 削除
+    saml_service_provider_action_edit_label: 編集
+    saml_service_provider_action_rotate_certificate_label: ローテーション証明書
+    saml_service_provider_add: SAMLサービスプロバイダーの追加
+    saml_service_provider_delete_success: SAMLサービスプロバイダーの削除に成功しました
+    saml_service_provider_enabled: 有効
+    saml_service_provider_entity_id: エンティティID
+    saml_service_provider_entity_id_placeholder: エンティティIDを入力してください
+    saml_service_provider_entity_id_required: エンティティIDは必須です
+    saml_service_provider_idp_config: IdP構成
+    saml_service_provider_manage: アクション
+    saml_service_provider_mask_identity: マスク・アイデンティティ
+    saml_service_provider_masking_enabled: マスキングを有効にする
+    saml_service_provider_name: 名前
+    saml_service_provider_name_placeholder: サービスプロバイダー名を入力してください
+    saml_service_provider_name_required: 名前が必要です
+    saml_service_provider_remove_content: SAMLサービスプロバイダー:%{name}を削除したいですか?
+    saml_service_provider_remove_title: SAMLサービスプロバイダーを削除してください
+    saml_service_provider_rotate_certificate_content: 本当に%{name}の証明書をローテーションで受けたいですか?これにより新しい証明書が生成され、現在の証明書は無効になります。
+    saml_service_provider_rotate_certificate_error: 証明書のローテーションに失敗しました
+    saml_service_provider_rotate_certificate_ok: ローテーション証明書
+    saml_service_provider_rotate_certificate_success: 証明書のローテーションは無事に完了しました
+    saml_service_provider_rotate_certificate_title: ローテーション証明書
+    saml_service_provider_search: SAMLサービスプロバイダーを検索してください...
+    saml_service_provider_updated_date: 更新日
+    saml_service_providers: サービスプロバイダー
+    saml_settings: SAML設定
     scheduling: スケジューリング
     scoring: 採点
     show_submenu: サブメニューを表示する
     skills_taxonomy: スキル分類法
+    slot_name: スロット名
     stats: 統計
+    subject_part_of_other_invite: 件名はすでに「%{workshop_invite_name}」に招待されているメールアドレス%{user_email}
     user_report_events: ユーザーレポートイベント
     users: ユーザー
     view_licenses: ライセンスを見る

@@ -3,6 +3,10 @@ pt:
   admin:
     admins: Administradores
     ai_artifacts: Artefatos de IA
+    ai_assistant_model_id_label: ID do modelo
+    ai_assistant_model_label: Modelo
+    ai_assistant_model_provider: Provedor
+    ai_assistant_model_region_label: Região
     ai_assistants: Assistentes de IA
     assessments: Avaliações
     assessments_reports: Avaliações e relatórios
@@ -22,9 +26,25 @@ pt:
     dashboard: Painel de controlo
     data_reports: Relatórios de dados
     datasheet: Ficha Técnica
+    delete_ok_text: Sim, Delete
     development_actions: Acções de desenvolvimento
     dimensions: Dimensões
+    empty_csv_file: CSV não contém nenhum dado.
+    import_csv_assessment_group_error: 'Fila %{index}: usuário com e-mail %{email} já está convidado a ''%{workshopInviteName}'''
+    import_csv_error: 'Fila %{index}: usuário com e-mail %{email} não está nesta campanha'
+    import_description: Importar usuários de um arquivo CSV. Cada linha deve conter um endereço de e-mail.
+    import_download_sample: Baixar exemplo de CSV
+    import_error: Importação falhou. Por favor, tente novamente.
+    import_errors_title: Erros de importação
+    import_file_required: Por favor, selecione um arquivo CSV para enviar.
+    import_queued_success: O trabalho de importação dos sujeitos foi agendado com sucesso. Por favor, verifique seu status na notificação.
+    import_sample_file_label: 'Arquivo de exemplo:'
+    import_title: Assuntos Importados do CSV
+    import_upload: Carregar
+    import_users: Importar Usuários
+    invalid_csv_header: CSV contém cabeçalhos inválidos.
     libraries: Biblioteca multimédia
+    library_invalid_type: Item da Biblioteca Inválido
     no_notifications: Sem notificações
     norms: Normas
     notification_bell_icon_alt_text: Ícone da campainha de notificação
@@ -41,11 +61,48 @@ pt:
     report_approvals: Aprovações de relatórios
     reports: Relatórios
     role: Papel
+    saml_idp_certificate_available: Disponível (clique para copiar)
+    saml_idp_certificate_label: Certificado
+    saml_idp_entity_id_label: ID da Entidade/Emissor
+    saml_idp_sso_url_label: URL do Serviço SSO
+    saml_service_provider: Provedor de Serviços SAML
+    saml_service_provider_acs_urls: ACS URLs
+    saml_service_provider_acs_urls_placeholder: Insira URLs separadas por vírgulas, por exemplo, https://app1.com/saml/acs, https://app2.com/saml/acs
+    saml_service_provider_acs_urls_required: URLs ACS são obrigatórias
+    saml_service_provider_action_delete_label: Excluir
+    saml_service_provider_action_edit_label: Editar
+    saml_service_provider_action_rotate_certificate_label: Certificado de Rotação
+    saml_service_provider_add: Adicionar Provedor de Serviço SAML
+    saml_service_provider_delete_success: Provedor de serviço SAML excluído com sucesso
+    saml_service_provider_enabled: Habilitado
+    saml_service_provider_entity_id: ID da Entidade
+    saml_service_provider_entity_id_placeholder: Insira ID da entidade
+    saml_service_provider_entity_id_required: O ID da entidade é necessário
+    saml_service_provider_idp_config: Configuração IdP
+    saml_service_provider_manage: Ações
+    saml_service_provider_mask_identity: Identidade da Máscara
+    saml_service_provider_masking_enabled: Ativar Mascaramento
+    saml_service_provider_name: Nome
+    saml_service_provider_name_placeholder: Insira nome do provedor de serviço
+    saml_service_provider_name_required: O nome é necessário
+    saml_service_provider_remove_content: 'Você tem certeza de que quer remover o Provedor de Serviço SAML: %{name}?'
+    saml_service_provider_remove_title: Remover Provedor de Serviços SAML
+    saml_service_provider_rotate_certificate_content: Você tem certeza de que quer revezar o certificado para %{name}? Isso gerará um novo certificado e invalidará o atual.
+    saml_service_provider_rotate_certificate_error: Não rodopiou o certificado
+    saml_service_provider_rotate_certificate_ok: Certificado de Rotação
+    saml_service_provider_rotate_certificate_success: Certificado rotacionado com sucesso
+    saml_service_provider_rotate_certificate_title: Certificado de Rotação
+    saml_service_provider_search: Procure Provedores de Serviços SAML...
+    saml_service_provider_updated_date: Data de Atualização
+    saml_service_providers: Provedores de Serviços
+    saml_settings: Configurações SAML
     scheduling: Programação
     scoring: Pontuação
     show_submenu: Mostrar submenu
     skills_taxonomy: Taxonomia de competências
+    slot_name: Nome do Slot
     stats: Estatísticas
+    subject_part_of_other_invite: Assunto com e-mail %{user_email} já está convidado a '%{workshop_invite_name}'
     user_report_events: Eventos do relatório do utilizador
     users: Utilizadores
     view_licenses: Ver licenças

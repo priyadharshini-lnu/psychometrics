@@ -6,6 +6,7 @@ sl:
     cancel: Prekliči
     change_password: Spremeni geslo
     clear_filters: Počistite filtre
+    description: Opis
     edit: Uredi
     edited: Novo
     id: ID
@@ -20,6 +21,7 @@ sl:
         selected: Izbrana 1 vrstica
         total: 'Skupaj : 1'
     terms_conditions_privacy: Izjava o zasebnosti
+    transcriptions: Transkripcij
     tte_terms_and_condition: Pogoji uporabe in politika zasebnosti
     type: Vrsta
     update: Posodobitev

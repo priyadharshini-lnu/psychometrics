@@ -3,6 +3,10 @@ bg:
   admin:
     admins: Администратори
     ai_artifacts: Артефакти с изкуствен интелект
+    ai_assistant_model_id_label: Модел ID
+    ai_assistant_model_label: Модел
+    ai_assistant_model_provider: Доставчик
+    ai_assistant_model_region_label: Регион
     ai_assistants: AI асистенти
     assessments: Оценки
     assessments_reports: Оценки и отчети
@@ -22,9 +26,25 @@ bg:
     dashboard: Таблото
     data_reports: Отчети за данни
     datasheet: Лист с данни
+    delete_ok_text: Да, изтрий
     development_actions: Действия за развитие
     dimensions: Размери
+    empty_csv_file: CSV файлът не съдържа никакви данни.
+    import_csv_assessment_group_error: 'Ред %{index}: потребител с имейл %{email} вече е поканен на ''%{workshopInviteName}'''
+    import_csv_error: 'Ред %{index}: потребител с имейл %{email} не участва в тази кампания'
+    import_description: Импортирайте потребители от CSV файл. Всеки ред трябва да съдържа имейл адрес.
+    import_download_sample: Изтеглете пример за CSV
+    import_error: Импортът не успя. Моля, опитайте отново.
+    import_errors_title: Грешки при внос
+    import_file_required: Моля, изберете CSV файл за качване.
+    import_queued_success: Работата по внос на субекти беше насрочена успешно. Моля, проверете известието си за статус.
+    import_sample_file_label: 'Примерен файл:'
+    import_title: Вносни теми от CSV
+    import_upload: Качвам
+    import_users: Импортиране на потребители
+    invalid_csv_header: CSV файлът съдържа невалидни заглавия.
     libraries: Медийна библиотека
+    library_invalid_type: Невалиден библиотечен елемент
     no_notifications: Няма известия
     norms: Норми
     notification_bell_icon_alt_text: Икона на звънец за известия
@@ -41,11 +61,48 @@ bg:
     report_approvals: Докладване на одобрения
     reports: Доклади
     role: Роля
+    saml_idp_certificate_available: Наличен (кликнете за копиране)
+    saml_idp_certificate_label: Сертификат
+    saml_idp_entity_id_label: Идентификатор на дружеството/Емитент
+    saml_idp_sso_url_label: URL адрес на услугата на SSO
+    saml_service_provider: SAML доставчик на услуги
+    saml_service_provider_acs_urls: ACS URL адреси
+    saml_service_provider_acs_urls_placeholder: Въведете URL адреси, разделени със запетаи, напр. https://app1.com/saml/acs, https://app2.com/saml/acs
+    saml_service_provider_acs_urls_required: Задължителни са ACS URL адреси
+    saml_service_provider_action_delete_label: Изтривам
+    saml_service_provider_action_edit_label: Редактирам
+    saml_service_provider_action_rotate_certificate_label: Ротационен сертификат
+    saml_service_provider_add: Добавете SAML доставчик на услуги
+    saml_service_provider_delete_success: SAML доставчикът на услуги успешно изтрит
+    saml_service_provider_enabled: Разрешено
+    saml_service_provider_entity_id: Идентификатор на обекта
+    saml_service_provider_entity_id_placeholder: Въведете идентификационния номер на субекта
+    saml_service_provider_entity_id_required: Изисква се идентификация на дружеството
+    saml_service_provider_idp_config: IdP конфигурация
+    saml_service_provider_manage: Действия
+    saml_service_provider_mask_identity: Идентичност на маската
+    saml_service_provider_masking_enabled: Активирай маскиране
+    saml_service_provider_name: Име
+    saml_service_provider_name_placeholder: Въведете името на доставчика на услуги
+    saml_service_provider_name_required: Задължително е име
+    saml_service_provider_remove_content: 'Сигурни ли сте, че искате да премахнете SAML Service Provider: %{name}?'
+    saml_service_provider_remove_title: Премахване на SAML доставчика на услуги
+    saml_service_provider_rotate_certificate_content: Сигурен ли си, че искаш да въртиш сертификата за %{name}? Това ще генерира нов сертификат и ще анулира текущия.
+    saml_service_provider_rotate_certificate_error: Не успя да завърти сертификата
+    saml_service_provider_rotate_certificate_ok: Ротационен сертификат
+    saml_service_provider_rotate_certificate_success: Сертификатът се завъртя успешно
+    saml_service_provider_rotate_certificate_title: Ротационен сертификат
+    saml_service_provider_search: Търсене на SAML доставчици на услуги...
+    saml_service_provider_updated_date: Актуализирана дата
+    saml_service_providers: Доставчици
+    saml_settings: SAML настройки
     scheduling: Планиране
     scoring: Точкуване
     show_submenu: Покажи подменюто
     skills_taxonomy: Таксономия на уменията
+    slot_name: Име на слот
     stats: Статистика
+    subject_part_of_other_invite: Субектът с имейл %{user_email} вече е поканен на '%{workshop_invite_name}'
     user_report_events: Събития с потребителски отчет
     users: Потребители
     view_licenses: Преглед на лицензи

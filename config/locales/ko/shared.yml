@@ -6,6 +6,7 @@ ko:
     cancel: 취소
     change_password: 비밀번호 변경
     clear_filters: 필터 지우기
+    description: 묘사
     edit: 편집
     edited: 새로 만들기
     id: ID
@@ -25,6 +26,7 @@ ko:
           other: '합계 : {{count}}'
           zero: '합계 : 0'
     terms_conditions_privacy: 개인정보 처리방침
+    transcriptions: 사본
     tte_terms_and_condition: 약관 및 개인정보 보호
     type: 유형
     update: 업데이트

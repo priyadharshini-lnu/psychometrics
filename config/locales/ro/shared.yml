@@ -6,6 +6,7 @@ ro:
     cancel: Anulați
     change_password: Schimbați parola
     clear_filters: Ștergeți filtrele
+    description: Descriere
     edit: Editați
     edited: Nou
     id: ID
@@ -20,6 +21,7 @@ ro:
         selected: 1 rând selectat
         total: 'Total: 1'
     terms_conditions_privacy: Declarație de confidențialitate
+    transcriptions: Transcrieri
     tte_terms_and_condition: Termeni și confidențialitate
     type: Tip
     update: Actualizați

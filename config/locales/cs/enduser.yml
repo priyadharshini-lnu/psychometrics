@@ -11,6 +11,7 @@ cs:
     home: Přístrojová deska
     idp_plan_approval_note: Poznámka ke schválení
     insights: Poznatky
+    lighthouse_assistant: Asistent majáku
     max_word_limit: Musí mít maximálně %{max} slov
     min_word_limit: Musí mít nejméně %{min} slov
     my_plan: Můj plán

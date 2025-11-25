@@ -6,6 +6,7 @@ en-US:
     cancel: Cancel
     change_password: Change Password
     clear_filters: Clear Filters
+    description: Description
     edit: Edit
     edited: New
     id: ID
@@ -20,6 +21,7 @@ en-US:
         selected: 1 row selected
         total: 'Total : 1'
     terms_conditions_privacy: Privacy Statement
+    transcriptions: Transcriptions
     tte_terms_and_condition: Terms & Privacy
     type: Type
     update: Update

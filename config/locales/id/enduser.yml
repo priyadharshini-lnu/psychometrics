@@ -11,12 +11,15 @@ id:
     home: Beranda
     idp_plan_approval_note: Catatan Persetujuan
     insights: Wawasan
+    lighthouse_assistant: Asisten Mercusuar
     max_word_limit: Maksimal %{max} kata
     min_word_limit: Minimal %{min} kata
     my_plan: Rencanaku
     profile: Profil
     profile_details: Detail
     question_counter: Pertanyaan %{current} dari %{total}
+    reason_for_idp_plan_rejection: Alasan Penolakan
+    reject_idp_plan: Tolak Paket
     selected_count: Dipilih
     skill_type: Jenis Keterampilan
     start_campaign_message_proctored: Ini adalah kampanye yang diawasi, silakan klik tombol '%{buttonText}' untuk memulai aktivitas.

@@ -6,8 +6,10 @@ cs:
     cancel: Zrušit
     change_password: Změna hesla
     clear_filters: Vymazat filtry
+    description: Popis
     edit: Upravit
     edited: Nové
+    id: ID
     internet_disconnected_message: Probíhá pokus o opětovné připojení. Zkontrolujte připojení k internetu.
     mte_logo_alt_text: Logo Mercer Talent Enterprise
     name: Název
@@ -24,6 +26,7 @@ cs:
           other: 'Celkem : {{count}}'
           zero: 'Celkem : 0'
     terms_conditions_privacy: Prohlášení o ochraně soukromí
+    transcriptions: Přepisy
     tte_terms_and_condition: Smluvní podmínky a ochrana soukromí
     type: Typ
     update: Aktualizovat

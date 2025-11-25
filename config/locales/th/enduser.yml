@@ -11,12 +11,15 @@ th:
     home: แดชบอร์ด
     idp_plan_approval_note: หมายเหตุการอนุมัติ
     insights: ข้อมูลเชิงลึก
+    lighthouse_assistant: ผู้ช่วยประภาคาร
     max_word_limit: ต้องมีไม่เกิน %{max} คำ
     min_word_limit: ต้องมีอย่างน้อย %{min} คำ
     my_plan: แผนของฉัน
     profile: โปรไฟล์
     profile_details: รายละเอียด
     question_counter: Question %{current} of %{total}
+    reason_for_idp_plan_rejection: เหตุผลในการปฏิเสธ
+    reject_idp_plan: ปฏิเสธแผน
     selected_count: เลือก
     skill_type: ประเภททักษะ
     start_campaign_message_proctored: นี่คือแคมเปญที่มีผู้คุมสอบ โปรดคลิกปุ่ม '%{buttonText}' เพื่อเริ่มกิจกรรม

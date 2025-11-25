@@ -11,12 +11,15 @@ hu:
     home: Irányítópult
     idp_plan_approval_note: Jóváhagyási megjegyzés
     insights: Betekintés
+    lighthouse_assistant: Világítótorony asszisztens
     max_word_limit: Legfeljebb %{max} szó lehet
     min_word_limit: Legalább %{min} szó kell
     my_plan: A tervem
     profile: Profil
     profile_details: Részletek
     question_counter: Kérdés %{current} / %{total}
+    reason_for_idp_plan_rejection: Az elutasítás oka
+    reject_idp_plan: Elutasít tervet
     selected_count: Kiválasztott
     skill_type: Képesség típusa
     start_campaign_message_proctored: Ez egy felügyelt kampány, kérjük, kattintson a '%{buttonText}' gombra a tevékenységek elindításához.

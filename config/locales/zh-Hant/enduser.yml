@@ -11,12 +11,15 @@ zh-Hant:
     home: 儀表板
     idp_plan_approval_note: 批准備註
     insights: 洞察力
+    lighthouse_assistant: 燈塔助理
     max_word_limit: 最多不得超過 %{max} 個字
     min_word_limit: 至少需要 %{min} 個字
     my_plan: 我的計劃
     profile: 簡介
     profile_details: 詳細資訊
     question_counter: 問題 %{current} / %{total}
+    reason_for_idp_plan_rejection: 拒絕原因
+    reject_idp_plan: 拒絕計畫
     selected_count: 已選擇
     skill_type: 技能類型
     start_campaign_message_proctored: 這是一個監考活動，請點擊「%{buttonText}」按鈕開始活動。

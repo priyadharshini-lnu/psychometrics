@@ -11,12 +11,15 @@ ja:
     home: ダッシュボード
     idp_plan_approval_note: 承認メモ
     insights: インサイト
+    lighthouse_assistant: 灯台助手
     max_word_limit: 最大%{max}語以内にしてください
     min_word_limit: 最小%{min}語以上にしてください
     my_plan: 私の計画
     profile: プロフィール
     profile_details: 詳細
     question_counter: 質問 %{current} / %{total}
+    reason_for_idp_plan_rejection: 拒否理由
+    reject_idp_plan: 計画を拒否する
     selected_count: 選択済み
     skill_type: スキルの種類
     start_campaign_message_proctored: これは監督付きキャンペーンです。活動を開始するには「%{buttonText}」ボタンをクリックしてください。

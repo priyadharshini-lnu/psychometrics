@@ -11,12 +11,15 @@ hr:
     home: Nadzorna ploča
     idp_plan_approval_note: Napomena o odobrenju
     insights: Uvidi
+    lighthouse_assistant: Pomoćnik svjetionika
     max_word_limit: Mora imati najviše %{max} riječi
     min_word_limit: Mora imati najmanje %{min} riječi
     my_plan: Moj plan
     profile: Profil
     profile_details: Detalji
     question_counter: Pitanje %{current} od %{total}
+    reason_for_idp_plan_rejection: Razlog odbijanja
+    reject_idp_plan: Plan odbijanja
     selected_count: Odabrano
     skill_type: Vrsta vještine
     start_campaign_message_proctored: Ovo je nadzirana kampanja, molimo kliknite gumb '%{buttonText}' za pokretanje aktivnosti.

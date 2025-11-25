@@ -6,6 +6,7 @@ bg:
     cancel: Отменете
     change_password: Промяна на паролата
     clear_filters: Изчистете филтрите
+    description: Описание
     edit: Редактирайте
     edited: Нов
     id: Идентификация
@@ -20,6 +21,7 @@ bg:
         selected: Избран е 1 ред
         total: 'Общо : 1'
     terms_conditions_privacy: Декларация за поверителност
+    transcriptions: Транскрипции
     tte_terms_and_condition: Условия и поверителност
     type: Вид
     update: Актуализирайте

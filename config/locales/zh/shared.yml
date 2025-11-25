@@ -6,6 +6,7 @@ zh:
     cancel: 取消
     change_password: 更改密码
     clear_filters: 清除筛选
+    description: 描述
     edit: 编辑
     edited: 新的
     id: ID
@@ -25,6 +26,7 @@ zh:
           other: '共计 : {{count}}'
           zero: '总计 : 0'
     terms_conditions_privacy: 隐私声明
+    transcriptions: 改编
     tte_terms_and_condition: 条款和隐私
     type: 类型
     update: 更新

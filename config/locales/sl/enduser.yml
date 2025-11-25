@@ -11,12 +11,15 @@ sl:
     home: Nadzorna plošča
     idp_plan_approval_note: Opomba za odobritev
     insights: Vpogledi
+    lighthouse_assistant: Pomočnik svetilnika
     max_word_limit: Mora imeti največ %{max} besed
     min_word_limit: Mora imeti najmanj %{min} besed
     my_plan: Moj načrt
     profile: Profil
     profile_details: Podrobnosti profila
     question_counter: Vprašanje %{current} od %{total}
+    reason_for_idp_plan_rejection: Razlog za zavrnitev
+    reject_idp_plan: Načrt zavrnitve
     selected_count: Izbrano
     skill_type: Vrsta spretnosti
     start_campaign_message_proctored: To je nadzorovana kampanja, kliknite gumb '%{buttonText}' za začetek aktivnosti.

@@ -11,6 +11,7 @@ ar:
     home: لوحة التحكم
     idp_plan_approval_note: مذكرة الموافقة
     insights: البصائر
+    lighthouse_assistant: مساعد المنارات
     max_word_limit: يجب أن تكون على الأكثر %{max} كلمة
     min_word_limit: يجب أن تكون على الأقل %{min} كلمة
     my_plan: خطتي
