@@ -56,4 +56,42 @@ RSpec.describe ProjectLicense, type: :model do
       it { is_expected.to be false }
     end
   end
+
+  describe '#enough_license_credits?' do
+    let(:project_license) do
+      create(:project_license, project: project, license: license, usage_limit: 10, used_number: 5)
+    end
+
+    context 'when remaining credits are greater than or equal to requested credit' do
+      it 'returns true with exact remaining credits' do
+        expect(project_license.enough_license_credits?(5)).to be true
+      end
+
+      it 'returns true with less than remaining credits' do
+        expect(project_license.enough_license_credits?(3)).to be true
+      end
+    end
+
+    context 'when remaining credits are less than requested credit' do
+      it 'returns false' do
+        expect(project_license.enough_license_credits?(6)).to be false
+      end
+    end
+
+    context 'when no credits are remaining' do
+      let(:project_license_no_credits) do
+        create(:project_license, project: project, license: license, usage_limit: 10, used_number: 10)
+      end
+
+      it 'returns false' do
+        expect(project_license_no_credits.enough_license_credits?(1)).to be false
+      end
+    end
+
+    context 'when requested credit is zero' do
+      it 'returns true' do
+        expect(project_license.enough_license_credits?(0)).to be true
+      end
+    end
+  end
 end

@@ -16,6 +16,7 @@ module Examus
       return broadcast :ok unless proctoring_session
 
       license_usage = proctoring_session.license_usage
+      license = license_usage.license
 
       return broadcast :ok if license_usage.proctoring_credits_credited
 
@@ -23,7 +24,12 @@ module Examus
       credits = MIN_CREDIT + mins_to_credits(seconds / SECS_IN_MIN)
       license_usage.update(proctoring_credits_credited: credits, proctoring_session_duration: seconds)
       difference = license_usage.proctoring_credits_debited - license_usage.proctoring_credits_credited
-      license_usage.license.decrement!(:used_number, difference) if difference.positive?
+      if difference.positive?
+        license.decrement!(:used_number, difference)
+        if license.is_project_specific?
+          license_usage.project_license&.decrement!(:used_number, difference)
+        end
+      end
 
       broadcast :ok
     end

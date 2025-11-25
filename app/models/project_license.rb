@@ -12,4 +12,8 @@ class ProjectLicense < ApplicationRecord
   def enough_licenses?
     usage_limit > used_number
   end
+
+  def enough_license_credits?(credit)
+    (usage_limit - used_number) >= credit
+  end
 end
