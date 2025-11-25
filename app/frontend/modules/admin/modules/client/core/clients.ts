@@ -11,8 +11,8 @@ export const ClientTR = t.intersection([
     projectManager: t.union([
       t.type({
         id: t.string,
-        name: t.string,
-        email: t.string,
+        name: t.union([t.string, t.undefined]),
+        email: t.union([t.string, t.undefined]),
       }),
       t.undefined]),
     meta: t.type({
