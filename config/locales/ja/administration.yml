@@ -2280,7 +2280,7 @@ ja:
       background_image: 背景画像
       behavioral_skills: 行動スキル
       client_skills: クライアント・スキル
-      delete_skill: スキルは、接続されているすべての開発アクションも削除されるため、スキルを削除してもよろしいですか?
+      delete_skill: このスキルを削除してもよろしいですか？削除すると、関連するすべての開発アクションも削除されます。
       details_updated: IDP詳細の更新に成功
       development_actions:
         add_from_library: ライブラリから追加

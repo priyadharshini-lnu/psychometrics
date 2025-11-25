@@ -2280,7 +2280,7 @@ pl:
       background_image: Obraz w tle
       behavioral_skills: Umiejętności behawioralne
       client_skills: Umiejętności klienta
-      delete_skill: Czy na pewno chcesz usunąć umiejętność, ponieważ spowoduje to również usunięcie wszystkich powiązanych działań programistycznych?
+      delete_skill: Czy na pewno chcesz usunąć umiejętność? Spowoduje to również usunięcie wszystkich powiązanych działań rozwojowych.
       details_updated: Szczegóły IDP zostały pomyślnie zaktualizowane
       development_actions:
         add_from_library: Dodaj z biblioteki

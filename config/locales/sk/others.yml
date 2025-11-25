@@ -1798,7 +1798,6 @@ sk:
       view: Pohľad
       view_all_tasks: Zobraziť všetky úlohy
       view_detail: Zobraziť podrobnosti
-      yes_delete: Áno, odstrániť
     column:
       action: Akcia
       active: Aktívny
@@ -2573,7 +2572,7 @@ sk:
       action_public: Nie
       add_development_action: Pridanie vývojovej akcie
       add_development_actions_from_below_options: Pridajte vývojové akcie z nižšie uvedených možností.
-      add_development_actions_modal_title: Knižnica vývojových akcií pre %{skillName}
+      add_development_actions_modal_title: Knižnica vývojových akcií pre
       add_from_library: Pridanie z knižnice
       add_more: Pridanie ďalších vývojových akcií
       add_selected_development_actions: Pridanie vybraných vývojových akcií
@@ -2604,7 +2603,7 @@ sk:
       generate_more: Generovať viac
       generating_development_actions: Generovanie rozvojových akcií...
       generative_ai: Generatívna umelá inteligencia
-      generative_ai_description: Nechajte umelú inteligenciu vygenerovať vývojovú akciu na mieru práve pre vás
+      generative_ai_description_msg: Nechajte umelú inteligenciu vygenerovať vývojovú akciu na mieru práve pre vás
       heading: Rozvojové akcie
       idp_library: Knižnica IDP
       idp_library_description: Vyberte si osvedčenú vývojovú akciu z našej knižnice spravovanej odborníkmi.
@@ -2662,8 +2661,8 @@ sk:
         one: Odstránená vývojová akcia
         other: Odstránené vývojové akcie
     initial_steps:
-      add_skill_group_description: Na základe výsledkov vášho hodnotenia uvádzame niektoré z oblastí silných stránok a rozvoja pre vás. Vyberte si zručnosti, ktoré chcete ďalej rozvíjať ako súčasť svojho plánu rozvoja.
-      add_skill_group_title: Preskúmanie vašich zručností %{category}
+      add_skill_group_description: Vyberte si zručnosti, ktoré chcete ďalej rozvíjať ako súčasť svojho plánu rozvoja.
+      add_skill_group_title: "%{category}"
       add_skills: Sčítať
       add_skills_step: Pridanie zručností
       back: Chrbát

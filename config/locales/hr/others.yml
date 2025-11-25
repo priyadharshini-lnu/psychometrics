@@ -1805,7 +1805,6 @@ hr:
       view: Pregled
       view_all_tasks: Pogledajte sve zadatke
       view_detail: Pogledajte detalje
-      yes_delete: Da, Izbriši
     column:
       action: Status
       active: Aktivan
@@ -2581,14 +2580,14 @@ hr:
       you: Ti
     convert_to_draft: Pretvori u skicu
     current_step: Trenutni korak %{step}
-    delete_skill: Jeste li sigurni da želite izbrisati vještinu jer će izbrisati i sve povezane razvojne akcije?
+    delete_skill: Jeste li sigurni da želite izbrisati ovu vještinu? Brisanjem će se ukloniti sve povezane razvojne aktivnosti.
     details: Detalji
     development_actions:
       action_private: Da
       action_public: Ne
       add_development_action: Dodavanje razvojne akcije
       add_development_actions_from_below_options: Dodajte razvojne akcije iz donjih opcija.
-      add_development_actions_modal_title: Biblioteka razvojnih akcija za %{skillName}
+      add_development_actions_modal_title: Biblioteka razvojnih akcija za
       add_from_library: Dodavanje iz medijateke
       add_more: Dodajte još razvojnih radnji
       add_selected_development_actions: Dodavanje odabranih razvojnih radnji
@@ -2619,7 +2618,7 @@ hr:
       generate_more: Generirajte više
       generating_development_actions: Generiranje razvojnih akcija...
       generative_ai: Generativna umjetna inteligencija
-      generative_ai_description: Neka umjetna inteligencija generira prilagođenu razvojnu akciju samo za vas
+      generative_ai_description_msg: Neka umjetna inteligencija generira prilagođenu razvojnu akciju samo za vas
       heading: Razvojne akcije
       idp_library: IDP knjižnica
       idp_library_description: Odaberite provjerenu razvojnu akciju iz naše biblioteke koju su pripremili stručnjaci.
@@ -2677,8 +2676,8 @@ hr:
         one: Uklonjena razvojna akcija
         other: Uklonjene razvojne radnje
     initial_steps:
-      add_skill_group_description: Na temelju rezultata vaše procjene, evo nekih od područja snaga i razvoja za vas. Odaberite vještine koje želite dalje razvijati kao dio svog razvojnog plana.
-      add_skill_group_title: Istraživanje vaših vještina %{category}
+      add_skill_group_description: Odaberite vještine koje želite dalje razvijati kao dio svog razvojnog plana.
+      add_skill_group_title: "%{category}"
       add_skills: Dodavanje
       add_skills_step: Dodavanje vještina
       back: Leđa

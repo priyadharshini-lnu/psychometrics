@@ -1798,7 +1798,6 @@ ro:
       view: Vedere
       view_all_tasks: Vizualizați toate sarcinile
       view_detail: Vezi detalii
-      yes_delete: Da, ștergeți
     column:
       action: Acțiuni
       active: Active
@@ -2566,14 +2565,14 @@ ro:
       you: Tu
     convert_to_draft: Conversie în ciornă
     current_step: Pasul curent %{step}
-    delete_skill: Sunteți sigur că doriți să ștergeți abilitatea, deoarece va șterge și toate acțiunile de dezvoltare conectate?
+    delete_skill: Sunteți sigur că doriți să ștergeți abilitatea? Aceasta va șterge și toate acțiunile de dezvoltare conectate.
     details: Detalii
     development_actions:
       action_private: Da
       action_public: Nu
       add_development_action: Adăugarea acțiunii de dezvoltare
       add_development_actions_from_below_options: Adăugați acțiuni de dezvoltare din opțiunile de mai jos.
-      add_development_actions_modal_title: Biblioteca de acțiuni de dezvoltare pentru %{skillName}
+      add_development_actions_modal_title: Biblioteca de acțiuni de dezvoltare pentru
       add_from_library: Adăugați din bibliotecă
       add_more: Adăugați mai multe acțiuni de dezvoltare
       add_selected_development_actions: Adăugați acțiuni de dezvoltare selectate
@@ -2604,7 +2603,7 @@ ro:
       generate_more: Generează mai mult
       generating_development_actions: Generarea de acțiuni de dezvoltare...
       generative_ai: AI generativă
-      generative_ai_description: Lăsați AI să genereze o acțiune de dezvoltare personalizată doar pentru dvs.
+      generative_ai_description_msg: Lăsați AI să genereze o acțiune de dezvoltare personalizată doar pentru dvs.
       heading: Acțiune de dezvoltare
       idp_library: Biblioteca IDP
       idp_library_description: Selectați o acțiune de dezvoltare dovedită din biblioteca noastră organizată de experți.
@@ -2662,8 +2661,8 @@ ro:
         one: Acțiune de dezvoltare eliminată
         other: Acțiuni de dezvoltare eliminate
     initial_steps:
-      add_skill_group_description: Pe baza rezultatelor evaluării dvs., iată câteva dintre domeniile de puncte forte și dezvoltare pentru dvs. Alegeți abilitățile pe care doriți să le dezvoltați în continuare ca parte a planului de dezvoltare.
-      add_skill_group_title: Explorarea abilităților %{category}
+      add_skill_group_description: Alegeți abilitățile pe care doriți să le dezvoltați în continuare ca parte a planului de dezvoltare.
+      add_skill_group_title: "%{category}"
       add_skills: Adăugați
       add_skills_step: Adaugă abilități
       back: Spate

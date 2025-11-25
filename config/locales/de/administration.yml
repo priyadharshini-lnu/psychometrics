@@ -2280,7 +2280,7 @@ de:
       background_image: Hintergrundbild
       behavioral_skills: Verhaltenstechnische Fertigkeiten
       client_skills: Client-Fähigkeiten
-      delete_skill: Sind Sie sicher, dass Sie den Skill löschen möchten, da dadurch auch alle verbundenen Entwicklungsaktionen gelöscht werden?
+      delete_skill: Sind Sie sicher, dass Sie diese Fertigkeit löschen möchten? Durch das Löschen werden auch alle zugehörigen Entwicklungsmaßnahmen entfernt.
       details_updated: IDP-Details erfolgreich aktualisiert
       development_actions:
         add_from_library: Aus Bibliothek hinzufügen

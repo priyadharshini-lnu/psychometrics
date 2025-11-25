@@ -2280,7 +2280,7 @@ vi:
       background_image: Hình nền
       behavioral_skills: Kỹ năng hành vi
       client_skills: Kỹ năng khách hàng
-      delete_skill: Bạn có chắc chắn muốn xóa kỹ năng vì nó cũng sẽ xóa tất cả các hành động phát triển được kết nối không?
+      delete_skill: Bạn có chắc chắn muốn xóa kỹ năng này không? Việc xóa sẽ loại bỏ tất cả các hành động phát triển liên quan.
       details_updated: Thông tin chi tiết về IDP đã được cập nhật thành công.
       development_actions:
         add_from_library: Thêm từ Thư viện

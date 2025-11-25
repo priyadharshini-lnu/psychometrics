@@ -2280,7 +2280,7 @@ zh-Hant:
       background_image: 背景圖片
       behavioral_skills: 行為技巧
       client_skills: 客戶技能
-      delete_skill: 您確定要刪除技能，因為它也會刪除所有連接的開發動作嗎？
+      delete_skill: 您確定要刪除此技能嗎？刪除後將同時移除所有相關的開發行動。
       details_updated: IDP 詳細資料已成功更新
       development_actions:
         add_from_library: 從庫新增

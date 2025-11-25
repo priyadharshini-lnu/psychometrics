@@ -1796,7 +1796,6 @@ en-US:
       view: View
       view_all_tasks: View all tasks
       view_detail: View Detail
-      yes_delete: Yes, Delete
     column:
       action: Action
       active: Active
@@ -2571,7 +2570,7 @@ en-US:
       action_public: 'No'
       add_development_action: Add Development Action
       add_development_actions_from_below_options: Add Development Actions from below options.
-      add_development_actions_modal_title: Development Actions Library for %{skillName}
+      add_development_actions_modal_title: Development Actions Library for
       add_from_library: Add from Library
       add_more: Add More Development Actions
       add_selected_development_actions: Add Selected Development Actions
@@ -2602,7 +2601,7 @@ en-US:
       generate_more: Generate More
       generating_development_actions: Generating development actions...
       generative_ai: Generative AI
-      generative_ai_description: Let out AI generate a tailored development action just for you
+      generative_ai_description_msg: Let our AI generate a tailored development action
       heading: Development Actions
       idp_library: IDP Library
       idp_library_description: Select a proven development action from our expert-curated library.
@@ -2660,8 +2659,8 @@ en-US:
         one: Removed Development Action
         other: Removed Development Actions
     initial_steps:
-      add_skill_group_description: Based on your assessment results, here are some of the areas of strengths and development for you. Choose the skills you want to develop further as part of your development plan.
-      add_skill_group_title: Exploring Your %{category} Skills
+      add_skill_group_description: Choose the skills you want to develop further as part of your development plan.
+      add_skill_group_title: "%{category}"
       add_skills: Add
       add_skills_step: Add Skills
       back: Back

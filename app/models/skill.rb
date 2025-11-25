@@ -59,7 +59,7 @@ class Skill < ApplicationRecord
   }
 
   scope :excluding_plan, lambda { |plan_id: nil|
-    plan_id.nil? ? all : where.not(id: UserIdpSkill.where(user_idp_plan_id: plan_id).select(:skill_id))
+    plan_id.nil? ? all : where.not(id: UserIdpSkill.not_deleted.where(user_idp_plan_id: plan_id).select(:skill_id))
   }
 
   def self.ransackable_attributes(_auth_object = nil)

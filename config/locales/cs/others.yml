@@ -1810,7 +1810,6 @@ cs:
       view: Zobrazit
       view_all_tasks: Zobrazit všechny úkoly
       view_detail: Zobrazit detail
-      yes_delete: Ano, odstranit
     column:
       action: Akce
       active: Aktivní
@@ -2562,7 +2561,7 @@ cs:
       action_public: Ne
       add_development_action: Přidat rozvojovou akci
       add_development_actions_from_below_options: Přidejte akce vývoje z níže uvedených možností.
-      add_development_actions_modal_title: Knihovna vývojových akcí pro %{skillName}
+      add_development_actions_modal_title: Knihovna vývojových akcí pro
       add_from_library: Přidat z knihovny
       add_more: Přidání dalších vývojových akcí
       add_selected_development_actions: Přidání vybraných vývojových akcí
@@ -2593,7 +2592,7 @@ cs:
       generate_more: Vygenerovat více
       generating_development_actions: Generování rozvojových akcí...
       generative_ai: Generativní umělá inteligence
-      generative_ai_description: Nechte umělou inteligenci vygenerovat vývojovou akci na míru přímo pro vás
+      generative_ai_description_msg: Nechte umělou inteligenci vygenerovat vývojovou akci na míru přímo pro vás
       heading: Rozvojové akce
       idp_library: IDP knihovna
       idp_library_description: Vyberte si osvědčenou vývojovou akci z naší knihovny spravované odborníky.
@@ -2651,8 +2650,8 @@ cs:
         one: Odebrána vývojová akce
         other: Odebrané akce vývoje
     initial_steps:
-      add_skill_group_description: Na základě výsledků vašeho hodnocení jsou zde některé oblasti vašich silných stránek a rozvoje. Vyberte dovednosti, které chcete dále rozvíjet jako součást vašeho rozvojového plánu.
-      add_skill_group_title: Prozkoumání vašich %{category} dovedností
+      add_skill_group_description: Vyberte dovednosti, které chcete dále rozvíjet jako součást vašeho rozvojového plánu.
+      add_skill_group_title: "%{category}"
       add_skills: Přidat
       add_skills_step: Přidat dovednosti
       back: Hřbet

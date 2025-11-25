@@ -1792,7 +1792,6 @@ vi:
       view: Cảnh
       view_all_tasks: Xem tất cả tác vụ
       view_detail: Xem chi tiết
-      yes_delete: Có, xóa
     column:
       action: Hoạt động
       active: Hoạt động
@@ -2560,14 +2559,14 @@ vi:
       you: Mày
     convert_to_draft: Chuyển đổi sang bản nháp
     current_step: Bước hiện tại %{step}
-    delete_skill: Bạn có chắc chắn muốn xóa kỹ năng vì nó cũng sẽ xóa tất cả các hành động phát triển được kết nối không?
+    delete_skill: Bạn có chắc chắn muốn xóa kỹ năng này không? Việc xóa sẽ loại bỏ tất cả các hành động phát triển liên quan.
     details: Chi tiết
     development_actions:
       action_private: Có
       action_public: Không
       add_development_action: Thêm hành động phát triển
       add_development_actions_from_below_options: Thêm Hành động phát triển từ các tùy chọn bên dưới.
-      add_development_actions_modal_title: Thư viện hành động phát triển cho %{skillName}
+      add_development_actions_modal_title: Thư viện hành động phát triển cho
       add_from_library: Thêm từ Thư viện
       add_more: Thêm các hành động phát triển khác
       add_selected_development_actions: Thêm các hành động phát triển đã chọn
@@ -2598,7 +2597,7 @@ vi:
       generate_more: Tạo thêm
       generating_development_actions: Tạo ra các hành động phát triển...
       generative_ai: AI tổng quát
-      generative_ai_description: Hãy để AI tạo ra một hành động phát triển phù hợp dành riêng cho bạn
+      generative_ai_description_msg: Hãy để AI tạo ra một hành động phát triển phù hợp dành riêng cho bạn
       heading: Hành động phát triển
       idp_library: Thư viện IDP
       idp_library_description: Chọn một hành động phát triển đã được chứng minh từ thư viện do chuyên gia tuyển chọn của chúng tôi.
@@ -2656,8 +2655,8 @@ vi:
         one: Đã xóa hành động phát triển
         other: Đã xóa các hành động phát triển
     initial_steps:
-      add_skill_group_description: Dựa trên kết quả đánh giá của bạn, đây là một số lĩnh vực thế mạnh và sự phát triển dành cho bạn. Chọn các kỹ năng bạn muốn phát triển hơn nữa như một phần của kế hoạch phát triển của bạn.
-      add_skill_group_title: Khám phá các kỹ năng %{category} của bạn
+      add_skill_group_description: Chọn các kỹ năng bạn muốn phát triển hơn nữa như một phần của kế hoạch phát triển của bạn.
+      add_skill_group_title: "%{category}"
       add_skills: Thêm
       add_skills_step: Thêm kỹ năng
       back: Lưng

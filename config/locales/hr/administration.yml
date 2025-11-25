@@ -2280,7 +2280,7 @@ hr:
       background_image: Pozadinska slika
       behavioral_skills: Vještine ponašanja
       client_skills: Vještine klijenata
-      delete_skill: Jeste li sigurni da želite izbrisati vještinu jer će izbrisati i sve povezane razvojne akcije?
+      delete_skill: Jeste li sigurni da želite izbrisati ovu vještinu? Brisanjem će se ukloniti sve povezane razvojne aktivnosti.
       details_updated: Detalji IDP-a su uspješno ažurirani
       development_actions:
         add_from_library: Dodavanje iz medijateke

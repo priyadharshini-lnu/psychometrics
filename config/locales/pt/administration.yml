@@ -2280,7 +2280,7 @@ pt:
       background_image: Imagem de fundo
       behavioral_skills: Competências comportamentais
       client_skills: Competências dos clientes
-      delete_skill: Tem certeza de que deseja excluir a habilidade porque ela também excluirá todas as ações de desenvolvimento conectadas?
+      delete_skill: Tem certeza de que deseja excluir a habilidade? Isso também excluirá todas as ações de desenvolvimento conectadas.
       details_updated: Detalhes do PDI actualizados com êxito
       development_actions:
         add_from_library: Adicionar da biblioteca

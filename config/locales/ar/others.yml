@@ -1835,7 +1835,6 @@ ar:
       view: منظر
       view_all_tasks: عرض جميع المهام
       view_detail: عرض التفاصيل
-      yes_delete: نعم، حذف
     column:
       action: نشاط
       active: نشط
@@ -2607,14 +2606,14 @@ ar:
       you: أنت
     convert_to_draft: تحويل إلى مسودة
     current_step: الخطوة الحالية %{step}
-    delete_skill: هل أنت متأكد من أنك تريد حذف المهارة لأنها ستحذف جميع إجراءات التطوير المتصلة أيضا؟
+    delete_skill: هل أنت متأكد أنك تريد حذف هذه المهارة؟ سيؤدي الحذف أيضًا إلى إزالة جميع إجراءات التطوير المرتبطة به
     details: التفاصيل
     development_actions:
       action_private: نعم
       action_public: لا
       add_development_action: إضافة إجراء تطويري
       add_development_actions_from_below_options: أضف إجراءات التطوير من الخيارات أدناه.
-      add_development_actions_modal_title: مكتبة إجراءات التطوير %{skillName}
+      add_development_actions_modal_title: مكتبة إجراءات التطوير
       add_from_library: إضافة من المكتبة
       add_more: إضافة المزيد من إجراءات التطوير
       add_selected_development_actions: إضافة إجراءات تطوير محددة
@@ -2645,7 +2644,7 @@ ar:
       generate_more: توليد المزيد
       generating_development_actions: جاري توليد إجراءات التطوير...
       generative_ai: الذكاء الاصطناعي التوليدي
-      generative_ai_description: دع الذكاء الاصطناعي ينشئ إجراء تطوير مخصصا لك فقط
+      generative_ai_description_msg: دع الذكاء الاصطناعي ينشئ إجراء تطوير مخصصا لك فقط
       heading: إجراءات التطوير
       idp_library: مكتبة آي دي بي
       idp_library_description: حدد إجراء تطويري مثبت من مكتبتنا المنسقة من قبل الخبراء.
@@ -2705,7 +2704,7 @@ ar:
         other: إجراءات التطوير التي تمت إزالتها
     initial_steps:
       add_skill_group_description: بناءً على نتائج تقييمك، إليك بعض مجالات القوة والتطوير الخاصة بك. اختر المهارات التي ترغب في تطويرها كجزء من خطة التطوير الخاصة بك.
-      add_skill_group_title: استكشاف مهار %{category} اتك في
+      add_skill_group_title: "%{category}"
       add_skills: إضافة
       add_skills_step: إضافة مهارات
       back: ظهر

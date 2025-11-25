@@ -1812,7 +1812,6 @@ de:
       view: Siehe
       view_all_tasks: Alle Aufgaben anzeigen
       view_detail: Ansicht Detail
-      yes_delete: Ja, Löschen
     column:
       action: Aktion
       active: Aktiv
@@ -2575,14 +2574,14 @@ de:
       you: Du
     convert_to_draft: In Entwurf konvertieren
     current_step: Aktueller Schritt %{step}
-    delete_skill: Sind Sie sicher, dass Sie den Skill löschen möchten, da dadurch auch alle verbundenen Entwicklungsaktionen gelöscht werden?
+    delete_skill: Sind Sie sicher, dass Sie diese Fertigkeit löschen möchten? Durch das Löschen werden auch alle zugehörigen Entwicklungsmaßnahmen entfernt.
     details: Einzelheiten
     development_actions:
       action_private: Ja
       action_public: Nein
       add_development_action: Entwicklungsmaßnahme hinzufügen
       add_development_actions_from_below_options: Fügen Sie Entwicklungsaktionen aus den folgenden Optionen hinzu.
-      add_development_actions_modal_title: Bibliothek für Entwicklungsmaßnahmen für %{skillName}
+      add_development_actions_modal_title: Bibliothek für Entwicklungsmaßnahmen für
       add_from_library: Aus Bibliothek hinzufügen
       add_more: Hinzufügen weiterer Entwicklungsaktionen
       add_selected_development_actions: Hinzufügen ausgewählter Entwicklungsaktionen
@@ -2613,7 +2612,7 @@ de:
       generate_more: Mehr generieren
       generating_development_actions: Generierung von Entwicklungsmaßnahmen...
       generative_ai: Generative KI
-      generative_ai_description: Lassen Sie die KI eine maßgeschneiderte Entwicklungsmaßnahme nur für Sie generieren
+      generative_ai_description_msg: Lassen Sie die KI eine maßgeschneiderte Entwicklungsmaßnahme nur für Sie generieren
       heading: Entwicklungspolitische Maßnahmen
       idp_library: IDP-Bibliothek
       idp_library_description: Wählen Sie eine bewährte Entwicklungsmaßnahme aus unserer von Experten kuratierten Bibliothek aus.
@@ -2671,8 +2670,8 @@ de:
         one: Entwicklungsmaßnahme entfernt
         other: Entfernte Entwicklungsaktionen
     initial_steps:
-      add_skill_group_description: Auf der Grundlage Ihrer Bewertungsergebnisse finden Sie hier einige Bereiche, in denen Sie Stärken und Entwicklungsmöglichkeiten haben. Wählen Sie die Fähigkeiten aus, die Sie im Rahmen Ihres Entwicklungsplans weiter ausbauen möchten.
-      add_skill_group_title: Erkunden Sie Ihre %{category}-Fähigkeiten
+      add_skill_group_description: Wählen Sie die Fähigkeiten aus, die Sie im Rahmen Ihres Entwicklungsplans weiter ausbauen möchten.
+      add_skill_group_title: "%{category}"
       add_skills: Hinzufügen
       add_skills_step: Fertigkeiten hinzufügen
       back: Zurück

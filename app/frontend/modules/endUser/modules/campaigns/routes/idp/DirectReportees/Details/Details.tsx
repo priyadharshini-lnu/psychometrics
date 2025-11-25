@@ -42,6 +42,7 @@ const connector = connect((state: RootState) => ({
   unreadCommentsCount: state.campaigns.idp.unreadCommentsCount,
   availableDevelopmentActions: state.campaigns.idp.availableDevelopmentActions,
   idpSettings: getIdpSettings(state),
+  isPlanDirty: state.campaigns.idp.isPlanDirty,
 }),
 {
   fetchUserIdpPlan,
@@ -62,6 +63,7 @@ const DirectReportDetailsComponent: FC<Props> = ({
   idpSettings,
   saveUserIdpDevelopmentActions,
   reviewNote,
+  isPlanDirty,
 }) => {
   const { userId: idpUserId } = useParams() as { userId: string }
   const [editMode, setEditMode] = useState(false)
@@ -73,7 +75,6 @@ const DirectReportDetailsComponent: FC<Props> = ({
   const { isMobile } = useContext(MediaQueryContext)
 
   const isPlanEditable = [
-    USER_IDP_PLAN_STATUS.REJECTED,
     USER_IDP_PLAN_STATUS.IN_REVIEW,
   ].includes(status)
 
@@ -173,6 +174,7 @@ const DirectReportDetailsComponent: FC<Props> = ({
         <Button
           type="primary"
           onClick={handleSave}
+          disabled={!isPlanDirty}
         >
           {I18n.t('common.actions.save')}
         </Button>
@@ -180,7 +182,6 @@ const DirectReportDetailsComponent: FC<Props> = ({
         managerCanEditIdp && (
           <Button
             disabled={!isPlanEditable}
-            type="primary"
             icon={<EditOutlined />}
             onClick={() => setEditMode(true)}
           >

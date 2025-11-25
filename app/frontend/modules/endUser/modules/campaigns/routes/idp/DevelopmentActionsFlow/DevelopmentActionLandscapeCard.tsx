@@ -65,6 +65,7 @@ type SkillCardProps = PropsFromRedux & SkillWithDevelopmentActions & {
   onShowAIGeneratedDevelopmentActions?: ()=> void
   isPrivate: boolean
   setSkillForComment:(skillDetails: { skillId: string; skillName: string; } | null)=> void
+  onRemoveSkill: (id: number) => void
 }
 
 const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
@@ -90,6 +91,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
   onShowAIGeneratedDevelopmentActions,
   setSkillForComment,
   aiAssistantsEnabled,
+  onRemoveSkill,
 }) => {
   const [toggleSkillPrivacy] = useToggleSkillPrivacyMutation()
   const isCurrentUserIDPUser = currentUser.id === idpUser.id
@@ -105,9 +107,10 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
     })
   }
 
-  const onRemoveSkill = () => {
+  const onDeleteSkill = () => {
     const selectedSkills = Object.values(userIdpSkills)
       .filter((skill: Skill) => skill.id !== userIdpSkillId) as Skill[]
+    onRemoveSkill(userIdpSkillId)
     saveUserIdpSkills(selectedSkills).then(() => {
       setOpenSkillDeletionModal(false)
     })
@@ -270,7 +273,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
       ) : developmentActionCards}
       {changeHistory && (<ChangeHistory changeHistory={changeHistory} />)}
       {editMode && changeStatus !== PlanChangeStatus.REMOVED ? (
-        <Flex className="mt-4" gap={isTablet ? 8 : 64} vertical={isTablet} justify="start">
+        <Flex className="mt-4 mb-2" gap={isTablet ? 8 : 64} vertical={isTablet} justify="start">
           {isTablet && (
             <Flex>
               <Typography.Text>{I18n.t('idp.development_actions.add_more')}</Typography.Text>
@@ -330,7 +333,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
         footer={() => (
           <>
             <Button onClick={() => setOpenSkillDeletionModal(false)}>{I18n.t('common.actions.cancel')}</Button>
-            <Button onClick={onRemoveSkill} danger>{I18n.t('common.actions.yes_delete')}</Button>
+            <Button onClick={onDeleteSkill} danger>{I18n.t('common.actions.delete')}</Button>
           </>
         )}
       >

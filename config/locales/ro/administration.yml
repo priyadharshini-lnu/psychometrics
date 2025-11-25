@@ -2280,7 +2280,7 @@ ro:
       background_image: Imagine de fundal
       behavioral_skills: Abilități comportamentale
       client_skills: Abilitățile clientului
-      delete_skill: Sunteți sigur că doriți să ștergeți abilitatea, deoarece va șterge și toate acțiunile de dezvoltare conectate?
+      delete_skill: Sunteți sigur că doriți să ștergeți abilitatea? Aceasta va șterge și toate acțiunile de dezvoltare conectate.
       details_updated: Detalii IDP actualizate cu succes
       development_actions:
         add_from_library: Adăugați din bibliotecă

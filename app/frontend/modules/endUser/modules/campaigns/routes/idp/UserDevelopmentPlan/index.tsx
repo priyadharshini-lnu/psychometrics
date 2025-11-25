@@ -49,6 +49,7 @@ import {
   showCommentsForSkillId,
   markCommentUnresolved,
   fetchUserIdpPlanChanges,
+  setUserIdpPlanDirty,
 } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 
 import { RootState } from '~/modules/endUser/core/rootReducers'
@@ -98,6 +99,7 @@ const connector = connect((state: RootState) => ({
   showCommentsForSkillId,
   markCommentUnresolved,
   fetchUserIdpPlanChanges,
+  setUserIdpPlanDirty,
 })
 
 type PropsFromRedux = ConnectedProps<typeof connector>
@@ -145,6 +147,7 @@ const UserDevelopmentPlanComponent = ({
   headerHeight = 0,
   oneClickIdpEnabled,
   reviewNote,
+  setUserIdpPlanDirty,
 }: Props) => {
   const { tab: paramTab } = useParams() as {tab: string}
 
@@ -165,6 +168,8 @@ const UserDevelopmentPlanComponent = ({
   { skillId: string, skillName: string } | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
+  const existingPlanData = useRef<object | null>(null)
+
   // Comments state - only isCommentsLoading is managed internally
   const [isCommentsLoading, setIsCommentsLoading] = useState(true)
   const [isLoadingReplies, setIsLoadingReplies] = useState(false)
@@ -173,6 +178,17 @@ const UserDevelopmentPlanComponent = ({
 
   const listData = useMemo(() => groupSkillsBySkillType(idpSkills, idpDevelopmentActions),
     [idpSkills, idpDevelopmentActions])
+
+  const isPlanDirty = useMemo(() => {
+    if (!existingPlanData.current) return false
+    const { userIdpSkills: existingSkills, userIdpDevelopmentActions: existingActions } = existingPlanData.current as {
+      userIdpSkills: Skill[];
+      userIdpDevelopmentActions: DevelopmentAction[];
+    }
+    return !_.isEqual(existingSkills, idpSkills) || !_.isEqual(existingActions, idpDevelopmentActions)
+  },
+  [idpSkills, idpDevelopmentActions])
+
 
   const availableDevelopmentActionsData = useMemo(() => _.values(availableDevelopmentActions),
     [availableDevelopmentActions])
@@ -202,13 +218,18 @@ const UserDevelopmentPlanComponent = ({
     setIsLoading(true)
     fetchUserIdpPlan(idpUserId).then(({ response }) => {
       setSelectedSkills(response.data.userIdpSkills)
-      fetchUserIdpPlanChanges(idpUserId)
+      fetchUserIdpPlanChanges(idpUserId).then(() => {
+        existingPlanData.current = {
+          userIdpDevelopmentActions: _.keyBy(response.data.userIdpDevelopmentActions, 'id'),
+          userIdpSkills: _.keyBy(response.data.userIdpSkills, 'id'),
+        }
+      })
       setIsLoading(false)
     }).catch((error) => {
       message.error(error || I18n.t('common.errors.something_wrong'))
       navigate('/')
     })
-  }, [])
+  }, [editMode])
 
   useEffect(() => {
     if (paramTab !== tab) {
@@ -250,6 +271,10 @@ const UserDevelopmentPlanComponent = ({
     }
   }, [skillForComment])
 
+  useEffect(() => {
+    setUserIdpPlanDirty(isPlanDirty)
+  }, [isPlanDirty])
+
   const handleAddDevelopmentAction = (developmentActionsObj) => {
     addDevelopmentActionInPlan(developmentActionsObj)
   }
@@ -275,7 +300,8 @@ const UserDevelopmentPlanComponent = ({
     setIsLoading(true)
     saveUserIdpSkills(
       selectedSkills, null, idpUserId,
-    ).then(() => {
+    ).then(({ response }: {response:{data:Skill[]}}) => {
+      setSelectedSkills([...response.data])
       setShowAddSkill(false)
       message.success(I18n.t('idp.skills_updated'))
     }).catch((error) => {
@@ -290,7 +316,8 @@ const UserDevelopmentPlanComponent = ({
     setIsSkillsLoading(true)
     saveUserIdpSkills(
       userIdpSkills, null, idpUserId,
-    ).then(() => {
+    ).then(({ response }:{response:{data:Skill[]}}) => {
+      setSelectedSkills([...response.data])
       fetchIdpSkills().then(({ response }) => {
         setAllSkills(response)
       }).finally(() => {
@@ -478,6 +505,7 @@ const UserDevelopmentPlanComponent = ({
             onAddMoreSkills={handleAddMoreSkill}
             isDALoading={isDALoading}
             setSkillForComment={setSkillForComment}
+            onRemoveSkill={handleDeselectSkill}
           />
         </div>
       </div>
@@ -537,6 +565,7 @@ const UserDevelopmentPlanComponent = ({
             isDALoading={isDALoading}
             isViewingReportee={currentUser.id !== idpUserId}
             setSkillForComment={setSkillForComment}
+            onRemoveSkill={handleDeselectSkill}
           />
         </div>
       </Splitter.Panel>
@@ -672,12 +701,6 @@ const UserDevelopmentPlanComponent = ({
           overflowX: 'hidden',
         }}
       >
-        <Button
-          onClick={() => setShowAddSkill(false)}
-          className={cs(styles.cancelBtn, 'mb-4')}
-        >
-          {I18n.t('common.actions.cancel')}
-        </Button>
         <Spin spinning={isSkillsLoading} style={{ maxHeight: '100%', overflowY: 'auto' }}>
           <AddSkillsStep
             addSkillButtonText={I18n.t('idp.my_plan.save_skills')}
@@ -687,7 +710,10 @@ const UserDevelopmentPlanComponent = ({
             onDeselectSkill={handleDeselectSkill}
             onAddSkill={handleSelectSkill}
             searchSkillResource={searchSkillResource}
-            showBackButton={false}
+            showBackButton
+            prev={() => {
+              setShowAddSkill(false)
+            }}
             allowSkillDeletion={false}
             skillGapReportData={null}
           />

@@ -1811,7 +1811,6 @@ pt:
       view: Ver
       view_all_tasks: Ver todas as tarefas
       view_detail: Ver detalhes
-      yes_delete: Sim, excluir
     column:
       action: Ação
       active: Ativo
@@ -2574,14 +2573,14 @@ pt:
       you: Você
     convert_to_draft: Converter em rascunho
     current_step: Etapa atual %{step}
-    delete_skill: Tem certeza de que deseja excluir a habilidade porque ela também excluirá todas as ações de desenvolvimento conectadas?
+    delete_skill: Tem certeza de que deseja excluir a habilidade? Isso também excluirá todas as ações de desenvolvimento conectadas.
     details: Detalhes
     development_actions:
       action_private: Sim
       action_public: Não
       add_development_action: Adicionar ação de desenvolvimento
       add_development_actions_from_below_options: Adicione ações de desenvolvimento nas opções abaixo.
-      add_development_actions_modal_title: Biblioteca de ações de desenvolvimento para %{skillName}
+      add_development_actions_modal_title: Biblioteca de ações de desenvolvimento para
       add_from_library: Adicionar da biblioteca
       add_more: Adicionar mais ações de desenvolvimento
       add_selected_development_actions: Adicionar ações de desenvolvimento selecionadas
@@ -2612,7 +2611,7 @@ pt:
       generate_more: Gerar mais
       generating_development_actions: Geração de acções de desenvolvimento...
       generative_ai: IA generativa
-      generative_ai_description: Deixe a IA gerar uma ação de desenvolvimento sob medida só para você
+      generative_ai_description_msg: Deixe a IA gerar uma ação de desenvolvimento sob medida só para você
       heading: Acções de desenvolvimento
       idp_library: Biblioteca IDP
       idp_library_description: Selecione uma ação de desenvolvimento comprovada em nossa biblioteca com curadoria de especialistas.
@@ -2670,8 +2669,8 @@ pt:
         one: Ação de desenvolvimento removida
         other: Ações de desenvolvimento removidas
     initial_steps:
-      add_skill_group_description: Com base nos resultados da sua avaliação, eis algumas das áreas de pontos fortes e de desenvolvimento para si. Escolha as competências que pretende desenvolver mais como parte do seu plano de desenvolvimento.
-      add_skill_group_title: Explorar as suas competências de %{category}
+      add_skill_group_description: Escolha as competências que pretende desenvolver mais como parte do seu plano de desenvolvimento.
+      add_skill_group_title: "%{category}"
       add_skills: Adicionar
       add_skills_step: Adicionar competências
       back: Voltar
