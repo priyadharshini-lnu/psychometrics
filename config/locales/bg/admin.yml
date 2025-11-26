@@ -3,6 +3,7 @@ bg:
   admin:
     admins: Администратори
     ai_artifacts: Артефакти с изкуствен интелект
+    ai_artifacts_output_schema_key_constraint: Ключът трябва да започва с малка буква и може да съдържа само малки букви, цифри и подчертавания
     ai_assistant_model_id_label: Модел ID
     ai_assistant_model_label: Модел
     ai_assistant_model_provider: Доставчик

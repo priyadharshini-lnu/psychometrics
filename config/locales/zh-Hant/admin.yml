@@ -3,6 +3,7 @@ zh-Hant:
   admin:
     admins: 管理員
     ai_artifacts: 人工智慧神器
+    ai_artifacts_output_schema_key_constraint: 鍵必須以小寫字母開頭，且只能包含小寫字母、數字和底線
     ai_assistant_model_id_label: 型號識別碼
     ai_assistant_model_label: 型
     ai_assistant_model_provider: 提供者

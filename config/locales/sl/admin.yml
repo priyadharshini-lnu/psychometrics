@@ -3,6 +3,7 @@ sl:
   admin:
     admins: Skrbniki
     ai_artifacts: Artefakti umetne inteligence
+    ai_artifacts_output_schema_key_constraint: Ključ mora začeti z majhno črko in lahko vsebuje le male črke, številke in podčrte
     ai_assistant_model_id_label: ID modela
     ai_assistant_model_label: Model
     ai_assistant_model_provider: Ponudnik

@@ -3,6 +3,7 @@ pl:
   admin:
     admins: Administratorzy
     ai_artifacts: Artefakty SI
+    ai_artifacts_output_schema_key_constraint: Klucz musi zaczynać się od małej litery i może zawierać tylko małe litery, cyfry i podkreślenia
     ai_assistant_model_id_label: Identyfikacja modelu
     ai_assistant_model_label: Model
     ai_assistant_model_provider: Dostawca

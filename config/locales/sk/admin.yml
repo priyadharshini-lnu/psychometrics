@@ -3,6 +3,7 @@ sk:
   admin:
     admins: Správcovia
     ai_artifacts: Artefakty AI
+    ai_artifacts_output_schema_key_constraint: Kľúč musí začínať malým písmenom a môže obsahovať len malé písmená, čísla a podčiarknutia
     ai_assistant_model_id_label: Identifikácia modelu
     ai_assistant_model_label: Model
     ai_assistant_model_provider: Poskytovateľ

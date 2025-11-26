@@ -3,6 +3,7 @@ zh:
   admin:
     admins: 管理员
     ai_artifacts: AI 工件
+    ai_artifacts_output_schema_key_constraint: 键必须以小写字母开头，且只能包含小写字母、数字和下划线
     ai_assistant_model_id_label: 型号ID
     ai_assistant_model_label: 型
     ai_assistant_model_provider: 供应商

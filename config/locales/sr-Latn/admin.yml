@@ -3,6 +3,7 @@ sr-Latn:
   admin:
     admins: Admini
     ai_artifacts: AI artefakti
+    ai_artifacts_output_schema_key_constraint: Ključ mora početi malim slovom i može sadržavati samo mala slova, brojeve i podvlake
     ai_assistant_model_id_label: Broj modela
     ai_assistant_model_label: Model
     ai_assistant_model_provider: Dobavljača

@@ -3,6 +3,7 @@ it:
   admin:
     admins: Amministratori
     ai_artifacts: Artefatti AI
+    ai_artifacts_output_schema_key_constraint: La tonalità deve iniziare con una lettera minuscola e può contenere solo lettere minuscole, numeri e sottolinee
     ai_assistant_model_id_label: ID modello
     ai_assistant_model_label: Modello
     ai_assistant_model_provider: Provider

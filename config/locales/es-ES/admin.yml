@@ -3,6 +3,7 @@ es-ES:
   admin:
     admins: Admins
     ai_artifacts: Artefactos de IA
+    ai_artifacts_output_schema_key_constraint: La clave debe comenzar con una letra minúscula y solo puede contener letras minúsculas, números y guiones bajos
     ai_assistant_model_id_label: ID del modelo
     ai_assistant_model_label: Modelo
     ai_assistant_model_provider: Proveedor

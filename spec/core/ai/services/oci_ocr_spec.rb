@@ -33,7 +33,7 @@ RSpec.describe AI::Services::OciOcr, type: :service do
     allow(Settings).to receive_message_chain(:secrets, :oci, :fingerprint).and_return('test-fingerprint')
     allow(Settings).to receive_message_chain(:secrets, :oci, :tenancy).and_return('test-tenancy')
     allow(Settings).to receive_message_chain(:secrets, :oci, :private_key).and_return('test-key')
-    allow(Settings).to receive_message_chain(:secrets, :oci, :region).and_return('us-phoenix-1')
+    allow(Settings).to receive_message_chain(:secrets, :oci, :genai_region).and_return('us-phoenix-1')
     allow(Settings).to receive_message_chain(:secrets, :oci, :compartment_id).and_return(compartment_id)
 
     # Mock OCI Config

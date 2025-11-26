@@ -3,6 +3,7 @@ vi:
   admin:
     admins: Quản trị viên
     ai_artifacts: Đồ tạo tác AI
+    ai_artifacts_output_schema_key_constraint: Khóa phải bắt đầu bằng chữ thường và chỉ có thể chứa chữ thường, số và dấu gạch dưới
     ai_assistant_model_id_label: ID mô hình
     ai_assistant_model_label: Mẫu
     ai_assistant_model_provider: Cung cấp

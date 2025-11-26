@@ -3,6 +3,7 @@ id:
   admin:
     admins: Admin
     ai_artifacts: Artefak AI
+    ai_artifacts_output_schema_key_constraint: Kunci harus dimulai dengan huruf kecil dan hanya dapat berisi huruf kecil, angka, dan garis bawah
     ai_assistant_model_id_label: Model ID
     ai_assistant_model_label: Pola
     ai_assistant_model_provider: Penyedia

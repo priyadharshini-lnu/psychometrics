@@ -12,7 +12,7 @@ The oracle OCR service can consumes the document either through oracle object st
 
 NOTE: The limits for asynchronous document analysis is higher but for synchronous analysis even with OCI bucket, the limit is 5 pages or 8 MB per document.
 
-NOTE: Please ensure that the bucket is created in same region as the authentication region (OCI_REGION) to avoid authentication issues.
+NOTE: Please ensure that the bucket is created in same region as the authentication region (GENAI_OCI_REGION) to avoid authentication issues.
 
 ## Example through blob upload
 

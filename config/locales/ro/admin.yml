@@ -3,6 +3,7 @@ ro:
   admin:
     admins: Administratori
     ai_artifacts: Artefacte AI
+    ai_artifacts_output_schema_key_constraint: Cheia trebuie să înceapă cu literă mică și poate conține doar litere mici, cifre și sublinii
     ai_assistant_model_id_label: Model ID
     ai_assistant_model_label: Model
     ai_assistant_model_provider: Furnizor

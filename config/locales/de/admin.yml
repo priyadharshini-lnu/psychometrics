@@ -3,6 +3,7 @@ de:
   admin:
     admins: Admins
     ai_artifacts: KI-Artefakte
+    ai_artifacts_output_schema_key_constraint: Die Tonart muss mit einem Kleinbuchstaben beginnen und darf nur Kleinbuchstaben, Zahlen und Unterstriche enthalten
     ai_assistant_model_id_label: Modell-ID
     ai_assistant_model_label: Modell
     ai_assistant_model_provider: Anbieter

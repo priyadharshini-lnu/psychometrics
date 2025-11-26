@@ -3,6 +3,7 @@ hu:
   admin:
     admins: Adminisztrátorok
     ai_artifacts: AI-összetevők
+    ai_artifacts_output_schema_key_constraint: A kulcsnak kisbetűvel kell kezdődnie, és csak kisbetűket, számokat és aláhúzásokat tartalmazhat
     ai_assistant_model_id_label: Model ID
     ai_assistant_model_label: Modell
     ai_assistant_model_provider: Szolgáltató

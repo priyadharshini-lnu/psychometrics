@@ -3,6 +3,7 @@ nl:
   admin:
     admins: Admins
     ai_artifacts: AI-artefacten
+    ai_artifacts_output_schema_key_constraint: De toonsoort moet beginnen met een kleine letter en mag alleen kleine letters, cijfers en onderstreepjes bevatten
     ai_assistant_model_id_label: Model-ID
     ai_assistant_model_label: Model
     ai_assistant_model_provider: Aanbieder

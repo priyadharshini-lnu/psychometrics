@@ -3,6 +3,7 @@ ar:
   admin:
     admins: المسؤولون
     ai_artifacts: قطع الذكاء الاصطناعي
+    ai_artifacts_output_schema_key_constraint: يجب أن يبدأ المفتاح بحرف صغير ولا يحتوي إلا على الحروف الصغيرة والأرقام والخطوط السفلية
     ai_assistant_model_id_label: معرف الطراز
     ai_assistant_model_label: نموذج
     ai_assistant_model_provider: كاسب

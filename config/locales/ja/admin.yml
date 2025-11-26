@@ -3,6 +3,7 @@ ja:
   admin:
     admins: 管理者
     ai_artifacts: AIアーティファクト
+    ai_artifacts_output_schema_key_constraint: キーは小文字で始まらず、小文字、数字、アンダースコアのみを含めます
     ai_assistant_model_id_label: モデルID
     ai_assistant_model_label: モデル
     ai_assistant_model_provider: 供給者

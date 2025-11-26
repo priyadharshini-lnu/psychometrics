@@ -3,6 +3,7 @@ th:
   admin:
     admins: ผู้ดูแลระบบ
     ai_artifacts: สิ่งประดิษฐ์ AI
+    ai_artifacts_output_schema_key_constraint: คีย์ต้องขึ้นต้นด้วยตัวพิมพ์เล็ก และสามารถมีได้เฉพาะตัวพิมพ์เล็ก ตัวเลข และขีดล่างเท่านั้น
     ai_assistant_model_id_label: รหัสรุ่น
     ai_assistant_model_label: แบบ
     ai_assistant_model_provider: ผู้จัดหา
