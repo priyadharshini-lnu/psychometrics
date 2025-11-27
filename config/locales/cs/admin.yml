@@ -31,6 +31,8 @@ cs:
     development_actions: Vývojové akce
     dimensions: Rozměry
     empty_csv_file: CSV soubor neobsahuje žádná data.
+    fill_empty_score_msg: Vyplňte všechny konečné skóre před uložením.
+    final_score_empty_msg: Konečné skóre nemůže být prázdné.
     import_csv_assessment_group_error: 'Řádek %{index}: uživatel s e-mailovým %{email} je již pozván k ''%{workshopInviteName}'''
     import_csv_error: 'Řádek %{index}: uživatel s e-mailem %{email} není v této kampani'
     import_description: Importujte uživatele z CSV souboru. Každý řádek musí obsahovat e-mailovou adresu.

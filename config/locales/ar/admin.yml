@@ -31,6 +31,8 @@ ar:
     development_actions: إجراءات التطوير
     dimensions: الأبعاد
     empty_csv_file: ملف CSV لا يحتوي على أي بيانات.
+    fill_empty_score_msg: املأ جميع الدرجات النهائية قبل الحفظ.
+    final_score_empty_msg: لا يمكن أن تكون النتيجة النهائية فارغة.
     import_csv_assessment_group_error: 'الصف %{index}: المستخدم الذي لديه بريد إلكتروني %{email} مدعو بالفعل إلى ''%{workshopInviteName}'''
     import_csv_error: 'الصف %{index}: مستخدم لديه بريد إلكتروني %{email} غير موجود في هذه الحملة'
     import_description: استيراد المستخدمين من ملف CSV. يجب أن يحتوي كل صف على عنوان بريد إلكتروني.

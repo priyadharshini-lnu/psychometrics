@@ -31,6 +31,8 @@ zh-Hant:
     development_actions: 發展行動
     dimensions: 尺寸
     empty_csv_file: CSV 檔案不包含任何資料。
+    fill_empty_score_msg: 儲存前填寫所有最終分數。
+    final_score_empty_msg: 最終分數不能是空的。
     import_csv_assessment_group_error: 第 %{index} 列：擁有電子郵件 %{email} 的使用者已被邀請進入「%{workshopInviteName}」
     import_csv_error: 第 %{index} 列：擁有電子郵件 %{email} 的使用者未參與本次活動
     import_description: 從 CSV 檔案匯入使用者。每一列必須包含電子郵件地址。

@@ -31,6 +31,8 @@ vi:
     development_actions: Hành động phát triển
     dimensions: Kích thước
     empty_csv_file: Tệp CSV không chứa bất kỳ dữ liệu nào.
+    fill_empty_score_msg: Điền vào tất cả các điểm cuối cùng trước khi lưu.
+    final_score_empty_msg: Điểm cuối cùng không thể trống.
     import_csv_assessment_group_error: 'Hàng %{index}: người dùng có email %{email} đã được mời tham gia ''%{workshopInviteName}'''
     import_csv_error: 'Hàng %{index}: người dùng có %{email} email không có trong chiến dịch này'
     import_description: Nhập người dùng từ tệp CSV. Mỗi hàng phải chứa một địa chỉ email.
