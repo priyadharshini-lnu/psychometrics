@@ -103,12 +103,7 @@ const SubjectsTable = ({
 
   const [selectedWorkshopInvitedSubjects, setSelectedWorkshopInvitedSubjects] = useState<WorkshopInvitedSubject[]>([])
   const [bulkImportModal, showBulkImportModal] = useState(false)
-  const [csvErrors, setCsvErrors] = useState<{
-    index: number
-    email: string | null
-    workshopInviteName?: string
-    errorType?: string
-  }[]>([])
+  const [csvErrors, setCsvErrors] = useState<{ message?: string }[]>([])
 
 
   const workshopInviteSubjectIds = selectedWorkshopInvitedSubjects.map(subject => subject.id)
