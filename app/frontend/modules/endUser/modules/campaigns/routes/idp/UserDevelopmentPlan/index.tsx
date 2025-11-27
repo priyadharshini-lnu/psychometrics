@@ -497,6 +497,7 @@ const UserDevelopmentPlanComponent = ({
           <DevelopmentActionListView
             editMode={editMode}
             categories={listData}
+            userId={currentUser.id !== idpUserId ? idpUserId : currentUser.id}
             availableDevelopmentActions={availableDevelopmentActionsData}
             onAddDevelopmentAction={handleAddDevelopmentAction}
             onUpdateDevelopmentActionProgress={handleUpdateDevelopmentActionProgress}
@@ -556,6 +557,7 @@ const UserDevelopmentPlanComponent = ({
           <DevelopmentActionListView
             editMode={editMode}
             categories={listData}
+            userId={currentUser.id !== idpUserId ? idpUserId : currentUser.id}
             availableDevelopmentActions={availableDevelopmentActionsData}
             onAddDevelopmentAction={handleAddDevelopmentAction}
             onUpdateDevelopmentActionProgress={handleUpdateDevelopmentActionProgress}

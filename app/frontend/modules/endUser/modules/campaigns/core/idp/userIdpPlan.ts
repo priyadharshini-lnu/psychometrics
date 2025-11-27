@@ -113,6 +113,7 @@ interface GenerateDevelopmentActionsByAIPayload {
   userIdpSkillId: number;
   generateMore: boolean;
   lang?: string;
+  userId?: number | string | null;
 }
 
 export interface UserIdpCommentPayload {

@@ -26,6 +26,7 @@ const { I18n } = window
 
 type SkillsContainerProps = {
   editMode?: boolean
+  userId: number | string | null
   categories: TypeWithSkills[]
   availableDevelopmentActions: DevelopmentAction[]
   onAddDevelopmentAction?: (developmentAction: Record<string, DevelopmentAction>) => void
@@ -52,6 +53,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
   isViewingReportee = false,
   setSkillForComment,
   onRemoveSkill,
+  userId,
 }) => {
   const [isAddDevelopmentActionModalOpen, setIsAddDevelopmentActionModalOpen] = useState(false)
   const [isAIGeneratedDevelopmentActionsModalOpen, setIsAIGeneratedDevelopmentActionsModalOpen] = useState(false)
@@ -283,6 +285,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
         open={isAIGeneratedDevelopmentActionsModalOpen}
         onCancel={() => setIsAIGeneratedDevelopmentActionsModalOpen(false)}
         skill={selectedSkill}
+        userId={userId}
         onAddDevelopmentAction={handleAddAIGeneratedDevelopmentAction}
         selectedAIGeneratedDevelopmentActions={selectedAIGeneratedDevelopmentActions}
         wrapClassName={styles.developmentActionModal}
