@@ -357,7 +357,7 @@ export const Plan = () => {
                 setIsLoading(true)
                 updatePlan({
                   id: userIdpPlanData[0]?.id,
-                  status: USER_IDP_PLAN_STATUS.DRAFT,
+                  approvalStatus: USER_IDP_PLAN_STATUS.DRAFT,
                 }).then(() => {
                   setIsLoading(false)
                 })
