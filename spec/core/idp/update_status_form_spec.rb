@@ -139,6 +139,17 @@ describe Idp::UpdateStatusForm do
         end
       end
 
+      context 'with in_progress status' do
+        let(:new_status) { 'in_progress' }
+
+        it 'updates the status' do
+          expect(form.validate).to eq true
+          expect(form.save!).to eq true
+          expect(user_idp_plan.reload.approval_status).to eq('approved')
+          expect(user_idp_plan.reload.completion_status).to eq('in_progress')
+        end
+      end
+
       context 'with invalid status' do
         let(:new_status) { 'pending_approval' }
         include_examples 'does not permit status'
