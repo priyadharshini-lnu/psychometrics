@@ -15,6 +15,8 @@ es-ES:
     name: Nombre
     new: Nuevo/a
     removed: Eliminado
+    rte_paste_content_exceeds_char_limit: El texto supera el límite de caracteres {{maxCharacterLimit}} y no puede pegarse.
+    rte_paste_content_exceeds_word_limit: El texto supera el límite de palabras {{maxWordLimit}} y no puede pegarse.
     search: Buscar
     table:
       entries:

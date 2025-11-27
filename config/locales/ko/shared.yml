@@ -15,6 +15,8 @@ ko:
     name: 이름
     new: 새로 만들기
     removed: 제거됨
+    rte_paste_content_exceeds_char_limit: 텍스트는 {{maxCharacterLimit}}의 문자 한도를 초과하며, 붙여넣을 수 없습니다.
+    rte_paste_content_exceeds_word_limit: 텍스트가 {{maxWordLimit}}의 단어 수를 초과하여 붙여넣을 수 없습니다.
     search: 검색
     table:
       entries:

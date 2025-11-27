@@ -15,6 +15,8 @@ sr-Latn:
     name: Ime
     new: Novi
     removed: Uklonjeno
+    rte_paste_content_exceeds_char_limit: Tekst prelazi ograničenje znakova {{maxCharacterLimit}} i ne može se nalepiti.
+    rte_paste_content_exceeds_word_limit: Tekst prelazi ograničenje reči {{maxWordLimit}} i ne može se nalepiti.
     search: Pretraži
     table:
       entries:

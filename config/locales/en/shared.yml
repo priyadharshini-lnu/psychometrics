@@ -15,6 +15,8 @@ en:
     name: Name
     new: New
     removed: Removed
+    rte_paste_content_exceeds_char_limit: Text exceeds the character limit of {{maxCharacterLimit}} and cannot be pasted.
+    rte_paste_content_exceeds_word_limit: Text exceeds the word limit of {{maxWordLimit}} and cannot be pasted.
     search: Search
     table:
       entries:

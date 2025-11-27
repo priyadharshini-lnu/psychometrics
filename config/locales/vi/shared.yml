@@ -15,6 +15,8 @@ vi:
     name: Tên
     new: Mới
     removed: Gỡ bỏ
+    rte_paste_content_exceeds_char_limit: Văn bản vượt quá giới hạn ký tự của {{maxCharacterLimit}} và không thể dán.
+    rte_paste_content_exceeds_word_limit: Văn bản vượt quá giới hạn từ {{maxWordLimit}} và không thể dán.
     search: Tìm kiếm
     table:
       entries:

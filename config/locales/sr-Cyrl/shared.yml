@@ -15,6 +15,8 @@ sr-Cyrl:
     name: Име
     new: Нови
     removed: Уклоњена
+    rte_paste_content_exceeds_char_limit: Текст прелази ограничење знакова {{маxЦхарацтерЛимит}} и не може се налепити.
+    rte_paste_content_exceeds_word_limit: Текст прелази ограничење речи {{маxWордЛимит}} и не може се налепити.
     search: Претраге
     table:
       entries:

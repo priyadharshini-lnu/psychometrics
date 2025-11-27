@@ -15,6 +15,8 @@ zh:
     name: 名称
     new: 新的
     removed: 已删除
+    rte_paste_content_exceeds_char_limit: 文本超过了{{maxCharacterLimit}}的字符限制，无法粘贴。
+    rte_paste_content_exceeds_word_limit: 文本超过{{maxWordLimit}}的字数限制，无法粘贴。
     search: 搜索
     table:
       entries:
