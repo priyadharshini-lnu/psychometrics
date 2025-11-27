@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import {
   List, Badge, Button, Row, Col, Popover,
-  Empty, Dropdown, Flex, Tooltip, Modal,
+  Empty, Dropdown, Flex, Modal,
   Avatar, Typography,
 } from 'antd'
 import type { MenuProps } from 'antd'
 import {
-  CheckOutlined, CalendarOutlined, LockOutlined,
+  CheckOutlined, LockOutlined,
   UserOutlined, BellOutlined, BellFilled, LogoutOutlined,
   DownOutlined,
 } from '@ant-design/icons'
@@ -251,15 +251,6 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
           className="ms-2"
         />
       </Popover>
-      <Tooltip title={I18n.t('admin.availability')}>
-        <Button
-          type="text"
-          onClick={() => {
-            window.location.href = '/admin/user_availabilities'
-          }}
-          icon={<CalendarOutlined aria-hidden="true" />}
-        />
-      </Tooltip>
       <Dropdown
         menu={{ items: profileSubmenuItems }}
         trigger={['click']}
