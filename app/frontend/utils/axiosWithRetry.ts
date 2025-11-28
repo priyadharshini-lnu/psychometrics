@@ -15,6 +15,7 @@ export const axiosWithRetry = (
       ? Promise.resolve(config.onRetry(...args))
       : Promise.resolve()
     if (!window.navigator.onLine) {
+      message.destroy()
       message.warning(retryMsg, 10)
       window.addEventListener('online', () => {
         resolve(onRetryAttemptPromise)
