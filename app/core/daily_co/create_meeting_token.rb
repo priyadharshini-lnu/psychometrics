@@ -53,6 +53,7 @@ module DailyCo
 
       if meeting_room.video_recording_enabled? && meeting_room.transcription_enabled?
         payload[:ast] = true
+        payload[:p] = { ca: 't' }
       end
 
       {
