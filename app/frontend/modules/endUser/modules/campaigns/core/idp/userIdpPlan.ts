@@ -526,6 +526,7 @@ export const HANDLERS = {
     ...state,
     status: action.response.status,
     reviewNote: action.response.note,
+    canRevertToLastApproved: action.response.canRevertToLastApproved,
   }),
   [SET_USER_IDP_PLAN_STATUS]: (state, action) => ({
     ...state,

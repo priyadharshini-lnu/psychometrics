@@ -84,7 +84,11 @@ module EndUser
              with_context(current_user: current_user, user_idp_plan: @user_idp_plan)
 
       if form.save!
-        render json: { status: @user_idp_plan.status, note: @user_idp_plan.review_note }
+        render json: {
+          status: @user_idp_plan.status,
+          note: @user_idp_plan.review_note,
+          can_revert_to_last_approved: @user_idp_plan.can_revert_to_last_approved
+        }
       else
         render json: { errors: form.errors.full_messages }, status: 422
       end
