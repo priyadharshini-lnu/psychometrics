@@ -20,6 +20,7 @@ th:
     question_counter: Question %{current} of %{total}
     reason_for_idp_plan_rejection: เหตุผลในการปฏิเสธ
     reject_idp_plan: ปฏิเสธแผน
+    request_retry_message: คุณออฟไลน์อยู่ ไม่สามารถบันทึกคําตอบของคุณได้ แต่จะถูกบันทึกโดยอัตโนมัติเมื่อคุณกลับมาออนไลน์อีกครั้ง โปรดอย่ารีเฟรชหรือปิดหน้า
     selected_count: เลือก
     skill_type: ประเภททักษะ
     start_campaign_message_proctored: นี่คือแคมเปญที่มีผู้คุมสอบ โปรดคลิกปุ่ม '%{buttonText}' เพื่อเริ่มกิจกรรม

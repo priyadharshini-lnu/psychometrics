@@ -20,6 +20,7 @@ sl:
     question_counter: Vprašanje %{current} od %{total}
     reason_for_idp_plan_rejection: Razlog za zavrnitev
     reject_idp_plan: Načrt zavrnitve
+    request_retry_message: Si offline. Vaših odgovorov ni bilo mogoče shraniti, bodo pa samodejno shranjeni, ko boste ponovno na spletu. Prosimo, ne osvežujte ali zapirajte strani.
     selected_count: Izbrano
     skill_type: Vrsta spretnosti
     start_campaign_message_proctored: To je nadzorovana kampanja, kliknite gumb '%{buttonText}' za začetek aktivnosti.

@@ -20,6 +20,7 @@ nl:
     question_counter: Vraag %{current} van %{total}
     reason_for_idp_plan_rejection: Reden voor afwijzing
     reject_idp_plan: Plan afwijzen
+    request_retry_message: Je bent offline. Je antwoorden konden niet worden opgeslagen, maar worden automatisch opgeslagen zodra je weer online bent. Vers of sluit de pagina alstublieft niet.
     selected_count: Geselecteerd
     skill_type: Type vaardigheid
     start_campaign_message_proctored: Dit is een campagne met toezicht, klik op de knop '%{buttonText}' om de activiteiten te starten.

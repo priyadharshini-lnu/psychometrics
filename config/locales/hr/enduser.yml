@@ -20,6 +20,7 @@ hr:
     question_counter: Pitanje %{current} od %{total}
     reason_for_idp_plan_rejection: Razlog odbijanja
     reject_idp_plan: Plan odbijanja
+    request_retry_message: Offline si. Vaši odgovori nisu mogli biti spremljeni, ali će biti automatski spremljeni čim se vratite online. Molimo vas da ne osvježavate niti zatvarate stranicu.
     selected_count: Odabrano
     skill_type: Vrsta vještine
     start_campaign_message_proctored: Ovo je nadzirana kampanja, molimo kliknite gumb '%{buttonText}' za pokretanje aktivnosti.

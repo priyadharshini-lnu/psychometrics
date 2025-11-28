@@ -20,6 +20,7 @@ es-ES:
     question_counter: Pregunta %{current} de %{total}
     reason_for_idp_plan_rejection: Motivo del rechazo
     reject_idp_plan: Plan de rechazo
+    request_retry_message: Estás desconectado. Tus respuestas no pudieron guardarse, pero se guardarán automáticamente cuando vuelvas a estar en línea. Por favor, no actualices ni cierres la página.
     selected_count: Selección
     skill_type: Tipo de habilidad
     start_campaign_message_proctored: Esta es una campaña supervisada, por favor haz clic en el botón '%{buttonText}' para iniciar las actividades.

@@ -20,6 +20,7 @@ ar:
     question_counter: السؤال %{current} من %{total}
     reason_for_idp_plan_rejection: سبب الرفض
     reject_idp_plan: رفض الخطة
+    request_retry_message: أنت غير متصل. لم يكن بالإمكان حفظ إجاباتك لكنها ستحفظ تلقائيا بمجرد عودتك للاتصال. يرجى عدم تحديث الصفحة أو إغلاقها.
     selected_count: المحدد
     skill_type: نوع المهارة
     start_campaign_message_proctored: هذه حملة تحت مراقبة، يرجى الضغط على زر '%{buttonText}' لبدء الأنشطة.

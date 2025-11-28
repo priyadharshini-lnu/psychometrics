@@ -20,6 +20,7 @@ pt:
     question_counter: Pergunta %{current} de %{total}
     reason_for_idp_plan_rejection: Motivo da Rejeição
     reject_idp_plan: Rejeitar o Plano
+    request_retry_message: Você está offline. Suas respostas não puderam ser salvas, mas serão salvas automaticamente quando você voltar a estar online. Por favor, não atualize nem feche a página.
     selected_count: Selecionado
     skill_type: Tipo de habilidade
     start_campaign_message_proctored: Esta é uma campanha supervisionada, por favor, clique no botão '%{buttonText}' para iniciar as atividades.

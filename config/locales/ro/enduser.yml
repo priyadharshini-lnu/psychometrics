@@ -20,6 +20,7 @@ ro:
     question_counter: Întrebarea %{current} din %{total}
     reason_for_idp_plan_rejection: Motivul respingerii
     reject_idp_plan: Planul de respingere
+    request_retry_message: Ești offline. Răspunsurile tale nu au putut fi salvate, dar vor fi salvate automat odată ce vei fi din nou online. Vă rugăm să nu reîmprospătați sau să închideți pagina.
     selected_count: Selectat
     skill_type: Tip de abilitate
     start_campaign_message_proctored: Aceasta este o campanie supravegheată, vă rugăm să apăsați butonul "%{buttonText}" pentru a începe activitățile.

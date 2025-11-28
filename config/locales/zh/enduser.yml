@@ -20,6 +20,7 @@ zh:
     question_counter: 第 %{current} 题，共 %{total} 题
     reason_for_idp_plan_rejection: 拒绝原因
     reject_idp_plan: 拒绝计划
+    request_retry_message: 你已经离线了。你的答案无法保存，但一旦你重新上线，答案将自动保存。请不要刷新或关闭页面。
     selected_count: 已选择
     skill_type: 技能类型
     start_campaign_message_proctored: 这是一个监考活动，请点击“%{buttonText}”按钮开始活动。

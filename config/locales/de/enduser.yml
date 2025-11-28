@@ -20,6 +20,7 @@ de:
     question_counter: Frage %{current} von %{total}
     reason_for_idp_plan_rejection: Grund für die Ablehnung des Plans
     reject_idp_plan: Plan ablehnen
+    request_retry_message: Du bist offline. Deine Antworten konnten nicht gespeichert werden, werden aber automatisch gespeichert, sobald du wieder online bist. Bitte aktualisieren oder schließen Sie die Seite nicht.
     selected_count: Ausgewählte
     skill_type: Fertigkeitstyp
     start_campaign_message_proctored: Dies ist eine überwachte Kampagne, bitte klicken Sie auf die Schaltfläche '%{buttonText}', um die Aktivitäten zu starten.

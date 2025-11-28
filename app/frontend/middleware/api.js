@@ -12,8 +12,6 @@ import { camelizeKeys } from '~/utils/object'
 import { isLiveEnvironment } from '~/utils/isLiveEnvironment'
 import { captureSchemaValidationError } from '~/utils/schemaValidationError'
 
-const MAX_ALLOWED_RETRY_DELAY = 30000
-
 const debounceTimers = {}
 const buildUrl = ({
   method = 'get', url, body, tableConfig, responseType,
@@ -83,7 +81,6 @@ const apiMiddleware = () => next => (action) => {
 
   const retryConfig = {
     retries: retry.count,
-    retryDelay: retryCount => Math.min(retry.delay * (2 ** (retryCount - 1)), MAX_ALLOWED_RETRY_DELAY),
   }
 
   const axiosInstance = retry.count > 0 ? axiosWithRetry(retryConfig) : axios

@@ -20,6 +20,7 @@ sk:
     question_counter: Otázka %{current} z %{total}
     reason_for_idp_plan_rejection: Dôvod odmietnutia
     reject_idp_plan: Plán odmietnuť
+    request_retry_message: Si offline. Vaše odpovede sa nedajú uložiť automaticky, keď sa opäť pripojíte. Prosím, neobnovujte ani nezatvárajte stránku.
     selected_count: Vybrané
     skill_type: Typ zručnosti
     start_campaign_message_proctored: Toto je dozorovaná kampaň, kliknite prosím na tlačidlo '%{buttonText}' pre spustenie aktivít.
