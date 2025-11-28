@@ -2281,11 +2281,12 @@ sl:
       behavioral_skills: Vedenjske spretnosti
       client_skills: Spretnosti strank
       delete_skill: Ali ste prepričani, da želite izbrisati spretnost, ker bo izbrisala tudi vsa povezana razvojna dejanja?
+      delete_skill_msg: Si prepričan, da želiš izbrisati to veščino? Brisanje ga bo prav tako odstranilo vse povezane razvojne akcije.
       details_updated: Podrobnosti IDP uspešno posodobljene
       development_actions:
         add_from_library: Dodajanje iz knjižnice
         completion: Zaključku
-        create_development_actions_with_ai: Ustvarite razvojne ukrepe z umetno inteligenco za %{skillName}
+        create_development_actions_with_ai: Ustvarite razvojne ukrepe z umetno inteligenco za
         create_from_ai: Ustvarjanje iz umetne inteligence
         create_my_own: Ustvari svoje
         custom: Običaj

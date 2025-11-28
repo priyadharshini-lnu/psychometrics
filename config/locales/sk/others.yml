@@ -2566,6 +2566,7 @@ sk:
     convert_to_draft: Konvertovať na koncept
     current_step: Aktuálny krok %{step}
     delete_skill: Naozaj chcete odstrániť zručnosť, pretože sa tým odstránia aj všetky súvisiace vývojové akcie?
+    delete_skill_msg: Si si istý, že chceš túto zručnosť vymazať? Vymazaním sa odstránia aj všetky súvisiace vývojové akcie.
     details: Detaily
     development_actions:
       action_private: Áno
@@ -2583,8 +2584,8 @@ sk:
         in_progress: Prebieha
         not_started: Nezačalo sa
       completion: Dokončenie
-      create_custom_development_action_title: Vytvorte vlastnú vývojovú akciu pre %{skillName}
-      create_development_actions_with_ai: Vytvárajte vývojové akcie pomocou AI pre %{skillName}
+      create_custom_development_action_title: Vytvorte vlastnú vývojovú akciu pre
+      create_development_actions_with_ai: Vytvárajte vývojové akcie pomocou AI pre
       create_from_ai: Tvorba z umelej inteligencie
       create_my_own: Vytvoriť si vlastný
       custom: Zvyk
@@ -2696,7 +2697,7 @@ sk:
       save_skills: Uložiť zručnosti
     new_comments: Nové komentáre
     no_skills_added: Zatiaľ nemáte pridané žiadne schopnosti.
-    no_skills_added_by_reportee: Reportee zatiaľ nepridal zručnosti.
+    no_skills_added_by_reportee: Hlásiteľ zatiaľ nepridal žiadne zručnosti.
     pdf:
       approval_status: Stav schválenia
       cover:

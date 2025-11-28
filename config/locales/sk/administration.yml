@@ -2281,11 +2281,12 @@ sk:
       behavioral_skills: Behaviorálne zručnosti
       client_skills: Zručnosti klienta
       delete_skill: Naozaj chcete odstrániť zručnosť, pretože sa tým odstránia aj všetky súvisiace vývojové akcie?
+      delete_skill_msg: Si si istý, že chceš túto zručnosť vymazať? Vymazaním sa odstránia aj všetky súvisiace vývojové akcie.
       details_updated: IDP Podrobnosti úspešne aktualizované
       development_actions:
         add_from_library: Pridanie z knižnice
         completion: Dokončenie
-        create_development_actions_with_ai: Vytvárajte vývojové akcie pomocou AI pre %{skillName}
+        create_development_actions_with_ai: Vytvárajte vývojové akcie pomocou AI pre
         create_from_ai: Tvorba z umelej inteligencie
         create_my_own: Vytvorte si vlastný
         custom: Zvyk

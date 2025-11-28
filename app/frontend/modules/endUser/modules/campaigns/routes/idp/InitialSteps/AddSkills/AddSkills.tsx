@@ -91,12 +91,12 @@ const AddSkillsComponent = ({
     skills: skills.filter(skill => (skill.skillType === SKILL_TYPE.TECHNICAL)),
   }]
 
-  const handleFinishAddingSkill = () => {
+  const handleFinishAddingSkill = (callback:() => void) => {
     setIsSubmitting(true)
 
     saveUserIdpSkills(selectedSkills).then(() => {
       setIsSubmitting(false)
-      next()
+      callback?.()
     })
   }
   const searchSkillResource = useSearchSkills()
@@ -140,6 +140,7 @@ const AddSkillsComponent = ({
         searchSkillResource={searchSkillResource}
         skillGapReportData={skillGapReportData}
         prev={prev}
+        next={next}
         isSkillGapReportLoading={isSkillGapReportLoading}
         skillGapReportAvailable={skillGapReportAvailable}
         isSkillsLoading={isSkillsLoading}

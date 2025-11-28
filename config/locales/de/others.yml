@@ -2575,6 +2575,7 @@ de:
     convert_to_draft: In Entwurf konvertieren
     current_step: Aktueller Schritt %{step}
     delete_skill: Sind Sie sicher, dass Sie diese Fertigkeit löschen möchten? Durch das Löschen werden auch alle zugehörigen Entwicklungsmaßnahmen entfernt.
+    delete_skill_msg: Bist du sicher, dass du diese Fähigkeit löschen willst? Das Löschen entfernt außerdem alle damit verbundenen Entwicklungsaktionen.
     details: Einzelheiten
     development_actions:
       action_private: Ja
@@ -2592,8 +2593,8 @@ de:
         in_progress: In Arbeit
         not_started: Nicht begonnen
       completion: Fertigstellung
-      create_custom_development_action_title: Erstellen Sie meine eigene Entwicklungsmaßnahme für %{skillName}
-      create_development_actions_with_ai: Erstellen Sie Entwicklungsaktionen mit KI für %{skillName}
+      create_custom_development_action_title: Erstellen Sie meine eigene Entwicklungsmaßnahme für
+      create_development_actions_with_ai: Erstellen Sie Entwicklungsaktionen mit KI für
       create_from_ai: Aus KI erstellen
       create_my_own: Eigene erstellen
       custom: Gewohnheit
@@ -2706,7 +2707,7 @@ de:
       save_skills: Kompetenzen speichern
     new_comments: Neuer Kommentar
     no_skills_added: Du hast noch keine Fähigkeiten hinzugefügt.
-    no_skills_added_by_reportee: Reportee hat Skills noch nicht hinzugefügt.
+    no_skills_added_by_reportee: Der Berichtsempfänger hat noch keine Fähigkeiten hinzugefügt.
     pdf:
       approval_status: Genehmigungsstatus
       cover:

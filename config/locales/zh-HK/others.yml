@@ -1010,6 +1010,7 @@ zh-HK:
     convert_to_draft: 轉換為草稿
     current_step: 目前步驟 %{step}
     delete_skill: 您確定要刪除技能，因為它也會刪除所有連接的開發動作嗎？
+    delete_skill_msg: 你確定要刪除這個技能嗎？刪除它也會移除所有相關的開發行動。
     details: 詳情
     development_actions:
       action_private: 是
@@ -1027,8 +1028,8 @@ zh-HK:
         in_progress: 進行中
         not_started: 未開始
       completion: 完成度
-      create_custom_development_action_title: 為%{skillName}創建我自己的開發行動
-      create_development_actions_with_ai: 使用 AI 建立開發動作 for %{skillName}
+      create_custom_development_action_title: 為 創建我自己的開發行動
+      create_development_actions_with_ai: 使用 AI 建立開發動作
       create_from_ai: 從 AI 創建
       create_my_own: 建立我自己的
       custom: 習慣

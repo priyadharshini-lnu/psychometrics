@@ -2281,11 +2281,12 @@ ja:
       behavioral_skills: 行動スキル
       client_skills: クライアント・スキル
       delete_skill: このスキルを削除してもよろしいですか？削除すると、関連するすべての開発アクションも削除されます。
+      delete_skill_msg: 本当にこのスキルを削除したいですか?削除すると関連する開発アクションもすべて削除されます。
       details_updated: IDP詳細の更新に成功
       development_actions:
         add_from_library: ライブラリから追加
         completion: 完了
-        create_development_actions_with_ai: AI for %{skillName} を使用した開発アクションの作成
+        create_development_actions_with_ai: AI for を使用した開発アクションの作成
         create_from_ai: AIから作成
         create_my_own: 自分で作成する
         custom: 習慣

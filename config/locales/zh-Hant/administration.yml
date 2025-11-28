@@ -2281,11 +2281,12 @@ zh-Hant:
       behavioral_skills: 行為技巧
       client_skills: 客戶技能
       delete_skill: 您確定要刪除此技能嗎？刪除後將同時移除所有相關的開發行動。
+      delete_skill_msg: 你確定要刪除這個技能嗎？刪除它也會移除所有相關的開發行動。
       details_updated: IDP 詳細資料已成功更新
       development_actions:
         add_from_library: 從庫新增
         completion: 完成
-        create_development_actions_with_ai: 使用 AI 建立開發動作 for %{skillName}
+        create_development_actions_with_ai: 使用 AI 建立開發動作
         create_from_ai: 從 AI 創建
         create_my_own: 創建我自己的
         custom: 習慣

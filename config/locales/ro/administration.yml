@@ -2281,11 +2281,12 @@ ro:
       behavioral_skills: Abilități comportamentale
       client_skills: Abilitățile clientului
       delete_skill: Sunteți sigur că doriți să ștergeți abilitatea? Aceasta va șterge și toate acțiunile de dezvoltare conectate.
+      delete_skill_msg: Ești sigur că vrei să ștergi această abilitate? Ștergerea ei va elimina, de asemenea, toate acțiunile de dezvoltare conexe.
       details_updated: Detalii IDP actualizate cu succes
       development_actions:
         add_from_library: Adăugați din bibliotecă
         completion: Terminare
-        create_development_actions_with_ai: Creați acțiuni de dezvoltare cu AI for %{skillName}
+        create_development_actions_with_ai: Creați acțiuni de dezvoltare cu AI
         create_from_ai: Creați din AI
         create_my_own: Creează-mi propriul
         custom: Obicei

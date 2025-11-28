@@ -2566,6 +2566,7 @@ bg:
     convert_to_draft: Конвертиране в чернова
     current_step: Текуща стъпка %{step}
     delete_skill: Сигурни ли сте, че искате да изтриете това умение? Изтриването ще премахне и всички свързани действия за развитие.
+    delete_skill_msg: Сигурен ли си, че искаш да изтриеш това умение? Изтриването ще премахне и всички свързани действия по разработка.
     details: Подробности
     development_actions:
       action_private: Да
@@ -2583,8 +2584,8 @@ bg:
         in_progress: В процес на изпълнение
         not_started: Не е започнато
       completion: Завършване
-      create_custom_development_action_title: Създайте мое собствено действие за разработка за %{skillName}
-      create_development_actions_with_ai: Създавайте действия за развитие с AI за %{skillName}
+      create_custom_development_action_title: Създайте мое собствено действие за разработка за
+      create_development_actions_with_ai: Създавайте действия за развитие с AI за
       create_from_ai: Създавайте от AI
       create_my_own: Създай свой собствен
       custom: Обичай
@@ -2696,7 +2697,7 @@ bg:
       save_skills: Запазване на умения
     new_comments: Нов коментар(и)
     no_skills_added: Все още нямате добавени умения.
-    no_skills_added_by_reportee: Reportee все още не е добавил умения.
+    no_skills_added_by_reportee: Докладваният все още не е добавил умения.
     pdf:
       approval_status: Статус на одобрение
       cover:

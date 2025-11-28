@@ -2281,11 +2281,12 @@ sr-Latn:
       behavioral_skills: Veštine ponašanja
       client_skills: Veštine u vezi sa klijentima
       delete_skill: Da li ste sigurni da želite da izbrišete veštinu jer će izbrisati i sve povezane razvojne akcije?
+      delete_skill_msg: Da li ste sigurni da želite da izbrišete ovu veštinu? Brisanje će takođe ukloniti sve povezane razvojne akcije.
       details_updated: Detalji IDP-a su uspešno ažurirani
       development_actions:
         add_from_library: Dodaj iz biblioteke
         completion: Završetka
-        create_development_actions_with_ai: Kreirajte razvojne akcije sa AI za %{skillName}
+        create_development_actions_with_ai: Kreirajte razvojne akcije sa AI za
         create_from_ai: Kreirajte iz AI
         create_my_own: Kreirajte sopstveni
         custom: Prilagođene

@@ -343,7 +343,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
             className={cs(styles.warningIcon, 'mb-2')}
           />
           <strong className="ta-c">
-            {I18n.t('idp.delete_skill')}
+            {I18n.t('idp.delete_skill_msg')}
           </strong>
         </Flex>
 
@@ -399,7 +399,7 @@ const Card = ({
   const [editableProgress, setEditableProgress] = useState(developmentAction.progress)
   const [editing, setEditing] = useState(false)
 
-  const { isTablet, isDesktop } = useContext(MediaQueryContext)
+  const { isMobile, isTablet, isDesktop } = useContext(MediaQueryContext)
 
 
   const handleDateRangeChange = (dates: [dayjs.Dayjs, dayjs.Dayjs] | undefined) => {
@@ -484,7 +484,7 @@ const Card = ({
             ) : null}
         </Flex>
         {editing && (
-          <Flex vertical>
+          <Flex vertical className={isMobile ? 'pe-8' : ''}>
             <ConfigProvider
               theme={{
                 components: {

@@ -159,6 +159,7 @@ const UserDevelopmentPlanComponent = ({
   const [allSkills, setAllSkills] = useState<Skill[]>(([]))
 
   const [selectedSkills, setSelectedSkills] = useState<Skill[]>([])
+  const [existingPlanData, setExistingPlanData] = useState<object | null>(null)
 
   const [isLoading, setIsLoading] = useState(false)
   const [isDALoading, setIsDALoading] = useState(false)
@@ -168,7 +169,6 @@ const UserDevelopmentPlanComponent = ({
   { skillId: string, skillName: string } | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const existingPlanData = useRef<object | null>(null)
 
   // Comments state - only isCommentsLoading is managed internally
   const [isCommentsLoading, setIsCommentsLoading] = useState(true)
@@ -180,14 +180,17 @@ const UserDevelopmentPlanComponent = ({
     [idpSkills, idpDevelopmentActions])
 
   const isPlanDirty = useMemo(() => {
-    if (!existingPlanData.current) return false
-    const { userIdpSkills: existingSkills, userIdpDevelopmentActions: existingActions } = existingPlanData.current as {
+    if (!existingPlanData) return false
+    const { userIdpSkills: existingSkills, userIdpDevelopmentActions: existingActions } = existingPlanData as {
       userIdpSkills: Skill[];
       userIdpDevelopmentActions: DevelopmentAction[];
     }
-    return !_.isEqual(existingSkills, idpSkills) || !_.isEqual(existingActions, idpDevelopmentActions)
+
+    return !_.isEqual(Object.values(existingSkills).map(skill => skill.name),
+      Object.values(idpSkills).map((skill:Skill) => (skill.name)))
+    || !_.isEqual(existingActions, idpDevelopmentActions)
   },
-  [idpSkills, idpDevelopmentActions])
+  [idpSkills, idpDevelopmentActions, existingPlanData])
 
 
   const availableDevelopmentActionsData = useMemo(() => _.values(availableDevelopmentActions),
@@ -219,10 +222,10 @@ const UserDevelopmentPlanComponent = ({
     fetchUserIdpPlan(idpUserId).then(({ response }) => {
       setSelectedSkills(response.data.userIdpSkills)
       fetchUserIdpPlanChanges(idpUserId).then(() => {
-        existingPlanData.current = {
+        setExistingPlanData({
           userIdpDevelopmentActions: _.keyBy(response.data.userIdpDevelopmentActions, 'id'),
           userIdpSkills: _.keyBy(response.data.userIdpSkills, 'id'),
-        }
+        })
       })
       setIsLoading(false)
     }).catch((error) => {
@@ -381,7 +384,7 @@ const UserDevelopmentPlanComponent = ({
     if (isMobile) {
       setIsCommentsDrawerOpen(false)
     } else if (skillElement) {
-      skillElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      skillElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
       setTimeout(() => {
         showCommentsForSkillId(resourceId)
       }, 400)
@@ -393,7 +396,7 @@ const UserDevelopmentPlanComponent = ({
         setTimeout(() => {
           skillElement.style.backgroundColor = ''
         }, 2000)
-        skillElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        skillElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
       }
     }, 400)
   }
@@ -553,7 +556,12 @@ const UserDevelopmentPlanComponent = ({
           maxHeight: `calc(100vh - (220px + ${headerHeight}px))`,
         }}
       >
-        <div ref={containerRef}>
+        <div
+          ref={containerRef}
+          style={{
+            height: '100%',
+          }}
+        >
           <DevelopmentActionListView
             editMode={editMode}
             categories={listData}

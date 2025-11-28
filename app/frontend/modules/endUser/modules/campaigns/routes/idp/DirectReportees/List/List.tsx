@@ -204,7 +204,8 @@ export const Component: FC<PropsFromRedux> = ({
                 total: directReporteesTotalCount,
                 hideOnSinglePage: true,
               }}
-              style={{ overflowY: isLoading ? 'hidden' : 'auto' }}
+              sticky
+              style={{ overflowY: isLoading ? 'hidden' : 'auto', maxHeight: '80%' }}
               onChange={handleTableChange}
               rowKey={item => item.user.id}
             />

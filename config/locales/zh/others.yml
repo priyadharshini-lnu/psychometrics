@@ -2553,6 +2553,7 @@ zh:
     convert_to_draft: 轉換為草稿
     current_step: 当前步骤 %{step}
     delete_skill: 您确定要删除此技能吗？删除后将同时移除所有相关的开发行动。
+    delete_skill_msg: 你确定要删除这个技能吗？删除后，所有相关的开发作也会被移除。
     details: 详细信息
     development_actions:
       action_private: 是
@@ -2570,8 +2571,8 @@ zh:
         in_progress: 进行中
         not_started: 未开始
       completion: 完工
-      create_custom_development_action_title: 为%{skillName}创建我自己的开发行动
-      create_development_actions_with_ai: 使用 AI 创建开发行动 for %{skillName}
+      create_custom_development_action_title: 为 创建我自己的开发行动
+      create_development_actions_with_ai: 使用 AI 创建开发行动
       create_from_ai: 从 AI 创建
       create_my_own: 创建我自己的
       custom: 习惯

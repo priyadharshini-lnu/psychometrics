@@ -2281,11 +2281,12 @@ zh:
       behavioral_skills: 行为技能
       client_skills: 客户技能
       delete_skill: 您确定要删除此技能吗？删除后将同时移除所有相关的开发行动。
+      delete_skill_msg: 你确定要删除这个技能吗？删除后，所有相关的开发作也会被移除。
       details_updated: 成功更新 IDP 详情
       development_actions:
         add_from_library: 从库添加
         completion: 完成
-        create_development_actions_with_ai: 使用 AI 创建开发行动 for %{skillName}
+        create_development_actions_with_ai: 使用 AI 创建开发行动
         create_from_ai: 从 AI 创建
         create_my_own: 创建我自己的
         custom: 习惯

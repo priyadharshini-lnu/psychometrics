@@ -2280,7 +2280,8 @@ ar:
       background_image: صورة الخلفية
       behavioral_skills: Behavioral Skills
       client_skills: Client Skills
-      delete_skill: هل أنت متأكد أنك تريد حذف هذه المهارة؟ سيؤدي الحذف أيضًا إلى إزالة جميع إجراءات التطوير المرتبطة به
+      delete_skill: هل أنت متأكد أنك تريد حذف المهارة لأنها ستؤدي إلى حذف جميع إجراءات التطوير المرتبطة بها أيضًا؟
+      delete_skill_msg: هل أنت متأكد أنك تريد حذف هذه المهارة؟ حذف اللعبة سيزيل أيضا جميع إجراءات التطوير ذات الصلة.
       details_updated: تم تحديث تفاصيل IDP بنجاح
       development_actions:
         add_from_library: إضافة من المكتبة

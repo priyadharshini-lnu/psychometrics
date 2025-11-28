@@ -2612,7 +2612,8 @@ en:
       you: You
     convert_to_draft: Convert to Draft
     current_step: Current Step %{step}
-    delete_skill: Are you sure you want to delete skill because it will delete all the connected development actions as well?
+    delete_skill: Are you sure you want to delete this skill? Deleting it will also remove all related development actions.
+    delete_skill_msg: Are you sure you want to delete this skill? Deleting it will also remove all related development actions.
     details: Details
     development_actions:
       action_private: 'Yes'

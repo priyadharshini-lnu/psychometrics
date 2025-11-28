@@ -22,7 +22,7 @@ type SearchSkillResourceProps = {
   }
 
 type AddSkillsStepProps = {
-  onFinishAddSkill: () => void
+  onFinishAddSkill: (callback?:()=>void) => void
   addSkillButtonText: string
   selectedSkills: UserIdpSkill[]
   skillTypes: TypeWithSkillsSummary[]
@@ -35,6 +35,7 @@ type AddSkillsStepProps = {
   isSkillGapReportLoading?:boolean
   skillGapReportAvailable?:boolean
   prev?: ()=>void
+  next?: ()=>void
   isSkillsLoading?:boolean
   allowSkillDeletion?:boolean
 }
@@ -48,7 +49,7 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
   skillGapReportData,
   isSkillGapReportLoading = false,
   skillGapReportAvailable = false,
-  prev,
+  prev, next,
   isSkillsLoading = false,
   allowSkillDeletion = true,
 }) => {
@@ -72,7 +73,9 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
         <Space>
           {showBackButton && (
             <BackButton
-              onPrev={prev}
+              onPrev={() => {
+                onFinishAddSkill(prev)
+              }}
             />
           )}
           <Typography.Title level={3} className="mb-0 mt-0">
@@ -98,7 +101,7 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
           <ButtonWithArrow
             label={addSkillButtonText}
             type="primary"
-            onClick={() => onFinishAddSkill()}
+            onClick={() => onFinishAddSkill(next)}
             loading={isSubmitting}
             disabled={disableAddSkillButton}
           />

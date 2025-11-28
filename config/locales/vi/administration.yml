@@ -2281,11 +2281,12 @@ vi:
       behavioral_skills: Kỹ năng hành vi
       client_skills: Kỹ năng khách hàng
       delete_skill: Bạn có chắc chắn muốn xóa kỹ năng này không? Việc xóa sẽ loại bỏ tất cả các hành động phát triển liên quan.
+      delete_skill_msg: Bạn có chắc chắn muốn xóa kỹ năng này không? Xóa nó cũng sẽ xóa tất cả các hành động phát triển có liên quan.
       details_updated: Thông tin chi tiết về IDP đã được cập nhật thành công.
       development_actions:
         add_from_library: Thêm từ Thư viện
         completion: Hoàn thành
-        create_development_actions_with_ai: Tạo hành động phát triển với AI cho %{skillName}
+        create_development_actions_with_ai: Tạo hành động phát triển với AI cho
         create_from_ai: Sáng tạo từ AI
         create_my_own: Tạo của riêng tôi
         custom: Phong tục

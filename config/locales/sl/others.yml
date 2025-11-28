@@ -2563,6 +2563,7 @@ sl:
     convert_to_draft: Pretvori v osnutek
     current_step: Trenutni korak %{step}
     delete_skill: Ali ste prepričani, da želite izbrisati spretnost, ker bo izbrisala tudi vsa povezana razvojna dejanja?
+    delete_skill_msg: Si prepričan, da želiš izbrisati to veščino? Brisanje ga bo prav tako odstranilo vse povezane razvojne akcije.
     details: Podrobnosti
     development_actions:
       action_private: Da
@@ -2580,8 +2581,8 @@ sl:
         in_progress: V teku
         not_started: Ni začeto
       completion: Zaključku
-      create_custom_development_action_title: Ustvarite lastno razvojno akcijo za %{skillName}
-      create_development_actions_with_ai: Ustvarite razvojne ukrepe z umetno inteligenco za %{skillName}
+      create_custom_development_action_title: Ustvarite lastno razvojno akcijo za
+      create_development_actions_with_ai: Ustvarite razvojne ukrepe z umetno inteligenco za
       create_from_ai: Ustvarjanje iz umetne inteligence
       create_my_own: Ustvari svoje
       custom: Običaj
@@ -2693,7 +2694,7 @@ sl:
       save_skills: Shranite spretnosti
     new_comments: Novi komentarji
     no_skills_added: Še nimate dodanih veščin.
-    no_skills_added_by_reportee: Reportee še ni dodal veščin.
+    no_skills_added_by_reportee: Poročevalec še ni dodal veščin.
     pdf:
       approval_status: Status odobritve
       cover:

@@ -2555,6 +2555,7 @@ cs:
     convert_to_draft: Převést na koncept
     current_step: Aktuální krok %{step}
     delete_skill: Opravdu chcete odstranit dovednost, protože tím odstraníte i všechny související vývojové akce?
+    delete_skill_msg: Jste si jistý, že chcete tuto dovednost smazat? Smazání také odstraní všechny související vývojové akce.
     details: Podrobnosti
     development_actions:
       action_private: Ano
@@ -2572,8 +2573,8 @@ cs:
         in_progress: Probíhající
         not_started: Nezahájeno
       completion: Dokončení
-      create_custom_development_action_title: Vytvořit vlastní vývojářskou akci pro %{skillName}
-      create_development_actions_with_ai: Vytváření vývojových akcí pomocí AI pro %{skillName}
+      create_custom_development_action_title: Vytvořit vlastní vývojářskou akci pro
+      create_development_actions_with_ai: Vytváření vývojových akcí pomocí AI pro
       create_from_ai: Tvořte z umělé inteligence
       create_my_own: Vytvořit vlastní
       custom: Zvyk
@@ -2685,7 +2686,7 @@ cs:
       save_skills: Uložit dovednosti
     new_comments: Nové komentáře(e)
     no_skills_added: Zatím nemáte přidané žádné dovednosti.
-    no_skills_added_by_reportee: Reportee ještě nepřidal Skills.
+    no_skills_added_by_reportee: Reportee ještě nepřidal žádné dovednosti.
     pdf:
       approval_status: Stav schválení
       cover:

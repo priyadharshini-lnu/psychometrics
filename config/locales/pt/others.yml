@@ -2574,6 +2574,7 @@ pt:
     convert_to_draft: Converter em rascunho
     current_step: Etapa atual %{step}
     delete_skill: Tem certeza de que deseja excluir a habilidade? Isso também excluirá todas as ações de desenvolvimento conectadas.
+    delete_skill_msg: Você tem certeza de que quer deletar essa habilidade? Deletar também removerá todas as ações de desenvolvimento relacionadas.
     details: Detalhes
     development_actions:
       action_private: Sim
@@ -2591,8 +2592,8 @@ pt:
         in_progress: Em curso
         not_started: Não iniciado
       completion: Conclusão
-      create_custom_development_action_title: Criar minha própria ação de desenvolvimento para %{skillName}
-      create_development_actions_with_ai: Crie ações de desenvolvimento com IA para %{skillName}
+      create_custom_development_action_title: Criar minha própria ação de desenvolvimento para
+      create_development_actions_with_ai: Crie ações de desenvolvimento com IA para
       create_from_ai: Crie a partir da IA
       create_my_own: Criar o meu próprio
       custom: Costume
@@ -2710,7 +2711,7 @@ pt:
       save_skills: Salvar competências
     new_comments: Novo(s) comentário(s)
     no_skills_added: Você ainda não adicionou Habilidades.
-    no_skills_added_by_reportee: Reportee ainda não adicionou Habilidades.
+    no_skills_added_by_reportee: O subordinado direto ainda não adicionou habilidades.
     pdf:
       approval_status: Estado de Aprovação
       cover:
