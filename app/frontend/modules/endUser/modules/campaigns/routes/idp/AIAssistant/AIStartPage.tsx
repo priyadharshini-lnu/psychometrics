@@ -21,9 +21,11 @@ const LaunchIcon = () => (
   </div>
 )
 
-const connector = connect(null, { fetchUserIdpPlan })
+const connector = connect((state: RootState) => ({
+  skillGapReportAvailable: state.campaigns.idp.skillGapReportAvailable,
+}), { fetchUserIdpPlan })
 
-export const AIStartPageComponent = ({ fetchUserIdpPlan }) => {
+export const AIStartPageComponent = ({ fetchUserIdpPlan, skillGapReportAvailable }) => {
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(true)
   const currentUser = useSelector((state: RootState) => state.currentUser)
@@ -33,11 +35,19 @@ export const AIStartPageComponent = ({ fetchUserIdpPlan }) => {
     fetchUserIdpPlan(currentUser.id).finally(() => setIsLoading(false))
   }, [])
 
+  const handleNext = () => {
+    if (skillGapReportAvailable) {
+      navigate('/idp/ai_assistant/skill_gap_report')
+    } else {
+      navigate('/idp/ai_assistant/chat')
+    }
+  }
+
   return (
     <IdpPageLayoutWrapper style={{ overflowY: 'auto' }}>
       {isLoading ? <Flex flex={1} align="center" justify="center"><Spin size="large" /></Flex>
         : (
-          <Flex vertical>
+          <Flex vertical className="ms-4 me-4">
             <Flex vertical align="center" justify="center" className="ta-c">
               <Flex vertical justify="center" align="center" className="mt-8 mb-4">
                 <LaunchIcon />
@@ -46,12 +56,14 @@ export const AIStartPageComponent = ({ fetchUserIdpPlan }) => {
                 </Typography.Title>
               </Flex>
               <Separator className="mb-4 mt-0" />
-              <SafeHTML html={introMessage} config="adminRichText" />
+              <section className={styles.contentContainer}>
+                <SafeHTML html={introMessage} config="adminRichText" />
+              </section>
               <Button
                 className={styles.button}
                 block
                 type="primary"
-                onClick={() => navigate('/idp/ai_assistant/chat')}
+                onClick={handleNext}
                 style={{ maxWidth: 300 }}
               >
                 {I18n.t('common.actions.continue')}

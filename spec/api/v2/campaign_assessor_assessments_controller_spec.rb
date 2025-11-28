@@ -147,13 +147,13 @@ subject_assessor_assessments" do
                                    subject: workshop_subject.user,
                                    campaign: campaign,
                                    meeting_type: :not_available,
-                                   assessment: linked_assessment)
+                                   assessment: assessment)
         end
         let!(:subject_user_assessment) do
           create(:user_assessment, relationship: Relationship.self_relationship,
                                     subject: workshop_subject.user,
                                     evaluator: workshop_subject.user,
-                                    assessment: assessment,
+                                    assessment: linked_assessment,
                                     campaign: campaign,
                                     meeting_type: :not_available)
         end
@@ -176,10 +176,10 @@ subject_assessor_assessments" do
               'name' => assessor_user_assessment.evaluator.name,
               'photo_url' => assessor_user_assessment.evaluator.photo_url
             },
-            'meeting_type' => nil,
+            'meeting_type' => 'not_available',
             'assessment_id' => assessor_user_assessment.assessment_id,
-            'linked_activity_id' => '',
-            'linked_activity_name' => nil
+            'linked_activity_id' => linked_assessment.id.to_s,
+            'linked_activity_name' => linked_assessment.name
           }])
         end
       end

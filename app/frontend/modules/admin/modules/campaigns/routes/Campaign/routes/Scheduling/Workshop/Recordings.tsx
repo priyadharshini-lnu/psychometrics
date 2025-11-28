@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import {
   Button,
   Modal,
-  Space,
   Tooltip,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { ConnectedProps, connect } from 'react-redux'
+import { DownloadOutlined } from '@ant-design/icons'
 import { Resource } from '~/modules/admin/components/Resource'
 import { get as getCurrentUser } from '~/core/currentUser'
 import { WorkshopRecordingTR } from '~/modules/admin/modules/campaigns/core/workshopRecording'
@@ -102,13 +102,35 @@ const RecordingsTable = () => (
         title={I18n.t('administration.scheduling.columns.link_to_view_recordings')}
         id="recording_url"
         width="5%"
-        render={({ recordingUrl, recordingDate, id }) => (
-          <RecordingUrlColumn
-            recordingUrl={recordingUrl}
-            recordingDate={recordingDate}
-            serialNo={id}
-          />
-        )}
+        render={({ recordingUrl, recordingDate, id }) => {
+          if (!recordingUrl) return null
+          return (
+            <RecordingUrlColumn
+              recordingUrl={recordingUrl}
+              recordingDate={recordingDate}
+              serialNo={id}
+            />
+          )
+        }}
+      />
+      <Resource.Column
+        title={I18n.t('shared.transcriptions')}
+        id="transcription_url"
+        width="5%"
+        render={({ transcriptionUrl }) => {
+          if (!transcriptionUrl) return null
+          return (
+            <Button
+              className="ps-0"
+              href={transcriptionUrl}
+              target="_blank"
+              icon={<DownloadOutlined />}
+              type="link"
+            >
+              {I18n.t('common.text.download')}
+            </Button>
+          )
+        }}
       />
     </Resource.Table>
   </>
@@ -135,14 +157,13 @@ const RecordingUrlColumn: React.FC<{
 
   return (
     <>
-      <Space>
-        <Button
-          type="link"
-          onClick={() => setOpen(true)}
-        >
-          View recording
-        </Button>
-      </Space>
+      <Button
+        type="link"
+        className="ps-0"
+        onClick={() => setOpen(true)}
+      >
+        View recording
+      </Button>
       <Modal
         open={open}
         onCancel={() => setOpen(false)}

@@ -919,8 +919,6 @@ it:
     invalid_job: Questa notifica corrisponde al record cancellato
     mark_as_read: Segna come già letto
     more: Di più
-    no_notifications: Nessun messaggio
-    notifications: Notifiche
     results: Risultati
     super_admin:
       errors:
@@ -1341,16 +1339,11 @@ it:
     continue: Continuare a svolgere i propri compiti
     dashboard_instructions: È possibile che ti siano state assegnate più attività. Ti invitiamo a verificare che tutte le attività assegnate siano state completate in tutte le Campagne.
     dashboard_menu:
-      bookings: Prenotazioni
       campaign: Campagne
-      change_password: Modifica la password
-      development: Sviluppo
       direct_reportees: Collegati
       home: Home
       insights: Approfondimenti
-      my_plan: Il mio piano
       profile: Profilo
-      profile_details: Dettagli
       tasks: Campagne
     details: Dettagli
     edit_evaluation:
@@ -1805,7 +1798,6 @@ it:
       view: Vista
       view_all_tasks: Visualizza tutti i compiti
       view_detail: Visualizza il dettaglio
-      yes_delete: Sì, Elimina
     column:
       action: Azioni
       active: Attivi
@@ -1880,7 +1872,6 @@ it:
       projects: Progetti
       report: Rapporto
       reports: Report
-      scoring: Punteggio
       sms_contact: Contatto SMS
       threesixty_campaign: Punteggi della campagna Threesixty
     status:
@@ -2569,14 +2560,14 @@ it:
       you: Tu
     convert_to_draft: Converti in bozza
     current_step: Passaggio %{step} corrente
-    delete_skill: Sei sicuro di voler eliminare l'abilità perché eliminerà anche tutte le azioni di sviluppo connesse?
+    delete_skill: Sei sicuro di voler eliminare l'abilità? Verranno eliminate anche tutte le azioni di sviluppo collegate.
     details: Dettagli
     development_actions:
       action_private: Sì
       action_public: 'false'
       add_development_action: Aggiungi azione di sviluppo
       add_development_actions_from_below_options: Aggiungi le opzioni Azioni di sviluppo dal basso.
-      add_development_actions_modal_title: Libreria di azioni di sviluppo per %{skillName}
+      add_development_actions_modal_title: Libreria di azioni di sviluppo per
       add_from_library: Aggiungi dalla libreria
       add_more: Aggiungi altre azioni di sviluppo
       add_selected_development_actions: Aggiungi azioni di sviluppo selezionate
@@ -2607,7 +2598,7 @@ it:
       generate_more: Generare di più
       generating_development_actions: Generare azioni di sviluppo...
       generative_ai: IA generativa
-      generative_ai_description: Lascia che l'intelligenza artificiale generi un'azione di sviluppo su misura solo per te
+      generative_ai_description_msg: Lascia che l'intelligenza artificiale generi un'azione di sviluppo su misura solo per te
       heading: Azioni di sviluppo
       idp_library: Libreria IDP
       idp_library_description: Seleziona un'azione di sviluppo comprovata dalla nostra libreria curata da esperti.
@@ -2643,7 +2634,7 @@ it:
       write_here: Scrivi qui...
     direct_reportee_details: Dettagli Reportee Diretti
     download:
-      description: 'Per scaricare il rapporto, segui il link: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Il link è valido solo per 10 minuti'
+      description: 'Per scaricare il rapporto, segui il link: <a href=''%{url}'' target=''_blank''>Download</a>. Il link è valido solo per 10 minuti'
     download_plan: Scarica il piano
     edit_plan: Modifica piano
     edit_plan_and_add_skills: Modifica piano e fai clic su Gestisci competenze per aggiungere competenze.
@@ -2665,8 +2656,8 @@ it:
         one: Azione di sviluppo rimossa
         other: Azioni di sviluppo rimosse
     initial_steps:
-      add_skill_group_description: In base ai risultati della valutazione, ecco alcune delle aree di forza e di sviluppo per voi. Scegliete le competenze che volete sviluppare ulteriormente come parte del vostro piano di sviluppo.
-      add_skill_group_title: Esplorare le proprie capacità di %{category}
+      add_skill_group_description: Scegliete le competenze che volete sviluppare ulteriormente come parte del vostro piano di sviluppo.
+      add_skill_group_title: "%{category}"
       add_skills: Aggiungi
       add_skills_step: Aggiungi competenze
       back: Indietro
@@ -2718,7 +2709,6 @@ it:
           name: Nome
           publish_date: Data di Pubblicazione
           review_date: Data di Revisione
-          role: Ruolo Attuale
       guidelines:
         cards:
           c1:
@@ -3387,13 +3377,6 @@ it:
   sessions:
     errors:
       recaptcha: Verifica Recaptcha fallita. Riprovare.
-  shared:
-    filters:
-      clear: Cancella i filtri
-    internet_disconnected_message: Si prega di controllare la connessione a Internet.
-    mte_logo_alt_text: Logo Mercer Talent Enterprise
-    terms_conditions_privacy: Dichiarazione sulla privacy
-    tte_terms_and_condition: Condizioni e privacy
   sheet:
     import_modal:
       alert_access_sheet_removal: Il caricamento di un nuovo Accesssheet comporta l'eliminazione di tutti i record esistenti e il caricamento di uno nuovo dal foglio. Assicurarsi di avere tutti i record di Accesssheet nel foglio di calcolo.

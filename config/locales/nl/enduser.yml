@@ -1,0 +1,29 @@
+---
+nl:
+  enduser:
+    add_idp_plan_note: Notitie toevoegen...
+    add_idp_plan_rejection_reason: Reden toevoegen...
+    approve_idp_plan: Plan goedkeuren
+    bookings: Boekingen
+    campaign: Campagne
+    development: Ontwikkeling
+    direct_reportees: Directe rapporten
+    home: Dashboard
+    idp_plan_approval_note: Goedkeuringsnotitie
+    insights: Inzichten
+    lighthouse_assistant: Vuurtorenassistent
+    max_word_limit: Mag maximaal %{max} woorden bevatten
+    min_word_limit: Moet minstens %{min} woorden bevatten
+    my_plan: Mijn plan
+    profile: Profiel
+    profile_details: Details
+    question_counter: Vraag %{current} van %{total}
+    reason_for_idp_plan_rejection: Reden voor afwijzing
+    reject_idp_plan: Plan afwijzen
+    request_retry_message: Je bent offline. Je antwoorden konden niet worden opgeslagen, maar worden automatisch opgeslagen zodra je weer online bent. Vers of sluit de pagina alstublieft niet.
+    selected_count: Geselecteerd
+    skill_type: Type vaardigheid
+    start_campaign_message_proctored: Dit is een campagne met toezicht, klik op de knop '%{buttonText}' om de activiteiten te starten.
+    start_campaign_message_timed: Dit is een getimede campagne, klik op de knop '%{buttonText}' om de activiteiten te starten.
+    start_campaign_message_timed_proctored: Dit is een getimede en toezichthoudende campagne, klik op de knop '%{buttonText}' om de activiteiten te starten.
+    tasks: Taken

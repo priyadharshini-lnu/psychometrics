@@ -1,0 +1,29 @@
+---
+id:
+  shared:
+    action: Tindakan
+    add: Menambahkan
+    cancel: Batal
+    change_password: Ubah Kata Sandi
+    clear_filters: Hapus Filter
+    description: Deskripsi
+    edit: Sunting
+    edited: Baru
+    id: ID
+    internet_disconnected_message: Mencoba menyambung kembali, periksa koneksi internet Anda.
+    mte_logo_alt_text: Logo Mercer Talent Enterprise
+    name: Nama
+    new: Baru
+    removed: Dihapus
+    rte_paste_content_exceeds_char_limit: Teks melebihi batas karakter {{maxCharacterLimit}} dan tidak dapat ditempelkan.
+    rte_paste_content_exceeds_word_limit: Teks melebihi batas kata {{maxWordLimit}} dan tidak dapat ditempelkan.
+    search: Pencarian
+    table:
+      entries:
+        selected: 1 baris dipilih
+        total: 'Jumlah : 1'
+    terms_conditions_privacy: Pernyataan Privasi
+    transcriptions: Transkripsi
+    tte_terms_and_condition: Ketentuan & Privasi
+    type: Jenis
+    update: Memperbarui

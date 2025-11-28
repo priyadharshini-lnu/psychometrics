@@ -91,7 +91,7 @@ RSpec.describe AdminJobs::ExportUserReportEvents, type: :job do
   describe '#generate_details' do
     it 'returns an array with translated label and file link' do
       allow(job).to receive(:file_link).and_return('link_to_file')
-      expect(job.generate_details).to eq([[I18n.t('administration.navigation.user_report_events'), 'link_to_file']])
+      expect(job.generate_details).to eq([[I18n.t('admin.user_report_events'), 'link_to_file']])
     end
   end
 end

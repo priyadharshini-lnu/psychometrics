@@ -4,10 +4,10 @@ import React, { useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
   Table, Row, Col, Button,
-  Space,
   Tooltip,
   Modal,
 } from 'antd'
+import { DownloadOutlined } from '@ant-design/icons'
 import { DateTimeWithZone } from '~/glint'
 import { getCurrent } from '~/modules/admin/modules/AssessorApp/core/users'
 import { get as getUserRecordings } from '~/modules/admin/modules/AssessorApp/core/userRecordings'
@@ -98,13 +98,35 @@ const Recordings: React.FC<Props> = ({ userRecordings }) => (
               title={I18n.t('administration.scheduling.columns.link_to_view_recordings')}
               key="recording_url"
               width="5%"
-              render={({ recordingUrl, recordingDate, id }) => (
-                <RecordingUrlColumn
-                  recordingUrl={recordingUrl}
-                  recordingDate={recordingDate}
-                  serialNo={id}
-                />
-              )}
+              render={({ recordingUrl, recordingDate, id }) => {
+                if (!recordingUrl) return null
+                return (
+                  <RecordingUrlColumn
+                    recordingUrl={recordingUrl}
+                    recordingDate={recordingDate}
+                    serialNo={id}
+                  />
+                )
+              }}
+            />
+            <Column
+              title={I18n.t('shared.transcriptions')}
+              key="transcription_url"
+              width="5%"
+              render={({ transcriptionUrl }) => {
+                if (!transcriptionUrl) return null
+                return (
+                  <Button
+                    className="ps-0"
+                    href={transcriptionUrl}
+                    target="_blank"
+                    icon={<DownloadOutlined />}
+                    type="link"
+                  >
+                    {I18n.t('common.text.download')}
+                  </Button>
+                )
+              }}
             />
           </Table>
         </Col>
@@ -134,14 +156,13 @@ const RecordingUrlColumn: React.FC<{
 
   return (
     <>
-      <Space>
-        <Button
-          type="link"
-          onClick={() => setOpen(true)}
-        >
-          View recording
-        </Button>
-      </Space>
+      <Button
+        type="link"
+        className="ps-0"
+        onClick={() => setOpen(true)}
+      >
+        View recording
+      </Button>
       <Modal
         open={open}
         onCancel={() => setOpen(false)}

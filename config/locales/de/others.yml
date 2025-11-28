@@ -919,8 +919,6 @@ de:
     invalid_job: Diese Meldung entspricht einem gelöschten Datensatz
     mark_as_read: Markieren Sie alle gelesenen
     more: Mehr
-    no_notifications: Keine Benachrichtigungen
-    notifications: Benachrichtigungen
     results: Ergebnisse
     super_admin:
       errors:
@@ -1346,16 +1344,11 @@ de:
     continue: Fahren Sie mit Ihren Aufgaben fort.
     dashboard_instructions: Dir wurden mehrere Aktivitäten zugewiesen, die du abschließen musst. Stelle sicher, dass alle dir zugewiesenen Aktivitäten in allen Events abgeschlossen sind.
     dashboard_menu:
-      bookings: Buchungen
       campaign: Event
-      change_password: Passwort ändern
-      development: Entwicklung
       direct_reportees: Direkte Berichte
       home: Startseite
       insights: Einblicke
-      my_plan: Mein Plan
       profile: Profil
-      profile_details: Details
       tasks: Aufgaben
     details: Details
     edit_evaluation:
@@ -1819,7 +1812,6 @@ de:
       view: Siehe
       view_all_tasks: Alle Aufgaben anzeigen
       view_detail: Ansicht Detail
-      yes_delete: Ja, Löschen
     column:
       action: Aktion
       active: Aktiv
@@ -1894,7 +1886,6 @@ de:
       projects: Projekte
       report: Bericht
       reports: Berichte
-      scoring: Punktevergabe
       sms_contact: SMS-Kontakt
       threesixty_campaign: Threesixty-Kampagne punktet
     status:
@@ -2583,14 +2574,14 @@ de:
       you: Du
     convert_to_draft: In Entwurf konvertieren
     current_step: Aktueller Schritt %{step}
-    delete_skill: Sind Sie sicher, dass Sie den Skill löschen möchten, da dadurch auch alle verbundenen Entwicklungsaktionen gelöscht werden?
+    delete_skill: Sind Sie sicher, dass Sie diese Fertigkeit löschen möchten? Durch das Löschen werden auch alle zugehörigen Entwicklungsmaßnahmen entfernt.
     details: Einzelheiten
     development_actions:
       action_private: Ja
       action_public: Nein
       add_development_action: Entwicklungsmaßnahme hinzufügen
       add_development_actions_from_below_options: Fügen Sie Entwicklungsaktionen aus den folgenden Optionen hinzu.
-      add_development_actions_modal_title: Bibliothek für Entwicklungsmaßnahmen für %{skillName}
+      add_development_actions_modal_title: Bibliothek für Entwicklungsmaßnahmen für
       add_from_library: Aus Bibliothek hinzufügen
       add_more: Hinzufügen weiterer Entwicklungsaktionen
       add_selected_development_actions: Hinzufügen ausgewählter Entwicklungsaktionen
@@ -2621,7 +2612,7 @@ de:
       generate_more: Mehr generieren
       generating_development_actions: Generierung von Entwicklungsmaßnahmen...
       generative_ai: Generative KI
-      generative_ai_description: Lassen Sie die KI eine maßgeschneiderte Entwicklungsmaßnahme nur für Sie generieren
+      generative_ai_description_msg: Lassen Sie die KI eine maßgeschneiderte Entwicklungsmaßnahme nur für Sie generieren
       heading: Entwicklungspolitische Maßnahmen
       idp_library: IDP-Bibliothek
       idp_library_description: Wählen Sie eine bewährte Entwicklungsmaßnahme aus unserer von Experten kuratierten Bibliothek aus.
@@ -2657,7 +2648,7 @@ de:
       write_here: Hier schreiben...
     direct_reportee_details: Detail der direkt unterstellten Mitarbeiter
     download:
-      description: 'Um den Bericht herunterzuladen, folgen Sie bitte dem Link: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Der Link ist nur 10 Minuten gültig'
+      description: 'Um den Bericht herunterzuladen, folgen Sie bitte dem Link: <a href=''%{url}'' target=''_blank''>Download</a>. Der Link ist nur 10 Minuten gültig'
     download_plan: Plan herunterladen
     edit_plan: Plan bearbeiten
     edit_plan_and_add_skills: Plan bearbeiten und klicken Sie auf Fertigkeiten verwalten, um Fertigkeiten hinzuzufügen.
@@ -2679,8 +2670,8 @@ de:
         one: Entwicklungsmaßnahme entfernt
         other: Entfernte Entwicklungsaktionen
     initial_steps:
-      add_skill_group_description: Auf der Grundlage Ihrer Bewertungsergebnisse finden Sie hier einige Bereiche, in denen Sie Stärken und Entwicklungsmöglichkeiten haben. Wählen Sie die Fähigkeiten aus, die Sie im Rahmen Ihres Entwicklungsplans weiter ausbauen möchten.
-      add_skill_group_title: Erkunden Sie Ihre %{category}-Fähigkeiten
+      add_skill_group_description: Wählen Sie die Fähigkeiten aus, die Sie im Rahmen Ihres Entwicklungsplans weiter ausbauen möchten.
+      add_skill_group_title: "%{category}"
       add_skills: Hinzufügen
       add_skills_step: Fertigkeiten hinzufügen
       back: Zurück
@@ -2727,7 +2718,6 @@ de:
           name: Name
           publish_date: Veröffentlichungsdatum
           review_date: Überprüfungsdatum
-          role: Aktuelle Position
       guidelines:
         cards:
           c1:
@@ -3396,13 +3386,6 @@ de:
   sessions:
     errors:
       recaptcha: Recaptcha-Überprüfung fehlgeschlagen. Bitte versuchen Sie es erneut.
-  shared:
-    filters:
-      clear: Filter löschen
-    internet_disconnected_message: Bitte überprüfen Sie Ihre Internet-Verbindung.
-    mte_logo_alt_text: Mercer Talent Enterprise Logo
-    terms_conditions_privacy: Datenschutzerklärung
-    tte_terms_and_condition: TTE – Geschäftsbedingungen und Datenschutzerklärung
   sheet:
     import_modal:
       alert_access_sheet_removal: Wenn Sie ein neues Accesssheet hochladen, werden alle vorhandenen Datensätze gelöscht und ein neuer Datensatz hochgeladen. Bitte stellen Sie sicher, dass Sie alle Accesssheet-Datensätze in der Tabelle haben.

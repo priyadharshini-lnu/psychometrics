@@ -109,7 +109,7 @@ RSpec.describe Skill, type: :model do
   end
 
   describe 'embedding generation' do
-    let(:embedding_vector) { Array.new(VectorEmbedding::EMBEDDING_DIMENSIONS, 0.1) }
+    let(:embedding_vector) { Array.new(VectorEmbedding::DEFAULT_EMBEDDING_DIMENSIONS, 0.1) }
 
     before do
       stub_wisper_publisher('AI::EmbeddingService', :call, :ok, [embedding_vector])

@@ -1,0 +1,112 @@
+---
+hr:
+  admin:
+    admins: Administratori
+    ai_artifacts: AI artefakti
+    ai_artifacts_output_schema_key_constraint: Ključ mora započeti malim slovom i smije sadržavati samo mala slova, brojeve i podcrte
+    ai_assistant_model_id_label: ID modela
+    ai_assistant_model_label: Model
+    ai_assistant_model_provider: Dobavljač
+    ai_assistant_model_region_label: Regija
+    ai_assistants: AI pomoćnici
+    assessments: Procjene
+    assessments_reports: Procjene i izvješća
+    assessor_dashboard: Nadzorna ploča procjenitelja
+    assessor_workshops: Centar za procjenu
+    audit_logs: Zapisnici revizije
+    audit_reports: Revizijska izvješća
+    availability: Raspoloživost
+    back_to_main: Glavni izbornik
+    campaign_templates: Predlošci kampanja
+    client: Najam klijenta
+    client_admins: Klijenti administratori
+    clients: Klijenti
+    communication_center: Komunikacijski centar
+    country: Država
+    create_client: Kreiraj klijenta
+    dashboard: Nadzorna ploča
+    data_reports: Izvješća o podacima
+    datasheet: Podatkovna tablica
+    delete_ok_text: Da, Izbriši
+    development_actions: Razvojne akcije
+    dimensions: Dimenzije
+    empty_csv_file: CSV datoteka ne sadrži nikakve podatke.
+    fill_empty_score_msg: Popunite sve konačne rezultate prije spremanja.
+    final_score_empty_msg: Konačni rezultat ne može biti prazan.
+    import_csv_assessment_group_error: 'Red %{index}: korisnik s e-mail %{email} već je pozvan da ''%{workshopInviteName}'''
+    import_csv_error: 'Red %{index}: korisnik s email %{email} nije u ovoj kampanji'
+    import_description: Uvezite korisnike iz CSV datoteke. Svaki redak mora sadržavati e-mail adresu.
+    import_download_sample: Preuzmite primjer CSV-a
+    import_error: Uvoz nije uspio. Molim te, pokušaj ponovno.
+    import_errors_title: Pogreške u uvozu
+    import_file_required: Molimo odaberite CSV datoteku za učitavanje.
+    import_queued_success: Posao uvoza ispitanika je uspješno zakazan. Molimo provjerite svoju obavijest za status.
+    import_sample_file_label: 'Primjer datoteke:'
+    import_title: Uvozni subjekti iz CSV-a
+    import_upload: Otpremanje
+    import_users: Uvoz korisnika
+    invalid_csv_header: CSV datoteka sadrži nevažeća zaglavlja.
+    libraries: Medijska biblioteka
+    library_invalid_type: Nevažeća knjižnična stavka
+    no_notifications: Nema obavijesti
+    norms: Norme
+    notification_bell_icon_alt_text: Ikona zvona obavijesti
+    notifications: Obavijesti
+    number: Broj
+    occupations: Zanimanja
+    options: Mogućnosti
+    participants: Sudionici
+    profile_details: Detalji profila
+    project_admins: Administratori projekta
+    project_manager: Voditelj projekta
+    question_center: Centar za pitanja
+    registration_codes: Registracijski kodovi
+    report_approvals: Odobrenja izvješća
+    reports: Izvješća
+    role: Uloga
+    saml_idp_certificate_available: Dostupno (kliknite za kopiranje)
+    saml_idp_certificate_label: Certifikat
+    saml_idp_entity_id_label: ID subjekta/izdavatelj
+    saml_idp_sso_url_label: SSO Service URL
+    saml_service_provider: SAML pružatelj usluga
+    saml_service_provider_acs_urls: ACS URL-ovi
+    saml_service_provider_acs_urls_placeholder: Unesite URL-ove odvojene zarezima, npr. https://app1.com/saml/acs, https://app2.com/saml/acs
+    saml_service_provider_acs_urls_required: Potrebni su ACS URL-ovi
+    saml_service_provider_action_delete_label: Izbrisati
+    saml_service_provider_action_edit_label: Urediti
+    saml_service_provider_action_rotate_certificate_label: Certifikat rotacije
+    saml_service_provider_add: Dodaj SAML pružatelja usluga
+    saml_service_provider_delete_success: SAML pružatelj usluga uspješno izbrisan
+    saml_service_provider_enabled: Omogućen
+    saml_service_provider_entity_id: Identitet subjekta
+    saml_service_provider_entity_id_placeholder: Unesite ID subjekta
+    saml_service_provider_entity_id_required: Potreban je ID subjekta
+    saml_service_provider_idp_config: IdP konfiguracija
+    saml_service_provider_manage: Akcije
+    saml_service_provider_mask_identity: Identitet maske
+    saml_service_provider_masking_enabled: Omogući maskiranje
+    saml_service_provider_name: Ime
+    saml_service_provider_name_placeholder: Unesite naziv pružatelja usluga
+    saml_service_provider_name_required: Ime je potrebno
+    saml_service_provider_remove_content: 'Jeste li sigurni da želite ukloniti SAML pružatelja usluga: %{name}?'
+    saml_service_provider_remove_title: Uklonite SAML pružatelja usluga
+    saml_service_provider_rotate_certificate_content: Jesi li siguran da želiš rotirati certifikat za %{name}? To će generirati novi certifikat i poništiti postojeći.
+    saml_service_provider_rotate_certificate_error: Nisam rotirao certifikat
+    saml_service_provider_rotate_certificate_ok: Certifikat rotacije
+    saml_service_provider_rotate_certificate_success: Certifikat je uspješno rotiran
+    saml_service_provider_rotate_certificate_title: Certifikat rotacije
+    saml_service_provider_search: Pretražite pružatelje SAML usluga...
+    saml_service_provider_updated_date: Ažurirani datum
+    saml_service_providers: Davatelji usluga
+    saml_settings: SAML postavke
+    scheduling: Vremensko planiranje
+    scoring: Bodovanja
+    show_submenu: Prikaži podizbornik
+    skills_taxonomy: Taksonomija vještina
+    slot_name: Naziv utora
+    stats: Statistika
+    subject_part_of_other_invite: Subjekt s e-mailom %{user_email} već je pozvan da '%{workshop_invite_name}'
+    user_report_events: Događaji u izvješću korisnika
+    users: Korisnici
+    view_licenses: Prikaz licenci
+    year: Država

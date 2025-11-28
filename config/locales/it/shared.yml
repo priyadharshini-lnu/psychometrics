@@ -1,0 +1,34 @@
+---
+it:
+  shared:
+    action: Azioni
+    add: Aggiungi
+    cancel: Annulla
+    change_password: Modifica la password
+    clear_filters: Cancella i filtri
+    description: Descrizione
+    edit: Modifica
+    edited: Nuove
+    id: ID
+    internet_disconnected_message: Si prega di controllare la connessione a Internet.
+    mte_logo_alt_text: Logo Mercer Talent Enterprise
+    name: Nome
+    new: Nuove
+    removed: Rimosso
+    rte_paste_content_exceeds_char_limit: Il testo supera il limite di caratteri di {{maxCharacterLimit}} e non può essere incollato.
+    rte_paste_content_exceeds_word_limit: Il testo supera il limite di parole di {{maxWordLimit}} e non può essere incollato.
+    search: Cerca
+    table:
+      entries:
+        selected:
+          one: 1 riga selezionata
+          other: "{{count}} righe selezionate"
+        total:
+          one: 'Totale : 1'
+          other: 'Totale :  {{count}}'
+          zero: 'Totale : 0'
+    terms_conditions_privacy: Dichiarazione sulla privacy
+    transcriptions: Trascrizioni
+    tte_terms_and_condition: Condizioni e privacy
+    type: Tipo
+    update: Aggiorna

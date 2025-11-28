@@ -82,6 +82,8 @@ const CampaignAdminTR = t.type({
 export const CurrentUserPermissionsTR = t.type({
   clients: t.array(t.string),
   projects: t.array(t.string),
+  viewProjectLicenses: t.boolean,
+  manageProjectLicenses: t.boolean,
   project_settings: t.array(t.string),
   campaigns: t.array(t.string),
   dashboards: t.array(t.string),

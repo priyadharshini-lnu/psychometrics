@@ -25,8 +25,6 @@ module Idp::DevelopmentAction
     validates :learning_style, presence: true, if: -> { source_type != 'platform' }
     validate :skill_not_exist_in_user_idp_plan
     validate :validate_learning_style_for_development_action
-    validate :start_date_not_in_past
-    validate :end_date_not_in_past
 
     def skill_not_exist_in_user_idp_plan
       return if user_idp_plan.user_idp_skills.exists?(id: user_idp_skill_id)
@@ -49,26 +47,6 @@ module Idp::DevelopmentAction
           :learning_style,
           I18n.t('administration.development_actions.learning_styles.invalid')
         )
-      end
-    end
-
-    def start_date_not_in_past
-      return if start_date_time.blank?
-      return unless start_date_time.match?(DATE_TIME_FORMAT)
-
-      parsed_date = DateTime.strptime(start_date_time, '%Y-%m-%d %H:%M')
-      if parsed_date < Time.current.to_date
-        errors.add(:start_date_time, I18n.t('administration.validations.idp.start_date_cannot_be_in_past'))
-      end
-    end
-
-    def end_date_not_in_past
-      return if end_date_time.blank?
-      return unless end_date_time.match?(DATE_TIME_FORMAT)
-
-      parsed_date = DateTime.strptime(end_date_time, '%Y-%m-%d %H:%M')
-      if parsed_date < Time.current.to_date
-        errors.add(:end_date_time, I18n.t('administration.validations.idp.end_date_cannot_be_in_past'))
       end
     end
 

@@ -1,0 +1,29 @@
+---
+de:
+  enduser:
+    add_idp_plan_note: Notiz hinzufügen...
+    add_idp_plan_rejection_reason: Grund hinzufügen...
+    approve_idp_plan: Plan genehmigen
+    bookings: Buchungen
+    campaign: Kampagne
+    development: Entwicklung
+    direct_reportees: Direkte Berichte
+    home: Dashboard
+    idp_plan_approval_note: Genehmigungsnotiz
+    insights: Einblicke
+    lighthouse_assistant: Leuchtturmassistent
+    max_word_limit: Darf höchstens %{max} Wörter haben
+    min_word_limit: Muss mindestens %{min} Wörter haben
+    my_plan: Mein Plan
+    profile: Profil
+    profile_details: Details
+    question_counter: Frage %{current} von %{total}
+    reason_for_idp_plan_rejection: Grund für die Ablehnung des Plans
+    reject_idp_plan: Plan ablehnen
+    request_retry_message: Du bist offline. Deine Antworten konnten nicht gespeichert werden, werden aber automatisch gespeichert, sobald du wieder online bist. Bitte aktualisieren oder schließen Sie die Seite nicht.
+    selected_count: Ausgewählte
+    skill_type: Fertigkeitstyp
+    start_campaign_message_proctored: Dies ist eine überwachte Kampagne, bitte klicken Sie auf die Schaltfläche '%{buttonText}', um die Aktivitäten zu starten.
+    start_campaign_message_timed: Dies ist eine zeitlich begrenzte Kampagne, bitte klicken Sie auf die Schaltfläche '%{buttonText}', um die Aktivitäten zu starten.
+    start_campaign_message_timed_proctored: Dies ist eine zeitlich begrenzte und überwachte Kampagne, bitte klicken Sie auf die Schaltfläche '%{buttonText}', um die Aktivitäten zu starten.
+    tasks: Aufgaben

@@ -1,5 +1,5 @@
 import { Smtp } from './Smtp'
-import { Saml } from './Saml'
+import { SamlTabbed } from './Saml'
 import { Integrations } from './Integrations'
 import { General } from './General'
 import { Webhooks } from './Webhooks'
@@ -10,6 +10,7 @@ import { Privacy } from './Privacy'
 import { Registration } from './Registration'
 import { Assessments } from './Assessments'
 import { MettlScheduleRecords } from './MettlScheduleRecords'
+import { YoodliAssessments } from './YoodliAssessments/YoodliAssessments'
 import { Features } from './Features'
 
 export const routes = [
@@ -19,7 +20,7 @@ export const routes = [
   },
   {
     path: '/saml',
-    component: <Saml />,
+    component: <SamlTabbed />,
   },
   {
     path: '/integrations',
@@ -28,6 +29,10 @@ export const routes = [
   {
     path: 'integrations/mettl_schedule_records',
     component: <MettlScheduleRecords />,
+  },
+  {
+    path: 'integrations/yoodli_assessments',
+    component: <YoodliAssessments />,
   },
   {
     path: '/security',
@@ -41,6 +46,7 @@ export const routes = [
     path: '/webhooks',
     component: <Webhooks />,
   },
+
   {
     path: '/design',
     component: <Design />,

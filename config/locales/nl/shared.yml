@@ -1,0 +1,34 @@
+---
+nl:
+  shared:
+    action: Actie
+    add: Voeg  toe
+    cancel: Annuleren
+    change_password: Wachtwoord wijzigen
+    clear_filters: Filters wissen
+    description: Beschrijving
+    edit: Bewerk
+    edited: Nieuw
+    id: ID
+    internet_disconnected_message: Probeer opnieuw verbinding te maken. Controleer uw internetverbinding.
+    mte_logo_alt_text: Mercer logo voor talentondernemingen
+    name: Naam
+    new: Nieuw
+    removed: Verwijderd
+    rte_paste_content_exceeds_char_limit: Tekst overschrijdt de tekenlimiet van {{maxCharacterLimit}} en kan niet worden geplakt.
+    rte_paste_content_exceeds_word_limit: Tekst overschrijdt de woordlimiet van {{maxWordLimit}} en kan niet worden geplakt.
+    search: Zoek op
+    table:
+      entries:
+        selected:
+          one: 1 rij geselecteerd
+          other: "{{count}} rijen geselecteerd"
+        total:
+          one: 'Totaal : 1'
+          other: 'Totaal : {{count}}'
+          zero: 'Totaal : 0'
+    terms_conditions_privacy: Privacyverklaring
+    transcriptions: Transcripties
+    tte_terms_and_condition: Voorwaarden en privacy
+    type: Type
+    update: Update

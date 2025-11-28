@@ -47,8 +47,14 @@ describe AI::AssistableService::DevelopmentActions do
   end
 
   def create_existing_session
-    create(:assisted_user_development_actions_session, assistable: user_idp_skill, user: user,
-            ai_assistant_chat: ai_assistant.for_user(user))
+    chat = ai_assistant.for_user(user)
+    existing_session = create(
+      :assisted_user_development_actions_session,
+      assistable: user_idp_skill,
+      user: user
+    )
+    chat.update!(ai_assisted_user_session: existing_session)
+    existing_session
   end
 
   def expect_session_status(session, status, error = nil)
@@ -141,9 +147,9 @@ describe AI::AssistableService::DevelopmentActions do
           expect(assistant_id).to eq(ai_assistant.id)
           expect(user_arg).to eq(user)
           expect(prompt).to be_a(String)
-          expect(options_hash[:chat]).to eq(session.ai_assistant_chat)
+          expect(options_hash[:chat]).to eq(session.latest_chat)
           expect(options_hash[:ignore_user_prompt]).to eq(false)
-          expect(options_hash[:chat_params]).to be_nil
+          expect(options_hash[:ask_params]).to be_nil
         end
       end
     end

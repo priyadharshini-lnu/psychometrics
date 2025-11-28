@@ -15,6 +15,8 @@ import { MediaQueryContext } from '~/glint'
 import { TypeWithSkillsSummary, UserIdpSkill } from '../DevelopmentActions'
 import styles from './SkillsGroupCard.less'
 import { renderSkillTypeIcon } from '../utils'
+import { PlanChangeStatus } from '~/modules/endUser/modules/campaigns/core/idp/utils'
+
 
 type Props = {
   skillType: TypeWithSkillsSummary
@@ -24,6 +26,7 @@ type Props = {
   isSearching: boolean,
   searchResults: { id: string|number; name: string, skillType: string }[],
   handleSearch: (value: string, skillType: string)=> void
+  allowSkillDeletion?:boolean
 }
 
 const { I18n } = window
@@ -37,6 +40,7 @@ export const SkillsGroupCard: FC<Props> = ({
   handleSearch,
   searchResults,
   isSearching,
+  allowSkillDeletion = true,
 }) => {
   const [selectedCategorySkills, setSelectedCategorySkills] = useState<
     { skillId: number; id: number | string; name: string; }[]
@@ -74,7 +78,7 @@ export const SkillsGroupCard: FC<Props> = ({
           // src={skillCategory.iconUrl}
         />
         <section style={{ flex: 1 }}>
-          <Title className="mb-0 mt-0" level={4}>
+          <Title className="mb-0 mt-2" level={4}>
             {I18n.t('idp.initial_steps.add_skill_group_title', { category: I18n.t(`idp.${skillType.skillType}`) })}
           </Title>
           <Paragraph>
@@ -95,26 +99,29 @@ export const SkillsGroupCard: FC<Props> = ({
         gap={4}
         wrap
       >
-        {selectedSkills.filter(skill => skill.skillType === skillType.skillType).map(skill => (
+        {selectedSkills.filter(skill => skill.skillType === skillType.skillType
+        && skill.changeStatus !== PlanChangeStatus.REMOVED).map(skill => (
           <div
-            className={styles.skillBtn}
+            className={cs(styles.skillBtn)}
             key={skill.id}
           >
-            <span style={{ marginRight: '4px' }}>
+            <span className="me-2">
               {skill.name}
             </span>
-            <CloseOutlined
-              role="button"
-              tabIndex={0}
-              onClick={() => {
-                onRemoveSkill(Number(skill.id))
-              }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
+            {allowSkillDeletion && (
+              <CloseOutlined
+                role="button"
+                tabIndex={0}
+                onClick={() => {
                   onRemoveSkill(Number(skill.id))
-                }
-              }}
-            />
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    onRemoveSkill(Number(skill.id))
+                  }
+                }}
+              />
+            )}
           </div>
         ))}
       </Flex>
@@ -134,7 +141,8 @@ export const SkillsGroupCard: FC<Props> = ({
             value={null}
           >
             {searchResults
-              .filter(result => !includes(selectedSkills
+              .filter(result => !includes(selectedSkills.filter(skill => skill.skillType === skillType.skillType
+                 && skill.changeStatus !== PlanChangeStatus.REMOVED)
                 .map(skill => Number(skill.skillId)), Number(result.id)))
               .map(({ id, name }) => (
                 <Select.Option
@@ -187,9 +195,9 @@ export const SkillsGroupCard: FC<Props> = ({
             {includes(selectedSkills.map(s => Number(s.skillId)), Number(skill.id))
 
               ? (
-                <CheckCircleOutlined className="mr4" />
+                <CheckCircleOutlined className="me-2" />
               ) : (
-                <PlusCircleOutlined className="mr4" />
+                <PlusCircleOutlined className="me-2" />
               )
             }
             <span>

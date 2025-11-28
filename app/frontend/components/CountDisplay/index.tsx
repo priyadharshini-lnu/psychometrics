@@ -22,8 +22,8 @@ export const CountDisplay: FC<Props> = ({
     ) : (
       <span>
         {selectedCount === 0
-          ? I18n.t('administration.table.entries.total', { count: totalCount })
-          : I18n.t('administration.table.entries.selected', {
+          ? I18n.t('shared.table.entries.total', { count: totalCount })
+          : I18n.t('shared.table.entries.selected', {
             count: selectedCount,
           })}
       </span>

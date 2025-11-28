@@ -8,6 +8,7 @@ import { IihtForm } from './IihtForm'
 import { HoganForm } from './HoganForm'
 import { MettlForm } from './MettlForm'
 import { SkillvueForm } from './SkillvueForm'
+import { YoodliForm } from './YoodliForm'
 
 const { Option } = Select
 const { I18n } = window
@@ -17,6 +18,7 @@ const integrationComponents = {
   hogan: HoganForm,
   mettl: MettlForm,
   skillvue: SkillvueForm,
+  yoodli: YoodliForm,
 }
 
 type OwnProps = {

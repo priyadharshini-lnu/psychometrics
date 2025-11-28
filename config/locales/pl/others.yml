@@ -919,8 +919,6 @@ pl:
     invalid_job: To powiadomienie odpowiada usuniętemu rekordowi
     mark_as_read: Oznacz wszystko jako przeczytane
     more: Więcej
-    no_notifications: Brak powiadomień
-    notifications: Powiadomienia
     results: Wyniki
     super_admin:
       errors:
@@ -1341,16 +1339,11 @@ pl:
     continue: Kontynuuj swoje zadania
     dashboard_instructions: Przydzielono Ci wiele działań, które musisz wykonać. Upewnij się, że wszystkie przypisane działania zostały wykonane we wszystkich kampaniach.
     dashboard_menu:
-      bookings: Rezerwacje
       campaign: Kampania
-      change_password: Zmień hasło
-      development: Rozwój
       direct_reportees: Direktywni
       home: Strona główna
       insights: Obserwacje
-      my_plan: Mój plan
       profile: Profil
-      profile_details: Detale
       tasks: Zadania
     details: Detale
     edit_evaluation:
@@ -1809,7 +1802,6 @@ pl:
       view: Widok
       view_all_tasks: Wyświetl wszystkie zadania
       view_detail: Zobacz szczegóły
-      yes_delete: Tak, usuń
     column:
       action: Działanie
       active: Aktywny
@@ -1884,7 +1876,6 @@ pl:
       projects: Projekty
       report: Sprawozdanie
       reports: Raporty
-      scoring: Punktacji
       sms_contact: Kontakt SMS
       threesixty_campaign: Wyniki kampanii Threesixty
     status:
@@ -2578,14 +2569,14 @@ pl:
       you: Ty
     convert_to_draft: Konwertuj na wersję roboczą
     current_step: Bieżący krok %{step}
-    delete_skill: Czy na pewno chcesz usunąć umiejętność, ponieważ spowoduje to również usunięcie wszystkich powiązanych działań programistycznych?
+    delete_skill: Czy na pewno chcesz usunąć umiejętność? Spowoduje to również usunięcie wszystkich powiązanych działań rozwojowych.
     details: Szczegóły
     development_actions:
       action_private: Tak
       action_public: Nie
       add_development_action: Dodaj działanie rozwojowe
       add_development_actions_from_below_options: Dodaj akcje programistyczne z poniższych opcji.
-      add_development_actions_modal_title: Biblioteka działań rozwojowych dla %{skillName}
+      add_development_actions_modal_title: Biblioteka działań rozwojowych dla
       add_from_library: Dodaj z biblioteki
       add_more: Dodaj więcej akcji programistycznych
       add_selected_development_actions: Dodawanie wybranych akcji rozwojowych
@@ -2616,7 +2607,7 @@ pl:
       generate_more: Wygeneruj więcej
       generating_development_actions: Generowanie działań rozwojowych...
       generative_ai: Generatna sztuczna inteligencja
-      generative_ai_description: Pozwól, aby sztuczna inteligencja wygenerowała dostosowaną do Twoich potrzeb akcję programistyczną
+      generative_ai_description_msg: Pozwól, aby sztuczna inteligencja wygenerowała dostosowaną do Twoich potrzeb akcję programistyczną
       heading: Działania rozwojowe
       idp_library: Biblioteka IDP
       idp_library_description: Wybierz sprawdzoną akcję programistyczną z naszej biblioteki wyselekcjonowanej przez ekspertów.
@@ -2652,7 +2643,7 @@ pl:
       write_here: Pisz tutaj...
     direct_reportee_details: Szczegółowe informacje o bezpośrednich podwładnych
     download:
-      description: 'Aby pobrać raport, kliknij link: <a href=''''%{url}'''' target=''''_blank''''>Pobierz</a>. Link jest ważny tylko przez 10 minut'
+      description: 'Aby pobrać raport, kliknij link: <a href=''%{url}'' target=''_blank''>Pobierz</a>. Link jest ważny tylko przez 10 minut'
     download_plan: Pobierz plan
     edit_plan: Edytuj plan
     edit_plan_and_add_skills: Edytuj plan i kliknij Zarządzaj umiejętnościami, aby dodać umiejętności.
@@ -2674,8 +2665,8 @@ pl:
         one: Usunięto akcję rozwojową
         other: Usunięte działania rozwojowe
     initial_steps:
-      add_skill_group_description: Na podstawie wyników Twojej oceny, oto niektóre obszary Twoich mocnych stron i rozwoju. Wybierz umiejętności, które chcesz dalej rozwijać w ramach swojego planu rozwoju.
-      add_skill_group_title: Eksploracja Twoich umiejętności %{category}
+      add_skill_group_description: Wybierz umiejętności, które chcesz dalej rozwijać w ramach swojego planu rozwoju.
+      add_skill_group_title: "%{category}"
       add_skills: Dodaj
       add_skills_step: Dodaj umiejętności
       back: Wstecz
@@ -2721,7 +2712,6 @@ pl:
           name: Imię i nazwisko
           publish_date: Data publikacji
           review_date: Data przeglądu
-          role: Obecna rola
       guidelines:
         cards:
           c1:
@@ -3390,13 +3380,6 @@ pl:
   sessions:
     errors:
       recaptcha: Weryfikacja Recaptcha nie powiodła się. Spróbuj ponownie.
-  shared:
-    filters:
-      clear: Wyczyść filtry
-    internet_disconnected_message: Próba ponownego połączenia. Sprawdź połączenie internetowe.
-    mte_logo_alt_text: Logo Mercer Talent Enterprise
-    terms_conditions_privacy: Oświadczenie o ochronie prywatności
-    tte_terms_and_condition: Warunki i prywatność
   sheet:
     import_modal:
       alert_access_sheet_removal: Przesyłanie nowego arkusza dostępu z usunięciem całego istniejącego rekordu i przesłaniem nowego z arkusza. Upewnij się, że masz wszystkie rekordy Accesssheet w arkuszu kalkulacyjnym.

@@ -7,7 +7,7 @@ module AllowedPermissions
 
   CLIENT_ADMIN_PERMISSIONS = {
     'clients' => %w[view view_licenses export_data_report],
-    'projects' => %w[view manage manage_admins manage_users],
+    'projects' => %w[view manage manage_admins manage_users view_licenses manage_licenses],
     'users' => ['reset_password'],
     'project_settings' => %w[
       design
@@ -78,16 +78,18 @@ module AllowedPermissions
     'auditLogs' => ['view'],
     'workshops' => %w[view manage export_status view_recordings],
     'idp_templates' => %w[view manage],
+    'user_idp_plans' => %w[view manage],
     'proficiency_levels' => %w[view manage import export import_translations export_translations],
     'job_roles' => %w[view manage import_translations export_translations],
     'reflection_questions' => %w[view manage import export],
     'skills' => %w[view manage import export import_translations export_translations],
-    'development_actions' => %w[view manage import export import_translations export_translations]
+    'development_actions' => %w[view manage import export import_translations export_translations],
+    'ai_artifacts' => %w[view manage import export]
   }.freeze
 
   PROJECT_ADMIN_PERMISSIONS = {
     'clients' => ['view'],
-    'projects' => %w[view manage_users],
+    'projects' => %w[view manage_users view_licenses],
     'users' => ['reset_password'],
     'project_settings' => %w[
       design
@@ -151,10 +153,12 @@ module AllowedPermissions
     'datasheets' => %w[view manage],
     'workshops' => %w[view manage export_status view_recordings],
     'idp_templates' => %w[view manage],
+    'user_idp_plans' => %w[view manage],
     'proficiency_levels' => %w[view manage import export import_translations export_translations],
     'skills' => %w[view manage import export import_translations export_translations],
     'job_roles' => %w[view manage import_translations export_translations],
     'development_actions' => %w[view manage import export import_translations export_translations],
+    'ai_artifacts' => %w[view manage import export],
     'reflection_questions' => %w[view manage import export]
   }.freeze
 
@@ -198,9 +202,11 @@ module AllowedPermissions
     ],
     'workshops' => %w[view manage view_recordings],
     'idp_templates' => %w[view manage],
+    'user_idp_plans' => %w[view manage],
     'job_roles' => %w[view],
     'proficiency_levels' => %w[view],
-    'skills' => %w[view]
+    'skills' => %w[view],
+    'ai_artifacts' => %w[view manage import export]
   }.freeze
 
   THREESIXTY_CAMPAIGN_ADMIN_PERMISSIONS = {

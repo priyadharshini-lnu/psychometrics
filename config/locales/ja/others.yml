@@ -919,8 +919,6 @@ ja:
     invalid_job: この通知は削除されたレコードに対応する
     mark_as_read: すべて読む
     more: もっと見る
-    no_notifications: 通知はありません
-    notifications: お知らせ
     results: 結果
     super_admin:
       errors:
@@ -1346,16 +1344,11 @@ ja:
     continue: タスクを続行してください
     dashboard_instructions: 完了すべき複数のアクティビティが割り当てられています。すべてのキャンペーンで割り当てられたアクティビティがすべて完了していることを確認してください。
     dashboard_menu:
-      bookings: 予約
       campaign: キャンペーン
-      change_password: パスワードを変更
-      development: 開発
       direct_reportees: 直下のレポート
       home: ホーム
       insights: インサイト
-      my_plan: 私の計画
       profile: プロフィール
-      profile_details: 詳細
       tasks: タスク
     details: 詳細
     edit_evaluation:
@@ -1818,7 +1811,6 @@ ja:
       view: 表示
       view_all_tasks: すべてのタスクを表示
       view_detail: 詳細を見る
-      yes_delete: はい、削除します
     column:
       action: アクション
       active: アクティブ
@@ -1893,7 +1885,6 @@ ja:
       projects: プロジェクト
       report: レポート
       reports: レポート
-      scoring: 採点
       sms_contact: SMSコンタクト
       threesixty_campaign: Threesixtyキャンペーンスコア
     status:
@@ -2564,14 +2555,14 @@ ja:
       you: あなた
     convert_to_draft: ドラフトに変換
     current_step: 現在のステップ %{step}
-    delete_skill: スキルは、接続されているすべての開発アクションも削除されるため、スキルを削除してもよろしいですか?
+    delete_skill: このスキルを削除してもよろしいですか？削除すると、関連するすべての開発アクションも削除されます。
     details: 詳細
     development_actions:
       action_private: はい
       action_public: いいえ
       add_development_action: 開発アクションの追加
       add_development_actions_from_below_options: 以下のオプションから開発アクションを追加します。
-      add_development_actions_modal_title: "%{skillName}用開発アクションライブラリ"
+      add_development_actions_modal_title: 用開発アクションライブラリ
       add_from_library: ライブラリから追加
       add_more: 開発アクションの追加
       add_selected_development_actions: 選択した開発アクションの追加
@@ -2602,7 +2593,7 @@ ja:
       generate_more: さらに増やす
       generating_development_actions: 開発アクションの生成...
       generative_ai: 生成AI
-      generative_ai_description: AI に、あなただけに合わせた開発アクションを生成させます
+      generative_ai_description_msg: AI に、あなただけに合わせた開発アクションを生成させます
       heading: 開発アクション
       idp_library: IDPライブラリ
       idp_library_description: 専門家が厳選したライブラリから実証済みの開発アクションを選択してください。
@@ -2638,7 +2629,7 @@ ja:
       write_here: ここに記入してください...
     direct_reportee_details: 直属の報告者詳細
     download:
-      description: 'レポートをダウンロードするには、リンクをたどってください: <a href=''''%{url}'''' target=''''_blank''''>ダウンロード</a>。リンクは10分間のみ有効です'
+      description: 'レポートをダウンロードするには、リンクをたどってください: <a href=''%{url}'' target=''_blank''>ダウンロード</a>。リンクは10分間のみ有効です'
     download_plan: ダウンロードプラン
     edit_plan: プランの編集
     edit_plan_and_add_skills: "[プラン]を編集し、[スキルの管理]をクリックしてスキルを追加します。"
@@ -2660,8 +2651,8 @@ ja:
         one: 削除された開発アクション
         other: 削除された開発アクション
     initial_steps:
-      add_skill_group_description: アセスメント結果に基づき、あなたの強みと伸ばすべき分野をご紹介します。 開発プランの一環として、さらに伸ばしたいスキルを選んでください。
-      add_skill_group_title: "%{category}スキルを探る"
+      add_skill_group_description: 開発プランの一環として、さらに伸ばしたいスキルを選んでください。
+      add_skill_group_title: "%{category}"
       add_skills: 追加
       add_skills_step: スキルの追加
       back: 戻る
@@ -2707,7 +2698,6 @@ ja:
           name: 名前
           publish_date: 公開日
           review_date: レビュー日
-          role: 現在の役割
       guidelines:
         cards:
           c1:
@@ -3376,13 +3366,6 @@ ja:
   sessions:
     errors:
       recaptcha: Recaptcha の検証に失敗しました。もう一度お試しください。
-  shared:
-    filters:
-      clear: 絞り込みをクリア
-    internet_disconnected_message: 再接続の試行中です。インターネット接続を確認してください。
-    mte_logo_alt_text: マーサー・タレント・エンタープライズのロゴ
-    terms_conditions_privacy: プライバシーに関する声明
-    tte_terms_and_condition: 利用規約とプライバシー
   sheet:
     import_modal:
       alert_access_sheet_removal: 新しいAccessシートをアップロードすると、既存のレコードがすべて削除され、シートから新しいレコードがアップロードされます。 スプレッドシートにすべてのAccessシートのレコードがあることを確認してください。

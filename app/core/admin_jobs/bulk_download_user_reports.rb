@@ -14,7 +14,8 @@ module AdminJobs
 
       bulk_report = result[:ok]
 
-      if bulk_report&.dig(:error_messages).present?
+      # case where bulk_report is a hash with error messages
+      if bulk_report.is_a?(Hash) && bulk_report[:error_messages].present?
         return broadcast :ok, { error_messages: bulk_report[:error_messages] }
       end
 

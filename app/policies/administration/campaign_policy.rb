@@ -271,7 +271,21 @@ module Administration
     end
 
     def view_ai_artifacts?
-      record.project.project_feature_enabled?(:ai_assistants) && @user.is?(:superadmin)
+      return false unless record.project.project_feature_enabled?(:ai_assistants)
+
+      @user.is?(:superadmin) ||
+        has_permission?(
+          'ai_artifacts',
+          'view',
+          project_id: record.project_id,
+          campaign_id: record.id
+        ) ||
+        has_permission?(
+          'ai_artifacts',
+          'manage',
+          project_id: record.project_id,
+          campaign_id: record.id
+        )
     end
 
     class Scope < Scope

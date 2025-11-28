@@ -17,9 +17,11 @@ export default interface User {
     manageProjectGeneralSettings: boolean
     manageCampaignAdmins: boolean
     manageCampaigns: boolean
+    manageProjectLicenses: boolean
     viewRegistrationCodes: boolean
     viewSmsInvites: boolean
     viewDatasheets: boolean
+    viewProjectLicenses: boolean
     stats: boolean
     pushWebhook: boolean
     accessProjectDevelopmentActions: boolean

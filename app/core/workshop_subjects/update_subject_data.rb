@@ -91,10 +91,17 @@ module WorkshopSubjects
     end
 
     def remove_assessor_assessments
+      # Only remove assessor user assessments that belong to the current campaign assessment group
+      group_id = workshop_subject.workshop.campaign_assessment_group_id
+      current_group_assessment_ids = CampaignAssessorAssessment.
+                                     where(campaign_id: campaign_id, campaign_assessment_group_id: group_id).
+                                     select(:assessment_id)
+
       assessor_user_assessments_to_delete = UserAssessment.where(
         relationship_id: Relationship.assessor_relationship.id,
         subject_id: workshop_subject.user_id,
-        campaign_id: campaign_id
+        campaign_id: campaign_id,
+        assessment_id: current_group_assessment_ids
       ).where.not(id: retain_assessor_user_assessment_ids)
 
       return if assessor_user_assessments_to_delete.blank?

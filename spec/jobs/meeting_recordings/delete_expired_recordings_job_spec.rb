@@ -13,6 +13,12 @@ RSpec.describe MeetingRecordings::DeleteExpiredRecordingsJob, type: :job do
   let!(:meeting_room) { create(:meeting_room, meetable: workshop) }
 
   before do
+    allow(Settings).to receive(:storage).and_return(
+      double('storage',
+             dailyco_storage_service: :test,
+             public_storage_service: :test,
+             private_storage_service: :test)
+    )
     PrivacySetting.where(project_id: project.id).where.not(id: privacy_setting.id).delete_all
   end
 

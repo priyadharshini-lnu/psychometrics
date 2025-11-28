@@ -943,8 +943,6 @@ ar:
     invalid_job: يتوافق هذا الإشعار مع السجل المحذوف
     mark_as_read: ضع علامة على الكل مقروءا
     more: أكثر
-    no_notifications: لا توجد إشعارات
-    notifications: الاخطارات
     results: النتائج
     super_admin:
       errors:
@@ -1369,16 +1367,11 @@ ar:
     continue: الإستمرار في التقييم
     dashboard_instructions: لقد تم تكليفك بعدد من الأنشطة التي عليك إنجازها، يرجى التأكد من إكمالها جميعاً ضمن الفترة الزمنية المحددة لها.
     dashboard_menu:
-      bookings: الحجوزات
       campaign: الحملة
-      change_password: تغيير كلمة المرور
-      development: تطوير
       direct_reportees: الموظفين المباشرين
       home: الصفحة الرئيسية
       insights: البصائر
-      my_plan: خطتي
       profile: تفاصيلي
-      profile_details: تفاصيل
       tasks: مهامي
     details: مشاهدة التفاصيل
     edit_evaluation:
@@ -1842,7 +1835,6 @@ ar:
       view: منظر
       view_all_tasks: عرض جميع المهام
       view_detail: عرض التفاصيل
-      yes_delete: نعم، حذف
     column:
       action: نشاط
       active: نشط
@@ -1917,7 +1909,6 @@ ar:
       projects: المشاريع
       report: تقرير
       reports: التقييم
-      scoring: سجل
       sms_contact: الاتصال بالرسائل النصية القصيرة
       threesixty_campaign: درجات حملة Threesixty
     status:
@@ -2513,6 +2504,8 @@ ar:
   idp:
     actions: الإجراءات
     add_comments: أضف تعليقات
+    add_note: إضافة ملاحظة...
+    add_reason: إضافة سبب...
     added_development_action: إجراءات إنمائية مضافة
     ai:
       assistant:
@@ -2568,6 +2561,8 @@ ar:
       welcome:
         text: هل أنت مستعد لرسم نموك جوني؟ هيا نبدأ!
         title: مرحبا، أنا مساعد التطوير الخاص بك
+    approval_note: مذكرة الموافقة
+    approve_plan: الموافقة على الخطة
     behavioral: سلوكية
     board: اللوحة
     change_history: تغيير التاريخ
@@ -2611,14 +2606,14 @@ ar:
       you: أنت
     convert_to_draft: تحويل إلى مسودة
     current_step: الخطوة الحالية %{step}
-    delete_skill: هل أنت متأكد من أنك تريد حذف المهارة لأنها ستحذف جميع إجراءات التطوير المتصلة أيضا؟
+    delete_skill: هل أنت متأكد أنك تريد حذف هذه المهارة؟ سيؤدي الحذف أيضًا إلى إزالة جميع إجراءات التطوير المرتبطة به
     details: التفاصيل
     development_actions:
       action_private: نعم
       action_public: لا
       add_development_action: إضافة إجراء تطويري
       add_development_actions_from_below_options: أضف إجراءات التطوير من الخيارات أدناه.
-      add_development_actions_modal_title: مكتبة إجراءات التطوير %{skillName}
+      add_development_actions_modal_title: مكتبة إجراءات التطوير
       add_from_library: إضافة من المكتبة
       add_more: إضافة المزيد من إجراءات التطوير
       add_selected_development_actions: إضافة إجراءات تطوير محددة
@@ -2649,7 +2644,7 @@ ar:
       generate_more: توليد المزيد
       generating_development_actions: جاري توليد إجراءات التطوير...
       generative_ai: الذكاء الاصطناعي التوليدي
-      generative_ai_description: دع الذكاء الاصطناعي ينشئ إجراء تطوير مخصصا لك فقط
+      generative_ai_description_msg: دع الذكاء الاصطناعي ينشئ إجراء تطوير مخصصا لك فقط
       heading: إجراءات التطوير
       idp_library: مكتبة آي دي بي
       idp_library_description: حدد إجراء تطويري مثبت من مكتبتنا المنسقة من قبل الخبراء.
@@ -2673,6 +2668,7 @@ ar:
       remove: إزالة
       save_plan: حفظ الخطة
       search_development_actions: إجراءات تطوير البحث
+      selected_count: مختارة %{count}
       show_development_action_information: إظهار معلومات إجراءات التطوير
       skill: مهارة
       sprint: سباق قصير
@@ -2685,7 +2681,7 @@ ar:
       write_here: اكتب هنا...
     direct_reportee_details: تفاصيل المبلغين المباشرين
     download:
-      description: 'لتنزيل التقرير ، يرجى اتباع الرابط: <a href = ''''%{url}'''' target = '''' _blank'''' > تنزيل</a>. الرابط صالح لمدة 10 دقائق فقط'
+      description: 'لتنزيل التقرير ، يرجى اتباع الرابط: <a href = ''%{url}'' target = ''_blank'' > تنزيل</a>. الرابط صالح لمدة 10 دقائق فقط'
     download_plan: تحميل الخطة
     edit_plan: تعديل الخطة
     edit_plan_and_add_skills: قم بتحرير الخطة وانقر فوق إدارة المهارات لإضافة المهارات.
@@ -2708,7 +2704,7 @@ ar:
         other: إجراءات التطوير التي تمت إزالتها
     initial_steps:
       add_skill_group_description: بناءً على نتائج تقييمك، إليك بعض مجالات القوة والتطوير الخاصة بك. اختر المهارات التي ترغب في تطويرها كجزء من خطة التطوير الخاصة بك.
-      add_skill_group_title: استكشاف مهار %{category} اتك في
+      add_skill_group_title: "%{category}"
       add_skills: إضافة
       add_skills_step: إضافة مهارات
       back: ظهر
@@ -2754,7 +2750,6 @@ ar:
           name: الاسم
           publish_date: تاريخ النشر
           review_date: تاريخ المراجعة
-          role: الدور الحالي
       guidelines:
         cards:
           c1:
@@ -2855,6 +2850,7 @@ ar:
     plan_submitted_for_manager_approval: تم تقديم خطة التطوير الفردية الخاصة بك لموافقة المدير.
     private: عسكري
     public: عام
+    reason_for_rejection: سبب الرفض
     reflective_questions:
       already_completed: لقد تم الانتهاء من IDP بالفعل، ولا يمكنك الإجابة عن الأسئلة الآن.
       answer: جواب
@@ -2867,7 +2863,9 @@ ar:
         max_words: تسمح الإجابة بحد أقصى %{count} الكلمات
         min_words: تتطلب الإجابة ما لا يقل عن %{count} الكلمات
         required: إجابة السؤال مطلوبة
+      max_word_limit: يجب أن تكون على الأكثر %{max} كلمة
       max_words: الحد الأقصى للكلمات
+      min_word_limit: يجب أن تكون على الأقل %{min} كلمة
       min_words: كلمات دقيقة
       no_answer_provided: لم يتم تقديم إجابة حتى الآن
       no_reflective_questions: لا توجد أسئلة عاكسة
@@ -2880,6 +2878,7 @@ ar:
       updated_successfully: تم تحديث إجاباتك بنجاح
       word_limit: يجب أن تكون بين %{min} و %{max} كلمة
       words: الكلمات
+    reject_plan: رفض الخطة
     remove_skill: إزالة المهارة
     remove_skill_from_plan: إزالة %{name} المهارة من الخطة
     removed_development_action: إجراءات التطوير التي تمت إزالتها
@@ -2900,6 +2899,7 @@ ar:
     summary_logs: سجلات ملخصة ل %{reporteeName}
     technical: اِصطِلاحِيّ
     user_idp_status:
+      ai_assisted_idp_in_progress: الذكاء الاصطناعي يساعد IDP في التقدم
       approved: تمت الموافقة
       completed: اكمال
       completion_not_started: لم يبدأ الانتهاء
@@ -3423,13 +3423,6 @@ ar:
   sessions:
     errors:
       recaptcha: فشلت عملية التحقق من إعادة الكابتشا. يرجى المحاولة مرة أخرى.
-  shared:
-    filters:
-      clear: امسح المُرشحات
-    internet_disconnected_message: نحاول إعادة الاتصال بالإنترنت. يرجى التحقق من اتصالك بالإنترنت الخاص بك.
-    mte_logo_alt_text: شعار Mercer Talent Enterprise
-    terms_conditions_privacy: بيان الخصوصية
-    tte_terms_and_condition: " الشروط والأحكام وبيان الخصوصية الخاص بشركة"
   sheet:
     import_modal:
       alert_access_sheet_removal: تحميل ورقة وصول جديدة مع حذف جميع السجلات الموجودة وتحميل سجل جديد من الورقة. يرجى التأكد من وجود جميع سجلات جدول الوصول في جدول البيانات.

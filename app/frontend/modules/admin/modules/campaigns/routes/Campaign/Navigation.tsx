@@ -29,65 +29,65 @@ const Link = ({ route, children }) => (
 const menuItems = (permissions: Campaign['permissions'], basePath: string): MenuItem[] => [
   permissions.viewCampaign ? {
     key: 'participants',
-    label: <Link route={`${basePath}/participants`}>{I18n.t('administration.navigation.participants')}</Link>,
+    label: <Link route={`${basePath}/participants`}>{I18n.t('admin.participants')}</Link>,
     icon: <UserOutlined />,
   } : null,
   permissions.viewWorkshops ? {
     key: 'scheduling',
     label:
-    <Link route={`${basePath}/scheduling`}>{I18n.t('administration.navigation.scheduling')}</Link>,
+    <Link route={`${basePath}/scheduling`}>{I18n.t('admin.scheduling')}</Link>,
     icon: <CalendarOutlined />,
   } : null,
   permissions.viewAssessmentsAndReports ? {
     key: 'assessments_reports',
     label:
-    <Link route={`${basePath}/assessments_reports`}>{I18n.t('administration.navigation.assessments_reports')}</Link>,
+    <Link route={`${basePath}/assessments_reports`}>{I18n.t('admin.assessments_reports')}</Link>,
     icon: <PieChartOutlined />,
   } : null,
   permissions.viewRegistrationCodes ? {
     key: 'registration_codes',
     label:
-    <Link route={`${basePath}/registration_codes`}>{I18n.t('administration.navigation.registration_codes')}</Link>,
+    <Link route={`${basePath}/registration_codes`}>{I18n.t('admin.registration_codes')}</Link>,
     icon: <QrcodeOutlined />,
   } : null,
   permissions.stats ? {
     key: 'stats',
-    label: <Link route={`${basePath}/stats`}>{I18n.t('administration.stats.title')}</Link>,
+    label: <Link route={`${basePath}/stats`}>{I18n.t('admin.stats')}</Link>,
     icon: <LineChartOutlined />,
   } : null,
   (permissions.viewDashboard || permissions.viewAccesssheet || permissions.viewAccesssheetSettings) ? {
     key: 'dashboard',
     label:
-    <Link route={`${basePath}/dashboard`}>{I18n.t('administration.dashboard.tabs.dashboard')}</Link>,
+    <Link route={`${basePath}/dashboard`}>{I18n.t('admin.dashboard')}</Link>,
     icon: <DashboardOutlined />,
   } : null,
   permissions.viewDatasheets ? {
     key: 'datasheet',
     label:
-    <Link route={`${basePath}/datasheet`}>{I18n.t('common.model.datasheet')}</Link>,
+    <Link route={`${basePath}/datasheet`}>{I18n.t('admin.datasheet')}</Link>,
     icon: <DatabaseOutlined />,
   } : null,
   permissions.viewCampaignScoring ? {
     key: 'scoring',
-    label: <Link route={`${basePath}/scoring`}>{I18n.t('common.model.scoring')}</Link>,
+    label: <Link route={`${basePath}/scoring`}>{I18n.t('admin.scoring')}</Link>,
     icon: <RadarChartOutlined />,
   } : null,
   permissions.viewAiArtifacts ? {
     key: 'ai_artifacts',
-    label: <Link route={`${basePath}/ai_artifacts`}>{I18n.t('administration.navigation.ai_artifacts')}</Link>,
+    label: <Link route={`${basePath}/ai_artifacts`}>{I18n.t('admin.ai_artifacts')}</Link>,
     icon: <RobotOutlined />,
   } : null,
   permissions.manageCampaignAdmins ? {
     key: 'admins',
     label:
-    <Link route={`${basePath}/admins`}>{I18n.t('common.model.admins')}</Link>,
+    <Link route={`${basePath}/admins`}>{I18n.t('admin.admins')}</Link>,
     icon: <SolutionOutlined />,
   } : null,
   permissions.manageOptions ? {
     key: 'options',
     label:
     <Link route={`${basePath}/options`}>
-      {I18n.t('administration.navigation.options')}
+      {I18n.t('admin.options')}
     </Link>,
     icon: <SettingOutlined />,
   } : null,
@@ -95,7 +95,7 @@ const menuItems = (permissions: Campaign['permissions'], basePath: string): Menu
     key: 'audit_reports',
     label:
     <Link route={`${basePath}/audit_reports`}>
-      {I18n.t('administration.breadcrumbs.audit_reports')}
+      {I18n.t('admin.audit_reports')}
     </Link>,
     icon: <ExportOutlined />,
   } : null,

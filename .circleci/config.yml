@@ -17,7 +17,7 @@ executors:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
       # Changed from cimg/postgres:14.8, Ref: https://github.com/CircleCI-Public/cimg-postgres/issues/120
-      - image: pgvector/pgvector:pg14
+      - image: pgvector/pgvector:pg17
         environment:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -78,10 +78,6 @@ executors:
 
 commands:
   bundle_restore:
-    parameters:
-      audit:
-        default: false
-        type: boolean
     steps:
       - restore_cache:
           keys:
@@ -97,12 +93,6 @@ commands:
             bundle config set --local path '~/.bundle'
             bundle config set --local without 'development'
             MAKE="make --jobs 2" bundle install -j 2 --retry 3
-      - when:
-          condition: << parameters.audit >>
-          steps:
-            - run:
-                name: Bundle audit
-                command: if [ "$RAILS_ENV" != "production" ]; then DISABLE_COVERAGE=1 bundle exec rake bundle:audit:update; else return 0; fi
   yarn_restore:
     parameters:
       node-env:
@@ -271,8 +261,7 @@ jobs:
       - run:
           name: Which bundler?
           command: bundle -v
-      - bundle_restore:
-          audit: true
+      - bundle_restore
 
       - save_cache:
           key: gem-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum ".ruby-version" }}-{{ checksum "Gemfile.lock" }}

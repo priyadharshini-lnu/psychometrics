@@ -5,19 +5,19 @@ ruby '3.4.6'
 
 gem 'bootsnap',                   '~> 1.18.0', require: false
 gem 'bundler',                    '~> 2.3.17'
-gem 'rack',                       '~> 2.2.20'
+gem 'rack',                       '~> 3.0'
 
 gem 'barnes',                     '~> 0.0.7'
 gem 'faraday',                    '~> 1.10.0'
 gem 'jbuilder',                   '~> 2.12.0'
 gem 'jquery-rails',               '~> 4.4.0'
-gem 'jwt',                        '~> 2.2.2'
+gem 'jwt',                        '~> 2.6.0'
 # gem 'newrelic_rpm',               '~> 9.2', '>= 9.2.2', group: 'production'
 gem 'panko_serializer', '~> 0.8.3'
 gem 'paper_trail'
 gem 'paper_trail-association_tracking'
 gem 'pg',                         '~> 1.4'
-gem 'puma',                       '~> 5.6.9'
+gem 'puma',                       '~> 6.0'
 gem 'rails',                      '~> 8.0.0'
 gem 'rails-i18n',                 '~> 8.0'
 gem 'sassc-rails', '~> 2.1.2'
@@ -32,6 +32,7 @@ gem 'devise-i18n',                '~> 1.9.2'
 gem 'devise_invitable',           '~> 2.0.9'
 gem 'devise-passwordless',        '~> 1.0.1'
 gem 'devise_saml_authenticatable', '~> 1.9.1'
+gem 'saml_idp', '~> 1.0.0'
 
 gem 'dotiw', '~> 5.3.3'
 gem 'icalendar', '~> 2.9.0'
@@ -134,7 +135,7 @@ gem 'remotipart', '~> 1.3.1'
 gem 'chronic', '~> 0.10.2'
 gem 'mustache', '~> 1.1.1'
 gem 'rectify', git: 'https://github.com/TheTalentEnterprise/rectify.git', branch: 'tte-master'
-gem 'sidekiq', '~> 6.5.12'
+gem 'sidekiq', '~> 7.0'
 
 gem 'dry-swagger', '~> 0.7.2'
 gem 'dry-validation', '~> 1.10'
@@ -148,7 +149,7 @@ gem 'csv-safe'
 
 # SOAP client
 gem 'nkf'
-gem 'savon', '~> 2.14.0'
+gem 'savon', '~> 2.15.1'
 # Abort requests that are taking too long
 gem 'rack-timeout', '~> 0.4.2'
 
@@ -175,7 +176,7 @@ gem 'possessive', '~> 1.0.1'
 gem 'addressable', '~> 2.7'
 gem 'rails_autoscale_agent', '~> 0.10.2'
 gem 'shortener', '~> 1.0.1'
-gem 'twilio-ruby', '~>  5.58.1'
+gem 'twilio-ruby', '~> 7.8.3'
 gem 'webhook_system', git: 'https://github.com/TheTalentEnterprise/webhook_system.git', branch: 'tte-master'
 gem 'workflow-activerecord', '~> 4.1.2'
 
@@ -184,7 +185,6 @@ group :development, :test do
   gem 'awesome_print', '~> 1.9.2'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'bundler-audit', require: false
   gem 'byebug', platform: :mri
   gem 'dry-cli', '~> 1.2.0'
   gem 'factory_bot_rails'
@@ -247,12 +247,12 @@ end
 gem 'rqrcode', '~> 2.1.1'
 
 # a scheduling add-on for sidekiq
-gem 'sidekiq-cron', '~> 1.7.0'
+gem 'sidekiq-cron', '~> 2.0'
 
 gem 'xml-simple', '~> 1.1.5'
 
 # required for azure
-gem 'sidekiq_alive', '~> 2.1.4'
+gem 'sidekiq_alive', '~> 2.4'
 
 gem 'psych', '~> 5.0'
 

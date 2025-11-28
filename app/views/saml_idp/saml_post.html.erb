@@ -1,0 +1,12 @@
+<form action="<%= html_escape(@acs_url) %>" method="POST" id="saml-form" 
+      enctype="application/x-www-form-urlencoded" accept-charset="UTF-8">
+  <input type="hidden" name="SAMLResponse" value="<%= html_escape(@saml_response) %>">
+  <input type="hidden" name="RelayState" value="<%= html_escape(@relay_state) %>">
+</form>
+
+<script nonce="<%= content_security_policy_nonce %>">
+  // Auto-submit the form immediately
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('saml-form').submit();
+  });
+</script>

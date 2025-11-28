@@ -64,6 +64,10 @@ en:
         validates_admins: Admins don't have access to the campaign.
       report_families_reports:
         report_exists: This Report is already a part of Report Bundle
+      saml_service_provider:
+        invalid_url: 'Invalid URL format: %{url}'
+        must_be_array: Must be an array
+        must_not_be_empty: Cannot be empty
       size?: size should be less %{size}
       skill:
         already_added: Skill with the same name already added.
@@ -94,6 +98,7 @@ en:
         unique_name: A filter with the same name already exists.
       workshop_invited_subject_create:
         already_exists: Subject already exists in the invite.
+        part_of_other_workshop_invite: Subject is already invited to '%{workshop_invite_name}'.
       workshop_subject_create:
         already_exists: Subject already exists in this Assessment Center.
         part_of_other_workshop: Subject is already a participant of '%{workshop_name}'.

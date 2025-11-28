@@ -919,8 +919,6 @@ id:
     invalid_job: Notifikasi ini sesuai dengan catatan yang dihapus
     mark_as_read: Tandai semua baca
     more: Lebih
-    no_notifications: Tidak ada pemberitahuan
-    notifications: Notifikasi
     results: Hasil
     super_admin:
       errors:
@@ -1344,16 +1342,11 @@ id:
     continue: Lanjutkan tugas Anda
     dashboard_instructions: Anda mungkin telah ditugaskan beberapa aktivitas yang harus Anda selesaikan. Pastikan untuk memeriksa apakah semua aktivitas yang ditugaskan telah diselesaikan di semua kampanye.
     dashboard_menu:
-      bookings: Pemesanan
       campaign: Kampanye
-      change_password: Ubah Kata Sandi
-      development: Pengembangan
       direct_reportees: Bawahan Langsung
       home: Beranda
       insights: Wawasan
-      my_plan: Rencanaku
       profile: Profil
-      profile_details: Detail
       tasks: Tugas
     details: Detail
     edit_evaluation:
@@ -1809,7 +1802,6 @@ id:
       view: Melihat
       view_all_tasks: Lihat semua tugas
       view_detail: Lihat Detail
-      yes_delete: Ya, Hapus
     column:
       action: Tindakan
       active: Aktif
@@ -1884,7 +1876,6 @@ id:
       projects: Proyek
       report: Lapor
       reports: Laporan
-      scoring: Penilaian
       sms_contact: Kontak SMS
       threesixty_campaign: Skor Kampanye Threesixty
     status:
@@ -2578,14 +2569,14 @@ id:
       you: Kamu
     convert_to_draft: Konversi ke Draf
     current_step: Langkah Saat Ini %{step}
-    delete_skill: Apakah Anda yakin ingin menghapus keterampilan karena itu akan menghapus semua tindakan pengembangan yang terhubung juga?
+    delete_skill: Apakah Anda yakin ingin menghapus keterampilan ini? Menghapusnya juga akan menghapus semua tindakan pengembangan terkait.
     details: Rincian
     development_actions:
       action_private: Ya
       action_public: Tidak
       add_development_action: Tambahkan Tindakan Pengembangan
       add_development_actions_from_below_options: Tambahkan Tindakan Pengembangan dari opsi di bawah ini.
-      add_development_actions_modal_title: Perpustakaan Tindakan Pengembangan untuk %{skillName}
+      add_development_actions_modal_title: Perpustakaan Tindakan Pengembangan untuk
       add_from_library: Tambahkan dari Perpustakaan
       add_more: Tambahkan Lebih Banyak Tindakan Pengembangan
       add_selected_development_actions: Tambahkan Tindakan Pengembangan yang Dipilih
@@ -2616,7 +2607,7 @@ id:
       generate_more: Hasilkan Lebih Banyak
       generating_development_actions: Menghasilkan tindakan pembangunan...
       generative_ai: AI Generatif
-      generative_ai_description: Biarkan AI menghasilkan tindakan pengembangan yang disesuaikan hanya untuk Anda
+      generative_ai_description_msg: Biarkan AI menghasilkan tindakan pengembangan yang disesuaikan hanya untuk Anda
       heading: Tindakan Pengembangan
       idp_library: Perpustakaan IDP
       idp_library_description: Pilih tindakan pengembangan yang telah terbukti dari perpustakaan kami yang dikuratori oleh ahli.
@@ -2652,7 +2643,7 @@ id:
       write_here: Tulis di sini...
     direct_reportee_details: Detail Bawahan Langsung
     download:
-      description: 'Untuk mengunduh laporan, silakan ikuti tautan: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Tautan hanya berlaku selama 10 menit'
+      description: 'Untuk mengunduh laporan, silakan ikuti tautan: <a href=''%{url}'' target=''_blank''>Download</a>. Tautan hanya berlaku selama 10 menit'
     download_plan: Unduh Paket
     edit_plan: Edit Paket
     edit_plan_and_add_skills: Edit Rencana dan klik Kelola Keterampilan untuk menambahkan Keterampilan.
@@ -2674,8 +2665,8 @@ id:
         one: Tindakan Pengembangan yang Dihapus
         other: Tindakan Pengembangan yang Dihapus
     initial_steps:
-      add_skill_group_description: Berdasarkan hasil penilaian Anda, berikut adalah beberapa area kekuatan dan pengembangan untuk Anda. Pilih keterampilan yang ingin Anda kembangkan lebih lanjut sebagai bagian dari rencana pengembangan Anda.
-      add_skill_group_title: Menjelajahi Keterampilan %{category} Anda
+      add_skill_group_description: Pilih keterampilan yang ingin Anda kembangkan lebih lanjut sebagai bagian dari rencana pengembangan Anda.
+      add_skill_group_title: "%{category}"
       add_skills: Tambah
       add_skills_step: Tambahkan Keterampilan
       back: Belakang
@@ -2721,7 +2712,6 @@ id:
           name: Nama
           publish_date: Tanggal Publikasi
           review_date: Tanggal Peninjauan
-          role: Peran Saat Ini
       guidelines:
         cards:
           c1:
@@ -3390,13 +3380,6 @@ id:
   sessions:
     errors:
       recaptcha: Verifikasi recaptcha gagal. Silakan coba lagi.
-  shared:
-    filters:
-      clear: Hapus Filter
-    internet_disconnected_message: Mencoba menyambung kembali, periksa koneksi internet Anda.
-    mte_logo_alt_text: Logo Mercer Talent Enterprise
-    terms_conditions_privacy: Pernyataan Privasi
-    tte_terms_and_condition: Ketentuan & Privasi
   sheet:
     import_modal:
       alert_access_sheet_removal: Mengunggah Lembar Akses baru dengan menghapus semua catatan yang ada dan mengunggah yang baru dari lembar. Pastikan Anda memiliki semua catatan Accesssheet dalam spreadsheet.

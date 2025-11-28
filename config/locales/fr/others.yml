@@ -919,8 +919,6 @@ fr:
     invalid_job: Cette notification correspond à un enregistrement supprimé
     mark_as_read: Marquer toutes les lectures
     more: Plus d'informations
-    no_notifications: Aucune notification
-    notifications: Notifications
     results: Résultats
     super_admin:
       errors:
@@ -1341,16 +1339,11 @@ fr:
     continue: Poursuivre vos tâches
     dashboard_instructions: Il se peut que plusieurs activités vous aient été attribuées. Veuillez vérifier que toutes les activités attribuées ont bien été complétées dans l’ensemble des campagnes
     dashboard_menu:
-      bookings: Réservations
       campaign: Campagne
-      change_password: Modifier le mot de passe
-      development: Développement
       direct_reportees: Subordonnés
       home: Accueil
       insights: Perspectives
-      my_plan: Mon plan
       profile: Profil
-      profile_details: Détails
       tasks: Tâches
     details: Détails
     edit_evaluation:
@@ -1805,7 +1798,6 @@ fr:
       view: Voir
       view_all_tasks: Voir toutes les tâches
       view_detail: Voir le détail
-      yes_delete: Oui, Supprimer
     column:
       action: Action
       active: Actif
@@ -1880,7 +1872,6 @@ fr:
       projects: Projets
       report: Rapport
       reports: Rapports
-      scoring: Notation
       sms_contact: Contact SMS
       threesixty_campaign: Scores de la campagne Threesixty
     status:
@@ -2576,7 +2567,7 @@ fr:
       action_public: Non
       add_development_action: Ajouter une action de développement
       add_development_actions_from_below_options: Ajoutez des actions de développement à partir des options ci-dessous.
-      add_development_actions_modal_title: Bibliothèque d’actions de développement pour %{skillName}
+      add_development_actions_modal_title: Bibliothèque d’actions de développement pour
       add_from_library: Ajouter à partir de la bibliothèque
       add_more: Ajouter d’autres actions de développement
       add_selected_development_actions: Ajouter les actions de développement sélectionnées
@@ -2607,7 +2598,7 @@ fr:
       generate_more: Générer plus
       generating_development_actions: Générer des actions de développement...
       generative_ai: IA générative
-      generative_ai_description: Laissez l’IA générer une action de développement sur mesure rien que pour vous
+      generative_ai_description_msg: Laissez l’IA générer une action de développement sur mesure rien que pour vous
       heading: Actions de développement
       idp_library: Bibliothèque IDP
       idp_library_description: Sélectionnez une action de développement éprouvée dans notre bibliothèque d’experts.
@@ -2643,7 +2634,7 @@ fr:
       write_here: Écrivez ici...
     direct_reportee_details: Détail des rapports directs
     download:
-      description: 'Pour télécharger le rapport, veuillez suivre le lien : <a href=''''%{url}'''' target=''''_blank''''>Télécharger</a>. Le lien n’est valable que pendant 10 minutes'
+      description: 'Pour télécharger le rapport, veuillez suivre le lien : <a href=''%{url}'' target=''_blank''>Télécharger</a>. Le lien n’est valable que pendant 10 minutes'
     download_plan: Télécharger le plan
     edit_plan: Modifier le plan
     edit_plan_and_add_skills: Modifiez le plan et cliquez sur Gérer les compétences pour ajouter des compétences.
@@ -2665,8 +2656,8 @@ fr:
         one: Suppression de l’action de développement
         other: Suppression des actions de développement
     initial_steps:
-      add_skill_group_description: Sur la base des résultats de votre évaluation, voici quelques-uns de vos points forts et de vos domaines de développement. Choisissez les compétences que vous souhaitez développer dans le cadre de votre plan de développement.
-      add_skill_group_title: Explorer vos compétences %{category}
+      add_skill_group_description: Choisissez les compétences que vous souhaitez développer dans le cadre de votre plan de développement.
+      add_skill_group_title: "%{category}"
       add_skills: Ajouter
       add_skills_step: Ajouter des compétences
       back: Précédent
@@ -2718,7 +2709,6 @@ fr:
           name: Nom
           publish_date: Date de publication
           review_date: Date de révision
-          role: Rôle actuel
       guidelines:
         cards:
           c1:
@@ -3387,13 +3377,6 @@ fr:
   sessions:
     errors:
       recaptcha: La vérification du Recaptcha a échoué. Veuillez réessayer.
-  shared:
-    filters:
-      clear: Effacer les filtres
-    internet_disconnected_message: Essayez de vous reconnecter. Veuillez vérifier votre connexion internet.
-    mte_logo_alt_text: Logo Mercer Talent Enterprise
-    terms_conditions_privacy: Déclaration de confidentialité
-    tte_terms_and_condition: Conditions d'utilisation et protection de la vie privée
   sheet:
     import_modal:
       alert_access_sheet_removal: Le téléchargement d'une nouvelle feuille d'accès entraîne la suppression de tous les enregistrements existants et le téléchargement d'un nouvel enregistrement à partir de la feuille.

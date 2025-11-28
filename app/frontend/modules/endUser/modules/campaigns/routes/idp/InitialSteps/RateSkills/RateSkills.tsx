@@ -85,7 +85,7 @@ export const RateSkillsComponent = ({
       ),
     },
     ...(!isMobile ? [{
-      title: 'Skill Type',
+      title: I18n.t('enduser.skill_type'),
       dataIndex: 'skillType',
       key: 'skillType',
       onHeaderCell: () => (

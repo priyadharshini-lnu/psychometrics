@@ -8,9 +8,9 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
   let(:campaign) { create(:campaign, project_id: user.project_id) }
   let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
   let(:assessment) { create(:assessment) }
-  let(:report) { create(:report, assessments: [assessment]) }
+  let(:report_family) { create(:report_family) }
+  let(:report) { create(:report, assessments: [assessment], report_families: [report_family]) }
   let(:user_report) { create(:user_report, report: report, user: campaign_user.user, campaign: campaign) }
-  let(:report_family) { report.report_families.first }
 
   before(:each) { login_user(current_user) }
   after(:each) { sign_out(current_user) }
@@ -152,8 +152,11 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
 
   describe 'GET pdf_preview' do
     it 'renders appropriate view' do
+      allow_any_instance_of(ActionView::Base).to receive(:vite_javascript_tag).and_return('')
+
       get :pdf_preview, params: { new_campaign_id: campaign.id, id: user_report.id }
 
+      expect(response).to have_http_status(:success)
       expect(response).to render_template('layouts/pdf')
       expect(response).to render_template('shared/preview_report')
     end
@@ -231,8 +234,10 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
   describe 'workflow' do
     describe 'PATCH send_for_approval' do
       it 'change approval status to qc_completed' do
+        # Ensure user_report is created and persisted before updating
+        report_id = user_report.id
         user_report.update(approval_status: 'qc_in_progress')
-        patch :send_for_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
+        patch :send_for_approval, params: { new_campaign_id: campaign.id, id: report_id }
         parsed_response = response.parsed_body
         expect(parsed_response['status']).to eq('qc_completed')
         expect(response).to have_http_status(:success)
@@ -746,7 +751,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
         mettl_schedule_name mettl_schedule_record_id dimension_id
         simulation_content_variations hogan_participant_id users_result_id prework
         pearson_user_assessment_details saville_user_assessment_details simulation_user_assessment_details
-        skillvue_user_assessment_details
+        skillvue_user_assessment_details yoodli_user_assessment_details
       ]
     )
     expect(assessment_response).to include({

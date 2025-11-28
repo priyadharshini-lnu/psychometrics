@@ -4,6 +4,7 @@ import {
 } from 'antd'
 import { useParams, useNavigate } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
+import { camelizeKeys } from '~/utils/object'
 import AssessmentsReports from './AssessmentsReports'
 import { Idp } from './Idp'
 import styles from './Manage.less'
@@ -14,17 +15,20 @@ const { I18n } = window
 
 const mapState = (state: RootState) => ({
   features: getFeatures(state),
+  projectIdpEnabled: state.config.project.idpEnabled,
 })
 
 const connector = connect(mapState)
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-const Manage: React.FC<PropsFromRedux> = ({ features }) => {
+const Manage: React.FC<PropsFromRedux> = ({ features, projectIdpEnabled }) => {
   const { projectId, campaignId, tab: paramTab } = useParams() as { projectId: string, campaignId: string, tab: string }
   const navigate = useNavigate()
   const [tab, setTab] = useState(paramTab || 'assessments')
-  const idpEnabled = features.idp_enabled
+  const {
+    idpEnabled,
+  } = camelizeKeys(features)
 
   const changeTab = (tab) => {
     navigate(`/admin/projects/${projectId}/new_campaigns/${campaignId}/assessments_reports/manage/${tab}`)
@@ -40,7 +44,7 @@ const Manage: React.FC<PropsFromRedux> = ({ features }) => {
     },
   ]
 
-  if (idpEnabled) {
+  if (idpEnabled && projectIdpEnabled) {
     tabs.push({
       key: 'idp',
       label: I18n.t('assessments_reports.menu.idp'),

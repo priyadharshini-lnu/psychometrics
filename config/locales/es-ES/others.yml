@@ -896,8 +896,6 @@ es-ES:
     invalid_job: Esta notificación corresponde al registro suprimido
     mark_as_read: Marcar todo lo leído
     more: Más
-    no_notifications: Sin notificaciones
-    notifications: Notificaciones
     results: Resultados
     super_admin:
       errors:
@@ -1323,16 +1321,11 @@ es-ES:
     continue: Continúe con sus tareas
     dashboard_instructions: Se le han asignado varias actividades que debe completar. No olvide comprobar si ha completado todas las actividades asignadas de todas las campañas.
     dashboard_menu:
-      bookings: Reservas
       campaign: Campaña
-      change_password: Cambiar contraseña
-      development: Desarrollo
       direct_reportees: Direct Reportees
       home: Inicio
       insights: Información
-      my_plan: Mi plan
       profile: Perfil
-      profile_details: Datos
       tasks: Tareas
     details: Datos
     edit_evaluation:
@@ -1775,7 +1768,6 @@ es-ES:
       view: Ver
       view_all_tasks: Ver todas las tareas
       view_detail: Ver detalle
-      yes_delete: Sí, eliminar
     column:
       action: Acción
       active: Activo
@@ -1850,7 +1842,6 @@ es-ES:
       projects: Proyectos
       report: Informe
       reports: Informes
-      scoring: Puntuación
       sms_contact: Contacto SMS
       threesixty_campaign: Resultados de la campaña Threesixty
     status:
@@ -2541,7 +2532,7 @@ es-ES:
       action_public: 'No'
       add_development_action: Añadir Acción de Desarrollo
       add_development_actions_from_below_options: Agregue acciones de desarrollo desde las siguientes opciones.
-      add_development_actions_modal_title: Biblioteca de acciones de desarrollo para %{skillName}
+      add_development_actions_modal_title: Biblioteca de acciones de desarrollo para
       add_from_library: Agregar desde la biblioteca
       add_more: Agregar más acciones de desarrollo
       add_selected_development_actions: Agregar acciones de desarrollo seleccionadas
@@ -2572,7 +2563,7 @@ es-ES:
       generate_more: Generar Más
       generating_development_actions: Generando acciones de desarrollo...
       generative_ai: IA generativa
-      generative_ai_description: Deja que la IA genere una acción de desarrollo a medida solo para ti
+      generative_ai_description_msg: Deja que la IA genere una acción de desarrollo a medida solo para ti
       heading: Acciones de Desarrollo
       idp_library: Biblioteca IDP
       idp_library_description: Seleccione una acción de desarrollo comprobada de nuestra biblioteca seleccionada por expertos.
@@ -2608,7 +2599,7 @@ es-ES:
       write_here: Escriba aquí...
     direct_reportee_details: Detalle de los reportados directos
     download:
-      description: 'Para descargar el informe, siga el enlace: <a href=''''%{url}'''' target=''''_blank''''>Descargar</a>. El enlace solo es válido por 10 minutos'
+      description: 'Para descargar el informe, siga el enlace: <a href=''%{url}'' target=''_blank''>Descargar</a>. El enlace solo es válido por 10 minutos'
     download_plan: Descargar plan
     edit_plan: Editar plan
     edit_plan_and_add_skills: Edite el plan y haga clic en Administrar habilidades para agregar habilidades.
@@ -2630,8 +2621,8 @@ es-ES:
         one: Acción de desarrollo eliminada
         other: Acciones de desarrollo eliminadas
     initial_steps:
-      add_skill_group_description: Basado en los resultados de su evaluación, aquí hay algunas áreas de fortalezas y desarrollo para usted. Elija las habilidades que desea desarrollar más como parte de su plan de desarrollo.
-      add_skill_group_title: Explorando Sus Habilidades de %{category}
+      add_skill_group_description: Elija las habilidades que desea desarrollar más como parte de su plan de desarrollo.
+      add_skill_group_title: "%{category}"
       add_skills: Añadir
       add_skills_step: Añadir Habilidades
       back: Atrás
@@ -2677,7 +2668,6 @@ es-ES:
           name: Nombre
           publish_date: Fecha de Publicación
           review_date: Fecha de Revisión
-          role: Rol Actual
       guidelines:
         cards:
           c1:
@@ -3317,13 +3307,6 @@ es-ES:
   sessions:
     errors:
       recaptcha: Error en la verificación de Recaptcha. Por favor, inténtelo de nuevo.
-  shared:
-    filters:
-      clear: Quitar filtros
-    internet_disconnected_message: Intentando volver a conectar. Compruebe su conexión a internet.
-    mte_logo_alt_text: Logotipo de Mercer Talent Enterprise
-    terms_conditions_privacy: Declaración de privacidad
-    tte_terms_and_condition: Términos y privacidad
   sheet:
     import_modal:
       alert_access_sheet_removal: Al cargar una nueva Accesssheet se eliminan todos los registros existentes y se carga uno nuevo desde la hoja. Asegúrese de que tiene todos los registros de Accesssheet en la hoja de cálculo.

@@ -72,7 +72,7 @@ export const Component: FC<PropsFromRedux> = ({
         return (
           <div className={styles.userInfo}>
             <Avatar
-              className={cs(styles.avatar, 'mb-2')}
+              className={cs(styles.avatar, 'mb-2', 'me-2')}
               src={item.user.photo}
               alt={item.user.firstName}
               icon={<UserOutlined />}

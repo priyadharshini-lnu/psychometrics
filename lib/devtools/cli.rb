@@ -9,6 +9,7 @@ require_relative 'cli/commands/I18n/translation_changes'
 require_relative 'cli/commands/I18n/translation_import'
 require_relative 'cli/commands/I18n/import_from_json'
 require_relative 'cli/commands/I18n/fix_and_report_inconsistencies'
+require_relative 'cli/commands/I18n/generate_locales'
 require_relative 'cli/commands/send_email'
 
 module Devtools
@@ -26,6 +27,7 @@ module Devtools
       prefix.register 'translation_import', Devtools::CLI::Commands::I18n::TranslationImport
       prefix.register 'import_from_json', Devtools::CLI::Commands::I18n::ImportFromJson
       prefix.register 'fix_and_report_inconsistencies', Devtools::CLI::Commands::I18n::FixAndReportInconsistencies
+      prefix.register 'generate_locales', Devtools::CLI::Commands::I18n::GenerateLocales
     end
   end
 end

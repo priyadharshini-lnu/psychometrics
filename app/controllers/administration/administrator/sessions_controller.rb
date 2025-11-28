@@ -25,6 +25,17 @@ module Administration
         end
       end
 
+      def destroy
+        logged_in_user = current_user
+        super do
+          audit!(
+            :sign_out, logged_in_user,
+            user: logged_in_user,
+            payload: { email: logged_in_user.email }
+          )
+        end
+      end
+
       def resource_name
         :user
       end

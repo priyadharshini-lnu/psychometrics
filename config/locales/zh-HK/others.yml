@@ -214,7 +214,6 @@ zh-HK:
     bulk_download_reports:
       errors:
         no_plans: 未找到有效的 IDP 計劃
-    no_notifications: 無通知
   ai:
     errors:
       bad_request_invalid_input: 由於輸入無效，無法處理您的請求。請檢查您的要求並重試。
@@ -416,16 +415,11 @@ zh-HK:
     continue: 繼續您的任務
     dashboard_instructions: 您有多個需要完成的活動。請確保所有活動中的分配任務都已完成。
     dashboard_menu:
-      bookings: 訂單
       campaign: 市場推廣
-      change_password: 更改密碼
-      development: 發展
       direct_reportees: 直下報告
       home: 主頁
       insights: 分析
-      my_plan: 我的計劃
       profile: 個人資料
-      profile_details: 詳情
       tasks: 任務
     details: 詳情
     edit_evaluation:
@@ -644,7 +638,6 @@ zh-HK:
       verify: 驗證
       view_all_tasks: 檢視所有任務
       view_detail: 檢視詳細內容
-      yes_delete: 是，刪除
     column:
       action: 操作
       ai_assistant: AI助手
@@ -1023,7 +1016,7 @@ zh-HK:
       action_public: 否
       add_development_action: 添加發展行動
       add_development_actions_from_below_options: 從下面的選項添加開發動作。
-      add_development_actions_modal_title: 適用於%{skillName}的開發動作程式庫
+      add_development_actions_modal_title: 適用於 的開發動作程式庫
       add_from_library: 從庫新增
       add_more: 新增更多開發動作
       add_selected_development_actions: 新增選取的開發動作
@@ -1054,7 +1047,7 @@ zh-HK:
       generate_more: 生成更多
       generating_development_actions: 正在生成發展行動...
       generative_ai: 生成式人工智慧
-      generative_ai_description: 讓 AI 為您量身打造的開發動作
+      generative_ai_description_msg: 讓 AI 為您量身打造的開發動作
       heading: 發展行動
       idp_library: IDP 圖書館
       idp_library_description: 從我們專家策劃的庫中選擇經過驗證的開發動作。
@@ -1105,8 +1098,8 @@ zh-HK:
         one: 已移除開發動作
         other: 已移除的開發動作
     initial_steps:
-      add_skill_group_description: 基於你的評估結果，以下是你的一些優勢和發展領域。選擇你想作為發展計劃一部分進一步發展的技能。
-      add_skill_group_title: 探索你的%{category}技能
+      add_skill_group_description: 選擇你想作為發展計劃一部分進一步發展的技能。
+      add_skill_group_title: "%{category}"
       add_skills: 添加
       add_skills_step: 添加技能
       back: 後面
@@ -1150,7 +1143,6 @@ zh-HK:
           name: 姓名
           publish_date: 發佈日期
           review_date: 審核日期
-          role: 當前角色
       guidelines:
         cards:
           c1:
@@ -1478,12 +1470,6 @@ zh-HK:
   sessions:
     errors:
       recaptcha: Recaptcha 驗證失敗。請再試一次。
-  shared:
-    filters:
-      clear: 清除篩選器
-    internet_disconnected_message: 正在嘗試重新連接。請檢查您的互聯網連接。
-    terms_conditions_privacy: 私隱聲明
-    tte_terms_and_condition: 條款和私隱
   simple_form:
     labels:
       client:

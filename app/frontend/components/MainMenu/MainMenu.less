@@ -19,7 +19,8 @@
 
 .menu:global(.ant-menu-inline-collapsed) {
   width: auto;
-  & :global(.ant-menu-item){
+
+  & :global(.ant-menu-item) {
     margin-block: 0;
   }
 }
@@ -32,11 +33,25 @@
   cursor: pointer;
   border-radius: 0 4px 4px 0;
   font-size: 1.2em;
-  z-index: 1000;
+  z-index: 5002;
   border: none;
+
   &.mobile {
     right: initial;
     left: 8px;
     background-color: initial;
+  }
+}
+
+:global(.rtl) {
+  .trigger {
+    right: initial;
+    left: -38px;
+    border-radius: 4px 0 0 4px;
+
+    &.mobile {
+      left: initial;
+      right: 8px;
+    }
   }
 }

@@ -279,7 +279,7 @@ RSpec.describe UserIdpPlan, type: :model do
     let(:user_idp_plan) { create(:user_idp_plan) }
 
     {
-      manager_editable: %i[rejected in_review],
+      manager_editable: %i[in_review],
       non_manager_editable: %i[draft approved]
     }.each do |editability, statuses|
       expected_result = editability == :manager_editable

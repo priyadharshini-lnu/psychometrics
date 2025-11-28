@@ -100,8 +100,16 @@ const AIGeneratedDevelopmentActionsModal = ({
 
   return (
     <Modal
-      title={I18n.t('administration.idp.development_actions.create_development_actions_with_ai',
-        { skillName: skill?.name })}
+      title={(
+        <>
+          <span className="font-normal">
+            {I18n.t('administration.idp.development_actions.create_development_actions_with_ai')}
+          </span>
+          <span className="font-bold">
+            {` ${skill?.name}`}
+          </span>
+        </>
+      )}
       open={open}
       onCancel={onCancel}
       footer={!!developmentActions.length && [

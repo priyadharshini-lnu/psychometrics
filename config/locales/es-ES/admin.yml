@@ -1,0 +1,112 @@
+---
+es-ES:
+  admin:
+    admins: Admins
+    ai_artifacts: Artefactos de IA
+    ai_artifacts_output_schema_key_constraint: La clave debe comenzar con una letra minúscula y solo puede contener letras minúsculas, números y guiones bajos
+    ai_assistant_model_id_label: ID del modelo
+    ai_assistant_model_label: Modelo
+    ai_assistant_model_provider: Proveedor
+    ai_assistant_model_region_label: Región
+    ai_assistants: Asistentes de IA
+    assessments: Evaluaciones
+    assessments_reports: Evaluaciones e informes
+    assessor_dashboard: Panel de control del evaluador
+    assessor_workshops: Assessment Center
+    audit_logs: Registros de auditoría
+    audit_reports: Informes de auditoría
+    availability: Disponibilidad
+    back_to_main: Menú principal
+    campaign_templates: Plantillas de campaña
+    client: Arrendamiento de clientes
+    client_admins: Administradores de clientes
+    clients: Clientes
+    communication_center: Centro de comunicaciones
+    country: País
+    create_client: Crear cliente
+    dashboard: Cuadro de mandos
+    data_reports: Informes de datos
+    datasheet: Hoja de datos
+    delete_ok_text: Sí, eliminar
+    development_actions: Acciones de desarrollo
+    dimensions: Dimensiones
+    empty_csv_file: El archivo CSV no contiene ningún dato.
+    fill_empty_score_msg: Rellena todas las puntuaciones finales antes de guardar.
+    final_score_empty_msg: La puntuación final no puede estar vacía.
+    import_csv_assessment_group_error: 'Fila %{index}: el usuario con correo electrónico %{email} ya está invitado a ''%{workshopInviteName}'''
+    import_csv_error: 'Fila %{index}: usuario con correo electrónico %{email} no está en esta campaña'
+    import_description: Importar usuarios desde un archivo CSV. Cada fila debe contener una dirección de correo electrónico.
+    import_download_sample: Descargar ejemplo de CSV
+    import_error: Importación fallida. Por favor, inténtalo de nuevo.
+    import_errors_title: Errores de importación
+    import_file_required: Por favor, selecciona un archivo CSV para subir.
+    import_queued_success: El trabajo de importación de sujetos se programó con éxito. Por favor, consulta tu notificación para ver el estado.
+    import_sample_file_label: 'Archivo de ejemplo:'
+    import_title: Temas importados de CSV
+    import_upload: Subir
+    import_users: Importar usuarios
+    invalid_csv_header: CSV contiene cabeceras inválidas.
+    libraries: Mediateca
+    library_invalid_type: Elemento inválido de la biblioteca
+    no_notifications: Sin notificaciones
+    norms: Normas
+    notification_bell_icon_alt_text: Icono de campana de notificación
+    notifications: Notificaciones
+    number: Número
+    occupations: Ocupaciones
+    options: Opciones
+    participants: Participantes
+    profile_details: Detalles del perfil
+    project_admins: Administradores de proyectos
+    project_manager: Responsable de proyecto
+    question_center: Centro de preguntas
+    registration_codes: Códigos de registro
+    report_approvals: Aprobación de informes
+    reports: Informes
+    role: Rol
+    saml_idp_certificate_available: Disponible (haz clic para copiar)
+    saml_idp_certificate_label: Certificado
+    saml_idp_entity_id_label: ID de entidad/Emisor
+    saml_idp_sso_url_label: URL del servicio SSO
+    saml_service_provider: Proveedor de servicios SAML
+    saml_service_provider_acs_urls: ACS URLs
+    saml_service_provider_acs_urls_placeholder: Introduce URLs separadas por comas, por ejemplo, https://app1.com/saml/acs, https://app2.com/saml/acs
+    saml_service_provider_acs_urls_required: Se requieren URLs ACS
+    saml_service_provider_action_delete_label: Borrar
+    saml_service_provider_action_edit_label: Editar
+    saml_service_provider_action_rotate_certificate_label: Certificado de rotación
+    saml_service_provider_add: Añadir proveedor de servicios SAML
+    saml_service_provider_delete_success: Proveedor de servicios SAML eliminado con éxito
+    saml_service_provider_enabled: Habilitado
+    saml_service_provider_entity_id: ID de entidad
+    saml_service_provider_entity_id_placeholder: Introduzca el ID de la entidad
+    saml_service_provider_entity_id_required: Se requiere el ID de la entidad
+    saml_service_provider_idp_config: Configuración IdP
+    saml_service_provider_manage: Acciones
+    saml_service_provider_mask_identity: Identidad de la máscara
+    saml_service_provider_masking_enabled: Activar el enmascaramiento
+    saml_service_provider_name: Nombre
+    saml_service_provider_name_placeholder: Introduce el nombre del proveedor de servicios
+    saml_service_provider_name_required: Se requiere el nombre
+    saml_service_provider_remove_content: "¿Estás seguro de que quieres eliminar el proveedor de servicios SAML: %{name}?"
+    saml_service_provider_remove_title: Eliminar proveedor de servicios SAML
+    saml_service_provider_rotate_certificate_content: "¿Estás seguro de que quieres rotar el certificado para %{name}? Esto generará un nuevo certificado y invalidará el actual."
+    saml_service_provider_rotate_certificate_error: No se ha rotado el certificado
+    saml_service_provider_rotate_certificate_ok: Certificado de rotación
+    saml_service_provider_rotate_certificate_success: Certificado rotado con éxito
+    saml_service_provider_rotate_certificate_title: Certificado de rotación
+    saml_service_provider_search: Busca proveedores de servicios SAML...
+    saml_service_provider_updated_date: Fecha de actualización
+    saml_service_providers: Proveedores de servicios
+    saml_settings: Configuración SAML
+    scheduling: Programación
+    scoring: Puntuación
+    show_submenu: Mostrar submenú
+    skills_taxonomy: Taxonomía de competencias
+    slot_name: Nombre de la tragamonedas
+    stats: Estadísticas
+    subject_part_of_other_invite: Asunto con correo electrónico %{user_email} ya está invitado a '%{workshop_invite_name}'
+    user_report_events: Informe de usuario Eventos
+    users: Usuarios
+    view_licenses: Ver licencias
+    year: País

@@ -15,6 +15,22 @@ class DevelopmentAction < ApplicationRecord
   has_many :course_schedules, dependent: :destroy
   has_many :user_idp_development_actions, dependent: :destroy
 
+  validates :name, :description, presence: true
+
+  def name
+    name_translation = super
+    return name_translation if name_translation.present?
+
+    translations.where.not(name: nil).order(:created_at).limit(1).pick(:name)
+  end
+
+  def description
+    description_translation = super
+    return description_translation if description_translation.present?
+
+    translations.where.not(description: nil).order(:created_at).limit(1).pick(:description)
+  end
+
   def project
     owner if owner_type == 'Client'
   end

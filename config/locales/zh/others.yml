@@ -919,8 +919,6 @@ zh:
     invalid_job: 该通知对应已删除的记录
     mark_as_read: 标记所有已读内容
     more: 更多信息
-    no_notifications: 没有通知
-    notifications: 通知
     results: 成果
     super_admin:
       errors:
@@ -1344,16 +1342,11 @@ zh:
     continue: 继续你的任务
     dashboard_instructions: 你被分配了多个需要完成的活动。请确保本项目中所有分配活动的都已完成。
     dashboard_menu:
-      bookings: 预订
       campaign: 项目
-      change_password: 更改密码
-      development: 发展
       direct_reportees: 直下报告
       home: 首页
       insights: 见解
-      my_plan: 我的计划
       profile: 个人资料
-      profile_details: 详情
       tasks: 任务
     details: 详情
     edit_evaluation:
@@ -1815,7 +1808,6 @@ zh:
       view: 查看
       view_all_tasks: 查看所有任务
       view_detail: 查看详情
-      yes_delete: 是，删除
     column:
       action: 操作
       active: 活跃
@@ -1890,7 +1882,6 @@ zh:
       projects: 项目
       report: 报告
       reports: 报告
-      scoring: 计分
       sms_contact: 短信联系
       threesixty_campaign: Threesixty 运动得分
     status:
@@ -2561,14 +2552,14 @@ zh:
       you: 您
     convert_to_draft: 轉換為草稿
     current_step: 当前步骤 %{step}
-    delete_skill: 您是否确定要删除技能，因为它也会删除所有连接的开发作？
+    delete_skill: 您确定要删除此技能吗？删除后将同时移除所有相关的开发行动。
     details: 详细信息
     development_actions:
       action_private: 是
       action_public: 没有
       add_development_action: 添加开发行动
       add_development_actions_from_below_options: 从下面的选项添加开发作。
-      add_development_actions_modal_title: "%{skillName}开发作库"
+      add_development_actions_modal_title: 开发作库
       add_from_library: 从库添加
       add_more: 添加更多开发作
       add_selected_development_actions: 添加选定的开发作
@@ -2599,7 +2590,7 @@ zh:
       generate_more: 生成更多
       generating_development_actions: 生成发展行动...
       generative_ai: 生成式人工智能
-      generative_ai_description: 让人工智能生成专为您量身定制的开发行动
+      generative_ai_description_msg: 让人工智能生成专为您量身定制的开发行动
       heading: 发展行动
       idp_library: IDP 图书馆
       idp_library_description: 从我们专家策划的库中选择经过验证的开发作。
@@ -2657,8 +2648,8 @@ zh:
         one: 已删除的开发作
         other: 删除的开发作
     initial_steps:
-      add_skill_group_description: 根据你的评估结果，以下是你的一些优势和发展领域。 选择你希望进一步发展的技能，作为你发展计划的一部分。
-      add_skill_group_title: 探索您的 %{category} 技能
+      add_skill_group_description: 选择你希望进一步发展的技能，作为你发展计划的一部分。
+      add_skill_group_title: "%{category}"
       add_skills: 添加
       add_skills_step: 添加技能
       back: 返回
@@ -2710,7 +2701,6 @@ zh:
           name: 姓名
           publish_date: 发布日期
           review_date: 审核日期
-          role: 当前角色
       guidelines:
         cards:
           c1:
@@ -3379,13 +3369,6 @@ zh:
   sessions:
     errors:
       recaptcha: Recaptcha 验证失败。请重试。
-  shared:
-    filters:
-      clear: 清除筛选
-    internet_disconnected_message: 正在尝试重新连接。请检查你的互联网连接。
-    mte_logo_alt_text: 美世人才企业标识
-    terms_conditions_privacy: 隐私声明
-    tte_terms_and_condition: 条款和隐私
   sheet:
     import_modal:
       alert_access_sheet_removal: 上传新的 Accesssheet 时会删除所有现有记录，然后从工作表中上传新记录。 请确保电子表格中包含所有 Accesssheet 记录。

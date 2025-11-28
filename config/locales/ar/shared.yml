@@ -1,0 +1,34 @@
+---
+ar:
+  shared:
+    action: نشاط
+    add: إضافة
+    cancel: إلغاء
+    change_password: تغيير كلمة المرور
+    clear_filters: امسح المُرشحات
+    description: وصف
+    edit: تعديل
+    edited: جديد
+    id: معرف
+    internet_disconnected_message: نحاول إعادة الاتصال بالإنترنت. يرجى التحقق من اتصالك بالإنترنت الخاص بك.
+    mte_logo_alt_text: شعار Mercer Talent Enterprise
+    name: اسم
+    new: جديد
+    removed: تمت الإزالة
+    rte_paste_content_exceeds_char_limit: النص يتجاوز حد الأحرف في {{maxCharacterLimit}} ولا يمكن لصقه.
+    rte_paste_content_exceeds_word_limit: النص يتجاوز حد الكلمات في {{maxWordLimit}} ولا يمكن لصقه.
+    search: بحث
+    table:
+      entries:
+        selected:
+          one: 1 row selected
+          other: "{{count}} rows selected"
+        total:
+          one: 'Total : 1'
+          other: 'Total : {{count}}'
+          zero: 'Total : 0'
+    terms_conditions_privacy: بيان الخصوصية
+    transcriptions: تدوين
+    tte_terms_and_condition: " الشروط والأحكام وبيان الخصوصية الخاص بشركة"
+    type: نوع
+    update: تحديث

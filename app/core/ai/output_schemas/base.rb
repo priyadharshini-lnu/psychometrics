@@ -7,8 +7,25 @@ module AI
 
       # Class method to get schema context for system prompts
       # Should be implemented by subclasses to provide specific context
+      def self.context
+        raise NotImplementedError, "#{self} must implement context class method"
+      end
+
+      # Class method to get schema as context for system prompts
+      # Useful when working with models which doesn't support structured response natively
       def self.as_context
-        raise NotImplementedError, "#{self} must implement as_context class method"
+        <<~OUTPUT_SCHEMA_AS_CONTEXT
+          <output_schema>
+            #{context}
+
+            #{new.to_json_schema[:schema]}
+            Ensure your response is valid JSON and matches the schema exactly. Do not include any text outside the JSON object.
+            The response will be parsed against JSON parser
+
+            WRONG: ```json {...}```
+            CORRECT: {...}
+          </output_schema>
+        OUTPUT_SCHEMA_AS_CONTEXT
       end
     end
   end

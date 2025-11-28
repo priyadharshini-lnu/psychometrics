@@ -43,7 +43,16 @@ export const CreateCustomDevelopmentActionModal = ({
 
   return (
     <Modal
-      title={I18n.t('idp.development_actions.create_custom_development_action_title', { skillName })}
+      title={(
+        <>
+          <span className="font-normal">
+            {I18n.t('idp.development_actions.create_custom_development_action_title')}
+          </span>
+          <span className="font-bold">
+            {` ${skillName}`}
+          </span>
+        </>
+      )}
       open={open}
       onCancel={onCancel}
       okText={I18n.t('common.actions.add')}
@@ -61,11 +70,11 @@ export const CreateCustomDevelopmentActionModal = ({
       footer={(
         <Flex justify="flex-end" flex={1} gap={12}>
           <ButtonWithArrow
-            label="Add"
+            label={I18n.t('common.actions.add')}
             size="small"
             type="primary"
             onClick={handleCreateCustomDevelopmentAction}
-            disabled={!name || !description}
+            disabled={!name.trim() || !description.trim()}
           />
         </Flex>
       )}
@@ -84,9 +93,9 @@ export const CreateCustomDevelopmentActionModal = ({
                       aria-hidden="true"
                       src={developmentActionLearningStylesConfig[learningStyle].logo}
                       alt={I18n.t(`idp.development_actions.${learningStyle}`)}
-                      style={{ marginRight: 8, width: '2rem' }}
+                      style={{ marginInlineEnd: 8, width: '2rem' }}
                     />
-                    {I18n.t(`idp.development_actions.${learningStyle}`)}
+                    {developmentActionLearningStylesConfig[learningStyle].text}
                   </Flex>
                 </Option>
               ))

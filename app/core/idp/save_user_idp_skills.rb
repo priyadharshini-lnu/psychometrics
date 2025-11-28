@@ -44,8 +44,24 @@ module Idp
 
       if user_idp_plan.pre_submission?
         skills_to_remove.destroy_all
+        return
+      end
+
+      last_approved_or_rejected_version = user_idp_plan.versions.where(
+        "object ->> 'approval_status' IN (?)", %w[approved rejected]
+      ).last
+
+      if last_approved_or_rejected_version && user_idp_plan.draft?
+        skill_ids_in_last_version = last_approved_or_rejected_version.reify(
+          has_many: true
+        )&.user_idp_skills&.pluck(:id) || []
+
+        skills_to_remove.where(id: skill_ids_in_last_version).find_each do |skill|
+          skill.soft_delete!(current_user)
+        end
+        skills_to_remove.where.not(id: skill_ids_in_last_version).destroy_all
       else
-        skills_to_remove.find_each { |skill| skill.soft_delete!(current_user) }
+        skills_to_remove.destroy_all
       end
     end
   end

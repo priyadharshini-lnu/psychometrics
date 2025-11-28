@@ -9,6 +9,7 @@ import {
   ExportOutlined,
   CrownOutlined,
   ApartmentOutlined,
+  UserOutlined,
 } from '@ant-design/icons'
 import some from 'lodash/some'
 import { connect, ConnectedProps } from 'react-redux'
@@ -48,14 +49,18 @@ const Project: FC<Props> = ({
   const navigate = useNavigate()
   const { pathname } = useLocation()
   const [isProjectLoaded, setIsProjectLoaded] = useState(false)
-  const { idpEnabled, skillRaterEnabled } = camelizeKeys(features)
+  const {
+    idpEnabled,
+    skillRaterEnabled,
+  } = camelizeKeys(features)
 
   const parsedProjectId = parseInt(projectId, 10)
 
   useEffect(() => {
-    fetchProject(parseInt(projectId, 10)).then(() => {
-      setIsProjectLoaded(true)
-    })
+    fetchProject(parseInt(projectId, 10))
+      .then(() => {
+        setIsProjectLoaded(true)
+      })
   }, [])
 
   const handleOnSelect = ({ key }) => {
@@ -150,7 +155,11 @@ const Project: FC<Props> = ({
   }
 
   const menuItems: MenuItem[] = [
-    { key: 'new_campaigns', icon: <ShopOutlined />, label: I18n.t('common.model.campaigns') },
+    {
+      key: 'new_campaigns',
+      icon: <ShopOutlined />,
+      label: I18n.t('common.model.campaigns'),
+    },
   ]
   currentUser.permissions.viewDatasheets && menuItems.push({
     key: 'datasheet',
@@ -159,7 +168,7 @@ const Project: FC<Props> = ({
   })
   currentUser.permissions.manageProjectAdmins && menuItems.push({
     key: 'admins',
-    icon: <SolutionOutlined />,
+    icon: <UserOutlined />,
     label: I18n.t('administration.breadcrumbs.project_admins'),
   })
   canShowSettingsTab() && menuItems.push({
@@ -189,6 +198,14 @@ const Project: FC<Props> = ({
     )
   }
 
+  if (currentUser.permissions.viewProjectLicenses) {
+    menuItems.push({
+      key: 'licenses',
+      icon: <SolutionOutlined />,
+      label: I18n.t('administration.breadcrumbs.licenses'),
+    })
+  }
+
 
   return (
     <div>
@@ -202,7 +219,7 @@ const Project: FC<Props> = ({
         crumbs={[
           {
             link: () => '/admin',
-            label: () => I18n.t('administration.clients.tenancies'),
+            label: () => I18n.t('administration.clients.clients'),
           },
           {
             link: state => `/admin/clients/${state.client.id}/projects`,

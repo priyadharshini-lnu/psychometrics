@@ -59,7 +59,8 @@ describe Administration::Projects::IntegrationsController, type: :controller do
           },
           'hogan_integration_details' => nil,
           'mettl_integration_details' => nil,
-          'skillvue_integration_details' => nil
+          'skillvue_integration_details' => nil,
+          'yoodli_integration_details' => nil
         }
 
         expect(response.status).to eq(200)
@@ -102,7 +103,8 @@ describe Administration::Projects::IntegrationsController, type: :controller do
           'hogan_integration_details' => { 'provider' => 'phoenix' },
           'iiht_integration_details' => nil,
           'mettl_integration_details' => nil,
-          'skillvue_integration_details' => nil
+          'skillvue_integration_details' => nil,
+          'yoodli_integration_details' => nil
         }
 
         expect(response.status).to eq(200)
@@ -156,7 +158,8 @@ describe Administration::Projects::IntegrationsController, type: :controller do
           },
           'hogan_integration_details' => nil,
           'iiht_integration_details' => nil,
-          'mettl_integration_details' => nil
+          'mettl_integration_details' => nil,
+          'yoodli_integration_details' => nil
         }
 
         expect(response.status).to eq(200)
@@ -173,6 +176,83 @@ describe Administration::Projects::IntegrationsController, type: :controller do
         expect(response.status).to eq(422)
         expect(parsed_response).to eq({ 'errors' => { 'api_key' => ["can't be blank"] } })
       end
+    end
+  end
+
+  context 'yoodli integration' do
+    let(:yoodli_valid_params) do
+      {
+        name: 'yoodli',
+        launch_url: 'https://keys.example/.well-known/jwks.json',
+        login_url: 'https://auth.example/token',
+        keyset_url: 'https://auth.example/auth',
+        active: true
+      }
+    end
+
+    it 'creates integration if params are valid' do
+      expect do
+        post :create, params: {
+          project_id: project.id,
+          resource: yoodli_valid_params
+        }, format: :json
+      end.to change { Integration.where(project_id: project.id, name: 'yoodli').count }.by(1)
+
+      integration = project.reload.integrations.find_by(name: 'yoodli')
+      expect(integration).not_to be_nil
+      expect(integration.config['launch_url']).to eq(yoodli_valid_params[:launch_url])
+      expect(integration.config['login_url']).to eq(yoodli_valid_params[:login_url])
+      expect(integration.config['keyset_url']).to eq(yoodli_valid_params[:keyset_url])
+      expect(integration.active).to be(true)
+
+      parsed_response = response.parsed_body
+      expected_response = {
+        'id' => integration.id,
+        'name' => 'yoodli',
+        'active' => true,
+        'yoodli_integration_details' => {
+          'platform_id' =>
+            Utility::Url.generate(:root_url, subdomain: integration.project.subdomain).chomp('/'),
+          'client_id' => integration.project.id,
+          'deployment_id' => integration.id,
+          'platform_public_keyset_url' =>
+            Utility::Url.generate(:lti_jwks_url, subdomain: integration.project.subdomain),
+          'platform_access_token_url' =>
+            Utility::Url.generate(:lti_oauth2_token_url, subdomain: integration.project.subdomain),
+          'platform_authentication_request_url' =>
+            Utility::Url.generate(:lti_auth_url, subdomain: integration.project.subdomain),
+          'platform_host_name' =>
+            Utility::Url.generate(:root_url, subdomain: integration.project.subdomain).
+                          chomp('/').
+                          sub(%r{^https?://}, ''),
+          'launch_url' => yoodli_valid_params[:launch_url],
+          'login_url' => yoodli_valid_params[:login_url],
+          'keyset_url' => yoodli_valid_params[:keyset_url]
+        },
+        'hogan_integration_details' => nil,
+        'iiht_integration_details' => nil,
+        'mettl_integration_details' => nil,
+        'skillvue_integration_details' => nil
+      }
+
+      expect(response.status).to eq(200)
+      expect(parsed_response).to eq(expected_response)
+    end
+
+    it "doesn't create integration if params are not valid" do
+      post :create, params: {
+        project_id: project.id,
+        resource: yoodli_valid_params.merge(launch_url: '')
+      }, format: :json
+
+      parsed_response = response.parsed_body
+      expect(response.status).to eq(422)
+      expect(parsed_response).to eq(
+        { 'errors' => { 'launch_url' => [
+          'can\'t be blank',
+          'Invalid URL. Specify the complete url with http or https protocol in it.'
+        ] } }
+      )
     end
   end
 
@@ -219,7 +299,8 @@ describe Administration::Projects::IntegrationsController, type: :controller do
           },
           'hogan_integration_details' => nil,
           'iiht_integration_details' => nil,
-          'skillvue_integration_details' => nil
+          'skillvue_integration_details' => nil,
+          'yoodli_integration_details' => nil
         }
 
         expect(response.status).to eq(200)

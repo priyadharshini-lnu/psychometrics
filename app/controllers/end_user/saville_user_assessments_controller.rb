@@ -2,10 +2,6 @@
 
 class EndUser::SavilleUserAssessmentsController < ApplicationController
   include AsyncRequestHandler
-  include AuthenticateByLighthouseJwt
-
-  skip_before_action :authenticate_user!, only: :redirect
-  before_action :authenticate_by_lighthouse_jwt!, only: :redirect
 
   before_action :set_user_assessment, only: %i[pass redirect]
   before_action :can_start_based_on_sequencing, only: %i[pass]

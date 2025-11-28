@@ -83,8 +83,7 @@ module Administration
         config: {
           availableLocales: I18n.available_locales,
           features: feature_flags,
-          availableAiProviders: Settings.available_ai_providers.to_s.
-                    delete("'[]").split(',').map(&:strip).compact_blank,
+          availableAiProviders: available_ai_providers_with_details,
           project: project_flags
         }
       }
@@ -101,6 +100,14 @@ module Administration
 
         before_action :handle_render_entrypoint, only: actions
       end
+    end
+
+    def available_ai_providers_with_details
+      available_ids = Settings.available_ai_providers.to_s.delete("'[]").split(',').map(&:strip).compact_blank
+
+      (Settings.ai_providers || []).
+        select { |p| available_ids.include?(p['model_id']) }.
+        map { |p| p.to_h.slice(:model_id, :description, :region, :model, :name, :provider) }
     end
 
     def handle_render_entrypoint

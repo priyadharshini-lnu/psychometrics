@@ -67,12 +67,12 @@ class AI::CampaignArtifact < ApplicationRecord
 
     if missing_keys.any?
       # Translations are not required as it will be consumed by LLMs
-      errors << "is missing required keys: #{missing_keys.join(', ')}"
+      errors << "is missing required keys: #{missing_keys.map { |key| "'#{key}'" }.join(', ')}"
     end
 
     if extra_keys.any?
       # Translations are not required as it will be consumed by LLMs
-      errors << "contains unexpected keys: #{extra_keys.join(', ')}"
+      errors << "contains unexpected keys: #{extra_keys.map { |key| "'#{key}'" }.join(', ')}"
     end
   end
 

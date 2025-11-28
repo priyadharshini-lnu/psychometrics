@@ -14,9 +14,12 @@ module Api
         def proficiency_levels
           skill = ::Skill.find_by(id: params[:id])
           result = Skills::GetProficiencyLevel.call(skill)
-
-          jsonapi_render json: result[:ok][:proficiency_level],
-                         options: { resource: Api::V2::Administration::ProficiencyLevelResource }
+          if result[:ok][:proficiency_level]
+            jsonapi_render json: result[:ok][:proficiency_level],
+                           options: { resource: Api::V2::Administration::ProficiencyLevelResource }
+          else
+            jsonapi_render_errors status: :not_found
+          end
         end
 
         def tags_search
@@ -159,6 +162,16 @@ module Api
           render json: :ok
         end
 
+        def generate_embedding
+          AdminJob.call(
+            :generate_embedding_skills,
+            {},
+            current_user
+          )
+
+          render json: :ok
+        end
+
         def meta_details
           {
             permissions: lambda {
@@ -176,6 +189,7 @@ module Api
                   export_global
                   import_global_translations
                   export_global_translations
+                  generate_embedding
                 ],
                 { project_id: context[:project_id] }
               )

@@ -5,7 +5,7 @@ require_relative 'base'
 module AI
   module OutputSchemas
     class DevelopmentActionsAssistant < Base
-      def self.as_context
+      def self.context
         <<~CONTEXT
           You must respond with a JSON object containing an array of recommendations. Each recommendation must have the required fields.
         CONTEXT

@@ -5,7 +5,11 @@ module AI
     class Idp < Base
       class ServiceConfigurationError < StandardError; end
 
+      private_attr_reader :locale
+
       def initialize(plan, current_user, instructions = nil, options = {})
+        @locale = options[:locale]
+
         super(plan, current_user, instructions, options.merge(ignore_user_prompt: true))
       end
 
@@ -53,8 +57,11 @@ module AI
 
       def assistant_context
         <<~CONTEXT
-          #{user_dependency.parse}
-          #{plan_dependency}
+          <session_context>
+            #{user_dependency.parse}
+            #{campaign_user_dependency.parse}
+            #{plan_dependency}
+          <session_context>
         CONTEXT
       end
 
@@ -63,7 +70,7 @@ module AI
           AI::Tools::Idp::AttachmentAnalysis.new(assistable, current_user, document_analysis_assistant),
           AI::Tools::Idp::SkillGapReportAnalysis.new(assistable, current_user, skill_gap_report_analysis_assistant),
           AI::Tools::Idp::AddSkillToPlan.new(assistable, current_user),
-          AI::Tools::Idp::AvailableSkillsAndDevelopmentActions.new(idp_template)
+          AI::Tools::Idp::AvailableSkillsAndDevelopmentActions.new(assistable)
         ]
       end
 
@@ -102,7 +109,10 @@ module AI
       def user_dependency
         AI::Utils::DependencyParser::UserData.new(
           current_user,
-          custom_fields: %w[role department organization entity]
+          custom_fields: %w[role department organization],
+          # This is handling the case when the assistant is used to bulk create IDPs for users in a specific language
+          # By default User.locale is used if no locale is passed
+          locale: locale
         )
       end
 
@@ -113,6 +123,14 @@ module AI
             <document_analysis_status>#{ai_assisted_user_document_summary&.status}</document_analysis_status>
           </user_idp_document>
         CONTEXT
+      end
+
+      def campaign_user_dependency
+        AI::Utils::DependencyParser::CampaignUser.new(campaign_user)
+      end
+
+      def campaign_user
+        @campaign_user ||= CampaignUser.find_by(user: current_user, campaign: assistable.campaign)
       end
 
       def user_idp_document_attachment

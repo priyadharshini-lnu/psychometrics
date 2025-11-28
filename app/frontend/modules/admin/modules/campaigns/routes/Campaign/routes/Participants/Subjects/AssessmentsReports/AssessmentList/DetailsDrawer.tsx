@@ -8,6 +8,7 @@ import { SimulationDetails } from './SimulationDetails'
 import { SavilleDetails } from './SavilleDetails'
 import { PearsonDetails } from './PearsonDetails'
 import { SkillvueDetails } from './SkillvueDetails'
+import { YoodliDetails } from './YoodliDetails'
 import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
 import RawJSON from './RawJSON'
 
@@ -115,6 +116,11 @@ export const DetailsDrawer: FC<Props> = ({
             />
 
             <SkillvueDetails
+              I18n={I18n}
+              assessment={assessment}
+            />
+
+            <YoodliDetails
               I18n={I18n}
               assessment={assessment}
             />

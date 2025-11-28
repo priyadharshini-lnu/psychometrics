@@ -10,7 +10,8 @@ import { useI18n } from '~/modules/idpReport/I18nContext'
 
 const FIELDS = [
   'name',
-  'role',
+  'current_job_role',
+  'target_job_role',
   'assigned_date',
   'division',
   'review_date',
@@ -20,7 +21,8 @@ const FIELDS = [
 
 const FIELD_TO_DATA = {
   name: 'name',
-  role: 'role',
+  current_job_role: 'current_job_role',
+  target_job_role: 'target_job_role',
   division: 'division',
   assigned_date: 'assigned_date',
   publish_date: 'start_date',

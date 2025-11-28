@@ -1,0 +1,112 @@
+---
+zh-Hant:
+  admin:
+    admins: 管理員
+    ai_artifacts: 人工智慧神器
+    ai_artifacts_output_schema_key_constraint: 鍵必須以小寫字母開頭，且只能包含小寫字母、數字和底線
+    ai_assistant_model_id_label: 型號識別碼
+    ai_assistant_model_label: 型
+    ai_assistant_model_provider: 提供者
+    ai_assistant_model_region_label: 區
+    ai_assistants: AI 助理
+    assessments: 評估
+    assessments_reports: 評估與報告
+    assessor_dashboard: 評估員儀表板
+    assessor_workshops: 評估中心
+    audit_logs: 稽核記錄
+    audit_reports: 審計報告
+    availability: 可用性
+    back_to_main: 主選單
+    campaign_templates: 活動範本
+    client: 客戶租約
+    client_admins: 客戶端管理員
+    clients: 客戶租約
+    communication_center: 通訊中心
+    country: 國家
+    create_client: 建立客戶端
+    dashboard: 儀表板
+    data_reports: 資料報告
+    datasheet: 數據表
+    delete_ok_text: 是的，刪除
+    development_actions: 發展行動
+    dimensions: 尺寸
+    empty_csv_file: CSV 檔案不包含任何資料。
+    fill_empty_score_msg: 儲存前填寫所有最終分數。
+    final_score_empty_msg: 最終分數不能是空的。
+    import_csv_assessment_group_error: 第 %{index} 列：擁有電子郵件 %{email} 的使用者已被邀請進入「%{workshopInviteName}」
+    import_csv_error: 第 %{index} 列：擁有電子郵件 %{email} 的使用者未參與本次活動
+    import_description: 從 CSV 檔案匯入使用者。每一列必須包含電子郵件地址。
+    import_download_sample: 下載 CSV 範例
+    import_error: 進口失敗了。請再試一次。
+    import_errors_title: 匯入錯誤
+    import_file_required: 請選擇一個 CSV 檔案上傳。
+    import_queued_success: 主體進口工作順利排程。請檢查您的通知狀態。
+    import_sample_file_label: 範例檔案：
+    import_title: 從 CSV 匯入主體
+    import_upload: 上傳
+    import_users: 匯入使用者
+    invalid_csv_header: CSV 檔案包含無效標頭。
+    libraries: 媒體圖書館
+    library_invalid_type: 無效圖書館項目
+    no_notifications: 沒有通知
+    norms: 規範
+    notification_bell_icon_alt_text: 通知鈴聲圖示
+    notifications: 通知
+    number: 數量
+    occupations: 職業
+    options: 選項
+    participants: 參與者
+    profile_details: 詳細資料
+    project_admins: 專案管理員
+    project_manager: 專案經理
+    question_center: 問題中心
+    registration_codes: 註冊碼
+    report_approvals: 報告核准
+    reports: 報告
+    role: 角色
+    saml_idp_certificate_available: 可購買（點擊複製）
+    saml_idp_certificate_label: 券
+    saml_idp_entity_id_label: 實體識別碼/發行人
+    saml_idp_sso_url_label: SSO 服務網址
+    saml_service_provider: SAML 服務提供者
+    saml_service_provider_acs_urls: ACS 網址
+    saml_service_provider_acs_urls_placeholder: 請輸入以逗號分隔的網址，例如 https://app1.com/saml/acs、https://app2.com/saml/acs
+    saml_service_provider_acs_urls_required: ACS 網址是必須的
+    saml_service_provider_action_delete_label: 刪除
+    saml_service_provider_action_edit_label: 編輯
+    saml_service_provider_action_rotate_certificate_label: 輪替證書
+    saml_service_provider_add: 新增 SAML 服務提供者
+    saml_service_provider_delete_success: SAML 服務提供者已成功刪除
+    saml_service_provider_enabled: 啟用
+    saml_service_provider_entity_id: 實體識別碼
+    saml_service_provider_entity_id_placeholder: 輸入實體識別碼
+    saml_service_provider_entity_id_required: 必須提供實體識別碼
+    saml_service_provider_idp_config: IdP 配置
+    saml_service_provider_manage: 行動
+    saml_service_provider_mask_identity: 面具身份
+    saml_service_provider_masking_enabled: 啟用遮罩
+    saml_service_provider_name: 名字
+    saml_service_provider_name_placeholder: 輸入服務提供者名稱
+    saml_service_provider_name_required: 需命名
+    saml_service_provider_remove_content: 你確定要移除 SAML 服務提供者：%{name}嗎？
+    saml_service_provider_remove_title: 移除 SAML 服務提供者
+    saml_service_provider_rotate_certificate_content: 你確定要輪換證書給%{name}嗎？這會產生新的憑證，並使現有的失效。
+    saml_service_provider_rotate_certificate_error: 未完成證書輪換
+    saml_service_provider_rotate_certificate_ok: 輪替證書
+    saml_service_provider_rotate_certificate_success: 證書順利輪替
+    saml_service_provider_rotate_certificate_title: 輪替證書
+    saml_service_provider_search: 搜尋 SAML 服務提供者...
+    saml_service_provider_updated_date: 更新日期
+    saml_service_providers: 服務提供者
+    saml_settings: SAML 設定
+    scheduling: 排程
+    scoring: 計分
+    show_submenu: 顯示子選單
+    skills_taxonomy: 技能分類法
+    slot_name: 車位名稱
+    stats: 統計資料
+    subject_part_of_other_invite: 主旨包含電子郵件%{user_email}已被邀請至「%{workshop_invite_name}」
+    user_report_events: 使用者報告事件
+    users: 使用者
+    view_licenses: 檢視授權
+    year: 國家

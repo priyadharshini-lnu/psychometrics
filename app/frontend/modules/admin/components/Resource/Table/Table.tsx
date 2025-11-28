@@ -11,12 +11,13 @@ import { useWindowSize } from '~/hooks/useWindowSize'
 type Props = {
   children: React.ReactNode[]
   pagination?: boolean
+  onRowChange?: (record: Record<string, unknown>) => React.HTMLAttributes<HTMLElement>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   expandable?: ExpandableConfig<any>
 }
 
 export const Table: FC<Props> = ({
-  pagination, children, expandable,
+  pagination, children, expandable, onRowChange,
 }) => {
   const arrayChildren = Children.toArray(children).filter(Boolean) as ReactElement[]
   arrayChildren.forEach((c) => {
@@ -49,6 +50,7 @@ export const Table: FC<Props> = ({
       dataSource={resource.data}
       pagination={false}
       loading={tableLoading}
+      onRow={onRowChange}
       scroll={{ x: 'max-content' }}
       expandable={expandable}
       onChange={resource.handleTableChange}

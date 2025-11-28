@@ -232,8 +232,8 @@ export const DevelopmentActionListView: React.FC<DevelopmentActionListViewProps>
         {categories.map(category => (
           <div key={category.skillType} className="pt-4 pb-4 mt-2">
             <Flex vertical gap={16}>
-              <Flex align="center" gap={12}>
-                <Avatar size={24} src={renderSkillTypeIcon(category.skillType)} />
+              <Flex align="center" gap={8}>
+                <Avatar size={64} src={renderSkillTypeIcon(category.skillType)} />
                 <Typography.Title
                   className="font-semi-bold m-0 mb-0 transform-capitalize"
                   level={3}
@@ -254,7 +254,7 @@ export const DevelopmentActionListView: React.FC<DevelopmentActionListViewProps>
             icon={<PlusOutlined />}
             className={styles.manageSkillsBtn}
           >
-            {I18n.t('administration.idp.development_actions.manage_skills')}
+            {I18n.t('idp.initial_steps.add_skills_step')}
           </Button>
         ) : null}
       </Flex>

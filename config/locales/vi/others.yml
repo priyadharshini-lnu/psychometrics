@@ -919,8 +919,6 @@ vi:
     invalid_job: Thông báo này tương ứng với bản ghi đã xóa
     mark_as_read: Đánh dấu tất cả đã đọc
     more: Nhiều hơn
-    no_notifications: Không có thông báo
-    notifications: Thông báo
     results: Kết quả
     super_admin:
       errors:
@@ -1341,16 +1339,11 @@ vi:
     continue: Tiếp tục nhiệm vụ của bạn
     dashboard_instructions: Bạn có thể đã được giao nhiều hoạt động cần hoàn thành. Vui lòng đảm bảo kiểm tra xem tất cả các hoạt động được giao đã được hoàn thành trong tất cả các chiến dịch hay chưa.
     dashboard_menu:
-      bookings: Đặt chỗ
       campaign: Chiến dịch
-      change_password: Thay đổi mật khẩu
-      development: Phát triển
       direct_reportees: Người báo cáo trực tiếp
       home: Trang chủ
       insights: Thông tin chi tiết
-      my_plan: Kế hoạch của tôi
       profile: Hồ sơ
-      profile_details: Chi tiết
       tasks: Nhiệm vụ
     details: Chi tiết
     edit_evaluation:
@@ -1799,7 +1792,6 @@ vi:
       view: Cảnh
       view_all_tasks: Xem tất cả tác vụ
       view_detail: Xem chi tiết
-      yes_delete: Có, xóa
     column:
       action: Hoạt động
       active: Hoạt động
@@ -1874,7 +1866,6 @@ vi:
       projects: Dự án
       report: Báo cáo
       reports: Báo cáo
-      scoring: Ghi
       sms_contact: Liên hệ SMS
       threesixty_campaign: Điểm chiến dịch Threesixty
     status:
@@ -2568,14 +2559,14 @@ vi:
       you: Mày
     convert_to_draft: Chuyển đổi sang bản nháp
     current_step: Bước hiện tại %{step}
-    delete_skill: Bạn có chắc chắn muốn xóa kỹ năng vì nó cũng sẽ xóa tất cả các hành động phát triển được kết nối không?
+    delete_skill: Bạn có chắc chắn muốn xóa kỹ năng này không? Việc xóa sẽ loại bỏ tất cả các hành động phát triển liên quan.
     details: Chi tiết
     development_actions:
       action_private: Có
       action_public: Không
       add_development_action: Thêm hành động phát triển
       add_development_actions_from_below_options: Thêm Hành động phát triển từ các tùy chọn bên dưới.
-      add_development_actions_modal_title: Thư viện hành động phát triển cho %{skillName}
+      add_development_actions_modal_title: Thư viện hành động phát triển cho
       add_from_library: Thêm từ Thư viện
       add_more: Thêm các hành động phát triển khác
       add_selected_development_actions: Thêm các hành động phát triển đã chọn
@@ -2606,7 +2597,7 @@ vi:
       generate_more: Tạo thêm
       generating_development_actions: Tạo ra các hành động phát triển...
       generative_ai: AI tổng quát
-      generative_ai_description: Hãy để AI tạo ra một hành động phát triển phù hợp dành riêng cho bạn
+      generative_ai_description_msg: Hãy để AI tạo ra một hành động phát triển phù hợp dành riêng cho bạn
       heading: Hành động phát triển
       idp_library: Thư viện IDP
       idp_library_description: Chọn một hành động phát triển đã được chứng minh từ thư viện do chuyên gia tuyển chọn của chúng tôi.
@@ -2642,7 +2633,7 @@ vi:
       write_here: Viết ở đây...
     direct_reportee_details: Chi tiết người được báo cáo trực tiếp
     download:
-      description: 'Để tải xuống báo cáo, vui lòng theo liên kết: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Link chỉ có giá trị trong 10 phút'
+      description: 'Để tải xuống báo cáo, vui lòng theo liên kết: <a href=''%{url}'' target=''_blank''>Download</a>. Link chỉ có giá trị trong 10 phút'
     download_plan: Tải xuống gói
     edit_plan: Chỉnh sửa kế hoạch
     edit_plan_and_add_skills: Chỉnh sửa Kế hoạch và nhấp vào Quản lý Kỹ năng để thêm Kỹ năng.
@@ -2664,8 +2655,8 @@ vi:
         one: Đã xóa hành động phát triển
         other: Đã xóa các hành động phát triển
     initial_steps:
-      add_skill_group_description: Dựa trên kết quả đánh giá của bạn, đây là một số lĩnh vực thế mạnh và sự phát triển dành cho bạn. Chọn các kỹ năng bạn muốn phát triển hơn nữa như một phần của kế hoạch phát triển của bạn.
-      add_skill_group_title: Khám phá các kỹ năng %{category} của bạn
+      add_skill_group_description: Chọn các kỹ năng bạn muốn phát triển hơn nữa như một phần của kế hoạch phát triển của bạn.
+      add_skill_group_title: "%{category}"
       add_skills: Thêm
       add_skills_step: Thêm kỹ năng
       back: Lưng
@@ -2711,7 +2702,6 @@ vi:
           name: Tên
           publish_date: Ngày xuất bản
           review_date: Ngày đánh giá
-          role: Vai trò hiện tại
       guidelines:
         cards:
           c1:
@@ -3380,13 +3370,6 @@ vi:
   sessions:
     errors:
       recaptcha: Xác minh reCAPTCHA đã thất bại. Vui lòng thử lại.
-  shared:
-    filters:
-      clear: Xóa bộ lọc
-    internet_disconnected_message: Đang cố gắng kết nối lại. Vui lòng kiểm tra kết nối internet của bạn.
-    mte_logo_alt_text: Logo Mercer Talent Enterprise
-    terms_conditions_privacy: Tuyên bố về quyền riêng tư
-    tte_terms_and_condition: Điều khoản &amp; Quyền riêng tư
   sheet:
     import_modal:
       alert_access_sheet_removal: Tải lên Accesssheet mới với xóa tất cả bản ghi hiện có và tải lên bản ghi mới từ trang tính. Hãy đảm bảo rằng bạn có tất cả các bản ghi Accesssheet trong bảng tính.

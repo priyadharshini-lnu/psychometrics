@@ -33,7 +33,12 @@ export const OutputSchemaKeyFields: React.FC<Props> = ({
         rules={[{
           required: true,
           message: I18n.t('administration.ai_assistants.form.schema_key_required'),
-        }]}
+        },
+        {
+          pattern: /^[a-z][a-z0-9_]*$/,
+          message: I18n.t('admin.ai_artifacts_output_schema_key_constraint'),
+        },
+        ]}
       >
         <Input
           placeholder={I18n.t('administration.ai_assistants.form.enter_schema_key')}

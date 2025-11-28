@@ -8,6 +8,7 @@ RSpec.describe AI::Assistant, type: :model do
   let(:ai_provider_config) do
     {
       'model_id' => 'gpt-4o-mini',
+      'model' => 'gpt-4o-mini',
       'name' => 'OpenAI GPT-4o Mini',
       'context' => {
         'openai_api_key' => 'test-api-key'
@@ -135,7 +136,7 @@ RSpec.describe AI::Assistant, type: :model do
 
       idp_assistant.for_user(user)
 
-      schema_context = AI::OutputSchemas::IdpAssistant.as_context
+      schema_context = AI::OutputSchemas::IdpAssistant.context
       expected_instructions = <<~EXPECTED
         #{idp_assistant.system_prompt}
         #{schema_context}

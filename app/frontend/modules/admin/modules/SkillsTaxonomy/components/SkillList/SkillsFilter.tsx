@@ -128,6 +128,21 @@ export const SkillsFilter: React.FC<Props> = ({
           })
       }
     }
+
+    if (action === 'generate_embedding_skills') {
+      resource.collectionAction({
+        action: 'generate_embedding',
+        method: 'post',
+        body: {},
+        responseType: t.literal('ok'),
+      })
+        .then(() => {
+          message.info(I18n.t('administration.skills.vector.generate_embedding_success_msg'))
+        })
+        .catch(() => {
+          message.error(I18n.t('administration.skills.vector.generate_embedding_failure_msg'))
+        })
+    }
   }
 
   const handleCreateSkillModal = () => {

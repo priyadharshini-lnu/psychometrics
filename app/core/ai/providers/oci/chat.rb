@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/ModuleLength
 # Ref: https://docs.oracle.com/en-us/iaas/api/#/en/generative-ai-inference/20231130/datatypes/CohereChatRequest
+
+# rubocop:disable Metrics/ModuleLength
 module AI
   module Providers
     class Oci
       module Chat
         include Config
         include Tools
+        include Errors
 
         DEFAULT_MAX_TOKENS = 600
         CITATION_QUALITY = 'FAST'
@@ -24,7 +26,7 @@ module AI
               modelId: model_id,
               servingType: SERVING_TYPE
             },
-            chatRequest: build_chat_request(formatted_messages, temperature, formatted_tools, stream)
+            chatRequest: build_chat_request(formatted_messages, temperature, formatted_tools, stream, schema)
           }
         end
         # rubocop:enable Metrics/ParameterLists, Lint/UnusedMethodArgument
@@ -34,11 +36,11 @@ module AI
 
           chat_details = build_oci_chat_details(payload, headers)
 
-          RubyLLM.logger.debug "OCI Chat Request: #{chat_details.to_hash}"
+          RubyLLM.logger.debug "OCI Chat Request: #{JSON.pretty_generate(chat_details.to_hash)}"
 
           response = client.chat(chat_details)
 
-          RubyLLM.logger.debug "OCI Chat Response: #{response.data.to_hash}"
+          RubyLLM.logger.debug "OCI Chat Response: #{JSON.pretty_generate(response.data.to_hash)}"
 
           parse_completion_response(response)
         rescue OCI::Errors::ServiceError => e
@@ -111,28 +113,66 @@ module AI
         def build_cohere_chat_request(chat_request_data, params, _headers)
           request_params = build_chat_params(chat_request_data[:messages])
 
+          apply_default_parameters!(request_params)
+          request_params.merge!(params)
+
+          add_tools_if_present!(request_params, chat_request_data[:tools])
+          handle_schema_if_present!(request_params, chat_request_data, params)
+
+          OCI::GenerativeAiInference::Models::CohereChatRequest.new(request_params)
+        end
+
+        def apply_default_parameters!(request_params)
           # Add default parameters
           request_params[:citation_quality] ||= CITATION_QUALITY
 
           # By default OCI doesn't have any specified limit mentioned that is internally used by the model
           # Through testing, we can see the limit is too low, setting it to 600 by default
           request_params[:max_tokens] ||= DEFAULT_MAX_TOKENS
-
-          # Merge in params from RubyLLM.chat.with_params() - this allows users to override defaults
-          request_params.merge!(params)
-
-          # Add tools if present
-          request_params[:tools] = format_cohere_tools(chat_request_data[:tools]) if chat_request_data[:tools].present?
-
-          OCI::GenerativeAiInference::Models::CohereChatRequest.new(request_params)
         end
 
-        def build_chat_request(messages, temperature, tools, stream)
+        def add_tools_if_present!(request_params, tools)
+          return if tools.blank?
+
+          request_params[:tools] = format_cohere_tools(tools)
+        end
+
+        def handle_schema_if_present!(request_params, chat_request_data, params)
+          return if chat_request_data[:schema].blank?
+
+          has_tools = chat_request_data[:tools].present?
+          has_documents = params[:documents].present?
+          has_search_queries = params[:is_search_queries_only] == true
+
+          if has_conflicting_features?(has_tools, has_documents, has_search_queries)
+            log_schema_warning(has_tools, has_documents, has_search_queries)
+          else
+            request_params[:response_format] = create_response_format(chat_request_data[:schema])
+          end
+        end
+
+        def has_conflicting_features?(has_tools, has_documents, has_search_queries)
+          has_tools || has_documents || has_search_queries
+        end
+
+        def log_schema_warning(has_tools, has_documents, has_search_queries)
+          warning_reasons = []
+          warning_reasons << 'tools' if has_tools
+          warning_reasons << 'documents' if has_documents
+          warning_reasons << 'search_queries_only' if has_search_queries
+
+          RubyLLM.logger.debug 'Schema ignored: OCI response_format is not supported with ' \
+                               "#{warning_reasons.join(', ')}. Consider including schema requirements " \
+                               'in your system message instead.'
+        end
+
+        def build_chat_request(messages, temperature, tools, stream, schema = nil)
           {
             messages: messages,
             temperature: temperature,
             isStream: stream,
-            tools: tools
+            tools: tools,
+            schema: schema
           }
         end
 
@@ -259,38 +299,36 @@ module AI
           chat_response.usage&.completion_tokens || 0
         end
 
-        def handle_oci_service_error(error)
-          Rails.logger.error("OCI Generative AI Error: #{error}")
+        def create_response_format(schema)
+          formatted_schema = format_schema_for_oci(schema)
 
-          error_message = extract_oci_error_message(error)
-
-          case error.status_code
-            when 400
-              raise RubyLLM::BadRequestError.new(nil, error_message)
-            when 401
-              raise RubyLLM::UnauthorizedError.new(nil, error_message)
-            when 403
-              raise RubyLLM::ForbiddenError.new(nil, error_message)
-            when 429
-              raise RubyLLM::RateLimitError.new(nil, error_message)
-            when 500
-              raise RubyLLM::ServerError.new(nil, error_message)
-            when 502, 503
-              raise RubyLLM::ServiceUnavailableError.new(nil, error_message)
-            when 529
-              raise RubyLLM::OverloadedError.new(nil, error_message)
-            else
-              raise RubyLLM::Error.new(nil, error_message)
-          end
+          OCI::GenerativeAiInference::Models::CohereResponseJsonFormat.new(
+            schema: formatted_schema
+          )
         end
 
-        def extract_oci_error_message(error)
-          return "OCI Service Error: #{error.message}" if error.message.present?
-          return "OCI Service Error (#{error.status_code})" if error.status_code.present?
+        def format_schema_for_oci(schema)
+          # Remove unsupported fields and convert symbol keys to strings
+          # OCI doesn't support 'strict', '$defs', and other OpenAI-specific fields
+          cleaned_schema = schema.dup
 
-          'OCI Service Error: Unknown error occurred'
-        rescue StandardError
-          'OCI Service Error: Unable to parse error message'
+          cleaned_schema.delete(:strict)
+          cleaned_schema.delete('strict')
+          cleaned_schema.delete(:$defs)
+          cleaned_schema.delete('$defs')
+
+          stringify_keys_recursively(cleaned_schema)
+        end
+
+        def stringify_keys_recursively(obj)
+          case obj
+            when Hash
+              obj.transform_keys(&:to_s).transform_values { |v| stringify_keys_recursively(v) }
+            when Array
+              obj.map { |item| stringify_keys_recursively(item) }
+            else
+              obj
+          end
         end
       end
     end

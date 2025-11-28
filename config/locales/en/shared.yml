@@ -1,0 +1,34 @@
+---
+en:
+  shared:
+    action: Action
+    add: Add
+    cancel: Cancel
+    change_password: Change Password
+    clear_filters: Clear Filters
+    description: Description
+    edit: Edit
+    edited: Edited
+    id: ID
+    internet_disconnected_message: Trying to reconnect. Please check your internet connection.
+    mte_logo_alt_text: Mercer Talent Enterprise logo
+    name: Name
+    new: New
+    removed: Removed
+    rte_paste_content_exceeds_char_limit: Text exceeds the character limit of {{maxCharacterLimit}} and cannot be pasted.
+    rte_paste_content_exceeds_word_limit: Text exceeds the word limit of {{maxWordLimit}} and cannot be pasted.
+    search: Search
+    table:
+      entries:
+        selected:
+          one: 1 row selected
+          other: "{{count}} rows selected"
+        total:
+          one: 'Total : 1'
+          other: 'Total : {{count}}'
+          zero: 'Total : 0'
+    terms_conditions_privacy: Privacy Statement
+    transcriptions: Transcriptions
+    tte_terms_and_condition: Terms & Privacy
+    type: Type
+    update: Update

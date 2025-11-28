@@ -5,6 +5,23 @@ module Api
     before_action :load_user, only: %i[generate]
     before_action :load_ai_artifact, only: %i[generate test_generate]
 
+    def meta_details
+      {
+        permissions: lambda {
+          GetPermissionsHash.call!(
+            Api::Administration::Campaigns::AIArtifactPolicy,
+            context[:user],
+            @model,
+            %w[index create update destroy import export],
+            {
+              project_id: context[:project]&.id,
+              campaign_id: context[:campaign]&.id
+            }
+          )
+        }
+      }
+    end
+
     def generate
       artifact_result_generator = AI::CampaignArtifacts::ResultGenerator.new(@artifact, @user,
                                                                              current_user: current_user)
@@ -39,11 +56,18 @@ module Api
 
       artifact_result_generator.
         on(:ok) do |assistant_response|
-          artifact_results = @artifact.results.new(user: nil, results: assistant_response[:results],
-                                                   parsed_dependencies: assistant_response[:parsed_dependencies])
+          artifact_result = @artifact.results.new(user: nil, results: assistant_response[:results],
+                                                  parsed_dependencies: assistant_response[:parsed_dependencies])
 
-          render json: jsonapi_format(artifact_results,
-                                      resource: Api::V2::Administration::Campaigns::AIArtifactResultResource)
+          json_response = jsonapi_format(
+            artifact_result,
+            resource: Api::V2::Administration::Campaigns::AIArtifactResultResource
+          )
+
+          json_response[:data]['attributes']['total_input_tokens']  = assistant_response[:input_tokens]
+          json_response[:data]['attributes']['total_output_tokens'] = assistant_response[:output_tokens]
+
+          render json: json_response
         end.
         on(:error) do |error|
           jsonapi_render_errors [{ detail: error }], status: :unprocessable_entity
@@ -65,6 +89,44 @@ module Api
       render json: {}
     end
 
+    def export
+      audit! :campaign_artifacts_export, campaign,
+             payload: { campaign_id: campaign.id },
+             campaign: campaign
+
+      AdminJob.call(
+        :export_campaign_ai_artifacts,
+        { campaign_id: campaign.id },
+        current_user
+      )
+
+      render json: :ok
+    end
+
+    def import
+      file = params.dig(:data, :attributes, :file) || params[:file]
+
+      unless file
+        return jsonapi_render_errors(
+          [{ detail: I18n.t('administration.campaign_ai_artifacts_import.errors.file_required') }],
+          status: :unprocessable_entity
+        )
+      end
+
+      AdminJob.call(
+        :import_campaign_ai_artifacts,
+        { campaign_id: campaign.id },
+        current_user,
+        file
+      )
+
+      audit! :campaign_artifacts_import, campaign,
+             payload: { campaign_id: campaign.id },
+             campaign: campaign
+
+      render json: :ok
+    end
+
     def policy_class
       @policy_class ||= Api::Administration::Campaigns::AIArtifactResultPolicy
     end
@@ -72,11 +134,11 @@ module Api
     private
 
     def load_user
-      @user = @campaign.users.find(params.dig(:query, :user_id))
+      @user = campaign.users.find(params.dig(:query, :user_id))
     end
 
     def load_ai_artifact
-      @artifact = @campaign.campaign_ai_artifacts.find(params[:id])
+      @artifact = campaign.campaign_ai_artifacts.find(params[:id])
     end
   end
 end

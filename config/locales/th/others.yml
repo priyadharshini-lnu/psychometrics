@@ -919,8 +919,6 @@ th:
     invalid_job: การแจ้งเตือนนี้สอดคล้องกับเรกคอร์ดที่ถูกลบ
     mark_as_read: ทําเครื่องหมายอ่านทั้งหมด
     more: อีก
-    no_notifications: ไม่มีการแจ้งเตือน
-    notifications: แจ้ง เตือน
     results: ผลลัพธ์
     super_admin:
       errors:
@@ -1341,16 +1339,11 @@ th:
     continue: ดำเนินงานของคุณต่อไป
     dashboard_instructions: คุณอาจได้รับมอบหมายกิจกรรมหลายรายการที่ต้องดำเนินการให้แล้วเสร็จ กรุณาตรวจสอบให้แน่ใจว่าคุณได้ทำกิจกรรมที่ได้รับมอบหมายทั้งหมดครบถ้วนในทุกแคมเปญแล้ว
     dashboard_menu:
-      bookings: การจอง
       campaign: แคมเปญ
-      change_password: เปลี่ยนรหัสผ่าน
-      development: การพัฒนา
       direct_reportees: ผู้รายงานโดยตรง
       home: บ้าน
       insights: ข้อมูลเชิงลึก
-      my_plan: แผนของฉัน
       profile: โปรไฟล์
-      profile_details: รายละเอียด
       tasks: งาน
     details: รายละเอียด
     edit_evaluation:
@@ -1802,7 +1795,6 @@ th:
       view: ดู
       view_all_tasks: แสดงงานทั้งหมด
       view_detail: แสดงรายละเอียด
-      yes_delete: ใช่ ลบ
     column:
       action: ดำเนินการ
       active: เปิดใช้งาน
@@ -1877,7 +1869,6 @@ th:
       projects: โครงการ
       report: รายงาน
       reports: รายงาน
-      scoring: การให้คะแนน
       sms_contact: ติดต่อ SMS
       threesixty_campaign: คะแนนแคมเปญ Threesixty
     status:
@@ -2571,14 +2562,14 @@ th:
       you: ท่าน
     convert_to_draft: แปลงเป็นแบบร่าง
     current_step: ขั้นตอนปัจจุบัน %{step}
-    delete_skill: คุณแน่ใจหรือไม่ว่าต้องการลบทักษะเพราะมันจะลบการดําเนินการพัฒนาที่เชื่อมต่อทั้งหมดด้วย?
+    delete_skill: คุณแน่ใจหรือไม่ว่าต้องการลบทักษะนี้ การลบจะลบกิจกรรมการพัฒนาที่เกี่ยวข้องทั้งหมดด้วย
     details: รายละเอียด
     development_actions:
       action_private: ใช่
       action_public: ไม่ใช่
       add_development_action: เพิ่มการดําเนินการพัฒนา
       add_development_actions_from_below_options: เพิ่มการดําเนินการพัฒนาจากตัวเลือกด้านล่าง
-      add_development_actions_modal_title: ไลบรารีการดําเนินการเพื่อการพัฒนาสําหรับ %{skillName}
+      add_development_actions_modal_title: ไลบรารีการดําเนินการเพื่อการพัฒนาสําหรับ
       add_from_library: เพิ่มจากห้องสมุด
       add_more: เพิ่มการดําเนินการพัฒนาเพิ่มเติม
       add_selected_development_actions: เพิ่มการดําเนินการการพัฒนาที่เลือก
@@ -2609,7 +2600,7 @@ th:
       generate_more: สร้างมากขึ้น
       generating_development_actions: การสร้างการดําเนินการเพื่อการพัฒนา...
       generative_ai: กําเนิด AI
-      generative_ai_description: ปล่อยให้ AI สร้างการดําเนินการพัฒนาที่ปรับให้เหมาะกับคุณโดยเฉพาะ
+      generative_ai_description_msg: ปล่อยให้ AI สร้างการดําเนินการพัฒนาที่ปรับให้เหมาะกับคุณโดยเฉพาะ
       heading: การดําเนินการพัฒนา
       idp_library: ห้องสมุด IDP
       idp_library_description: เลือกการดําเนินการพัฒนาที่ได้รับการพิสูจน์แล้วจากไลบรารีที่คัดสรรโดยผู้เชี่ยวชาญของเรา
@@ -2645,7 +2636,7 @@ th:
       write_here: เขียนที่นี่...
     direct_reportee_details: รายละเอียดผู้รายงานโดยตรง
     download:
-      description: 'หากต้องการดาวน์โหลดรายงาน โปรดไปที่ลิงค์: <a href=''''%{url}'''' target=''''_blank''''>ดาวน์โหลด</a> ลิงค์ใช้ได้เพียง 10 นาทีเท่านั้น'
+      description: 'หากต้องการดาวน์โหลดรายงาน โปรดไปที่ลิงค์: <a href=''%{url}'' target=''_blank''>ดาวน์โหลด</a> ลิงค์ใช้ได้เพียง 10 นาทีเท่านั้น'
     download_plan: ดาวน์โหลดแผน
     edit_plan: แก้ไขแผน
     edit_plan_and_add_skills: แก้ไขแผนและคลิกที่จัดการทักษะเพื่อเพิ่มทักษะ
@@ -2667,8 +2658,8 @@ th:
         one: ลบการดําเนินการพัฒนา
         other: การดําเนินการการพัฒนาที่ลบออก
     initial_steps:
-      add_skill_group_description: จากผลการประเมินของคุณต่อไปนี้คือจุดแข็งและการพัฒนาสําหรับคุณ เลือกทักษะที่คุณต้องการพัฒนาเพิ่มเติมโดยเป็นส่วนหนึ่งของแผนการพัฒนาของคุณ
-      add_skill_group_title: สํารวจทักษะ %{category} ของคุณ
+      add_skill_group_description: เลือกทักษะที่คุณต้องการพัฒนาต่อไปในแผนการพัฒนาของคุณ
+      add_skill_group_title: "%{category}"
       add_skills: เพิ่ม
       add_skills_step: เพิ่มทักษะ
       back: ย้อนกลับ
@@ -2714,7 +2705,6 @@ th:
           name: ชื่อ
           publish_date: วันที่เผยแพร่
           review_date: วันที่ตรวจสอบ
-          role: บทบาทปัจจุบัน
       guidelines:
         cards:
           c1:
@@ -3383,13 +3373,6 @@ th:
   sessions:
     errors:
       recaptcha: การยืนยันตัวตนด้วย Recaptcha ล้มเหลว กรุณาทำใหม่อีกครั้ง
-  shared:
-    filters:
-      clear: เคลียร์ตัวกรอง
-    internet_disconnected_message: กำลังพยายามเชื่อมต่อใหม่ โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ
-    mte_logo_alt_text: โลโก้ Mercer Talent Enterprise
-    terms_conditions_privacy: คำชี้แจงความเป็นส่วนตัว
-    tte_terms_and_condition: เงื่อนไขและความเป็นส่วนตัว
   sheet:
     import_modal:
       alert_access_sheet_removal: การอัปโหลด Accesssheet ใหม่พร้อมลบบันทึกที่มีอยู่ทั้งหมดและอัปโหลดบันทึกใหม่จากแผ่นงาน โปรดตรวจสอบให้แน่ใจว่าคุณมีระเบียน Accesssheet ทั้งหมดในสเปรดชีต

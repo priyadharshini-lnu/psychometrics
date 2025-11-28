@@ -44,15 +44,14 @@ module Idp
         end
 
         begin
-          if STATUS_WITH_NOTE.include?(status) && note.present?
-            user_idp_plan.public_send(:"#{event}!", note)
-          else
-            user_idp_plan.public_send(:"#{event}!")
-          end
+          payload = STATUS_WITH_NOTE.include?(status) && note.present? ? note : nil
+          user_idp_plan.public_send(:"#{event}!", *[payload].compact)
         rescue Workflow::NoTransitionAllowed => e
           errors.add(:base, e.message)
           false
         end
+      elsif status == 'in_progress' && !manager_approval_required?
+        user_idp_plan.update(approval_status: 'approved', completion_status: status)
       else
         user_idp_plan.update(completion_status: status)
       end
@@ -62,6 +61,7 @@ module Idp
 
     def validate_completion_status_update
       return if UserIdpPlan.approval_statuses.include?(status)
+      return if status == 'in_progress' && !manager_approval_required?
 
       if status == 'in_progress' && user_idp_plan.approval_status != 'approved'
         errors.add(:base, I18n.t('validations.idp.can_not_start_without_approval'))

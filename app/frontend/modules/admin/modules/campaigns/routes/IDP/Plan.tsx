@@ -233,7 +233,7 @@ export const Plan = () => {
       campaignId: planPayload?.campaignId.toString(),
       active: planPayload?.active,
       creatorId: planPayload?.creatorId.toString(),
-      status: planPayload?.status,
+      approvalStatus: planPayload?.status,
       ...skillPayload,
     }).then(() => {
       fetchIdpSkillDetails({
@@ -265,7 +265,10 @@ export const Plan = () => {
   }
 
   const onRemoveSkillFromPlan = (skillId) => {
-    setSelectedSkills(selectedSkills.filter(skill => skill.id !== skillId))
+    const userIdpSkills = selectedSkills.filter(skill => skill.id !== skillId)
+
+    setSelectedSkills(userIdpSkills)
+    debouncedSaveSkills(userIdpSkills)
   }
 
   const handleSelectSkill = (skills) => {
@@ -298,7 +301,7 @@ export const Plan = () => {
       campaignId: planPayload?.campaignId.toString(),
       active: planPayload?.active,
       creatorId: planPayload?.creatorId.toString(),
-      status: USER_IDP_PLAN_STATUS.DRAFT,
+      approvalStatus: USER_IDP_PLAN_STATUS.DRAFT,
       ...skillPayload,
     }).then(() => {
       message.success(I18n.t('idp.skills_updated'))
@@ -354,7 +357,7 @@ export const Plan = () => {
                 setIsLoading(true)
                 updatePlan({
                   id: userIdpPlanData[0]?.id,
-                  status: USER_IDP_PLAN_STATUS.DRAFT,
+                  approvalStatus: USER_IDP_PLAN_STATUS.DRAFT,
                 }).then(() => {
                   setIsLoading(false)
                 })

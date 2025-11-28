@@ -1,0 +1,29 @@
+---
+sl:
+  enduser:
+    add_idp_plan_note: Dodaj opombo...
+    add_idp_plan_rejection_reason: Dodaj razlog...
+    approve_idp_plan: Odobri načrt
+    bookings: Rezervacije
+    campaign: Kampanja
+    development: Razvoj
+    direct_reportees: Neposredni podrejeni
+    home: Nadzorna plošča
+    idp_plan_approval_note: Opomba za odobritev
+    insights: Vpogledi
+    lighthouse_assistant: Pomočnik svetilnika
+    max_word_limit: Mora imeti največ %{max} besed
+    min_word_limit: Mora imeti najmanj %{min} besed
+    my_plan: Moj načrt
+    profile: Profil
+    profile_details: Podrobnosti profila
+    question_counter: Vprašanje %{current} od %{total}
+    reason_for_idp_plan_rejection: Razlog za zavrnitev
+    reject_idp_plan: Načrt zavrnitve
+    request_retry_message: Si offline. Vaših odgovorov ni bilo mogoče shraniti, bodo pa samodejno shranjeni, ko boste ponovno na spletu. Prosimo, ne osvežujte ali zapirajte strani.
+    selected_count: Izbrano
+    skill_type: Vrsta spretnosti
+    start_campaign_message_proctored: To je nadzorovana kampanja, kliknite gumb '%{buttonText}' za začetek aktivnosti.
+    start_campaign_message_timed: To je časovno omejena kampanja, kliknite gumb '%{buttonText}' za začetek aktivnosti.
+    start_campaign_message_timed_proctored: To je časovno omejena in nadzorovana kampanja, za začetek aktivnosti kliknite gumb '%{buttonText}'.
+    tasks: Naloge

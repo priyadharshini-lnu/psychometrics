@@ -7,6 +7,8 @@ class LicenseUsage < ApplicationRecord
 
   belongs_to :license,           inverse_of: :license_usages
   belongs_to :client,            inverse_of: :license_usages
+  belongs_to :project, class_name: 'Client', optional: true
+  belongs_to :project_license, optional: true
   belongs_to :campaign,          inverse_of: :license_usages
   belongs_to :user,              inverse_of: :license_usages
   belongs_to :registration_code, inverse_of: :license_usages
@@ -24,7 +26,7 @@ class LicenseUsage < ApplicationRecord
   end
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id subject_name campaign_name subject_email status]
+    %w[id subject_name campaign_name subject_email status project_id]
   end
 
   def self.ransackable_associations(_auth_object = nil)
@@ -37,6 +39,12 @@ class LicenseUsage < ApplicationRecord
       client.license_msg[license_id] = I18n.t('activerecord.errors.models.license.overuse',
                                               name: license.decorate.display_name)
     end
+
+    if license.is_project_specific? && project.present?
+      project_license = license.project_licenses.enabled.find_by!(project: project)
+      project_license&.increment!(:used_number)
+    end
+
     Licenses::OveruseJob.perform_later(license.id) if license.used_overuse_number == 1
   end
 end

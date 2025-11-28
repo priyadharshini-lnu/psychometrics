@@ -1,0 +1,29 @@
+---
+sr-Latn:
+  shared:
+    action: Akcija
+    add: Dodaj
+    cancel: Otkaži
+    change_password: Promeni lozinku
+    clear_filters: Obriši filtere
+    description: Opis
+    edit: Uredi
+    edited: Novi
+    id: ID
+    internet_disconnected_message: Trying to reconnect. Please check your internet connection.
+    mte_logo_alt_text: Mercer Talent Enterprise logo
+    name: Ime
+    new: Novi
+    removed: Uklonjeno
+    rte_paste_content_exceeds_char_limit: Tekst prelazi ograničenje znakova {{maxCharacterLimit}} i ne može se nalepiti.
+    rte_paste_content_exceeds_word_limit: Tekst prelazi ograničenje reči {{maxWordLimit}} i ne može se nalepiti.
+    search: Pretraži
+    table:
+      entries:
+        selected: Izabran 1 red
+        total: 'Ukupno : 1'
+    terms_conditions_privacy: Izjava o privatnosti
+    transcriptions: Transkripcije
+    tte_terms_and_condition: Uslovi i privatnost
+    type: Tip
+    update: Ažuriraj

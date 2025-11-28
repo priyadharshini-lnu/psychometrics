@@ -23,6 +23,7 @@ module Api
 
             optional(:disabled).filled(:bool)
             optional(:enabled).filled(:bool)
+            optional(:is_project_specific).filled(:bool)
           end
         end
 

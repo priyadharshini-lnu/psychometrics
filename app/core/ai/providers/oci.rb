@@ -5,6 +5,7 @@ module AI
     # Oracle Cloud Infrastructure (OCI) Generative AI integration.
     class Oci < RubyLLM::Provider
       include AI::Providers::Oci::Chat
+      include AI::Providers::Oci::Embeddings
       include AI::Providers::Oci::Models
       include AI::Providers::Oci::Config
 

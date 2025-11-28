@@ -1,0 +1,112 @@
+---
+hu:
+  admin:
+    admins: Adminisztrátorok
+    ai_artifacts: AI-összetevők
+    ai_artifacts_output_schema_key_constraint: A kulcsnak kisbetűvel kell kezdődnie, és csak kisbetűket, számokat és aláhúzásokat tartalmazhat
+    ai_assistant_model_id_label: Model ID
+    ai_assistant_model_label: Modell
+    ai_assistant_model_provider: Szolgáltató
+    ai_assistant_model_region_label: Régió
+    ai_assistants: AI asszisztensek
+    assessments: Értékelések
+    assessments_reports: Felmérések és jelentések
+    assessor_dashboard: Értékelő irányítópult
+    assessor_workshops: Értékelési központ
+    audit_logs: Auditnaplók
+    audit_reports: Auditjelentések
+    availability: Elérhetőség
+    back_to_main: Főmenü
+    campaign_templates: Kampány sablonok
+    client: Ügyfél bérleti joga
+    client_admins: Ügyféladminisztrátorok
+    clients: Ügyfélcsoportok
+    communication_center: Kommunikációs központ
+    country: Ország
+    create_client: Ügyfél létrehozása
+    dashboard: Irányítópult
+    data_reports: Adatjelentések
+    datasheet: Adatlap
+    delete_ok_text: Igen, töröld
+    development_actions: Fejlesztési tevékenységek
+    dimensions: Dimenziók
+    empty_csv_file: A CSV fájl nem tartalmaz adatokat.
+    fill_empty_score_msg: Töltsd ki az összes végső pontszámot mentés előtt.
+    final_score_empty_msg: A végső pontszám nem lehet üres.
+    import_csv_assessment_group_error: "%{index}. sor: az e-mail %{email} felhasználó már meg van hívva a '%{workshopInviteName}'-re"
+    import_csv_error: "%{index}. sor: %{email} e-mail felhasználó nem része ebben a kampányban"
+    import_description: Felhasználókat importálj CSV fájlból. Minden sornak tartalmaznia kell egy e-mail címet.
+    import_download_sample: Példás CSV letöltése
+    import_error: Az import meghibásodott. Kérlek, próbáld meg újra.
+    import_errors_title: Importi hibák
+    import_file_required: Kérjük, válassz egy CSV fájlt a feltöltéshez.
+    import_queued_success: Az alanyok importi munkája sikeresen beütemeződött. Kérjük, ellenőrizze az értesítésedet az állapot miatt.
+    import_sample_file_label: 'Mintafájl:'
+    import_title: Témák importálása a CSV-ből
+    import_upload: Feltölt
+    import_users: Importfelhasználók
+    invalid_csv_header: A CSV fájl érvénytelen fejléceket tartalmaz.
+    libraries: Médiatár
+    library_invalid_type: Érvénytelen könyvtári tétel
+    no_notifications: Nincs értesítés
+    norms: Normák
+    notification_bell_icon_alt_text: Értesítési csengő ikon
+    notifications: Értesítések
+    number: Szám
+    occupations: Foglalkozások
+    options: Beállítások
+    participants: Résztvevők
+    profile_details: Profil részletei
+    project_admins: Projektadminisztrátorok
+    project_manager: Projektmenedzser
+    question_center: Kérdésközpont
+    registration_codes: Regisztrációs kódok
+    report_approvals: Jelentés jóváhagyása
+    reports: Jelentések
+    role: Szerep
+    saml_idp_certificate_available: Elérhető (kattints a másoláshoz)
+    saml_idp_certificate_label: Igazolás
+    saml_idp_entity_id_label: Entity ID/Kibocsátó
+    saml_idp_sso_url_label: SSO Service URL
+    saml_service_provider: SAML szolgáltató
+    saml_service_provider_acs_urls: ACS URL-ek
+    saml_service_provider_acs_urls_placeholder: Írj be URL-eket, amelyeket vesszővel választottak, pl. https://app1.com/saml/acs, https://app2.com/saml/acs
+    saml_service_provider_acs_urls_required: ACS URL-ek szükségesek
+    saml_service_provider_action_delete_label: Töröl
+    saml_service_provider_action_edit_label: Szerkeszt
+    saml_service_provider_action_rotate_certificate_label: Rotációs tanúsítvány
+    saml_service_provider_add: Add SAML Service Provider
+    saml_service_provider_delete_success: SAML szolgáltató sikeresen törölve
+    saml_service_provider_enabled: Engedélyezve
+    saml_service_provider_entity_id: Entity ID
+    saml_service_provider_entity_id_placeholder: Adja be az entitás azonosítóját
+    saml_service_provider_entity_id_required: A Entity ID szükséges
+    saml_service_provider_idp_config: IdP konfiguráció
+    saml_service_provider_manage: Műveletek
+    saml_service_provider_mask_identity: Maszk Identitás
+    saml_service_provider_masking_enabled: Engedélyezd a maszkolást
+    saml_service_provider_name: Név
+    saml_service_provider_name_placeholder: Adja meg a szolgáltató nevét
+    saml_service_provider_name_required: Név szükséges
+    saml_service_provider_remove_content: 'Biztos vagy benne, hogy el akarod távolítani a SAML Service Provider: %{name}-t?'
+    saml_service_provider_remove_title: Távolítsa el a SAML szolgáltatót
+    saml_service_provider_rotate_certificate_content: Biztos vagy benne, hogy %{name} miatt szeretnéd váltani a tanúsítványt? Ez új tanúsítványt generál, és érvényteleníti a fennmaradót.
+    saml_service_provider_rotate_certificate_error: Nem sikerült váltani a tanúsítványt
+    saml_service_provider_rotate_certificate_ok: Rotációs tanúsítvány
+    saml_service_provider_rotate_certificate_success: Tanúsítvány sikeresen vált
+    saml_service_provider_rotate_certificate_title: Rotációs tanúsítvány
+    saml_service_provider_search: Keress SAML szolgáltatókat...
+    saml_service_provider_updated_date: Frissített dátum
+    saml_service_providers: Szolgáltatók
+    saml_settings: SAML beállítások
+    scheduling: Ütemezés
+    scoring: Pontozás
+    show_submenu: Almenü megjelenítése
+    skills_taxonomy: Készségek taxonómiája
+    slot_name: Nyerő neve
+    stats: Statisztika
+    subject_part_of_other_invite: Az e-mailes tárgy %{user_email} már meghívott a '%{workshop_invite_name}'-re
+    user_report_events: Felhasználói jelentés eseményei
+    users: Felhasználók
+    view_licenses: Licencek megtekintése
+    year: Ország

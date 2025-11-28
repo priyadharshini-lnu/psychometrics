@@ -1,0 +1,112 @@
+---
+pl:
+  admin:
+    admins: Administratorzy
+    ai_artifacts: Artefakty SI
+    ai_artifacts_output_schema_key_constraint: Klucz musi zaczynać się od małej litery i może zawierać tylko małe litery, cyfry i podkreślenia
+    ai_assistant_model_id_label: Identyfikacja modelu
+    ai_assistant_model_label: Model
+    ai_assistant_model_provider: Dostawca
+    ai_assistant_model_region_label: Region
+    ai_assistants: Asystenci AI
+    assessments: Oceny
+    assessments_reports: Oceny i raporty
+    assessor_dashboard: Pulpit nawigacyjny asesora
+    assessor_workshops: Centrum oceny zintegrowanej
+    audit_logs: Dzienniki audytu
+    audit_reports: Raporty z audytu
+    availability: Dostępność
+    back_to_main: Menu główne
+    campaign_templates: Szablony kampanii
+    client: Dzierżawa klienta
+    client_admins: Administratorzy klienta
+    clients: Umowy najmu dla klientów
+    communication_center: Centrum Komunikacyjne
+    country: Kraj
+    create_client: Utwórz klienta
+    dashboard: Deska rozdzielcza
+    data_reports: Raporty danych
+    datasheet: Arkusz danych
+    delete_ok_text: Tak, usuń
+    development_actions: Działania rozwojowe
+    dimensions: Wymiary
+    empty_csv_file: Plik CSV nie zawiera żadnych danych.
+    fill_empty_score_msg: Wypełnij wszystkie końcowe wyniki przed zapisem.
+    final_score_empty_msg: Ostateczny wynik nie może być pusty.
+    import_csv_assessment_group_error: 'Wiersz %{index}: użytkownik z e-mailem %{email} jest już zaproszony do "%{workshopInviteName}"'
+    import_csv_error: 'Wiersz %{index}: użytkownik z %{email} e-mail nie występuje w tej kampanii'
+    import_description: Importuj użytkowników z pliku CSV. Każdy wiersz musi zawierać adres e-mail.
+    import_download_sample: Pobierz przykładowy CSV
+    import_error: Import się nie powiódł. Proszę, spróbuj ponownie.
+    import_errors_title: Błędy importu
+    import_file_required: Proszę wybrać plik CSV do przesłania.
+    import_queued_success: Zadanie importu obiektów zostało pomyślnie zaplanowane. Prosimy o sprawdzenie statusu powiadomienia.
+    import_sample_file_label: 'Przykładowy plik:'
+    import_title: Importuj tematy z CSV
+    import_upload: Przesyłać
+    import_users: Import użytkowników
+    invalid_csv_header: Plik CSV zawiera nieprawidłowe nagłówki.
+    libraries: Biblioteka multimediów
+    library_invalid_type: Nieprawidłowy element biblioteczny
+    no_notifications: Brak powiadomień
+    norms: Normy
+    notification_bell_icon_alt_text: Ikona dzwonka powiadomień
+    notifications: Powiadomienia
+    number: Liczba
+    occupations: Zawodów
+    options: Opcje
+    participants: Uczestników
+    profile_details: Szczegóły profilu
+    project_admins: Administratorzy projektu
+    project_manager: Kierownik Projektu
+    question_center: Centrum pytań
+    registration_codes: Kody rejestracyjne
+    report_approvals: Zatwierdzanie raportów
+    reports: Raporty
+    role: Rola
+    saml_idp_certificate_available: Dostępne (kliknij, aby skopiować)
+    saml_idp_certificate_label: Certyfikat
+    saml_idp_entity_id_label: Identyfikator podmiotu/Emitenta
+    saml_idp_sso_url_label: Adres URL usługi SSO
+    saml_service_provider: Dostawca usług SAML
+    saml_service_provider_acs_urls: Adresy URL ACS
+    saml_service_provider_acs_urls_placeholder: Wprowadź adresy URL oddzielone przecinkami, np. https://app1.com/saml/acs, https://app2.com/saml/acs
+    saml_service_provider_acs_urls_required: Wymagane są adresy URL ACS
+    saml_service_provider_action_delete_label: Usunąć
+    saml_service_provider_action_edit_label: Redagować
+    saml_service_provider_action_rotate_certificate_label: Certyfikat rotacji
+    saml_service_provider_add: Dodaj dostawcę usług SAML
+    saml_service_provider_delete_success: Usługa SAML usunięta pomyślnie
+    saml_service_provider_enabled: Włączone
+    saml_service_provider_entity_id: Identyfikator podmiotu
+    saml_service_provider_entity_id_placeholder: Wprowadź identyfikator podmiotu
+    saml_service_provider_entity_id_required: Wymagany jest identyfikator podmiotu
+    saml_service_provider_idp_config: Konfiguracja IdP
+    saml_service_provider_manage: Akcje
+    saml_service_provider_mask_identity: Tożsamość maski
+    saml_service_provider_masking_enabled: Włącz maskowanie
+    saml_service_provider_name: Nazwa
+    saml_service_provider_name_placeholder: Wprowadź nazwę dostawcy usług
+    saml_service_provider_name_required: Wymagane jest imię
+    saml_service_provider_remove_content: 'Czy na pewno chcesz usunąć dostawcę usług SAML: %{name}?'
+    saml_service_provider_remove_title: Usuń dostawcę usług SAML
+    saml_service_provider_rotate_certificate_content: Jesteś pewien, że chcesz rotować certyfikat na %{name}? To wygeneruje nowy certyfikat i unieważni obecny.
+    saml_service_provider_rotate_certificate_error: Nie udało się obrócić certyfikatu
+    saml_service_provider_rotate_certificate_ok: Certyfikat rotacji
+    saml_service_provider_rotate_certificate_success: Certyfikat został pomyślnie obrócony
+    saml_service_provider_rotate_certificate_title: Certyfikat rotacji
+    saml_service_provider_search: Wyszukaj dostawców usług SAML...
+    saml_service_provider_updated_date: Data aktualizacji
+    saml_service_providers: Usługodawców
+    saml_settings: Ustawienia SAML
+    scheduling: Planowania
+    scoring: Punktacji
+    show_submenu: Pokaż podmenu
+    skills_taxonomy: Taksonomia umiejętności
+    slot_name: Nazwa slotu
+    stats: Statystyki
+    subject_part_of_other_invite: Osoba z adresem e-mail %{user_email} jest już zaproszona do '%{workshop_invite_name}'
+    user_report_events: Zdarzenia zgłaszane przez użytkownika
+    users: Użytkowników
+    view_licenses: Zobacz licencje
+    year: Kraj

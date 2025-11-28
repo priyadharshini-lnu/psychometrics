@@ -1,0 +1,112 @@
+---
+en-US:
+  admin:
+    admins: Admins
+    ai_artifacts: AI Artifacts
+    ai_artifacts_output_schema_key_constraint: Key must start with a lowercase letter and can only contain lowercase letters, numbers, and underscores
+    ai_assistant_model_id_label: Model ID
+    ai_assistant_model_label: Model
+    ai_assistant_model_provider: Provider
+    ai_assistant_model_region_label: Region
+    ai_assistants: AI Assistants
+    assessments: Assessments
+    assessments_reports: Assessments & Reports
+    assessor_dashboard: Assessor Dashboard
+    assessor_workshops: Assessment Center
+    audit_logs: Audit Logs
+    audit_reports: Audit Reports
+    availability: Availability
+    back_to_main: Main Menu
+    campaign_templates: Campaign Templates
+    client: Client Tenancy
+    client_admins: Client Admins
+    clients: Client Tenancies
+    communication_center: Communication Center
+    country: Country
+    create_client: Create Client
+    dashboard: Dashboard
+    data_reports: Data Reports
+    datasheet: Datasheet
+    delete_ok_text: Yes, Delete
+    development_actions: Development Actions
+    dimensions: Dimensions
+    empty_csv_file: CSV file does not contain any data.
+    fill_empty_score_msg: Fill all the final scores before saving.
+    final_score_empty_msg: Final score cannot be empty.
+    import_csv_assessment_group_error: 'Row %{index}: user with email %{email} is already invited to ''%{workshopInviteName}'''
+    import_csv_error: 'Row %{index}: user with email %{email} is not in this campaign'
+    import_description: Import users from a CSV file. Each row must contain an email address.
+    import_download_sample: Download example CSV
+    import_error: Import failed. Please try again.
+    import_errors_title: Import Errors
+    import_file_required: Please select a CSV file to upload.
+    import_queued_success: Subjects import job was scheduled successfully. Please check your notification for status.
+    import_sample_file_label: 'Sample file:'
+    import_title: Import Subjects from CSV
+    import_upload: Upload
+    import_users: Import Users
+    invalid_csv_header: CSV file contains invalid headers.
+    libraries: Media Library
+    library_invalid_type: Invalid Library Item
+    no_notifications: No Notifications
+    norms: Norms
+    notification_bell_icon_alt_text: Notification Bell Icon
+    notifications: Notifications
+    number: Number
+    occupations: Occupations
+    options: Options
+    participants: Participants
+    profile_details: Details
+    project_admins: Project Admins
+    project_manager: Project Manager
+    question_center: Question Center
+    registration_codes: Registration codes
+    report_approvals: Report Approvals
+    reports: Reports
+    role: Role
+    saml_idp_certificate_available: Available (click to copy)
+    saml_idp_certificate_label: Certificate
+    saml_idp_entity_id_label: Entity ID/Issuer
+    saml_idp_sso_url_label: SSO Service URL
+    saml_service_provider: SAML Service Provider
+    saml_service_provider_acs_urls: ACS URLs
+    saml_service_provider_acs_urls_placeholder: Enter URLs separated by commas, e.g. https://app1.com/saml/acs, https://app2.com/saml/acs
+    saml_service_provider_acs_urls_required: ACS URLs are required
+    saml_service_provider_action_delete_label: Delete
+    saml_service_provider_action_edit_label: Edit
+    saml_service_provider_action_rotate_certificate_label: Rotate Certificate
+    saml_service_provider_add: Add SAML Service Provider
+    saml_service_provider_delete_success: SAML Service Provider deleted successfully
+    saml_service_provider_enabled: Enabled
+    saml_service_provider_entity_id: Entity ID
+    saml_service_provider_entity_id_placeholder: Enter entity ID
+    saml_service_provider_entity_id_required: Entity ID is required
+    saml_service_provider_idp_config: IdP Configuration
+    saml_service_provider_manage: Actions
+    saml_service_provider_mask_identity: Mask Identity
+    saml_service_provider_masking_enabled: Enable Masking
+    saml_service_provider_name: Name
+    saml_service_provider_name_placeholder: Enter service provider name
+    saml_service_provider_name_required: Name is required
+    saml_service_provider_remove_content: 'Are you sure you want to remove SAML Service Provider: %{name}?'
+    saml_service_provider_remove_title: Remove SAML Service Provider
+    saml_service_provider_rotate_certificate_content: Are you sure you want to rotate the certificate for %{name}? This will generate a new certificate and invalidate the current one.
+    saml_service_provider_rotate_certificate_error: Failed to rotate certificate
+    saml_service_provider_rotate_certificate_ok: Rotate Certificate
+    saml_service_provider_rotate_certificate_success: Certificate rotated successfully
+    saml_service_provider_rotate_certificate_title: Rotate Certificate
+    saml_service_provider_search: Search SAML Service Providers...
+    saml_service_provider_updated_date: Updated Date
+    saml_service_providers: Service Providers
+    saml_settings: SAML Settings
+    scheduling: Scheduling
+    scoring: Scoring
+    show_submenu: Show Sub Menu
+    skills_taxonomy: Skills Taxonomy
+    slot_name: Slot Name
+    stats: Stats
+    subject_part_of_other_invite: Subject with email %{user_email} is already invited to '%{workshop_invite_name}'
+    user_report_events: Report Approval logs
+    users: Users
+    view_licenses: View Licenses
+    year: Year

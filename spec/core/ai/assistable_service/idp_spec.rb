@@ -5,6 +5,8 @@ require 'rails_helper'
 describe AI::AssistableService::Idp do
   let!(:campaign) { create(:campaign) }
   let!(:user) { create(:user) }
+  let!(:current_job_role) { create(:job_role, name: 'Test Role', code: 'test_role', description: 'Test description') }
+  let!(:campaign_user) { create(:campaign_user, user: user, campaign: campaign, current_job_role: current_job_role) }
   let!(:ai_assistant) { create(:assistant) }
   let!(:doc_ai_assistant) { create(:assistant) }
   let!(:skill_gap_ai_assistant) { create(:assistant) }
@@ -51,7 +53,10 @@ describe AI::AssistableService::Idp do
   end
 
   def create_existing_session
-    create(:assisted_user_idp_session, assistable: plan, user: user, ai_assistant_chat: ai_assistant.for_user(user))
+    chat = ai_assistant.for_user(user)
+    existing_session = create(:assisted_user_idp_session, assistable: plan, user: user)
+    chat.update!(ai_assisted_user_session: existing_session)
+    existing_session
   end
 
   def expect_session_status(session, status, error = nil)
@@ -156,25 +161,55 @@ describe AI::AssistableService::Idp do
     context 'when checking chat tools and parameters' do
       include_context 'assistant service mocking'
 
-      it 'passes correct tools to the chat context' do
+      it 'includes campaign user dependency in assistant context' do
         assistant_chat = ai_assistant.for_user(user)
 
-        allow(assistant_chat).to receive(:with_assistant_context) do |args|
-          expect(args[:tools]).to be_an(Array)
-          expect(args[:tools].size).to eq(4)
+        allow(ai_assistant).to receive(:for_user) do |_user, options|
+          context = options[:contextual_information]
+          expect(context).to include('<current_job_role>')
+          expect(context).to include('<name>Test Role</name>')
+          expect(context).to include('<code>test_role</code>')
+          expect(context).to include('<description>Test description</description>')
+          assistant_chat
+        end
+        allow(assistant_chat).to receive(:with_assistant_context).and_return(assistant_chat)
+        allow(assistant_chat).to receive(:with_temperature).with(0).and_return(assistant_chat)
+
+        described_class.new(plan, user, instructions, options).call
+
+        expect(ai_assistant).to have_received(:for_user)
+      end
+
+      it 'passes locale option to UserData parser' do
+        locale = 'fr'
+        options = { locale: locale }
+
+        user_data_parser = instance_double(AI::Utils::DependencyParser::UserData)
+        allow(user_data_parser).to receive(:parse).and_return('<user_data></user_data>')
+
+        allow(AI::Utils::DependencyParser::UserData).to receive(:new) do |_user, args|
+          expect(args[:locale]).to eq(locale)
+          user_data_parser
+        end
+
+        described_class.new(plan, user, instructions, options).call
+
+        expect(AI::Utils::DependencyParser::UserData).to have_received(:new)
+      end
+
+      it 'passes correct tools to the chat context' do
+        service = described_class.new(plan, user, instructions, options)
+
+        assistant_chat = service.send(:assisted_session_chat)
+
+        expect(assistant_chat).to receive(:with_assistant_context) do |args|
           expect(args[:tools]).to include(AI::Tools::Idp::AddSkillToPlan)
           expect(args[:tools]).to include(AI::Tools::Idp::AvailableSkillsAndDevelopmentActions)
           expect(args[:tools]).to include(AI::Tools::Idp::SkillGapReportAnalysis)
           expect(args[:tools]).to include(AI::Tools::Idp::AttachmentAnalysis)
-
-          assistant_chat
         end
 
-        allow(ai_assistant).to receive(:for_user).and_return(assistant_chat)
-
-        described_class.new(plan, user, instructions, options).call
-
-        expect(assistant_chat).to have_received(:with_assistant_context)
+        service.call
       end
 
       it 'passes correct parameters to AssistantService' do
@@ -192,7 +227,8 @@ describe AI::AssistableService::Idp do
           instructions,
           chat: assistant_chat,
           ignore_user_prompt: true,
-          chat_params: nil
+          ask_params: nil,
+          params: {}
         )
       end
     end
@@ -244,7 +280,7 @@ describe AI::AssistableService::Idp do
       include_context 'assistant service mocking'
 
       let!(:existing_session) { create_existing_session }
-      let(:original_chat) { existing_session.ai_assistant_chat }
+      let!(:original_chat) { existing_session.latest_chat }
       let(:new_chat) { ai_assistant.for_user(user) }
       let(:options) { { start_new_chat: true } }
 
@@ -255,8 +291,8 @@ describe AI::AssistableService::Idp do
       it 'creates a new chat for the existing session' do
         described_class.new(plan, user, instructions, options).call
 
-        expect(plan.reload.ai_assisted_idp_session.ai_assistant_chat).to eq(new_chat)
-        expect(plan.reload.ai_assisted_idp_session.ai_assistant_chat).not_to eq(original_chat)
+        expect(plan.reload.ai_assisted_idp_session.latest_chat).to eq(new_chat)
+        expect(plan.reload.ai_assisted_idp_session.latest_chat).not_to eq(original_chat)
       end
     end
 
@@ -264,7 +300,7 @@ describe AI::AssistableService::Idp do
       include_context 'assistant service mocking'
 
       let!(:existing_session) { create_existing_session }
-      let(:original_chat) { existing_session.ai_assistant_chat }
+      let(:original_chat) { existing_session.latest_chat }
       let(:options) { {} }
 
       before do
@@ -274,7 +310,7 @@ describe AI::AssistableService::Idp do
       it 'uses the existing chat without creating a new one' do
         described_class.new(plan, user, instructions, options).call
 
-        expect(plan.reload.ai_assisted_idp_session.ai_assistant_chat).to eq(original_chat)
+        expect(plan.reload.ai_assisted_idp_session.latest_chat).to eq(original_chat)
       end
     end
   end

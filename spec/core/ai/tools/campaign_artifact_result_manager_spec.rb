@@ -201,7 +201,6 @@ describe AI::Tools::CampaignArtifactResultManager do
         expect(artifact).to receive_message_chain(:results,
                                                   :find_or_initialize_by).with(user: user).and_return(artifact_result)
         expect(artifact_result).to receive(:results=)
-        expect(artifact_result).to receive(:ai_assistant_chat=)
         expect(artifact_result).to receive(:parsed_dependencies=)
         expect(artifact_result).to receive(:save!).and_raise(ActiveRecord::RecordInvalid.new(user))
 

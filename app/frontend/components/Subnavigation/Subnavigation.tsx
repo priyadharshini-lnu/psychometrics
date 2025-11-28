@@ -17,7 +17,7 @@ import { camelizeKeys } from '~/utils/object'
 import { BACKQUOTE } from '~/utils/keyCodes'
 import { SIDEBAR_WIDTH } from '~/constants/sidebar'
 import { MenuItem } from '~/interfaces/Antd'
-
+import { isRtl } from '~/utils/locales'
 
 const { I18n } = window
 
@@ -29,22 +29,37 @@ const connecter = connect(
 
   }),
   {
-    addSubmenu, closeSubmenu, removeSubmenu, triggerCollapse, openSubmenu,
+    addSubmenu,
+    closeSubmenu,
+    removeSubmenu,
+    triggerCollapse,
+    openSubmenu,
   },
 )
 
 export type PropsFromRedux = ConnectedProps<typeof connecter> & {
   items: MenuItem[]
   selectedKeys: string[]
-  onSelect?: (key:string) => void
+  onSelect?: (key: string) => void
   showBack?: boolean
 }
 
-export const SubnavigationComponent:FC<PropsFromRedux> = ({
-  currentUser, items, selectedKeys, onSelect, showBack = true,
-  showSubmenu, addSubmenu, closeSubmenu, removeSubmenu, collapsed, triggerCollapse, openSubmenu,
+export const SubnavigationComponent: FC<PropsFromRedux> = ({
+  currentUser,
+  items,
+  selectedKeys,
+  onSelect,
+  showBack = true,
+  showSubmenu,
+  addSubmenu,
+  closeSubmenu,
+  removeSubmenu,
+  collapsed,
+  triggerCollapse,
+  openSubmenu,
 }) => {
   const [show, setShow] = useState(false)
+  const rtl = isRtl(I18n.locale)
 
   useEffect(() => {
     addSubmenu()
@@ -56,7 +71,9 @@ export const SubnavigationComponent:FC<PropsFromRedux> = ({
 
   useEffect(() => {
     const handler = (e) => {
-      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') { return }
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+        return
+      }
 
       if (e.keyCode === BACKQUOTE) {
         showSubmenu ? closeSubmenu() : openSubmenu()
@@ -87,7 +104,7 @@ export const SubnavigationComponent:FC<PropsFromRedux> = ({
 
   const itemsWithBack = [showBack ? {
     key: 'back_to_main_menu',
-    label: I18n.t('administration.navigation.back_to_main'),
+    label: I18n.t('admin.back_to_main'),
     icon: <ArrowLeftOutlined />,
   } : null, ...items]
 
@@ -115,7 +132,7 @@ export const SubnavigationComponent:FC<PropsFromRedux> = ({
       styles={{
         body: { padding: 0 },
       }}
-      placement="left"
+      placement={rtl ? 'right' : 'left'}
       width={SIDEBAR_WIDTH}
       open={showSubmenu && !collapsed}
       onClose={() => closeMenu()}
@@ -128,7 +145,10 @@ export const SubnavigationComponent:FC<PropsFromRedux> = ({
       theme="light"
       collapsed={collapsed}
       collapsedWidth={55}
-      className={cs(styles.sidebar, { [styles.show]: showSubmenu, [styles.hide]: !showSubmenu })}
+      className={cs(styles.sidebar, {
+        [styles.show]: showSubmenu,
+        [styles.hide]: !showSubmenu,
+      })}
     >
       {menu}
     </Layout.Sider>

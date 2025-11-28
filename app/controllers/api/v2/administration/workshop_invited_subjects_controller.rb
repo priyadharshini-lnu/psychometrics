@@ -41,7 +41,7 @@ module Api
             ::Api::Administration::WorkshopInvitedSubjectPolicy,
             context[:user],
             @model,
-            %w[create resend_invite],
+            %w[create resend_invite import_subjects_from_csv],
             { project_id: context[:campaign]&.project_id }
           )
         }
@@ -59,7 +59,27 @@ module Api
       render json: { results: result }, status: :ok
     end
 
+    def import_subjects_from_csv
+      result = WorkshopInvites::BulkImportSubjects.call!(
+        campaign.id, params[:file], params[:workshop_invite_id], current_user
+      )
+
+      if result[:validation_errors].present?
+        render json: { meta: { errors: result[:validation_errors] } }
+      else
+        audit_csv_import
+        render json: { meta: { job_queued: true } }, status: :ok
+      end
+    end
+
     private
+
+    def audit_csv_import
+      audit! :import_subjects_from_csv, current_user,
+             record_type: WorkshopInvitedSubject,
+             payload: { file_name: params[:file]&.original_filename },
+             campaign: campaign
+    end
 
     def set_resource
       @workshop_invited_subject = Api::Administration::WorkshopInvitedSubjectPolicy::Scope.new(

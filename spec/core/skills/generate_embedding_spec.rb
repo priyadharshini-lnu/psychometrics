@@ -12,11 +12,17 @@ describe Skills::GenerateEmbedding do
   before do
     allow_any_instance_of(Skill).to receive(:embedding_text).and_return('Sample embedding text')
     VectorEmbedding.where(resource: skills).destroy_all
+    allow(Settings).to receive(:ai_embedding_provider).and_return({
+      provider: 'openai',
+      api_key: 'test-key',
+      api_endpoint: 'https://test-endpoint.openai.azure.com',
+      model: 'text-embedding-3-large'
+    })
   end
 
   describe '#call' do
     context 'when embedding service succeeds' do
-      let(:mock_vectors) { Array.new(5) { Array.new(VectorEmbedding::EMBEDDING_DIMENSIONS, 0.1) } }
+      let(:mock_vectors) { Array.new(5) { Array.new(VectorEmbedding::DEFAULT_EMBEDDING_DIMENSIONS, 0.1) } }
 
       before do
         stub_wisper_publisher('AI::EmbeddingService', :call, :ok, mock_vectors)
@@ -86,9 +92,9 @@ describe Skills::GenerateEmbedding do
       let(:batch_skills_query) { Skill.where(id: batch_skills.map(&:id)) }
 
       before do
-        stub_const('Skills::GenerateEmbedding::MAX_BATCH_SIZE', 3)
+        allow_any_instance_of(Skills::GenerateEmbedding).to receive(:batch_size).and_return(3)
         stub_wisper_publisher('AI::EmbeddingService', :call, :ok, Array.new(3) do
-          Array.new(VectorEmbedding::EMBEDDING_DIMENSIONS, 0.1)
+          Array.new(VectorEmbedding::DEFAULT_EMBEDDING_DIMENSIONS, 0.1)
         end)
       end
 
@@ -128,7 +134,7 @@ describe Skills::GenerateEmbedding do
         service = described_class.new(skills_query, nil)
 
         stub_wisper_publisher('AI::EmbeddingService', :call, :ok, Array.new(5) do
-          Array.new(VectorEmbedding::EMBEDDING_DIMENSIONS, 0.1)
+          Array.new(VectorEmbedding::DEFAULT_EMBEDDING_DIMENSIONS, 0.1)
         end)
 
         result = nil
@@ -142,7 +148,7 @@ describe Skills::GenerateEmbedding do
         service = described_class.new(skills_query, nil)
 
         stub_wisper_publisher('AI::EmbeddingService', :call, :ok, Array.new(5) do
-          Array.new(VectorEmbedding::EMBEDDING_DIMENSIONS, 0.1)
+          Array.new(VectorEmbedding::DEFAULT_EMBEDDING_DIMENSIONS, 0.1)
         end)
 
         expect { service.call }.not_to raise_error
@@ -153,7 +159,7 @@ describe Skills::GenerateEmbedding do
   describe 'batch size limits' do
     it 'calculates total tasks correctly for various skill counts' do
       # Use stub_const to test batch calculation without creating many records
-      stub_const('Skills::GenerateEmbedding::MAX_BATCH_SIZE', 3)
+      allow_any_instance_of(Skills::GenerateEmbedding).to receive(:batch_size).and_return(3)
 
       test_cases = [
         { skill_count: 1, expected_batches: 1 },
@@ -171,7 +177,7 @@ describe Skills::GenerateEmbedding do
         expect(job_record).to receive(:update!).with(status: :in_progress, total_tasks: test_case[:expected_batches])
 
         stub_wisper_publisher('AI::EmbeddingService', :call, :ok, Array.new([test_case[:skill_count], 3].min) do
-          Array.new(VectorEmbedding::EMBEDDING_DIMENSIONS, 0.1)
+          Array.new(VectorEmbedding::DEFAULT_EMBEDDING_DIMENSIONS, 0.1)
         end)
 
         service.call

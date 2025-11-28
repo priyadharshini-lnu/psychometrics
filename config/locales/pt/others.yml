@@ -919,8 +919,6 @@ pt:
     invalid_job: Esta notificação corresponde a um registo eliminado
     mark_as_read: Marcar todas as leituras
     more: Mais
-    no_notifications: Sem notificações
-    notifications: Notificações
     results: Resultados
     super_admin:
       errors:
@@ -1345,16 +1343,11 @@ pt:
     continue: Continue as suas tarefas
     dashboard_instructions: Foram-lhe atribuídas a várias atividades que precisa de concluir. Por favor confirme verificando se todas as atividades atribuídas foram concluídas em todas as campanhas.
     dashboard_menu:
-      bookings: Reservas
       campaign: Campanha
-      change_password: Alterar a palavra-passe
-      development: Desenvolvimento
       direct_reportees: Collegati
       home: Início
       insights: Informações
-      my_plan: O meu plano
       profile: Perfil
-      profile_details: Detalhes
       tasks: Tarefas
     details: Detalhes
     edit_evaluation:
@@ -1818,7 +1811,6 @@ pt:
       view: Ver
       view_all_tasks: Ver todas as tarefas
       view_detail: Ver detalhes
-      yes_delete: Sim, excluir
     column:
       action: Ação
       active: Ativo
@@ -1893,7 +1885,6 @@ pt:
       projects: Projectos
       report: Relatório
       reports: Relatórios
-      scoring: Pontuação
       sms_contact: Contacto SMS
       threesixty_campaign: Pontuações da campanha Threesixty
     status:
@@ -2582,14 +2573,14 @@ pt:
       you: Você
     convert_to_draft: Converter em rascunho
     current_step: Etapa atual %{step}
-    delete_skill: Tem certeza de que deseja excluir a habilidade porque ela também excluirá todas as ações de desenvolvimento conectadas?
+    delete_skill: Tem certeza de que deseja excluir a habilidade? Isso também excluirá todas as ações de desenvolvimento conectadas.
     details: Detalhes
     development_actions:
       action_private: Sim
       action_public: Não
       add_development_action: Adicionar ação de desenvolvimento
       add_development_actions_from_below_options: Adicione ações de desenvolvimento nas opções abaixo.
-      add_development_actions_modal_title: Biblioteca de ações de desenvolvimento para %{skillName}
+      add_development_actions_modal_title: Biblioteca de ações de desenvolvimento para
       add_from_library: Adicionar da biblioteca
       add_more: Adicionar mais ações de desenvolvimento
       add_selected_development_actions: Adicionar ações de desenvolvimento selecionadas
@@ -2620,7 +2611,7 @@ pt:
       generate_more: Gerar mais
       generating_development_actions: Geração de acções de desenvolvimento...
       generative_ai: IA generativa
-      generative_ai_description: Deixe a IA gerar uma ação de desenvolvimento sob medida só para você
+      generative_ai_description_msg: Deixe a IA gerar uma ação de desenvolvimento sob medida só para você
       heading: Acções de desenvolvimento
       idp_library: Biblioteca IDP
       idp_library_description: Selecione uma ação de desenvolvimento comprovada em nossa biblioteca com curadoria de especialistas.
@@ -2656,7 +2647,7 @@ pt:
       write_here: Escreva aqui...
     direct_reportee_details: Detalhe dos subordinados diretos
     download:
-      description: 'Para baixar o relatório, siga o link: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. O link é válido apenas por 10 minutos'
+      description: 'Para baixar o relatório, siga o link: <a href=''%{url}'' target=''_blank''>Download</a>. O link é válido apenas por 10 minutos'
     download_plan: Plano de download
     edit_plan: Editar plano
     edit_plan_and_add_skills: Edite o plano e clique em Gerenciar habilidades para adicionar habilidades.
@@ -2678,8 +2669,8 @@ pt:
         one: Ação de desenvolvimento removida
         other: Ações de desenvolvimento removidas
     initial_steps:
-      add_skill_group_description: Com base nos resultados da sua avaliação, eis algumas das áreas de pontos fortes e de desenvolvimento para si. Escolha as competências que pretende desenvolver mais como parte do seu plano de desenvolvimento.
-      add_skill_group_title: Explorar as suas competências de %{category}
+      add_skill_group_description: Escolha as competências que pretende desenvolver mais como parte do seu plano de desenvolvimento.
+      add_skill_group_title: "%{category}"
       add_skills: Adicionar
       add_skills_step: Adicionar competências
       back: Voltar
@@ -2731,7 +2722,6 @@ pt:
           name: Nome
           publish_date: Data de Publicação
           review_date: Data de Revisão
-          role: Função Atual
       guidelines:
         cards:
           c1:
@@ -3400,13 +3390,6 @@ pt:
   sessions:
     errors:
       recaptcha: A verificação do Recaptcha falhou. Por favor, tente novamente.
-  shared:
-    filters:
-      clear: Limpar filtros
-    internet_disconnected_message: A tentar restabelecer a ligação. Verifique a sua ligação à Internet.
-    mte_logo_alt_text: Logótipo da Mercer Talent Enterprise
-    terms_conditions_privacy: Declaração de privacidade
-    tte_terms_and_condition: Termos e privacidade
   sheet:
     import_modal:
       alert_access_sheet_removal: Carregar uma nova folha de acesso com a eliminação de todos os registos existentes e carregar um novo registo a partir da folha.

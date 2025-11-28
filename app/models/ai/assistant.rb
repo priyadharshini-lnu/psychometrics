@@ -44,6 +44,7 @@ class AI::Assistant < ApplicationRecord
   def for_user(user, options = {})
     chat = create_chat_for_user(user)
     configure_chat(chat, options)
+    apply_system_prompt(chat, options[:contextual_information])
     chat
   end
 
@@ -51,20 +52,6 @@ class AI::Assistant < ApplicationRecord
   delegate :output_schema_class, to: :type_configuration
 
   delegate :has_ruby_llm_schema?, to: :type_configuration
-
-  def ruby_llm_context
-    RubyLLM.context do |config|
-      provider_config = ai_provider_for_model
-
-      context = provider_config&.dig('context').to_h
-
-      context.each do |key, value|
-        config.send(:"#{key}=", value) if value.present? && config.respond_to?(:"#{key}=")
-      end
-
-      config.default_model = model_id
-    end
-  end
 
   def assigned_to_idp_template?
     IdpTemplate.exists?(['one_click_ai_assistant_id = ? OR document_analysis_ai_assistant_id = ?', id, id])
@@ -76,29 +63,42 @@ class AI::Assistant < ApplicationRecord
     Settings.ai_providers.find { |provider| provider['model_id'] == model_id }
   end
 
-  private
-
-  def create_chat_for_user(user)
-    chats.create!(
-      ai_assistant: self,
-      user: user,
-      model: ai_provider_for_model['model_id'],
-      provider: ai_provider_for_model['custom_provider'].presence,
-      assume_model_exists: ai_provider_for_model['custom_provider'].present? # Allow custom providers
-    )
-  end
-
   def configure_chat(chat, options)
-    apply_system_prompt(chat, options[:contextual_information])
-
     chat.to_llm.with_context(ruby_llm_context)
     chat.with_schema(output_schema_class) if output_schema_class
 
     chat.with_tools(*options[:tools], replace: true) if options[:tools].present?
 
     # Use provided params or fall back to default params for this type
-    params_to_use = options[:params] || default_params
+    params_to_use = default_params.merge(options[:params] || {})
     chat.with_params(**params_to_use) if params_to_use.any?
+    chat.with_headers(**ai_provider_for_model['headers']) if ai_provider_for_model['headers']
+  end
+
+  private
+
+  def ruby_llm_context
+    RubyLLM.context do |config|
+      provider_config = ai_provider_for_model
+
+      context = provider_config&.dig('context').to_h
+
+      context.each do |key, value|
+        config.send(:"#{key}=", value) if value.present? && config.respond_to?(:"#{key}=")
+      end
+
+      config.default_model = ai_provider_for_model['model']
+    end
+  end
+
+  def create_chat_for_user(user)
+    chats.create!(
+      ai_assistant: self,
+      user: user,
+      model: ai_provider_for_model['model'],
+      provider: ai_provider_for_model['custom_provider'].presence,
+      assume_model_exists: ai_provider_for_model['custom_provider'].present? # Allow custom providers
+    )
   end
 
   def apply_system_prompt(chat, contextual_information)

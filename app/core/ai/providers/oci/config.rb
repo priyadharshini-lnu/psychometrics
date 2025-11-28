@@ -23,7 +23,7 @@ module AI
         end
 
         def oci_region
-          @oci_region ||= oci_credentials.region
+          @oci_region ||= oci_credentials.genai_region
         end
 
         def oci_compartment_id

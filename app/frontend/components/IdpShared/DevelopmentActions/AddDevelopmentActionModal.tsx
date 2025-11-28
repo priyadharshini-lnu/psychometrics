@@ -25,9 +25,9 @@ type Props = {
 
 const tabs = [
   { key: 'all', label: I18n.t('idp.development_actions.all') },
-  { key: 'on_the_job', label: I18n.t('idp.development_actions.on_the_job') },
-  { key: 'structured_learning', label: I18n.t('idp.development_actions.structured_learning') },
-  { key: 'learning_from_others', label: I18n.t('idp.development_actions.learning_from_others') },
+  { key: 'on_the_job', label: I18n.t('idp.development_actions.learning_on_the_job_label') },
+  { key: 'learning_from_others', label: I18n.t('idp.development_actions.learning_from_others_label') },
+  { key: 'structured_learning', label: I18n.t('idp.development_actions.structured_learning_label') },
 ]
 
 export const AddDevelopmentActionModal: React.FC<Props> = ({
@@ -87,7 +87,16 @@ export const AddDevelopmentActionModal: React.FC<Props> = ({
 
   return (
     <Modal
-      title={I18n.t('idp.development_actions.add_development_actions_modal_title', { skillName })}
+      title={(
+        <>
+          <span className="font-normal">
+            {I18n.t('idp.development_actions.add_development_actions_modal_title')}
+          </span>
+          <span className="font-bold">
+            {` ${skillName}`}
+          </span>
+        </>
+      )}
       open={open}
       onCancel={handleCancel}
       width={800}
@@ -109,9 +118,15 @@ export const AddDevelopmentActionModal: React.FC<Props> = ({
       maskClosable={false}
       footer={(
         <Flex justify="flex-end" flex={1} gap={12}>
-          {selectedDA.length > 0 && <Typography.Text>{`${selectedDA.length} selected`}</Typography.Text>}
+          {selectedDA.length > 0 && (
+            <Typography.Text>
+              {I18n.t('enduser.selected_count', {
+                count: selectedDA.length,
+              })}
+            </Typography.Text>
+          )}
           <ButtonWithArrow
-            label="Add"
+            label={I18n.t('common.actions.add')}
             size="small"
             type="primary"
             disabled={selectedDA.length === 0}

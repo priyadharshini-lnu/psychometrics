@@ -10,6 +10,7 @@ import {
   Typography,
 } from 'antd'
 import { useParams } from 'react-router-dom'
+import { DownloadOutlined } from '@ant-design/icons'
 import { DateTimeWithZone } from '~/glint'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import styles from './styles.less'
@@ -83,6 +84,23 @@ const Recordings: React.FC<Props> = ({ userRecordings, fetchRecordings, header }
                   serialNo={recording.id}
                 />
               </div>
+              {recording.transcriptionUrl && (
+                <div className={styles.groupColumn}>
+                  <Typography.Text strong>
+                    {I18n.t('shared.transcriptions')}
+                    {': '}
+                  </Typography.Text>
+                  <Button
+                    className="ps-0"
+                    href={recording.transcriptionUrl}
+                    target="_blank"
+                    icon={<DownloadOutlined />}
+                    type="link"
+                  >
+                    {I18n.t('common.text.download')}
+                  </Button>
+                </div>
+              )}
             </div>
           ))}
         </Space>

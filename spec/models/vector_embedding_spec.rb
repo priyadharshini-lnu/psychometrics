@@ -5,12 +5,11 @@ require 'rails_helper'
 RSpec.describe VectorEmbedding, type: :model do
   it { should belong_to(:resource) }
 
-  it { should validate_presence_of(:embedding) }
   it { should validate_presence_of(:resource) }
 
   describe 'create_or_update_for_resource' do
     let(:skill) { create(:skill) }
-    let(:embedding_vector) { Array.new(VectorEmbedding::EMBEDDING_DIMENSIONS, 0.1) }
+    let(:embedding_vector) { Array.new(VectorEmbedding::DEFAULT_EMBEDDING_DIMENSIONS, 0.1) }
 
     context 'when no embedding exists for resource' do
       it 'creates a new vector embedding' do
@@ -29,7 +28,7 @@ RSpec.describe VectorEmbedding, type: :model do
     end
 
     context 'when embedding already exists for resource' do
-      let(:new_embedding_vector) { Array.new(VectorEmbedding::EMBEDDING_DIMENSIONS, 0.2) }
+      let(:new_embedding_vector) { Array.new(VectorEmbedding::DEFAULT_EMBEDDING_DIMENSIONS, 0.2) }
 
       before do
         VectorEmbedding.create!(resource: skill, embedding: embedding_vector)

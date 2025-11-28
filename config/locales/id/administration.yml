@@ -765,11 +765,6 @@ id:
       user: Pengguna
       user_agent: Agen Pengguna
     back: Kembali
-    base:
-      top_sidebar:
-        sign_out_message:
-          body: "<p>Apakah Anda yakin ingin keluar?</p> <p>Tekan Tidak jika Anda ingin melanjutkan pekerjaan. Tekan Ya untuk keluar dari pengguna saat ini.</p>"
-          title: "<strong>Keluar ?</strong>"
     block_settings:
       modal:
         add_layer: Tambahkan Lapisan
@@ -1245,11 +1240,6 @@ id:
         archived: Diarsipkan
         disable: Mengarsipkan
         enable: Batalkan arsip
-      columns:
-        country: Negara
-        project_manager: Manajer Proyek
-        type: Jenis
-        year: Tahun
       copy:
         successfully: Klien Pengguna '%{name}' berhasil disalin.
       create:
@@ -1258,14 +1248,6 @@ id:
         successfully: Klien Pengguna %{name} berhasil dihapus.
       edit:
         header: Edit Klien
-      form:
-        client: Klien
-        country: Negara
-        name: Nama
-        number: Nomor
-        project_manager: Manajer Proyek
-        type: Jenis
-        year: Tahun
       licenses:
         resource:
           confirmations:
@@ -1685,7 +1667,6 @@ id:
             title: Arsip <strong>%{name}</strong> ?
           enable:
             title: Membatalkan arsip <strong>%{name}</strong> ?
-      tenancies: Klien Pengguna
       threesixty_campaign: Kampanye Threesixty
       toggle_status:
         successfully: Klien Pengguna %{name} berhasil diperbarui.
@@ -2299,7 +2280,7 @@ id:
       background_image: Gambar latar belakang
       behavioral_skills: Keterampilan Perilaku
       client_skills: Keterampilan Klien
-      delete_skill: Apakah Anda yakin ingin menghapus keterampilan karena itu akan menghapus semua tindakan pengembangan yang terhubung juga?
+      delete_skill: Apakah Anda yakin ingin menghapus keterampilan ini? Menghapusnya juga akan menghapus semua tindakan pengembangan terkait.
       details_updated: Detail IDP berhasil diperbarui
       development_actions:
         add_from_library: Tambahkan dari Perpustakaan
@@ -2337,7 +2318,6 @@ id:
         name: Nama
         publish_date: Tanggal Publikasi
         review_date: Tanggal Peninjauan
-        role: Peran Saat Ini
       fields_label: Bidang
       global_skills: Keterampilan Global
       idp: IDP
@@ -2757,43 +2737,14 @@ id:
     message: Pesan
     meta_title: Panel administrasi
     navigation:
-      ai_artifacts: Artefak AI
-      ai_assistants: Asisten AI
-      assessments: Penilaian
-      assessments_reports: Penilaian & Laporan
-      assessor_dashboard: Dasbor Penilai
-      assessor_workshops: Pusat Penilaian
       audit_logs: Log Audit
       availability: Ketersediaan
-      back_to_main: Menu Utama
-      campaign_templates: Templat Kampanye
-      change_password: Ubah Kata Sandi
-      client_admins: Admin Klien
-      clients: Klien Pengguna
-      communication_center: Pusat Komunikasi
       dashboard: Dashboard
-      data_reports: Laporan Data
-      development_actions: Tindakan Pengembangan
-      dimensions: Dimensi
       factors: Faktor
       innovation_styles: Gaya Inovasi
-      libraries: Perpustakaan Media
-      norms: Norma
       occupations: Pekerjaan
-      options: Pilihan
-      participants: Peserta
-      profile: Profil
-      profile_details: Rincian
-      project_admins: Admin Proyek
-      question_center: Pusat Pertanyaan
       registration_codes: Kode pendaftaran
-      report_approvals: Laporan Persetujuan
-      reports: Laporan
-      scheduling: Penjadwalan
-      show_submenu: Tampilkan Sub Menu
       skills_taxonomy: Taksonomi Keterampilan
-      user_profile_details: Detail profil
-      user_report_events: Peristiwa Laporan Pengguna
       users: Pengguna
     no_data_found: Tidak ada data yang ditemukan
     norms:
@@ -2867,7 +2818,6 @@ id:
         successfully: Norm berhasil diperbarui.
       update:
         successfully: Norma %{name} berhasil diperbarui.
-    notification_bell_icon: Ikon Lonceng Notifikasi
     noty:
       error_408: Tindakan ini memakan waktu terlalu lama. Silakan coba muat ulang halaman.
       error_500: Ada yang tidak beres. Hubungi administrator Anda.
@@ -4284,7 +4234,6 @@ id:
         inactive: Tidak aktif
         percentage: Persentase
         title: Penilaian
-      title: Statistik
       top_metrics:
         completed: Selesai
         in_progress: Sedang Berlangsung
@@ -4754,10 +4703,6 @@ id:
       update:
         successfully: Pengguna %{name} berhasil diperbarui.
       user: Pengguna
-    validations:
-      idp:
-        end_date_cannot_be_in_past: Tanggal akhir tidak boleh di masa lalu
-        start_date_cannot_be_in_past: Tanggal mulai tidak boleh di masa lalu
     webhook:
       connection_failure: Tidak dapat terhubung ke url webhook. Silakan verifikasi apakah url webhook sudah benar.
       delete_success: Pengaturan webhook berhasil dihapus

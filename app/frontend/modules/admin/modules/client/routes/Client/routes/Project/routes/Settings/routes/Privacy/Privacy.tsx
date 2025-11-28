@@ -255,6 +255,12 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
               >
                 <Checkbox>{I18n.t('administration.projects.privacy_settings.mask_identity_for_skillvue')}</Checkbox>
               </Form.Item>
+              <Form.Item
+                valuePropName="checked"
+                name="maskIdentityForYoodli"
+              >
+                <Checkbox>{I18n.t('administration.projects.privacy_settings.mask_identity_for_yoodli')}</Checkbox>
+              </Form.Item>
               {!features?.disableMeetingRecording && (
                 <>
                   <Form.Item

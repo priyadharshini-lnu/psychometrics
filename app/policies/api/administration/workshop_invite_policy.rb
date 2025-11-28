@@ -39,6 +39,10 @@ module Api
         has_permission?(:workshops, :manage)
       end
 
+      def validate_subjects?
+        has_permission?(:workshops, :manage)
+      end
+
       def index?
         has_permission?(:workshops, :view)
       end

@@ -1,0 +1,29 @@
+---
+hu:
+  shared:
+    action: Akció
+    add: Add
+    cancel: Törölje
+    change_password: Jelszó módosítása
+    clear_filters: Szűrők törlése
+    description: Leírás
+    edit: Szerkesztés
+    edited: Új
+    id: ID
+    internet_disconnected_message: Próbálok újra kapcsolódni. Kérjük, ellenőrizze az internetkapcsolatát.
+    mte_logo_alt_text: Mercer Talent Enterprise logó
+    name: Név
+    new: Új
+    removed: Eltávolított
+    rte_paste_content_exceeds_char_limit: A szöveg meghaladja a {{maxCharacterLimit}} karakterkorlátját, és nem lehet beilleszteni.
+    rte_paste_content_exceeds_word_limit: A szöveg túllépi a {{maxWordLimit}} szóhatárát, és nem lehet beilleszteni.
+    search: Keresés
+    table:
+      entries:
+        selected: 1 sor kiválasztva
+        total: 'Összesen : 1'
+    terms_conditions_privacy: Adatvédelmi nyilatkozat
+    transcriptions: Átiratok
+    tte_terms_and_condition: Feltételek és adatvédelem
+    type: Típus
+    update: Frissítés

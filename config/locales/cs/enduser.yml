@@ -1,0 +1,29 @@
+---
+cs:
+  enduser:
+    add_idp_plan_note: Přidat poznámku...
+    add_idp_plan_rejection_reason: Přidat důvod...
+    approve_idp_plan: Schválit plán
+    bookings: Rezervace
+    campaign: Kampaň
+    development: Vývoj
+    direct_reportees: Přímí zástupci
+    home: Přístrojová deska
+    idp_plan_approval_note: Poznámka ke schválení
+    insights: Poznatky
+    lighthouse_assistant: Asistent majáku
+    max_word_limit: Musí mít maximálně %{max} slov
+    min_word_limit: Musí mít nejméně %{min} slov
+    my_plan: Můj plán
+    profile: Profil
+    profile_details: Detaily
+    question_counter: Otázka %{current} z %{total}
+    reason_for_idp_plan_rejection: Důvod zamítnutí plánu
+    reject_idp_plan: Zamítnout plán
+    request_retry_message: Jste offline. Vaše odpovědi nemohly být uloženy, ale automaticky se uloží, jakmile se vrátíte online. Prosím, neobnovujte ani nezavírejte stránku.
+    selected_count: Vybrané stránky
+    skill_type: Typ dovednosti
+    start_campaign_message_proctored: Toto je dozorovaná kampaň, klikněte prosím na tlačítko '%{buttonText}' pro zahájení aktivit.
+    start_campaign_message_timed: Toto je časově omezená kampaň, klikněte prosím na tlačítko '%{buttonText}' pro zahájení aktivit.
+    start_campaign_message_timed_proctored: Jedná se o časově omezenou a dozorovanou kampaň, klikněte prosím na tlačítko '%{buttonText}' pro zahájení aktivit.
+    tasks: Úkoly

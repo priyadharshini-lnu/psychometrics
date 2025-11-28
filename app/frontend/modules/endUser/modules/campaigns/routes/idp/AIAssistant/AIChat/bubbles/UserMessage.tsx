@@ -1,7 +1,6 @@
-import { Button, Space, Typography } from 'antd'
+import { Space, Typography } from 'antd'
 import { Bubble } from '@ant-design/x'
 import {
-  CopyOutlined,
   ExclamationCircleOutlined,
 } from '@ant-design/icons'
 import styles from './styles.less'
@@ -29,12 +28,6 @@ export const UserMessage = ({ message, error = null }) => (
             </Typography.Text>
           </Space>
         )}
-        <Button
-          color="primary"
-          variant="text"
-          size="small"
-          icon={<CopyOutlined />}
-        />
       </Space>
     )}
   />

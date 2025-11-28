@@ -2,10 +2,10 @@
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Table, Row, Col, Input, Pagination,
+  Table, Row, Col, Input, Pagination, Typography,
 } from 'antd'
 import { AppstoreOutlined } from '@ant-design/icons'
-import { Link, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import settings from '~/modules/admin/settings'
 import { get as getUsers, fetch } from '~/modules/admin/modules/AssessorApp/core/users'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -47,6 +47,7 @@ const UserList: React.FC<Props> = (
   },
 ) => {
   const { campaignId } = useParams<{campaignId?: string}>()
+  const navigate = useNavigate()
   let parsedCampaignId: null | number = null
   if (campaignId) { parsedCampaignId = parseInt(campaignId, 10) }
   if (!parsedCampaignId) { return null }
@@ -86,16 +87,28 @@ const UserList: React.FC<Props> = (
       </Row>
       <Row>
         <Col span={24}>
-          <Table className="mtm" rowKey="id" dataSource={list} onChange={onTableChange} pagination={false}>
+          <Table
+            className="mtm"
+            rowKey="id"
+            dataSource={list}
+            onChange={onTableChange}
+            onRow={record => ({
+              onClick: () => {
+                navigate(`/assessors/campaigns/${campaignId}/users/${record.id}`)
+              },
+              className: styles.clickableRow,
+            })}
+            pagination={false}
+          >
             <Column
               title={I18n.t('administration.campaigns.users.id')}
               key="id"
               sorter
               sortOrder={getSortOrder('id')}
               render={({ id }) => (
-                <Link to={`/assessors/campaigns/${campaignId}/users/${id}`}>
+                <Typography.Link>
                   {id}
-                </Link>
+                </Typography.Link>
               )}
             />
             <Column

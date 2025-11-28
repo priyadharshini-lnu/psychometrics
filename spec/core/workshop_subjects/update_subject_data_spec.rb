@@ -3,11 +3,13 @@
 require 'rails_helper'
 
 describe WorkshopSubjects::UpdateSubjectData do
-  let!(:workshop) { create(:workshop) }
   let!(:campaign) { create(:campaign) }
+  let!(:campaign_assessment_group) { create(:campaign_assessment_group, campaign: campaign) }
+  let!(:workshop) { create(:workshop, campaign: campaign, campaign_assessment_group: campaign_assessment_group) }
   let!(:campaign_assessment) { create(:campaign_assessment, campaign: campaign) }
   let!(:campaign_assessor_assessment) do
-    create(:campaign_assessor_assessment, campaign: campaign, assessment: campaign_assessment.assessment)
+    create(:campaign_assessor_assessment, campaign: campaign, assessment: campaign_assessment.assessment,
+campaign_assessment_group: campaign_assessment_group)
   end
   let!(:relationship) { create(:relationship, name: 'Assessor', type: :global) }
   let!(:assessor) { create(:assessor, campaign: campaign) }

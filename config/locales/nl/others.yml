@@ -919,8 +919,6 @@ nl:
     invalid_job: Deze melding komt overeen met verwijderde record
     mark_as_read: Markeer alle gelezen
     more: Meer
-    no_notifications: Geen meldingen
-    notifications: Meldingen
     results: Resultaten
     super_admin:
       errors:
@@ -1341,16 +1339,11 @@ nl:
     continue: Doorgaan met je taken
     dashboard_instructions: Er kunnen meerdere activiteiten aan je zijn toegewezen die je moet voltooien. Controleer of alle toegewezen activiteiten zijn voltooid in alle campagnes.
     dashboard_menu:
-      bookings: Boekingen
       campaign: Campagne
-      change_password: Wachtwoord wijzigen
-      development: Ontwikkeling
       direct_reportees: Directe rapporten
       home: Home
       insights: Inzichten
-      my_plan: Mijn plan
       profile: Profiel
-      profile_details: Details
       tasks: Taken
     details: Details
     edit_evaluation:
@@ -1805,7 +1798,6 @@ nl:
       view: Bekijk
       view_all_tasks: Bekijk alle taken
       view_detail: Detail bekijken
-      yes_delete: Ja, verwijderen
     column:
       action: Actie
       active: Actief
@@ -1880,7 +1872,6 @@ nl:
       projects: Projecten
       report: Rapporteer
       reports: Rapporten
-      scoring: Scoren
       sms_contact: SMS contact
       threesixty_campaign: Threesixty Campagne Scores
     status:
@@ -2569,14 +2560,14 @@ nl:
       you: Jij
     convert_to_draft: Converteren naar concept
     current_step: Huidige stap %{step}
-    delete_skill: Weet je zeker dat je vaardigheid wilt verwijderen omdat dan ook alle verbonden ontwikkelingsacties worden verwijderd?
+    delete_skill: Weet je zeker dat je deze vaardigheid wilt verwijderen? Verwijderen zal ook alle verbonden ontwikkelingsacties verwijderen.
     details: Details
     development_actions:
       action_private: Ja
       action_public: Geen
       add_development_action: Ontwikkelingsactie toevoegen
       add_development_actions_from_below_options: Voeg ontwikkelingsacties toe via onderstaande opties.
-      add_development_actions_modal_title: Bibliotheek met ontwikkelingsacties voor %{skillName}
+      add_development_actions_modal_title: Bibliotheek met ontwikkelingsacties voor
       add_from_library: Toevoegen uit bibliotheek
       add_more: Voeg meer ontwikkelingsacties toe
       add_selected_development_actions: Geselecteerde ontwikkelingsacties toevoegen
@@ -2607,7 +2598,7 @@ nl:
       generate_more: Meer genereren
       generating_development_actions: Ontwikkelingsacties genereren...
       generative_ai: Generatieve AI
-      generative_ai_description: Laat AI een op maat gemaakte ontwikkelingsactie voor u genereren
+      generative_ai_description_msg: Laat AI een op maat gemaakte ontwikkelingsactie voor u genereren
       heading: Ontwikkelingsacties
       idp_library: IDP-bibliotheek
       idp_library_description: Selecteer een bewezen ontwikkelingsactie uit onze door experts samengestelde bibliotheek.
@@ -2643,7 +2634,7 @@ nl:
       write_here: Schrijf hier...
     direct_reportee_details: Details van directe verslaggevers
     download:
-      description: 'Volg de link om het rapport te downloaden: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Link is slechts 10 minuten geldig'
+      description: 'Volg de link om het rapport te downloaden: <a href=''%{url}'' target=''_blank''>Download</a>. Link is slechts 10 minuten geldig'
     download_plan: Abonnement downloaden
     edit_plan: Plan bewerken
     edit_plan_and_add_skills: Bewerk Plan en en klik op Vaardigheden beheren om Vaardigheden toe te voegen.
@@ -2665,8 +2656,8 @@ nl:
         one: Verwijderde ontwikkelingsactie
         other: Verwijderde ontwikkelingsacties
     initial_steps:
-      add_skill_group_description: Op basis van de resultaten van je assessment zijn hier een aantal sterke punten en ontwikkelingsgebieden voor jou. Kies de vaardigheden die je verder wilt ontwikkelen als onderdeel van je ontwikkelingsplan.
-      add_skill_group_title: Je %{category} vaardigheden verkennen
+      add_skill_group_description: Kies de vaardigheden die je verder wilt ontwikkelen als onderdeel van je ontwikkelingsplan.
+      add_skill_group_title: "%{category}"
       add_skills: Voeg  toe
       add_skills_step: Vaardigheden toevoegen
       back: Terug
@@ -2712,7 +2703,6 @@ nl:
           name: Naam
           publish_date: Publicatiedatum
           review_date: Datum van beoordeling
-          role: Huidige rol
       guidelines:
         cards:
           c1:
@@ -3359,13 +3349,6 @@ nl:
   sessions:
     errors:
       recaptcha: Recaptcha verificatie mislukt. Probeer het opnieuw.
-  shared:
-    filters:
-      clear: Filters wissen
-    internet_disconnected_message: Probeer opnieuw verbinding te maken. Controleer uw internetverbinding.
-    mte_logo_alt_text: Mercer logo voor talentondernemingen
-    terms_conditions_privacy: Privacyverklaring
-    tte_terms_and_condition: Voorwaarden en privacy
   sheet:
     import_modal:
       alert_access_sheet_removal: Bij het uploaden van een nieuw Accesssheet worden alle bestaande records verwijderd en wordt een nieuwe geüpload vanuit het blad. Zorg ervoor dat alle Accesssheet-records in het spreadsheet staan.

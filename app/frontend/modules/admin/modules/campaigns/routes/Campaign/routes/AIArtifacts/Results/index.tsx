@@ -28,9 +28,16 @@ export const Result = () => {
   const [selectedAIArtifact, setSelectedAIArtifact] = useState<CampaignAiArtifactDataSource | null>(null)
 
   const {
-    data: aiArtifact, fetch, changePage,
-    meta, currentPage, pageSize, requests,
-    isLoading, changeFilter, getFilteredValue,
+    data: aiArtifact,
+    fetch,
+    changePage,
+    meta,
+    currentPage,
+    pageSize,
+    requests,
+    isLoading,
+    changeFilter,
+    getFilteredValue,
   } = useResources<CampaignAiArtifactResult>('ai_artifact_results', {
     basePath: `/campaigns/${campaignId}`,
   })
@@ -42,20 +49,22 @@ export const Result = () => {
   })
 
   useEffect(() => {
-    fetch().then(() => {
-      setIsCampaignFactorsLoading(false)
-    })
+    fetch()
+      .then(() => {
+        setIsCampaignFactorsLoading(false)
+      })
   }, [])
 
   const dataSource = useMemo(() => {
     if (aiArtifact) {
       return aiArtifact
-        .reduce((acc:CampaignAiArtifactDataSource[], item:CampaignAiArtifactResult) => {
+        .reduce((acc: CampaignAiArtifactDataSource[], item: CampaignAiArtifactResult) => {
           acc.push({
             id: item.id,
             key: item.id,
             participantId: item.user.data.id,
             name: item.user.data.attributes.name,
+            email: item.user.data.attributes.email,
             artifacts: item.artifactsResults.data.reduce((acc, artifactResultData) => {
               const artifactResult = artifactResultData.attributes
               const artifactName = artifactResult.artifact.name
@@ -66,9 +75,14 @@ export const Result = () => {
                 generatedAt: artifactResult.generatedAt,
                 id: artifactResult.artifact.id,
                 parsedDependencies: artifactResult.parsedDependencies,
+                totalInputTokens: artifactResult.totalInputTokens,
+                totalOutputTokens: artifactResult.totalOutputTokens,
               }
 
-              return { ...acc, [artifactName]: artifactData }
+              return {
+                ...acc,
+                [artifactName]: artifactData,
+              }
             }, {}),
             generatedAt: item.generatedAt,
           })
@@ -78,49 +92,54 @@ export const Result = () => {
     return []
   }, [aiArtifact])
 
-  const tableColumns:ColumnsType<CampaignAiArtifactDataSource> = useMemo(() => {
+  const tableColumns: ColumnsType<CampaignAiArtifactDataSource> = useMemo(() => {
     if (dataSource.length === 0) {
       return []
     }
     const artifactsData = dataSource[0].artifacts
 
-    const artifactColumns = Object.keys(artifactsData).map(art => ({
-      title: <div>{art}</div>,
-      key: art,
-      children: artifactsData[art].results.map(result => ({
-        title: <div style={{ textAlign: 'left' }}>{result.key}</div>,
-        key: result.key,
-        render: (_, record) => {
-          if (record.artifacts[art].error) {
-            return (
-              <Popover
-                content={(
-                  <div style={{ maxWidth: '300px' }}>
-                    <Typography.Text style={{ whiteSpace: 'pre-wrap' }}>{record.artifacts[art].error}</Typography.Text>
-                  </div>
-              )}
-              >
-                <WarningFilled className={styles.warning} />
-              </Popover>
-            )
-          }
-          const currentResult = record.artifacts[art].results.find(r => r.key === result.key)
-          if (currentResult && currentResult.value) {
-            return (
-              <Tooltip
-                title={I18n.t('administration.ai_artifacts.generated_at_time',
-                  { time: formatedDate(record.artifacts[art].generatedAt) })}
-              >
-                <CheckOutlined style={{ color: '#52c41a' }} />
-              </Tooltip>
-            )
-          }
-          return '-'
-        },
+    const artifactColumns = Object.keys(artifactsData)
+      .map(art => ({
+        title: <div>{art}</div>,
+        key: art,
+        children: artifactsData[art].results.map(result => ({
+          title: <div style={{ textAlign: 'left' }}>{result.key}</div>,
+          key: result.key,
+          render: (_, record) => {
+            if (record.artifacts[art].error) {
+              return (
+                <Popover
+                  content={(
+                    <div style={{ maxWidth: '300px' }}>
+                      <Typography.Text
+                        style={{ whiteSpace: 'pre-wrap' }}
+                      >
+                        {record.artifacts[art].error}
+                      </Typography.Text>
+                    </div>
+                    )}
+                >
+                  <WarningFilled className={styles.warning} />
+                </Popover>
+              )
+            }
+            const currentResult = record.artifacts[art].results.find(r => r.key === result.key)
+            if (currentResult && currentResult.value) {
+              return (
+                <Tooltip
+                  title={I18n.t('administration.ai_artifacts.generated_at_time',
+                    { time: formatedDate(record.artifacts[art].generatedAt) })}
+                >
+                  <CheckOutlined style={{ color: '#52c41a' }} />
+                </Tooltip>
+              )
+            }
+            return '-'
+          },
 
-      })),
-    }
-    ))
+        })),
+      }
+      ))
 
     return [
       {
@@ -140,7 +159,10 @@ export const Result = () => {
         fixed: 'left',
         render: (_, record) => (
           <a onClick={() => setSelectedAIArtifact(record)}>
-            {record.name}
+            <Flex vertical>
+              <Typography.Link>{record.name}</Typography.Link>
+              <Typography.Text style={{ fontSize: 12 }}>{record.email}</Typography.Text>
+            </Flex>
           </a>
         ),
       },
@@ -157,7 +179,11 @@ export const Result = () => {
   }, [dataSource])
 
   const {
-    isAllSelected, excludedKeys, selectedKeys, onSelectionChange, onAllSelect,
+    isAllSelected,
+    excludedKeys,
+    selectedKeys,
+    onSelectionChange,
+    onAllSelect,
   } = useSelectAll(false, dataSource)
 
   const rowSelection = {
@@ -181,9 +207,10 @@ export const Result = () => {
           userIds: isAllSelected ? excludedKeys : selectedKeys,
         },
         responseType: t.type({}),
-      }).then(() => {
-        message.info(I18n.t('administration.ai_artifacts.generate_result_info_message'))
       })
+        .then(() => {
+          message.info(I18n.t('administration.ai_artifacts.generate_result_info_message'))
+        })
     }
   }
 
@@ -203,7 +230,9 @@ export const Result = () => {
           <Search
             placeholder={I18n.t('common.actions.search')}
             value={getFilteredValue('filterable_fields')}
-            onChange={({ target: { value } }) => { changeFilter('filterable_fields', value) }}
+            onChange={({ target: { value } }) => {
+              changeFilter('filterable_fields', value)
+            }}
           />
           <ToolsDropdown
             isBulk
@@ -254,7 +283,9 @@ export const Result = () => {
       )}
       {selectedAIArtifact ? (
         <ArtifactResultsDrawer
-          close={() => { setSelectedAIArtifact(null) }}
+          close={() => {
+            setSelectedAIArtifact(null)
+          }}
           artifact={selectedAIArtifact}
           campaignId={campaignId}
         />

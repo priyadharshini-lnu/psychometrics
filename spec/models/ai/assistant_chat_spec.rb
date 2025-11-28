@@ -63,7 +63,7 @@ RSpec.describe AI::AssistantChat, type: :model do
       end
 
       it 'calls OpenaiResponseApi service' do
-        expect(AI::Services::OpenaiResponseApi).to receive(:call!).with(llm_chat)
+        expect(AI::Services::OpenaiResponseApi).to receive(:call!).with(llm_chat, assistant.model_id)
 
         chat.ask(message, with: attachment_url, service: :openai_response_api)
       end
@@ -186,6 +186,7 @@ RSpec.describe AI::AssistantChat, type: :model do
     let(:chat) { create(:assistant_chat, ai_assistant: assistant, user: user) }
     let(:llm_chat) { double('LLM Chat') }
     let(:ruby_llm_context) { double('Ruby LLM Context') }
+    let(:assistant_default_params) { assistant.send(:default_params) }
 
     before do
       allow(chat).to receive(:to_llm).and_return(llm_chat)
@@ -252,15 +253,16 @@ RSpec.describe AI::AssistantChat, type: :model do
       let(:params) { { temperature: 0.7, max_tokens: 100 } }
 
       it 'adds params to LLM chat' do
-        expect(llm_chat).to receive(:with_params).with(temperature: 0.7, max_tokens: 100)
+        expected_params = assistant_default_params.merge(params)
+        expect(llm_chat).to receive(:with_params).with(expected_params)
 
         chat.with_assistant_context(params: params)
       end
     end
 
     context 'when params option is not provided' do
-      it 'does not add params to LLM chat' do
-        expect(llm_chat).not_to receive(:with_params)
+      it 'adds default params to LLM chat' do
+        expect(llm_chat).to receive(:with_params).with(assistant_default_params)
 
         chat.with_assistant_context
       end
@@ -278,7 +280,8 @@ RSpec.describe AI::AssistantChat, type: :model do
 
       expect(llm_chat).to receive(:with_context).with(ruby_llm_context)
       expect(llm_chat).to receive(:with_tools).with(:tool1, :tool2, replace: true)
-      expect(llm_chat).to receive(:with_params).with(temperature: 0.7)
+      expected_params = assistant_default_params.merge(params)
+      expect(llm_chat).to receive(:with_params).with(expected_params)
 
       result = chat.with_assistant_context(tools: tools, params: params)
       expect(result).to eq(chat)

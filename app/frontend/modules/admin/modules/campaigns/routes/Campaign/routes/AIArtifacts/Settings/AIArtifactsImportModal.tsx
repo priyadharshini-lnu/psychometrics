@@ -1,0 +1,105 @@
+import React, { useState } from 'react'
+import ApiAction from 'interfaces/ApiAction'
+import { LoadingOutlined, CheckOutlined, CloudDownloadOutlined } from '@ant-design/icons'
+import {
+  Button, Modal, Alert, Form, Input,
+} from 'antd'
+import Event from 'interfaces/Event'
+
+const { I18n } = window
+
+interface OwnProps {
+  close (): void
+
+  handleImport: (data: FormData, successCallback: () =>
+    void, failureCallback: (error) => void) => ApiAction<void>,
+  csvFilePath: string,
+  title: string,
+}
+
+export const AIArtifactsImportModal: React.FC<OwnProps> = ({
+  close,
+  handleImport,
+  csvFilePath,
+  title,
+}) => {
+  const [form] = Form.useForm()
+  const [file, setFile] = useState<File | null>(null)
+  const [errors, setErrors] = useState([])
+  const [loading, setLoading] = useState(false)
+  const handleUpload = () => {
+    if (!file) return
+
+    const data = new FormData()
+    data.append('file', file)
+    setLoading(true)
+
+    handleImport(data, () => {
+      form.resetFields()
+      close()
+      setLoading(false)
+    }, (error) => {
+      setErrors(error)
+      setLoading(false)
+    })
+  }
+
+  return (
+    <Modal
+      width={700}
+      title={title}
+      open
+      onCancel={close}
+      footer={[
+        <Button
+          key="back"
+          onClick={close}
+        >
+          {I18n.t('common.actions.cancel')}
+        </Button>,
+        <Button
+          key="submit"
+          type="primary"
+          disabled={!file}
+          onClick={() => {
+            form.submit()
+          }
+          }
+        >
+          {loading ? <LoadingOutlined /> : <CheckOutlined />}
+          {I18n.t('common.actions.update')}
+        </Button>,
+      ]}
+    >
+      <div className="mbl" style={{ fontSize: '16px' }}>
+        <a href={csvFilePath}>
+          <CloudDownloadOutlined />
+          <span className="mls">
+            {I18n.t('administration.ai_artifacts.import.download_example_csv')}
+          </span>
+        </a>
+      </div>
+      {errors?.length ? (
+        <Alert
+          message={false}
+          description={errors.map((e, i) => <div key={i}>{e}</div>)}
+          type="error"
+          className="mbm"
+        />
+      ) : null}
+      <Form
+        name="basic"
+        form={form}
+        onFinish={handleUpload}
+      >
+        <Form.Item name="importData">
+          <Input
+            type="file"
+            accept=".csv"
+            onChange={({ target: { files } }: Event<HTMLInputElement>) => setFile(files && files[0])}
+          />
+        </Form.Item>
+      </Form>
+    </Modal>
+  )
+}

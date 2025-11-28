@@ -109,7 +109,7 @@ export default defineConfig({
     sourcemap: 'external',
   },
   build: {
-    sourcemap: true,
+    sourcemap: __TEST__ ? false : true,
     chunkSizeWarningLimit: 5000,
     reportCompressedSize: false,
     cssCodeSplit: true,

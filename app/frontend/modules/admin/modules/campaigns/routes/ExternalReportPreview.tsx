@@ -33,10 +33,15 @@ const { Content } = Layout
 const { I18n } = window
 
 const ExternalReportPreview: FC<Props> = ({
-  fetchExternalReportDetails, userReport, reportLoadingInProgress,
+  fetchExternalReportDetails,
+  userReport,
+  reportLoadingInProgress,
 }) => {
   const [pdfLoadingComplete, setPdfLoadingComplete] = useState(false)
-  const { campaignId, id } = useParams() as { campaignId: string, id: string }
+  const {
+    campaignId,
+    id,
+  } = useParams() as { campaignId: string, id: string }
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedUserReportId = parseInt(id, 10)
   useEffect(() => {
@@ -56,7 +61,7 @@ const ExternalReportPreview: FC<Props> = ({
             }}
             crumbs={[{
               link: () => '/admin',
-              label: () => I18n.t('administration.clients.tenancies'),
+              label: () => I18n.t('administration.clients.clients'),
             }, {
               link: state => `/admin/clients/${state.client.id}/projects`,
               label: state => state.client.name,
@@ -69,7 +74,7 @@ const ExternalReportPreview: FC<Props> = ({
             }, {
               link: state => (reportLoadingInProgress
                 ? ''
-                // eslint-disable-next-line max-len
+              // eslint-disable-next-line max-len
                 : `/admin/projects/${state.project.id}/new_campaigns/${state.campaign.id}/participants/subjects/${userReport.userId}`
               ),
               label: () => userReport.userEmail,
@@ -84,13 +89,13 @@ const ExternalReportPreview: FC<Props> = ({
                 <span>{I18n.t('user_reports.preview_report')}</span>
                 {!pdfLoadingComplete && <Spin />}
               </Space>
-              )}
+            )}
             className="page-header"
             backIcon={(
               <div>
                 <ArrowLeftOutlined />
               </div>
-              )}
+            )}
             extra={userReport.canDownloadReport ? [
               <Button href={userReport.pdfUrl} target="_blank" icon={<DownloadOutlined />}>
                 {I18n.t('common.text.download')}
@@ -102,14 +107,14 @@ const ExternalReportPreview: FC<Props> = ({
                 <Row justify="center">
                   <Col>
                     {userReport.pdfUrl
-                        && (
-                          <Suspense fallback={<Spin />}>
-                            <PDFViewer
-                              fileUrl={userReport.pdfUrl}
-                              onLoadingComplete={() => setPdfLoadingComplete(true)}
-                            />
-                          </Suspense>
-                        )}
+                      && (
+                        <Suspense fallback={<Spin />}>
+                          <PDFViewer
+                            fileUrl={userReport.pdfUrl}
+                            onLoadingComplete={() => setPdfLoadingComplete(true)}
+                          />
+                        </Suspense>
+                      )}
                   </Col>
                 </Row>
               </Col>

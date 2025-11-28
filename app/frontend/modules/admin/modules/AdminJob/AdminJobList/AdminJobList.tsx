@@ -1,30 +1,87 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import {
   List, Badge, Button, Row, Col, Popover,
-  Empty,
+  Empty, Dropdown, Flex, Modal,
+  Avatar, Typography,
 } from 'antd'
+import type { MenuProps } from 'antd'
+import {
+  CheckOutlined, LockOutlined,
+  UserOutlined, BellOutlined, BellFilled, LogoutOutlined,
+  DownOutlined,
+} from '@ant-design/icons'
 import humps from 'humps'
-import { CheckOutlined } from '@ant-design/icons'
 import InfiniteScroll from 'react-infinite-scroller'
+import { createAvatar } from '@dicebear/core'
+import { shapes } from '@dicebear/collection'
+import { useMedia } from 'use-media'
+import { useResources } from '~/hooks/useResources'
 import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
 import styles from './styles.less'
 import { PropsFromRedux } from './connect'
 import AdminJob from './AdminJob'
 
-const { App, I18n } = window
+const {
+  App,
+  I18n,
+} = window
+
+type UserDetails = {
+  id: string
+  firstName: string
+  LastName: string
+  name: string
+  email: string
+  roleTitle: string
+  photo?: string
+}
 
 const AdminJobList: React.FC<PropsFromRedux> = ({
-  adminJobs, fetch, unread, read, readAll, createJob, updateJob, hasMore,
+  adminJobs,
+  fetch,
+  unread,
+  read,
+  readAll,
+  createJob,
+  updateJob,
+  hasMore,
 }) => {
   const [active, setActive] = useState(false)
   const [visible, setVisible] = useState<boolean>(false) // State to control Popover visibility
-  const { features, adminLocales } = window.PsyGlobalState
+  const [user, setUser] = useState<UserDetails | null>(null)
+  const {
+    features,
+    adminLocales,
+  } = window.PsyGlobalState
+  const { collectionAction } = useResources('users')
+  const isMobile = useMedia({
+    maxWidth: 600,
+  })
+
+  const largeAvatar = useMemo(() => {
+    if (!user?.email) return null
+    return createAvatar(shapes, {
+      size: 48,
+      seed: user.email,
+    })
+      .toDataUri()
+  }, [user?.email])
 
   useEffect(() => {
+    collectionAction({
+      action: 'current_user_details',
+      method: 'get',
+    })
+      .then((data: UserDetails) => {
+        setUser(data)
+      })
     fetch(adminJobs.length)
     if (App.cable) {
       App.cable.subscriptions.create({ channel: 'AdminJobChannel' }, {
-        received ({ action, job }) {
+        received ({
+          action,
+          job,
+        }) {
           if (action === 'create') createJob(humps.camelizeKeys(job))
           if (action === 'update') updateJob(humps.camelizeKeys(job))
         },
@@ -52,6 +109,17 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
 
   const handleInfiniteOnLoad = () => fetch(adminJobs.length)
 
+  const handleLogout = () => {
+    Modal.confirm({
+      title: I18n.t('administration.header.logout.title'),
+      content: I18n.t('administration.header.logout.content'),
+      onOk () {
+        window.location.href = '/administration/sign_out'
+      },
+      okButtonProps: { danger: true },
+    })
+  }
+
   const content = (
     <div className={styles.list}>
       <InfiniteScroll
@@ -65,7 +133,7 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
           className={styles.listBox}
           locale={{
             emptyText: (
-              <Empty description={I18n.t('admin_jobs.no_notifications')} image={Empty.PRESENTED_IMAGE_SIMPLE} />
+              <Empty description={I18n.t('admin.no_notifications')} image={Empty.PRESENTED_IMAGE_SIMPLE} />
             ),
           }}
           itemLayout="vertical"
@@ -74,7 +142,7 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
           header={(
             <Row>
               <Col span="12">
-                <h3 className="pt8 pl24">{I18n.t('admin_jobs.notifications')}</h3>
+                <h3 className="pt8 pl24">{I18n.t('admin.notifications')}</h3>
               </Col>
               <Col span="12" className="text-align-r">
                 <Button
@@ -93,33 +161,119 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
     </div>
   )
 
+  const profileSubmenuItems: MenuProps['items'] = [
+    {
+      key: 'user_info',
+      label: (
+        <Flex gap={16} justify="center" align="center">
+          <Avatar
+            size={48}
+            src={user?.photo || largeAvatar}
+            icon={<UserOutlined />}
+          />
+          <Flex vertical justify="center">
+            <Typography.Title level={5} className="m-0 mb-0">
+              {user?.name}
+            </Typography.Title>
+            <Typography.Text>
+              {user?.email}
+            </Typography.Text>
+            <Typography.Text style={{ fontSize: 12 }}>
+              {`${I18n.t('admin.role')} - ${user?.roleTitle}`}
+            </Typography.Text>
+          </Flex>
+        </Flex>
+      ),
+      disabled: true,
+    },
+    {
+      type: 'divider',
+    },
+    {
+      key: 'profile_details',
+      label: I18n.t('admin.profile_details'),
+      icon: <UserOutlined aria-hidden="true" />,
+      onClick: () => {
+        window.location.href = '/admin/profile/details'
+      },
+    },
+    {
+      type: 'divider',
+    },
+    {
+      key: 'change_password',
+      label: I18n.t('shared.change_password'),
+      icon: <LockOutlined aria-hidden="true" />,
+      onClick: () => {
+        window.location.href = '/admin/profile/change_password'
+      },
+    },
+    {
+      type: 'divider',
+    },
+    {
+      key: 'logout',
+      label: I18n.t('administration.navigation.logout'),
+      icon: <LogoutOutlined aria-hidden="true" />,
+      onClick: handleLogout,
+    },
+  ]
+
   return (
-    <>
-      <div className={styles.container}>
-        {
-          features.enable_intl_for_admins
-        && (
-          <div className={styles.langDropdown}>
-            <LangDropdownWithChangeLocale locales={adminLocales.split(',')} />
-          </div>
-        )
-        }
-        <Popover
-          placement="bottomRight"
-          content={content}
-          trigger="click"
-          open={visible}
-          onOpenChange={setVisible}
-          overlayClassName={styles.overlay}
-        >
-          <Button aria-label={`${I18n.t('administration.notification_bell_icon')}`} type="text" onClick={handleClick}>
-            <Badge count={unread} overflowCount={9}>
-              <span className={`fa fa-bell ${styles.bellIcon}`} />
+    <Flex
+      flex={1}
+      justify="flex-end"
+      align="center"
+      gap={8}
+      style={{
+        height: 55,
+        borderBottom: '1px solid #ddd',
+      }}
+    >
+      {features.enable_intl_for_admins ? <LangDropdownWithChangeLocale locales={adminLocales.split(',')} />
+        : null}
+      <Popover
+        placement="bottomRight"
+        content={content}
+        trigger="click"
+        open={visible}
+        onOpenChange={setVisible}
+      >
+        <Button
+          aria-label={`${I18n.t('admin.notification_bell_icon_alt_text')}`}
+          type="text"
+          onClick={handleClick}
+          icon={(
+            <Badge count={unread} overflowCount={9} size="small">
+              {unread > 0 ? <BellFilled aria-hidden="true" /> : <BellOutlined aria-hidden="true" />}
             </Badge>
-          </Button>
-        </Popover>
-      </div>
-    </>
+          )}
+          className="ms-2"
+        />
+      </Popover>
+      <Dropdown
+        menu={{ items: profileSubmenuItems }}
+        trigger={['click']}
+        placement="bottomRight"
+      >
+        <Button
+          className="me-2 ps-1 pe-1"
+          type="text"
+        >
+          <Avatar
+            size={24}
+            src={user?.photo || largeAvatar}
+            icon={<UserOutlined />}
+          />
+          {!isMobile && user?.firstName ? (
+            <Flex gap={4}>
+              <Typography.Text>{user?.firstName}</Typography.Text>
+              <DownOutlined />
+            </Flex>
+          ) : null}
+        </Button>
+      </Dropdown>
+    </Flex>
   )
 }
 

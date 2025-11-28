@@ -37,7 +37,6 @@ export const InviteDeatilsContainer = ({
       id={`ac-details-btn-${groupId}`}
       className="ta-c mt-2"
       size="small"
-      type="primary"
       onClick={navigateToAssessmentCenterDetails}
       aria-labelledby={`${groupTitleId} ac-details-btn-${groupId}`}
     >

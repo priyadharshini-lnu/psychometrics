@@ -50,6 +50,7 @@ module UsersResults
         answers: {},
         scoring: nil,
         occupations: nil,
+        external_results: nil,
         embedded_data: nil,
         step: 0,
         meta_data: {},

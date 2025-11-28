@@ -8,6 +8,8 @@ export const ProjectPrivacySettingsTR = t.type({
   maskIdentityForIiht: t.boolean,
   maskIdentityForExamus: t.boolean,
   maskIdentityForMettl: t.boolean,
+  maskIdentityForSkillvue: t.boolean,
+  maskIdentityForYoodli: t.boolean,
   privacyConsent: t.union([t.boolean, t.null]),
   customPrivacyConsent: t.boolean,
   customPrivacyConsentTexts: t.array(t.type({
@@ -18,6 +20,6 @@ export const ProjectPrivacySettingsTR = t.type({
   privacyLinkText: t.union([t.string, t.null]),
   privacyLinkUrl: t.union([t.string, t.null]),
   enablePrivacyLink: t.boolean,
-} || t.undefined)
+})
 
 export type ProjectPrivacySettings = t.TypeOf<typeof ProjectPrivacySettingsTR>

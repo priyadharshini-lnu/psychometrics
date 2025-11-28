@@ -39,7 +39,7 @@ RSpec.describe AI::CampaignArtifact, type: :model do
 
       it 'returns error for missing keys' do
         errors = campaign_artifact.validate_results_schema(incomplete_results)
-        expect(errors).to include('is missing required keys: feedback')
+        expect(errors).to include("is missing required keys: 'feedback'")
       end
     end
 
@@ -48,7 +48,7 @@ RSpec.describe AI::CampaignArtifact, type: :model do
 
       it 'returns error for all missing keys' do
         errors = campaign_artifact.validate_results_schema(incomplete_results)
-        expect(errors).to include('is missing required keys: summary, feedback')
+        expect(errors).to include("is missing required keys: 'summary', 'feedback'")
       end
     end
 
@@ -63,7 +63,7 @@ RSpec.describe AI::CampaignArtifact, type: :model do
 
       it 'returns error for extra keys' do
         errors = campaign_artifact.validate_results_schema(results_with_extra_keys)
-        expect(errors).to include('contains unexpected keys: extra_field')
+        expect(errors).to include("contains unexpected keys: 'extra_field'")
       end
     end
 
@@ -79,7 +79,7 @@ RSpec.describe AI::CampaignArtifact, type: :model do
 
       it 'returns error for all extra keys' do
         errors = campaign_artifact.validate_results_schema(results_with_multiple_extra_keys)
-        expect(errors).to include('contains unexpected keys: extra_field_1, extra_field_2')
+        expect(errors).to include("contains unexpected keys: 'extra_field_1', 'extra_field_2'")
       end
     end
 
@@ -94,8 +94,8 @@ RSpec.describe AI::CampaignArtifact, type: :model do
 
       it 'returns errors for both missing and extra keys' do
         errors = campaign_artifact.validate_results_schema(invalid_results)
-        expect(errors).to include('is missing required keys: feedback')
-        expect(errors).to include('contains unexpected keys: extra_field')
+        expect(errors).to include("is missing required keys: 'feedback'")
+        expect(errors).to include("contains unexpected keys: 'extra_field'")
       end
     end
 
@@ -116,7 +116,7 @@ RSpec.describe AI::CampaignArtifact, type: :model do
     context 'when results is nil' do
       it 'returns errors for all missing keys' do
         errors = campaign_artifact.validate_results_schema(nil)
-        expect(errors).to include('is missing required keys: summary, feedback')
+        expect(errors).to include("is missing required keys: 'summary', 'feedback'")
       end
     end
 
@@ -129,7 +129,7 @@ RSpec.describe AI::CampaignArtifact, type: :model do
       it 'returns error for unexpected keys when results are provided' do
         results = { 'any_key' => 'any_value' }
         errors = campaign_artifact_without_schema.validate_results_schema(results)
-        expect(errors).to include('contains unexpected keys: any_key')
+        expect(errors).to include("contains unexpected keys: 'any_key'")
       end
 
       it 'returns no errors when results are empty' do

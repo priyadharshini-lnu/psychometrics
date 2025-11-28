@@ -6,18 +6,32 @@ class AI::AssistedUserSession < ApplicationRecord
 
   belongs_to :user
   belongs_to :assistable, polymorphic: true
-  belongs_to :ai_assistant_chat, class_name: 'AI::AssistantChat'
-
-  has_many :messages, class_name: 'AI::AssistantRequest', through: :ai_assistant_chat
+  has_many :chats, class_name: 'AI::AssistantChat', foreign_key: 'ai_assisted_user_session_id', dependent: :destroy
+  has_many :messages, class_name: 'AI::AssistantRequest', through: :chats
 
   enum :status, { default: 0, in_progress: 1, completed: 2, failed: 3 }
 
   validates :user, presence: true
   validates :assistable, presence: true
-  validates :ai_assistant_chat, presence: true
+
+  def latest_chat
+    chats.order(created_at: :desc, id: :desc).first
+  end
+
+  def total_input_tokens
+    chats.sum(:input_tokens)
+  end
+
+  def total_output_tokens
+    chats.sum(:output_tokens)
+  end
+
+  def total_tokens
+    total_input_tokens + total_output_tokens
+  end
 
   def mark_as_completed!(checkpoint = nil)
-    update!(status: :completed, checkpoint: checkpoint, error: nil, meta: nil)
+    update!(status: :completed, checkpoint: checkpoint, error: nil)
   end
 
   def mark_as_failed!(error_message = nil, meta: nil)

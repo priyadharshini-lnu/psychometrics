@@ -1,0 +1,29 @@
+---
+pt:
+  enduser:
+    add_idp_plan_note: Adicionar Nota...
+    add_idp_plan_rejection_reason: Adicionar Motivo...
+    approve_idp_plan: Aprovar Plano
+    bookings: Reservas
+    campaign: Campanha
+    development: Desenvolvimento
+    direct_reportees: Subordinados Diretos
+    home: Painel de controle
+    idp_plan_approval_note: Nota de Aprovação
+    insights: Informações
+    lighthouse_assistant: Assistente de Farol
+    max_word_limit: Deve ter no máximo %{max} palavras
+    min_word_limit: Deve ter pelo menos %{min} palavras
+    my_plan: Meu plano
+    profile: Perfil
+    profile_details: Detalhes
+    question_counter: Pergunta %{current} de %{total}
+    reason_for_idp_plan_rejection: Motivo da Rejeição
+    reject_idp_plan: Rejeitar o Plano
+    request_retry_message: Você está offline. Suas respostas não puderam ser salvas, mas serão salvas automaticamente quando você voltar a estar online. Por favor, não atualize nem feche a página.
+    selected_count: Selecionado
+    skill_type: Tipo de habilidade
+    start_campaign_message_proctored: Esta é uma campanha supervisionada, por favor, clique no botão '%{buttonText}' para iniciar as atividades.
+    start_campaign_message_timed: Esta é uma campanha cronometrada, por favor clique no botão '%{buttonText}' para iniciar as atividades.
+    start_campaign_message_timed_proctored: Esta é uma campanha cronometrada e supervisionada, por favor, clique no botão '%{buttonText}' para iniciar as atividades.
+    tasks: Tarefas

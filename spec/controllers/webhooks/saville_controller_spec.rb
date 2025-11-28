@@ -4,8 +4,10 @@ require 'rails_helper'
 
 RSpec.describe Webhooks::SavilleController, type: :controller do
   it 'calls SaveResultsAndReportsJob' do
-    expect(Saville::SaveResultsAndReportsJob).to receive(:perform_later).with(controller.request.raw_post)
+    webhook_data = '{"assessment_id": "123", "user_id": "456", "results": {"score": 85}}'
 
-    post :results
+    expect(Saville::SaveResultsAndReportsJob).to receive(:perform_later).with(webhook_data)
+
+    post :results, body: webhook_data
   end
 end

@@ -919,8 +919,6 @@ ro:
     invalid_job: Această notificare corespunde înregistrării șterse
     mark_as_read: Marcați toate citite
     more: Mai mult
-    no_notifications: Fără notificări
-    notifications: Notificări
     results: Rezultatele
     super_admin:
       errors:
@@ -1341,16 +1339,11 @@ ro:
     continue: Continuați-vă sarcinile
     dashboard_instructions: Este posibil să vă fi fost atribuite mai multe activități pe care trebuie să le finalizați. Vă rugăm să verificați dacă toate activitățile atribuite au fost finalizate în toate campaniile.
     dashboard_menu:
-      bookings: Rezervări
       campaign: Campanie
-      change_password: Schimbare parolă
-      development: Dezvoltare
       direct_reportees: Raportari directi
       home: Acasă
       insights: Perspective
-      my_plan: Planul meu
       profile: Profil
-      profile_details: Detalii
       tasks: Sarcini
     details: Detalii
     edit_evaluation:
@@ -1805,7 +1798,6 @@ ro:
       view: Vedere
       view_all_tasks: Vizualizați toate sarcinile
       view_detail: Vezi detalii
-      yes_delete: Da, ștergeți
     column:
       action: Acțiuni
       active: Active
@@ -1880,7 +1872,6 @@ ro:
       projects: Proiecte
       report: Raport
       reports: Rapoarte
-      scoring: Notare
       sms_contact: SMS Contact
       threesixty_campaign: Treișaizeci de scoruri de campanie
     status:
@@ -2574,14 +2565,14 @@ ro:
       you: Tu
     convert_to_draft: Conversie în ciornă
     current_step: Pasul curent %{step}
-    delete_skill: Sunteți sigur că doriți să ștergeți abilitatea, deoarece va șterge și toate acțiunile de dezvoltare conectate?
+    delete_skill: Sunteți sigur că doriți să ștergeți abilitatea? Aceasta va șterge și toate acțiunile de dezvoltare conectate.
     details: Detalii
     development_actions:
       action_private: Da
       action_public: Nu
       add_development_action: Adăugarea acțiunii de dezvoltare
       add_development_actions_from_below_options: Adăugați acțiuni de dezvoltare din opțiunile de mai jos.
-      add_development_actions_modal_title: Biblioteca de acțiuni de dezvoltare pentru %{skillName}
+      add_development_actions_modal_title: Biblioteca de acțiuni de dezvoltare pentru
       add_from_library: Adăugați din bibliotecă
       add_more: Adăugați mai multe acțiuni de dezvoltare
       add_selected_development_actions: Adăugați acțiuni de dezvoltare selectate
@@ -2612,7 +2603,7 @@ ro:
       generate_more: Generează mai mult
       generating_development_actions: Generarea de acțiuni de dezvoltare...
       generative_ai: AI generativă
-      generative_ai_description: Lăsați AI să genereze o acțiune de dezvoltare personalizată doar pentru dvs.
+      generative_ai_description_msg: Lăsați AI să genereze o acțiune de dezvoltare personalizată doar pentru dvs.
       heading: Acțiune de dezvoltare
       idp_library: Biblioteca IDP
       idp_library_description: Selectați o acțiune de dezvoltare dovedită din biblioteca noastră organizată de experți.
@@ -2648,7 +2639,7 @@ ro:
       write_here: Scrie aici...
     direct_reportee_details: Detalii raportoare directe
     download:
-      description: 'Pentru a descărca raportul, vă rugăm să urmați linkul: <a href=''''%{url}'''' target=''''_blank''''>Download</a>. Linkul este valabil doar 10 minute'
+      description: 'Pentru a descărca raportul, vă rugăm să urmați linkul: <a href=''%{url}'' target=''_blank''>Download</a>. Linkul este valabil doar 10 minute'
     download_plan: Descărcați planul
     edit_plan: Editați planul
     edit_plan_and_add_skills: Editați planul și faceți clic pe Gestionați abilitățile pentru a adăuga abilități.
@@ -2670,8 +2661,8 @@ ro:
         one: Acțiune de dezvoltare eliminată
         other: Acțiuni de dezvoltare eliminate
     initial_steps:
-      add_skill_group_description: Pe baza rezultatelor evaluării dvs., iată câteva dintre domeniile de puncte forte și dezvoltare pentru dvs. Alegeți abilitățile pe care doriți să le dezvoltați în continuare ca parte a planului de dezvoltare.
-      add_skill_group_title: Explorarea abilităților %{category}
+      add_skill_group_description: Alegeți abilitățile pe care doriți să le dezvoltați în continuare ca parte a planului de dezvoltare.
+      add_skill_group_title: "%{category}"
       add_skills: Adăugați
       add_skills_step: Adaugă abilități
       back: Spate
@@ -2717,7 +2708,6 @@ ro:
           name: Nume
           publish_date: Data publicării
           review_date: Data revizuirii
-          role: Rolul actual
       guidelines:
         cards:
           c1:
@@ -3386,13 +3376,6 @@ ro:
   sessions:
     errors:
       recaptcha: Verificarea Recaptcha a eșuat. Vă rugăm să încercați din nou.
-  shared:
-    filters:
-      clear: Ștergeți filtrele
-    internet_disconnected_message: Încercați să vă reconectați. Vă rugăm să verificați conexiunea la internet.
-    mte_logo_alt_text: Sigla Mercer Talent Enterprise
-    terms_conditions_privacy: Declarație de confidențialitate
-    tte_terms_and_condition: Termeni și confidențialitate
   sheet:
     import_modal:
       alert_access_sheet_removal: Încărcarea unei noi foi de acces cu ștergerea tuturor înregistrărilor existente și încărcarea uneia noi din foaie. Vă rugăm să vă asigurați că aveți toate înregistrările Accesssheet în foaia de calcul.

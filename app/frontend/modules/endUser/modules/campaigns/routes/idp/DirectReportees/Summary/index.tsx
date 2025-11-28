@@ -10,6 +10,7 @@ import { RootState } from '~/modules/endUser/core/rootReducers'
 import { Separator } from '~/components/IdpShared/Separator'
 import { ChangeStatusColors, ActionStatusInfo, PlanChangeStatus } from '../../../../core/idp/utils'
 import { USER_IDP_PLAN_STATUS } from '~/components/IdpShared/constants'
+import { ApprovalRejectionPopover } from '../../components/ApprovalRejectionPopover'
 
 const { I18n } = window
 
@@ -33,15 +34,19 @@ export const SummaryComponent: React.FC<SummaryComponentProps & Props> = ({
   summary, setCurrentSummary, reportee, fetchUserIdpPlanChangesForSummary, updateUserIdpPlan, refetchDirectReportees,
 }) => {
   const [isLoading, setIsLoading] = useState(true)
+  const [isRejectPopoverOpen, setIsRejectPopoverOpen] = useState(false)
+  const [isApprovePopoverOpen, setIsApprovePopoverOpen] = useState(false)
+
+
   useEffect(() => {
     fetchUserIdpPlanChangesForSummary(reportee.reporteeId.toString()).finally(() => {
       setIsLoading(false)
     })
   }, [reportee])
 
-  const updateReporteeIdpStatus = (status: string) => {
+  const updateReporteeIdpStatus = (status: string, note = '') => {
     setIsLoading(true)
-    updateUserIdpPlan(reportee.reporteeId.toString(), status).then(() => {
+    updateUserIdpPlan(reportee.reporteeId.toString(), status, note).then(() => {
       refetchDirectReportees(null)
     }).catch(() => {
       message.error(I18n.t('common.errors.something_wrong'))
@@ -65,7 +70,7 @@ export const SummaryComponent: React.FC<SummaryComponentProps & Props> = ({
                       {skillName}
                     </Typography.Title>
                     <Tag style={{ width: 'fit-content' }} color={ChangeStatusColors[summary[skillName].changeStatus]}>
-                      {summary[skillName].changeStatus}
+                      {I18n.t(`shared.${summary[skillName].changeStatus.toLowerCase()}`)}
                     </Tag>
                     {summary[skillName].actions.length > 0 && (
                       <ul className="ps-4">
@@ -100,34 +105,51 @@ export const SummaryComponent: React.FC<SummaryComponentProps & Props> = ({
                 ))}
               </Flex>
               <Flex gap={4} justify="end">
-                <Button
-                  type="default"
-                  onClick={() => {
+                <ApprovalRejectionPopover
+                  isLoading={isLoading}
+                  isOpen={isRejectPopoverOpen}
+                  setOpen={setIsRejectPopoverOpen}
+                  clickHandler={(reason:string) => {
                     setCurrentSummary(null)
-                    updateReporteeIdpStatus(USER_IDP_PLAN_STATUS.REJECTED)
+                    updateReporteeIdpStatus(USER_IDP_PLAN_STATUS.REJECTED, reason)
                   }}
-                  disabled={isLoading}
+                  placeholder={I18n.t('enduser.add_idp_plan_rejection_reason')}
+                  title={I18n.t('enduser.reject_idp_plan')}
+                  allowDisabling
                 >
-                  {I18n.t('common.actions.reject')}
-                </Button>
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    setCurrentSummary(null)
-                    updateReporteeIdpStatus(USER_IDP_PLAN_STATUS.APPROVED)
-                  }}
-                  disabled={isLoading}
-                >
-                  {I18n.t('common.actions.approve')}
-                </Button>
-              </Flex>
+                  <Button
+                    type="default"
+                    disabled={isLoading}
+                  >
+                    {I18n.t('common.actions.reject')}
+                  </Button>
+                </ApprovalRejectionPopover>
 
+                <ApprovalRejectionPopover
+                  isLoading={isLoading}
+                  clickHandler={
+                    (note: string) => {
+                      setCurrentSummary(null)
+                      updateReporteeIdpStatus(USER_IDP_PLAN_STATUS.APPROVED, note)
+                    }}
+                  isOpen={isApprovePopoverOpen}
+                  setOpen={setIsApprovePopoverOpen}
+                  placeholder={I18n.t('enduser.add_idp_plan_note')}
+                  title={I18n.t('enduser.approve_idp_plan')}
+                >
+                  <Button
+                    type="primary"
+                    disabled={isLoading}
+                  >
+                    {I18n.t('common.actions.approve')}
+                  </Button>
+                </ApprovalRejectionPopover>
+              </Flex>
             </Flex>
           )
         )}
       </Flex>
     </Spin>
-
   )
 }
 

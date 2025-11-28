@@ -42,7 +42,7 @@ export const DevelopmentActionInfoPopover = () => {
           <Typography.Text>{I18n.t('idp.development_actions.generative_ai')}</Typography.Text>
         </Flex>
         <Typography.Text type="secondary">
-          {I18n.t('idp.development_actions.generative_ai_description')}
+          {I18n.t('idp.development_actions.generative_ai_description_msg')}
         </Typography.Text>
       </Flex>
     </Flex>

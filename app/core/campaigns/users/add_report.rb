@@ -141,6 +141,8 @@ module Campaigns
           create_simulation_assessment(user_assessment, existing_result, campaign_assessment)
         elsif assessment.skillvue?
           create_skillvue_assessment(user_assessment, existing_result)
+        elsif assessment.yoodli?
+          create_yoodli_assessment(user_assessment, existing_result)
         end
       end
 
@@ -195,6 +197,13 @@ module Campaigns
           url: existing_skillvue_user_assessment&.url,
           email: existing_skillvue_user_assessment&.email,
           external_user_id: existing_skillvue_user_assessment&.external_user_id
+        )
+      end
+
+      def create_yoodli_assessment(user_assessment, existing_result)
+        existing_yoodli_user_assessment = existing_result&.yoodli_user_assessment
+        user_assessment.create_yoodli_user_assessment(
+          email: existing_yoodli_user_assessment&.email
         )
       end
 

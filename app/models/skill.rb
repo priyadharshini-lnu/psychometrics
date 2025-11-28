@@ -53,12 +53,13 @@ class Skill < ApplicationRecord
   }
 
   scope :available_skills_by_plan_id, lambda { |plan_id|
-    idp_template = UserIdpPlan.find_by(id: plan_id)&.idp_template
-    idp_template ? idp_template.available_skills(plan_id: plan_id) : idp_template.available_skills
+    Idp::IdpPlan::AvailableSkillsQuery.new(
+      UserIdpPlan.find(plan_id)
+    ).query
   }
 
   scope :excluding_plan, lambda { |plan_id: nil|
-    plan_id.nil? ? all : where.not(id: UserIdpSkill.where(user_idp_plan_id: plan_id).select(:skill_id))
+    plan_id.nil? ? all : where.not(id: UserIdpSkill.not_deleted.where(user_idp_plan_id: plan_id).select(:skill_id))
   }
 
   def self.ransackable_attributes(_auth_object = nil)

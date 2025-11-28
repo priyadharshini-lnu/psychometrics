@@ -27,7 +27,7 @@ module AI
       # Can be overridden by subclasses
       def output_schema_as_context
         if has_ruby_llm_schema?
-          output_schema_class.as_context
+          output_schema_class.context
         else
           ''
         end

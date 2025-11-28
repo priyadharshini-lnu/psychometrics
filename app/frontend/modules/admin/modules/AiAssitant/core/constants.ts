@@ -1,14 +1,3 @@
-export const AI_PROVIDERS = {
-  'gpt-4o': {
-    id: 'gpt-4o',
-    name: 'GPT-4o',
-  },
-  'cohere.command-a': {
-    id: 'cohere.command-a',
-    name: 'Cohere Command A',
-  },
-}
-
 export const ASSISTANT_TYPES = {
   content_writer: {
     id: 'content_writer',

@@ -12,6 +12,17 @@ module Users
     after_action :set_user_flash_message, only: [:create]
     after_action :set_return_url_for_redirect, only: [:new]
 
+    def destroy
+      logged_in_user = current_user
+      super do
+        audit!(
+          :sign_out, logged_in_user,
+          user: logged_in_user,
+          payload: { email: logged_in_user.email }
+        )
+      end
+    end
+
     private
 
     def set_return_url_for_redirect

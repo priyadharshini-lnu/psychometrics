@@ -51,6 +51,11 @@ module DailyCo
         payload[:sr] = true
       end
 
+      if meeting_room.video_recording_enabled? && meeting_room.transcription_enabled?
+        payload[:ast] = true
+        payload[:p] = { ca: 't' }
+      end
+
       {
         token: JWT.encode(payload, config[:api_key], 'HS256'),
         url: "https://#{config[:subdomain]}.daily.co/#{meeting_room.name}"
