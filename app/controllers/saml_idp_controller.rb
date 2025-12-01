@@ -23,8 +23,10 @@ class SamlIdpController < ApplicationController
     return handle_invalid_request unless validate_saml_request
 
     if user_signed_in?
+      audit_saml_request_authenticated
       create_saml_response
     else
+      audit_saml_request_unauthenticated
       store_saml_params_in_session
       redirect_to new_user_session_path
     end
@@ -34,8 +36,10 @@ class SamlIdpController < ApplicationController
     return handle_invalid_request unless validate_saml_request
 
     if user_signed_in?
+      audit_saml_response_generated
       create_saml_response
     else
+      audit_saml_authentication_failed
       handle_invalid_request
     end
   end
@@ -54,6 +58,7 @@ class SamlIdpController < ApplicationController
   end
 
   def handle_invalid_request
+    audit_saml_invalid_request
     respond_to do |format|
       format.html { render plain: 'Forbidden', status: :forbidden }
       format.xml { render plain: 'Forbidden', status: :forbidden }
@@ -111,5 +116,47 @@ class SamlIdpController < ApplicationController
     @maskable_identity ||= current_user.maskable_identity(
       mask: service_provider.mask_identity
     )
+  end
+
+  def audit_saml_request_authenticated
+    AuditLogModule.audit!(:saml_idp_request_authenticated, current_user,
+                          project: @current_project,
+                          payload: build_saml_audit_payload)
+  end
+
+  def audit_saml_request_unauthenticated
+    AuditLogModule.audit!(:saml_idp_request_unauthenticated, nil,
+                          project: @current_project,
+                          payload: build_saml_audit_payload)
+  end
+
+  def audit_saml_response_generated
+    AuditLogModule.audit!(:saml_idp_response_generated, current_user,
+                          project: @current_project,
+                          payload: build_saml_audit_payload)
+  end
+
+  def audit_saml_authentication_failed
+    AuditLogModule.audit!(:saml_idp_authentication_failed, nil,
+                          project: @current_project,
+                          payload: build_saml_audit_payload)
+  end
+
+  def audit_saml_invalid_request
+    AuditLogModule.audit!(:saml_idp_invalid_request, nil,
+                          project: @current_project,
+                          payload: build_saml_audit_payload)
+  end
+
+  def build_saml_audit_payload
+    {
+      service_provider_entity_id: service_provider&.entity_id,
+      relay_state: params[:RelayState] || session[:relay_state],
+      user_agent: request.user_agent,
+      remote_ip: request.remote_ip,
+      referer: request.referer,
+      saml_request_present: request_param.present?,
+      saml_request_valid: saml_request&.valid?
+    }
   end
 end
