@@ -6,6 +6,7 @@ ro:
     cancel: Anulați
     change_password: Schimbați parola
     clear_filters: Ștergeți filtrele
+    description: Descriere
     edit: Editați
     edited: Nou
     id: ID
@@ -14,12 +15,15 @@ ro:
     name: Nume
     new: Nou
     removed: Scos
+    rte_paste_content_exceeds_char_limit: Textul depășește limita de caractere {{maxCharacterLimit}} și nu poate fi lipit.
+    rte_paste_content_exceeds_word_limit: Textul depășește limita de cuvinte a {{maxWordLimit}} și nu poate fi lipit.
     search: Căutare
     table:
       entries:
         selected: 1 rând selectat
         total: 'Total: 1'
     terms_conditions_privacy: Declarație de confidențialitate
+    transcriptions: Transcrieri
     tte_terms_and_condition: Termeni și confidențialitate
     type: Tip
     update: Actualizați

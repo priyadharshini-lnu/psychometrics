@@ -227,7 +227,8 @@ describe AI::AssistableService::Idp do
           instructions,
           chat: assistant_chat,
           ignore_user_prompt: true,
-          chat_params: nil
+          ask_params: nil,
+          params: {}
         )
       end
     end

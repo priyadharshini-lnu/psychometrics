@@ -2280,7 +2280,7 @@ it:
       background_image: Immagine di sfondo
       behavioral_skills: Abilità comportamentali
       client_skills: Competenze del cliente
-      delete_skill: Sei sicuro di voler eliminare l'abilità perché eliminerà anche tutte le azioni di sviluppo connesse?
+      delete_skill: Sei sicuro di voler eliminare l'abilità? Verranno eliminate anche tutte le azioni di sviluppo collegate.
       details_updated: Dettagli IDP aggiornati con successo
       development_actions:
         add_from_library: Aggiungi dalla libreria

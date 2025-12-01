@@ -3,6 +3,11 @@ id:
   admin:
     admins: Admin
     ai_artifacts: Artefak AI
+    ai_artifacts_output_schema_key_constraint: Kunci harus dimulai dengan huruf kecil dan hanya dapat berisi huruf kecil, angka, dan garis bawah
+    ai_assistant_model_id_label: Model ID
+    ai_assistant_model_label: Pola
+    ai_assistant_model_provider: Penyedia
+    ai_assistant_model_region_label: Wilayah
     ai_assistants: Asisten AI
     assessments: Penilaian
     assessments_reports: Penilaian & Laporan
@@ -22,9 +27,27 @@ id:
     dashboard: Dashboard
     data_reports: Laporan Data
     datasheet: Lembar data
+    delete_ok_text: Ya, Hapus
     development_actions: Tindakan Pengembangan
     dimensions: Dimensi
+    empty_csv_file: CSV tidak berisi data apa pun.
+    fill_empty_score_msg: Isi semua skor akhir sebelum menyimpan.
+    final_score_empty_msg: Skor akhir tidak bisa kosong.
+    import_csv_assessment_group_error: 'Baris %{index}: pengguna dengan email %{email} sudah diundang untuk ''%{workshopInviteName}'''
+    import_csv_error: 'Baris %{index}: pengguna dengan email %{email} tidak ada dalam kampanye ini'
+    import_description: Mengimpor pengguna dari file CSV. Setiap baris harus berisi alamat email.
+    import_download_sample: Unduh contoh CSV
+    import_error: Impor gagal. Silakan coba lagi.
+    import_errors_title: Kesalahan Impor
+    import_file_required: Silakan pilih file CSV untuk diunggah.
+    import_queued_success: Pekerjaan impor subjek berhasil dijadwalkan. Silakan periksa notifikasi Anda untuk status.
+    import_sample_file_label: 'File sampel:'
+    import_title: Impor Subjek dari CSV
+    import_upload: Unggah
+    import_users: Impor Pengguna
+    invalid_csv_header: File CSV berisi header yang tidak valid.
     libraries: Perpustakaan Media
+    library_invalid_type: Item Perpustakaan Tidak Valid
     no_notifications: Tidak ada pemberitahuan
     norms: Norma
     notification_bell_icon_alt_text: Ikon Lonceng Notifikasi
@@ -41,11 +64,48 @@ id:
     report_approvals: Laporan Persetujuan
     reports: Laporan
     role: Peranan
+    saml_idp_certificate_available: Tersedia (klik untuk menyalin)
+    saml_idp_certificate_label: Sertifikat
+    saml_idp_entity_id_label: ID Entitas/Penerbit
+    saml_idp_sso_url_label: URL Layanan SSO
+    saml_service_provider: Penyedia Layanan SAML
+    saml_service_provider_acs_urls: URL ACS
+    saml_service_provider_acs_urls_placeholder: Masukkan URL yang dipisahkan dengan koma, misalnya https://app1.com/saml/acs, https://app2.com/saml/acs
+    saml_service_provider_acs_urls_required: URL ACS diperlukan
+    saml_service_provider_action_delete_label: Menghapus
+    saml_service_provider_action_edit_label: Mengedit
+    saml_service_provider_action_rotate_certificate_label: Putar Sertifikat
+    saml_service_provider_add: Tambahkan Penyedia Layanan SAML
+    saml_service_provider_delete_success: Penyedia Layanan SAML berhasil dihapus
+    saml_service_provider_enabled: Diaktifkan
+    saml_service_provider_entity_id: ID Entitas
+    saml_service_provider_entity_id_placeholder: Masukkan ID entitas
+    saml_service_provider_entity_id_required: ID Entitas diperlukan
+    saml_service_provider_idp_config: Konfigurasi IdP
+    saml_service_provider_manage: Tindakan
+    saml_service_provider_mask_identity: Identitas Topeng
+    saml_service_provider_masking_enabled: Aktifkan Masking
+    saml_service_provider_name: Nama
+    saml_service_provider_name_placeholder: Masukkan nama penyedia layanan
+    saml_service_provider_name_required: Nama diperlukan
+    saml_service_provider_remove_content: 'Apakah Anda yakin ingin menghapus Penyedia Layanan SAML: %{name}?'
+    saml_service_provider_remove_title: Hapus Penyedia Layanan SAML
+    saml_service_provider_rotate_certificate_content: Apakah Anda yakin ingin memutar sertifikat untuk %{name}? Ini akan menghasilkan sertifikat baru dan membatalkan sertifikat saat ini.
+    saml_service_provider_rotate_certificate_error: Gagal memutar sertifikat
+    saml_service_provider_rotate_certificate_ok: Putar Sertifikat
+    saml_service_provider_rotate_certificate_success: Sertifikat berhasil diputar
+    saml_service_provider_rotate_certificate_title: Putar Sertifikat
+    saml_service_provider_search: Cari Penyedia Layanan SAML...
+    saml_service_provider_updated_date: Tanggal Diperbarui
+    saml_service_providers: Penyedia Layanan
+    saml_settings: Pengaturan SAML
     scheduling: Penjadwalan
     scoring: Penilaian
     show_submenu: Tampilkan Sub Menu
     skills_taxonomy: Taksonomi Keterampilan
+    slot_name: Nama Slot
     stats: Statistik
+    subject_part_of_other_invite: Subjek dengan email %{user_email} sudah diundang untuk '%{workshop_invite_name}'
     user_report_events: Peristiwa Laporan Pengguna
     users: Pengguna
     view_licenses: Lihat Lisensi

@@ -24,6 +24,7 @@ module Licenses
           client: client,
           user: user,
           consumer: ai_assistant_chat,
+          project: campaign.project,
           extras: {
             subject_email: user.email,
             subject_name: user.name,

@@ -17,12 +17,7 @@ interface User {
   type: string
 }
 
-interface ImportError {
-  index: number
-  email: string | null
-  workshopInviteName?: string
-  error_type: 'user_not_in_campaign' | 'assessment_group_conflict' | 'empty_csv'
-}
+interface ImportError { message?: string }
 
 type UsersResponse = ApiAction<{
   data: User[]

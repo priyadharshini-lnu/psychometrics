@@ -2,7 +2,7 @@
 
 module AI
   class AssistantService < BaseCommand
-    private_attr_reader :assistant_id, :prompt, :current_user, :options, :chat, :chat_params, :ignore_user_prompt
+    private_attr_reader :assistant_id, :prompt, :current_user, :options, :chat, :ask_params, :ignore_user_prompt
 
     def initialize(assistant_id, current_user, prompt = nil, options = {})
       @assistant_id = assistant_id
@@ -10,7 +10,7 @@ module AI
       @current_user = current_user
       @options = options
       @chat = options[:chat]
-      @chat_params = options[:chat_params] || {} # Parameters for the request api service
+      @ask_params = options[:ask_params] || {} # Parameters for the request api service
       @ignore_user_prompt = options[:ignore_user_prompt] || false
     end
 
@@ -25,7 +25,7 @@ module AI
 
     def response
       active_chat = chat || create_new_chat
-      res = active_chat.ask(user_prompt.strip, **chat_params)
+      res = active_chat.ask(user_prompt.strip, **ask_params)
 
       {
         message: res.content,

@@ -638,7 +638,6 @@ zh-HK:
       verify: 驗證
       view_all_tasks: 檢視所有任務
       view_detail: 檢視詳細內容
-      yes_delete: 是，刪除
     column:
       action: 操作
       ai_assistant: AI助手
@@ -1017,7 +1016,7 @@ zh-HK:
       action_public: 否
       add_development_action: 添加發展行動
       add_development_actions_from_below_options: 從下面的選項添加開發動作。
-      add_development_actions_modal_title: 適用於%{skillName}的開發動作程式庫
+      add_development_actions_modal_title: 適用於 的開發動作程式庫
       add_from_library: 從庫新增
       add_more: 新增更多開發動作
       add_selected_development_actions: 新增選取的開發動作
@@ -1048,7 +1047,7 @@ zh-HK:
       generate_more: 生成更多
       generating_development_actions: 正在生成發展行動...
       generative_ai: 生成式人工智慧
-      generative_ai_description: 讓 AI 為您量身打造的開發動作
+      generative_ai_description_msg: 讓 AI 為您量身打造的開發動作
       heading: 發展行動
       idp_library: IDP 圖書館
       idp_library_description: 從我們專家策劃的庫中選擇經過驗證的開發動作。
@@ -1099,8 +1098,8 @@ zh-HK:
         one: 已移除開發動作
         other: 已移除的開發動作
     initial_steps:
-      add_skill_group_description: 基於你的評估結果，以下是你的一些優勢和發展領域。選擇你想作為發展計劃一部分進一步發展的技能。
-      add_skill_group_title: 探索你的%{category}技能
+      add_skill_group_description: 選擇你想作為發展計劃一部分進一步發展的技能。
+      add_skill_group_title: "%{category}"
       add_skills: 添加
       add_skills_step: 添加技能
       back: 後面

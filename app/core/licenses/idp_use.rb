@@ -19,9 +19,20 @@ module Licenses
       license = licenses.detect(&:enough_licenses?)
 
       if license
+        if license.is_project_specific?
+          project_license = ProjectLicense.find_by(
+            project_id: campaign.project_id,
+            license_id: license.id
+          )
+          unless project_license&.enabled? && project_license.enough_licenses?
+            raise Licenses::NotEnoughError,
+                  I18n.t('licenses.project_limit_reached', license_name: 'IDP License')
+          end
+        end
         license_usage = license.license_usages.create!(
-          campaign: campaign, client: client, user: user,
+          campaign: campaign, client: client, user: user, project: campaign.project,
           consumer: user_idp_plan,
+          project_license: project_license || nil,
           extras: {
             subject_email: user.email, subject_name: user.name, campaign_name: campaign.name,
             idp_template_name: user_idp_plan.idp_template.name

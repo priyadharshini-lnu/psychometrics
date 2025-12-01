@@ -3,6 +3,11 @@ sl:
   admin:
     admins: Skrbniki
     ai_artifacts: Artefakti umetne inteligence
+    ai_artifacts_output_schema_key_constraint: Ključ mora začeti z majhno črko in lahko vsebuje le male črke, številke in podčrte
+    ai_assistant_model_id_label: ID modela
+    ai_assistant_model_label: Model
+    ai_assistant_model_provider: Ponudnik
+    ai_assistant_model_region_label: Regija
     ai_assistants: Pomočniki za umetno inteligenco
     assessments: Ocenjevanja
     assessments_reports: Ocenjevanja in poročila
@@ -22,9 +27,27 @@ sl:
     dashboard: Nadzorna plošča
     data_reports: Poročila o podatkih
     datasheet: Podatkovni list
+    delete_ok_text: Da, Izbriši
     development_actions: Razvojni ukrepi
     dimensions: Dimenzije
+    empty_csv_file: CSV datoteka ne vsebuje nobenih podatkov.
+    fill_empty_score_msg: Pred shranjevanjem izpolnite vse končne rezultate.
+    final_score_empty_msg: Končni rezultat ne sme biti prazen.
+    import_csv_assessment_group_error: 'Vrstica %{index}: uporabnik z e-poštnim %{email} je že povabljen, da ''%{workshopInviteName}'''
+    import_csv_error: 'Vrstica %{index}: uporabnik z e-poštnim %{email} ni v tej kampanji'
+    import_description: Uvozite uporabnike iz CSV datoteke. Vsaka vrstica mora vsebovati e-poštni naslov.
+    import_download_sample: Prenesi primer CSV
+    import_error: Uvoz ni uspel. Prosim, poskusite znova.
+    import_errors_title: Napake pri uvozu
+    import_file_required: Prosimo, izberite CSV datoteko za nalaganje.
+    import_queued_success: Naloga uvoza subjektov je bila uspešno načrtovana. Prosimo, preverite svoje obvestilo za status.
+    import_sample_file_label: 'Vzorčna datoteka:'
+    import_title: Uvoz subjektov iz CSV
+    import_upload: Upload
+    import_users: Uvoz uporabnikov
+    invalid_csv_header: CSV datoteka vsebuje neveljavne glave.
     libraries: Medijska knjižnica
+    library_invalid_type: Neveljaven knjižnični element
     no_notifications: Brez obvestil
     norms: Norme
     notification_bell_icon_alt_text: Ikona zvonca za obvestila
@@ -41,11 +64,48 @@ sl:
     report_approvals: Odobritve poročil
     reports: Poročila
     role: Vloga
+    saml_idp_certificate_available: Na voljo (kliknite za kopiranje)
+    saml_idp_certificate_label: Potrdilo
+    saml_idp_entity_id_label: ID subjekta/izdajatelj
+    saml_idp_sso_url_label: URL storitve SSO
+    saml_service_provider: Ponudnik SAML storitev
+    saml_service_provider_acs_urls: ACS URL-ji
+    saml_service_provider_acs_urls_placeholder: Vnesite URL-je, ločene z vejicami, npr. https://app1.com/saml/acs, https://app2.com/saml/acs
+    saml_service_provider_acs_urls_required: Potrebni so ACS URL-ji
+    saml_service_provider_action_delete_label: Izbrisati
+    saml_service_provider_action_edit_label: Urediti
+    saml_service_provider_action_rotate_certificate_label: Certifikat rotacije
+    saml_service_provider_add: Dodaj ponudnika SAML storitev
+    saml_service_provider_delete_success: Ponudnik SAML storitev uspešno izbrisan
+    saml_service_provider_enabled: Omogočeno
+    saml_service_provider_entity_id: Identiteta subjekta
+    saml_service_provider_entity_id_placeholder: Vnesite ID subjekta
+    saml_service_provider_entity_id_required: Potrebna je identifikacijska številka subjekta
+    saml_service_provider_idp_config: IdP konfiguracija
+    saml_service_provider_manage: Dejanja
+    saml_service_provider_mask_identity: Identiteta maske
+    saml_service_provider_masking_enabled: Omogoči maskiranje
+    saml_service_provider_name: Ime
+    saml_service_provider_name_placeholder: Vnesite ime ponudnika storitve
+    saml_service_provider_name_required: Ime je potrebno
+    saml_service_provider_remove_content: 'Ste prepričani, da želite odstraniti ponudnika SAML storitev: %{name}?'
+    saml_service_provider_remove_title: Odstrani ponudnika SAML storitev
+    saml_service_provider_rotate_certificate_content: Si prepričan, da želiš zamenjati certifikat za %{name}? To bo ustvarilo novo potrdilo in razveljavilo obstoječe.
+    saml_service_provider_rotate_certificate_error: Certifikat ni uspel zamenjati
+    saml_service_provider_rotate_certificate_ok: Certifikat rotacije
+    saml_service_provider_rotate_certificate_success: Potrdilo uspešno rotirano
+    saml_service_provider_rotate_certificate_title: Certifikat rotacije
+    saml_service_provider_search: Poiščite ponudnike SAML storitev...
+    saml_service_provider_updated_date: Datum posodobitve
+    saml_service_providers: Ponudniki storitev
+    saml_settings: SAML nastavitve
     scheduling: Razporejanje
     scoring: Točkovanja
     show_submenu: Pokaži podmeni
     skills_taxonomy: Taksonomija spretnosti
+    slot_name: Ime reže
     stats: Statistika
+    subject_part_of_other_invite: Oseba z e-pošto %{user_email} je že povabljena, da '%{workshop_invite_name}'
     user_report_events: Dogodki uporabniškega poročila
     users: Uporabniki
     view_licenses: Ogled licenc

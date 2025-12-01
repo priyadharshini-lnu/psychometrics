@@ -38,6 +38,7 @@ const FETCH_SKILL_GAPS_REPORT = 'IDP/MY_PLAN/FETCH_SKILL_GAPS_REPORT'
 const FETCH_PLAN_CHANGES = 'IDP/MY_PLAN/FETCH_PLAN_CHANGES'
 const REVERT_TO_LAST_APPROVED = 'IDP/MY_PLAN/REVERT_TO_LAST_APPROVED'
 const FETCH_PLAN_CHANGES_FOR_SUMMARY = 'IDP/MY_PLAN/FETCH_PLAN_CHANGES_FOR_SUMMARY'
+const SET_PLAN_DIRTY = 'IDP/MY_PLAN/SET_PLAN_DIRTY'
 
 export const AsyncDownloadTR = t.type({
   status: t.string,
@@ -78,6 +79,7 @@ interface UserIdpPlan {
   planChanges: {}
   summary: {}
   reviewNote: string
+  isPlanDirty: boolean
 }
 
 export interface UserIdpComment {
@@ -111,6 +113,7 @@ interface GenerateDevelopmentActionsByAIPayload {
   userIdpSkillId: number;
   generateMore: boolean;
   lang?: string;
+  userId?: number | string | null;
 }
 
 export interface UserIdpCommentPayload {
@@ -357,6 +360,11 @@ export const updateUserIdpPlan = (userId: string, status: UserIdpPlanStatus, not
 export const setUserIdpPlanStatus = (status: UserIdpPlanStatus) => ({
   type: SET_USER_IDP_PLAN_STATUS,
   status,
+})
+
+export const setUserIdpPlanDirty = (isPlanDirty: boolean) => ({
+  type: SET_PLAN_DIRTY,
+  isPlanDirty,
 })
 
 export const generateDevelopmentActionsByAI = (payload: GenerateDevelopmentActionsByAIPayload) => ({
@@ -736,6 +744,11 @@ export const HANDLERS = {
     ...state,
     summary: normalizePlanChangesForSummary(action.response),
   }),
+
+  [SET_PLAN_DIRTY]: (state, action) => ({
+    ...state,
+    isPlanDirty: action.isPlanDirty,
+  }),
 }
 
 export const defaultState: UserIdpPlan = {
@@ -763,6 +776,7 @@ export const defaultState: UserIdpPlan = {
   planChanges: {},
   summary: {},
   reviewNote: '',
+  isPlanDirty: false,
 }
 
 export default function reducer (state = defaultState, action) {

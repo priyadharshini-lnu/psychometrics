@@ -1798,7 +1798,6 @@ nl:
       view: Bekijk
       view_all_tasks: Bekijk alle taken
       view_detail: Detail bekijken
-      yes_delete: Ja, verwijderen
     column:
       action: Actie
       active: Actief
@@ -2561,14 +2560,14 @@ nl:
       you: Jij
     convert_to_draft: Converteren naar concept
     current_step: Huidige stap %{step}
-    delete_skill: Weet je zeker dat je vaardigheid wilt verwijderen omdat dan ook alle verbonden ontwikkelingsacties worden verwijderd?
+    delete_skill: Weet je zeker dat je deze vaardigheid wilt verwijderen? Verwijderen zal ook alle verbonden ontwikkelingsacties verwijderen.
     details: Details
     development_actions:
       action_private: Ja
       action_public: Geen
       add_development_action: Ontwikkelingsactie toevoegen
       add_development_actions_from_below_options: Voeg ontwikkelingsacties toe via onderstaande opties.
-      add_development_actions_modal_title: Bibliotheek met ontwikkelingsacties voor %{skillName}
+      add_development_actions_modal_title: Bibliotheek met ontwikkelingsacties voor
       add_from_library: Toevoegen uit bibliotheek
       add_more: Voeg meer ontwikkelingsacties toe
       add_selected_development_actions: Geselecteerde ontwikkelingsacties toevoegen
@@ -2599,7 +2598,7 @@ nl:
       generate_more: Meer genereren
       generating_development_actions: Ontwikkelingsacties genereren...
       generative_ai: Generatieve AI
-      generative_ai_description: Laat AI een op maat gemaakte ontwikkelingsactie voor u genereren
+      generative_ai_description_msg: Laat AI een op maat gemaakte ontwikkelingsactie voor u genereren
       heading: Ontwikkelingsacties
       idp_library: IDP-bibliotheek
       idp_library_description: Selecteer een bewezen ontwikkelingsactie uit onze door experts samengestelde bibliotheek.
@@ -2657,8 +2656,8 @@ nl:
         one: Verwijderde ontwikkelingsactie
         other: Verwijderde ontwikkelingsacties
     initial_steps:
-      add_skill_group_description: Op basis van de resultaten van je assessment zijn hier een aantal sterke punten en ontwikkelingsgebieden voor jou. Kies de vaardigheden die je verder wilt ontwikkelen als onderdeel van je ontwikkelingsplan.
-      add_skill_group_title: Je %{category} vaardigheden verkennen
+      add_skill_group_description: Kies de vaardigheden die je verder wilt ontwikkelen als onderdeel van je ontwikkelingsplan.
+      add_skill_group_title: "%{category}"
       add_skills: Voeg  toe
       add_skills_step: Vaardigheden toevoegen
       back: Terug

@@ -78,7 +78,7 @@ export const SkillsGroupCard: FC<Props> = ({
           // src={skillCategory.iconUrl}
         />
         <section style={{ flex: 1 }}>
-          <Title className="mb-0 mt-0" level={4}>
+          <Title className="mb-0 mt-2" level={4}>
             {I18n.t('idp.initial_steps.add_skill_group_title', { category: I18n.t(`idp.${skillType.skillType}`) })}
           </Title>
           <Paragraph>
@@ -99,9 +99,10 @@ export const SkillsGroupCard: FC<Props> = ({
         gap={4}
         wrap
       >
-        {selectedSkills.filter(skill => skill.skillType === skillType.skillType).map(skill => (
+        {selectedSkills.filter(skill => skill.skillType === skillType.skillType
+        && skill.changeStatus !== PlanChangeStatus.REMOVED).map(skill => (
           <div
-            className={cs(styles.skillBtn, { [styles.stroke]: skill.changeStatus === PlanChangeStatus.REMOVED })}
+            className={cs(styles.skillBtn)}
             key={skill.id}
           >
             <span className="me-2">
@@ -140,7 +141,8 @@ export const SkillsGroupCard: FC<Props> = ({
             value={null}
           >
             {searchResults
-              .filter(result => !includes(selectedSkills
+              .filter(result => !includes(selectedSkills.filter(skill => skill.skillType === skillType.skillType
+                 && skill.changeStatus !== PlanChangeStatus.REMOVED)
                 .map(skill => Number(skill.skillId)), Number(result.id)))
               .map(({ id, name }) => (
                 <Select.Option

@@ -71,6 +71,7 @@ export const AssessmentCenterFormComponent = ({ workshop }) => {
   const [submitPage, showSubmitPage] = useState(false)
   const [workshops, setWorkshops] = useState<Workshop[]>([])
   const [form] = Form.useForm()
+  const [subjectValidationErrors, setSubjectValidationErrors] = useState<Array<string> | null>(null)
   const { modal } = App.useApp()
 
   useEffect(() => {
@@ -103,6 +104,35 @@ export const AssessmentCenterFormComponent = ({ workshop }) => {
     { basePath: `campaigns/${campaignId}` })
   const workshopInviteCreationInProgress = isLoading('add')
   const [errors, setErrors] = useState<Errors | null>(null)
+
+  const { collectionAction: validateSubjectsAction } = useResources('workshop_invites', {
+    basePath: `campaigns/${campaignId}`,
+  })
+
+  const validateSubjects = () => {
+    setSubjectValidationErrors(null)
+    const subjects = form.getFieldValue('subjects') || []
+    const userIds = subjects.map(user => user.id)
+    const campaignAssessmentGroupId = form.getFieldValue('campaignAssessmentGroupId')
+      || basicInfoData.campaignAssessmentGroupId
+
+    return validateSubjectsAction({
+      action: 'validate_subjects',
+      method: 'post',
+      body: {
+        campaignAssessmentGroupId,
+        userIds,
+      },
+    }).then((response: { validationErrors?: string[] }) => {
+      if (response?.validationErrors?.length) {
+        setSubjectValidationErrors(response.validationErrors)
+      } else {
+        setStep(step + 1)
+      }
+    }).catch(() => {
+      setSubjectValidationErrors([I18n.t('admin.validation_error')])
+    })
+  }
 
   const submitForm = () => {
     createResource({
@@ -176,7 +206,15 @@ export const AssessmentCenterFormComponent = ({ workshop }) => {
             onPrevious={handlePrevious}
           />
         ))}
-      {step === 2 && <AddSubjects form={form} onCancel={handleCancel} next={handleNext} />}
+      {step === 2 && (
+        <AddSubjects
+          form={form}
+          onCancel={handleCancel}
+          next={validateSubjects}
+          prev={handlePrevious}
+          errors={subjectValidationErrors}
+        />
+      )}
       {step === 3 && (
         <BaseInfoForm
           form={form}

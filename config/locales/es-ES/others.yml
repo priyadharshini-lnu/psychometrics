@@ -1768,7 +1768,6 @@ es-ES:
       view: Ver
       view_all_tasks: Ver todas las tareas
       view_detail: Ver detalle
-      yes_delete: Sí, eliminar
     column:
       action: Acción
       active: Activo
@@ -2533,7 +2532,7 @@ es-ES:
       action_public: 'No'
       add_development_action: Añadir Acción de Desarrollo
       add_development_actions_from_below_options: Agregue acciones de desarrollo desde las siguientes opciones.
-      add_development_actions_modal_title: Biblioteca de acciones de desarrollo para %{skillName}
+      add_development_actions_modal_title: Biblioteca de acciones de desarrollo para
       add_from_library: Agregar desde la biblioteca
       add_more: Agregar más acciones de desarrollo
       add_selected_development_actions: Agregar acciones de desarrollo seleccionadas
@@ -2564,7 +2563,7 @@ es-ES:
       generate_more: Generar Más
       generating_development_actions: Generando acciones de desarrollo...
       generative_ai: IA generativa
-      generative_ai_description: Deja que la IA genere una acción de desarrollo a medida solo para ti
+      generative_ai_description_msg: Deja que la IA genere una acción de desarrollo a medida solo para ti
       heading: Acciones de Desarrollo
       idp_library: Biblioteca IDP
       idp_library_description: Seleccione una acción de desarrollo comprobada de nuestra biblioteca seleccionada por expertos.
@@ -2622,8 +2621,8 @@ es-ES:
         one: Acción de desarrollo eliminada
         other: Acciones de desarrollo eliminadas
     initial_steps:
-      add_skill_group_description: Basado en los resultados de su evaluación, aquí hay algunas áreas de fortalezas y desarrollo para usted. Elija las habilidades que desea desarrollar más como parte de su plan de desarrollo.
-      add_skill_group_title: Explorando Sus Habilidades de %{category}
+      add_skill_group_description: Elija las habilidades que desea desarrollar más como parte de su plan de desarrollo.
+      add_skill_group_title: "%{category}"
       add_skills: Añadir
       add_skills_step: Añadir Habilidades
       back: Atrás

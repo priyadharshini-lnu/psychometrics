@@ -42,6 +42,7 @@ module AI
         raise NotImplementedError, "#{self.class} must implement #assistant"
       end
 
+      # Any other context to be added as part of system prompt
       def assistant_context
         raise NotImplementedError, "#{self.class} must implement #assistant_context"
       end
@@ -61,8 +62,13 @@ module AI
           instructions,
           chat: chat_with_context,
           ignore_user_prompt: options[:ignore_user_prompt],
-          chat_params: options[:chat_params]
+          ask_params: options[:ask_params],
+          params: request_params
         )
+      end
+
+      def request_params
+        {}
       end
 
       def mark_session_in_progress!
@@ -78,11 +84,19 @@ module AI
       end
 
       def chat_with_context
-        assisted_session_chat.with_assistant_context(tools: assistant_tools)
+        assisted_session_chat.with_assistant_context(tools: assistant_tools, params: request_params)
       end
 
       def assisted_session_chat
         @assisted_session_chat ||= session.latest_chat
+      end
+
+      # Set the instruction to be sent to the assistant
+      def add_instructions(new_instructions)
+        @instructions = <<~INSTRUCTIONS
+          #{instructions}
+          #{new_instructions}
+        INSTRUCTIONS
       end
     end
   end

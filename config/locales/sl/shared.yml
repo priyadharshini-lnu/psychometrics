@@ -6,6 +6,7 @@ sl:
     cancel: Prekliči
     change_password: Spremeni geslo
     clear_filters: Počistite filtre
+    description: Opis
     edit: Uredi
     edited: Novo
     id: ID
@@ -14,12 +15,15 @@ sl:
     name: Ime
     new: Novo
     removed: Odstranjen
+    rte_paste_content_exceeds_char_limit: Besedilo presega omejitev znakov {{maxCharacterLimit}} in ga ni mogoče prilepiti.
+    rte_paste_content_exceeds_word_limit: Besedilo presega omejitev besed {{maxWordLimit}} in ga ni mogoče prilepiti.
     search: Iskanje
     table:
       entries:
         selected: Izbrana 1 vrstica
         total: 'Skupaj : 1'
     terms_conditions_privacy: Izjava o zasebnosti
+    transcriptions: Transkripcij
     tte_terms_and_condition: Pogoji uporabe in politika zasebnosti
     type: Vrsta
     update: Posodobitev

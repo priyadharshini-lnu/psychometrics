@@ -60,10 +60,8 @@ describe WorkshopInvites::BulkImportSubjects do
 
         expect(result[:validation_errors].size).to eq(1)
         conflict_error = result[:validation_errors].first
-        expect(conflict_error[:email]).to eq('user1@test.test')
-        expect(conflict_error[:workshopInviteName]).to eq('Other Workshop')
-        expect(conflict_error[:error_type]).to eq('assessment_group_conflict')
-        expect(conflict_error[:index]).to eq(1)
+        expect(conflict_error[:message]).to include('user1@test.test')
+        expect(conflict_error[:message]).to include('Other Workshop')
         expect(AdminJob).not_to have_received(:call)
       end
     end
@@ -90,16 +88,12 @@ describe WorkshopInvites::BulkImportSubjects do
         expect(result[:validation_errors].size).to eq(2)
 
         first_error = result[:validation_errors].first
-        expect(first_error[:email]).to eq('user1@test.test')
-        expect(first_error[:workshopInviteName]).to eq('Other Workshop')
-        expect(first_error[:error_type]).to eq('assessment_group_conflict')
-        expect(first_error[:index]).to eq(1)
+        expect(first_error[:message]).to include('user1@test.test')
+        expect(first_error[:message]).to include('Other Workshop')
 
         second_error = result[:validation_errors].second
-        expect(second_error[:email]).to eq('user1@test.test')
-        expect(second_error[:workshopInviteName]).to eq('Other Workshop')
-        expect(second_error[:error_type]).to eq('assessment_group_conflict')
-        expect(second_error[:index]).to eq(3)
+        expect(second_error[:message]).to include('user1@test.test')
+        expect(second_error[:message]).to include('Other Workshop')
 
         expect(AdminJob).not_to have_received(:call)
       end
@@ -117,8 +111,7 @@ describe WorkshopInvites::BulkImportSubjects do
 
         expect(result[:validation_errors].size).to eq(1)
         error = result[:validation_errors].first
-        expect(error[:email]).to eq('nonexistent@test.test')
-        expect(error[:error_type]).to eq('user_not_in_campaign')
+        expect(error[:message]).to include('nonexistent@test.test')
         expect(AdminJob).not_to have_received(:call)
       end
     end
@@ -132,7 +125,7 @@ describe WorkshopInvites::BulkImportSubjects do
         result = described_class.call!(campaign.id, file, workshop_invite.id, current_user)
 
         expect(result[:validation_errors].size).to eq(1)
-        expect(result[:validation_errors].first[:error_type]).to eq('empty_csv')
+        expect(result[:validation_errors].first[:message]).to be_present
         expect(AdminJob).not_to have_received(:call)
       end
     end
@@ -148,7 +141,7 @@ describe WorkshopInvites::BulkImportSubjects do
         result = described_class.call!(campaign.id, file, workshop_invite.id, current_user)
 
         expect(result[:validation_errors].size).to eq(1)
-        expect(result[:validation_errors].first[:error_type]).to eq('invalid_header')
+        expect(result[:validation_errors].first[:message]).to be_present
         expect(AdminJob).not_to have_received(:call)
       end
     end

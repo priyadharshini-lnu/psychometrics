@@ -3,6 +3,11 @@ fr:
   admin:
     admins: Administrateurs
     ai_artifacts: Artefacts de l’IA
+    ai_artifacts_output_schema_key_constraint: La clé doit commencer par une lettre minuscule et ne peut contenir que des lettres minuscules, des chiffres et des sous-traits
+    ai_assistant_model_id_label: ID de modèle
+    ai_assistant_model_label: Modèle
+    ai_assistant_model_provider: Fournisseur
+    ai_assistant_model_region_label: Région
     ai_assistants: Assistants IA
     assessments: Évaluations
     assessments_reports: Évaluations et rapports
@@ -22,9 +27,27 @@ fr:
     dashboard: Tableau de bord
     data_reports: Rapports de données
     datasheet: Fiche technique
+    delete_ok_text: Oui, supprimer
     development_actions: Actions de développement
     dimensions: Dimensions
+    empty_csv_file: Le fichier CSV ne contient aucune donnée.
+    fill_empty_score_msg: Remplissez tous les scores finaux avant de sauvegarder.
+    final_score_empty_msg: Le score final ne peut pas être vide.
+    import_csv_assessment_group_error: 'Ligne %{index} : l’utilisateur ayant un %{email} email est déjà invité à « %{workshopInviteName} »'
+    import_csv_error: 'Ligne %{index} : utilisateur avec un %{email} email n’est pas dans cette campagne'
+    import_description: Importez des utilisateurs à partir d’un fichier CSV. Chaque ligne doit contenir une adresse e-mail.
+    import_download_sample: Télécharger un exemple de CSV
+    import_error: Importation échouée. Veuillez réessayer.
+    import_errors_title: Erreurs d’importation
+    import_file_required: Veuillez sélectionner un fichier CSV à télécharger.
+    import_queued_success: Le travail d’importation des sujets a été planifié avec succès. Veuillez vérifier votre notification pour connaître le statut.
+    import_sample_file_label: 'Fichier exemple :'
+    import_title: Matières importées de CSV
+    import_upload: Télécharger
+    import_users: Importer des utilisateurs
+    invalid_csv_header: CSV contient des en-têtes invalides.
     libraries: Bibliothèque des médias
+    library_invalid_type: Élément de bibliothèque invalide
     no_notifications: Aucune notification
     norms: Normes
     notification_bell_icon_alt_text: Icône de cloche de notification
@@ -41,11 +64,48 @@ fr:
     report_approvals: Approbation des rapports
     reports: Rapports
     role: Rôle
+    saml_idp_certificate_available: Disponible (cliquez pour copier)
+    saml_idp_certificate_label: Certificat
+    saml_idp_entity_id_label: ID d’entité/Émetteur
+    saml_idp_sso_url_label: SSO Service URL
+    saml_service_provider: Fournisseur de services SAML
+    saml_service_provider_acs_urls: ACS URLs
+    saml_service_provider_acs_urls_placeholder: Saisissez les URL séparées par des virgules, par exemple https://app1.com/saml/acs, https://app2.com/saml/acs
+    saml_service_provider_acs_urls_required: Des URL ACS sont requises
+    saml_service_provider_action_delete_label: Supprimer
+    saml_service_provider_action_edit_label: Éditer
+    saml_service_provider_action_rotate_certificate_label: Certificat de rotation
+    saml_service_provider_add: Ajouter un fournisseur de services SAML
+    saml_service_provider_delete_success: Fournisseur de services SAML supprimé avec succès
+    saml_service_provider_enabled: Activé
+    saml_service_provider_entity_id: Identifiant d’entité
+    saml_service_provider_entity_id_placeholder: Saisissez l’identifiant de l’entité
+    saml_service_provider_entity_id_required: Un identifiant d’entité est requis
+    saml_service_provider_idp_config: IdP Configuration
+    saml_service_provider_manage: Actions
+    saml_service_provider_mask_identity: Identité du masque
+    saml_service_provider_masking_enabled: Activer le masquage
+    saml_service_provider_name: Nom
+    saml_service_provider_name_placeholder: Saisissez le nom du fournisseur de services
+    saml_service_provider_name_required: Le nom est requis
+    saml_service_provider_remove_content: 'Êtes-vous sûr de vouloir supprimer le fournisseur de services SAML : %{name} ?'
+    saml_service_provider_remove_title: Supprimer le fournisseur de services SAML
+    saml_service_provider_rotate_certificate_content: Êtes-vous sûr de vouloir faire tourner le certificat pour %{name} ? Cela génère un nouveau certificat et invalide le certificat actuel.
+    saml_service_provider_rotate_certificate_error: Échec de rotation du certificat
+    saml_service_provider_rotate_certificate_ok: Certificat de rotation
+    saml_service_provider_rotate_certificate_success: Certificat effectué avec succès
+    saml_service_provider_rotate_certificate_title: Certificat de rotation
+    saml_service_provider_search: Recherchez les fournisseurs de services SAML...
+    saml_service_provider_updated_date: Date de mise à jour
+    saml_service_providers: Fournisseurs
+    saml_settings: Paramètres SAML
     scheduling: Programmation
     scoring: Notation
     show_submenu: Afficher le sous-menu
     skills_taxonomy: Taxonomie des compétences
+    slot_name: Nom de la machine à sous
     stats: Statistiques
+    subject_part_of_other_invite: Objet avec l’email %{user_email} est déjà invité à « %{workshop_invite_name} »
     user_report_events: Rapport de l'utilisateur Événements
     users: Utilisateurs
     view_licenses: Voir les licences

@@ -3,6 +3,11 @@ nl:
   admin:
     admins: Admins
     ai_artifacts: AI-artefacten
+    ai_artifacts_output_schema_key_constraint: De toonsoort moet beginnen met een kleine letter en mag alleen kleine letters, cijfers en onderstreepjes bevatten
+    ai_assistant_model_id_label: Model-ID
+    ai_assistant_model_label: Model
+    ai_assistant_model_provider: Aanbieder
+    ai_assistant_model_region_label: Regio
     ai_assistants: AI assistenten
     assessments: Beoordeling
     assessments_reports: Beoordelingen en rapporten
@@ -22,9 +27,27 @@ nl:
     dashboard: Dashboard
     data_reports: Gegevensrapporten
     datasheet: Technische fiche
+    delete_ok_text: Ja, verwijder
     development_actions: Ontwikkelingsacties
     dimensions: Afmetingen
+    empty_csv_file: Het CSV-bestand bevat geen gegevens.
+    fill_empty_score_msg: Vul alle eindscores in voordat je opslaat.
+    final_score_empty_msg: De eindscore mag niet leeg zijn.
+    import_csv_assessment_group_error: 'Rij %{index}: gebruiker met e-mailadres %{email} is al uitgenodigd om ''%{workshopInviteName}'''
+    import_csv_error: 'Rij %{index}: gebruiker met e-mailadres %{email} niet in deze campagne zit'
+    import_description: Importeer gebruikers uit een CSV-bestand. Elke rij moet een e-mailadres bevatten.
+    import_download_sample: Download voorbeeld van CSV
+    import_error: Import mislukt. Probeer het alsjeblieft opnieuw.
+    import_errors_title: Importfouten
+    import_file_required: Selecteer alstublieft een CSV-bestand om te uploaden.
+    import_queued_success: De importopdracht van de proefpersonen werd succesvol ingepland. Controleer alstublieft uw melding voor status.
+    import_sample_file_label: 'Voorbeeldbestand:'
+    import_title: Importeer onderwerpen uit CSV
+    import_upload: Uploaden
+    import_users: Importgebruikers
+    invalid_csv_header: CSV-bestand bevat ongeldige headers.
     libraries: Mediatheek
+    library_invalid_type: Ongeldig bibliotheekitem
     no_notifications: Geen meldingen
     norms: Normen
     notification_bell_icon_alt_text: Pictogram Meldingsbel
@@ -41,11 +64,48 @@ nl:
     report_approvals: Goedkeuringen
     reports: Rapporten
     role: Rol
+    saml_idp_certificate_available: Beschikbaar (klik om te kopiëren)
+    saml_idp_certificate_label: Certificaat
+    saml_idp_entity_id_label: Entiteits-ID/Uitgever
+    saml_idp_sso_url_label: SSO Service URL
+    saml_service_provider: SAML-dienstverlener
+    saml_service_provider_acs_urls: ACS-URL's
+    saml_service_provider_acs_urls_placeholder: Voer URL's in die gescheiden zijn door komma's, bijvoorbeeld https://app1.com/saml/acs, https://app2.com/saml/acs
+    saml_service_provider_acs_urls_required: ACS-URL's zijn vereist
+    saml_service_provider_action_delete_label: Verwijderen
+    saml_service_provider_action_edit_label: Bewerken
+    saml_service_provider_action_rotate_certificate_label: Rotate Certificate
+    saml_service_provider_add: Voeg SAML-dienstverlener toe
+    saml_service_provider_delete_success: SAML-dienstverlener succesvol verwijderd
+    saml_service_provider_enabled: Ingeschakeld
+    saml_service_provider_entity_id: Entiteits-ID
+    saml_service_provider_entity_id_placeholder: Voer entiteits-ID in
+    saml_service_provider_entity_id_required: Entiteits-ID is vereist
+    saml_service_provider_idp_config: IdP-configuratie
+    saml_service_provider_manage: Acties
+    saml_service_provider_mask_identity: Maskeridentiteit
+    saml_service_provider_masking_enabled: Schakel maskering in
+    saml_service_provider_name: Naam
+    saml_service_provider_name_placeholder: Voer naam van dienstverlener in
+    saml_service_provider_name_required: Naam is vereist
+    saml_service_provider_remove_content: 'Weet je zeker dat je SAML Service Provider: %{name} wilt verwijderen?'
+    saml_service_provider_remove_title: SAML-dienstverlener verwijderen
+    saml_service_provider_rotate_certificate_content: Weet je zeker dat je het certificaat wilt rouleren voor %{name}? Dit genereert een nieuw certificaat en maakt het huidige certificaat ongeldig.
+    saml_service_provider_rotate_certificate_error: Certificaat niet geroteerd
+    saml_service_provider_rotate_certificate_ok: Rotate Certificate
+    saml_service_provider_rotate_certificate_success: Certificaat succesvol geroteerd
+    saml_service_provider_rotate_certificate_title: Rotate Certificate
+    saml_service_provider_search: Zoek naar SAML-dienstverleners...
+    saml_service_provider_updated_date: Bijgewerkte datum
+    saml_service_providers: Dienstverleners
+    saml_settings: SAML-instellingen
     scheduling: Planning
     scoring: Scoren
     show_submenu: Submenu weergeven
     skills_taxonomy: Taxonomie van vaardigheden
+    slot_name: Slot Name
     stats: Stats
+    subject_part_of_other_invite: Onderwerp met e-mail %{user_email} al uitgenodigd is om '%{workshop_invite_name}' te
     user_report_events: Gebeurtenissen gebruikersrapport
     users: Gebruikers
     view_licenses: Licenties bekijken

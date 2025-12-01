@@ -11,12 +11,19 @@ ko:
     home: 대시보드
     idp_plan_approval_note: 승인 메모
     insights: 인사이트
+    lighthouse_assistant: 등대 보조
     max_word_limit: 최대 %{max}단어여야 합니다
     min_word_limit: 최소 %{min}단어여야 합니다
     my_plan: 내 계획
     profile: 프로필
     profile_details: 세부 정보
     question_counter: 질문 %{current} / %{total}
+    reason_for_idp_plan_rejection: 거절 이유
+    reject_idp_plan: 계획 거부
+    request_retry_message: 당신은 오프라인입니다. 답변은 저장할 수 없었지만, 다시 온라인에 접속하면 자동으로 저장됩니다. 페이지를 새로고침하거나 닫지 말아 주세요.
     selected_count: 선택됨
     skill_type: 스킬 유형
+    start_campaign_message_proctored: 이 캠페인은 감독 캠페인입니다. 활동을 시작하려면 '%{buttonText}' 버튼을 클릭해 주세요.
+    start_campaign_message_timed: 이 캠페인은 시간 제한이 있는 캠페인입니다. 활동을 시작하려면 '%{buttonText}' 버튼을 클릭해 주세요.
+    start_campaign_message_timed_proctored: 이 캠페인은 시간 제한과 감독 방식으로 진행되며, 활동을 시작하려면 '%{buttonText}' 버튼을 클릭해 주세요.
     tasks: 작업

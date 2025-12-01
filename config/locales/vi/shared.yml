@@ -6,6 +6,7 @@ vi:
     cancel: Hủy bỏ
     change_password: Thay đổi mật khẩu
     clear_filters: Xóa bộ lọc
+    description: Sự miêu tả
     edit: Biên tập
     edited: Mới
     id: ID
@@ -14,12 +15,15 @@ vi:
     name: Tên
     new: Mới
     removed: Gỡ bỏ
+    rte_paste_content_exceeds_char_limit: Văn bản vượt quá giới hạn ký tự của {{maxCharacterLimit}} và không thể dán.
+    rte_paste_content_exceeds_word_limit: Văn bản vượt quá giới hạn từ {{maxWordLimit}} và không thể dán.
     search: Tìm kiếm
     table:
       entries:
         selected: 1 hàng đã chọn
         total: 'Tổng số : 1'
     terms_conditions_privacy: Tuyên bố về quyền riêng tư
+    transcriptions: Phiên âm
     tte_terms_and_condition: Điều khoản &amp; Quyền riêng tư
     type: Kiểu
     update: Cập nhật

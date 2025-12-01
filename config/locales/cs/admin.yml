@@ -3,6 +3,11 @@ cs:
   admin:
     admins: Administrátoři
     ai_artifacts: Artefakty AI
+    ai_artifacts_output_schema_key_constraint: Klíč musí začínat malým písmenem a může obsahovat pouze malá písmena, čísla a podtržítka
+    ai_assistant_model_id_label: Identifikace modelu
+    ai_assistant_model_label: Model
+    ai_assistant_model_provider: Poskytovatel
+    ai_assistant_model_region_label: Oblast
     ai_assistants: Asistenti AI
     assessments: Hodnocení
     assessments_reports: Hodnocení a zprávy
@@ -22,9 +27,27 @@ cs:
     dashboard: Přístrojová deska
     data_reports: Datové zprávy
     datasheet: Datový list
+    delete_ok_text: Ano, Smazat
     development_actions: Vývojové akce
     dimensions: Rozměry
+    empty_csv_file: CSV soubor neobsahuje žádná data.
+    fill_empty_score_msg: Vyplňte všechny konečné skóre před uložením.
+    final_score_empty_msg: Konečné skóre nemůže být prázdné.
+    import_csv_assessment_group_error: 'Řádek %{index}: uživatel s e-mailovým %{email} je již pozván k ''%{workshopInviteName}'''
+    import_csv_error: 'Řádek %{index}: uživatel s e-mailem %{email} není v této kampani'
+    import_description: Importujte uživatele z CSV souboru. Každý řádek musí obsahovat e-mailovou adresu.
+    import_download_sample: Stáhnout ukázkový CSV
+    import_error: Import selhal. Zkuste to prosím znovu.
+    import_errors_title: Chyby při importu
+    import_file_required: Vyberte prosím CSV soubor k nahrání.
+    import_queued_success: Úkol dovozu subjektů byl úspěšně naplánován. Zkontrolujte prosím stav ve svém oznámení.
+    import_sample_file_label: 'Ukázkový soubor:'
+    import_title: Importovat předměty z CSV
+    import_upload: Upload
+    import_users: Importovat uživatele
+    invalid_csv_header: CSV soubor obsahuje neplatné hlavičky.
     libraries: Knihovna médií
+    library_invalid_type: Neplatný knihovní prvek
     no_notifications: Žádná oznámení
     norms: Normy
     notification_bell_icon_alt_text: Ikona zvonku oznámení
@@ -41,11 +64,48 @@ cs:
     report_approvals: Schvalování zpráv
     reports: Zprávy
     role: Role
+    saml_idp_certificate_available: Dostupné (klikněte pro kopírování)
+    saml_idp_certificate_label: Certifikát
+    saml_idp_entity_id_label: Identifikace subjektu/vydavatele
+    saml_idp_sso_url_label: URL SSO služby
+    saml_service_provider: Poskytovatel SAML služeb
+    saml_service_provider_acs_urls: ACS URL
+    saml_service_provider_acs_urls_placeholder: Zadejte URL oddělené čárkami, např. https://app1.com/saml/acs, https://app2.com/saml/acs
+    saml_service_provider_acs_urls_required: Jsou vyžadovány ACS URL
+    saml_service_provider_action_delete_label: Vymazat
+    saml_service_provider_action_edit_label: Upravit
+    saml_service_provider_action_rotate_certificate_label: Rotační certifikát
+    saml_service_provider_add: Přidat poskytovatele SAML služeb
+    saml_service_provider_delete_success: Poskytovatel SAML služeb úspěšně smazán
+    saml_service_provider_enabled: Zpřístupněný
+    saml_service_provider_entity_id: Identifikace subjektu
+    saml_service_provider_entity_id_placeholder: Zadejte ID subjektu
+    saml_service_provider_entity_id_required: Je vyžadováno identifikační číslo subjektu
+    saml_service_provider_idp_config: Konfigurace IdP
+    saml_service_provider_manage: Akce
+    saml_service_provider_mask_identity: Identita masky
+    saml_service_provider_masking_enabled: Povolit maskování
+    saml_service_provider_name: Jméno
+    saml_service_provider_name_placeholder: Zadejte název poskytovatele služby
+    saml_service_provider_name_required: Jméno je vyžadováno
+    saml_service_provider_remove_content: 'Jste si jistý, že chcete odstranit poskytovatele služeb SAML: %{name}?'
+    saml_service_provider_remove_title: Odstraňte poskytovatele SAML služeb
+    saml_service_provider_rotate_certificate_content: Jste si jistý, že chcete certifikát střídat pro %{name}? Tím vygenerujete nový certifikát a ten stávající zneplatníte.
+    saml_service_provider_rotate_certificate_error: Nepodařilo se mi rotovat certifikát
+    saml_service_provider_rotate_certificate_ok: Rotační certifikát
+    saml_service_provider_rotate_certificate_success: Certifikát úspěšně rotován
+    saml_service_provider_rotate_certificate_title: Rotační certifikát
+    saml_service_provider_search: Vyhledejte poskytovatele SAML služeb...
+    saml_service_provider_updated_date: Datum aktualizace
+    saml_service_providers: Poskytovatelé služeb
+    saml_settings: SAML nastavení
     scheduling: Plánování
     scoring: Bodování
     show_submenu: Zobrazit dílčí nabídku
     skills_taxonomy: Taxonomie dovedností
+    slot_name: Název slotu
     stats: Statistiky
+    subject_part_of_other_invite: Subjekt s e-mailem %{user_email} je již pozván k '%{workshop_invite_name}'
     user_report_events: Hlášení uživatele Události
     users: Uživatelé
     view_licenses: Zobrazit licence

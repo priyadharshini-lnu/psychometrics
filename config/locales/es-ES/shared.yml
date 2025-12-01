@@ -6,6 +6,7 @@ es-ES:
     cancel: Cancelar
     change_password: Cambiar contraseña
     clear_filters: Quitar filtros
+    description: Descripción
     edit: Editar
     edited: Nuevo/a
     id: ID
@@ -14,6 +15,8 @@ es-ES:
     name: Nombre
     new: Nuevo/a
     removed: Eliminado
+    rte_paste_content_exceeds_char_limit: El texto supera el límite de caracteres {{maxCharacterLimit}} y no puede pegarse.
+    rte_paste_content_exceeds_word_limit: El texto supera el límite de palabras {{maxWordLimit}} y no puede pegarse.
     search: Buscar
     table:
       entries:
@@ -25,6 +28,7 @@ es-ES:
           other: 'Total : {{count}}'
           zero: 'Total : 0'
     terms_conditions_privacy: Declaración de privacidad
+    transcriptions: Transcripciones
     tte_terms_and_condition: Términos y privacidad
     type: Tipo
     update: Actualizar

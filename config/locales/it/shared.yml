@@ -6,6 +6,7 @@ it:
     cancel: Annulla
     change_password: Modifica la password
     clear_filters: Cancella i filtri
+    description: Descrizione
     edit: Modifica
     edited: Nuove
     id: ID
@@ -14,6 +15,8 @@ it:
     name: Nome
     new: Nuove
     removed: Rimosso
+    rte_paste_content_exceeds_char_limit: Il testo supera il limite di caratteri di {{maxCharacterLimit}} e non può essere incollato.
+    rte_paste_content_exceeds_word_limit: Il testo supera il limite di parole di {{maxWordLimit}} e non può essere incollato.
     search: Cerca
     table:
       entries:
@@ -25,6 +28,7 @@ it:
           other: 'Totale :  {{count}}'
           zero: 'Totale : 0'
     terms_conditions_privacy: Dichiarazione sulla privacy
+    transcriptions: Trascrizioni
     tte_terms_and_condition: Condizioni e privacy
     type: Tipo
     update: Aggiorna

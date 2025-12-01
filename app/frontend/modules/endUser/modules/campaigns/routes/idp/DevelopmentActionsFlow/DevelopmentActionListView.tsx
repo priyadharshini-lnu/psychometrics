@@ -26,6 +26,7 @@ const { I18n } = window
 
 type SkillsContainerProps = {
   editMode?: boolean
+  userId: number | string | null
   categories: TypeWithSkills[]
   availableDevelopmentActions: DevelopmentAction[]
   onAddDevelopmentAction?: (developmentAction: Record<string, DevelopmentAction>) => void
@@ -36,6 +37,7 @@ type SkillsContainerProps = {
   isDALoading: boolean;
   isViewingReportee?:boolean
   setSkillForComment: (skillDetails: { skillId: string; skillName: string; } | null) => void
+  onRemoveSkill: (id: number) => void
 }
 
 export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
@@ -50,6 +52,8 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
   isDALoading,
   isViewingReportee = false,
   setSkillForComment,
+  onRemoveSkill,
+  userId,
 }) => {
   const [isAddDevelopmentActionModalOpen, setIsAddDevelopmentActionModalOpen] = useState(false)
   const [isAIGeneratedDevelopmentActionsModalOpen, setIsAIGeneratedDevelopmentActionsModalOpen] = useState(false)
@@ -170,6 +174,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
         userIdpSkillId={skill.id as number}
         isPrivate={skill.private}
         setSkillForComment={setSkillForComment}
+        onRemoveSkill={onRemoveSkill}
         {...skill}
       />
     ))
@@ -233,8 +238,8 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
         {categories.map(category => (
           <div key={category.skillType} className="mt-2">
             <Flex vertical gap={4}>
-              <Flex align="center" gap={12}>
-                <Avatar aria-hidden="true" size={24} src={renderSkillTypeIcon(category.skillType)} />
+              <Flex align="center" gap={8}>
+                <Avatar aria-hidden="true" size={64} src={renderSkillTypeIcon(category.skillType)} />
                 <Typography.Title
                   className="font-semi-bold m-0 mb-0 transform-capitalize"
                   level={3}
@@ -255,7 +260,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
             icon={<PlusOutlined />}
             className={styles.manageSkillsBtn}
           >
-            {I18n.t('idp.development_actions.manage_skills')}
+            {I18n.t('idp.initial_steps.add_skills_step')}
           </Button>
         ) : null}
       </Flex>
@@ -280,6 +285,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
         open={isAIGeneratedDevelopmentActionsModalOpen}
         onCancel={() => setIsAIGeneratedDevelopmentActionsModalOpen(false)}
         skill={selectedSkill}
+        userId={userId}
         onAddDevelopmentAction={handleAddAIGeneratedDevelopmentAction}
         selectedAIGeneratedDevelopmentActions={selectedAIGeneratedDevelopmentActions}
         wrapClassName={styles.developmentActionModal}

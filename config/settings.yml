@@ -2346,6 +2346,9 @@ ai_providers:
     name: 'Cohere Command A'
     description: "Cohere Command A by Cohere from OCI"
     custom_provider: oci
+    modalities:
+      input: ["text"]
+      output: ["text"]
     context:
       oci_model_id: <%= ENV.fetch('OCI_COHERE_COMMAND_A_MODEL_ID', nil) %>
       oci_generative_ai_api_base: <%= ENV.fetch('OCI_GENERATIVE_AI_API_BASE', nil) %>

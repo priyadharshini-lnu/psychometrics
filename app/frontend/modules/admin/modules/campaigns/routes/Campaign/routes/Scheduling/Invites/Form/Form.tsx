@@ -64,7 +64,7 @@ export const InvitesForm = () => {
         setStep(step + 1)
       }
     }).catch(() => {
-      setSubjectValidationErrors(['An error occurred during validation'])
+      setSubjectValidationErrors([I18n.t('admin.validation_error')])
     })
   }
 

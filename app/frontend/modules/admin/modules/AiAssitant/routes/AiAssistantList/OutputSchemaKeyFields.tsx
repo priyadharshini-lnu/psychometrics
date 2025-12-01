@@ -36,7 +36,7 @@ export const OutputSchemaKeyFields: React.FC<Props> = ({
         },
         {
           pattern: /^[a-z][a-z0-9_]*$/,
-          message: I18n.t('admin.ai.artifacts.output_schema_key_constraint'),
+          message: I18n.t('admin.ai_artifacts_output_schema_key_constraint'),
         },
         ]}
       >

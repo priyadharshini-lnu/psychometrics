@@ -1795,7 +1795,6 @@ sl:
       verify: Preveri
       view_all_tasks: Prikaži vse naloge
       view_detail: Poglej podrobnosti
-      yes_delete: Da, izbriši
     column:
       action: Aktivnost
       active: Aktivni
@@ -2570,7 +2569,7 @@ sl:
       action_public: Ne
       add_development_action: Dodajanje razvojnega dejanja
       add_development_actions_from_below_options: Dodajte razvojna dejanja iz spodnjih možnosti.
-      add_development_actions_modal_title: Knjižnica razvojnih ukrepov za %{skillName}
+      add_development_actions_modal_title: Knjižnica razvojnih ukrepov za
       add_from_library: Dodajanje iz knjižnice
       add_more: Dodajanje več razvojnih ukrepov
       add_selected_development_actions: Dodajanje izbranih razvojnih dejanj
@@ -2601,7 +2600,7 @@ sl:
       generate_more: Ustvarite več
       generating_development_actions: Ustvarjanje razvojnih ukrepov ...
       generative_ai: Generativna umetna inteligenca
-      generative_ai_description: Naj umetna inteligenca ustvari prilagojeno razvojno akcijo samo za vas
+      generative_ai_description_msg: Naj umetna inteligenca ustvari prilagojeno razvojno akcijo samo za vas
       heading: Razvojni ukrepi
       idp_library: Knjižnica IDP
       idp_library_description: Izberite preizkušen razvojni ukrep iz naše knjižnice, ki jo je pripravil strokovnjak.
@@ -2659,8 +2658,8 @@ sl:
         one: Odstranjeno razvojno dejanje
         other: Odstranjeni razvojni ukrepi
     initial_steps:
-      add_skill_group_description: Na podlagi rezultatov ocenjevanja je tukaj nekaj področij prednosti in razvoja za vas. Izberite veščine, ki jih želite še naprej razvijati kot del svojega razvojnega načrta.
-      add_skill_group_title: Raziskovanje vaših spretnosti %{category}
+      add_skill_group_description: Izberite veščine, ki jih želite še naprej razvijati kot del svojega razvojnega načrta.
+      add_skill_group_title: "%{category}"
       add_skills: Dodati
       add_skills_step: Dodajanje spretnosti
       back: Hrbet

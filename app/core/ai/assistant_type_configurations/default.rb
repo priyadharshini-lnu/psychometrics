@@ -5,7 +5,11 @@ module AI
     class Default < Base
       # Default parameters for all assistants
       def default_params
-        {}
+        # A default value is added so that
+        # assistants will have somewhat similar behaviour irrespective of model used
+        {
+          max_tokens: 2000
+        }
       end
 
       def validate_type_specific_rules

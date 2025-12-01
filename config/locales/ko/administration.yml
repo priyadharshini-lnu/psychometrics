@@ -2280,7 +2280,7 @@ ko:
       background_image: 배경 이미지
       behavioral_skills: 행동 기술
       client_skills: 클라이언트 기술
-      delete_skill: 연결된 모든 개발 작업도 삭제되므로 스킬을 삭제하시겠습니까?
+      delete_skill: 이 스킬을 삭제하시겠습니까? 삭제하면 관련된 모든 개발 작업도 삭제됩니다.
       details_updated: IDP 세부 정보 업데이트 성공
       development_actions:
         add_from_library: 라이브러리에서 추가

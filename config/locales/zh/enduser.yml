@@ -11,12 +11,19 @@ zh:
     home: 仪表板
     idp_plan_approval_note: 批准备注
     insights: 洞察
+    lighthouse_assistant: 灯塔助理
     max_word_limit: 最多不能超过 %{max} 个字
     min_word_limit: 最少需要 %{min} 个字
     my_plan: 我的计划
     profile: 个人资料
     profile_details: 详细信息
     question_counter: 第 %{current} 题，共 %{total} 题
+    reason_for_idp_plan_rejection: 拒绝原因
+    reject_idp_plan: 拒绝计划
+    request_retry_message: 你已经离线了。你的答案无法保存，但一旦你重新上线，答案将自动保存。请不要刷新或关闭页面。
     selected_count: 已选择
     skill_type: 技能类型
+    start_campaign_message_proctored: 这是一个监考活动，请点击“%{buttonText}”按钮开始活动。
+    start_campaign_message_timed: 这是一个限时活动，请点击“%{buttonText}”按钮开始活动。
+    start_campaign_message_timed_proctored: 这是一个限时监考的活动，请点击“%{buttonText}”按钮开始活动。
     tasks: 任务

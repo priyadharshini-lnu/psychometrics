@@ -1798,7 +1798,6 @@ bg:
       view: Изглед
       view_all_tasks: Прегледайте всички задачи
       view_detail: Прегледайте детайлите
-      yes_delete: Да, изтриване
     column:
       action: Действие
       active: Активен
@@ -2566,14 +2565,14 @@ bg:
       you: Ти
     convert_to_draft: Конвертиране в чернова
     current_step: Текуща стъпка %{step}
-    delete_skill: Сигурни ли сте, че искате да изтриете умението, защото то ще изтрие и всички свързани действия за разработка?
+    delete_skill: Сигурни ли сте, че искате да изтриете това умение? Изтриването ще премахне и всички свързани действия за развитие.
     details: Подробности
     development_actions:
       action_private: Да
       action_public: Не
       add_development_action: Добавяне на действие за развитие
       add_development_actions_from_below_options: Добавете действия за разработка от опциите по-долу.
-      add_development_actions_modal_title: Библиотека с действия за развитие за %{skillName}
+      add_development_actions_modal_title: Библиотека с действия за развитие за
       add_from_library: Добавяне от библиотеката
       add_more: Добавяне на още действия за разработка
       add_selected_development_actions: Добавяне на избрани действия за разработка
@@ -2604,7 +2603,7 @@ bg:
       generate_more: Генерирайте повече
       generating_development_actions: Генериране на действия за развитие...
       generative_ai: Генеративен AI
-      generative_ai_description: Позволете на AI да генерира персонализирано действие за разработка само за вас
+      generative_ai_description_msg: Позволете на AI да генерира персонализирано действие за разработка само за вас
       heading: Действия за развитие
       idp_library: Библиотека на IDP
       idp_library_description: Изберете доказано действие за разработка от нашата подбрана от експерти библиотека.
@@ -2662,8 +2661,8 @@ bg:
         one: Премахнато действие за разработка
         other: Премахнати действия за разработка
     initial_steps:
-      add_skill_group_description: Въз основа на резултатите от вашата оценка, ето някои от областите на силни страни и развитие за вас. Изберете уменията, които искате да развиете допълнително, като част от вашия план за развитие.
-      add_skill_group_title: Изследване на вашите умения %{category}
+      add_skill_group_description: Изберете уменията, които искате да развиете допълнително, като част от вашия план за развитие.
+      add_skill_group_title: "%{category}"
       add_skills: Добавям
       add_skills_step: Добавете умения
       back: Гръб

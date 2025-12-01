@@ -1808,7 +1808,6 @@ zh:
       view: 查看
       view_all_tasks: 查看所有任务
       view_detail: 查看详情
-      yes_delete: 是，删除
     column:
       action: 操作
       active: 活跃
@@ -2553,14 +2552,14 @@ zh:
       you: 您
     convert_to_draft: 轉換為草稿
     current_step: 当前步骤 %{step}
-    delete_skill: 您是否确定要删除技能，因为它也会删除所有连接的开发作？
+    delete_skill: 您确定要删除此技能吗？删除后将同时移除所有相关的开发行动。
     details: 详细信息
     development_actions:
       action_private: 是
       action_public: 没有
       add_development_action: 添加开发行动
       add_development_actions_from_below_options: 从下面的选项添加开发作。
-      add_development_actions_modal_title: "%{skillName}开发作库"
+      add_development_actions_modal_title: 开发作库
       add_from_library: 从库添加
       add_more: 添加更多开发作
       add_selected_development_actions: 添加选定的开发作
@@ -2591,7 +2590,7 @@ zh:
       generate_more: 生成更多
       generating_development_actions: 生成发展行动...
       generative_ai: 生成式人工智能
-      generative_ai_description: 让人工智能生成专为您量身定制的开发行动
+      generative_ai_description_msg: 让人工智能生成专为您量身定制的开发行动
       heading: 发展行动
       idp_library: IDP 图书馆
       idp_library_description: 从我们专家策划的库中选择经过验证的开发作。
@@ -2649,8 +2648,8 @@ zh:
         one: 已删除的开发作
         other: 删除的开发作
     initial_steps:
-      add_skill_group_description: 根据你的评估结果，以下是你的一些优势和发展领域。 选择你希望进一步发展的技能，作为你发展计划的一部分。
-      add_skill_group_title: 探索您的 %{category} 技能
+      add_skill_group_description: 选择你希望进一步发展的技能，作为你发展计划的一部分。
+      add_skill_group_title: "%{category}"
       add_skills: 添加
       add_skills_step: 添加技能
       back: 返回

@@ -3,6 +3,11 @@ ar:
   admin:
     admins: المسؤولون
     ai_artifacts: قطع الذكاء الاصطناعي
+    ai_artifacts_output_schema_key_constraint: يجب أن يبدأ المفتاح بحرف صغير ولا يحتوي إلا على الحروف الصغيرة والأرقام والخطوط السفلية
+    ai_assistant_model_id_label: معرف الطراز
+    ai_assistant_model_label: نموذج
+    ai_assistant_model_provider: كاسب
+    ai_assistant_model_region_label: قطر
     ai_assistants: مساعدو الذكاء الاصطناعي
     assessments: التقييمات
     assessments_reports: التقييمات والتقارير
@@ -22,9 +27,27 @@ ar:
     dashboard: لوحة القيادة
     data_reports: تقارير البيانات
     datasheet: ورقة البيانات
+    delete_ok_text: نعم، حذف
     development_actions: إجراءات التطوير
     dimensions: الأبعاد
+    empty_csv_file: ملف CSV لا يحتوي على أي بيانات.
+    fill_empty_score_msg: املأ جميع الدرجات النهائية قبل الحفظ.
+    final_score_empty_msg: لا يمكن أن تكون النتيجة النهائية فارغة.
+    import_csv_assessment_group_error: 'الصف %{index}: المستخدم الذي لديه بريد إلكتروني %{email} مدعو بالفعل إلى ''%{workshopInviteName}'''
+    import_csv_error: 'الصف %{index}: مستخدم لديه بريد إلكتروني %{email} غير موجود في هذه الحملة'
+    import_description: استيراد المستخدمين من ملف CSV. يجب أن يحتوي كل صف على عنوان بريد إلكتروني.
+    import_download_sample: تحميل مثال CSV
+    import_error: فشل الاستيراد. يرجى المحاولة مرة أخرى.
+    import_errors_title: أخطاء الاستيراد
+    import_file_required: يرجى اختيار ملف CSV للرفع.
+    import_queued_success: تم جدولة مهمة استيراد الموضوع بنجاح. يرجى التحقق من إشعارك لمعرفة الحالة.
+    import_sample_file_label: 'ملف نموذجي:'
+    import_title: المواد المستوردة من CSV
+    import_upload: رفع
+    import_users: استيراد المستخدمين
+    invalid_csv_header: يحتوي ملف CSV على رؤوس غير صالحة.
     libraries: مكتبة الوسائط
+    library_invalid_type: عنصر المكتبة غير الصالح
     no_notifications: لا توجد إشعارات
     norms: المعايير
     notification_bell_icon_alt_text: Notification Bell Icon
@@ -41,11 +64,48 @@ ar:
     report_approvals: موافقات التقارير
     reports: التقارير
     role: دور
+    saml_idp_certificate_available: متوفر (انقر للنسخة)
+    saml_idp_certificate_label: شهادة
+    saml_idp_entity_id_label: معرف الكيان/المصدر
+    saml_idp_sso_url_label: رابط خدمة SSO
+    saml_service_provider: مزود خدمة SAML
+    saml_service_provider_acs_urls: عناوين URL الخاصة ب ACS
+    saml_service_provider_acs_urls_placeholder: أدخل عناوين URL مفصولة بفواصل، مثل https://app1.com/saml/acs https://app2.com/saml/acs
+    saml_service_provider_acs_urls_required: عناوين URL في ACS مطلوبة
+    saml_service_provider_action_delete_label: حذف
+    saml_service_provider_action_edit_label: حرر
+    saml_service_provider_action_rotate_certificate_label: شهادة التناوب
+    saml_service_provider_add: إضافة مزود خدمة SAML
+    saml_service_provider_delete_success: تم حذف مزود خدمة SAML بنجاح
+    saml_service_provider_enabled: تمكين
+    saml_service_provider_entity_id: معرف الكيان
+    saml_service_provider_entity_id_placeholder: أدخل معرف الكيان
+    saml_service_provider_entity_id_required: مطلوب معرف الكيان
+    saml_service_provider_idp_config: تكوين IdP
+    saml_service_provider_manage: الاجراءات
+    saml_service_provider_mask_identity: هوية القناع
+    saml_service_provider_masking_enabled: تمكين التمويه
+    saml_service_provider_name: اسم
+    saml_service_provider_name_placeholder: أدخل اسم مزود الخدمة
+    saml_service_provider_name_required: الاسم مطلوب
+    saml_service_provider_remove_content: 'هل أنت متأكد من أنك تريد إزالة مزود خدمة SAML: %{name}؟'
+    saml_service_provider_remove_title: إزالة مزود خدمة SAML
+    saml_service_provider_rotate_certificate_content: هل أنت متأكد أنك تريد تدوير الشهادة %{name}؟ هذا سيولد شهادة جديدة ويؤدي إلى إلغاء الشهادة الحالية.
+    saml_service_provider_rotate_certificate_error: فشل في تدوير الشهادة
+    saml_service_provider_rotate_certificate_ok: شهادة التناوب
+    saml_service_provider_rotate_certificate_success: تم تدوير الشهادة بنجاح
+    saml_service_provider_rotate_certificate_title: شهادة التناوب
+    saml_service_provider_search: ابحث عن مزودي خدمات SAML...
+    saml_service_provider_updated_date: تاريخ التحديث
+    saml_service_providers: مزودو الخدمة
+    saml_settings: إعدادات SAML
     scheduling: الجدولة
     scoring: سجل
     show_submenu: عرض القائمة الفرعية
     skills_taxonomy: تصنيف المهارات
+    slot_name: اسم الماكينة
     stats: الإحصائيات
+    subject_part_of_other_invite: الموضوع الذي يحمل بريدا إلكترونيا %{user_email} مدعو بالفعل إلى '%{workshop_invite_name}'
     user_report_events: أحداث تقارير المستخدم
     users: المستخدمون
     view_licenses: عرض التراخيص

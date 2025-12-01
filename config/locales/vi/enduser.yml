@@ -11,12 +11,19 @@ vi:
     home: Bảng điều khiển
     idp_plan_approval_note: Ghi chú phê duyệt
     insights: Thông tin chi tiết
+    lighthouse_assistant: Trợ lý ngọn hải đăng
     max_word_limit: Phải có tối đa %{max} từ
     min_word_limit: Phải có ít nhất %{min} từ
     my_plan: Kế hoạch của tôi
     profile: Hồ sơ
     profile_details: Chi tiết
     question_counter: Câu hỏi %{current} trong tổng số %{total}
+    reason_for_idp_plan_rejection: Lý do từ chối
+    reject_idp_plan: Kế hoạch từ chối
+    request_retry_message: Bạn đang ngoại tuyến. Câu trả lời của bạn không thể được lưu nhưng sẽ được lưu tự động khi bạn trực tuyến trở lại. Vui lòng không làm mới hoặc đóng trang.
     selected_count: Đã chọn
     skill_type: Loại kỹ năng
+    start_campaign_message_proctored: Đây là một chiến dịch có giám sát, vui lòng nhấp vào nút '%{buttonText}' để bắt đầu các hoạt động.
+    start_campaign_message_timed: Đây là một chiến dịch có thời gian, vui lòng nhấp vào nút '%{buttonText}' để bắt đầu các hoạt động.
+    start_campaign_message_timed_proctored: Đây là một chiến dịch có thời gian và giám sát, vui lòng nhấp vào nút '%{buttonText}' để bắt đầu các hoạt động.
     tasks: Nhiệm vụ

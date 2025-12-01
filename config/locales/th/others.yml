@@ -1795,7 +1795,6 @@ th:
       view: ดู
       view_all_tasks: แสดงงานทั้งหมด
       view_detail: แสดงรายละเอียด
-      yes_delete: ใช่ ลบ
     column:
       action: ดำเนินการ
       active: เปิดใช้งาน
@@ -2563,14 +2562,14 @@ th:
       you: ท่าน
     convert_to_draft: แปลงเป็นแบบร่าง
     current_step: ขั้นตอนปัจจุบัน %{step}
-    delete_skill: คุณแน่ใจหรือไม่ว่าต้องการลบทักษะเพราะมันจะลบการดําเนินการพัฒนาที่เชื่อมต่อทั้งหมดด้วย?
+    delete_skill: คุณแน่ใจหรือไม่ว่าต้องการลบทักษะนี้ การลบจะลบกิจกรรมการพัฒนาที่เกี่ยวข้องทั้งหมดด้วย
     details: รายละเอียด
     development_actions:
       action_private: ใช่
       action_public: ไม่ใช่
       add_development_action: เพิ่มการดําเนินการพัฒนา
       add_development_actions_from_below_options: เพิ่มการดําเนินการพัฒนาจากตัวเลือกด้านล่าง
-      add_development_actions_modal_title: ไลบรารีการดําเนินการเพื่อการพัฒนาสําหรับ %{skillName}
+      add_development_actions_modal_title: ไลบรารีการดําเนินการเพื่อการพัฒนาสําหรับ
       add_from_library: เพิ่มจากห้องสมุด
       add_more: เพิ่มการดําเนินการพัฒนาเพิ่มเติม
       add_selected_development_actions: เพิ่มการดําเนินการการพัฒนาที่เลือก
@@ -2601,7 +2600,7 @@ th:
       generate_more: สร้างมากขึ้น
       generating_development_actions: การสร้างการดําเนินการเพื่อการพัฒนา...
       generative_ai: กําเนิด AI
-      generative_ai_description: ปล่อยให้ AI สร้างการดําเนินการพัฒนาที่ปรับให้เหมาะกับคุณโดยเฉพาะ
+      generative_ai_description_msg: ปล่อยให้ AI สร้างการดําเนินการพัฒนาที่ปรับให้เหมาะกับคุณโดยเฉพาะ
       heading: การดําเนินการพัฒนา
       idp_library: ห้องสมุด IDP
       idp_library_description: เลือกการดําเนินการพัฒนาที่ได้รับการพิสูจน์แล้วจากไลบรารีที่คัดสรรโดยผู้เชี่ยวชาญของเรา
@@ -2659,8 +2658,8 @@ th:
         one: ลบการดําเนินการพัฒนา
         other: การดําเนินการการพัฒนาที่ลบออก
     initial_steps:
-      add_skill_group_description: จากผลการประเมินของคุณต่อไปนี้คือจุดแข็งและการพัฒนาสําหรับคุณ เลือกทักษะที่คุณต้องการพัฒนาเพิ่มเติมโดยเป็นส่วนหนึ่งของแผนการพัฒนาของคุณ
-      add_skill_group_title: สํารวจทักษะ %{category} ของคุณ
+      add_skill_group_description: เลือกทักษะที่คุณต้องการพัฒนาต่อไปในแผนการพัฒนาของคุณ
+      add_skill_group_title: "%{category}"
       add_skills: เพิ่ม
       add_skills_step: เพิ่มทักษะ
       back: ย้อนกลับ

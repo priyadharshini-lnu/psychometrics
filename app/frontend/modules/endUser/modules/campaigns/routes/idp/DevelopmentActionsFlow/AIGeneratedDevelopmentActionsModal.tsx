@@ -25,8 +25,9 @@ type ManualProps = {
   onAddDevelopmentAction: (developmentAction: Partial<AvailableDevelopmentActions | DevelopmentAction>[]) => void,
   onCancel: () => void,
   open: boolean,
-  skill: UserIdpSkill | null
-  selectedAIGeneratedDevelopmentActions: Partial< AvailableDevelopmentActions | DevelopmentAction>[]
+  skill: UserIdpSkill | null,
+  selectedAIGeneratedDevelopmentActions: Partial<AvailableDevelopmentActions | DevelopmentAction>[]
+  userId: number | string | null,
   wrapClassName?: string;
 }
 type PropsFromRedux = ConnectedProps<typeof connector>
@@ -46,6 +47,7 @@ const AIGeneratedDevelopmentActionsModalComponent: React.FC<Props> = ({
   generatedDevelopmentActions,
   generateDevelopmentActionsByAI,
   skill,
+  userId,
   selectedAIGeneratedDevelopmentActions,
   wrapClassName,
 }) => {
@@ -63,6 +65,7 @@ const AIGeneratedDevelopmentActionsModalComponent: React.FC<Props> = ({
         userIdpSkillId: skill.id as number,
         generateMore,
         lang: I18n.locale,
+        userId: userId || null,
       }).catch((error) => {
         message.error(error || I18n.t('common.errors.something_wrong'))
       }).finally(() => {
@@ -88,7 +91,16 @@ const AIGeneratedDevelopmentActionsModalComponent: React.FC<Props> = ({
 
   return (
     <Modal
-      title={I18n.t('idp.development_actions.create_development_actions_with_ai', { skillName: skill?.name })}
+      title={(
+        <>
+          <span className="font-normal">
+            {I18n.t('idp.development_actions.create_development_actions_with_ai')}
+          </span>
+          <span className="font-bold">
+            {` ${skill?.name}`}
+          </span>
+        </>
+      )}
       open={open}
       onCancel={onCancel}
       closeIcon={<Button style={{ border: 'none' }} ref={btnRef} icon={<CloseOutlined />} />}

@@ -1798,7 +1798,6 @@ hu:
       view: Nézet
       view_all_tasks: Minden feladat megtekintése
       view_detail: Részlet megtekintése
-      yes_delete: Igen, törlés
     column:
       action: Akció
       active: Aktív
@@ -2566,14 +2565,14 @@ hu:
       you: Te
     convert_to_draft: Konvertálás piszkozatra
     current_step: Aktuális lépés %{step}
-    delete_skill: Biztos benne, hogy törölni akarja a képességet, mert az az összes kapcsolódó fejlesztési műveletet is törli?
+    delete_skill: Biztosan törölni szeretné ezt a készséget? A törlés minden kapcsolódó fejlesztési tevékenységet is eltávolít.
     details: Részletek
     development_actions:
       action_private: Igen
       action_public: Nem
       add_development_action: Fejlesztési művelet hozzáadása
       add_development_actions_from_below_options: Fejlesztési műveletek hozzáadása az alábbi lehetőségekből.
-      add_development_actions_modal_title: Fejlesztési műveletek könyvtára %{skillName}
+      add_development_actions_modal_title: Fejlesztési műveletek könyvtára
       add_from_library: Hozzáadás a könyvtárból
       add_more: További fejlesztési műveletek hozzáadása
       add_selected_development_actions: Kijelölt fejlesztési műveletek hozzáadása
@@ -2604,7 +2603,7 @@ hu:
       generate_more: Generáljon többet
       generating_development_actions: Fejlesztési akciók generálása...
       generative_ai: Generatív AI
-      generative_ai_description: Engedje meg, hogy a mesterséges intelligencia személyre szabott fejlesztési műveletet hozzon létre az Ön számára
+      generative_ai_description_msg: Engedje meg, hogy a mesterséges intelligencia személyre szabott fejlesztési műveletet hozzon létre az Ön számára
       heading: Fejlesztési tevékenységek
       idp_library: IDP könyvtár
       idp_library_description: Válasszon ki egy bevált fejlesztési műveletet szakértők által összeállított könyvtárunkból.
@@ -2662,8 +2661,8 @@ hu:
         one: Eltávolított fejlesztési akció
         other: Eltávolított fejlesztési intézkedések
     initial_steps:
-      add_skill_group_description: Az értékelési eredmények alapján íme néhány erősségi és fejlesztési terület az Ön számára. Válassza ki azokat a készségeket, amelyeket tovább szeretne fejleszteni a fejlesztési terv részeként.
-      add_skill_group_title: "%{category} képességeinek felfedezése"
+      add_skill_group_description: Válassza ki azokat a készségeket, amelyeket tovább szeretne fejleszteni a fejlesztési terv részeként.
+      add_skill_group_title: "%{category}"
       add_skills: Hozzáad
       add_skills_step: Készségek hozzáadása
       back: Hát

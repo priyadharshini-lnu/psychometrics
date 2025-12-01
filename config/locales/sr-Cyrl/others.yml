@@ -559,7 +559,6 @@ sr-Cyrl:
       verify: Верификуј
       view_all_tasks: Прикажи све задатке
       view_detail: Виев Детаил
-      yes_delete: Да , Избриши
     column:
       action: Акција
       ai_assistant: АИ помоћник
@@ -967,7 +966,7 @@ sr-Cyrl:
       generate_more: Генериши још
       generating_development_actions: Генерисање акција развоја...
       generative_ai: Генеративна АИ
-      generative_ai_description: Пустите АИ генерисати прилагођену развојну акцију само за вас
+      generative_ai_description_msg: Пустите АИ генерисати прилагођену развојну акцију само за вас
       heading: Акције развоја
       idp_library: ИДП библиотека
       idp_library_description: Изаберите доказану развојну акцију из наше стручне библиотеке.
@@ -1025,8 +1024,8 @@ sr-Cyrl:
         one: Уклоњена развојна акција
         other: Уклоњене развојне акције
     initial_steps:
-      add_skill_group_description: На основу резултата процене, ово су неке од ваших снага и области за развој. Изаберите вештине које желите да развијате као део свог плана развоја.
-      add_skill_group_title: Истраживање ваших %{category} вештина
+      add_skill_group_description: Изаберите вештине које желите да развијате као део свог плана развоја.
+      add_skill_group_title: "%{category}"
       add_skills: Додај
       add_skills_step: Додај вештине
       back: Повратак

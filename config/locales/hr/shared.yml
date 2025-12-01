@@ -6,6 +6,7 @@ hr:
     cancel: Otkazati
     change_password: Promijeni lozinku
     clear_filters: Obriši filtere
+    description: Opis
     edit: Urediti
     edited: Novi
     id: ID
@@ -14,12 +15,15 @@ hr:
     name: Ime
     new: Novi
     removed: Uklonjeno
+    rte_paste_content_exceeds_char_limit: Tekst prelazi ograničenje znakova {{maxCharacterLimit}} i ne može se zalijepiti.
+    rte_paste_content_exceeds_word_limit: Tekst prelazi ograničenje broja riječi {{maxWordLimit}} i ne može se zalijepiti.
     search: Pretražiti
     table:
       entries:
         selected: Odabran 1 redak
         total: 'Ukupno : 1'
     terms_conditions_privacy: Izjava o privatnosti
+    transcriptions: Prijepisa
     tte_terms_and_condition: Uvjeti i privatnost
     type: Tip
     update: Ažurirati

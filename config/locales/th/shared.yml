@@ -6,6 +6,7 @@ th:
     cancel: ยกเลิก
     change_password: เปลี่ยนรหัสผ่าน
     clear_filters: เคลียร์ตัวกรอง
+    description: คำอธิบาย
     edit: แก้ไข
     edited: ใหม่
     id: รหัส
@@ -14,12 +15,15 @@ th:
     name: ชื่อ
     new: ใหม่
     removed: ถูก เอา ออก
+    rte_paste_content_exceeds_char_limit: ข้อความเกินขีดจํากัดอักขระของ {{maxCharacterLimit}} และไม่สามารถวางได้
+    rte_paste_content_exceeds_word_limit: ข้อความเกินขีดจํากัดของคําที่ {{maxWordLimit}} และไม่สามารถวางได้
     search: ค้นหา
     table:
       entries:
         selected: เลือก 1 แถว
         total: 'รวม : 1'
     terms_conditions_privacy: คำชี้แจงความเป็นส่วนตัว
+    transcriptions: การถอดความ
     tte_terms_and_condition: เงื่อนไขและความเป็นส่วนตัว
     type: ประเภท
     update: อัปเดต

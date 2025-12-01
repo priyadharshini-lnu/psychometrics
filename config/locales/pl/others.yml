@@ -1802,7 +1802,6 @@ pl:
       view: Widok
       view_all_tasks: Wyświetl wszystkie zadania
       view_detail: Zobacz szczegóły
-      yes_delete: Tak, usuń
     column:
       action: Działanie
       active: Aktywny
@@ -2570,14 +2569,14 @@ pl:
       you: Ty
     convert_to_draft: Konwertuj na wersję roboczą
     current_step: Bieżący krok %{step}
-    delete_skill: Czy na pewno chcesz usunąć umiejętność, ponieważ spowoduje to również usunięcie wszystkich powiązanych działań programistycznych?
+    delete_skill: Czy na pewno chcesz usunąć umiejętność? Spowoduje to również usunięcie wszystkich powiązanych działań rozwojowych.
     details: Szczegóły
     development_actions:
       action_private: Tak
       action_public: Nie
       add_development_action: Dodaj działanie rozwojowe
       add_development_actions_from_below_options: Dodaj akcje programistyczne z poniższych opcji.
-      add_development_actions_modal_title: Biblioteka działań rozwojowych dla %{skillName}
+      add_development_actions_modal_title: Biblioteka działań rozwojowych dla
       add_from_library: Dodaj z biblioteki
       add_more: Dodaj więcej akcji programistycznych
       add_selected_development_actions: Dodawanie wybranych akcji rozwojowych
@@ -2608,7 +2607,7 @@ pl:
       generate_more: Wygeneruj więcej
       generating_development_actions: Generowanie działań rozwojowych...
       generative_ai: Generatna sztuczna inteligencja
-      generative_ai_description: Pozwól, aby sztuczna inteligencja wygenerowała dostosowaną do Twoich potrzeb akcję programistyczną
+      generative_ai_description_msg: Pozwól, aby sztuczna inteligencja wygenerowała dostosowaną do Twoich potrzeb akcję programistyczną
       heading: Działania rozwojowe
       idp_library: Biblioteka IDP
       idp_library_description: Wybierz sprawdzoną akcję programistyczną z naszej biblioteki wyselekcjonowanej przez ekspertów.
@@ -2666,8 +2665,8 @@ pl:
         one: Usunięto akcję rozwojową
         other: Usunięte działania rozwojowe
     initial_steps:
-      add_skill_group_description: Na podstawie wyników Twojej oceny, oto niektóre obszary Twoich mocnych stron i rozwoju. Wybierz umiejętności, które chcesz dalej rozwijać w ramach swojego planu rozwoju.
-      add_skill_group_title: Eksploracja Twoich umiejętności %{category}
+      add_skill_group_description: Wybierz umiejętności, które chcesz dalej rozwijać w ramach swojego planu rozwoju.
+      add_skill_group_title: "%{category}"
       add_skills: Dodaj
       add_skills_step: Dodaj umiejętności
       back: Wstecz

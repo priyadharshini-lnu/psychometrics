@@ -2280,7 +2280,7 @@ zh:
       background_image: 背景图片
       behavioral_skills: 行为技能
       client_skills: 客户技能
-      delete_skill: 您是否确定要删除技能，因为它也会删除所有连接的开发作？
+      delete_skill: 您确定要删除此技能吗？删除后将同时移除所有相关的开发行动。
       details_updated: 成功更新 IDP 详情
       development_actions:
         add_from_library: 从库添加

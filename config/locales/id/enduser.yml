@@ -11,12 +11,19 @@ id:
     home: Beranda
     idp_plan_approval_note: Catatan Persetujuan
     insights: Wawasan
+    lighthouse_assistant: Asisten Mercusuar
     max_word_limit: Maksimal %{max} kata
     min_word_limit: Minimal %{min} kata
     my_plan: Rencanaku
     profile: Profil
     profile_details: Detail
     question_counter: Pertanyaan %{current} dari %{total}
+    reason_for_idp_plan_rejection: Alasan Penolakan
+    reject_idp_plan: Tolak Paket
+    request_retry_message: Anda offline. Jawaban Anda tidak dapat disimpan tetapi akan disimpan secara otomatis setelah Anda kembali online. Tolong jangan menyegarkan atau menutup halaman.
     selected_count: Dipilih
     skill_type: Jenis Keterampilan
+    start_campaign_message_proctored: Ini adalah kampanye yang diawasi, silakan klik tombol '%{buttonText}' untuk memulai aktivitas.
+    start_campaign_message_timed: Ini adalah kampanye berjangka waktu, silakan klik tombol '%{buttonText}' untuk memulai aktivitas.
+    start_campaign_message_timed_proctored: Ini adalah kampanye berjangka waktu dan diawasi, silakan klik tombol '%{buttonText}' untuk memulai aktivitas.
     tasks: Tugas

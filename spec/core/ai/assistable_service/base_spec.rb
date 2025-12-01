@@ -197,7 +197,8 @@ describe AI::AssistableService::Base do
         instructions,
         chat: mock_chat,
         ignore_user_prompt: options[:ignore_user_prompt],
-        chat_params: options[:chat_params]
+        ask_params: options[:ask_params],
+        params: options[:params] || {}
       ).and_call_original
 
       service.send(:assistant_service)
@@ -220,7 +221,7 @@ describe AI::AssistableService::Base do
       service = create_service
       chat = service.send(:assisted_session_chat)
 
-      expect(chat).to receive(:with_assistant_context).with(tools: [])
+      expect(chat).to receive(:with_assistant_context).with(params: {}, tools: [])
 
       service.send(:chat_with_context)
     end

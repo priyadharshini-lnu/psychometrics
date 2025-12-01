@@ -10,7 +10,7 @@ module AI
 
         description 'Get detailed analysis for the document uploaded by user for their Individual Development Plan(IDP) creation purpose.'
         param :context,
-              desc: 'Additional context regarding the document to be passed to the expert assistant for analysis.'
+              desc: 'Additional context regarding the document to be passed to the expert assistant for analysis. Example: "Analyze this user resume"'
 
         private_attr_reader :user_idp_plan, :current_user, :ai_assistant
 

@@ -6,6 +6,7 @@ fr:
     cancel: Annuler
     change_password: Modifier le mot de passe
     clear_filters: Effacer les filtres
+    description: Description
     edit: Editer
     edited: Nouveau
     id: ID
@@ -14,6 +15,8 @@ fr:
     name: Nom
     new: Nouveau
     removed: Supprimé
+    rte_paste_content_exceeds_char_limit: Le texte dépasse la limite de caractères {{maxCharacterLimit}} et ne peut pas être collé.
+    rte_paste_content_exceeds_word_limit: Le texte dépasse la limite de mots {{maxWordLimit}} et ne peut pas être collé.
     search: Recherche
     table:
       entries:
@@ -25,6 +28,7 @@ fr:
           other: 'Total : {{count}}'
           zero: 'Total : 0'
     terms_conditions_privacy: Déclaration de confidentialité
+    transcriptions: Transcriptions
     tte_terms_and_condition: Conditions d'utilisation et protection de la vie privée
     type: Type
     update: Mettre à jour

@@ -11,12 +11,19 @@ ro:
     home: Tablou
     idp_plan_approval_note: Notă de aprobare
     insights: Perspective
+    lighthouse_assistant: Asistent de far
     max_word_limit: Trebuie să aibă cel mult %{max} cuvinte
     min_word_limit: Trebuie să aibă cel puțin %{min} cuvinte
     my_plan: Planul meu
     profile: Profil
     profile_details: Detalii
     question_counter: Întrebarea %{current} din %{total}
+    reason_for_idp_plan_rejection: Motivul respingerii
+    reject_idp_plan: Planul de respingere
+    request_retry_message: Ești offline. Răspunsurile tale nu au putut fi salvate, dar vor fi salvate automat odată ce vei fi din nou online. Vă rugăm să nu reîmprospătați sau să închideți pagina.
     selected_count: Selectat
     skill_type: Tip de abilitate
+    start_campaign_message_proctored: Aceasta este o campanie supravegheată, vă rugăm să apăsați butonul "%{buttonText}" pentru a începe activitățile.
+    start_campaign_message_timed: Aceasta este o campanie cu timp limitat, vă rugăm să apăsați butonul "%{buttonText}" pentru a începe activitățile.
+    start_campaign_message_timed_proctored: Aceasta este o campanie cronometrată și supravegheată, vă rugăm să apăsați butonul "%{buttonText}" pentru a începe activitățile.
     tasks: Sarcini

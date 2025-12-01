@@ -1808,7 +1808,6 @@ sr-Latn:
       view: Prikaz
       view_all_tasks: Pogledaj sve zadatke
       view_detail: Pogledaj detalje
-      yes_delete: Da, Izbriši
     column:
       action: Akcija
       active: Aktivni
@@ -2591,7 +2590,7 @@ sr-Latn:
       action_public: Ne
       add_development_action: Dodaj razvojnu akciju
       add_development_actions_from_below_options: Dodajte razvojne akcije iz odozdo opcija.
-      add_development_actions_modal_title: Biblioteka razvojnih akcija za %{skillName}
+      add_development_actions_modal_title: Biblioteka razvojnih akcija za
       add_from_library: Dodaj iz biblioteke
       add_more: Dodajte još razvojnih akcija
       add_selected_development_actions: Dodajte izabrane razvojne akcije
@@ -2622,7 +2621,7 @@ sr-Latn:
       generate_more: Generišite više
       generating_development_actions: Generisanje razvojnih akcija ...
       generative_ai: Generativna AI
-      generative_ai_description: Pustite AI generisati prilagođenu razvojnu akciju samo za vas
+      generative_ai_description_msg: Pustite AI generisati prilagođenu razvojnu akciju samo za vas
       heading: Razvojne akcije
       idp_library: IDP biblioteka
       idp_library_description: Izaberite dokazanu razvojnu akciju iz naše stručne biblioteke.
@@ -2680,8 +2679,8 @@ sr-Latn:
         one: Uklonjena razvojna akcija
         other: Uklonjene razvojne akcije
     initial_steps:
-      add_skill_group_description: Na osnovu vaših rezultata procene, evo nekih od oblasti prednosti i razvoja za vas. Izaberite veštine koje želite da dalje razvijate kao deo vašeg razvojnog plana.
-      add_skill_group_title: Istraživanje vaših %{category} veština
+      add_skill_group_description: Izaberite veštine koje želite da dalje razvijate kao deo vašeg razvojnog plana.
+      add_skill_group_title: "%{category}"
       add_skills: Dodati
       add_skills_step: Dodajte veštine
       back: Povratak

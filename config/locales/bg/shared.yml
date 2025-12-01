@@ -6,6 +6,7 @@ bg:
     cancel: Отменете
     change_password: Промяна на паролата
     clear_filters: Изчистете филтрите
+    description: Описание
     edit: Редактирайте
     edited: Нов
     id: Идентификация
@@ -14,12 +15,15 @@ bg:
     name: Име
     new: Нов
     removed: Отстранени
+    rte_paste_content_exceeds_char_limit: Текстът надвишава лимита на символите {{maxCharacterLimit}} и не може да бъде поставен.
+    rte_paste_content_exceeds_word_limit: Текстът надвишава лимита на думите {{maxWordLimit}} и не може да бъде поставен.
     search: Търсете
     table:
       entries:
         selected: Избран е 1 ред
         total: 'Общо : 1'
     terms_conditions_privacy: Декларация за поверителност
+    transcriptions: Транскрипции
     tte_terms_and_condition: Условия и поверителност
     type: Вид
     update: Актуализирайте

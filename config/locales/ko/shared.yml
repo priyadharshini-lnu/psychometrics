@@ -6,6 +6,7 @@ ko:
     cancel: 취소
     change_password: 비밀번호 변경
     clear_filters: 필터 지우기
+    description: 묘사
     edit: 편집
     edited: 새로 만들기
     id: ID
@@ -14,6 +15,8 @@ ko:
     name: 이름
     new: 새로 만들기
     removed: 제거됨
+    rte_paste_content_exceeds_char_limit: 텍스트는 {{maxCharacterLimit}}의 문자 한도를 초과하며, 붙여넣을 수 없습니다.
+    rte_paste_content_exceeds_word_limit: 텍스트가 {{maxWordLimit}}의 단어 수를 초과하여 붙여넣을 수 없습니다.
     search: 검색
     table:
       entries:
@@ -25,6 +28,7 @@ ko:
           other: '합계 : {{count}}'
           zero: '합계 : 0'
     terms_conditions_privacy: 개인정보 처리방침
+    transcriptions: 사본
     tte_terms_and_condition: 약관 및 개인정보 보호
     type: 유형
     update: 업데이트

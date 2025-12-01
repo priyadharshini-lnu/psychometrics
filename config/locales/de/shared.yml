@@ -6,13 +6,17 @@ de:
     cancel: Stornieren
     change_password: Passwort ändern
     clear_filters: Filter löschen
+    description: Beschreibung
     edit: Bearbeiten
     edited: Neu
+    id: ID
     internet_disconnected_message: Bitte überprüfen Sie Ihre Internet-Verbindung.
     mte_logo_alt_text: Mercer Talent Enterprise Logo
     name: Name
     new: Neu
     removed: Entfernt
+    rte_paste_content_exceeds_char_limit: Der Text überschreitet das Zeichenlimit von {{maxCharacterLimit}} und kann nicht eingefügt werden.
+    rte_paste_content_exceeds_word_limit: Der Text überschreitet das Wortlimit von {{maxWordLimit}} und kann nicht eingefügt werden.
     search: Suchen
     table:
       entries:
@@ -24,6 +28,7 @@ de:
           other: 'Gesamt : {{count}}'
           zero: 'Gesamt : 0'
     terms_conditions_privacy: Datenschutzerklärung
+    transcriptions: Abschriften
     tte_terms_and_condition: TTE – Geschäftsbedingungen und Datenschutzerklärung
     type: Typ
     update: Aktualisieren

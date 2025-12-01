@@ -22,6 +22,7 @@ import {
   RobotOutlined,
   CompassOutlined,
   GlobalOutlined,
+  CalendarOutlined,
 } from '@ant-design/icons'
 import { camelizeKeys } from '~/utils/object'
 
@@ -44,6 +45,7 @@ type Permissions = {
   reports?: string;
   reportApprovals?: string;
   campaignTemplates?: string;
+  availability?: string;
   auditLogs?: string;
   userAvailability?: string;
   dataReports?: string;
@@ -412,6 +414,17 @@ export const menuItems = (
           </Link>
         ),
         icon: <FileProtectOutlined aria-hidden="true" />,
+      }
+      : null,
+    permissions.userAvailability
+      ? {
+        key: 'userAvailability',
+        label: (
+          <Link href={permissions.userAvailability}>
+            {I18n.t('admin.availability')}
+          </Link>
+        ),
+        icon: <CalendarOutlined aria-hidden="true" />,
       }
       : null,
     permissions.auditLogs

@@ -194,7 +194,7 @@ class UserIdpPlan < ApplicationRecord
   end
 
   def manager_editable?
-    rejected? || in_review?
+    in_review?
   end
 
   def can_revert_to_last_approved

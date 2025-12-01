@@ -3,6 +3,11 @@ vi:
   admin:
     admins: Quản trị viên
     ai_artifacts: Đồ tạo tác AI
+    ai_artifacts_output_schema_key_constraint: Khóa phải bắt đầu bằng chữ thường và chỉ có thể chứa chữ thường, số và dấu gạch dưới
+    ai_assistant_model_id_label: ID mô hình
+    ai_assistant_model_label: Mẫu
+    ai_assistant_model_provider: Cung cấp
+    ai_assistant_model_region_label: Vùng
     ai_assistants: Trợ lý AI
     assessments: Đánh giá
     assessments_reports: Đánh giá & Báo cáo
@@ -22,9 +27,27 @@ vi:
     dashboard: Bảng điều khiển
     data_reports: Báo cáo dữ liệu
     datasheet: Bảng dữ liệu
+    delete_ok_text: Có, xóa
     development_actions: Hành động phát triển
     dimensions: Kích thước
+    empty_csv_file: Tệp CSV không chứa bất kỳ dữ liệu nào.
+    fill_empty_score_msg: Điền vào tất cả các điểm cuối cùng trước khi lưu.
+    final_score_empty_msg: Điểm cuối cùng không thể trống.
+    import_csv_assessment_group_error: 'Hàng %{index}: người dùng có email %{email} đã được mời tham gia ''%{workshopInviteName}'''
+    import_csv_error: 'Hàng %{index}: người dùng có %{email} email không có trong chiến dịch này'
+    import_description: Nhập người dùng từ tệp CSV. Mỗi hàng phải chứa một địa chỉ email.
+    import_download_sample: Tải xuống CSV mẫu
+    import_error: Nhập không thành công. Vui lòng thử lại.
+    import_errors_title: Lỗi nhập khẩu
+    import_file_required: Vui lòng chọn tệp CSV để tải lên.
+    import_queued_success: Công việc nhập đối tượng đã được lên lịch thành công. Vui lòng kiểm tra thông báo của bạn để biết trạng thái.
+    import_sample_file_label: 'Tệp mẫu:'
+    import_title: Nhập chủ đề từ CSV
+    import_upload: Tải lên
+    import_users: Nhập người dùng
+    invalid_csv_header: CSV chứa tiêu đề không hợp lệ.
     libraries: Thư viện phương tiện
+    library_invalid_type: Mục Thư viện không hợp lệ
     no_notifications: Không có thông báo
     norms: Tiêu chuẩn
     notification_bell_icon_alt_text: Biểu tượng chuông thông báo
@@ -41,11 +64,48 @@ vi:
     report_approvals: Phê duyệt báo cáo
     reports: Báo cáo
     role: Vai trò
+    saml_idp_certificate_available: Có sẵn (bấm để sao chép)
+    saml_idp_certificate_label: Chứng chỉ
+    saml_idp_entity_id_label: ID thực thể/Tổ chức phát hành
+    saml_idp_sso_url_label: URL dịch vụ SSO
+    saml_service_provider: Nhà cung cấp dịch vụ SAML
+    saml_service_provider_acs_urls: URL ACS
+    saml_service_provider_acs_urls_placeholder: 'Nhập URL được phân tách bằng dấu phẩy, ví dụ: https://app1.com/saml/acs https://app2.com/saml/acs'
+    saml_service_provider_acs_urls_required: Bắt buộc phải có URL ACS
+    saml_service_provider_action_delete_label: Xóa
+    saml_service_provider_action_edit_label: Biên tập
+    saml_service_provider_action_rotate_certificate_label: Luân chuyển chứng chỉ
+    saml_service_provider_add: Thêm nhà cung cấp dịch vụ SAML
+    saml_service_provider_delete_success: Nhà cung cấp dịch vụ SAML đã xóa thành công
+    saml_service_provider_enabled: Kích hoạt
+    saml_service_provider_entity_id: ID thực thể
+    saml_service_provider_entity_id_placeholder: Nhập ID thực thể
+    saml_service_provider_entity_id_required: Mã thực thể là bắt buộc
+    saml_service_provider_idp_config: Cấu hình IdP
+    saml_service_provider_manage: Hành động
+    saml_service_provider_mask_identity: Nhận dạng mặt nạ
+    saml_service_provider_masking_enabled: Bật mặt nạ
+    saml_service_provider_name: Tên
+    saml_service_provider_name_placeholder: Nhập tên nhà cung cấp dịch vụ
+    saml_service_provider_name_required: Tên là bắt buộc
+    saml_service_provider_remove_content: 'Bạn có chắc chắn muốn xóa Nhà cung cấp dịch vụ SAML: %{name} không?'
+    saml_service_provider_remove_title: Xóa nhà cung cấp dịch vụ SAML
+    saml_service_provider_rotate_certificate_content: Bạn có chắc chắn muốn luân chuyển chứng chỉ cho %{name}? Thao tác này sẽ tạo ra một chứng chỉ mới và làm mất hiệu lực chứng chỉ hiện tại.
+    saml_service_provider_rotate_certificate_error: Không thể luân chuyển chứng chỉ
+    saml_service_provider_rotate_certificate_ok: Luân chuyển chứng chỉ
+    saml_service_provider_rotate_certificate_success: Chứng chỉ được luân chuyển thành công
+    saml_service_provider_rotate_certificate_title: Luân chuyển chứng chỉ
+    saml_service_provider_search: Tìm kiếm nhà cung cấp dịch vụ SAML...
+    saml_service_provider_updated_date: Ngày cập nhật
+    saml_service_providers: Nhà cung cấp dịch vụ
+    saml_settings: Cài đặt SAML
     scheduling: Lập kế hoạch
     scoring: Ghi
     show_submenu: Hiển thị menu phụ
     skills_taxonomy: Phân loại kỹ năng
+    slot_name: Tên vị trí
     stats: Thống kê
+    subject_part_of_other_invite: Chủ đề với email %{user_email} đã được mời vào '%{workshop_invite_name}'
     user_report_events: Sự kiện báo cáo người dùng
     users: Người dùng
     view_licenses: Xem giấy phép

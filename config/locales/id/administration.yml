@@ -2280,7 +2280,7 @@ id:
       background_image: Gambar latar belakang
       behavioral_skills: Keterampilan Perilaku
       client_skills: Keterampilan Klien
-      delete_skill: Apakah Anda yakin ingin menghapus keterampilan karena itu akan menghapus semua tindakan pengembangan yang terhubung juga?
+      delete_skill: Apakah Anda yakin ingin menghapus keterampilan ini? Menghapusnya juga akan menghapus semua tindakan pengembangan terkait.
       details_updated: Detail IDP berhasil diperbarui
       development_actions:
         add_from_library: Tambahkan dari Perpustakaan

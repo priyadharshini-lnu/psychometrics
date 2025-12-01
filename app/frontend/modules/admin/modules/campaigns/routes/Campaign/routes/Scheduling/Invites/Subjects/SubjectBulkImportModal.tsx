@@ -12,10 +12,7 @@ interface SubjectBulkImportModalProps {
   onUpload: (file: File) => void
   importInProgress: boolean
   csvErrors: {
-    index: number
-    email: string | null
-    workshopInviteName?: string
-    errorType?: string
+    message?: string
   }[]
 }
 
@@ -106,18 +103,7 @@ export const SubjectBulkImportModal: React.FC<SubjectBulkImportModalProps> = ({
             message={I18n.t('admin.import_errors_title')}
             description={csvErrors.map((error, index) => (
               <div key={index}>
-                {error.errorType === 'assessment_group_conflict' && (
-                  I18n.t('admin.import_csv_assessment_group_error', error)
-                )}
-                {error.errorType === 'empty_csv' && (
-                  I18n.t('admin.empty_csv_file', error)
-                )}
-                {error.errorType === 'invalid_header' && (
-                  I18n.t('admin.invalid_csv_header', error)
-                )}
-                {(!error.errorType || error.errorType === 'user_not_in_campaign') && (
-                  I18n.t('admin.import_csv_error', error)
-                )}
+                {error.message}
               </div>
             ))}
           />

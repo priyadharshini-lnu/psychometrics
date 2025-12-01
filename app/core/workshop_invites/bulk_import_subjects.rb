@@ -15,8 +15,8 @@ module WorkshopInvites
     end
 
     def call
-      return broadcast_error('empty_csv') if csv_empty?
-      return broadcast_error('invalid_header') unless headers_valid?
+      return broadcast(:ok, validation_errors: [{ message: I18n.t('admin.empty_csv_file') }]) if csv_empty?
+      return broadcast(:ok, validation_errors: [{ message: I18n.t('admin.invalid_csv_header') }]) unless headers_valid?
 
       users = process_csv_rows
       return broadcast(:ok, validation_errors: validation_errors) if validation_errors.present?
@@ -60,7 +60,7 @@ module WorkshopInvites
           valid_users << user
           users_with_indices << [user, index + 1]
         else
-          add_validation_error(index + 1, email, 'user_not_in_campaign')
+          validation_errors << { message: I18n.t('admin.import_csv_error', index: index, email: email) }
         end
       end
 
@@ -87,14 +87,6 @@ module WorkshopInvites
       users.map { |user| { user_id: user.id } }
     end
 
-    def add_validation_error(index, email, error_type)
-      validation_errors << { index: index, email: email, error_type: error_type }
-    end
-
-    def broadcast_error(error_type)
-      broadcast(:ok, validation_errors: [{ error_type: error_type }])
-    end
-
     def validate_assessment_group_conflicts(users_with_indices)
       conflicts = []
 
@@ -102,7 +94,12 @@ module WorkshopInvites
         existing_invite = find_existing_workshop_invite(user)
         next unless existing_invite
 
-        conflicts << build_conflict_error(csv_index, user, existing_invite)
+        conflicts << {
+          message: I18n.t('admin.import_csv_assessment_group_error',
+                          index: csv_index,
+                          email: user.email,
+                          workshopInviteName: existing_invite.workshop_invite.title)
+        }
       end
 
       conflicts
@@ -113,15 +110,6 @@ module WorkshopInvites
         campaign.id,
         workshop_invite.campaign_assessment_group_id
       ).where(user: user).first
-    end
-
-    def build_conflict_error(index, user, existing_invite)
-      {
-        index: index,
-        email: user.email,
-        workshopInviteName: existing_invite.workshop_invite.title.presence,
-        error_type: 'assessment_group_conflict'
-      }
     end
   end
 end

@@ -95,6 +95,12 @@ en:
           title: Confirm
       permissions:
         labels:
+          aiArtifacts:
+            export: Export
+            import: Import
+            manage: Manage
+            title: AI Artifacts
+            view: View
           apiKeys:
             manage: Manage
             title: API Keys

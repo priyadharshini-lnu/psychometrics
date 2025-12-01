@@ -1,6 +1,34 @@
 ---
 sr-Cyrl:
   shared:
+    action: Радњу
+    add: Додати
+    cancel: Откажи
+    change_password: Промена лозинке
+    clear_filters: Обриши филтере
+    description: Опис
+    edit: Уређивање
+    edited: Уређивати
+    id: ИД
     internet_disconnected_message: Покушавам поновно повезивање. Проверите интернет везу.
+    mte_logo_alt_text: Мерцер Талент Ентерприсе лого
+    name: Име
+    new: Нови
+    removed: Уклоњена
+    rte_paste_content_exceeds_char_limit: Текст прелази ограничење знакова {{маxЦхарацтерЛимит}} и не може се налепити.
+    rte_paste_content_exceeds_word_limit: Текст прелази ограничење речи {{маxWордЛимит}} и не може се налепити.
+    search: Претраге
+    table:
+      entries:
+        selected:
+          one: 1 ред изабран
+          other: "{{цоунт }} изабрани редови"
+        total:
+          one: 'Укупан : 1'
+          other: 'Укупно : {{цоунт}}'
+          zero: 'Укупан : 0'
     terms_conditions_privacy: Изјава о приватности
+    transcriptions: Транскрипције
     tte_terms_and_condition: Услови и приватност
+    type: Тип
+    update: Ажурирање

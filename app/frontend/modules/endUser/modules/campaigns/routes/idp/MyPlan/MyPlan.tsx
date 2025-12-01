@@ -60,6 +60,7 @@ const connector = connect((state: RootState) => ({
   unreadCommentsCount: state.campaigns.idp.unreadCommentsCount,
   skillGapReportAvailable: state.campaigns.idp.skillGapReportAvailable,
   skillGapReportData: state.campaigns.idp.skillGapReportData,
+  isPlanDirty: state.campaigns.idp.isPlanDirty,
 }),
 {
   updateUserIdpPlan,
@@ -85,6 +86,7 @@ const MyPlanComponent = ({
   saveUserIdpDevelopmentActions,
   fetchUserIdpPlanChanges,
   revertToApprovedIdpPlan,
+  isPlanDirty,
 }: Props) => {
   const [editMode, setEditMode] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -271,6 +273,7 @@ const MyPlanComponent = ({
         <Button
           onClick={handleSave}
           type="primary"
+          disabled={!isPlanDirty}
         >
           {I18n.t('idp.development_actions.save_plan')}
         </Button>

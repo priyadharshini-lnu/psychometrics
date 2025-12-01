@@ -2282,7 +2282,7 @@ hu:
       background_image: Háttérkép
       behavioral_skills: Viselkedési készségek
       client_skills: Ügyfélkészségek
-      delete_skill: Biztos benne, hogy törölni akarja a képességet, mert az az összes kapcsolódó fejlesztési műveletet is törli?
+      delete_skill: Biztosan törölni szeretné ezt a készséget? A törlés minden kapcsolódó fejlesztési tevékenységet is eltávolít.
       details_updated: IDP részletek sikeresen frissítve
       development_actions:
         add_from_library: Hozzáadás a könyvtárból

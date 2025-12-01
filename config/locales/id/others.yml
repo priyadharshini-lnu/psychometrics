@@ -1802,7 +1802,6 @@ id:
       view: Melihat
       view_all_tasks: Lihat semua tugas
       view_detail: Lihat Detail
-      yes_delete: Ya, Hapus
     column:
       action: Tindakan
       active: Aktif
@@ -2570,14 +2569,14 @@ id:
       you: Kamu
     convert_to_draft: Konversi ke Draf
     current_step: Langkah Saat Ini %{step}
-    delete_skill: Apakah Anda yakin ingin menghapus keterampilan karena itu akan menghapus semua tindakan pengembangan yang terhubung juga?
+    delete_skill: Apakah Anda yakin ingin menghapus keterampilan ini? Menghapusnya juga akan menghapus semua tindakan pengembangan terkait.
     details: Rincian
     development_actions:
       action_private: Ya
       action_public: Tidak
       add_development_action: Tambahkan Tindakan Pengembangan
       add_development_actions_from_below_options: Tambahkan Tindakan Pengembangan dari opsi di bawah ini.
-      add_development_actions_modal_title: Perpustakaan Tindakan Pengembangan untuk %{skillName}
+      add_development_actions_modal_title: Perpustakaan Tindakan Pengembangan untuk
       add_from_library: Tambahkan dari Perpustakaan
       add_more: Tambahkan Lebih Banyak Tindakan Pengembangan
       add_selected_development_actions: Tambahkan Tindakan Pengembangan yang Dipilih
@@ -2608,7 +2607,7 @@ id:
       generate_more: Hasilkan Lebih Banyak
       generating_development_actions: Menghasilkan tindakan pembangunan...
       generative_ai: AI Generatif
-      generative_ai_description: Biarkan AI menghasilkan tindakan pengembangan yang disesuaikan hanya untuk Anda
+      generative_ai_description_msg: Biarkan AI menghasilkan tindakan pengembangan yang disesuaikan hanya untuk Anda
       heading: Tindakan Pengembangan
       idp_library: Perpustakaan IDP
       idp_library_description: Pilih tindakan pengembangan yang telah terbukti dari perpustakaan kami yang dikuratori oleh ahli.
@@ -2666,8 +2665,8 @@ id:
         one: Tindakan Pengembangan yang Dihapus
         other: Tindakan Pengembangan yang Dihapus
     initial_steps:
-      add_skill_group_description: Berdasarkan hasil penilaian Anda, berikut adalah beberapa area kekuatan dan pengembangan untuk Anda. Pilih keterampilan yang ingin Anda kembangkan lebih lanjut sebagai bagian dari rencana pengembangan Anda.
-      add_skill_group_title: Menjelajahi Keterampilan %{category} Anda
+      add_skill_group_description: Pilih keterampilan yang ingin Anda kembangkan lebih lanjut sebagai bagian dari rencana pengembangan Anda.
+      add_skill_group_title: "%{category}"
       add_skills: Tambah
       add_skills_step: Tambahkan Keterampilan
       back: Belakang

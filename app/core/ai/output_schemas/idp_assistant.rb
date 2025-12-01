@@ -6,13 +6,13 @@ module AI
   module OutputSchemas
     class IdpAssistant < Base
       # Schema context that can be added to system prompts
-      SCHEMA_AS_CONTEXT = <<~SCHEMA_CONTEXT
+      SCHEMA_CONTEXT = <<~SCHEMA_CONTEXT
         The assistant is aware that it must generate only one message at a time for it to be shown to user.
         Assistant must follow a strict JSON schema for all responses to ensure proper UI rendering.
       SCHEMA_CONTEXT
 
-      def self.as_context
-        SCHEMA_AS_CONTEXT
+      def self.context
+        SCHEMA_CONTEXT
       end
 
       string :message, description: 'Message by the assistant to be shown to the user'
