@@ -2581,6 +2581,7 @@ hr:
     convert_to_draft: Pretvori u skicu
     current_step: Trenutni korak %{step}
     delete_skill: Jeste li sigurni da želite izbrisati ovu vještinu? Brisanjem će se ukloniti sve povezane razvojne aktivnosti.
+    delete_skill_msg: Jesi li siguran da želiš izbrisati ovu vještinu? Brisanje će također ukloniti sve povezane razvojne radnje.
     details: Detalji
     development_actions:
       action_private: Da
@@ -2598,8 +2599,8 @@ hr:
         in_progress: U tijeku
         not_started: Nije pokrenuto
       completion: Završetak
-      create_custom_development_action_title: Kreirajte vlastitu razvojnu akciju za %{skillName}
-      create_development_actions_with_ai: Kreirajte razvojne akcije pomoću umjetne inteligencije za %{skillName}
+      create_custom_development_action_title: Kreirajte vlastitu razvojnu akciju za
+      create_development_actions_with_ai: Kreirajte razvojne akcije pomoću umjetne inteligencije za
       create_from_ai: Stvaranje iz umjetne inteligencije
       create_my_own: Stvori vlastiti
       custom: Običaj
@@ -2711,7 +2712,7 @@ hr:
       save_skills: Spremite vještine
     new_comments: Novi komentar(i)
     no_skills_added: Još niste dodali vještine.
-    no_skills_added_by_reportee: Reportee još nije dodao vještine.
+    no_skills_added_by_reportee: Ispitanik još nije dodao vještine.
     pdf:
       approval_status: Status odobrenja
       cover:

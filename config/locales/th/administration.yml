@@ -2281,11 +2281,12 @@ th:
       behavioral_skills: ทักษะพฤติกรรม
       client_skills: ทักษะของลูกค้า
       delete_skill: คุณแน่ใจหรือไม่ว่าต้องการลบทักษะนี้ การลบจะลบกิจกรรมการพัฒนาที่เกี่ยวข้องทั้งหมดด้วย
+      delete_skill_msg: คุณแน่ใจหรือไม่ว่าต้องการลบทักษะนี้? การลบจะเป็นการลบการดําเนินการพัฒนาที่เกี่ยวข้องทั้งหมดด้วย
       details_updated: รายละเอียดผู้พลัดถิ่นภายในประเทศได้รับการอัปเดตสำเร็จแล้ว
       development_actions:
         add_from_library: เพิ่มจากห้องสมุด
         completion: เสร็จ สมบูรณ์
-        create_development_actions_with_ai: สร้างการดําเนินการพัฒนาด้วย AI สําหรับ %{skillName}
+        create_development_actions_with_ai: สร้างการดําเนินการพัฒนาด้วย AI สําหรับ
         create_from_ai: สร้างจาก AI
         create_my_own: สร้างของตัวเอง
         custom: ธรรมเนียม

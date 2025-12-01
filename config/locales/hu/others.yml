@@ -2566,6 +2566,7 @@ hu:
     convert_to_draft: Konvertálás piszkozatra
     current_step: Aktuális lépés %{step}
     delete_skill: Biztosan törölni szeretné ezt a készséget? A törlés minden kapcsolódó fejlesztési tevékenységet is eltávolít.
+    delete_skill_msg: Biztos vagy benne, hogy törölni akarod ezt a képességet? Ha törleszed, az minden kapcsolódó fejlesztési műveletet is eltávolít.
     details: Részletek
     development_actions:
       action_private: Igen
@@ -2583,8 +2584,8 @@ hu:
         in_progress: Folyamatban
         not_started: Nincs elindítva
       completion: Teljesítés
-      create_custom_development_action_title: Saját fejlesztési akció létrehozása %{skillName}
-      create_development_actions_with_ai: Fejlesztési műveletek létrehozása az AI for %{skillName} segítségével
+      create_custom_development_action_title: Saját fejlesztési akció létrehozása
+      create_development_actions_with_ai: Fejlesztési műveletek létrehozása az AI
       create_from_ai: Alkotás mesterséges intelligenciából
       create_my_own: Készíts sajátot
       custom: Szokás

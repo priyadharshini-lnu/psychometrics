@@ -2563,6 +2563,7 @@ th:
     convert_to_draft: แปลงเป็นแบบร่าง
     current_step: ขั้นตอนปัจจุบัน %{step}
     delete_skill: คุณแน่ใจหรือไม่ว่าต้องการลบทักษะนี้ การลบจะลบกิจกรรมการพัฒนาที่เกี่ยวข้องทั้งหมดด้วย
+    delete_skill_msg: คุณแน่ใจหรือไม่ว่าต้องการลบทักษะนี้? การลบจะเป็นการลบการดําเนินการพัฒนาที่เกี่ยวข้องทั้งหมดด้วย
     details: รายละเอียด
     development_actions:
       action_private: ใช่
@@ -2580,8 +2581,8 @@ th:
         in_progress: อยู่ระหว่างดําเนินการ
         not_started: ยังไม่ได้เริ่มต้น
       completion: เสร็จสมบูรณ์
-      create_custom_development_action_title: สร้างการดําเนินการพัฒนาของฉันเองสําหรับ %{skillName}
-      create_development_actions_with_ai: สร้างการดําเนินการพัฒนาด้วย AI สําหรับ %{skillName}
+      create_custom_development_action_title: สร้างการดําเนินการพัฒนาของฉันเองสําหรับ
+      create_development_actions_with_ai: สร้างการดําเนินการพัฒนาด้วย AI สําหรับ
       create_from_ai: สร้างจาก AI
       create_my_own: สร้างของตัวเอง
       custom: ธรรมเนียม

@@ -2556,6 +2556,7 @@ ja:
     convert_to_draft: ドラフトに変換
     current_step: 現在のステップ %{step}
     delete_skill: このスキルを削除してもよろしいですか？削除すると、関連するすべての開発アクションも削除されます。
+    delete_skill_msg: 本当にこのスキルを削除したいですか?削除すると関連する開発アクションもすべて削除されます。
     details: 詳細
     development_actions:
       action_private: はい
@@ -2573,8 +2574,8 @@ ja:
         in_progress: 進行中
         not_started: 未着手
       completion: 完成
-      create_custom_development_action_title: "%{skillName} のための独自の開発アクションを作成する"
-      create_development_actions_with_ai: AI for %{skillName} を使用した開発アクションの作成
+      create_custom_development_action_title: " のための独自の開発アクションを作成する"
+      create_development_actions_with_ai: AI for  を使用した開発アクションの作成
       create_from_ai: AIから作成
       create_my_own: マイ・オウン作成
       custom: 習慣
@@ -2686,7 +2687,7 @@ ja:
       save_skills: セーブ・スキル
     new_comments: 新しいコメント
     no_skills_added: まだスキルが追加されていません。
-    no_skills_added_by_reportee: Reportee はまだスキルを追加していません。
+    no_skills_added_by_reportee: 報告者はまだスキルを追加していません。
     pdf:
       approval_status: 承認状況
       cover:

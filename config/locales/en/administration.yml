@@ -2321,12 +2321,13 @@ en:
       background_image: Background image
       behavioral_skills: Behavioral Skills
       client_skills: Client Skills
-      delete_skill: Are you sure you want to delete skill because it will delete all the connected development actions as well?
+      delete_skill: Are you sure you want to delete this skill? Deleting it will also remove all related development actions.
+      delete_skill_msg: Are you sure you want to delete this skill? Deleting it will also remove all related development actions.
       details_updated: IDP Details updated successfully
       development_actions:
         add_from_library: Add from Library
         completion: Completion
-        create_development_actions_with_ai: Create Development Actions with AI for %{skillName}
+        create_development_actions_with_ai: Create development actions with AI for
         create_from_ai: Create from AI
         create_my_own: Create my own
         custom: Custom

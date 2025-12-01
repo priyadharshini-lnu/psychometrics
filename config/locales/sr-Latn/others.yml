@@ -2584,6 +2584,7 @@ sr-Latn:
     convert_to_draft: Pretvori u nacrt
     current_step: Trenutni korak %{step}
     delete_skill: Da li ste sigurni da želite da izbrišete veštinu jer će izbrisati i sve povezane razvojne akcije?
+    delete_skill_msg: Da li ste sigurni da želite da izbrišete ovu veštinu? Brisanje će takođe ukloniti sve povezane razvojne akcije.
     details: Detalji
     development_actions:
       action_private: Da
@@ -2601,8 +2602,8 @@ sr-Latn:
         in_progress: U toku
         not_started: Nije započeto
       completion: Završetka
-      create_custom_development_action_title: Kreirajte sopstvenu razvojnu akciju za %{skillName}
-      create_development_actions_with_ai: Kreirajte razvojne akcije sa AI za %{skillName}
+      create_custom_development_action_title: Kreirajte sopstvenu razvojnu akciju za
+      create_development_actions_with_ai: Kreirajte razvojne akcije sa AI za
       create_from_ai: Kreirajte iz AI
       create_my_own: Kreiraj svoj
       custom: Prilagođene
@@ -2714,7 +2715,7 @@ sr-Latn:
       save_skills: Sačuvaj veštine
     new_comments: Novi komentar(i)
     no_skills_added: Još uvek nemate dodane veštine.
-    no_skills_added_by_reportee: Reportee još nije dodao veštine.
+    no_skills_added_by_reportee: Izveštavalac još nije dodao veštine.
     pdf:
       approval_status: Status odobrenja
       cover:

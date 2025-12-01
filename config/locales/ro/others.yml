@@ -2566,6 +2566,7 @@ ro:
     convert_to_draft: Conversie în ciornă
     current_step: Pasul curent %{step}
     delete_skill: Sunteți sigur că doriți să ștergeți abilitatea? Aceasta va șterge și toate acțiunile de dezvoltare conectate.
+    delete_skill_msg: Ești sigur că vrei să ștergi această abilitate? Ștergerea ei va elimina, de asemenea, toate acțiunile de dezvoltare conexe.
     details: Detalii
     development_actions:
       action_private: Da
@@ -2583,8 +2584,8 @@ ro:
         in_progress: În curs de desfășurare
         not_started: Neînceput
       completion: Terminare
-      create_custom_development_action_title: Creează-mi propria acțiune de dezvoltare pentru %{skillName}
-      create_development_actions_with_ai: Creați acțiuni de dezvoltare cu AI for %{skillName}
+      create_custom_development_action_title: Creează-mi propria acțiune de dezvoltare pentru
+      create_development_actions_with_ai: Creați acțiuni de dezvoltare cu AI
       create_from_ai: Creați din AI
       create_my_own: Creează-mi propriul
       custom: Obicei

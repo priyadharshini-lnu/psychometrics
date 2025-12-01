@@ -2563,7 +2563,8 @@ en-US:
       you: You
     convert_to_draft: Convert to Draft
     current_step: Current Step %{step}
-    delete_skill: Are you sure you want to delete skill because it will delete all the connected development actions as well?
+    delete_skill: Are you sure you want to delete this skill? Deleting it will also remove all related development actions.
+    delete_skill_msg: Are you sure you want to delete this skill? Deleting it will also remove all related development actions.
     details: Details
     development_actions:
       action_private: 'Yes'
@@ -2581,8 +2582,8 @@ en-US:
         in_progress: In Progress
         not_started: Not Started
       completion: Completion
-      create_custom_development_action_title: Create my own Development Action for %{skillName}
-      create_development_actions_with_ai: Create Development Actions with AI for %{skillName}
+      create_custom_development_action_title: Create my own development action for
+      create_development_actions_with_ai: Create development actions with AI for
       create_from_ai: Create from AI
       create_my_own: Create My Own
       custom: Custom

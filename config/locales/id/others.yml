@@ -2570,6 +2570,7 @@ id:
     convert_to_draft: Konversi ke Draf
     current_step: Langkah Saat Ini %{step}
     delete_skill: Apakah Anda yakin ingin menghapus keterampilan ini? Menghapusnya juga akan menghapus semua tindakan pengembangan terkait.
+    delete_skill_msg: Apakah Anda yakin ingin menghapus keterampilan ini? Menghapusnya juga akan menghapus semua tindakan pengembangan terkait.
     details: Rincian
     development_actions:
       action_private: Ya
@@ -2587,8 +2588,8 @@ id:
         in_progress: Sedang Berlangsung
         not_started: Belum Dimulai
       completion: Penyelesaian
-      create_custom_development_action_title: Buat Aksi Pengembangan saya sendiri untuk %{skillName}
-      create_development_actions_with_ai: Buat Tindakan Pengembangan dengan AI untuk %{skillName}
+      create_custom_development_action_title: Buat Aksi Pengembangan saya sendiri untuk
+      create_development_actions_with_ai: Buat Tindakan Pengembangan dengan AI untuk
       create_from_ai: Buat dari AI
       create_my_own: Buat Sendiri
       custom: Adat

@@ -2526,6 +2526,7 @@ es-ES:
     convert_to_draft: Convertir a borrador
     current_step: Paso actual %{step}
     delete_skill: "¿Estás seguro de que quieres eliminar la habilidad porque también eliminará todas las acciones de desarrollo conectadas?"
+    delete_skill_msg: "¿Estás seguro de que quieres borrar esta habilidad? Eliminarlo también eliminará todas las acciones de desarrollo relacionadas."
     details: Detalles
     development_actions:
       action_private: Sí
@@ -2543,8 +2544,8 @@ es-ES:
         in_progress: En Progreso
         not_started: No Iniciado
       completion: Finalización
-      create_custom_development_action_title: Crear mi propia Acción de Desarrollo para %{skillName}
-      create_development_actions_with_ai: Crear acciones de desarrollo con IA para %{skillName}
+      create_custom_development_action_title: Crear mi propia Acción de Desarrollo para
+      create_development_actions_with_ai: Crear acciones de desarrollo con IA para
       create_from_ai: Crear desde IA
       create_my_own: Crear Mi Propio
       custom: Costumbre

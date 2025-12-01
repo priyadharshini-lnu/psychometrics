@@ -2281,11 +2281,12 @@ pt:
       behavioral_skills: Competências comportamentais
       client_skills: Competências dos clientes
       delete_skill: Tem certeza de que deseja excluir a habilidade? Isso também excluirá todas as ações de desenvolvimento conectadas.
+      delete_skill_msg: Você tem certeza de que quer deletar essa habilidade? Deletar também removerá todas as ações de desenvolvimento relacionadas.
       details_updated: Detalhes do PDI actualizados com êxito
       development_actions:
         add_from_library: Adicionar da biblioteca
         completion: Conclusão
-        create_development_actions_with_ai: Crie ações de desenvolvimento com IA para %{skillName}
+        create_development_actions_with_ai: Crie ações de desenvolvimento com IA para
         create_from_ai: Crie a partir da IA
         create_my_own: Criar o meu próprio
         custom: Costume

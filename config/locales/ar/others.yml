@@ -2607,6 +2607,7 @@ ar:
     convert_to_draft: تحويل إلى مسودة
     current_step: الخطوة الحالية %{step}
     delete_skill: هل أنت متأكد أنك تريد حذف هذه المهارة؟ سيؤدي الحذف أيضًا إلى إزالة جميع إجراءات التطوير المرتبطة به
+    delete_skill_msg: هل أنت متأكد أنك تريد حذف هذه المهارة؟ حذف اللعبة سيزيل أيضا جميع إجراءات التطوير ذات الصلة.
     details: التفاصيل
     development_actions:
       action_private: نعم
@@ -2624,8 +2625,8 @@ ar:
         in_progress: قيد التنفيذ
         not_started: لم يبدأ بعد
       completion: الإنجاز
-      create_custom_development_action_title: إنشاء عملي الإنمائي الخاص بي من أجل %{skillName}
-      create_development_actions_with_ai: إنشاء إجراءات التطوير باستخدام الذكاء الاصطناعي for %{skillName}
+      create_custom_development_action_title: إنشاء إجراء التطوير الخاص بي
+      create_development_actions_with_ai: إنشاء إجراءات التطوير باستخدام الذكاء الاصطناعي
       create_from_ai: الإنشاء من الذكاء الاصطناعي
       create_my_own: إنشاء خاص بي
       custom: تقليد
@@ -2738,7 +2739,7 @@ ar:
       save_skills: حفظ المهارات
     new_comments: تعليق (تعليقات) جديدة
     no_skills_added: لم تتم إضافة مهارات حتى الآن.
-    no_skills_added_by_reportee: لم يضف Reportee مهارات بعد.
+    no_skills_added_by_reportee: لم يقم المُبلغ بإضافة أي مهارات بعد
     pdf:
       approval_status: حالة الموافقة
       cover:

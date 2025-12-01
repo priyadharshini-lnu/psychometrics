@@ -2283,11 +2283,12 @@ hu:
       behavioral_skills: Viselkedési készségek
       client_skills: Ügyfélkészségek
       delete_skill: Biztosan törölni szeretné ezt a készséget? A törlés minden kapcsolódó fejlesztési tevékenységet is eltávolít.
+      delete_skill_msg: Biztos vagy benne, hogy törölni akarod ezt a képességet? Ha törleszed, az minden kapcsolódó fejlesztési műveletet is eltávolít.
       details_updated: IDP részletek sikeresen frissítve
       development_actions:
         add_from_library: Hozzáadás a könyvtárból
         completion: Teljesítés
-        create_development_actions_with_ai: Fejlesztési műveletek létrehozása az AI for %{skillName} segítségével
+        create_development_actions_with_ai: Fejlesztési műveletek létrehozása az AI for
         create_from_ai: Alkotás mesterséges intelligenciából
         create_my_own: Készítsd el a sajátomat
         custom: Szokás

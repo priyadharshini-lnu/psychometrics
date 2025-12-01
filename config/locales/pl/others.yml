@@ -2570,6 +2570,7 @@ pl:
     convert_to_draft: Konwertuj na wersję roboczą
     current_step: Bieżący krok %{step}
     delete_skill: Czy na pewno chcesz usunąć umiejętność? Spowoduje to również usunięcie wszystkich powiązanych działań rozwojowych.
+    delete_skill_msg: Jesteś pewien, że chcesz usunąć tę umiejętność? Usunięcie tego również usunie wszystkie powiązane działania rozwojowe.
     details: Szczegóły
     development_actions:
       action_private: Tak
@@ -2587,8 +2588,8 @@ pl:
         in_progress: W trakcie
         not_started: Nie rozpoczęte
       completion: Ukończenie
-      create_custom_development_action_title: Stwórz własną Akcję Rozwojową dla %{skillName}
-      create_development_actions_with_ai: Twórz działania programistyczne za pomocą sztucznej inteligencji dla %{skillName}
+      create_custom_development_action_title: Stwórz własną Akcję Rozwojową dla
+      create_development_actions_with_ai: Twórz działania programistyczne za pomocą sztucznej inteligencji dla
       create_from_ai: Tworzenie na podstawie sztucznej inteligencji
       create_my_own: Utwórz własne
       custom: Zwyczaj

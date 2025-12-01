@@ -277,6 +277,7 @@ const MyPlanComponent = ({
         >
           {I18n.t('idp.development_actions.save_plan')}
         </Button>
+
       ) : null}
       {showEditPlanButton && !editMode && isPlanEditable
         ? (
@@ -336,7 +337,6 @@ const MyPlanComponent = ({
             operations={operations}
           />
         </Spin>
-
       </Flex>
     </IdpPageLayoutWrapper>
   )

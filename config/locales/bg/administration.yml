@@ -2281,11 +2281,12 @@ bg:
       behavioral_skills: Поведенчески умения
       client_skills: Умения на клиента
       delete_skill: Сигурни ли сте, че искате да изтриете това умение? Изтриването ще премахне и всички свързани действия за развитие.
+      delete_skill_msg: Сигурен ли си, че искаш да изтриеш това умение? Изтриването ще премахне и всички свързани действия по разработка.
       details_updated: Детайлите на IDP са актуализирани успешно
       development_actions:
         add_from_library: Добавяне от библиотеката
         completion: Завършване
-        create_development_actions_with_ai: Създавайте действия за развитие с AI за %{skillName}
+        create_development_actions_with_ai: Създавайте действия за развитие с AI за
         create_from_ai: Създавайте от AI
         create_my_own: Създай свой собствен
         custom: Обичай

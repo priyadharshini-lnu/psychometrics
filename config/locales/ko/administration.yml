@@ -2281,11 +2281,12 @@ ko:
       behavioral_skills: 행동 기술
       client_skills: 클라이언트 기술
       delete_skill: 이 스킬을 삭제하시겠습니까? 삭제하면 관련된 모든 개발 작업도 삭제됩니다.
+      delete_skill_msg: 이 스킬을 삭제할 게 확실한가요? 삭제하면 관련된 모든 개발 작업도 제거됩니다.
       details_updated: IDP 세부 정보 업데이트 성공
       development_actions:
         add_from_library: 라이브러리에서 추가
         completion: 완료
-        create_development_actions_with_ai: AI를 사용하여 개발 액션 생성 for %{skillName}
+        create_development_actions_with_ai: AI를 사용하여 개발 액션 생성
         create_from_ai: AI로 만들기
         create_my_own: 나만의 만들기
         custom: 관습

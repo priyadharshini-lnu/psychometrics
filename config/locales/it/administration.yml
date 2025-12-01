@@ -2281,11 +2281,12 @@ it:
       behavioral_skills: Abilità comportamentali
       client_skills: Competenze del cliente
       delete_skill: Sei sicuro di voler eliminare l'abilità? Verranno eliminate anche tutte le azioni di sviluppo collegate.
+      delete_skill_msg: Sei sicuro di voler eliminare questa abilità? Eliminarla rimuoverà anche tutte le azioni di sviluppo correlate.
       details_updated: Dettagli IDP aggiornati con successo
       development_actions:
         add_from_library: Aggiungi dalla libreria
         completion: Compimento
-        create_development_actions_with_ai: Crea azioni di sviluppo con l'intelligenza artificiale per %{skillName}
+        create_development_actions_with_ai: Crea azioni di sviluppo con l'intelligenza artificiale per
         create_from_ai: Crea dall'intelligenza artificiale
         create_my_own: Crea il mio
         custom: Costume

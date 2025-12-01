@@ -98,7 +98,9 @@ RSpec.describe EndUser::UserIdpPlansController, type: :controller do
         put :update, params: { user_id: user.id, status: status }
 
         expect(response).to have_http_status(:ok)
-        expect(response.parsed_body).to eq({ 'note' => nil, 'status' => status })
+        expect(response.parsed_body).to eq(
+          { 'note' => nil, 'status' => status, 'can_revert_to_last_approved' => false }
+        )
       end
 
       it 'updates note along with status' do
@@ -107,7 +109,9 @@ RSpec.describe EndUser::UserIdpPlansController, type: :controller do
         put :update, params: { user_id: user.id, status: 'approved', note: note }
 
         expect(response).to have_http_status(:ok)
-        expect(response.parsed_body).to eq({ 'note' => note, 'status' => 'approved' })
+        expect(response.parsed_body).to eq(
+          { 'note' => note, 'status' => 'approved', 'can_revert_to_last_approved' => false }
+        )
       end
     end
 
