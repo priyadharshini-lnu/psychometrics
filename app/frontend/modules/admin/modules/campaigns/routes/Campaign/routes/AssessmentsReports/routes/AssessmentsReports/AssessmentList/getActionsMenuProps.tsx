@@ -141,6 +141,7 @@ export const getActionsMenuProps = ({
   const importGroupItems: MenuItemType[] = [
     { key: 'import_raw', label: I18n.t('campaign_assessment.actions.import_raw') },
     { key: 'import_scoring', label: I18n.t('campaign_assessment.actions.import_scoring') },
+    { key: 'import_external_scoring', label: I18n.t('admin.import_external_scoring_action') },
   ]
 
   const rescoreMenuItems:MenuItem[] = [
@@ -202,6 +203,9 @@ export const getActionsMenuProps = ({
     }
     if (key === 'import_scoring') {
       return openModal('ImportScoringModal', { campaignId, campaignAssessmentId: id })
+    }
+    if (key === 'import_external_scoring') {
+      return openModal('ImportExternalScoringModal', { campaignId, campaignAssessmentId: id })
     }
     if (key === 'rescoring') {
       return handleRescoreResponse()

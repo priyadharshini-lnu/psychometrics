@@ -7,6 +7,7 @@ export const REGENERATE_UNIVERSAL_LINK = 'campaigns/REGENERATE_UNIVERSAL_LINK'
 
 export const IMPORT_RAW_RESULTS = 'campaigns/assessments/IMPORT_RAW_RESULTS'
 export const IMPORT_SCORING_RESULTS = 'campaigns/assessments/IMPORT_SCORING_RESULTS'
+export const IMPORT_EXTERNAL_SCORING_RESULTS = 'campaigns/assessments/IMPORT_EXTERNAL_SCORING_RESULTS'
 export const FETCH_NORMS = 'campaigns/assessments/FETCH_NORMS'
 export const UPDATE_NORM = 'campaigns/assessments/UPDATE_NORM'
 export const UPDATE_ASSESSOR_FORM = 'campaigns/assessments/UPDATE_ASSESSOR_FORM'
@@ -157,6 +158,18 @@ export const importScoringResults = (campaignId: number, assessmentId: number, b
     contentType: 'multipart/form-data;' as const,
   },
 })
+
+export const importExternalScoringResults = (campaignId: number, assessmentId: number, body: Body) => ({
+  type: IMPORT_EXTERNAL_SCORING_RESULTS,
+  request: {
+    method: 'post',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/import_external_scoring_results`,
+    body,
+    loader: true,
+    contentType: 'multipart/form-data;' as const,
+  },
+})
+
 
 export const updateNorm = (campaignId: number, assessmentId: number, body) => ({
   type: UPDATE_NORM,

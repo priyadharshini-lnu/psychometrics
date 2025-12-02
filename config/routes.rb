@@ -337,6 +337,7 @@ Rails.application.routes.draw do
             get :export_external_results
             get :export_occupations
             post :import_results
+            post :import_external_scoring_results
             get :norms
             post :update_norm
             post :update_mettl_schedule

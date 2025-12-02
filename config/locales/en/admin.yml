@@ -53,13 +53,23 @@ en:
     final_score_empty_msg: Final score cannot be empty.
     import_csv_assessment_group_error: 'Row %{index}: user with email %{email} is already invited to ''%{workshopInviteName}'''
     import_csv_error: 'Row %{index}: user with email %{email} is not in this campaign'
+    import_csv_parsing_error: 'CSV parsing error: %{message}'
     import_description: Import users from a CSV file. Each row must contain an email address.
     import_download_sample: Download example CSV
     import_error: Import failed. Please try again.
+    import_error_saving_data: 'Error saving data for %{email}: %{message}'
     import_errors_title: Import Errors
+    import_external_scoring_action: Import External Scoring
+    import_external_scoring_body: Refer to the Export functionality to extract a template that can be used to Import here.
+    import_external_scoring_data_description: Importing external scoring data for the specified assessment and campaign
+    import_external_scoring_data_title: Import External Scoring Data
+    import_external_scoring_success_msg: Import was uploaded successfully
+    import_external_scoring_upload: Upload
     import_file_required: Please select a CSV file to upload.
     import_queued_success: Subjects import job was scheduled successfully. Please check your notification for status.
     import_sample_file_label: 'Sample file:'
+    import_scenario_id_mismatch: 'Scenario ID mismatch for %{email}: Expected %{expected_id}, but CSV contains different scenario IDs'
+    import_successfully_saved: Successfully saved external results for %{email} with %{goals_count} goals
     import_title: Import Subjects from CSV
     import_upload: Upload
     import_users: Import Users

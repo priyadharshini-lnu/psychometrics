@@ -889,6 +889,7 @@ en:
         import_development_actions: Import Development Actions
         import_dimension_from_json: Import Dimension from JSON
         import_external_campaign_scoring: Import External Campaign Scoring
+        import_external_scoring_data: Import External Scoring Data
         import_factor_translations: Import Factor Translations
         import_factors: Import Factors
         import_interview_questions: Import Interview Questions

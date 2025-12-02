@@ -125,6 +125,17 @@ module Administration
         render json: :ok
       end
 
+      def import_external_scoring_results
+        AdminJob.call(:import_external_scoring_data, {
+          assessment_id: params[:id],
+          campaign_id: params[:new_campaign_id]
+        }, current_user, params[:file])
+
+        audit! :import_external_scoring_results, assessment, campaign: campaign, payload: params
+
+        render json: :ok
+      end
+
       def update_norm
         campaign_assessment.update_norm!(params[:norm_id])
 
