@@ -232,6 +232,19 @@ sr-Latn:
               contains_repeats: lozinka ne sme sadržati ponavljanja
               too_short: je previse kratka . Minimalni %{count} karakter potreban
               too_weak: 'Lozinka mora sadržati: Minimalno 1 mala slova, 1 velika slova, 1 broj i 1 specijalni karakter.'
+        project_license:
+          attributes:
+            base:
+              exceeds_available: Ne mogu dodeliti više od dostupnih licenci
+            license_id:
+              already_present: već prisutan za ovaj projekat
+            usage_limit:
+              cant_be_less_than_used: ne može se podesiti ispod trenutnog broja korišćenja %{used_count}
+              cant_be_more_than_available: ne može biti više od dostupnog ograničenja na licencu (%{usage_limit})
+              exceeds_available: Ne može biti više od dostupnih licenci
+              less_than_used_number: Ne može biti manji od broja korišćenih licenci
+            used_number:
+              overused: Ne može biti više od dostupnih licenci.
         questions_import_block_form:
           attributes:
             name:
@@ -428,6 +441,10 @@ sr-Latn:
               inclusion: Mora biti Boolean
             start_date_time:
               invalid_datetime: je nevažeća
+        yoodli:
+          attributes:
+            name:
+              not_unique: Ova integracija je već prisutna za ovaj projekat.
   activerecord:
     attributes:
       administration/assessments/assign_form:
@@ -458,6 +475,7 @@ sr-Latn:
           simulation: Simulacija
           skillvue: OMILjENO
           threesixty: 360 Kampanja
+          yoodli: Joodli
         category: Kategorija
         created_at: Datum kreiranja
         description: Opis
@@ -475,6 +493,7 @@ sr-Latn:
           saville: Savil Procena
           simulation: Simulacija Procena
           skillvue: Skillvue Procena
+          yoodli: Joodli Procena
         updated_at: Datum izmene
       assign:
         completed_at: Datum završetka
@@ -809,6 +828,7 @@ sr-Latn:
             current_password:
               invalid: Trenutna lozinka je netačna
             manager_id:
+              cannot_be_self: Korisnik ne može biti dodeljen kao sopstveni menadžer
         user_idp_comment:
           reply_to_reply: Ne mogu da odgovorim na odgovor (dozvoljen je samo jedan nivo gnežđenja)
         user_idp_plan:
@@ -842,6 +862,7 @@ sr-Latn:
         data_report_export: Izvoz izveštaja o podacima
         export_admin_with_permissions: Izvoz administratora sa dozvolama
         export_assessment_questions: Pitanja za procenu izvoza
+        export_campaign_ai_artifacts: Izvozna kampanja AI artefakata
         export_campaign_factors: Faktori izvozne kampanje
         export_campaign_scorings: Izvozna kampanja Scorings
         export_dashboard_as_file: Izvozi kontrolnu tablu kao datoteku
@@ -863,10 +884,12 @@ sr-Latn:
         export_user_report_events: Izvoz događaja korisničkog izveštaja
         export_users: Izvezi korisnike kampanje
         external_assessment_export: Eksterni Rezultati Izvoz
+        generate_embedding_skills: Generišite ugradnju za veštine
         import_accesssheet: Uvoz Pristupa
         import_assessment_questions: Pitanja za procenu uvoza
         import_assessment_translations: Uvoz Procena Prevodi
         import_assessors: Procenjivači uvoza
+        import_campaign_ai_artifacts: Uvoz kampanje AI artefakata
         import_campaign_factors: Faktori uvozne kampanje
         import_datasheet: Uvoz Datasheet
         import_development_action_translations: Uvoz Razvoj Akcija Prevodi
@@ -1035,6 +1058,7 @@ sr-Latn:
         saville_assessment_name: Saville procena Ime
         simulation_assessment_name: Simulacija Procena Ime
         skillvue_assessment_name: Skillvue Ime Procene
+        yoodli_assessment_name: Ime procene Ioodli
       translations_migrated: Prevod Migriran
     create: Kreirate
     dashboard: Kontrolnu tablu
@@ -1076,6 +1100,7 @@ sr-Latn:
         simulation: Simulacija
         skillvue: Skillvue
         threesixty: 360 Kampanja
+        yoodli: Joodli
       status:
         finished: Zavrљio
         in_progress: U toku
@@ -1088,6 +1113,7 @@ sr-Latn:
         saville: Savil Procena
         simulation: Simulacija Procena
         skillvue: Skillvue Procena
+        yoodli: Joodli Procena
     flow:
       end_assessment_modal:
         custom_message: Prilagođeni kraj poruke o proceni
@@ -1460,6 +1486,8 @@ sr-Latn:
       skillvue_email_id: Skillvue ID imejl kandidata
       skillvue_external_assessment_id: Skillvue ID za procenu
       universal_link: Univerzalna veza
+      yoodli_email_id: ID e-pošte kandidata za joodli
+      yoodli_external_assessment_id: Ioodli Procena ID
     drawer:
       mettl_schedule_name: Mettl Raspored Ime
       title: Detalji procene
@@ -1782,6 +1810,7 @@ sr-Latn:
       go_back: Vrati se
       import: Uvoz
       insert: Umetni
+      'no': Ne
       ok: U redu
       publish: Objavi
       reject: Odbaci
@@ -1808,6 +1837,7 @@ sr-Latn:
       view: Prikaz
       view_all_tasks: Pogledaj sve zadatke
       view_detail: Pogledaj detalje
+      'yes': Da
     column:
       action: Akcija
       active: Aktivni
@@ -1921,6 +1951,7 @@ sr-Latn:
       hide: Sakriti
       view: Prikaz
     validations:
+      required: Ovo polje je obavezno
       select_locale: Molimo Vas da izaberete neki jezik (e)
       should_be_whole_number: trebalo bi da bude ceo broj
   confirmation:
@@ -2384,6 +2415,7 @@ sr-Latn:
     error_warning: Ups, nešto nije u redu sa vašom procenom. Molimo Vas da kontaktirate podršku.
     hogan:
       cannot_start: Ne možete odmah započeti procenu Hogana. Pokušajte nakon nekoliko minuta.
+    lighthouse_app: Svetionik Mercer
     login: Prijava
     maintenance:
       notification: Lighthouse će biti dole za planirano održavanje za 60 sekundi
@@ -2485,6 +2517,8 @@ sr-Latn:
   idp:
     actions: Radnje
     add_comments: Dodaj komentare
+    add_note: Dodaj napomenu...
+    add_reason: Dodaj razlog...
     added_development_action: Dodatna razvojna akcija
     ai:
       assistant:
@@ -2540,6 +2574,8 @@ sr-Latn:
       welcome:
         text: Spremni da zacrtate svoj rast jornei? Počnimo!
         title: Zdravo, ja sam vaš asistent za razvoj
+    approval_note: Napomena o odobrenju
+    approve_plan: Odobri plan
     behavioral: Bihejvioralno
     board: Tablu
     change_history: Istorija promena
@@ -2640,12 +2676,14 @@ sr-Latn:
       mark_as_complete: Označi kao kompletno
       no_development_actions: Nema razvojnih akcija
       on_the_job: Na poslu
+      one: "[SR-LATN] 1"
       other: Drugi
       private: Privatni
       publish_plan: Objavi plan
       remove: Uklonite
       save_plan: Sačuvaj plan
       search_development_actions: Akcije za razvoj pretraživanja
+      selected_count: "%{count} izabran"
       show_development_action_information: Pokaži informacije o akciji razvoja
       skill: Veљtina
       sprint: Sprint
@@ -2654,7 +2692,9 @@ sr-Latn:
       structured_learning_label: Kolaborativno učenje
       submit_plan: Pošalji plan
       success: Uspešno završene razvojne akcije
+      three: "[SR-LATN] 3"
       toggle_skill_privacy: Srpskohrvatski / srpskohrvatski
+      two: "[SR-LATN] 2"
       write_here: Pišite ovde...
     direct_reportee_details: Direktni izveštavači Detalj
     download:
@@ -2723,10 +2763,12 @@ sr-Latn:
           assigned_data: Dodeljeni datum
           assigned_date: Datum dodele
           completion_date: Datum završetka
+          current_job_role: Trenutna uloga na poslu
           division: Odsek
           name: Ime
           publish_date: Datum objavljivanja
           review_date: Datum pregleda
+          target_job_role: Ciljna uloga posla
       guidelines:
         cards:
           c1:
@@ -2756,10 +2798,13 @@ sr-Latn:
           main: Ovaj odeljak sadrži kumulativnu listu svih razvojnih puteva, imajući u vidu najbolju praksu učenja, tj. 70-20-10 smernice, koje obezbeđuju progresivno putovanje kombinujući učenje u učionici, treniranje i učenje na radnom mestu. Na osnovu ishoda iskustva u razvoju liderstva i poslovnih prioriteta, preporučeni su mogući razvojni putevi, koji se mogu uzeti u obzir za vaš razvoj.
         learn_cards:
           collaboration:
+            list: '[SR-LATN] ["Offer to coach or mentor others", "Request to be mentored by an expert in your field", "Attain a coach to support your development", "Set-up a collaborative working group to discuss on going challenges in the business", "Get feedback formally and informally from others", "Play an active role in industry associations and networks", "Build your own external networks"]'
             title: Kolaborativno učenje (KSNUMKS%) <br/> Razvijanje kroz druge
           job:
+            list: '[SR-LATN] ["Assume leadership positions in stakeholder or management committees", "Volunteer to lead change management projects for the organization", "Consider taking on stretching assignments", "Work cross-collaboratively with other functions", "Consider leading projects outside your organization", "Work closely with external industry experts on joint-projects"]'
             title: Učenje na poslu (70%) <br/> Razvijanje kroz iskustvo
           learn:
+            list: '[SR-LATN] ["Assume leadership positions in stakeholder or management committees", "Volunteer to lead change management projects for the organization", "Consider taking on stretching assignments", "Work cross-collaboratively with other functions", "Consider leading projects outside your organization", "Work closely with external industry experts on joint-projects"]'
             title: Formalno učenje (10%) <br/> Razvijanje kroz strukturirano učenje
         title: Smernice za vođenje vašeg IDP-a
       idp:
@@ -2805,6 +2850,7 @@ sr-Latn:
     plan_submitted_for_manager_approval: Vaš individualni plan razvoja je dostavljen na odobrenje menadžera.
     private: Privatni
     public: Javnost
+    reason_for_rejection: Razlog za odbijanje
     reflective_questions:
       already_completed: IDP je već završen, sada ne možete odgovoriti na pitanja.
       answer: Odgovoriti
@@ -2817,7 +2863,9 @@ sr-Latn:
         max_words: Odgovor dozvoljava maksimalno %{count} reči
         min_words: Odgovor zahteva najmanje %{count} reči
         required: Odgovor na pitanje je potreban
+      max_word_limit: Mora biti najviše %{max} reči
       max_words: Maks reči
+      min_word_limit: Mora biti najmanje %{min} reči
       min_words: Minimalne reči
       no_answer_provided: Još uvek nema odgovora
       no_reflective_questions: Nema dostupnih refleksivnih pitanja
@@ -2830,6 +2878,7 @@ sr-Latn:
       updated_successfully: Vaši odgovori su uspešno ažurirani
       word_limit: Mora biti između %{min} i %{max} reči
       words: Reиi
+    reject_plan: Odbaci plan
     remove_skill: Ukloni veštinu
     remove_skill_from_plan: Uklonite veštine %{name} iz plana
     removed_development_action: Uklonjena razvojna akcija
@@ -2850,6 +2899,7 @@ sr-Latn:
     summary_logs: Zbirni zapisi za %{reporteeName}
     technical: Tehnički
     user_idp_status:
+      ai_assisted_idp_in_progress: AI Assisted IDP u toku
       approved: Odobrio
       completed: Završeno
       completion_not_started: Završetak nije započeo
@@ -2969,6 +3019,7 @@ sr-Latn:
     usage_overview: Pogledaj korišćenje licence
     usages: Upotreba
   licenses:
+    client_usage: Korišćenje klijenta
     enabled: Omogućen
     end_date: Datum završetka
     not_enough_idp_license: Nema dovoljno IDP dozvola, kontaktirajte administratora
@@ -2977,6 +3028,10 @@ sr-Latn:
     not_enough_proctoring_credits: Nema dovoljno kredita za početak proctoring sesije
     number: Broj
     overuse_number: Dodatak za prekomernu upotrebu
+    project_limit_reached: Ograničenje korišćenja dostignut za '%{license_name}', obratite se administratoru
+    project_specific: Specifično za projekat
+    project_specific_license: Specifična licenca za projekat
+    project_usage: Korišćenje projekta
     report_family: Paket izveštaja
     start_date: Datum početka
     title: Licenca
@@ -2988,6 +3043,34 @@ sr-Latn:
       threesixty: Trišezdeset
     used_number: Korišćene licence
     used_out_of: "%{used} od %{total}"
+  lti:
+    oidc_auth_form:
+      errors:
+        client_id:
+          blank: ID klijenta je obavezan
+          invalid: ID klijenta se ne podudara sa registrovanim identifikatorom alata
+          validation_failed: Validacija ID klijenta nije uspela
+        login_hint:
+          assessment_completed: Procena korisnika je već završena
+          blank: Potreban je savet za prijavu
+          invalid_user_assessment: Nagoveštaj za prijavljivanje ne upućuje na važeću procenu korisnika
+        lti_deployment_id:
+          not_found: ID raspoređivanja ne upućuje na važeću integraciju
+        nonce:
+          blank: Nonce je potreban
+        redirect_uri:
+          blank: Preusmeravanje URI je potrebno
+          has_fragment: Preusmeravanje URI ne sme da sadrži fragment
+          https_required: Preusmeravanje URI mora koristiti HTTPS u proizvodnji
+          invalid_format: Preusmeravanje URI mora biti važeći URI format
+          missing_host: URI preusmeravanja mora sadržavati domaćina
+          scheme_not_allowed: Preusmeravanje URI mora koristiti HTTP ili HTTPS protokol
+        response_type:
+          blank: Potreban je tip odgovora
+          invalid: Tip odgovora mora biti 'id_token'
+        scope:
+          blank: Obim je potreban
+          invalid: Obim mora biti 'openid'
   mailer:
     copyright:
       text: Lighthouse. Sva prava zadržana
@@ -3233,10 +3316,12 @@ sr-Latn:
         pearson: Pirson
         saville: San-Tome i Prinsipi
         skillvue: OMILjENO
+        yoodli: Joodli
     form:
       load_from_mettl: Učitaj od Mettl
       load_from_pearson: Učitaj od Pirsona
       load_from_skillvue: Učitaj od Skillvue
+      load_from_yoodli: Opterećenje od Ioodli
       none_external: Nijedan - Koristite izveštaj builder
     language: Jezik izveštaja
     language_updated: Izveštaj Jezik je uspešno ažuriran

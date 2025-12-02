@@ -108,5 +108,6 @@ sl:
     subject_part_of_other_invite: Oseba z e-pošto %{user_email} je že povabljena, da '%{workshop_invite_name}'
     user_report_events: Dogodki uporabniškega poročila
     users: Uporabniki
+    validation_error: Med validacijo je prišlo do napake
     view_licenses: Ogled licenc
     year: Država

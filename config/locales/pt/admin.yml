@@ -108,5 +108,6 @@ pt:
     subject_part_of_other_invite: Assunto com e-mail %{user_email} já está convidado a '%{workshop_invite_name}'
     user_report_events: Eventos do relatório do utilizador
     users: Utilizadores
+    validation_error: Um erro ocorreu durante a validação
     view_licenses: Ver licenças
     year: País

@@ -232,6 +232,19 @@ id:
               contains_repeats: Kata sandi tidak boleh berisi pengulangan
               too_short: Kata sandi terlalu pendek. Karakter minimum %{count} diperlukan
               too_weak: 'Kata sandi harus berisi: Minimal 1 huruf kecil, 1 huruf besar, 1 angka, dan 1 karakter khusus.'
+        project_license:
+          attributes:
+            base:
+              exceeds_available: Tidak dapat mengalokasikan lebih dari lisensi yang tersedia
+            license_id:
+              already_present: sudah hadir untuk proyek ini
+            usage_limit:
+              cant_be_less_than_used: tidak dapat diatur di bawah jumlah penggunaan saat ini %{used_count}
+              cant_be_more_than_available: tidak boleh lebih dari batas lisensi yang tersedia (%{usage_limit})
+              exceeds_available: Tidak boleh lebih dari lisensi yang tersedia
+              less_than_used_number: Tidak boleh kurang dari jumlah lisensi yang digunakan
+            used_number:
+              overused: Tidak bisa lebih dari lisensi yang tersedia.
         questions_import_block_form:
           attributes:
             name:
@@ -422,6 +435,10 @@ id:
               inclusion: harus boolean
             start_date_time:
               invalid_datetime: tidak valid
+        yoodli:
+          attributes:
+            name:
+              not_unique: Integrasi ini sudah ada untuk proyek ini.
   activerecord:
     attributes:
       administration/assessments/assign_form:
@@ -452,6 +469,7 @@ id:
           simulation: Simulasi
           skillvue: Keterampilan
           threesixty: Kampanye 360
+          yoodli: Yoodli
         category: Golongan
         created_at: Tanggal Dibuat
         description: Deskripsi
@@ -469,6 +487,7 @@ id:
           saville: Penilaian Saville
           simulation: Penilaian Simulasi
           skillvue: Penilaian Skillvue
+          yoodli: Penilaian Yoodli
         updated_at: Tanggal Dimodifikasi
       assign:
         completed_at: Tanggal Penyelesaian
@@ -836,6 +855,7 @@ id:
         data_report_export: Ekspor Laporan Data
         export_admin_with_permissions: Ekspor Admin Dengan Izin
         export_assessment_questions: Pertanyaan Penilaian Ekspor
+        export_campaign_ai_artifacts: Ekspor Artefak AI Kampanye
         export_campaign_factors: Faktor Kampanye Ekspor
         export_campaign_scorings: Ekspor Kampanye Scorings
         export_dashboard_as_file: Ekspor Dasbor sebagai file
@@ -857,10 +877,12 @@ id:
         export_user_report_events: Mengekspor Peristiwa Laporan Pengguna
         export_users: Ekspor Pengguna Kampanye
         external_assessment_export: Ekspor Hasil Eksternal
+        generate_embedding_skills: Hasilkan Penyematan untuk Keterampilan
         import_accesssheet: Impor Accessheet
         import_assessment_questions: Pertanyaan Penilaian Impor
         import_assessment_translations: Impor Terjemahan Penilaian
         import_assessors: Penilai Impor
+        import_campaign_ai_artifacts: Impor Artefak AI Kampanye
         import_campaign_factors: Impor Faktor Kampanye
         import_datasheet: Lembar Data Impor
         import_development_action_translations: Terjemahan Tindakan Pengembangan Impor
@@ -1031,6 +1053,7 @@ id:
         saville_assessment_name: Penilaian Saville Nama
         simulation_assessment_name: Nama Penilaian Simulasi
         skillvue_assessment_name: Nama Penilaian Skillvue
+        yoodli_assessment_name: Nama Penilaian Yoodli
       translations_migrated: Terjemahan Dimigrasikan
     create: Menciptakan
     dashboard: Dashboard
@@ -1072,6 +1095,7 @@ id:
         simulation: Simulasi
         skillvue: Skillvue
         threesixty: Kampanye 360
+        yoodli: Yoodli
       status:
         finished: Selesai
         in_progress: Sedang Berlangsung
@@ -1084,6 +1108,7 @@ id:
         saville: Penilaian Saville
         simulation: Penilaian Simulasi
         skillvue: Penilaian Skillvue
+        yoodli: Penilaian Yoodli
     flow:
       end_assessment_modal:
         custom_message: Pesan akhir penilaian kustom
@@ -1454,6 +1479,8 @@ id:
       skillvue_email_id: ID Email Kandidat Skillvue
       skillvue_external_assessment_id: ID Penilaian Skillvue
       universal_link: Tautan universal
+      yoodli_email_id: ID Email Kandidat Yoodli
+      yoodli_external_assessment_id: ID Penilaian Yoodli
     drawer:
       mettl_schedule_name: Nama Jadwal Mettl
       title: Detail Penilaian
@@ -1776,6 +1803,7 @@ id:
       go_back: Kembali
       import: Mengimpor
       insert: Memasukkan
+      'no': Tidak
       ok: OKE
       publish: Menerbitkan
       reject: Menolak
@@ -1802,6 +1830,7 @@ id:
       view: Melihat
       view_all_tasks: Lihat semua tugas
       view_detail: Lihat Detail
+      'yes': Ya
     column:
       action: Tindakan
       active: Aktif
@@ -1915,6 +1944,7 @@ id:
       hide: Menyembunyikan
       view: Melihat
     validations:
+      required: Bidang ini diperlukan
       select_locale: Silakan pilih Beberapa lokal
       should_be_whole_number: harus berupa bilangan bulat
   confirmation:
@@ -2370,6 +2400,7 @@ id:
     error_warning: Ups, ada yang salah dengan penilaian Anda. Silakan hubungi dukungan.
     hogan:
       cannot_start: Anda tidak dapat memulai penilaian hogan sekarang. Silakan coba setelah beberapa menit.
+    lighthouse_app: Mercer Lighthouse
     login: Masuk
     maintenance:
       notification: Lighthouse akan mati untuk pemeliharaan terjadwal dalam 60 detik
@@ -2471,6 +2502,8 @@ id:
   idp:
     actions: Tindakan
     add_comments: Tambahkan Komentar
+    add_note: Tambahkan Catatan...
+    add_reason: Tambahkan Alasan...
     added_development_action: Menambahkan Tindakan Pengembangan
     ai:
       assistant:
@@ -2526,6 +2559,8 @@ id:
       welcome:
         text: Siap untuk memetakan perjalanan pertumbuhan Anda? Mari kita mulai!
         title: Halo, saya asisten pengembangan Anda
+    approval_note: Catatan Persetujuan
+    approve_plan: Menyetujui Rencana
     behavioral: Perilaku
     board: Papan
     change_history: Perubahan Riwayat
@@ -2626,12 +2661,14 @@ id:
       mark_as_complete: Tandai sebagai Selesai
       no_development_actions: Tidak ada tindakan pengembangan
       on_the_job: Di tempat kerja
+      one: "[ID] 1"
       other: Lain
       private: Swasta
       publish_plan: Menerbitkan Rencana
       remove: Buka
       save_plan: Simpan Paket
       search_development_actions: Tindakan Pengembangan Pencarian
+      selected_count: "%{count} dipilih"
       show_development_action_information: Tampilkan informasi Tindakan Pengembangan
       skill: Keahlian
       sprint: Sprint
@@ -2640,7 +2677,9 @@ id:
       structured_learning_label: Pembelajaran Kolaboratif
       submit_plan: Kirim Paket
       success: Tindakan Pengembangan berhasil diselesaikan
+      three: "[ID] 3"
       toggle_skill_privacy: Beralih Privasi Keterampilan
+      two: "[ID] 2"
       write_here: Tulis di sini...
     direct_reportee_details: Detail Bawahan Langsung
     download:
@@ -2709,10 +2748,12 @@ id:
           assigned_data: Tanggal yang Ditetapkan
           assigned_date: Tanggal Penugasan
           completion_date: Tanggal Penyelesaian
+          current_job_role: Peran Pekerjaan Saat Ini
           division: Divisi
           name: Nama
           publish_date: Tanggal Publikasi
           review_date: Tanggal Peninjauan
+          target_job_role: Peran Pekerjaan Target
       guidelines:
         cards:
           c1:
@@ -2813,6 +2854,7 @@ id:
     plan_submitted_for_manager_approval: Rencana Pengembangan Individu Anda telah diajukan untuk persetujuan manajer.
     private: Swasta
     public: Umum
+    reason_for_rejection: Alasan Penolakan
     reflective_questions:
       already_completed: IDP telah selesai, Anda tidak dapat menjawab pertanyaan sekarang.
       answer: Menjawab
@@ -2825,7 +2867,9 @@ id:
         max_words: Jawabannya memungkinkan %{count} kata maksimum
         min_words: Jawabannya membutuhkan setidaknya %{count} kata
         required: Jawaban atas pertanyaan tersebut diperlukan
+      max_word_limit: Harus paling banyak %{max} kata-kata
       max_words: Kata-kata Maks
+      min_word_limit: Harus setidaknya %{min} kata
       min_words: Kata Min
       no_answer_provided: Belum ada jawaban yang diberikan
       no_reflective_questions: Tidak ada pertanyaan reflektif
@@ -2838,6 +2882,7 @@ id:
       updated_successfully: Jawaban Anda telah berhasil diperbarui
       word_limit: Harus antara %{min} dan %{max} kata
       words: Kata
+    reject_plan: Tolak Paket
     remove_skill: Hapus Keterampilan
     remove_skill_from_plan: Hapus %{name} keterampilan dari rencana
     removed_development_action: Tindakan Pengembangan yang Dihapus
@@ -2858,6 +2903,7 @@ id:
     summary_logs: Log ringkasan untuk %{reporteeName}
     technical: Teknis
     user_idp_status:
+      ai_assisted_idp_in_progress: IDP yang Dibantu AI Sedang Berlangsung
       approved: Disetujui
       completed: Selesai
       completion_not_started: Penyelesaian Belum Dimulai
@@ -2977,6 +3023,7 @@ id:
     usage_overview: Melihat penggunaan lisensi
     usages: Penggunaan
   licenses:
+    client_usage: Penggunaan Klien
     enabled: Diaktifkan
     end_date: Tanggal akhir
     not_enough_idp_license: Lisensi IDP tidak cukup, silakan hubungi administrator
@@ -2985,6 +3032,10 @@ id:
     not_enough_proctoring_credits: Tidak cukup kredit untuk memulai sesi pengawasan
     number: Angka
     overuse_number: Tunjangan penggunaan berlebih
+    project_limit_reached: Batas penggunaan tercapai untuk '%{license_name}', silakan hubungi administrator
+    project_specific: Khusus Proyek
+    project_specific_license: Lisensi Khusus Proyek
+    project_usage: Penggunaan Proyek
     report_family: Bundel laporan
     start_date: Tanggal mulai
     title: Lisensi
@@ -2996,6 +3047,34 @@ id:
       threesixty: Tiga enam puluh
     used_number: Lisensi bekas
     used_out_of: "%{used} dari %{total}"
+  lti:
+    oidc_auth_form:
+      errors:
+        client_id:
+          blank: ID Klien diperlukan
+          invalid: ID Klien tidak cocok dengan ID alat terdaftar
+          validation_failed: Validasi ID Klien gagal
+        login_hint:
+          assessment_completed: Penilaian pengguna sudah selesai
+          blank: Petunjuk login diperlukan
+          invalid_user_assessment: Petunjuk login tidak mereferensikan penilaian pengguna yang valid
+        lti_deployment_id:
+          not_found: ID penyebaran tidak mereferensikan integrasi yang valid
+        nonce:
+          blank: Nonce diperlukan
+        redirect_uri:
+          blank: URI pengalihan diperlukan
+          has_fragment: URI pengalihan tidak boleh berisi fragmen
+          https_required: URI pengalihan harus menggunakan HTTPS dalam produksi
+          invalid_format: URI pengalihan harus berupa format URI yang valid
+          missing_host: URI pengalihan harus menyertakan host
+          scheme_not_allowed: URI pengalihan harus menggunakan protokol HTTP atau HTTPS
+        response_type:
+          blank: Jenis respons diperlukan
+          invalid: Jenis respons harus 'id_token'
+        scope:
+          blank: Ruang lingkup diperlukan
+          invalid: Cakupan harus 'openid'
   mailer:
     copyright:
       text: Lighthouse. Hak cipta dilindungi
@@ -3241,10 +3320,12 @@ id:
         pearson: Pearson
         saville: Saville
         skillvue: Keterampilan
+        yoodli: Yoodli
     form:
       load_from_mettl: Muat dari Mettl
       load_from_pearson: Muat dari Pearson
       load_from_skillvue: Memuat dari Skillvue
+      load_from_yoodli: Muat dari Yoodli
       none_external: Tidak ada - Menggunakan pembuat laporan
     language: Bahasa Laporan
     language_updated: Bahasa Laporan berhasil diperbarui

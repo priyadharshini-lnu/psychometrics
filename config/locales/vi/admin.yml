@@ -108,5 +108,6 @@ vi:
     subject_part_of_other_invite: Chủ đề với email %{user_email} đã được mời vào '%{workshop_invite_name}'
     user_report_events: Sự kiện báo cáo người dùng
     users: Người dùng
+    validation_error: Đã xảy ra lỗi trong quá trình xác thực
     view_licenses: Xem giấy phép
     year: Quốc gia

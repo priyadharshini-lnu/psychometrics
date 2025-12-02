@@ -95,6 +95,12 @@ sl:
           title: Potrditi
       permissions:
         labels:
+          aiArtifacts:
+            export: Izvoz
+            import: Uvoz
+            manage: Upravljanje
+            title: Artefakti umetne inteligence
+            view: Pogled
           apiKeys:
             manage: Upravljanje
             title: Ključi API
@@ -220,9 +226,11 @@ sl:
           projects:
             manage: Upravljanje
             manage_admins: Upravljanje skrbnikov
+            manage_licenses: Upravljanje licenc
             manage_users: Upravljanje uporabnikov
             title: Projekti
             view: Pogled
+            view_licenses: Oglejte si licence
           questions:
             manage: Upravljanje
             title: Vprašanja
@@ -284,6 +292,10 @@ sl:
             manage: Upravljanje
             title: SMS vabila
             view: Pogled
+          userIdpPlans:
+            manage: Upravljanje
+            title: Uporabniški IDP načrti
+            view: Pogled
           users:
             reset_password: Ponastavi geslo
             title: Uporabniki
@@ -296,6 +308,9 @@ sl:
     ai_artifacts:
       artifact_results: Rezultati artefaktov
       code: Koda
+      export:
+        success_msg: Izvažanje AI artefaktov v teku. Prosimo, preverite status v obvestilih.
+      export_ai_artifacts: Izvozni artefakti umetne inteligence
       form:
         add_assessment: Dodajanje ocene
         ai_assistant: Pomočnik za umetno inteligenco
@@ -320,6 +335,12 @@ sl:
       generated_at_time: Ustvarjeno ob %{time}
       generated_value: Ustvarjena vrednost
       id: ID
+      import:
+        download_example_csv: Prenesi primer CSV
+        info_msg: Naložena datoteka je bila v vrsti za uvoz. Prosimo, preverite status v obvestilih.
+      import_action:
+        title: Artefakti umetne inteligence za uvozno kampanjo
+      import_ai_artifacts: Uvoz AI artefaktov
       key: Ključ
       name: Ime
       parsed_dependencies:
@@ -335,6 +356,10 @@ sl:
         settings: Nastavitve
       test_generate: Testno generiranje
       unsaved_changes: Neshranjene spremembe so prisotne, razmislite o pošiljanju obrazca za ustvarjanje posodobljenega odgovora iz Playground.
+      used_tokens:
+        input_tokens: Vhodni žetoni
+        output_tokens: Izhodni žetoni
+        title: Uporaba žetonov
     ai_assistants:
       actions:
         create: Ustvarite pomočnika AI
@@ -929,6 +954,17 @@ sl:
         report_update: Poročilo je posodobljeno
         scoring_update: Točkovanje je posodobljeno
         trash_empty: Smetnjak Komentar prazen
+    campaign_ai_artifacts:
+      export:
+        details: Uspešno izvoženi AI artefakti kampanje
+    campaign_ai_artifacts_import:
+      errors:
+        ai_assistant_not_found: 'AI Assistant ni najden za ID: %{id}'
+        campaign_factor_not_found: Faktor kampanje s kodo "%{code}" ni v tej kampanji
+        dependency_not_found: Odvisnost %{type} z ID-jem %{id} najdena
+        file_required: Za uvoz je potrebna datoteka
+        save_failed: 'Neuspelo rešiti artefakt AI "%{code}": %{message}'
+        sheet_column_not_found: Stolpec listov z imenom "%{name}", ki ni v podatkovnih listih kampanje ali projekta
     campaign_factor_import:
       errors:
         assessment_not_found_in_campaign: ID ocenjevanja »%{assessment_id}« ni mogoče najti v oglaševalski akciji
@@ -1240,6 +1276,7 @@ sl:
         archived: Arhivirani
         disable: Arhiv
         enable: Razveljavi arhiviranje
+      clients: Stranke
       copy:
         successfully: Najem odjemalca »%{name}« je bil uspešno kopiran.
       create:
@@ -2259,6 +2296,10 @@ sl:
           accesssheet_manage: Upravljanje dostopnega lista
           accesssheet_settings: Nastavitve dostopnega lista
           accesssheet_view: Pogled dostopnega lista
+    header:
+      logout:
+        content: Pritisnite Prekliči, če želite nadaljevati z delom. Pritisni Ok za odjavo trenutnega uporabnika.
+        title: Si prepričan, da želiš odjaviti se?
     hogan:
       errors:
         new_assessment_response_not_allowed:
@@ -2315,10 +2356,12 @@ sl:
         assigned_data: Dodeljeni podatki
         assigned_date: Dodeljeni datum
         completion_date: Datum zaključka
+        current_job_role: Trenutna delovna vloga
         division: Deljenje
         name: Ime
         publish_date: Datum objave
         review_date: Datum pregleda
+        target_job_role: Ciljna delovna vloga
       fields_label: Polja
       global_skills: Globalne spretnosti
       idp: IDP
@@ -2546,6 +2589,13 @@ sl:
         details: Podrobnosti
         name: Ime integracije
       details:
+        client_id: ID naročnika
+        deployment_id: ID namestitve
+        platform_access_token_url: Platform Access Token URL
+        platform_authentication_request_url: URL za zahtevo za avtentikacijo platforme
+        platform_host_name: Ime gostitelja platforme
+        platform_id: ID platforme
+        platform_public_keyset_url: Javni URL nabora ključev platforme
         provider: Ime ponudnika
         webhookUrl: URL spletnega kavlja
         webhookUrls: URL-ji spletnih kavljev
@@ -2576,11 +2626,16 @@ sl:
         skillvue:
           apiKey: API ključ
           apiKeyRequired: Potreben je ključ API
+        yoodli:
+          keyset_url: URL nabora ključev
+          launch_url: Zagon URL
+          login_url: URL za prijavo
       names:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
         skillvue: Skillvue
+        yoodli: Yoodli
       validations:
         iiht:
           tenancy_name_present: Najemno ime je že prisotno v drugem projektu
@@ -2590,6 +2645,24 @@ sl:
         skillvue:
           api_key_present: API ključ je že prisoten v drugem projektu
       view_all_schedules: Oglejte si vse urnike Mettl
+      yoodli_assessments:
+        add_assessment: Add Yoodli Assessment
+        columns:
+          actions: Dejanja
+          created_at: Ustvarjeno na
+          name: Ime ocenjevanja
+          product_id: ID izdelka
+        delete_confirm: Si prepričan, da želiš izbrisati to Yoodlijevo oceno?
+        edit_assessment: Uredi oceno Yoodli
+        manage_catalog: Upravljanje Yoodli ocen
+        messages:
+          create_success: Yoodlijeva ocena '%{name}' je bila uspešno ustvarjena
+          delete_success: Yoodlijeva ocena je bila uspešno izbrisana
+          update_success: Yoodlijeva ocena '%{name}' je bila uspešno posodobljena
+        placeholders:
+          name: Vnesite ime ocenjevanja
+          product_id: Vnesite ID izdelka
+        search: Iskanje
     interview_questions:
       delete_confirmation: Ali ste prepričani, da želite izbrisati to vprašanje za intervju?
       description: Opis
@@ -2740,9 +2813,12 @@ sl:
     navigation:
       audit_logs: Dnevniki nadzora
       availability: Razpoložljivost
+      configuration: Konfiguracijo
+      content: Vsebina
       dashboard: Nadzorna plošča
       factors: Dejavniki
       innovation_styles: Inovativni slogi
+      logout: Odjava
       occupations: Poklicev
       registration_codes: Registracijske kode
       skills_taxonomy: Taksonomija spretnosti
@@ -2981,6 +3057,7 @@ sl:
           by_skill_exists_id_missing: 'Vrstica %{row_number}: Raven znanja za spretnost ''''%{name}'''' že obstaja. Prosimo, navedite ID, da ga posodobite.'
           by_skill_missing: 'Vrstica %{row_number}: Projekt in spretnost morata biti prisotna za vrsto »by_skill«'
           by_skill_type_exists_id_missing: 'Vrstica %{row_number}: Raven strokovnosti za vrsto spretnosti ''''%{skill_type}'''' že obstaja. Prosimo, navedite ID, da ga posodobite.'
+          by_skill_type_missing: 'Vrstica %{row_number}: Za tip ''''by_skill_type'''' morata biti prisotna projekt in tip veščine'
           default_global_exists_id_missing: 'Vrstica %{row_number}: »privzeta« ProficiencyLevel na globalni ravni že obstaja. Prosimo, navedite ID, da ga posodobite.'
           default_project_exists_id_missing: 'Vrstica %{row_number}: ''''privzeta'''' ProficiencyLevel na ravni projekta že obstaja. Prosimo, navedite ID, da ga posodobite.'
           invalid_csv_format: 'Neveljavna oblika zapisa CSV: %{message}'
@@ -3295,6 +3372,7 @@ sl:
         mask_identity_for_pearson: Podatki o maski za Pearson
         mask_identity_for_saville: Podatki o maski za Saville
         mask_identity_for_skillvue: Podatki o maski za Skillvue
+        mask_identity_for_yoodli: Podatki o maski za Yoodli
         privacy_link: Omogoči povezavo do zasebnosti
         privacy_link_label: Povezava do zasebnosti
         privacy_link_placeholder: Vnesite povezavo za zasebnost
@@ -3470,6 +3548,7 @@ sl:
           graph_value: Vrednost grafa
         graph_value_condition_not_supported_msg: Pogoji vrednosti grafa niso podprti za to vrsto grafa. Ta možnost je trenutno na voljo le za spodnje vrste grafov.
         graph_value_conditions_title: Pogoji vrednosti grafa
+        hide_responses_with_no_data: Skrijte odgovore brez podatkov
         if_graph_value_is: 'Če je vrednost grafa:'
         job_roles:
           current: Trenutni dejavniki zaposlitve
@@ -3489,6 +3568,7 @@ sl:
           and: IN
           or: ALI
         prevent_value_overlap: Preprečevanje prekrivanja vrednosti
+        randomize_answers_order: Naključno določite vrstni red odgovorov
         skill_type_label: Filtriraj po vrsti spretnosti
         skill_type_placeholder: Izberite vrsto spretnosti
         skill_types:
@@ -4110,6 +4190,11 @@ sl:
             missing_columns: 'Manjkajoči obvezni stolpci: %{columns}'
             save_failed: 'ID spretnosti pri obdelavi napake %{id}: %{message}'
             skill_not_found: Spretnost z ID-jem %{id} ni bila najdena
+      vector:
+        generate_embedding: Generiranje vdelave
+        generate_embedding_failure_msg: Nisem uspel v vrsti za generiranje veščin v vrsti. Prosim, poskusite znova.
+        generate_embedding_success_msg: Delo za generiranje veščin je bilo uspešno uvrščeno v čakalno vrsto. Prosimo, preverite status v obvestilih.
+        label: Vector DB
     skills_taxonomy:
       tabs:
         job_roles: Delovna mesta
@@ -4353,8 +4438,13 @@ sl:
         this_question_has_randomization: To vprašanje je randomizirano
     table:
       entries:
-        selected: Izbrana 1 vrstica
-        total: 'Skupaj : 1'
+        selected:
+          one: Izbrana 1 vrstica
+          other: "{{count}} izbrane vrstice"
+        total:
+          one: 'Skupaj: 1'
+          other: 'Skupaj : {{count}}'
+          zero: 'Skupaj : 0'
       more_actions: Več dejanj
     taxonomy:
       import:

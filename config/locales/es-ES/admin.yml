@@ -108,5 +108,6 @@ es-ES:
     subject_part_of_other_invite: Asunto con correo electrónico %{user_email} ya está invitado a '%{workshop_invite_name}'
     user_report_events: Informe de usuario Eventos
     users: Usuarios
+    validation_error: Se produjo un error durante la validación
     view_licenses: Ver licencias
     year: País

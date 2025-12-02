@@ -108,5 +108,6 @@ sk:
     subject_part_of_other_invite: Subjekt s e-mailom %{user_email} je už pozvaný na '%{workshop_invite_name}'
     user_report_events: Udalosti v hlásení používateľa
     users: Používateľov
+    validation_error: Počas validácie došlo k chybe
     view_licenses: Zobraziť licencie
     year: Krajina

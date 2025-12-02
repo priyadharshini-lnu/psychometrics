@@ -64,6 +64,10 @@ pl:
         validates_admins: Administratorzy nie mają dostępu do kampanii.
       report_families_reports:
         report_exists: Ten raport jest już częścią pakietu Report Bundle
+      saml_service_provider:
+        invalid_url: 'Nieprawidłowy format URL: %{url}'
+        must_be_array: To musi być tablica
+        must_not_be_empty: Nie może być pusty
       size?: rozmiar powinien być mniejszy %{size}
       skill:
         already_added: Umiejętność o tej samej nazwie została już dodana.
@@ -94,6 +98,7 @@ pl:
         unique_name: Filtr o tej samej nazwie już istnieje.
       workshop_invited_subject_create:
         already_exists: Temat już istnieje w zaproszeniu.
+        part_of_other_workshop_invite: Obiekt jest już zaproszony do "%{workshop_invite_name}".
       workshop_subject_create:
         already_exists: Temat już istnieje w tym Assessment Center.
         part_of_other_workshop: Podmiot jest już uczestnikiem '%{workshop_name}'.

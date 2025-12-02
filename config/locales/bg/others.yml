@@ -232,6 +232,19 @@ bg:
               contains_repeats: Паролата не трябва да съдържа повторения
               too_short: Паролата е твърде кратка. Изисква се минимален знак %{count}
               too_weak: 'Паролата трябва да съдържа: минимум 1 малка буква, 1 главна буква, 1 цифра и 1 специален знак.'
+        project_license:
+          attributes:
+            base:
+              exceeds_available: Не може да отпусне повече от наличните лицензи
+            license_id:
+              already_present: вече присъства за този проект
+            usage_limit:
+              cant_be_less_than_used: Не може да се зададе под текущия брой на използването на %{used_count}
+              cant_be_more_than_available: Не може да е повече от наличния лимит на лиценза (%{usage_limit})
+              exceeds_available: Не може да е повече от наличните лицензи
+              less_than_used_number: Не може да е по-малко от броя на използваните лицензи
+            used_number:
+              overused: Не може да има повече от наличните лицензи.
         questions_import_block_form:
           attributes:
             name:
@@ -422,6 +435,10 @@ bg:
               inclusion: трябва да е булева
             start_date_time:
               invalid_datetime: е невалиден
+        yoodli:
+          attributes:
+            name:
+              not_unique: Тази интеграция вече е налична за този проект.
   activerecord:
     attributes:
       administration/assessments/assign_form:
@@ -452,6 +469,7 @@ bg:
           simulation: Симулация
           skillvue: Skillvue
           threesixty: Кампания 360
+          yoodli: Юдли
         category: Категория
         created_at: Дата на създаване
         description: Описание
@@ -469,6 +487,7 @@ bg:
           saville: Оценка на Saville
           simulation: Оценка на симулацията
           skillvue: Оценка на Skillvue
+          yoodli: Оценка на Yoodli
         updated_at: Дата на промяна
       assign:
         completed_at: Дата на завършване
@@ -836,6 +855,7 @@ bg:
         data_report_export: Експортиране на отчети за данни
         export_admin_with_permissions: Експортиране на администратор с разрешения
         export_assessment_questions: Въпроси за оценка на износа
+        export_campaign_ai_artifacts: Изкуствени артефакти от Експортната кампания
         export_campaign_factors: Фактори на експортната кампания
         export_campaign_scorings: Експортиране на оценки на кампании
         export_dashboard_as_file: Експортиране на табло като файл
@@ -857,10 +877,12 @@ bg:
         export_user_report_events: Експортиране на събития от потребителски отчет
         export_users: Експортиране на потребители на кампанията
         external_assessment_export: Експортиране на външни резултати
+        generate_embedding_skills: Генериране на вграждане за умения
         import_accesssheet: Импортиране на accessheet
         import_assessment_questions: Въпроси за оценка на импортиране
         import_assessment_translations: Импортиране на преводи за оценяване
         import_assessors: Оценители на вноса
+        import_campaign_ai_artifacts: Артефакти от AI за Import Campaign
         import_campaign_factors: Импортиране на фактори на кампанията
         import_datasheet: Лист с данни за импортиране
         import_development_action_translations: Импортиране на преводи за действие за разработка
@@ -1028,6 +1050,7 @@ bg:
         saville_assessment_name: Оценка на Saville Име
         simulation_assessment_name: Име на оценка на симулацията
         skillvue_assessment_name: Име на оценка на Skillvue
+        yoodli_assessment_name: Име на оценката Yoodli
       translations_migrated: Преводът е мигриран
     create: Създавам
     dashboard: Таблото
@@ -1069,6 +1092,7 @@ bg:
         simulation: Симулация
         skillvue: Skillvue
         threesixty: Кампания 360
+        yoodli: Юдли
       status:
         finished: Завършен
         in_progress: В процес на изпълнение
@@ -1081,6 +1105,7 @@ bg:
         saville: Оценка на Saville
         simulation: Оценка на симулацията
         skillvue: Оценка на Skillvue
+        yoodli: Оценка на Yoodli
     flow:
       end_assessment_modal:
         custom_message: Персонализирано съобщение за края на оценяването
@@ -1450,6 +1475,8 @@ bg:
       skillvue_email_id: Skillvue Кандидат Имейл ID
       skillvue_external_assessment_id: Skillvue Оценка ID
       universal_link: Универсална връзка
+      yoodli_email_id: Имейл ID на кандидата Yoodli
+      yoodli_external_assessment_id: Yoodli Assessment ID
     drawer:
       mettl_schedule_name: Име на разписанието на Mettl
       title: Подробности за оценката
@@ -1772,6 +1799,7 @@ bg:
       go_back: Върни се назад
       import: Внос
       insert: Вмъквам
+      'no': Не
       ok: ОК
       publish: Публикувайте
       reject: Отхвърлям
@@ -1798,6 +1826,7 @@ bg:
       view: Изглед
       view_all_tasks: Прегледайте всички задачи
       view_detail: Прегледайте детайлите
+      'yes': Да
     column:
       action: Действие
       active: Активен
@@ -1911,6 +1940,7 @@ bg:
       hide: Крия
       view: Изглед
     validations:
+      required: Тази област е задължителна
       select_locale: Моля, изберете някоя локация
       should_be_whole_number: трябва да е цяло число
   confirmation:
@@ -2366,6 +2396,7 @@ bg:
     error_warning: Опа, нещо се обърка с оценката ти. Моля, свържете се с поддръжката.
     hogan:
       cannot_start: Не можете да започнете оценката на хоган точно сега. Моля, опитайте след няколко минути.
+    lighthouse_app: Фарът Мърсър
     login: Вход
     maintenance:
       notification: Lighthouse ще бъде свален за планирана поддръжка след 60 секунди
@@ -2467,6 +2498,8 @@ bg:
   idp:
     actions: Действия
     add_comments: Добавяне на коментари
+    add_note: Добави бележка...
+    add_reason: Добави причина...
     added_development_action: Добавено действие за разработка
     ai:
       assistant:
@@ -2522,6 +2555,8 @@ bg:
       welcome:
         text: Готови ли сте да начертаете дневника си за растеж? Да започваме!
         title: Здравейте, аз съм вашият асистент за разработка
+    approval_note: Бележка за одобрение
+    approve_plan: План за одобрение
     behavioral: Поведенчески
     board: Съвет
     change_history: История на промените
@@ -2622,12 +2657,14 @@ bg:
       mark_as_complete: Маркиране като завършено
       no_development_actions: Без действия за развитие
       on_the_job: На работното място
+      one: "[BG] 1"
       other: Друг
       private: Редник
       publish_plan: Публикуване на план
       remove: Махам
       save_plan: Запазване на плана
       search_development_actions: Търсене на действия за разработка
+      selected_count: "%{count} избран"
       show_development_action_information: Показване на информация за действие за развитие
       skill: Умение
       sprint: Спринт
@@ -2636,7 +2673,9 @@ bg:
       structured_learning_label: Съвместно обучение
       submit_plan: Изпрати план
       success: Дейностите за развитие приключиха успешно
+      three: "[BG] 3"
       toggle_skill_privacy: Превключване на поверителността на уменията
+      two: "[BG] 2"
       write_here: Пишете тук...
     direct_reportee_details: Подробности за преките докладвани
     download:
@@ -2705,10 +2744,12 @@ bg:
           assigned_data: Определена дата
           assigned_date: Присвоена дата
           completion_date: Дата на завършване
+          current_job_role: Текуща длъжност
           division: Делене
           name: Име
           publish_date: Дата на публикуване
           review_date: Дата на преглед
+          target_job_role: Целева длъжност
       guidelines:
         cards:
           c1:
@@ -2809,6 +2850,7 @@ bg:
     plan_submitted_for_manager_approval: Вашият индивидуален план за развитие е представен за одобрение от мениджъра.
     private: Редник
     public: Общественост
+    reason_for_rejection: Причина за отхвърляне
     reflective_questions:
       already_completed: Индивидуалният план за развитие вече е попълнен, не можете да отговарите на въпросите сега.
       answer: Отговор
@@ -2821,7 +2863,9 @@ bg:
         max_words: Отговорът позволява максимум %{count} думи
         min_words: Отговорът изисква поне %{count} думи
         required: Отговорът на въпроса е необходим
+      max_word_limit: Трябва да е най-много %{max} думи
       max_words: Максимален брой думи
+      min_word_limit: Трябва да са поне %{min} думи
       min_words: Малко думи
       no_answer_provided: Все още няма отговор
       no_reflective_questions: Без отразяващи въпроси
@@ -2834,6 +2878,7 @@ bg:
       updated_successfully: Вашите отговори са актуализирани успешно
       word_limit: Трябва да е между %{min} и %{max} думи
       words: Думи
+    reject_plan: Отхвърляне на плана
     remove_skill: Премахване на умение
     remove_skill_from_plan: Премахване на %{name} умения от плана
     removed_development_action: Премахнато действие за разработка
@@ -2854,6 +2899,7 @@ bg:
     summary_logs: Обобщени регистрационни файлове за %{reporteeName}
     technical: Технически
     user_idp_status:
+      ai_assisted_idp_in_progress: В процес на подпомагане на ИЕЛ (IDP)
       approved: Одобрен
       completed: Завършен
       completion_not_started: Завършването не е започнало
@@ -2973,6 +3019,7 @@ bg:
     usage_overview: Преглед на използването на лиценза
     usages: Обичаи
   licenses:
+    client_usage: Използване от клиент
     enabled: Разрешено
     end_date: Крайна дата
     not_enough_idp_license: Няма достатъчно IDP лицензи, моля, свържете се с администратора
@@ -2981,6 +3028,10 @@ bg:
     not_enough_proctoring_credits: Няма достатъчно кредити за започване на прокторинг сесия
     number: Номер
     overuse_number: Надбавка за прекомерна употреба
+    project_limit_reached: Достигнат лимит на използване до '%{license_name}', моля, свържете се с администратора
+    project_specific: Специфично за проекта
+    project_specific_license: Лиценз, специфичен за проекта
+    project_usage: Използване на проекта
     report_family: Пакет от отчети
     start_date: Начална дата
     title: Лиценз
@@ -2992,6 +3043,34 @@ bg:
       threesixty: Тришейсет
     used_number: Използвани лицензи
     used_out_of: "%{used} от %{total}"
+  lti:
+    oidc_auth_form:
+      errors:
+        client_id:
+          blank: Изисква се клиентски идентификатор
+          invalid: Клиентският идентификатор не съвпада с регистрирания идентификатор на инструмента
+          validation_failed: Валидацията на клиентския идентификатор се провали
+        login_hint:
+          assessment_completed: Оценката от потребителите вече е завършена
+          blank: Необходима е подсказка за вход
+          invalid_user_assessment: Подсказката за вход не се позовава на валидна потребителска оценка
+        lti_deployment_id:
+          not_found: ID на разгръщане не се позовава на валидна интеграция
+        nonce:
+          blank: Задължителна е нонсе
+        redirect_uri:
+          blank: Изисква се пренасочване на URI
+          has_fragment: Пренасочването на URI не трябва да съдържа фрагмент
+          https_required: Пренасочването на URI трябва да използва HTTPS в продукцията
+          invalid_format: Redirect URI трябва да е валиден URI формат
+          missing_host: Пренасочването на URI трябва да включва хост
+          scheme_not_allowed: Пренасочващият URI трябва да използва HTTP или HTTPS протокол
+        response_type:
+          blank: Изисква се тип отговор
+          invalid: Типът отговор трябва да е 'id_token'
+        scope:
+          blank: Изисква се обхват
+          invalid: Обхватът трябва да бъде 'openid'
   mailer:
     copyright:
       text: Lighthouse. Всички права запазени
@@ -3237,10 +3316,12 @@ bg:
         pearson: Пиърсън
         saville: Савил
         skillvue: Skillvue
+        yoodli: Юдли
     form:
       load_from_mettl: Натоварване от Mettl
       load_from_pearson: Зареждане от Pearson
       load_from_skillvue: Зареждане от Skillvue
+      load_from_yoodli: Товар от Yoodli
       none_external: Няма - Използване на конструктора на отчети
     language: Език на докладването
     language_updated: Езикът на отчета беше актуализиран успешно

@@ -108,5 +108,6 @@ en-US:
     subject_part_of_other_invite: Subject with email %{user_email} is already invited to '%{workshop_invite_name}'
     user_report_events: Report Approval logs
     users: Users
+    validation_error: An error occurred during validation
     view_licenses: View Licenses
     year: Year

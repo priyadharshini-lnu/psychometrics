@@ -64,6 +64,10 @@ ro:
         validates_admins: Administratorii nu au acces la campanie.
       report_families_reports:
         report_exists: Acest raport face deja parte din pachetul de rapoarte
+      saml_service_provider:
+        invalid_url: 'Format URL invalid: %{url}'
+        must_be_array: Trebuie să fie un tablou
+        must_not_be_empty: Nu poate fi gol
       size?: dimensiunea ar trebui să fie mai mică %{size}
       skill:
         already_added: Abilitate cu același nume deja adăugată.
@@ -94,6 +98,7 @@ ro:
         unique_name: Există deja un filtru cu același nume.
       workshop_invited_subject_create:
         already_exists: Subiectul există deja în invitație.
+        part_of_other_workshop_invite: Subiectul este deja invitat la '%{workshop_invite_name}'.
       workshop_subject_create:
         already_exists: Subiectul există deja în acest centru de evaluare.
         part_of_other_workshop: Subiectul este deja participant la '%{workshop_name}'.

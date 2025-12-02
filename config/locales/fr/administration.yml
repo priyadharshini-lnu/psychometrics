@@ -95,6 +95,12 @@ fr:
           title: Confirmer
       permissions:
         labels:
+          aiArtifacts:
+            export: Exportation
+            import: Importation
+            manage: Gérer
+            title: Artefacts IA
+            view: Vue
           apiKeys:
             manage: Gérer
             title: Clés API
@@ -220,9 +226,11 @@ fr:
           projects:
             manage: Gérer
             manage_admins: Gérer les administrateurs
+            manage_licenses: Gestion des licences
             manage_users: Gérer les utilisateurs
             title: Projets
             view: Voir
+            view_licenses: Voir les licences
           questions:
             manage: Gérer
             title: Questions
@@ -284,6 +292,10 @@ fr:
             manage: Gérer
             title: Invitations par SMS
             view: Voir
+          userIdpPlans:
+            manage: Gérer
+            title: Plans IDP utilisateurs
+            view: Vue
           users:
             reset_password: Réinitialiser le mot de passe
             title: Utilisateurs
@@ -296,6 +308,9 @@ fr:
     ai_artifacts:
       artifact_results: Résultats de l’artefact
       code: Code
+      export:
+        success_msg: Exportation d’artefacts d’IA en cours. Veuillez vérifier le statut dans les notifications.
+      export_ai_artifacts: Exporter des artefacts IA
       form:
         add_assessment: Ajouter une évaluation
         ai_assistant: Assistant IA
@@ -320,6 +335,12 @@ fr:
       generated_at_time: Généré à %{time}
       generated_value: Valeur générée
       id: ID
+      import:
+        download_example_csv: Télécharger un exemple de CSV
+        info_msg: Le fichier téléchargé a été mis en file d’attente pour importation. Veuillez vérifier le statut dans les notifications.
+      import_action:
+        title: Importer les artefacts de l’IA de campagne
+      import_ai_artifacts: Importer des artefacts IA
       key: Clé
       name: Nom
       parsed_dependencies:
@@ -335,6 +356,10 @@ fr:
         settings: Paramètres
       test_generate: Tester Générer
       unsaved_changes: Des modifications non enregistrées sont présentes, envisagez d’envoyer un formulaire pour générer une réponse mise à jour à partir de Playground.
+      used_tokens:
+        input_tokens: Jetons d’entrée
+        output_tokens: Jetons de sortie
+        title: Utilisation du jeton
     ai_assistants:
       actions:
         create: Créer un assistant IA
@@ -929,6 +954,17 @@ fr:
         report_update: Le rapport est mis à jour
         scoring_update: La notation est mise à jour
         trash_empty: Corbeille Commentaire vide
+    campaign_ai_artifacts:
+      export:
+        details: Artefacts d’IA de campagne exportés avec succès
+    campaign_ai_artifacts_import:
+      errors:
+        ai_assistant_not_found: 'Assistant IA non trouvé pour l’ID : %{id}'
+        campaign_factor_not_found: Facteur campagne avec le code « %{code} » absent de cette campagne
+        dependency_not_found: "%{type} de dépendance avec ID %{id} non trouvée"
+        file_required: Le fichier est requis pour l’importation
+        save_failed: 'Échec à sauvegarder l’artefact de l’IA « %{code} » : %{message}'
+        sheet_column_not_found: Colonne de feuille avec le nom « %{name} » qui ne figure pas dans les fiches techniques de campagne ou de projet
     campaign_factor_import:
       errors:
         assessment_not_found_in_campaign: L'identifiant d'évaluation "%{assessment_id}" n'a pas été trouvé dans la campagne
@@ -1240,6 +1276,7 @@ fr:
         archived: Archivé
         disable: Archives
         enable: Désarchiver
+      clients: Clients
       copy:
         successfully: Le bail du client "%{name}" a été copié avec succès.
       create:
@@ -2259,6 +2296,10 @@ fr:
           accesssheet_manage: Feuille d'accès Gérer
           accesssheet_settings: Paramètres de la feuille d'accès
           accesssheet_view: Vue de la feuille d'accès
+    header:
+      logout:
+        content: Appuyez sur Annuler si vous voulez continuer à travailler. Appuyez sur Ok pour se déconnecter de l’utilisateur actuel.
+        title: Êtes-vous sûr de vouloir vous déconnecter ?
     hogan:
       errors:
         new_assessment_response_not_allowed:
@@ -2315,10 +2356,12 @@ fr:
         assigned_data: Données attribuées
         assigned_date: Date assignée
         completion_date: Date d'achèvement
+        current_job_role: Poste actuel
         division: Division
         name: Nom
         publish_date: Date de publication
         review_date: Date de révision
+        target_job_role: Poste de cible
       fields_label: Domaines
       global_skills: Compétences globales
       idp: PDI
@@ -2546,6 +2589,13 @@ fr:
         details: Détails
         name: Nom de l'intégration
       details:
+        client_id: Client ID
+        deployment_id: ID de déploiement
+        platform_access_token_url: URL du jeton d’accès à la plateforme
+        platform_authentication_request_url: URL de demande d’authentification de plateforme
+        platform_host_name: Nom de l’hôte de la plateforme
+        platform_id: ID de plateforme
+        platform_public_keyset_url: URL du jeu de clés publiques de la plateforme
         provider: Nom du prestataire
         webhookUrl: URL du webhook
         webhookUrls: URL des webhooks
@@ -2576,11 +2626,16 @@ fr:
         skillvue:
           apiKey: Clé API
           apiKeyRequired: La clé API est nécessaire
+        yoodli:
+          keyset_url: URL du jeu de clés
+          launch_url: URL de lancement
+          login_url: URL de connexion
       names:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
         skillvue: Skillvue
+        yoodli: Yoodli
       validations:
         iiht:
           tenancy_name_present: Le nom du bail est déjà présent dans un autre projet
@@ -2590,6 +2645,24 @@ fr:
         skillvue:
           api_key_present: La clé API est déjà présente dans un autre projet
       view_all_schedules: Voir tous les horaires de Mettl
+      yoodli_assessments:
+        add_assessment: Ajouter Yoodli Assessment
+        columns:
+          actions: Actions
+          created_at: Créé à
+          name: Nom de l’évaluation
+          product_id: ID produit
+        delete_confirm: Tu es sûr de vouloir supprimer cette évaluation de Yoodli ?
+        edit_assessment: 'Édition : évaluation de Yoodli'
+        manage_catalog: Gérer les évaluations Yoodli
+        messages:
+          create_success: L’évaluation Yoodli '%{name}' a été créée avec succès
+          delete_success: L’évaluation Yoodli a été supprimée avec succès
+          update_success: L’évaluation Yoodli '%{name}' a été mise à jour avec succès
+        placeholders:
+          name: Saisissez le nom de l’évaluation
+          product_id: Saisissez l’ID du produit
+        search: Rechercher
     interview_questions:
       delete_confirmation: Êtes-vous sûr de vouloir supprimer cette question d’entretien ?
       description: Descripton
@@ -2740,9 +2813,12 @@ fr:
     navigation:
       audit_logs: Journaux d'audit
       availability: Disponibilité
+      configuration: Configuration
+      content: Contenu
       dashboard: Tableau de bord
       factors: Facteurs
       innovation_styles: Styles d'innovation
+      logout: Déconnexion
       occupations: Professions
       registration_codes: Codes d'enregistrement
       skills_taxonomy: Taxonomie des compétences
@@ -3296,6 +3372,7 @@ fr:
         mask_identity_for_pearson: Données sur les masques pour Pearson
         mask_identity_for_saville: Données sur les masques pour Saville
         mask_identity_for_skillvue: Données sur les masques pour Skillvue
+        mask_identity_for_yoodli: Données de masque pour Yoodli
         privacy_link: Activer le lien de confidentialité
         privacy_link_label: Lien vers la vie privée
         privacy_link_placeholder: Entrer le lien de confidentialité
@@ -3471,6 +3548,7 @@ fr:
           graph_value: Valeur du graphique
         graph_value_condition_not_supported_msg: Les conditions de valeur de graphique ne sont pas prises en charge pour ce type de graphique. Cette option n’est actuellement disponible que pour les types de graphiques ci-dessous.
         graph_value_conditions_title: Conditions de valeur du graphique
+        hide_responses_with_no_data: Masquer les réponses sans données
         if_graph_value_is: 'Si la valeur du graphique est :'
         job_roles:
           current: Facteurs liés à l’emploi actuel
@@ -3490,6 +3568,7 @@ fr:
           and: ET
           or: OU
         prevent_value_overlap: Éviter le chevauchement des valeurs
+        randomize_answers_order: Ordre aléatoire des réponses
         skill_type_label: Filtrer par type de compétence
         skill_type_placeholder: Sélectionner le type de compétence
         skill_types:
@@ -4114,6 +4193,11 @@ fr:
             missing_columns: 'Colonnes manquantes : %{columns}'
             save_failed: 'Erreur de traitement de l''ID de compétence %{id} : %{message}'
             skill_not_found: Compétence avec ID %{id} introuvable
+      vector:
+        generate_embedding: Générer l’immersion
+        generate_embedding_failure_msg: Échec à mettre en file d’attente la génération d’intégration de compétences. Veuillez réessayer.
+        generate_embedding_success_msg: Le job de génération d’intégration de compétences a été mis en file d’attente avec succès. Veuillez vérifier le statut dans les notifications.
+        label: Vector DB
     skills_taxonomy:
       tabs:
         job_roles: Rôles professionnels

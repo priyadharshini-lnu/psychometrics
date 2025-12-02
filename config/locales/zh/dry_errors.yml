@@ -64,6 +64,10 @@ zh:
         validates_admins: 管理员无法访问活动。
       report_families_reports:
         report_exists: 本报告已是报告包的一部分
+      saml_service_provider:
+        invalid_url: 无效网址格式：%{url}
+        must_be_array: 一定是数组
+        must_not_be_empty: 不能空着
       size?: 大小应小于 %{size}
       skill:
         already_added: 已添加同名技能。
@@ -94,6 +98,7 @@ zh:
         unique_name: 已存在同名过滤器。
       workshop_invited_subject_create:
         already_exists: 主题已存在于邀请中。
+        part_of_other_workshop_invite: 受试者已被邀请“%{workshop_invite_name}”。
       workshop_subject_create:
         already_exists: 该评估中心已有主题。
         part_of_other_workshop: 主题已是"%{workshop_name}"的参与者。

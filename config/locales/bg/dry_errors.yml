@@ -64,6 +64,10 @@ bg:
         validates_admins: Администраторите нямат достъп до кампанията.
       report_families_reports:
         report_exists: Този отчет вече е част от Report Bundle
+      saml_service_provider:
+        invalid_url: 'Невалиден URL формат: %{url}'
+        must_be_array: Трябва да е масив
+        must_not_be_empty: Не може да е празно
       size?: размерът трябва да бъде по-малък %{size}
       skill:
         already_added: Умение със същото име вече е добавено.
@@ -94,6 +98,7 @@ bg:
         unique_name: Вече съществува филтър със същото име.
       workshop_invited_subject_create:
         already_exists: Темата вече съществува в поканата.
+        part_of_other_workshop_invite: Субектът вече е поканен на "%{workshop_invite_name}".
       workshop_subject_create:
         already_exists: Субектът вече съществува в този център за оценяване.
         part_of_other_workshop: Субектът вече е участник в "%{workshop_name}".

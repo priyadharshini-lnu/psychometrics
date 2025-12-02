@@ -64,6 +64,10 @@ vi:
         validates_admins: Quản trị viên không có quyền truy cập vào chiến dịch.
       report_families_reports:
         report_exists: Báo cáo này đã là một phần của Gói báo cáo
+      saml_service_provider:
+        invalid_url: 'Định dạng URL không hợp lệ: %{url}'
+        must_be_array: Phải là một mảng
+        must_not_be_empty: Không thể để trống
       size?: size phải nhỏ hơn %{size}
       skill:
         already_added: Kỹ năng cùng tên đã được thêm vào.
@@ -94,6 +98,7 @@ vi:
         unique_name: Một bộ lọc có cùng tên đã tồn tại.
       workshop_invited_subject_create:
         already_exists: Chủ đề đã tồn tại trong lời mời.
+        part_of_other_workshop_invite: Đối tượng đã được mời vào '%{workshop_invite_name}'.
       workshop_subject_create:
         already_exists: Đối tượng đã tồn tại trong Trung tâm Đánh giá này.
         part_of_other_workshop: Đối tượng đã là người tham gia của '%{workshop_name}'.

@@ -95,6 +95,12 @@ bg:
           title: Потвърждавам
       permissions:
         labels:
+          aiArtifacts:
+            export: Износ
+            import: Внос
+            manage: Управлявам
+            title: AI артефакти
+            view: Изглед
           apiKeys:
             manage: Управлявам
             title: API ключове
@@ -220,9 +226,11 @@ bg:
           projects:
             manage: Управлявам
             manage_admins: Управление на администратори
+            manage_licenses: Управление на лицензи
             manage_users: Управление на потребители
             title: Проекти
             view: Изглед
+            view_licenses: Вижте лицензи
           questions:
             manage: Управлявам
             title: Въпроси
@@ -284,6 +292,10 @@ bg:
             manage: Управлявам
             title: SMS покани
             view: Изглед
+          userIdpPlans:
+            manage: Управлявам
+            title: Планове за потребителски IDP
+            view: Изглед
           users:
             reset_password: Нулиране на паролата
             title: Потребители
@@ -296,6 +308,9 @@ bg:
     ai_artifacts:
       artifact_results: Резултати от артефакти
       code: Код
+      export:
+        success_msg: Експортиране на AI артефакти в процес. Моля, проверете статуса в известията.
+      export_ai_artifacts: Експортни AI артефакти
       form:
         add_assessment: Добавяне на оценяване
         ai_assistant: AI асистент
@@ -320,6 +335,12 @@ bg:
       generated_at_time: Генерирано в %{time}
       generated_value: Генерирана стойност
       id: Документ за самоличност
+      import:
+        download_example_csv: Изтеглете пример за CSV
+        info_msg: Каченият файл е поставен на опашка за импорт. Моля, проверете статуса в известията.
+      import_action:
+        title: Артефакти от AI за Import Campaign
+      import_ai_artifacts: Импортиране на AI артефакти
       key: Ключ
       name: Име
       parsed_dependencies:
@@ -335,6 +356,10 @@ bg:
         settings: Настройки
       test_generate: Генериране на тест
       unsaved_changes: Налице са незапазени промени, помислете за изпращане на формуляр, за да генерирате актуализиран отговор от Playground.
+      used_tokens:
+        input_tokens: Входни токени
+        output_tokens: Изходни токени
+        title: Използване на токени
     ai_assistants:
       actions:
         create: Създаване на AI Assistant
@@ -929,6 +954,17 @@ bg:
         report_update: Докладът е актуализиран
         scoring_update: Точкуването е актуализирано
         trash_empty: Кошчето за коментари е празно
+    campaign_ai_artifacts:
+      export:
+        details: Успешно експортирани AI артефакти в кампанията
+    campaign_ai_artifacts_import:
+      errors:
+        ai_assistant_not_found: 'AI Assistant не е намерен за ID: %{id}'
+        campaign_factor_not_found: Фактор на кампанията с код "%{code}" не се среща в тази кампания
+        dependency_not_found: Зависимостта %{type} с ID %{id} не е намерена
+        file_required: Файлът е необходим за импорт
+        save_failed: 'Не успях да спася AI артефакт "%{code}": %{message}'
+        sheet_column_not_found: Колона на листа с име "%{name}", която не се среща в информационните листове на кампании или проекти
     campaign_factor_import:
       errors:
         assessment_not_found_in_campaign: Идентификаторът на оценяването "%{assessment_id}" не е намерено в кампанията
@@ -1240,6 +1276,7 @@ bg:
         archived: Архивирани
         disable: Архив
         enable: Разархивиране
+      clients: Клиенти
       copy:
         successfully: Клиентският наемател '%{name}' беше копиран успешно.
       create:
@@ -2259,6 +2296,10 @@ bg:
           accesssheet_manage: Управление на формуляр за достъп
           accesssheet_settings: Настройки на листа за достъп
           accesssheet_view: Изглед на формуляр за достъп
+    header:
+      logout:
+        content: Натиснете Cancel, ако искате да продължите да работите. Натиснете OK, за да излезете от текущия потребител.
+        title: Сигурен ли си, че искаш да излезеш?
     hogan:
       errors:
         new_assessment_response_not_allowed:
@@ -2315,10 +2356,12 @@ bg:
         assigned_data: Присвоени данни
         assigned_date: Присвоена дата
         completion_date: Дата на завършване
+        current_job_role: Текуща длъжност
         division: Делене
         name: Име
         publish_date: Дата на публикуване
         review_date: Дата на преглед
+        target_job_role: Целева длъжност
       fields_label: Полета
       global_skills: Глобални умения
       idp: IDP
@@ -2546,6 +2589,13 @@ bg:
         details: Подробности
         name: Име на интеграцията
       details:
+        client_id: Client ID
+        deployment_id: ID на разполагане
+        platform_access_token_url: URL адрес на Token за достъп до платформата
+        platform_authentication_request_url: URL адрес за заявка за удостоверяване на платформата
+        platform_host_name: Име на хост на платформата
+        platform_id: Идентификатор на платформата
+        platform_public_keyset_url: URL адрес на публичен набор от ключове на платформата
         provider: Име на доставчика
         webhookUrl: URL адрес на уеб кукичката
         webhookUrls: URL адреси на уеб кукички
@@ -2576,11 +2626,16 @@ bg:
         skillvue:
           apiKey: API ключ
           apiKeyRequired: Изисква се API ключ
+        yoodli:
+          keyset_url: URL адрес на ключовия набор
+          launch_url: URL за стартиране
+          login_url: URL за вход
       names:
         hogan: ХОГАН
         iiht: ИИХТ
         mettl: МЕТТЛ
         skillvue: Skillvue
+        yoodli: Юдли
       validations:
         iiht:
           tenancy_name_present: Името на наемателя вече присъства в друг проект
@@ -2590,6 +2645,24 @@ bg:
         skillvue:
           api_key_present: API ключът вече присъства в друг проект
       view_all_schedules: Вижте всички графици на Mettl
+      yoodli_assessments:
+        add_assessment: Add Yoodli оценка
+        columns:
+          actions: Действия
+          created_at: Създаден в
+          name: Име на оценката
+          product_id: ID на продукта
+        delete_confirm: Сигурен ли си, че искаш да изтриеш тази оценка на Yoodli?
+        edit_assessment: Редактиране на оценка на Юдли
+        manage_catalog: Управление на оценките на Yoodli
+        messages:
+          create_success: Оценката на Yoodli '%{name}' беше създадена успешно
+          delete_success: Оценката на Yoodli беше успешно изтрита
+          update_success: Оценката на Yoodli '%{name}' беше успешно актуализирана
+        placeholders:
+          name: Въведете името на оценката
+          product_id: Въведете product ID
+        search: Търсене
     interview_questions:
       delete_confirmation: Сигурни ли сте, че искате да изтриете този въпрос за интервю?
       description: Описание
@@ -2740,9 +2813,12 @@ bg:
     navigation:
       audit_logs: Регистрационни файлове за одит
       availability: Наличност
+      configuration: Конфигурация
+      content: Доволен
       dashboard: Таблото
       factors: Фактори
       innovation_styles: Иновационни стилове
+      logout: Изход
       occupations: Професии
       registration_codes: Регистрационни кодове
       skills_taxonomy: Таксономия на уменията
@@ -2981,6 +3057,7 @@ bg:
           by_skill_exists_id_missing: 'Ред %{row_number}: Вече съществува ниво на владеене на уменията "%{name}". Моля, посочете идентификатора, за да го актуализирате.'
           by_skill_missing: 'Ред %{row_number}: Проектът и умението трябва да присъстват за тип ''by_skill'''
           by_skill_type_exists_id_missing: 'Ред %{row_number}: Вече съществува ниво на владеене за тип умение "%{skill_type}". Моля, посочете идентификатора, за да го актуализирате.'
+          by_skill_type_missing: 'Ред %{row_number}: Трябва да присъстват тип проект и умение за типа ''''by_skill_type'''''
           default_global_exists_id_missing: 'Ред %{row_number}: Вече съществува ниво на "подразбиране" на глобално ниво. Моля, посочете идентификатора, за да го актуализирате.'
           default_project_exists_id_missing: 'Ред %{row_number}: Вече съществува ниво на квалификация "по подразбиране" на ниво проект. Моля, посочете идентификатора, за да го актуализирате.'
           invalid_csv_format: 'Невалиден CSV формат: %{message}'
@@ -3295,6 +3372,7 @@ bg:
         mask_identity_for_pearson: Данни за маски за Pearson
         mask_identity_for_saville: Данни за маски за Saville
         mask_identity_for_skillvue: Данни за маска за Skillvue
+        mask_identity_for_yoodli: Данни за маски за Yoodli
         privacy_link: Активиране на връзката за поверителност
         privacy_link_label: Връзка за поверителност
         privacy_link_placeholder: Въведете връзка за поверителност
@@ -3470,6 +3548,7 @@ bg:
           graph_value: Стойност на графиката
         graph_value_condition_not_supported_msg: Условията за стойност на графиката не се поддържат за този тип графика. Понастоящем тази опция е налична само за типовете графики по-долу.
         graph_value_conditions_title: Условия на стойността на графиката
+        hide_responses_with_no_data: Скрий отговори без данни
         if_graph_value_is: 'Ако стойността на графиката е:'
         job_roles:
           current: Текущи фактори за работа
@@ -3489,6 +3568,7 @@ bg:
           and: И
           or: ИЛИ
         prevent_value_overlap: Предотвратяване на припокриване на стойности
+        randomize_answers_order: Рандомизирайте реда на отговорите
         skill_type_label: Филтриране по тип умение
         skill_type_placeholder: Изберете тип умение
         skill_types:
@@ -4110,6 +4190,11 @@ bg:
             missing_columns: 'Липсват задължителни колони: %{columns}'
             save_failed: 'Грешка при обработката Идентификатор на умението %{id}: %{message}'
             skill_not_found: Умение с идентификатор %{id} не е намерено
+      vector:
+        generate_embedding: Генериране на вграждане
+        generate_embedding_failure_msg: Не успях да поставя задачата за генериране на умения за вграждане. Моля, опитайте отново.
+        generate_embedding_success_msg: Задачата за генериране на вграждане на умения е успешно поставена в опашка. Моля, проверете статуса в известията.
+        label: Vector DB
     skills_taxonomy:
       tabs:
         job_roles: Работни роли
@@ -4353,8 +4438,13 @@ bg:
         this_question_has_randomization: Този въпрос има рандомизация
     table:
       entries:
-        selected: Избран е 1 ред
-        total: 'Общо : 1'
+        selected:
+          one: Избран 1 ред
+          other: "{{count}} избрани редове"
+        total:
+          one: 'Общо: 1'
+          other: 'Общо : {{count}}'
+          zero: 'Общо : 0'
       more_actions: Още действия
     taxonomy:
       import:

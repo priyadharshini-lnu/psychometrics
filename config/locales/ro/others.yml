@@ -232,6 +232,19 @@ ro:
               contains_repeats: Parola nu trebuie să conțină repetări
               too_short: Parola este prea scurtă. Caracterul minim %{count} necesar
               too_weak: 'Parola trebuie să conțină: Minim 1 minusculă, 1 majusculă, 1 număr și 1 caracter special.'
+        project_license:
+          attributes:
+            base:
+              exceeds_available: Nu se poate aloca mai mult decât licențele disponibile
+            license_id:
+              already_present: deja prezent pentru acest proiect
+            usage_limit:
+              cant_be_less_than_used: Nu poate fi setat sub numărul actual de utilizare al %{used_count}
+              cant_be_more_than_available: Nu poate fi mai mare decât limita disponibilă pentru licență (%{usage_limit})
+              exceeds_available: Nu pot fi mai mult decât licențele disponibile
+              less_than_used_number: Nu poate fi mai mic decât numărul de licențe folosite
+            used_number:
+              overused: Nu pot fi mai mult decât licențele disponibile.
         questions_import_block_form:
           attributes:
             name:
@@ -422,6 +435,10 @@ ro:
               inclusion: trebuie să fie un boolean
             start_date_time:
               invalid_datetime: este nevalidă
+        yoodli:
+          attributes:
+            name:
+              not_unique: Această integrare este deja prezentă pentru acest proiect.
   activerecord:
     attributes:
       administration/assessments/assign_form:
@@ -452,6 +469,7 @@ ro:
           simulation: Simulare
           skillvue: Skillvue
           threesixty: Campania 360
+          yoodli: Yoodli
         category: Categorie
         created_at: Data creării
         description: Descriere
@@ -469,6 +487,7 @@ ro:
           saville: Evaluarea Saville
           simulation: Evaluarea simulării
           skillvue: Evaluarea Skillvue
+          yoodli: Evaluarea Yoodli
         updated_at: Data modificării
       assign:
         completed_at: Data finalizării
@@ -836,6 +855,7 @@ ro:
         data_report_export: Exportul raportului de date
         export_admin_with_permissions: Exportați administratorul cu permisiuni
         export_assessment_questions: Întrebări de evaluare a exporturilor
+        export_campaign_ai_artifacts: Artefacte AI din campaniile de export
         export_campaign_factors: Factorii campaniei de export
         export_campaign_scorings: Exportați scorurile campaniei
         export_dashboard_as_file: Exportați tabloul de bord ca fișier
@@ -857,10 +877,12 @@ ro:
         export_user_report_events: Exportați evenimentele din rapoartele utilizatorilor
         export_users: Exportul utilizatorilor campaniei
         external_assessment_export: Exportați rezultate externe
+        generate_embedding_skills: Generează Embedding pentru abilități
         import_accesssheet: Import Accessheet
         import_assessment_questions: Întrebări de evaluare a importurilor
         import_assessment_translations: Importați traduceri de evaluare
         import_assessors: Evaluatori de import
+        import_campaign_ai_artifacts: Importul artefactelor AI din campanii
         import_campaign_factors: Importați factori de campanie
         import_datasheet: Fișa tehnică de import
         import_development_action_translations: Importul de traduceri pentru acțiuni de dezvoltare
@@ -1028,6 +1050,7 @@ ro:
         saville_assessment_name: Evaluare Saville Nume
         simulation_assessment_name: Nume evaluare simulare
         skillvue_assessment_name: Skillvue Denumire evaluare
+        yoodli_assessment_name: Nume de evaluare Yoodli
       translations_migrated: Traducere migrată
     create: Crea
     dashboard: Tablou
@@ -1069,6 +1092,7 @@ ro:
         simulation: Simulare
         skillvue: Skillvue
         threesixty: Campania 360
+        yoodli: Yoodli
       status:
         finished: Complet
         in_progress: În curs de desfășurare
@@ -1081,6 +1105,7 @@ ro:
         saville: Evaluarea Saville
         simulation: Evaluarea simulării
         skillvue: Evaluarea Skillvue
+        yoodli: Evaluarea Yoodli
     flow:
       end_assessment_modal:
         custom_message: Mesaj personalizat de sfârșit de evaluare
@@ -1450,6 +1475,8 @@ ro:
       skillvue_email_id: Adresa de e-mail a candidatului Skillvue
       skillvue_external_assessment_id: Skillvue Evaluare ID
       universal_link: Legătura universală
+      yoodli_email_id: ID-ul de email al candidatului Yoodli
+      yoodli_external_assessment_id: ID de evaluare Yoodli
     drawer:
       mettl_schedule_name: Nume program Mettl
       title: Detalii de evaluare
@@ -1772,6 +1799,7 @@ ro:
       go_back: Întoarce-te
       import: Importa
       insert: Insera
+      'no': Nu
       ok: OK
       publish: Publicare
       reject: Respinge
@@ -1798,6 +1826,7 @@ ro:
       view: Vedere
       view_all_tasks: Vizualizați toate sarcinile
       view_detail: Vezi detalii
+      'yes': Da
     column:
       action: Acțiuni
       active: Active
@@ -1911,6 +1940,7 @@ ro:
       hide: Ascunde
       view: Vedere
     validations:
+      required: Acest domeniu este necesar
       select_locale: Vă rugăm să selectați unele setări regionale
       should_be_whole_number: ar trebui să fie un număr întreg
   confirmation:
@@ -2366,6 +2396,7 @@ ro:
     error_warning: Ups, ceva nu a mers bine cu evaluarea ta. Vă rugăm să contactați asistența.
     hogan:
       cannot_start: Nu poți începe evaluarea hogan chiar acum. Vă rugăm să încercați după câteva minute.
+    lighthouse_app: Farul Mercer
     login: Autentificare
     maintenance:
       notification: Farul va fi oprit pentru întreținere programată în 60 de secunde
@@ -2467,6 +2498,8 @@ ro:
   idp:
     actions: Acțiuni
     add_comments: Adaugă comentarii
+    add_note: Adaugă Notă...
+    add_reason: Adaugă rațiune...
     added_development_action: Acțiune de dezvoltare adăugată
     ai:
       assistant:
@@ -2522,6 +2555,8 @@ ro:
       welcome:
         text: Ești gata să-ți trasezi ziua de creștere? Să începem!
         title: Buna ziua, sunt asistentul tau de dezvoltare
+    approval_note: Notă de aprobare
+    approve_plan: Aprobă planul
     behavioral: Comportamental
     board: Scândură
     change_history: Istoricul modificărilor
@@ -2622,12 +2657,14 @@ ro:
       mark_as_complete: Marcați ca finalizat
       no_development_actions: Fără acțiuni de dezvoltare
       on_the_job: La locul de muncă
+      one: "[RO] 1"
       other: Alt
       private: Privat
       publish_plan: Publicați planul
       remove: Depărta
       save_plan: Salvați planul
       search_development_actions: Căutare Acțiuni de dezvoltare
+      selected_count: "%{count} selectat"
       show_development_action_information: Afișați informațiile despre acțiunile de dezvoltare
       skill: Îndemânare
       sprint: Sprint
@@ -2636,7 +2673,9 @@ ro:
       structured_learning_label: Învățare colaborativă
       submit_plan: Trimiteți planul
       success: Acțiuni de dezvoltare finalizate cu succes
+      three: "[RO] 3"
       toggle_skill_privacy: Comutați confidențialitatea abilităților
+      two: "[RO] 2"
       write_here: Scrie aici...
     direct_reportee_details: Detalii raportoare directe
     download:
@@ -2705,10 +2744,12 @@ ro:
           assigned_data: Data atribuită
           assigned_date: Data atribuirii
           completion_date: Data finalizării
+          current_job_role: Rol actual
           division: Divizie
           name: Nume
           publish_date: Data publicării
           review_date: Data revizuirii
+          target_job_role: Rol țintă
       guidelines:
         cards:
           c1:
@@ -2809,6 +2850,7 @@ ro:
     plan_submitted_for_manager_approval: Planul dumneavoastră individual de dezvoltare a fost trimis spre aprobarea managerului.
     private: Privat
     public: Public
+    reason_for_rejection: Motivul respingerii
     reflective_questions:
       already_completed: IDP a fost deja completat, nu puteți răspunde la întrebări acum.
       answer: Răspunde
@@ -2821,7 +2863,9 @@ ro:
         max_words: Răspunsul permite un maxim %{count} cuvinte
         min_words: Răspunsul necesită cel puțin %{count} cuvinte
         required: Răspunsul la întrebare este necesar
+      max_word_limit: Trebuie să fie cel mult %{max} cuvinte
       max_words: Cuvinte maxime
+      min_word_limit: Trebuie să fie cel puțin %{min} cuvinte
       min_words: Cuvinte minime
       no_answer_provided: Nu s-a dat încă niciun răspuns
       no_reflective_questions: Fără întrebări reflexive
@@ -2834,6 +2878,7 @@ ro:
       updated_successfully: Răspunsurile dumneavoastră au fost actualizate cu succes
       word_limit: Trebuie să fie între %{min} și %{max} cuvinte
       words: Cuvinte
+    reject_plan: Planul de respingere
     remove_skill: Eliminați abilitatea
     remove_skill_from_plan: Eliminați %{name} de abilități din plan
     removed_development_action: Acțiune de dezvoltare eliminată
@@ -2854,6 +2899,7 @@ ro:
     summary_logs: Jurnale sumare pentru %{reporteeName}
     technical: Tehnic
     user_idp_status:
+      ai_assisted_idp_in_progress: IDP asistat de AI în curs de desfășurare
       approved: Aprobat
       completed: Completat
       completion_not_started: Finalizarea nu a început
@@ -2973,6 +3019,7 @@ ro:
     usage_overview: Vizualizați utilizarea licențelor
     usages: Uzanţele
   licenses:
+    client_usage: Utilizarea clientului
     enabled: Activat
     end_date: Data de încheiere
     not_enough_idp_license: Nu sunt suficiente licențe IDP, vă rugăm să contactați administratorul
@@ -2981,6 +3028,10 @@ ro:
     not_enough_proctoring_credits: Nu sunt suficiente credite pentru a începe sesiunea de supraveghere
     number: Număr
     overuse_number: Suprautilizare
+    project_limit_reached: Limita de utilizare atinsă pentru '%{license_name}', vă rugăm să contactați administratorul
+    project_specific: Proiect specific
+    project_specific_license: Licență Specifică Proiectului
+    project_usage: Utilizarea proiectului
     report_family: Pachet de rapoarte
     start_date: Data de începere
     title: Licență
@@ -2992,6 +3043,34 @@ ro:
       threesixty: Treișaizeci
     used_number: Licențe folosite
     used_out_of: "%{used} din %{total}"
+  lti:
+    oidc_auth_form:
+      errors:
+        client_id:
+          blank: Este necesar ID-ul clientului
+          invalid: ID-ul clientului nu corespunde cu identificatorul de unealtă înregistrat
+          validation_failed: Validarea ID-ului clientului a eșuat
+        login_hint:
+          assessment_completed: Evaluarea utilizatorului este deja finalizată
+          blank: Este necesar un indiciu de autentificare
+          invalid_user_assessment: Indiciul de autentificare nu face referire la o evaluare validă a utilizatorilor
+        lti_deployment_id:
+          not_found: ID-ul de implementare nu face referire la o integrare validă
+        nonce:
+          blank: Este necesar nonce
+        redirect_uri:
+          blank: Este necesar URI-ul de redirecționare
+          has_fragment: URI-ul de redirecționare nu trebuie să conțină un fragment
+          https_required: URI-ul de redirecționare trebuie să folosească HTTPS în producție
+          invalid_format: URI-ul de redirecționare trebuie să fie un format URI valid
+          missing_host: URI-ul de redirecționare trebuie să includă o gazdă
+          scheme_not_allowed: URI-ul de redirecționare trebuie să folosească protocolul HTTP sau HTTPS
+        response_type:
+          blank: Este necesar tipul de răspuns
+          invalid: Tipul de răspuns trebuie să fie "id_token"
+        scope:
+          blank: Este necesară sfera de aplicare
+          invalid: Scopul trebuie să fie "openid"
   mailer:
     copyright:
       text: Lighthouse. Toate drepturile rezervate
@@ -3237,10 +3316,12 @@ ro:
         pearson: Pearson
         saville: Saville
         skillvue: Skillvue
+        yoodli: Yoodli
     form:
       load_from_mettl: Încărcare de la Mettl
       load_from_pearson: Încărcare de la Pearson
       load_from_skillvue: Încărcați de la Skillvue
+      load_from_yoodli: Încărcătură de la Yoodli
       none_external: Niciunul - Utilizați generatorul de rapoarte
     language: Limba raportului
     language_updated: Limba raportului a fost actualizată cu succes

@@ -64,6 +64,10 @@ de:
         validates_admins: Admins haben keinen Zugriff auf die Kampagne.
       report_families_reports:
         report_exists: Dieser Bericht ist bereits Teil des Berichtspakets
+      saml_service_provider:
+        invalid_url: 'Ungültiges URL-Format: %{url}'
+        must_be_array: Muss ein Array sein
+        must_not_be_empty: Darf nicht leer sein
       size?: größe sollte kleiner sein %{size}
       skill:
         already_added: Skill mit demselben Namen wurde bereits hinzugefügt.
@@ -94,6 +98,7 @@ de:
         unique_name: Ein Filter mit demselben Namen existiert bereits.
       workshop_invited_subject_create:
         already_exists: Der Betreff ist bereits in der Einladung enthalten.
+        part_of_other_workshop_invite: Das Subjekt ist bereits zum '%{workshop_invite_name}' eingeladen.
       workshop_subject_create:
         already_exists: Das Thema existiert bereits in diesem Assessment Center.
         part_of_other_workshop: Betreff ist bereits Teilnehmer von '%{workshop_name}'.

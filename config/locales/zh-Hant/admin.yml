@@ -108,5 +108,6 @@ zh-Hant:
     subject_part_of_other_invite: 主旨包含電子郵件%{user_email}已被邀請至「%{workshop_invite_name}」
     user_report_events: 使用者報告事件
     users: 使用者
+    validation_error: 驗證過程中發生錯誤
     view_licenses: 檢視授權
     year: 國家

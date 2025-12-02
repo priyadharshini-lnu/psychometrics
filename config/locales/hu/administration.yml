@@ -95,6 +95,12 @@ hu:
           title: Megerősít
       permissions:
         labels:
+          aiArtifacts:
+            export: Kivitel
+            import: Importál
+            manage: Kezel
+            title: MI tárgyak
+            view: Nézet
           apiKeys:
             manage: Kezel
             title: API-kulcsok
@@ -220,9 +226,11 @@ hu:
           projects:
             manage: Kezel
             manage_admins: Adminisztrátorok kezelése
+            manage_licenses: Licencek kezelése
             manage_users: Felhasználók kezelése
             title: Projektek
             view: Nézet
+            view_licenses: Engedélyek megtekintése
           questions:
             manage: Kezel
             title: Kérdések
@@ -284,6 +292,10 @@ hu:
             manage: Kezel
             title: SMS-meghívók
             view: Nézet
+          userIdpPlans:
+            manage: Kezel
+            title: Felhasználói IDP tervek
+            view: Nézet
           users:
             reset_password: Jelszó visszaállítása
             title: Felhasználók
@@ -296,6 +308,9 @@ hu:
     ai_artifacts:
       artifact_results: Műtermék eredményei
       code: Kód
+      export:
+        success_msg: Folyamatban van AI artefaktumok exportálása. Kérjük, ellenőrizze az állapotot az értesítésekben.
+      export_ai_artifacts: MI tárgyak exportálása
       form:
         add_assessment: Értékelés hozzáadása
         ai_assistant: AI asszisztens
@@ -320,6 +335,12 @@ hu:
       generated_at_time: Generálva %{time}
       generated_value: Generált érték
       id: AZONOSÍTÓ
+      import:
+        download_example_csv: CSV példa letöltése
+        info_msg: A feltöltött fájlt beállították importra. Kérjük, ellenőrizze az állapotot az értesítésekben.
+      import_action:
+        title: Kampány AI tárgyak importálása
+      import_ai_artifacts: MI tárgyak importálása
       key: Kulcs
       name: Név
       parsed_dependencies:
@@ -335,6 +356,10 @@ hu:
         settings: Beállítások
       test_generate: Teszt generálása
       unsaved_changes: A nem mentett módosítások jelen vannak, fontolja meg az űrlap elküldését, hogy frissített választ generáljon a Playgroundtól.
+      used_tokens:
+        input_tokens: Bemeneti tokenek
+        output_tokens: Kimeneti tokenek
+        title: Token használat
     ai_assistants:
       actions:
         create: AI asszisztens létrehozása
@@ -929,6 +954,17 @@ hu:
         report_update: A jelentés frissül
         scoring_update: Frissült a pontozás
         trash_empty: A kuka megjegyzés üres
+    campaign_ai_artifacts:
+      export:
+        details: Kampány AI Artifact-ok sikeresen exportálva
+    campaign_ai_artifacts_import:
+      errors:
+        ai_assistant_not_found: 'Az AI asszisztens nem talált meg azonosítóhoz: %{id}'
+        campaign_factor_not_found: Kampányfaktor a "%{code}" kóddal ebben a kampányban nem található
+        dependency_not_found: Függőségi %{type} azonosítóval %{id} nem talált
+        file_required: Fájl szükséges az importhoz
+        save_failed: 'Nem sikerült menteni az AI "%{code}" műtárgyat: %{message}'
+        sheet_column_not_found: A "%{name}" név oszlop nem található a kampány- vagy projekt adatlapjain
     campaign_factor_import:
       errors:
         assessment_not_found_in_campaign: A(z) %{assessment_id} értékelésazonosító nem található meg a kampányban
@@ -1240,6 +1276,7 @@ hu:
         archived: Archivált
         disable: Archívál
         enable: Archiválás visszavonása
+      clients: Ügyfelek
       copy:
         successfully: A(z) "%{name}" ügyfél bérleti jog másolása sikeresen megtörtént.
       create:
@@ -2261,6 +2298,10 @@ hu:
           accesssheet_manage: Hozzáférési lap kezelése
           accesssheet_settings: Hozzáférési lap beállításai
           accesssheet_view: Hozzáférési lap nézet
+    header:
+      logout:
+        content: Nyomd meg a Cancel gombot, ha folytatni szeretnéd a munkát. Nyomd meg az OK-t, hogy kijelentkezz a jelenlegi felhasználóról.
+        title: Biztos vagy benne, hogy ki akarsz jelentkezni?
     hogan:
       errors:
         new_assessment_response_not_allowed:
@@ -2317,10 +2358,12 @@ hu:
         assigned_data: Hozzárendelt adatok
         assigned_date: Hozzárendelt dátum
         completion_date: Befejezés dátuma
+        current_job_role: Jelenlegi munkakör
         division: Részleg
         name: Név
         publish_date: Közzététel dátuma
         review_date: Felülvizsgálat dátuma
+        target_job_role: Célmunka szerep
       fields_label: Mezők
       global_skills: Globális készségek
       idp: IDP
@@ -2548,6 +2591,13 @@ hu:
         details: Részletek
         name: Integráció neve
       details:
+        client_id: Kliens ID
+        deployment_id: Telepítési azonosító
+        platform_access_token_url: Platform Access Token URL
+        platform_authentication_request_url: Platform hitelesítési kérelmek URL
+        platform_host_name: Platform gazdanév
+        platform_id: Platform ID
+        platform_public_keyset_url: Platform nyilvános kulcskészlet URL
         provider: Szolgáltató neve
         webhookUrl: Webhook URL-címe
         webhookUrls: Webhook URL-címek
@@ -2578,11 +2628,16 @@ hu:
         skillvue:
           apiKey: API-kulcs
           apiKeyRequired: API-kulcs szükséges
+        yoodli:
+          keyset_url: Kulcskészlet URL
+          launch_url: Indítási URL
+          login_url: Bejelentkezési URL
       names:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
         skillvue: Skillvue
+        yoodli: Yoodli
       validations:
         iiht:
           tenancy_name_present: A bérleti jog elnevezése már jelen van egy másik projektben
@@ -2592,6 +2647,24 @@ hu:
         skillvue:
           api_key_present: Az API-kulcs már jelen van egy másik projektben
       view_all_schedules: Az összes Mettl-menetrend megtekintése
+      yoodli_assessments:
+        add_assessment: Add a Yoodli értékelés
+        columns:
+          actions: Műveletek
+          created_at: 'Létrehozva:'
+          name: Értékelés neve
+          product_id: Termék azonosító
+        delete_confirm: Biztos vagy benne, hogy törölni akarod ezt a Yoodli értékelést?
+        edit_assessment: 'Szerkesztés: Yoodli értékelés'
+        manage_catalog: Yoodli értékelések kezelése
+        messages:
+          create_success: A Yoodli értékelés '%{name}' sikeresen létrejött
+          delete_success: A Yoodli értékelést sikeresen törölték
+          update_success: A Yoodli értékelés '%{name}' sikeresen frissítette
+        placeholders:
+          name: Írd be az értékelési név
+          product_id: A termék azonosítója
+        search: Keresés
     interview_questions:
       delete_confirmation: Biztosan törölni akarja ezt az interjúkérdést?
       description: Leírás
@@ -2742,9 +2815,12 @@ hu:
     navigation:
       audit_logs: Auditnaplók
       availability: Elérhetőség
+      configuration: Konfiguráció
+      content: Tartalom
       dashboard: Irányítópult
       factors: Tényezők
       innovation_styles: Innovációs stílusok
+      logout: Jel
       occupations: Foglalkozások
       registration_codes: Regisztrációs kódok
       skills_taxonomy: Készségek taxonómiája
@@ -2983,6 +3059,7 @@ hu:
           by_skill_exists_id_missing: '%{row_number}. sor: A "%{name}" készség jártassági szintje már létezik. Kérjük, adja meg az azonosítót a frissítéshez.'
           by_skill_missing: '%{row_number} sor: A projektnek és a készségnek jelen kell lennie a "by_skill" típushoz'
           by_skill_type_exists_id_missing: '%{row_number}. sor: A "%{skill_type}" képzettségtípus jártassági szintje már létezik. Kérjük, adja meg az azonosítót a frissítéshez.'
+          by_skill_type_missing: '%{row_number}. sor: A "by_skill_type" típushoz a projektnek és a képességtípusnak jelen kell lennie'
           default_global_exists_id_missing: '%{row_number}. sor: Már létezik egy globális szintű "alapértelmezett" ProficiencyLevel. Kérjük, adja meg az azonosítót a frissítéshez.'
           default_project_exists_id_missing: '%{row_number}. sor: Már létezik egy projektszintű "alapértelmezett" ProficiencyLevel. Kérjük, adja meg az azonosítót a frissítéshez.'
           invalid_csv_format: 'Érvénytelen CSV-formátum: %{message}'
@@ -3297,6 +3374,7 @@ hu:
         mask_identity_for_pearson: Adatok maszkolása a Pearson számára
         mask_identity_for_saville: Adatok maszkolása a Saville számára
         mask_identity_for_skillvue: Adatok maszkolása a Skillvue számára
+        mask_identity_for_yoodli: Maszkadatok Yoodlihoz
         privacy_link: Adatvédelmi hivatkozás engedélyezése
         privacy_link_label: Adatvédelmi hivatkozás
         privacy_link_placeholder: Adja meg az adatvédelmi hivatkozást
@@ -3472,6 +3550,7 @@ hu:
           graph_value: Grafikon értéke
         graph_value_condition_not_supported_msg: A gráférték-feltételek nem támogatottak ennél a gráftípusnál. Ez a lehetőség jelenleg csak az alábbi gráftípusok esetében érhető el.
         graph_value_conditions_title: Grafikonérték feltételei
+        hide_responses_with_no_data: Válaszok elrejtése adat nélkül
         if_graph_value_is: 'Ha a grafikon értéke:'
         job_roles:
           current: Jelenlegi munkaköri tényezők
@@ -3491,6 +3570,7 @@ hu:
           and: ÉS
           or: VAGY
         prevent_value_overlap: Értékátfedés megakadályozása
+        randomize_answers_order: Válaszok sorrendje
         skill_type_label: Szűrés képességtípus szerint
         skill_type_placeholder: Szakértelem típusának kiválasztása
         skill_types:
@@ -4112,6 +4192,11 @@ hu:
             missing_columns: 'Hiányzó kötelező oszlopok: %{columns}'
             save_failed: 'Hiba a(z) %{id} készség feldolgozásában: %{message}'
             skill_not_found: A(z) %{id} azonosítójú készség nem található
+      vector:
+        generate_embedding: Generált beágyazás
+        generate_embedding_failure_msg: Nem sikerült sorba sorolni a képesség beágyazó generáló feladatot. Kérlek, próbáld meg újra.
+        generate_embedding_success_msg: A képességbeágyazású generáló munka sikeresen sorba került. Kérjük, ellenőrizze az állapotot az értesítésekben.
+        label: Vektoros DB
     skills_taxonomy:
       tabs:
         job_roles: Munkakörök
@@ -4355,8 +4440,13 @@ hu:
         this_question_has_randomization: Ez a kérdés véletlenszerűen történik
     table:
       entries:
-        selected: 1 sor kiválasztva
-        total: 'Összesen : 1'
+        selected:
+          one: 1 sor kiválasztva
+          other: "{{count}} sorok kiválasztottak"
+        total:
+          one: 'Összesen: 1'
+          other: 'Összesen : {{count}}'
+          zero: 'Összesen: 0'
       more_actions: További műveletek
     taxonomy:
       import:

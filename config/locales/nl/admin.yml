@@ -108,5 +108,6 @@ nl:
     subject_part_of_other_invite: Onderwerp met e-mail %{user_email} al uitgenodigd is om '%{workshop_invite_name}' te
     user_report_events: Gebeurtenissen gebruikersrapport
     users: Gebruikers
+    validation_error: Tijdens de validatie deed zich een fout voor
     view_licenses: Licenties bekijken
     year: Land

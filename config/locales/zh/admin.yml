@@ -108,5 +108,6 @@ zh:
     subject_part_of_other_invite: 邮件主题已%{user_email}已被邀请“%{workshop_invite_name}”
     user_report_events: 用户报告事件
     users: 用户
+    validation_error: 验证过程中发生了错误
     view_licenses: 查看许可证
     year: 国家

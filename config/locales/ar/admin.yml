@@ -108,5 +108,6 @@ ar:
     subject_part_of_other_invite: الموضوع الذي يحمل بريدا إلكترونيا %{user_email} مدعو بالفعل إلى '%{workshop_invite_name}'
     user_report_events: أحداث تقارير المستخدم
     users: المستخدمون
+    validation_error: حدث خطأ أثناء التحقق
     view_licenses: عرض التراخيص
     year: البلد

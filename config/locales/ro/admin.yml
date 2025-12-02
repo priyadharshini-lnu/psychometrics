@@ -108,5 +108,6 @@ ro:
     subject_part_of_other_invite: Subiectul cu email %{user_email} este deja invitat la "%{workshop_invite_name}"
     user_report_events: Evenimente de raportare a utilizatorilor
     users: Utilizatorii
+    validation_error: A apărut o eroare în timpul validării
     view_licenses: Vizualizați licențele
     year: Țara
