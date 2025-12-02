@@ -47,7 +47,7 @@ environment ENV.fetch('RAILS_ENV', 'development')
 # block.
 #
 preload_app!
-rackup 'config.ru'
+rackup DefaultRackup
 # The code in the `on_worker_boot` will be called if you are using
 # clustered mode by specifying a number of `workers`. After each worker
 # process is booted this block will be run, if you are using `preload_app!`
