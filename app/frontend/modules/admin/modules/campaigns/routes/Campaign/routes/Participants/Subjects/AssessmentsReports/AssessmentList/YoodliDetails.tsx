@@ -28,7 +28,7 @@ export const YoodliDetails: FC<Props> = ({
           className="va-t w-30"
           labelStyle={{ width: '40%' }}
           contentStyle={{ width: '60%' }}
-          label={I18n.t('campaign_assessment.column.yoodli_external_assessment_id')}
+          label={I18n.t('admin.yoodli_external_assessment_id')}
           key="yoodli_external_assessment_id"
         >
           {assessment.yoodliUserAssessmentDetails?.externalAssessmentId ?? ''}
@@ -37,10 +37,19 @@ export const YoodliDetails: FC<Props> = ({
           className="va-t w-30"
           labelStyle={{ width: '40%' }}
           contentStyle={{ width: '60%' }}
-          label={I18n.t('campaign_assessment.column.yoodli_email_id')}
+          label={I18n.t('admin.yoodli_email_id')}
           key="yoodli_email_id"
         >
           {assessment.yoodliUserAssessmentDetails?.email ?? ''}
+        </Descriptions.Item>
+        <Descriptions.Item
+          className="va-t w-30"
+          labelStyle={{ width: '40%' }}
+          contentStyle={{ width: '60%' }}
+          label={I18n.t('admin.yoodli_activity_id')}
+          key="yoodli_activity_id"
+        >
+          {assessment.yoodliUserAssessmentDetails?.yoodliActivityId ?? ''}
         </Descriptions.Item>
       </Descriptions>
     </>

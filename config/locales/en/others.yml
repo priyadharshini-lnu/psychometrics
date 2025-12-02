@@ -1488,8 +1488,6 @@ en:
       skillvue_email_id: Skillvue Candidate Email ID
       skillvue_external_assessment_id: Skillvue Assessment ID
       universal_link: Universal link
-      yoodli_email_id: Yoodli Candidate Email ID
-      yoodli_external_assessment_id: Yoodli Assessment ID
     drawer:
       mettl_schedule_name: Mettl Schedule Name
       title: Assessment Details

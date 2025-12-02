@@ -146,3 +146,6 @@ en:
     validation_error: An error occurred during validation
     view_licenses: View Licenses
     year: Year
+    yoodli_activity_id: Yoodli Activity ID
+    yoodli_email_id: Yoodli Candidate Email ID
+    yoodli_external_assessment_id: Yoodli Assessment ID
