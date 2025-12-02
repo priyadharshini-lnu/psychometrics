@@ -1672,6 +1672,9 @@ only: %i[index create update]
                 post :generate
                 get :revisions
               end
+              collection do
+                post :render_prompt_template
+              end
             end
           end
         end

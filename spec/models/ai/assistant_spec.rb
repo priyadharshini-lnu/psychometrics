@@ -144,6 +144,69 @@ RSpec.describe AI::Assistant, type: :model do
 
       expect(captured_instructions).to eq(expected_instructions.strip)
     end
+
+    describe 'advanced prompting' do
+      let(:user) { create(:user) }
+      let(:chat) { instance_double('AI::AssistantChat') }
+      let(:llm_chat) { double('LLM Chat') }
+      let(:llm_context) { double('context') }
+      let(:template_context) { { user: user, campaign: 'test_campaign' } }
+
+      before do
+        allow(assistant.chats).to receive(:create!).and_return(chat)
+        allow(chat).to receive(:with_instructions)
+        allow(chat).to receive(:with_schema).and_return(chat)
+        allow(chat).to receive(:with_tools).and_return(chat)
+        allow(chat).to receive(:with_params).and_return(chat)
+        allow(chat).to receive(:to_llm).and_return(llm_chat)
+        allow(llm_chat).to receive(:with_context)
+        allow(assistant).to receive(:ruby_llm_context).and_return(llm_context)
+        allow(assistant).to receive(:has_ruby_llm_schema?).and_return(false)
+        allow(assistant).to receive(:output_schema_as_context).and_return('')
+      end
+
+      context 'when advanced_prompting_enabled is true' do
+        before do
+          assistant.advanced_prompting_enabled = true
+          assistant.system_prompt = 'Hello {{ user.name }}'
+        end
+
+        it 'renders the system prompt using AI::PromptTemplate::Renderer' do
+          expect(AI::PromptTemplate::Renderer).to receive(:call!).
+            with(assistant.system_prompt, **template_context).
+            and_return('Hello John Doe')
+
+          captured_instructions = nil
+          allow(chat).to receive(:with_instructions) do |instructions|
+            captured_instructions = instructions
+          end
+
+          assistant.for_user(user, prompt_template_context: template_context)
+
+          expect(captured_instructions).to include('Hello John Doe')
+        end
+      end
+
+      context 'when advanced_prompting_enabled is false' do
+        before do
+          assistant.advanced_prompting_enabled = false
+          assistant.system_prompt = 'Hello {{ user.name }}'
+        end
+
+        it 'uses the system prompt as-is without rendering' do
+          expect(AI::PromptTemplate::Renderer).not_to receive(:call!)
+
+          captured_instructions = nil
+          allow(chat).to receive(:with_instructions) do |instructions|
+            captured_instructions = instructions
+          end
+
+          assistant.for_user(user, prompt_template_context: template_context)
+
+          expect(captured_instructions).to include('Hello {{ user.name }}')
+        end
+      end
+    end
   end
 
   describe 'deletion and cascading' do

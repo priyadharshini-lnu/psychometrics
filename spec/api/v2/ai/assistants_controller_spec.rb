@@ -454,5 +454,86 @@ describe Api::V2::Administration::AI::AssistantsController, swagger_doc: 'v2/swa
         end
       end
     end
+
+    path '/ai/assistants/render_prompt_template' do
+      post 'Render Prompt Template' do
+        operationId 'RenderPromptTemplate'
+        description 'Render a prompt template using liquid templating with campaign and user context'
+        tags 'AI Assistants'
+        consumes 'application/vnd.api+json'
+        produces 'application/json'
+        security [basic: []]
+
+        parameter name: :template_params, in: :body, schema: {
+          type: :object,
+          properties: {
+            data: {
+              type: :object,
+              properties: {
+                attributes: {
+                  type: :object,
+                  properties: {
+                    template: { type: :string, example: 'Hello {{user.first_name}}! Campaign: {{campaign.name}}' },
+                    campaign_id: { type: :string, example: '123' }
+                  },
+                  required: %w[template campaign_id]
+                }
+              }
+            }
+          }
+        }, required: true
+
+        response '200', 'Template rendered successfully' do
+          let!(:campaign) { create(:campaign, name: 'Test Campaign') }
+          let(:template_params) do
+            {
+              data: {
+                attributes: {
+                  template: 'Hello {{user.first_name}} {{user.last_name}}! Campaign: {{campaign.name}}',
+                  campaign_id: campaign.id.to_s
+                }
+              }
+            }
+          end
+
+          before do
+            stub_wisper_publisher('AI::PromptTemplate::Renderer', :call, :ok, 'Hello John Doe! Campaign: Test Campaign')
+          end
+
+          run_test! do |response|
+            expect(response.status).to eq(200)
+            data = JSON.parse(response.body)
+            expect(data).to have_key('attributes')
+            expect(data['attributes']).to have_key('rendered_prompt')
+          end
+        end
+
+        response '422', 'Template rendering failed' do
+          let!(:campaign) { create(:campaign, name: 'Test Campaign') }
+          let(:template_params) do
+            {
+              data: {
+                attributes: {
+                  template: 'Hello {{user.invalid_field}}! Campaign: {{campaign.name}}',
+                  campaign_id: campaign.id.to_s
+                }
+              }
+            }
+          end
+
+          before do
+            stub_wisper_publisher('AI::PromptTemplate::Renderer', :call, :error,
+                                  'Template rendering error: syntax error')
+          end
+
+          run_test! do |response|
+            expect(response.status).to eq(422)
+            data = JSON.parse(response.body)
+            expect(data).to have_key('errors')
+            expect(data['errors'][0]['detail']).to eq('Template rendering error: syntax error')
+          end
+        end
+      end
+    end
   end
 end

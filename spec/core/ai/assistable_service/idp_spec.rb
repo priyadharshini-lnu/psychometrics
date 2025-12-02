@@ -228,6 +228,7 @@ describe AI::AssistableService::Idp do
           chat: assistant_chat,
           ignore_user_prompt: true,
           ask_params: nil,
+          prompt_template_context: nil,
           params: {}
         )
       end
@@ -312,6 +313,30 @@ describe AI::AssistableService::Idp do
 
         expect(plan.reload.ai_assisted_idp_session.latest_chat).to eq(original_chat)
       end
+    end
+  end
+
+  describe '#prompt_template_context' do
+    let(:service) { described_class.new(plan, user, instructions, options) }
+
+    it 'returns the correct context hash with campaign and user' do
+      context = service.send(:prompt_template_context)
+
+      expect(context).to be_a(Hash)
+      expect(context[:campaign]).to eq(campaign)
+      expect(context[:user]).to eq(user)
+    end
+
+    it 'includes campaign from the assistable' do
+      context = service.send(:prompt_template_context)
+
+      expect(context[:campaign]).to eq(plan.campaign)
+    end
+
+    it 'includes the current user' do
+      context = service.send(:prompt_template_context)
+
+      expect(context[:user]).to eq(user)
     end
   end
 end

@@ -540,7 +540,8 @@ CREATE TABLE public.ai_assistants (
     model_id character varying,
     assistant_type integer DEFAULT 0 NOT NULL,
     dependencies jsonb DEFAULT '[]'::jsonb NOT NULL,
-    status integer DEFAULT 0 NOT NULL
+    status integer DEFAULT 0 NOT NULL,
+    advanced_prompting_enabled boolean DEFAULT false NOT NULL
 );
 
 
@@ -19164,6 +19165,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20251127063311'),
 ('20251125161740'),
 ('20251121123824'),
 ('20251121093812'),
@@ -19189,16 +19191,16 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20251024030039'),
 ('20251023050642'),
 ('20251015075724'),
-('20251012210205'),
-('20251007225856'),
-('20251007225411'),
 ('20251014070912'),
+('20251012210205'),
 ('20251010111349'),
 ('20251010104305'),
 ('20251008145654'),
 ('20251008145653'),
 ('20251008144511'),
 ('20251008144510'),
+('20251007225856'),
+('20251007225411'),
 ('20251006101155'),
 ('20251006100719'),
 ('20251006071723'),

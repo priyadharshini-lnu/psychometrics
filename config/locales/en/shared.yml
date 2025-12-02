@@ -3,7 +3,10 @@ en:
   shared:
     action: Action
     add: Add
+    advanced: Advanced
     authentication_failed: Authentication failed. Please try again.
+    basic: Basic
+    campaign_id: Campaign ID
     cancel: Cancel
     change_password: Change Password
     clear_filters: Clear Filters

@@ -37,6 +37,15 @@ module AI
 
       private
 
+      # TODO: prompt templating is now applicable only for IDP assistant,
+      # in future this should be extended to other assistables
+      def prompt_template_context
+        {
+          campaign: campaign,
+          user: current_user
+        }
+      end
+
       def handle_assistant_service_error(error_message, error = nil)
         error_response, error_meta = handle_assistant_error_response(error_message, error)
         mark_session_failed!(error_response, meta: error_meta)
@@ -130,7 +139,11 @@ module AI
       end
 
       def campaign_user
-        @campaign_user ||= CampaignUser.find_by(user: current_user, campaign: assistable.campaign)
+        @campaign_user ||= CampaignUser.find_by(user: current_user, campaign: campaign)
+      end
+
+      def campaign
+        @campaign ||= assistable.campaign
       end
 
       def user_idp_document_attachment

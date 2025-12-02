@@ -37,7 +37,8 @@ module AI
     def create_new_chat
       tools = options[:tools] || []
       params = options[:params] # Params for the requests
-      assistant.for_user(current_user, tools: tools, params: params)
+      prompt_template_context = options[:prompt_template_context] || {}
+      assistant.for_user(current_user, tools: tools, params: params, prompt_template_context: prompt_template_context)
     end
 
     def user_prompt
