@@ -64,6 +64,10 @@ it:
         validates_admins: Gli amministratori non hanno accesso alla campagna.
       report_families_reports:
         report_exists: Questo Rapporto è già parte del Pacchetto report
+      saml_service_provider:
+        invalid_url: 'Formato URL non valido: %{url}'
+        must_be_array: Deve essere un array
+        must_not_be_empty: Non può essere vuoto
       size?: dovrebbe essere inferiore a %{size}
       skill:
         already_added: Skill con lo stesso nome già aggiunta.
@@ -94,6 +98,7 @@ it:
         unique_name: Esiste già un filtro con lo stesso nome.
       workshop_invited_subject_create:
         already_exists: L'oggetto esiste già nell'invito.
+        part_of_other_workshop_invite: Il soggetto è già invitato a '%{workshop_invite_name}'.
       workshop_subject_create:
         already_exists: Il soggetto esiste già in questo Assessment Center.
         part_of_other_workshop: Il soggetto è già un partecipante di "%{workshop_name}".

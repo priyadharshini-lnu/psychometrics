@@ -108,5 +108,6 @@ hr:
     subject_part_of_other_invite: Subjekt s e-mailom %{user_email} već je pozvan da '%{workshop_invite_name}'
     user_report_events: Događaji u izvješću korisnika
     users: Korisnici
+    validation_error: Tijekom validacije došlo je do pogreške
     view_licenses: Prikaz licenci
     year: Država

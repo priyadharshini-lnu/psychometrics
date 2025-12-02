@@ -232,6 +232,19 @@ vi:
               contains_repeats: Mật khẩu không được chứa lặp lại
               too_short: Mật khẩu quá ngắn. Yêu cầu ký tự %{count} tối thiểu
               too_weak: 'Mật khẩu phải chứa: Tối thiểu 1 chữ thường, 1 chữ hoa, 1 số và 1 ký tự đặc biệt.'
+        project_license:
+          attributes:
+            base:
+              exceeds_available: Không thể phân bổ nhiều hơn giấy phép có sẵn
+            license_id:
+              already_present: đã có mặt cho dự án này
+            usage_limit:
+              cant_be_less_than_used: không thể đặt dưới số lần sử dụng hiện tại của %{used_count}
+              cant_be_more_than_available: không được vượt quá giới hạn khả dụng trên giấy phép (%{usage_limit})
+              exceeds_available: Không được nhiều hơn giấy phép có sẵn
+              less_than_used_number: Không được ít hơn số lượng giấy phép được sử dụng
+            used_number:
+              overused: Không được nhiều hơn giấy phép có sẵn.
         questions_import_block_form:
           attributes:
             name:
@@ -422,6 +435,10 @@ vi:
               inclusion: phải là một boolean
             start_date_time:
               invalid_datetime: không hợp lệ
+        yoodli:
+          attributes:
+            name:
+              not_unique: Sự tích hợp này đã có mặt cho dự án này.
   activerecord:
     attributes:
       administration/assessments/assign_form:
@@ -452,6 +469,7 @@ vi:
           simulation: Mô phỏng
           skillvue: Kỹ năng
           threesixty: Chiến dịch 360
+          yoodli: Yoodli
         category: Loại
         created_at: Ngày tạo
         description: Sự miêu tả
@@ -469,6 +487,7 @@ vi:
           saville: Đánh giá Saville
           simulation: Đánh giá mô phỏng
           skillvue: Đánh giá Skillvue
+          yoodli: Đánh giá Yoodli
         updated_at: Ngày sửa đổi
       assign:
         completed_at: Ngày hoàn thành
@@ -836,6 +855,7 @@ vi:
         data_report_export: Xuất báo cáo dữ liệu
         export_admin_with_permissions: Xuất quản trị viên có quyền
         export_assessment_questions: Câu hỏi đánh giá xuất khẩu
+        export_campaign_ai_artifacts: Xuất hiện vật AI của chiến dịch
         export_campaign_factors: Các yếu tố chiến dịch xuất khẩu
         export_campaign_scorings: Xuất chấm điểm chiến dịch
         export_dashboard_as_file: Xuất Bảng điều khiển dưới dạng tệp
@@ -857,10 +877,12 @@ vi:
         export_user_report_events: Xuất sự kiện báo cáo người dùng
         export_users: Xuất khẩu của người dùng chiến dịch
         external_assessment_export: Xuất kết quả bên ngoài
+        generate_embedding_skills: Tạo nhúng cho các kỹ năng
         import_accesssheet: Phụ kiện nhập khẩu
         import_assessment_questions: Câu hỏi đánh giá nhập khẩu
         import_assessment_translations: Bản dịch đánh giá nhập khẩu
         import_assessors: Giám định viên nhập khẩu
+        import_campaign_ai_artifacts: Nhập hiện vật AI của chiến dịch
         import_campaign_factors: Các yếu tố chiến dịch nhập khẩu
         import_datasheet: Bảng dữ liệu nhập
         import_development_action_translations: Bản dịch hành động phát triển nhập khẩu
@@ -1028,6 +1050,7 @@ vi:
         saville_assessment_name: Tên đánh giá Saville
         simulation_assessment_name: Tên đánh giá mô phỏng
         skillvue_assessment_name: Tên đánh giá Skillvue
+        yoodli_assessment_name: Tên đánh giá Yoodli
       translations_migrated: Bản dịch đã di chuyển
     create: Tạo
     dashboard: Bảng điều khiển
@@ -1069,6 +1092,7 @@ vi:
         simulation: Mô phỏng
         skillvue: Kỹ năng trực quan
         threesixty: Chiến dịch 360
+        yoodli: Yoodli
       status:
         finished: Xong
         in_progress: Đang tiến hành
@@ -1081,6 +1105,7 @@ vi:
         saville: Đánh giá Saville
         simulation: Đánh giá mô phỏng
         skillvue: Đánh giá Skillvue
+        yoodli: Đánh giá Yoodli
     flow:
       end_assessment_modal:
         custom_message: Thông báo kết thúc đánh giá tùy chỉnh
@@ -1444,6 +1469,8 @@ vi:
       skillvue_email_id: ID Email Ứng viên Skillvue
       skillvue_external_assessment_id: Mã đánh giá Skillvue
       universal_link: Liên kết phổ quát
+      yoodli_email_id: ID email ứng viên Yoodli
+      yoodli_external_assessment_id: ID đánh giá Yoodli
     drawer:
       mettl_schedule_name: Tên lịch trình Mettl
       title: Chi tiết đánh giá
@@ -1766,6 +1793,7 @@ vi:
       go_back: Quay lại
       import: Nhập khẩu
       insert: Chèn
+      'no': Không
       ok: OK
       publish: Xuất bản
       reject: Bác bỏ
@@ -1792,6 +1820,7 @@ vi:
       view: Cảnh
       view_all_tasks: Xem tất cả tác vụ
       view_detail: Xem chi tiết
+      'yes': Có
     column:
       action: Hoạt động
       active: Hoạt động
@@ -1905,6 +1934,7 @@ vi:
       hide: Giấu
       view: Cảnh
     validations:
+      required: Trường này là bắt buộc
       select_locale: Vui lòng chọn một số ngôn ngữ
       should_be_whole_number: nên là một số nguyên
   confirmation:
@@ -2360,6 +2390,7 @@ vi:
     error_warning: Rất tiếc, có điều gì đó không ổn với đánh giá của bạn. Vui lòng liên hệ với bộ phận hỗ trợ.
     hogan:
       cannot_start: Bạn không thể bắt đầu đánh giá hogan ngay bây giờ. Vui lòng thử sau vài phút.
+    lighthouse_app: Ngọn hải đăng Mercer
     login: Đăng nhập
     maintenance:
       notification: Lighthouse sẽ ngừng hoạt động để bảo trì theo lịch trình sau 60 giây
@@ -2461,6 +2492,8 @@ vi:
   idp:
     actions: Hành động
     add_comments: Thêm bình luận
+    add_note: Thêm ghi chú...
+    add_reason: Thêm lý do...
     added_development_action: Thêm hành động phát triển
     ai:
       assistant:
@@ -2516,6 +2549,8 @@ vi:
       welcome:
         text: Sẵn sàng lập biểu đồ tăng trưởng của bạn? Bắt đầu nào!
         title: Xin chào, tôi là trợ lý phát triển của bạn
+    approval_note: Ghi chú phê duyệt
+    approve_plan: Phê duyệt kế hoạch
     behavioral: Hành vi
     board: Ván
     change_history: Lịch sử thay đổi
@@ -2615,12 +2650,14 @@ vi:
       mark_as_complete: Đánh dấu là hoàn thành
       no_development_actions: Không có hành động phát triển
       on_the_job: Trong công việc
+      one: "[VI] 1"
       other: Khác
       private: Tư
       publish_plan: Xuất bản kế hoạch
       remove: Triệt
       save_plan: Kế hoạch tiết kiệm
       search_development_actions: Hành động phát triển tìm kiếm
+      selected_count: "%{count} chọn"
       show_development_action_information: Hiển thị thông tin Hành động Phát triển
       skill: Kỹ năng
       sprint: Chạy nước rút
@@ -2629,7 +2666,9 @@ vi:
       structured_learning_label: Học tập hợp tác
       submit_plan: Gửi kế hoạch
       success: Các hành động phát triển đã hoàn thành thành công
+      three: "[VI] 3"
       toggle_skill_privacy: Chuyển đổi quyền riêng tư của kỹ năng
+      two: "[VI] 2"
       write_here: Viết ở đây...
     direct_reportee_details: Chi tiết người được báo cáo trực tiếp
     download:
@@ -2698,10 +2737,12 @@ vi:
           assigned_data: Ngày chỉ định
           assigned_date: Ngày được giao
           completion_date: Ngày hoàn thành
+          current_job_role: Vai trò công việc hiện tại
           division: Sư đoàn
           name: Tên
           publish_date: Ngày xuất bản
           review_date: Ngày đánh giá
+          target_job_role: Vai trò công việc mục tiêu
       guidelines:
         cards:
           c1:
@@ -2802,6 +2843,7 @@ vi:
     plan_submitted_for_manager_approval: Kế hoạch phát triển cá nhân của bạn đã được đệ trình để người quản lý phê duyệt.
     private: Tư
     public: Công cộng
+    reason_for_rejection: Lý do từ chối
     reflective_questions:
       already_completed: IDP đã được hoàn thành, bạn không thể trả lời các câu hỏi lúc này.
       answer: Trả lời
@@ -2814,7 +2856,9 @@ vi:
         max_words: Câu trả lời cho phép tối đa %{count} từ
         min_words: Câu trả lời yêu cầu ít nhất %{count} từ
         required: Câu trả lời cho câu hỏi là bắt buộc
+      max_word_limit: Phải có nhiều nhất %{max} từ
       max_words: Số từ tối đa
+      min_word_limit: Phải có ít nhất %{min} từ
       min_words: Từ tối thiểu
       no_answer_provided: Chưa có câu trả lời nào được cung cấp
       no_reflective_questions: Không có câu hỏi phản ánh
@@ -2827,6 +2871,7 @@ vi:
       updated_successfully: Câu trả lời của bạn đã được cập nhật thành công
       word_limit: Phải nằm trong khoảng từ %{min} đến %{max} từ
       words: Từ
+    reject_plan: Kế hoạch từ chối
     remove_skill: Loại bỏ kỹ năng
     remove_skill_from_plan: Loại bỏ %{name} kỹ năng khỏi kế hoạch
     removed_development_action: Đã xóa hành động phát triển
@@ -2847,6 +2892,7 @@ vi:
     summary_logs: Nhật ký tóm tắt cho %{reporteeName}
     technical: Kỹ thuật
     user_idp_status:
+      ai_assisted_idp_in_progress: AI hỗ trợ IDP đang được tiến hành
       approved: Chấp thuận
       completed: Hoàn thành
       completion_not_started: Hoàn thành chưa bắt đầu
@@ -2966,6 +3012,7 @@ vi:
     usage_overview: Xem mức sử dụng giấy phép
     usages: Usages
   licenses:
+    client_usage: Sử dụng khách hàng
     enabled: Kích hoạt
     end_date: Ngày kết thúc
     not_enough_idp_license: Không đủ giấy phép IDP, vui lòng liên hệ với quản trị viên
@@ -2974,6 +3021,10 @@ vi:
     not_enough_proctoring_credits: Không đủ tín chỉ để bắt đầu buổi giám sát
     number: Số
     overuse_number: Phụ cấp sử dụng quá mức
+    project_limit_reached: Đã đạt đến giới hạn sử dụng cho '%{license_name}', vui lòng liên hệ với quản trị viên
+    project_specific: Dự án cụ thể
+    project_specific_license: Giấy phép cụ thể của dự án
+    project_usage: Sử dụng dự án
     report_family: Gói báo cáo
     start_date: Ngày bắt đầu
     title: Giấy phép
@@ -2985,6 +3036,34 @@ vi:
       threesixty: Ba sáu mươi
     used_number: Giấy phép đã sử dụng
     used_out_of: "%{used} trong số %{total}"
+  lti:
+    oidc_auth_form:
+      errors:
+        client_id:
+          blank: ID khách hàng là bắt buộc
+          invalid: ID khách hàng không khớp với mã định danh công cụ đã đăng ký
+          validation_failed: Xác thực ID máy khách không thành công
+        login_hint:
+          assessment_completed: Đánh giá người dùng đã hoàn tất
+          blank: Gợi ý đăng nhập là bắt buộc
+          invalid_user_assessment: Gợi ý đăng nhập không tham chiếu đến đánh giá người dùng hợp lệ
+        lti_deployment_id:
+          not_found: ID triển khai không tham chiếu đến tích hợp hợp lệ
+        nonce:
+          blank: Bắt buộc không một lần
+        redirect_uri:
+          blank: Cần có URI chuyển hướng
+          has_fragment: URI chuyển hướng không được chứa một mảnh
+          https_required: URI chuyển hướng phải sử dụng HTTPS trong chính thức
+          invalid_format: URI chuyển hướng phải là định dạng URI hợp lệ
+          missing_host: URI chuyển hướng phải bao gồm máy chủ lưu trữ
+          scheme_not_allowed: URI chuyển hướng phải sử dụng giao thức HTTP hoặc HTTPS
+        response_type:
+          blank: Loại phản hồi là bắt buộc
+          invalid: Loại phản hồi phải là 'id_token'
+        scope:
+          blank: Phạm vi là bắt buộc
+          invalid: Phạm vi phải là 'openid'
   mailer:
     copyright:
       text: Lighthouse. Bảo lưu mọi quyền
@@ -3230,10 +3309,12 @@ vi:
         pearson: Pearson
         saville: Saville
         skillvue: Kỹ năng
+        yoodli: Yoodli
     form:
       load_from_mettl: Tải từ Mettl
       load_from_pearson: Tải từ Pearson
       load_from_skillvue: Tải từ Skillvue
+      load_from_yoodli: Tải từ Yoodli
       none_external: Không có - Sử dụng trình tạo báo cáo
     language: Ngôn ngữ báo cáo
     language_updated: Ngôn ngữ báo cáo đã được cập nhật thành công

@@ -108,5 +108,6 @@ cs:
     subject_part_of_other_invite: Subjekt s e-mailem %{user_email} je již pozván k '%{workshop_invite_name}'
     user_report_events: Hlášení uživatele Události
     users: Uživatelé
+    validation_error: Během validace došlo k chybě
     view_licenses: Zobrazit licence
     year: Země

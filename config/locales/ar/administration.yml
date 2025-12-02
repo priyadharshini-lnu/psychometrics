@@ -95,6 +95,12 @@ ar:
           title: تأكيد
       permissions:
         labels:
+          aiArtifacts:
+            export: تصدير
+            import: استورد
+            manage: أدار
+            title: قطع الذكاء الاصطناعي
+            view: منظر
           apiKeys:
             manage: إدارة
             title: مفاتيح واجهة برمجة التطبيقات
@@ -220,9 +226,11 @@ ar:
           projects:
             manage: إدارة
             manage_admins: إدارة المسؤولين
+            manage_licenses: إدارة التراخيص
             manage_users: إدارة المستخدمين
             title: المشاريع
             view: عرض
+            view_licenses: عرض التراخيص
           questions:
             manage: إدارة
             title: الأسئلة
@@ -284,6 +292,10 @@ ar:
             manage: إدارة
             title: الدعوات عبر الرسائل النصية القصيرة
             view: عرض
+          userIdpPlans:
+            manage: أدار
+            title: خطط IDP للمستخدمين
+            view: منظر
           users:
             reset_password: إعادة تعيين كلمة المرور
             title: المستخدمون
@@ -296,6 +308,9 @@ ar:
     ai_artifacts:
       artifact_results: نتائج القطع الأثرية
       code: رمز
+      export:
+        success_msg: تصدير القطع الأثرية الذكاء الاصطناعي قيد التنفيذ. يرجى التحقق من الحالة في الإشعارات.
+      export_ai_artifacts: تصدير قطع الذكاء الاصطناعي
       form:
         add_assessment: إضافة تقييم
         ai_assistant: مساعد الذكاء الاصطناعي
@@ -320,6 +335,12 @@ ar:
       generated_at_time: تم إنشاؤه في %{time}
       generated_value: القيمة المولدة
       id: معرف
+      import:
+        download_example_csv: تحميل مثال CSV
+        info_msg: تم انتظار الملف المرفوع للاستيراد. يرجى التحقق من الحالة في الإشعارات.
+      import_action:
+        title: استيراد قطع أثرية من الذكاء الاصطناعي للحملة
+      import_ai_artifacts: استيراد القطع الأثرية الذكاء الاصطناعي
       key: مفتاح
       name: اسم
       parsed_dependencies:
@@ -335,6 +356,10 @@ ar:
         settings: اعدادات
       test_generate: اختبار التوليد
       unsaved_changes: التغييرات غير المحفوظة موجودة ، ضع في اعتبارك إرسال نموذج لإنشاء استجابة محدثة من Playground.
+      used_tokens:
+        input_tokens: رموز الإدخال
+        output_tokens: رموز الإخراج
+        title: استخدام الرموز
     ai_assistants:
       actions:
         create: إنشاء مساعد ذكاء اصطناعي
@@ -929,6 +954,17 @@ ar:
         report_update: تم تحديث التقرير
         scoring_update: تم تحديث التقييم
         trash_empty: تم تفريغ التعليقات المحذوفة
+    campaign_ai_artifacts:
+      export:
+        details: تصدير قطع أثرية الذكاء الاصطناعي للحملة بنجاح
+    campaign_ai_artifacts_import:
+      errors:
+        ai_assistant_not_found: 'الذكاء الاصطناعي المساعد غير موجود للمعرف: %{id}'
+        campaign_factor_not_found: عامل الحملة مع رمز "%{code}" غير موجود في هذه الحملة
+        dependency_not_found: "%{type} الاعتماد مع الهوية %{id} لم يتم العثور عليها"
+        file_required: الملف مطلوب للاستيراد
+        save_failed: 'فشل في حفظ الذكاء الاصطناعي الأثر "%{code}": %{message}'
+        sheet_column_not_found: عمود ورقة يحمل اسم "%{name}" غير موجود في أوراق بيانات الحملة أو المشاريع
     campaign_factor_import:
       errors:
         assessment_not_found_in_campaign: لم يتم العثور على معرف التقييم '%{assessment_id}' في الحملة
@@ -1240,6 +1276,7 @@ ar:
         archived: أرشيف
         disable: أرشيف
         enable: إلغاء الأرشفة
+      clients: العملاء
       copy:
         successfully: تم نسخ عقد العميل '%{name}' بنجاح.
       create:
@@ -2259,6 +2296,10 @@ ar:
           accesssheet_manage: Accesssheet Manage
           accesssheet_settings: Accesssheet Settings
           accesssheet_view: Accesssheet View
+    header:
+      logout:
+        content: اضغط إلغاء إذا أردت الاستمرار في العمل. اضغط موافق لتسجيل خروج المستخدم الحالي.
+        title: هل أنت متأكد أنك تريد تسجيل الخروج؟
     hogan:
       errors:
         new_assessment_response_not_allowed:
@@ -2314,10 +2355,12 @@ ar:
         assigned_data: البيانات المعينة
         assigned_date: تاريخ التعيين
         completion_date: تاريخ الانتهاء
+        current_job_role: الدور الوظيفي الحالي
         division: الشعبة
         name: الاسم
         publish_date: تاريخ النشر
         review_date: تاريخ المراجعة
+        target_job_role: الدور المستهدف
       fields_label: الحقول
       global_skills: Global Skills
       idp: IDP
@@ -2545,6 +2588,13 @@ ar:
         details: Details
         name: Integration Name
       details:
+        client_id: معرف العميل
+        deployment_id: معرف النشر
+        platform_access_token_url: رابط رمز الوصول إلى المنصة
+        platform_authentication_request_url: رابط طلب التحقق من المنصة
+        platform_host_name: اسم مضيف المنصة
+        platform_id: معرف المنصة
+        platform_public_keyset_url: رابط مجموعة المفاتيح العامة للمنصة
         provider: Provider Name
         webhookUrl: Webhook URL
         webhookUrls: Webhook URLs
@@ -2575,11 +2625,16 @@ ar:
         skillvue:
           apiKey: مفتاح واجهة برمجة التطبيقات
           apiKeyRequired: مفتاح API مطلوب
+        yoodli:
+          keyset_url: رابط مجموعة المفاتيح
+          launch_url: رابط الإطلاق
+          login_url: رابط تسجيل الدخول
       names:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
         skillvue: سكيلفيو
+        yoodli: يودلي
       validations:
         iiht:
           tenancy_name_present: Tenancy name is already present in other project
@@ -2589,6 +2644,24 @@ ar:
         skillvue:
           api_key_present: مفتاح API موجود بالفعل في مشروع آخر
       view_all_schedules: View All Mettl Schedules
+      yoodli_assessments:
+        add_assessment: تقييم إضافة يودلي
+        columns:
+          actions: الاجراءات
+          created_at: تم إنشاؤه في
+          name: اسم التقييم
+          product_id: معرف المنتج
+        delete_confirm: هل أنت متأكد أنك تريد حذف هذا التقييم اليودلي؟
+        edit_assessment: تعديل تقييم يودلي
+        manage_catalog: إدارة تقييمات اليودلي
+        messages:
+          create_success: تم إنشاء تقييم يودلي '%{name}' بنجاح
+          delete_success: تم حذف تقييم يودلي بنجاح
+          update_success: تم تحديث تقييم يودلي '%{name}' بنجاح
+        placeholders:
+          name: أدخل اسم التقييم
+          product_id: ادخل معرف المنتج
+        search: بحث
     interview_questions:
       delete_confirmation: هل أنت متأكد من أنك تريد حذف سؤال المقابلة هذا؟
       description: الوصف
@@ -2739,9 +2812,12 @@ ar:
     navigation:
       audit_logs: سجلات التدقيق
       availability: التوفر
+      configuration: تكوين
+      content: محتوى
       dashboard: لوحة القيادة
       factors: العوامل
       innovation_styles: أنماط الابتكار
+      logout: الخروج
       occupations: المهن
       registration_codes: رموز التسجيل
       skills_taxonomy: تصنيف المهارات
@@ -3295,6 +3371,7 @@ ar:
         mask_identity_for_pearson: Mask data for Pearson
         mask_identity_for_saville: Mask data for Saville
         mask_identity_for_skillvue: بيانات القناع لسكيلفيو
+        mask_identity_for_yoodli: بيانات القناع ليودلي
         privacy_link: Enable Privacy Link
         privacy_link_label: Privacy Link
         privacy_link_placeholder: Enter Privacy Link
@@ -3470,6 +3547,7 @@ ar:
           graph_value: قيمة الرسم البياني
         graph_value_condition_not_supported_msg: شروط قيمة الرسم البياني غير مدعومة لهذا النوع من الرسم البياني. هذا الخيار متاح حاليا فقط لأنواع الرسوم البيانية أدناه.
         graph_value_conditions_title: شروط قيمة الرسم البياني
+        hide_responses_with_no_data: إخفاء الردود بدون بيانات
         if_graph_value_is: 'إذا كانت قيمة الرسم البياني هي:'
         job_roles:
           current: عوامل الوظيفة الحالية
@@ -3489,6 +3567,7 @@ ar:
           and: و
           or: أو
         prevent_value_overlap: منع تداخل القيمة
+        randomize_answers_order: ترتيب الإجابات عشوائيا
         skill_type_label: تصفية حسب نوع المهارة
         skill_type_placeholder: حدد نوع المهارة
         skill_types:
@@ -4113,6 +4192,11 @@ ar:
             missing_columns: 'الأعمدة المفقودة المطلوبة: %{columns}'
             save_failed: 'خطأ في معالجة معرّف المهارة %{id}: %{message}'
             skill_not_found: المهارة ذات المعرف %{id} غير موجودة
+      vector:
+        generate_embedding: توليد التضمين
+        generate_embedding_failure_msg: فشل في حجز وظيفة توليد المهارات في قائمة الانتظار. يرجى المحاولة مرة أخرى.
+        generate_embedding_success_msg: تم تأسيس وظيفة توليد المهارات بنجاح. يرجى التحقق من الحالة في الإشعارات.
+        label: فيكتور DB
     skills_taxonomy:
       tabs:
         job_roles: الأدوار الوظيفية

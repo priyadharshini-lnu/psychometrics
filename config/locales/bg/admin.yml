@@ -108,5 +108,6 @@ bg:
     subject_part_of_other_invite: Субектът с имейл %{user_email} вече е поканен на '%{workshop_invite_name}'
     user_report_events: Събития с потребителски отчет
     users: Потребители
+    validation_error: Възникна грешка по време на валидирането
     view_licenses: Преглед на лицензи
     year: Държава

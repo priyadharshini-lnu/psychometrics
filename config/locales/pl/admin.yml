@@ -108,5 +108,6 @@ pl:
     subject_part_of_other_invite: Osoba z adresem e-mail %{user_email} jest już zaproszona do '%{workshop_invite_name}'
     user_report_events: Zdarzenia zgłaszane przez użytkownika
     users: Użytkowników
+    validation_error: Podczas walidacji wystąpił błąd
     view_licenses: Zobacz licencje
     year: Kraj

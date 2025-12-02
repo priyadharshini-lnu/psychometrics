@@ -232,6 +232,19 @@ pl:
               contains_repeats: Hasło nie może zawierać powtórzeń
               too_short: Hasło jest za krótkie. Wymagana minimalna liczba znaków %{count}
               too_weak: 'Hasło musi zawierać: co najmniej 1 małą literę, 1 wielką, 1 cyfrę i 1 znak specjalny.'
+        project_license:
+          attributes:
+            base:
+              exceeds_available: Nie można przydzielić więcej niż dostępnych licencji
+            license_id:
+              already_present: Już obecny w tym projekcie
+            usage_limit:
+              cant_be_less_than_used: nie można ustawić poniżej aktualnej liczby zużycia %{used_count}
+              cant_be_more_than_available: Nie może być więcej niż dostępny limit na licencji (%{usage_limit})
+              exceeds_available: Nie może być więcej niż dostępne licencje
+              less_than_used_number: Nie może być mniejsza niż liczba używanych licencji
+            used_number:
+              overused: Nie może być więcej niż dostępne licencje.
         questions_import_block_form:
           attributes:
             name:
@@ -422,6 +435,10 @@ pl:
               inclusion: musi być wartością logiczną
             start_date_time:
               invalid_datetime: jest nieprawidłowy
+        yoodli:
+          attributes:
+            name:
+              not_unique: Ta integracja jest już obecna w tym projekcie.
   activerecord:
     attributes:
       administration/assessments/assign_form:
@@ -452,6 +469,7 @@ pl:
           simulation: Symulacja
           skillvue: Umiejętne
           threesixty: Kampania 360
+          yoodli: Yoodli
         category: Kategoria
         created_at: Data utworzenia
         description: Opis
@@ -469,6 +487,7 @@ pl:
           saville: Ocena Saville'a
           simulation: Ocena symulacyjna
           skillvue: Ocena Skillvue
+          yoodli: Ocena Yoodli
         updated_at: Data modyfikacji
       assign:
         completed_at: Data realizacji
@@ -836,6 +855,7 @@ pl:
         data_report_export: Eksport raportu danych
         export_admin_with_permissions: Eksportuj administratora z uprawnieniami
         export_assessment_questions: Pytania oceniające eksport
+        export_campaign_ai_artifacts: Artefakty AI kampanii eksportowej
         export_campaign_factors: Czynniki kampanii eksportowej
         export_campaign_scorings: Eksport kampanii Scorings
         export_dashboard_as_file: Eksportuj pulpit nawigacyjny jako plik
@@ -857,10 +877,12 @@ pl:
         export_user_report_events: Eksportowanie zdarzeń raportu o użytkowniku
         export_users: Eksport użytkowników kampanii
         external_assessment_export: Eksport wyników zewnętrznych
+        generate_embedding_skills: Generuj osadzanie dla umiejętności
         import_accesssheet: Import Accessheet
         import_assessment_questions: Pytania oceniające import
         import_assessment_translations: Importowanie tłumaczeń oceny
         import_assessors: Asesorzy importowi
+        import_campaign_ai_artifacts: Artefakty AI w kampanii importowej
         import_campaign_factors: Importowanie czynników kampanii
         import_datasheet: Arkusz danych importu
         import_development_action_translations: Importowanie tłumaczeń działań rozwojowych
@@ -1028,6 +1050,7 @@ pl:
         saville_assessment_name: Ocena Saville Nazwa
         simulation_assessment_name: Nazwa oceny symulacji
         skillvue_assessment_name: Nazwa oceny Skillvue
+        yoodli_assessment_name: Nazwa oceny Yoodli
       translations_migrated: Tłumaczenie przeniesione
     create: Tworzyć
     dashboard: Deska rozdzielcza
@@ -1069,6 +1092,7 @@ pl:
         simulation: Symulacja
         skillvue: Skillvue
         threesixty: Kampania 360
+        yoodli: Yoodli
       status:
         finished: Gotowy
         in_progress: W toku
@@ -1081,6 +1105,7 @@ pl:
         saville: Ocena Saville'a
         simulation: Ocena symulacyjna
         skillvue: Ocena Skillvue
+        yoodli: Ocena Yoodli
     flow:
       end_assessment_modal:
         custom_message: Niestandardowy komunikat o zakończeniu oceny
@@ -1454,6 +1479,8 @@ pl:
       skillvue_email_id: Identyfikator e-mail kandydata Skillvue
       skillvue_external_assessment_id: Skillvue Assessment ID
       universal_link: Łącze uniwersalne
+      yoodli_email_id: Identyfikator e-mail kandydata Yoodli
+      yoodli_external_assessment_id: Yoodli Assessment ID
     drawer:
       mettl_schedule_name: Nazwa harmonogramu Mettl
       title: Szczegóły oceny
@@ -1776,6 +1803,7 @@ pl:
       go_back: Przejdź wstecz
       import: Import
       insert: Wstawiać
+      'no': Nie
       ok: OK
       publish: Publikować
       reject: Odrzucać
@@ -1802,6 +1830,7 @@ pl:
       view: Widok
       view_all_tasks: Wyświetl wszystkie zadania
       view_detail: Zobacz szczegóły
+      'yes': Tak
     column:
       action: Działanie
       active: Aktywny
@@ -1915,6 +1944,7 @@ pl:
       hide: Ukrywać
       view: Widok
     validations:
+      required: To pole jest wymagane
       select_locale: Wybierz niektóre lokalizacje
       should_be_whole_number: powinna być liczbą całkowitą.
   confirmation:
@@ -2370,6 +2400,7 @@ pl:
     error_warning: Ups, coś poszło nie tak z twoją oceną. Skontaktuj się z pomocą techniczną.
     hogan:
       cannot_start: Nie możesz teraz rozpocząć oceny hogana. Spróbuj po kilku minutach.
+    lighthouse_app: Latarnia morska Mercer
     login: Logowanie
     maintenance:
       notification: Lighthouse wyłączona z powodu zaplanowanej konserwacji za 60 sekund
@@ -2471,6 +2502,8 @@ pl:
   idp:
     actions: Działania
     add_comments: Dodawanie komentarzy
+    add_note: Dodaj notatkę...
+    add_reason: Dodaj powód...
     added_development_action: Dodano akcję rozwojową
     ai:
       assistant:
@@ -2526,6 +2559,8 @@ pl:
       welcome:
         text: Gotowy, aby nakreślić swoją podróż wzrostu? Zaczynamy!
         title: Cześć, jestem Twoim asystentem ds. rozwoju
+    approval_note: Notatka zatwierdzająca
+    approve_plan: Zatwierdzaj plan
     behavioral: Zachowanie
     board: Tablica
     change_history: Historia zmian
@@ -2625,12 +2660,14 @@ pl:
       mark_as_complete: Oznacz jako ukończone
       no_development_actions: Brak działań rozwojowych
       on_the_job: W trakcie pracy
+      one: "[PL] 1"
       other: Inne
       private: Prywatne
       publish_plan: Publikuj plan
       remove: Usuń
       save_plan: Plan oszczędzania
       search_development_actions: Działania związane z rozwojem wyszukiwania
+      selected_count: "%{count} wybrany"
       show_development_action_information: Pokaż informacje o akcji rozwojowej
       skill: Umiejętność
       sprint: Sprint
@@ -2639,7 +2676,9 @@ pl:
       structured_learning_label: Uczenie się oparte na współpracy
       submit_plan: Prześlij plan
       success: Działania rozwojowe zakończone sukcesem
+      three: "[PL] 3"
       toggle_skill_privacy: Przełącz prywatność umiejętności
+      two: "[PL] 2"
       write_here: Pisz tutaj...
     direct_reportee_details: Szczegółowe informacje o bezpośrednich podwładnych
     download:
@@ -2708,10 +2747,12 @@ pl:
           assigned_data: Data przydzielenia
           assigned_date: Przypisana data
           completion_date: Data ukończenia
+          current_job_role: Obecna rola zawodowa
           division: Dział
           name: Imię i nazwisko
           publish_date: Data publikacji
           review_date: Data przeglądu
+          target_job_role: Docelowa rola zawodowa
       guidelines:
         cards:
           c1:
@@ -2812,6 +2853,7 @@ pl:
     plan_submitted_for_manager_approval: Twój Indywidualny Plan Rozwoju został przedłożony do zatwierdzenia przez menedżera.
     private: Prywatny
     public: Publiczny
+    reason_for_rejection: Powód odrzucenia
     reflective_questions:
       already_completed: IDP został już ukończony, nie możesz teraz odpowiadać na pytania.
       answer: Odpowiedź
@@ -2824,7 +2866,9 @@ pl:
         max_words: Odpowiedź może zawierać maksymalnie %{count} słów
         min_words: Odpowiedź wymaga co najmniej %{count} słów
         required: Odpowiedź na pytanie jest wymagana
+      max_word_limit: Musi być co najwyżej %{max} słów
       max_words: Maksymalna liczba słów
+      min_word_limit: Musi być przynajmniej %{min} słów
       min_words: Min Words
       no_answer_provided: Nie udzielono jeszcze odpowiedzi
       no_reflective_questions: Żadnych refleksyjnych pytań
@@ -2837,6 +2881,7 @@ pl:
       updated_successfully: Twoje odpowiedzi zostały pomyślnie zaktualizowane
       word_limit: Musi zawierać się w przedziale od %{min} do %{max} słów
       words: Słowa
+    reject_plan: Plan Odrzucenia
     remove_skill: Usuń umiejętność
     remove_skill_from_plan: Usuwanie %{name} umiejętności z planu
     removed_development_action: Usunięto akcję rozwojową
@@ -2857,6 +2902,7 @@ pl:
     summary_logs: Dzienniki podsumowania dla %{reporteeName}
     technical: Techniczne
     user_idp_status:
+      ai_assisted_idp_in_progress: Wspomagany przez AI IDP w trakcie
       approved: Zatwierdzony
       completed: Zakończone
       completion_not_started: Ukończenie nie zostało rozpoczęte
@@ -2976,6 +3022,7 @@ pl:
     usage_overview: Wyświetlanie użycia licencji
     usages: Zwyczaje
   licenses:
+    client_usage: Użycie klienta
     enabled: Włączone
     end_date: Data zakończenia
     not_enough_idp_license: Za mało licencji IDP, skontaktuj się z administratorem
@@ -2984,6 +3031,10 @@ pl:
     not_enough_proctoring_credits: Za mało kredytów, aby rozpocząć sesję nadzorczą
     number: Numer
     overuse_number: Dodatek za nadmierne zużycie
+    project_limit_reached: Limit użytkowania został osiągnięty dla '%{license_name}', prosimy o kontakt z administratorem
+    project_specific: Specyficzne dla projektu
+    project_specific_license: Licencja specyficzna dla projektu
+    project_usage: Użytkowanie projektu
     report_family: Pakiet raportów
     start_date: Data rozpoczęcia
     title: Licencja
@@ -2995,6 +3046,34 @@ pl:
       threesixty: Trzysześćdziesiąt
     used_number: Używane licencje
     used_out_of: "%{used} z %{total}"
+  lti:
+    oidc_auth_form:
+      errors:
+        client_id:
+          blank: Wymagane jest ID klienta
+          invalid: Identyfikator klienta nie zgadza się z zarejestrowanym identyfikatorem narzędzia
+          validation_failed: Weryfikacja ID klienta nie powiodła się
+        login_hint:
+          assessment_completed: Ocena użytkownika jest już zakończona
+          blank: Wymagana jest wskazówka logowania
+          invalid_user_assessment: Podpowiedź logowania nie odnosi się do ważnej oceny użytkownika
+        lti_deployment_id:
+          not_found: Identyfikator wdrożenia nie odnosi się do ważnej integracji
+        nonce:
+          blank: Nonce jest wymagane
+        redirect_uri:
+          blank: Wymagane jest URI przekierowania
+          has_fragment: URI przekierowania nie może zawierać fragmentu
+          https_required: URI przekierowania musi wykorzystywać HTTPS w produkcji
+          invalid_format: URI przekierowania musi być poprawnym formatem URI
+          missing_host: URI przekierowania musi zawierać hosta
+          scheme_not_allowed: URI przekierowania musi wykorzystywać protokół HTTP lub HTTPS
+        response_type:
+          blank: Wymagany jest rodzaj odpowiedzi
+          invalid: Typ odpowiedzi musi być "id_token"
+        scope:
+          blank: Zakres obowiązkowy jest
+          invalid: Zakres musi być "openid"
   mailer:
     copyright:
       text: Lighthouse. Wszelkie prawa zastrzeżone
@@ -3240,10 +3319,12 @@ pl:
         pearson: Pearson
         saville: Saville (Wyspa Saville
         skillvue: Umiejętne
+        yoodli: Yoodli
     form:
       load_from_mettl: Załadunek z Mettl
       load_from_pearson: Załadunek z firmy Pearson
       load_from_skillvue: Załaduj ze Skillvue
+      load_from_yoodli: Załadunek od Yoodli
       none_external: Brak — korzystanie z konstruktora raportów
     language: Język raportu
     language_updated: Język raportu został pomyślnie zaktualizowany

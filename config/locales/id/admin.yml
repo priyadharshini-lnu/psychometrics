@@ -108,5 +108,6 @@ id:
     subject_part_of_other_invite: Subjek dengan email %{user_email} sudah diundang untuk '%{workshop_invite_name}'
     user_report_events: Peristiwa Laporan Pengguna
     users: Pengguna
+    validation_error: Terjadi kesalahan selama validasi
     view_licenses: Lihat Lisensi
     year: Negara

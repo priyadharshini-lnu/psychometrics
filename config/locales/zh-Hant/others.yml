@@ -232,6 +232,19 @@ zh-Hant:
               contains_repeats: 密碼不得包含重複
               too_short: 密碼太短，需要最少 %{count} 字元
               too_weak: 密碼必須包含：最少 1 個小楷、1 個大楷、1 個數字和 1 個特殊字符。
+        project_license:
+          attributes:
+            base:
+              exceeds_available: 不能分配超過現有授權
+            license_id:
+              already_present: 本專案已參與
+            usage_limit:
+              cant_be_less_than_used: 不能設定低於目前的使用次數%{used_count}
+              cant_be_more_than_available: 不能超過執照的可用上限（%{usage_limit}）
+              exceeds_available: 不能超過現有授權
+              less_than_used_number: 使用授權數量不得少於
+            used_number:
+              overused: 不能超過現有授權。
         questions_import_block_form:
           attributes:
             name:
@@ -422,6 +435,10 @@ zh-Hant:
               inclusion: 必須是布林
             start_date_time:
               invalid_datetime: 無效
+        yoodli:
+          attributes:
+            name:
+              not_unique: 這種整合已經在本專案中實現。
   activerecord:
     attributes:
       administration/assessments/assign_form:
@@ -452,6 +469,7 @@ zh-Hant:
           simulation: 模擬
           skillvue: 技能
           threesixty: 360 活動
+          yoodli: 尤德利
         category: 類別
         created_at: 建立日期
         description: 說明
@@ -469,6 +487,7 @@ zh-Hant:
           saville: 薩維爾評估
           simulation: 模擬評估
           skillvue: Skillvue 評估
+          yoodli: Yoodli 評估
         updated_at: 修改日期
       assign:
         completed_at: 完成日期
@@ -836,6 +855,7 @@ zh-Hant:
         data_report_export: 資料報告匯出
         export_admin_with_permissions: 匯出有權限的管理員
         export_assessment_questions: 出口評估問題
+        export_campaign_ai_artifacts: 輸出戰役 AI 工件
         export_campaign_factors: 出口活動因素
         export_campaign_scorings: 導出活動縮圖
         export_dashboard_as_file: 將 Dashboard 匯出為檔
@@ -857,10 +877,12 @@ zh-Hant:
         export_user_report_events: 匯出使用者報告事件
         export_users: 活動使用者匯出
         external_assessment_export: 外部結果匯出
+        generate_embedding_skills: 生成技能嵌入
         import_accesssheet: 匯入 Accessheet
         import_assessment_questions: 進口評估問題
         import_assessment_translations: 匯入評量翻譯
         import_assessors: 進口評估員
+        import_campaign_ai_artifacts: 匯入戰役 AI 工件
         import_campaign_factors: 匯入活動因素
         import_datasheet: 匯入資料表
         import_development_action_translations: 進口開發 動作翻譯
@@ -1028,6 +1050,7 @@ zh-Hant:
         saville_assessment_name: Saville 評估名稱
         simulation_assessment_name: 模擬評估名稱
         skillvue_assessment_name: Skillvue 評估名稱
+        yoodli_assessment_name: Yoodli 評估名稱
       translations_migrated: 翻譯遷移
     create: 建立
     dashboard: 儀表板
@@ -1069,6 +1092,7 @@ zh-Hant:
         simulation: 模擬
         skillvue: Skillvue
         threesixty: 360 活動
+        yoodli: 尤德利
       status:
         finished: 完成
         in_progress: 進行中
@@ -1081,6 +1105,7 @@ zh-Hant:
         saville: 薩維爾評估
         simulation: 模擬評估
         skillvue: Skillvue 評估
+        yoodli: Yoodli 評估
     flow:
       end_assessment_modal:
         custom_message: 自訂評估結束訊息
@@ -1450,6 +1475,8 @@ zh-Hant:
       skillvue_email_id: Skillvue 候選人電子郵件 ID
       skillvue_external_assessment_id: Skillvue 評估 ID
       universal_link: 通用連結
+      yoodli_email_id: Yoodli 候選人電子郵件 ID
+      yoodli_external_assessment_id: Yoodli 評估識別碼
     drawer:
       mettl_schedule_name: 時間表名稱
       title: 評估細節
@@ -1772,6 +1799,7 @@ zh-Hant:
       go_back: 回去
       import: 進口
       insert: 插入
+      'no': 不
       ok: OK
       publish: 發表
       reject: 拒絕
@@ -1798,6 +1826,7 @@ zh-Hant:
       view: 檢視
       view_all_tasks: 檢視所有任務
       view_detail: 檢視詳細內容
+      'yes': 是
     column:
       action: 行動
       active: 活躍
@@ -1911,6 +1940,7 @@ zh-Hant:
       hide: 隱藏
       view: 檢視
     validations:
+      required: 此欄位為必修欄位
       select_locale: 請選擇地區
       should_be_whole_number: 應為整數
   confirmation:
@@ -2343,6 +2373,7 @@ zh-Hant:
     error_warning: 哎呀，您的評估出錯了，請聯絡支援人員。
     hogan:
       cannot_start: 您現在無法開始 Hogan 評估，請幾分鐘後再試。
+    lighthouse_app: 默瑟燈塔
     login: 登入
     maintenance:
       notification: Lighthouse將在 60 秒後進行定期維護
@@ -2444,6 +2475,8 @@ zh-Hant:
   idp:
     actions: 行動
     add_comments: 新增註解
+    add_note: 補充備註......
+    add_reason: 加點理由......
     added_development_action: 新增開發動作
     ai:
       assistant:
@@ -2499,6 +2532,8 @@ zh-Hant:
       welcome:
         text: 準備好繪製你的成長喬恩了嗎？讓我們開始吧！
         title: 您好，我是你們的開發助理
+    approval_note: 批准說明
+    approve_plan: 批准計畫
     behavioral: 行為
     board: 董事會
     change_history: 變更歷史
@@ -2598,12 +2633,14 @@ zh-Hant:
       mark_as_complete: 標記為完成
       no_development_actions: 無開發行動
       on_the_job: 在職
+      one: "[ZH-HANT] 1"
       other: 其他
       private: 私人
       publish_plan: 發布計劃
       remove: 移除
       save_plan: 保存計劃
       search_development_actions: 搜尋開發動作
+      selected_count: "%{count}被選中"
       show_development_action_information: 顯示開發動作資訊
       skill: 技術
       sprint: 衝刺
@@ -2612,7 +2649,9 @@ zh-Hant:
       structured_learning_label: 協作學習
       submit_plan: 提交計劃
       success: 發展行動順利完成
+      three: "[ZH-HANT] 3"
       toggle_skill_privacy: 切換技能隱私權
+      two: "[ZH-HANT] 2"
       write_here: 寫在這裡...
     direct_reportee_details: 直接報告者詳細資料
     download:
@@ -2687,10 +2726,12 @@ zh-Hant:
           assigned_data: 分配日期
           assigned_date: 指定日期
           completion_date: 完成日期
+          current_job_role: 目前職務
           division: 部門
           name: 姓名
           publish_date: 發佈日期
           review_date: 審核日期
+          target_job_role: 目標職務
       guidelines:
         cards:
           c1:
@@ -2791,6 +2832,7 @@ zh-Hant:
     plan_submitted_for_manager_approval: 您的個人發展計劃已提交給經理批准。
     private: 私
     public: 公
+    reason_for_rejection: 拒絕原因
     reflective_questions:
       already_completed: IDP 已經完成，您現在無法回答問題。
       answer: 答
@@ -2803,7 +2845,9 @@ zh-Hant:
         max_words: 答案最多允許 %{count} 個單詞
         min_words: 答案至少需要 %{count} 個單詞
         required: 問題的答案是必需的
+      max_word_limit: 最多只能%{max}字
       max_words: 最大字數
+      min_word_limit: 至少要%{min}字
       min_words: 最小字數
       no_answer_provided: 尚未提供答案
       no_reflective_questions: 没有反思性问题
@@ -2816,6 +2860,7 @@ zh-Hant:
       updated_successfully: 您的答案已成功更新
       word_limit: 必須介於 %{min} 到 %{max} 個字之間
       words: 的話
+    reject_plan: 拒絕計畫
     remove_skill: 移除技能
     remove_skill_from_plan: 從計劃中移除技能%{name}
     removed_development_action: 已移除開發動作
@@ -2836,6 +2881,7 @@ zh-Hant:
     summary_logs: "%{reporteeName}的摘要記錄"
     technical: 技術
     user_idp_status:
+      ai_assisted_idp_in_progress: AI 輔助的 IDP 進行中
       approved: 已核准
       completed: 完成
       completion_not_started: 完成未開始
@@ -2955,6 +3001,7 @@ zh-Hant:
     usage_overview: 檢視授權使用情況
     usages: 使用方法
   licenses:
+    client_usage: 用戶端使用
     enabled: 已啟用
     end_date: 結束日期
     not_enough_idp_license: 沒有足夠的 IDP 授權，請聯絡管理員
@@ -2963,6 +3010,10 @@ zh-Hant:
     not_enough_proctoring_credits: 學分不足，無法開始監考環節
     number: 數量
     overuse_number: 超額使用免稅額
+    project_limit_reached: "「%{license_name}」使用量已達上限，請聯絡管理員"
+    project_specific: 專案專屬
+    project_specific_license: 專案特定授權
+    project_usage: 專案應用
     report_family: 報告束
     start_date: 開始日期
     title: 許可證
@@ -2974,6 +3025,34 @@ zh-Hant:
       threesixty: Threesixty
     used_number: 使用過的授權
     used_out_of: "%{used}中的%{total}。"
+  lti:
+    oidc_auth_form:
+      errors:
+        client_id:
+          blank: 必須提供客戶識別碼
+          invalid: 客戶端 ID 與註冊工具識別碼不符
+          validation_failed: 客戶端 ID 驗證失敗
+        login_hint:
+          assessment_completed: 使用者評估已經完成
+          blank: 需要登入提示
+          invalid_user_assessment: 登入提示未提及有效的使用者評估
+        lti_deployment_id:
+          not_found: 部署 ID 不代表有效的整合
+        nonce:
+          blank: 不重複
+        redirect_uri:
+          blank: 必須重新導向 URI
+          has_fragment: 重定向 URI 不得包含片段
+          https_required: 重定向 URI 必須在生產環境中使用 HTTPS
+          invalid_format: 重定向 URI 必須是有效的 URI 格式
+          missing_host: 重定向 URI 必須包含主機
+          scheme_not_allowed: 重定向 URI 必須使用 HTTP 或 HTTPS 協定
+        response_type:
+          blank: 必須填寫回應類型
+          invalid: 回應類型必須是「id_token」
+        scope:
+          blank: 需要範圍
+          invalid: 範圍必須是「開放型」的
   mailer:
     copyright:
       text: Lighthouse.保留所有權利
@@ -3219,10 +3298,12 @@ zh-Hant:
         pearson: 培生
         saville: 薩維爾
         skillvue: Skillvue
+        yoodli: 尤德利
     form:
       load_from_mettl: 從 Mettl 載入
       load_from_pearson: 從 Pearson 載入
       load_from_skillvue: 從 Skillvue 載入
+      load_from_yoodli: 來自尤德里的貨物
       none_external: 無 - 使用報告建立程式
     language: 報告語言
     language_updated: 報告語言已成功更新

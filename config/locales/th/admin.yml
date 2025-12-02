@@ -108,5 +108,6 @@ th:
     subject_part_of_other_invite: หัวเรื่องพร้อมอีเมล %{user_email} ได้รับเชิญให้ '%{workshop_invite_name}' แล้ว
     user_report_events: เหตุการณ์รายงานผู้ใช้
     users: ผู้เข้าร่วม
+    validation_error: เกิดข้อผิดพลาดระหว่างการตรวจสอบความถูกต้อง
     view_licenses: ดูใบอนุญาต
     year: ประเทศ

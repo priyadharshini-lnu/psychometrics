@@ -108,5 +108,6 @@ ko:
     subject_part_of_other_invite: 제목에 이메일 %{user_email} 이미 '%{workshop_invite_name}'로 초대됨
     user_report_events: 사용자 보고서 이벤트
     users: 사용자
+    validation_error: 검증 중에 오류가 발생했습니다
     view_licenses: 라이선스 보기
     year: 국가

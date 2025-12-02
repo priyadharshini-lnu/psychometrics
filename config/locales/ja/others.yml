@@ -232,6 +232,19 @@ ja:
               contains_repeats: パスワードはリピートを含んではならない
               too_short: パスワードが短すぎます。 最低 %{count} 文字が必要です。
               too_weak: パスワードには、小文字1文字以上、大文字1文字以上、数字1文字以上、特殊文字1文字以上を含めてください。
+        project_license:
+          attributes:
+            base:
+              exceeds_available: 利用可能なライセンス以上は割り当てられません
+            license_id:
+              already_present: このプロジェクトにはすでに参加しています
+            usage_limit:
+              cant_be_less_than_used: 現在の使用回数を下回ることはできません%{used_count}
+              cant_be_more_than_available: ライセンスの利用可能な上限を超えてはいけません(%{usage_limit})
+              exceeds_available: 利用可能なライセンス以上はありえません
+              less_than_used_number: 使用されるライセンスの数より少なくてはなりません
+            used_number:
+              overused: 利用可能なライセンス以上は認められません。
         questions_import_block_form:
           attributes:
             name:
@@ -422,6 +435,10 @@ ja:
               inclusion: はブール値でなければならない。
             start_date_time:
               invalid_datetime: 無効
+        yoodli:
+          attributes:
+            name:
+              not_unique: この統合はすでにこのプロジェクトに存在しています。
   activerecord:
     attributes:
       administration/assessments/assign_form:
@@ -452,6 +469,7 @@ ja:
           simulation: シミュレーション
           skillvue: スキルビュー
           threesixty: 360キャンペーン
+          yoodli: ユードリ
         category: カテゴリー
         created_at: 作成日
         description: 説明
@@ -469,6 +487,7 @@ ja:
           saville: サヴィル査定
           simulation: シミュレーション評価
           skillvue: Skillvue評価
+          yoodli: ユードリ評価
         updated_at: 変更日
       assign:
         completed_at: 完了日
@@ -836,6 +855,7 @@ ja:
         data_report_export: データ・レポート・エクスポート
         export_admin_with_permissions: 権限を持つ管理者のエクスポート
         export_assessment_questions: 輸出評価に関する質問
+        export_campaign_ai_artifacts: エクスポートキャンペーンAIアーティファクト
         export_campaign_factors: 輸出キャンペーンの要因
         export_campaign_scorings: エクスポート・キャンペーン・スコアリング
         export_dashboard_as_file: ダッシュボードをファイルとしてエクスポート
@@ -857,10 +877,12 @@ ja:
         export_user_report_events: ユーザー・レポート・イベントのエクスポート
         export_users: キャンペーン・ユーザーのエクスポート
         external_assessment_export: 外部結果エクスポート
+        generate_embedding_skills: スキルの埋め込み生成
         import_accesssheet: アクセスシートのインポート
         import_assessment_questions: 輸入評価に関する質問
         import_assessment_translations: アセスメント翻訳のインポート
         import_assessors: インポートアセッサー
+        import_campaign_ai_artifacts: キャンペーンAIアーティファクトのインポート
         import_campaign_factors: インポート・キャンペーン要因
         import_datasheet: データシートのインポート
         import_development_action_translations: 輸入開発アクション翻訳
@@ -1028,6 +1050,7 @@ ja:
         saville_assessment_name: サヴィル査定名
         simulation_assessment_name: シミュレーション評価名
         skillvue_assessment_name: スキルビュー評価名
+        yoodli_assessment_name: ユードリ評価名
       translations_migrated: 翻訳の移行
     create: 作成
     dashboard: ダッシュボード
@@ -1069,6 +1092,7 @@ ja:
         simulation: シミュレーション
         skillvue: スキルビュー
         threesixty: 360キャンペーン
+        yoodli: ユードリ
       status:
         finished: 終了
         in_progress: 進行中
@@ -1081,6 +1105,7 @@ ja:
         saville: サヴィル査定
         simulation: シミュレーション評価
         skillvue: Skillvueの評価
+        yoodli: ユードリ評価
     flow:
       end_assessment_modal:
         custom_message: カスタム評価終了メッセージ
@@ -1463,6 +1488,8 @@ ja:
       skillvue_email_id: スキルビュー候補者のEメールアドレス
       skillvue_external_assessment_id: スキルビュー査定ID
       universal_link: ユニバーサルリンク
+      yoodli_email_id: ユードリ候補者メールアドレス
+      yoodli_external_assessment_id: Yoodli評価ID
     drawer:
       mettl_schedule_name: メットル・スケジュール名
       title: 評価内容
@@ -1785,6 +1812,7 @@ ja:
       go_back: 戻ってください
       import: 輸入
       insert: 挿入
+      'no': いいえ
       ok: OK
       publish: 出版
       reject: リジェクト
@@ -1811,6 +1839,7 @@ ja:
       view: 表示
       view_all_tasks: すべてのタスクを表示
       view_detail: 詳細を見る
+      'yes': はい
     column:
       action: アクション
       active: アクティブ
@@ -1924,6 +1953,7 @@ ja:
       hide: 隠す
       view: 表示
     validations:
+      required: このフィールドは必須です
       select_locale: ロケールを選択してください
       should_be_whole_number: 整数でなければならない
   confirmation:
@@ -2356,6 +2386,7 @@ ja:
     error_warning: 査定に何か問題が発生しました。 サポートにご連絡ください。
     hogan:
       cannot_start: 現在、ホーガン査定を開始することはできません。 数分後にお試しください。
+    lighthouse_app: マーサー灯台
     login: ログイン
     maintenance:
       notification: ライトハウスは60秒後に定期メンテナンスのため停止します。
@@ -2457,6 +2488,8 @@ ja:
   idp:
     actions: 行動
     add_comments: コメントの追加
+    add_note: Add Note...
+    add_reason: 理由を付け加えて...
     added_development_action: 開発アクションの追加
     ai:
       assistant:
@@ -2512,6 +2545,8 @@ ja:
       welcome:
         text: 成長ジョニーをグラフ化する準備はできていますか?さあ、始めましょう!
         title: こんにちは、私はあなたの開発アシスタントです
+    approval_note: 承認書
+    approve_plan: 計画承認
     behavioral: ビヘイビア
     board: ボード
     change_history: 変更履歴
@@ -2611,12 +2646,14 @@ ja:
       mark_as_complete: 完了としてマークする
       no_development_actions: 開発行為なし
       on_the_job: 仕事について
+      one: "[JA] 1"
       other: その他
       private: プライベート
       publish_plan: 計画の公開
       remove: 削除
       save_plan: プランを保存
       search_development_actions: 開発アクションの検索
+      selected_count: "%{count}選ばれた"
       show_development_action_information: 開発アクション情報を表示する
       skill: スキル
       sprint: スプリント
@@ -2625,7 +2662,9 @@ ja:
       structured_learning_label: 共同学習
       submit_plan: プランを提出
       success: 開発アクションが正常に完了しました
+      three: "[JA] 3"
       toggle_skill_privacy: スキルのプライバシーを切り替える
+      two: "[JA] 2"
       write_here: ここに記入してください...
     direct_reportee_details: 直属の報告者詳細
     download:
@@ -2694,10 +2733,12 @@ ja:
           assigned_data: 割り当て日
           assigned_date: 担当日
           completion_date: 完了日
+          current_job_role: 現在の職務
           division: 部門
           name: 名前
           publish_date: 公開日
           review_date: レビュー日
+          target_job_role: ターゲット職種
       guidelines:
         cards:
           c1:
@@ -2798,6 +2839,7 @@ ja:
     plan_submitted_for_manager_approval: 個人開発計画がマネージャーの承認のために提出されました。
     private: プライベート
     public: 公共
+    reason_for_rejection: 拒否理由
     reflective_questions:
       already_completed: IDPはすでに完成しているので、今質問に答えることはできない。
       answer: 答える
@@ -2810,7 +2852,9 @@ ja:
         max_words: 答えは最大%{count}語です。
         min_words: 答えには少なくとも %{count} 語が必要です。
         required: 質問への回答が必要
+      max_word_limit: せいぜい%{max}言葉くらいだろう
       max_words: 最大文字数
+      min_word_limit: 少なくとも%{min}語は必要だ
       min_words: ミニ・ワード
       no_answer_provided: まだ回答はありません
       no_reflective_questions: 反省的な質問はありません
@@ -2823,6 +2867,7 @@ ja:
       updated_successfully: 回答が更新されました
       word_limit: "%{min} 語から %{max} 語の間にある必要があります"
       words: 言葉
+    reject_plan: 計画を拒否する
     remove_skill: スキルの削除
     remove_skill_from_plan: プランからスキル%{name}を削除する
     removed_development_action: 削除された開発アクション
@@ -2843,6 +2888,7 @@ ja:
     summary_logs: "%{reporteeName}のサマリーログ"
     technical: テクニカル
     user_idp_status:
+      ai_assisted_idp_in_progress: AI支援IDP進行中
       approved: 承認済み
       completed: 完了
       completion_not_started: 完了が開始されていません
@@ -2962,6 +3008,7 @@ ja:
     usage_overview: ライセンスの使用状況を見る
     usages: 使用状況
   licenses:
+    client_usage: クライアントの利用
     enabled: 有効
     end_date: 終了日
     not_enough_idp_license: IDPライセンスが不足しています。
@@ -2970,6 +3017,10 @@ ja:
     not_enough_proctoring_credits: 試験監督セッションを開始する単位が足りない
     number: 番号
     overuse_number: 超過使用手当
+    project_limit_reached: "「%{license_name}」の使用制限に達しました。管理者にお問い合わせください。"
+    project_specific: プロジェクト特有
+    project_specific_license: プロジェクト固有のライセンス
+    project_usage: プロジェクトの利用
     report_family: レポート・バンドル
     start_date: 開始日
     title: ライセンス
@@ -2981,6 +3032,34 @@ ja:
       threesixty: スリーシックスティ
     used_number: 中古ライセンス
     used_out_of: "%{total}のうち、%{used}"
+  lti:
+    oidc_auth_form:
+      errors:
+        client_id:
+          blank: クライアントIDは必須です
+          invalid: クライアントIDが登録ツール識別子と一致しません
+          validation_failed: クライアントID検証に失敗しました
+        login_hint:
+          assessment_completed: ユーザー評価はすでに完了しています
+          blank: ログインのヒントが必要です
+          invalid_user_assessment: ログインヒントは有効なユーザー評価を参照していません
+        lti_deployment_id:
+          not_found: デプロイメントIDは有効な統合を参照しません
+        nonce:
+          blank: ノンスは必須です
+        redirect_uri:
+          blank: リダイレクトURIが必要です
+          has_fragment: リダイレクトURIにはフラグメントが含まれてはなりません
+          https_required: リダイレクトURIは本番環境でHTTPSを使用しなければなりません
+          invalid_format: リダイレクトURIは有効なURI形式でなければなりません
+          missing_host: リダイレクトURIにはホストを含める必要があります
+          scheme_not_allowed: リダイレクトURIはHTTPまたはHTTPSプロトコルを使用する必要があります
+        response_type:
+          blank: 応答タイプが必要です
+          invalid: 応答タイプは「id_token」でなければなりません
+        scope:
+          blank: 範囲が必要です
+          invalid: 範囲は「openid」でなければなりません
   mailer:
     copyright:
       text: ライトハウス無断複写・転載を禁じます。
@@ -3226,10 +3305,12 @@ ja:
         pearson: ピアソン
         saville: サヴィル
         skillvue: スキルビュー
+        yoodli: ユードリ
     form:
       load_from_mettl: メトルからのロード
       load_from_pearson: ピアソンからのロード
       load_from_skillvue: スキルビューからのロード
+      load_from_yoodli: ユードリからの積み込み
       none_external: なし - レポートビルダーを使用
     language: レポート言語
     language_updated: レポート言語が正常に更新されました

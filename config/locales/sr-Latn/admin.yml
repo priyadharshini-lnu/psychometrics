@@ -108,5 +108,6 @@ sr-Latn:
     subject_part_of_other_invite: Predmet sa e-poštom %{user_email} je već pozvan na '%{workshop_invite_name}'
     user_report_events: Događaji Izveštaja korisnika
     users: Korisnici
+    validation_error: Došlo je do greške tokom validacije
     view_licenses: Pogledaj licence
     year: Država

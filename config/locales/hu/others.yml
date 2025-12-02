@@ -232,6 +232,19 @@ hu:
               contains_repeats: A jelszó nem tartalmazhat ismétléseket
               too_short: A jelszó túl rövid. Minimális %{count} karakter szükséges
               too_weak: 'A jelszónak tartalmaznia kell: Legalább 1 kisbetű, 1 nagybetű, 1 szám és 1 speciális karakter.'
+        project_license:
+          attributes:
+            base:
+              exceeds_available: Nem oszthatunk ki többet, mint a rendelkezésre álló engedélyek
+            license_id:
+              already_present: Már jelen vannak a projekthez
+            usage_limit:
+              cant_be_less_than_used: nem lehet a jelenlegi használati szám alá állítani %{used_count}
+              cant_be_more_than_available: Nem lehet több, mint a jogosítvány elérhető korlátja (%{usage_limit})
+              exceeds_available: Nem lehet több, mint elérhető engedélyek
+              less_than_used_number: Nem lehet kevesebb, mint a használt engedélyek száma
+            used_number:
+              overused: Nem lehet több, mint elérhető licencek.
         questions_import_block_form:
           attributes:
             name:
@@ -422,6 +435,10 @@ hu:
               inclusion: logikai értéknek kell lennie
             start_date_time:
               invalid_datetime: érvénytelen
+        yoodli:
+          attributes:
+            name:
+              not_unique: Ez az integráció már jelen van ebben a projektben.
   activerecord:
     attributes:
       administration/assessments/assign_form:
@@ -452,6 +469,7 @@ hu:
           simulation: Szimuláció
           skillvue: Skillvue
           threesixty: 360 fokos kampány
+          yoodli: Yoodli
         category: Kategória
         created_at: Létrehozás dátuma
         description: Leírás
@@ -469,6 +487,7 @@ hu:
           saville: Saville-értékelés
           simulation: Szimulációs értékelés
           skillvue: Skillvue értékelés
+          yoodli: Yoodli értékelés
         updated_at: Módosítás dátuma
       assign:
         completed_at: Befejezés dátuma
@@ -836,6 +855,7 @@ hu:
         data_report_export: Adatjelentés exportálása
         export_admin_with_permissions: Rendszergazda exportálása engedélyekkel
         export_assessment_questions: Exportértékelési kérdések
+        export_campaign_ai_artifacts: Export kampány AI tárgyak
         export_campaign_factors: Kampánytényezők exportálása
         export_campaign_scorings: Kampánypontozások exportálása
         export_dashboard_as_file: Irányítópult exportálása fájlként
@@ -857,10 +877,12 @@ hu:
         export_user_report_events: Felhasználói jelentési események exportálása
         export_users: Kampányfelhasználók exportálása
         external_assessment_export: Külső eredmények exportálása
+        generate_embedding_skills: Creating Embedding for Skills
         import_accesssheet: Accessheet importálása
         import_assessment_questions: Import értékelési kérdések
         import_assessment_translations: Import Assessment fordítások
         import_assessors: Importértékelők
+        import_campaign_ai_artifacts: Kampány AI tárgyak importálása
         import_campaign_factors: Kampánytényezők importálása
         import_datasheet: Adatlap importálása
         import_development_action_translations: Fejlesztési akciófordítások importálása
@@ -1028,6 +1050,7 @@ hu:
         saville_assessment_name: Saville értékelés Név
         simulation_assessment_name: Szimulációs értékelés neve
         skillvue_assessment_name: Skillvue Értékelés neve
+        yoodli_assessment_name: Yoodli értékelés név
       translations_migrated: Fordítás migrálva
     create: Alkot
     dashboard: Műszerfal
@@ -1069,6 +1092,7 @@ hu:
         simulation: Szimuláció
         skillvue: Skillvue
         threesixty: 360 fokos kampány
+        yoodli: Yoodli
       status:
         finished: Kész
         in_progress: Folyamatban
@@ -1081,6 +1105,7 @@ hu:
         saville: Saville-értékelés
         simulation: Szimulációs értékelés
         skillvue: Skillvue értékelés
+        yoodli: Yoodli értékelés
     flow:
       end_assessment_modal:
         custom_message: Egyéni értékelés végi üzenet
@@ -1450,6 +1475,8 @@ hu:
       skillvue_email_id: Skillvue Jelölt e-mail azonosítója
       skillvue_external_assessment_id: Skillvue Értékelési ID
       universal_link: Univerzális kapcsolat
+      yoodli_email_id: Yoodli jelölt e-mail azonosító
+      yoodli_external_assessment_id: Yoodli Assessment ID
     drawer:
       mettl_schedule_name: Mettl ütemezés neve
       title: Az értékelés részletei
@@ -1772,6 +1799,7 @@ hu:
       go_back: Menj vissza
       import: Importál
       insert: Beilleszt
+      'no': Nem
       ok: OKÉ
       publish: Közzététel
       reject: Elutasít
@@ -1798,6 +1826,7 @@ hu:
       view: Nézet
       view_all_tasks: Minden feladat megtekintése
       view_detail: Részlet megtekintése
+      'yes': Igen
     column:
       action: Akció
       active: Aktív
@@ -1911,6 +1940,7 @@ hu:
       hide: Elrejt
       view: Nézet
     validations:
+      required: Ez a mező kötelező
       select_locale: Kérjük, válasszon néhány területi beállítást
       should_be_whole_number: egész számnak kell lennie
   confirmation:
@@ -2366,6 +2396,7 @@ hu:
     error_warning: Hoppá, valami elromlott az értékeléseddel. Kérjük, vegye fel a kapcsolatot az ügyfélszolgálattal.
     hogan:
       cannot_start: Most nem kezdheti el a hogan értékelést. Kérjük, próbálja meg néhány perc múlva.
+    lighthouse_app: Mercer világítótorony
     login: Bejelentkezés
     maintenance:
       notification: Lighthouse 60 másodpercen belül leáll az ütemezett karbantartás miatt
@@ -2467,6 +2498,8 @@ hu:
   idp:
     actions: Műveletek
     add_comments: Megjegyzések hozzáadása
+    add_note: Add meg megjegyzést...
+    add_reason: Add hozzá az okot...
     added_development_action: Hozzáadott fejlesztési intézkedés
     ai:
       assistant:
@@ -2522,6 +2555,8 @@ hu:
       welcome:
         text: Készen állsz a növekedési utazásod feltérképezésére? Kezdjük!
         title: Helló, én vagyok a fejlesztési asszisztensed
+    approval_note: Jóváhagyási jegyzet
+    approve_plan: Terv jóváhagyása
     behavioral: Viselkedési
     board: Beszáll
     change_history: Változási előzmények
@@ -2621,12 +2656,14 @@ hu:
       mark_as_complete: Megjelölés befejezettként
       no_development_actions: Nincsenek fejlesztési intézkedések
       on_the_job: Munka közben
+      one: "[HU] 1"
       other: Más
       private: Privát
       publish_plan: Közzétételi terv
       remove: Eltávolít
       save_plan: Csomag mentése
       search_development_actions: Keresési fejlesztési műveletek
+      selected_count: "%{count} kiválasztva"
       show_development_action_information: Fejlesztési akció információk megjelenítése
       skill: Készség
       sprint: Vágtázik
@@ -2635,7 +2672,9 @@ hu:
       structured_learning_label: Kollaboratív tanulás
       submit_plan: Terv benyújtása
       success: Sikeresen lezárult fejlesztési tevékenységek
+      three: "[HU] 3"
       toggle_skill_privacy: Toggle Skill Privacy
+      two: "[HU] 2"
       write_here: Írj ide...
     direct_reportee_details: Közvetlen beosztottak részletei
     download:
@@ -2704,10 +2743,12 @@ hu:
           assigned_data: Hozzárendelt dátum
           assigned_date: Hozzárendelt dátum
           completion_date: Befejezés dátuma
+          current_job_role: Jelenlegi munkakör
           division: Osztás
           name: Név
           publish_date: Közzététel dátuma
           review_date: Felülvizsgálat dátuma
+          target_job_role: Célmunka szerep
       guidelines:
         cards:
           c1:
@@ -2737,10 +2778,13 @@ hu:
           main: Ez a szakasz tartalmazza az összes fejlesztési út összesített listáját, szem előtt tartva a legjobb gyakorlatok tanulását, azaz a 70-20-10 irányelvet, amely progresszív utat biztosít az osztálytermi tanulás, a coaching és a munkahelyi tanulás ötvözésével. A vezetőfejlesztési tapasztalatok és az üzleti prioritások eredményei alapján lehetséges fejlődési utakat javasoltunk, amelyek figyelembe vehetők az Ön fejlődése szempontjából.
         learn_cards:
           collaboration:
+            list: '[HU] ["Offer to coach or mentor others", "Request to be mentored by an expert in your field", "Attain a coach to support your development", "Set-up a collaborative working group to discuss on going challenges in the business", "Get feedback formally and informally from others", "Play an active role in industry associations and networks", "Build your own external networks"]'
             title: Kollaboratív tanulás (20%) <br/> Fejlődés másokon keresztül
           job:
+            list: '[HU] ["Assume leadership positions in stakeholder or management committees", "Volunteer to lead change management projects for the organization", "Consider taking on stretching assignments", "Work cross-collaboratively with other functions", "Consider leading projects outside your organization", "Work closely with external industry experts on joint-projects"]'
             title: Munkahelyi tanulás (70%) <br/> Fejlődés tapasztalaton keresztül
           learn:
+            list: '[HU] ["Assume leadership positions in stakeholder or management committees", "Volunteer to lead change management projects for the organization", "Consider taking on stretching assignments", "Work cross-collaboratively with other functions", "Consider leading projects outside your organization", "Work closely with external industry experts on joint-projects"]'
             title: Formális tanulás (10%) <br/> Fejlődés strukturált tanulással
         title: Útmutató az IDP irányításához
       idp:
@@ -2786,6 +2830,7 @@ hu:
     plan_submitted_for_manager_approval: Az egyéni fejlesztési tervet benyújtották vezetői jóváhagyásra.
     private: Privát
     public: Nyilvános
+    reason_for_rejection: Az elutasítás oka
     reflective_questions:
       already_completed: Az IDP már elkészült, a kérdésekre most nem tud válaszolni.
       answer: Válasz
@@ -2798,7 +2843,9 @@ hu:
         max_words: A válasz legfeljebb %{count} szót enged meg
         min_words: A válaszhoz legalább %{count} szó szükséges
         required: A kérdésre adott válasz szükséges
+      max_word_limit: Legfeljebb %{max} szó lehet
       max_words: Szavak maximális száma
+      min_word_limit: Legalább %{min} szó kell
       min_words: Minimális szavak
       no_answer_provided: Még nincs válasz
       no_reflective_questions: Nincsenek reflektív kérdések
@@ -2811,6 +2858,7 @@ hu:
       updated_successfully: Válaszait sikeresen frissítettük
       word_limit: "%{min} és %{max} szó között kell lennie"
       words: Szöveg
+    reject_plan: Elutasít tervet
     remove_skill: Képesség eltávolítása
     remove_skill_from_plan: Szakértelem %{name} eltávolítása a csomagból
     removed_development_action: Eltávolított fejlesztési akció
@@ -2831,6 +2879,7 @@ hu:
     summary_logs: Összefoglaló naplók %{reporteeName}
     technical: Műszaki
     user_idp_status:
+      ai_assisted_idp_in_progress: MI által támogatott IDP folyamatban
       approved: Jóváhagyott
       completed: Befejezett
       completion_not_started: A befejezés nem kezdődött el
@@ -2950,6 +2999,7 @@ hu:
     usage_overview: Licenchasználat megtekintése
     usages: Használat
   licenses:
+    client_usage: Klienshasználat
     enabled: Engedélyezve
     end_date: Befejezés dátuma
     not_enough_idp_license: Nincs elég IDP-licenc, forduljon a rendszergazdához
@@ -2958,6 +3008,10 @@ hu:
     not_enough_proctoring_credits: Nincs elég kredit a felügyelet megkezdéséhez
     number: Szám
     overuse_number: Túlhasználati engedmény
+    project_limit_reached: A használati korlát '%{license_name}' esetén kérlek, vegye fel a kapcsolatot az adminisztrátorral
+    project_specific: Projektspecifikus
+    project_specific_license: Projektspecifikus engedély
+    project_usage: Projekt használata
     report_family: Jelentéscsomag
     start_date: Kezdő dátum
     title: Licenc
@@ -2969,6 +3023,34 @@ hu:
       threesixty: Háromhatvan
     used_number: Használt licencek
     used_out_of: "%{used} a(z) %{total} -ból"
+  lti:
+    oidc_auth_form:
+      errors:
+        client_id:
+          blank: Ügyfélazonosító szükséges
+          invalid: Az ügyfélazonosító nem egyezik a regisztrált eszközazonosítóval
+          validation_failed: Az ügyfélazonosító ellenőrzése sikertelen
+        login_hint:
+          assessment_completed: A felhasználói értékelés már elkészült
+          blank: Bejelentkezési tipp szükséges
+          invalid_user_assessment: A bejelentkezési tipp nem hivatkozik érvényes felhasználói értékelésre
+        lti_deployment_id:
+          not_found: A telepítési azonosító nem hivatkozik érvényes integrációra
+        nonce:
+          blank: Nonce szükséges
+        redirect_uri:
+          blank: Átirányítási URI szükséges
+          has_fragment: Az átirányítási URI-nek nem tartalmazhat fragmentumot
+          https_required: Az átirányítási URI-nak gyártásban HTTPS-t kell használnia
+          invalid_format: Az átirányítási URI-nak érvényes URI formátumnak kell lennie
+          missing_host: Az átirányítási URI-nak tartalmaznia kell egy hajtóművet
+          scheme_not_allowed: Az átirányítási URI-nak HTTP vagy HTTPS protokollt kell használnia
+        response_type:
+          blank: Választípus szükséges
+          invalid: A választípusnak 'id_token' kell lennie
+        scope:
+          blank: A hatókör szükséges
+          invalid: A hatótávnak 'nyíltnak' kell lennie
   mailer:
     copyright:
       text: Lighthouse. Minden jog fenntartva
@@ -3214,10 +3296,12 @@ hu:
         pearson: Pearson
         saville: Saville
         skillvue: Skillvue
+        yoodli: Yoodli
     form:
       load_from_mettl: Terhelés a Mettl-től
       load_from_pearson: Rakomány Pearsontól
       load_from_skillvue: Betöltés a Skillvue-tól
+      load_from_yoodli: A Yoodli rakománya
       none_external: Nincs – Jelentéskészítő használata
     language: Jelentés nyelve
     language_updated: A jelentés nyelvének frissítése sikeresen megtörtént
