@@ -1800,7 +1800,8 @@ CREATE TABLE public.campaign_users (
     campaign_scores_errors json,
     external_id character varying,
     current_job_role_id bigint,
-    target_job_role_id bigint
+    target_job_role_id bigint,
+    campaign_artifact_results_finalized boolean DEFAULT false
 );
 
 
@@ -19163,6 +19164,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20251125161740'),
 ('20251121123824'),
 ('20251121093812'),
 ('20251120061522'),
@@ -20117,4 +20119,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

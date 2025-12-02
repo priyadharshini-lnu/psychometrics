@@ -29,6 +29,7 @@ class CampaignUser < ApplicationRecord
            },
            foreign_key: :user_id, primary_key: :user_id
   has_many :campaign_factors, through: :campaign
+  has_many :campaign_ai_artifacts, through: :campaign
   has_many :communication_emails
 
   validates :external_id, uniqueness: { scope: :campaign_id }, allow_nil: true
@@ -42,6 +43,9 @@ class CampaignUser < ApplicationRecord
                on: [:update]
   after_commit :generate_or_remove_report_on_score_finalized,
                if: proc { campaign_scores_finalized_previously_changed? },
+               on: [:update]
+  after_commit :generate_or_remove_report_on_artifact_results_finalized,
+               if: proc { campaign_artifact_results_finalized_previously_changed? },
                on: [:update]
   after_commit :publish_campaign_results_available,
                if: proc { campaign_scores_finalized_previously_changed? && campaign_scores_finalized? },
@@ -81,6 +85,22 @@ class CampaignUser < ApplicationRecord
 
   def campaign_factor_dependent_user_reports
     UserReport.joins(:report).merge(Report.campaign_factor_dependable).
+      where(campaign_id: campaign_id, user_id: user_id)
+  end
+
+  def generate_or_remove_report_on_artifact_results_finalized
+    if campaign_artifact_results_finalized?
+      UserReports::GenerateAndSavePdfJob.set(wait: 30.seconds).perform_later(
+        campaign_ai_artifact_dependent_user_reports.pluck(:id), user
+      )
+    else
+      UserReports::RemovePdfJob.perform_later(campaign_ai_artifact_dependent_user_reports.pluck(:id))
+    end
+  end
+
+  def campaign_ai_artifact_dependent_user_reports
+    UserReport.joins(:report).
+      merge(Report.campaign_ai_artifact_dependable).
       where(campaign_id: campaign_id, user_id: user_id)
   end
 
@@ -211,5 +231,13 @@ class CampaignUser < ApplicationRecord
 
   def all_campaign_scores_present?
     CampaignFactorValue.where(campaign_id: campaign_id, user_id: user_id).count == campaign_factors.count
+  end
+
+  def all_campaign_artifact_results_present?
+    ::AI::CampaignArtifactResult.joins(:campaign_ai_artifact).
+      where(
+        campaign_ai_artifacts: { campaign_id: campaign_id },
+        user_id: user_id
+      ).count == campaign_ai_artifacts.count
   end
 end
