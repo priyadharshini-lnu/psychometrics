@@ -1475,8 +1475,6 @@ nl:
       skillvue_email_id: Skillvue Kandidaat Email ID
       skillvue_external_assessment_id: Skillvue Beoordeling ID
       universal_link: Universele link
-      yoodli_email_id: Yoodli Kandidaat E-mailadres
-      yoodli_external_assessment_id: Yoodli Assessment ID
     drawer:
       mettl_schedule_name: Mettl Schema Naam
       title: Beoordeling Details

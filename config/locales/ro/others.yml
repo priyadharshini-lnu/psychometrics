@@ -1475,8 +1475,6 @@ ro:
       skillvue_email_id: Adresa de e-mail a candidatului Skillvue
       skillvue_external_assessment_id: Skillvue Evaluare ID
       universal_link: Legătura universală
-      yoodli_email_id: ID-ul de email al candidatului Yoodli
-      yoodli_external_assessment_id: ID de evaluare Yoodli
     drawer:
       mettl_schedule_name: Nume program Mettl
       title: Detalii de evaluare

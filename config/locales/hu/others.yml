@@ -1475,8 +1475,6 @@ hu:
       skillvue_email_id: Skillvue Jelölt e-mail azonosítója
       skillvue_external_assessment_id: Skillvue Értékelési ID
       universal_link: Univerzális kapcsolat
-      yoodli_email_id: Yoodli jelölt e-mail azonosító
-      yoodli_external_assessment_id: Yoodli Assessment ID
     drawer:
       mettl_schedule_name: Mettl ütemezés neve
       title: Az értékelés részletei

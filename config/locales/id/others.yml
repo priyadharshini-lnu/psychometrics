@@ -1479,8 +1479,6 @@ id:
       skillvue_email_id: ID Email Kandidat Skillvue
       skillvue_external_assessment_id: ID Penilaian Skillvue
       universal_link: Tautan universal
-      yoodli_email_id: ID Email Kandidat Yoodli
-      yoodli_external_assessment_id: ID Penilaian Yoodli
     drawer:
       mettl_schedule_name: Nama Jadwal Mettl
       title: Detail Penilaian

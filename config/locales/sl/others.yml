@@ -1484,8 +1484,6 @@ sl:
       skillvue_email_id: E-poštni naslov kandidata v Skillvue
       skillvue_external_assessment_id: ID ocenjevanja v Skillvue
       universal_link: Univerzalna povezava
-      yoodli_email_id: E-poštni ID kandidata Yoodli
-      yoodli_external_assessment_id: Yoodli Assessment ID
     drawer:
       mettl_schedule_name: Ime urnika Mettl
       title: Podrobnosti ocenjevanja

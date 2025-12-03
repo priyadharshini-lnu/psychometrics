@@ -1475,8 +1475,6 @@ sk:
       skillvue_email_id: Skillvue Kandidát Email ID
       skillvue_external_assessment_id: Skillvue Assessment ID
       universal_link: Univerzálny odkaz
-      yoodli_email_id: E-mailové ID kandidáta Yoodli
-      yoodli_external_assessment_id: Yoodli Assessment ID
     drawer:
       mettl_schedule_name: Názov rozvrhu Mettl
       title: Podrobnosti o hodnotení

@@ -1469,8 +1469,6 @@ vi:
       skillvue_email_id: ID Email Ứng viên Skillvue
       skillvue_external_assessment_id: Mã đánh giá Skillvue
       universal_link: Liên kết phổ quát
-      yoodli_email_id: ID email ứng viên Yoodli
-      yoodli_external_assessment_id: ID đánh giá Yoodli
     drawer:
       mettl_schedule_name: Tên lịch trình Mettl
       title: Chi tiết đánh giá

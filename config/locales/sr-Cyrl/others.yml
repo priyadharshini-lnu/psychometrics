@@ -1470,8 +1470,6 @@ sr-Cyrl:
       skillvue_email_id: ИД е-поште кандидата за Скиллвуе
       skillvue_external_assessment_id: Скиллвуе ИД процене
       universal_link: Универзална веза
-      yoodli_email_id: ИД е-поште кандидата за јоодли
-      yoodli_external_assessment_id: Иоодли Процена ИД
     drawer:
       mettl_schedule_name: Меттл Распоред Име
       title: Детаљи процене

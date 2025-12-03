@@ -1486,8 +1486,6 @@ sr-Latn:
       skillvue_email_id: Skillvue ID imejl kandidata
       skillvue_external_assessment_id: Skillvue ID za procenu
       universal_link: Univerzalna veza
-      yoodli_email_id: ID e-pošte kandidata za joodli
-      yoodli_external_assessment_id: Ioodli Procena ID
     drawer:
       mettl_schedule_name: Mettl Raspored Ime
       title: Detalji procene

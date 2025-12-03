@@ -1479,8 +1479,6 @@ pl:
       skillvue_email_id: Identyfikator e-mail kandydata Skillvue
       skillvue_external_assessment_id: Skillvue Assessment ID
       universal_link: Łącze uniwersalne
-      yoodli_email_id: Identyfikator e-mail kandydata Yoodli
-      yoodli_external_assessment_id: Yoodli Assessment ID
     drawer:
       mettl_schedule_name: Nazwa harmonogramu Mettl
       title: Szczegóły oceny

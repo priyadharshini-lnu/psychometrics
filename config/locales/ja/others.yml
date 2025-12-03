@@ -1488,8 +1488,6 @@ ja:
       skillvue_email_id: スキルビュー候補者のEメールアドレス
       skillvue_external_assessment_id: スキルビュー査定ID
       universal_link: ユニバーサルリンク
-      yoodli_email_id: ユードリ候補者メールアドレス
-      yoodli_external_assessment_id: Yoodli評価ID
     drawer:
       mettl_schedule_name: メットル・スケジュール名
       title: 評価内容

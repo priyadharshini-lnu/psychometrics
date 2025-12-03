@@ -1489,8 +1489,6 @@ de:
       skillvue_email_id: Skillvue-Kandidaten-E-Mail-ID
       skillvue_external_assessment_id: Skillvue Bewertung ID
       universal_link: Universeller Link
-      yoodli_email_id: Yoodli-Kandidaten-E-Mail-ID
-      yoodli_external_assessment_id: Yoodli Bewertungs-ID
     drawer:
       mettl_schedule_name: Mettl Zeitplan Name
       title: Bewertung Details

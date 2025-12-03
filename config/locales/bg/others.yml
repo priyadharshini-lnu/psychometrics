@@ -1475,8 +1475,6 @@ bg:
       skillvue_email_id: Skillvue Кандидат Имейл ID
       skillvue_external_assessment_id: Skillvue Оценка ID
       universal_link: Универсална връзка
-      yoodli_email_id: Имейл ID на кандидата Yoodli
-      yoodli_external_assessment_id: Yoodli Assessment ID
     drawer:
       mettl_schedule_name: Име на разписанието на Mettl
       title: Подробности за оценката

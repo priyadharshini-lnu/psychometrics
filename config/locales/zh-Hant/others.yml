@@ -1475,8 +1475,6 @@ zh-Hant:
       skillvue_email_id: Skillvue 候選人電子郵件 ID
       skillvue_external_assessment_id: Skillvue 評估 ID
       universal_link: 通用連結
-      yoodli_email_id: Yoodli 候選人電子郵件 ID
-      yoodli_external_assessment_id: Yoodli 評估識別碼
     drawer:
       mettl_schedule_name: 時間表名稱
       title: 評估細節

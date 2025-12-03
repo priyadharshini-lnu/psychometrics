@@ -1488,8 +1488,6 @@ pt:
       skillvue_email_id: ID do e-mail do candidato Skillvue
       skillvue_external_assessment_id: ID de avaliação de Skillvue
       universal_link: Ligação universal
-      yoodli_email_id: ID de e-mail do candidato Yoodli
-      yoodli_external_assessment_id: ID de Avaliação Yoodli
     drawer:
       mettl_schedule_name: Nome do calendário Mettl
       title: Detalhes da avaliação

@@ -1475,8 +1475,6 @@ fr:
       skillvue_email_id: Adresse électronique du candidat Skillvue
       skillvue_external_assessment_id: Évaluation de Skillvue ID
       universal_link: Lien universel
-      yoodli_email_id: ID Email du candidat Yoodli
-      yoodli_external_assessment_id: Yoodli Assessment ID
     drawer:
       mettl_schedule_name: Nom du programme Mettl
       title: Détails de l'évaluation

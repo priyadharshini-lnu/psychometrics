@@ -1527,8 +1527,6 @@ ar:
       skillvue_email_id: معرف البريد الإلكتروني للمرشح سكيلفيو
       skillvue_external_assessment_id: معرّف تقييم سكيلفيو
       universal_link: رابط عالمي
-      yoodli_email_id: معرف البريد الإلكتروني للمرشح في يودلي
-      yoodli_external_assessment_id: معرف تقييم يودلي
     drawer:
       mettl_schedule_name: اسم جدول Mettl
       title: تفاصيل التقييم

@@ -1482,8 +1482,6 @@ hr:
       skillvue_email_id: ID emaila kandidata
       skillvue_external_assessment_id: ID Skillvue procjene
       universal_link: Univerzalna poveznica
-      yoodli_email_id: Email ID Yoodli kandidata
-      yoodli_external_assessment_id: Yoodli Assessment ID
     drawer:
       mettl_schedule_name: Mettl Naziv rasporeda
       title: Pojedinosti o procjeni

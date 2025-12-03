@@ -1472,8 +1472,6 @@ th:
       skillvue_email_id: อีเมลผู้สมัคร Skillvue
       skillvue_external_assessment_id: รหัสการประเมิน Skillvue
       universal_link: ลิงค์สากล
-      yoodli_email_id: รหัสอีเมลผู้สมัคร Yoodli
-      yoodli_external_assessment_id: รหัสการประเมิน Yoodli
     drawer:
       mettl_schedule_name: ชื่อกําหนดการ Mettl
       title: รายละเอียดการประเมิน
