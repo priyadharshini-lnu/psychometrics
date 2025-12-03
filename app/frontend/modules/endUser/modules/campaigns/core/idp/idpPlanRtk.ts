@@ -23,7 +23,9 @@ const idp = createSlice({
   name: 'idp',
   initialState: defaultState,
   reducers: {
-
+    setReflectiveQuestions (state, { payload }) {
+      state.reflectionQuestions = payload.reflectionQuestions
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(

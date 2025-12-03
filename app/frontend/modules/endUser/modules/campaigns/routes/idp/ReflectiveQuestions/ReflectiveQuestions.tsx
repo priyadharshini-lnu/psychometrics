@@ -5,7 +5,7 @@ import {
   message, Space, Form, Empty,
 } from 'antd'
 import {
-  useSelector,
+  useSelector, useDispatch,
 } from 'react-redux'
 import cs from 'classnames'
 import { Separator } from '~/components/IdpShared/Separator'
@@ -17,6 +17,7 @@ import styles from './ReflectiveQuestions.less'
 import Editor from './Editor'
 import { USER_IDP_PLAN_STATUS } from '~/components/IdpShared/constants'
 import { useReflectiveQuestions } from './useReflectiveQuestions'
+import { actions } from '~/modules/endUser/modules/campaigns/core/idp/idpPlanRtk'
 
 const { I18n } = window
 
@@ -39,33 +40,51 @@ export const ReflectiveQuestions: FC<Props> = ({
   const {
     reflectionQuestions, validateAnswer, updateReflectionQuestions, onChange, answers, errors,
   } = useReflectiveQuestions()
+  const dispatch = useDispatch()
+
 
   const { isMobile } = useContext(MediaQueryContext)
 
 
   const [currentReflectionQuestionIndex, setCurrentReflectionQuestionIndex] = useState(0)
+  const [isUpdating, setIsUpdating] = useState(false)
 
   const onSubmit = async () => {
     if (!validateAnswer(currentReflectionQuestion)) {
       return
     }
-    if (currentReflectionQuestionIndex < reflectionQuestions.length - 1) {
-      setCurrentReflectionQuestionIndex(currentReflectionQuestionIndex + 1)
-    } else {
-      try {
-        await updateReflectionQuestions({
-          userId: currentUser.id,
-          reflectionQuestions: _.map(answers, (answer, questionId) => ({
-            id: questionId,
-            answer: answer.content,
-          })),
-        }).unwrap()
+    setIsUpdating(true)
+    try {
+      await updateReflectionQuestions({
+        userId: currentUser.id,
+        reflectionQuestions: _.map(answers, (answer, questionId) => ({
+          id: questionId,
+          answer: answer.content,
+        })),
+      }).unwrap()
+      setIsUpdating(false)
+      if (currentReflectionQuestionIndex < reflectionQuestions.length - 1) {
+        setCurrentReflectionQuestionIndex(currentReflectionQuestionIndex + 1)
+      } else {
         message.success(I18n.t('idp.reflective_questions.updated_successfully'))
         onSave && onSave()
-      } catch (error) {
-        message.error(error?.data?.error || I18n.t('idp.reflective_questions.update_failed'))
       }
+    } catch (error) {
+      setIsUpdating(false)
+      message.error(error?.data?.error || I18n.t('idp.reflective_questions.update_failed'))
     }
+  }
+
+  const handlePrevious = () => {
+    dispatch(actions.setReflectiveQuestions({
+      userId: currentUser.id,
+      reflectionQuestions: reflectionQuestions.map(question => ({
+        ...question,
+        id: question.id,
+        answer: answers[question.id]?.content || '',
+      })),
+    }))
+    prev && prev()
   }
 
   if (!status) {
@@ -82,7 +101,7 @@ export const ReflectiveQuestions: FC<Props> = ({
       <Flex gap={4} vertical={isMobile} className="mb-4" justify="space-between" align="middle">
         <Space>
           <BackButton
-            onPrev={prev}
+            onPrev={handlePrevious}
           />
           <Typography.Title level={3} className="mb-0 mt-0">
             {I18n.t('idp.reflective_questions.title')}
@@ -121,7 +140,7 @@ export const ReflectiveQuestions: FC<Props> = ({
           <Button
             size="small"
             className="items-start"
-            disabled={currentReflectionQuestionIndex === 0}
+            disabled={currentReflectionQuestionIndex === 0 || isUpdating}
             onClick={() => setCurrentReflectionQuestionIndex(currentReflectionQuestionIndex - 1)}
           >
             {I18n.t('idp.initial_steps.back')}
@@ -134,6 +153,8 @@ export const ReflectiveQuestions: FC<Props> = ({
             type="primary"
             className="items-end self-end"
             onClick={onSubmit}
+            loading={isUpdating}
+            disabled={isUpdating}
           />
         </Flex>
       </div>

@@ -255,9 +255,9 @@ const MyPlanComponent = ({
   })
 
   const operations = (
-    <Flex gap={8} flex={1} justify="end">
-      <Dropdown menu={menu} trigger={['click']}>
-        <Tooltip title={I18n.t('common.actions.download')}>
+    <Flex gap={8} flex={1} justify="end" wrap>
+      <Dropdown placement={isMobile ? 'bottom' : 'bottomRight'} menu={menu} trigger={['click']}>
+        <Tooltip zIndex={isMobile ? -1 : 999} title={I18n.t('common.actions.download')}>
           <Button
             aria-label={I18n.t('idp.download_plan')}
             loading={asyncLoading}

@@ -98,7 +98,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
 
   const [isPrivateSkill, setPrivateSkill] = useState(isPrivate)
 
-  const { isTablet, isDesktop } = useContext(MediaQueryContext)
+  const { isMobile, isTablet, isDesktop } = useContext(MediaQueryContext)
 
   const [openSkillDeletionModal, setOpenSkillDeletionModal] = useState(false)
   const handleRatingChange = (rating) => {
@@ -192,6 +192,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
     <Flex
       vertical
       id={`skill-${userIdpSkillId}`}
+      className={styles.skillCardContainer}
     >
       <Flex
         justify="space-between"
@@ -208,7 +209,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
             icon={<MessageOutlined />}
           />
           {editMode && changeStatus !== PlanChangeStatus.REMOVED && (
-            <Tooltip title={I18n.t('idp.remove_skill')}>
+            <Tooltip zIndex={isMobile ? -1 : 999} title={I18n.t('idp.remove_skill')}>
               <Button
                 type="default"
                 shape="circle"
@@ -273,7 +274,12 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
       ) : developmentActionCards}
       {changeHistory && (<ChangeHistory changeHistory={changeHistory} />)}
       {editMode && changeStatus !== PlanChangeStatus.REMOVED ? (
-        <Flex className="mt-4 mb-2" gap={isTablet ? 8 : 64} vertical={isTablet} justify="start">
+        <Flex
+          className={`mt-4 ${(isMobile) ? styles.daOptions : 'mb-2 '}`}
+          gap={isTablet ? 8 : 64}
+          vertical={isTablet}
+          justify="start"
+        >
           {isTablet && (
             <Flex>
               <Typography.Text>{I18n.t('idp.development_actions.add_more')}</Typography.Text>
