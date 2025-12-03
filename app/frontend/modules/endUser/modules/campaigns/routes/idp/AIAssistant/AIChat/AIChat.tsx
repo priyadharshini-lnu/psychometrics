@@ -78,7 +78,17 @@ export const Bubble: FC<BubbleProps> = ({
     component, message, data, role, error,
   } = content
 
-  const bubbleType = role === 'user' ? 'UserMessage' : 'AssistantMessage'
+  const isUploadedFileString = role === 'user'
+  && typeof message === 'string'
+  && /^Uploaded file .*?\.[A-Za-z0-9]+$/i.test(message.trim())
+
+  let bubbleType: string
+
+  if (isUploadedFileString) {
+    bubbleType = 'UserDocument'
+  } else {
+    bubbleType = role === 'user' ? 'UserMessage' : 'AssistantMessage'
+  }
   const Bubble = BubbleTypes[component || bubbleType] || BubbleTypes.AssistantMessage
 
   return (

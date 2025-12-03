@@ -3,7 +3,7 @@ import {
 } from 'antd'
 import { Bubble } from '@ant-design/x'
 import {
-  MessageOutlined, FileOutlined, RightOutlined, UploadOutlined,
+  MessageOutlined, FileOutlined, RightOutlined, UploadOutlined, CheckCircleOutlined,
 } from '@ant-design/icons'
 import { BotIcon } from './BotIcon'
 import styles from './styles.less'
@@ -52,6 +52,17 @@ export const RetakeSteps = ({ onAction }) => (
             <Typography.Text strong>{I18n.t('idp.ai.retake_steps.upload_document')}</Typography.Text>
             <Button type="primary" size="small" icon={<UploadOutlined />} onClick={() => onAction('retakeDocument')}>
               {I18n.t('idp.ai.retake_steps.upload_file')}
+            </Button>
+          </Flex>
+          <Flex vertical align="center" gap={12}>
+            <div className={styles.iconContainer} style={{ background: '#75c895' }}>
+              <CheckCircleOutlined className={styles.icon} />
+            </div>
+            <Typography.Text strong>
+              {I18n.t('enduser.idp_retake_steps_continue_with_this_information')}
+            </Typography.Text>
+            <Button type="primary" size="small" icon={<CheckCircleOutlined />} onClick={() => onAction('complete')}>
+              {I18n.t('shared.continue')}
             </Button>
           </Flex>
           {/* <Flex vertical align="center" gap={12}>

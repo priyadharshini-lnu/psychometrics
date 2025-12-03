@@ -33,13 +33,6 @@ export const Summary = ({
             {data.chatSummary}
           </ReactMarkdown>
         </Card>
-        <Card className={styles.card} styles={{ body: { width: '100%' } }}>
-          <Flex justify="space-between" flex={1}>
-            <Space>
-              <Button style={{ borderColor: '#dbdbdb' }} size="small">{I18n.t('idp.ai.summary.view_chat')}</Button>
-            </Space>
-          </Flex>
-        </Card>
         <Divider />
         {data.documentSummary && (
           <>
