@@ -27,6 +27,8 @@ en:
     audit_reports: Audit Reports
     availability: Availability
     back_to_main: Main Menu
+    bulk_upload_ai_artifacts: Bulk Upload AI Artifacts
+    campaign_ai_artifact_updated_successfully: Campaign AI artifacts updated successfully
     campaign_assessment_actions_disable_caching: Disable Assessment Caching
     campaign_assessment_actions_enable_caching: Enable Assessment Caching
     campaign_assessment_column_caching_enabled: Assessment Caching Enabled
@@ -40,6 +42,7 @@ en:
     client: Client
     client_admins: Client Admins
     clients: Clients
+    code_required: Code is required
     communication_center: Communication Center
     country: Country
     create_client: Create Client
@@ -52,6 +55,7 @@ en:
     empty_csv_file: CSV file does not contain any data.
     fill_empty_score_msg: Fill all the final scores before saving.
     final_score_empty_msg: Final score cannot be empty.
+    import_ai_artifacts: Import AI Artifacts
     import_csv_assessment_group_error: 'Row %{index}: user with email %{email} is already invited to ''%{workshopInviteName}'''
     import_csv_error: 'Row %{index}: user with email %{email} is not in this campaign'
     import_csv_parsing_error: 'CSV parsing error: %{message}'
@@ -77,6 +81,8 @@ en:
     invalid_csv_header: CSV file contains invalid headers.
     libraries: Media Library
     library_invalid_type: Invalid Library Item
+    name_required: Name is required
+    no_file_selected: No file selected
     no_notifications: No Notifications
     norms: Norms
     notification_bell_icon_alt_text: Notification Bell Icon
@@ -142,6 +148,7 @@ en:
     slot_name: Slot Name
     stats: Stats
     subject_part_of_other_invite: Subject with email %{user_email} is already invited to '%{workshop_invite_name}'
+    upload_success: Uploaded successfully
     user_report_events: User Report Events
     users: Users
     validation_error: An error occurred during validation

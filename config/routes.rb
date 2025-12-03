@@ -757,6 +757,7 @@ Rails.application.routes.draw do
         resource :builders, only: %i[show update] do
           member do
             post :upload_campaign_factors
+            post :upload_campaign_ai_artifacts
           end
         end
       end

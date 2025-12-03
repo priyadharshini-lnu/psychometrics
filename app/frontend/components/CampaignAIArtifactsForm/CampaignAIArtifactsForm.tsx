@@ -1,42 +1,28 @@
 import {
   FC, useState, useEffect,
-  useRef,
+  useRef, useCallback,
 } from 'react'
 import {
-  Button, Form, Input, Table, message, Space,
+  Button, Form, Input, Table, message, Space, Row, Dropdown, type MenuProps,
+  InputRef,
 } from 'antd'
-import type { InputRef } from 'antd'
 import { CloseOutlined } from '@ant-design/icons'
 import { v4 as uuidv4 } from 'uuid'
+import { DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import BulkUploadModal from './BulkUploadModal'
 import { AiAssistant } from '~/modules/admin/modules/AiAssitant/core/aiAssistant'
 import { AIAssistantSelector } from './AiAssistantSelector'
 import styles from './CampaignAIArtifactsForm.less'
+import { CampaignAIArtifact } from './types'
 
 const { I18n } = window
-
-export type CampaignAIArtifact = {
-  id?: number
-  name: string
-  code: string
-  key: string
-  aiAssistant: {
-    id: number
-    name: string
-    assistantOutputSchemaKeys: {
-      id: number
-      key: string
-      description: string
-      keyType: string
-    }[]
-  } | null
-}
 
 type FieldError = { [key: string]: string }
 
 type Props = {
-  artifacts: CampaignAIArtifact[]
-  saveCampaignAIArtifacts: (artifacts: CampaignAIArtifact[]) => void
-  onSaveCampaignAIArtifacts?: (formItems: CampaignAIArtifact[]) => void
+    artifacts: CampaignAIArtifact[]
+    saveCampaignAIArtifacts: (artifacts: CampaignAIArtifact[]) => void
+    onSaveCampaignAIArtifacts?: (formItems: CampaignAIArtifact[]) => void
 }
 
 const isFieldUnique = (
@@ -54,11 +40,27 @@ export const CampaignAIArtifactsForm: FC<Props> = ({
   const [form] = Form.useForm()
   const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([])
   const [formData, setFormData] = useState<CampaignAIArtifact[]>([])
+  const [bulkUpload, setBulkUpload] = useState(false)
   const lastRowRef = useRef<InputRef>(null)
+
+  const handleBulkUpload = (cfs: { code: string, name: string,
+      aiAssistant: CampaignAIArtifact['aiAssistant'] }[]) => {
+    const newEntries = cfs.map(cf => ({
+      ...cf,
+      key: uuidv4(),
+    }))
+    setFormData((prev) => {
+      const updatedData = [...prev, ...newEntries]
+      form.setFieldsValue({ items: updatedData })
+      return updatedData
+    })
+  }
 
   const handleAiAssistantSelection = (index: number, assistantId: number, assistant: AiAssistant) => {
     const newData = formData.map((item, idx) => {
-      if (idx !== index) { return item }
+      if (idx !== index) {
+        return item
+      }
       return {
         ...item,
         aiAssistant: {
@@ -147,7 +149,7 @@ export const CampaignAIArtifactsForm: FC<Props> = ({
         getContainer: () => document.getElementById('fixed_header') || document.body,
       })
       onSaveCampaignAIArtifacts && onSaveCampaignAIArtifacts(newCampaignAIArtifacts)
-      message.success('Campaign AI artifacts updated successfully')
+      message.success(I18n.t('admin.campaign_ai_artifact_updated_successfully'))
     }
   }
 
@@ -168,9 +170,12 @@ export const CampaignAIArtifactsForm: FC<Props> = ({
         <Form.Item
           name={['items', index, 'name']}
           rules={[
-            { required: true, message: 'Name is required' },
             {
-              pattern: /^[^\s].*(?<!\s)$/,
+              required: true,
+              message: I18n.t('admin.name_required'),
+            },
+            {
+              pattern: /^\S.*(?<!\s)$/,
               message: I18n.t('administration.report_builder.campaign_factors.no_boundary_space'),
             },
           ]}
@@ -187,7 +192,10 @@ export const CampaignAIArtifactsForm: FC<Props> = ({
         <Form.Item
           name={['items', index, 'code']}
           rules={[
-            { required: true, message: 'Code is required' },
+            {
+              required: true,
+              message: I18n.t('admin.code_required'),
+            },
             {
               pattern: /^[a-z][a-z0-9_]*$/,
               message: I18n.t('administration.report_builder.campaign_factors.code_constraint'),
@@ -205,7 +213,10 @@ export const CampaignAIArtifactsForm: FC<Props> = ({
       render: (_: unknown, record: CampaignAIArtifact, index: number) => (
         <Form.Item
           name={['items', index, 'aiAssistant', 'id']}
-          rules={[{ required: true, message: I18n.t('admin.ai_assistant_required') }]}
+          rules={[{
+            required: true,
+            message: I18n.t('admin.ai_assistant_required'),
+          }]}
           className={styles.formItem}
         >
           <AIAssistantSelector
@@ -232,8 +243,39 @@ export const CampaignAIArtifactsForm: FC<Props> = ({
     },
   ]
 
+  const handleToolSelection = useCallback((key: string) => {
+    switch (key) {
+      case 'importAiArtifacts':
+        setBulkUpload(true)
+        break
+      default:
+        break
+    }
+  }, [])
+
+  const tools: MenuProps['items'] = [
+    {
+      label: I18n.t('admin.import_ai_artifacts'),
+      key: 'importAiArtifacts',
+      onClick: () => handleToolSelection('importAiArtifacts'),
+    },
+  ]
+
   return (
     <>
+      <Row className={styles.row}>
+        <Dropdown
+          menu={{ items: tools }}
+          trigger={['click']}
+          placement="bottomRight"
+          className={styles.tools}
+        >
+          <Button>
+            {I18n.t('shared.tools')}
+            <DownOutlined />
+          </Button>
+        </Dropdown>
+      </Row>
       <Form
         form={form}
         name="campaign_ai_artifacts"
@@ -274,6 +316,13 @@ export const CampaignAIArtifactsForm: FC<Props> = ({
           </Button>
         </Space>
       </Form>
+      {bulkUpload && (
+        <BulkUploadModal
+          open={bulkUpload}
+          close={() => setBulkUpload(false)}
+          handleBulkUpload={handleBulkUpload}
+        />
+      )}
     </>
   )
 }

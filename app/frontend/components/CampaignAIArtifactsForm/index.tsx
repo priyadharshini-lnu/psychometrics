@@ -1,1 +1,2 @@
-export { CampaignAIArtifactsForm, type CampaignAIArtifact } from './CampaignAIArtifactsForm'
+export { CampaignAIArtifactsForm } from './CampaignAIArtifactsForm'
+export { type CampaignAIArtifact } from './types'
