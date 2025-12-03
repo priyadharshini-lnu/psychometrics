@@ -8,6 +8,7 @@ en:
     ai_assistant_model_label: Model
     ai_assistant_model_provider: Provider
     ai_assistant_model_region_label: Region
+    ai_assistant_required: AI Assistant is required
     ai_assistants: AI Assistants
     ai_assistants_advanced_mode_tooltip: Use advanced mode for prompt templating using liquid template with available variables. Refer to documentation for more details.
     ai_assistants_campaign_id_placeholder: Enter campaign ID

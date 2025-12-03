@@ -205,7 +205,7 @@ export const CampaignAIArtifactsForm: FC<Props> = ({
       render: (_: unknown, record: CampaignAIArtifact, index: number) => (
         <Form.Item
           name={['items', index, 'aiAssistant', 'id']}
-          rules={[{ required: true, message: 'AI Assistant is required' }]}
+          rules={[{ required: true, message: I18n.t('admin.ai_assistant_required') }]}
           className={styles.formItem}
         >
           <AIAssistantSelector

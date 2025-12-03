@@ -280,13 +280,14 @@ const IDPDetailsForm = ({
           {aiEnabled && (
             <Col xs={24} md={12}>
               <Card title={I18n.t('administration.idp.ai_settings')}>
+                {/* uncomment this when AI Assisted IDP is ready
                 <Form.Item
                   name="aiAssistedIdpEnabled"
                   label={I18n.t('administration.idp.ai_assisted_idp_enabled')}
                   valuePropName="checked"
                 >
                   <Switch />
-                </Form.Item>
+                </Form.Item> */}
 
                 <Form.Item
                   name="oneClickIdpEnabled"
@@ -301,6 +302,7 @@ const IDPDetailsForm = ({
                     <Form.Item
                       name="oneClickAiAssistantId"
                       label={I18n.t('administration.idp.ai_assistant')}
+                      rules={[{ required: true, message: I18n.t('admin.ai_assistant_required') }]}
                     >
                       <Select
                         showSearch

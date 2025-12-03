@@ -163,13 +163,14 @@ const IDPTemplateForm = ({
               </Form.Item>
               {aiEnabled && (
                 <>
+                  {/* uncomment this when AI Assisted IDP is ready
                   <Form.Item
                     name="aiAssistedIdpEnabled"
                     label={I18n.t('administration.idp.ai_assisted_idp_enabled')}
                     valuePropName="checked"
                   >
                     <Switch />
-                  </Form.Item>
+                  </Form.Item> */}
                   <Form.Item
                     name="oneClickIdpEnabled"
                     label={I18n.t('administration.idp.one_click_idp_enabled')}
