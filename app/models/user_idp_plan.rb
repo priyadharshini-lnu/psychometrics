@@ -138,7 +138,7 @@ class UserIdpPlan < ApplicationRecord
   end
 
   def status
-    if (completion_status_in_progress? || completion_status_completed?) && approved?
+    if (!completion_status_not_started? && approved?) || ai_assisted_idp_in_progress?
       completion_status
     else
       approval_status
