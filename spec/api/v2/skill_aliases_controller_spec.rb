@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'swagger_helper'
 
-describe Api::V2::Administration::SkillAliasesController, swagger_doc: 'v2/swagger.json', type: :request do
+RSpec.describe Api::V2::Administration::SkillAliasesController, type: :request do
   let!(:superadmin) { create(:superadmin) }
-  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
+  let!(:api_key) { create(:api_key, user: superadmin) }
+  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
   let!(:client) { create(:tenancy) }
   let(:client_id) { client.id }
   let!(:project) { Project.find(create(:project, parent: client).id) }
@@ -18,184 +18,88 @@ describe Api::V2::Administration::SkillAliasesController, swagger_doc: 'v2/swagg
 
   before { sign_in(superadmin) }
 
-  path '/clients/{client_id}/skill_aliases' do
-    get 'Skill Alias list' do
-      operationId 'SkillAliasList'
-      tags 'SkillAliases'
-      consumes 'application/json'
-      security [basic: []]
-      parameter name: :client_id, in: :path, type: :string
+  describe 'GET /api/v2/administration/clients/{client_id}/skill_aliases' do
+    it 'returns skill alias list' do
+      get "/api/v2/administration/clients/#{client_id}/skill_aliases", headers: { 'Authorization' => authorization }
 
-      response '200', ' list' do
-        schema '$ref' => '#/components/schemas/SkillAliasListResponse'
-
-        examples 'application/json' => [{
-          data: {
-            id: '1',
-            type: 'skill_aliases',
-            attributes: {
-              name: 'Skill XYZ',
-              client_id: '1',
-              skill_id: '1'
-            }
-          }
-        }]
-
-        run_test! do |response|
-          skill_aliases_response = JSON.parse(response.body)['data'].find { |d| d['id'] == skill_alias.id.to_s }
-          expect(skill_aliases_response).to have_attribute(:name).with_value(skill_alias.name)
-          expect(skill_aliases_response).to have_attribute(:skill_id).with_value(skill_id.to_s)
-          expect(skill_aliases_response).to have_attribute(:client_id).with_value(client_id.to_s)
-        end
-      end
-    end
-
-    post 'Create Skill Alias' do
-      operationId 'SkillAliasRole'
-      description 'Create new Skill Alias'
-      tags 'SkillAliases'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :client_id, in: :path, type: :string
-      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/SkillAliasCreateRequest' },
-                required: true
-
-      response '201', 'Skill Alias Created' do
-        schema '$ref' => '#/components/schemas/SkillAliasResponse'
-
-        examples 'application/json' => [{
-          data: {
-            id: '1',
-            type: 'skill_aliases',
-            attributes: {
-              name: 'Skill XYZ',
-              client_id: '1',
-              skill_id: '1'
-            }
-          }
-        }]
-
-        let(:body) do
-          {
-            data: {
-              type: 'skill_aliases',
-              attributes: {
-                name: 'Skill XYZ',
-                skill_id: skill_id_two.to_s
-              }
-            }
-          }
-        end
-
-        run_test! do |response|
-          skill_alias_response = JSON.parse(response.body)['data']
-          expect(skill_alias_response).to have_key('id')
-          expect(skill_alias_response).to have_attribute(:name).with_value('Skill XYZ')
-          expect(skill_alias_response).to have_attribute(:skill_id).with_value(skill_id_two.to_s)
-        end
-      end
+      expect(response).to have_http_status(200)
+      skill_aliases_response = JSON.parse(response.body)['data'].find { |d| d['id'] == skill_alias.id.to_s }
+      expect(skill_aliases_response).to have_attribute(:name).with_value(skill_alias.name)
+      expect(skill_aliases_response).to have_attribute(:skill_id).with_value(skill_id.to_s)
+      expect(skill_aliases_response).to have_attribute(:client_id).with_value(client_id.to_s)
     end
   end
 
-  path '/clients/{client_id}/skill_aliases/{skill_alias_id}' do
-    get 'Skill Alias' do
-      operationId 'SkillAlias'
-      description 'Fetch Skill Alias'
-      tags 'SkillAliases'
-      consumes 'application/json'
-      security [basic: []]
-      parameter name: :client_id, in: :path, type: :string
-      parameter name: :skill_alias_id, in: :path, type: :string
-
-      response '200', 'Skill Alias' do
-        schema '$ref' => '#/components/schemas/SkillAliasResponse'
-
-        examples 'application/json' => [{
-          data: {
-            id: '1',
-            type: 'skill_aliases',
-            attributes: {
-              name: 'Skill XYZ',
-              client_id: '1',
-              skill_id: '1'
-            }
+  describe 'POST /api/v2/administration/clients/{client_id}/skill_aliases' do
+    it 'creates a new skill alias' do
+      body = {
+        data: {
+          type: 'skill_aliases',
+          attributes: {
+            name: 'Skill XYZ',
+            skill_id: skill_id_two.to_s
           }
-        }]
+        }
+      }
 
-        run_test! do |response|
-          skill_alias_response = JSON.parse(response.body)['data']
-          expect(skill_alias_response).to have_key('id')
-          expect(skill_alias_response).to have_attribute(:skill_id).with_value(skill_id.to_s)
-          expect(skill_alias_response).to have_attribute(:name).with_value(skill_alias.name)
-          expect(skill_alias_response).to have_attribute(:client_id).with_value(client_id.to_s)
-        end
-      end
+      post "/api/v2/administration/clients/#{client_id}/skill_aliases", params: body.to_json,
+headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(201)
+      skill_alias_response = JSON.parse(response.body)['data']
+      expect(skill_alias_response).to have_key('id')
+      expect(skill_alias_response).to have_attribute(:name).with_value('Skill XYZ')
+      expect(skill_alias_response).to have_attribute(:skill_id).with_value(skill_id_two.to_s)
     end
+  end
 
-    patch 'Update an Skill Alias' do
-      operationId 'UpdateSkillAlias'
-      description 'Update Skill Alias'
-      tags 'SkillAliases'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :client_id, in: :path, type: :string
-      parameter name: :skill_alias_id, in: :path, type: :string
-      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/SkillAliasUpdateRequest' },
-                required: true
+  describe 'GET /api/v2/administration/clients/{client_id}/skill_aliases/{skill_alias_id}' do
+    it 'returns a specific skill alias' do
+      get "/api/v2/administration/clients/#{client_id}/skill_aliases/#{skill_alias_id}",
+          headers: { 'Authorization' => authorization }
 
-      response '200', 'Skill Alias Updated' do
-        schema '$ref' => '#/components/schemas/SkillAliasResponse'
-
-        examples 'application/json' => [{
-          data: {
-            id: '1',
-            type: 'admin_roles',
-            attributes: {
-              name: 'Skill XYZ',
-              client_id: '1',
-              skill_id: '1'
-            }
-          }
-        }]
-
-        let(:body) do
-          {
-            data: {
-              id: skill_alias_id.to_s,
-              type: 'skill_aliases',
-              attributes: {
-                name: 'Skill PQR',
-                skill_id: skill_id.to_s
-              }
-            }
-          }
-        end
-
-        run_test! do |response|
-          skill_alias_response = JSON.parse(response.body)['data']
-          expect(skill_alias_response).to have_key('id')
-          expect(skill_alias_response).to have_attribute(:skill_id).with_value(skill_id.to_s)
-          expect(skill_alias_response).to have_attribute(:name).with_value('Skill PQR')
-          expect(skill_alias_response).to have_attribute(:client_id).with_value(client_id.to_s)
-        end
-      end
+      expect(response).to have_http_status(200)
+      skill_alias_response = JSON.parse(response.body)['data']
+      expect(skill_alias_response).to have_key('id')
+      expect(skill_alias_response).to have_attribute(:skill_id).with_value(skill_id.to_s)
+      expect(skill_alias_response).to have_attribute(:name).with_value(skill_alias.name)
+      expect(skill_alias_response).to have_attribute(:client_id).with_value(client_id.to_s)
     end
+  end
 
-    delete 'Delete Skill Alias' do
-      operationId 'DeleteSkillAlias'
-      description 'Delete Skill Alias'
-      tags 'SkillAliases'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :client_id, in: :path, type: :string
-      parameter name: :skill_alias_id, in: :path, type: :string
+  describe 'PATCH /api/v2/administration/clients/{client_id}/skill_aliases/{skill_alias_id}' do
+    it 'updates a skill alias' do
+      body = {
+        data: {
+          id: skill_alias_id.to_s,
+          type: 'skill_aliases',
+          attributes: {
+            name: 'Skill PQR',
+            skill_id: skill_id.to_s
+          }
+        }
+      }
 
-      response '204', 'Skill Alias Deleted' do
-        run_test! do |response|
-          expect(response.body).to be_empty
-          expect(SkillAlias.find_by(id: skill_alias_id)).to eq(nil)
-        end
-      end
+      patch "/api/v2/administration/clients/#{client_id}/skill_aliases/#{skill_alias_id}", params: body.to_json,
+headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(200)
+      skill_alias_response = JSON.parse(response.body)['data']
+      expect(skill_alias_response).to have_key('id')
+      expect(skill_alias_response).to have_attribute(:skill_id).with_value(skill_id.to_s)
+      expect(skill_alias_response).to have_attribute(:name).with_value('Skill PQR')
+      expect(skill_alias_response).to have_attribute(:client_id).with_value(client_id.to_s)
+    end
+  end
+
+  describe 'DELETE /api/v2/administration/clients/{client_id}/skill_aliases/{skill_alias_id}' do
+    it 'deletes a skill alias' do
+      delete "/api/v2/administration/clients/#{client_id}/skill_aliases/#{skill_alias_id}",
+             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(204)
+      expect(response.body).to be_empty
+      expect(SkillAlias.find_by(id: skill_alias_id)).to eq(nil)
     end
   end
 end

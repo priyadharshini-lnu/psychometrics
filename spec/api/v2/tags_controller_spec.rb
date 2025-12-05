@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'swagger_helper'
 
-RSpec.describe Api::V2::Administration::TagsController, swagger_doc: 'v2/swagger.json', type: :request do
+RSpec.describe Api::V2::Administration::TagsController, type: :request do
   let!(:superadmin) { create(:superadmin) }
   let!(:assessment) { create(:assessment) }
+  let!(:api_key) { create(:api_key, user: superadmin) }
+  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before do
     sign_in(superadmin)
@@ -15,39 +16,20 @@ RSpec.describe Api::V2::Administration::TagsController, swagger_doc: 'v2/swagger
     assessment.save
   end
 
-  path '/tags/' do
-    get 'Tag List' do
-      operationId 'TagList'
-      description 'Fetch Tag List'
-      tags 'Tag'
-      consumes 'application/json'
-      security [basic: []]
-      parameter name: :'query[taggable_resource_type]', in: :query, type: :string, required: false
+  describe 'GET /api/v2/tags' do
+    it 'returns tag list' do
+      get '/api/v2/administration/tags',
+          params: { 'query[taggable_resource_type]' => 'Assessment' },
+          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-      response '200', 'Tag list' do
-        examples 'application/json' => {
-          data: [
-            {
-              id: '1',
-              type: 'tags',
-              attributes: {
-                name: 'psychometric'
-              }
-            }
-          ]
-        }
+      expect(response).to have_http_status(:ok)
 
-        let(:'query[taggable_resource_type]') { 'Assessment' }
+      tag = ActsAsTaggableOn::Tag.named('psychometric').last
+      data = JSON.parse(response.body)['data']
+      tag_response = data.find { |d| d['id'] == tag.id.to_s }
 
-        run_test! do |response|
-          tag =  ActsAsTaggableOn::Tag.named('psychometric').last
-
-          data = JSON.parse(response.body)['data']
-          tag_response = data.find { |d| d['id'] == tag.id.to_s }
-          expect(tag_response).to have_key('id')
-          expect(tag_response).to have_attribute(:name).with_value(tag.name)
-        end
-      end
+      expect(tag_response).to have_key('id')
+      expect(tag_response).to have_attribute(:name).with_value(tag.name)
     end
   end
 end

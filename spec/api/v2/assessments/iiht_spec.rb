@@ -3,7 +3,7 @@
 require 'rails_helper'
 require_relative '../concerns/filter_by_tags_shared_examples'
 
-describe Api::V2::Administration::AssessmentsController, type: :request do
+RSpec.describe Api::V2::Administration::AssessmentsController, type: :request do
   let!(:assessment) { create(:assessment) }
   let!(:superadmin) { create(:superadmin) }
   let(:dimension) { create(:dimension) }
@@ -13,7 +13,8 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
   let(:assessments_response) do
     [{ 'assessmentIdNumber' => 'fake_id', 'name' => 'testName', 'description' => 'description1' }]
   end
-  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
+  let!(:api_key) { create(:api_key, user: superadmin) }
+  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
   let(:relations) do
     {
       dimension: { data: { type: 'dimensions', id: dimension.id.to_s } },

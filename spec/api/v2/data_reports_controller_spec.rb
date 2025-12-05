@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'swagger_helper'
 
-describe Api::V2::Administration::DataReportsController, swagger_doc: 'v2/swagger.json', type: :request do
+RSpec.describe Api::V2::Administration::DataReportsController, type: :request do
   let!(:superadmin) { create(:superadmin) }
   let!(:project) { create(:project) }
   let!(:campaign) { create(:campaign, project: project) }
   let(:data_report) { create(:data_report, owner: project.client) }
   let(:data_report_id) { data_report.id }
-  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
+  let!(:api_key) { create(:api_key, user: superadmin) }
+  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   describe 'as superadmin' do
     before do
@@ -18,179 +18,112 @@ describe Api::V2::Administration::DataReportsController, swagger_doc: 'v2/swagge
       data_report
     end
 
-    path '/data_reports' do
-      get 'DataReports List' do
-        operationId 'DataReports'
-        description 'Fetch data reports list'
-        tags 'DataReport'
-        consumes 'application/json'
-        security [basic: []]
-        parameter name: :include, in: :query, type: :string
+    describe 'GET /api/v2/administration/data_reports' do
+      it 'fetches data reports list' do
+        get '/api/v2/administration/data_reports',
+            params: { include: 'owner,last_updated_by' },
+            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-        response '200', 'Data Report list' do
-          schema '$ref' => '#/components/schemas/DataReportMultipleResponse'
+        expect(response).to have_http_status(:ok)
+        dr = JSON.parse(response.body)['data'].first
 
-          let(:include) { 'owner,last_updated_by' }
-
-          run_test! do |response|
-            dr = JSON.parse(response.body)['data'].first
-
-            expect(dr).to have_attribute(:name).with_value(data_report.name)
-          end
-        end
-      end
-
-      post 'DataReports create' do
-        operationId 'DataReports'
-        description 'Create data report'
-        tags 'DataReport'
-        consumes 'application/vnd.api+json'
-        security [basic: []]
-        parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/DataReportCreateRequest' },
-                  required: true
-
-        response '201', 'Data Report create' do
-          schema '$ref' => '#/components/schemas/DataReportSingleResponse'
-
-          examples 'application/json' => {
-            data: {
-              type: 'data_reports',
-              attributes: {
-                name: 'DataReport',
-                configuration: '{}'
-              },
-              relationships: {
-                owner: { data: { type: 'clients', id: 1 } }
-              }
-            }
-          }
-
-          let(:body) do
-            {
-              data: {
-                type: 'data_reports',
-                attributes: {
-                  name: 'DataReport',
-                  configuration: {
-                    project_ids: [campaign.project.id],
-                    sections: [{
-                      name: 'Section 1',
-                      cell_format: {
-                        font_size: 12
-                      },
-                      columns: [{
-                        name: 'Column 1',
-                        type: 'user_detail',
-                        field_name: 'email'
-                      }]
-                    }]
-                  }.to_json
-                },
-                relationships: {
-                  owner: { data: { type: 'clients', id: project.client.id.to_s } }
-                }
-              }
-            }
-          end
-
-          run_test! do |response|
-            dr = JSON.parse(response.body)['data']
-
-            expect(dr).to have_attribute(:name).with_value('DataReport')
-            expect(dr).to have_relationship(:last_updated_by).with_data({ 'id' => superadmin.id.to_s,
-                                                                          'type' => 'users' })
-          end
-        end
+        expect(dr).to have_attribute(:name).with_value(data_report.name)
       end
     end
 
-    path '/data_reports/{data_report_id}' do
-      patch 'DataReports update' do
-        operationId 'DataReports'
-        description 'Update data report'
-        tags 'DataReport'
-        consumes 'application/vnd.api+json'
-        security [basic: []]
-        parameter name: :data_report_id, in: :path, type: :string
-        parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/DataReportUpdateRequest' },
-                  required: true
-
-        response '200', 'Data Report update' do
-          schema '$ref' => '#/components/schemas/DataReportSingleResponse'
-
-          examples 'application/json' => {
-            data: {
-              id: '1',
-              type: 'data_reports',
-              attributes: {
-                name: 'DataReport',
-                configuration: '{}'
-              },
-              relationships: {
-                owner: { data: { type: 'clients', id: 1 } }
-              }
+    describe 'POST /api/v2/administration/data_reports' do
+      it 'creates data report' do
+        body = {
+          data: {
+            type: 'data_reports',
+            attributes: {
+              name: 'DataReport',
+              configuration: {
+                project_ids: [campaign.project.id],
+                sections: [{
+                  name: 'Section 1',
+                  cell_format: {
+                    font_size: 12
+                  },
+                  columns: [{
+                    name: 'Column 1',
+                    type: 'user_detail',
+                    field_name: 'email'
+                  }]
+                }]
+              }.to_json
+            },
+            relationships: {
+              owner: { data: { type: 'clients', id: project.client.id.to_s } }
             }
           }
+        }
 
-          let(:body) do
-            {
-              data: {
-                id: data_report_id.to_s,
-                type: 'data_reports',
-                attributes: {
-                  name: 'changed name',
-                  configuration: {
-                    project_ids: [campaign.project.id],
-                    sections: [{
-                      name: 'Section 1',
-                      cell_format: {
-                        font_size: 12
-                      },
-                      columns: [{
-                        name: 'Column 1',
-                        type: 'user_detail',
-                        field_name: 'first_name'
-                      }]
-                    }]
-                  }.to_json
-                },
-                relationships: {
-                  owner: { data: { type: 'clients', id: campaign.client.id.to_s } }
-                }
-              }
-            }
-          end
+        post '/api/v2/administration/data_reports',
+             params: body.to_json,
+             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-          run_test! do |response|
-            dr = JSON.parse(response.body)['data']
+        expect(response).to have_http_status(:created)
+        dr = JSON.parse(response.body)['data']
 
-            expect(dr).to have_attribute(:name).with_value('changed name')
-            expect(dr).to have_relationship(:last_updated_by).with_data({ 'id' => superadmin.id.to_s,
-                                                                          'type' => 'users' })
-          end
-        end
+        expect(dr).to have_attribute(:name).with_value('DataReport')
+        expect(dr).to have_relationship(:last_updated_by).with_data({ 'id' => superadmin.id.to_s,
+                                                                      'type' => 'users' })
       end
     end
 
-    path '/data_reports/{data_report_id}/run' do
-      post 'DataReports run report job' do
-        operationId 'DataReports'
-        description 'Run report job'
-        tags 'DataReport'
-        consumes 'application/vnd.api+json'
-        security [basic: []]
-        parameter name: :data_report_id, in: :path, type: :string
+    describe 'PATCH /api/v2/administration/data_reports/:data_report_id' do
+      it 'updates data report' do
+        body = {
+          data: {
+            id: data_report_id.to_s,
+            type: 'data_reports',
+            attributes: {
+              name: 'changed name',
+              configuration: {
+                project_ids: [campaign.project.id],
+                sections: [{
+                  name: 'Section 1',
+                  cell_format: {
+                    font_size: 12
+                  },
+                  columns: [{
+                    name: 'Column 1',
+                    type: 'user_detail',
+                    field_name: 'first_name'
+                  }]
+                }]
+              }.to_json
+            },
+            relationships: {
+              owner: { data: { type: 'clients', id: campaign.client.id.to_s } }
+            }
+          }
+        }
 
-        response '200', 'DataReport run job' do
-          schema '$ref' => '#/components/schemas/OKResponse'
+        patch "/api/v2/administration/data_reports/#{data_report_id}",
+              params: body.to_json,
+              headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-          run_test! do |_response|
-            job = data_report.data_report_jobs.first
+        expect(response).to have_http_status(:ok)
+        dr = JSON.parse(response.body)['data']
 
-            expect(job).to be_present
-            expect(AdminJobRecord.last).to eq(job.admin_job_record)
-          end
-        end
+        expect(dr).to have_attribute(:name).with_value('changed name')
+        expect(dr).to have_relationship(:last_updated_by).with_data({ 'id' => superadmin.id.to_s,
+                                                                      'type' => 'users' })
+      end
+    end
+
+    describe 'POST /api/v2/administration/data_reports/:data_report_id/run' do
+      it 'runs report job' do
+        post "/api/v2/administration/data_reports/#{data_report_id}/run",
+             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+        expect(response).to have_http_status(:ok)
+        job = data_report.data_report_jobs.first
+
+        expect(job).to be_present
+        expect(AdminJobRecord.last).to eq(job.admin_job_record)
       end
     end
   end
@@ -213,54 +146,32 @@ describe Api::V2::Administration::DataReportsController, swagger_doc: 'v2/swagge
       client_data_report
     end
 
-    path '/data_reports' do
-      get 'DataReports List' do
-        operationId 'DataReports'
-        description 'Fetch data reports list'
-        tags 'DataReport'
-        consumes 'application/json'
-        security [basic: []]
-        parameter name: :include, in: :query, type: :string
-        parameter name: :'filter[owner_id_eq]', in: :query, type: :string
+    describe 'GET /api/v2/administration/data_reports' do
+      it 'fetches client data reports list' do
+        get '/api/v2/administration/data_reports',
+            params: { include: 'owner,last_updated_by', 'filter[owner_id_eq]' => project2.client.id },
+            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-        response '200', 'Client Data Report list' do
-          schema '$ref' => '#/components/schemas/DataReportMultipleResponse'
+        expect(response).to have_http_status(:ok)
+        dr = JSON.parse(response.body)['data']
 
-          let(:include) { 'owner,last_updated_by' }
-          let(:'filter[owner_id_eq]') { project2.client.id }
+        expect(DataReport.count).to eq(2)
+        expect(dr.size).to eq(1)
 
-          run_test! do |response|
-            dr = JSON.parse(response.body)['data']
-
-            expect(DataReport.count).to eq(2)
-            expect(dr.size).to eq(1)
-
-            expect(dr.first).to have_attribute(:name).with_value(client_data_report.name)
-          end
-        end
+        expect(dr.first).to have_attribute(:name).with_value(client_data_report.name)
       end
     end
 
-    path '/data_reports/{client_data_report_id}/run' do
-      post 'DataReports run report job' do
-        operationId 'DataReports'
-        description 'Run report job'
-        tags 'DataReport'
-        consumes 'application/vnd.api+json'
-        security [basic: []]
-        parameter name: :client_data_report_id, in: :path, type: :string
+    describe 'POST /api/v2/administration/data_reports/:client_data_report_id/run' do
+      it 'runs client report job' do
+        post "/api/v2/administration/data_reports/#{client_data_report.id}/run",
+             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-        response '200', 'DataReport run job' do
-          schema '$ref' => '#/components/schemas/OKResponse'
-          let(:client_data_report_id) { client_data_report.id }
+        expect(response).to have_http_status(:ok)
+        job = client_data_report.data_report_jobs.first
 
-          run_test! do |_response|
-            job = client_data_report.data_report_jobs.first
-
-            expect(job).to be_present
-            expect(AdminJobRecord.last).to eq(job.admin_job_record)
-          end
-        end
+        expect(job).to be_present
+        expect(AdminJobRecord.last).to eq(job.admin_job_record)
       end
     end
   end

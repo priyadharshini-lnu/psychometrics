@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'swagger_helper'
-
-describe Api::V2::Administration::Clients::ReportsController, swagger_doc: 'v2/swagger.json', type: :request do
+RSpec.describe Api::V2::Administration::Clients::ReportsController, type: :request do
   let!(:client) { create(:tenancy) }
   let(:client_id) { client.id }
   let!(:report) { create(:report) }
   let!(:superadmin) { create(:superadmin) }
+  let(:api_key) { create(:api_key, user: superadmin) }
+  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before(:each) do
     sign_in(superadmin)
@@ -17,7 +17,7 @@ describe Api::V2::Administration::Clients::ReportsController, swagger_doc: 'v2/s
     sign_out(superadmin)
   end
 
-  path '/clients/{client_id}/reports' do
+  describe 'GET /api/v2/administration/clients/:client_id/reports' do
     let!(:license_report1) { create(:report, name: 'Example Report') }
     let!(:license_report2) { create(:report, name: 'Example Report2') }
     let!(:report) { create(:report, name: 'Example Report3') }
@@ -30,42 +30,29 @@ describe Api::V2::Administration::Clients::ReportsController, swagger_doc: 'v2/s
       create(:license, type: :common, client: client, report_family: additional_report_family)
     end
 
-    get 'Reports list part of the common license' do
-      operationId 'IdpTemplateAvailableReports'
-      tags 'IdpTemplateAvailableReports'
-      consumes 'application/json'
-      security [basic: []]
-      parameter name: :client_id, in: :path, type: :string
+    it 'returns reports list part of the common license' do
+      get "/api/v2/administration/clients/#{client_id}/reports",
+          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-      response '200', 'Idp Template available reports from multiple families' do
-        run_test! do |response|
-          expected_reports = client.licenses.map { |l| l.report_family.reports.map(&:name) }.flatten
-          reports = JSON.parse(response.body)['data']
-          expect(reports.size).to eq(expected_reports.size)
-          expect(reports.map { |r| r['attributes']['name'] }).to include(*expected_reports)
-        end
-      end
+      expect(response).to have_http_status(:ok)
+      expected_reports = client.licenses.map { |l| l.report_family.reports.map(&:name) }.flatten
+      reports = JSON.parse(response.body)['data']
+      expect(reports.size).to eq(expected_reports.size)
+      expect(reports.map { |r| r['attributes']['name'] }).to include(*expected_reports)
     end
 
-    get 'Reports list part of the common license filtered by report name' do
-      operationId 'IdpTemplateAvailableReports'
-      tags 'IdpTemplateAvailableReports'
-      consumes 'application/json'
-      security [basic: []]
-      parameter name: :client_id, in: :path, type: :string
-      parameter name: :'filter[name_cont]', in: :query, type: :string
+    it 'returns reports list filtered by report name' do
+      query = 'example'
 
-      response '200', 'Idp Template available reports filtered by name' do
-        query = 'example'
-        let(:'filter[name_cont]') { query }
+      get "/api/v2/administration/clients/#{client_id}/reports",
+          params: { 'filter[name_cont]' => query },
+          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-        run_test! do |response|
-          expected_reports = ['Example Report', 'Example Report2']
-          reports = JSON.parse(response.body)['data']
-          expect(reports.size).to eq(expected_reports.size)
-          expect(reports.map { |r| r['attributes']['name'] }).to include(*expected_reports)
-        end
-      end
+      expect(response).to have_http_status(:ok)
+      expected_reports = ['Example Report', 'Example Report2']
+      reports = JSON.parse(response.body)['data']
+      expect(reports.size).to eq(expected_reports.size)
+      expect(reports.map { |r| r['attributes']['name'] }).to include(*expected_reports)
     end
   end
 end

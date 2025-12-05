@@ -1,85 +1,39 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'swagger_helper'
 
-describe Api::V2::Administration::ReportApprovalSettingsController, swagger_doc: 'v2/swagger.json', type: :request do
+RSpec.describe Api::V2::Administration::ReportApprovalSettingsController, type: :request do
   let!(:superadmin) { create(:superadmin) }
-  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
+  let!(:api_key) { create(:api_key, user: superadmin) }
+  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before { sign_in(superadmin) }
 
-  path '/report_approvals/' do
-    get 'ReportApprovalSetting List' do
-      operationId 'ReportApprovals'
-      description <<~HEREDOC
-        Fetch ReportApprovals List
+  describe 'GET /report_approvals' do
+    it 'fetches ReportApprovalSetting list' do
+      ras = create(:report_approval_setting, qc_user_ids: [1, 2], approver_user_ids: [3, 4])
+      report_approval = create(:report_approval, campaign_id: ras.campaign_id, report_id: ras.report_id)
+      create(:report_approval, campaign_id: ras.campaign_id)
 
-          **Supported Filter Query Parameter**
+      get '/api/v2/administration/report_approvals/',
+          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-          | Filter        | Description   |
-          | ------------- |:-------------:|
-          | filter[campaign_id_eq]     | Returns report approval for specific campaign |
-          | filter[report_id_eq]     | Returns report approval for specific report |
-          | filter[user_id_eq]     | Returns report approval for specific user |
-          | filter[approval_status_eq]     | Returns report approval for specific approval_status |
-          | filter[my_tasks]     | Pass true to returns report approval which are pending action from user  |
-      HEREDOC
-      tags 'ReportApprovals'
-      consumes 'application/json'
-      security [basic: []]
+      expect(response).to have_http_status(:ok)
+      data = JSON.parse(response.body)['data']
+      report_approval_response = data.find { |d| d['id'] == report_approval.id.to_s }
+      expect(report_approval_response).to have_key('id')
+      expect(report_approval_response).to have_attribute(:qc_user_ids).with_value([1, 2])
+      expect(report_approval_response).to have_attribute(:approver_user_ids).with_value([3, 4])
 
-      response '200', 'ReportApprovals list' do
-        let!(:ras) { create(:report_approval_setting, qc_user_ids: [1, 2], approver_user_ids: [3, 4]) }
-        let!(:report_approval) { create(:report_approval, campaign_id: ras.campaign_id, report_id: ras.report_id) }
-        let!(:report_approval2) { create(:report_approval, campaign_id: ras.campaign_id) }
-
-        schema '$ref' => '#/components/schemas/ReportApprovalListResponse'
-
-        examples 'application/json' => [{
-          type: 'report_approval',
-          data: {
-            id: '770',
-            attributes: {
-              approval_status: 'pending qc',
-              qc_user_ids: [1, 2],
-              approver_user_ids: [3, 4]
-            },
-            relationships: {
-              campaign: {
-                data: {
-                  id: '1',
-                  type: 'campaigns'
-                }
-              },
-              report: {
-                data: {
-                  id: '2',
-                  type: 'reports'
-                }
-              }
-            }
-          }
-        }]
-
-        run_test! do |response|
-          data = JSON.parse(response.body)['data']
-          report_approval_response = data.find { |d| d['id'] == report_approval.id.to_s }
-          expect(report_approval_response).to have_key('id')
-          expect(report_approval_response).to have_attribute(:qc_user_ids).with_value([1, 2])
-          expect(report_approval_response).to have_attribute(:approver_user_ids).with_value([3, 4])
-
-          expect(report_approval_response).to have_relationship(:campaign).
-            with_data({ 'id' => report_approval.campaign_id.to_s, 'type' => 'campaigns' })
-          expect(report_approval_response).to have_relationship(:report).
-            with_data({ 'id' => report_approval.report_id.to_s, 'type' => 'reports' })
-        end
-      end
+      expect(report_approval_response).to have_relationship(:campaign).
+        with_data({ 'id' => report_approval.campaign_id.to_s, 'type' => 'campaigns' })
+      expect(report_approval_response).to have_relationship(:report).
+        with_data({ 'id' => report_approval.report_id.to_s, 'type' => 'reports' })
     end
   end
 end
 
-describe Api::V2::Administration::ReportApprovalsController, type: :controller do
+RSpec.describe Api::V2::Administration::ReportApprovalsController, type: :controller do
   let(:super_admin) { create(:superadmin) }
   let(:client_admin) { create(:client_admin) }
 

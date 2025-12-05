@@ -1,160 +1,112 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'swagger_helper'
-
-describe Api::V2::Administration::JobRolesController, swagger_doc: 'v2/swagger.json', type: :request do
+RSpec.describe Api::V2::Administration::JobRolesController, type: :request do
   let!(:superadmin) { create(:superadmin) }
   let!(:project) { create(:project) }
   let!(:job_group) { create(:job_group, project: project) }
-  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
+  let!(:api_key) { create(:api_key, user: superadmin) }
+  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before { sign_in(superadmin) }
 
-  path '/job_roles' do
-    get 'List Job Roles' do
-      operationId 'getJobRoles'
-      description 'Lists all job roles for a project, optionally including global roles'
-      tags 'SkillRaterJobRoles'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
+  describe 'GET /api/v2/administration/job_roles' do
+    context 'when only project id is passed' do
+      it 'returns only project specific job roles' do
+        create_list(:job_role, 3, project: project, job_group: job_group)
+        create(:job_role, project: nil)
+        create(:job_role, project: create(:project))
 
-      parameter name: :project_id, in: :query, type: :string, required: false
-      parameter name: :'filter[include_global_roles]', in: :query, type: :boolean, required: false
+        get '/api/v2/administration/job_roles', params: { project_id: project.id },
+headers: { 'Authorization' => authorization }
 
-      context 'when only project id is passed' do
-        response '200', 'returns only project specific job roles' do
-          let(:project_id) { project.id }
-
-          before do
-            create_list(:job_role, 3, project: project, job_group: job_group)
-            create(:job_role, project: nil)
-            create(:job_role, project: create(:project))
-          end
-
-          run_test! do |response|
-            expect(response).to have_http_status(:ok)
-            json_response = JSON.parse(response.body)
-            expect(json_response['data'].size).to eq(3)
-            expect(json_response['data'].all? do |role|
-              role['attributes']['project_id'].to_s == project.id.to_s
-            end).to be true
-          end
-        end
-      end
-
-      context 'all job roles' do
-        response '200', 'returns all job roles when no filter applied' do
-          before do
-            create_list(:job_role, 3, project: project, job_group: job_group)
-            create_list(:job_role, 2, project: nil) # Global roles
-            create(:job_role, project: create(:project)) # Different project
-          end
-
-          run_test! do |response|
-            expect(response).to have_http_status(:ok)
-            json_response = JSON.parse(response.body)
-            expect(json_response['data'].size).to eq(2)
-          end
-        end
+        expect(response).to have_http_status(:ok)
+        json_response = JSON.parse(response.body)
+        expect(json_response['data'].size).to eq(3)
+        expect(json_response['data'].all? do |role|
+          role['attributes']['project_id'].to_s == project.id.to_s
+        end).to be true
       end
     end
 
-    post 'Create Job Role' do
-      operationId 'createJobRole'
-      description 'Creates a new job role'
-      tags 'SkillRaterJobRoles'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
+    context 'all job roles' do
+      it 'returns all job roles when no filter applied' do
+        create_list(:job_role, 3, project: project, job_group: job_group)
+        create_list(:job_role, 2, project: nil) # Global roles
+        create(:job_role, project: create(:project)) # Different project
 
-      parameter name: :project_id, in: :query, type: :string, required: true
-      parameter name: :body, in: :body, required: true
+        get '/api/v2/administration/job_roles', headers: { 'Authorization' => authorization }
 
-      response '201', 'Job Role created successfully' do
-        let(:project_id) { project.id }
-        let(:body) do
-          {
-            data: {
-              type: 'job_roles',
-              attributes: {
-                name: 'Senior Developer',
-                code: 'SRD',
-                description: 'Rails senior developer',
-                job_group_id: job_group.id,
-                project_id: project.id
-              }
-            }
-          }
-        end
-
-        run_test! do |response|
-          expect(response).to have_http_status(:created)
-          expect(project.job_roles.count).to eq(1)
-        end
+        expect(response).to have_http_status(:ok)
+        json_response = JSON.parse(response.body)
+        expect(json_response['data'].size).to eq(2)
       end
     end
   end
 
-  path '/job_roles/{id}' do
-    parameter name: :id, in: :path, type: :string, required: true
-    parameter name: :project_id, in: :query, type: :string, required: true
-
-    let!(:job_role) { create(:job_role, project: project, job_group: job_group) }
-    let(:id) { job_role.id }
-    let(:project_id) { project.id }
-
-    patch 'Update Job Role' do
-      operationId 'updateJobRole'
-      description 'Updates a job role'
-      tags 'SkillRaterJobRoles'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-
-      parameter name: :body, in: :body, required: true
-
-      response '200', 'Job Role updated successfully' do
-        let(:body) do
-          {
-            data: {
-              type: 'job_roles',
-              id: id.to_s,
-              attributes: {
-                name: job_role.name,
-                description: 'new',
-                job_group_id: job_group.id
-              }
-            }
+  describe 'POST /api/v2/administration/job_roles' do
+    it 'creates a new job role' do
+      body = {
+        data: {
+          type: 'job_roles',
+          attributes: {
+            name: 'Senior Developer',
+            code: 'SRD',
+            description: 'Rails senior developer',
+            job_group_id: job_group.id,
+            project_id: project.id
           }
-        end
+        }
+      }
 
-        run_test! do
-          expect(job_role.reload.description).to eq('new')
-        end
-      end
-    end
+      post "/api/v2/administration/job_roles?project_id=#{project.id}", params: body.to_json,
+headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-    delete 'Delete Job Role' do
-      operationId 'deleteJobRole'
-      description 'Deletes a job role'
-      tags 'SkillRaterJobRoles'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-
-      response '204', 'Job Role deleted successfully' do
-        run_test! do
-          expect { job_role.reload }.to raise_error(ActiveRecord::RecordNotFound)
-        end
-      end
+      expect(response).to have_http_status(:created)
+      expect(project.job_roles.count).to eq(1)
     end
   end
 
-  context 'Contract Validations' do
-    let(:project_id) { project.id }
+  describe 'PATCH /api/v2/administration/job_roles/:id' do
+    it 'updates a job role' do
+      job_role = create(:job_role, project: project, job_group: job_group)
+      body = {
+        data: {
+          type: 'job_roles',
+          id: job_role.id.to_s,
+          attributes: {
+            name: job_role.name,
+            description: 'new',
+            job_group_id: job_group.id
+          }
+        }
+      }
 
+      patch "/api/v2/administration/job_roles/#{job_role.id}?project_id=#{project.id}", params: body.to_json,
+headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:ok)
+      expect(job_role.reload.description).to eq('new')
+    end
+  end
+
+  describe 'DELETE /api/v2/administration/job_roles/:id' do
+    it 'deletes a job role' do
+      job_role = create(:job_role, project: project, job_group: job_group)
+
+      delete "/api/v2/administration/job_roles/#{job_role.id}?project_id=#{project.id}",
+             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:no_content)
+      expect { job_role.reload }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
+
+  describe 'Contract Validations' do
     describe 'Uniqueness validations' do
-      let!(:existing_role) { create(:job_role, name: 'Duplicate', job_group: job_group) }
-      let(:invalid_body) do
-        {
+      it 'rejects duplicate names within same job group' do
+        create(:job_role, name: 'Duplicate', job_group: job_group)
+        invalid_body = {
           data: {
             type: 'job_roles',
             attributes: {
@@ -164,11 +116,12 @@ describe Api::V2::Administration::JobRolesController, swagger_doc: 'v2/swagger.j
             }
           }
         }
-      end
 
-      it 'rejects duplicate names within same job group' do
-        post '/api/v2/administration/job_roles', params: invalid_body, headers: headers
+        post "/api/v2/administration/job_roles?project_id=#{project.id}", params: invalid_body.to_json,
+headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
         expect(response).to have_http_status(:unprocessable_entity)
+        json_response = JSON.parse(response.body)
         expect(json_response['errors']).to include(
           a_hash_including('title' => 'A job role with the same name already exists.')
         )
