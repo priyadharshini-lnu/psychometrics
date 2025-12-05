@@ -18,7 +18,7 @@ import {
   CheckCircleFilled,
 } from '@ant-design/icons'
 import SparkMD5 from 'spark-md5'
-import { axiosWithRetry } from '~/modules/survey/utils/network'
+import { axiosWithRetry } from '~/utils/axiosWithRetry'
 import { MediaResponse } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 import { useReactMediaRecorder } from './components/MediaRecorder'
 import { useRecording } from '~/context/RecordingContext'
