@@ -602,7 +602,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
             </p>
             )}
           onChange={handleChangeAudioDevice}
-          suffixIcon={<DownOutlined style={{ color: PLACEHOLDER_BLACK }} />}
+          suffixIcon={<DownOutlined style={{ color: PLACEHOLDER_BLACK, pointerEvents: 'none' }} />}
           variant="borderless"
           disabled={status === 'recording'}
           dropdownStyle={{ minWidth: '300px' }}
@@ -617,7 +617,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
             </p>
           )}
           dropdownStyle={{ minWidth: '300px' }}
-          suffixIcon={<DownOutlined style={{ color: PLACEHOLDER_BLACK }} />}
+          suffixIcon={<DownOutlined style={{ color: PLACEHOLDER_BLACK, pointerEvents: 'none' }} />}
           onChange={handleChangeVideoDevice}
           variant="borderless"
           options={getCameraDevices()}
