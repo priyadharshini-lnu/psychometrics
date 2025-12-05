@@ -1679,8 +1679,6 @@ ar:
       report: تقرير
       report_bundle_placeholder: حدد حزمة تقارير
     messages:
-      bulk_download_error: يقتصر التنزيل المجمع على 1000 ملف تقرير. إذا كنت قد اخترت العديد من اللغات ، فيرجى تقليلها.
-      bulk_download_no_reports: لم يتم العثور على تقارير. يرجى إنشاء التقارير قبل التنزيل.
       bulk_download_successful: تمت جدولة مهمة تنزيل التقرير المجمع بنجاح
       export_report_data_scheduled: تمت جدولة مهمة تصدير بيانات التقرير بنجاح
     modals:
@@ -3859,13 +3857,6 @@ ar:
       on_hold: قيد الانتظار
       prepared: تم
       released: تم الإصدار
-    statuses:
-      completed: تم اكماله
-      declined: رُفض
-      denied: تم رفضه
-      done: منجز
-      not_completed: لم يتم اكماله
-      waiting: منتظر
   threesixty:
     accept_privacy_modal:
       accept: اقبل

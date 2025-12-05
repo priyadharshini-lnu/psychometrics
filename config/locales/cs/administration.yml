@@ -897,8 +897,6 @@ cs:
       new:
         header: Hromadné stahování
       reports_unavailable: V současné době nejsou k dispozici žádné zprávy ke stažení. Potvrďte, že zprávy, které chcete stáhnout, jsou k dispozici.
-      select_users_for_download: Vyberte prosím alespoň jednoho uživatele pro stažení přehledů.
-      select_users_for_regenerate: Vyberte prosím alespoň jednoho uživatele pro regeneraci zpráv.
     cable:
       notification:
         assessment_factors: Faktory jsou načteny
@@ -4677,8 +4675,6 @@ cs:
             evaluations_received: Přijatá hodnocení
             is_subject: Je předmětem
             name: Název
-            report_status: Stav zprávy
-            status: Stav
           evaluators:
             add_evaluators: Přidání hodnotitelů
             import_evaluators: Hodnotitelé importu

@@ -897,8 +897,6 @@ ro:
       new:
         header: Descărcare în bloc
       reports_unavailable: În acest moment, nu sunt disponibile rapoarte pentru descărcare. Vă rugăm să confirmați că rapoartele pe care doriți să le descărcați sunt disponibile.
-      select_users_for_download: Vă rugăm să selectați cel puțin un utilizator pentru a descărca rapoarte.
-      select_users_for_regenerate: Vă rugăm să selectați cel puțin un utilizator pentru a regenera rapoartele.
     cable:
       notification:
         assessment_factors: Factorii sunt preluați
@@ -4669,8 +4667,6 @@ ro:
             evaluations_received: Evaluări primite
             is_subject: Este subiect
             name: Nume și prenume
-            report_status: Starea raportului
-            status: Statut
           evaluators:
             add_evaluators: Adăugați evaluatori
             import_evaluators: Evaluatori de import

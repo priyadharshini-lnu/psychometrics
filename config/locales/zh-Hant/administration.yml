@@ -897,8 +897,6 @@ zh-Hant:
       new:
         header: 大量下載
       reports_unavailable: 目前沒有可供下載的報告，請確認您要下載的報告是否可用。
-      select_users_for_download: 請選擇至少一個用戶下載報告。
-      select_users_for_regenerate: 請選擇至少一個用戶重新生成報告。
     cable:
       notification:
         assessment_factors: 取得因子
@@ -4677,8 +4675,6 @@ zh-Hant:
             evaluations_received: 收到的評估
             is_subject: 是主題
             name: 名稱
-            report_status: 報告狀態
-            status: 狀態
           evaluators:
             add_evaluators: 新增評估員
             import_evaluators: 進口評估員

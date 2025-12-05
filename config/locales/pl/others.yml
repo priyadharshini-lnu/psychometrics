@@ -1631,8 +1631,6 @@ pl:
       report: Sprawozdanie
       report_bundle_placeholder: Wybieranie pakietu raportów
     messages:
-      bulk_download_error: Pobieranie zbiorcze jest ograniczone do 1000 plików raportów. Jeśli wybrałeś wiele języków, zmniejsz go.
-      bulk_download_no_reports: Nie znaleziono raportów. Wygeneruj raporty przed pobraniem.
       bulk_download_successful: Zadanie zbiorczego pobierania raportu zostało pomyślnie zaplanowane
       export_report_data_scheduled: Zadanie eksportu danych raportu zostało zaplanowane pomyślnie
     modals:
@@ -3811,13 +3809,6 @@ pl:
       on_hold: W oczekiwaniu
       prepared: Gotowe
       released: Wydany
-    statuses:
-      completed: Zakończony
-      declined: Odrzucony
-      denied: Odmówiono
-      done: Gotowe
-      not_completed: Nie skończone
-      waiting: Czekanie
   threesixty:
     accept_privacy_modal:
       accept: Akceptuj

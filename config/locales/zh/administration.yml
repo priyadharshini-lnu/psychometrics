@@ -897,8 +897,6 @@ zh:
       new:
         header: 批量下载
       reports_unavailable: 目前没有可供下载的报告，请确认您要下载的报告是否可用。
-      select_users_for_download: 请选择至少一个用户下载报告。
-      select_users_for_regenerate: 请选择至少一个用户重新生成报告。
     cable:
       notification:
         assessment_factors: 获取因子
@@ -4677,8 +4675,6 @@ zh:
             evaluations_received: 收到的评价
             is_subject: 是主题
             name: 名称
-            report_status: 报告状态
-            status: 现状
           evaluators:
             add_evaluators: 添加评估员
             import_evaluators: 进口评估员

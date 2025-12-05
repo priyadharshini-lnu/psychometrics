@@ -1641,8 +1641,6 @@ de:
       report: Bericht
       report_bundle_placeholder: Wählen Sie ein Berichtsbündel
     messages:
-      bulk_download_error: Der Massendownload ist auf 1000 Berichtsdateien begrenzt. Wenn Sie viele Sprachen ausgewählt haben, reduzieren Sie bitte die Anzahl.
-      bulk_download_no_reports: Keine Berichte gefunden. Bitte generieren Sie die Berichte vor dem Download.
       bulk_download_successful: Bulk-Bericht-Download-Auftrag wurde erfolgreich geplant
       export_report_data_scheduled: Exportauftrag für Berichtsdaten wurde erfolgreich geplant
     modals:
@@ -3817,13 +3815,6 @@ de:
       on_hold: In der Warteschleife
       prepared: Erledigt
       released: Freigegeben
-    statuses:
-      completed: abgeschlossen
-      declined: Abgelehnt
-      denied: verweigert
-      done: Erledigt
-      not_completed: nicht abgeschlossen
-      waiting: warten
   threesixty:
     accept_privacy_modal:
       accept: Annehmen

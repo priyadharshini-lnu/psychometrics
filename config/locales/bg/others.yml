@@ -1627,8 +1627,6 @@ bg:
       report: Доклад
       report_bundle_placeholder: Изберете пакет с отчети
     messages:
-      bulk_download_error: Груповото изтегляне е ограничено до 1000 файла с отчети. Ако сте избрали много езици, моля, намалете го.
-      bulk_download_no_reports: Не са намерени доклади. Моля, генерирайте отчетите преди изтегляне.
       bulk_download_successful: Задачата за групово изтегляне на отчет е планирана успешно
       export_report_data_scheduled: Задачата за експортиране на данни в отчета е планирана успешно
     modals:
@@ -3807,13 +3805,6 @@ bg:
       on_hold: В режим на задържане
       prepared: Готов
       released: Пусат
-    statuses:
-      completed: Завършен
-      declined: Отказан
-      denied: Отказан
-      done: Готово
-      not_completed: Не е завършено
-      waiting: В очакване
   threesixty:
     accept_privacy_modal:
       accept: Приемете

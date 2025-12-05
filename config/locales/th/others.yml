@@ -1624,8 +1624,6 @@ th:
       report: รายงาน
       report_bundle_placeholder: เลือกชุดรายงาน
     messages:
-      bulk_download_error: การดาวน์โหลดรายงานจำนวนมากจํากัดไว้ที่จำนวน 1,000 ไฟล์ หากคุณเลือกหลายภาษาโปรดลดจำนวนที่เลือกลง
-      bulk_download_no_reports: ไม่พบรายงาน โปรดสร้างรายงานก่อนดาวน์โหลด
       bulk_download_successful: กําหนดเวลางานดาวน์โหลดรายงานจํานวนมากเรียบร้อยแล้ว
       export_report_data_scheduled: งานส่งออกข้อมูลรายงานถูกกําหนดเวลาเรียบร้อยแล้ว
     modals:
@@ -3804,13 +3802,6 @@ th:
       on_hold: ระงับชั่วคราว
       prepared: เสร็จแล้ว
       released: ปล่อยแล้ว
-    statuses:
-      completed: เสร็จสมบูรณ์
-      declined: ปฏิเสธ
-      denied: ปฏิเสธ
-      done: เสร็จ
-      not_completed: ยังไม่เสร็จสมบูรณ์
-      waiting: รอ
   threesixty:
     accept_privacy_modal:
       accept: ยอมรับ

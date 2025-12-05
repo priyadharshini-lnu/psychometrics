@@ -1642,8 +1642,6 @@ es-ES:
       report: Informe
       report_bundle_placeholder: Seleccione un paquete de informes
     messages:
-      bulk_download_error: La descarga masiva está limitada a 1000 archivos de informe. Si ha seleccionado muchos idiomas, redúzcala.
-      bulk_download_no_reports: No se han encontrado informes. Genere los informes antes de descargarlos.
       bulk_download_successful: La tarea de descarga masiva de informes se ha programado correctamente
       export_report_data_scheduled: El trabajo de exportación de datos del informe se ha programado correctamente
     modals:
@@ -3873,13 +3871,6 @@ es-ES:
       on_hold: En espera
       prepared: Hecho
       released: Publicado en
-    statuses:
-      completed: Completado/a
-      declined: Rechazado/a
-      denied: Denegado/a
-      done: Hecho
-      not_completed: No completado/a
-      waiting: En espera
   threesixty:
     accept_privacy_modal:
       accept: Aceptar

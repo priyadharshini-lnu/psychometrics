@@ -1625,8 +1625,6 @@ en-US:
       report: Report
       report_bundle_placeholder: Select a report bundle
     messages:
-      bulk_download_error: Bulk download is limited to 1000 report files. If you have selected many langauges, please reduce it.
-      bulk_download_no_reports: No reports found. Please generate the reports before downloading.
       bulk_download_successful: Bulk report download job was scheduled successfully
       export_report_data_scheduled: Report data export job was scheduled successfully
     modals:
@@ -3805,13 +3803,6 @@ en-US:
       on_hold: On Hold
       prepared: Done
       released: Released
-    statuses:
-      completed: Completed
-      declined: Declined
-      denied: Denied
-      done: Done
-      not_completed: Not Completed
-      waiting: Waiting
   threesixty:
     accept_privacy_modal:
       accept: Accept

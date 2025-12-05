@@ -3,8 +3,10 @@
 module AdminJobs
   class BulkUpdateEvaluationStatus < AdminJobs::Base
     def call
-      subjects.find_each do |subject|
-        ::CampaignReports::UpdateEvaluationStatus.call!(subject, subject_data['status'])
+      Audited.audit_class.as_user(record.owner) do
+        subjects.find_each do |subject|
+          ::CampaignReports::UpdateEvaluationStatus.call!(subject, subject_data['status'])
+        end
       end
 
       broadcast :ok

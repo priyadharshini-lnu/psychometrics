@@ -1651,8 +1651,6 @@ zh-HK:
       report: 報
       report_bundle_placeholder: 選擇報告套裝
     messages:
-      bulk_download_error: 批量下載限制為 1000 個報告檔案。如果你選擇了許多語言，請減少。
-      bulk_download_no_reports: 沒有找到報告。請在下載前生成報告。
       bulk_download_successful: 批量報告下載工作已成功排程
       export_report_data_scheduled: 報告資料匯出工作已成功排程
     modals:
@@ -3755,13 +3753,6 @@ zh-HK:
       on_hold: 暫停
       prepared: 完成
       released: 已發行
-    statuses:
-      completed: 已完成
-      declined: 已拒絕
-      denied: 已拒絕
-      done: 完成
-      not_completed: 未完成
-      waiting: 正在等待
   threesixty:
     accept_privacy_modal:
       accept: 接受

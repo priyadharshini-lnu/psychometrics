@@ -1638,8 +1638,6 @@ sr-Latn:
       report: Izveštaj
       report_bundle_placeholder: Izaberite paket izveštaja
     messages:
-      bulk_download_error: Masovno preuzimanje je ograničeno na 1000 datoteka izveštaja. Ako ste odabrali mnogo jezika, molimo vas da ga smanjite.
-      bulk_download_no_reports: Nije pronađen nijedan izveštaj. Molimo Vas da generišete izveštaje pre preuzimanja.
       bulk_download_successful: Bulk izveštaj preuzimanje posao je uspešno zakazan
       export_report_data_scheduled: Izveštaj o izvozu podataka posao je uspešno zakazan
     modals:
@@ -3807,13 +3805,6 @@ sr-Latn:
       on_hold: Na čekanju
       prepared: Urađeno
       released: Objavljeno
-    statuses:
-      completed: Završeno
-      declined: Odbijeno
-      denied: Odbijeno
-      done: Urađeno
-      not_completed: Nije završeno
-      waiting: Čekanje
   threesixty:
     accept_privacy_modal:
       accept: Prihvati

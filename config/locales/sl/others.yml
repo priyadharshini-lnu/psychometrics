@@ -1636,8 +1636,6 @@ sl:
       report: Poročilo
       report_bundle_placeholder: Izberite Sklop poročil
     messages:
-      bulk_download_error: Prenos v velikem obsegu je omejen na 1000 datotek poročil. Če ste izbrali veliko jezikov, jih zmanjšajte.
-      bulk_download_no_reports: Poročil ni bilo najdenih. Pred prenosom ustvarite poročila.
       bulk_download_successful: Opravilo prenosa poročila v velikem obsegu je bilo uspešno načrtovano
       export_report_data_scheduled: Popravilo izvoza podatkov poročila je bilo uspešno načrtovano
     modals:
@@ -3816,13 +3814,6 @@ sl:
       on_hold: Zadržano
       prepared: Opravljeno
       released: Odobreno za objavo
-    statuses:
-      completed: Zaključeno
-      declined: Zavrnjeno
-      denied: Zavrnjeno
-      done: Opravljeno
-      not_completed: Ni zaključeno
-      waiting: V čakanju
   threesixty:
     accept_privacy_modal:
       accept: Sprejmi

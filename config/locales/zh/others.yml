@@ -1637,8 +1637,6 @@ zh:
       report: 报告
       report_bundle_placeholder: 选择报告包
     messages:
-      bulk_download_error: 批量下载仅限于 1000 个报告文件。 如果您选择了多种语言，请减少下载量。
-      bulk_download_no_reports: 未找到报告。请在下载前生成报告。
       bulk_download_successful: 批量报告下载任务已成功安排
       export_report_data_scheduled: 报告数据导出任务已成功安排
     modals:
@@ -3800,13 +3798,6 @@ zh:
       on_hold: 搁置
       prepared: 已完成
       released: 已发布
-    statuses:
-      completed: 已完成
-      declined: 已拒绝
-      denied: 已拒绝
-      done: 完成
-      not_completed: 未完成
-      waiting: 等待中
   threesixty:
     accept_privacy_modal:
       accept: 接受

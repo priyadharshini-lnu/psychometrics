@@ -1,6 +1,7 @@
 ---
 en:
   admin:
+    admin_approval_required: Report for %{user} requires admin approval before download
     admins: Admins
     ai_artifacts: AI Artifacts
     ai_artifacts_output_schema_key_constraint: Key must start with a lowercase letter and can only contain lowercase letters, numbers, and underscores
@@ -26,6 +27,7 @@ en:
     audit_logs: Audit Logs
     audit_reports: Audit Reports
     availability: Availability
+    available_languages: Report Available in Languages
     back_to_main: Main Menu
     bulk_upload_ai_artifacts: Bulk Upload AI Artifacts
     campaign_ai_artifact_updated_successfully: Campaign AI artifacts updated successfully
@@ -44,15 +46,23 @@ en:
     clients: Clients
     code_required: Code is required
     communication_center: Communication Center
+    completed: Completed
+    completed_tooltip: All evaluators have submitted the evaluation
     country: Country
     create_client: Create Client
     dashboard: Dashboard
     data_reports: Data Reports
     datasheet: Datasheet
+    declined: Declined
     delete_ok_text: Yes, Delete
+    denied: Denied
     development_actions: Development Actions
     dimensions: Dimensions
+    done: Done
+    done_tooltip: No more evaluation can be submitted for this user as this user's evaluation is marked as done by %{marked_by}
     empty_csv_file: CSV file does not contain any data.
+    evaluation_status: Evaluation Status
+    evaluation_status_not_done: Evaluation status is not 'Done' for one or more selected subjects. Please ensure all selected users have completed evaluations or mark as done.
     fill_empty_score_msg: Fill all the final scores before saving.
     final_score_empty_msg: Final score cannot be empty.
     import_ai_artifacts: Import AI Artifacts
@@ -81,10 +91,15 @@ en:
     invalid_csv_header: CSV file contains invalid headers.
     libraries: Media Library
     library_invalid_type: Invalid Library Item
+    manager_approval_required: Report for %{user} requires manager approval before download
     name_required: Name is required
     no_file_selected: No file selected
     no_notifications: No Notifications
     norms: Norms
+    not_completed: Not Completed
+    not_completed_tooltip: "%{completed} evaluators are assigned but only %{submitted} have completed the evaluations"
+    nothing_assigned: Nothing Assigned
+    nothing_assigned_tooltip: No evaluations have been assigned to this user
     notification_bell_icon_alt_text: Notification Bell Icon
     notifications: Notifications
     number: Number
@@ -97,7 +112,16 @@ en:
     question_center: Question Center
     registration_codes: Registration codes
     report_approvals: Report Approvals
+    report_condition_not_met: Needs %{required} %{relationship} evaluation(s), but only has %{actual}
+    report_conditions_not_met_detailed: Report for %{user} does not meet availability conditions. %{conditions}
+    report_denied: Report for %{user} has been denied
+    report_no_evaluations: Report for %{user} is not available - no evaluations have been received.
+    report_not_generated: Report for %{user} meets availability conditions but has not been generated yet. Please generate the report first.
+    report_on_hold: Report for %{user} is currently on hold
+    report_status: Report Status
     reports: Reports
+    reports_limit_exceeded: Bulk download is limited to 1000 report files. If you have selected many languages, please reduce it.
+    reports_not_found: No reports found. Please generate the reports before downloading.
     role: Role
     saml_idp_certificate_available: Available (click to copy)
     saml_idp_certificate_label: Certificate
@@ -147,12 +171,14 @@ en:
     skills_taxonomy: Skills Taxonomy
     slot_name: Slot Name
     stats: Stats
+    status_details: Status Details
     subject_part_of_other_invite: Subject with email %{user_email} is already invited to '%{workshop_invite_name}'
     upload_success: Uploaded successfully
     user_report_events: User Report Events
     users: Users
     validation_error: An error occurred during validation
     view_licenses: View Licenses
+    waiting: Waiting
     year: Year
     yoodli_activity_id: Yoodli Activity ID
     yoodli_email_id: Yoodli Candidate Email ID

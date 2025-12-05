@@ -1627,8 +1627,6 @@ hu:
       report: Jelentés
       report_bundle_placeholder: Jelentéscsomag kiválasztása
     messages:
-      bulk_download_error: A tömeges letöltés 1000 jelentésfájlra korlátozódik. Ha sok nyelvet választott, kérjük, csökkentse azt.
-      bulk_download_no_reports: Nem található jelentés. Kérjük, hogy a letöltés előtt készítse el a jelentéseket.
       bulk_download_successful: A tömeges jelentés letöltési feladatának ütemezése sikeresen megtörtént
       export_report_data_scheduled: A jelentési adatexportálási feladat ütemezése sikeresen megtörtént
     modals:
@@ -3788,13 +3786,6 @@ hu:
       on_hold: Várakozáson
       prepared: Kész
       released: Megjelent
-    statuses:
-      completed: Befejezett
-      declined: Visszautasított
-      denied: Elutasítva
-      done: Kész
-      not_completed: Nem fejeződött be
-      waiting: Várakozás
   threesixty:
     accept_privacy_modal:
       accept: Elfogadom

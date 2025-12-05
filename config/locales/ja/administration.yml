@@ -897,8 +897,6 @@ ja:
       new:
         header: 一括ダウンロード
       reports_unavailable: 現在、ダウンロード可能なレポートはありません。 ダウンロードしたいレポートがあるかどうかご確認ください。
-      select_users_for_download: レポートをダウンロードするには、少なくとも1人のユーザーを選択してください。
-      select_users_for_regenerate: レポートを再生するには、少なくとも1人のユーザーを選択してください。
     cable:
       notification:
         assessment_factors: 要因の取得
@@ -4677,8 +4675,6 @@ ja:
             evaluations_received: 受けた評価
             is_subject: 対象
             name: 名称
-            report_status: レポート状況
-            status: ステータス
           evaluators:
             add_evaluators: 評価者の追加
             import_evaluators: インポート・エバリュエーター

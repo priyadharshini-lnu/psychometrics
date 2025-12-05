@@ -130,6 +130,10 @@ module Administration
       def download_example_import_file?
         has_permission?(:campaigns, :view)
       end
+
+      def report_status_message?
+        has_permission?(:campaigns, :view)
+      end
     end
   end
 end

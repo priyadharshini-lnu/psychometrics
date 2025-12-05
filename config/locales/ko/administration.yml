@@ -897,8 +897,6 @@ ko:
       new:
         header: 대량 다운로드
       reports_unavailable: 현재 다운로드할 수 있는 보고서가 없습니다. 다운로드하려는 보고서가 있는지 확인해 주세요.
-      select_users_for_download: 보고서를 다운로드하려면 하나 이상의 사용자를 선택하십시오.
-      select_users_for_regenerate: 보고서를 재생하려면 하나 이상의 사용자를 선택하십시오.
     cable:
       notification:
         assessment_factors: 팩터가 가져옵니다
@@ -4677,8 +4675,6 @@ ko:
             evaluations_received: 받은 평가
             is_subject: 제목
             name: 이름
-            report_status: 보고 상태
-            status: 상태
           evaluators:
             add_evaluators: 평가자 추가
             import_evaluators: 평가자 가져오기

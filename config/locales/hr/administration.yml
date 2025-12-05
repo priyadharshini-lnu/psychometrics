@@ -897,8 +897,6 @@ hr:
       new:
         header: Skupno preuzimanje
       reports_unavailable: Trenutno nema dostupnih izvješća za preuzimanje. Potvrdite da su izvješća koja želite preuzeti dostupna.
-      select_users_for_download: Odaberite barem jednog korisnika za preuzimanje izvještaja.
-      select_users_for_regenerate: Odaberite barem jednog korisnika za regeneriranje izvještaja.
     cable:
       notification:
         assessment_factors: Faktori se dohvaćaju
@@ -4669,8 +4667,6 @@ hr:
             evaluations_received: Primljene evaluacije
             is_subject: Je ispitanik
             name: Ime
-            report_status: Status izvješća
-            status: Status
           evaluators:
             add_evaluators: Dodaj evaluatore
             import_evaluators: Uvezi evaluatore

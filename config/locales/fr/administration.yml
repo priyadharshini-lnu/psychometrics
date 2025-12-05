@@ -897,8 +897,6 @@ fr:
       new:
         header: Téléchargement en masse
       reports_unavailable: Pour le moment, aucun rapport n'est disponible au téléchargement. Veuillez confirmer que les rapports que vous souhaitez télécharger sont disponibles.
-      select_users_for_download: Veuillez sélectionner au moins un utilisateur pour télécharger des rapports.
-      select_users_for_regenerate: Veuillez sélectionner au moins un utilisateur pour régénérer les rapports.
     cable:
       notification:
         assessment_factors: Les facteurs sont recherchés
@@ -4677,8 +4675,6 @@ fr:
             evaluations_received: Évaluations reçues
             is_subject: Est le sujet
             name: Nom
-            report_status: Statut du rapport
-            status: Statut
           evaluators:
             add_evaluators: Ajouter des évaluateurs
             import_evaluators: Évaluateurs des importations

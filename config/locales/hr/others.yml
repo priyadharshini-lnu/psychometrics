@@ -1634,8 +1634,6 @@ hr:
       report: Izvješće
       report_bundle_placeholder: Odabir paketa izvješća
     messages:
-      bulk_download_error: Skupno preuzimanje ograničeno je na 1000 datoteka izvješća. Ako ste odabrali mnogo jezika, smanjite ga.
-      bulk_download_no_reports: Nije pronađen nijedan izvještaj. Molimo generirajte izvješća prije preuzimanja.
       bulk_download_successful: Zadatak masovnog preuzimanja izvješća uspješno je zakazan
       export_report_data_scheduled: Posao izvoza podataka izvješća uspješno je zakazan
     modals:
@@ -3822,13 +3820,6 @@ hr:
       on_hold: Na čekanju
       prepared: Završeno
       released: Objavljeno
-    statuses:
-      completed: Završeno
-      declined: Odbijeno
-      denied: Odbijeno
-      done: Završeno
-      not_completed: Nije dovršeno
-      waiting: Čekanje
   threesixty:
     accept_privacy_modal:
       accept: Prihvatiti

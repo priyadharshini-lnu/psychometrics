@@ -897,8 +897,6 @@ it:
       new:
         header: Scaricamento in blocco
       reports_unavailable: Al momento non sono disponibili rapporti da scaricare. Si prega di confermare che i rapporti che si desidera scaricare sono disponibili.
-      select_users_for_download: Seleziona almeno un utente per scaricare i report.
-      select_users_for_regenerate: Seleziona almeno un utente per rigenerare i report.
     cable:
       notification:
         assessment_factors: I fattori vengono recuperati
@@ -4677,8 +4675,6 @@ it:
             evaluations_received: Assessment ricevute
             is_subject: È soggetto
             name: Nome
-            report_status: Stato del rapporto
-            status: Stato
           evaluators:
             add_evaluators: Aggiungere valutatori
             import_evaluators: Valutatori di importazione

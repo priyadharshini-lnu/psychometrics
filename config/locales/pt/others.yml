@@ -1640,8 +1640,6 @@ pt:
       report: Relatório
       report_bundle_placeholder: Selecionar um pacote de relatórios
     messages:
-      bulk_download_error: A transferência em massa está limitada a 1000 ficheiros de relatório. Se selecionou muitos idiomas, reduza o número de ficheiros.
-      bulk_download_no_reports: Nenhum relatório encontrado. Gere os relatórios antes de fazer o download.
       bulk_download_successful: A tarefa de descarregamento de relatórios em massa foi agendada com sucesso
       export_report_data_scheduled: A tarefa de exportação de dados do relatório foi agendada com êxito
     modals:
@@ -3821,13 +3819,6 @@ pt:
       on_hold: Em espera
       prepared: Feito
       released: Lançado
-    statuses:
-      completed: Concluído
-      declined: Declinado
-      denied: Recusado
-      done: Concluído
-      not_completed: Não concluído
-      waiting: Em espera
   threesixty:
     accept_privacy_modal:
       accept: Aceitar

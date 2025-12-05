@@ -1622,8 +1622,6 @@ sr-Cyrl:
       report: Извештај
       report_bundle_placeholder: Изаберите пакет извештаја
     messages:
-      bulk_download_error: Масовно преузимање је ограничено на 1000 фајлова извештаја. Ако сте одабрали много језика, молимо вас да га смањите.
-      bulk_download_no_reports: Није пронађен ниједан извештај. Молимо Вас да генеришете извештаје пре преузимања.
       bulk_download_successful: Булк извештај преузимање посао је успешно заказан
       export_report_data_scheduled: Извештај извоз података посао је успешно заказан
     modals:
@@ -3705,13 +3703,6 @@ sr-Cyrl:
       on_hold: На чекању
       prepared: Готово
       released: Објављено
-    statuses:
-      completed: Завршено
-      declined: Одбијено
-      denied: Одбијено
-      done: Готово
-      not_completed: Није завршено
-      waiting: Чекање
   threesixty:
     accept_privacy_modal:
       accept: Прихвати

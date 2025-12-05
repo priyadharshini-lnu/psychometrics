@@ -1627,8 +1627,6 @@ sk:
       report: Správa
       report_bundle_placeholder: Výber balíka zostáv
     messages:
-      bulk_download_error: Hromadné sťahovanie je obmedzené na 1000 súborov zostavy. Ak ste vybrali veľa jazykov, znížte ho.
-      bulk_download_no_reports: Nenašli sa žiadne správy. Pred stiahnutím vygenerujte správy.
       bulk_download_successful: Úloha hromadného stiahnutia zostavy bola úspešne naplánovaná
       export_report_data_scheduled: Úloha exportu údajov zostavy bola úspešne naplánovaná
     modals:
@@ -3807,13 +3805,6 @@ sk:
       on_hold: Na počkanie
       prepared: Hotovo
       released: Uvoľnené
-    statuses:
-      completed: Dokončené
-      declined: Odmietnuté
-      denied: Odmietnuté
-      done: Hotovo
-      not_completed: Nie je dokončené
-      waiting: Čakanie
   threesixty:
     accept_privacy_modal:
       accept: Prijať

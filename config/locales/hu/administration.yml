@@ -897,8 +897,6 @@ hu:
       new:
         header: Tömeges letöltés
       reports_unavailable: Jelenleg nem tölthetők le jelentések. Kérjük, ellenőrizze, hogy a letölteni kívánt jelentések elérhetők-e.
-      select_users_for_download: Kérjük, válasszon legalább egy felhasználót a jelentések letöltéséhez.
-      select_users_for_regenerate: Kérjük, válasszon legalább egy felhasználót a jelentések regenerálásához.
     cable:
       notification:
         assessment_factors: A tényezők bekerültek
@@ -4671,8 +4669,6 @@ hu:
             evaluations_received: Beérkezett értékelések
             is_subject: Is Subject
             name: Név
-            report_status: Jelentés állapota
-            status: Állapot
           evaluators:
             add_evaluators: Értékelők hozzáadása
             import_evaluators: Értékelők importálása

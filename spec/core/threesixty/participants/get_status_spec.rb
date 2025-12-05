@@ -18,7 +18,7 @@ describe Threesixty::Participants::GetStatus do
     expect(described_class.call!(
              subject,
              nomination_requirement,
-             { completed_evaluations: 4, total_evaluations: 4 },
+             { completed_evaluators: 4, total_evaluators: 4 },
              manager_relationship.id => 4, peer_relationship.id => 5
            )).to eq Threesixty::Participants::GetStatus::COMPLETED
   end
@@ -27,7 +27,7 @@ describe Threesixty::Participants::GetStatus do
     expect(described_class.call!(
              subject,
              nomination_requirement,
-             { completed_evaluations: 4, total_evaluations: 4 },
+             { completed_evaluators: 4, total_evaluators: 4 },
              manager_relationship.id => 3, peer_relationship.id => 5
            )).to eq Threesixty::Participants::GetStatus::NOT_COMPLETED
   end
@@ -36,7 +36,7 @@ describe Threesixty::Participants::GetStatus do
     expect(described_class.call!(
              subject,
              nomination_requirement,
-             { completed_evaluations: 3, total_evaluations: 4 },
+             { completed_evaluators: 3, total_evaluators: 4 },
              manager_relationship.id => 4, peer_relationship.id => 5
            )).to eq Threesixty::Participants::GetStatus::NOT_COMPLETED
   end
@@ -47,7 +47,7 @@ describe Threesixty::Participants::GetStatus do
     expect(described_class.call!(
              subject,
              nomination_requirement,
-             { completed_evaluations: 3, total_evaluations: 4 },
+             { completed_evaluators: 4, total_evaluators: 4 },
              manager_relationship.id => 4, peer_relationship.id => 5
            )).to eq Threesixty::Participants::GetStatus::DONE
   end

@@ -897,8 +897,6 @@ th:
       new:
         header: ดาวน์โหลดจำนวนมาก
       reports_unavailable: ในขณะนี้ยังไม่มีรายงานให้ดาวน์โหลด โปรดยืนยันว่ารายงานที่คุณต้องการดาวน์โหลดพร้อมใช้งาน
-      select_users_for_download: โปรดเลือกผู้ใช้อย่างน้อยหนึ่งคนในการดาวน์โหลดรายงาน
-      select_users_for_regenerate: โปรดเลือกผู้ใช้อย่างน้อยหนึ่งคนเพื่อสร้างรายงานใหม่
     cable:
       notification:
         assessment_factors: ดึงปัจจัย
@@ -4669,8 +4667,6 @@ th:
             evaluations_received: การประเมินที่ได้รับ
             is_subject: คือ หัวข้อ
             name: ชื่อ
-            report_status: สถานะรายงาน
-            status: สถานะ
           evaluators:
             add_evaluators: เพิ่มผู้ประเมิน
             import_evaluators: ผู้ประเมินการนำเข้า

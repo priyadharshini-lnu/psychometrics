@@ -897,8 +897,6 @@ es-ES:
       new:
         header: Descarga masiva
       reports_unavailable: En este momento, no hay informes disponibles para descargar. Por favor, confirme que los informes que desea descargar están disponibles.
-      select_users_for_download: Seleccione al menos un usuario para descargar informes.
-      select_users_for_regenerate: Seleccione al menos una usuario para regenerar informes.
     cable:
       notification:
         assessment_factors: Los factores se recuperan
@@ -4677,8 +4675,6 @@ es-ES:
             evaluations_received: Evaluaciones recibidas
             is_subject: Es Asunto
             name: Nombre
-            report_status: Estado del informe
-            status: Estado
           evaluators:
             add_evaluators: Añadir evaluadores
             import_evaluators: Importar evaluadores

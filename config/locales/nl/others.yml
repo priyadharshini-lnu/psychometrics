@@ -1627,8 +1627,6 @@ nl:
       report: Rapporteer
       report_bundle_placeholder: Selecteer een rapportbundel
     messages:
-      bulk_download_error: Bulkdownload is beperkt tot 1000 rapportbestanden. Als je veel talen hebt geselecteerd, verklein dit dan.
-      bulk_download_no_reports: Geen meldingen gevonden. Genereer de rapporten voordat u ze downloadt.
       bulk_download_successful: De downloadtaak voor bulkrapporten is met succes gepland
       export_report_data_scheduled: De exporttaak voor rapportgegevens is met succes gepland
     modals:
@@ -3783,13 +3781,6 @@ nl:
       on_hold: In de wacht
       prepared: Gedaan
       released: Vrijgegeven
-    statuses:
-      completed: Voltooid
-      declined: Afgewezen
-      denied: Geweigerd
-      done: Gedaan
-      not_completed: Niet voltooid
-      waiting: Wachten
   threesixty:
     accept_privacy_modal:
       accept: Accepteer

@@ -504,6 +504,7 @@ Rails.application.routes.draw do
             patch :bulk_update_evaluation_status
           end
           member do
+            get :report_status_message
             get :preview_report
           end
 

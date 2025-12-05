@@ -1627,8 +1627,6 @@ ro:
       report: Raport
       report_bundle_placeholder: Selectați un pachet de rapoarte
     messages:
-      bulk_download_error: Descărcarea în bloc este limitată la 1000 de fișiere de raport. Dacă ați selectat mai multe lamente, vă rugăm să le reduceți.
-      bulk_download_no_reports: Nu s-au găsit rapoarte. Vă rugăm să generați rapoartele înainte de descărcare.
       bulk_download_successful: Sarcina de descărcare a raportului în bloc a fost programată cu succes
       export_report_data_scheduled: Sarcina de export a datelor de raportare a fost programată cu succes
     modals:
@@ -3807,13 +3805,6 @@ ro:
       on_hold: În așteptare
       prepared: Efectuat
       released: Eliberat
-    statuses:
-      completed: Completat
-      declined: Declinat
-      denied: Refuzat
-      done: Efectuat
-      not_completed: Nefinalizat
-      waiting: În așteptare
   threesixty:
     accept_privacy_modal:
       accept: Acceptați

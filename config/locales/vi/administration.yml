@@ -897,8 +897,6 @@ vi:
       new:
         header: Tải xuống hàng loạt
       reports_unavailable: Hiện tại, không có báo cáo nào có sẵn để tải xuống. Vui lòng xác nhận rằng các báo cáo bạn muốn tải xuống đã có sẵn.
-      select_users_for_download: Vui lòng chọn ít nhất một người dùng để tải xuống báo cáo.
-      select_users_for_regenerate: Vui lòng chọn ít nhất một người dùng để tái tạo báo cáo.
     cable:
       notification:
         assessment_factors: Các yếu tố được tìm nạp
@@ -4669,8 +4667,6 @@ vi:
             evaluations_received: Đánh giá đã nhận
             is_subject: Chủ đề là
             name: Tên
-            report_status: Trạng thái báo cáo
-            status: Trạng thái
           evaluators:
             add_evaluators: Thêm người đánh giá
             import_evaluators: Nhà đánh giá nhập khẩu

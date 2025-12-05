@@ -1627,8 +1627,6 @@ fr:
       report: Rapport
       report_bundle_placeholder: Sélectionner un groupe de rapports
     messages:
-      bulk_download_error: Le téléchargement en masse est limité à 1000 fichiers de rapport. Si vous avez sélectionné plusieurs langues, veuillez les réduire.
-      bulk_download_no_reports: Aucun rapport n’a été trouvé. Veuillez générer les rapports avant de les télécharger.
       bulk_download_successful: La tâche de téléchargement des rapports en bloc a été programmée avec succès
       export_report_data_scheduled: La tâche d'exportation des données du rapport a été programmée avec succès
     modals:
@@ -3808,13 +3806,6 @@ fr:
       on_hold: En attente
       prepared: Terminé
       released: Libéré
-    statuses:
-      completed: Terminé
-      declined: Refusé
-      denied: Refusé
-      done: Terminé
-      not_completed: Non achevé
-      waiting: En attente
   threesixty:
     accept_privacy_modal:
       accept: Accepter

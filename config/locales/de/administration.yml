@@ -897,8 +897,6 @@ de:
       new:
         header: Massendownload
       reports_unavailable: Im Moment sind keine Berichte zum Herunterladen verfügbar. Bitte bestätigen Sie, dass die Berichte, die Sie herunterladen möchten, verfügbar sind.
-      select_users_for_download: Bitte wählen Sie mindestens einen Benutzer aus, um Berichte herunterzuladen.
-      select_users_for_regenerate: Bitte wählen Sie mindestens einen Benutzer aus, um Berichte zu regenerieren.
     cable:
       notification:
         assessment_factors: Faktoren werden abgerufen
@@ -4677,8 +4675,6 @@ de:
             evaluations_received: Erhaltene Beurteilungen
             is_subject: Ist Thema
             name: Name
-            report_status: Bericht Status
-            status: Status
           evaluators:
             add_evaluators: Evaluatoren hinzufügen
             import_evaluators: Evaluatoren importieren

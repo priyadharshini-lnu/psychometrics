@@ -1621,8 +1621,6 @@ vi:
       report: Báo cáo
       report_bundle_placeholder: Chọn gói báo cáo
     messages:
-      bulk_download_error: Tải xuống hàng loạt được giới hạn ở 1000 tệp báo cáo. Nếu bạn đã chọn nhiều ngôn ngữ, vui lòng giảm nó.
-      bulk_download_no_reports: Không tìm thấy báo cáo. Vui lòng tạo báo cáo trước khi tải xuống.
       bulk_download_successful: Tác vụ tải xuống báo cáo hàng loạt đã được lên lịch thành công
       export_report_data_scheduled: Tác vụ xuất dữ liệu báo cáo đã được lên lịch thành công
     modals:
@@ -3801,13 +3799,6 @@ vi:
       on_hold: Đang tạm dừng
       prepared: Xong
       released: Phát hành
-    statuses:
-      completed: Hoàn thành
-      declined: Từ chối
-      denied: Từ chối
-      done: Xong
-      not_completed: Chưa hoàn thành
-      waiting: Chờ
   threesixty:
     accept_privacy_modal:
       accept: Chấp nhận

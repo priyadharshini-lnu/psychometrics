@@ -1639,8 +1639,6 @@ cs:
       report: Nahlásit
       report_bundle_placeholder: Výběr svazku sestav
     messages:
-      bulk_download_error: Hromadné stahování je omezeno na 1000 souborů zpráv. Pokud jste vybrali mnoho jazyků, snižte je.
-      bulk_download_no_reports: Nebyly nalezeny žádné zprávy. Před stažením si prosím vygenerujte zprávy.
       bulk_download_successful: Úloha hromadného stahování sestav byla úspěšně naplánována
       export_report_data_scheduled: Úloha exportu dat sestavy byla úspěšně naplánována
     modals:
@@ -3796,13 +3794,6 @@ cs:
       on_hold: Pozastaveno
       prepared: Hotovo
       released: Uvolněno
-    statuses:
-      completed: Dokončeno
-      declined: Odmítnuto
-      denied: Zamítnuto
-      done: Hotovo
-      not_completed: Nedokončeno
-      waiting: Čekání
   threesixty:
     accept_privacy_modal:
       accept: Přijmout

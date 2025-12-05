@@ -897,8 +897,6 @@ sl:
       new:
         header: Prenos v velikem obsegu
       reports_unavailable: Trenutno poročila niso na voljo za prenos. Potrdite, da so poročila, ki jih želite prenesti, na voljo.
-      select_users_for_download: Za prenos poročil izberite vsaj enega uporabnika.
-      select_users_for_regenerate: Izberite vsaj enega uporabnika, da obnovi poročila.
     cable:
       notification:
         assessment_factors: Dejavniki se pridobijo
@@ -4669,8 +4667,6 @@ sl:
             evaluations_received: Prejete ocene
             is_subject: Je predmet
             name: Ime
-            report_status: Status poročila
-            status: Status
           evaluators:
             add_evaluators: Dodajanje ocenjevalcev
             import_evaluators: Ocenjevalci uvoza

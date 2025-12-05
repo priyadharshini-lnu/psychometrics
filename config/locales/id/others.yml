@@ -1631,8 +1631,6 @@ id:
       report: Lapor
       report_bundle_placeholder: Memilih paket laporan
     messages:
-      bulk_download_error: Unduhan massal dibatasi hingga 1000 file laporan. Jika Anda telah memilih banyak bahasa, harap kurangi.
-      bulk_download_no_reports: Tidak ada laporan yang ditemukan. Silakan buat laporan sebelum mengunduh.
       bulk_download_successful: Pekerjaan pengunduhan laporan massal berhasil dijadwalkan
       export_report_data_scheduled: Tugas ekspor data laporan berhasil dijadwalkan
     modals:
@@ -3811,13 +3809,6 @@ id:
       on_hold: Ditunda
       prepared: Selesai
       released: Dirilis
-    statuses:
-      completed: Selesai
-      declined: Ditolak
-      denied: Ditolak
-      done: Selesai
-      not_completed: Tidak Selesai
-      waiting: Menunggu
   threesixty:
     accept_privacy_modal:
       accept: Terima

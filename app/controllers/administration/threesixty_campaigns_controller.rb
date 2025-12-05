@@ -72,43 +72,46 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
   end
 
   def regenerate_reports
-    if params[:selected_user_report_ids].blank?
-      return render json: { errors: I18n.t('administration.bulk_reports.select_users_for_regenerate') },
-                    status: :unprocessable_entity
-    end
+    user_report_ids = resolve_selected_user_report_ids
 
     AdminJob.call(
       :bulk_regenerate_threesixty_reports,
-      { campaign_id: resource.id, locales: params[:selected_locales], force_regenerate: params[:force_regenerate],
-        ids: params[:selected_user_report_ids] },
+      {
+        campaign_id: resource.id,
+        locales: params[:selected_locales],
+        force_regenerate: params[:force_regenerate],
+        ids: user_report_ids
+      },
       current_user
     )
     render json: :ok
   end
 
   def bulk_download
-    if params[:selected_user_report_ids].blank?
-      return render json: { errors: I18n.t('administration.bulk_reports.select_users_for_download') },
+    user_report_ids = resolve_selected_user_report_ids
+
+    result = ::UserReports::ValidateBulkDownloadEligibility.call(
+      user_report_ids: user_report_ids,
+      locales: params[:selected_locales]
+    )
+
+    if result[:invalid]
+      return render json: { errors: result[:invalid] },
                     status: :unprocessable_entity
     end
 
-    report_count = UserReportPdf.where(user_report_id: params[:selected_user_report_ids],
-                                       locale: params[:selected_locales]).joins(:pdf_file_attachment).count
-    if report_count > 1000
-      return render json: { errors: I18n.t('campaign_report.messages.bulk_download_error', count: report_count) },
-                    status: :unprocessable_entity
-    end
-
-    if report_count.zero?
-      return render json: { errors: I18n.t('campaign_report.messages.bulk_download_no_reports') },
-                    status: :unprocessable_entity
-    end
-
-    AdminJob.call(:bulk_download_user_reports,
-                  { campaign_id: resource.campaign_id, is_threesixty: true, locales: params[:selected_locales],
-                    is_bulk_action: true, ids: params[:selected_user_report_ids] },
-                  current_user)
-    audit! :bulk_download, nil, record_type: 'UserReport', payload: {}, campaign: campaign
+    AdminJob.call(
+      :bulk_download_user_reports,
+      {
+        campaign_id: resource.campaign_id,
+        is_threesixty: true,
+        locales: params[:selected_locales],
+        is_bulk_action: true,
+        ids: user_report_ids
+      },
+      current_user
+    )
+    audit! :bulk_download, nil, record_type: 'UserReport', payload: {}, campaign: resource.campaign
     head :ok
   end
 
@@ -136,6 +139,19 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
   end
 
   private
+
+  def resolve_selected_user_report_ids
+    subjects = resource.campaign.subjects
+
+    if params[:excluded_ids].present?
+      subjects = subjects.where.not(id: params[:excluded_ids])
+    elsif params[:selected_ids].present?
+      subjects = subjects.where(id: params[:selected_ids])
+    end
+
+    user_ids = subjects.pluck(:user_id)
+    resource.campaign.user_reports.where(user_id: user_ids).pluck(:id)
+  end
 
   def pundit_authorize
     authorize(

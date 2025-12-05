@@ -25,16 +25,10 @@ describe Threesixty::Participants::GetReportStatus do
     expect(described_class.call!(subject, option, {})).to eq Threesixty::Participants::GetReportStatus::RELEASED
   end
 
-  it 'report not available' do
-    subject = create(:threesixty_subject)
-    option = create(:threesixty_option, participants: { 'access' => { 'self_can_access' => false } })
-    expect(described_class.call!(subject, option, {})).to eq Threesixty::Participants::GetReportStatus::NOT_AVAILABLE
-  end
-
   describe 'report availability is false' do
     before { allow(Threesixty::Reports::IsAvailable).to receive(:call!).and_return(false) }
     it {
-      expect(described_class.call!(subject, option, {})).
+      expect(described_class.call!(subject, option, { 1 => 2, 2 => 3 })).
         to eq Threesixty::Participants::GetReportStatus::INCOMPLETE
     }
   end

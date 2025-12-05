@@ -1640,8 +1640,6 @@ ja:
       report: レポート
       report_bundle_placeholder: レポートバンドルを選択する
     messages:
-      bulk_download_error: 一括ダウンロードの上限は1000ファイルです。
-      bulk_download_no_reports: レポートは見つかりませんでした。ダウンロードする前にレポートを作成してください。
       bulk_download_successful: 一括レポートダウンロードジョブが正常にスケジュールされました
       export_report_data_scheduled: レポート・データ・エクスポート・ジョブが正常にスケジュールされました。
     modals:
@@ -3797,13 +3795,6 @@ ja:
       on_hold: 保留中
       prepared: 完了
       released: リリース
-    statuses:
-      completed: 完了済み
-      declined: 辞退済み
-      denied: 却下
-      done: 完了
-      not_completed: 未完了
-      waiting: 待機中
   threesixty:
     accept_privacy_modal:
       accept: 同意する

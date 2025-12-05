@@ -897,8 +897,6 @@ bg:
       new:
         header: Групово изтегляне
       reports_unavailable: В момента няма отчети за изтегляне. Моля, потвърдете, че отчетите, които искате да изтеглите, са налице.
-      select_users_for_download: Моля, изберете поне един потребител за изтегляне на отчети.
-      select_users_for_regenerate: Моля, изберете поне един потребител, който да регенерира отчети.
     cable:
       notification:
         assessment_factors: Извличат се фактори
@@ -4669,8 +4667,6 @@ bg:
             evaluations_received: Получени оценки
             is_subject: Е предмет
             name: Име
-            report_status: Състояние на доклада
-            status: Статус
           evaluators:
             add_evaluators: Добавяне на оценители
             import_evaluators: Внос на оценители

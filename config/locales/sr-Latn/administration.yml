@@ -897,8 +897,6 @@ sr-Latn:
       new:
         header: Zbirno preuzimanje
       reports_unavailable: U ovom trenutku, nema izveštaja dostupnih za preuzimanje. Molimo Vas da potvrdite da su izveštaji koje želite da preuzmete dostupni.
-      select_users_for_download: Placere eligere saltem unus User ad download tradit.
-      select_users_for_regenerate: Placere eligere saltem unus user ad regenerare tradit.
     cable:
       notification:
         assessment_factors: Faktori su prikupljeni
@@ -4669,8 +4667,6 @@ sr-Latn:
             evaluations_received: Primljene evaluacije
             is_subject: Je subjekat
             name: Ime
-            report_status: Status izveštaja
-            status: Status
           evaluators:
             add_evaluators: Dodaj evaluatore
             import_evaluators: Uvezi evaluatore

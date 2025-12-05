@@ -1627,8 +1627,6 @@ it:
       report: Rapporto
       report_bundle_placeholder: Selezionare un pacchetto di report
     messages:
-      bulk_download_error: Il download massivo è limitato a 1000 file di report. Se avete selezionato molte lingue, riducetele.
-      bulk_download_no_reports: Nessun rapporto trovato. Si prega di generare i report prima di scaricarli.
       bulk_download_successful: Il lavoro di download dei rapporti di massa è stato pianificato con successo
       export_report_data_scheduled: Il lavoro di esportazione dei dati del report è stato pianificato con successo
     modals:
@@ -3808,13 +3806,6 @@ it:
       on_hold: In attesa
       prepared: Fatto
       released: Rilasciato
-    statuses:
-      completed: Completati
-      declined: Declinato
-      denied: Negato
-      done: Fatto
-      not_completed: Non completato
-      waiting: In attesa
   threesixty:
     accept_privacy_modal:
       accept: Accetta

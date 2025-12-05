@@ -3,7 +3,6 @@ import {
 } from 'antd'
 import { ToolOutlined, DownOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
-import { useMemo } from 'react'
 import { useDispatch } from 'react-redux'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { updateCampaignAssessmentDetails } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignAssessments'
@@ -151,13 +150,10 @@ export default function ToolsDropdown ({
   rescoreAssessment, permissions,
   exportCompletionStatuses, regenerateReports, exportRawResults, exportThreeSixtyScores, bulkDownloads,
   reportAvailableLanguages, reportDefaultLanguage, isBulk, markAsDone, selectedKeys,
-  excludedKeys, title, isAllSelected, normalizedSubjectsData, toggleCaching, cachingEnabled, allowCaching,
+  excludedKeys, title, isAllSelected, toggleCaching, cachingEnabled, allowCaching,
 }) {
   const { projectId } = useParams()
-  const selectedUserReportIds = useMemo(() => selectedKeys?.map((key) => {
-    const subject = normalizedSubjectsData[key]
-    return subject ? subject.userReportId : null
-  }).filter(Boolean), [selectedKeys, normalizedSubjectsData])
+
   const resetCampaignWithConfirmation = (campaignId) => {
     openModal('ResetCampaignModal', {
       onConfirm: removeLicenceUsage => resetCampaign(campaignId, removeLicenceUsage),
@@ -196,7 +192,7 @@ export default function ToolsDropdown ({
   }
 
   const handleRegenerateReports = (campaignId) => {
-    if (!selectedUserReportIds || selectedUserReportIds.length === 0) {
+    if (!isAllSelected && (!selectedKeys || selectedKeys.length === 0)) {
       message.warning(I18n.t('campaign_assessment.messages.no_participants_selected'), 5)
       return
     }
@@ -212,7 +208,9 @@ export default function ToolsDropdown ({
         cancelText: I18n.t('common.text.cancel'),
         onOk: async () => {
           try {
-            await regenerateReports(campaignId, [reportDefaultLanguage], true, selectedUserReportIds)
+            await regenerateReports(
+              campaignId, [reportDefaultLanguage], true, isAllSelected, selectedKeys, excludedKeys,
+            )
             message.success(I18n.t('user_reports.messages.regenerate_successful'))
           } catch (error) {
             message.error(error, 5)
@@ -227,7 +225,9 @@ export default function ToolsDropdown ({
         defaultLocale: reportDefaultLanguage,
         onConfirm: async (selectedLocales, forceRegenerate) => {
           try {
-            await regenerateReports(campaignId, selectedLocales, forceRegenerate, selectedUserReportIds)
+            await regenerateReports(
+              campaignId, selectedLocales, forceRegenerate, isAllSelected, selectedKeys, excludedKeys,
+            )
             message.success(I18n.t('user_reports.messages.regenerate_successful'))
           } catch (error) {
             message.error(error, 5)
@@ -238,13 +238,13 @@ export default function ToolsDropdown ({
   }
 
   const handleBulkDownloads = () => {
-    if (!selectedUserReportIds || selectedUserReportIds.length === 0) {
+    if (!isAllSelected && (!selectedKeys || selectedKeys.length === 0)) {
       message.warning(I18n.t('campaign_assessment.messages.no_participants_selected'), 5)
       return
     }
 
     if (reportAvailableLanguages.length === 0) {
-      bulkDownloads(campaignId, [reportDefaultLanguage], selectedUserReportIds)
+      bulkDownloads(campaignId, [reportDefaultLanguage], isAllSelected, selectedKeys, excludedKeys)
         .then(() => {
           message.success(I18n.t('jobs.threesixty.bulk_downloads'))
         })
@@ -259,7 +259,7 @@ export default function ToolsDropdown ({
         allLocales: reportAvailableLanguages,
         defaultLocale: reportDefaultLanguage,
         onConfirm: (selectedLocales) => {
-          bulkDownloads(campaignId, selectedLocales, selectedUserReportIds)
+          bulkDownloads(campaignId, selectedLocales, isAllSelected, selectedKeys, excludedKeys)
             .then(() => {
               message.success(I18n.t('jobs.threesixty.bulk_downloads'))
             })

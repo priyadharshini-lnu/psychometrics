@@ -897,8 +897,6 @@ nl:
       new:
         header: Bulk downloaden
       reports_unavailable: Op dit moment zijn er geen rapporten beschikbaar om te downloaden. Controleer of de rapporten die je wilt downloaden beschikbaar zijn.
-      select_users_for_download: Selecteer ten minste één gebruiker om rapporten te downloaden.
-      select_users_for_regenerate: Selecteer ten minste één gebruiker om rapporten te regenereren.
     cable:
       notification:
         assessment_factors: Factoren worden opgehaald
@@ -4677,8 +4675,6 @@ nl:
             evaluations_received: Ontvangen evaluaties
             is_subject: Is Onderwerp
             name: Naam
-            report_status: Statusrapport
-            status: Status
           evaluators:
             add_evaluators: Evaluatoren toevoegen
             import_evaluators: Importeer beoordelaars

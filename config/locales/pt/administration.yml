@@ -897,8 +897,6 @@ pt:
       new:
         header: Transferência em massa
       reports_unavailable: De momento, não existem relatórios disponíveis para descarregar. Confirme se os relatórios que pretende descarregar estão disponíveis.
-      select_users_for_download: Selecione pelo menos um usuário para baixar relatórios.
-      select_users_for_regenerate: Selecione pelo menos um usuário para regenerar os relatórios.
     cable:
       notification:
         assessment_factors: Os factores são obtidos
@@ -4677,8 +4675,6 @@ pt:
             evaluations_received: Avaliações recebidas
             is_subject: É objeto
             name: Nome
-            report_status: Estado do relatório
-            status: Estado
           evaluators:
             add_evaluators: Adicionar avaliadores
             import_evaluators: Avaliadores de importação

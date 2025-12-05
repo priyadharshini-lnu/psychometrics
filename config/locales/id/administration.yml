@@ -897,8 +897,6 @@ id:
       new:
         header: Unduh Massal
       reports_unavailable: Saat ini, tidak ada laporan yang tersedia untuk diunduh. Harap konfirmasikan bahwa laporan yang ingin Anda unduh tersedia.
-      select_users_for_download: Pilih setidaknya satu pengguna untuk mengunduh laporan.
-      select_users_for_regenerate: Pilih setidaknya satu pengguna untuk meregenerasi laporan.
     cable:
       notification:
         assessment_factors: Faktor diambil
@@ -4669,8 +4667,6 @@ id:
             evaluations_received: Evaluasi yang Diterima
             is_subject: Apakah Subjek
             name: Nama
-            report_status: Status Laporan
-            status: Status
           evaluators:
             add_evaluators: Menambahkan Evaluator
             import_evaluators: Evaluator Impor

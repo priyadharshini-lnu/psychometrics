@@ -1627,8 +1627,6 @@ zh-Hant:
       report: 報告
       report_bundle_placeholder: 選擇報告包
     messages:
-      bulk_download_error: 批量下載的報告檔案數量限制為 1000 個，如果您選擇了多種語言，請減少下載數量。
-      bulk_download_no_reports: 沒有找到報告。請在下載前生成報告。
       bulk_download_successful: 大量報告下載工作排程成功
       export_report_data_scheduled: 報告資料匯出工作排程成功
     modals:
@@ -3790,13 +3788,6 @@ zh-Hant:
       on_hold: 暫停
       prepared: 完成
       released: 已發行
-    statuses:
-      completed: 已完成
-      declined: 已拒絕
-      denied: 拒絕
-      done: 完成
-      not_completed: 未完成
-      waiting: 等待
   threesixty:
     accept_privacy_modal:
       accept: 接受
