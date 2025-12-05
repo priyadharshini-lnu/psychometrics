@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import _, { uniqBy } from 'lodash'
 import {
   useEffect, useState, useMemo, useRef, useContext,
 } from 'react'
@@ -177,7 +177,7 @@ const UserDevelopmentPlanComponent = ({
   const reflectionQuestions = useAppSelector(getReflectiveQuestions)
 
   const listData = useMemo(() => groupSkillsBySkillType(idpSkills, idpDevelopmentActions),
-    [idpSkills, idpDevelopmentActions])
+    [idpSkills, idpDevelopmentActions, selectedSkills])
 
   const isPlanDirty = useMemo(() => {
     if (!existingPlanData) return false
@@ -220,7 +220,7 @@ const UserDevelopmentPlanComponent = ({
   useEffect(() => {
     setIsLoading(true)
     fetchUserIdpPlan(idpUserId).then(({ response }) => {
-      setSelectedSkills(response.data.userIdpSkills)
+      setSelectedSkills(response.data.userIdpSkills.filter(skill => !skill.deletedAt))
       fetchUserIdpPlanChanges(idpUserId).then(() => {
         setExistingPlanData({
           userIdpDevelopmentActions: _.keyBy(response.data.userIdpDevelopmentActions, 'id'),
@@ -295,16 +295,19 @@ const UserDevelopmentPlanComponent = ({
       ...skill,
       skillId: skill.id,
       isLocal: true,
+      deletedAt: null,
     }))
+
     setSelectedSkills([...selectedSkills, ...userIdpSkills])
   }
 
   const handleFinishAddSkill = () => {
     setIsLoading(true)
     saveUserIdpSkills(
-      selectedSkills, null, idpUserId,
+      uniqBy(selectedSkills, 'skillId'), null, idpUserId,
     ).then(({ response }: {response:{data:Skill[]}}) => {
       setSelectedSkills([...response.data])
+      fetchUserIdpPlanChanges(idpUserId)
       setShowAddSkill(false)
       message.success(I18n.t('idp.skills_updated'))
     }).catch((error) => {
@@ -321,6 +324,7 @@ const UserDevelopmentPlanComponent = ({
       userIdpSkills, null, idpUserId,
     ).then(({ response }:{response:{data:Skill[]}}) => {
       setSelectedSkills([...response.data])
+      fetchUserIdpPlanChanges(idpUserId)
       fetchIdpSkills().then(({ response }) => {
         setAllSkills(response)
       }).finally(() => {

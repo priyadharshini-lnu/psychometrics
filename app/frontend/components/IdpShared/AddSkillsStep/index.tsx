@@ -58,7 +58,7 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
   const isStepsRoute = location.pathname.includes('idp/steps') || location.pathname.includes('step/')
   // redux stores user_idp_skills which doesn't have same id as of skills resource
   // Using name instead of id as name is also unique
-  const selectedSkillsNames = selectedSkills.map(({ name }) => name)
+  const selectedSkillsNames = selectedSkills.filter(skill => !skill.deletedAt).map(({ name }) => name)
   const initialSelectedSkillsNames = useMemo(() => selectedSkillsNames, [])
 
   const isSelectedSkillsDirty = !isEqual(initialSelectedSkillsNames.sort(), selectedSkillsNames.sort())

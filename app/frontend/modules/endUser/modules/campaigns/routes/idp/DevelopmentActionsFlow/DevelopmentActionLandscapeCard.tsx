@@ -75,6 +75,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
   finalRating,
   userIdpSkillId,
   changeStatus,
+  deletedAt,
   changeHistory,
   developmentActions,
   editMode,
@@ -129,7 +130,10 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
     <Flex>
       <Flex vertical={isTablet || isDesktop} gap={4} align={isTablet || isDesktop ? 'start' : 'center'}>
         <h4
-          className={cs('m-0 ms-1 me-1 mt-2', { [styles.stroke]: changeStatus === PlanChangeStatus.REMOVED })}
+          className={cs('m-0 ms-1 me-1 mt-2', {
+            [styles.stroke]: changeStatus === PlanChangeStatus.REMOVED
+             && deletedAt,
+          })}
         >
           {name}
         </h4>
@@ -144,7 +148,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
           />
         )
       }
-        {changeStatus && (
+        {changeStatus && deletedAt && (
           <ChangeStatus className="self-end mb-1" status={changeStatus} />
         )}
         {isCurrentUserIDPUser && (
@@ -225,7 +229,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
           )}
         </Flex>
       </Flex>
-      {changeStatus !== PlanChangeStatus.REMOVED && !developmentActionCards.length ? (
+      {(changeStatus !== PlanChangeStatus.REMOVED || !deletedAt) && !developmentActionCards.length ? (
         <Flex vertical>
           <Flex wrap align="center" className="border-b-1 pt-3 pb-3">
             <Empty aria-hidden="true" description="" style={!isTablet ? { marginInlineStart: '-2rem' } : {}} />

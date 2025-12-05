@@ -45,6 +45,7 @@ const SkillsTR = t.type({
   developmentActions: t.array(DevelopmentActionsTR),
   skillId: t.string,
   private: t.boolean,
+  deletedAt: t.union([t.string, t.null]),
 })
 
 export const UserIdpPlanTR = t.type({

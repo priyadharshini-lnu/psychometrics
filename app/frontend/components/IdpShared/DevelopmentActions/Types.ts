@@ -44,6 +44,7 @@ export type Skill = {
     finalRating?: number;
     skillId: string | number;
     private: boolean
+    deletedAt: string | null;
 }
 
 export type UserIdpSkill = Omit<Skill, 'description'> & {
