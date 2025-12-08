@@ -33,7 +33,6 @@ nl:
     empty_csv_file: Het CSV-bestand bevat geen gegevens.
     fill_empty_score_msg: Vul alle eindscores in voordat je opslaat.
     final_score_empty_msg: De eindscore mag niet leeg zijn.
-    import_csv_assessment_group_error: 'Rij %{index}: gebruiker met e-mailadres %{email} is al uitgenodigd om ''%{workshopInviteName}'''
     import_csv_error: 'Rij %{index}: gebruiker met e-mailadres %{email} niet in deze campagne zit'
     import_description: Importeer gebruikers uit een CSV-bestand. Elke rij moet een e-mailadres bevatten.
     import_download_sample: Download voorbeeld van CSV
@@ -105,9 +104,7 @@ nl:
     skills_taxonomy: Taxonomie van vaardigheden
     slot_name: Slot Name
     stats: Stats
-    subject_part_of_other_invite: Onderwerp met e-mail %{user_email} al uitgenodigd is om '%{workshop_invite_name}' te
     user_report_events: Gebeurtenissen gebruikersrapport
     users: Gebruikers
-    validation_error: Tijdens de validatie deed zich een fout voor
     view_licenses: Licenties bekijken
     year: Land

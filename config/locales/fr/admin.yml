@@ -33,7 +33,6 @@ fr:
     empty_csv_file: Le fichier CSV ne contient aucune donnée.
     fill_empty_score_msg: Remplissez tous les scores finaux avant de sauvegarder.
     final_score_empty_msg: Le score final ne peut pas être vide.
-    import_csv_assessment_group_error: 'Ligne %{index} : l’utilisateur ayant un %{email} email est déjà invité à « %{workshopInviteName} »'
     import_csv_error: 'Ligne %{index} : utilisateur avec un %{email} email n’est pas dans cette campagne'
     import_description: Importez des utilisateurs à partir d’un fichier CSV. Chaque ligne doit contenir une adresse e-mail.
     import_download_sample: Télécharger un exemple de CSV
@@ -105,9 +104,7 @@ fr:
     skills_taxonomy: Taxonomie des compétences
     slot_name: Nom de la machine à sous
     stats: Statistiques
-    subject_part_of_other_invite: Objet avec l’email %{user_email} est déjà invité à « %{workshop_invite_name} »
     user_report_events: Rapport de l'utilisateur Événements
     users: Utilisateurs
-    validation_error: Une erreur s’est produite lors de la validation
     view_licenses: Voir les licences
     year: Pays

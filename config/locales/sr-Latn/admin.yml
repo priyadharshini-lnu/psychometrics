@@ -33,7 +33,6 @@ sr-Latn:
     empty_csv_file: CSV datoteka ne sadrži nikakve podatke.
     fill_empty_score_msg: Popunite sve konačne rezultate pre čuvanja.
     final_score_empty_msg: Konačni rezultat ne može biti prazan.
-    import_csv_assessment_group_error: 'Red %{index}: korisnik sa e-poštom %{email} je već pozvan da "%{workshopInviteName}"'
     import_csv_error: 'Red %{index}: korisnik sa e-poštom %{email} nije u ovoj kampanji'
     import_description: Uvezite korisnike iz CSV datoteke. Svaki red mora da sadrži adresu e-pošte.
     import_download_sample: Preuzmite primer CSV
@@ -105,9 +104,7 @@ sr-Latn:
     skills_taxonomy: Taksonomija veština
     slot_name: Ime slota
     stats: Statistike
-    subject_part_of_other_invite: Predmet sa e-poštom %{user_email} je već pozvan na '%{workshop_invite_name}'
     user_report_events: Događaji Izveštaja korisnika
     users: Korisnici
-    validation_error: Došlo je do greške tokom validacije
     view_licenses: Pogledaj licence
     year: Država

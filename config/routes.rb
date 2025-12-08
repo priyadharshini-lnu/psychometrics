@@ -1450,7 +1450,6 @@ only: %i[index create update]
               collection do
                 get :import_subjects_from_campaign
                 post :import_subjects_from_csv
-                post :validate_subjects
               end
               jsonapi_resources :workshop_invited_subjects, only: %i[index create destroy] do
                 collection do

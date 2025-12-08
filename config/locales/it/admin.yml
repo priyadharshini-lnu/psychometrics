@@ -33,7 +33,6 @@ it:
     empty_csv_file: Il file CSV non contiene alcun dato.
     fill_empty_score_msg: Compila tutti i punteggi finali prima di salvare.
     final_score_empty_msg: Il punteggio finale non può essere vuoto.
-    import_csv_assessment_group_error: 'Riga %{index}: l''utente con %{email} email è già invitato a ''%{workshopInviteName}'''
     import_csv_error: 'Riga %{index}: utente con email %{email} non è presente in questa campagna'
     import_description: Importa gli utenti da un file CSV. Ogni riga deve contenere un indirizzo email.
     import_download_sample: Scarica un esempio di CSV
@@ -105,9 +104,7 @@ it:
     skills_taxonomy: Tassonomia delle competenze
     slot_name: Nome della Slot
     stats: Statistiche
-    subject_part_of_other_invite: Oggetto con email %{user_email} è già invitato a '%{workshop_invite_name}'
     user_report_events: Segnalazione di eventi da parte dell'utente
     users: Utenti
-    validation_error: Si è verificato un errore durante la validazione
     view_licenses: Visualizza le licenze
     year: Paese

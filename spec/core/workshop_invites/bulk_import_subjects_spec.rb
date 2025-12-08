@@ -40,65 +40,6 @@ describe WorkshopInvites::BulkImportSubjects do
       end
     end
 
-    context 'when assessment group conflicts exist' do
-      let!(:other_workshop_invite) do
-        create(:workshop_invite, campaign: campaign, campaign_assessment_group: assessment_group,
-               title: 'Other Workshop')
-      end
-
-      before do
-        other_workshop_invite.workshop_invited_subjects.create!(user: user1)
-
-        allow(CsvFileParser).to receive(:call!).with(file, headers: :first_row).and_return([
-          { 'email' => 'user1@test.test' },
-          { 'email' => 'user2@test.test' }
-        ])
-      end
-
-      it 'returns validation errors for conflicting users' do
-        result = described_class.call!(campaign.id, file, workshop_invite.id, current_user)
-
-        expect(result[:validation_errors].size).to eq(1)
-        conflict_error = result[:validation_errors].first
-        expect(conflict_error[:message]).to include('user1@test.test')
-        expect(conflict_error[:message]).to include('Other Workshop')
-        expect(AdminJob).not_to have_received(:call)
-      end
-    end
-
-    context 'when duplicate emails exist with conflicts' do
-      let!(:other_workshop_invite) do
-        create(:workshop_invite, campaign: campaign, campaign_assessment_group: assessment_group,
-               title: 'Other Workshop')
-      end
-
-      before do
-        other_workshop_invite.workshop_invited_subjects.create!(user: user1)
-
-        allow(CsvFileParser).to receive(:call!).with(file, headers: :first_row).and_return([
-          { 'email' => 'user1@test.test' },
-          { 'email' => 'user2@test.test' },
-          { 'email' => 'user1@test.test' }
-        ])
-      end
-
-      it 'returns separate validation errors for each duplicate row' do
-        result = described_class.call!(campaign.id, file, workshop_invite.id, current_user)
-
-        expect(result[:validation_errors].size).to eq(2)
-
-        first_error = result[:validation_errors].first
-        expect(first_error[:message]).to include('user1@test.test')
-        expect(first_error[:message]).to include('Other Workshop')
-
-        second_error = result[:validation_errors].second
-        expect(second_error[:message]).to include('user1@test.test')
-        expect(second_error[:message]).to include('Other Workshop')
-
-        expect(AdminJob).not_to have_received(:call)
-      end
-    end
-
     context 'when users are not in campaign' do
       before do
         allow(CsvFileParser).to receive(:call!).with(file, headers: :first_row).and_return([
