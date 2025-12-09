@@ -31,8 +31,6 @@ sk:
     development_actions: Rozvojové akcie
     dimensions: Rozmery
     empty_csv_file: CSV súbor neobsahuje žiadne údaje.
-    fill_empty_score_msg: Vyplňte všetky konečné skóre pred uložením.
-    final_score_empty_msg: Konečné skóre nemôže byť prázdne.
     import_csv_error: 'Riadok %{index}: používateľ s e-mailovým %{email} nie je v tejto kampani'
     import_description: Importujte používateľov z CSV súboru. Každý riadok musí obsahovať e-mailovú adresu.
     import_download_sample: Stiahnite si príklad CSV

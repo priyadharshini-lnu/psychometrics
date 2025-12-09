@@ -31,8 +31,6 @@ sr-Latn:
     development_actions: Razvojne akcije
     dimensions: Dimenzije
     empty_csv_file: CSV datoteka ne sadrži nikakve podatke.
-    fill_empty_score_msg: Popunite sve konačne rezultate pre čuvanja.
-    final_score_empty_msg: Konačni rezultat ne može biti prazan.
     import_csv_error: 'Red %{index}: korisnik sa e-poštom %{email} nije u ovoj kampanji'
     import_description: Uvezite korisnike iz CSV datoteke. Svaki red mora da sadrži adresu e-pošte.
     import_download_sample: Preuzmite primer CSV

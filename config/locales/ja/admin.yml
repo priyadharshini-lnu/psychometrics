@@ -31,8 +31,6 @@ ja:
     development_actions: 開発アクション
     dimensions: 寸法
     empty_csv_file: CSVファイルにはデータが含まれていません。
-    fill_empty_score_msg: 保存する前にすべての最終スコアを記入してください。
-    final_score_empty_msg: 最終スコアは空にはなりません。
     import_csv_error: "%{index}行:メールアドレス%{email}のユーザーはこのキャンペーンに参加していません"
     import_description: CSVファイルからユーザーをインポートします。各行にはメールアドレスが必要です。
     import_download_sample: CSV サンプルをダウンロードしてください

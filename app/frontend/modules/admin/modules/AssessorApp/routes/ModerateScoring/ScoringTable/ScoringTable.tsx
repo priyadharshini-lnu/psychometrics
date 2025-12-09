@@ -2,13 +2,11 @@ import React, {
   useCallback, useEffect, useMemo, useState,
 } from 'react'
 import {
-  Table, InputNumber, Skeleton, Flex, Button, Typography, Modal, App, Popover, Space, Tooltip,
+  Table, InputNumber, Skeleton, Flex, Button, Typography, Modal, App, Popover,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import _ from 'lodash'
 import type { ColumnsType } from 'antd/es/table'
-import { EMPTY_SCORE_INDICATOR } from '~/modules/admin/constants/strings'
-import { InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { CAMPAIGN_FACTORS_AND_VALUE_PAGE_SIZE } from '~/modules/admin/constants/campaignFactors'
 import {
   Factor, FactorTR, Score, ScoreTR, CampaignFactorValue, CampaignFactorValueTR, Weightage,
@@ -21,7 +19,7 @@ import { calculateAverageScores } from './commands/calculateAverageScores'
 import { calculateHighLowScores } from './commands/calculateHighLowScores'
 import { calculateWeightedAverageScores } from './commands/calculateWeightedAverageScores'
 import { useMessageBus } from '~/hooks/useMessageBus'
-import { checkIsAllowedNumericInputKey } from '~/utils/string'
+
 
 const { I18n } = window
 
@@ -174,7 +172,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
         const id = scoreData.campaignFactorId
         const factorId = factorIdToIdMap[`CampaignFactorId${id}`]
         if (factorId) {
-          newFinalScores[factorId] = scoreData.numericValue || scoreData.stringValue || EMPTY_SCORE_INDICATOR
+          newFinalScores[factorId] = scoreData.numericValue || scoreData.stringValue || '-'
         }
       })
     } else if (weightedAverageScores && Object.keys(weightedAverageScores).length > 0) {
@@ -190,19 +188,14 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
   }, [initializeFinalScores])
 
   const handleFinalScoreChange = (factorId: string, value: number | string | null) => {
-    setFinalScores({ ...finalScores, [factorId]: value || EMPTY_SCORE_INDICATOR })
+    setFinalScores({ ...finalScores, [factorId]: value || '-' })
   }
 
   const handleSave = () => {
     if (readOnly) { return }
-    const finalScoreData = Object.keys(finalScores)
-    const finalScoreHasEmptyValue = finalScoreData.some(
-      key => finalScores[key] === '' || finalScores[key] === EMPTY_SCORE_INDICATOR,
-    )
-    if (finalScoreHasEmptyValue) {
-      return message.error(I18n.t('admin.fill_empty_score_msg'), 3)
-    }
-    const scores = finalScoreData.map(key => ({
+
+    setDisabledSave(true)
+    const scores = Object.keys(finalScores).map(key => ({
       campaign_factor_id: factorIdToIdMap[`factorId${key}`],
       score: Number(finalScores[key]),
     }))
@@ -292,27 +285,13 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
     scores: columnsData.reduce((acc, factor) => ({
       ...acc,
       [factor.factorId]: (
-        <Space className="w-100">
-          <InputNumber
-            status={(finalScores[factor.factorId] === EMPTY_SCORE_INDICATOR && !readOnly) ? 'error' : undefined}
-            disabled={readOnly}
-            min={0}
-            value={finalScores[factor.factorId] === EMPTY_SCORE_INDICATOR ? '' : finalScores[factor.factorId]}
-            precision={2}
-            onChange={value => handleFinalScoreChange(factor.factorId, value)}
-            onKeyDown={(e) => {
-              if (!checkIsAllowedNumericInputKey(e.key)) {
-                e.preventDefault()
-              }
-            }}
-          />
-          {(finalScores[factor.factorId] === EMPTY_SCORE_INDICATOR && !readOnly)
-            && (
-              <Typography.Text type="danger">
-                <Tooltip title={I18n.t('admin.final_score_empty_msg')}><InfoCircleOutlined /></Tooltip>
-              </Typography.Text>
-            )}
-        </Space>
+        <InputNumber
+          disabled={readOnly}
+          min={0}
+          value={finalScores[factor.factorId]}
+          precision={2}
+          onChange={value => handleFinalScoreChange(factor.factorId, value)}
+        />
       ),
     }), {}),
   }), [finalScores, columnsData, readOnly])
@@ -360,7 +339,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
       dataIndex: ['scores', factor.factorId],
       key: factor.factorId,
       render: (score) => {
-        if (score === undefined) return EMPTY_SCORE_INDICATOR
+        if (score === undefined) return '-'
         if (typeof score !== 'number') return score
         const medianDistance = Math.abs((medians[factor.name] / score) - 1)
         if (medianDistance <= 0.25) {

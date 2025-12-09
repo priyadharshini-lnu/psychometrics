@@ -31,8 +31,6 @@ nl:
     development_actions: Ontwikkelingsacties
     dimensions: Afmetingen
     empty_csv_file: Het CSV-bestand bevat geen gegevens.
-    fill_empty_score_msg: Vul alle eindscores in voordat je opslaat.
-    final_score_empty_msg: De eindscore mag niet leeg zijn.
     import_csv_error: 'Rij %{index}: gebruiker met e-mailadres %{email} niet in deze campagne zit'
     import_description: Importeer gebruikers uit een CSV-bestand. Elke rij moet een e-mailadres bevatten.
     import_download_sample: Download voorbeeld van CSV

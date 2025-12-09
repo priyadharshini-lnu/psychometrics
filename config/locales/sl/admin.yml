@@ -31,8 +31,6 @@ sl:
     development_actions: Razvojni ukrepi
     dimensions: Dimenzije
     empty_csv_file: CSV datoteka ne vsebuje nobenih podatkov.
-    fill_empty_score_msg: Pred shranjevanjem izpolnite vse končne rezultate.
-    final_score_empty_msg: Končni rezultat ne sme biti prazen.
     import_csv_error: 'Vrstica %{index}: uporabnik z e-poštnim %{email} ni v tej kampanji'
     import_description: Uvozite uporabnike iz CSV datoteke. Vsaka vrstica mora vsebovati e-poštni naslov.
     import_download_sample: Prenesi primer CSV

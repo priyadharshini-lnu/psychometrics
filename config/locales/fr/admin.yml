@@ -31,8 +31,6 @@ fr:
     development_actions: Actions de développement
     dimensions: Dimensions
     empty_csv_file: Le fichier CSV ne contient aucune donnée.
-    fill_empty_score_msg: Remplissez tous les scores finaux avant de sauvegarder.
-    final_score_empty_msg: Le score final ne peut pas être vide.
     import_csv_error: 'Ligne %{index} : utilisateur avec un %{email} email n’est pas dans cette campagne'
     import_description: Importez des utilisateurs à partir d’un fichier CSV. Chaque ligne doit contenir une adresse e-mail.
     import_download_sample: Télécharger un exemple de CSV

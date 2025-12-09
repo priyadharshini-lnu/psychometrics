@@ -31,8 +31,6 @@ bg:
     development_actions: Действия за развитие
     dimensions: Размери
     empty_csv_file: CSV файлът не съдържа никакви данни.
-    fill_empty_score_msg: Запълнете всички крайни резултати преди да запазите.
-    final_score_empty_msg: Крайният резултат не може да бъде празен.
     import_csv_error: 'Ред %{index}: потребител с имейл %{email} не участва в тази кампания'
     import_description: Импортирайте потребители от CSV файл. Всеки ред трябва да съдържа имейл адрес.
     import_download_sample: Изтеглете пример за CSV
