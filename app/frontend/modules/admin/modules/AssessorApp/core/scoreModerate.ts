@@ -65,6 +65,7 @@ export const UserRecordingTR = t.type({
     }),
   ),
   transcriptionUrl: t.union([t.string, t.null]),
+  transcriptionText: t.union([t.string, t.null]),
 })
 
 export type UserRecording = t.TypeOf<typeof UserRecordingTR>
