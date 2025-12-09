@@ -172,7 +172,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
         const id = scoreData.campaignFactorId
         const factorId = factorIdToIdMap[`CampaignFactorId${id}`]
         if (factorId) {
-          newFinalScores[factorId] = scoreData.numericValue || scoreData.stringValue || '-'
+          newFinalScores[factorId] = scoreData.numericValue ?? scoreData.stringValue ?? '-'
         }
       })
     } else if (weightedAverageScores && Object.keys(weightedAverageScores).length > 0) {
@@ -188,7 +188,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
   }, [initializeFinalScores])
 
   const handleFinalScoreChange = (factorId: string, value: number | string | null) => {
-    setFinalScores({ ...finalScores, [factorId]: value || '-' })
+    setFinalScores({ ...finalScores, [factorId]: value ?? '-' })
   }
 
   const handleSave = () => {
