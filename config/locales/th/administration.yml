@@ -3223,7 +3223,6 @@ th:
               scheduling_invited: จัดตารางเวลาได้รับเชิญ
               scheduling_rescheduled: ตั้งเวลาการเลื่อนกำหนดเวลา
               scheduling_scheduled: ตั้งเวลากำหนดเวลา
-            name: หัว ข้อ
           url:
             label: URL
             name: URL

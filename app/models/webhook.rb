@@ -15,7 +15,8 @@ class Webhook < WebhookSystem::Subscription
     scheduling_cancelled: WebhookEvents::SchedulingCancelled,
     scheduling_invited: WebhookEvents::SchedulingInvited,
     campaign_results_available: WebhookEvents::CampaignResultsAvailable,
-    campaign_user_status: WebhookEvents::CampaignUserStatus
+    campaign_user_status: WebhookEvents::CampaignUserStatus,
+    assessment_raw_response: WebhookEvents::AssessmentRawResponse
   }.freeze
 
   USER_REPORT_EVENTS = {
@@ -23,13 +24,21 @@ class Webhook < WebhookSystem::Subscription
     report_available: 'report_available'
   }.freeze
 
+  ALLOWED_TYPES_FOR_ASSESSMENT_RAW_REPONSE_EVENT = [
+    Assessment::PSYCHOMETRIC,
+    Assessment::ORGANISATIONAL
+  ].freeze
+
   belongs_to :project
+
+  after_update :clear_assessment_ids_if_needed
 
   validates :url, http_url: { presence: true }
   validates :description, :auth_type, presence: true
   validates :api_key_header, format: { with: /\A[a-zA-Z0-9_-]+\z/ }, allow_blank: true
   validates :oauth_grant_type, :oauth_token_url, :oauth_client_id, :oauth_client_secret, :oauth_scope,
             presence: true, if: -> { auth_type == 'oauth' }
+  validate :assessment_ids_must_be_of_valid_type
 
   scope :active, -> { where(active: true) }
   scope :webhooks_of, ->(project_id) { where(project_id: project_id) }
@@ -50,4 +59,23 @@ class Webhook < WebhookSystem::Subscription
       query: "%#{query}%"
     )
   }
+
+  private
+
+  def clear_assessment_ids_if_needed
+    return if topics.pluck(:name).include?('assessment_raw_response')
+    return if assessment_ids.blank?
+
+    update_column(:assessment_ids, [])
+  end
+
+  def assessment_ids_must_be_of_valid_type
+    return if assessment_ids.blank?
+
+    assessments = Assessment.where(id: assessment_ids)
+
+    return if assessments.all? { |assessment| assessment.category.in?(ALLOWED_TYPES_FOR_ASSESSMENT_RAW_REPONSE_EVENT) }
+
+    errors.add(:assessment_ids, :invalid_assessment_type)
+  end
 end

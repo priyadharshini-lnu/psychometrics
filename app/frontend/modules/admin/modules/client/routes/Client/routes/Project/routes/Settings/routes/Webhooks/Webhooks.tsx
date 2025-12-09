@@ -23,6 +23,8 @@ import PushWebhookModal from '~/modules/admin/components/PushWebhookModal/PushWe
 import { truncateWithStartEndCharCount } from '~/utils/string'
 import { useWindowSize } from '~/hooks/useWindowSize'
 
+import { getClientId } from '~/modules/admin/modules/client/core/projects'
+
 const MODALS = {
   AddEditWebhookModal,
   PushWebhookModal,
@@ -31,6 +33,7 @@ const MODALS = {
 const connecter = connect(
   (state: RootState) => ({
     currentUser: getCurrentUser(state),
+    clientId: getClientId(state),
   }),
   {
     openModal,
@@ -43,7 +46,7 @@ type Props = PropsFromRedux
 const { I18n } = window
 const { Column } = Table
 
-const WebhooksListComponent: React.FC<Props> = ({ openModal }) => {
+const WebhooksListComponent: React.FC<Props> = ({ openModal, clientId }) => {
   const { projectId } = useParams() as { projectId: string }
 
   const {
@@ -170,6 +173,7 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal }) => {
                   removeWebhook,
                   updateWebhook: updateResource,
                   openModal,
+                  clientId,
                 })
               }
             />
@@ -203,6 +207,7 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal }) => {
             {
               addWebhook: createResource,
               isEditMode: false,
+              clientId,
             },
           )
         }}
@@ -238,12 +243,14 @@ interface ActionMenuData {
     projectId?: number,
     updateWebhook?: UpdateResource<Webhook>,
     isEditMode?: boolean
-    testMode?: boolean
-  })
+    testMode?: boolean,
+    clientId?: number,
+  }),
+  clientId: number,
 }
 
 const getActionsMenuProps = ({
-  webhook, removeWebhook, openModal, updateWebhook,
+  webhook, removeWebhook, openModal, updateWebhook, clientId,
 }:ActionMenuData):MenuProps => {
   const menuItems: MenuItem[] = [
     {
@@ -274,6 +281,7 @@ const getActionsMenuProps = ({
         'AddEditWebhookModal', {
           updateWebhook,
           webhook,
+          clientId,
         },
       )
     }

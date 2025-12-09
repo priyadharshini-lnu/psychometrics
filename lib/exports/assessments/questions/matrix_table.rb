@@ -7,7 +7,7 @@ module Exports
         include ImportExportConst
 
         # Parse RESULT data for XLSX
-        def self.result(user_result, question, scoring = false, export_with_labels = false)
+        def self.result(user_result, question, scoring: false, export_with_labels: false, concat_answers: true)
           # IF: answer can contain any data (string, number and etc.)
           # THEN: we collect results for each choiceID and scaleID
           # =>    example: [1,2,3,4]
@@ -18,13 +18,15 @@ module Exports
           parsed_result = if question.of_sub_type?('RankOrder', 'ConstantSum', 'TextEntry')
                             multi_scale_answers(answers, question, export_with_labels, not_applicable)
                           else
-                            single_scale_answers(answers, question, scoring, export_with_labels, not_applicable)
+                            single_scale_answers(answers, question, scoring, export_with_labels, not_applicable,
+                                                 concat_answers)
                           end
           parsed_result << get_duration(user_result, question)
           Utility::Array.ensure_size(parsed_result, question_header_size(question))
         end
 
-        def self.single_scale_answers(answers, question, scoring, export_with_labels, not_applicable)
+        def self.single_scale_answers(answers, question, scoring, export_with_labels, not_applicable, # rubocop:disable Metrics/ParameterLists
+                                      concat_answers)
           # Create hash for scoring
           # hash['1-2'] = 100
           # Where 1 - choice, 2 - scale, 100 - scoring value
@@ -33,15 +35,16 @@ module Exports
                             each_with_object({}) { |s, sum| sum["#{s['choice']}-#{s['scale']}"] = s['value'] }
 
           question.props['choices'].to_i.times do |choice|
-            parsed_result << (answers || []).
-                             select { |a| a['choice'] == choice && a['value'] == true }.
-                             map do |a|
-                               next factors_scoring["#{a['choice']}-#{a['scale']}"] if scoring
+            result = (answers || []).
+                     select { |a| a['choice'] == choice && a['value'] == true }.
+                     map do |a|
+                       next factors_scoring["#{a['choice']}-#{a['scale']}"] if scoring
 
-                               next a['scale'] + 1 unless export_with_labels
+                       next a['scale'] + 1 unless export_with_labels
 
-                               question.props.dig('scalePointsTexts', a['scale'])
-                             end.join(';')
+                       question.props.dig('scalePointsTexts', a['scale'])
+                     end
+            parsed_result << (concat_answers ? result.join(';') : result)
           end
           add_not_applicable_result(parsed_result, export_with_labels, question, not_applicable)
         end

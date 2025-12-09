@@ -3223,7 +3223,6 @@ vi:
               scheduling_invited: Lên lịch được mời
               scheduling_rescheduled: Lên lịch lại
               scheduling_scheduled: Lên lịch lên lịch
-            name: Chủ đề
           url:
             label: Url
             name: Url

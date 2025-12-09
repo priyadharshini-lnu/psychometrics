@@ -28,6 +28,28 @@ describe WebhookSubscriptions::Publish do
       end.to broadcast(:ok)
     end
 
+    it 'assessment_raw_response' do
+      raw_response_webhook = create(:webhook, project_id: project.id)
+      create(:topic, subscription: raw_response_webhook, name: 'assessment_raw_response')
+
+      data = {
+        campaign: campaign,
+        assessment: assessment,
+        subject: subject,
+        event_time: Time.current,
+        answers: []
+      }
+      expect(WebhookSystemJob).to receive(:perform_later).
+        with(raw_response_webhook.id, {
+          'event_name' => 'assessment_raw_response',
+          'event_id' => anything,
+          'data' => anything
+        })
+      expect do
+        described_class.call(project, :assessment_raw_response, data)
+      end.to broadcast(:ok)
+    end
+
     it 'adds localized data to payloadif webhook has include_locales true' do
       webhook.update(include_locales: true)
       data = { campaign: campaign, assessment: assessment, evaluator: evaluator, subject: subject }

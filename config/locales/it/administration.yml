@@ -3223,7 +3223,6 @@ it:
               scheduling_invited: Programmazione Invitati
               scheduling_rescheduled: Programmazione Riprogrammata
               scheduling_scheduled: Programmazione Programmata
-            name: argomenti
           url:
             label: Url
             name: url

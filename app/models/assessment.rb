@@ -209,7 +209,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   }
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id name category archived]
+    %w[id name category archived owner_id]
   end
 
   def self.ransackable_scopes(_)

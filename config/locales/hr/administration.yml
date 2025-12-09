@@ -3223,7 +3223,6 @@ hr:
               scheduling_invited: Zakazivanje pozvanih
               scheduling_rescheduled: Zakazivanje je odgođeno
               scheduling_scheduled: Zakazivanje rasporeda
-            name: Teme
           url:
             label: URL
             name: URL

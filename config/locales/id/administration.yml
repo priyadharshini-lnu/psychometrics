@@ -3223,7 +3223,6 @@ id:
               scheduling_invited: Penjadwalan Diundang
               scheduling_rescheduled: Penjadwalan Dijadwalkan Ulang
               scheduling_scheduled: Penjadwalan Terjadwal
-            name: Topik
           url:
             label: URL
             name: URL

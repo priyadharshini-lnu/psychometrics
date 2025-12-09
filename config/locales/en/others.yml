@@ -837,6 +837,10 @@ en:
           reply_to_reply: cannot reply to a reply (only one level of nesting allowed)
         user_idp_plan:
           no_active_plan: No active IDP plan found
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: Only assessments of type 'psycometrics' and 'org survey' can be selected
   admin_jobs:
     attrs:
       operations:
