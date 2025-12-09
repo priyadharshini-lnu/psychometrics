@@ -5350,10 +5350,10 @@ fraction.js@^4.2.0:
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/fraction.js/-/fraction.js-4.2.0.tgz#448e5109a313a3527f5a3ab2119ec4cf0e0e2950"
   integrity sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==
 
-froala-editor@4.5.1:
-  version "4.5.1"
-  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/froala-editor/-/froala-editor-4.5.1.tgz#4a5c9bd6bb72dfb19f80749ae68c810a4e16d1d8"
-  integrity sha512-hgx4JJAM80yM3PGdyj7+41OQHP+Yj59yMvknwQkizlkbo/aKn2lbEtiqPMm//thNEE6NCuGLpHCZqppR/7Vymg==
+froala-editor@4.7.1:
+  version "4.7.1"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/froala-editor/-/froala-editor-4.7.1.tgz#206c057fcb85fe58a39a8476967425f1ac4f2ecb"
+  integrity sha512-cVoRPTdJXPfacZDS07c8OmtA9PNnqi85GAllG/OXPEa4GsXhujHgxjcXW3cwGBJ8GlRNxnEs9+z/zW/6XIkL4w==
 
 fs-constants@^1.0.0:
   version "1.0.0"
@@ -8051,6 +8051,13 @@ raf@~3.4.0:
   dependencies:
     performance-now "^2.1.0"
 
+randombytes@^2.1.0:
+  version "2.1.0"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/randombytes/-/randombytes-2.1.0.tgz#df6f84372f0270dc65cdf6291349ab7a473d4f2a"
+  integrity sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==
+  dependencies:
+    safe-buffer "^5.1.0"
+
 randomcolor@^0.4.2:
   version "0.4.4"
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/randomcolor/-/randomcolor-0.4.4.tgz#5ff56862e97ba03beb0419ff0536ec7aff59eeeb"
@@ -8644,12 +8651,13 @@ react-flip-move@^3.0.4:
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/react-flip-move/-/react-flip-move-3.0.5.tgz#8b87510ad32ebef01ebca94902b445f456bbc0f7"
   integrity sha512-Mf4XpbkUNZy9eu80iXXFIjToDvw+bnHxmKHVoositbMpV87O/EQswnXUqVovRHoTx/F+4dE+p//PyJnAT7OtPA==
 
-react-froala-wysiwyg@^4.5.1:
-  version "4.5.1"
-  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/react-froala-wysiwyg/-/react-froala-wysiwyg-4.5.1.tgz#dca7a6774c7d314e07b4c19a9a84341d43142f2b"
-  integrity sha512-td4rAXVhMx9I5QBNaiPF6bWxrTZn1RX2/0xdFbZ2sjKcgVMk/VD6i99UagXDMa5WR4qfJqfz3p4QgUgGkhyqCA==
+react-froala-wysiwyg@^4.7.1:
+  version "4.7.1"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/react-froala-wysiwyg/-/react-froala-wysiwyg-4.7.1.tgz#1774af3e8d8dd25bddd99917ee78817af4e07242"
+  integrity sha512-nJONaqdODMi786HKlf/1kQg2+6QqIWipwmx5i6rRFYQdx0fvxQLCheKa0PvyPTY68CXMYZcHCRoIkn9ulXzdpw==
   dependencies:
-    froala-editor "4.5.1"
+    froala-editor "4.7.1"
+    serialize-javascript "^6.0.2"
 
 react-google-recaptcha@^2.0.0-rc.1:
   version "2.1.0"
@@ -9216,10 +9224,10 @@ safe-array-concat@^1.1.0:
     has-symbols "^1.0.3"
     isarray "^2.0.5"
 
-safe-buffer@^5.0.1:
+safe-buffer@^5.0.1, safe-buffer@^5.1.0:
   version "5.2.1"
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/safe-buffer/-/safe-buffer-5.2.1.tgz#1eaf9fa9bdb1fdd4ec75f58f9cdb4e6b7827eec6"
-  integrity sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==
+  integrity sha1-Hq+fqb2x/dTsdfWPnNtOa3gn7sY=
 
 safe-json-parse@4.0.0:
   version "4.0.0"
@@ -9308,6 +9316,13 @@ semver@7.5.2, semver@^5.6.0, semver@^6.0.0, semver@^6.1.0, semver@^6.3.0, semver
   integrity sha512-SoftuTROv/cRjCze/scjGyiDtcUyxw1rgYQSZY7XTmtR5hX+dm76iDbTH8TkLPHCQmlbQVSSbNZCPM2hb0knnQ==
   dependencies:
     lru-cache "^6.0.0"
+
+serialize-javascript@^6.0.2:
+  version "6.0.2"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/serialize-javascript/-/serialize-javascript-6.0.2.tgz#defa1e055c83bf6d59ea805d8da862254eb6a6c2"
+  integrity sha512-Saa1xPByTTq2gdeFZYLLo+RFE35NHZkAbqZeWNd3BpzppeVisAqpDjcp8dyf6uIvEqJRd46jemmyA4iFIeVk8g==
+  dependencies:
+    randombytes "^2.1.0"
 
 set-function-length@^1.2.1:
   version "1.2.1"
