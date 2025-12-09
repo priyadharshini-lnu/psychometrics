@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import {
   Table, Space, Input, Switch, Pagination, Button, MenuProps, App,
-  Typography,
+  Typography, Tag,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
@@ -155,12 +155,26 @@ const SamlServiceProvidersListComponent: React.FC<Props> = ({ openModal }) => {
         <Column
           key="mask_identity"
           title={I18n.t('admin.saml_service_provider_mask_identity')}
-          render={saml_service_provider => (
-            <Switch
-              checked={saml_service_provider.maskIdentity}
-              disabled
-            />
-          )}
+          render={(saml_service_provider) => {
+            const isGeneric = saml_service_provider.integrationType === 'generic'
+
+            if (isGeneric) {
+              return saml_service_provider.maskIdentity ? (
+                <Tag color="blue">{I18n.t('admin.saml_service_provider_masking_manual_enabled')}</Tag>
+              ) : (
+                <Tag color="default">{I18n.t('admin.saml_service_provider_masking_manual_disabled')}</Tag>
+              )
+            }
+
+            return (
+              <Tag color="orange">
+                {I18n.t(
+                  'admin.saml_service_provider_masking_integration',
+                  { integration: saml_service_provider.integrationType },
+                )}
+              </Tag>
+            )
+          }}
         />
         <Column
           key="name"

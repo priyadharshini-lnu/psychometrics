@@ -20,6 +20,7 @@ module Lti
         redirect_uri: @form.redirect_uri,
         login_hint: @form.login_hint,
         lti_message_hint: @form.lti_message_hint,
+        state: @form.state,
         nonce: @form.nonce,
         integration: integration
       )

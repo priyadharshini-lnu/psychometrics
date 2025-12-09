@@ -259,6 +259,24 @@ RSpec.describe Lti::CreateIdToken do
         }.from(nil).to(kind_of(String))
         expect(yoodli_user_assessment.reload.yoodli_activity_id).to be_nil
       end
+
+      it 'saves the activity ID from state parameter' do
+        activity_id = 'yoodli-activity-12345'
+
+        subject_with_activity_id = described_class.new(
+          client_id: 'test-client-id',
+          redirect_uri: 'https://example.com/redirect',
+          login_hint: user_assessment.encoded_id,
+          lti_message_hint: 'test-message-hint',
+          nonce: nonce,
+          state: activity_id,
+          integration: create(:integration, name: :yoodli)
+        )
+
+        expect { subject_with_activity_id.call }.to change {
+          yoodli_user_assessment.reload.yoodli_activity_id
+        }.from(nil).to(activity_id)
+      end
     end
   end
 end

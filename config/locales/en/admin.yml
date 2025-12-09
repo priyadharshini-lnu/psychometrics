@@ -142,18 +142,24 @@ en:
     saml_service_provider_entity_id_required: Entity ID is required
     saml_service_provider_idp_config: IdP Configuration
     saml_service_provider_integration_generic: Generic
+    saml_service_provider_integration_masking_info: The Email id of the candidates will be masked before sending to Yoodli. Masking of the first and last names of the candidates needs to be enabled from the
     saml_service_provider_integration_type: Integration Type
     saml_service_provider_integration_type_placeholder: Select integration type
     saml_service_provider_integration_type_required: Integration type is required
     saml_service_provider_integration_yoodli: Yoodli
     saml_service_provider_manage: Actions
+    saml_service_provider_mask_data_for: Mask data for
     saml_service_provider_mask_identity: Mask Identity
     saml_service_provider_masking_enabled: Enable Masking
     saml_service_provider_masking_help_generic: Enable to mask user identities in SAML responses
     saml_service_provider_masking_help_integration: Integration provider masking will be applied
+    saml_service_provider_masking_integration: "%{integration} Driven"
+    saml_service_provider_masking_manual_disabled: Disabled
+    saml_service_provider_masking_manual_enabled: Enabled
     saml_service_provider_name: Name
     saml_service_provider_name_placeholder: Enter service provider name
     saml_service_provider_name_required: Name is required
+    saml_service_provider_privacy_policy: Privacy Policy Page
     saml_service_provider_remove_content: 'Are you sure you want to remove SAML Service Provider: %{name}?'
     saml_service_provider_remove_title: Remove SAML Service Provider
     saml_service_provider_rotate_certificate_content: Are you sure you want to rotate the certificate for %{name}? This will generate a new certificate and invalidate the current one.

@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Form, Input, Switch, Select,
+  Form, Input, Switch, Select, Alert,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { CreateResource, UpdateResource } from '~/hooks/useResources/interfaces'
@@ -87,27 +87,42 @@ export const AddEditSamlServiceProviderModal: React.FC<Props> = ({
               prevValues.integration_type !== currentValues.integration_type
             )}
           >
-            {({ getFieldValue, setFieldValue }) => {
+            {({ getFieldValue }) => {
               const integrationType = getFieldValue('integration_type')
               const isGeneric = integrationType === 'generic'
-              const tooltipKey = isGeneric
-                ? 'admin.saml_service_provider_masking_help_generic'
-                : 'admin.saml_service_provider_masking_help_integration'
 
-              // Auto-disable masking when non-generic integration is selected
-              if (!isGeneric && getFieldValue('mask_identity')) {
-                setFieldValue('mask_identity', false)
+              if (isGeneric) {
+                return (
+                  <Form.Item
+                    name="mask_identity"
+                    label={I18n.t('admin.saml_service_provider_masking_enabled')}
+                    valuePropName="checked"
+                    tooltip={I18n.t('admin.saml_service_provider_masking_help_generic')}
+                  >
+                    <Switch />
+                  </Form.Item>
+                )
               }
 
               return (
-                <Form.Item
-                  name="mask_identity"
-                  label={I18n.t('admin.saml_service_provider_masking_enabled')}
-                  valuePropName="checked"
-                  tooltip={I18n.t(tooltipKey)}
-                >
-                  <Switch
-                    disabled={!isGeneric}
+                <Form.Item label={I18n.t('admin.saml_service_provider_masking_enabled')}>
+                  <Alert
+                    message={(
+                      <span>
+                        {I18n.t('admin.saml_service_provider_integration_masking_info')}
+                        {' '}
+                        <a
+                          href={`/admin/projects/${projectId}/settings/privacy`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <strong>{I18n.t('admin.saml_service_provider_privacy_policy')}</strong>
+                        </a>
+                      </span>
+                    )}
+                    type="warning"
+                    showIcon
+                    style={{ marginBottom: 0 }}
                   />
                 </Form.Item>
               )
