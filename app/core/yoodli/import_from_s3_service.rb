@@ -2,13 +2,16 @@
 
 module Yoodli
   class ImportFromS3Service
-    def self.call(date: nil, campaign_id: nil)
-      new(date: date, campaign_id: campaign_id).call
+    private_attr_accessor :date, :campaign_id, :user_assessment_id
+
+    def self.call(date: nil, campaign_id: nil, user_assessment_id: nil)
+      new(date: date, campaign_id: campaign_id, user_assessment_id: user_assessment_id).call
     end
 
-    def initialize(date: nil, campaign_id: nil)
+    def initialize(date: nil, campaign_id: nil, user_assessment_id: nil)
       @date = date || Time.current.utc.strftime('%Y-%m-%d')
       @campaign_id = campaign_id
+      @user_assessment_id = user_assessment_id
     end
 
     def call
@@ -36,7 +39,7 @@ module Yoodli
 
       response.contents.select do |object|
         object.key.downcase.end_with?('.csv') &&
-          object.key.include?(@date) &&
+          object.key.include?(date) &&
           object.size.positive?
       end
     end
@@ -50,7 +53,8 @@ module Yoodli
         key: csv_file.key
       ).body.read
 
-      result = ImportExternalResults.call(csv_content: csv_content, campaign: campaign)
+      result = ImportExternalResults.call(csv_content: csv_content, campaign: campaign,
+                                          user_assessment_id: user_assessment_id)
 
       if result[:success]
         result[:processed_user_emails].each { |email| total_processed_emails.add(email) }
@@ -75,7 +79,7 @@ module Yoodli
     end
 
     def campaign
-      @campaign ||= Campaign.find_by(id: @campaign_id) if @campaign_id
+      @campaign ||= Campaign.find_by(id: campaign_id) if campaign_id
     end
   end
 end

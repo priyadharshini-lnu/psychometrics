@@ -2,15 +2,16 @@
 
 module Yoodli
   class ImportExternalResults
-    private_attr_accessor :results, :errors, :processed_user_emails
+    private_attr_accessor :results, :errors, :processed_user_emails, :user_assessment_id, :campaign, :file, :csv_content
 
-    def self.call(file: nil, campaign: nil, csv_content: nil)
-      new(file, campaign, csv_content: csv_content).call
+    def self.call(file: nil, user_assessment_id: nil, campaign: nil, csv_content: nil)
+      new(file, user_assessment_id, campaign, csv_content: csv_content).call
     end
 
-    def initialize(file = nil, campaign = nil, csv_content: nil)
+    def initialize(file = nil, user_assessment_id = nil, campaign = nil, csv_content: nil)
       @file = file
       @csv_content = csv_content
+      @user_assessment_id = user_assessment_id
       @campaign = campaign
       @results = {}
       @errors = []
@@ -18,12 +19,12 @@ module Yoodli
     end
 
     def call
-      if @csv_content
-        parse_csv_content(@csv_content)
-      elsif @file
-        parse_csv_file(@file)
+      if csv_content
+        parse_csv_content(csv_content)
+      elsif file
+        parse_csv_file(file)
       else
-        @errors << 'No file or CSV content provided'
+        errors << 'No file or CSV content provided'
       end
 
       save_results
@@ -164,13 +165,17 @@ module Yoodli
     end
 
     def preload_yoodli_user_assessments
-      emails = results.keys
       query = YoodliUserAssessment.
               joins(:user_assessment).
               includes(user_assessment: [:assessment, { users_result: :user_assessment }]).
-              where(email: emails, active: true)
+              where(active: true)
 
-      query = query.where(user_assessments: { campaign_id: @campaign.id }) if @campaign
+      if user_assessment_id
+        query = query.where(user_assessments: { id: user_assessment_id })
+      else
+        query = query.where(email: results.keys)
+        query = query.where(user_assessments: { campaign_id: campaign.id }) if campaign
+      end
 
       query.index_by(&:email)
     end

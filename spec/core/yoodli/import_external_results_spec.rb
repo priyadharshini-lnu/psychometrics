@@ -238,5 +238,86 @@ email: 'test@example.com')
         expect(users_result.external_results['goals']).to have_key('Leadership')
       end
     end
+
+    context 'with user_assessment_id parameter' do
+      let(:another_user) { create(:user, email: 'another@example.com', project: campaign.project) }
+      let(:another_user_assessment) { create(:user_assessment, campaign: campaign, subject: another_user) }
+      let(:another_users_result) { create(:users_result, user_assessment: another_user_assessment) }
+      let(:another_yoodli_user_assessment) do
+        create(:yoodli_user_assessment, user_assessment: another_user_assessment, email: 'another@example.com')
+      end
+
+      before do
+        another_yoodli_user_assessment
+        another_users_result
+
+        csv_data = [
+          ['orgId', 'scenarioId', 'scenarioName', 'userEmail', 'userName', 'userId', 'signupDate', 'goalName',
+           'numAttemptStarted', 'firstScore', 'maxScore', 'lastScore', 'avgScore'],
+          ['org123', 'scenario456', 'Test Scenario', 'test@example.com', 'Test User', 'yoodli/user123', '2025-01-01',
+           'Communication Skills', '3', '75.0', '85.0', '80.0', '78.5'],
+          ['org123', 'scenario456', 'Test Scenario', 'another@example.com', 'Another User', 'yoodli/user456',
+           '2025-01-01', 'Leadership', '2', '60.0', '70.0', '65.0', '62.5']
+        ]
+
+        csv_rows = csv_data[1..].map do |row_data|
+          headers = csv_data[0]
+          row_hash = headers.zip(row_data).to_h
+          double('csv_row', to_h: row_hash)
+        end
+
+        allow(CsvFileParser).to receive(:call!).with(temp_file, headers: :first_row).and_return(csv_rows)
+      end
+
+      subject { described_class.call(file: temp_file, user_assessment_id: user_assessment.id) }
+
+      it 'processes only the specified user assessment' do
+        expect(subject[:success]).to be true
+        expect(subject[:processed_users]).to eq 1
+        expect(subject[:processed_user_emails]).to include('test@example.com')
+        expect(subject[:processed_user_emails]).not_to include('another@example.com')
+      end
+
+      it 'updates only the specified user assessment data' do
+        subject
+
+        expect(users_result.reload.external_results['goals']).to have_key('Communication Skills')
+
+        expect(another_users_result.reload.external_results).to be_blank
+      end
+
+      context 'when CSV contains data for different user than specified user_assessment_id' do
+        subject { described_class.call(file: temp_file, user_assessment_id: another_user_assessment.id) }
+
+        it 'processes only data matching the specified user assessment' do
+          expect(subject[:success]).to be true
+          expect(subject[:processed_users]).to eq 1
+          expect(subject[:processed_user_emails]).to include('another@example.com')
+          expect(subject[:processed_user_emails]).not_to include('test@example.com')
+
+          expect(another_users_result.reload.external_results['goals']).to have_key('Leadership')
+          expect(users_result.reload.external_results).to be_blank
+        end
+      end
+
+      context 'with CSV content and user_assessment_id' do
+        let(:csv_content) do
+          <<~CSV
+            orgId,scenarioId,scenarioName,userEmail,userName,userId,signupDate,goalName,numAttemptStarted,firstScore,maxScore,lastScore,avgScore
+            org123,scenario456,Test Scenario,test@example.com,Test User,yoodli/user123,2025-01-01,Communication Skills,3,75.0,85.0,80.0,78.5
+            org123,scenario456,Test Scenario,another@example.com,Another User,yoodli/user456,2025-01-01,Leadership,2,60.0,70.0,65.0,62.5
+          CSV
+        end
+
+        subject { described_class.call(csv_content: csv_content, user_assessment_id: user_assessment.id) }
+
+        it 'processes CSV content for specific user assessment' do
+          expect(subject[:success]).to be true
+          expect(subject[:processed_users]).to eq 1
+          expect(subject[:processed_user_emails]).to include('test@example.com')
+          expect(subject[:processed_user_emails]).not_to include('another@example.com')
+        end
+      end
+    end
   end
 end
