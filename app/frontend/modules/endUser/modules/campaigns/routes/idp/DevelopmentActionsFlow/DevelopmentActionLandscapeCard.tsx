@@ -148,8 +148,10 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
           />
         )
       }
-        {changeStatus && deletedAt && (
-          <ChangeStatus className="self-end mb-1" status={changeStatus} />
+        {changeStatus && (
+          ((changeStatus === PlanChangeStatus.REMOVED && deletedAt) || changeStatus !== PlanChangeStatus.REMOVED) && (
+            <ChangeStatus className="self-end mb-1" status={changeStatus} />
+          )
         )}
         {isCurrentUserIDPUser && (
           editMode ? (

@@ -1,4 +1,5 @@
 import dayjs from 'dayjs'
+import _ from 'lodash'
 
 const { I18n } = window
 
@@ -40,7 +41,9 @@ export const normalizePlanChanges = (planChanges, { userIdpSkills, userIdpDevelo
 
   const { skillsDiff, actionsDiff } = planChanges.diff.planChanges
 
-  const userIdpSkillsWithPlanChanges = { ...userIdpSkills }
+  const userIdpSkillsWithPlanChanges = _.mapValues(userIdpSkills,
+    skill => _.omit(skill, ['changeHistory', 'changeStatus']))
+
   const userIdpDevelopmentActionsWithPlanChanges = { ...userIdpDevelopmentActions }
   actionsDiff.created.forEach((action) => {
     userIdpDevelopmentActionsWithPlanChanges[action.id].changeStatus = PlanChangeStatus.ADDED
@@ -50,6 +53,7 @@ export const normalizePlanChanges = (planChanges, { userIdpSkills, userIdpDevelo
         ...skill.changeHistory,
         addedDA: [...(skill.changeHistory?.addedDA || []), `<b>${action.name}</b>`],
       }
+      skill.changeStatus = PlanChangeStatus.EDITED
     }
   })
 
@@ -63,6 +67,7 @@ export const normalizePlanChanges = (planChanges, { userIdpSkills, userIdpDevelo
           ...(skill.changeHistory?.removedDA || []), `<b>${action.name}</b>`,
         ],
       }
+      skill.changeStatus = PlanChangeStatus.EDITED
     }
   })
 
@@ -96,6 +101,7 @@ export const normalizePlanChanges = (planChanges, { userIdpSkills, userIdpDevelo
         ...(skill.changeHistory?.updatedDA || []), ...changes,
       ],
     }
+    skill.changeStatus = PlanChangeStatus.EDITED
   })
 
   skillsDiff.created.forEach((action) => {
@@ -129,53 +135,6 @@ export const normalizePlanChangesForSummary = (planChanges) => {
   if (planChanges.error) { return {} }
   const summarisedPlanChanges = {}
 
-  skillsDiff.created.forEach((skill) => {
-    summarisedPlanChanges[skill.name] = {
-      changeStatus: PlanChangeStatus.ADDED,
-      actions: [],
-    }
-  })
-
-  skillsDiff.updated.forEach((skill) => {
-    summarisedPlanChanges[skill.name] = {
-      changeStatus: PlanChangeStatus.EDITED,
-      actions: actionsDiff.updated.filter(action => action.userIdpSkillId
-        === skill.id).map((action) => {
-        const changes:string[] = []
-        if (action.changes.startDateTime) {
-          changes.push(
-            `<b>${action.name}</b>: ${I18n.t('idp.history.changes.start_date',
-              {
-                from: action.changes.startDateTime.from
-                  ? dayjs(action.changes.startDateTime.from).format(FORMAT) : "'-'",
-                to: action.changes.startDateTime.to ? dayjs(action.changes.startDateTime.to).format(FORMAT) : "'-'",
-              })}`,
-          )
-        }
-        if (action.changes.endDateTime) {
-          changes.push(
-            `<b>${action.name}</b>: ${I18n.t('idp.history.changes.end_date',
-              {
-                from: action.changes.endDateTime.from ? dayjs(action.changes.endDateTime.from).format(FORMAT) : "'-'",
-                to: action.changes.endDateTime.to ? dayjs(action.changes.endDateTime.to).format(FORMAT) : "'-'",
-              })}`,
-          )
-        }
-        return {
-          ...action,
-          changeStatus: PlanChangeStatus.EDITED,
-          changeLog: changes,
-        }
-      }),
-    }
-  })
-
-  skillsDiff.deleted.forEach((action) => {
-    summarisedPlanChanges[action.name] = {
-      changeStatus: PlanChangeStatus.REMOVED,
-      actions: [],
-    }
-  })
 
   actionsDiff.created.forEach((action) => {
     summarisedPlanChanges[action.skillName] = {
@@ -225,6 +184,55 @@ export const normalizePlanChangesForSummary = (planChanges) => {
       ],
     }
   })
+
+  skillsDiff.created.forEach((skill) => {
+    summarisedPlanChanges[skill.name] = {
+      changeStatus: PlanChangeStatus.ADDED,
+      actions: [...(summarisedPlanChanges[skill.name]?.actions || [])],
+    }
+  })
+
+  skillsDiff.updated.forEach((skill) => {
+    summarisedPlanChanges[skill.name] = {
+      changeStatus: PlanChangeStatus.EDITED,
+      actions: actionsDiff.updated.filter(action => action.userIdpSkillId
+        === skill.id).map((action) => {
+        const changes:string[] = []
+        if (action.changes.startDateTime) {
+          changes.push(
+            `<b>${action.name}</b>: ${I18n.t('idp.history.changes.start_date',
+              {
+                from: action.changes.startDateTime.from
+                  ? dayjs(action.changes.startDateTime.from).format(FORMAT) : "'-'",
+                to: action.changes.startDateTime.to ? dayjs(action.changes.startDateTime.to).format(FORMAT) : "'-'",
+              })}`,
+          )
+        }
+        if (action.changes.endDateTime) {
+          changes.push(
+            `<b>${action.name}</b>: ${I18n.t('idp.history.changes.end_date',
+              {
+                from: action.changes.endDateTime.from ? dayjs(action.changes.endDateTime.from).format(FORMAT) : "'-'",
+                to: action.changes.endDateTime.to ? dayjs(action.changes.endDateTime.to).format(FORMAT) : "'-'",
+              })}`,
+          )
+        }
+        return {
+          ...action,
+          changeStatus: PlanChangeStatus.EDITED,
+          changeLog: changes,
+        }
+      }),
+    }
+  })
+
+  skillsDiff.deleted.forEach((action) => {
+    summarisedPlanChanges[action.name] = {
+      changeStatus: PlanChangeStatus.REMOVED,
+      actions: [...(summarisedPlanChanges[action.name]?.actions || [])],
+    }
+  })
+
 
   return summarisedPlanChanges
 }

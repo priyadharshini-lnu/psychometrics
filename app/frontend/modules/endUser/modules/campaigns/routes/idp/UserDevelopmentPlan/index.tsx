@@ -186,8 +186,8 @@ const UserDevelopmentPlanComponent = ({
       userIdpDevelopmentActions: DevelopmentAction[];
     }
 
-    return !_.isEqual(Object.values(existingSkills).map(skill => skill.name),
-      Object.values(idpSkills).map((skill:Skill) => (skill.name)))
+    return !_.isEqual(Object.values(existingSkills),
+      Object.values(idpSkills))
     || !_.isEqual(existingActions, idpDevelopmentActions)
   },
   [idpSkills, idpDevelopmentActions, existingPlanData])
@@ -227,6 +227,7 @@ const UserDevelopmentPlanComponent = ({
           userIdpSkills: _.keyBy(response.data.userIdpSkills, 'id'),
         })
       })
+
       setIsLoading(false)
     }).catch((error) => {
       message.error(error || I18n.t('common.errors.something_wrong'))

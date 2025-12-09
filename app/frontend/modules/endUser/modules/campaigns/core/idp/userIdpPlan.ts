@@ -741,6 +741,7 @@ export const HANDLERS = {
     planChanges: action.response,
     summary: normalizePlanChangesForSummary(action.response),
   }),
+
   [FETCH_PLAN_CHANGES_FOR_SUMMARY]: (state, action) => ({
     ...state,
     summary: normalizePlanChangesForSummary(action.response),
