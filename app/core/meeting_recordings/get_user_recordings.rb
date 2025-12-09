@@ -17,13 +17,13 @@ module MeetingRecordings
     private
 
     def all_recordings
-      if current_user.assessor? && lead_assessor?
-        lead_assessor_recordings
-      elsif current_user.assessor?
-        assessor_recordings
-      else
-        admin_recordings
-      end
+      return admin_recordings if current_user.has_permission?(:workshops, :view_recordings, campaign_id: campaign_id)
+
+      return lead_assessor_recordings if current_user.assessor? && lead_assessor?
+
+      return assessor_recordings if current_user.assessor?
+
+      MeetingRecording.none
     end
 
     def admin_recordings

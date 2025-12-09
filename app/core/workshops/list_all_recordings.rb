@@ -24,7 +24,11 @@ module Workshops
     end
 
     def assessment_recordings
-      user.assessor? ? assessor_recordings : admin_recordings
+      return admin_recordings if user.has_permission?(:workshops, :view_recordings, campaign_id: workshop.campaign_id)
+
+      return assessor_recordings if user.assessor?
+
+      MeetingRecording.none
     end
 
     def user_assessments_scope
