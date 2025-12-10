@@ -14,6 +14,7 @@ import {
 } from '~/modules/admin/modules/AssessorApp/core/userReports'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import styles from './styles.less'
+import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
 
 const { Content } = Layout
 const { I18n } = window
@@ -37,9 +38,10 @@ const ReportPreview: FC<Props> = ({
   const parsedId = parseInt(id, 10)
   const params = new URLSearchParams(location.search)
   const skipLogic = params.get('skip_logic') === 'true'
+  const lang = new URLSearchParams(location.search).get('report_lang') || userReport.report?.default_language?.code
 
   useEffect(() => {
-    fetchReport(parsedCampaignId, parsedId)
+    fetchReport(parsedCampaignId, parsedId, { reportLang: lang })
   }, [])
 
   const reportIsLoaded = (): boolean | undefined => (userReport && userReport.loaded)
@@ -132,6 +134,12 @@ const ReportPreview: FC<Props> = ({
                 </Space>
               </Button>
             </Dropdown>,
+            <LangDropdownWithChangeUrl
+              locales={userReport.report.available_languages.map(l => l.code)}
+              currentLocale={lang}
+              paramName="report_lang"
+              key="lang"
+            />,
           ]}
         >
           <Row justify="center">
