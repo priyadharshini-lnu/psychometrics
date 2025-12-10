@@ -3148,7 +3148,6 @@ sk:
               scheduling_invited: Plánovanie pozvaných
               scheduling_rescheduled: Plánovanie preložené
               scheduling_scheduled: Plánovanie plánovania
-            name: Témy
           url:
             label: URL adresa
             name: Adresa URL

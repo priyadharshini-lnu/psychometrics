@@ -14,22 +14,22 @@ module Exports
         # TO:
         #   ['Value']
 
-        def self.result(user_result, question, scoring = false, _export_with_labels = false)
+        def self.result(user_result, question, scoring: false, concat_answers: true, **_args)
           # TODO: investigate single text entry save additional two empty answers
           # remove two additional empty answers
           all_answers = []
           answers = get_answers(user_result, question)
           all_answers << if answers.present?
-                           retrieve_answers(answers, question, scoring)
+                           retrieve_answers(answers, question, scoring: scoring, concat_answers: concat_answers)
                          else
                            Array.new(question_headers_except_duration_size(question)) { '' }
                          end
-          formatted_answers(user_result, question, all_answers)
+          formatted_answers(user_result, question, all_answers, concat_answers: concat_answers)
         end
 
-        def self.retrieve_answers(answers, question, scoring) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+        def self.retrieve_answers(answers, question, scoring:, concat_answers: true) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
           if question.of_sub_type?('Email') && answers.present?
-            email_type_answers(answers)
+            email_type_answers(answers, concat_answers: concat_answers)
           else
             remove_empty(answers) if answers.present? && single_answer?(answers) && remove_empty?(answers)
             factors_scoring = question.detect_specified_scoring.
@@ -38,31 +38,36 @@ module Exports
           end
         end
 
-        def self.email_type_answers(answers)
+        def self.email_type_answers(answers, concat_answers: true)
           EMAIL_QUESTION_FIELDS.each_with_object([]) do |email_field, data|
-            data << (answers[email_field].is_a?(Array) ? answers[email_field].join(';') : answers[email_field])
+            answer = answers[email_field]
+            data << if concat_answers && answer.is_a?(Array)
+                      answer.join(';')
+                    else
+                      answer
+                    end
           end
         end
 
-        def self.formatted_answers(user_result, question, answers)
-          answers = format_answers_based_on_question_type(question, answers)
+        def self.formatted_answers(user_result, question, answers, concat_answers: true)
+          answers = format_answers_based_on_question_type(question, answers, concat_answers: concat_answers)
           answers << get_duration(user_result, question)
           Utility::Array.ensure_size(answers, question_header_size(question))
         end
 
-        def self.format_answers_based_on_question_type(question, answers)
-          return [answers.join("\r\n")] if question.of_sub_type?('Chat')
-          return format_form_answers(question, answers) if question.of_sub_type?('Form')
+        def self.format_answers_based_on_question_type(question, answers, concat_answers: true)
+          return (concat_answers ? [answers.join("\r\n")] : answers) if question.of_sub_type?('Chat')
+          return format_form_answers(question, answers, concat_answers: concat_answers) if question.of_sub_type?('Form')
 
           answers.flatten
         end
 
-        def self.format_form_answers(question, answers)
+        def self.format_form_answers(question, answers, concat_answers: true)
           form_answers = answers[0] || []
           form_types = question.props['formTypes'] || []
           Array.new(question.props['choices']) do |i|
             if form_types[i] && form_types[i]['name'] == 'MultiSelect' && form_answers[i].is_a?(Array)
-              form_answers[i].join(';')
+              concat_answers ? form_answers[i].join(';') : form_answers[i]
             else
               form_answers[i]
             end

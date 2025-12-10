@@ -3148,7 +3148,6 @@ sl:
               scheduling_invited: Razporejanje vabljenih
               scheduling_rescheduled: Razporejanje prestavljenega časa
               scheduling_scheduled: Načrtovanje načrtovanja
-            name: Teme
           url:
             label: Spletni naslov
             name: Spletni naslov

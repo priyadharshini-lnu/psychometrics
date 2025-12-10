@@ -3149,7 +3149,6 @@ de:
               scheduling_invited: Terminplanung Eingeladen
               scheduling_rescheduled: Terminierung Umgeplant
               scheduling_scheduled: Terminplanung Geplant
-            name: themen
           url:
             label: Url
             name: url

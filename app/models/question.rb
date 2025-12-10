@@ -10,6 +10,13 @@ class Question < ApplicationRecord
   # For assessment builder
   attr_accessor :save_as_template, :permanent_remove
 
+  QUESTIONS_WITH_EXPORTABLE_ANSWERS = %w[
+    ConstantSum GapAnalysis GraphicSlider HotSpot MatrixTable MetaInfo
+    MultipleChoice PickGroupRank RankOrder SideBySide Slider TextEntry
+    Timing FileUpload AudioResponse VideoResponse FactorSelect
+    CampaignFactorFeedback
+  ].freeze
+
   belongs_to :block
   belongs_to :assessment, touch: true
   belongs_to :template, class_name: 'Question', dependent: :destroy

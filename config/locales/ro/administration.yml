@@ -3148,7 +3148,6 @@ ro:
               scheduling_invited: Programare invitată
               scheduling_rescheduled: Programare reprogramată
               scheduling_scheduled: Programare programată
-            name: Utilizatori
           url:
             label: Adresă URL
             name: Adresa URL

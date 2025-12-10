@@ -19,6 +19,7 @@ module Api
             attribute[:active].filled(:bool)
             attribute[:rate_limit].filled(:integer)
             attribute[:rate_limit_period].filled(:integer)
+            optional(:assessment_ids).array(:string)
           end
         end
       end

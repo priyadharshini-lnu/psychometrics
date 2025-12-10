@@ -3149,7 +3149,6 @@ pt:
               scheduling_invited: Programação Convidados
               scheduling_rescheduled: Programação Reagendada
               scheduling_scheduled: Programação Programada
-            name: temas
           url:
             label: Url
             name: url

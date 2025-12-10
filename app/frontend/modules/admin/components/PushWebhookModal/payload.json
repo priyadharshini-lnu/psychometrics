@@ -1,10 +1,8 @@
 {
-  "assessment_started":
-  {
+  "assessment_started": {
     "event_name": "assessment_started",
     "event_id": "cc57cb4a-d9a0-4961-a895-232efd500387",
-    "data":
-    {
+    "data": {
       "assessment": {
         "id": 703,
         "name": "Test HBRI"
@@ -40,12 +38,10 @@
       "event_time": "2023-01-31T21:10:23.975+05:30"
     }
   },
-  "assessment_completed":
-  {
+  "assessment_completed": {
     "event_name": "assessment_completed",
     "event_id": "5fa4881c-9ddc-499f-97f8-d4636c3d24d4",
-    "data":
-    {
+    "data": {
       "assessment": {
         "id": 703,
         "name": "Test HBRI"
@@ -81,12 +77,10 @@
       "event_time": "2023-02-01T20:21:39.802+05:30"
     }
   },
-  "assessment_timeout":
-  {
+  "assessment_timeout": {
     "event_name": "assessment_timeout",
     "event_id": "ea6a3293-5f69-4f0c-b9b5-603d9f953fa7",
-    "data": 
-    {
+    "data": {
       "assessment": {
         "id": 703,
         "name": "Test HBRI"
@@ -122,12 +116,10 @@
       "event_time": "2023-02-01T20:32:47.527+05:30"
     }
   },
-  "report_available":
-  {
+  "report_available": {
     "event_name": "report_available",
     "event_id": "1e5251df-a394-4c41-a488-980c22841b89",
-    "data": 
-    {
+    "data": {
       "report": {
         "id": null,
         "name": null
@@ -155,12 +147,10 @@
       "event_time": "2023-02-01T20:40:04.739+05:30"
     }
   },
-  "scheduling_scheduled":
-  {
+  "scheduling_scheduled": {
     "event_name": "scheduling_scheduled",
     "event_id": "a6932fc4-73ef-45af-9507-198580ef9510",
-    "data": 
-    {
+    "data": {
       "subject": {
         "id": 34621,
         "name": "Test Subject",
@@ -195,12 +185,10 @@
       "event_time": "2023-02-01T20:43:48.531+05:30"
     }
   },
-  "scheduling_invited":
-  {
+  "scheduling_invited": {
     "event_name": "scheduling_invited",
     "event_id": "a6932fc4-73ef-45af-9507-198580ef9510",
-    "data":
-    {
+    "data": {
       "subject": {
         "id": 34621,
         "name": "Test Subject"
@@ -232,12 +220,10 @@
       "event_time": "2023-02-01T20:43:48.531+05:30"
     }
   },
-  "scheduling_rescheduled":
-  {
+  "scheduling_rescheduled": {
     "event_name": "scheduling_rescheduled",
     "event_id": "a6932fc4-73ef-45af-9507-198580ef9510",
-    "data":
-    {
+    "data": {
       "subject": {
         "id": 34621,
         "name": "Test Subject"
@@ -275,12 +261,10 @@
       "event_time": "2023-02-01T20:43:48.531+05:30"
     }
   },
-  "scheduling_cancelled":
-  {
+  "scheduling_cancelled": {
     "event_name": "scheduling_cancelled",
     "event_id": "a6932fc4-73ef-45af-9507-198580ef9510",
-    "data":
-    {
+    "data": {
       "subject": {
         "id": 34621,
         "name": "Test Subject"
@@ -312,12 +296,10 @@
       "event_time": "2023-02-01T20:43:48.531+05:30"
     }
   },
-  "campaign_results_available":
-  {
+  "campaign_results_available": {
     "event_name": "campaign_results_available",
     "event_id": "a6932fc4-73ef-45af-9507-198580ef9510",
-    "data":
-    {
+    "data": {
       "subject": {
         "id": 34621,
         "name": "Test Subject"
@@ -344,8 +326,7 @@
       "event_time": "2023-02-01T20:43:48.531+05:30"
     }
   },
-  "campaign_user_status":
-  {
+  "campaign_user_status": {
     "event_name": "campaign_user_status",
     "event_id": "3a4d6ec0-53b6-4455-a3da-80bf321d0958",
     "data": {
@@ -411,6 +392,303 @@
         "name": "Test Campaign"
       },
       "event_time": "2024-06-12T19:43:56.648+05:30"
+    }
+  },
+  "assessment_raw_response": {
+    "event_name": "assessment_raw_response",
+    "event_id": "f06f740e-3c77-4400-8105-0d70eaa080ff",
+    "data": {
+      "assessment_raw_response": [
+        {
+          "question_id": 31005,
+          "question_type": "MultipleChoice",
+          "question_name": "Q3",
+          "question_text": "Singe answer choice question text",
+          "not_applicable": false,
+          "answers": [{ "value": ["Choice 2"] }]
+        },
+        {
+          "question_id": 31006,
+          "question_type": "MultipleChoice",
+          "question_name": "Q3",
+          "question_text": "Multi answer choice question text",
+          "not_applicable": false,
+          "answers": [{ "value": ["MChoice 1", "MChoice 2"] }]
+        },
+        {
+          "question_id": 31007,
+          "question_type": "MatrixTable",
+          "question_name": "Q5",
+          "question_text": "Matrix Question Text",
+          "not_applicable": null,
+          "answers": [
+            { "label": "Matrix Choice 1", "value": ["Scale point 1"] },
+            { "label": "Matrix Choice 2", "value": ["Scale point 2"] },
+            { "label": "Matrix Choice 3", "value": ["Scale point 3"] },
+            { "label": "Matrix Choice 4", "value": ["Scale point 4"] },
+            { "label": "Matrix Choice 5", "value": [] }
+          ]
+        },
+        {
+          "question_id": 31030,
+          "question_type": "MatrixTable",
+          "question_name": "Q5",
+          "question_text": "Matrix Question Text",
+          "not_applicable": null,
+          "answers": [
+            {
+              "label": "MC Matrix Choice 1",
+              "value": ["MC Scale point 1", "MC Scale point 2"]
+            },
+            { "label": "MC Matrix Choice 2", "value": ["MC Scale point 3"] },
+            { "label": "MC Matrix Choice 3", "value": [] },
+            {
+              "label": "MC Matrix Choice 4",
+              "value": ["MC Scale point 2", "MC Scale point 4"]
+            },
+            { "label": "MC Matrix Choice 5", "value": [] }
+          ]
+        },
+        {
+          "question_id": 31008,
+          "question_type": "TextEntry",
+          "question_name": "Q6",
+          "question_text": "Text Entry question text",
+          "not_applicable": null,
+          "answers": [{ "value": "wadC Wfweaq gwq g" }]
+        },
+        {
+          "question_id": 31009,
+          "question_type": "Slider",
+          "question_name": "Q7",
+          "question_text": "Slider question text",
+          "not_applicable": null,
+          "answers": [
+            { "label": "Slider Choice 1", "value": 40 },
+            { "label": "Slider Choice 2", "value": 10 },
+            { "label": "Slider Choice 3", "value": 61 }
+          ]
+        },
+        {
+          "question_id": 31010,
+          "question_type": "RankOrder",
+          "question_name": "Q8",
+          "question_text": "Rank Order question",
+          "not_applicable": null,
+          "answers": [
+            { "label": "Rank Item 1", "value": 2 },
+            { "label": "Rank Item 2", "value": 1 },
+            { "label": "Rank Item 3", "value": 3 }
+          ]
+        },
+        {
+          "question_id": 31011,
+          "question_type": "SideBySide",
+          "question_name": "Q9",
+          "question_text": "Side by Side question text",
+          "not_applicable": null,
+          "answers": [
+            {
+              "label": "SBS G1 | Side By Side Statement 1",
+              "value": ["SBS G1 A1"]
+            },
+            {
+              "label": "SBS G1 | Side By Side Statement 2",
+              "value": ["SBS G1 A2"]
+            },
+            { "label": "SBS G1 | Side By Side Statement 3", "value": null },
+            { "label": "SBS G2 | Side By Side Statement 1", "value": null },
+            { "label": "SBS G2 | Side By Side Statement 2", "value": null },
+            {
+              "label": "SBS G2 | Side By Side Statement 3",
+              "value": ["SBS G2 A1"]
+            }
+          ]
+        },
+        {
+          "question_id": 31012,
+          "question_type": "ConstantSum",
+          "question_name": "Q10",
+          "question_text": "Constant sum question text",
+          "not_applicable": null,
+          "answers": [
+            { "label": "ConSum Choice 1", "value": 22 },
+            { "label": "ConSum Choice 2", "value": 2 },
+            { "label": "ConSum Choice 3", "value": 44 }
+          ]
+        },
+        {
+          "question_id": 31013,
+          "question_type": "PickGroupRank",
+          "question_name": "Q11",
+          "question_text": "Click to write the question text",
+          "not_applicable": null,
+          "answers": [
+            { "label": "Group 1", "value": ["Item 1", "Item 2"] },
+            { "label": "Group 2", "value": ["Item 4", "Item 5"] },
+            { "label": "Group 3", "value": ["Item 7", "Item 8"] },
+            { "label": "Group 1 |\n                Item 1", "value": [1] },
+            { "label": "Group 2 |\n                Item 2", "value": [2] },
+            { "label": "Group 3 |\n                Item 3", "value": [] },
+            { "label": " |\n                Item 4", "value": [] },
+            { "label": " |\n                Item 5", "value": [] },
+            { "label": " |\n                Item 6", "value": [] },
+            { "label": " |\n                Item 7", "value": [] },
+            { "label": " |\n                Item 8", "value": [] },
+            { "label": " |\n                Item 9", "value": [] },
+            { "label": "Group 1 |\n                Item 1", "value": [] },
+            { "label": "Group 2 |\n                Item 2", "value": [] },
+            { "label": "Group 3 |\n                Item 3", "value": [] },
+            { "label": " |\n                Item 4", "value": [1] },
+            { "label": " |\n                Item 5", "value": [2] },
+            { "label": " |\n                Item 6", "value": [] },
+            { "label": " |\n                Item 7", "value": [] },
+            { "label": " |\n                Item 8", "value": [] },
+            { "label": " |\n                Item 9", "value": [] },
+            { "label": "Group 1 |\n                Item 1", "value": [] },
+            { "label": "Group 2 |\n                Item 2", "value": [] },
+            { "label": "Group 3 |\n                Item 3", "value": [] },
+            { "label": " |\n                Item 4", "value": [] },
+            { "label": " |\n                Item 5", "value": [] },
+            { "label": " |\n                Item 6", "value": [] },
+            { "label": " |\n                Item 7", "value": [1] },
+            { "label": " |\n                Item 8", "value": [2] },
+            { "label": " |\n                Item 9", "value": [] }
+          ]
+        },
+        {
+          "question_id": 31014,
+          "question_type": "HotSpot",
+          "question_name": "Q12",
+          "question_text": null,
+          "not_applicable": null,
+          "answers": [
+            { "label": "Square 1", "value": "Off" },
+            { "label": "Square 2", "value": "Off" },
+            { "label": "Square 3", "value": "Off" },
+            { "label": "Square 4", "value": "On" }
+          ]
+        },
+        {
+          "question_id": 31015,
+          "question_type": "GraphicSlider",
+          "question_name": "Q13",
+          "question_text": "Graphic Slider Question text",
+          "not_applicable": null,
+          "answers": [{ "value": 3 }]
+        },
+        {
+          "question_id": 31016,
+          "question_type": "GapAnalysis",
+          "question_name": "Q14",
+          "question_text": "Click to write the question text",
+          "not_applicable": null,
+          "answers": [
+            { "label": "GA Category 1", "value": 3 },
+            { "label": "GA Category 1 | Why?", "value": 4 },
+            { "label": "GA Category 2", "value": 1 },
+            { "label": "GA Category 2 | Why?", "value": 5 },
+            { "label": "GA Category 3", "value": 4737 },
+            { "label": "GA Category 3 | Why?", "value": null }
+          ]
+        },
+        {
+          "question_id": 31017,
+          "question_type": "VideoResponse",
+          "question_name": "Q15",
+          "question_text": "Click to write the question text",
+          "not_applicable": null,
+          "answers": [
+            {
+              "label": "selected_video_url",
+              "value": "http://localhost:9000/s3-private-bucket/private/projects/1843/media_response/30436/31017/2483/asset/video.webm?response-content-disposition=attachment%3B%20filename%3D%22video.webm%22%3B%20filename%2A%3DUTF-8%27%27video.webm&response-content-type=video%2Fwebm&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20251209%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251209T133126Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=8ae8992f9e04d0564a26fda9cb538c8698a13c1033407622dad2b46e26adea4a"
+            },
+            { "label": "non_selected_video_urls", "value": null },
+            { "label": "media_id", "value": "mQzaq2" }
+          ]
+        },
+        {
+          "question_id": 31018,
+          "question_type": "FileUpload",
+          "question_name": "Q16",
+          "question_text": "Click to write the question text",
+          "not_applicable": null,
+          "answers": [
+            {
+              "label": "file_url",
+              "value": "http://localhost:9000/s3-private-bucket/private/projects/1843/media_response/30436/31018/2484/asset/Mac_Assist.pdf?response-content-disposition=inline%3B%20filename%3D%22Mac_Assist.pdf%22%3B%20filename%2A%3DUTF-8%27%27Mac_Assist.pdf&response-content-type=application%2Fpdf&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20251209%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251209T133126Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=8a9d8395ba8157bc35c853738d98e902b18c44065ffcfa2d92fb92ffa3c44461"
+            },
+            { "label": "media_id", "value": "W3NnJV" }
+          ]
+        },
+        {
+          "question_id": 31019,
+          "question_type": "AudioResponse",
+          "question_name": "Q17",
+          "question_text": "Click to write the question text",
+          "not_applicable": null,
+          "answers": [
+            { "label": "file_url", "value": null },
+            { "label": "media_id", "value": null }
+          ]
+        },
+        {
+          "question_id": 31020,
+          "question_type": "MetaInfo",
+          "question_name": "Q20",
+          "question_text": "",
+          "not_applicable": null,
+          "answers": [
+            { "value": "Chrome" },
+            { "value": "142.0.0.0" },
+            { "value": "Mac OS 10.15.7" },
+            { "value": "2560x1440" },
+            { "value": null },
+            { "value": null },
+            { "value": null }
+          ]
+        },
+        {
+          "question_id": 31028,
+          "question_type": "CampaignFactorFeedback",
+          "question_name": "Q1",
+          "question_text": "Campaign Factor feedback question text",
+          "not_applicable": null,
+          "answers": [
+            {
+              "campaign_factor_name": "Campaign Factor 2",
+              "value": "eaf gew4r "
+            }
+          ]
+        },
+        {
+          "question_id": 31029,
+          "question_type": "FactorSelect",
+          "question_name": "Q2",
+          "question_text": "Feedback select question text",
+          "not_applicable": null,
+          "answers": [{ "value": ["test Factor 3", "TEST FACTOR 4"] }]
+        }
+      ],
+      "assessment": { "id": 1541, "name": "Test Webhook assessment" },
+      "evaluator": {
+        "id": null,
+        "name": null,
+        "email": null,
+        "user_external_id": null,
+        "campaign_user_external_id": null
+      },
+      "subject": {
+        "id": 24866,
+        "name": "Test User",
+        "email": "test@user.com",
+        "campaign_user_external_id": null,
+        "user_external_id": null
+      },
+      "project": { "id": 1843, "name": "Test Project" },
+      "client": { "id": 1842, "name": "ABC Corp" },
+      "campaign": { "id": 11530, "name": "The final campaign" },
+      "event_time": "2025-12-09T17:31:26.057+04:00"
     }
   }
 }

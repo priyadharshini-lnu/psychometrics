@@ -21,7 +21,7 @@ module Exports
         # rubocop:disable Metrics/CyclomaticComplexity
         # rubocop:disable Metrics/PerceivedComplexity
         # rubocop:disable Metrics/AbcSize
-        def self.result(user_result, question, scoring = false, export_with_labels = false)
+        def self.result(user_result, question, scoring: false, export_with_labels: false, concat_answers: true)
           answers = get_answers(user_result, question)
           parsed_result = []
           # Create hash for scoring
@@ -40,19 +40,20 @@ module Exports
               column_data = question.props['columnsData'][scale]
               (parsed_result << '') && next unless values
 
-              parsed_result << if column_data['type'] == 'Text'
-                                 values.map { |value| value['value'] }
-                               else
-                                 values.map do |value|
-                                   next factors_scoring["#{choice}-#{scale}-#{value['index'].to_i}"] if scoring
+              result = if column_data['type'] == 'Text'
+                         values.map { |value| value['value'] }
+                       else
+                         values.map do |value|
+                           next factors_scoring["#{choice}-#{scale}-#{value['index'].to_i}"] if scoring
 
-                                   next value['index'].to_i + 1 unless export_with_labels
+                           next value['index'].to_i + 1 unless export_with_labels
 
-                                   answer = column_data.dig('answersTexts', value['index'])
+                           answer = column_data.dig('answersTexts', value['index'])
 
-                                   answer.presence || "Answer #{value['index'].to_i + 1}"
-                                 end.join(';')
-                               end
+                           answer.presence || "Answer #{value['index'].to_i + 1}"
+                         end
+                       end
+              parsed_result << (concat_answers && result.is_a?(Array) ? result.join(';') : result)
             end
           end
           parsed_result << get_duration(user_result, question)

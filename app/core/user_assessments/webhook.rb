@@ -50,6 +50,16 @@ module UserAssessments
       )
     end
 
+    def publish_assessment_raw_response
+      WebhookSubscriptions::Publish.call(
+        project,
+        :assessment_raw_response,
+        assessment_raw_response_data,
+        webhook_id: webhook_id,
+        record: user_assessment
+      )
+    end
+
     def publish_results_available
       user_assessment.user_reports.each do |user_report|
         next unless user_report.all_assessments_are_scored?
@@ -108,6 +118,10 @@ module UserAssessments
         subject: user_assessment.subject,
         event_time: user_assessment.created_at
       }
+    end
+
+    def assessment_raw_response_data
+      Webhooks::AssessmentRawResponsePayload.new(user_assessment).call
     end
   end
 end

@@ -3149,7 +3149,6 @@ nl:
               scheduling_invited: Planning Uitgenodigd
               scheduling_rescheduled: Planning Opnieuw gepland
               scheduling_scheduled: Planning Gepland
-            name: onderwerpen
           url:
             label: Url
             name: url

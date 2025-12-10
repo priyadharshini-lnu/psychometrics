@@ -3148,7 +3148,6 @@ pl:
               scheduling_invited: Zaproszenie do planowania
               scheduling_rescheduled: Planowanie zmienionego terminu
               scheduling_scheduled: Planowanie zaplanowane
-            name: Tematy
           url:
             label: Adres URL
             name: Adres URL
