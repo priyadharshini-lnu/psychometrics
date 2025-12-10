@@ -3224,7 +3224,6 @@ ar:
               scheduling_invited: Scheduling Invited
               scheduling_rescheduled: Scheduling Rescheduled
               scheduling_scheduled: Scheduling Scheduled
-            name: topics
           url:
             label: Url
             name: url

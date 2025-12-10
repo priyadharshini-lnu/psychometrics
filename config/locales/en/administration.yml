@@ -3158,6 +3158,11 @@ en:
           active:
             label: Active
             name: active
+          assessments:
+            help_text: This selection only affects the Assessment Raw Response event.
+            label: Assessments
+            placeholder: Select Assessments
+            required: At least one assessment must be selected for Assessment Raw Response event.
           auth_type:
             api_key:
               label: API Key
@@ -3214,6 +3219,7 @@ en:
             list:
               assessment_assigned: Assessment Assigned
               assessment_completed: Assessment Completed
+              assessment_raw_response: Assessment Raw Response
               assessment_started: Assessment Started
               assessment_timeout: Assessment Timeout
               campaign_results_available: Campaign Results Available
@@ -3224,7 +3230,6 @@ en:
               scheduling_invited: Scheduling Invited
               scheduling_rescheduled: Scheduling Rescheduled
               scheduling_scheduled: Scheduling Scheduled
-            name: topics
           url:
             label: Url
             name: url

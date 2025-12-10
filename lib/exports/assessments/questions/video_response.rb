@@ -6,7 +6,7 @@ module Exports
       class VideoResponse < Base
         include ImportExportConst
 
-        def self.result(user_result, question, _scoring = false, _export_with_labels = false)
+        def self.result(user_result, question, **_args)
           media_responses = user_result.media_responses.where(question: question)
           return Utility::Array.ensure_size([], question_header_size(question)) if media_responses.blank?
 

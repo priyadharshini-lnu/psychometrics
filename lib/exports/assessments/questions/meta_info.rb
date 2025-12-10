@@ -7,7 +7,7 @@ module Exports
         FIELDS = %w[browser version os screen java flash userAgent].freeze
 
         # Parse RESULT data for XLSX
-        def self.result(user_result, question, _scoring = false, _export_with_labels = false)
+        def self.result(user_result, question, **_args)
           answers = get_answers(user_result, question)
           answers = if answers.blank?
                       Array.new(FIELDS.size) { '' }

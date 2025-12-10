@@ -15,7 +15,8 @@ RSpec.describe UsersResults::SaveScoringWithCallbacksJob, type: :job do
       allow(UsersResults::CalculateAgileScoring).to receive(:call!).and_return({})
       allow(UsersResults::GenerateReports).to receive(:call!)
       allow(UserAssessments::Webhook).to receive(:new).and_return(double(publish_assessment_completed: true,
-                                                                         publish_results_available: true))
+                                                                         publish_results_available: true,
+                                                                         publish_assessment_raw_response: true))
     end
 
     it 'processes the user result correctly' do
@@ -44,7 +45,8 @@ RSpec.describe UsersResults::SaveScoringWithCallbacksJob, type: :job do
       allow(UsersResults::CalculateInnovationStyles).to receive(:call!).and_return([])
       allow(UsersResults::GenerateReports).to receive(:call!)
       allow(UserAssessments::Webhook).to receive(:new).and_return(double(publish_assessment_completed: true,
-                                                                         publish_results_available: true))
+                                                                         publish_results_available: true,
+                                                                         publish_assessment_raw_response: true))
     end
 
     it 'processes the user result correctly' do

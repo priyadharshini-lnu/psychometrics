@@ -11,7 +11,7 @@ module Exports
         #   }, ...]
         # TO:
         #   [12, ...]
-        def self.result(user_result, question, _scoring = false, _export_with_labels = false)
+        def self.result(user_result, question, **_args)
           answers = get_answers(user_result, question)
           answers = (answers || []).pluck('value')
           answers = Array.new(question_headers_except_duration_size(question)) { '' } if answers.empty?

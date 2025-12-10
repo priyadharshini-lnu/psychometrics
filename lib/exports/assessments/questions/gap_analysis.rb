@@ -12,12 +12,13 @@ module Exports
         # }
         # TO:
         # [1, 1, '1,3']
-        def self.result(user_result, question, _scoring = false, _export_with_labels = false)
+        def self.result(user_result, question, concat_answers: true, **_args)
           answers = get_answers(user_result, question)
           answers = (answers || []).map do |answer|
+            values = answer['values'].map { |v| v + 1 }
             [
               (answer['scale'] + 1),
-              answer['values'].map { |v| v + 1 }.join(';')
+              (concat_answers ? values.join(';') : values)
             ]
           end.flatten
           answers = Array.new(question_headers_except_duration_size(question)) { '' } if answers.empty?

@@ -9,7 +9,7 @@ module Exports
         FIELDS = %w[firstClick lastClick pageSubmit clickCount].freeze
 
         # Parse RESULT data for XLSX
-        def self.result(user_result, question, _scoring = false, _export_with_labels = false)
+        def self.result(user_result, question, **_args)
           answers = get_answers(user_result, question)
           all_answers = FIELDS.map { |field| answers.try(:[], field.underscore) if answers.present? }
           all_answers << get_duration(user_result, question)

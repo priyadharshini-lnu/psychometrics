@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Form, Input, InputNumber, Space, Checkbox, Radio, Switch, Row, Col,
   Typography, Select,
@@ -7,9 +7,11 @@ import { EditOutlined, CloseOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import _ from 'lodash'
 import { CreateResource, UpdateResource } from '~/hooks/useResources/interfaces'
+import { useResources } from '~/hooks/useResources'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import styles from './styles.less'
 import { Webhook } from '~/modules/admin/modules/client/core/webhooks'
+import { Assessment } from '~/modules/admin/modules/client/core/assessments'
 
 const { I18n } = window
 
@@ -18,6 +20,7 @@ interface Props {
   updateWebhook: UpdateResource<Webhook>
   webhook: Webhook
   close(): void
+  clientId: string
 }
 
 export const AddEditWebhookModal: React.FC<Props> = ({
@@ -25,11 +28,43 @@ export const AddEditWebhookModal: React.FC<Props> = ({
   updateWebhook,
   webhook,
   close,
+  clientId,
 }) => {
   const { projectId } = useParams() as { projectId: string }
   const [authType, setAuthType] = useState(webhook?.authType || 'no_auth')
   const [isEditingClientId, setIsEditingClientId] = useState(!webhook)
   const [isEditingClientSecret, setIsEditingClientSecret] = useState(!webhook)
+  const [form] = Form.useForm()
+
+  const selectedTopics = Form.useWatch(
+    'topics',
+    form,
+  ) || []
+
+  const { data: assessments, fetch: fetchAssessments } = useResources<Assessment>('assessments', {
+    apiConfig: {
+      filter: {
+        owner_id_eq: clientId,
+        category_in: ['psychometric', 'organisational'],
+      },
+    },
+  })
+
+  useEffect(() => {
+    fetchAssessments()
+  }, [])
+
+  const handleAssessmentSearch = (value: string) => {
+    fetchAssessments({
+      apiConfig: {
+        filter: {
+          owner_id_eq: clientId,
+          category_in: ['psychometric', 'organisational'],
+          filterable_fields: value,
+        },
+      },
+    })
+  }
 
   const handleAuthTypeChange = (e) => {
     setAuthType(e.target.value)
@@ -48,6 +83,7 @@ export const AddEditWebhookModal: React.FC<Props> = ({
     'scheduling_rescheduled',
     'campaign_user_status',
     'campaign_results_available',
+    'assessment_raw_response',
   ]
 
   return (
@@ -57,6 +93,7 @@ export const AddEditWebhookModal: React.FC<Props> = ({
         resource={webhook}
         readableResourceName="Webhook"
         showSuccessMessages
+        storeManager={{ form }}
         close={close}
         scrollToFirstError
         modalProps={{ width: 620 }}
@@ -68,6 +105,7 @@ export const AddEditWebhookModal: React.FC<Props> = ({
           initialValues: {
             rateLimit: 60,
             rateLimitPeriod: 1,
+            ...webhook,
           },
         }}
       >
@@ -112,7 +150,7 @@ export const AddEditWebhookModal: React.FC<Props> = ({
             </Space>
 
             <Form.Item
-              name={I18n.t('administration.project_tabs.webhooks.form.topics.name')}
+              name="topics"
               label={I18n.t('administration.project_tabs.webhooks.form.topics.label')}
             >
               <Checkbox.Group>
@@ -127,6 +165,31 @@ export const AddEditWebhookModal: React.FC<Props> = ({
                 </Row>
               </Checkbox.Group>
             </Form.Item>
+
+            {selectedTopics.includes('assessment_raw_response') && (
+              <Form.Item
+                name="assessmentIds"
+                label={I18n.t('administration.project_tabs.webhooks.form.assessments.label')}
+                rules={[{
+                  required: true,
+                  message: I18n.t('administration.project_tabs.webhooks.form.assessments.required'),
+                }]}
+                extra={I18n.t('administration.project_tabs.webhooks.form.assessments.help_text')}
+              >
+                <Select
+                  mode="multiple"
+                  showSearch
+                  placeholder={I18n.t('administration.project_tabs.webhooks.form.assessments.placeholder')}
+                  onSearch={handleAssessmentSearch}
+                  filterOption={false}
+                  options={assessments.map(assessment => ({
+                    label: assessment.name,
+                    value: assessment.id,
+                  }))}
+                />
+              </Form.Item>
+            )}
+
             <Form.Item
               name={I18n.t('administration.project_tabs.webhooks.form.active.name')}
               label={I18n.t('administration.project_tabs.webhooks.form.active.label')}

@@ -13,7 +13,7 @@ module Exports
         # TO:
         #      G1         G2      Groups items rank
         #   ['1,2,3',   '4,5',   1, 2, 3,   4,5]
-        def self.result(user_result, question, scoring = false, export_with_labels = false) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+        def self.result(user_result, question, scoring: false, export_with_labels: false, concat_answers: true) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
           answers = get_answers(user_result, question)
           parsed_result = []
 
@@ -21,23 +21,24 @@ module Exports
                             each_with_object({}) { |s, sum| sum[s['index']] = s['value'] }
 
           question.props['scalePoints'].to_i.times do |s|
-            parsed_result << (answers || []).
-                             select { |answer| answer['scale'] == s }.
-                             sort_by { |answer| answer['value'] }.
-                             map do |answer|
-                               next factors_scoring[answer['choice']] if scoring
+            result = (answers || []).
+                     select { |answer| answer['scale'] == s }.
+                     sort_by { |answer| answer['value'] }.
+                     map do |answer|
+                       next factors_scoring[answer['choice']] if scoring
 
-                               next answer['choice'] + 1 unless export_with_labels
+                       next answer['choice'] + 1 unless export_with_labels
 
-                               question.props.dig('choicesTexts', answer['choice'])
-                             end.join(';')
+                       question.props.dig('choicesTexts', answer['choice'])
+                     end
+            parsed_result << (concat_answers ? result.join(';') : result)
           end
           question.props['scalePoints'].to_i.times do |s|
             question.props['choices'].to_i.times do |c|
-              parsed_result << (answers || []).
-                               select { |answer| answer['scale'] == s && answer['choice'] == c }.
-                               map { |a| a['value'] + 1 }.
-                               join(';')
+              result = (answers || []).
+                       select { |answer| answer['scale'] == s && answer['choice'] == c }.
+                       map { |a| a['value'] + 1 }
+              parsed_result << (concat_answers ? result.join(';') : result)
             end
           end
           parsed_result << get_duration(user_result, question)

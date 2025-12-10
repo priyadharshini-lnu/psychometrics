@@ -3226,7 +3226,6 @@ hu:
               scheduling_invited: Ütemezés meghívva
               scheduling_rescheduled: Ütemezés átütemezve
               scheduling_scheduled: Ütemezés ütemezve
-            name: Témák
           url:
             label: URL-cím
             name: URL-cím

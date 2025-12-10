@@ -8325,7 +8325,8 @@ CREATE TABLE public.webhook_subscriptions (
     encrypted_oauth_client_id_iv character varying,
     encrypted_oauth_client_secret character varying,
     encrypted_oauth_client_secret_iv character varying,
-    oauth_scope character varying
+    oauth_scope character varying,
+    assessment_ids jsonb DEFAULT '[]'::jsonb NOT NULL
 );
 
 
@@ -15946,6 +15947,13 @@ CREATE INDEX index_webhook_subscriptions_on_active ON public.webhook_subscriptio
 
 
 --
+-- Name: index_webhook_subscriptions_on_assessment_ids; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_webhook_subscriptions_on_assessment_ids ON public.webhook_subscriptions USING gin (assessment_ids);
+
+
+--
 -- Name: index_webhook_subscriptions_on_deleted_by_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -19152,6 +19160,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20251201130649'),
 ('20251118130440'),
 ('20251118103050'),
 ('20251114123626'),
