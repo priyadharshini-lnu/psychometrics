@@ -31,10 +31,7 @@ const LoginComponent: React.FC<Props> = ({
     return <MagicLink />
   }
 
-  let recaptchaEnabled = !disable_recaptcha
-  if (projectConfig?.enable_recaptcha) {
-    recaptchaEnabled = recaptchaEnabled && projectConfig?.enable_recaptcha
-  }
+  const recaptchaEnabled = !disable_recaptcha && projectConfig.enable_recaptcha
   const formRef = useRef<HTMLFormElement>(null)
 
   const {
