@@ -10,6 +10,7 @@ zh-HK:
     edit: 編輯
     edited: 編輯
     id: 身分證
+    idp_ai_assistant_disclaimer: Lighthouse AI IDP 助理可能會犯錯。使用回應時請小心。
     internet_disconnected_message: 正在嘗試重新連接。請檢查您的互聯網連接。
     mte_logo_alt_text: 默瑟人才企業標誌
     name: 名字

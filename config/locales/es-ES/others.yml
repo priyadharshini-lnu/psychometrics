@@ -2579,8 +2579,8 @@ es-ES:
       reset_chat: Restablecer chat
       reset_confirmation: "¿Estás seguro de que quieres descartar este chat y empezar de nuevo?"
       retake_steps:
-        chat_hint: Hágame saber qué información desea proporcionar más a continuación.
-        chat_title: "¿Quieres dar más información?"
+        chat_hint: Puedes subir un archivo nuevo o reiniciar el chat para compartir más detalles, y haré todo lo posible por ayudarte.
+        chat_title: Siento que el análisis inicial no cumpliera con tus expectativas.
         start_chat: Iniciar chat
         start_chat_again: Iniciar chat de nuevo
         upload_document: Subir documento
@@ -2606,14 +2606,14 @@ es-ES:
         chat_title: Resumen de Chat Insight
         file_title: Información sobre documentos cargados
         gap_report_title: Análisis del informe de brechas de habilidades
-        hint: en caso afirmativo, crearemos su IDP, de lo contrario, puede volver a tomar sus respuestas
-        title: "¿Está satisfecho con los resultados?"
+        hint: Con tu permiso, si dices que sí, puedo crear un plan de desarrollo para ti. Si no, puedes reiniciar el chat o subir un archivo nuevo.
+        title: "¿Estás satisfecho con el análisis?"
         upload_file: Archivo subido
         view_chat: Ver chat
       upload:
-        description: Haga clic o arrastre los archivos a esta área para cargarlos
+        description: 'Tipo de archivo soportado: documentos PDF hasta %{maxFileSize}MB'
         drop: Suelta el archivo aquí
-        title: Subir archivos
+        title: Haz clic o deja el archivo aquí
       welcome:
         text: "¿Listo para trazar tu viaje de crecimiento? ¡Empecemos!"
         title: Hola, soy tu asistente de desarrollo

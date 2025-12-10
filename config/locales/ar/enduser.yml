@@ -3,6 +3,9 @@ ar:
   enduser:
     add_idp_plan_note: إضافة ملاحظة...
     add_idp_plan_rejection_reason: إضافة سبب...
+    ai_idp_assistant_response_no: لا
+    ai_idp_assistant_response_upload_different_document: أريد رفع مستند مختلف.
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: نعم، تابع في وضع الخطة.
     approve_idp_plan: الموافقة على الخطة
     bookings: الحجوزات
     campaign: الحملة

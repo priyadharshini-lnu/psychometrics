@@ -2508,8 +2508,8 @@ nl:
       reset_chat: Chat resetten
       reset_confirmation: Weet je zeker dat je deze chat wilt weggooien en opnieuw wilt beginnen?
       retake_steps:
-        chat_hint: Laat me hieronder weten welke informatie je meer wilt geven?
-        chat_title: Wilt u meer informatie geven?
+        chat_hint: Je kunt een nieuw bestand uploaden of de chat opnieuw starten om meer details te delen, en ik zal mijn best doen om je te helpen.
+        chat_title: Het spijt me dat de eerste analyse niet aan je verwachtingen voldeed.
         start_chat: Start Chat
         start_chat_again: Start de chat opnieuw
         upload_document: Document uploaden
@@ -2535,14 +2535,14 @@ nl:
         chat_title: Samenvatting van Chat Insight
         file_title: Inzichten in geüploade documenten
         gap_report_title: Analyse van het rapport over vaardigheidstekorten
-        hint: zo ja, dan zullen we uw IDP aanmaken, anders kunt u uw antwoorden opnieuw opnemen
-        title: Ben je tevreden met de resultaten?
+        hint: Met uw toestemming, als u ja zegt, kan ik een ontwikkelingsplan voor u opstellen. Zo niet, dan kun je de chat opnieuw starten of een nieuw bestand uploaden.
+        title: Ben je tevreden met de analyse?
         upload_file: Geüpload bestand
         view_chat: Bekijk Chat
       upload:
-        description: Klik of sleep bestanden naar dit gebied om ze te uploaden
+        description: 'Ondersteund bestandstype: PDF-documenten tot %{maxFileSize}MB'
         drop: Plaats het bestand hier
-        title: Bestanden uploaden
+        title: Klik of laat hier het bestand vallen
       welcome:
         text: Klaar om je groeikaart in kaart te brengen? Laten we beginnen!
         title: Hallo, ik ben je ontwikkelingsassistent

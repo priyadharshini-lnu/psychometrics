@@ -3,6 +3,9 @@ zh:
   enduser:
     add_idp_plan_note: 添加备注...
     add_idp_plan_rejection_reason: 添加原因...
+    ai_idp_assistant_response_no: 不
+    ai_idp_assistant_response_upload_different_document: 我想上传一个不同的文档。
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: 是的，继续制定计划。
     approve_idp_plan: 批准计划
     bookings: 预订
     campaign: 活动

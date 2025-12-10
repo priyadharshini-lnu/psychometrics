@@ -2508,8 +2508,8 @@ fr:
       reset_chat: Réinitialiser le chat
       reset_confirmation: Êtes-vous sûr de vouloir abandonner ce chat et recommencer ?
       retake_steps:
-        chat_hint: Faites-moi savoir quelles informations vous souhaitez fournir plus ci-dessous ?
-        chat_title: Vous souhaitez donner plus d’informations ?
+        chat_hint: Vous pouvez télécharger un nouveau fichier ou relancer le chat pour partager plus de détails, et je ferai de mon mieux pour vous aider.
+        chat_title: Je suis désolé que l’analyse initiale n’ait pas répondu à vos attentes.
         start_chat: Démarrer le chat
         start_chat_again: Redémarrer le chat
         upload_document: Télécharger le document
@@ -2535,14 +2535,14 @@ fr:
         chat_title: Résumé de Chat Insight
         file_title: Informations sur les documents téléchargés
         gap_report_title: Analyse du rapport sur les écarts de compétences
-        hint: si oui alors nous créerons votre IDP sinon vous pourrez reprendre vos réponses
-        title: Êtes-vous satisfait des résultats ?
+        hint: Avec votre permission, si vous dites oui, je peux créer un plan de développement pour vous. Sinon, vous pouvez redémarrer le chat ou télécharger un nouveau fichier.
+        title: Êtes-vous satisfait de l’analyse ?
         upload_file: Fichier téléchargé
         view_chat: Voir le chat
       upload:
-        description: Cliquez ou faites glisser les fichiers dans cette zone pour les télécharger
+        description: 'Type de fichier pris en charge : documents PDF jusqu’à %{maxFileSize}MB'
         drop: Déposez le fichier ici
-        title: Télécharger des fichiers
+        title: Cliquez ou déposez le fichier ici
       welcome:
         text: Prêt à tracer votre croissance ? Commençons !
         title: Bonjour, je suis votre assistant de développement

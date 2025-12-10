@@ -2522,8 +2522,8 @@ sl:
       reset_chat: Ponastavi klepet
       reset_confirmation: Ste prepričani, da želite zavreči ta klepet in začeti znova?
       retake_steps:
-        chat_hint: Sporočite mi, katere informacije želite navesti spodaj?
-        chat_title: Želite podati več informacij?
+        chat_hint: Lahko naložiš novo datoteko ali ponovno začneš klepet, da deliš več podrobnosti, in potrudil se bom, da ti pomagam.
+        chat_title: Žal mi je, da začetna analiza ni izpolnila vaših pričakovanj.
         start_chat: Začni klepet
         start_chat_again: Znova začnite klepet
         upload_document: Naloži dokument
@@ -2549,14 +2549,14 @@ sl:
         chat_title: Povzetek vpogleda v klepet
         file_title: Vpogledi v naložene dokumente
         gap_report_title: Analiza poročila o vrzeli v spretnostih
-        hint: če je odgovor pritrdilen, bomo ustvarili vašega IDP, sicer lahko ponovno vzamete svoje odgovore
-        title: Ste zadovoljni z rezultati?
+        hint: Če dovolite, če rečete da, lahko pripravim razvojni načrt za vas. Če ne, lahko ponovno začnete klepet ali naložite novo datoteko.
+        title: Ste zadovoljni z analizo?
         upload_file: Naložena datoteka
         view_chat: Ogled klepeta
       upload:
-        description: Kliknite ali povlecite datoteke na to območje, da jih naložite
+        description: 'Podprta vrsta datoteke: PDF dokumenti do %{maxFileSize}MB'
         drop: Spustite datoteko tukaj
-        title: Nalaganje datotek
+        title: Kliknite ali spustite datoteko tukaj
       welcome:
         text: Ste pripravljeni začrtati svojo rast? Začnimo!
         title: Pozdravljeni, jaz sem vaš razvojni pomočnik

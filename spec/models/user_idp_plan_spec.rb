@@ -297,4 +297,24 @@ RSpec.describe UserIdpPlan, type: :model do
       end
     end
   end
+
+  describe 'user_document file size validation' do
+    let(:user_idp_plan) { create(:user_idp_plan) }
+
+    context 'when file exceeds size limit (5MB or more)' do
+      let(:oversized_document_blob) do
+        ActiveStorage::Blob.create_and_upload!(
+          io: StringIO.new('A' * (5.megabytes + 1)), # Just over 5MB
+          filename: 'oversized_document.pdf',
+          content_type: 'application/pdf'
+        )
+      end
+
+      it 'is invalid and shows size error' do
+        user_idp_plan.user_document.attach(oversized_document_blob)
+        expect(user_idp_plan).not_to be_valid
+        expect(user_idp_plan.errors[:user_document]).to include('size 5 MB is not between required range')
+      end
+    end
+  end
 end

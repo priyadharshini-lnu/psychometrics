@@ -10,6 +10,7 @@ bg:
     edit: Редактирайте
     edited: Нов
     id: Идентификация
+    idp_ai_assistant_disclaimer: Асистент за IDP в Lighthouse AI може да допуска грешки. Моля, бъдете внимателни, когато използвате отговорите.
     internet_disconnected_message: Опитвам се да възстановя връзката. Моля, проверете интернет връзката си.
     mte_logo_alt_text: Логото на Mercer Talent Enterprise
     name: Име

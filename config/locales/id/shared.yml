@@ -10,6 +10,7 @@ id:
     edit: Sunting
     edited: Baru
     id: ID
+    idp_ai_assistant_disclaimer: Asisten IDP Lighthouse AI dapat membuat kesalahan. Harap berhati-hati saat menggunakan tanggapan.
     internet_disconnected_message: Mencoba menyambung kembali, periksa koneksi internet Anda.
     mte_logo_alt_text: Logo Mercer Talent Enterprise
     name: Nama

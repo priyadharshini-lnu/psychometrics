@@ -3,6 +3,9 @@ th:
   enduser:
     add_idp_plan_note: เพิ่มหมายเหตุ...
     add_idp_plan_rejection_reason: เพิ่มเหตุผล...
+    ai_idp_assistant_response_no: ไม่ใช่
+    ai_idp_assistant_response_upload_different_document: ฉันต้องการอัปโหลดเอกสารอื่น
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: ใช่ ดําเนินการสร้างแผนต่อไป
     approve_idp_plan: อนุมัติแผน
     bookings: การจอง
     campaign: รณรงค์

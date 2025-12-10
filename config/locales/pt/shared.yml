@@ -10,6 +10,7 @@ pt:
     edit: Editar
     edited: Novo
     id: ID
+    idp_ai_assistant_disclaimer: O assistente IDP da IA do Farol pode cometer erros. Por favor, tenha cuidado ao usar as respostas.
     internet_disconnected_message: A tentar restabelecer a ligação. Verifique a sua ligação à Internet.
     mte_logo_alt_text: Logótipo da Mercer Talent Enterprise
     name: Nome

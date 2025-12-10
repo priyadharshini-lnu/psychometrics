@@ -1,5 +1,6 @@
 import {
   Button, Flex, Typography, Popconfirm,
+  Avatar,
 } from 'antd'
 import { Bubble } from '@ant-design/x'
 import {
@@ -15,8 +16,8 @@ export const RetakeSteps = ({ onAction }) => (
     placement="start"
     variant="outlined"
     shape="round"
-    styles={{ content: { width: '90%' } }}
-    avatar={{ icon: <BotIcon /> }}
+    styles={{ body: { width: '90%' } }}
+    avatar={<Avatar icon={<BotIcon />} />}
     content={(
       <Flex vertical align="center" justify="center" className={styles.retakeSteps} gap={24}>
         <Flex vertical align="center" style={{ width: '100%' }}>

@@ -2517,8 +2517,8 @@ id:
       reset_chat: Setel Ulang Obrolan
       reset_confirmation: Apakah Anda yakin ingin membuang obrolan ini dan memulai yang baru?
       retake_steps:
-        chat_hint: Beri tahu saya informasi apa yang ingin Anda berikan lebih lanjut di bawah ini?
-        chat_title: Anda ingin memberikan informasi lebih lanjut?
+        chat_hint: Anda dapat mengunggah file baru atau memulai ulang obrolan untuk membagikan detail lebih lanjut, dan saya akan melakukan yang terbaik untuk membantu Anda.
+        chat_title: Maaf analisis awal tidak memenuhi harapan Anda.
         start_chat: Mulai Obrolan
         start_chat_again: Mulai Obrolan Lagi
         upload_document: Unggah dokumen
@@ -2544,14 +2544,14 @@ id:
         chat_title: Ringkasan Wawasan Obrolan
         file_title: Wawasan Dokumen yang Diunggah
         gap_report_title: Analisis Laporan Kesenjangan Keterampilan
-        hint: jika ya maka kami akan membuat IDP Anda jika tidak, Anda dapat mengambil kembali jawaban Anda
-        title: Apakah Anda puas dengan hasilnya?
+        hint: Dengan izin Anda, jika Anda mengatakan ya, saya dapat membuat rencana pengembangan untuk Anda. Jika tidak, Anda dapat memulai ulang obrolan atau mengunggah file baru.
+        title: Apakah Anda puas dengan analisis?
         upload_file: File yang Diunggah
         view_chat: Lihat Obrolan
       upload:
-        description: Klik atau seret file ke area ini untuk diunggah
+        description: 'Jenis file yang didukung: Dokumen PDF hingga %{maxFileSize}MB'
         drop: Jatuhkan file di sini
-        title: Unggah file
+        title: Klik atau jatuhkan file di sini
       welcome:
         text: Siap untuk memetakan perjalanan pertumbuhan Anda? Mari kita mulai!
         title: Halo, saya asisten pengembangan Anda

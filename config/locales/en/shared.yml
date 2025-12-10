@@ -15,6 +15,7 @@ en:
     edit: Edit
     edited: Edited
     id: ID
+    idp_ai_assistant_disclaimer: Lighthouse AI IDP assistant can make mistakes. Please be careful while using the responses.
     internet_disconnected_message: Trying to reconnect. Please check your internet connection.
     mte_logo_alt_text: Mercer Talent Enterprise logo
     name: Name

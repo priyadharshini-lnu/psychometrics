@@ -10,6 +10,7 @@ cs:
     edit: Upravit
     edited: Nové
     id: ID
+    idp_ai_assistant_disclaimer: Asistent IDP v Lighthouse AI může dělat chyby. Buďte prosím opatrní při používání odpovědí.
     internet_disconnected_message: Probíhá pokus o opětovné připojení. Zkontrolujte připojení k internetu.
     mte_logo_alt_text: Logo Mercer Talent Enterprise
     name: Název

@@ -3,6 +3,9 @@ nl:
   enduser:
     add_idp_plan_note: Notitie toevoegen...
     add_idp_plan_rejection_reason: Reden toevoegen...
+    ai_idp_assistant_response_no: Nee
+    ai_idp_assistant_response_upload_different_document: Ik wil een ander document uploaden.
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: Ja, ga door met het maken van een plan.
     approve_idp_plan: Plan goedkeuren
     bookings: Boekingen
     campaign: Campagne

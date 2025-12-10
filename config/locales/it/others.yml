@@ -2508,8 +2508,8 @@ it:
       reset_chat: Ripristina chat
       reset_confirmation: Sei sicuro di voler scartare questa chat e ricominciare da capo?
       retake_steps:
-        chat_hint: Fammi sapere quali informazioni vuoi fornire di più?
-        chat_title: Vuoi dare maggiori informazioni?
+        chat_hint: Puoi caricare un nuovo file o riavviare la chat per condividere più dettagli, e farò del mio meglio per aiutarti.
+        chat_title: Mi dispiace che l'analisi iniziale non abbia soddisfatto le tue aspettative.
         start_chat: Avvia la chat
         start_chat_again: Riavvia la chat
         upload_document: Carica documento
@@ -2535,14 +2535,14 @@ it:
         chat_title: Riepilogo di Chat Insight
         file_title: Approfondimenti sui documenti caricati
         gap_report_title: Analisi del rapporto sul divario di competenze
-        hint: se sì, creeremo il tuo IDP, altrimenti puoi riprendere le tue risposte
-        title: Sei soddisfatto dei risultati?
+        hint: Con il tuo permesso, se dici di sì, posso creare un piano di sviluppo per te. Se no, puoi riavviare la chat o caricare un nuovo file.
+        title: Sei soddisfatto dell'analisi?
         upload_file: File caricato
         view_chat: Visualizza la chat
       upload:
-        description: Fare clic o trascinare i file in quest'area per caricarli
+        description: 'Tipo di file supportato: documenti PDF fino a %{maxFileSize}MB'
         drop: Trascina il file qui
-        title: Caricare i file
+        title: Clicca o lascia il file qui
       welcome:
         text: Pronto a tracciare il tuo percorso di crescita? Cominciamo!
         title: Ciao, sono il tuo assistente allo sviluppo

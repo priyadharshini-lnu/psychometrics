@@ -2517,8 +2517,8 @@ pl:
       reset_chat: Zresetuj czat
       reset_confirmation: Czy na pewno chcesz odrzucić ten czat i zacząć nowy?
       retake_steps:
-        chat_hint: Daj mi znać, jakie informacje chcesz podać poniżej?
-        chat_title: Chcesz podać więcej informacji?
+        chat_hint: Możesz przesłać nowy plik lub zrestartować czat, by podzielić się szczegółami, a ja zrobię wszystko, by ci pomóc.
+        chat_title: Przykro mi, że początkowa analiza nie spełniła twoich oczekiwań.
         start_chat: Rozpocznij czat
         start_chat_again: Rozpocznij czat ponownie
         upload_document: Prześlij dokument
@@ -2544,14 +2544,14 @@ pl:
         chat_title: Podsumowanie funkcji Chat Insight
         file_title: Statystyki przesłanych dokumentów
         gap_report_title: Analiza raportu o brakach w umiejętnościach
-        hint: jeśli tak, utworzymy Twój IDP, w przeciwnym razie możesz ponownie uzyskać odpowiedzi
-        title: Czy jesteś zadowolony z efektów?
+        hint: Za twoją zgodą, jeśli się zgodzisz, mogę stworzyć dla ciebie plan rozwoju. Jeśli nie, możesz zrestartować czat lub przesłać nowy plik.
+        title: Czy jesteś zadowolony z analizy?
         upload_file: Przesłany plik
         view_chat: Zobacz czat
       upload:
-        description: Kliknij lub przeciągnij pliki do tego obszaru, aby je przesłać
+        description: 'Obsługiwany typ pliku: dokumenty PDF do %{maxFileSize}MB'
         drop: Upuść plik tutaj
-        title: Przesyłanie plików
+        title: Kliknij lub upuść plik tutaj
       welcome:
         text: Gotowy, aby nakreślić swoją podróż wzrostu? Zaczynamy!
         title: Cześć, jestem Twoim asystentem ds. rozwoju

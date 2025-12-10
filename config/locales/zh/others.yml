@@ -2500,8 +2500,8 @@ zh:
       reset_chat: 重置聊天
       reset_confirmation: 您确定要放弃此聊天并重新开始吗？
       retake_steps:
-        chat_hint: 让我知道您想提供更多信息？
-        chat_title: 您想提供更多信息吗？
+        chat_hint: 你可以上传新文件或重启聊天分享更多细节，我会尽力协助你。
+        chat_title: 很抱歉最初的分析没有达到你的预期。
         start_chat: 开始聊天
         start_chat_again: 重新开始聊天
         upload_document: 上传文档
@@ -2527,14 +2527,14 @@ zh:
         chat_title: 聊天洞察摘要
         file_title: 上传的文档见解
         gap_report_title: 技能差距报告分析
-        hint: 如果是，那么我们将创建您的 IDP，否则您可以重新回答
-        title: 你对结果满意吗？
+        hint: 如果你同意，我可以为你制定开发计划。如果不行，你可以重新开始聊天或上传新文件。
+        title: 你对分析满意吗？
         upload_file: 上传的文件
         view_chat: 查看聊天
       upload:
-        description: 单击或拖动文件到此区域进行上传
+        description: 支持的文件类型：PDF文档至%{maxFileSize}MB
         drop: 将文件拖放到此处
-        title: 上传文件
+        title: 点击或提交文件
       welcome:
         text: 准备好绘制您的成长乔恩了吗？让我们开始吧！
         title: 您好，我是你们的开发助手

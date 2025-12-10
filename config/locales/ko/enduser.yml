@@ -3,6 +3,9 @@ ko:
   enduser:
     add_idp_plan_note: 메모 추가...
     add_idp_plan_rejection_reason: 사유 추가...
+    ai_idp_assistant_response_no: 아니요
+    ai_idp_assistant_response_upload_different_document: 다른 문서를 업로드하고 싶습니다.
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: 네, 계획을 계속 작성하세요.
     approve_idp_plan: 계획 승인
     bookings: 예약
     campaign: 캠페인

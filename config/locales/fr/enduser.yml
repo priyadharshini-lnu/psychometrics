@@ -3,6 +3,9 @@ fr:
   enduser:
     add_idp_plan_note: Ajouter une note...
     add_idp_plan_rejection_reason: Ajouter une raison...
+    ai_idp_assistant_response_no: Non
+    ai_idp_assistant_response_upload_different_document: Je veux télécharger un autre document.
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: Oui, procédez à la création du plan.
     approve_idp_plan: Approuver le plan
     bookings: Réservations
     campaign: Campagne

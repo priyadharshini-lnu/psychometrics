@@ -10,7 +10,20 @@ export const UserDocument = ({ message }) => {
   return (
     <Bubble
       placement="end"
-      content={<Attachments.FileCard key={file.uid} item={file} />}
+      content={(
+        <Attachments
+          styles={{ list: { padding: 0 } }}
+          key={file.uid}
+          items={[{
+            uid: file.uid,
+            name: file.name,
+            status: 'done',
+            size: file.size || null,
+          }]}
+          maxCount={1}
+          disabled
+        />
+)}
     />
   )
 }

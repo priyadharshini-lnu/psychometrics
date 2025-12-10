@@ -2507,8 +2507,8 @@ vi:
       reset_chat: Đặt lại trò chuyện
       reset_confirmation: Bạn có chắc chắn muốn loại bỏ cuộc trò chuyện này và bắt đầu lại không?
       retake_steps:
-        chat_hint: Hãy cho tôi biết bạn muốn cung cấp thêm thông tin nào?
-        chat_title: Bạn muốn cung cấp thêm thông tin?
+        chat_hint: Bạn có thể tải lên một tệp mới hoặc khởi động lại cuộc trò chuyện để chia sẻ thêm chi tiết và tôi sẽ cố gắng hết sức để hỗ trợ bạn.
+        chat_title: Tôi xin lỗi vì phân tích ban đầu không đáp ứng được mong đợi của bạn.
         start_chat: Bắt đầu trò chuyện
         start_chat_again: Bắt đầu lại trò chuyện
         upload_document: Tải lên tài liệu
@@ -2534,14 +2534,14 @@ vi:
         chat_title: Tóm tắt thông tin chi tiết về trò chuyện
         file_title: Thông tin chi tiết về tài liệu đã tải lên
         gap_report_title: Phân tích báo cáo khoảng cách kỹ năng
-        hint: nếu có thì chúng tôi sẽ tạo IDP của bạn, nếu không bạn có thể lấy lại câu trả lời của mình
-        title: Bạn có hài lòng với kết quả không?
+        hint: Với sự cho phép của bạn, nếu bạn đồng ý, tôi có thể tạo một kế hoạch phát triển cho bạn. Nếu không, bạn có thể bắt đầu lại cuộc trò chuyện hoặc tải tệp mới lên.
+        title: Bạn có hài lòng với phân tích không?
         upload_file: Tệp đã tải lên
         view_chat: Xem trò chuyện
       upload:
-        description: Nhấp hoặc kéo tệp vào khu vực này để tải lên
+        description: 'Loại tệp được hỗ trợ: Tài liệu PDF lên đến %{maxFileSize}MB'
         drop: Thả tệp vào đây
-        title: Tải lên tệp
+        title: Nhấp hoặc thả tệp tại đây
       welcome:
         text: Sẵn sàng lập biểu đồ tăng trưởng của bạn? Bắt đầu nào!
         title: Xin chào, tôi là trợ lý phát triển của bạn

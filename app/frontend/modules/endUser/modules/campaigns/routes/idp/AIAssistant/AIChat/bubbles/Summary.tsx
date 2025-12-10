@@ -1,6 +1,7 @@
 import {
   Card, Button,
   Flex, Space, Typography, Divider,
+  Avatar,
 } from 'antd'
 import { Bubble, Attachments } from '@ant-design/x'
 import ReactMarkdown from 'react-markdown'
@@ -17,8 +18,8 @@ export const Summary = ({
     placement="start"
     variant="outlined"
     shape="round"
-    styles={{ content: { width: '90%' } }}
-    avatar={{ icon: <BotIcon /> }}
+    styles={{ body: { width: '90%' } }}
+    avatar={<Avatar icon={<BotIcon />} />}
     content={(
       <Flex vertical justify="center" className={styles.completedBubble} gap={12}>
         <Flex justify="space-between">
@@ -47,9 +48,11 @@ export const Summary = ({
             <Card className={styles.card} styles={{ body: { width: '100%' } }}>
               <Flex vertical justify="space-between" flex={1}>
                 <Typography.Text strong>{I18n.t('idp.ai.summary.upload_file')}</Typography.Text>
-                <Attachments.FileCard
+                <Attachments
                   className={styles.attachement}
-                  item={{ uid: '123', name: data.fileName }}
+                  items={[{ uid: '123', name: data.fileName }]}
+                  maxCount={1}
+                  disabled
                 />
               </Flex>
             </Card>

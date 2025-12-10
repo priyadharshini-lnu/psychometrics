@@ -2541,8 +2541,8 @@ en:
       reset_chat: Reset Chat
       reset_confirmation: Are you sure you want to discard this chat and start new?
       retake_steps:
-        chat_hint: Let me know what information you want to provide more bellow?
-        chat_title: You want to give more information?
+        chat_hint: You can upload a new file or restart the chat to share more details, and I'll do my best to assist you.
+        chat_title: I'm sorry the initial analysis didn't meet your expectations.
         start_chat: Start Chat
         start_chat_again: Start Chat Again
         upload_document: Upload document
@@ -2568,14 +2568,14 @@ en:
         chat_title: Chat Insight Summary
         file_title: Uploaded Documents Insights
         gap_report_title: Skill Gap Report Analysis
-        hint: if yes then we will create your IDP otherwise you can retake your answers
-        title: Are you satisfied with results?
+        hint: With your permission, if you say yes, I can create a development plan for you. If not, you can restart the chat or upload a new file.
+        title: Are you satisfied with analysis?
         upload_file: Uploaded File
         view_chat: View Chat
       upload:
-        description: Click or drag files to this area to upload
+        description: 'Supported file type: PDF documents up to %{maxFileSize}MB'
         drop: Drop file here
-        title: Upload files
+        title: Click or drop file here
       welcome:
         text: Ready to chart your growth journey? Let's begin!
         title: Hello, I'm your development assistant

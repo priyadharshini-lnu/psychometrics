@@ -10,6 +10,7 @@ it:
     edit: Modifica
     edited: Nuove
     id: ID
+    idp_ai_assistant_disclaimer: L'assistente IDP AI di Lighthouse può commettere errori. Per favore, fai attenzione quando usi le risposte.
     internet_disconnected_message: Si prega di controllare la connessione a Internet.
     mte_logo_alt_text: Logo Mercer Talent Enterprise
     name: Nome

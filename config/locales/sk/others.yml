@@ -2513,8 +2513,8 @@ sk:
       reset_chat: Obnoviť chat
       reset_confirmation: Naozaj chcete tento chat zahodiť a začať odznova?
       retake_steps:
-        chat_hint: Dajte mi vedieť, aké informácie chcete poskytnúť nižšie?
-        chat_title: Chcete poskytnúť viac informácií?
+        chat_hint: Môžete nahrať nový súbor alebo reštartovať chat, aby ste zdieľali viac detailov, a ja sa budem snažiť vám pomôcť.
+        chat_title: Je mi ľúto, že počiatočná analýza nesplnila vaše očakávania.
         start_chat: Spustiť chat
         start_chat_again: Začnite znova rozprávať
         upload_document: Nahrať dokument
@@ -2540,14 +2540,14 @@ sk:
         chat_title: Súhrn štatistík chatu
         file_title: Prehľady nahraných dokumentov
         gap_report_title: Analýza správy o medzerách v zručnostiach
-        hint: ak áno, vytvoríme vaše IDP, inak môžete svoje odpovede prevziať znova
-        title: Ste spokojní s výsledkami?
+        hint: S vaším dovolením, ak poviete áno, môžem pre vás vytvoriť plán rozvoja. Ak nie, môžete chat reštartovať alebo nahrať nový súbor.
+        title: Ste spokojný s analýzou?
         upload_file: Nahraný súbor
         view_chat: Zobraziť chat
       upload:
-        description: Kliknutím alebo presunutím súborov do tejto oblasti nahrajte
+        description: 'Podporovaný typ súboru: PDF dokumenty až do %{maxFileSize}MB'
         drop: Presuňte súbor sem
-        title: Vkladať
+        title: Kliknite alebo položte súbor sem
       welcome:
         text: Ste pripravení zmapovať svoj rast? Začnime!
         title: Dobrý deň, som váš asistent rozvoja

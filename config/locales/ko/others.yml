@@ -2496,8 +2496,8 @@ ko:
       reset_chat: 채팅 재설정
       reset_confirmation: 이 채팅을 버리고 새로 시작하시겠습니까?
       retake_steps:
-        chat_hint: 어떤 정보를 더 제공하고 싶은지 알려주세요.
-        chat_title: 더 많은 정보를 제공하고 싶으신가요?
+        chat_hint: 새 파일을 업로드하거나 채팅을 재시작해 더 자세한 내용을 공유해 주시면 최선을 다해 도와드리겠습니다.
+        chat_title: 초기 분석이 기대에 미치지 못해 죄송합니다.
         start_chat: 채팅 시작
         start_chat_again: 채팅 다시 시작
         upload_document: 문서 업로드
@@ -2523,14 +2523,14 @@ ko:
         chat_title: Chat Insight 요약
         file_title: 업로드된 문서 인사이트
         gap_report_title: 기술 격차 보고서 분석
-        hint: 그렇다면 IDP를 생성하지 않으면 답변을 다시 받을 수 있습니다.
-        title: 결과에 만족하십니까?
+        hint: 허락해 주신다면, 제가 개발 계획을 세울 수 있습니다. 만약 그렇지 않다면, 채팅을 다시 시작하거나 새 파일을 업로드할 수 있습니다.
+        title: 분석에 만족하십니까?
         upload_file: 업로드된 파일
         view_chat: 채팅 보기
       upload:
-        description: 파일을 클릭하거나 이 영역으로 드래그하여 업로드합니다.
+        description: '지원 파일 형식: PDF 문서 %{maxFileSize}MB'
         drop: 여기에 파일 드롭
-        title: 파일 업로드
+        title: 여기를 클릭하거나 파일을 내려놓으세요
       welcome:
         text: 성장 조니를 차트로 작성할 준비가 되셨나요? 시작하자!
         title: 안녕하세요, 저는 개발 도우미입니다

@@ -2513,8 +2513,8 @@ hu:
       reset_chat: Csevegés visszaállítása
       reset_confirmation: Biztos benne, hogy el akarja dobni ezt a csevegést, és újat akar kezdeni?
       retake_steps:
-        chat_hint: Tudassa velem, milyen információkat szeretne megadni az alábbiakban?
-        chat_title: További információt szeretne adni?
+        chat_hint: Feltölthetsz egy új fájlt vagy újraindíthatod a chatet, hogy részletesebben megossz, és mindent megteszek, hogy segítsek.
+        chat_title: Sajnálom, hogy az első elemzés nem felelt meg az elvárásaidnak.
         start_chat: Csevegés indítása
         start_chat_again: Indítsa újra a csevegést
         upload_document: Dokumentum feltöltése
@@ -2540,14 +2540,14 @@ hu:
         chat_title: A Chat Insight összefoglalója
         file_title: Feltöltött dokumentumok betekintése
         gap_report_title: Készséghiány-jelentés elemzése
-        hint: ha igen, akkor létrehozzuk az IDP-t, különben újra felveheti a válaszokat
-        title: Elégedett az eredménnyel?
+        hint: Ha engedélyed van, ha igent mondasz, készíthetek neked fejlesztési tervet. Ha nem, újraindíthatod a csevegést vagy feltölthetsz egy új fájlt.
+        title: Elégedett vagy az elemzéssel?
         upload_file: Feltöltött fájl
         view_chat: Csevegés megtekintése
       upload:
-        description: Kattintson vagy húzza a fájlokat erre a területre a feltöltéshez
+        description: 'Támogatott fájltípus: PDF dokumentumok %{maxFileSize}MB'
         drop: Dobja ide a fájlt
-        title: Fájlok feltöltése
+        title: Kattints vagy küldd le a fájlt ide
       welcome:
         text: Készen állsz a növekedési utazásod feltérképezésére? Kezdjük!
         title: Helló, én vagyok a fejlesztési asszisztensed

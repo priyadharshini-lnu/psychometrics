@@ -2521,8 +2521,8 @@ pt:
       reset_chat: Redefinir bate-papo
       reset_confirmation: Tem certeza de que deseja descartar este bate-papo e começar de novo?
       retake_steps:
-        chat_hint: Deixe-me saber quais informações você deseja fornecer mais abaixo?
-        chat_title: Você quer dar mais informações?
+        chat_hint: Você pode enviar um novo arquivo ou reiniciar o chat para compartilhar mais detalhes, e farei o possível para ajudar.
+        chat_title: Sinto muito que a análise inicial não tenha correspondido às suas expectativas.
         start_chat: Iniciar bate-papo
         start_chat_again: Iniciar o bate-papo novamente
         upload_document: Carregar documento
@@ -2548,14 +2548,14 @@ pt:
         chat_title: Resumo do Chat Insight
         file_title: Insights de documentos carregados
         gap_report_title: Análise do Relatório de Lacunas de Habilidades
-        hint: se sim, então criaremos seu IDP, caso contrário, você pode refazer suas respostas
-        title: Você está satisfeito com os resultados?
+        hint: Com sua permissão, se você disser sim, posso criar um plano de desenvolvimento para você. Se não, você pode reiniciar o chat ou enviar um novo arquivo.
+        title: Você está satisfeito com a análise?
         upload_file: Arquivo carregado
         view_chat: Ver bate-papo
       upload:
-        description: Clique ou arraste os arquivos para esta área para fazer o upload
+        description: 'Tipo de arquivo suportado: documentos PDF até %{maxFileSize}MB'
         drop: Solte o arquivo aqui
-        title: Carregar arquivos
+        title: Clique ou deixe o arquivo aqui
       welcome:
         text: Pronto para traçar sua jornada de crescimento? Vamos começar!
         title: Olá, sou seu assistente de desenvolvimento

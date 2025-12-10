@@ -2502,8 +2502,8 @@ cs:
       reset_chat: Obnovit chat
       reset_confirmation: Opravdu chcete tento chat zahodit a začít nový?
       retake_steps:
-        chat_hint: Dejte mi vědět, jaké informace chcete poskytnout níže?
-        chat_title: Chcete poskytnout více informací?
+        chat_hint: Můžete nahrát nový soubor nebo znovu spustit chat, abyste sdíleli více detailů, a já se budu snažit vám pomoci.
+        chat_title: Je mi líto, že počáteční analýza nesplnila tvá očekávání.
         start_chat: Zahájit chat
         start_chat_again: Zahájit chat znovu
         upload_document: Nahrát dokument
@@ -2529,14 +2529,14 @@ cs:
         chat_title: Souhrn funkce Chat Insight
         file_title: Nahrané dokumenty Insights
         gap_report_title: Analýza zpráv o mezerách v dovednostech
-        hint: pokud ano, vytvoříme vašeho IDP, jinak si můžete své odpovědi vzít znovu
-        title: Jste spokojeni s výsledky?
+        hint: S vaším svolením, pokud řeknete ano, mohu pro vás vytvořit plán rozvoje. Pokud ne, můžete chat restartovat nebo nahrát nový soubor.
+        title: Jste spokojeni s analýzou?
         upload_file: Nahraný soubor
         view_chat: Zobrazit chat
       upload:
-        description: Kliknutím nebo přetažením souborů do této oblasti je nahrajte
+        description: 'Podporovaný typ souboru: PDF dokumenty až do %{maxFileSize}MB'
         drop: Sem přetáhněte soubor
-        title: Vkládat
+        title: Klikněte nebo položte soubor zde
       welcome:
         text: Jste připraveni zmapovat svou cestu růstu? Začněme!
         title: Dobrý den, jsem Váš asistent vývoje

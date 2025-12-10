@@ -55,6 +55,8 @@ class UserIdpPlan < ApplicationRecord
                      service: Settings.storage.private_storage_service,
                      content_type: %w[application/pdf]
 
+  validates :user_document, size: { less_than: 5.megabytes }, if: -> { user_document.attached? }
+
   enum :approval_status,
        {
          not_started: 0,

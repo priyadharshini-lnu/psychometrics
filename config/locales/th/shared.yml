@@ -10,6 +10,7 @@ th:
     edit: แก้ไข
     edited: ใหม่
     id: รหัส
+    idp_ai_assistant_disclaimer: ผู้ช่วย Lighthouse AI IDP สามารถทําผิดพลาดได้ โปรดใช้ความระมัดระวังขณะใช้คําตอบ
     internet_disconnected_message: กำลังพยายามเชื่อมต่อใหม่ โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ
     mte_logo_alt_text: โลโก้ Mercer Talent Enterprise
     name: ชื่อ

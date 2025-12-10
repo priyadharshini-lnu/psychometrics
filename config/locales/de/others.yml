@@ -2522,8 +2522,8 @@ de:
       reset_chat: Chat zurücksetzen
       reset_confirmation: Sind Sie sicher, dass Sie diesen Chat verwerfen und neu anfangen möchten?
       retake_steps:
-        chat_hint: Lassen Sie mich wissen, welche Informationen Sie weiter unten bereitstellen möchten.
-        chat_title: Sie möchten weitere Informationen geben?
+        chat_hint: Du kannst eine neue Datei hochladen oder den Chat neu starten, um mehr Details zu teilen, und ich werde mein Bestes tun, um dir zu helfen.
+        chat_title: Es tut mir leid, dass die anfängliche Analyse nicht Ihren Erwartungen entsprach.
         start_chat: Chat starten
         start_chat_again: Chat erneut starten
         upload_document: Dokument hochladen
@@ -2549,14 +2549,14 @@ de:
         chat_title: Chat Insight Zusammenfassung
         file_title: Einblicke in hochgeladene Dokumente
         gap_report_title: Analyse des Skill-Gap-Berichts
-        hint: Wenn ja, erstellen wir Ihren IDP, andernfalls können Sie Ihre Antworten wiederholen
-        title: Sind Sie mit den Ergebnissen zufrieden?
+        hint: Mit Ihrer Erlaubnis, wenn Sie ja sagen, kann ich einen Entwicklungsplan für Sie erstellen. Wenn nicht, kannst du den Chat neu starten oder eine neue Datei hochladen.
+        title: Sind Sie mit der Analyse zufrieden?
         upload_file: Hochgeladene Datei
         view_chat: Chat anzeigen
       upload:
-        description: Klicken oder ziehen Sie Dateien in diesen Bereich, um sie hochzuladen
+        description: 'Unterstützter Dateityp: PDF-Dokumente bis %{maxFileSize}MB'
         drop: Datei hier ablegen
-        title: Hochladen von Dateien
+        title: Hier klicken oder die Datei ablegen
       welcome:
         text: Sind Sie bereit, Ihre Wachstumsphase zu verfolgen? Fangen wir an!
         title: Hallo, ich bin dein Entwicklungsassistent
