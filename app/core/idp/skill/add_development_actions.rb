@@ -78,6 +78,7 @@ module Idp
             name: development_action_params['name'],
             description: development_action_params['description'],
             learning_style: development_action_params['learning_style'],
+            development_action_type: development_action_params['development_action_type'] || 'default',
             owner: user_idp_plan,
             source_type: development_action_params['source_type'] || 'custom'
           )
