@@ -7371,7 +7371,8 @@ CREATE TABLE public.threesixty_subjects (
     user_id bigint,
     report_approval_status integer DEFAULT 0,
     report_release_status integer DEFAULT 0,
-    evaluation_status integer DEFAULT 0
+    evaluation_status integer DEFAULT 0,
+    evaluation_status_updated_by_id bigint
 );
 
 
@@ -15351,6 +15352,13 @@ CREATE INDEX index_threesixty_subjects_on_campaign_id ON public.threesixty_subje
 
 
 --
+-- Name: index_threesixty_subjects_on_evaluation_status_updated_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_subjects_on_evaluation_status_updated_by_id ON public.threesixty_subjects USING btree (evaluation_status_updated_by_id);
+
+
+--
 -- Name: index_threesixty_subjects_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16700,6 +16708,14 @@ ALTER TABLE ONLY public.user_reports
 
 ALTER TABLE ONLY public.assessments
     ADD CONSTRAINT fk_rails_292907b1cc FOREIGN KEY (deleted_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: threesixty_subjects fk_rails_293bb22649; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_subjects
+    ADD CONSTRAINT fk_rails_293bb22649 FOREIGN KEY (evaluation_status_updated_by_id) REFERENCES public.users(id);
 
 
 --
@@ -19174,6 +19190,7 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20251201130649'),
+('20251206120622'),
 ('20251127063311'),
 ('20251125161740'),
 ('20251121123824'),

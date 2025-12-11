@@ -10,6 +10,8 @@ module Threesixty
 
     has_many :subjects_relationships, primary_key: :user_id
 
+    belongs_to :evaluation_status_updated_by, class_name: 'User', optional: true
+
     enum :report_approval_status, { waiting: 0, approved: 1, denied: 2 }, prefix: :report
     enum :report_release_status, { waiting: 0, released: 1, on_hold: 2 }, prefix: :report_status
     enum :evaluation_status, { in_progress: 0, completed: 1 }, prefix: :evaluation_status
@@ -33,13 +35,7 @@ module Threesixty
     def evaluation_marked_done_by
       return nil unless evaluation_status_completed?
 
-      audit = audits.
-              where("audited_changes ? 'evaluation_status'").
-              where("audited_changes->'evaluation_status'->>1 = ?", '1').
-              reorder(created_at: :desc).
-              first
-
-      audit&.user
+      evaluation_status_updated_by
     end
 
     # Removing report here to generate a new report on completion because
