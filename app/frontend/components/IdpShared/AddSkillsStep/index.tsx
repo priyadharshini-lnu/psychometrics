@@ -38,6 +38,7 @@ type AddSkillsStepProps = {
   next?: ()=>void
   isSkillsLoading?:boolean
   allowSkillDeletion?:boolean
+  header?: React.ReactNode
 }
 
 const { I18n } = window
@@ -52,6 +53,7 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
   prev, next,
   isSkillsLoading = false,
   allowSkillDeletion = true,
+  header,
 }) => {
   const { isMobile } = useContext(MediaQueryContext)
   const location = useLocation()
@@ -83,6 +85,7 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
           </Typography.Title>
         </Space>
         <Flex gap={8} vertical={isMobile} justify="end" align="end">
+          {header}
           {skillGapReportAvailable && (
             <Spin spinning={isSkillGapReportLoading}>
               <DownloadButton

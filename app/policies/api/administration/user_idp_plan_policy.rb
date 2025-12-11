@@ -19,6 +19,10 @@ module Api
         true
       end
 
+      def reset?
+        has_permission?(:user_idp_plans, :reset)
+      end
+
       class Scope < BasePolicy::Scope
         def resolve
           return scope if @user.superadmin?

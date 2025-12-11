@@ -65,6 +65,11 @@ export const UserIdpPlanTR = t.type({
   instructions: t.type({
     content: t.string,
   }),
+  meta: t.union([t.undefined, t.type({
+    permissions: t.type({
+      reset: t.boolean,
+    }),
+  })]),
 })
 
 

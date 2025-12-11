@@ -294,6 +294,7 @@ en:
             view: View
           userIdpPlans:
             manage: Manage
+            reset: Reset
             title: User IDP Plans
             view: View
           users:

@@ -33,4 +33,21 @@ class Api::V2::Administration::UserIdpPlanResource < Api::V2::Administration::Ba
   def instructions
     @model.idp_template&.instructions
   end
+
+  def meta_details
+    {
+      permissions: lambda {
+        GetPermissionsHash.call!(
+          Api::Administration::UserIdpPlanPolicy,
+          context[:user],
+          @model,
+          %w[reset],
+          {
+            project_id: @model.campaign.project_id,
+            campaign_id: @model.campaign_id
+          }
+        )
+      }
+    }
+  end
 end

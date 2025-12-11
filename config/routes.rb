@@ -1596,7 +1596,9 @@ only: %i[index create update]
               get :get_password, on: :member
             end
           end
-          jsonapi_resources :user_idp_plans, only: %i[create show update]
+          jsonapi_resources :user_idp_plans, only: %i[create show update] do
+            post :reset, on: :member
+          end
           jsonapi_resources :user_idp_development_actions, only: %i[show index] do
             post :bulk_update, on: :collection
             post :generate_by_ai, on: :collection

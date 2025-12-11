@@ -96,4 +96,21 @@ active: false)
       expect(idp_plan_response).to have_attribute(:creator_id).with_value(superadmin.id)
     end
   end
+
+  describe 'POST /user_idp_plans/:id/reset' do
+    it 'resets the User IDP Plan' do
+      user_idp_plan = create(:user_idp_plan, user: user, idp_template: idp_template, campaign: campaign,
+                             creator: superadmin, approval_status: 'draft', completion_status: 'in_progress')
+      create_list(:user_idp_skill, 3, user_idp_plan: user_idp_plan)
+
+      post "/api/v2/administration/user_idp_plans/#{user_idp_plan.id}/reset",
+           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(user_idp_plan.reload.user_idp_skills).to be_empty
+      expect(user_idp_plan.approval_status).to eq('not_started')
+      expect(user_idp_plan.completion_status).to eq('not_started')
+      expect(response).to have_http_status(:ok)
+      expect(response.body).to eq('"ok"')
+    end
+  end
 end

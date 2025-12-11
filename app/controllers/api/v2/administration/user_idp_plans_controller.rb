@@ -18,6 +18,16 @@ module Api
       render json: { error: e.message }, status: :unprocessable_entity
     end
 
+    def reset
+      user_idp_plan = UserIdpPlan.find(params[:id])
+      Idp::IdpPlan::Reset.call(user_idp_plan) do
+        on(:ok) { render json: :ok }
+        on(:error) do |message|
+          render json: { error: message }, status: :unprocessable_entity
+        end
+      end
+    end
+
     def campaign_id
       params.dig(:query, :campaign_id)
     end

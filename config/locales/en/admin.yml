@@ -65,6 +65,7 @@ en:
     evaluation_status_not_done: Evaluation status is not 'Done' for one or more selected subjects. Please ensure all selected users have completed evaluations or mark as done.
     fill_empty_score_msg: Fill all the final scores before saving.
     final_score_empty_msg: Final score cannot be empty.
+    idp_plan_reset_success: Plan has been reset successfully
     import_ai_artifacts: Import AI Artifacts
     import_csv_assessment_group_error: 'Row %{index}: user with email %{email} is already invited to ''%{workshopInviteName}'''
     import_csv_error: 'Row %{index}: user with email %{email} is not in this campaign'
@@ -122,6 +123,9 @@ en:
     reports: Reports
     reports_limit_exceeded: Bulk download is limited to 1000 report files. If you have selected many languages, please reduce it.
     reports_not_found: No reports found. Please generate the reports before downloading.
+    reset_idp_plan: Reset Plan
+    reset_idp_plan_confirmation: Are you sure you want to reset the plan?
+    reset_idp_plan_title: Reset Plan
     role: Role
     saml_idp_certificate_available: Available (click to copy)
     saml_idp_certificate_label: Certificate
