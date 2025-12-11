@@ -9,6 +9,8 @@ hr:
     description: Opis
     edit: Urediti
     edited: Novi
+    group_question_max_validation_error: Svaka grupa može sadržavati najviše {{max}} stavki.
+    group_question_min_validation_error: Svaka grupa mora sadržavati barem {{min}} stavki.
     id: ID
     internet_disconnected_message: Pokušavam ponovno povezivanje. Molimo, provjerite svoju internetsku vezu.
     mte_logo_alt_text: Logotip Mercer Talent Enterprise

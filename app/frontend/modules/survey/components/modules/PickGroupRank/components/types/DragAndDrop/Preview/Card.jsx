@@ -48,8 +48,6 @@ const cardSource = {
     if (dropResult && dropResult.listId !== card.listId) {
       props.removeCard(card.index)
     }
-
-    props.onEndDrug()
   },
 }
 

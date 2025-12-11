@@ -9,6 +9,8 @@ vi:
     description: Sự miêu tả
     edit: Biên tập
     edited: Mới
+    group_question_max_validation_error: Mỗi nhóm có thể chứa tối đa {{max}} (các) mục.
+    group_question_min_validation_error: Mỗi nhóm cần chứa ít nhất {{min}} (các) mục.
     id: ID
     internet_disconnected_message: Đang cố gắng kết nối lại. Vui lòng kiểm tra kết nối internet của bạn.
     mte_logo_alt_text: Logo Mercer Talent Enterprise

@@ -9,6 +9,8 @@ sl:
     description: Opis
     edit: Uredi
     edited: Novo
+    group_question_max_validation_error: Vsaka skupina lahko vsebuje največ {{max}} elementov.
+    group_question_min_validation_error: Vsaka skupina mora vsebovati vsaj {{min}} element(e).
     id: ID
     internet_disconnected_message: Ponovno vzpostavljamo povezavo. Preverite internetno povezavo.
     mte_logo_alt_text: Logotip Mercer Talent Enterprise

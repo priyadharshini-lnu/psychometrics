@@ -9,6 +9,8 @@ cs:
     description: Popis
     edit: Upravit
     edited: Nové
+    group_question_max_validation_error: Každá skupina může obsahovat nejvýše {{max}} položku.
+    group_question_min_validation_error: Každá skupina musí obsahovat alespoň {{min}} položku.
     id: ID
     internet_disconnected_message: Probíhá pokus o opětovné připojení. Zkontrolujte připojení k internetu.
     mte_logo_alt_text: Logo Mercer Talent Enterprise

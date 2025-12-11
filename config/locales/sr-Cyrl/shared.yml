@@ -9,6 +9,8 @@ sr-Cyrl:
     description: Опис
     edit: Уређивање
     edited: Уређивати
+    group_question_max_validation_error: Свака група може да садржи највише {{маx}} ставке.
+    group_question_min_validation_error: Свака група треба да садржи најмање {{мин}} ставке.
     id: ИД
     internet_disconnected_message: Покушавам поновно повезивање. Проверите интернет везу.
     mte_logo_alt_text: Мерцер Талент Ентерприсе лого

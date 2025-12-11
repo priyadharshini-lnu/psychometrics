@@ -9,6 +9,8 @@ es-ES:
     description: Descripción
     edit: Editar
     edited: Nuevo/a
+    group_question_max_validation_error: Cada grupo puede contener como máximo {{max}} elemento(s).
+    group_question_min_validation_error: Cada grupo debe contener al menos {{min}} elemento(s).
     id: ID
     internet_disconnected_message: Intentando volver a conectar. Compruebe su conexión a internet.
     mte_logo_alt_text: Logotipo de Mercer Talent Enterprise

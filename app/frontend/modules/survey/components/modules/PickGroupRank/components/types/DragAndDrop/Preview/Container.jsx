@@ -48,7 +48,9 @@ class Container extends Component {
       ['cards'],
       cards => ([...cards, cardId]),
     )
-    this.setState(updatedCards)
+    this.setState(updatedCards, () => {
+      this.updateResults()
+    })
   }
 
   removeCard = (index) => {
@@ -59,7 +61,9 @@ class Container extends Component {
       ['cards'],
       cards => [...cards.slice(0, index), ...cards.slice(index + 1)],
     )
-    this.setState(updatedCards)
+    this.setState(updatedCards, () => {
+      this.updateResults()
+    })
   }
 
   moveCard = (dragIndex, hoverIndex) => {
@@ -78,7 +82,9 @@ class Container extends Component {
         return cardsCopy
       },
     )
-    this.setState(updatedCards)
+    this.setState(updatedCards, () => {
+      this.updateResults()
+    })
   }
 
   updateResults = () => {
@@ -113,7 +119,6 @@ class Container extends Component {
               model={model}
               removeCard={this.removeCard}
               moveCard={this.moveCard}
-              onEndDrug={this.updateResults}
               I18n={I18n}
             />
           ))}
