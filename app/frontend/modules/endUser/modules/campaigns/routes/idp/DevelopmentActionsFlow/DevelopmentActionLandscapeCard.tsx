@@ -586,6 +586,18 @@ const Card = ({
               `4px solid ${developmentActionLearningStylesConfig[developmentAction.learningStyle].borderColor}`,
             } : {}}
           >
+            {
+              developmentAction.image ? (
+                <Flex className={cs('me-4', !(isTablet || isDesktop) ? 'mb-3' : '')}>
+                  <img
+                    aria-hidden="true"
+                    src={developmentAction.image}
+                    className={styles.image}
+                    alt=""
+                  />
+                </Flex>
+              ) : null
+            }
             <Space align="start">
               <Typography.Title
                 level={5}
@@ -594,8 +606,11 @@ const Card = ({
                 aria-label={I18n.t('idp.development_actions.development_action_name')}
 
               >
-                {developmentAction.name}
-
+                {developmentAction.developmentActionType === 'course' ? (
+                  <a href={developmentAction.courseUrl}>
+                    {developmentAction.name}
+                  </a>
+                ) : developmentAction.name}
               </Typography.Title>
               {developmentAction.changeStatus && (
                 <ChangeStatus status={developmentAction.changeStatus} />
