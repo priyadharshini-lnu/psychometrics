@@ -10,7 +10,7 @@ module Exports
         #   [{"value": 5}]
         # TO:
         #   [5]
-        def self.result(user_result, question, _scoring = false, _export_with_labels = false)
+        def self.result(user_result, question, **_args)
           answers = get_answers(user_result, question)
           answers = (answers || []).pluck('value')
           answers << get_duration(user_result, question)

@@ -3224,7 +3224,6 @@ cs:
               scheduling_invited: Plánování Pozváni
               scheduling_rescheduled: Plánování Přeloženo
               scheduling_scheduled: Plánování Plánované
-            name: témata
           url:
             label: Url
             name: url

@@ -3224,7 +3224,6 @@ bg:
               scheduling_invited: Покана за планиране
               scheduling_rescheduled: Планирането е пренасрочено
               scheduling_scheduled: Планиране на графика
-            name: Теми
           url:
             label: URL адрес
             name: URL адрес

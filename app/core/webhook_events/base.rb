@@ -9,6 +9,7 @@ module WebhookEvents
     attribute :ctx, type: Hash
     attribute :event_time, type: ActiveSupport::TimeWithZone
     attribute :locale, type: Hash
+    attribute :assessment_raw_response, type: Array
 
     def self.call(ctx)
       event = new(ctx: ctx)

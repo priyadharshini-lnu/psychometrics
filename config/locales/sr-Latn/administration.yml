@@ -3224,7 +3224,6 @@ sr-Latn:
               scheduling_invited: Zakazivanje pozvanih
               scheduling_rescheduled: Zakazivanje ponovno zakazano
               scheduling_scheduled: Zakazivanje zakazano
-            name: Teme
           url:
             label: URL
             name: URL

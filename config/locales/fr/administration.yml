@@ -3224,7 +3224,6 @@ fr:
               scheduling_invited: Programmation Invités
               scheduling_rescheduled: Programmation Reprogrammée
               scheduling_scheduled: Programmation Programmation
-            name: thèmes
           url:
             label: Url
             name: url

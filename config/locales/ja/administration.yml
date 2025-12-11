@@ -3224,7 +3224,6 @@ ja:
               scheduling_invited: 招待されたスケジューリング
               scheduling_rescheduled: スケジュール変更
               scheduling_scheduled: スケジューリング予定
-            name: トピックス
           url:
             label: URL
             name: url

@@ -11,7 +11,7 @@ module Exports
         #   }]
         # TO
         #   ['Like or On/Dislike/Neutral or OFF']
-        def self.result(user_result, question, _scoring = false, _export_with_labels = false)
+        def self.result(user_result, question, **_args)
           answers = get_answers(user_result, question)
           parsed_result = []
           question.props['regions'].size.times do |r|

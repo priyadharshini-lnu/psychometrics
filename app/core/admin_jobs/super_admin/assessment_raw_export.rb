@@ -3,11 +3,6 @@
 module AdminJobs
   module SuperAdmin
     class AssessmentRawExport < BaseExportAssessment
-      QUESTIONS = %w[ConstantSum GapAnalysis GraphicSlider HotSpot
-                     MatrixTable MetaInfo MultipleChoice PickGroupRank
-                     RankOrder SideBySide Slider TextEntry Timing FileUpload
-                     AudioResponse VideoResponse FactorSelect CampaignFactorFeedback].freeze
-
       def initialize(_, _stage = nil)
         super
         @scoring_export = job_record.operation == 'assessment_scoring_export'
@@ -26,7 +21,7 @@ module AdminJobs
         question_choice_header = question_name_header.clone
 
         questions.each do |question|
-          next unless QUESTIONS.include?(question.type)
+          next unless Question::QUESTIONS_WITH_EXPORTABLE_ANSWERS.include?(question.type)
 
           parser = "Exports::Assessments::Questions::#{question.type}".constantize
           headers = parser.headers(question)
@@ -43,10 +38,11 @@ module AdminJobs
         answers = []
         if user_result.answers
           questions.each do |question|
-            next unless QUESTIONS.include?(question.type)
+            next unless Question::QUESTIONS_WITH_EXPORTABLE_ANSWERS.include?(question.type)
 
             parser = "Exports::Assessments::Questions::#{question.type}".constantize
-            answers << parser.result(user_result, question, @scoring_export, job_record.data['export_with_labels'])
+            answers << parser.result(user_result, question, scoring: @scoring_export,
+                                      export_with_labels: job_record.data['export_with_labels'])
           end
         end
 

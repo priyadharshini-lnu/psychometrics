@@ -11,7 +11,7 @@ module Exports
         #   }, ...]
         # TO:
         #   [12, ...]
-        def self.result(user_result, question, scoring = false, _export_with_labels = false) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
+        def self.result(user_result, question, scoring: false, **_args) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
           answers = get_answers(user_result, question) || []
           factors_scoring = question.detect_specified_scoring.
                             each_with_object({}) { |s, sum| sum[s['index']] = s['value'] }
