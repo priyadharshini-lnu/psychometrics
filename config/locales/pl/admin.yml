@@ -31,9 +31,6 @@ pl:
     development_actions: Działania rozwojowe
     dimensions: Wymiary
     empty_csv_file: Plik CSV nie zawiera żadnych danych.
-    fill_empty_score_msg: Wypełnij wszystkie końcowe wyniki przed zapisem.
-    final_score_empty_msg: Ostateczny wynik nie może być pusty.
-    import_csv_assessment_group_error: 'Wiersz %{index}: użytkownik z e-mailem %{email} jest już zaproszony do "%{workshopInviteName}"'
     import_csv_error: 'Wiersz %{index}: użytkownik z %{email} e-mail nie występuje w tej kampanii'
     import_description: Importuj użytkowników z pliku CSV. Każdy wiersz musi zawierać adres e-mail.
     import_download_sample: Pobierz przykładowy CSV
@@ -105,9 +102,7 @@ pl:
     skills_taxonomy: Taksonomia umiejętności
     slot_name: Nazwa slotu
     stats: Statystyki
-    subject_part_of_other_invite: Osoba z adresem e-mail %{user_email} jest już zaproszona do '%{workshop_invite_name}'
     user_report_events: Zdarzenia zgłaszane przez użytkownika
     users: Użytkowników
-    validation_error: Podczas walidacji wystąpił błąd
     view_licenses: Zobacz licencje
     year: Kraj

@@ -182,6 +182,7 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
       <PageSider
         logo={siderLogo}
         logoAltText={logoAltText || projectName}
+        logoLinkUrl={updateProfileRequired ? '/profile_details' : ''}
         activeKey={activeItem}
         onMenuSelect={handleMenuSelect}
         items={menuItems}

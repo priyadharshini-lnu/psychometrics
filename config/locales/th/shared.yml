@@ -9,6 +9,8 @@ th:
     description: คำอธิบาย
     edit: แก้ไข
     edited: ใหม่
+    group_question_max_validation_error: แต่ละกลุ่มสามารถมีไอเท็มได้สูงสุด {{max}} รายการ
+    group_question_min_validation_error: แต่ละกลุ่มต้องมีอย่างน้อย {{min}} รายการ
     id: รหัส
     idp_ai_assistant_disclaimer: ผู้ช่วย Lighthouse AI IDP สามารถทําผิดพลาดได้ โปรดใช้ความระมัดระวังขณะใช้คําตอบ
     internet_disconnected_message: กำลังพยายามเชื่อมต่อใหม่ โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ

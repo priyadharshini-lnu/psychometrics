@@ -31,9 +31,6 @@ ro:
     development_actions: Acțiune de dezvoltare
     dimensions: Dimensiuni
     empty_csv_file: Fișierul CSV nu conține niciun fel de date.
-    fill_empty_score_msg: Completează toate scorurile finale înainte de a salva.
-    final_score_empty_msg: Scorul final nu poate fi gol.
-    import_csv_assessment_group_error: 'Rândul %{index}: utilizatorul cu %{email} de email este deja invitat să "%{workshopInviteName}".'
     import_csv_error: 'Rândul %{index}: utilizator cu email %{email} nu face parte din această campanie'
     import_description: Importă utilizatori dintr-un fișier CSV. Fiecare rând trebuie să conțină o adresă de email.
     import_download_sample: Descarcă exemplu CSV
@@ -105,9 +102,7 @@ ro:
     skills_taxonomy: Taxonomia abilităților
     slot_name: Numele slotului
     stats: Statistici
-    subject_part_of_other_invite: Subiectul cu email %{user_email} este deja invitat la "%{workshop_invite_name}"
     user_report_events: Evenimente de raportare a utilizatorilor
     users: Utilizatorii
-    validation_error: A apărut o eroare în timpul validării
     view_licenses: Vizualizați licențele
     year: Țara

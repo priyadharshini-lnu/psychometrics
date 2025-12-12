@@ -31,9 +31,6 @@ vi:
     development_actions: Hành động phát triển
     dimensions: Kích thước
     empty_csv_file: Tệp CSV không chứa bất kỳ dữ liệu nào.
-    fill_empty_score_msg: Điền vào tất cả các điểm cuối cùng trước khi lưu.
-    final_score_empty_msg: Điểm cuối cùng không thể trống.
-    import_csv_assessment_group_error: 'Hàng %{index}: người dùng có email %{email} đã được mời tham gia ''%{workshopInviteName}'''
     import_csv_error: 'Hàng %{index}: người dùng có %{email} email không có trong chiến dịch này'
     import_description: Nhập người dùng từ tệp CSV. Mỗi hàng phải chứa một địa chỉ email.
     import_download_sample: Tải xuống CSV mẫu
@@ -105,9 +102,7 @@ vi:
     skills_taxonomy: Phân loại kỹ năng
     slot_name: Tên vị trí
     stats: Thống kê
-    subject_part_of_other_invite: Chủ đề với email %{user_email} đã được mời vào '%{workshop_invite_name}'
     user_report_events: Sự kiện báo cáo người dùng
     users: Người dùng
-    validation_error: Đã xảy ra lỗi trong quá trình xác thực
     view_licenses: Xem giấy phép
     year: Quốc gia

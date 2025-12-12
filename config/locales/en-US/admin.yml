@@ -31,9 +31,6 @@ en-US:
     development_actions: Development Actions
     dimensions: Dimensions
     empty_csv_file: CSV file does not contain any data.
-    fill_empty_score_msg: Fill all the final scores before saving.
-    final_score_empty_msg: Final score cannot be empty.
-    import_csv_assessment_group_error: 'Row %{index}: user with email %{email} is already invited to ''%{workshopInviteName}'''
     import_csv_error: 'Row %{index}: user with email %{email} is not in this campaign'
     import_description: Import users from a CSV file. Each row must contain an email address.
     import_download_sample: Download example CSV
@@ -105,9 +102,7 @@ en-US:
     skills_taxonomy: Skills Taxonomy
     slot_name: Slot Name
     stats: Stats
-    subject_part_of_other_invite: Subject with email %{user_email} is already invited to '%{workshop_invite_name}'
     user_report_events: Report Approval logs
     users: Users
-    validation_error: An error occurred during validation
     view_licenses: View Licenses
     year: Year

@@ -49,7 +49,7 @@ spec:
               value: "$(SIDEKIQ_CONCURRENCY)"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           name: {{ .Chart.Name }}-workers
-          {{- with .Values.resources }}
+          {{- with .Values.resources.worker }}
           resources:
             {{- toYaml . | nindent 12 }}
             {{- end }}

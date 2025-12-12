@@ -33,22 +33,3 @@ export const escapeSpecialChars = str => str.replace(/\\n/g, '\\n')
   .replace(/\\t/g, '\\t')
   .replace(/\\b/g, '\\b')
   .replace(/\\f/g, '\\f')
-
-export const checkIsAllowedNumericInputKey = (char: string) => {
-  if (/[0-9]/.test(char)
-        || {
-          Backspace: true,
-          Delete: true,
-          Tab: true,
-          Escape: true,
-          Enter: true,
-          ArrowLeft: true,
-          ArrowRight: true,
-          Home: true,
-          End: true,
-          '.': true,
-        }[char]) {
-    return true
-  }
-  return false
-}

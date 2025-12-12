@@ -9,6 +9,8 @@ nl:
     description: Beschrijving
     edit: Bewerk
     edited: Nieuw
+    group_question_max_validation_error: Elke groep kan maximaal {{max}} item(s) bevatten.
+    group_question_min_validation_error: Elke groep moet minstens {{min}} items(en) bevatten.
     id: ID
     idp_ai_assistant_disclaimer: De AI-assistent van de Lighthouse IDP kan fouten maken. Wees alsjeblieft voorzichtig met het gebruik van de reacties.
     internet_disconnected_message: Probeer opnieuw verbinding te maken. Controleer uw internetverbinding.

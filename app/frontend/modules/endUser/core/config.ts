@@ -7,6 +7,7 @@ export const getprivacyPolicyVersion = (state: RootState) => _.get(state, ['conf
 export const getCustomPrivacyConsentText = (state: RootState) => _.get(state, ['config', 'customPrivacyConsentText'])
 export const getShowBookings = (state: RootState) => _.get(state, ['config', 'showBookings'])
 export const getIdpSettings = (state: RootState) => _.get(state, ['config', 'idp'])
+export const getSecuritySettings = (state: RootState) => _.get(state, ['config', 'securitySettings'])
 
 export const defaultState = {
   agileAssetsUrl: '',
@@ -30,6 +31,9 @@ export const defaultState = {
     warning_color: null,
     success_color: null,
     info_color: null,
+  },
+  securitySettings: {
+    enableRecaptcha: false,
   },
 }
 
