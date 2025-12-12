@@ -9,6 +9,8 @@ ro:
     description: Descriere
     edit: Editați
     edited: Nou
+    group_question_max_validation_error: Fiecare grup poate conține cel mult {{max}} element(e).
+    group_question_min_validation_error: Fiecare grup trebuie să conțină cel puțin {{min}} element(e).
     id: ID
     internet_disconnected_message: Încercați să vă reconectați. Vă rugăm să verificați conexiunea la internet.
     mte_logo_alt_text: Sigla Mercer Talent Enterprise

@@ -161,6 +161,9 @@ class EndUser::UsersController < ApplicationController
   def verify_recaptcha_or_redirect
     return if SkipRecaptcha.call!(request)
 
+    @current_project = GetProjectBySubdomain.call!(request.subdomain)
+    return unless @current_project&.security_setting&.enable_recaptcha
+
     unless verify_recaptcha(response: params[:recaptcha_token])
       render json: { errors: [{ detail: I18n.t('sessions.errors.recaptcha') }] }, status: 422 and return
     end

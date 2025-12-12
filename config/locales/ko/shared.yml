@@ -9,6 +9,8 @@ ko:
     description: 묘사
     edit: 편집
     edited: 새로 만들기
+    group_question_max_validation_error: 각 그룹은 최대 {{max}} 항목까지 포함할 수 있습니다.
+    group_question_min_validation_error: 각 그룹은 최소 {{min}} 항목(들)을 포함해야 합니다.
     id: ID
     idp_ai_assistant_disclaimer: 라이트하우스 AI IDP 어시스턴트는 실수를 할 수 있습니다. 답변을 사용할 때 조심해 주세요.
     internet_disconnected_message: 다시 연결하려고 합니다. 인터넷 연결을 확인하세요.

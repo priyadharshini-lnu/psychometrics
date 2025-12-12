@@ -31,9 +31,6 @@ sk:
     development_actions: Rozvojové akcie
     dimensions: Rozmery
     empty_csv_file: CSV súbor neobsahuje žiadne údaje.
-    fill_empty_score_msg: Vyplňte všetky konečné skóre pred uložením.
-    final_score_empty_msg: Konečné skóre nemôže byť prázdne.
-    import_csv_assessment_group_error: 'Riadok %{index}: používateľ s e-mailovým %{email} je už pozvaný na ''%{workshopInviteName}'''
     import_csv_error: 'Riadok %{index}: používateľ s e-mailovým %{email} nie je v tejto kampani'
     import_description: Importujte používateľov z CSV súboru. Každý riadok musí obsahovať e-mailovú adresu.
     import_download_sample: Stiahnite si príklad CSV
@@ -105,9 +102,7 @@ sk:
     skills_taxonomy: Taxonómia zručností
     slot_name: Názov slotu
     stats: Štatistiky
-    subject_part_of_other_invite: Subjekt s e-mailom %{user_email} je už pozvaný na '%{workshop_invite_name}'
     user_report_events: Udalosti v hlásení používateľa
     users: Používateľov
-    validation_error: Počas validácie došlo k chybe
     view_licenses: Zobraziť licencie
     year: Krajina

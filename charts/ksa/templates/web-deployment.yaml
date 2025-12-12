@@ -58,7 +58,7 @@ spec:
           ports:
             - containerPort: {{ int .Values.services.internlPort }}
           livenessProbe:
-            initialDelaySeconds: 40
+            initialDelaySeconds: 30
             httpGet:
               path: /
               port: {{ int .Values.services.internlPort }}
@@ -66,7 +66,7 @@ spec:
               - name: Host
                 value: "{{ .Values.env.APP_SUB_DOMAIN }}.{{ .Values.env.APP_DOMAIN }}"
           readinessProbe:
-            initialDelaySeconds: 40
+            initialDelaySeconds: 30
             httpGet:
               path: /
               port: {{ int .Values.services.internlPort }}
@@ -78,7 +78,7 @@ spec:
             preStop:
               exec:
                 command: ["sh", "-c", "sleep 10"]
-          {{- with .Values.resources }}
+          {{- with .Values.resources.web }}
           resources:
             {{- toYaml . | nindent 12 }}
             {{- end }}

@@ -21,7 +21,7 @@ module ActiveStorageAttachable
 
       begin
         return attachment.variant(variant)&.processed&.url if variant && attachment.variable?
-      rescue ActiveStorage::FileNotFoundError
+      rescue ActiveStorage::FileNotFoundError, MiniMagick::Error
         return nil
       end
 

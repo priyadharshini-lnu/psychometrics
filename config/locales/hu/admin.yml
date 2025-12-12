@@ -31,9 +31,6 @@ hu:
     development_actions: Fejlesztési tevékenységek
     dimensions: Dimenziók
     empty_csv_file: A CSV fájl nem tartalmaz adatokat.
-    fill_empty_score_msg: Töltsd ki az összes végső pontszámot mentés előtt.
-    final_score_empty_msg: A végső pontszám nem lehet üres.
-    import_csv_assessment_group_error: "%{index}. sor: az e-mail %{email} felhasználó már meg van hívva a '%{workshopInviteName}'-re"
     import_csv_error: "%{index}. sor: %{email} e-mail felhasználó nem része ebben a kampányban"
     import_description: Felhasználókat importálj CSV fájlból. Minden sornak tartalmaznia kell egy e-mail címet.
     import_download_sample: Példás CSV letöltése
@@ -105,9 +102,7 @@ hu:
     skills_taxonomy: Készségek taxonómiája
     slot_name: Nyerő neve
     stats: Statisztika
-    subject_part_of_other_invite: Az e-mailes tárgy %{user_email} már meghívott a '%{workshop_invite_name}'-re
     user_report_events: Felhasználói jelentés eseményei
     users: Felhasználók
-    validation_error: Hiba történt az ellenőrzés során
     view_licenses: Licencek megtekintése
     year: Ország

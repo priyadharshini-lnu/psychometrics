@@ -31,9 +31,6 @@ id:
     development_actions: Tindakan Pengembangan
     dimensions: Dimensi
     empty_csv_file: CSV tidak berisi data apa pun.
-    fill_empty_score_msg: Isi semua skor akhir sebelum menyimpan.
-    final_score_empty_msg: Skor akhir tidak bisa kosong.
-    import_csv_assessment_group_error: 'Baris %{index}: pengguna dengan email %{email} sudah diundang untuk ''%{workshopInviteName}'''
     import_csv_error: 'Baris %{index}: pengguna dengan email %{email} tidak ada dalam kampanye ini'
     import_description: Mengimpor pengguna dari file CSV. Setiap baris harus berisi alamat email.
     import_download_sample: Unduh contoh CSV
@@ -105,9 +102,7 @@ id:
     skills_taxonomy: Taksonomi Keterampilan
     slot_name: Nama Slot
     stats: Statistik
-    subject_part_of_other_invite: Subjek dengan email %{user_email} sudah diundang untuk '%{workshop_invite_name}'
     user_report_events: Peristiwa Laporan Pengguna
     users: Pengguna
-    validation_error: Terjadi kesalahan selama validasi
     view_licenses: Lihat Lisensi
     year: Negara

@@ -9,6 +9,8 @@ sk:
     description: Popis
     edit: Upraviť
     edited: Nové
+    group_question_max_validation_error: Každá skupina môže obsahovať najviac {{max}} položky.
+    group_question_min_validation_error: Každá skupina musí obsahovať aspoň {{min}} položiek.
     id: ID
     idp_ai_assistant_disclaimer: Asistent IDP v Lighthouse AI môže robiť chyby. Prosím, buďte opatrní pri používaní odpovedí.
     internet_disconnected_message: Pokúšam sa znovu pripojiť. Skontrolujte, prosím, svoje internetové pripojenie.

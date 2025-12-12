@@ -1,7 +1,8 @@
+- image_icon_url = resource.file_url(:icon)
 tr id=dom_id(resource)
   td.text-center
-    - if resource.image? && resource.file.attached?
-      = image_tag resource.file_url(:icon), alt: resource.name, class: 'thumb'
+    - if resource.image? && resource.file.attached? && image_icon_url
+      = image_tag image_icon_url, alt: resource.name, class: 'thumb'
     - else
       i class="icon #{resource.decorate.icon}" style="font-size: 30px;"
   td

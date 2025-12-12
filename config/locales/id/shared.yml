@@ -9,6 +9,8 @@ id:
     description: Deskripsi
     edit: Sunting
     edited: Baru
+    group_question_max_validation_error: Setiap grup dapat berisi paling banyak item {{max}}.
+    group_question_min_validation_error: Setiap grup harus berisi setidaknya {{min}} item.
     id: ID
     idp_ai_assistant_disclaimer: Asisten IDP Lighthouse AI dapat membuat kesalahan. Harap berhati-hati saat menggunakan tanggapan.
     internet_disconnected_message: Mencoba menyambung kembali, periksa koneksi internet Anda.
