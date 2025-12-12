@@ -13,6 +13,7 @@ it:
     direct_reportees: Collegati
     home: Dashboard
     idp_plan_approval_note: Nota di Approvazione
+    idp_retake_steps_continue_with_this_information: Continua con queste informazioni
     insights: Approfondimenti
     lighthouse_assistant: Assistente al faro
     max_word_limit: Deve essere al massimo %{max} parole

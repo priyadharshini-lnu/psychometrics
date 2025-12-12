@@ -55,6 +55,17 @@ ro:
               blank: ID-ul pachetului de raportare nu poate fi gol
             report_id:
               blank: Codul raportului nu poate fi gol
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: Asistentul AI cu ID '%{id}' nu se găsește la rândul %{index}
+              blank: Coloana '%{entity}' nu poate fi goală la rândul %{index}
+              duplicate_code: Codul duplicat "%{code}" la rândul %{index}
+              invalid_code_format: Format de cod invalid '%{code}' la rândul %{index}
+              max_limit_reached: Artefactele totale ale AI din campanii depășesc limita maximă de %{count}
+              missing_headers: 'Antete obligatorii lipsă: %{headers}'
+            file:
+              invalid_format: Vă rugăm să încărcați fișierul CSV
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ ro:
         import_development_actions: Acțiune de dezvoltare a importurilor
         import_dimension_from_json: Importați dimensiunea din JSON
         import_external_campaign_scoring: Importați scorul campaniei externe
+        import_external_scoring_data: Importul datelor externe de notare
         import_factor_translations: Traduceri cu factor de import
         import_factors: Factori de import
         import_interview_questions: Importați întrebări de interviu
@@ -1050,6 +1062,7 @@ ro:
         saville_assessment_name: Evaluare Saville Nume
         simulation_assessment_name: Nume evaluare simulare
         skillvue_assessment_name: Skillvue Denumire evaluare
+        yoodli_scenario_id: ID-ul scenariului Yoodli
       translations_migrated: Traducere migrată
     create: Crea
     dashboard: Tablou

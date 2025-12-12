@@ -294,6 +294,7 @@ nl:
             view: Bekijk
           userIdpPlans:
             manage: Beheren
+            reset: Terugstellen
             title: Gebruikers-IDP-plannen
             view: Bekijken
           users:

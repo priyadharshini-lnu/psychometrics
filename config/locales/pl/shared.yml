@@ -3,9 +3,14 @@ pl:
   shared:
     action: Działanie
     add: Dodaj
+    advanced: Zaawansowany
+    authentication_failed: Uwierzytelnianie się nie powiodło. Proszę, spróbuj ponownie.
+    basic: Podstawowy
+    campaign_id: Identyfikacja kampanii
     cancel: Anuluj
     change_password: Zmień hasło
     clear_filters: Wyczyść filtry
+    continue: Kontynuować
     description: Opis
     edit: Edytuj
     edited: Nowy
@@ -26,6 +31,7 @@ pl:
         selected: Wybrano 1 wiersz
         total: 'Ogółem : 1'
     terms_conditions_privacy: Oświadczenie o ochronie prywatności
+    tools: Narzędzia
     transcriptions: Transkrypcje
     tte_terms_and_condition: Warunki i prywatność
     type: Typ

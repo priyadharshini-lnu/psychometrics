@@ -294,6 +294,7 @@ zh-Hant:
             view: 檢視
           userIdpPlans:
             manage: 司
+            reset: 重排
             title: 使用者 IDP 計畫
             view: 觀
           users:

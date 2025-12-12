@@ -3,9 +3,14 @@ it:
   shared:
     action: Azioni
     add: Aggiungi
+    advanced: Avanzato
+    authentication_failed: L'autenticazione è fallita. Per favore, riprova.
+    basic: Basico
+    campaign_id: ID della campagna elettorale
     cancel: Annulla
     change_password: Modifica la password
     clear_filters: Cancella i filtri
+    continue: Continuare
     description: Descrizione
     edit: Modifica
     edited: Nuove
@@ -31,6 +36,7 @@ it:
           other: 'Totale :  {{count}}'
           zero: 'Totale : 0'
     terms_conditions_privacy: Dichiarazione sulla privacy
+    tools: Utensileria
     transcriptions: Trascrizioni
     tte_terms_and_condition: Condizioni e privacy
     type: Tipo

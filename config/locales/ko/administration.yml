@@ -294,6 +294,7 @@ ko:
             view: 보기
           userIdpPlans:
             manage: 관리하다
+            reset: 재설정
             title: 사용자 IDP 계획
             view: 보기
           users:

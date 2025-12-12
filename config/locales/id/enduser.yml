@@ -13,6 +13,7 @@ id:
     direct_reportees: Bawahan Langsung
     home: Beranda
     idp_plan_approval_note: Catatan Persetujuan
+    idp_retake_steps_continue_with_this_information: Lanjutkan dengan informasi ini
     insights: Wawasan
     lighthouse_assistant: Asisten Mercusuar
     max_word_limit: Maksimal %{max} kata

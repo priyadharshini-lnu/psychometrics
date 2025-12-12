@@ -3,9 +3,14 @@ cs:
   shared:
     action: Akce
     add: Přidat
+    advanced: Pokročilý
+    authentication_failed: Autentizace selhala. Zkuste to prosím znovu.
+    basic: Základní
+    campaign_id: Identifikace kampaně
     cancel: Zrušit
     change_password: Změna hesla
     clear_filters: Vymazat filtry
+    continue: Pokračovat
     description: Popis
     edit: Upravit
     edited: Nové
@@ -31,6 +36,7 @@ cs:
           other: 'Celkem : {{count}}'
           zero: 'Celkem : 0'
     terms_conditions_privacy: Prohlášení o ochraně soukromí
+    tools: Nářadí
     transcriptions: Přepisy
     tte_terms_and_condition: Smluvní podmínky a ochrana soukromí
     type: Typ

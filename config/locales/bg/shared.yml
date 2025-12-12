@@ -3,9 +3,14 @@ bg:
   shared:
     action: Действие
     add: Добавете
+    advanced: Напреднал
+    authentication_failed: Автентикацията не беше успешна. Моля, опитайте отново.
+    basic: Основен
+    campaign_id: Идентификация на кампанията
     cancel: Отменете
     change_password: Промяна на паролата
     clear_filters: Изчистете филтрите
+    continue: Продължавам
     description: Описание
     edit: Редактирайте
     edited: Нов
@@ -26,6 +31,7 @@ bg:
         selected: Избран е 1 ред
         total: 'Общо : 1'
     terms_conditions_privacy: Декларация за поверителност
+    tools: Инструменти
     transcriptions: Транскрипции
     tte_terms_and_condition: Условия и поверителност
     type: Вид

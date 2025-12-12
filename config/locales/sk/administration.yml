@@ -294,6 +294,7 @@ sk:
             view: Pohľad
           userIdpPlans:
             manage: Ovládať
+            reset: Vynulovanie
             title: Plány IDP používateľov
             view: Pohľad
           users:

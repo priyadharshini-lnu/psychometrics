@@ -3,9 +3,14 @@ zh-HK:
   shared:
     action: 動作
     add: 加
+    advanced: 進階
+    authentication_failed: 驗證失敗。請再試一次。
+    basic: 基本
+    campaign_id: 競選識別碼
     cancel: 銷
     change_password: 更改密碼
     clear_filters: 透明過濾器
+    continue: 續
     description: 描述
     edit: 編輯
     edited: 編輯
@@ -31,6 +36,7 @@ zh-HK:
           other: 總計：{{count}}
           zero: 總計：0
     terms_conditions_privacy: 私隱聲明
+    tools: 工具
     transcriptions: 轉錄
     tte_terms_and_condition: 條款和私隱
     type: 型

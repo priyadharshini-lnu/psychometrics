@@ -13,6 +13,7 @@ sl:
     direct_reportees: Neposredni podrejeni
     home: Nadzorna plošča
     idp_plan_approval_note: Opomba za odobritev
+    idp_retake_steps_continue_with_this_information: Nadaljujte s temi informacijami
     insights: Vpogledi
     lighthouse_assistant: Pomočnik svetilnika
     max_word_limit: Mora imeti največ %{max} besed

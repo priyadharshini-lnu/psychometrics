@@ -3,9 +3,14 @@ id:
   shared:
     action: Tindakan
     add: Menambahkan
+    advanced: Maju
+    authentication_failed: Autentikasi gagal. Silakan coba lagi.
+    basic: Dasar
+    campaign_id: ID Kampanye
     cancel: Batal
     change_password: Ubah Kata Sandi
     clear_filters: Hapus Filter
+    continue: Terus
     description: Deskripsi
     edit: Sunting
     edited: Baru
@@ -26,6 +31,7 @@ id:
         selected: 1 baris dipilih
         total: 'Jumlah : 1'
     terms_conditions_privacy: Pernyataan Privasi
+    tools: Perkakas
     transcriptions: Transkripsi
     tte_terms_and_condition: Ketentuan & Privasi
     type: Jenis

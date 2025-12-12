@@ -55,6 +55,17 @@ cs:
               blank: ID svazku hlášení nemůže být prázdné
             report_id:
               blank: ID zprávy nemůže být prázdné
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: AI asistent s ID '%{id}' se nenachází v řadě %{index}
+              blank: Sloupec '%{entity}' nesmí být prázdný v řádku %{index}
+              duplicate_code: Duplikát kódu '%{code}' v řádku %{index}
+              invalid_code_format: Neplatný formát kódu '%{code}' v řádku %{index}
+              max_limit_reached: Celkový počet AI artefaktů kampaně překračuje maximální limit %{count}
+              missing_headers: 'Chybějící povinné hlavičky: %{headers}'
+            file:
+              invalid_format: Prosím, nahrajte CSV soubor
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ cs:
         import_development_actions: Import vývojových akcí
         import_dimension_from_json: Import rozměru z JSON
         import_external_campaign_scoring: Importování externího bodování kampaní
+        import_external_scoring_data: Importovat externí skórovací data
         import_factor_translations: Překlady importních faktorů
         import_factors: Faktory dovozu
         import_interview_questions: Importovat otázky k pohovoru
@@ -1050,6 +1062,7 @@ cs:
         saville_assessment_name: Hodnocení Saville Název
         simulation_assessment_name: Hodnocení simulace Název
         skillvue_assessment_name: Název hodnocení Skillvue
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: Přeloženo
     create: Vytvořit
     dashboard: Přístrojová deska

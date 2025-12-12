@@ -294,6 +294,7 @@ es-ES:
             view: Ver
           userIdpPlans:
             manage: Gestionar
+            reset: Restablecimiento
             title: Planes IDP de usuarios
             view: Vista
           users:

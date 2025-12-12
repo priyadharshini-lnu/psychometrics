@@ -3,9 +3,14 @@ vi:
   shared:
     action: Hoạt động
     add: Thêm vào
+    advanced: Tiên tiến
+    authentication_failed: Xác thực không thành công. Vui lòng thử lại.
+    basic: Cơ bản
+    campaign_id: ID chiến dịch
     cancel: Hủy bỏ
     change_password: Thay đổi mật khẩu
     clear_filters: Xóa bộ lọc
+    continue: Tiếp tục
     description: Sự miêu tả
     edit: Biên tập
     edited: Mới
@@ -26,6 +31,7 @@ vi:
         selected: 1 hàng đã chọn
         total: 'Tổng số : 1'
     terms_conditions_privacy: Tuyên bố về quyền riêng tư
+    tools: Công cụ
     transcriptions: Phiên âm
     tte_terms_and_condition: Điều khoản &amp; Quyền riêng tư
     type: Kiểu

@@ -3,9 +3,14 @@ pt:
   shared:
     action: Ação
     add: Adicionar
+    advanced: Avançado
+    authentication_failed: A autenticação falhou. Por favor, tente novamente.
+    basic: Básico
+    campaign_id: ID de campanha
     cancel: Cancelar
     change_password: Alterar a palavra-passe
     clear_filters: Limpar filtros
+    continue: Continuar
     description: Descrição
     edit: Editar
     edited: Novo
@@ -31,6 +36,7 @@ pt:
           other: 'Total: {{count}}'
           zero: 'Total : 0'
     terms_conditions_privacy: Declaração de privacidade
+    tools: Ferramentas
     transcriptions: Transcrições
     tte_terms_and_condition: Termos e privacidade
     type: Tipo

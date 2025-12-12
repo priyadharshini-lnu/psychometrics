@@ -294,6 +294,7 @@ ar:
             view: عرض
           userIdpPlans:
             manage: أدار
+            reset: اعاده تعيين
             title: خطط IDP للمستخدمين
             view: منظر
           users:

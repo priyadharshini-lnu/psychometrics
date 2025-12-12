@@ -1,6 +1,7 @@
 ---
 hr:
   admin:
+    admin_approval_required: Izvještaj za %{user} zahtijeva odobrenje administratora prije preuzimanja
     admins: Administratori
     ai_artifacts: AI artefakti
     ai_artifacts_output_schema_key_constraint: Ključ mora započeti malim slovom i smije sadržavati samo mala slova, brojeve i podcrte
@@ -8,7 +9,17 @@ hr:
     ai_assistant_model_label: Model
     ai_assistant_model_provider: Dobavljač
     ai_assistant_model_region_label: Regija
+    ai_assistant_required: Potreban je AI Assistant
     ai_assistants: AI pomoćnici
+    ai_assistants_advanced_mode_tooltip: Koristite napredni način za predloške promptova koristeći tekući predložak s dostupnim varijablama. Za više detalja pogledajte dokumentaciju.
+    ai_assistants_campaign_id_placeholder: Unesite ID kampanje
+    ai_assistants_no_rendered_output: Nema dostupnog renderiranog izlaza
+    ai_assistants_render_button: Predložak rendera
+    ai_assistants_rendered_prompt: Renderirani upit
+    ai_assistants_template_and_campaign_required: Molimo vas da dostavite i predložak i ID kampanje
+    ai_assistants_template_render_failed: Nije uspio prikazati predložak
+    ai_assistants_test_render: Testni render
+    ai_assistants_test_render_tooltip: Testirajte svoj predložak prompta s podacima kampanje kako biste vidjeli što će biti poslano AI asistentu.
     assessments: Procjene
     assessments_reports: Procjene i izvješća
     assessor_dashboard: Nadzorna ploča procjenitelja
@@ -16,37 +27,77 @@ hr:
     audit_logs: Zapisnici revizije
     audit_reports: Revizijska izvješća
     availability: Raspoloživost
+    available_languages: Izvještaj dostupan na jezicima
     back_to_main: Glavni izbornik
+    bulk_upload_ai_artifacts: Artefakti umjetne inteligencije za masovni prijenos
+    campaign_ai_artifact_updated_successfully: Artefakti kampanjske umjetne inteligencije uspješno ažurirani
+    campaign_assessment_actions_disable_caching: Onemogući predmeširanje procjene
+    campaign_assessment_actions_enable_caching: Omogući keširanje procjene
+    campaign_assessment_column_caching_enabled: Omogućeno keširanje procjene
+    campaign_assessment_modals_disable_caching_content: Jeste li sigurni da želite onemogućiti keširanje za ovu procjenu?
+    campaign_assessment_modals_disable_caching_successfully: Keširanje je onemogućeno za ovu procjenu.
+    campaign_assessment_modals_disable_caching_title: Onemogućiti keširanje procjene?
+    campaign_assessment_modals_enable_caching_content: Jeste li sigurni da želite omogućiti keširanje za ovu procjenu?
+    campaign_assessment_modals_enable_caching_successfully: Keširanje je omogućeno za ovu procjenu.
+    campaign_assessment_modals_enable_caching_title: Omogućiti keširanje procjene?
     campaign_templates: Predlošci kampanja
     client: Najam klijenta
     client_admins: Klijenti administratori
     clients: Klijenti
+    code_required: Potrebna je koda
     communication_center: Komunikacijski centar
+    completed: Završen
+    completed_tooltip: Svi evaluatori su podnijeli evaluaciju
     country: Država
     create_client: Kreiraj klijenta
     dashboard: Nadzorna ploča
     data_reports: Izvješća o podacima
     datasheet: Podatkovna tablica
+    declined: Odbio
     delete_ok_text: Da, Izbriši
+    denied: Odbijen
     development_actions: Razvojne akcije
     dimensions: Dimenzije
+    done: Učinjeno
+    done_tooltip: Za ovog korisnika više se ne može podnijeti evaluacija jer je evaluacija označena kao %{marked_by}
     empty_csv_file: CSV datoteka ne sadrži nikakve podatke.
+    evaluation_status: Status evaluacije
+    evaluation_status_not_done: Status evaluacije nije 'Gotovo' za jedan ili više odabranih predmeta. Molimo provjerite jesu li svi odabrani korisnici završili evaluacije ili ih označili kao završeno.
+    idp_plan_reset_success: Plan je uspješno resetiran
+    import_ai_artifacts: Uvoz AI artefakata
     import_csv_error: 'Red %{index}: korisnik s email %{email} nije u ovoj kampanji'
+    import_csv_parsing_error: 'Greška u CSV parsiranju: %{message}'
     import_description: Uvezite korisnike iz CSV datoteke. Svaki redak mora sadržavati e-mail adresu.
     import_download_sample: Preuzmite primjer CSV-a
     import_error: Uvoz nije uspio. Molim te, pokušaj ponovno.
+    import_error_saving_data: 'Spremanje podataka o pogreškama za %{email}: %{message}'
     import_errors_title: Pogreške u uvozu
+    import_external_scoring_action: Uvoz vanjskog bodovanja
+    import_external_scoring_body: Pogledajte funkcionalnost Izvoz kako biste izdvojili predložak koji se može koristiti za uvoz ovdje.
+    import_external_scoring_data_description: Uvoz vanjskih podataka o ocjenjivanju za određenu procjenu i kampanju
+    import_external_scoring_data_title: Uvoz vanjskih podataka o bodovanju
+    import_external_scoring_success_msg: Uvoz je uspješno učitan
+    import_external_scoring_upload: Otpremanje
     import_file_required: Molimo odaberite CSV datoteku za učitavanje.
     import_queued_success: Posao uvoza ispitanika je uspješno zakazan. Molimo provjerite svoju obavijest za status.
     import_sample_file_label: 'Primjer datoteke:'
+    import_scenario_id_mismatch: 'Nepodudaranje ID-a scenarija za %{email}: Očekivano %{expected_id}, ali CSV sadrži različite ID-ove scenarija'
+    import_successfully_saved: Uspješno spremao vanjske rezultate za %{email} s %{goals_count} ciljevima
     import_title: Uvozni subjekti iz CSV-a
     import_upload: Otpremanje
     import_users: Uvoz korisnika
     invalid_csv_header: CSV datoteka sadrži nevažeća zaglavlja.
     libraries: Medijska biblioteka
     library_invalid_type: Nevažeća knjižnična stavka
+    manager_approval_required: Izvještaj za %{user} zahtijeva odobrenje menadžera prije preuzimanja
+    name_required: Ime je potrebno
+    no_file_selected: Nijedna datoteka nije odabrana
     no_notifications: Nema obavijesti
     norms: Norme
+    not_completed: Nije dovršeno
+    not_completed_tooltip: "%{completed} evaluatora se dodjeljuju, ali samo %{submitted} su završili evaluacije"
+    nothing_assigned: Ništa nije dodijeljeno
+    nothing_assigned_tooltip: Ovom korisniku nisu dodijeljene nikakve evaluacije
     notification_bell_icon_alt_text: Ikona zvona obavijesti
     notifications: Obavijesti
     number: Broj
@@ -59,7 +110,19 @@ hr:
     question_center: Centar za pitanja
     registration_codes: Registracijski kodovi
     report_approvals: Odobrenja izvješća
+    report_condition_not_met: Treba %{required} %{relationship} evaluaciju, ali ima samo %{actual}
+    report_conditions_not_met_detailed: Izvještaj za %{user} ne ispunjava uvjete dostupnosti. %{conditions}
+    report_denied: Prijava za %{user} je odbijena
+    report_no_evaluations: Izvještaj za %{user} nije dostupan – nisu primljene nikakve procjene.
+    report_not_generated: Izvještaj za %{user} ispunjava uvjete dostupnosti, ali još nije generiran. Molimo vas da prvo generirate izvještaj.
+    report_on_hold: Izvještaj za %{user} trenutno je na čekanju
+    report_status: Status izvještaja
     reports: Izvješća
+    reports_limit_exceeded: Masovno preuzimanje ograničeno je na 1000 datoteka izvještaja. Ako ste odabrali mnogo jezika, molimo vas da ih smanjite.
+    reports_not_found: Nema pronađenih izvještaja. Molimo generirajte izvještaje prije preuzimanja.
+    reset_idp_plan: Plan resetiranja
+    reset_idp_plan_confirmation: Jeste li sigurni da želite resetirati plan?
+    reset_idp_plan_title: Plan resetiranja
     role: Uloga
     saml_idp_certificate_available: Dostupno (kliknite za kopiranje)
     saml_idp_certificate_label: Certifikat
@@ -79,12 +142,25 @@ hr:
     saml_service_provider_entity_id_placeholder: Unesite ID subjekta
     saml_service_provider_entity_id_required: Potreban je ID subjekta
     saml_service_provider_idp_config: IdP konfiguracija
+    saml_service_provider_integration_generic: Generički
+    saml_service_provider_integration_masking_info: Email identitet kandidata bit će maskiran prije slanja Yoodliju. Maskiranje imena i prezimena kandidata mora biti omogućeno od strane
+    saml_service_provider_integration_type: Vrsta integracije
+    saml_service_provider_integration_type_placeholder: Odaberite tip integracije
+    saml_service_provider_integration_type_required: Potrebna je vrsta integracije
+    saml_service_provider_integration_yoodli: Yoodli
     saml_service_provider_manage: Akcije
+    saml_service_provider_mask_data_for: Podaci o maskama za
     saml_service_provider_mask_identity: Identitet maske
     saml_service_provider_masking_enabled: Omogući maskiranje
+    saml_service_provider_masking_help_generic: Omogućiti maskiranje identiteta korisnika u SAML odgovorima
+    saml_service_provider_masking_help_integration: Primijenit će se maskiranje pružatelja integracije
+    saml_service_provider_masking_integration: "%{integration} Driven"
+    saml_service_provider_masking_manual_disabled: Onemogućen
+    saml_service_provider_masking_manual_enabled: Omogućen
     saml_service_provider_name: Ime
     saml_service_provider_name_placeholder: Unesite naziv pružatelja usluga
     saml_service_provider_name_required: Ime je potrebno
+    saml_service_provider_privacy_policy: Stranica s politikom privatnosti
     saml_service_provider_remove_content: 'Jeste li sigurni da želite ukloniti SAML pružatelja usluga: %{name}?'
     saml_service_provider_remove_title: Uklonite SAML pružatelja usluga
     saml_service_provider_rotate_certificate_content: Jesi li siguran da želiš rotirati certifikat za %{name}? To će generirati novi certifikat i poništiti postojeći.
@@ -102,7 +178,13 @@ hr:
     skills_taxonomy: Taksonomija vještina
     slot_name: Naziv utora
     stats: Statistika
+    status_details: Detalji o statusu
+    upload_success: Uspješno učitano
     user_report_events: Događaji u izvješću korisnika
     users: Korisnici
     view_licenses: Prikaz licenci
+    waiting: Čekajući
     year: Država
+    yoodli_activity_id: Yoodli ID aktivnosti
+    yoodli_email_id: Email ID Yoodli kandidata
+    yoodli_external_assessment_id: Yoodli Assessment ID

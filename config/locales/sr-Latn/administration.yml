@@ -294,6 +294,7 @@ sr-Latn:
             view: Prikaz
           userIdpPlans:
             manage: Upravljanje
+            reset: Poništi
             title: Korisnički IDP planovi
             view: Prikaz
           users:

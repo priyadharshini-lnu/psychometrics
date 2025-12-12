@@ -294,6 +294,7 @@ vi:
             view: Cảnh
           userIdpPlans:
             manage: Điều khiển
+            reset: Reset
             title: Gói IDP người dùng
             view: Cảnh
           users:

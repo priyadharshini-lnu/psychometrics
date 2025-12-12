@@ -294,6 +294,7 @@ ro:
             view: Vedere
           userIdpPlans:
             manage: Gestiona
+            reset: Reseta
             title: Planuri IDP pentru utilizatori
             view: Vedere
           users:

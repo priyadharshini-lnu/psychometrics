@@ -3,9 +3,14 @@ ja:
   shared:
     action: アクション
     add: 追加
+    advanced: アドバンスド
+    authentication_failed: 認証に失敗しました。もう一度お試しください。
+    basic: 基本的な
+    campaign_id: キャンペーンID
     cancel: キャンセル
     change_password: パスワードの変更
     clear_filters: 絞り込みをクリア
+    continue: 続ける
     description: 形容
     edit: 編集
     edited: 新規
@@ -31,6 +36,7 @@ ja:
           other: 合計：1
           zero: 合計：0
     terms_conditions_privacy: プライバシーに関する声明
+    tools: ツール
     transcriptions: 編曲
     tte_terms_and_condition: 利用規約とプライバシー
     type: タイプ

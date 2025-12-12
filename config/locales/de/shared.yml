@@ -3,9 +3,14 @@ de:
   shared:
     action: Aktion
     add: Hinzufügen
+    advanced: Fortgeschritten
+    authentication_failed: Authentifizierung fehlgeschlagen. Bitte versuchen Sie es erneut.
+    basic: Grundlegend
+    campaign_id: Wahlkampf-ID
     cancel: Stornieren
     change_password: Passwort ändern
     clear_filters: Filter löschen
+    continue: Fortsetzen
     description: Beschreibung
     edit: Bearbeiten
     edited: Neu
@@ -31,6 +36,7 @@ de:
           other: 'Gesamt : {{count}}'
           zero: 'Gesamt : 0'
     terms_conditions_privacy: Datenschutzerklärung
+    tools: Werkzeuge
     transcriptions: Abschriften
     tte_terms_and_condition: TTE – Geschäftsbedingungen und Datenschutzerklärung
     type: Typ

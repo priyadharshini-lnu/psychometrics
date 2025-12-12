@@ -55,6 +55,17 @@ zh:
               blank: 报告捆绑包 ID 不能为空
             report_id:
               blank: 报告 ID 不能为空
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: ID为“%{id}”的AI助手在第%{index}行找不到
+              blank: 列“%{entity}”在第%{index}行不能是空的
+              duplicate_code: 第%{index}行重复代码“%{code}”
+              invalid_code_format: 第%{index}行代码格式“%{code}”无效
+              max_limit_reached: 战役AI遗迹总数超过最大限制%{count}
+              missing_headers: 缺少必填标题：%{headers}
+            file:
+              invalid_format: 请上传CSV文件
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ zh:
         import_development_actions: 导入开发行动
         import_dimension_from_json: 从 JSON 导入维度
         import_external_campaign_scoring: 导入外部营销活动评分
+        import_external_scoring_data: 导入外部评分数据
         import_factor_translations: 进口系数翻译
         import_factors: 进口因素
         import_interview_questions: 导入面试问题
@@ -1050,6 +1062,7 @@ zh:
         saville_assessment_name: 萨维尔评估名称
         simulation_assessment_name: 模拟评估名称
         skillvue_assessment_name: Skillvue 评估名称
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: 翻译已迁移
     create: 创建
     dashboard: 仪表板

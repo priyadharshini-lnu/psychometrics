@@ -294,6 +294,7 @@ hu:
             view: Nézet
           userIdpPlans:
             manage: Kezel
+            reset: Átszed
             title: Felhasználói IDP tervek
             view: Nézet
           users:

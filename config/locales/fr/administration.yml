@@ -294,6 +294,7 @@ fr:
             view: Voir
           userIdpPlans:
             manage: Gérer
+            reset: Réinitialisation
             title: Plans IDP utilisateurs
             view: Vue
           users:

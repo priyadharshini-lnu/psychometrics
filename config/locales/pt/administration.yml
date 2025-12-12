@@ -294,6 +294,7 @@ pt:
             view: Ver
           userIdpPlans:
             manage: Gerir
+            reset: Repor
             title: Planos IDP de Usuários
             view: Vista
           users:

@@ -294,6 +294,7 @@ de:
             view: Siehe
           userIdpPlans:
             manage: Verwalten
+            reset: Zurücksetzen
             title: Nutzer-IDP-Pläne
             view: Ansehen
           users:

@@ -13,6 +13,7 @@ en-US:
     direct_reportees: Direct Reportees
     home: Dashboard
     idp_plan_approval_note: Approval Note
+    idp_retake_steps_continue_with_this_information: Continue with this information
     insights: Insights
     lighthouse_assistant: Lighthouse Assistant
     max_word_limit: Must be at most %{max} words

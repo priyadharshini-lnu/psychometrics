@@ -13,6 +13,7 @@ fr:
     direct_reportees: Subordonnés
     home: Tableau de bord
     idp_plan_approval_note: Note d'approbation
+    idp_retake_steps_continue_with_this_information: Poursuivez avec ces informations
     insights: Perspectives
     lighthouse_assistant: Assistant de phare
     max_word_limit: Doit contenir au maximum %{max} mots

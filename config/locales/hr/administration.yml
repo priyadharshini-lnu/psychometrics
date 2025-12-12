@@ -294,6 +294,7 @@ hr:
             view: Pregled
           userIdpPlans:
             manage: Upravljati
+            reset: Brisanje
             title: Korisnički IDP planovi
             view: Pogled
           users:

@@ -294,6 +294,7 @@ bg:
             view: Изглед
           userIdpPlans:
             manage: Управлявам
+            reset: Проучване
             title: Планове за потребителски IDP
             view: Изглед
           users:

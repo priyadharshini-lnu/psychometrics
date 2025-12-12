@@ -3,9 +3,14 @@ sk:
   shared:
     action: Akcia
     add: Pridať
+    advanced: Pokročilý
+    authentication_failed: Autentifikácia zlyhala. Prosím, skúste to znova.
+    basic: Základný
+    campaign_id: Identifikácia kampane
     cancel: Zrušiť
     change_password: Zmeniť heslo
     clear_filters: Vymazať filtre
+    continue: Pokračovať
     description: Popis
     edit: Upraviť
     edited: Nové
@@ -26,6 +31,7 @@ sk:
         selected: Vybraný 1 riadok
         total: 'Celkom : 1'
     terms_conditions_privacy: Vyhlásenie o ochrane osobných údajov
+    tools: Náradie
     transcriptions: Prepisy
     tte_terms_and_condition: Podmienky a ochrana osobných údajov
     type: Typ

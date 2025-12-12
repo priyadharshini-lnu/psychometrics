@@ -55,6 +55,17 @@ sr-Cyrl:
               blank: ИД пакета извештаја не може бити празан
             report_id:
               blank: ИД извештаја не може бити празан
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: АИ асистент са ИД 'ИНТЕРПОЛАТИОН_ВАР_0' није пронађен у реду ИНТЕРПОЛАТИОН_ВАР_1
+              blank: Колона 'ИНТЕРПОЛАТИОН_ВАР_0' не може бити празна у реду ИНТЕРПОЛАТИОН_ВАР_1
+              duplicate_code: Дупликат кода 'ИНТЕРПОЛАТИОН_ВАР_0' у реду ИНТЕРПОЛАТИОН_ВАР_1
+              invalid_code_format: Неисправан формат кода 'ИНТЕРПОЛАТИОН_ВАР_0' у реду ИНТЕРПОЛАТИОН_ВАР_1
+              max_limit_reached: Укупни АИ артефакти кампање прелазе максималну границу од ИНТЕРПОЛАТИОН_ВАР_0
+              missing_headers: 'Недостају потребни заглавља: ИНТЕРПОЛАТИОН_ВАР_0'
+            file:
+              invalid_format: Молимо Вас да отпремите ЦСВ датотеку
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ sr-Cyrl:
         import_development_actions: Акције за развој увоза
         import_dimension_from_json: Увоз Димензија из ЈСОН
         import_external_campaign_scoring: Увоз екстерне кампање бодовања
+        import_external_scoring_data: Увоз екстерних података о бодовању
         import_factor_translations: Преводи фактора увоза
         import_factors: Фактори увоза
         import_interview_questions: Увоз питања за интервју
@@ -1051,6 +1063,7 @@ sr-Cyrl:
         saville_assessment_name: Савилле процена Име
         simulation_assessment_name: Име процене симулације
         skillvue_assessment_name: Име процене Скиллвуе
+        yoodli_scenario_id: Yоодли Сценарио ИД
       translations_migrated: Превод мигриран
     create: Креирате
     dashboard: Контролну таблу

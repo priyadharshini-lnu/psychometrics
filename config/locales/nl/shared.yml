@@ -3,9 +3,14 @@ nl:
   shared:
     action: Actie
     add: Voeg  toe
+    advanced: Geavanceerd
+    authentication_failed: Authenticatie mislukt. Probeer het alsjeblieft opnieuw.
+    basic: Basisch
+    campaign_id: Campagne-ID
     cancel: Annuleren
     change_password: Wachtwoord wijzigen
     clear_filters: Filters wissen
+    continue: Voortzetten
     description: Beschrijving
     edit: Bewerk
     edited: Nieuw
@@ -31,6 +36,7 @@ nl:
           other: 'Totaal : {{count}}'
           zero: 'Totaal : 0'
     terms_conditions_privacy: Privacyverklaring
+    tools: Gereedschap
     transcriptions: Transcripties
     tte_terms_and_condition: Voorwaarden en privacy
     type: Type

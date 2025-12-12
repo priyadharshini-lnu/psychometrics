@@ -1,6 +1,7 @@
 ---
 bg:
   admin:
+    admin_approval_required: Докладът за %{user} изисква одобрение от администратора преди изтегляне
     admins: Администратори
     ai_artifacts: Артефакти с изкуствен интелект
     ai_artifacts_output_schema_key_constraint: Ключът трябва да започва с малка буква и може да съдържа само малки букви, цифри и подчертавания
@@ -8,7 +9,17 @@ bg:
     ai_assistant_model_label: Модел
     ai_assistant_model_provider: Доставчик
     ai_assistant_model_region_label: Регион
+    ai_assistant_required: Изисква се AI асистент
     ai_assistants: AI асистенти
+    ai_assistants_advanced_mode_tooltip: Използвайте разширен режим за шаблониране на prompt с течен шаблон с налични променливи. Вижте документацията за повече подробности.
+    ai_assistants_campaign_id_placeholder: Въведете ID на кампанията
+    ai_assistants_no_rendered_output: Няма наличен рендериран изход
+    ai_assistants_render_button: Шаблон за рендериране
+    ai_assistants_rendered_prompt: Рендерирано подсказка
+    ai_assistants_template_and_campaign_required: Моля, предоставите както шаблон, така и идентификационен номер на кампанията
+    ai_assistants_template_render_failed: Не успях да рендерирам шаблона
+    ai_assistants_test_render: Тестов рендер
+    ai_assistants_test_render_tooltip: Тествайте шаблона за подсказки с данни от кампанията, за да проверите какво ще бъде изпратено на AI асистента.
     assessments: Оценки
     assessments_reports: Оценки и отчети
     assessor_dashboard: Табло за управление на оценителя
@@ -16,37 +27,77 @@ bg:
     audit_logs: Регистрационни файлове за одит
     audit_reports: Одиторски доклади
     availability: Наличност
+    available_languages: Докладът е наличен на езици
     back_to_main: Главно меню
+    bulk_upload_ai_artifacts: Масово качване на AI артефакти
+    campaign_ai_artifact_updated_successfully: AI артефакти в кампанията са успешно обновени
+    campaign_assessment_actions_disable_caching: Кеширане за изключване на оценката
+    campaign_assessment_actions_enable_caching: Enable Assessment Caching
+    campaign_assessment_column_caching_enabled: Възможно е кеширане на оценка
+    campaign_assessment_modals_disable_caching_content: Сигурен ли си, че искаш да изключиш кеширането за тази оценка?
+    campaign_assessment_modals_disable_caching_successfully: Кеширането е изключено за тази оценка.
+    campaign_assessment_modals_disable_caching_title: Да деактивирам кеширането на оценката?
+    campaign_assessment_modals_enable_caching_content: Сигурни ли сте, че искате да включите кеширане за тази оценка?
+    campaign_assessment_modals_enable_caching_successfully: Кеширането е активирано за тази оценка.
+    campaign_assessment_modals_enable_caching_title: Да активирам кеширането на оценката?
     campaign_templates: Шаблони за кампании
     client: Наемане на клиенти
     client_admins: Администратори на клиенти
     clients: Наеми на клиенти
+    code_required: Изисква се код
     communication_center: Комуникационен център
+    completed: Завършен
+    completed_tooltip: Всички оценители са подали оценката
     country: Държава
     create_client: Създайте клиент
     dashboard: Таблото
     data_reports: Отчети за данни
     datasheet: Лист с данни
+    declined: Намалял
     delete_ok_text: Да, изтрий
+    denied: Отказан
     development_actions: Действия за развитие
     dimensions: Размери
+    done: Направи
+    done_tooltip: Не може да се подава повече оценка за този потребител, тъй като оценката му се маркира като извършена от %{marked_by}
     empty_csv_file: CSV файлът не съдържа никакви данни.
+    evaluation_status: Статус на оценката
+    evaluation_status_not_done: Статусът на оценяване не е "Завършен" за един или повече избрани предмети. Моля, уверете се, че всички избрани потребители са завършили оценките или са оценили като изпълнени.
+    idp_plan_reset_success: Планът беше успешно рестартиран
+    import_ai_artifacts: Импортиране на AI артефакти
     import_csv_error: 'Ред %{index}: потребител с имейл %{email} не участва в тази кампания'
+    import_csv_parsing_error: 'Грешка при анализ на CSV: %{message}'
     import_description: Импортирайте потребители от CSV файл. Всеки ред трябва да съдържа имейл адрес.
     import_download_sample: Изтеглете пример за CSV
     import_error: Импортът не успя. Моля, опитайте отново.
+    import_error_saving_data: 'Данни за запазване на грешки за %{email}: %{message}'
     import_errors_title: Грешки при внос
+    import_external_scoring_action: Внос на външно оценяване
+    import_external_scoring_body: Вижте функцията Експорт, за да извлечете шаблон, който може да се използва за импортиране тук.
+    import_external_scoring_data_description: Импортиране на външни данни за оценяване за посочената оценка и кампания
+    import_external_scoring_data_title: Импортиране на външни данни за оценяване
+    import_external_scoring_success_msg: Импортът беше качен успешно
+    import_external_scoring_upload: Качвам
     import_file_required: Моля, изберете CSV файл за качване.
     import_queued_success: Работата по внос на субекти беше насрочена успешно. Моля, проверете известието си за статус.
     import_sample_file_label: 'Примерен файл:'
+    import_scenario_id_mismatch: 'Несъответствие на идентификаторите на сценария за %{email}: Очаквани %{expected_id}, но CSV съдържа различни идентификатори на сценарии'
+    import_successfully_saved: Успешно запазих външни резултати за %{email} с %{goals_count} цели
     import_title: Вносни теми от CSV
     import_upload: Качвам
     import_users: Импортиране на потребители
     invalid_csv_header: CSV файлът съдържа невалидни заглавия.
     libraries: Медийна библиотека
     library_invalid_type: Невалиден библиотечен елемент
+    manager_approval_required: Докладът за %{user} изисква одобрение от мениджъра преди изтегляне
+    name_required: Задължително е име
+    no_file_selected: Няма избран файл
     no_notifications: Няма известия
     norms: Норми
+    not_completed: Не е завършено
+    not_completed_tooltip: "%{completed} оценители са назначени, но само %{submitted} са завършени оценките"
+    nothing_assigned: Нищо не е назначено
+    nothing_assigned_tooltip: Не са възложени оценки на този потребител
     notification_bell_icon_alt_text: Икона на звънец за известия
     notifications: Уведомления
     number: Номер
@@ -59,7 +110,19 @@ bg:
     question_center: Център за въпроси
     registration_codes: Регистрационни кодове
     report_approvals: Докладване на одобрения
+    report_condition_not_met: Нуждае се %{required} %{relationship} оценка(и), но има само %{actual}
+    report_conditions_not_met_detailed: Докладът за %{user} не отговаря на условията за наличност. %{conditions}
+    report_denied: Докладът за %{user} е отхвърлен
+    report_no_evaluations: Докладът за %{user} не е наличен – не са получени оценки.
+    report_not_generated: Докладът за %{user} отговаря на условията за наличност, но все още не е генериран. Моля, генерирайте доклада първо.
+    report_on_hold: Докладът за %{user} в момента е на пауза
+    report_status: Статус на доклада
     reports: Доклади
+    reports_limit_exceeded: Масовото изтегляне е ограничено до 1000 отчетни файла. Ако сте избрали много езици, моля, намалете ги.
+    reports_not_found: Не са намерени доклади. Моля, генерирайте докладите преди изтегляне.
+    reset_idp_plan: План за нулиране
+    reset_idp_plan_confirmation: Сигурен ли си, че искаш да нулираш плана?
+    reset_idp_plan_title: План за нулиране
     role: Роля
     saml_idp_certificate_available: Наличен (кликнете за копиране)
     saml_idp_certificate_label: Сертификат
@@ -79,12 +142,25 @@ bg:
     saml_service_provider_entity_id_placeholder: Въведете идентификационния номер на субекта
     saml_service_provider_entity_id_required: Изисква се идентификация на дружеството
     saml_service_provider_idp_config: IdP конфигурация
+    saml_service_provider_integration_generic: Родов
+    saml_service_provider_integration_masking_info: Имейл адресът на кандидатите ще бъде маскиран преди да бъде изпратен на Yoodli. Маскирането на името и фамилията на кандидатите трябва да бъде активирано от
+    saml_service_provider_integration_type: Тип интеграция
+    saml_service_provider_integration_type_placeholder: Изберете тип интеграция
+    saml_service_provider_integration_type_required: Изисква се тип интеграция
+    saml_service_provider_integration_yoodli: Юдли
     saml_service_provider_manage: Действия
+    saml_service_provider_mask_data_for: Данни за маски за
     saml_service_provider_mask_identity: Идентичност на маската
     saml_service_provider_masking_enabled: Активирай маскиране
+    saml_service_provider_masking_help_generic: Активиране на маскиране на потребителски идентичности в SAML отговори
+    saml_service_provider_masking_help_integration: Ще бъде приложено маскиране на доставчика на интеграция
+    saml_service_provider_masking_integration: "%{integration} Driven"
+    saml_service_provider_masking_manual_disabled: Инвалид
+    saml_service_provider_masking_manual_enabled: Разрешено
     saml_service_provider_name: Име
     saml_service_provider_name_placeholder: Въведете името на доставчика на услуги
     saml_service_provider_name_required: Задължително е име
+    saml_service_provider_privacy_policy: Страница с политика за поверителност
     saml_service_provider_remove_content: 'Сигурни ли сте, че искате да премахнете SAML Service Provider: %{name}?'
     saml_service_provider_remove_title: Премахване на SAML доставчика на услуги
     saml_service_provider_rotate_certificate_content: Сигурен ли си, че искаш да въртиш сертификата за %{name}? Това ще генерира нов сертификат и ще анулира текущия.
@@ -102,7 +178,13 @@ bg:
     skills_taxonomy: Таксономия на уменията
     slot_name: Име на слот
     stats: Статистика
+    status_details: Детайли за статуса
+    upload_success: Качено успешно
     user_report_events: Събития с потребителски отчет
     users: Потребители
     view_licenses: Преглед на лицензи
+    waiting: Чакат
     year: Държава
+    yoodli_activity_id: Yoodli ID на активността
+    yoodli_email_id: Имейл ID на кандидата Yoodli
+    yoodli_external_assessment_id: Yoodli Assessment ID

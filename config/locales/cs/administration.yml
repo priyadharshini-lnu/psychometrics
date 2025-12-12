@@ -294,6 +294,7 @@ cs:
             view: Zobrazit
           userIdpPlans:
             manage: Spravovat
+            reset: Resetovat
             title: Plány pro IDP uživatelů
             view: Pohled
           users:

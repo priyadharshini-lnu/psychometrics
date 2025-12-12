@@ -13,6 +13,7 @@ nl:
     direct_reportees: Directe rapporten
     home: Dashboard
     idp_plan_approval_note: Goedkeuringsnotitie
+    idp_retake_steps_continue_with_this_information: Ga verder met deze informatie
     insights: Inzichten
     lighthouse_assistant: Vuurtorenassistent
     max_word_limit: Mag maximaal %{max} woorden bevatten

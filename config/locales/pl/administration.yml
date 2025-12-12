@@ -294,6 +294,7 @@ pl:
             view: Widok
           userIdpPlans:
             manage: Zarządzać
+            reset: Resetować
             title: Plany IDP dla użytkowników
             view: Widok
           users:

@@ -3,9 +3,14 @@ ko:
   shared:
     action: 액션
     add: 추가
+    advanced: 고급
+    authentication_failed: 인증에 실패했습니다. 다시 시도해 주세요.
+    basic: 기초의
+    campaign_id: 캠페인 ID
     cancel: 취소
     change_password: 비밀번호 변경
     clear_filters: 필터 지우기
+    continue: 계속하다
     description: 묘사
     edit: 편집
     edited: 새로 만들기
@@ -31,6 +36,7 @@ ko:
           other: '합계 : {{count}}'
           zero: '합계 : 0'
     terms_conditions_privacy: 개인정보 처리방침
+    tools: 도구
     transcriptions: 사본
     tte_terms_and_condition: 약관 및 개인정보 보호
     type: 유형

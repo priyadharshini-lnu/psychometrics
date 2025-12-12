@@ -13,6 +13,7 @@ de:
     direct_reportees: Direkte Berichte
     home: Dashboard
     idp_plan_approval_note: Genehmigungsnotiz
+    idp_retake_steps_continue_with_this_information: Fahren Sie mit diesen Informationen fort
     insights: Einblicke
     lighthouse_assistant: Leuchtturmassistent
     max_word_limit: Darf höchstens %{max} Wörter haben

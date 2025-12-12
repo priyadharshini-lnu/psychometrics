@@ -3,9 +3,14 @@ en-US:
   shared:
     action: Action
     add: Add
+    advanced: Advanced
+    authentication_failed: Authentication failed. Please try again.
+    basic: Basic
+    campaign_id: Campaign ID
     cancel: Cancel
     change_password: Change Password
     clear_filters: Clear Filters
+    continue: Continue
     description: Description
     edit: Edit
     edited: New
@@ -26,6 +31,7 @@ en-US:
         selected: 1 row selected
         total: 'Total : 1'
     terms_conditions_privacy: Privacy Statement
+    tools: Tools
     transcriptions: Transcriptions
     tte_terms_and_condition: Terms & Privacy
     type: Type

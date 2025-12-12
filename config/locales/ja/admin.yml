@@ -1,6 +1,7 @@
 ---
 ja:
   admin:
+    admin_approval_required: "%{user}のレポートはダウンロード前に管理者の承認が必要です"
     admins: 管理者
     ai_artifacts: AIアーティファクト
     ai_artifacts_output_schema_key_constraint: キーは小文字で始まらず、小文字、数字、アンダースコアのみを含めます
@@ -8,7 +9,17 @@ ja:
     ai_assistant_model_label: モデル
     ai_assistant_model_provider: 供給者
     ai_assistant_model_region_label: 地域
+    ai_assistant_required: AIアシスタントが必要です
     ai_assistants: AIアシスタント
+    ai_assistants_advanced_mode_tooltip: リキッドテンプレートと利用可能な変数を使ってプロンプトテンプレートを作成するには、アドバンスドモードを使いましょう。詳細はドキュメントを参照してください。
+    ai_assistants_campaign_id_placeholder: キャンペーンIDの登場です
+    ai_assistants_no_rendered_output: レンダリング出力は利用できません
+    ai_assistants_render_button: レンダーテンプレート
+    ai_assistants_rendered_prompt: レンダリングプロンプト
+    ai_assistants_template_and_campaign_required: テンプレートとキャンペーンIDの両方をご提供ください
+    ai_assistants_template_render_failed: テンプレートのレンダリングに失敗しました
+    ai_assistants_test_render: テストレンダリング
+    ai_assistants_test_render_tooltip: プロンプトテンプレートをキャンペーンデータでテストし、AIアシスタントに送られる内容を確認しましょう。
     assessments: アセスメント
     assessments_reports: アセスメント＆レポート
     assessor_dashboard: 査定者ダッシュボード
@@ -16,37 +27,77 @@ ja:
     audit_logs: 監査ログ
     audit_reports: 監査報告書
     availability: 空室状況
+    available_languages: 報告書は言語で提供可能
     back_to_main: メインメニュー
+    bulk_upload_ai_artifacts: 大量アップロードAIアーティファクト
+    campaign_ai_artifact_updated_successfully: キャンペーンAIアーティファクトが正常に更新されました
+    campaign_assessment_actions_disable_caching: 評価キャッシュを無効にする
+    campaign_assessment_actions_enable_caching: 評価キャッシュの有効化
+    campaign_assessment_column_caching_enabled: 評価キャッシュ有効
+    campaign_assessment_modals_disable_caching_content: この評価でキャッシュを無効にするつもりですか?
+    campaign_assessment_modals_disable_caching_successfully: この評価ではキャッシュは無効化されています。
+    campaign_assessment_modals_disable_caching_title: 評価キャッシュを無効にする?
+    campaign_assessment_modals_enable_caching_content: この評価でキャッシュを有効にしたいと本当に思っていますか?
+    campaign_assessment_modals_enable_caching_successfully: この評価のためにキャッシュが有効化されています。
+    campaign_assessment_modals_enable_caching_title: 評価キャッシュを有効にする?
     campaign_templates: キャンペーンテンプレート
     client: クライアント・テナンシー
     client_admins: クライアント管理者
     clients: 顧客契約
+    code_required: コードが必要です
     communication_center: コミュニケーション・センター
+    completed: 完了
+    completed_tooltip: すべての評価者が評価を提出しました
     country: 国名
     create_client: クライアント作成
     dashboard: ダッシュボード
     data_reports: データレポート
     datasheet: データシート
+    declined: 減少
     delete_ok_text: はい、削除してください
+    denied: 拒否
     development_actions: 開発アクション
     dimensions: 寸法
+    done: 完成です
+    done_tooltip: このユーザーの評価は%{marked_by}によって行われたとマークされているため、これ以上の評価は提出できません
     empty_csv_file: CSVファイルにはデータが含まれていません。
+    evaluation_status: 評価状況
+    evaluation_status_not_done: 選ばれた1つ以上の被験者の評価状況は「完了」ではありません。選ばれたすべてのユーザーが評価を完了しているか、完了したとマークしてください。
+    idp_plan_reset_success: 計画は正常にリセットされました
+    import_ai_artifacts: AIアーティファクトのインポート
     import_csv_error: "%{index}行:メールアドレス%{email}のユーザーはこのキャンペーンに参加していません"
+    import_csv_parsing_error: CSV解析エラー:%{message}
     import_description: CSVファイルからユーザーをインポートします。各行にはメールアドレスが必要です。
     import_download_sample: CSV サンプルをダウンロードしてください
     import_error: インポートは失敗しました。もう一度お試しください。
+    import_error_saving_data: "%{email}のエラーデータ保存:%{message}"
     import_errors_title: インポートエラー
+    import_external_scoring_action: インポート外部スコアリング
+    import_external_scoring_body: エクスポート機能を参照して、ここでインポートできるテンプレートを抽出してください。
+    import_external_scoring_data_description: 指定された評価およびキャンペーンのための外部スコアリングデータのインポート
+    import_external_scoring_data_title: 外部スコアリングデータのインポート
+    import_external_scoring_success_msg: インポートは正常にアップロードされました
+    import_external_scoring_upload: アップロード
     import_file_required: アップロードするCSVファイルを選択してください。
     import_queued_success: 被験者のインポートジョブは無事にスケジュールされました。状況については通知をご確認ください。
     import_sample_file_label: 'サンプルファイル:'
+    import_scenario_id_mismatch: "%{email}のシナリオID不一致:期待された%{expected_id}ですが、CSVには異なるシナリオIDが含まれています"
+    import_successfully_saved: 目標%{goals_count} %{email}のために外部結果を正常に保存しました
     import_title: CSVから主題をインポートする
     import_upload: アップロード
     import_users: インポートユーザー
     invalid_csv_header: CSVファイルには無効なヘッダーが含まれています。
     libraries: メディアライブラリー
     library_invalid_type: 無効なライブラリ項目
+    manager_approval_required: "%{user}レポートはダウンロード前にマネージャーの承認が必要です"
+    name_required: 名前が必要です
+    no_file_selected: ファイルが選択されていない
     no_notifications: 通知はありません
     norms: 規範
+    not_completed: 未完成
+    not_completed_tooltip: "%{completed}評価者が割り当てられますが、評価を完了したのは%{submitted}だけです"
+    nothing_assigned: 割り当てなし
+    nothing_assigned_tooltip: このユーザーには評価が割り当てられていません
     notification_bell_icon_alt_text: 通知ベルのアイコン
     notifications: お知らせ
     number: 番号
@@ -59,7 +110,19 @@ ja:
     question_center: 質問センター
     registration_codes: 登録コード
     report_approvals: レポートの承認
+    report_condition_not_met: 評価%{required} %{relationship}必要ですが、持っているのは%{actual}
+    report_conditions_not_met_detailed: "%{user}の報告は利用可能条件を満たしていません。%{conditions}"
+    report_denied: "%{user}の報告は却下されました"
+    report_no_evaluations: "%{user}の報告書は入手できず、評価は受け取っていません。"
+    report_not_generated: "%{user}のレポートは可用性条件を満たしていますが、まだ生成されていません。まずレポートを作成してください。"
+    report_on_hold: "%{user}のレポートは現在保留中です"
+    report_status: 報告状況
     reports: レポート
+    reports_limit_exceeded: 一括ダウンロードはレポートファイル1000件に制限されています。多くの言語を選択している場合は、その範囲を減らしてください。
+    reports_not_found: 報告は見つかりませんでした。ダウンロード前にレポートを作成してください。
+    reset_idp_plan: リセットプラン
+    reset_idp_plan_confirmation: 本当に計画をリセットしたいの?
+    reset_idp_plan_title: リセットプラン
     role: 役割
     saml_idp_certificate_available: 利用可能(クリックしてコピー)
     saml_idp_certificate_label: 証書
@@ -79,12 +142,25 @@ ja:
     saml_service_provider_entity_id_placeholder: エンティティIDを入力してください
     saml_service_provider_entity_id_required: エンティティIDは必須です
     saml_service_provider_idp_config: IdP構成
+    saml_service_provider_integration_generic: ジェネリック
+    saml_service_provider_integration_masking_info: 候補者のメールアドレスは、Yoodliに送信する前にマスクされています。候補者の名前と姓のマスキングは、
+    saml_service_provider_integration_type: 統合タイプ
+    saml_service_provider_integration_type_placeholder: 統合タイプを選択します
+    saml_service_provider_integration_type_required: 統合タイプが必要です
+    saml_service_provider_integration_yoodli: ユードリ
     saml_service_provider_manage: アクション
+    saml_service_provider_mask_data_for: マスクデータ
     saml_service_provider_mask_identity: マスク・アイデンティティ
     saml_service_provider_masking_enabled: マスキングを有効にする
+    saml_service_provider_masking_help_generic: SAML応答でユーザーIDをマスクすることを可能にする
+    saml_service_provider_masking_help_integration: 統合プロバイダーのマスキングが適用されます
+    saml_service_provider_masking_integration: "%{integration} 駆動"
+    saml_service_provider_masking_manual_disabled: 無効
+    saml_service_provider_masking_manual_enabled: 有効
     saml_service_provider_name: 名前
     saml_service_provider_name_placeholder: サービスプロバイダー名を入力してください
     saml_service_provider_name_required: 名前が必要です
+    saml_service_provider_privacy_policy: プライバシーポリシーページ
     saml_service_provider_remove_content: SAMLサービスプロバイダー:%{name}を削除したいですか?
     saml_service_provider_remove_title: SAMLサービスプロバイダーを削除してください
     saml_service_provider_rotate_certificate_content: 本当に%{name}の証明書をローテーションで受けたいですか?これにより新しい証明書が生成され、現在の証明書は無効になります。
@@ -102,7 +178,13 @@ ja:
     skills_taxonomy: スキル分類法
     slot_name: スロット名
     stats: 統計
+    status_details: 状況詳細
+    upload_success: アップロード成功
     user_report_events: ユーザーレポートイベント
     users: ユーザー
     view_licenses: ライセンスを見る
+    waiting: 待つこと
     year: 国名
+    yoodli_activity_id: YoodliアクティビティID
+    yoodli_email_id: ユードリ候補者メールアドレス
+    yoodli_external_assessment_id: Yoodli評価ID

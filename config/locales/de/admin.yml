@@ -1,6 +1,7 @@
 ---
 de:
   admin:
+    admin_approval_required: Melden für %{user} vor dem Download eine Genehmigung des Administrators benötigt
     admins: Admins
     ai_artifacts: KI-Artefakte
     ai_artifacts_output_schema_key_constraint: Die Tonart muss mit einem Kleinbuchstaben beginnen und darf nur Kleinbuchstaben, Zahlen und Unterstriche enthalten
@@ -8,7 +9,17 @@ de:
     ai_assistant_model_label: Modell
     ai_assistant_model_provider: Anbieter
     ai_assistant_model_region_label: Region
+    ai_assistant_required: KI-Assistent ist erforderlich
     ai_assistants: AI-Assistenten
+    ai_assistants_advanced_mode_tooltip: Nutze den erweiterten Modus für Prompt-Template-Erstellung mit flüssiger Vorlage und verfügbaren Variablen. Weitere Details finden Sie in der Dokumentation.
+    ai_assistants_campaign_id_placeholder: Hier kommt die Kampagnen-ID ein
+    ai_assistants_no_rendered_output: Keine gerenderte Ausgabe verfügbar
+    ai_assistants_render_button: Render-Vorlage
+    ai_assistants_rendered_prompt: Gerenderter Prompt
+    ai_assistants_template_and_campaign_required: Bitte gib sowohl Vorlage als auch Kampagnen-ID an
+    ai_assistants_template_render_failed: Vorlage wurde nicht gerendert
+    ai_assistants_test_render: Testrendering
+    ai_assistants_test_render_tooltip: Testen Sie Ihre Prompt-Vorlage mit Kampagnendaten, um zu sehen, was an den KI-Assistenten gesendet wird.
     assessments: Beurteilungen
     assessments_reports: Beurteilungen und Berichte
     assessor_dashboard: Assessor Dashboard
@@ -16,37 +27,77 @@ de:
     audit_logs: Audit-Protokolle
     audit_reports: Audit-Berichte
     availability: Verfügbarkeit
+    available_languages: Bericht in Sprachen verfügbar
     back_to_main: Hauptmenü
+    bulk_upload_ai_artifacts: Bulk-Upload KI-Artefakte
+    campaign_ai_artifact_updated_successfully: Kampagnen-KI-Artefakte wurden erfolgreich aktualisiert
+    campaign_assessment_actions_disable_caching: Assessment-Caching deaktivieren
+    campaign_assessment_actions_enable_caching: Ermöglichen Sie das Bewertungs-Caching
+    campaign_assessment_column_caching_enabled: Assessment Caching aktiviert
+    campaign_assessment_modals_disable_caching_content: Bist du sicher, dass du das Caching für diese Bewertung deaktivieren möchtest?
+    campaign_assessment_modals_disable_caching_successfully: Caching wurde für diese Bewertung deaktiviert.
+    campaign_assessment_modals_disable_caching_title: Assessment Caching deaktivieren?
+    campaign_assessment_modals_enable_caching_content: Bist du sicher, dass du Caching für diese Bewertung aktivieren möchtest?
+    campaign_assessment_modals_enable_caching_successfully: Für diese Bewertung wurde Caching aktiviert.
+    campaign_assessment_modals_enable_caching_title: Assessment Caching ermöglichen?
     campaign_templates: Vorlagen für Kampagnen
     client: Client Mietverhältnis
     client_admins: Client-Admins
     clients: Kunden-Mietverhältnisse
+    code_required: Code ist erforderlich
     communication_center: Kommunikationszentrum
+    completed: Abgeschlossen
+    completed_tooltip: Alle Gutachter haben die Bewertung eingereicht
     country: Land
     create_client: Client erstellen
     dashboard: Dashboard
     data_reports: Datenberichte
     datasheet: Datenblatt
+    declined: Abgelehnt
     delete_ok_text: Ja, löschen
+    denied: Verweigert
     development_actions: Entwicklungspolitische Maßnahmen
     dimensions: Abmessungen
+    done: Fertig
+    done_tooltip: Für diesen Benutzer kann keine weitere Bewertung eingereicht werden, da die Bewertung als von %{marked_by}
     empty_csv_file: Die CSV-Datei enthält keine Daten.
+    evaluation_status: Bewertungsstatus
+    evaluation_status_not_done: Der Bewertungsstatus ist für eine oder mehrere ausgewählte Fächer nicht 'Erledigt'. Bitte stellen Sie sicher, dass alle ausgewählten Nutzer Bewertungen abgeschlossen haben oder als erledigt markiert werden.
+    idp_plan_reset_success: Der Plan wurde erfolgreich zurückgesetzt
+    import_ai_artifacts: KI-Artefakte importieren
     import_csv_error: 'Reihe %{index}: Nutzer mit E-Mail-%{email} ist nicht in dieser Kampagne'
+    import_csv_parsing_error: 'CSV-Parsingfehler: %{message}'
     import_description: Importiere Benutzer aus einer CSV-Datei. Jede Reihe muss eine E-Mail-Adresse enthalten.
     import_download_sample: Beispiel-CSV herunterladen
     import_error: Import fehlgeschlagen. Bitte versuchen Sie es erneut.
+    import_error_saving_data: 'Fehlerspeichernde Daten für %{email}: %{message}'
     import_errors_title: Importfehler
+    import_external_scoring_action: Externe Wertung importieren
+    import_external_scoring_body: Siehe die Exportfunktion, um eine Vorlage zu extrahieren, die zum Import verwendet werden kann.
+    import_external_scoring_data_description: Importierung externer Bewertungsdaten für die angegebene Bewertung und Kampagne
+    import_external_scoring_data_title: Externe Wertungsdaten importieren
+    import_external_scoring_success_msg: Der Import wurde erfolgreich hochgeladen
+    import_external_scoring_upload: Hochladen
     import_file_required: Bitte wählen Sie eine CSV-Datei zum Hochladen aus.
     import_queued_success: Der Importauftrag des Subjekts wurde erfolgreich geplant. Bitte überprüfen Sie Ihre Benachrichtigung auf den Status.
     import_sample_file_label: 'Beispieldatei:'
+    import_scenario_id_mismatch: 'Szenario-ID-Mismatch für %{email}: Erwartete %{expected_id}, aber CSV enthält andere Szenario-IDs'
+    import_successfully_saved: Ich habe externe Ergebnisse erfolgreich für %{email} mit %{goals_count} Zielen gespeichert
     import_title: Importiere Themen aus CSV
     import_upload: Hochladen
     import_users: Benutzer importieren
     invalid_csv_header: CSV-Datei enthält ungültige Header.
     libraries: Mediathek
     library_invalid_type: Ungültiger Bibliothekseintrag
+    manager_approval_required: Report for %{user} erfordert die Zustimmung des Managers vor dem Download
+    name_required: Name ist erforderlich
+    no_file_selected: Keine Datei ausgewählt
     no_notifications: Keine Benachrichtigungen
     norms: Normen
+    not_completed: Nicht abgeschlossen
+    not_completed_tooltip: "%{completed} Gutachter werden zugewiesen, aber nur %{submitted} die Bewertungen abgeschlossen haben"
+    nothing_assigned: Nichts zugewiesen
+    nothing_assigned_tooltip: Diesem Nutzer wurden keine Bewertungen zugewiesen
     notification_bell_icon_alt_text: Symbol für die Benachrichtigungsglocke
     notifications: Benachrichtigungen
     number: Nummer
@@ -59,7 +110,19 @@ de:
     question_center: Fragen-Center
     registration_codes: Registrierungscodes
     report_approvals: Bericht Genehmigungen
+    report_condition_not_met: Benötigt %{required} %{relationship} Bewertung(en), hat aber nur %{actual}
+    report_conditions_not_met_detailed: Der Bericht für %{user} entspricht nicht den Verfügbarkeitsbedingungen. %{conditions}
+    report_denied: Meldung für %{user} wurde abgelehnt
+    report_no_evaluations: Der Bericht für %{user} ist nicht verfügbar – es wurden keine Bewertungen eingegangen.
+    report_not_generated: Der Bericht für %{user} die Verfügbarkeitsbedingungen erfüllt, aber noch nicht erstellt wurde. Bitte erstelle zuerst den Bericht.
+    report_on_hold: Der Bericht für %{user} ist derzeit auf Eis gelegt
+    report_status: Berichtsstatus
     reports: Berichte
+    reports_limit_exceeded: Der Massendownload ist auf 1000 Berichtsdateien beschränkt. Wenn Sie viele Sprachen ausgewählt haben, bitte reduzieren Sie es.
+    reports_not_found: Keine Berichte gefunden. Bitte erstellen Sie die Berichte vor dem Herunterladen.
+    reset_idp_plan: Plan zurücksetzen
+    reset_idp_plan_confirmation: Bist du sicher, dass du den Plan zurücksetzen willst?
+    reset_idp_plan_title: Plan zurücksetzen
     role: Rolle
     saml_idp_certificate_available: Verfügbar (klicken zum Kopieren)
     saml_idp_certificate_label: Zertifikat
@@ -79,12 +142,25 @@ de:
     saml_service_provider_entity_id_placeholder: Geben Sie die Entitäts-ID ein
     saml_service_provider_entity_id_required: Eine Entität-ID ist erforderlich
     saml_service_provider_idp_config: IdP-Konfiguration
+    saml_service_provider_integration_generic: Generisch
+    saml_service_provider_integration_masking_info: Die E-Mail-ID der Kandidaten wird vor der Sendung an Yoodli maskiert. Das Maskieren des Vor- und Nachnamens der Kandidaten muss von der
+    saml_service_provider_integration_type: Integrationstyp
+    saml_service_provider_integration_type_placeholder: Integrationstyp auswählen
+    saml_service_provider_integration_type_required: Der Integrationstyp ist erforderlich
+    saml_service_provider_integration_yoodli: Yoodli
     saml_service_provider_manage: Aktionen
+    saml_service_provider_mask_data_for: Maskendaten für
     saml_service_provider_mask_identity: Maskenidentität
     saml_service_provider_masking_enabled: Maskierung aktivieren
+    saml_service_provider_masking_help_generic: Aktivieren, um Benutzeridentitäten in SAML-Antworten zu maskieren.
+    saml_service_provider_masking_help_integration: Integration Provider Masking wird angewendet
+    saml_service_provider_masking_integration: "%{integration} Driven"
+    saml_service_provider_masking_manual_disabled: Arbeitsunfähig
+    saml_service_provider_masking_manual_enabled: Ermöglichte
     saml_service_provider_name: Name
     saml_service_provider_name_placeholder: Geben Sie den Namen des Dienstanbieters ein
     saml_service_provider_name_required: Name ist erforderlich
+    saml_service_provider_privacy_policy: Datenschutzrichtlinie Seite
     saml_service_provider_remove_content: 'Sind Sie sicher, dass Sie SAML Service Provider: %{name} entfernen möchten?'
     saml_service_provider_remove_title: SAML-Dienstanbieter entfernen
     saml_service_provider_rotate_certificate_content: Bist du sicher, dass du das Zertifikat für %{name} rotieren möchtest? Dies erzeugt ein neues Zertifikat und macht das aktuelle ungültig.
@@ -102,7 +178,13 @@ de:
     skills_taxonomy: Fähigkeiten-Taxonomie
     slot_name: Slot-Name
     stats: Statistiken
+    status_details: Statusdetails
+    upload_success: Erfolgreich hochgeladen
     user_report_events: Benutzerbericht Ereignisse
     users: Benutzer
     view_licenses: Lizenzen anzeigen
+    waiting: Warten
     year: Land
+    yoodli_activity_id: Yoodli Aktivitäts-ID
+    yoodli_email_id: Yoodli-Kandidaten-E-Mail-ID
+    yoodli_external_assessment_id: Yoodli Bewertungs-ID

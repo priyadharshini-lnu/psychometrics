@@ -13,6 +13,7 @@ ar:
     direct_reportees: الموظفين المباشرين
     home: لوحة التحكم
     idp_plan_approval_note: مذكرة الموافقة
+    idp_retake_steps_continue_with_this_information: تابع هذه المعلومات
     insights: البصائر
     lighthouse_assistant: مساعد المنارات
     max_word_limit: يجب أن تكون على الأكثر %{max} كلمة

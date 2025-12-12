@@ -3,9 +3,14 @@ sl:
   shared:
     action: Aktivnost
     add: Dodaj
+    advanced: Napreden
+    authentication_failed: Avtentikacija ni uspela. Prosim, poskusite znova.
+    basic: Osnoven
+    campaign_id: ID kampanje
     cancel: Prekliči
     change_password: Spremeni geslo
     clear_filters: Počistite filtre
+    continue: Nadaljuj
     description: Opis
     edit: Uredi
     edited: Novo
@@ -26,6 +31,7 @@ sl:
         selected: Izbrana 1 vrstica
         total: 'Skupaj : 1'
     terms_conditions_privacy: Izjava o zasebnosti
+    tools: Orodja
     transcriptions: Transkripcij
     tte_terms_and_condition: Pogoji uporabe in politika zasebnosti
     type: Vrsta

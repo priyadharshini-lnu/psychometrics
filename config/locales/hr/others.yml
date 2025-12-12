@@ -55,6 +55,17 @@ hr:
               blank: ID paketa izvješća ne može biti prazan
             report_id:
               blank: ID izvješća ne može biti prazan
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: AI asistent s ID '%{id}' ne nalazi se u redu %{index}
+              blank: Stupac '%{entity}' ne može biti prazan u retku %{index}
+              duplicate_code: Duplicirani kod '%{code}' u redu %{index}
+              invalid_code_format: Nevažeći format koda '%{code}' u retku %{index}
+              max_limit_reached: Ukupni AI artefakti kampanje prelaze maksimalni limit od %{count}
+              missing_headers: 'Nedostaju obavezna zaglavlja: %{headers}'
+            file:
+              invalid_format: Molimo učitajte CSV datoteku
         campaign_factor_import_form:
           attributes:
             file:
@@ -895,6 +906,7 @@ hr:
         import_development_actions: Uvoz razvojnih akcija
         import_dimension_from_json: Uvoz dimenzije iz JSON-a
         import_external_campaign_scoring: Uvoz vanjskog ocjenjivanja kampanje
+        import_external_scoring_data: Uvoz vanjskih podataka o bodovanju
         import_factor_translations: Prijevodi faktora uvoza
         import_factors: Čimbenici uvoza
         import_interview_questions: Uvezite pitanja za intervju
@@ -1057,6 +1069,7 @@ hr:
         saville_assessment_name: Saville procjena Ime
         simulation_assessment_name: Naziv procjene simulacije
         skillvue_assessment_name: Naziv Skillvue procjene
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: Prijevod je migriran
     create: Stvoriti
     dashboard: Nadzorna ploča

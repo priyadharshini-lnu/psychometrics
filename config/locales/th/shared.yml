@@ -3,9 +3,14 @@ th:
   shared:
     action: ดำเนินการ
     add: เพิ่ม
+    advanced: ดึก
+    authentication_failed: การรับรองความถูกต้องล้มเหลว โปรดลองอีกครั้ง
+    basic: พื้นฐาน
+    campaign_id: รหัสแคมเปญ
     cancel: ยกเลิก
     change_password: เปลี่ยนรหัสผ่าน
     clear_filters: เคลียร์ตัวกรอง
+    continue: ต่อเนื่อง
     description: คำอธิบาย
     edit: แก้ไข
     edited: ใหม่
@@ -26,6 +31,7 @@ th:
         selected: เลือก 1 แถว
         total: 'รวม : 1'
     terms_conditions_privacy: คำชี้แจงความเป็นส่วนตัว
+    tools: เครื่อง มือ
     transcriptions: การถอดความ
     tte_terms_and_condition: เงื่อนไขและความเป็นส่วนตัว
     type: ประเภท

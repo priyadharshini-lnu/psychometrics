@@ -55,6 +55,17 @@ th:
               blank: ID ชุดรายงานต้องไม่ว่างเปล่า
             report_id:
               blank: รหัสรายงานต้องว่างเปล่าไม่ได้
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: ไม่พบ AI Assistant ที่มี ID '%{id}' ที่แถวที่ %{index}
+              blank: คอลัมน์ '%{entity}' ต้องเว้นว่างที่แถว %{index} ไม่ได้
+              duplicate_code: รหัส '%{code}' ที่ซ้ํากันที่แถว %{index}
+              invalid_code_format: รูปแบบรหัส '%{code}' ไม่ถูกต้องที่แถวที่ %{index}
+              max_limit_reached: สิ่งประดิษฐ์ AI ของแคมเปญทั้งหมดเกินขีดจํากัดสูงสุดที่ %{count}
+              missing_headers: 'ส่วนหัวที่จําเป็นหายไป: %{headers}'
+            file:
+              invalid_format: โปรดอัปโหลดไฟล์ CSV
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ th:
         import_development_actions: การดําเนินการพัฒนาการนําเข้า
         import_dimension_from_json: นําเข้ามิติจาก JSON
         import_external_campaign_scoring: นําเข้าการให้คะแนนแคมเปญภายนอก
+        import_external_scoring_data: นําเข้าข้อมูลการให้คะแนนภายนอก
         import_factor_translations: การแปลปัจจัยนําเข้า
         import_factors: ปัจจัยการนําเข้า
         import_interview_questions: นําเข้าคําถามสัมภาษณ์
@@ -1050,6 +1062,7 @@ th:
         saville_assessment_name: ชื่อการประเมิน Saville
         simulation_assessment_name: ชื่อการประเมินการจําลอง
         skillvue_assessment_name: ชื่อแบบประเมินทักษะในระบบ Skillvue
+        yoodli_scenario_id: รหัสสถานการณ์ Yoodli
       translations_migrated: การแปลที่ย้ายแล้ว
     create: สร้าง
     dashboard: แดชบอร์ด

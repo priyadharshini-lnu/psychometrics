@@ -13,6 +13,7 @@ pt:
     direct_reportees: Subordinados Diretos
     home: Painel de controle
     idp_plan_approval_note: Nota de Aprovação
+    idp_retake_steps_continue_with_this_information: Continue com esta informação
     insights: Informações
     lighthouse_assistant: Assistente de Farol
     max_word_limit: Deve ter no máximo %{max} palavras

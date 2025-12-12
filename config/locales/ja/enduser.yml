@@ -13,6 +13,7 @@ ja:
     direct_reportees: 直下のレポート
     home: ダッシュボード
     idp_plan_approval_note: 承認メモ
+    idp_retake_steps_continue_with_this_information: この情報を続けてください
     insights: インサイト
     lighthouse_assistant: 灯台助手
     max_word_limit: 最大%{max}語以内にしてください

@@ -294,6 +294,7 @@ ja:
             view: 表示
           userIdpPlans:
             manage: 取り締まる
+            reset: リセット
             title: ユーザーIDPプラン
             view: 眺める
           users:

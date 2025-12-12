@@ -3,9 +3,14 @@ zh:
   shared:
     action: 操作
     add: 添加
+    advanced: 高深
+    authentication_failed: 身份验证失败。请再试一次。
+    basic: 基本
+    campaign_id: 竞选标识
     cancel: 取消
     change_password: 更改密码
     clear_filters: 清除筛选
+    continue: 继续
     description: 描述
     edit: 编辑
     edited: 新的
@@ -31,6 +36,7 @@ zh:
           other: '共计 : {{count}}'
           zero: '总计 : 0'
     terms_conditions_privacy: 隐私声明
+    tools: 工具
     transcriptions: 改编
     tte_terms_and_condition: 条款和隐私
     type: 类型

@@ -3,6 +3,9 @@ ro:
   enduser:
     add_idp_plan_note: Adaugă notă...
     add_idp_plan_rejection_reason: Adaugă motiv...
+    ai_idp_assistant_response_no: Nu
+    ai_idp_assistant_response_upload_different_document: Vreau să încarc un alt document.
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: Da, continuă cu crearea planului.
     approve_idp_plan: Aprobă planul
     bookings: Rezervări
     campaign: Campanie
@@ -10,6 +13,7 @@ ro:
     direct_reportees: Raportări directe
     home: Tablou
     idp_plan_approval_note: Notă de aprobare
+    idp_retake_steps_continue_with_this_information: Continuați cu aceste informații
     insights: Perspective
     lighthouse_assistant: Asistent de far
     max_word_limit: Trebuie să aibă cel mult %{max} cuvinte

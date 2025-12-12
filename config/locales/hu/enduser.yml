@@ -13,6 +13,7 @@ hu:
     direct_reportees: Közvetlen beosztottak
     home: Irányítópult
     idp_plan_approval_note: Jóváhagyási megjegyzés
+    idp_retake_steps_continue_with_this_information: Folytasd ezzel az információval
     insights: Betekintés
     lighthouse_assistant: Világítótorony asszisztens
     max_word_limit: Legfeljebb %{max} szó lehet

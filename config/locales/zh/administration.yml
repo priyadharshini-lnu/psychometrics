@@ -294,6 +294,7 @@ zh:
             view: 查看
           userIdpPlans:
             manage: 管理
+            reset: 重置
             title: 用户IDP计划
             view: 视图
           users:

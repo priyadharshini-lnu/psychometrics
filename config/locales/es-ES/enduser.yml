@@ -13,6 +13,7 @@ es-ES:
     direct_reportees: Subordinados Directos
     home: Cuadro de mandos
     idp_plan_approval_note: Nota de Aprobación
+    idp_retake_steps_continue_with_this_information: Continúa con esta información
     insights: Información
     lighthouse_assistant: Asistente de Faro
     max_word_limit: Debe tener como máximo %{max} palabras

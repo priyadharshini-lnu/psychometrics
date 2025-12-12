@@ -294,6 +294,7 @@ th:
             view: ดู
           userIdpPlans:
             manage: จัดการ
+            reset: รี เซ็ต
             title: แผน ID ผู้ใช้
             view: ทิวทัศน์
           users:

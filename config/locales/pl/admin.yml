@@ -1,6 +1,7 @@
 ---
 pl:
   admin:
+    admin_approval_required: Raport dla %{user} wymaga zgody administratora przed pobraniem
     admins: Administratorzy
     ai_artifacts: Artefakty SI
     ai_artifacts_output_schema_key_constraint: Klucz musi zaczynać się od małej litery i może zawierać tylko małe litery, cyfry i podkreślenia
@@ -8,7 +9,17 @@ pl:
     ai_assistant_model_label: Model
     ai_assistant_model_provider: Dostawca
     ai_assistant_model_region_label: Region
+    ai_assistant_required: Wymagany jest asystent AI
     ai_assistants: Asystenci AI
+    ai_assistants_advanced_mode_tooltip: Użyj zaawansowanego trybu szablonowego promptu za pomocą szablonu płynnego z dostępnymi zmiennymi. Więcej szczegółów można znaleźć w dokumentacji.
+    ai_assistants_campaign_id_placeholder: Na scenę wchodzi identyfikacja kampanii
+    ai_assistants_no_rendered_output: Brak dostępnego renderowanego wyjścia
+    ai_assistants_render_button: Szablon renderowania
+    ai_assistants_rendered_prompt: Renderowany prompt
+    ai_assistants_template_and_campaign_required: Prosimy o podanie zarówno szablonu, jak i identyfikatora kampanii
+    ai_assistants_template_render_failed: Nie udało się wyrenderować szablonu
+    ai_assistants_test_render: Renderowanie testowe
+    ai_assistants_test_render_tooltip: Przetestuj szablon promptu z danymi kampanii, aby sprawdzić, co zostanie wysłane do asystenta AI.
     assessments: Oceny
     assessments_reports: Oceny i raporty
     assessor_dashboard: Pulpit nawigacyjny asesora
@@ -16,37 +27,77 @@ pl:
     audit_logs: Dzienniki audytu
     audit_reports: Raporty z audytu
     availability: Dostępność
+    available_languages: Raport dostępny w językach
     back_to_main: Menu główne
+    bulk_upload_ai_artifacts: Artefakty AI do masowego przesyłania
+    campaign_ai_artifact_updated_successfully: Artefakty AI kampanii zaktualizowane pomyślnie
+    campaign_assessment_actions_disable_caching: Wyłącz buforowanie oceny
+    campaign_assessment_actions_enable_caching: Włącz buforowanie oceny
+    campaign_assessment_column_caching_enabled: Włączone buforowanie oceny
+    campaign_assessment_modals_disable_caching_content: Jesteś pewien, że chcesz wyłączyć buforowanie dla tej oceny?
+    campaign_assessment_modals_disable_caching_successfully: Dla tej oceny wyłączono buforowanie.
+    campaign_assessment_modals_disable_caching_title: Wyłączyć cache oceny cache?
+    campaign_assessment_modals_enable_caching_content: Czy na pewno chcesz włączyć bufor do tej oceny?
+    campaign_assessment_modals_enable_caching_successfully: Do tej oceny włączono buforowanie.
+    campaign_assessment_modals_enable_caching_title: Włączyć cache oceny (Assessment)?
     campaign_templates: Szablony kampanii
     client: Dzierżawa klienta
     client_admins: Administratorzy klienta
     clients: Umowy najmu dla klientów
+    code_required: Wymagany jest kod
     communication_center: Centrum Komunikacyjne
+    completed: Zakończone
+    completed_tooltip: Wszyscy oceniający złożyli ocenę
     country: Kraj
     create_client: Utwórz klienta
     dashboard: Deska rozdzielcza
     data_reports: Raporty danych
     datasheet: Arkusz danych
+    declined: Odrzucona
     delete_ok_text: Tak, usuń
+    denied: Odmówiony
     development_actions: Działania rozwojowe
     dimensions: Wymiary
+    done: Gotowy
+    done_tooltip: Nie można już zgłosić oceny tego użytkownika, ponieważ jest oznaczana jako przeprowadzona przez %{marked_by}
     empty_csv_file: Plik CSV nie zawiera żadnych danych.
+    evaluation_status: Status oceny
+    evaluation_status_not_done: Status oceny nie jest "Zakończony" dla jednego lub więcej wybranych przedmiotów. Prosimy o to, by wszyscy wybrani użytkownicy ukończyli oceny lub oznaczyli je jako ukończone.
+    idp_plan_reset_success: Plan został pomyślnie zresetowany
+    import_ai_artifacts: Import artefaktów AI
     import_csv_error: 'Wiersz %{index}: użytkownik z %{email} e-mail nie występuje w tej kampanii'
+    import_csv_parsing_error: 'Błąd parsowania CSV: %{message}'
     import_description: Importuj użytkowników z pliku CSV. Każdy wiersz musi zawierać adres e-mail.
     import_download_sample: Pobierz przykładowy CSV
     import_error: Import się nie powiódł. Proszę, spróbuj ponownie.
+    import_error_saving_data: 'Zapisywanie danych błędów dla %{email}: %{message}'
     import_errors_title: Błędy importu
+    import_external_scoring_action: Import Punktacja Zewnętrzna
+    import_external_scoring_body: Sprawdź funkcję Eksport, aby wyodrębnić szablon, który można użyć do importu tutaj.
+    import_external_scoring_data_description: Importowanie zewnętrznych danych punktacyjnych dla określonej oceny i kampanii
+    import_external_scoring_data_title: Import zewnętrznych danych punktacyjnych
+    import_external_scoring_success_msg: Import został pomyślnie przesłany
+    import_external_scoring_upload: Przesyłać
     import_file_required: Proszę wybrać plik CSV do przesłania.
     import_queued_success: Zadanie importu obiektów zostało pomyślnie zaplanowane. Prosimy o sprawdzenie statusu powiadomienia.
     import_sample_file_label: 'Przykładowy plik:'
+    import_scenario_id_mismatch: 'Niedopasowanie ID scenariusza dla %{email}: Oczekiwane %{expected_id}, ale CSV zawiera różne identyfikatory scenariuszy'
+    import_successfully_saved: Udało mi się zachować wyniki zewnętrzne dla %{email} z %{goals_count} celami
     import_title: Importuj tematy z CSV
     import_upload: Przesyłać
     import_users: Import użytkowników
     invalid_csv_header: Plik CSV zawiera nieprawidłowe nagłówki.
     libraries: Biblioteka multimediów
     library_invalid_type: Nieprawidłowy element biblioteczny
+    manager_approval_required: Raport %{user} wymaga zgody menedżera przed pobraniem
+    name_required: Wymagane jest imię
+    no_file_selected: Nie wybrano żadnego pliku
     no_notifications: Brak powiadomień
     norms: Normy
+    not_completed: Nieukończone
+    not_completed_tooltip: Przydzielani są %{completed} oceniający, ale tylko %{submitted} zakończyli oceny
+    nothing_assigned: Nic nie przypisano
+    nothing_assigned_tooltip: Nie przypisano temu użytkownikowi żadnych ocen
     notification_bell_icon_alt_text: Ikona dzwonka powiadomień
     notifications: Powiadomienia
     number: Liczba
@@ -59,7 +110,19 @@ pl:
     question_center: Centrum pytań
     registration_codes: Kody rejestracyjne
     report_approvals: Zatwierdzanie raportów
+    report_condition_not_met: Potrzebuje %{required} %{relationship} oceny, ale ma tylko %{actual}
+    report_conditions_not_met_detailed: Raport dla %{user} nie spełnia warunków dostępności. %{conditions}
+    report_denied: Raport %{user} został odrzucony
+    report_no_evaluations: Raport %{user} nie jest dostępny – nie otrzymano żadnych ocen.
+    report_not_generated: Raport za %{user} spełnia warunki dostępności, ale nie został jeszcze wygenerowany. Proszę najpierw wygenerować raport.
+    report_on_hold: Raport %{user} jest obecnie wstrzymany
+    report_status: Status raportu
     reports: Raporty
+    reports_limit_exceeded: Pobieranie hurtowe jest ograniczone do 1000 plików raportów. Jeśli wybrałeś wiele języków, proszę, ogranicz to.
+    reports_not_found: Nie znaleziono żadnych raportów. Prosimy o wygenerowanie raportów przed pobraniem.
+    reset_idp_plan: Plan Resetu
+    reset_idp_plan_confirmation: Jesteś pewien, że chcesz zresetować plan?
+    reset_idp_plan_title: Plan Resetu
     role: Rola
     saml_idp_certificate_available: Dostępne (kliknij, aby skopiować)
     saml_idp_certificate_label: Certyfikat
@@ -79,12 +142,25 @@ pl:
     saml_service_provider_entity_id_placeholder: Wprowadź identyfikator podmiotu
     saml_service_provider_entity_id_required: Wymagany jest identyfikator podmiotu
     saml_service_provider_idp_config: Konfiguracja IdP
+    saml_service_provider_integration_generic: Rodzajowy
+    saml_service_provider_integration_masking_info: Identyfikator e-mail kandydatów zostanie zamaskowany przed wysłaniem do Yoodliego. Maskowanie imienia i nazwiska kandydatów musi być umożliwione przez
+    saml_service_provider_integration_type: Typ integracji
+    saml_service_provider_integration_type_placeholder: Wybierz typ integracji
+    saml_service_provider_integration_type_required: Wymagany jest typ integracji
+    saml_service_provider_integration_yoodli: Yoodli
     saml_service_provider_manage: Akcje
+    saml_service_provider_mask_data_for: Dane maski dla
     saml_service_provider_mask_identity: Tożsamość maski
     saml_service_provider_masking_enabled: Włącz maskowanie
+    saml_service_provider_masking_help_generic: Włączenie maskowania tożsamości użytkowników w odpowiedziach SAML
+    saml_service_provider_masking_help_integration: Zostanie zastosowane maskowanie dostawcy integracyjnego
+    saml_service_provider_masking_integration: "%{integration} Driven"
+    saml_service_provider_masking_manual_disabled: Niepełnosprawny
+    saml_service_provider_masking_manual_enabled: Włączone
     saml_service_provider_name: Nazwa
     saml_service_provider_name_placeholder: Wprowadź nazwę dostawcy usług
     saml_service_provider_name_required: Wymagane jest imię
+    saml_service_provider_privacy_policy: Strona z polityką prywatności
     saml_service_provider_remove_content: 'Czy na pewno chcesz usunąć dostawcę usług SAML: %{name}?'
     saml_service_provider_remove_title: Usuń dostawcę usług SAML
     saml_service_provider_rotate_certificate_content: Jesteś pewien, że chcesz rotować certyfikat na %{name}? To wygeneruje nowy certyfikat i unieważni obecny.
@@ -102,7 +178,13 @@ pl:
     skills_taxonomy: Taksonomia umiejętności
     slot_name: Nazwa slotu
     stats: Statystyki
+    status_details: Szczegóły statusu
+    upload_success: Przesłanie pomyślnie
     user_report_events: Zdarzenia zgłaszane przez użytkownika
     users: Użytkowników
     view_licenses: Zobacz licencje
+    waiting: Czekanie
     year: Kraj
+    yoodli_activity_id: Yoodli Activity ID
+    yoodli_email_id: Identyfikator e-mail kandydata Yoodli
+    yoodli_external_assessment_id: Yoodli Assessment ID

@@ -3,9 +3,14 @@ es-ES:
   shared:
     action: Acción
     add: Añadir
+    advanced: Avanzado
+    authentication_failed: Fallo de autenticación. Por favor, inténtalo de nuevo.
+    basic: Básico
+    campaign_id: ID de campaña
     cancel: Cancelar
     change_password: Cambiar contraseña
     clear_filters: Quitar filtros
+    continue: Continuar
     description: Descripción
     edit: Editar
     edited: Nuevo/a
@@ -31,6 +36,7 @@ es-ES:
           other: 'Total : {{count}}'
           zero: 'Total : 0'
     terms_conditions_privacy: Declaración de privacidad
+    tools: Herramientas
     transcriptions: Transcripciones
     tte_terms_and_condition: Términos y privacidad
     type: Tipo

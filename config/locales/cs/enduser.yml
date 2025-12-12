@@ -13,6 +13,7 @@ cs:
     direct_reportees: Přímí zástupci
     home: Přístrojová deska
     idp_plan_approval_note: Poznámka ke schválení
+    idp_retake_steps_continue_with_this_information: Pokračujte s těmito informacemi
     insights: Poznatky
     lighthouse_assistant: Asistent majáku
     max_word_limit: Musí mít maximálně %{max} slov

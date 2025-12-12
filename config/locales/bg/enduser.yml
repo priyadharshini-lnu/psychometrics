@@ -13,6 +13,7 @@ bg:
     direct_reportees: Преки докладвани
     home: Табло
     idp_plan_approval_note: Бележка за одобрение
+    idp_retake_steps_continue_with_this_information: Продължете с тази информация
     insights: Прозрения
     lighthouse_assistant: Асистент на фара
     max_word_limit: Трябва да бъде най-много %{max} думи

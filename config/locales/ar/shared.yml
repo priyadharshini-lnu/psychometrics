@@ -3,9 +3,14 @@ ar:
   shared:
     action: نشاط
     add: إضافة
+    advanced: متقدم
+    authentication_failed: فشل المصادقة. يرجى المحاولة مرة أخرى.
+    basic: أساسي
+    campaign_id: معرف الحملة
     cancel: إلغاء
     change_password: تغيير كلمة المرور
     clear_filters: امسح المُرشحات
+    continue: استمر
     description: وصف
     edit: تعديل
     edited: جديد
@@ -31,6 +36,7 @@ ar:
           other: 'Total : {{count}}'
           zero: 'Total : 0'
     terms_conditions_privacy: بيان الخصوصية
+    tools: ادوات
     transcriptions: تدوين
     tte_terms_and_condition: " الشروط والأحكام وبيان الخصوصية الخاص بشركة"
     type: نوع

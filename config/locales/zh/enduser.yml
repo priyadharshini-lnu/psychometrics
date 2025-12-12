@@ -13,6 +13,7 @@ zh:
     direct_reportees: 直接下属
     home: 仪表板
     idp_plan_approval_note: 批准备注
+    idp_retake_steps_continue_with_this_information: 请继续获取这些信息
     insights: 洞察
     lighthouse_assistant: 灯塔助理
     max_word_limit: 最多不能超过 %{max} 个字

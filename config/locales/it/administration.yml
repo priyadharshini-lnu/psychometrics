@@ -294,6 +294,7 @@ it:
             view: Vista
           userIdpPlans:
             manage: Amministrare
+            reset: Resettare
             title: Piani IDP degli utenti
             view: Vista
           users:

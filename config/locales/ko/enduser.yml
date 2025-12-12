@@ -13,6 +13,7 @@ ko:
     direct_reportees: 직접 보고서
     home: 대시보드
     idp_plan_approval_note: 승인 메모
+    idp_retake_steps_continue_with_this_information: 이 정보를 계속 확인하세요
     insights: 인사이트
     lighthouse_assistant: 등대 보조
     max_word_limit: 최대 %{max}단어여야 합니다

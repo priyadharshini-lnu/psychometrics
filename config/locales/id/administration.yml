@@ -294,6 +294,7 @@ id:
             view: Melihat
           userIdpPlans:
             manage: Urus
+            reset: Reset
             title: Paket IDP Pengguna
             view: Melihat
           users:

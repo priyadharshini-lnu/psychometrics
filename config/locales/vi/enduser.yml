@@ -13,6 +13,7 @@ vi:
     direct_reportees: Người báo cáo trực tiếp
     home: Bảng điều khiển
     idp_plan_approval_note: Ghi chú phê duyệt
+    idp_retake_steps_continue_with_this_information: Tiếp tục với thông tin này
     insights: Thông tin chi tiết
     lighthouse_assistant: Trợ lý ngọn hải đăng
     max_word_limit: Phải có tối đa %{max} từ

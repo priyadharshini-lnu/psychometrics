@@ -3,15 +3,21 @@ ro:
   shared:
     action: Acțiuni
     add: Adăugați
+    advanced: Avansat
+    authentication_failed: Autentificarea a eșuat. Vă rog să încercați din nou.
+    basic: Bază
+    campaign_id: ID-ul campaniei
     cancel: Anulați
     change_password: Schimbați parola
     clear_filters: Ștergeți filtrele
+    continue: Continua
     description: Descriere
     edit: Editați
     edited: Nou
     group_question_max_validation_error: Fiecare grup poate conține cel mult {{max}} element(e).
     group_question_min_validation_error: Fiecare grup trebuie să conțină cel puțin {{min}} element(e).
     id: ID
+    idp_ai_assistant_disclaimer: Asistentul IDP Lighthouse AI poate face greșeli. Te rog să fii atent când folosești răspunsurile.
     internet_disconnected_message: Încercați să vă reconectați. Vă rugăm să verificați conexiunea la internet.
     mte_logo_alt_text: Sigla Mercer Talent Enterprise
     name: Nume
@@ -25,6 +31,7 @@ ro:
         selected: 1 rând selectat
         total: 'Total: 1'
     terms_conditions_privacy: Declarație de confidențialitate
+    tools: Instrumente
     transcriptions: Transcrieri
     tte_terms_and_condition: Termeni și confidențialitate
     type: Tip
