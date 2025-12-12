@@ -232,6 +232,19 @@ th:
               contains_repeats: รหัสผ่านต้องไม่มีการซ้ํา
               too_short: รหัสผ่านสั้นเกินไป อักขระขั้นต่ํา %{count} ที่จําเป็น
               too_weak: 'รหัสผ่านต้องมี: ตัวพิมพ์เล็กอย่างน้อย 1 ตัว ตัวพิมพ์ใหญ่ 1 ตัว ตัวเลข 1 ตัว และอักขระพิเศษ 1 ตัว'
+        project_license:
+          attributes:
+            base:
+              exceeds_available: ไม่สามารถจัดสรรมากกว่าใบอนุญาตที่มีอยู่
+            license_id:
+              already_present: มีอยู่แล้วสําหรับโครงการนี้
+            usage_limit:
+              cant_be_less_than_used: ไม่สามารถตั้งค่าให้ต่ํากว่าจํานวนการใช้งานปัจจุบันของ %{used_count}
+              cant_be_more_than_available: ต้องไม่เกินขีดจํากัดที่มีอยู่ในใบอนุญาต (%{usage_limit})
+              exceeds_available: ต้องไม่เกินใบอนุญาตที่มีอยู่
+              less_than_used_number: ต้องไม่น้อยกว่าจํานวนใบอนุญาตที่ใช้
+            used_number:
+              overused: ต้องไม่เกินใบอนุญาตที่มีอยู่
         questions_import_block_form:
           attributes:
             name:
@@ -422,6 +435,10 @@ th:
               inclusion: ต้องเป็นบูลีน
             start_date_time:
               invalid_datetime: ไม่ถูกต้อง
+        yoodli:
+          attributes:
+            name:
+              not_unique: การผสานรวมนี้มีอยู่แล้วสําหรับโครงการนี้
   activerecord:
     attributes:
       administration/assessments/assign_form:
@@ -452,6 +469,7 @@ th:
           simulation: การลอกเลียนแบบ
           skillvue: สกิลวิว
           threesixty: แคมเปญ 360
+          yoodli: ยุดลี
         category: ประเภท
         created_at: วันที่สร้าง
         description: คำอธิบาย
@@ -469,6 +487,7 @@ th:
           saville: การประเมิน Saville
           simulation: การประเมินการจําลอง
           skillvue: การประเมิน Skillvue
+          yoodli: การประเมิน Yoodli
         updated_at: วันที่แก้ไข
       assign:
         completed_at: วันที่เสร็จสมบูรณ์
@@ -836,6 +855,7 @@ th:
         data_report_export: การส่งออกรายงานข้อมูล
         export_admin_with_permissions: ส่งออกผู้ดูแลระบบที่มีสิทธิ์
         export_assessment_questions: คําถามการประเมินการส่งออก
+        export_campaign_ai_artifacts: ส่งออกสิ่งประดิษฐ์ AI ของแคมเปญ
         export_campaign_factors: ปัจจัยแคมเปญการส่งออก
         export_campaign_scorings: ส่งออกการให้คะแนนแคมเปญ
         export_dashboard_as_file: ส่งออกแดชบอร์ดเป็นไฟล์
@@ -857,10 +877,12 @@ th:
         export_user_report_events: ส่งออกเหตุการณ์รายงานผู้ใช้
         export_users: ส่งออกผู้ใช้แคมเปญ
         external_assessment_export: ส่งออกผลลัพธ์ภายนอก
+        generate_embedding_skills: สร้างการฝังสําหรับทักษะ
         import_accesssheet: นําเข้าอุปกรณ์เสริม
         import_assessment_questions: คําถามการประเมินการนําเข้า
         import_assessment_translations: การแปลการประเมินการนําเข้า
         import_assessors: ผู้ประเมินนําเข้า
+        import_campaign_ai_artifacts: นําเข้าสิ่งประดิษฐ์ AI ของแคมเปญ
         import_campaign_factors: นําเข้าปัจจัยแคมเปญ
         import_datasheet: นําเข้าเอกสารข้อมูล
         import_development_action_translations: การแปลการดําเนินการเพื่อการพัฒนานําเข้า
@@ -1028,6 +1050,7 @@ th:
         saville_assessment_name: ชื่อการประเมิน Saville
         simulation_assessment_name: ชื่อการประเมินการจําลอง
         skillvue_assessment_name: ชื่อแบบประเมินทักษะในระบบ Skillvue
+        yoodli_assessment_name: ชื่อการประเมิน Yoodli
       translations_migrated: การแปลที่ย้ายแล้ว
     create: สร้าง
     dashboard: แดชบอร์ด
@@ -1069,6 +1092,7 @@ th:
         simulation: การลอกเลียนแบบ
         skillvue: Skillvue
         threesixty: แคมเปญ 360
+        yoodli: ยุดลี
       status:
         finished: เสร็จแล้ว
         in_progress: อยู่ระหว่างดําเนินการ
@@ -1081,6 +1105,7 @@ th:
         saville: การประเมิน Saville
         simulation: การประเมินการจําลอง
         skillvue: การประเมิน Skillvue
+        yoodli: การประเมิน Yoodli
     flow:
       end_assessment_modal:
         custom_message: ข้อความสิ้นสุดการประเมินแบบกําหนดเอง
@@ -1599,8 +1624,6 @@ th:
       report: รายงาน
       report_bundle_placeholder: เลือกชุดรายงาน
     messages:
-      bulk_download_error: การดาวน์โหลดรายงานจำนวนมากจํากัดไว้ที่จำนวน 1,000 ไฟล์ หากคุณเลือกหลายภาษาโปรดลดจำนวนที่เลือกลง
-      bulk_download_no_reports: ไม่พบรายงาน โปรดสร้างรายงานก่อนดาวน์โหลด
       bulk_download_successful: กําหนดเวลางานดาวน์โหลดรายงานจํานวนมากเรียบร้อยแล้ว
       export_report_data_scheduled: งานส่งออกข้อมูลรายงานถูกกําหนดเวลาเรียบร้อยแล้ว
     modals:
@@ -1769,6 +1792,7 @@ th:
       go_back: ย้อนกลับ
       import: นําเข้า
       insert: สอด
+      'no': ไม่ใช่
       ok: ตกลง, ได้
       publish: เผยแพร่
       reject: ปฏิเสธ
@@ -1795,6 +1819,7 @@ th:
       view: ดู
       view_all_tasks: แสดงงานทั้งหมด
       view_detail: แสดงรายละเอียด
+      'yes': ใช่
     column:
       action: ดำเนินการ
       active: เปิดใช้งาน
@@ -1908,6 +1933,7 @@ th:
       hide: ซ่อน
       view: ดู
     validations:
+      required: ต้องกรอกข้อมูลนี้
       select_locale: โปรดเลือกบางพื้นที่
       should_be_whole_number: ควรเป็นจํานวนเต็ม
   confirmation:
@@ -2363,6 +2389,7 @@ th:
     error_warning: อ๊ะ มีบางอย่างผิดพลาดกับการประเมินของคุณ โปรดติดต่อฝ่ายสนับสนุน
     hogan:
       cannot_start: คุณไม่สามารถเริ่มการประเมินโฮแกนได้ในตอนนี้ โปรดลองหลังจากผ่านไปสองสามนาที
+    lighthouse_app: ประภาคารเมอร์เซอร์
     login: เข้าสู่ระบบ
     maintenance:
       notification: ประภ Lighthouseจะหยุดทํางานเพื่อบํารุงรักษาตามกําหนดเวลาใน 60 วินาที
@@ -2464,6 +2491,8 @@ th:
   idp:
     actions: การดําเนินการ
     add_comments: เพิ่มความคิดเห็น
+    add_note: เพิ่มหมายเหตุ...
+    add_reason: เพิ่มเหตุผล...
     added_development_action: เพิ่มการดําเนินการพัฒนา
     ai:
       assistant:
@@ -2481,8 +2510,8 @@ th:
       reset_chat: รีเซ็ตแชท
       reset_confirmation: คุณแน่ใจหรือไม่ว่าต้องการละทิ้งการแชทนี้และเริ่มต้นใหม่?
       retake_steps:
-        chat_hint: แจ้งให้เราทราบว่าคุณต้องการให้ข้อมูลอะไรเพิ่มเติม?
-        chat_title: คุณต้องการให้ข้อมูลเพิ่มเติมหรือไม่?
+        chat_hint: คุณสามารถอัปโหลดไฟล์ใหม่หรือเริ่มแชทใหม่เพื่อแบ่งปันรายละเอียดเพิ่มเติม และฉันจะพยายามอย่างเต็มที่เพื่อช่วยเหลือคุณ
+        chat_title: ฉันขอโทษที่การวิเคราะห์เบื้องต้นไม่เป็นไปตามความคาดหวังของคุณ
         start_chat: เริ่มแชท
         start_chat_again: เริ่มแชทอีกครั้ง
         upload_document: อัปโหลดเอกสาร
@@ -2508,17 +2537,19 @@ th:
         chat_title: สรุปข้อมูลเชิงลึกของแชท
         file_title: ข้อมูลเชิงลึกของเอกสารที่อัปโหลด
         gap_report_title: การวิเคราะห์รายงานช่องว่างทักษะ
-        hint: ถ้าใช่ เราจะสร้าง IDP ของคุณ มิฉะนั้น คุณสามารถตอบคําถามของคุณใหม่ได้
-        title: คุณพอใจกับผลลัพธ์หรือไม่?
+        hint: หากคุณตอบตกลง ฉันสามารถสร้างแผนการพัฒนาให้คุณได้ หากไม่เป็นเช่นนั้น คุณสามารถเริ่มแชทใหม่หรืออัปโหลดไฟล์ใหม่ได้
+        title: คุณพอใจกับการวิเคราะห์หรือไม่?
         upload_file: ไฟล์ที่อัปโหลด
         view_chat: ดูแชท
       upload:
-        description: คลิกหรือลากไฟล์ไปยังพื้นที่นี้เพื่ออัปโหลด
+        description: 'ประเภทไฟล์ที่รองรับ: เอกสาร PDF สูงสุด %{maxFileSize}MB'
         drop: วางไฟล์ที่นี่
-        title: อัปโหลดไฟล์
+        title: คลิกหรือวางไฟล์ที่นี่
       welcome:
         text: พร้อมที่จะสร้างแผนภูมิการเติบโตของคุณแล้วหรือยัง? มาเริ่มกันเลย!
         title: สวัสดี ฉันเป็นผู้ช่วยพัฒนาของคุณ
+    approval_note: บันทึกการอนุมัติ
+    approve_plan: อนุมัติแผน
     behavioral: พฤติกรรม
     board: กระดาน
     change_history: ประวัติการเปลี่ยนแปลง
@@ -2619,12 +2650,14 @@ th:
       mark_as_complete: ทําเครื่องหมายว่าเสร็จสมบูรณ์
       no_development_actions: ไม่มีการดําเนินการพัฒนา
       on_the_job: ในงาน
+      one: "[TH] 1"
       other: อื่นๆ
       private: ส่วนตัว
       publish_plan: เผยแพร่แผน
       remove: ถอด
       save_plan: บันทึกแผน
       search_development_actions: การดําเนินการพัฒนาการค้นหา
+      selected_count: "%{count} เลือก"
       show_development_action_information: แสดงข้อมูลการดําเนินการเพื่อการพัฒนา
       skill: ทักษะ
       sprint: วิ่ง
@@ -2633,7 +2666,9 @@ th:
       structured_learning_label: การเรียนรู้ร่วมกัน
       submit_plan: ส่งแผน
       success: การดําเนินการพัฒนาเสร็จสมบูรณ์
+      three: "[TH] 3"
       toggle_skill_privacy: สลับความเป็นส่วนตัวของทักษะ
+      two: "[TH] 2"
       write_here: เขียนที่นี่...
     direct_reportee_details: รายละเอียดผู้รายงานโดยตรง
     download:
@@ -2644,6 +2679,7 @@ th:
     edit_progress: แก้ไขความคืบหน้า
     fetching_skill_gap_report: การดึงรายงานช่องว่างของทักษะ...
     go_to_previous_step: ไปที่ขั้นตอนก่อนหน้า
+    go_to_reportee_plan: ไปที่รายละเอียดแผนของผู้รายงาน
     history:
       added_da:
         one: เพิ่มการดําเนินการพัฒนา
@@ -2693,19 +2729,23 @@ th:
         categories: ประเภท
       save_skills: บันทึกทักษะ
     new_comments: ความคิดเห็นใหม่
+    no_plan_changes_found: ไม่มีการแก้ไขแผนตั้งแต่การตรวจสอบครั้งล่าสุดของคุณ
     no_skills_added: คุณยังไม่ได้เพิ่มทักษะ
     no_skills_added_by_reportee: ผู้รายงานยังไม่ได้เพิ่มทักษะ
     pdf:
       approval_status: สถานะการอนุมัติ
       cover:
         fields:
+          approval_date: วันที่อนุมัติ
           assigned_data: วันที่กําหนด
           assigned_date: วันที่กำหนด
           completion_date: วันที่เสร็จสมบูรณ์
+          current_job_role: บทบาทงานปัจจุบัน
           division: แผนก
           name: ชื่อ
           publish_date: วันที่เผยแพร่
           review_date: วันที่ตรวจสอบ
+          target_job_role: บทบาทงานเป้าหมาย
       guidelines:
         cards:
           c1:
@@ -2783,8 +2823,12 @@ th:
         approved: ตรวจสอบและอนุมัติแล้ว
         completed: เสร็จสมบูรณ์
         draft: ร่าง
+        in_progress: กําลังดําเนินการ
+        in_review: ในการตรวจสอบ
         not_reviewed: ไม่ได้รับการตรวจสอบ
+        not_started: ยังไม่ได้เริ่มต้น
         pending_approval: อยู่ระหว่างตรวจสอบ
+        rejected: ถูก ปฏิเสธ
       summary:
         ai_count: AI เชิงกําเนิด
         collaborative_learn: การเรียนรู้ร่วมกัน
@@ -2806,6 +2850,7 @@ th:
     plan_submitted_for_manager_approval: แผนการพัฒนารายบุคคลของคุณถูกส่งเพื่อขออนุมัติจากผู้จัดการแล้ว
     private: ส่วนตัว
     public: สาธารณะ
+    reason_for_rejection: เหตุผลในการปฏิเสธ
     reflective_questions:
       already_completed: IDP ได้ดำเนินการเสร็จสิ้นแล้ว คุณไม่สามารถตอบคำถามได้ในขณะนี้
       answer: ตอบ
@@ -2818,7 +2863,9 @@ th:
         max_words: คําตอบอนุญาตให้มีคํา %{count} สูงสุด
         min_words: คําตอบต้องใช้คําอย่างน้อย %{count}
         required: จําเป็นต้องมีคําตอบสําหรับคําถาม
+      max_word_limit: ต้องไม่เกิน %{max} คํา
       max_words: คําสูงสุด
+      min_word_limit: ต้องมีอย่างน้อย %{min} คํา
       min_words: คําขั้นต่ํา
       no_answer_provided: ยังไม่มีคําตอบ
       no_reflective_questions: ไม่มีคำถามสะท้อน
@@ -2831,6 +2878,7 @@ th:
       updated_successfully: คําตอบของคุณอัปเดตเรียบร้อยแล้ว
       word_limit: ต้องอยู่ระหว่าง %{min} ถึง %{max} คํา
       words: นิรุกติ
+    reject_plan: ปฏิเสธแผน
     remove_skill: ลบสกิลออก
     remove_skill_from_plan: ลบ %{name} ทักษะออกจากแผน
     removed_development_action: ลบการดําเนินการพัฒนา
@@ -2851,6 +2899,7 @@ th:
     summary_logs: บันทึกสรุปสําหรับ %{reporteeName}
     technical: เทคนิค
     user_idp_status:
+      ai_assisted_idp_in_progress: AI Assisted IDP กําลังดําเนินการ
       approved: อนุมัติ
       completed: เสร็จสมบูรณ์
       completion_not_started: ยังไม่เริ่มเสร็จสมบูรณ์
@@ -2970,6 +3019,7 @@ th:
     usage_overview: ดูการใช้ใบอนุญาต
     usages: ประเพณี
   licenses:
+    client_usage: การใช้งานไคลเอ็นต์
     enabled: เปิด
     end_date: วันที่สิ้นสุด
     not_enough_idp_license: ใบอนุญาต IDP ไม่เพียงพอ โปรดติดต่อผู้ดูแลระบบ
@@ -2978,6 +3028,10 @@ th:
     not_enough_proctoring_credits: เครดิตไม่เพียงพอที่จะเริ่มเซสชันการคุมสอบ
     number: เลข
     overuse_number: ค่าเผื่อการใช้งานเกิน
+    project_limit_reached: ถึงขีดจํากัดการใช้งานสําหรับ '%{license_name}' โปรดติดต่อผู้ดูแลระบบ
+    project_specific: เฉพาะโครงการ
+    project_specific_license: สิทธิ์การใช้งานเฉพาะโครงการ
+    project_usage: การใช้โครงการ
     report_family: ชุดรายงาน
     start_date: วันที่เริ่มต้น
     title: ใบอนุญาต
@@ -2989,6 +3043,34 @@ th:
       threesixty: สามหกสิบ
     used_number: ใบอนุญาตที่ใช้แล้ว
     used_out_of: "%{used} จาก %{total}"
+  lti:
+    oidc_auth_form:
+      errors:
+        client_id:
+          blank: ต้องระบุรหัสไคลเอ็นต์
+          invalid: รหัสไคลเอ็นต์ไม่ตรงกับตัวระบุเครื่องมือที่ลงทะเบียนไว้
+          validation_failed: การตรวจสอบความถูกต้องของรหัสไคลเอ็นต์ล้มเหลว
+        login_hint:
+          assessment_completed: การประเมินผู้ใช้เสร็จสมบูรณ์แล้ว
+          blank: จําเป็นต้องมีคําแนะนําในการเข้าสู่ระบบ
+          invalid_user_assessment: คําแนะนําการเข้าสู่ระบบไม่ได้อ้างอิงถึงการประเมินผู้ใช้ที่ถูกต้อง
+        lti_deployment_id:
+          not_found: รหัสการปรับใช้ไม่อ้างอิงการรวมที่ถูกต้อง
+        nonce:
+          blank: จําเป็นต้องไม่มี
+        redirect_uri:
+          blank: จําเป็นต้องมี URI การเปลี่ยนเส้นทาง
+          has_fragment: URI การเปลี่ยนเส้นทางต้องไม่มีส่วนย่อย
+          https_required: URI การเปลี่ยนเส้นทางต้องใช้ HTTPS ในการผลิต
+          invalid_format: URI การเปลี่ยนเส้นทางต้องเป็นรูปแบบ URI ที่ถูกต้อง
+          missing_host: URI การเปลี่ยนเส้นทางต้องมีโฮสต์
+          scheme_not_allowed: URI การเปลี่ยนเส้นทางต้องใช้โปรโตคอล HTTP หรือ HTTPS
+        response_type:
+          blank: ต้องระบุประเภทการตอบกลับ
+          invalid: ประเภทการตอบกลับต้องเป็น "id_token"
+        scope:
+          blank: ต้องมีขอบเขต
+          invalid: ขอบเขตต้องเป็น 'openid'
   mailer:
     copyright:
       text: Lighthouse. สงวนลิขสิทธิ์
@@ -3234,10 +3316,12 @@ th:
         pearson: เพียร์สัน
         saville: ซาวิลล์
         skillvue: สกิลวิว
+        yoodli: ยุดลี
     form:
       load_from_mettl: โหลดจาก Mettl
       load_from_pearson: โหลดจาก Pearson
       load_from_skillvue: โหลดจาก Skillvue
+      load_from_yoodli: โหลดจาก Yoodli
       none_external: ไม่มี - ใช้ตัวสร้างรายงาน
     language: ภาษาของรายงาน
     language_updated: รายงานภาษาอัปเดตเรียบร้อยแล้ว
@@ -3725,13 +3809,6 @@ th:
       on_hold: ระงับชั่วคราว
       prepared: เสร็จแล้ว
       released: ปล่อยแล้ว
-    statuses:
-      completed: เสร็จสมบูรณ์
-      declined: ปฏิเสธ
-      denied: ปฏิเสธ
-      done: เสร็จ
-      not_completed: ยังไม่เสร็จสมบูรณ์
-      waiting: รอ
   threesixty:
     accept_privacy_modal:
       accept: ยอมรับ

@@ -95,6 +95,12 @@ sr-Latn:
           title: Potvrdite
       permissions:
         labels:
+          aiArtifacts:
+            export: Izvoz
+            import: Uvoz
+            manage: Upravljanje
+            title: AI artefakti
+            view: Prikaz
           apiKeys:
             manage: Upravljanje
             title: API ključevi
@@ -220,9 +226,11 @@ sr-Latn:
           projects:
             manage: Upravljanje
             manage_admins: Upravljanje administratorima
+            manage_licenses: Upravljanje licencama
             manage_users: Upravljanje korisnicima
             title: Projekti
             view: Prikaz
+            view_licenses: Pogledaj licence
           questions:
             manage: Upravljanje
             title: Pitanja
@@ -284,6 +292,10 @@ sr-Latn:
             manage: Upravljanje
             title: SMS pozivnice
             view: Prikaz
+          userIdpPlans:
+            manage: Upravljanje
+            title: Korisnički IDP planovi
+            view: Prikaz
           users:
             reset_password: Resetuj lozinku
             title: Korisnici
@@ -296,6 +308,9 @@ sr-Latn:
     ai_artifacts:
       artifact_results: Artefakt Rezultati
       code: Šifru
+      export:
+        success_msg: Izvoz AI artefakata u toku. Molimo Vas da proverite status u obaveštenjima.
+      export_ai_artifacts: Izvoz AI artefakata
       form:
         add_assessment: Dodaj procenu
         ai_assistant: AI pomoćnik
@@ -320,6 +335,12 @@ sr-Latn:
       generated_at_time: Generisano u %{time}
       generated_value: Generisana vrednost
       id: ID
+      import:
+        download_example_csv: Preuzmite primer CSV
+        info_msg: Postavljeni fajl je stavljen u red čekanja za uvoz. Molimo Vas da proverite status u obaveštenjima.
+      import_action:
+        title: Uvoz kampanje AI artefakata
+      import_ai_artifacts: Uvoz AI artefakata
       key: Ključ
       name: Ime
       parsed_dependencies:
@@ -335,6 +356,10 @@ sr-Latn:
         settings: Postavke
       test_generate: Test Generisanje
       unsaved_changes: Nesačuvane izmene su prisutne, razmislite o slanju obrasca za generisanje ažuriranog odgovora od Playground-a.
+      used_tokens:
+        input_tokens: Ulazni tokeni
+        output_tokens: Izlazni tokeni
+        title: Upotreba tokena
     ai_assistants:
       actions:
         create: Kreiraj AI asistenta
@@ -872,8 +897,6 @@ sr-Latn:
       new:
         header: Zbirno preuzimanje
       reports_unavailable: U ovom trenutku, nema izveštaja dostupnih za preuzimanje. Molimo Vas da potvrdite da su izveštaji koje želite da preuzmete dostupni.
-      select_users_for_download: Placere eligere saltem unus User ad download tradit.
-      select_users_for_regenerate: Placere eligere saltem unus user ad regenerare tradit.
     cable:
       notification:
         assessment_factors: Faktori su prikupljeni
@@ -929,6 +952,17 @@ sr-Latn:
         report_update: Izveštaj je ažuriran
         scoring_update: Bodovanje je ažurirano
         trash_empty: Komentar u smeću prazan
+    campaign_ai_artifacts:
+      export:
+        details: Kampanja AI artefakti uspešno izvezeni
+    campaign_ai_artifacts_import:
+      errors:
+        ai_assistant_not_found: 'AI pomoćnik nije pronađen za ID: %{id}'
+        campaign_factor_not_found: Faktor kampanje sa kodom "%{code}" nije pronađen u ovoj kampanji
+        dependency_not_found: Zavisnost %{type} sa ID %{id} nije pronađena
+        file_required: Datoteka je potrebna za uvoz
+        save_failed: 'Failed to save AI artefakt "%{code}": %{message}'
+        sheet_column_not_found: Kolona lista sa imenom "%{name}" nije pronađena u kampanji ili projektnim listovima
     campaign_factor_import:
       errors:
         assessment_not_found_in_campaign: ID procene '%{assessment_id}' nije pronađen u kampanji
@@ -1240,6 +1274,7 @@ sr-Latn:
         archived: Arhivirano
         disable: Arhiviraj
         enable: Izvadi iz arhive
+      clients: Klijenti
       copy:
         successfully: Zakup klijenta '%{name}' je uspešno kopiran.
       create:
@@ -2259,6 +2294,10 @@ sr-Latn:
           accesssheet_manage: Upravljanje pristupnim stranicom
           accesssheet_settings: Podešavanja pristupne stranice
           accesssheet_view: Pogledaj pristupnu stranicu
+    header:
+      logout:
+        content: Pritisnite Otkaži ako želite da nastavite sa radom. Pritisnite OK da biste se odjavili trenutni korisnik.
+        title: Da li ste sigurni da želite da se odjavite.
     hogan:
       errors:
         new_assessment_response_not_allowed:
@@ -2312,13 +2351,16 @@ sr-Latn:
         skills_required_on_publishing: Molimo vas da izaberete veštine pre objavljivanja šablona.
         update: Ažuriranje nije dozvoljeno jer je IDP šablon već povezan sa korisničkim IDP planom. Promene izgleda su sačuvane.
       fields:
+        approval_date: Datum odobrenja
         assigned_data: Dodeljeni podaci
         assigned_date: Dodeljeni datum
         completion_date: Datum završetka
+        current_job_role: Trenutna uloga na poslu
         division: Odsek
         name: Ime
         publish_date: Datum objavljivanja
         review_date: Datum pregleda
+        target_job_role: Ciljna uloga posla
       fields_label: Polja
       global_skills: Globalne veštine
       idp: IDP
@@ -2546,6 +2588,13 @@ sr-Latn:
         details: Detalji
         name: Ime integracije
       details:
+        client_id: ID klijenta
+        deployment_id: ID raspoređivanja
+        platform_access_token_url: URL tokena za pristup platformi
+        platform_authentication_request_url: URL zahteva za autentifikaciju platforme
+        platform_host_name: Ime domaćina platforme
+        platform_id: Korisničko ime platforme
+        platform_public_keyset_url: URL adresa javnog seta ključeva platforme
         provider: Ime provajdera
         webhookUrl: URL adresa webhook-a
         webhookUrls: Webhook URL-ovi
@@ -2576,11 +2625,16 @@ sr-Latn:
         skillvue:
           apiKey: API ključ
           apiKeyRequired: API ključ je potreban
+        yoodli:
+          keyset_url: URL ključa
+          launch_url: Pokrenite URL adresu
+          login_url: URL adresa za prijavu
       names:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
         skillvue: Skillvue
+        yoodli: Joodli
       validations:
         iiht:
           tenancy_name_present: Ime zakupca je već prisutno u drugom projektu
@@ -2590,6 +2644,24 @@ sr-Latn:
         skillvue:
           api_key_present: API ključ je već prisutan u drugom projektu
       view_all_schedules: Pogledaj sve Mettl rasporede
+      yoodli_assessments:
+        add_assessment: Dodaj Ioodli procenu
+        columns:
+          actions: Radnje
+          created_at: Kreirano u
+          name: Ime procene
+          product_id: Kod proizvoda
+        delete_confirm: Da li ste sigurni da želite da izbrišete ovu Ioodli procenu?
+        edit_assessment: Uredi Ioodli procenu
+        manage_catalog: Upravljajte Ioodli procenama
+        messages:
+          create_success: Ioodli procena '%{name}' je uspešno kreirana
+          delete_success: Ioodli procena je uspešno izbrisana
+          update_success: Ioodli procena '%{name}' je uspešno ažurirana
+        placeholders:
+          name: Unesite ime procene
+          product_id: Unesite ID proizvoda
+        search: Pretrage
     interview_questions:
       delete_confirmation: Da li ste sigurni da želite da izbrišete ovo pitanje za intervju?
       description: Deskripton
@@ -2740,9 +2812,12 @@ sr-Latn:
     navigation:
       audit_logs: Evidencije revizije
       availability: Raspoloživost
+      configuration: Konfiguracija
+      content: Sadržaja
       dashboard: Dashboard
       factors: Faktori
       innovation_styles: Stilovi inovacija
+      logout: Odjavi se
       occupations: Zanimanja
       registration_codes: Registracioni kodovi
       skills_taxonomy: Taksonomija veština
@@ -2981,6 +3056,7 @@ sr-Latn:
           by_skill_exists_id_missing: 'Red %{row_number}: Nivo stručnosti za veštine ''''%{name}'''' već postoji. Molimo vas da navedete ID da biste ga ažurirali.'
           by_skill_missing: 'Red %{row_number}: Projekat i veština moraju biti prisutni za tip ''by_skill'''
           by_skill_type_exists_id_missing: 'Red %{row_number}: Nivo stručnosti za tip veštine ''''%{skill_type}'''' već postoji. Molimo vas da navedete ID da biste ga ažurirali.'
+          by_skill_type_missing: 'Red %{row_number}: Projekat i tip veštine moraju biti prisutni za tip ''''by_skill_type'''''
           default_global_exists_id_missing: 'Row %{row_number}: Globalni nivo ''''default'''' ProficiencyLevel već postoji. Molimo vas da navedete ID da biste ga ažurirali.'
           default_project_exists_id_missing: 'Row %{row_number}: ProficiencyLevel na nivou projekta već postoji. Molimo vas da navedete ID da biste ga ažurirali.'
           invalid_csv_format: 'Nevažeći CSV format: %{message}'
@@ -3294,6 +3370,7 @@ sr-Latn:
         mask_identity_for_pearson: Maskiraj podatke za Pearson
         mask_identity_for_saville: Maskiraj podatke za Saville
         mask_identity_for_skillvue: Maskiraj podatke za Skillvue
+        mask_identity_for_yoodli: Podaci o maskama za Ioodli
         privacy_link: Omogući link za privatnost
         privacy_link_label: Link za privatnost
         privacy_link_placeholder: Unesi vezu za privatnost
@@ -3469,6 +3546,7 @@ sr-Latn:
           graph_value: Vrednost grafikona
         graph_value_condition_not_supported_msg: Uslovi vrednosti grafa nisu podržani za ovaj tip grafikona. Ova opcija je trenutno dostupna samo za tipove grafikona ispod.
         graph_value_conditions_title: Uslovi vrednosti grafikona
+        hide_responses_with_no_data: Sakrij odgovore bez podataka
         if_graph_value_is: 'Ako je vrednost grafikona:'
         job_roles:
           current: Trenutni faktori posla
@@ -3488,6 +3566,7 @@ sr-Latn:
           and: I
           or: ILI
         prevent_value_overlap: Sprečite preklapanje vrednosti
+        randomize_answers_order: Nasumično redosled odgovora
         skill_type_label: Filtriraj po vrsti veštine
         skill_type_placeholder: Izaberite vrstu veštine
         skill_types:
@@ -4109,6 +4188,11 @@ sr-Latn:
             missing_columns: 'Nedostaju potrebne kolone: %{columns}'
             save_failed: 'Greška u obradi Skill ID %{id}: %{message}'
             skill_not_found: Veština sa ID %{id} nije pronađena
+      vector:
+        generate_embedding: Generišite ugrađivanje
+        generate_embedding_failure_msg: Failed to queue skill embedding generation job. Pokušajte ponovo.
+        generate_embedding_success_msg: Posao generacije za ugradnju veština je uspešno stavljen u red. Molimo Vas da proverite status u obaveštenjima.
+        label: Vektor DB
     skills_taxonomy:
       tabs:
         job_roles: Radne uloge
@@ -4352,8 +4436,13 @@ sr-Latn:
         this_question_has_randomization: Ovo pitanje ima randomizaciju
     table:
       entries:
-        selected: Izabran 1 red
-        total: 'Ukupno : 1'
+        selected:
+          one: 1 red izabran
+          other: "{{count}} izabrani redovi"
+        total:
+          one: 'Ukupan: 1'
+          other: 'Ukupno : {{count}}'
+          zero: 'Ukupan: 0'
       more_actions: Više akcija
     taxonomy:
       import:
@@ -4578,8 +4667,6 @@ sr-Latn:
             evaluations_received: Primljene evaluacije
             is_subject: Je subjekat
             name: Ime
-            report_status: Status izveštaja
-            status: Status
           evaluators:
             add_evaluators: Dodaj evaluatore
             import_evaluators: Uvezi evaluatore

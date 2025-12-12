@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   Form, Input, Select, Space, Spin,
 } from 'antd'
@@ -23,6 +23,19 @@ export const SubjectAddFormModal:React.FC<Props> = ({ close }) => {
   const {
     data: users, fetch: fetchUsers, isLoading: isUsersLoading,
   } = useResources<User>('users', { basePath: `campaigns/${campaignId}`, responseType: UserTR })
+
+  useEffect(() => {
+    if (users.length === 0) {
+      fetchUsers({
+        apiConfig: {
+          page: {
+            number: 1,
+            size: 25,
+          },
+        },
+      })
+    }
+  }, [])
 
   return (
     <ResourceFormModal

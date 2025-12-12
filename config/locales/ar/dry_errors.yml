@@ -64,6 +64,10 @@ ar:
         validates_admins: لا يمكن للمشرفين الوصول إلى الحملة.
       report_families_reports:
         report_exists: هذا التقرير هو بالفعل جزء من حزمة التقارير
+      saml_service_provider:
+        invalid_url: 'تنسيق الرابط غير صحيح: %{url}'
+        must_be_array: لابد أن تكون مصفوفة
+        must_not_be_empty: لا يمكن أن يكون فارغا
       size?: يجب أن يكون الحجم أقل%{size}
       skill:
         already_added: مهارة تحمل نفس الاسم تمت إضافتها بالفعل.
@@ -94,6 +98,7 @@ ar:
         unique_name: يوجد بالفعل فلتر يحمل نفس الاسم.
       workshop_invited_subject_create:
         already_exists: الموضوع موجود بالفعل في الدعوة.
+        part_of_other_workshop_invite: الموضوع مدعو بالفعل إلى '%{workshop_invite_name}'.
       workshop_subject_create:
         already_exists: الموضوع موجود بالفعل في مركز التقييم هذا.
         part_of_other_workshop: الموضوع مشارك بالفعل في "%{workshop_name}".

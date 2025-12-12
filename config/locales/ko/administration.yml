@@ -95,6 +95,12 @@ ko:
           title: 확인
       permissions:
         labels:
+          aiArtifacts:
+            export: 수출
+            import: 수입
+            manage: 관리하다
+            title: AI 아티팩트
+            view: 보기
           apiKeys:
             manage: 관리
             title: API 키
@@ -220,9 +226,11 @@ ko:
           projects:
             manage: 관리
             manage_admins: 관리자 관리
+            manage_licenses: 라이선스 관리
             manage_users: 사용자 관리
             title: 프로젝트
             view: 보기
+            view_licenses: 라이선스 보기
           questions:
             manage: 관리
             title: 질문
@@ -284,6 +292,10 @@ ko:
             manage: 관리
             title: SMS 초대
             view: 보기
+          userIdpPlans:
+            manage: 관리하다
+            title: 사용자 IDP 계획
+            view: 보기
           users:
             reset_password: 비밀번호 재설정
             title: 사용자
@@ -296,6 +308,9 @@ ko:
     ai_artifacts:
       artifact_results: 아티팩트 결과
       code: 코드
+      export:
+        success_msg: 진행 중인 AI 아티팩트 내보내기. 알림에서 상태를 확인해 주세요.
+      export_ai_artifacts: AI 산출물 수출
       form:
         add_assessment: 평가 추가
         ai_assistant: AI 어시스턴트
@@ -320,6 +335,12 @@ ko:
       generated_at_time: "%{time}에 생성됨"
       generated_value: 생성된 가치
       id: 아이디
+      import:
+        download_example_csv: CSV 예제 다운로드
+        info_msg: 업로드된 파일이 가져오기 대기열에 들어갔습니다. 알림에서 상태를 확인해 주세요.
+      import_action:
+        title: 캠페인 AI 아티팩트 가져오기
+      import_ai_artifacts: AI 산출물 가져오기
       key: 열쇠
       name: 이름
       parsed_dependencies:
@@ -335,6 +356,10 @@ ko:
         settings: 설정
       test_generate: 테스트 생성
       unsaved_changes: 저장되지 않은 변경 사항이 있는 경우 양식을 제출하여 Playground에서 업데이트된 응답을 생성하는 것이 좋습니다.
+      used_tokens:
+        input_tokens: 입력 토큰
+        output_tokens: 출력 토큰
+        title: 토큰 사용
     ai_assistants:
       actions:
         create: AI 어시스턴트 만들기
@@ -872,8 +897,6 @@ ko:
       new:
         header: 대량 다운로드
       reports_unavailable: 현재 다운로드할 수 있는 보고서가 없습니다. 다운로드하려는 보고서가 있는지 확인해 주세요.
-      select_users_for_download: 보고서를 다운로드하려면 하나 이상의 사용자를 선택하십시오.
-      select_users_for_regenerate: 보고서를 재생하려면 하나 이상의 사용자를 선택하십시오.
     cable:
       notification:
         assessment_factors: 팩터가 가져옵니다
@@ -929,6 +952,17 @@ ko:
         report_update: 보고서가 업데이트되었습니다
         scoring_update: 채점이 업데이트됩니다
         trash_empty: 휴지통 댓글 비어 있음
+    campaign_ai_artifacts:
+      export:
+        details: 캠페인 AI 아티팩트 성공적으로 수출됨
+    campaign_ai_artifacts_import:
+      errors:
+        ai_assistant_not_found: 'ID 관련 AI 비서가 찾지 않음: %{id}'
+        campaign_factor_not_found: 이 캠페인에는 코드 "%{code}"가 있는 캠페인 인자가 없습니다.
+        dependency_not_found: 신분증이 있는 의존 %{type} %{id} 찾을 수 없습니다
+        file_required: 파일을 가져오기 위해 필요합니다
+        save_failed: 'AI 유물 ''%{code}'' 구하지 못함: %{message}'
+        sheet_column_not_found: 캠페인이나 프로젝트 데이터시트에 없는 "%{name}"라는 이름의 시트 열
     campaign_factor_import:
       errors:
         assessment_not_found_in_campaign: 캠페인에서 평가 ID '%{assessment_id}'를 찾을 수 없습니다
@@ -1240,6 +1274,7 @@ ko:
         archived: 아카이브
         disable: 아카이브
         enable: 보관 해제
+      clients: 클라이언트
       copy:
         successfully: 클라이언트 테넌시 '%{name}'이(가) 성공적으로 복사되었습니다.
       create:
@@ -2259,6 +2294,10 @@ ko:
           accesssheet_manage: 액세스 시트 관리
           accesssheet_settings: 액세스 시트 설정
           accesssheet_view: 액세스 시트 보기
+    header:
+      logout:
+        content: 작업을 계속하고 싶다면 취소 버튼을 누르세요. 현재 사용자를 로그아웃하려면 확인 버튼을 누르세요.
+        title: 정말 로그아웃하시겠습니까?
     hogan:
       errors:
         new_assessment_response_not_allowed:
@@ -2312,13 +2351,16 @@ ko:
         skills_required_on_publishing: 템플릿을 게시하기 전에 기술을 선택하세요.
         update: IDP 템플릿이 이미 사용자 IDP 요금제에 연결되어 있으므로 업데이트할 수 없습니다.
       fields:
+        approval_date: 승인일
         assigned_data: 할당된 데이터
         assigned_date: 할당된 날짜
         completion_date: 완료 날짜
+        current_job_role: 현재 직무
         division: 부서
         name: 이름
         publish_date: 게시 날짜
         review_date: 검토 날짜
+        target_job_role: 목표 직무 역할
       fields_label: 필드
       global_skills: 글로벌 기술
       idp: IDP
@@ -2546,6 +2588,13 @@ ko:
         details: 세부 정보
         name: 통합 이름
       details:
+        client_id: 클라이언트 ID
+        deployment_id: 배치 ID
+        platform_access_token_url: 플랫폼 접근 토큰 URL
+        platform_authentication_request_url: 플랫폼 인증 요청 URL
+        platform_host_name: 플랫폼 호스트 이름
+        platform_id: 플랫폼 ID
+        platform_public_keyset_url: 플랫폼 공개 키셋 URL
         provider: 공급자 이름
         webhookUrl: 웹훅 URL
         webhookUrls: 웹훅 URL
@@ -2576,11 +2625,16 @@ ko:
         skillvue:
           apiKey: API 키
           apiKeyRequired: API 키가 필요합니다.
+        yoodli:
+          keyset_url: 키셋 URL
+          launch_url: 출시 URL
+          login_url: 로그인 URL
       names:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
         skillvue: 스킬뷰
+        yoodli: 유들리
       validations:
         iiht:
           tenancy_name_present: 테넌시 이름이 다른 프로젝트에 이미 존재합니다
@@ -2590,6 +2644,24 @@ ko:
         skillvue:
           api_key_present: API 키가 다른 프로젝트에 이미 존재합니다.
       view_all_schedules: 모든 Mettl 일정 보기
+      yoodli_assessments:
+        add_assessment: 추가 유들리 평가
+        columns:
+          actions: 작업
+          created_at: 창설 시기
+          name: 평가명칭
+          product_id: 제품 ID
+        delete_confirm: 이 유들리 평가를 삭제할 게 확실한가요?
+        edit_assessment: '수정: 유들리 평가'
+        manage_catalog: 유들리 평가 관리
+        messages:
+          create_success: 유들리 평가 '%{name}'이 성공적으로 제작되었습니다
+          delete_success: Yoodli 평가가 성공적으로 삭제되었습니다
+          update_success: 유들리 평가 '%{name}'이 성공적으로 업데이트되었습니다
+        placeholders:
+          name: 평가 이름 입력
+          product_id: 제품 ID 입력
+        search: 검색
     interview_questions:
       delete_confirmation: 이 인터뷰 질문을 삭제하시겠습니까?
       description: 설명
@@ -2740,9 +2812,12 @@ ko:
     navigation:
       audit_logs: 감사 로그
       availability: 가용성
+      configuration: 구성
+      content: 콘텐츠
       dashboard: 대시보드
       factors: 요인
       innovation_styles: 혁신 스타일
+      logout: 로그아웃
       occupations: 직업
       registration_codes: 등록 코드
       skills_taxonomy: 기술 분류
@@ -3295,6 +3370,7 @@ ko:
         mask_identity_for_pearson: 피어슨의 마스크 데이터
         mask_identity_for_saville: Saville의 마스크 데이터
         mask_identity_for_skillvue: 스킬뷰용 마스크 데이터
+        mask_identity_for_yoodli: Yoodli의 마스크 데이터
         privacy_link: 개인정보 링크 사용
         privacy_link_label: 개인정보 보호 링크
         privacy_link_placeholder: 개인정보 보호 링크 입력
@@ -3470,6 +3546,7 @@ ko:
           graph_value: 그래프 값
         graph_value_condition_not_supported_msg: 그래프 값 조건은 이 그래프 유형에 대해 지원되지 않습니다. 이 옵션은 현재 아래 그래프 유형에만 사용할 수 있습니다.
         graph_value_conditions_title: 그래프 값 조건
+        hide_responses_with_no_data: 데이터가 없는 응답을 숨기기
         if_graph_value_is: '그래프 값이 다음과 같은 경우:'
         job_roles:
           current: 현재 직무 요소
@@ -3489,6 +3566,7 @@ ko:
           and: 그리고
           or: 또는
         prevent_value_overlap: 값 중복 방지
+        randomize_answers_order: 답변 순서를 무작위로 설정하세요
         skill_type_label: 스킬 유형별 필터링
         skill_type_placeholder: 스킬 유형 선택
         skill_types:
@@ -4113,6 +4191,11 @@ ko:
             missing_columns: '누락된 필수 열: %{columns}'
             save_failed: '오류 처리 스킬 ID %{id}: %{message}'
             skill_not_found: 아이디가 %{id}인 스킬을 찾을 수 없습니다
+      vector:
+        generate_embedding: 삽입 생성
+        generate_embedding_failure_msg: 기술 임베딩 생성 작업을 대기열에 넣지 못했습니다. 다시 시도해 주세요.
+        generate_embedding_success_msg: 기술 임베딩 생성 작업이 성공적으로 대기열에 들어왔습니다. 알림에서 상태를 확인해 주세요.
+        label: 벡터 DB
     skills_taxonomy:
       tabs:
         job_roles: 직무 역할
@@ -4592,8 +4675,6 @@ ko:
             evaluations_received: 받은 평가
             is_subject: 제목
             name: 이름
-            report_status: 보고 상태
-            status: 상태
           evaluators:
             add_evaluators: 평가자 추가
             import_evaluators: 평가자 가져오기

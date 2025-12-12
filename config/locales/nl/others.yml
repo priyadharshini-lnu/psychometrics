@@ -232,6 +232,19 @@ nl:
               contains_repeats: Wachtwoord mag geen herhalingen bevatten
               too_short: Wachtwoord is te kort. Minimum %{count} teken vereist
               too_weak: 'Wachtwoord moet bestaan uit: Minimaal 1 kleine letter, 1 hoofdletter, 1 cijfer en 1 speciaal teken.'
+        project_license:
+          attributes:
+            base:
+              exceeds_available: Kan niet meer dan beschikbare licenties toewijzen
+            license_id:
+              already_present: al aanwezig voor dit project
+            usage_limit:
+              cant_be_less_than_used: Kan niet onder het huidige gebruiksaantal van %{used_count} worden ingesteld
+              cant_be_more_than_available: Kan niet hoger zijn dan de beschikbare limiet op het rijbewijs (%{usage_limit})
+              exceeds_available: Er kunnen niet meer dan beschikbare licenties zijn
+              less_than_used_number: Mag niet minder zijn dan het aantal gebruikte licenties
+            used_number:
+              overused: Er kunnen niet meer dan beschikbare licenties zijn.
         questions_import_block_form:
           attributes:
             name:
@@ -422,6 +435,10 @@ nl:
               inclusion: moet een booleaans zijn
             start_date_time:
               invalid_datetime: is ongeldig
+        yoodli:
+          attributes:
+            name:
+              not_unique: Deze integratie is al aanwezig voor dit project.
   activerecord:
     attributes:
       administration/assessments/assign_form:
@@ -452,6 +469,7 @@ nl:
           simulation: Simulatie
           skillvue: Skillvue
           threesixty: 360 Campagne
+          yoodli: Yoodli
         category: Categorie
         created_at: Datum aangemaakt
         description: Beschrijving
@@ -469,6 +487,7 @@ nl:
           saville: Beoordeling Saville
           simulation: Simulatie Assessment
           skillvue: Skillvue Assessment
+          yoodli: Yoodli-beoordeling
         updated_at: Gewijzigde datum
       assign:
         completed_at: Datum van voltooiing
@@ -836,6 +855,7 @@ nl:
         data_report_export: Gegevensrapport exporteren
         export_admin_with_permissions: Admin exporteren met machtigingen
         export_assessment_questions: Vragen over exportbeoordeling
+        export_campaign_ai_artifacts: Exportcampagne-AI-artefacten
         export_campaign_factors: Factoren voor exportcampagnes
         export_campaign_scorings: Campagne scorings exporteren
         export_dashboard_as_file: Dashboard exporteren als bestand
@@ -857,10 +877,12 @@ nl:
         export_user_report_events: Gebeurtenissen gebruikersrapport exporteren
         export_users: Campagne gebruikers exporteren
         external_assessment_export: Exporteren van externe resultaten
+        generate_embedding_skills: Genereer embedding voor vaardigheden
         import_accesssheet: Accessheet importeren
         import_assessment_questions: Vragen over importeren
         import_assessment_translations: Import Assessment Vertalingen
         import_assessors: Importeurs
+        import_campaign_ai_artifacts: Import Campagne AI-artefacten
         import_campaign_factors: Campagnefactoren importeren
         import_datasheet: Gegevensblad importeren
         import_development_action_translations: Import Ontwikkeling Actie Vertalingen
@@ -1028,6 +1050,7 @@ nl:
         saville_assessment_name: Saville beoordeling Naam
         simulation_assessment_name: Simulatie Beoordeling Naam
         skillvue_assessment_name: Skillvue Beoordeling Naam
+        yoodli_assessment_name: Yoodli Beoordelingsnaam
       translations_migrated: Vertaling gemigreerd
     create: Maak
     dashboard: Dashboard
@@ -1069,6 +1092,7 @@ nl:
         simulation: Simulatie
         skillvue: Skillvue
         threesixty: 360 Campagne
+        yoodli: Yoodli
       status:
         finished: Afgewerkt
         in_progress: In uitvoering
@@ -1081,6 +1105,7 @@ nl:
         saville: Beoordeling Saville
         simulation: Simulatie Beoordeling
         skillvue: Skillvue Assessment
+        yoodli: Yoodli-beoordeling
     flow:
       end_assessment_modal:
         custom_message: Aangepast bericht einde beoordeling
@@ -1602,8 +1627,6 @@ nl:
       report: Rapporteer
       report_bundle_placeholder: Selecteer een rapportbundel
     messages:
-      bulk_download_error: Bulkdownload is beperkt tot 1000 rapportbestanden. Als je veel talen hebt geselecteerd, verklein dit dan.
-      bulk_download_no_reports: Geen meldingen gevonden. Genereer de rapporten voordat u ze downloadt.
       bulk_download_successful: De downloadtaak voor bulkrapporten is met succes gepland
       export_report_data_scheduled: De exporttaak voor rapportgegevens is met succes gepland
     modals:
@@ -1772,6 +1795,7 @@ nl:
       go_back: Terug
       import: Importeren
       insert: Invoegen
+      'no': Nee
       ok: OK
       publish: Publiceer
       reject: Verwerpen
@@ -1798,6 +1822,7 @@ nl:
       view: Bekijk
       view_all_tasks: Bekijk alle taken
       view_detail: Detail bekijken
+      'yes': Ja
     column:
       action: Actie
       active: Actief
@@ -1911,6 +1936,7 @@ nl:
       hide: Verberg
       view: Bekijk
     validations:
+      required: Dit vakgebied is vereist
       select_locale: Selecteer een of meer locaties
       should_be_whole_number: moet een heel getal zijn
   confirmation:
@@ -2361,6 +2387,7 @@ nl:
     error_warning: Oeps, er is iets misgegaan met je beoordeling. Neem contact op met de ondersteuning.
     hogan:
       cannot_start: Je kunt de hogan beoordeling nu niet starten. Probeer het na een paar minuten.
+    lighthouse_app: Mercer Vuurtoren
     login: Inloggen
     maintenance:
       notification: Lighthouse wordt over 60 seconden uitgeschakeld voor gepland onderhoud
@@ -2462,6 +2489,8 @@ nl:
   idp:
     actions: Acties
     add_comments: Opmerkingen toevoegen
+    add_note: Voeg Notitie toe...
+    add_reason: Voeg Reden toe...
     added_development_action: Ontwikkelingsactie toegevoegd
     ai:
       assistant:
@@ -2479,8 +2508,8 @@ nl:
       reset_chat: Chat resetten
       reset_confirmation: Weet je zeker dat je deze chat wilt weggooien en opnieuw wilt beginnen?
       retake_steps:
-        chat_hint: Laat me hieronder weten welke informatie je meer wilt geven?
-        chat_title: Wilt u meer informatie geven?
+        chat_hint: Je kunt een nieuw bestand uploaden of de chat opnieuw starten om meer details te delen, en ik zal mijn best doen om je te helpen.
+        chat_title: Het spijt me dat de eerste analyse niet aan je verwachtingen voldeed.
         start_chat: Start Chat
         start_chat_again: Start de chat opnieuw
         upload_document: Document uploaden
@@ -2506,17 +2535,19 @@ nl:
         chat_title: Samenvatting van Chat Insight
         file_title: Inzichten in geüploade documenten
         gap_report_title: Analyse van het rapport over vaardigheidstekorten
-        hint: zo ja, dan zullen we uw IDP aanmaken, anders kunt u uw antwoorden opnieuw opnemen
-        title: Ben je tevreden met de resultaten?
+        hint: Met uw toestemming, als u ja zegt, kan ik een ontwikkelingsplan voor u opstellen. Zo niet, dan kun je de chat opnieuw starten of een nieuw bestand uploaden.
+        title: Ben je tevreden met de analyse?
         upload_file: Geüpload bestand
         view_chat: Bekijk Chat
       upload:
-        description: Klik of sleep bestanden naar dit gebied om ze te uploaden
+        description: 'Ondersteund bestandstype: PDF-documenten tot %{maxFileSize}MB'
         drop: Plaats het bestand hier
-        title: Bestanden uploaden
+        title: Klik of laat hier het bestand vallen
       welcome:
         text: Klaar om je groeikaart in kaart te brengen? Laten we beginnen!
         title: Hallo, ik ben je ontwikkelingsassistent
+    approval_note: Goedkeuringsnota
+    approve_plan: Plan goedkeuren
     behavioral: Gedrag
     board: Raad van bestuur
     change_history: Geschiedenis van de wijziging
@@ -2617,12 +2648,14 @@ nl:
       mark_as_complete: Markeren als voltooid
       no_development_actions: Geen ontwikkelingsacties
       on_the_job: Op het werk
+      one: "[NL] 1"
       other: Andere
       private: Privé
       publish_plan: Plan publiceren
       remove: Verwijder
       save_plan: Abonnement opslaan
       search_development_actions: Acties voor zoekontwikkeling
+      selected_count: "%{count} geselecteerd"
       show_development_action_information: Toon informatie over ontwikkelingsacties
       skill: Vaardigheid
       sprint: Sprint
@@ -2631,7 +2664,9 @@ nl:
       structured_learning_label: Samenwerkend leren
       submit_plan: Plan indienen
       success: Ontwikkelingsacties succesvol afgerond
+      three: "[NL] 3"
       toggle_skill_privacy: Schakel Skill Privacy in
+      two: "[NL] 2"
       write_here: Schrijf hier...
     direct_reportee_details: Details van directe verslaggevers
     download:
@@ -2642,6 +2677,7 @@ nl:
     edit_progress: Vooruitgang bewerken
     fetching_skill_gap_report: Rapport over lacunes in vaardigheden ophalen...
     go_to_previous_step: Ga naar de vorige stap
+    go_to_reportee_plan: Ga naar de plandetails van de gemelde.
     history:
       added_da:
         one: Ontwikkelingsactie toegevoegd
@@ -2691,19 +2727,23 @@ nl:
         categories: Categorieën
       save_skills: Vaardigheden opslaan
     new_comments: Nieuwe reactie(s)
+    no_plan_changes_found: Sinds je laatste beoordeling zijn er geen wijzigingen aan het plan gedaan.
     no_skills_added: Je hebt nog geen Skills toegevoegd.
     no_skills_added_by_reportee: De verslaggever heeft nog geen vaardigheden toegevoegd.
     pdf:
       approval_status: Status van goedkeuring
       cover:
         fields:
+          approval_date: Goedkeuringsdatum
           assigned_data: Toegewezen datum
           assigned_date: Toegewezen Datum
           completion_date: Voltooiingsdatum
+          current_job_role: Huidige functie
           division: Divisie
           name: Naam
           publish_date: Publicatiedatum
           review_date: Datum van beoordeling
+          target_job_role: Doelfunctie
       guidelines:
         cards:
           c1:
@@ -2733,10 +2773,13 @@ nl:
           main: Dit gedeelte bevat een cumulatieve lijst van alle ontwikkelingstrajecten, rekening houdend met best practice learning, d.w.z. de 70-20-10-richtlijn, die een progressieve reis biedt die klassikaal leren, coaching en on-the-job leren combineert. Op basis van de resultaten van de ervaring met leiderschapsontwikkeling en zakelijke prioriteiten zijn mogelijke ontwikkelingspaden aanbevolen, die in aanmerking kunnen komen voor uw ontwikkeling.
         learn_cards:
           collaboration:
+            list: '[NL] ["Offer to coach or mentor others", "Request to be mentored by an expert in your field", "Attain a coach to support your development", "Set-up a collaborative working group to discuss on going challenges in the business", "Get feedback formally and informally from others", "Play an active role in industry associations and networks", "Build your own external networks"]'
             title: Samenwerkend leren (20%) <br/> Ontwikkelen door anderen
           job:
+            list: '[NL] ["Assume leadership positions in stakeholder or management committees", "Volunteer to lead change management projects for the organization", "Consider taking on stretching assignments", "Work cross-collaboratively with other functions", "Consider leading projects outside your organization", "Work closely with external industry experts on joint-projects"]'
             title: Leren op de werkplek (70%) <br/> Ontwikkelen door ervaring
           learn:
+            list: '[NL] ["Assume leadership positions in stakeholder or management committees", "Volunteer to lead change management projects for the organization", "Consider taking on stretching assignments", "Work cross-collaboratively with other functions", "Consider leading projects outside your organization", "Work closely with external industry experts on joint-projects"]'
             title: Formeel leren (10%) <br/> Ontwikkelen door gestructureerd leren
         title: Richtlijnen om uw IDP te begeleiden
       idp:
@@ -2759,8 +2802,12 @@ nl:
         approved: Beoordeeld en goedgekeurd
         completed: Volbracht
         draft: Ontwerp
+        in_progress: In uitvoering
+        in_review: In Terugblik
         not_reviewed: Niet beoordeeld
+        not_started: Niet begonnen
         pending_approval: In recensie
+        rejected: Afgekeurd
       summary:
         ai_count: Generatieve AI
         collaborative_learn: Samenwerkend leren
@@ -2782,6 +2829,7 @@ nl:
     plan_submitted_for_manager_approval: Uw Individueel Ontwikkelingsplan is ter goedkeuring voorgelegd aan de manager.
     private: Privé
     public: Publiek
+    reason_for_rejection: Reden voor afwijzing
     reflective_questions:
       already_completed: De IDP is al voltooid, u kunt de vragen nu niet beantwoorden.
       answer: Antwoorden
@@ -2794,7 +2842,9 @@ nl:
         max_words: Het antwoord staat een maximum van %{count} woorden toe
         min_words: Het antwoord vereist ten minste %{count} woorden
         required: Het antwoord op de vraag is vereist
+      max_word_limit: Moet hooguit %{max} woorden zijn
       max_words: Max Woorden
+      min_word_limit: Het moet minstens %{min} woorden zijn
       min_words: Min woorden
       no_answer_provided: Nog geen antwoord gegeven
       no_reflective_questions: Geen reflectieve vragen
@@ -2807,6 +2857,7 @@ nl:
       updated_successfully: Uw antwoorden zijn met succes bijgewerkt
       word_limit: Moet tussen %{min} en %{max} woorden liggen
       words: Woorden
+    reject_plan: Plan afwijzen
     remove_skill: Vaardigheid verwijderen
     remove_skill_from_plan: Vaardigheids %{name} uit plan verwijderen
     removed_development_action: Verwijderde ontwikkelingsactie
@@ -2827,6 +2878,7 @@ nl:
     summary_logs: Overzichtslogboeken voor %{reporteeName}
     technical: Technisch
     user_idp_status:
+      ai_assisted_idp_in_progress: AI-ondersteunde IDP in uitvoering
       approved: Goedgekeurd
       completed: Volbracht
       completion_not_started: Oplevering niet gestart
@@ -2946,6 +2998,7 @@ nl:
     usage_overview: Licentiegebruik bekijken
     usages: Gebruik
   licenses:
+    client_usage: Klantgebruik
     enabled: Ingeschakeld
     end_date: Einddatum
     not_enough_idp_license: Niet genoeg IDP-licenties, neem contact op met beheerder
@@ -2954,6 +3007,10 @@ nl:
     not_enough_proctoring_credits: Niet genoeg studiepunten om proctoraatsessie te beginnen
     number: Aantal
     overuse_number: Vergoeding voor overmatig gebruik
+    project_limit_reached: Gebruikslimiet bereikt voor '%{license_name}', neem contact op met de beheerder
+    project_specific: Projectspecifiek
+    project_specific_license: Projectspecifieke licentie
+    project_usage: Projectgebruik
     report_family: Verslagbundel
     start_date: Startdatum
     title: Licentie
@@ -2965,6 +3022,34 @@ nl:
       threesixty: Driezestig
     used_number: Gebruikte licenties
     used_out_of: "%{used} van %{total}"
+  lti:
+    oidc_auth_form:
+      errors:
+        client_id:
+          blank: Een klant-ID is vereist
+          invalid: De client ID komt niet overeen met de geregistreerde tool-identificatie
+          validation_failed: Client ID-validatie mislukt
+        login_hint:
+          assessment_completed: De gebruikersbeoordeling is al afgerond
+          blank: Inlogtip is vereist
+          invalid_user_assessment: Logintip verwijst niet naar een geldige gebruikersbeoordeling
+        lti_deployment_id:
+          not_found: Deployment ID verwijst niet naar een geldige integratie
+        nonce:
+          blank: Nonce is vereist
+        redirect_uri:
+          blank: Redirect-URI is vereist
+          has_fragment: Redirect-URI mag geen fragment bevatten
+          https_required: Redirect-URI moet HTTPS gebruiken in productie
+          invalid_format: Redirect URI moet een geldig URI-formaat zijn
+          missing_host: Redirect-URI moet een host bevatten
+          scheme_not_allowed: Redirect-URI moet HTTP- of HTTPS-protocol gebruiken
+        response_type:
+          blank: Het type respons is vereist
+          invalid: Het responstype moet 'id_token' zijn.
+        scope:
+          blank: Reikwijdte is vereist
+          invalid: De scope moet 'openid' zijn
   mailer:
     copyright:
       text: Lighthouse. Alle rechten voorbehouden
@@ -3210,10 +3295,12 @@ nl:
         pearson: Pearson
         saville: Saville
         skillvue: Skillvue
+        yoodli: Yoodli
     form:
       load_from_mettl: Belasting van Mettl
       load_from_pearson: Laden van Pearson
       load_from_skillvue: Belasting van Skillvue
+      load_from_yoodli: Laden vanuit Yoodli
       none_external: Geen - Gebruik rapportbouwer
     language: Rapport Taal
     language_updated: Rapporttaal is met succes bijgewerkt
@@ -3701,13 +3788,6 @@ nl:
       on_hold: In de wacht
       prepared: Gedaan
       released: Vrijgegeven
-    statuses:
-      completed: Voltooid
-      declined: Afgewezen
-      denied: Geweigerd
-      done: Gedaan
-      not_completed: Niet voltooid
-      waiting: Wachten
   threesixty:
     accept_privacy_modal:
       accept: Accepteer

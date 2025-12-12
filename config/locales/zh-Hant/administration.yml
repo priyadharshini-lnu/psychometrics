@@ -95,6 +95,12 @@ zh-Hant:
           title: 確認
       permissions:
         labels:
+          aiArtifacts:
+            export: 出口
+            import: 進口
+            manage: 司
+            title: AI 產物
+            view: 觀
           apiKeys:
             manage: 管理
             title: API 金鑰
@@ -220,9 +226,11 @@ zh-Hant:
           projects:
             manage: 管理
             manage_admins: 管理管理員
+            manage_licenses: 管理授權
             manage_users: 管理使用者
             title: 專案
             view: 檢視
+            view_licenses: 查看授權
           questions:
             manage: 管理
             title: 問題
@@ -284,6 +292,10 @@ zh-Hant:
             manage: 管理
             title: 簡訊邀請
             view: 檢視
+          userIdpPlans:
+            manage: 司
+            title: 使用者 IDP 計畫
+            view: 觀
           users:
             reset_password: 重設密碼
             title: 使用者
@@ -296,6 +308,9 @@ zh-Hant:
     ai_artifacts:
       artifact_results: 神器結果
       code: 法典
+      export:
+        success_msg: 正在匯出進行中的 AI 工件。請查看通知中的狀態。
+      export_ai_artifacts: 匯出 AI 產物
       form:
         add_assessment: 新增評量
         ai_assistant: AI助手
@@ -320,6 +335,12 @@ zh-Hant:
       generated_at_time: 生成於%{time}
       generated_value: 產生的價值
       id: ID
+      import:
+        download_example_csv: 下載 CSV 範例
+        info_msg: 上傳的檔案已被排隊匯入。請查看通知中的狀態。
+      import_action:
+        title: 匯入戰役 AI 工件
+      import_ai_artifacts: 匯入 AI 工件
       key: 鑰匙
       name: 名字
       parsed_dependencies:
@@ -335,6 +356,10 @@ zh-Hant:
         settings: 設定
       test_generate: 測試產生
       unsaved_changes: 存在未儲存的變更，請考慮提交表單以從 Playground 產生更新的回應。
+      used_tokens:
+        input_tokens: 輸入標記
+        output_tokens: 輸出標記
+        title: 代幣使用
     ai_assistants:
       actions:
         create: 建立 AI 助理
@@ -872,8 +897,6 @@ zh-Hant:
       new:
         header: 大量下載
       reports_unavailable: 目前沒有可供下載的報告，請確認您要下載的報告是否可用。
-      select_users_for_download: 請選擇至少一個用戶下載報告。
-      select_users_for_regenerate: 請選擇至少一個用戶重新生成報告。
     cable:
       notification:
         assessment_factors: 取得因子
@@ -929,6 +952,17 @@ zh-Hant:
         report_update: 報告已更新
         scoring_update: 計分已更新
         trash_empty: 垃圾註解為空
+    campaign_ai_artifacts:
+      export:
+        details: 戰役 AI 工件成功匯出
+    campaign_ai_artifacts_import:
+      errors:
+        ai_assistant_not_found: ID 中找不到 AI 助理：%{id}
+        campaign_factor_not_found: 本戰役中未找到代碼「%{code}」的戰役因子
+        dependency_not_found: 找不到帶有身分證的依賴%{type} %{id}
+        file_required: 匯入時必須檔案
+        save_failed: 未能拯救 AI 遺物「%{code}」：%{message}
+        sheet_column_not_found: 標有「%{name}」的表格欄位，在活動或專案資料表中找不到
     campaign_factor_import:
       errors:
         assessment_not_found_in_campaign: 活動中未找到評估 ID '%{assessment_id}'
@@ -1240,6 +1274,7 @@ zh-Hant:
         archived: 存檔
         disable: 存檔
         enable: 未歸檔
+      clients: 客戶
       copy:
         successfully: 客戶租約 '%{name}' 已成功複製。
       create:
@@ -2259,6 +2294,10 @@ zh-Hant:
           accesssheet_manage: 存取表管理
           accesssheet_settings: 存取表設定
           accesssheet_view: 存取表檢視
+    header:
+      logout:
+        content: 如果你想繼續工作，請按取消。按下確定鍵即可登出目前使用者。
+        title: 你確定要登出嗎？
     hogan:
       errors:
         new_assessment_response_not_allowed:
@@ -2312,13 +2351,16 @@ zh-Hant:
         skills_required_on_publishing: 請在發布模板之前選擇技能。
         update: 不允許更新，因為 IDP 模版已與使用者 IDP 計劃相關聯。
       fields:
+        approval_date: 核准日期
         assigned_data: 指定資料
         assigned_date: 指定日期
         completion_date: 完成日期
+        current_job_role: 目前職務
         division: 部門
         name: 名稱
         publish_date: 出版日期
         review_date: 審核日期
+        target_job_role: 目標職務
       fields_label: 字段
       global_skills: 全球技能
       idp: IDP
@@ -2546,6 +2588,13 @@ zh-Hant:
         details: 詳細資訊
         name: 整合名稱
       details:
+        client_id: 客戶識別碼
+        deployment_id: 部署識別碼
+        platform_access_token_url: 平台存取令牌網址
+        platform_authentication_request_url: 平台認證請求網址
+        platform_host_name: 平台主機名稱
+        platform_id: 平台識別碼
+        platform_public_keyset_url: 平台公開金鑰集 URL
         provider: 供應商名稱
         webhookUrl: Webhook URL
         webhookUrls: Webhook URL
@@ -2576,11 +2625,16 @@ zh-Hant:
         skillvue:
           apiKey: API 金鑰
           apiKeyRequired: 需要 API 金鑰
+        yoodli:
+          keyset_url: 鍵組網址
+          launch_url: 啟動網址
+          login_url: 登入網址
       names:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
         skillvue: Skillvue
+        yoodli: 尤德利
       validations:
         iiht:
           tenancy_name_present: 租戶名稱已出現在其他專案中
@@ -2590,6 +2644,24 @@ zh-Hant:
         skillvue:
           api_key_present: API 金鑰已存在於其他專案中
       view_all_schedules: 檢視所有 Mettl 時刻表
+      yoodli_assessments:
+        add_assessment: 新增 Yoodli 評估
+        columns:
+          actions: 行動
+          created_at: 創立於
+          name: 評估名稱
+          product_id: 產品識別碼
+        delete_confirm: 你確定要刪除這個 Yoodli 評估嗎？
+        edit_assessment: 編輯：Yoodli 評估
+        manage_catalog: 管理 Yoodli 評估
+        messages:
+          create_success: Yoodli 評估「%{name}」成功製作
+          delete_success: Yoodli 評估已被成功刪除
+          update_success: Yoodli 評估「%{name}」已成功更新
+        placeholders:
+          name: 輸入評估名稱
+          product_id: 產品識別碼（Product ID）登場
+        search: 尋
     interview_questions:
       delete_confirmation: 你確定要刪除這個面試問題嗎？
       description: 描述
@@ -2740,9 +2812,12 @@ zh-Hant:
     navigation:
       audit_logs: 稽核記錄
       availability: 可用性
+      configuration: 配置
+      content: 內容
       dashboard: 儀表板
       factors: 因素
       innovation_styles: 創新風格
+      logout: 登出
       occupations: 職業
       registration_codes: 註冊碼
       skills_taxonomy: 技能分類法
@@ -3295,6 +3370,7 @@ zh-Hant:
         mask_identity_for_pearson: Pearson 的遮罩資料
         mask_identity_for_saville: 薩維爾的面具資料
         mask_identity_for_skillvue: Skillvue 的掩膜資料
+        mask_identity_for_yoodli: Yoodli 的遮罩資料
         privacy_link: 啟用隱私連結
         privacy_link_label: 隱私權連結
         privacy_link_placeholder: 輸入隱私權連結
@@ -3470,6 +3546,7 @@ zh-Hant:
           graph_value: 圖形值
         graph_value_condition_not_supported_msg: 此圖形型別不支援圖形值條件。此選項目前僅適用於以下圖表型別。
         graph_value_conditions_title: 圖形值條件
+        hide_responses_with_no_data: 隱藏無資料的回應
         if_graph_value_is: 如果圖形值為：
         job_roles:
           current: 目前的工作因素
@@ -3489,6 +3566,7 @@ zh-Hant:
           and: 和
           or: 或
         prevent_value_overlap: 防止值重疊
+        randomize_answers_order: 隨機排序答案
         skill_type_label: 按技能類型篩選
         skill_type_placeholder: 選擇技能類型
         skill_types:
@@ -4113,6 +4191,11 @@ zh-Hant:
             missing_columns: 缺少必填欄位：%{columns}。
             save_failed: '處理技能 ID %{id} 時出錯: %{message}'
             skill_not_found: 未找到 ID 為 %{id} 的技能
+      vector:
+        generate_embedding: 生成嵌入
+        generate_embedding_failure_msg: 無法排隊完成技能嵌入生成任務。請再試一次。
+        generate_embedding_success_msg: 技能嵌入生成工作已成功排隊。請查看通知中的狀態。
+        label: 向量資料庫
     skills_taxonomy:
       tabs:
         job_roles: 工作角色
@@ -4592,8 +4675,6 @@ zh-Hant:
             evaluations_received: 收到的評估
             is_subject: 是主題
             name: 名稱
-            report_status: 報告狀態
-            status: 狀態
           evaluators:
             add_evaluators: 新增評估員
             import_evaluators: 進口評估員

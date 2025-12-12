@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import {
-  Drawer, Row, Descriptions,
+  Drawer, Row, Descriptions, Switch,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
@@ -19,6 +19,7 @@ interface Props {
   ) => Promise<{ response: unknown }>
   loadingUpdateMettlSchedule: boolean,
   updatePearsonVariation: (campaignId: string, assessmentId: number, body: object) => Promise<{ response: unknown }>
+  toggleAssessmentCaching: (campaignId: number, id: number, cachingEnabled: boolean) => void
 }
 
 export const DetailsDrawer: FC<Props> = ({
@@ -28,11 +29,12 @@ export const DetailsDrawer: FC<Props> = ({
   updateMettlSchedule,
   loadingUpdateMettlSchedule,
   updatePearsonVariation,
+  toggleAssessmentCaching,
 }) => {
   if (!assessment) {
     return null
   }
-
+  const parsedCampaignId = parseInt(campaignId, 10)
   const { projectId } = useParams<{ projectId: string }>()
 
   return (
@@ -82,6 +84,20 @@ export const DetailsDrawer: FC<Props> = ({
           >
             {assessment.normId}
           </Descriptions.Item>
+          { assessment.allowCaching && (
+            <Descriptions.Item
+              label={I18n.t('admin.campaign_assessment_column_caching_enabled')}
+              key="caching_enabled"
+              className="va-t"
+            >
+              <Switch
+                checked={assessment.cachingEnabled}
+                disabled={!assessment.permissions.toggleCaching}
+                onChange={() => toggleAssessmentCaching(parsedCampaignId, assessment.id, !assessment.cachingEnabled)}
+              />
+            </Descriptions.Item>
+          )}
+
         </Descriptions>
 
         <MettlScheduleRecordDetails

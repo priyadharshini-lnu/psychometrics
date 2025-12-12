@@ -64,6 +64,10 @@ ko:
         validates_admins: 관리자는 캠페인에 액세스할 수 없습니다.
       report_families_reports:
         report_exists: 이 보고서는 이미 보고서 번들의 일부입니다
+      saml_service_provider:
+        invalid_url: '잘못된 URL 형식: %{url}'
+        must_be_array: 배열임에 틀림없어
+        must_not_be_empty: 비어 있을 리 없다
       size?: 크기는 %{size}보다 작아야 합니다
       skill:
         already_added: 같은 이름의 스킬이 이미 추가되었습니다.
@@ -94,6 +98,7 @@ ko:
         unique_name: 같은 이름의 필터가 이미 존재합니다.
       workshop_invited_subject_create:
         already_exists: 초대장에 제목이 이미 존재합니다.
+        part_of_other_workshop_invite: 피실험체는 이미 '%{workshop_invite_name}' 초대받았다.
       workshop_subject_create:
         already_exists: 이 평가 센터에 과목이 이미 존재합니다.
         part_of_other_workshop: 주체가 이미 '%{workshop_name}'의 참가자입니다.

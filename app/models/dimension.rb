@@ -25,7 +25,7 @@ class Dimension < ApplicationRecord
 
   enum :dimension_type, { regular: 0, skill_rater: 1 }
 
-  after_commit :invalidate_assessment_cache
+  before_commit :invalidate_assessment_cache
   after_create_commit :sync_skill_rater_entities, if: :skill_rater?
 
   # Search entity by word

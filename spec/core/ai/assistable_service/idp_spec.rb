@@ -85,38 +85,6 @@ describe AI::AssistableService::Idp do
       end
     end
 
-    context 'when doc anaylise assistant tool are not configured properly' do
-      before do
-        idp_template.update!(document_analysis_ai_assistant: nil)
-      end
-
-      it 'returns an error with the correct translation' do
-        result = described_class.call(plan, user, instructions, options)
-        allow(AI::AssistantService).to receive(:new)
-
-        expect(result[:error]).to eq(
-          I18n.t('ai.errors.generic')
-        )
-        expect(AI::AssistantService).not_to have_received(:new)
-      end
-    end
-
-    context 'when gap report anaylise assistant tools are not configured properly' do
-      before do
-        idp_template.update!(skill_gap_report_analysis_ai_assistant: nil)
-      end
-
-      it 'returns an error with the correct translation' do
-        result = described_class.call(plan, user, instructions, options)
-        allow(AI::AssistantService).to receive(:new)
-
-        expect(result[:error]).to eq(
-          I18n.t('ai.errors.generic')
-        )
-        expect(AI::AssistantService).not_to have_received(:new)
-      end
-    end
-
     context 'when ai_assisted_idp_session does not exist' do
       include_context 'assistant service mocking'
 
@@ -197,19 +165,38 @@ describe AI::AssistableService::Idp do
         expect(AI::Utils::DependencyParser::UserData).to have_received(:new)
       end
 
-      it 'passes correct tools to the chat context' do
-        service = described_class.new(plan, user, instructions, options)
+      context 'assistant tools' do
+        let(:service) { described_class.new(plan, user, instructions, options) }
+        let(:assistant_tools) { service.send(:assistant_tools) }
 
-        assistant_chat = service.send(:assisted_session_chat)
-
-        expect(assistant_chat).to receive(:with_assistant_context) do |args|
-          expect(args[:tools]).to include(AI::Tools::Idp::AddSkillToPlan)
-          expect(args[:tools]).to include(AI::Tools::Idp::AvailableSkillsAndDevelopmentActions)
-          expect(args[:tools]).to include(AI::Tools::Idp::SkillGapReportAnalysis)
-          expect(args[:tools]).to include(AI::Tools::Idp::AttachmentAnalysis)
+        it 'includes all tools when both assistants are configured' do
+          expect(assistant_tools.map(&:class)).to contain_exactly(
+            AI::Tools::Idp::AttachmentAnalysis,
+            AI::Tools::Idp::SkillGapReportAnalysis,
+            AI::Tools::Idp::AddSkillToPlan,
+            AI::Tools::Idp::AvailableSkillsAndDevelopmentActions
+          )
         end
 
-        service.call
+        it 'excludes AttachmentAnalysis when document assistant is missing' do
+          idp_template.update!(document_analysis_ai_assistant_id: nil)
+
+          expect(assistant_tools.map(&:class)).to contain_exactly(
+            AI::Tools::Idp::SkillGapReportAnalysis,
+            AI::Tools::Idp::AddSkillToPlan,
+            AI::Tools::Idp::AvailableSkillsAndDevelopmentActions
+          )
+        end
+
+        it 'excludes SkillGapReportAnalysis when skill-gap assistant is missing' do
+          idp_template.update!(skill_gap_report_analysis_ai_assistant_id: nil)
+
+          expect(assistant_tools.map(&:class)).to contain_exactly(
+            AI::Tools::Idp::AttachmentAnalysis,
+            AI::Tools::Idp::AddSkillToPlan,
+            AI::Tools::Idp::AvailableSkillsAndDevelopmentActions
+          )
+        end
       end
 
       it 'passes correct parameters to AssistantService' do
@@ -228,6 +215,7 @@ describe AI::AssistableService::Idp do
           chat: assistant_chat,
           ignore_user_prompt: true,
           ask_params: nil,
+          prompt_template_context: nil,
           params: {}
         )
       end
@@ -312,6 +300,30 @@ describe AI::AssistableService::Idp do
 
         expect(plan.reload.ai_assisted_idp_session.latest_chat).to eq(original_chat)
       end
+    end
+  end
+
+  describe '#prompt_template_context' do
+    let(:service) { described_class.new(plan, user, instructions, options) }
+
+    it 'returns the correct context hash with campaign and user' do
+      context = service.send(:prompt_template_context)
+
+      expect(context).to be_a(Hash)
+      expect(context[:campaign]).to eq(campaign)
+      expect(context[:user]).to eq(user)
+    end
+
+    it 'includes campaign from the assistable' do
+      context = service.send(:prompt_template_context)
+
+      expect(context[:campaign]).to eq(plan.campaign)
+    end
+
+    it 'includes the current user' do
+      context = service.send(:prompt_template_context)
+
+      expect(context[:user]).to eq(user)
     end
   end
 end

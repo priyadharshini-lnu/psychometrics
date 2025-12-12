@@ -6,6 +6,7 @@ module Threesixty
       NOT_COMPLETED = 'not_completed'
       COMPLETED = 'completed'
       DONE = 'done'
+      NOTHING_ASSIGNED = 'nothing_assigned'
 
       def initialize(subject, nomination_requirement, counters = {}, subject_evaluator_counters = {})
         @subject = subject
@@ -16,11 +17,16 @@ module Threesixty
 
       def call
         unless subject
-          return all_evaluations_completed? ? broadcast(:ok, COMPLETED) : broadcast(:ok, NOT_COMPLETED)
+          return broadcast(:ok, NOTHING_ASSIGNED) if no_evaluations_assigned?
+          return broadcast(:ok, COMPLETED) if all_evaluations_completed?
+
+          return broadcast(:ok, NOT_COMPLETED)
         end
 
         if subject&.evaluation_status_completed?
           broadcast :ok, DONE
+        elsif no_evaluations_assigned?
+          broadcast :ok, NOTHING_ASSIGNED
         elsif valid_nomination_requirement? && all_evaluations_completed?
           broadcast :ok, COMPLETED
         else
@@ -35,8 +41,12 @@ module Threesixty
           Threesixty::NominationRequirements::IsValid.call!(nomination_requirement, subject_evaluator_counters)
       end
 
+      def no_evaluations_assigned?
+        counters[:total_evaluators].to_i.zero?
+      end
+
       def all_evaluations_completed?
-        counters[:completed_evaluations] >= counters[:total_evaluations]
+        counters[:total_evaluators].positive? && counters[:completed_evaluators] >= counters[:total_evaluators]
       end
 
       private

@@ -72,12 +72,35 @@ describe AI::AssistableService::Base do
       end
 
       it 'creates the chat with assistant context' do
-        expect(ai_assistant).to receive(:for_user).with(user, contextual_information: 'Test context').and_call_original
+        expect(ai_assistant).to receive(:for_user).with(user, contextual_information: 'Test context',
+          prompt_template_context: {}).and_call_original
 
         service = create_service
         session = service.session
 
         expect(session.latest_chat).to be_present
+      end
+
+      it 'passes prompt_template_context from options to AssistantService' do
+        prompt_context = { campaign: 'test_campaign', user: 'test_user' }
+        options_with_context = { prompt_template_context: prompt_context }
+        service = create_service(instructions: instructions, options: options_with_context)
+
+        mock_chat = double('chat_with_context')
+        allow(service).to receive(:chat_with_context).and_return(mock_chat)
+
+        expect(AI::AssistantService).to receive(:new).with(
+          ai_assistant.id,
+          user,
+          instructions,
+          chat: mock_chat,
+          ignore_user_prompt: nil,
+          ask_params: nil,
+          params: {},
+          prompt_template_context: prompt_context
+        ).and_call_original
+
+        service.send(:assistant_service)
       end
 
       it 'saves the session after creating it' do
@@ -163,9 +186,32 @@ describe AI::AssistableService::Base do
       end
 
       it 'creates the new chat with assistant context' do
-        expect(ai_assistant).to receive(:for_user).with(user, contextual_information: 'Test context').and_call_original
+        expect(ai_assistant).to receive(:for_user).with(user, contextual_information: 'Test context',
+          prompt_template_context: {}).and_call_original
 
         service = create_service(options: options)
+        service.session
+      end
+
+      it 'passes prompt_template_context when creating new chat' do
+        test_user = user
+        test_context = { test_key: 'test_value', user: test_user }
+        service_class_with_context = Class.new(test_service_class) do
+          define_method :prompt_template_context do
+            { test_key: 'test_value', user: test_user }
+          end
+        end
+
+        service = service_class_with_context.new(user_idp_skill, user, instructions, options)
+
+        expect(ai_assistant).to receive(:for_user).with(
+          user,
+          hash_including(
+            contextual_information: 'Test context',
+            prompt_template_context: test_context
+          )
+        ).and_call_original
+
         service.session
       end
     end
@@ -198,6 +244,7 @@ describe AI::AssistableService::Base do
         chat: mock_chat,
         ignore_user_prompt: options[:ignore_user_prompt],
         ask_params: options[:ask_params],
+        prompt_template_context: options[:prompt_template_context],
         params: options[:params] || {}
       ).and_call_original
 

@@ -21,11 +21,17 @@ export default connect(
         reportAvailableLanguages, reportDefaultLanguage,
         reportIcon, reportName, category, template,
       },
+      campaignAssessments: {
+        cachingEnabled,
+        allowCaching,
+      },
     },
   }) => ({
     subjects: list,
     total,
     permissions,
+    cachingEnabled,
+    allowCaching,
     reportAvailableLanguages,
     reportDefaultLanguage,
     page: routeUtils.getPage(),

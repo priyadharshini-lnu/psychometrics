@@ -32,6 +32,10 @@ module Api
           @user.is?(:superadmin)
         end
 
+        def render_prompt_template?
+          @user.is?(:superadmin)
+        end
+
         class Scope < Scope
           def resolve
             return scope if @user.is?(:superadmin)

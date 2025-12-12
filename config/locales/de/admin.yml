@@ -31,9 +31,6 @@ de:
     development_actions: Entwicklungspolitische Maßnahmen
     dimensions: Abmessungen
     empty_csv_file: Die CSV-Datei enthält keine Daten.
-    fill_empty_score_msg: Füllen Sie alle Endpunktzahlen aus, bevor Sie speichern.
-    final_score_empty_msg: Das Endergebnis darf nicht leer sein.
-    import_csv_assessment_group_error: 'Reihe %{index}: Nutzer mit E-Mail-%{email} bereits zum ''%{workshopInviteName}'' eingeladen wird.'
     import_csv_error: 'Reihe %{index}: Nutzer mit E-Mail-%{email} ist nicht in dieser Kampagne'
     import_description: Importiere Benutzer aus einer CSV-Datei. Jede Reihe muss eine E-Mail-Adresse enthalten.
     import_download_sample: Beispiel-CSV herunterladen
@@ -105,7 +102,6 @@ de:
     skills_taxonomy: Fähigkeiten-Taxonomie
     slot_name: Slot-Name
     stats: Statistiken
-    subject_part_of_other_invite: Betreff mit E-Mail %{user_email} ist bereits eingeladen zu '%{workshop_invite_name}'
     user_report_events: Benutzerbericht Ereignisse
     users: Benutzer
     view_licenses: Lizenzen anzeigen

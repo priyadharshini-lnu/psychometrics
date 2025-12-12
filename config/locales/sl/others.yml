@@ -232,6 +232,19 @@ sl:
               contains_repeats: Geslo ne sme vsebovati ponovitev
               too_short: Geslo je prekratko. Najmanjši zahtevani znak %{count}
               too_weak: 'Geslo mora vsebovati: najmanj 1 malo črko, 1 veliko črko, 1 številko in 1 poseben znak.'
+        project_license:
+          attributes:
+            base:
+              exceeds_available: Ne smem dodeliti več kot razpoložljive licence
+            license_id:
+              already_present: Za ta projekt je že prisotna
+            usage_limit:
+              cant_be_less_than_used: ne more biti pod trenutno število uporabe %{used_count}
+              cant_be_more_than_available: Ne sme presegati razpoložljive omejitve licence (%{usage_limit})
+              exceeds_available: Ne more biti več kot razpoložljive licence
+              less_than_used_number: Ne sme biti manjše od števila uporabljenih licenc
+            used_number:
+              overused: Ne more biti več kot le razpoložljive licence.
         questions_import_block_form:
           attributes:
             name:
@@ -422,6 +435,10 @@ sl:
               inclusion: mora biti logična vrednost
             start_date_time:
               invalid_datetime: je neveljaven
+        yoodli:
+          attributes:
+            name:
+              not_unique: Ta integracija je že prisotna za ta projekt.
   activerecord:
     attributes:
       administration/assessments/assign_form:
@@ -452,6 +469,7 @@ sl:
           simulation: Simulacija
           skillvue: Skillvue
           threesixty: 360-stopinjska kampanja
+          yoodli: Yoodli
         category: Kategorija
         created_at: Ustvarjeno dne
         description: Opis
@@ -469,6 +487,7 @@ sl:
           saville: Ocena Saville
           simulation: Ocena Simulation
           skillvue: Ocena Skillvue
+          yoodli: Yoodlijeva ocena
         updated_at: Datum spremembe
       assign:
         completed_at: Datum zaključka
@@ -836,6 +855,7 @@ sl:
         data_report_export: Izvoz poročila o podatkih
         export_admin_with_permissions: Izvoz skrbnika z dovoljenji
         export_assessment_questions: Vprašanja za oceno izvoza
+        export_campaign_ai_artifacts: Artefakti umetne inteligence izvoznih kampanj
         export_campaign_factors: Dejavniki izvozne oglaševalske akcije
         export_campaign_scorings: Izvozne kampanje
         export_dashboard_as_file: Izvozi nadzorno ploščo kot datoteko
@@ -857,10 +877,12 @@ sl:
         export_user_report_events: Izvoz dogodkov v poročilu uporabnikov
         export_users: Izvoz uporabnikov oglaševalske akcije
         external_assessment_export: Izvoz zunanjih rezultatov
+        generate_embedding_skills: Generiranje vdelave za veščine
         import_accesssheet: Uvoz dodatka
         import_assessment_questions: Vprašanja za oceno uvoza
         import_assessment_translations: Prevodi ocenjevanja uvoza
         import_assessors: Ocenjevalci uvoza
+        import_campaign_ai_artifacts: Artefakti umetne inteligence za uvozno kampanjo
         import_campaign_factors: Uvoz dejavnikov oglaševalske akcije
         import_datasheet: Uvoz podatkovnega lista
         import_development_action_translations: Uvoz prevodov razvojnih dejanj
@@ -1028,6 +1050,7 @@ sl:
         saville_assessment_name: Ocena Saville Ime
         simulation_assessment_name: Ime ocenjevanja simulacije
         skillvue_assessment_name: Ime ocenjevanja Skillvue
+        yoodli_assessment_name: Ime ocenjevanja Yoodli
       translations_migrated: Prevajanje je bilo seljeno
     create: Ustvariti
     dashboard: Nadzorna plošča
@@ -1069,6 +1092,7 @@ sl:
         simulation: Simulacija
         skillvue: Skillvue
         threesixty: 360-stopinjska kampanja
+        yoodli: Yoodli
       status:
         finished: Končal
         in_progress: V teku
@@ -1081,6 +1105,7 @@ sl:
         saville: Ocena Saville
         simulation: Simulacijska ocena
         skillvue: Ocena spretnosti
+        yoodli: Yoodlijeva ocena
     flow:
       end_assessment_modal:
         custom_message: Sporočilo o koncu ocenjevanja po meri
@@ -1611,8 +1636,6 @@ sl:
       report: Poročilo
       report_bundle_placeholder: Izberite Sklop poročil
     messages:
-      bulk_download_error: Prenos v velikem obsegu je omejen na 1000 datotek poročil. Če ste izbrali veliko jezikov, jih zmanjšajte.
-      bulk_download_no_reports: Poročil ni bilo najdenih. Pred prenosom ustvarite poročila.
       bulk_download_successful: Opravilo prenosa poročila v velikem obsegu je bilo uspešno načrtovano
       export_report_data_scheduled: Popravilo izvoza podatkov poročila je bilo uspešno načrtovano
     modals:
@@ -1769,21 +1792,33 @@ sl:
       cancel: Prekliči
       change: Spremeniti
       close: Zapri
+      continue: Nadaljuj
       copy: Kopiraj
+      create: Ustvariti
       delete: Izbriši
       done: Opravljeno
+      download: Prenesti
       edit: Uredi
+      export: Izvoz
+      filter_by_tags: Filtriraj po oznakah
       go_back: Nazaj
+      import: Uvoz
+      insert: Vstaviti
+      'no': Ne
+      ok: V redu
       publish: Objavite
+      reject: Zavrne
       remove: Odstranite
       reset: Ponastavitev
       resolve: Reševanje
       restore: Obnovitev
       return_to_home: Vrnitev na domačo stran
+      run: Teči
       save: Shrani
       schedule: Načrtuj
       search: Iskanje
       send: Pošlji
+      sign_in: Prijava
       start: Začetek
       submit: Pošlji
       unarchive: Odprava arhiviranja
@@ -1793,8 +1828,10 @@ sl:
       upload: Naložite
       upload_file: Naloži datoteko
       verify: Preveri
+      view: Pogled
       view_all_tasks: Prikaži vse naloge
       view_detail: Poglej podrobnosti
+      'yes': Da
     column:
       action: Aktivnost
       active: Aktivni
@@ -1908,6 +1945,7 @@ sl:
       hide: Skriti
       view: Pogled
     validations:
+      required: To polje je obvezno
       select_locale: Prosimo, izberite nekaj območnih območij
       should_be_whole_number: mora biti celo število
   confirmation:
@@ -2363,6 +2401,7 @@ sl:
     error_warning: Ups, nekaj je šlo narobe z vašo oceno. Obrnite se na podporo.
     hogan:
       cannot_start: Hoganove ocene ne morete začeti zdaj. Prosimo, poskusite po nekaj minutah.
+    lighthouse_app: Svetilnik Mercer
     login: Prijava
     maintenance:
       notification: Lighthouse bo v 60 sekundah izklopljen za načrtovano vzdrževanje
@@ -2464,6 +2503,8 @@ sl:
   idp:
     actions: Aktivnosti
     add_comments: Dodajanje komentarjev
+    add_note: Dodaj opombo...
+    add_reason: Dodaj razlog...
     added_development_action: Dodano razvojno ukrepanje
     ai:
       assistant:
@@ -2481,8 +2522,8 @@ sl:
       reset_chat: Ponastavi klepet
       reset_confirmation: Ste prepričani, da želite zavreči ta klepet in začeti znova?
       retake_steps:
-        chat_hint: Sporočite mi, katere informacije želite navesti spodaj?
-        chat_title: Želite podati več informacij?
+        chat_hint: Lahko naložiš novo datoteko ali ponovno začneš klepet, da deliš več podrobnosti, in potrudil se bom, da ti pomagam.
+        chat_title: Žal mi je, da začetna analiza ni izpolnila vaših pričakovanj.
         start_chat: Začni klepet
         start_chat_again: Znova začnite klepet
         upload_document: Naloži dokument
@@ -2508,17 +2549,19 @@ sl:
         chat_title: Povzetek vpogleda v klepet
         file_title: Vpogledi v naložene dokumente
         gap_report_title: Analiza poročila o vrzeli v spretnostih
-        hint: če je odgovor pritrdilen, bomo ustvarili vašega IDP, sicer lahko ponovno vzamete svoje odgovore
-        title: Ste zadovoljni z rezultati?
+        hint: Če dovolite, če rečete da, lahko pripravim razvojni načrt za vas. Če ne, lahko ponovno začnete klepet ali naložite novo datoteko.
+        title: Ste zadovoljni z analizo?
         upload_file: Naložena datoteka
         view_chat: Ogled klepeta
       upload:
-        description: Kliknite ali povlecite datoteke na to območje, da jih naložite
+        description: 'Podprta vrsta datoteke: PDF dokumenti do %{maxFileSize}MB'
         drop: Spustite datoteko tukaj
-        title: Nalaganje datotek
+        title: Kliknite ali spustite datoteko tukaj
       welcome:
         text: Ste pripravljeni začrtati svojo rast? Začnimo!
         title: Pozdravljeni, jaz sem vaš razvojni pomočnik
+    approval_note: Opomba o odobritvi
+    approve_plan: Odobri načrt
     behavioral: Vedenjski
     board: Deska
     change_history: Zgodovina sprememb
@@ -2619,12 +2662,14 @@ sl:
       mark_as_complete: Označi kot dokončano
       no_development_actions: Brez razvojnih ukrepov
       on_the_job: Na delovnem mestu
+      one: "[SL] 1"
       other: Drugi
       private: Zaseben
       publish_plan: Načrt objave
       remove: Odstrani
       save_plan: Shrani načrt
       search_development_actions: Iskalna razvojna dejanja
+      selected_count: "%{count} izbran"
       show_development_action_information: Prikaz informacij o razvojnih ukrepih
       skill: Spretnost
       sprint: Sprint
@@ -2633,7 +2678,9 @@ sl:
       structured_learning_label: Sodelovalno učenje
       submit_plan: Pošlji načrt
       success: Razvojni ukrepi uspešno zaključeni
+      three: "[SL] 3"
       toggle_skill_privacy: Toggle Skill Privacy
+      two: "[SL] 2"
       write_here: Pišite tukaj ...
     direct_reportee_details: Podrobnosti o neposrednih poročalcih
     download:
@@ -2644,6 +2691,7 @@ sl:
     edit_progress: Urejanje napredka
     fetching_skill_gap_report: Pridobivanje poročila o vrzelih v spretnostih ...
     go_to_previous_step: Pojdi na prejšnji korak
+    go_to_reportee_plan: Pojdite na podrobnosti načrta poročevalca
     history:
       added_da:
         one: Dodano razvojno ukrepanje
@@ -2693,19 +2741,23 @@ sl:
         categories: Kategorije
       save_skills: Shranite spretnosti
     new_comments: Novi komentarji
+    no_plan_changes_found: Od zadnjega pregleda ni bilo nobenih sprememb v načrtu.
     no_skills_added: Še nimate dodanih veščin.
     no_skills_added_by_reportee: Poročevalec še ni dodal veščin.
     pdf:
       approval_status: Status odobritve
       cover:
         fields:
+          approval_date: Datum odobritve
           assigned_data: Dodeljeni datum
           assigned_date: Dodeljen datum
           completion_date: Datum zaključka
+          current_job_role: Trenutna delovna vloga
           division: Deljenje
           name: Ime
           publish_date: Datum objave
           review_date: Datum pregleda
+          target_job_role: Ciljna delovna vloga
       guidelines:
         cards:
           c1:
@@ -2783,8 +2835,12 @@ sl:
         approved: Pregledano in odobreno
         completed: Dokončano
         draft: Osnutek
+        in_progress: V nastajanju
+        in_review: V recenziji
         not_reviewed: Ni ocenjeno
+        not_started: Ni se začelo
         pending_approval: V pregledu
+        rejected: Zavrnjena
       summary:
         ai_count: Generativna umetna inteligenca
         collaborative_learn: Sodelovalno učenje
@@ -2806,6 +2862,7 @@ sl:
     plan_submitted_for_manager_approval: Vaš individualni razvojni načrt je bil predložen v odobritev vodje.
     private: Zaseben
     public: Javnost
+    reason_for_rejection: Razlog za zavrnitev
     reflective_questions:
       already_completed: IDP je že zaključen, na vprašanja ni več mogoče odgovarjati.
       answer: Odgovoriti
@@ -2818,7 +2875,9 @@ sl:
         max_words: Odgovor dovoljuje največ %{count} besed
         min_words: Odgovor zahteva vsaj %{count} besed
         required: Odgovor na vprašanje je potreben
+      max_word_limit: Mora biti največ %{max} besed
       max_words: Največje število besed
+      min_word_limit: Mora biti vsaj %{min} besed
       min_words: Najmanj besed
       no_answer_provided: Odgovor še ni podan
       no_reflective_questions: Brez refleksivnih vprašanj
@@ -2831,6 +2890,7 @@ sl:
       updated_successfully: Vaši odgovori so bili uspešno posodobljeni
       word_limit: Mora biti med %{min} in %{max} besedami
       words: Besede
+    reject_plan: Načrt zavrnitve
     remove_skill: Odstrani spretnost
     remove_skill_from_plan: Odstranjevanje %{name} spretnosti iz načrta
     removed_development_action: Odstranjeno razvojno dejanje
@@ -2851,6 +2911,7 @@ sl:
     summary_logs: Povzetek dnevnikov za %{reporteeName}
     technical: Tehnični
     user_idp_status:
+      ai_assisted_idp_in_progress: Notranje razseljene osebe z AI-pomočjo v teku
       approved: Odobreno
       completed: Dokončano
       completion_not_started: Dokončanje se ni začelo
@@ -2970,6 +3031,7 @@ sl:
     usage_overview: Ogled uporabe licence
     usages: Rabe
   licenses:
+    client_usage: Uporaba odjemalcev
     enabled: Omogočeno
     end_date: Datum zaključka
     not_enough_idp_license: Ni dovolj licenc IDP, se obrnite na skrbnika
@@ -2978,6 +3040,10 @@ sl:
     not_enough_proctoring_credits: Premalo kreditov za začetek nadzorne seje
     number: Številka
     overuse_number: Nadomestilo za prekomerno uporabo
+    project_limit_reached: Dosežena omejitev uporabe za '%{license_name}', prosimo, kontaktirajte administratorja
+    project_specific: Specifično za projekte
+    project_specific_license: Licenca specifična za projekte
+    project_usage: Uporaba projekta
     report_family: Sklop poročil
     start_date: Datum začetka
     title: Licenca
@@ -2989,6 +3055,34 @@ sl:
       threesixty: Trišestdeset
     used_number: Uporabljene licence
     used_out_of: "%{used} od %{total}"
+  lti:
+    oidc_auth_form:
+      errors:
+        client_id:
+          blank: Potrebna je identifikacijska številka stranke
+          invalid: ID odjemalca se ne ujema z registriranim identifikatorjem orodja
+          validation_failed: Preverjanje identitete odjemalca ni uspelo
+        login_hint:
+          assessment_completed: Uporabniška ocena je že zaključena
+          blank: Namig za prijavo je potreben
+          invalid_user_assessment: Namig za prijavo ne navaja veljavne ocene uporabnika
+        lti_deployment_id:
+          not_found: ID namestitve ne navaja veljavne integracije
+        nonce:
+          blank: Nonce je obvezen
+        redirect_uri:
+          blank: Zahteva URI za preusmeritev
+          has_fragment: URI preusmeritve ne sme vsebovati fragmenta
+          https_required: URI za preusmeritev mora v produkciji uporabljati HTTPS
+          invalid_format: URI za preusmeritev mora biti veljaven format URI
+          missing_host: URI preusmeritve mora vsebovati gostitelja
+          scheme_not_allowed: URI za preusmeritev mora uporabljati protokol HTTP ali HTTPS
+        response_type:
+          blank: Potrebna je vrsta odziva
+          invalid: Vrsta odgovora mora biti 'id_token'
+        scope:
+          blank: Obseg je potreben
+          invalid: Obseg mora biti 'openid'
   mailer:
     copyright:
       text: Lighthouse. Vse pravice pridržane
@@ -3234,10 +3328,12 @@ sl:
         pearson: Pearson
         saville: Saville
         skillvue: Skillvue
+        yoodli: Yoodli
     form:
       load_from_mettl: Nalaganje od Mettl
       load_from_pearson: Nalaganje od Pearsona
       load_from_skillvue: Naloži iz Skillvue
+      load_from_yoodli: Nakladanje iz Yoodlija
       none_external: Brez – uporaba graditelja poročil
     language: Jezik poročila
     language_updated: Jezik poročila je bil uspešno posodobljen
@@ -3725,13 +3821,6 @@ sl:
       on_hold: Zadržano
       prepared: Opravljeno
       released: Odobreno za objavo
-    statuses:
-      completed: Zaključeno
-      declined: Zavrnjeno
-      denied: Zavrnjeno
-      done: Opravljeno
-      not_completed: Ni zaključeno
-      waiting: V čakanju
   threesixty:
     accept_privacy_modal:
       accept: Sprejmi

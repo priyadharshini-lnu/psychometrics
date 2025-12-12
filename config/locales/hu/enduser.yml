@@ -3,6 +3,9 @@ hu:
   enduser:
     add_idp_plan_note: Megjegyzés hozzáadása...
     add_idp_plan_rejection_reason: Elutasítási ok hozzáadása...
+    ai_idp_assistant_response_no: Nem
+    ai_idp_assistant_response_upload_different_document: Szeretnék feltölteni egy másik dokumentumot.
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: Igen, folytasd a terv elkészítésével.
     approve_idp_plan: Terv jóváhagyása
     bookings: Foglalások
     campaign: Kampány

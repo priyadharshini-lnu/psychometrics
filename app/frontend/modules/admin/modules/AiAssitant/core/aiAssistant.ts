@@ -10,6 +10,7 @@ export const AiAssistantTR = t.intersection([
     systemPrompt: t.string,
     userPrompt: t.string,
     assistantType: t.string,
+    advancedPromptingEnabled: t.boolean,
     assistantOutputSchemaKeysAttributes: t.array(t.type({
       id: t.number,
       key: t.string,

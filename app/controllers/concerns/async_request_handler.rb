@@ -12,9 +12,9 @@ module AsyncRequestHandler
       define_method(action_name) do
         context = default_async_request_context.merge(params: instance_exec(params, &permit_params))
 
-        AsyncRequestHandlerJob.perform_later(context: context, handler: handler)
-
         async_response = create_and_set_async_response
+
+        AsyncRequestHandlerJob.perform_later(context: context, handler: handler)
 
         render json: { async_request_uuid: async_response.async_request_uuid }, status: :ok
       end

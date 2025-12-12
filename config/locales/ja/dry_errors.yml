@@ -64,6 +64,10 @@ ja:
         validates_admins: 管理者はキャンペーンにアクセスできません。
       report_families_reports:
         report_exists: このレポートはすでにレポートバンドルの一部です。
+      saml_service_provider:
+        invalid_url: 無効なURLフォーマット:%{url}
+        must_be_array: 配列に違いない
+        must_not_be_empty: 空であってはならない
       size?: サイズは%{size}以下でなければならない。
       skill:
         already_added: 同じ名前のスキルがすでに追加されています。
@@ -94,6 +98,7 @@ ja:
         unique_name: 同じ名前のフィルターがすでに存在する。
       workshop_invited_subject_create:
         already_exists: サブジェクトはすでに招待に存在している。
+        part_of_other_workshop_invite: 被験者はすでに「%{workshop_invite_name}」に招待されています。
       workshop_subject_create:
         already_exists: このアセスメントセンターには既に件名が存在する。
         part_of_other_workshop: 対象者は既に '%{workshop_name}' の参加者です。

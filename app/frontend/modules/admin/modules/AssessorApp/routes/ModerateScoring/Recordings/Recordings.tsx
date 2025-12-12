@@ -10,13 +10,13 @@ import {
   Typography,
 } from 'antd'
 import { useParams } from 'react-router-dom'
-import { DownloadOutlined } from '@ant-design/icons'
+import { DownloadOutlined, EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons'
 import { DateTimeWithZone } from '~/glint'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import styles from './styles.less'
 import { isRequestInProgress } from '~/core/request'
 import { getRecordings, FETCH_RECORDINGS, fetchRecordings } from '../../../core/scoreModerate'
-
+import { TranscriptionDetailsDrawer } from '~/modules/admin/components/Recordings/TranscriptionDetailsDrawer'
 
 export type PropsFromRedux = ConnectedProps<typeof connector>
 
@@ -38,12 +38,19 @@ const Recordings: React.FC<Props> = ({ userRecordings, fetchRecordings, header }
   let parsedUserId
 
   const { campaignId, userId } = useParams<{ campaignId?: string, userId?: string }>()
+  const [showTranscription, setShowTranscription] = useState(false)
+  const [transcriptionText, setTranscriptionText] = useState<string | null>('')
+
   if (campaignId) { parsedCampaignId = parseInt(campaignId, 10) }
   if (userId) { parsedUserId = parseInt(userId, 10) }
 
   useEffect(() => {
     fetchRecordings(parsedCampaignId, parsedUserId)
   }, [])
+
+  const closeShowTranscription = () => {
+    setShowTranscription(false)
+  }
 
   if (!userRecordings) {
     return (
@@ -90,21 +97,39 @@ const Recordings: React.FC<Props> = ({ userRecordings, fetchRecordings, header }
                     {I18n.t('shared.transcriptions')}
                     {': '}
                   </Typography.Text>
-                  <Button
-                    className="ps-0"
-                    href={recording.transcriptionUrl}
-                    target="_blank"
-                    icon={<DownloadOutlined />}
-                    type="link"
-                  >
-                    {I18n.t('common.text.download')}
-                  </Button>
+                  <div className="vertical-align">
+                    <Button
+                      className="ps-0"
+                      type="link"
+                      icon={showTranscription ? <EyeInvisibleOutlined /> : <EyeOutlined />}
+                      onClick={() => {
+                        setShowTranscription(!showTranscription)
+                        setTranscriptionText(recording.transcriptionText)
+                      }}
+                    >
+                      View
+                    </Button>
+                    <Button
+                      className="ps-0 ms-2"
+                      href={recording.transcriptionUrl}
+                      target="_blank"
+                      icon={<DownloadOutlined />}
+                      type="link"
+                    >
+                      {I18n.t('common.text.download')}
+                    </Button>
+                  </div>
                 </div>
               )}
             </div>
           ))}
         </Space>
       </div>
+      <TranscriptionDetailsDrawer
+        transcriptionText={transcriptionText || ''}
+        closeShowTranscription={closeShowTranscription}
+        showTranscription={showTranscription}
+      />
     </div>
   )
 }

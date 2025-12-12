@@ -232,6 +232,19 @@ it:
               contains_repeats: La password non deve contenere ripetizioni
               too_short: La password è troppo corta. È richiesto un minimo di %{count} caratteri
               too_weak: 'La password deve contenere: minimo 1 carattere minuscolo, 1 maiuscolo, 1 numero e 1 carattere speciale.'
+        project_license:
+          attributes:
+            base:
+              exceeds_available: Non si può assegnare più delle licenze disponibili
+            license_id:
+              already_present: già presente per questo progetto
+            usage_limit:
+              cant_be_less_than_used: Non può essere impostato sotto l'attuale numero di utilizzo di %{used_count}
+              cant_be_more_than_available: Non può essere superiore al limite disponibile sulla patente (%{usage_limit})
+              exceeds_available: Non possono essere più di licenze disponibili
+              less_than_used_number: Non può essere inferiore al numero di licenze utilizzate
+            used_number:
+              overused: Non può essere più di una licenza disponibile.
         questions_import_block_form:
           attributes:
             name:
@@ -422,6 +435,10 @@ it:
               inclusion: deve essere un booleano
             start_date_time:
               invalid_datetime: non è valido
+        yoodli:
+          attributes:
+            name:
+              not_unique: Questa integrazione è già presente per questo progetto.
   activerecord:
     attributes:
       administration/assessments/assign_form:
@@ -452,6 +469,7 @@ it:
           simulation: Simulazione
           skillvue: Skillvue
           threesixty: campagna 360
+          yoodli: Yoodli
         category: Categoria
         created_at: Data di creazione
         description: Descrizione
@@ -469,6 +487,7 @@ it:
           saville: Valutazione Saville
           simulation: Valutazione della simulazione
           skillvue: Valutazione Skillvue
+          yoodli: Valutazione Yoodli
         updated_at: Data di modifica
       assign:
         completed_at: Data di completamento
@@ -836,6 +855,7 @@ it:
         data_report_export: Esporta di rapporti di dati
         export_admin_with_permissions: Esportare l'amministratore con i permessi
         export_assessment_questions: Domande di valutazione sull'esportazione
+        export_campaign_ai_artifacts: Artefatti AI della Campagna di Esportazione
         export_campaign_factors: Fattori della campagna di esportazione
         export_campaign_scorings: Esporta delle Campagne
         export_dashboard_as_file: Esporta dashboard come file
@@ -857,10 +877,12 @@ it:
         export_user_report_events: Esporta degli eventi del rapporto utente
         export_users: Esporta degli utenti della campagna
         external_assessment_export: Esporta esterna dei risultati
+        generate_embedding_skills: Genera Embedding per le Abilità
         import_accesssheet: Importazione di Accessheet
         import_assessment_questions: Domande di valutazione sull'importazione
         import_assessment_translations: Importazione di traduzioni di valutazione
         import_assessors: Valutatori di importazione
+        import_campaign_ai_artifacts: Importazione di artefatti di IA delle campagne
         import_campaign_factors: Fattori della campagna di importazione
         import_datasheet: Scheda tecnica di importazione
         import_development_action_translations: Importazione Sviluppo Azioni Traduzioni
@@ -1028,6 +1050,7 @@ it:
         saville_assessment_name: Valutazione Saville Nome
         simulation_assessment_name: Simulazione Nome dell’assessment
         skillvue_assessment_name: Nome dell’assessment Skillvue
+        yoodli_assessment_name: Nome della valutazione Yoodli
       translations_migrated: Traduzione migrata
     create: Creare
     dashboard: Dashboard
@@ -1069,6 +1092,7 @@ it:
         simulation: Simulazione
         skillvue: Skillvue
         threesixty: campagna 360
+        yoodli: Yoodli
       status:
         finished: Finito
         in_progress: In corso
@@ -1081,6 +1105,7 @@ it:
         saville: Valutazione Saville
         simulation: Valutazione della simulazione
         skillvue: Valutazione Skillvue
+        yoodli: Valutazione Yoodli
     flow:
       end_assessment_modal:
         custom_message: Messaggio di fine valutazione personalizzato
@@ -1602,8 +1627,6 @@ it:
       report: Rapporto
       report_bundle_placeholder: Selezionare un pacchetto di report
     messages:
-      bulk_download_error: Il download massivo è limitato a 1000 file di report. Se avete selezionato molte lingue, riducetele.
-      bulk_download_no_reports: Nessun rapporto trovato. Si prega di generare i report prima di scaricarli.
       bulk_download_successful: Il lavoro di download dei rapporti di massa è stato pianificato con successo
       export_report_data_scheduled: Il lavoro di esportazione dei dati del report è stato pianificato con successo
     modals:
@@ -1772,6 +1795,7 @@ it:
       go_back: Indietro
       import: Importazione
       insert: Inserire
+      'no': 'No'
       ok: OK
       publish: Pubblicare
       reject: Rigettare
@@ -1798,6 +1822,7 @@ it:
       view: Vista
       view_all_tasks: Visualizza tutti i compiti
       view_detail: Visualizza il dettaglio
+      'yes': Sì
     column:
       action: Azioni
       active: Attivi
@@ -1911,6 +1936,7 @@ it:
       hide: Nascondere
       view: Vista
     validations:
+      required: Questo campo è richiesto
       select_locale: Selezionare uno o più locali
       should_be_whole_number: deve essere un numero intero
   confirmation:
@@ -2361,6 +2387,7 @@ it:
     error_warning: Oops, qualcosa è andato storto con la valutazione. Si prega di contattare il supporto.
     hogan:
       cannot_start: Non è possibile avviare la valutazione delle hogan in questo momento. Provare dopo qualche minuto.
+    lighthouse_app: Faro di Mercer
     login: Accesso
     maintenance:
       notification: Il Lighthouse sarà disattivato per manutenzione programmata tra 60 secondi
@@ -2462,6 +2489,8 @@ it:
   idp:
     actions: Azioni
     add_comments: Aggiungi commenti
+    add_note: Aggiunge Nota...
+    add_reason: Aggiungi la ragione...
     added_development_action: Aggiunta di un'azione di sviluppo
     ai:
       assistant:
@@ -2479,8 +2508,8 @@ it:
       reset_chat: Ripristina chat
       reset_confirmation: Sei sicuro di voler scartare questa chat e ricominciare da capo?
       retake_steps:
-        chat_hint: Fammi sapere quali informazioni vuoi fornire di più?
-        chat_title: Vuoi dare maggiori informazioni?
+        chat_hint: Puoi caricare un nuovo file o riavviare la chat per condividere più dettagli, e farò del mio meglio per aiutarti.
+        chat_title: Mi dispiace che l'analisi iniziale non abbia soddisfatto le tue aspettative.
         start_chat: Avvia la chat
         start_chat_again: Riavvia la chat
         upload_document: Carica documento
@@ -2506,17 +2535,19 @@ it:
         chat_title: Riepilogo di Chat Insight
         file_title: Approfondimenti sui documenti caricati
         gap_report_title: Analisi del rapporto sul divario di competenze
-        hint: se sì, creeremo il tuo IDP, altrimenti puoi riprendere le tue risposte
-        title: Sei soddisfatto dei risultati?
+        hint: Con il tuo permesso, se dici di sì, posso creare un piano di sviluppo per te. Se no, puoi riavviare la chat o caricare un nuovo file.
+        title: Sei soddisfatto dell'analisi?
         upload_file: File caricato
         view_chat: Visualizza la chat
       upload:
-        description: Fare clic o trascinare i file in quest'area per caricarli
+        description: 'Tipo di file supportato: documenti PDF fino a %{maxFileSize}MB'
         drop: Trascina il file qui
-        title: Caricare i file
+        title: Clicca o lascia il file qui
       welcome:
         text: Pronto a tracciare il tuo percorso di crescita? Cominciamo!
         title: Ciao, sono il tuo assistente allo sviluppo
+    approval_note: Nota di approvazione
+    approve_plan: Approva il piano
     behavioral: Comportamento
     board: Consiglio di amministrazione
     change_history: Cronologia delle modifiche
@@ -2617,12 +2648,14 @@ it:
       mark_as_complete: Contrassegna come completato
       no_development_actions: Nessuna azione di sviluppo
       on_the_job: Sul lavoro
+      one: "[IT] 1"
       other: Altro
       private: Privato
       publish_plan: Pubblica piano
       remove: Rimuovere
       save_plan: Salva piano
       search_development_actions: Cerca azioni di sviluppo
+      selected_count: "%{count} selezionato"
       show_development_action_information: Mostra informazioni sull'azione di sviluppo
       skill: Abilità
       sprint: Sprint
@@ -2631,7 +2664,9 @@ it:
       structured_learning_label: Apprendimento collaborativo
       submit_plan: Invia il piano
       success: Azioni di sviluppo completate con successo
+      three: "[IT] 3"
       toggle_skill_privacy: Attiva/disattiva la privacy delle competenze
+      two: "[IT] 2"
       write_here: Scrivi qui...
     direct_reportee_details: Dettagli Reportee Diretti
     download:
@@ -2642,6 +2677,7 @@ it:
     edit_progress: Modifica dei progressi
     fetching_skill_gap_report: Recupero del rapporto sulle lacune di abilità...
     go_to_previous_step: Vai al passaggio precedente
+    go_to_reportee_plan: Vai ai dettagli del piano del segnalato
     history:
       added_da:
         one: Aggiunta di un'azione di sviluppo
@@ -2697,19 +2733,23 @@ it:
         technical: Tecnica
       save_skills: Salvataggio delle competenze
     new_comments: Nuovi commenti
+    no_plan_changes_found: Non sono state apportate modifiche al piano dalla tua ultima revisione.
     no_skills_added: Non hai ancora aggiunto alcuna abilità.
     no_skills_added_by_reportee: Il segnalato non ha ancora aggiunto Competenze.
     pdf:
       approval_status: Stato di Approvazione
       cover:
         fields:
+          approval_date: Data di approvazione
           assigned_data: Data di Assegnazione
           assigned_date: Data di assegnazione
           completion_date: Data di Completamento
+          current_job_role: Ruolo attuale
           division: Divisione
           name: Nome
           publish_date: Data di Pubblicazione
           review_date: Data di Revisione
+          target_job_role: Ruolo Lavorativo Target
       guidelines:
         cards:
           c1:
@@ -2787,8 +2827,12 @@ it:
         approved: Rivisto e Approvati
         completed: Completati
         draft: Bozza
+        in_progress: In corso
+        in_review: In revisione
         not_reviewed: Non Rivisto
+        not_started: Non è iniziata
         pending_approval: In Revisione
+        rejected: Respinto
       summary:
         ai_count: IA Generativa
         collaborative_learn: Apprendimento Collaborativo
@@ -2810,6 +2854,7 @@ it:
     plan_submitted_for_manager_approval: Il tuo Piano di Sviluppo Individuale è stato sottoposto all'approvazione del manager.
     private: Privato
     public: Pubblico
+    reason_for_rejection: Motivo del rifiuto
     reflective_questions:
       already_completed: L'IDP è già stato completato, non è possibile rispondere alle domande ora.
       answer: Risposta
@@ -2822,7 +2867,9 @@ it:
         max_words: La risposta consente un massimo di %{count} di parole
         min_words: La risposta richiede almeno %{count} parole
         required: La risposta alla domanda è richiesta
+      max_word_limit: Devono essere al massimo %{max} parole
       max_words: Parole massime
+      min_word_limit: Devono essere almeno %{min} parole
       min_words: Parole Min
       no_answer_provided: Nessuna risposta fornita
       no_reflective_questions: Nessuna domanda riflessiva
@@ -2835,6 +2882,7 @@ it:
       updated_successfully: Le risposte sono state aggiornate con successo
       word_limit: Deve essere compreso tra %{min} e %{max} parole
       words: Parole
+    reject_plan: Rifiuta il piano
     remove_skill: Rimuovi Abilità
     remove_skill_from_plan: Rimuovi %{name} di abilità dal piano
     removed_development_action: Azione di sviluppo rimossa
@@ -2855,6 +2903,7 @@ it:
     summary_logs: Log di riepilogo per %{reporteeName}
     technical: Tecnica
     user_idp_status:
+      ai_assisted_idp_in_progress: IDP assistito dall'IA in corso
       approved: Approvati
       completed: Finito
       completion_not_started: Completamento non iniziato
@@ -2974,6 +3023,7 @@ it:
     usage_overview: Visualizza l'utilizzo della licenza
     usages: Utilizzi
   licenses:
+    client_usage: Utilizzo del client
     enabled: Abilitato
     end_date: Data di fine
     not_enough_idp_license: Non ci sono abbastanza licenze IDP, contattare l'amministratore
@@ -2982,6 +3032,10 @@ it:
     not_enough_proctoring_credits: Non ci sono abbastanza crediti per iniziare la sessione di proctoring
     number: Numero
     overuse_number: Indennità di sovrautilizzo
+    project_limit_reached: Limite d'utilizzo raggiunto per '%{license_name}', contattare l'amministratore
+    project_specific: Specifico del progetto
+    project_specific_license: Licenza specifica per il progetto
+    project_usage: Utilizzo del progetto
     report_family: Rapporto fagotto
     start_date: Data di inizio
     title: Licenza
@@ -2993,6 +3047,34 @@ it:
       threesixty: Trecentosessanta
     used_number: Licenze usate
     used_out_of: "%{used} su %{total}"
+  lti:
+    oidc_auth_form:
+      errors:
+        client_id:
+          blank: È richiesto l'ID del cliente
+          invalid: L'ID del client non corrisponde all'identificatore registrato dello strumento
+          validation_failed: Validazione dell'ID client fallita
+        login_hint:
+          assessment_completed: La valutazione utente è già stata completata
+          blank: È necessario un suggerimento per il login
+          invalid_user_assessment: Il suggerimento di accesso non fa riferimento a una valutazione valida dell'utente
+        lti_deployment_id:
+          not_found: L'ID di distribuzione non fa riferimento a un'integrazione valida
+        nonce:
+          blank: È necessario il nonce
+        redirect_uri:
+          blank: È necessario un URI di reindirizzamento
+          has_fragment: L'URI di reindirizzamento non deve contenere un frammento
+          https_required: L'URI di reindirizzamento deve usare HTTPS in produzione
+          invalid_format: L'URI di reindirizzamento deve essere un formato URI valido
+          missing_host: L'URI di reindirizzamento deve includere un host
+          scheme_not_allowed: L'URI di reindirizzamento deve utilizzare protocolli HTTP o HTTPS
+        response_type:
+          blank: È richiesto il tipo di risposta
+          invalid: Il tipo di risposta deve essere 'id_token'
+        scope:
+          blank: È richiesta una portata di campo
+          invalid: L'ambito deve essere 'openid'
   mailer:
     copyright:
       text: Faro. Tutti i diritti riservati
@@ -3238,10 +3320,12 @@ it:
         pearson: Pearson
         saville: Saville
         skillvue: Skillvue
+        yoodli: Yoodli
     form:
       load_from_mettl: Carico da Mettl
       load_from_pearson: Carico da Pearson
       load_from_skillvue: Carico da Skillvue
+      load_from_yoodli: Carico da Yoodli
       none_external: Nessuno - Utilizzare il costruttore di report
     language: Lingua del rapporto
     language_updated: La lingua del report è stata aggiornata con successo
@@ -3729,13 +3813,6 @@ it:
       on_hold: In attesa
       prepared: Fatto
       released: Rilasciato
-    statuses:
-      completed: Completati
-      declined: Declinato
-      denied: Negato
-      done: Fatto
-      not_completed: Non completato
-      waiting: In attesa
   threesixty:
     accept_privacy_modal:
       accept: Accetta

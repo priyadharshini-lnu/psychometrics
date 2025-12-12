@@ -3,6 +3,9 @@ cs:
   enduser:
     add_idp_plan_note: Přidat poznámku...
     add_idp_plan_rejection_reason: Přidat důvod...
+    ai_idp_assistant_response_no: Ne
+    ai_idp_assistant_response_upload_different_document: Chci nahrát jiný dokument.
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: Ano, pokračujte v tvorbě plánu.
     approve_idp_plan: Schválit plán
     bookings: Rezervace
     campaign: Kampaň

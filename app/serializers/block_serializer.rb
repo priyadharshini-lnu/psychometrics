@@ -11,7 +11,8 @@ class BlockSerializer < Panko::Serializer
         piped_text_context: context[:piped_text_context],
         selected_locale: context[:selected_locale],
         translations: context[:translations],
-        block: object
+        block: object,
+        ignore_pipetext_substitution: ignore_pipetext_substitution?
       }
     ).to_a
   end
@@ -39,11 +40,14 @@ class BlockSerializer < Panko::Serializer
       object.props = Utility::Hash.deep_merge(object.props, translation_props || {})
     end
 
-    static_content =
-      object.props['staticContent'].merge(
-        'value' => Threesixty::PipedText::Perform.
-          call!(object.props['staticContent']['value'], context[:piped_text_context])
-      )
+    static_content = object.props['staticContent']
+    unless ignore_pipetext_substitution?
+      static_content =
+        static_content.merge(
+          'value' => Threesixty::PipedText::Perform.
+            call!(object.props['staticContent']['value'], context[:piped_text_context])
+        )
+    end
     object.props.merge('staticContent' => static_content)
   end
 
@@ -56,5 +60,11 @@ class BlockSerializer < Panko::Serializer
 
     result = ::Skills::GetQuestions.call!(object.props['skills_config'], campaign_user)
     result[:questions]
+  end
+
+  private
+
+  def ignore_pipetext_substitution?
+    context[:ignore_pipetext_substitution] || false
   end
 end

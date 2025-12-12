@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import {
   Switch, Form, Button, Spin,
+  Col,
+  Row,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { useResources } from '~/hooks/useResources'
@@ -158,105 +160,106 @@ export const Features: React.FC = () => {
   }
 
   return (
-    <div className="p-6 pt-0">
-
-      { isFetchLoading ? (
-        <div className="flex justify-center">
-          <Spin />
-        </div>
-      )
-        : (
-          <ResourceForm
-            resourceName="project_features"
-            readableResourceName={I18n.t('administration.project_features.project_features')}
-            resource={features}
-            storeManager={{ form }}
-            request={{ updateResource }}
-            scrollToFirstError
-            showSuccessMessages
-            formProps={{
-              layout: 'horizontal',
-              labelCol: {
-                sm: 24, md: 10, lg: 8, xl: 8,
-              },
-              labelAlign: 'left',
-            }}
-            transformValues={transformValues}
-          >
-            {() => (
-              <>
-                <Form.Item
-                  name="smsNotification"
-                  label={I18n.t('administration.client_features.form.sms_notification')}
-                  help={
+    <Row className="pl">
+      <Col span={24}>
+        { isFetchLoading ? (
+          <div className="flex justify-center">
+            <Spin />
+          </div>
+        )
+          : (
+            <ResourceForm
+              resourceName="project_features"
+              readableResourceName={I18n.t('administration.project_features.project_features')}
+              resource={features}
+              storeManager={{ form }}
+              request={{ updateResource }}
+              scrollToFirstError
+              showSuccessMessages
+              formProps={{
+                layout: 'horizontal',
+                labelCol: {
+                  sm: 24, md: 10, lg: 8, xl: 8,
+                },
+                labelAlign: 'left',
+              }}
+              transformValues={transformValues}
+            >
+              {() => (
+                <>
+                  <Form.Item
+                    name="smsNotification"
+                    label={I18n.t('administration.client_features.form.sms_notification')}
+                    help={
                     !clientFeatures.smsNotification
                       ? I18n.t('administration.client_features.form.sms_notification_disabled_by_client')
                       : undefined
                   }
-                >
-                  <Switch disabled={!clientFeatures.smsNotification} />
-                </Form.Item>
+                  >
+                    <Switch disabled={!clientFeatures.smsNotification} />
+                  </Form.Item>
 
-                <Form.Item
-                  name="aiAssistants"
-                  label={I18n.t('administration.client_features.form.ai_assistants')}
-                  help={
+                  <Form.Item
+                    name="aiAssistants"
+                    label={I18n.t('administration.client_features.form.ai_assistants')}
+                    help={
                     !clientFeatures.aiAssistants
                       ? I18n.t('administration.client_features.form.ai_assistants_disabled_by_client')
                       : undefined
                   }
-                >
-                  <Switch disabled={!clientFeatures.aiAssistants} />
-                </Form.Item>
+                  >
+                    <Switch disabled={!clientFeatures.aiAssistants} />
+                  </Form.Item>
 
-                <Form.Item
-                  name="aiAssistedIdp"
-                  label={I18n.t('administration.client_features.form.ai_assisted_idp')}
-                  help={
+                  <Form.Item
+                    name="aiAssistedIdp"
+                    label={I18n.t('administration.client_features.form.ai_assisted_idp')}
+                    help={
                     (!clientFeatures.aiAssistants || !aiAssistants)
                       ? I18n.t('administration.client_features.form.ai_assisted_idp_requires_ai_assistants')
                       : undefined
                   }
-                >
-                  <Switch disabled={!clientFeatures.aiAssistants || !aiAssistants} />
-                </Form.Item>
+                  >
+                    <Switch disabled={!clientFeatures.aiAssistants || !aiAssistants} />
+                  </Form.Item>
 
-                <Form.Item
-                  name="idp"
-                  label={I18n.t('administration.client_features.form.idp')}
-                  help={
+                  <Form.Item
+                    name="idp"
+                    label={I18n.t('administration.client_features.form.idp')}
+                    help={
                     !clientFeatures.idp
                       ? I18n.t('administration.client_features.form.idp_disabled_by_client')
                       : undefined
                   }
-                >
-                  <Switch disabled={!clientFeatures.idp} />
-                </Form.Item>
+                  >
+                    <Switch disabled={!clientFeatures.idp} />
+                  </Form.Item>
 
-                <Form.Item
-                  name="globalSkills"
-                  label={I18n.t('administration.client_features.form.global_skills')}
-                  help={
+                  <Form.Item
+                    name="globalSkills"
+                    label={I18n.t('administration.client_features.form.global_skills')}
+                    help={
                     !clientFeatures.globalSkills
                       ? I18n.t('administration.client_features.form.global_skills_disabled_by_client')
                       : undefined
                   }
-                >
-                  <Switch disabled={!clientFeatures.globalSkills} />
-                </Form.Item>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  className="mb-16"
-                  loading={isLoading(`update@${featuresData[0]?.id}`)}
-                >
-                  {I18n.t('common.actions.update')}
-                </Button>
-              </>
-            )}
-          </ResourceForm>
-        )
+                  >
+                    <Switch disabled={!clientFeatures.globalSkills} />
+                  </Form.Item>
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    className="mb-16"
+                    loading={isLoading(`update@${featuresData[0]?.id}`)}
+                  >
+                    {I18n.t('common.actions.update')}
+                  </Button>
+                </>
+              )}
+            </ResourceForm>
+          )
       }
-    </div>
+      </Col>
+    </Row>
   )
 }

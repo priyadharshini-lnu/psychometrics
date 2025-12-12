@@ -1,5 +1,4 @@
 import { Factor, Score, Weightage } from '~/modules/admin/modules/campaigns/core/combinedScoring'
-import { EMPTY_SCORE_INDICATOR } from '~/modules/admin/constants/strings'
 
 export const calculateWeightedAverageScores = (
   columnsData: Factor[],
@@ -23,7 +22,7 @@ export const calculateWeightedAverageScores = (
         count += 1
       }
     })
-    weightedAverages[factor.factorId] = count > 0 ? (totalWeightedScore / count).toFixed(2) : EMPTY_SCORE_INDICATOR
+    weightedAverages[factor.factorId] = count > 0 ? (totalWeightedScore / count).toFixed(2) : '-'
   })
   return weightedAverages
 }

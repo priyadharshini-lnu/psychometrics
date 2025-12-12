@@ -35,6 +35,8 @@ function SubjectList ({
   regenerateReport,
   total,
   permissions,
+  cachingEnabled,
+  allowCaching,
   searchTerm,
   editUser,
   reportAvailableLanguages,
@@ -116,6 +118,8 @@ function SubjectList ({
               excludedKeys={excludedKeys}
               isAllSelected={isAllSelected}
               normalizedSubjectsData={normalizedSubjectsData}
+              cachingEnabled={cachingEnabled}
+              allowCaching={allowCaching}
             />
           )
           }
@@ -126,6 +130,8 @@ function SubjectList ({
               excludedKeys={excludedKeys}
               isAllSelected={isAllSelected}
               normalizedSubjectsData={normalizedSubjectsData}
+              cachingEnabled={cachingEnabled}
+              allowCaching={allowCaching}
             />
           )}
           {permissions.addSubject && !template && (
@@ -204,16 +210,18 @@ function SubjectList ({
             />
 
             <Column
-              title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.report_status')}
+              title={I18n.t('admin.report_status')}
               key="report_status"
-              render={({ reportStatus }) => I18n.t(`reports.statuses.${reportStatus}`)
-              }
+              render={({ reportStatus }) => I18n.t(`reports.statuses.${reportStatus}`)}
             />
 
             <Column
-              title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.status')}
+              title={I18n.t('admin.evaluation_status')}
               key="status"
-              render={({ status }) => I18n.t(`subjects.statuses.${status}`)}
+              render={(record) => {
+                const { status } = record
+                return I18n.t(`admin.${status}`)
+              }}
             />
 
             <Column

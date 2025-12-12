@@ -11,12 +11,337 @@ sr-Cyrl:
         select_comparison: Изаберите тип поређења
         select_factors: Изаберите факторе
         select_operation: Изаберите операцију
+      sheet_column:
+        accessor_access: Приступни приступ
+        dashboard_use: Употреба контролне табле
+        visible_in_list: Видљиво на листи
     errors:
       models:
+        admin_edit:
+          attributes:
+            email:
+              blank: Поље е-поште не може бити празно
+              invalid: Е -маил је неважећи
+            first_name:
+              blank: Име не може бити празно
+            last_name:
+              blank: Презиме не може бити празно
+        agile:
+          answers:
+            blank: Одговори не могу бити празни
+          group_id:
+            blank: ИД групе не може бити празан
+        all_blocks_form:
+          attributes:
+            base:
+              duplicate_block: 'Блок ИНТЕРПОЛАТИОН_ВАР_0 има дупле конфигурације: ИНТЕРПОЛАТИОН_ВАР_1'
+        assessment_question_import_form:
+          attributes:
+            file:
+              invalid_format: Молимо Вас да отпремите клск датотеку
+        assign_report:
+          attributes:
+            adding_report_ids:
+              not_linked_to_report_family: Изабрали сте извештаје који нису повезани са изабраним пакетом извештаја
+              report_family_disabled: Изабрали сте онемогућен Извештај Бундле
+              reports_disabled: Изабрали сте онемогућен Извештај(и)
+            removing_report_ids:
+              not_linked_to_report_family: Изабрали сте извештаје који нису повезани са изабраним пакетом извештаја
+        assign_reports_and_assessments:
+          attributes:
+            assessment_id:
+              blank: ИД процене не може бити празан
+            bundle_report_id:
+              blank: ИД пакета извештаја не може бити празан
+            report_id:
+              blank: ИД извештаја не може бити празан
+        campaign_factor_import_form:
+          attributes:
+            file:
+              invalid_format: Молимо Вас да отпремите клск датотеку
+        campaign_factors_import_form:
+          attributes:
+            base:
+              blank: Колона 'ИНТЕРПОЛАТИОН_ВАР_0' не може бити празна у реду ИНТЕРПОЛАТИОН_ВАР_1
+              duplicate_code: Дупликат кода 'ИНТЕРПОЛАТИОН_ВАР_0' у реду ИНТЕРПОЛАТИОН_ВАР_1
+              invalid_output_type: Неважећи оутпут_тyпе 'ИНТЕРПОЛАТИОН_ВАР_0' у реду ИНТЕРПОЛАТИОН_ВАР_1
+              max_limit_reached: Укупни фактори кампање прелазе максималну границу од ИНТЕРПОЛАТИОН_ВАР_0
+              missing_headers: 'Недостају потребни заглавља: ИНТЕРПОЛАТИОН_ВАР_0'
+              type_mismatch: Неусклађеност типа излаза за код 'ИНТЕРПОЛАТИОН_ВАР_0' у реду ИНТЕРПОЛАТИОН_ВАР_1
+            file:
+              invalid_format: Молимо Вас да отпремите клск датотеку
+            resource:
+              must_exist: ИНТЕРПОЛАТИОН _ВАР _0 мора постојати
+        campaigns_external_scores_import_form:
+          attributes:
+            file:
+              invalid_format: Молимо Вас да отпремите ЦСВ датотеку
+        column:
+          attributes:
+            name:
+              not_unique: Ово поље је већ присутно
+        create_all:
+          attributes:
+            assessors:
+              blank: Изаберите најмање једног процењивача
+              email_duplicated: Е -поруке предмета и процењивача су дуплиране
+              multiple_leads_for_subject: Вишеструки водећи процењивачи додељени предмету
+            evaluators:
+              email_duplicated: Е -поруке предмета и евалуатора су дуплиране
+            subjects:
+              email_duplicated: Неки субјекти имају исту е-пошту
+        create_one:
+          attributes:
+            assessment_ids:
+              invalid: Процена ИНТЕРПОЛАТИОН_ВАР_0 не може бити везана за процењивача
+              lead_assessor_already_assigned: Предмету се може додијелити само један главни процјењивач
+            assessor_email:
+              already_exists: Субјект са овим процењивачем је већ повезан
+              blank: Е -пошта процењивача не може бити празна
+              invalid: Е -пошта процењивача је неважећа
+            email:
+              already_exists: Предмет са истом е-поштом већ постоји
+              blank: Е -маил не може бити празан
+              invalid: Е -маил је неважећи
+            evaluator_email:
+              already_exists: Предмет са овим евалуатором је већ повезан
+              blank: Е -пошта евалуатора не може бити празна
+              invalid: Е -пошта евалуатора је неважећа
+            evaluator_first_name:
+              blank: Име евалуатора не може бити празно
+            evaluator_last_name:
+              blank: Презиме евалуатора не може бити празно
+            evaluator_locale:
+              inclusion: Погрешан локалитет
+            evaluator_password:
+              too_short: Евалуатор лозинка је прекратак (минимум је ИНТЕРПОЛАТИОН_ВАР_0 знакова)
+            first_name:
+              blank: Име не може бити празно
+            job_role:
+              cannot_be_same: Циљна улога посла мора бити другачија од тренутне улоге на послу
+              not_found: Улога посла "ИНТЕРПОЛАТИОН_ВАР_0" се не налази у пројектним или глобалним улогама
+            last_name:
+              blank: Презиме не може бити празно
+            locale:
+              inclusion: Погрешан локалитет
+            relationship_name:
+              blank: Однос не може бити празан
+              invalid: Однос ИНТЕРПОЛАТИОН_ВАР_0 је неважећи
+            subject_email:
+              blank: Предмет Е-пошта не може бити празна
+              invalid: Предмет Е-пошта је неважећа
+              not_exists: Предмет није пронађен са адресом е-поште ИНТЕРПОЛАТИОН_ВАР_0
+        email_schedule:
+          attributes:
+            content:
+              blank: Садржај не може бити празан
+            from:
+              blank: Из поља не може бити празно
+            reply_to_email:
+              blank: Поље за одговор на е-пошту не може бити празно
+              invalid: Одговор на е-маил је неважећи
+            scheduled_date:
+              blank: Поље заказаног датума не може бити празно
+            subject:
+              blank: Предмет не може бити празан
+        email_template:
+          attributes:
+            content:
+              blank: Садржај не може бити празан
+              invalid_consolidated_pipetext: Ови цевоводи су неважећи за консолидоване поруке ИНТЕРПОЛАТИОН_ВАР_0
+              invalid_unconsolidated_pipetext: Ови цевоводи су неисправни за неконсолидоване поруке ИНТЕРПОЛАТИОН_ВАР_0
+            from:
+              blank: Из поља не може бити празно
+            reply_to_email:
+              blank: Поље за одговор на е-пошту не може бити празно
+              invalid: Одговор на е-маил је неважећи
+            subject:
+              blank: Предмет не може бити празан
+        email_test_form:
+          attributes:
+            to_email:
+              blank: Поље е-поште не може бити празно
+              invalid: Е -маил је неважећи
+        factor_import_form:
+          attributes:
+            base:
+              code_length: Код мора бити дугачак најмање 3 знака у реду ИНТЕРПОЛАТИОН_ВАР_0.
+              code_required: Факторски код је потребан у реду ИНТЕРПОЛАТИОН_ВАР_0
+              invalid_csv: Неисправан ЦСВ ИНТЕРПОЛАТИОН_ВАР_0
+              invalid_scoring_strategy: Неважећа стратегија бодовања "ИНТЕРПОЛАТИОН_ВАР_0" у реду ИНТЕРПОЛАТИОН_ВАР_1. Дозвољене стратегије су ИНТЕРПОЛАТИОН_ВАР_2.
+              missing_headers: 'Недостају потребни заглавља: ИНТЕРПОЛАТИОН_ВАР_0'
+              name_required: Име фактора је потребно у реду ИНТЕРПОЛАТИОН_ВАР_0
+              scoring_strategy_required: Стратегија бодовања је потребна у реду ИНТЕРПОЛАТИОН_ВАР_0
+            file:
+              invalid_format: Молимо Вас да отпремите ЦСВ датотеку
+        form:
+          attributes:
+            base:
+              client_sms_notification_disabled: Клијент СМС обавештење је онемогућено
+        hogan:
+          attributes:
+            name:
+              not_unique: Ова интеграција је већ присутна за овај пројекат
+        iiht:
+          attributes:
+            name:
+              not_unique: Ова интеграција је већ присутна за овај пројекат
+        import_one:
+          attributes:
+            email:
+              already_exists: Предмет са истом е-поштом већ постоји
+              blank: Е -маил не може бити празан
+              invalid: Е -маил је неважећи
+            first_name:
+              blank: Име не може бити празно
+            job_role:
+              cannot_be_same: Циљна улога посла мора бити другачија од тренутне улоге на послу
+              not_found: Улога посла "ИНТЕРПОЛАТИОН_ВАР_0" се не налази у пројектним или глобалним улогама
+            last_name:
+              blank: Презиме не може бити празно
+            locale:
+              inclusion: Погрешан локалитет
+            password:
+              too_short: Лозинка је прекратка. Потребан је минимални ИНТЕРПОЛАТИОН_ВАР_0 карактер
         job_roles_translations_form:
           attributes:
             file:
+              column_cannot_be_blank: Вредност ИНТЕРПОЛАТИОН_ВАР_0 не може бити празна у реду ИНТЕРПОЛАТИОН_ВАР_1
+              invalid_format: Молимо Вас да отпремите ЦСВ датотеку
               invalid_job_role_id: ИД у реду %{row_number} није важећи ИД радне улоге
+              invalid_locale: Језик у реду ИНТЕРПОЛАТИОН_ВАР_0 није важећи језик
+              missing_required_columns: 'Недостају потребне колоне: ИНТЕРПОЛАТИОН_ВАР_0'
+              parsing_failed: 'Грешка приликом анализе датотеке, грешка: ИНТЕРПОЛАТИОН_ВАР_0.'
+            project:
+              must_exist: Пројекат мора постојати
+        mettl:
+          attributes:
+            name:
+              not_unique: Ова интеграција је већ присутна за овај пројекат
+        password_reset:
+          attributes:
+            email:
+              wrong_email: Нисмо могли да пронађемо ниједног корисника са е-поштом коју сте навели.
+        profile:
+          attributes:
+            first_name:
+              blank: Име не може бити празно
+            last_name:
+              blank: Презиме не може бити празно
+            password:
+              contains_repeats: Лозинка не сме да садржи понављања
+              too_short: Лозинка је прекратка. Потребан је минимални ИНТЕРПОЛАТИОН_ВАР_0 карактер
+              too_weak: 'Лозинка мора да садржи: Минимално 1 мала слова, 1 велика слова, 1 број и 1 специјални знак.'
+        project_license:
+          attributes:
+            base:
+              exceeds_available: Не могу доделити више од доступних лиценци
+            license_id:
+              already_present: већ присутан за овај пројекат
+            usage_limit:
+              cant_be_less_than_used: не може се подесити испод тренутног броја коришћења ИНТЕРПОЛАТИОН_ВАР_0
+              cant_be_more_than_available: не може бити више од доступног ограничења на лиценцу (ИНТЕРПОЛАТИОН_ВАР_0)
+              exceeds_available: Не може бити више од доступних лиценци
+              less_than_used_number: Не може бити мањи од броја коришћених лиценци
+            used_number:
+              overused: Не може бити више од доступних лиценци.
+        questions_import_block_form:
+          attributes:
+            name:
+              blank: Име блока не може бити празно
+        questions_import_matrix_table_form:
+          attributes:
+            answersType:
+              blank: Својство питања МатрикТабеле'ансwерсТипе' не може бити празно
+              inclusion: Својство питања МатрикТабле'ансwерТyпе' треба да буде 'СинглеАнсwер' или 'МултиплеАнсwер'
+            type:
+              blank: Особина питања МатрикТабеле 'тип' не може бити празна
+              inclusion: Тип питања МатрикТабле треба да има 'Ликерт'
+        questions_import_multiple_choice_form:
+          attributes:
+            type:
+              blank: МултиплеЦхоице питање својство 'тип' не може бити празно.
+              inclusion: Својство питања МултиплеЦхоице 'тип' треба да буде 'СинглеАнсwер', 'МултиплеАнсwер' или 'Дропдовн'
+        questions_import_question_form:
+          attributes:
+            name:
+              blank: Питање Име не може бити празно
+            type:
+              blank: Наслов питања не може бити празан
+              inclusion: Тип питања треба да буде'ТектЕнтрy', 'МултиплеЦхоице', 'МатриxТабле' или 'СтатицЦонтент'
+        questions_import_randomization_property_form:
+          attributes:
+            questions:
+              blank: рандомизатион.qуестионс не може бити празан ако рандомизатион.типе је 'Неки'
+            type:
+              inclusion: рандомизатион .тyпе треба да буде или'Све', 'Неки' или'Не'
+        questions_import_required_validation_form:
+          attributes:
+            type:
+              inclusion: Потребан тип валидације треба да буде или "Сила" или "Захтев"
+        questions_import_static_content_form:
+          attributes:
+            type:
+              blank: Тип својства питања статичког садржаја не може бити празан
+              inclusion: Тип својстава питања статичког садржаја треба да буде "Текст"
+        questions_import_text_entry_form:
+          attributes:
+            type:
+              blank: ТектЕнтрy питање својство 'тип' не може бити празно.
+              inclusion: ТектЕнтрy питање својство 'тип' треба да буде'Сингле Лине', 'Мулти Лине' или 'Есеј Тект Бок'
+        register:
+          attributes:
+            email:
+              blank: Адреса е-поште је обавезна
+              in_use: Ова адреса е-поште је у употреби. Ако већ имате налог, молимо вас да се пријавите.
+              invalid: Адреса е-поште је неважећа
+              too_long: Адреса е-поште је предугачка
+            first_name:
+              blank: Име је обавезно
+              too_long: Име је предугачко
+            last_name:
+              blank: Презиме је обавезно
+              too_long: Презиме је предугачко
+            mobile_number:
+              blank: Број мобилног телефона је неопходан
+              invalid: Број мобилног телефона није важећи
+              verification_expired: Верификациони код је истекао. Можете покушати поново да потврдите.
+            registration_code:
+              blank: Регистрациони код је обавезан
+              incorrect_email_domain: Ова емаил адреса не важи за унесени регистрациони код
+              invalid: Регистрациони код је неважећи
+            sms_invite_code:
+              invalid: СМС позивни код је неважећи
+        saml_setting:
+          invalid_cert: Неважећи сертификат
+        security_setting_forms:
+          attributes:
+            magic_link_expiry_in_seconds:
+              greater_than_or_equal_to: Трајање треба да буде најмање 5 минута
+            session_inactivity_timeout_in_seconds:
+              greater_than_or_equal_to: Трајање треба да буде најмање 60 минута
+        sheet:
+          attributes:
+            file:
+              column_type_mismatch: Очекује се да ће колона <б> ИНТЕРПОЛАТИОН_ВАР_0 </б> бити типа ИНТЕРПОЛАТИОН_ВАР_1, али је <б> ИНТЕРПОЛАТИОН_ВАР_2 </б>
+              email_blank: 'Ред ИНТЕРПОЛАТИОН_ВАР_0: Поље е-поште не може бити празно'
+              email_duplicate: Постоје дупликати у колони Е-пошта
+              email_invalid: 'Ред ИНТЕРПОЛАТИОН_ВАР_0: Е-пошта је неважећа'
+              invalid_column: Неисправна колона ИНТЕРПОЛАТИОН_ВАР_0
+              invalid_column_name: Колона <б>"ИНТЕРПОЛАТИОН_ВАР_0"</б> је неважећа
+              invalid_column_name_size: Колона <б>"ИНТЕРПОЛАТИОН_ВАР_0"</б> име је предугачко (макс 64)
+              invalid_column_type: Тип колоне мора бити стринг, текст, број, ХТМЛ или Маркдовн
+              invalid_format: Неисправан формат (.xлсx)
+              invalid_number_value: <б>Ред#ИНТЕРПОЛАТИОН_ВАР_0</б> Колона <б>"ИНТЕРПОЛАТИОН_ВАР_1"</б> није број
+              invalid_string_value: '<б> Ред #ИНТЕРПОЛАТИОН_ВАР_0 </б> колона <б>"ИНТЕРПОЛАТИОН_ВАР_1"</б> није низ'
+              invalid_string_value_size: '<б> Ред #ИНТЕРПОЛАТИОН_ВАР_0 </б> колона <б>"ИНТЕРПОЛАТИОН_ВАР_1"</б> предуга (макс 256)'
+              no_email_column: Датотека не садржи колону е-поште
+              non_uniq_column: Постоје следеће ИНТЕРПОЛАТИОН_ВАР_0 колоне које нису јединствене
+        sheet_row_form:
+          attributes:
+            email:
+              blank: Е -маил не може бити празан
+              not_uniq_email: Ред са е-поштом је већ присутан
         skill_rater_block_form:
           attributes:
             base:
@@ -24,153 +349,602 @@ sr-Cyrl:
               at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Најмање један тип вештине мора бити омогућен са изабраном радном улогом за %{block_name}
               invalid_job_role_type: 'Неважећа радна улога %{job_role} за %{skill_type} за %{block_name}. Дозвољене опције: %{valid_options}'
               props_missing: Недостаје конфигурација вештина за %{block_name}
+        skillvue:
+          attributes:
+            name:
+              not_unique: Ова интеграција је већ присутна за овај пројекат.
+        sms_invites_create:
+          attributes:
+            first_name:
+              blank: Име не може бити празно
+            last_name:
+              blank: Презиме не може бити празно
+            locale:
+              inclusion: Погрешан локалитет.
+            mobile_no:
+              blank: Број мобилног телефона не може бити празан
+              invalid: Број мобилног телефона треба да почне са плус, затим међународним кодом, а затим бројем
+              invite_exists_in_campaign: СМС Позив са истим бројем мобилног телефона већ постоји
+        sms_invites_import:
+          attributes:
+            import_data:
+              duplicated_mobile_numbers: 'Следећи бројеви мобилних телефона се дуплирају у ЦСВ: ИНТЕРПОЛАТИОН_ВАР_0'
+              invalid_header: Неисправан заглавље. Извоз СМС позив да бисте добили исправне заглавља
         smtp_setting_form:
           attributes:
             test_email_id:
               invalid: Формат ИД-а е-поште није важећи.
+        super_admin_edit:
+          attributes:
+            email:
+              blank: Поље е-поште не може бити празно
+              invalid: Е -маил је неважећи
+              starts_with_invalid_characters: Е -пошта не може да почне са =, |, +, -, @, %
+            first_name:
+              blank: Име не може бити празно
+              starts_with_invalid_characters: Име не може да почне са =, |, +, -, @, %
+            last_name:
+              blank: Презиме не може бити празно
+              starts_with_invalid_characters: Презиме не може да почне са =, |, +, -, @, %
         taxonomies_import_form:
           attributes:
             file:
               duplicate_value: 'ИНТЕРПОЛАТИОН_ВАР_0 , ред ИНТЕРПОЛАТИОН_ВАР_1: Дупликат вредности ИНТЕРПОЛАТИОН_ВАР_2 за ИНТЕРПОЛАТИОН_ВАР_3'
+              invalid_format: Молимо Вас да отпремите клск датотеку
+              missing_headers: 'ИНТЕРПОЛАТИОН_ВАР_0 листу недостају обавезна заглавља: ИНТЕРПОЛАТИОН_ВАР_1'
+              missing_sheets: 'Недостају потребни листови: ИНТЕРПОЛАТИОН_ВАР_0'
               missing_value: 'ИНТЕРПОЛАТИОН_ВАР_0 , ред ИНТЕРПОЛАТИОН_ВАР_1: Недостаје вредност за ИНТЕРПОЛАТИОН_ВАР_2'
+            project:
+              must_exist: Пројекат мора постојати
+        update_norm:
+          attributes:
+            norm_type:
+              inclusion: Молимо Вас да изаберете исправан тип норме
         user:
           attributes:
             current_job_role:
               not_found: ИНТЕРПОЛАТИОН _ВАР _0 није пронађен
+            email:
+              user_exists_in_campaign: Корисник са овим ИД е-поште већ постоји у кампањи
+              user_exists_in_project: Корисник са овим ИД е-поште већ постоји у пројекту
+            import_data:
+              cant_overwrite_password: Немате дозволу за преписивање лозинке.
+              duplicated_emails: 'Следеће е-поруке се дуплирају у ЦСВ: ИНТЕРПОЛАТИОН_ВАР_0'
+              invalid_email: 'Ред ИНТЕРПОЛАТИОН_ВАР_0: Неважећи ИНТЕРПОЛАТИОН_ВАР_1 е-поште'
+              invalid_header: Неисправан заглавље, узми заглавље из извоза
+              invalid_reports_header: Неисправан заглавље, узети заглавље из датотеке узорка
+              manager_not_found: 'Ред ИНТЕРПОЛАТИОН_ВАР_0: Менаџер са ИНТЕРПОЛАТИОН_ВАР_1 е-поште није присутан у кампањи или у ЦСВ-у'
+              user_update_failed: Ажурирање корисника није успело за ИНТЕРПОЛАТИОН_ВАР_0 са грешком "ИНТЕРПОЛАТИОН_ВАР_1"
+            locale:
+              inclusion: Погрешан локалитет
+            name:
+              starts_with_invalid_characters: не могу почети са =, |, +, -, @, %
+            schedule_end_date:
+              invalid_datetime: је неважећи
+            schedule_start_date:
+              invalid_datetime: је неважећи
             target_job_role:
               not_found: ИНТЕРПОЛАТИОН _ВАР _0 није пронађен
+        user_assessment:
+          subject_and_assessment_exists: Процена и пар предмета већ постоји
+        user_idp_development_action:
+          attributes:
+            end_date_time:
+              invalid_datetime: је неважећи
+            private:
+              inclusion: мора бити боолеан
+            start_date_time:
+              invalid_datetime: је неважећи
+        yoodli:
+          attributes:
+            name:
+              not_unique: Ова интеграција је већ присутна за овај пројекат.
   activerecord:
     attributes:
+      administration/assessments/assign_form:
+        access_reports: Правила извештаја о приступу
+        access_reports_at: Извештај о приступу на
+        access_reports_at_date: Датум
+        access_reports_at_time: Време
+        client_ids: Закуп клијената
+        manager_ids: Менаџери
+        report_ids: Извештаје
+        user_ids: Корисници
       assessment:
+        active: Активни
         categories:
+          '360': 360 Кампања
+          agile: Окретан
+          assessor_form: Образац за оцењивача
+          case_study: Студије случаја
+          hogan: Хоган
+          iiht: ИИХТ
           lead_assessor_form: Образац главног процењивача
+          meeting: Састанак
           mettl: ОМИЉЕНО
+          organisational: Анкете
+          pearson: Пирсон
+          psychometric: Процена
+          saville: Ел Салвадор
           simulation: Симулација
           skillvue: ОМИЉЕНО
+          threesixty: 360 Кампања
+          yoodli: Јоодли
+        category: Категорија
+        created_at: Датум креирања
         description: Опис
         id: ИД
         name: Име
+        statuses:
+          finished: Заврљио
+        timing: Тајминг
         types:
+          common: ТТЕ Процена
+          hogan: Хоган
+          iiht: ИИХТ Процена
           mettl: Меттл Процена
+          pearson: Пирсонова процена
+          saville: Савилле Процена
           simulation: Симулација Процена
           skillvue: Скиллвуе Процена
+          yoodli: Јоодли Процена
+        updated_at: Датум измене
       assign:
+        completed_at: Датум завршетка
         statuses:
+          completed: Довршено
+          in_progress: Настави
+          ineligible: Не испуњава услове
+          interrupted: Прекинут
           not_started: Нов
+          overdue: Доспеле
+          timed_out: Истекло је време
       block:
+        active: Активни
+        assign_to_assessment_ids: Процене
+        created_at: Датум креирања
         id: ИД
         name: Име
+        updated_at: Датум измене
       client:
+        applicable_level: Применљив ниво
+        applicable_levels:
+          campaign: Кампању
+          project: Пројекат
+          sub_campaign: Под-кампања
+        category: Категорија
+        created_at: Датум креирања
         id: ИД
+        licenses: Број лиценце
+        licenses_expire: Датум истека лиценце
+        licenses_used: Коришћење лиценце
+        location: Локацију
+        logo: Лого клијента
+        memberships_count: Корисници
         name: Име
+        number: Број клијента
+        privacy_consent: Омогућите сагласност за обраду података
+        project_manager: ТТЕ менаџер пројекта
+        project_manager_id: ТТЕ менаџер пројекта
+        report_ids: Извештаје
+        strong_password_enabled: Омогућите јаку лозинку
+        subdomain: Поддомен
+        types:
+          associate: Сарадник
+          corporate: Корпоративни
+          distributer: Дистрибутер
+          other: Други
+          partner: Партнер
+          retail: Малопродаја
+          tte: ТТЕ
+        updated_at: Датум измене
+        year: Клијент Година
       communication:
+        created_at: Датум креирања
         id: ИД
+        updated_at: Датум измене
       dimension:
+        active: Активни
+        created_at: Датум креирања
         id: ИД
         name: Име
         owner: Власник
+        updated_at: Датум измене
       factor:
+        active: Активни
+        created_at: Датум креирања
         id: ИД
         name: Име
+        parent_id: Родитељ
+        questions_count: Не. питања
+        updated_at: Датум измене
+      hogan_report_setting:
+        load_report: Извештај о учитавању из Хогана
       innovation_style:
+        active: Активни
+        created_at: Датум креирања
         description: Опис
         id: ИД
         name: Име
+        updated_at: Датум измене
       innovation_styles_factor:
+        active: Активни
+        created_at: Датум креирања
         id: ИД
         name: Име
+        updated_at: Датум измене
       library:
+        created_at: Датум креирања
         description: Опис
         files: Фајлови
         id: ИД
         name: Име
         owner: Власник
+        type: Сличицу
+        updated_at: Датум измене
       license:
         id: ИД
+        number: Број лиценце
+        overuse_number: Додатак за прекомерну употребу
+        type: Лиценца за
+        types:
+          common: Уобичајена
+          proctoring: Претрага
+          threesixty: Тришездесет
+        unlimited: Неограничен
+        used_number: Половни број лиценце
       membership:
+        active: Активни
+        created_at: Датум креирања
+        disabled: Онемогући
+        email: Е-пошта
         first_name: Име
         id: ИД
         last_name: Презиме
+        parent: Директан менаџер
+        parent_id: Директан менаџер
+        report_ids: Извештај ИД-ови
+        roles:
+          campaign_admin: Администратор кампање
+          client_admin: Администратор клијента
+          manager: Менаџер
+          member: Корисник
+          project_admin: Администратор пројекта
+        updated_at: Датум измене
+        user_access: Кориснички приступ
       norm:
+        active: Активни
+        created_at: Датум креирања
         id: ИД
         name: Име
+        updated_at: Датум измене
+        updated_by: Уредио
       occupation:
+        active: Активни
+        bachelors_or_masters_qualification: Нежења или магистарских студија Квалификације
+        created_at: Датум креирања
         description: Опис
+        diploma_qualification: Диплома Квалификације
+        full_description: Комплетан опис
+        high_school_entry_roles: Улоге у средњој школи
         id: ИД
+        key_career_tracks: Кључни трагови у каријери
         name: Име
+        potential_areas_of_study: Потенцијалне области студија
+        updated_at: Датум измене
+        work_environment: Радно окружење
       occupations_factor:
+        active: Активни
+        created_at: Датум креирања
         id: ИД
         name: Име
+        updated_at: Датум измене
       product:
+        active: Активни
+        created_at: Датум креирања
         id: ИД
         name: Име
+        updated_at: Датум измене
       question:
+        active: Активни
+        assign_to_assessment_ids: Процене
+        created_at: Датум креирања
         id: ИД
         name: Име
         owner: Власник
+        updated_at: Датум измене
       report:
+        created_at: Датум креирања
         id: ИД
+        updated_at: Датум измене
       report_family:
+        created_at: Датум креирања
         id: ИД
+        updated_at: Датум измене
       task:
+        active: Активни
+        created_at: Датум креирања
         description: Опис
+        description_label: ОПИС
+        factor_id: Надлежност
+        factor_id_label: ИЗАБЕРИТЕ КОНКУРЕНТНОСТ
         id: ИД
+        membership_id: Доделите
+        membership_id_label: ИЗАБЕРИТЕ ДОДЕЉИВАЧ
+        name: Акција ставка
+        name_label: АКЦИЈА СТАВКА
+        planned_completed_at: Датум доспијећа
+        planned_completed_at_label: ИЗАБЕРИТЕ ДАТУМ ДОСПИЈЕЋА
+        priority: Приоритет
+        priority_label: ПРИОРИТЕТ
+        status: Статус
+        status_label: ИЗАБЕРИ СТАТУС
         statuses:
+          completed: Довршено
           in_progress: У току
           not_started: Није започето
+          overdue: Доспеле
+        updated_at: Датум измене
+        updated_by: Уредио
       threesixty:
         users_result:
           statuses:
+            completed: Довршено
             in_progress: У току
             not_started: Није започето
       user:
+        active: Активни
+        created_at: Датум креирања
         current_password: Тренутна лозинка
+        disabled: Онемогући
         email: Адреса е-поште
         first_name: Име
         id: ИД
         last_name: Презиме
+        manage_client_ids: Закуп клијента
+        memberships: Закуп клијента
         name: Име
+        password: Лозинку
+        password_confirmation: Потврда лозинке
+        role: Улогу
+        roles:
+          admin: Администраторског
+          admins:
+            admin: Администраторског
+            campaign_admin: Администратор кампање
+            project_admin: Администратор пројекта
+            regular: Администратор клијента
+            superadmin: Супер Администратор
+          agile: Окретан
+          assessor: Саветник
+          assessor_form: Образац за оцењивача
+          campaign_admin: Администратор кампање
+          case_study: Студија случаја
+          client_admin: Администратор клијента
+          hogan: Хоган
+          iiht: ИИХТ
+          manager: Менаџер
+          meeting: Састанак
+          member: Корисник
+          organisational: Организационе
+          pearson: Пирсон
+          project_admin: Администратор пројекта
+          psychometric: Психометријски
+          regular: Редовне
+          saville: Ел Салвадор
+          super_admin: Супер Администратор
+          superadmin: Супер Администратор
+          threesixty: Тришездесет
+        types:
+          anonymous: Анонимни корисници
+          identified: Идентификовани корисници
+        updated_at: Датум измене
       user_form:
+        active: Активни
+        created_at: Датум креирања
         current_password: Тренутна лозинка
+        disabled: Онемогући
         email: Адреса е-поште
         first_name: Име
         id: ИД
         last_name: Презиме
+        parent: Директан менаџер
+        parent_id: Директан менаџер
         password: Лозинка
+        password_confirmation: Потврда лозинке
+        role: Улогу
+        updated_at: Датум измене
       users_result:
+        assessment_name: Име процене
+        assessment_type: Тип процене
+        completed_at: Завршен у
+        completion_reasons:
+          time_out_offline: Тајм -аут / Ван
+          time_out_online: Тајм -аут / Онлине
+          user_completed: Корисник је завршен
+        email: Е-пошта
         name: Име
+        result_id: Резултат ИД
+        started_at: Почео у
+        status: Статус
         statuses:
+          completed: Довршено
           in_progress: У току
+          ineligible: Не испуњава услове
+          interrupted: Прекинут
           not_started: Није започето
           timed_out: Истекло време
     errors:
+      messages:
+        admin_for_another_tte: Корисник већ админ у другом тте
+        invalid_http_url: Неисправан УРЛ. Наведите комплетан УРЛ са хттп или хттпс протоколом у њему.
+        not_uniqueness: Додели је већ предузет
       models:
+        campaign_assessment:
+          attributes:
+            external_config:
+              invalid: Екстерни Цонфиг би требало да буде важећи јосн
+        campaign_factor:
+          attributes:
+            formula:
+              cyclic_dependency_found: 'У формули постоји циклична зависност. Зависност : ИНТЕРПОЛАТИОН_ВАР_0'
+        factors_norm:
+          score_from_must_be_number: Резултат од мора бити број
+          score_to_less_than_score_from: Резултат је мањи од резултата од
+          score_to_must_be_number: Резултат мора бити број
+        license:
+          attributes:
+            used_number:
+              overused: Коришћена лиценца не може бити већа од збира додељених лиценци и ограничења прекомерне употребе.
+          overuse: Лиценца ИНТЕРПОЛАТИОН_ВАР_0 је претерано коришћена
+        media_response:
+          attributes:
+            base:
+              max_takes_limit_reached: Граница достигнута за максималне узима
         register:
           attributes:
             mobile_number:
               blank: Број мобилног телефона је обавезан
               invalid: Број мобилног телефона је неважећи
               verification_expired: Верификациони код је истекао. Можете покушати поново да верификујете.
+        report:
+          assessments_not_hogan: Све процене морају бити типа Хоган
+          assessments_not_saville: Све процене морају бити типа Савилле
+          has_already_assigned: Процена се не може променити јер је већ додељена кориснику или важећем нивоу
+          has_dependent_relation: Овај извештај се односи на кориснике
+          max_assessment_count: Достигли сте границу од ИНТЕРПОЛАТИОН_ВАР_0 процена
+          min_assessment_count: Минимални број процена је ИНТЕРПОЛАТИОН_ВАР_0
+        skill_gap_report:
+          not_found: Извештај о јазу у вештинама није пронађен
         user:
           attributes:
             current_password:
               invalid: Тренутна лозинка је нетачна
             manager_id:
               cannot_be_self: Корисник не може бити постављен као свој менаџер
+        user_idp_comment:
+          reply_to_reply: Не могу да одговорим на одговор (дозвољен је само један ниво гнездања)
+        user_idp_plan:
+          no_active_plan: Није пронађен активан план ИДП-а
   admin_jobs:
     attrs:
       operations:
+        add_campaign_reports: Додајте извештаје о кампањи
+        assessment_norm_export: Извоз нормираних резултата
+        assessment_raw_factor_export: Рав фактор Резултати Извоз
+        assessment_raw_result_export: Рав Резултати Извоз
+        assessment_scoring_export: Бодовање Резултати Извоз
+        assign_idp_to_users: Доделите ИДП корисницима
+        assign_reports_and_assessments: Доделите извештаје и процене
+        bulk_create_workshop_invites: Позивнице за масовни центар за процену Пошаљи
+        bulk_download_idp_reports: Булк Довнлоад ИДП извештаје
+        bulk_download_reports: Извештаји о масовном преузимању
+        bulk_download_user_reports: Булк Довнлоад Усер Репортс
         bulk_generate_user_campaign_ai_artifact_results: Булк Генерате Цампаигн АИ Артифацт Резултати
+        bulk_regenerate_reports: Регенеришите извештаје о кампањи
+        bulk_regenerate_threesixty_reports: Регенеришите тришекдесет предметних извештаја
+        bulk_regenerate_user_reports: Регенеришите корисничке извештаје
+        bulk_reports: Булк Извештаји
+        bulk_rescore_campaign_factors: Фактори кампање Булк Ресцоре
+        bulk_update_evaluation_status: Статус евалуације масовног ажурирања
+        compact_completion_status_export: Извоз статуса завршетка компакта
+        completion_status_export: Завршетак статуса Извоз
         copy_as_template_or_campaign: Копирај кампању као шаблон
+        copy_dimension: Копирај димензију
+        create_threesixty_campaign: Креирајте кампању Тхреесиxтy
+        data_report_export: Извоз извештаја о подацима
+        export_admin_with_permissions: Извоз администратора са дозволама
+        export_assessment_questions: Питања за процену извоза
+        export_campaign_ai_artifacts: Извозна кампања АИ артефаката
+        export_campaign_factors: Фактори извозне кампање
+        export_campaign_scorings: Резултати извозне кампање
+        export_dashboard_as_file: Извози контролну таблу као датотеку
+        export_development_action_translations: Извоз Развој Акција Преводи
+        export_development_actions: Акције за развој извоза
+        export_dimension_as_json: Извоз Димензија ЈСОН
+        export_factor_translations: Извозни фактор Преводи
         export_interview_questions: Питања за интервју за извоз
+        export_job_roles_translations: Извоз послова Улоге Преводи
+        export_norm: Извоз Норма
+        export_occupations: Занимања Извоз
+        export_proficiency_level_translations: Преводи на нивоу стручности извоза
+        export_proficiency_levels: Нивои стручности извоза
+        export_reflection_questions: Извоз Рефлецтион Питања
+        export_report_data: Извоз података извештаја
+        export_reports_and_assessments: Извозни извештаји и процене
+        export_skill_translations: Извоз вештина Преводи
+        export_skills: Вештине извоза
+        export_user_report_events: Извоз догађаја корисничког извештаја
+        export_users: Извоз корисника кампање
+        external_assessment_export: Екстерни резултати Извоз
+        generate_embedding_skills: Генеришите уградњу за вештине
+        import_accesssheet: Увоз Аццессхеет
+        import_assessment_questions: Питања за процену увоза
         import_assessment_translations: Увоз Процена Преводи
+        import_assessors: Количина саветника
+        import_campaign_ai_artifacts: Увоз кампање АИ артефаката
+        import_campaign_factors: Фактори увозне кампање
+        import_datasheet: Увези податке о подацима
+        import_development_action_translations: Увоз Развој Акције Преводи
+        import_development_actions: Акције за развој увоза
+        import_dimension_from_json: Увоз Димензија из ЈСОН
+        import_external_campaign_scoring: Увоз екстерне кампање бодовања
+        import_factor_translations: Преводи фактора увоза
+        import_factors: Фактори увоза
         import_interview_questions: Увоз питања за интервју
+        import_job_roles_translations: Увоз Јоб Ролес Транслатионс
+        import_norm: Увоз Норма
+        import_proficiency_level_translations: Преводи на нивоу стручности увоза
+        import_proficiency_levels: Нивои стручности увоза
+        import_question_translations: Увоз питања Преводи
+        import_raw_data: Увоз сирових података
+        import_reflection_questions: Увоз питања за размишљање
+        import_scoring_data: Увоз података о бодовању
         import_skill_rater_taxonomies: Увоз таксономија процењивача вештина
+        import_skill_translations: Увоз вештина Преводи
+        import_skills: Вештине увоза
+        import_sms_invites: Увоз СМС позив
+        import_users: Увоз корисника
+        migrate_assessment_translations: Процена Миграција превода
+        normalize_factor_scores: Нормализујте резултате фактора
+        regenerate_campaign_reports: Регенеришите извештаје о кампањи
+        regenerate_report: Регенеришите извештај
+        regenerate_threesixty_report: Регенерате Тхреесиxтy Репорт
+        remap_report_assessment: Процена извештаја о ремапирању
+        rescore_assessment: Ресцоре Процена
+        rescore_user_assessment: Поновите процену корисника
+        send_sms_invites: Пошаљи СМС позивнице
+        super_admin_assessment_norm_export: Супер Админ Норм Резултати Извоз
+        super_admin_assessment_raw_factor_export: Супер Админ Рав Фацтор Резултати извоза
+        super_admin_assessment_raw_result_export: Супер Админ Рав Резултати Извоз
+        super_admin_datasheet_export: Супер Админ Датасхеет Извоз
+        super_admin_external_assessment_export: Супер Админ Екстерна процена Извоз
+        threesixty_campaign_export_completion_status: Трисиxтy Статус завршетка извоза кампање
+        threesixty_campaign_export_scores: Тришести кампања Резултати извоза
+        workshop_status_export: Извоз статуса центра за процену
       statuses:
+        completed: Довршено
+        completed_with_errors: Завршен са грешкама
+        failed: Није успело
         in_progress: У току
+        scheduled: Планирано
+    bulk_download_idp_reports:
+      already_exists: Посао за генерисање овог ИДП извештаја већ у току
     bulk_download_reports:
+      content:
+        title: Линкови за преузимање извештаја
       errors:
         no_plans: Није пронађен активан ИДП планови
+    close: Затворите
+    details: Детаље
+    errors: Грешке
+    invalid_job: Ово обавештење одговара избрисаном запису
+    mark_as_read: Означи све прочитано
+    more: Виље
+    results: Резултате
+    super_admin:
+      errors:
+        data_processing_disabled: Обрада података је онемогућена.
   administration: Администрација
   ai:
     errors:
@@ -183,6 +957,7 @@ sr-Cyrl:
   anonym:
     close: Затвори
     continue: Настави
+    link_invalid_error_message: Веза којој покушавате да приступите је неважећа. Молимо Вас да контактирате администратора да бисте добили тачан УРЛ и наставите са анкетом.
     notifications:
       restart:
         copy: Већ сте започели ову анкету. Можете изабрати да наставите или поново покренете.
@@ -194,53 +969,205 @@ sr-Cyrl:
     retake: Поново сними
   assessments:
     actions:
+      add_tag:
+        success_message: Ознака је успешно додат
+      archived:
+        success_message: Процена "ИНТЕРПОЛАТИОН_ВАР_0" је успешно архивирана.
+      assessment_cache:
+        remove_cache: Уклони кеш
+        success_message: Успешно уклоњен кеш
       back_to_campaign: Назад на кампању
+      back_to_dashboard: Назад на контролну таблу
+      copy:
+        success_message: Процена "ИНТЕРПОЛАТИОН_ВАР_0" је успешно копирана.
+      details: Детаље
+      download_csv: Преузети ЦСВ
+      edit: Уређивање
+      evaluate: Процените
       export: Извоз
+      export_normed: Резултати нормираних фактора
+      export_raw_labels: Сирово (са етикетама)
+      export_raw_scores: Резултати сировог фактора
+      export_raw_without_labels: Сирово (без етикета)
       extend_time: Продужи време
+      external_scores_export: Спољни резултати
       goto_dashboard: Кликните овде да бисте наставили
+      manage_mettl_schedule: Управљајте распоредом храбрости
+      moderate: Умерени резултати
+      new_response: Нови одговор
+      next_assessment: Пређи на следећу процену
       pending_tasks:
         one: Имате 1 задатак на чекању
         other: Имате %{count} задатака на чекању
+      re_evaluate: Кликните овде да бисте поново проценили
+      reevaluate: Поново процените
+      remove:
+        confirm_message: Да ли сте сигурни да желите да избришете процену "ИНТЕРПОЛАТИОН_ВАР_0"?
+        confirm_title: Потребна потврда
+        success_message: Процена ИНТЕРПОЛАТИОН_ВАР_0 је уклоњена
+      remove_tag:
+        success_message: Ознака је успешно уклоњена
       rescore: Поново бодуј
+      restore:
+        success_message: Процена "ИНТЕРПОЛАТИОН_ВАР_0" је успешно обновљена
+      show_usage: Покажи употребу
+      submit_another_response: Пошаљи још један одговор
+      submit_evaluation: Пошаљи евалуацију
+      translations:
+        success_message: Преводи оцењивања ажурирани
+      unarchived:
+        success_message: Процена "ИНТЕРПОЛАТИОН_ВАР_0" је успешно унарцхивед
+      view: Приказ
+    active: Активни
+    archived: Архивираних
+    assessment: Процена
+    assessments: Процене
     audio_response:
+      pause: Паузирај
       permission_denied_message: Молимо вас да омогућите микрофон у вашем прегледачу да бисте снимили одговор
       permission_text: Молим вас, дозволите коришћење микрофона за снимање звука
+      resume: Настави
+      saved:
+        label: Аудио Сачуване
+      saving: Чување звука
+      start_recording: Почните са снимањем
+      stop: Престани
     card_actions:
       begin: Почетак
       continue: Настави
+    categories:
+      redirecting: Преусмеравање
+    column:
+      enable_audio_check: Омогућите проверу звука
+      enable_network_check: Омогући проверу мреже
+      enable_video_check: Омогућите проверу видео записа
+      external_settings:
+        hogan_assessment_name: Хоган Процена Име
+        iiht_assessment_name: ИИХТ процена Име
+        iiht_schedule_config: Распоред конфигурације
+        mettl_assessment_name: Име за процену МЕТТЛ-а
+        pearson_assessment_name: Пирсоново име за процену
+        pearson_norm_id: Пирсонова норма ИД
+        saville_assessment_name: Савилле процена Име
+        simulation_assessment_name: Име процене симулације
+        skillvue_assessment_name: Име процене Скиллвуе
+        yoodli_assessment_name: Име процене Иоодли
+      translations_migrated: Превод мигриран
+    create: Креирате
+    dashboard: Контролну таблу
+    dictation:
+      allow_browser_permision: Дозволите аудио дозволу претраживача да користите диктат
+      autostopping_in: Аутоматско заустављање диктата за ИНТЕРПОЛАТИОН_ВАР_0 секунди
+      browser_unsupported: Ваш претраживач не подржава аудио улаз
+      dictation_active: Диктат је сада активан
+      dictation_disabled: Диктат је тренутно онемогућен или се користи од стране другог питања
+      dictation_not_started: Говор диктат није успео да почне
+      dictation_stopped: Говор диктат је заустављен
+      left: Лево
+      listening: Слуља
+      minutes: Минута
+      no_dictation_url: Сервер није успео да одговори за могућност говора у текст
+      notifications:
+        autostopped: Диктирање је аутоматски заустављено због континуиране тишине ИНТЕРПОЛАТИОН_ВАР_0 секунди
+        refresh_page: Није могуће наставити диктирање говора, покушајте поново освежавањем странице
+      start_dictation: Покрените диктирање
+      stop_dictation: Зауставите диктирање
+      use_speech_instructions: Користите говорни унос да бисте написали овај одговор
+    drawer:
+      title: Детаљи процене
+    edit: Уређивање
     fields:
       category:
+        agile: Окретан
+        assessor_form: Образац за оцењивача
+        case_study: Студије случаја
+        hogan: Хоган
+        iiht: ИИХТ
         lead_assessor_form: Образац главног процењивача
+        meeting: Састанак
         mettl: ОМИЉЕНО
+        organisational: Орг анкете
+        pearson: Пирсон
+        psychometric: Психометријски
+        saville: Ел Салвадор
         simulation: Симулација
         skillvue: ОМИЉЕНО
+        threesixty: 360 Кампања
+        yoodli: Јоодли
       status:
+        finished: Заврљио
         in_progress: У току
       type:
+        common: ТТЕ Процена
+        hogan: Хоган
+        iiht: ИИХТ Процена
         mettl: Меттл Процена
+        pearson: Пирсонова процена
+        saville: Савилле Процена
         simulation: Симулација Процена
         skillvue: Скиллвуе Процена
+        yoodli: Јоодли Процена
+    flow:
+      end_assessment_modal:
+        custom_message: Прилагођена порука о крају процене
+        default_message: Подразумевана порука о крају процене
+        mark_as_ineligible: Означи као неприхватљив
+        show_uniq_identifier: Покажи јединствени идентификатор испитаницима (за анонимне анкете)
     instructions:
       begin_assessment: Почетак
       cancel: Откажи
       default: Ово је активност са ограниченим временом, када кликнете на дугме „Почни процену“, имаћете %{time} минута да је завршите.
       title: Упутства
     messages:
+      external_scores_export_scheduled: Процена резултата извоз посао је успешно заказан
       finish: Хвала вам на времену. Ваши одговори су сада забележени.
+      norm_results_export_scheduled: Процена Нормирани резултати извоз посао је успешно заказан
+      raw_factor_export_scheduled: Процена Рав фактор извоз посао је успешно заказан
+      raw_results_export_scheduled: Процена Рав Резултати извоз посао је успешно заказан
     page:
       back: Назад
       confirm_message: "## Ваши одговори ће бити послати и не могу се мењати након овога. Кликните на **Назад** да бисте још једном прегледали своје одговоре или кликните на **Пошаљи** ако сте завршили."
+      invalid_session:
+        description: Ова евалуацијска сесија је поништена. То се може десити ако сте наставили евалуацију на посебној картици, претраживачу или уређају.
+        title: Последњи захтев није успео
       next: Следеће
       no_skill_mapping_message: Нема мапирања вештина за ову радну улогу, контактирајте администратора.
       read_only: Само је у режиму читања, не можете мењати резултате.
       save: Сачувај
+      submissionFailedAlert:
+        description: Није могуће повезати са сервером. Освежите страницу и покушајте поново. Ако то не успе, обратите се подршци путем ливе цхат-а или мте.сурвеyс@мерцер.цом
+        title: Последњи захтев није успео
       submit: Пошаљи
+      warning: УПОЗОРЕЊЕ
+    pages:
+      edit:
+        assets: Средства
+        general_settings: Општа подешавања
+        translations: Преводе
     pickgrouprank:
       items: Ставке
     proceed: Ипак настави
+    question_info_bar:
+      select_linked_questions: Изаберите повезана питања
+    reset: Поништи
     scoring:
+      competency: Надлежност
       id: ИД
+      score: Резултат
+    screen_reader_announcements:
+      fifteen_seconds_left: Остало је 15 секунди
+      five_minutes_left: Остало је још 5 минута
+      one_minute_left: Остало је 1 минут
+      seconds_left: ИНТЕРПОЛАТИОН _ВАР _0 секунди остало
+      thirty_seconds_left: Остало је 30 секунди
+      time_is_up: Твоје време је истекло
+      time_is_up_for_recording: Време је истекло и снимање ће сада престати
+    single_page:
+      display_linked_questions: Приказивање одговора повезаних са тренутно изабраним питањем.
+    trash: Рубре
     unknown_error: Дошло је до непознате грешке.
+    update: Ажурирање
+    upload: Отпремање
     video_response:
       device: Дозволи
       device_selection:
@@ -255,6 +1182,7 @@ sr-Cyrl:
       media_recorder:
         failure: Овај прегледач не подржава снимање видеа. Користите Chrome или Firefox за снимање видеа.
         success: Молимо вас да дозволите коришћење камере и микрофона за снимање звука и видеа
+        unsupported: Овај претраживач не подржава видео снимање. Молимо Вас да користите било који од следећих претраживача,
       recording_duration_label: Максимално трајање снимања
       recording_stop_label: Снимање ће се зауставити за
       requesting_permission: Тражење дозволе...
@@ -263,6 +1191,7 @@ sr-Cyrl:
       saved:
         label: Видео је сачуван
       saving: Чување видеа...
+      seek: Траћим
       start_recording: Почни снимање
       stop_recording: Заустави снимање
       tracker:
@@ -273,9 +1202,60 @@ sr-Cyrl:
     wait: Чекај
   assessments_reports:
     add_group_form:
+      previous_assessments_required: Процене за ради у доњем редоследу
+      previous_group_required: Потребан је претходни завршетак групе
       require_previous_groups_completion_for_booking: Потребно је завршити све претходне групе пре резервације
     menu:
+      assessment_center: Центар за процену
+      assessment_center_invites: Позивнице за процену
+      assessments_and_reports: Процене и извештаји
+      idp: Претраживање
+      manage: Управљање
       recordings: Снимке
+      report_approval: Подешавања одобрења извештаја
+      sequencing: Претрага
+    report_approval:
+      add_settings: Додај подешавање
+      create_seetings: Креирајте подешавања
+    sequencing:
+      add_assessment_center: Додајте центар за процену
+      add_group: Додај групу
+      assessments: Процене
+      delete_group: Избриши групу
+      edit_group_name: Измени име групе
+      modal:
+        delete:
+          cancel: Откажи
+          cannot_delete_with_workshops: Не могу обрисати групу која садржи радионице, прво избришите радионице
+          failed: Фаилед то делете "ИНТЕРПОЛАТИОН_ВАР_0" група, контактирајте администратора
+          ok: Да , избрисати
+          text: Да ли сте сигурни да желите да избришете "ИНТЕРПОЛАТИОН_ВАР_0" групу?
+          title: Избриши групу
+      no_assessments: Превуците и испустите процене
+      no_ungrouped_assessments: Превуците и испустите процене овде за разгруписање
+      ungrouped_assessments: Негруписане процене
+  assessors:
+    campaigns_list:
+      column:
+        evaluation_count: Број евалуација
+        evaluation_status: Статус евалуације
+        moderation_count: Број умерености
+        moderation_status: Статус умерености
+  assign_reports:
+    assessment_not_in_report: Процена са ИД ИНТЕРПОЛАТИОН_ВАР_0 није део извештаја са ИД ИНТЕРПОЛАТИОН_ВАР_1
+    errors:
+      not_enought_licenses: Пакет са ИД ИНТЕРПОЛАТИОН_ВАР_0 нема лиценце
+      user_not_found: 'Ред ИНТЕРПОЛАТИОН_ВАР_0: Корисник са е-поштом ''ИНТЕРПОЛАТИОН_ВАР_1'' није пронађен'
+    report_bundle_not_found: Извештај Бундле са ИД ИНТЕРПОЛАТИОН_ВАР_0 није пронађен
+    report_not_found: Извештај са ИД ИНТЕРПОЛАТИОН_ВАР_0 није пронађен
+    report_not_in_bundle: Извештај са ИД ИНТЕРПОЛАТИОН_ВАР_0 није део пакета извештаја са ИД ИНТЕРПОЛАТИОН_ВАР_1
+  assigns:
+    decorator:
+      no_description: Опис је празан
+  audit_log_failures:
+    invalid_sso_token: Неважећи ДЗС токен
+    record_not_found: Запис није пронађен
+    user_not_authorized: Корисник није овлашћен
   auth:
     current_password: Тренутна лозинка
     current_password_placeholder: Унесите тренутну лозинку
@@ -285,18 +1265,23 @@ sr-Cyrl:
       description: Молимо вас да попуните сва поља да бисте креирали нову лозинку
       submit: Пошаљи
       title: Обновите лозинку
+    lighthouse_logo_alt_text: Логотип светионика
     login:
+      continue_btn: Наставите
       description: Молимо вас да се пријавите са својим личним подацима о налогу
       forgot_password: Заборавили сте лозинку?
+      hide_password: Сакриј лозинку
       login_btn: Пријава
       magic_link_btn: Пошаљи ми имејл са линком за пријаву
       not_member: Нисте члан?
       or: ИЛИ
+      show_password: Покажи лозинку
       sso_btn: Пријавите се помоћу јединственог пријављивања
       title: Добродошли!
     logout: Одјава
     magic_link:
       description: Молимо вас да унесете своју адресу е-поште да бисте добили линк за пријаву
+      invalid_email: Е -маил је неважећи
       login_with_password: Пријавите се лозинком
       send_me_login_link: Пошаљи ми линк за пријаву
       success: Послали смо вам линк за пријаву на &#39;%{email}&#39;. Кликните на линк у имејлу који сте примили да бисте се пријавили.
@@ -348,20 +1333,40 @@ sr-Cyrl:
         invalid_code: Неважећи код
         invalid_number: Број мобилног телефона је нетачан. Молимо вас да поново проверите свој број.
         max_attempts_reached: Превише покушаја. Молимо сачекајте 10 минута пре него што покушате поново.
+  browsers:
+    chrome: Гугл Цхроме
+    download:
+      chrome: хттпс://www.гоогле.цом/цхроме/
+      edge: хттпс://www.мицрософт.цом/ен-ус/едге
+      firefox: хттпс://www.мозилла.орг/ен-УС/фирефоx/неw/
+      instruction: Преузимање
+      safari: хттпс://www.аппле.цом/сафари/
+    edge: Софтвер сличан Мицрософт Едге-у
+    firefox: Мозилла Фирефок
+    safari: Јабука Сафари
+    support:
+      instruction: Молимо Вас да преузмете и користите било који од следећих претраживача.
+      message: Претраживач који користите није подржан од стране Лигхтхоусе-а.
+    upgrade:
+      instruction: Надоградите сада
+      message: Молимо Вас да користите најновију верзију претраживача
   campaign:
     all_activities_are_completed: Све активности су сада завршене.
     all_activities_are_completed_multiple: Све активности за ову кампању су сада завршене. Молимо вас да пређете на контролну таблу и проверите да ли имате додељене још неке активности.
+    already_joined: Већ сте се придружили овој кампањи
     begin: Започните своје задатке
     begin_btn_msg_before_prework: Морате да завршите доле наведене задатке пре него што започнете временски ограничену кампању
     begin_campaign_msg: Започните кампању пре полагања процена
     campaigns: Кампање
     closed_campaign_message: Ова кампања је затворена. Не можете полагати никакве процене у оквиру ове кампање.
+    code_usage_limit_reached: Достигнута граница употребе кода, контактирајте администратора
     complete_prev: Завршите све претходне процене
     complete_tasks: Молимо вас да завршите доленаведене задатке пре него што предузмете ову акцију.
     continue: Наставите са својим задацима
     dashboard_instructions: Можда вам је додељено више активности које треба да завршите. Молимо вас да проверите да ли су све додељене активности завршене у свим кампањама.
     dashboard_menu:
       campaign: Кампања
+      direct_reportees: Директни извештавачи
       home: Дом
       insights: Увиди
       profile: Профил
@@ -383,7 +1388,9 @@ sr-Cyrl:
       common_proctoring_instructions: "<h4>Надзор</h4><p> Након што кликнете на дугме „Старт“, бићете преусмерени на наш систем за надзор. Он ће пратити вашу камеру, микрофон и екран током ваше сесије. Ове сесије аутоматски надгледа наш софистицирани систем вештачке интелигенције, пружајући непрекидно и глатко корисничко искуство. Међутим, сесије могу прегледати и људски надзорници. Сви знаци недоличног понашања или неправилности биће означени. Ово се ради како би се осигурало да нема покушаја варања. Уколико се пронађу сумње, ваш(и) задатак(и) ће бити отказан(и).</p>\n"
       lockdown_browser_instruction: "<h4>Прегледач за надзор</h4><p> Биће потребно да преузмете и инсталирате посебан прегледач да бисте завршили задатке под надзором. Пратите упутства на следећем екрану. Можете га деинсталирати након што завршите све потребне активности.</p>\n"
     instructions:
+      collapse_aria_label: 'Покажите више информација изнад: Виртуелни центар за учење'
       collapse_link_text: Прикажи мање
+      expand_aria_label: 'Покажи мање информација изнад: Виртуелни центар за учење'
       expand_link_text: Прикажи више
       heading: Молимо вас да прегледате доленаведене смернице пре него што почнете. Желимо вам све најбоље!
     language:
@@ -402,6 +1409,10 @@ sr-Cyrl:
       last_updated_text: 'Профил је последњи пут ажуриран:'
       sub_heading: Попуните све информације о свом профилу
       welcome_text: Добродошли,
+    reset_warning: Можете само поново покренути кампању означену као кампања за вежбање.
+    restart_practice: Поново покрените праксу
+    restart_practice_confirmation: Да ли сте сигурни да желите да поново покренете праксу?
+    restart_practice_success: Пракса је успешно поново покренута
     thank_you_for_time: Хвала вам на времену
     time_left:
       cancel: Откажи
@@ -412,13 +1423,162 @@ sr-Cyrl:
       notification_minutes: Остало вам је %{minutes} минута
   campaign_assessment:
     actions:
+      bulk_download: Масовно преузимање
+      bulk_update_evaluation_as_done: Означи као урађено
+      bulk_update_evaluation_as_undone: Поништи ознаку као урађено
       convert_to_template: Претвори у шаблон
+      download: Преузмите извештаје
+      export_completion_status: Статус завршетка извоза
+      export_external: Спољних
+      export_normed: Резултати нормираних фактора
+      export_occupations: Занимања
+      export_raw_labels: Сирово (са етикетама)
+      export_raw_scores: Резултати сировог фактора
+      export_raw_without_labels: Сирово (без етикета)
+      export_scores: Резултате
+      export_scoring: Бодовања
+      factor_benchmark_score: Фактор Бенцхмарк Резултат
+      force_generate: Сила Генеришите
+      import_raw: Сирово
+      import_scoring: Бодовања
+      regenerate: Генеришите извештаје
+      rescore: Ресцоре Процена
+      reset_all_nominations: Поништи све номинације
+      reset_participant: Поништи све учеснике
+    allow_msg_proctoring_workshop_activity: Активности центра за процену се не проверавају.
     assessment_center_heading_label: Детаљи сесије
     assessments_heading: Ваши задаци
     column:
+      assessment_name: Назив процене
+      assessor_form: Образац за оцењивача
+      auto_assign: Аутоматско додељивање
+      dimension_id: Димензија ИД
+      external_user_id: Скиллвуе ИД кандидата
+      id: ИД процене кампање
       locales: Локализације
+      norm: Норм
+      norm_id: Норма ИД
+      pearson_norm_id: Пирсон Норм ИД
+      pearson_schedule_id: Пирсонов распоред ИД
+      pearson_variation: Пирсонова варијација
+      prework: Припрема
+      saville_candidate_id: Кандидат ИД
+      saville_data_separator: Савилле сепаратор података
+      simulation_content_variation: Варијација садржаја симулације
+      simulation_participant_id: ИД учесника симулације
+      simulation_time_extension: Продужење времена симулације
+      skillvue_email_id: ИД е-поште кандидата за Скиллвуе
+      skillvue_external_assessment_id: Скиллвуе ИД процене
+      universal_link: Универзална веза
+    drawer:
+      mettl_schedule_name: Меттл Распоред Име
+      title: Детаљи процене
     messages:
+      export_completion_statuses_scheduled: Завршетак Статуси извоз посао је успешно заказан
+      export_occupations_job_scheduled: Занимања Извоз посао је успешно заказан
+      export_reports_and_assessments_statuses_scheduled: Извоз Извештаји и процене посао је успешно заказан
+      external_results_export_scheduled: Екстерна процена извоз посао је успешно заказан
       no_participants_selected: Молимо вас да изаберете најмање једног учесника да бисте наставили.
+      norm_results_export_scheduled: Процена Нормирани резултати извоз посао је успешно заказан
+      normalize_factor_scores_scheduled: Нормализација фактор резултата посао је успешно заказан.
+      raw_factor_export_scheduled: Процена Рав фактор извоз посао је успешно заказан
+      raw_results_export_scheduled: Процена Рав Резултати извоз посао је успешно заказан
+      scoring_results_export_scheduled: Процена Резултати бодовања Извозни посао је успешно заказан
+    modals:
+      assessor_campaign_assessment_group:
+        error_message: Нешто је пошло наопако. Молимо Вас да контактирате администратора
+        placeholder: Изаберите групу центра за процену
+        success_message: Група за процену кампање процењивача је успешно додељена
+        title: Група за процену
+      bulk_update_evaluation:
+        content: Да ли сте сигурни да желите да означите све одабране предмете као ИНТЕРПОЛАТИОН_ВАР_0?
+        successfully: Успешно означен као ИНТЕРПОЛАТИОН_ВАР_0.
+        title: Булк Марк као ИНТЕРПОЛАТИОН_ВАР_0?
+      import_raw:
+        body: Погледајте Извоз функционалност да извуче шаблон који се може користити за увоз овде.
+        success_msg: Увоз је успешно отпремљен
+        title: Увоз Рав Ресултс података
+        upload: Отпремање
+      import_scoring:
+        body: Погледајте Извоз функционалност да извуче шаблон који се може користити за увоз овде.
+        success_msg: Увоз је успешно отпремљен
+        title: Увоз резултата бодовања података
+        upload: Отпремање
+      prework_setting:
+        disable: Онемогући предрад за све постојеће кориснике
+        enable: Омогућите предрад за све постојеће кориснике
+        title: Образац за подешавање предрадова
+      regenerate:
+        content: Да ли сте сигурни да желите да регенеришете доступне извештаје?
+        title: Регенеришите извештаје?
+      remove:
+        helper_text: 'ОПАСНОСТ : Одабиром овога уклонит ћете одговоре свих корисника на ову процјену у овој кампањи.'
+        msg_text: Покушавате да избришете <стронг>"ИНТЕРПОЛАТИОН_ВАР_0"</стронг> Процену
+        successfully: ИНТЕРПОЛАТИОН _ВАР _0 процена је успешно уклоњена.
+        title: Уклонити процену?
+      rescore:
+        content: Да ли сте сигурни да желите да поново оцените процену?
+        successfully: Процена је успешно поново оцењена.
+        title: Ресцоре процена?
+      rescore_response:
+        message: Поновно бодовање заказано за процену "ИНТЕРПОЛАТИОН_ВАР_0"
+        title: Поновите одговоре
+      reset:
+        content: Да ли сте сигурни да желите да ресетујете резултат?
+        successfully: Подаци о резултатима су успешно ресетовани.
+        title: Поништавање резултата за процену ИНТЕРПОЛАТИОН_ВАР_0?
+      update_assessor_form:
+        select_assessor: Изаберите образац за оцењивача
+        success_msg: Образац за оцењивача је успешно отпремљен
+        title: Ажурирајте образац за процењивача
+        update: Ажурирање
+      update_content_variation:
+        select_schedule: Изаберите варијацију садржаја
+        success_msg: Варијација садржаја симулације је успешно ажурирана
+        update: Ажурирање
+      update_external_config:
+        text_placeholder: Спољни ЈСОН цонфиг
+        title: Ажурирај спољну конфигурацију
+      update_locales:
+        select_locales: Изаберите локације
+        success_msg: Локалитети су успешно ажурирани
+        title: Ажурирање доступних језика
+      update_mettl_schedule:
+        select_schedule: Изаберите распоред
+        success_msg: Меттл распоред је успешно ажуриран
+        update: Ажурирање
+      update_norm:
+        apply: Примените ову промену на постојеће кориснике у овој кампањи
+        cannot_remove_norm: Не може уклонити норму за завршену процену.
+        select_norm: Изабери Норм
+        success_msg: Норме су успешно ажуриране
+        title: Ажурирање норме
+        update: Ажурирање
+      update_simulation_time_extension:
+        success_msg: Симулација Време Продужетак је успешно ажуриран
+        title: Продужење времена
+        tooltip: Продужење времена као фактор (нпр. 1,5 за 50% више времена)
+        update: Ажурирање
+      update_time:
+        additional_time: Време (мин)
+        title: Продужи време
+      workshop_activity_duration:
+        form:
+          duration: Трајање у минутима
+        title: Трајање радионичких активности
+    normalize_factor_scores:
+      normalization_not_allowed: Нормализација факторских резултата је тренутно онемогућена за ову процену у подешавањима пројекта. Омогућите га да настави.
+      success: Нормализација факторских резултата успешно завршена
+    not_allow_msg_proctoring_workshop_activity: Не можете да радите активности центра за процену јер сте унутар прозора за прокторинг. Да бисте урадили ове активности, потребно је да изађете из прозора за прокторинг.
+    pearson_variation_form:
+      apply_to_existing_users: Примените ову промену на постојеће кориснике у овој кампањи
+      select: Изаберите варијацију
+      update: Ажурирање
+      update_success: Пирсонова варијација је успешно ажурирана
+    scheduled_successfully: Процена је успешно заказана
+    scheduling:
+      update_exists: Премостите постојећи распоред
+    scheduling_time: Распоред времена процене
     statuses:
       completed: Завршено
       in_progress: У току
@@ -429,12 +1589,46 @@ sr-Cyrl:
       progress: У току
       timed_out: Временски истекло
       universal_link: Универзална веза
+    ungrouped_assessments_heading: Разгруписани
+  campaign_join_token:
+    campaign_id: ИД кампање
+    expire_in: Истиче у (сец)
+    invalid_token: Неважећи токен
+    text: Текстуална порука
   campaign_report:
+    actions:
+      add_reports:
+        enqueue_message: Додај извештаје посао је успешно у реду
+        success_message: Извештаји су успешно додани
+      bulk_download: Масовно преузимање
+      export_data: Извоз података
+    bulk_download:
+      error: Масовно преузимање је ограничено на 1000 фајлова извештаја. Тренутна селекција има ИНТЕРПОЛАТИОН_ВАР_0 фајлова извештаја. Молимо Вас да подесите датум почетка и завршетка да бисте смањили број фајлова извештаја за преузимање.
     column:
+      assessor_access: Приступ процењивача
+      auto_assign: Аутоматско додељивање
       locales: Језици
+      main_report: Главни извештај
+      report_bundle: Извештај Бундле
+      report_name: Име извештаја
+      user_access: Кориснички приступ
+      user_dashboard: Корисничка контролна табла
+    form:
+      operation: Операција
+      operation_options:
+        add_and_allow_new_response: Додајте извештај постојећем кориснику и дозволите нови одговор
+        add_with_existing_response: Додајте извештај постојећем кориснику и задржите постојећи одговор
+        skip_existing: Прескочи постојећег корисника
+      report: Извештај
+      report_bundle_placeholder: Изаберите пакет извештаја
     messages:
-      bulk_download_no_reports: Није пронађен ниједан извештај. Молимо Вас да генеришете извештаје пре преузимања.
+      bulk_download_successful: Булк извештај преузимање посао је успешно заказан
+      export_report_data_scheduled: Извештај извоз података посао је успешно заказан
     modals:
+      remove:
+        apply: Примените ове промене на постојеће кориснике у овој кампањи.
+        msg_text: Покушавате да избришете <стронг>"ИНТЕРПОЛАТИОН_ВАР_0"</стронг> Извештај
+        title: Уклонити извештај?
       update_languages:
         default_language: Подразумевани језик
         other_available_languages: Остали доступни језици
@@ -442,13 +1636,56 @@ sr-Cyrl:
         select_languages: Изаберите језике
         success_msg: Језици су успешно ажурирани
         title: Језик извештаја
+      user_access:
+        apply: Примените ове промене на постојеће кориснике у овој кампањи.
+        title:
+          disable: Онемогући кориснички приступ
+          enable: Омогући кориснички приступ
   campaign_users:
+    actions:
+      add_manager: Додај менаџера
+      extend_time: Продужи време
+      search_user: Претрага корисника
+    assessments:
+      progress: Напредак
     details:
+      additional_time: Додатно време
+      assessment_center: Центар за процену
+      assessment_center_invites: Позивнице за процену
+      completed_at: Завршен у
+      completion_status: Статус завршетка
       hogan_id: Хоган ИД
+      last_login: Последња пријава
+      manager: Менаџер
+      modals:
+        create_hogan_credentials:
+          assessments: 'Процене:'
+          confirmation: Унесите е-пошту дату испод у текстуално поље да бисте додали нови хоган акредитив.
+          reports: 'Извештаје:'
+          successfully: Успешно је додат нови хоган акредитив за корисника са ИНТЕРПОЛАТИОН_ВАР_0 е-поште.
+          warning: Креирање новог Хоган акредитива ће уклонити следеће процене и извештаје повезане са старим Хоган акредитивом за ИНТЕРПОЛАТИОН_ВАР_0
+        remove:
+          successfully: Корисник са е-маил ИНТЕРПОЛАТИОН_ВАР_0 је успешно уклоњен.
+          title: Да ли сте сигурни да желите да уклоните овог корисника из ИНТЕРПОЛАТИОН_ВАР_0 кампање?
+      not_completed_yet: Још није завршено
+      not_logged_in_yet: Још увек нисте пријављени
+      not_started_yet: Још није почело
+      started_at: Почео у
       statuses:
+        completed: Довршено
         in_progress: У току
+        ineligible: Не испуњава услове
+        interrupted: Прекинут
         not_started: Није започето
+        timed_out: Истекло је време
+    modals:
+      remove: Да ли сте сигурни да желите да уклоните корисника са е-поштом 'ИНТЕРПОЛАТИОН_ВАР_0' из ове кампање?
   campaigns:
+    assessments_and_reports:
+      assessor_assessments: Процене процењивача
+      other_assessments: Остале процене
+      other_assessor_assessments: Остале процене процењивача
+      other_reports: Остали извештаји
     card:
       duration: Трајање
       starts_in: 'Почиње за:'
@@ -529,25 +1766,45 @@ sr-Cyrl:
       retake: Не, желим поново да узмем
       run_again: Трчи поново
       title: Морамо да се уверимо да ваш систем може да снима видео
+      upload_again: Отпреми поново
       uploading: Отпремање
   common:
     actions:
       add: Додај
+      approve: Одобри
       archive: Архива
+      back_to_dashboard: Назад на контролну таблу
+      back_to_responses: Назад на одговоре
       cancel: Откажи
+      change: Промените
       close: Затвори
+      continue: Наставите
       copy: Копија
+      create: Креирате
       delete: Обриши
+      done: Урадио
+      download: Преузимање
       edit: Измени
       export: Извоз
+      filter_by_tags: Филтрирај по ознакама
+      go_back: Врати се
+      import: Увоз
+      insert: Уметни
+      'no': Не
+      ok: У реду
       publish: Објави
+      reject: Одбаци
       remove: Уклони
       reset: Ресетуј
       resolve: Решити
       restore: Врати
+      return_to_home: Повратак на почетну адресу
+      run: Трчати
       save: Сачувај
+      schedule: Распоред
       search: Претрага
       send: Пошаљи
+      sign_in: Упиши се
       start: Почетак
       submit: Пошаљи
       unarchive: Врати из архиве
@@ -557,58 +1814,257 @@ sr-Cyrl:
       upload: Отпреми
       upload_file: Пошаљи датотеку
       verify: Верификуј
+      view: Приказ
       view_all_tasks: Прикажи све задатке
       view_detail: Виев Детаил
+      'yes': Да
     column:
       action: Акција
+      active: Активни
       ai_assistant: АИ помоћник
+      allow_multiple_responses: Дозволите више одговора
+      approval_notification_list: Обавештење о одобрењу Листа корисника
+      approvers_list: Одобраватељи Особа списак
+      assessment: Процена
+      assessment_name: Име процене
+      assessments: Процене
+      assessor: Саветник
       category: Категорија
+      client: Клијент
+      code: Шифру
       created_at: Направљено у
+      created_by: Аутор
+      created_date: Датум креирања
       default_language: Подразумевани језик
       description: Опис
+      details: Детаље
+      dimension: Димензије
+      email: Е-пошта
+      external_report_id: ИД спољашњег извештаја
+      first_name: Презиме
+      icon: Икону
+      icon_color: Боја иконе
       id: ИД
+      json:
+        answer: Одговор ЈСОН
+        external_result: Спољни резултат ЈСОН
+        scoring: Бодовање ЈСОН
+      key: Кључ
+      last_name: Презиме
+      linked_activities: Повезане активности
+      linked_assessment: Повезана процена
+      meeting_link: Линк за састанак
+      modified_by: Измењено од стране
+      modified_date: Датум измене
       name: Име
       owner: Власник
       package_id: ИД пакета
+      poster: Постер
+      project: Пројекат
+      provider: Добављача
+      qc_user_list: QЦ Листа корисника
+      report: Извештај
       report_id: ИД извештаја
+      require_scheduling: Захтевајте заказивање
+      responses_count: Број одговора
+      schedule_time: Распоред Време
+      scheduling: Планирање
+      skills: Вељтине
       status: Статус
+      tags: Ознаке
+      timing: Тајминг
+      token: Симбол
+      type: Тип
+      unschedule: Претрага
+      updated_at: Последње измене
+    errors:
+      csv_injection_validation_error: не могу почети са =, |, +, -, @, %
+      something_wrong: Нешто је пошло наопако. Обратите се администратору.
+    messages:
+      leave_message: Да ли сте сигурни да желите да напустите ову страницу? Сви несачувани одговори које имате ће бити изгубљени.
     model:
+      admins: Администратори
+      assessment: Процена
       assessments: Процене
       campaigns: Кампање
+      completion_statuses: Статуси завршетка
+      datasheet: Мапа сајта
+      projects: Пројекте
+      report: Извештај
       reports: Извештаји
+      sms_contact: СМС контакт
+      threesixty_campaign: Тришекдесет резултата кампање
     status:
+      completed: Довршено
+      dropped_out: Одустао
       in_progress: У току
+      late: Касно
+      no_show: Не појављивање
       not_started: Није започето
+      not_status: Нема статуса
+      on_time: На време
     text:
+      accepted: Прихватио
+      all_pages: Све странице
       cancel: Откажи
       confirm: Потврди
       continue: Настави
+      copied: Копирано у међуспремник
       default: Подразумевано
       disabled: Онемогућен
       download: Преузми
       enabled: Омогућен
+      file: Датотеке
+      minutes: Минута
       na: Н/Д
+      none: Нико
       ok: У реду
+      refer_export_file: Погледајте Извоз функционалност да извуче шаблон који се може користити за увоз овде.
+      reference_language: Референтни језик
       response: Одговор
+      select: Изаберите
+      selected: Изабрали
+      subject: Тема
+      total: Укупно
+      view_as: Погледај као
+    tooltips:
+      hide: Сакрити
+      view: Приказ
+    validations:
+      required: Ово поље је обавезно
+      select_locale: Молимо Вас да изаберете неки језик (е)
+      should_be_whole_number: требало би да буде цео број
+  confirmation:
+    delete_comment: Да ли сте сигурни да желите да избришете овај коментар?
+  custom_field:
+    field_name: Назив поља
+  datasheet:
+    errors:
+      datasheet_column:
+        not_found: Колона 'ИНТЕРПОЛАТИОН_ВАР_0' није пронађена
+        numeric_value_required: Колона 'ИНТЕРПОЛАТИОН_ВАР_0' треба да буде број
+        string_value_required: Колона 'ИНТЕРПОЛАТИОН_ВАР_0' треба да буде низ
+      not_configured: Технички лист није подешен
   devise:
     administrators:
+      meta_title: Пријавите се на панел администрације
+      passwords:
+        edit:
+          submit: Постави нову лозинку
+          title: Промените лозинку
+        new:
+          back: Повратак назад
+          submit: Пошаљи ми инструкције
+          title: Заборавили сте лозинку?
       sessions:
         new:
+          forgot_password: Заборавили сте лозинку?
           submit: Пријава
+          title: "<стронг> Добродошли ,</стронг> Молимо Вас да се пријавите"
+      shared:
+        links:
+          about: О
+          app_name: "© 2016 АппНаме"
+          contact_us: Контактирајте нас
+          privacy: Приватности
+    confirmations:
+      confirmed: Ваша адреса е-поште је успешно потврђена.
+      send_instructions: Добићете е-пошту са упутствима како да потврдите своју адресу е-поште за неколико минута.
+      send_paranoid_instructions: Ако ваша адреса е-поште постоји у нашој бази података, добићете е-пошту са упутствима како да потврдите своју адресу е-поште за неколико минута.
     failure:
       already_authenticated: Већ сте пријављени.
       inactive: Ваш налог још није активиран.
       invalid: Неважећа имејл адреса или лозинка.
       invited: Имате позивницу на чекању, прихватите је да бисте завршили креирање налога.
+      last_attempt: Имате још један покушај пре него што је ваш налог закључан.
+      locked: Ваш налог је закључан.
       magic_link_invalid: Неважећи или истекли линк за пријаву.
       not_found_in_database: Неважећа имејл адреса или лозинка.
+      saml_user_not_present: Корисник није присутан у систему
       timeout: Ваша сесија је истекла. Молимо вас да се поново пријавите да бисте наставили.
       unauthenticated: Морате се пријавити или регистровати пре него што наставите.
+      unconfirmed: Морате да потврдите своју адресу е-поште пре него што наставите.
     invalid_captcha: Унос за captcha није важећи.
     invalid_security_question: Одговор на безбедносно питање није важећи.
     invitations:
       edit:
+        confirm_password_label: Потврдите лозинку
+        header: Подесите лозинку
+        instruction: Да бисте креирали нову лозинку, унесите нову лозинку у поља испод
         password_label: Лозинка
+        submit: Постави нову лозинку
+        submit_button: Постави лозинку
+        title: Креирај лозинку
+      invitation_removed: Ваш позив је уклоњен.
+      invitation_token_invalid: Позивница токен под условом није важећа!
+      new:
+        header: Пошаљи позив
+        submit_button: Пошаљи позивницу
+      no_invitations_remaining: Нема преосталих позивница
+      send_instructions: Е -пошта са позивницом је послата ИНТЕРПОЛАТИОН_ВАР_0.
+      updated: Ваша лозинка је успешно постављена. Сада сте пријављени.
+      updated_not_active: Ваша лозинка је успешно постављена.
+    mailer:
+      admin_invitation_instructions:
+        accept: Кликните овде да бисте прихватили позив.
+        body: |
+          Поздрав ИНТЕРПОЛАТИОН_ВАР_0,
+          Позвани сте да приступите администраторском панелу Лигхтхоусе - платформе за процену Талент Ентерприсе.
+
+          ИНТЕРПОЛАТИОН _ВАР _1 Или можете безбедно игнорисати ову е-пошту.
+
+          Молимо вас да не делите своје приступне акредитиве ни са ким.
+        subject: Позив на светионик
+      confirmation_instructions:
+        subject: Инструкције за потврду
+      invitation_instructions:
+        body: |
+          Поздрав ИНТЕРПОЛАТИОН_ВАР_0,
+          Ви сте додат у Лигхтхоусе као Админ за следећи одељак
+        login: Пријавите се на Лигхтхоусе
+        sections:
+          campaign: 'Кампања : ИНТЕРПОЛАТИОН_ВАР_0'
+          client: 'Закуп клијента: ИНТЕРПОЛАТИОН_ВАР_0'
+          project: 'Пројекат : ИНТЕРПОЛАТИОН_ВАР_0'
+        subject: Позив на светионик
+      password_change:
+        body: |
+          Поздрав ИНТЕРПОЛАТИОН_ВАР_0!
+
+          Ваша лозинка је промењена.
+
+          Ако нисте поднели овај захтев, молимо вас да одмах контактирате подршку корисницима на мте.суппорт@мерцер.цом
+        regards: |
+          Поздраве
+          Светионик тима
+        subject: Ваша лозинка за светионик је промењена
+      reset_password_instructions:
+        body: |
+          Поздрав ИНТЕРПОЛАТИОН_ВАР_0!
+
+          Неко је затражио везу за промену лозинке. То можете урадити путем линка испод.
+        change_password: Промена лозинке
+        footer: Ако то нисте тражили, можете безбедно игнорисати ову е-пошту. Ваша лозинка се неће променити док не приступите горњој вези и креирате нову.
+        regards: |
+          Поздраве
+          Светионик тима
+        subject: Упутства за ресетовање лозинке
+      unlock_instructions:
+        body: |
+          Поздрав ИНТЕРПОЛАТИОН_ВАР_0!
+
+          Ваш налог је закључан због превеликог броја неуспешних покушаја пријављивања.
+
+          Кликните на линк испод да бисте откључали свој налог:
+        footer: Ако то нисте тражили, можете безбедно игнорисати ову е-пошту. Ваша лозинка се неће променити док не приступите горњој вези и креирате нову.
+        regards: |
+          Поздраве
+          Светионик тима
+        subject: Упутства за откључавање налога
+        unlock_account: Откључај мој налог
+    omniauth_callbacks:
+      failure: Није могао да вас потврди аутентичност од ИНТЕРПОЛАТИОН_ВАР_0 јер "ИНТЕРПОЛАТИОН_ВАР_1".
+      success: Успешно аутентификован са ИНТЕРПОЛАТИОН_ВАР_0 налога.
     paranoid_verification_code:
       show:
         submit: Пошаљи
@@ -630,10 +2086,18 @@ sr-Cyrl:
       updated: Ваша нова лозинка је сачувана.
     passwords:
       edit:
+        instruction: Да бисте креирали нову лозинку, унесите нову лозинку у поља испод
         submit: Пошаљи
+        title: Креирај лозинку
       invalid_email: Неважећа имејл адреса
+      no_token: Не можете приступити овој страници без доласка из е-поште за ресетовање лозинке. Ако долазите из е-поште за ресетовање лозинке, проверите да ли сте користили пуну УРЛ адресу.
+      send_instructions: Добићете е-пошту са упутствима о томе како да ресетујете лозинку за неколико минута.
+      send_paranoid_instructions: Ако ваша адреса е-поште постоји у нашој бази података, добићете линк за опоравак лозинке на вашу адресу е-поште за неколико минута.
+      updated: Ваша лозинка је успешно промењена. Сада сте пријављени.
+      updated_not_active: Ваша лозинка је успешно промењена.
     registrations:
       communication_not_setup_error: Комуникација путем имејла за регистрацију није подешена, контактирајте администратора овог пројекта.
+      destroyed: Ћао! Ваш налог је успешно отказан. Надамо се да ћемо се ускоро поново видети.
       new:
         email: Адреса е-поште
         first_name: Име
@@ -647,28 +2111,68 @@ sr-Cyrl:
           sign_in: Пријавите се
         terms_notice: Регистрацијом се слажете са нашим <a href="%{terms_url}">Условима коришћења услуга и Политиком приватности</a>
         title: Региструјте се сада
+      signed_up: Добродошли! Успешно сте се пријавили.
+      signed_up_but_inactive: Успешно сте се пријавили. Међутим , нисмо могли да вас пријавимо јер ваш налог још није активиран.
+      signed_up_but_locked: Успешно сте се пријавили. Међутим , нисмо могли да вас пријавимо јер је ваш налог закључан.
+      signed_up_but_unconfirmed: Порука са линком за потврду је послата на вашу адресу е-поште. Молимо Вас да пратите линк да бисте активирали свој налог.
       success:
         actions:
           sign_in: Пријавите се
+        instruction: Молимо Вас да проверите своју е-пошту за даља упутства
+        title: Пријавите се успешно
+      update_needs_confirmation: Успешно сте ажурирали свој налог, али морамо да потврдимо вашу нову адресу е-поште. Проверите своју е-пошту и пратите линк за потврду да бисте потврдили своју нову адресу е-поште.
+      updated: Ваш налог је успешно ажуриран.
     sessions:
+      already_signed_out: Успешно одјављен.
       new:
         email: Адреса е-поште
         forgot_password: Заборавили сте лозинку?
         instruction: Молимо вас да се пријавите са својим личним подацима о налогу
+        keep_sign_in: Да , Држи ме пријављеног
+        login_with_sso: Пријавите се са јединственом пријавом
         password_placeholder: Лозинка
         submit: Пријава
         tabs:
           register: Региструј се
           sign_in: Пријава
         title: Добродошли!
+      signed_in: Успешно сте се пријавили!
+      signed_in_time: Последњи пут сте се пријавили на ИНТЕРПОЛАТИОН_ВАР_0
+      signed_out: Успешно одјављен.
+      unsuccessful_sign_in_time: Ваш последњи покушај пријављивања на ИНТЕРПОЛАТИОН_ВАР_0 био је неуспешан.
     two_factor_authentication:
       attempt: Молимо вас да унесете OTP који сте добили на регистровану адресу е-поште
+      attempt_failed: Нетачно ОТП! Покушајте поново
       code_has_been_sent: Ваш нови OTP је послат на вашу регистровану адресу е-поште
+      contact_administrator: Молимо Вас да контактирате администратора система
+      email:
+        otp:
+          subject: Ваша једнократна лозинка
+      max_login_attempts_reached: Достигли сте максималан број покушаја за тренутну ОТП. Кликните на Поново пошаљи ОТП да бисте добили нови ОТП
+      otp: Шифру
+      submit: Проверите
+      success: Пријава са два фактора аутентификације је била успешна.
+      title: Једнократна лозинка
+    unlocks:
+      send_instructions: Добићете е-пошту са упутствима како да откључате свој налог за неколико минута.
+      send_paranoid_instructions: Ако ваш налог постоји, добићете е-пошту са упутствима како да га откључате за неколико минута.
+      unlocked: Ваш налог је успешно откључан. Молимо Вас да се пријавите да бисте наставили.
+      unprocessable_entity: Ваш налог није могао бити откључан помоћу овог линка. Молимо контактирајте подршку.
   emails:
+    nomination_approval_table:
+      evaluator_name: Име евалуатора
+      number: Не
+      relationship: Однос
+      subject_name: Име и презиме
     subject_relationship_table:
       subject_email: Наслов имејла
       subject_name: Име субјекта
       subject_relationship: Однос са субјектом
+  empty: Празан
+  enums:
+    communication:
+      body:
+        error: Тело е-поште има нетачан пипетект.
   errors:
     ai_assistant:
       max_generation_limit: Максимална граница генерације прекорачена, обратите се својој администрацији.
@@ -677,11 +2181,17 @@ sr-Cyrl:
     equal_to_current_password: мора бити различита од тренутне лозинке.
     equal_to_email: мора бити различита од имејла.
     error: Грешка
+    error_401: Нисте овлашћени за приступ овом ресурсу. Молимо Вас да се пријавите.
+    error_403: Немате дозволу да видите овај ресурс.
     error_500: Дошло је до грешке. Контактирајте администратора.
+    error_msg: Нешто је пошло наопако. Молимо Вас да освежите страницу и ако проблем и даље постоји обратите се администратору
     forbidden: Немате приступ овој страници
     forbidden_action: Немате дозволе за ову радњу
+    invalid_session_title: Неважећа сесија
     invalid_token: Дошло је до грешке. Поново учитајте страницу и покушајте поново.
+    max_regeneration_limit: Максимална граница регенерације прекорачена, обратите се својој администрацији.
     messages:
+      data_report_blank: Извештај о подацима не постоји
       password_complexity:
         digit:
           one: мора да садржи најмање једну цифру
@@ -699,25 +2209,74 @@ sr-Cyrl:
     module_error: Дошло је до грешке са овим модулом, контактирајте администрацију.
     module_error_editor: Дошло је до грешке са овим модулом, проверите подешавања модула.
     module_props_error: Нешто је пошло наопако са овим модулом.
+    skill_gap_report:
+      not_found: Извештај о јазу у вештинама није пронађен
     try_again: Молим вас покушајте поново
+    user_idp_plan:
+      no_active_plan: Није пронађен активан план ИДП-а
+    webhooks:
+      multiple_webhook_error: УРЛ не може да се ажурира јер постоји више вебхоок за овај пројекат.
     workshop:
       ical_generation_failed: Није могуће генерисати позивницу за календар
       missing_or_invalid: Недостаје или је неважећи workshop_id
+  evaluators:
+    errors:
+      can_not_processed: не може се обрадити
+      exists: већ постоји
+      max_evaluators: већ имате довољно евалуатора
   factors:
     description: Опис
     factor: Фактор
   frontend:
     activate: Активирај
     are_you_sure: Јеси ли сигуран/сигурна?
+    aria:
+      back_to_dashboard: Назад на контролну таблу
+      back_to_tasks: Назад на задатке
+      calendar: Календар
+      campaign_name_description: ', за кампању "ИНТЕРПОЛАТИОН_ВАР_0"'
+      change_language: "(Промени језик)"
+      clear_date: Обриши датум
+      collapse_menu: Сруши мени
+      confirm_proceed: Потврдите да бисте наставили
+      delete_message: Избриши поруку
+      drag_drop_instructions_desktop: Укључите режим образаца да бисте превукли и испустили ставке помоћу читача екрана.
+      drag_drop_instructions_mobile: Помоћу читача екрана двапут додирните и држите дугме за повлачење, пређите на другу ставку и подигните прст да бисте померили ставку.
+      enlarge_view_text: Увећај поглед на ИНТЕРПОЛАТИОН_ВАР_0
+      expand_menu: Прошири мени
+      file_uploaded: Датотека је отпремљена
+      lang_dropdown_description: ", промени језик"
+      pause: Паузирај
+      play: Игра
+      profile_progress: Попуњавање профила је
+      remove_file: Уклони датотеку
+      send_message: Пошаљи поруку
+      slider_label_instruction: 'мин : ИНТЕРПОЛАТИОН_ВАР_0 и макс: ИНТЕРПОЛАТИОН_ВАР_1'
+      task_btn_description: задатак ИНТЕРПОЛАТИОН_ВАР_0
+      task_progress_label: Завршетак задатка је
+      write_message: Напишите своју поруку
     assessment: Процена
     assessment_groups:
       create_success: Група је успешно креирана
       update_success: Група је успешно ажурирана
+    availability:
+      add_new_availability: Додај нову доступност
+      create_success: Доступност је успешно створена.
+      remove_confirm:
+        content: Да ли сте сигурни да желите да уклоните доступност?
+        success: Доступност је успешно уклоњена.
+        title: Уклони доступност
+      update_success: Доступност је успешно ажурирана.
     background_reading: Позадинско читање
     bookings:
       accept_invite_msg: Добили сте позив. Молимо вас да резервишете свој термин.
       add_to_calendar: Додај у календар
       add_to_calendar_tour_description: Додајте ову резервацију у свој календар
+      add_to_google_calendar: Додај у гугл календар
+      add_to_i_calendar: Додај у иЦалендар
+      add_to_msoffice_calendar: Додај у Мицрософт Оффице 365 календар
+      add_to_outlook_calendar: Додај у Оутлоок календар
+      add_to_yahoo_calendar: Додај у Иахоо календар
       assessment_center_alert:
         btn_title: Кампања
         complete_previous_groups: Завршите све активности претходних група
@@ -760,9 +2319,11 @@ sr-Cyrl:
       language_required_msg: Изаберите језик
       meeting_start_text: 'Састанак ће почети за:'
       need_changes: Да ли треба направити промене?
+      neurodivergence_comment_aria_label: Неуродивергенција коментари
       neurodivergence_comment_placeholder: Ваши коментари
       neurodivergence_question: Да ли су вам потребне неке разумне прилагођавања или смештаји због посебних потреба или инвалидитета да бисте у потпуности учествовали у процени?
       no_invites_msg: Бићете додати у центар за процену или ћете добити позив да закажете термин; када постанете део центра, можете завршити активности кликом на дугме „Прикажи детаље“ испод.
+      or: Или
       other_invite: Погледајте још %{count} позива
       other_invites: Погледајте још %{count} позивница
       reason: Разлог
@@ -787,25 +2348,70 @@ sr-Cyrl:
     break_time: Пауза
     campaign:
       actions:
+        copy:
+          success: ИНТЕРПОЛАТИОН _ВАР _0 је успешно копирана.
         remove:
           confirmation: Унесите тренутни назив кампање наведен испод у текстуално поље да бисте уклонили кампању
           success: Кампања %{campaignName} је успешно уклоњена.
           template_confirmation: 'Унесите назив тренутног шаблона у поље испод за брисање. Напомена: Ово ће такође обрисати повезани шаблон кампање.'
       users:
+        actions:
+          export:
+            details: Корисници кампање
+            scheduled: Извоз корисника је успешно заказан.
+          export_reports_and_assessments:
+            details: Извештаји и процене
         completion_statuses:
           completed: Завршено
           in_progress: У току
           not_started: Није започето
     change_password: Промени лозинку
     chatwoot_info_msg: Пријавите технички проблем
+    clients:
+      actions:
+        create:
+          create_client: Креирајте клијента
+          create_license: Додајте лиценцу
+        menus:
+          view_licenses: Погледај лиценце
+        remove:
+          confirmation: Унесите тренутно име клијента дато у наставку у текстуално поље да бисте уклонили клијента
+          success: Клијент са именом 'ИНТЕРПОЛАТИОН_ВАР_0' је успешно уклоњен
+      projects:
+        actions:
+          remove:
+            confirmation: Унесите тренутно име пројекта дато испод у текстуално поље да бисте уклонили пројекат
+            success: Пројекат са именом "ИНТЕРПОЛАТИОН_ВАР_0" је успешно уклоњен
     delete: Обриши
     edit: Измени
+    error_warning: Упс , нешто није у реду са вашом проценом. Молимо Вас да контактирате подршку.
+    hogan:
+      cannot_start: Не можете одмах да започнете процену хогана. Покушајте након неколико минута.
+    lighthouse_app: Светионик Мерцер
     login: Пријава
+    maintenance:
+      notification: Светионик ће бити искључен због планираног одржавања у 60 секунди
     manage: Управљај
     'no': Не
+    passwordSetting:
+      update_success: Безбедносна подешавања је успешно ажуриран
+    questions:
+      campaign_factor_feedback:
+        add_skill: Додајте вештину
+        feedback: Повратне информације
+        max_factors: Максимални фактори
+        min_factors: Мин фактори
+        skill_factor: Фактор вештине
+    report_error: Упс , нешто није у реду са вашим извештајем. Молимо Вас да контактирате подршку.
+    request_failed_message_box:
+      message: Последњи захтев није успео. Молимо Вас да освежите страницу и ако проблем и даље постоји контактирајте свог администратора.
+      refresh: Освежи
     resource:
       create_success: "%{readableResourceName} је успешно додат"
       update_success: "%{readableResourceName} је успешно ажуриран"
+    restart: Поново покрените
+    restart_progress: Било је неких промена у процени. Молимо Вас да освежите страницу да бисте видели промене. Освежавање странице ће започети процену од самог почетка. Питања на која сте већ одговорили ће бити аутоматски попуњена.
+    saved_results: Одговори су успешно сачувани.
     session_timeout_modal:
       buttons:
         close: Затвори
@@ -816,7 +2422,16 @@ sr-Cyrl:
       message_after_timeout: Ваша сесија је истекла, молимо вас да се поново пријавите.
       time_remaining: Преостало време
       title: Упозорење о временском ограничењу сесије
+    skip_to_content: Прескочи на садржај
+    smsInvites:
+      create_success: СМС позив је успешно додат
+      update_success: СМС позив је успешно ажуриран
+    sms_records:
+      create_success: СМС посао је успешно заказан
     starting_in: Полазећи од
+    test_webhook:
+      create_success: Вебхоок тест успешан.
+      success: Успех
     update: Ажурирање
     upload: Отпреми
     workshop_invited_subjects:
@@ -827,9 +2442,55 @@ sr-Cyrl:
         requested_rescheduling: Захтевано је поновно заказивање
         requested_rescheduling_rejected: Захтевано поновно заказивање је одбијено
     'yes': Да
+  glint:
+    booking_card:
+      aria_available_time: Слободно време
+      aria_back_to_time_selection: Повратак на избор времена
+      aria_desc_current_month: Тренутно на ИНТЕРПОЛАТИОН_ВАР_0 ИНТЕРПОЛАТИОН_ВАР_1
+      aria_label_next_month: Иди на следећи месец
+      aria_label_previous_month: Иди на претходни месец
+      aria_timezone_select: Изаберите временску зону
+    color_picker:
+      copy_success_msg: Копиран хекскод у клипборд.
+      recent_colors: 'Недавно коришћени:'
+      recommended_colors: 'Препоручене:'
+    datepicker_with_ranges:
+      all_time: Све време
+      current_month: Текући месец
+      current_week: Текућа недеља
+      last_month: Прошлог месеца
+      last_week: Прошлу седмицу
+      today: Данас
+      yesterday: Јуче
+    fontsize_modifier:
+      change_font: Промените величину слова
+      decrease_font: Смањите величину фонта
+      increase_font: Повећајте величину слова
+      reset_font: Поништи величину слова
+    input_duration:
+      max_duration: Максимално трајање је ИНТЕРПОЛАТИОН_ВАР_0
+    schedule_availability:
+      copy_to_all: Копирај свима
+      end_date: Датум завршетка
+      from: Из
+      new_schedule: Додај нови распоред
+      new_schedule_description: Време почетка мора бити раније од крајњег времена
+      no_slots: Нема доданих слотова
+      required_error: не може бити празан
+      save: Сачувај
+      saved_schedule_description: Сачуван распоред доступности корисника
+      start_date: Датум почетка
+      timezone_label: Временска зона
+      to: Да
+    views_container:
+      aria_grid_view: Приказ мреже
+      aria_list_view: Приказ листе
+      aria_selected: Изабрали
   idp:
     actions: Акције
     add_comments: Додај коментаре
+    add_note: Додај напомену...
+    add_reason: Додај разлог...
     added_development_action: Додатна развојна акција
     ai:
       assistant:
@@ -885,6 +2546,8 @@ sr-Cyrl:
       welcome:
         text: Спремни да зацртате свој раст јорнеи? Почнимо!
         title: Здраво , ја сам ваш асистент за развој
+    approval_note: Напомена о одобрењу
+    approve_plan: Одобри план
     behavioral: Понашајно
     board: Табла
     change_history: Историја промена
@@ -985,12 +2648,14 @@ sr-Cyrl:
       mark_as_complete: Означи као завршено
       no_development_actions: Нема акција развоја
       on_the_job: На послу
+      one: "[SR-CYRL] 1"
       other: Друго
       private: Приватно
       publish_plan: Објави план
       remove: Уклони
       save_plan: Сачувај план
       search_development_actions: Акције за развој претраживања
+      selected_count: ИНТЕРПОЛАТИОН _ВАР _0 изабран
       show_development_action_information: Покажи информације о акцији развоја
       skill: Вештина
       sprint: Спринт
@@ -999,7 +2664,9 @@ sr-Cyrl:
       structured_learning_label: Колаборативно учење
       submit_plan: Пошаљи план
       success: Успешно завршене развојне акције
+      three: "[SR-CYRL] 3"
       toggle_skill_privacy: Српскохрватски / српскохрватски
+      two: "[SR-CYRL] 2"
       write_here: Пишите овде...
     direct_reportee_details: Директни извештавачи Детаљ
     download:
@@ -1010,6 +2677,7 @@ sr-Cyrl:
     edit_progress: Уреди напредак
     fetching_skill_gap_report: Извештај о празнинама у вештинама ...
     go_to_previous_step: Иди на претходни корак
+    go_to_reportee_plan: Иди на детаље плана Репортее
     history:
       added_da:
         one: Додатна развојна акција
@@ -1059,36 +2727,109 @@ sr-Cyrl:
         categories: Категорије
       save_skills: Сачувај вештине
     new_comments: Нови коментар(и)
+    no_plan_changes_found: Од вашег последњег прегледа нису направљене ревизије плана.
     no_skills_added: Још увек немате додане вештине.
     no_skills_added_by_reportee: Репортее још није додао вештине.
     pdf:
+      approval_status: Статус одобрења
       cover:
         fields:
+          approval_date: Датум одобрења
           assigned_data: Датум доделе
           assigned_date: Датум додељен
+          completion_date: Датум завршетка
+          current_job_role: Тренутна улога на послу
+          division: Одсек
           name: Име
+          publish_date: Датум објављивања
+          review_date: Датум прегледа
+          target_job_role: Циљна улога посла
+      guidelines:
+        cards:
+          c1:
+            content: Укључите вештине, знања и способности које треба развити. Уверите се да су специфични, мерљиви, оствариви, реални и разумно способни да се постигну у наведеним роковима.
+            title: Развојни циљеви
+          c2:
+            content: Ово се заснива на компетенцији која се развија на основу искуства процене.
+            title: Надлежност
+          c3:
+            content: Овај одељак укључује ваше развојне акције засноване на доле наведеном моделу учења КСНУМКС-КСНУМКС-КСНУМКС. Саветује се да изаберете комбинацију сваког од три елемента како бисте осигурали разноврстан приступ учењу и развоју.
+            title: Активности
+          c4:
+            content: Уверите се да су ваши рокови реални на основу тога када циљ може бити потпун. Да ли измените ово као и када је то потребно.
+            title: Временска линија
+          c5:
+            content: Користите одељак напретка да бисте подржали напредовање на идентификованим стазама.
+            title: Напредак
+        chart:
+          collaboration: "<стронг>20%</стронг>Колаборативно учење < бр / >"
+          job: "<стронг>70%</стронг>Учење < бр / > на послу"
+          learn: "<стронг>10%</стронг>Формално учење"
+        content:
+          list:
+            r1: Имајте на уму да је ова листа само индикативна, а додатни развојни путеви могу се размотрити за вас на основу индивидуалних тежњи, препорука вашег менаџера, као и организационих пословних приоритета.
+            r2: Имајте на уму да ће покретање неких од ових развојних путева зависити од стратегије образовања и учења у организацији.
+            r3: Молимо вас да узмете у обзир препоручене путеве као што је укрштено у наставку, приликом израде вашег индивидуалног плана развоја.
+          main: Овај одељак садржи кумулативну листу свих развојних путева, имајући у виду најбољу праксу учења, тј. 70-20-10 смернице, које пружају прогресивно путовање које комбинује учење у учионици, тренирање и учење на послу. На основу исхода искуства у развоју лидерства и пословних приоритета, препоручени су могући путеви развоја, који се могу узети у обзир за ваш развој.
+        learn_cards:
+          collaboration:
+            list: '[SR-CYRL] ["Offer to coach or mentor others", "Request to be mentored by an expert in your field", "Attain a coach to support your development", "Set-up a collaborative working group to discuss on going challenges in the business", "Get feedback formally and informally from others", "Play an active role in industry associations and networks", "Build your own external networks"]'
+            title: Колаборативно учење (КСНУМКС%) <бр/> - Развијање кроз друге
+          job:
+            list: '[SR-CYRL] ["Assume leadership positions in stakeholder or management committees", "Volunteer to lead change management projects for the organization", "Consider taking on stretching assignments", "Work cross-collaboratively with other functions", "Consider leading projects outside your organization", "Work closely with external industry experts on joint-projects"]'
+            title: Учење на послу (КСНУМКС%) <бр/> Развој кроз искуство
+          learn:
+            list: '[SR-CYRL] ["Assume leadership positions in stakeholder or management committees", "Volunteer to lead change management projects for the organization", "Consider taking on stretching assignments", "Work cross-collaboratively with other functions", "Consider leading projects outside your organization", "Work closely with external industry experts on joint-projects"]'
+            title: Формално учење (10%) <бр/> Развој кроз структурирано учење
+        title: Смернице за вођење вашег ИДП-а
       idp:
+        end_date: Датум завршетка
+        self_rating: Самооцењивање
+        start_date: Датум почетка
         subtitle:
+          behavioural: Бихевиорални
           technical: Технички
+        title: Индивидуални план развоја
+      last:
+        end_report: Крај извештаја
+      reflections:
+        subtitle: Питања за свеукупни професионални развој
+        title: Размишљања за вођење вашег ИДП-а
       skill_categories:
+        behavioral: Бихевиорални
         technical: Технички
       statuses:
+        approved: Прегледано и одобрено
+        completed: Довршено
         draft: Нацрт
+        in_progress: У току
+        in_review: У прегледу
+        not_reviewed: Није прегледано
+        not_started: Није почело
         pending_approval: У прегледу
+        rejected: Одбио
       summary:
         ai_count: Генеративна АИ
         collaborative_learn: Колаборативно учење
+        created_by: 'Аутор:'
+        current_status: ИДП Тренутни статус
         custom: Прилагођене
         custom_count: Прилагођене
+        da_count: Број развојних акција
+        formal_learn: Формално учење
         generated_ai: Генеративна АИ
         learn_on_job: Учење на послу
+        learn_pathway: Пут учења
         lib_count: ИДП библиотека
         library: ИДП библиотека
+        skills_count: Вештине рачунају
+        title: Резиме извештаја
     plan: План
     plan_status: План Статус ИНТЕРПОЛАТИОН_ВАР_0
     plan_submitted_for_manager_approval: Ваш индивидуални план развоја је достављен на одобрење менаџера.
     private: Приватни
     public: Јавност
+    reason_for_rejection: Разлог за одбијање
     reflective_questions:
       already_completed: ИДП је већ завршен, сада не можете одговарати на питања.
       answer: Одговорити
@@ -1101,7 +2842,9 @@ sr-Cyrl:
         max_words: Одговор може имати највише %{count} речи
         min_words: Одговор мора имати најмање %{count} речи
         required: Одговор на питање је обавезан
+      max_word_limit: Мора бити највише ИНТЕРПОЛАТИОН_ВАР_0 речи
       max_words: Максимум речи
+      min_word_limit: Мора бити најмање ИНТЕРПОЛАТИОН_ВАР_0 речи
       min_words: Минимум речи
       no_answer_provided: Још увек нема одговора
       no_reflective_questions: Без рефлексивних питања
@@ -1114,6 +2857,7 @@ sr-Cyrl:
       updated_successfully: Ваши одговори су успешно ажурирани
       word_limit: Мора бити између ИНТЕРПОЛАТИОН_ВАР_0 и ИНТЕРПОЛАТИОН_ВАР_1 речи
       words: Речи
+    reject_plan: Одбаци план
     remove_skill: Уклони вештину
     remove_skill_from_plan: Уклоните вештине ИНТЕРПОЛАТИОН_ВАР_0 из плана
     removed_development_action: Уклоњена развојна акција
@@ -1134,6 +2878,7 @@ sr-Cyrl:
     summary_logs: Збирни записи за ИНТЕРПОЛАТИОН_ВАР_0
     technical: Техничко
     user_idp_status:
+      ai_assisted_idp_in_progress: АИ Ассистед ИДП у току
       approved: Одобрено
       completed: Завршено
       completion_not_started: Завршетак није започео
@@ -1148,15 +2893,85 @@ sr-Cyrl:
     with_reflection_questions: Са рефлексивним питањима
     without_reflection_questions: Без рефлексивних питања
   idp_templates:
+    assign: Доделите
+    assign_idp_template: Додели ИДП шаблон
+    auto_assign: Аутоматски доделите нове кориснике
     errors:
+      idp_template_not_found: ИДП шаблон није пронађен
       user_idp_template_not_found: Није вам додељен ниједан шаблон за идентификацију личности.
+    idp_template: ИДП Шаблон
+    override_exists: Премостити и ресетовати постоји корисници
+    placeholder: Изаберите идп шаблон
+    save_and_assign: Сачувај и додели
+    success_scheduled: Посао за додељивање ИДП-а је успешно заказан
+  jobs:
+    threesixty:
+      bulk_downloads: Булк Довнлоад посао је успешно заказан
+      export_completion_statuses_scheduled: Завршетак Статуси извоз посао је успешно заказан
+      export_raw_results_scheduled: Рав Резултати извоз посао је успешно заказан
+      export_scores_scheduled: Резултати извоз посао је успешно заказан
+      reports:
+        download:
+          description: 'Да бисте преузели извештај, пратите линк: < а хреф =''ИНТЕРПОЛАТИОН_ВАР_0'' таргет =''_бланк''> Доwнлоад </а>'
+          error: Дошло је до грешке
+          error_description: Генерисање извештаја није успело. Молимо Вас да контактирате администратора или покушајте поново <б> да преузмете </б>.
+          message: Извештај је спреман
   languages:
     sl: Словеншчина
   languages_localized:
     sl: Словеншчина
   licenses:
     enabled: Омогућен
+    end_date: Датум завршетка
+    not_enough_idp_license: Нема довољно ИДП дозвола, контактирајте администратора
+    not_enough_license: "'ИНТЕРПОЛАТИОН_ВАР_0 ' нема довољно лиценци за 'ИНТЕРПОЛАТИОН_ВАР_1'"
+    not_enough_license_count: Нема довољно дозвола, контактирајте администратора
+    not_enough_proctoring_credits: Нема довољно кредита за почетак сесије процторинга
+    number: Број
+    overuse_number: Додатак за прекомерну употребу
+    project_limit_reached: Ограничење коришћења достигнут за 'ИНТЕРПОЛАТИОН_ВАР_0', обратите се администратору
+    project_specific: Специфично за пројекат
+    project_specific_license: Специфична лиценца за пројекат
+    project_usage: Коришћење пројекта
+    report_family: Извештај пакет
+    start_date: Датум почетка
     title: Лиценца
+    type: Тип
+    types:
+      common: Уобичајена
+      idp: Претраживање
+      proctoring: Претрага
+      threesixty: Тришездесет
+    used_number: Половне лиценце
+    used_out_of: ИНТЕРПОЛАТИОН_ВАР_0 ван ИНТЕРПОЛАТИОН_ВАР_1
+  lti:
+    oidc_auth_form:
+      errors:
+        client_id:
+          blank: ИД клијента је обавезан
+          invalid: ИД клијента се не подудара са регистрованим идентификатором алата
+          validation_failed: Валидација ИД клијента није успела
+        login_hint:
+          assessment_completed: Процена корисника је већ завршена
+          blank: Потребан је савет за пријаву
+          invalid_user_assessment: Наговештај за пријављивање не упућује на важећу процену корисника
+        lti_deployment_id:
+          not_found: ИД распоређивања не упућује на важећу интеграцију
+        nonce:
+          blank: Нонце је потребан
+        redirect_uri:
+          blank: Преусмеравање УРИ је потребно
+          has_fragment: Преусмеравање УРИ не сме да садржи фрагмент
+          https_required: Преусмеравање УРИ мора користити ХТТПС у производњи
+          invalid_format: Преусмеравање УРИ мора бити важећи УРИ формат
+          missing_host: УРИ преусмеравања мора садржавати домаћина
+          scheme_not_allowed: Преусмеравање УРИ мора користити ХТТП или ХТТПС протокол
+        response_type:
+          blank: Потребан је тип одговора
+          invalid: Тип одговора мора бити 'ид_токен'
+        scope:
+          blank: Обим је потребан
+          invalid: Обим мора бити 'опенид'
   mailer:
     copyright:
       text: Lighthouse. Сва права задржана
@@ -1164,6 +2979,56 @@ sr-Cyrl:
       regards: Срдачан поздрав,
       team_name: Lighthouse тим
       technical_support: За техничке потешкоће пишите нам на %{email} и одговорићемо у року од 24 сата.
+    from: Предузеће за таленте
+    idp:
+      manager_unread_comments:
+        body: |
+          Поздрав ИНТЕРПОЛАТИОН_ВАР_0,
+          Имате нове коментаре од ваших ИДП извештавача.
+
+          ИНТЕРПОЛАТИОН_ВАР_1
+
+          На контролној табли директних извештавача, можете:
+          - Прегледајте нове коментаре чланова о њиховим индивидуалним плановима
+          - Пружите повратне информације о својим развојним циљевима
+          - Пратите напредак у активностима ИДП-а
+          - Подржите раст и развој вашег тима
+        dashboard_link: Посетите контролну таблу
+        subject: Имате нове коментаре - ИНТЕРПОЛАТИОН_ВАР_0
+      user_unread_comments:
+        body: |
+          Поздрав ИНТЕРПОЛАТИОН_ВАР_0,
+          Имате нове коментаре на ваш развојни план.
+
+          ИНТЕРПОЛАТИОН_ВАР_1
+
+          На контролној табли Мој план можете:
+          - Ажурирајте свој развојни план
+          - Прочитајте нове коментаре и повратне информације
+          - Одговорите на питања свог менаџера
+          - Ажурирајте свој напредак у развојним акцијама
+        dashboard_link: Погледај мој план
+        subject: Имате нове коментаре на ваш развојни план - ИНТЕРПОЛАТИОН_ВАР_0
+    license:
+      expire:
+        subject: Лиценца је истекла
+      overuse:
+        subject: Прекомерна употреба лиценце
+      weekly_stats:
+        column_headers:
+          client_name: Име и презиме
+          expiry_date: Датум истека
+          overuse_limit: Граница прекомерне употребе
+          project_manager: Менаџер пројекта
+          remaining_count: Преостали број
+          type: Тип лиценце
+          use_count: Користите број
+        expiry_stats: 'Лиценце истичу у наредном 30 дана :'
+        no_expiry_stats: Нема дозвола које истичу у наредних 30 дана.
+        no_weekly_stats: Нема дозвола потрошених у последњих 7 дана.
+        notice: Напомена - Можете да се одјавите на ову недељну е-пошту са странице вашег профила.
+        subject: Недељна статистика коришћења лиценце
+        weekly_stats: 'Статистика коришћења лиценце у протеклој недељи:'
     magic_link:
       body:
         dear: Драги/а %{name},
@@ -1173,13 +3038,29 @@ sr-Cyrl:
       subject: Линк за пријаву на Lighthouse
     powered_by:
       text: Powered by Lighthouse.
+    users:
+      account_disable: Ваш налог је онемогућен због неактивности
+      warning: Ваш налог ће ускоро бити онемогућен због неактивности
   maintenance_message: Светионик ће бити доле за планирано одржавање на ИНТЕРПОЛАТИОН_ВАР_0 и да ће бити недоступан за ИНТЕРПОЛАТИОН_ВАР_1
+  maintenance_submessage: Молимо Вас да освежите страницу након завршетка одржавања. Бићете преусмерени на страницу за пријављивање
+  my: Мој
+  myself: Себе
   navigation:
     logout: Одјавите се
+  'no': Не
+  nominations:
+    approval_email_error: Последње одобрење е-поште послато је у ИНТЕРПОЛАТИОН_ВАР_0. Можете послати следећи подсетник пошту у ИНТЕРПОЛАТИОН_ВАР_1
   norms:
     percentile:
       columns:
+        mean: Знаии
         name: Име
+        standard_deviation: Стандардна девијација
+      messages:
+        failure: 'Грешка : ИНТЕРПОЛАТИОН_ВАР_0.'
+        success: Норма за фактор 'ИНТЕРПОЛАТИОН_ВАР_0' је успешно ажурирана.
+      values:
+        empty: Празан
   profile:
     add_field: Додај поље
     add_photo: Додај фотографију
@@ -1199,23 +3080,152 @@ sr-Cyrl:
     old_data: Подаци вашег профила су стари %{months} ​​месеци. Молимо вас да потврдите детаље да бисте наставили даље.
     password: Лозинка
     password_confirmation: Потврда лозинке
+    photo: Фотографија
     success_update: Профил је успешно сачуван
     timezone: Временска зона
     title: Мој профил
     update: Ажурирање
     update_required: Потребна су ажурирања профила
+  profiles:
+    edit:
+      header: Подешавања профила
+    form:
+      username: Корисничко име
+    update:
+      successfully: Профил је успешно ажуриран
+  registration:
+    success_update: Регистрација је успешно сачувана
+  registration_code:
+    allowed_domains: Дозвољени домени
+    invalid_code: Неважећи код кампање
+    modals:
+      remove:
+        content: Да ли сте сигурни да желите да уклоните регистрациони код <стронг>"ИНТЕРПОЛАТИОН_ВАР_0"?</стронг>
+        successfully: Регистрациони код 'ИНТЕРПОЛАТИОН_ВАР_0' је успешно уклоњен.
+      title: Код за регистрацију
+    one_domain_per_line: Једно име домена по линији
+    restricted_domains: Ограничени домени
+    token_expired: Токен је истекао
+  report_approvals:
+    events:
+      approved_text: Одобрени текст
+      comment_added: Додао коментар <и> ИНТЕРПОЛАТИОН_ВАР_0 </и>
+      comment_removed: Уклоњен коментар
+      comment_resolved: Решен коментар
+      comment_unresolved: Нерешен коментар
+      comment_updated: промењен коментар <с> ИНТЕРПОЛАТИОН_ВАР_0 </с> на <и> ИНТЕРПОЛАТИОН_ВАР_1 </и>
+      created_text: Додан текст
+      disapproved_text: Разочаран текст
+      removed_text: уклоњен текст
+      status_changed: Променио статус са <и> ИНТЕРПОЛАТИОН_ВАР_0 </и> на <и> ИНТЕРПОЛАТИОН_ВАР_1 </и>
+      updated_text: Ажурирани текст
+    tabs:
+      all: Све
+      approved: Одобрио
+      my_tasks: Моји задаци
+  report_bundles:
+    actions:
+      remove:
+        confirm_message: Да ли сте сигурни да желите да избришете пакет извештаја "ИНТЕРПОЛАТИОН_ВАР_0"?
+        confirm_title: Потребна потврда
+        success_message: Извештај Бундле ИНТЕРПОЛАТИОН_ВАР_0 је избрисан
+    report_bundle: Извештај Бундле
+    report_bundles: Извештаји Бундлес
+    reports:
+      actions:
+        add: Додај нови извештај
+        remove:
+          confirm_message: Да ли сте сигурни да желите да избришете извештај "ИНТЕРПОЛАТИОН_ВАР_0" из "ИНТЕРПОЛАТИОН_ВАР_1"?
+          confirm_title: Потребна потврда
+          success_message: Извештај ИНТЕРПОЛАТИОН_ВАР_0 је избрисан
   reports:
     actions:
       add: Додај извештај
+      archived:
+        success_message: Извештај "ИНТЕРПОЛАТИОН_ВАР_0" је успешно архивиран.
+      back_to_campaign: Назад на кампању
+      copy:
+        success_message: Извештај "ИНТЕРПОЛАТИОН_ВАР_0" је успешно копиран.
+      details: Детаље
       download: Преузми извештај
+      download_csv: Преузети ЦСВ
+      edit: Уређивање
+      evaluate: Процените
+      extend_time: Продужите време
+      goto_dashboard: Кликните овде да бисте наставили
+      re_evaluate: Кликните овде да бисте поново проценили
+      reevaluate: Поново процените
+      remove:
+        confirm_message: Да ли сте сигурни да желите да избришете извештај "ИНТЕРПОЛАТИОН_ВАР_0"?
+        confirm_title: Потребна потврда
+        success_message: Извештај ИНТЕРПОЛАТИОН_ВАР_0 је уклоњен
+      rescore: Претрага
+      restore:
+        success_message: Извештај ИНТЕРПОЛАТИОН_ВАР_0 је успешно обновљена
+      unarchived:
+        success_message: Извештај ИНТЕРПОЛАТИОН_ВАР_0 је успешно унарцхивед
+      update_language: Ажурирање језика
       view: Прикажи извештај
+    active: Активни
+    archived: Архивираних
+    builder:
+      graph:
+        properties:
+          barBorderRadius: Бар Граница Радијус
+          barWeight: бар Тежина
+          dataFormat: Формат података
+          graphOption3D: 3D
+          graphOptionStandard: Стандардни
+          graphSubType: Подтип графикона
+          graphTypeHorizontal: Хоризонталне
+          graphTypeVertical: Вертикални
+          hideEmptyColumns: Сакриј празне колоне
+          hideEmptyFilters: Сакриј празне филтере
+          hideXAxisLine: Сакриј мрежне линије Кс-осе
+          hideXAxisTitle: Сакриј наслов Кс-осе
+          hideYAxisLine: Сакриј мрежне линије И-осе
+          hideYAxisTitle: Сакриј наслов И-осе
+          hideZeroValueColumns: Сакриј колоне нулте вредности
+          legendPosition: Легенда Позиција
+          maxValueLabel: Максимална вредност (број)
+          maxValueLabelPlaceholder: Максимална вредност
+          positionBottomLeft: Доле лево
+          positionBottomMiddle: Дно Средњи
+          positionBottomRight: Доњи десни
+          positionTopLeft: Горе лево
+          positionTopMiddle: Врх Средњи
+          positionTopRight: Горе десно
+          reverse: Сторнирај
+          showLegend: Покажи легенду
     columns:
+      data_only: Само подаци
       default_language: Подразумевани језик
+      external_settings:
+        hogan_report_id: Хоган Извештај ИД
+        saville_report_id: Савилле ИД извештаја
+      other_available_languages: Остали доступни језици
+    create: Креирате
+    dashboard: Контролну таблу
+    drawer:
+      title: Извештај Детаљи
     fields:
       provider:
+        custom_upload: Прилагођено отпремање
+        hogan: Хоган
+        internal: Унутрашње
         mettl: ОМИЉЕНО
+        pearson: Пирсон
+        saville: Ел Салвадор
         skillvue: ОМИЉЕНО
+        yoodli: Јоодли
+    form:
+      load_from_mettl: Учитавање из Меттла
+      load_from_pearson: Оптерећење од Пеарсона
+      load_from_skillvue: Учитавање из Скиллвуе
+      load_from_yoodli: Оптерећење од Иоодли
+      none_external: Ноне - Користите градитељ извештаја
     language: Језик извештаја
+    language_updated: Језик извештаја је успешно ажуриран
     modules:
       campaign_factors_table:
         add_condition: Додај услов
@@ -1233,13 +3243,21 @@ sr-Cyrl:
         strengths: Снаге
         then: Затим прикажите следећи текст
         title: Наслов
+      common:
+        all_factors: Сви фактори
+        font: Фонт
+        table_options: Опције табеле
+        table_type: Тип табеле
       factors_table:
         description: Опис
+        na: Н/А
         no_data: Нема доступних података за овај одељак.
         rank: Ранг
         score: Резултат
       gap_assessment:
         gap: Јаз
+        hide_left_filter: Сакриј леви филтер
+        hide_right_filter: Сакриј десни филтер
         item: Индикатор
         negative_gap: Негативне празнине
         no_negative_gaps: Нема негативних празнина
@@ -1302,6 +3320,14 @@ sr-Cyrl:
         total: Укупно
       video_response:
         no_results: Нема снимљених видео снимака
+    pages:
+      edit:
+        assets: Средства
+        general_settings: Општа подешавања
+        translations: Преводе
+    report: Извештај
+    reports: Извештаје
+    reset: Поништи
     show:
       export_pdf: Извоз у PDF
       header: Пријави
@@ -1313,75 +3339,354 @@ sr-Cyrl:
       not_available: Није доступно
       on_hold: На чекању
       released: Објављено
+    trash: Рубре
+    update: Ажурирање
+    upload: Отпремање
+  reset_password_modal:
+    fields:
+      automatically_generate_password: Аутоматски генеришите лозинку
+      change_password_on_login: Промените лозинку приликом пријављивања
+      login_link: Пријава Линк
+      new_password: Нова лозинка
+      password_placeholder: Унесите лозинку
+      send_password_email: Пошаљи лозинку путем е-поште
+      username: Корисничко име
+    messages:
+      reset_password_success: Корисничко ИНТЕРПОЛАТИОН_ВАР_0 лозинка је успешно ресетована.
+      send_password_email_success: Е -маил послат кориснику ИНТЕРПОЛАТИОН_ВАР_0 са лозинком.
+    title: Поништавање лозинке
+  select: Изаберите
   sessions:
     errors:
       recaptcha: Recaptcha верификација није успела. Покушајте поново.
+  sheet:
+    import_modal:
+      alert_access_sheet_removal: Учитавање новог приступног листа са брисањем свих постојећих записа и отпремање новог из листа. Проверите да ли имате све записе о приступној листи у табели.
+      success_message: Датотека је успешно отпремљена. Увоз записа у току
+      title: Увоз листова записа
+    menu:
+      export: Извоз лист
+      export_info: Нема података за извоз.
+      import: Увоз лист
+    no_sheet: Прво морате да увезете лист
   simple_form:
+    error_notification:
+      default_message: 'Молимо Вас да прегледате проблеме испод:'
     labels:
       client:
+        applicable_level: Применљив ниво
+        applicable_levels:
+          campaign: Кампању
+          project: Пројекат
+          sub_campaign: Под-кампања
+        category: Категорија
+        created_at: Датум креирања
         id: ИД
+        licenses: Број лиценце
+        licenses_expire: Датум истека лиценце
+        licenses_used: Коришћење лиценце
+        location: Локацију
+        logo: Лого клијента
+        memberships_count: Корисници
         name: Име
+        number: Број клијента
+        privacy_consent: Омогућите сагласност за обраду података
+        project_manager: ТТЕ менаџер пројекта
+        project_manager_id: ТТЕ менаџер пројекта
+        report_ids: Извештаје
+        strong_password_enabled: Омогућите јаку лозинку
+        subdomain: Поддомен
+        types:
+          associate: Сарадник
+          corporate: Корпоративни
+          distributer: Дистрибутер
+          other: Други
+          partner: Партнер
+          retail: Малопродаја
+          tte: ТТЕ
+        updated_at: Датум измене
+        year: Клијент Година
+      membership:
+        role: Улога чланства
+    'no': Не
     placeholders:
+      administration/assessments/assign_form:
+        access_reports: Правила извештаја о приступу
+        access_reports_at: Извештај о приступу на
+        access_reports_at_date: Датум
+        access_reports_at_time: Време
+        client_ids: Закуп клијената
+        manager_ids: Менаџери
+        report_ids: Извештаје
+        user_ids: Корисници
       administrator:
+        active: Активни
+        created_at: Датум креирања
         current_password: Тренутна лозинка
+        disabled: Онемогући
         email: Адреса е-поште
+        first_name: Презиме
         id: ИД
         last_name: Презиме
+        manage_client_ids: Закуп клијента
+        memberships: Закуп клијента
         name: Име
+        password: Лозинку
+        password_confirmation: Потврда лозинке
+        role: Улогу
+        roles:
+          admin: Администраторског
+          admins:
+            admin: Администраторског
+            project_admin: Администратор пројекта
+            regular: Администратор клијента
+            superadmin: Супер Администратор
+          agile: Окретан
+          case_study: Студија случаја
+          client_admin: Администратор клијента
+          hogan: Хоган
+          manager: Менаџер
+          member: Корисник
+          organisational: Организационе
+          project_admin: Администратор пројекта
+          psychometric: Психометријски
+          regular: Редовне
+          saville: Ел Салвадор
+          super_admin: Супер Администратор
+          superadmin: Супер Администратор
+          threesixty: Тришездесет
+        types:
+          anonymous: Анонимни корисници
+          identified: Идентификовани корисници
+        updated_at: Датум измене
       assessment:
+        active: Активни
+        categories:
+          '360': 360 Кампања
+          agile: Окретан
+          assessor_form: Образац за оцењивача
+          case_study: Студије случаја
+          hogan: Хоган
+          meeting: Састанак
+          organisational: Анкете
+          psychometric: Процена
+          saville: Ел Салвадор
+        category: Категорија
+        completed_at: Датум завршетка
+        created_at: Датум креирања
         description: Опис
         id: ИД
         name: Име
         statuses:
+          completed: Довршено
+          finished: Заврљио
+          in_progress: Настави
+          interrupted: Прекинут
           not_started: Нов
+          overdue: Доспеле
+        timing: Тајминг
+        types:
+          common: ТТЕ Процена
+          hogan: Хоган
+          saville: Савилле Процена
+        updated_at: Датум измене
       block:
+        active: Активни
+        assign_to_assessment_ids: Процене
+        created_at: Датум креирања
         id: ИД
         name: Име
+        updated_at: Датум измене
       client:
+        applicable_level: Применљив ниво
+        applicable_levels:
+          campaign: Кампању
+          project: Пројекат
+          sub_campaign: Под-кампања
+        category: Категорија
+        created_at: Датум креирања
         id: ИД
+        licenses: Број лиценце
+        licenses_expire: Датум истека лиценце
+        licenses_used: Коришћење лиценце
+        location: Локацију
+        logo: Лого клијента
+        memberships_count: Корисници
         name: Име
+        number: Број клијента
+        privacy_consent: Омогућите сагласност за обраду података
+        project_manager: ТТЕ менаџер пројекта
+        project_manager_id: ТТЕ менаџер пројекта
+        report_ids: Извештаје
+        strong_password_enabled: Омогућите јаку лозинку
+        subdomain: Поддомен
+        types:
+          associate: Сарадник
+          corporate: Корпоративни
+          distributer: Дистрибутер
+          other: Други
+          partner: Партнер
+          retail: Малопродаја
+          tte: ТТЕ
+        updated_at: Датум измене
+        year: Клијент Година
       communication:
+        created_at: Датум креирања
         id: ИД
+        updated_at: Датум измене
       dimension:
+        active: Активни
+        created_at: Датум креирања
         id: ИД
         name: Име
+        updated_at: Датум измене
       factor:
+        active: Активни
+        created_at: Датум креирања
         id: ИД
         name: Име
+        parent_id: Родитељ
+        questions_count: Не. питања
+        updated_at: Датум измене
       library:
+        created_at: Датум креирања
         id: ИД
+        type: Сличицу
+        updated_at: Датум измене
       license:
         id: ИД
+        number: Број лиценце
+        overuse_number: Додатак за прекомерну употребу
+        type: Лиценца за
+        types:
+          common: Уобичајена
+          threesixty: Тришездесет
+        unlimited: Неограничен
+        used_number: Половни број лиценце
       memebrship:
+        active: Активни
+        created_at: Датум креирања
+        disabled: Онемогући
+        email: Е-пошта
+        first_name: Презиме
         id: ИД
         last_name: Презиме
+        parent: Директан менаџер
+        parent_id: Директан менаџер
+        report_ids: Извештај ИД-ови
+        roles:
+          campaign_admin: Администратор кампање
+          client_admin: Администратор клијента
+          manager: Менаџер
+          member: Корисник
+          project_admin: Администратор пројекта
+        updated_at: Датум измене
+        user_access: Кориснички приступ
       norm:
+        active: Активни
+        bachelors_or_masters_qualification: Нежења или магистарских студија Квалификације
+        created_at: Датум креирања
         description: Опис
+        description_label: ОПИС
+        diploma_qualification: Диплома Квалификације
+        factor_id: Надлежност
+        factor_id_label: ИЗАБЕРИТЕ КОНКУРЕНТНОСТ
+        full_description: Комплетан опис
+        high_school_entry_roles: Улоге у средњој школи
         id: ИД
+        key_career_tracks: Кључни трагови у каријери
+        membership_id: Доделите
+        membership_id_label: ИЗАБЕРИТЕ ДОДЕЉИВАЧ
         name: Име
+        name_label: АКЦИЈА СТАВКА
+        planned_completed_at: Датум доспијећа
+        planned_completed_at_label: ИЗАБЕРИТЕ ДАТУМ ДОСПИЈЕЋА
+        potential_areas_of_study: Потенцијалне области студија
+        priority: Приоритет
+        priority_label: ПРИОРИТЕТ
+        status: Статус
+        status_label: ИЗАБЕРИ СТАТУС
         statuses:
+          completed: Довршено
           in_progress: У току
           not_started: Није започето
+          overdue: Доспеле
+        updated_at: Датум измене
+        updated_by: Уредио
+        work_environment: Радно окружење
       question:
+        active: Активни
+        assign_to_assessment_ids: Процене
+        created_at: Датум креирања
         id: ИД
         name: Име
+        updated_at: Датум измене
+      regenerate_reports:
+        report_ids: Извештаје
       report:
+        created_at: Датум креирања
         id: ИД
+        updated_at: Датум измене
       user:
+        active: Активни
+        created_at: Датум креирања
         current_password: Тренутна лозинка
+        disabled: Онемогући
         email: Адреса е-поште
         first_name: Име
         id: ИД
         last_name: Презиме
+        manage_client_ids: Закуп клијента
+        memberships: Закуп клијента
         name: Име
+        old_password: Стара лозинка
         password: Лозинка
+        password_confirmation: Потврда лозинке
+        role: Улогу
+        roles:
+          admin: Администраторског
+          admins:
+            admin: Администраторског
+            project_admin: Администратор пројекта
+            regular: Администратор клијента
+            superadmin: Супер Администратор
+          agile: Окретан
+          case_study: Студија случаја
+          client_admin: Администратор клијента
+          hogan: Хоган
+          manager: Менаџер
+          member: Корисник
+          organisational: Организационе
+          project_admin: Администратор пројекта
+          psychometric: Психометријски
+          regular: Редовне
+          saville: Ел Салвадор
+          super_admin: Супер Администратор
+          superadmin: Супер Администратор
+          threesixty: Тришездесет
+        types:
+          anonymous: Анонимни корисници
+          identified: Идентификовани корисници
+        updated_at: Датум измене
       user_form:
+        active: Активни
+        created_at: Датум креирања
         current_password: Тренутна лозинка
+        disabled: Онемогући
         email: Адреса е-поште
         first_name: Име
         id: ИД
         last_name: Презиме
+        parent: Директан менаџер
+        parent_id: Директан менаџер
         password: Лозинка
+        password_confirmation: Потврда лозинке
+        role: Улогу
+        updated_at: Датум измене
+    required:
+      mark: "*"
+      text: Потребне
+    'yes': Да
   subjects:
     approval_statuses:
       approved: Одобрено
@@ -1405,21 +3710,17 @@ sr-Cyrl:
       on_hold: На чекању
       prepared: Готово
       released: Објављено
-    statuses:
-      completed: Завршено
-      declined: Одбијено
-      denied: Одбијено
-      done: Готово
-      not_completed: Није завршено
-      waiting: Чекање
   threesixty:
     accept_privacy_modal:
       accept: Прихвати
       checkbox: Прочитао/ла сам и разумео/ла сам горе наведену Политику приватности
+      checkbox_with_client_link: Кликом на ово поље слажете се да сте прочитали наше обавештење о приватности и обавештење о приватности нашег клијента и да пристајете на прикупљање и обраду ваших личних података као што је описано у њему, укључујући и међународни пренос ваших личних података.
+      privacy_notice: Обавештење о приватности
       title: Сагласност за обраду података
     action: Акција
     add: Додај
     and: И
+    approve: Одобри
     approve_all: Одобри све
     approve_all_successful: Одобрене све номинације
     approve_evaluations: Одобравање евалуација
@@ -1447,6 +3748,7 @@ sr-Cyrl:
     decline: Одбијање
     decline_invite: Одбиј позив
     denied: Одбијено
+    deny: Пориием
     deny_all: Одбиј све
     deny_all_successful: Одбијене све номинације
     download_pdf: Преузми ПДФ
@@ -1459,6 +3761,7 @@ sr-Cyrl:
     evaluate: Процени
     evaluation: Евалуација
     evaluation_all_closed_message: Тренутно све номинације чекају одобрење
+    evaluation_closed_message: Евалуација је затворена за овај предмет
     evaluation_closed_nomination_message: Не можете номиновати за ову тему јер је евалуација за њу затворена
     evaluation_help_modal:
       title: Помоћ при евалуацији
@@ -1476,6 +3779,8 @@ sr-Cyrl:
       statuses:
         success: Успех
         undelivered: Неиспоручено
+    more_info_evaluation_label: Више информација - Евалуације
+    more_info_nomination_label: Више информација - Номинације
     my_projects: Моји пројекти
     name_label: Име
     nominate: Номинуј
@@ -1492,8 +3797,11 @@ sr-Cyrl:
       evaluator:
         allow_evaluators_to_decline_nomination: Дозволити процењивачима да одбаце номинацију
         email_subject_when_nomination_declined: Предмет е-поште када је номинација одбачена
+      form:
+        value_not_valid: нема важећу вредност
       global:
         cannot_re_edit: Учесници не могу да мењају евалуације
+        disable_all_evaluations: Онемогући све евалуације
       manager:
         allow_subjects_to_email: Дозволити испитаницима да пошаљу е-пошту менаџерима када су њихове номинације спремне за одобрење
         approves_evaluations: Менаџер одобрава евалуације
@@ -1525,11 +3833,13 @@ sr-Cyrl:
         hold_report: Задржај извештај
         login: Пријава
         mark_as_done: Означи као готово
+        regenerate_report: Генериши извештај
         release_report: Извештај о објављивању
         remove_campaign: Уклони из кампање
         remove_report_approval: Уклони одобрење извештаја
         remove_report_hold_release_report: Уклони задржавање/ослобађање извештаја
         remove_subject: Уклони наслов
+        reset_password: Поништавање лозинке
         unmark_as_done: Уклони ознаку као завршено
         view_report: Прикажи извештај
         view_responses: Погледајте одговоре
@@ -1577,6 +3887,7 @@ sr-Cyrl:
     setup_nominations: Поставите номинације
     subject: Предмет
     submit: Пошаљи
+    timed_out: Истекло је време
     total_progress: Укупан напредак
     user_name_input_placeholder: укуцајте име или имејл...
     validation_errors: Грешке при валидацији
@@ -1586,35 +3897,217 @@ sr-Cyrl:
     waiting: Чекање
     you: Ти
     yourself: Ви сами
+  time:
+    formats:
+      date: "% д / % м / % и"
+      datetimepicker_client: 'ДД / ММ / ГГГГ хх: мм А'
+      datetimepicker_client_with_timezone: Д МММ ГГГГ / Х:мм З
+      datetimepicker_server: "%д /%м /%Y %И:%М %п"
+      datetimepicker_server_with_timezone: "% д % б % Y / % Х:%М %:з"
+      datetimepicker_without_time_client: ДД/ММ/ГГГГ
+      datetimepicker_without_time_server: "% д / % м / % Y"
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "%Б %д, % Y %И:%М %п"
+      iso8601_without_seconds_and_timezone: "% Y-%м-%дТ%Х:%М"
+      short: "% д % б % И / % Х:% М %"
+      short_date: "%-д %б %Y"
+      with_time_zone: "%д %б %Y %И:%М %п %:з"
+      workshop_date: "%е %Б %Y, %л:%М %п %:з"
+  universal_links:
+    active: Активни
+    allow_multiple_respones: Дозволите корисницима да пошаљу више одговора
+    png: Билтен
+    regenerate_link: Регенеришите везу
+    successfully_generated: Успешно генерисано
+    successfully_updated: Успешно ажурирано
+    svg: Билтен
   user:
+    datasheet:
+      attribute: Атрибут
+      value: Вредност
     fields:
       email: Адреса е-поште
       first_name: Име
       last_name: Презиме
+    form:
+      email: Е-пошта
+      first_name: Презиме
+      last_name: Презиме
+      locale: Локалне
+      operation: Операција
+      operation_options:
+        add_and_allow_new_response: Додајте корисника и дозволите нови одговор
+        add_with_existing_response: Додајте корисника са постојећим одговором
+        skip_existing: Прескочи постојећег корисника
+    modals:
+      exports:
+        export_sign_in_url: Извоз са магичним знаком у УРЛ-у
+        include_inactive_users: Извоз са неактивним корисницима
+        title: Извоз корисника
+      import:
+        body: Погледајте Извоз функционалност да извуче шаблон који се може користити за увоз овде.
+        imported_reports: Извештаји и процене су увезени
+        imported_users: 'Број увезених корисника: ИНТЕРПОЛАТИОН_ВАР_0'
+        success_msg: Постављени фајл је стављен у ред чекања за увоз. Молимо Вас да проверите статус у обавештењима
+        title: Увоз корисника
+        user_with_unchanged_passwords: Списак корисника чије лозинке нису промењене
+      import_reports:
+        body: Погледајте датотеку узорка да бисте извукли шаблон који се може користити за увоз овде.
+        title: Доделите извештаје и процене
+    toolbar:
+      bulk_download_idp_reports: Булк Довнлоад ИДП извештаје
+      export: Извоз корисника
+      export_compact_completion_status: Компакт
+      export_detailed_completion_status: Детаљне
+      export_reports_and_assessments: Извозни извештаји и процене
+      import: Увоз корисника
+      import_reports: Извештаји о увозу и процене
+  user_assessment:
+    column:
+      dimension_id: Димензија ИД
+      id: ИД процене корисника
+      norm_id: Норма ИД
+    drawer:
+      copied: ИНТЕРПОЛАТИОН _ВАР _0 копира у клипборд.
+      copy: Копирај у међуспремник
+      mettl_schedule_name: Меттл Распоред Име
+      no_data: Нема расположивих података
+      title: Детаљи процене
+      view: Приказ
   user_assessments:
     modals:
       actions:
         mark_as_completed:
           name: Означи као завршено
           success_message: Процена ИНТЕРПОЛАТИОН_ВАР_0 је означена као завршена
+        reset_progress:
+          name: Поништавање напретка
+          success_message: Процена ИНТЕРПОЛАТИОН_ВАР_0 је спремна за уређивање
       mark_as_completed:
         content: Да ли сте сигурни да желите да означите као завршен "ИНТЕРПОЛАТИОН_ВАР_0"?
+      push_test_webhook:
+        copy_request_data_success: Ркуест Корисни терет успешно копира у оставу.
+        copy_response_body_success: Тело одговора успешно копира у оставу.
+        copy_response_headers_success: Заглавља одговора успешно копирају у оставу.
+        event_name_placeholder: Назив догађаја
+        response_body_title: Тело одговора
+        response_header_title: Заглавља одговора
+      push_webhook:
+        submit_button_name: Гурај вебхоок
+        title: Гурај вебхоок
+      remove:
+        content: Да ли сте сигурни да желите да уклоните процену "ИНТЕРПОЛАТИОН_ВАР_0"?
+        successfully: ИНТЕРПОЛАТИОН _ВАР _0 процена је успешно уклоњена.
+      reset:
+        content: Да ли сте сигурни да желите да ресетујете напредак "ИНТЕРПОЛАТИОН_ВАР_0"?
+      test_webhook:
+        submit_button_name: Пошаљи тест
+        title: Пошаљи тест догађаја Вебхоок
+    normalize_factor_scores:
+      no_scoring_data: Нормализација факторских резултата не може бити завршена јер нису доступни подаци о бодовању.
+    progress_label: Напредак процене
     redirect: Бићете преусмерени на сајт треће стране за ову процену. Кликните на дугме „Настави“ ако желите да започнете процену.
     status:
+      completed: Довршено
       in_progress: У току
+      ineligible: Не испуњава услове
+      interrupted: Прекинут
       not_started: Није започето
+      timed_out: Истекло је време
+    statuses:
+      evaluator_nomination_status:
+        completed: Довршено
+        declined: Одбио
+        waiting: Иека
+      manager_evaluation_status:
+        approved: Одобрио
+        denied: Одбијен
+        waiting: Иека
+      manager_nomination_status:
+        approved: Одобрио
+        completed: Довршено
+        declined: Одбио
+        denied: Одбијен
+        waiting: Иека
+    timer_title:
+      assessment: Процена
+      campaign: Кампању
   user_reports:
+    actions:
+      add: Додај извештај
+      download: Преузимање
+      generate: Генерисање
+    approval_statuses:
+      approved: Одобрио
+      change_requested: Затражена промена
+      not_ready: Није спреман
+      pending_qc: Чека се КЦ
+      qc_completed: КЦ Завршен
+      qc_in_progress: КЦ у току
     messages:
+      async_generation: Генерисање извештаја у току. Бићете обавештени када се извештај генерише.
       regenerate_successful: Задатак регенерације извештаја је успешно заказан
     modals:
       remove:
         content: Да ли сте сигурни да желите да уклоните извештај %{userReportName}?
+        content_with_counts:
+          both: 'ОПАСНОСТ : Извештај ИНТЕРПОЛАТИОН_ВАР_0 има ИНТЕРПОЛАТИОН_ВАР_1 коментар(е) и ИНТЕРПОЛАТИОН_ВАР_2 измена. Ако уклоните извештај од корисника, ови коментари и измене ће бити изгубљени.'
+          comments: 'ОПАСНОСТ : Извештај ИНТЕРПОЛАТИОН_ВАР_0 има ИНТЕРПОЛАТИОН_ВАР_1 коментар(а). Ако уклоните извештај од корисника, ови коментари ће бити изгубљени.'
+          edits: 'ОПАСНОСТ : Извештај ИНТЕРПОЛАТИОН_ВАР_0 има ИНТЕРПОЛАТИОН_ВАР_1 измена. Ако уклоните извештај од корисника, ове измене ће бити изгубљене.'
         successfully: Извештај %{userReportName} је успешно уклоњен
+      remove_file:
+        content: Да ли сте сигурни да желите да уклоните датотеку?
+        successfully: Фајл је успешно уклоњен.
+      upload_file:
+        choose_file: Изаберите датотеку
+        success: Фајл је успешно отпремљен.
+        upload: Отпремање
     preview_report: Преглед извештаја
     statuses:
       generating: Генерисање
       not_prepared: Није доступно
       prepared: Доступно
+  users:
+    actions:
+      2fa:
+        confirm_message:
+          disabled: 2 Фактор Аутх је онемогућен
+          enabled: 2 Фактор Аутх је омогућен
+        option_to_disable: Онемогућавање 2FA
+        option_to_enable: Омогући 2FA
+      remove:
+        confirm_message: Да ли сте сигурни да желите да избришете корисника са е-поштом 'ИНТЕРПОЛАТИОН_ВАР_0'?
+        confirm_title: Потребна потврда
+        error_message: Није могуће уклонити корисника због грешке - ИНТЕРПОЛАТИОН_ВАР_0
+        success_message: ИНТЕРПОЛАТИОН _ВАР _0 је уклоњен
+        system_error_message: Није могуће уклонити корисника, покушајте поново касније или контактирајте подршку.
+      reset_password:
+        option: Поништавање лозинке
+      unlock_user_access:
+        message: Кориснички приступ за ИНТЕРПОЛАТИОН_ВАР_0 је успешно откључан.
+        title: Откључај кориснички приступ
+        tooltip: Овај кориснички налог је у закључаном стању
+    admins: Администратори
+    create_global_assessor: Креирајте глобалног процењивача
+    create_superadmin: Креирајте Супер Админ
+    dashboard: Контролну таблу
+    drawer:
+      link: Везу
+      role: Улогу
+      title: Подаци о кориснику
+    global_assessors: Глобални саветници
+    password_change_success: Лозинка је успешно промењена. Молимо Вас да се пријавите са новом лозинком.
+    roles:
+      campaign_admin: Администратор кампање
+      campaign_assessor: Процењивач кампање
+      campaign_user: Корисник кампање
+      client_admin: Администратор клијента
+      project_admin: Администратор пројекта
+      superadmin: Супер Администратор
+    superadmins: Супер Администратори
+    users: Корисници
   validations:
     AudioResponse:
       in_progress:
@@ -1629,6 +4122,8 @@ sr-Cyrl:
     TextEntry:
       Email:
         character_range: Унета имејл порука мора имати најмање %{min} и највише %{max} знакова.
+        max_character: Е -маил порука унети не сме бити више од ИНТЕРПОЛАТИОН_ВАР_0 знакова.
+        min_character: Е -маил порука унети мора имати најмање ИНТЕРПОЛАТИОН_ВАР_0 знакова.
         subject:
           min_length: Поље за наслов треба да има најмање 10 карактера
         to:
@@ -1648,6 +4143,7 @@ sr-Cyrl:
     email: Ваш одговор мора бити важећа имејл адреса
     exact: Молимо вас да изаберете тачно %{count} избора
     file_upload:
+      BadRequest: Фајл није отпремљен јер последњи захтев није успео. То може бити због тога што ваш интернет не ради. Ако ваш интернет ради, обратите се администратору
       EntityTooLarge: Величина датотеке треба да буде мања од %{maxFileSize} MB
       WrongFileType: Тип датотеке треба да буде један од следећих %{allowedFileTypes}
     idp:
@@ -1655,12 +4151,17 @@ sr-Cyrl:
       can_not_start_without_approval: Не можете почети да радите на вашем ИДП-у док га ваш менаџер не одобри.
       no_changes_to_compare: Нема промена за упоређивање за ИДП план.
       no_previous_approved_plan: Није пронађен претходни одобрени план ИДП-а.
+      reflective_questions_required: Одговори на рефлективна питања су потребни за ИДП
+      status_not_permitted: није дозвољено од стране корисника.
+      status_not_permitted_by_manager: Менаџер не може ажурирати статус када је план у стању "ИНТЕРПОЛАТИОН_ВАР_0".
+    invalid: је неважећи
     issue: Проблем
     least: Молимо вас да одговорите на најмање %{min} одговора.
     least_hotspot: Молимо вас да одговорите на најмање %{min} одговора.
     max_character: Ваш одговор не сме бити дужи од %{max} знакова.
     max_word: Ваш одговор не сме бити дужи од %{max} речи.
     min_character: Ваш одговор мора да садржи најмање %{min} знакова.
+    min_factor: Ваш одговор мора садржавати најмање ИНТЕРПОЛАТИОН_ВАР_0 повратне информације о фактору.
     min_word: Ваш одговор мора имати најмање %{min} речи
     most:
       few:
@@ -1668,6 +4169,8 @@ sr-Cyrl:
       other:
     must_rank_between: Молимо вас да доделите вредност од %{min} до %{max} за сваку ставку. Вредности се не смеју понављати.
     must_select: Изаберите од %{min} до %{max} опција
+    not_in_future: Изабрани датум не би требало да буде у будућности
+    not_in_past: Изабрани датум не би требало да буде у прошлости
     number: Ваш одговор мора бити број
     photo: потребно
     range: Молимо вас да одговорите на најмање %{min} и не више од %{max} одговора.
@@ -1677,6 +4180,7 @@ sr-Cyrl:
       few:
       one: Постоји једна грешка, молимо вас да проверите своје одговоре
       other: Постоје грешке %{count}, молимо вас да проверите свој одговор.
+    user_self_skill_rating_disabled: Саморејтинг је онемогућен за овај шаблон
     word_count: 'Број речи '
     word_range: Ваш одговор мора бити дугачак најмање %{min} и не више од %{max} речи.
   'yes': Да

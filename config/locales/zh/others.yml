@@ -232,6 +232,19 @@ zh:
               contains_repeats: 密码不得包含重复内容
               too_short: 密码太短，至少需要 %{count} 字符
               too_weak: 密码必须包含：至少 1 个小写字母、1 个大写字母、1 个数字和 1 个特殊字符。
+        project_license:
+          attributes:
+            base:
+              exceeds_available: 不能分配超过现有许可
+            license_id:
+              already_present: 本项目已在场
+            usage_limit:
+              cant_be_less_than_used: 不能低于当前的使用次数%{used_count}
+              cant_be_more_than_available: 不能超过执照的可用上限（%{usage_limit}）
+              exceeds_available: 不能超过现有的许可
+              less_than_used_number: 使用许可数量不能少于
+            used_number:
+              overused: 不能超过现有的授权。
         questions_import_block_form:
           attributes:
             name:
@@ -422,6 +435,10 @@ zh:
               inclusion: 必须是布尔值
             start_date_time:
               invalid_datetime: 无效
+        yoodli:
+          attributes:
+            name:
+              not_unique: 这种集成已经在本项目中实现。
   activerecord:
     attributes:
       administration/assessments/assign_form:
@@ -452,6 +469,7 @@ zh:
           simulation: 模拟
           skillvue: 技能
           threesixty: 360 活动
+          yoodli: 尤德利
         category: 类别
         created_at: 创建日期
         description: 说明
@@ -469,6 +487,7 @@ zh:
           saville: 萨维尔评估
           simulation: 模拟评估
           skillvue: Skillvue 评估
+          yoodli: 尤德利评估
         updated_at: 修改日期
       assign:
         completed_at: 完成日期
@@ -836,6 +855,7 @@ zh:
         data_report_export: 数据报告导出
         export_admin_with_permissions: 带权限的导出管理员
         export_assessment_questions: 出口评估问题
+        export_campaign_ai_artifacts: 出口战役AI工件
         export_campaign_factors: 出口活动因素
         export_campaign_scorings: 出口活动扫描
         export_dashboard_as_file: 将 Dashboard 导出为文件
@@ -857,10 +877,12 @@ zh:
         export_user_report_events: 导出用户报告事件
         export_users: 活动用户导出
         external_assessment_export: 外部结果导出
+        generate_embedding_skills: 生成技能嵌入
         import_accesssheet: 导入 Accessheet
         import_assessment_questions: 进口评估问题
         import_assessment_translations: 导入评估翻译
         import_assessors: 进口评估员
+        import_campaign_ai_artifacts: 导入战役AI工件
         import_campaign_factors: 导入活动因素
         import_datasheet: 导入数据表
         import_development_action_translations: 进口开发行动 翻译
@@ -1028,6 +1050,7 @@ zh:
         saville_assessment_name: 萨维尔评估名称
         simulation_assessment_name: 模拟评估名称
         skillvue_assessment_name: Skillvue 评估名称
+        yoodli_assessment_name: 尤德利评估名称
       translations_migrated: 翻译已迁移
     create: 创建
     dashboard: 仪表板
@@ -1069,6 +1092,7 @@ zh:
         simulation: 模拟
         skillvue: Skillvue
         threesixty: 360 运动
+        yoodli: 尤德利
       status:
         finished: 完成
         in_progress: 进行中
@@ -1081,6 +1105,7 @@ zh:
         saville: 萨维尔评估
         simulation: 模拟评估
         skillvue: Skillvue 评估
+        yoodli: 尤德利评估
     flow:
       end_assessment_modal:
         custom_message: 自定义评估结束信息
@@ -1612,8 +1637,6 @@ zh:
       report: 报告
       report_bundle_placeholder: 选择报告包
     messages:
-      bulk_download_error: 批量下载仅限于 1000 个报告文件。 如果您选择了多种语言，请减少下载量。
-      bulk_download_no_reports: 未找到报告。请在下载前生成报告。
       bulk_download_successful: 批量报告下载任务已成功安排
       export_report_data_scheduled: 报告数据导出任务已成功安排
     modals:
@@ -1782,6 +1805,7 @@ zh:
       go_back: 回去
       import: 进口
       insert: 插入
+      'no': 不
       ok: 好的
       publish: 出版
       reject: 拒绝
@@ -1808,6 +1832,7 @@ zh:
       view: 查看
       view_all_tasks: 查看所有任务
       view_detail: 查看详情
+      'yes': 是的
     column:
       action: 操作
       active: 活跃
@@ -1921,6 +1946,7 @@ zh:
       hide: 隐藏
       view: 查看
     validations:
+      required: 该栏目是必修的
       select_locale: 请选择地区
       should_be_whole_number: 应为整数
   confirmation:
@@ -2353,6 +2379,7 @@ zh:
     error_warning: 哎呀，您的评估出错了，请联系技术支持。
     hogan:
       cannot_start: 您现在无法启动霍根评估，请几分钟后再试。
+    lighthouse_app: 默瑟灯塔
     login: 登录
     maintenance:
       notification: Lighthouse 将在 60 秒后进行定期维护
@@ -2454,6 +2481,8 @@ zh:
   idp:
     actions: 行动
     add_comments: 添加注释
+    add_note: 添加备注......
+    add_reason: 补充理由......
     added_development_action: 添加了开发作
     ai:
       assistant:
@@ -2471,8 +2500,8 @@ zh:
       reset_chat: 重置聊天
       reset_confirmation: 您确定要放弃此聊天并重新开始吗？
       retake_steps:
-        chat_hint: 让我知道您想提供更多信息？
-        chat_title: 您想提供更多信息吗？
+        chat_hint: 你可以上传新文件或重启聊天分享更多细节，我会尽力协助你。
+        chat_title: 很抱歉最初的分析没有达到你的预期。
         start_chat: 开始聊天
         start_chat_again: 重新开始聊天
         upload_document: 上传文档
@@ -2498,17 +2527,19 @@ zh:
         chat_title: 聊天洞察摘要
         file_title: 上传的文档见解
         gap_report_title: 技能差距报告分析
-        hint: 如果是，那么我们将创建您的 IDP，否则您可以重新回答
-        title: 你对结果满意吗？
+        hint: 如果你同意，我可以为你制定开发计划。如果不行，你可以重新开始聊天或上传新文件。
+        title: 你对分析满意吗？
         upload_file: 上传的文件
         view_chat: 查看聊天
       upload:
-        description: 单击或拖动文件到此区域进行上传
+        description: 支持的文件类型：PDF文档至%{maxFileSize}MB
         drop: 将文件拖放到此处
-        title: 上传文件
+        title: 点击或提交文件
       welcome:
         text: 准备好绘制您的成长乔恩了吗？让我们开始吧！
         title: 您好，我是你们的开发助手
+    approval_note: 批准说明
+    approve_plan: 批准计划
     behavioral: 行为
     board: 董事会
     change_history: 更改历史
@@ -2609,12 +2640,14 @@ zh:
       mark_as_complete: 标记为完成
       no_development_actions: 无发展行动
       on_the_job: 工作中
+      one: "[ZH] 1"
       other: 其他
       private: 私人
       publish_plan: 发布计划
       remove: 移除
       save_plan: 保存计划
       search_development_actions: 搜索开发作
+      selected_count: "%{count}被选中"
       show_development_action_information: 显示开发作信息
       skill: 技能
       sprint: 冲刺
@@ -2623,7 +2656,9 @@ zh:
       structured_learning_label: 协作学习
       submit_plan: 提交计划
       success: 开发行动成功完成
+      three: "[ZH] 3"
       toggle_skill_privacy: 切换技能隐私
+      two: "[ZH] 2"
       write_here: 在此处写入...
     direct_reportee_details: 直接报告者详细信息
     download:
@@ -2634,6 +2669,7 @@ zh:
     edit_progress: 编辑进度
     fetching_skill_gap_report: 获取技能差距报告...
     go_to_previous_step: 转到上一步
+    go_to_reportee_plan: 前往报告人计划详情
     history:
       added_da:
         one: 添加了开发作
@@ -2689,19 +2725,23 @@ zh:
         technical: 技术
       save_skills: 保存技能
     new_comments: 新评论
+    no_plan_changes_found: 自你上次审查以来，计划没有任何修改。
     no_skills_added: 您尚未添加任何技能。
     no_skills_added_by_reportee: 被举报人尚未添加技能。
     pdf:
       approval_status: 审批状态
       cover:
         fields:
+          approval_date: 批准日期
           assigned_data: 分配日期
           assigned_date: 指定日期
           completion_date: 完成日期
+          current_job_role: 当前职位
           division: 部门
           name: 姓名
           publish_date: 发布日期
           review_date: 审核日期
+          target_job_role: 目标岗位
       guidelines:
         cards:
           c1:
@@ -2779,8 +2819,12 @@ zh:
         approved: 已审核并批准
         completed: 已完成
         draft: 草案
+        in_progress: 进行中
+        in_review: 回顾
         not_reviewed: 未审核
+        not_started: 未开始
         pending_approval: 审核中
+        rejected: 拒绝
       summary:
         ai_count: 生成式AI
         collaborative_learn: 协作学习
@@ -2802,6 +2846,7 @@ zh:
     plan_submitted_for_manager_approval: 您的个人发展计划已提交给经理批准。
     private: 私人
     public: 公共
+    reason_for_rejection: 拒绝原因
     reflective_questions:
       already_completed: IDP 已经完成，现在不能回答问题。
       answer: 答
@@ -2814,7 +2859,9 @@ zh:
         max_words: 答案最多允许 %{count} 字数
         min_words: 答案至少需要 %{count} 字数
         required: 必须回答问题
+      max_word_limit: 最多只能说%{max}字
       max_words: 最大字数
+      min_word_limit: 至少得有 %{min} 个字
       min_words: 分词
       no_answer_provided: 尚未提供答案
       no_reflective_questions: 沒有反思性問題
@@ -2827,6 +2874,7 @@ zh:
       updated_successfully: 您的答案已成功更新
       word_limit: 必须介于 %{min} 到 %{max} 个单词之间
       words: 字数
+    reject_plan: 拒绝计划
     remove_skill: 移除技能
     remove_skill_from_plan: 从计划中删除技能%{name}
     removed_development_action: 已删除的开发作
@@ -2847,6 +2895,7 @@ zh:
     summary_logs: "%{reporteeName}的摘要日志"
     technical: 技术
     user_idp_status:
+      ai_assisted_idp_in_progress: 人工智能辅助的流离失所者项目正在进行中
       approved: 批准
       completed: 完成
       completion_not_started: 完成未开始
@@ -2966,6 +3015,7 @@ zh:
     usage_overview: 查看许可证使用情况
     usages: 用途
   licenses:
+    client_usage: 客户端使用
     enabled: 已启用
     end_date: 结束日期
     not_enough_idp_license: 没有足够的 IDP 许可证，请联系管理员
@@ -2974,6 +3024,10 @@ zh:
     not_enough_proctoring_credits: 学分不足，无法开始监考课程
     number: 数量
     overuse_number: 超额使用津贴
+    project_limit_reached: "“%{license_name}”使用量已达上限，请联系管理员"
+    project_specific: 项目专属
+    project_specific_license: 项目专用许可
+    project_usage: 项目用途
     report_family: 报告包
     start_date: 开始日期
     title: 许可证
@@ -2985,6 +3039,34 @@ zh:
       threesixty: Threesixty
     used_number: 二手许可证
     used_out_of: 完成于 %{used}中 %{total}。
+  lti:
+    oidc_auth_form:
+      errors:
+        client_id:
+          blank: 需要客户ID
+          invalid: 客户端ID与注册工具标识符不符
+          validation_failed: 客户端ID验证失败
+        login_hint:
+          assessment_completed: 用户评估已经完成
+          blank: 需要登录提示
+          invalid_user_assessment: 登录提示未引用有效的用户评估
+        lti_deployment_id:
+          not_found: 部署ID不引用有效的集成
+        nonce:
+          blank: 需要一次性
+        redirect_uri:
+          blank: 需要重定向URI
+          has_fragment: 重定向URI中不能包含片段
+          https_required: 重定向 URI 必须在生产环境中使用 HTTPS
+          invalid_format: 重定向URI必须是有效的URI格式
+          missing_host: 重定向URI必须包含宿主
+          scheme_not_allowed: 重定向 URI 必须使用 HTTP 或 HTTPS 协议
+        response_type:
+          blank: 需要填写响应类型
+          invalid: 响应类型必须是“id_token”
+        scope:
+          blank: 需要范围
+          invalid: 范围必须是“openid”
   mailer:
     copyright:
       text: 莱皓思。保留所有权利
@@ -3230,10 +3312,12 @@ zh:
         pearson: 皮尔森
         saville: 萨维尔
         skillvue: Skillvue
+        yoodli: 尤德利
     form:
       load_from_mettl: 来自 Mettl 的负载
       load_from_pearson: 从培生加载
       load_from_skillvue: 从 Skillvue 装载
+      load_from_yoodli: 来自尤德利的货物
       none_external: 无 - 使用报告生成器
     language: 报告语言
     language_updated: 报告语言已成功更新
@@ -3721,13 +3805,6 @@ zh:
       on_hold: 搁置
       prepared: 已完成
       released: 已发布
-    statuses:
-      completed: 已完成
-      declined: 已拒绝
-      denied: 已拒绝
-      done: 完成
-      not_completed: 未完成
-      waiting: 等待中
   threesixty:
     accept_privacy_modal:
       accept: 接受

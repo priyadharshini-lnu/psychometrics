@@ -28,9 +28,11 @@ module Idp
 
     def save_skills_to_idp
       skills_form.skills.map do |skill|
-        UserIdpSkill.find_or_create_by!(
+        user_idp_skill = UserIdpSkill.find_or_create_by!(
           user_idp_plan_id: user_idp_plan.id, skill_id: skill['skill_id']
         )
+        user_idp_skill.restore! if user_idp_skill.deleted?
+        user_idp_skill
       end
     end
 
@@ -57,7 +59,7 @@ module Idp
         )&.user_idp_skills&.pluck(:id) || []
 
         skills_to_remove.where(id: skill_ids_in_last_version).find_each do |skill|
-          skill.soft_delete!(current_user)
+          skill.soft_delete!(current_user) unless skill.deleted?
         end
         skills_to_remove.where.not(id: skill_ids_in_last_version).destroy_all
       else

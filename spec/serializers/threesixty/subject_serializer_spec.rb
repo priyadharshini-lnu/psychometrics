@@ -27,13 +27,24 @@ describe Threesixty::SubjectSerializer do
                              completed_evaluations: 3, completed_evaluators: 4 }
       }
     end
+    let(:subject_evaluator_counters) do
+      {
+        subject.user_id => {
+          all: { 1 => 2, 2 => 2, 3 => 1 }, # total 5 evaluators
+          completed: { 1 => 2, 2 => 1, 3 => 1 } # total 4 evaluators
+        }
+      }
+    end
     before do
       allow(Threesixty::Reports::IsAvailable).to receive(:call!).and_return(true)
     end
 
     it do
       result = described_class.new(context: {
-        option: option, counters: counters, current_user: current_user
+        option: option,
+        counters: counters,
+        subject_evaluator_counters: subject_evaluator_counters,
+        current_user: current_user
       }).serialize(subject).deep_symbolize_keys
 
       expect(result[:evaluators]).to eq '4 / 5'
@@ -80,6 +91,58 @@ describe Threesixty::SubjectSerializer do
       expect(result[:status]).to eq Threesixty::Participants::GetStatus::NOT_COMPLETED
       expect(result[:evaluations]).to eq '3 / 5'
       expect(result[:user][:email]).to eq 'dustin@poirier.com'
+    end
+  end
+
+  describe 'available_report_languages' do
+    let(:user) { create(:user) }
+    let(:project) { create(:project) }
+    let(:campaign) { create(:campaign, project: project) }
+    let(:option) do
+      create(:threesixty_option,
+             reports: { 'access' => { 'self_can_access' => true },
+                        'approval' => { 'manager_approves_reports' => false } })
+    end
+    let(:subject) { create(:threesixty_subject, user: user, campaign: campaign) }
+    let(:user_report) { create(:user_report, user: user, campaign_id: campaign.id) }
+    let(:counters) do
+      {
+        subject.user_id => { total_evaluators: 1, total_evaluations: 1,
+                             completed_evaluations: 1, completed_evaluators: 1 }
+      }
+    end
+
+    context 'when user has report PDFs in multiple languages' do
+      before do
+        create(:user_report_pdf, user_report: user_report, locale: 'en')
+        create(:user_report_pdf, user_report: user_report, locale: 'ar')
+      end
+
+      it 'returns available languages' do
+        result = described_class.new(context: {
+          option: option,
+          counters: counters,
+          current_user: current_user,
+          campaign_id: campaign.id,
+          project_id: project.id
+        }).serialize(subject).deep_symbolize_keys
+
+        expect(result[:available_report_languages]).to contain_exactly('en', 'ar')
+      end
+    end
+
+    context 'when user has no report PDFs' do
+      it 'returns empty array' do
+        result = described_class.new(context: {
+          option: option,
+          counters: counters,
+          current_user: current_user,
+          campaign_id: campaign.id,
+          project_id: project.id
+        }).serialize(subject).deep_symbolize_keys
+
+        expect(result[:available_report_languages]).to eq([])
+      end
     end
   end
 end

@@ -31,9 +31,6 @@ zh:
     development_actions: 发展行动
     dimensions: 尺寸
     empty_csv_file: CSV 文件不包含任何数据。
-    fill_empty_score_msg: 保存前填写所有最终分数。
-    final_score_empty_msg: 最终得分不能是空的。
-    import_csv_assessment_group_error: 第%{index}行：拥有电子邮件%{email}的用户已被邀请“%{workshopInviteName}”
     import_csv_error: 第%{index}行：带有电子邮件%{email}的用户未参与本次活动
     import_description: 从CSV文件导入用户。每一行必须包含一个电子邮件地址。
     import_download_sample: 下载CSV 示例
@@ -105,7 +102,6 @@ zh:
     skills_taxonomy: 技能分类法
     slot_name: 车位名称
     stats: 统计数据
-    subject_part_of_other_invite: 邮件主题已%{user_email}已被邀请“%{workshop_invite_name}”
     user_report_events: 用户报告事件
     users: 用户
     view_licenses: 查看许可证

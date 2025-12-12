@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'swagger_helper'
 
-describe Api::V2::Administration::Campaigns::UsersController, swagger_doc: 'v2/swagger.json', type: :request do
+RSpec.describe Api::V2::Administration::Campaigns::UsersController, type: :request do
   let!(:superadmin) { create(:superadmin) }
   let!(:assessor) { create(:user, :assessor) }
   let!(:campaign) { create(:campaign) }
@@ -39,78 +38,40 @@ describe Api::V2::Administration::Campaigns::UsersController, swagger_doc: 'v2/s
            relationship: Relationship.assessor_relationship, status: :completed, score_calculated: true)
   end
   let(:factor_id) { campaign_factor.id.to_s }
-  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
+  let!(:api_key) { create(:api_key, user: superadmin) }
+  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before { sign_in(assessor) }
 
-  path '/campaigns/{campaign_id}/users/{user_id}/assessors_scores' do
-    get 'Assessor Scores List' do
-      operationId 'CampaignFactors'
-      description 'Fetch campaign Factor list'
-      tags 'Campaign Factor Scoring'
-      consumes 'application/json'
-      security [basic: []]
-      parameter name: :campaign_id, in: :path, type: :string
-      parameter name: :user_id, in: :path, type: :string
+  describe 'GET /api/v2/administration/campaigns/{campaign_id}/users/{user_id}/assessors_scores' do
+    it 'returns assessor scores list' do
+      get "/api/v2/administration/campaigns/#{campaign_id}/users/#{user_id}/assessors_scores",
+          headers: { 'Authorization' => authorization }
 
-      response '200', 'Campaign factor list' do
-        schema '$ref' => '#/components/schemas/AssessorScoresResponse'
-
-        examples 'application/json' => {
-          data: [{
-            id: '1',
-            type: 'assessor_scores',
-            attributes: {
-              evaluator: {
-                id: '1',
-                first_name: 'John',
-                last_name: 'Doe',
-                email: 'johndoe@email.com'
-              },
-              assessment: {
-                id: '1',
-                name: 'Assessment 1'
-              },
-              scores: {
-                '1': 3
-              }
-            }
-          }]
-        }
-
-        run_test! do |response|
-          cf = JSON.parse(response.body)['data'].first
-          expect(cf).to have_attribute(:evaluator)
-          expect(cf).to have_attribute(:assessment)
-        end
-      end
+      expect(response).to have_http_status(200)
+      cf = JSON.parse(response.body)['data'].first
+      expect(cf).to have_attribute(:evaluator)
+      expect(cf).to have_attribute(:assessment)
     end
   end
 
-  path '/campaigns/{campaign_id}/users/{user_id}/active_idp_template' do
-    get 'Active Idp Template ' do
-      operationId 'ActiveIdpTemplate'
-      tags 'IdpTemplate'
-      consumes 'application/json'
-      security [basic: []]
-      parameter name: :campaign_id, in: :path, type: :string
-      parameter name: :user_id, in: :path, required: true
+  describe 'GET /api/v2/administration/campaigns/{campaign_id}/users/{user_id}/active_idp_template' do
+    let!(:plan) do
+      create(:user_idp_plan, user: user, idp_template: idp_template, campaign: campaign, creator: superadmin)
+    end
 
-      let!(:plan) do
-        create(:user_idp_plan, user: user, idp_template: idp_template, campaign: campaign, creator: superadmin)
-      end
+    it 'returns active IDP template' do
+      sign_in(superadmin)
 
-      response '200', 'Active Idp Template' do
-        before { sign_in(superadmin) }
+      get "/api/v2/administration/campaigns/#{campaign_id}/users/#{user_id}/active_idp_template",
+          headers: { 'Authorization' => authorization }
 
-        run_test! do |response|
-          active_idp_template = JSON.parse(response.body)['data']
+      expect(response).to have_http_status(200)
+      active_idp_template = JSON.parse(response.body)['data']
 
-          expect(active_idp_template).to have_key('id')
-          expect(active_idp_template).to have_attribute(:idp_template_id).with_value(idp_template.id)
-          expect(active_idp_template).to have_attribute(:active).with_value(true)
-        end
-      end
+      expect(active_idp_template).to have_key('id')
+      expect(active_idp_template).to have_attribute(:idp_template_id).with_value(idp_template.id)
+      expect(active_idp_template).to have_attribute(:active).with_value(true)
     end
   end
 end

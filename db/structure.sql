@@ -11,13 +11,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
--- *not* creating schema, since initdb creates it
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -547,7 +540,8 @@ CREATE TABLE public.ai_assistants (
     model_id character varying,
     assistant_type integer DEFAULT 0 NOT NULL,
     dependencies jsonb DEFAULT '[]'::jsonb NOT NULL,
-    status integer DEFAULT 0 NOT NULL
+    status integer DEFAULT 0 NOT NULL,
+    advanced_prompting_enabled boolean DEFAULT false NOT NULL
 );
 
 
@@ -1385,7 +1379,8 @@ CREATE TABLE public.campaign_assessments (
     allow_multiple_responses boolean DEFAULT false,
     require_scheduling boolean DEFAULT false,
     auto_assign boolean DEFAULT true,
-    mettl_schedule_record_id bigint
+    mettl_schedule_record_id bigint,
+    caching_enabled boolean DEFAULT false
 );
 
 
@@ -1806,7 +1801,8 @@ CREATE TABLE public.campaign_users (
     campaign_scores_errors json,
     external_id character varying,
     current_job_role_id bigint,
-    target_job_role_id bigint
+    target_job_role_id bigint,
+    campaign_artifact_results_finalized boolean DEFAULT false
 );
 
 
@@ -6031,7 +6027,8 @@ CREATE TABLE public.saml_service_providers (
     project_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    mask_identity boolean DEFAULT false NOT NULL
+    mask_identity boolean DEFAULT false NOT NULL,
+    integration_type integer DEFAULT 0 NOT NULL
 );
 
 
@@ -7374,7 +7371,8 @@ CREATE TABLE public.threesixty_subjects (
     user_id bigint,
     report_approval_status integer DEFAULT 0,
     report_release_status integer DEFAULT 0,
-    evaluation_status integer DEFAULT 0
+    evaluation_status integer DEFAULT 0,
+    evaluation_status_updated_by_id bigint
 );
 
 
@@ -8748,7 +8746,9 @@ CREATE TABLE public.yoodli_user_assessments (
     user_assessment_id bigint NOT NULL,
     email character varying,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    yoodli_activity_id character varying,
+    active boolean DEFAULT true NOT NULL
 );
 
 
@@ -14813,6 +14813,13 @@ CREATE UNIQUE INDEX index_saml_service_providers_on_entity_id_and_project_id ON 
 
 
 --
+-- Name: index_saml_service_providers_on_integration_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_saml_service_providers_on_integration_type ON public.saml_service_providers USING btree (integration_type);
+
+
+--
 -- Name: index_saml_service_providers_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15342,6 +15349,13 @@ CREATE INDEX index_threesixty_reminder_histories_on_user_id ON public.threesixty
 --
 
 CREATE INDEX index_threesixty_subjects_on_campaign_id ON public.threesixty_subjects USING btree (campaign_id);
+
+
+--
+-- Name: index_threesixty_subjects_on_evaluation_status_updated_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_subjects_on_evaluation_status_updated_by_id ON public.threesixty_subjects USING btree (evaluation_status_updated_by_id);
 
 
 --
@@ -16150,6 +16164,13 @@ CREATE INDEX index_yoodli_assessments_on_project_id ON public.yoodli_assessments
 
 
 --
+-- Name: index_yoodli_user_assessments_on_active; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_yoodli_user_assessments_on_active ON public.yoodli_user_assessments USING btree (active);
+
+
+--
 -- Name: index_yoodli_user_assessments_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16687,6 +16708,14 @@ ALTER TABLE ONLY public.user_reports
 
 ALTER TABLE ONLY public.assessments
     ADD CONSTRAINT fk_rails_292907b1cc FOREIGN KEY (deleted_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: threesixty_subjects fk_rails_293bb22649; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_subjects
+    ADD CONSTRAINT fk_rails_293bb22649 FOREIGN KEY (evaluation_status_updated_by_id) REFERENCES public.users(id);
 
 
 --
@@ -19163,11 +19192,12 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20251201130649'),
 ('20251118130440'),
 ('20251118103050'),
-('20251114123626'),
 ('20251118061850'),
+('20251114123626'),
 ('20251112120914'),
 ('20251112112802'),
 ('20251105093356'),
+('20251104075938'),
 ('20251101094930'),
 ('20251031101349'),
 ('20251031094133'),
@@ -19181,16 +19211,16 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20251024030039'),
 ('20251023050642'),
 ('20251015075724'),
-('20251012210205'),
-('20251007225856'),
-('20251007225411'),
 ('20251014070912'),
+('20251012210205'),
 ('20251010111349'),
 ('20251010104305'),
 ('20251008145654'),
 ('20251008145653'),
 ('20251008144511'),
 ('20251008144510'),
+('20251007225856'),
+('20251007225411'),
 ('20251006101155'),
 ('20251006100719'),
 ('20251006071723'),

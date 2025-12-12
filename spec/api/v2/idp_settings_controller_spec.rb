@@ -1,97 +1,56 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'swagger_helper'
 
-describe Api::V2::Administration::IdpSettingsController, swagger_doc: 'v2/swagger.json', type: :request do
+RSpec.describe Api::V2::Administration::IdpSettingsController, type: :request do
   let!(:project) { create(:project) }
   let!(:idp_setting) { project.idp_setting }
   let!(:superadmin) { create(:superadmin) }
   let!(:client_admin) { create(:client_admin, client: project.client) }
-  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
+  let!(:api_key) { create(:api_key, user: superadmin) }
+  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before { sign_in(superadmin) }
 
-  path '/idp_settings' do
-    get 'Get a idp settings' do
-      operationId 'GetIdpSettings'
-      description 'Get Idp Settings'
-      tags 'IdpSettngs'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :'filter[project_id_eq]', in: :query, required: true
+  describe 'GET /api/v2/administration/idp_settings' do
+    it 'gets idp settings' do
+      get '/api/v2/administration/idp_settings',
+          params: { 'filter[project_id_eq]' => project.id },
+          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-      response '200', 'IdpSetting Update' do
-        schema '$ref' => '#/components/schemas/IdpSettingListResponse'
-
-        let(:'filter[project_id_eq]') { project.id }
-
-        run_test! do |response|
-          data = JSON.parse(response.body)['data'].first
-          expect(data).to have_key('id')
-          expect(data).to have_attribute(:manager_approves_idp).with_value(false)
-          expect(data).to have_attribute(:manager_can_edit_idp).with_value(false)
-          expect(data).to have_relationship(:project).
-            with_data({ 'id' => project.id.to_s, 'type' => 'projects' })
-        end
-      end
+      expect(response).to have_http_status(:ok)
+      data = JSON.parse(response.body)['data'].first
+      expect(data).to have_key('id')
+      expect(data).to have_attribute(:manager_approves_idp).with_value(false)
+      expect(data).to have_attribute(:manager_can_edit_idp).with_value(false)
+      expect(data).to have_relationship(:project).
+        with_data({ 'id' => project.id.to_s, 'type' => 'projects' })
     end
   end
 
-  path '/idp_settings/{setting_id}' do
-    patch 'Update a idp settings' do
-      operationId 'UpdateIdpSettings'
-      description 'Update Idp Settings'
-      tags 'IdpSettngs'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :setting_id, in: :path, type: :string
-      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/IdpSettingRequest' },
-                required: true
+  describe 'PATCH /api/v2/administration/idp_settings/:setting_id' do
+    it 'updates idp settings' do
+      body = jsonapi_resource_request(
+        'idp_settings',
+        {
+          id: idp_setting.id.to_s,
+          manager_approves_idp: true,
+          manager_can_edit_idp: true
+        },
+        { project: { id: project.id.to_s, type: 'projects' } }
+      )
 
-      response '200', 'IdpSetting Update' do
-        schema '$ref' => '#/components/schemas/IdpSettingUpdateResponse'
+      patch "/api/v2/administration/idp_settings/#{idp_setting.id}",
+            params: body.to_json,
+            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-        examples 'application/json' => [{
-          type: 'idp_settings',
-          data: {
-            id: '770',
-            attributes: {
-              manager_approves_idp: false,
-              manager_can_edit_idp: false
-            },
-            relationships: {
-              project: {
-                data: {
-                  id: '1',
-                  type: 'projects'
-                }
-              }
-            }
-          }
-        }]
-        let(:setting_id) { idp_setting.id }
-        let(:body) do
-          jsonapi_resource_request(
-            'idp_settings',
-            {
-              id: idp_setting.id.to_s,
-              manager_approves_idp: true,
-              manager_can_edit_idp: true
-            },
-            { project: { id: project.id.to_s, type: 'projects' } }
-          )
-        end
-
-        run_test! do |response|
-          data = JSON.parse(response.body)['data']
-          expect(data).to have_key('id')
-          expect(data).to have_attribute(:manager_approves_idp).with_value(true)
-          expect(data).to have_attribute(:manager_can_edit_idp).with_value(true)
-          expect(data).to have_relationship(:project).
-            with_data({ 'id' => project.id.to_s, 'type' => 'projects' })
-        end
-      end
+      expect(response).to have_http_status(:ok)
+      data = JSON.parse(response.body)['data']
+      expect(data).to have_key('id')
+      expect(data).to have_attribute(:manager_approves_idp).with_value(true)
+      expect(data).to have_attribute(:manager_can_edit_idp).with_value(true)
+      expect(data).to have_relationship(:project).
+        with_data({ 'id' => project.id.to_s, 'type' => 'projects' })
     end
   end
 end

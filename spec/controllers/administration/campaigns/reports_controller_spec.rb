@@ -190,6 +190,8 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         dimension_id
         simulation_content_variations
         pearson_variations
+        allow_caching
+        caching_enabled
       ]
     )
     expect(assessment_response).to include({

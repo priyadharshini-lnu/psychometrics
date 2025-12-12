@@ -95,6 +95,12 @@ cs:
           title: Potvrďte
       permissions:
         labels:
+          aiArtifacts:
+            export: Vývoz
+            import: Dovoz
+            manage: Spravovat
+            title: AI artefakty
+            view: Pohled
           apiKeys:
             manage: Správa
             title: Klíče API
@@ -220,9 +226,11 @@ cs:
           projects:
             manage: Správa
             manage_admins: Správa správců
+            manage_licenses: Spravovat licence
             manage_users: Správa uživatelů
             title: Projekty
             view: Zobrazit
+            view_licenses: Zobrazit licence
           questions:
             manage: Správa
             title: Otázky
@@ -284,6 +292,10 @@ cs:
             manage: Správa
             title: Pozvánky SMS
             view: Zobrazit
+          userIdpPlans:
+            manage: Spravovat
+            title: Plány pro IDP uživatelů
+            view: Pohled
           users:
             reset_password: Obnovení hesla
             title: Uživatelé
@@ -296,6 +308,9 @@ cs:
     ai_artifacts:
       artifact_results: Výsledky artefaktů
       code: Kód
+      export:
+        success_msg: Probíhá export AI artefaktů. Prosím, zkontrolujte stav v oznámeních.
+      export_ai_artifacts: Exportní AI artefakty
       form:
         add_assessment: Přidat hodnocení
         ai_assistant: Asistent AI
@@ -320,6 +335,12 @@ cs:
       generated_at_time: Generováno v %{time}
       generated_value: Vytvořená hodnota
       id: ID
+      import:
+        download_example_csv: Stáhnout ukázkový CSV
+        info_msg: Nahraný soubor byl zařazen do fronty k importu. Prosím, zkontrolujte stav v oznámeních.
+      import_action:
+        title: AI artefakty importních kampaní
+      import_ai_artifacts: Import AI artefaktů
       key: Klíč
       name: Jméno
       parsed_dependencies:
@@ -335,6 +356,10 @@ cs:
         settings: Nastavení
       test_generate: Testovací generování
       unsaved_changes: Jsou přítomny neuložené změny, zvažte odeslání formuláře, který vygeneruje aktualizovanou odpověď z Playground.
+      used_tokens:
+        input_tokens: Vstupní tokeny
+        output_tokens: Výstupní tokeny
+        title: Použití tokenů
     ai_assistants:
       actions:
         create: Vytvořit asistenta AI
@@ -872,8 +897,6 @@ cs:
       new:
         header: Hromadné stahování
       reports_unavailable: V současné době nejsou k dispozici žádné zprávy ke stažení. Potvrďte, že zprávy, které chcete stáhnout, jsou k dispozici.
-      select_users_for_download: Vyberte prosím alespoň jednoho uživatele pro stažení přehledů.
-      select_users_for_regenerate: Vyberte prosím alespoň jednoho uživatele pro regeneraci zpráv.
     cable:
       notification:
         assessment_factors: Faktory jsou načteny
@@ -929,6 +952,17 @@ cs:
         report_update: Zpráva je aktualizována
         scoring_update: Bodování je aktualizováno
         trash_empty: Koš Komentář prázdný
+    campaign_ai_artifacts:
+      export:
+        details: Úspěšně exportované artefakty AI kampaně
+    campaign_ai_artifacts_import:
+      errors:
+        ai_assistant_not_found: 'AI asistent nenalezen pro ID: %{id}'
+        campaign_factor_not_found: Faktor kampaně s kódem "%{code}" v této kampani není
+        dependency_not_found: Závislostní %{type} s ID %{id} nenalezena
+        file_required: Soubor je nutný pro import
+        save_failed: 'Nepodařilo se zachránit artefakt AI "%{code}": %{message}'
+        sheet_column_not_found: Sloupec v listu s názvem "%{name}", který se v datasheetech kampaně nebo projektu nenachází
     campaign_factor_import:
       errors:
         assessment_not_found_in_campaign: ID hodnocení '%{assessment_id}' nebylo v kampani nalezeno
@@ -1240,6 +1274,7 @@ cs:
         archived: Archivováno
         disable: Archiv
         enable: Odarchivovat
+      clients: Klienti
       copy:
         successfully: Klientská smlouva o pronájmu '%{name}' byla úspěšně zkopírována.
       create:
@@ -2259,6 +2294,10 @@ cs:
           accesssheet_manage: Správa přístupových listů
           accesssheet_settings: Nastavení přístupového listu
           accesssheet_view: Zobrazení přístupového listu
+    header:
+      logout:
+        content: Stiskněte Zrušit, pokud chcete pokračovat v práci. Stiskněte Ok pro odhlášení aktuálního uživatele.
+        title: Jste si jistý, že chcete odhlásit se?
     hogan:
       errors:
         new_assessment_response_not_allowed:
@@ -2312,13 +2351,16 @@ cs:
         skills_required_on_publishing: Před publikováním šablony si prosím vyberte dovednosti.
         update: Aktualizace není povolena, protože šablona IDP je již přiřazena k plánu IDP uživatele.
       fields:
+        approval_date: Datum schválení
         assigned_data: Přiřazená data
         assigned_date: Přidělené datum
         completion_date: Datum dokončení
+        current_job_role: Současná pracovní pozice
         division: Divize
         name: Název
         publish_date: Datum zveřejnění
         review_date: Datum recenze
+        target_job_role: Cílová pracovní pozice
       fields_label: Pole
       global_skills: Globální dovednosti
       idp: IDP
@@ -2546,6 +2588,13 @@ cs:
         details: Podrobnosti na
         name: Název integrace
       details:
+        client_id: Client ID
+        deployment_id: ID nasazení
+        platform_access_token_url: URL tokenu pro přístup k platformě
+        platform_authentication_request_url: URL pro požadavek na autentizaci platformy
+        platform_host_name: Název hostitele platformy
+        platform_id: Identifikace platformy
+        platform_public_keyset_url: Veřejná URL klíčové sady platformy
         provider: Název poskytovatele
         webhookUrl: Adresa URL webhooku
         webhookUrls: Adresy URL webhooku
@@ -2576,11 +2625,16 @@ cs:
         skillvue:
           apiKey: Klíč API
           apiKeyRequired: Je vyžadován klíč API
+        yoodli:
+          keyset_url: URL klíčové sady
+          launch_url: Launch URL
+          login_url: Přihlašovací URL
       names:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
         skillvue: Skillvue
+        yoodli: Yoodli
       validations:
         iiht:
           tenancy_name_present: Název nájmu je již uveden v jiném projektu
@@ -2590,6 +2644,24 @@ cs:
         skillvue:
           api_key_present: Klíč API již existuje v jiném projektu
       view_all_schedules: Zobrazit všechny plány Mettl
+      yoodli_assessments:
+        add_assessment: Add Yoodli Assessment
+        columns:
+          actions: Akce
+          created_at: Vytvořeno v
+          name: Název hodnocení
+          product_id: ID produktu
+        delete_confirm: Jste si jistý, že chcete toto hodnocení Yoodli smazat?
+        edit_assessment: 'Edit: Yoodli Assessment'
+        manage_catalog: Spravujte Yoodli hodnocení
+        messages:
+          create_success: Yoodli hodnocení '%{name}' bylo úspěšně vytvořeno
+          delete_success: Yoodliho hodnocení bylo úspěšně smazáno
+          update_success: Yoodliho hodnocení '%{name}' bylo úspěšně aktualizováno
+        placeholders:
+          name: Zadejte název hodnocení
+          product_id: Zadejte ID produktu
+        search: Hledání
     interview_questions:
       delete_confirmation: Opravdu chcete smazat tuto otázku pohovoru?
       description: Popis
@@ -2740,9 +2812,12 @@ cs:
     navigation:
       audit_logs: Protokoly o auditu
       availability: Dostupnost
+      configuration: Konfigurace
+      content: Obsah
       dashboard: Přístrojová deska
       factors: Faktory
       innovation_styles: Inovační styly
+      logout: Odhlášení od sítě
       occupations: Povolání
       registration_codes: Registrační kódy
       skills_taxonomy: Taxonomie dovedností
@@ -3295,6 +3370,7 @@ cs:
         mask_identity_for_pearson: Údaje o masce pro Pearson
         mask_identity_for_saville: Údaje o masce pro Saville
         mask_identity_for_skillvue: Údaje o masce pro Skillvue
+        mask_identity_for_yoodli: Data o masce pro Yoodli
         privacy_link: Povolení ochrany osobních údajů Odkaz
         privacy_link_label: Odkaz na ochranu osobních údajů
         privacy_link_placeholder: Zadejte odkaz na ochranu osobních údajů
@@ -3470,6 +3546,7 @@ cs:
           graph_value: Hodnota grafu
         graph_value_condition_not_supported_msg: Podmínky hodnoty grafu nejsou pro tento typ grafu podporovány. Tato možnost je v současné době k dispozici pouze pro níže uvedené typy grafů.
         graph_value_conditions_title: Podmínky hodnoty grafu
+        hide_responses_with_no_data: Skryjte odpovědi bez dat
         if_graph_value_is: 'Pokud je hodnota grafu:'
         job_roles:
           current: Současné faktory práce
@@ -3489,6 +3566,7 @@ cs:
           and: A
           or: NEBO
         prevent_value_overlap: Zabránit překrývání hodnot
+        randomize_answers_order: Náhodně uspořádejte pořadí odpovědí
         skill_type_label: Filtrovat podle typu schopnosti
         skill_type_placeholder: Vyberte typ dovednosti
         skill_types:
@@ -4113,6 +4191,11 @@ cs:
             missing_columns: 'Chybějící povinné sloupce: %{columns}'
             save_failed: 'Chyba při zpracování ID dovednosti %{id}: %{message}'
             skill_not_found: Dovednost s ID %{id} nebyla nalezena
+      vector:
+        generate_embedding: Generování vložení
+        generate_embedding_failure_msg: Nepodařilo se mi zařadit generování dovedností do fronty. Zkuste to prosím znovu.
+        generate_embedding_success_msg: Generování dovedností bylo úspěšně zařazeno. Prosím, zkontrolujte stav v oznámeních.
+        label: Vector DB
     skills_taxonomy:
       tabs:
         job_roles: Pracovní role
@@ -4592,8 +4675,6 @@ cs:
             evaluations_received: Přijatá hodnocení
             is_subject: Je předmětem
             name: Název
-            report_status: Stav zprávy
-            status: Stav
           evaluators:
             add_evaluators: Přidání hodnotitelů
             import_evaluators: Hodnotitelé importu
@@ -4716,6 +4797,7 @@ cs:
         title: Nástroje
       update:
         successfully: Uživatel %{name} byl úspěšně aktualizován.
+      user: Uživatel
     webhook:
       connection_failure: Nelze se připojit k url adrese webhooku. Ověřte prosím, zda je url adresa webhooku správná..
       delete_success: Nastavení webhooku bylo úspěšně odstraněno

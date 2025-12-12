@@ -2,7 +2,6 @@
 
 require 'rails_helper'
 require './spec/swagger/v1/schema'
-require './spec/swagger/v2/schema'
 
 RSpec.configure do |config|
   # Specify a root folder where Swagger JSON files are generated
@@ -15,9 +14,8 @@ RSpec.configure do |config|
   # be generated at the provided relative path under swagger_root
   # By default, the operations defined in spec files are added to the first
   # document below. You can override this behavior by adding a swagger_doc tag to the
-  # the root example_group in your specs, e.g. describe '...', swagger_doc: 'v2/swagger.json'
+  # the root example_group in your specs, e.g. describe '...', swagger_doc: 'v1/swagger.json'
   config.swagger_docs = {
-    'v1/swagger.json' => Swagger::V1::DEFINITION,
-    'v2/swagger.json' => Swagger::V2::DEFINITION
+    'v1/swagger.json' => Swagger::V1::DEFINITION
   }
 end

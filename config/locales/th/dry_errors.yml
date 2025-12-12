@@ -64,6 +64,10 @@ th:
         validates_admins: ผู้ดูแลระบบไม่มีสิทธิ์เข้าถึงแคมเปญ
       report_families_reports:
         report_exists: รายงานนี้เป็นส่วนหนึ่งของชุดรายงานอยู่แล้ว
+      saml_service_provider:
+        invalid_url: 'รูปแบบ URL ไม่ถูกต้อง: %{url}'
+        must_be_array: ต้องเป็นอาร์เรย์
+        must_not_be_empty: ไม่สามารถว่างเปล่าได้
       size?: size ควรน้อยกว่า %{size}
       skill:
         already_added: เพิ่มสกิลที่มีชื่อเดียวกันแล้ว
@@ -94,6 +98,7 @@ th:
         unique_name: มีตัวกรองที่มีชื่อเดียวกันอยู่แล้ว
       workshop_invited_subject_create:
         already_exists: หัวเรื่องมีอยู่ในคําเชิญแล้ว
+        part_of_other_workshop_invite: ผู้ทดลองได้รับเชิญให้ '%{workshop_invite_name}' แล้ว
       workshop_subject_create:
         already_exists: วิชามีอยู่แล้วในศูนย์ประเมินนี้
         part_of_other_workshop: ผู้ทดลองเป็นผู้เข้าร่วมของ '%{workshop_name}' แล้ว

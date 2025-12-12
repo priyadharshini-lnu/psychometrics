@@ -31,9 +31,6 @@ ko:
     development_actions: 개발 작업
     dimensions: 치수
     empty_csv_file: CSV 파일에는 데이터가 포함되어 있지 않습니다.
-    fill_empty_score_msg: 저장하기 전에 모든 최종 점수를 입력하세요.
-    final_score_empty_msg: 최종 점수는 비어 있을 수 없습니다.
-    import_csv_assessment_group_error: "%{index}행: 이메일 %{email} 사용자가 이미 '%{workshopInviteName}'에 초대됨"
     import_csv_error: "%{index}행: 이메일 %{email} 있는 사용자는 이 캠페인에 참여하지 않습니다"
     import_description: CSV 파일에서 사용자를 불러와. 각 행에는 이메일 주소가 반드시 포함되어야 합니다.
     import_download_sample: CSV 예제 다운로드
@@ -105,7 +102,6 @@ ko:
     skills_taxonomy: 기술 분류
     slot_name: 슬롯 이름
     stats: 통계
-    subject_part_of_other_invite: 제목에 이메일 %{user_email} 이미 '%{workshop_invite_name}'로 초대됨
     user_report_events: 사용자 보고서 이벤트
     users: 사용자
     view_licenses: 라이선스 보기

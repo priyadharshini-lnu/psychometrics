@@ -18,6 +18,7 @@ class CampaignAssessment < ApplicationRecord
   attr_accessor :skip_set_position
 
   before_create :set_position, unless: :skip_set_position
+  before_commit :invalidate_assessment_cache, if: -> { norm_id_changed? || available_locales_changed? }
 
   delegate :common?,
            :hogan?,
@@ -154,5 +155,9 @@ class CampaignAssessment < ApplicationRecord
 
   def saville_norm_name
     Settings.providers.saville.norms.find { |norm| norm[:id] == external_norm_id }&.dig(:name)
+  end
+
+  def invalidate_assessment_cache
+    assessment.invalidate_cache
   end
 end

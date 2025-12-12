@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import {
   Table, Space, Input, Switch, Pagination, Button, MenuProps, App, Typography,
+  Row,
+  Col,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
@@ -216,17 +218,19 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal, clientId }) => {
   )
 
   return (
-    <>
-      <TableLayout
-        table={WebhooksTable}
-        filters={Filter}
-        recordCount={meta.recordCount}
-        loading={tableLoading}
-        requestStatus={requests.fetch?.status}
-        failureMsg={getErrorMsgFromJsonApiRequests(requests)}
-      />
-      <Modals modals={MODALS} />
-    </>
+    <Row className="pl">
+      <Col span={24}>
+        <TableLayout
+          table={WebhooksTable}
+          filters={Filter}
+          recordCount={meta.recordCount}
+          loading={tableLoading}
+          requestStatus={requests.fetch?.status}
+          failureMsg={getErrorMsgFromJsonApiRequests(requests)}
+        />
+        <Modals modals={MODALS} />
+      </Col>
+    </Row>
   )
 }
 

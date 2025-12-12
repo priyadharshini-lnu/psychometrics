@@ -3,6 +3,9 @@ bg:
   enduser:
     add_idp_plan_note: Добави бележка...
     add_idp_plan_rejection_reason: Добави причина...
+    ai_idp_assistant_response_no: Не
+    ai_idp_assistant_response_upload_different_document: Искам да кача друг документ.
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: Да, продължете с изготвянето на план.
     approve_idp_plan: Одобри план
     bookings: Резервации
     campaign: Кампания

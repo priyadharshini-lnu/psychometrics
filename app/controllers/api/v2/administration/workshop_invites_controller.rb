@@ -48,25 +48,6 @@ module Api
       end
     end
 
-    def validate_subjects
-      campaign_id = params[:campaign_id]
-      campaign_assessment_group_id = validation_params[:campaign_assessment_group_id]
-      user_ids = validation_params[:user_ids]
-
-      existing_subjects = ::WorkshopInvitedSubject.in_campaign_assessment_group(
-        campaign_id,
-        campaign_assessment_group_id
-      ).where(user_id: user_ids).includes(:workshop_invite, :user)
-
-      errors = existing_subjects.map do |existing_subject|
-        I18n.t('admin.subject_part_of_other_invite',
-               workshop_invite_name: existing_subject.workshop_invite.title,
-               user_email: existing_subject.user.email)
-      end
-
-      render json: { validation_errors: errors }, status: :ok
-    end
-
     def update
       ActiveRecord::Base.transaction do
         @workshop_invite.update!(workshop_invite_params)
@@ -111,10 +92,6 @@ module Api
 
     def translations_params
       params.require(:data).require(:attributes).permit(translations: %i[locale title description])
-    end
-
-    def validation_params
-      params.require(:data).require(:attributes).permit(:campaign_assessment_group_id, user_ids: [])
     end
 
     def meta_details

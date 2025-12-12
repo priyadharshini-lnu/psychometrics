@@ -18,6 +18,7 @@ module UsersResults
       recompute_mettl_assessment if user_assessment.mettl?
       recompute_simulation_assessment if user_assessment.simulation?
       recompute_skillvue_assessment if user_assessment.skillvue?
+      recompute_yoodli_assessment if user_assessment.yoodli?
 
       UserAssessments::SaveScores.call!(user_assessment)
 
@@ -44,6 +45,10 @@ module UsersResults
 
     def recompute_skillvue_assessment
       Skillvue::SaveScoresAndReport.call!(user_assessment)
+    end
+
+    def recompute_yoodli_assessment
+      Yoodli::ImportFromS3Service.call(user_assessment_id: user_assessment.id)
     end
   end
 end

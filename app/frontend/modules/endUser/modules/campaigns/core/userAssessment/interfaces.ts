@@ -20,6 +20,7 @@ export interface UserAssessment {
   scheduleTime: string | null
   workshopActivityDuration: number | null
   requireScheduling: boolean
+  cachingEnabled: boolean
 }
 
 export interface AssessmentExtra {

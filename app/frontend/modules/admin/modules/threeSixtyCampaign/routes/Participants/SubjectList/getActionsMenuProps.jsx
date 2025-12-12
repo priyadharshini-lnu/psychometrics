@@ -201,6 +201,11 @@ export const getActionsMenuProps = ({
       label: I18n.t('threesixty.participant_list.actions.reset_password'),
     },
     { type: 'divider' },
+    {
+      key: 'status_details',
+      label: I18n.t('admin.status_details'),
+    },
+    { type: 'divider' },
     permissions.viewReport && {
       key: 'view_report',
       label: (
@@ -264,6 +269,11 @@ export const getActionsMenuProps = ({
   ]
 
   const handleMenuClick = ({ key }) => {
+    if (key === 'status_details') {
+      return openModal('StatusDetailsModal', {
+        subjectData,
+      })
+    }
     if (key === 'edit_user') {
       return openUserEditModal()
     }

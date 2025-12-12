@@ -1,257 +1,129 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'swagger_helper'
 require_relative 'concerns/taggable_api_endpoints_shared_examples'
 
-describe Api::V2::Administration::AssessmentsController, swagger_doc: 'v2/swagger.json', type: :request do
+RSpec.describe Api::V2::Administration::AssessmentsController, type: :request do
   let!(:assessment) { create(:assessment, category: 'psychometric') }
   let!(:superadmin) { create(:superadmin) }
-  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
+  let!(:api_key) { create(:api_key, user: superadmin) }
+  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before { sign_in(superadmin) }
 
-  path '/assessments/' do
-    get 'Assessments List' do
-      operationId 'AssessmentsList'
+  describe 'GET /api/v2/administration/assessments' do
+    it 'returns assessments list' do
+      get '/api/v2/administration/assessments', headers: { 'Authorization' => authorization }
 
-      description 'Fetch Assessments list'
-      tags 'Assessments'
-      consumes 'application/json'
-      security [basic: []]
-
-      response '200', 'Client list' do
-        schema '$ref' => '#/components/schemas/AssessmentsListResponse'
-
-        examples 'application/json' => [{
-          type: 'clients',
-          data: {
-            attributes: {
-              name: 'name',
-              disabled: false,
-              type: 'common',
-              category: 'psychometric',
-              created_at: '25 May 2023 / 12:35',
-              updated_at: '25 May 2023 / 12:35',
-              created_by: 'ROHAN PUJARI',
-              description: 'asd',
-              external_settings: {}
-            }
-          }
-        }]
-
-        run_test! do |response|
-          assessments = JSON.parse(response.body)
-          assessment_response = assessments['data'].find { |c| c['id'] == assessment.id.to_s }
-          expect(assessment_response).to have_key('id')
-          expect(assessment_response).to have_attribute(:name).with_value(assessment.name)
-        end
-      end
+      expect(response).to have_http_status(:ok)
+      assessments = JSON.parse(response.body)
+      assessment_response = assessments['data'].find { |c| c['id'] == assessment.id.to_s }
+      expect(assessment_response).to have_key('id')
+      expect(assessment_response).to have_attribute(:name).with_value(assessment.name)
     end
   end
 
-  path '/assessments/' do
-    post 'Create an assessment' do
-      operationId 'CreateAssessment'
-      description <<~HEREDOC
-        Create an Assessment
-
-            **Supported fields for external assessments **
-
-            | Name        | Description   | Applicable for |
-            | ------------- |:-------------:|:-------------:|
-            | external_settings[assessment_id]     | External assessment ID | Hogan, IIHT, Peason, Saville |
-            | external_settings[norm_id]     | External norm ID | Peason |
-            | external_settings[schedule_config]     | Additional configuration for schedule | IIHT |
-            | data.relationships.project     | Project id to which we want to add the assessment | IIHT |
-      HEREDOC
-      description 'Create new Assessment'
-      tags 'Assessments'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/AssessmentCreateRequest' },
-                required: true
-
-      response '201', 'Assessment Created' do
-        schema '$ref' => '#/components/schemas/AssessmentResponse'
-        examples 'application/json' => {
-          data: {
-            type: 'assessments',
-            attributes: {
-              name: 'name',
-              disabled: false,
-              type: 'common',
-              category: 'psychometric',
-              created_at: '25 May 2023 / 12:35',
-              updated_at: '25 May 2023 / 12:35',
-              created_by: 'ROHAN PUJARI',
-              description: 'asd',
-              external_settings: {},
-              extra: { icon_color: 'color' },
-              tag_list: ['psychometric']
-            },
-            relationships: {
-              dimension: { data: { type: 'dimensions', id: '39' } },
-              owner: { data: { type: 'clients', id: '266' } }
-            }
+  describe 'POST /api/v2/administration/assessments' do
+    it 'creates an assessment' do
+      dimension = create(:dimension)
+      client = create(:tenancy)
+      body = {
+        data: {
+          type: 'assessments',
+          attributes: {
+            category: 'psychometric',
+            description: 'name',
+            name: 'name',
+            type: 'common',
+            extra: { icon_color: 'color' },
+            tag_list: ['psychometric']
+          },
+          relationships: {
+            dimension: { data: { type: 'dimensions', id: dimension.id.to_s } },
+            owner: { data: { type: 'clients', id: client.id.to_s } }
           }
         }
+      }
 
-        let(:dimension) { create(:dimension) }
-        let(:client) { create(:tenancy) }
-        let(:body) do
-          {
-            data: {
-              type: 'assessments',
-              attributes: {
-                category: 'psychometric',
-                description: 'name',
-                name: 'name',
-                type: 'common',
-                extra: { icon_color: 'color' },
-                tag_list: ['psychometric']
-              },
-              relationships: {
-                dimension: { data: { type: 'dimensions', id: dimension.id.to_s } },
-                owner: { data: { type: 'clients', id: client.id.to_s } }
-              }
-            }
-          }
-        end
+      post '/api/v2/administration/assessments', params: body.to_json,
+                                                headers: {
+                                                  'Authorization' => authorization,
+                                                  'Content-Type' => 'application/vnd.api+json'
+                                                }
 
-        run_test! do |response|
-          assessment_response = JSON.parse(response.body)['data']
-          expect(assessment_response).to have_key('id')
-          expect(assessment_response).to have_attribute(:name).with_value('name')
-          expect(assessment_response).to have_relationship(:dimension).
-            with_data({ 'id' => dimension.id.to_s, 'type' => 'dimensions' })
-          expect(assessment_response).to have_attribute(:tag_list).with_value(['psychometric'])
-        end
-      end
+      expect(response).to have_http_status(:created)
+      assessment_response = JSON.parse(response.body)['data']
+      expect(assessment_response).to have_key('id')
+      expect(assessment_response).to have_attribute(:name).with_value('name')
+      expect(assessment_response).to have_relationship(:dimension).
+        with_data({ 'id' => dimension.id.to_s, 'type' => 'dimensions' })
+      expect(assessment_response).to have_attribute(:tag_list).with_value(['psychometric'])
     end
   end
 
-  path '/assessments/{assessment_id}' do
-    patch 'Update a assessment' do
-      operationId 'UpdateAssessment'
-      description 'Update an Assessment'
-      tags 'Assessments'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :assessment_id, in: :path, type: :string
-      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/AssessmentUpdateRequest' },
-                required: true
-
-      response '200', 'Assessment Updated' do
-        schema '$ref' => '#/components/schemas/AssessmentResponse'
-        examples 'application/json' => {
-          data: {
-            type: 'assessments',
-            attributes: {
-              name: 'name',
-              disabled: false,
-              icon_url: '#111',
-              type: 'common',
-              category: 'psychometric',
-              created_at: '25 May 2023 / 12:35',
-              updated_at: '25 May 2023 / 12:35',
-              created_by: 'ROHAN PUJARI',
-              icon_color: '#000',
-              description: 'asd',
-              enable_video_check: true,
-              enable_audio_check: true,
-              enable_network_check: true,
-              external_settings: {}
-            },
-            relationships: {
-              dimension: { data: { type: 'dimensions', id: '39' } },
-              owner: { data: { type: 'clients', id: '266' } }
-            }
+  describe 'PATCH /api/v2/administration/assessments/:assessment_id' do
+    it 'updates an assessment' do
+      body = {
+        data: {
+          type: 'assessments',
+          id: assessment.id.to_s,
+          attributes: {
+            icon_color: '#111',
+            enable_video_check: true,
+            enable_audio_check: true,
+            enable_network_check: true
           }
         }
+      }
 
-        let(:assessment_id) { assessment.id }
+      patch "/api/v2/administration/assessments/#{assessment.id}", params: body.to_json,
+headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-        let(:body) do
-          {
-            data: {
-              type: 'assessments',
-              id: assessment.id.to_s,
-              attributes: {
-                icon_color: '#111',
-                enable_video_check: true,
-                enable_audio_check: true,
-                enable_network_check: true
-              }
-            }
-          }
-        end
-
-        run_test! do |response|
-          assessment_response = JSON.parse(response.body)['data']
-          expect(assessment_response).to have_key('id')
-          expect(assessment_response).to have_attribute(:icon_color).with_value('#111')
-          expect(assessment_response).to have_attribute(:enable_video_check).with_value(true)
-          expect(assessment_response).to have_attribute(:enable_audio_check).with_value(true)
-          expect(assessment_response).to have_attribute(:enable_network_check).with_value(true)
-        end
-      end
+      expect(response).to have_http_status(:ok)
+      assessment_response = JSON.parse(response.body)['data']
+      expect(assessment_response).to have_key('id')
+      expect(assessment_response).to have_attribute(:icon_color).with_value('#111')
+      expect(assessment_response).to have_attribute(:enable_video_check).with_value(true)
+      expect(assessment_response).to have_attribute(:enable_audio_check).with_value(true)
+      expect(assessment_response).to have_attribute(:enable_network_check).with_value(true)
     end
 
-    delete 'Delete an assessment' do
-      operationId 'DeleteAssessment'
-      description 'Delete a Assessment'
-      tags 'Assessments'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :assessment_id, in: :path, type: :string
+    it 'deletes an assessment' do
+      delete "/api/v2/administration/assessments/#{assessment.id}",
+             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-      let(:assessment_id) { assessment.id }
-
-      response '204', 'Assessment Deleted' do
-        run_test! do |response|
-          expect(response.body).to eq('')
-          expect(Assessment.find_by(id: assessment_id).deleted?).to eq(true)
-        end
-      end
+      expect(response).to have_http_status(:no_content)
+      expect(response.body).to eq('')
+      expect(Assessment.find_by(id: assessment.id).deleted?).to eq(true)
     end
   end
 
-  path '/assessments/{assessment_id}/copy' do
-    let!(:client) { create(:tenancy) }
-    post 'Copy Assessment' do
-      operationId 'CopyAssessment'
-      description 'Copy a Assessment'
-      tags 'Assessments'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :assessment_id, in: :path, type: :string
-      parameter name: :body, in: :body
-
-      let(:assessment_id) { assessment.id }
-
-      let(:body) do
-        {
-          data: {
-            type: 'assessments',
-            id: assessment.id.to_s,
-            attributes: {
-              name: 'Copy of First Assessment'
-            },
-            relationships: {
-              owner: { data: { type: 'clients', id: client.id } }
-            }
+  describe 'POST /api/v2/administration/assessments/:assessment_id/copy' do
+    it 'copies an assessment' do
+      client = create(:tenancy)
+      body = {
+        data: {
+          type: 'assessments',
+          id: assessment.id.to_s,
+          attributes: {
+            name: 'Copy of First Assessment'
+          },
+          relationships: {
+            owner: { data: { type: 'clients', id: client.id } }
           }
         }
-      end
+      }
 
-      response '200', 'Assessment Copied' do
-        run_test! do |response|
-          assessment_response = JSON.parse(response.body)['data']
-          expect(assessment_response).to have_key('id')
-          expect(assessment_response).to have_attribute(:name).with_value('Copy of First Assessment')
-        end
-      end
+      post "/api/v2/administration/assessments/#{assessment.id}/copy", params: body.to_json,
+          headers: {
+            'Authorization' => authorization,
+            'Content-Type' => 'application/vnd.api+json'
+          }
+
+      expect(response).to have_http_status(:ok)
+      assessment_response = JSON.parse(response.body)['data']
+      expect(assessment_response).to have_key('id')
+      expect(assessment_response).to have_attribute(:name).with_value('Copy of First Assessment')
     end
   end
 

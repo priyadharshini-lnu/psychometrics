@@ -31,9 +31,6 @@ hr:
     development_actions: Razvojne akcije
     dimensions: Dimenzije
     empty_csv_file: CSV datoteka ne sadrži nikakve podatke.
-    fill_empty_score_msg: Popunite sve konačne rezultate prije spremanja.
-    final_score_empty_msg: Konačni rezultat ne može biti prazan.
-    import_csv_assessment_group_error: 'Red %{index}: korisnik s e-mail %{email} već je pozvan da ''%{workshopInviteName}'''
     import_csv_error: 'Red %{index}: korisnik s email %{email} nije u ovoj kampanji'
     import_description: Uvezite korisnike iz CSV datoteke. Svaki redak mora sadržavati e-mail adresu.
     import_download_sample: Preuzmite primjer CSV-a
@@ -105,7 +102,6 @@ hr:
     skills_taxonomy: Taksonomija vještina
     slot_name: Naziv utora
     stats: Statistika
-    subject_part_of_other_invite: Subjekt s e-mailom %{user_email} već je pozvan da '%{workshop_invite_name}'
     user_report_events: Događaji u izvješću korisnika
     users: Korisnici
     view_licenses: Prikaz licenci

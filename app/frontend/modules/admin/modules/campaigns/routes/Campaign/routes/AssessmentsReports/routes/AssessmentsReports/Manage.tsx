@@ -21,6 +21,7 @@ import ImportRawModal from './ImportRawModal'
 import UpdateNormModal from './UpdateNormModal'
 import UpdateAssessorFormModal from './UpdateAssessorFormModal'
 import ImportScoringModal from './ImportScoringModal'
+import ImportExternalScoringModal from './ImportExternalScoringModal'
 import RemoveReportModal from './RemoveReportModal'
 import { AddAssessorAssessmentModal } from './AddAssessorAssessmentModal'
 import RemoveAssessmentModal from './RemoveAssessmentModal'
@@ -46,6 +47,7 @@ const MODALS = {
   UniversalLinkModal,
   ImportRawModal,
   ImportScoringModal,
+  ImportExternalScoringModal,
   UpdateNormModal,
   RemoveReportModal,
   UpdateReportLanguagesModal,

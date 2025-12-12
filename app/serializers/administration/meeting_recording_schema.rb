@@ -14,6 +14,7 @@ module Administration
         required(:participants).maybe(:array?)
         required(:assessment_center_date_and_time).maybe(:str?)
         required(:transcription_url).maybe(:str?)
+        required(:transcription_text).maybe(:str?)
       end
     end
   end

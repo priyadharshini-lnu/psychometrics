@@ -95,6 +95,12 @@ pl:
           title: Potwierdzić
       permissions:
         labels:
+          aiArtifacts:
+            export: Eksport
+            import: Import
+            manage: Zarządzać
+            title: Artefakty AI
+            view: Widok
           apiKeys:
             manage: Zarządzać
             title: Klucze API
@@ -220,9 +226,11 @@ pl:
           projects:
             manage: Zarządzać
             manage_admins: Zarządzanie administratorami
+            manage_licenses: Zarządzanie licencjami
             manage_users: Zarządzanie użytkownikami
             title: Projekty
             view: Widok
+            view_licenses: Zobacz licencje
           questions:
             manage: Zarządzać
             title: Pytania
@@ -284,6 +292,10 @@ pl:
             manage: Zarządzać
             title: Zaproszenia SMS
             view: Widok
+          userIdpPlans:
+            manage: Zarządzać
+            title: Plany IDP dla użytkowników
+            view: Widok
           users:
             reset_password: Zresetuj hasło
             title: Użytkowników
@@ -296,6 +308,9 @@ pl:
     ai_artifacts:
       artifact_results: Wyniki artefaktu
       code: Kod
+      export:
+        success_msg: Eksport artefaktów AI w trakcie. Proszę sprawdzić status w powiadomieniach.
+      export_ai_artifacts: Eksport artefaktów AI
       form:
         add_assessment: Dodaj ocenę
         ai_assistant: Asystent AI
@@ -320,6 +335,12 @@ pl:
       generated_at_time: Wygenerowane w %{time}
       generated_value: Wygenerowana wartość
       id: ID
+      import:
+        download_example_csv: Pobierz przykładowy CSV
+        info_msg: Przesłany plik został ustawiony w kolejce do importu. Proszę sprawdzić status w powiadomieniach.
+      import_action:
+        title: Artefakty AI w kampanii importowej
+      import_ai_artifacts: Import artefaktów AI
       key: Klucz
       name: Nazwa
       parsed_dependencies:
@@ -335,6 +356,10 @@ pl:
         settings: Ustawienia
       test_generate: Generowanie testowe
       unsaved_changes: Niezapisane zmiany są obecne, rozważ przesłanie formularza, aby wygenerować zaktualizowaną odpowiedź z Playground.
+      used_tokens:
+        input_tokens: Tokeny wejściowe
+        output_tokens: Tokeny wyjściowe
+        title: Wykorzystanie tokenów
     ai_assistants:
       actions:
         create: Stwórz asystenta AI
@@ -872,8 +897,6 @@ pl:
       new:
         header: Pobieranie zbiorcze
       reports_unavailable: W tej chwili nie są dostępne żadne raporty do pobrania. Upewnij się, że raporty, które chcesz pobrać, są dostępne.
-      select_users_for_download: Wybierz co najmniej jednego użytkownika do pobrania raportów.
-      select_users_for_regenerate: Wybierz co najmniej jednego użytkownika do regeneracji raportów.
     cable:
       notification:
         assessment_factors: Czynniki są pobierane
@@ -929,6 +952,17 @@ pl:
         report_update: Raport jest aktualizowany
         scoring_update: Punktacja jest aktualizowana
         trash_empty: Komentarz do kosza pusty
+    campaign_ai_artifacts:
+      export:
+        details: Artefakty kampanii AI eksportowane z powodzeniem
+    campaign_ai_artifacts_import:
+      errors:
+        ai_assistant_not_found: 'Asystent AI nie znaleziony dla ID: %{id}'
+        campaign_factor_not_found: Czynnik kampanii z kodem "%{code}" nie występuje w tej kampanii
+        dependency_not_found: Zależność %{type} z ID %{id} nie znaleziona
+        file_required: Do importu wymagany jest plik
+        save_failed: 'Nie udało się uratować artefaktu AI "%{code}": %{message}'
+        sheet_column_not_found: Kolumna arkusza o nazwie "%{name}", której nie występuje w kartach danych kampanii ani projektu
     campaign_factor_import:
       errors:
         assessment_not_found_in_campaign: Nie znaleziono identyfikatora oceny "%{assessment_id}" w kampanii
@@ -1240,6 +1274,7 @@ pl:
         archived: Archiwizowane
         disable: Archiwum
         enable: Przywróć z archiwum
+      clients: Klientów
       copy:
         successfully: Dzierżawa klienta "%{name}" została skopiowana pomyślnie.
       create:
@@ -2259,6 +2294,10 @@ pl:
           accesssheet_manage: Zarządzanie arkuszem dostępu
           accesssheet_settings: Ustawienia arkusza dostępu
           accesssheet_view: Widok arkusza dostępu
+    header:
+      logout:
+        content: Naciśnij Anuluj, jeśli chcesz kontynuować pracę. Naciśnij OK, aby wylogować się obecnego użytkownika.
+        title: Jesteś pewien, że chcesz się wylogować?
     hogan:
       errors:
         new_assessment_response_not_allowed:
@@ -2312,13 +2351,16 @@ pl:
         skills_required_on_publishing: Wybierz umiejętności przed opublikowaniem szablonu.
         update: Aktualizacja nie jest dozwolona, ponieważ szablon dostawcy tożsamości jest już skojarzony z planem dostawcy tożsamości użytkownika. Zmiany wyglądu zostały zapisane.
       fields:
+        approval_date: Data zatwierdzenia
         assigned_data: Przypisane dane
         assigned_date: Przypisana data
         completion_date: Data realizacji
+        current_job_role: Obecna rola zawodowa
         division: Dzielenie
         name: Nazwa
         publish_date: Data publikacji
         review_date: Data przeglądu
+        target_job_role: Docelowa rola zawodowa
       fields_label: Pola
       global_skills: Umiejętności globalne
       idp: IDP
@@ -2546,6 +2588,13 @@ pl:
         details: Szczegóły
         name: Nazwa integracji
       details:
+        client_id: Identyfikator klienta
+        deployment_id: ID wdrożenia
+        platform_access_token_url: URL tokena dostępu do platformy
+        platform_authentication_request_url: URL Żądania uwierzytelniania platformy
+        platform_host_name: Nazwa hosta platformy
+        platform_id: Identyfikacja platformy
+        platform_public_keyset_url: Publiczny URL kluczy platformy
         provider: Nazwa dostawcy
         webhookUrl: Webhook URL
         webhookUrls: Adresy URL elementów webhook
@@ -2576,11 +2625,16 @@ pl:
         skillvue:
           apiKey: Klucz API
           apiKeyRequired: Wymagany jest klucz API
+        yoodli:
+          keyset_url: URL zestawu kluczy
+          launch_url: Launch URL
+          login_url: URL logowania
       names:
         hogan: HOGAN
         iiht: Międzynarodowa Biblioteka Medyczna (IIH
         mettl: METTL (Biblioteka METTL)
         skillvue: Umiejętne
+        yoodli: Yoodli
       validations:
         iiht:
           tenancy_name_present: Nazwa najemcy jest już obecna w innym projekcie
@@ -2590,6 +2644,24 @@ pl:
         skillvue:
           api_key_present: Klucz API jest już obecny w innym projekcie
       view_all_schedules: Zobacz wszystkie rozkłady jazdy Mettl
+      yoodli_assessments:
+        add_assessment: Add Yoodli Assessment
+        columns:
+          actions: Akcje
+          created_at: Stworzone w
+          name: Nazwa oceny
+          product_id: Identyfikator produktu
+        delete_confirm: Jesteś pewien, że chcesz usunąć tę ocenę Yoodli?
+        edit_assessment: Edytuj Ocena Yoodli
+        manage_catalog: Zarządzanie ocenami Yoodli
+        messages:
+          create_success: Ocena Yoodli '%{name}' została pomyślnie stworzona
+          delete_success: Ocena Yoodli została pomyślnie usunięta
+          update_success: Ocena Yoodli '%{name}' została pomyślnie zaktualizowana
+        placeholders:
+          name: Wpisz nazwę oceny
+          product_id: Wprowadź ID produktu
+        search: Szukać
     interview_questions:
       delete_confirmation: Czy na pewno chcesz usunąć to pytanie podczas rozmowy kwalifikacyjnej?
       description: Opis
@@ -2740,9 +2812,12 @@ pl:
     navigation:
       audit_logs: Dzienniki audytu
       availability: Dostępność
+      configuration: Konfiguracja
+      content: Zawartość
       dashboard: Deska rozdzielcza
       factors: Czynników
       innovation_styles: Style innowacji
+      logout: Wyloguj
       occupations: Zawodów
       registration_codes: Kody rejestracyjne
       skills_taxonomy: Taksonomia umiejętności
@@ -2981,6 +3056,7 @@ pl:
           by_skill_exists_id_missing: 'Rząd %{row_number}: Poziom zaawansowania umiejętności "%{name}" już istnieje. Podaj identyfikator, aby go zaktualizować.'
           by_skill_missing: 'Wiersz %{row_number}: Projekt i umiejętność muszą być obecne dla typu "by_skill"'
           by_skill_type_exists_id_missing: 'Wiersz %{row_number}: Poziom zaawansowania dla typu umiejętności "%{skill_type}" już istnieje. Podaj identyfikator, aby go zaktualizować.'
+          by_skill_type_missing: 'Rząd %{row_number}: Muszą być obecne projekt i typ umiejętności dla typu "by_skill_type"'
           default_global_exists_id_missing: 'Wiersz %{row_number}: Poziom biegłości na poziomie globalnym już istnieje. Podaj identyfikator, aby go zaktualizować.'
           default_project_exists_id_missing: 'Wiersz %{row_number}: "Domyślny" poziom biegłości na poziomie projektu już istnieje. Podaj identyfikator, aby go zaktualizować.'
           invalid_csv_format: 'Nieprawidłowy format CSV: %{message}'
@@ -3294,6 +3370,7 @@ pl:
         mask_identity_for_pearson: Dane maski dla Pearson
         mask_identity_for_saville: Dane maski dla Saville
         mask_identity_for_skillvue: Dane maski dla Skillvue
+        mask_identity_for_yoodli: Dane maski dla Yoodli
         privacy_link: Włącz łącze do prywatności
         privacy_link_label: Link do prywatności
         privacy_link_placeholder: Wejdź w link do prywatności
@@ -3469,6 +3546,7 @@ pl:
           graph_value: Wartość wykresu
         graph_value_condition_not_supported_msg: Warunki wartości wykresu nie są obsługiwane dla tego typu wykresu. Ta opcja jest obecnie dostępna tylko dla poniższych typów wykresów.
         graph_value_conditions_title: Warunki wartości wykresu
+        hide_responses_with_no_data: Ukryj odpowiedzi bez danych
         if_graph_value_is: 'Jeśli wartość wykresu wynosi:'
         job_roles:
           current: Aktualne czynniki związane z pracą
@@ -3488,6 +3566,7 @@ pl:
           and: I
           or: LUB
         prevent_value_overlap: Zapobieganie nakładaniu się wartości
+        randomize_answers_order: Losowo ustalić kolejność odpowiedzi
         skill_type_label: Filtruj według typu umiejętności
         skill_type_placeholder: Wybierz typ umiejętności
         skill_types:
@@ -4109,6 +4188,11 @@ pl:
             missing_columns: 'Brak wymaganych kolumn: %{columns}'
             save_failed: 'Błąd podczas przetwarzania identyfikatora umiejętności %{id}: %{message}'
             skill_not_found: Nie znaleziono umiejętności o identyfikatorze %{id}
+      vector:
+        generate_embedding: Generowanie osadzania
+        generate_embedding_failure_msg: Nie udało się ustawić zadania generowania umiejętności w kolejce. Proszę, spróbuj ponownie.
+        generate_embedding_success_msg: Zadanie generowania umiejętności zostało pomyślnie zaksięgowane. Proszę sprawdzić status w powiadomieniach.
+        label: Vector DB
     skills_taxonomy:
       tabs:
         job_roles: Role zawodowe
@@ -4352,8 +4436,13 @@ pl:
         this_question_has_randomization: To pytanie ma randomizację
     table:
       entries:
-        selected: Wybrano 1 wiersz
-        total: 'Ogółem : 1'
+        selected:
+          one: Wybrany 1 wiersz
+          other: "{{count}} wybrane wiersze"
+        total:
+          one: 'Łącznie: 1'
+          other: 'Razem : {{count}}'
+          zero: 'Łącznie: 0'
       more_actions: Więcej akcji
     taxonomy:
       import:
@@ -4578,8 +4667,6 @@ pl:
             evaluations_received: Otrzymane oceny
             is_subject: Czy temat
             name: Nazwa
-            report_status: Status raportu
-            status: Status
           evaluators:
             add_evaluators: Dodaj oceniających
             import_evaluators: Import Evaluators

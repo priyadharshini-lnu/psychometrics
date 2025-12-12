@@ -64,6 +64,10 @@ hr:
         validates_admins: Administratori nemaju pristup kampanji.
       report_families_reports:
         report_exists: Ovo izvješće već je dio paketa izvješća
+      saml_service_provider:
+        invalid_url: 'Nevažeći format URL-a: %{url}'
+        must_be_array: Mora biti niz
+        must_not_be_empty: Ne može biti prazan
       size?: veličina bi trebala biti manja %{size}
       skill:
         already_added: Vještina s istim imenom već je dodana.
@@ -94,6 +98,7 @@ hr:
         unique_name: Filtar s istim imenom već postoji.
       workshop_invited_subject_create:
         already_exists: Ispitanik već postoji u pozivnici.
+        part_of_other_workshop_invite: Subjekt je već pozvan na '%{workshop_invite_name}'.
       workshop_subject_create:
         already_exists: Ispitanik već postoji u ovom centru za procjenu.
         part_of_other_workshop: Ispitanik je već sudionik '%{workshop_name}'.

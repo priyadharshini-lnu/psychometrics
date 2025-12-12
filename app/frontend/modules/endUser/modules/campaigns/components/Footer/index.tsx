@@ -90,7 +90,7 @@ const ProductUsageLinks: FC<ProductsUsageLinksProps> = ({
   return (
     <Space size="large">
       <Button
-        className="ps-0 pe-0"
+        className="ps-0 pe-0 white-space-normal"
         type="link"
         href={`/privacy-statement?lang=${I18n.currentLocale()}`}
         target="_blank"

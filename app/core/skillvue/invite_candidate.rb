@@ -91,7 +91,7 @@ module Skillvue
     end
 
     def email
-      @email ||= "#{SecureRandom.hex(5)}@example.com"
+      @email ||= "#{SecureRandom.hex(10)}@example.com"
     end
 
     def encoded_user_assessment_id

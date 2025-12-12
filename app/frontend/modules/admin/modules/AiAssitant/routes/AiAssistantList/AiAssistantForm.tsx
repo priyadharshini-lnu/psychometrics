@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import {
   Form, Input, Select, Button, Row, Col, Typography, Flex, message, Spin, Popover,
-  Descriptions,
+  Descriptions, Switch,
+  Tooltip,
 } from 'antd'
 import { useSelector } from 'react-redux'
 import { PlusOutlined, InfoCircleOutlined } from '@ant-design/icons'
@@ -12,6 +13,7 @@ import { ASSISTANT_TYPES, DEPENDENCY_TYPES } from '~/modules/admin/modules/AiAss
 import { useResources } from '~/hooks/useResources/useResources'
 import { OutputSchemaKeyFields } from './OutputSchemaKeyFields'
 import { AiAssistantRevisions } from './AiAssistantRevisions'
+import { AdvancedPromptEditor } from './AdvancedPromptEditor'
 
 type Props = {
    aiAssistant?: AiAssistant
@@ -28,8 +30,8 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
   const [form] = Form.useForm()
 
   const [listError, setListError] = useState<string>('')
-
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isAdvancedPrompt, setIsAdvancedPrompt] = useState<boolean>(false)
 
   const navigate = useNavigate()
 
@@ -44,7 +46,10 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
   const handleSubmit = () => {
     form.validateFields().then(() => {
       setIsLoading(true)
-      const data = form.getFieldsValue()
+      const data = {
+        ...form.getFieldsValue(),
+        advancedPromptingEnabled: isAdvancedPrompt,
+      }
 
       let updatedAssistantOutputSchemaKeysAttributes: {
         id: number;
@@ -95,7 +100,11 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [])
+    // Set the advanced prompt state based on the existing aiAssistant data
+    if (aiAssistant?.advancedPromptingEnabled) {
+      setIsAdvancedPrompt(aiAssistant.advancedPromptingEnabled)
+    }
+  }, [aiAssistant])
 
   const applyRevisionValues = (values) => {
     form.setFieldsValue(values)
@@ -111,6 +120,9 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
     return Promise.resolve()
   }
 
+  // Only allow advanced prompting for idp assistant type for now
+  const allowAdvancedPrompting = assistantType === ASSISTANT_TYPES.idp_assistant.id
+
   if (isLoading) {
     return <Spin size="large" />
   }
@@ -123,8 +135,12 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
           form={form}
           layout="vertical"
           className="resourceForm"
-          initialValues={aiAssistant ? { ...aiAssistant } : {
+          initialValues={aiAssistant ? {
+            ...aiAssistant,
+            advancedPromptingEnabled: aiAssistant.advancedPromptingEnabled || false,
+          } : {
             assistantType: ASSISTANT_TYPES.content_writer.id,
+            advancedPromptingEnabled: false,
           }}
         >
           <Form.Item
@@ -210,12 +226,48 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
             </Select>
           </Form.Item>
 
+          {/* Hidden field to track advanced prompting state */}
+          <Form.Item
+            name="advancedPromptingEnabled"
+            hidden
+          >
+            <Input />
+          </Form.Item>
+
           <Form.Item
             name="systemPrompt"
-            label={I18n.t('administration.ai_assistants.form.system_prompt')}
+            label={(
+              <Row align="middle" gutter={16}>
+                <Col>
+                  {I18n.t('administration.ai_assistants.form.system_prompt')}
+                </Col>
+                <Col>
+                  {
+                    allowAdvancedPrompting && (
+                      <Tooltip title={I18n.t('admin.ai_assistants_advanced_mode_tooltip')}>
+                        <Switch
+                          size="small"
+                          checked={isAdvancedPrompt}
+                          onChange={(checked) => {
+                            setIsAdvancedPrompt(checked)
+                            form.setFieldValue('advancedPromptingEnabled', checked)
+                          }}
+                          checkedChildren={I18n.t('shared.advanced')}
+                          unCheckedChildren={I18n.t('shared.basic')}
+                        />
+                      </Tooltip>
+                    )
+                  }
+                </Col>
+              </Row>
+            )}
             rules={[{ required: true }]}
           >
-            <Input.TextArea rows={4} />
+            {isAdvancedPrompt && allowAdvancedPrompting ? (
+              <AdvancedPromptEditor />
+            ) : (
+              <Input.TextArea rows={4} />
+            )}
           </Form.Item>
           <Form.Item
             name="userPrompt"

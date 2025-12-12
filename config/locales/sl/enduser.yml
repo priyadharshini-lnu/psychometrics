@@ -3,6 +3,9 @@ sl:
   enduser:
     add_idp_plan_note: Dodaj opombo...
     add_idp_plan_rejection_reason: Dodaj razlog...
+    ai_idp_assistant_response_no: Ne
+    ai_idp_assistant_response_upload_different_document: Želim naložiti drug dokument.
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: Da, nadaljujte z ustvarjanjem načrta.
     approve_idp_plan: Odobri načrt
     bookings: Rezervacije
     campaign: Kampanja

@@ -52,15 +52,15 @@ export default function EvaluatorTable ({
       />
 
       <Column
-        title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.report_status')}
+        title={I18n.t('admin.report_status')}
         key="report_status"
         render={({ reportStatus }) => reportStatus && I18n.t(`reports.statuses.${reportStatus}`)}
       />
 
       <Column
-        title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.status')}
+        title={I18n.t('admin.evaluation_status')}
         key="status"
-        render={({ status }) => status && I18n.t(`subjects.statuses.${status}`)}
+        render={({ status }) => status && I18n.t(`admin.${status}`)}
       />
 
       <Column

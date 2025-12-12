@@ -232,6 +232,19 @@ ko:
               contains_repeats: 비밀번호에는 반복되는 내용이 없어야 합니다
               too_short: 비밀번호가 너무 짧습니다. 최소 %{count}자 필요
               too_weak: 비밀번호에는 소문자 1개, 대문자 1개, 숫자 1개, 특수 문자 1개 이상이 포함되어야 합니다.
+        project_license:
+          attributes:
+            base:
+              exceeds_available: 사용 가능한 라이선스 이상을 할당할 수 없습니다
+            license_id:
+              already_present: 이미 이 프로젝트에 참여하고 있습니다
+            usage_limit:
+              cant_be_less_than_used: 현재 사용 횟수 %{used_count} 이하로 설정할 수 없습니다
+              cant_be_more_than_available: 면허 한도(%{usage_limit})를 초과할 수 없습니다.
+              exceeds_available: 사용 가능한 라이선스 이상일 수 없습니다
+              less_than_used_number: 사용 라이선스 수보다 적을 수 없습니다
+            used_number:
+              overused: 사용 가능한 라이선스 이상일 수 없습니다.
         questions_import_block_form:
           attributes:
             name:
@@ -422,6 +435,10 @@ ko:
               inclusion: 는 부울이어야 합니다
             start_date_time:
               invalid_datetime: 가 유효하지 않습니다
+        yoodli:
+          attributes:
+            name:
+              not_unique: 이 통합은 이미 이 프로젝트에 적용되어 있습니다.
   activerecord:
     attributes:
       administration/assessments/assign_form:
@@ -452,6 +469,7 @@ ko:
           simulation: 시뮬레이션
           skillvue: 스킬뷰
           threesixty: 360 캠페인
+          yoodli: 유들리
         category: 카테고리
         created_at: 생성 날짜
         description: 설명
@@ -469,6 +487,7 @@ ko:
           saville: 새빌 평가
           simulation: 시뮬레이션 평가
           skillvue: Skillvue 평가
+          yoodli: 유들리 평가
         updated_at: 수정된 날짜
       assign:
         completed_at: 완료 날짜
@@ -836,6 +855,7 @@ ko:
         data_report_export: 데이터 보고서 내보내기
         export_admin_with_permissions: 권한이 있는 관리자 내보내기
         export_assessment_questions: 수출 평가 질문
+        export_campaign_ai_artifacts: 수출 캠페인 AI 아티팩트
         export_campaign_factors: 수출 캠페인 요소
         export_campaign_scorings: 내보내기 캠페인 점수
         export_dashboard_as_file: 대시보드를 파일로 내보내기
@@ -857,10 +877,12 @@ ko:
         export_user_report_events: 사용자 보고서 이벤트 내보내기
         export_users: 캠페인 사용자 내보내기
         external_assessment_export: 외부 결과 내보내기
+        generate_embedding_skills: 스킬 삽입 생성
         import_accesssheet: 액세스 시트 가져오기
         import_assessment_questions: 가져오기 평가 질문
         import_assessment_translations: 평가 번역 가져오기
         import_assessors: 평가자 가져오기
+        import_campaign_ai_artifacts: 캠페인 AI 아티팩트 가져오기
         import_campaign_factors: 캠페인 요소 가져오기
         import_datasheet: 데이터시트 가져오기
         import_development_action_translations: 개발 작업 번역 가져오기
@@ -1028,6 +1050,7 @@ ko:
         saville_assessment_name: 새빌 평가 이름
         simulation_assessment_name: 시뮬레이션 평가 이름
         skillvue_assessment_name: 스킬뷰 평가 이름
+        yoodli_assessment_name: 유들리 평가 이름
       translations_migrated: 번역 마이그레이션
     create: 만들기
     dashboard: 대시보드
@@ -1069,6 +1092,7 @@ ko:
         simulation: 시뮬레이션
         skillvue: 스킬뷰
         threesixty: 360 캠페인
+        yoodli: 유들리
       status:
         finished: 완료
         in_progress: 진행 중
@@ -1081,6 +1105,7 @@ ko:
         saville: 새빌 평가
         simulation: 시뮬레이션 평가
         skillvue: Skillvue 평가
+        yoodli: 유들리 평가
     flow:
       end_assessment_modal:
         custom_message: 사용자 지정 평가 종료 메시지
@@ -1602,8 +1627,6 @@ ko:
       report: 신고
       report_bundle_placeholder: 보고서 번들 선택
     messages:
-      bulk_download_error: 대량 다운로드는 보고서 파일 1,000개로 제한됩니다. 많은 언어를 선택한 경우 다운로드 횟수를 줄여주세요.
-      bulk_download_no_reports: 보고를 찾을 수 없습니다. 다운로드하기 전에 보고서를 생성하십시오.
       bulk_download_successful: 대량 보고서 다운로드 작업이 성공적으로 예약되었습니다
       export_report_data_scheduled: 보고서 데이터 내보내기 작업이 성공적으로 예약되었습니다
     modals:
@@ -1772,6 +1795,7 @@ ko:
       go_back: 돌아 가
       import: 가져오기
       insert: 삽입
+      'no': 아니요
       ok: 확인
       publish: 게시
       reject: 거절하다
@@ -1798,6 +1822,7 @@ ko:
       view: 보기
       view_all_tasks: 모든 작업 보기
       view_detail: 세부 정보 보기
+      'yes': 예
     column:
       action: 액션
       active: 활성
@@ -1911,6 +1936,7 @@ ko:
       hide: 숨기기
       view: 보기
     validations:
+      required: 이 분야는 필수입니다
       select_locale: 일부 로캘을 선택해 주세요
       should_be_whole_number: 는 정수여야 합니다
   confirmation:
@@ -2349,6 +2375,7 @@ ko:
     error_warning: 평가에 문제가 발생했습니다. 지원팀에 문의하세요.
     hogan:
       cannot_start: 지금은 호건 평가를 시작할 수 없습니다. 몇 분 후에 다시 시도해 주세요.
+    lighthouse_app: 머서 등대
     login: 로그인
     maintenance:
       notification: Lighthouse 60초 후에 정기 점검을 위해 다운됩니다
@@ -2450,6 +2477,8 @@ ko:
   idp:
     actions: 작업
     add_comments: 주석 추가
+    add_note: 추가...
+    add_reason: 이성도 더해...
     added_development_action: 개발 작업 추가
     ai:
       assistant:
@@ -2467,8 +2496,8 @@ ko:
       reset_chat: 채팅 재설정
       reset_confirmation: 이 채팅을 버리고 새로 시작하시겠습니까?
       retake_steps:
-        chat_hint: 어떤 정보를 더 제공하고 싶은지 알려주세요.
-        chat_title: 더 많은 정보를 제공하고 싶으신가요?
+        chat_hint: 새 파일을 업로드하거나 채팅을 재시작해 더 자세한 내용을 공유해 주시면 최선을 다해 도와드리겠습니다.
+        chat_title: 초기 분석이 기대에 미치지 못해 죄송합니다.
         start_chat: 채팅 시작
         start_chat_again: 채팅 다시 시작
         upload_document: 문서 업로드
@@ -2494,17 +2523,19 @@ ko:
         chat_title: Chat Insight 요약
         file_title: 업로드된 문서 인사이트
         gap_report_title: 기술 격차 보고서 분석
-        hint: 그렇다면 IDP를 생성하지 않으면 답변을 다시 받을 수 있습니다.
-        title: 결과에 만족하십니까?
+        hint: 허락해 주신다면, 제가 개발 계획을 세울 수 있습니다. 만약 그렇지 않다면, 채팅을 다시 시작하거나 새 파일을 업로드할 수 있습니다.
+        title: 분석에 만족하십니까?
         upload_file: 업로드된 파일
         view_chat: 채팅 보기
       upload:
-        description: 파일을 클릭하거나 이 영역으로 드래그하여 업로드합니다.
+        description: '지원 파일 형식: PDF 문서 %{maxFileSize}MB'
         drop: 여기에 파일 드롭
-        title: 파일 업로드
+        title: 여기를 클릭하거나 파일을 내려놓으세요
       welcome:
         text: 성장 조니를 차트로 작성할 준비가 되셨나요? 시작하자!
         title: 안녕하세요, 저는 개발 도우미입니다
+    approval_note: 승인 노트
+    approve_plan: 계획 승인
     behavioral: 행동
     board: 보드
     change_history: 변경 내역
@@ -2605,12 +2636,14 @@ ko:
       mark_as_complete: 완료로 표시
       no_development_actions: 개발 작업 없음
       on_the_job: 업무 중
+      one: "[KO] 1"
       other: 기타
       private: 비공개
       publish_plan: 게시 계획
       remove: 제거
       save_plan: 요금제 저장
       search_development_actions: 개발 작업 검색
+      selected_count: "%{count} 선정"
       show_development_action_information: 개발 작업 정보 표시
       skill: 스킬
       sprint: 스프린트
@@ -2619,7 +2652,9 @@ ko:
       structured_learning_label: 협업 학습
       submit_plan: 계획 제출
       success: 개발 작업이 성공적으로 완료되었습니다.
+      three: "[KO] 3"
       toggle_skill_privacy: Toggle 스킬 개인 정보 보호
+      two: "[KO] 2"
       write_here: 여기에 쓰기...
     direct_reportee_details: 직접 보고자 세부 정보
     download:
@@ -2630,6 +2665,7 @@ ko:
     edit_progress: 진행 상황 편집
     fetching_skill_gap_report: 기술 격차 보고서 가져오기...
     go_to_previous_step: 이전 단계로 이동
+    go_to_reportee_plan: 리포티의 플랜 세부사항으로 가기
     history:
       added_da:
         one: 개발 작업 추가
@@ -2679,19 +2715,23 @@ ko:
         categories: 카테고리
       save_skills: 스킬 저장
     new_comments: 새 댓글(들)
+    no_plan_changes_found: 지난 검토 이후로 계획에 수정된 것은 없습니다.
     no_skills_added: 아직 추가된 스킬이 없습니다.
     no_skills_added_by_reportee: 신고자 님은 아직 스킬을 추가하지 않았습니다.
     pdf:
       approval_status: 결재 현황
       cover:
         fields:
+          approval_date: 승인일
           assigned_data: 할당된 날짜
           assigned_date: 할당된 날짜
           completion_date: 완료 날짜
+          current_job_role: 현재 직무
           division: 나눗셈
           name: 이름
           publish_date: 게시 날짜
           review_date: 검토 날짜
+          target_job_role: 목표 직무 역할
       guidelines:
         cards:
           c1:
@@ -2721,10 +2761,13 @@ ko:
           main: '이 섹션에는 교실 학습, 코칭 및 현장 학습을 결합한 점진적인 여정을 제공하는 모범 사례 학습(예: 70-20-10 지침)을 염두에 두고 모든 개발 경로의 누적 목록이 포함되어 있습니다. 리더십 개발 경험과 비즈니스 우선 순위의 결과를 기반으로 개발을 위해 고려할 수 있는 가능한 개발 경로가 권장되었습니다.'
         learn_cards:
           collaboration:
+            list: '[KO] ["Offer to coach or mentor others", "Request to be mentored by an expert in your field", "Attain a coach to support your development", "Set-up a collaborative working group to discuss on going challenges in the business", "Get feedback formally and informally from others", "Play an active role in industry associations and networks", "Build your own external networks"]'
             title: 협업 학습(20%) <br/> 다른 사람들을 통해 발전
           job:
+            list: '[KO] ["Assume leadership positions in stakeholder or management committees", "Volunteer to lead change management projects for the organization", "Consider taking on stretching assignments", "Work cross-collaboratively with other functions", "Consider leading projects outside your organization", "Work closely with external industry experts on joint-projects"]'
             title: 직장에서 배우기(70%) <br/> 경험을 통한 발전
           learn:
+            list: '[KO] ["Assume leadership positions in stakeholder or management committees", "Volunteer to lead change management projects for the organization", "Consider taking on stretching assignments", "Work cross-collaboratively with other functions", "Consider leading projects outside your organization", "Work closely with external industry experts on joint-projects"]'
             title: 공식 학습(10%) <br/> 구조화된 학습을 통한 개발
         title: IDP를 안내하기 위한 지침
       idp:
@@ -2747,8 +2790,12 @@ ko:
         approved: 검토 및 승인
         completed: 완료
         draft: 초안
+        in_progress: 진행 중
+        in_review: 리뷰 중
         not_reviewed: 검토되지 않음
+        not_started: 시작하지 않았습니다
         pending_approval: 리뷰
+        rejected: 거부
       summary:
         ai_count: 생성형 AI
         collaborative_learn: 협업 학습
@@ -2770,6 +2817,7 @@ ko:
     plan_submitted_for_manager_approval: 관리자 승인을 위해 개인 개발 계획이 제출되었습니다.
     private: 민간의
     public: 공공의
+    reason_for_rejection: 거절 이유
     reflective_questions:
       already_completed: IDP가 이미 완료되었으므로 지금은 질문에 답변할 수 없습니다.
       answer: 대답
@@ -2782,7 +2830,9 @@ ko:
         max_words: 답변은 최대 %{count}단어를 허용합니다
         min_words: 답변에는 최소 %{count}개의 단어가 필요합니다
         required: 질문에 대한 답변이 필요합니다.
+      max_word_limit: 최대 %{max} 단어 정도일 거야
       max_words: 최대 단어 수
+      min_word_limit: 최소 %{min}단어는 되어야 한다
       min_words: 최소 단어 수
       no_answer_provided: 아직 답변이 제공되지 않았습니다.
       no_reflective_questions: 성찰 질문 없음
@@ -2795,6 +2845,7 @@ ko:
       updated_successfully: 답변이 성공적으로 업데이트되었습니다.
       word_limit: "%{min}단어와 %{max}단어 사이여야 합니다."
       words: 가사
+    reject_plan: 계획 거부
     remove_skill: 스킬 제거
     remove_skill_from_plan: 계획에서 스킬 %{name} 제거
     removed_development_action: 제거된 개발 작업
@@ -2815,6 +2866,7 @@ ko:
     summary_logs: "%{reporteeName}에 대한 요약 로그"
     technical: 기술
     user_idp_status:
+      ai_assisted_idp_in_progress: AI 지원 IDP 진행 중
       approved: 승인됨
       completed: 완료
       completion_not_started: 완료가 시작되지 않음
@@ -2934,6 +2986,7 @@ ko:
     usage_overview: 라이선스 사용량 보기
     usages: 용도
   licenses:
+    client_usage: 클라이언트 사용
     enabled: 활성화됨
     end_date: 종료 날짜
     not_enough_idp_license: IDP 라이선스가 충분하지 않은 경우 관리자에게 문의하세요
@@ -2942,6 +2995,10 @@ ko:
     not_enough_proctoring_credits: 감독 세션을 시작하기에 학점이 부족합니다
     number: 번호
     overuse_number: 초과 사용 허용량
+    project_limit_reached: "'%{license_name}' 사용 한도에 도달했으니 관리자에게 연락해 주세요"
+    project_specific: 프로젝트 특화
+    project_specific_license: 프로젝트 특별 라이선스
+    project_usage: 프로젝트 활용
     report_family: 보고서 번들
     start_date: 시작 날짜
     title: 라이선스
@@ -2953,6 +3010,34 @@ ko:
       threesixty: 쓰리식스티
     used_number: 사용한 라이선스
     used_out_of: 총 %{used} 중 %{total}
+  lti:
+    oidc_auth_form:
+      errors:
+        client_id:
+          blank: 클라이언트 ID가 필요합니다
+          invalid: 클라이언트 ID가 등록된 도구 식별자와 일치하지 않습니다
+          validation_failed: 클라이언트 ID 검증 실패
+        login_hint:
+          assessment_completed: 사용자 평가는 이미 완료되었습니다
+          blank: 로그인 힌트가 필요합니다
+          invalid_user_assessment: 로그인 힌트는 유효한 사용자 평가를 참조하지 않습니다
+        lti_deployment_id:
+          not_found: 배포 ID는 유효한 통합을 참조하지 않습니다
+        nonce:
+          blank: 논스가 필요합니다
+        redirect_uri:
+          blank: URI 리디렉션이 필요합니다
+          has_fragment: 리디렉션 URI는 조각을 포함해서는 안 됩니다
+          https_required: 리디렉션 URI는 생산 환경에서 HTTPS를 사용해야 합니다
+          invalid_format: 리다이렉션 URI는 유효한 URI 형식이어야 합니다
+          missing_host: 리디렉션 URI는 호스트를 포함해야 합니다
+          scheme_not_allowed: 리디렉션 URI는 HTTP 또는 HTTPS 프로토콜을 사용해야 합니다
+        response_type:
+          blank: 응답 유형이 필요합니다
+          invalid: 응답 유형은 'id_token'이어야 합니다
+        scope:
+          blank: 범위가 필요합니다
+          invalid: 범위는 'openid'여야 합니다
   mailer:
     copyright:
       text: 등대. 모든 권리 보유
@@ -3198,10 +3283,12 @@ ko:
         pearson: Pearson
         saville: Saville
         skillvue: 스킬뷰
+        yoodli: 유들리
     form:
       load_from_mettl: Mettl에서 로드
       load_from_pearson: 피어슨에서 로드
       load_from_skillvue: 스킬뷰에서 로드
+      load_from_yoodli: 유들리에서 온 적재
       none_external: 없음 - 보고서 작성기 사용
     language: 보고 언어
     language_updated: 보고서 언어가 성공적으로 업데이트되었습니다
@@ -3689,13 +3776,6 @@ ko:
       on_hold: 보류 중
       prepared: 완료
       released: 출시
-    statuses:
-      completed: 완료
-      declined: 거부됨
-      denied: 거부됨
-      done: 완료
-      not_completed: 완료되지 않음
-      waiting: 대기 중
   threesixty:
     accept_privacy_modal:
       accept: 수락

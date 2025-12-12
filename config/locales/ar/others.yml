@@ -232,6 +232,19 @@ ar:
               contains_repeats: يجب ألا تحتوي كلمة المرور على تكرارات
               too_short: كلمة المرور قصيرة جدا. الحد الأدنى المطلوب من الأحرف %{count}
               too_weak: 'يجب أن تحتوي كلمة المرور على: 1 أحرف صغيرة على الأقل ، 1 أحرف كبيرة ، رقم واحد وحرف خاص واحد.'
+        project_license:
+          attributes:
+            base:
+              exceeds_available: لا يمكن تخصيص أكثر من التراخيص المتاحة
+            license_id:
+              already_present: موجودون بالفعل لهذا المشروع
+            usage_limit:
+              cant_be_less_than_used: لا يمكن ضبطه تحت عدد الاستخدام الحالي ل %{used_count}
+              cant_be_more_than_available: لا يمكن أن يكون أكثر من الحد المتاح للرخصة (%{usage_limit})
+              exceeds_available: لا يمكن أن تكون أكثر من التراخيص المتاحة
+              less_than_used_number: لا يمكن أن يقل عدد التراخيص المستخدمة
+            used_number:
+              overused: لا يمكن أن تكون أكثر من تراخيص متاحة.
         questions_import_block_form:
           attributes:
             name:
@@ -329,6 +342,13 @@ ar:
             email:
               blank: لا يمكن أن يكون البريد الإلكتروني فارغا
               not_uniq_email: الصف مع البريد الإلكتروني موجود بالفعل
+        skill_rater_block_form:
+          attributes:
+            base:
+              at_least_one_job_role_required: يتطلب على الأقل دور وظيفي واحد %{skill_type} %{block_name}
+              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: يجب تمكين نوع واحد على الأقل من المهارة مع اختيار دور وظيفي %{block_name}
+              invalid_job_role_type: 'وظيفة غير صالحة %{job_role} %{skill_type} %{block_name}. الخيارات الصحيحة: %{valid_options}'
+              props_missing: تكوين المهارات مفقود بالنسبة %{block_name}
         skills_rater_block_form:
           attributes:
             base:
@@ -422,6 +442,10 @@ ar:
               inclusion: يجب أن يكون منطقيا
             start_date_time:
               invalid_datetime: غير صالح
+        yoodli:
+          attributes:
+            name:
+              not_unique: هذا التكامل موجود بالفعل في هذا المشروع.
   activerecord:
     attributes:
       administration/assessments/assign_form:
@@ -452,6 +476,7 @@ ar:
           simulation: محاكاة
           skillvue: سكيلفيو
           threesixty: حملة 360
+          yoodli: يودلي
         category: باب
         created_at: تاريخ الإنشاء
         description: وصف
@@ -469,6 +494,7 @@ ar:
           saville: تقييم سافيل
           simulation: تقييم المحاكاة
           skillvue: تقييم Skillvue
+          yoodli: تقييم يودلي
         updated_at: تاريخ التعديل
       assign:
         completed_at: تاريخ الانتهاء
@@ -782,6 +808,12 @@ ar:
           attributes:
             base:
               max_takes_limit_reached: الحد الذي تم الوصول إليه للحد الأقصى للأخذ
+        register:
+          attributes:
+            mobile_number:
+              blank: رقم الهاتف المحمول مطلوب
+              invalid: رقم الهاتف المحمول غير صالح
+              verification_expired: رمز التحقق انتهت صلاحيته. يمكنك محاولة التحقق مرة أخرى.
         report:
           assessments_not_hogan: يجب أن تكون جميع التقييمات من نوع هوجان
           assessments_not_saville: يجب أن تكون جميع التقييمات من نوع سافيل
@@ -793,6 +825,8 @@ ar:
           not_found: لم يتم العثور على تقرير فجوة المهارات
         user:
           attributes:
+            current_password:
+              invalid: كلمة المرور الحالية غير صحيحة
             manager_id:
               cannot_be_self: لا يمكن تعيين المستخدم كمدير خاص به
         user_idp_comment:
@@ -860,6 +894,7 @@ ar:
         data_report_export: تصدير تقرير البيانات
         export_admin_with_permissions: تصدير المسؤول مع الأذونات
         export_assessment_questions: أسئلة تقييم التصدير
+        export_campaign_ai_artifacts: قطع أثرية لحملة التصدير الذكاء الاصطناعي
         export_campaign_factors: عوامل حملة التصدير
         export_campaign_scorings: حملات التصدير
         export_dashboard_as_file: تصدير لوحة المعلومات كملف
@@ -881,10 +916,12 @@ ar:
         export_user_report_events: تصدير أحداث تقرير المستخدم
         export_users: تصدير مستخدمي الحملة
         external_assessment_export: تصدير النتائج الخارجية
+        generate_embedding_skills: توليد تضمين للمهارات
         import_accesssheet: استيراد الحجز
         import_assessment_questions: أسئلة تقييم الاستيراد
         import_assessment_translations: استيراد ترجمات التقييم
         import_assessors: مقيمو الاستيراد
+        import_campaign_ai_artifacts: استيراد قطع أثرية من الذكاء الاصطناعي للحملة
         import_campaign_factors: استيراد عوامل الحملة
         import_datasheet: استيراد ورقة البيانات
         import_development_action_translations: استيراد ترجمات إجراءات التطوير
@@ -1053,6 +1090,7 @@ ar:
         saville_assessment_name: اسم تقييم سافيل
         simulation_assessment_name: اسم تقييم المحاكاة
         skillvue_assessment_name: اسم تقييم المهارات
+        yoodli_assessment_name: اسم تقييم يودلي
       translations_migrated: الترجمة المهاجرة
     create: خلق
     dashboard: لوحه القياده
@@ -1094,6 +1132,7 @@ ar:
         simulation: محاكاة
         skillvue: سكيلفيو
         threesixty: حملة 360
+        yoodli: يودلي
       status:
         finished: منته
         in_progress: قيد التنفيذ
@@ -1106,6 +1145,7 @@ ar:
         saville: تقييم سافيل
         simulation: تقييم المحاكاة
         skillvue: تقييم Skillvue
+        yoodli: تقييم يودلي
     flow:
       end_assessment_modal:
         custom_message: نهاية مخصصة لرسالة التقييم
@@ -1639,8 +1679,6 @@ ar:
       report: تقرير
       report_bundle_placeholder: حدد حزمة تقارير
     messages:
-      bulk_download_error: يقتصر التنزيل المجمع على 1000 ملف تقرير. إذا كنت قد اخترت العديد من اللغات ، فيرجى تقليلها.
-      bulk_download_no_reports: لم يتم العثور على تقارير. يرجى إنشاء التقارير قبل التنزيل.
       bulk_download_successful: تمت جدولة مهمة تنزيل التقرير المجمع بنجاح
       export_report_data_scheduled: تمت جدولة مهمة تصدير بيانات التقرير بنجاح
     modals:
@@ -1809,6 +1847,7 @@ ar:
       go_back: الرجوع للخلف
       import: استورد
       insert: أدخل
+      'no': لا
       ok: موافق
       publish: النشر
       reject: رفض
@@ -1835,6 +1874,7 @@ ar:
       view: منظر
       view_all_tasks: عرض جميع المهام
       view_detail: عرض التفاصيل
+      'yes': نعم
     column:
       action: نشاط
       active: نشط
@@ -1948,6 +1988,7 @@ ar:
       hide: أخفى
       view: منظر
     validations:
+      required: هذا المجال مطلوب
       select_locale: الرجاء تحديد بعض الإعدادات المحلية
       should_be_whole_number: يجب أن يكون رقما صحيحا
   confirmation:
@@ -2403,6 +2444,7 @@ ar:
     error_warning: عفوا ، حدث خطأ ما في تقييمك. يرجى الاتصال بالدعم.
     hogan:
       cannot_start: لا يمكنك بدء تقييم هوجان الآن. يرجى المحاولة بعد بضع دقائق.
+    lighthouse_app: منارة ميرسر
     login: تسجيل الدخول
     maintenance:
       notification: سيتم تعطيل Lighthouseة للصيانة المجدولة في غضون 60 ثانية
@@ -2523,8 +2565,8 @@ ar:
       reset_chat: إعادة تعيين الدردشة
       reset_confirmation: هل أنت متأكد من أنك تريد تجاهل هذه الدردشة والبدء من جديد؟
       retake_steps:
-        chat_hint: اسمحوا لي أن أعرف ما هي المعلومات التي تريد تقديمها أكثر أدناه؟
-        chat_title: هل تريد تقديم المزيد من المعلومات؟
+        chat_hint: يمكنك رفع ملف جديد أو إعادة تشغيل الدردشة لمشاركة المزيد من التفاصيل، وسأبذل قصارى جهدي لمساعدتك.
+        chat_title: آسف لأن التحليل الأولي لم يلب توقعاتك.
         start_chat: بدء الدردشة
         start_chat_again: بدء الدردشة مرة أخرى
         upload_document: تحميل المستند
@@ -2550,14 +2592,14 @@ ar:
         chat_title: ملخص رؤى الدردشة
         file_title: رؤى المستندات التي تم تحميلها
         gap_report_title: تحليل تقرير فجوة المهارات
-        hint: إذا كانت الإجابة بنعم ، فسنقوم بإنشاء IDP الخاص بك وإلا يمكنك استعادة إجاباتك
-        title: هل أنت راض عن النتائج؟
+        hint: بإذنك، إذا قلت نعم، يمكنني إعداد خطة تطوير لك. إذا لم يكن كذلك، يمكنك إعادة تشغيل الدردشة أو رفع ملف جديد.
+        title: هل أنت راض عن التحليل؟
         upload_file: الملف الذي تم تحميله
         view_chat: عرض الدردشة
       upload:
-        description: انقر فوق الملفات أو اسحبها إلى هذه المنطقة لتحميلها
+        description: 'نوع الملف المدعوم: مستندات PDF حتى %{maxFileSize}MB'
         drop: قم بإسقاط الملف هنا
-        title: تحميل الملفات
+        title: انقر أو أسقط الملف هنا
       welcome:
         text: هل أنت مستعد لرسم نموك جوني؟ هيا نبدأ!
         title: مرحبا، أنا مساعد التطوير الخاص بك
@@ -2663,6 +2705,7 @@ ar:
       mark_as_complete: وضع علامة مكتمل
       no_development_actions: لا توجد إجراءات تطويرية
       on_the_job: في العمل
+      one: "[AR] 1"
       other: أخرى
       private: خاص
       publish_plan: نشر الخطة
@@ -2678,7 +2721,9 @@ ar:
       structured_learning_label: التعلم التعاوني
       submit_plan: تقديم الخطة
       success: إجراءات التطوير المنجزة بنجاح
+      three: "[AR] 3"
       toggle_skill_privacy: تبديل خصوصية المهارة
+      two: "[AR] 2"
       write_here: اكتب هنا...
     direct_reportee_details: تفاصيل المبلغين المباشرين
     download:
@@ -2689,6 +2734,7 @@ ar:
     edit_progress: تحرير التقدم
     fetching_skill_gap_report: تقرير جلب فجوات المهارات ...
     go_to_previous_step: انتقل إلى الخطوة السابقة
+    go_to_reportee_plan: اذهب إلى تفاصيل خطة المبلغ
     history:
       added_da:
         one: إجراءات إنمائية مضافة
@@ -2738,19 +2784,23 @@ ar:
         categories: الفئات
       save_skills: حفظ المهارات
     new_comments: تعليق (تعليقات) جديدة
+    no_plan_changes_found: لم تجر أي تعديلات على الخطة منذ آخر مراجعة لك.
     no_skills_added: لم تتم إضافة مهارات حتى الآن.
     no_skills_added_by_reportee: لم يقم المُبلغ بإضافة أي مهارات بعد
     pdf:
       approval_status: حالة الموافقة
       cover:
         fields:
+          approval_date: تاريخ الموافقة
           assigned_data: تاريخ التعيين
           assigned_date: تاريخ التعيين
           completion_date: تاريخ الإكمال
+          current_job_role: الدور الوظيفي الحالي
           division: القسم
           name: الاسم
           publish_date: تاريخ النشر
           review_date: تاريخ المراجعة
+          target_job_role: الدور المستهدف
       guidelines:
         cards:
           c1:
@@ -2825,11 +2875,15 @@ ar:
         behavioral: السلوكية
         technical: التقنية
       statuses:
-        approved: تمت المراجعة والموافقة
+        approved: موافقة
         completed: مكتمل
         draft: المسودة
+        in_progress: جار التقديم
+        in_review: في المراجعة
         not_reviewed: لم تتم المراجعة
+        not_started: لم يبدأ بعد
         pending_approval: قيد المراجعة
+        rejected: نبيذ
       summary:
         ai_count: الذكاء الاصطناعي التوليدي
         collaborative_learn: التعلم التعاوني
@@ -3020,6 +3074,7 @@ ar:
     usage_overview: عرض استخدام الترخيص
     usages: استخدامات
   licenses:
+    client_usage: استخدام العميل
     enabled: تمكين
     end_date: تاريخ الانتهاء
     not_enough_idp_license: لا توجد تراخيص IDP كافية، يرجى الاتصال بالمسؤول
@@ -3028,6 +3083,10 @@ ar:
     not_enough_proctoring_credits: لا توجد اعتمادات كافية لبدء جلسة المراقبة
     number: رقم
     overuse_number: بدل الاستخدام الزائد
+    project_limit_reached: تم الوصول إلى حد الاستخدام ل '%{license_name}'، يرجى التواصل مع المسؤول
+    project_specific: مشروع محدد
+    project_specific_license: ترخيص المشروع الخاص
+    project_usage: استخدام المشروع
     report_family: حزمة التقارير
     start_date: تاريخ البدء
     title: الترخيص
@@ -3039,6 +3098,34 @@ ar:
       threesixty: تريويكسيكستي
     used_number: التراخيص المستخدمة
     used_out_of: "%{used} من %{total}"
+  lti:
+    oidc_auth_form:
+      errors:
+        client_id:
+          blank: مطلوب معرف العميل
+          invalid: معرف العميل لا يتطابق مع معرف الأداة المسجل
+          validation_failed: فشل التحقق من هوية العميل
+        login_hint:
+          assessment_completed: تم بالفعل اكتمال تقييم المستخدم
+          blank: مطلوب تلميح تسجيل الدخول
+          invalid_user_assessment: تلميح تسجيل الدخول لا يشير إلى تقييم مستخدم صالح
+        lti_deployment_id:
+          not_found: معرف النشر لا يشير إلى تكامل صالح
+        nonce:
+          blank: النونس مطلوب
+        redirect_uri:
+          blank: إعادة توجيه URI مطلوبة
+          has_fragment: يجب ألا يحتوي إعادة توجيه URI على جزء
+          https_required: إعادة التوجيه يجب استخدام URI في الإنتاج
+          invalid_format: يجب أن يكون رابط المعلومات المرجعية بصيغة URI صالحة
+          missing_host: يجب أن يتضمن رابط المعلومات في إعادة التوجيه مضيفا
+          scheme_not_allowed: يجب أن يستخدم رابط التوجيه الخاص ب HTTP أو بروتوكول HTTPS
+        response_type:
+          blank: نوع الاستجابة مطلوب
+          invalid: يجب أن يكون نوع الاستجابة 'id_token'
+        scope:
+          blank: النطاق مطلوب
+          invalid: يجب أن يكون النطاق 'مفتوحا'
   mailer:
     copyright:
       text: جميع الحقوق محفوظة Lighthouse
@@ -3284,10 +3371,12 @@ ar:
         pearson: بيرسون
         saville: سافيل
         skillvue: سكيلفيو
+        yoodli: يودلي
     form:
       load_from_mettl: تحميل من Mettl
       load_from_pearson: تحميل من بيرسون
       load_from_skillvue: تحميل من سكيلفيو
+      load_from_yoodli: تحميل من يودلي
       none_external: لا شيء - استخدم منشئ التقارير
     language: لغة التقرير
     language_updated: تم تحديث لغة التقرير بنجاح
@@ -3775,13 +3864,6 @@ ar:
       on_hold: قيد الانتظار
       prepared: تم
       released: تم الإصدار
-    statuses:
-      completed: تم اكماله
-      declined: رُفض
-      denied: تم رفضه
-      done: منجز
-      not_completed: لم يتم اكماله
-      waiting: منتظر
   threesixty:
     accept_privacy_modal:
       accept: اقبل
@@ -4250,6 +4332,7 @@ ar:
     not_in_future: يجب ألا يكون التاريخ المحدد في المستقبل
     not_in_past: يجب ألا يكون التاريخ المحدد في الماضي
     number: يجب أن يكون ردك عباره عن رقم
+    photo: مطلوب
     range: الرجاء الإجابة على الأقل %{min} ولا تزيد عن %{max} الاختيار (الخيارات).
     required: يرجى الإجابة على هذا السؤال
     text: يجب ألا يحتوي ردك على أرقام

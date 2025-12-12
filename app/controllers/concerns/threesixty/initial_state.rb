@@ -63,6 +63,9 @@ module Threesixty::InitialState
           idpEnabled: @current_project.client.feature_enabled?(:idp) && @current_project.project_feature_enabled?(:idp),
           aiAssistants: @current_project.client.feature_enabled?(:ai_assistants) &&
                         @current_project.project_feature_enabled?(:ai_assistants)
+        },
+        securitySettings: {
+          enableRecaptcha: @current_project.security_setting.enable_recaptcha
         }
       },
       currentUser: serialized_current_user,

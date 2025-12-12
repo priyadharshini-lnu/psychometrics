@@ -20,18 +20,14 @@ module Threesixty
       NOT_AVAILABLE = 'not_available'
       RELEASED = 'released'
 
-      def initialize(subject, option, subject_evaluator_counters, is_bulk_action = false)
+      def initialize(subject, option, subject_evaluator_counters)
         @subject = subject
         @option = option
         @subject_evaluator_counters = subject_evaluator_counters
-        @is_bulk_action = is_bulk_action
       end
 
       def call # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         return broadcast :ok, nil unless subject
-        if !@is_bulk_action && !subject_cannot_access_report?
-          return broadcast :ok, NOT_AVAILABLE
-        end
         return broadcast :ok, RELEASED if subject.report_status_released?
         return broadcast :ok, ON_HOLD if subject.report_status_on_hold?
         return broadcast :ok, APPROVED if manager_can_approve_report? && subject.report_approved?
@@ -49,10 +45,6 @@ module Threesixty
       private
 
       attr_reader :subject, :option, :subject_evaluator_counters
-
-      def subject_cannot_access_report?
-        option.reports.dig('access', 'self_can_access')
-      end
 
       def report_approval_required?
         manager_can_approve_report? || admin_approves_report?

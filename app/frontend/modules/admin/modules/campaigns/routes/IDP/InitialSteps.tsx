@@ -13,6 +13,8 @@ import { SkillGapReportStep } from './SkillGapReportStep'
 import { useResources } from '~/hooks/useResources'
 import { UserIdpPlan } from '~/modules/admin/modules/campaigns/core/UserIdpPlan'
 import { AdminAddSkills } from './AdminAddSkills'
+import { ResetPlanButton } from '~/components/IdpShared/ResetPlanButton'
+
 import { InformationBanner } from './InformationBanner'
 import { USER_IDP_PLAN_STATUS, STEPS } from './constants'
 
@@ -31,19 +33,21 @@ export const InitialStepsComponent = () => {
   // eslint-disable-next-line max-len
   const currentPath = `/admin/projects/${projectId}/new_campaigns/${campaignId}/participants/subjects/${userId}/idp/${idpPlanId}`
 
-
   const {
-    fetchSingle: fetchUserIdpPlan, updateResource: updatePlan, getResource,
+    fetchSingle: fetchUserIdpPlan, updateResource: updatePlan, getResource, memberAction,
   } = useResources<UserIdpPlan>(
     'user_idp_plans',
     {
       apiConfig: {
         include: ['idp_template', 'skills.development_actions', 'skills'],
+        include_resource_meta: ['permissions'],
       },
     },
   )
 
   const userIdpPlanData = getResource(idpPlanId as string) as UserIdpPlan
+
+  const canResetPlan = userIdpPlanData?.meta?.permissions?.reset ?? false
 
   const STEP_ITEMS = [
     {
@@ -150,6 +154,26 @@ export const InitialStepsComponent = () => {
     })
   }
 
+  const extraHeaderContent = (
+    <>
+      {canResetPlan && (
+        <ResetPlanButton
+          action={() => {
+            setIsLoading(true)
+            memberAction({
+              id: userIdpPlanData?.id,
+              action: 'reset',
+              method: 'post',
+            }).then(() => {
+              setIsLoading(false)
+              navigate(`${currentPath}/step/getting_started`)
+            })
+          }}
+        />
+      )}
+    </>
+  )
+
   const idpSteps = (
     <Flex vertical className="p-4" style={{ fontSize: '16px' }}>
       <Steps
@@ -174,6 +198,7 @@ export const InitialStepsComponent = () => {
       )}
       {paramStep === STEPS.addSkills && (
         <AdminAddSkills
+          header={extraHeaderContent}
           userIdpSkills={userIdpPlanData?.skills}
           next={handleNextForAddSkillsStep}
           prev={handlePrevForAddSkillsStep}

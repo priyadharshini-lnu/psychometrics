@@ -4,7 +4,7 @@ class Api::V2::Administration::Subjects::MeetingRecordingResource < JSONAPI::Res
   model_name 'MeetingRecording'
 
   attributes :id, :status, :external_id, :recording_date, :recording_url, :assessment_center_date_and_time, :assessors,
-             :participants, :transcription_url
+             :participants, :transcription_url, :transcription_text
 
   def recording_url
     @model.recording_file.attached? ? @model.recording_file.url : nil
@@ -28,5 +28,11 @@ class Api::V2::Administration::Subjects::MeetingRecordingResource < JSONAPI::Res
 
   def transcription_url
     @model.transcription_file.attached? ? @model.transcription_file.url : nil
+  end
+
+  def transcription_text
+    return nil unless @model.transcription_file.attached?
+
+    @model.transcription_file.download
   end
 end

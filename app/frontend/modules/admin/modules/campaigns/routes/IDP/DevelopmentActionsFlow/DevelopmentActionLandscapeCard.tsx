@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import {
   Progress, Button, Flex, Typography, DatePicker, Divider,
   Tooltip, Empty, Modal,
@@ -22,7 +22,6 @@ type DevelopmentActionLandscapeCardProps = {
   editMode?: boolean
   onAddDevelopmentAction?: () => void
   onUpdateDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
-  onUpdateDevelopmentActionProgress?: (developmentAction: Pick<DevelopmentAction, 'id' | 'progress'>) => void
   onRemoveDevelopmentAction: (developmentAction: DevelopmentAction) => void
   name: string,
   developmentActions: Partial<DevelopmentAction>[]
@@ -268,12 +267,28 @@ const Card = ({
             }}
             className="p-3"
           >
+            {
+              developmentAction.image ? (
+                <Flex className={cs('me-4', !(isTablet) ? 'mb-3' : '')}>
+                  <img
+                    aria-hidden="true"
+                    src={developmentAction.image}
+                    className={styles.image}
+                    alt=""
+                  />
+                </Flex>
+              ) : null
+            }
             <Typography.Title
               level={5}
               className="mt-0"
               ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
             >
-              {developmentAction.name}
+              {developmentAction.developmentActionType === 'course' ? (
+                <a href={developmentAction.courseUrl}>
+                  {developmentAction.name}
+                </a>
+              ) : developmentAction.name}
             </Typography.Title>
             <Typography.Paragraph
               ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}

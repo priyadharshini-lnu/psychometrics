@@ -46,6 +46,51 @@ RSpec.describe Lti::StartLaunch do
           target_link_uri: 'https://yoodli.example.com/lti/launch'
         )
       end
+
+      context 'when user assessment has not been started' do
+        before do
+          user_assessment.update!(started_at: nil, status: 'not_started')
+        end
+
+        it 'sets started_at timestamp when nil' do
+          expect { subject.call }.to change { user_assessment.reload.started_at }.from(nil)
+          expect(user_assessment.reload.started_at).to be_within(5.seconds).of(Time.zone.now)
+        end
+
+        it 'changes status to in_progress' do
+          expect { subject.call }.to change { user_assessment.reload.status }.
+            from('not_started').to('in_progress')
+        end
+      end
+
+      context 'when user assessment already has started_at' do
+        let(:original_started_at) { 2.hours.ago }
+
+        before do
+          user_assessment.update!(started_at: original_started_at, status: 'not_started')
+        end
+
+        it 'does not update started_at timestamp' do
+          expect { subject.call }.not_to(change { user_assessment.reload.started_at })
+          expect(user_assessment.reload.started_at).to eq(original_started_at)
+        end
+
+        it 'still changes status to in_progress' do
+          expect { subject.call }.to change { user_assessment.reload.status }.
+            from('not_started').to('in_progress')
+        end
+      end
+
+      context 'when user assessment is already in progress' do
+        before do
+          user_assessment.update!(started_at: 1.hour.ago, status: 'in_progress')
+        end
+
+        it 'does not change started_at or status' do
+          expect { subject.call }.not_to(change { user_assessment.reload.started_at })
+          expect { subject.call }.not_to(change { user_assessment.reload.status })
+        end
+      end
     end
 
     context 'when user assessment is completed' do

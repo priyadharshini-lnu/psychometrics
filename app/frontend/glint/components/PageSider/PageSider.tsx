@@ -29,6 +29,7 @@ type PageSiderProps = {
   items: SiderMenuItem[]
   logo: string
   logoAltText?: string
+  logoLinkUrl?: string
   onMenuSelect?: (info: SelectInfo) => void
   siderFooter?: (collapsed: boolean) => React.ReactElement
   activeKey?: string
@@ -47,6 +48,7 @@ export const PageSider: FC<PageSiderProps> = ({
   openKeys = [],
   onSiderCollapse,
   onOpenChange,
+  logoLinkUrl,
 }) => {
   const [menuCollapsed, setMenuCollapsed] = useState(false)
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -80,7 +82,7 @@ export const PageSider: FC<PageSiderProps> = ({
 
   const logoEle = (
     <div className={styles.logoContainer}>
-      <Link to="/">
+      <Link to={logoLinkUrl || '/'}>
         <img src={logo} className={styles.sidebarLogo} alt={logoAltText} />
       </Link>
     </div>

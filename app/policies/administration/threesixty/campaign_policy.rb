@@ -125,5 +125,9 @@ module Administration::Threesixty
     def view_datasheets?
       has_permission?(:datasheets, :view)
     end
+
+    def toggle_caching?
+      has_permission?(:campaigns, :manage)
+    end
   end
 end

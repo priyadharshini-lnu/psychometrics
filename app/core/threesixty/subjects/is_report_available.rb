@@ -11,22 +11,34 @@ module Threesixty
         Threesixty::Participants::GetReportStatus::RELEASED
       ].freeze
 
-      def initialize(subject, option, subject_evaluator_counters, is_bulk_action = false)
+      def initialize(subject, option, subject_evaluator_counters)
         @subject = subject
         @option = option
         @subject_evaluator_counters = subject_evaluator_counters
-        @is_bulk_action = is_bulk_action
       end
 
       def call
         status = Threesixty::Participants::GetReportStatus.call!(
           subject,
           option,
-          subject_evaluator_counters,
-          @is_bulk_action
+          subject_evaluator_counters
         )
 
-        broadcast :ok, REPORT_AVAILABLE_STATUSES.include?(status)
+        if REPORT_AVAILABLE_STATUSES.include?(status)
+          broadcast :ok, { available: true, status_message: nil }
+        else
+          message_result = Threesixty::Subjects::GetReportStatusMessage.call!(
+            subject,
+            status,
+            option,
+            subject_evaluator_counters
+          )
+
+          broadcast :ok, {
+            available: false,
+            status_message: message_result[:status_message]
+          }
+        end
       end
     end
   end

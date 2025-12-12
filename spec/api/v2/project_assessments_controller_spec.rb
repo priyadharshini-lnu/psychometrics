@@ -1,184 +1,102 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'swagger_helper'
 
-describe Api::V2::Administration::ProjectAssessmentsController, swagger_doc: 'v2/swagger.json', type: :request do
+RSpec.describe Api::V2::Administration::ProjectAssessmentsController, type: :request do
   let!(:project) { create(:project, subdomain: 'project-subdomain') }
   let!(:project_assessment) { create(:project_assessment, project_id: project.id) }
   let!(:project_id) { project.id }
   let!(:project_assessment_id) { project_assessment.id }
   let!(:superadmin) { create(:superadmin) }
-  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
+  let!(:api_key) { create(:api_key, user: superadmin) }
+  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before { sign_in(superadmin) }
 
-  path '/projects/{project_id}/project_assessments/' do
-    get 'Assessment List' do
-      operationId 'AssessmentList'
-      description 'Fetch Assessment list'
+  describe 'GET /api/v2/administration/projects/:project_id/project_assessments' do
+    it 'fetches Assessment list' do
+      get "/api/v2/administration/projects/#{project_id}/project_assessments",
+          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-      tags 'Assessment'
-      consumes 'application/json'
-      security [basic: []]
-      parameter name: :project_id, in: :path, type: :string
-
-      response '200', 'Assessment List' do
-        schema '$ref' => '#/components/schemas/ProjectAssessmentListResponse'
-
-        examples 'application/json' => [{
-          type: 'project_assessments',
-          data: {
-            id: '1',
-            attributes: {
-              project_id: '1',
-              assessment_id: '1',
-              normalize_factor_scores: false
-            }
-          }
-        }]
-
-        run_test! do |response|
-          assessments = JSON.parse(response.body)
-          assessment_response = assessments['data'].find { |c| c['id'] == project_assessment.id.to_s }
-          expect(assessment_response).to have_key('id')
-          expect(assessment_response).to have_attribute(:project_id).with_value(project_id.to_s)
-          expect(assessment_response).to have_attribute(:assessment_id).with_value(project_assessment.assessment_id)
-          expect(assessment_response).to have_attribute(:normalize_factor_scores).with_value(
-            project_assessment.normalize_factor_scores
-          )
-        end
-      end
+      expect(response).to have_http_status(:ok)
+      assessments = JSON.parse(response.body)
+      assessment_response = assessments['data'].find { |c| c['id'] == project_assessment.id.to_s }
+      expect(assessment_response).to have_key('id')
+      expect(assessment_response).to have_attribute(:project_id).with_value(project_id.to_s)
+      expect(assessment_response).to have_attribute(:assessment_id).with_value(project_assessment.assessment_id)
+      expect(assessment_response).to have_attribute(:normalize_factor_scores).with_value(
+        project_assessment.normalize_factor_scores
+      )
     end
   end
 
-  path '/projects/{project_id}/project_assessments/' do
-    post 'Create an Project Assessment' do
-      operationId 'CreateProjectAssessment'
-      description 'Create new Project Assessment'
-      tags 'Project Assessment'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :project_id, in: :path, type: :string
-      parameter name: :body,
-                in: :body,
-                schema: { '$ref' => '#/components/schemas/ProjectAssessmentCreateRequest' },
-                required: true
-
-      response '201', 'Project Assessment created' do
-        schema '$ref' => '#/components/schemas/ProjectAssessmentResponse'
-
-        examples 'application/json' => {
+  describe 'POST /api/v2/administration/projects/:project_id/project_assessments' do
+    it 'creates Project Assessment' do
+      body = {
+        data: {
           type: 'project_assessments',
-          data: {
-            id: '1',
-            attributes: {
-              project_id: '1',
-              assessment_id: '1',
-              normalize_factor_scores: false,
-              user_result_validity_in_days: nil
-            }
+          attributes: {
+            project_id: project_id.to_s,
+            assessment_id: project_assessment.assessment_id,
+            normalize_factor_scores: project_assessment.normalize_factor_scores,
+            user_result_validity_in_days: 180
           }
         }
+      }
 
-        let!(:body) do
-          {
-            data: {
-              type: 'project_assessments',
-              attributes: {
-                project_id: project_id.to_s,
-                assessment_id: project_assessment.assessment_id,
-                normalize_factor_scores: project_assessment.normalize_factor_scores,
-                user_result_validity_in_days: 180
-              }
-            }
-          }
-        end
+      post "/api/v2/administration/projects/#{project_id}/project_assessments",
+           params: body.to_json,
+           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-        run_test! do |response|
-          assessment = JSON.parse(response.body)
-          expect(assessment['data']).to have_key('id')
-          expect(assessment['data']['attributes']['project_id']).to eq(project_id.to_s)
-          expect(assessment['data']['attributes']['assessment_id']).to eq(project_assessment.assessment_id)
-          expect(assessment['data']['attributes']['normalize_factor_scores']).to eq(
-            project_assessment.normalize_factor_scores
-          )
-          expect(assessment['data']['attributes']['user_result_validity_in_days']).to eq(180)
-          expect(assessment['data']['attributes']['created_at']).to eq(project_assessment.decorate.created_at)
-          expect(assessment['data']['attributes']['updated_at']).to eq(project_assessment.decorate.updated_at)
-        end
-      end
+      expect(response).to have_http_status(:created)
+      assessment = JSON.parse(response.body)
+      expect(assessment['data']).to have_key('id')
+      expect(assessment['data']['attributes']['project_id']).to eq(project_id.to_s)
+      expect(assessment['data']['attributes']['assessment_id']).to eq(project_assessment.assessment_id)
+      expect(assessment['data']['attributes']['normalize_factor_scores']).to eq(
+        project_assessment.normalize_factor_scores
+      )
+      expect(assessment['data']['attributes']['user_result_validity_in_days']).to eq(180)
+      expect(assessment['data']['attributes']['created_at']).to eq(project_assessment.decorate.created_at)
+      expect(assessment['data']['attributes']['updated_at']).to eq(project_assessment.decorate.updated_at)
     end
   end
 
-  path '/projects/{project_id}/project_assessments/{project_assessment_id}' do
-    put 'Update an Project Assessment' do
-      operationId 'UpdateProjectAssessment'
-      description 'Update an Project Assessment'
-      tags 'Project Assessment'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :project_id, in: :path, type: :string
-      parameter name: :project_assessment_id, in: :path, type: :string
-      parameter name: :body,
-                in: :body,
-                schema: { '$ref' => '#/components/schemas/ProjectAssessmentUpdateRequest' },
-                required: true
-
-      response '200', 'Project Assessment updated' do
-        schema '$ref' => '#/components/schemas/ProjectAssessmentResponse'
-        examples 'application/json' => {
-          data: {
-            type: 'project_assessments',
-            id: '1',
-            attributes: {
-              project_id: '1',
-              assessment_id: '1',
-              normalize_factor_scores: false
-            }
+  describe 'PUT /api/v2/administration/projects/:project_id/project_assessments/:project_assessment_id' do
+    it 'updates Project Assessment' do
+      body = {
+        data: {
+          type: 'project_assessments',
+          id: project_assessment.id.to_s,
+          attributes: {
+            project_id: project_id.to_s,
+            assessment_id: project_assessment.assessment_id,
+            normalize_factor_scores: true
           }
         }
+      }
 
-        let!(:body) do
-          {
-            data: {
-              type: 'project_assessments',
-              id: project_assessment.id.to_s,
+      put "/api/v2/administration/projects/#{project_id}/project_assessments/#{project_assessment_id}",
+          params: body.to_json,
+          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-              attributes: {
-                project_id: project_id.to_s,
-                assessment_id: project_assessment.assessment_id,
-                normalize_factor_scores: true
-              }
-            }
-          }
-        end
-
-        run_test! do |response|
-          assessment = JSON.parse(response.body)
-          expect(assessment['data']).to have_key('id')
-          expect(assessment['data']['attributes']['project_id']).to eq(project_id.to_s)
-          expect(assessment['data']['attributes']['assessment_id']).to eq(project_assessment.assessment_id)
-          expect(assessment['data']['attributes']['normalize_factor_scores']).to eq(true)
-        end
-      end
+      expect(response).to have_http_status(:ok)
+      assessment = JSON.parse(response.body)
+      expect(assessment['data']).to have_key('id')
+      expect(assessment['data']['attributes']['project_id']).to eq(project_id.to_s)
+      expect(assessment['data']['attributes']['assessment_id']).to eq(project_assessment.assessment_id)
+      expect(assessment['data']['attributes']['normalize_factor_scores']).to eq(true)
     end
+  end
 
-    delete 'Delete an Project Assessment' do
-      operationId 'DeleteProjectAssessment'
-      description 'Delete an Project Assessment'
-      tags 'Project Assessment'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :project_id, in: :path, type: :string
-      parameter name: :project_assessment_id, in: :path, type: :string
+  describe 'DELETE /api/v2/administration/projects/:project_id/project_assessments/:project_assessment_id' do
+    it 'deletes Project Assessment' do
+      delete "/api/v2/administration/projects/#{project_id}/project_assessments/#{project_assessment_id}",
+             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-      response '204', 'Project Assessment deleted' do
-        run_test! do |response|
-          expect(response.body).to eq('')
-          expect(ProjectAssessment.find_by(id: project_assessment_id)).to eq(nil)
-        end
-      end
+      expect(response).to have_http_status(:no_content)
+      expect(response.body).to eq('')
+      expect(ProjectAssessment.find_by(id: project_assessment_id)).to eq(nil)
     end
   end
 end

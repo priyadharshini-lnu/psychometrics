@@ -9,7 +9,10 @@ ja:
     description: 形容
     edit: 編集
     edited: 新規
+    group_question_max_validation_error: 各グループは最大で{{max}}アイテムを含めることができます。
+    group_question_min_validation_error: 各グループには少なくとも{{min}}のアイテムが含まれている必要があります。
     id: ID
+    idp_ai_assistant_disclaimer: Lighthouse AI IDPアシスタントはミスを犯すことがあります。回答を使う際はご注意ください。
     internet_disconnected_message: 再接続の試行中です。インターネット接続を確認してください。
     mte_logo_alt_text: マーサー・タレント・エンタープライズのロゴ
     name: 名称

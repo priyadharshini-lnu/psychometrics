@@ -294,6 +294,7 @@ en:
             view: View
           userIdpPlans:
             manage: Manage
+            reset: Reset
             title: User IDP Plans
             view: View
           users:
@@ -897,8 +898,6 @@ en:
       new:
         header: Bulk Download
       reports_unavailable: At the moment, no reports are available to download. Please confirm that the reports you want to download are available.
-      select_users_for_download: Please select at least one user to download reports.
-      select_users_for_regenerate: Please select at least one user to regenerate reports.
     cable:
       notification:
         assessment_factors: Factors are fetched
@@ -2353,6 +2352,7 @@ en:
         skills_required_on_publishing: Please choose skills before publishing a template.
         update: Update not allowed because the IDP template is already associated with a user IDP plan.
       fields:
+        approval_date: Approval Date
         assigned_data: Assigned Data
         assigned_date: Assigned Date
         completion_date: Completion Date
@@ -4682,8 +4682,6 @@ en:
             evaluations_received: Evaluations Received
             is_subject: Is Subject
             name: Name
-            report_status: Report Status
-            status: Status
           evaluators:
             add_evaluators: Add Evaluators
             import_evaluators: Import Evaluators

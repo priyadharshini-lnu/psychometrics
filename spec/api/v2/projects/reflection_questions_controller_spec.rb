@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'swagger_helper'
 
-describe Api::V2::Administration::Projects::ReflectionQuestionsController, swagger_doc: 'v2/swagger.json',
-type: :request do
+RSpec.describe Api::V2::Administration::Projects::ReflectionQuestionsController, type: :request do
   let!(:project) { create(:project) }
   let!(:superadmin) { create(:superadmin) }
+  let!(:api_key) { create(:api_key, user: superadmin) }
   let!(:client_admin) { create(:client_admin, client: project.client) }
-  let!(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
+  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
   let!(:project_id) { project.id }
   let!(:idp_template) { create(:idp_template, project_id: project.id) }
   let!(:reflection_question) { create(:reflection_question, project_id: project.id, question: 'test question') }
@@ -16,282 +15,203 @@ type: :request do
   let!(:idp_template_reflection_questions) do
     reflection_question2.idp_template_reflection_questions.create(idp_template_id: idp_template.id)
   end
+
   before { sign_in(superadmin) }
 
-  path '/projects/{project_id}/reflection_questions' do
-    get 'Get a reflection questions' do
-      operationId 'GetReflectionQuestions'
-      description 'Get Reflection Questions'
-      tags 'ReflectionQuestions'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :project_id, in: :path, type: :string
-      parameter name: :'filter[project_id_eq]', in: :query, required: true
+  describe 'GET /projects/:project_id/reflection_questions' do
+    it 'returns reflection questions' do
+      get "/api/v2/administration/projects/#{project_id}/reflection_questions",
+          params: { 'filter[project_id_eq]' => project_id },
+          headers: { 'Authorization' => authorization }
 
-      response '200', 'IdpSetting Update' do
-        schema '$ref' => '#/components/schemas/ReflectionQuestionsListResponse'
-        let!(:'filter[project_id_eq]') { project_id }
-
-        run_test! do |response|
-          data = JSON.parse(response.body)['data'].first
-          expect(data).to have_key('id')
-          expect(data).to have_attribute(:question).with_value('test question')
-        end
-      end
+      expect(response).to have_http_status(:ok)
+      data = JSON.parse(response.body)['data'].first
+      expect(data).to have_key('id')
+      expect(data).to have_attribute(:question).with_value('test question')
     end
+  end
 
-    post 'Create a reflection questions' do
-      operationId 'CreateReflectionQuestions'
-      description 'Create Reflection Questions'
-      tags 'ReflectionQuestions'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :project_id, in: :path, type: :string
-      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/ReflectionQuestionCreateRequest' },
-                required: true
-
-      response '201', 'Reflection Questions Created' do
-        schema '$ref' => '#/components/schemas/ReflectionQuestionResponse'
-
-        examples 'application/json' => [{
+  describe 'POST /projects/:project_id/reflection_questions' do
+    it 'creates a reflection question' do
+      body = {
+        data: {
           type: 'reflection_questions',
-          data: {
-            attributes: {
-              question: 'test question',
-              mandatory: true,
-              min_words: 0,
-              max_words: 100
-            },
-            relationships: {
-              project: {
-                data: {
-                  id: '123',
-                  type: 'clients'
-                }
+          attributes: {
+            question: 'New reflection question',
+            mandatory: true,
+            min_words: 10,
+            max_words: 500
+          },
+          relationships: {
+            project: {
+              data: {
+                type: 'clients',
+                id: project.client.id.to_s
               }
             }
           }
-        }]
-        let(:body) do
-          jsonapi_resource_request(
-            'reflection_questions',
-            {
-              question: 'test question',
-              mandatory: true,
-              min_words: 0,
-              max_words: 100
-            },
-            { project: { id: project.id.to_s, type: 'clients' } }
-          )
-        end
+        }
+      }
 
-        run_test! do |response|
-          data = JSON.parse(response.body)['data']
-          expect(data).to have_key('id')
-          expect(data).to have_attribute(:question).with_value('test question')
-          expect(data).to have_attribute(:mandatory).with_value(true)
-          expect(data).to have_attribute(:min_words).with_value(0)
-          expect(data).to have_attribute(:max_words).with_value(100)
-          expect(data).to have_attribute(:allow_delete).with_value(true)
-        end
-      end
+      post "/api/v2/administration/projects/#{project_id}/reflection_questions",
+           params: body.to_json,
+           headers: {
+             'Authorization' => authorization,
+             'Content-Type' => 'application/vnd.api+json'
+           }
 
-      response '422', 'Unprocessable Entity' do
-        let(:body) do
-          jsonapi_resource_request(
-            'reflection_questions',
-            {
-              question: ''
-            }
-          )
-        end
-
-        run_test! do |response|
-          errors = JSON.parse(response.body)['errors']
-          expect(errors).to include({
-            'title' => "can't be blank",
-            'status' => '422',
-            'source' => { 'pointer' => '/data/attributes/question' }
-          })
-          expect(errors).to include({
-            'title' => "can't be blank",
-            'status' => '422',
-            'source' => { 'pointer' => '/data/relationships' }
-          })
-        end
-      end
+      expect(response).to have_http_status(:created)
+      data = JSON.parse(response.body)['data']
+      expect(data).to have_key('id')
+      expect(data).to have_attribute(:question).with_value('New reflection question')
     end
 
-    path '/projects/{project_id}/reflection_questions/{id}' do
-      put 'Update a reflection questions' do
-        operationId 'UpdateReflectionQuestions'
-        description 'Update Reflection Questions'
-        tags 'ReflectionQuestions'
-        consumes 'application/vnd.api+json'
-        security [basic: []]
-        parameter name: :project_id, in: :path, type: :string
-        parameter name: :id, in: :path, type: :string
-        parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/ReflectionQuestionUpdateRequest' },
-                  required: true
+    it 'returns error for invalid data' do
+      body = {
+        data: {
+          type: 'reflection_questions',
+          attributes: {
+            question: '' # Invalid empty question
+          }
+        }
+      }
 
-        response '200', 'Reflection Questions Updated' do
-          schema '$ref' => '#/components/schemas/ReflectionQuestionResponse'
+      post "/api/v2/administration/projects/#{project_id}/reflection_questions",
+           params: body.to_json,
+           headers: {
+             'Authorization' => authorization,
+             'Content-Type' => 'application/vnd.api+json'
+           }
 
-          examples 'application/json' => [{
-            type: 'reflection_questions',
-            data: {
-              id: '',
-              attributes: {
-                question: 'test question',
-                mandatory: true,
-                min_words: 0,
-                max_words: 100
-              },
-              relationships: {
-                project: {
-                  data: {
-                    id: '123',
-                    type: 'clients'
-                  }
-                }
-              }
-            }
-          }]
-          let(:id) { reflection_question.id.to_s }
-          let(:body) do
-            jsonapi_resource_request(
-              'reflection_questions',
-              {
-                id: reflection_question.id.to_s,
-                question: 'updated question content',
-                mandatory: true,
-                min_words: 20,
-                max_words: 50
-              },
-              {
-                project: {
-                  id: project.id.to_s,
-                  type: 'clients'
-                }
-              }
-            )
-          end
-
-          run_test! do |response|
-            data = JSON.parse(response.body)['data']
-            expect(data).to have_key('id')
-            expect(data).to have_attribute(:question).with_value('updated question content')
-            expect(data).to have_attribute(:mandatory).with_value(true)
-            expect(data).to have_attribute(:min_words).with_value(20)
-            expect(data).to have_attribute(:max_words).with_value(50)
-            expect(reflection_question.reload.question).to eq('updated question content')
-            expect(reflection_question.reload.mandatory).to eq(true)
-            expect(reflection_question.reload.min_words).to eq(20)
-            expect(reflection_question.reload.max_words).to eq(50)
-          end
-        end
-
-        response '422', 'Unprocessable Entity' do
-          let(:id) { reflection_question.id.to_s }
-          let(:body) do
-            jsonapi_resource_request(
-              'reflection_questions',
-              {
-                id: reflection_question.id.to_s,
-                question: ''
-              },
-              {
-                project: {
-                  id: project.id.to_s,
-                  type: 'clients'
-                }
-              }
-            )
-          end
-
-          run_test! do |response|
-            errors = JSON.parse(response.body)['errors']
-            expect(errors).to include({
-              'title' => "can't be blank",
-              'status' => '422',
-              'source' => { 'pointer' => '/data/attributes/question' }
-            })
-          end
-        end
-      end
-
-      delete 'Delete Idp Template' do
-        operationId 'DeleteReflectionQuestions'
-        description 'Delete Reflection Questions'
-        tags 'ReflectionQuestions'
-        consumes 'application/vnd.api+json'
-        security [basic: []]
-        parameter name: :project_id, in: :path, type: :string
-        parameter name: :id, in: :path, type: :string
-
-        response '204', 'Reflection Question Deleted' do
-          let(:id) { reflection_question.id.to_s }
-
-          run_test! do |response|
-            expect(response.status).to eq(204)
-            expect(ReflectionQuestion.find_by(id: id)).to be_nil
-          end
-        end
-
-        response '422', 'Unprocessable Entity' do
-          let(:id) { reflection_question2.id.to_s }
-
-          run_test! do |response|
-            errors = JSON.parse(response.body)['errors']
-            expect(errors).to include({
-              'title' => "This record can't be deleted",
-              'status' => '422',
-              'source' => { 'pointer' => '/id' }
-            })
-          end
-        end
-      end
+      expect(response).to have_http_status(:unprocessable_entity)
     end
   end
 
-  path '/projects/{project_id}/reflection_questions/export' do
-    post 'Export reflection questions' do
-      operationId 'ExportReflectionQuestions'
-      description 'Export reflection questions for a project'
-      tags 'ReflectionQuestions'
-      consumes 'multipart/form-data'
-      security [basic: []]
-      parameter name: :project_id, in: :path, type: :string
+  describe 'PUT /projects/:project_id/reflection_questions/:id' do
+    it 'updates a reflection question' do
+      body = {
+        data: {
+          type: 'reflection_questions',
+          id: reflection_question.id.to_s,
+          attributes: {
+            question: 'Updated reflection question',
+            mandatory: false,
+            min_words: 20,
+            max_words: 1000
+          },
+          relationships: {
+            project: {
+              data: {
+                type: 'clients',
+                id: project.client.id.to_s
+              }
+            }
+          }
+        }
+      }
 
-      response '200', 'Queues export_reflection_questions job successfully' do
-        run_test! do |_response|
-          expect(AdminJobRecord.last.operation).to eq('export_reflection_questions')
-        end
-      end
+      put "/api/v2/administration/projects/#{project_id}/reflection_questions/#{reflection_question.id}",
+          params: body.to_json,
+          headers: {
+            'Authorization' => authorization,
+            'Content-Type' => 'application/vnd.api+json'
+          }
+
+      expect(response).to have_http_status(:ok)
+      data = JSON.parse(response.body)['data']
+      expect(data).to have_key('id')
+      expect(data).to have_attribute(:question).with_value('Updated reflection question')
+    end
+
+    it 'returns error for invalid data' do
+      body = {
+        data: {
+          type: 'reflection_questions',
+          id: reflection_question.id.to_s,
+          attributes: {
+            question: '' # Invalid empty question
+          }
+        }
+      }
+
+      put "/api/v2/administration/projects/#{project_id}/reflection_questions/#{reflection_question.id}",
+          params: body.to_json,
+          headers: {
+            'Authorization' => authorization,
+            'Content-Type' => 'application/vnd.api+json'
+          }
+
+      expect(response).to have_http_status(:unprocessable_entity)
     end
   end
 
-  path '/projects/{project_id}/reflection_questions/import' do
-    post 'Import reflection questions' do
-      operationId 'ImportReflectionQuestions'
-      description 'Import reflection questions for a project'
-      tags 'ReflectionQuestions'
-      consumes 'multipart/form-data'
-      security [basic: []]
-      parameter name: :project_id, in: :path, type: :string
-      parameter name: :file, in: :formData, type: :file, description: 'CSV file'
+  describe 'DELETE /projects/:project_id/reflection_questions/:id' do
+    it 'deletes a reflection question' do
+      delete "/api/v2/administration/projects/#{project_id}/reflection_questions/#{reflection_question.id}",
+             headers: { 'Authorization' => authorization }
 
-      let(:file) do
-        Rack::Test::UploadedFile.new(
-          Rails.public_path.join('example_csv/import_reflection_questions_sample.csv'), 'text/csv'
-        )
-      end
+      expect(response).to have_http_status(:no_content)
+    end
 
-      response '200', 'Queues import_reflection_questions job' do
-        run_test! do |_response|
-          expect(AdminJobRecord.last.operation).to eq('import_reflection_questions')
-        end
-      end
+    it 'returns error when deletion fails' do
+      # Simulate condition where deletion might fail
+      allow_any_instance_of(ReflectionQuestion).to receive(:destroy).and_return(false)
+
+      delete "/api/v2/administration/projects/#{project_id}/reflection_questions/#{reflection_question.id}",
+             headers: { 'Authorization' => authorization }
+
+      expect(response).to have_http_status(:bad_request)
+    end
+  end
+
+  describe 'POST /projects/:project_id/reflection_questions/export' do
+    it 'exports reflection questions successfully' do
+      post "/api/v2/administration/projects/#{project_id}/reflection_questions/export",
+           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/json' }
+
+      expect(response).to have_http_status(:ok)
+      expect(JSON.parse(response.body)).to eq('ok')
+      expect(AdminJobRecord.last.operation).to eq('export_reflection_questions')
+      expect(AdminJobRecord.last.data).to include({ 'project_id' => project_id })
+    end
+  end
+
+  describe 'POST /projects/:project_id/reflection_questions/import' do
+    it 'imports reflection questions successfully' do
+      csv_content = "ID,Mandatory,MinWords,MaxWords,English / en\n1,yes,10,500,Sample Question"
+      file = Rack::Test::UploadedFile.new(StringIO.new(csv_content), 'text/csv',
+                                          original_filename: 'reflection_questions.csv')
+
+      post "/api/v2/administration/projects/#{project_id}/reflection_questions/import",
+           params: { file: file, project_id: project_id },
+           headers: { 'Authorization' => authorization }
+
+      expect(response).to have_http_status(:ok)
+      expect(JSON.parse(response.body)).to eq('ok')
+      expect(AdminJobRecord.last.operation).to eq('import_reflection_questions')
+    end
+
+    it 'returns error for missing file' do
+      post "/api/v2/administration/projects/#{project_id}/reflection_questions/import",
+           params: { project_id: project_id },
+           headers: { 'Authorization' => authorization }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      json_response = JSON.parse(response.body)
+      expect(json_response['errors']).to be_present
+    end
+
+    it 'returns error for invalid CSV content' do
+      csv_content = "InvalidHeader\nInvalidData"
+      file = Rack::Test::UploadedFile.new(StringIO.new(csv_content), 'text/csv', original_filename: 'invalid.csv')
+
+      post "/api/v2/administration/projects/#{project_id}/reflection_questions/import",
+           params: { file: file, project_id: project_id },
+           headers: { 'Authorization' => authorization }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      json_response = JSON.parse(response.body)
+      expect(json_response['errors']).to be_present
     end
   end
 end

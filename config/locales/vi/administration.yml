@@ -95,6 +95,12 @@ vi:
           title: Xác nhận
       permissions:
         labels:
+          aiArtifacts:
+            export: Xuất khẩu
+            import: Nhập khẩu
+            manage: Điều khiển
+            title: Đồ tạo tác AI
+            view: Cảnh
           apiKeys:
             manage: Điều khiển
             title: Khóa API
@@ -220,9 +226,11 @@ vi:
           projects:
             manage: Điều khiển
             manage_admins: Quản lý quản trị viên
+            manage_licenses: Quản lý giấy phép
             manage_users: Quản lý người dùng
             title: Dự án
             view: Cảnh
+            view_licenses: Xem giấy phép
           questions:
             manage: Điều khiển
             title: Câu hỏi
@@ -284,6 +292,10 @@ vi:
             manage: Điều khiển
             title: Lời mời SMS
             view: Cảnh
+          userIdpPlans:
+            manage: Điều khiển
+            title: Gói IDP người dùng
+            view: Cảnh
           users:
             reset_password: Đặt lại mật khẩu
             title: Người dùng
@@ -296,6 +308,9 @@ vi:
     ai_artifacts:
       artifact_results: Kết quả hiện vật
       code: Mã
+      export:
+        success_msg: Đang xuất các tạo tác AI. Vui lòng kiểm tra trạng thái trong thông báo.
+      export_ai_artifacts: Xuất hiện vật AI
       form:
         add_assessment: Thêm đánh giá
         ai_assistant: Trợ lý AI
@@ -320,6 +335,12 @@ vi:
       generated_at_time: Được tạo tại %{time}
       generated_value: Giá trị được tạo ra
       id: ID
+      import:
+        download_example_csv: Tải xuống CSV mẫu
+        info_msg: Tệp đã tải lên đã được xếp hàng đợi để nhập. Vui lòng kiểm tra trạng thái trong thông báo.
+      import_action:
+        title: Nhập hiện vật AI của chiến dịch
+      import_ai_artifacts: Nhập hiện vật AI
       key: Chìa khoá
       name: Tên
       parsed_dependencies:
@@ -335,6 +356,10 @@ vi:
         settings: Cài đặt
       test_generate: Tạo thử nghiệm
       unsaved_changes: Có các thay đổi chưa lưu, hãy cân nhắc gửi biểu mẫu để tạo phản hồi cập nhật từ Playground.
+      used_tokens:
+        input_tokens: Mã thông báo đầu vào
+        output_tokens: Mã thông báo đầu ra
+        title: Sử dụng token
     ai_assistants:
       actions:
         create: Tạo Trợ lý Trí tuệ Nhân tạo (AI)
@@ -872,8 +897,6 @@ vi:
       new:
         header: Tải xuống hàng loạt
       reports_unavailable: Hiện tại, không có báo cáo nào có sẵn để tải xuống. Vui lòng xác nhận rằng các báo cáo bạn muốn tải xuống đã có sẵn.
-      select_users_for_download: Vui lòng chọn ít nhất một người dùng để tải xuống báo cáo.
-      select_users_for_regenerate: Vui lòng chọn ít nhất một người dùng để tái tạo báo cáo.
     cable:
       notification:
         assessment_factors: Các yếu tố được tìm nạp
@@ -929,6 +952,17 @@ vi:
         report_update: Báo cáo được cập nhật
         scoring_update: Chấm điểm được cập nhật
         trash_empty: Bình luận thùng rác trống
+    campaign_ai_artifacts:
+      export:
+        details: Chiến dịch AI Artifacts xuất thành công
+    campaign_ai_artifacts_import:
+      errors:
+        ai_assistant_not_found: 'Không tìm thấy Trợ lý AI cho ID: %{id}'
+        campaign_factor_not_found: Hệ số chiến dịch có mã "%{code}" không được tìm thấy trong chiến dịch này
+        dependency_not_found: "%{type} phần phụ thuộc không tìm thấy %{id} ID"
+        file_required: Tệp là bắt buộc để nhập
+        save_failed: 'Không thể lưu "%{code}" tạo tác AI: %{message}'
+        sheet_column_not_found: Không tìm thấy cột trang tính có tên "%{name}" trong bảng dữ liệu chiến dịch hoặc dự án
     campaign_factor_import:
       errors:
         assessment_not_found_in_campaign: Không tìm thấy ID đánh giá '%{assessment_id}' trong chiến dịch
@@ -1240,6 +1274,7 @@ vi:
         archived: Lưu trữ
         disable: Lưu trữ
         enable: Hủy lưu trữ
+      clients: Khách hàng
       copy:
         successfully: Khách thuê '%{name}' đã được sao chép thành công.
       create:
@@ -2259,6 +2294,10 @@ vi:
           accesssheet_manage: Quản lý bảng truy cập
           accesssheet_settings: Cài đặt bảng truy cập
           accesssheet_view: Chế độ xem Accesssheet
+    header:
+      logout:
+        content: Nhấn Hủy nếu bạn muốn tiếp tục công việc. Nhấn Ok để đăng xuất người dùng hiện tại.
+        title: Bạn có chắc chắn muốn đăng xuất.
     hogan:
       errors:
         new_assessment_response_not_allowed:
@@ -2312,13 +2351,16 @@ vi:
         skills_required_on_publishing: Vui lòng chọn kỹ năng trước khi xuất bản mẫu.
         update: Không được phép cập nhật vì mẫu IDP đã được liên kết với gói IDP của người dùng. Các thay đổi về ngoại hình đã được lưu.
       fields:
+        approval_date: Ngày phê duyệt
         assigned_data: Dữ liệu được chỉ định
         assigned_date: Ngày được giao
         completion_date: Ngày hoàn thành
+        current_job_role: Vai trò công việc hiện tại
         division: Sư đoàn
         name: Tên
         publish_date: Ngày xuất bản
         review_date: Ngày đánh giá
+        target_job_role: Vai trò công việc mục tiêu
       fields_label: Lĩnh vực
       global_skills: Kỹ năng toàn cầu
       idp: IDP
@@ -2546,6 +2588,13 @@ vi:
         details: Chi tiết
         name: Tên tích hợp
       details:
+        client_id: ID khách hàng
+        deployment_id: ID triển khai
+        platform_access_token_url: URL mã truy cập nền tảng
+        platform_authentication_request_url: URL yêu cầu xác thực nền tảng
+        platform_host_name: Tên máy chủ nền tảng
+        platform_id: ID nền tảng
+        platform_public_keyset_url: URL bộ khóa công khai của nền tảng
         provider: Tên nhà cung cấp
         webhookUrl: Webhook URL
         webhookUrls: URL Webhook
@@ -2576,11 +2625,16 @@ vi:
         skillvue:
           apiKey: Khóa API
           apiKeyRequired: Khóa API là bắt buộc
+        yoodli:
+          keyset_url: URL bộ khóa
+          launch_url: URL khởi chạy
+          login_url: URL đăng nhập
       names:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
         skillvue: Kỹ năng
+        yoodli: Yoodli
       validations:
         iiht:
           tenancy_name_present: Tên thuê nhà đã có trong dự án khác
@@ -2590,6 +2644,24 @@ vi:
         skillvue:
           api_key_present: Khóa API đã có trong dự án khác
       view_all_schedules: Xem tất cả lịch trình Mettl
+      yoodli_assessments:
+        add_assessment: Thêm đánh giá Yoodli
+        columns:
+          actions: Hành động
+          created_at: Được tạo tại
+          name: Tên đánh giá
+          product_id: ID sản phẩm
+        delete_confirm: Bạn có chắc chắn muốn xóa bài đánh giá Yoodli này không?
+        edit_assessment: Chỉnh sửa Đánh giá Yoodli
+        manage_catalog: Quản lý đánh giá Yoodli
+        messages:
+          create_success: Đánh giá Yoodli '%{name}' đã được tạo thành công
+          delete_success: Đánh giá Yoodli đã bị xóa thành công
+          update_success: Đánh giá Yoodli '%{name}' đã được cập nhật thành công
+        placeholders:
+          name: Nhập tên đánh giá
+          product_id: Nhập mã sản phẩm
+        search: Tìm kiếm
     interview_questions:
       delete_confirmation: Bạn có chắc chắn muốn xóa Câu hỏi phỏng vấn này không?
       description: Mô tả
@@ -2740,9 +2812,12 @@ vi:
     navigation:
       audit_logs: Nhật ký kiểm tra
       availability: Sẵn sàng
+      configuration: Cấu hình
+      content: Nội dung
       dashboard: Bảng điều khiển
       factors: Yếu tố
       innovation_styles: Phong cách đổi mới
+      logout: Đăng xuất
       occupations: Nghề
       registration_codes: Mã đăng ký
       skills_taxonomy: Phân loại kỹ năng
@@ -2981,6 +3056,7 @@ vi:
           by_skill_exists_id_missing: 'Hàng %{row_number}: Mức độ thành thạo cho kỹ năng ''''%{name}'''' đã tồn tại. Vui lòng cung cấp ID để cập nhật.'
           by_skill_missing: 'Hàng %{row_number}: Dự án và Kỹ năng phải có đối với loại ''by_skill'''
           by_skill_type_exists_id_missing: 'Hàng %{row_number}: Mức độ thành thạo cho loại kỹ năng ''''%{skill_type}'''' đã tồn tại. Vui lòng cung cấp ID để cập nhật.'
+          by_skill_type_missing: 'Hàng %{row_number}: Dự án và Loại kỹ năng phải có cho loại ''''by_skill_type'''''
           default_global_exists_id_missing: 'Hàng %{row_number}: ProficiencyLevel "mặc định" cấp toàn cầu đã tồn tại. Vui lòng cung cấp ID để cập nhật.'
           default_project_exists_id_missing: 'Hàng %{row_number}: ProficiencyLevel "mặc định" cấp dự án đã tồn tại. Vui lòng cung cấp ID để cập nhật.'
           invalid_csv_format: 'Định dạng CSV không hợp lệ: %{message}'
@@ -3294,6 +3370,7 @@ vi:
         mask_identity_for_pearson: Dữ liệu mặt nạ cho Pearson
         mask_identity_for_saville: Dữ liệu mặt nạ cho Saville
         mask_identity_for_skillvue: Dữ liệu mặt nạ cho Skillvue
+        mask_identity_for_yoodli: Mặt nạ dữ liệu cho Yoodli
         privacy_link: Bật liên kết quyền riêng tư
         privacy_link_label: Liên kết quyền riêng tư
         privacy_link_placeholder: Nhập liên kết quyền riêng tư
@@ -3469,6 +3546,7 @@ vi:
           graph_value: Giá trị đồ thị
         graph_value_condition_not_supported_msg: Điều kiện giá trị đồ thị không được hỗ trợ cho loại biểu đồ này. Tùy chọn này hiện chỉ khả dụng cho các loại Đồ thị bên dưới.
         graph_value_conditions_title: Điều kiện giá trị đồ thị
+        hide_responses_with_no_data: Ẩn câu trả lời không có dữ liệu
         if_graph_value_is: 'Nếu Giá trị đồ thị là:'
         job_roles:
           current: Các yếu tố công việc hiện tại
@@ -3488,6 +3566,7 @@ vi:
           and: VÀ
           or: HOẶC
         prevent_value_overlap: Ngăn chặn trùng lặp giá trị
+        randomize_answers_order: Ngẫu nhiên hóa thứ tự câu trả lời
         skill_type_label: Lọc theo loại kỹ năng
         skill_type_placeholder: Chọn loại kỹ năng
         skill_types:
@@ -4109,6 +4188,11 @@ vi:
             missing_columns: 'Thiếu cột bắt buộc: %{columns}'
             save_failed: 'Lỗi xử lý ID kỹ năng %{id}: %{message}'
             skill_not_found: Không tìm thấy kỹ năng có ID %{id}
+      vector:
+        generate_embedding: Tạo nhúng
+        generate_embedding_failure_msg: Không thể xếp hàng công việc tạo nhúng kỹ năng. Vui lòng thử lại.
+        generate_embedding_success_msg: Công việc tạo nhúng kỹ năng đã được xếp hàng thành công. Vui lòng kiểm tra trạng thái trong thông báo.
+        label: Cơ sở dữ liệu vectơ
     skills_taxonomy:
       tabs:
         job_roles: Vai trò công việc
@@ -4352,8 +4436,13 @@ vi:
         this_question_has_randomization: Câu hỏi này có ngẫu nhiên
     table:
       entries:
-        selected: 1 hàng đã chọn
-        total: 'Tổng số : 1'
+        selected:
+          one: 1 hàng đã chọn
+          other: "{{count}} hàng được chọn"
+        total:
+          one: 'Tổng cộng : 1'
+          other: 'Tổng số : {{count}}'
+          zero: 'Tổng cộng : 0'
       more_actions: Hành động khác
     taxonomy:
       import:
@@ -4578,8 +4667,6 @@ vi:
             evaluations_received: Đánh giá đã nhận
             is_subject: Chủ đề là
             name: Tên
-            report_status: Trạng thái báo cáo
-            status: Trạng thái
           evaluators:
             add_evaluators: Thêm người đánh giá
             import_evaluators: Nhà đánh giá nhập khẩu

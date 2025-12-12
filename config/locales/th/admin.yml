@@ -31,9 +31,6 @@ th:
     development_actions: การดําเนินการพัฒนา
     dimensions: มิติ
     empty_csv_file: ไฟล์ CSV ไม่มีข้อมูลใดๆ
-    fill_empty_score_msg: กรอกคะแนนสุดท้ายทั้งหมดก่อนบันทึก
-    final_score_empty_msg: คะแนนสุดท้ายต้องไม่ว่างเปล่า
-    import_csv_assessment_group_error: 'แถวที่ %{index}: ผู้ใช้ที่มีอีเมล %{email} ได้รับเชิญให้ ''%{workshopInviteName}'' แล้ว'
     import_csv_error: 'แถวที่ %{index}: ผู้ใช้ที่มี %{email} อีเมลไม่ได้อยู่ในแคมเปญนี้'
     import_description: นําเข้าผู้ใช้จากไฟล์ CSV แต่ละแถวต้องมีที่อยู่อีเมล
     import_download_sample: ดาวน์โหลดตัวอย่าง CSV
@@ -105,7 +102,6 @@ th:
     skills_taxonomy: อนุกรมวิธานทักษะ
     slot_name: ชื่อสล็อต
     stats: สถิติ
-    subject_part_of_other_invite: หัวเรื่องพร้อมอีเมล %{user_email} ได้รับเชิญให้ '%{workshop_invite_name}' แล้ว
     user_report_events: เหตุการณ์รายงานผู้ใช้
     users: ผู้เข้าร่วม
     view_licenses: ดูใบอนุญาต

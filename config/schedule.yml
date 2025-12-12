@@ -120,3 +120,8 @@ delete_expired_meeting_recordings_job:
   cron: "0 3 * * *" # Runs daily at 3 AM
   class: MeetingRecordings::DeleteExpiredRecordingsJob
   queue_as: cron_tasks
+
+yoodli_daily_import:
+  cron: "0 4 * * *" # Runs daily at 4 AM
+  class: YoodliDailyImportJob
+  queue_as: cron_tasks

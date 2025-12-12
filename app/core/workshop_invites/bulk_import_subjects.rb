@@ -64,7 +64,6 @@ module WorkshopInvites
         end
       end
 
-      validation_errors.concat(validate_assessment_group_conflicts(users_with_indices))
       valid_users
     end
 
@@ -85,31 +84,6 @@ module WorkshopInvites
 
     def build_subjects_data(users)
       users.map { |user| { user_id: user.id } }
-    end
-
-    def validate_assessment_group_conflicts(users_with_indices)
-      conflicts = []
-
-      users_with_indices.each do |user, csv_index|
-        existing_invite = find_existing_workshop_invite(user)
-        next unless existing_invite
-
-        conflicts << {
-          message: I18n.t('admin.import_csv_assessment_group_error',
-                          index: csv_index,
-                          email: user.email,
-                          workshopInviteName: existing_invite.workshop_invite.title)
-        }
-      end
-
-      conflicts
-    end
-
-    def find_existing_workshop_invite(user)
-      WorkshopInvitedSubject.in_campaign_assessment_group(
-        campaign.id,
-        workshop_invite.campaign_assessment_group_id
-      ).where(user: user).first
     end
   end
 end

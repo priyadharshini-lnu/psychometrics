@@ -95,6 +95,12 @@ ro:
           title: Confirma
       permissions:
         labels:
+          aiArtifacts:
+            export: Export
+            import: Importa
+            manage: Gestiona
+            title: Artefacte AI
+            view: Vedere
           apiKeys:
             manage: Acțiuni
             title: Chei API
@@ -220,9 +226,11 @@ ro:
           projects:
             manage: Acțiuni
             manage_admins: Gestionați administratorii
+            manage_licenses: Gestionarea licențelor
             manage_users: Gestionați utilizatorii
             title: Proiecte
             view: Vedere
+            view_licenses: Vezi licențele
           questions:
             manage: Acțiuni
             title: Întrebări
@@ -284,6 +292,10 @@ ro:
             manage: Acțiuni
             title: Invitații prin SMS
             view: Vedere
+          userIdpPlans:
+            manage: Gestiona
+            title: Planuri IDP pentru utilizatori
+            view: Vedere
           users:
             reset_password: Resetați parola
             title: Utilizatorii
@@ -296,6 +308,9 @@ ro:
     ai_artifacts:
       artifact_results: Rezultatele artefactelor
       code: Cod
+      export:
+        success_msg: Exportul artefactelor AI în curs de desfășurare. Vă rugăm să verificați statusul din notificări.
+      export_ai_artifacts: Exportă artefacte AI
       form:
         add_assessment: Adăugare evaluare
         ai_assistant: Asistent AI
@@ -320,6 +335,12 @@ ro:
       generated_at_time: Generat la %{time}
       generated_value: Valoare generată
       id: ID
+      import:
+        download_example_csv: Descarcă exemplu de CSV
+        info_msg: Fișierul încărcat a fost pus la coadă pentru import. Vă rugăm să verificați statusul din notificări.
+      import_action:
+        title: Importul artefactelor AI din campanii
+      import_ai_artifacts: Importul artefactelor AI
       key: Cheie
       name: Nume
       parsed_dependencies:
@@ -335,6 +356,10 @@ ro:
         settings: Setări
       test_generate: Testați generați
       unsaved_changes: Modificările nesalvate sunt prezente, luați în considerare trimiterea formularului pentru a genera un răspuns actualizat de la Playground.
+      used_tokens:
+        input_tokens: Jetoane de intrare
+        output_tokens: Jetoane de ieșire
+        title: Utilizarea token-ului
     ai_assistants:
       actions:
         create: Creați un asistent AI
@@ -872,8 +897,6 @@ ro:
       new:
         header: Descărcare în bloc
       reports_unavailable: În acest moment, nu sunt disponibile rapoarte pentru descărcare. Vă rugăm să confirmați că rapoartele pe care doriți să le descărcați sunt disponibile.
-      select_users_for_download: Vă rugăm să selectați cel puțin un utilizator pentru a descărca rapoarte.
-      select_users_for_regenerate: Vă rugăm să selectați cel puțin un utilizator pentru a regenera rapoartele.
     cable:
       notification:
         assessment_factors: Factorii sunt preluați
@@ -929,6 +952,17 @@ ro:
         report_update: Raportul este actualizat
         scoring_update: Scorul este actualizat
         trash_empty: Coș de gunoi Comentariu gol
+    campaign_ai_artifacts:
+      export:
+        details: Artefacte AI de campanie exportate cu succes
+    campaign_ai_artifacts_import:
+      errors:
+        ai_assistant_not_found: 'Asistent AI negăsit pentru ID: %{id}'
+        campaign_factor_not_found: Factorul campaniei cu codul "%{code}" nu se regăsește în această campanie
+        dependency_not_found: Dependența %{type} cu ID nu %{id} găsit
+        file_required: Fișierul este necesar pentru import
+        save_failed: 'A eșuat să salveze artefactul AI "%{code}": %{message}'
+        sheet_column_not_found: Coloană de foaie cu numele "%{name}" care nu se găsește în fișele tehnice de campanie sau proiect
     campaign_factor_import:
       errors:
         assessment_not_found_in_campaign: Codul de evaluare "%{assessment_id}" nu a fost găsit în campanie
@@ -1240,6 +1274,7 @@ ro:
         archived: Arhivate
         disable: Arhivă
         enable: Dezarhivare
+      clients: Clientii
       copy:
         successfully: Client Tenancy '%{name}' a fost copiat cu succes.
       create:
@@ -2259,6 +2294,10 @@ ro:
           accesssheet_manage: Gestionarea foii de acces
           accesssheet_settings: Setări foaie de acces
           accesssheet_view: Vizualizare foaie de acces
+    header:
+      logout:
+        content: Apasă Anulare dacă vrei să continui să lucrezi. Apasă Ok pentru a deloga utilizatorul curent.
+        title: Ești sigur că vrei să te deloghezi?
     hogan:
       errors:
         new_assessment_response_not_allowed:
@@ -2312,13 +2351,16 @@ ro:
         skills_required_on_publishing: Vă rugăm să alegeți abilitățile înainte de a publica un șablon.
         update: Actualizarea nu este permisă, deoarece șablonul IDP este deja asociat cu un plan IDP al utilizatorului. Modificările de aspect au fost salvate.
       fields:
+        approval_date: Data de aprobare
         assigned_data: Date atribuite
         assigned_date: Data atribuirii
         completion_date: Data finalizării
+        current_job_role: Rol actual
         division: Divizie
         name: Nume
         publish_date: Data publicării
         review_date: Data revizuirii
+        target_job_role: Rol țintă
       fields_label: Câmpuri
       global_skills: Competențe globale
       idp: IDP
@@ -2546,6 +2588,13 @@ ro:
         details: Detalii
         name: Nume integrare
       details:
+        client_id: Client ID
+        deployment_id: ID de implementare
+        platform_access_token_url: URL-ul tokenului de acces la platformă
+        platform_authentication_request_url: URL pentru cererea de autentificare a platformei
+        platform_host_name: Numele gazdei platformei
+        platform_id: ID-ul platformei
+        platform_public_keyset_url: URL-ul setului public de chei al platformei
         provider: Numele furnizorului
         webhookUrl: Webhook URL
         webhookUrls: URL-uri webhook
@@ -2576,11 +2625,16 @@ ro:
         skillvue:
           apiKey: Cheie API
           apiKeyRequired: Este necesară cheia API
+        yoodli:
+          keyset_url: URL-ul setului de chei
+          launch_url: URL de lansare
+          login_url: URL de autentificare
       names:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
         skillvue: Skillvue
+        yoodli: Yoodli
       validations:
         iiht:
           tenancy_name_present: Numele chiriei este deja prezent în alte proiecte
@@ -2590,6 +2644,24 @@ ro:
         skillvue:
           api_key_present: Cheia API este deja prezentă în alte proiecte
       view_all_schedules: Vezi toate programele Mettl
+      yoodli_assessments:
+        add_assessment: Evaluare Adaugă Yoodli
+        columns:
+          actions: Acțiuni
+          created_at: Creat la
+          name: Nume de evaluare
+          product_id: ID produs
+        delete_confirm: Ești sigur că vrei să ștergi această evaluare Yoodli?
+        edit_assessment: Editare Evaluare Yoodli
+        manage_catalog: Gestionează evaluările Yoodli
+        messages:
+          create_success: Evaluarea Yoodli '%{name}' a fost creată cu succes
+          delete_success: Evaluarea Yoodli a fost ștearsă cu succes
+          update_success: Evaluarea Yoodli '%{name}' a fost actualizată cu succes
+        placeholders:
+          name: Introduceți numele evaluării
+          product_id: Introduceți ID-ul produsului
+        search: Căutare
     interview_questions:
       delete_confirmation: Sunteți sigur că doriți să ștergeți această întrebare de interviu?
       description: Descriere
@@ -2740,9 +2812,12 @@ ro:
     navigation:
       audit_logs: Jurnale de audit
       availability: Disponibilitate
+      configuration: Configurație
+      content: Conținut
       dashboard: Tablou
       factors: Factori
       innovation_styles: Stiluri de inovație
+      logout: Deconectare
       occupations: Ocupaţii
       registration_codes: Coduri de înregistrare
       skills_taxonomy: Taxonomia abilităților
@@ -2981,6 +3056,7 @@ ro:
           by_skill_exists_id_missing: 'Rândul %{row_number}: Există deja un nivel de competență pentru abilitățile "%{name}". Vă rugăm să furnizați ID-ul pentru a-l actualiza.'
           by_skill_missing: 'Rândul %{row_number}: Proiectul și Skill trebuie să fie prezente pentru tipul "by_skill"'
           by_skill_type_exists_id_missing: 'Rândul %{row_number}: Există deja un nivel de competență pentru tipul de abilitate "%{skill_type}". Vă rugăm să furnizați ID-ul pentru a-l actualiza.'
+          by_skill_type_missing: 'Rândul %{row_number}: Proiectul și tipul de abilitate trebuie să fie prezent pentru tipul "by_skill_type'''''
           default_global_exists_id_missing: 'Rândul %{row_number}: Există deja un nivel de competență "implicit" la nivel global. Vă rugăm să furnizați ID-ul pentru a-l actualiza.'
           default_project_exists_id_missing: 'Rândul %{row_number}: Există deja un nivel de competență "implicit" la nivel de proiect. Vă rugăm să furnizați ID-ul pentru a-l actualiza.'
           invalid_csv_format: 'Format CSV nevalid: %{message}'
@@ -3294,6 +3370,7 @@ ro:
         mask_identity_for_pearson: Date despre măști pentru Pearson
         mask_identity_for_saville: Date despre măști pentru Saville
         mask_identity_for_skillvue: Date despre mască pentru Skillvue
+        mask_identity_for_yoodli: Date de măști pentru Yoodli
         privacy_link: Activați linkul de confidențialitate
         privacy_link_label: Link de confidențialitate
         privacy_link_placeholder: Introduceți linkul de confidențialitate
@@ -3469,6 +3546,7 @@ ro:
           graph_value: Valoarea graficului
         graph_value_condition_not_supported_msg: Condițiile de valoare a graficului nu sunt acceptate pentru acest tip de grafic. Această opțiune este disponibilă în prezent numai pentru tipurile de grafic de mai jos.
         graph_value_conditions_title: Condiții de valoare grafică
+        hide_responses_with_no_data: Ascunde răspunsurile fără date
         if_graph_value_is: 'Dacă valoarea graficului este:'
         job_roles:
           current: Factorii actuali ai locului de muncă
@@ -3488,6 +3566,7 @@ ro:
           and: ȘI
           or: SAU
         prevent_value_overlap: Preveniți suprapunerea valorilor
+        randomize_answers_order: Ordine aleatorie a răspunsurilor
         skill_type_label: Filtrați după tipul de abilitate
         skill_type_placeholder: Selectați tipul de abilitate
         skill_types:
@@ -4109,6 +4188,11 @@ ro:
             missing_columns: 'Lipsesc coloanele obligatorii: %{columns}'
             save_failed: 'Eroare la procesarea ID-ului abilității %{id}: %{message}'
             skill_not_found: Abilitate cu ID %{id} nu a fost găsită
+      vector:
+        generate_embedding: Generează Embedding
+        generate_embedding_failure_msg: Am eșuat să pun la coadă jobul de generare de skill embedding. Vă rog să încercați din nou.
+        generate_embedding_success_msg: Jobul de generare pentru încorporarea abilităților a fost pus în coadă cu succes. Vă rugăm să verificați statusul din notificări.
+        label: Vector DB
     skills_taxonomy:
       tabs:
         job_roles: Roluri de post
@@ -4352,8 +4436,13 @@ ro:
         this_question_has_randomization: Această întrebare are randomizare
     table:
       entries:
-        selected: 1 rând selectat
-        total: 'Total: 1'
+        selected:
+          one: 1 rând selectat
+          other: "{{count}} rânduri selectate"
+        total:
+          one: 'Total : 1'
+          other: 'Total : {{count}}'
+          zero: 'Total : 0'
       more_actions: Mai multe acțiuni
     taxonomy:
       import:
@@ -4578,8 +4667,6 @@ ro:
             evaluations_received: Evaluări primite
             is_subject: Este subiect
             name: Nume și prenume
-            report_status: Starea raportului
-            status: Statut
           evaluators:
             add_evaluators: Adăugați evaluatori
             import_evaluators: Evaluatori de import
