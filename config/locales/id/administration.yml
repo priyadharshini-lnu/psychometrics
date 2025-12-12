@@ -2644,24 +2644,6 @@ id:
         skillvue:
           api_key_present: Kunci API sudah ada di proyek lain
       view_all_schedules: Lihat Semua Jadwal Mettl
-      yoodli_assessments:
-        add_assessment: Tambahkan Penilaian Yoodli
-        columns:
-          actions: Tindakan
-          created_at: Dibuat di
-          name: Nama Penilaian
-          product_id: ID Produk
-        delete_confirm: Apakah Anda yakin ingin menghapus penilaian Yoodli ini?
-        edit_assessment: Edit Penilaian Yoodli
-        manage_catalog: Kelola Penilaian Yoodli
-        messages:
-          create_success: Penilaian Yoodli '%{name}' berhasil dibuat
-          delete_success: Penilaian Yoodli berhasil dihapus
-          update_success: Penilaian Yoodli '%{name}' berhasil diperbarui
-        placeholders:
-          name: Masukkan nama penilaian
-          product_id: Masukkan ID produk
-        search: Mencari
     interview_questions:
       delete_confirmation: Apakah Anda yakin ingin menghapus Pertanyaan Wawancara ini?
       description: Deskripsi

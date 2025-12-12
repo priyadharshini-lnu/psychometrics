@@ -2644,24 +2644,6 @@ zh:
         skillvue:
           api_key_present: API 密钥已存在于其他项目中
       view_all_schedules: 查看所有梅特尔航班时刻表
-      yoodli_assessments:
-        add_assessment: 添加Yoodli评估
-        columns:
-          actions: 行动
-          created_at: 诞生于
-          name: 评估名称
-          product_id: 产品ID
-        delete_confirm: 你确定要删除这份Yoodli评估吗？
-        edit_assessment: 编辑：Yoodli 评估
-        manage_catalog: 管理Yoodli评估
-        messages:
-          create_success: Yoodli评估“%{name}”成功创建
-          delete_success: Yoodli 评估已被成功删除
-          update_success: Yoodli评估“%{name}”已成功更新
-        placeholders:
-          name: 评估名称输入
-          product_id: 输入产品ID
-        search: 搜索
     interview_questions:
       delete_confirmation: 你确定要删除这个面试问题吗？
       description: 描述

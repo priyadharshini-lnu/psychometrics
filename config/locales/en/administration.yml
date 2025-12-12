@@ -2645,24 +2645,6 @@ en:
         skillvue:
           api_key_present: API key is already present in other project
       view_all_schedules: View All Mettl Schedules
-      yoodli_assessments:
-        add_assessment: Add Yoodli Assessment
-        columns:
-          actions: Actions
-          created_at: Created At
-          name: Assessment Name
-          product_id: Product ID
-        delete_confirm: Are you sure you want to delete this Yoodli assessment?
-        edit_assessment: Edit Yoodli Assessment
-        manage_catalog: Manage Yoodli Assessments
-        messages:
-          create_success: Yoodli assessment '%{name}' was created successfully
-          delete_success: Yoodli assessment was deleted successfully
-          update_success: Yoodli assessment '%{name}' was updated successfully
-        placeholders:
-          name: Enter assessment name
-          product_id: Enter product ID
-        search: Search
     interview_questions:
       delete_confirmation: Are you sure you want to delete this Interview Question?
       description: Descripton

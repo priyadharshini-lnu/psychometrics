@@ -2644,24 +2644,6 @@ es-ES:
         skillvue:
           api_key_present: La clave API ya está presente en otro proyecto
       view_all_schedules: Ver todos los horarios de Mettl
-      yoodli_assessments:
-        add_assessment: Añadir Evaluación de Yoodli
-        columns:
-          actions: Acciones
-          created_at: Creado en
-          name: Nombre de la evaluación
-          product_id: ID del producto
-        delete_confirm: "¿Estás seguro de que quieres borrar esta evaluación de Yoodli?"
-        edit_assessment: Edición Evaluación de Yoodli
-        manage_catalog: Gestionar las evaluaciones Yoodli
-        messages:
-          create_success: La evaluación Yoodli '%{name}' se creó con éxito
-          delete_success: La evaluación de Yoodli fue eliminada con éxito
-          update_success: La evaluación de Yoodli '%{name}' se actualizó con éxito
-        placeholders:
-          name: Introduce el nombre de la evaluación
-          product_id: Introduce el ID del producto
-        search: Buscar
     interview_questions:
       delete_confirmation: "¿Estás seguro de que quieres eliminar esta pregunta de la entrevista?"
       description: Descripton

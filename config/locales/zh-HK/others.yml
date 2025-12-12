@@ -1060,7 +1060,6 @@ zh-HK:
         saville_assessment_name: 薩維爾評估名稱
         simulation_assessment_name: 模擬評估名稱
         skillvue_assessment_name: Skillvue 評估名稱
-        yoodli_assessment_name: Yoodli 評估名稱
       translations_migrated: 翻譯遷移
     create: 創造
     dashboard: 儀表板
@@ -1960,7 +1959,6 @@ zh-HK:
       hide: 藏
       view: 觀
     validations:
-      required: 此欄位為必修欄位
       select_locale: 請選擇部分地點
       should_be_whole_number: 應該是整數
   confirmation:

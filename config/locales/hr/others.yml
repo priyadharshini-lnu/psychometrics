@@ -1057,7 +1057,6 @@ hr:
         saville_assessment_name: Saville procjena Ime
         simulation_assessment_name: Naziv procjene simulacije
         skillvue_assessment_name: Naziv Skillvue procjene
-        yoodli_assessment_name: Yoodli Assessment Name
       translations_migrated: Prijevod je migriran
     create: Stvoriti
     dashboard: Nadzorna ploča
@@ -1943,7 +1942,6 @@ hr:
       hide: Sakriti
       view: Pregled
     validations:
-      required: Ovo polje je obavezno
       select_locale: Molimo odaberite neke regionalne regije
       should_be_whole_number: trebao bi biti cijeli broj
   confirmation:

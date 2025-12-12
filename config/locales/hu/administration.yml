@@ -2646,24 +2646,6 @@ hu:
         skillvue:
           api_key_present: Az API-kulcs már jelen van egy másik projektben
       view_all_schedules: Az összes Mettl-menetrend megtekintése
-      yoodli_assessments:
-        add_assessment: Add a Yoodli értékelés
-        columns:
-          actions: Műveletek
-          created_at: 'Létrehozva:'
-          name: Értékelés neve
-          product_id: Termék azonosító
-        delete_confirm: Biztos vagy benne, hogy törölni akarod ezt a Yoodli értékelést?
-        edit_assessment: 'Szerkesztés: Yoodli értékelés'
-        manage_catalog: Yoodli értékelések kezelése
-        messages:
-          create_success: A Yoodli értékelés '%{name}' sikeresen létrejött
-          delete_success: A Yoodli értékelést sikeresen törölték
-          update_success: A Yoodli értékelés '%{name}' sikeresen frissítette
-        placeholders:
-          name: Írd be az értékelési név
-          product_id: A termék azonosítója
-        search: Keresés
     interview_questions:
       delete_confirmation: Biztosan törölni akarja ezt az interjúkérdést?
       description: Leírás

@@ -1050,7 +1050,6 @@ hu:
         saville_assessment_name: Saville értékelés Név
         simulation_assessment_name: Szimulációs értékelés neve
         skillvue_assessment_name: Skillvue Értékelés neve
-        yoodli_assessment_name: Yoodli értékelés név
       translations_migrated: Fordítás migrálva
     create: Alkot
     dashboard: Műszerfal
@@ -1936,7 +1935,6 @@ hu:
       hide: Elrejt
       view: Nézet
     validations:
-      required: Ez a mező kötelező
       select_locale: Kérjük, válasszon néhány területi beállítást
       should_be_whole_number: egész számnak kell lennie
   confirmation:

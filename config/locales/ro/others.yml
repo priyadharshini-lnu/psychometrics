@@ -1050,7 +1050,6 @@ ro:
         saville_assessment_name: Evaluare Saville Nume
         simulation_assessment_name: Nume evaluare simulare
         skillvue_assessment_name: Skillvue Denumire evaluare
-        yoodli_assessment_name: Nume de evaluare Yoodli
       translations_migrated: Traducere migrată
     create: Crea
     dashboard: Tablou
@@ -1936,7 +1935,6 @@ ro:
       hide: Ascunde
       view: Vedere
     validations:
-      required: Acest domeniu este necesar
       select_locale: Vă rugăm să selectați unele setări regionale
       should_be_whole_number: ar trebui să fie un număr întreg
   confirmation:

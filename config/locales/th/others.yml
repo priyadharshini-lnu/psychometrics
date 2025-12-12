@@ -1050,7 +1050,6 @@ th:
         saville_assessment_name: ชื่อการประเมิน Saville
         simulation_assessment_name: ชื่อการประเมินการจําลอง
         skillvue_assessment_name: ชื่อแบบประเมินทักษะในระบบ Skillvue
-        yoodli_assessment_name: ชื่อการประเมิน Yoodli
       translations_migrated: การแปลที่ย้ายแล้ว
     create: สร้าง
     dashboard: แดชบอร์ด
@@ -1933,7 +1932,6 @@ th:
       hide: ซ่อน
       view: ดู
     validations:
-      required: ต้องกรอกข้อมูลนี้
       select_locale: โปรดเลือกบางพื้นที่
       should_be_whole_number: ควรเป็นจํานวนเต็ม
   confirmation:

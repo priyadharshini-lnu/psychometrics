@@ -1050,7 +1050,6 @@ ko:
         saville_assessment_name: 새빌 평가 이름
         simulation_assessment_name: 시뮬레이션 평가 이름
         skillvue_assessment_name: 스킬뷰 평가 이름
-        yoodli_assessment_name: 유들리 평가 이름
       translations_migrated: 번역 마이그레이션
     create: 만들기
     dashboard: 대시보드
@@ -1936,7 +1935,6 @@ ko:
       hide: 숨기기
       view: 보기
     validations:
-      required: 이 분야는 필수입니다
       select_locale: 일부 로캘을 선택해 주세요
       should_be_whole_number: 는 정수여야 합니다
   confirmation:

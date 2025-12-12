@@ -2644,24 +2644,6 @@ cs:
         skillvue:
           api_key_present: Klíč API již existuje v jiném projektu
       view_all_schedules: Zobrazit všechny plány Mettl
-      yoodli_assessments:
-        add_assessment: Add Yoodli Assessment
-        columns:
-          actions: Akce
-          created_at: Vytvořeno v
-          name: Název hodnocení
-          product_id: ID produktu
-        delete_confirm: Jste si jistý, že chcete toto hodnocení Yoodli smazat?
-        edit_assessment: 'Edit: Yoodli Assessment'
-        manage_catalog: Spravujte Yoodli hodnocení
-        messages:
-          create_success: Yoodli hodnocení '%{name}' bylo úspěšně vytvořeno
-          delete_success: Yoodliho hodnocení bylo úspěšně smazáno
-          update_success: Yoodliho hodnocení '%{name}' bylo úspěšně aktualizováno
-        placeholders:
-          name: Zadejte název hodnocení
-          product_id: Zadejte ID produktu
-        search: Hledání
     interview_questions:
       delete_confirmation: Opravdu chcete smazat tuto otázku pohovoru?
       description: Popis

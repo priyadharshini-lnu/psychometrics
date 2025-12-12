@@ -1050,7 +1050,6 @@ nl:
         saville_assessment_name: Saville beoordeling Naam
         simulation_assessment_name: Simulatie Beoordeling Naam
         skillvue_assessment_name: Skillvue Beoordeling Naam
-        yoodli_assessment_name: Yoodli Beoordelingsnaam
       translations_migrated: Vertaling gemigreerd
     create: Maak
     dashboard: Dashboard
@@ -1936,7 +1935,6 @@ nl:
       hide: Verberg
       view: Bekijk
     validations:
-      required: Dit vakgebied is vereist
       select_locale: Selecteer een of meer locaties
       should_be_whole_number: moet een heel getal zijn
   confirmation:

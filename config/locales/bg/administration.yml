@@ -2644,24 +2644,6 @@ bg:
         skillvue:
           api_key_present: API ключът вече присъства в друг проект
       view_all_schedules: Вижте всички графици на Mettl
-      yoodli_assessments:
-        add_assessment: Add Yoodli оценка
-        columns:
-          actions: Действия
-          created_at: Създаден в
-          name: Име на оценката
-          product_id: ID на продукта
-        delete_confirm: Сигурен ли си, че искаш да изтриеш тази оценка на Yoodli?
-        edit_assessment: Редактиране на оценка на Юдли
-        manage_catalog: Управление на оценките на Yoodli
-        messages:
-          create_success: Оценката на Yoodli '%{name}' беше създадена успешно
-          delete_success: Оценката на Yoodli беше успешно изтрита
-          update_success: Оценката на Yoodli '%{name}' беше успешно актуализирана
-        placeholders:
-          name: Въведете името на оценката
-          product_id: Въведете product ID
-        search: Търсене
     interview_questions:
       delete_confirmation: Сигурни ли сте, че искате да изтриете този въпрос за интервю?
       description: Описание

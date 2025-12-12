@@ -2644,24 +2644,6 @@ th:
         skillvue:
           api_key_present: คีย์ API มีอยู่ในโปรเจ็กต์อื่นแล้ว
       view_all_schedules: ดูตาราง Mettl ทั้งหมด
-      yoodli_assessments:
-        add_assessment: เพิ่มการประเมิน Yoodli
-        columns:
-          actions: การดําเนินการ
-          created_at: สร้างเมื่อ
-          name: ชื่อการประเมิน
-          product_id: รหัสผลิตภัณฑ์
-        delete_confirm: คุณแน่ใจหรือไม่ว่าต้องการลบการประเมิน Yoodli นี้?
-        edit_assessment: แก้ไขการประเมิน Yoodli
-        manage_catalog: จัดการการประเมิน Yoodli
-        messages:
-          create_success: การประเมิน Yoodli '%{name}' ถูกสร้างขึ้นเรียบร้อยแล้ว
-          delete_success: การประเมิน Yoodli ถูกลบเรียบร้อยแล้ว
-          update_success: การประเมิน Yoodli '%{name}' ได้รับการอัปเดตเรียบร้อยแล้ว
-        placeholders:
-          name: ป้อนชื่อการประเมิน
-          product_id: ป้อนรหัสผลิตภัณฑ์
-        search: ค้น
     interview_questions:
       delete_confirmation: คุณแน่ใจหรือไม่ว่าต้องการลบคําถามสัมภาษณ์นี้?
       description: คําอธิบาย

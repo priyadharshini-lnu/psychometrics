@@ -1050,7 +1050,6 @@ pl:
         saville_assessment_name: Ocena Saville Nazwa
         simulation_assessment_name: Nazwa oceny symulacji
         skillvue_assessment_name: Nazwa oceny Skillvue
-        yoodli_assessment_name: Nazwa oceny Yoodli
       translations_migrated: Tłumaczenie przeniesione
     create: Tworzyć
     dashboard: Deska rozdzielcza
@@ -1940,7 +1939,6 @@ pl:
       hide: Ukrywać
       view: Widok
     validations:
-      required: To pole jest wymagane
       select_locale: Wybierz niektóre lokalizacje
       should_be_whole_number: powinna być liczbą całkowitą.
   confirmation:

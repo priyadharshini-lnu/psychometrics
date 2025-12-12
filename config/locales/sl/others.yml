@@ -1050,7 +1050,6 @@ sl:
         saville_assessment_name: Ocena Saville Ime
         simulation_assessment_name: Ime ocenjevanja simulacije
         skillvue_assessment_name: Ime ocenjevanja Skillvue
-        yoodli_assessment_name: Ime ocenjevanja Yoodli
       translations_migrated: Prevajanje je bilo seljeno
     create: Ustvariti
     dashboard: Nadzorna plošča
@@ -1945,7 +1944,6 @@ sl:
       hide: Skriti
       view: Pogled
     validations:
-      required: To polje je obvezno
       select_locale: Prosimo, izberite nekaj območnih območij
       should_be_whole_number: mora biti celo število
   confirmation:

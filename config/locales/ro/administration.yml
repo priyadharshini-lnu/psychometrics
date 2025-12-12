@@ -2644,24 +2644,6 @@ ro:
         skillvue:
           api_key_present: Cheia API este deja prezentă în alte proiecte
       view_all_schedules: Vezi toate programele Mettl
-      yoodli_assessments:
-        add_assessment: Evaluare Adaugă Yoodli
-        columns:
-          actions: Acțiuni
-          created_at: Creat la
-          name: Nume de evaluare
-          product_id: ID produs
-        delete_confirm: Ești sigur că vrei să ștergi această evaluare Yoodli?
-        edit_assessment: Editare Evaluare Yoodli
-        manage_catalog: Gestionează evaluările Yoodli
-        messages:
-          create_success: Evaluarea Yoodli '%{name}' a fost creată cu succes
-          delete_success: Evaluarea Yoodli a fost ștearsă cu succes
-          update_success: Evaluarea Yoodli '%{name}' a fost actualizată cu succes
-        placeholders:
-          name: Introduceți numele evaluării
-          product_id: Introduceți ID-ul produsului
-        search: Căutare
     interview_questions:
       delete_confirmation: Sunteți sigur că doriți să ștergeți această întrebare de interviu?
       description: Descriere

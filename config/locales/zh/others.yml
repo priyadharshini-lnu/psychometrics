@@ -1050,7 +1050,6 @@ zh:
         saville_assessment_name: 萨维尔评估名称
         simulation_assessment_name: 模拟评估名称
         skillvue_assessment_name: Skillvue 评估名称
-        yoodli_assessment_name: 尤德利评估名称
       translations_migrated: 翻译已迁移
     create: 创建
     dashboard: 仪表板
@@ -1946,7 +1945,6 @@ zh:
       hide: 隐藏
       view: 查看
     validations:
-      required: 该栏目是必修的
       select_locale: 请选择地区
       should_be_whole_number: 应为整数
   confirmation:

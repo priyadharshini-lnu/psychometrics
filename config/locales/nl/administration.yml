@@ -2644,24 +2644,6 @@ nl:
         skillvue:
           api_key_present: API-sleutel is al aanwezig in ander project
       view_all_schedules: Bekijk alle Mettl schema's
-      yoodli_assessments:
-        add_assessment: Voeg Yoodli Beoordeling toe
-        columns:
-          actions: Acties
-          created_at: Gemaakt bij
-          name: Beoordelingsnaam
-          product_id: Product-ID
-        delete_confirm: Weet je zeker dat je deze Yoodli-beoordeling wilt verwijderen?
-        edit_assessment: Bewerking Yoodli-beoordeling
-        manage_catalog: Beheer Yoodli-beoordelingen
-        messages:
-          create_success: Yoodli-beoordeling '%{name}' is succesvol ontwikkeld
-          delete_success: Yoodli-beoordeling werd succesvol verwijderd
-          update_success: Yoodli-beoordeling '%{name}' werd succesvol bijgewerkt
-        placeholders:
-          name: Voer de naam van de beoordeling in
-          product_id: Voer product-ID in
-        search: Zoeken
     interview_questions:
       delete_confirmation: Weet je zeker dat je deze interviewvraag wilt verwijderen?
       description: Beschrijving

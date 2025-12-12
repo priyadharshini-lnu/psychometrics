@@ -2644,24 +2644,6 @@ sl:
         skillvue:
           api_key_present: API ključ je že prisoten v drugem projektu
       view_all_schedules: Oglejte si vse urnike Mettl
-      yoodli_assessments:
-        add_assessment: Add Yoodli Assessment
-        columns:
-          actions: Dejanja
-          created_at: Ustvarjeno na
-          name: Ime ocenjevanja
-          product_id: ID izdelka
-        delete_confirm: Si prepričan, da želiš izbrisati to Yoodlijevo oceno?
-        edit_assessment: Uredi oceno Yoodli
-        manage_catalog: Upravljanje Yoodli ocen
-        messages:
-          create_success: Yoodlijeva ocena '%{name}' je bila uspešno ustvarjena
-          delete_success: Yoodlijeva ocena je bila uspešno izbrisana
-          update_success: Yoodlijeva ocena '%{name}' je bila uspešno posodobljena
-        placeholders:
-          name: Vnesite ime ocenjevanja
-          product_id: Vnesite ID izdelka
-        search: Iskanje
     interview_questions:
       delete_confirmation: Ali ste prepričani, da želite izbrisati to vprašanje za intervju?
       description: Opis

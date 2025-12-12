@@ -1050,7 +1050,6 @@ ja:
         saville_assessment_name: サヴィル査定名
         simulation_assessment_name: シミュレーション評価名
         skillvue_assessment_name: スキルビュー評価名
-        yoodli_assessment_name: ユードリ評価名
       translations_migrated: 翻訳の移行
     create: 作成
     dashboard: ダッシュボード
@@ -1949,7 +1948,6 @@ ja:
       hide: 隠す
       view: 表示
     validations:
-      required: このフィールドは必須です
       select_locale: ロケールを選択してください
       should_be_whole_number: 整数でなければならない
   confirmation:
