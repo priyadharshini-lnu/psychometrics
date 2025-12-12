@@ -2644,24 +2644,6 @@ hr:
         skillvue:
           api_key_present: API ključ je već prisutan u drugom projektu
       view_all_schedules: Pogledajte sve rasporede tvrtke Mettl
-      yoodli_assessments:
-        add_assessment: Dodaj Yoodli procjenu
-        columns:
-          actions: Akcije
-          created_at: Stvoreno u
-          name: Naziv procjene
-          product_id: ID proizvoda
-        delete_confirm: Jesi li siguran da želiš izbrisati ovu Yoodlijevu procjenu?
-        edit_assessment: Uredi Yoodli procjenu
-        manage_catalog: Upravljanje Yoodli procjenama
-        messages:
-          create_success: Yoodli procjena '%{name}' uspješno je kreirana
-          delete_success: Yoodli procjena je uspješno izbrisana
-          update_success: Yoodlijeva procjena '%{name}' uspješno je ažurirana
-        placeholders:
-          name: Unesite naziv procjene
-          product_id: Unesite ID proizvoda
-        search: Pretraživanje
     interview_questions:
       delete_confirmation: Jeste li sigurni da želite izbrisati ovo pitanje za intervju?
       description: Opis

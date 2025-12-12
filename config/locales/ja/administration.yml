@@ -2644,24 +2644,6 @@ ja:
         skillvue:
           api_key_present: APIキーがすでに他のプロジェクトに存在する
       view_all_schedules: すべてのMettlのスケジュールを見る
-      yoodli_assessments:
-        add_assessment: ユードリ評価の追加
-        columns:
-          actions: アクション
-          created_at: 創設時
-          name: 評価名
-          product_id: 製品ID
-        delete_confirm: このYoodliの評価を削除してもいいですか?
-        edit_assessment: 編集:ユードリ評価
-        manage_catalog: Yoodli評価の管理
-        messages:
-          create_success: ユードリ評価「%{name}」が成功裏に作成されました
-          delete_success: Yoodliの評価は正常に削除されました
-          update_success: Yoodli評価「%{name}」が正常に更新されました
-        placeholders:
-          name: 評価名を入力してください
-          product_id: 商品IDの登場です
-        search: 捜索
     interview_questions:
       delete_confirmation: この面接の質問を削除してもよろしいですか?
       description: 記述

@@ -8705,39 +8705,6 @@ ALTER SEQUENCE public.workshops_id_seq OWNED BY public.workshops.id;
 
 
 --
--- Name: yoodli_assessments; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.yoodli_assessments (
-    id bigint NOT NULL,
-    product_id character varying NOT NULL,
-    name character varying NOT NULL,
-    project_id bigint,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
--- Name: yoodli_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.yoodli_assessments_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: yoodli_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.yoodli_assessments_id_seq OWNED BY public.yoodli_assessments.id;
-
-
---
 -- Name: yoodli_user_assessments; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -10344,13 +10311,6 @@ ALTER TABLE ONLY public.workshop_subjects ALTER COLUMN id SET DEFAULT nextval('p
 --
 
 ALTER TABLE ONLY public.workshops ALTER COLUMN id SET DEFAULT nextval('public.workshops_id_seq'::regclass);
-
-
---
--- Name: yoodli_assessments id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.yoodli_assessments ALTER COLUMN id SET DEFAULT nextval('public.yoodli_assessments_id_seq'::regclass);
 
 
 --
@@ -12190,14 +12150,6 @@ ALTER TABLE ONLY public.workshop_subjects
 
 ALTER TABLE ONLY public.workshops
     ADD CONSTRAINT workshops_pkey PRIMARY KEY (id);
-
-
---
--- Name: yoodli_assessments yoodli_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.yoodli_assessments
-    ADD CONSTRAINT yoodli_assessments_pkey PRIMARY KEY (id);
 
 
 --
@@ -16150,20 +16102,6 @@ CREATE INDEX index_workshops_on_campaign_id ON public.workshops USING btree (cam
 
 
 --
--- Name: index_yoodli_assessments_on_product_id_and_project_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_yoodli_assessments_on_product_id_and_project_id ON public.yoodli_assessments USING btree (product_id, project_id);
-
-
---
--- Name: index_yoodli_assessments_on_project_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_yoodli_assessments_on_project_id ON public.yoodli_assessments USING btree (project_id);
-
-
---
 -- Name: index_yoodli_user_assessments_on_active; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -17172,14 +17110,6 @@ ALTER TABLE ONLY public.idp_templates
 
 ALTER TABLE ONLY public.assessments
     ADD CONSTRAINT fk_rails_516ec5451d FOREIGN KEY (updated_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
-
-
---
--- Name: yoodli_assessments fk_rails_524e020c38; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.yoodli_assessments
-    ADD CONSTRAINT fk_rails_524e020c38 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -19189,8 +19119,9 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20251201130649'),
+('20251212100342'),
 ('20251206120622'),
+('20251201130649'),
 ('20251127063311'),
 ('20251125161740'),
 ('20251121123824'),
@@ -20147,3 +20078,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

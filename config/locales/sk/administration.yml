@@ -2644,24 +2644,6 @@ sk:
         skillvue:
           api_key_present: API kľúč je už prítomný v inom projekte
       view_all_schedules: Zobraziť všetky cestovné poriadky Mettl
-      yoodli_assessments:
-        add_assessment: Add Yoodli Assessment
-        columns:
-          actions: Akcie
-          created_at: Vytvorené v
-          name: Názov hodnotenia
-          product_id: ID produktu
-        delete_confirm: Si si istý, že chceš vymazať toto hodnotenie Yoodliho?
-        edit_assessment: Edit Yoodli Assessment
-        manage_catalog: Spravovať hodnotenia Yoodli
-        messages:
-          create_success: Yoodli hodnotenie '%{name}' bolo úspešne vytvorené
-          delete_success: Yoodliho hodnotenie bolo úspešne vymazané
-          update_success: Yoodliho hodnotenie '%{name}' bolo úspešne aktualizované
-        placeholders:
-          name: Zadajte názov hodnotenia
-          product_id: Zadajte ID produktu
-        search: Hľadať
     interview_questions:
       delete_confirmation: Naozaj chcete odstrániť túto otázku na pohovore?
       description: Opis

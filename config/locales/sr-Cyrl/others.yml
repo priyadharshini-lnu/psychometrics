@@ -1051,7 +1051,6 @@ sr-Cyrl:
         saville_assessment_name: Савилле процена Име
         simulation_assessment_name: Име процене симулације
         skillvue_assessment_name: Име процене Скиллвуе
-        yoodli_assessment_name: Име процене Иоодли
       translations_migrated: Превод мигриран
     create: Креирате
     dashboard: Контролну таблу
@@ -1931,7 +1930,6 @@ sr-Cyrl:
       hide: Сакрити
       view: Приказ
     validations:
-      required: Ово поље је обавезно
       select_locale: Молимо Вас да изаберете неки језик (е)
       should_be_whole_number: требало би да буде цео број
   confirmation:

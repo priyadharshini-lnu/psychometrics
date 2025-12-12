@@ -2644,24 +2644,6 @@ ko:
         skillvue:
           api_key_present: API 키가 다른 프로젝트에 이미 존재합니다.
       view_all_schedules: 모든 Mettl 일정 보기
-      yoodli_assessments:
-        add_assessment: 추가 유들리 평가
-        columns:
-          actions: 작업
-          created_at: 창설 시기
-          name: 평가명칭
-          product_id: 제품 ID
-        delete_confirm: 이 유들리 평가를 삭제할 게 확실한가요?
-        edit_assessment: '수정: 유들리 평가'
-        manage_catalog: 유들리 평가 관리
-        messages:
-          create_success: 유들리 평가 '%{name}'이 성공적으로 제작되었습니다
-          delete_success: Yoodli 평가가 성공적으로 삭제되었습니다
-          update_success: 유들리 평가 '%{name}'이 성공적으로 업데이트되었습니다
-        placeholders:
-          name: 평가 이름 입력
-          product_id: 제품 ID 입력
-        search: 검색
     interview_questions:
       delete_confirmation: 이 인터뷰 질문을 삭제하시겠습니까?
       description: 설명

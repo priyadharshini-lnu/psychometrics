@@ -2644,24 +2644,6 @@ pl:
         skillvue:
           api_key_present: Klucz API jest już obecny w innym projekcie
       view_all_schedules: Zobacz wszystkie rozkłady jazdy Mettl
-      yoodli_assessments:
-        add_assessment: Add Yoodli Assessment
-        columns:
-          actions: Akcje
-          created_at: Stworzone w
-          name: Nazwa oceny
-          product_id: Identyfikator produktu
-        delete_confirm: Jesteś pewien, że chcesz usunąć tę ocenę Yoodli?
-        edit_assessment: Edytuj Ocena Yoodli
-        manage_catalog: Zarządzanie ocenami Yoodli
-        messages:
-          create_success: Ocena Yoodli '%{name}' została pomyślnie stworzona
-          delete_success: Ocena Yoodli została pomyślnie usunięta
-          update_success: Ocena Yoodli '%{name}' została pomyślnie zaktualizowana
-        placeholders:
-          name: Wpisz nazwę oceny
-          product_id: Wprowadź ID produktu
-        search: Szukać
     interview_questions:
       delete_confirmation: Czy na pewno chcesz usunąć to pytanie podczas rozmowy kwalifikacyjnej?
       description: Opis

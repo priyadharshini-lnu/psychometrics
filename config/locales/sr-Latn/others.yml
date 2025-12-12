@@ -1058,7 +1058,6 @@ sr-Latn:
         saville_assessment_name: Saville procena Ime
         simulation_assessment_name: Simulacija Procena Ime
         skillvue_assessment_name: Skillvue Ime Procene
-        yoodli_assessment_name: Ime procene Ioodli
       translations_migrated: Prevod Migriran
     create: Kreirate
     dashboard: Kontrolnu tablu
@@ -1947,7 +1946,6 @@ sr-Latn:
       hide: Sakriti
       view: Prikaz
     validations:
-      required: Ovo polje je obavezno
       select_locale: Molimo Vas da izaberete neki jezik (e)
       should_be_whole_number: trebalo bi da bude ceo broj
   confirmation:

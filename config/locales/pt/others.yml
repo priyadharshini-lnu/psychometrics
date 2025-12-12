@@ -1051,7 +1051,6 @@ pt:
         saville_assessment_name: Avaliação Saville Nome
         simulation_assessment_name: Nome da avaliação da simulação
         skillvue_assessment_name: Skillvue Nome da avaliação
-        yoodli_assessment_name: Nome da Avaliação Yoodli
       translations_migrated: Tradução Migrada
     create: Criar
     dashboard: Painel de controlo
@@ -1949,7 +1948,6 @@ pt:
       hide: Esconder
       view: Ver
     validations:
-      required: Esse campo é obrigatório
       select_locale: Selecione uma ou mais localidades
       should_be_whole_number: deve ser um número inteiro
   confirmation:

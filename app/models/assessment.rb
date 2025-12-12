@@ -248,7 +248,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     saville? || pearson?
   end
 
-  def external_assessment_name # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
+  def external_assessment_name # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     return if external_assessment_id.nil? || common?
 
     case category
@@ -263,7 +263,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
       when 'skillvue'
         SkillvueAssessment.find_by(product_id: external_assessment_id)&.name
       when 'yoodli'
-        YoodliAssessment.find_by(product_id: external_assessment_id)&.name
+        external_assessment_id
       when 'simulation'
         Settings.providers.simulation.assessments.find { |a| a.id.casecmp?(external_assessment_id) }&.name
       when 'iiht'

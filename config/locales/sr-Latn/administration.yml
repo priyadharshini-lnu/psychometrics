@@ -2644,24 +2644,6 @@ sr-Latn:
         skillvue:
           api_key_present: API ključ je već prisutan u drugom projektu
       view_all_schedules: Pogledaj sve Mettl rasporede
-      yoodli_assessments:
-        add_assessment: Dodaj Ioodli procenu
-        columns:
-          actions: Radnje
-          created_at: Kreirano u
-          name: Ime procene
-          product_id: Kod proizvoda
-        delete_confirm: Da li ste sigurni da želite da izbrišete ovu Ioodli procenu?
-        edit_assessment: Uredi Ioodli procenu
-        manage_catalog: Upravljajte Ioodli procenama
-        messages:
-          create_success: Ioodli procena '%{name}' je uspešno kreirana
-          delete_success: Ioodli procena je uspešno izbrisana
-          update_success: Ioodli procena '%{name}' je uspešno ažurirana
-        placeholders:
-          name: Unesite ime procene
-          product_id: Unesite ID proizvoda
-        search: Pretrage
     interview_questions:
       delete_confirmation: Da li ste sigurni da želite da izbrišete ovo pitanje za intervju?
       description: Deskripton

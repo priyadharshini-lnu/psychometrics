@@ -2644,24 +2644,6 @@ ar:
         skillvue:
           api_key_present: مفتاح API موجود بالفعل في مشروع آخر
       view_all_schedules: View All Mettl Schedules
-      yoodli_assessments:
-        add_assessment: تقييم إضافة يودلي
-        columns:
-          actions: الاجراءات
-          created_at: تم إنشاؤه في
-          name: اسم التقييم
-          product_id: معرف المنتج
-        delete_confirm: هل أنت متأكد أنك تريد حذف هذا التقييم اليودلي؟
-        edit_assessment: تعديل تقييم يودلي
-        manage_catalog: إدارة تقييمات اليودلي
-        messages:
-          create_success: تم إنشاء تقييم يودلي '%{name}' بنجاح
-          delete_success: تم حذف تقييم يودلي بنجاح
-          update_success: تم تحديث تقييم يودلي '%{name}' بنجاح
-        placeholders:
-          name: أدخل اسم التقييم
-          product_id: ادخل معرف المنتج
-        search: بحث
     interview_questions:
       delete_confirmation: هل أنت متأكد من أنك تريد حذف سؤال المقابلة هذا؟
       description: الوصف

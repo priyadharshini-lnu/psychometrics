@@ -1050,7 +1050,6 @@ fr:
         saville_assessment_name: Nom de l'évaluation de Saville
         simulation_assessment_name: Nom de l'évaluation de la simulation
         skillvue_assessment_name: Skillvue Nom de l'évaluation
-        yoodli_assessment_name: Nom d’évaluation Yoodli
       translations_migrated: Traduction migrée
     create: Créer
     dashboard: Tableau de bord
@@ -1936,7 +1935,6 @@ fr:
       hide: Cacher
       view: Voir
     validations:
-      required: Ce champ est obligatoire
       select_locale: Veuillez sélectionner un ou plusieurs lieu(x)
       should_be_whole_number: doit être un nombre entier
   confirmation:

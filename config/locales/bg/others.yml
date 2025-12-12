@@ -1050,7 +1050,6 @@ bg:
         saville_assessment_name: Оценка на Saville Име
         simulation_assessment_name: Име на оценка на симулацията
         skillvue_assessment_name: Име на оценка на Skillvue
-        yoodli_assessment_name: Име на оценката Yoodli
       translations_migrated: Преводът е мигриран
     create: Създавам
     dashboard: Таблото
@@ -1936,7 +1935,6 @@ bg:
       hide: Крия
       view: Изглед
     validations:
-      required: Тази област е задължителна
       select_locale: Моля, изберете някоя локация
       should_be_whole_number: трябва да е цяло число
   confirmation:

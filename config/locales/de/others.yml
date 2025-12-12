@@ -1050,7 +1050,6 @@ de:
         saville_assessment_name: Saville-Bewertung Name
         simulation_assessment_name: Simulation Bewertung Name
         skillvue_assessment_name: Skillvue Bewertung Name
-        yoodli_assessment_name: Name der Yoodli-Bewertung
       translations_migrated: Übersetzung migriert
     create: Erstellen
     dashboard: Dashboard
@@ -1950,7 +1949,6 @@ de:
       hide: Ausblenden
       view: Siehe
     validations:
-      required: Dieses Feld ist erforderlich
       select_locale: Bitte wählen Sie ein oder mehrere Länder
       should_be_whole_number: sollte eine ganze Zahl sein
   confirmation:

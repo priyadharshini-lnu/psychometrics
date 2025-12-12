@@ -298,11 +298,6 @@ const IntegrationsComponent: React.FC<Props> = ({
                       </Tooltip>
                     </>
                   )}
-                  {integration.name === 'yoodli' && (
-                    <Tooltip title={I18n.t('administration.integrations.yoodli_assessments.manage_catalog')}>
-                      <EyeOutlined onClick={() => handleTabChange('integrations/yoodli_assessments')} />
-                    </Tooltip>
-                  )}
                   <Tooltip title={I18n.t('common.actions.edit')}>
                     <EditOutlined onClick={() => openModal('IntegrationFormModal', { integration })} />
                   </Tooltip>

@@ -1050,7 +1050,6 @@ vi:
         saville_assessment_name: Tên đánh giá Saville
         simulation_assessment_name: Tên đánh giá mô phỏng
         skillvue_assessment_name: Tên đánh giá Skillvue
-        yoodli_assessment_name: Tên đánh giá Yoodli
       translations_migrated: Bản dịch đã di chuyển
     create: Tạo
     dashboard: Bảng điều khiển
@@ -1930,7 +1929,6 @@ vi:
       hide: Giấu
       view: Cảnh
     validations:
-      required: Trường này là bắt buộc
       select_locale: Vui lòng chọn một số ngôn ngữ
       should_be_whole_number: nên là một số nguyên
   confirmation:

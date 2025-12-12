@@ -2644,24 +2644,6 @@ de:
         skillvue:
           api_key_present: Der API-Schlüssel ist bereits in einem anderen Projekt vorhanden
       view_all_schedules: Alle Mettl-Zeitpläne anzeigen
-      yoodli_assessments:
-        add_assessment: Yoodli-Bewertung hinzufügen
-        columns:
-          actions: Aktionen
-          created_at: Erstellt bei
-          name: Bewertungsname
-          product_id: Produkt-ID
-        delete_confirm: Bist du sicher, dass du diese Yoodli-Bewertung löschen willst?
-        edit_assessment: 'Bearbeiten: Yoodli-Bewertung'
-        manage_catalog: Verwaltung von Yoodli-Bewertungen
-        messages:
-          create_success: Die Yoodli-Bewertung '%{name}' wurde erfolgreich entwickelt
-          delete_success: Die Yoodli-Bewertung wurde erfolgreich gelöscht
-          update_success: Yoodli-Bewertung '%{name}' wurde erfolgreich aktualisiert
-        placeholders:
-          name: Name der Bewertung eingeben
-          product_id: Geben Sie Produkt-ID ein
-        search: Suchen
     interview_questions:
       delete_confirmation: Sind Sie sicher, dass Sie diese Interviewfrage löschen möchten?
       description: Beschreibung

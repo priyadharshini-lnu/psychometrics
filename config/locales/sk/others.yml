@@ -1050,7 +1050,6 @@ sk:
         saville_assessment_name: Saville hodnotenie Názov
         simulation_assessment_name: Názov simulačného hodnotenia
         skillvue_assessment_name: Názov hodnotenia Skillvue
-        yoodli_assessment_name: Hodnotenie Yoodli Name
       translations_migrated: Preklad bol migrovaný
     create: Vytvoriť
     dashboard: Tabuľu
@@ -1936,7 +1935,6 @@ sk:
       hide: Skryť
       view: Pohľad
     validations:
-      required: Toto pole je povinné
       select_locale: Vyberte niektoré miestne nastavenia
       should_be_whole_number: by malo byť celé číslo
   confirmation:

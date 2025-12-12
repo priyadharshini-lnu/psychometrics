@@ -1090,7 +1090,6 @@ ar:
         saville_assessment_name: اسم تقييم سافيل
         simulation_assessment_name: اسم تقييم المحاكاة
         skillvue_assessment_name: اسم تقييم المهارات
-        yoodli_assessment_name: اسم تقييم يودلي
       translations_migrated: الترجمة المهاجرة
     create: خلق
     dashboard: لوحه القياده
@@ -1988,7 +1987,6 @@ ar:
       hide: أخفى
       view: منظر
     validations:
-      required: هذا المجال مطلوب
       select_locale: الرجاء تحديد بعض الإعدادات المحلية
       should_be_whole_number: يجب أن يكون رقما صحيحا
   confirmation:

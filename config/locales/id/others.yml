@@ -1053,7 +1053,6 @@ id:
         saville_assessment_name: Penilaian Saville Nama
         simulation_assessment_name: Nama Penilaian Simulasi
         skillvue_assessment_name: Nama Penilaian Skillvue
-        yoodli_assessment_name: Nama Penilaian Yoodli
       translations_migrated: Terjemahan Dimigrasikan
     create: Menciptakan
     dashboard: Dashboard
@@ -1940,7 +1939,6 @@ id:
       hide: Menyembunyikan
       view: Melihat
     validations:
-      required: Bidang ini diperlukan
       select_locale: Silakan pilih Beberapa lokal
       should_be_whole_number: harus berupa bilangan bulat
   confirmation:

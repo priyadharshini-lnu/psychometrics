@@ -2644,24 +2644,6 @@ vi:
         skillvue:
           api_key_present: Khóa API đã có trong dự án khác
       view_all_schedules: Xem tất cả lịch trình Mettl
-      yoodli_assessments:
-        add_assessment: Thêm đánh giá Yoodli
-        columns:
-          actions: Hành động
-          created_at: Được tạo tại
-          name: Tên đánh giá
-          product_id: ID sản phẩm
-        delete_confirm: Bạn có chắc chắn muốn xóa bài đánh giá Yoodli này không?
-        edit_assessment: Chỉnh sửa Đánh giá Yoodli
-        manage_catalog: Quản lý đánh giá Yoodli
-        messages:
-          create_success: Đánh giá Yoodli '%{name}' đã được tạo thành công
-          delete_success: Đánh giá Yoodli đã bị xóa thành công
-          update_success: Đánh giá Yoodli '%{name}' đã được cập nhật thành công
-        placeholders:
-          name: Nhập tên đánh giá
-          product_id: Nhập mã sản phẩm
-        search: Tìm kiếm
     interview_questions:
       delete_confirmation: Bạn có chắc chắn muốn xóa Câu hỏi phỏng vấn này không?
       description: Mô tả

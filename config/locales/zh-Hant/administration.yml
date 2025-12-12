@@ -2644,24 +2644,6 @@ zh-Hant:
         skillvue:
           api_key_present: API 金鑰已存在於其他專案中
       view_all_schedules: 檢視所有 Mettl 時刻表
-      yoodli_assessments:
-        add_assessment: 新增 Yoodli 評估
-        columns:
-          actions: 行動
-          created_at: 創立於
-          name: 評估名稱
-          product_id: 產品識別碼
-        delete_confirm: 你確定要刪除這個 Yoodli 評估嗎？
-        edit_assessment: 編輯：Yoodli 評估
-        manage_catalog: 管理 Yoodli 評估
-        messages:
-          create_success: Yoodli 評估「%{name}」成功製作
-          delete_success: Yoodli 評估已被成功刪除
-          update_success: Yoodli 評估「%{name}」已成功更新
-        placeholders:
-          name: 輸入評估名稱
-          product_id: 產品識別碼（Product ID）登場
-        search: 尋
     interview_questions:
       delete_confirmation: 你確定要刪除這個面試問題嗎？
       description: 描述

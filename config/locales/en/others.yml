@@ -1066,7 +1066,7 @@ en:
         saville_assessment_name: Saville assessment Name
         simulation_assessment_name: Simulation Assessment Name
         skillvue_assessment_name: Skillvue Assessment Name
-        yoodli_assessment_name: Yoodli Assessment Name
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: Translation Migrated
     create: Create
     dashboard: Dashboard
@@ -1964,7 +1964,6 @@ en:
       hide: Hide
       view: View
     validations:
-      required: This field is required
       select_locale: Please Select Some locale(s)
       should_be_whole_number: should be a whole number
   confirmation:

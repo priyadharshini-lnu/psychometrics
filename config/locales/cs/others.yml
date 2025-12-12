@@ -1050,7 +1050,6 @@ cs:
         saville_assessment_name: Hodnocení Saville Název
         simulation_assessment_name: Hodnocení simulace Název
         skillvue_assessment_name: Název hodnocení Skillvue
-        yoodli_assessment_name: Yoodli Assessment Name
       translations_migrated: Přeloženo
     create: Vytvořit
     dashboard: Přístrojová deska
@@ -1948,7 +1947,6 @@ cs:
       hide: Skrýt
       view: Zobrazit
     validations:
-      required: Toto pole je povinné
       select_locale: Vyberte prosím některé lokality
       should_be_whole_number: by mělo být celé číslo
   confirmation:
