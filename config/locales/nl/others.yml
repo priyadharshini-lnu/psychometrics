@@ -2677,6 +2677,7 @@ nl:
     edit_progress: Vooruitgang bewerken
     fetching_skill_gap_report: Rapport over lacunes in vaardigheden ophalen...
     go_to_previous_step: Ga naar de vorige stap
+    go_to_reportee_plan: Ga naar de plandetails van de gemelde.
     history:
       added_da:
         one: Ontwikkelingsactie toegevoegd
@@ -2726,6 +2727,7 @@ nl:
         categories: Categorieën
       save_skills: Vaardigheden opslaan
     new_comments: Nieuwe reactie(s)
+    no_plan_changes_found: Sinds je laatste beoordeling zijn er geen wijzigingen aan het plan gedaan.
     no_skills_added: Je hebt nog geen Skills toegevoegd.
     no_skills_added_by_reportee: De verslaggever heeft nog geen vaardigheden toegevoegd.
     pdf:

@@ -2748,6 +2748,7 @@ es-ES:
     edit_progress: Editar progreso
     fetching_skill_gap_report: Obtener el informe de brechas de habilidades...
     go_to_previous_step: Ir al paso anterior
+    go_to_reportee_plan: Ir a Detalles del Plan del Reportado
     history:
       added_da:
         one: Acción de desarrollo agregada
@@ -2797,6 +2798,7 @@ es-ES:
         categories: Categorías
       save_skills: Salvar Habilidades
     new_comments: Nuevos comentarios
+    no_plan_changes_found: No se han hecho revisiones en el plan desde tu última revisión.
     no_skills_added: Todavía no tienes habilidades agregadas.
     no_skills_added_by_reportee: El reportado aún no ha agregado habilidades.
     pdf:

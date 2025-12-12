@@ -2682,6 +2682,7 @@ ro:
     edit_progress: Editați progres
     fetching_skill_gap_report: Raport de preluare a lacunelor de abilități...
     go_to_previous_step: Mergeți la pasul anterior
+    go_to_reportee_plan: Accesează detaliile planului raportatului
     history:
       added_da:
         one: Acțiune de dezvoltare adăugată
@@ -2731,6 +2732,7 @@ ro:
         categories: Categorii
       save_skills: Salvați abilități
     new_comments: Comentariu (comentarii) nou
+    no_plan_changes_found: Nu au fost făcute modificări la plan de la ultima ta evaluare.
     no_skills_added: Nu ai încă abilități adăugate.
     no_skills_added_by_reportee: Raportatul nu a adăugat încă abilități.
     pdf:

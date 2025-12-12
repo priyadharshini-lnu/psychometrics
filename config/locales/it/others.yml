@@ -2677,6 +2677,7 @@ it:
     edit_progress: Modifica dei progressi
     fetching_skill_gap_report: Recupero del rapporto sulle lacune di abilità...
     go_to_previous_step: Vai al passaggio precedente
+    go_to_reportee_plan: Vai ai dettagli del piano del segnalato
     history:
       added_da:
         one: Aggiunta di un'azione di sviluppo
@@ -2732,6 +2733,7 @@ it:
         technical: Tecnica
       save_skills: Salvataggio delle competenze
     new_comments: Nuovi commenti
+    no_plan_changes_found: Non sono state apportate modifiche al piano dalla tua ultima revisione.
     no_skills_added: Non hai ancora aggiunto alcuna abilità.
     no_skills_added_by_reportee: Il segnalato non ha ancora aggiunto Competenze.
     pdf:

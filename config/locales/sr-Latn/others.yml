@@ -2701,6 +2701,7 @@ sr-Latn:
     edit_progress: Uredi napredak
     fetching_skill_gap_report: Izveštaj o prazninama u veštinama ...
     go_to_previous_step: Idi na prethodni korak
+    go_to_reportee_plan: Idi na detalje plana Reportee
     history:
       added_da:
         one: Dodatna razvojna akcija
@@ -2750,6 +2751,7 @@ sr-Latn:
         categories: Kategorije
       save_skills: Sačuvaj veštine
     new_comments: Novi komentar(i)
+    no_plan_changes_found: Od vašeg poslednjeg pregleda nisu napravljene revizije plana.
     no_skills_added: Još uvek nemate dodane veštine.
     no_skills_added_by_reportee: Izveštavalac još nije dodao veštine.
     pdf:

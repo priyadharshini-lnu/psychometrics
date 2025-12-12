@@ -2677,6 +2677,7 @@ fr:
     edit_progress: Modifier l'état d'avancement
     fetching_skill_gap_report: Rapport sur les écarts de compétences...
     go_to_previous_step: Passer à l’étape précédente
+    go_to_reportee_plan: Consultez les détails du plan du signalé
     history:
       added_da:
         one: Ajout d’une action de développement
@@ -2732,6 +2733,7 @@ fr:
         technical: Technique
       save_skills: Sauvegarder les compétences
     new_comments: Nouveau(x) commentaire(s)
+    no_plan_changes_found: Aucune modification du plan n’a été apportée depuis votre dernier avis.
     no_skills_added: Vous n’avez pas encore ajouté de compétences.
     no_skills_added_by_reportee: Reportee n’a pas encore ajouté de compétences.
     pdf:

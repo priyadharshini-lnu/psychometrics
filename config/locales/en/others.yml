@@ -2710,6 +2710,7 @@ en:
     edit_progress: Edit Progress
     fetching_skill_gap_report: Fetching Skill Gaps Report...
     go_to_previous_step: Go to Previous Step
+    go_to_reportee_plan: Go to Reportee's Plan Details
     history:
       added_da:
         one: Added Development Action
@@ -2759,6 +2760,7 @@ en:
         categories: Categories
       save_skills: Save Skills
     new_comments: New comment(s)
+    no_plan_changes_found: No revisions have been made to the plan since your last review.
     no_skills_added: You have no Skills added yet.
     no_skills_added_by_reportee: Reportee has not added Skills yet.
     pdf:

@@ -2672,6 +2672,7 @@ ja:
     edit_progress: 編集プログレス
     fetching_skill_gap_report: スキルギャップレポートの取得...
     go_to_previous_step: 前のステップに進む
+    go_to_reportee_plan: リポーターのプラン詳細へ
     history:
       added_da:
         one: 開発アクションの追加
@@ -2721,6 +2722,7 @@ ja:
         categories: カテゴリー
       save_skills: セーブ・スキル
     new_comments: 新しいコメント
+    no_plan_changes_found: 前回のレビュー以降、計画に修正はありません。
     no_skills_added: まだスキルが追加されていません。
     no_skills_added_by_reportee: 報告者はまだスキルを追加していません。
     pdf:

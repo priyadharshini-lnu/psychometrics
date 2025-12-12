@@ -2686,6 +2686,7 @@ id:
     edit_progress: Edit Kemajuan
     fetching_skill_gap_report: Laporan Kesenjangan Keterampilan Mengambil ...
     go_to_previous_step: Pergi ke Langkah Sebelumnya
+    go_to_reportee_plan: Buka Detail Paket Terlapor
     history:
       added_da:
         one: Menambahkan Tindakan Pengembangan
@@ -2735,6 +2736,7 @@ id:
         categories: Kategori
       save_skills: Simpan Keterampilan
     new_comments: Komentar baru
+    no_plan_changes_found: Tidak ada revisi yang dilakukan pada rencana sejak tinjauan terakhir Anda.
     no_skills_added: Anda belum memiliki Keterampilan yang ditambahkan.
     no_skills_added_by_reportee: Laporan belum menambahkan Keterampilan.
     pdf:

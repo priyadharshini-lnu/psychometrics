@@ -2676,6 +2676,7 @@ vi:
     edit_progress: Chỉnh sửa tiến độ
     fetching_skill_gap_report: Tìm nạp báo cáo khoảng cách kỹ năng...
     go_to_previous_step: Chuyển đến bước trước
+    go_to_reportee_plan: Đi tới Chi tiết kế hoạch của người được báo cáo
     history:
       added_da:
         one: Thêm hành động phát triển
@@ -2725,6 +2726,7 @@ vi:
         categories: Loại
       save_skills: Lưu kỹ năng
     new_comments: "(Các) nhận xét mới"
+    no_plan_changes_found: Không có sửa đổi nào được thực hiện đối với kế hoạch kể từ lần xem xét cuối cùng của bạn.
     no_skills_added: Bạn chưa có Kỹ năng nào được thêm vào.
     no_skills_added_by_reportee: Người báo cáo vẫn chưa thêm Kỹ năng.
     pdf:

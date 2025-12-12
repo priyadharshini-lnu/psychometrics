@@ -2682,6 +2682,7 @@ sk:
     edit_progress: Upraviť pokrok
     fetching_skill_gap_report: Správa o medzerách v zručnostiach...
     go_to_previous_step: Prejsť na predchádzajúci krok
+    go_to_reportee_plan: Prejdite na podrobnosti o pláne reportéra
     history:
       added_da:
         one: Pridaná vývojová akcia
@@ -2731,6 +2732,7 @@ sk:
         categories: Kategórie
       save_skills: Uložiť zručnosti
     new_comments: Nové komentáre
+    no_plan_changes_found: Od tvojej poslednej kontroly neboli v pláne vykonané žiadne úpravy.
     no_skills_added: Zatiaľ nemáte pridané žiadne schopnosti.
     no_skills_added_by_reportee: Hlásiteľ zatiaľ nepridal žiadne zručnosti.
     pdf:

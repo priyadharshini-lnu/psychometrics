@@ -2690,6 +2690,7 @@ pt:
     edit_progress: Editar o progresso
     fetching_skill_gap_report: Buscando o Relatório de Lacunas de Habilidades...
     go_to_previous_step: Ir para a etapa anterior
+    go_to_reportee_plan: Vá para os Detalhes do Plano do Relatado
     history:
       added_da:
         one: Ação de desenvolvimento adicionada
@@ -2745,6 +2746,7 @@ pt:
         technical: Técnica
       save_skills: Salvar competências
     new_comments: Novo(s) comentário(s)
+    no_plan_changes_found: Nenhuma revisão foi feita no plano desde sua última avaliação.
     no_skills_added: Você ainda não adicionou Habilidades.
     no_skills_added_by_reportee: O subordinado direto ainda não adicionou habilidades.
     pdf:

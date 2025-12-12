@@ -2691,6 +2691,7 @@ de:
     edit_progress: Fortschritt bearbeiten
     fetching_skill_gap_report: Bericht über Qualifikationslücken abrufen...
     go_to_previous_step: Gehe zum vorherigen Schritt
+    go_to_reportee_plan: Gehen Sie zu den Details des Reportees Plan
     history:
       added_da:
         one: Zusätzliche Entwicklungsmaßnahmen
@@ -2741,6 +2742,7 @@ de:
         categories: Kategorien
       save_skills: Kompetenzen speichern
     new_comments: Neuer Kommentar
+    no_plan_changes_found: Seit Ihrer letzten Überprüfung wurden keine Änderungen am Plan vorgenommen.
     no_skills_added: Du hast noch keine Fähigkeiten hinzugefügt.
     no_skills_added_by_reportee: Der Berichtsempfänger hat noch keine Fähigkeiten hinzugefügt.
     pdf:

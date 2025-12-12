@@ -2682,6 +2682,7 @@ bg:
     edit_progress: Редактиране на напредъка
     fetching_skill_gap_report: Извличане на доклад за пропуски в уменията...
     go_to_previous_step: Към предишната стъпка
+    go_to_reportee_plan: Отидете в подробности за плана на Reportee
     history:
       added_da:
         one: Добавено действие за разработка
@@ -2731,6 +2732,7 @@ bg:
         categories: Категории
       save_skills: Запазване на умения
     new_comments: Нов коментар(и)
+    no_plan_changes_found: От последния ви преглед не са правени промени в плана.
     no_skills_added: Все още нямате добавени умения.
     no_skills_added_by_reportee: Докладваният все още не е добавил умения.
     pdf:

@@ -2671,6 +2671,7 @@ cs:
     edit_progress: Upravit pokrok
     fetching_skill_gap_report: Zpráva o načítání mezer v dovednostech...
     go_to_previous_step: Přejít na předchozí krok
+    go_to_reportee_plan: Přejděte na podrobnosti o plánu reportee
     history:
       added_da:
         one: Přidána vývojová akce
@@ -2720,6 +2721,7 @@ cs:
         categories: Kategorie
       save_skills: Uložit dovednosti
     new_comments: Nové komentáře(e)
+    no_plan_changes_found: Od tvé poslední kontroly nebyly v plánu provedeny žádné úpravy.
     no_skills_added: Zatím nemáte přidané žádné dovednosti.
     no_skills_added_by_reportee: Reportee ještě nepřidal žádné dovednosti.
     pdf:

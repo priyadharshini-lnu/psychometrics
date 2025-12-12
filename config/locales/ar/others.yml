@@ -2734,6 +2734,7 @@ ar:
     edit_progress: تحرير التقدم
     fetching_skill_gap_report: تقرير جلب فجوات المهارات ...
     go_to_previous_step: انتقل إلى الخطوة السابقة
+    go_to_reportee_plan: اذهب إلى تفاصيل خطة المبلغ
     history:
       added_da:
         one: إجراءات إنمائية مضافة
@@ -2783,6 +2784,7 @@ ar:
         categories: الفئات
       save_skills: حفظ المهارات
     new_comments: تعليق (تعليقات) جديدة
+    no_plan_changes_found: لم تجر أي تعديلات على الخطة منذ آخر مراجعة لك.
     no_skills_added: لم تتم إضافة مهارات حتى الآن.
     no_skills_added_by_reportee: لم يقم المُبلغ بإضافة أي مهارات بعد
     pdf:

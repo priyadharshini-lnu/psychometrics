@@ -3,6 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Flex, Typography, Spin, Tag, Empty, Button, message,
 } from 'antd'
+import { Link } from 'react-router-dom'
 import { SafeHTML } from '~/components/SafeHTML'
 import { fetchUserIdpPlanChangesForSummary, updateUserIdpPlan }
   from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
@@ -51,6 +52,17 @@ export const SummaryComponent: React.FC<SummaryComponentProps & Props> = ({
     }).catch(() => {
       message.error(I18n.t('common.errors.something_wrong'))
     }).finally(() => { setIsLoading(false) })
+  }
+
+  if (Object.keys(summary).length === 0 && !summary.message) {
+    return (
+      <Flex vertical align="center" gap={16}>
+        <Empty description={I18n.t('idp.no_plan_changes_found')} />
+        <Link to={`/idp/direct_reportees/${reportee.reporteeId}`}>
+          {I18n.t('idp.go_to_reportee_plan')}
+        </Link>
+      </Flex>
+    )
   }
 
   return (

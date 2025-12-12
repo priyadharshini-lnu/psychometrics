@@ -2697,6 +2697,7 @@ hr:
     edit_progress: Uredi napredak
     fetching_skill_gap_report: Izvješće o nedostacima u vještinama...
     go_to_previous_step: Idite na prethodni korak
+    go_to_reportee_plan: Idite na detalje plana izvještavatelja
     history:
       added_da:
         one: Dodatna razvojna akcija
@@ -2746,6 +2747,7 @@ hr:
         categories: Kategorije
       save_skills: Spremite vještine
     new_comments: Novi komentar(i)
+    no_plan_changes_found: Od vaše zadnje recenzije nisu napravljene nikakve izmjene u planu.
     no_skills_added: Još niste dodali vještine.
     no_skills_added_by_reportee: Ispitanik još nije dodao vještine.
     pdf:

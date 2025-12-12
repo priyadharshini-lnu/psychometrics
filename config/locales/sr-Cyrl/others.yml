@@ -2677,6 +2677,7 @@ sr-Cyrl:
     edit_progress: Уреди напредак
     fetching_skill_gap_report: Извештај о празнинама у вештинама ...
     go_to_previous_step: Иди на претходни корак
+    go_to_reportee_plan: Иди на детаље плана Репортее
     history:
       added_da:
         one: Додатна развојна акција
@@ -2726,6 +2727,7 @@ sr-Cyrl:
         categories: Категорије
       save_skills: Сачувај вештине
     new_comments: Нови коментар(и)
+    no_plan_changes_found: Од вашег последњег прегледа нису направљене ревизије плана.
     no_skills_added: Још увек немате додане вештине.
     no_skills_added_by_reportee: Репортее још није додао вештине.
     pdf:

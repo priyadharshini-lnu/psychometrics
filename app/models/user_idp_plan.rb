@@ -101,6 +101,7 @@ class UserIdpPlan < ApplicationRecord
     state :rejected do
       event :draft, transitions_to: :draft
       event :approve, transition_to: :approved
+      event :submit_for_approval, transitions_to: :pending_approval
     end
     state :in_review do
       event :approve, transitions_to: :approved

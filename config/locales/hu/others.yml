@@ -2682,6 +2682,7 @@ hu:
     edit_progress: Haladás szerkesztése
     fetching_skill_gap_report: Képzettségi hiányosságokról szóló jelentés...
     go_to_previous_step: Ugrás az előző lépésre
+    go_to_reportee_plan: A Reportee's Terv részleteihez
     history:
       added_da:
         one: Hozzáadott fejlesztési intézkedés
@@ -2731,6 +2732,7 @@ hu:
         categories: Kategóriák
       save_skills: Mentse el a készségeket
     new_comments: Új hozzászólás(ok)
+    no_plan_changes_found: Az előző értékelésed óta nem történt módosítás a terven.
     no_skills_added: Még nincs hozzáadott képesség.
     no_skills_added_by_reportee: A riportee még nem adta hozzá a Képességeket.
     pdf:

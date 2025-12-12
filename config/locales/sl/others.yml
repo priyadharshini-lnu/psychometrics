@@ -2691,6 +2691,7 @@ sl:
     edit_progress: Urejanje napredka
     fetching_skill_gap_report: Pridobivanje poročila o vrzelih v spretnostih ...
     go_to_previous_step: Pojdi na prejšnji korak
+    go_to_reportee_plan: Pojdite na podrobnosti načrta poročevalca
     history:
       added_da:
         one: Dodano razvojno ukrepanje
@@ -2740,6 +2741,7 @@ sl:
         categories: Kategorije
       save_skills: Shranite spretnosti
     new_comments: Novi komentarji
+    no_plan_changes_found: Od zadnjega pregleda ni bilo nobenih sprememb v načrtu.
     no_skills_added: Še nimate dodanih veščin.
     no_skills_added_by_reportee: Poročevalec še ni dodal veščin.
     pdf:

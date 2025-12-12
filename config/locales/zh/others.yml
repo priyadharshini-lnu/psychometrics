@@ -2669,6 +2669,7 @@ zh:
     edit_progress: 编辑进度
     fetching_skill_gap_report: 获取技能差距报告...
     go_to_previous_step: 转到上一步
+    go_to_reportee_plan: 前往报告人计划详情
     history:
       added_da:
         one: 添加了开发作
@@ -2724,6 +2725,7 @@ zh:
         technical: 技术
       save_skills: 保存技能
     new_comments: 新评论
+    no_plan_changes_found: 自你上次审查以来，计划没有任何修改。
     no_skills_added: 您尚未添加任何技能。
     no_skills_added_by_reportee: 被举报人尚未添加技能。
     pdf:

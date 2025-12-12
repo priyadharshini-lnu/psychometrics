@@ -2686,6 +2686,7 @@ pl:
     edit_progress: Edytuj postęp
     fetching_skill_gap_report: Pobieranie raportu o brakach w umiejętnościach...
     go_to_previous_step: Przejdź do poprzedniego kroku
+    go_to_reportee_plan: Przejdź do szczegółów planu Reportee
     history:
       added_da:
         one: Dodano akcję rozwojową
@@ -2735,6 +2736,7 @@ pl:
         categories: Kategorie
       save_skills: Zapisz umiejętności
     new_comments: Nowe komentarze
+    no_plan_changes_found: Od ostatniej oceny nie wprowadzono żadnych zmian w planie.
     no_skills_added: Nie masz jeszcze dodanych umiejętności.
     no_skills_added_by_reportee: Zgłaszający nie dodał jeszcze umiejętności.
     pdf:

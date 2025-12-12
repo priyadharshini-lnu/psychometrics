@@ -2665,6 +2665,7 @@ ko:
     edit_progress: 진행 상황 편집
     fetching_skill_gap_report: 기술 격차 보고서 가져오기...
     go_to_previous_step: 이전 단계로 이동
+    go_to_reportee_plan: 리포티의 플랜 세부사항으로 가기
     history:
       added_da:
         one: 개발 작업 추가
@@ -2714,6 +2715,7 @@ ko:
         categories: 카테고리
       save_skills: 스킬 저장
     new_comments: 새 댓글(들)
+    no_plan_changes_found: 지난 검토 이후로 계획에 수정된 것은 없습니다.
     no_skills_added: 아직 추가된 스킬이 없습니다.
     no_skills_added_by_reportee: 신고자 님은 아직 스킬을 추가하지 않았습니다.
     pdf:

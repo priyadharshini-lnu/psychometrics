@@ -264,8 +264,10 @@ RSpec.describe UserIdpPlan, type: :model do
           expect { user_idp_plan.approve! }.to change(user_idp_plan, :approval_status).from('rejected').to('approved')
         end
 
-        it 'can not transition to pending_approval' do
-          expect { user_idp_plan.submit_for_approval! }.to raise_error(Workflow::NoTransitionAllowed)
+        it 'can transition to pending_approval' do
+          expect { user_idp_plan.submit_for_approval! }.to change(
+            user_idp_plan, :approval_status
+          ).from('rejected').to('pending_approval')
         end
 
         it 'can not transition to in_review' do

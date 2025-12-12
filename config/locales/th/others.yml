@@ -2679,6 +2679,7 @@ th:
     edit_progress: แก้ไขความคืบหน้า
     fetching_skill_gap_report: การดึงรายงานช่องว่างของทักษะ...
     go_to_previous_step: ไปที่ขั้นตอนก่อนหน้า
+    go_to_reportee_plan: ไปที่รายละเอียดแผนของผู้รายงาน
     history:
       added_da:
         one: เพิ่มการดําเนินการพัฒนา
@@ -2728,6 +2729,7 @@ th:
         categories: ประเภท
       save_skills: บันทึกทักษะ
     new_comments: ความคิดเห็นใหม่
+    no_plan_changes_found: ไม่มีการแก้ไขแผนตั้งแต่การตรวจสอบครั้งล่าสุดของคุณ
     no_skills_added: คุณยังไม่ได้เพิ่มทักษะ
     no_skills_added_by_reportee: ผู้รายงานยังไม่ได้เพิ่มทักษะ
     pdf:
