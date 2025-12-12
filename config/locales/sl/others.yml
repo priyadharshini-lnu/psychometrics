@@ -2746,6 +2746,7 @@ sl:
       approval_status: Status odobritve
       cover:
         fields:
+          approval_date: Datum odobritve
           assigned_data: Dodeljeni datum
           assigned_date: Dodeljen datum
           completion_date: Datum zaključka
@@ -2832,8 +2833,12 @@ sl:
         approved: Pregledano in odobreno
         completed: Dokončano
         draft: Osnutek
+        in_progress: V nastajanju
+        in_review: V recenziji
         not_reviewed: Ni ocenjeno
+        not_started: Ni se začelo
         pending_approval: V pregledu
+        rejected: Zavrnjena
       summary:
         ai_count: Generativna umetna inteligenca
         collaborative_learn: Sodelovalno učenje

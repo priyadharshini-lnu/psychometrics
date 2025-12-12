@@ -2732,6 +2732,7 @@ sr-Cyrl:
       approval_status: Статус одобрења
       cover:
         fields:
+          approval_date: Датум одобрења
           assigned_data: Датум доделе
           assigned_date: Датум додељен
           completion_date: Датум завршетка
@@ -2799,8 +2800,12 @@ sr-Cyrl:
         approved: Прегледано и одобрено
         completed: Довршено
         draft: Нацрт
+        in_progress: У току
+        in_review: У прегледу
         not_reviewed: Није прегледано
+        not_started: Није почело
         pending_approval: У прегледу
+        rejected: Одбио
       summary:
         ai_count: Генеративна АИ
         collaborative_learn: Колаборативно учење

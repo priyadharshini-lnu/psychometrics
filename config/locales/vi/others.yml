@@ -2731,6 +2731,7 @@ vi:
       approval_status: Trạng thái phê duyệt
       cover:
         fields:
+          approval_date: Ngày phê duyệt
           assigned_data: Ngày chỉ định
           assigned_date: Ngày được giao
           completion_date: Ngày hoàn thành
@@ -2817,8 +2818,12 @@ vi:
         approved: Đã xem xét và phê duyệt
         completed: Hoàn thành
         draft: Bản nháp
+        in_progress: Đang tiến hành
+        in_review: Đang xem xét
         not_reviewed: Chưa được xem xét
+        not_started: Chưa bắt đầu
         pending_approval: Đang xem xét
+        rejected: Bị từ chối
       summary:
         ai_count: AI tổng quát
         collaborative_learn: Học tập hợp tác

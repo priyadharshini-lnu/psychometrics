@@ -2737,6 +2737,7 @@ hu:
       approval_status: Jóváhagyási állapot
       cover:
         fields:
+          approval_date: Jóváhagyási dátum
           assigned_data: Hozzárendelt dátum
           assigned_date: Hozzárendelt dátum
           completion_date: Befejezés dátuma
@@ -2804,8 +2805,12 @@ hu:
         approved: Felülvizsgált és jóváhagyott
         completed: Befejezett
         draft: Tervezet
+        in_progress: Folyamatban
+        in_review: Áttekintésben
         not_reviewed: Nincs felülvizsgálva
+        not_started: Nem kezdődött
         pending_approval: Áttekintés alatt
+        rejected: Elutasította
       summary:
         ai_count: Generatív AI
         collaborative_learn: Kollaboratív tanulás

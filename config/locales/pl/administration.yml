@@ -2351,6 +2351,7 @@ pl:
         skills_required_on_publishing: Wybierz umiejętności przed opublikowaniem szablonu.
         update: Aktualizacja nie jest dozwolona, ponieważ szablon dostawcy tożsamości jest już skojarzony z planem dostawcy tożsamości użytkownika. Zmiany wyglądu zostały zapisane.
       fields:
+        approval_date: Data zatwierdzenia
         assigned_data: Przypisane dane
         assigned_date: Przypisana data
         completion_date: Data realizacji

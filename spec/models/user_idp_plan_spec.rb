@@ -12,6 +12,54 @@ RSpec.describe UserIdpPlan, type: :model do
       create(:user_idp_plan, user: user, campaign_id: campaign.id)
     end
 
+    describe 'Callbacks' do
+      describe '#update_completed_at_or_started_at' do
+        let(:frozen_time) { Time.current }
+
+        before { allow(Time).to receive(:current).and_return(frozen_time) }
+
+        context 'when completion_status changes to in_progress' do
+          it 'sets started_at to current time' do
+            expect do
+              user_idp_plan.update(completion_status: :in_progress)
+            end.to change { user_idp_plan.reload.started_at }.from(nil).to(frozen_time)
+          end
+
+          it 'does not change completed_at' do
+            expect do
+              user_idp_plan.update(completion_status: :in_progress)
+            end.not_to(change { user_idp_plan.reload.completed_at })
+          end
+        end
+
+        context 'when completion_status changes to completed' do
+          it 'sets completed_at to current time' do
+            expect do
+              user_idp_plan.update(completion_status: :completed)
+            end.to change { user_idp_plan.reload.completed_at }.from(nil).to(frozen_time)
+          end
+
+          it 'does not change started_at if already set' do
+            user_idp_plan.update(completion_status: :in_progress)
+            expect do
+              user_idp_plan.update(completion_status: :completed)
+            end.not_to change(user_idp_plan.reload, :started_at)
+          end
+        end
+
+        context 'when completion_status does not change' do
+          it 'does not update started_at or completed_at' do
+            expect do
+              user_idp_plan.update(review_note: 'New Note')
+            end.not_to(change { user_idp_plan.reload.started_at })
+            expect do
+              user_idp_plan.update(review_note: 'Another Note')
+            end.not_to(change { user_idp_plan.reload.completed_at })
+          end
+        end
+      end
+    end
+
     context 'when communication exists' do
       before { communication }
 

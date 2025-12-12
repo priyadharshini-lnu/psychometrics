@@ -2351,6 +2351,7 @@ ro:
         skills_required_on_publishing: Vă rugăm să alegeți abilitățile înainte de a publica un șablon.
         update: Actualizarea nu este permisă, deoarece șablonul IDP este deja asociat cu un plan IDP al utilizatorului. Modificările de aspect au fost salvate.
       fields:
+        approval_date: Data de aprobare
         assigned_data: Date atribuite
         assigned_date: Data atribuirii
         completion_date: Data finalizării

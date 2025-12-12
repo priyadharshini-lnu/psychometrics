@@ -2727,6 +2727,7 @@ ja:
       approval_status: 承認状況
       cover:
         fields:
+          approval_date: 承認日
           assigned_data: 割り当て日
           assigned_date: 担当日
           completion_date: 完了日
@@ -2813,8 +2814,12 @@ ja:
         approved: レビュー済み・承認済み
         completed: 完了
         draft: ドラフト
+        in_progress: 進行中で
+        in_review: レビュー
         not_reviewed: 未レビュー
+        not_started: 未開始
         pending_approval: レビュー中
+        rejected: 拒否
       summary:
         ai_count: 生成型AI
         collaborative_learn: 協調学習

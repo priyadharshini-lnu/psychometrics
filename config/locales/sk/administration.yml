@@ -2351,6 +2351,7 @@ sk:
         skills_required_on_publishing: Pred zverejnením šablóny si vyberte zručnosti.
         update: Aktualizácia nie je povolená, pretože šablóna IDP je už priradená k plánu IDP používateľa. Zmeny vzhľadu boli uložené.
       fields:
+        approval_date: Dátum schválenia
         assigned_data: Priradené údaje
         assigned_date: Pridelený dátum
         completion_date: Dátum dokončenia

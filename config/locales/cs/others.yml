@@ -2726,6 +2726,7 @@ cs:
       approval_status: Stav schválení
       cover:
         fields:
+          approval_date: Datum schválení
           assigned_data: Datum přiřazení
           assigned_date: Přidělené datum
           completion_date: Datum dokončení
@@ -2812,8 +2813,12 @@ cs:
         approved: Zkontrolováno a schváleno
         completed: Dokončeno
         draft: Návrh
+        in_progress: Ve vývoji
+        in_review: V recenzi
         not_reviewed: Nezkontrolováno
+        not_started: Nezačalo
         pending_approval: V kontrole
+        rejected: Odmítnutý
       summary:
         ai_count: Generativní AI
         collaborative_learn: Kolaborativní učení

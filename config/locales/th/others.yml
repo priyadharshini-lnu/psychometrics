@@ -2734,6 +2734,7 @@ th:
       approval_status: สถานะการอนุมัติ
       cover:
         fields:
+          approval_date: วันที่อนุมัติ
           assigned_data: วันที่กําหนด
           assigned_date: วันที่กำหนด
           completion_date: วันที่เสร็จสมบูรณ์
@@ -2820,8 +2821,12 @@ th:
         approved: ตรวจสอบและอนุมัติแล้ว
         completed: เสร็จสมบูรณ์
         draft: ร่าง
+        in_progress: กําลังดําเนินการ
+        in_review: ในการตรวจสอบ
         not_reviewed: ไม่ได้รับการตรวจสอบ
+        not_started: ยังไม่ได้เริ่มต้น
         pending_approval: อยู่ระหว่างตรวจสอบ
+        rejected: ถูก ปฏิเสธ
       summary:
         ai_count: AI เชิงกําเนิด
         collaborative_learn: การเรียนรู้ร่วมกัน

@@ -2352,6 +2352,7 @@ en:
         skills_required_on_publishing: Please choose skills before publishing a template.
         update: Update not allowed because the IDP template is already associated with a user IDP plan.
       fields:
+        approval_date: Approval Date
         assigned_data: Assigned Data
         assigned_date: Assigned Date
         completion_date: Completion Date

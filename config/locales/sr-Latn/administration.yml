@@ -2351,6 +2351,7 @@ sr-Latn:
         skills_required_on_publishing: Molimo vas da izaberete veštine pre objavljivanja šablona.
         update: Ažuriranje nije dozvoljeno jer je IDP šablon već povezan sa korisničkim IDP planom. Promene izgleda su sačuvane.
       fields:
+        approval_date: Datum odobrenja
         assigned_data: Dodeljeni podaci
         assigned_date: Dodeljeni datum
         completion_date: Datum završetka

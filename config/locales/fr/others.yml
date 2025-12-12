@@ -2738,6 +2738,7 @@ fr:
       approval_status: Statut d'approbation
       cover:
         fields:
+          approval_date: Date d’approbation
           assigned_data: Date d'attribution
           assigned_date: Date assignée
           completion_date: Date d'achèvement
@@ -2824,8 +2825,12 @@ fr:
         approved: Revu et approuvé
         completed: Terminé
         draft: Projet
+        in_progress: En cours
+        in_review: Résumé
         not_reviewed: Non revu
+        not_started: Pas commencé
         pending_approval: En cours de révision
+        rejected: Rejeté
       summary:
         ai_count: IA générative
         collaborative_learn: Apprentissage collaboratif

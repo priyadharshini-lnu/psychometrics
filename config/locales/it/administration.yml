@@ -2351,6 +2351,7 @@ it:
         skills_required_on_publishing: Scegli le competenze prima di pubblicare un modello.
         update: Aggiornamento non consentito perché il modello IDP è già associato a un piano IDP utente.
       fields:
+        approval_date: Data di approvazione
         assigned_data: Dati assegnati
         assigned_date: Data di assegnazione
         completion_date: Data di completamento

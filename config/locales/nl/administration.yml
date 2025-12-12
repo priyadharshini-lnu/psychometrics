@@ -2351,6 +2351,7 @@ nl:
         skills_required_on_publishing: Kies vaardigheden voordat u een sjabloon publiceert.
         update: Bijwerken niet toegestaan omdat de IDP-sjabloon al gekoppeld is aan een IDP-plan van een gebruiker.
       fields:
+        approval_date: Goedkeuringsdatum
         assigned_data: Toegewezen gegevens
         assigned_date: Toegewezen Datum
         completion_date: Datum van voltooiing

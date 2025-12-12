@@ -78,7 +78,7 @@ class UserIdpPlan < ApplicationRecord
   scope :active, -> { where(active: true) }
 
   after_create :schedule_idp_assigned_notification
-  after_update :update_completed_at, if: :saved_change_to_completion_status?
+  after_update :update_completed_at_or_started_at, if: :saved_change_to_completion_status?
 
   alias report_pdfs idp_report_pdfs
 
@@ -223,10 +223,14 @@ class UserIdpPlan < ApplicationRecord
 
   private
 
-  def update_completed_at
-    return unless completion_status_completed?
+  def update_completed_at_or_started_at
+    return unless completion_status_completed? || completion_status_in_progress?
 
-    update_column(:completed_at, Time.current)
+    if completion_status_completed?
+      update_column(:completed_at, Time.current)
+    elsif completion_status_in_progress?
+      update_column(:started_at, Time.current)
+    end
   end
 
   def schedule_idp_assigned_notification

@@ -2732,6 +2732,7 @@ nl:
       approval_status: Status van goedkeuring
       cover:
         fields:
+          approval_date: Goedkeuringsdatum
           assigned_data: Toegewezen datum
           assigned_date: Toegewezen Datum
           completion_date: Voltooiingsdatum
@@ -2799,8 +2800,12 @@ nl:
         approved: Beoordeeld en goedgekeurd
         completed: Volbracht
         draft: Ontwerp
+        in_progress: In uitvoering
+        in_review: In Terugblik
         not_reviewed: Niet beoordeeld
+        not_started: Niet begonnen
         pending_approval: In recensie
+        rejected: Afgekeurd
       summary:
         ai_count: Generatieve AI
         collaborative_learn: Samenwerkend leren

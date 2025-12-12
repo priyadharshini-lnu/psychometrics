@@ -2351,6 +2351,7 @@ ko:
         skills_required_on_publishing: 템플릿을 게시하기 전에 기술을 선택하세요.
         update: IDP 템플릿이 이미 사용자 IDP 요금제에 연결되어 있으므로 업데이트할 수 없습니다.
       fields:
+        approval_date: 승인일
         assigned_data: 할당된 데이터
         assigned_date: 할당된 날짜
         completion_date: 완료 날짜

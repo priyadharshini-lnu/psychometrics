@@ -2351,6 +2351,7 @@ zh:
         skills_required_on_publishing: 请在发布模板之前选择技能。
         update: 不允许更新，因为 IDP 模板已与用户 IDP 计划关联。
       fields:
+        approval_date: 批准日期
         assigned_data: 指定数据
         assigned_date: 指定日期
         completion_date: 完成日期

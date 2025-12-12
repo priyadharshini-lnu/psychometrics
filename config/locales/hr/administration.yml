@@ -2351,6 +2351,7 @@ hr:
         skills_required_on_publishing: Odaberite vještine prije objavljivanja predloška.
         update: Ažuriranje nije dopušteno jer je predložak IDP-a već povezan s korisničkim IDP planom. Promjene izgleda su spremljene.
       fields:
+        approval_date: Datum odobrenja
         assigned_data: Dodijeljeni podaci
         assigned_date: Datum dodjele
         completion_date: Datum završetka

@@ -2353,6 +2353,7 @@ hu:
         skills_required_on_publishing: Kérjük, válassza ki a készségeket a sablon közzététele előtt.
         update: A frissítés nem engedélyezett, mert az IDP-sablon már társítva van egy felhasználói IDP-csomaghoz. A megjelenés változásai mentésre kerültek.
       fields:
+        approval_date: Jóváhagyási dátum
         assigned_data: Hozzárendelt adatok
         assigned_date: Hozzárendelt dátum
         completion_date: Befejezés dátuma

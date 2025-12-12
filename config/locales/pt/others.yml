@@ -2751,6 +2751,7 @@ pt:
       approval_status: Estado de Aprovação
       cover:
         fields:
+          approval_date: Data de aprovação
           assigned_data: Data Atribuída
           assigned_date: Data atribuída
           completion_date: Data de Conclusão
@@ -2837,8 +2838,12 @@ pt:
         approved: Revisto e Aprovado
         completed: Concluído
         draft: Projeto
+        in_progress: Em andamento
+        in_review: Em Revisão
         not_reviewed: Não Revisto
+        not_started: Ainda não começou
         pending_approval: Em Revisão
+        rejected: Indeferido
       summary:
         ai_count: IA Generativa
         collaborative_learn: Aprendizagem Colaborativa

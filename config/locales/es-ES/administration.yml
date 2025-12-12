@@ -2351,6 +2351,7 @@ es-ES:
         skills_required_on_publishing: Elija habilidades antes de publicar una plantilla.
         update: Actualización no permitida porque la plantilla IDP ya está asociada a un plan IDP de usuario.
       fields:
+        approval_date: Fecha de aprobación
         assigned_data: Datos asignados
         assigned_date: Fecha asignada
         completion_date: Fecha de finalización

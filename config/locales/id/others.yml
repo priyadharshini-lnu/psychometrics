@@ -2741,6 +2741,7 @@ id:
       approval_status: Status Persetujuan
       cover:
         fields:
+          approval_date: Tanggal Persetujuan
           assigned_data: Tanggal yang Ditetapkan
           assigned_date: Tanggal Penugasan
           completion_date: Tanggal Penyelesaian
@@ -2827,8 +2828,12 @@ id:
         approved: Ditinjau dan Disetujui
         completed: Selesai
         draft: Konsep
+        in_progress: Sedang Berlangsung
+        in_review: Dalam Tinjauan
         not_reviewed: Tidak Ditinjau
+        not_started: Belum Dimulai
         pending_approval: Dalam Tinjauan
+        rejected: Ditolak
       summary:
         ai_count: AI Generatif
         collaborative_learn: Pembelajaran Kolaboratif

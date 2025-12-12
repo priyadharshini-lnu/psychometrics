@@ -2351,6 +2351,7 @@ vi:
         skills_required_on_publishing: Vui lòng chọn kỹ năng trước khi xuất bản mẫu.
         update: Không được phép cập nhật vì mẫu IDP đã được liên kết với gói IDP của người dùng. Các thay đổi về ngoại hình đã được lưu.
       fields:
+        approval_date: Ngày phê duyệt
         assigned_data: Dữ liệu được chỉ định
         assigned_date: Ngày được giao
         completion_date: Ngày hoàn thành

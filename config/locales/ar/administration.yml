@@ -2351,6 +2351,7 @@ ar:
         skills_required_on_publishing: يرجى اختيار المهارات قبل نشر القالب.
         update: غير مسموح بالتحديث لأن قالب IDP مقترن بالفعل بخطة IDP لمستخدم.
       fields:
+        approval_date: تاريخ الموافقة
         assigned_data: البيانات المعينة
         assigned_date: تاريخ التعيين
         completion_date: تاريخ الانتهاء

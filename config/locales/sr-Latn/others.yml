@@ -2756,6 +2756,7 @@ sr-Latn:
       approval_status: Status odobrenja
       cover:
         fields:
+          approval_date: Datum odobrenja
           assigned_data: Dodeljeni datum
           assigned_date: Datum dodele
           completion_date: Datum završetka
@@ -2823,8 +2824,12 @@ sr-Latn:
         approved: Pregledano i odobreno
         completed: Završeno
         draft: Nacrt
+        in_progress: U toku
+        in_review: U pregledu
         not_reviewed: Nije pregledano
+        not_started: Nije počelo
         pending_approval: U pregledu
+        rejected: Odbio
       summary:
         ai_count: Generativna AI
         collaborative_learn: Kolaborativno učenje

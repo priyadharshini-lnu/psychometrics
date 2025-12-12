@@ -27,7 +27,7 @@ const FIELDS = [
   'target_job_role',
   'assigned_date',
   'division',
-  'review_date',
+  'approval_date',
   'publish_date',
   'completion_date',
 ]

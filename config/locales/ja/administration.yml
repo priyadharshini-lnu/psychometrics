@@ -2351,6 +2351,7 @@ ja:
         skills_required_on_publishing: テンプレートを公開する前にスキルを選択してください。
         update: IDP テンプレートがすでにユーザ IDP プランに関連付けられているため、更新は許可されません。
       fields:
+        approval_date: 承認日
         assigned_data: 割り当てデータ
         assigned_date: 担当日
         completion_date: 完了日

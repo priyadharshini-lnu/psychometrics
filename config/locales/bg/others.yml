@@ -2737,6 +2737,7 @@ bg:
       approval_status: Статус на одобрение
       cover:
         fields:
+          approval_date: Дата на одобрение
           assigned_data: Определена дата
           assigned_date: Присвоена дата
           completion_date: Дата на завършване
@@ -2823,8 +2824,12 @@ bg:
         approved: Прегледан и одобрен
         completed: Завършен
         draft: Чернова
+        in_progress: В процес на работа
+        in_review: В рецензия
         not_reviewed: Не е прегледан
+        not_started: Не започнах
         pending_approval: В преглед
+        rejected: Отхвърлени
       summary:
         ai_count: Генеративен AI
         collaborative_learn: Съвместно обучение

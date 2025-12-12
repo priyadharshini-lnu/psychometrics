@@ -2351,6 +2351,7 @@ de:
         skills_required_on_publishing: Bitte wählen Sie Fähigkeiten aus, bevor Sie eine Vorlage veröffentlichen.
         update: Aktualisierung nicht zulässig, da die IDP-Vorlage bereits mit einem Benutzer-IDP-Plan verknüpft ist.
       fields:
+        approval_date: Genehmigungsdatum
         assigned_data: Zugewiesene Daten
         assigned_date: Zugewiesenes Datum
         completion_date: Datum der Fertigstellung

@@ -2741,6 +2741,7 @@ pl:
       approval_status: Status zatwierdzenia
       cover:
         fields:
+          approval_date: Data zatwierdzenia
           assigned_data: Data przydzielenia
           assigned_date: Przypisana data
           completion_date: Data ukończenia
@@ -2827,8 +2828,12 @@ pl:
         approved: Przejrzane i zatwierdzone
         completed: Ukończone
         draft: Wersja robocza
+        in_progress: W toku
+        in_review: W recenzji
         not_reviewed: Nieprzejrzane
+        not_started: Nie zaczęto
         pending_approval: W trakcie przeglądu
+        rejected: Odrzucone
       summary:
         ai_count: Generatywna AI
         collaborative_learn: Nauka współpracy

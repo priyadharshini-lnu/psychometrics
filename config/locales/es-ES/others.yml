@@ -2803,6 +2803,7 @@ es-ES:
       approval_status: Estado de Aprobación
       cover:
         fields:
+          approval_date: Fecha de aprobación
           assigned_data: Fecha Asignada
           assigned_date: Fecha asignada
           completion_date: Fecha de Finalización
@@ -2889,8 +2890,12 @@ es-ES:
         approved: Revisado y Aprobado
         completed: Completado
         draft: Borrador
+        in_progress: En curso
+        in_review: En resumen
         not_reviewed: No Revisado
+        not_started: No empezó
         pending_approval: En Revisión
+        rejected: Rechazado
       summary:
         ai_count: IA Generativa
         collaborative_learn: Aprendizaje Colaborativo

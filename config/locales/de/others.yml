@@ -2747,6 +2747,7 @@ de:
       approval_status: Genehmigungsstatus
       cover:
         fields:
+          approval_date: Genehmigungsdatum
           assigned_data: Zuweisungsdatum
           assigned_date: Zugewiesenes Datum
           completion_date: Abschlussdatum
@@ -2833,8 +2834,12 @@ de:
         approved: Überprüft und genehmigt
         completed: Abgeschlossen
         draft: Entwurf
+        in_progress: Im Gange
+        in_review: Im Rückblick
         not_reviewed: Nicht überprüft
+        not_started: Nicht angefangen
         pending_approval: In Überprüfung
+        rejected: Zurückgewiesen
       summary:
         ai_count: Generative KI
         collaborative_learn: Kollaboratives Lernen

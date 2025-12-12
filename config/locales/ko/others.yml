@@ -2720,6 +2720,7 @@ ko:
       approval_status: 결재 현황
       cover:
         fields:
+          approval_date: 승인일
           assigned_data: 할당된 날짜
           assigned_date: 할당된 날짜
           completion_date: 완료 날짜
@@ -2787,8 +2788,12 @@ ko:
         approved: 검토 및 승인
         completed: 완료
         draft: 초안
+        in_progress: 진행 중
+        in_review: 리뷰 중
         not_reviewed: 검토되지 않음
+        not_started: 시작하지 않았습니다
         pending_approval: 리뷰
+        rejected: 거부
       summary:
         ai_count: 생성형 AI
         collaborative_learn: 협업 학습

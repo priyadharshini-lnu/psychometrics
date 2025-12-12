@@ -2789,6 +2789,7 @@ ar:
       approval_status: حالة الموافقة
       cover:
         fields:
+          approval_date: تاريخ الموافقة
           assigned_data: تاريخ التعيين
           assigned_date: تاريخ التعيين
           completion_date: تاريخ الإكمال
@@ -2872,11 +2873,15 @@ ar:
         behavioral: السلوكية
         technical: التقنية
       statuses:
-        approved: تمت المراجعة والموافقة
+        approved: موافقة
         completed: مكتمل
         draft: المسودة
+        in_progress: جار التقديم
+        in_review: في المراجعة
         not_reviewed: لم تتم المراجعة
+        not_started: لم يبدأ بعد
         pending_approval: قيد المراجعة
+        rejected: نبيذ
       summary:
         ai_count: الذكاء الاصطناعي التوليدي
         collaborative_learn: التعلم التعاوني

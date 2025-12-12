@@ -2720,6 +2720,7 @@ zh-Hant:
       approval_status: 審批狀態
       cover:
         fields:
+          approval_date: 核准日期
           assigned_data: 分配日期
           assigned_date: 指定日期
           completion_date: 完成日期
@@ -2806,8 +2807,12 @@ zh-Hant:
         approved: 已審核並批准
         completed: 已完成
         draft: 草案
+        in_progress: 進行中
+        in_review: 評論
         not_reviewed: 未審核
+        not_started: 未開始
         pending_approval: 審核中
+        rejected: 被拒絕
       summary:
         ai_count: 生成式AI
         collaborative_learn: 協作學習

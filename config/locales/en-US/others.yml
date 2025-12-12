@@ -2735,6 +2735,7 @@ en-US:
       approval_status: Approval Status
       cover:
         fields:
+          approval_date: Approval Date
           assigned_data: Assigned Date
           assigned_date: Assigned Date
           completion_date: Completion Date
@@ -2818,11 +2819,15 @@ en-US:
         behavioral: Behavioural
         technical: Technical
       statuses:
-        approved: Reviewed and Approved
+        approved: Approved
         completed: Completed
         draft: Draft
+        in_progress: In Progress
+        in_review: In Review
         not_reviewed: Not Reviewed
-        pending_approval: In Review
+        not_started: Not Started
+        pending_approval: Pending Approval
+        rejected: Rejected
       summary:
         ai_count: Generative AI
         collaborative_learn: Collaborative Learning

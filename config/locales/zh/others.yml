@@ -2730,6 +2730,7 @@ zh:
       approval_status: 审批状态
       cover:
         fields:
+          approval_date: 批准日期
           assigned_data: 分配日期
           assigned_date: 指定日期
           completion_date: 完成日期
@@ -2816,8 +2817,12 @@ zh:
         approved: 已审核并批准
         completed: 已完成
         draft: 草案
+        in_progress: 进行中
+        in_review: 回顾
         not_reviewed: 未审核
+        not_started: 未开始
         pending_approval: 审核中
+        rejected: 拒绝
       summary:
         ai_count: 生成式AI
         collaborative_learn: 协作学习

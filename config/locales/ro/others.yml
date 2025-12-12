@@ -2737,6 +2737,7 @@ ro:
       approval_status: Starea aprobării
       cover:
         fields:
+          approval_date: Data de aprobare
           assigned_data: Data atribuită
           assigned_date: Data atribuirii
           completion_date: Data finalizării
@@ -2823,8 +2824,12 @@ ro:
         approved: Revizuit și aprobat
         completed: Completat
         draft: Ciornă
+        in_progress: În desfășurare
+        in_review: În recapitulare
         not_reviewed: Nerevizuit
+        not_started: Nu a început
         pending_approval: În recenzie
+        rejected: Respins
       summary:
         ai_count: IA generativă
         collaborative_learn: Învățare colaborativă

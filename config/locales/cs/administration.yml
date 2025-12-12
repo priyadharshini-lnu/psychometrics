@@ -2351,6 +2351,7 @@ cs:
         skills_required_on_publishing: Před publikováním šablony si prosím vyberte dovednosti.
         update: Aktualizace není povolena, protože šablona IDP je již přiřazena k plánu IDP uživatele.
       fields:
+        approval_date: Datum schválení
         assigned_data: Přiřazená data
         assigned_date: Přidělené datum
         completion_date: Datum dokončení
