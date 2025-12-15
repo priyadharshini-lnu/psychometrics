@@ -36,7 +36,7 @@ module AI
 
           chat_details = build_oci_chat_details(payload, headers)
 
-          RubyLLM.logger.debug "OCI Chat Request: #{JSON.pretty_generate(chat_details.to_hash)}"
+          RubyLLM.logger.debug "OCI Chat Request: #{chat_details.to_hash}"
 
           response = client.chat(chat_details)
 
@@ -75,13 +75,27 @@ module AI
                 data[:tool_calls] = msg.tool_calls if msg.tool_call?
                 data
               when :tool
+                parent_tool_call = parent_tool_call_from_message(msg.tool_call_id, messages)
                 # Tool results will be handled separately by OCI API
-                { role: 'TOOL', message: msg.content.to_s, tool_call_id: msg.tool_call_id }
+                {
+                  role: 'TOOL',
+                  message: msg.content.to_s,
+                  tool_call_id: msg.tool_call_id,
+                  tool_call_name: parent_tool_call&.name,
+                  tool_call_parameters: parent_tool_call&.arguments
+                }
             end
           end
         end
 
         private
+
+        def parent_tool_call_from_message(tool_call_id, messages)
+          assistant_message = messages.find do |msg|
+            msg.tool_call? && msg.tool_calls.key?(tool_call_id)
+          end
+          assistant_message.tool_calls[tool_call_id]
+        end
 
         def create_generative_ai_client
           config = build_oci_config
@@ -224,7 +238,7 @@ module AI
             when 'TOOL'
               tool_results = [
                 OCI::GenerativeAiInference::Models::CohereToolResult.new(
-                  call: create_basic_tool_call(msg[:tool_call_id]),
+                  call: create_basic_tool_call(msg[:tool_call_id], msg[:tool_call_name], msg[:tool_call_parameters]),
                   outputs: [parse_tool_content(msg[:message])]
                 )
               ]
@@ -247,14 +261,16 @@ module AI
           end
         end
 
-        def create_basic_tool_call(tool_call_id)
-          # Extract tool name from the tool_call_id if it follows a pattern
-          # or you'll need to track this information differently
-          tool_name = tool_call_id.to_s.split('_')[0..-3].join('_') # Remove the index and random part
+        def create_basic_tool_call(tool_call_id, tool_call_name = nil, tool_call_parameters = nil)
+          # Use provided tool_call_name or extract from tool_call_id as fallback
+          tool_name = tool_call_name || tool_call_id.to_s.split('_')[0..-3].join('_')
+
+          # Use provided parameters or empty hash as fallback
+          parameters = tool_call_parameters || {}
 
           OCI::GenerativeAiInference::Models::CohereToolCall.new(
             name: tool_name,
-            parameters: {} # This should be tracked with tool calls by RubyLLM
+            parameters: parameters
           )
         end
 
