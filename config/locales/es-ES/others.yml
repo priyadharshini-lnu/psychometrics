@@ -55,6 +55,17 @@ es-ES:
               blank: El ID del paquete de informes no puede estar en blanco
             report_id:
               blank: El ID del informe no puede estar en blanco
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: Asistente de IA con ID '%{id}' no encontrado en la fila %{index}
+              blank: La columna '%{entity}' no puede estar en blanco en la fila %{index}
+              duplicate_code: Código duplicado '%{code}' en la fila %{index}
+              invalid_code_format: Formato de código inválido '%{code}' en la fila %{index}
+              max_limit_reached: El total de artefactos de IA de la campaña supera el límite máximo de %{count}
+              missing_headers: 'Faltan cabeceras obligatorias: %{headers}'
+            file:
+              invalid_format: Por favor, sube el archivo CSV
         campaign_factor_import_form:
           attributes:
             file:
@@ -167,12 +178,17 @@ es-ES:
             base:
               code_length: El código debe tener al menos 3 caracteres en la fila %{index}.
               code_required: El código de factor es necesario en la fila %{index}
+              invalid_csv: Csv inválido %{error_message}
               invalid_scoring_strategy: Estrategia de puntuación no válida "%{strategy}" en la fila %{index}. Las estrategias permitidas son %{allowed}.
               missing_headers: 'Faltan encabezados obligatorios: %{headers}'
               name_required: El nombre del factor es necesario en la fila %{index}
               scoring_strategy_required: La estrategia de puntuación es necesaria en la fila %{index}
             file:
               invalid_format: Cargue el archivo CSV
+        form:
+          attributes:
+            base:
+              client_sms_notification_disabled: La notificación SMS del cliente está deshabilitada
         hogan:
           attributes:
             name:
@@ -191,6 +207,7 @@ es-ES:
               blank: El nombre no puede estar en blanco
             job_role:
               cannot_be_same: El puesto de trabajo de destino debe ser diferente del actual
+              not_found: El puesto '%{name}' no se encuentra en puestos de proyectos o globales
             last_name:
               blank: El apellido no puede estar en blanco
             locale:
@@ -226,6 +243,19 @@ es-ES:
               contains_repeats: La contraseña no debe contener repeticiones
               too_short: La contraseña es demasiado corta. Se requiere un mínimo de %{count} caracteres
               too_weak: 'La contraseña debe contener: Mínimo 1 minúscula, 1 mayúscula, 1 número y 1 carácter especial.'
+        project_license:
+          attributes:
+            base:
+              exceeds_available: No se puede asignar más que las licencias disponibles
+            license_id:
+              already_present: ya presente en este proyecto
+            usage_limit:
+              cant_be_less_than_used: No se puede poner por debajo del número actual de uso de %{used_count}
+              cant_be_more_than_available: No puede ser más que el límite disponible en la licencia (%{usage_limit})
+              exceeds_available: No puede ser más que las licencias disponibles
+              less_than_used_number: No puede ser menor que el número de licencias utilizadas
+            used_number:
+              overused: No puede ser más que las licencias disponibles.
         questions_import_block_form:
           attributes:
             name:
@@ -416,6 +446,10 @@ es-ES:
               inclusion: debe ser un booleano
             start_date_time:
               invalid_datetime: no es válido
+        yoodli:
+          attributes:
+            name:
+              not_unique: Esta integración ya está presente en este proyecto.
   activerecord:
     attributes:
       administration/assessments/assign_form:
@@ -446,6 +480,7 @@ es-ES:
           simulation: Simulación
           skillvue: Skillvue
           threesixty: campaña 360
+          yoodli: Yoodli
         category: Categoría
         created_at: Fecha de creación
         description: Descripción
@@ -463,6 +498,7 @@ es-ES:
           saville: Evaluación Saville
           simulation: Evaluación de la simulación
           skillvue: Evaluación de habilidades
+          yoodli: Evaluación de Yoodli
         updated_at: Fecha de modificación
       assign:
         completed_at: Fecha de finalización
@@ -776,6 +812,12 @@ es-ES:
           attributes:
             base:
               max_takes_limit_reached: Límite alcanzado para las tomas máximas
+        register:
+          attributes:
+            mobile_number:
+              blank: Se requiere número de móvil
+              invalid: El número de móvil es inválido
+              verification_expired: El código de verificación ha caducado. Puedes intentar verificar de nuevo.
         report:
           assessments_not_hogan: Todas las evaluaciones deben ser del tipo Hogan
           assessments_not_saville: Todas las evaluaciones deben ser de tipo Saville
@@ -791,6 +833,8 @@ es-ES:
               invalid: La contraseña actual no es correcta
             manager_id:
               cannot_be_self: El usuario no puede asignarse como su propio gestor
+        user_idp_comment:
+          reply_to_reply: No puedo responder a una respuesta (solo se permite un nivel de anidamiento)
         user_idp_plan:
           no_active_plan: No se ha encontrado ningún plan PDI activo
   admin_jobs:
@@ -804,6 +848,7 @@ es-ES:
         assign_idp_to_users: Asignar IDP a los usuarios
         assign_reports_and_assessments: Asignar informes y evaluaciones
         bulk_create_workshop_invites: Envío masivo de invitaciones al Assessment Center
+        bulk_download_idp_reports: Descargar en masa los informes de IDP
         bulk_download_reports: Descarga masiva de informes
         bulk_download_user_reports: Descarga masiva de informes de usuario
         bulk_generate_user_campaign_ai_artifact_results: Generar de forma masiva resultados de artefactos de IA de campaña
@@ -812,6 +857,7 @@ es-ES:
         bulk_regenerate_user_reports: Regenerar informes de usuario
         bulk_reports: Informes masivos
         bulk_rescore_campaign_factors: Factores de la campaña Bulk Rescore
+        bulk_update_evaluation_status: Estado de la evaluación de la actualización masiva
         compact_completion_status_export: Exportación de estados de finalización compactos
         completion_status_export: Exportación del estado de finalización
         copy_as_template_or_campaign: Copiar campaña como plantilla
@@ -820,8 +866,10 @@ es-ES:
         data_report_export: Exportación de informes de datos
         export_admin_with_permissions: Exportar Admin con permisos
         export_assessment_questions: Preguntas de evaluación de las exportaciones
+        export_campaign_ai_artifacts: Artefactos de IA de campañas de exportación
         export_campaign_factors: Factores de la campaña de exportación
         export_campaign_scorings: Exportación de recortes de campaña
+        export_dashboard_as_file: Exportar panel como archivo
         export_development_action_translations: Export Development Action Traducciones
         export_development_actions: Acciones de desarrollo de las exportaciones
         export_dimension_as_json: Exportar dimensión JSON
@@ -830,7 +878,9 @@ es-ES:
         export_job_roles_translations: Exportar traducciones de funciones
         export_norm: Norma de exportación
         export_occupations: Ocupaciones Exportación
+        export_proficiency_level_translations: Traducciones de nivel de competencia en exportación
         export_proficiency_levels: Niveles de aptitud para exportar
+        export_reflection_questions: Preguntas sobre la reflexión de exportación
         export_report_data: Exportar datos de informes
         export_reports_and_assessments: Exportación de informes y evaluaciones
         export_skill_translations: Exportación Traducciones especializadas
@@ -838,24 +888,29 @@ es-ES:
         export_user_report_events: Exportar eventos de informe de usuario
         export_users: Exportación de usuarios de campañas
         external_assessment_export: Exportación de resultados externos
+        generate_embedding_skills: Generar incrustación para habilidades
         import_accesssheet: Importar Accessheet
         import_assessment_questions: Preguntas de evaluación de las importaciones
         import_assessment_translations: Traducciones de evaluación de importaciones
         import_assessors: Evaluadores de importaciones
+        import_campaign_ai_artifacts: Importar artefactos de IA de campañas
         import_campaign_factors: Factores de la campaña de importación
         import_datasheet: Hoja de datos de importación
         import_development_action_translations: Importación Desarrollo Acción Traducciones
         import_development_actions: Importar acciones de desarrollo
         import_dimension_from_json: Importar dimensión desde JSON
         import_external_campaign_scoring: Importar la puntuación de campañas externas
+        import_external_scoring_data: Importar datos externos de puntuación
         import_factor_translations: Traducciones de factores de importación
         import_factors: Factores de importación
         import_interview_questions: Importar preguntas de la entrevista
         import_job_roles_translations: Importar traducciones de funciones
         import_norm: Norma de importación
         import_proficiency_level_translations: Importación de traducciones de nivel superior
+        import_proficiency_levels: Niveles de competencia en importación
         import_question_translations: Importar traducciones de preguntas
         import_raw_data: Importar datos brutos
+        import_reflection_questions: Preguntas sobre la Reflexión de Importación
         import_scoring_data: Importar datos de puntuación
         import_skill_rater_taxonomies: Importar taxonomías de evaluadores de competencias
         import_skill_translations: Importación de traducciones especializadas
@@ -885,6 +940,8 @@ es-ES:
         failed: Fallido
         in_progress: En curso
         scheduled: Programado
+    bulk_download_idp_reports:
+      already_exists: El trabajo para generar este IDP ya está en curso
     bulk_download_reports:
       content:
         title: Enlaces para descargar informes
@@ -1006,6 +1063,7 @@ es-ES:
         saville_assessment_name: Evaluación Saville Nombre
         simulation_assessment_name: Simulación Evaluación Nombre
         skillvue_assessment_name: Evaluación Skillvue Nombre
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: Traducción migrada
     create: Cree
     dashboard: Cuadro de mandos
@@ -1047,6 +1105,7 @@ es-ES:
         simulation: Simulación
         skillvue: Skillvue
         threesixty: campaña 360
+        yoodli: Yoodli
       status:
         finished: Terminado
         in_progress: En curso
@@ -1059,6 +1118,7 @@ es-ES:
         saville: Evaluación Saville
         simulation: Evaluación de la simulación
         skillvue: Evaluación de habilidades
+        yoodli: Evaluación de Yoodli
     flow:
       end_assessment_modal:
         custom_message: Mensaje personalizado de fin de evaluación
@@ -1164,6 +1224,7 @@ es-ES:
       require_previous_groups_completion_for_booking: Se requiere haber completado todos los grupos anteriores antes de reservar
     menu:
       assessment_center: Assessment Center
+      assessment_center_invites: Invitaciones del Centro de Evaluación
       assessments_and_reports: Evaluaciones e informes
       idp: PDI
       manage: Gestión
@@ -1395,6 +1456,8 @@ es-ES:
   campaign_assessment:
     actions:
       bulk_download: Descarga masiva
+      bulk_update_evaluation_as_done: Marca como hecho
+      bulk_update_evaluation_as_undone: Desmarcar como hecho
       convert_to_template: Convertir a plantilla
       download: Descargar informes
       export_completion_status: Estado de finalización de la exportación
@@ -1427,9 +1490,15 @@ es-ES:
       locales: Locales
       norm: Norma
       norm_id: Norma ID
+      pearson_norm_id: Pearson Norm ID
+      pearson_schedule_id: Identificador de Horario Pearson
       pearson_variation: Variación Pearson
       prework: Trabajo previo
+      saville_candidate_id: Identificación de candidato
+      saville_data_separator: Separador de datos de Saville
       simulation_content_variation: Variación del contenido de la simulación
+      simulation_participant_id: ID de participante de simulación
+      simulation_time_extension: Extensión del tiempo de simulación
       skillvue_email_id: ID de correo electrónico del candidato Skillvue
       skillvue_external_assessment_id: Evaluación de Skillvue ID
       universal_link: Enlace universal
@@ -1453,6 +1522,10 @@ es-ES:
         placeholder: Seleccione un grupo de centros de evaluación
         success_message: Se ha asignado con éxito el Grupo de Evaluación de la Campaña de Evaluación
         title: Grupo del Assessment Center
+      bulk_update_evaluation:
+        content: "¿Estás seguro de que quieres marcar todas las asignaturas seleccionadas como %{status}?"
+        successfully: Marcado con éxito como %{status}.
+        title: "¿Bulk Mark como %{status}?"
       import_raw:
         body: Consulte la función Exportar para extraer una plantilla que pueda utilizarse para Importar aquí.
         success_msg: La importación se ha cargado correctamente
@@ -1463,6 +1536,10 @@ es-ES:
         success_msg: La importación se ha cargado correctamente
         title: Importar datos de resultados de puntuación
         upload: Cargar
+      prework_setting:
+        disable: Desactiva el pretrabajo para todos los usuarios existentes
+        enable: Habilitar el pretrabajo para todos los usuarios existentes
+        title: Forma de ajuste previo
       regenerate:
         content: "¿Está seguro de que desea regenerar los informes disponibles?"
         title: "¿Regenerar informes?"
@@ -1577,8 +1654,6 @@ es-ES:
       report: Informe
       report_bundle_placeholder: Seleccione un paquete de informes
     messages:
-      bulk_download_error: La descarga masiva está limitada a 1000 archivos de informe. Si ha seleccionado muchos idiomas, redúzcala.
-      bulk_download_no_reports: No se han encontrado informes. Genere los informes antes de descargarlos.
       bulk_download_successful: La tarea de descarga masiva de informes se ha programado correctamente
       export_report_data_scheduled: El trabajo de exportación de datos del informe se ha programado correctamente
     modals:
@@ -1740,22 +1815,28 @@ es-ES:
       create: Cree
       delete: Borrar
       done: Hecho
+      download: Descargar
       edit: Editar
       export: Exportar
       filter_by_tags: Filtrar por etiquetas
+      go_back: Volver
       import: Importar
       insert: Inserte
+      'no': 'No'
       ok: OK
       publish: Publique
+      reject: Rechazar
       remove: Eliminar
       reset: Restablecer
       resolve: Resolver
       restore: Restaurar
+      return_to_home: Regreso a casa
       run: Ejecutar
       save: Salvar
       schedule: Horario
       search: Buscar
       send: Enviar
+      sign_in: Inicia sesión
       start: Iniciar
       submit: Enviar
       unarchive: Sacar del archivo
@@ -1768,6 +1849,7 @@ es-ES:
       view: Ver
       view_all_tasks: Ver todas las tareas
       view_detail: Ver detalle
+      'yes': Sí
     column:
       action: Acción
       active: Activo
@@ -1872,6 +1954,7 @@ es-ES:
       refer_export_file: Consulte la función Exportar para extraer una plantilla que pueda utilizarse para Importar aquí.
       reference_language: Lengua de referencia
       response: Respuesta
+      select: Escoger
       selected: Selección
       subject: Asunto
       total: Total
@@ -2003,6 +2086,64 @@ es-ES:
         unlock_account: Desbloquear mi cuenta
       updated: Su contraseña se ha establecido correctamente. Ya ha iniciado sesión.
       updated_not_active: Su contraseña se ha establecido correctamente.
+    mailer:
+      admin_invitation_instructions:
+        accept: Haz clic aquí para aceptar la invitación.
+        body: |
+          Hola %{name},
+          Se te ha invitado a acceder al panel de administración de Lighthouse - La plataforma de evaluación de Talent Enterprise.
+
+          %{accept} O puedes ignorar este correo con seguridad.
+
+          Por favor, no compartas tus credenciales de acceso con nadie.
+        subject: Invitación al Faro
+      confirmation_instructions:
+        subject: Instrucciones de confirmación
+      invitation_instructions:
+        body: |
+          Hola %{name},
+          Has sido añadido a Lighthouse como Administrador para la siguiente sección
+        login: Iniciar sesión en Lighthouse
+        sections:
+          campaign: 'Campaña: %{section_name}'
+          client: 'Arrendamiento del cliente: %{section_name}'
+          project: 'Proyecto: %{section_name}'
+        subject: Invitación al Faro
+      password_change:
+        body: |
+          ¡Hola %{name}!
+
+          Tu contraseña ha sido cambiada.
+
+          Si no ha hecho esta solicitud, por favor contacte con el soporte inmediatamente en mte.support@mercer.com
+        regards: |
+          Saludos
+          Equipo del Faro
+        subject: Tu contraseña de Lighthouse ha cambiado
+      reset_password_instructions:
+        body: |
+          ¡Hola %{name}!
+
+          Alguien ha solicitado un enlace para cambiar tu contraseña. Puedes hacerlo a través del enlace de abajo.
+        change_password: Cambiar contraseña
+        footer: Si no lo solicitaste, puedes ignorar este correo con seguridad. Tu contraseña no cambiará hasta que accedas al enlace anterior y crees una nueva.
+        regards: |
+          Saludos
+          Equipo del Faro
+        subject: Instrucciones para restablecer tu contraseña
+      unlock_instructions:
+        body: |
+          ¡Hola %{name}!
+
+          Tu cuenta ha sido bloqueada debido a un número excesivo de intentos de inicio de sesión fallidos.
+
+          Haz clic en el enlace de abajo para desbloquear tu cuenta:
+        footer: Si no lo solicitaste, puedes ignorar este correo con seguridad. Tu contraseña no cambiará hasta que accedas al enlace anterior y crees una nueva.
+        regards: |
+          Saludos
+          Equipo del Faro
+        subject: Instrucciones para desbloquear tu cuenta
+        unlock_account: Desbloquea mi cuenta
     omniauth_callbacks:
       failure: No se le ha podido autenticar desde %{kind} porque "%{reason}".
       success: Autenticado correctamente desde la cuenta %{kind}.
@@ -2122,6 +2263,8 @@ es-ES:
     equal_to_current_password: debe ser diferente de la contraseña actual.
     equal_to_email: debe ser diferente del correo electrónico.
     error: Error
+    error_401: No estás autorizado para acceder a este recurso. Por favor, inicia sesión.
+    error_403: No tienes permiso para ver este recurso.
     error_500: Algo ha ido mal. Póngase en contacto con su administrador.
     error_msg: Si el problema persiste, póngase en contacto con su administrador
     forbidden: No tiene acceso a esta página
@@ -2326,6 +2469,7 @@ es-ES:
     error_warning: Oops, algo ha ido mal con su evaluación. Por favor, póngase en contacto con el soporte.
     hogan:
       cannot_start: No puede iniciar la evaluación de Hogan ahora mismo. Por favor, inténtelo pasados unos minutos.
+    lighthouse_app: Faro Mercer
     login: Iniciar sesión
     maintenance:
       notification: Lighthouse estará fuera de servicio por mantenimiento programado en 60 segundos
@@ -2427,6 +2571,8 @@ es-ES:
   idp:
     actions: Acciones
     add_comments: Agregar comentarios
+    add_note: Añadir Nota...
+    add_reason: Añade razón...
     added_development_action: Acción de desarrollo agregada
     ai:
       assistant:
@@ -2444,8 +2590,8 @@ es-ES:
       reset_chat: Restablecer chat
       reset_confirmation: "¿Estás seguro de que quieres descartar este chat y empezar de nuevo?"
       retake_steps:
-        chat_hint: Hágame saber qué información desea proporcionar más a continuación.
-        chat_title: "¿Quieres dar más información?"
+        chat_hint: Puedes subir un archivo nuevo o reiniciar el chat para compartir más detalles, y haré todo lo posible por ayudarte.
+        chat_title: Siento que el análisis inicial no cumpliera con tus expectativas.
         start_chat: Iniciar chat
         start_chat_again: Iniciar chat de nuevo
         upload_document: Subir documento
@@ -2471,17 +2617,19 @@ es-ES:
         chat_title: Resumen de Chat Insight
         file_title: Información sobre documentos cargados
         gap_report_title: Análisis del informe de brechas de habilidades
-        hint: en caso afirmativo, crearemos su IDP, de lo contrario, puede volver a tomar sus respuestas
-        title: "¿Está satisfecho con los resultados?"
+        hint: Con tu permiso, si dices que sí, puedo crear un plan de desarrollo para ti. Si no, puedes reiniciar el chat o subir un archivo nuevo.
+        title: "¿Estás satisfecho con el análisis?"
         upload_file: Archivo subido
         view_chat: Ver chat
       upload:
-        description: Haga clic o arrastre los archivos a esta área para cargarlos
+        description: 'Tipo de archivo soportado: documentos PDF hasta %{maxFileSize}MB'
         drop: Suelta el archivo aquí
-        title: Subir archivos
+        title: Haz clic o deja el archivo aquí
       welcome:
         text: "¿Listo para trazar tu viaje de crecimiento? ¡Empecemos!"
         title: Hola, soy tu asistente de desarrollo
+    approval_note: Nota de aprobación
+    approve_plan: Aprobar el plan
     behavioral: Comportamiento
     board: Tablero
     change_history: Historial de cambios
@@ -2582,12 +2730,14 @@ es-ES:
       mark_as_complete: Mark as Complete
       no_development_actions: No hay acciones de desarrollo
       on_the_job: En el trabajo
+      one: "[ES-ES] 1"
       other: Otro
       private: Privado
       publish_plan: Publicar plano
       remove: Eliminar
       save_plan: Plan de ahorro
       search_development_actions: Buscar acciones de desarrollo
+      selected_count: "%{count} seleccionados"
       show_development_action_information: Mostrar información de Development Action
       skill: Habilidad
       sprint: Sprint
@@ -2596,7 +2746,9 @@ es-ES:
       structured_learning_label: Aprendizaje colaborativo
       submit_plan: Enviar Plan
       success: Acciones de desarrollo completadas con éxito
+      three: "[ES-ES] 3"
       toggle_skill_privacy: Alternar privacidad de habilidades
+      two: "[ES-ES] 2"
       write_here: Escriba aquí...
     direct_reportee_details: Detalle de los reportados directos
     download:
@@ -2607,6 +2759,7 @@ es-ES:
     edit_progress: Editar progreso
     fetching_skill_gap_report: Obtener el informe de brechas de habilidades...
     go_to_previous_step: Ir al paso anterior
+    go_to_reportee_plan: Ir a Detalles del Plan del Reportado
     history:
       added_da:
         one: Acción de desarrollo agregada
@@ -2656,19 +2809,23 @@ es-ES:
         categories: Categorías
       save_skills: Salvar Habilidades
     new_comments: Nuevos comentarios
+    no_plan_changes_found: No se han hecho revisiones en el plan desde tu última revisión.
     no_skills_added: Todavía no tienes habilidades agregadas.
     no_skills_added_by_reportee: El reportado aún no ha agregado habilidades.
     pdf:
       approval_status: Estado de Aprobación
       cover:
         fields:
+          approval_date: Fecha de aprobación
           assigned_data: Fecha Asignada
           assigned_date: Fecha asignada
           completion_date: Fecha de Finalización
+          current_job_role: Puesto actual
           division: División
           name: Nombre
           publish_date: Fecha de Publicación
           review_date: Fecha de Revisión
+          target_job_role: Puesto objetivo
       guidelines:
         cards:
           c1:
@@ -2746,8 +2903,12 @@ es-ES:
         approved: Revisado y Aprobado
         completed: Completado
         draft: Borrador
+        in_progress: En curso
+        in_review: En resumen
         not_reviewed: No Revisado
+        not_started: No empezó
         pending_approval: En Revisión
+        rejected: Rechazado
       summary:
         ai_count: IA Generativa
         collaborative_learn: Aprendizaje Colaborativo
@@ -2769,6 +2930,7 @@ es-ES:
     plan_submitted_for_manager_approval: Su Plan de Desarrollo Individual ha sido enviado para la aprobación del gerente.
     private: Privado
     public: Público
+    reason_for_rejection: Motivo del rechazo
     reflective_questions:
       already_completed: El PDI ya se ha completado, no puede responder a las preguntas ahora.
       answer: Respuesta
@@ -2781,7 +2943,9 @@ es-ES:
         max_words: La respuesta permite un máximo de %{count} palabras
         min_words: La respuesta requiere al menos %{count} palabras
         required: La respuesta a la pregunta es obligatoria
+      max_word_limit: Debe de ser como mucho %{max} palabras
       max_words: Palabras máximas
+      min_word_limit: Debe de ser al menos %{min} palabras
       min_words: Palabras mínimas
       no_answer_provided: Aún no se ha proporcionado respuesta
       no_reflective_questions: Sin preguntas reflexivas
@@ -2794,6 +2958,7 @@ es-ES:
       updated_successfully: Tus respuestas se han actualizado correctamente
       word_limit: Debe estar entre %{min} y %{max} palabras
       words: Palabras
+    reject_plan: Plan de rechazo
     remove_skill: Eliminar habilidad
     remove_skill_from_plan: Eliminar %{name} de aptitudes del plan
     removed_development_action: Acción de desarrollo eliminada
@@ -2814,6 +2979,7 @@ es-ES:
     summary_logs: Registros de resumen de %{reporteeName}
     technical: Técnico
     user_idp_status:
+      ai_assisted_idp_in_progress: PDI asistidos por IA en progreso
       approved: Aprobado
       completed: Completado
       completion_not_started: Finalización no iniciada
@@ -2933,6 +3099,7 @@ es-ES:
     usage_overview: Ver uso de licencias
     usages: Usos
   licenses:
+    client_usage: Uso del cliente
     enabled: Activado
     end_date: Fecha final
     not_enough_idp_license: No hay suficientes licencias IDP, póngase en contacto con el administrador
@@ -2941,6 +3108,10 @@ es-ES:
     not_enough_proctoring_credits: No hay suficientes créditos para comenzar la sesión de evaluación
     number: Número
     overuse_number: Indemnización por exceso de uso
+    project_limit_reached: Límite de uso alcanzado para '%{license_name}', por favor contacte con el administrador
+    project_specific: Proyecto específico
+    project_specific_license: Licencia específica del proyecto
+    project_usage: Uso del proyecto
     report_family: Paquete de informes
     start_date: Fecha de inicio
     title: Licencia
@@ -2952,6 +3123,34 @@ es-ES:
       threesixty: Threesixty
     used_number: Licencias usadas
     used_out_of: "%{used} de %{total}"
+  lti:
+    oidc_auth_form:
+      errors:
+        client_id:
+          blank: Se requiere el ID del cliente
+          invalid: El ID del cliente no coincide con el identificador registrado de la herramienta
+          validation_failed: Fallo en la validación del ID del cliente
+        login_hint:
+          assessment_completed: La evaluación de usuarios ya está completada
+          blank: Se requiere un consejo de inicio de sesión
+          invalid_user_assessment: La pista de inicio de sesión no hace referencia a una evaluación válida del usuario
+        lti_deployment_id:
+          not_found: El ID de despliegue no hace referencia a una integración válida
+        nonce:
+          blank: Se requiere el nonce
+        redirect_uri:
+          blank: Se requiere un URI de redirección
+          has_fragment: El URI de redirección no debe contener un fragmento
+          https_required: El URI de redirección debe usar HTTPS en producción
+          invalid_format: El URI de redirección debe ser un formato de URI válido
+          missing_host: El URI de redirección debe incluir un host
+          scheme_not_allowed: El URI de redirección debe usar protocolos HTTP o HTTPS
+        response_type:
+          blank: Se requiere el tipo de respuesta
+          invalid: El tipo de respuesta debe ser 'id_token'
+        scope:
+          blank: Se requiere alcance
+          invalid: El alcance debe ser 'openid'
   mailer:
     copyright:
       text: Lighthouse. Todos los derechos reservados
@@ -2960,6 +3159,35 @@ es-ES:
       team_name: Equipo Lighthouse
       technical_support: Para cualquier problema técnico, escríbanos a %{email} y responderemos dentro de 24 horas.
     from: La empresa del talento
+    idp:
+      manager_unread_comments:
+        body: |
+          Hola %{name},
+          Tienes nuevos comentarios de tus internos reportados.
+
+          %{dashboard_link}
+
+          En tu panel de Reportados Directos, puedes:
+          - Revisar los nuevos comentarios de los miembros sobre sus planes individuales
+          - Proporcionar feedback sobre sus objetivos de desarrollo
+          - Seguimiento del progreso de las actividades de los desplazados internos
+          - Apoyar el crecimiento y desarrollo de tu equipo
+        dashboard_link: Visita el Panel de Control
+        subject: Tienes nuevos comentarios - %{campaign_name}
+      user_unread_comments:
+        body: |
+          Hola %{name},
+          Tienes nuevos comentarios sobre tu plan de desarrollo.
+
+          %{dashboard_link}
+
+          En tu panel de My Plan, puedes:
+          - Actualizar tu plan de desarrollo
+          - Lee nuevos comentarios y comentarios
+          - Responder a las preguntas de tu jefe
+          - Actualizar tu progreso en las acciones de desarrollo
+        dashboard_link: Ver mi plan
+        subject: 'Tienes nuevos comentarios sobre tu plan de desarrollo: %{campaign_name}'
     license:
       expire:
         subject: Licencia caducada
@@ -3168,10 +3396,12 @@ es-ES:
         pearson: Pearson
         saville: Saville
         skillvue: Skillvue
+        yoodli: Yoodli
     form:
       load_from_mettl: Carga de Mettl
       load_from_pearson: Carga de Pearson
       load_from_skillvue: Cargar desde Skillvue
+      load_from_yoodli: Carga desde Yoodli
       none_external: Ninguno - Utilizar el generador de informes
     language: Idioma del informe
     language_updated: El idioma del informe se ha actualizado correctamente
@@ -3659,13 +3889,6 @@ es-ES:
       on_hold: En espera
       prepared: Hecho
       released: Publicado en
-    statuses:
-      completed: Completado/a
-      declined: Rechazado/a
-      denied: Denegado/a
-      done: Hecho
-      not_completed: No completado/a
-      waiting: En espera
   threesixty:
     accept_privacy_modal:
       accept: Aceptar
@@ -3913,6 +4136,7 @@ es-ES:
         body: Consulte el archivo de ejemplo para extraer una plantilla que puede utilizarse para Importar aquí.
         title: Asignar informes y evaluaciones
     toolbar:
+      bulk_download_idp_reports: Descargar en masa los informes de IDP
       export: Exportar usuarios
       export_compact_completion_status: Compacto
       export_detailed_completion_status: Detallado
@@ -4106,6 +4330,9 @@ es-ES:
       can_not_start_without_approval: No puede comenzar a trabajar en su IDP hasta que su gerente lo apruebe.
       no_changes_to_compare: No hay cambios para comparar el plan IDP.
       no_previous_approved_plan: No se encontró ningún plan de desplazados internos aprobado previamente.
+      reflective_questions_required: Se requieren respuestas a preguntas reflexivas para el IDP
+      status_not_permitted: no está permitido por el usuario.
+      status_not_permitted_by_manager: El gestor no puede actualizar el estado cuando el plan está en estado de '%{status}'.
     invalid: no es válido
     issue: Problema
     least: Responda al menos %{min} opción(es).

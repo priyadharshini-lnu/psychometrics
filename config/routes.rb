@@ -337,6 +337,7 @@ Rails.application.routes.draw do
             get :export_external_results
             get :export_occupations
             post :import_results
+            post :import_external_scoring_results
             get :norms
             post :update_norm
             post :update_mettl_schedule
@@ -351,6 +352,7 @@ Rails.application.routes.draw do
             put :toggle_auto_assign
             put :schedule_assessment
             post :normalize_factor_scores
+            put :toggle_caching
           end
           collection do
             get :other
@@ -502,6 +504,7 @@ Rails.application.routes.draw do
             patch :bulk_update_evaluation_status
           end
           member do
+            get :report_status_message
             get :preview_report
           end
 
@@ -580,6 +583,7 @@ Rails.application.routes.draw do
         post :rescore_assessment
         post :regenerate_reports
         post :bulk_download
+        put :toggle_caching
       end
     end
 
@@ -754,6 +758,7 @@ Rails.application.routes.draw do
         resource :builders, only: %i[show update] do
           member do
             post :upload_campaign_factors
+            post :upload_campaign_ai_artifacts
           end
         end
       end
@@ -1076,6 +1081,15 @@ as: :simulation_progress_notification
           end
         end
       end
+
+      namespace :v2 do
+        resources :user_assessments do
+          member do
+            get :assessment
+            get :piped_text_data
+          end
+        end
+      end
     end
 
     scope module: :threesixty do
@@ -1361,7 +1375,6 @@ as: :simulation_progress_notification
 
             jsonapi_resources :registration_settings, only: %i[index update]
             jsonapi_resources :mettl_schedule_records
-            jsonapi_resources :yoodli_assessments
             jsonapi_resources :project_features, only: %i[index update]
             jsonapi_resources :licenses, controller: 'project_licenses', as: :project_licenses,
 only: %i[index create update]
@@ -1450,7 +1463,6 @@ only: %i[index create update]
               collection do
                 get :import_subjects_from_campaign
                 post :import_subjects_from_csv
-                post :validate_subjects
               end
               jsonapi_resources :workshop_invited_subjects, only: %i[index create destroy] do
                 collection do
@@ -1582,7 +1594,9 @@ only: %i[index create update]
               get :get_password, on: :member
             end
           end
-          jsonapi_resources :user_idp_plans, only: %i[create show update]
+          jsonapi_resources :user_idp_plans, only: %i[create show update] do
+            post :reset, on: :member
+          end
           jsonapi_resources :user_idp_development_actions, only: %i[show index] do
             post :bulk_update, on: :collection
             post :generate_by_ai, on: :collection
@@ -1660,6 +1674,9 @@ only: %i[index create update]
               member do
                 post :generate
                 get :revisions
+              end
+              collection do
+                post :render_prompt_template
               end
             end
           end

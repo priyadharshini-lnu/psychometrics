@@ -1,9 +1,10 @@
 import {
   Button, Flex, Typography, Popconfirm,
+  Avatar,
 } from 'antd'
 import { Bubble } from '@ant-design/x'
 import {
-  MessageOutlined, FileOutlined, RightOutlined, UploadOutlined,
+  MessageOutlined, FileOutlined, RightOutlined, UploadOutlined, CheckCircleOutlined,
 } from '@ant-design/icons'
 import { BotIcon } from './BotIcon'
 import styles from './styles.less'
@@ -15,8 +16,8 @@ export const RetakeSteps = ({ onAction }) => (
     placement="start"
     variant="outlined"
     shape="round"
-    styles={{ content: { width: '90%' } }}
-    avatar={{ icon: <BotIcon /> }}
+    styles={{ body: { width: '90%' } }}
+    avatar={<Avatar icon={<BotIcon />} />}
     content={(
       <Flex vertical align="center" justify="center" className={styles.retakeSteps} gap={24}>
         <Flex vertical align="center" style={{ width: '100%' }}>
@@ -52,6 +53,17 @@ export const RetakeSteps = ({ onAction }) => (
             <Typography.Text strong>{I18n.t('idp.ai.retake_steps.upload_document')}</Typography.Text>
             <Button type="primary" size="small" icon={<UploadOutlined />} onClick={() => onAction('retakeDocument')}>
               {I18n.t('idp.ai.retake_steps.upload_file')}
+            </Button>
+          </Flex>
+          <Flex vertical align="center" gap={12}>
+            <div className={styles.iconContainer} style={{ background: '#75c895' }}>
+              <CheckCircleOutlined className={styles.icon} />
+            </div>
+            <Typography.Text strong>
+              {I18n.t('enduser.idp_retake_steps_continue_with_this_information')}
+            </Typography.Text>
+            <Button type="primary" size="small" icon={<CheckCircleOutlined />} onClick={() => onAction('complete')}>
+              {I18n.t('shared.continue')}
             </Button>
           </Flex>
           {/* <Flex vertical align="center" gap={12}>

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::CampaignAssessmentResource < Api::V2::Administration::BaseResource
-  attributes :campaign_id
+  attributes :campaign_id, :caching_enabled, :allow_caching
 
   has_one :assessment
 
@@ -13,5 +13,9 @@ class Api::V2::Administration::CampaignAssessmentResource < Api::V2::Administrat
       opts[:context][:user], ::CampaignAssessment,
       campaign_id: opts[:context][:campaign].id
     ).resolve.distinct
+  end
+
+  def allow_caching
+    @model.assessment.allow_caching?
   end
 end

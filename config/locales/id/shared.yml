@@ -3,13 +3,21 @@ id:
   shared:
     action: Tindakan
     add: Menambahkan
+    advanced: Maju
+    authentication_failed: Autentikasi gagal. Silakan coba lagi.
+    basic: Dasar
+    campaign_id: ID Kampanye
     cancel: Batal
     change_password: Ubah Kata Sandi
     clear_filters: Hapus Filter
+    continue: Terus
     description: Deskripsi
     edit: Sunting
     edited: Baru
+    group_question_max_validation_error: Setiap grup dapat berisi paling banyak item {{max}}.
+    group_question_min_validation_error: Setiap grup harus berisi setidaknya {{min}} item.
     id: ID
+    idp_ai_assistant_disclaimer: Asisten IDP Lighthouse AI dapat membuat kesalahan. Harap berhati-hati saat menggunakan tanggapan.
     internet_disconnected_message: Mencoba menyambung kembali, periksa koneksi internet Anda.
     mte_logo_alt_text: Logo Mercer Talent Enterprise
     name: Nama
@@ -23,6 +31,7 @@ id:
         selected: 1 baris dipilih
         total: 'Jumlah : 1'
     terms_conditions_privacy: Pernyataan Privasi
+    tools: Perkakas
     transcriptions: Transkripsi
     tte_terms_and_condition: Ketentuan & Privasi
     type: Jenis

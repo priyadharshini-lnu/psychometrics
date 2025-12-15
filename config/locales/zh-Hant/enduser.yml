@@ -3,6 +3,9 @@ zh-Hant:
   enduser:
     add_idp_plan_note: 新增備註...
     add_idp_plan_rejection_reason: 新增原因...
+    ai_idp_assistant_response_no: 不
+    ai_idp_assistant_response_upload_different_document: 我想上傳另一份文件。
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: 是的，繼續制定計畫。
     approve_idp_plan: 批准計劃
     bookings: 預訂
     campaign: 活動
@@ -10,6 +13,7 @@ zh-Hant:
     direct_reportees: 直屬下級
     home: 儀表板
     idp_plan_approval_note: 批准備註
+    idp_retake_steps_continue_with_this_information: 請繼續閱讀這些資訊
     insights: 洞察力
     lighthouse_assistant: 燈塔助理
     max_word_limit: 最多不得超過 %{max} 個字

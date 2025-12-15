@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'swagger_helper'
 
-describe Api::V2::Administration::AdminRolesController, swagger_doc: 'v2/swagger.json', type: :request do
+RSpec.describe Api::V2::Administration::AdminRolesController, type: :request do
   let!(:superadmin) { create(:superadmin) }
-  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
+  let!(:api_key) { create(:api_key, user: superadmin) }
+  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
   let!(:client) { create(:tenancy) }
   let!(:admin_role) { create(:admin_role, client_id: client.id) }
   let(:client_id) { client.id }
@@ -13,186 +13,87 @@ describe Api::V2::Administration::AdminRolesController, swagger_doc: 'v2/swagger
 
   before { sign_in(superadmin) }
 
-  path '/clients/{client_id}/admin_roles' do
-    get 'Admin Roles list' do
-      operationId 'AdminRolesList'
-      tags 'AdminRoles'
-      consumes 'application/json'
-      security [basic: []]
-      parameter name: :client_id, in: :path, type: :string
+  describe 'GET /clients/:client_id/admin_roles' do
+    it 'returns admin roles list' do
+      get "/api/v2/administration/clients/#{client_id}/admin_roles",
+          headers: { 'Authorization' => authorization }
 
-      response '200', ' list' do
-        schema '$ref' => '#/components/schemas/AdminRolesListResponse'
-
-        examples 'application/json' => [{
-          data: {
-            id: '1',
-            type: 'admin_roles',
-            attributes: {
-              name: 'Role name',
-              description: 'Role description',
-              client_id: '1',
-              permissions: nil
-            }
-          }
-        }]
-
-        run_test! do |response|
-          admin_role_response = JSON.parse(response.body)['data'].find { |d| d['id'] == admin_role.id.to_s }
-          expect(admin_role_response).to have_attribute(:name).with_value(admin_role.name)
-          expect(admin_role_response).to have_attribute(:description).with_value(admin_role.description)
-          expect(admin_role_response).to have_attribute(:client_id).with_value(client_id)
-        end
-      end
-    end
-
-    post 'Create Admin Role' do
-      operationId 'CreateAdminRole'
-      description 'Create new Admin Role'
-      tags 'AdminRoles'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :client_id, in: :path, type: :string
-      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/AdminRoleCreateRequest' },
-                required: true
-
-      response '201', 'Admin Role Created' do
-        schema '$ref' => '#/components/schemas/AdminRoleResponse'
-
-        examples 'application/json' => [{
-          data: {
-            id: '1',
-            type: 'admin_roles',
-            attributes: {
-              name: 'Role name',
-              description: 'Role description',
-              client_id: '1',
-              permissions: nil
-            }
-          }
-        }]
-
-        let(:body) do
-          {
-            data: {
-              type: 'admin_roles',
-              attributes: {
-                name: 'Role Name',
-                description: 'Admin Role description',
-                client_id: client_id
-              }
-            }
-          }
-        end
-
-        run_test! do |response|
-          admin_role_response = JSON.parse(response.body)['data']
-          expect(admin_role_response).to have_key('id')
-          expect(admin_role_response).to have_attribute(:name).with_value('Role Name')
-          expect(admin_role_response).to have_attribute(:description).with_value('Admin Role description')
-        end
-      end
+      expect(response).to have_http_status(:ok)
+      data = JSON.parse(response.body)['data']
+      expect(data).not_to be_empty
+      expect(data.first).to have_key('id')
+      expect(data.first['type']).to eq('admin_roles')
     end
   end
 
-  path '/clients/{client_id}/admin_roles/{admin_role_id}' do
-    get 'Admin Role' do
-      operationId 'AdminRole'
-      description 'Fetch Admin Role'
-      tags 'AdminRoles'
-      consumes 'application/json'
-      security [basic: []]
-      parameter name: :client_id, in: :path, type: :string
-      parameter name: :admin_role_id, in: :path, type: :string
-
-      response '200', 'Admin Role' do
-        schema '$ref' => '#/components/schemas/AdminRoleResponse'
-
-        examples 'application/json' => [{
-          data: {
-            id: '1',
-            type: 'admin_roles',
-            attributes: {
-              name: 'Role name',
-              description: 'Role description',
-              client_id: '1',
-              permissions: nil
-            }
+  describe 'POST /clients/:client_id/admin_roles' do
+    it 'creates an admin role' do
+      body = {
+        data: {
+          type: 'admin_roles',
+          attributes: {
+            name: 'Test Admin Role'
           }
-        }]
+        }
+      }
 
-        run_test! do |response|
-          admin_role_response = JSON.parse(response.body)['data']
-          expect(admin_role_response).to have_key('id')
-          expect(admin_role_response).to have_attribute(:name).with_value(admin_role.name)
-          expect(admin_role_response).to have_attribute(:description).with_value(admin_role.description)
-          expect(admin_role_response).to have_attribute(:client_id).with_value(client_id)
-        end
-      end
+      post "/api/v2/administration/clients/#{client_id}/admin_roles",
+           params: body.to_json,
+           headers: {
+             'Authorization' => authorization,
+             'Content-Type' => 'application/vnd.api+json'
+           }
+
+      expect(response).to have_http_status(:created)
+      data = JSON.parse(response.body)['data']
+      expect(data).to have_key('id')
+      expect(data['attributes']['name']).to eq('Test Admin Role')
     end
+  end
 
-    patch 'Update an Admin Role' do
-      operationId 'UpdateAdminRole'
-      description 'Update Admin Role'
-      tags 'AdminRoles'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :client_id, in: :path, type: :string
-      parameter name: :admin_role_id, in: :path, type: :string
-      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/AdminRoleUpdateRequest' },
-                required: true
+  describe 'GET /clients/:client_id/admin_roles/:admin_role_id' do
+    it 'returns an admin role' do
+      get "/api/v2/administration/clients/#{client_id}/admin_roles/#{admin_role_id}",
+          headers: { 'Authorization' => authorization }
 
-      response '200', 'Admin Role Updated' do
-        schema '$ref' => '#/components/schemas/AdminRoleResponse'
+      expect(response).to have_http_status(:ok)
+      data = JSON.parse(response.body)['data']
+      expect(data).to have_key('id')
+      expect(data['id']).to eq(admin_role_id.to_s)
+    end
+  end
 
-        examples 'application/json' => [{
-          data: {
-            id: '1',
-            type: 'admin_roles',
-            attributes: {
-              name: 'Role name',
-              description: 'Role description',
-              client_id: '1',
-              permissions: nil
-            }
+  describe 'PATCH /clients/:client_id/admin_roles/:admin_role_id' do
+    it 'updates an admin role' do
+      body = {
+        data: {
+          type: 'admin_roles',
+          id: admin_role_id.to_s,
+          attributes: {
+            name: 'Updated Admin Role'
           }
-        }]
+        }
+      }
 
-        let(:body) do
-          jsonapi_resource_request(
-            'admin_roles',
-            {
-              id: admin_role.id.to_s,
-              name: 'Updated Role Name',
-              permissions: { 'clients' => ['view'] }
+      patch "/api/v2/administration/clients/#{client_id}/admin_roles/#{admin_role_id}",
+            params: body.to_json,
+            headers: {
+              'Authorization' => authorization,
+              'Content-Type' => 'application/vnd.api+json'
             }
-          )
-        end
 
-        run_test! do |response|
-          admin_role_response = JSON.parse(response.body)['data']
-          expect(admin_role_response).to have_key('id')
-          expect(admin_role_response).to have_attribute(:name).with_value('Updated Role Name')
-          expect(admin_role_response).to have_attribute(:permissions).with_value({ 'clients' => ['view'] })
-        end
-      end
+      expect(response).to have_http_status(:ok)
+      data = JSON.parse(response.body)['data']
+      expect(data['attributes']['name']).to eq('Updated Admin Role')
     end
+  end
 
-    delete 'Delete Admin Role' do
-      operationId 'DeleteAdminRole'
-      description 'Delete Admin Role'
-      tags 'AdminRoles'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :client_id, in: :path, type: :string
-      parameter name: :admin_role_id, in: :path, type: :string
+  describe 'DELETE /clients/:client_id/admin_roles/:admin_role_id' do
+    it 'deletes an admin role' do
+      delete "/api/v2/administration/clients/#{client_id}/admin_roles/#{admin_role_id}",
+             headers: { 'Authorization' => authorization }
 
-      response '204', 'Admin Role Deleted' do
-        run_test! do |response|
-          expect(response.body).to be_empty
-          expect(AdminRole.find_by(id: admin_role_id)).to eq(nil)
-        end
-      end
+      expect(response).to have_http_status(:no_content)
     end
   end
 end

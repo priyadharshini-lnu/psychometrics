@@ -12,6 +12,7 @@ zh-HK:
         user_not_found: 找不到使用者或不屬於相同專案
       admin:
         already_added: 已新增電子郵件的管理員。
+      already_assigned?: 無法連結這個評估——它已經被分配到「%{linked_assessor_form_name}」。
       already_invited: 此使用者已存在於您嘗試新增的評量中心中。
       assessor_assessment:
         already_added: 評估員評估已新增至行銷活動。
@@ -37,6 +38,7 @@ zh-HK:
         skills_not_belong_to_project: 選取的技能必須屬於指定的專案。
         skills_required: 請至少選擇一種技能。
       exceeded_subjects_count: 每個邀請只能新增%{count}個主題
+      filled?: 不能是空白的
       idp_template:
         content_required: 說明需要內容
         tag_or_skill_required: 选择“已选择”选项时，请选择标签或技能。
@@ -44,8 +46,14 @@ zh-HK:
       invalid_value: 第 %{row} 行號上的陳述式 '%{value}' 無效
       job_roles:
         unique_within_job_group: 已有相同名稱的職位角色存在。
+      json?: 應該是有效的 JSON
+      key?: 不能是空白的
+      match_regexp?: 無效值
       mettl_schedule_record_create:
         uniq_schedule_name: 排程名稱應該是唯一的
+      missed?: 不能是空白的
+      not_allowed?: 不允許改變
+      not_in_the_list?: 傳遞無效值
       not_uniq_variable: 變數 '%{value}' 在行號 %{row} 上重新定義
       project_assessments:
         should_be_greater_than_zero: 結果有效期應大於 0 天
@@ -56,6 +64,11 @@ zh-HK:
         validates_admins: 管理員無權存取行銷活動。
       report_families_reports:
         report_exists: 此報告已是報告包的一部分
+      saml_service_provider:
+        invalid_url: URL 格式無效：%{url}
+        must_be_array: 一定是陣列
+        must_not_be_empty: 不能是空的
+      size?: 尺寸應該要小%{size}
       skill:
         already_added: 已添加同名技能。
       skill_alias:
@@ -65,6 +78,7 @@ zh-HK:
         must_belong_to_same_project_or_be_global: 技能和工作角色必須屬於同一個專案，或是全球性的。
         unique_mappings: 具有相同技能和工作角色的映射已經存在。
       uniq: 此 Mettl 評估已存在於系統中。此評定的 ID 為 %{id}
+      uniq?: 應該是獨一無二的
       uniq_simulation: 此模擬評估已存在於系統中。此評定的 ID 為 %{id}
       uniq_skillvue: 此 Skillvue 評估已存在於系統中。此評估的 ID 為 %{id}
       uniq_yoodli: 這個 Yoodli 評估已經存在於系統中。此評定的 ID 為 %{id}
@@ -84,6 +98,7 @@ zh-HK:
         unique_name: 具有相同名稱的過濾器已存在。
       workshop_invited_subject_create:
         already_exists: 邀請中已存在主旨。
+        part_of_other_workshop_invite: 受試者已被邀請「%{workshop_invite_name}」。
       workshop_subject_create:
         already_exists: 受試者已存在於該評估中心。
         part_of_other_workshop: 受試者已經是「%{workshop_name}」的參與者。

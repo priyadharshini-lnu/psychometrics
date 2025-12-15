@@ -3,13 +3,21 @@ sr-Cyrl:
   shared:
     action: Радњу
     add: Додати
+    advanced: Напредне
+    authentication_failed: Аутентификација није успела. Покушајте поново.
+    basic: Основне
+    campaign_id: ИД кампање
     cancel: Откажи
     change_password: Промена лозинке
     clear_filters: Обриши филтере
+    continue: Наставите
     description: Опис
     edit: Уређивање
     edited: Уређивати
+    group_question_max_validation_error: Свака група може да садржи највише {{маx}} ставке.
+    group_question_min_validation_error: Свака група треба да садржи најмање {{мин}} ставке.
     id: ИД
+    idp_ai_assistant_disclaimer: Лигхтхоусе АИ ИДП асистент може да прави грешке. Молимо вас да будете опрезни док користите одговоре.
     internet_disconnected_message: Покушавам поновно повезивање. Проверите интернет везу.
     mte_logo_alt_text: Мерцер Талент Ентерприсе лого
     name: Име
@@ -28,6 +36,7 @@ sr-Cyrl:
           other: 'Укупно : {{цоунт}}'
           zero: 'Укупан : 0'
     terms_conditions_privacy: Изјава о приватности
+    tools: Алатке
     transcriptions: Транскрипције
     tte_terms_and_condition: Услови и приватност
     type: Тип

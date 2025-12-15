@@ -2,8 +2,8 @@
 
 module Threesixty
   class SubjectSerializer < Panko::Serializer
-    attributes :id, :status, :report_status, :evaluators, :evaluations, :permissions, :user_report_id,
-               :report_download_url
+    attributes :id, :status, :report_status, :report_status_message, :evaluators, :evaluations, :permissions,
+               :user_report_id, :report_download_url, :available_report_languages, :evaluation_marked_done_by
 
     has_one :user, serializer: SubjectUserSerializer
 
@@ -21,11 +21,12 @@ module Threesixty
     end
 
     def report_status
-      Threesixty::Participants::GetReportStatus.call!(
-        object,
-        context[:option],
-        context[:subject_evaluator_counters]&.dig(object.user_id, :completed) || {}
-      )
+      status = get_report_status_result
+      status == 'available' && !report_file_exists? ? 'not_available' : status
+    end
+
+    def report_status_message
+      get_report_status_result
     end
 
     def evaluations
@@ -82,7 +83,33 @@ module Threesixty
       end
     end
 
+    def available_report_languages
+      user_report = object.user_reports.find_by(campaign_id: campaign_id)
+      return [] unless user_report
+
+      if user_report.association(:user_report_pdfs).loaded?
+        user_report.user_report_pdfs.map(&:locale).uniq
+      else
+        user_report.user_report_pdfs.pluck(:locale).uniq
+      end
+    end
+
+    def evaluation_marked_done_by
+      marked_by_user = object.evaluation_marked_done_by
+      return nil unless marked_by_user
+
+      marked_by_user.email
+    end
+
     private
+
+    def get_report_status_result
+      Threesixty::Participants::GetReportStatus.call!(
+        object,
+        context[:option],
+        context[:subject_evaluator_counters]&.dig(object.user_id, :completed) || {}
+      )
+    end
 
     def current_user
       context[:current_user]
@@ -94,6 +121,10 @@ module Threesixty
 
     def campaign_id
       context[:campaign_id]
+    end
+
+    def report_file_exists?
+      object.user_report&.pdf_exists?
     end
   end
 end

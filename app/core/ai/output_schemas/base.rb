@@ -22,6 +22,7 @@ module AI
             Ensure your response is valid JSON and matches the schema exactly. Do not include any text outside the JSON object.
             The response will be parsed against JSON parser
 
+            IMPORTANT: Do NOT wrap the JSON object in any code blocks or markdown formatting.
             WRONG: ```json {...}```
             CORRECT: {...}
           </output_schema>

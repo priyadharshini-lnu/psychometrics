@@ -3,6 +3,9 @@ pt:
   enduser:
     add_idp_plan_note: Adicionar Nota...
     add_idp_plan_rejection_reason: Adicionar Motivo...
+    ai_idp_assistant_response_no: Não
+    ai_idp_assistant_response_upload_different_document: Quero enviar um documento diferente.
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: Sim, prossiga com a criação do plano.
     approve_idp_plan: Aprovar Plano
     bookings: Reservas
     campaign: Campanha
@@ -10,6 +13,7 @@ pt:
     direct_reportees: Subordinados Diretos
     home: Painel de controle
     idp_plan_approval_note: Nota de Aprovação
+    idp_retake_steps_continue_with_this_information: Continue com esta informação
     insights: Informações
     lighthouse_assistant: Assistente de Farol
     max_word_limit: Deve ter no máximo %{max} palavras

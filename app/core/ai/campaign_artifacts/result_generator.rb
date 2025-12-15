@@ -4,10 +4,11 @@ module AI
   module CampaignArtifacts
     class ResultGenerator < BaseCommand
       private_attr_reader :campaign_ai_artifact, :current_user, :user, :error, :options, :artifact_parser,
-                          :force_regenerate
+                          :force_regenerate, :campaign
 
       def initialize(campaign_ai_artifact, user, options = {})
         @campaign_ai_artifact = campaign_ai_artifact
+        @campaign = campaign_ai_artifact.campaign
         @user = user
         @error = nil
         @options = options
@@ -25,6 +26,10 @@ module AI
             parsed_dependencies: parsed_dependencies,
             results: artifact_result.results
           })
+        end
+
+        unless test_mode?
+          campaign_user.update!(campaign_artifact_results_finalized: false)
         end
 
         generate_artifact_result!
@@ -124,7 +129,8 @@ module AI
           campaign_ai_artifact, user,
           save_results: save_results,
           parsed_dependencies: parsed_dependencies,
-          chat: campaign_artifact_assistant_chat
+          chat: campaign_artifact_assistant_chat,
+          campaign_user: campaign_user
         )]
       end
 
@@ -153,6 +159,10 @@ module AI
 
       def chat_with_context
         campaign_artifact_assistant_chat.with_tools(*content_writer_tools)
+      end
+
+      def campaign_user
+        @campaign_user ||= CampaignUser.find_by(campaign_id: campaign.id, user_id: user.id)
       end
     end
   end

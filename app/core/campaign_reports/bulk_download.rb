@@ -15,7 +15,13 @@ module CampaignReports
     end
 
     def call
-      unless user_reports_with_pdf.exists?
+      filtered_reports = user_reports_with_pdf
+
+      if @unavailable_report_errors.present?
+        return broadcast :ok, { error_messages: @unavailable_report_errors }
+      end
+
+      unless filtered_reports.exists?
         return broadcast :ok, { error_messages: [I18n.t('administration.bulk_reports.reports_unavailable')] }
       end
 
@@ -109,49 +115,64 @@ module CampaignReports
       File.join(dir, filename)
     end
 
-    # rubocop:disable Metrics/AbcSize
     def user_reports_with_pdf
-      if job_record.data['is_threesixty']
-        subject_evaluator_counters = ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
-          user_reports.pluck(:user_id),
-          threesixty_campaign
-        )
-        user_report_ids = user_reports.includes(:subject).select do |user_report|
-          (user_report.subject&.evaluation_status == 'completed') &&
-            Threesixty::Subjects::IsReportAvailable.call!(
-              user_report.subject,
-              threesixty_campaign.option,
-              subject_evaluator_counters.dig(user_report.user_id, :completed) || {},
-              job_record.data['is_bulk_action']
-            )
-        end.map(&:id)
+      @unavailable_report_errors = []
 
-        UserReport.with_pdf_attachments.
-          includes(:user, :report).
-          where(id: user_report_ids).
-          where(user_report_pdfs: { locale: job_record.data['locales'] })
+      if job_record.data['is_threesixty']
+        validate_and_filter_threesixty_reports
       elsif user_reports.present?
         user_reports.where(status: 'prepared').includes(:user, :report)
       else
-        start_date = job_record.data['start_date']
-        end_date = job_record.data['end_date']
-        include_inactive_users = job_record.data['include_inactive_users'] || false
-
-        user_report_ids = ::Reports::BulkDownloadsQuery.new(
-          campaign_reports,
-          {
-            start_date: start_date,
-            end_date: end_date,
-            include_inactive_users: include_inactive_users,
-            selected_reports: job_record.data['selected_reports']
-          }
-        ).query.pluck(:id)
-        UserReport.
-          includes(:user, :report).
-          where(id: user_report_ids)
+        fetch_reports_from_bulk_query
       end
     end
-    # rubocop:enable Metrics/AbcSize
+
+    def validate_and_filter_threesixty_reports
+      subject_evaluator_counters = ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
+        user_reports.pluck(:user_id),
+        threesixty_campaign
+      )
+
+      available_user_report_ids = []
+
+      user_reports.includes(:subject).find_each do |user_report|
+        subject = user_report.subject
+        next unless subject
+
+        result = Threesixty::Subjects::IsReportAvailable.call!(
+          subject,
+          threesixty_campaign.option,
+          subject_evaluator_counters.dig(user_report.user_id, :completed) || {}
+        )
+
+        if result[:available]
+          available_user_report_ids << user_report.id
+        elsif result[:status_message].present?
+          @unavailable_report_errors << result[:status_message]
+        end
+      end
+
+      return UserReport.none if @unavailable_report_errors.present?
+
+      UserReport.with_pdf_attachments.
+        includes(:user, :report).
+        where(id: available_user_report_ids).
+        where(user_report_pdfs: { locale: job_record.data['locales'] })
+    end
+
+    def fetch_reports_from_bulk_query
+      user_report_ids = ::Reports::BulkDownloadsQuery.new(
+        campaign_reports,
+        {
+          start_date: job_record.data['start_date'],
+          end_date: job_record.data['end_date'],
+          include_inactive_users: job_record.data['include_inactive_users'] || false,
+          selected_reports: job_record.data['selected_reports']
+        }
+      ).query.pluck(:id)
+
+      UserReport.includes(:user, :report).where(id: user_report_ids)
+    end
 
     def threesixty_campaign
       @threesixty_campaign ||= ::Threesixty::Campaign.find_by(campaign_id: campaign_id)

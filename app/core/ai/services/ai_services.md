@@ -53,3 +53,22 @@ blob = ActiveStorage::Blob.create_and_upload!(
 )
 AI::Services::OciOcr.call(blob, language: 'ar')
 ```
+
+# Openai ReponseAPI
+
+Using OpenAI Response API service with RubyLLM chat
+
+### Running with chat record
+
+```ruby
+begin
+  # use openai model assistant
+  openai_provider_assistant = AI::Assistant.find_by(model_id: "gpt-4o", assistant_type: :assistant_tool)
+
+  chat = openai_provider_assistant.for_user(User.find_by(email: 'sritabh@example.com'))
+  chat.messages = [] # For testing, clearing previous messages
+  chat.ask("Hello", service: :openai_response_api)
+rescue RubyLLM::Error => e
+  puts "Error: #{e.message} #{e.response.body}"
+end
+```

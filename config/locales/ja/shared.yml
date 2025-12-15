@@ -3,13 +3,21 @@ ja:
   shared:
     action: アクション
     add: 追加
+    advanced: アドバンスド
+    authentication_failed: 認証に失敗しました。もう一度お試しください。
+    basic: 基本的な
+    campaign_id: キャンペーンID
     cancel: キャンセル
     change_password: パスワードの変更
     clear_filters: 絞り込みをクリア
+    continue: 続ける
     description: 形容
     edit: 編集
     edited: 新規
+    group_question_max_validation_error: 各グループは最大で{{max}}アイテムを含めることができます。
+    group_question_min_validation_error: 各グループには少なくとも{{min}}のアイテムが含まれている必要があります。
     id: ID
+    idp_ai_assistant_disclaimer: Lighthouse AI IDPアシスタントはミスを犯すことがあります。回答を使う際はご注意ください。
     internet_disconnected_message: 再接続の試行中です。インターネット接続を確認してください。
     mte_logo_alt_text: マーサー・タレント・エンタープライズのロゴ
     name: 名称
@@ -28,6 +36,7 @@ ja:
           other: 合計：1
           zero: 合計：0
     terms_conditions_privacy: プライバシーに関する声明
+    tools: ツール
     transcriptions: 編曲
     tte_terms_and_condition: 利用規約とプライバシー
     type: タイプ

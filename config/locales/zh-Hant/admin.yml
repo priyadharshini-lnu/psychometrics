@@ -1,6 +1,7 @@
 ---
 zh-Hant:
   admin:
+    admin_approval_required: "%{user}報告需經管理員批准後才能下載。"
     admins: 管理員
     ai_artifacts: 人工智慧神器
     ai_artifacts_output_schema_key_constraint: 鍵必須以小寫字母開頭，且只能包含小寫字母、數字和底線
@@ -8,7 +9,17 @@ zh-Hant:
     ai_assistant_model_label: 型
     ai_assistant_model_provider: 提供者
     ai_assistant_model_region_label: 區
+    ai_assistant_required: 必須使用 AI 助理
     ai_assistants: AI 助理
+    ai_assistants_advanced_mode_tooltip: 使用進階模式使用帶有可用變數的液態範本來做提示模板。詳情請參閱文件。
+    ai_assistants_campaign_id_placeholder: 這時，活動識別碼登場
+    ai_assistants_no_rendered_output: 沒有渲染輸出可用
+    ai_assistants_render_button: 渲染範本
+    ai_assistants_rendered_prompt: 渲染提示
+    ai_assistants_template_and_campaign_required: 請同時提供範本和戰役編號
+    ai_assistants_template_render_failed: 無法渲染範本
+    ai_assistants_test_render: 測試渲染
+    ai_assistants_test_render_tooltip: 用活動資料測試你的提示範本，看看會送給 AI 助理什麼。
     assessments: 評估
     assessments_reports: 評估與報告
     assessor_dashboard: 評估員儀表板
@@ -16,40 +27,77 @@ zh-Hant:
     audit_logs: 稽核記錄
     audit_reports: 審計報告
     availability: 可用性
+    available_languages: 報告提供多種語言版本
     back_to_main: 主選單
+    bulk_upload_ai_artifacts: 大量上傳 AI 產物
+    campaign_ai_artifact_updated_successfully: 戰役 AI 工件已成功更新
+    campaign_assessment_actions_disable_caching: 停用評估快取
+    campaign_assessment_actions_enable_caching: 啟用評估快取
+    campaign_assessment_column_caching_enabled: 啟用評估快取
+    campaign_assessment_modals_disable_caching_content: 你確定要在這次評估中關閉快取嗎？
+    campaign_assessment_modals_disable_caching_successfully: 本次評估已關閉快取功能。
+    campaign_assessment_modals_disable_caching_title: 關閉評估快取？
+    campaign_assessment_modals_enable_caching_content: 你確定要啟用快取來做這個評估嗎？
+    campaign_assessment_modals_enable_caching_successfully: 此評估已啟用快取功能。
+    campaign_assessment_modals_enable_caching_title: 啟用評估快取？
     campaign_templates: 活動範本
     client: 客戶租約
     client_admins: 客戶端管理員
     clients: 客戶租約
+    code_required: 必須使用程式碼
     communication_center: 通訊中心
+    completed: 成
+    completed_tooltip: 所有評審人員均已提交評鑑
     country: 國家
     create_client: 建立客戶端
     dashboard: 儀表板
     data_reports: 資料報告
     datasheet: 數據表
+    declined: 拒絕
     delete_ok_text: 是的，刪除
+    denied: 拒絕
     development_actions: 發展行動
     dimensions: 尺寸
+    done: 熟
+    done_tooltip: 此用戶無法再提交評估，因為該用戶的評估已被標記為已完成%{marked_by}
     empty_csv_file: CSV 檔案不包含任何資料。
-    fill_empty_score_msg: 儲存前填寫所有最終分數。
-    final_score_empty_msg: 最終分數不能是空的。
-    import_csv_assessment_group_error: 第 %{index} 列：擁有電子郵件 %{email} 的使用者已被邀請進入「%{workshopInviteName}」
+    evaluation_status: 評估狀態
+    evaluation_status_not_done: 一個或多個被選定的受試者，評估狀態並非「完成」。請確保所有被選中的使用者都已完成評估，或標記為已完成。
+    idp_plan_reset_success: 計畫已成功重置
+    import_ai_artifacts: 匯入 AI 工件
     import_csv_error: 第 %{index} 列：擁有電子郵件 %{email} 的使用者未參與本次活動
+    import_csv_parsing_error: CSV 解析錯誤：%{message}
     import_description: 從 CSV 檔案匯入使用者。每一列必須包含電子郵件地址。
     import_download_sample: 下載 CSV 範例
     import_error: 進口失敗了。請再試一次。
+    import_error_saving_data: "%{email} 儲存資料錯誤：%{message}"
     import_errors_title: 匯入錯誤
+    import_external_scoring_action: 匯入外部計分
+    import_external_scoring_body: 請參考匯出功能，提取一個模板，可以用來匯入。
+    import_external_scoring_data_description: 匯入指定評估與活動的外部評分資料
+    import_external_scoring_data_title: 匯入外部計分資料
+    import_external_scoring_success_msg: 匯入成功上傳
+    import_external_scoring_upload: 上傳
     import_file_required: 請選擇一個 CSV 檔案上傳。
     import_queued_success: 主體進口工作順利排程。請檢查您的通知狀態。
     import_sample_file_label: 範例檔案：
+    import_scenario_id_mismatch: "%{email} 的情境 ID 不匹配：預期%{expected_id}，但 CSV 包含不同的情境 ID"
+    import_successfully_saved: 成功為%{goals_count}目標%{email}儲存外部結果
     import_title: 從 CSV 匯入主體
     import_upload: 上傳
     import_users: 匯入使用者
     invalid_csv_header: CSV 檔案包含無效標頭。
     libraries: 媒體圖書館
     library_invalid_type: 無效圖書館項目
+    manager_approval_required: "%{user}報告需要經理批准才能下載。"
+    name_required: 需命名
+    no_file_selected: 未選取任何檔案
     no_notifications: 沒有通知
     norms: 規範
+    not_completed: 未完成
+    not_completed_tooltip: "%{completed}評估員被指派，但只有%{submitted}完成評估"
+    nothing_assigned: 沒有分配
+    nothing_assigned_tooltip: 此用戶尚未被分配任何評估
     notification_bell_icon_alt_text: 通知鈴聲圖示
     notifications: 通知
     number: 數量
@@ -62,7 +110,19 @@ zh-Hant:
     question_center: 問題中心
     registration_codes: 註冊碼
     report_approvals: 報告核准
+    report_condition_not_met: 需要%{required} %{relationship}評估，但目前只有 %{actual}
+    report_conditions_not_met_detailed: "%{user}報告不符合可用性條件。%{conditions}"
+    report_denied: "%{user}的報告被拒絕了"
+    report_no_evaluations: 目前無法取得%{user}報告——尚未收到任何評估。
+    report_not_generated: "%{user}報告符合可用性條件，但尚未產生。請先產生報告。"
+    report_on_hold: "%{user}報告目前暫停"
+    report_status: 報告狀態
     reports: 報告
+    reports_limit_exceeded: 批量下載限制為 1000 個報告檔案。如果你選擇了許多語言，請減少。
+    reports_not_found: 沒有發現任何報告。請在下載前先產生報告。
+    reset_idp_plan: 重置計畫
+    reset_idp_plan_confirmation: 你確定要重置計畫嗎？
+    reset_idp_plan_title: 重置計畫
     role: 角色
     saml_idp_certificate_available: 可購買（點擊複製）
     saml_idp_certificate_label: 券
@@ -82,12 +142,25 @@ zh-Hant:
     saml_service_provider_entity_id_placeholder: 輸入實體識別碼
     saml_service_provider_entity_id_required: 必須提供實體識別碼
     saml_service_provider_idp_config: IdP 配置
+    saml_service_provider_integration_generic: 一般的
+    saml_service_provider_integration_masking_info: 候選人的電子郵件帳號會在寄給 Yoodli 前被遮蔽。需要啟用從
+    saml_service_provider_integration_type: 整合類型
+    saml_service_provider_integration_type_placeholder: 選擇整合類型
+    saml_service_provider_integration_type_required: 整合類型是必須的
+    saml_service_provider_integration_yoodli: 尤德利
     saml_service_provider_manage: 行動
+    saml_service_provider_mask_data_for: 遮罩資料
     saml_service_provider_mask_identity: 面具身份
     saml_service_provider_masking_enabled: 啟用遮罩
+    saml_service_provider_masking_help_generic: 啟用在 SAML 回應中遮蔽使用者身份
+    saml_service_provider_masking_help_integration: 將實施整合供應商遮蔽
+    saml_service_provider_masking_integration: "%{integration} 驅動"
+    saml_service_provider_masking_manual_disabled: 失能
+    saml_service_provider_masking_manual_enabled: 啟用
     saml_service_provider_name: 名字
     saml_service_provider_name_placeholder: 輸入服務提供者名稱
     saml_service_provider_name_required: 需命名
+    saml_service_provider_privacy_policy: 隱私政策頁面
     saml_service_provider_remove_content: 你確定要移除 SAML 服務提供者：%{name}嗎？
     saml_service_provider_remove_title: 移除 SAML 服務提供者
     saml_service_provider_rotate_certificate_content: 你確定要輪換證書給%{name}嗎？這會產生新的憑證，並使現有的失效。
@@ -105,8 +178,13 @@ zh-Hant:
     skills_taxonomy: 技能分類法
     slot_name: 車位名稱
     stats: 統計資料
-    subject_part_of_other_invite: 主旨包含電子郵件%{user_email}已被邀請至「%{workshop_invite_name}」
+    status_details: 狀態詳情
+    upload_success: 上傳成功
     user_report_events: 使用者報告事件
     users: 使用者
     view_licenses: 檢視授權
+    waiting: 等待
     year: 國家
+    yoodli_activity_id: Yoodli 活動識別碼
+    yoodli_email_id: Yoodli 候選人電子郵件 ID
+    yoodli_external_assessment_id: Yoodli 評估識別碼

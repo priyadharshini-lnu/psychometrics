@@ -3,6 +3,9 @@ de:
   enduser:
     add_idp_plan_note: Notiz hinzufügen...
     add_idp_plan_rejection_reason: Grund hinzufügen...
+    ai_idp_assistant_response_no: Nein
+    ai_idp_assistant_response_upload_different_document: Ich möchte ein anderes Dokument hochladen.
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: Ja, fahren Sie mit der Planerstellung fort.
     approve_idp_plan: Plan genehmigen
     bookings: Buchungen
     campaign: Kampagne
@@ -10,6 +13,7 @@ de:
     direct_reportees: Direkte Berichte
     home: Dashboard
     idp_plan_approval_note: Genehmigungsnotiz
+    idp_retake_steps_continue_with_this_information: Fahren Sie mit diesen Informationen fort
     insights: Einblicke
     lighthouse_assistant: Leuchtturmassistent
     max_word_limit: Darf höchstens %{max} Wörter haben

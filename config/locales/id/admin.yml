@@ -1,6 +1,7 @@
 ---
 id:
   admin:
+    admin_approval_required: Laporkan untuk %{user} memerlukan persetujuan admin sebelum diunduh
     admins: Admin
     ai_artifacts: Artefak AI
     ai_artifacts_output_schema_key_constraint: Kunci harus dimulai dengan huruf kecil dan hanya dapat berisi huruf kecil, angka, dan garis bawah
@@ -8,7 +9,17 @@ id:
     ai_assistant_model_label: Pola
     ai_assistant_model_provider: Penyedia
     ai_assistant_model_region_label: Wilayah
+    ai_assistant_required: Asisten AI diperlukan
     ai_assistants: Asisten AI
+    ai_assistants_advanced_mode_tooltip: Gunakan mode lanjutan untuk templat prompt menggunakan templat cair dengan variabel yang tersedia. Lihat dokumentasi untuk detail selengkapnya.
+    ai_assistants_campaign_id_placeholder: Masukkan ID kampanye
+    ai_assistants_no_rendered_output: Tidak ada output yang dirender yang tersedia
+    ai_assistants_render_button: Templat Render
+    ai_assistants_rendered_prompt: Prompt yang Dirender
+    ai_assistants_template_and_campaign_required: Harap berikan template dan ID kampanye
+    ai_assistants_template_render_failed: Gagal merender templat
+    ai_assistants_test_render: Uji Render
+    ai_assistants_test_render_tooltip: Uji templat prompt Anda dengan data kampanye untuk memeriksa apa yang akan dikirim ke asisten AI.
     assessments: Penilaian
     assessments_reports: Penilaian & Laporan
     assessor_dashboard: Dasbor Penilai
@@ -16,40 +27,77 @@ id:
     audit_logs: Log Audit
     audit_reports: Laporan Audit
     availability: Ketersediaan
+    available_languages: Laporan tersedia dalam bahasa
     back_to_main: Menu Utama
+    bulk_upload_ai_artifacts: Unggah Artefak AI Massal
+    campaign_ai_artifact_updated_successfully: Artefak AI kampanye berhasil diperbarui
+    campaign_assessment_actions_disable_caching: Nonaktifkan Penilaian Caching
+    campaign_assessment_actions_enable_caching: Mengaktifkan Penilaian Caching
+    campaign_assessment_column_caching_enabled: Caching Penilaian Diaktifkan
+    campaign_assessment_modals_disable_caching_content: Apakah Anda yakin ingin menonaktifkan caching untuk penilaian ini?
+    campaign_assessment_modals_disable_caching_successfully: Caching telah dinonaktifkan untuk penilaian ini.
+    campaign_assessment_modals_disable_caching_title: Nonaktifkan Assessment Caching?
+    campaign_assessment_modals_enable_caching_content: Apakah Anda yakin ingin mengaktifkan caching untuk penilaian ini?
+    campaign_assessment_modals_enable_caching_successfully: Caching telah diaktifkan untuk penilaian ini.
+    campaign_assessment_modals_enable_caching_title: Aktifkan Assessment Caching?
     campaign_templates: Templat Kampanye
     client: Klien Pengguna
     client_admins: Admin Klien
     clients: Klien Pengguna
+    code_required: Kode diperlukan
     communication_center: Pusat Komunikasi
+    completed: Selesai
+    completed_tooltip: Semua evaluator telah menyerahkan evaluasi
     country: Negara
     create_client: Buat Klien
     dashboard: Dashboard
     data_reports: Laporan Data
     datasheet: Lembar data
+    declined: Menolak
     delete_ok_text: Ya, Hapus
+    denied: Ditolak
     development_actions: Tindakan Pengembangan
     dimensions: Dimensi
+    done: Selesai
+    done_tooltip: Tidak ada lagi evaluasi yang dapat diajukan untuk pengguna ini karena evaluasi pengguna ini ditandai sebagai dilakukan oleh %{marked_by}
     empty_csv_file: CSV tidak berisi data apa pun.
-    fill_empty_score_msg: Isi semua skor akhir sebelum menyimpan.
-    final_score_empty_msg: Skor akhir tidak bisa kosong.
-    import_csv_assessment_group_error: 'Baris %{index}: pengguna dengan email %{email} sudah diundang untuk ''%{workshopInviteName}'''
+    evaluation_status: Status Evaluasi
+    evaluation_status_not_done: Status evaluasi tidak 'Selesai' untuk satu atau lebih mata pelajaran yang dipilih. Pastikan semua pengguna yang dipilih telah menyelesaikan evaluasi atau menandai sebagai selesai.
+    idp_plan_reset_success: Paket telah berhasil diatur ulang
+    import_ai_artifacts: Impor Artefak AI
     import_csv_error: 'Baris %{index}: pengguna dengan email %{email} tidak ada dalam kampanye ini'
+    import_csv_parsing_error: 'Kesalahan penguraian CSV: %{message}'
     import_description: Mengimpor pengguna dari file CSV. Setiap baris harus berisi alamat email.
     import_download_sample: Unduh contoh CSV
     import_error: Impor gagal. Silakan coba lagi.
+    import_error_saving_data: 'Kesalahan menyimpan data untuk %{email}: %{message}'
     import_errors_title: Kesalahan Impor
+    import_external_scoring_action: Impor Skor Eksternal
+    import_external_scoring_body: Lihat fungsionalitas Ekspor untuk mengekstrak templat yang dapat digunakan untuk Mengimpor di sini.
+    import_external_scoring_data_description: Mengimpor data penilaian eksternal untuk penilaian dan kampanye yang ditentukan
+    import_external_scoring_data_title: Impor Data Penilaian Eksternal
+    import_external_scoring_success_msg: Impor berhasil diunggah
+    import_external_scoring_upload: Unggah
     import_file_required: Silakan pilih file CSV untuk diunggah.
     import_queued_success: Pekerjaan impor subjek berhasil dijadwalkan. Silakan periksa notifikasi Anda untuk status.
     import_sample_file_label: 'File sampel:'
+    import_scenario_id_mismatch: 'Ketidakcocokan ID skenario untuk %{email}: %{expected_id} yang diharapkan, tetapi CSV berisi ID skenario yang berbeda'
+    import_successfully_saved: Berhasil menyimpan hasil eksternal untuk %{email} dengan tujuan %{goals_count}
     import_title: Impor Subjek dari CSV
     import_upload: Unggah
     import_users: Impor Pengguna
     invalid_csv_header: File CSV berisi header yang tidak valid.
     libraries: Perpustakaan Media
     library_invalid_type: Item Perpustakaan Tidak Valid
+    manager_approval_required: Laporan untuk %{user} memerlukan persetujuan manajer sebelum diunduh
+    name_required: Nama diperlukan
+    no_file_selected: Tidak ada file yang dipilih
     no_notifications: Tidak ada pemberitahuan
     norms: Norma
+    not_completed: Belum Selesai
+    not_completed_tooltip: "%{completed} evaluator ditugaskan tetapi hanya %{submitted} yang telah menyelesaikan evaluasi"
+    nothing_assigned: Tidak ada yang ditugaskan
+    nothing_assigned_tooltip: Tidak ada evaluasi yang ditetapkan untuk pengguna ini
     notification_bell_icon_alt_text: Ikon Lonceng Notifikasi
     notifications: Notifikasi
     number: Nomor
@@ -62,7 +110,19 @@ id:
     question_center: Pusat Pertanyaan
     registration_codes: Kode pendaftaran
     report_approvals: Laporan Persetujuan
+    report_condition_not_met: Membutuhkan evaluasi %{required} %{relationship}, tetapi hanya memiliki %{actual}
+    report_conditions_not_met_detailed: Laporkan untuk %{user} tidak memenuhi persyaratan ketersediaan. %{conditions}
+    report_denied: Laporan untuk %{user} telah ditolak
+    report_no_evaluations: Laporan untuk %{user} tidak tersedia - tidak ada evaluasi yang diterima.
+    report_not_generated: Laporan untuk %{user} memenuhi persyaratan ketersediaan tetapi belum dibuat. Silakan buat laporan terlebih dahulu.
+    report_on_hold: Laporan untuk %{user} saat ini ditangguhkan
+    report_status: Status Laporan
     reports: Laporan
+    reports_limit_exceeded: Unduhan massal dibatasi hingga 1000 file laporan. Jika Anda telah memilih banyak bahasa, harap kurangi.
+    reports_not_found: Tidak ada laporan yang ditemukan. Silakan buat laporan sebelum mengunduh.
+    reset_idp_plan: Atur Ulang Paket
+    reset_idp_plan_confirmation: Apakah Anda yakin ingin mengatur ulang paket?
+    reset_idp_plan_title: Atur Ulang Paket
     role: Peranan
     saml_idp_certificate_available: Tersedia (klik untuk menyalin)
     saml_idp_certificate_label: Sertifikat
@@ -82,12 +142,25 @@ id:
     saml_service_provider_entity_id_placeholder: Masukkan ID entitas
     saml_service_provider_entity_id_required: ID Entitas diperlukan
     saml_service_provider_idp_config: Konfigurasi IdP
+    saml_service_provider_integration_generic: Generik
+    saml_service_provider_integration_masking_info: ID Email kandidat akan ditutupi sebelum dikirim ke Yoodli. Menutupi nama depan dan belakang kandidat perlu diaktifkan dari
+    saml_service_provider_integration_type: Jenis Integrasi
+    saml_service_provider_integration_type_placeholder: Pilih jenis integrasi
+    saml_service_provider_integration_type_required: Jenis integrasi diperlukan
+    saml_service_provider_integration_yoodli: Yoodli
     saml_service_provider_manage: Tindakan
+    saml_service_provider_mask_data_for: Data masker untuk
     saml_service_provider_mask_identity: Identitas Topeng
     saml_service_provider_masking_enabled: Aktifkan Masking
+    saml_service_provider_masking_help_generic: Aktifkan untuk menutupi identitas pengguna dalam respons SAML
+    saml_service_provider_masking_help_integration: Masking penyedia integrasi akan diterapkan
+    saml_service_provider_masking_integration: "%{integration} Didorong"
+    saml_service_provider_masking_manual_disabled: Cacat
+    saml_service_provider_masking_manual_enabled: Diaktifkan
     saml_service_provider_name: Nama
     saml_service_provider_name_placeholder: Masukkan nama penyedia layanan
     saml_service_provider_name_required: Nama diperlukan
+    saml_service_provider_privacy_policy: Halaman Kebijakan Privasi
     saml_service_provider_remove_content: 'Apakah Anda yakin ingin menghapus Penyedia Layanan SAML: %{name}?'
     saml_service_provider_remove_title: Hapus Penyedia Layanan SAML
     saml_service_provider_rotate_certificate_content: Apakah Anda yakin ingin memutar sertifikat untuk %{name}? Ini akan menghasilkan sertifikat baru dan membatalkan sertifikat saat ini.
@@ -105,8 +178,13 @@ id:
     skills_taxonomy: Taksonomi Keterampilan
     slot_name: Nama Slot
     stats: Statistik
-    subject_part_of_other_invite: Subjek dengan email %{user_email} sudah diundang untuk '%{workshop_invite_name}'
+    status_details: Detail Status
+    upload_success: Berhasil diunggah
     user_report_events: Peristiwa Laporan Pengguna
     users: Pengguna
     view_licenses: Lihat Lisensi
+    waiting: Menunggu
     year: Negara
+    yoodli_activity_id: ID Aktivitas Yoodli
+    yoodli_email_id: ID Email Kandidat Yoodli
+    yoodli_external_assessment_id: ID Penilaian Yoodli

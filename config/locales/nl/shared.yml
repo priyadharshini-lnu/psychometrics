@@ -3,13 +3,21 @@ nl:
   shared:
     action: Actie
     add: Voeg  toe
+    advanced: Geavanceerd
+    authentication_failed: Authenticatie mislukt. Probeer het alsjeblieft opnieuw.
+    basic: Basisch
+    campaign_id: Campagne-ID
     cancel: Annuleren
     change_password: Wachtwoord wijzigen
     clear_filters: Filters wissen
+    continue: Voortzetten
     description: Beschrijving
     edit: Bewerk
     edited: Nieuw
+    group_question_max_validation_error: Elke groep kan maximaal {{max}} item(s) bevatten.
+    group_question_min_validation_error: Elke groep moet minstens {{min}} items(en) bevatten.
     id: ID
+    idp_ai_assistant_disclaimer: De AI-assistent van de Lighthouse IDP kan fouten maken. Wees alsjeblieft voorzichtig met het gebruik van de reacties.
     internet_disconnected_message: Probeer opnieuw verbinding te maken. Controleer uw internetverbinding.
     mte_logo_alt_text: Mercer logo voor talentondernemingen
     name: Naam
@@ -28,6 +36,7 @@ nl:
           other: 'Totaal : {{count}}'
           zero: 'Totaal : 0'
     terms_conditions_privacy: Privacyverklaring
+    tools: Gereedschap
     transcriptions: Transcripties
     tte_terms_and_condition: Voorwaarden en privacy
     type: Type

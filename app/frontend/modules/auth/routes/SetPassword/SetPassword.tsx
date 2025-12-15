@@ -18,12 +18,10 @@ type Props = PropsFromRedux
 const SetPasswordComponent: React.FC<Props> = ({
   projectConfig, csrfToken, user, errors,
 }) => {
-  if (!user.reset_password_token) { return null }
-  let recaptchaEnabled = !disable_recaptcha
+  const adminSide = projectConfig.id === undefined
 
-  if (projectConfig?.enable_recaptcha) {
-    recaptchaEnabled = recaptchaEnabled && projectConfig?.enable_recaptcha
-  }
+  if (!user.reset_password_token) { return null }
+  const recaptchaEnabled = !disable_recaptcha && (adminSide || projectConfig.enable_recaptcha)
 
   const handleSubmit = (e) => {
     if (!recaptchaEnabled) { return }
@@ -42,7 +40,7 @@ const SetPasswordComponent: React.FC<Props> = ({
     recaptchaToken,
     recaptchaReady,
     recaptchaWidgetId,
-  } = useRecaptcha({ formRef, disable_recaptcha })
+  } = useRecaptcha({ formRef, disable_recaptcha: !recaptchaEnabled })
 
   return (
     <div className={styles.container}>
@@ -53,7 +51,7 @@ const SetPasswordComponent: React.FC<Props> = ({
       <form
         id="form-password"
         ref={formRef}
-        action={projectConfig.id ? '/users/password' : '/administration/passwords'}
+        action={adminSide ? '/administration/passwords' : '/users/password'}
         method="post"
         onSubmit={handleSubmit}
       >

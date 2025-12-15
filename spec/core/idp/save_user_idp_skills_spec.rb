@@ -21,6 +21,19 @@ describe Idp::SaveUserIdpSkills do
       expect(user_idp_plan.user_idp_skills.count).to eq(2)
     end
 
+    it 'restores deleted skills' do
+      user_idp_skill = create(:user_idp_skill, user_idp_plan: user_idp_plan, skill: skill, deleted_at: Time.current)
+      skills_params = [{ 'skill_id' => skill.id }]
+
+      skills_form = Idp::SaveUserIdpSkillsForm.new(skills: skills_params)
+      res = described_class.call(user_idp_plan, skills_form, user)
+
+      expect(res[:ok].count).to eq(1)
+      expect(user_idp_plan.user_idp_skills.count).to eq(1)
+      expect(user_idp_skill.reload.deleted_at).to be_nil
+      expect(user_idp_skill.skill_id).to eq(skill.id)
+    end
+
     it 'removes skills not included in the request' do
       create(:user_idp_skill, user_idp_plan: user_idp_plan)
       create(:user_idp_skill, user_idp_plan: user_idp_plan)
@@ -35,6 +48,23 @@ describe Idp::SaveUserIdpSkills do
       expect(user_idp_plan.user_idp_skills.count).to eq(1)
       expect(user_idp_plan.user_idp_skills.first.skill_id).to eq(new_skill.id)
       expect(res[:ok].first.skill_id).to eq(new_skill.id)
+    end
+
+    it 'does not restore skills if not included in request that were part of last approved version and deleted later' do
+      user_idp_skill_in_approved_plan = create(:user_idp_skill, user_idp_plan: user_idp_plan, skill: skill)
+      PaperTrail.request.enable_model(UserIdpPlan)
+      user_idp_plan.update!(approval_status: 'approved')
+      user_idp_plan.update!(approval_status: 'draft')
+      user_idp_skill_in_approved_plan.soft_delete!(user)
+
+      skills_form = Idp::SaveUserIdpSkillsForm.new(skills: [])
+      described_class.call(user_idp_plan, skills_form, user)
+
+      expect(user_idp_plan.user_idp_skills.count).to eq(1)
+      expect(
+        user_idp_plan.user_idp_skills.where(deleted_at: nil).count
+      ).to eq(0)
+      PaperTrail.request.disable_model(UserIdpPlan)
     end
   end
 

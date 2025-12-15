@@ -3,6 +3,9 @@ ar:
   enduser:
     add_idp_plan_note: إضافة ملاحظة...
     add_idp_plan_rejection_reason: إضافة سبب...
+    ai_idp_assistant_response_no: لا
+    ai_idp_assistant_response_upload_different_document: أريد رفع مستند مختلف.
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: نعم، تابع في وضع الخطة.
     approve_idp_plan: الموافقة على الخطة
     bookings: الحجوزات
     campaign: الحملة
@@ -10,6 +13,7 @@ ar:
     direct_reportees: الموظفين المباشرين
     home: لوحة التحكم
     idp_plan_approval_note: مذكرة الموافقة
+    idp_retake_steps_continue_with_this_information: تابع هذه المعلومات
     insights: البصائر
     lighthouse_assistant: مساعد المنارات
     max_word_limit: يجب أن تكون على الأكثر %{max} كلمة

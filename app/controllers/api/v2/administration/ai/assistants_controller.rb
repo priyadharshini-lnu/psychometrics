@@ -7,12 +7,16 @@ module Api
         skip_before_action :enforce_geo_restriction
         validate_crud_requests Api::V2::AI::Assistant::Schema
 
+        before_action :load_campaign!, only: %i[render_prompt_template]
+
         def generate
           result = ::AI::AssistantService.call(
             params[:id],
             current_user,
             params.dig(:data, :attributes, :prompt),
-            params: {} # Ignore default params required by assistables for the playground generate
+            params: {
+              tool_choice: nil # Assistant context is not available at super admin level
+            }
           )
           if result[:ok]
             response = result[:ok]
@@ -51,8 +55,30 @@ module Api
           render json: { error: e.message }, status: :unprocessable_entity
         end
 
+        def render_prompt_template
+          system_prompt = params.dig(:data, :attributes, :template)
+
+          templater_renderer = ::AI::PromptTemplate::Renderer.new(
+            system_prompt, campaign: @campaign, user: current_user
+          )
+
+          templater_renderer.on(:ok) do |rendered_prompt|
+            render json: { attributes: { rendered_prompt: } }, status: :ok
+          end.
+            on(:error) do |error|
+            jsonapi_render_errors [{ detail: error }], status: :unprocessable_entity
+          end.
+            call
+        end
+
         def policy_class
           Api::Administration::AI::AssistantPolicy
+        end
+
+        private
+
+        def load_campaign!
+          @campaign = ::Campaign.find(params.dig(:data, :attributes, :campaign_id))
         end
       end
     end

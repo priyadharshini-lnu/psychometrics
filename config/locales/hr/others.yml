@@ -55,6 +55,17 @@ hr:
               blank: ID paketa izvješća ne može biti prazan
             report_id:
               blank: ID izvješća ne može biti prazan
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: AI asistent s ID '%{id}' ne nalazi se u redu %{index}
+              blank: Stupac '%{entity}' ne može biti prazan u retku %{index}
+              duplicate_code: Duplicirani kod '%{code}' u redu %{index}
+              invalid_code_format: Nevažeći format koda '%{code}' u retku %{index}
+              max_limit_reached: Ukupni AI artefakti kampanje prelaze maksimalni limit od %{count}
+              missing_headers: 'Nedostaju obavezna zaglavlja: %{headers}'
+            file:
+              invalid_format: Molimo učitajte CSV datoteku
         campaign_factor_import_form:
           attributes:
             file:
@@ -232,6 +243,19 @@ hr:
               contains_repeats: Lozinka ne smije sadržavati ponavljanja
               too_short: Lozinka je prekratka. Minimalno potreban znak %{count}
               too_weak: 'Lozinka mora sadržavati: najmanje 1 mala, 1 veliko slovo, 1 broj i 1 poseban znak.'
+        project_license:
+          attributes:
+            base:
+              exceeds_available: Ne može se dodijeliti više od dostupnih licenci
+            license_id:
+              already_present: već prisutan za ovaj projekt
+            usage_limit:
+              cant_be_less_than_used: ne može se postaviti ispod trenutnog broja korištenja %{used_count}
+              cant_be_more_than_available: ne može biti više od dostupnog limita na licenci (%{usage_limit})
+              exceeds_available: Ne može biti više od dostupnih licenci
+              less_than_used_number: Ne može biti manje od broja korištenih licenci
+            used_number:
+              overused: Ne može biti više od dostupnih licenci.
         questions_import_block_form:
           attributes:
             name:
@@ -428,6 +452,10 @@ hr:
               inclusion: mora biti boolean
             start_date_time:
               invalid_datetime: je nevažeća
+        yoodli:
+          attributes:
+            name:
+              not_unique: Ova integracija već je prisutna za ovaj projekt.
   activerecord:
     attributes:
       administration/assessments/assign_form:
@@ -458,6 +486,7 @@ hr:
           simulation: Simulacija
           skillvue: Vještina
           threesixty: Kampanja 360
+          yoodli: Yoodli
         category: Kategorija
         created_at: Datum izrade
         description: Opis
@@ -475,6 +504,7 @@ hr:
           saville: Procjena Savillea
           simulation: Simulacijska procjena
           skillvue: Procjena vještina
+          yoodli: Yoodli procjena
         updated_at: Datum izmjene
       assign:
         completed_at: Datum završetka
@@ -842,6 +872,7 @@ hr:
         data_report_export: Izvoz izvješća o podacima
         export_admin_with_permissions: Izvoz administratora s dozvolama
         export_assessment_questions: Pitanja za procjenu izvoza
+        export_campaign_ai_artifacts: AI artefakti iz izvozne kampanje
         export_campaign_factors: Čimbenici izvozne kampanje
         export_campaign_scorings: Izvozne kampanje
         export_dashboard_as_file: Izvezi nadzornu ploču kao datoteku
@@ -863,16 +894,19 @@ hr:
         export_user_report_events: Izvoz događaja korisničkog izvješća
         export_users: Izvoz korisnika kampanje
         external_assessment_export: Izvoz vanjskih rezultata
+        generate_embedding_skills: Generiranje ugradnje za vještine
         import_accesssheet: Uvoz pristupnog lista
         import_assessment_questions: Pitanja za procjenu uvoza
         import_assessment_translations: Prijevodi procjene uvoza
         import_assessors: Procjenitelji uvoza
+        import_campaign_ai_artifacts: AI artefakti kampanje uvoza
         import_campaign_factors: Faktori uvozne kampanje
         import_datasheet: Uvoz podatkovne tablice
         import_development_action_translations: Uvoz Prijevodi razvojnih radnji
         import_development_actions: Uvoz razvojnih akcija
         import_dimension_from_json: Uvoz dimenzije iz JSON-a
         import_external_campaign_scoring: Uvoz vanjskog ocjenjivanja kampanje
+        import_external_scoring_data: Uvoz vanjskih podataka o bodovanju
         import_factor_translations: Prijevodi faktora uvoza
         import_factors: Čimbenici uvoza
         import_interview_questions: Uvezite pitanja za intervju
@@ -1035,6 +1069,7 @@ hr:
         saville_assessment_name: Saville procjena Ime
         simulation_assessment_name: Naziv procjene simulacije
         skillvue_assessment_name: Naziv Skillvue procjene
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: Prijevod je migriran
     create: Stvoriti
     dashboard: Nadzorna ploča
@@ -1076,6 +1111,7 @@ hr:
         simulation: Simulacija
         skillvue: Skillvue
         threesixty: Kampanja 360
+        yoodli: Yoodli
       status:
         finished: Završen
         in_progress: U tijeku
@@ -1088,6 +1124,7 @@ hr:
         saville: Procjena Savillea
         simulation: Simulacijska procjena
         skillvue: Procjena vještina
+        yoodli: Yoodli procjena
     flow:
       end_assessment_modal:
         custom_message: Prilagođena poruka o završetku procjene
@@ -1609,8 +1646,6 @@ hr:
       report: Izvješće
       report_bundle_placeholder: Odabir paketa izvješća
     messages:
-      bulk_download_error: Skupno preuzimanje ograničeno je na 1000 datoteka izvješća. Ako ste odabrali mnogo jezika, smanjite ga.
-      bulk_download_no_reports: Nije pronađen nijedan izvještaj. Molimo generirajte izvješća prije preuzimanja.
       bulk_download_successful: Zadatak masovnog preuzimanja izvješća uspješno je zakazan
       export_report_data_scheduled: Posao izvoza podataka izvješća uspješno je zakazan
     modals:
@@ -1779,6 +1814,7 @@ hr:
       go_back: Vrati se
       import: Uvoz
       insert: Umetnuti
+      'no': Ne
       ok: OK
       publish: Objavi
       reject: Odbiti
@@ -1805,6 +1841,7 @@ hr:
       view: Pregled
       view_all_tasks: Pogledajte sve zadatke
       view_detail: Pogledajte detalje
+      'yes': Da
     column:
       action: Status
       active: Aktivan
@@ -2381,6 +2418,7 @@ hr:
     error_warning: Ups, nešto je pošlo po zlu s tvojom procjenom. Obratite se podršci.
     hogan:
       cannot_start: Ne možete odmah započeti procjenu Hogana. Pokušajte nakon nekoliko minuta.
+    lighthouse_app: Svjetionik Mercer
     login: Prijava
     maintenance:
       notification: Lighthouse će biti isključen zbog planiranog održavanja za 60 sekundi
@@ -2482,6 +2520,8 @@ hr:
   idp:
     actions: Statusi
     add_comments: Dodajte komentare
+    add_note: Dodaj bilješku...
+    add_reason: Dodaj razlog...
     added_development_action: Dodatna razvojna akcija
     ai:
       assistant:
@@ -2537,6 +2577,8 @@ hr:
       welcome:
         text: Jeste li spremni zacrtati svoje putovanje rasta? Počnimo!
         title: Pozdrav, ja sam vaš razvojni asistent
+    approval_note: Napomena o odobrenju
+    approve_plan: Odobri plan
     behavioral: Bihevioralne
     board: Odbor
     change_history: Povijest promjena
@@ -2637,12 +2679,14 @@ hr:
       mark_as_complete: Označi kao dovršeno
       no_development_actions: Nema razvojnih akcija
       on_the_job: Na poslu
+      one: "[HR] 1"
       other: Drugi
       private: Privatan
       publish_plan: Objavi plan
       remove: Odstraniti
       save_plan: Spremi plan
       search_development_actions: Radnje razvoja pretraživanja
+      selected_count: "%{count} odabrani"
       show_development_action_information: Prikaži informacije o razvojnoj akciji
       skill: Vještina
       sprint: Trčanje
@@ -2651,7 +2695,9 @@ hr:
       structured_learning_label: Suradničko učenje
       submit_plan: Pošalji plan
       success: Razvojne akcije uspješno završene
+      three: "[HR] 3"
       toggle_skill_privacy: Toggle Vještina Privatnost
+      two: "[HR] 2"
       write_here: Napišite ovdje...
     direct_reportee_details: Detalji izravnih izvješćivanja
     download:
@@ -2662,6 +2708,7 @@ hr:
     edit_progress: Uredi napredak
     fetching_skill_gap_report: Izvješće o nedostacima u vještinama...
     go_to_previous_step: Idite na prethodni korak
+    go_to_reportee_plan: Idite na detalje plana izvještavatelja
     history:
       added_da:
         one: Dodatna razvojna akcija
@@ -2711,19 +2758,23 @@ hr:
         categories: Kategorije
       save_skills: Spremite vještine
     new_comments: Novi komentar(i)
+    no_plan_changes_found: Od vaše zadnje recenzije nisu napravljene nikakve izmjene u planu.
     no_skills_added: Još niste dodali vještine.
     no_skills_added_by_reportee: Ispitanik još nije dodao vještine.
     pdf:
       approval_status: Status odobrenja
       cover:
         fields:
+          approval_date: Datum odobrenja
           assigned_data: Dodijeljeni datum
           assigned_date: Datum dodjele
           completion_date: Datum završetka
+          current_job_role: Trenutna radna uloga
           division: Podjela
           name: Ime
           publish_date: Datum objave
           review_date: Datum pregleda
+          target_job_role: Ciljana radna uloga
       guidelines:
         cards:
           c1:
@@ -2801,8 +2852,12 @@ hr:
         approved: Pregledano i odobreno
         completed: Završeno
         draft: Nacrt
+        in_progress: U tijeku
+        in_review: U recenziji
         not_reviewed: Nije pregledano
+        not_started: Nije započeo
         pending_approval: Pregledava se
+        rejected: Odbijen
       summary:
         ai_count: Generativna umjetna inteligencija
         collaborative_learn: Suradničko učenje
@@ -2824,6 +2879,7 @@ hr:
     plan_submitted_for_manager_approval: Vaš individualni razvojni plan predan je na odobrenje upravitelja.
     private: Privatan
     public: Javnost
+    reason_for_rejection: Razlog odbijanja
     reflective_questions:
       already_completed: IDP je već završen, više ne možete odgovarati na pitanja.
       answer: Odgovor
@@ -2836,7 +2892,9 @@ hr:
         max_words: Odgovor dopušta maksimalno %{count} riječi
         min_words: Za odgovor je potrebno najmanje %{count} riječi
         required: Odgovor na ovo pitanje je obavezan
+      max_word_limit: Mora biti najviše %{max} riječi
       max_words: Maksimalni broj riječi
+      min_word_limit: Mora biti barem %{min} riječi
       min_words: Minimalni broj riječi
       no_answer_provided: Još nema odgovora
       no_reflective_questions: Nema reflektivnih pitanja
@@ -2849,6 +2907,7 @@ hr:
       updated_successfully: Vaši su odgovori uspješno ažurirani
       word_limit: Mora biti između %{min} i %{max} riječi
       words: Riječi
+    reject_plan: Plan odbijanja
     remove_skill: Ukloni vještinu
     remove_skill_from_plan: Uklanjanje vještina %{name} iz plana
     removed_development_action: Uklonjena razvojna akcija
@@ -2869,6 +2928,7 @@ hr:
     summary_logs: Sažeti zapisnici za %{reporteeName}
     technical: Tehnički
     user_idp_status:
+      ai_assisted_idp_in_progress: AI-asistirani IDP u tijeku
       approved: Odobreno
       completed: Završeno
       completion_not_started: Dovršetak nije započeo
@@ -2988,6 +3048,7 @@ hr:
     usage_overview: Prikaz upotrebe licence
     usages: Korištenje
   licenses:
+    client_usage: Korištenje na klijentima
     enabled: Omogućeno
     end_date: Datum završetka
     not_enough_idp_license: Nema dovoljno IDP licenci, obratite se administratoru
@@ -2996,6 +3057,10 @@ hr:
     not_enough_proctoring_credits: Nema dovoljno bodova za početak sesije nadzora
     number: Broj
     overuse_number: Dopuštenje prekomjerne upotrebe
+    project_limit_reached: Dosegnut limit korištenja za '%{license_name}', molimo kontaktirajte administratora
+    project_specific: Specifično za projekte
+    project_specific_license: Licenca specifična za projekt
+    project_usage: Korištenje projekta
     report_family: Paket izvješća
     start_date: Datum početka
     title: Licenca
@@ -3007,6 +3072,34 @@ hr:
       threesixty: Tristo šezdeset
     used_number: Korištene licence
     used_out_of: "%{used} od %{total}"
+  lti:
+    oidc_auth_form:
+      errors:
+        client_id:
+          blank: Potreban je ID klijenta
+          invalid: ID klijenta ne odgovara registriranom identifikatoru alata
+          validation_failed: Validacija identiteta klijenta nije uspjela
+        login_hint:
+          assessment_completed: Procjena korisnika je već završena
+          blank: Potreban je savjet za prijavu
+          invalid_user_assessment: Savjet za prijavu ne referira na valjanu korisničku procjenu
+        lti_deployment_id:
+          not_found: ID implementacije ne referira na valjanu integraciju
+        nonce:
+          blank: Nonce je potreban
+        redirect_uri:
+          blank: Potreban je URI za preusmjeravanje
+          has_fragment: URI preusmjeravanja ne smije sadržavati fragment
+          https_required: REDIRECT URI mora koristiti HTTPS u produkciji
+          invalid_format: URI preusmjeravanja mora biti valjan URI format
+          missing_host: URI preusmjeravanja mora uključivati domaćina
+          scheme_not_allowed: REDIRECT URI mora koristiti HTTP ili HTTPS protokol
+        response_type:
+          blank: Potrebna je vrsta odgovora
+          invalid: Tip odgovora mora biti 'id_token'
+        scope:
+          blank: Opseg je potreban
+          invalid: Opseg mora biti 'openid'
   mailer:
     copyright:
       text: Lighthouse. Sva prava pridržana
@@ -3252,10 +3345,12 @@ hr:
         pearson: Pearson
         saville: Saville
         skillvue: Skillvue
+        yoodli: Yoodli
     form:
       load_from_mettl: Učitaj iz Mettl
       load_from_pearson: Učitaj iz Pearsona
       load_from_skillvue: Učitati iz Skillvue platforme
+      load_from_yoodli: Teret od Yoodlija
       none_external: Nepostojeće – koristite alat za izradu izvješća
     language: Jezik izvješća
     language_updated: Jezik izvješća uspješno je ažuriran
@@ -3743,13 +3838,6 @@ hr:
       on_hold: Na čekanju
       prepared: Završeno
       released: Objavljeno
-    statuses:
-      completed: Završeno
-      declined: Odbijeno
-      denied: Odbijeno
-      done: Završeno
-      not_completed: Nije dovršeno
-      waiting: Čekanje
   threesixty:
     accept_privacy_modal:
       accept: Prihvatiti

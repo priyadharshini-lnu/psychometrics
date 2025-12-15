@@ -95,6 +95,12 @@ nl:
           title: Bevestig
       permissions:
         labels:
+          aiArtifacts:
+            export: Exporteren
+            import: Importeren
+            manage: Beheren
+            title: AI-artefacten
+            view: Bekijken
           apiKeys:
             manage: Beheer
             title: API-sleutels
@@ -220,9 +226,11 @@ nl:
           projects:
             manage: Beheer
             manage_admins: Beheer administrators
+            manage_licenses: Licenties beheren
             manage_users: Gebruikers beheren
             title: Projecten
             view: Bekijk
+            view_licenses: Bekijk licenties
           questions:
             manage: Beheer
             title: Vragen
@@ -284,6 +292,11 @@ nl:
             manage: Beheer
             title: SMS Uitnodigingen
             view: Bekijk
+          userIdpPlans:
+            manage: Beheren
+            reset: Terugstellen
+            title: Gebruikers-IDP-plannen
+            view: Bekijken
           users:
             reset_password: Wachtwoord opnieuw instellen
             title: Gebruikers
@@ -296,6 +309,9 @@ nl:
     ai_artifacts:
       artifact_results: Artefact resultaten
       code: Code
+      export:
+        success_msg: AI-artefacten worden geëxporteerd. Controleer alstublieft de status in de meldingen.
+      export_ai_artifacts: AI-artefacten exporteren
       form:
         add_assessment: Beoordeling toevoegen
         ai_assistant: AI-assistent
@@ -320,6 +336,12 @@ nl:
       generated_at_time: Gegenereerd op %{time}
       generated_value: Gegenereerde waarde
       id: LEGITIMATIEBEWIJS
+      import:
+        download_example_csv: Download voorbeeld van CSV
+        info_msg: Het geüploade bestand is in de wachtrij gezet voor import. Controleer alstublieft de status in de meldingen.
+      import_action:
+        title: Import Campagne AI-artefacten
+      import_ai_artifacts: AI-artefacten importeren
       key: Sleutel
       name: Naam
       parsed_dependencies:
@@ -335,6 +357,10 @@ nl:
         settings: Instellingen
       test_generate: Test genereren
       unsaved_changes: Niet-opgeslagen wijzigingen zijn aanwezig, overweeg om het formulier in te dienen om een bijgewerkte reactie van Playground te genereren.
+      used_tokens:
+        input_tokens: Invoertokens
+        output_tokens: Uitvoertokens
+        title: Tokengebruik
     ai_assistants:
       actions:
         create: AI-assistent maken
@@ -872,8 +898,6 @@ nl:
       new:
         header: Bulk downloaden
       reports_unavailable: Op dit moment zijn er geen rapporten beschikbaar om te downloaden. Controleer of de rapporten die je wilt downloaden beschikbaar zijn.
-      select_users_for_download: Selecteer ten minste één gebruiker om rapporten te downloaden.
-      select_users_for_regenerate: Selecteer ten minste één gebruiker om rapporten te regenereren.
     cable:
       notification:
         assessment_factors: Factoren worden opgehaald
@@ -929,6 +953,17 @@ nl:
         report_update: Rapport is bijgewerkt
         scoring_update: Scoring wordt bijgewerkt
         trash_empty: Prullenbak Commentaar leeg
+    campaign_ai_artifacts:
+      export:
+        details: Campagne-AI-artefacten succesvol geëxporteerd
+    campaign_ai_artifacts_import:
+      errors:
+        ai_assistant_not_found: 'AI Assistant niet gevonden voor ID: %{id}'
+        campaign_factor_not_found: Campagnefactor met code "%{code}" die niet in deze campagne voorkomt
+        dependency_not_found: Afhankelijkheids %{type} met ID %{id} niet gevonden
+        file_required: Bestand is vereist voor import
+        save_failed: 'Niet in geslaagd AI-artefact "%{code}" te redden: %{message}'
+        sheet_column_not_found: Bladkolom met naam "%{name}" die niet te vinden is in campagne- of projectdatasheets
     campaign_factor_import:
       errors:
         assessment_not_found_in_campaign: Assessment ID '%{assessment_id}' niet gevonden in campagne
@@ -1240,6 +1275,7 @@ nl:
         archived: Gearchiveerd
         disable: Archief
         enable: Unarchive
+      clients: Cliënten
       copy:
         successfully: Client Tenancy '%{name}' is succesvol gekopieerd.
       create:
@@ -2259,6 +2295,10 @@ nl:
           accesssheet_manage: Toegangsblad Beheer
           accesssheet_settings: Toegangsblad Instellingen
           accesssheet_view: Toegangsblad bekijken
+    header:
+      logout:
+        content: Druk op Annuleren als je verder wilt werken. Druk op OK om uit te loggen met huidige gebruiker.
+        title: Weet je zeker dat je wilt uitloggen?
     hogan:
       errors:
         new_assessment_response_not_allowed:
@@ -2312,13 +2352,16 @@ nl:
         skills_required_on_publishing: Kies vaardigheden voordat u een sjabloon publiceert.
         update: Bijwerken niet toegestaan omdat de IDP-sjabloon al gekoppeld is aan een IDP-plan van een gebruiker.
       fields:
+        approval_date: Goedkeuringsdatum
         assigned_data: Toegewezen gegevens
         assigned_date: Toegewezen Datum
         completion_date: Datum van voltooiing
+        current_job_role: Huidige functie
         division: Divisie
         name: Naam
         publish_date: Publicatiedatum
         review_date: Herzieningsdatum
+        target_job_role: Doelfunctie
       fields_label: Velden
       global_skills: Wereldwijde vaardigheden
       idp: IDP
@@ -2546,6 +2589,13 @@ nl:
         details: Details
         name: Naam integratie
       details:
+        client_id: Klant-ID
+        deployment_id: Deployment ID
+        platform_access_token_url: Platform Access Token URL
+        platform_authentication_request_url: URL van platformauthenticatieverzoek
+        platform_host_name: Platform Hostnaam
+        platform_id: Perron-ID
+        platform_public_keyset_url: Platform publieke keyset-URL
         provider: Naam aanbieder
         webhookUrl: Webhook URL
         webhookUrls: Webhook URL's
@@ -2576,11 +2626,16 @@ nl:
         skillvue:
           apiKey: API-sleutel
           apiKeyRequired: API-sleutel is vereist
+        yoodli:
+          keyset_url: Keyset URL
+          launch_url: Lancerings-URL
+          login_url: Login-URL
       names:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
         skillvue: Skillvue
+        yoodli: Yoodli
       validations:
         iiht:
           tenancy_name_present: Huurdersnaam komt al voor in ander project
@@ -2740,9 +2795,12 @@ nl:
     navigation:
       audit_logs: Controlelogboeken
       availability: Beschikbaarheid
+      configuration: Configuratie
+      content: Tevreden
       dashboard: Dashboard
       factors: Factoren
       innovation_styles: Innovatiestijlen
+      logout: Logout
       occupations: Beroepen
       registration_codes: Registratiecodes
       skills_taxonomy: Taxonomie van vaardigheden
@@ -3295,6 +3353,7 @@ nl:
         mask_identity_for_pearson: Maskergegevens voor Pearson
         mask_identity_for_saville: Maskergegevens voor Saville
         mask_identity_for_skillvue: Maskergegevens voor Skillvue
+        mask_identity_for_yoodli: Maskergegevens voor Yoodli
         privacy_link: Privacylink inschakelen
         privacy_link_label: Privacy link
         privacy_link_placeholder: Privacylink invoeren
@@ -3470,6 +3529,7 @@ nl:
           graph_value: Grafiek waarde
         graph_value_condition_not_supported_msg: Grafiekwaardevoorwaarden worden niet ondersteund voor dit grafiektype. Deze optie is momenteel alleen beschikbaar voor onderstaande grafiektypen.
         graph_value_conditions_title: Voorwaarden voor grafiekwaarde
+        hide_responses_with_no_data: Verberg antwoorden zonder data
         if_graph_value_is: 'Als de grafiekwaarde het volgende is:'
         job_roles:
           current: Huidige functiefactoren
@@ -3489,6 +3549,7 @@ nl:
           and: EN
           or: OF
         prevent_value_overlap: Overlapping van waarden voorkomen
+        randomize_answers_order: Randomiseer de volgorde van antwoorden
         skill_type_label: Filter op vaardigheidstype
         skill_type_placeholder: Selecteer vaardigheidstype
         skill_types:
@@ -4113,6 +4174,11 @@ nl:
             missing_columns: 'Ontbrekende verplichte kolommen: %{columns}'
             save_failed: 'Fout bij het verwerken van vaardigheid-ID %{id}: %{message}'
             skill_not_found: Vaardigheid met ID %{id} niet gevonden
+      vector:
+        generate_embedding: Genereer Embedding
+        generate_embedding_failure_msg: Niet in de wachtrij voor vaardigheids-embedding genererende klus. Probeer het alsjeblieft opnieuw.
+        generate_embedding_success_msg: De functie voor het genereren van vaardigheden is succesvol in de wachtrij geplaatst. Controleer alstublieft de status in de meldingen.
+        label: Vector DB
     skills_taxonomy:
       tabs:
         job_roles: Functierollen
@@ -4592,8 +4658,6 @@ nl:
             evaluations_received: Ontvangen evaluaties
             is_subject: Is Onderwerp
             name: Naam
-            report_status: Statusrapport
-            status: Status
           evaluators:
             add_evaluators: Evaluatoren toevoegen
             import_evaluators: Importeer beoordelaars

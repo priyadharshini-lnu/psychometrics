@@ -1,6 +1,7 @@
 ---
 th:
   admin:
+    admin_approval_required: รายงานสําหรับ %{user} ต้องได้รับการอนุมัติจากผู้ดูแลระบบก่อนดาวน์โหลด
     admins: ผู้ดูแลระบบ
     ai_artifacts: สิ่งประดิษฐ์ AI
     ai_artifacts_output_schema_key_constraint: คีย์ต้องขึ้นต้นด้วยตัวพิมพ์เล็ก และสามารถมีได้เฉพาะตัวพิมพ์เล็ก ตัวเลข และขีดล่างเท่านั้น
@@ -8,7 +9,17 @@ th:
     ai_assistant_model_label: แบบ
     ai_assistant_model_provider: ผู้จัดหา
     ai_assistant_model_region_label: บริเวณ
+    ai_assistant_required: จําเป็นต้องมี AI Assistant
     ai_assistants: ผู้ช่วย AI
+    ai_assistants_advanced_mode_tooltip: ใช้โหมดขั้นสูงสําหรับการสร้างเทมเพลตพร้อมท์โดยใช้เทมเพลตของเหลวที่มีตัวแปรที่มีอยู่ โปรดดูเอกสารประกอบสําหรับรายละเอียดเพิ่มเติม
+    ai_assistants_campaign_id_placeholder: ป้อนรหัสแคมเปญ
+    ai_assistants_no_rendered_output: ไม่มีเอาต์พุตที่แสดงผล
+    ai_assistants_render_button: เทมเพลตการแสดงผล
+    ai_assistants_rendered_prompt: พรอมต์ที่แสดงผล
+    ai_assistants_template_and_campaign_required: โปรดระบุทั้งเทมเพลตและรหัสแคมเปญ
+    ai_assistants_template_render_failed: แสดงเทมเพลตไม่สําเร็จ
+    ai_assistants_test_render: ทดสอบการแสดงผล
+    ai_assistants_test_render_tooltip: ทดสอบเทมเพลตพร้อมท์ของคุณด้วยข้อมูลแคมเปญเพื่อตรวจสอบว่าอะไรจะถูกส่งไปยังผู้ช่วย AI
     assessments: การประเมิน
     assessments_reports: การประเมินและรายงาน
     assessor_dashboard: แดชบอร์ดผู้ประเมิน
@@ -16,40 +27,77 @@ th:
     audit_logs: บันทึกการตรวจสอบ
     audit_reports: รายงานการตรวจสอบ
     availability: กำหนดการ
+    available_languages: รายงานมีให้บริการในภาษาต่างๆ
     back_to_main: เมนูหลัก
+    bulk_upload_ai_artifacts: อัปโหลดสิ่งประดิษฐ์ AI จํานวนมาก
+    campaign_ai_artifact_updated_successfully: อัปเดตสิ่งประดิษฐ์ AI ของแคมเปญเรียบร้อยแล้ว
+    campaign_assessment_actions_disable_caching: ปิดใช้งานการแคชการประเมิน
+    campaign_assessment_actions_enable_caching: เปิดใช้งานการแคชการประเมิน
+    campaign_assessment_column_caching_enabled: เปิดใช้งานการแคชการประเมิน
+    campaign_assessment_modals_disable_caching_content: คุณแน่ใจหรือไม่ว่าต้องการปิดใช้งานการแคชสําหรับการประเมินนี้
+    campaign_assessment_modals_disable_caching_successfully: การแคชถูกปิดใช้งานสําหรับการประเมินนี้
+    campaign_assessment_modals_disable_caching_title: ปิดใช้งานการแคชการประเมิน?
+    campaign_assessment_modals_enable_caching_content: คุณแน่ใจหรือไม่ว่าต้องการเปิดใช้งานการแคชสําหรับการประเมินนี้
+    campaign_assessment_modals_enable_caching_successfully: เปิดใช้งานการแคชสําหรับการประเมินนี้
+    campaign_assessment_modals_enable_caching_title: เปิดใช้งานการแคชการประเมิน?
     campaign_templates: เทมเพลตแคมเปญ
     client: การเช่าลูกค้า
     client_admins: ผู้ดูแลระบบไคลเอ็นต์
     clients: บัญชีลูกค้า
+    code_required: ต้องใช้รหัส
     communication_center: ศูนย์สื่อสาร
+    completed: เสร็จ สมบูรณ์
+    completed_tooltip: ผู้ประเมินทั้งหมดได้ส่งการประเมินแล้ว
     country: ประเทศ
     create_client: สร้างไคลเอ็นต์
     dashboard: แดชบอร์ด
     data_reports: รายงานข้อมูล
     datasheet: เอกสารข้อมูลสินค้า
+    declined: ปฏิเสธ
     delete_ok_text: ใช่ ลบ
+    denied: ถูก ปฏิเสธ
     development_actions: การดําเนินการพัฒนา
     dimensions: มิติ
+    done: เสร็จแล้ว
+    done_tooltip: ไม่สามารถส่งการประเมินสําหรับผู้ใช้รายนี้ได้อีก เนื่องจากการประเมินของผู้ใช้รายนี้ถูกทําเครื่องหมายว่าเสร็จสิ้นโดย %{marked_by}
     empty_csv_file: ไฟล์ CSV ไม่มีข้อมูลใดๆ
-    fill_empty_score_msg: กรอกคะแนนสุดท้ายทั้งหมดก่อนบันทึก
-    final_score_empty_msg: คะแนนสุดท้ายต้องไม่ว่างเปล่า
-    import_csv_assessment_group_error: 'แถวที่ %{index}: ผู้ใช้ที่มีอีเมล %{email} ได้รับเชิญให้ ''%{workshopInviteName}'' แล้ว'
+    evaluation_status: สถานะการประเมิน
+    evaluation_status_not_done: สถานะการประเมินไม่ใช่ "เสร็จสิ้น" สําหรับวิชาที่เลือกอย่างน้อยหนึ่งวิชา โปรดตรวจสอบให้แน่ใจว่าผู้ใช้ที่เลือกทั้งหมดได้ทําการประเมินหรือทําเครื่องหมายว่าเสร็จสิ้น
+    idp_plan_reset_success: รีเซ็ตแผนเรียบร้อยแล้ว
+    import_ai_artifacts: นําเข้าสิ่งประดิษฐ์ AI
     import_csv_error: 'แถวที่ %{index}: ผู้ใช้ที่มี %{email} อีเมลไม่ได้อยู่ในแคมเปญนี้'
+    import_csv_parsing_error: 'ข้อผิดพลาดในการแยกวิเคราะห์ CSV: %{message}'
     import_description: นําเข้าผู้ใช้จากไฟล์ CSV แต่ละแถวต้องมีที่อยู่อีเมล
     import_download_sample: ดาวน์โหลดตัวอย่าง CSV
     import_error: การนําเข้าล้มเหลว โปรดลองอีกครั้ง
+    import_error_saving_data: 'ข้อผิดพลาดในการบันทึกข้อมูลสําหรับ %{email}: %{message}'
     import_errors_title: ข้อผิดพลาดในการนําเข้า
+    import_external_scoring_action: นําเข้าการให้คะแนนภายนอก
+    import_external_scoring_body: อ้างถึงฟังก์ชันการส่งออกเพื่อแยกเทมเพลตที่สามารถใช้นําเข้าได้ที่นี่
+    import_external_scoring_data_description: การนําเข้าข้อมูลการให้คะแนนภายนอกสําหรับการประเมินและแคมเปญที่ระบุ
+    import_external_scoring_data_title: นําเข้าข้อมูลการให้คะแนนภายนอก
+    import_external_scoring_success_msg: อัปโหลดนําเข้าสําเร็จแล้ว
+    import_external_scoring_upload: อัปโหลด
     import_file_required: โปรดเลือกไฟล์ CSV ที่จะอัปโหลด
     import_queued_success: งานนําเข้าหัวเรื่องถูกจัดกําหนดการเรียบร้อยแล้ว โปรดตรวจสอบสถานะการแจ้งเตือนของคุณ
     import_sample_file_label: 'ไฟล์ตัวอย่าง:'
+    import_scenario_id_mismatch: 'รหัสสถานการณ์สมมติไม่ตรงกันสําหรับ %{email}: %{expected_id} ที่คาดไว้ แต่ CSV มีรหัสสถานการณ์ที่แตกต่างกัน'
+    import_successfully_saved: บันทึกผลการค้นหาภายนอกสําหรับ %{email} ได้สําเร็จด้วยเป้าหมาย %{goals_count}
     import_title: นําเข้าหัวเรื่องจาก CSV
     import_upload: อัปโหลด
     import_users: นําเข้าผู้ใช้
     invalid_csv_header: ไฟล์ CSV มีส่วนหัวที่ไม่ถูกต้อง
     libraries: ห้องสมุดสื่อ
     library_invalid_type: รายการไลบรารีไม่ถูกต้อง
+    manager_approval_required: รายงานสําหรับ %{user} ต้องได้รับการอนุมัติจากผู้จัดการก่อนดาวน์โหลด
+    name_required: ต้องระบุชื่อ
+    no_file_selected: ไม่มีไฟล์ที่เลือก
     no_notifications: ไม่มีการแจ้งเตือน
     norms: ค่ามาตรฐาน
+    not_completed: ยังไม่เสร็จสมบูรณ์
+    not_completed_tooltip: "%{completed} ผู้ประเมินได้รับมอบหมาย แต่มีเพียง %{submitted} เท่านั้นที่ทําการประเมินเสร็จสมบูรณ์"
+    nothing_assigned: ไม่มีอะไรมอบหมาย
+    nothing_assigned_tooltip: ไม่มีการกําหนดการประเมินให้กับผู้ใช้รายนี้
     notification_bell_icon_alt_text: ไอคอนกระดิ่งแจ้งเตือน
     notifications: แจ้ง เตือน
     number: หมายเลข
@@ -62,7 +110,19 @@ th:
     question_center: ศูนย์คําถาม
     registration_codes: รหัสการลงทะเบียน
     report_approvals: การอนุมัติรายงาน
+    report_condition_not_met: ต้องการ %{required} %{relationship} การประเมิน แต่มีเพียง %{actual}
+    report_conditions_not_met_detailed: รายงานสําหรับ %{user} ไม่ตรงตามเงื่อนไขความพร้อมใช้งาน %{conditions}
+    report_denied: รายงานสําหรับ %{user} ถูกปฏิเสธ
+    report_no_evaluations: ไม่มีรายงานสําหรับ %{user} - ไม่ได้รับการประเมิน
+    report_not_generated: รายงานสําหรับ %{user} ตรงตามเงื่อนไขความพร้อมใช้งานแต่ยังไม่ได้สร้าง โปรดสร้างรายงานก่อน
+    report_on_hold: รายงานสําหรับ %{user} ถูกระงับในขณะนี้
+    report_status: สถานะการรายงาน
     reports: รายงาน
+    reports_limit_exceeded: การดาวน์โหลดจํานวนมากจํากัดไว้ที่ 1,000 ไฟล์รายงาน หากคุณเลือกหลายภาษา โปรดลดภาษาลง
+    reports_not_found: ไม่พบรายงาน โปรดสร้างรายงานก่อนดาวน์โหลด
+    reset_idp_plan: รีเซ็ตแผน
+    reset_idp_plan_confirmation: คุณแน่ใจหรือไม่ว่าต้องการรีเซ็ตแผน?
+    reset_idp_plan_title: รีเซ็ตแผน
     role: บทบาท
     saml_idp_certificate_available: มีจําหน่าย (คลิกเพื่อคัดลอก)
     saml_idp_certificate_label: ใบรับรอง
@@ -82,12 +142,25 @@ th:
     saml_service_provider_entity_id_placeholder: ป้อนรหัสเอนทิตี
     saml_service_provider_entity_id_required: ต้องระบุรหัสเอนทิตี
     saml_service_provider_idp_config: การกําหนดค่า IdP
+    saml_service_provider_integration_generic: ทั่ว ไป
+    saml_service_provider_integration_masking_info: รหัสอีเมลของผู้สมัครจะถูกปิดบังก่อนที่จะส่งไปยัง Yoodli ต้องเปิดใช้งานการปิดบังชื่อและนามสกุลของผู้สมัครจาก
+    saml_service_provider_integration_type: ประเภทการรวม
+    saml_service_provider_integration_type_placeholder: เลือกประเภทการผสานการทํางาน
+    saml_service_provider_integration_type_required: ต้องระบุประเภทการผสานรวม
+    saml_service_provider_integration_yoodli: ยุดลี
     saml_service_provider_manage: การดําเนินการ
+    saml_service_provider_mask_data_for: มาสก์ข้อมูลสําหรับ
     saml_service_provider_mask_identity: เอกลักษณ์ของหน้ากาก
     saml_service_provider_masking_enabled: เปิดใช้งานการมาสก์
+    saml_service_provider_masking_help_generic: เปิดใช้เพื่อปกปิดข้อมูลประจําตัวของผู้ใช้ในการตอบกลับ SAML
+    saml_service_provider_masking_help_integration: ระบบจะใช้การมาสก์ผู้ให้บริการการผสานรวม
+    saml_service_provider_masking_integration: ขับเคลื่อนด้วย %{integration}
+    saml_service_provider_masking_manual_disabled: พิการ
+    saml_service_provider_masking_manual_enabled: เปิด
     saml_service_provider_name: ชื่อ
     saml_service_provider_name_placeholder: ป้อนชื่อผู้ให้บริการ
     saml_service_provider_name_required: ต้องระบุชื่อ
+    saml_service_provider_privacy_policy: หน้านโยบายความเป็นส่วนตัว
     saml_service_provider_remove_content: 'คุณแน่ใจหรือไม่ว่าต้องการลบผู้ให้บริการ SAML: %{name}'
     saml_service_provider_remove_title: ลบผู้ให้บริการ SAML
     saml_service_provider_rotate_certificate_content: คุณแน่ใจหรือไม่ว่าต้องการหมุนเวียนใบรับรองสําหรับ %{name}? การดําเนินการนี้จะสร้างใบรับรองใหม่และทําให้ใบรับรองปัจจุบันเป็นโมฆะ
@@ -105,8 +178,13 @@ th:
     skills_taxonomy: อนุกรมวิธานทักษะ
     slot_name: ชื่อสล็อต
     stats: สถิติ
-    subject_part_of_other_invite: หัวเรื่องพร้อมอีเมล %{user_email} ได้รับเชิญให้ '%{workshop_invite_name}' แล้ว
+    status_details: รายละเอียดสถานะ
+    upload_success: อัปโหลดสําเร็จ
     user_report_events: เหตุการณ์รายงานผู้ใช้
     users: ผู้เข้าร่วม
     view_licenses: ดูใบอนุญาต
+    waiting: การรอคอย
     year: ประเทศ
+    yoodli_activity_id: รหัสกิจกรรม Yoodli
+    yoodli_email_id: รหัสอีเมลผู้สมัคร Yoodli
+    yoodli_external_assessment_id: รหัสการประเมิน Yoodli

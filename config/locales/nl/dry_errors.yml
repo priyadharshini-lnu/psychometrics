@@ -64,6 +64,10 @@ nl:
         validates_admins: Admins hebben geen toegang tot de campagne.
       report_families_reports:
         report_exists: Dit rapport maakt al deel uit van Rapportbundel
+      saml_service_provider:
+        invalid_url: 'Ongeldig URL-formaat: %{url}'
+        must_be_array: Moet een array zijn
+        must_not_be_empty: Kan niet leeg zijn
       size?: grootte moet kleiner zijn %{size}
       skill:
         already_added: Vaardigheid met dezelfde naam al toegevoegd.
@@ -94,6 +98,7 @@ nl:
         unique_name: Er bestaat al een filter met dezelfde naam.
       workshop_invited_subject_create:
         already_exists: Het onderwerp bestaat al in de uitnodiging.
+        part_of_other_workshop_invite: Het onderwerp is al uitgenodigd om te '%{workshop_invite_name}'.
       workshop_subject_create:
         already_exists: Het onderwerp bestaat al in dit Assessment Center.
         part_of_other_workshop: Onderwerp is al deelnemer van '%{workshop_name}'.

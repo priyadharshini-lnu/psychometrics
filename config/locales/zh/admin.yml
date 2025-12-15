@@ -1,6 +1,7 @@
 ---
 zh:
   admin:
+    admin_approval_required: "%{user}报告需要管理员批准后才能下载"
     admins: 管理员
     ai_artifacts: AI 工件
     ai_artifacts_output_schema_key_constraint: 键必须以小写字母开头，且只能包含小写字母、数字和下划线
@@ -8,7 +9,17 @@ zh:
     ai_assistant_model_label: 型
     ai_assistant_model_provider: 供应商
     ai_assistant_model_region_label: 地区
+    ai_assistant_required: 需要AI助手
     ai_assistants: 人工智能助理
+    ai_assistants_advanced_mode_tooltip: 使用高级模式使用带有可用变量的液态模板进行提示模板。详情请参阅相关文档。
+    ai_assistants_campaign_id_placeholder: 这时，活动ID
+    ai_assistants_no_rendered_output: 没有渲染输出可用
+    ai_assistants_render_button: 渲染模板
+    ai_assistants_rendered_prompt: 渲染提示
+    ai_assistants_template_and_campaign_required: 请同时提供模板和战役ID
+    ai_assistants_template_render_failed: 模板渲染失败
+    ai_assistants_test_render: 测试渲染
+    ai_assistants_test_render_tooltip: 用活动数据测试你的提示模板，看看会发送给AI助手的内容。
     assessments: 评估
     assessments_reports: 评估与报告
     assessor_dashboard: 评估员仪表板
@@ -16,40 +27,77 @@ zh:
     audit_logs: 审计日志
     audit_reports: 审计报告
     availability: 可用性
+    available_languages: 报告提供多种语言版本
     back_to_main: 主菜单
+    bulk_upload_ai_artifacts: 批量上传AI伪影
+    campaign_ai_artifact_updated_successfully: 战役AI工件已成功更新
+    campaign_assessment_actions_disable_caching: 关闭评估缓存
+    campaign_assessment_actions_enable_caching: 启用评估缓存
+    campaign_assessment_column_caching_enabled: 启用评估缓存
+    campaign_assessment_modals_disable_caching_content: 你确定要在这次评估中禁用缓存吗？
+    campaign_assessment_modals_disable_caching_successfully: 本次评估已禁用缓存功能。
+    campaign_assessment_modals_disable_caching_title: 禁用评估缓存？
+    campaign_assessment_modals_enable_caching_content: 你确定要为这次评估启用缓存吗？
+    campaign_assessment_modals_enable_caching_successfully: 本次评估已启用缓存功能。
+    campaign_assessment_modals_enable_caching_title: 启用评估缓存？
     campaign_templates: 活动模板
     client: 客户平台
     client_admins: 客户管理员
     clients: 客户平台
+    code_required: 需要规范
     communication_center: 通信中心
+    completed: 完成
+    completed_tooltip: 所有评估人员均已提交评估
     country: 国家
     create_client: 创建客户
     dashboard: 仪表板
     data_reports: 数据报告
     datasheet: 数据表
+    declined: 拒绝
     delete_ok_text: 是的，删除
+    denied: 否认
     development_actions: 发展行动
     dimensions: 尺寸
+    done: 做
+    done_tooltip: 该用户无法提交更多评估，因为该用户的评估已被标记为已完成%{marked_by}
     empty_csv_file: CSV 文件不包含任何数据。
-    fill_empty_score_msg: 保存前填写所有最终分数。
-    final_score_empty_msg: 最终得分不能是空的。
-    import_csv_assessment_group_error: 第%{index}行：拥有电子邮件%{email}的用户已被邀请“%{workshopInviteName}”
+    evaluation_status: 评估状态
+    evaluation_status_not_done: 一个或多个被选定的受试者的评估状态并非“完成”。请确保所有被选用户均完成评估，或标记为完成。
+    idp_plan_reset_success: 计划已成功重置
+    import_ai_artifacts: 导入AI工件
     import_csv_error: 第%{index}行：带有电子邮件%{email}的用户未参与本次活动
+    import_csv_parsing_error: CSV 解析错误：%{message}
     import_description: 从CSV文件导入用户。每一行必须包含一个电子邮件地址。
     import_download_sample: 下载CSV 示例
     import_error: 导入失败。请再试一次。
+    import_error_saving_data: "%{email} 的错误保存数据：%{message}"
     import_errors_title: 导入错误
+    import_external_scoring_action: 导入外部计分
+    import_external_scoring_body: 请参考导出功能，提取可用于导入的模板。
+    import_external_scoring_data_description: 导入指定评估和活动的外部评分数据
+    import_external_scoring_data_title: 导入外部评分数据
+    import_external_scoring_success_msg: 导入成功上传
+    import_external_scoring_upload: 上传
     import_file_required: 请选择一个CSV文件上传。
     import_queued_success: 受试者导入任务已成功安排。请查看您的通知状态。
     import_sample_file_label: 示例文件：
+    import_scenario_id_mismatch: "%{email}的场景ID不匹配：预期%{expected_id}，但CSV包含不同的场景ID。"
+    import_successfully_saved: 成功为%{goals_count}目标的%{email}保存外部结果
     import_title: 从CSV导入主题
     import_upload: 上传
     import_users: 导入用户
     invalid_csv_header: CSV 文件中包含无效的头部。
     libraries: 媒体图书馆
     library_invalid_type: 无效的图书馆项目
+    manager_approval_required: "%{user}报告下载前需要经理批准"
+    name_required: 需要命名
+    no_file_selected: 未选择文件
     no_notifications: 没有通知
     norms: 常模
+    not_completed: 未完成
+    not_completed_tooltip: "%{completed}评估员被分配，但只有%{submitted}完成了评估"
+    nothing_assigned: 无分配
+    nothing_assigned_tooltip: 该用户尚未被分配任何评估
     notification_bell_icon_alt_text: 通知铃图标
     notifications: 通知
     number: 数量
@@ -62,7 +110,19 @@ zh:
     question_center: 问题中心
     registration_codes: 注册码
     report_approvals: 报告批准
+    report_condition_not_met: 需要%{required} %{relationship}评估，但只有%{actual}
+    report_conditions_not_met_detailed: "%{user}报告不符合可用性条件。%{conditions}"
+    report_denied: "%{user}的报告被拒绝了"
+    report_no_evaluations: "%{user}报告不可得——尚未收到任何评估。"
+    report_not_generated: "%{user}的报告符合可用性条件但尚未生成。请先生成报告。"
+    report_on_hold: "%{user}报告目前处于暂停状态"
+    report_status: 报告状态
     reports: 报告
+    reports_limit_exceeded: 批量下载限制为1000份报告文件。如果你选择了许多语言，请减少。
+    reports_not_found: 未发现报告。请在下载前生成报告。
+    reset_idp_plan: 重置计划
+    reset_idp_plan_confirmation: 你确定要重置计划吗？
+    reset_idp_plan_title: 重置计划
     role: 角色
     saml_idp_certificate_available: 可用（点击复制）
     saml_idp_certificate_label: 证书
@@ -82,12 +142,25 @@ zh:
     saml_service_provider_entity_id_placeholder: 输入实体ID
     saml_service_provider_entity_id_required: 必须提供实体识别
     saml_service_provider_idp_config: IdP 配置
+    saml_service_provider_integration_generic: 通用
+    saml_service_provider_integration_masking_info: 候选人的电子邮件地址将在发送给Yoodli之前被遮蔽。需要启用候选人姓名的遮罩功能
+    saml_service_provider_integration_type: 集成类型
+    saml_service_provider_integration_type_placeholder: 选择积分类型
+    saml_service_provider_integration_type_required: 需要集成类型
+    saml_service_provider_integration_yoodli: 尤德利
     saml_service_provider_manage: 行动
+    saml_service_provider_mask_data_for: 掩码数据
     saml_service_provider_mask_identity: 面具身份
     saml_service_provider_masking_enabled: 启用掩蔽
+    saml_service_provider_masking_help_generic: 启用在SAML响应中隐藏用户身份
+    saml_service_provider_masking_help_integration: 将应用集成提供商的遮蔽
+    saml_service_provider_masking_integration: "%{integration} 驱动力"
+    saml_service_provider_masking_manual_disabled: 禁用
+    saml_service_provider_masking_manual_enabled: 启用
     saml_service_provider_name: 名字
     saml_service_provider_name_placeholder: 输入服务提供商名称
     saml_service_provider_name_required: 需要命名
+    saml_service_provider_privacy_policy: 隐私政策页面
     saml_service_provider_remove_content: 您确定要移除SAML服务提供商：%{name}吗？
     saml_service_provider_remove_title: 移除SAML服务提供商
     saml_service_provider_rotate_certificate_content: 你确定要轮换证书给%{name}吗？这会生成新的证书，并使当前证书失效。
@@ -105,8 +178,13 @@ zh:
     skills_taxonomy: 技能分类法
     slot_name: 车位名称
     stats: 统计数据
-    subject_part_of_other_invite: 邮件主题已%{user_email}已被邀请“%{workshop_invite_name}”
+    status_details: 状态详情
+    upload_success: 上传成功
     user_report_events: 用户报告事件
     users: 用户
     view_licenses: 查看许可证
+    waiting: 等待
     year: 国家
+    yoodli_activity_id: Yoodli 活动ID
+    yoodli_email_id: Yoodli候选人邮箱ID
+    yoodli_external_assessment_id: Yoodli 评估 ID

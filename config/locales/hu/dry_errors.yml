@@ -64,6 +64,10 @@ hu:
         validates_admins: Az adminisztrátorok nem férhetnek hozzá a kampányhoz.
       report_families_reports:
         report_exists: Ez a jelentés már része a jelentéscsomagnak
+      saml_service_provider:
+        invalid_url: 'Érvénytelen URL formátum: %{url}'
+        must_be_array: Biztosan egy tömbnek van
+        must_not_be_empty: Nem lehet üres
       size?: a méretnek kisebbnek kell lennie %{size}
       skill:
         already_added: Az azonos nevű készség már hozzáadva.
@@ -94,6 +98,7 @@ hu:
         unique_name: Már létezik egy azonos nevű szűrő.
       workshop_invited_subject_create:
         already_exists: A tárgy már létezik a meghívóban.
+        part_of_other_workshop_invite: Az alanyt már meghívják a '%{workshop_invite_name}'-re.
       workshop_subject_create:
         already_exists: A tantárgy már létezik ebben az értékelési központban.
         part_of_other_workshop: Az alany már résztvevője a(z) '%{workshop_name}'-nek.

@@ -95,6 +95,12 @@ pt:
           title: Confirmar
       permissions:
         labels:
+          aiArtifacts:
+            export: Exportação
+            import: Importação
+            manage: Gerir
+            title: Artefatos de IA
+            view: Vista
           apiKeys:
             manage: Gerenciar
             title: Chaves da API
@@ -220,9 +226,11 @@ pt:
           projects:
             manage: Gerenciar
             manage_admins: Gerenciar administradores
+            manage_licenses: Gerenciar Licenças
             manage_users: Gerenciar utilizadores
             title: Projectos
             view: Ver
+            view_licenses: Veja licenças
           questions:
             manage: Gerenciar
             title: Perguntas
@@ -284,6 +292,11 @@ pt:
             manage: Gerenciar
             title: Convites SMS
             view: Ver
+          userIdpPlans:
+            manage: Gerir
+            reset: Repor
+            title: Planos IDP de Usuários
+            view: Vista
           users:
             reset_password: Repor a palavra-passe
             title: Utilizadores
@@ -296,6 +309,9 @@ pt:
     ai_artifacts:
       artifact_results: Resultados do artefato
       code: Código
+      export:
+        success_msg: Exportando artefatos de IA em andamento. Por favor, verifique o status nas notificações.
+      export_ai_artifacts: Artefatos de IA para exportação
       form:
         add_assessment: Adicionar avaliação
         ai_assistant: Assistente de IA
@@ -320,6 +336,12 @@ pt:
       generated_at_time: Gerado em %{time}
       generated_value: Valor Gerado
       id: ID
+      import:
+        download_example_csv: Baixar Exemplo de CSV
+        info_msg: O arquivo enviado foi colocado na fila para importação. Por favor, verifique o status nas notificações.
+      import_action:
+        title: Importação de artefatos de IA de campanhas
+      import_ai_artifacts: Importar artefatos de IA
       key: Chave
       name: Nome
       parsed_dependencies:
@@ -335,6 +357,10 @@ pt:
         settings: Configurações
       test_generate: Geração de teste
       unsaved_changes: Alterações não salvas estão presentes, considere enviar o formulário para gerar uma resposta atualizada do Playground.
+      used_tokens:
+        input_tokens: Tokens de Entrada
+        output_tokens: Tokens de Saída
+        title: Uso do token
     ai_assistants:
       actions:
         create: Criar assistente de IA
@@ -872,8 +898,6 @@ pt:
       new:
         header: Transferência em massa
       reports_unavailable: De momento, não existem relatórios disponíveis para descarregar. Confirme se os relatórios que pretende descarregar estão disponíveis.
-      select_users_for_download: Selecione pelo menos um usuário para baixar relatórios.
-      select_users_for_regenerate: Selecione pelo menos um usuário para regenerar os relatórios.
     cable:
       notification:
         assessment_factors: Os factores são obtidos
@@ -929,6 +953,17 @@ pt:
         report_update: O relatório é atualizado
         scoring_update: A pontuação é actualizada
         trash_empty: Lixo Comentário vazio
+    campaign_ai_artifacts:
+      export:
+        details: Artefatos de IA de campanha exportados com sucesso
+    campaign_ai_artifacts_import:
+      errors:
+        ai_assistant_not_found: 'Assistente de IA não encontrado para ID: %{id}'
+        campaign_factor_not_found: Fator campanha com código "%{code}" que não é encontrado nesta campanha
+        dependency_not_found: Dependência %{type} com ID %{id} não encontrado
+        file_required: Arquivo é necessário para importação
+        save_failed: 'Falhou em salvar o artefato da IA "%{code}": %{message}'
+        sheet_column_not_found: Coluna de folha com nome "%{name}" não encontrada nas fichas técnicas de campanha ou projeto
     campaign_factor_import:
       errors:
         assessment_not_found_in_campaign: ID de avaliação '%{assessment_id}' não encontrado na campanha
@@ -1240,6 +1275,7 @@ pt:
         archived: Arquivado
         disable: Arquivo
         enable: Desarquivar
+      clients: Clientes
       copy:
         successfully: O contrato de arrendamento do cliente "%{name}" foi copiado com êxito.
       create:
@@ -2259,6 +2295,10 @@ pt:
           accesssheet_manage: Folha de acesso Gerenciar
           accesssheet_settings: Definições da folha de acesso
           accesssheet_view: Visualização da folha de acesso
+    header:
+      logout:
+        content: Pressione Cancelar se quiser continuar trabalhando. Aperte Ok para fazer logout do usuário atual.
+        title: Você tem certeza de que quer fazer logout?
     hogan:
       errors:
         new_assessment_response_not_allowed:
@@ -2312,13 +2352,16 @@ pt:
         skills_required_on_publishing: Escolha as habilidades antes de publicar um modelo.
         update: Atualização não permitida porque o modelo IDP já está associado a um plano IDP do utilizador.
       fields:
+        approval_date: Data de aprovação
         assigned_data: Dados atribuídos
         assigned_date: Data atribuída
         completion_date: Data de conclusão
+        current_job_role: Função Atual
         division: Divisão
         name: Nome
         publish_date: Data de publicação
         review_date: Data de revisão
+        target_job_role: Função de Vaga-Alvo
       fields_label: Campos
       global_skills: Competências globais
       idp: PDI
@@ -2546,6 +2589,13 @@ pt:
         details: Detalhes
         name: Nome da integração
       details:
+        client_id: ID do cliente
+        deployment_id: ID de implantação
+        platform_access_token_url: URL do Token de Acesso à Plataforma
+        platform_authentication_request_url: URL de Solicitação de Autenticação de Plataforma
+        platform_host_name: Nome do Host da Plataforma
+        platform_id: ID de plataforma
+        platform_public_keyset_url: URL do conjunto público de chaves da plataforma
         provider: Nome do fornecedor
         webhookUrl: URL do webhook
         webhookUrls: URLs de webhook
@@ -2576,11 +2626,16 @@ pt:
         skillvue:
           apiKey: Chave API
           apiKeyRequired: É necessária uma chave API
+        yoodli:
+          keyset_url: URL do conjunto de chaves
+          launch_url: URL de lançamento
+          login_url: Login URL
       names:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
         skillvue: Skillvue
+        yoodli: Yoodli
       validations:
         iiht:
           tenancy_name_present: O nome do locatário já está presente noutro projeto
@@ -2740,9 +2795,12 @@ pt:
     navigation:
       audit_logs: Registos de auditoria
       availability: Disponibilidade
+      configuration: Configuração
+      content: Conteúdo
       dashboard: Painel de controlo
       factors: Factores
       innovation_styles: Estilos de inovação
+      logout: Logout
       occupations: Profissões
       registration_codes: Códigos de registo
       skills_taxonomy: Taxonomia de competências
@@ -3295,6 +3353,7 @@ pt:
         mask_identity_for_pearson: Dados da máscara para Pearson
         mask_identity_for_saville: Dados de máscara para Saville
         mask_identity_for_skillvue: Dados de máscara para Skillvue
+        mask_identity_for_yoodli: Dados de máscara para Yoodli
         privacy_link: Ativar a ligação de privacidade
         privacy_link_label: Ligação de privacidade
         privacy_link_placeholder: Introduzir ligação de privacidade
@@ -3470,6 +3529,7 @@ pt:
           graph_value: Valor do gráfico
         graph_value_condition_not_supported_msg: As condições de valor do gráfico não são suportadas para este tipo de gráfico. No momento, essa opção está disponível apenas para os tipos de gráfico abaixo.
         graph_value_conditions_title: Condições de valor do gráfico
+        hide_responses_with_no_data: Esconda respostas sem dados
         if_graph_value_is: 'Se o valor do gráfico for:'
         job_roles:
           current: Fatores de trabalho atuais
@@ -3489,6 +3549,7 @@ pt:
           and: E
           or: OU
         prevent_value_overlap: Evitar sobreposição de valores
+        randomize_answers_order: Ordem aleatória das respostas
         skill_type_label: Filtrar por tipo de habilidade
         skill_type_placeholder: Selecione o tipo de habilidade
         skill_types:
@@ -4113,6 +4174,11 @@ pt:
             missing_columns: 'Faltam colunas obrigatórias: %{columns}'
             save_failed: 'Erro ao processar o ID de competência %{id}: %{message}'
             skill_not_found: Competência com ID %{id} não encontrada
+      vector:
+        generate_embedding: Gerar Embedding
+        generate_embedding_failure_msg: Falhei em enfileirar o trabalho de geração de habilidade embedding. Por favor, tente novamente.
+        generate_embedding_success_msg: O trabalho de geração de embedding de habilidades foi enfileirado com sucesso. Por favor, verifique o status nas notificações.
+        label: Vector DB
     skills_taxonomy:
       tabs:
         job_roles: Funções
@@ -4592,8 +4658,6 @@ pt:
             evaluations_received: Avaliações recebidas
             is_subject: É objeto
             name: Nome
-            report_status: Estado do relatório
-            status: Estado
           evaluators:
             add_evaluators: Adicionar avaliadores
             import_evaluators: Avaliadores de importação

@@ -3,13 +3,21 @@ fr:
   shared:
     action: Action
     add: Ajouter
+    advanced: Avancé
+    authentication_failed: L’authentification a échoué. Veuillez réessayer.
+    basic: Basique
+    campaign_id: ID de campagne
     cancel: Annuler
     change_password: Modifier le mot de passe
     clear_filters: Effacer les filtres
+    continue: Continuer
     description: Description
     edit: Editer
     edited: Nouveau
+    group_question_max_validation_error: Chaque groupe peut contenir au maximum {{max}} élément(s).
+    group_question_min_validation_error: Chaque groupe doit contenir au moins {{min}} élément(s).
     id: ID
+    idp_ai_assistant_disclaimer: L’assistant IDP IA de Lighthouse peut faire des erreurs. Merci de faire attention lors de l’utilisation des réponses.
     internet_disconnected_message: Essayez de vous reconnecter. Veuillez vérifier votre connexion internet.
     mte_logo_alt_text: Logo Mercer Talent Enterprise
     name: Nom
@@ -28,6 +36,7 @@ fr:
           other: 'Total : {{count}}'
           zero: 'Total : 0'
     terms_conditions_privacy: Déclaration de confidentialité
+    tools: Outils
     transcriptions: Transcriptions
     tte_terms_and_condition: Conditions d'utilisation et protection de la vie privée
     type: Type

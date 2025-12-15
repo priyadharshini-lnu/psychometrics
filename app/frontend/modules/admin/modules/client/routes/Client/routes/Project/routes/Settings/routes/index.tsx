@@ -10,7 +10,6 @@ import { Privacy } from './Privacy'
 import { Registration } from './Registration'
 import { Assessments } from './Assessments'
 import { MettlScheduleRecords } from './MettlScheduleRecords'
-import { YoodliAssessments } from './YoodliAssessments/YoodliAssessments'
 import { Features } from './Features'
 
 export const routes = [
@@ -29,10 +28,6 @@ export const routes = [
   {
     path: 'integrations/mettl_schedule_records',
     component: <MettlScheduleRecords />,
-  },
-  {
-    path: 'integrations/yoodli_assessments',
-    component: <YoodliAssessments />,
   },
   {
     path: '/security',

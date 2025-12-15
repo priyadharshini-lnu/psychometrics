@@ -3,13 +3,21 @@ zh-HK:
   shared:
     action: 動作
     add: 加
+    advanced: 進階
+    authentication_failed: 驗證失敗。請再試一次。
+    basic: 基本
+    campaign_id: 競選識別碼
     cancel: 銷
     change_password: 更改密碼
     clear_filters: 透明過濾器
+    continue: 續
     description: 描述
     edit: 編輯
     edited: 編輯
+    group_question_max_validation_error: 每個群組最多可包含 {{max}} 個項目。
+    group_question_min_validation_error: 每個群組至少需要包含 {{min}} 項目。
     id: 身分證
+    idp_ai_assistant_disclaimer: Lighthouse AI IDP 助理可能會犯錯。使用回應時請小心。
     internet_disconnected_message: 正在嘗試重新連接。請檢查您的互聯網連接。
     mte_logo_alt_text: 默瑟人才企業標誌
     name: 名字
@@ -28,6 +36,7 @@ zh-HK:
           other: 總計：{{count}}
           zero: 總計：0
     terms_conditions_privacy: 私隱聲明
+    tools: 工具
     transcriptions: 轉錄
     tte_terms_and_condition: 條款和私隱
     type: 型

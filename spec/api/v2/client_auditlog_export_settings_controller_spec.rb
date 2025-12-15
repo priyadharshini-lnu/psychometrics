@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'swagger_helper'
 
-describe Api::V2::Administration::ClientAuditlogExportSettingsController, type: :request do
+RSpec.describe Api::V2::Administration::ClientAuditlogExportSettingsController, type: :request do
   let!(:superadmin) { create(:superadmin) }
   let!(:client) { create(:tenancy) }
   let(:settings) do
     create(:client_auditlog_export_setting, s3_secret_access_key: 'secret', description: 'desc', client: client)
   end
-  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
+  let!(:api_key) { create(:api_key, user: superadmin) }
+  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before { sign_in(superadmin) }
 

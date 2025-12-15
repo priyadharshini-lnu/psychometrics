@@ -95,6 +95,12 @@ id:
           title: Mengkonfirmasi
       permissions:
         labels:
+          aiArtifacts:
+            export: Ekspor
+            import: Mengimpor
+            manage: Urus
+            title: Artefak AI
+            view: Melihat
           apiKeys:
             manage: Kelola
             title: Kunci API
@@ -220,9 +226,11 @@ id:
           projects:
             manage: Kelola
             manage_admins: Kelola Admin
+            manage_licenses: Kelola Lisensi
             manage_users: Kelola Pengguna
             title: Proyek
             view: Melihat
+            view_licenses: Lihat Lisensi
           questions:
             manage: Kelola
             title: Pertanyaan
@@ -284,6 +292,11 @@ id:
             manage: Kelola
             title: Undangan SMS
             view: Melihat
+          userIdpPlans:
+            manage: Urus
+            reset: Reset
+            title: Paket IDP Pengguna
+            view: Melihat
           users:
             reset_password: Atur Ulang Kata Sandi
             title: Pengguna
@@ -296,6 +309,9 @@ id:
     ai_artifacts:
       artifact_results: Hasil Artefak
       code: Kode
+      export:
+        success_msg: Mengekspor artefak AI yang sedang berlangsung. Silakan periksa status di notifikasi.
+      export_ai_artifacts: Ekspor Artefak AI
       form:
         add_assessment: Tambahkan Penilaian
         ai_assistant: Asisten AI
@@ -320,6 +336,12 @@ id:
       generated_at_time: Dihasilkan pada %{time}
       generated_value: Nilai yang Dihasilkan
       id: ID
+      import:
+        download_example_csv: Unduh Contoh CSV
+        info_msg: File yang diunggah telah diantrekan untuk impor. Silakan periksa status di notifikasi.
+      import_action:
+        title: Impor Artefak AI Kampanye
+      import_ai_artifacts: Impor Artefak AI
       key: Kunci
       name: Nama
       parsed_dependencies:
@@ -335,6 +357,10 @@ id:
         settings: Pengaturan
       test_generate: Uji Menghasilkan
       unsaved_changes: Perubahan yang belum disimpan ada, pertimbangkan untuk mengirimkan formulir untuk menghasilkan respons terbaru dari Playground.
+      used_tokens:
+        input_tokens: Token Masukan
+        output_tokens: Token Keluaran
+        title: Penggunaan token
     ai_assistants:
       actions:
         create: Buat Asisten AI
@@ -872,8 +898,6 @@ id:
       new:
         header: Unduh Massal
       reports_unavailable: Saat ini, tidak ada laporan yang tersedia untuk diunduh. Harap konfirmasikan bahwa laporan yang ingin Anda unduh tersedia.
-      select_users_for_download: Pilih setidaknya satu pengguna untuk mengunduh laporan.
-      select_users_for_regenerate: Pilih setidaknya satu pengguna untuk meregenerasi laporan.
     cable:
       notification:
         assessment_factors: Faktor diambil
@@ -929,6 +953,17 @@ id:
         report_update: Laporan diperbarui
         scoring_update: Penilaian diperbarui
         trash_empty: Komentar Sampah kosong
+    campaign_ai_artifacts:
+      export:
+        details: Artefak AI Kampanye berhasil diekspor
+    campaign_ai_artifacts_import:
+      errors:
+        ai_assistant_not_found: 'Asisten AI tidak ditemukan untuk ID: %{id}'
+        campaign_factor_not_found: Faktor kampanye dengan kode "%{code}" tidak ditemukan di kampanye ini
+        dependency_not_found: Dependensi %{type} dengan ID %{id} tidak ditemukan
+        file_required: File diperlukan untuk impor
+        save_failed: 'Gagal menyimpan artefak AI "%{code}": %{message}'
+        sheet_column_not_found: Kolom lembar dengan nama "%{name}" tidak ditemukan di lembar data kampanye atau proyek
     campaign_factor_import:
       errors:
         assessment_not_found_in_campaign: ID penilaian '%{assessment_id}' tidak ditemukan di kampanye
@@ -1240,6 +1275,7 @@ id:
         archived: Diarsipkan
         disable: Mengarsipkan
         enable: Batalkan arsip
+      clients: Klien
       copy:
         successfully: Klien Pengguna '%{name}' berhasil disalin.
       create:
@@ -2259,6 +2295,10 @@ id:
           accesssheet_manage: Kelola Lembar Akses
           accesssheet_settings: Pengaturan Lembar Akses
           accesssheet_view: Tampilan Lembar Akses
+    header:
+      logout:
+        content: Tekan Batal jika Anda ingin melanjutkan pekerjaan. Tekan Ok untuk keluar dari pengguna saat ini.
+        title: Apakah Anda yakin ingin logout.
     hogan:
       errors:
         new_assessment_response_not_allowed:
@@ -2312,13 +2352,16 @@ id:
         skills_required_on_publishing: Silakan pilih keterampilan sebelum menerbitkan template.
         update: Pembaruan tidak diizinkan karena templat IDP sudah dikaitkan dengan paket IDP pengguna. Perubahan tampilan telah disimpan.
       fields:
+        approval_date: Tanggal Persetujuan
         assigned_data: Data yang Ditetapkan
         assigned_date: Tanggal Penugasan
         completion_date: Tanggal Penyelesaian
+        current_job_role: Peran Pekerjaan Saat Ini
         division: Divisi
         name: Nama
         publish_date: Tanggal Publikasi
         review_date: Tanggal Peninjauan
+        target_job_role: Peran Pekerjaan Target
       fields_label: Bidang
       global_skills: Keterampilan Global
       idp: IDP
@@ -2546,6 +2589,13 @@ id:
         details: Rincian
         name: Nama Integrasi
       details:
+        client_id: ID Klien
+        deployment_id: ID Penyebaran
+        platform_access_token_url: URL Token Akses Platform
+        platform_authentication_request_url: URL Permintaan Autentikasi Platform
+        platform_host_name: Nama Host Platform
+        platform_id: Platform ID
+        platform_public_keyset_url: URL Keyset Publik Platform
         provider: Nama Penyedia
         webhookUrl: Webhook URL
         webhookUrls: URL webhook
@@ -2576,11 +2626,16 @@ id:
         skillvue:
           apiKey: Kunci API
           apiKeyRequired: Kunci API diperlukan
+        yoodli:
+          keyset_url: Keyset URL
+          launch_url: URL peluncuran
+          login_url: Login URL
       names:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
         skillvue: Keterampilan
+        yoodli: Yoodli
       validations:
         iiht:
           tenancy_name_present: Nama penyewaan sudah ada di proyek lain
@@ -2740,9 +2795,12 @@ id:
     navigation:
       audit_logs: Log Audit
       availability: Ketersediaan
+      configuration: Konfigurasi
+      content: Puas
       dashboard: Dashboard
       factors: Faktor
       innovation_styles: Gaya Inovasi
+      logout: Logout
       occupations: Pekerjaan
       registration_codes: Kode pendaftaran
       skills_taxonomy: Taksonomi Keterampilan
@@ -2981,6 +3039,7 @@ id:
           by_skill_exists_id_missing: 'Baris %{row_number}: Tingkat kemahiran untuk keterampilan ''''%{name}'''' sudah ada. Harap berikan ID untuk memperbaruinya.'
           by_skill_missing: 'Baris %{row_number}: Proyek dan Keterampilan harus ada untuk jenis ''by_skill'''
           by_skill_type_exists_id_missing: 'Baris %{row_number}: Tingkat kemahiran untuk jenis keterampilan ''''%{skill_type}'''' sudah ada. Harap berikan ID untuk memperbaruinya.'
+          by_skill_type_missing: 'Baris %{row_number}: Jenis Proyek dan Keterampilan harus ada untuk jenis ''''by_skill_type'''''
           default_global_exists_id_missing: 'Baris %{row_number}: Tingkat Kecakapan ''''default'''' tingkat global sudah ada. Harap berikan ID untuk memperbaruinya.'
           default_project_exists_id_missing: 'Baris %{row_number}: Tingkat Kecakapan ''''default'''' tingkat proyek sudah ada. Harap berikan ID untuk memperbaruinya.'
           invalid_csv_format: 'Format CSV tidak valid: %{message}'
@@ -3294,6 +3353,7 @@ id:
         mask_identity_for_pearson: Data topeng untuk Pearson
         mask_identity_for_saville: Data masker untuk Saville
         mask_identity_for_skillvue: Data topeng untuk Skillvue
+        mask_identity_for_yoodli: Data masker untuk Yoodli
         privacy_link: Aktifkan Tautan Privasi
         privacy_link_label: Tautan Privasi
         privacy_link_placeholder: Masukkan Tautan Privasi
@@ -3469,6 +3529,7 @@ id:
           graph_value: Nilai grafik
         graph_value_condition_not_supported_msg: Kondisi Nilai Grafik tidak didukung untuk jenis grafik ini. Opsi ini saat ini hanya tersedia untuk jenis Grafik di bawah ini.
         graph_value_conditions_title: Kondisi nilai grafik
+        hide_responses_with_no_data: Menyembunyikan respons tanpa data
         if_graph_value_is: 'Jika Nilai Grafik adalah:'
         job_roles:
           current: Faktor Pekerjaan Saat Ini
@@ -3488,6 +3549,7 @@ id:
           and: DAN
           or: ATAU
         prevent_value_overlap: Mencegah tumpang tindih nilai
+        randomize_answers_order: Acak urutan jawaban
         skill_type_label: Filter berdasarkan Jenis Keterampilan
         skill_type_placeholder: Pilih jenis keterampilan
         skill_types:
@@ -4109,6 +4171,11 @@ id:
             missing_columns: 'Kolom yang diperlukan tidak ada: %{columns}'
             save_failed: 'Error memproses ID Skill %{id}: %{message}'
             skill_not_found: Keterampilan dengan ID %{id} tidak ditemukan
+      vector:
+        generate_embedding: Hasilkan Penyematan
+        generate_embedding_failure_msg: Gagal mengantrekan pekerjaan pembuatan penyematan keterampilan. Silakan coba lagi.
+        generate_embedding_success_msg: Pekerjaan pembuatan penyematan keterampilan telah berhasil diantri. Silakan periksa status di notifikasi.
+        label: DB Vektor
     skills_taxonomy:
       tabs:
         job_roles: Peran Pekerjaan
@@ -4352,8 +4419,13 @@ id:
         this_question_has_randomization: Pertanyaan ini memiliki pengacakan
     table:
       entries:
-        selected: 1 baris dipilih
-        total: 'Jumlah : 1'
+        selected:
+          one: 1 baris dipilih
+          other: "{{count}} baris dipilih"
+        total:
+          one: 'Jumlah : 1'
+          other: 'Jumlah : {{count}}'
+          zero: 'Jumlah : 0'
       more_actions: Tindakan lainnya
     taxonomy:
       import:
@@ -4578,8 +4650,6 @@ id:
             evaluations_received: Evaluasi yang Diterima
             is_subject: Apakah Subjek
             name: Nama
-            report_status: Status Laporan
-            status: Status
           evaluators:
             add_evaluators: Menambahkan Evaluator
             import_evaluators: Evaluator Impor

@@ -1,4 +1,5 @@
 import { Bubble } from '@ant-design/x'
+import { Avatar } from 'antd'
 import { BotIcon } from './BotIcon'
 
 
@@ -8,6 +9,6 @@ export const BotLoading = () => (
     placement="start"
     variant="borderless"
     content="loading"
-    avatar={{ icon: <BotIcon /> }}
+    avatar={<Avatar icon={<BotIcon />} />}
   />
 )

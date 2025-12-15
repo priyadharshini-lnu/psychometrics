@@ -95,6 +95,12 @@ zh:
           title: 确认
       permissions:
         labels:
+          aiArtifacts:
+            export: 出口
+            import: 进口
+            manage: 管理
+            title: 人工智能工件
+            view: 视图
           apiKeys:
             manage: 管理
             title: API 密钥
@@ -220,9 +226,11 @@ zh:
           projects:
             manage: 管理
             manage_admins: 管理管理员
+            manage_licenses: 管理许可证
             manage_users: 管理用户
             title: 项目
             view: 查看
+            view_licenses: 查看许可
           questions:
             manage: 管理
             title: 问题
@@ -284,6 +292,11 @@ zh:
             manage: 管理
             title: 短信邀请
             view: 查看
+          userIdpPlans:
+            manage: 管理
+            reset: 重置
+            title: 用户IDP计划
+            view: 视图
           users:
             reset_password: 重置密码
             title: 用户
@@ -296,6 +309,9 @@ zh:
     ai_artifacts:
       artifact_results: 工件结果
       code: 法典
+      export:
+        success_msg: 正在导出正在进行的AI工件。请查看通知中的状态。
+      export_ai_artifacts: 导出AI工件
       form:
         add_assessment: 添加评估
         ai_assistant: AI助手
@@ -320,6 +336,12 @@ zh:
       generated_at_time: 生成时间%{time}
       generated_value: 产生的价值
       id: 身份证
+      import:
+        download_example_csv: 下载CSV 示例
+        info_msg: 上传的文件已被排队准备导入。请查看通知中的状态。
+      import_action:
+        title: 导入战役AI工件
+      import_ai_artifacts: 导入AI工件
       key: 钥匙
       name: 名字
       parsed_dependencies:
@@ -335,6 +357,10 @@ zh:
         settings: 设置
       test_generate: 测试生成
       unsaved_changes: 存在未保存的更改，请考虑提交表单以从 Playground 生成更新的响应。
+      used_tokens:
+        input_tokens: 输入令牌
+        output_tokens: 输出令牌
+        title: 代币使用
     ai_assistants:
       actions:
         create: 创建人工智能助理
@@ -872,8 +898,6 @@ zh:
       new:
         header: 批量下载
       reports_unavailable: 目前没有可供下载的报告，请确认您要下载的报告是否可用。
-      select_users_for_download: 请选择至少一个用户下载报告。
-      select_users_for_regenerate: 请选择至少一个用户重新生成报告。
     cable:
       notification:
         assessment_factors: 获取因子
@@ -929,6 +953,17 @@ zh:
         report_update: 报告已更新
         scoring_update: 评分已更新
         trash_empty: 垃圾箱评论为空
+    campaign_ai_artifacts:
+      export:
+        details: 战役AI工件成功导出
+    campaign_ai_artifacts_import:
+      errors:
+        ai_assistant_not_found: ID中找不到AI助手：%{id}
+        campaign_factor_not_found: 本次活动中未找到代码“%{code}”的战役因子
+        dependency_not_found: 没有找到带有身份证的依赖%{type} %{id}
+        file_required: 导入时需要文件
+        save_failed: 未能保存AI遗迹“%{code}”：%{message}
+        sheet_column_not_found: 带有“%{name}”的表格列在战役或项目数据表中找不到
     campaign_factor_import:
       errors:
         assessment_not_found_in_campaign: 活动中未发现评估 ID"%{assessment_id}"。
@@ -1240,6 +1275,7 @@ zh:
         archived: 存档
         disable: 档案
         enable: 未存档
+      clients: 客户
       copy:
         successfully: 客户平台"%{name}"已成功复制。
       create:
@@ -2259,6 +2295,10 @@ zh:
           accesssheet_manage: 访问表管理
           accesssheet_settings: 访问表设置
           accesssheet_view: 访问表视图
+    header:
+      logout:
+        content: 如果你想继续工作，请按取消。按确定键以登出当前用户。
+        title: 你确定要登出吗？
     hogan:
       errors:
         new_assessment_response_not_allowed:
@@ -2312,13 +2352,16 @@ zh:
         skills_required_on_publishing: 请在发布模板之前选择技能。
         update: 不允许更新，因为 IDP 模板已与用户 IDP 计划关联。
       fields:
+        approval_date: 批准日期
         assigned_data: 指定数据
         assigned_date: 指定日期
         completion_date: 完成日期
+        current_job_role: 当前职位
         division: 分部
         name: 名称
         publish_date: 发布日期
         review_date: 审查日期
+        target_job_role: 目标岗位
       fields_label: 字段
       global_skills: 全球技能
       idp: IDP
@@ -2546,6 +2589,13 @@ zh:
         details: 详细信息
         name: 集成名称
       details:
+        client_id: 客户端ID
+        deployment_id: 部署ID
+        platform_access_token_url: 平台访问令牌 URL
+        platform_authentication_request_url: 平台认证请求 URL
+        platform_host_name: 平台主机名称
+        platform_id: 平台ID
+        platform_public_keyset_url: 平台公共密钥集 URL
         provider: 提供方名称
         webhookUrl: Webhook URL
         webhookUrls: Webhook URL
@@ -2576,11 +2626,16 @@ zh:
         skillvue:
           apiKey: API 密钥
           apiKeyRequired: 需要 API 密钥
+        yoodli:
+          keyset_url: 密钥集URL
+          launch_url: 启动网址
+          login_url: 登录网址
       names:
         hogan: 霍根
         iiht: IIHT
         mettl: METTL
         skillvue: Skillvue
+        yoodli: 尤德利
       validations:
         iiht:
           tenancy_name_present: 租户名称已出现在其他项目中
@@ -2740,9 +2795,12 @@ zh:
     navigation:
       audit_logs: 审计日志
       availability: 可用性
+      configuration: 配置
+      content: 内容
       dashboard: 仪表板
       factors: 因素
       innovation_styles: 创新风格
+      logout: 注销
       occupations: 职业
       registration_codes: 注册码
       skills_taxonomy: 技能分类法
@@ -3295,6 +3353,7 @@ zh:
         mask_identity_for_pearson: 皮尔逊的掩码数据
         mask_identity_for_saville: 萨维尔面具数据
         mask_identity_for_skillvue: Skillvue 的面具数据
+        mask_identity_for_yoodli: Yoodli 的掩码数据
         privacy_link: 启用隐私链接
         privacy_link_label: 隐私链接
         privacy_link_placeholder: 输入隐私链接
@@ -3470,6 +3529,7 @@ zh:
           graph_value: 图值
         graph_value_condition_not_supported_msg: 此图形类型不支持图形值条件。此选项目前仅适用于以下图表类型。
         graph_value_conditions_title: 图值条件
+        hide_responses_with_no_data: 没有数据时隐藏回复
         if_graph_value_is: 如果图形值为：
         job_roles:
           current: 当前工作因素
@@ -3489,6 +3549,7 @@ zh:
           and: 和
           or: 或
         prevent_value_overlap: 防止值重叠
+        randomize_answers_order: 随机排序答案
         skill_type_label: 按技能类型筛选
         skill_type_placeholder: 选择技能类型
         skill_types:
@@ -4113,6 +4174,11 @@ zh:
             missing_columns: 缺少必填列： %{columns}
             save_failed: 处理技能 ID %{id} 时出错： %{message}
             skill_not_found: 未找到 ID 为 %{id} 的技能
+      vector:
+        generate_embedding: 生成嵌入
+        generate_embedding_failure_msg: 未能排队技能嵌入生成任务。请再试一次。
+        generate_embedding_success_msg: 技能嵌入生成任务已成功排队。请查看通知中的状态。
+        label: 向量数据库
     skills_taxonomy:
       tabs:
         job_roles: 工作角色
@@ -4592,8 +4658,6 @@ zh:
             evaluations_received: 收到的评价
             is_subject: 是主题
             name: 名称
-            report_status: 报告状态
-            status: 现状
           evaluators:
             add_evaluators: 添加评估员
             import_evaluators: 进口评估员

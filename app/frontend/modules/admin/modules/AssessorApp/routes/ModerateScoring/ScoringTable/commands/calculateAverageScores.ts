@@ -1,4 +1,3 @@
-import { EMPTY_SCORE_INDICATOR } from '~/modules/admin/constants/strings'
 import { Factor, Score } from '~/modules/admin/modules/campaigns/core/combinedScoring'
 
 export const calculateAverageScores = (
@@ -16,7 +15,7 @@ export const calculateAverageScores = (
         count += 1
       }
     })
-    averages[factor.factorId] = count > 0 ? (total / count).toFixed(2) : EMPTY_SCORE_INDICATOR
+    averages[factor.factorId] = count > 0 ? (total / count).toFixed(2) : '-'
   })
   return averages
 }

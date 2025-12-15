@@ -56,7 +56,9 @@ class Gauge extends Component {
       plotOptions: {
         series: {
           colors: colorOverrides ? _.map(colorOverrides, 'color') : [props.speedometerMainColor],
-          animation,
+          /* highchart by default does not animate from right to left, gauge goes blank after default animation.
+          Hence disabling animation in RTL mode. */
+          animation: animation && !isRTL,
           borderRadius: model.props.rounded ? '100%' : '0%',
         },
       },
@@ -77,15 +79,19 @@ class Gauge extends Component {
             fontFamily,
           },
         },
-        reversed: isRTL,
       },
       pane: {
+        /* Adjusting start and end angle for RTL support. Also note that tick mark does not show up in RTL, beacause
+        highchart has issue showing tick marks when startAngle > endAngle */
+        startAngle: isRTL ? 90 : -90,
+        endAngle: isRTL ? -90 : 90,
         size: props.speedometerSize,
         background: {
           backgroundColor: props.speedometerBackgroundColor,
         },
       },
       series: [{
+        animation: animation && !isRTL,
         data: model.props.gaugePercentage
           ? [_.round((series / (model.props.maxValue || 6)) * 100, model.props.precision ?? 2)]
           : [_.round(series, model.props.precision ?? 2)],

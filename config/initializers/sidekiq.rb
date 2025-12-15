@@ -15,8 +15,7 @@ redis_connection = if Rails.env.development?
                    end
 
 Sidekiq.configure_server do |config|
-  concurrency = config[:concurrency] || 5
-  pool_size = ENV.fetch('SIDEKIQ_DB_POOL', concurrency + 2)
+  pool_size = ENV.fetch('SIDEKIQ_DB_POOL', Sidekiq.options[:concurrency] + 2)
   config.redis = redis_connection.merge(size: pool_size)
 end
 

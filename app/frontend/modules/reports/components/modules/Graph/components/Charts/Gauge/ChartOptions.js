@@ -41,8 +41,6 @@ export default function ChartOptions (model) {
     },
     pane: {
       center: ['50%', '85%'],
-      startAngle: -90,
-      endAngle: 90,
       background: {
         innerRadius: '66%',
         outerRadius: '95%',

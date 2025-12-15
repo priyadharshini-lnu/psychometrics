@@ -64,6 +64,10 @@ id:
         validates_admins: Admin tidak memiliki akses ke kampanye.
       report_families_reports:
         report_exists: Laporan ini sudah menjadi bagian dari Report Bundle
+      saml_service_provider:
+        invalid_url: 'Format URL tidak valid: %{url}'
+        must_be_array: Harus berupa array
+        must_not_be_empty: Tidak bisa kosong
       size?: ukuran harus kurang %{size}
       skill:
         already_added: Skill dengan nama yang sama sudah ditambahkan.
@@ -94,6 +98,7 @@ id:
         unique_name: Filter dengan nama yang sama sudah ada.
       workshop_invited_subject_create:
         already_exists: Subjek sudah ada di undangan.
+        part_of_other_workshop_invite: Subjek sudah diundang untuk '%{workshop_invite_name}'.
       workshop_subject_create:
         already_exists: Subjek sudah ada di Pusat Penilaian ini.
         part_of_other_workshop: Subjek sudah menjadi peserta '%{workshop_name}'.

@@ -1,6 +1,7 @@
 ---
 es-ES:
   admin:
+    admin_approval_required: Reporte para %{user} requiere aprobación de administrador antes de descargarla
     admins: Admins
     ai_artifacts: Artefactos de IA
     ai_artifacts_output_schema_key_constraint: La clave debe comenzar con una letra minúscula y solo puede contener letras minúsculas, números y guiones bajos
@@ -8,7 +9,17 @@ es-ES:
     ai_assistant_model_label: Modelo
     ai_assistant_model_provider: Proveedor
     ai_assistant_model_region_label: Región
+    ai_assistant_required: El asistente de IA es obligatorio
     ai_assistants: Asistentes de IA
+    ai_assistants_advanced_mode_tooltip: Utiliza el modo avanzado para la plantilla de prompts usando la plantilla líquida con variables disponibles. Consulta la documentación para más detalles.
+    ai_assistants_campaign_id_placeholder: Introduce el ID de campaña
+    ai_assistants_no_rendered_output: No hay salida renderizada disponible
+    ai_assistants_render_button: Plantilla de renderizado
+    ai_assistants_rendered_prompt: Prompt renderizado
+    ai_assistants_template_and_campaign_required: Por favor, proporciona tanto la plantilla como el ID de campaña
+    ai_assistants_template_render_failed: No se ha podido renderizar la plantilla
+    ai_assistants_test_render: Renderizado de prueba
+    ai_assistants_test_render_tooltip: Prueba tu plantilla de prompts con datos de campaña para comprobar qué se enviará al asistente de IA.
     assessments: Evaluaciones
     assessments_reports: Evaluaciones e informes
     assessor_dashboard: Panel de control del evaluador
@@ -16,40 +27,77 @@ es-ES:
     audit_logs: Registros de auditoría
     audit_reports: Informes de auditoría
     availability: Disponibilidad
+    available_languages: Informe disponible en idiomas
     back_to_main: Menú principal
+    bulk_upload_ai_artifacts: Artefactos de IA de subida masiva
+    campaign_ai_artifact_updated_successfully: Artefactos de IA de campaña actualizados con éxito
+    campaign_assessment_actions_disable_caching: Desactivar la caché de evaluación
+    campaign_assessment_actions_enable_caching: Habilitar la caché de evaluación
+    campaign_assessment_column_caching_enabled: Caché de evaluación habilitada
+    campaign_assessment_modals_disable_caching_content: "¿Estás seguro de que quieres desactivar la caché para esta evaluación?"
+    campaign_assessment_modals_disable_caching_successfully: La caché ha sido deshabilitada para esta evaluación.
+    campaign_assessment_modals_disable_caching_title: "¿Desactivar la caché de evaluaciones?"
+    campaign_assessment_modals_enable_caching_content: "¿Estás seguro de que quieres activar el caché para esta evaluación?"
+    campaign_assessment_modals_enable_caching_successfully: Se ha habilitado la caché para esta evaluación.
+    campaign_assessment_modals_enable_caching_title: "¿Habilitar la caché de evaluaciones?"
     campaign_templates: Plantillas de campaña
     client: Arrendamiento de clientes
     client_admins: Administradores de clientes
     clients: Clientes
+    code_required: Se requiere código
     communication_center: Centro de comunicaciones
+    completed: Completado
+    completed_tooltip: Todos los evaluadores han presentado la evaluación
     country: País
     create_client: Crear cliente
     dashboard: Cuadro de mandos
     data_reports: Informes de datos
     datasheet: Hoja de datos
+    declined: Disminuido
     delete_ok_text: Sí, eliminar
+    denied: Negado
     development_actions: Acciones de desarrollo
     dimensions: Dimensiones
+    done: Hecho
+    done_tooltip: No se puede enviar más evaluación para este usuario, ya que la evaluación de este usuario se marca como realizada por %{marked_by}
     empty_csv_file: El archivo CSV no contiene ningún dato.
-    fill_empty_score_msg: Rellena todas las puntuaciones finales antes de guardar.
-    final_score_empty_msg: La puntuación final no puede estar vacía.
-    import_csv_assessment_group_error: 'Fila %{index}: el usuario con correo electrónico %{email} ya está invitado a ''%{workshopInviteName}'''
+    evaluation_status: Estado de evaluación
+    evaluation_status_not_done: El estado de la evaluación no está 'Hecho' para uno o más sujetos seleccionados. Por favor, asegúrese de que todos los usuarios seleccionados hayan completado las evaluaciones o marquen como hechos.
+    idp_plan_reset_success: El plan se ha reiniciado con éxito
+    import_ai_artifacts: Importar artefactos de IA
     import_csv_error: 'Fila %{index}: usuario con correo electrónico %{email} no está en esta campaña'
+    import_csv_parsing_error: 'Error de análisis CSV: %{message}'
     import_description: Importar usuarios desde un archivo CSV. Cada fila debe contener una dirección de correo electrónico.
     import_download_sample: Descargar ejemplo de CSV
     import_error: Importación fallida. Por favor, inténtalo de nuevo.
+    import_error_saving_data: 'Datos de guardado de errores para %{email}: %{message}'
     import_errors_title: Errores de importación
+    import_external_scoring_action: Importación de Puntuación Externa
+    import_external_scoring_body: Consulta la función de Exportar para extraer una plantilla que pueda usarse para importar aquí.
+    import_external_scoring_data_description: Importación de datos externos de puntuación para la evaluación y campaña especificadas
+    import_external_scoring_data_title: Importar datos externos de puntuación
+    import_external_scoring_success_msg: La importación se subió correctamente
+    import_external_scoring_upload: Subir
     import_file_required: Por favor, selecciona un archivo CSV para subir.
     import_queued_success: El trabajo de importación de sujetos se programó con éxito. Por favor, consulta tu notificación para ver el estado.
     import_sample_file_label: 'Archivo de ejemplo:'
+    import_scenario_id_mismatch: 'Desajuste de ID de escenario para %{email}: %{expected_id} esperado, pero CSV contiene diferentes IDs de escenario'
+    import_successfully_saved: Salvé con éxito resultados externos para %{email} con %{goals_count} objetivos
     import_title: Temas importados de CSV
     import_upload: Subir
     import_users: Importar usuarios
     invalid_csv_header: CSV contiene cabeceras inválidas.
     libraries: Mediateca
     library_invalid_type: Elemento inválido de la biblioteca
+    manager_approval_required: Informe para %{user} requiere la aprobación del gestor antes de la descarga
+    name_required: Se requiere el nombre
+    no_file_selected: No se selecciona ningún archivo
     no_notifications: Sin notificaciones
     norms: Normas
+    not_completed: No completado
+    not_completed_tooltip: "%{completed} se asignan evaluadores, pero solo %{submitted} han completado las evaluaciones"
+    nothing_assigned: Nada asignado
+    nothing_assigned_tooltip: No se han asignado evaluaciones a este usuario
     notification_bell_icon_alt_text: Icono de campana de notificación
     notifications: Notificaciones
     number: Número
@@ -62,7 +110,19 @@ es-ES:
     question_center: Centro de preguntas
     registration_codes: Códigos de registro
     report_approvals: Aprobación de informes
+    report_condition_not_met: Necesita %{required} %{relationship} evaluación(es), pero solo tiene %{actual}
+    report_conditions_not_met_detailed: El informe para %{user} no cumple las condiciones de disponibilidad. %{conditions}
+    report_denied: El informe de %{user} ha sido denegado
+    report_no_evaluations: No hay disponible el informe para %{user} - no se han recibido evaluaciones.
+    report_not_generated: Informe para %{user} cumple las condiciones de disponibilidad pero aún no se ha generado. Por favor, genera el informe primero.
+    report_on_hold: El informe para %{user} está actualmente en pausa
+    report_status: Estado del informe
     reports: Informes
+    reports_limit_exceeded: La descarga masiva está limitada a 1000 archivos de informe. Si has seleccionado muchos idiomas, por favor redúcelo.
+    reports_not_found: No se encontraron informes. Por favor, genera los informes antes de descargarlos.
+    reset_idp_plan: Plan de Reinicio
+    reset_idp_plan_confirmation: "¿Estás seguro de que quieres reiniciar el plan?"
+    reset_idp_plan_title: Plan de Reinicio
     role: Rol
     saml_idp_certificate_available: Disponible (haz clic para copiar)
     saml_idp_certificate_label: Certificado
@@ -82,12 +142,25 @@ es-ES:
     saml_service_provider_entity_id_placeholder: Introduzca el ID de la entidad
     saml_service_provider_entity_id_required: Se requiere el ID de la entidad
     saml_service_provider_idp_config: Configuración IdP
+    saml_service_provider_integration_generic: Genérico
+    saml_service_provider_integration_masking_info: El ID de correo electrónico de los candidatos se ocultará antes de enviarlo a Yoodli. Es necesario habilitar el enmascaramiento de los nombres y apellidos de los candidatos desde la
+    saml_service_provider_integration_type: Tipo de integración
+    saml_service_provider_integration_type_placeholder: Seleccionar el tipo de integración
+    saml_service_provider_integration_type_required: Se requiere el tipo de integración
+    saml_service_provider_integration_yoodli: Yoodli
     saml_service_provider_manage: Acciones
+    saml_service_provider_mask_data_for: Datos de máscara para
     saml_service_provider_mask_identity: Identidad de la máscara
     saml_service_provider_masking_enabled: Activar el enmascaramiento
+    saml_service_provider_masking_help_generic: Habilitar la identidad de los usuarios en respuestas SAML
+    saml_service_provider_masking_help_integration: Se aplicará el enmascaramiento del proveedor de integración
+    saml_service_provider_masking_integration: "%{integration} Impulsado"
+    saml_service_provider_masking_manual_disabled: Deshabilitado
+    saml_service_provider_masking_manual_enabled: Habilitado
     saml_service_provider_name: Nombre
     saml_service_provider_name_placeholder: Introduce el nombre del proveedor de servicios
     saml_service_provider_name_required: Se requiere el nombre
+    saml_service_provider_privacy_policy: Página de Política de Privacidad
     saml_service_provider_remove_content: "¿Estás seguro de que quieres eliminar el proveedor de servicios SAML: %{name}?"
     saml_service_provider_remove_title: Eliminar proveedor de servicios SAML
     saml_service_provider_rotate_certificate_content: "¿Estás seguro de que quieres rotar el certificado para %{name}? Esto generará un nuevo certificado y invalidará el actual."
@@ -105,8 +178,13 @@ es-ES:
     skills_taxonomy: Taxonomía de competencias
     slot_name: Nombre de la tragamonedas
     stats: Estadísticas
-    subject_part_of_other_invite: Asunto con correo electrónico %{user_email} ya está invitado a '%{workshop_invite_name}'
+    status_details: Detalles de estado
+    upload_success: Subido con éxito
     user_report_events: Informe de usuario Eventos
     users: Usuarios
     view_licenses: Ver licencias
+    waiting: Espera
     year: País
+    yoodli_activity_id: ID de actividad Yoodli
+    yoodli_email_id: ID de correo electrónico del candidato Yoodli
+    yoodli_external_assessment_id: ID de evaluación Yoodli

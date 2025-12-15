@@ -115,6 +115,13 @@ describe AI::Tools::Idp::AddSkillToPlan do
         expect(custom_action.learning_style).to eq('structured_learning')
         expect(custom_action.source_type).to eq('ai_generated')
       end
+
+      it 'sets development_action_type to default for custom actions' do
+        subject.execute(skill_id: skill1.id, development_actions: development_actions)
+
+        custom_action = user_idp_plan.user_idp_development_actions.first.development_action
+        expect(custom_action.development_action_type).to eq('default')
+      end
     end
 
     context 'with mixed existing and custom development actions' do

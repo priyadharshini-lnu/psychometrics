@@ -15,10 +15,12 @@ export const AdminAddSkills = ({
   userIdpSkills,
   next,
   prev,
+  header,
 }: {
   userIdpSkills:UserIdpSkills[],
   next: (selectedSkills:UserIdpSkills[])=>void,
   prev?: ()=> void
+  header: React.ReactNode
 }) => {
   const [skills, setSkills] = useState<UserIdpSkills[]>([])
   const [selectedSkills, setSelectedSkills] = useState<UserIdpSkills[]>(([]))
@@ -116,6 +118,7 @@ export const AdminAddSkills = ({
       skillGapReportData={null}
       searchSkillResource={searchSkillResource}
       prev={prev}
+      header={header}
       isSkillsLoading={isSkillsLoading}
     />
 

@@ -95,6 +95,12 @@ th:
           title: ยืนยัน
       permissions:
         labels:
+          aiArtifacts:
+            export: ส่งออก
+            import: นําเข้า
+            manage: จัดการ
+            title: สิ่งประดิษฐ์ AI
+            view: ทิวทัศน์
           apiKeys:
             manage: จัดการ
             title: กุญแจ API
@@ -220,9 +226,11 @@ th:
           projects:
             manage: จัดการ
             manage_admins: จัดการผู้ดูแลระบบ
+            manage_licenses: จัดการใบอนุญาต
             manage_users: จัดการผู้ใช้
             title: โครงการ
             view: ดู
+            view_licenses: ดูใบอนุญาต
           questions:
             manage: จัดการ
             title: คำถาม
@@ -284,6 +292,11 @@ th:
             manage: จัดการ
             title: คําเชิญทาง SMS
             view: ดู
+          userIdpPlans:
+            manage: จัดการ
+            reset: รี เซ็ต
+            title: แผน ID ผู้ใช้
+            view: ทิวทัศน์
           users:
             reset_password: รีเซ็ตรหัสผ่าน
             title: ผู้ใช้
@@ -296,6 +309,9 @@ th:
     ai_artifacts:
       artifact_results: ผลลัพธ์สิ่งประดิษฐ์
       code: รหัส
+      export:
+        success_msg: กําลังส่งออกสิ่งประดิษฐ์ AI ที่กําลังดําเนินการ โปรดตรวจสอบสถานะในการแจ้งเตือน
+      export_ai_artifacts: ส่งออกสิ่งประดิษฐ์ AI
       form:
         add_assessment: เพิ่มการประเมิน
         ai_assistant: ผู้ช่วย AI
@@ -320,6 +336,12 @@ th:
       generated_at_time: สร้างขึ้นที่ %{time}
       generated_value: มูลค่าที่สร้างขึ้น
       id: รหัส
+      import:
+        download_example_csv: ดาวน์โหลดตัวอย่าง CSV
+        info_msg: ไฟล์ที่อัปโหลดถูกจัดคิวสําหรับการนําเข้า โปรดตรวจสอบสถานะในการแจ้งเตือน
+      import_action:
+        title: นําเข้าสิ่งประดิษฐ์ AI ของแคมเปญ
+      import_ai_artifacts: นําเข้าสิ่งประดิษฐ์ AI
       key: กุญแจ
       name: ชื่อ
       parsed_dependencies:
@@ -335,6 +357,10 @@ th:
         settings: การตั้งค่า
       test_generate: ทดสอบสร้าง
       unsaved_changes: มีการเปลี่ยนแปลงที่ไม่ได้บันทึก ให้พิจารณาส่งแบบฟอร์มเพื่อสร้างการตอบกลับที่อัปเดตจาก Playground
+      used_tokens:
+        input_tokens: โทเค็นอินพุต
+        output_tokens: โทเค็นเอาต์พุต
+        title: การใช้โทเค็น
     ai_assistants:
       actions:
         create: สร้างผู้ช่วย AI
@@ -872,8 +898,6 @@ th:
       new:
         header: ดาวน์โหลดจำนวนมาก
       reports_unavailable: ในขณะนี้ยังไม่มีรายงานให้ดาวน์โหลด โปรดยืนยันว่ารายงานที่คุณต้องการดาวน์โหลดพร้อมใช้งาน
-      select_users_for_download: โปรดเลือกผู้ใช้อย่างน้อยหนึ่งคนในการดาวน์โหลดรายงาน
-      select_users_for_regenerate: โปรดเลือกผู้ใช้อย่างน้อยหนึ่งคนเพื่อสร้างรายงานใหม่
     cable:
       notification:
         assessment_factors: ดึงปัจจัย
@@ -929,6 +953,17 @@ th:
         report_update: รายงานอัปเดตแล้ว
         scoring_update: คะแนนอัปเดตแล้ว
         trash_empty: ถังขยะ ความคิดเห็นว่างเปล่า
+    campaign_ai_artifacts:
+      export:
+        details: แคมเปญ AI Artifacts ส่งออกสําเร็จ
+    campaign_ai_artifacts_import:
+      errors:
+        ai_assistant_not_found: 'ไม่พบ AI Assistant สําหรับ ID: %{id}'
+        campaign_factor_not_found: ไม่พบปัจจัยแคมเปญที่มีรหัส "%{code}" ในแคมเปญนี้
+        dependency_not_found: ไม่พบการ %{type} การพึ่งพาที่มี ID %{id}
+        file_required: จําเป็นต้องใช้ไฟล์เพื่อนําเข้า
+        save_failed: 'บันทึกสิ่งประดิษฐ์ AI "%{code}" ไม่สําเร็จ: %{message}'
+        sheet_column_not_found: ไม่พบคอลัมน์ชีตที่มีชื่อ "%{name}" ในแผ่นข้อมูลแคมเปญหรือโครงการ
     campaign_factor_import:
       errors:
         assessment_not_found_in_campaign: ไม่พบรหัสการประเมิน "%{assessment_id}" ในแคมเปญ
@@ -1240,6 +1275,7 @@ th:
         archived: เก็บเข้าคลัง
         disable: หอจดหมายเหตุ
         enable: ยกเลิกการเก็บถาวร
+      clients: ไคล เอนต์
       copy:
         successfully: การเช่าไคลเอ็นต์ '%{name}' ถูกคัดลอกเรียบร้อยแล้ว
       create:
@@ -2259,6 +2295,10 @@ th:
           accesssheet_manage: จัดการ Accesssheet
           accesssheet_settings: การตั้งค่าแผ่นการเข้าถึง
           accesssheet_view: แสดง Accesssheet
+    header:
+      logout:
+        content: กดยกเลิกหากคุณต้องการทํางานต่อ กดตกลงเพื่อออกจากระบบผู้ใช้ปัจจุบัน
+        title: คุณแน่ใจหรือไม่ว่าต้องการออกจากระบบ
     hogan:
       errors:
         new_assessment_response_not_allowed:
@@ -2312,13 +2352,16 @@ th:
         skills_required_on_publishing: โปรดเลือกทักษะก่อนเผยแพร่เทมเพลต
         update: ไม่อนุญาตให้อัปเดตเนื่องจากเทมเพลต IDP เชื่อมโยงกับแผน IDP ของผู้ใช้อยู่แล้ว การเปลี่ยนแปลงรูปลักษณ์ถูกบันทึกไว้
       fields:
+        approval_date: วันที่อนุมัติ
         assigned_data: ข้อมูลที่ได้รับมอบหมาย
         assigned_date: วันที่กำหนด
         completion_date: วันที่เสร็จสมบูรณ์
+        current_job_role: บทบาทงานปัจจุบัน
         division: แผนก
         name: ชื่อ
         publish_date: วันที่เผยแพร่
         review_date: วันที่ตรวจสอบ
+        target_job_role: บทบาทงานเป้าหมาย
       fields_label: ฟิลด์
       global_skills: ทักษะระดับโลก
       idp: ผู้พลัดถิ่น
@@ -2546,6 +2589,13 @@ th:
         details: รายละเอียด
         name: ชื่อการรวม
       details:
+        client_id: รหัสไคลเอ็นต์
+        deployment_id: รหัสการปรับใช้
+        platform_access_token_url: URL โทเค็นการเข้าถึงแพลตฟอร์ม
+        platform_authentication_request_url: URL คําขอการรับรองความถูกต้องของแพลตฟอร์ม
+        platform_host_name: ชื่อโฮสต์ของแพลตฟอร์ม
+        platform_id: รหัสแพลตฟอร์ม
+        platform_public_keyset_url: URL ชุดคีย์สาธารณะของแพลตฟอร์ม
         provider: ชื่อผู้ให้บริการ
         webhookUrl: URL เว็บฮุค
         webhookUrls: URL เว็บฮุค
@@ -2576,11 +2626,16 @@ th:
         skillvue:
           apiKey: คีย์ API
           apiKeyRequired: ต้องใช้คีย์ API
+        yoodli:
+          keyset_url: URL ของชุดคีย์
+          launch_url: URL การเปิดตัว
+          login_url: URL เข้าสู่ระบบ
       names:
         hogan: โฮแกน
         iiht: ไอเอชที
         mettl: เมทเทล
         skillvue: สกิลวิว
+        yoodli: ยุดลี
       validations:
         iiht:
           tenancy_name_present: ชื่อผู้เช่ามีอยู่ในโครงการอื่นแล้ว
@@ -2740,9 +2795,12 @@ th:
     navigation:
       audit_logs: บันทึกการตรวจสอบ
       availability: กำหนดการ
+      configuration: องค์ประกอบ
+      content: เนื้อหา
       dashboard: แดชบอร์ด
       factors: ปัจจัย
       innovation_styles: รูปแบบนวัตกรรม
+      logout: ออกจากระบบ
       occupations: อาชีพ
       registration_codes: รหัสการลงทะเบียน
       skills_taxonomy: อนุกรมวิธานทักษะ
@@ -2981,6 +3039,7 @@ th:
           by_skill_exists_id_missing: 'แถวที่ %{row_number}: ระดับความชํานาญสําหรับทักษะ ''''%{name}'''' มีอยู่แล้ว โปรดระบุ ID เพื่ออัปเดต'
           by_skill_missing: 'แถว %{row_number}: ต้องมีโครงการและทักษะสําหรับประเภท ''by_skill'''
           by_skill_type_exists_id_missing: 'แถวที่ %{row_number}: ระดับความชํานาญสําหรับชนิดทักษะ ''''%{skill_type}'''' มีอยู่แล้ว โปรดระบุ ID เพื่ออัปเดต'
+          by_skill_type_missing: 'แถวที่ %{row_number}: โครงการและชนิดทักษะต้องมีสําหรับชนิด ''''by_skill_type'''''
           default_global_exists_id_missing: 'แถวที่ %{row_number}: มี ProficiencyLevel "ค่าเริ่มต้น" ระดับสากลอยู่แล้ว โปรดระบุ ID เพื่ออัปเดต'
           default_project_exists_id_missing: 'แถวที่ %{row_number}: ProficiencyLevel ''''ค่าเริ่มต้น'''' ระดับโปรเจ็กต์มีอยู่แล้ว โปรดระบุ ID เพื่ออัปเดต'
           invalid_csv_format: 'รูปแบบ CSV ไม่ถูกต้อง: %{message}'
@@ -3294,6 +3353,7 @@ th:
         mask_identity_for_pearson: ข้อมูลหน้ากากสําหรับ Pearson
         mask_identity_for_saville: ข้อมูลหน้ากากสําหรับ Saville
         mask_identity_for_skillvue: ข้อมูลมาสก์สําหรับ Skillvue
+        mask_identity_for_yoodli: ข้อมูลมาสก์สําหรับ Yoodli
         privacy_link: เปิดใช้งานลิงก์ความเป็นส่วนตัว
         privacy_link_label: ลิงค์ความเป็นส่วนตัว
         privacy_link_placeholder: ป้อนลิงก์ความเป็นส่วนตัว
@@ -3469,6 +3529,7 @@ th:
           graph_value: ค่ากราฟ
         graph_value_condition_not_supported_msg: เงื่อนไขค่ากราฟไม่ได้รับการสนับสนุนสําหรับกราฟประเภทนี้ ขณะนี้ตัวเลือกนี้ใช้ได้กับประเภทกราฟด้านล่างเท่านั้น
         graph_value_conditions_title: เงื่อนไขค่ากราฟ
+        hide_responses_with_no_data: ซ่อนคําตอบโดยไม่มีข้อมูล
         if_graph_value_is: 'ถ้าค่ากราฟเป็น:'
         job_roles:
           current: ปัจจัยงานปัจจุบัน
@@ -3488,6 +3549,7 @@ th:
           and: และ
           or: หรือ
         prevent_value_overlap: ป้องกันการทับซ้อนของค่า
+        randomize_answers_order: สุ่มลําดับคําตอบ
         skill_type_label: กรองตามประเภททักษะ
         skill_type_placeholder: เลือกประเภททักษะ
         skill_types:
@@ -4109,6 +4171,11 @@ th:
             missing_columns: 'คอลัมน์ที่จําเป็นหายไป: %{columns}'
             save_failed: 'การประมวลผลรหัสทักษะ %{id} ผิดพลาด: %{message}'
             skill_not_found: ไม่พบสกิลที่มี ID %{id}
+      vector:
+        generate_embedding: สร้างการฝัง
+        generate_embedding_failure_msg: ล้มเหลวในการจัดคิวงานการสร้างการฝังทักษะ โปรดลองอีกครั้ง
+        generate_embedding_success_msg: งานการสร้างการฝังทักษะได้รับการจัดคิวเรียบร้อยแล้ว โปรดตรวจสอบสถานะในการแจ้งเตือน
+        label: เวกเตอร์ DB
     skills_taxonomy:
       tabs:
         job_roles: บทบาทงาน
@@ -4352,8 +4419,13 @@ th:
         this_question_has_randomization: คําถามนี้มีการสุ่ม
     table:
       entries:
-        selected: เลือก 1 แถว
-        total: 'รวม : 1'
+        selected:
+          one: เลือก 1 แถว
+          other: เลือก {{count}} แถว
+        total:
+          one: 'รวม : 1'
+          other: 'รวม : {{count}}'
+          zero: 'รวม : 0'
       more_actions: การดําเนินการเพิ่มเติม
     taxonomy:
       import:
@@ -4578,8 +4650,6 @@ th:
             evaluations_received: การประเมินที่ได้รับ
             is_subject: คือ หัวข้อ
             name: ชื่อ
-            report_status: สถานะรายงาน
-            status: สถานะ
           evaluators:
             add_evaluators: เพิ่มผู้ประเมิน
             import_evaluators: ผู้ประเมินการนำเข้า

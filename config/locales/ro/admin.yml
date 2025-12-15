@@ -1,6 +1,7 @@
 ---
 ro:
   admin:
+    admin_approval_required: Raportul pentru %{user} necesită aprobarea de la administrator înainte de descărcare
     admins: Administratori
     ai_artifacts: Artefacte AI
     ai_artifacts_output_schema_key_constraint: Cheia trebuie să înceapă cu literă mică și poate conține doar litere mici, cifre și sublinii
@@ -8,7 +9,17 @@ ro:
     ai_assistant_model_label: Model
     ai_assistant_model_provider: Furnizor
     ai_assistant_model_region_label: Regiune
+    ai_assistant_required: Asistentul AI este necesar
     ai_assistants: Asistenți AI
+    ai_assistants_advanced_mode_tooltip: Folosește modul avansat pentru modelarea prompturilor folosind șablonul lichid cu variabile disponibile. Consultați documentația pentru mai multe detalii.
+    ai_assistants_campaign_id_placeholder: Introduceți ID-ul campaniei
+    ai_assistants_no_rendered_output: Nu există ieșire randată disponibilă
+    ai_assistants_render_button: Șablon de randare
+    ai_assistants_rendered_prompt: Prompt randat
+    ai_assistants_template_and_campaign_required: Vă rugăm să furnizați atât șablonul, cât și ID-ul campaniei
+    ai_assistants_template_render_failed: Nu s-a redat șablonul
+    ai_assistants_test_render: Randare de testare
+    ai_assistants_test_render_tooltip: Testează-ți șablonul de prompt cu date de campanie pentru a vedea ce va fi trimis asistentului AI.
     assessments: Evaluări
     assessments_reports: Evaluări și rapoarte
     assessor_dashboard: Tabloul de bord al evaluatorului
@@ -16,40 +27,77 @@ ro:
     audit_logs: Jurnale de audit
     audit_reports: Rapoarte de audit
     availability: Disponibilitate
+    available_languages: Raport disponibil în limbi
     back_to_main: Meniul principal
+    bulk_upload_ai_artifacts: Artefacte AI cu încărcare în masă
+    campaign_ai_artifact_updated_successfully: Artefactele AI ale campaniei au fost actualizate cu succes
+    campaign_assessment_actions_disable_caching: Dezactivează caching-ul evaluărilor
+    campaign_assessment_actions_enable_caching: Activează cache-ul evaluării
+    campaign_assessment_column_caching_enabled: Caching de evaluare activat
+    campaign_assessment_modals_disable_caching_content: Ești sigur că vrei să dezactivezi cache-ul pentru această evaluare?
+    campaign_assessment_modals_disable_caching_successfully: Cache-ul a fost dezactivat pentru această evaluare.
+    campaign_assessment_modals_disable_caching_title: Dezactivarea caching-ului de evaluare?
+    campaign_assessment_modals_enable_caching_content: Ești sigur că vrei să activezi cache-ul pentru această evaluare?
+    campaign_assessment_modals_enable_caching_successfully: Cache-ul a fost activat pentru această evaluare.
+    campaign_assessment_modals_enable_caching_title: Activarea cache-ului evaluării?
     campaign_templates: Șabloane de campanie
     client: Închirierea clientului
     client_admins: Administratori clienți
     clients: Clienți
+    code_required: Este necesar codul
     communication_center: Centrul de comunicare
+    completed: Completat
+    completed_tooltip: Toți evaluatorii au depus evaluarea
     country: Țara
     create_client: Creare client
     dashboard: Tablou
     data_reports: Rapoarte de date
     datasheet: Fișă tehnică
+    declined: Refuzată
     delete_ok_text: Da, șterge
+    denied: Refuzat
     development_actions: Acțiune de dezvoltare
     dimensions: Dimensiuni
+    done: Făcut
+    done_tooltip: Nu se mai poate trimite nicio evaluare pentru acest utilizator, deoarece evaluarea acestuia este marcată ca fiind făcută de %{marked_by}
     empty_csv_file: Fișierul CSV nu conține niciun fel de date.
-    fill_empty_score_msg: Completează toate scorurile finale înainte de a salva.
-    final_score_empty_msg: Scorul final nu poate fi gol.
-    import_csv_assessment_group_error: 'Rândul %{index}: utilizatorul cu %{email} de email este deja invitat să "%{workshopInviteName}".'
+    evaluation_status: Stare de evaluare
+    evaluation_status_not_done: Starea evaluării nu este "Finalizată" pentru unul sau mai mulți subiecte selectate. Vă rugăm să vă asigurați că toți utilizatorii selectați au finalizat evaluările sau să marcheze ca fiind făcute.
+    idp_plan_reset_success: Planul a fost resetat cu succes
+    import_ai_artifacts: Importul artefactelor AI
     import_csv_error: 'Rândul %{index}: utilizator cu email %{email} nu face parte din această campanie'
+    import_csv_parsing_error: 'Eroare de analiză CSV: %{message}'
     import_description: Importă utilizatori dintr-un fișier CSV. Fiecare rând trebuie să conțină o adresă de email.
     import_download_sample: Descarcă exemplu CSV
     import_error: Importul a eșuat. Vă rog să încercați din nou.
+    import_error_saving_data: 'Datele de salvare a erorilor pentru %{email}: %{message}'
     import_errors_title: Erori de import
+    import_external_scoring_action: Import Scoring extern
+    import_external_scoring_body: Consultă funcționalitatea Export pentru a extrage un șablon care poate fi folosit pentru a importa aici.
+    import_external_scoring_data_description: Importul datelor externe de scoring pentru evaluarea și campania specificate
+    import_external_scoring_data_title: Importul datelor externe de notare
+    import_external_scoring_success_msg: Importul a fost încărcat cu succes
+    import_external_scoring_upload: Încărca
     import_file_required: Vă rugăm să selectați un fișier CSV pentru a încărca.
     import_queued_success: Munca de import a subiecților a fost programată cu succes. Vă rugăm să verificați notificarea pentru status.
     import_sample_file_label: 'Fișier exemplu:'
+    import_scenario_id_mismatch: 'Nepotrivirea ID-urilor de scenariu pentru %{email}: %{expected_id} așteptată, dar CSV-ul conține ID-uri de scenariu diferite'
+    import_successfully_saved: Am salvat cu succes rezultate externe pentru %{email} cu obiective %{goals_count}
     import_title: Subiecte de import din CSV
     import_upload: Încărca
     import_users: Importă utilizatori
     invalid_csv_header: CSV conține antete invalide.
     libraries: Bibliotecă media
     library_invalid_type: Element invalid din bibliotecă
+    manager_approval_required: Raportul pentru %{user} necesită aprobarea managerului înainte de descărcare
+    name_required: Este necesar numele
+    no_file_selected: Niciun fișier selectat
     no_notifications: Fără notificări
     norms: Normele
+    not_completed: Nefinalizat
+    not_completed_tooltip: "%{completed} evaluatori sunt atribuiți, dar doar %{submitted} au finalizat evaluările"
+    nothing_assigned: Nimic atribuit
+    nothing_assigned_tooltip: Nu au fost atribuite evaluări acestui utilizator
     notification_bell_icon_alt_text: Pictograma clopoțel de notificare
     notifications: Notificări
     number: Număr
@@ -62,7 +110,19 @@ ro:
     question_center: Centrul de întrebări
     registration_codes: Coduri de înregistrare
     report_approvals: Aprobări de rapoarte
+    report_condition_not_met: Are nevoie %{required} %{relationship} evaluare, dar are nevoie doar de %{actual}
+    report_conditions_not_met_detailed: Raportul pentru %{user} nu îndeplinește condițiile de disponibilitate. %{conditions}
+    report_denied: Raportul pentru %{user} a fost respins
+    report_no_evaluations: Raportul pentru %{user} nu este disponibil – nu au fost primite evaluări.
+    report_not_generated: Raportul pentru %{user} îndeplinește condițiile de disponibilitate, dar nu a fost încă generat. Vă rugăm să generați raportul mai întâi.
+    report_on_hold: Raportul pentru %{user} este în prezent în așteptare
+    report_status: Stadiul raportului
     reports: Rapoarte
+    reports_limit_exceeded: Descărcarea în masă este limitată la 1000 de fișiere de raport. Dacă ați selectat multe limbi, vă rugăm să reduceți această opinie.
+    reports_not_found: Nu s-au găsit rapoarte. Vă rugăm să generați rapoartele înainte de descărcare.
+    reset_idp_plan: Planul de Resetare
+    reset_idp_plan_confirmation: Ești sigur că vrei să resetezi planul?
+    reset_idp_plan_title: Planul de Resetare
     role: Rol
     saml_idp_certificate_available: Disponibil (click pentru copiere)
     saml_idp_certificate_label: Certificat
@@ -82,12 +142,25 @@ ro:
     saml_service_provider_entity_id_placeholder: Introduceți ID-ul entității
     saml_service_provider_entity_id_required: Este necesar ID-ul entității
     saml_service_provider_idp_config: Configurarea IdP
+    saml_service_provider_integration_generic: Generic
+    saml_service_provider_integration_masking_info: ID-ul de email al candidaților va fi mascat înainte de a fi trimis către Yoodli. Mascarea prenumelor și numelor de familie ale candidaților trebuie să fie permisă din
+    saml_service_provider_integration_type: Tip de integrare
+    saml_service_provider_integration_type_placeholder: Selectează tipul de integrare
+    saml_service_provider_integration_type_required: Este necesar tipul de integrare
+    saml_service_provider_integration_yoodli: Yoodli
     saml_service_provider_manage: Acțiuni
+    saml_service_provider_mask_data_for: Date de măști pentru
     saml_service_provider_mask_identity: Identitatea măștii
     saml_service_provider_masking_enabled: Activează masca
+    saml_service_provider_masking_help_generic: Activarea mascării identităților utilizatorilor în răspunsurile SAML
+    saml_service_provider_masking_help_integration: Se va aplica masca furnizorului de integrare
+    saml_service_provider_masking_integration: "%{integration} Condus"
+    saml_service_provider_masking_manual_disabled: Dezactivat
+    saml_service_provider_masking_manual_enabled: Activat
     saml_service_provider_name: Nume
     saml_service_provider_name_placeholder: Introduceți numele furnizorului de servicii
     saml_service_provider_name_required: Este necesar numele
+    saml_service_provider_privacy_policy: Pagina Politicii de Confidențialitate
     saml_service_provider_remove_content: 'Ești sigur că vrei să elimini SAML Service Provider: %{name}?'
     saml_service_provider_remove_title: Eliminarea furnizorului de servicii SAML
     saml_service_provider_rotate_certificate_content: Ești sigur că vrei să rotești certificatul pentru %{name}? Acest lucru va genera un certificat nou și va invalida pe cel actual.
@@ -105,8 +178,13 @@ ro:
     skills_taxonomy: Taxonomia abilităților
     slot_name: Numele slotului
     stats: Statistici
-    subject_part_of_other_invite: Subiectul cu email %{user_email} este deja invitat la "%{workshop_invite_name}"
+    status_details: Detalii despre stadiu
+    upload_success: Încărcat cu succes
     user_report_events: Evenimente de raportare a utilizatorilor
     users: Utilizatorii
     view_licenses: Vizualizați licențele
+    waiting: Așteptare
     year: Țara
+    yoodli_activity_id: ID-ul activității Yoodli
+    yoodli_email_id: ID-ul de email al candidatului Yoodli
+    yoodli_external_assessment_id: ID de evaluare Yoodli

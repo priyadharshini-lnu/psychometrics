@@ -204,6 +204,12 @@ RSpec.describe AI::AssistantChat, type: :model do
       chat.with_assistant_context
     end
 
+    it 'does not add or overrides existing instructions to LLM chat' do
+      expect(llm_chat).not_to receive(:with_instructions)
+
+      chat.with_assistant_context
+    end
+
     context 'when assistant has ruby llm schema' do
       let(:output_schema_class) { AI::OutputSchemas::IdpAssistant }
 

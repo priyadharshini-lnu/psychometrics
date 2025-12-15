@@ -3,6 +3,11 @@
 module AdminJobs
   class RescoreAssessment < AdminJobs::Base
     def call
+      if assessment.yoodli?
+        handle_yoodli_import
+        return
+      end
+
       record.update(total_tasks: results.count)
       results.find_each(batch_size: 200) do |res|
         record.increment_completed_tasks!
@@ -32,6 +37,22 @@ module AdminJobs
     end
 
     private
+
+    def handle_yoodli_import
+      record.update(total_tasks: 1)
+      begin
+        result = YoodliDailyImportJob.perform_now(nil, campaign.id)
+        record.increment_completed_tasks!
+
+        if result && result[:success] == false
+          broadcast :ok, error_messages: result[:errors]
+        else
+          broadcast :ok
+        end
+      rescue StandardError => e
+        broadcast :ok, error_messages: ["Yoodli import failed: #{e.message}"]
+      end
+    end
 
     def remove_reports_pdf
       campaign.user_reports.each(&:remove_report_pdf!)

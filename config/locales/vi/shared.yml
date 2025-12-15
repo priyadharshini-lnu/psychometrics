@@ -3,13 +3,21 @@ vi:
   shared:
     action: Hoạt động
     add: Thêm vào
+    advanced: Tiên tiến
+    authentication_failed: Xác thực không thành công. Vui lòng thử lại.
+    basic: Cơ bản
+    campaign_id: ID chiến dịch
     cancel: Hủy bỏ
     change_password: Thay đổi mật khẩu
     clear_filters: Xóa bộ lọc
+    continue: Tiếp tục
     description: Sự miêu tả
     edit: Biên tập
     edited: Mới
+    group_question_max_validation_error: Mỗi nhóm có thể chứa tối đa {{max}} (các) mục.
+    group_question_min_validation_error: Mỗi nhóm cần chứa ít nhất {{min}} (các) mục.
     id: ID
+    idp_ai_assistant_disclaimer: Trợ lý IDP AI của Lighthouse có thể mắc sai lầm. Hãy cẩn thận khi sử dụng các câu trả lời.
     internet_disconnected_message: Đang cố gắng kết nối lại. Vui lòng kiểm tra kết nối internet của bạn.
     mte_logo_alt_text: Logo Mercer Talent Enterprise
     name: Tên
@@ -23,6 +31,7 @@ vi:
         selected: 1 hàng đã chọn
         total: 'Tổng số : 1'
     terms_conditions_privacy: Tuyên bố về quyền riêng tư
+    tools: Công cụ
     transcriptions: Phiên âm
     tte_terms_and_condition: Điều khoản &amp; Quyền riêng tư
     type: Kiểu

@@ -6,7 +6,7 @@ import {
   debounce,
 } from 'lodash'
 import {
-  useParams,
+  useParams, useNavigate,
 } from 'react-router-dom'
 import cs from 'classnames'
 import { DevelopmentActionListView } from './DevelopmentActionsFlow/DevelopmentActionListView'
@@ -19,6 +19,7 @@ import {
   UserIdpPlan, UserIdpDevelopmentActions, IdpSkills, UserIdpSkills,
 } from '~/modules/admin/modules/campaigns/core/UserIdpPlan'
 import { InformationBanner } from './InformationBanner'
+import { ResetPlanButton } from '~/components/IdpShared/ResetPlanButton'
 import { USER_IDP_PLAN_STATUS } from './constants'
 import { useSearchSkills } from './AdminAddSkills/useSearchSkills'
 import { SkillGapReportTab } from './SkillGapReportTab'
@@ -44,22 +45,31 @@ export const Plan = () => {
   const [availableIDPDevelopmentActions, setAvailableIDPDevelopmentActions] = useState<UserIdpDevelopmentActions[]>([])
   const [selectedSkills, setSelectedSkills] = useState<UserIdpSkills[]>([])
 
-  const { idpPlanId, projectId } = useParams()
+  const {
+    idpPlanId, projectId, campaignId, userId,
+  } = useParams()
   const { tab: paramTab } = useParams()
 
   const [tab, setTab] = useState(paramTab || 'list')
 
+  // eslint-disable-next-line max-len
+  const currentPath = `/admin/projects/${projectId}/new_campaigns/${campaignId}/participants/subjects/${userId}/idp/${idpPlanId}`
+
+  const navigate = useNavigate()
+
   const {
-    data: userIdpPlanData, fetchSingle: fetchUserIdpPlan, updateResource: updatePlan, meta,
+    data: userIdpPlanData, fetchSingle: fetchUserIdpPlan, updateResource: updatePlan, meta, memberAction,
   } = useResources<UserIdpPlan, UserIdpMeta>(
     'user_idp_plans',
     {
       apiConfig: {
         include: ['idp_template', 'user_idp_development_actions', 'user_idp_skills'],
-        include_meta: ['*'],
+        include_resource_meta: ['permissions'],
       },
     },
   )
+
+  const canResetPlan = userIdpPlanData[0]?.meta?.permissions?.reset ?? false
 
   const {
     data: allSkills, fetch: fetchIdpSkillDetails, fetchSingle: fetchSingleSkill, setData: setSkills,
@@ -316,24 +326,49 @@ export const Plan = () => {
     })
   }
 
+  const resetPlanButton = (
+    <ResetPlanButton
+      action={() => {
+        setIsLoading(true)
+        memberAction({
+          id: userIdpPlanData[0]?.id,
+          action: 'reset',
+          method: 'post',
+        }).then(() => {
+          setIsLoading(false)
+          navigate(`${currentPath}/step/getting_started`)
+          message.success(I18n.t('admin.idp_plan_reset_success'))
+        })
+      }}
+    />
+  )
+
   const operations = (
     <Flex gap={8}>
+
       {tab === 'list' && (
-        editMode ? (
-          <Button
-            type="primary"
-            onClick={handleSave}
-          >
-            {I18n.t('common.actions.save')}
-          </Button>
-        ) : (
-          <Button
-            type="primary"
-            onClick={() => setEditMode(true)}
-          >
-            {I18n.t('common.actions.edit')}
-          </Button>
-        )
+        <>
+          {
+          canResetPlan ? (
+            resetPlanButton
+          ) : null
+          }
+          {editMode ? (
+            <Button
+              type="primary"
+              onClick={handleSave}
+            >
+              {I18n.t('common.actions.save')}
+            </Button>
+          ) : (
+            <Button
+              type="primary"
+              onClick={() => setEditMode(true)}
+            >
+              {I18n.t('common.actions.edit')}
+            </Button>
+          )}
+        </>
       )}
       {
         userIdpPlanData[0]?.status === USER_IDP_PLAN_STATUS.IN_PROGRESS && (
@@ -423,6 +458,7 @@ export const Plan = () => {
         skillGapReportData={null}
         searchSkillResource={searchSkillResource}
         showBackButton={false}
+        header={resetPlanButton}
       />
     </Flex>
 

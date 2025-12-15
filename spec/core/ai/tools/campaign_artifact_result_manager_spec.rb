@@ -9,7 +9,8 @@ describe AI::Tools::CampaignArtifactResultManager do
       save_results: save_results,
       parsed_dependencies: audit_data,
       masked_data_resolutions: resolution_mapping,
-      chat: ai_assistant_chat
+      chat: ai_assistant_chat,
+      campaign_user: campaign_user
     )
   end
 
@@ -25,6 +26,7 @@ describe AI::Tools::CampaignArtifactResultManager do
     end
   end
   let(:artifact) { create(:campaign_ai_artifact, ai_assistant: assistant_with_schema) }
+  let!(:campaign_user) { create(:campaign_user, campaign: artifact.campaign, user: user) }
   let(:save_results) { false }
   let(:audit_data) { 'This is audit data for what was sent to LLM' }
   let(:resolution_mapping) { {} }

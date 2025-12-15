@@ -19,8 +19,6 @@ module AI
                            I18n.t('administration.ai_assistants.errors.one_click_idp_assistance_not_enabled'))
         end
 
-        validate_assistant_tools_configuration!
-
         mark_session_in_progress!
 
         assistant_service.
@@ -36,6 +34,15 @@ module AI
       end
 
       private
+
+      # TODO: prompt templating is now applicable only for IDP assistant,
+      # in future this should be extended to other assistables
+      def prompt_template_context
+        {
+          campaign: campaign,
+          user: current_user
+        }
+      end
 
       def handle_assistant_service_error(error_message, error = nil)
         error_response, error_meta = handle_assistant_error_response(error_message, error)
@@ -66,19 +73,28 @@ module AI
       end
 
       def assistant_tools
-        [
-          AI::Tools::Idp::AttachmentAnalysis.new(assistable, current_user, document_analysis_assistant),
-          AI::Tools::Idp::SkillGapReportAnalysis.new(assistable, current_user, skill_gap_report_analysis_assistant),
-          AI::Tools::Idp::AddSkillToPlan.new(assistable, current_user),
-          AI::Tools::Idp::AvailableSkillsAndDevelopmentActions.new(assistable)
-        ]
-      end
+        tools = []
 
-      def validate_assistant_tools_configuration!
-        unless document_analysis_assistant && skill_gap_report_analysis_assistant
-          raise ServiceConfigurationError,
-                I18n.t('administration.ai_assistants.errors.development_actions_assistance_not_enabled')
+        if idp_template.document_analysis_ai_assistant_id.present?
+          tools << AI::Tools::Idp::AttachmentAnalysis.new(
+            assistable,
+            current_user,
+            document_analysis_assistant
+          )
         end
+
+        if idp_template.skill_gap_report_analysis_ai_assistant_id.present?
+          tools << AI::Tools::Idp::SkillGapReportAnalysis.new(
+            assistable,
+            current_user,
+            skill_gap_report_analysis_assistant
+          )
+        end
+
+        tools << AI::Tools::Idp::AddSkillToPlan.new(assistable, current_user)
+        tools << AI::Tools::Idp::AvailableSkillsAndDevelopmentActions.new(assistable)
+
+        tools
       end
 
       def session_model
@@ -130,7 +146,11 @@ module AI
       end
 
       def campaign_user
-        @campaign_user ||= CampaignUser.find_by(user: current_user, campaign: assistable.campaign)
+        @campaign_user ||= CampaignUser.find_by(user: current_user, campaign: campaign)
+      end
+
+      def campaign
+        @campaign ||= assistable.campaign
       end
 
       def user_idp_document_attachment

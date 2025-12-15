@@ -7,16 +7,16 @@ import { InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { DirectionalArrowIcon, PageHeader as GlintPageHeader, AccessiblePasswordInput } from '~/glint'
 import ResourceForm from '~/components/ResourceForm'
 import { RootState } from '~/modules/endUser/core/rootReducers'
-import { changePassword, CHANGE_PASSWORD } from '~/core/currentUser'
-import { isRequestInProgress } from '~/core/request'
+import { changePassword } from '~/core/currentUser'
 import styles from './ChangePassword.less'
 import { useRecaptcha } from '~/hooks/useRecaptcha'
+import { getSecuritySettings } from '~/modules/endUser/core/config'
 
 const { I18n } = window
 const { disable_recaptcha } = window.PsyGlobalState.features
 
 const connecter = connect((state: RootState) => ({
-  saveInProgress: isRequestInProgress(state, CHANGE_PASSWORD),
+  enabledRecaptchaAtProject: getSecuritySettings(state).enableRecaptcha,
 }),
 {
   changePassword,
@@ -26,14 +26,17 @@ type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const ChangePasswordComponent: React.FC<Props> = ({ changePassword, saveInProgress }) => {
+export const ChangePasswordComponent: React.FC<Props> = (
+  { changePassword, enabledRecaptchaAtProject },
+) => {
   const [form] = Form.useForm()
+  const recaptchaEnabled = !disable_recaptcha && enabledRecaptchaAtProject
 
   const {
     recaptchaToken,
     recaptchaReady,
     recaptchaWidgetId,
-  } = useRecaptcha({ formInstance: form, disable_recaptcha })
+  } = useRecaptcha({ formInstance: form, disable_recaptcha: !recaptchaEnabled })
 
   const handleChangePassword = values => changePassword(values).then(() => {
     window.location.href = '/users/sign_in'
@@ -83,7 +86,7 @@ export const ChangePasswordComponent: React.FC<Props> = ({ changePassword, saveI
                     <AccessiblePasswordInput />
                   </Form.Item>
 
-                  {!disable_recaptcha && (
+                  {recaptchaEnabled && (
                     <Form.Item
                       name="recaptcha_token"
                       style={{ display: 'none' }}
@@ -102,13 +105,14 @@ export const ChangePasswordComponent: React.FC<Props> = ({ changePassword, saveI
                       type="warning"
                     />
                   </>
+
                   <Space align="baseline" size="middle" className={styles.buttonSpaceContainer}>
                     <Button
                       type="primary"
                       htmlType="submit"
                       className={styles.actionButton}
                       onClick={(e) => {
-                        if (!disable_recaptcha) {
+                        if (recaptchaEnabled) {
                           if (!recaptchaReady || recaptchaWidgetId.current === null) {
                             e.preventDefault()
                             return
@@ -128,7 +132,7 @@ export const ChangePasswordComponent: React.FC<Props> = ({ changePassword, saveI
               )}
             </ResourceForm>
             {/* Hidden div for reCAPTCHA widget */}
-            {!disable_recaptcha && <div id="recaptcha-button" style={{ display: 'none' }} />}
+            {recaptchaEnabled && <div id="recaptcha-button" style={{ display: 'none' }} />}
           </Col>
         </Row>
       </Layout.Content>

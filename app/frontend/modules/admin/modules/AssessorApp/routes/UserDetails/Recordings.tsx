@@ -7,11 +7,12 @@ import {
   Tooltip,
   Modal,
 } from 'antd'
-import { DownloadOutlined } from '@ant-design/icons'
+import { DownloadOutlined, EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons'
 import { DateTimeWithZone } from '~/glint'
 import { getCurrent } from '~/modules/admin/modules/AssessorApp/core/users'
 import { get as getUserRecordings } from '~/modules/admin/modules/AssessorApp/core/userRecordings'
 import { RootState } from '~/modules/admin/core/rootReducers'
+import { TranscriptionDetailsDrawer } from '~/modules/admin/components/Recordings/TranscriptionDetailsDrawer'
 
 const connecter = connect(
   (state: RootState) => ({
@@ -28,8 +29,15 @@ type Props = PropsFromRedux
 const { Column } = Table
 const { I18n } = window
 
-const Recordings: React.FC<Props> = ({ userRecordings }) => (
-  <>
+const Recordings: React.FC<Props> = ({ userRecordings }) => {
+  const [showTranscription, setShowTranscription] = useState(false)
+  const [transcriptionText, setTranscriptionText] = useState<string | null>('')
+
+  const closeShowTranscription = () => {
+    setShowTranscription(false)
+  }
+
+  return (
     <div>
       <Row>
         <Col span={24}>
@@ -113,27 +121,45 @@ const Recordings: React.FC<Props> = ({ userRecordings }) => (
               title={I18n.t('shared.transcriptions')}
               key="transcription_url"
               width="5%"
-              render={({ transcriptionUrl }) => {
+              render={({ transcriptionUrl, transcriptionText }) => {
                 if (!transcriptionUrl) return null
                 return (
-                  <Button
-                    className="ps-0"
-                    href={transcriptionUrl}
-                    target="_blank"
-                    icon={<DownloadOutlined />}
-                    type="link"
-                  >
-                    {I18n.t('common.text.download')}
-                  </Button>
+                  <div className="vertical-align">
+                    <Button
+                      className="ps-0"
+                      type="link"
+                      icon={showTranscription ? <EyeInvisibleOutlined /> : <EyeOutlined />}
+                      onClick={() => {
+                        setShowTranscription(!showTranscription)
+                        setTranscriptionText(transcriptionText)
+                      }}
+                    >
+                      View
+                    </Button>
+                    <Button
+                      className="ps-0 ms-2"
+                      href={transcriptionUrl}
+                      target="_blank"
+                      icon={<DownloadOutlined />}
+                      type="link"
+                    >
+                      {I18n.t('common.text.download')}
+                    </Button>
+                  </div>
                 )
               }}
             />
           </Table>
         </Col>
       </Row>
+      <TranscriptionDetailsDrawer
+        transcriptionText={transcriptionText || ''}
+        closeShowTranscription={closeShowTranscription}
+        showTranscription={showTranscription}
+      />
     </div>
-  </>
-)
+  )
+}
 
 const RecordingPlayer: React.FC<{ url: string }> = ({ url }) => (
   <video
@@ -176,6 +202,5 @@ const RecordingUrlColumn: React.FC<{
     </>
   )
 }
-
 
 export default connecter(Recordings)

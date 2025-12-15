@@ -20,6 +20,9 @@ class Lti::StartLaunch < BaseCommand
     launch_params = initiate_lti_launch
 
     if launch_params.present?
+      user_assessment.update!(started_at: Time.zone.now) if user_assessment.started_at.nil?
+      user_assessment.in_progress!
+
       return broadcast(:ok, launch_params)
     end
 

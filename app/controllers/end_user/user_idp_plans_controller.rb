@@ -69,12 +69,13 @@ module EndUser
                       status: :unprocessable_entity
       end
 
-      refied_last_approved_version = @user_idp_plan.safe_reify(
-        last_approved_version, has_many: true, mark_for_destruction: true
+      refied_last_approved_version = last_approved_version.reify(
+        has_many: true, mark_for_destruction: true
       )
 
       refied_last_approved_version.save!
-      render json: { status: @user_idp_plan.status }
+
+      render json: { status: @user_idp_plan.reload.status }
     end
 
     def update

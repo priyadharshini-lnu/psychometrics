@@ -3,13 +3,21 @@ sl:
   shared:
     action: Aktivnost
     add: Dodaj
+    advanced: Napreden
+    authentication_failed: Avtentikacija ni uspela. Prosim, poskusite znova.
+    basic: Osnoven
+    campaign_id: ID kampanje
     cancel: Prekliči
     change_password: Spremeni geslo
     clear_filters: Počistite filtre
+    continue: Nadaljuj
     description: Opis
     edit: Uredi
     edited: Novo
+    group_question_max_validation_error: Vsaka skupina lahko vsebuje največ {{max}} elementov.
+    group_question_min_validation_error: Vsaka skupina mora vsebovati vsaj {{min}} element(e).
     id: ID
+    idp_ai_assistant_disclaimer: Lighthouse AI IDP asistent lahko naredi napake. Prosimo, bodite previdni pri uporabi odgovorov.
     internet_disconnected_message: Ponovno vzpostavljamo povezavo. Preverite internetno povezavo.
     mte_logo_alt_text: Logotip Mercer Talent Enterprise
     name: Ime
@@ -23,6 +31,7 @@ sl:
         selected: Izbrana 1 vrstica
         total: 'Skupaj : 1'
     terms_conditions_privacy: Izjava o zasebnosti
+    tools: Orodja
     transcriptions: Transkripcij
     tte_terms_and_condition: Pogoji uporabe in politika zasebnosti
     type: Vrsta

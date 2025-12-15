@@ -39,7 +39,13 @@ describe Threesixty::EvaluatorSerializer do
     it do
       result = described_class.new(
         context: {
-          counters: counters, option: option, current_user: current_user
+          counters: counters, option: option, current_user: current_user,
+          subject_evaluator_counters: {
+            evaluator_with_subject.user_id => {
+              all: { 1 => 2, 2 => 2, 3 => 1 },
+              completed: { 1 => 2, 2 => 1, 3 => 1 }
+            }
+          }
         }
       ).serialize(evaluator_with_subject).deep_symbolize_keys
 

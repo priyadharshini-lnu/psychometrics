@@ -1,4 +1,5 @@
 import { Bubble } from '@ant-design/x'
+import { Avatar } from 'antd'
 import { AudioRecorder } from '../components/AudioRecorder'
 import { BotIcon } from './BotIcon'
 import styles from './styles.less'
@@ -25,6 +26,6 @@ export const AudioQuestion = ({
         chatStatus={status}
       />
     )}
-    avatar={{ icon: <BotIcon /> }}
+    avatar={<Avatar icon={<BotIcon />} />}
   />
 )

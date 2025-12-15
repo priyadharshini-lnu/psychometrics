@@ -1,188 +1,105 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'swagger_helper'
 
-describe Api::V2::Administration::CampaignAssessorAssessmentsController, swagger_doc: 'v2/swagger.json',
-  type: :request do
+RSpec.describe Api::V2::Administration::CampaignAssessorAssessmentsController,
+               type: :request do
   let!(:campaign_assessor_assessment) { create(:campaign_assessor_assessment) }
   let!(:campaign_id) { campaign_assessor_assessment.campaign_id }
   let!(:assessment_id) { campaign_assessor_assessment.assessment_id.to_s }
   let!(:superadmin) { create(:superadmin) }
-  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
+  let!(:api_key) { create(:api_key, user: superadmin) }
+  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before { sign_in(superadmin) }
 
-  path '/campaigns/{campaign_id}/campaign_assessor_assessments/' do
-    get 'Campaign Assessor Assessment List' do
-      operationId 'CampaignAssessorAssessmentList'
-      description 'Fetch Campaigns Assessor Assessments list'
+  describe 'GET /api/v2/administration/campaigns/:campaign_id/campaign_assessor_assessments' do
+    it 'fetches campaign assessor assessments list' do
+      get "/api/v2/administration/campaigns/#{campaign_id}/campaign_assessor_assessments",
+          headers: { 'Authorization' => authorization }
 
-      tags 'Campaign Assessor Assessment'
-      consumes 'application/json'
-      security [basic: []]
-      parameter name: :campaign_id, in: :path, type: :string
-
-      response '200', 'Campaigns Assessor Assessment list' do
-        schema '$ref' => '#/components/schemas/CampaignAssessorAssessmentListResponse'
-
-        examples 'application/json' => [{
-          type: 'campaign_assessor_assessments',
-          data: {
-            id: '1',
-            attributes: {
-              campaign_id: '1',
-              assessment_id: '1'
-            }
-          }
-        }]
-
-        run_test! do |response|
-          campaign_assessor_assessments = JSON.parse(response.body)
-          campaign_assessor_assessments_response = campaign_assessor_assessments['data'].find do |c|
-            c['id'] == campaign_assessor_assessment.id.to_s
-          end
-          expect(campaign_assessor_assessments_response).to have_key('id')
-          expect(campaign_assessor_assessments_response).to have_attribute(:assessment_id).with_value(assessment_id)
-        end
+      expect(response).to have_http_status(:ok)
+      campaign_assessor_assessments = JSON.parse(response.body)
+      campaign_assessor_assessments_response = campaign_assessor_assessments['data'].find do |c|
+        c['id'] == campaign_assessor_assessment.id.to_s
       end
+      expect(campaign_assessor_assessments_response).to have_key('id')
+      expect(campaign_assessor_assessments_response).to have_attribute(:assessment_id).with_value(assessment_id)
     end
   end
 
-  path '/campaigns/{campaign_id}/campaign_assessor_assessments/' do
-    post 'Create a Campaign Assessor Assessment' do
-      operationId 'CreateCampaignAssessorAssessment'
-      description 'Create new Campaign Assessor Assessment'
-      tags 'Campaign Assessor Assessment'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :campaign_id, in: :path, type: :string
-      parameter name: :body, in: :body,
-                schema: { '$ref' => '#/components/schemas/CampaignAssessorAssessmentCreateRequest' },
-                required: true
+  describe 'POST /api/v2/administration/campaigns/:campaign_id/campaign_assessor_assessments' do
+    it 'creates a campaign assessor assessment' do
+      assessment = create(:assessment)
+      body = jsonapi_resource_request(
+        'campaign_assessor_assessments',
+        { assessment_id: assessment.id.to_s }
+      )
 
-      response '201', 'Assessor Assessment Created' do
-        schema '$ref' => '#/components/schemas/CampaignAssessmentAssessorResponse'
-        examples 'application/json' => [{
-          data: {
-            type: 'campaign_assessor_assessments',
-            attributes: {
-              assessment_id: '1',
-              campaign_id: '1'
-            }
-          }
-        }]
+      post "/api/v2/administration/campaigns/#{campaign_id}/campaign_assessor_assessments",
+           params: body.to_json,
+           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-        let(:assessment) { create(:assessment) }
-        let(:campaign) { create(:campaign) }
-        let(:body) do
-          jsonapi_resource_request(
-            'campaign_assessor_assessments',
-            { assessment_id: assessment.id.to_s }
-          )
-        end
-
-        run_test! do |response|
-          assessor_assessment_response = JSON.parse(response.body)['data']
-          expect(assessor_assessment_response).to have_key('id')
-          expect(assessor_assessment_response).to have_attribute(:assessment_id).with_value(assessment.id.to_s)
-        end
-      end
+      expect(response).to have_http_status(:created)
+      assessor_assessment_response = JSON.parse(response.body)['data']
+      expect(assessor_assessment_response).to have_key('id')
+      expect(assessor_assessment_response).to have_attribute(:assessment_id).with_value(assessment.id.to_s)
     end
   end
 
-  path "/campaigns/{campaign_id}/workshop_subjects/{workshop_subject_id}/campaign_assessor_assessments/\
-subject_assessor_assessments" do
-    get 'returns all assessor assessments for a subject' do
-      operationId 'GetSubjectsAssessorAssessments'
-      description 'Get all subject specific assessor assessments'
-      tags 'Subject Assessor Assessments'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :campaign_id, in: :path, type: :string
-      parameter name: :workshop_subject_id, in: :path, type: :string
+  describe 'GET /api/v2/administration/campaigns/:campaign_id/workshop_subjects/' \
+           ':workshop_subject_id/campaign_assessor_assessments/subject_assessor_assessments' do
+    it 'returns all assessor assessments for a subject' do
+      workshop_subject = create(:workshop_subject)
+      campaign = create(:campaign)
+      linked_assessment = create(:assessment)
+      assessment = create(:assessment, linked_assessment_id: linked_assessment.id)
+      create(:campaign_assessor_assessment, campaign: campaign, assessment: assessment,
+        campaign_assessment_group_id: workshop_subject.workshop.campaign_assessment_group_id)
+      create(:campaign_assessment, campaign: campaign,
+        assessment: linked_assessment,
+        campaign_assessment_group_id: workshop_subject.workshop.campaign_assessment_group_id)
+      relationship = create(:relationship, name: 'Assessor', type: :global)
+      create(:relationship, name: 'Self', type: :global)
+      assessor_user_assessment = create(:user_assessment, relationship: relationship,
+                                       subject: workshop_subject.user,
+                                       campaign: campaign,
+                                       meeting_type: :not_available,
+                                       assessment: assessment)
+      create(:user_assessment, relationship: Relationship.self_relationship,
+                              subject: workshop_subject.user,
+                              evaluator: workshop_subject.user,
+                              assessment: linked_assessment,
+                              campaign: campaign,
+                              meeting_type: :not_available)
+      workshop_subject_id = workshop_subject.id.to_s
+      campaign_id = campaign.id.to_s
 
-      response '200', 'Subject Assessor Assessments' do
-        examples 'application/json' => {
-          assessor_user_assessments: [{
-            id: '1',
-            name: 'Assessment 1',
-            status: 'pending',
-            schedule_time: '2023-08-04T02:00:00.063Z',
-            meeting_link: 'http://www.example.com',
-            assessor: {
-              id: '1',
-              user_id: 1,
-              name: 'Assessor 1',
-              photo_url: 'http://www.example.com'
-            },
-            assessment_id: 1,
-            linked_activity_id: '1'
-          }],
-          campaign_assessor_assessments: [{
-            id: '1',
-            name: 'Assessment 1',
-            assessment_id: 1,
-            linked_activity_id: '1'
-          }]
-        }
+      get "/api/v2/administration/campaigns/#{campaign_id}/workshop_subjects/" \
+          "#{workshop_subject_id}/campaign_assessor_assessments/subject_assessor_assessments",
+          headers: { 'Authorization' => authorization }
 
-        let(:workshop_subject) { create(:workshop_subject) }
-        let(:campaign) { create(:campaign) }
-        let(:linked_assessment) { create(:assessment) }
-        let(:assessment) { create(:assessment, linked_assessment_id: linked_assessment.id) }
-        let(:campaign_assessor_assessment) do
-          create(:campaign_assessor_assessment, campaign: campaign, assessment: assessment,
-          campaign_assessment_group_id: workshop_subject.workshop.campaign_assessment_group_id)
-        end
-        let!(:campaign_assessment) do
-          create(:campaign_assessment, campaign: campaign,
-            assessment: linked_assessment,
-            campaign_assessment_group_id: workshop_subject.workshop.campaign_assessment_group_id)
-        end
-        let!(:relationship) { create(:relationship, name: 'Assessor', type: :global) }
-        let!(:self_relationship) { create(:relationship, name: 'Self', type: :global) }
-        let!(:assessor_user_assessment) do
-          create(:user_assessment, relationship: relationship,
-                                   subject: workshop_subject.user,
-                                   campaign: campaign,
-                                   meeting_type: :not_available,
-                                   assessment: assessment)
-        end
-        let!(:subject_user_assessment) do
-          create(:user_assessment, relationship: Relationship.self_relationship,
-                                    subject: workshop_subject.user,
-                                    evaluator: workshop_subject.user,
-                                    assessment: linked_assessment,
-                                    campaign: campaign,
-                                    meeting_type: :not_available)
-        end
-        let(:workshop_subject_id) { workshop_subject.id.to_s }
-        let(:campaign_id) { campaign.id.to_s }
+      expect(response).to have_http_status(:ok)
+      assessment_response = JSON.parse(response.body)
 
-        run_test! do |response|
-          assessment_response = JSON.parse(response.body)
-
-          expect(assessment_response['assessor_user_assessments'][0]).to have_key('id')
-          expect(assessment_response['assessor_user_assessments']).to match_array([{
-            'id' => assessor_user_assessment.id.to_s,
-            'name' => assessor_user_assessment.assessment.name,
-            'status' => assessor_user_assessment.status,
-            'schedule_time' => assessor_user_assessment.schedule_time,
-            'meeting_link' => assessor_user_assessment.meeting_link,
-            'assessor' => {
-              'id' => assessor_user_assessment.evaluator.id.to_s,
-              'user_id' => assessor_user_assessment.evaluator.id.to_s,
-              'name' => assessor_user_assessment.evaluator.name,
-              'photo_url' => assessor_user_assessment.evaluator.photo_url
-            },
-            'meeting_type' => 'not_available',
-            'assessment_id' => assessor_user_assessment.assessment_id,
-            'linked_activity_id' => linked_assessment.id.to_s,
-            'linked_activity_name' => linked_assessment.name
-          }])
-        end
-      end
+      expect(assessment_response['assessor_user_assessments'][0]).to have_key('id')
+      expect(assessment_response['assessor_user_assessments']).to match_array([{
+        'id' => assessor_user_assessment.id.to_s,
+        'name' => assessor_user_assessment.assessment.name,
+        'status' => assessor_user_assessment.status,
+        'schedule_time' => assessor_user_assessment.schedule_time,
+        'meeting_link' => assessor_user_assessment.meeting_link,
+        'assessor' => {
+          'id' => assessor_user_assessment.evaluator.id.to_s,
+          'user_id' => assessor_user_assessment.evaluator.id.to_s,
+          'name' => assessor_user_assessment.evaluator.name,
+          'photo_url' => assessor_user_assessment.evaluator.photo_url
+        },
+        'meeting_type' => 'not_available',
+        'assessment_id' => assessor_user_assessment.assessment_id,
+        'linked_activity_id' => linked_assessment.id.to_s,
+        'linked_activity_name' => linked_assessment.name
+      }])
     end
   end
 end

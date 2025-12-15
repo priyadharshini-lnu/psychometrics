@@ -55,6 +55,17 @@ sk:
               blank: Identifikátor balíka zostáv nemôže byť prázdny
             report_id:
               blank: Identifikátor zostavy nemôže byť prázdny
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: AI asistent s ID '%{id}' sa nenachádza v rade %{index}
+              blank: Stĺpec '%{entity}' nemôže byť prázdny v riadku %{index}
+              duplicate_code: Duplicitný kód '%{code}' v riadku %{index}
+              invalid_code_format: Neplatný formát kódu '%{code}' v riadku %{index}
+              max_limit_reached: Celkový počet AI artefaktov v kampani presahuje maximálny limit %{count}
+              missing_headers: 'Chýbajú požadované hlavičky: %{headers}'
+            file:
+              invalid_format: Prosím, nahrajte CSV súbor
         campaign_factor_import_form:
           attributes:
             file:
@@ -232,6 +243,19 @@ sk:
               contains_repeats: Heslo nesmie obsahovať opakovania
               too_short: Heslo je príliš krátke. Minimálny požadovaný znak %{count}
               too_weak: 'Heslo musí obsahovať: minimálne 1 malé písmeno, 1 veľké písmeno, 1 číslo a 1 špeciálny znak.'
+        project_license:
+          attributes:
+            base:
+              exceeds_available: Nedá sa prideliť viac než dostupných licencií
+            license_id:
+              already_present: už prítomný na tomto projekte
+            usage_limit:
+              cant_be_less_than_used: Nedá sa nastaviť pod aktuálny počet používania %{used_count}
+              cant_be_more_than_available: Nesmie byť viac ako dostupný limit licencie (%{usage_limit})
+              exceeds_available: Nemôže byť viac než dostupné licencie
+              less_than_used_number: Nesmie byť menšia ako počet použitých licencií
+            used_number:
+              overused: Nemôže to byť viac než dostupné licencie.
         questions_import_block_form:
           attributes:
             name:
@@ -422,6 +446,10 @@ sk:
               inclusion: musí byť booleovský
             start_date_time:
               invalid_datetime: je neplatné
+        yoodli:
+          attributes:
+            name:
+              not_unique: Táto integrácia je už prítomná pre tento projekt.
   activerecord:
     attributes:
       administration/assessments/assign_form:
@@ -452,6 +480,7 @@ sk:
           simulation: Simulácia
           skillvue: Skillvue
           threesixty: 360° Kampaň
+          yoodli: Yoodli
         category: Kategória
         created_at: Dátum vytvorenia
         description: Popis
@@ -469,6 +498,7 @@ sk:
           saville: Hodnotenie Saville
           simulation: Simulačné hodnotenie
           skillvue: Hodnotenie zručností
+          yoodli: Yoodli hodnotenie
         updated_at: Dátum úpravy
       assign:
         completed_at: Dátum dokončenia
@@ -836,6 +866,7 @@ sk:
         data_report_export: Export zostavy údajov
         export_admin_with_permissions: Exportovať správcu s povoleniami
         export_assessment_questions: Otázky na hodnotenie exportu
+        export_campaign_ai_artifacts: AI artefakty exportnej kampane
         export_campaign_factors: Export faktorov kampane
         export_campaign_scorings: Prieskumy exportných kampaní
         export_dashboard_as_file: Exportovať tabuľu ako súbor
@@ -857,16 +888,19 @@ sk:
         export_user_report_events: Export udalostí nahlásenia používateľa
         export_users: Export používateľov kampane
         external_assessment_export: Export externých výsledkov
+        generate_embedding_skills: Generovanie vkladania pre zručnosti
         import_accesssheet: Import prístupu
         import_assessment_questions: Otázky na hodnotenie dovozu
         import_assessment_translations: Preklady hodnotenia importu
         import_assessors: Hodnotitelia dovozu
+        import_campaign_ai_artifacts: AI artefakty importnej kampane
         import_campaign_factors: Importovať faktory kampane
         import_datasheet: Importovať údajový hárok
         import_development_action_translations: Importovať preklady vývojových akcií
         import_development_actions: Importujte vývojové akcie
         import_dimension_from_json: Import dimenzie z JSON
         import_external_campaign_scoring: Import externého hodnotenia kampaní
+        import_external_scoring_data: Import externých hodnotiacich údajov
         import_factor_translations: Preklady faktorov importu
         import_factors: Faktory dovozu
         import_interview_questions: Importovať otázky na pohovor
@@ -1028,6 +1062,7 @@ sk:
         saville_assessment_name: Saville hodnotenie Názov
         simulation_assessment_name: Názov simulačného hodnotenia
         skillvue_assessment_name: Názov hodnotenia Skillvue
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: Preklad bol migrovaný
     create: Vytvoriť
     dashboard: Tabuľu
@@ -1069,6 +1104,7 @@ sk:
         simulation: Simulácia
         skillvue: Skillvue
         threesixty: 360° Kampaň
+        yoodli: Yoodli
       status:
         finished: Hotový
         in_progress: Prebieha
@@ -1081,6 +1117,7 @@ sk:
         saville: Hodnotenie Saville
         simulation: Simulačné hodnotenie
         skillvue: Hodnotenie zručností
+        yoodli: Yoodli hodnotenie
     flow:
       end_assessment_modal:
         custom_message: Vlastná správa o ukončení hodnotenia
@@ -1602,8 +1639,6 @@ sk:
       report: Správa
       report_bundle_placeholder: Výber balíka zostáv
     messages:
-      bulk_download_error: Hromadné sťahovanie je obmedzené na 1000 súborov zostavy. Ak ste vybrali veľa jazykov, znížte ho.
-      bulk_download_no_reports: Nenašli sa žiadne správy. Pred stiahnutím vygenerujte správy.
       bulk_download_successful: Úloha hromadného stiahnutia zostavy bola úspešne naplánovaná
       export_report_data_scheduled: Úloha exportu údajov zostavy bola úspešne naplánovaná
     modals:
@@ -1772,6 +1807,7 @@ sk:
       go_back: Vráť sa
       import: Import
       insert: Vložiť
+      'no': Nie
       ok: OK
       publish: Publikovať
       reject: Odmietnuť
@@ -1798,6 +1834,7 @@ sk:
       view: Pohľad
       view_all_tasks: Zobraziť všetky úlohy
       view_detail: Zobraziť podrobnosti
+      'yes': Áno
     column:
       action: Akcia
       active: Aktívny
@@ -2366,6 +2403,7 @@ sk:
     error_warning: Ups, niečo sa pokazilo s tvojím hodnotením. Obráťte sa na podporu.
     hogan:
       cannot_start: Nemôžete začať s hodnotením hogana hneď teraz. Skúste to po niekoľkých minútach.
+    lighthouse_app: Maják Mercer
     login: Prihlásenie
     maintenance:
       notification: Lighthouse bude mimo prevádzky kvôli plánovanej údržbe o 60 sekúnd
@@ -2467,6 +2505,8 @@ sk:
   idp:
     actions: Akcie
     add_comments: Pridať komentáre
+    add_note: Pridať poznámku...
+    add_reason: Pridaj rozum...
     added_development_action: Pridaná vývojová akcia
     ai:
       assistant:
@@ -2484,8 +2524,8 @@ sk:
       reset_chat: Obnoviť chat
       reset_confirmation: Naozaj chcete tento chat zahodiť a začať odznova?
       retake_steps:
-        chat_hint: Dajte mi vedieť, aké informácie chcete poskytnúť nižšie?
-        chat_title: Chcete poskytnúť viac informácií?
+        chat_hint: Môžete nahrať nový súbor alebo reštartovať chat, aby ste zdieľali viac detailov, a ja sa budem snažiť vám pomôcť.
+        chat_title: Je mi ľúto, že počiatočná analýza nesplnila vaše očakávania.
         start_chat: Spustiť chat
         start_chat_again: Začnite znova rozprávať
         upload_document: Nahrať dokument
@@ -2511,17 +2551,19 @@ sk:
         chat_title: Súhrn štatistík chatu
         file_title: Prehľady nahraných dokumentov
         gap_report_title: Analýza správy o medzerách v zručnostiach
-        hint: ak áno, vytvoríme vaše IDP, inak môžete svoje odpovede prevziať znova
-        title: Ste spokojní s výsledkami?
+        hint: S vaším dovolením, ak poviete áno, môžem pre vás vytvoriť plán rozvoja. Ak nie, môžete chat reštartovať alebo nahrať nový súbor.
+        title: Ste spokojný s analýzou?
         upload_file: Nahraný súbor
         view_chat: Zobraziť chat
       upload:
-        description: Kliknutím alebo presunutím súborov do tejto oblasti nahrajte
+        description: 'Podporovaný typ súboru: PDF dokumenty až do %{maxFileSize}MB'
         drop: Presuňte súbor sem
-        title: Vkladať
+        title: Kliknite alebo položte súbor sem
       welcome:
         text: Ste pripravení zmapovať svoj rast? Začnime!
         title: Dobrý deň, som váš asistent rozvoja
+    approval_note: Poznámka k schváleniu
+    approve_plan: Schváliť plán
     behavioral: Behaviorálne
     board: Doska
     change_history: História zmien
@@ -2622,12 +2664,14 @@ sk:
       mark_as_complete: Označiť ako dokončené
       no_development_actions: Žiadne rozvojové akcie
       on_the_job: V práci
+      one: "[SK] 1"
       other: Iný
       private: Súkromný
       publish_plan: Plán publikovania
       remove: Odstrániť
       save_plan: Uložiť plán
       search_development_actions: Akcie vývoja vyhľadávania
+      selected_count: "%{count} vybraný"
       show_development_action_information: Zobraziť informácie o vývojových akciách
       skill: Schopnosť
       sprint: Šprint
@@ -2636,7 +2680,9 @@ sk:
       structured_learning_label: Kolaboratívne učenie
       submit_plan: Odoslať plán
       success: Úspešne ukončené rozvojové akcie
+      three: "[SK] 3"
       toggle_skill_privacy: Prepnúť súkromie zručností
+      two: "[SK] 2"
       write_here: Napíšte sem...
     direct_reportee_details: Podrobnosti o priamych hlásiteľoch
     download:
@@ -2647,6 +2693,7 @@ sk:
     edit_progress: Upraviť pokrok
     fetching_skill_gap_report: Správa o medzerách v zručnostiach...
     go_to_previous_step: Prejsť na predchádzajúci krok
+    go_to_reportee_plan: Prejdite na podrobnosti o pláne reportéra
     history:
       added_da:
         one: Pridaná vývojová akcia
@@ -2696,19 +2743,23 @@ sk:
         categories: Kategórie
       save_skills: Uložiť zručnosti
     new_comments: Nové komentáre
+    no_plan_changes_found: Od tvojej poslednej kontroly neboli v pláne vykonané žiadne úpravy.
     no_skills_added: Zatiaľ nemáte pridané žiadne schopnosti.
     no_skills_added_by_reportee: Hlásiteľ zatiaľ nepridal žiadne zručnosti.
     pdf:
       approval_status: Stav schválenia
       cover:
         fields:
+          approval_date: Dátum schválenia
           assigned_data: Pridelený dátum
           assigned_date: Pridelený dátum
           completion_date: Dátum dokončenia
+          current_job_role: Súčasná pracovná pozícia
           division: Delenie
           name: Meno
           publish_date: Dátum zverejnenia
           review_date: Dátum revízie
+          target_job_role: Cieľová pracovná pozícia
       guidelines:
         cards:
           c1:
@@ -2786,8 +2837,12 @@ sk:
         approved: Skontrolované a schválené
         completed: Dokončený
         draft: Návrh
+        in_progress: Vo vývoji
+        in_review: V recenzii
         not_reviewed: Nerecenzované
+        not_started: Nezačal
         pending_approval: V recenzii
+        rejected: Zamietnuté
       summary:
         ai_count: Generatívna umelá inteligencia
         collaborative_learn: Kolaboratívne učenie
@@ -2809,6 +2864,7 @@ sk:
     plan_submitted_for_manager_approval: Váš individuálny plán rozvoja bol predložený na schválenie manažérom.
     private: Súkromný
     public: Verejnosť
+    reason_for_rejection: Dôvod odmietnutia
     reflective_questions:
       already_completed: IDP už bol dokončený, teraz nemôžete odpovedať na otázky.
       answer: Odpoveď
@@ -2821,7 +2877,9 @@ sk:
         max_words: Odpoveď umožňuje maximálne %{count} slov
         min_words: Odpoveď vyžaduje aspoň %{count} slov
         required: Odpoveď na otázku je povinná
+      max_word_limit: Musí to byť najviac %{max} slov
       max_words: Maximálny počet slov
+      min_word_limit: Musí to byť aspoň %{min} slov
       min_words: Minimálne slová
       no_answer_provided: Zatiaľ nebola poskytnutá žiadna odpoveď
       no_reflective_questions: Žiadne reflexné otázky
@@ -2834,6 +2892,7 @@ sk:
       updated_successfully: Vaše odpovede boli úspešne aktualizované
       word_limit: Musí byť medzi %{min} a %{max} slovami
       words: Slová
+    reject_plan: Plán odmietnuť
     remove_skill: Odstrániť zručnosť
     remove_skill_from_plan: Odstránenie %{name} zručností z plánu
     removed_development_action: Odstránená vývojová akcia
@@ -2854,6 +2913,7 @@ sk:
     summary_logs: Súhrnné denníky pre %{reporteeName}
     technical: Technické
     user_idp_status:
+      ai_assisted_idp_in_progress: AI asistovaný IDP v procese
       approved: Schválený
       completed: Dokončený
       completion_not_started: Dokončenie sa nezačalo
@@ -2973,6 +3033,7 @@ sk:
     usage_overview: Zobrazenie využitia licencie
     usages: Zvyklostiam
   licenses:
+    client_usage: Použitie na klientovi
     enabled: Povolené
     end_date: Dátum ukončenia
     not_enough_idp_license: Nedostatok licencií IDP, kontaktujte správcu
@@ -2981,6 +3042,10 @@ sk:
     not_enough_proctoring_credits: Nedostatok kreditov na začatie proctoringovej relácie
     number: Číslo
     overuse_number: Povolenie na nadmerné používanie
+    project_limit_reached: Dosiahnutý limit použitia pre '%{license_name}', kontaktujte prosím administrátora
+    project_specific: Špecifické pre projekt
+    project_specific_license: Špecifická licencia pre projekt
+    project_usage: Využitie projektu
     report_family: Balík zostáv
     start_date: Dátum začiatku
     title: Licencia
@@ -2992,6 +3057,34 @@ sk:
       threesixty: Trišesťdesiat
     used_number: Použité licencie
     used_out_of: "%{used} z %{total}"
+  lti:
+    oidc_auth_form:
+      errors:
+        client_id:
+          blank: Vyžaduje sa identifikácia klienta
+          invalid: ID klienta sa nezhoduje s registrovaným identifikátorom nástroja
+          validation_failed: Overenie ID klienta zlyhalo
+        login_hint:
+          assessment_completed: Používateľské hodnotenie je už dokončené
+          blank: Je potrebná nápoveda na prihlásenie
+          invalid_user_assessment: Nápoveda na prihlásenie neodkazuje na platné hodnotenie používateľa
+        lti_deployment_id:
+          not_found: ID nasadenia neodkazuje na platnú integráciu
+        nonce:
+          blank: Nonce je povinné
+        redirect_uri:
+          blank: Presmerovanie URI je potrebné
+          has_fragment: URI presmerovania nesmie obsahovať fragment
+          https_required: Presmerovanie URI musí v produkcii používať HTTPS
+          invalid_format: URI presmerovania musí byť platným formátom URI
+          missing_host: URI presmerovania musí obsahovať hostiteľa
+          scheme_not_allowed: URI presmerovania musí používať protokol HTTP alebo HTTPS
+        response_type:
+          blank: Vyžaduje sa typ reakcie
+          invalid: Typ odpovede musí byť 'id_token'
+        scope:
+          blank: Rozsah je potrebný
+          invalid: Rozsah musí byť "openid"
   mailer:
     copyright:
       text: Lighthouse. Všetky práva vyhradené
@@ -3237,10 +3330,12 @@ sk:
         pearson: Pearson
         saville: Saville
         skillvue: Skillvue
+        yoodli: Yoodli
     form:
       load_from_mettl: Načítajte od spoločnosti Mettl
       load_from_pearson: Náklad od Pearson
       load_from_skillvue: Načítať z aplikácie Skillvue
+      load_from_yoodli: Náklad z Yoodli
       none_external: Žiadne – použitie zostavovača zostáv
     language: Jazyk zostavy
     language_updated: Jazyk hlásenia bol úspešne aktualizovaný
@@ -3728,17 +3823,13 @@ sk:
       on_hold: Na počkanie
       prepared: Hotovo
       released: Uvoľnené
-    statuses:
-      completed: Dokončené
-      declined: Odmietnuté
-      denied: Odmietnuté
-      done: Hotovo
-      not_completed: Nie je dokončené
-      waiting: Čakanie
   threesixty:
     accept_privacy_modal:
+      accept: Prijať
+      checkbox: Kliknutím na toto políčko súhlasíte, že ste si prečítali naše oznámenie o ochrane súkromia týkajúcom sa zhromažďovania a spracovania vašich osobných údajov, ako je tam popísané, vrátane medzinárodného prenosu vašich osobných údajov.
       checkbox_with_client_link: Kliknutím na toto políčko súhlasíte s tým, že ste si prečítali naše oznámenie o ochrane osobných údajov a oznámenie o ochrane osobných údajov nášho klienta a súhlasíte so zhromažďovaním a spracovaním vašich osobných údajov, ako je v nich uvedené, vrátane medzinárodného prenosu vašich osobných údajov.
       privacy_notice: Oznámenie o ochrane osobných údajov
+      title: Súhlas so spracovaním a prenosom osobných údajov
     action: Akcia
     add: Pridať
     and: A

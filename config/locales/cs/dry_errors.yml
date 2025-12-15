@@ -64,6 +64,10 @@ cs:
         validates_admins: Správci nemají ke kampani přístup.
       report_families_reports:
         report_exists: Tato zpráva je již součástí balíčku zpráv
+      saml_service_provider:
+        invalid_url: 'Neplatný formát URL: %{url}'
+        must_be_array: Musí to být pole
+        must_not_be_empty: Nemůže být prázdný
       size?: velikost by měla být menší než %{size}
       skill:
         already_added: Dovednost se stejným jménem již byla přidána.
@@ -94,6 +98,7 @@ cs:
         unique_name: Filtr se stejným názvem již existuje.
       workshop_invited_subject_create:
         already_exists: Předmět již ve výzvě existuje.
+        part_of_other_workshop_invite: Subjekt je již pozván na '%{workshop_invite_name}'.
       workshop_subject_create:
         already_exists: Předmět již v tomto středisku hodnocení existuje.
         part_of_other_workshop: Subjekt je již účastníkem '%{workshop_name}'.

@@ -64,6 +64,10 @@ sr-Latn:
         validates_admins: Administratori nemaju pristup kampanji.
       report_families_reports:
         report_exists: Ovaj izveštaj je već deo paketa izveštaja
+      saml_service_provider:
+        invalid_url: 'Neispravan format URL-a: %{url}'
+        must_be_array: Mora da je niz
+        must_not_be_empty: Ne može biti prazan
       size?: Veličina bi trebalo da bude manja %{size}
       skill:
         already_added: Veština sa istim imenom je već dodata.
@@ -94,6 +98,7 @@ sr-Latn:
         unique_name: Filter sa istim imenom već postoji.
       workshop_invited_subject_create:
         already_exists: Subjekat već postoji u pozivu.
+        part_of_other_workshop_invite: Subjekat je već pozvan na '%{workshop_invite_name}'.
       workshop_subject_create:
         already_exists: Subjekat već postoji u ovom Centru za procenu.
         part_of_other_workshop: Subjekat je već učesnik '%{workshop_name}'.

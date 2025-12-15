@@ -66,6 +66,9 @@ export const SkillsGroupCard: FC<Props> = ({
     onRemoveSkill(id)
   }
 
+  const selectedInPlanSkills = selectedSkills.filter(skill => skill.skillType === skillType.skillType
+    && skill.changeStatus !== PlanChangeStatus.REMOVED)
+
   return (
     <>
       <Flex gap={4}>
@@ -99,8 +102,7 @@ export const SkillsGroupCard: FC<Props> = ({
         gap={4}
         wrap
       >
-        {selectedSkills.filter(skill => skill.skillType === skillType.skillType
-        && skill.changeStatus !== PlanChangeStatus.REMOVED).map(skill => (
+        {selectedInPlanSkills.map(skill => (
           <div
             className={cs(styles.skillBtn)}
             key={skill.id}
@@ -141,9 +143,7 @@ export const SkillsGroupCard: FC<Props> = ({
             value={null}
           >
             {searchResults
-              .filter(result => !includes(selectedSkills.filter(skill => skill.skillType === skillType.skillType
-                 && skill.changeStatus !== PlanChangeStatus.REMOVED)
-                .map(skill => Number(skill.skillId)), Number(result.id)))
+              .filter(result => !includes(selectedInPlanSkills.map(skill => Number(skill.skillId)), Number(result.id)))
               .map(({ id, name }) => (
                 <Select.Option
                   key={id}
@@ -171,12 +171,12 @@ export const SkillsGroupCard: FC<Props> = ({
             role="button"
             tabIndex={0}
             className={cs(styles.skillBtn,
-              includes(selectedSkills.map(s => Number(s.skillId)),
+              includes(selectedInPlanSkills.map(s => Number(s.skillId)),
                 Number(skill.id)) ? styles.skillBtnSuggestionSelected
                 : styles.skillBtnSuggestion)}
             key={skill.id}
             onClick={() => {
-              if (includes(selectedSkills.map(s => Number(s.skillId)), Number(skill.id))) {
+              if (includes(selectedInPlanSkills.map(s => Number(s.skillId)), Number(skill.id))) {
                 onRemoveSkill(Number(skill.id))
                 return
               }
@@ -184,7 +184,7 @@ export const SkillsGroupCard: FC<Props> = ({
             }}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
-                if (includes(selectedSkills.map(s => Number(s.skillId)), Number(skill.id))) {
+                if (includes(selectedInPlanSkills.map(s => Number(s.skillId)), Number(skill.id))) {
                   onRemoveSkill(Number(skill.id))
                   return
                 }
@@ -192,7 +192,7 @@ export const SkillsGroupCard: FC<Props> = ({
               }
             }}
           >
-            {includes(selectedSkills.map(s => Number(s.skillId)), Number(skill.id))
+            {includes(selectedInPlanSkills.map(s => Number(s.skillId)), Number(skill.id))
 
               ? (
                 <CheckCircleOutlined className="me-2" />

@@ -38,6 +38,7 @@ type AddSkillsStepProps = {
   next?: ()=>void
   isSkillsLoading?:boolean
   allowSkillDeletion?:boolean
+  header?: React.ReactNode
 }
 
 const { I18n } = window
@@ -52,13 +53,14 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
   prev, next,
   isSkillsLoading = false,
   allowSkillDeletion = true,
+  header,
 }) => {
   const { isMobile } = useContext(MediaQueryContext)
   const location = useLocation()
   const isStepsRoute = location.pathname.includes('idp/steps') || location.pathname.includes('step/')
   // redux stores user_idp_skills which doesn't have same id as of skills resource
   // Using name instead of id as name is also unique
-  const selectedSkillsNames = selectedSkills.map(({ name }) => name)
+  const selectedSkillsNames = selectedSkills.filter(skill => !skill.deletedAt).map(({ name }) => name)
   const initialSelectedSkillsNames = useMemo(() => selectedSkillsNames, [])
 
   const isSelectedSkillsDirty = !isEqual(initialSelectedSkillsNames.sort(), selectedSkillsNames.sort())
@@ -83,6 +85,7 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
           </Typography.Title>
         </Space>
         <Flex gap={8} vertical={isMobile} justify="end" align="end">
+          {header}
           {skillGapReportAvailable && (
             <Spin spinning={isSkillGapReportLoading}>
               <DownloadButton

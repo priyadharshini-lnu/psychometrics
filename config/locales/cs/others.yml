@@ -55,6 +55,17 @@ cs:
               blank: ID svazku hlášení nemůže být prázdné
             report_id:
               blank: ID zprávy nemůže být prázdné
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: AI asistent s ID '%{id}' se nenachází v řadě %{index}
+              blank: Sloupec '%{entity}' nesmí být prázdný v řádku %{index}
+              duplicate_code: Duplikát kódu '%{code}' v řádku %{index}
+              invalid_code_format: Neplatný formát kódu '%{code}' v řádku %{index}
+              max_limit_reached: Celkový počet AI artefaktů kampaně překračuje maximální limit %{count}
+              missing_headers: 'Chybějící povinné hlavičky: %{headers}'
+            file:
+              invalid_format: Prosím, nahrajte CSV soubor
         campaign_factor_import_form:
           attributes:
             file:
@@ -232,6 +243,19 @@ cs:
               contains_repeats: Heslo se nesmí opakovat
               too_short: Heslo je příliš krátké. Je vyžadován minimální počet znaků %{count}
               too_weak: 'Heslo musí obsahovat: minimálně 1 malé písmeno, 1 velké písmeno, 1 číslo a 1 speciální znak.'
+        project_license:
+          attributes:
+            base:
+              exceeds_available: Nemohu přidělit víc než dostupné licence
+            license_id:
+              already_present: již je na tomto projektu přítomen
+            usage_limit:
+              cant_be_less_than_used: nelze nastavit pod aktuální počet použití %{used_count}
+              cant_be_more_than_available: Nesmí být vyšší než dostupný limit licence (%{usage_limit})
+              exceeds_available: Nemůže být víc než dostupné licence
+              less_than_used_number: Nesmí být menší než počet použitých licencí
+            used_number:
+              overused: Nemůže to být víc než dostupné licence.
         questions_import_block_form:
           attributes:
             name:
@@ -422,6 +446,10 @@ cs:
               inclusion: musí být boolean
             start_date_time:
               invalid_datetime: je neplatný
+        yoodli:
+          attributes:
+            name:
+              not_unique: Tato integrace je již v tomto projektu přítomna.
   activerecord:
     attributes:
       administration/assessments/assign_form:
@@ -452,6 +480,7 @@ cs:
           simulation: Simulace
           skillvue: Dovednost
           threesixty: kampaň 360
+          yoodli: Yoodli
         category: Kategorie
         created_at: Datum vytvoření
         description: Popis
@@ -469,6 +498,7 @@ cs:
           saville: Hodnocení Saville
           simulation: Posouzení simulace
           skillvue: Hodnocení dovedností
+          yoodli: Yoodliho hodnocení
         updated_at: Datum úpravy
       assign:
         completed_at: Datum dokončení
@@ -836,6 +866,7 @@ cs:
         data_report_export: Export datové zprávy
         export_admin_with_permissions: Export správce s oprávněními
         export_assessment_questions: Otázky pro posouzení vývozu
+        export_campaign_ai_artifacts: AI artefakty exportní kampaně
         export_campaign_factors: Faktory vývozní kampaně
         export_campaign_scorings: Výběry pro exportní kampaně
         export_dashboard_as_file: Exportovat řídicí panel jako soubor
@@ -857,16 +888,19 @@ cs:
         export_user_report_events: Export událostí uživatelských zpráv
         export_users: Export uživatelů kampaně
         external_assessment_export: Export externích výsledků
+        generate_embedding_skills: Generování vkládání pro dovednosti
         import_accesssheet: Importovat Accessheet
         import_assessment_questions: Otázky pro posouzení importu
         import_assessment_translations: Import překladů hodnocení
         import_assessors: Posuzovatelé dovozu
+        import_campaign_ai_artifacts: AI artefakty importních kampaní
         import_campaign_factors: Faktory importní kampaně
         import_datasheet: Import datového listu
         import_development_action_translations: Dovoz Vývoj Akce Překlady
         import_development_actions: Import vývojových akcí
         import_dimension_from_json: Import rozměru z JSON
         import_external_campaign_scoring: Importování externího bodování kampaní
+        import_external_scoring_data: Importovat externí skórovací data
         import_factor_translations: Překlady importních faktorů
         import_factors: Faktory dovozu
         import_interview_questions: Importovat otázky k pohovoru
@@ -1028,6 +1062,7 @@ cs:
         saville_assessment_name: Hodnocení Saville Název
         simulation_assessment_name: Hodnocení simulace Název
         skillvue_assessment_name: Název hodnocení Skillvue
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: Přeloženo
     create: Vytvořit
     dashboard: Přístrojová deska
@@ -1069,6 +1104,7 @@ cs:
         simulation: Simulace
         skillvue: Skillvue
         threesixty: kampaň 360
+        yoodli: Yoodli
       status:
         finished: Dokončeno
         in_progress: Probíhá
@@ -1081,6 +1117,7 @@ cs:
         saville: Hodnocení Saville
         simulation: Hodnocení simulací
         skillvue: Hodnocení dovedností
+        yoodli: Yoodliho hodnocení
     flow:
       end_assessment_modal:
         custom_message: Vlastní zpráva o ukončení hodnocení
@@ -1614,8 +1651,6 @@ cs:
       report: Nahlásit
       report_bundle_placeholder: Výběr svazku sestav
     messages:
-      bulk_download_error: Hromadné stahování je omezeno na 1000 souborů zpráv. Pokud jste vybrali mnoho jazyků, snižte je.
-      bulk_download_no_reports: Nebyly nalezeny žádné zprávy. Před stažením si prosím vygenerujte zprávy.
       bulk_download_successful: Úloha hromadného stahování sestav byla úspěšně naplánována
       export_report_data_scheduled: Úloha exportu dat sestavy byla úspěšně naplánována
     modals:
@@ -1784,6 +1819,7 @@ cs:
       go_back: Vrať se
       import: Import
       insert: Vložte
+      'no': Ne
       ok: OK
       publish: Zveřejnit
       reject: Odmítat
@@ -1810,6 +1846,7 @@ cs:
       view: Zobrazit
       view_all_tasks: Zobrazit všechny úkoly
       view_detail: Zobrazit detail
+      'yes': Ano
     column:
       action: Akce
       active: Aktivní
@@ -2355,6 +2392,7 @@ cs:
     error_warning: Ups, něco se při hodnocení pokazilo. Kontaktujte prosím podporu.
     hogan:
       cannot_start: Hodnocení hogana nyní nelze spustit. Zkuste to prosím po několika minutách.
+    lighthouse_app: Maják Mercer
     login: Přihlášení
     maintenance:
       notification: Lighthouse bude za 60 sekund odstaven z důvodu plánované údržby
@@ -2456,6 +2494,8 @@ cs:
   idp:
     actions: Akce
     add_comments: Přidat komentáře
+    add_note: Přidat poznámku...
+    add_reason: Přidejte důvod...
     added_development_action: Přidána vývojová akce
     ai:
       assistant:
@@ -2473,8 +2513,8 @@ cs:
       reset_chat: Obnovit chat
       reset_confirmation: Opravdu chcete tento chat zahodit a začít nový?
       retake_steps:
-        chat_hint: Dejte mi vědět, jaké informace chcete poskytnout níže?
-        chat_title: Chcete poskytnout více informací?
+        chat_hint: Můžete nahrát nový soubor nebo znovu spustit chat, abyste sdíleli více detailů, a já se budu snažit vám pomoci.
+        chat_title: Je mi líto, že počáteční analýza nesplnila tvá očekávání.
         start_chat: Zahájit chat
         start_chat_again: Zahájit chat znovu
         upload_document: Nahrát dokument
@@ -2500,17 +2540,19 @@ cs:
         chat_title: Souhrn funkce Chat Insight
         file_title: Nahrané dokumenty Insights
         gap_report_title: Analýza zpráv o mezerách v dovednostech
-        hint: pokud ano, vytvoříme vašeho IDP, jinak si můžete své odpovědi vzít znovu
-        title: Jste spokojeni s výsledky?
+        hint: S vaším svolením, pokud řeknete ano, mohu pro vás vytvořit plán rozvoje. Pokud ne, můžete chat restartovat nebo nahrát nový soubor.
+        title: Jste spokojeni s analýzou?
         upload_file: Nahraný soubor
         view_chat: Zobrazit chat
       upload:
-        description: Kliknutím nebo přetažením souborů do této oblasti je nahrajte
+        description: 'Podporovaný typ souboru: PDF dokumenty až do %{maxFileSize}MB'
         drop: Sem přetáhněte soubor
-        title: Vkládat
+        title: Klikněte nebo položte soubor zde
       welcome:
         text: Jste připraveni zmapovat svou cestu růstu? Začněme!
         title: Dobrý den, jsem Váš asistent vývoje
+    approval_note: Poznámka ke schválení
+    approve_plan: Schválit plán
     behavioral: Chování
     board: Přehled
     change_history: Historie změn
@@ -2611,12 +2653,14 @@ cs:
       mark_as_complete: Označit jako dokončené
       no_development_actions: Žádné rozvojové akce
       on_the_job: Při práci
+      one: "[CS] 1"
       other: Jiné
       private: Soukromé
       publish_plan: Publikovat plán
       remove: Odstranit
       save_plan: Plán úspor
       search_development_actions: Vyhledávání vývojových akcí
+      selected_count: "%{count} vybrán"
       show_development_action_information: Zobrazit informace o vývojových akcích
       skill: Dovednost
       sprint: Sprint
@@ -2625,7 +2669,9 @@ cs:
       structured_learning_label: Kolaborativní učení
       submit_plan: Odeslat plán
       success: Vývojářské akce byly úspěšně dokončeny
+      three: "[CS] 3"
       toggle_skill_privacy: Toggle Skill Ochrana osobních údajů
+      two: "[CS] 2"
       write_here: Pište zde...
     direct_reportee_details: Detail přímých reportérů
     download:
@@ -2636,6 +2682,7 @@ cs:
     edit_progress: Upravit pokrok
     fetching_skill_gap_report: Zpráva o načítání mezer v dovednostech...
     go_to_previous_step: Přejít na předchozí krok
+    go_to_reportee_plan: Přejděte na podrobnosti o plánu reportee
     history:
       added_da:
         one: Přidána vývojová akce
@@ -2685,19 +2732,23 @@ cs:
         categories: Kategorie
       save_skills: Uložit dovednosti
     new_comments: Nové komentáře(e)
+    no_plan_changes_found: Od tvé poslední kontroly nebyly v plánu provedeny žádné úpravy.
     no_skills_added: Zatím nemáte přidané žádné dovednosti.
     no_skills_added_by_reportee: Reportee ještě nepřidal žádné dovednosti.
     pdf:
       approval_status: Stav schválení
       cover:
         fields:
+          approval_date: Datum schválení
           assigned_data: Datum přiřazení
           assigned_date: Přidělené datum
           completion_date: Datum dokončení
+          current_job_role: Současná pracovní pozice
           division: Oddělení
           name: Jméno
           publish_date: Datum publikace
           review_date: Datum kontroly
+          target_job_role: Cílová pracovní pozice
       guidelines:
         cards:
           c1:
@@ -2775,8 +2826,12 @@ cs:
         approved: Zkontrolováno a schváleno
         completed: Dokončeno
         draft: Návrh
+        in_progress: Ve vývoji
+        in_review: V recenzi
         not_reviewed: Nezkontrolováno
+        not_started: Nezačalo
         pending_approval: V kontrole
+        rejected: Odmítnutý
       summary:
         ai_count: Generativní AI
         collaborative_learn: Kolaborativní učení
@@ -2798,6 +2853,7 @@ cs:
     plan_submitted_for_manager_approval: Váš individuální plán rozvoje byl předložen ke schválení manažerovi.
     private: Soukromý
     public: Veřejný
+    reason_for_rejection: Důvod zamítnutí
     reflective_questions:
       already_completed: IDP již byl dokončen, nyní nemůžete na otázky odpovídat.
       answer: Odpověď
@@ -2810,7 +2866,9 @@ cs:
         max_words: Odpověď umožňuje maximálně %{count} slov
         min_words: Odpověď vyžaduje alespoň %{count} slov
         required: Odpověď na otázku je nutná
+      max_word_limit: Musí to být maximálně %{max} slov
       max_words: Maximální počet slov
+      min_word_limit: Musí to být alespoň %{min} slov
       min_words: Min. slov
       no_answer_provided: Zatím nebyla poskytnuta žádná odpověď
       no_reflective_questions: Žádné reflektivní otázky
@@ -2823,6 +2881,7 @@ cs:
       updated_successfully: Vaše odpovědi byly úspěšně aktualizovány
       word_limit: Musí být mezi %{min} a %{max} slovy
       words: Slova
+    reject_plan: Odmítnout plán
     remove_skill: Odebrat dovednost
     remove_skill_from_plan: Odebrání %{name} dovedností z plánu
     removed_development_action: Odebrána vývojová akce
@@ -2843,6 +2902,7 @@ cs:
     summary_logs: Souhrnné protokoly pro %{reporteeName}
     technical: Technická stránka
     user_idp_status:
+      ai_assisted_idp_in_progress: Postup s pomocí AI-podporovaného vnitřně vysídleného osobního vysídlení
       approved: Schváleno
       completed: Hotový
       completion_not_started: Kompletace nebyla zahájena
@@ -2962,6 +3022,7 @@ cs:
     usage_overview: Zobrazení použití licence
     usages: Použití
   licenses:
+    client_usage: Použití klientem
     enabled: Povoleno
     end_date: Datum ukončení
     not_enough_idp_license: Není dostatek licencí IDP, kontaktujte správce
@@ -2970,6 +3031,10 @@ cs:
     not_enough_proctoring_credits: Nedostatek kreditů pro zahájení proctoringu
     number: Číslo
     overuse_number: Příspěvek na nadměrné použití
+    project_limit_reached: Dosažený limit použití pro '%{license_name}', kontaktujte prosím administrátora
+    project_specific: Specifické pro projekt
+    project_specific_license: Specifická licence pro projekt
+    project_usage: Využití projektu
     report_family: Svazek zpráv
     start_date: Datum zahájení
     title: Licence
@@ -2981,6 +3046,34 @@ cs:
       threesixty: Threesixty
     used_number: Použité licence
     used_out_of: "%{used} z %{total}"
+  lti:
+    oidc_auth_form:
+      errors:
+        client_id:
+          blank: Je vyžadováno ID klienta
+          invalid: ID klienta neodpovídá registrovanému identifikátoru nástroje
+          validation_failed: Ověření ID klienta selhalo
+        login_hint:
+          assessment_completed: Uživatelské hodnocení je již dokončeno
+          blank: Je potřeba nápověda k přihlášení
+          invalid_user_assessment: Nápověda k přihlášení neodkazuje na platné uživatelské hodnocení
+        lti_deployment_id:
+          not_found: ID nasazení neodkazuje na platnou integraci
+        nonce:
+          blank: Nonce je povinné
+        redirect_uri:
+          blank: Je vyžadováno URI přesměrování
+          has_fragment: URI přesměrování nesmí obsahovat fragment
+          https_required: URI přesměrování musí v produkci používat HTTPS
+          invalid_format: Přesměrování URI musí být platný formát URI
+          missing_host: URI přesměrování musí obsahovat hostitele
+          scheme_not_allowed: URI přesměrování musí používat protokol HTTP nebo HTTPS
+        response_type:
+          blank: Je vyžadován typ odpovědi
+          invalid: Typ odpovědi musí být 'id_token'
+        scope:
+          blank: Rozsah je vyžadován
+          invalid: Rozsah musí být 'openid'
   mailer:
     copyright:
       text: Maják. Všechna práva vyhrazena
@@ -3226,10 +3319,12 @@ cs:
         pearson: Pearson
         saville: Saville
         skillvue: Skillvue
+        yoodli: Yoodli
     form:
       load_from_mettl: Zatížení od Mettl
       load_from_pearson: Zatížení od společnosti Pearson
       load_from_skillvue: Zatížení od Skillvue
+      load_from_yoodli: Náklad z Yoodli
       none_external: Žádné - Použijte nástroj pro tvorbu sestav
     language: Jazyk zprávy
     language_updated: Jazyk sestavy byl úspěšně aktualizován
@@ -3717,13 +3812,6 @@ cs:
       on_hold: Pozastaveno
       prepared: Hotovo
       released: Uvolněno
-    statuses:
-      completed: Dokončeno
-      declined: Odmítnuto
-      denied: Zamítnuto
-      done: Hotovo
-      not_completed: Nedokončeno
-      waiting: Čekání
   threesixty:
     accept_privacy_modal:
       accept: Přijmout

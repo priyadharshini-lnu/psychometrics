@@ -95,6 +95,12 @@ sk:
           title: Potvrdiť
       permissions:
         labels:
+          aiArtifacts:
+            export: Vývoz
+            import: Import
+            manage: Ovládať
+            title: Artefakty AI
+            view: Pohľad
           apiKeys:
             manage: Ovládať
             title: Kľúče API
@@ -220,9 +226,11 @@ sk:
           projects:
             manage: Ovládať
             manage_admins: Správa správcov
+            manage_licenses: Spravovať licencie
             manage_users: Správa používateľov
             title: Projekty
             view: Pohľad
+            view_licenses: Zobraziť licencie
           questions:
             manage: Ovládať
             title: Otázky
@@ -284,6 +292,11 @@ sk:
             manage: Ovládať
             title: SMS pozvánky
             view: Pohľad
+          userIdpPlans:
+            manage: Ovládať
+            reset: Vynulovanie
+            title: Plány IDP používateľov
+            view: Pohľad
           users:
             reset_password: Obnoviť heslo
             title: Používateľov
@@ -296,6 +309,9 @@ sk:
     ai_artifacts:
       artifact_results: Výsledky artefaktov
       code: Kód
+      export:
+        success_msg: Prebieha export AI artefaktov. Prosím, skontrolujte stav v notifikáciách.
+      export_ai_artifacts: Exportné AI artefakty
       form:
         add_assessment: Pridanie hodnotenia
         ai_assistant: Asistent AI
@@ -320,6 +336,12 @@ sk:
       generated_at_time: Generované v %{time}
       generated_value: Vytvorená hodnota
       id: ID
+      import:
+        download_example_csv: Stiahnite si príklad CSV
+        info_msg: Nahraný súbor bol zaradený do fronty na import. Prosím, skontrolujte stav v notifikáciách.
+      import_action:
+        title: AI artefakty importnej kampane
+      import_ai_artifacts: Import AI artefaktov
       key: Kľúč
       name: Meno
       parsed_dependencies:
@@ -335,6 +357,10 @@ sk:
         settings: Nastavenia
       test_generate: Testovanie generovania
       unsaved_changes: Neuložené zmeny sú prítomné, zvážte odoslanie formulára na vygenerovanie aktualizovanej odpovede z Playground.
+      used_tokens:
+        input_tokens: Vstupné tokeny
+        output_tokens: Výstupné tokeny
+        title: Použitie tokenov
     ai_assistants:
       actions:
         create: Vytvorenie asistenta AI
@@ -872,8 +898,6 @@ sk:
       new:
         header: Hromadné sťahovanie
       reports_unavailable: Momentálne nie sú k dispozícii žiadne správy na stiahnutie. Potvrďte, že správy, ktoré chcete stiahnuť, sú k dispozícii.
-      select_users_for_download: Vyberte aspoň jedného používateľa na stiahnutie prehľadov.
-      select_users_for_regenerate: Vyberte aspoň jedného používateľa na regeneráciu správ.
     cable:
       notification:
         assessment_factors: Faktory sa načítajú
@@ -929,6 +953,17 @@ sk:
         report_update: Správa je aktualizovaná
         scoring_update: Bodovanie je aktualizované
         trash_empty: Kôš Komentár je prázdny
+    campaign_ai_artifacts:
+      export:
+        details: Úspešne exportované AI artefakty kampane
+    campaign_ai_artifacts_import:
+      errors:
+        ai_assistant_not_found: 'AI Assistant nenájdený pre ID: %{id}'
+        campaign_factor_not_found: Kampaňový faktor s kódom "%{code}" sa v tejto kampani nenachádza
+        dependency_not_found: Závislostný %{type} s ID %{id} nenájdený
+        file_required: Na import je potrebný súbor
+        save_failed: 'Nepodarilo sa mi zachrániť AI artefakt "%{code}": %{message}'
+        sheet_column_not_found: Stĺpec listu s názvom "%{name}", ktorý sa nenachádza v datasheetoch kampane alebo projektu
     campaign_factor_import:
       errors:
         assessment_not_found_in_campaign: Identifikátor hodnotenia %{assessment_id} sa v kampani nenašiel
@@ -1240,6 +1275,7 @@ sk:
         archived: Archivované
         disable: Archív
         enable: Zrušiť archiváciu
+      clients: Klientov
       copy:
         successfully: Klientsky nájom "%{name}" bol úspešne skopírovaný.
       create:
@@ -2259,6 +2295,10 @@ sk:
           accesssheet_manage: Správa prístupového hárka
           accesssheet_settings: Nastavenia prístupového hárka
           accesssheet_view: Zobrazenie prístupovej hárky
+    header:
+      logout:
+        content: Stlačte Zrušiť, ak chcete pokračovať v práci. Stlačte Ok na odhlásenie aktuálneho používateľa.
+        title: Si si istý, že sa chceš odhlásiť?
     hogan:
       errors:
         new_assessment_response_not_allowed:
@@ -2312,13 +2352,16 @@ sk:
         skills_required_on_publishing: Pred zverejnením šablóny si vyberte zručnosti.
         update: Aktualizácia nie je povolená, pretože šablóna IDP je už priradená k plánu IDP používateľa. Zmeny vzhľadu boli uložené.
       fields:
+        approval_date: Dátum schválenia
         assigned_data: Priradené údaje
         assigned_date: Pridelený dátum
         completion_date: Dátum dokončenia
+        current_job_role: Súčasná pracovná pozícia
         division: Delenie
         name: Meno
         publish_date: Dátum zverejnenia
         review_date: Dátum revízie
+        target_job_role: Cieľová pracovná pozícia
       fields_label: Polia
       global_skills: Globálne zručnosti
       idp: IDP
@@ -2546,6 +2589,13 @@ sk:
         details: Detaily
         name: Názov integrácie
       details:
+        client_id: ID klienta
+        deployment_id: ID nasadenia
+        platform_access_token_url: URL prístupového tokenu platformy
+        platform_authentication_request_url: URL požiadavky na autentifikáciu platformy
+        platform_host_name: Názov hostiteľa platformy
+        platform_id: Identifikácia nástupišťa
+        platform_public_keyset_url: Platforma Public Keyset URL
         provider: Názov poskytovateľa
         webhookUrl: URL adresa webhooku
         webhookUrls: URL adresy webhooku
@@ -2576,11 +2626,16 @@ sk:
         skillvue:
           apiKey: Kľúč API
           apiKeyRequired: Vyžaduje sa kľúč API
+        yoodli:
+          keyset_url: URL keysetu
+          launch_url: Launch URL
+          login_url: Prihlasovacia URL adresa
       names:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
         skillvue: Skillvue
+        yoodli: Yoodli
       validations:
         iiht:
           tenancy_name_present: Nájomný názov je už prítomný v inom projekte
@@ -2740,9 +2795,12 @@ sk:
     navigation:
       audit_logs: Protokoly auditu
       availability: Dostupnosť
+      configuration: Konfigurácia
+      content: Obsah
       dashboard: Tabuľu
       factors: Faktory
       innovation_styles: Štýly inovácií
+      logout: Odhlásenie
       occupations: Povolania
       registration_codes: Registračné kódy
       skills_taxonomy: Taxonómia zručností
@@ -2981,6 +3039,7 @@ sk:
           by_skill_exists_id_missing: 'Riadok %{row_number}: Úroveň odbornosti pre zručnosti "%{name}" už existuje. Ak chcete aktualizovať, uveďte ID.'
           by_skill_missing: 'Riadok %{row_number}: Projekt a zručnosť musia byť prítomné pre typ "by_skill"'
           by_skill_type_exists_id_missing: 'Riadok %{row_number}: Úroveň odbornosti pre typ zručnosti ''''%{skill_type}'''' už existuje. Ak chcete aktualizovať, uveďte ID.'
+          by_skill_type_missing: 'Riadok %{row_number}: Pre typ "by_skill_type" musia byť prítomné projekt a typ zručnosti'
           default_global_exists_id_missing: 'Riadok %{row_number}: Predvolená úroveň ProficiencyLevel na globálnej úrovni už existuje. Ak chcete aktualizovať, uveďte ID.'
           default_project_exists_id_missing: 'Riadok %{row_number}: Predvolená úroveň ProficiencyLevel na úrovni projektu už existuje. Ak chcete aktualizovať, uveďte ID.'
           invalid_csv_format: 'Neplatný formát CSV: %{message}'
@@ -3294,6 +3353,7 @@ sk:
         mask_identity_for_pearson: Údaje o maske pre Pearson
         mask_identity_for_saville: Údaje masky pre Saville
         mask_identity_for_skillvue: Údaje masky pre Skillvue
+        mask_identity_for_yoodli: Údaje o maskách pre Yoodli
         privacy_link: Povoliť prepojenie na ochranu osobných údajov
         privacy_link_label: Prepojenie na ochranu osobných údajov
         privacy_link_placeholder: Zadajte odkaz na ochranu súkromia
@@ -3469,6 +3529,7 @@ sk:
           graph_value: Hodnota grafu
         graph_value_condition_not_supported_msg: Podmienky hodnoty grafu nie sú pre tento typ grafu podporované. Táto možnosť je momentálne dostupná len pre nižšie uvedené typy grafov.
         graph_value_conditions_title: Podmienky hodnoty grafu
+        hide_responses_with_no_data: Skryjte odpovede bez údajov
         if_graph_value_is: 'Ak je hodnota grafu:'
         job_roles:
           current: Aktuálne pracovné faktory
@@ -3488,6 +3549,7 @@ sk:
           and: A
           or: ALEBO
         prevent_value_overlap: Zabránenie prekrývaniu hodnôt
+        randomize_answers_order: Náhodne určiť poradie odpovedí
         skill_type_label: Filtrovať podľa typu zručnosti
         skill_type_placeholder: Vyberte typ zručnosti
         skill_types:
@@ -4109,6 +4171,11 @@ sk:
             missing_columns: 'Chýbajúce povinné stĺpce: %{columns}'
             save_failed: 'Chyba pri spracovaní ID zručnosti %{id}: %{message}'
             skill_not_found: Zručnosť s ID %{id} sa nenašla
+      vector:
+        generate_embedding: Generovanie vkladania
+        generate_embedding_failure_msg: Nepodarilo sa mi zaradiť do fronty na generovanie zručností. Prosím, skúste to znova.
+        generate_embedding_success_msg: Úloha generovania zručností bola úspešne zaradená do fronty. Prosím, skontrolujte stav v notifikáciách.
+        label: Vector DB
     skills_taxonomy:
       tabs:
         job_roles: Pracovné pozície
@@ -4352,8 +4419,13 @@ sk:
         this_question_has_randomization: Táto otázka má randomizáciu
     table:
       entries:
-        selected: Vybraný 1 riadok
-        total: 'Celkom : 1'
+        selected:
+          one: Vybraný 1 riadok
+          other: "{{count}} vybrané riadky"
+        total:
+          one: 'Spolu : 1'
+          other: 'Spolu : {{count}}'
+          zero: 'Spolu : 0'
       more_actions: Ďalšie akcie
     taxonomy:
       import:
@@ -4578,8 +4650,6 @@ sk:
             evaluations_received: Prijaté hodnotenia
             is_subject: Je predmetom
             name: Názov
-            report_status: Stav správy
-            status: Stav
           evaluators:
             add_evaluators: Pridať hodnotiteľov
             import_evaluators: Hodnotitelia dovozu

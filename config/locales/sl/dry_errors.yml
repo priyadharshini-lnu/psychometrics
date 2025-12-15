@@ -64,6 +64,10 @@ sl:
         validates_admins: Skrbniki nimajo dostopa do oglaševalske akcije.
       report_families_reports:
         report_exists: To poročilo je že del svežnja poročil
+      saml_service_provider:
+        invalid_url: 'Neveljaven format URL-ja: %{url}'
+        must_be_array: Mora biti polje
+        must_not_be_empty: Ne more biti prazno
       size?: velikost mora biti manjša %{size}
       skill:
         already_added: Spretnost z istim imenom je že dodana.
@@ -94,6 +98,7 @@ sl:
         unique_name: Filter z istim imenom že obstaja.
       workshop_invited_subject_create:
         already_exists: Subjekt že obstaja v povabilu.
+        part_of_other_workshop_invite: Subjekt je že povabljen na '%{workshop_invite_name}'.
       workshop_subject_create:
         already_exists: Subjekt že obstaja v tem ocenjevalnem centru.
         part_of_other_workshop: Subjekt je že udeleženec '%{workshop_name}'.

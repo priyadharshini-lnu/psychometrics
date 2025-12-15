@@ -95,6 +95,12 @@ ja:
           title: 確認
       permissions:
         labels:
+          aiArtifacts:
+            export: 輸出
+            import: 輸入
+            manage: 取り締まる
+            title: AIアーティファクト
+            view: 眺める
           apiKeys:
             manage: 管理
             title: APIキー
@@ -220,9 +226,11 @@ ja:
           projects:
             manage: 管理
             manage_admins: 管理者の管理
+            manage_licenses: ライセンス管理
             manage_users: ユーザー管理
             title: プロジェクト
             view: 表示
+            view_licenses: ライセンスを見る
           questions:
             manage: 管理
             title: 質問
@@ -284,6 +292,11 @@ ja:
             manage: 管理
             title: SMS招待
             view: 表示
+          userIdpPlans:
+            manage: 取り締まる
+            reset: リセット
+            title: ユーザーIDPプラン
+            view: 眺める
           users:
             reset_password: パスワードのリセット
             title: ユーザー
@@ -296,6 +309,9 @@ ja:
     ai_artifacts:
       artifact_results: アーティファクトの結果
       code: コード
+      export:
+        success_msg: 進行中のAIアーティファクトのエクスポート。通知の状況を確認してください。
+      export_ai_artifacts: AIアーティファクトのエクスポート
       form:
         add_assessment: 評価の追加
         ai_assistant: AIアシスタント
@@ -320,6 +336,12 @@ ja:
       generated_at_time: "%{time}で生成"
       generated_value: 生成された価値
       id: 身分証明書
+      import:
+        download_example_csv: サンプルCSVをダウンロード
+        info_msg: アップロードされたファイルはインポート待ちに入っています。通知の状況を確認してください。
+      import_action:
+        title: キャンペーンAIアーティファクトのインポート
+      import_ai_artifacts: AIアーティファクトのインポート
       key: 鍵
       name: 名前
       parsed_dependencies:
@@ -335,6 +357,10 @@ ja:
         settings: 設定
       test_generate: テスト生成
       unsaved_changes: 未保存の変更が存在する場合は、フォームを送信して Playground から更新された応答を生成することを検討してください。
+      used_tokens:
+        input_tokens: 入力トークン
+        output_tokens: 出力トークン
+        title: トークンの使用
     ai_assistants:
       actions:
         create: AIアシスタントを作る
@@ -872,8 +898,6 @@ ja:
       new:
         header: 一括ダウンロード
       reports_unavailable: 現在、ダウンロード可能なレポートはありません。 ダウンロードしたいレポートがあるかどうかご確認ください。
-      select_users_for_download: レポートをダウンロードするには、少なくとも1人のユーザーを選択してください。
-      select_users_for_regenerate: レポートを再生するには、少なくとも1人のユーザーを選択してください。
     cable:
       notification:
         assessment_factors: 要因の取得
@@ -929,6 +953,17 @@ ja:
         report_update: レポート更新
         scoring_update: 採点が更新される
         trash_empty: ゴミ箱 コメント空
+    campaign_ai_artifacts:
+      export:
+        details: キャンペーンAIアーティファクトのエクスポートが成功
+    campaign_ai_artifacts_import:
+      errors:
+        ai_assistant_not_found: IDでAIアシスタントが見つからない:%{id}
+        campaign_factor_not_found: このキャンペーンには見られないコード「%{code}」のキャンペーンファクター
+        dependency_not_found: ID付きの依存関係%{type} %{id}見つかりません
+        file_required: インポートにはファイルが必要です
+        save_failed: AIアーティファクト「%{code}」の保存に失敗:%{message}
+        sheet_column_not_found: キャンペーンやプロジェクトのデータシートには見られない「%{name}」という名前のシートカラム
     campaign_factor_import:
       errors:
         assessment_not_found_in_campaign: アセスメント ID '%{assessment_id}' がキャンペーンで見つかりません。
@@ -1240,6 +1275,7 @@ ja:
         archived: アーカイブ
         disable: アーカイブ
         enable: アーカイブ解除
+      clients: クライアント
       copy:
         successfully: クライアント・テナンシー '%{name}' が正常にコピーされました。
       create:
@@ -2259,6 +2295,10 @@ ja:
           accesssheet_manage: アクセスシート管理
           accesssheet_settings: アクセスシートの設定
           accesssheet_view: アクセスシートビュー
+    header:
+      logout:
+        content: 作業を続けたい場合はキャンセルを押してください。現在のユーザーをログアウトするにはOKを押してください。
+        title: 本当にログアウトしたいですか?
     hogan:
       errors:
         new_assessment_response_not_allowed:
@@ -2312,13 +2352,16 @@ ja:
         skills_required_on_publishing: テンプレートを公開する前にスキルを選択してください。
         update: IDP テンプレートがすでにユーザ IDP プランに関連付けられているため、更新は許可されません。
       fields:
+        approval_date: 承認日
         assigned_data: 割り当てデータ
         assigned_date: 担当日
         completion_date: 完了日
+        current_job_role: 現在の職務
         division: 部門
         name: 名称
         publish_date: 発行日
         review_date: 審査日
+        target_job_role: ターゲット職種
       fields_label: フィールド
       global_skills: グローバル・スキル
       idp: アイディーピー
@@ -2546,6 +2589,13 @@ ja:
         details: 詳細
         name: 統合名
       details:
+        client_id: クライアントID
+        deployment_id: デプロイメントID
+        platform_access_token_url: プラットフォームアクセストークンURL
+        platform_authentication_request_url: プラットフォーム認証リクエストURL
+        platform_host_name: プラットフォームホスト名
+        platform_id: プラットフォームID
+        platform_public_keyset_url: プラットフォーム公開キーセットURL
         provider: プロバイダー名
         webhookUrl: ウェブフックURL
         webhookUrls: ウェブフックURL
@@ -2576,11 +2626,16 @@ ja:
         skillvue:
           apiKey: APIキー
           apiKeyRequired: APIキーが必要です。
+        yoodli:
+          keyset_url: キーセットURL
+          launch_url: ローンチURL
+          login_url: ログインURL
       names:
         hogan: ホーガン
         iiht: IIHT
         mettl: メトTL
         skillvue: スキルビュー
+        yoodli: ユードリ
       validations:
         iiht:
           tenancy_name_present: テナント名がすでに他のプロジェクトに存在する
@@ -2740,9 +2795,12 @@ ja:
     navigation:
       audit_logs: 監査ログ
       availability: 空室状況
+      configuration: 構成
+      content: コンテンツ
       dashboard: ダッシュボード
       factors: 要因
       innovation_styles: イノベーションのスタイル
+      logout: ログアウト
       occupations: 職業
       registration_codes: 登録コード
       skills_taxonomy: スキル分類法
@@ -3295,6 +3353,7 @@ ja:
         mask_identity_for_pearson: ピアソンのマスクデータ
         mask_identity_for_saville: サヴィルのマスクデータ
         mask_identity_for_skillvue: スキルビューのマスクデータ
+        mask_identity_for_yoodli: Yoodliのマスクデータ
         privacy_link: プライバシー・リンクを有効にする
         privacy_link_label: プライバシー・リンク
         privacy_link_placeholder: プライバシーリンク
@@ -3470,6 +3529,7 @@ ja:
           graph_value: グラフ値
         graph_value_condition_not_supported_msg: グラフ値条件は、このグラフタイプではサポートされていません。このオプションは現在、以下のグラフタイプでのみ使用できます。
         graph_value_conditions_title: グラフ値の条件
+        hide_responses_with_no_data: データなしで回答を非表示にする
         if_graph_value_is: 'グラフ値が次の場合:'
         job_roles:
           current: 現在の仕事の要因
@@ -3489,6 +3549,7 @@ ja:
           and: そして
           or: 又は
         prevent_value_overlap: 値の重複を防ぐ
+        randomize_answers_order: 回答順をランダム化する
         skill_type_label: スキルタイプによるフィルタ
         skill_type_placeholder: スキルの種類を選択
         skill_types:
@@ -4113,6 +4174,11 @@ ja:
             missing_columns: '必要な列がありません: %{columns}.'
             save_failed: 'スキル ID %{id} の処理エラー: %{message}。'
             skill_not_found: ID %{id} を持つスキルが見つかりません。
+      vector:
+        generate_embedding: 埋め込み生成
+        generate_embedding_failure_msg: スキル埋め込み生成ジョブのキューに入れませんでした。もう一度お試しください。
+        generate_embedding_success_msg: スキル埋め込み生成ジョブは成功裏にキューに入りました。通知の状況を確認してください。
+        label: ベクトルDB
     skills_taxonomy:
       tabs:
         job_roles: 仕事の役割
@@ -4592,8 +4658,6 @@ ja:
             evaluations_received: 受けた評価
             is_subject: 対象
             name: 名称
-            report_status: レポート状況
-            status: ステータス
           evaluators:
             add_evaluators: 評価者の追加
             import_evaluators: インポート・エバリュエーター

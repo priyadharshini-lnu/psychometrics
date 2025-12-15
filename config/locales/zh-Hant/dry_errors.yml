@@ -64,6 +64,10 @@ zh-Hant:
         validates_admins: 管理員無權存取活動。
       report_families_reports:
         report_exists: 此報告已是報告套件的一部分
+      saml_service_provider:
+        invalid_url: URL 格式無效：%{url}
+        must_be_array: 一定是陣列
+        must_not_be_empty: 不能是空的
       size?: 大小應小於 %{size}
       skill:
         already_added: 已添加同名技能。
@@ -94,6 +98,7 @@ zh-Hant:
         unique_name: 已存在同名的篩選器。
       workshop_invited_subject_create:
         already_exists: 主題已存在於邀請中。
+        part_of_other_workshop_invite: 受試者已被邀請「%{workshop_invite_name}」。
       workshop_subject_create:
         already_exists: 此評估中心已存在主題。
         part_of_other_workshop: 主題已經是 %{workshop_name} 的參加者。
