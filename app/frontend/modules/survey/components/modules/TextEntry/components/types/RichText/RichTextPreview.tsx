@@ -31,6 +31,7 @@ const RichTextPreview: FC<Props> = ({
     props: {
       predefinedRichText,
       usePredefinedRichText,
+      enhanceWithAIEnabled,
     },
     validation,
   } = model
@@ -57,6 +58,7 @@ const RichTextPreview: FC<Props> = ({
             handleContentChange={value => saveContent(value)}
             readOnly={readOnly}
             ref={ref}
+            enhanceWithAIEnabled={enhanceWithAIEnabled}
             {...characterAndWordLimit(validation)}
           />
         </Col>

@@ -7,6 +7,7 @@ import {
 import _ from 'lodash'
 import { useLocation } from 'react-router-dom'
 import cs from 'classnames'
+import AIToolbar from '~/components/AIToolbar'
 import { useMessageBus } from '~/hooks/useMessageBus'
 import AssessmentContainer from '~/modules/survey/containers/AssessmentContainer'
 import { getProgress } from '~/modules/survey/core/preview/FlowProcessor/selectors'
@@ -181,6 +182,7 @@ const AssessorAssessment: React.FC<Props> = ({
           />
         )}
       </Content>
+      <AIToolbar />
     </Card>
   )
 }

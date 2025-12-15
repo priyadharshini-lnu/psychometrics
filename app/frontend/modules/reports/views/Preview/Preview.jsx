@@ -7,6 +7,7 @@ import Page from './Page'
 import { ModuleOverrides } from './ModuleOverrides'
 import useForceUpdate from '~/hooks/useUpdate'
 import PaginationPage from '~/modules/reports/models/PaginationPage'
+import AIToolbar from '~/components/AIToolbar'
 
 const { I18n } = window
 const applyPagination = (pages, module, pagination) => {
@@ -80,6 +81,7 @@ const Preview = ({
           moduleOverrides={moduleOverrides}
         />
       )}
+      <AIToolbar />
     </div>
   )
 }

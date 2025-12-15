@@ -96,6 +96,7 @@ features:
   disable_meeting_recording: <%= ENV.fetch('DISABLE_MEETING_RECORDING', 'false') == 'true' %>
   digest_emails_enabled: <%= ENV.fetch('DIGEST_EMAILS_ENABLED', 'false') == 'true' %>
   audio_dictation_enabled: <%= ENV.fetch('AUDIO_DICTATION_ENABLED', 'false') == 'true' %>
+  enhance_with_ai_enabled: <%= ENV.fetch('ENHANCE_WITH_AI_ENABLED', 'false') == 'true' %>
   enable_webspellchecker: <%= ENV.fetch('ENABLE_WEBSPELLCHECKER', 'false') == 'true' %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
