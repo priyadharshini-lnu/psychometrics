@@ -52,8 +52,19 @@ export const useInputRect = () => {
       const top = inputRect.top + relativeTop + parseFloat(computed.borderTopWidth) - input.scrollTop
       const left = inputRect.left + relativeLeft + parseFloat(computed.borderLeftWidth) - input.scrollLeft
 
-      // Check if text is visible
-      if (top < inputRect.top || top > inputRect.bottom) return null
+      // Check if calculated position is outside visible input area
+      const isOutsideVertical = top < inputRect.top || top > inputRect.bottom
+      const isOutsideHorizontal = left < inputRect.left || left > inputRect.right
+
+      // If selection is scrolled out of view, position toolbar near the visible input element
+      if (isOutsideVertical || isOutsideHorizontal) {
+        return {
+          top: inputRect.top,
+          left: inputRect.left,
+          width: inputRect.width,
+          height: Math.min(spanRect.height, inputRect.height),
+        }
+      }
 
       return {
         top,

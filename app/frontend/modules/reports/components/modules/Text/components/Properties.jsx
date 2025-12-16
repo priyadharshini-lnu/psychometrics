@@ -379,7 +379,7 @@ const Properties = ({
             <input
               style={{ marginRight: '5px' }}
               type="checkbox"
-              checked={model.props.enhanceWithAIEnabled}
+              checked={model.props.enhanceWithAIEnabled ?? true}
               onChange={changeEnhanceWithAI}
             />
             Enhance with AI

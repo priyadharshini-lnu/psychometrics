@@ -84,12 +84,33 @@ class Assessors::UsersController < Administration::BaseController
     @do_not_render_rails_menu = true
     @init_state ||= {}
     @init_state[:config] = {
-      features: feature_flags
+      features: feature_flags,
+      project: project_flags
     }
     raise NotAuthorizedError unless current_user.is?(:assessor)
   end
 
   private
+
+  def project_flags
+    match = params[:all]&.match(%r{campaigns/(\d+)})
+    return {} unless match
+
+    campaign_id = match[1]
+    campaign = Campaign.
+               includes(project: [:project_feature, { client: :client_feature }]).
+               find_by(id: campaign_id)
+
+    return {} unless campaign&.project
+
+    project = campaign.project
+
+    {
+      enhanceWithAiEnabled:
+        project.client.feature_enabled?(:enhance_with_ai) &&
+          project.project_feature_enabled?(:enhance_with_ai)
+    }
+  end
 
   def set_resource
     @user = user_scope.find(params[:id])

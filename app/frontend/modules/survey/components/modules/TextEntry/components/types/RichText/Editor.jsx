@@ -13,7 +13,7 @@ const { I18n } = window
 
 function Editor ({
   content, handleContentChange, readOnly = false,
-  maxCharacterLimit = null, maxWordLimit = null, enhanceWithAIEnabled = false,
+  maxCharacterLimit = null, maxWordLimit = null, enhanceWithAIEnabled = true,
 }, ref) {
   const [isInitialized, setIsInitialized] = useState(false)
   const showLimitExceededMessageRef = useRef(false)

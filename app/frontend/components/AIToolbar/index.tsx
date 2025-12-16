@@ -117,10 +117,15 @@ const AIToolbar: React.FC<AIToolbarProps> = ({ enabled = true }) => {
       + assistantOutput.result
       + element.value.substring(end)
 
-      element.value = newValue
+      const setter = Object.getOwnPropertyDescriptor(
+        Object.getPrototypeOf(element),
+        'value',
+      )?.set
 
-      const inputEvent = new Event('input', { bubbles: true })
-      element.dispatchEvent(inputEvent)
+      setter?.call(element, newValue)
+
+      element.dispatchEvent(new Event('input', { bubbles: true }))
+      element.dispatchEvent(new Event('change', { bubbles: true }))
 
       const newPos = start + assistantOutput.result.length
       element.setSelectionRange(newPos, newPos)

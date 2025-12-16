@@ -16,6 +16,7 @@ class ClientFeature < ApplicationRecord
     ai_assistants
     ai_assisted_idp
     global_skills
+    enhance_with_ai
     idp
   ].freeze
 

@@ -34,7 +34,7 @@ const MultiLinePreview: FC<Props> = ({
 }) => {
   const {
     props: {
-      type, allowDictation, allowContentCopy: allowContentCopyOnQuestion, enhanceWithAIEnabled,
+      type, allowDictation, allowContentCopy: allowContentCopyOnQuestion, enhanceWithAIEnabled = true,
     },
     id: questionId,
     result,

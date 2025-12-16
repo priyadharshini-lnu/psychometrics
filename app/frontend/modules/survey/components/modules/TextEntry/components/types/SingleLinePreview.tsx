@@ -32,7 +32,7 @@ const SingleLinePreview: FC<Props> = ({
   )
   const {
     result,
-    props: { type, allowContentCopy: allowContentCopyOnQuestion, enhanceWithAIEnabled },
+    props: { type, allowContentCopy: allowContentCopyOnQuestion, enhanceWithAIEnabled = true },
     id: questionId,
   } = model
 

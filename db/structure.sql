@@ -1956,7 +1956,8 @@ CREATE TABLE public.client_features (
     ai_assisted_idp boolean DEFAULT false NOT NULL,
     ai_assistants boolean DEFAULT false NOT NULL,
     global_skills boolean DEFAULT false NOT NULL,
-    idp boolean DEFAULT false NOT NULL
+    idp boolean DEFAULT false NOT NULL,
+    enhance_with_ai boolean DEFAULT false NOT NULL
 );
 
 
@@ -5286,7 +5287,8 @@ CREATE TABLE public.project_features (
     global_skills boolean DEFAULT false NOT NULL,
     idp boolean DEFAULT false NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    enhance_with_ai boolean DEFAULT false NOT NULL
 );
 
 
@@ -19119,6 +19121,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20251215073428'),
 ('20251212100342'),
 ('20251206120622'),
 ('20251201130649'),

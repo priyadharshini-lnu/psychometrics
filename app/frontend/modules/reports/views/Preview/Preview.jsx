@@ -9,7 +9,7 @@ import useForceUpdate from '~/hooks/useUpdate'
 import PaginationPage from '~/modules/reports/models/PaginationPage'
 import AIToolbar from '~/components/AIToolbar'
 
-const { I18n } = window
+const { I18n, __INITIAL_STATE__ } = window
 const applyPagination = (pages, module, pagination) => {
   const page = pages.find(page => page.id === module.page.page.id)
   const index = pages.findIndex(page => page.id === module.page.page.id) + 1
@@ -81,7 +81,7 @@ const Preview = ({
           moduleOverrides={moduleOverrides}
         />
       )}
-      <AIToolbar />
+      <AIToolbar enabled={__INITIAL_STATE__.config.project.enhanceWithAiEnabled} />
     </div>
   )
 }

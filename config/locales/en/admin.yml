@@ -63,8 +63,11 @@ en:
     done: Done
     done_tooltip: No more evaluation can be submitted for this user as this user's evaluation is marked as done by %{marked_by}
     empty_csv_file: CSV file does not contain any data.
+    enable_enhance_with_ai_client_level: Please enable Enhance with AI feature at client level
+    enhance_with_ai_requires_ai_assistants: Enhance with AI requires AI Assistants feature to be enabled
     evaluation_status: Evaluation Status
     evaluation_status_not_done: Evaluation status is not 'Done' for one or more selected subjects. Please ensure all selected users have completed evaluations or mark as done.
+    feature_enhance_with_ai: Enhance with AI
     fill_empty_score_msg: Fill all the final scores before saving.
     final_score_empty_msg: Final score cannot be empty.
     idp_plan_reset_success: Plan has been reset successfully

@@ -38,7 +38,7 @@ export const Properties: FC<Props> = ({ model, showOnlyTranslatable }) => {
 
   const {
     props: {
-      type, allowDictation, dateFormat, enhanceWithAIEnabled,
+      type, allowDictation, dateFormat, enhanceWithAIEnabled = true,
     },
   } = model
 

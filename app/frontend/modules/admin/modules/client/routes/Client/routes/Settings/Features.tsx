@@ -117,12 +117,20 @@ export const Features: React.FC = () => {
                 </Form.Item>
                 {aiAssistants
                   ? (
-                    <Form.Item
-                      name="aiAssistedIdp"
-                      label={I18n.t('administration.client_features.form.ai_assisted_idp')}
-                    >
-                      <Switch />
-                    </Form.Item>
+                    <>
+                      <Form.Item
+                        name="aiAssistedIdp"
+                        label={I18n.t('administration.client_features.form.ai_assisted_idp')}
+                      >
+                        <Switch />
+                      </Form.Item>
+                      <Form.Item
+                        name="enhanceWithAi"
+                        label={I18n.t('admin.feature_enhance_with_ai')}
+                      >
+                        <Switch />
+                      </Form.Item>
+                    </>
                   ) : null
                 }
                 <Form.Item

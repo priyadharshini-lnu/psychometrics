@@ -31,6 +31,7 @@ const connecter = connect((state: RootState) => ({
   assessorForms: getAssessorForms(state.assessors.evaluation),
   preview: state.preview,
   progress: state.preview.initialized && getProgress(state.preview),
+  config: state.config,
 }), {
   fetch: fetchAssessorAssessment,
   updateAssessorAssessmentStatus,
@@ -59,6 +60,7 @@ const AssessorAssessment: React.FC<Props> = ({
   allowMultipleResponses,
   updateAssessorAssessmentStatus,
   validateSession,
+  config,
 }) => {
   const { search } = useLocation()
   const params = new URLSearchParams(search)
@@ -182,7 +184,7 @@ const AssessorAssessment: React.FC<Props> = ({
           />
         )}
       </Content>
-      <AIToolbar />
+      <AIToolbar enabled={config.project.enhanceWithAiEnabled} />
     </Card>
   )
 }

@@ -74,7 +74,7 @@ const OverrideComponent: FC<Props> = ({
   const [selectedModule, setSelectedModule] = useState<number>()
   const [approvingInProgress, setApprovingInProgress] = useState<boolean>(false)
 
-  const { enhanceWithAIEnabled } = module.props
+  const { enhanceWithAIEnabled = true } = module.props
 
   useEffect(() => {
     const el = document.querySelector(`[name=Module_${module.id}]`) as HTMLElement
