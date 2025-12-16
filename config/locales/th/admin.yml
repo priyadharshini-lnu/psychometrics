@@ -96,7 +96,7 @@ th:
     norms: ค่ามาตรฐาน
     not_completed: ยังไม่เสร็จสมบูรณ์
     not_completed_tooltip: "%{completed} ผู้ประเมินได้รับมอบหมาย แต่มีเพียง %{submitted} เท่านั้นที่ทําการประเมินเสร็จสมบูรณ์"
-    nothing_assigned: ไม่มีอะไรมอบหมาย
+    nothing_assigned: ไม่มีการกําหนดผู้ประเมิน
     nothing_assigned_tooltip: ไม่มีการกําหนดการประเมินให้กับผู้ใช้รายนี้
     notification_bell_icon_alt_text: ไอคอนกระดิ่งแจ้งเตือน
     notifications: แจ้ง เตือน

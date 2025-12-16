@@ -96,7 +96,7 @@ ja:
     norms: 規範
     not_completed: 未完成
     not_completed_tooltip: "%{completed}評価者が割り当てられますが、評価を完了したのは%{submitted}だけです"
-    nothing_assigned: 割り当てなし
+    nothing_assigned: 評価者は割り当てられていません
     nothing_assigned_tooltip: このユーザーには評価が割り当てられていません
     notification_bell_icon_alt_text: 通知ベルのアイコン
     notifications: お知らせ

@@ -96,7 +96,7 @@ cs:
     norms: Normy
     not_completed: Nedokončeno
     not_completed_tooltip: "%{completed} hodnotitelů je přiděleno, ale pouze %{submitted} hodnocení dokončili"
-    nothing_assigned: Nic nepřiřazeno
+    nothing_assigned: Žádní hodnotitelé nejsou přiděleni
     nothing_assigned_tooltip: Tomuto uživateli nebyly přiřazeny žádné hodnocení
     notification_bell_icon_alt_text: Ikona zvonku oznámení
     notifications: Oznámení

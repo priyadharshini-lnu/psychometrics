@@ -96,7 +96,7 @@ hu:
     norms: Normák
     not_completed: Nem befejezve
     not_completed_tooltip: "%{completed} értékelőt osztanak ki, de csak %{submitted} fejezték be az értékeléseket"
-    nothing_assigned: Semmi nem rendelt
+    nothing_assigned: Nincsenek értékelők kijelölve
     nothing_assigned_tooltip: Ehhez a felhasználóhoz nem rendeltek értékeléseket
     notification_bell_icon_alt_text: Értesítési csengő ikon
     notifications: Értesítések

@@ -96,7 +96,7 @@ ko:
     norms: 규범
     not_completed: 미완성
     not_completed_tooltip: 평가자는 %{completed} 배정되지만 평가를 완료한 사람은 %{submitted}입니다
-    nothing_assigned: 할당된 것이 없습니다
+    nothing_assigned: 평가자 배정 없음
     nothing_assigned_tooltip: 이 사용자에게는 평가가 할당되지 않았습니다
     notification_bell_icon_alt_text: 알림 벨 아이콘
     notifications: 알림

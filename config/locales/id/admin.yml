@@ -96,7 +96,7 @@ id:
     norms: Norma
     not_completed: Belum Selesai
     not_completed_tooltip: "%{completed} evaluator ditugaskan tetapi hanya %{submitted} yang telah menyelesaikan evaluasi"
-    nothing_assigned: Tidak ada yang ditugaskan
+    nothing_assigned: Tidak Ada Evaluator yang Ditugaskan
     nothing_assigned_tooltip: Tidak ada evaluasi yang ditetapkan untuk pengguna ini
     notification_bell_icon_alt_text: Ikon Lonceng Notifikasi
     notifications: Notifikasi

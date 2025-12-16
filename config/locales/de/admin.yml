@@ -96,7 +96,7 @@ de:
     norms: Normen
     not_completed: Nicht abgeschlossen
     not_completed_tooltip: "%{completed} Gutachter werden zugewiesen, aber nur %{submitted} die Bewertungen abgeschlossen haben"
-    nothing_assigned: Nichts zugewiesen
+    nothing_assigned: Keine Gutachter zugewiesen
     nothing_assigned_tooltip: Diesem Nutzer wurden keine Bewertungen zugewiesen
     notification_bell_icon_alt_text: Symbol für die Benachrichtigungsglocke
     notifications: Benachrichtigungen

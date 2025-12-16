@@ -96,7 +96,7 @@ ro:
     norms: Normele
     not_completed: Nefinalizat
     not_completed_tooltip: "%{completed} evaluatori sunt atribuiți, dar doar %{submitted} au finalizat evaluările"
-    nothing_assigned: Nimic atribuit
+    nothing_assigned: Niciun evaluator desemnat
     nothing_assigned_tooltip: Nu au fost atribuite evaluări acestui utilizator
     notification_bell_icon_alt_text: Pictograma clopoțel de notificare
     notifications: Notificări

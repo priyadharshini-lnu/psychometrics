@@ -17,11 +17,13 @@ module Threesixty
     def report_status
       return nil unless object.self_subject
 
-      Threesixty::Participants::GetReportStatus.call!(
+      status = Threesixty::Participants::GetReportStatus.call!(
         object.self_subject,
         context[:option],
         context[:subject_evaluator_counters]&.dig(object.user_id, :completed) || {}
       )
+
+      status == 'available' && !report_file_exists? ? 'not_available' : status
     end
 
     def evaluations
@@ -64,6 +66,10 @@ module Threesixty
 
     def current_user
       context[:current_user]
+    end
+
+    def report_file_exists?
+      object.self_subject.user_report&.pdf_exists?
     end
   end
 end

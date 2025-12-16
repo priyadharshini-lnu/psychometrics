@@ -96,7 +96,7 @@ pt:
     norms: Normas
     not_completed: Não Concluído
     not_completed_tooltip: "%{completed} avaliadores são designados, mas apenas %{submitted} completaram as avaliações"
-    nothing_assigned: Nada Designado
+    nothing_assigned: Nenhum avaliador designado
     nothing_assigned_tooltip: Nenhuma avaliação foi atribuída a esse usuário
     notification_bell_icon_alt_text: Ícone da campainha de notificação
     notifications: Notificações

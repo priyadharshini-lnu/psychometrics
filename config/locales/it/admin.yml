@@ -96,7 +96,7 @@ it:
     norms: Norme
     not_completed: Non completato
     not_completed_tooltip: "%{completed} valutatori vengono assegnati, ma solo %{submitted} hanno completato le valutazioni"
-    nothing_assigned: Niente assegnato
+    nothing_assigned: Nessun valutatore assegnato
     nothing_assigned_tooltip: Non sono state assegnate valutazioni a questo utente
     notification_bell_icon_alt_text: Icona Campana di Notifica
     notifications: Notifiche

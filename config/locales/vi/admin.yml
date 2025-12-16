@@ -96,7 +96,7 @@ vi:
     norms: Tiêu chuẩn
     not_completed: Chưa hoàn thành
     not_completed_tooltip: "%{completed} người đánh giá được chỉ định nhưng chỉ %{submitted} đã hoàn thành đánh giá"
-    nothing_assigned: Không có gì được chỉ định
+    nothing_assigned: Không có người đánh giá được chỉ định
     nothing_assigned_tooltip: Không có đánh giá nào được chỉ định cho người dùng này
     notification_bell_icon_alt_text: Biểu tượng chuông thông báo
     notifications: Thông báo

@@ -96,7 +96,7 @@ zh-Hant:
     norms: 規範
     not_completed: 未完成
     not_completed_tooltip: "%{completed}評估員被指派，但只有%{submitted}完成評估"
-    nothing_assigned: 沒有分配
+    nothing_assigned: 未指派評審
     nothing_assigned_tooltip: 此用戶尚未被分配任何評估
     notification_bell_icon_alt_text: 通知鈴聲圖示
     notifications: 通知

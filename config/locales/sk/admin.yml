@@ -96,7 +96,7 @@ sk:
     norms: Normy
     not_completed: Nedokončené
     not_completed_tooltip: "%{completed} hodnotiteľov je pridelených, ale len %{submitted} dokončili hodnotenia"
-    nothing_assigned: Nič pridelené
+    nothing_assigned: Nepridelení žiadni hodnotitelia
     nothing_assigned_tooltip: Tomuto používateľovi neboli pridelené žiadne hodnotenia
     notification_bell_icon_alt_text: Ikona zvončeka s upozornením
     notifications: Oznámenia

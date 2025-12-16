@@ -96,7 +96,7 @@ sr-Latn:
     norms: Norme
     not_completed: Nije završeno
     not_completed_tooltip: "%{completed} evaluatori su dodeljeni, ali samo %{submitted} su završili evaluacije"
-    nothing_assigned: Ništa nije dodeljeno
+    nothing_assigned: Nema dodeljenih evaluatora
     nothing_assigned_tooltip: Nijedna evaluacija nije dodeljena ovom korisniku
     notification_bell_icon_alt_text: Ikona zvona obaveštenja
     notifications: Obaveštenja

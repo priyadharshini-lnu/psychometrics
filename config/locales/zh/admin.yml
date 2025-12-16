@@ -96,7 +96,7 @@ zh:
     norms: 常模
     not_completed: 未完成
     not_completed_tooltip: "%{completed}评估员被分配，但只有%{submitted}完成了评估"
-    nothing_assigned: 无分配
+    nothing_assigned: 未指定评审员
     nothing_assigned_tooltip: 该用户尚未被分配任何评估
     notification_bell_icon_alt_text: 通知铃图标
     notifications: 通知

@@ -96,7 +96,7 @@ pl:
     norms: Normy
     not_completed: Nieukończone
     not_completed_tooltip: Przydzielani są %{completed} oceniający, ale tylko %{submitted} zakończyli oceny
-    nothing_assigned: Nic nie przypisano
+    nothing_assigned: Nie przydzielono żadnych ewaluatorów
     nothing_assigned_tooltip: Nie przypisano temu użytkownikowi żadnych ocen
     notification_bell_icon_alt_text: Ikona dzwonka powiadomień
     notifications: Powiadomienia

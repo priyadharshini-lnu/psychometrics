@@ -96,7 +96,7 @@ bg:
     norms: Норми
     not_completed: Не е завършено
     not_completed_tooltip: "%{completed} оценители са назначени, но само %{submitted} са завършени оценките"
-    nothing_assigned: Нищо не е назначено
+    nothing_assigned: Няма назначени оценители
     nothing_assigned_tooltip: Не са възложени оценки на този потребител
     notification_bell_icon_alt_text: Икона на звънец за известия
     notifications: Уведомления

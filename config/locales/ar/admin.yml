@@ -96,7 +96,7 @@ ar:
     norms: المعايير
     not_completed: لم يكتمل
     not_completed_tooltip: يتم تعيين %{completed} المقيمين ولكن فقط %{submitted} أكمل التقييمات
-    nothing_assigned: لا شيء مخصص
+    nothing_assigned: لا يتم تعيين مقيمين
     nothing_assigned_tooltip: لم يتم تعيين أي تقييمات لهذا المستخدم
     notification_bell_icon_alt_text: Notification Bell Icon
     notifications: الاخطارات

@@ -96,7 +96,7 @@ es-ES:
     norms: Normas
     not_completed: No completado
     not_completed_tooltip: "%{completed} se asignan evaluadores, pero solo %{submitted} han completado las evaluaciones"
-    nothing_assigned: Nada asignado
+    nothing_assigned: No se asignaron evaluadores
     nothing_assigned_tooltip: No se han asignado evaluaciones a este usuario
     notification_bell_icon_alt_text: Icono de campana de notificación
     notifications: Notificaciones

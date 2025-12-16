@@ -96,7 +96,7 @@ sl:
     norms: Norme
     not_completed: Ni dokončano
     not_completed_tooltip: Dodeljeni so %{completed} ocenjevalci, vendar so ocene zaključili le %{submitted}
-    nothing_assigned: Nič dodeljenega
+    nothing_assigned: Brez dodeljenih ocenjevalcev
     nothing_assigned_tooltip: Uporabniku niso bile dodeljene nobene ocene
     notification_bell_icon_alt_text: Ikona zvonca za obvestila
     notifications: Obvestila
