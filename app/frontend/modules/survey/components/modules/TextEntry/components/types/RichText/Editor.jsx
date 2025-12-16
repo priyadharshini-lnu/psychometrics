@@ -13,6 +13,7 @@ const { I18n } = window
 
 function Editor ({
   content, handleContentChange, readOnly = false, maxCharacterLimit = null, maxWordLimit = null,
+  allowContentCopyInReadOnlyMode = false,
 }, ref) {
   const [isInitialized, setIsInitialized] = useState(false)
   const showLimitExceededMessageRef = useRef(false)
@@ -48,8 +49,17 @@ function Editor ({
         // setTimeout is because there is a bug in v3 that
         // calls initialized before editor has finished initializing
         setTimeout(() => {
-          // eslint-disable-next-line react/no-this-in-sfc
-          readOnly ? this.edit.off() : this.edit.on()
+          /* eslint-disable react/no-this-in-sfc */
+          if (readOnly) {
+            this.edit.off()
+            // Enable text selection for copying in read-only mode
+            if (allowContentCopyInReadOnlyMode) {
+              this.$el.removeClass('fr-disabled')
+            }
+          } else {
+            this.edit.on()
+          }
+          /* eslint-enable react/no-this-in-sfc */
         })
       },
       'charCounter.exceeded': function () {

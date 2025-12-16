@@ -1,10 +1,11 @@
 import { FC, useRef } from 'react'
 import { Row, Col } from 'antd'
-
+import { useSelector } from 'react-redux'
 import { PreviewModel } from '~/modules/survey/interfaces/questions/TextEntry'
 
 import Editor from './Editor'
 import { characterAndWordLimit } from './characterAndWordLimit'
+import { AppStore } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 
 interface Props {
   model: PreviewModel
@@ -31,9 +32,15 @@ const RichTextPreview: FC<Props> = ({
     props: {
       predefinedRichText,
       usePredefinedRichText,
+      allowContentCopy: allowContentCopyOnQuestion,
     },
+
     validation,
   } = model
+
+  const isCopyContentEnabledOnAssessment = useSelector(
+    ({ preview }: AppStore) => preview.extraOptions?.enable_copy_content,
+  )
 
   const ref = useRef<RichTextEditorRef>()
 
@@ -56,6 +63,7 @@ const RichTextPreview: FC<Props> = ({
             content={text}
             handleContentChange={value => saveContent(value)}
             readOnly={readOnly}
+            allowContentCopyInReadOnlyMode={isCopyContentEnabledOnAssessment || allowContentCopyOnQuestion}
             ref={ref}
             {...characterAndWordLimit(validation)}
           />
