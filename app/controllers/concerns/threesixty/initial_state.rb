@@ -62,7 +62,9 @@ module Threesixty::InitialState
           requireAllDevelopmentActionsComplete: @idp_setting&.require_all_development_actions_complete || false,
           idpEnabled: @current_project.client.feature_enabled?(:idp) && @current_project.project_feature_enabled?(:idp),
           aiAssistants: @current_project.client.feature_enabled?(:ai_assistants) &&
-                        @current_project.project_feature_enabled?(:ai_assistants)
+                        @current_project.project_feature_enabled?(:ai_assistants),
+          userHasActiveIdp: @current_user.active_user_idp_plan.present?,
+          userHasDirectReporteesWithActiveIdp: current_user_has_direct_reportees_with_active_idp?
         },
         securitySettings: {
           enableRecaptcha: @current_project.security_setting.enable_recaptcha
@@ -106,6 +108,14 @@ module Threesixty::InitialState
 
   def remaining_maintenance_time
     (ENV['MAINTENANCE_START_DATETIME'].to_time - Time.zone.now).to_i if ENV['MAINTENANCE_START_DATETIME']
+  end
+
+  private
+
+  def current_user_has_direct_reportees_with_active_idp?
+    @current_project.end_users.where(manager: @current_user).
+      joins(:active_user_idp_plan).
+      exists?
   end
 end
 # rubocop:enable Metrics/AbcSize

@@ -24,6 +24,8 @@ export const defaultState = {
     requireAllDevelopmentActionsComplete: false,
     aiAssistants: false,
     idpEnabled: false,
+    userHasActiveIdp: false,
+    userHasDirectReporteesWithActiveIdp: false,
   },
   design: {
     primary_color: null,
