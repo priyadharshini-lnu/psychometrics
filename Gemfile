@@ -107,8 +107,8 @@ gem 'acts-as-taggable-on', '~> 12.0'
 ### add fake destroying logic for models
 
 # Error tracking
-gem 'sentry-rails', '~> 5.15.2'
-gem 'sentry-sidekiq', '~> 5.15.2'
+gem 'sentry-rails', '~> 6.2.0'
+gem 'sentry-sidekiq', '~> 6.2.0'
 
 # DSL for activerecord
 gem 'baby_squeel', git: 'https://github.com/TheTalentEnterprise/baby_squeel', branch: 'master'
