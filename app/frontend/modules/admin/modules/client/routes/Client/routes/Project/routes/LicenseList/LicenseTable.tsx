@@ -47,11 +47,11 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
         />
         <Resource.Column<License>
           title={I18n.t('licenses.project_specific')}
+          width={250}
           id="isProjectSpecific"
           render={(_, { isProjectSpecific }) => (
             <Switch checked={isProjectSpecific} disabled />
-          )
-          }
+          )}
         />
         <Resource.Column<License>
           title={I18n.t('licenses.project_usage')}
