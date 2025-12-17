@@ -129,6 +129,10 @@ module Administration
         has_permission?(:workshops, :view)
       end
 
+      def view_idp_plan?
+        has_permission?(:user_idp_plans, :view)
+      end
+
       def push_webhook?
         @user.has_permission?(:project_settings, :webhooks, project_id: project_id)
       end
