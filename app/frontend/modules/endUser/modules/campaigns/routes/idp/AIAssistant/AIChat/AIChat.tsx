@@ -402,6 +402,11 @@ export const AIChat = () => {
       setRequestProcessing(false)
       setMessages(messages)
       scrollToBottom(false)
+    }).catch((error) => {
+      message.error(error || I18n.t('ai.errors.generic'))
+      setRequestProcessing(false)
+      setMessages([])
+      scrollToBottom(false)
     })
 
     return () => {

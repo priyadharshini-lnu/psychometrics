@@ -102,7 +102,9 @@ module AI
       end
 
       def assistable_enabled?
-        idp_template.one_click_idp_enabled
+        Settings.features.ai_assistant_enabled &&
+          project_feature.ai_assisted_idp? &&
+          idp_template.one_click_idp_enabled
       end
 
       def document_analysis_assistant
@@ -159,6 +161,10 @@ module AI
 
       def ai_assisted_user_document_summary
         @ai_assisted_user_document_summary ||= user_idp_document_attachment&.ai_assisted_user_document_summary
+      end
+
+      def project_feature
+        @project_feature ||= campaign.project.project_feature
       end
     end
   end

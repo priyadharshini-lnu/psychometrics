@@ -63,6 +63,7 @@ module Threesixty::InitialState
           idpEnabled: @current_project.client.feature_enabled?(:idp) && @current_project.project_feature_enabled?(:idp),
           aiAssistants: @current_project.client.feature_enabled?(:ai_assistants) &&
                         @current_project.project_feature_enabled?(:ai_assistants),
+          aiAssistedIdpFeatureEnabled: @current_project.project_feature_enabled?(:ai_assisted_idp),
           userHasActiveIdp: @current_user.active_user_idp_plan.present?,
           userHasDirectReporteesWithActiveIdp: current_user_has_direct_reportees_with_active_idp?
         },

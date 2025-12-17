@@ -82,6 +82,8 @@ const connector = connect((state: RootState) => ({
   skillGapReportData: state.campaigns.idp.skillGapReportData,
   oneClickIdpEnabled: state.campaigns.idp.oneClickIdpEnabled,
   reviewNote: state.campaigns.idp.reviewNote,
+  approvalStatus: state.campaigns.idp.approvalStatus,
+  aiAssistedIdpFeatureEnabled: state.config.idp.aiAssistedIdpFeatureEnabled,
 }),
 {
   fetchAvailableDevelopmentActions,
@@ -148,6 +150,8 @@ const UserDevelopmentPlanComponent = ({
   oneClickIdpEnabled,
   reviewNote,
   setUserIdpPlanDirty,
+  aiAssistedIdpFeatureEnabled,
+  approvalStatus,
 }: Props) => {
   const { tab: paramTab } = useParams() as {tab: string}
 
@@ -247,9 +251,10 @@ const UserDevelopmentPlanComponent = ({
 
   useEffect(() => {
     if (currentUser.id === idpUserId) {
-      switch (status) {
+      switch (approvalStatus) {
         case USER_IDP_PLAN_STATUS.NOT_STARTED: {
-          const welcome_page = oneClickIdpEnabled ? '/idp/ai_assistant/start' : '/idp/steps/getting_started'
+          const welcome_page = (aiAssistedIdpFeatureEnabled && oneClickIdpEnabled)
+            ? '/idp/ai_assistant/start' : '/idp/steps/getting_started'
           navigate(welcome_page)
           break
         }
@@ -261,7 +266,7 @@ const UserDevelopmentPlanComponent = ({
           break
       }
     }
-  }, [status])
+  }, [approvalStatus])
 
   useEffect(() => {
     if (showAddSkill) {

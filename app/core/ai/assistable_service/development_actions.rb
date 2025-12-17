@@ -37,7 +37,9 @@ module AI
       end
 
       def assistable_enabled?
-        assistant.present?
+        Settings.features.ai_assistant_enabled &&
+          project_feature.ai_assistants? &&
+          assistant.present?
       end
 
       private
@@ -127,6 +129,10 @@ module AI
         previously_generated_actions = session.development_actions || []
         updated_actions = previously_generated_actions + generated_actions
         mark_session_completed!(updated_actions)
+      end
+
+      def project_feature
+        @project_feature ||= current_user.project.project_feature
       end
     end
   end

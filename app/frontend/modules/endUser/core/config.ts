@@ -23,6 +23,7 @@ export const defaultState = {
     managerCanEditIdp: false,
     requireAllDevelopmentActionsComplete: false,
     aiAssistants: false,
+    aiAssistedIdpFeatureEnabled: false,
     idpEnabled: false,
     userHasActiveIdp: false,
     userHasDirectReporteesWithActiveIdp: false,

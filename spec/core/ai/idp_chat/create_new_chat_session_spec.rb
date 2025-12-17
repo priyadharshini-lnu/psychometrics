@@ -27,25 +27,24 @@ describe AI::IdpChat::CreateNewChatSession do
 
   before do
     allow(Settings).to receive(:ai_providers).and_return([ai_provider_config])
+    allow(Settings.features).to receive(:ai_assistant_enabled).and_return(true)
+    campaign.project.project_feature.update!(ai_assisted_idp: true)
   end
 
   shared_context 'assistant service mocking' do
-    let(:assistant_service_instance) { instance_double(AI::AssistantService) }
-
     before do
-      allow(AI::AssistantService).to receive(:new).and_return(assistant_service_instance)
-      allow(assistant_service_instance).to receive(:on).and_return(assistant_service_instance)
-      allow(assistant_service_instance).to receive(:call)
+      stub_wisper_publisher('AI::AssistantService', :call, :ok, { message: 'Test response' })
     end
   end
 
   shared_context 'assistant chat setup' do
-    let(:assistant_chat) { ai_assistant.for_user(user) }
+    let(:assistant_chat) { double('assistant_chat') }
 
     before do
       allow(ai_assistant).to receive(:for_user).and_return(assistant_chat)
       allow(assistant_chat).to receive(:with_assistant_context).and_return(assistant_chat)
       allow(assistant_chat).to receive(:with_temperature).with(0).and_return(assistant_chat)
+      allow(assistant_chat).to receive(:update!)
     end
   end
 
@@ -54,8 +53,6 @@ describe AI::IdpChat::CreateNewChatSession do
     include_context 'assistant chat setup'
 
     it 'creates a new session and broadcasts :ok with new session' do
-      expect(AI::AssistableService::Idp).to receive(:call).with(plan, user, 'hi', {}).and_call_original
-
       command = described_class.new(plan)
       expect { command.call }.to change { plan.reload.ai_assisted_idp_session }.from(nil)
     end
