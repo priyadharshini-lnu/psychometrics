@@ -87,6 +87,7 @@ ko:
     import_upload: 업로드
     import_users: 사용자 가져오기
     invalid_csv_header: CSV 파일에는 잘못된 헤더가 포함되어 있습니다.
+    learning_from_others: 협력 학습 [20]
     libraries: 미디어 라이브러리
     library_invalid_type: 유효하지 않은 라이브러리 항목
     manager_approval_required: "%{user} 보고서는 다운로드 전에 관리자의 승인이 필요합니다"
@@ -102,6 +103,7 @@ ko:
     notifications: 알림
     number: 번호
     occupations: 직업
+    on_the_job: 현장 [70]
     options: 옵션
     participants: 참가자
     profile_details: 프로필 세부 정보
@@ -179,6 +181,7 @@ ko:
     slot_name: 슬롯 이름
     stats: 통계
     status_details: 상태 세부사항
+    structured_learning: 정식 학습 [10]
     upload_success: 성공적으로 업로드됨
     user_report_events: 사용자 보고서 이벤트
     users: 사용자

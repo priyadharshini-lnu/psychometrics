@@ -186,9 +186,13 @@ const UserDevelopmentPlanComponent = ({
       userIdpDevelopmentActions: DevelopmentAction[];
     }
 
-    return !_.isEqual(Object.values(existingSkills),
-      Object.values(idpSkills))
-    || !_.isEqual(existingActions, idpDevelopmentActions)
+    return !_.isEqual(
+      Object.values(existingSkills).map(skill => _.omit(skill as Skill, ['changeStatus', 'description'])),
+      Object.values(idpSkills).map(skill => _.omit(skill as Skill, ['changeStatus', 'description'])),
+    ) || !_.isEqual(
+      existingActions,
+      idpDevelopmentActions,
+    )
   },
   [idpSkills, idpDevelopmentActions, existingPlanData])
 

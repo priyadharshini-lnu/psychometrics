@@ -87,6 +87,7 @@ th:
     import_upload: อัปโหลด
     import_users: นําเข้าผู้ใช้
     invalid_csv_header: ไฟล์ CSV มีส่วนหัวที่ไม่ถูกต้อง
+    learning_from_others: การเรียนรู้ร่วมกัน [20]
     libraries: ห้องสมุดสื่อ
     library_invalid_type: รายการไลบรารีไม่ถูกต้อง
     manager_approval_required: รายงานสําหรับ %{user} ต้องได้รับการอนุมัติจากผู้จัดการก่อนดาวน์โหลด
@@ -102,6 +103,7 @@ th:
     notifications: แจ้ง เตือน
     number: หมายเลข
     occupations: อาชีพ
+    on_the_job: ในการทํางาน [70]
     options: ตัวเลือก
     participants: ผู้เข้าร่วม
     profile_details: รายละเอียดโปรไฟล์
@@ -179,6 +181,7 @@ th:
     slot_name: ชื่อสล็อต
     stats: สถิติ
     status_details: รายละเอียดสถานะ
+    structured_learning: การเรียนรู้อย่างเป็นทางการ [10]
     upload_success: อัปโหลดสําเร็จ
     user_report_events: เหตุการณ์รายงานผู้ใช้
     users: ผู้เข้าร่วม

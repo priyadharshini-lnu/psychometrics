@@ -2064,9 +2064,6 @@ th:
       learning_styles:
         cannot_be_blank: ไม่สามารถว่างเปล่าได้
         invalid: ต้องเป็นหนึ่งใน on_the_job, structured_learning, learning_from_others
-        learning_from_others: เรียน จาก ผู้ อื่น [20]
-        on_the_job: ในการทํางาน [70]
-        structured_learning: การเรียนรู้ที่มีโครงสร้าง [10]
       new:
         header: การดําเนินการพัฒนาใหม่
       resource:

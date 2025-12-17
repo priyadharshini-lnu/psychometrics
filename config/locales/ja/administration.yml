@@ -2064,9 +2064,6 @@ ja:
       learning_styles:
         cannot_be_blank: 空白は不可
         invalid: OJT、構造化された学習、他者からの学習のいずれかであること。
-        learning_from_others: 他者から学ぶ [20］
-        on_the_job: 仕事について [70］
-        structured_learning: 構造化学習 [10］
       new:
         header: 新規開発アクション
       resource:

@@ -87,6 +87,7 @@ fr:
     import_upload: Télécharger
     import_users: Importer des utilisateurs
     invalid_csv_header: CSV contient des en-têtes invalides.
+    learning_from_others: Apprentissage collaboratif [20]
     libraries: Bibliothèque des médias
     library_invalid_type: Élément de bibliothèque invalide
     manager_approval_required: Rapport pour %{user} nécessite l’approbation du manager avant téléchargement
@@ -102,6 +103,7 @@ fr:
     notifications: Notifications
     number: Nombre
     occupations: Professions
+    on_the_job: Au travail [70]
     options: Options
     participants: Les participants
     profile_details: Détails du profil
@@ -179,6 +181,7 @@ fr:
     slot_name: Nom de la machine à sous
     stats: Statistiques
     status_details: Détails de statut
+    structured_learning: Apprentissage formel [10]
     upload_success: Téléversement réussi
     user_report_events: Rapport de l'utilisateur Événements
     users: Utilisateurs

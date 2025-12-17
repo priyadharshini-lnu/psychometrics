@@ -87,6 +87,7 @@ vi:
     import_upload: Tải lên
     import_users: Nhập người dùng
     invalid_csv_header: CSV chứa tiêu đề không hợp lệ.
+    learning_from_others: Học tập hợp tác [20]
     libraries: Thư viện phương tiện
     library_invalid_type: Mục Thư viện không hợp lệ
     manager_approval_required: Báo cáo cho %{user} yêu cầu sự chấp thuận của người quản lý trước khi tải xuống
@@ -102,6 +103,7 @@ vi:
     notifications: Thông báo
     number: Số
     occupations: Nghề
+    on_the_job: Trong công việc [70]
     options: Tùy chọn
     participants: Tham gia
     profile_details: Chi tiết hồ sơ
@@ -179,6 +181,7 @@ vi:
     slot_name: Tên vị trí
     stats: Thống kê
     status_details: Chi tiết trạng thái
+    structured_learning: Học chính thức [10]
     upload_success: Tải lên thành công
     user_report_events: Sự kiện báo cáo người dùng
     users: Người dùng

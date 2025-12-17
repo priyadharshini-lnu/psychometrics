@@ -2064,9 +2064,6 @@ de:
       learning_styles:
         cannot_be_blank: Kann nicht leer sein
         invalid: Muss eines von on_the_job, strukturiertem_Lernen, Lernen_von_anderen sein
-        learning_from_others: Von anderen lernen [20]
-        on_the_job: Bei der Arbeit [70]
-        structured_learning: Strukturiertes Lernen [10]
       new:
         header: Neue Entwicklung Aktion
       resource:

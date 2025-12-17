@@ -2064,9 +2064,6 @@ pl:
       learning_styles:
         cannot_be_blank: Nie może być puste
         invalid: Musi być jednym z on_the_job, structured_learning learning_from_others
-        learning_from_others: Uczenie się od innych [20]
-        on_the_job: W pracy [70]
-        structured_learning: Ustrukturyzowane nauczanie [10]
       new:
         header: Nowe działanie na rzecz rozwoju
       resource:

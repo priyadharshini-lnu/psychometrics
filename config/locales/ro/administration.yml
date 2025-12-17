@@ -2064,9 +2064,6 @@ ro:
       learning_styles:
         cannot_be_blank: Nu poate fi gol
         invalid: Trebuie să fie unul dintre on_the_job, structured_learning, learning_from_others
-        learning_from_others: Învățând de la alții [20]
-        on_the_job: La locul de muncă [70]
-        structured_learning: Învățare structurată [10]
       new:
         header: O nouă acțiune de dezvoltare
       resource:

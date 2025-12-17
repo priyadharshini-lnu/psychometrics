@@ -2064,9 +2064,6 @@ it:
       learning_styles:
         cannot_be_blank: Non può essere vuoto
         invalid: 'Deve essere uno dei seguenti tipi di apprendimento: on_the_job, apprendimento strutturato, apprendimento da altri'
-        learning_from_others: Imparare dagli altri [20]
-        on_the_job: Sul lavoro [70]
-        structured_learning: Apprendimento strutturato [10]
       new:
         header: Nuova azione di sviluppo
       resource:

@@ -87,6 +87,7 @@ bg:
     import_upload: Качвам
     import_users: Импортиране на потребители
     invalid_csv_header: CSV файлът съдържа невалидни заглавия.
+    learning_from_others: Съвместно обучение [20]
     libraries: Медийна библиотека
     library_invalid_type: Невалиден библиотечен елемент
     manager_approval_required: Докладът за %{user} изисква одобрение от мениджъра преди изтегляне
@@ -102,6 +103,7 @@ bg:
     notifications: Уведомления
     number: Номер
     occupations: Професии
+    on_the_job: На работа [70]
     options: Опции
     participants: Участниците
     profile_details: Детайли за профила
@@ -179,6 +181,7 @@ bg:
     slot_name: Име на слот
     stats: Статистика
     status_details: Детайли за статуса
+    structured_learning: Формално обучение [10]
     upload_success: Качено успешно
     user_report_events: Събития с потребителски отчет
     users: Потребители

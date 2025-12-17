@@ -87,6 +87,7 @@ id:
     import_upload: Unggah
     import_users: Impor Pengguna
     invalid_csv_header: File CSV berisi header yang tidak valid.
+    learning_from_others: Pembelajaran Kolaboratif [20]
     libraries: Perpustakaan Media
     library_invalid_type: Item Perpustakaan Tidak Valid
     manager_approval_required: Laporan untuk %{user} memerlukan persetujuan manajer sebelum diunduh
@@ -102,6 +103,7 @@ id:
     notifications: Notifikasi
     number: Nomor
     occupations: Pekerjaan
+    on_the_job: Di Tempat Kerja [70]
     options: Pilihan
     participants: Peserta
     profile_details: Detail profil
@@ -179,6 +181,7 @@ id:
     slot_name: Nama Slot
     stats: Statistik
     status_details: Detail Status
+    structured_learning: Pembelajaran Formal [10]
     upload_success: Berhasil diunggah
     user_report_events: Peristiwa Laporan Pengguna
     users: Pengguna

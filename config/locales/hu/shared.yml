@@ -10,15 +10,18 @@ hu:
     cancel: Törölje
     change_password: Jelszó módosítása
     clear_filters: Szűrők törlése
+    collaborative_learning: Együttműködő tanulás
     continue: Folytatódik
     description: Leírás
     edit: Szerkesztés
     edited: Új
+    formal_learning: Formális tanulás
     group_question_max_validation_error: Minden csoport legfeljebb {{max}} tételt tartalmazhat.
     group_question_min_validation_error: Minden csoportnak legalább {{min}} tételt kell tartalmaznia.
     id: ID
     idp_ai_assistant_disclaimer: A Lighthouse AI IDP asszisztense hibázhat. Kérlek, légy óvatos a válaszok használatakor.
     internet_disconnected_message: Próbálok újra kapcsolódni. Kérjük, ellenőrizze az internetkapcsolatát.
+    learning_on_the_job_label: Tanulás munka közben
     mte_logo_alt_text: Mercer Talent Enterprise logó
     name: Név
     new: Új

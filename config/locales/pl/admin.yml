@@ -87,6 +87,7 @@ pl:
     import_upload: Przesyłać
     import_users: Import użytkowników
     invalid_csv_header: Plik CSV zawiera nieprawidłowe nagłówki.
+    learning_from_others: Uczenie się zespołowe [20]
     libraries: Biblioteka multimediów
     library_invalid_type: Nieprawidłowy element biblioteczny
     manager_approval_required: Raport %{user} wymaga zgody menedżera przed pobraniem
@@ -102,6 +103,7 @@ pl:
     notifications: Powiadomienia
     number: Liczba
     occupations: Zawodów
+    on_the_job: W pracy [70]
     options: Opcje
     participants: Uczestników
     profile_details: Szczegóły profilu
@@ -179,6 +181,7 @@ pl:
     slot_name: Nazwa slotu
     stats: Statystyki
     status_details: Szczegóły statusu
+    structured_learning: Formalne uczenie się [10]
     upload_success: Przesłanie pomyślnie
     user_report_events: Zdarzenia zgłaszane przez użytkownika
     users: Użytkowników

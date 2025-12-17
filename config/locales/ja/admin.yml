@@ -87,6 +87,7 @@ ja:
     import_upload: アップロード
     import_users: インポートユーザー
     invalid_csv_header: CSVファイルには無効なヘッダーが含まれています。
+    learning_from_others: 協働学習 [20]
     libraries: メディアライブラリー
     library_invalid_type: 無効なライブラリ項目
     manager_approval_required: "%{user}レポートはダウンロード前にマネージャーの承認が必要です"
@@ -102,6 +103,7 @@ ja:
     notifications: お知らせ
     number: 番号
     occupations: 職業
+    on_the_job: オン・ザ・ジョブ [70]
     options: オプション
     participants: 参加者
     profile_details: プロフィール詳細
@@ -179,6 +181,7 @@ ja:
     slot_name: スロット名
     stats: 統計
     status_details: 状況詳細
+    structured_learning: 正式な学習 [10]
     upload_success: アップロード成功
     user_report_events: ユーザーレポートイベント
     users: ユーザー

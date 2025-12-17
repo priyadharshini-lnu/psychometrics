@@ -2064,9 +2064,6 @@ zh:
       learning_styles:
         cannot_be_blank: 不能为空
         invalid: 必须是在职学习、结构化学习、向他人学习之一
-        learning_from_others: 向他人学习 [20］
-        on_the_job: 在职 [70］
-        structured_learning: 结构化学习 [10］
       new:
         header: 新发展行动
       resource:

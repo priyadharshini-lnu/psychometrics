@@ -2064,9 +2064,6 @@ hr:
       learning_styles:
         cannot_be_blank: Ne može biti prazno
         invalid: Mora biti jedan od on_the_job, structured_learning, learning_from_others
-        learning_from_others: Učiti od drugih [20]
-        on_the_job: Na poslu [70]
-        structured_learning: Strukturirano učenje [10]
       new:
         header: Nova razvojna akcija
       resource:

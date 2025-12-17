@@ -87,6 +87,7 @@ sk:
     import_upload: Nahrať
     import_users: Importovať používateľov
     invalid_csv_header: CSV súbor obsahuje neplatné hlavičky.
+    learning_from_others: Kolaboratívne učenie [20]
     libraries: Knižnica médií
     library_invalid_type: Neplatný knižničný predmet
     manager_approval_required: Report for %{user} vyžaduje schválenie manažéra pred stiahnutím
@@ -102,6 +103,7 @@ sk:
     notifications: Oznámenia
     number: Číslo
     occupations: Povolania
+    on_the_job: V práci [70]
     options: Možnosti
     participants: Účastníkov
     profile_details: Podrobnosti o profile
@@ -179,6 +181,7 @@ sk:
     slot_name: Názov slotu
     stats: Štatistiky
     status_details: Podrobnosti o stave
+    structured_learning: Formálne učenie [10]
     upload_success: Úspešne nahrané
     user_report_events: Udalosti v hlásení používateľa
     users: Používateľov

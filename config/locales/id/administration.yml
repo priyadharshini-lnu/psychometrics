@@ -2064,9 +2064,6 @@ id:
       learning_styles:
         cannot_be_blank: Tidak bisa kosong
         invalid: Harus salah satu dari on_the_job, structured_learning, learning_from_others
-        learning_from_others: Belajar dari Orang Lain [20]
-        on_the_job: Di Tempat Kerja [70]
-        structured_learning: Pembelajaran Terstruktur [10]
       new:
         header: Aksi Pembangunan Baru
       resource:

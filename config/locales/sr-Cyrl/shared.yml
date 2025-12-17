@@ -10,15 +10,18 @@ sr-Cyrl:
     cancel: Откажи
     change_password: Промена лозинке
     clear_filters: Обриши филтере
+    collaborative_learning: Колаборативно учење
     continue: Наставите
     description: Опис
     edit: Уређивање
     edited: Уређивати
+    formal_learning: Формално учење
     group_question_max_validation_error: Свака група може да садржи највише {{маx}} ставке.
     group_question_min_validation_error: Свака група треба да садржи најмање {{мин}} ставке.
     id: ИД
     idp_ai_assistant_disclaimer: Лигхтхоусе АИ ИДП асистент може да прави грешке. Молимо вас да будете опрезни док користите одговоре.
     internet_disconnected_message: Покушавам поновно повезивање. Проверите интернет везу.
+    learning_on_the_job_label: Учење на послу
     mte_logo_alt_text: Мерцер Талент Ентерприсе лого
     name: Име
     new: Нови

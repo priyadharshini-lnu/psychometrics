@@ -87,6 +87,7 @@ nl:
     import_upload: Uploaden
     import_users: Importgebruikers
     invalid_csv_header: CSV-bestand bevat ongeldige headers.
+    learning_from_others: Samenwerkend leren [20]
     libraries: Mediatheek
     library_invalid_type: Ongeldig bibliotheekitem
     manager_approval_required: Rapporteer voor %{user} vereist goedkeuring van de manager voordat het wordt gedownload
@@ -102,6 +103,7 @@ nl:
     notifications: Meldingen
     number: Aantal
     occupations: Beroepen
+    on_the_job: Op het Werk [70]
     options: Opties
     participants: Deelnemers
     profile_details: Profielgegevens
@@ -179,6 +181,7 @@ nl:
     slot_name: Slot Name
     stats: Stats
     status_details: Statusgegevens
+    structured_learning: Formeel Leren [10]
     upload_success: Succesvol geüpload
     user_report_events: Gebeurtenissen gebruikersrapport
     users: Gebruikers

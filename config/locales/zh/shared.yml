@@ -10,15 +10,18 @@ zh:
     cancel: 取消
     change_password: 更改密码
     clear_filters: 清除筛选
+    collaborative_learning: 协作学习
     continue: 继续
     description: 描述
     edit: 编辑
     edited: 新的
+    formal_learning: 正规学习
     group_question_max_validation_error: 每个组最多可包含{{max}}个物品。
     group_question_min_validation_error: 每个组至少需要包含{{min}}条项。
     id: ID
     idp_ai_assistant_disclaimer: Lighthouse AI IDP助手可能会犯错。使用回复时请务必小心。
     internet_disconnected_message: 正在尝试重新连接。请检查你的互联网连接。
+    learning_on_the_job_label: 边学边学
     mte_logo_alt_text: 美世人才企业标识
     name: 名称
     new: 新的

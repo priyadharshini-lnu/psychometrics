@@ -2064,9 +2064,6 @@ ar:
       learning_styles:
         cannot_be_blank: لا يمكن أن تكون فارغة
         invalid: يجب أن يكون واحدًا من التعلم_في_الوظيفة، والتعلم_المنظم، والتعلم_من_الآخرين
-        learning_from_others: التعلم من الآخرين [20]
-        on_the_job: أثناء العمل [70]
-        structured_learning: التعلم المنظم [10]
       new:
         header: إجراء تطوير جديد
       resource:

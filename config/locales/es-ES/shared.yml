@@ -10,15 +10,18 @@ es-ES:
     cancel: Cancelar
     change_password: Cambiar contraseña
     clear_filters: Quitar filtros
+    collaborative_learning: Aprendizaje colaborativo
     continue: Continuar
     description: Descripción
     edit: Editar
     edited: Nuevo/a
+    formal_learning: Aprendizaje formal
     group_question_max_validation_error: Cada grupo puede contener como máximo {{max}} elemento(s).
     group_question_min_validation_error: Cada grupo debe contener al menos {{min}} elemento(s).
     id: ID
     idp_ai_assistant_disclaimer: El asistente IDP de Lighthouse AI puede cometer errores. Por favor, ten cuidado al usar las respuestas.
     internet_disconnected_message: Intentando volver a conectar. Compruebe su conexión a internet.
+    learning_on_the_job_label: Aprendizaje sobre el terreno
     mte_logo_alt_text: Logotipo de Mercer Talent Enterprise
     name: Nombre
     new: Nuevo/a

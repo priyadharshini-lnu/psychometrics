@@ -87,6 +87,7 @@ it:
     import_upload: Caricare
     import_users: Importare utenti
     invalid_csv_header: Il file CSV contiene intestazioni non valide.
+    learning_from_others: Apprendimento collaborativo [20]
     libraries: Biblioteca multimediale
     library_invalid_type: Voce della biblioteca invalida
     manager_approval_required: Report for %{user} richiede l'approvazione del manager prima del download
@@ -102,6 +103,7 @@ it:
     notifications: Notifiche
     number: Numero
     occupations: Occupazioni
+    on_the_job: Sul lavoro [70]
     options: Opzioni
     participants: Partecipanti
     profile_details: Dettagli del profilo
@@ -179,6 +181,7 @@ it:
     slot_name: Nome della Slot
     stats: Statistiche
     status_details: Dettagli di stato
+    structured_learning: Apprendimento Formale [10]
     upload_success: Caricato con successo
     user_report_events: Segnalazione di eventi da parte dell'utente
     users: Utenti

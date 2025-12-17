@@ -87,6 +87,7 @@ zh-Hant:
     import_upload: 上傳
     import_users: 匯入使用者
     invalid_csv_header: CSV 檔案包含無效標頭。
+    learning_from_others: 協作學習 [20]
     libraries: 媒體圖書館
     library_invalid_type: 無效圖書館項目
     manager_approval_required: "%{user}報告需要經理批准才能下載。"
@@ -102,6 +103,7 @@ zh-Hant:
     notifications: 通知
     number: 數量
     occupations: 職業
+    on_the_job: 在職 [70]
     options: 選項
     participants: 參與者
     profile_details: 詳細資料
@@ -179,6 +181,7 @@ zh-Hant:
     slot_name: 車位名稱
     stats: 統計資料
     status_details: 狀態詳情
+    structured_learning: 正式學習 [10]
     upload_success: 上傳成功
     user_report_events: 使用者報告事件
     users: 使用者

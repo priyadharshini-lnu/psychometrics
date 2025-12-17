@@ -10,15 +10,18 @@ ar:
     cancel: إلغاء
     change_password: تغيير كلمة المرور
     clear_filters: امسح المُرشحات
+    collaborative_learning: التعلم التعاوني
     continue: استمر
     description: وصف
     edit: تعديل
     edited: جديد
+    formal_learning: التعلم الرسمي
     group_question_max_validation_error: يمكن لكل مجموعة أن تحتوي على عناصر(ات) في أقصى حد {{max}}.
     group_question_min_validation_error: يجب أن تحتوي كل مجموعة على الأقل {{min}} عنصر(ات).
     id: معرف
     idp_ai_assistant_disclaimer: مساعد IDP في الذكاء الاصطناعي في Lighthouse يمكن أن يرتكب أخطاء. يرجى الحذر عند استخدام الردود.
     internet_disconnected_message: نحاول إعادة الاتصال بالإنترنت. يرجى التحقق من اتصالك بالإنترنت الخاص بك.
+    learning_on_the_job_label: التعلم أثناء العمل
     mte_logo_alt_text: شعار Mercer Talent Enterprise
     name: اسم
     new: جديد

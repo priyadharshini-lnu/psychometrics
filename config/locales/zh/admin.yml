@@ -87,6 +87,7 @@ zh:
     import_upload: 上传
     import_users: 导入用户
     invalid_csv_header: CSV 文件中包含无效的头部。
+    learning_from_others: 协作学习 [20]
     libraries: 媒体图书馆
     library_invalid_type: 无效的图书馆项目
     manager_approval_required: "%{user}报告下载前需要经理批准"
@@ -102,6 +103,7 @@ zh:
     notifications: 通知
     number: 数量
     occupations: 职业
+    on_the_job: 在职 [70]
     options: 选项
     participants: 参与者
     profile_details: 简介详情
@@ -179,6 +181,7 @@ zh:
     slot_name: 车位名称
     stats: 统计数据
     status_details: 状态详情
+    structured_learning: 正规学习 [10]
     upload_success: 上传成功
     user_report_events: 用户报告事件
     users: 用户

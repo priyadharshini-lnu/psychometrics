@@ -87,6 +87,7 @@ ar:
     import_upload: رفع
     import_users: استيراد المستخدمين
     invalid_csv_header: يحتوي ملف CSV على رؤوس غير صالحة.
+    learning_from_others: التعلم التعاوني [20]
     libraries: مكتبة الوسائط
     library_invalid_type: عنصر المكتبة غير الصالح
     manager_approval_required: يتطلب الإبلاغ عن %{user} موافقة المدير قبل التحميل
@@ -102,6 +103,7 @@ ar:
     notifications: الاخطارات
     number: العدد
     occupations: المهن
+    on_the_job: في العمل [70]
     options: الخيارات
     participants: المشاركون
     profile_details: تفاصيل الملف الشخصي للمستخدم
@@ -179,6 +181,7 @@ ar:
     slot_name: اسم الماكينة
     stats: الإحصائيات
     status_details: تفاصيل الحالة
+    structured_learning: التعلم الرسمي [10]
     upload_success: تم الرفع بنجاح
     user_report_events: أحداث تقارير المستخدم
     users: المستخدمون

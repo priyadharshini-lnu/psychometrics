@@ -2064,9 +2064,6 @@ ko:
       learning_styles:
         cannot_be_blank: 비워 둘 수 없습니다
         invalid: 온더워크, 구조화된_학습, 타인으로부터_학습 중 하나에 해당해야 합니다
-        learning_from_others: 다른 사람에게서 배우기 [20]
-        on_the_job: 업무 중 [70]
-        structured_learning: 구조화된 학습 [10]
       new:
         header: 새로운 개발 활동
       resource:

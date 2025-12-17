@@ -2064,9 +2064,6 @@ sk:
       learning_styles:
         cannot_be_blank: Nemôže byť prázdny
         invalid: Musí to byť jeden z on_the_job, structured_learning, learning_from_others
-        learning_from_others: Učenie sa od druhých [20]
-        on_the_job: V práci [70]
-        structured_learning: Štruktúrované vzdelávanie [10]
       new:
         header: Nová rozvojová akcia
       resource:

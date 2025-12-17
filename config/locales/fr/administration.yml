@@ -2064,9 +2064,6 @@ fr:
       learning_styles:
         cannot_be_blank: Ne peut être vide
         invalid: 'Doit être l''un des éléments suivants : sur le lieu de travail, apprentissage structuré, apprentissage par les autres'
-        learning_from_others: Apprendre des autres [20]
-        on_the_job: Au travail [70]
-        structured_learning: Apprentissage structuré [10]
       new:
         header: Nouvelle action de développement
       resource:

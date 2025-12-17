@@ -2064,9 +2064,6 @@ vi:
       learning_styles:
         cannot_be_blank: Không thể để trống
         invalid: Phải là một trong những on_the_job, structured_learning, learning_from_others
-        learning_from_others: Học hỏi từ những người khác [20]
-        on_the_job: Trong công việc [70]
-        structured_learning: Học tập có cấu trúc [10]
       new:
         header: Hành động phát triển mới
       resource:

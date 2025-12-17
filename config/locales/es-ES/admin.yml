@@ -87,6 +87,7 @@ es-ES:
     import_upload: Subir
     import_users: Importar usuarios
     invalid_csv_header: CSV contiene cabeceras inválidas.
+    learning_from_others: Aprendizaje colaborativo [20]
     libraries: Mediateca
     library_invalid_type: Elemento inválido de la biblioteca
     manager_approval_required: Informe para %{user} requiere la aprobación del gestor antes de la descarga
@@ -102,6 +103,7 @@ es-ES:
     notifications: Notificaciones
     number: Número
     occupations: Ocupaciones
+    on_the_job: En el trabajo [70]
     options: Opciones
     participants: Participantes
     profile_details: Detalles del perfil
@@ -179,6 +181,7 @@ es-ES:
     slot_name: Nombre de la tragamonedas
     stats: Estadísticas
     status_details: Detalles de estado
+    structured_learning: Aprendizaje formal [10]
     upload_success: Subido con éxito
     user_report_events: Informe de usuario Eventos
     users: Usuarios

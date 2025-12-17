@@ -10,15 +10,18 @@ sr-Latn:
     cancel: Otkaži
     change_password: Promeni lozinku
     clear_filters: Obriši filtere
+    collaborative_learning: Kolaborativno učenje
     continue: Nastavite
     description: Opis
     edit: Uredi
     edited: Novi
+    formal_learning: Formalno učenje
     group_question_max_validation_error: Svaka grupa može da sadrži najviše {{max}} stavke.
     group_question_min_validation_error: Svaka grupa treba da sadrži najmanje {{min}} stavke.
     id: ID
     idp_ai_assistant_disclaimer: Lighthouse AI IDP asistent može da pravi greške. Molimo vas da budete oprezni dok koristite odgovore.
     internet_disconnected_message: Trying to reconnect. Please check your internet connection.
+    learning_on_the_job_label: Učenje na poslu
     mte_logo_alt_text: Mercer Talent Enterprise logo
     name: Ime
     new: Novi

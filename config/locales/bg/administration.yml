@@ -2064,9 +2064,6 @@ bg:
       learning_styles:
         cannot_be_blank: Не може да бъде празно
         invalid: Трябва да е един от on_the_job, structured_learning, learning_from_others
-        learning_from_others: Учене от другите [20]
-        on_the_job: На работното място [70]
-        structured_learning: Структурирано обучение [10]
       new:
         header: Ново действие за развитие
       resource:

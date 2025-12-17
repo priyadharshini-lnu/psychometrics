@@ -87,6 +87,7 @@ de:
     import_upload: Hochladen
     import_users: Benutzer importieren
     invalid_csv_header: CSV-Datei enthält ungültige Header.
+    learning_from_others: Kollaboratives Lernen [20]
     libraries: Mediathek
     library_invalid_type: Ungültiger Bibliothekseintrag
     manager_approval_required: Report for %{user} erfordert die Zustimmung des Managers vor dem Download
@@ -102,6 +103,7 @@ de:
     notifications: Benachrichtigungen
     number: Nummer
     occupations: Berufe
+    on_the_job: Im Dienst [70]
     options: Optionen
     participants: Teilnehmer
     profile_details: Profil-Details
@@ -179,6 +181,7 @@ de:
     slot_name: Slot-Name
     stats: Statistiken
     status_details: Statusdetails
+    structured_learning: Formales Lernen [10]
     upload_success: Erfolgreich hochgeladen
     user_report_events: Benutzerbericht Ereignisse
     users: Benutzer

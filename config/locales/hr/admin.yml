@@ -87,6 +87,7 @@ hr:
     import_upload: Otpremanje
     import_users: Uvoz korisnika
     invalid_csv_header: CSV datoteka sadrži nevažeća zaglavlja.
+    learning_from_others: Suradničko učenje [20]
     libraries: Medijska biblioteka
     library_invalid_type: Nevažeća knjižnična stavka
     manager_approval_required: Izvještaj za %{user} zahtijeva odobrenje menadžera prije preuzimanja
@@ -102,6 +103,7 @@ hr:
     notifications: Obavijesti
     number: Broj
     occupations: Zanimanja
+    on_the_job: Na poslu [70]
     options: Mogućnosti
     participants: Sudionici
     profile_details: Detalji profila
@@ -179,6 +181,7 @@ hr:
     slot_name: Naziv utora
     stats: Statistika
     status_details: Detalji o statusu
+    structured_learning: Formalno učenje [10]
     upload_success: Uspješno učitano
     user_report_events: Događaji u izvješću korisnika
     users: Korisnici

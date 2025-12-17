@@ -10,15 +10,18 @@ zh-Hant:
     cancel: 取消
     change_password: 變更密碼
     clear_filters: 清除過濾器
+    collaborative_learning: 協作學習
     continue: 續
     description: 描述
     edit: 編輯
     edited: 新
+    formal_learning: 正式學習
     group_question_max_validation_error: 每個群組最多可包含 {{max}} 個項目。
     group_question_min_validation_error: 每個群組至少需要包含 {{min}} 項目。
     id: 同上
     idp_ai_assistant_disclaimer: Lighthouse AI IDP 助理可能會犯錯。使用回應時請小心。
     internet_disconnected_message: 嘗試重新連線，請檢查您的網路連線。
+    learning_on_the_job_label: 邊做邊學
     mte_logo_alt_text: 美世人才企業標誌
     name: 名稱
     new: 新

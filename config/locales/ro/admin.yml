@@ -87,6 +87,7 @@ ro:
     import_upload: Încărca
     import_users: Importă utilizatori
     invalid_csv_header: CSV conține antete invalide.
+    learning_from_others: Învățare colaborativă [20]
     libraries: Bibliotecă media
     library_invalid_type: Element invalid din bibliotecă
     manager_approval_required: Raportul pentru %{user} necesită aprobarea managerului înainte de descărcare
@@ -102,6 +103,7 @@ ro:
     notifications: Notificări
     number: Număr
     occupations: Ocupaţii
+    on_the_job: La locul de muncă [70]
     options: Opțiuni
     participants: Participanţii
     profile_details: Detalii profil
@@ -179,6 +181,7 @@ ro:
     slot_name: Numele slotului
     stats: Statistici
     status_details: Detalii despre stadiu
+    structured_learning: Învățarea formală [10]
     upload_success: Încărcat cu succes
     user_report_events: Evenimente de raportare a utilizatorilor
     users: Utilizatorii

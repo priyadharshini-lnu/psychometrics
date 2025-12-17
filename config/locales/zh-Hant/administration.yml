@@ -2064,9 +2064,6 @@ zh-Hant:
       learning_styles:
         cannot_be_blank: 不能為空白
         invalid: 必須是在職學習、有系統的學習、從他人身上學習其中之一
-        learning_from_others: 向他人學習 [20]
-        on_the_job: 在職 [70]
-        structured_learning: 結構化學習 [10]
       new:
         header: 新發展行動
       resource:

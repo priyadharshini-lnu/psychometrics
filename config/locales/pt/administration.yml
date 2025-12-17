@@ -2064,9 +2064,6 @@ pt:
       learning_styles:
         cannot_be_blank: Não pode estar em branco
         invalid: 'Deve ser um dos seguintes: no_trabalho, aprendizagem_estruturada, aprendizagem_com_outros'
-        learning_from_others: Aprender com os outros [20]
-        on_the_job: No trabalho [70]
-        structured_learning: Aprendizagem estruturada [10]
       new:
         header: Ação de novo desenvolvimento
       resource:

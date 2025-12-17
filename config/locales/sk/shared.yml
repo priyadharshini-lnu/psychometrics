@@ -10,15 +10,18 @@ sk:
     cancel: Zrušiť
     change_password: Zmeniť heslo
     clear_filters: Vymazať filtre
+    collaborative_learning: Kolaboratívne učenie
     continue: Pokračovať
     description: Popis
     edit: Upraviť
     edited: Nové
+    formal_learning: Formálne učenie
     group_question_max_validation_error: Každá skupina môže obsahovať najviac {{max}} položky.
     group_question_min_validation_error: Každá skupina musí obsahovať aspoň {{min}} položiek.
     id: ID
     idp_ai_assistant_disclaimer: Asistent IDP v Lighthouse AI môže robiť chyby. Prosím, buďte opatrní pri používaní odpovedí.
     internet_disconnected_message: Pokúšam sa znovu pripojiť. Skontrolujte, prosím, svoje internetové pripojenie.
+    learning_on_the_job_label: Učenie sa priamo v práci
     mte_logo_alt_text: Logo Mercer Talent Enterprise
     name: Meno
     new: Nové

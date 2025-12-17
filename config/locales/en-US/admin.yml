@@ -87,6 +87,7 @@ en-US:
     import_upload: Upload
     import_users: Import Users
     invalid_csv_header: CSV file contains invalid headers.
+    learning_from_others: Collaborative Learning [20]
     libraries: Media Library
     library_invalid_type: Invalid Library Item
     manager_approval_required: Report for %{user} requires manager approval before download
@@ -102,6 +103,7 @@ en-US:
     notifications: Notifications
     number: Number
     occupations: Occupations
+    on_the_job: On the Job [70]
     options: Options
     participants: Participants
     profile_details: Details
@@ -179,6 +181,7 @@ en-US:
     slot_name: Slot Name
     stats: Stats
     status_details: Status Details
+    structured_learning: Formal Learning [10]
     upload_success: Uploaded successfully
     user_report_events: Report Approval logs
     users: Users

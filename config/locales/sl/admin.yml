@@ -87,6 +87,7 @@ sl:
     import_upload: Upload
     import_users: Uvoz uporabnikov
     invalid_csv_header: CSV datoteka vsebuje neveljavne glave.
+    learning_from_others: Sodelovalno učenje [20]
     libraries: Medijska knjižnica
     library_invalid_type: Neveljaven knjižnični element
     manager_approval_required: Poročilo za %{user} zahteva odobritev upravitelja pred prenosom
@@ -102,6 +103,7 @@ sl:
     notifications: Obvestila
     number: Številka
     occupations: Poklicev
+    on_the_job: Na delovnem mestu [70]
     options: Možnosti
     participants: Udeleženci
     profile_details: Podrobnosti profila
@@ -179,6 +181,7 @@ sl:
     slot_name: Ime reže
     stats: Statistika
     status_details: Podrobnosti o statusu
+    structured_learning: Formalno učenje [10]
     upload_success: Uspešno naloženo
     user_report_events: Dogodki uporabniškega poročila
     users: Uporabniki

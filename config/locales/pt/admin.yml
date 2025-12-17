@@ -87,6 +87,7 @@ pt:
     import_upload: Carregar
     import_users: Importar Usuários
     invalid_csv_header: CSV contém cabeçalhos inválidos.
+    learning_from_others: Aprendizagem Colaborativa [20]
     libraries: Biblioteca multimédia
     library_invalid_type: Item da Biblioteca Inválido
     manager_approval_required: Relatório para %{user} requer aprovação do gerente antes do download
@@ -102,6 +103,7 @@ pt:
     notifications: Notificações
     number: Número
     occupations: Profissões
+    on_the_job: No Trabalho [70]
     options: Opções
     participants: Participantes
     profile_details: Detalhes do perfil
@@ -179,6 +181,7 @@ pt:
     slot_name: Nome do Slot
     stats: Estatísticas
     status_details: Detalhes de Status
+    structured_learning: Aprendizagem Formal [10]
     upload_success: Carregado com sucesso
     user_report_events: Eventos do relatório do utilizador
     users: Utilizadores

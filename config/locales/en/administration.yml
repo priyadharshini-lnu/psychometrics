@@ -2065,9 +2065,6 @@ en:
       learning_styles:
         cannot_be_blank: Cannot be blank
         invalid: Must be one of on_the_job, structured_learning, learning_from_others
-        learning_from_others: Learning from Others [20]
-        on_the_job: On the Job [70]
-        structured_learning: Structured Learning [10]
       new:
         header: New Development Action
       resource:

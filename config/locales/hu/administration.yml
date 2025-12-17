@@ -2066,9 +2066,6 @@ hu:
       learning_styles:
         cannot_be_blank: Nem lehet üres
         invalid: Az on_the_job, structured_learning, learning_from_others egyikének kell lennie
-        learning_from_others: Tanulás másoktól [20]
-        on_the_job: Munkában [70]
-        structured_learning: Strukturált tanulás [10]
       new:
         header: Új fejlesztési tevékenység
       resource:

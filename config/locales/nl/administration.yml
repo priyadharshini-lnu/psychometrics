@@ -2064,9 +2064,6 @@ nl:
       learning_styles:
         cannot_be_blank: Kan niet leeg zijn
         invalid: 'Moet een van de volgende zijn: on_the_job, gestructureerd_leren, leren_van_anderen'
-        learning_from_others: Leren van anderen [20]
-        on_the_job: Op het werk [70]
-        structured_learning: Gestructureerd leren [10]
       new:
         header: Nieuwe ontwikkeling Actie
       resource:

@@ -87,6 +87,7 @@ hu:
     import_upload: Feltölt
     import_users: Importfelhasználók
     invalid_csv_header: A CSV fájl érvénytelen fejléceket tartalmaz.
+    learning_from_others: Együttműködő tanulás [20]
     libraries: Médiatár
     library_invalid_type: Érvénytelen könyvtári tétel
     manager_approval_required: A jelentés %{user} letöltése előtt menedzser jóváhagyását igényel
@@ -102,6 +103,7 @@ hu:
     notifications: Értesítések
     number: Szám
     occupations: Foglalkozások
+    on_the_job: A munkában [70]
     options: Beállítások
     participants: Résztvevők
     profile_details: Profil részletei
@@ -179,6 +181,7 @@ hu:
     slot_name: Nyerő neve
     stats: Statisztika
     status_details: Állapot részletei
+    structured_learning: Formális tanulás [10]
     upload_success: Sikeresen feltöltve
     user_report_events: Felhasználói jelentés eseményei
     users: Felhasználók

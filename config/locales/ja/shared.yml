@@ -10,15 +10,18 @@ ja:
     cancel: キャンセル
     change_password: パスワードの変更
     clear_filters: 絞り込みをクリア
+    collaborative_learning: 協働学習
     continue: 続ける
     description: 形容
     edit: 編集
     edited: 新規
+    formal_learning: 正式な学習
     group_question_max_validation_error: 各グループは最大で{{max}}アイテムを含めることができます。
     group_question_min_validation_error: 各グループには少なくとも{{min}}のアイテムが含まれている必要があります。
     id: ID
     idp_ai_assistant_disclaimer: Lighthouse AI IDPアシスタントはミスを犯すことがあります。回答を使う際はご注意ください。
     internet_disconnected_message: 再接続の試行中です。インターネット接続を確認してください。
+    learning_on_the_job_label: 現場での学び
     mte_logo_alt_text: マーサー・タレント・エンタープライズのロゴ
     name: 名称
     new: 新規
