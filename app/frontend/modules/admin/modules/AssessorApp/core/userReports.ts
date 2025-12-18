@@ -19,9 +19,10 @@ export const UserReportDetailTR = t.type({
     email: t.string,
   }),
   report: t.type({
-    default_language: t.unknown,
+    default_language: t.type({ code: t.string }),
     locales: t.unknown,
     name: t.string,
+    available_languages: t.array(t.type({ code: t.string })),
   }),
   results: t.UnknownRecord,
 })
@@ -43,7 +44,9 @@ const defaultState: State = {
   current: {
     loaded: false,
     user: { id: undefined, email: '' },
-    report: { default_language: null, locales: null, name: '' },
+    report: {
+      default_language: { code: 'en' }, locales: null, name: '', available_languages: [],
+    },
     results: {},
   },
 }
@@ -59,11 +62,12 @@ const FETCH_SINGLE_USER = 'assessors/users/FETCH_SINGLE'
 export const DOWNLOAD = 'assessors/userReports/DOWNLOAD'
 export const ASYNC_DOWNLOAD = 'assessors/userReports/ASYNC_DOWNLOAD'
 
-export const fetchSingle = (campaignId: number, id: number) => ({
+export const fetchSingle = (campaignId: number, id: number, params = {}) => ({
   type: FETCH_SINGLE,
   request: {
     url: `/assessors/campaigns/${campaignId}/user_reports/${id}`,
     camelize: false,
+    body: params,
     typedResponse: UserReportDetailTR,
   },
 })

@@ -45,7 +45,7 @@ class Api::V2::Administration::Projects::IdpTemplateResource < Api::V2::Administ
         {
           global_skills: project_feature&.global_skills || false,
           ai_assisted_idp: project_feature&.ai_assisted_idp || false,
-          ai_assisted: project_feature&.ai_assisted_idp || false
+          ai_assistants: project_feature&.ai_assistants || false
         }
       }
     }

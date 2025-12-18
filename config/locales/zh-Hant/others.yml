@@ -55,6 +55,17 @@ zh-Hant:
               blank: 報告束 ID 不能為空
             report_id:
               blank: 報告 ID 不能為空
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: ID 為 %{id} 的 AI 助理在第 %{index} 列找不到
+              blank: 第 %{entity} 欄不能在第 %{index} 列是空白的
+              duplicate_code: 在第 %{index} 列重複代碼「%{code}」
+              invalid_code_format: 第 %{index} 列有無效的程式碼格式 '%{code}'
+              max_limit_reached: 戰役 AI 遺跡總數超過 %{count}
+              missing_headers: 缺少必要的標頭：%{headers}
+            file:
+              invalid_format: 請上傳 CSV 檔案
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ zh-Hant:
         import_development_actions: 匯入開發作業
         import_dimension_from_json: 從 JSON 匯入尺寸
         import_external_campaign_scoring: 匯入外部廣告系列計分
+        import_external_scoring_data: 匯入外部計分資料
         import_factor_translations: 進口因素轉換
         import_factors: 進口因素
         import_interview_questions: 導入面試問題
@@ -1050,7 +1062,7 @@ zh-Hant:
         saville_assessment_name: Saville 評估名稱
         simulation_assessment_name: 模擬評估名稱
         skillvue_assessment_name: Skillvue 評估名稱
-        yoodli_assessment_name: Yoodli 評估名稱
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: 翻譯遷移
     create: 建立
     dashboard: 儀表板
@@ -1475,8 +1487,6 @@ zh-Hant:
       skillvue_email_id: Skillvue 候選人電子郵件 ID
       skillvue_external_assessment_id: Skillvue 評估 ID
       universal_link: 通用連結
-      yoodli_email_id: Yoodli 候選人電子郵件 ID
-      yoodli_external_assessment_id: Yoodli 評估識別碼
     drawer:
       mettl_schedule_name: 時間表名稱
       title: 評估細節
@@ -1629,8 +1639,6 @@ zh-Hant:
       report: 報告
       report_bundle_placeholder: 選擇報告包
     messages:
-      bulk_download_error: 批量下載的報告檔案數量限制為 1000 個，如果您選擇了多種語言，請減少下載數量。
-      bulk_download_no_reports: 沒有找到報告。請在下載前生成報告。
       bulk_download_successful: 大量報告下載工作排程成功
       export_report_data_scheduled: 報告資料匯出工作排程成功
     modals:
@@ -1940,7 +1948,6 @@ zh-Hant:
       hide: 隱藏
       view: 檢視
     validations:
-      required: 此欄位為必修欄位
       select_locale: 請選擇地區
       should_be_whole_number: 應為整數
   confirmation:
@@ -2578,6 +2585,7 @@ zh-Hant:
     convert_to_draft: 转换为草稿
     current_step: 目前步驟 %{step}
     delete_skill: 您確定要刪除此技能嗎？刪除後將同時移除所有相關的開發行動。
+    delete_skill_msg: 你確定要刪除這個技能嗎？刪除它也會移除所有相關的開發行動。
     details: 詳細資訊
     development_actions:
       action_private: 是
@@ -2595,8 +2603,8 @@ zh-Hant:
         in_progress: 進行中
         not_started: 尚未開始
       completion: 完成
-      create_custom_development_action_title: 為%{skillName}創建我自己的開發行動
-      create_development_actions_with_ai: 使用 AI 建立開發動作 for %{skillName}
+      create_custom_development_action_title: 為 創建我自己的開發行動
+      create_development_actions_with_ai: 使用 AI 建立開發動作
       create_from_ai: 從 AI 創建
       create_my_own: 創建我自己
       custom: 習慣
@@ -2662,6 +2670,7 @@ zh-Hant:
     edit_progress: 編輯進度
     fetching_skill_gap_report: 獲取技能差距報告...
     go_to_previous_step: 轉到上一步
+    go_to_reportee_plan: 前往報告人計劃詳情
     history:
       added_da:
         one: 新增開發動作
@@ -2717,12 +2726,14 @@ zh-Hant:
         technical: 技術
       save_skills: 儲存技能
     new_comments: 新評論
+    no_plan_changes_found: 自你上次審查以來，計畫沒有做任何修改。
     no_skills_added: 您尚未新增任何技能。
     no_skills_added_by_reportee: 被舉報人尚未添加技能。
     pdf:
       approval_status: 審批狀態
       cover:
         fields:
+          approval_date: 核准日期
           assigned_data: 分配日期
           assigned_date: 指定日期
           completion_date: 完成日期
@@ -2809,8 +2820,12 @@ zh-Hant:
         approved: 已審核並批准
         completed: 已完成
         draft: 草案
+        in_progress: 進行中
+        in_review: 評論
         not_reviewed: 未審核
+        not_started: 未開始
         pending_approval: 審核中
+        rejected: 被拒絕
       summary:
         ai_count: 生成式AI
         collaborative_learn: 協作學習
@@ -3791,13 +3806,6 @@ zh-Hant:
       on_hold: 暫停
       prepared: 完成
       released: 已發行
-    statuses:
-      completed: 已完成
-      declined: 已拒絕
-      denied: 拒絕
-      done: 完成
-      not_completed: 未完成
-      waiting: 等待
   threesixty:
     accept_privacy_modal:
       accept: 接受

@@ -55,6 +55,17 @@ id:
               blank: ID Paket Laporan tidak boleh kosong
             report_id:
               blank: ID Laporan tidak boleh kosong
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: Asisten AI dengan ID '%{id}' tidak ditemukan di baris %{index}
+              blank: Kolom '%{entity}' tidak boleh kosong di baris %{index}
+              duplicate_code: Gandakan kode '%{code}' di baris %{index}
+              invalid_code_format: Format kode tidak valid '%{code}' di baris %{index}
+              max_limit_reached: Total artefak AI kampanye melebihi batas maksimum %{count}
+              missing_headers: 'Header yang diperlukan tidak ada: %{headers}'
+            file:
+              invalid_format: Silakan unggah file CSV
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ id:
         import_development_actions: Tindakan Pengembangan Impor
         import_dimension_from_json: Impor Dimensi dari JSON
         import_external_campaign_scoring: Mengimpor Skor Kampanye Eksternal
+        import_external_scoring_data: Impor Data Penilaian Eksternal
         import_factor_translations: Terjemahan Faktor Impor
         import_factors: Faktor Impor
         import_interview_questions: Impor Pertanyaan Wawancara
@@ -1053,7 +1065,7 @@ id:
         saville_assessment_name: Penilaian Saville Nama
         simulation_assessment_name: Nama Penilaian Simulasi
         skillvue_assessment_name: Nama Penilaian Skillvue
-        yoodli_assessment_name: Nama Penilaian Yoodli
+        yoodli_scenario_id: ID Skenario Yoodli
       translations_migrated: Terjemahan Dimigrasikan
     create: Menciptakan
     dashboard: Dashboard
@@ -1479,8 +1491,6 @@ id:
       skillvue_email_id: ID Email Kandidat Skillvue
       skillvue_external_assessment_id: ID Penilaian Skillvue
       universal_link: Tautan universal
-      yoodli_email_id: ID Email Kandidat Yoodli
-      yoodli_external_assessment_id: ID Penilaian Yoodli
     drawer:
       mettl_schedule_name: Nama Jadwal Mettl
       title: Detail Penilaian
@@ -1633,8 +1643,6 @@ id:
       report: Lapor
       report_bundle_placeholder: Memilih paket laporan
     messages:
-      bulk_download_error: Unduhan massal dibatasi hingga 1000 file laporan. Jika Anda telah memilih banyak bahasa, harap kurangi.
-      bulk_download_no_reports: Tidak ada laporan yang ditemukan. Silakan buat laporan sebelum mengunduh.
       bulk_download_successful: Pekerjaan pengunduhan laporan massal berhasil dijadwalkan
       export_report_data_scheduled: Tugas ekspor data laporan berhasil dijadwalkan
     modals:
@@ -1944,7 +1952,6 @@ id:
       hide: Menyembunyikan
       view: Melihat
     validations:
-      required: Bidang ini diperlukan
       select_locale: Silakan pilih Beberapa lokal
       should_be_whole_number: harus berupa bilangan bulat
   confirmation:
@@ -2521,8 +2528,8 @@ id:
       reset_chat: Setel Ulang Obrolan
       reset_confirmation: Apakah Anda yakin ingin membuang obrolan ini dan memulai yang baru?
       retake_steps:
-        chat_hint: Beri tahu saya informasi apa yang ingin Anda berikan lebih lanjut di bawah ini?
-        chat_title: Anda ingin memberikan informasi lebih lanjut?
+        chat_hint: Anda dapat mengunggah file baru atau memulai ulang obrolan untuk membagikan detail lebih lanjut, dan saya akan melakukan yang terbaik untuk membantu Anda.
+        chat_title: Maaf analisis awal tidak memenuhi harapan Anda.
         start_chat: Mulai Obrolan
         start_chat_again: Mulai Obrolan Lagi
         upload_document: Unggah dokumen
@@ -2548,14 +2555,14 @@ id:
         chat_title: Ringkasan Wawasan Obrolan
         file_title: Wawasan Dokumen yang Diunggah
         gap_report_title: Analisis Laporan Kesenjangan Keterampilan
-        hint: jika ya maka kami akan membuat IDP Anda jika tidak, Anda dapat mengambil kembali jawaban Anda
-        title: Apakah Anda puas dengan hasilnya?
+        hint: Dengan izin Anda, jika Anda mengatakan ya, saya dapat membuat rencana pengembangan untuk Anda. Jika tidak, Anda dapat memulai ulang obrolan atau mengunggah file baru.
+        title: Apakah Anda puas dengan analisis?
         upload_file: File yang Diunggah
         view_chat: Lihat Obrolan
       upload:
-        description: Klik atau seret file ke area ini untuk diunggah
+        description: 'Jenis file yang didukung: Dokumen PDF hingga %{maxFileSize}MB'
         drop: Jatuhkan file di sini
-        title: Unggah file
+        title: Klik atau jatuhkan file di sini
       welcome:
         text: Siap untuk memetakan perjalanan pertumbuhan Anda? Mari kita mulai!
         title: Halo, saya asisten pengembangan Anda
@@ -2605,6 +2612,7 @@ id:
     convert_to_draft: Konversi ke Draf
     current_step: Langkah Saat Ini %{step}
     delete_skill: Apakah Anda yakin ingin menghapus keterampilan ini? Menghapusnya juga akan menghapus semua tindakan pengembangan terkait.
+    delete_skill_msg: Apakah Anda yakin ingin menghapus keterampilan ini? Menghapusnya juga akan menghapus semua tindakan pengembangan terkait.
     details: Rincian
     development_actions:
       action_private: Ya
@@ -2622,8 +2630,8 @@ id:
         in_progress: Sedang Berlangsung
         not_started: Belum Dimulai
       completion: Penyelesaian
-      create_custom_development_action_title: Buat Aksi Pengembangan saya sendiri untuk %{skillName}
-      create_development_actions_with_ai: Buat Tindakan Pengembangan dengan AI untuk %{skillName}
+      create_custom_development_action_title: Buat Aksi Pengembangan saya sendiri untuk
+      create_development_actions_with_ai: Buat Tindakan Pengembangan dengan AI untuk
       create_from_ai: Buat dari AI
       create_my_own: Buat Sendiri
       custom: Adat
@@ -2689,6 +2697,7 @@ id:
     edit_progress: Edit Kemajuan
     fetching_skill_gap_report: Laporan Kesenjangan Keterampilan Mengambil ...
     go_to_previous_step: Pergi ke Langkah Sebelumnya
+    go_to_reportee_plan: Buka Detail Paket Terlapor
     history:
       added_da:
         one: Menambahkan Tindakan Pengembangan
@@ -2738,12 +2747,14 @@ id:
         categories: Kategori
       save_skills: Simpan Keterampilan
     new_comments: Komentar baru
+    no_plan_changes_found: Tidak ada revisi yang dilakukan pada rencana sejak tinjauan terakhir Anda.
     no_skills_added: Anda belum memiliki Keterampilan yang ditambahkan.
     no_skills_added_by_reportee: Laporan belum menambahkan Keterampilan.
     pdf:
       approval_status: Status Persetujuan
       cover:
         fields:
+          approval_date: Tanggal Persetujuan
           assigned_data: Tanggal yang Ditetapkan
           assigned_date: Tanggal Penugasan
           completion_date: Tanggal Penyelesaian
@@ -2830,8 +2841,12 @@ id:
         approved: Ditinjau dan Disetujui
         completed: Selesai
         draft: Konsep
+        in_progress: Sedang Berlangsung
+        in_review: Dalam Tinjauan
         not_reviewed: Tidak Ditinjau
+        not_started: Belum Dimulai
         pending_approval: Dalam Tinjauan
+        rejected: Ditolak
       summary:
         ai_count: AI Generatif
         collaborative_learn: Pembelajaran Kolaboratif
@@ -3812,13 +3827,6 @@ id:
       on_hold: Ditunda
       prepared: Selesai
       released: Dirilis
-    statuses:
-      completed: Selesai
-      declined: Ditolak
-      denied: Ditolak
-      done: Selesai
-      not_completed: Tidak Selesai
-      waiting: Menunggu
   threesixty:
     accept_privacy_modal:
       accept: Terima

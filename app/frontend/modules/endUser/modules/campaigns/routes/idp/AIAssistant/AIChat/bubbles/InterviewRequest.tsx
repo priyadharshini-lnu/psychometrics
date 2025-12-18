@@ -1,4 +1,6 @@
-import { Button, Flex, Space } from 'antd'
+import {
+  Avatar, Button, Flex, Space,
+} from 'antd'
 import {
   Bubble,
 } from '@ant-design/x'
@@ -29,6 +31,6 @@ export const InterviewRequest = ({ message, onAction, isCurrent }) => (
         )}
       </Flex>
     )}
-    avatar={{ icon: <BotIcon /> }}
+    avatar={<Avatar icon={<BotIcon />} />}
   />
 )

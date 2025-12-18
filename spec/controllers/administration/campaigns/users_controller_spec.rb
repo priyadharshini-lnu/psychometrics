@@ -108,7 +108,8 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
         'toggle_status' => true,
         'bulk_download' => true,
         'view_recordings' => true,
-        'view_workshop_details' => true
+        'view_workshop_details' => true,
+        'view_idp_plan' => true
       },
       'manager' => {},
       'hogan_id' => hogan_credential.participant_id,

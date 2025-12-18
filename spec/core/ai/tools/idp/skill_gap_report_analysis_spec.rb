@@ -113,6 +113,7 @@ describe AI::Tools::Idp::SkillGapReportAnalysis do
             chat: ai_assistant_chat.with_assistant_context,
             ask_params: { with: 'https://example.com/document.pdf', service: :openai_response_api },
             ignore_user_prompt: nil,
+            prompt_template_context: nil,
             params: {}
           )
         end

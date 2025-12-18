@@ -3,6 +3,9 @@ pl:
   enduser:
     add_idp_plan_note: Dodaj notatkę...
     add_idp_plan_rejection_reason: Dodaj powód...
+    ai_idp_assistant_response_no: Nie
+    ai_idp_assistant_response_upload_different_document: Chcę przesłać inny dokument.
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: Tak, kontynuuj tworzenie planu.
     approve_idp_plan: Zatwierdź plan
     bookings: Rezerwacje
     campaign: Kampania
@@ -10,6 +13,7 @@ pl:
     direct_reportees: Bezpośredni podwładni
     home: Deska rozdzielcza
     idp_plan_approval_note: Notatka zatwierdzenia
+    idp_retake_steps_continue_with_this_information: Kontynuuj tę informację
     insights: Obserwacje
     lighthouse_assistant: Asystent latarni morskiej
     max_word_limit: Musi mieć maksymalnie %{max} słów

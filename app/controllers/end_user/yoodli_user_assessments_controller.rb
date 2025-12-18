@@ -6,6 +6,7 @@ class EndUser::YoodliUserAssessmentsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_user_assessment, only: %i[pass]
   before_action :can_start_based_on_sequencing, only: %i[pass]
+  before_action :set_saml_assessment_cookie, only: %i[pass]
 
   lti_launch :pass, integration: :yoodli,
     permit_params: ->(params) { params.require(:yoodli_user_assessment).permit(:id) }
@@ -20,6 +21,13 @@ class EndUser::YoodliUserAssessmentsController < ApplicationController
 
   def set_user_assessment
     @user_assessment = UserAssessment.find_by(id: params[:id], evaluator_id: current_user.id)
+  end
+
+  def set_saml_assessment_cookie
+    return unless @user_assessment
+
+    # Set SAML cookie to track this user assessment for Yoodli integration SSO
+    add_cookie('saml_user_assessment_id', @user_assessment.id.to_s, expires: 24.hours.from_now)
   end
 
   def meta_data

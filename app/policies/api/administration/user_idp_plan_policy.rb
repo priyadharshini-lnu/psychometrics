@@ -16,7 +16,11 @@ module Api
       end
 
       def update?
-        true
+        has_permission?(:user_idp_plans, :manage)
+      end
+
+      def reset?
+        has_permission?(:user_idp_plans, :reset)
       end
 
       class Scope < BasePolicy::Scope

@@ -84,11 +84,5 @@ module Api
         where(project_id: params[:filter][:project_id_eq]).
         map { |a| { id: a.product_id, name: a.name } }
     end
-
-    def yoodli_assessments(search)
-      YoodliAssessment.filterable_fields(search).
-        where(project_id: params[:filter][:project_id_eq]).
-        map { |a| { id: a.product_id, name: a.name } }
-    end
   end
 end

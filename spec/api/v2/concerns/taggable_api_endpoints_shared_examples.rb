@@ -2,80 +2,54 @@
 
 RSpec.shared_examples 'taggable API endpoints' do |model_class|
   let(:resource) { create(model_class.to_s.underscore.to_sym) }
-  let(:tag) { 'example_tag' }
+  let(:tag_name) { 'example_tag' }
 
   before(:each) do
     allow(Current).to receive(:user).and_return(superadmin)
   end
 
-  path "/#{model_class.to_s.underscore.pluralize}/{#{model_class.to_s.underscore}_id}/add_tag" do
-    post "Add tag to a #{model_class.to_s.underscore}" do
-      operationId "AddTagTo#{model_class}"
-
-      description "Add a tag to an #{model_class.to_s.underscore}"
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :"#{model_class.to_s.underscore}_id", in: :path, type: :string
-      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/AddTagRequest' }, required: true
-
-      response '200', 'Tag added successfully' do
-        let(:"#{model_class.to_s.underscore}_id") { resource.id }
-        let(:tag) { 'example_tag' }
-
-        let(:body) do
-          {
-            data: {
-              type: model_class.to_s.underscore.pluralize,
-              attributes: {
-                tag: tag
-              }
-            }
+  describe "POST /api/v2/administration/#{model_class.to_s.underscore.pluralize}/" \
+           ":#{model_class.to_s.underscore}_id/add_tag" do
+    it "adds a tag to a #{model_class.to_s.underscore}" do
+      body = {
+        data: {
+          type: model_class.to_s.underscore.pluralize,
+          attributes: {
+            tag: tag_name
           }
-        end
+        }
+      }
 
-        run_test! do |response|
-          expect(response).to have_http_status(:ok)
-          expect(resource.reload.all_tags_list).to include(tag)
-        end
-      end
+      post "/api/v2/administration/#{model_class.to_s.underscore.pluralize}/#{resource.id}/add_tag",
+           params: body.to_json,
+           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:ok)
+      expect(resource.reload.all_tags_list).to include(tag_name)
     end
   end
 
-  path "/#{model_class.to_s.underscore.pluralize}/{#{model_class.to_s.underscore}_id}/remove_tag" do
-    post "Remove tag from a #{model_class.to_s.underscore}" do
-      operationId "RemoveTagFrom#{model_class}"
+  describe "POST /api/v2/administration/#{model_class.to_s.underscore.pluralize}/" \
+           ":#{model_class.to_s.underscore}_id/remove_tag" do
+    it "removes a tag from a #{model_class.to_s.underscore}" do
+      resource.add_tag(tag_name)
+      resource.save
 
-      description "Remove a tag from an #{model_class.to_s.underscore}"
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :"#{model_class.to_s.underscore}_id", in: :path, type: :string
-      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/RemoveTagRequest' }, required: true
-
-      response '200', 'Tag removed successfully' do
-        let(:"#{model_class.to_s.underscore}_id") { resource.id }
-        let(:tag) { 'example_tag' }
-
-        let(:body) do
-          {
-            data: {
-              type: model_class.to_s.underscore.pluralize,
-              attributes: {
-                tag: tag
-              }
-            }
+      body = {
+        data: {
+          type: model_class.to_s.underscore.pluralize,
+          attributes: {
+            tag: tag_name
           }
-        end
+        }
+      }
 
-        before do
-          resource.add_tag(tag)
-          resource.save
-        end
+      post "/api/v2/administration/#{model_class.to_s.underscore.pluralize}/#{resource.id}/remove_tag",
+           params: body.to_json,
+           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-        run_test! do |response|
-          expect(response).to have_http_status(:ok)
-          expect(resource.reload.all_tags_list).not_to include(tag)
-        end
-      end
+      expect(response).to have_http_status(:ok)
+      expect(resource.reload.all_tags_list).not_to include(tag_name)
     end
   end
 end

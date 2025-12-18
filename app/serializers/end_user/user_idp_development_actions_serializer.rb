@@ -2,10 +2,11 @@
 
 module EndUser
   class UserIdpDevelopmentActionsSerializer < Panko::Serializer
-    attributes :id, :development_action_id, :name, :description, :learning_style,
+    attributes :id, :development_action_id, :development_action_type, :name, :description, :learning_style, :course_url,
                :image, :user_idp_skill_id, :progress, :start_date_time, :end_date_time, :private, :source_type
 
-    delegate :name, :description, :learning_style, :source_type, to: :development_action
+    delegate :name, :description, :development_action_type, :course_url, :learning_style, :source_type,
+             to: :development_action
 
     def development_action_id
       development_action&.id

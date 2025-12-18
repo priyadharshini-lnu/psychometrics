@@ -6,7 +6,7 @@ import {
 export const CustomSender = ({
   ...props
 }) => {
-  const actions = (_, info) => {
+  const suffix = (_, info) => {
     const { SendButton } = info.components
     return (
       <SendButton
@@ -22,7 +22,7 @@ export const CustomSender = ({
   return (
     <Sender
       {...props}
-      actions={actions}
+      suffix={suffix}
     />
   )
 }

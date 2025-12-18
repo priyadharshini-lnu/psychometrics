@@ -55,6 +55,17 @@ zh:
               blank: 报告捆绑包 ID 不能为空
             report_id:
               blank: 报告 ID 不能为空
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: ID为“%{id}”的AI助手在第%{index}行找不到
+              blank: 列“%{entity}”在第%{index}行不能是空的
+              duplicate_code: 第%{index}行重复代码“%{code}”
+              invalid_code_format: 第%{index}行代码格式“%{code}”无效
+              max_limit_reached: 战役AI遗迹总数超过最大限制%{count}
+              missing_headers: 缺少必填标题：%{headers}
+            file:
+              invalid_format: 请上传CSV文件
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ zh:
         import_development_actions: 导入开发行动
         import_dimension_from_json: 从 JSON 导入维度
         import_external_campaign_scoring: 导入外部营销活动评分
+        import_external_scoring_data: 导入外部评分数据
         import_factor_translations: 进口系数翻译
         import_factors: 进口因素
         import_interview_questions: 导入面试问题
@@ -1050,7 +1062,7 @@ zh:
         saville_assessment_name: 萨维尔评估名称
         simulation_assessment_name: 模拟评估名称
         skillvue_assessment_name: Skillvue 评估名称
-        yoodli_assessment_name: 尤德利评估名称
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: 翻译已迁移
     create: 创建
     dashboard: 仪表板
@@ -1485,8 +1497,6 @@ zh:
       skillvue_email_id: Skillvue 候选人电子邮件 ID
       skillvue_external_assessment_id: Skillvue 评估 ID
       universal_link: 通用链接
-      yoodli_email_id: Yoodli候选人邮箱ID
-      yoodli_external_assessment_id: Yoodli 评估 ID
     drawer:
       mettl_schedule_name: 附表名称
       title: 评估细节
@@ -1639,8 +1649,6 @@ zh:
       report: 报告
       report_bundle_placeholder: 选择报告包
     messages:
-      bulk_download_error: 批量下载仅限于 1000 个报告文件。 如果您选择了多种语言，请减少下载量。
-      bulk_download_no_reports: 未找到报告。请在下载前生成报告。
       bulk_download_successful: 批量报告下载任务已成功安排
       export_report_data_scheduled: 报告数据导出任务已成功安排
     modals:
@@ -1950,7 +1958,6 @@ zh:
       hide: 隐藏
       view: 查看
     validations:
-      required: 该栏目是必修的
       select_locale: 请选择地区
       should_be_whole_number: 应为整数
   confirmation:
@@ -2504,8 +2511,8 @@ zh:
       reset_chat: 重置聊天
       reset_confirmation: 您确定要放弃此聊天并重新开始吗？
       retake_steps:
-        chat_hint: 让我知道您想提供更多信息？
-        chat_title: 您想提供更多信息吗？
+        chat_hint: 你可以上传新文件或重启聊天分享更多细节，我会尽力协助你。
+        chat_title: 很抱歉最初的分析没有达到你的预期。
         start_chat: 开始聊天
         start_chat_again: 重新开始聊天
         upload_document: 上传文档
@@ -2531,14 +2538,14 @@ zh:
         chat_title: 聊天洞察摘要
         file_title: 上传的文档见解
         gap_report_title: 技能差距报告分析
-        hint: 如果是，那么我们将创建您的 IDP，否则您可以重新回答
-        title: 你对结果满意吗？
+        hint: 如果你同意，我可以为你制定开发计划。如果不行，你可以重新开始聊天或上传新文件。
+        title: 你对分析满意吗？
         upload_file: 上传的文件
         view_chat: 查看聊天
       upload:
-        description: 单击或拖动文件到此区域进行上传
+        description: 支持的文件类型：PDF文档至%{maxFileSize}MB
         drop: 将文件拖放到此处
-        title: 上传文件
+        title: 点击或提交文件
       welcome:
         text: 准备好绘制您的成长乔恩了吗？让我们开始吧！
         title: 您好，我是你们的开发助手
@@ -2588,6 +2595,7 @@ zh:
     convert_to_draft: 轉換為草稿
     current_step: 当前步骤 %{step}
     delete_skill: 您确定要删除此技能吗？删除后将同时移除所有相关的开发行动。
+    delete_skill_msg: 你确定要删除这个技能吗？删除后，所有相关的开发作也会被移除。
     details: 详细信息
     development_actions:
       action_private: 是
@@ -2605,8 +2613,8 @@ zh:
         in_progress: 进行中
         not_started: 未开始
       completion: 完工
-      create_custom_development_action_title: 为%{skillName}创建我自己的开发行动
-      create_development_actions_with_ai: 使用 AI 创建开发行动 for %{skillName}
+      create_custom_development_action_title: 为 创建我自己的开发行动
+      create_development_actions_with_ai: 使用 AI 创建开发行动
       create_from_ai: 从 AI 创建
       create_my_own: 创建我自己的
       custom: 习惯
@@ -2672,6 +2680,7 @@ zh:
     edit_progress: 编辑进度
     fetching_skill_gap_report: 获取技能差距报告...
     go_to_previous_step: 转到上一步
+    go_to_reportee_plan: 前往报告人计划详情
     history:
       added_da:
         one: 添加了开发作
@@ -2727,12 +2736,14 @@ zh:
         technical: 技术
       save_skills: 保存技能
     new_comments: 新评论
+    no_plan_changes_found: 自你上次审查以来，计划没有任何修改。
     no_skills_added: 您尚未添加任何技能。
     no_skills_added_by_reportee: 被举报人尚未添加技能。
     pdf:
       approval_status: 审批状态
       cover:
         fields:
+          approval_date: 批准日期
           assigned_data: 分配日期
           assigned_date: 指定日期
           completion_date: 完成日期
@@ -2819,8 +2830,12 @@ zh:
         approved: 已审核并批准
         completed: 已完成
         draft: 草案
+        in_progress: 进行中
+        in_review: 回顾
         not_reviewed: 未审核
+        not_started: 未开始
         pending_approval: 审核中
+        rejected: 拒绝
       summary:
         ai_count: 生成式AI
         collaborative_learn: 协作学习
@@ -3801,13 +3816,6 @@ zh:
       on_hold: 搁置
       prepared: 已完成
       released: 已发布
-    statuses:
-      completed: 已完成
-      declined: 已拒绝
-      denied: 已拒绝
-      done: 完成
-      not_completed: 未完成
-      waiting: 等待中
   threesixty:
     accept_privacy_modal:
       accept: 接受

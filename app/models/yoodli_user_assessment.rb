@@ -5,5 +5,5 @@ class YoodliUserAssessment < ApplicationRecord
 
   belongs_to :user_assessment
 
-  delegate :user_reports, to: :user_assessment
+  delegate :user_reports, :users_result, to: :user_assessment
 end

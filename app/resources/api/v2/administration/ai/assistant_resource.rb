@@ -6,7 +6,9 @@ module Api
       class AI::AssistantResource < BaseResource
         model_name 'AI::Assistant'
         attributes :name, :description, :assistant_type, :user_prompt, :system_prompt,
-                   :created_at, :updated_at, :model_id, :status, :dependencies, :assistant_output_schema_keys_attributes
+                   :created_at, :updated_at, :model_id, :status, :dependencies,
+                   :assistant_output_schema_keys_attributes,
+                   :advanced_prompting_enabled
 
         has_one :owner, class_name: 'Client'
         has_one :last_modified_by, class_name: 'User'

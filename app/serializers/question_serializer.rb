@@ -16,10 +16,12 @@ class QuestionSerializer < Panko::Serializer
       object.props = Utility::Hash.deep_merge(object.props, translation_props || {})
     end
 
-    object.props.merge(
-      questionText: Threesixty::PipedText::Perform.
-        call!(object.props['questionText'], context[:piped_text_context])
-    )
+    question_text = object.props['questionText']
+
+    unless ignore_pipetext_substitution?
+      question_text = Threesixty::PipedText::Perform.call!(question_text, context[:piped_text_context])
+    end
+    object.props.merge('questionText' => question_text)
   end
 
   def validation
@@ -30,5 +32,11 @@ class QuestionSerializer < Panko::Serializer
     end
 
     object.validation
+  end
+
+  private
+
+  def ignore_pipetext_substitution?
+    context[:ignore_pipetext_substitution] || false
   end
 end

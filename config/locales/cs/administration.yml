@@ -294,6 +294,7 @@ cs:
             view: Zobrazit
           userIdpPlans:
             manage: Spravovat
+            reset: Resetovat
             title: Plány pro IDP uživatelů
             view: Pohled
           users:
@@ -897,8 +898,6 @@ cs:
       new:
         header: Hromadné stahování
       reports_unavailable: V současné době nejsou k dispozici žádné zprávy ke stažení. Potvrďte, že zprávy, které chcete stáhnout, jsou k dispozici.
-      select_users_for_download: Vyberte prosím alespoň jednoho uživatele pro stažení přehledů.
-      select_users_for_regenerate: Vyberte prosím alespoň jednoho uživatele pro regeneraci zpráv.
     cable:
       notification:
         assessment_factors: Faktory jsou načteny
@@ -2065,9 +2064,6 @@ cs:
       learning_styles:
         cannot_be_blank: Nemůže být prázdný
         invalid: 'Musí se jednat o jednu z těchto možností: on_the_job, structured_learning, learning_from_others'
-        learning_from_others: Učení se od ostatních [20]
-        on_the_job: Na pracovišti [70]
-        structured_learning: Strukturované učení [10]
       new:
         header: Nová rozvojová akce
       resource:
@@ -2322,11 +2318,12 @@ cs:
       behavioral_skills: Behaviorální dovednosti
       client_skills: Klientské dovednosti
       delete_skill: Opravdu chcete odstranit dovednost, protože tím odstraníte i všechny související vývojové akce?
+      delete_skill_msg: Jste si jistý, že chcete tuto dovednost smazat? Smazání také odstraní všechny související vývojové akce.
       details_updated: Úspěšná aktualizace údajů IDP
       development_actions:
         add_from_library: Přidat z knihovny
         completion: Dokončení
-        create_development_actions_with_ai: Vytváření vývojových akcí pomocí AI pro %{skillName}
+        create_development_actions_with_ai: Vytváření vývojových akcí pomocí AI pro
         create_from_ai: Tvořte z umělé inteligence
         create_my_own: Vytvoř si vlastní
         custom: Zvyk
@@ -2352,6 +2349,7 @@ cs:
         skills_required_on_publishing: Před publikováním šablony si prosím vyberte dovednosti.
         update: Aktualizace není povolena, protože šablona IDP je již přiřazena k plánu IDP uživatele.
       fields:
+        approval_date: Datum schválení
         assigned_data: Přiřazená data
         assigned_date: Přidělené datum
         completion_date: Datum dokončení
@@ -2644,24 +2642,6 @@ cs:
         skillvue:
           api_key_present: Klíč API již existuje v jiném projektu
       view_all_schedules: Zobrazit všechny plány Mettl
-      yoodli_assessments:
-        add_assessment: Add Yoodli Assessment
-        columns:
-          actions: Akce
-          created_at: Vytvořeno v
-          name: Název hodnocení
-          product_id: ID produktu
-        delete_confirm: Jste si jistý, že chcete toto hodnocení Yoodli smazat?
-        edit_assessment: 'Edit: Yoodli Assessment'
-        manage_catalog: Spravujte Yoodli hodnocení
-        messages:
-          create_success: Yoodli hodnocení '%{name}' bylo úspěšně vytvořeno
-          delete_success: Yoodliho hodnocení bylo úspěšně smazáno
-          update_success: Yoodliho hodnocení '%{name}' bylo úspěšně aktualizováno
-        placeholders:
-          name: Zadejte název hodnocení
-          product_id: Zadejte ID produktu
-        search: Hledání
     interview_questions:
       delete_confirmation: Opravdu chcete smazat tuto otázku pohovoru?
       description: Popis
@@ -4675,8 +4655,6 @@ cs:
             evaluations_received: Přijatá hodnocení
             is_subject: Je předmětem
             name: Název
-            report_status: Stav zprávy
-            status: Stav
           evaluators:
             add_evaluators: Přidání hodnotitelů
             import_evaluators: Hodnotitelé importu

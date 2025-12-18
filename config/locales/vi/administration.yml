@@ -294,6 +294,7 @@ vi:
             view: Cảnh
           userIdpPlans:
             manage: Điều khiển
+            reset: Reset
             title: Gói IDP người dùng
             view: Cảnh
           users:
@@ -897,8 +898,6 @@ vi:
       new:
         header: Tải xuống hàng loạt
       reports_unavailable: Hiện tại, không có báo cáo nào có sẵn để tải xuống. Vui lòng xác nhận rằng các báo cáo bạn muốn tải xuống đã có sẵn.
-      select_users_for_download: Vui lòng chọn ít nhất một người dùng để tải xuống báo cáo.
-      select_users_for_regenerate: Vui lòng chọn ít nhất một người dùng để tái tạo báo cáo.
     cable:
       notification:
         assessment_factors: Các yếu tố được tìm nạp
@@ -2065,9 +2064,6 @@ vi:
       learning_styles:
         cannot_be_blank: Không thể để trống
         invalid: Phải là một trong những on_the_job, structured_learning, learning_from_others
-        learning_from_others: Học hỏi từ những người khác [20]
-        on_the_job: Trong công việc [70]
-        structured_learning: Học tập có cấu trúc [10]
       new:
         header: Hành động phát triển mới
       resource:
@@ -2322,11 +2318,12 @@ vi:
       behavioral_skills: Kỹ năng hành vi
       client_skills: Kỹ năng khách hàng
       delete_skill: Bạn có chắc chắn muốn xóa kỹ năng này không? Việc xóa sẽ loại bỏ tất cả các hành động phát triển liên quan.
+      delete_skill_msg: Bạn có chắc chắn muốn xóa kỹ năng này không? Xóa nó cũng sẽ xóa tất cả các hành động phát triển có liên quan.
       details_updated: Thông tin chi tiết về IDP đã được cập nhật thành công.
       development_actions:
         add_from_library: Thêm từ Thư viện
         completion: Hoàn thành
-        create_development_actions_with_ai: Tạo hành động phát triển với AI cho %{skillName}
+        create_development_actions_with_ai: Tạo hành động phát triển với AI cho
         create_from_ai: Sáng tạo từ AI
         create_my_own: Tạo của riêng tôi
         custom: Phong tục
@@ -2352,6 +2349,7 @@ vi:
         skills_required_on_publishing: Vui lòng chọn kỹ năng trước khi xuất bản mẫu.
         update: Không được phép cập nhật vì mẫu IDP đã được liên kết với gói IDP của người dùng. Các thay đổi về ngoại hình đã được lưu.
       fields:
+        approval_date: Ngày phê duyệt
         assigned_data: Dữ liệu được chỉ định
         assigned_date: Ngày được giao
         completion_date: Ngày hoàn thành
@@ -2644,24 +2642,6 @@ vi:
         skillvue:
           api_key_present: Khóa API đã có trong dự án khác
       view_all_schedules: Xem tất cả lịch trình Mettl
-      yoodli_assessments:
-        add_assessment: Thêm đánh giá Yoodli
-        columns:
-          actions: Hành động
-          created_at: Được tạo tại
-          name: Tên đánh giá
-          product_id: ID sản phẩm
-        delete_confirm: Bạn có chắc chắn muốn xóa bài đánh giá Yoodli này không?
-        edit_assessment: Chỉnh sửa Đánh giá Yoodli
-        manage_catalog: Quản lý đánh giá Yoodli
-        messages:
-          create_success: Đánh giá Yoodli '%{name}' đã được tạo thành công
-          delete_success: Đánh giá Yoodli đã bị xóa thành công
-          update_success: Đánh giá Yoodli '%{name}' đã được cập nhật thành công
-        placeholders:
-          name: Nhập tên đánh giá
-          product_id: Nhập mã sản phẩm
-        search: Tìm kiếm
     interview_questions:
       delete_confirmation: Bạn có chắc chắn muốn xóa Câu hỏi phỏng vấn này không?
       description: Mô tả
@@ -4667,8 +4647,6 @@ vi:
             evaluations_received: Đánh giá đã nhận
             is_subject: Chủ đề là
             name: Tên
-            report_status: Trạng thái báo cáo
-            status: Trạng thái
           evaluators:
             add_evaluators: Thêm người đánh giá
             import_evaluators: Nhà đánh giá nhập khẩu

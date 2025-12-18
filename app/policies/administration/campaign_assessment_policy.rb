@@ -18,6 +18,12 @@ module Administration
       )
     end
 
+    def import_external_scoring_results?
+      @record.assessment.yoodli? && (@user.is?(:superadmin) || @user.has_permission?(
+        :results, :import_external_scoring, project_id: project_id, campaign_id: campaign_id
+      ))
+    end
+
     def update_norm?
       can_manage_campaign_and_users?
     end
@@ -83,6 +89,10 @@ module Administration
 
     def toggle_auto_assign?
       can_manage_campaign_and_users?
+    end
+
+    def toggle_caching?
+      has_permission?(:campaigns, :manage)
     end
   end
 end

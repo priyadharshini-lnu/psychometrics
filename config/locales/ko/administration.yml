@@ -294,6 +294,7 @@ ko:
             view: 보기
           userIdpPlans:
             manage: 관리하다
+            reset: 재설정
             title: 사용자 IDP 계획
             view: 보기
           users:
@@ -897,8 +898,6 @@ ko:
       new:
         header: 대량 다운로드
       reports_unavailable: 현재 다운로드할 수 있는 보고서가 없습니다. 다운로드하려는 보고서가 있는지 확인해 주세요.
-      select_users_for_download: 보고서를 다운로드하려면 하나 이상의 사용자를 선택하십시오.
-      select_users_for_regenerate: 보고서를 재생하려면 하나 이상의 사용자를 선택하십시오.
     cable:
       notification:
         assessment_factors: 팩터가 가져옵니다
@@ -2065,9 +2064,6 @@ ko:
       learning_styles:
         cannot_be_blank: 비워 둘 수 없습니다
         invalid: 온더워크, 구조화된_학습, 타인으로부터_학습 중 하나에 해당해야 합니다
-        learning_from_others: 다른 사람에게서 배우기 [20]
-        on_the_job: 업무 중 [70]
-        structured_learning: 구조화된 학습 [10]
       new:
         header: 새로운 개발 활동
       resource:
@@ -2322,11 +2318,12 @@ ko:
       behavioral_skills: 행동 기술
       client_skills: 클라이언트 기술
       delete_skill: 이 스킬을 삭제하시겠습니까? 삭제하면 관련된 모든 개발 작업도 삭제됩니다.
+      delete_skill_msg: 이 스킬을 삭제할 게 확실한가요? 삭제하면 관련된 모든 개발 작업도 제거됩니다.
       details_updated: IDP 세부 정보 업데이트 성공
       development_actions:
         add_from_library: 라이브러리에서 추가
         completion: 완료
-        create_development_actions_with_ai: AI를 사용하여 개발 액션 생성 for %{skillName}
+        create_development_actions_with_ai: AI를 사용하여 개발 액션 생성
         create_from_ai: AI로 만들기
         create_my_own: 나만의 만들기
         custom: 관습
@@ -2352,6 +2349,7 @@ ko:
         skills_required_on_publishing: 템플릿을 게시하기 전에 기술을 선택하세요.
         update: IDP 템플릿이 이미 사용자 IDP 요금제에 연결되어 있으므로 업데이트할 수 없습니다.
       fields:
+        approval_date: 승인일
         assigned_data: 할당된 데이터
         assigned_date: 할당된 날짜
         completion_date: 완료 날짜
@@ -2644,24 +2642,6 @@ ko:
         skillvue:
           api_key_present: API 키가 다른 프로젝트에 이미 존재합니다.
       view_all_schedules: 모든 Mettl 일정 보기
-      yoodli_assessments:
-        add_assessment: 추가 유들리 평가
-        columns:
-          actions: 작업
-          created_at: 창설 시기
-          name: 평가명칭
-          product_id: 제품 ID
-        delete_confirm: 이 유들리 평가를 삭제할 게 확실한가요?
-        edit_assessment: '수정: 유들리 평가'
-        manage_catalog: 유들리 평가 관리
-        messages:
-          create_success: 유들리 평가 '%{name}'이 성공적으로 제작되었습니다
-          delete_success: Yoodli 평가가 성공적으로 삭제되었습니다
-          update_success: 유들리 평가 '%{name}'이 성공적으로 업데이트되었습니다
-        placeholders:
-          name: 평가 이름 입력
-          product_id: 제품 ID 입력
-        search: 검색
     interview_questions:
       delete_confirmation: 이 인터뷰 질문을 삭제하시겠습니까?
       description: 설명
@@ -4675,8 +4655,6 @@ ko:
             evaluations_received: 받은 평가
             is_subject: 제목
             name: 이름
-            report_status: 보고 상태
-            status: 상태
           evaluators:
             add_evaluators: 평가자 추가
             import_evaluators: 평가자 가져오기

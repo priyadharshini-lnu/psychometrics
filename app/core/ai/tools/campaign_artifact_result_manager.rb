@@ -13,11 +13,13 @@ module AI
             desc: 'JSON string containing the response with all keys available in assistant output schema and values. Keys in the json object should only include ALL keys available in assistant output schema. This will be parsed using JSON.parse method. e.g. {"key_name": "value", ...}'
       # rubocop:enable Layout/LineLength
 
-      private_attr_reader :artifact, :user, :save_results, :parsed_dependencies, :masked_data_resolutions, :chat
+      private_attr_reader :artifact, :user, :save_results, :parsed_dependencies, :masked_data_resolutions, :chat,
+                          :campaign_user
 
       def initialize(artifact, user, context = {})
         @artifact = artifact
         @user = user
+        @campaign_user = context.fetch(:campaign_user, nil)
         @save_results = context.fetch(:save_results, false)
         @parsed_dependencies = context.fetch(:parsed_dependencies, nil)
         @masked_data_resolutions = context.fetch(:masked_data_resolutions, {}) || {}
@@ -42,6 +44,8 @@ module AI
           chat.update!(ai_assisted_user_session_id: artifact_result.id)
         end
 
+        auto_finalize_campaign_artifact_result!
+
         final_results
       rescue ActiveRecord::RecordInvalid, ActiveRecord::StatementInvalid,
              JSON::ParserError => e
@@ -65,6 +69,12 @@ module AI
           else
             content
           end
+        end
+      end
+
+      def auto_finalize_campaign_artifact_result!
+        if campaign_user.all_campaign_artifact_results_present?
+          campaign_user.update!(campaign_artifact_results_finalized: true)
         end
       end
     end

@@ -17,6 +17,8 @@ interface Props {
 
 const { I18n } = window
 
+let scrollInfo: { element: Element | null; scrollTop: number } = { element: null, scrollTop: 0 }
+
 export const PipedTextModal: React.FC<Props> = ({
   close,
   editorRef,
@@ -31,9 +33,30 @@ export const PipedTextModal: React.FC<Props> = ({
     if (targetField === 'editor' && editorRef) {
       editorRef.selection.save()
     }
-  }, [])
+
+    if (open) {
+      if (scrollInfo.element === null) {
+        const modalElement = document.querySelector('#modal-container .modal')
+
+        if (modalElement && modalElement.scrollTop > 0) {
+          scrollInfo = { element: modalElement, scrollTop: modalElement.scrollTop }
+        }
+        // Reset to top
+        if (modalElement) {
+          modalElement.scrollTop = 0
+        }
+      }
+    }
+  }, [open])
+
 
   const handleClose = () => {
+    // Restore scroll position
+    if (scrollInfo.element && scrollInfo.scrollTop > 0) {
+      scrollInfo.element.scrollTop = scrollInfo.scrollTop
+    }
+    scrollInfo = { element: null, scrollTop: 0 }
+
     close()
     if (targetField === 'editor' && editorRef) {
       editorRef.selection.restore()
@@ -73,7 +96,7 @@ export const PipedTextModal: React.FC<Props> = ({
         ]}
         zIndex={10000}
         wrapClassName={styles.modalWrap}
-        getContainer={() => modalContainerRef.current || (document.body)}
+        getContainer={() => modalContainerRef.current || document.body}
       >
         <List
           grid={{ gutter: 16, column: 2 }}

@@ -55,6 +55,17 @@ pl:
               blank: Identyfikator pakietu raportów nie może być pusty
             report_id:
               blank: Identyfikator raportu nie może być pusty
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: Asystent AI z identyfikatorem '%{id}' nie znaleziony w rzędzie %{index}
+              blank: Kolumna '%{entity}' nie może być pusta w wierszu %{index}
+              duplicate_code: Duplikat kodu '%{code}' w wierszu %{index}
+              invalid_code_format: Nieprawidłowy format kodu '%{code}' w wierszu %{index}
+              max_limit_reached: Łączna liczba artefaktów AI kampanii przekracza maksymalny limit %{count}
+              missing_headers: 'Brakujące wymagane nagłówki: %{headers}'
+            file:
+              invalid_format: Proszę przesłać plik CSV
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ pl:
         import_development_actions: Importowanie działań rozwojowych
         import_dimension_from_json: Importowanie wymiaru z formatu JSON
         import_external_campaign_scoring: Importowanie zewnętrznego punktacji kampanii
+        import_external_scoring_data: Import zewnętrznych danych punktacyjnych
         import_factor_translations: Importowanie tłumaczeń czynników
         import_factors: Czynniki importu
         import_interview_questions: Importowanie pytań do rozmowy kwalifikacyjnej
@@ -1050,7 +1062,7 @@ pl:
         saville_assessment_name: Ocena Saville Nazwa
         simulation_assessment_name: Nazwa oceny symulacji
         skillvue_assessment_name: Nazwa oceny Skillvue
-        yoodli_assessment_name: Nazwa oceny Yoodli
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: Tłumaczenie przeniesione
     create: Tworzyć
     dashboard: Deska rozdzielcza
@@ -1479,8 +1491,6 @@ pl:
       skillvue_email_id: Identyfikator e-mail kandydata Skillvue
       skillvue_external_assessment_id: Skillvue Assessment ID
       universal_link: Łącze uniwersalne
-      yoodli_email_id: Identyfikator e-mail kandydata Yoodli
-      yoodli_external_assessment_id: Yoodli Assessment ID
     drawer:
       mettl_schedule_name: Nazwa harmonogramu Mettl
       title: Szczegóły oceny
@@ -1633,8 +1643,6 @@ pl:
       report: Sprawozdanie
       report_bundle_placeholder: Wybieranie pakietu raportów
     messages:
-      bulk_download_error: Pobieranie zbiorcze jest ograniczone do 1000 plików raportów. Jeśli wybrałeś wiele języków, zmniejsz go.
-      bulk_download_no_reports: Nie znaleziono raportów. Wygeneruj raporty przed pobraniem.
       bulk_download_successful: Zadanie zbiorczego pobierania raportu zostało pomyślnie zaplanowane
       export_report_data_scheduled: Zadanie eksportu danych raportu zostało zaplanowane pomyślnie
     modals:
@@ -1944,7 +1952,6 @@ pl:
       hide: Ukrywać
       view: Widok
     validations:
-      required: To pole jest wymagane
       select_locale: Wybierz niektóre lokalizacje
       should_be_whole_number: powinna być liczbą całkowitą.
   confirmation:
@@ -2521,8 +2528,8 @@ pl:
       reset_chat: Zresetuj czat
       reset_confirmation: Czy na pewno chcesz odrzucić ten czat i zacząć nowy?
       retake_steps:
-        chat_hint: Daj mi znać, jakie informacje chcesz podać poniżej?
-        chat_title: Chcesz podać więcej informacji?
+        chat_hint: Możesz przesłać nowy plik lub zrestartować czat, by podzielić się szczegółami, a ja zrobię wszystko, by ci pomóc.
+        chat_title: Przykro mi, że początkowa analiza nie spełniła twoich oczekiwań.
         start_chat: Rozpocznij czat
         start_chat_again: Rozpocznij czat ponownie
         upload_document: Prześlij dokument
@@ -2548,14 +2555,14 @@ pl:
         chat_title: Podsumowanie funkcji Chat Insight
         file_title: Statystyki przesłanych dokumentów
         gap_report_title: Analiza raportu o brakach w umiejętnościach
-        hint: jeśli tak, utworzymy Twój IDP, w przeciwnym razie możesz ponownie uzyskać odpowiedzi
-        title: Czy jesteś zadowolony z efektów?
+        hint: Za twoją zgodą, jeśli się zgodzisz, mogę stworzyć dla ciebie plan rozwoju. Jeśli nie, możesz zrestartować czat lub przesłać nowy plik.
+        title: Czy jesteś zadowolony z analizy?
         upload_file: Przesłany plik
         view_chat: Zobacz czat
       upload:
-        description: Kliknij lub przeciągnij pliki do tego obszaru, aby je przesłać
+        description: 'Obsługiwany typ pliku: dokumenty PDF do %{maxFileSize}MB'
         drop: Upuść plik tutaj
-        title: Przesyłanie plików
+        title: Kliknij lub upuść plik tutaj
       welcome:
         text: Gotowy, aby nakreślić swoją podróż wzrostu? Zaczynamy!
         title: Cześć, jestem Twoim asystentem ds. rozwoju
@@ -2605,6 +2612,7 @@ pl:
     convert_to_draft: Konwertuj na wersję roboczą
     current_step: Bieżący krok %{step}
     delete_skill: Czy na pewno chcesz usunąć umiejętność? Spowoduje to również usunięcie wszystkich powiązanych działań rozwojowych.
+    delete_skill_msg: Jesteś pewien, że chcesz usunąć tę umiejętność? Usunięcie tego również usunie wszystkie powiązane działania rozwojowe.
     details: Szczegóły
     development_actions:
       action_private: Tak
@@ -2622,8 +2630,8 @@ pl:
         in_progress: W trakcie
         not_started: Nie rozpoczęte
       completion: Ukończenie
-      create_custom_development_action_title: Stwórz własną Akcję Rozwojową dla %{skillName}
-      create_development_actions_with_ai: Twórz działania programistyczne za pomocą sztucznej inteligencji dla %{skillName}
+      create_custom_development_action_title: Stwórz własną Akcję Rozwojową dla
+      create_development_actions_with_ai: Twórz działania programistyczne za pomocą sztucznej inteligencji dla
       create_from_ai: Tworzenie na podstawie sztucznej inteligencji
       create_my_own: Utwórz własne
       custom: Zwyczaj
@@ -2689,6 +2697,7 @@ pl:
     edit_progress: Edytuj postęp
     fetching_skill_gap_report: Pobieranie raportu o brakach w umiejętnościach...
     go_to_previous_step: Przejdź do poprzedniego kroku
+    go_to_reportee_plan: Przejdź do szczegółów planu Reportee
     history:
       added_da:
         one: Dodano akcję rozwojową
@@ -2738,12 +2747,14 @@ pl:
         categories: Kategorie
       save_skills: Zapisz umiejętności
     new_comments: Nowe komentarze
+    no_plan_changes_found: Od ostatniej oceny nie wprowadzono żadnych zmian w planie.
     no_skills_added: Nie masz jeszcze dodanych umiejętności.
     no_skills_added_by_reportee: Zgłaszający nie dodał jeszcze umiejętności.
     pdf:
       approval_status: Status zatwierdzenia
       cover:
         fields:
+          approval_date: Data zatwierdzenia
           assigned_data: Data przydzielenia
           assigned_date: Przypisana data
           completion_date: Data ukończenia
@@ -2830,8 +2841,12 @@ pl:
         approved: Przejrzane i zatwierdzone
         completed: Ukończone
         draft: Wersja robocza
+        in_progress: W toku
+        in_review: W recenzji
         not_reviewed: Nieprzejrzane
+        not_started: Nie zaczęto
         pending_approval: W trakcie przeglądu
+        rejected: Odrzucone
       summary:
         ai_count: Generatywna AI
         collaborative_learn: Nauka współpracy
@@ -3812,13 +3827,6 @@ pl:
       on_hold: W oczekiwaniu
       prepared: Gotowe
       released: Wydany
-    statuses:
-      completed: Zakończony
-      declined: Odrzucony
-      denied: Odmówiono
-      done: Gotowe
-      not_completed: Nie skończone
-      waiting: Czekanie
   threesixty:
     accept_privacy_modal:
       accept: Akceptuj

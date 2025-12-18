@@ -294,6 +294,7 @@ hu:
             view: Nézet
           userIdpPlans:
             manage: Kezel
+            reset: Átszed
             title: Felhasználói IDP tervek
             view: Nézet
           users:
@@ -897,8 +898,6 @@ hu:
       new:
         header: Tömeges letöltés
       reports_unavailable: Jelenleg nem tölthetők le jelentések. Kérjük, ellenőrizze, hogy a letölteni kívánt jelentések elérhetők-e.
-      select_users_for_download: Kérjük, válasszon legalább egy felhasználót a jelentések letöltéséhez.
-      select_users_for_regenerate: Kérjük, válasszon legalább egy felhasználót a jelentések regenerálásához.
     cable:
       notification:
         assessment_factors: A tényezők bekerültek
@@ -2067,9 +2066,6 @@ hu:
       learning_styles:
         cannot_be_blank: Nem lehet üres
         invalid: Az on_the_job, structured_learning, learning_from_others egyikének kell lennie
-        learning_from_others: Tanulás másoktól [20]
-        on_the_job: Munkában [70]
-        structured_learning: Strukturált tanulás [10]
       new:
         header: Új fejlesztési tevékenység
       resource:
@@ -2324,11 +2320,12 @@ hu:
       behavioral_skills: Viselkedési készségek
       client_skills: Ügyfélkészségek
       delete_skill: Biztosan törölni szeretné ezt a készséget? A törlés minden kapcsolódó fejlesztési tevékenységet is eltávolít.
+      delete_skill_msg: Biztos vagy benne, hogy törölni akarod ezt a képességet? Ha törleszed, az minden kapcsolódó fejlesztési műveletet is eltávolít.
       details_updated: IDP részletek sikeresen frissítve
       development_actions:
         add_from_library: Hozzáadás a könyvtárból
         completion: Teljesítés
-        create_development_actions_with_ai: Fejlesztési műveletek létrehozása az AI for %{skillName} segítségével
+        create_development_actions_with_ai: Fejlesztési műveletek létrehozása az AI for
         create_from_ai: Alkotás mesterséges intelligenciából
         create_my_own: Készítsd el a sajátomat
         custom: Szokás
@@ -2354,6 +2351,7 @@ hu:
         skills_required_on_publishing: Kérjük, válassza ki a készségeket a sablon közzététele előtt.
         update: A frissítés nem engedélyezett, mert az IDP-sablon már társítva van egy felhasználói IDP-csomaghoz. A megjelenés változásai mentésre kerültek.
       fields:
+        approval_date: Jóváhagyási dátum
         assigned_data: Hozzárendelt adatok
         assigned_date: Hozzárendelt dátum
         completion_date: Befejezés dátuma
@@ -2646,24 +2644,6 @@ hu:
         skillvue:
           api_key_present: Az API-kulcs már jelen van egy másik projektben
       view_all_schedules: Az összes Mettl-menetrend megtekintése
-      yoodli_assessments:
-        add_assessment: Add a Yoodli értékelés
-        columns:
-          actions: Műveletek
-          created_at: 'Létrehozva:'
-          name: Értékelés neve
-          product_id: Termék azonosító
-        delete_confirm: Biztos vagy benne, hogy törölni akarod ezt a Yoodli értékelést?
-        edit_assessment: 'Szerkesztés: Yoodli értékelés'
-        manage_catalog: Yoodli értékelések kezelése
-        messages:
-          create_success: A Yoodli értékelés '%{name}' sikeresen létrejött
-          delete_success: A Yoodli értékelést sikeresen törölték
-          update_success: A Yoodli értékelés '%{name}' sikeresen frissítette
-        placeholders:
-          name: Írd be az értékelési név
-          product_id: A termék azonosítója
-        search: Keresés
     interview_questions:
       delete_confirmation: Biztosan törölni akarja ezt az interjúkérdést?
       description: Leírás
@@ -4669,8 +4649,6 @@ hu:
             evaluations_received: Beérkezett értékelések
             is_subject: Is Subject
             name: Név
-            report_status: Jelentés állapota
-            status: Állapot
           evaluators:
             add_evaluators: Értékelők hozzáadása
             import_evaluators: Értékelők importálása

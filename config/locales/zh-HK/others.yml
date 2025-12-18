@@ -55,6 +55,17 @@ zh-HK:
               blank: 報告包 ID 不能是空白
             report_id:
               blank: 報告ID不能是空白的
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: ID 為 %{id} 的 AI 助理在第 %{index} 列找不到
+              blank: 第 %{entity} 欄不能在第 %{index} 列是空白的
+              duplicate_code: 在第 %{index} 列重複代碼「%{code}」
+              invalid_code_format: 第 %{index} 列有無效的程式碼格式 '%{code}'
+              max_limit_reached: 戰役 AI 遺跡總數超過 %{count}
+              missing_headers: 缺少必要的標頭：%{headers}
+            file:
+              invalid_format: 請上傳 CSV 檔案
         campaign_factor_import_form:
           attributes:
             file:
@@ -899,6 +910,7 @@ zh-HK:
         import_development_actions: 進口開發行動
         import_dimension_from_json: 從 JSON 匯入維度
         import_external_campaign_scoring: 匯入外部戰役評分
+        import_external_scoring_data: 匯入外部計分資料
         import_factor_translations: 進口因子翻譯
         import_factors: 進口因素
         import_interview_questions: 導入面試問題
@@ -1060,7 +1072,7 @@ zh-HK:
         saville_assessment_name: 薩維爾評估名稱
         simulation_assessment_name: 模擬評估名稱
         skillvue_assessment_name: Skillvue 評估名稱
-        yoodli_assessment_name: Yoodli 評估名稱
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: 翻譯遷移
     create: 創造
     dashboard: 儀表板
@@ -1499,8 +1511,6 @@ zh-HK:
       skillvue_email_id: Skillvue 候選人電子郵件 ID
       skillvue_external_assessment_id: Skillvue 評估 ID
       universal_link: 通用連結
-      yoodli_email_id: Yoodli 候選人電子郵件 ID
-      yoodli_external_assessment_id: Yoodli 評估識別碼
     drawer:
       mettl_schedule_name: Mettl 時刻表名稱
       title: 評估詳情
@@ -1653,8 +1663,6 @@ zh-HK:
       report: 報
       report_bundle_placeholder: 選擇報告套裝
     messages:
-      bulk_download_error: 批量下載限制為 1000 個報告檔案。如果你選擇了許多語言，請減少。
-      bulk_download_no_reports: 沒有找到報告。請在下載前生成報告。
       bulk_download_successful: 批量報告下載工作已成功排程
       export_report_data_scheduled: 報告資料匯出工作已成功排程
     modals:
@@ -1964,7 +1972,6 @@ zh-HK:
       hide: 藏
       view: 觀
     validations:
-      required: 此欄位為必修欄位
       select_locale: 請選擇部分地點
       should_be_whole_number: 應該是整數
   confirmation:
@@ -2541,8 +2548,8 @@ zh-HK:
       reset_chat: 重置聊天
       reset_confirmation: 您確定要放棄此聊天並重新開始嗎？
       retake_steps:
-        chat_hint: 讓我知道您想提供更多資訊嗎？
-        chat_title: 您想提供更多信息嗎？
+        chat_hint: 你可以上傳新檔案或重新開啟聊天室分享更多細節，我會盡力協助你。
+        chat_title: 很抱歉最初的分析沒有達到你的期望。
         start_chat: 開始聊天
         start_chat_again: 重新開始聊天
         upload_document: 上傳文件
@@ -2568,14 +2575,14 @@ zh-HK:
         chat_title: 聊天洞察摘要
         file_title: 上傳的文件見解
         gap_report_title: 技能差距報告分析
-        hint: 如果是，那麼我們將創建您的 IDP，否則您可以重新回答
-        title: 你對結果滿意嗎？
+        hint: 如果你同意，我可以幫你制定發展計畫。如果沒有，你可以重新啟動聊天或上傳新檔案。
+        title: 你對分析感到滿意嗎？
         upload_file: 上傳的檔案
         view_chat: 查看聊天
       upload:
-        description: 按一下或拖曳檔案至此區域以上傳
+        description: 支援檔案格式：PDF 文件至%{maxFileSize}MB
         drop: 將檔案拖放到此處
-        title: 上傳檔案
+        title: 點擊或將檔案放到這裡
       welcome:
         text: 準備好繪製你的成長喬恩了嗎？讓我們開始吧！
         title: 您好，我是你們的開發助理
@@ -2625,6 +2632,7 @@ zh-HK:
     convert_to_draft: 轉換為草稿
     current_step: 目前步驟 %{step}
     delete_skill: 您確定要刪除技能，因為它也會刪除所有連接的開發動作嗎？
+    delete_skill_msg: 你確定要刪除這個技能嗎？刪除它也會移除所有相關的開發行動。
     details: 詳情
     development_actions:
       action_private: 是
@@ -2642,8 +2650,8 @@ zh-HK:
         in_progress: 進行中
         not_started: 未開始
       completion: 完成度
-      create_custom_development_action_title: 為%{skillName}創建我自己的開發行動
-      create_development_actions_with_ai: 使用 AI 建立開發動作 for %{skillName}
+      create_custom_development_action_title: 為 創建我自己的開發行動
+      create_development_actions_with_ai: 使用 AI 建立開發動作
       create_from_ai: 從 AI 創建
       create_my_own: 建立我自己的
       custom: 習慣
@@ -2709,6 +2717,7 @@ zh-HK:
     edit_progress: 編輯進度
     fetching_skill_gap_report: 獲取技能差距報告...
     go_to_previous_step: 轉到上一步
+    go_to_reportee_plan: 前往報告人計劃詳情
     history:
       added_da:
         one: 新增開發動作
@@ -2758,12 +2767,14 @@ zh-HK:
         categories: 類別
       save_skills: 保存技能
     new_comments: 新留言
+    no_plan_changes_found: 自你上次審查以來，計畫沒有做任何修改。
     no_skills_added: 您尚未新增任何技能。
     no_skills_added_by_reportee: 被舉報人尚未添加技能。
     pdf:
       approval_status: 審批狀態
       cover:
         fields:
+          approval_date: 核准日期
           assigned_data: 分配日期
           assigned_date: 指定日期
           completion_date: 完成日期
@@ -2850,8 +2861,12 @@ zh-HK:
         approved: 已審核並批准
         completed: 已完成
         draft: 草案
+        in_progress: 進行中
+        in_review: 評論
         not_reviewed: 未審核
+        not_started: 未開始
         pending_approval: 審核中
+        rejected: 被拒絕
       summary:
         ai_count: 生成式AI
         collaborative_learn: 協作學習
@@ -3756,13 +3771,6 @@ zh-HK:
       on_hold: 暫停
       prepared: 完成
       released: 已發行
-    statuses:
-      completed: 已完成
-      declined: 已拒絕
-      denied: 已拒絕
-      done: 完成
-      not_completed: 未完成
-      waiting: 正在等待
   threesixty:
     accept_privacy_modal:
       accept: 接受

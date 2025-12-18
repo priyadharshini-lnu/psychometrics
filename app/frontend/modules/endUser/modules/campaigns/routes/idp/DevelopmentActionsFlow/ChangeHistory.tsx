@@ -16,7 +16,7 @@ export const ChangeHistory = ({ changeHistory }) => (
           {' '}
           {changeHistory.updatedDA.map((change, index) => (
             <Tag key={`updated-${index}`} color={ChangeStatusColors[PlanChangeStatus.EDITED]}>
-              <SafeHTML html={change} />
+              <SafeHTML html={change} className="white-space-normal" />
             </Tag>
           ))}
         </li>

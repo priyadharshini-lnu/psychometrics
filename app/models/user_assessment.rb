@@ -27,13 +27,17 @@ class UserAssessment < ApplicationRecord
   has_one :mettl_user_assessment, dependent: :destroy
   has_one :simulation_user_assessment, dependent: :destroy
   has_one :skillvue_user_assessment, dependent: :destroy
-  has_one :yoodli_user_assessment, dependent: :destroy
   has_one :project, through: :campaign
   has_one :meeting_room, as: :meetable, dependent: :destroy
   has_one :threesixty_campaign, through: :campaign
   has_many :project_assessments, through: :project
   has_many :user_assessment_factor_scores, dependent: :destroy
   has_many :user_assessment_verification_images, dependent: :destroy
+
+  has_one :yoodli_user_assessment, -> { where(active: true) }, dependent: :destroy
+  has_many :previous_yoodli_user_assessments, lambda {
+    where(active: false)
+  }, class_name: 'YoodliUserAssessment', dependent: :destroy
 
   enum :status, { not_started: 0, in_progress: 1, completed: 2, interrupted: 3, timed_out: 4, ineligible: 5 }
   enum :completion_reason, { user_completed: 0, time_out_online: 1, time_out_offline: 2 }
@@ -429,6 +433,10 @@ class UserAssessment < ApplicationRecord
       find_each do |invited_subject|
       WorkshopInvites::SendEmail.call!(invited_subject)
     end
+  end
+
+  def caching_enabled?
+    campaign_assessment&.caching_enabled?
   end
 end
 # rubocop:enable Metrics/ClassLength

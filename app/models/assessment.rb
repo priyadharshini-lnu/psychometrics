@@ -153,7 +153,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   after_create :create_agile, if: :agile?
   before_update ::Callbacks::Models::Assessments::UpdateFactorsAliases.new
 
-  after_commit :invalidate_cache
+  before_commit :invalidate_cache
 
   #
   ### END ASSOCIATIONS
@@ -248,7 +248,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     saville? || pearson?
   end
 
-  def external_assessment_name # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
+  def external_assessment_name # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     return if external_assessment_id.nil? || common?
 
     case category
@@ -263,7 +263,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
       when 'skillvue'
         SkillvueAssessment.find_by(product_id: external_assessment_id)&.name
       when 'yoodli'
-        YoodliAssessment.find_by(product_id: external_assessment_id)&.name
+        external_assessment_id
       when 'simulation'
         Settings.providers.simulation.assessments.find { |a| a.id.casecmp?(external_assessment_id) }&.name
       when 'iiht'
@@ -420,8 +420,13 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     "AssessmentSerializer##{id}"
   end
 
+  def assessment_data_serializer_key(selected_locale = nil)
+    "AssessmentData/#{id}/#{selected_locale}/#{updated_at}"
+  end
+
   def invalidate_cache
     Rails.cache.delete(serializer_cache_key)
+    Assessments::CacheService.new(self).invalidate_cache
   end
 
   def score_validity_period(project_id: nil)
@@ -434,5 +439,25 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   def available_languages
     @available_translations = ::Translation.available_translation_for_assessment(id)
     @available_translations + [default_language]
+  end
+
+  def generate_piped_text_mapping(piped_text_context)
+    piped_text = {}
+
+    selected_blocks = blocks.selecting do
+      ['blocks.*',
+       coalesce(template.props, props).as('props'),
+       coalesce(template.name, name).as('name')]
+    end.joining { template.outer }.
+                      includes(:questions_ams).where.has { (template.disabled == false) | (template.id == nil) }
+
+    selected_blocks.each do |block|
+      piped_text.merge!(block.generate_piped_text_mapping(piped_text_context))
+    end
+    piped_text
+  end
+
+  def allow_caching?
+    !skill_rater? && !external?
   end
 end

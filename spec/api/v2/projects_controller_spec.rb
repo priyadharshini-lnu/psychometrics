@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'swagger_helper'
 
-describe Api::V2::Administration::ProjectsController, swagger_doc: 'v2/swagger.json', type: :request do
+RSpec.describe Api::V2::Administration::ProjectsController, type: :request do
   let!(:superadmin) { create(:superadmin) }
   let!(:project_admin) { create(:user, project: project, role: 'Users::Admin') }
-  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
+  let!(:api_key) { create(:api_key, user: superadmin) }
+  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
   let!(:campaign) { create(:campaign) }
   let!(:project) { campaign.project }
   let!(:client) { project.client }
@@ -14,203 +14,115 @@ describe Api::V2::Administration::ProjectsController, swagger_doc: 'v2/swagger.j
   let!(:project_membership) { create(:project_admin_membership, user: project_admin, client: project) }
   before { sign_in(project_admin) }
 
-  path '/clients/{client_id}/projects/' do
-    get 'Project List' do
-      operationId 'ProjectsList'
-      description 'Fetch Projects list'
+  describe 'GET /api/v2/administration/clients/:client_id/projects' do
+    it 'fetches Projects list' do
+      get "/api/v2/administration/clients/#{client_id}/projects",
+          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-      tags 'Project'
-      consumes 'application/json'
-      security [basic: []]
-      parameter name: :client_id, in: :path, type: :string
+      expect(response).to have_http_status(:ok)
+      clients = JSON.parse(response.body)
+      client_response = clients['data'].find { |c| c['id'] == project.id.to_s }
+      expect(client_response).to have_key('id')
+      expect(client_response).to have_attribute(:name).with_value(project.name)
+    end
+  end
 
-      response '200', 'Project list' do
-        schema '$ref' => '#/components/schemas/ProjectsListResponse'
+  describe 'POST /api/v2/administration/clients/:client_id/projects' do
+    it 'creates Project' do
+      sign_in(superadmin)
 
-        examples 'application/json' => [{
+      body = {
+        data: {
           type: 'projects',
-          data: {
-            id: '770',
-            attributes: {
-              name: 'Project Name',
-              created_at: '01 Oct 2019 / 17:36',
-              updated_at: '02 Oct 2019 / 17:36',
-              locales: ['en'],
-              logo: 'https://dummy_bucket.s3.amazonaws.com/uploads/client/logo/1005/8845148b-2404-48b7-9cbc-9f90e088341c.png',
-              number: 'TTE-2022',
-              subdomain: 'project-subdomain'
-            }
-          }
-        }]
-
-        run_test! do |response|
-          clients = JSON.parse(response.body)
-          client_response = clients['data'].find { |c| c['id'] == project.id.to_s }
-          expect(client_response).to have_key('id')
-          expect(client_response).to have_attribute(:name).with_value(project.name)
-        end
-      end
-    end
-  end
-
-  path '/clients/{client_id}/projects/' do
-    post 'Create a Project' do
-      operationId 'CreateProject'
-      description 'Create new Project'
-      tags 'Projects'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :client_id, in: :path, type: :string
-      parameter name: :body, in: :body,
-                schema: { '$ref' => '#/components/schemas/ProjectCreateRequest' },
-                required: true
-
-      response '201', 'Project Created' do
-        schema '$ref' => '#/components/schemas/ProjectResponse'
-        examples 'application/json' => {
-          data: {
-            type: 'projects',
-            attributes: {
-              name: 'Project Name',
-              subdomain: 'project-subdomain',
-              number: '123'
-            }
+          attributes: {
+            name: 'Project Name',
+            subdomain: 'project-subdomain-12345',
+            number: '123'
           }
         }
+      }
 
-        let(:body) do
-          {
-            data: {
-              type: 'projects',
-              attributes: {
-                name: 'Project Name',
-                subdomain: 'project-subdomain-12345',
-                number: '123'
-              }
-            }
-          }
-        end
+      post "/api/v2/administration/clients/#{client_id}/projects",
+           params: body.to_json,
+           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-        before { sign_in(superadmin) }
-
-        run_test! do |response|
-          client_response = JSON.parse(response.body)['data']
-          expect(client_response).to have_key('id')
-          expect(client_response).to have_attribute(:name).with_value('Project Name')
-        end
-      end
+      expect(response).to have_http_status(:created)
+      client_response = JSON.parse(response.body)['data']
+      expect(client_response).to have_key('id')
+      expect(client_response).to have_attribute(:name).with_value('Project Name')
     end
   end
 
-  path '/clients/{client_id}/projects/' do
-    patch 'Update a project' do
-      operationId 'UpdateProject'
-      description 'Update a project'
-      tags 'Clients'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :client_id, in: :path, type: :string
-      parameter name: :body,
-                in: :body,
-                schema: { '$ref' => '#/components/schemas/ProjectUpdateRequest' },
-                required: true
-
-      response '200', 'Client Updated' do
-        schema '$ref' => '#/components/schemas/ProjectResponse'
-        examples 'application/json' => {
-          data: {
-            type: 'projects',
-            id: '20',
-            attributes: {
-              disabled: true
-            }
+  describe 'PATCH /api/v2/administration/projects/:id' do
+    it 'updates project' do
+      body = {
+        data: {
+          type: 'projects',
+          id: project.id.to_s,
+          attributes: {
+            disabled: true
           }
         }
+      }
 
-        let(:body) do
-          {
-            data: {
-              type: 'projects',
-              id: project.id.to_s,
-              attributes: {
-                disabled: true
-              }
-            }
-          }
-        end
-      end
+      patch "/api/v2/administration/projects/#{project.id}",
+            params: body.to_json,
+            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:ok)
     end
   end
 
-  path '/projects/{project_id}/seach_user' do
-    get 'Project Users list' do
-      operationId 'ProjectUserslist'
-      description 'Fetch Projects users list'
+  describe 'GET /api/v2/administration/projects/:project_id/seach_user' do
+    it 'fetches Projects users list' do
+      user = create(:user, project: project)
 
-      tags 'ProjectUsers'
-      consumes 'application/json'
-      security [basic: []]
-      parameter name: :project_id, in: :path, type: :string, required: true
-      parameter name: :'filter[search_query]', in: :query
+      get "/api/v2/administration/projects/#{project.id}/seach_user",
+          params: { 'filter[search_query]' => 'test' },
+          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-      response '200', 'Projects users list' do
-        let!(:project_id) { project.id }
-        let!(:user) { create(:user, project: project) }
-        let(:'filter[search_query]') { 'test' }
+      expect(response).to have_http_status(:ok)
+      users = JSON.parse(response.body)
 
-        run_test! do |response|
-          users = JSON.parse(response.body)
-
-          users_response = users['data'].find { |u| u['id'] == user.id.to_s }
-          expect(users_response).to have_key('id')
-          expect(users_response).to have_attribute(:name).with_value(user.name)
-        end
-      end
+      users_response = users['data'].find { |u| u['id'] == user.id.to_s }
+      expect(users_response).to have_key('id')
+      expect(users_response).to have_attribute(:name).with_value(user.name)
     end
   end
 
-  path '/projects/{project_id}/add_manager' do
-    put 'Add manager to User' do
-      operationId 'AddManager'
-      description 'Add manager to user'
+  describe 'PUT /api/v2/administration/projects/:project_id/add_manager' do
+    it 'adds manager to user successfully' do
+      user = create(:user, project: project)
+      manager = create(:user, project: project)
 
-      tags 'AddManager'
-      consumes 'application/json'
-      security [basic: []]
-      parameter name: :project_id, in: :path, type: :string, required: true
-      parameter name: :user_id, in: :query, type: :string, required: true
-      parameter name: :manager_id, in: :query, type: :string, required: true
+      body = { id: project.id.to_s, user_id: user.id.to_s, manager_id: manager.id.to_s }
 
-      response '200', 'Add manager to user' do
-        let!(:user) { create(:user, project: project) }
-        let!(:manager) { create(:user, project: project) }
+      put "/api/v2/administration/projects/#{project.id}/add_manager",
+          params: body.to_json,
+          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-        let!(:project_id) { project.id }
-        let!(:user_id) { user.id }
-        let!(:manager_id) { manager.id }
+      expect(response).to have_http_status(:ok)
+      manager_response = JSON.parse(response.body)['data']
+      expect(manager_response).to have_key('id')
+      expect(manager_response).to have_attribute(:email).with_value(manager.email)
+      expect(manager_response).to have_attribute(:name).with_value(manager.decorate.full_name)
+    end
 
-        run_test! do |response|
-          manager_response = JSON.parse(response.body)['data']
-          expect(manager_response).to have_key('id')
-          expect(manager_response).to have_attribute(:email).with_value(manager.email)
-          expect(manager_response).to have_attribute(:name).with_value(manager.decorate.full_name)
-        end
-      end
+    it 'returns error for invalid manager or user' do
+      other_project = create(:project)
+      manager = create(:user, project: other_project)
 
-      response '422', 'Unprocessable Entity' do
-        let!(:other_project) { create(:project) }
-        let!(:manager) { create(:user, project: other_project) }
-        let!(:project_id) { project.id }
-        let!(:user_id) { 9999 }
-        let!(:manager_id) { manager.id }
+      body = { id: project.id.to_s, user_id: '9999', manager_id: manager.id.to_s }
 
-        run_test! do |response|
-          errors = JSON.parse(response.body)['errors']
+      put "/api/v2/administration/projects/#{project.id}/add_manager",
+          params: body.to_json,
+          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-          expect(errors.first['title']).to eq('Manager not found or not part of the same project')
-          expect(errors.second['title']).to eq('User not found or not part of the same project')
-        end
-      end
+      expect(response).to have_http_status(:unprocessable_entity)
+      errors = JSON.parse(response.body)['errors']
+
+      expect(errors.any? { |e| e['title'] == 'Manager not found or not part of the same project' }).to be_truthy
+      expect(errors.any? { |e| e['title'] == 'User not found or not part of the same project' }).to be_truthy
     end
   end
 end

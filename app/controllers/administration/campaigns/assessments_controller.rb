@@ -125,6 +125,17 @@ module Administration
         render json: :ok
       end
 
+      def import_external_scoring_results
+        AdminJob.call(:import_external_scoring_data, {
+          assessment_id: params[:id],
+          campaign_id: params[:new_campaign_id]
+        }, current_user, params[:file])
+
+        audit! :import_external_scoring_results, assessment, campaign: campaign, payload: params
+
+        render json: :ok
+      end
+
       def update_norm
         campaign_assessment.update_norm!(params[:norm_id])
 
@@ -250,6 +261,21 @@ module Administration
         audit! :update_pearson_variation, assessment, campaign: campaign
 
         render json: { variation: campaign_assessment.external_config['variation'] }
+      end
+
+      def toggle_caching
+        campaign_assessment.update!(caching_enabled: params[:caching_enabled])
+
+        audit! :toggle_caching, campaign_assessment, payload: { caching_enabled: campaign_assessment.caching_enabled? },
+               campaign: campaign
+
+        render json: Administration::CampaignAssessmentSerializer.new(
+          context: {
+            current_user: current_user,
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
+        ).serialize(campaign_assessment)
       end
 
       private

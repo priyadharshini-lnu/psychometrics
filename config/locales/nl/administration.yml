@@ -294,6 +294,7 @@ nl:
             view: Bekijk
           userIdpPlans:
             manage: Beheren
+            reset: Terugstellen
             title: Gebruikers-IDP-plannen
             view: Bekijken
           users:
@@ -897,8 +898,6 @@ nl:
       new:
         header: Bulk downloaden
       reports_unavailable: Op dit moment zijn er geen rapporten beschikbaar om te downloaden. Controleer of de rapporten die je wilt downloaden beschikbaar zijn.
-      select_users_for_download: Selecteer ten minste één gebruiker om rapporten te downloaden.
-      select_users_for_regenerate: Selecteer ten minste één gebruiker om rapporten te regenereren.
     cable:
       notification:
         assessment_factors: Factoren worden opgehaald
@@ -2065,9 +2064,6 @@ nl:
       learning_styles:
         cannot_be_blank: Kan niet leeg zijn
         invalid: 'Moet een van de volgende zijn: on_the_job, gestructureerd_leren, leren_van_anderen'
-        learning_from_others: Leren van anderen [20]
-        on_the_job: Op het werk [70]
-        structured_learning: Gestructureerd leren [10]
       new:
         header: Nieuwe ontwikkeling Actie
       resource:
@@ -2322,11 +2318,12 @@ nl:
       behavioral_skills: Gedragsvaardigheden
       client_skills: Vaardigheden voor klanten
       delete_skill: Weet je zeker dat je deze vaardigheid wilt verwijderen? Verwijderen zal ook alle verbonden ontwikkelingsacties verwijderen.
+      delete_skill_msg: Weet je zeker dat je deze vaardigheid wilt verwijderen? Het verwijderen ervan verwijdert ook alle gerelateerde ontwikkelingsacties.
       details_updated: IDP Details succesvol bijgewerkt
       development_actions:
         add_from_library: Toevoegen uit bibliotheek
         completion: Voltooiing
-        create_development_actions_with_ai: Ontwikkelacties maken met AI voor %{skillName}
+        create_development_actions_with_ai: Ontwikkelacties maken met AI voor
         create_from_ai: Creëer vanuit AI
         create_my_own: Maak mijn eigen
         custom: Gewoonte
@@ -2352,6 +2349,7 @@ nl:
         skills_required_on_publishing: Kies vaardigheden voordat u een sjabloon publiceert.
         update: Bijwerken niet toegestaan omdat de IDP-sjabloon al gekoppeld is aan een IDP-plan van een gebruiker.
       fields:
+        approval_date: Goedkeuringsdatum
         assigned_data: Toegewezen gegevens
         assigned_date: Toegewezen Datum
         completion_date: Datum van voltooiing
@@ -2644,24 +2642,6 @@ nl:
         skillvue:
           api_key_present: API-sleutel is al aanwezig in ander project
       view_all_schedules: Bekijk alle Mettl schema's
-      yoodli_assessments:
-        add_assessment: Voeg Yoodli Beoordeling toe
-        columns:
-          actions: Acties
-          created_at: Gemaakt bij
-          name: Beoordelingsnaam
-          product_id: Product-ID
-        delete_confirm: Weet je zeker dat je deze Yoodli-beoordeling wilt verwijderen?
-        edit_assessment: Bewerking Yoodli-beoordeling
-        manage_catalog: Beheer Yoodli-beoordelingen
-        messages:
-          create_success: Yoodli-beoordeling '%{name}' is succesvol ontwikkeld
-          delete_success: Yoodli-beoordeling werd succesvol verwijderd
-          update_success: Yoodli-beoordeling '%{name}' werd succesvol bijgewerkt
-        placeholders:
-          name: Voer de naam van de beoordeling in
-          product_id: Voer product-ID in
-        search: Zoeken
     interview_questions:
       delete_confirmation: Weet je zeker dat je deze interviewvraag wilt verwijderen?
       description: Beschrijving
@@ -4675,8 +4655,6 @@ nl:
             evaluations_received: Ontvangen evaluaties
             is_subject: Is Onderwerp
             name: Naam
-            report_status: Statusrapport
-            status: Status
           evaluators:
             add_evaluators: Evaluatoren toevoegen
             import_evaluators: Importeer beoordelaars

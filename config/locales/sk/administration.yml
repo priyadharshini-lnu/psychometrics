@@ -294,6 +294,7 @@ sk:
             view: Pohľad
           userIdpPlans:
             manage: Ovládať
+            reset: Vynulovanie
             title: Plány IDP používateľov
             view: Pohľad
           users:
@@ -897,8 +898,6 @@ sk:
       new:
         header: Hromadné sťahovanie
       reports_unavailable: Momentálne nie sú k dispozícii žiadne správy na stiahnutie. Potvrďte, že správy, ktoré chcete stiahnuť, sú k dispozícii.
-      select_users_for_download: Vyberte aspoň jedného používateľa na stiahnutie prehľadov.
-      select_users_for_regenerate: Vyberte aspoň jedného používateľa na regeneráciu správ.
     cable:
       notification:
         assessment_factors: Faktory sa načítajú
@@ -2065,9 +2064,6 @@ sk:
       learning_styles:
         cannot_be_blank: Nemôže byť prázdny
         invalid: Musí to byť jeden z on_the_job, structured_learning, learning_from_others
-        learning_from_others: Učenie sa od druhých [20]
-        on_the_job: V práci [70]
-        structured_learning: Štruktúrované vzdelávanie [10]
       new:
         header: Nová rozvojová akcia
       resource:
@@ -2322,11 +2318,12 @@ sk:
       behavioral_skills: Behaviorálne zručnosti
       client_skills: Zručnosti klienta
       delete_skill: Naozaj chcete odstrániť zručnosť, pretože sa tým odstránia aj všetky súvisiace vývojové akcie?
+      delete_skill_msg: Si si istý, že chceš túto zručnosť vymazať? Vymazaním sa odstránia aj všetky súvisiace vývojové akcie.
       details_updated: IDP Podrobnosti úspešne aktualizované
       development_actions:
         add_from_library: Pridanie z knižnice
         completion: Dokončenie
-        create_development_actions_with_ai: Vytvárajte vývojové akcie pomocou AI pre %{skillName}
+        create_development_actions_with_ai: Vytvárajte vývojové akcie pomocou AI pre
         create_from_ai: Tvorba z umelej inteligencie
         create_my_own: Vytvorte si vlastný
         custom: Zvyk
@@ -2352,6 +2349,7 @@ sk:
         skills_required_on_publishing: Pred zverejnením šablóny si vyberte zručnosti.
         update: Aktualizácia nie je povolená, pretože šablóna IDP je už priradená k plánu IDP používateľa. Zmeny vzhľadu boli uložené.
       fields:
+        approval_date: Dátum schválenia
         assigned_data: Priradené údaje
         assigned_date: Pridelený dátum
         completion_date: Dátum dokončenia
@@ -2644,24 +2642,6 @@ sk:
         skillvue:
           api_key_present: API kľúč je už prítomný v inom projekte
       view_all_schedules: Zobraziť všetky cestovné poriadky Mettl
-      yoodli_assessments:
-        add_assessment: Add Yoodli Assessment
-        columns:
-          actions: Akcie
-          created_at: Vytvorené v
-          name: Názov hodnotenia
-          product_id: ID produktu
-        delete_confirm: Si si istý, že chceš vymazať toto hodnotenie Yoodliho?
-        edit_assessment: Edit Yoodli Assessment
-        manage_catalog: Spravovať hodnotenia Yoodli
-        messages:
-          create_success: Yoodli hodnotenie '%{name}' bolo úspešne vytvorené
-          delete_success: Yoodliho hodnotenie bolo úspešne vymazané
-          update_success: Yoodliho hodnotenie '%{name}' bolo úspešne aktualizované
-        placeholders:
-          name: Zadajte názov hodnotenia
-          product_id: Zadajte ID produktu
-        search: Hľadať
     interview_questions:
       delete_confirmation: Naozaj chcete odstrániť túto otázku na pohovore?
       description: Opis
@@ -4667,8 +4647,6 @@ sk:
             evaluations_received: Prijaté hodnotenia
             is_subject: Je predmetom
             name: Názov
-            report_status: Stav správy
-            status: Stav
           evaluators:
             add_evaluators: Pridať hodnotiteľov
             import_evaluators: Hodnotitelia dovozu

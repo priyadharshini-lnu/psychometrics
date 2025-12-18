@@ -294,6 +294,7 @@ ja:
             view: 表示
           userIdpPlans:
             manage: 取り締まる
+            reset: リセット
             title: ユーザーIDPプラン
             view: 眺める
           users:
@@ -897,8 +898,6 @@ ja:
       new:
         header: 一括ダウンロード
       reports_unavailable: 現在、ダウンロード可能なレポートはありません。 ダウンロードしたいレポートがあるかどうかご確認ください。
-      select_users_for_download: レポートをダウンロードするには、少なくとも1人のユーザーを選択してください。
-      select_users_for_regenerate: レポートを再生するには、少なくとも1人のユーザーを選択してください。
     cable:
       notification:
         assessment_factors: 要因の取得
@@ -2065,9 +2064,6 @@ ja:
       learning_styles:
         cannot_be_blank: 空白は不可
         invalid: OJT、構造化された学習、他者からの学習のいずれかであること。
-        learning_from_others: 他者から学ぶ [20］
-        on_the_job: 仕事について [70］
-        structured_learning: 構造化学習 [10］
       new:
         header: 新規開発アクション
       resource:
@@ -2322,11 +2318,12 @@ ja:
       behavioral_skills: 行動スキル
       client_skills: クライアント・スキル
       delete_skill: このスキルを削除してもよろしいですか？削除すると、関連するすべての開発アクションも削除されます。
+      delete_skill_msg: 本当にこのスキルを削除したいですか?削除すると関連する開発アクションもすべて削除されます。
       details_updated: IDP詳細の更新に成功
       development_actions:
         add_from_library: ライブラリから追加
         completion: 完了
-        create_development_actions_with_ai: AI for %{skillName} を使用した開発アクションの作成
+        create_development_actions_with_ai: AI for を使用した開発アクションの作成
         create_from_ai: AIから作成
         create_my_own: 自分で作成する
         custom: 習慣
@@ -2352,6 +2349,7 @@ ja:
         skills_required_on_publishing: テンプレートを公開する前にスキルを選択してください。
         update: IDP テンプレートがすでにユーザ IDP プランに関連付けられているため、更新は許可されません。
       fields:
+        approval_date: 承認日
         assigned_data: 割り当てデータ
         assigned_date: 担当日
         completion_date: 完了日
@@ -2644,24 +2642,6 @@ ja:
         skillvue:
           api_key_present: APIキーがすでに他のプロジェクトに存在する
       view_all_schedules: すべてのMettlのスケジュールを見る
-      yoodli_assessments:
-        add_assessment: ユードリ評価の追加
-        columns:
-          actions: アクション
-          created_at: 創設時
-          name: 評価名
-          product_id: 製品ID
-        delete_confirm: このYoodliの評価を削除してもいいですか?
-        edit_assessment: 編集:ユードリ評価
-        manage_catalog: Yoodli評価の管理
-        messages:
-          create_success: ユードリ評価「%{name}」が成功裏に作成されました
-          delete_success: Yoodliの評価は正常に削除されました
-          update_success: Yoodli評価「%{name}」が正常に更新されました
-        placeholders:
-          name: 評価名を入力してください
-          product_id: 商品IDの登場です
-        search: 捜索
     interview_questions:
       delete_confirmation: この面接の質問を削除してもよろしいですか?
       description: 記述
@@ -4675,8 +4655,6 @@ ja:
             evaluations_received: 受けた評価
             is_subject: 対象
             name: 名称
-            report_status: レポート状況
-            status: ステータス
           evaluators:
             add_evaluators: 評価者の追加
             import_evaluators: インポート・エバリュエーター

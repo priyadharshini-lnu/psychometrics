@@ -1,40 +1,32 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'swagger_helper'
-
-RSpec.describe Api::V2::Administration::UserReportEventsController, swagger_doc: 'v2/swagger.json', type: :request do
+RSpec.describe Api::V2::Administration::UserReportEventsController, type: :request do
   let!(:superadmin) { create(:superadmin) }
   let!(:normal_user) { create(:user) }
   let!(:campaign) { create(:campaign) }
-  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
+  let!(:api_key) { create(:api_key, user: superadmin) }
+  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before { sign_in(superadmin) }
 
-  path '/user_report_events/export' do
-    get 'Export UserReportEvents' do
-      operationId 'ExportUserReportEvents'
-      tags 'UserReportEvents'
-      consumes 'application/json'
-      security [basic: []]
-      parameter name: :campaign_id, in: :query, type: :string, required: false
+  describe 'GET /api/v2/administration/user_report_events/export' do
+    it 'exports user report events' do
+      get '/api/v2/administration/user_report_events/export', params: { campaign_id: campaign.id.to_s },
+headers: { 'Authorization' => authorization }
 
-      response '200', 'UserReportEvents export initiated' do
-        let(:campaign_id) { campaign.id.to_s }
+      expect(response).to have_http_status(:ok)
+      expect(JSON.parse(response.body)).to eq('ok')
+    end
 
-        run_test! do |response|
-          expect(response.status).to eq(200)
-          expect(JSON.parse(response.body)).to eq('ok')
-        end
-      end
+    it 'returns forbidden for users without admin permissions' do
+      normal_api_key = create(:api_key, user: normal_user)
+      normal_authorization = "Basic #{Base64.strict_encode64("#{normal_api_key.key}:#{normal_api_key.token}")}"
+      sign_in(normal_user)
 
-      response '403', 'Forbidden: Users without admin permissions cannot access' do
-        before { sign_in(normal_user) }
+      get '/api/v2/administration/user_report_events/export', headers: { 'Authorization' => normal_authorization }
 
-        run_test! do |response|
-          expect(response.status).to eq(403)
-        end
-      end
+      expect(response).to have_http_status(:forbidden)
     end
   end
 end

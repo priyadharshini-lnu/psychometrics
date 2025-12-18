@@ -1,6 +1,7 @@
 ---
 vi:
   admin:
+    admin_approval_required: Báo cáo cho %{user} yêu cầu sự chấp thuận của quản trị viên trước khi tải xuống
     admins: Quản trị viên
     ai_artifacts: Đồ tạo tác AI
     ai_artifacts_output_schema_key_constraint: Khóa phải bắt đầu bằng chữ thường và chỉ có thể chứa chữ thường, số và dấu gạch dưới
@@ -8,7 +9,17 @@ vi:
     ai_assistant_model_label: Mẫu
     ai_assistant_model_provider: Cung cấp
     ai_assistant_model_region_label: Vùng
+    ai_assistant_required: Trợ lý AI là bắt buộc
     ai_assistants: Trợ lý AI
+    ai_assistants_advanced_mode_tooltip: Sử dụng chế độ nâng cao để tạo mẫu nhanh bằng cách sử dụng mẫu liquid với các biến có sẵn. Tham khảo tài liệu để biết thêm chi tiết.
+    ai_assistants_campaign_id_placeholder: Nhập mã chiến dịch
+    ai_assistants_no_rendered_output: Không có đầu ra được hiển thị
+    ai_assistants_render_button: Mẫu kết xuất
+    ai_assistants_rendered_prompt: Lời nhắc được hiển thị
+    ai_assistants_template_and_campaign_required: Vui lòng cung cấp cả mẫu và ID chiến dịch
+    ai_assistants_template_render_failed: Không thể hiển thị mẫu
+    ai_assistants_test_render: Kết xuất thử nghiệm
+    ai_assistants_test_render_tooltip: Kiểm tra mẫu lời nhắc của bạn với dữ liệu chiến dịch để kiểm tra nội dung sẽ được gửi đến trợ lý AI.
     assessments: Đánh giá
     assessments_reports: Đánh giá & Báo cáo
     assessor_dashboard: Bảng điều khiển đánh giá viên
@@ -16,41 +27,83 @@ vi:
     audit_logs: Nhật ký kiểm tra
     audit_reports: Báo cáo kiểm toán
     availability: Sẵn sàng
+    available_languages: Báo cáo có sẵn bằng ngôn ngữ
     back_to_main: Menu chính
+    bulk_upload_ai_artifacts: Tải lên hàng loạt hiện vật AI
+    campaign_ai_artifact_updated_successfully: Chiến dịch AI hiện vật được cập nhật thành công
+    campaign_assessment_actions_disable_caching: Tắt bộ nhớ đệm đánh giá
+    campaign_assessment_actions_enable_caching: Bật bộ nhớ đệm đánh giá
+    campaign_assessment_column_caching_enabled: Đã bật bộ nhớ đệm đánh giá
+    campaign_assessment_modals_disable_caching_content: Bạn có chắc chắn muốn tắt bộ nhớ đệm cho đánh giá này không?
+    campaign_assessment_modals_disable_caching_successfully: Bộ nhớ đệm đã bị vô hiệu hóa cho đánh giá này.
+    campaign_assessment_modals_disable_caching_title: Tắt bộ nhớ đệm đánh giá?
+    campaign_assessment_modals_enable_caching_content: Bạn có chắc chắn muốn bật bộ nhớ đệm cho đánh giá này không?
+    campaign_assessment_modals_enable_caching_successfully: Bộ nhớ đệm đã được bật cho đánh giá này.
+    campaign_assessment_modals_enable_caching_title: Bật bộ nhớ đệm đánh giá?
     campaign_templates: Mẫu chiến dịch
     client: Khách hàng thuê nhà
     client_admins: Quản trị viên khách hàng
     clients: Thuê khách hàng
+    code_required: Mã là bắt buộc
     communication_center: Trung tâm truyền thông
+    completed: Hoàn thành
+    completed_tooltip: Tất cả các đánh giá viên đã gửi đánh giá
     country: Quốc gia
     create_client: Tạo khách hàng
     dashboard: Bảng điều khiển
     data_reports: Báo cáo dữ liệu
     datasheet: Bảng dữ liệu
+    declined: Từ chối
     delete_ok_text: Có, xóa
+    denied: Bị từ chối
     development_actions: Hành động phát triển
     dimensions: Kích thước
+    done: Thực hiện
+    done_tooltip: Không thể gửi thêm đánh giá cho người dùng này vì đánh giá của người dùng này được đánh dấu là đã thực hiện bởi %{marked_by}
     empty_csv_file: Tệp CSV không chứa bất kỳ dữ liệu nào.
+    evaluation_status: Trạng thái đánh giá
+    evaluation_status_not_done: Trạng thái đánh giá không phải là "Xong" đối với một hoặc nhiều đối tượng được chọn. Hãy đảm bảo rằng tất cả người dùng được chọn đã hoàn thành đánh giá hoặc đánh dấu là xong.
+    idp_plan_reset_success: Kế hoạch đã được đặt lại thành công
+    import_ai_artifacts: Nhập hiện vật AI
     import_csv_error: 'Hàng %{index}: người dùng có %{email} email không có trong chiến dịch này'
+    import_csv_parsing_error: 'Lỗi phân tích cú pháp CSV: %{message}'
     import_description: Nhập người dùng từ tệp CSV. Mỗi hàng phải chứa một địa chỉ email.
     import_download_sample: Tải xuống CSV mẫu
     import_error: Nhập không thành công. Vui lòng thử lại.
+    import_error_saving_data: 'Lỗi lưu dữ liệu cho %{email}: %{message}'
     import_errors_title: Lỗi nhập khẩu
+    import_external_scoring_action: Nhập tính điểm bên ngoài
+    import_external_scoring_body: Tham khảo chức năng Xuất để trích xuất mẫu có thể được sử dụng để Nhập tại đây.
+    import_external_scoring_data_description: Nhập dữ liệu tính điểm bên ngoài cho đánh giá và chiến dịch được chỉ định
+    import_external_scoring_data_title: Nhập dữ liệu chấm điểm bên ngoài
+    import_external_scoring_success_msg: Nhập đã được tải lên thành công
+    import_external_scoring_upload: Tải lên
     import_file_required: Vui lòng chọn tệp CSV để tải lên.
     import_queued_success: Công việc nhập đối tượng đã được lên lịch thành công. Vui lòng kiểm tra thông báo của bạn để biết trạng thái.
     import_sample_file_label: 'Tệp mẫu:'
+    import_scenario_id_mismatch: 'Mã kịch bản không khớp đối với %{email}: %{expected_id} dự kiến, nhưng CSV chứa các mã kịch bản khác nhau'
+    import_successfully_saved: Lưu thành công kết quả bên ngoài cho %{email} với mục tiêu %{goals_count}
     import_title: Nhập chủ đề từ CSV
     import_upload: Tải lên
     import_users: Nhập người dùng
     invalid_csv_header: CSV chứa tiêu đề không hợp lệ.
+    learning_from_others: Học tập hợp tác [20]
     libraries: Thư viện phương tiện
     library_invalid_type: Mục Thư viện không hợp lệ
+    manager_approval_required: Báo cáo cho %{user} yêu cầu sự chấp thuận của người quản lý trước khi tải xuống
+    name_required: Tên là bắt buộc
+    no_file_selected: Không có tệp nào được chọn
     no_notifications: Không có thông báo
     norms: Tiêu chuẩn
+    not_completed: Chưa hoàn thành
+    not_completed_tooltip: "%{completed} người đánh giá được chỉ định nhưng chỉ %{submitted} đã hoàn thành đánh giá"
+    nothing_assigned: Không có người đánh giá được chỉ định
+    nothing_assigned_tooltip: Không có đánh giá nào được chỉ định cho người dùng này
     notification_bell_icon_alt_text: Biểu tượng chuông thông báo
     notifications: Thông báo
     number: Số
     occupations: Nghề
+    on_the_job: Trong công việc [70]
     options: Tùy chọn
     participants: Tham gia
     profile_details: Chi tiết hồ sơ
@@ -59,7 +112,19 @@ vi:
     question_center: Trung tâm câu hỏi
     registration_codes: Mã đăng ký
     report_approvals: Phê duyệt báo cáo
+    report_condition_not_met: Cần %{required} %{relationship} đánh giá, nhưng chỉ có %{actual}
+    report_conditions_not_met_detailed: Báo cáo cho %{user} không đáp ứng các điều kiện sẵn có. %{conditions}
+    report_denied: Báo cáo cho %{user} đã bị từ chối
+    report_no_evaluations: Báo cáo cho %{user} không có sẵn - không nhận được đánh giá.
+    report_not_generated: Báo cáo cho %{user} đáp ứng các điều kiện khả dụng nhưng chưa được tạo. Vui lòng tạo báo cáo trước.
+    report_on_hold: Báo cáo cho %{user} hiện đang bị tạm dừng
+    report_status: Trạng thái báo cáo
     reports: Báo cáo
+    reports_limit_exceeded: Tải xuống hàng loạt được giới hạn ở 1000 tệp báo cáo. Nếu bạn đã chọn nhiều ngôn ngữ, vui lòng giảm bớt nó.
+    reports_not_found: Không tìm thấy báo cáo. Vui lòng tạo báo cáo trước khi tải xuống.
+    reset_idp_plan: Đặt lại kế hoạch
+    reset_idp_plan_confirmation: Bạn có chắc chắn muốn đặt lại kế hoạch?
+    reset_idp_plan_title: Đặt lại kế hoạch
     role: Vai trò
     saml_idp_certificate_available: Có sẵn (bấm để sao chép)
     saml_idp_certificate_label: Chứng chỉ
@@ -79,12 +144,25 @@ vi:
     saml_service_provider_entity_id_placeholder: Nhập ID thực thể
     saml_service_provider_entity_id_required: Mã thực thể là bắt buộc
     saml_service_provider_idp_config: Cấu hình IdP
+    saml_service_provider_integration_generic: Chung
+    saml_service_provider_integration_masking_info: Id Email của các ứng viên sẽ được che trước khi gửi đến Yoodli. Việc che giấu họ và tên của các ứng cử viên cần được bật từ
+    saml_service_provider_integration_type: Loại tích hợp
+    saml_service_provider_integration_type_placeholder: Chọn loại tích hợp
+    saml_service_provider_integration_type_required: Loại tích hợp là bắt buộc
+    saml_service_provider_integration_yoodli: Yoodli
     saml_service_provider_manage: Hành động
+    saml_service_provider_mask_data_for: Mặt nạ dữ liệu cho
     saml_service_provider_mask_identity: Nhận dạng mặt nạ
     saml_service_provider_masking_enabled: Bật mặt nạ
+    saml_service_provider_masking_help_generic: Bật để che danh tính người dùng trong phản hồi SAML
+    saml_service_provider_masking_help_integration: Mặt nạ nhà cung cấp tích hợp sẽ được áp dụng
+    saml_service_provider_masking_integration: Điều khiển %{integration}
+    saml_service_provider_masking_manual_disabled: Tàn tật
+    saml_service_provider_masking_manual_enabled: Kích hoạt
     saml_service_provider_name: Tên
     saml_service_provider_name_placeholder: Nhập tên nhà cung cấp dịch vụ
     saml_service_provider_name_required: Tên là bắt buộc
+    saml_service_provider_privacy_policy: Trang chính sách bảo mật
     saml_service_provider_remove_content: 'Bạn có chắc chắn muốn xóa Nhà cung cấp dịch vụ SAML: %{name} không?'
     saml_service_provider_remove_title: Xóa nhà cung cấp dịch vụ SAML
     saml_service_provider_rotate_certificate_content: Bạn có chắc chắn muốn luân chuyển chứng chỉ cho %{name}? Thao tác này sẽ tạo ra một chứng chỉ mới và làm mất hiệu lực chứng chỉ hiện tại.
@@ -102,7 +180,14 @@ vi:
     skills_taxonomy: Phân loại kỹ năng
     slot_name: Tên vị trí
     stats: Thống kê
+    status_details: Chi tiết trạng thái
+    structured_learning: Học chính thức [10]
+    upload_success: Tải lên thành công
     user_report_events: Sự kiện báo cáo người dùng
     users: Người dùng
     view_licenses: Xem giấy phép
+    waiting: Chờ đợi
     year: Quốc gia
+    yoodli_activity_id: ID hoạt động Yoodli
+    yoodli_email_id: ID email ứng viên Yoodli
+    yoodli_external_assessment_id: ID đánh giá Yoodli

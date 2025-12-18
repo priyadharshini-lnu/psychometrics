@@ -14,7 +14,7 @@ const FIELDS = [
   'target_job_role',
   'assigned_date',
   'division',
-  'review_date',
+  'approval_date',
   'publish_date',
   'completion_date',
 ]
@@ -26,7 +26,8 @@ const FIELD_TO_DATA = {
   division: 'division',
   assigned_date: 'assigned_date',
   publish_date: 'start_date',
-  completion_date: 'completion_date',
+  completion_date: 'completed_date',
+  approval_date: 'approval_date',
 }
 
 const Cover = ({ rtl }) => {

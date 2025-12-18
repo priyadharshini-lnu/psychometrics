@@ -115,7 +115,7 @@ export const Component: FC<PropsFromRedux> = ({
     ] : []),
     {
       title: I18n.t('idp.actions'),
-      width: 200,
+      width: isMobile ? 80 : 200,
       className: isMobile ? 'vertical-align-bottom' : '',
       render (item:User) {
         return (
@@ -204,7 +204,8 @@ export const Component: FC<PropsFromRedux> = ({
                 total: directReporteesTotalCount,
                 hideOnSinglePage: true,
               }}
-              style={{ overflowY: isLoading ? 'hidden' : 'auto' }}
+              sticky
+              style={{ overflowY: isLoading ? 'hidden' : 'auto', maxHeight: 'calc(100vh - 220px)' }}
               onChange={handleTableChange}
               rowKey={item => item.user.id}
             />

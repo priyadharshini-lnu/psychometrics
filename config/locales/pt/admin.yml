@@ -1,6 +1,7 @@
 ---
 pt:
   admin:
+    admin_approval_required: Relatório para %{user} requer aprovação do administrador antes do download
     admins: Administradores
     ai_artifacts: Artefatos de IA
     ai_artifacts_output_schema_key_constraint: A tonalidade deve começar com uma letra minúscula e só pode conter letras minúsculas, números e sublinhados
@@ -8,7 +9,17 @@ pt:
     ai_assistant_model_label: Modelo
     ai_assistant_model_provider: Provedor
     ai_assistant_model_region_label: Região
+    ai_assistant_required: Assistente de IA é obrigatório
     ai_assistants: Assistentes de IA
+    ai_assistants_advanced_mode_tooltip: Use o modo avançado para plantar prompts usando o template líquido com variáveis disponíveis. Consulte a documentação para mais detalhes.
+    ai_assistants_campaign_id_placeholder: Insira o ID da campanha
+    ai_assistants_no_rendered_output: Nenhuma saída renderizada disponível
+    ai_assistants_render_button: Template de Renderização
+    ai_assistants_rendered_prompt: Prompt Renderizado
+    ai_assistants_template_and_campaign_required: Por favor, forneça tanto o modelo quanto o ID da campanha
+    ai_assistants_template_render_failed: Falhou ao renderizar o template
+    ai_assistants_test_render: Renderização de Teste
+    ai_assistants_test_render_tooltip: Teste seu modelo de prompt com dados de campanha para verificar o que será enviado ao assistente de IA.
     assessments: Avaliações
     assessments_reports: Avaliações e relatórios
     assessor_dashboard: Painel de controlo do avaliador
@@ -16,41 +27,83 @@ pt:
     audit_logs: Registos de auditoria
     audit_reports: Relatórios de auditoria
     availability: Disponibilidade
+    available_languages: Relatório disponível em idiomas
     back_to_main: Menu principal
+    bulk_upload_ai_artifacts: Artefatos de IA por Upload em Massa
+    campaign_ai_artifact_updated_successfully: Artefatos de IA da campanha atualizados com sucesso
+    campaign_assessment_actions_disable_caching: Desativar o cache de avaliação
+    campaign_assessment_actions_enable_caching: Habilitar o cache de avaliação
+    campaign_assessment_column_caching_enabled: Cache de Avaliação Ativado
+    campaign_assessment_modals_disable_caching_content: Você tem certeza de que quer desativar o cache para essa avaliação?
+    campaign_assessment_modals_disable_caching_successfully: O cache foi desativado para essa avaliação.
+    campaign_assessment_modals_disable_caching_title: Desativar o cache de avaliação?
+    campaign_assessment_modals_enable_caching_content: Você tem certeza de que quer ativar o cache para essa avaliação?
+    campaign_assessment_modals_enable_caching_successfully: O cache foi ativado para essa avaliação.
+    campaign_assessment_modals_enable_caching_title: Habilitar o cache de avaliação?
     campaign_templates: Modelos de campanha
     client: Locação de clientes
     client_admins: Administradores de clientes
     clients: Clientes
+    code_required: Código é obrigatório
     communication_center: Centro de Comunicação
+    completed: Concluído
+    completed_tooltip: Todos os avaliadores enviaram a avaliação
     country: País
     create_client: Criar cliente
     dashboard: Painel de controlo
     data_reports: Relatórios de dados
     datasheet: Ficha Técnica
+    declined: Recusou
     delete_ok_text: Sim, Delete
+    denied: Negado
     development_actions: Acções de desenvolvimento
     dimensions: Dimensões
+    done: Terminado
+    done_tooltip: Nenhuma avaliação adicional pode ser submetida para esse usuário, pois a avaliação desse usuário é marcada como feita por %{marked_by}
     empty_csv_file: CSV não contém nenhum dado.
+    evaluation_status: Status de Avaliação
+    evaluation_status_not_done: O status de avaliação não é 'Concluído' para um ou mais sujeitos selecionados. Por favor, certifique-se de que todos os usuários selecionados tenham concluído as avaliações ou marquem como concluídos.
+    idp_plan_reset_success: O plano foi reiniciado com sucesso
+    import_ai_artifacts: Importar artefatos de IA
     import_csv_error: 'Fila %{index}: usuário com e-mail %{email} não está nesta campanha'
+    import_csv_parsing_error: 'Erro de análise CSV: %{message}'
     import_description: Importar usuários de um arquivo CSV. Cada linha deve conter um endereço de e-mail.
     import_download_sample: Baixar exemplo de CSV
     import_error: Importação falhou. Por favor, tente novamente.
+    import_error_saving_data: 'Salvamento de dados de erro para %{email}: %{message}'
     import_errors_title: Erros de importação
+    import_external_scoring_action: Importação de Pontuação Externa
+    import_external_scoring_body: Consulte a funcionalidade de Exportação para extrair um template que pode ser usado para importar aqui.
+    import_external_scoring_data_description: Importação de dados externos de pontuação para a avaliação e campanha especificadas
+    import_external_scoring_data_title: Importar dados externos de pontuação
+    import_external_scoring_success_msg: A importação foi enviada com sucesso
+    import_external_scoring_upload: Carregar
     import_file_required: Por favor, selecione um arquivo CSV para enviar.
     import_queued_success: O trabalho de importação dos sujeitos foi agendado com sucesso. Por favor, verifique seu status na notificação.
     import_sample_file_label: 'Arquivo de exemplo:'
+    import_scenario_id_mismatch: 'Incompatibilidade de ID de cenário para %{email}: %{expected_id} esperado, mas o CSV contém IDs de cenário diferentes'
+    import_successfully_saved: Salvei com sucesso resultados externos para %{email} com metas %{goals_count}
     import_title: Assuntos Importados do CSV
     import_upload: Carregar
     import_users: Importar Usuários
     invalid_csv_header: CSV contém cabeçalhos inválidos.
+    learning_from_others: Aprendizagem Colaborativa [20]
     libraries: Biblioteca multimédia
     library_invalid_type: Item da Biblioteca Inválido
+    manager_approval_required: Relatório para %{user} requer aprovação do gerente antes do download
+    name_required: O nome é necessário
+    no_file_selected: Nenhum arquivo selecionado
     no_notifications: Sem notificações
     norms: Normas
+    not_completed: Não Concluído
+    not_completed_tooltip: "%{completed} avaliadores são designados, mas apenas %{submitted} completaram as avaliações"
+    nothing_assigned: Nenhum avaliador designado
+    nothing_assigned_tooltip: Nenhuma avaliação foi atribuída a esse usuário
     notification_bell_icon_alt_text: Ícone da campainha de notificação
     notifications: Notificações
     number: Número
     occupations: Profissões
+    on_the_job: No Trabalho [70]
     options: Opções
     participants: Participantes
     profile_details: Detalhes do perfil
@@ -59,7 +112,19 @@ pt:
     question_center: Centro de perguntas
     registration_codes: Códigos de registo
     report_approvals: Aprovações de relatórios
+    report_condition_not_met: Precisa de avaliação %{required} %{relationship}, mas só tem %{actual}
+    report_conditions_not_met_detailed: Reporte para %{user} não atende às condições de disponibilidade. %{conditions}
+    report_denied: O relatório de %{user} foi negado
+    report_no_evaluations: O relatório para %{user} não está disponível – nenhuma avaliação foi recebida.
+    report_not_generated: Relatório de %{user} atende às condições de disponibilidade, mas ainda não foi gerado. Por favor, gere o relatório primeiro.
+    report_on_hold: Relatório para %{user} está atualmente em espera
+    report_status: Status do Relatório
     reports: Relatórios
+    reports_limit_exceeded: O download em massa é limitado a 1000 arquivos de relatório. Se você selecionou muitos idiomas, por favor, reduza essa informação.
+    reports_not_found: Nenhum relatório encontrado. Por favor, gere os relatórios antes de baixar.
+    reset_idp_plan: Plano de Reinício
+    reset_idp_plan_confirmation: Tem certeza de que quer resetar o plano?
+    reset_idp_plan_title: Plano de Reinício
     role: Papel
     saml_idp_certificate_available: Disponível (clique para copiar)
     saml_idp_certificate_label: Certificado
@@ -79,12 +144,25 @@ pt:
     saml_service_provider_entity_id_placeholder: Insira ID da entidade
     saml_service_provider_entity_id_required: O ID da entidade é necessário
     saml_service_provider_idp_config: Configuração IdP
+    saml_service_provider_integration_generic: Genérico
+    saml_service_provider_integration_masking_info: O ID de e-mail dos candidatos será mascarado antes de ser enviado para Yoodli. A mascaração dos nomes e sobrenomes dos candidatos precisa ser habilitada a partir do
+    saml_service_provider_integration_type: Tipo de Integração
+    saml_service_provider_integration_type_placeholder: Selecione o tipo de integração
+    saml_service_provider_integration_type_required: O tipo de integração é necessário
+    saml_service_provider_integration_yoodli: Yoodli
     saml_service_provider_manage: Ações
+    saml_service_provider_mask_data_for: Dados de máscara para
     saml_service_provider_mask_identity: Identidade da Máscara
     saml_service_provider_masking_enabled: Ativar Mascaramento
+    saml_service_provider_masking_help_generic: Permitir mascarar identidades de usuários em respostas SAML
+    saml_service_provider_masking_help_integration: Será aplicado o uso de máscara do provedor de integração
+    saml_service_provider_masking_integration: "%{integration} Motivado"
+    saml_service_provider_masking_manual_disabled: Desactivado
+    saml_service_provider_masking_manual_enabled: Habilitado
     saml_service_provider_name: Nome
     saml_service_provider_name_placeholder: Insira nome do provedor de serviço
     saml_service_provider_name_required: O nome é necessário
+    saml_service_provider_privacy_policy: Página da Política de Privacidade
     saml_service_provider_remove_content: 'Você tem certeza de que quer remover o Provedor de Serviço SAML: %{name}?'
     saml_service_provider_remove_title: Remover Provedor de Serviços SAML
     saml_service_provider_rotate_certificate_content: Você tem certeza de que quer revezar o certificado para %{name}? Isso gerará um novo certificado e invalidará o atual.
@@ -102,7 +180,14 @@ pt:
     skills_taxonomy: Taxonomia de competências
     slot_name: Nome do Slot
     stats: Estatísticas
+    status_details: Detalhes de Status
+    structured_learning: Aprendizagem Formal [10]
+    upload_success: Carregado com sucesso
     user_report_events: Eventos do relatório do utilizador
     users: Utilizadores
     view_licenses: Ver licenças
+    waiting: Espera
     year: País
+    yoodli_activity_id: ID de atividade Yoodli
+    yoodli_email_id: ID de e-mail do candidato Yoodli
+    yoodli_external_assessment_id: ID de Avaliação Yoodli

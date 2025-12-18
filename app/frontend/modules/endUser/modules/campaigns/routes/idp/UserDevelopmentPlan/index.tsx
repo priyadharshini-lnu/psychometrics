@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import _, { uniqBy } from 'lodash'
 import {
   useEffect, useState, useMemo, useRef, useContext,
 } from 'react'
@@ -82,6 +82,8 @@ const connector = connect((state: RootState) => ({
   skillGapReportData: state.campaigns.idp.skillGapReportData,
   oneClickIdpEnabled: state.campaigns.idp.oneClickIdpEnabled,
   reviewNote: state.campaigns.idp.reviewNote,
+  approvalStatus: state.campaigns.idp.approvalStatus,
+  aiAssistedIdpFeatureEnabled: state.config.idp.aiAssistedIdpFeatureEnabled,
 }),
 {
   fetchAvailableDevelopmentActions,
@@ -148,6 +150,8 @@ const UserDevelopmentPlanComponent = ({
   oneClickIdpEnabled,
   reviewNote,
   setUserIdpPlanDirty,
+  aiAssistedIdpFeatureEnabled,
+  approvalStatus,
 }: Props) => {
   const { tab: paramTab } = useParams() as {tab: string}
 
@@ -159,6 +163,7 @@ const UserDevelopmentPlanComponent = ({
   const [allSkills, setAllSkills] = useState<Skill[]>(([]))
 
   const [selectedSkills, setSelectedSkills] = useState<Skill[]>([])
+  const [existingPlanData, setExistingPlanData] = useState<object | null>(null)
 
   const [isLoading, setIsLoading] = useState(false)
   const [isDALoading, setIsDALoading] = useState(false)
@@ -168,7 +173,6 @@ const UserDevelopmentPlanComponent = ({
   { skillId: string, skillName: string } | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const existingPlanData = useRef<object | null>(null)
 
   // Comments state - only isCommentsLoading is managed internally
   const [isCommentsLoading, setIsCommentsLoading] = useState(true)
@@ -177,17 +181,24 @@ const UserDevelopmentPlanComponent = ({
   const reflectionQuestions = useAppSelector(getReflectiveQuestions)
 
   const listData = useMemo(() => groupSkillsBySkillType(idpSkills, idpDevelopmentActions),
-    [idpSkills, idpDevelopmentActions])
+    [idpSkills, idpDevelopmentActions, selectedSkills])
 
   const isPlanDirty = useMemo(() => {
-    if (!existingPlanData.current) return false
-    const { userIdpSkills: existingSkills, userIdpDevelopmentActions: existingActions } = existingPlanData.current as {
+    if (!existingPlanData) return false
+    const { userIdpSkills: existingSkills, userIdpDevelopmentActions: existingActions } = existingPlanData as {
       userIdpSkills: Skill[];
       userIdpDevelopmentActions: DevelopmentAction[];
     }
-    return !_.isEqual(existingSkills, idpSkills) || !_.isEqual(existingActions, idpDevelopmentActions)
+
+    return !_.isEqual(
+      Object.values(existingSkills).map(skill => _.omit(skill as Skill, ['changeStatus', 'description'])),
+      Object.values(idpSkills).map(skill => _.omit(skill as Skill, ['changeStatus', 'description'])),
+    ) || !_.isEqual(
+      existingActions,
+      idpDevelopmentActions,
+    )
   },
-  [idpSkills, idpDevelopmentActions])
+  [idpSkills, idpDevelopmentActions, existingPlanData])
 
 
   const availableDevelopmentActionsData = useMemo(() => _.values(availableDevelopmentActions),
@@ -217,13 +228,14 @@ const UserDevelopmentPlanComponent = ({
   useEffect(() => {
     setIsLoading(true)
     fetchUserIdpPlan(idpUserId).then(({ response }) => {
-      setSelectedSkills(response.data.userIdpSkills)
+      setSelectedSkills(response.data.userIdpSkills.filter(skill => !skill.deletedAt))
       fetchUserIdpPlanChanges(idpUserId).then(() => {
-        existingPlanData.current = {
+        setExistingPlanData({
           userIdpDevelopmentActions: _.keyBy(response.data.userIdpDevelopmentActions, 'id'),
           userIdpSkills: _.keyBy(response.data.userIdpSkills, 'id'),
-        }
+        })
       })
+
       setIsLoading(false)
     }).catch((error) => {
       message.error(error || I18n.t('common.errors.something_wrong'))
@@ -239,9 +251,10 @@ const UserDevelopmentPlanComponent = ({
 
   useEffect(() => {
     if (currentUser.id === idpUserId) {
-      switch (status) {
+      switch (approvalStatus) {
         case USER_IDP_PLAN_STATUS.NOT_STARTED: {
-          const welcome_page = oneClickIdpEnabled ? '/idp/ai_assistant/start' : '/idp/steps/getting_started'
+          const welcome_page = (aiAssistedIdpFeatureEnabled && oneClickIdpEnabled)
+            ? '/idp/ai_assistant/start' : '/idp/steps/getting_started'
           navigate(welcome_page)
           break
         }
@@ -253,7 +266,7 @@ const UserDevelopmentPlanComponent = ({
           break
       }
     }
-  }, [status])
+  }, [approvalStatus])
 
   useEffect(() => {
     if (showAddSkill) {
@@ -292,16 +305,19 @@ const UserDevelopmentPlanComponent = ({
       ...skill,
       skillId: skill.id,
       isLocal: true,
+      deletedAt: null,
     }))
+
     setSelectedSkills([...selectedSkills, ...userIdpSkills])
   }
 
   const handleFinishAddSkill = () => {
     setIsLoading(true)
     saveUserIdpSkills(
-      selectedSkills, null, idpUserId,
+      uniqBy(selectedSkills, 'skillId'), null, idpUserId,
     ).then(({ response }: {response:{data:Skill[]}}) => {
       setSelectedSkills([...response.data])
+      fetchUserIdpPlanChanges(idpUserId)
       setShowAddSkill(false)
       message.success(I18n.t('idp.skills_updated'))
     }).catch((error) => {
@@ -318,6 +334,7 @@ const UserDevelopmentPlanComponent = ({
       userIdpSkills, null, idpUserId,
     ).then(({ response }:{response:{data:Skill[]}}) => {
       setSelectedSkills([...response.data])
+      fetchUserIdpPlanChanges(idpUserId)
       fetchIdpSkills().then(({ response }) => {
         setAllSkills(response)
       }).finally(() => {
@@ -381,7 +398,7 @@ const UserDevelopmentPlanComponent = ({
     if (isMobile) {
       setIsCommentsDrawerOpen(false)
     } else if (skillElement) {
-      skillElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      skillElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
       setTimeout(() => {
         showCommentsForSkillId(resourceId)
       }, 400)
@@ -393,7 +410,7 @@ const UserDevelopmentPlanComponent = ({
         setTimeout(() => {
           skillElement.style.backgroundColor = ''
         }, 2000)
-        skillElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        skillElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
       }
     }, 400)
   }
@@ -553,7 +570,12 @@ const UserDevelopmentPlanComponent = ({
           maxHeight: `calc(100vh - (220px + ${headerHeight}px))`,
         }}
       >
-        <div ref={containerRef}>
+        <div
+          ref={containerRef}
+          style={{
+            height: '100%',
+          }}
+        >
           <DevelopmentActionListView
             editMode={editMode}
             categories={listData}

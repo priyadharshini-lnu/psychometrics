@@ -294,6 +294,7 @@ zh-Hant:
             view: 檢視
           userIdpPlans:
             manage: 司
+            reset: 重排
             title: 使用者 IDP 計畫
             view: 觀
           users:
@@ -897,8 +898,6 @@ zh-Hant:
       new:
         header: 大量下載
       reports_unavailable: 目前沒有可供下載的報告，請確認您要下載的報告是否可用。
-      select_users_for_download: 請選擇至少一個用戶下載報告。
-      select_users_for_regenerate: 請選擇至少一個用戶重新生成報告。
     cable:
       notification:
         assessment_factors: 取得因子
@@ -2065,9 +2064,6 @@ zh-Hant:
       learning_styles:
         cannot_be_blank: 不能為空白
         invalid: 必須是在職學習、有系統的學習、從他人身上學習其中之一
-        learning_from_others: 向他人學習 [20]
-        on_the_job: 在職 [70]
-        structured_learning: 結構化學習 [10]
       new:
         header: 新發展行動
       resource:
@@ -2322,11 +2318,12 @@ zh-Hant:
       behavioral_skills: 行為技巧
       client_skills: 客戶技能
       delete_skill: 您確定要刪除此技能嗎？刪除後將同時移除所有相關的開發行動。
+      delete_skill_msg: 你確定要刪除這個技能嗎？刪除它也會移除所有相關的開發行動。
       details_updated: IDP 詳細資料已成功更新
       development_actions:
         add_from_library: 從庫新增
         completion: 完成
-        create_development_actions_with_ai: 使用 AI 建立開發動作 for %{skillName}
+        create_development_actions_with_ai: 使用 AI 建立開發動作
         create_from_ai: 從 AI 創建
         create_my_own: 創建我自己的
         custom: 習慣
@@ -2352,6 +2349,7 @@ zh-Hant:
         skills_required_on_publishing: 請在發布模板之前選擇技能。
         update: 不允許更新，因為 IDP 模版已與使用者 IDP 計劃相關聯。
       fields:
+        approval_date: 核准日期
         assigned_data: 指定資料
         assigned_date: 指定日期
         completion_date: 完成日期
@@ -2644,24 +2642,6 @@ zh-Hant:
         skillvue:
           api_key_present: API 金鑰已存在於其他專案中
       view_all_schedules: 檢視所有 Mettl 時刻表
-      yoodli_assessments:
-        add_assessment: 新增 Yoodli 評估
-        columns:
-          actions: 行動
-          created_at: 創立於
-          name: 評估名稱
-          product_id: 產品識別碼
-        delete_confirm: 你確定要刪除這個 Yoodli 評估嗎？
-        edit_assessment: 編輯：Yoodli 評估
-        manage_catalog: 管理 Yoodli 評估
-        messages:
-          create_success: Yoodli 評估「%{name}」成功製作
-          delete_success: Yoodli 評估已被成功刪除
-          update_success: Yoodli 評估「%{name}」已成功更新
-        placeholders:
-          name: 輸入評估名稱
-          product_id: 產品識別碼（Product ID）登場
-        search: 尋
     interview_questions:
       delete_confirmation: 你確定要刪除這個面試問題嗎？
       description: 描述
@@ -4675,8 +4655,6 @@ zh-Hant:
             evaluations_received: 收到的評估
             is_subject: 是主題
             name: 名稱
-            report_status: 報告狀態
-            status: 狀態
           evaluators:
             add_evaluators: 新增評估員
             import_evaluators: 進口評估員

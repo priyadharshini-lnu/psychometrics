@@ -43,6 +43,9 @@ export const AddEditWebhookModal: React.FC<Props> = ({
 
   const { data: assessments, fetch: fetchAssessments } = useResources<Assessment>('assessments', {
     apiConfig: {
+      fields: {
+        assessments: ['id', 'name'],
+      },
       filter: {
         owner_id_eq: clientId,
         category_in: ['psychometric', 'organisational'],
@@ -86,6 +89,14 @@ export const AddEditWebhookModal: React.FC<Props> = ({
     'assessment_raw_response',
   ]
 
+  const assessmentOptions = _.uniqBy([
+    ...(webhook?.assessments || []),
+    ...assessments,
+  ], 'id').map(assessment => ({
+    label: assessment.name,
+    value: assessment.id,
+  }))
+
   return (
     <>
       <ResourceFormModal
@@ -105,6 +116,7 @@ export const AddEditWebhookModal: React.FC<Props> = ({
           initialValues: {
             rateLimit: 60,
             rateLimitPeriod: 1,
+            assessmentIds: webhook?.assessments.map(a => a.id) || [],
             ...webhook,
           },
         }}
@@ -182,10 +194,7 @@ export const AddEditWebhookModal: React.FC<Props> = ({
                   placeholder={I18n.t('administration.project_tabs.webhooks.form.assessments.placeholder')}
                   onSearch={handleAssessmentSearch}
                   filterOption={false}
-                  options={assessments.map(assessment => ({
-                    label: assessment.name,
-                    value: assessment.id,
-                  }))}
+                  options={assessmentOptions}
                 />
               </Form.Item>
             )}

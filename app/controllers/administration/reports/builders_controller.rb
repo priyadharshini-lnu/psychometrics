@@ -45,6 +45,20 @@ module Administration
         end
       end
 
+      def upload_campaign_ai_artifacts
+        form = ::Administration::CampaignAIArtifacts::ImportForm.new(
+          file: params[:file],
+          resource_id: params[:report_id],
+          resource_class: 'Report'
+        )
+
+        if form.valid?
+          render json: form.processed_data, status: :ok
+        else
+          render json: { errors: form.errors.messages.values.flatten }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def set_report

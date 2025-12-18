@@ -55,6 +55,17 @@ ro:
               blank: ID-ul pachetului de raportare nu poate fi gol
             report_id:
               blank: Codul raportului nu poate fi gol
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: Asistentul AI cu ID '%{id}' nu se găsește la rândul %{index}
+              blank: Coloana '%{entity}' nu poate fi goală la rândul %{index}
+              duplicate_code: Codul duplicat "%{code}" la rândul %{index}
+              invalid_code_format: Format de cod invalid '%{code}' la rândul %{index}
+              max_limit_reached: Artefactele totale ale AI din campanii depășesc limita maximă de %{count}
+              missing_headers: 'Antete obligatorii lipsă: %{headers}'
+            file:
+              invalid_format: Vă rugăm să încărcați fișierul CSV
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ ro:
         import_development_actions: Acțiune de dezvoltare a importurilor
         import_dimension_from_json: Importați dimensiunea din JSON
         import_external_campaign_scoring: Importați scorul campaniei externe
+        import_external_scoring_data: Importul datelor externe de notare
         import_factor_translations: Traduceri cu factor de import
         import_factors: Factori de import
         import_interview_questions: Importați întrebări de interviu
@@ -1050,7 +1062,7 @@ ro:
         saville_assessment_name: Evaluare Saville Nume
         simulation_assessment_name: Nume evaluare simulare
         skillvue_assessment_name: Skillvue Denumire evaluare
-        yoodli_assessment_name: Nume de evaluare Yoodli
+        yoodli_scenario_id: ID-ul scenariului Yoodli
       translations_migrated: Traducere migrată
     create: Crea
     dashboard: Tablou
@@ -1475,8 +1487,6 @@ ro:
       skillvue_email_id: Adresa de e-mail a candidatului Skillvue
       skillvue_external_assessment_id: Skillvue Evaluare ID
       universal_link: Legătura universală
-      yoodli_email_id: ID-ul de email al candidatului Yoodli
-      yoodli_external_assessment_id: ID de evaluare Yoodli
     drawer:
       mettl_schedule_name: Nume program Mettl
       title: Detalii de evaluare
@@ -1629,8 +1639,6 @@ ro:
       report: Raport
       report_bundle_placeholder: Selectați un pachet de rapoarte
     messages:
-      bulk_download_error: Descărcarea în bloc este limitată la 1000 de fișiere de raport. Dacă ați selectat mai multe lamente, vă rugăm să le reduceți.
-      bulk_download_no_reports: Nu s-au găsit rapoarte. Vă rugăm să generați rapoartele înainte de descărcare.
       bulk_download_successful: Sarcina de descărcare a raportului în bloc a fost programată cu succes
       export_report_data_scheduled: Sarcina de export a datelor de raportare a fost programată cu succes
     modals:
@@ -1940,7 +1948,6 @@ ro:
       hide: Ascunde
       view: Vedere
     validations:
-      required: Acest domeniu este necesar
       select_locale: Vă rugăm să selectați unele setări regionale
       should_be_whole_number: ar trebui să fie un număr întreg
   confirmation:
@@ -2601,6 +2608,7 @@ ro:
     convert_to_draft: Conversie în ciornă
     current_step: Pasul curent %{step}
     delete_skill: Sunteți sigur că doriți să ștergeți abilitatea? Aceasta va șterge și toate acțiunile de dezvoltare conectate.
+    delete_skill_msg: Ești sigur că vrei să ștergi această abilitate? Ștergerea ei va elimina, de asemenea, toate acțiunile de dezvoltare conexe.
     details: Detalii
     development_actions:
       action_private: Da
@@ -2618,8 +2626,8 @@ ro:
         in_progress: În curs de desfășurare
         not_started: Neînceput
       completion: Terminare
-      create_custom_development_action_title: Creează-mi propria acțiune de dezvoltare pentru %{skillName}
-      create_development_actions_with_ai: Creați acțiuni de dezvoltare cu AI for %{skillName}
+      create_custom_development_action_title: Creează-mi propria acțiune de dezvoltare pentru
+      create_development_actions_with_ai: Creați acțiuni de dezvoltare cu AI
       create_from_ai: Creați din AI
       create_my_own: Creează-mi propriul
       custom: Obicei
@@ -2685,6 +2693,7 @@ ro:
     edit_progress: Editați progres
     fetching_skill_gap_report: Raport de preluare a lacunelor de abilități...
     go_to_previous_step: Mergeți la pasul anterior
+    go_to_reportee_plan: Accesează detaliile planului raportatului
     history:
       added_da:
         one: Acțiune de dezvoltare adăugată
@@ -2734,12 +2743,14 @@ ro:
         categories: Categorii
       save_skills: Salvați abilități
     new_comments: Comentariu (comentarii) nou
+    no_plan_changes_found: Nu au fost făcute modificări la plan de la ultima ta evaluare.
     no_skills_added: Nu ai încă abilități adăugate.
     no_skills_added_by_reportee: Raportatul nu a adăugat încă abilități.
     pdf:
       approval_status: Starea aprobării
       cover:
         fields:
+          approval_date: Data de aprobare
           assigned_data: Data atribuită
           assigned_date: Data atribuirii
           completion_date: Data finalizării
@@ -2826,8 +2837,12 @@ ro:
         approved: Revizuit și aprobat
         completed: Completat
         draft: Ciornă
+        in_progress: În desfășurare
+        in_review: În recapitulare
         not_reviewed: Nerevizuit
+        not_started: Nu a început
         pending_approval: În recenzie
+        rejected: Respins
       summary:
         ai_count: IA generativă
         collaborative_learn: Învățare colaborativă
@@ -3808,13 +3823,6 @@ ro:
       on_hold: În așteptare
       prepared: Efectuat
       released: Eliberat
-    statuses:
-      completed: Completat
-      declined: Declinat
-      denied: Refuzat
-      done: Efectuat
-      not_completed: Nefinalizat
-      waiting: În așteptare
   threesixty:
     accept_privacy_modal:
       accept: Acceptați

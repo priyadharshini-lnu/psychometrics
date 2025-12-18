@@ -3,16 +3,25 @@ pt:
   shared:
     action: Ação
     add: Adicionar
+    advanced: Avançado
+    authentication_failed: A autenticação falhou. Por favor, tente novamente.
+    basic: Básico
+    campaign_id: ID de campanha
     cancel: Cancelar
     change_password: Alterar a palavra-passe
     clear_filters: Limpar filtros
+    collaborative_learning: Aprendizagem Colaborativa
+    continue: Continuar
     description: Descrição
     edit: Editar
     edited: Novo
+    formal_learning: Aprendizagem Formal
     group_question_max_validation_error: Cada grupo pode conter no máximo {{max}} itens.
     group_question_min_validation_error: Cada grupo precisa conter pelo menos {{min}} item(s).
     id: ID
+    idp_ai_assistant_disclaimer: O assistente IDP da IA do Farol pode cometer erros. Por favor, tenha cuidado ao usar as respostas.
     internet_disconnected_message: A tentar restabelecer a ligação. Verifique a sua ligação à Internet.
+    learning_on_the_job_label: Aprendendo no Trabalho
     mte_logo_alt_text: Logótipo da Mercer Talent Enterprise
     name: Nome
     new: Novo
@@ -30,6 +39,7 @@ pt:
           other: 'Total: {{count}}'
           zero: 'Total : 0'
     terms_conditions_privacy: Declaração de privacidade
+    tools: Ferramentas
     transcriptions: Transcrições
     tte_terms_and_condition: Termos e privacidade
     type: Tipo

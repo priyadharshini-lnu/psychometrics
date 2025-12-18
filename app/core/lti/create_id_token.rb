@@ -4,7 +4,7 @@ module Lti
   class CreateIdToken < BaseCommand
     include Rails.application.routes.url_helpers
 
-    attr_reader :client_id, :redirect_uri, :login_hint, :lti_message_hint, :nonce, :integration
+    attr_reader :client_id, :redirect_uri, :login_hint, :lti_message_hint, :nonce, :state, :integration
 
     def initialize(params)
       @client_id = params[:client_id]
@@ -12,12 +12,13 @@ module Lti
       @login_hint = params[:login_hint]
       @lti_message_hint = params[:lti_message_hint]
       @nonce = params[:nonce]
+      @state = params[:state]
       @integration = params[:integration]
     end
 
     def call
       id_token = build_id_token
-      update_lti_user_assessment_from_config
+      update_lti_user_assessment
       broadcast(:ok, id_token)
     rescue StandardError => e
       Rails.logger.error "ID Token Creation Error: #{e.message}"
@@ -81,7 +82,7 @@ module Lti
         name: maskable_identity.full_name,
         given_name: maskable_identity.first_name,
         family_name: maskable_identity.last_name,
-        email: maskable_identity.email,
+        email: email,
 
         # Locale
         locale: subject.locale || 'en',
@@ -190,10 +191,18 @@ module Lti
       )
     end
 
-    def update_lti_user_assessment_from_config
-      if integration&.yoodli?
-        user_assessment.yoodli_user_assessment&.update(email: maskable_identity.email)
-      end
+    def email
+      @email ||= provider_user_assessment&.email || "#{SecureRandom.hex(10)}@example.com"
+    end
+
+    def update_lti_user_assessment
+      provider_user_assessment&.update(email: email, yoodli_activity_id: state)
+    end
+
+    def provider_user_assessment
+      @provider_user_assessment ||= if integration&.yoodli?
+                                      user_assessment.yoodli_user_assessment
+                                    end
     end
   end
 end

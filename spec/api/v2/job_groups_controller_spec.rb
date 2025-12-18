@@ -1,62 +1,54 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'swagger_helper'
 
-describe Api::V2::Administration::JobGroupsController, swagger_doc: 'v2/swagger.json', type: :request do
+RSpec.describe Api::V2::Administration::JobGroupsController, type: :request do
   let!(:superadmin) { create(:superadmin) }
   let!(:project) { create(:project) }
-  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
+  let!(:api_key) { create(:api_key, user: superadmin) }
+  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before { sign_in(superadmin) }
 
-  path '/job_groups' do
-    get 'List Job Groups' do
-      operationId 'getJobGroups'
-      description 'Lists job groups'
-      tags 'SkillRater'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
+  describe 'GET /api/v2/job_groups' do
+    context 'when no filter is applied' do
+      it 'returns all job groups' do
+        parent_group = create(:job_group, project: project)
+        child_group = create(:job_group, project: project, parent: parent_group)
+        create(:job_role, job_group: child_group)
 
-      parameter name: :project_id, in: :query, type: :string, required: true
-      parameter name: :'filter[end_level_groups]', in: :query, required: false, type: :string
+        get '/api/v2/administration/job_groups',
+            params: { project_id: project.id },
+            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-      response '200', 'All Job Groups returned when no filter applied' do
-        let(:project_id) { project.id }
-        let!(:parent_group) { create(:job_group, project: project) }
-        let!(:child_group) { create(:job_group, project: project, parent: parent_group) }
-        let!(:job_role) { create(:job_role, job_group: child_group) }
-
-        run_test! do |response|
-          expect(response).to have_http_status(:ok)
-          json_response = JSON.parse(response.body)
-          expect(json_response['data'].size).to eq(2) # Returns both parent and child group
-          group_ids = json_response['data'].pluck('id')
-          expect(group_ids).to include(parent_group.id.to_s)
-          expect(group_ids).to include(child_group.id.to_s)
-        end
+        expect(response).to have_http_status(:ok)
+        json_response = JSON.parse(response.body)
+        expect(json_response['data'].size).to eq(2) # Returns both parent and child group
+        group_ids = json_response['data'].pluck('id')
+        expect(group_ids).to include(parent_group.id.to_s)
+        expect(group_ids).to include(child_group.id.to_s)
       end
+    end
 
-      response '200', 'Only leaf nodes returned when filter applied' do
-        let(:project_id) { project.id }
+    context 'when end_level_groups filter is applied' do
+      it 'returns only leaf nodes' do
+        root_group = create(:job_group, project: project)
+        programming = create(:job_group, project: project, parent: root_group)
+        design = create(:job_group, project: project, parent: root_group)
+        backend = create(:job_group, project: project, parent: programming)
+        frontend = create(:job_group, project: project, parent: programming)
+        ui_design = create(:job_group, project: project, parent: design)
 
-        let!(:root_group) { create(:job_group, project: project) }
-        let!(:programming) { create(:job_group, project: project, parent: root_group) }
-        let!(:design) { create(:job_group, project: project, parent: root_group) }
-        let!(:backend) { create(:job_group, project: project, parent: programming) }
-        let!(:frontend) { create(:job_group, project: project, parent: programming) }
-        let!(:ui_design) { create(:job_group, project: project, parent: design) }
+        get '/api/v2/administration/job_groups',
+            params: { project_id: project.id, 'filter[end_level_groups]' => true },
+            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-        let(:'filter[end_level_groups]') { true }
+        expect(response).to have_http_status(:ok)
+        json_response = JSON.parse(response.body)
 
-        run_test! do |response|
-          expect(response).to have_http_status(:ok)
-          json_response = JSON.parse(response.body)
-
-          expect(json_response['data'].size).to eq(3)
-          returned_ids = json_response['data'].map { |item| item['id'].to_i }
-          expect(returned_ids).to match_array([backend.id, frontend.id, ui_design.id])
-        end
+        expect(json_response['data'].size).to eq(3)
+        returned_ids = json_response['data'].map { |item| item['id'].to_i }
+        expect(returned_ids).to match_array([backend.id, frontend.id, ui_design.id])
       end
     end
   end

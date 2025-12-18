@@ -30,6 +30,10 @@ describe AI::AssistableService::Idp do
 
   before do
     allow(Settings).to receive(:ai_providers).and_return([ai_provider_config])
+    allow(Settings.features).to receive(:ai_assistant_enabled).and_return(true)
+
+    # Ensure project has proper feature flags enabled by default
+    campaign.project.project_feature.update!(ai_assisted_idp: true)
   end
 
   shared_context 'assistant service mocking' do
@@ -85,35 +89,39 @@ describe AI::AssistableService::Idp do
       end
     end
 
-    context 'when doc anaylise assistant tool are not configured properly' do
-      before do
-        idp_template.update!(document_analysis_ai_assistant: nil)
+    context 'when assistance is disabled due to feature flags' do
+      shared_examples 'returns feature disabled error' do
+        it 'returns an error with message' do
+          result = described_class.call(plan, user, instructions, options)
+
+          expect(result[:error]).to eq(
+            I18n.t('administration.ai_assistants.errors.one_click_idp_assistance_not_enabled')
+          )
+        end
+
+        it 'does not call AssistantService' do
+          allow(AI::AssistantService).to receive(:new)
+
+          described_class.new(plan, user, instructions, options).call
+
+          expect(AI::AssistantService).not_to have_received(:new)
+        end
       end
 
-      it 'returns an error with the correct translation' do
-        result = described_class.call(plan, user, instructions, options)
-        allow(AI::AssistantService).to receive(:new)
+      context 'when global AI assistant feature is disabled' do
+        before do
+          allow(Settings.features).to receive(:ai_assistant_enabled).and_return(false)
+        end
 
-        expect(result[:error]).to eq(
-          I18n.t('ai.errors.generic')
-        )
-        expect(AI::AssistantService).not_to have_received(:new)
-      end
-    end
-
-    context 'when gap report anaylise assistant tools are not configured properly' do
-      before do
-        idp_template.update!(skill_gap_report_analysis_ai_assistant: nil)
+        include_examples 'returns feature disabled error'
       end
 
-      it 'returns an error with the correct translation' do
-        result = described_class.call(plan, user, instructions, options)
-        allow(AI::AssistantService).to receive(:new)
+      context 'when project AI assisted IDP feature is disabled' do
+        before do
+          campaign.project.project_feature.update!(ai_assisted_idp: false)
+        end
 
-        expect(result[:error]).to eq(
-          I18n.t('ai.errors.generic')
-        )
-        expect(AI::AssistantService).not_to have_received(:new)
+        include_examples 'returns feature disabled error'
       end
     end
 
@@ -197,19 +205,38 @@ describe AI::AssistableService::Idp do
         expect(AI::Utils::DependencyParser::UserData).to have_received(:new)
       end
 
-      it 'passes correct tools to the chat context' do
-        service = described_class.new(plan, user, instructions, options)
+      context 'assistant tools' do
+        let(:service) { described_class.new(plan, user, instructions, options) }
+        let(:assistant_tools) { service.send(:assistant_tools) }
 
-        assistant_chat = service.send(:assisted_session_chat)
-
-        expect(assistant_chat).to receive(:with_assistant_context) do |args|
-          expect(args[:tools]).to include(AI::Tools::Idp::AddSkillToPlan)
-          expect(args[:tools]).to include(AI::Tools::Idp::AvailableSkillsAndDevelopmentActions)
-          expect(args[:tools]).to include(AI::Tools::Idp::SkillGapReportAnalysis)
-          expect(args[:tools]).to include(AI::Tools::Idp::AttachmentAnalysis)
+        it 'includes all tools when both assistants are configured' do
+          expect(assistant_tools.map(&:class)).to contain_exactly(
+            AI::Tools::Idp::AttachmentAnalysis,
+            AI::Tools::Idp::SkillGapReportAnalysis,
+            AI::Tools::Idp::AddSkillToPlan,
+            AI::Tools::Idp::AvailableSkillsAndDevelopmentActions
+          )
         end
 
-        service.call
+        it 'excludes AttachmentAnalysis when document assistant is missing' do
+          idp_template.update!(document_analysis_ai_assistant_id: nil)
+
+          expect(assistant_tools.map(&:class)).to contain_exactly(
+            AI::Tools::Idp::SkillGapReportAnalysis,
+            AI::Tools::Idp::AddSkillToPlan,
+            AI::Tools::Idp::AvailableSkillsAndDevelopmentActions
+          )
+        end
+
+        it 'excludes SkillGapReportAnalysis when skill-gap assistant is missing' do
+          idp_template.update!(skill_gap_report_analysis_ai_assistant_id: nil)
+
+          expect(assistant_tools.map(&:class)).to contain_exactly(
+            AI::Tools::Idp::AttachmentAnalysis,
+            AI::Tools::Idp::AddSkillToPlan,
+            AI::Tools::Idp::AvailableSkillsAndDevelopmentActions
+          )
+        end
       end
 
       it 'passes correct parameters to AssistantService' do
@@ -228,6 +255,7 @@ describe AI::AssistableService::Idp do
           chat: assistant_chat,
           ignore_user_prompt: true,
           ask_params: nil,
+          prompt_template_context: nil,
           params: {}
         )
       end
@@ -312,6 +340,30 @@ describe AI::AssistableService::Idp do
 
         expect(plan.reload.ai_assisted_idp_session.latest_chat).to eq(original_chat)
       end
+    end
+  end
+
+  describe '#prompt_template_context' do
+    let(:service) { described_class.new(plan, user, instructions, options) }
+
+    it 'returns the correct context hash with campaign and user' do
+      context = service.send(:prompt_template_context)
+
+      expect(context).to be_a(Hash)
+      expect(context[:campaign]).to eq(campaign)
+      expect(context[:user]).to eq(user)
+    end
+
+    it 'includes campaign from the assistable' do
+      context = service.send(:prompt_template_context)
+
+      expect(context[:campaign]).to eq(plan.campaign)
+    end
+
+    it 'includes the current user' do
+      context = service.send(:prompt_template_context)
+
+      expect(context[:user]).to eq(user)
     end
   end
 end

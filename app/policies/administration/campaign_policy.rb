@@ -288,6 +288,10 @@ module Administration
         )
     end
 
+    def manage_idp_plans?
+      has_permission?(:user_idp_plans, :manage)
+    end
+
     class Scope < Scope
       def initialize(user, scope, options = {})
         @user = user

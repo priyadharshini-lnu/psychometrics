@@ -3,6 +3,9 @@ ja:
   enduser:
     add_idp_plan_note: メモを追加...
     add_idp_plan_rejection_reason: 理由を追加...
+    ai_idp_assistant_response_no: いいえ
+    ai_idp_assistant_response_upload_different_document: 別のドキュメントをアップロードしたいです。
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: はい、計画作成を進めてください。
     approve_idp_plan: プランを承認
     bookings: 予約
     campaign: キャンペーン
@@ -10,6 +13,7 @@ ja:
     direct_reportees: 直下のレポート
     home: ダッシュボード
     idp_plan_approval_note: 承認メモ
+    idp_retake_steps_continue_with_this_information: この情報を続けてください
     insights: インサイト
     lighthouse_assistant: 灯台助手
     max_word_limit: 最大%{max}語以内にしてください

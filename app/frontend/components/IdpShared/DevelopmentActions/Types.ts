@@ -1,6 +1,7 @@
 import { PlanChangeStatus } from '~/modules/endUser/modules/campaigns/core/idp/utils'
 
 export type DevelopmentActionLearningStyle = 'on_the_job' | 'structured_learning' | 'learning_from_others'
+export type SourceType = 'platform' | 'custom' | 'ai_generated'
 
 export type AvailableDevelopmentActions = {
     id: string | number,
@@ -44,6 +45,7 @@ export type Skill = {
     finalRating?: number;
     skillId: string | number;
     private: boolean
+    deletedAt: string | null;
 }
 
 export type UserIdpSkill = Omit<Skill, 'description'> & {

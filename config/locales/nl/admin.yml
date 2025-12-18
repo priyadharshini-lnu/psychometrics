@@ -1,6 +1,7 @@
 ---
 nl:
   admin:
+    admin_approval_required: Rapporteer voor %{user} vereist goedkeuring van de beheerder voordat je downloadt
     admins: Admins
     ai_artifacts: AI-artefacten
     ai_artifacts_output_schema_key_constraint: De toonsoort moet beginnen met een kleine letter en mag alleen kleine letters, cijfers en onderstreepjes bevatten
@@ -8,7 +9,17 @@ nl:
     ai_assistant_model_label: Model
     ai_assistant_model_provider: Aanbieder
     ai_assistant_model_region_label: Regio
+    ai_assistant_required: AI Assistant is vereist
     ai_assistants: AI assistenten
+    ai_assistants_advanced_mode_tooltip: Gebruik de geavanceerde modus voor prompt-templates met vloeibare template en beschikbare variabelen. Raadpleeg de documentatie voor meer details.
+    ai_assistants_campaign_id_placeholder: Voer campagne-ID in
+    ai_assistants_no_rendered_output: Geen gerenderde output beschikbaar
+    ai_assistants_render_button: Rendertemplate
+    ai_assistants_rendered_prompt: Gerenderde prompt
+    ai_assistants_template_and_campaign_required: Geef zowel het sjabloon als de campagne-ID
+    ai_assistants_template_render_failed: Sjabloon niet kunnen renderen
+    ai_assistants_test_render: Testrendering
+    ai_assistants_test_render_tooltip: Test je prompttemplate met campagnedata om te zien wat er naar de AI-assistent wordt gestuurd.
     assessments: Beoordeling
     assessments_reports: Beoordelingen en rapporten
     assessor_dashboard: Dashboard voor beoordelaars
@@ -16,41 +27,83 @@ nl:
     audit_logs: Controlelogboeken
     audit_reports: Controleverslagen
     availability: Beschikbaarheid
+    available_languages: Rapport beschikbaar in talen
     back_to_main: Hoofdmenu
+    bulk_upload_ai_artifacts: Bulk upload AI-artefacten
+    campaign_ai_artifact_updated_successfully: Campagne-AI-artefacten worden succesvol bijgewerkt
+    campaign_assessment_actions_disable_caching: Uitschakel beoordelingscaching
+    campaign_assessment_actions_enable_caching: Mogelijk maken van beoordelingscachen mogelijk
+    campaign_assessment_column_caching_enabled: Assessment Caching ingeschakeld
+    campaign_assessment_modals_disable_caching_content: Weet je zeker dat je caching wilt uitschakelen voor deze beoordeling?
+    campaign_assessment_modals_disable_caching_successfully: Caching is uitgeschakeld voor deze beoordeling.
+    campaign_assessment_modals_disable_caching_title: Assessment caching uitschakelen?
+    campaign_assessment_modals_enable_caching_content: Weet je zeker dat je caching wilt inschakelen voor deze beoordeling?
+    campaign_assessment_modals_enable_caching_successfully: Caching is ingeschakeld voor deze beoordeling.
+    campaign_assessment_modals_enable_caching_title: Assessment caching mogelijk maken?
     campaign_templates: Campagnesjablonen
     client: Huurder
     client_admins: Klanten-admins
     clients: Huurcontracten voor klanten
+    code_required: Code is vereist
     communication_center: Communicatiecentrum
+    completed: Volbracht
+    completed_tooltip: Alle beoordelaars hebben de evaluatie ingediend
     country: Land
     create_client: Klant maken
     dashboard: Dashboard
     data_reports: Gegevensrapporten
     datasheet: Technische fiche
+    declined: Daalde
     delete_ok_text: Ja, verwijder
+    denied: Geweigerd
     development_actions: Ontwikkelingsacties
     dimensions: Afmetingen
+    done: Klaar
+    done_tooltip: Er kan geen verdere evaluatie worden ingediend voor deze gebruiker omdat de evaluatie van deze gebruiker als uitgevoerd door %{marked_by}
     empty_csv_file: Het CSV-bestand bevat geen gegevens.
+    evaluation_status: Evaluatiestatus
+    evaluation_status_not_done: De evaluatiestatus is niet 'Klaar' voor één of meer geselecteerde proefpersonen. Zorg ervoor dat alle geselecteerde gebruikers evaluaties hebben afgerond of markeer als voltooid.
+    idp_plan_reset_success: Het plan is succesvol gereset.
+    import_ai_artifacts: AI-artefacten importeren
     import_csv_error: 'Rij %{index}: gebruiker met e-mailadres %{email} niet in deze campagne zit'
+    import_csv_parsing_error: 'CSV-parsingsfout: %{message}'
     import_description: Importeer gebruikers uit een CSV-bestand. Elke rij moet een e-mailadres bevatten.
     import_download_sample: Download voorbeeld van CSV
     import_error: Import mislukt. Probeer het alsjeblieft opnieuw.
+    import_error_saving_data: 'Foutopslaande gegevens voor %{email}: %{message}'
     import_errors_title: Importfouten
+    import_external_scoring_action: Import van externe scores
+    import_external_scoring_body: Raadpleeg de Export-functionaliteit om een sjabloon te extraheren dat gebruikt kan worden om te importeren.
+    import_external_scoring_data_description: Externe scoregegevens importeren voor de gespecificeerde beoordeling en campagne
+    import_external_scoring_data_title: Import van externe scoregegevens
+    import_external_scoring_success_msg: De import is succesvol geüpload
+    import_external_scoring_upload: Uploaden
     import_file_required: Selecteer alstublieft een CSV-bestand om te uploaden.
     import_queued_success: De importopdracht van de proefpersonen werd succesvol ingepland. Controleer alstublieft uw melding voor status.
     import_sample_file_label: 'Voorbeeldbestand:'
+    import_scenario_id_mismatch: 'Scenario-ID mismatch voor %{email}: Verwachte %{expected_id}, maar CSV bevat verschillende scenario-ID''s'
+    import_successfully_saved: Externe resultaten succesvol opgeslagen voor %{email} met %{goals_count} doelen
     import_title: Importeer onderwerpen uit CSV
     import_upload: Uploaden
     import_users: Importgebruikers
     invalid_csv_header: CSV-bestand bevat ongeldige headers.
+    learning_from_others: Samenwerkend leren [20]
     libraries: Mediatheek
     library_invalid_type: Ongeldig bibliotheekitem
+    manager_approval_required: Rapporteer voor %{user} vereist goedkeuring van de manager voordat het wordt gedownload
+    name_required: Naam is vereist
+    no_file_selected: Geen bestand geselecteerd
     no_notifications: Geen meldingen
     norms: Normen
+    not_completed: Niet voltooid
+    not_completed_tooltip: "%{completed} evaluators worden toegewezen, maar alleen %{submitted} de evaluaties hebben afgerond"
+    nothing_assigned: Geen beoordelaars toegewezen
+    nothing_assigned_tooltip: Er zijn geen evaluaties aan deze gebruiker toegekend
     notification_bell_icon_alt_text: Pictogram Meldingsbel
     notifications: Meldingen
     number: Aantal
     occupations: Beroepen
+    on_the_job: Op het Werk [70]
     options: Opties
     participants: Deelnemers
     profile_details: Profielgegevens
@@ -59,7 +112,19 @@ nl:
     question_center: Vragencentrum
     registration_codes: Registratiecodes
     report_approvals: Goedkeuringen
+    report_condition_not_met: Heeft %{required} %{relationship} evaluatie(s) nodig, maar heeft alleen %{actual}
+    report_conditions_not_met_detailed: Rapport voor %{user} voldoet niet aan de beschikbaarheidsvoorwaarden. %{conditions}
+    report_denied: Melding voor %{user} is afgewezen
+    report_no_evaluations: Rapport voor %{user} is niet beschikbaar - er zijn geen evaluaties ontvangen.
+    report_not_generated: Rapport voor %{user} voldoet aan de beschikbaarheidsvoorwaarden maar nog niet is opgesteld. Wilt u eerst het rapport genereren.
+    report_on_hold: Rapport voor %{user} is momenteel in de wacht gezet
+    report_status: Rapportstatus
     reports: Rapporten
+    reports_limit_exceeded: Bulkdownload is beperkt tot 1000 rapportbestanden. Als je veel talen hebt geselecteerd, verkort het dan alsjeblieft.
+    reports_not_found: Geen meldingen gevonden. Genereer de rapporten alstublieft voordat u ze downloadt.
+    reset_idp_plan: Resetplan
+    reset_idp_plan_confirmation: Weet je zeker dat je het plan wilt resetten?
+    reset_idp_plan_title: Resetplan
     role: Rol
     saml_idp_certificate_available: Beschikbaar (klik om te kopiëren)
     saml_idp_certificate_label: Certificaat
@@ -79,12 +144,25 @@ nl:
     saml_service_provider_entity_id_placeholder: Voer entiteits-ID in
     saml_service_provider_entity_id_required: Entiteits-ID is vereist
     saml_service_provider_idp_config: IdP-configuratie
+    saml_service_provider_integration_generic: Generiek
+    saml_service_provider_integration_masking_info: De e-mail-ID van de kandidaten wordt gemaskeerd voordat ze naar Yoodli worden gestuurd. Het maskeren van de voor- en achternaam van de kandidaten moet worden ingeschakeld vanuit de
+    saml_service_provider_integration_type: Integratietype
+    saml_service_provider_integration_type_placeholder: Selecteer integratietype
+    saml_service_provider_integration_type_required: Integratietype is vereist
+    saml_service_provider_integration_yoodli: Yoodli
     saml_service_provider_manage: Acties
+    saml_service_provider_mask_data_for: Maskergegevens voor
     saml_service_provider_mask_identity: Maskeridentiteit
     saml_service_provider_masking_enabled: Schakel maskering in
+    saml_service_provider_masking_help_generic: Schakel het maskeren van gebruikersidentiteiten in SAML-antwoorden in
+    saml_service_provider_masking_help_integration: Integratie-maskering van aanbieders zal worden toegepast
+    saml_service_provider_masking_integration: "%{integration} Driven"
+    saml_service_provider_masking_manual_disabled: Invalide
+    saml_service_provider_masking_manual_enabled: Ingeschakeld
     saml_service_provider_name: Naam
     saml_service_provider_name_placeholder: Voer naam van dienstverlener in
     saml_service_provider_name_required: Naam is vereist
+    saml_service_provider_privacy_policy: Privacybeleidpagina
     saml_service_provider_remove_content: 'Weet je zeker dat je SAML Service Provider: %{name} wilt verwijderen?'
     saml_service_provider_remove_title: SAML-dienstverlener verwijderen
     saml_service_provider_rotate_certificate_content: Weet je zeker dat je het certificaat wilt rouleren voor %{name}? Dit genereert een nieuw certificaat en maakt het huidige certificaat ongeldig.
@@ -102,7 +180,14 @@ nl:
     skills_taxonomy: Taxonomie van vaardigheden
     slot_name: Slot Name
     stats: Stats
+    status_details: Statusgegevens
+    structured_learning: Formeel Leren [10]
+    upload_success: Succesvol geüpload
     user_report_events: Gebeurtenissen gebruikersrapport
     users: Gebruikers
     view_licenses: Licenties bekijken
+    waiting: Wachten
     year: Land
+    yoodli_activity_id: Yoodli Activiteits-ID
+    yoodli_email_id: Yoodli Kandidaat E-mailadres
+    yoodli_external_assessment_id: Yoodli Assessment ID

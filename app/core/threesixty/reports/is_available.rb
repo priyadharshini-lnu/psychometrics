@@ -3,10 +3,11 @@
 module Threesixty
   module Reports
     class IsAvailable < BaseCommand
-      def initialize(subject, option, subject_evaluator_counters)
+      def initialize(subject, option, subject_evaluator_counters, not_available_details: false)
         @options = option
         @subject = subject
         @subject_evaluator_counters = subject_evaluator_counters
+        @not_available_details = not_available_details
       end
 
       def call
@@ -14,7 +15,9 @@ module Threesixty
           return broadcast :ok, true
         end
 
-        broadcast :ok, ResolveReleaseCondition.call!(@subject, @options, @subject_evaluator_counters)
+        result = ResolveReleaseCondition.call!(@subject, @options, @subject_evaluator_counters,
+                                               not_available_details: @not_available_details)
+        broadcast :ok, result
       end
 
       private

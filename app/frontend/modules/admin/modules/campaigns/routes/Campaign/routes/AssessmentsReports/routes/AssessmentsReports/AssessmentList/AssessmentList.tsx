@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Table, Row, Col, Switch, App,
 } from 'antd'
@@ -40,6 +40,7 @@ const AssessmentList: React.FC<Props> = ({
   normalizeFactorScores,
   loadingUpdateMettlSchedule,
   updatePearsonVariation,
+  toggleAssessmentCaching,
 }) => {
   const [drawerAssessment, setDrawerAssessment] = useState<Assessment | undefined>()
   const { projectId, campaignId } = useParams() as { projectId: string, campaignId: string }
@@ -55,6 +56,18 @@ const AssessmentList: React.FC<Props> = ({
       checked,
     })
   }
+
+  useEffect(() => {
+    // This effect is used to trigger a re-render of the drawer,so that updating the assessment through the drawer shows
+    // the updated values without needing to close and open it again to reflect the change.
+    if (!drawerAssessment?.id) return
+    const foundAssessment = list.find(({ id }) => id === drawerAssessment.id)
+    if (foundAssessment) {
+      setDrawerAssessment(foundAssessment)
+    } else {
+      setDrawerAssessment(undefined)
+    }
+  }, [list, drawerAssessment?.id])
 
   return (
     <Row>
@@ -250,6 +263,7 @@ const AssessmentList: React.FC<Props> = ({
             updateMettlSchedule={updateMettlSchedule}
             loadingUpdateMettlSchedule={loadingUpdateMettlSchedule}
             updatePearsonVariation={updatePearsonVariation}
+            toggleAssessmentCaching={toggleAssessmentCaching}
           />
         ) : null}
       </Col>

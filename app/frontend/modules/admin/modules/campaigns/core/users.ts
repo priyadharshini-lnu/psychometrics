@@ -231,6 +231,7 @@ export interface UserDetails {
     bulkDownload: boolean
     viewWorkshopDetails: boolean
     viewRecordings: boolean
+    viewIdpPlan: boolean
   }
   manager: {
     id: number | null

@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'swagger_helper'
 
-describe Api::V2::Administration::Campaigns::FactorBenchmarkScoresController, swagger_doc: 'v2/swagger.json',
-type: :request do
+RSpec.describe Api::V2::Administration::Campaigns::FactorBenchmarkScoresController, type: :request do
   let!(:superadmin) { create(:superadmin) }
   let!(:threesixty_campaign) { create(:threesixty_campaign) }
   let!(:campaign_id) { threesixty_campaign.campaign.id }
@@ -19,55 +17,32 @@ type: :request do
     create(:factor_benchmark_score, campaign_id: campaign_id, assessment_id: assessment_id, factor_id: factor.id)
     create(:factor_benchmark_score, campaign_id: campaign_id, assessment_id: assessment_id, factor_id: factor3.id)
   end
-  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
+  let!(:api_key) { create(:api_key, user: superadmin) }
+  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before { sign_in(superadmin) }
 
-  path '/campaigns/{campaign_id}/factor_benchmark_scores/bulk_create' do
-    post 'Factor Benchmark Scores bulk create/update' do
-      operationId 'FactorBenchmarkScoresBulkCreate'
-      description 'Factor Benchmark Scores Bulk Create'
-      tags 'Factor Benchmark Scores'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :campaign_id, in: :path, type: :string
-      parameter name: :body, in: :body,
-                schema: { '$ref' => '#/components/schemas/FactorBenchmarkScoreBulkCreateRequest' }, required: true
-
-      response '200', 'Factor Benchmark Scores Bulk Create' do
-        let(:'filter[user_id_eq]') { user.id }
-
-        examples 'application/json' => {
-          data: [{
-            id: '1',
-            type: 'campaign_factor_values',
-            attributes: {
-              factor_id: 1,
-              numeric_value: 3
-            }
-          }]
-        }
-
-        let(:body) do
-          {
-            data: {
-              type: 'factor_benchmark_scores',
-              attributes: {
-                factor.id => { operation: 'modify', value: 1.5 },
-                factor2.id => { operation: 'add', value: 2.5 },
-                factor3.id => { operation: 'delete', value: 3.5 }
-              }
-            }
+  describe 'POST /api/v2/administration/campaigns/{campaign_id}/factor_benchmark_scores/bulk_create' do
+    it 'bulk creates/updates factor benchmark scores' do
+      body = {
+        data: {
+          type: 'factor_benchmark_scores',
+          attributes: {
+            factor.id => { operation: 'modify', value: 1.5 },
+            factor2.id => { operation: 'add', value: 2.5 },
+            factor3.id => { operation: 'delete', value: 3.5 }
           }
-        end
+        }
+      }
 
-        run_test! do |_|
-          expect(FactorBenchmarkScore.count).to eq(2)
-          expect(FactorBenchmarkScore.find_by(factor_id: factor.id).benchmark_score).to eq(1.5)
-          expect(FactorBenchmarkScore.find_by(factor_id: factor2.id).benchmark_score).to eq(2.5)
-          expect(FactorBenchmarkScore.find_by(factor_id: factor3.id)).to eq(nil)
-        end
-      end
+      post "/api/v2/administration/campaigns/#{campaign_id}/factor_benchmark_scores/bulk_create", params: body.to_json,
+headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(200)
+      expect(FactorBenchmarkScore.count).to eq(2)
+      expect(FactorBenchmarkScore.find_by(factor_id: factor.id).benchmark_score).to eq(1.5)
+      expect(FactorBenchmarkScore.find_by(factor_id: factor2.id).benchmark_score).to eq(2.5)
+      expect(FactorBenchmarkScore.find_by(factor_id: factor3.id)).to eq(nil)
     end
   end
 end

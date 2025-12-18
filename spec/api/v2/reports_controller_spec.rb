@@ -1,268 +1,142 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'swagger_helper'
+
 require_relative 'concerns/taggable_api_endpoints_shared_examples'
 
-describe Api::V2::Administration::ReportsController, swagger_doc: 'v2/swagger.json', type: :request do
+RSpec.describe Api::V2::Administration::ReportsController, type: :request do
   let!(:superadmin) { create(:superadmin) }
   let!(:assessment) { create(:hogan_assessment, external_settings: { assessment_id: 'HPI' }) }
   let!(:report) { create(:report, name: 'First Report') }
   let!(:deleted_report) { create(:report, name: 'First Report', deleted_at: Time.zone.now) }
-  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
+  let!(:api_key) { create(:api_key, user: superadmin) }
+  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before { sign_in(superadmin) }
 
-  path '/reports/' do
-    get 'Report List' do
-      operationId 'ReportList'
-      description <<~HEREDOC
-        Fetch Report List
+  describe 'GET /reports/' do
+    it 'Report List' do
+      hogan_report = create(:report, :hogan, assessments: [assessment])
 
-        **Supported Filter Query Parameter**
+      get '/api/v2/administration/reports/',
+          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/json' }
 
-        | Filter        | Description   |
-        | ------------- |:-------------:|
-        | filter[name_cont]     | Returns report whose name matches the passed filter value |
-      HEREDOC
-      tags 'Report'
-      consumes 'application/json'
-      security [basic: []]
+      expect(response).to have_http_status(:ok)
+      data = JSON.parse(response.body)['data']
+      report_response = data.find { |d| d['id'] == hogan_report.id.to_s }
+      expect(report_response).to have_key('id')
+      expect(report_response).to have_attribute(:name).with_value(hogan_report.name)
+      expect(report_response).to have_attribute(:external_report).with_value(true)
+      expect(report_response).to have_attribute(:hogan_report_packages).with_value(
+        [{ 'id' => 'RPtFlashLeadSummary', 'name' => 'LEAD Series + Summary + Flash' }]
+      )
+    end
+  end
 
-      response '200', 'Report list' do
-        let!(:report) { create(:report, :hogan, assessments: [assessment]) }
-
-        schema '$ref' => '#/components/schemas/ReportListResponse'
-
-        examples 'application/json' => [{
+  describe 'POST /reports/' do
+    it 'Create a report' do
+      client = create(:tenancy)
+      body = {
+        data: {
           type: 'reports',
-          data: {
-            id: '770',
-            attributes: {
-              name: 'Report Name'
+          attributes: {
+            description: 'name',
+            name: 'name',
+            provider: 'hogan',
+            icon_color: 'color',
+            external_settings: {
+              report_id: 'EcHPIDML'
             }
-          }
-        }]
-
-        run_test! do |response|
-          data = JSON.parse(response.body)['data']
-          report_response = data.find { |d| d['id'] == report.id.to_s }
-          expect(report_response).to have_key('id')
-          expect(report_response).to have_attribute(:name).with_value(report.name)
-          expect(report_response).to have_attribute(:external_report).with_value(true)
-          expect(report_response).to have_attribute(:hogan_report_packages).with_value(
-            [{ 'id' => 'RPtFlashLeadSummary', 'name' => 'LEAD Series + Summary + Flash' }]
-          )
-        end
-      end
-    end
-
-    post 'Create a report' do
-      operationId 'CreateReport'
-      description <<~HEREDOC
-        Create a Report
-
-            **Supported fields for external reports **
-
-            | Name        | Description   | Applicable for |
-            | ------------- |:-------------:|:-------------:|
-            | external_settings[report_id]     | External report ID | Hogan, Saville |
-      HEREDOC
-      description 'Create new Report'
-      tags 'Reports'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/ReportCreateRequest' },
-                required: true
-
-      response '201', 'Report Created' do
-        schema '$ref' => '#/components/schemas/ReportResponse'
-        examples 'application/json' => {
-          data: {
-            type: 'reports',
-            attributes: {
-              name: 'name',
-              disabled: false,
-              provider: 'hogan',
-              created_at: '25 May 2023 / 12:35',
-              updated_at: '25 May 2023 / 12:35',
-              created_by: 'ROHAN PUJARI',
-              description: 'asd',
-              default_language: 'en',
-              external_settings: {
-                report_id: 'EcHPIDML'
-              },
-              icon_color: 'color'
-            },
-            relationships: {
-              assessments: { data: [{ type: 'assessments', id: '39' }] },
-              owner: { data: { type: 'clients', id: '266' } }
-            }
+          },
+          relationships: {
+            assessments: { data: [{ type: 'assessments', id: assessment.id.to_s }] },
+            owner: { data: { type: 'clients', id: client.id.to_s } }
           }
         }
+      }
 
-        let(:client) { create(:tenancy) }
-        let(:body) do
-          {
-            data: {
-              type: 'reports',
-              attributes: {
-                description: 'name',
-                name: 'name',
-                provider: 'hogan',
-                icon_color: 'color',
-                external_settings: {
-                  report_id: 'EcHPIDML'
-                }
-              },
-              relationships: {
-                assessments: { data: [{ type: 'assessments', id: assessment.id.to_s }] },
-                owner: { data: { type: 'clients', id: client.id.to_s } }
-              }
-            }
-          }
-        end
+      post '/api/v2/administration/reports/',
+           params: body.to_json,
+           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-        run_test! do |response|
-          report_response = JSON.parse(response.body)['data']
-          expect(report_response).to have_key('id')
-          expect(report_response).to have_attribute(:name).with_value('name')
-        end
-      end
+      expect(response).to have_http_status(:created)
+      report_response = JSON.parse(response.body)['data']
+      expect(report_response).to have_key('id')
+      expect(report_response).to have_attribute(:name).with_value('name')
     end
   end
 
-  path '/reports/{report_id}' do
-    patch 'Update a report' do
-      operationId 'UpdateReport'
-      description 'Update a Report'
-      tags 'Reports'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :report_id, in: :path, type: :string
-      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/ReportUpdateRequest' },
-                required: true
-
-      response '200', 'Report Updated' do
-        schema '$ref' => '#/components/schemas/ReportResponse'
-        examples 'application/json' => {
-          data: {
-            type: 'reports',
-            attributes: {
-              name: 'name',
-              disabled: false,
-              icon_url: '#111',
-              created_at: '25 May 2023 / 12:35',
-              updated_at: '25 May 2023 / 12:35',
-              created_by: 'ROHAN PUJARI',
-              icon_color: '#000',
-              description: 'asd',
-              external_settings: {}
-            },
-            relationships: {
-              owner: { data: { type: 'clients', id: '266' } }
-            }
+  describe 'PATCH /reports/{report_id}' do
+    it 'Update a report' do
+      body = {
+        data: {
+          type: 'reports',
+          id: report.id.to_s,
+          attributes: {
+            name: 'new name',
+            icon_color: '#111'
           }
         }
+      }
 
-        let(:report_id) { report.id }
+      patch "/api/v2/administration/reports/#{report.id}",
+            params: body.to_json,
+            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-        let(:body) do
-          {
-            data: {
-              type: 'reports',
-              id: report.id.to_s,
-              attributes: {
-                name: 'new name',
-                icon_color: '#111'
-              }
-            }
-          }
-        end
-
-        run_test! do |response|
-          report_response = JSON.parse(response.body)['data']
-          expect(report_response).to have_key('id')
-          expect(report_response).to have_attribute(:name).with_value('new name')
-          expect(report_response).to have_attribute(:icon_color).with_value('#111')
-        end
-      end
-    end
-
-    delete 'Delete a report' do
-      operationId 'DeleteReport'
-      description 'Delete a Report'
-      tags 'Reports'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :report_id, in: :path, type: :string
-
-      let(:report_id) { report.id }
-
-      response '204', 'Report Deleted' do
-        run_test! do |response|
-          expect(response.body).to eq('')
-          expect(Report.find_by(id: report_id).deleted?).to eq(true)
-        end
-      end
+      expect(response).to have_http_status(:ok)
+      report_response = JSON.parse(response.body)['data']
+      expect(report_response).to have_key('id')
+      expect(report_response).to have_attribute(:name).with_value('new name')
+      expect(report_response).to have_attribute(:icon_color).with_value('#111')
     end
   end
 
-  path '/reports/{report_id}/copy' do
-    let!(:client) { create(:tenancy) }
-    post 'Copy report' do
-      operationId 'CopyReport'
-      description 'Copy a Report'
-      tags 'Reports'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :report_id, in: :path, type: :string
-      parameter name: :body, in: :body
+  describe 'DELETE /reports/{report_id}' do
+    it 'Delete a report' do
+      delete "/api/v2/administration/reports/#{report.id}",
+             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-      let(:report_id) { report.id }
-
-      let(:body) do
-        {
-          data: {
-            type: 'reports',
-            id: report.id.to_s,
-            attributes: {
-              name: 'Copy of First Report'
-            },
-            relationships: {
-              owner: { data: { type: 'clients', id: client.id } }
-            }
-          }
-        }
-      end
-
-      response '200', 'Report Copied' do
-        run_test! do |response|
-          report_response = JSON.parse(response.body)['data']
-          expect(report_response).to have_key('id')
-          expect(report_response).to have_attribute(:name).with_value('Copy of First Report')
-        end
-      end
+      expect(response).to have_http_status(:no_content)
+      expect(response.body).to eq('')
+      expect(Report.find_by(id: report.id).deleted?).to eq(true)
     end
   end
 
-  path '/reports/{report_id}/restore' do
-    post 'Restore report' do
-      operationId 'RestoreReport'
-      description 'Restore a Report'
-      tags 'Reports'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :report_id, in: :path, type: :string
+  describe 'POST /reports/{report_id}/copy' do
+    it 'Copy report' do
+      client = create(:tenancy)
+      body = {
+        data: {
+          type: 'reports',
+          id: report.id.to_s,
+          attributes: {
+            name: 'Copy of First Report'
+          },
+          relationships: {
+            owner: { data: { type: 'clients', id: client.id } }
+          }
+        }
+      }
 
-      let(:report_id) { deleted_report.id }
+      post "/api/v2/administration/reports/#{report.id}/copy",
+           params: body.to_json,
+           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-      response '200', 'Report Restored' do
-        run_test! do |response|
-          report_response = JSON.parse(response.body)['data']
-          expect(report_response).to have_attribute(:deleted).with_value(false)
-        end
-      end
+      expect(response).to have_http_status(:ok)
+      report_response = JSON.parse(response.body)['data']
+      expect(report_response).to have_key('id')
+      expect(report_response).to have_attribute(:name).with_value('Copy of First Report')
+    end
+  end
+
+  describe 'POST /reports/{report_id}/restore' do
+    it 'Restore report' do
+      post "/api/v2/administration/reports/#{deleted_report.id}/restore",
+           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:ok)
+      report_response = JSON.parse(response.body)['data']
+      expect(report_response).to have_attribute(:deleted).with_value(false)
     end
   end
 

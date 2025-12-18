@@ -30,7 +30,8 @@ module EndUser
           piped_text_context: build_piped_context,
           participant: @user_assessment, locale: @selected_locale,
           current_user: current_user,
-          include: '**'
+          include: '**',
+          generate_piped_text_mapping: @user_assessment.caching_enabled?
         }
       ).serialize(@user_assessment.users_result)
     end

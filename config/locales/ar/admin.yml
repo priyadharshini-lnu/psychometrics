@@ -1,6 +1,7 @@
 ---
 ar:
   admin:
+    admin_approval_required: الإبلاغ %{user} يتطلب موافقة المسؤول قبل التحميل
     admins: المسؤولون
     ai_artifacts: قطع الذكاء الاصطناعي
     ai_artifacts_output_schema_key_constraint: يجب أن يبدأ المفتاح بحرف صغير ولا يحتوي إلا على الحروف الصغيرة والأرقام والخطوط السفلية
@@ -8,7 +9,17 @@ ar:
     ai_assistant_model_label: نموذج
     ai_assistant_model_provider: كاسب
     ai_assistant_model_region_label: قطر
+    ai_assistant_required: المساعد الذكاء الاصطناعي مطلوب
     ai_assistants: مساعدو الذكاء الاصطناعي
+    ai_assistants_advanced_mode_tooltip: استخدم الوضع المتقدم لقالب الأوامر باستخدام قالب سائل مع المتغيرات المتاحة. راجع الوثائق لمزيد من التفاصيل.
+    ai_assistants_campaign_id_placeholder: ادخل معرف الحملة
+    ai_assistants_no_rendered_output: لا يوجد مخرج مرسوم متوفر
+    ai_assistants_render_button: قالب العرض
+    ai_assistants_rendered_prompt: الرسالة المعرضة
+    ai_assistants_template_and_campaign_required: يرجى تقديم كل من القالب ومعرف الحملة
+    ai_assistants_template_render_failed: فشل في عرض القالب
+    ai_assistants_test_render: اختبار العرض
+    ai_assistants_test_render_tooltip: اختبر قالب التوجيه الخاص بك باستخدام بيانات الحملة لمعرفة ما سيتم إرساله إلى مساعد الذكاء الاصطناعي.
     assessments: التقييمات
     assessments_reports: التقييمات والتقارير
     assessor_dashboard: لوحة معلومات المقيم
@@ -16,41 +27,83 @@ ar:
     audit_logs: سجلات التدقيق
     audit_reports: تقارير التدقيق
     availability: التوفر
+    available_languages: التقرير متوفر باللغات
     back_to_main: القائمة الرئيسية
+    bulk_upload_ai_artifacts: التحف الذكاء الاصطناعي بالتحميل الجماعي
+    campaign_ai_artifact_updated_successfully: تم تحديث قطع الذكاء الاصطناعي للحملة بنجاح
+    campaign_assessment_actions_disable_caching: تعطيل التخزين المؤقت للتقييم
+    campaign_assessment_actions_enable_caching: تمكين التخزين المؤقت للتقييم
+    campaign_assessment_column_caching_enabled: تمكين التخزين المؤقت للتقييم
+    campaign_assessment_modals_disable_caching_content: هل أنت متأكد من أنك تريد تعطيل التخزين المؤقت لهذا التقييم؟
+    campaign_assessment_modals_disable_caching_successfully: تم تعطيل التخزين المؤقت لهذا التقييم.
+    campaign_assessment_modals_disable_caching_title: تعطيل التخزين المؤقت للتقييم؟
+    campaign_assessment_modals_enable_caching_content: هل أنت متأكد من رغبتك في تفعيل التخزين المؤقت لهذا التقييم؟
+    campaign_assessment_modals_enable_caching_successfully: تم تفعيل التخزين المؤقت لهذا التقييم.
+    campaign_assessment_modals_enable_caching_title: تمكين التخزين المؤقت للتقييم؟
     campaign_templates: قوالب الحملات
     client: مستأجر العميل
     client_admins: مسؤولو العملاء
     clients: عقود العملاء
+    code_required: الكود مطلوب
     communication_center: مركز الاتصالات
+    completed: اكمال
+    completed_tooltip: جميع المقيمين قدموا التقييم
     country: البلد
     create_client: إنشاء عميل
     dashboard: لوحة القيادة
     data_reports: تقارير البيانات
     datasheet: ورقة البيانات
+    declined: انخفض
     delete_ok_text: نعم، حذف
+    denied: نفي
     development_actions: إجراءات التطوير
     dimensions: الأبعاد
+    done: منجز
+    done_tooltip: لا يمكن تقديم تقييم إضافي لهذا المستخدم لأن تقييمه تم تصنيفه على أنه تم بواسطة %{marked_by}
     empty_csv_file: ملف CSV لا يحتوي على أي بيانات.
+    evaluation_status: حالة التقييم
+    evaluation_status_not_done: حالة التقييم ليست 'مكتملة' لشخص أو أكثر من المشاركات المختارة. يرجى التأكد من أن جميع المستخدمين المختارين قد أكملوا التقييمات أو وضع علامة على أنهم تم.
+    idp_plan_reset_success: تم إعادة ضبط الخطة بنجاح
+    import_ai_artifacts: استيراد القطع الأثرية الذكاء الاصطناعي
     import_csv_error: 'الصف %{index}: مستخدم لديه بريد إلكتروني %{email} غير موجود في هذه الحملة'
+    import_csv_parsing_error: 'خطأ في تحليل CSV: %{message}'
     import_description: استيراد المستخدمين من ملف CSV. يجب أن يحتوي كل صف على عنوان بريد إلكتروني.
     import_download_sample: تحميل مثال CSV
     import_error: فشل الاستيراد. يرجى المحاولة مرة أخرى.
+    import_error_saving_data: 'خطأ في حفظ البيانات ل %{email}: %{message}'
     import_errors_title: أخطاء الاستيراد
+    import_external_scoring_action: استيراد النقاط الخارجية
+    import_external_scoring_body: راجع وظيفة التصدير لاستخراج قالب يمكن استخدامه للاستيراد هنا.
+    import_external_scoring_data_description: استيراد بيانات التقييم الخارجية للتقييم والحملة المحددة
+    import_external_scoring_data_title: استيراد بيانات التسجيل الخارجية
+    import_external_scoring_success_msg: تم رفع الاستيراد بنجاح
+    import_external_scoring_upload: رفع
     import_file_required: يرجى اختيار ملف CSV للرفع.
     import_queued_success: تم جدولة مهمة استيراد الموضوع بنجاح. يرجى التحقق من إشعارك لمعرفة الحالة.
     import_sample_file_label: 'ملف نموذجي:'
+    import_scenario_id_mismatch: 'عدم تطابق معرف السيناريو ل %{email}: متوقع %{expected_id}، لكن CSV يحتوي على معرفات سيناريو مختلفة'
+    import_successfully_saved: حفظت النتائج الخارجية بنجاح ل %{email} بأهداف %{goals_count}
     import_title: المواد المستوردة من CSV
     import_upload: رفع
     import_users: استيراد المستخدمين
     invalid_csv_header: يحتوي ملف CSV على رؤوس غير صالحة.
+    learning_from_others: التعلم التعاوني [20]
     libraries: مكتبة الوسائط
     library_invalid_type: عنصر المكتبة غير الصالح
+    manager_approval_required: يتطلب الإبلاغ عن %{user} موافقة المدير قبل التحميل
+    name_required: الاسم مطلوب
+    no_file_selected: لم يتم اختيار ملف
     no_notifications: لا توجد إشعارات
     norms: المعايير
+    not_completed: لم يكتمل
+    not_completed_tooltip: يتم تعيين %{completed} المقيمين ولكن فقط %{submitted} أكمل التقييمات
+    nothing_assigned: لا يتم تعيين مقيمين
+    nothing_assigned_tooltip: لم يتم تعيين أي تقييمات لهذا المستخدم
     notification_bell_icon_alt_text: Notification Bell Icon
     notifications: الاخطارات
     number: العدد
     occupations: المهن
+    on_the_job: في العمل [70]
     options: الخيارات
     participants: المشاركون
     profile_details: تفاصيل الملف الشخصي للمستخدم
@@ -59,7 +112,19 @@ ar:
     question_center: مركز الأسئلة
     registration_codes: رموز التسجيل
     report_approvals: موافقات التقارير
+    report_condition_not_met: يحتاج %{required} %{relationship} تقييم(أو تقييمات)، لكنه لديه فقط %{actual}
+    report_conditions_not_met_detailed: الإبلاغ عن %{user} لا يستوفي شروط التوفر. %{conditions}
+    report_denied: تم رفض البلاغ %{user}
+    report_no_evaluations: تقرير %{user} غير متوفر - لم يتم استلام أي تقييمات.
+    report_not_generated: التقرير %{user} يفي بشروط التوفر لكنه لم يتم إعداده بعد. يرجى إنشاء التقرير أولا.
+    report_on_hold: تقرير %{user} معلق حاليا
+    report_status: حالة التقرير
     reports: التقارير
+    reports_limit_exceeded: التحميل الجماعي محدود ب 1000 ملف تقرير. إذا اخترت العديد من اللغات، يرجى تقليل العدد من الاستخدام.
+    reports_not_found: لم يتم العثور على أي تقارير. يرجى إنشاء التقارير قبل التحميل.
+    reset_idp_plan: خطة إعادة التعيين
+    reset_idp_plan_confirmation: هل أنت متأكد أنك تريد إعادة ضبط الخطة؟
+    reset_idp_plan_title: خطة إعادة التعيين
     role: دور
     saml_idp_certificate_available: متوفر (انقر للنسخة)
     saml_idp_certificate_label: شهادة
@@ -79,12 +144,25 @@ ar:
     saml_service_provider_entity_id_placeholder: أدخل معرف الكيان
     saml_service_provider_entity_id_required: مطلوب معرف الكيان
     saml_service_provider_idp_config: تكوين IdP
+    saml_service_provider_integration_generic: العامه
+    saml_service_provider_integration_masking_info: سيتم إخفاء معرف البريد الإلكتروني للمرشحين قبل إرساله إلى يودلي. يجب تمكين إخفاء الأسماء الأولى والأخيرة للمرشحين من خلال
+    saml_service_provider_integration_type: نوع التكامل
+    saml_service_provider_integration_type_placeholder: اختر نوع التكامل
+    saml_service_provider_integration_type_required: نوع التكامل مطلوب
+    saml_service_provider_integration_yoodli: يودلي
     saml_service_provider_manage: الاجراءات
+    saml_service_provider_mask_data_for: بيانات القناع ل
     saml_service_provider_mask_identity: هوية القناع
     saml_service_provider_masking_enabled: تمكين التمويه
+    saml_service_provider_masking_help_generic: تمكين إخفاء هويات المستخدمين في ردود SAML
+    saml_service_provider_masking_help_integration: سيتم تطبيق إخفاء مزود التكامل
+    saml_service_provider_masking_integration: "%{integration} مدفوعة"
+    saml_service_provider_masking_manual_disabled: ذوي الاحتياجات الخاصه
+    saml_service_provider_masking_manual_enabled: تمكين
     saml_service_provider_name: اسم
     saml_service_provider_name_placeholder: أدخل اسم مزود الخدمة
     saml_service_provider_name_required: الاسم مطلوب
+    saml_service_provider_privacy_policy: صفحة سياسة الخصوصية
     saml_service_provider_remove_content: 'هل أنت متأكد من أنك تريد إزالة مزود خدمة SAML: %{name}؟'
     saml_service_provider_remove_title: إزالة مزود خدمة SAML
     saml_service_provider_rotate_certificate_content: هل أنت متأكد أنك تريد تدوير الشهادة %{name}؟ هذا سيولد شهادة جديدة ويؤدي إلى إلغاء الشهادة الحالية.
@@ -102,7 +180,14 @@ ar:
     skills_taxonomy: تصنيف المهارات
     slot_name: اسم الماكينة
     stats: الإحصائيات
+    status_details: تفاصيل الحالة
+    structured_learning: التعلم الرسمي [10]
+    upload_success: تم الرفع بنجاح
     user_report_events: أحداث تقارير المستخدم
     users: المستخدمون
     view_licenses: عرض التراخيص
+    waiting: انتظار
     year: البلد
+    yoodli_activity_id: معرف نشاط يودلي
+    yoodli_email_id: معرف البريد الإلكتروني للمرشح في يودلي
+    yoodli_external_assessment_id: معرف تقييم يودلي

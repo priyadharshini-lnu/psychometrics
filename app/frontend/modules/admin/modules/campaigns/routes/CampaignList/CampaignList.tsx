@@ -192,8 +192,11 @@ const CampaignListComponent: React.FC<Props> = ({
               key="startDate"
               sorter
               sortOrder={getSortOrder('startDate')}
-              render={({ startDate }) => (startDate ? dayjs(startDate).format('L LT') : ' - ')
-              }
+              render={({ startDate }) => (
+                <div style={{ minWidth: 150 }}>
+                  {startDate ? dayjs(startDate).format('L LT') : ' - '}
+                </div>
+              )}
               minWidth={150}
             />
             <Column
@@ -201,47 +204,59 @@ const CampaignListComponent: React.FC<Props> = ({
               key="endDate"
               sorter
               sortOrder={getSortOrder('endDate')}
-              render={({ endDate }) => (endDate ? dayjs(endDate).format('L LT') : ' - ')
-              }
-              minWidth={150}
+              render={({ endDate }) => (
+                <div style={{ minWidth: 150 }}>
+                  {endDate ? dayjs(endDate).format('L LT') : ' - '}
+                </div>
+              )}
             />
             <Column
               title={I18n.t('administration.campaigns.listing.status')}
               key="status"
-              render={({ status }) => I18n.t(`administration.campaigns.filters.${status}`)}
+              render={({ status }) => (
+                <div style={{ minWidth: 100 }}>
+                  {I18n.t(`administration.campaigns.filters.${status}`)}
+                </div>
+              )}
               filterMultiple={false}
               filters={map(STATUSES, status => ({
                 text: I18n.t(`administration.campaigns.filters.${status}`),
                 value: status,
               }))}
               filteredValue={getFilteredValue('statusEq')}
-              minWidth={100}
             />
             <Column
               title={I18n.t('administration.campaigns.listing.type')}
               key="type"
-              render={({ type }) => displayableType(type)}
+              render={({ type }) => (
+                <div style={{ minWidth: 100 }}>
+                  {displayableType(type)}
+                </div>
+              )}
               filterMultiple={false}
               filters={map(TYPES, type => ({
                 text: displayableType(type),
                 value: type,
               }))}
               filteredValue={getFilteredValue('type')}
-              minWidth={100}
             />
             <Column
               title={I18n.t('administration.campaigns.listing.assessments')}
               key="assessments"
               render={({ assessments }) => (
-                <ResourcesTag resources={assessments} />
+                <div style={{ minWidth: 150 }}>
+                  <ResourcesTag resources={assessments} />
+                </div>
               )}
-              minWidth={150}
             />
             <Column
               title={I18n.t('administration.campaigns.listing.reports')}
               key="reports"
-              render={({ reports }) => <ResourcesTag resources={reports} />}
-              minWidth={150}
+              render={({ reports }) => (
+                <div style={{ minWidth: 150 }}>
+                  <ResourcesTag resources={reports} />
+                </div>
+              )}
             />
             <Column
               title={I18n.t('administration.campaigns.actions')}

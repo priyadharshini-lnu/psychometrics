@@ -1,6 +1,7 @@
 ---
 sl:
   admin:
+    admin_approval_required: Poročilo za %{user} zahteva odobritev administratorja pred prenosom
     admins: Skrbniki
     ai_artifacts: Artefakti umetne inteligence
     ai_artifacts_output_schema_key_constraint: Ključ mora začeti z majhno črko in lahko vsebuje le male črke, številke in podčrte
@@ -8,7 +9,17 @@ sl:
     ai_assistant_model_label: Model
     ai_assistant_model_provider: Ponudnik
     ai_assistant_model_region_label: Regija
+    ai_assistant_required: Obvezen je AI Assistant
     ai_assistants: Pomočniki za umetno inteligenco
+    ai_assistants_advanced_mode_tooltip: Uporabite napredni način za predloge pozivov z uporabo tekoče predloge z razpoložljivimi spremenljivkami. Za več podrobnosti glejte dokumentacijo.
+    ai_assistants_campaign_id_placeholder: Vnesite ID kampanje
+    ai_assistants_no_rendered_output: Na voljo ni prikazanih izhodov
+    ai_assistants_render_button: Predloga za upodabljanje
+    ai_assistants_rendered_prompt: Upodobljen poziv
+    ai_assistants_template_and_campaign_required: Prosimo, navedite tako predlogo kot ID kampanje
+    ai_assistants_template_render_failed: Predloga ni uspela izrisati
+    ai_assistants_test_render: Testni upodabljanje
+    ai_assistants_test_render_tooltip: Preizkusite predlogo za poziv s podatki o kampanji, da preverite, kaj bo poslano AI asistentu.
     assessments: Ocenjevanja
     assessments_reports: Ocenjevanja in poročila
     assessor_dashboard: Nadzorna plošča ocenjevalca
@@ -16,41 +27,83 @@ sl:
     audit_logs: Dnevniki nadzora
     audit_reports: Revizijska poročila
     availability: Razpoložljivost
+    available_languages: Poročilo je na voljo v jezikih
     back_to_main: Glavni meni
+    bulk_upload_ai_artifacts: Artefakti umetne inteligence za množično nalaganje
+    campaign_ai_artifact_updated_successfully: Artefakti AI kampanje so uspešno posodobljeni
+    campaign_assessment_actions_disable_caching: Onemogoči predpomnjenje ocenjevanja
+    campaign_assessment_actions_enable_caching: Omogočite predpomnjenje ocenjevanja
+    campaign_assessment_column_caching_enabled: Omogočeno predpomnjenje ocenjevanja
+    campaign_assessment_modals_disable_caching_content: Ste prepričani, da želite onemogočiti predpomnjenje za to oceno?
+    campaign_assessment_modals_disable_caching_successfully: Za to oceno je bilo predpomnjenje onemogočeno.
+    campaign_assessment_modals_disable_caching_title: Onemogočiti predpomnjenje ocenjevanja?
+    campaign_assessment_modals_enable_caching_content: Ste prepričani, da želite omogočiti predpomnjenje za to oceno?
+    campaign_assessment_modals_enable_caching_successfully: Za to oceno je omogočeno predpomnjenje.
+    campaign_assessment_modals_enable_caching_title: Omogočiti predpomnjenje ocenjevanja?
     campaign_templates: Predloge oglaševalskih akcij
     client: Najem stranke
     client_admins: Skrbniki odjemalcev
     clients: Spletno okolje naročnika
+    code_required: Potrebna je koda
     communication_center: Komunikacijsko središče
+    completed: Dokončan
+    completed_tooltip: Vsi ocenjevalci so oddali oceno
     country: Država
     create_client: Ustvari odjemalca
     dashboard: Nadzorna plošča
     data_reports: Poročila o podatkih
     datasheet: Podatkovni list
+    declined: Zmanjšala
     delete_ok_text: Da, Izbriši
+    denied: Zavrnjen
     development_actions: Razvojni ukrepi
     dimensions: Dimenzije
+    done: Storiti
+    done_tooltip: Za tega uporabnika ni mogoče več opraviti ocene, saj je ocena označena kot opravljena s strani %{marked_by}
     empty_csv_file: CSV datoteka ne vsebuje nobenih podatkov.
+    evaluation_status: Status ocenjevanja
+    evaluation_status_not_done: Status ocenjevanja ni 'končan' za enega ali več izbranih predmetov. Prosimo, poskrbite, da so vsi izbrani uporabniki opravili ocene ali označili kot opravljeno.
+    idp_plan_reset_success: Načrt je bil uspešno ponastavljen
+    import_ai_artifacts: Uvoz AI artefaktov
     import_csv_error: 'Vrstica %{index}: uporabnik z e-poštnim %{email} ni v tej kampanji'
+    import_csv_parsing_error: 'Napaka pri analizi CSV: %{message}'
     import_description: Uvozite uporabnike iz CSV datoteke. Vsaka vrstica mora vsebovati e-poštni naslov.
     import_download_sample: Prenesi primer CSV
     import_error: Uvoz ni uspel. Prosim, poskusite znova.
+    import_error_saving_data: 'Shranjevanje podatkov o napakah za %{email}: %{message}'
     import_errors_title: Napake pri uvozu
+    import_external_scoring_action: Uvoz zunanjega točkovanja
+    import_external_scoring_body: Tukaj si oglejte funkcionalnost Izvoz, da izvlečete predlogo, ki jo lahko uporabite za uvoz.
+    import_external_scoring_data_description: Uvoz zunanjih podatkov o ocenjevanju za določeno oceno in kampanjo
+    import_external_scoring_data_title: Uvoz zunanjih podatkov o točkovanju
+    import_external_scoring_success_msg: Uvoz je bil uspešno naložen
+    import_external_scoring_upload: Upload
     import_file_required: Prosimo, izberite CSV datoteko za nalaganje.
     import_queued_success: Naloga uvoza subjektov je bila uspešno načrtovana. Prosimo, preverite svoje obvestilo za status.
     import_sample_file_label: 'Vzorčna datoteka:'
+    import_scenario_id_mismatch: 'Neujemanje ID scenarija za %{email}: Pričakovano %{expected_id}, vendar CSV vsebuje različne ID-je scenarijev'
+    import_successfully_saved: Uspešno shranjujem zunanje rezultate za %{email} z %{goals_count} cilji
     import_title: Uvoz subjektov iz CSV
     import_upload: Upload
     import_users: Uvoz uporabnikov
     invalid_csv_header: CSV datoteka vsebuje neveljavne glave.
+    learning_from_others: Sodelovalno učenje [20]
     libraries: Medijska knjižnica
     library_invalid_type: Neveljaven knjižnični element
+    manager_approval_required: Poročilo za %{user} zahteva odobritev upravitelja pred prenosom
+    name_required: Ime je potrebno
+    no_file_selected: Izbrana ni bila izbrana datoteka
     no_notifications: Brez obvestil
     norms: Norme
+    not_completed: Ni dokončano
+    not_completed_tooltip: Dodeljeni so %{completed} ocenjevalci, vendar so ocene zaključili le %{submitted}
+    nothing_assigned: Brez dodeljenih ocenjevalcev
+    nothing_assigned_tooltip: Uporabniku niso bile dodeljene nobene ocene
     notification_bell_icon_alt_text: Ikona zvonca za obvestila
     notifications: Obvestila
     number: Številka
     occupations: Poklicev
+    on_the_job: Na delovnem mestu [70]
     options: Možnosti
     participants: Udeleženci
     profile_details: Podrobnosti profila
@@ -59,7 +112,19 @@ sl:
     question_center: Središče za vprašanja
     registration_codes: Registracijske kode
     report_approvals: Odobritve poročil
+    report_condition_not_met: Potrebna je %{required} %{relationship} ocena, a ima le %{actual}
+    report_conditions_not_met_detailed: Poročilo za %{user} ne izpolnjuje pogojev razpoložljivosti. %{conditions}
+    report_denied: Poročilo za %{user} je bilo zavrnjeno
+    report_no_evaluations: Poročilo za %{user} ni na voljo – ocen niso bile prejete.
+    report_not_generated: Poročilo za %{user} izpolnjuje pogoje razpoložljivosti, vendar še ni bilo ustvarjeno. Prosimo, najprej ustvarite poročilo.
+    report_on_hold: Poročilo za %{user} je trenutno na čakanju
+    report_status: Status poročila
     reports: Poročila
+    reports_limit_exceeded: Množični prenos je omejen na 1000 poročil. Če ste izbrali veliko jezikov, jih prosim zmanjšajte.
+    reports_not_found: Ni bilo najdenih poročil. Pred prenosom prosimo ustvarite poročila.
+    reset_idp_plan: Načrt za ponastavitev
+    reset_idp_plan_confirmation: Ste prepričani, da želite ponastaviti načrt?
+    reset_idp_plan_title: Načrt za ponastavitev
     role: Vloga
     saml_idp_certificate_available: Na voljo (kliknite za kopiranje)
     saml_idp_certificate_label: Potrdilo
@@ -79,12 +144,25 @@ sl:
     saml_service_provider_entity_id_placeholder: Vnesite ID subjekta
     saml_service_provider_entity_id_required: Potrebna je identifikacijska številka subjekta
     saml_service_provider_idp_config: IdP konfiguracija
+    saml_service_provider_integration_generic: Generično
+    saml_service_provider_integration_masking_info: E-poštna številka kandidatov bo pred pošiljanjem Yoodliju zamaskirana. Prikrivanje imen in priimkov kandidatov mora biti omogočeno s strani
+    saml_service_provider_integration_type: Vrsta integracije
+    saml_service_provider_integration_type_placeholder: Izberite vrsto integracije
+    saml_service_provider_integration_type_required: Potrebna je vrsta integracije
+    saml_service_provider_integration_yoodli: Yoodli
     saml_service_provider_manage: Dejanja
+    saml_service_provider_mask_data_for: Podatki o maski za
     saml_service_provider_mask_identity: Identiteta maske
     saml_service_provider_masking_enabled: Omogoči maskiranje
+    saml_service_provider_masking_help_generic: Omogočite prikrivanje identitet uporabnikov v SAML odgovorih
+    saml_service_provider_masking_help_integration: Uporabljeno bo maskiranje ponudnikov integracije
+    saml_service_provider_masking_integration: "%{integration} Driven"
+    saml_service_provider_masking_manual_disabled: Onemogočen
+    saml_service_provider_masking_manual_enabled: Omogočeno
     saml_service_provider_name: Ime
     saml_service_provider_name_placeholder: Vnesite ime ponudnika storitve
     saml_service_provider_name_required: Ime je potrebno
+    saml_service_provider_privacy_policy: Stran s politiko zasebnosti
     saml_service_provider_remove_content: 'Ste prepričani, da želite odstraniti ponudnika SAML storitev: %{name}?'
     saml_service_provider_remove_title: Odstrani ponudnika SAML storitev
     saml_service_provider_rotate_certificate_content: Si prepričan, da želiš zamenjati certifikat za %{name}? To bo ustvarilo novo potrdilo in razveljavilo obstoječe.
@@ -102,7 +180,14 @@ sl:
     skills_taxonomy: Taksonomija spretnosti
     slot_name: Ime reže
     stats: Statistika
+    status_details: Podrobnosti o statusu
+    structured_learning: Formalno učenje [10]
+    upload_success: Uspešno naloženo
     user_report_events: Dogodki uporabniškega poročila
     users: Uporabniki
     view_licenses: Ogled licenc
+    waiting: Čaka
     year: Država
+    yoodli_activity_id: Yoodli Activity ID
+    yoodli_email_id: E-poštni ID kandidata Yoodli
+    yoodli_external_assessment_id: Yoodli Assessment ID

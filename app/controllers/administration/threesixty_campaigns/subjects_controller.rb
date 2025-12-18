@@ -4,7 +4,7 @@ module Administration
   module ThreesixtyCampaigns
     class SubjectsController < Administration::ThreesixtyCampaigns::BaseController
       prepend_before_action :set_resource_class
-      before_action :set_resource, only: %i[show edit update destroy spoof preview_report]
+      before_action :set_resource, only: %i[show edit update destroy spoof preview_report report_status_message]
       append_before_action :pundit_authorize
 
       def index
@@ -115,6 +115,22 @@ module Administration
         end
       end
 
+      def report_status_message
+        subject_evaluator_counters = ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
+          [resource.id],
+          threesixty_campaign
+        )
+
+        result = ::Threesixty::Subjects::GetReportStatusMessage.call!(
+          resource,
+          params[:status],
+          threesixty_campaign.option,
+          subject_evaluator_counters
+        )
+
+        render json: { status_message: result[:status_message] }
+      end
+
       private
 
       def permissions
@@ -148,13 +164,14 @@ module Administration
         GetPermissionsHash.call!(
           Administration::Threesixty::CampaignPolicy,
           current_user,
-          nil,
+          threesixty_campaign,
           %w[
             rescore_assessment
             export_threesixty_scores
             bulk_regenerate_reports
             bulk_download
             import_results
+            toggle_caching
           ],
           {
             project_id: threesixty_campaign.campaign.project_id,

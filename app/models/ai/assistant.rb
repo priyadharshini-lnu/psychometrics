@@ -44,7 +44,7 @@ class AI::Assistant < ApplicationRecord
   def for_user(user, options = {})
     chat = create_chat_for_user(user)
     configure_chat(chat, options)
-    apply_system_prompt(chat, options[:contextual_information])
+    apply_system_prompt(chat, options[:contextual_information], options[:prompt_template_context])
     chat
   end
 
@@ -101,8 +101,8 @@ class AI::Assistant < ApplicationRecord
     )
   end
 
-  def apply_system_prompt(chat, contextual_information)
-    parsed_instructions = build_system_prompt(contextual_information)
+  def apply_system_prompt(chat, contextual_information, prompt_template_context = {})
+    parsed_instructions = build_system_prompt(contextual_information, prompt_template_context)
     chat.with_instructions(parsed_instructions.strip)
   end
 
@@ -115,12 +115,20 @@ class AI::Assistant < ApplicationRecord
     type_configuration.output_schema_as_context
   end
 
-  def build_system_prompt(contextual_information = nil)
+  def build_system_prompt(contextual_information = nil, prompt_template_context = {})
+    rendered_prompt = render_system_prompt(prompt_template_context)
+
     <<~SYSTEM_PROMPT
-      #{system_prompt}
+      #{rendered_prompt}
       #{output_schema_as_context}
       #{contextual_information}
     SYSTEM_PROMPT
+  end
+
+  def render_system_prompt(prompt_template_context)
+    return system_prompt unless advanced_prompting_enabled?
+
+    AI::PromptTemplate::Renderer.call!(system_prompt, **prompt_template_context)
   end
 
   def validate_type_specific_rules

@@ -55,6 +55,17 @@ nl:
               blank: Bundel-ID van rapport kan niet leeg zijn
             report_id:
               blank: Rapport-ID kan niet leeg zijn
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: AI Assistant met ID '%{id}' niet gevonden bij rij %{index}
+              blank: Kolom '%{entity}' kan niet leeg zijn op rij %{index}
+              duplicate_code: Dubbele code '%{code}' op rij %{index}
+              invalid_code_format: Ongeldig codeformaat '%{code}' op rij %{index}
+              max_limit_reached: Het totaal aantal AI-artefacten van campagne overschrijdt de maximale limiet van %{count}
+              missing_headers: 'Ontbrekende vereiste headers: %{headers}'
+            file:
+              invalid_format: Upload alstublieft het CSV-bestand
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ nl:
         import_development_actions: Ontwikkelingsacties importeren
         import_dimension_from_json: Dimensie importeren vanuit JSON
         import_external_campaign_scoring: Externe campagnescores importeren
+        import_external_scoring_data: Import van externe scoregegevens
         import_factor_translations: Importfactor Vertalingen
         import_factors: Importfactoren
         import_interview_questions: Interviewvragen importeren
@@ -1050,7 +1062,7 @@ nl:
         saville_assessment_name: Saville beoordeling Naam
         simulation_assessment_name: Simulatie Beoordeling Naam
         skillvue_assessment_name: Skillvue Beoordeling Naam
-        yoodli_assessment_name: Yoodli Beoordelingsnaam
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: Vertaling gemigreerd
     create: Maak
     dashboard: Dashboard
@@ -1475,8 +1487,6 @@ nl:
       skillvue_email_id: Skillvue Kandidaat Email ID
       skillvue_external_assessment_id: Skillvue Beoordeling ID
       universal_link: Universele link
-      yoodli_email_id: Yoodli Kandidaat E-mailadres
-      yoodli_external_assessment_id: Yoodli Assessment ID
     drawer:
       mettl_schedule_name: Mettl Schema Naam
       title: Beoordeling Details
@@ -1629,8 +1639,6 @@ nl:
       report: Rapporteer
       report_bundle_placeholder: Selecteer een rapportbundel
     messages:
-      bulk_download_error: Bulkdownload is beperkt tot 1000 rapportbestanden. Als je veel talen hebt geselecteerd, verklein dit dan.
-      bulk_download_no_reports: Geen meldingen gevonden. Genereer de rapporten voordat u ze downloadt.
       bulk_download_successful: De downloadtaak voor bulkrapporten is met succes gepland
       export_report_data_scheduled: De exporttaak voor rapportgegevens is met succes gepland
     modals:
@@ -1940,7 +1948,6 @@ nl:
       hide: Verberg
       view: Bekijk
     validations:
-      required: Dit vakgebied is vereist
       select_locale: Selecteer een of meer locaties
       should_be_whole_number: moet een heel getal zijn
   confirmation:
@@ -2512,8 +2519,8 @@ nl:
       reset_chat: Chat resetten
       reset_confirmation: Weet je zeker dat je deze chat wilt weggooien en opnieuw wilt beginnen?
       retake_steps:
-        chat_hint: Laat me hieronder weten welke informatie je meer wilt geven?
-        chat_title: Wilt u meer informatie geven?
+        chat_hint: Je kunt een nieuw bestand uploaden of de chat opnieuw starten om meer details te delen, en ik zal mijn best doen om je te helpen.
+        chat_title: Het spijt me dat de eerste analyse niet aan je verwachtingen voldeed.
         start_chat: Start Chat
         start_chat_again: Start de chat opnieuw
         upload_document: Document uploaden
@@ -2539,14 +2546,14 @@ nl:
         chat_title: Samenvatting van Chat Insight
         file_title: Inzichten in geüploade documenten
         gap_report_title: Analyse van het rapport over vaardigheidstekorten
-        hint: zo ja, dan zullen we uw IDP aanmaken, anders kunt u uw antwoorden opnieuw opnemen
-        title: Ben je tevreden met de resultaten?
+        hint: Met uw toestemming, als u ja zegt, kan ik een ontwikkelingsplan voor u opstellen. Zo niet, dan kun je de chat opnieuw starten of een nieuw bestand uploaden.
+        title: Ben je tevreden met de analyse?
         upload_file: Geüpload bestand
         view_chat: Bekijk Chat
       upload:
-        description: Klik of sleep bestanden naar dit gebied om ze te uploaden
+        description: 'Ondersteund bestandstype: PDF-documenten tot %{maxFileSize}MB'
         drop: Plaats het bestand hier
-        title: Bestanden uploaden
+        title: Klik of laat hier het bestand vallen
       welcome:
         text: Klaar om je groeikaart in kaart te brengen? Laten we beginnen!
         title: Hallo, ik ben je ontwikkelingsassistent
@@ -2596,6 +2603,7 @@ nl:
     convert_to_draft: Converteren naar concept
     current_step: Huidige stap %{step}
     delete_skill: Weet je zeker dat je deze vaardigheid wilt verwijderen? Verwijderen zal ook alle verbonden ontwikkelingsacties verwijderen.
+    delete_skill_msg: Weet je zeker dat je deze vaardigheid wilt verwijderen? Het verwijderen ervan verwijdert ook alle gerelateerde ontwikkelingsacties.
     details: Details
     development_actions:
       action_private: Ja
@@ -2613,8 +2621,8 @@ nl:
         in_progress: In uitvoering
         not_started: Niet gestart
       completion: Voltooiing
-      create_custom_development_action_title: Creëer mijn eigen ontwikkelingsactie voor %{skillName}
-      create_development_actions_with_ai: Ontwikkelacties maken met AI voor %{skillName}
+      create_custom_development_action_title: Creëer mijn eigen ontwikkelingsactie voor
+      create_development_actions_with_ai: Ontwikkelacties maken met AI voor
       create_from_ai: Creëer vanuit AI
       create_my_own: Maak mijn eigen
       custom: Gewoonte
@@ -2680,6 +2688,7 @@ nl:
     edit_progress: Vooruitgang bewerken
     fetching_skill_gap_report: Rapport over lacunes in vaardigheden ophalen...
     go_to_previous_step: Ga naar de vorige stap
+    go_to_reportee_plan: Ga naar de plandetails van de gemelde.
     history:
       added_da:
         one: Ontwikkelingsactie toegevoegd
@@ -2729,12 +2738,14 @@ nl:
         categories: Categorieën
       save_skills: Vaardigheden opslaan
     new_comments: Nieuwe reactie(s)
+    no_plan_changes_found: Sinds je laatste beoordeling zijn er geen wijzigingen aan het plan gedaan.
     no_skills_added: Je hebt nog geen Skills toegevoegd.
-    no_skills_added_by_reportee: Reportee heeft nog geen Skills toegevoegd.
+    no_skills_added_by_reportee: De verslaggever heeft nog geen vaardigheden toegevoegd.
     pdf:
       approval_status: Status van goedkeuring
       cover:
         fields:
+          approval_date: Goedkeuringsdatum
           assigned_data: Toegewezen datum
           assigned_date: Toegewezen Datum
           completion_date: Voltooiingsdatum
@@ -2802,8 +2813,12 @@ nl:
         approved: Beoordeeld en goedgekeurd
         completed: Volbracht
         draft: Ontwerp
+        in_progress: In uitvoering
+        in_review: In Terugblik
         not_reviewed: Niet beoordeeld
+        not_started: Niet begonnen
         pending_approval: In recensie
+        rejected: Afgekeurd
       summary:
         ai_count: Generatieve AI
         collaborative_learn: Samenwerkend leren
@@ -3784,13 +3799,6 @@ nl:
       on_hold: In de wacht
       prepared: Gedaan
       released: Vrijgegeven
-    statuses:
-      completed: Voltooid
-      declined: Afgewezen
-      denied: Geweigerd
-      done: Gedaan
-      not_completed: Niet voltooid
-      waiting: Wachten
   threesixty:
     accept_privacy_modal:
       accept: Accepteer

@@ -294,6 +294,7 @@ en:
             view: View
           userIdpPlans:
             manage: Manage
+            reset: Reset
             title: User IDP Plans
             view: View
           users:
@@ -897,8 +898,6 @@ en:
       new:
         header: Bulk Download
       reports_unavailable: At the moment, no reports are available to download. Please confirm that the reports you want to download are available.
-      select_users_for_download: Please select at least one user to download reports.
-      select_users_for_regenerate: Please select at least one user to regenerate reports.
     cable:
       notification:
         assessment_factors: Factors are fetched
@@ -1963,6 +1962,7 @@ en:
         udpated_at: Last Updated At
       configuration: Configuration
       errors:
+        factor_code_or_field_name_required: factor_code or field_name is required
         factor_not_found: not found in scope of assessment
         inclusion: 'invalid type, valid types: %{values}'
         not_found: not found
@@ -2065,9 +2065,6 @@ en:
       learning_styles:
         cannot_be_blank: Cannot be blank
         invalid: Must be one of on_the_job, structured_learning, learning_from_others
-        learning_from_others: Learning from Others [20]
-        on_the_job: On the Job [70]
-        structured_learning: Structured Learning [10]
       new:
         header: New Development Action
       resource:
@@ -2321,12 +2318,13 @@ en:
       background_image: Background image
       behavioral_skills: Behavioral Skills
       client_skills: Client Skills
-      delete_skill: Are you sure you want to delete skill because it will delete all the connected development actions as well?
+      delete_skill: Are you sure you want to delete this skill? Deleting it will also remove all related development actions.
+      delete_skill_msg: Are you sure you want to delete this skill? Deleting it will also remove all related development actions.
       details_updated: IDP Details updated successfully
       development_actions:
         add_from_library: Add from Library
         completion: Completion
-        create_development_actions_with_ai: Create Development Actions with AI for %{skillName}
+        create_development_actions_with_ai: Create development actions with AI for
         create_from_ai: Create from AI
         create_my_own: Create my own
         custom: Custom
@@ -2352,6 +2350,7 @@ en:
         skills_required_on_publishing: Please choose skills before publishing a template.
         update: Update not allowed because the IDP template is already associated with a user IDP plan.
       fields:
+        approval_date: Approval Date
         assigned_data: Assigned Data
         assigned_date: Assigned Date
         completion_date: Completion Date
@@ -2644,24 +2643,6 @@ en:
         skillvue:
           api_key_present: API key is already present in other project
       view_all_schedules: View All Mettl Schedules
-      yoodli_assessments:
-        add_assessment: Add Yoodli Assessment
-        columns:
-          actions: Actions
-          created_at: Created At
-          name: Assessment Name
-          product_id: Product ID
-        delete_confirm: Are you sure you want to delete this Yoodli assessment?
-        edit_assessment: Edit Yoodli Assessment
-        manage_catalog: Manage Yoodli Assessments
-        messages:
-          create_success: Yoodli assessment '%{name}' was created successfully
-          delete_success: Yoodli assessment was deleted successfully
-          update_success: Yoodli assessment '%{name}' was updated successfully
-        placeholders:
-          name: Enter assessment name
-          product_id: Enter product ID
-        search: Search
     interview_questions:
       delete_confirmation: Are you sure you want to delete this Interview Question?
       description: Descripton
@@ -4681,8 +4662,6 @@ en:
             evaluations_received: Evaluations Received
             is_subject: Is Subject
             name: Name
-            report_status: Report Status
-            status: Status
           evaluators:
             add_evaluators: Add Evaluators
             import_evaluators: Import Evaluators

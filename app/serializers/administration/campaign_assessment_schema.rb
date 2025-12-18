@@ -23,6 +23,8 @@ module Administration
         end
         required(:is_external).filled(:bool?)
         required(:assessor_form_name).maybe(:str?)
+        required(:caching_enabled).filled(:bool?)
+        required(:allow_caching).filled(:bool?)
         required(:permissions).hash do
           required(:import_results).filled(:bool?)
           required(:export_raw_results).filled(:bool?)
@@ -43,6 +45,7 @@ module Administration
           optional(:export_occupations).filled(:bool?)
           required(:toggle_require_scheduling).filled(:bool?)
           required(:update_prework).filled(:bool?)
+          required(:toggle_caching).filled(:bool?)
         end
         required(:has_external_norm).filled(:bool?)
         required(:available_locales).maybe(:array?).each(:str?)

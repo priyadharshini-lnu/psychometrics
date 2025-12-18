@@ -1,15 +1,10 @@
 # frozen_string_literal: true
 
 class AssessmentSerializer < Panko::Serializer
-  include CachingSerializer
-
   attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules, :factors, :dimension_id,
              :enable_back, :enable_progress, :data_sheet_columns, :relationships, :blocks, :timer_duration,
              :resources_content, :resources_translations, :instructions, :fixed_timed, :options, :default_norm_id,
              :extra, :linked_questions, :allow_multiple_responses, :default_language, :campaign_factors_list
-
-  cache_serializer except: %i[relationships data_sheet_columns allow_multiple_responses],
-                   cache_key: lambda(&:serializer_cache_key)
 
   def blocks
     blocks = object.blocks.selecting do
@@ -26,7 +21,8 @@ class AssessmentSerializer < Panko::Serializer
           piped_text_context: piped_text_context,
           selected_locale: context[:selected_locale],
           translations: translations,
-          campaign_user: context[:campaign_user] || {}
+          campaign_user: context[:campaign_user] || {},
+          ignore_pipetext_substitution: ignore_pipetext_substitution?
         }
       ).to_a
     end
@@ -71,7 +67,8 @@ class AssessmentSerializer < Panko::Serializer
       context: {
         piped_text_context: piped_text_context,
         selected_locale: context[:selected_locale],
-        translations: translations
+        translations: translations,
+        ignore_pipetext_substitution: ignore_pipetext_substitution?
       }
     ).to_a
   end
@@ -209,7 +206,12 @@ class AssessmentSerializer < Panko::Serializer
     Assessments::GetTranslationWithPipetextReplaced.call!(
       object,
       piped_text_context: piped_text_context,
-      locale: context[:selected_locale]
+      locale: context[:selected_locale],
+      ignore_pipetext_substitution: ignore_pipetext_substitution?
     )
+  end
+
+  def ignore_pipetext_substitution?
+    context[:ignore_pipetext_substitution] || false
   end
 end

@@ -55,6 +55,17 @@ sr-Cyrl:
               blank: ИД пакета извештаја не може бити празан
             report_id:
               blank: ИД извештаја не може бити празан
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: АИ асистент са ИД 'ИНТЕРПОЛАТИОН_ВАР_0' није пронађен у реду ИНТЕРПОЛАТИОН_ВАР_1
+              blank: Колона 'ИНТЕРПОЛАТИОН_ВАР_0' не може бити празна у реду ИНТЕРПОЛАТИОН_ВАР_1
+              duplicate_code: Дупликат кода 'ИНТЕРПОЛАТИОН_ВАР_0' у реду ИНТЕРПОЛАТИОН_ВАР_1
+              invalid_code_format: Неисправан формат кода 'ИНТЕРПОЛАТИОН_ВАР_0' у реду ИНТЕРПОЛАТИОН_ВАР_1
+              max_limit_reached: Укупни АИ артефакти кампање прелазе максималну границу од ИНТЕРПОЛАТИОН_ВАР_0
+              missing_headers: 'Недостају потребни заглавља: ИНТЕРПОЛАТИОН_ВАР_0'
+            file:
+              invalid_format: Молимо Вас да отпремите ЦСВ датотеку
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ sr-Cyrl:
         import_development_actions: Акције за развој увоза
         import_dimension_from_json: Увоз Димензија из ЈСОН
         import_external_campaign_scoring: Увоз екстерне кампање бодовања
+        import_external_scoring_data: Увоз екстерних података о бодовању
         import_factor_translations: Преводи фактора увоза
         import_factors: Фактори увоза
         import_interview_questions: Увоз питања за интервју
@@ -1051,7 +1063,7 @@ sr-Cyrl:
         saville_assessment_name: Савилле процена Име
         simulation_assessment_name: Име процене симулације
         skillvue_assessment_name: Име процене Скиллвуе
-        yoodli_assessment_name: Име процене Иоодли
+        yoodli_scenario_id: Yоодли Сценарио ИД
       translations_migrated: Превод мигриран
     create: Креирате
     dashboard: Контролну таблу
@@ -1470,8 +1482,6 @@ sr-Cyrl:
       skillvue_email_id: ИД е-поште кандидата за Скиллвуе
       skillvue_external_assessment_id: Скиллвуе ИД процене
       universal_link: Универзална веза
-      yoodli_email_id: ИД е-поште кандидата за јоодли
-      yoodli_external_assessment_id: Иоодли Процена ИД
     drawer:
       mettl_schedule_name: Меттл Распоред Име
       title: Детаљи процене
@@ -1624,8 +1634,6 @@ sr-Cyrl:
       report: Извештај
       report_bundle_placeholder: Изаберите пакет извештаја
     messages:
-      bulk_download_error: Масовно преузимање је ограничено на 1000 фајлова извештаја. Ако сте одабрали много језика, молимо вас да га смањите.
-      bulk_download_no_reports: Није пронађен ниједан извештај. Молимо Вас да генеришете извештаје пре преузимања.
       bulk_download_successful: Булк извештај преузимање посао је успешно заказан
       export_report_data_scheduled: Извештај извоз података посао је успешно заказан
     modals:
@@ -1935,7 +1943,6 @@ sr-Cyrl:
       hide: Сакрити
       view: Приказ
     validations:
-      required: Ово поље је обавезно
       select_locale: Молимо Вас да изаберете неки језик (е)
       should_be_whole_number: требало би да буде цео број
   confirmation:
@@ -2596,6 +2603,7 @@ sr-Cyrl:
     convert_to_draft: Претвори у нацрт
     current_step: Тренутни корак ИНТЕРПОЛАТИОН_ВАР_0
     delete_skill: Да ли сте сигурни да желите да избришете вештину јер ће избрисати и све повезане развојне акције?
+    delete_skill_msg: Да ли сте сигурни да желите да избришете ову вештину? Брисање ће такође уклонити све повезане развојне акције.
     details: Детаљи
     development_actions:
       action_private: Да
@@ -2680,6 +2688,7 @@ sr-Cyrl:
     edit_progress: Уреди напредак
     fetching_skill_gap_report: Извештај о празнинама у вештинама ...
     go_to_previous_step: Иди на претходни корак
+    go_to_reportee_plan: Иди на детаље плана Репортее
     history:
       added_da:
         one: Додатна развојна акција
@@ -2729,12 +2738,14 @@ sr-Cyrl:
         categories: Категорије
       save_skills: Сачувај вештине
     new_comments: Нови коментар(и)
+    no_plan_changes_found: Од вашег последњег прегледа нису направљене ревизије плана.
     no_skills_added: Још увек немате додане вештине.
     no_skills_added_by_reportee: Репортее још није додао вештине.
     pdf:
       approval_status: Статус одобрења
       cover:
         fields:
+          approval_date: Датум одобрења
           assigned_data: Датум доделе
           assigned_date: Датум додељен
           completion_date: Датум завршетка
@@ -2802,8 +2813,12 @@ sr-Cyrl:
         approved: Прегледано и одобрено
         completed: Довршено
         draft: Нацрт
+        in_progress: У току
+        in_review: У прегледу
         not_reviewed: Није прегледано
+        not_started: Није почело
         pending_approval: У прегледу
+        rejected: Одбио
       summary:
         ai_count: Генеративна АИ
         collaborative_learn: Колаборативно учење
@@ -3706,13 +3721,6 @@ sr-Cyrl:
       on_hold: На чекању
       prepared: Готово
       released: Објављено
-    statuses:
-      completed: Завршено
-      declined: Одбијено
-      denied: Одбијено
-      done: Готово
-      not_completed: Није завршено
-      waiting: Чекање
   threesixty:
     accept_privacy_modal:
       accept: Прихвати

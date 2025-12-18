@@ -55,6 +55,17 @@ ja:
               blank: レポートバンドルIDは空白にできない
             report_id:
               blank: レポートIDは空白にできない
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: IDが「%{id}」のAIアシスタントが%{index}行に見つからない
+              blank: 列「%{entity}」は行目%{index}で空欄であってはなりません
+              duplicate_code: "%{index}行にコード「%{code}」が重複しています"
+              invalid_code_format: 行 %{index} に無効なコードフォーマット '%{code}'
+              max_limit_reached: キャンペーンAIのアーティファクト総数が最大制限を超えた%{count}
+              missing_headers: 必要なヘッダーが欠けている:%{headers}
+            file:
+              invalid_format: CSVファイルをアップロードしてください
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ ja:
         import_development_actions: インポート開発アクション
         import_dimension_from_json: JSONからのディメンションのインポート
         import_external_campaign_scoring: 外部キャンペーンスコアリングのインポート
+        import_external_scoring_data: 外部スコアリングデータのインポート
         import_factor_translations: 輸入係数翻訳
         import_factors: 輸入要因
         import_interview_questions: 面接の質問をインポートする
@@ -1050,7 +1062,7 @@ ja:
         saville_assessment_name: サヴィル査定名
         simulation_assessment_name: シミュレーション評価名
         skillvue_assessment_name: スキルビュー評価名
-        yoodli_assessment_name: ユードリ評価名
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: 翻訳の移行
     create: 作成
     dashboard: ダッシュボード
@@ -1488,8 +1500,6 @@ ja:
       skillvue_email_id: スキルビュー候補者のEメールアドレス
       skillvue_external_assessment_id: スキルビュー査定ID
       universal_link: ユニバーサルリンク
-      yoodli_email_id: ユードリ候補者メールアドレス
-      yoodli_external_assessment_id: Yoodli評価ID
     drawer:
       mettl_schedule_name: メットル・スケジュール名
       title: 評価内容
@@ -1642,8 +1652,6 @@ ja:
       report: レポート
       report_bundle_placeholder: レポートバンドルを選択する
     messages:
-      bulk_download_error: 一括ダウンロードの上限は1000ファイルです。
-      bulk_download_no_reports: レポートは見つかりませんでした。ダウンロードする前にレポートを作成してください。
       bulk_download_successful: 一括レポートダウンロードジョブが正常にスケジュールされました
       export_report_data_scheduled: レポート・データ・エクスポート・ジョブが正常にスケジュールされました。
     modals:
@@ -1953,7 +1961,6 @@ ja:
       hide: 隠す
       view: 表示
     validations:
-      required: このフィールドは必須です
       select_locale: ロケールを選択してください
       should_be_whole_number: 整数でなければならない
   confirmation:
@@ -2507,8 +2514,8 @@ ja:
       reset_chat: チャットのリセット
       reset_confirmation: このチャットを破棄して、新しいチャットを始めてよろしいですか?
       retake_steps:
-        chat_hint: 以下でさらに提供したい情報を教えてください。
-        chat_title: もっと詳しい情報を提供したいですか?
+        chat_hint: 新しいファイルをアップロードしたりチャットを再起動して詳細を共有していただければ、できる限りお手伝いします。
+        chat_title: 最初の分析が期待通りにならなかったことをお気の毒に思います。
         start_chat: チャットを開始する
         start_chat_again: チャットを再開
         upload_document: ドキュメントのアップロード
@@ -2534,14 +2541,14 @@ ja:
         chat_title: チャットインサイトの概要
         file_title: アップロードされたドキュメントの洞察
         gap_report_title: スキルギャップレポート分析
-        hint: "「はい」の場合は、IDP を作成しますが、それ以外の場合は回答を再取得できます"
-        title: 結果に満足していますか?
+        hint: もし許可があれば、開発計画を作成できます。もしそうでなければ、チャットを再起動するか新しいファイルをアップロードできます。
+        title: 分析に満足していますか?
         upload_file: アップロードされたファイル
         view_chat: チャットを見る
       upload:
-        description: ファイルをクリックまたはドラッグしてアップロードします
+        description: 対応ファイル形式:PDFドキュメント%{maxFileSize}MBまで
         drop: ここにファイルをドロップ
-        title: ファイルをアップロードする
+        title: ファイルはこちらにダウンロードまたは削除
       welcome:
         text: 成長ジョニーをグラフ化する準備はできていますか?さあ、始めましょう!
         title: こんにちは、私はあなたの開発アシスタントです
@@ -2591,6 +2598,7 @@ ja:
     convert_to_draft: ドラフトに変換
     current_step: 現在のステップ %{step}
     delete_skill: このスキルを削除してもよろしいですか？削除すると、関連するすべての開発アクションも削除されます。
+    delete_skill_msg: 本当にこのスキルを削除したいですか?削除すると関連する開発アクションもすべて削除されます。
     details: 詳細
     development_actions:
       action_private: はい
@@ -2608,8 +2616,8 @@ ja:
         in_progress: 進行中
         not_started: 未着手
       completion: 完成
-      create_custom_development_action_title: "%{skillName} のための独自の開発アクションを作成する"
-      create_development_actions_with_ai: AI for %{skillName} を使用した開発アクションの作成
+      create_custom_development_action_title: " のための独自の開発アクションを作成する"
+      create_development_actions_with_ai: AI for  を使用した開発アクションの作成
       create_from_ai: AIから作成
       create_my_own: マイ・オウン作成
       custom: 習慣
@@ -2675,6 +2683,7 @@ ja:
     edit_progress: 編集プログレス
     fetching_skill_gap_report: スキルギャップレポートの取得...
     go_to_previous_step: 前のステップに進む
+    go_to_reportee_plan: リポーターのプラン詳細へ
     history:
       added_da:
         one: 開発アクションの追加
@@ -2724,12 +2733,14 @@ ja:
         categories: カテゴリー
       save_skills: セーブ・スキル
     new_comments: 新しいコメント
+    no_plan_changes_found: 前回のレビュー以降、計画に修正はありません。
     no_skills_added: まだスキルが追加されていません。
-    no_skills_added_by_reportee: Reportee はまだスキルを追加していません。
+    no_skills_added_by_reportee: 報告者はまだスキルを追加していません。
     pdf:
       approval_status: 承認状況
       cover:
         fields:
+          approval_date: 承認日
           assigned_data: 割り当て日
           assigned_date: 担当日
           completion_date: 完了日
@@ -2816,8 +2827,12 @@ ja:
         approved: レビュー済み・承認済み
         completed: 完了
         draft: ドラフト
+        in_progress: 進行中で
+        in_review: レビュー
         not_reviewed: 未レビュー
+        not_started: 未開始
         pending_approval: レビュー中
+        rejected: 拒否
       summary:
         ai_count: 生成型AI
         collaborative_learn: 協調学習
@@ -3798,13 +3813,6 @@ ja:
       on_hold: 保留中
       prepared: 完了
       released: リリース
-    statuses:
-      completed: 完了済み
-      declined: 辞退済み
-      denied: 却下
-      done: 完了
-      not_completed: 未完了
-      waiting: 待機中
   threesixty:
     accept_privacy_modal:
       accept: 同意する

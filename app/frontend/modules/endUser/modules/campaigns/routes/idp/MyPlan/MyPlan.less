@@ -34,6 +34,12 @@
     & > :global(.ant-spin-nested-loading){
       height: 100%;
       overflow-y: auto;
+
+      & > :global(.ant-spin-container) {
+        overflow-x: hidden;
+        padding-inline-start: 0.5rem;
+        padding-inline-end: 0.5rem;
+      }
     }
   }
 }

@@ -18,6 +18,10 @@ export const WebhookTR = t.type({
   oauthClientSecret: t.union([t.string, t.undefined, t.null]),
   oauthScope: t.union([t.string, t.undefined, t.null]),
   assessmentIds: t.union([t.array(t.string), t.undefined, t.null]),
+  assessments: t.array(t.type({
+    id: t.string,
+    name: t.string,
+  })),
 })
 
 export const PushWebhookReponseTR = t.type({

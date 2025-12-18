@@ -12,6 +12,54 @@ RSpec.describe UserIdpPlan, type: :model do
       create(:user_idp_plan, user: user, campaign_id: campaign.id)
     end
 
+    describe 'Callbacks' do
+      describe '#update_completed_at_or_started_at' do
+        let(:frozen_time) { Time.current }
+
+        before { allow(Time).to receive(:current).and_return(frozen_time) }
+
+        context 'when completion_status changes to in_progress' do
+          it 'sets started_at to current time' do
+            expect do
+              user_idp_plan.update(completion_status: :in_progress)
+            end.to change { user_idp_plan.reload.started_at }.from(nil).to(frozen_time)
+          end
+
+          it 'does not change completed_at' do
+            expect do
+              user_idp_plan.update(completion_status: :in_progress)
+            end.not_to(change { user_idp_plan.reload.completed_at })
+          end
+        end
+
+        context 'when completion_status changes to completed' do
+          it 'sets completed_at to current time' do
+            expect do
+              user_idp_plan.update(completion_status: :completed)
+            end.to change { user_idp_plan.reload.completed_at }.from(nil).to(frozen_time)
+          end
+
+          it 'does not change started_at if already set' do
+            user_idp_plan.update(completion_status: :in_progress)
+            expect do
+              user_idp_plan.update(completion_status: :completed)
+            end.not_to change(user_idp_plan.reload, :started_at)
+          end
+        end
+
+        context 'when completion_status does not change' do
+          it 'does not update started_at or completed_at' do
+            expect do
+              user_idp_plan.update(review_note: 'New Note')
+            end.not_to(change { user_idp_plan.reload.started_at })
+            expect do
+              user_idp_plan.update(review_note: 'Another Note')
+            end.not_to(change { user_idp_plan.reload.completed_at })
+          end
+        end
+      end
+    end
+
     context 'when communication exists' do
       before { communication }
 
@@ -216,8 +264,10 @@ RSpec.describe UserIdpPlan, type: :model do
           expect { user_idp_plan.approve! }.to change(user_idp_plan, :approval_status).from('rejected').to('approved')
         end
 
-        it 'can not transition to pending_approval' do
-          expect { user_idp_plan.submit_for_approval! }.to raise_error(Workflow::NoTransitionAllowed)
+        it 'can transition to pending_approval' do
+          expect { user_idp_plan.submit_for_approval! }.to change(
+            user_idp_plan, :approval_status
+          ).from('rejected').to('pending_approval')
         end
 
         it 'can not transition to in_review' do
@@ -294,6 +344,26 @@ RSpec.describe UserIdpPlan, type: :model do
             end
           end
         end
+      end
+    end
+  end
+
+  describe 'user_document file size validation' do
+    let(:user_idp_plan) { create(:user_idp_plan) }
+
+    context 'when file exceeds size limit (5MB or more)' do
+      let(:oversized_document_blob) do
+        ActiveStorage::Blob.create_and_upload!(
+          io: StringIO.new('A' * (5.megabytes + 1)), # Just over 5MB
+          filename: 'oversized_document.pdf',
+          content_type: 'application/pdf'
+        )
+      end
+
+      it 'is invalid and shows size error' do
+        user_idp_plan.user_document.attach(oversized_document_blob)
+        expect(user_idp_plan).not_to be_valid
+        expect(user_idp_plan.errors[:user_document]).to include('size 5 MB is not between required range')
       end
     end
   end

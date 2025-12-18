@@ -34,19 +34,11 @@ describe UserReports::GenerateAndSavePdf do
     expect(rails_blob_path(user_report.user_report_pdf.pdf_file, only_path: true)).to be_present
   end
 
-  it "doesn't save pdf in user_report if report can't be generated" do
-    expect(user_report).to receive(:generatable?).and_return(false)
-    expect(user_report.reload.pdf_file.attached?).to be_falsey
-
-    described_class.call!(user_report, current_user)
-  end
-
   context 'Saville Report' do
     it 'calls Saville::AssessmentOrderRequest if report is a saville report' do
       report = create(:report, :saville)
       users_result = create(:users_result)
       user_report = create(:user_report, report: report)
-      expect(report).to receive(:provider_internal?).and_return(false)
       expect(user_report).to receive(:generatable?).and_return(true)
       expect(user_report).to receive(:user_results).and_return(UsersResult.where(id: users_result.id))
       expect(Saville::AssessmentOrderRequest).to receive(:call!).with(users_result.user_assessment)

@@ -2,12 +2,13 @@
 
 module Assessments
   class GetTranslationWithPipetextReplaced < BaseCommand
-    private_attr_reader :assessment, :piped_text_context, :locale
+    private_attr_reader :assessment, :piped_text_context, :locale, :ignore_pipetext_substitution
 
     def initialize(assessment, options)
       @assessment = assessment
       @piped_text_context = options[:piped_text_context]
       @locale = options[:locale]
+      @ignore_pipetext_substitution = options[:ignore_pipetext_substitution] || false
     end
 
     def call
@@ -30,7 +31,9 @@ module Assessments
 
       translations['question'] = translations['question'].each_with_object({}) do |(question_id, question_details), acc|
         question_text = question_details['questionText']
-        question_text = Threesixty::PipedText::Perform.call!(question_text, piped_text_context)
+        unless ignore_pipetext_substitution
+          question_text = Threesixty::PipedText::Perform.call!(question_text, piped_text_context)
+        end
         acc[question_id] = question_details.merge('questionText' => question_text)
       end
     end
@@ -41,7 +44,9 @@ module Assessments
       translations['block'] = translations['block'].
                               each_with_object({}) do |(block_id, block_details), acc|
         static_content = block_details['staticContent']
-        static_content = Threesixty::PipedText::Perform.call!(static_content, piped_text_context)
+        unless ignore_pipetext_substitution
+          static_content = Threesixty::PipedText::Perform.call!(static_content, piped_text_context)
+        end
         acc[block_id] = block_details.merge('staticContent' => static_content)
       end
     end

@@ -12,20 +12,30 @@ module AdminJobs
         user_reports.pluck(:user_id),
         threesixty_campaign
       )
-      user_reports_ids = user_reports.includes(:subject).find_each(batch_size: 100).
-                         with_object([]) do |user_report, ids|
-        ids << user_report.id if Threesixty::Subjects::IsReportAvailable.call!(
+
+      available_user_reports_ids = []
+      error_messages = []
+
+      user_reports.includes(:subject, :user).find_each(batch_size: 100) do |user_report|
+        availability_result = Threesixty::Subjects::IsReportAvailable.call!(
           user_report.subject,
           campaign_options,
-          subject_evaluator_counters.dig(user_report.user_id, :completed) || {},
-          true
+          subject_evaluator_counters.dig(user_report.user_id, :completed) || {}
         )
-        ids
-      end
-      record.update(data: record.data.merge(user_reports_ids: user_reports_ids))
 
-      user_reports = campaign.user_reports.where(id: user_reports_ids)
-      ::UserReports::GenerateAndSavePdf.call!(user_reports, owner, options, record)
+        if availability_result[:available]
+          available_user_reports_ids << user_report.id
+        elsif availability_result[:status_message]
+          error_messages << availability_result[:status_message]
+        end
+      end
+
+      return broadcast :ok, { error_messages: error_messages } if available_user_reports_ids.empty?
+
+      record.update(data: record.data.merge(user_reports_ids: available_user_reports_ids))
+
+      available_user_reports = campaign.user_reports.where(id: available_user_reports_ids)
+      ::UserReports::GenerateAndSavePdf.call!(available_user_reports, owner, options, record)
 
       broadcast :waiting
     end

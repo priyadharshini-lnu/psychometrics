@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'swagger_helper'
 
-describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/swagger.json', type: :request do
+RSpec.describe Api::V2::Administration::CampaignFactorsController, type: :request do
   let!(:superadmin) { create(:superadmin) }
   let!(:campaign) { create(:campaign) }
   let(:campaign_id) { campaign.id }
@@ -17,280 +16,173 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
     )
   end
   let(:factor_id) { campaign_factor.id.to_s }
-  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
+  let!(:api_key) { create(:api_key, user: superadmin) }
+  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before { sign_in(superadmin) }
 
-  path '/campaigns/{campaign_id}/campaign_factors' do
-    get 'CampaignFactors List' do
-      operationId 'CampaignFactors'
-      description 'Fetch campaign Factor list'
-      tags 'Campaign Factor Scoring'
-      consumes 'application/json'
-      security [basic: []]
-      parameter name: :campaign_id, in: :path, type: :string
-
-      response '200', 'Campaign factor list' do
-        schema '$ref' => '#/components/schemas/CampaignFactorListResponse'
-
-        examples 'application/json' => {
-          data: [{
-            id: '1',
-            type: 'campaign_factors',
-            attributes: {
-              name: 'Factor', position: 1
-            },
-            relationships: {
-              campaign: { data: { type: 'campaigns', id: 1 } }
-            }
-          }]
-        }
-
-        run_test! do |response|
-          cf = JSON.parse(response.body)['data'].first
-          expect(cf).to have_attribute(:name).with_value('Factor')
-          expect(cf).to have_relationship(:campaign).with_data({ 'id' => campaign_id.to_s, 'type' => 'campaigns' })
-          expect(cf).to have_relationship(:campaign_factor_group).
-            with_data({ 'id' => campaign_factor_group_id, 'type' => 'campaign_factor_groups' })
-        end
-      end
-    end
-
-    post 'Create CampaignFactor' do
-      operationId 'CreateCampaignFactors'
-      description 'Create campaign Factor list'
-      tags 'Campaign Factor Scoring'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :campaign_id, in: :path, type: :string
-      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/CampaignFactorCreateRequest' },
-                required: true
-
-      response '201', 'Create campaign factor' do
-        schema '$ref' => '#/components/schemas/CampaignFactorResponse'
-
-        examples 'application/json' => {
-          data: [{
-            id: '1',
-            type: 'campaign_factors',
-            attributes: {
-              name: 'Factor', factor_type: 'formula', public_visibility: true, position: 1, campaign_factor_group_id: 1,
-              code: 'factor_code'
-            },
-            relationships: {
-              campaign: { data: { type: 'campaigns', id: 1 } },
-              campaign_factor_group: { data: { type: 'campaign_factor_groups', id: 1 } }
-            }
-          }]
-        }
-
-        let(:body) do
-          {
-            data: {
-              type: 'campaign_factors',
-              attributes: {
-                name: 'Factor two', position: 2, campaign_factor_group_id: campaign_factor_group_id.to_i,
-                code: 'fact_code', factor_type: 'formula', public_visibility: true, output_type: 'numeric'
-              },
-              relationships: {
-                campaign: { data: { type: 'campaigns', id: campaign_id.to_s } },
-                campaign_factor_group: { data: { type: 'campaign_factor_groups', id: campaign_factor_group_id } }
-              }
-            }
-          }
-        end
-
-        run_test! do |response|
-          cf = JSON.parse(response.body)['data']
-          expect(cf).to have_key('id')
-          expect(cf).to have_attribute(:name).with_value('Factor two')
-          expect(cf).to have_relationship(:campaign).with_data({ 'id' => campaign_id.to_s, 'type' => 'campaigns' })
-          expect(cf).to have_relationship(:campaign_factor_group).
-            with_data({ 'id' => campaign_factor_group_id, 'type' => 'campaign_factor_groups' })
-        end
-      end
-    end
-  end
-
-  path '/campaigns/{campaign_id}/campaign_factors/{factor_id}' do
-    patch 'Update CampaignFactor' do
-      operationId 'UpdateCampaignFactors'
-      description 'Update campaign Factor'
-      tags 'Campaign Factor Scoring'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :campaign_id, in: :path, type: :string
-      parameter name: :factor_id, in: :path, type: :string
-      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/CampaignFactorCreateRequest' },
-                required: true
-
-      response '200', 'Update campaign factor' do
-        schema '$ref' => '#/components/schemas/CampaignFactorResponse'
-
-        examples 'application/json' => {
-          data: [{
-            id: '1',
-            type: 'campaign_factors',
-            attributes: {
-              name: 'Factor', factor_type: 'formula', public_visibility: true, position: 1, campaign_factor_group_id: 1,
-              code: 'factor_code', output_type: 'numeric'
-            },
-            relationships: {
-              campaign: { data: { type: 'campaigns', id: 1 } },
-              campaign_factor_group: { data: { type: 'campaign_factor_groups', id: 1 } }
-            }
-          }]
-        }
-
-        let(:body) do
-          {
-            data: {
-              type: 'campaign_factors',
-              id: factor_id,
-              attributes: {
-                name: 'Updated Factor name', factor_type: 'formula', public_visibility: true, position: 2,
-                campaign_factor_group_id: campaign_factor_group_id.to_i, code: 'factor_code', output_type: 'numeric'
-              },
-              relationships: {
-                campaign: { data: { type: 'campaigns', id: campaign_id.to_s } },
-                campaign_factor_group: { data: { type: 'campaign_factor_groups', id: campaign_factor_group_id } }
-              }
-            }
-          }
-        end
-
-        run_test! do |response|
-          cf = JSON.parse(response.body)['data']
-          expect(cf).to have_key('id')
-          expect(cf).to have_attribute(:name).with_value('Updated Factor name')
-          expect(cf).to have_attribute(:position).with_value(2)
-          expect(cf).to have_relationship(:campaign).with_data({ 'id' => campaign_id.to_s, 'type' => 'campaigns' })
-          expect(cf).to have_relationship(:campaign_factor_group).
-            with_data({ 'id' => campaign_factor_group_id, 'type' => 'campaign_factor_groups' })
-        end
-      end
-    end
-
-    delete 'Delete CampaignFactor' do
-      operationId 'DeleteCampaignFactors'
-      description 'Delete campaign Factor list'
-      tags 'Campaign Factor Scoring'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :campaign_id, in: :path, type: :string
-      parameter name: :factor_id, in: :path, type: :string
-
-      response '204', 'Delete campaign factor' do
-        run_test! do |response|
-          expect(response.body).to eq('')
-          expect(CampaignFactor.find_by(id: campaign_factor_group_id)).to eq nil
-        end
-      end
-    end
-  end
-
-  path '/campaigns/{campaign_id}/campaign_factors/update_positions' do
-    post 'Update CampaignFactor positions' do
-      operationId 'UpdateCampaignFactors'
-      description 'Update campaign Factor positions'
-      tags 'Campaign Factor Scoring'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :campaign_id, in: :path, type: :string
-      parameter name: :body, in: :body, required: true
-
-      response '200', 'Update campaign factor positions' do
-        examples 'application/json' => {
-          data: [{
-            type: 'campaign_factors',
-            id: 1,
-            attributes: { position: 1 }
-          }]
-        }
-
-        let!(:second_factor_group) { create(:campaign_factor_group, campaign_id: campaign_id) }
-        let!(:second_factor) { create(:campaign_factor, name: 'Factor 2', campaign_id: campaign_id) }
-        let(:body) do
-          {
-            data: [
-              {
-                type: 'campaign_factors',
-                id: factor_id,
-                attributes: { position: 2, campaign_factor_group_id: second_factor_group.id }
-              },
-              {
-                type: 'campaign_factors',
-                id: second_factor.id,
-                attributes: { position: 3, campaign_factor_group_id: campaign_factor_group_id }
-              }
-            ]
-          }
-        end
-
-        run_test! do |response|
-          cf = JSON.parse(response.body)['data'].first
-          expect(cf).to have_key('id')
-          expect(cf).to have_attribute(:name).with_value('Factor')
-          expect(cf).to have_attribute(:position).with_value(2)
-          expect(cf).to have_attribute(:campaign_factor_group_id).with_value(second_factor_group.id)
-          expect(CampaignFactor.find(second_factor.id).position).to eq(3)
-          expect(CampaignFactor.find(second_factor.id).campaign_factor_group_id).to eq(campaign_factor_group.id)
-          expect(cf).to have_relationship(:campaign).with_data({ 'id' => campaign_id.to_s, 'type' => 'campaigns' })
-          expect(cf).to have_relationship(:campaign_factor_group).
-            with_data({ 'id' => second_factor_group.id.to_s, 'type' => 'campaign_factor_groups' })
-        end
-      end
-    end
-  end
-
-  path '/campaigns/{campaign_id}/campaign_factors/remove_all' do
-    post 'Remove all CampaignFactors' do
-      operationId 'RemoveAllCampaignFactors'
-      description 'Remove all campaign Factors'
-      tags 'Campaign Factor Scoring'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :campaign_id, in: :path, type: :string
-      parameter name: :body, in: :body, required: true
-
-      response '200', 'remove all campaign factors' do
-        examples 'application/json' => {
-          data: [{
-            type: 'campaign_factors',
-            id: 1
-          }]
-        }
-
-        run_test! do |_response|
-          expect(campaign.campaign_factors).to be_empty
-          expect(campaign.campaign_factor_groups).to be_empty
-        end
-      end
-    end
-  end
-
-  describe 'validate_campaign_factor_deletion' do
-    let(:campaign_factor) { create(:campaign_factor, campaign: campaign) }
-
-    it 'returns a successful response' do
-      get "/api/v2/administration/campaigns/#{campaign.id}/campaign_factors/validate_campaign_factor_deletion",
-          params: { id: campaign_factor.id }
+  describe 'GET /api/v2/administration/campaigns/:campaign_id/campaign_factors' do
+    it 'fetches campaign factor list' do
+      get "/api/v2/administration/campaigns/#{campaign_id}/campaign_factors",
+          headers: { 'Authorization' => authorization }
 
       expect(response).to have_http_status(:ok)
+      cf = JSON.parse(response.body)['data'].first
+      expect(cf).to have_attribute(:name).with_value('Factor')
+      expect(cf).to have_relationship(:campaign).with_data({ 'id' => campaign_id.to_s, 'type' => 'campaigns' })
+      expect(cf).to have_relationship(:campaign_factor_group).
+        with_data({ 'id' => campaign_factor_group_id, 'type' => 'campaign_factor_groups' })
+    end
+  end
 
+  describe 'POST /api/v2/administration/campaigns/:campaign_id/campaign_factors' do
+    it 'creates campaign factor' do
+      body = {
+        data: {
+          type: 'campaign_factors',
+          attributes: {
+            name: 'Factor two', position: 2, campaign_factor_group_id: campaign_factor_group_id.to_i,
+            code: 'fact_code', factor_type: 'formula', public_visibility: true, output_type: 'numeric'
+          },
+          relationships: {
+            campaign: { data: { type: 'campaigns', id: campaign_id.to_s } },
+            campaign_factor_group: { data: { type: 'campaign_factor_groups', id: campaign_factor_group_id } }
+          }
+        }
+      }
+
+      post "/api/v2/administration/campaigns/#{campaign_id}/campaign_factors",
+           params: body.to_json,
+           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:created)
+      cf = JSON.parse(response.body)['data']
+      expect(cf).to have_key('id')
+      expect(cf).to have_attribute(:name).with_value('Factor two')
+      expect(cf).to have_relationship(:campaign).with_data({ 'id' => campaign_id.to_s, 'type' => 'campaigns' })
+      expect(cf).to have_relationship(:campaign_factor_group).
+        with_data({ 'id' => campaign_factor_group_id, 'type' => 'campaign_factor_groups' })
+    end
+  end
+
+  describe 'PATCH /api/v2/administration/campaigns/:campaign_id/campaign_factors/:factor_id' do
+    it 'updates campaign factor' do
+      body = {
+        data: {
+          type: 'campaign_factors',
+          id: factor_id,
+          attributes: {
+            name: 'Updated Factor name', factor_type: 'formula', public_visibility: true, position: 2,
+            campaign_factor_group_id: campaign_factor_group_id.to_i, code: 'factor_code', output_type: 'numeric'
+          },
+          relationships: {
+            campaign: { data: { type: 'campaigns', id: campaign_id.to_s } },
+            campaign_factor_group: { data: { type: 'campaign_factor_groups', id: campaign_factor_group_id } }
+          }
+        }
+      }
+
+      patch "/api/v2/administration/campaigns/#{campaign_id}/campaign_factors/#{factor_id}",
+            params: body.to_json,
+            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:ok)
+      cf = JSON.parse(response.body)['data']
+      expect(cf).to have_key('id')
+      expect(cf).to have_attribute(:name).with_value('Updated Factor name')
+      expect(cf).to have_attribute(:position).with_value(2)
+      expect(cf).to have_relationship(:campaign).with_data({ 'id' => campaign_id.to_s, 'type' => 'campaigns' })
+      expect(cf).to have_relationship(:campaign_factor_group).
+        with_data({ 'id' => campaign_factor_group_id, 'type' => 'campaign_factor_groups' })
+    end
+  end
+
+  describe 'DELETE /api/v2/administration/campaigns/:campaign_id/campaign_factors/:factor_id' do
+    it 'deletes campaign factor' do
+      delete "/api/v2/administration/campaigns/#{campaign_id}/campaign_factors/#{factor_id}",
+             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:no_content)
+      expect(response.body).to eq('')
+      expect(CampaignFactor.find_by(id: factor_id)).to eq nil
+    end
+  end
+
+  describe 'POST /api/v2/administration/campaigns/:campaign_id/campaign_factors/update_positions' do
+    it 'updates campaign factor positions' do
+      second_factor_group = create(:campaign_factor_group, campaign_id: campaign_id)
+      second_factor = create(:campaign_factor, name: 'Factor 2', campaign_id: campaign_id)
+
+      body = {
+        data: [
+          {
+            type: 'campaign_factors',
+            id: factor_id,
+            attributes: { position: 2, campaign_factor_group_id: second_factor_group.id }
+          },
+          {
+            type: 'campaign_factors',
+            id: second_factor.id,
+            attributes: { position: 3, campaign_factor_group_id: campaign_factor_group_id }
+          }
+        ]
+      }
+
+      post "/api/v2/administration/campaigns/#{campaign_id}/campaign_factors/update_positions",
+           params: body.to_json,
+           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:ok)
+      response_data = JSON.parse(response.body)['data']
+      updated_factor = response_data.find { |f| f['id'] == factor_id }
+      expect(updated_factor).to have_key('id')
+      expect(updated_factor).to have_attribute(:name).with_value('Factor')
+      expect(updated_factor).to have_attribute(:position).with_value(2)
+      expect(updated_factor).to have_attribute(:campaign_factor_group_id).with_value(second_factor_group.id)
+      expect(CampaignFactor.find(second_factor.id).position).to eq(3)
+      expect(CampaignFactor.find(second_factor.id).campaign_factor_group_id).to eq(campaign_factor_group.id)
+      expect(updated_factor).to have_relationship(:campaign).with_data({ 'id' => campaign_id.to_s,
+                                                                         'type' => 'campaigns' })
+      expect(updated_factor).to have_relationship(:campaign_factor_group).
+        with_data({ 'id' => second_factor_group.id.to_s, 'type' => 'campaign_factor_groups' })
+    end
+  end
+
+  describe 'POST /api/v2/administration/campaigns/:campaign_id/campaign_factors/remove_all' do
+    it 'removes all campaign factors' do
+      post "/api/v2/administration/campaigns/#{campaign_id}/campaign_factors/remove_all",
+           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:ok)
+      expect(campaign.campaign_factors).to be_empty
+      expect(campaign.campaign_factor_groups).to be_empty
+    end
+  end
+
+  describe 'GET /api/v2/administration/campaigns/:campaign_id/campaign_factors/validate_campaign_factor_deletion' do
+    it 'returns a successful response' do
+      campaign_factor = create(:campaign_factor, campaign: campaign)
+
+      get "/api/v2/administration/campaigns/#{campaign.id}/campaign_factors/validate_campaign_factor_deletion",
+          params: { id: campaign_factor.id },
+          headers: { 'Authorization' => authorization }
+
+      expect(response).to have_http_status(:ok)
       expect(JSON.parse(response.body)).to eq(
         'response' => "Are you sure you want to delete the campaign factor '#{campaign_factor.name}'?"
       )
     end
   end
 
-  describe 'import' do
+  describe 'POST /api/v2/administration/campaigns/:campaign_id/campaign_factors/import' do
     it 'queues import_campaign_factors job successfully' do
       file = Rack::Test::UploadedFile.new(
         Rails.root.join('spec/fixtures/files/import_campaign_factors/valid_file.xlsx'), 'application/xlsx'
       )
 
-      post "/api/v2/administration/campaigns/#{campaign.id}/campaign_factors/import", params: { file: file }
+      post "/api/v2/administration/campaigns/#{campaign.id}/campaign_factors/import",
+           params: { file: file },
+           headers: { 'Authorization' => authorization }
 
       expect(AdminJobRecord.exists?(operation: 'import_campaign_factors')).to be_truthy
     end
@@ -300,56 +192,46 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
         Rails.root.join('spec/fixtures/files/import_campaign_factors/invalid_rows.xlsx'), 'application/xlsx'
       )
 
-      post "/api/v2/administration/campaigns/#{campaign.id}/campaign_factors/import", params: { file: file }
+      post "/api/v2/administration/campaigns/#{campaign.id}/campaign_factors/import",
+           params: { file: file },
+           headers: { 'Authorization' => authorization }
 
       expect(response).to have_http_status(422)
     end
   end
 
-  path '/campaigns/{campaign_id}/campaign_factors/bulk_update' do
-    post 'Bulk update Campaign Factors' do
-      operationId 'BulkUpdateCampaignFactors'
-      description 'Bulk update attributes for multiple campaign factors'
-      tags 'Campaign Factor Scorings'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :campaign_id, in: :path, type: :string
-      parameter name: :body, in: :body, required: true,
-                schema: { '$ref' => '#/components/schemas/CampaignFactorBulkRequest' }
+  describe 'POST /api/v2/administration/campaigns/:campaign_id/campaign_factors/bulk_update' do
+    it 'bulk updates campaign factors' do
+      campaign_factor1 = create(:campaign_factor, campaign_id: campaign_id, name: 'Factor 1')
+      campaign_factor2 = create(:campaign_factor, campaign_id: campaign_id, name: 'Factor 2')
 
-      response '200', 'Bulk update campaign factors' do
-        schema '$ref' => '#/components/schemas/OKResponse'
-
-        let(:campaign_factor1) { create(:campaign_factor, campaign_id: campaign_id, name: 'Factor 1') }
-        let(:campaign_factor2) { create(:campaign_factor, campaign_id: campaign_id, name: 'Factor 2') }
-
-        let(:body) do
+      body = {
+        data: [
           {
-            data: [
-              {
-                type: 'campaign_factors',
-                id: campaign_factor1.id.to_s,
-                attributes: { name: 'Updated Factor 1', code: 'fc1' }
-              },
-              {
-                type: 'campaign_factors',
-                id: campaign_factor2.id.to_s,
-                attributes: { name: 'Updated Factor 2', code: 'fc2' }
-              }
-            ]
+            type: 'campaign_factors',
+            id: campaign_factor1.id.to_s,
+            attributes: { name: 'Updated Factor 1', code: 'fc1' }
+          },
+          {
+            type: 'campaign_factors',
+            id: campaign_factor2.id.to_s,
+            attributes: { name: 'Updated Factor 2', code: 'fc2' }
           }
-        end
+        ]
+      }
 
-        run_test! do
-          campaign_factor1.reload
-          campaign_factor2.reload
+      post "/api/v2/administration/campaigns/#{campaign_id}/campaign_factors/bulk_update",
+           params: body.to_json,
+           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
 
-          expect(campaign_factor1.name).to eq('Updated Factor 1')
-          expect(campaign_factor2.name).to eq('Updated Factor 2')
-          expect(campaign_factor1.code).to eq('fc1')
-          expect(campaign_factor2.code).to eq('fc2')
-        end
-      end
+      expect(response).to have_http_status(:ok)
+      campaign_factor1.reload
+      campaign_factor2.reload
+
+      expect(campaign_factor1.name).to eq('Updated Factor 1')
+      expect(campaign_factor2.name).to eq('Updated Factor 2')
+      expect(campaign_factor1.code).to eq('fc1')
+      expect(campaign_factor2.code).to eq('fc2')
     end
   end
 end

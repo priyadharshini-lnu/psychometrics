@@ -151,7 +151,7 @@ const ReportSummary = ({ rtl }) => {
                     {I18n.t('idp.pdf.summary.title')}
                   </h1>
                   <Flex gap={16} align="center">
-                    {I18n.t('idp.pdf.summary.current_status')}
+                    {I18n.t('idp.status')}
                     <div className={cs(styles.statusBox, styles.active)}>
                       {I18n.t(`idp.pdf.statuses.${idp.status}`)}
                     </div>
