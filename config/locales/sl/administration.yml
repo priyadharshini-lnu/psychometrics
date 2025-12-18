@@ -182,6 +182,12 @@ sl:
             manage: Upravljanje
             title: Predloge IDP
             view: Pogled
+          interviewQuestions:
+            export: Izvoz
+            import: Uvoz
+            manage: Upravljanje
+            title: Vprašanja za razgovor z IDP
+            view: Pogled
           jobRoles:
             export_translations: Izvoz delovnih vlog Prevodi
             import_translations: Uvoz delovnih vlog Prevodi

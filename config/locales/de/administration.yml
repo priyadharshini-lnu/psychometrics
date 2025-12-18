@@ -182,6 +182,12 @@ de:
             manage: Verwalten Sie
             title: IDP-Vorlagen
             view: Siehe
+          interviewQuestions:
+            export: Export
+            import: Import
+            manage: Managen
+            title: Fragen zum IDP-Interview
+            view: Ansehen
           jobRoles:
             export_translations: Exportieren von Job-Rollen-Übersetzungen
             import_translations: Importieren von Job-Rollen-Übersetzungen

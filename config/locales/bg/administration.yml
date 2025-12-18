@@ -182,6 +182,12 @@ bg:
             manage: Управлявам
             title: Шаблони за индивидуален план за развитие
             view: Изглед
+          interviewQuestions:
+            export: Износ
+            import: Импорт
+            manage: Управление
+            title: Въпроси за интервю за IDP
+            view: Изглед
           jobRoles:
             export_translations: Експорт на работни роли Преводи
             import_translations: Импортиране на работни роли Преводи

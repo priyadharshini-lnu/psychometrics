@@ -182,6 +182,12 @@ it:
             manage: Azioni
             title: Modelli di IDP
             view: Vista
+          interviewQuestions:
+            export: Esportazione
+            import: Importazione
+            manage: Gestione
+            title: Domande per il colloquio IDP
+            view: Vista
           jobRoles:
             export_translations: Esporta di ruoli lavorativi Traduzioni
             import_translations: Importazione delle traduzioni dei ruoli lavorativi

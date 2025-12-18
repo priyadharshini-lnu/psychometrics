@@ -182,6 +182,12 @@ es-ES:
             manage: Gestión
             title: Plantillas de PDI
             view: Ver
+          interviewQuestions:
+            export: Exportar
+            import: Importación
+            manage: Gestionar
+            title: Preguntas de entrevista para IDP
+            view: Vista
           jobRoles:
             export_translations: Exportar traducciones de funciones
             import_translations: Importar traducciones de funciones
@@ -3543,7 +3549,7 @@ es-ES:
           less_than_or_equal: Menor o igual que
           not_equal_to: No es igual a
         prefixes:
-          and: "Y"
+          and: Y
           or: O
         prevent_value_overlap: Evitar la superposición de valores
         randomize_answers_order: Orden de respuestas aleatorias

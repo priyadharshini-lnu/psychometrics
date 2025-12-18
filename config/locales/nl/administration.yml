@@ -182,6 +182,12 @@ nl:
             manage: Beheer
             title: IDP-sjablonen
             view: Bekijk
+          interviewQuestions:
+            export: Export
+            import: Import
+            manage: Managen
+            title: IDP-interviewvragen
+            view: Uitzicht
           jobRoles:
             export_translations: Jobrollen exporteren Vertalingen
             import_translations: Jobrollen importeren Vertalingen

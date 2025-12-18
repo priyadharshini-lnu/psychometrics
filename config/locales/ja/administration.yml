@@ -182,6 +182,12 @@ ja:
             manage: 管理
             title: IDPテンプレート
             view: 表示
+          interviewQuestions:
+            export: 輸出
+            import: 輸入
+            manage: 管理
+            title: IDP面接に関する質問
+            view: 眺め
           jobRoles:
             export_translations: 仕事の役割の翻訳をエクスポート
             import_translations: 仕事の役割の翻訳をインポートする

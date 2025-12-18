@@ -6,9 +6,9 @@ import { MenuItem } from '~/interfaces/Antd'
 import RouteList from '~/components/RouteList'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import routeUtils from '~/utils/route'
-import { routes } from './routes'
+import { createRoutesBasedonPermissions } from './routes'
 import User from '~/modules/admin/modules/campaigns/interfaces/User'
-import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
+import { get as getCurrentUser } from '~/core/currentUser'
 
 const { I18n } = window
 
@@ -28,6 +28,8 @@ const IdpComponent: FC<PropsFromRedux> = ({ currentUser }) => {
   const onSelect = ({ key }) => {
     navigate(`/admin/projects/${projectId}/idp${key}`)
   }
+
+  const routes = createRoutesBasedonPermissions(currentUser)
   const menuItems: MenuItem[] = []
 
   currentUser.permissions.accessIdpTemplates && menuItems.push({
@@ -35,7 +37,7 @@ const IdpComponent: FC<PropsFromRedux> = ({ currentUser }) => {
     label: I18n.t('administration.idp.tab.templates'),
   })
 
-  isSuperAdmin(currentUser) && menuItems.push({
+  currentUser.permissions.manageIdpProjectSettings && menuItems.push({
     key: '/settings',
     label: I18n.t('administration.idp.tab.settings'),
   })
@@ -50,11 +52,23 @@ const IdpComponent: FC<PropsFromRedux> = ({ currentUser }) => {
     label: I18n.t('administration.idp.tab.reflection_questions'),
   })
 
-  currentUser.permissions.accessReflectionQuestions && menuItems.push({
+  currentUser.permissions.accessInterviewQuestions && menuItems.push({
     key: '/interview_questions',
     label: I18n.t('administration.idp.tab.interview_questions'),
   })
 
+  const getFallbackRoute = () => {
+    if (menuItems.length > 0) {
+      return {
+        redirect: true,
+        from: '/',
+        to: `/admin/projects/${projectId}/idp${(menuItems as MenuItem[])[0]?.key}`,
+      }
+    }
+    return null
+  }
+
+  const fallbackRoute = getFallbackRoute()
 
   return (
     <div>
@@ -64,7 +78,7 @@ const IdpComponent: FC<PropsFromRedux> = ({ currentUser }) => {
         selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
         mode="horizontal"
       />
-      <RouteList routes={routes} urlPrefix="" />
+      <RouteList routes={[fallbackRoute, ...routes]} urlPrefix="" />
     </div>
   )
 }

@@ -182,6 +182,12 @@ sk:
             manage: Ovládať
             title: Šablóny IDP
             view: Pohľad
+          interviewQuestions:
+            export: Export
+            import: Import
+            manage: Manažment
+            title: Otázky k pohovoru pre IDP
+            view: Zobraziť
           jobRoles:
             export_translations: Export pracovných rolí Preklady
             import_translations: Import pracovných rolí Preklady

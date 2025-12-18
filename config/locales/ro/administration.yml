@@ -182,6 +182,12 @@ ro:
             manage: Acțiuni
             title: Șabloane IDP
             view: Vedere
+          interviewQuestions:
+            export: Export
+            import: Import
+            manage: Gestionează
+            title: Întrebări de interviu pentru IDP
+            view: Vizualizare
           jobRoles:
             export_translations: Exportați Rolul postului Traduceri
             import_translations: Import Rolul postului Traduceri

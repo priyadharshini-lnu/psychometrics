@@ -182,6 +182,12 @@ en-US:
             manage: Manage
             title: IDP Templates
             view: View
+          interviewQuestions:
+            export: Export
+            import: Import
+            manage: Manage
+            title: IDP Interview Questions
+            view: View
           jobRoles:
             export_translations: Export Job Roles Translations
             import_translations: Import Job Roles Translations
