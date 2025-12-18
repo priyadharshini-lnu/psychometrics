@@ -182,6 +182,12 @@ cs:
             manage: Správa
             title: Šablony IDP
             view: Zobrazit
+          interviewQuestions:
+            export: Export
+            import: Import
+            manage: Spravujte
+            title: Otázky k pohovoru s vnitřně vysídlenými pracovníky
+            view: Zobrazit
           jobRoles:
             export_translations: Export pracovních rolí Překlady
             import_translations: Import pracovních rolí Překlady

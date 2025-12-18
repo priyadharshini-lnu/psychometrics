@@ -182,6 +182,12 @@ ar:
             manage: إدارة
             title: قوالب IDP
             view: عرض
+          interviewQuestions:
+            export: التصدير
+            import: الاستيراد
+            manage: الإدارة
+            title: أسئلة مقابلات IDP
+            view: منظر
           jobRoles:
             export_translations: تصدير ترجمات الأدوار الوظيفية
             import_translations: استيراد ترجمات الأدوار الوظيفية

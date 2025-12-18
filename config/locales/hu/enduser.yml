@@ -12,6 +12,13 @@ hu:
     development: Fejlesztés
     direct_reportees: Közvetlen beosztottak
     home: Irányítópult
+    idp_loading_fifth_step: Fejlesztési műveletek lekérése a sablonból
+    idp_loading_first_step: Az értékelési jelentés elemzése
+    idp_loading_fourth_step: Megfelelő készségek kiválasztása
+    idp_loading_second_step: A csevegésben említett preferenciáid azonosítása
+    idp_loading_secondary_text: Nyugodtan lépj távol. A terved készen lesz, amikor visszatérsz.
+    idp_loading_sixth_step: Fejlesztési intézkedések létrehozása
+    idp_loading_third_step: Külső jelentés áttekintése
     idp_plan_approval_note: Jóváhagyási megjegyzés
     idp_retake_steps_continue_with_this_information: Folytasd ezzel az információval
     insights: Betekintés

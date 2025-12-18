@@ -182,6 +182,12 @@ hu:
             manage: Kezel
             title: IDP-sablonok
             view: Nézet
+          interviewQuestions:
+            export: Export
+            import: Import
+            manage: Menedzsd
+            title: IDP interjúkérdések
+            view: Kilátás
           jobRoles:
             export_translations: Exportálás munkakörök fordítások
             import_translations: Munkakörök importálása Fordítások

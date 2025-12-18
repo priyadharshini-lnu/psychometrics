@@ -182,6 +182,12 @@ sr-Latn:
             manage: Upravljanje
             title: IDP Šabloni
             view: Prikaz
+          interviewQuestions:
+            export: Izvoz
+            import: Uvoz
+            manage: Upravljanje
+            title: Pitanja za intervju za IDP
+            view: Pretraga
           jobRoles:
             export_translations: Izvezi prevode radnih uloga
             import_translations: Uvezi prevode radnih uloga

@@ -12,6 +12,13 @@ pl:
     development: Rozwój
     direct_reportees: Bezpośredni podwładni
     home: Deska rozdzielcza
+    idp_loading_fifth_step: Pobieranie akcji rozwojowych z szablonu
+    idp_loading_first_step: Analiza raportu z oceny
+    idp_loading_fourth_step: Wybór odpowiednich umiejętności
+    idp_loading_second_step: Identyfikacja preferencji wymienionych na czacie
+    idp_loading_secondary_text: Śmiało możesz się odsunąć. Twój plan będzie gotowy, gdy wrócisz.
+    idp_loading_sixth_step: Tworzenie działań rozwojowych
+    idp_loading_third_step: Przeglądanie Twojego raportu zewnętrznego
     idp_plan_approval_note: Notatka zatwierdzenia
     idp_retake_steps_continue_with_this_information: Kontynuuj tę informację
     insights: Obserwacje

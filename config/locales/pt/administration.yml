@@ -182,6 +182,12 @@ pt:
             manage: Gerenciar
             title: Modelos de PDI
             view: Ver
+          interviewQuestions:
+            export: Exportação
+            import: Importação
+            manage: Gerenciar
+            title: Perguntas para Entrevistas de IDP
+            view: Visão
           jobRoles:
             export_translations: Exportação Funções de trabalho Traduções
             import_translations: Importar traduções de funções de trabalho

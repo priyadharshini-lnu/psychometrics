@@ -182,6 +182,12 @@ id:
             manage: Atur
             title: Template IDP
             view: Melihat
+          interviewQuestions:
+            export: Ekspor
+            import: Impor
+            manage: Kelola
+            title: Pertanyaan Wawancara IDP
+            view: Lihat
           jobRoles:
             export_translations: Penerjemahan Peran Pekerjaan Ekspor
             import_translations: Impor Terjemahan Peran Pekerjaan

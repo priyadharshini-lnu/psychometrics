@@ -12,6 +12,13 @@ es-ES:
     development: Desarrollo
     direct_reportees: Subordinados Directos
     home: Cuadro de mandos
+    idp_loading_fifth_step: Obtención de acciones de desarrollo desde la plantilla
+    idp_loading_first_step: Análisis de tu informe de evaluación
+    idp_loading_fourth_step: Selección de habilidades relevantes
+    idp_loading_second_step: Identificar tus preferencias mencionadas en el chat
+    idp_loading_secondary_text: Siéntete libre de apartarte. Tu plan estará listo cuando regreses.
+    idp_loading_sixth_step: Creación de acciones de desarrollo
+    idp_loading_third_step: Revisión de tu informe externo
     idp_plan_approval_note: Nota de Aprobación
     idp_retake_steps_continue_with_this_information: Continúa con esta información
     insights: Información

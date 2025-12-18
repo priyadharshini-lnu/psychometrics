@@ -182,6 +182,12 @@ th:
             manage: จัดการ
             title: เทมเพลต IDP
             view: ดู
+          interviewQuestions:
+            export: ส่งออก
+            import: นําเข้า
+            manage: จัดการ
+            title: คําถามสัมภาษณ์ IDP
+            view: ดู
           jobRoles:
             export_translations: ส่งออกบทบาทงานแปล
             import_translations: นำเข้าการแปลบทบาทงาน

@@ -182,6 +182,12 @@ fr:
             manage: Gérer
             title: Modèles de PDI
             view: Voir
+          interviewQuestions:
+            export: Exportation
+            import: Importation
+            manage: Gérer
+            title: Questions d’entretien pour les IDP
+            view: Vue
           jobRoles:
             export_translations: Exportation Rôles professionnels Traductions
             import_translations: Importation Rôles professionnels Traductions

@@ -12,6 +12,13 @@ fr:
     development: Développement
     direct_reportees: Subordonnés
     home: Tableau de bord
+    idp_loading_fifth_step: Récupération des actions de développement à partir du modèle
+    idp_loading_first_step: Analyse de votre rapport d’évaluation
+    idp_loading_fourth_step: Sélection des compétences pertinentes
+    idp_loading_second_step: Identifier vos préférences mentionnées dans le chat
+    idp_loading_secondary_text: N’hésitez pas à vous éloigner. Votre plan sera prêt à votre retour.
+    idp_loading_sixth_step: Création d’actions de développement
+    idp_loading_third_step: Révision de votre rapport externe
     idp_plan_approval_note: Note d'approbation
     idp_retake_steps_continue_with_this_information: Poursuivez avec ces informations
     insights: Perspectives

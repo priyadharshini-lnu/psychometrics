@@ -182,6 +182,12 @@ zh-Hant:
             manage: 管理
             title: IDP 範本
             view: 檢視
+          interviewQuestions:
+            export: 出口
+            import: 進口
+            manage: 管理
+            title: 流離失所者面試問題
+            view: 景觀
           jobRoles:
             export_translations: 匯出工作角色翻譯
             import_translations: 匯入工作角色翻譯

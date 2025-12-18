@@ -40,7 +40,8 @@ const IGNORE_VENDORS = [
   'powerbi-client',
   'react-pdf',
   '@thetalententerprise/interactive-assessments',
-  'dayjs'
+  'dayjs',
+  "motion"
 ]
 const server: ServerOptions = SSL ? {
   https: {

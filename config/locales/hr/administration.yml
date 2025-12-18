@@ -182,6 +182,12 @@ hr:
             manage: Upravljanje
             title: Predlošci IDP-a
             view: Pregled
+          interviewQuestions:
+            export: Izvoz
+            import: Uvoz
+            manage: Upravljaj
+            title: Pitanja za intervju za IDP
+            view: Pogled
           jobRoles:
             export_translations: Izvoz prijevoda radnih uloga
             import_translations: Uvoz prijevoda radnih uloga

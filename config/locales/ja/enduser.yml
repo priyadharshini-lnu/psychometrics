@@ -12,6 +12,13 @@ ja:
     development: 開発
     direct_reportees: 直下のレポート
     home: ダッシュボード
+    idp_loading_fifth_step: テンプレートから開発アクションを取得する
+    idp_loading_first_step: 評価報告書の分析
+    idp_loading_fourth_step: 関連スキルの選定
+    idp_loading_second_step: チャットで言及されたあなたの好みを特定する
+    idp_loading_secondary_text: 遠く離れていいよ。戻ってくるときには計画が整っている。
+    idp_loading_sixth_step: 開発アクションの作成
+    idp_loading_third_step: 外部報告書のレビュー
     idp_plan_approval_note: 承認メモ
     idp_retake_steps_continue_with_this_information: この情報を続けてください
     insights: インサイト

@@ -182,6 +182,12 @@ zh:
             manage: 管理
             title: IDP 模板
             view: 查看
+          interviewQuestions:
+            export: 出口
+            import: 进口
+            manage: 管理
+            title: 流离失所者面试问题
+            view: 景观
           jobRoles:
             export_translations: 导出工作角色翻译
             import_translations: 导入工作角色翻译
