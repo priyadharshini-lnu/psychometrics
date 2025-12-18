@@ -51,11 +51,6 @@ const routes = [
   },
   {
     path: '/users/password',
-    main: ResetPassword,
-    exact: true,
-  },
-  {
-    path: '/users/password',
     main: SetPassword,
     exact: true,
   },

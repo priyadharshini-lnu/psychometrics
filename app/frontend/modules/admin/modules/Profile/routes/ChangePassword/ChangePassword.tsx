@@ -25,6 +25,7 @@ const ChangePassword: React.FC = () => {
     recaptchaToken,
     recaptchaReady,
     recaptchaWidgetId,
+    resetRecaptcha,
   } = useRecaptcha({ formInstance: form, disable_recaptcha })
 
   const updateResource = (body: Record<string, string | undefined | null>) => collectionAction({
@@ -37,6 +38,9 @@ const ChangePassword: React.FC = () => {
 
   const handleChangePassword = values => updateResource(values).then(() => {
     location.href = '/'
+  }).catch((error) => {
+    resetRecaptcha()
+    throw error
   })
 
   return (

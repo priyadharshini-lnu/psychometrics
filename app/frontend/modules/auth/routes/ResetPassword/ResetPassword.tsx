@@ -9,8 +9,9 @@ import styles from '../Registration/styles.less'
 import { RootState } from '../../core/reducers'
 import { InputField } from '../../components/InputField'
 import { Flash } from '~/components/Flash'
+import { useRecaptcha } from '~/hooks/useRecaptcha'
 
-const { I18n } = window
+const { I18n, PsyGlobalState } = window
 
 export type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
@@ -18,6 +19,17 @@ type Props = PropsFromRedux
 const ResetPasswordComponent: React.FC<Props> = ({
   projectConfig, csrfToken, user, errors,
 }) => {
+  const [form] = Form.useForm()
+
+  useRecaptcha({
+    formInstance: form,
+    disable_recaptcha: !PsyGlobalState.recaptchaSiteKey,
+  })
+
+  const handleSubmit = () => {
+    (document.getElementById('form-reset') as HTMLFormElement).submit()
+  }
+
   if (user.reset_password_token) { return null }
   return (
     <div className={styles.container}>
@@ -32,11 +44,12 @@ const ResetPasswordComponent: React.FC<Props> = ({
       )}
       <Flash />
       <Form
+        form={form}
         id="form-reset"
         layout="vertical"
         action={projectConfig.id ? '/users/password' : '/administration/passwords'}
         method="post"
-        onFinish={() => (document.getElementById('form-reset') as HTMLFormElement).submit()}
+        onFinish={handleSubmit}
       >
         <Input type="hidden" name="authenticity_token" value={csrfToken} />
         <InputField
@@ -53,7 +66,9 @@ const ResetPasswordComponent: React.FC<Props> = ({
           htmlType="submit"
           className={styles.submit}
           block
+          id="recaptcha-button"
         />
+        <Input type="hidden" name="recaptcha_token" />
         <div>
           {' '}
           <Link to="/users/sign_in">

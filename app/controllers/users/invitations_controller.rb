@@ -4,6 +4,7 @@ module Users
   class InvitationsController < Devise::InvitationsController
     layout 'devise'
     prepend_before_action :sign_out, only: [:edit]
+    prepend_before_action :verify_recaptcha_or_render, only: [:update]
     before_action :check_if_saml_is_enforced, only: [:edit]
 
     def update
@@ -19,6 +20,17 @@ module Users
 
     def check_if_saml_is_enforced
       redirect_to(new_user_session_path) if @current_project.saml_enforced?
+    end
+
+    def verify_recaptcha_or_render
+      return if SkipRecaptcha.call!(request)
+
+      unless verify_recaptcha(response: params[:recaptcha_token])
+        flash[:alert] = I18n.t('administration.administrator.sessions.errors.recaptcha')
+        self.resource = resource_class.new
+        resource.invitation_token = params[:user][:invitation_token]
+        render :edit
+      end
     end
   end
 end
