@@ -20,6 +20,7 @@ vi:
     ai_assistants_template_render_failed: Không thể hiển thị mẫu
     ai_assistants_test_render: Kết xuất thử nghiệm
     ai_assistants_test_render_tooltip: Kiểm tra mẫu lời nhắc của bạn với dữ liệu chiến dịch để kiểm tra nội dung sẽ được gửi đến trợ lý AI.
+    ai_assisted_idp_feature_disabled: Tính năng AI Assisted IDP đã bị vô hiệu hóa cho dự án này.
     assessments: Đánh giá
     assessments_reports: Đánh giá & Báo cáo
     assessor_dashboard: Bảng điều khiển đánh giá viên
@@ -63,6 +64,8 @@ vi:
     empty_csv_file: Tệp CSV không chứa bất kỳ dữ liệu nào.
     evaluation_status: Trạng thái đánh giá
     evaluation_status_not_done: Trạng thái đánh giá không phải là "Xong" đối với một hoặc nhiều đối tượng được chọn. Hãy đảm bảo rằng tất cả người dùng được chọn đã hoàn thành đánh giá hoặc đánh dấu là xong.
+    fill_empty_score_msg: Điền vào tất cả các điểm cuối cùng trước khi lưu.
+    final_score_empty_msg: Điểm cuối cùng không thể trống.
     idp_plan_reset_success: Kế hoạch đã được đặt lại thành công
     import_ai_artifacts: Nhập hiện vật AI
     import_csv_error: 'Hàng %{index}: người dùng có %{email} email không có trong chiến dịch này'

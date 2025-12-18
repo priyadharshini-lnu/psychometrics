@@ -1962,6 +1962,7 @@ bg:
         udpated_at: Последна актуализация на
       configuration: Конфигурация
       errors:
+        factor_code_or_field_name_required: factor_code или field_name е задължително
         factor_not_found: не е открита в обхвата на оценката
         inclusion: 'невалиден тип, валидни типове: %{values}'
         not_found: Не е намерен

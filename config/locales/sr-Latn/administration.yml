@@ -1962,6 +1962,7 @@ sr-Latn:
         udpated_at: Poslednje ažuriranje u
       configuration: Konfiguracija
       errors:
+        factor_code_or_field_name_required: factor_code ili field_name je potrebno
         factor_not_found: nije pronađen u obimu procene
         inclusion: 'nevažeći tip, važeći tipovi: %{values}'
         not_found: nije pronađeno

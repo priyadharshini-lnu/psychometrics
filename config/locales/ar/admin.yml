@@ -20,6 +20,7 @@ ar:
     ai_assistants_template_render_failed: فشل في عرض القالب
     ai_assistants_test_render: اختبار العرض
     ai_assistants_test_render_tooltip: اختبر قالب التوجيه الخاص بك باستخدام بيانات الحملة لمعرفة ما سيتم إرساله إلى مساعد الذكاء الاصطناعي.
+    ai_assisted_idp_feature_disabled: تم تعطيل ميزة الذكاء الاصطناعي المساعد للنزول (IDP) لهذا المشروع.
     assessments: التقييمات
     assessments_reports: التقييمات والتقارير
     assessor_dashboard: لوحة معلومات المقيم
@@ -63,6 +64,8 @@ ar:
     empty_csv_file: ملف CSV لا يحتوي على أي بيانات.
     evaluation_status: حالة التقييم
     evaluation_status_not_done: حالة التقييم ليست 'مكتملة' لشخص أو أكثر من المشاركات المختارة. يرجى التأكد من أن جميع المستخدمين المختارين قد أكملوا التقييمات أو وضع علامة على أنهم تم.
+    fill_empty_score_msg: املأ جميع الدرجات النهائية قبل الحفظ.
+    final_score_empty_msg: لا يمكن أن تكون النتيجة النهائية فارغة.
     idp_plan_reset_success: تم إعادة ضبط الخطة بنجاح
     import_ai_artifacts: استيراد القطع الأثرية الذكاء الاصطناعي
     import_csv_error: 'الصف %{index}: مستخدم لديه بريد إلكتروني %{email} غير موجود في هذه الحملة'

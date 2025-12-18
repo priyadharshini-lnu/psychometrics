@@ -1962,6 +1962,7 @@ cs:
         udpated_at: Poslední aktualizace
       configuration: Konfigurace
       errors:
+        factor_code_or_field_name_required: factor_code nebo field_name je vyžadováno
         factor_not_found: není v rozsahu posouzení
         inclusion: 'neplatný typ, platné typy: %{values}'
         not_found: nenalezeno

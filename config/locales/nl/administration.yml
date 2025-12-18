@@ -1962,6 +1962,7 @@ nl:
         udpated_at: Laatst bijgewerkt op
       configuration: Configuratie
       errors:
+        factor_code_or_field_name_required: factor_code of field_name is vereist
         factor_not_found: niet gevonden in het beoordelingsgebied
         inclusion: 'ongeldig type, geldige types: %{values}'
         not_found: niet gevonden

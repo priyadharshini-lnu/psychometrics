@@ -1962,6 +1962,7 @@ zh-Hant:
         udpated_at: 最後更新日期
       configuration: 組態
       errors:
+        factor_code_or_field_name_required: 需要factor_code或field_name
         factor_not_found: 未在評估範圍內發現
         inclusion: 無效類型，有效類型： %{values}
         not_found: 未找到

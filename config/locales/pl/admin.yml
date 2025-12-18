@@ -20,6 +20,7 @@ pl:
     ai_assistants_template_render_failed: Nie udało się wyrenderować szablonu
     ai_assistants_test_render: Renderowanie testowe
     ai_assistants_test_render_tooltip: Przetestuj szablon promptu z danymi kampanii, aby sprawdzić, co zostanie wysłane do asystenta AI.
+    ai_assisted_idp_feature_disabled: Funkcja wspomaganego IDP przez AI została wyłączona w tym projekcie.
     assessments: Oceny
     assessments_reports: Oceny i raporty
     assessor_dashboard: Pulpit nawigacyjny asesora
@@ -63,6 +64,8 @@ pl:
     empty_csv_file: Plik CSV nie zawiera żadnych danych.
     evaluation_status: Status oceny
     evaluation_status_not_done: Status oceny nie jest "Zakończony" dla jednego lub więcej wybranych przedmiotów. Prosimy o to, by wszyscy wybrani użytkownicy ukończyli oceny lub oznaczyli je jako ukończone.
+    fill_empty_score_msg: Wypełnij wszystkie końcowe wyniki przed zapisem.
+    final_score_empty_msg: Ostateczny wynik nie może być pusty.
     idp_plan_reset_success: Plan został pomyślnie zresetowany
     import_ai_artifacts: Import artefaktów AI
     import_csv_error: 'Wiersz %{index}: użytkownik z %{email} e-mail nie występuje w tej kampanii'

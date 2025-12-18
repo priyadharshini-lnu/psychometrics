@@ -1964,6 +1964,7 @@ hu:
         udpated_at: Utolsó frissítés dátuma
       configuration: Konfiguráció
       errors:
+        factor_code_or_field_name_required: factor_code vagy field_name szükséges
         factor_not_found: nem található meg az értékelés körében
         inclusion: 'érvénytelen típus, érvényes típusok: %{values}'
         not_found: nem található

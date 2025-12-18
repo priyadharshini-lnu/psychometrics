@@ -20,6 +20,7 @@ ro:
     ai_assistants_template_render_failed: Nu s-a redat șablonul
     ai_assistants_test_render: Randare de testare
     ai_assistants_test_render_tooltip: Testează-ți șablonul de prompt cu date de campanie pentru a vedea ce va fi trimis asistentului AI.
+    ai_assisted_idp_feature_disabled: Funcția IDP asistată de AI a fost dezactivată pentru acest proiect.
     assessments: Evaluări
     assessments_reports: Evaluări și rapoarte
     assessor_dashboard: Tabloul de bord al evaluatorului
@@ -63,6 +64,8 @@ ro:
     empty_csv_file: Fișierul CSV nu conține niciun fel de date.
     evaluation_status: Stare de evaluare
     evaluation_status_not_done: Starea evaluării nu este "Finalizată" pentru unul sau mai mulți subiecte selectate. Vă rugăm să vă asigurați că toți utilizatorii selectați au finalizat evaluările sau să marcheze ca fiind făcute.
+    fill_empty_score_msg: Completează toate scorurile finale înainte de a salva.
+    final_score_empty_msg: Scorul final nu poate fi gol.
     idp_plan_reset_success: Planul a fost resetat cu succes
     import_ai_artifacts: Importul artefactelor AI
     import_csv_error: 'Rândul %{index}: utilizator cu email %{email} nu face parte din această campanie'

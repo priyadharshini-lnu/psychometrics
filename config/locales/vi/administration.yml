@@ -1962,6 +1962,7 @@ vi:
         udpated_at: Cập nhật lần cuối lúc
       configuration: Cấu hình
       errors:
+        factor_code_or_field_name_required: factor_code hoặc field_name là bắt buộc
         factor_not_found: không nằm trong phạm vi đánh giá
         inclusion: 'loại không hợp lệ, loại hợp lệ: %{values}'
         not_found: Không tìm thấy

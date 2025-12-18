@@ -20,6 +20,7 @@ sl:
     ai_assistants_template_render_failed: Predloga ni uspela izrisati
     ai_assistants_test_render: Testni upodabljanje
     ai_assistants_test_render_tooltip: Preizkusite predlogo za poziv s podatki o kampanji, da preverite, kaj bo poslano AI asistentu.
+    ai_assisted_idp_feature_disabled: Funkcija AI Assisted IDP je bila za ta projekt onemogočena.
     assessments: Ocenjevanja
     assessments_reports: Ocenjevanja in poročila
     assessor_dashboard: Nadzorna plošča ocenjevalca
@@ -63,6 +64,8 @@ sl:
     empty_csv_file: CSV datoteka ne vsebuje nobenih podatkov.
     evaluation_status: Status ocenjevanja
     evaluation_status_not_done: Status ocenjevanja ni 'končan' za enega ali več izbranih predmetov. Prosimo, poskrbite, da so vsi izbrani uporabniki opravili ocene ali označili kot opravljeno.
+    fill_empty_score_msg: Pred shranjevanjem izpolnite vse končne rezultate.
+    final_score_empty_msg: Končni rezultat ne sme biti prazen.
     idp_plan_reset_success: Načrt je bil uspešno ponastavljen
     import_ai_artifacts: Uvoz AI artefaktov
     import_csv_error: 'Vrstica %{index}: uporabnik z e-poštnim %{email} ni v tej kampanji'

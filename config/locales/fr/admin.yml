@@ -20,6 +20,7 @@ fr:
     ai_assistants_template_render_failed: Échec du rendu du modèle
     ai_assistants_test_render: Rendu de test
     ai_assistants_test_render_tooltip: Testez votre modèle de prompt avec les données de la campagne pour vérifier ce qui sera envoyé à l’assistant IA.
+    ai_assisted_idp_feature_disabled: La fonctionnalité d’IDP assistée par IA a été désactivée pour ce projet.
     assessments: Évaluations
     assessments_reports: Évaluations et rapports
     assessor_dashboard: Tableau de bord de l'évaluateur
@@ -63,6 +64,8 @@ fr:
     empty_csv_file: Le fichier CSV ne contient aucune donnée.
     evaluation_status: Statut d’évaluation
     evaluation_status_not_done: Le statut d’évaluation n’est pas « Terminé » pour un ou plusieurs sujets sélectionnés. Veuillez vous assurer que tous les utilisateurs sélectionnés ont terminé les évaluations ou les marquent comme terminées.
+    fill_empty_score_msg: Remplissez tous les scores finaux avant de sauvegarder.
+    final_score_empty_msg: Le score final ne peut pas être vide.
     idp_plan_reset_success: Le plan a été réinitialisé avec succès
     import_ai_artifacts: Importer des artefacts IA
     import_csv_error: 'Ligne %{index} : utilisateur avec un %{email} email n’est pas dans cette campagne'

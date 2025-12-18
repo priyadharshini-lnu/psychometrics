@@ -1962,6 +1962,7 @@ ko:
         udpated_at: 마지막 업데이트 날짜
       configuration: 구성
       errors:
+        factor_code_or_field_name_required: factor_code 또는 field_name 요구됩니다
         factor_not_found: 평가 범위에서 찾을 수 없음
         inclusion: '잘못된 유형, 유효한 유형: %{values}'
         not_found: 찾을 수 없음

@@ -20,6 +20,7 @@ sk:
     ai_assistants_template_render_failed: Nepodarilo sa vykresliť šablónu
     ai_assistants_test_render: Testovací render
     ai_assistants_test_render_tooltip: Otestujte šablónu promptu s údajmi o kampani, aby ste zistili, čo bude odoslané AI asistentovi.
+    ai_assisted_idp_feature_disabled: Funkcia AI asistovaného IDP bola pre tento projekt deaktivovaná.
     assessments: Hodnotenia
     assessments_reports: Hodnotenia a správy
     assessor_dashboard: Informačný panel hodnotiteľa
@@ -63,6 +64,8 @@ sk:
     empty_csv_file: CSV súbor neobsahuje žiadne údaje.
     evaluation_status: Stav hodnotenia
     evaluation_status_not_done: Status hodnotenia nie je "Dokončený" pre jeden alebo viac vybraných predmetov. Prosím, uistite sa, že všetci vybraní používatelia už dokončili hodnotenia alebo označili ako splnené.
+    fill_empty_score_msg: Vyplňte všetky konečné skóre pred uložením.
+    final_score_empty_msg: Konečné skóre nemôže byť prázdne.
     idp_plan_reset_success: Plán bol úspešne resetovaný
     import_ai_artifacts: Import AI artefaktov
     import_csv_error: 'Riadok %{index}: používateľ s e-mailovým %{email} nie je v tejto kampani'

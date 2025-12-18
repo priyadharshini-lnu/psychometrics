@@ -1962,6 +1962,7 @@ pl:
         udpated_at: Ostatnia aktualizacja o
       configuration: Konfiguracja
       errors:
+        factor_code_or_field_name_required: factor_code lub field_name jest wymagane
         factor_not_found: nie znaleziono w zakresie oceny
         inclusion: 'Nieprawidłowy typ, prawidłowe typy: %{values}'
         not_found: Nie znaleziono

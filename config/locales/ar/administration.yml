@@ -1962,6 +1962,7 @@ ar:
         udpated_at: آخر تعديل في
       configuration: التكوين
       errors:
+        factor_code_or_field_name_required: factor_code أو field_name مطلوب
         factor_not_found: غير موجود في نطاق التقييم
         inclusion: 'نوع غير صالح، الأنواع الصالحة: %{values}'
         not_found: غير موجود

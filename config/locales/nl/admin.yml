@@ -20,6 +20,7 @@ nl:
     ai_assistants_template_render_failed: Sjabloon niet kunnen renderen
     ai_assistants_test_render: Testrendering
     ai_assistants_test_render_tooltip: Test je prompttemplate met campagnedata om te zien wat er naar de AI-assistent wordt gestuurd.
+    ai_assisted_idp_feature_disabled: De AI-ondersteunde IDP-functie is voor dit project uitgeschakeld.
     assessments: Beoordeling
     assessments_reports: Beoordelingen en rapporten
     assessor_dashboard: Dashboard voor beoordelaars
@@ -63,6 +64,8 @@ nl:
     empty_csv_file: Het CSV-bestand bevat geen gegevens.
     evaluation_status: Evaluatiestatus
     evaluation_status_not_done: De evaluatiestatus is niet 'Klaar' voor één of meer geselecteerde proefpersonen. Zorg ervoor dat alle geselecteerde gebruikers evaluaties hebben afgerond of markeer als voltooid.
+    fill_empty_score_msg: Vul alle eindscores in voordat je opslaat.
+    final_score_empty_msg: De eindscore mag niet leeg zijn.
     idp_plan_reset_success: Het plan is succesvol gereset.
     import_ai_artifacts: AI-artefacten importeren
     import_csv_error: 'Rij %{index}: gebruiker met e-mailadres %{email} niet in deze campagne zit'
