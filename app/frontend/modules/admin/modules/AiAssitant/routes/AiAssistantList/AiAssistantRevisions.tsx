@@ -9,7 +9,7 @@ import { SafeHTML } from '~/components/SafeHTML'
 import { useResources } from '~/hooks/useResources/useResources'
 import '~/libs/htmldiff.cjs'
 import {
-  AiAssistantTR, AIAssistantRevisionTR, AIAssistantRevision,
+  AiAssistantTR, AIAssistantRevisionsTR, AIAssistantRevision,
 } from '~/modules/admin/modules/AiAssitant/core/aiAssistant'
 import styles from './styles.less'
 
@@ -45,7 +45,7 @@ export const AiAssistantRevisions: React.FC<Props> = ({ aiAssistantId, onSelect 
       id: aiAssistantId,
       action: 'revisions',
       method: 'get',
-      responseType: AIAssistantRevisionTR,
+      responseType: AIAssistantRevisionsTR,
     }).then((response: AIAssistantRevision[]) => {
       setList(response)
     })
