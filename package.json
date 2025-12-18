@@ -111,6 +111,7 @@
     "medium-zoom": "^1.1.0",
     "microphone-stream": "^6.0.1",
     "mime": "^1.6.0",
+    "motion": "^12.23.26",
     "normalize.css": "^4.1.1",
     "normalizr": "^3.6.2",
     "noty": "^2.3.8",

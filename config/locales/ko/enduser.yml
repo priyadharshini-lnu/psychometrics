@@ -12,6 +12,13 @@ ko:
     development: 개발
     direct_reportees: 직접 보고서
     home: 대시보드
+    idp_loading_fifth_step: 템플릿에서 개발 액션 가져오기
+    idp_loading_first_step: 평가 보고서 분석
+    idp_loading_fourth_step: 관련 기술 선택
+    idp_loading_second_step: 채팅에서 언급된 선호도를 식별하기
+    idp_loading_secondary_text: 자유롭게 자리를 비켜도 됩니다. 네가 돌아오면 네 계획은 준비되어 있을 거야.
+    idp_loading_sixth_step: 개발 행동 생성
+    idp_loading_third_step: 외부 보고서 검토
     idp_plan_approval_note: 승인 메모
     idp_retake_steps_continue_with_this_information: 이 정보를 계속 확인하세요
     insights: 인사이트

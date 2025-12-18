@@ -12,6 +12,13 @@ bg:
     development: Развитие
     direct_reportees: Преки докладвани
     home: Табло
+    idp_loading_fifth_step: Извличане на действия за разработка от шаблона
+    idp_loading_first_step: Анализ на вашия оценъчен доклад
+    idp_loading_fourth_step: Избор на подходящи умения
+    idp_loading_second_step: Идентифициране на вашите предпочитания, споменати в чата
+    idp_loading_secondary_text: Чувствай се свободен да се отдръпнеш. Планът ти ще е готов, когато се върнеш.
+    idp_loading_sixth_step: Създаване на действия за развитие
+    idp_loading_third_step: Преглед на външния ви доклад
     idp_plan_approval_note: Бележка за одобрение
     idp_retake_steps_continue_with_this_information: Продължете с тази информация
     insights: Прозрения
