@@ -116,7 +116,6 @@ export const AddEditWebhookModal: React.FC<Props> = ({
           initialValues: {
             rateLimit: 60,
             rateLimitPeriod: 1,
-            assessmentIds: webhook?.assessments.map(a => a.id) || [],
             ...webhook,
           },
         }}
