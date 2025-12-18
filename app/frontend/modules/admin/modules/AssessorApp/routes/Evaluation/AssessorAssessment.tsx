@@ -184,7 +184,7 @@ const AssessorAssessment: React.FC<Props> = ({
           />
         )}
       </Content>
-      <AIToolbar enabled={config.project.enhanceWithAiEnabled} />
+      <AIToolbar enabled={config.project.enhanceWithAiEnabled} withSpellchecker />
     </Card>
   )
 }

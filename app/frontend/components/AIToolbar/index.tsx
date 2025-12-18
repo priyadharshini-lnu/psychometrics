@@ -10,10 +10,12 @@ import {
 } from '@ant-design/icons'
 import { useSelectionDetection } from './useSelectionDetection'
 import { useToolbarPosition } from './useToolbarPosition'
+import { useAIEditors } from './useAIEditors'
 import styles from './styles.less'
 import { AIToolbarProps, AssistantOutput } from './types'
 import { useResources } from '~/hooks/useResources'
 import Result from './Result'
+import AITrigger from './AITrigger'
 
 const { I18n } = window
 const { enhance_with_ai_enabled } = window.PsyGlobalState.features
@@ -45,7 +47,7 @@ const AI_ACTIONS = [
   },
 ]
 
-const AIToolbar: React.FC<AIToolbarProps> = ({ enabled = true }) => {
+const AIToolbar: React.FC<AIToolbarProps> = ({ enabled = true, withSpellchecker = false }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const allowEnhanceWithAi = enhance_with_ai_enabled && enabled
 
@@ -55,6 +57,7 @@ const AIToolbar: React.FC<AIToolbarProps> = ({ enabled = true }) => {
 
   const [lastAction, setLastAction] = useState<object | null>(null)
   const [lastOption, setLastOption] = useState<string | null>(null)
+  const editors = useAIEditors(enabled)
 
   const handleClose = () => {
     setVisible(false)
@@ -117,15 +120,10 @@ const AIToolbar: React.FC<AIToolbarProps> = ({ enabled = true }) => {
       + assistantOutput.result
       + element.value.substring(end)
 
-      const setter = Object.getOwnPropertyDescriptor(
-        Object.getPrototypeOf(element),
-        'value',
-      )?.set
+      element.value = newValue
 
-      setter?.call(element, newValue)
-
-      element.dispatchEvent(new Event('input', { bubbles: true }))
-      element.dispatchEvent(new Event('change', { bubbles: true }))
+      const inputEvent = new Event('input', { bubbles: true })
+      element.dispatchEvent(inputEvent)
 
       const newPos = start + assistantOutput.result.length
       element.setSelectionRange(newPos, newPos)
@@ -178,57 +176,67 @@ const AIToolbar: React.FC<AIToolbarProps> = ({ enabled = true }) => {
     }
   }
 
-  if (!visible) return null
+  if (!allowEnhanceWithAi) return null
 
   return (
-    <div
-      ref={containerRef}
-      className={`${styles.aiFloatingContainer} ${visible ? styles.visible : ''}`}
-      onMouseDown={(e) => {
-        e.preventDefault()
-        e.stopPropagation()
-      }}
-
-    >
-      <div className={
-        `${styles.aiCard} ${(view === 'result' || view === 'loading')
-          ? styles.resultContainer : ''} ${view === 'loading' ? styles.loading : ''}`
-        }
-      >
-        {view === 'menu' && (
-          <Menu
-            mode="vertical"
-            items={menuItems}
-            onClick={onMenuClick}
-            selectable={false}
-            triggerSubMenuAction="hover"
-            style={{ border: 'none', width: '100%' }}
-          />
-        )}
-
-        {view === 'loading' && (
-          <>
-            <Spin />
-            <Typography.Text style={{ marginLeft: 8 }}>
-              {I18n.t('admin.toolbar_result_generating')}
-            </Typography.Text>
-          </>
-        )}
-
-        {view === 'result' && (
-          <Result
-            handleClose={handleClose}
-            assistantOutput={assistantOutput}
-            handleCopy={handleCopy}
-            handleReplace={handleReplace}
-            handleTryAgain={handleTryAgain}
-            error={error}
-          />
-        )}
-      </div>
-    </div>
-
+    <>
+      {editors.map((editorContainer, index) => (
+        <AITrigger
+          key={index}
+          container={editorContainer}
+          withSpellchecker={withSpellchecker}
+        />
+      ))}
+      {visible
+     && (
+       <div
+         ref={containerRef}
+         className={`${styles.aiFloatingContainer} ${visible ? styles.visible : ''}`}
+         onMouseDown={(e) => {
+           e.preventDefault()
+           e.stopPropagation()
+         }}
+       >
+         <div className={
+       `${styles.aiCard} ${(view === 'result' || view === 'loading')
+         ? styles.resultContainer : ''} ${view === 'loading' ? styles.loading : ''}`
+       }
+         >
+           {view === 'menu' && (
+             <Menu
+               mode="vertical"
+               items={menuItems}
+               onClick={onMenuClick}
+               selectable={false}
+               triggerSubMenuAction="hover"
+               style={{ border: 'none', width: '100%' }}
+             />
+           )}
+           {view === 'loading' && (
+             <>
+               <Spin />
+               <Typography.Text style={{ marginLeft: 8 }}>
+                 {I18n.t('admin.toolbar_result_generating')}
+               </Typography.Text>
+             </>
+           )}
+           {view === 'result' && (
+             <Result
+               handleClose={handleClose}
+               assistantOutput={assistantOutput}
+               handleCopy={handleCopy}
+               handleReplace={handleReplace}
+               handleTryAgain={handleTryAgain}
+               error={error}
+             />
+           )}
+         </div>
+       </div>
+     )
+}
+    </>
   )
 }
+
 
 export default AIToolbar

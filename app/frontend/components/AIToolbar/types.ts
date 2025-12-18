@@ -25,6 +25,7 @@ export interface Rect {
 
 export interface AIToolbarProps {
   enabled?: boolean;
+  withSpellchecker?: boolean;
 }
 
 export type AssistantOutput = {
