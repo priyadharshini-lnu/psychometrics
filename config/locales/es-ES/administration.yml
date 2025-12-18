@@ -3550,7 +3550,7 @@ es-ES:
           less_than_or_equal: Menor o igual que
           not_equal_to: No es igual a
         prefixes:
-          and: Y
+          and: "Y"
           or: O
         prevent_value_overlap: Evitar la superposición de valores
         randomize_answers_order: Orden de respuestas aleatorias
