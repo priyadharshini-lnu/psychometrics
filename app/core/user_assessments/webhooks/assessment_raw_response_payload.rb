@@ -83,7 +83,7 @@ module UserAssessments
       end
 
       def build_answer_object(label, answer)
-        value = answer == '' ? nil : answer
+        value = ['', nil].include?(answer) ? nil : Array.wrap(answer)
         return { value: value } if label.blank?
 
         { label: label, value: value }
