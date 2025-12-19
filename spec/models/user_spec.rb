@@ -140,4 +140,117 @@ RSpec.describe User, type: :model do
       expect(regular_user.saml_enforced_for_admins?).to eq(false)
     end
   end
+
+  describe '#invite!' do
+    let(:invited_by) { create(:superadmin) }
+    let(:membership) { create(:membership) }
+
+    before do
+      allow(InvitationMailer).to receive(:link_to_client).and_return(double(deliver_later: true))
+      allow(InvitationMailer).to receive(:invite_admin).and_return(double(deliver_later: true))
+    end
+
+    context 'when user is not an admin' do
+      let(:regular_user) { create(:user) }
+
+      it 'returns nil and does not send invitation' do
+        result = regular_user.invite!(invited_by, membership)
+
+        expect(result).to be_nil
+        expect(InvitationMailer).not_to have_received(:link_to_client)
+        expect(InvitationMailer).not_to have_received(:invite_admin)
+      end
+    end
+
+    context 'when user is a superadmin' do
+      let(:superadmin) { create(:superadmin) }
+
+      context 'and user has already signed in before' do
+        before do
+          superadmin.update!(sign_in_count: 1, invitation_accepted_at: 1.day.ago)
+        end
+
+        it 'sends link to client email' do
+          superadmin.invite!(invited_by, membership)
+
+          expect(InvitationMailer).to have_received(:link_to_client).with(superadmin.id, membership)
+        end
+      end
+
+      context 'and user has not signed in before' do
+        before do
+          superadmin.update!(sign_in_count: 0, invitation_token: nil, invitation_sent_at: nil)
+        end
+
+        it 'sends admin invitation email' do
+          allow(superadmin).to receive(:generate_invitation_token!)
+
+          superadmin.invite!(invited_by, membership)
+
+          expect(InvitationMailer).to have_received(:invite_admin).with(superadmin.id, anything)
+        end
+
+        it 'skips devise invitation' do
+          expect(superadmin).to receive(:skip_invitation=).with(true)
+          superadmin.invite!(invited_by, membership)
+        end
+      end
+
+      context 'and user is already invited to sign up' do
+        before do
+          superadmin.update!(invitation_token: 'some_token', invitation_sent_at: 1.hour.ago)
+        end
+
+        it 'returns nil and does not send any email' do
+          result = superadmin.invite!(invited_by, membership)
+
+          expect(result).to be_nil
+          expect(InvitationMailer).not_to have_received(:link_to_client)
+          expect(InvitationMailer).not_to have_received(:invite_admin)
+        end
+      end
+    end
+
+    context 'when user is a client admin' do
+      let(:client_admin) { create(:client_admin) }
+
+      before do
+        client_admin.update!(sign_in_count: 0, invitation_token: nil, invitation_sent_at: nil)
+      end
+
+      it 'sends admin invitation email' do
+        client_admin.invite!(invited_by, membership)
+
+        expect(InvitationMailer).to have_received(:invite_admin).with(client_admin.id, anything)
+      end
+    end
+
+    context 'when user is a project admin' do
+      let(:project_admin) { create(:project_admin) }
+
+      before do
+        project_admin.update!(sign_in_count: 0, invitation_token: nil, invitation_sent_at: nil)
+      end
+
+      it 'sends admin invitation email' do
+        project_admin.invite!(invited_by, membership)
+
+        expect(InvitationMailer).to have_received(:invite_admin).with(project_admin.id, anything)
+      end
+    end
+
+    context 'when user is a campaign admin' do
+      let(:campaign_admin) { create(:campaign_admin) }
+
+      before do
+        campaign_admin.update!(sign_in_count: 0, invitation_token: nil, invitation_sent_at: nil)
+      end
+
+      it 'sends admin invitation email' do
+        campaign_admin.invite!(invited_by, membership)
+
+        expect(InvitationMailer).to have_received(:invite_admin).with(campaign_admin.id, anything)
+      end
+    end
+  end
 end
