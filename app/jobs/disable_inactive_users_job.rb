@@ -13,7 +13,7 @@ class DisableInactiveUsersJob < ApplicationJob
 
   def handle_inactivity_warning
     User.superadmins.
-      where(last_sign_in_at: INACTIVITY_WARNING_DAYS.days.ago.all_day).
+      where(current_sign_in_at: INACTIVITY_WARNING_DAYS.days.ago.all_day).
       where.not(disabled: true).
       each_with_index do |user, index|
       UserMailer.inactivity_warning(user).deliver_later(wait: index.minutes)
@@ -25,7 +25,7 @@ class DisableInactiveUsersJob < ApplicationJob
 
   def handle_account_disabling
     User.superadmins.
-      where('last_sign_in_at <= ?', ACCOUNT_DISABLE_DAYS.days.ago).
+      where('current_sign_in_at <= ?', ACCOUNT_DISABLE_DAYS.days.ago).
       where.not(disabled: true).
       each_with_index do |user, index|
       full_name = user.decorate.full_name

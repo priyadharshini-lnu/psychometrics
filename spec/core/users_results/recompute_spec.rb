@@ -118,6 +118,29 @@ describe UsersResults::Recompute do
     end
   end
 
+  describe 'yoodli user_assessment' do
+    let(:assessment) { create(:assessment, :yoodli) }
+    let(:report) { create(:report, :yoodli, assessments: [assessment], provider: 'yoodli') }
+    let(:user_assessment) { create(:user_assessment, assessment: assessment) }
+    let!(:yoodli_user_assessment) do
+      create(:yoodli_user_assessment, user_assessment: user_assessment, email: user_assessment.user.email)
+    end
+
+    it 'call Yoodli::ImportFromS3Service' do
+      allow(user_assessment).to receive(:completed?).and_return(true)
+      expect(Yoodli::ImportFromS3Service).to receive(:call).with(user_assessment_id: user_assessment.id)
+
+      described_class.call!(user_assessment.users_result, user_assessment.user)
+    end
+
+    it "doesn't call Yoodli::ImportFromS3Service if assessment is not_started" do
+      allow(user_assessment).to receive(:not_started?).and_return(true)
+      expect(Yoodli::ImportFromS3Service).to_not receive(:call)
+
+      described_class.call!(user_assessment.users_result, user_assessment.user)
+    end
+  end
+
   describe 'non agile user_assessment' do
     let(:assessment) { create(:assessment) }
     let(:user_assessment) { create(:user_assessment, assessment: assessment) }

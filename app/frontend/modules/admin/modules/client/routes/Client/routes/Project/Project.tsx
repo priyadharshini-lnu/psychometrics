@@ -149,7 +149,8 @@ const Project: FC<Props> = ({
     if (isSuperAdmin(currentUser)) return true
 
     const permissions = [
-      'accessProjectDevelopmentActions', 'accessIdpTemplates',
+      'accessProjectDevelopmentActions', 'accessIdpTemplates', 'accessReflectionQuestions',
+      'accessInterviewQuestions', 'manageIdpProjectSettings',
     ]
     return some(permissions, permission => currentUser.permissions[permission])
   }

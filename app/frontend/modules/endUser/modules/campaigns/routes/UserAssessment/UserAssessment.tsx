@@ -1,6 +1,6 @@
 import { useEffect, FC, useContext } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import {
   Watermark, Layout, Col, Progress, Space, ProgressProps, Button, Modal,
 } from 'antd'
@@ -81,6 +81,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
 }) => {
   const { isProctored, proctoringCheckInProgress } = useIsProctored()
   const params = useParams() as Params
+  const location = useLocation()
   useEffect(() => {
     const { edit } = qs.parse(location.search.substr(1))
     fetchAssessment(params.userAssessmentId, edit)

@@ -15,7 +15,7 @@ class DataReport < ApplicationRecord
   def self.scoped_by_client(restricted_client_subquery)
     return all if restricted_client_subquery.blank?
 
-    joins(:owner).where.not(clients: { tte_id: restricted_client_subquery })
+    where('owner_id IS NULL OR owner_id NOT IN (?)', restricted_client_subquery)
   end
 
   def update_last_updated_by

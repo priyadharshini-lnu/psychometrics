@@ -32,6 +32,7 @@ import RegenerateReportModal from '../../components/RegenerateReportModal'
 import DownloadIndividualReportModal from '~/components/DownloadIndividualReportModal'
 import CreateSubjectModal from './SubjectList/CreateSubjectModal'
 import ConvertOrCopyAsTemplateModal from './ConvertOrCopyAsTemplateModal'
+import StatusDetailsModal from '../../components/StatusDetailsModal'
 
 const MODALS = {
   FactorBenchmarkScoreModal,
@@ -41,6 +42,7 @@ const MODALS = {
   CreateSubjectModal,
   DownloadIndividualReportModal,
   ConvertOrCopyAsTemplateModal,
+  StatusDetailsModal,
 }
 
 const routes = [

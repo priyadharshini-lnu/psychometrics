@@ -3,13 +3,24 @@ zh:
   enduser:
     add_idp_plan_note: 添加备注...
     add_idp_plan_rejection_reason: 添加原因...
+    ai_idp_assistant_response_no: 不
+    ai_idp_assistant_response_upload_different_document: 我想上传一个不同的文档。
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: 是的，继续制定计划。
     approve_idp_plan: 批准计划
     bookings: 预订
     campaign: 活动
     development: 发展
     direct_reportees: 直接下属
     home: 仪表板
+    idp_loading_fifth_step: 从模板中获取开发动作
+    idp_loading_first_step: 分析你的评估报告
+    idp_loading_fourth_step: 选择相关技能
+    idp_loading_second_step: 在聊天中明确你的偏好
+    idp_loading_secondary_text: 请随意离开。你的计划会在你回来时准备好。
+    idp_loading_sixth_step: 创建开发行动
+    idp_loading_third_step: 审查您的外部报告
     idp_plan_approval_note: 批准备注
+    idp_retake_steps_continue_with_this_information: 请继续获取这些信息
     insights: 洞察
     lighthouse_assistant: 灯塔助理
     max_word_limit: 最多不能超过 %{max} 个字

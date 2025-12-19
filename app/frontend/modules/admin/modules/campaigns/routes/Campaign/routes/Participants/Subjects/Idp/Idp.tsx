@@ -11,10 +11,13 @@ import { useResources } from '~/hooks/useResources'
 import { UserIdpPlan, UserActiveIdpTemplateTR, UserActiveIdpTemplate } from
   '~/modules/admin/modules/campaigns/core/UserIdpPlan'
 import { User } from '~/modules/admin/modules/campaigns/core/user'
+import { PropsFromRedux } from './connect'
 
 const { I18n } = window
 
-export const Idp: React.FC<{}> = () => {
+const Idp: React.FC<PropsFromRedux> = ({
+  campaignPermissions,
+}) => {
   const { message } = App.useApp()
   const { campaignId, id, projectId } = useParams() as { projectId: string, campaignId: string, id: string }
   const [selectedIdpTemplate, setSelectedIdpTemplate] = useState<string | null>()
@@ -153,14 +156,16 @@ export const Idp: React.FC<{}> = () => {
             </Button>
 
 
-            <Button
-              onClick={() => {
-              // eslint-disable-next-line max-len
-                navigate(`${activeIdpPlan?.id}/step/getting_started`)
-              }}
-            >
-              {I18n.t('idp.manage_plan')}
-            </Button>
+            {campaignPermissions.manageIdpPlans && (
+              <Button
+                onClick={() => {
+                  // eslint-disable-next-line max-len
+                  navigate(`${activeIdpPlan?.id}/step/getting_started`)
+                }}
+              >
+                {I18n.t('idp.manage_plan')}
+              </Button>
+            )}
           </Flex>
 
         )}
@@ -169,3 +174,5 @@ export const Idp: React.FC<{}> = () => {
     </Flex>
   )
 }
+
+export default Idp

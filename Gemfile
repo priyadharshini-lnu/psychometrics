@@ -282,3 +282,6 @@ gem 'maxminddb'
 
 # For storing and querying vector embeddings in Postgres
 gem 'neighbor'
+
+# for prompt templating and other templating
+gem 'liquid'

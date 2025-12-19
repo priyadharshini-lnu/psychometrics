@@ -182,6 +182,12 @@ sl:
             manage: Upravljanje
             title: Predloge IDP
             view: Pogled
+          interviewQuestions:
+            export: Izvoz
+            import: Uvoz
+            manage: Upravljanje
+            title: Vprašanja za razgovor z IDP
+            view: Pogled
           jobRoles:
             export_translations: Izvoz delovnih vlog Prevodi
             import_translations: Uvoz delovnih vlog Prevodi
@@ -294,6 +300,7 @@ sl:
             view: Pogled
           userIdpPlans:
             manage: Upravljanje
+            reset: Ponastavi
             title: Uporabniški IDP načrti
             view: Pogled
           users:
@@ -897,8 +904,6 @@ sl:
       new:
         header: Prenos v velikem obsegu
       reports_unavailable: Trenutno poročila niso na voljo za prenos. Potrdite, da so poročila, ki jih želite prenesti, na voljo.
-      select_users_for_download: Za prenos poročil izberite vsaj enega uporabnika.
-      select_users_for_regenerate: Izberite vsaj enega uporabnika, da obnovi poročila.
     cable:
       notification:
         assessment_factors: Dejavniki se pridobijo
@@ -1963,6 +1968,7 @@ sl:
         udpated_at: Nazadnje posodobljeno na
       configuration: Konfiguracijo
       errors:
+        factor_code_or_field_name_required: factor_code ali field_name je potreben
         factor_not_found: ni bilo ugotovljeno v obsegu ocenjevanja
         inclusion: 'neveljavna vrsta, veljavne vrste: %{values}'
         not_found: ni mogoče najti
@@ -2065,9 +2071,6 @@ sl:
       learning_styles:
         cannot_be_blank: Ne more biti prazno
         invalid: Mora biti eden od on_the_job, structured_learning, learning_from_others
-        learning_from_others: Učenje od drugih [20]
-        on_the_job: Na delovnem mestu [70]
-        structured_learning: Strukturirano učenje [10]
       new:
         header: Novi razvojni ukrepi
       resource:
@@ -2322,11 +2325,12 @@ sl:
       behavioral_skills: Vedenjske spretnosti
       client_skills: Spretnosti strank
       delete_skill: Ali ste prepričani, da želite izbrisati spretnost, ker bo izbrisala tudi vsa povezana razvojna dejanja?
+      delete_skill_msg: Si prepričan, da želiš izbrisati to veščino? Brisanje ga bo prav tako odstranilo vse povezane razvojne akcije.
       details_updated: Podrobnosti IDP uspešno posodobljene
       development_actions:
         add_from_library: Dodajanje iz knjižnice
         completion: Zaključku
-        create_development_actions_with_ai: Ustvarite razvojne ukrepe z umetno inteligenco za %{skillName}
+        create_development_actions_with_ai: Ustvarite razvojne ukrepe z umetno inteligenco za
         create_from_ai: Ustvarjanje iz umetne inteligence
         create_my_own: Ustvari svoje
         custom: Običaj
@@ -2352,6 +2356,7 @@ sl:
         skills_required_on_publishing: Pred objavo predloge izberite veščine.
         update: Posodobitev ni dovoljena, ker je predloga IDP že povezana s paketom IDP uporabnika. Spremembe videza so bile shranjene.
       fields:
+        approval_date: Datum odobritve
         assigned_data: Dodeljeni podatki
         assigned_date: Dodeljeni datum
         completion_date: Datum zaključka
@@ -2644,24 +2649,6 @@ sl:
         skillvue:
           api_key_present: API ključ je že prisoten v drugem projektu
       view_all_schedules: Oglejte si vse urnike Mettl
-      yoodli_assessments:
-        add_assessment: Add Yoodli Assessment
-        columns:
-          actions: Dejanja
-          created_at: Ustvarjeno na
-          name: Ime ocenjevanja
-          product_id: ID izdelka
-        delete_confirm: Si prepričan, da želiš izbrisati to Yoodlijevo oceno?
-        edit_assessment: Uredi oceno Yoodli
-        manage_catalog: Upravljanje Yoodli ocen
-        messages:
-          create_success: Yoodlijeva ocena '%{name}' je bila uspešno ustvarjena
-          delete_success: Yoodlijeva ocena je bila uspešno izbrisana
-          update_success: Yoodlijeva ocena '%{name}' je bila uspešno posodobljena
-        placeholders:
-          name: Vnesite ime ocenjevanja
-          product_id: Vnesite ID izdelka
-        search: Iskanje
     interview_questions:
       delete_confirmation: Ali ste prepričani, da želite izbrisati to vprašanje za intervju?
       description: Opis
@@ -4667,8 +4654,6 @@ sl:
             evaluations_received: Prejete ocene
             is_subject: Je predmet
             name: Ime
-            report_status: Status poročila
-            status: Status
           evaluators:
             add_evaluators: Dodajanje ocenjevalcev
             import_evaluators: Ocenjevalci uvoza

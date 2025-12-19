@@ -2,7 +2,7 @@
 
 class UserIdpPlanSerializer < Panko::Serializer
   attributes :name, :current_job_role, :target_job_role, :division, :reflection_questions, :status, :start_date,
-             :assigned_date, :end_date, :completed_date, :user_idp_skills
+             :assigned_date, :end_date, :completed_date, :user_idp_skills, :approval_date
 
   def user_idp_skills
     skills = object.user_idp_skills.public_skills.includes(:skill, :user_idp_development_actions)
@@ -53,6 +53,10 @@ class UserIdpPlanSerializer < Panko::Serializer
 
   def completed_date
     object.completed_at&.strftime('%Y-%m-%d')
+  end
+
+  def approval_date
+    object.last_approved_at&.strftime('%Y-%m-%d')
   end
 
   def without_deleted

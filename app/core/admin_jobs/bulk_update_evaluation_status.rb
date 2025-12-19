@@ -4,7 +4,7 @@ module AdminJobs
   class BulkUpdateEvaluationStatus < AdminJobs::Base
     def call
       subjects.find_each do |subject|
-        ::CampaignReports::UpdateEvaluationStatus.call!(subject, subject_data['status'])
+        ::CampaignReports::UpdateEvaluationStatus.call!(subject, subject_data['status'], record.owner)
       end
 
       broadcast :ok

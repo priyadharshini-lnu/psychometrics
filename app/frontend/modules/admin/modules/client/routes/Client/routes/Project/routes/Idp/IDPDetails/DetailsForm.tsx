@@ -1,5 +1,5 @@
 import {
-  Form, Input, Switch, Card, Col, Row, Button, Select, Spin, message, Space,
+  Form, Input, Switch, Card, Col, Row, Button, Select, Spin, message, Space, Alert,
 } from 'antd'
 import _ from 'lodash'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
@@ -44,7 +44,7 @@ const IDPDetailsForm = ({
   const [isLoading, setIsLoading] = useState(false)
   const aiEnabled = Form.useWatch('aiEnabled', form)
   const oneClickIdpEnabled = Form.useWatch('oneClickIdpEnabled', form)
-
+  const aiAssistedIdpFeatureEnabled = idp?.meta?.projectFeatures?.aiAssistedIdp || false
 
   const baseApiConfig = {
     basePath: `projects/${projectId}`,
@@ -228,6 +228,13 @@ const IDPDetailsForm = ({
   return (
     <Form form={form} layout="vertical" initialValues={initialValues}>
       <Space direction="vertical" className="w-100">
+        {idp.aiEnabled && !aiAssistedIdpFeatureEnabled && (
+          <Alert
+            message={I18n.t('admin.ai_assisted_idp_feature_disabled')}
+            type="warning"
+            showIcon
+          />
+        )}
         <Row gutter={[16, 16]}>
           <Col xs={24} md={12}>
             <Card title={I18n.t('administration.idp.template_details')}>
@@ -268,32 +275,35 @@ const IDPDetailsForm = ({
               <Form.Item name="selfRatingEnabled" label={I18n.t('administration.idp.self_rating')}>
                 <Switch checkedChildren={I18n.t('yes')} unCheckedChildren={I18n.t('no')} />
               </Form.Item>
-              <Form.Item
-                name="aiEnabled"
-                label={I18n.t('administration.idp.ai_enabled')}
-                valuePropName="checked"
-              >
-                <Switch />
-              </Form.Item>
+              {(idp.aiEnabled || aiAssistedIdpFeatureEnabled) && (
+                <Form.Item
+                  name="aiEnabled"
+                  label={I18n.t('administration.idp.ai_enabled')}
+                  valuePropName="checked"
+                >
+                  <Switch disabled={!aiAssistedIdpFeatureEnabled} />
+                </Form.Item>
+              )}
             </Card>
           </Col>
           {aiEnabled && (
             <Col xs={24} md={12}>
               <Card title={I18n.t('administration.idp.ai_settings')}>
+                {/* uncomment this when AI Assisted IDP is ready
                 <Form.Item
                   name="aiAssistedIdpEnabled"
                   label={I18n.t('administration.idp.ai_assisted_idp_enabled')}
                   valuePropName="checked"
                 >
                   <Switch />
-                </Form.Item>
+                </Form.Item> */}
 
                 <Form.Item
                   name="oneClickIdpEnabled"
                   label={I18n.t('administration.idp.one_click_idp_enabled')}
                   valuePropName="checked"
                 >
-                  <Switch />
+                  <Switch disabled={!aiAssistedIdpFeatureEnabled} />
                 </Form.Item>
 
                 {oneClickIdpEnabled && (
@@ -301,8 +311,10 @@ const IDPDetailsForm = ({
                     <Form.Item
                       name="oneClickAiAssistantId"
                       label={I18n.t('administration.idp.ai_assistant')}
+                      rules={[{ required: true, message: I18n.t('admin.ai_assistant_required') }]}
                     >
                       <Select
+                        disabled={!aiAssistedIdpFeatureEnabled}
                         showSearch
                         onSearch={(value) => {
                           fetchIdpAssistants({
@@ -323,6 +335,7 @@ const IDPDetailsForm = ({
                       label={I18n.t('administration.idp.document_ai_assistant')}
                     >
                       <Select
+                        disabled={!aiAssistedIdpFeatureEnabled}
                         showSearch
                         onSearch={(value) => {
                           fetchDocumentAssistants({
@@ -342,6 +355,7 @@ const IDPDetailsForm = ({
                       label={I18n.t('administration.idp.skill_gap_report_ai_assistant')}
                     >
                       <Select
+                        disabled={!aiAssistedIdpFeatureEnabled}
                         showSearch
                         onSearch={(value) => {
                           fetchDocumentAssistants({

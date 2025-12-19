@@ -182,6 +182,12 @@ es-ES:
             manage: Gestión
             title: Plantillas de PDI
             view: Ver
+          interviewQuestions:
+            export: Exportar
+            import: Importación
+            manage: Gestionar
+            title: Preguntas de entrevista para IDP
+            view: Vista
           jobRoles:
             export_translations: Exportar traducciones de funciones
             import_translations: Importar traducciones de funciones
@@ -294,6 +300,7 @@ es-ES:
             view: Ver
           userIdpPlans:
             manage: Gestionar
+            reset: Restablecimiento
             title: Planes IDP de usuarios
             view: Vista
           users:
@@ -897,8 +904,6 @@ es-ES:
       new:
         header: Descarga masiva
       reports_unavailable: En este momento, no hay informes disponibles para descargar. Por favor, confirme que los informes que desea descargar están disponibles.
-      select_users_for_download: Seleccione al menos un usuario para descargar informes.
-      select_users_for_regenerate: Seleccione al menos una usuario para regenerar informes.
     cable:
       notification:
         assessment_factors: Los factores se recuperan
@@ -1963,6 +1968,7 @@ es-ES:
         udpated_at: Última actualización
       configuration: Configuración
       errors:
+        factor_code_or_field_name_required: factor_code o field_name es necesario
         factor_not_found: no se encuentra en el ámbito de evaluación
         inclusion: 'tipo no válido, tipos válidos: %{values}'
         not_found: no encontrado
@@ -2065,9 +2071,6 @@ es-ES:
       learning_styles:
         cannot_be_blank: No puede estar en blanco
         invalid: 'Debe ser uno de los siguientes: aprendizaje en el puesto de trabajo, aprendizaje estructurado o aprendizaje de otros'
-        learning_from_others: Aprender de los demás [20]
-        on_the_job: En el trabajo [70]
-        structured_learning: Aprendizaje estructurado [10]
       new:
         header: Nueva acción de desarrollo
       resource:
@@ -2322,11 +2325,12 @@ es-ES:
       behavioral_skills: Habilidades conductuales
       client_skills: Competencias de los clientes
       delete_skill: "¿Estás seguro de que quieres eliminar la habilidad porque también eliminará todas las acciones de desarrollo conectadas?"
+      delete_skill_msg: "¿Estás seguro de que quieres borrar esta habilidad? Eliminarlo también eliminará todas las acciones de desarrollo relacionadas."
       details_updated: Datos del PDI actualizados correctamente
       development_actions:
         add_from_library: Agregar desde la biblioteca
         completion: Terminación
-        create_development_actions_with_ai: Crear acciones de desarrollo con IA para %{skillName}
+        create_development_actions_with_ai: Crear acciones de desarrollo con IA para
         create_from_ai: Crear desde IA
         create_my_own: Crear el mío
         custom: Costumbre
@@ -2352,6 +2356,7 @@ es-ES:
         skills_required_on_publishing: Elija habilidades antes de publicar una plantilla.
         update: Actualización no permitida porque la plantilla IDP ya está asociada a un plan IDP de usuario.
       fields:
+        approval_date: Fecha de aprobación
         assigned_data: Datos asignados
         assigned_date: Fecha asignada
         completion_date: Fecha de finalización
@@ -2644,24 +2649,6 @@ es-ES:
         skillvue:
           api_key_present: La clave API ya está presente en otro proyecto
       view_all_schedules: Ver todos los horarios de Mettl
-      yoodli_assessments:
-        add_assessment: Añadir Evaluación de Yoodli
-        columns:
-          actions: Acciones
-          created_at: Creado en
-          name: Nombre de la evaluación
-          product_id: ID del producto
-        delete_confirm: "¿Estás seguro de que quieres borrar esta evaluación de Yoodli?"
-        edit_assessment: Edición Evaluación de Yoodli
-        manage_catalog: Gestionar las evaluaciones Yoodli
-        messages:
-          create_success: La evaluación Yoodli '%{name}' se creó con éxito
-          delete_success: La evaluación de Yoodli fue eliminada con éxito
-          update_success: La evaluación de Yoodli '%{name}' se actualizó con éxito
-        placeholders:
-          name: Introduce el nombre de la evaluación
-          product_id: Introduce el ID del producto
-        search: Buscar
     interview_questions:
       delete_confirmation: "¿Estás seguro de que quieres eliminar esta pregunta de la entrevista?"
       description: Descripton
@@ -4675,8 +4662,6 @@ es-ES:
             evaluations_received: Evaluaciones recibidas
             is_subject: Es Asunto
             name: Nombre
-            report_status: Estado del informe
-            status: Estado
           evaluators:
             add_evaluators: Añadir evaluadores
             import_evaluators: Importar evaluadores

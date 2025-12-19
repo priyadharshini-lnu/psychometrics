@@ -55,6 +55,17 @@ bg:
               blank: ИД на пакета за отчет не може да е празен
             report_id:
               blank: ИД на отчета не може да е празен
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: AI асистент с ID '%{id}' не се намира на ред %{index}
+              blank: Колона '%{entity}' не може да е празна в ред %{index}
+              duplicate_code: Дублиран код '%{code}' на ред %{index}
+              invalid_code_format: Невалиден формат на кода '%{code}' в ред %{index}
+              max_limit_reached: Общият брой AI артефакти в кампанията надвишава максималния лимит от %{count}
+              missing_headers: 'Липсващи задължителни заглавия: %{headers}'
+            file:
+              invalid_format: Моля, качете CSV файл
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ bg:
         import_development_actions: Действия за развитие на вноса
         import_dimension_from_json: Импортиране на измерение от JSON
         import_external_campaign_scoring: Импортиране на оценка на външни кампании
+        import_external_scoring_data: Импортиране на външни данни за оценяване
         import_factor_translations: Импортиране на факторни преводи
         import_factors: Фактори за внос
         import_interview_questions: Импортиране на въпроси за интервю
@@ -1050,7 +1062,7 @@ bg:
         saville_assessment_name: Оценка на Saville Име
         simulation_assessment_name: Име на оценка на симулацията
         skillvue_assessment_name: Име на оценка на Skillvue
-        yoodli_assessment_name: Име на оценката Yoodli
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: Преводът е мигриран
     create: Създавам
     dashboard: Таблото
@@ -1475,8 +1487,6 @@ bg:
       skillvue_email_id: Skillvue Кандидат Имейл ID
       skillvue_external_assessment_id: Skillvue Оценка ID
       universal_link: Универсална връзка
-      yoodli_email_id: Имейл ID на кандидата Yoodli
-      yoodli_external_assessment_id: Yoodli Assessment ID
     drawer:
       mettl_schedule_name: Име на разписанието на Mettl
       title: Подробности за оценката
@@ -1629,8 +1639,6 @@ bg:
       report: Доклад
       report_bundle_placeholder: Изберете пакет с отчети
     messages:
-      bulk_download_error: Груповото изтегляне е ограничено до 1000 файла с отчети. Ако сте избрали много езици, моля, намалете го.
-      bulk_download_no_reports: Не са намерени доклади. Моля, генерирайте отчетите преди изтегляне.
       bulk_download_successful: Задачата за групово изтегляне на отчет е планирана успешно
       export_report_data_scheduled: Задачата за експортиране на данни в отчета е планирана успешно
     modals:
@@ -1940,7 +1948,6 @@ bg:
       hide: Крия
       view: Изглед
     validations:
-      required: Тази област е задължителна
       select_locale: Моля, изберете някоя локация
       should_be_whole_number: трябва да е цяло число
   confirmation:
@@ -2517,8 +2524,8 @@ bg:
       reset_chat: Нулиране на чата
       reset_confirmation: Сигурни ли сте, че искате да изхвърлите този чат и да започнете отново?
       retake_steps:
-        chat_hint: Кажете ми каква информация искате да предоставите по-долу?
-        chat_title: Искате да дадете повече информация?
+        chat_hint: Можете да качите нов файл или да рестартирате чата, за да споделите повече подробности, и ще направя всичко възможно да ви помогна.
+        chat_title: Съжалявам, че първоначалният анализ не оправда очакванията ти.
         start_chat: Стартиране на чат
         start_chat_again: Започнете чат отново
         upload_document: Качване на документ
@@ -2544,14 +2551,14 @@ bg:
         chat_title: Резюме на Chat Insight
         file_title: Информация за качени документи
         gap_report_title: Анализ на доклада за пропуски в уменията
-        hint: ако отговорът е "да", ние ще създадем вашето вътрешно разселено лице в противен случай можете да превземете отговорите си
-        title: Доволни ли сте от резултатите?
+        hint: С твоето позволение, ако кажеш да, мога да създам план за развитие за теб. Ако не, можете да рестартирате чата или да качите нов файл.
+        title: Доволен ли си от анализа?
         upload_file: Качен файл
         view_chat: Преглед на чата
       upload:
-        description: Щракнете или плъзнете файлове в тази област, за да качите
+        description: 'Поддържан тип файл: PDF документи до %{maxFileSize}MB'
         drop: Пуснете файла тук
-        title: Качване на файлове
+        title: Кликнете или пуснете файла тук
       welcome:
         text: Готови ли сте да начертаете дневника си за растеж? Да започваме!
         title: Здравейте, аз съм вашият асистент за разработка
@@ -2601,6 +2608,7 @@ bg:
     convert_to_draft: Конвертиране в чернова
     current_step: Текуща стъпка %{step}
     delete_skill: Сигурни ли сте, че искате да изтриете това умение? Изтриването ще премахне и всички свързани действия за развитие.
+    delete_skill_msg: Сигурен ли си, че искаш да изтриеш това умение? Изтриването ще премахне и всички свързани действия по разработка.
     details: Подробности
     development_actions:
       action_private: Да
@@ -2618,8 +2626,8 @@ bg:
         in_progress: В процес на изпълнение
         not_started: Не е започнато
       completion: Завършване
-      create_custom_development_action_title: Създайте мое собствено действие за разработка за %{skillName}
-      create_development_actions_with_ai: Създавайте действия за развитие с AI за %{skillName}
+      create_custom_development_action_title: Създайте мое собствено действие за разработка за
+      create_development_actions_with_ai: Създавайте действия за развитие с AI за
       create_from_ai: Създавайте от AI
       create_my_own: Създай свой собствен
       custom: Обичай
@@ -2685,6 +2693,7 @@ bg:
     edit_progress: Редактиране на напредъка
     fetching_skill_gap_report: Извличане на доклад за пропуски в уменията...
     go_to_previous_step: Към предишната стъпка
+    go_to_reportee_plan: Отидете в подробности за плана на Reportee
     history:
       added_da:
         one: Добавено действие за разработка
@@ -2734,12 +2743,14 @@ bg:
         categories: Категории
       save_skills: Запазване на умения
     new_comments: Нов коментар(и)
+    no_plan_changes_found: От последния ви преглед не са правени промени в плана.
     no_skills_added: Все още нямате добавени умения.
-    no_skills_added_by_reportee: Reportee все още не е добавил умения.
+    no_skills_added_by_reportee: Докладваният все още не е добавил умения.
     pdf:
       approval_status: Статус на одобрение
       cover:
         fields:
+          approval_date: Дата на одобрение
           assigned_data: Определена дата
           assigned_date: Присвоена дата
           completion_date: Дата на завършване
@@ -2826,8 +2837,12 @@ bg:
         approved: Прегледан и одобрен
         completed: Завършен
         draft: Чернова
+        in_progress: В процес на работа
+        in_review: В рецензия
         not_reviewed: Не е прегледан
+        not_started: Не започнах
         pending_approval: В преглед
+        rejected: Отхвърлени
       summary:
         ai_count: Генеративен AI
         collaborative_learn: Съвместно обучение
@@ -3808,13 +3823,6 @@ bg:
       on_hold: В режим на задържане
       prepared: Готов
       released: Пусат
-    statuses:
-      completed: Завършен
-      declined: Отказан
-      denied: Отказан
-      done: Готово
-      not_completed: Не е завършено
-      waiting: В очакване
   threesixty:
     accept_privacy_modal:
       accept: Приемете

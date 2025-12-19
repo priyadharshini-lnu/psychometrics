@@ -98,7 +98,9 @@ RSpec.describe EndUser::UserIdpPlansController, type: :controller do
         put :update, params: { user_id: user.id, status: status }
 
         expect(response).to have_http_status(:ok)
-        expect(response.parsed_body).to eq({ 'note' => nil, 'status' => status })
+        expect(response.parsed_body).to eq(
+          { 'note' => nil, 'status' => status, 'can_revert_to_last_approved' => false }
+        )
       end
 
       it 'updates note along with status' do
@@ -107,7 +109,9 @@ RSpec.describe EndUser::UserIdpPlansController, type: :controller do
         put :update, params: { user_id: user.id, status: 'approved', note: note }
 
         expect(response).to have_http_status(:ok)
-        expect(response.parsed_body).to eq({ 'note' => note, 'status' => 'approved' })
+        expect(response.parsed_body).to eq(
+          { 'note' => note, 'status' => 'approved', 'can_revert_to_last_approved' => false }
+        )
       end
     end
 
@@ -142,6 +146,25 @@ RSpec.describe EndUser::UserIdpPlansController, type: :controller do
       }
 
       expect(response).to have_http_status(:ok)
+    end
+  end
+
+  describe 'POST revert_to_last_approved' do
+    it 'reverts the user idp plan to the last approved version from draft' do
+      PaperTrail.request.enable_model(UserIdpPlan)
+      user_idp_skill_in_approved_plan = create(:user_idp_skill, user_idp_plan: user_idp_plan, skill: behavioral_skill)
+      user_idp_plan.update!(approval_status: 'approved')
+      user_idp_plan.update!(approval_status: 'draft')
+      user_idp_skill_in_draft_plan = create(:user_idp_skill, user_idp_plan: user_idp_plan, skill: technical_skill)
+      user_idp_skill_in_approved_plan.soft_delete!(user)
+
+      post :revert_to_last_approved, params: { user_id: user.id, id: user_idp_plan.id }
+      expect(response).to have_http_status(:ok)
+      expect(user_idp_plan.user_idp_skills.count).to eq(1)
+      expect(user_idp_plan.user_idp_skills).to include(user_idp_skill_in_approved_plan)
+      expect(user_idp_plan.user_idp_skills.first.deleted_at).to be_nil
+      expect(user_idp_plan.user_idp_skills).not_to include(user_idp_skill_in_draft_plan)
+      PaperTrail.request.disable_model(UserIdpPlan)
     end
   end
 end

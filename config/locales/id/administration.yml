@@ -182,6 +182,12 @@ id:
             manage: Atur
             title: Template IDP
             view: Melihat
+          interviewQuestions:
+            export: Ekspor
+            import: Impor
+            manage: Kelola
+            title: Pertanyaan Wawancara IDP
+            view: Lihat
           jobRoles:
             export_translations: Penerjemahan Peran Pekerjaan Ekspor
             import_translations: Impor Terjemahan Peran Pekerjaan
@@ -294,6 +300,7 @@ id:
             view: Melihat
           userIdpPlans:
             manage: Urus
+            reset: Reset
             title: Paket IDP Pengguna
             view: Melihat
           users:
@@ -897,8 +904,6 @@ id:
       new:
         header: Unduh Massal
       reports_unavailable: Saat ini, tidak ada laporan yang tersedia untuk diunduh. Harap konfirmasikan bahwa laporan yang ingin Anda unduh tersedia.
-      select_users_for_download: Pilih setidaknya satu pengguna untuk mengunduh laporan.
-      select_users_for_regenerate: Pilih setidaknya satu pengguna untuk meregenerasi laporan.
     cable:
       notification:
         assessment_factors: Faktor diambil
@@ -1963,6 +1968,7 @@ id:
         udpated_at: Terakhir Diperbarui di
       configuration: Konfigurasi
       errors:
+        factor_code_or_field_name_required: factor_code atau field_name diperlukan
         factor_not_found: tidak ditemukan dalam lingkup penilaian
         inclusion: 'Jenis tidak valid, jenis yang valid: %{values}'
         not_found: tidak ditemukan
@@ -2065,9 +2071,6 @@ id:
       learning_styles:
         cannot_be_blank: Tidak bisa kosong
         invalid: Harus salah satu dari on_the_job, structured_learning, learning_from_others
-        learning_from_others: Belajar dari Orang Lain [20]
-        on_the_job: Di Tempat Kerja [70]
-        structured_learning: Pembelajaran Terstruktur [10]
       new:
         header: Aksi Pembangunan Baru
       resource:
@@ -2322,11 +2325,12 @@ id:
       behavioral_skills: Keterampilan Perilaku
       client_skills: Keterampilan Klien
       delete_skill: Apakah Anda yakin ingin menghapus keterampilan ini? Menghapusnya juga akan menghapus semua tindakan pengembangan terkait.
+      delete_skill_msg: Apakah Anda yakin ingin menghapus keterampilan ini? Menghapusnya juga akan menghapus semua tindakan pengembangan terkait.
       details_updated: Detail IDP berhasil diperbarui
       development_actions:
         add_from_library: Tambahkan dari Perpustakaan
         completion: Penyelesaian
-        create_development_actions_with_ai: Buat Tindakan Pengembangan dengan AI untuk %{skillName}
+        create_development_actions_with_ai: Buat Tindakan Pengembangan dengan AI untuk
         create_from_ai: Buat dari AI
         create_my_own: Buat saya sendiri
         custom: Adat
@@ -2352,6 +2356,7 @@ id:
         skills_required_on_publishing: Silakan pilih keterampilan sebelum menerbitkan template.
         update: Pembaruan tidak diizinkan karena templat IDP sudah dikaitkan dengan paket IDP pengguna. Perubahan tampilan telah disimpan.
       fields:
+        approval_date: Tanggal Persetujuan
         assigned_data: Data yang Ditetapkan
         assigned_date: Tanggal Penugasan
         completion_date: Tanggal Penyelesaian
@@ -2644,24 +2649,6 @@ id:
         skillvue:
           api_key_present: Kunci API sudah ada di proyek lain
       view_all_schedules: Lihat Semua Jadwal Mettl
-      yoodli_assessments:
-        add_assessment: Tambahkan Penilaian Yoodli
-        columns:
-          actions: Tindakan
-          created_at: Dibuat di
-          name: Nama Penilaian
-          product_id: ID Produk
-        delete_confirm: Apakah Anda yakin ingin menghapus penilaian Yoodli ini?
-        edit_assessment: Edit Penilaian Yoodli
-        manage_catalog: Kelola Penilaian Yoodli
-        messages:
-          create_success: Penilaian Yoodli '%{name}' berhasil dibuat
-          delete_success: Penilaian Yoodli berhasil dihapus
-          update_success: Penilaian Yoodli '%{name}' berhasil diperbarui
-        placeholders:
-          name: Masukkan nama penilaian
-          product_id: Masukkan ID produk
-        search: Mencari
     interview_questions:
       delete_confirmation: Apakah Anda yakin ingin menghapus Pertanyaan Wawancara ini?
       description: Deskripsi
@@ -4667,8 +4654,6 @@ id:
             evaluations_received: Evaluasi yang Diterima
             is_subject: Apakah Subjek
             name: Nama
-            report_status: Status Laporan
-            status: Status
           evaluators:
             add_evaluators: Menambahkan Evaluator
             import_evaluators: Evaluator Impor

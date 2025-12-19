@@ -547,7 +547,8 @@ CREATE TABLE public.ai_assistants (
     model_id character varying,
     assistant_type integer DEFAULT 0 NOT NULL,
     dependencies jsonb DEFAULT '[]'::jsonb NOT NULL,
-    status integer DEFAULT 0 NOT NULL
+    status integer DEFAULT 0 NOT NULL,
+    advanced_prompting_enabled boolean DEFAULT false NOT NULL
 );
 
 
@@ -1385,7 +1386,8 @@ CREATE TABLE public.campaign_assessments (
     allow_multiple_responses boolean DEFAULT false,
     require_scheduling boolean DEFAULT false,
     auto_assign boolean DEFAULT true,
-    mettl_schedule_record_id bigint
+    mettl_schedule_record_id bigint,
+    caching_enabled boolean DEFAULT false
 );
 
 
@@ -1806,7 +1808,8 @@ CREATE TABLE public.campaign_users (
     campaign_scores_errors json,
     external_id character varying,
     current_job_role_id bigint,
-    target_job_role_id bigint
+    target_job_role_id bigint,
+    campaign_artifact_results_finalized boolean DEFAULT false
 );
 
 
@@ -2541,10 +2544,10 @@ ALTER SEQUENCE public.data_geos_id_seq OWNED BY public.data_geos.id;
 
 CREATE TABLE public.data_report_jobs (
     id bigint NOT NULL,
-    data_report_id integer,
+    data_report_id bigint,
     status integer DEFAULT 0,
-    admin_job_record_id integer,
-    created_by_id integer,
+    admin_job_record_id bigint,
+    created_by_id bigint,
     password character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
@@ -2579,8 +2582,8 @@ CREATE TABLE public.data_reports (
     id bigint NOT NULL,
     name character varying,
     configuration jsonb,
-    owner_id integer,
-    last_updated_by_id integer,
+    owner_id bigint,
+    last_updated_by_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
@@ -6031,7 +6034,8 @@ CREATE TABLE public.saml_service_providers (
     project_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    mask_identity boolean DEFAULT false NOT NULL
+    mask_identity boolean DEFAULT false NOT NULL,
+    integration_type integer DEFAULT 0 NOT NULL
 );
 
 
@@ -7374,7 +7378,8 @@ CREATE TABLE public.threesixty_subjects (
     user_id bigint,
     report_approval_status integer DEFAULT 0,
     report_release_status integer DEFAULT 0,
-    evaluation_status integer DEFAULT 0
+    evaluation_status integer DEFAULT 0,
+    evaluation_status_updated_by_id bigint
 );
 
 
@@ -8707,39 +8712,6 @@ ALTER SEQUENCE public.workshops_id_seq OWNED BY public.workshops.id;
 
 
 --
--- Name: yoodli_assessments; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.yoodli_assessments (
-    id bigint NOT NULL,
-    product_id character varying NOT NULL,
-    name character varying NOT NULL,
-    project_id bigint,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
--- Name: yoodli_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.yoodli_assessments_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: yoodli_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.yoodli_assessments_id_seq OWNED BY public.yoodli_assessments.id;
-
-
---
 -- Name: yoodli_user_assessments; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -8748,7 +8720,9 @@ CREATE TABLE public.yoodli_user_assessments (
     user_assessment_id bigint NOT NULL,
     email character varying,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    yoodli_activity_id character varying,
+    active boolean DEFAULT true NOT NULL
 );
 
 
@@ -10344,13 +10318,6 @@ ALTER TABLE ONLY public.workshop_subjects ALTER COLUMN id SET DEFAULT nextval('p
 --
 
 ALTER TABLE ONLY public.workshops ALTER COLUMN id SET DEFAULT nextval('public.workshops_id_seq'::regclass);
-
-
---
--- Name: yoodli_assessments id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.yoodli_assessments ALTER COLUMN id SET DEFAULT nextval('public.yoodli_assessments_id_seq'::regclass);
 
 
 --
@@ -12190,14 +12157,6 @@ ALTER TABLE ONLY public.workshop_subjects
 
 ALTER TABLE ONLY public.workshops
     ADD CONSTRAINT workshops_pkey PRIMARY KEY (id);
-
-
---
--- Name: yoodli_assessments yoodli_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.yoodli_assessments
-    ADD CONSTRAINT yoodli_assessments_pkey PRIMARY KEY (id);
 
 
 --
@@ -14813,6 +14772,13 @@ CREATE UNIQUE INDEX index_saml_service_providers_on_entity_id_and_project_id ON 
 
 
 --
+-- Name: index_saml_service_providers_on_integration_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_saml_service_providers_on_integration_type ON public.saml_service_providers USING btree (integration_type);
+
+
+--
 -- Name: index_saml_service_providers_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15342,6 +15308,13 @@ CREATE INDEX index_threesixty_reminder_histories_on_user_id ON public.threesixty
 --
 
 CREATE INDEX index_threesixty_subjects_on_campaign_id ON public.threesixty_subjects USING btree (campaign_id);
+
+
+--
+-- Name: index_threesixty_subjects_on_evaluation_status_updated_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_subjects_on_evaluation_status_updated_by_id ON public.threesixty_subjects USING btree (evaluation_status_updated_by_id);
 
 
 --
@@ -16136,17 +16109,10 @@ CREATE INDEX index_workshops_on_campaign_id ON public.workshops USING btree (cam
 
 
 --
--- Name: index_yoodli_assessments_on_product_id_and_project_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_yoodli_user_assessments_on_active; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_yoodli_assessments_on_product_id_and_project_id ON public.yoodli_assessments USING btree (product_id, project_id);
-
-
---
--- Name: index_yoodli_assessments_on_project_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_yoodli_assessments_on_project_id ON public.yoodli_assessments USING btree (project_id);
+CREATE INDEX index_yoodli_user_assessments_on_active ON public.yoodli_user_assessments USING btree (active);
 
 
 --
@@ -16690,6 +16656,14 @@ ALTER TABLE ONLY public.assessments
 
 
 --
+-- Name: threesixty_subjects fk_rails_293bb22649; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_subjects
+    ADD CONSTRAINT fk_rails_293bb22649 FOREIGN KEY (evaluation_status_updated_by_id) REFERENCES public.users(id);
+
+
+--
 -- Name: workshop_subjects fk_rails_29528926c0; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17143,14 +17117,6 @@ ALTER TABLE ONLY public.idp_templates
 
 ALTER TABLE ONLY public.assessments
     ADD CONSTRAINT fk_rails_516ec5451d FOREIGN KEY (updated_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
-
-
---
--- Name: yoodli_assessments fk_rails_524e020c38; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.yoodli_assessments
-    ADD CONSTRAINT fk_rails_524e020c38 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -19160,14 +19126,23 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20251217070713'),
+('20251212100342'),
+('20251206120622'),
 ('20251201130649'),
+('20251127063311'),
+('20251125161740'),
+('20251121123824'),
+('20251121093812'),
+('20251120061522'),
 ('20251118130440'),
 ('20251118103050'),
-('20251114123626'),
 ('20251118061850'),
+('20251114123626'),
 ('20251112120914'),
 ('20251112112802'),
 ('20251105093356'),
+('20251104075938'),
 ('20251101094930'),
 ('20251031101349'),
 ('20251031094133'),
@@ -19181,16 +19156,16 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20251024030039'),
 ('20251023050642'),
 ('20251015075724'),
-('20251012210205'),
-('20251007225856'),
-('20251007225411'),
 ('20251014070912'),
+('20251012210205'),
 ('20251010111349'),
 ('20251010104305'),
 ('20251008145654'),
 ('20251008145653'),
 ('20251008144511'),
 ('20251008144510'),
+('20251007225856'),
+('20251007225411'),
 ('20251006101155'),
 ('20251006100719'),
 ('20251006071723'),
@@ -20111,3 +20086,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

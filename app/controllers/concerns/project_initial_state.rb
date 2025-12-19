@@ -40,7 +40,8 @@ module ProjectInitialState
         features: feature_flags,
         timezone: ActiveSupport::TimeZone::MAPPING[Time.zone.name],
         project: {
-          idpEnabled: @project.client.feature_enabled?(:idp) && @project.project_feature_enabled?(:idp)
+          idpEnabled: @project.client.feature_enabled?(:idp) && @project.project_feature_enabled?(:idp),
+          aiAssistedIdpFeatureEnabled: @project.project_feature_enabled?(:ai_assisted_idp)
         }
       }
     })

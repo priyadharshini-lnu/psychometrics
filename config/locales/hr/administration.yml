@@ -182,6 +182,12 @@ hr:
             manage: Upravljanje
             title: Predlošci IDP-a
             view: Pregled
+          interviewQuestions:
+            export: Izvoz
+            import: Uvoz
+            manage: Upravljaj
+            title: Pitanja za intervju za IDP
+            view: Pogled
           jobRoles:
             export_translations: Izvoz prijevoda radnih uloga
             import_translations: Uvoz prijevoda radnih uloga
@@ -294,6 +300,7 @@ hr:
             view: Pregled
           userIdpPlans:
             manage: Upravljati
+            reset: Brisanje
             title: Korisnički IDP planovi
             view: Pogled
           users:
@@ -897,8 +904,6 @@ hr:
       new:
         header: Skupno preuzimanje
       reports_unavailable: Trenutno nema dostupnih izvješća za preuzimanje. Potvrdite da su izvješća koja želite preuzeti dostupna.
-      select_users_for_download: Odaberite barem jednog korisnika za preuzimanje izvještaja.
-      select_users_for_regenerate: Odaberite barem jednog korisnika za regeneriranje izvještaja.
     cable:
       notification:
         assessment_factors: Faktori se dohvaćaju
@@ -1963,6 +1968,7 @@ hr:
         udpated_at: Posljednji put ažurirano u
       configuration: Konfiguracija
       errors:
+        factor_code_or_field_name_required: factor_code ili field_name je potreban
         factor_not_found: nije utvrđeno u opsegu procjene
         inclusion: 'nevažeći tip, valjani tipovi: %{values}'
         not_found: nije pronađeno
@@ -2065,9 +2071,6 @@ hr:
       learning_styles:
         cannot_be_blank: Ne može biti prazno
         invalid: Mora biti jedan od on_the_job, structured_learning, learning_from_others
-        learning_from_others: Učiti od drugih [20]
-        on_the_job: Na poslu [70]
-        structured_learning: Strukturirano učenje [10]
       new:
         header: Nova razvojna akcija
       resource:
@@ -2322,11 +2325,12 @@ hr:
       behavioral_skills: Vještine ponašanja
       client_skills: Vještine klijenata
       delete_skill: Jeste li sigurni da želite izbrisati ovu vještinu? Brisanjem će se ukloniti sve povezane razvojne aktivnosti.
+      delete_skill_msg: Jesi li siguran da želiš izbrisati ovu vještinu? Brisanje će također ukloniti sve povezane razvojne radnje.
       details_updated: Detalji IDP-a su uspješno ažurirani
       development_actions:
         add_from_library: Dodavanje iz medijateke
         completion: Završetak
-        create_development_actions_with_ai: Kreirajte razvojne akcije pomoću umjetne inteligencije za %{skillName}
+        create_development_actions_with_ai: Kreirajte razvojne akcije pomoću umjetne inteligencije za
         create_from_ai: Stvaranje iz umjetne inteligencije
         create_my_own: Stvorite vlastiti
         custom: Običaj
@@ -2352,6 +2356,7 @@ hr:
         skills_required_on_publishing: Odaberite vještine prije objavljivanja predloška.
         update: Ažuriranje nije dopušteno jer je predložak IDP-a već povezan s korisničkim IDP planom. Promjene izgleda su spremljene.
       fields:
+        approval_date: Datum odobrenja
         assigned_data: Dodijeljeni podaci
         assigned_date: Datum dodjele
         completion_date: Datum završetka
@@ -2644,24 +2649,6 @@ hr:
         skillvue:
           api_key_present: API ključ je već prisutan u drugom projektu
       view_all_schedules: Pogledajte sve rasporede tvrtke Mettl
-      yoodli_assessments:
-        add_assessment: Dodaj Yoodli procjenu
-        columns:
-          actions: Akcije
-          created_at: Stvoreno u
-          name: Naziv procjene
-          product_id: ID proizvoda
-        delete_confirm: Jesi li siguran da želiš izbrisati ovu Yoodlijevu procjenu?
-        edit_assessment: Uredi Yoodli procjenu
-        manage_catalog: Upravljanje Yoodli procjenama
-        messages:
-          create_success: Yoodli procjena '%{name}' uspješno je kreirana
-          delete_success: Yoodli procjena je uspješno izbrisana
-          update_success: Yoodlijeva procjena '%{name}' uspješno je ažurirana
-        placeholders:
-          name: Unesite naziv procjene
-          product_id: Unesite ID proizvoda
-        search: Pretraživanje
     interview_questions:
       delete_confirmation: Jeste li sigurni da želite izbrisati ovo pitanje za intervju?
       description: Opis
@@ -4667,8 +4654,6 @@ hr:
             evaluations_received: Primljene evaluacije
             is_subject: Je ispitanik
             name: Ime
-            report_status: Status izvješća
-            status: Status
           evaluators:
             add_evaluators: Dodaj evaluatore
             import_evaluators: Uvezi evaluatore

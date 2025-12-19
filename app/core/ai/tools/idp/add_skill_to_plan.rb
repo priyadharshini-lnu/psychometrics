@@ -163,7 +163,8 @@ module AI
                 'name' => action['name'],
                 'description' => action['description'],
                 'learning_style' => action['learning_style'],
-                'source_type' => 'ai_generated'
+                'source_type' => 'ai_generated',
+                'development_action_type' => 'default'
               )
             end
 

@@ -55,6 +55,17 @@ cs:
               blank: ID svazku hlášení nemůže být prázdné
             report_id:
               blank: ID zprávy nemůže být prázdné
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: AI asistent s ID '%{id}' se nenachází v řadě %{index}
+              blank: Sloupec '%{entity}' nesmí být prázdný v řádku %{index}
+              duplicate_code: Duplikát kódu '%{code}' v řádku %{index}
+              invalid_code_format: Neplatný formát kódu '%{code}' v řádku %{index}
+              max_limit_reached: Celkový počet AI artefaktů kampaně překračuje maximální limit %{count}
+              missing_headers: 'Chybějící povinné hlavičky: %{headers}'
+            file:
+              invalid_format: Prosím, nahrajte CSV soubor
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ cs:
         import_development_actions: Import vývojových akcí
         import_dimension_from_json: Import rozměru z JSON
         import_external_campaign_scoring: Importování externího bodování kampaní
+        import_external_scoring_data: Importovat externí skórovací data
         import_factor_translations: Překlady importních faktorů
         import_factors: Faktory dovozu
         import_interview_questions: Importovat otázky k pohovoru
@@ -1050,7 +1062,7 @@ cs:
         saville_assessment_name: Hodnocení Saville Název
         simulation_assessment_name: Hodnocení simulace Název
         skillvue_assessment_name: Název hodnocení Skillvue
-        yoodli_assessment_name: Yoodli Assessment Name
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: Přeloženo
     create: Vytvořit
     dashboard: Přístrojová deska
@@ -1487,8 +1499,6 @@ cs:
       skillvue_email_id: Skillvue Emailové ID kandidáta
       skillvue_external_assessment_id: Skillvue Assessment ID
       universal_link: Univerzální odkaz
-      yoodli_email_id: E-mailové ID kandidáta Yoodli
-      yoodli_external_assessment_id: Yoodli Assessment ID
     drawer:
       mettl_schedule_name: Mettl Plán Název
       title: Podrobnosti o hodnocení
@@ -1641,8 +1651,6 @@ cs:
       report: Nahlásit
       report_bundle_placeholder: Výběr svazku sestav
     messages:
-      bulk_download_error: Hromadné stahování je omezeno na 1000 souborů zpráv. Pokud jste vybrali mnoho jazyků, snižte je.
-      bulk_download_no_reports: Nebyly nalezeny žádné zprávy. Před stažením si prosím vygenerujte zprávy.
       bulk_download_successful: Úloha hromadného stahování sestav byla úspěšně naplánována
       export_report_data_scheduled: Úloha exportu dat sestavy byla úspěšně naplánována
     modals:
@@ -1952,7 +1960,6 @@ cs:
       hide: Skrýt
       view: Zobrazit
     validations:
-      required: Toto pole je povinné
       select_locale: Vyberte prosím některé lokality
       should_be_whole_number: by mělo být celé číslo
   confirmation:
@@ -2506,8 +2513,8 @@ cs:
       reset_chat: Obnovit chat
       reset_confirmation: Opravdu chcete tento chat zahodit a začít nový?
       retake_steps:
-        chat_hint: Dejte mi vědět, jaké informace chcete poskytnout níže?
-        chat_title: Chcete poskytnout více informací?
+        chat_hint: Můžete nahrát nový soubor nebo znovu spustit chat, abyste sdíleli více detailů, a já se budu snažit vám pomoci.
+        chat_title: Je mi líto, že počáteční analýza nesplnila tvá očekávání.
         start_chat: Zahájit chat
         start_chat_again: Zahájit chat znovu
         upload_document: Nahrát dokument
@@ -2533,14 +2540,14 @@ cs:
         chat_title: Souhrn funkce Chat Insight
         file_title: Nahrané dokumenty Insights
         gap_report_title: Analýza zpráv o mezerách v dovednostech
-        hint: pokud ano, vytvoříme vašeho IDP, jinak si můžete své odpovědi vzít znovu
-        title: Jste spokojeni s výsledky?
+        hint: S vaším svolením, pokud řeknete ano, mohu pro vás vytvořit plán rozvoje. Pokud ne, můžete chat restartovat nebo nahrát nový soubor.
+        title: Jste spokojeni s analýzou?
         upload_file: Nahraný soubor
         view_chat: Zobrazit chat
       upload:
-        description: Kliknutím nebo přetažením souborů do této oblasti je nahrajte
+        description: 'Podporovaný typ souboru: PDF dokumenty až do %{maxFileSize}MB'
         drop: Sem přetáhněte soubor
-        title: Vkládat
+        title: Klikněte nebo položte soubor zde
       welcome:
         text: Jste připraveni zmapovat svou cestu růstu? Začněme!
         title: Dobrý den, jsem Váš asistent vývoje
@@ -2590,6 +2597,7 @@ cs:
     convert_to_draft: Převést na koncept
     current_step: Aktuální krok %{step}
     delete_skill: Opravdu chcete odstranit dovednost, protože tím odstraníte i všechny související vývojové akce?
+    delete_skill_msg: Jste si jistý, že chcete tuto dovednost smazat? Smazání také odstraní všechny související vývojové akce.
     details: Podrobnosti
     development_actions:
       action_private: Ano
@@ -2607,8 +2615,8 @@ cs:
         in_progress: Probíhající
         not_started: Nezahájeno
       completion: Dokončení
-      create_custom_development_action_title: Vytvořit vlastní vývojářskou akci pro %{skillName}
-      create_development_actions_with_ai: Vytváření vývojových akcí pomocí AI pro %{skillName}
+      create_custom_development_action_title: Vytvořit vlastní vývojářskou akci pro
+      create_development_actions_with_ai: Vytváření vývojových akcí pomocí AI pro
       create_from_ai: Tvořte z umělé inteligence
       create_my_own: Vytvořit vlastní
       custom: Zvyk
@@ -2674,6 +2682,7 @@ cs:
     edit_progress: Upravit pokrok
     fetching_skill_gap_report: Zpráva o načítání mezer v dovednostech...
     go_to_previous_step: Přejít na předchozí krok
+    go_to_reportee_plan: Přejděte na podrobnosti o plánu reportee
     history:
       added_da:
         one: Přidána vývojová akce
@@ -2723,12 +2732,14 @@ cs:
         categories: Kategorie
       save_skills: Uložit dovednosti
     new_comments: Nové komentáře(e)
+    no_plan_changes_found: Od tvé poslední kontroly nebyly v plánu provedeny žádné úpravy.
     no_skills_added: Zatím nemáte přidané žádné dovednosti.
-    no_skills_added_by_reportee: Reportee ještě nepřidal Skills.
+    no_skills_added_by_reportee: Reportee ještě nepřidal žádné dovednosti.
     pdf:
       approval_status: Stav schválení
       cover:
         fields:
+          approval_date: Datum schválení
           assigned_data: Datum přiřazení
           assigned_date: Přidělené datum
           completion_date: Datum dokončení
@@ -2815,8 +2826,12 @@ cs:
         approved: Zkontrolováno a schváleno
         completed: Dokončeno
         draft: Návrh
+        in_progress: Ve vývoji
+        in_review: V recenzi
         not_reviewed: Nezkontrolováno
+        not_started: Nezačalo
         pending_approval: V kontrole
+        rejected: Odmítnutý
       summary:
         ai_count: Generativní AI
         collaborative_learn: Kolaborativní učení
@@ -3797,13 +3812,6 @@ cs:
       on_hold: Pozastaveno
       prepared: Hotovo
       released: Uvolněno
-    statuses:
-      completed: Dokončeno
-      declined: Odmítnuto
-      denied: Zamítnuto
-      done: Hotovo
-      not_completed: Nedokončeno
-      waiting: Čekání
   threesixty:
     accept_privacy_modal:
       accept: Přijmout

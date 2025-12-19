@@ -182,6 +182,12 @@ zh:
             manage: 管理
             title: IDP 模板
             view: 查看
+          interviewQuestions:
+            export: 出口
+            import: 进口
+            manage: 管理
+            title: 流离失所者面试问题
+            view: 景观
           jobRoles:
             export_translations: 导出工作角色翻译
             import_translations: 导入工作角色翻译
@@ -294,6 +300,7 @@ zh:
             view: 查看
           userIdpPlans:
             manage: 管理
+            reset: 重置
             title: 用户IDP计划
             view: 视图
           users:
@@ -897,8 +904,6 @@ zh:
       new:
         header: 批量下载
       reports_unavailable: 目前没有可供下载的报告，请确认您要下载的报告是否可用。
-      select_users_for_download: 请选择至少一个用户下载报告。
-      select_users_for_regenerate: 请选择至少一个用户重新生成报告。
     cable:
       notification:
         assessment_factors: 获取因子
@@ -1963,6 +1968,7 @@ zh:
         udpated_at: 最后更新时间
       configuration: 配置
       errors:
+        factor_code_or_field_name_required: 需要提供factor_code或field_name
         factor_not_found: 不在评估范围内
         inclusion: 无效类型，有效类型： %{values}
         not_found: 未找到
@@ -2065,9 +2071,6 @@ zh:
       learning_styles:
         cannot_be_blank: 不能为空
         invalid: 必须是在职学习、结构化学习、向他人学习之一
-        learning_from_others: 向他人学习 [20］
-        on_the_job: 在职 [70］
-        structured_learning: 结构化学习 [10］
       new:
         header: 新发展行动
       resource:
@@ -2322,11 +2325,12 @@ zh:
       behavioral_skills: 行为技能
       client_skills: 客户技能
       delete_skill: 您确定要删除此技能吗？删除后将同时移除所有相关的开发行动。
+      delete_skill_msg: 你确定要删除这个技能吗？删除后，所有相关的开发作也会被移除。
       details_updated: 成功更新 IDP 详情
       development_actions:
         add_from_library: 从库添加
         completion: 完成
-        create_development_actions_with_ai: 使用 AI 创建开发行动 for %{skillName}
+        create_development_actions_with_ai: 使用 AI 创建开发行动
         create_from_ai: 从 AI 创建
         create_my_own: 创建我自己的
         custom: 习惯
@@ -2352,6 +2356,7 @@ zh:
         skills_required_on_publishing: 请在发布模板之前选择技能。
         update: 不允许更新，因为 IDP 模板已与用户 IDP 计划关联。
       fields:
+        approval_date: 批准日期
         assigned_data: 指定数据
         assigned_date: 指定日期
         completion_date: 完成日期
@@ -2644,24 +2649,6 @@ zh:
         skillvue:
           api_key_present: API 密钥已存在于其他项目中
       view_all_schedules: 查看所有梅特尔航班时刻表
-      yoodli_assessments:
-        add_assessment: 添加Yoodli评估
-        columns:
-          actions: 行动
-          created_at: 诞生于
-          name: 评估名称
-          product_id: 产品ID
-        delete_confirm: 你确定要删除这份Yoodli评估吗？
-        edit_assessment: 编辑：Yoodli 评估
-        manage_catalog: 管理Yoodli评估
-        messages:
-          create_success: Yoodli评估“%{name}”成功创建
-          delete_success: Yoodli 评估已被成功删除
-          update_success: Yoodli评估“%{name}”已成功更新
-        placeholders:
-          name: 评估名称输入
-          product_id: 输入产品ID
-        search: 搜索
     interview_questions:
       delete_confirmation: 你确定要删除这个面试问题吗？
       description: 描述
@@ -4675,8 +4662,6 @@ zh:
             evaluations_received: 收到的评价
             is_subject: 是主题
             name: 名称
-            report_status: 报告状态
-            status: 现状
           evaluators:
             add_evaluators: 添加评估员
             import_evaluators: 进口评估员

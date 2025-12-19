@@ -27,7 +27,11 @@ module AI
           )
 
           if start_new_chat || session_record.new_record?
-            chat = assistant.for_user(current_user, contextual_information: assistant_context)
+            chat = assistant.for_user(
+              current_user,
+              contextual_information: assistant_context,
+              prompt_template_context: prompt_template_context
+            )
             session_record.save!
             chat.update!(ai_assisted_user_session: session_record)
           end
@@ -55,6 +59,11 @@ module AI
         raise NotImplementedError, "#{self.class} must implement #session_model"
       end
 
+      # Context for parsing liquid template if being used in the prompt
+      def prompt_template_context
+        {}
+      end
+
       def assistant_service
         @assistant_service ||= AssistantService.new(
           assistant.id,
@@ -63,7 +72,8 @@ module AI
           chat: chat_with_context,
           ignore_user_prompt: options[:ignore_user_prompt],
           ask_params: options[:ask_params],
-          params: request_params
+          params: request_params,
+          prompt_template_context: options[:prompt_template_context]
         )
       end
 

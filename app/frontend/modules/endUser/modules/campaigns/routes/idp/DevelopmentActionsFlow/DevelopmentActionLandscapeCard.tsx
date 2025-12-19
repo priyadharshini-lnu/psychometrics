@@ -75,6 +75,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
   finalRating,
   userIdpSkillId,
   changeStatus,
+  deletedAt,
   changeHistory,
   developmentActions,
   editMode,
@@ -98,7 +99,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
 
   const [isPrivateSkill, setPrivateSkill] = useState(isPrivate)
 
-  const { isTablet, isDesktop } = useContext(MediaQueryContext)
+  const { isMobile, isTablet, isDesktop } = useContext(MediaQueryContext)
 
   const [openSkillDeletionModal, setOpenSkillDeletionModal] = useState(false)
   const handleRatingChange = (rating) => {
@@ -129,7 +130,10 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
     <Flex>
       <Flex vertical={isTablet || isDesktop} gap={4} align={isTablet || isDesktop ? 'start' : 'center'}>
         <h4
-          className={cs('m-0 ms-1 me-1 mt-2', { [styles.stroke]: changeStatus === PlanChangeStatus.REMOVED })}
+          className={cs('m-0 ms-1 me-1 mt-2', {
+            [styles.stroke]: changeStatus === PlanChangeStatus.REMOVED
+             && deletedAt,
+          })}
         >
           {name}
         </h4>
@@ -145,7 +149,9 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
         )
       }
         {changeStatus && (
-          <ChangeStatus className="self-end mb-1" status={changeStatus} />
+          ((changeStatus === PlanChangeStatus.REMOVED && deletedAt) || changeStatus !== PlanChangeStatus.REMOVED) && (
+            <ChangeStatus className="self-end mb-1" status={changeStatus} />
+          )
         )}
         {isCurrentUserIDPUser && (
           editMode ? (
@@ -192,6 +198,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
     <Flex
       vertical
       id={`skill-${userIdpSkillId}`}
+      className={styles.skillCardContainer}
     >
       <Flex
         justify="space-between"
@@ -208,7 +215,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
             icon={<MessageOutlined />}
           />
           {editMode && changeStatus !== PlanChangeStatus.REMOVED && (
-            <Tooltip title={I18n.t('idp.remove_skill')}>
+            <Tooltip zIndex={isMobile ? -1 : 999} title={I18n.t('idp.remove_skill')}>
               <Button
                 type="default"
                 shape="circle"
@@ -224,7 +231,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
           )}
         </Flex>
       </Flex>
-      {changeStatus !== PlanChangeStatus.REMOVED && !developmentActionCards.length ? (
+      {(changeStatus !== PlanChangeStatus.REMOVED || !deletedAt) && !developmentActionCards.length ? (
         <Flex vertical>
           <Flex wrap align="center" className="border-b-1 pt-3 pb-3">
             <Empty aria-hidden="true" description="" style={!isTablet ? { marginInlineStart: '-2rem' } : {}} />
@@ -273,7 +280,12 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
       ) : developmentActionCards}
       {changeHistory && (<ChangeHistory changeHistory={changeHistory} />)}
       {editMode && changeStatus !== PlanChangeStatus.REMOVED ? (
-        <Flex className="mt-4 mb-2" gap={isTablet ? 8 : 64} vertical={isTablet} justify="start">
+        <Flex
+          className={`mt-4 ${(isMobile) ? styles.daOptions : 'mb-2 '}`}
+          gap={isTablet ? 8 : 64}
+          vertical={isTablet}
+          justify="start"
+        >
           {isTablet && (
             <Flex>
               <Typography.Text>{I18n.t('idp.development_actions.add_more')}</Typography.Text>
@@ -343,7 +355,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
             className={cs(styles.warningIcon, 'mb-2')}
           />
           <strong className="ta-c">
-            {I18n.t('idp.delete_skill')}
+            {I18n.t('idp.delete_skill_msg')}
           </strong>
         </Flex>
 
@@ -399,7 +411,7 @@ const Card = ({
   const [editableProgress, setEditableProgress] = useState(developmentAction.progress)
   const [editing, setEditing] = useState(false)
 
-  const { isTablet, isDesktop } = useContext(MediaQueryContext)
+  const { isMobile, isTablet, isDesktop } = useContext(MediaQueryContext)
 
 
   const handleDateRangeChange = (dates: [dayjs.Dayjs, dayjs.Dayjs] | undefined) => {
@@ -484,7 +496,7 @@ const Card = ({
             ) : null}
         </Flex>
         {editing && (
-          <Flex vertical>
+          <Flex vertical className={isMobile ? 'pe-8' : ''}>
             <ConfigProvider
               theme={{
                 components: {
@@ -574,6 +586,18 @@ const Card = ({
               `4px solid ${developmentActionLearningStylesConfig[developmentAction.learningStyle].borderColor}`,
             } : {}}
           >
+            {
+              developmentAction.image ? (
+                <Flex className={cs('me-4', !(isTablet || isDesktop) ? 'mb-3' : '')}>
+                  <img
+                    aria-hidden="true"
+                    src={developmentAction.image}
+                    className={styles.image}
+                    alt=""
+                  />
+                </Flex>
+              ) : null
+            }
             <Space align="start">
               <Typography.Title
                 level={5}
@@ -582,8 +606,11 @@ const Card = ({
                 aria-label={I18n.t('idp.development_actions.development_action_name')}
 
               >
-                {developmentAction.name}
-
+                {developmentAction.developmentActionType === 'course' ? (
+                  <a href={developmentAction.courseUrl}>
+                    {developmentAction.name}
+                  </a>
+                ) : developmentAction.name}
               </Typography.Title>
               {developmentAction.changeStatus && (
                 <ChangeStatus status={developmentAction.changeStatus} />

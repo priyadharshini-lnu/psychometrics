@@ -3,12 +3,13 @@
 require 'rails_helper'
 require_relative '../concerns/filter_by_tags_shared_examples'
 
-describe Api::V2::Administration::AssessmentsController, type: :request do
+RSpec.describe Api::V2::Administration::AssessmentsController, type: :request do
   let!(:assessment) { create(:assessment) }
   let!(:superadmin) { create(:superadmin) }
   let(:dimension) { create(:dimension) }
   let(:client) { create(:tenancy) }
-  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
+  let!(:api_key) { create(:api_key, user: superadmin) }
+  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before(:each) { login_user(superadmin) }
   after(:each) { sign_out(superadmin) }

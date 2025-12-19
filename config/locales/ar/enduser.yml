@@ -3,13 +3,24 @@ ar:
   enduser:
     add_idp_plan_note: إضافة ملاحظة...
     add_idp_plan_rejection_reason: إضافة سبب...
+    ai_idp_assistant_response_no: لا
+    ai_idp_assistant_response_upload_different_document: أريد رفع مستند مختلف.
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: نعم، تابع في وضع الخطة.
     approve_idp_plan: الموافقة على الخطة
     bookings: الحجوزات
     campaign: الحملة
     development: تطوير
     direct_reportees: الموظفين المباشرين
     home: لوحة التحكم
+    idp_loading_fifth_step: جلب إجراءات التطوير من القالب
+    idp_loading_first_step: تحليل تقرير التقييم الخاص بك
+    idp_loading_fourth_step: اختيار المهارات ذات الصلة
+    idp_loading_second_step: تحديد تفضيلاتك المذكورة في الدردشة
+    idp_loading_secondary_text: لا تتردد في الابتعاد. خطتك ستكون جاهزة عند عودتك.
+    idp_loading_sixth_step: إنشاء إجراءات التطوير
+    idp_loading_third_step: مراجعة تقريرك الخارجي
     idp_plan_approval_note: مذكرة الموافقة
+    idp_retake_steps_continue_with_this_information: تابع هذه المعلومات
     insights: البصائر
     lighthouse_assistant: مساعد المنارات
     max_word_limit: يجب أن تكون على الأكثر %{max} كلمة
@@ -21,7 +32,7 @@ ar:
     reason_for_idp_plan_rejection: سبب الرفض
     reject_idp_plan: رفض الخطة
     request_retry_message: أنت غير متصل. لم يكن بالإمكان حفظ إجاباتك لكنها ستحفظ تلقائيا بمجرد عودتك للاتصال. يرجى عدم تحديث الصفحة أو إغلاقها.
-    selected_count: المحدد
+    selected_count: مختارة %{count}
     skill_type: نوع المهارة
     start_campaign_message_proctored: هذه حملة تحت مراقبة، يرجى الضغط على زر '%{buttonText}' لبدء الأنشطة.
     start_campaign_message_timed: هذه حملة محددة بالوقت، يرجى الضغط على زر '%{buttonText}' لبدء الأنشطة.

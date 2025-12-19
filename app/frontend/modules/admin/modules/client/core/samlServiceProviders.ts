@@ -11,6 +11,7 @@ export const SamlServiceProviderTR = t.type({
   projectId: t.number,
   enabled: t.boolean,
   maskIdentity: t.boolean,
+  integrationType: t.string,
   createdAt: t.string,
   updatedAt: t.string,
 })

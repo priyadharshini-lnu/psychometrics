@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Flex, Typography,
 } from 'antd'
 import { Bubble } from '@ant-design/x'
@@ -11,7 +12,7 @@ export const InterviewCompleted = () => (
     placement="start"
     variant="outlined"
     shape="round"
-    styles={{ content: { width: '90%' } }}
+    styles={{ body: { width: '90%' } }}
     content={(
       <Flex vertical justify="center" align="center" className={styles.completedBubble}>
         <CheckCircleFilled style={{ fontSize: 60, color: 'var(--success-color)' }} />
@@ -20,6 +21,6 @@ export const InterviewCompleted = () => (
         <Typography.Text>We are making your Interview Insight Summary. Give us few seconds…</Typography.Text>
       </Flex>
     )}
-    avatar={{ icon: <BotIcon /> }}
+    avatar={<Avatar icon={<BotIcon />} />}
   />
 )

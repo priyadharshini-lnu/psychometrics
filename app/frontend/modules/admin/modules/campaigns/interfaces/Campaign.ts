@@ -31,6 +31,7 @@ export interface CommonCampaignPermissions {
   exportDashboardToFile: boolean
   viewAiArtifacts: boolean
   viewCampaign: boolean
+  manageIdpPlans: boolean
 }
 
 export default interface Campaign {

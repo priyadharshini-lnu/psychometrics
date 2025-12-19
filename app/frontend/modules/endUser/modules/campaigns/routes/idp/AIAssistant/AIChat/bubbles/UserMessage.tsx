@@ -11,15 +11,17 @@ export const UserMessage = ({ message, error = null }) => (
     placement="end"
     classNames={{ content: styles.userBubble }}
     styles={{
-      content: { maxWidth: '80%' },
+      body: { maxWidth: '80%' },
       footer: {
         maxWidth: '80%',
+        marginTop: 0,
       },
     }}
     shape="round"
     content={message}
+    footerPlacement="outer-start"
     footer={() => (
-      <Space align="start">
+      <>
         {error && (
           <Space align="start">
             <ExclamationCircleOutlined style={{ color: '#ff4d4f' }} />
@@ -28,7 +30,7 @@ export const UserMessage = ({ message, error = null }) => (
             </Typography.Text>
           </Space>
         )}
-      </Space>
+      </>
     )}
   />
 )

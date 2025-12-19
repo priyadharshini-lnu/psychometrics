@@ -3,13 +3,24 @@ de:
   enduser:
     add_idp_plan_note: Notiz hinzufügen...
     add_idp_plan_rejection_reason: Grund hinzufügen...
+    ai_idp_assistant_response_no: Nein
+    ai_idp_assistant_response_upload_different_document: Ich möchte ein anderes Dokument hochladen.
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: Ja, fahren Sie mit der Planerstellung fort.
     approve_idp_plan: Plan genehmigen
     bookings: Buchungen
     campaign: Kampagne
     development: Entwicklung
     direct_reportees: Direkte Berichte
     home: Dashboard
+    idp_loading_fifth_step: Entwicklungsaktionen aus der Vorlage abrufen
+    idp_loading_first_step: Analyse Ihres Bewertungsberichts
+    idp_loading_fourth_step: Auswahl relevanter Fähigkeiten
+    idp_loading_second_step: Identifizierung der im Chat genannten Präferenzen
+    idp_loading_secondary_text: Fühlen Sie sich frei, sich zurückzuziehen. Dein Plan wird bereit sein, wenn du zurückkehrst.
+    idp_loading_sixth_step: Entwicklung von Entwicklungsmaßnahmen
+    idp_loading_third_step: Überprüfung Ihres externen Berichts
     idp_plan_approval_note: Genehmigungsnotiz
+    idp_retake_steps_continue_with_this_information: Fahren Sie mit diesen Informationen fort
     insights: Einblicke
     lighthouse_assistant: Leuchtturmassistent
     max_word_limit: Darf höchstens %{max} Wörter haben

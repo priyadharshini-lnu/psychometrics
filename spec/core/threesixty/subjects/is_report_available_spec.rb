@@ -7,23 +7,40 @@ describe Threesixty::Subjects::IsReportAvailable do
   let(:option) { build(:threesixty_option) }
   let(:subject_evaluator_counters) { {} }
 
-  it 'returns true if report is available' do
-    allow(Threesixty::Participants::GetReportStatus).to receive(:call!).
-      with(threesixty_subject, option, subject_evaluator_counters, false).
-      and_return(Threesixty::Participants::GetReportStatus::RELEASED)
+  context 'when report is available' do
+    before do
+      allow(Threesixty::Participants::GetReportStatus).to receive(:call!).
+        with(threesixty_subject, option, subject_evaluator_counters).
+        and_return(Threesixty::Participants::GetReportStatus::RELEASED)
+    end
 
-    result = described_class.call!(threesixty_subject, option, subject_evaluator_counters)
+    it 'returns available: true with no status message' do
+      result = described_class.call!(threesixty_subject, option, subject_evaluator_counters)
 
-    expect(result).to eq true
+      expect(result).to include(available: true, status_message: nil)
+    end
   end
 
-  it 'returns false if report is not available' do
-    allow(Threesixty::Participants::GetReportStatus).to receive(:call!).
-      with(threesixty_subject, option, subject_evaluator_counters, false).
-      and_return(Threesixty::Participants::GetReportStatus::ON_HOLD)
+  context 'when report is not available' do
+    before do
+      allow(Threesixty::Participants::GetReportStatus).to receive(:call!).
+        with(threesixty_subject, option, subject_evaluator_counters).
+        and_return(Threesixty::Participants::GetReportStatus::ON_HOLD)
 
-    result = described_class.call!(threesixty_subject, option, subject_evaluator_counters)
+      allow(Threesixty::Subjects::GetReportStatusMessage).to receive(:call!).
+        with(
+          threesixty_subject,
+          Threesixty::Participants::GetReportStatus::ON_HOLD,
+          option,
+          subject_evaluator_counters
+        ).
+        and_return({ status_message: 'Report is on hold' })
+    end
 
-    expect(result).to eq false
+    it 'returns available: false with status message' do
+      result = described_class.call!(threesixty_subject, option, subject_evaluator_counters)
+
+      expect(result).to include(available: false, status_message: 'Report is on hold')
+    end
   end
 end

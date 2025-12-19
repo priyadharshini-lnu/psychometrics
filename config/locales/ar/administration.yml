@@ -182,6 +182,12 @@ ar:
             manage: إدارة
             title: قوالب IDP
             view: عرض
+          interviewQuestions:
+            export: التصدير
+            import: الاستيراد
+            manage: الإدارة
+            title: أسئلة مقابلات IDP
+            view: منظر
           jobRoles:
             export_translations: تصدير ترجمات الأدوار الوظيفية
             import_translations: استيراد ترجمات الأدوار الوظيفية
@@ -294,6 +300,7 @@ ar:
             view: عرض
           userIdpPlans:
             manage: أدار
+            reset: اعاده تعيين
             title: خطط IDP للمستخدمين
             view: منظر
           users:
@@ -897,8 +904,6 @@ ar:
       new:
         header: التنزيل الجماعي
       reports_unavailable: في الوقت الحالي، لا توجد تقارير متاحة للتنزيل. يرجى التأكد من أن التقارير التي تريد تنزيلها متوفرة.
-      select_users_for_download: يرجى تحديد مستخدم واحد على الأقل لتنزيل التقارير.
-      select_users_for_regenerate: يرجى تحديد مستخدم واحد على الأقل لتجديد التقارير.
     cable:
       notification:
         assessment_factors: تم جلب العوامل
@@ -1963,6 +1968,7 @@ ar:
         udpated_at: آخر تعديل في
       configuration: التكوين
       errors:
+        factor_code_or_field_name_required: factor_code أو field_name مطلوب
         factor_not_found: غير موجود في نطاق التقييم
         inclusion: 'نوع غير صالح، الأنواع الصالحة: %{values}'
         not_found: غير موجود
@@ -2065,9 +2071,6 @@ ar:
       learning_styles:
         cannot_be_blank: لا يمكن أن تكون فارغة
         invalid: يجب أن يكون واحدًا من التعلم_في_الوظيفة، والتعلم_المنظم، والتعلم_من_الآخرين
-        learning_from_others: التعلم من الآخرين [20]
-        on_the_job: أثناء العمل [70]
-        structured_learning: التعلم المنظم [10]
       new:
         header: إجراء تطوير جديد
       resource:
@@ -2321,7 +2324,8 @@ ar:
       background_image: صورة الخلفية
       behavioral_skills: Behavioral Skills
       client_skills: Client Skills
-      delete_skill: هل أنت متأكد أنك تريد حذف هذه المهارة؟ سيؤدي الحذف أيضًا إلى إزالة جميع إجراءات التطوير المرتبطة به
+      delete_skill: هل أنت متأكد أنك تريد حذف المهارة لأنها ستؤدي إلى حذف جميع إجراءات التطوير المرتبطة بها أيضًا؟
+      delete_skill_msg: هل أنت متأكد أنك تريد حذف هذه المهارة؟ حذف اللعبة سيزيل أيضا جميع إجراءات التطوير ذات الصلة.
       details_updated: تم تحديث تفاصيل IDP بنجاح
       development_actions:
         add_from_library: إضافة من المكتبة
@@ -2352,6 +2356,7 @@ ar:
         skills_required_on_publishing: يرجى اختيار المهارات قبل نشر القالب.
         update: غير مسموح بالتحديث لأن قالب IDP مقترن بالفعل بخطة IDP لمستخدم.
       fields:
+        approval_date: تاريخ الموافقة
         assigned_data: البيانات المعينة
         assigned_date: تاريخ التعيين
         completion_date: تاريخ الانتهاء
@@ -2644,24 +2649,6 @@ ar:
         skillvue:
           api_key_present: مفتاح API موجود بالفعل في مشروع آخر
       view_all_schedules: View All Mettl Schedules
-      yoodli_assessments:
-        add_assessment: تقييم إضافة يودلي
-        columns:
-          actions: الاجراءات
-          created_at: تم إنشاؤه في
-          name: اسم التقييم
-          product_id: معرف المنتج
-        delete_confirm: هل أنت متأكد أنك تريد حذف هذا التقييم اليودلي؟
-        edit_assessment: تعديل تقييم يودلي
-        manage_catalog: إدارة تقييمات اليودلي
-        messages:
-          create_success: تم إنشاء تقييم يودلي '%{name}' بنجاح
-          delete_success: تم حذف تقييم يودلي بنجاح
-          update_success: تم تحديث تقييم يودلي '%{name}' بنجاح
-        placeholders:
-          name: أدخل اسم التقييم
-          product_id: ادخل معرف المنتج
-        search: بحث
     interview_questions:
       delete_confirmation: هل أنت متأكد من أنك تريد حذف سؤال المقابلة هذا؟
       description: الوصف
@@ -4675,8 +4662,6 @@ ar:
             evaluations_received: التقييمات المستلمة
             is_subject: هل الموضوع
             name: الاسم
-            report_status: حالة التقرير
-            status: الحالة
           evaluators:
             add_evaluators: إضافة المقيِّمين
             import_evaluators: مقيِّمو الاستيراد

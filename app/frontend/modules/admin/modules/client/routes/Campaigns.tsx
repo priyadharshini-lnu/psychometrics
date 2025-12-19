@@ -9,6 +9,7 @@ import Campaign, {
 } from '~/modules/admin/modules/campaigns/interfaces/Campaign'
 import { updateCampaignDetails } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
 import { fetchRelationships } from '~/modules/admin/modules/threeSixtyCampaign/core/relationships'
+import { updateCampaignAssessmentDetails } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignAssessments'
 
 const CommonCampaign = lazy(() => import('~/modules/admin/modules/campaigns/routes/Campaign'))
 const ThreeSixtyCampaign = lazy(() => import('~/modules/admin/modules/threeSixtyCampaign'))
@@ -66,6 +67,7 @@ const CampaignPage: React.FC = () => {
           permissions,
         }
         dispatch(updateCampaignDetails(campaignDetails))
+        dispatch(updateCampaignAssessmentDetails(campaignAssessment))
         dispatch(fetchRelationships(parseInt(campaignId, 10)))
       } else {
         const campaignDetails: Campaign = {

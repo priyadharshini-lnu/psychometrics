@@ -198,6 +198,7 @@ class UserReport < ApplicationRecord
     generate = all_assessments_are_scored? && (external_report? || !report_modules_empty?)
     generate &&= approved? if has_approval_workflow?
     generate &&= campaign_user.campaign_scores_finalized? if report.campaign_factors.present?
+    generate &&= campaign_user.campaign_artifact_results_finalized? if report.campaign_ai_artifacts.present?
     generate
   end
 

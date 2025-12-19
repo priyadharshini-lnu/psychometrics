@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'swagger_helper'
 
-describe Api::V2::Administration::UsersResultsController, swagger_doc: 'v2/swagger.json', type: :request do
+RSpec.describe Api::V2::Administration::UsersResultsController, type: :request do
   describe 'GET show' do
     let!(:superadmin) { create(:superadmin) }
     let(:user_assessment) { create(:user_assessment) }

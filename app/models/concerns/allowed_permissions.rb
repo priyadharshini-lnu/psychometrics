@@ -78,13 +78,14 @@ module AllowedPermissions
     'auditLogs' => ['view'],
     'workshops' => %w[view manage export_status view_recordings],
     'idp_templates' => %w[view manage],
-    'user_idp_plans' => %w[view manage],
+    'user_idp_plans' => %w[view manage reset],
     'proficiency_levels' => %w[view manage import export import_translations export_translations],
     'job_roles' => %w[view manage import_translations export_translations],
     'reflection_questions' => %w[view manage import export],
     'skills' => %w[view manage import export import_translations export_translations],
     'development_actions' => %w[view manage import export import_translations export_translations],
-    'ai_artifacts' => %w[view manage import export]
+    'ai_artifacts' => %w[view manage import export],
+    'interview_questions' => %w[view manage import export]
   }.freeze
 
   PROJECT_ADMIN_PERMISSIONS = {
@@ -153,13 +154,14 @@ module AllowedPermissions
     'datasheets' => %w[view manage],
     'workshops' => %w[view manage export_status view_recordings],
     'idp_templates' => %w[view manage],
-    'user_idp_plans' => %w[view manage],
+    'user_idp_plans' => %w[view manage reset],
     'proficiency_levels' => %w[view manage import export import_translations export_translations],
     'skills' => %w[view manage import export import_translations export_translations],
     'job_roles' => %w[view manage import_translations export_translations],
     'development_actions' => %w[view manage import export import_translations export_translations],
     'ai_artifacts' => %w[view manage import export],
-    'reflection_questions' => %w[view manage import export]
+    'reflection_questions' => %w[view manage import export],
+    'interview_questions' => %w[view manage import export]
   }.freeze
 
   CAMPAIGN_ADMIN_PERMISSIONS = {
@@ -202,7 +204,7 @@ module AllowedPermissions
     ],
     'workshops' => %w[view manage view_recordings],
     'idp_templates' => %w[view manage],
-    'user_idp_plans' => %w[view manage],
+    'user_idp_plans' => %w[view manage reset],
     'job_roles' => %w[view],
     'proficiency_levels' => %w[view],
     'skills' => %w[view],

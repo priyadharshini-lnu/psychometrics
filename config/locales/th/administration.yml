@@ -182,6 +182,12 @@ th:
             manage: จัดการ
             title: เทมเพลต IDP
             view: ดู
+          interviewQuestions:
+            export: ส่งออก
+            import: นําเข้า
+            manage: จัดการ
+            title: คําถามสัมภาษณ์ IDP
+            view: ดู
           jobRoles:
             export_translations: ส่งออกบทบาทงานแปล
             import_translations: นำเข้าการแปลบทบาทงาน
@@ -294,6 +300,7 @@ th:
             view: ดู
           userIdpPlans:
             manage: จัดการ
+            reset: รี เซ็ต
             title: แผน ID ผู้ใช้
             view: ทิวทัศน์
           users:
@@ -897,8 +904,6 @@ th:
       new:
         header: ดาวน์โหลดจำนวนมาก
       reports_unavailable: ในขณะนี้ยังไม่มีรายงานให้ดาวน์โหลด โปรดยืนยันว่ารายงานที่คุณต้องการดาวน์โหลดพร้อมใช้งาน
-      select_users_for_download: โปรดเลือกผู้ใช้อย่างน้อยหนึ่งคนในการดาวน์โหลดรายงาน
-      select_users_for_regenerate: โปรดเลือกผู้ใช้อย่างน้อยหนึ่งคนเพื่อสร้างรายงานใหม่
     cable:
       notification:
         assessment_factors: ดึงปัจจัย
@@ -1963,6 +1968,7 @@ th:
         udpated_at: อัพเดทล่าสุดเมื่อ
       configuration: การกําหนดค่า
       errors:
+        factor_code_or_field_name_required: ต้องใช้ factor_code หรือ field_name
         factor_not_found: ไม่พบในขอบเขตการประเมิน
         inclusion: 'ชนิดไม่ถูกต้อง ชนิดที่ถูกต้อง: %{values}'
         not_found: ไม่พบ
@@ -2065,9 +2071,6 @@ th:
       learning_styles:
         cannot_be_blank: ไม่สามารถว่างเปล่าได้
         invalid: ต้องเป็นหนึ่งใน on_the_job, structured_learning, learning_from_others
-        learning_from_others: เรียน จาก ผู้ อื่น [20]
-        on_the_job: ในการทํางาน [70]
-        structured_learning: การเรียนรู้ที่มีโครงสร้าง [10]
       new:
         header: การดําเนินการพัฒนาใหม่
       resource:
@@ -2322,11 +2325,12 @@ th:
       behavioral_skills: ทักษะพฤติกรรม
       client_skills: ทักษะของลูกค้า
       delete_skill: คุณแน่ใจหรือไม่ว่าต้องการลบทักษะนี้ การลบจะลบกิจกรรมการพัฒนาที่เกี่ยวข้องทั้งหมดด้วย
+      delete_skill_msg: คุณแน่ใจหรือไม่ว่าต้องการลบทักษะนี้? การลบจะเป็นการลบการดําเนินการพัฒนาที่เกี่ยวข้องทั้งหมดด้วย
       details_updated: รายละเอียดผู้พลัดถิ่นภายในประเทศได้รับการอัปเดตสำเร็จแล้ว
       development_actions:
         add_from_library: เพิ่มจากห้องสมุด
         completion: เสร็จ สมบูรณ์
-        create_development_actions_with_ai: สร้างการดําเนินการพัฒนาด้วย AI สําหรับ %{skillName}
+        create_development_actions_with_ai: สร้างการดําเนินการพัฒนาด้วย AI สําหรับ
         create_from_ai: สร้างจาก AI
         create_my_own: สร้างของตัวเอง
         custom: ธรรมเนียม
@@ -2352,6 +2356,7 @@ th:
         skills_required_on_publishing: โปรดเลือกทักษะก่อนเผยแพร่เทมเพลต
         update: ไม่อนุญาตให้อัปเดตเนื่องจากเทมเพลต IDP เชื่อมโยงกับแผน IDP ของผู้ใช้อยู่แล้ว การเปลี่ยนแปลงรูปลักษณ์ถูกบันทึกไว้
       fields:
+        approval_date: วันที่อนุมัติ
         assigned_data: ข้อมูลที่ได้รับมอบหมาย
         assigned_date: วันที่กำหนด
         completion_date: วันที่เสร็จสมบูรณ์
@@ -2644,24 +2649,6 @@ th:
         skillvue:
           api_key_present: คีย์ API มีอยู่ในโปรเจ็กต์อื่นแล้ว
       view_all_schedules: ดูตาราง Mettl ทั้งหมด
-      yoodli_assessments:
-        add_assessment: เพิ่มการประเมิน Yoodli
-        columns:
-          actions: การดําเนินการ
-          created_at: สร้างเมื่อ
-          name: ชื่อการประเมิน
-          product_id: รหัสผลิตภัณฑ์
-        delete_confirm: คุณแน่ใจหรือไม่ว่าต้องการลบการประเมิน Yoodli นี้?
-        edit_assessment: แก้ไขการประเมิน Yoodli
-        manage_catalog: จัดการการประเมิน Yoodli
-        messages:
-          create_success: การประเมิน Yoodli '%{name}' ถูกสร้างขึ้นเรียบร้อยแล้ว
-          delete_success: การประเมิน Yoodli ถูกลบเรียบร้อยแล้ว
-          update_success: การประเมิน Yoodli '%{name}' ได้รับการอัปเดตเรียบร้อยแล้ว
-        placeholders:
-          name: ป้อนชื่อการประเมิน
-          product_id: ป้อนรหัสผลิตภัณฑ์
-        search: ค้น
     interview_questions:
       delete_confirmation: คุณแน่ใจหรือไม่ว่าต้องการลบคําถามสัมภาษณ์นี้?
       description: คําอธิบาย
@@ -4667,8 +4654,6 @@ th:
             evaluations_received: การประเมินที่ได้รับ
             is_subject: คือ หัวข้อ
             name: ชื่อ
-            report_status: สถานะรายงาน
-            status: สถานะ
           evaluators:
             add_evaluators: เพิ่มผู้ประเมิน
             import_evaluators: ผู้ประเมินการนำเข้า

@@ -55,6 +55,17 @@ vi:
               blank: ID gói báo cáo không được để trống
             report_id:
               blank: ID báo cáo không được để trống
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: Không tìm thấy Trợ lý AI có ID '%{id}' ở hàng %{index}
+              blank: Cột '%{entity}' không được để trống ở hàng %{index}
+              duplicate_code: Trùng lặp mã '%{code}' ở hàng %{index}
+              invalid_code_format: Định dạng mã không hợp lệ '%{code}' ở hàng %{index}
+              max_limit_reached: Tổng số hiện vật AI của chiến dịch vượt quá giới hạn tối đa là %{count}
+              missing_headers: 'Thiếu tiêu đề bắt buộc: %{headers}'
+            file:
+              invalid_format: Vui lòng tải lên tệp CSV
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ vi:
         import_development_actions: Hành động phát triển nhập khẩu
         import_dimension_from_json: Nhập thứ nguyên từ JSON
         import_external_campaign_scoring: Nhập tính điểm chiến dịch bên ngoài
+        import_external_scoring_data: Nhập dữ liệu chấm điểm bên ngoài
         import_factor_translations: Bản dịch yếu tố nhập khẩu
         import_factors: Các yếu tố nhập khẩu
         import_interview_questions: Nhập câu hỏi phỏng vấn
@@ -1050,7 +1062,7 @@ vi:
         saville_assessment_name: Tên đánh giá Saville
         simulation_assessment_name: Tên đánh giá mô phỏng
         skillvue_assessment_name: Tên đánh giá Skillvue
-        yoodli_assessment_name: Tên đánh giá Yoodli
+        yoodli_scenario_id: ID kịch bản Yoodli
       translations_migrated: Bản dịch đã di chuyển
     create: Tạo
     dashboard: Bảng điều khiển
@@ -1469,8 +1481,6 @@ vi:
       skillvue_email_id: ID Email Ứng viên Skillvue
       skillvue_external_assessment_id: Mã đánh giá Skillvue
       universal_link: Liên kết phổ quát
-      yoodli_email_id: ID email ứng viên Yoodli
-      yoodli_external_assessment_id: ID đánh giá Yoodli
     drawer:
       mettl_schedule_name: Tên lịch trình Mettl
       title: Chi tiết đánh giá
@@ -1623,8 +1633,6 @@ vi:
       report: Báo cáo
       report_bundle_placeholder: Chọn gói báo cáo
     messages:
-      bulk_download_error: Tải xuống hàng loạt được giới hạn ở 1000 tệp báo cáo. Nếu bạn đã chọn nhiều ngôn ngữ, vui lòng giảm nó.
-      bulk_download_no_reports: Không tìm thấy báo cáo. Vui lòng tạo báo cáo trước khi tải xuống.
       bulk_download_successful: Tác vụ tải xuống báo cáo hàng loạt đã được lên lịch thành công
       export_report_data_scheduled: Tác vụ xuất dữ liệu báo cáo đã được lên lịch thành công
     modals:
@@ -1934,7 +1942,6 @@ vi:
       hide: Giấu
       view: Cảnh
     validations:
-      required: Trường này là bắt buộc
       select_locale: Vui lòng chọn một số ngôn ngữ
       should_be_whole_number: nên là một số nguyên
   confirmation:
@@ -2511,8 +2518,8 @@ vi:
       reset_chat: Đặt lại trò chuyện
       reset_confirmation: Bạn có chắc chắn muốn loại bỏ cuộc trò chuyện này và bắt đầu lại không?
       retake_steps:
-        chat_hint: Hãy cho tôi biết bạn muốn cung cấp thêm thông tin nào?
-        chat_title: Bạn muốn cung cấp thêm thông tin?
+        chat_hint: Bạn có thể tải lên một tệp mới hoặc khởi động lại cuộc trò chuyện để chia sẻ thêm chi tiết và tôi sẽ cố gắng hết sức để hỗ trợ bạn.
+        chat_title: Tôi xin lỗi vì phân tích ban đầu không đáp ứng được mong đợi của bạn.
         start_chat: Bắt đầu trò chuyện
         start_chat_again: Bắt đầu lại trò chuyện
         upload_document: Tải lên tài liệu
@@ -2538,14 +2545,14 @@ vi:
         chat_title: Tóm tắt thông tin chi tiết về trò chuyện
         file_title: Thông tin chi tiết về tài liệu đã tải lên
         gap_report_title: Phân tích báo cáo khoảng cách kỹ năng
-        hint: nếu có thì chúng tôi sẽ tạo IDP của bạn, nếu không bạn có thể lấy lại câu trả lời của mình
-        title: Bạn có hài lòng với kết quả không?
+        hint: Với sự cho phép của bạn, nếu bạn đồng ý, tôi có thể tạo một kế hoạch phát triển cho bạn. Nếu không, bạn có thể bắt đầu lại cuộc trò chuyện hoặc tải tệp mới lên.
+        title: Bạn có hài lòng với phân tích không?
         upload_file: Tệp đã tải lên
         view_chat: Xem trò chuyện
       upload:
-        description: Nhấp hoặc kéo tệp vào khu vực này để tải lên
+        description: 'Loại tệp được hỗ trợ: Tài liệu PDF lên đến %{maxFileSize}MB'
         drop: Thả tệp vào đây
-        title: Tải lên tệp
+        title: Nhấp hoặc thả tệp tại đây
       welcome:
         text: Sẵn sàng lập biểu đồ tăng trưởng của bạn? Bắt đầu nào!
         title: Xin chào, tôi là trợ lý phát triển của bạn
@@ -2595,6 +2602,7 @@ vi:
     convert_to_draft: Chuyển đổi sang bản nháp
     current_step: Bước hiện tại %{step}
     delete_skill: Bạn có chắc chắn muốn xóa kỹ năng này không? Việc xóa sẽ loại bỏ tất cả các hành động phát triển liên quan.
+    delete_skill_msg: Bạn có chắc chắn muốn xóa kỹ năng này không? Xóa nó cũng sẽ xóa tất cả các hành động phát triển có liên quan.
     details: Chi tiết
     development_actions:
       action_private: Có
@@ -2612,8 +2620,8 @@ vi:
         in_progress: Đang tiến hành
         not_started: Chưa bắt đầu
       completion: Hoàn thành
-      create_custom_development_action_title: Tạo Hành động phát triển của riêng tôi cho %{skillName}
-      create_development_actions_with_ai: Tạo hành động phát triển với AI cho %{skillName}
+      create_custom_development_action_title: Tạo Hành động phát triển của riêng tôi cho
+      create_development_actions_with_ai: Tạo hành động phát triển với AI cho
       create_from_ai: Sáng tạo từ AI
       create_my_own: Tạo của riêng tôi
       custom: Phong tục
@@ -2679,6 +2687,7 @@ vi:
     edit_progress: Chỉnh sửa tiến độ
     fetching_skill_gap_report: Tìm nạp báo cáo khoảng cách kỹ năng...
     go_to_previous_step: Chuyển đến bước trước
+    go_to_reportee_plan: Đi tới Chi tiết kế hoạch của người được báo cáo
     history:
       added_da:
         one: Thêm hành động phát triển
@@ -2728,12 +2737,14 @@ vi:
         categories: Loại
       save_skills: Lưu kỹ năng
     new_comments: "(Các) nhận xét mới"
+    no_plan_changes_found: Không có sửa đổi nào được thực hiện đối với kế hoạch kể từ lần xem xét cuối cùng của bạn.
     no_skills_added: Bạn chưa có Kỹ năng nào được thêm vào.
     no_skills_added_by_reportee: Người báo cáo vẫn chưa thêm Kỹ năng.
     pdf:
       approval_status: Trạng thái phê duyệt
       cover:
         fields:
+          approval_date: Ngày phê duyệt
           assigned_data: Ngày chỉ định
           assigned_date: Ngày được giao
           completion_date: Ngày hoàn thành
@@ -2820,8 +2831,12 @@ vi:
         approved: Đã xem xét và phê duyệt
         completed: Hoàn thành
         draft: Bản nháp
+        in_progress: Đang tiến hành
+        in_review: Đang xem xét
         not_reviewed: Chưa được xem xét
+        not_started: Chưa bắt đầu
         pending_approval: Đang xem xét
+        rejected: Bị từ chối
       summary:
         ai_count: AI tổng quát
         collaborative_learn: Học tập hợp tác
@@ -3802,13 +3817,6 @@ vi:
       on_hold: Đang tạm dừng
       prepared: Xong
       released: Phát hành
-    statuses:
-      completed: Hoàn thành
-      declined: Từ chối
-      denied: Từ chối
-      done: Xong
-      not_completed: Chưa hoàn thành
-      waiting: Chờ
   threesixty:
     accept_privacy_modal:
       accept: Chấp nhận

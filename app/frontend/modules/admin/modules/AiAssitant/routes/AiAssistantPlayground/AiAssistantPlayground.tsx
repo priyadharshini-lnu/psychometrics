@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import {
   Input, Button,
   Flex, Form, Typography,
-  Select, Splitter,
+  Select, Splitter, Avatar,
 } from 'antd'
 import {
   HistoryOutlined, EditOutlined, CheckOutlined, CloseOutlined,
@@ -114,13 +114,17 @@ export const AiAssistantPlayground: React.FC = () => {
               placement={msg.isUser ? 'end' : 'start'}
               content={msg.text}
               styles={{ content: { maxWidth: 500 } }}
-              avatar={{
-                icon: msg.isUser ? <UserOutlined /> : <RobotOutlined />,
-                style: {
-                  color: '#fff',
-                  backgroundColor: msg.isUser ? '#1890ff' : '#87d068',
-                },
-              }}
+              avatar={msg.isUser ? (
+                <Avatar
+                  icon={<UserOutlined />}
+                  style={{ backgroundColor: '#1890ff' }}
+                />
+              ) : (
+                <Avatar
+                  icon={<RobotOutlined />}
+                  style={{ backgroundColor: '#87d068' }}
+                />
+              )}
             />
           </>
         ))}
@@ -130,12 +134,11 @@ export const AiAssistantPlayground: React.FC = () => {
           value={input}
           onChange={handleInputChange}
           onSubmit={handleSend}
-          autoSize={{ minRows: 2, maxRows: 6 }}
-          actions={false}
-          footer={({ components }) => {
+          autoSize={{ minRows: 4, maxRows: 6 }}
+          suffix={(_, { components }) => {
             const { SendButton, LoadingButton } = components
             return (
-              <Flex justify="space-between" align="center">
+              <Flex justify="space-between" align="center" gap="small">
                 <Typography.Text type="secondary">
                   {`${input.length} / ${MAX_LENGTH}`}
                 </Typography.Text>

@@ -27,6 +27,7 @@ interface SkillvueUserAssessmentDetails {
 interface YoodliUserAssessmentDetails {
   email: string | null
   externalAssessmentId: string | null
+  yoodliActivityId: string | null
 }
 
 export default interface UserAssessment {

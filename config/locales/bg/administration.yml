@@ -182,6 +182,12 @@ bg:
             manage: Управлявам
             title: Шаблони за индивидуален план за развитие
             view: Изглед
+          interviewQuestions:
+            export: Износ
+            import: Импорт
+            manage: Управление
+            title: Въпроси за интервю за IDP
+            view: Изглед
           jobRoles:
             export_translations: Експорт на работни роли Преводи
             import_translations: Импортиране на работни роли Преводи
@@ -294,6 +300,7 @@ bg:
             view: Изглед
           userIdpPlans:
             manage: Управлявам
+            reset: Проучване
             title: Планове за потребителски IDP
             view: Изглед
           users:
@@ -897,8 +904,6 @@ bg:
       new:
         header: Групово изтегляне
       reports_unavailable: В момента няма отчети за изтегляне. Моля, потвърдете, че отчетите, които искате да изтеглите, са налице.
-      select_users_for_download: Моля, изберете поне един потребител за изтегляне на отчети.
-      select_users_for_regenerate: Моля, изберете поне един потребител, който да регенерира отчети.
     cable:
       notification:
         assessment_factors: Извличат се фактори
@@ -1963,6 +1968,7 @@ bg:
         udpated_at: Последна актуализация на
       configuration: Конфигурация
       errors:
+        factor_code_or_field_name_required: factor_code или field_name е задължително
         factor_not_found: не е открита в обхвата на оценката
         inclusion: 'невалиден тип, валидни типове: %{values}'
         not_found: Не е намерен
@@ -2065,9 +2071,6 @@ bg:
       learning_styles:
         cannot_be_blank: Не може да бъде празно
         invalid: Трябва да е един от on_the_job, structured_learning, learning_from_others
-        learning_from_others: Учене от другите [20]
-        on_the_job: На работното място [70]
-        structured_learning: Структурирано обучение [10]
       new:
         header: Ново действие за развитие
       resource:
@@ -2322,11 +2325,12 @@ bg:
       behavioral_skills: Поведенчески умения
       client_skills: Умения на клиента
       delete_skill: Сигурни ли сте, че искате да изтриете това умение? Изтриването ще премахне и всички свързани действия за развитие.
+      delete_skill_msg: Сигурен ли си, че искаш да изтриеш това умение? Изтриването ще премахне и всички свързани действия по разработка.
       details_updated: Детайлите на IDP са актуализирани успешно
       development_actions:
         add_from_library: Добавяне от библиотеката
         completion: Завършване
-        create_development_actions_with_ai: Създавайте действия за развитие с AI за %{skillName}
+        create_development_actions_with_ai: Създавайте действия за развитие с AI за
         create_from_ai: Създавайте от AI
         create_my_own: Създай свой собствен
         custom: Обичай
@@ -2352,6 +2356,7 @@ bg:
         skills_required_on_publishing: Моля, изберете умения, преди да публикувате шаблон.
         update: Актуализацията не е разрешена, тъй като шаблонът за IDP вече е свързан с потребителски IDP план. Промените във външния вид са запазени.
       fields:
+        approval_date: Дата на одобрение
         assigned_data: Присвоени данни
         assigned_date: Присвоена дата
         completion_date: Дата на завършване
@@ -2644,24 +2649,6 @@ bg:
         skillvue:
           api_key_present: API ключът вече присъства в друг проект
       view_all_schedules: Вижте всички графици на Mettl
-      yoodli_assessments:
-        add_assessment: Add Yoodli оценка
-        columns:
-          actions: Действия
-          created_at: Създаден в
-          name: Име на оценката
-          product_id: ID на продукта
-        delete_confirm: Сигурен ли си, че искаш да изтриеш тази оценка на Yoodli?
-        edit_assessment: Редактиране на оценка на Юдли
-        manage_catalog: Управление на оценките на Yoodli
-        messages:
-          create_success: Оценката на Yoodli '%{name}' беше създадена успешно
-          delete_success: Оценката на Yoodli беше успешно изтрита
-          update_success: Оценката на Yoodli '%{name}' беше успешно актуализирана
-        placeholders:
-          name: Въведете името на оценката
-          product_id: Въведете product ID
-        search: Търсене
     interview_questions:
       delete_confirmation: Сигурни ли сте, че искате да изтриете този въпрос за интервю?
       description: Описание
@@ -4667,8 +4654,6 @@ bg:
             evaluations_received: Получени оценки
             is_subject: Е предмет
             name: Име
-            report_status: Състояние на доклада
-            status: Статус
           evaluators:
             add_evaluators: Добавяне на оценители
             import_evaluators: Внос на оценители

@@ -11,7 +11,15 @@ class AI::CampaignArtifactResult < AI::AssistedUserSession
   has_many :assistant_output_schema_keys, through: :campaign_ai_artifact, source: :assistant_output_schema_keys
 
   alias_attribute :results, :checkpoint
-  alias_attribute :parsed_dependencies, :meta
+
+  def parsed_dependencies
+    # nil as default if no parsed dependencies are stored
+    meta.present? && meta != {} ? meta : nil
+  end
+
+  def parsed_dependencies=(value)
+    self.meta = value
+  end
 
   before_save :reset_error, if: :results_changed?
 

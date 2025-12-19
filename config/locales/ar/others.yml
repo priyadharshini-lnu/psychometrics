@@ -55,6 +55,17 @@ ar:
               blank: لا يمكن أن يكون معرف حزمة التقرير فارغا
             report_id:
               blank: لا يمكن أن يكون معرف التقرير فارغا
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: مساعد الذكاء الاصطناعي مع معرف '%{id}' غير موجود في الصف %{index}
+              blank: لا يمكن أن يكون العمود '%{entity}' فارغا في الصف %{index}
+              duplicate_code: رمز مكرر '%{code}' في الصف %{index}
+              invalid_code_format: تنسيق الكود '%{code}' غير صالح في الصف %{index}
+              max_limit_reached: إجمالي الذكاء الاصطناعي القطع الأثرية في الحملة يتجاوز الحد الأقصى %{count}
+              missing_headers: 'العناوين المطلوبة المفقودة: %{headers}'
+            file:
+              invalid_format: يرجى رفع ملف CSV
         campaign_factor_import_form:
           attributes:
             file:
@@ -928,6 +939,7 @@ ar:
         import_development_actions: إجراءات تطوير الاستيراد
         import_dimension_from_json: استيراد البعد من JSON
         import_external_campaign_scoring: استيراد نقاط الحملة الخارجية
+        import_external_scoring_data: استيراد بيانات التسجيل الخارجية
         import_factor_translations: ترجمات عامل الاستيراد
         import_factors: عوامل الاستيراد
         import_interview_questions: استيراد أسئلة المقابلة
@@ -1090,7 +1102,7 @@ ar:
         saville_assessment_name: اسم تقييم سافيل
         simulation_assessment_name: اسم تقييم المحاكاة
         skillvue_assessment_name: اسم تقييم المهارات
-        yoodli_assessment_name: اسم تقييم يودلي
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: الترجمة المهاجرة
     create: خلق
     dashboard: لوحه القياده
@@ -1527,8 +1539,6 @@ ar:
       skillvue_email_id: معرف البريد الإلكتروني للمرشح سكيلفيو
       skillvue_external_assessment_id: معرّف تقييم سكيلفيو
       universal_link: رابط عالمي
-      yoodli_email_id: معرف البريد الإلكتروني للمرشح في يودلي
-      yoodli_external_assessment_id: معرف تقييم يودلي
     drawer:
       mettl_schedule_name: اسم جدول Mettl
       title: تفاصيل التقييم
@@ -1681,8 +1691,6 @@ ar:
       report: تقرير
       report_bundle_placeholder: حدد حزمة تقارير
     messages:
-      bulk_download_error: يقتصر التنزيل المجمع على 1000 ملف تقرير. إذا كنت قد اخترت العديد من اللغات ، فيرجى تقليلها.
-      bulk_download_no_reports: لم يتم العثور على تقارير. يرجى إنشاء التقارير قبل التنزيل.
       bulk_download_successful: تمت جدولة مهمة تنزيل التقرير المجمع بنجاح
       export_report_data_scheduled: تمت جدولة مهمة تصدير بيانات التقرير بنجاح
     modals:
@@ -1992,7 +2000,6 @@ ar:
       hide: أخفى
       view: منظر
     validations:
-      required: هذا المجال مطلوب
       select_locale: الرجاء تحديد بعض الإعدادات المحلية
       should_be_whole_number: يجب أن يكون رقما صحيحا
   confirmation:
@@ -2569,8 +2576,8 @@ ar:
       reset_chat: إعادة تعيين الدردشة
       reset_confirmation: هل أنت متأكد من أنك تريد تجاهل هذه الدردشة والبدء من جديد؟
       retake_steps:
-        chat_hint: اسمحوا لي أن أعرف ما هي المعلومات التي تريد تقديمها أكثر أدناه؟
-        chat_title: هل تريد تقديم المزيد من المعلومات؟
+        chat_hint: يمكنك رفع ملف جديد أو إعادة تشغيل الدردشة لمشاركة المزيد من التفاصيل، وسأبذل قصارى جهدي لمساعدتك.
+        chat_title: آسف لأن التحليل الأولي لم يلب توقعاتك.
         start_chat: بدء الدردشة
         start_chat_again: بدء الدردشة مرة أخرى
         upload_document: تحميل المستند
@@ -2596,14 +2603,14 @@ ar:
         chat_title: ملخص رؤى الدردشة
         file_title: رؤى المستندات التي تم تحميلها
         gap_report_title: تحليل تقرير فجوة المهارات
-        hint: إذا كانت الإجابة بنعم ، فسنقوم بإنشاء IDP الخاص بك وإلا يمكنك استعادة إجاباتك
-        title: هل أنت راض عن النتائج؟
+        hint: بإذنك، إذا قلت نعم، يمكنني إعداد خطة تطوير لك. إذا لم يكن كذلك، يمكنك إعادة تشغيل الدردشة أو رفع ملف جديد.
+        title: هل أنت راض عن التحليل؟
         upload_file: الملف الذي تم تحميله
         view_chat: عرض الدردشة
       upload:
-        description: انقر فوق الملفات أو اسحبها إلى هذه المنطقة لتحميلها
+        description: 'نوع الملف المدعوم: مستندات PDF حتى %{maxFileSize}MB'
         drop: قم بإسقاط الملف هنا
-        title: تحميل الملفات
+        title: انقر أو أسقط الملف هنا
       welcome:
         text: هل أنت مستعد لرسم نموك جوني؟ هيا نبدأ!
         title: مرحبا، أنا مساعد التطوير الخاص بك
@@ -2653,6 +2660,7 @@ ar:
     convert_to_draft: تحويل إلى مسودة
     current_step: الخطوة الحالية %{step}
     delete_skill: هل أنت متأكد أنك تريد حذف هذه المهارة؟ سيؤدي الحذف أيضًا إلى إزالة جميع إجراءات التطوير المرتبطة به
+    delete_skill_msg: هل أنت متأكد أنك تريد حذف هذه المهارة؟ حذف اللعبة سيزيل أيضا جميع إجراءات التطوير ذات الصلة.
     details: التفاصيل
     development_actions:
       action_private: نعم
@@ -2670,8 +2678,8 @@ ar:
         in_progress: قيد التنفيذ
         not_started: لم يبدأ بعد
       completion: الإنجاز
-      create_custom_development_action_title: إنشاء عملي الإنمائي الخاص بي من أجل %{skillName}
-      create_development_actions_with_ai: إنشاء إجراءات التطوير باستخدام الذكاء الاصطناعي for %{skillName}
+      create_custom_development_action_title: إنشاء إجراء التطوير الخاص بي
+      create_development_actions_with_ai: إنشاء إجراءات التطوير باستخدام الذكاء الاصطناعي
       create_from_ai: الإنشاء من الذكاء الاصطناعي
       create_my_own: إنشاء خاص بي
       custom: تقليد
@@ -2737,6 +2745,7 @@ ar:
     edit_progress: تحرير التقدم
     fetching_skill_gap_report: تقرير جلب فجوات المهارات ...
     go_to_previous_step: انتقل إلى الخطوة السابقة
+    go_to_reportee_plan: اذهب إلى تفاصيل خطة المبلغ
     history:
       added_da:
         one: إجراءات إنمائية مضافة
@@ -2786,12 +2795,14 @@ ar:
         categories: الفئات
       save_skills: حفظ المهارات
     new_comments: تعليق (تعليقات) جديدة
+    no_plan_changes_found: لم تجر أي تعديلات على الخطة منذ آخر مراجعة لك.
     no_skills_added: لم تتم إضافة مهارات حتى الآن.
-    no_skills_added_by_reportee: لم يضف Reportee مهارات بعد.
+    no_skills_added_by_reportee: لم يقم المُبلغ بإضافة أي مهارات بعد
     pdf:
       approval_status: حالة الموافقة
       cover:
         fields:
+          approval_date: تاريخ الموافقة
           assigned_data: تاريخ التعيين
           assigned_date: تاريخ التعيين
           completion_date: تاريخ الإكمال
@@ -2875,11 +2886,15 @@ ar:
         behavioral: السلوكية
         technical: التقنية
       statuses:
-        approved: تمت المراجعة والموافقة
+        approved: موافقة
         completed: مكتمل
         draft: المسودة
+        in_progress: جار التقديم
+        in_review: في المراجعة
         not_reviewed: لم تتم المراجعة
+        not_started: لم يبدأ بعد
         pending_approval: قيد المراجعة
+        rejected: نبيذ
       summary:
         ai_count: الذكاء الاصطناعي التوليدي
         collaborative_learn: التعلم التعاوني
@@ -3860,13 +3875,6 @@ ar:
       on_hold: قيد الانتظار
       prepared: تم
       released: تم الإصدار
-    statuses:
-      completed: تم اكماله
-      declined: رُفض
-      denied: تم رفضه
-      done: منجز
-      not_completed: لم يتم اكماله
-      waiting: منتظر
   threesixty:
     accept_privacy_modal:
       accept: اقبل

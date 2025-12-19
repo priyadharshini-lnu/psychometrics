@@ -182,6 +182,12 @@ pl:
             manage: Zarządzać
             title: Szablony IDP
             view: Widok
+          interviewQuestions:
+            export: Eksport
+            import: Import
+            manage: Zarządzaj
+            title: Pytania dotyczące rozmowy kwalifikacyjnej z IDP
+            view: Zobacz
           jobRoles:
             export_translations: Eksportuj tłumaczenia ról zawodowych
             import_translations: Importowanie tłumaczeń ról zadań
@@ -294,6 +300,7 @@ pl:
             view: Widok
           userIdpPlans:
             manage: Zarządzać
+            reset: Resetować
             title: Plany IDP dla użytkowników
             view: Widok
           users:
@@ -897,8 +904,6 @@ pl:
       new:
         header: Pobieranie zbiorcze
       reports_unavailable: W tej chwili nie są dostępne żadne raporty do pobrania. Upewnij się, że raporty, które chcesz pobrać, są dostępne.
-      select_users_for_download: Wybierz co najmniej jednego użytkownika do pobrania raportów.
-      select_users_for_regenerate: Wybierz co najmniej jednego użytkownika do regeneracji raportów.
     cable:
       notification:
         assessment_factors: Czynniki są pobierane
@@ -1963,6 +1968,7 @@ pl:
         udpated_at: Ostatnia aktualizacja o
       configuration: Konfiguracja
       errors:
+        factor_code_or_field_name_required: factor_code lub field_name jest wymagane
         factor_not_found: nie znaleziono w zakresie oceny
         inclusion: 'Nieprawidłowy typ, prawidłowe typy: %{values}'
         not_found: Nie znaleziono
@@ -2065,9 +2071,6 @@ pl:
       learning_styles:
         cannot_be_blank: Nie może być puste
         invalid: Musi być jednym z on_the_job, structured_learning learning_from_others
-        learning_from_others: Uczenie się od innych [20]
-        on_the_job: W pracy [70]
-        structured_learning: Ustrukturyzowane nauczanie [10]
       new:
         header: Nowe działanie na rzecz rozwoju
       resource:
@@ -2322,11 +2325,12 @@ pl:
       behavioral_skills: Umiejętności behawioralne
       client_skills: Umiejętności klienta
       delete_skill: Czy na pewno chcesz usunąć umiejętność? Spowoduje to również usunięcie wszystkich powiązanych działań rozwojowych.
+      delete_skill_msg: Jesteś pewien, że chcesz usunąć tę umiejętność? Usunięcie tego również usunie wszystkie powiązane działania rozwojowe.
       details_updated: Szczegóły IDP zostały pomyślnie zaktualizowane
       development_actions:
         add_from_library: Dodaj z biblioteki
         completion: Ukończenie
-        create_development_actions_with_ai: Twórz działania programistyczne za pomocą sztucznej inteligencji dla %{skillName}
+        create_development_actions_with_ai: Twórz działania programistyczne za pomocą sztucznej inteligencji dla
         create_from_ai: Tworzenie na podstawie sztucznej inteligencji
         create_my_own: Stwórz swój własny
         custom: Zwyczaj
@@ -2352,6 +2356,7 @@ pl:
         skills_required_on_publishing: Wybierz umiejętności przed opublikowaniem szablonu.
         update: Aktualizacja nie jest dozwolona, ponieważ szablon dostawcy tożsamości jest już skojarzony z planem dostawcy tożsamości użytkownika. Zmiany wyglądu zostały zapisane.
       fields:
+        approval_date: Data zatwierdzenia
         assigned_data: Przypisane dane
         assigned_date: Przypisana data
         completion_date: Data realizacji
@@ -2644,24 +2649,6 @@ pl:
         skillvue:
           api_key_present: Klucz API jest już obecny w innym projekcie
       view_all_schedules: Zobacz wszystkie rozkłady jazdy Mettl
-      yoodli_assessments:
-        add_assessment: Add Yoodli Assessment
-        columns:
-          actions: Akcje
-          created_at: Stworzone w
-          name: Nazwa oceny
-          product_id: Identyfikator produktu
-        delete_confirm: Jesteś pewien, że chcesz usunąć tę ocenę Yoodli?
-        edit_assessment: Edytuj Ocena Yoodli
-        manage_catalog: Zarządzanie ocenami Yoodli
-        messages:
-          create_success: Ocena Yoodli '%{name}' została pomyślnie stworzona
-          delete_success: Ocena Yoodli została pomyślnie usunięta
-          update_success: Ocena Yoodli '%{name}' została pomyślnie zaktualizowana
-        placeholders:
-          name: Wpisz nazwę oceny
-          product_id: Wprowadź ID produktu
-        search: Szukać
     interview_questions:
       delete_confirmation: Czy na pewno chcesz usunąć to pytanie podczas rozmowy kwalifikacyjnej?
       description: Opis
@@ -4667,8 +4654,6 @@ pl:
             evaluations_received: Otrzymane oceny
             is_subject: Czy temat
             name: Nazwa
-            report_status: Status raportu
-            status: Status
           evaluators:
             add_evaluators: Dodaj oceniających
             import_evaluators: Import Evaluators

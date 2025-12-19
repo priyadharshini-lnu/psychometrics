@@ -22,7 +22,7 @@ type SearchSkillResourceProps = {
   }
 
 type AddSkillsStepProps = {
-  onFinishAddSkill: () => void
+  onFinishAddSkill: (callback?:()=>void) => void
   addSkillButtonText: string
   selectedSkills: UserIdpSkill[]
   skillTypes: TypeWithSkillsSummary[]
@@ -35,8 +35,10 @@ type AddSkillsStepProps = {
   isSkillGapReportLoading?:boolean
   skillGapReportAvailable?:boolean
   prev?: ()=>void
+  next?: ()=>void
   isSkillsLoading?:boolean
   allowSkillDeletion?:boolean
+  header?: React.ReactNode
 }
 
 const { I18n } = window
@@ -48,16 +50,17 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
   skillGapReportData,
   isSkillGapReportLoading = false,
   skillGapReportAvailable = false,
-  prev,
+  prev, next,
   isSkillsLoading = false,
   allowSkillDeletion = true,
+  header,
 }) => {
   const { isMobile } = useContext(MediaQueryContext)
   const location = useLocation()
   const isStepsRoute = location.pathname.includes('idp/steps') || location.pathname.includes('step/')
   // redux stores user_idp_skills which doesn't have same id as of skills resource
   // Using name instead of id as name is also unique
-  const selectedSkillsNames = selectedSkills.map(({ name }) => name)
+  const selectedSkillsNames = selectedSkills.filter(skill => !skill.deletedAt).map(({ name }) => name)
   const initialSelectedSkillsNames = useMemo(() => selectedSkillsNames, [])
 
   const isSelectedSkillsDirty = !isEqual(initialSelectedSkillsNames.sort(), selectedSkillsNames.sort())
@@ -72,7 +75,9 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
         <Space>
           {showBackButton && (
             <BackButton
-              onPrev={prev}
+              onPrev={() => {
+                onFinishAddSkill(prev)
+              }}
             />
           )}
           <Typography.Title level={3} className="mb-0 mt-0">
@@ -80,6 +85,7 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
           </Typography.Title>
         </Space>
         <Flex gap={8} vertical={isMobile} justify="end" align="end">
+          {header}
           {skillGapReportAvailable && (
             <Spin spinning={isSkillGapReportLoading}>
               <DownloadButton
@@ -98,7 +104,7 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
           <ButtonWithArrow
             label={addSkillButtonText}
             type="primary"
-            onClick={() => onFinishAddSkill()}
+            onClick={() => onFinishAddSkill(next)}
             loading={isSubmitting}
             disabled={disableAddSkillButton}
           />

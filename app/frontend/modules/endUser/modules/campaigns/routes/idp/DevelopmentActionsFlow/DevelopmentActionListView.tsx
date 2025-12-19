@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import {
   Avatar, Button, Flex, Typography, Empty,
 } from 'antd'
-import { map, filter } from 'lodash'
+import { map, filter, sortBy } from 'lodash'
 import { v4 as uuidv4 } from 'uuid'
 import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MediaQueryContext } from '~/glint'
@@ -235,7 +235,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
             </Flex>
           </Flex>
         )}
-        {categories.map(category => (
+        {sortBy(categories, 'skillType').map(category => (
           <div key={category.skillType} className="mt-2">
             <Flex vertical gap={4}>
               <Flex align="center" gap={8}>

@@ -169,4 +169,114 @@ RSpec.describe Lti::CreateIdToken do
       end
     end
   end
+
+  describe 'yoodli integration behavior' do
+    context 'when integration uses existing yoodli email' do
+      before do
+        yoodli_user_assessment.update!(email: 'test@yoodli.com')
+      end
+
+      subject do
+        described_class.new(
+          client_id: 'test-client-id',
+          redirect_uri: 'https://example.com/redirect',
+          login_hint: user_assessment.encoded_id,
+          lti_message_hint: 'test-message-hint',
+          nonce: nonce,
+          integration: create(:integration, name: :yoodli)
+        )
+      end
+
+      it 'includes the existing yoodli email in the JWT token' do
+        id_token = nil
+        allow(subject).to receive(:broadcast) do |event, token|
+          id_token = token if event == :ok
+        end
+        subject.call
+
+        decoded_token = JWT.decode(id_token, nil, false).first
+        expect(decoded_token['email']).to eq('test@yoodli.com')
+      end
+    end
+
+    context 'when integration has no existing yoodli email' do
+      subject do
+        described_class.new(
+          client_id: 'test-client-id',
+          redirect_uri: 'https://example.com/redirect',
+          login_hint: user_assessment.encoded_id,
+          lti_message_hint: 'test-message-hint',
+          nonce: nonce,
+          integration: create(:integration, name: :yoodli)
+        )
+      end
+
+      it 'generates and includes a fallback email in the JWT token' do
+        id_token = nil
+        allow(subject).to receive(:broadcast) do |event, token|
+          id_token = token if event == :ok
+        end
+        subject.call
+
+        decoded_token = JWT.decode(id_token, nil, false).first
+        expect(decoded_token['email']).to match(/@example\.com$/)
+        expect(decoded_token['email'].length).to be > 10
+      end
+    end
+
+    context 'when yoodli integration updates assessment data' do
+      subject do
+        described_class.new(
+          client_id: 'test-client-id',
+          redirect_uri: 'https://example.com/redirect',
+          login_hint: user_assessment.encoded_id,
+          lti_message_hint: 'test-message-hint',
+          nonce: nonce,
+          state: 'test-state-123',
+          integration: create(:integration, name: :yoodli)
+        )
+      end
+
+      it 'updates yoodli user assessment with generated email and activity ID' do
+        expect { subject.call }.to change { yoodli_user_assessment.reload.email }.from(nil).to(kind_of(String)).
+          and change {
+                yoodli_user_assessment.reload.yoodli_activity_id
+              }.from(nil).to('test-state-123')
+      end
+
+      it 'handles missing state parameter gracefully' do
+        subject_without_state = described_class.new(
+          client_id: 'test-client-id',
+          redirect_uri: 'https://example.com/redirect',
+          login_hint: user_assessment.encoded_id,
+          lti_message_hint: 'test-message-hint',
+          nonce: nonce,
+          integration: create(:integration, name: :yoodli)
+        )
+
+        expect { subject_without_state.call }.to change {
+          yoodli_user_assessment.reload.email
+        }.from(nil).to(kind_of(String))
+        expect(yoodli_user_assessment.reload.yoodli_activity_id).to be_nil
+      end
+
+      it 'saves the activity ID from state parameter' do
+        activity_id = 'yoodli-activity-12345'
+
+        subject_with_activity_id = described_class.new(
+          client_id: 'test-client-id',
+          redirect_uri: 'https://example.com/redirect',
+          login_hint: user_assessment.encoded_id,
+          lti_message_hint: 'test-message-hint',
+          nonce: nonce,
+          state: activity_id,
+          integration: create(:integration, name: :yoodli)
+        )
+
+        expect { subject_with_activity_id.call }.to change {
+          yoodli_user_assessment.reload.yoodli_activity_id
+        }.from(nil).to(activity_id)
+      end
+    end
+  end
 end

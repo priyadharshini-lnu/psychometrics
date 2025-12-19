@@ -3,13 +3,14 @@ import {
   useState, FC, useContext,
 } from 'react'
 import {
-  Typography, Flex, Button, Space, Popover,
+  Typography, Flex, Button, Space, Popover, Spin,
   message,
   Tag,
   Avatar,
 } from 'antd'
 import { useParams, useNavigate } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
+import cs from 'classnames'
 import { filteredDevelopmentActions } from '../../UserDevelopmentPlan/utils'
 import IdpPageLayoutWrapper from '~/components/IdpShared/IdpPageLayoutWrapper'
 import { USER_IDP_PLAN_STATUS, STATUS_COLORS } from '~/components/IdpShared/constants'
@@ -70,6 +71,7 @@ const DirectReportDetailsComponent: FC<Props> = ({
   const [isUpdating, setIsUpdating] = useState(false)
   const [isRejectPopoverOpen, setIsRejectPopoverOpen] = useState(false)
   const [isApprovePopoverOpen, setIsApprovePopoverOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const { managerApprovesIdp, managerCanEditIdp } = idpSettings
   const { isMobile } = useContext(MediaQueryContext)
@@ -89,10 +91,13 @@ const DirectReportDetailsComponent: FC<Props> = ({
 
   const handleSave = () => {
     setEditMode(false)
+    setIsLoading(true)
     const actionsArray = _.values(filteredDevelopmentActions(idpDevelopmentActions))
     saveUserIdpDevelopmentActions(idpUserId, actionsArray).then(() => (
       fetchUserIdpPlan(idpUserId)
-    ))
+    )).finally(() => {
+      setIsLoading(false)
+    })
   }
 
   const updateReporteeIdpStatus = (status: string, note = '') => {
@@ -263,15 +268,17 @@ const DirectReportDetailsComponent: FC<Props> = ({
 
   return (
     <IdpPageLayoutWrapper>
-      <Flex className={styles.detailsPageContent}>
-        <UserDevelopmentPlan
-          header={header}
-          idpUserId={idpUserId}
-          editMode={editMode}
-          viewType="tabs"
-          headerHeight={80}
-          operations={operations}
-        />
+      <Flex className={cs(styles.detailsPageContent, !isMobile ? 'overflow-y-hidden' : '')}>
+        <Spin spinning={isLoading}>
+          <UserDevelopmentPlan
+            header={header}
+            idpUserId={idpUserId}
+            editMode={editMode}
+            viewType="tabs"
+            headerHeight={80}
+            operations={operations}
+          />
+        </Spin>
       </Flex>
     </IdpPageLayoutWrapper>
   )

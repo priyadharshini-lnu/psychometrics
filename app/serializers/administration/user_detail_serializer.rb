@@ -100,6 +100,7 @@ module Administration
           'bulk_download',
           'view_workshop_details',
           'view_recordings',
+          'view_idp_plan',
           %w[remove destroy]
         ],
         {

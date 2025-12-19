@@ -25,6 +25,10 @@ describe AI::AssistableService::DevelopmentActions do
 
   before do
     allow(Settings).to receive(:ai_providers).and_return([ai_provider_config])
+    allow(Settings.features).to receive(:ai_assistant_enabled).and_return(true)
+
+    user.update!(project: campaign.project)
+    campaign.project.project_feature.update!(ai_assistants: true)
   end
 
   shared_context 'assistant service mocking' do
@@ -82,6 +86,51 @@ describe AI::AssistableService::DevelopmentActions do
         described_class.new(user_idp_skill, user, options).call
 
         expect(AI::AssistantService).not_to have_received(:new)
+      end
+    end
+
+    context 'when assistance is disabled due to feature flags' do
+      shared_examples 'returns feature disabled error' do
+        it 'returns an error with message' do
+          result = described_class.call(user_idp_skill, user, options)
+
+          expect(result[:error]).to eq(
+            I18n.t('administration.ai_assistants.errors.development_actions_assistance_not_enabled')
+          )
+        end
+
+        it 'does not call AssistantService' do
+          allow(AI::AssistantService).to receive(:new)
+
+          described_class.new(user_idp_skill, user, options).call
+
+          expect(AI::AssistantService).not_to have_received(:new)
+        end
+      end
+
+      context 'when global AI assistant feature is disabled' do
+        before do
+          allow(Settings.features).to receive(:ai_assistant_enabled).and_return(false)
+        end
+
+        include_examples 'returns feature disabled error'
+      end
+
+      context 'when project AI assistants feature is disabled' do
+        before do
+          campaign.project.project_feature.update!(ai_assistants: false)
+        end
+
+        include_examples 'returns feature disabled error'
+      end
+
+      context 'when assistant is not present' do
+        before do
+          allow(AI::Assistant).to receive(:where).
+            with(assistant_type: :development_actions_assistant).and_return(double(first: nil))
+        end
+
+        include_examples 'returns feature disabled error'
       end
     end
 

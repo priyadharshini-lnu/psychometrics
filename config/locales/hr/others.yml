@@ -55,6 +55,17 @@ hr:
               blank: ID paketa izvješća ne može biti prazan
             report_id:
               blank: ID izvješća ne može biti prazan
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: AI asistent s ID '%{id}' ne nalazi se u redu %{index}
+              blank: Stupac '%{entity}' ne može biti prazan u retku %{index}
+              duplicate_code: Duplicirani kod '%{code}' u redu %{index}
+              invalid_code_format: Nevažeći format koda '%{code}' u retku %{index}
+              max_limit_reached: Ukupni AI artefakti kampanje prelaze maksimalni limit od %{count}
+              missing_headers: 'Nedostaju obavezna zaglavlja: %{headers}'
+            file:
+              invalid_format: Molimo učitajte CSV datoteku
         campaign_factor_import_form:
           attributes:
             file:
@@ -895,6 +906,7 @@ hr:
         import_development_actions: Uvoz razvojnih akcija
         import_dimension_from_json: Uvoz dimenzije iz JSON-a
         import_external_campaign_scoring: Uvoz vanjskog ocjenjivanja kampanje
+        import_external_scoring_data: Uvoz vanjskih podataka o bodovanju
         import_factor_translations: Prijevodi faktora uvoza
         import_factors: Čimbenici uvoza
         import_interview_questions: Uvezite pitanja za intervju
@@ -1057,7 +1069,7 @@ hr:
         saville_assessment_name: Saville procjena Ime
         simulation_assessment_name: Naziv procjene simulacije
         skillvue_assessment_name: Naziv Skillvue procjene
-        yoodli_assessment_name: Yoodli Assessment Name
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: Prijevod je migriran
     create: Stvoriti
     dashboard: Nadzorna ploča
@@ -1482,8 +1494,6 @@ hr:
       skillvue_email_id: ID emaila kandidata
       skillvue_external_assessment_id: ID Skillvue procjene
       universal_link: Univerzalna poveznica
-      yoodli_email_id: Email ID Yoodli kandidata
-      yoodli_external_assessment_id: Yoodli Assessment ID
     drawer:
       mettl_schedule_name: Mettl Naziv rasporeda
       title: Pojedinosti o procjeni
@@ -1636,8 +1646,6 @@ hr:
       report: Izvješće
       report_bundle_placeholder: Odabir paketa izvješća
     messages:
-      bulk_download_error: Skupno preuzimanje ograničeno je na 1000 datoteka izvješća. Ako ste odabrali mnogo jezika, smanjite ga.
-      bulk_download_no_reports: Nije pronađen nijedan izvještaj. Molimo generirajte izvješća prije preuzimanja.
       bulk_download_successful: Zadatak masovnog preuzimanja izvješća uspješno je zakazan
       export_report_data_scheduled: Posao izvoza podataka izvješća uspješno je zakazan
     modals:
@@ -1947,7 +1955,6 @@ hr:
       hide: Sakriti
       view: Pregled
     validations:
-      required: Ovo polje je obavezno
       select_locale: Molimo odaberite neke regionalne regije
       should_be_whole_number: trebao bi biti cijeli broj
   confirmation:
@@ -2616,6 +2623,7 @@ hr:
     convert_to_draft: Pretvori u skicu
     current_step: Trenutni korak %{step}
     delete_skill: Jeste li sigurni da želite izbrisati ovu vještinu? Brisanjem će se ukloniti sve povezane razvojne aktivnosti.
+    delete_skill_msg: Jesi li siguran da želiš izbrisati ovu vještinu? Brisanje će također ukloniti sve povezane razvojne radnje.
     details: Detalji
     development_actions:
       action_private: Da
@@ -2633,8 +2641,8 @@ hr:
         in_progress: U tijeku
         not_started: Nije pokrenuto
       completion: Završetak
-      create_custom_development_action_title: Kreirajte vlastitu razvojnu akciju za %{skillName}
-      create_development_actions_with_ai: Kreirajte razvojne akcije pomoću umjetne inteligencije za %{skillName}
+      create_custom_development_action_title: Kreirajte vlastitu razvojnu akciju za
+      create_development_actions_with_ai: Kreirajte razvojne akcije pomoću umjetne inteligencije za
       create_from_ai: Stvaranje iz umjetne inteligencije
       create_my_own: Stvori vlastiti
       custom: Običaj
@@ -2700,6 +2708,7 @@ hr:
     edit_progress: Uredi napredak
     fetching_skill_gap_report: Izvješće o nedostacima u vještinama...
     go_to_previous_step: Idite na prethodni korak
+    go_to_reportee_plan: Idite na detalje plana izvještavatelja
     history:
       added_da:
         one: Dodatna razvojna akcija
@@ -2749,12 +2758,14 @@ hr:
         categories: Kategorije
       save_skills: Spremite vještine
     new_comments: Novi komentar(i)
+    no_plan_changes_found: Od vaše zadnje recenzije nisu napravljene nikakve izmjene u planu.
     no_skills_added: Još niste dodali vještine.
-    no_skills_added_by_reportee: Reportee još nije dodao vještine.
+    no_skills_added_by_reportee: Ispitanik još nije dodao vještine.
     pdf:
       approval_status: Status odobrenja
       cover:
         fields:
+          approval_date: Datum odobrenja
           assigned_data: Dodijeljeni datum
           assigned_date: Datum dodjele
           completion_date: Datum završetka
@@ -2841,8 +2852,12 @@ hr:
         approved: Pregledano i odobreno
         completed: Završeno
         draft: Nacrt
+        in_progress: U tijeku
+        in_review: U recenziji
         not_reviewed: Nije pregledano
+        not_started: Nije započeo
         pending_approval: Pregledava se
+        rejected: Odbijen
       summary:
         ai_count: Generativna umjetna inteligencija
         collaborative_learn: Suradničko učenje
@@ -3823,13 +3838,6 @@ hr:
       on_hold: Na čekanju
       prepared: Završeno
       released: Objavljeno
-    statuses:
-      completed: Završeno
-      declined: Odbijeno
-      denied: Odbijeno
-      done: Završeno
-      not_completed: Nije dovršeno
-      waiting: Čekanje
   threesixty:
     accept_privacy_modal:
       accept: Prihvatiti

@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'swagger_helper'
 
-describe Api::V2::Administration::Campaigns::DimensionsController, swagger_doc: 'v2/swagger.json', type: :request do
+RSpec.describe Api::V2::Administration::Campaigns::DimensionsController, type: :request do
   let!(:superadmin) { create(:superadmin) }
   let!(:assessor) { create(:user, :assessor) }
   let!(:campaign) { create(:campaign) }
@@ -17,72 +16,32 @@ describe Api::V2::Administration::Campaigns::DimensionsController, swagger_doc: 
     create(:campaign_assessor_assessment, campaign: campaign, assessment: assessment)
   end
 
-  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
+  let!(:api_key) { create(:api_key, user: superadmin) }
+  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before { sign_in(superadmin) }
 
-  path '/campaigns/{campaign_id}/dimensions/assessor_dimensions' do
-    get 'Dimensions List' do
-      operationId 'DimenstionsList'
-      description 'Fetch dimensions list'
-      tags 'Dimension'
-      consumes 'application/json'
-      security [basic: []]
-      parameter name: :campaign_id, in: :path, type: :string
+  describe 'GET /api/v2/administration/campaigns/{campaign_id}/dimensions/assessor_dimensions' do
+    it 'returns dimensions list' do
+      get "/api/v2/administration/campaigns/#{campaign_id}/dimensions/assessor_dimensions",
+          headers: { 'Authorization' => authorization }
 
-      response '200', 'Campaign factor list' do
-        schema '$ref' => '#/components/schemas/DimensionListResponse'
-
-        examples 'application/json' => {
-          data: [{
-            id: '1',
-            type: 'dimensions',
-            attributes: {
-              id: '1',
-              name: 'Dimension'
-            }
-          }]
-        }
-
-        run_test! do |response|
-          d = JSON.parse(response.body)['data'].first
-          expect(d).to have_attribute(:name)
-          expect(d['attributes']['name']).to eq(dimension.name)
-        end
-      end
+      expect(response).to have_http_status(200)
+      d = JSON.parse(response.body)['data'].first
+      expect(d).to have_attribute(:name)
+      expect(d['attributes']['name']).to eq(dimension.name)
     end
   end
 
-  path '/campaigns/{campaign_id}/dimensions/{dimensions_id}/factors' do
-    get 'Dimensions List' do
-      operationId 'DimenstionsList'
-      description 'Fetch dimensions list'
-      tags 'Dimension'
-      consumes 'application/json'
-      security [basic: []]
-      parameter name: :campaign_id, in: :path, type: :string
-      parameter name: :dimensions_id, in: :path, type: :string
+  describe 'GET /api/v2/administration/campaigns/{campaign_id}/dimensions/{dimensions_id}/factors' do
+    it 'returns factors for a dimension' do
+      get "/api/v2/administration/campaigns/#{campaign_id}/dimensions/#{dimensions_id}/factors",
+          headers: { 'Authorization' => authorization }
 
-      response '200', 'Campaign factor list' do
-        schema '$ref' => '#/components/schemas/FactorListResponse'
-
-        examples 'application/json' => {
-          data: [{
-            id: '1',
-            type: 'factors',
-            attributes: {
-              id: '1',
-              name: 'Factor'
-            }
-          }]
-        }
-
-        run_test! do |response|
-          d = JSON.parse(response.body)['data'].first
-          expect(d).to have_attribute(:name)
-          expect(d['attributes']['name']).to eq(dimension.factors.first.name)
-        end
-      end
+      expect(response).to have_http_status(200)
+      d = JSON.parse(response.body)['data'].first
+      expect(d).to have_attribute(:name)
+      expect(d['attributes']['name']).to eq(dimension.factors.first.name)
     end
   end
 end

@@ -1,11 +1,12 @@
 import {
   Button, Flex, Space, Typography, Popconfirm,
+  message,
 } from 'antd'
 import {
-  Attachments, Sender, Prompts,
+  Attachments, Prompts,
 } from '@ant-design/x'
-import Icon, {
-  CloudUploadOutlined, LoadingOutlined,
+import {
+  CloudUploadOutlined, InfoCircleOutlined,
 } from '@ant-design/icons'
 import * as t from 'io-ts'
 import humps from 'humps'
@@ -20,12 +21,13 @@ import { DirectionalNavigateBackIcon } from '~/glint'
 import { setUserIdpPlanStatus } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 import { USER_IDP_PLAN_STATUS } from '~/components/IdpShared/constants'
 import { AIAssistantLayout } from '../AIAssistantLayout'
+import { AIIDPLoader } from './AIIDPLoader'
 import styles from './AIChat.less'
 import { RecordingProvider } from '~/context/RecordingContext'
-import Lighthouse from './assets/LighthouseIcon.svg?react'
+import { ChatCompose } from './ChatCompose'
 import useAsyncRequestResponse from '~/hooks/useAsyncRequestResponse'
 import BubbleTypes from './bubbles'
-import { ASSISTANT_FAILURE_FALLBACK_CONTENT } from './constants'
+import { ASSISTANT_FAILURE_FALLBACK_CONTENT, MAXIMUM_FILE_SIZE_MB } from './constants'
 import { AWS_SPEECH_TO_TEXT_URL } from '~/modules/survey/core/preview/FlowProcessor/consts'
 import { useSpeechToText } from '~/hooks/useSpeechToText'
 
@@ -78,7 +80,17 @@ export const Bubble: FC<BubbleProps> = ({
     component, message, data, role, error,
   } = content
 
-  const bubbleType = role === 'user' ? 'UserMessage' : 'AssistantMessage'
+  const isUploadedFileString = role === 'user'
+  && typeof message === 'string'
+  && /^Uploaded file .*?\.[A-Za-z0-9]+$/i.test(message.trim())
+
+  let bubbleType: string
+
+  if (isUploadedFileString) {
+    bubbleType = 'UserDocument'
+  } else {
+    bubbleType = role === 'user' ? 'UserMessage' : 'AssistantMessage'
+  }
   const Bubble = BubbleTypes[component || bubbleType] || BubbleTypes.AssistantMessage
 
   return (
@@ -119,7 +131,7 @@ export const AIChat = () => {
   const [recording, setRecording] = useState(false)
   const [resetInProgress, setResetInProgress] = useState(false)
 
-  const changeValue = (value:string) => {
+  const changeValue = (value: string) => {
     setUserPrompt(value)
   }
 
@@ -264,6 +276,25 @@ export const AIChat = () => {
     return messageContent
   }
 
+  const validateFile = (file) => {
+    if (file.type !== 'application/pdf') {
+      return {
+        isValid: false,
+        error: I18n.t('validations.file_upload.WrongFileType', { allowedFileTypes: '[PDF]' }),
+      }
+    }
+
+    const maxSize = MAXIMUM_FILE_SIZE_MB * 1024 * 1024
+    if (file.size > maxSize) {
+      return {
+        isValid: false,
+        error: I18n.t('validations.file_upload.EntityTooLarge', { maxFileSize: MAXIMUM_FILE_SIZE_MB }),
+      }
+    }
+
+    return { isValid: true }
+  }
+
   const uploadDocument = async (file) => {
     setRequestProcessing(true)
     setSuggestions([])
@@ -371,6 +402,11 @@ export const AIChat = () => {
       setRequestProcessing(false)
       setMessages(messages)
       scrollToBottom(false)
+    }).catch((error) => {
+      message.error(error || I18n.t('ai.errors.generic'))
+      setRequestProcessing(false)
+      setMessages([])
+      scrollToBottom(false)
     })
 
     return () => {
@@ -419,11 +455,11 @@ export const AIChat = () => {
     //   addUserMessage('Finish interview')
     // }
     if (action === 'complete') {
-      addUserMessage('Yes, proceed with plan creation.')
+      addUserMessage(I18n.t('enduser.ai_idp_assistant_response_yes_proceed_with_plan_creation'))
       setStatus('completed')
     }
     if (action === 'changeAnswers') {
-      addUserMessage('No')
+      addUserMessage(I18n.t('enduser.ai_idp_assistant_response_no'))
       // setMessages(prev => [...prev, { component: 'RetakeSteps' }])
     }
 
@@ -432,45 +468,25 @@ export const AIChat = () => {
     }
 
     if (action === 'retakeDocument') {
-      addUserMessage('I want to upload a different document.')
+      addUserMessage(I18n.t('enduser.ai_idp_assistant_response_upload_different_document'))
     }
   }
-
-  const renderCompose = () => (
-    <Sender
-      className={styles.compose}
-      placeholder={I18n.t('idp.ai.compose.placeholder')}
-      value={userPrompt}
-      onChange={value => setUserPrompt(value)}
-      disabled={requestProcessing}
-      onSubmit={(value) => {
-        addUserMessage(value)
-        setUserPrompt('')
-      }}
-      allowSpeech={{
-        // When setting `recording`, the built-in speech recognition feature will be disabled
-        recording,
-        onRecordingChange: (nextRecording) => {
-          setRecording(nextRecording)
-          if (nextRecording) {
-            startDictation()
-          } else {
-            stopDictation()
-          }
-        },
-      }}
-      autoSize={{ minRows: 3, maxRows: 6 }}
-    />
-  )
 
   const renderUpload = () => (
     <Attachments
       className={styles.upload}
       classNames={{ list: styles.uploadList, placeholder: styles.uploadList }}
       beforeUpload={() => false}
+      accept=".pdf"
       items={[]}
+      maxCount={1}
       disabled={requestProcessing}
       onChange={(info) => {
+        const validation = validateFile(info.file)
+        if (!validation.isValid) {
+          message.error(validation.error)
+          return
+        }
         uploadDocument(info.file)
       }}
       placeholder={type => (type === 'drop'
@@ -480,27 +496,19 @@ export const AIChat = () => {
         : {
           icon: <CloudUploadOutlined />,
           title: I18n.t('idp.ai.upload.title'),
-          description: I18n.t('idp.ai.upload.description'),
+          description: I18n.t('idp.ai.upload.description', { maxFileSize: MAXIMUM_FILE_SIZE_MB }),
         })
       }
     />
   )
 
+  const showResetChat = (messages.length > 1 && !resetInProgress)
+                          || (messages.length > 0 && messages[messages.length - 1].error)
+
   if (status === 'completed') {
     return (
       <AIAssistantLayout>
-        <Flex vertical align="center" justify="center" className={styles.chatCompleted}>
-          <div className={styles.spinner}>
-            <LoadingOutlined style={{ fontSize: 120, color: '#ccc' }} />
-            <Icon component={Lighthouse} className={styles.lighthouse} />
-          </div>
-          <Typography.Title level={3} style={{ marginTop: 20 }}>
-            {I18n.t('idp.ai.finishing.title')}
-          </Typography.Title>
-          <Typography.Text type="secondary">
-            {I18n.t('idp.ai.finishing.hint')}
-          </Typography.Text>
-        </Flex>
+        <AIIDPLoader />
       </AIAssistantLayout>
     )
   }
@@ -528,7 +536,7 @@ export const AIChat = () => {
               </Space>
             )}
             extra={(
-              messages.length > 1 && !resetInProgress ? (
+              showResetChat ? (
                 <Popconfirm
                   disabled={requestProcessing}
                   overlayStyle={{ zIndex: 9999 }}
@@ -569,8 +577,29 @@ export const AIChat = () => {
             classNames={{ item: styles.promptItem }}
             items={suggestions.map((item, index) => ({ key: index.toString(), description: item }))}
           />
-          {status === 'chat' && renderCompose()}
+          {status === 'chat' && (
+            <ChatCompose
+              className={styles.compose}
+              value={userPrompt}
+              onChange={changeValue}
+              onSubmit={(value) => {
+                addUserMessage(value)
+                setUserPrompt('')
+              }}
+              disabled={requestProcessing}
+              recording={recording}
+              onRecordingChange={setRecording}
+              startDictation={startDictation}
+              stopDictation={stopDictation}
+            />
+          )}
           {status === 'document_upload' && renderUpload()}
+          <Flex align="center" justify="center" gap={8} style={{ marginTop: 4 }}>
+            <InfoCircleOutlined style={{ fontSize: '12px' }} />
+            <Typography.Text type="secondary" style={{ fontSize: '12px' }}>
+              {I18n.t('shared.idp_ai_assistant_disclaimer')}
+            </Typography.Text>
+          </Flex>
         </Flex>
       </AIAssistantLayout>
     </RecordingProvider>

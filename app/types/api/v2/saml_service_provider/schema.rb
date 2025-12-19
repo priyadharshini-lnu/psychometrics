@@ -15,6 +15,7 @@ module Api
             attribute[:acs_urls].filled(:array).each(:string)
             optional(:enabled).maybe(:bool)
             optional(:mask_identity).maybe(:bool)
+            optional(:integration_type).maybe(:string)
           end
         end
       end

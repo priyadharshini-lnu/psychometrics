@@ -55,6 +55,17 @@ sl:
               blank: ID svežnja poročila ne more biti prazen
             report_id:
               blank: ID poročila ne sme biti prazen
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: AI asistent z ID '%{id}' ni na vrsti %{index}
+              blank: Stolpec '%{entity}' ne sme biti prazen v vrstici %{index}
+              duplicate_code: Podvojena koda '%{code}' v vrstici %{index}
+              invalid_code_format: Neveljaven format kode '%{code}' v vrstici %{index}
+              max_limit_reached: Skupni AI artefakti v kampanji presegajo največjo mejo %{count}
+              missing_headers: 'Manjkajoče obvezne glave: %{headers}'
+            file:
+              invalid_format: Prosimo, naložite CSV datoteko
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ sl:
         import_development_actions: Uvoz razvojnih ukrepov
         import_dimension_from_json: Uvoz razsežnosti iz JSON
         import_external_campaign_scoring: Uvoz ocenjevanja zunanjih oglaševalskih akcij
+        import_external_scoring_data: Uvoz zunanjih podatkov o točkovanju
         import_factor_translations: Prevodi uvoznih faktorjev
         import_factors: Dejavniki uvoza
         import_interview_questions: Uvoz vprašanj za intervju
@@ -1050,7 +1062,7 @@ sl:
         saville_assessment_name: Ocena Saville Ime
         simulation_assessment_name: Ime ocenjevanja simulacije
         skillvue_assessment_name: Ime ocenjevanja Skillvue
-        yoodli_assessment_name: Ime ocenjevanja Yoodli
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: Prevajanje je bilo seljeno
     create: Ustvariti
     dashboard: Nadzorna plošča
@@ -1484,8 +1496,6 @@ sl:
       skillvue_email_id: E-poštni naslov kandidata v Skillvue
       skillvue_external_assessment_id: ID ocenjevanja v Skillvue
       universal_link: Univerzalna povezava
-      yoodli_email_id: E-poštni ID kandidata Yoodli
-      yoodli_external_assessment_id: Yoodli Assessment ID
     drawer:
       mettl_schedule_name: Ime urnika Mettl
       title: Podrobnosti ocenjevanja
@@ -1638,8 +1648,6 @@ sl:
       report: Poročilo
       report_bundle_placeholder: Izberite Sklop poročil
     messages:
-      bulk_download_error: Prenos v velikem obsegu je omejen na 1000 datotek poročil. Če ste izbrali veliko jezikov, jih zmanjšajte.
-      bulk_download_no_reports: Poročil ni bilo najdenih. Pred prenosom ustvarite poročila.
       bulk_download_successful: Opravilo prenosa poročila v velikem obsegu je bilo uspešno načrtovano
       export_report_data_scheduled: Popravilo izvoza podatkov poročila je bilo uspešno načrtovano
     modals:
@@ -1949,7 +1957,6 @@ sl:
       hide: Skriti
       view: Pogled
     validations:
-      required: To polje je obvezno
       select_locale: Prosimo, izberite nekaj območnih območij
       should_be_whole_number: mora biti celo število
   confirmation:
@@ -2526,8 +2533,8 @@ sl:
       reset_chat: Ponastavi klepet
       reset_confirmation: Ste prepričani, da želite zavreči ta klepet in začeti znova?
       retake_steps:
-        chat_hint: Sporočite mi, katere informacije želite navesti spodaj?
-        chat_title: Želite podati več informacij?
+        chat_hint: Lahko naložiš novo datoteko ali ponovno začneš klepet, da deliš več podrobnosti, in potrudil se bom, da ti pomagam.
+        chat_title: Žal mi je, da začetna analiza ni izpolnila vaših pričakovanj.
         start_chat: Začni klepet
         start_chat_again: Znova začnite klepet
         upload_document: Naloži dokument
@@ -2553,14 +2560,14 @@ sl:
         chat_title: Povzetek vpogleda v klepet
         file_title: Vpogledi v naložene dokumente
         gap_report_title: Analiza poročila o vrzeli v spretnostih
-        hint: če je odgovor pritrdilen, bomo ustvarili vašega IDP, sicer lahko ponovno vzamete svoje odgovore
-        title: Ste zadovoljni z rezultati?
+        hint: Če dovolite, če rečete da, lahko pripravim razvojni načrt za vas. Če ne, lahko ponovno začnete klepet ali naložite novo datoteko.
+        title: Ste zadovoljni z analizo?
         upload_file: Naložena datoteka
         view_chat: Ogled klepeta
       upload:
-        description: Kliknite ali povlecite datoteke na to območje, da jih naložite
+        description: 'Podprta vrsta datoteke: PDF dokumenti do %{maxFileSize}MB'
         drop: Spustite datoteko tukaj
-        title: Nalaganje datotek
+        title: Kliknite ali spustite datoteko tukaj
       welcome:
         text: Ste pripravljeni začrtati svojo rast? Začnimo!
         title: Pozdravljeni, jaz sem vaš razvojni pomočnik
@@ -2610,6 +2617,7 @@ sl:
     convert_to_draft: Pretvori v osnutek
     current_step: Trenutni korak %{step}
     delete_skill: Ali ste prepričani, da želite izbrisati spretnost, ker bo izbrisala tudi vsa povezana razvojna dejanja?
+    delete_skill_msg: Si prepričan, da želiš izbrisati to veščino? Brisanje ga bo prav tako odstranilo vse povezane razvojne akcije.
     details: Podrobnosti
     development_actions:
       action_private: Da
@@ -2627,8 +2635,8 @@ sl:
         in_progress: V teku
         not_started: Ni začeto
       completion: Zaključku
-      create_custom_development_action_title: Ustvarite lastno razvojno akcijo za %{skillName}
-      create_development_actions_with_ai: Ustvarite razvojne ukrepe z umetno inteligenco za %{skillName}
+      create_custom_development_action_title: Ustvarite lastno razvojno akcijo za
+      create_development_actions_with_ai: Ustvarite razvojne ukrepe z umetno inteligenco za
       create_from_ai: Ustvarjanje iz umetne inteligence
       create_my_own: Ustvari svoje
       custom: Običaj
@@ -2694,6 +2702,7 @@ sl:
     edit_progress: Urejanje napredka
     fetching_skill_gap_report: Pridobivanje poročila o vrzelih v spretnostih ...
     go_to_previous_step: Pojdi na prejšnji korak
+    go_to_reportee_plan: Pojdite na podrobnosti načrta poročevalca
     history:
       added_da:
         one: Dodano razvojno ukrepanje
@@ -2743,12 +2752,14 @@ sl:
         categories: Kategorije
       save_skills: Shranite spretnosti
     new_comments: Novi komentarji
+    no_plan_changes_found: Od zadnjega pregleda ni bilo nobenih sprememb v načrtu.
     no_skills_added: Še nimate dodanih veščin.
-    no_skills_added_by_reportee: Reportee še ni dodal veščin.
+    no_skills_added_by_reportee: Poročevalec še ni dodal veščin.
     pdf:
       approval_status: Status odobritve
       cover:
         fields:
+          approval_date: Datum odobritve
           assigned_data: Dodeljeni datum
           assigned_date: Dodeljen datum
           completion_date: Datum zaključka
@@ -2835,8 +2846,12 @@ sl:
         approved: Pregledano in odobreno
         completed: Dokončano
         draft: Osnutek
+        in_progress: V nastajanju
+        in_review: V recenziji
         not_reviewed: Ni ocenjeno
+        not_started: Ni se začelo
         pending_approval: V pregledu
+        rejected: Zavrnjena
       summary:
         ai_count: Generativna umetna inteligenca
         collaborative_learn: Sodelovalno učenje
@@ -3817,13 +3832,6 @@ sl:
       on_hold: Zadržano
       prepared: Opravljeno
       released: Odobreno za objavo
-    statuses:
-      completed: Zaključeno
-      declined: Zavrnjeno
-      denied: Zavrnjeno
-      done: Opravljeno
-      not_completed: Ni zaključeno
-      waiting: V čakanju
   threesixty:
     accept_privacy_modal:
       accept: Sprejmi

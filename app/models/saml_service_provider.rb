@@ -3,6 +3,11 @@
 class SamlServiceProvider < ApplicationRecord
   belongs_to :project, class_name: 'Client'
 
+  enum :integration_type, {
+    generic: 0,
+    yoodli: 1
+  }, prefix: :integration
+
   validates :name, presence: true
   validates :entity_id, presence: true, uniqueness: { scope: :project_id }
   validates :acs_urls, presence: true
@@ -52,6 +57,10 @@ class SamlServiceProvider < ApplicationRecord
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name entity_id acl_urls active]
+  end
+
+  def integration_connected?
+    !integration_generic?
   end
 
   scope :filterable_fields, lambda { |query|

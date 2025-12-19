@@ -2,7 +2,7 @@
 
 module Administration
   class YoodliUserAssessmentSerializer < Panko::Serializer
-    attributes :email, :external_assessment_id
+    attributes :email, :external_assessment_id, :yoodli_activity_id
 
     def external_assessment_id
       object.user_assessment.assessment.external_assessment_id.to_s

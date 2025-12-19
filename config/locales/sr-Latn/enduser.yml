@@ -3,13 +3,24 @@ sr-Latn:
   enduser:
     add_idp_plan_note: Dodaj napomenu...
     add_idp_plan_rejection_reason: Dodaj razlog...
+    ai_idp_assistant_response_no: Ne
+    ai_idp_assistant_response_upload_different_document: Želim da otpremim drugi dokument.
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: Da, nastavite sa kreiranjem plana.
     approve_idp_plan: Odobri plan
     bookings: Rezervacije
     campaign: Kampanja
     development: Razvoj
     direct_reportees: Direktni izveštavalci
     home: Kontrolna tabla
+    idp_loading_fifth_step: Preuzimanje razvojnih akcija iz šablona
+    idp_loading_first_step: Analiziranje vašeg izveštaja o proceni
+    idp_loading_fourth_step: Izbor relevantnih veština
+    idp_loading_second_step: Identifikovanje vaših preferencija pomenutih u ćaskanju
+    idp_loading_secondary_text: Slobodno se odmaknite. Vaš plan će biti spreman kada se vratite.
+    idp_loading_sixth_step: Kreiranje razvojnih akcija
+    idp_loading_third_step: Pregled vašeg eksternog izveštaja
     idp_plan_approval_note: Napomena o odobrenju
+    idp_retake_steps_continue_with_this_information: Nastavite sa ovim informacijama
     insights: Uvidi
     lighthouse_assistant: Svetionik Pomoćnik
     max_word_limit: Mora biti najviše %{max} reči

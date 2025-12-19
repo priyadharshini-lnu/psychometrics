@@ -55,6 +55,17 @@ de:
               blank: Berichtsbündel-ID kann nicht leer sein
             report_id:
               blank: Die Berichts-ID darf nicht leer sein
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: KI-Assistent mit ID-'%{id}' nicht in Reihe %{index}
+              blank: Die Spalte '%{entity}' kann in Reihe %{index} nicht leer sein
+              duplicate_code: Doppelter Code '%{code}' in Reihe %{index}
+              invalid_code_format: Ungültiges Code-Format '%{code}' in Reihe %{index}
+              max_limit_reached: Die Gesamtzahl der Kampagnen-KI-Artefakte überschreitet das maximale Limit von %{count}
+              missing_headers: 'Fehlende erforderliche Überschriften: %{headers}'
+            file:
+              invalid_format: Bitte laden Sie die CSV-Datei hoch
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ de:
         import_development_actions: Entwicklungsmaßnahmen importieren
         import_dimension_from_json: Dimension aus JSON importieren
         import_external_campaign_scoring: Externes Kampagnen-Scoring importieren
+        import_external_scoring_data: Externe Wertungsdaten importieren
         import_factor_translations: Import-Faktor-Übersetzungen
         import_factors: Import-Faktoren
         import_interview_questions: Importieren von Fragen im Vorstellungsgespräch
@@ -1050,7 +1062,7 @@ de:
         saville_assessment_name: Saville-Bewertung Name
         simulation_assessment_name: Simulation Bewertung Name
         skillvue_assessment_name: Skillvue Bewertung Name
-        yoodli_assessment_name: Name der Yoodli-Bewertung
+        yoodli_scenario_id: Yoodli Szenario-ID
       translations_migrated: Übersetzung migriert
     create: Erstellen
     dashboard: Dashboard
@@ -1489,8 +1501,6 @@ de:
       skillvue_email_id: Skillvue-Kandidaten-E-Mail-ID
       skillvue_external_assessment_id: Skillvue Bewertung ID
       universal_link: Universeller Link
-      yoodli_email_id: Yoodli-Kandidaten-E-Mail-ID
-      yoodli_external_assessment_id: Yoodli Bewertungs-ID
     drawer:
       mettl_schedule_name: Mettl Zeitplan Name
       title: Bewertung Details
@@ -1643,8 +1653,6 @@ de:
       report: Bericht
       report_bundle_placeholder: Wählen Sie ein Berichtsbündel
     messages:
-      bulk_download_error: Der Massendownload ist auf 1000 Berichtsdateien begrenzt. Wenn Sie viele Sprachen ausgewählt haben, reduzieren Sie bitte die Anzahl.
-      bulk_download_no_reports: Keine Berichte gefunden. Bitte generieren Sie die Berichte vor dem Download.
       bulk_download_successful: Bulk-Bericht-Download-Auftrag wurde erfolgreich geplant
       export_report_data_scheduled: Exportauftrag für Berichtsdaten wurde erfolgreich geplant
     modals:
@@ -1954,7 +1962,6 @@ de:
       hide: Ausblenden
       view: Siehe
     validations:
-      required: Dieses Feld ist erforderlich
       select_locale: Bitte wählen Sie ein oder mehrere Länder
       should_be_whole_number: sollte eine ganze Zahl sein
   confirmation:
@@ -2526,8 +2533,8 @@ de:
       reset_chat: Chat zurücksetzen
       reset_confirmation: Sind Sie sicher, dass Sie diesen Chat verwerfen und neu anfangen möchten?
       retake_steps:
-        chat_hint: Lassen Sie mich wissen, welche Informationen Sie weiter unten bereitstellen möchten.
-        chat_title: Sie möchten weitere Informationen geben?
+        chat_hint: Du kannst eine neue Datei hochladen oder den Chat neu starten, um mehr Details zu teilen, und ich werde mein Bestes tun, um dir zu helfen.
+        chat_title: Es tut mir leid, dass die anfängliche Analyse nicht Ihren Erwartungen entsprach.
         start_chat: Chat starten
         start_chat_again: Chat erneut starten
         upload_document: Dokument hochladen
@@ -2553,14 +2560,14 @@ de:
         chat_title: Chat Insight Zusammenfassung
         file_title: Einblicke in hochgeladene Dokumente
         gap_report_title: Analyse des Skill-Gap-Berichts
-        hint: Wenn ja, erstellen wir Ihren IDP, andernfalls können Sie Ihre Antworten wiederholen
-        title: Sind Sie mit den Ergebnissen zufrieden?
+        hint: Mit Ihrer Erlaubnis, wenn Sie ja sagen, kann ich einen Entwicklungsplan für Sie erstellen. Wenn nicht, kannst du den Chat neu starten oder eine neue Datei hochladen.
+        title: Sind Sie mit der Analyse zufrieden?
         upload_file: Hochgeladene Datei
         view_chat: Chat anzeigen
       upload:
-        description: Klicken oder ziehen Sie Dateien in diesen Bereich, um sie hochzuladen
+        description: 'Unterstützter Dateityp: PDF-Dokumente bis %{maxFileSize}MB'
         drop: Datei hier ablegen
-        title: Hochladen von Dateien
+        title: Hier klicken oder die Datei ablegen
       welcome:
         text: Sind Sie bereit, Ihre Wachstumsphase zu verfolgen? Fangen wir an!
         title: Hallo, ich bin dein Entwicklungsassistent
@@ -2610,6 +2617,7 @@ de:
     convert_to_draft: In Entwurf konvertieren
     current_step: Aktueller Schritt %{step}
     delete_skill: Sind Sie sicher, dass Sie diese Fertigkeit löschen möchten? Durch das Löschen werden auch alle zugehörigen Entwicklungsmaßnahmen entfernt.
+    delete_skill_msg: Bist du sicher, dass du diese Fähigkeit löschen willst? Das Löschen entfernt außerdem alle damit verbundenen Entwicklungsaktionen.
     details: Einzelheiten
     development_actions:
       action_private: Ja
@@ -2627,8 +2635,8 @@ de:
         in_progress: In Arbeit
         not_started: Nicht begonnen
       completion: Fertigstellung
-      create_custom_development_action_title: Erstellen Sie meine eigene Entwicklungsmaßnahme für %{skillName}
-      create_development_actions_with_ai: Erstellen Sie Entwicklungsaktionen mit KI für %{skillName}
+      create_custom_development_action_title: Erstellen Sie meine eigene Entwicklungsmaßnahme für
+      create_development_actions_with_ai: Erstellen Sie Entwicklungsaktionen mit KI für
       create_from_ai: Aus KI erstellen
       create_my_own: Eigene erstellen
       custom: Gewohnheit
@@ -2694,6 +2702,7 @@ de:
     edit_progress: Fortschritt bearbeiten
     fetching_skill_gap_report: Bericht über Qualifikationslücken abrufen...
     go_to_previous_step: Gehe zum vorherigen Schritt
+    go_to_reportee_plan: Gehen Sie zu den Details des Reportees Plan
     history:
       added_da:
         one: Zusätzliche Entwicklungsmaßnahmen
@@ -2744,12 +2753,14 @@ de:
         categories: Kategorien
       save_skills: Kompetenzen speichern
     new_comments: Neuer Kommentar
+    no_plan_changes_found: Seit Ihrer letzten Überprüfung wurden keine Änderungen am Plan vorgenommen.
     no_skills_added: Du hast noch keine Fähigkeiten hinzugefügt.
-    no_skills_added_by_reportee: Reportee hat Skills noch nicht hinzugefügt.
+    no_skills_added_by_reportee: Der Berichtsempfänger hat noch keine Fähigkeiten hinzugefügt.
     pdf:
       approval_status: Genehmigungsstatus
       cover:
         fields:
+          approval_date: Genehmigungsdatum
           assigned_data: Zuweisungsdatum
           assigned_date: Zugewiesenes Datum
           completion_date: Abschlussdatum
@@ -2836,8 +2847,12 @@ de:
         approved: Überprüft und genehmigt
         completed: Abgeschlossen
         draft: Entwurf
+        in_progress: Im Gange
+        in_review: Im Rückblick
         not_reviewed: Nicht überprüft
+        not_started: Nicht angefangen
         pending_approval: In Überprüfung
+        rejected: Zurückgewiesen
       summary:
         ai_count: Generative KI
         collaborative_learn: Kollaboratives Lernen
@@ -3818,13 +3833,6 @@ de:
       on_hold: In der Warteschleife
       prepared: Erledigt
       released: Freigegeben
-    statuses:
-      completed: abgeschlossen
-      declined: Abgelehnt
-      denied: verweigert
-      done: Erledigt
-      not_completed: nicht abgeschlossen
-      waiting: warten
   threesixty:
     accept_privacy_modal:
       accept: Annehmen

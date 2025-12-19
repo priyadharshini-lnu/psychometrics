@@ -14,12 +14,13 @@ module UserReports
     def call # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       job_record&.update(total_tasks: user_reports.length)
       user_reports.each do |user_report|
-        unless user_report.generatable?
+        report = user_report.report
+
+        unless report.provider_internal? || user_report.generatable?
           job_record&.increment_completed_tasks!
           next
         end
 
-        report = user_report.report
         user_report.update!(status: :generating) unless report.hogan?
 
         generate_hogan_report(user_report) if report.hogan?

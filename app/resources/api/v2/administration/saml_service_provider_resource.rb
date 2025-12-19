@@ -2,7 +2,7 @@
 
 class Api::V2::Administration::SamlServiceProviderResource < Api::V2::Administration::BaseResource
   attributes :created_at, :updated_at, :enabled, :project_id, :name, :entity_id, :acs_urls, :idp_certificate,
-             :sso_service_url, :issuer_uri, :mask_identity
+             :sso_service_url, :issuer_uri, :mask_identity, :integration_type
 
   ransack_filters %i[filterable_fields enabled_true]
 

@@ -17,7 +17,7 @@ class FactorsScoring < ApplicationRecord
   belongs_to :question
 
   before_create :set_assessment_id, if: proc { assessment_id.nil? }
-  after_commit :invalidate_assessment_cache
+  before_commit :invalidate_assessment_cache
 
   scope :with_props, -> { where('factors_scoring.props->>0 is not null') }
 

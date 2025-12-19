@@ -22,21 +22,21 @@ const { I18n } = window
 export const developmentActionLearningStylesConfig = {
   on_the_job: {
     duration: 70,
-    text: I18n.t('idp.development_actions.learning_on_the_job_label'),
+    text: I18n.t('shared.learning_on_the_job_label'),
     borderColor: learningStyleBorderColor.on_the_job,
     logo: jobIcon,
   },
-  structured_learning: {
-    duration: 20,
-    text: I18n.t('idp.development_actions.structured_learning_label'),
-    borderColor: learningStyleBorderColor.structured_learning,
-    logo: learningIcon,
-  },
   learning_from_others: {
-    duration: 10,
-    text: I18n.t('idp.development_actions.learning_from_others_label'),
+    duration: 20,
+    text: I18n.t('shared.collaborative_learning'),
     borderColor: learningStyleBorderColor.learning_from_others,
     logo: collaborativeIcon,
+  },
+  structured_learning: {
+    duration: 10,
+    text: I18n.t('shared.formal_learning'),
+    borderColor: learningStyleBorderColor.structured_learning,
+    logo: learningIcon,
   },
 }
 

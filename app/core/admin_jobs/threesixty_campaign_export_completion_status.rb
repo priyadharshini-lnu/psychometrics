@@ -63,7 +63,7 @@ module AdminJobs
         I18n.t("user_assessments.statuses.evaluator_nomination_status.#{participant.evaluator_nomination_status}"),
         I18n.t("subjects.report_statuses.#{report_status(participant.threesixty_subject)}"),
         I18n.t("subjects.report_release_status.#{participant.threesixty_subject.report_release_status}"),
-        I18n.t("subjects.statuses.#{subject_status(participant.threesixty_subject)}"),
+        I18n.t("admin.#{subject_status(participant.threesixty_subject)}"),
         I18n.t("user_assessments.status.#{participant.status}")
       ]
       row << manager_nomination_status(participant) if manager_can_approve_nominations?

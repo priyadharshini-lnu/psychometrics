@@ -8,11 +8,13 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import {
-  reset as resetCampaign, resetAllNominations, exportCompletionStatuses, rescoreAssessment,
+  reset as resetCampaign, resetAllNominations, exportCompletionStatuses, rescoreAssessment, toggleCaching,
 } from '~/modules/admin/modules/threeSixtyCampaign/core'
 import {
   get as getCurrentCampaign, getCurrentAssessmentId, getCurrentReportId, getCurrentDimensionId, getCampaignId,
 } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
+import { get as getCurrentCampaignAssessment }
+  from '~/modules/admin/modules/threeSixtyCampaign/core/campaignAssessments'
 
 const { I18n } = window
 
@@ -23,9 +25,11 @@ const connector = connect(
     assessmentId: getCurrentAssessmentId(state),
     reportId: getCurrentReportId(state),
     campaignPermissions: getCurrentCampaign(state).permissions,
+    cachingEnabled: getCurrentCampaignAssessment(state).cachingEnabled,
+    allowCaching: getCurrentCampaignAssessment(state).allowCaching,
   }),
   {
-    resetCampaign, resetAllNominations, openModal, exportCompletionStatuses, rescoreAssessment,
+    resetCampaign, resetAllNominations, openModal, exportCompletionStatuses, rescoreAssessment, toggleCaching,
   },
 )
 

@@ -14,6 +14,7 @@ const BULK_MARK_AS_DONE = 'threeSixty/BULK_MARK_AS_DONE'
 const REMOVE_USER = 'threeSixty/REMOVE_USER'
 const EXPORT_COMPLETION_STATUSES = 'threeSixty/EXPORT_COMPLETION_STATUSES'
 const EXPORT_RAW_RESULTS = 'threeSixty/EXPORT_RAW_RESULT'
+const TOGGLE_CACHING = 'threeSixty/TOGGLE_CACHING'
 export const IMPORT_RAW_RESULTS = 'threeSixty/IMPORT_RAW_RESULTS'
 
 export const reset = (campaignId: number, removeLicenceUsage: boolean) => ({
@@ -43,25 +44,37 @@ export const rescoreAssessment = (campaignId: number) => ({
 
 export const regenerateReports = (
   campaignId: number, selectedLocales: string[],
-  forceRegenerate: boolean, selectedUserReportIds: number[],
-) => ({
-  type: REGENERATE_REPORTS,
-  request: {
-    method: 'post',
-    url: `/administration/threesixty_campaigns/${campaignId}/regenerate_reports`,
-    body: { selectedLocales, forceRegenerate, selectedUserReportIds },
-  },
-})
+  forceRegenerate: boolean, isAllSelected: boolean, selectedKeys: string[], excludedKeys: string[],
+) => {
+  const body = isAllSelected
+    ? { selectedLocales, forceRegenerate, excluded_ids: excludedKeys }
+    : { selectedLocales, forceRegenerate, selected_ids: selectedKeys }
+
+  return {
+    type: REGENERATE_REPORTS,
+    request: {
+      method: 'post',
+      url: `/administration/threesixty_campaigns/${campaignId}/regenerate_reports`,
+      body,
+    },
+  }
+}
 
 export const bulkDownloads = (campaignId: number,
-  selectedLocales: string[], selectedUserReportIds: number[]) => ({
-  type: BULK_DOWNLOADS,
-  request: {
-    method: 'post',
-    url: `/administration/threesixty_campaigns/${campaignId}/bulk_download`,
-    body: { selectedLocales, selectedUserReportIds },
-  },
-})
+  selectedLocales: string[], isAllSelected: boolean, selectedKeys: string[], excludedKeys: string[]) => {
+  const body = isAllSelected
+    ? { selected_locales: selectedLocales, excluded_ids: excludedKeys }
+    : { selected_locales: selectedLocales, selected_ids: selectedKeys }
+
+  return {
+    type: BULK_DOWNLOADS,
+    request: {
+      method: 'post',
+      url: `/administration/threesixty_campaigns/${campaignId}/bulk_download`,
+      body,
+    },
+  }
+}
 
 export const markAsDone = (
   campaignId: number,
@@ -132,6 +145,15 @@ export const removeUser = (campaignId: number, userId: number) => ({
   },
 })
 
+export const toggleCaching = (campaignId: number, cachingEnabled: boolean) => ({
+  type: TOGGLE_CACHING,
+  request: {
+    method: 'put',
+    url: `/administration/threesixty_campaigns/${campaignId}/toggle_caching`,
+    body: { cachingEnabled },
+  },
+})
+
 function* genReloadCurrentParticipantTab () {
   const selectedTab = yield select(getSelectedTab)
   const campaignId = yield select(getCampaignId)
@@ -152,4 +174,5 @@ export const watchers = [
   takeEvery(RESCORE_ASSESSMENT, genReloadCurrentParticipantTab),
   takeEvery(RESET, genReloadCurrentParticipantTab),
   takeEvery(REMOVE_USER, genReloadCurrentParticipantTab),
+  takeEvery(TOGGLE_CACHING, genReloadCurrentParticipantTab),
 ]

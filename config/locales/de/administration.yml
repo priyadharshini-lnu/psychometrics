@@ -182,6 +182,12 @@ de:
             manage: Verwalten Sie
             title: IDP-Vorlagen
             view: Siehe
+          interviewQuestions:
+            export: Export
+            import: Import
+            manage: Managen
+            title: Fragen zum IDP-Interview
+            view: Ansehen
           jobRoles:
             export_translations: Exportieren von Job-Rollen-Übersetzungen
             import_translations: Importieren von Job-Rollen-Übersetzungen
@@ -294,6 +300,7 @@ de:
             view: Siehe
           userIdpPlans:
             manage: Verwalten
+            reset: Zurücksetzen
             title: Nutzer-IDP-Pläne
             view: Ansehen
           users:
@@ -897,8 +904,6 @@ de:
       new:
         header: Massendownload
       reports_unavailable: Im Moment sind keine Berichte zum Herunterladen verfügbar. Bitte bestätigen Sie, dass die Berichte, die Sie herunterladen möchten, verfügbar sind.
-      select_users_for_download: Bitte wählen Sie mindestens einen Benutzer aus, um Berichte herunterzuladen.
-      select_users_for_regenerate: Bitte wählen Sie mindestens einen Benutzer aus, um Berichte zu regenerieren.
     cable:
       notification:
         assessment_factors: Faktoren werden abgerufen
@@ -1963,6 +1968,7 @@ de:
         udpated_at: Zuletzt aktualisiert am
       configuration: Konfiguration
       errors:
+        factor_code_or_field_name_required: factor_code oder field_name ist erforderlich
         factor_not_found: nicht im Bewertungsumfang enthalten
         inclusion: 'ungültiger Typ, gültige Typen: %{values}'
         not_found: nicht gefunden
@@ -2065,9 +2071,6 @@ de:
       learning_styles:
         cannot_be_blank: Kann nicht leer sein
         invalid: Muss eines von on_the_job, strukturiertem_Lernen, Lernen_von_anderen sein
-        learning_from_others: Von anderen lernen [20]
-        on_the_job: Bei der Arbeit [70]
-        structured_learning: Strukturiertes Lernen [10]
       new:
         header: Neue Entwicklung Aktion
       resource:
@@ -2322,11 +2325,12 @@ de:
       behavioral_skills: Verhaltenstechnische Fertigkeiten
       client_skills: Client-Fähigkeiten
       delete_skill: Sind Sie sicher, dass Sie diese Fertigkeit löschen möchten? Durch das Löschen werden auch alle zugehörigen Entwicklungsmaßnahmen entfernt.
+      delete_skill_msg: Bist du sicher, dass du diese Fähigkeit löschen willst? Das Löschen entfernt außerdem alle damit verbundenen Entwicklungsaktionen.
       details_updated: IDP-Details erfolgreich aktualisiert
       development_actions:
         add_from_library: Aus Bibliothek hinzufügen
         completion: Fertigstellung
-        create_development_actions_with_ai: Erstellen Sie Entwicklungsaktionen mit KI für %{skillName}
+        create_development_actions_with_ai: Erstellen Sie Entwicklungsaktionen mit KI für
         create_from_ai: Aus KI erstellen
         create_my_own: Eigene erstellen
         custom: Gewohnheit
@@ -2352,6 +2356,7 @@ de:
         skills_required_on_publishing: Bitte wählen Sie Fähigkeiten aus, bevor Sie eine Vorlage veröffentlichen.
         update: Aktualisierung nicht zulässig, da die IDP-Vorlage bereits mit einem Benutzer-IDP-Plan verknüpft ist.
       fields:
+        approval_date: Genehmigungsdatum
         assigned_data: Zugewiesene Daten
         assigned_date: Zugewiesenes Datum
         completion_date: Datum der Fertigstellung
@@ -2644,24 +2649,6 @@ de:
         skillvue:
           api_key_present: Der API-Schlüssel ist bereits in einem anderen Projekt vorhanden
       view_all_schedules: Alle Mettl-Zeitpläne anzeigen
-      yoodli_assessments:
-        add_assessment: Yoodli-Bewertung hinzufügen
-        columns:
-          actions: Aktionen
-          created_at: Erstellt bei
-          name: Bewertungsname
-          product_id: Produkt-ID
-        delete_confirm: Bist du sicher, dass du diese Yoodli-Bewertung löschen willst?
-        edit_assessment: 'Bearbeiten: Yoodli-Bewertung'
-        manage_catalog: Verwaltung von Yoodli-Bewertungen
-        messages:
-          create_success: Die Yoodli-Bewertung '%{name}' wurde erfolgreich entwickelt
-          delete_success: Die Yoodli-Bewertung wurde erfolgreich gelöscht
-          update_success: Yoodli-Bewertung '%{name}' wurde erfolgreich aktualisiert
-        placeholders:
-          name: Name der Bewertung eingeben
-          product_id: Geben Sie Produkt-ID ein
-        search: Suchen
     interview_questions:
       delete_confirmation: Sind Sie sicher, dass Sie diese Interviewfrage löschen möchten?
       description: Beschreibung
@@ -4675,8 +4662,6 @@ de:
             evaluations_received: Erhaltene Beurteilungen
             is_subject: Ist Thema
             name: Name
-            report_status: Bericht Status
-            status: Status
           evaluators:
             add_evaluators: Evaluatoren hinzufügen
             import_evaluators: Evaluatoren importieren

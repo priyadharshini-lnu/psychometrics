@@ -3,13 +3,24 @@ en-US:
   enduser:
     add_idp_plan_note: Add Note...
     add_idp_plan_rejection_reason: Add Reason...
+    ai_idp_assistant_response_no: 'No'
+    ai_idp_assistant_response_upload_different_document: I want to upload a different document.
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: Yes, proceed with plan creation.
     approve_idp_plan: Approve Plan
     bookings: Bookings
     campaign: Campaign
     development: Development
     direct_reportees: Direct Reportees
     home: Dashboard
+    idp_loading_fifth_step: Fetching development actions from the template
+    idp_loading_first_step: Analyzing your assessment report
+    idp_loading_fourth_step: Selecting relevant skills
+    idp_loading_second_step: Identifying your preferences mentioned in the chat
+    idp_loading_secondary_text: Feel free to step away. Your plan will be ready when you return.
+    idp_loading_sixth_step: Creating development actions
+    idp_loading_third_step: Reviewing your external report
     idp_plan_approval_note: Approval Note
+    idp_retake_steps_continue_with_this_information: Continue with this information
     insights: Insights
     lighthouse_assistant: Lighthouse Assistant
     max_word_limit: Must be at most %{max} words

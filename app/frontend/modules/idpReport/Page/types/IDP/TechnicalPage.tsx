@@ -46,21 +46,10 @@ const Technical = ({ skills, rtl, status }) => {
                     </Flex>
                     <Flex>
                       <Flex vertical gap={8}>
-                        <div className={styles.statusLabel}>
-                          {I18n.t('idp.pdf.approval_status')}
-                        </div>
                         <Flex gap={16} align="center">
-                          <div className={cs(styles.statusBox, { [styles.active]: status === 'draft' })}>
-                            {I18n.t('idp.pdf.statuses.not_reviewed')}
-                          </div>
-                          <div className={cs(styles.statusBox, { [styles.active]: status === 'pending_approval' })}>
-                            {I18n.t('idp.pdf.statuses.pending_approval')}
-                          </div>
-                          <div className={cs(styles.statusBox, { [styles.active]: status === 'approved' })}>
-                            {I18n.t('idp.pdf.statuses.approved')}
-                          </div>
-                          <div className={cs(styles.statusBox, { [styles.active]: status === 'completed' })}>
-                            {I18n.t('idp.pdf.statuses.completed')}
+                          {I18n.t('idp.status')}
+                          <div className={cs(styles.statusBox, styles.active)}>
+                            {I18n.t(`idp.pdf.statuses.${status}`)}
                           </div>
                         </Flex>
                       </Flex>

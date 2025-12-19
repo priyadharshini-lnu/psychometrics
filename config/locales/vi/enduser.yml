@@ -3,13 +3,24 @@ vi:
   enduser:
     add_idp_plan_note: Thêm ghi chú...
     add_idp_plan_rejection_reason: Thêm lý do...
+    ai_idp_assistant_response_no: Không
+    ai_idp_assistant_response_upload_different_document: Tôi muốn tải lên một tài liệu khác.
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: Có, tiến hành tạo kế hoạch.
     approve_idp_plan: Phê duyệt kế hoạch
     bookings: Đặt chỗ
     campaign: Chiến dịch
     development: Phát triển
     direct_reportees: Người báo cáo trực tiếp
     home: Bảng điều khiển
+    idp_loading_fifth_step: Tìm nạp hành động phát triển từ mẫu
+    idp_loading_first_step: Phân tích báo cáo đánh giá của bạn
+    idp_loading_fourth_step: Lựa chọn các kỹ năng liên quan
+    idp_loading_second_step: Xác định các tùy chọn của bạn được đề cập trong cuộc trò chuyện
+    idp_loading_secondary_text: Hãy thoải mái bước đi. Kế hoạch của bạn sẽ sẵn sàng khi bạn trở lại.
+    idp_loading_sixth_step: Tạo hành động phát triển
+    idp_loading_third_step: Xem lại báo cáo bên ngoài của bạn
     idp_plan_approval_note: Ghi chú phê duyệt
+    idp_retake_steps_continue_with_this_information: Tiếp tục với thông tin này
     insights: Thông tin chi tiết
     lighthouse_assistant: Trợ lý ngọn hải đăng
     max_word_limit: Phải có tối đa %{max} từ

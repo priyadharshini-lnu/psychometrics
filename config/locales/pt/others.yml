@@ -55,6 +55,17 @@ pt:
               blank: O ID do pacote de relatórios não pode estar em branco
             report_id:
               blank: O ID do relatório não pode estar em branco
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: Assistente de IA com ID '%{id}' não encontrado na linha %{index}
+              blank: A coluna '%{entity}' não pode ficar em branco na linha %{index}
+              duplicate_code: Código duplicado '%{code}' na linha %{index}
+              invalid_code_format: Formato de código inválido '%{code}' na linha %{index}
+              max_limit_reached: O total de artefatos da IA da campanha excedem o limite máximo de %{count}
+              missing_headers: 'Cabeçalhos obrigatórios faltando: %{headers}'
+            file:
+              invalid_format: Por favor, envie o arquivo CSV
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ pt:
         import_development_actions: Importar acções de desenvolvimento
         import_dimension_from_json: Importar dimensão a partir de JSON
         import_external_campaign_scoring: Importar pontuação de campanha externa
+        import_external_scoring_data: Importar dados externos de pontuação
         import_factor_translations: Traduções de factores de importação
         import_factors: Factores de importação
         import_interview_questions: Importar perguntas da entrevista
@@ -1051,7 +1063,7 @@ pt:
         saville_assessment_name: Avaliação Saville Nome
         simulation_assessment_name: Nome da avaliação da simulação
         skillvue_assessment_name: Skillvue Nome da avaliação
-        yoodli_assessment_name: Nome da Avaliação Yoodli
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: Tradução Migrada
     create: Criar
     dashboard: Painel de controlo
@@ -1488,8 +1500,6 @@ pt:
       skillvue_email_id: ID do e-mail do candidato Skillvue
       skillvue_external_assessment_id: ID de avaliação de Skillvue
       universal_link: Ligação universal
-      yoodli_email_id: ID de e-mail do candidato Yoodli
-      yoodli_external_assessment_id: ID de Avaliação Yoodli
     drawer:
       mettl_schedule_name: Nome do calendário Mettl
       title: Detalhes da avaliação
@@ -1642,8 +1652,6 @@ pt:
       report: Relatório
       report_bundle_placeholder: Selecionar um pacote de relatórios
     messages:
-      bulk_download_error: A transferência em massa está limitada a 1000 ficheiros de relatório. Se selecionou muitos idiomas, reduza o número de ficheiros.
-      bulk_download_no_reports: Nenhum relatório encontrado. Gere os relatórios antes de fazer o download.
       bulk_download_successful: A tarefa de descarregamento de relatórios em massa foi agendada com sucesso
       export_report_data_scheduled: A tarefa de exportação de dados do relatório foi agendada com êxito
     modals:
@@ -1953,7 +1961,6 @@ pt:
       hide: Esconder
       view: Ver
     validations:
-      required: Esse campo é obrigatório
       select_locale: Selecione uma ou mais localidades
       should_be_whole_number: deve ser um número inteiro
   confirmation:
@@ -2525,8 +2532,8 @@ pt:
       reset_chat: Redefinir bate-papo
       reset_confirmation: Tem certeza de que deseja descartar este bate-papo e começar de novo?
       retake_steps:
-        chat_hint: Deixe-me saber quais informações você deseja fornecer mais abaixo?
-        chat_title: Você quer dar mais informações?
+        chat_hint: Você pode enviar um novo arquivo ou reiniciar o chat para compartilhar mais detalhes, e farei o possível para ajudar.
+        chat_title: Sinto muito que a análise inicial não tenha correspondido às suas expectativas.
         start_chat: Iniciar bate-papo
         start_chat_again: Iniciar o bate-papo novamente
         upload_document: Carregar documento
@@ -2552,14 +2559,14 @@ pt:
         chat_title: Resumo do Chat Insight
         file_title: Insights de documentos carregados
         gap_report_title: Análise do Relatório de Lacunas de Habilidades
-        hint: se sim, então criaremos seu IDP, caso contrário, você pode refazer suas respostas
-        title: Você está satisfeito com os resultados?
+        hint: Com sua permissão, se você disser sim, posso criar um plano de desenvolvimento para você. Se não, você pode reiniciar o chat ou enviar um novo arquivo.
+        title: Você está satisfeito com a análise?
         upload_file: Arquivo carregado
         view_chat: Ver bate-papo
       upload:
-        description: Clique ou arraste os arquivos para esta área para fazer o upload
+        description: 'Tipo de arquivo suportado: documentos PDF até %{maxFileSize}MB'
         drop: Solte o arquivo aqui
-        title: Carregar arquivos
+        title: Clique ou deixe o arquivo aqui
       welcome:
         text: Pronto para traçar sua jornada de crescimento? Vamos começar!
         title: Olá, sou seu assistente de desenvolvimento
@@ -2609,6 +2616,7 @@ pt:
     convert_to_draft: Converter em rascunho
     current_step: Etapa atual %{step}
     delete_skill: Tem certeza de que deseja excluir a habilidade? Isso também excluirá todas as ações de desenvolvimento conectadas.
+    delete_skill_msg: Você tem certeza de que quer deletar essa habilidade? Deletar também removerá todas as ações de desenvolvimento relacionadas.
     details: Detalhes
     development_actions:
       action_private: Sim
@@ -2626,8 +2634,8 @@ pt:
         in_progress: Em curso
         not_started: Não iniciado
       completion: Conclusão
-      create_custom_development_action_title: Criar minha própria ação de desenvolvimento para %{skillName}
-      create_development_actions_with_ai: Crie ações de desenvolvimento com IA para %{skillName}
+      create_custom_development_action_title: Criar minha própria ação de desenvolvimento para
+      create_development_actions_with_ai: Crie ações de desenvolvimento com IA para
       create_from_ai: Crie a partir da IA
       create_my_own: Criar o meu próprio
       custom: Costume
@@ -2693,6 +2701,7 @@ pt:
     edit_progress: Editar o progresso
     fetching_skill_gap_report: Buscando o Relatório de Lacunas de Habilidades...
     go_to_previous_step: Ir para a etapa anterior
+    go_to_reportee_plan: Vá para os Detalhes do Plano do Relatado
     history:
       added_da:
         one: Ação de desenvolvimento adicionada
@@ -2748,12 +2757,14 @@ pt:
         technical: Técnica
       save_skills: Salvar competências
     new_comments: Novo(s) comentário(s)
+    no_plan_changes_found: Nenhuma revisão foi feita no plano desde sua última avaliação.
     no_skills_added: Você ainda não adicionou Habilidades.
-    no_skills_added_by_reportee: Reportee ainda não adicionou Habilidades.
+    no_skills_added_by_reportee: O subordinado direto ainda não adicionou habilidades.
     pdf:
       approval_status: Estado de Aprovação
       cover:
         fields:
+          approval_date: Data de aprovação
           assigned_data: Data Atribuída
           assigned_date: Data atribuída
           completion_date: Data de Conclusão
@@ -2840,8 +2851,12 @@ pt:
         approved: Revisto e Aprovado
         completed: Concluído
         draft: Projeto
+        in_progress: Em andamento
+        in_review: Em Revisão
         not_reviewed: Não Revisto
+        not_started: Ainda não começou
         pending_approval: Em Revisão
+        rejected: Indeferido
       summary:
         ai_count: IA Generativa
         collaborative_learn: Aprendizagem Colaborativa
@@ -3822,13 +3837,6 @@ pt:
       on_hold: Em espera
       prepared: Feito
       released: Lançado
-    statuses:
-      completed: Concluído
-      declined: Declinado
-      denied: Recusado
-      done: Concluído
-      not_completed: Não concluído
-      waiting: Em espera
   threesixty:
     accept_privacy_modal:
       accept: Aceitar

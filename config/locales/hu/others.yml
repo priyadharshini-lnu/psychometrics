@@ -55,6 +55,17 @@ hu:
               blank: A jelentéscsomag azonosítója nem lehet üres
             report_id:
               blank: A jelentésazonosító nem lehet üres
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: AI asszisztens azonosítóval '%{id}' nem található meg a %{index} sorban
+              blank: A '%{entity}' oszlop nem lehet üres a %{index} sorban
+              duplicate_code: Duplán a '%{code}' kód a %{index}. sorban
+              invalid_code_format: Érvénytelen kódformátum '%{code}' a %{index}. sorban
+              max_limit_reached: A kampány összes MI artefaktumai meghaladja a maximális %{count}
+              missing_headers: 'Hiányzó kötelező fejlécek: %{headers}'
+            file:
+              invalid_format: Kérjük, töltsd fel CSV fájlt
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ hu:
         import_development_actions: Fejlesztési tevékenységek importálása
         import_dimension_from_json: Dimenzió importálása JSON-ból
         import_external_campaign_scoring: Külső kampánypontozás importálása
+        import_external_scoring_data: Külső pontozási adatok importálása
         import_factor_translations: Import Factor fordítások
         import_factors: Import tényezők
         import_interview_questions: Interjúkérdések importálása
@@ -1050,7 +1062,7 @@ hu:
         saville_assessment_name: Saville értékelés Név
         simulation_assessment_name: Szimulációs értékelés neve
         skillvue_assessment_name: Skillvue Értékelés neve
-        yoodli_assessment_name: Yoodli értékelés név
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: Fordítás migrálva
     create: Alkot
     dashboard: Műszerfal
@@ -1475,8 +1487,6 @@ hu:
       skillvue_email_id: Skillvue Jelölt e-mail azonosítója
       skillvue_external_assessment_id: Skillvue Értékelési ID
       universal_link: Univerzális kapcsolat
-      yoodli_email_id: Yoodli jelölt e-mail azonosító
-      yoodli_external_assessment_id: Yoodli Assessment ID
     drawer:
       mettl_schedule_name: Mettl ütemezés neve
       title: Az értékelés részletei
@@ -1629,8 +1639,6 @@ hu:
       report: Jelentés
       report_bundle_placeholder: Jelentéscsomag kiválasztása
     messages:
-      bulk_download_error: A tömeges letöltés 1000 jelentésfájlra korlátozódik. Ha sok nyelvet választott, kérjük, csökkentse azt.
-      bulk_download_no_reports: Nem található jelentés. Kérjük, hogy a letöltés előtt készítse el a jelentéseket.
       bulk_download_successful: A tömeges jelentés letöltési feladatának ütemezése sikeresen megtörtént
       export_report_data_scheduled: A jelentési adatexportálási feladat ütemezése sikeresen megtörtént
     modals:
@@ -1940,7 +1948,6 @@ hu:
       hide: Elrejt
       view: Nézet
     validations:
-      required: Ez a mező kötelező
       select_locale: Kérjük, válasszon néhány területi beállítást
       should_be_whole_number: egész számnak kell lennie
   confirmation:
@@ -2517,8 +2524,8 @@ hu:
       reset_chat: Csevegés visszaállítása
       reset_confirmation: Biztos benne, hogy el akarja dobni ezt a csevegést, és újat akar kezdeni?
       retake_steps:
-        chat_hint: Tudassa velem, milyen információkat szeretne megadni az alábbiakban?
-        chat_title: További információt szeretne adni?
+        chat_hint: Feltölthetsz egy új fájlt vagy újraindíthatod a chatet, hogy részletesebben megossz, és mindent megteszek, hogy segítsek.
+        chat_title: Sajnálom, hogy az első elemzés nem felelt meg az elvárásaidnak.
         start_chat: Csevegés indítása
         start_chat_again: Indítsa újra a csevegést
         upload_document: Dokumentum feltöltése
@@ -2544,14 +2551,14 @@ hu:
         chat_title: A Chat Insight összefoglalója
         file_title: Feltöltött dokumentumok betekintése
         gap_report_title: Készséghiány-jelentés elemzése
-        hint: ha igen, akkor létrehozzuk az IDP-t, különben újra felveheti a válaszokat
-        title: Elégedett az eredménnyel?
+        hint: Ha engedélyed van, ha igent mondasz, készíthetek neked fejlesztési tervet. Ha nem, újraindíthatod a csevegést vagy feltölthetsz egy új fájlt.
+        title: Elégedett vagy az elemzéssel?
         upload_file: Feltöltött fájl
         view_chat: Csevegés megtekintése
       upload:
-        description: Kattintson vagy húzza a fájlokat erre a területre a feltöltéshez
+        description: 'Támogatott fájltípus: PDF dokumentumok %{maxFileSize}MB'
         drop: Dobja ide a fájlt
-        title: Fájlok feltöltése
+        title: Kattints vagy küldd le a fájlt ide
       welcome:
         text: Készen állsz a növekedési utazásod feltérképezésére? Kezdjük!
         title: Helló, én vagyok a fejlesztési asszisztensed
@@ -2601,6 +2608,7 @@ hu:
     convert_to_draft: Konvertálás piszkozatra
     current_step: Aktuális lépés %{step}
     delete_skill: Biztosan törölni szeretné ezt a készséget? A törlés minden kapcsolódó fejlesztési tevékenységet is eltávolít.
+    delete_skill_msg: Biztos vagy benne, hogy törölni akarod ezt a képességet? Ha törleszed, az minden kapcsolódó fejlesztési műveletet is eltávolít.
     details: Részletek
     development_actions:
       action_private: Igen
@@ -2618,8 +2626,8 @@ hu:
         in_progress: Folyamatban
         not_started: Nincs elindítva
       completion: Teljesítés
-      create_custom_development_action_title: Saját fejlesztési akció létrehozása %{skillName}
-      create_development_actions_with_ai: Fejlesztési műveletek létrehozása az AI for %{skillName} segítségével
+      create_custom_development_action_title: Saját fejlesztési akció létrehozása
+      create_development_actions_with_ai: Fejlesztési műveletek létrehozása az AI
       create_from_ai: Alkotás mesterséges intelligenciából
       create_my_own: Készíts sajátot
       custom: Szokás
@@ -2685,6 +2693,7 @@ hu:
     edit_progress: Haladás szerkesztése
     fetching_skill_gap_report: Képzettségi hiányosságokról szóló jelentés...
     go_to_previous_step: Ugrás az előző lépésre
+    go_to_reportee_plan: A Reportee's Terv részleteihez
     history:
       added_da:
         one: Hozzáadott fejlesztési intézkedés
@@ -2734,12 +2743,14 @@ hu:
         categories: Kategóriák
       save_skills: Mentse el a készségeket
     new_comments: Új hozzászólás(ok)
+    no_plan_changes_found: Az előző értékelésed óta nem történt módosítás a terven.
     no_skills_added: Még nincs hozzáadott képesség.
     no_skills_added_by_reportee: A riportee még nem adta hozzá a Képességeket.
     pdf:
       approval_status: Jóváhagyási állapot
       cover:
         fields:
+          approval_date: Jóváhagyási dátum
           assigned_data: Hozzárendelt dátum
           assigned_date: Hozzárendelt dátum
           completion_date: Befejezés dátuma
@@ -2807,8 +2818,12 @@ hu:
         approved: Felülvizsgált és jóváhagyott
         completed: Befejezett
         draft: Tervezet
+        in_progress: Folyamatban
+        in_review: Áttekintésben
         not_reviewed: Nincs felülvizsgálva
+        not_started: Nem kezdődött
         pending_approval: Áttekintés alatt
+        rejected: Elutasította
       summary:
         ai_count: Generatív AI
         collaborative_learn: Kollaboratív tanulás
@@ -3789,13 +3804,6 @@ hu:
       on_hold: Várakozáson
       prepared: Kész
       released: Megjelent
-    statuses:
-      completed: Befejezett
-      declined: Visszautasított
-      denied: Elutasítva
-      done: Kész
-      not_completed: Nem fejeződött be
-      waiting: Várakozás
   threesixty:
     accept_privacy_modal:
       accept: Elfogadom

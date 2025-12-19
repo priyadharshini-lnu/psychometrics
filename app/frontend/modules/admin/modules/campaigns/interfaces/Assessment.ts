@@ -47,10 +47,13 @@ export default interface Assessment {
     updateContentVariation: boolean
     updateAvailableLocales: boolean
     updatePearsonVariation: boolean
+    toggleCaching: boolean | undefined;
   },
   externalConfig: ExternalConfig,
   campaignAssessmentId: number
   scheduleTime: string
   autoAssign: boolean
   dimensionId: string
+  allowCaching: boolean
+  cachingEnabled: boolean
 }

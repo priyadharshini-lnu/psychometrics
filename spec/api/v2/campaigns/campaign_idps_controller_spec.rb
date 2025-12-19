@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'swagger_helper'
 
-describe Api::V2::Administration::Campaigns::CampaignIdpsController, swagger_doc: 'v2/swagger.json', type: :request do
+RSpec.describe Api::V2::Administration::Campaigns::CampaignIdpsController, type: :request do
   let!(:superadmin) { create(:superadmin) }
   let!(:assessor) { create(:user, :assessor) }
   let!(:campaign) { create(:campaign) }
@@ -13,239 +12,182 @@ describe Api::V2::Administration::Campaigns::CampaignIdpsController, swagger_doc
   let(:campaign_id) { campaign.id }
   let(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
 
-  let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }
+  let!(:api_key) { create(:api_key, user: superadmin) }
+  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before { sign_in(superadmin) }
 
-  path '/campaigns/{campaign_id}/campaign_idps' do
-    get 'Campaign IDPs' do
-      operationId 'CampaignIDP'
-      description 'Fetch campaign idp'
-      tags 'CampaignIDP'
-      consumes 'application/json'
-      security [basic: []]
-      parameter name: :campaign_id, in: :path, type: :string
+  describe 'GET /api/v2/administration/campaigns/:campaign_id/campaign_idps' do
+    it 'fetches campaign IDP list' do
+      create(:campaign_idp, campaign: campaign, idp_template: idp_template)
 
-      response '200', 'Campaign idp list' do
-        let!(:campaign_idp) { create(:campaign_idp, campaign: campaign, idp_template: idp_template).id }
-        schema '$ref' => '#/components/schemas/CampaignIdpListResponse'
+      get "/api/v2/administration/campaigns/#{campaign_id}/campaign_idps",
+          headers: { 'Authorization' => authorization }
 
-        examples 'application/json' => {
-          data: [{
-            id: '1',
-            type: 'campaign_idps',
-            attributes: {
-              id: '1'
-            }
-          }]
-        }
-
-        run_test! do |response|
-          d = JSON.parse(response.body)['data'].first
-          expect(d).to have_relationship(:idp_template)
-          expect(d).to have_relationship(:campaign)
-        end
-      end
-    end
-
-    post 'Create Campaing IDP' do
-      operationId 'CampaignIDP'
-      description 'Create campaign idp'
-      tags 'CampaignIDP'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :campaign_id, in: :path, type: :string
-      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/CampaignIdpCreateRequest' },
-                required: true
-
-      response '201', 'Create campaign idp ' do
-        let(:body) do
-          {
-            data: {
-              type: 'campaign_idps',
-              attributes: {
-                override_exists: false,
-                automatically_assign_new: true
-              },
-              relationships: {
-                campaign: {
-                  data: {
-                    type: 'campaigns',
-                    id: campaign.id.to_s
-                  }
-                },
-                idp_template: {
-                  data: {
-                    type: 'idp_templates',
-                    id: idp_template2.id.to_s
-                  }
-                }
-              }
-            }
-          }
-        end
-
-        run_test! do |response|
-          d = JSON.parse(response.body)['data']
-          expect(d).to have_relationship(:idp_template)
-          expect(d).to have_relationship(:campaign)
-          expect(d.dig('relationships', 'idp_template', 'data', 'id')).to eq(idp_template2.id.to_s)
-          expect(AdminJobRecord.count).to eq(0)
-        end
-      end
-    end
-
-    post 'Create Campaing IDP with job' do
-      operationId 'CampaignIDP'
-      description 'Create campaign idp'
-      tags 'CampaignIDP'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :campaign_id, in: :path, type: :string
-      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/CampaignIdpCreateRequest' },
-                required: true
-
-      response '201', 'Create campaign idp ' do
-        let(:body) do
-          {
-            data: {
-              type: 'campaign_idps',
-              attributes: {
-                override_exists: true,
-                automatically_assign_new: true
-              },
-              relationships: {
-                campaign: {
-                  data: {
-                    type: 'campaigns',
-                    id: campaign.id.to_s
-                  }
-                },
-                idp_template: {
-                  data: {
-                    type: 'idp_templates',
-                    id: idp_template2.id.to_s
-                  }
-                }
-              }
-            }
-          }
-        end
-
-        run_test! do |response|
-          d = JSON.parse(response.body)['data']
-          expect(d).to have_relationship(:idp_template)
-          expect(d).to have_relationship(:campaign)
-          expect(d.dig('relationships', 'idp_template', 'data', 'id')).to eq(idp_template2.id.to_s)
-          expect(AdminJobRecord.count).to eq(1)
-          expect(AdminJobRecord.last.operation).to eq('assign_idp_to_users')
-        end
-      end
+      expect(response).to have_http_status(:ok)
+      d = JSON.parse(response.body)['data'].first
+      expect(d).to have_relationship(:idp_template)
+      expect(d).to have_relationship(:campaign)
     end
   end
 
-  path '/campaigns/{campaign_id}/campaign_idps/{id}' do
-    patch 'Update Campaing IDP' do
-      operationId 'CampaignIDP'
-      description 'Update campaign idp'
-      tags 'CampaignIDP'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :campaign_id, in: :path, type: :string
-      parameter name: :id, in: :path, type: :string
-      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/CampaignIdpUpdateRequest' },
-                required: true
-
-      response '200', 'Update campaign idp ' do
-        let(:id) { create(:campaign_idp, campaign: campaign, idp_template: idp_template).id }
-
-        let(:body) do
-          {
-            data: {
-              id: id.to_s,
-              type: 'campaign_idps',
-              attributes: {
-                override_exists: false,
-                automatically_assign_new: true
-              },
-              relationships: {
-                campaign: {
-                  data: {
-                    type: 'campaigns',
-                    id: campaign.id.to_s
-                  }
-                },
-                idp_template: {
-                  data: {
-                    type: 'idp_templates',
-                    id: idp_template2.id.to_s
-                  }
-                }
+  describe 'POST /api/v2/administration/campaigns/:campaign_id/campaign_idps' do
+    it 'creates campaign IDP without job' do
+      body = {
+        data: {
+          type: 'campaign_idps',
+          attributes: {
+            override_exists: false,
+            automatically_assign_new: true
+          },
+          relationships: {
+            campaign: {
+              data: {
+                type: 'campaigns',
+                id: campaign.id.to_s
+              }
+            },
+            idp_template: {
+              data: {
+                type: 'idp_templates',
+                id: idp_template2.id.to_s
               }
             }
           }
-        end
+        }
+      }
 
-        run_test! do |response|
-          d = JSON.parse(response.body)['data']
-          expect(d).to have_relationship(:idp_template)
-          expect(d).to have_relationship(:campaign)
-          expect(d.dig('relationships', 'idp_template', 'data', 'id')).to eq(idp_template2.id.to_s)
-          expect(AdminJobRecord.count).to eq(0)
-        end
-      end
+      post "/api/v2/administration/campaigns/#{campaign_id}/campaign_idps",
+           params: body.to_json,
+           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:created)
+      d = JSON.parse(response.body)['data']
+      expect(d).to have_relationship(:idp_template)
+      expect(d).to have_relationship(:campaign)
+      expect(d.dig('relationships', 'idp_template', 'data', 'id')).to eq(idp_template2.id.to_s)
+      expect(AdminJobRecord.count).to eq(0)
     end
 
-    patch 'Update Campaing IDP with override exists' do
-      operationId 'CampaignIDP'
-      description 'Update campaign idp'
-      tags 'CampaignIDP'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :campaign_id, in: :path, type: :string
-      parameter name: :id, in: :path, type: :string
-      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/CampaignIdpUpdateRequest' },
-                required: true
-
-      response '200', 'Update campaign idp ' do
-        let(:id) { create(:campaign_idp, campaign: campaign, idp_template: idp_template).id }
-
-        let(:body) do
-          {
-            data: {
-              id: id.to_s,
-              type: 'campaign_idps',
-              attributes: {
-                override_exists: true,
-                automatically_assign_new: true
-              },
-              relationships: {
-                campaign: {
-                  data: {
-                    type: 'campaigns',
-                    id: campaign.id.to_s
-                  }
-                },
-                idp_template: {
-                  data: {
-                    type: 'idp_templates',
-                    id: idp_template2.id.to_s
-                  }
-                }
+    it 'creates campaign IDP with job when override exists' do
+      body = {
+        data: {
+          type: 'campaign_idps',
+          attributes: {
+            override_exists: true,
+            automatically_assign_new: true
+          },
+          relationships: {
+            campaign: {
+              data: {
+                type: 'campaigns',
+                id: campaign.id.to_s
+              }
+            },
+            idp_template: {
+              data: {
+                type: 'idp_templates',
+                id: idp_template2.id.to_s
               }
             }
           }
-        end
+        }
+      }
 
-        run_test! do |response|
-          d = JSON.parse(response.body)['data']
-          expect(d).to have_relationship(:idp_template)
-          expect(d).to have_relationship(:campaign)
-          expect(d.dig('relationships', 'idp_template', 'data', 'id')).to eq(idp_template2.id.to_s)
-          expect(AdminJobRecord.count).to eq(1)
-          expect(AdminJobRecord.last.operation).to eq('assign_idp_to_users')
-        end
-      end
+      post "/api/v2/administration/campaigns/#{campaign_id}/campaign_idps",
+           params: body.to_json,
+           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:created)
+      d = JSON.parse(response.body)['data']
+      expect(d).to have_relationship(:idp_template)
+      expect(d).to have_relationship(:campaign)
+      expect(d.dig('relationships', 'idp_template', 'data', 'id')).to eq(idp_template2.id.to_s)
+      expect(AdminJobRecord.count).to eq(1)
+      expect(AdminJobRecord.last.operation).to eq('assign_idp_to_users')
+    end
+  end
+
+  describe 'PATCH /api/v2/administration/campaigns/:campaign_id/campaign_idps/:id' do
+    it 'updates campaign IDP without job' do
+      campaign_idp = create(:campaign_idp, campaign: campaign, idp_template: idp_template)
+
+      body = {
+        data: {
+          id: campaign_idp.id.to_s,
+          type: 'campaign_idps',
+          attributes: {
+            override_exists: false,
+            automatically_assign_new: true
+          },
+          relationships: {
+            campaign: {
+              data: {
+                type: 'campaigns',
+                id: campaign.id.to_s
+              }
+            },
+            idp_template: {
+              data: {
+                type: 'idp_templates',
+                id: idp_template2.id.to_s
+              }
+            }
+          }
+        }
+      }
+
+      patch "/api/v2/administration/campaigns/#{campaign_id}/campaign_idps/#{campaign_idp.id}",
+            params: body.to_json,
+            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:ok)
+      d = JSON.parse(response.body)['data']
+      expect(d).to have_relationship(:idp_template)
+      expect(d).to have_relationship(:campaign)
+      expect(d.dig('relationships', 'idp_template', 'data', 'id')).to eq(idp_template2.id.to_s)
+      expect(AdminJobRecord.count).to eq(0)
+    end
+
+    it 'updates campaign IDP with job when override exists' do
+      campaign_idp = create(:campaign_idp, campaign: campaign, idp_template: idp_template)
+
+      body = {
+        data: {
+          id: campaign_idp.id.to_s,
+          type: 'campaign_idps',
+          attributes: {
+            override_exists: true,
+            automatically_assign_new: true
+          },
+          relationships: {
+            campaign: {
+              data: {
+                type: 'campaigns',
+                id: campaign.id.to_s
+              }
+            },
+            idp_template: {
+              data: {
+                type: 'idp_templates',
+                id: idp_template2.id.to_s
+              }
+            }
+          }
+        }
+      }
+
+      patch "/api/v2/administration/campaigns/#{campaign_id}/campaign_idps/#{campaign_idp.id}",
+            params: body.to_json,
+            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:ok)
+      d = JSON.parse(response.body)['data']
+      expect(d).to have_relationship(:idp_template)
+      expect(d).to have_relationship(:campaign)
+      expect(d.dig('relationships', 'idp_template', 'data', 'id')).to eq(idp_template2.id.to_s)
+      expect(AdminJobRecord.count).to eq(1)
+      expect(AdminJobRecord.last.operation).to eq('assign_idp_to_users')
     end
   end
 end

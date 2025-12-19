@@ -2,7 +2,7 @@ import { useState } from 'react'
 import {
   Avatar, Button, Flex, Typography, Empty,
 } from 'antd'
-import { map, filter } from 'lodash'
+import { map, filter, sortBy } from 'lodash'
 import { PlusOutlined } from '@ant-design/icons'
 import { v4 as uuidv4 } from 'uuid'
 import { useMedia } from 'use-media'
@@ -229,7 +229,7 @@ export const DevelopmentActionListView: React.FC<DevelopmentActionListViewProps>
             </Flex>
           </Flex>
         )}
-        {categories.map(category => (
+        {sortBy(categories, 'skillType').map(category => (
           <div key={category.skillType} className="pt-4 pb-4 mt-2">
             <Flex vertical gap={16}>
               <Flex align="center" gap={8}>

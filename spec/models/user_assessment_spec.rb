@@ -622,4 +622,49 @@ campaign_assessment_group: assessment_group)
       end
     end
   end
+
+  describe 'yoodli associations' do
+    let(:user_assessment) { create(:user_assessment) }
+
+    describe '#yoodli_user_assessment' do
+      it 'returns only active yoodli_user_assessment' do
+        active_assessment = create(:yoodli_user_assessment, user_assessment: user_assessment, active: true)
+        create(:yoodli_user_assessment, user_assessment: user_assessment, active: false)
+
+        expect(user_assessment.yoodli_user_assessment).to eq(active_assessment)
+      end
+
+      it 'returns nil when no active yoodli_user_assessment exists' do
+        create(:yoodli_user_assessment, user_assessment: user_assessment, active: false)
+
+        expect(user_assessment.yoodli_user_assessment).to be_nil
+      end
+    end
+
+    describe '#previous_yoodli_user_assessments' do
+      it 'returns only inactive yoodli_user_assessments' do
+        create(:yoodli_user_assessment, user_assessment: user_assessment, active: true)
+        inactive_assessment = create(:yoodli_user_assessment, user_assessment: user_assessment, active: false)
+
+        expect(user_assessment.previous_yoodli_user_assessments).to contain_exactly(inactive_assessment)
+      end
+
+      it 'returns empty when no inactive yoodli_user_assessments exist' do
+        create(:yoodli_user_assessment, user_assessment: user_assessment, active: true)
+
+        expect(user_assessment.previous_yoodli_user_assessments).to be_empty
+      end
+
+      it 'returns multiple inactive assessments in chronological order' do
+        create(:yoodli_user_assessment, user_assessment: user_assessment, active: true)
+        old_assessment = create(:yoodli_user_assessment, user_assessment: user_assessment, active: false,
+created_at: 2.days.ago)
+        recent_assessment = create(:yoodli_user_assessment, user_assessment: user_assessment, active: false,
+created_at: 1.day.ago)
+
+        expect(user_assessment.previous_yoodli_user_assessments.order(:created_at)).to eq([old_assessment,
+                                                                                           recent_assessment])
+      end
+    end
+  end
 end

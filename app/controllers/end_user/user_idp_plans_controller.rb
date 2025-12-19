@@ -69,12 +69,13 @@ module EndUser
                       status: :unprocessable_entity
       end
 
-      refied_last_approved_version = @user_idp_plan.safe_reify(
-        last_approved_version, has_many: true, mark_for_destruction: true
+      refied_last_approved_version = last_approved_version.reify(
+        has_many: true, mark_for_destruction: true
       )
 
       refied_last_approved_version.save!
-      render json: { status: @user_idp_plan.status }
+
+      render json: { status: @user_idp_plan.reload.status }
     end
 
     def update
@@ -84,7 +85,11 @@ module EndUser
              with_context(current_user: current_user, user_idp_plan: @user_idp_plan)
 
       if form.save!
-        render json: { status: @user_idp_plan.status, note: @user_idp_plan.review_note }
+        render json: {
+          status: @user_idp_plan.status,
+          note: @user_idp_plan.review_note,
+          can_revert_to_last_approved: @user_idp_plan.can_revert_to_last_approved
+        }
       else
         render json: { errors: form.errors.full_messages }, status: 422
       end

@@ -235,6 +235,9 @@ const getActionsMenuProps = ({
     if (key === 'import_scoring') {
       return openModal('ImportScoringModal', { campaignId, campaignAssessmentId: id })
     }
+    if (key === 'import_external_scoring') {
+      return openModal('ImportExternalScoringModal', { campaignId, campaignAssessmentId: id })
+    }
     if (key === 'rescoring') {
       return handleRescoreResponse()
     }

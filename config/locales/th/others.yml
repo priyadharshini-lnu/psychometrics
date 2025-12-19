@@ -55,6 +55,17 @@ th:
               blank: ID ชุดรายงานต้องไม่ว่างเปล่า
             report_id:
               blank: รหัสรายงานต้องว่างเปล่าไม่ได้
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: ไม่พบ AI Assistant ที่มี ID '%{id}' ที่แถวที่ %{index}
+              blank: คอลัมน์ '%{entity}' ต้องเว้นว่างที่แถว %{index} ไม่ได้
+              duplicate_code: รหัส '%{code}' ที่ซ้ํากันที่แถว %{index}
+              invalid_code_format: รูปแบบรหัส '%{code}' ไม่ถูกต้องที่แถวที่ %{index}
+              max_limit_reached: สิ่งประดิษฐ์ AI ของแคมเปญทั้งหมดเกินขีดจํากัดสูงสุดที่ %{count}
+              missing_headers: 'ส่วนหัวที่จําเป็นหายไป: %{headers}'
+            file:
+              invalid_format: โปรดอัปโหลดไฟล์ CSV
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ th:
         import_development_actions: การดําเนินการพัฒนาการนําเข้า
         import_dimension_from_json: นําเข้ามิติจาก JSON
         import_external_campaign_scoring: นําเข้าการให้คะแนนแคมเปญภายนอก
+        import_external_scoring_data: นําเข้าข้อมูลการให้คะแนนภายนอก
         import_factor_translations: การแปลปัจจัยนําเข้า
         import_factors: ปัจจัยการนําเข้า
         import_interview_questions: นําเข้าคําถามสัมภาษณ์
@@ -1050,7 +1062,7 @@ th:
         saville_assessment_name: ชื่อการประเมิน Saville
         simulation_assessment_name: ชื่อการประเมินการจําลอง
         skillvue_assessment_name: ชื่อแบบประเมินทักษะในระบบ Skillvue
-        yoodli_assessment_name: ชื่อการประเมิน Yoodli
+        yoodli_scenario_id: รหัสสถานการณ์ Yoodli
       translations_migrated: การแปลที่ย้ายแล้ว
     create: สร้าง
     dashboard: แดชบอร์ด
@@ -1472,8 +1484,6 @@ th:
       skillvue_email_id: อีเมลผู้สมัคร Skillvue
       skillvue_external_assessment_id: รหัสการประเมิน Skillvue
       universal_link: ลิงค์สากล
-      yoodli_email_id: รหัสอีเมลผู้สมัคร Yoodli
-      yoodli_external_assessment_id: รหัสการประเมิน Yoodli
     drawer:
       mettl_schedule_name: ชื่อกําหนดการ Mettl
       title: รายละเอียดการประเมิน
@@ -1626,8 +1636,6 @@ th:
       report: รายงาน
       report_bundle_placeholder: เลือกชุดรายงาน
     messages:
-      bulk_download_error: การดาวน์โหลดรายงานจำนวนมากจํากัดไว้ที่จำนวน 1,000 ไฟล์ หากคุณเลือกหลายภาษาโปรดลดจำนวนที่เลือกลง
-      bulk_download_no_reports: ไม่พบรายงาน โปรดสร้างรายงานก่อนดาวน์โหลด
       bulk_download_successful: กําหนดเวลางานดาวน์โหลดรายงานจํานวนมากเรียบร้อยแล้ว
       export_report_data_scheduled: งานส่งออกข้อมูลรายงานถูกกําหนดเวลาเรียบร้อยแล้ว
     modals:
@@ -1937,7 +1945,6 @@ th:
       hide: ซ่อน
       view: ดู
     validations:
-      required: ต้องกรอกข้อมูลนี้
       select_locale: โปรดเลือกบางพื้นที่
       should_be_whole_number: ควรเป็นจํานวนเต็ม
   confirmation:
@@ -2514,8 +2521,8 @@ th:
       reset_chat: รีเซ็ตแชท
       reset_confirmation: คุณแน่ใจหรือไม่ว่าต้องการละทิ้งการแชทนี้และเริ่มต้นใหม่?
       retake_steps:
-        chat_hint: แจ้งให้เราทราบว่าคุณต้องการให้ข้อมูลอะไรเพิ่มเติม?
-        chat_title: คุณต้องการให้ข้อมูลเพิ่มเติมหรือไม่?
+        chat_hint: คุณสามารถอัปโหลดไฟล์ใหม่หรือเริ่มแชทใหม่เพื่อแบ่งปันรายละเอียดเพิ่มเติม และฉันจะพยายามอย่างเต็มที่เพื่อช่วยเหลือคุณ
+        chat_title: ฉันขอโทษที่การวิเคราะห์เบื้องต้นไม่เป็นไปตามความคาดหวังของคุณ
         start_chat: เริ่มแชท
         start_chat_again: เริ่มแชทอีกครั้ง
         upload_document: อัปโหลดเอกสาร
@@ -2541,14 +2548,14 @@ th:
         chat_title: สรุปข้อมูลเชิงลึกของแชท
         file_title: ข้อมูลเชิงลึกของเอกสารที่อัปโหลด
         gap_report_title: การวิเคราะห์รายงานช่องว่างทักษะ
-        hint: ถ้าใช่ เราจะสร้าง IDP ของคุณ มิฉะนั้น คุณสามารถตอบคําถามของคุณใหม่ได้
-        title: คุณพอใจกับผลลัพธ์หรือไม่?
+        hint: หากคุณตอบตกลง ฉันสามารถสร้างแผนการพัฒนาให้คุณได้ หากไม่เป็นเช่นนั้น คุณสามารถเริ่มแชทใหม่หรืออัปโหลดไฟล์ใหม่ได้
+        title: คุณพอใจกับการวิเคราะห์หรือไม่?
         upload_file: ไฟล์ที่อัปโหลด
         view_chat: ดูแชท
       upload:
-        description: คลิกหรือลากไฟล์ไปยังพื้นที่นี้เพื่ออัปโหลด
+        description: 'ประเภทไฟล์ที่รองรับ: เอกสาร PDF สูงสุด %{maxFileSize}MB'
         drop: วางไฟล์ที่นี่
-        title: อัปโหลดไฟล์
+        title: คลิกหรือวางไฟล์ที่นี่
       welcome:
         text: พร้อมที่จะสร้างแผนภูมิการเติบโตของคุณแล้วหรือยัง? มาเริ่มกันเลย!
         title: สวัสดี ฉันเป็นผู้ช่วยพัฒนาของคุณ
@@ -2598,6 +2605,7 @@ th:
     convert_to_draft: แปลงเป็นแบบร่าง
     current_step: ขั้นตอนปัจจุบัน %{step}
     delete_skill: คุณแน่ใจหรือไม่ว่าต้องการลบทักษะนี้ การลบจะลบกิจกรรมการพัฒนาที่เกี่ยวข้องทั้งหมดด้วย
+    delete_skill_msg: คุณแน่ใจหรือไม่ว่าต้องการลบทักษะนี้? การลบจะเป็นการลบการดําเนินการพัฒนาที่เกี่ยวข้องทั้งหมดด้วย
     details: รายละเอียด
     development_actions:
       action_private: ใช่
@@ -2615,8 +2623,8 @@ th:
         in_progress: อยู่ระหว่างดําเนินการ
         not_started: ยังไม่ได้เริ่มต้น
       completion: เสร็จสมบูรณ์
-      create_custom_development_action_title: สร้างการดําเนินการพัฒนาของฉันเองสําหรับ %{skillName}
-      create_development_actions_with_ai: สร้างการดําเนินการพัฒนาด้วย AI สําหรับ %{skillName}
+      create_custom_development_action_title: สร้างการดําเนินการพัฒนาของฉันเองสําหรับ
+      create_development_actions_with_ai: สร้างการดําเนินการพัฒนาด้วย AI สําหรับ
       create_from_ai: สร้างจาก AI
       create_my_own: สร้างของตัวเอง
       custom: ธรรมเนียม
@@ -2682,6 +2690,7 @@ th:
     edit_progress: แก้ไขความคืบหน้า
     fetching_skill_gap_report: การดึงรายงานช่องว่างของทักษะ...
     go_to_previous_step: ไปที่ขั้นตอนก่อนหน้า
+    go_to_reportee_plan: ไปที่รายละเอียดแผนของผู้รายงาน
     history:
       added_da:
         one: เพิ่มการดําเนินการพัฒนา
@@ -2731,12 +2740,14 @@ th:
         categories: ประเภท
       save_skills: บันทึกทักษะ
     new_comments: ความคิดเห็นใหม่
+    no_plan_changes_found: ไม่มีการแก้ไขแผนตั้งแต่การตรวจสอบครั้งล่าสุดของคุณ
     no_skills_added: คุณยังไม่ได้เพิ่มทักษะ
     no_skills_added_by_reportee: ผู้รายงานยังไม่ได้เพิ่มทักษะ
     pdf:
       approval_status: สถานะการอนุมัติ
       cover:
         fields:
+          approval_date: วันที่อนุมัติ
           assigned_data: วันที่กําหนด
           assigned_date: วันที่กำหนด
           completion_date: วันที่เสร็จสมบูรณ์
@@ -2823,8 +2834,12 @@ th:
         approved: ตรวจสอบและอนุมัติแล้ว
         completed: เสร็จสมบูรณ์
         draft: ร่าง
+        in_progress: กําลังดําเนินการ
+        in_review: ในการตรวจสอบ
         not_reviewed: ไม่ได้รับการตรวจสอบ
+        not_started: ยังไม่ได้เริ่มต้น
         pending_approval: อยู่ระหว่างตรวจสอบ
+        rejected: ถูก ปฏิเสธ
       summary:
         ai_count: AI เชิงกําเนิด
         collaborative_learn: การเรียนรู้ร่วมกัน
@@ -3805,13 +3820,6 @@ th:
       on_hold: ระงับชั่วคราว
       prepared: เสร็จแล้ว
       released: ปล่อยแล้ว
-    statuses:
-      completed: เสร็จสมบูรณ์
-      declined: ปฏิเสธ
-      denied: ปฏิเสธ
-      done: เสร็จ
-      not_completed: ยังไม่เสร็จสมบูรณ์
-      waiting: รอ
   threesixty:
     accept_privacy_modal:
       accept: ยอมรับ

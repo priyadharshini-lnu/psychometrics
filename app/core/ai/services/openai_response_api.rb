@@ -112,8 +112,17 @@ module AI
               assistant_chat.instance_variable_get(:@temperature)
           end
           payload[:tools] = format_tools if assistant_chat.tools.any?
-          payload.merge!(assistant_chat.params) if assistant_chat.params.any?
+          payload.merge!(map_params(assistant_chat.params)) if assistant_chat.params.any?
         end
+      end
+
+      def map_params(params)
+        # response api uses different param names
+        param_mapping = {
+          max_tokens: :max_output_tokens
+        }
+
+        params.transform_keys { |key| param_mapping[key.to_sym] || key.to_sym }
       end
 
       def format_messages
