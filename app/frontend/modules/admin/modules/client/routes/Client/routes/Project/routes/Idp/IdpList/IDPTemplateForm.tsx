@@ -16,10 +16,12 @@ type IDPTemplateFormProps = {
   idp?: Idp,
   projectId: string,
   clientId: string,
+  aiAssistedIdpFeatureEnabled: boolean,
 }
 
 const IDPTemplateForm = ({
   close, projectId, clientId, idp,
+  aiAssistedIdpFeatureEnabled,
 }: IDPTemplateFormProps) => {
   const { resource } = useResourceContext<Idp>()
   const [form] = Form.useForm()
@@ -154,13 +156,15 @@ const IDPTemplateForm = ({
               <Form.Item name="selfRatingEnabled" label={I18n.t('administration.idp.self_rating')}>
                 <Switch checkedChildren={I18n.t('yes')} unCheckedChildren={I18n.t('no')} />
               </Form.Item>
-              <Form.Item
-                name="aiEnabled"
-                label={I18n.t('administration.idp.ai_enabled')}
-                valuePropName="checked"
-              >
-                <Switch />
-              </Form.Item>
+              {aiAssistedIdpFeatureEnabled && (
+                <Form.Item
+                  name="aiEnabled"
+                  label={I18n.t('administration.idp.ai_enabled')}
+                  valuePropName="checked"
+                >
+                  <Switch />
+                </Form.Item>
+              )}
               {aiEnabled && (
                 <>
                   {/* uncomment this when AI Assisted IDP is ready

@@ -55,6 +55,17 @@ nl:
               blank: Bundel-ID van rapport kan niet leeg zijn
             report_id:
               blank: Rapport-ID kan niet leeg zijn
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: AI Assistant met ID '%{id}' niet gevonden bij rij %{index}
+              blank: Kolom '%{entity}' kan niet leeg zijn op rij %{index}
+              duplicate_code: Dubbele code '%{code}' op rij %{index}
+              invalid_code_format: Ongeldig codeformaat '%{code}' op rij %{index}
+              max_limit_reached: Het totaal aantal AI-artefacten van campagne overschrijdt de maximale limiet van %{count}
+              missing_headers: 'Ontbrekende vereiste headers: %{headers}'
+            file:
+              invalid_format: Upload alstublieft het CSV-bestand
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ nl:
         import_development_actions: Ontwikkelingsacties importeren
         import_dimension_from_json: Dimensie importeren vanuit JSON
         import_external_campaign_scoring: Externe campagnescores importeren
+        import_external_scoring_data: Import van externe scoregegevens
         import_factor_translations: Importfactor Vertalingen
         import_factors: Importfactoren
         import_interview_questions: Interviewvragen importeren
@@ -1050,6 +1062,7 @@ nl:
         saville_assessment_name: Saville beoordeling Naam
         simulation_assessment_name: Simulatie Beoordeling Naam
         skillvue_assessment_name: Skillvue Beoordeling Naam
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: Vertaling gemigreerd
     create: Maak
     dashboard: Dashboard

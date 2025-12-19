@@ -68,6 +68,8 @@ const MetaTR = t.union([
     permissions: PermissionTR,
     projectFeatures: t.type({
       globalSkills: t.boolean,
+      aiAssistants: t.boolean,
+      aiAssistedIdp: t.boolean,
     }),
   }),
   t.undefined,

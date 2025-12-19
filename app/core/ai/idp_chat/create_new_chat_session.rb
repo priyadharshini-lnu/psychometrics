@@ -10,9 +10,14 @@ module AI::IdpChat
     end
 
     def call
-      AI::AssistableService::Idp.call(user_idp_plan, user_idp_plan.user, 'hi', options)
-
-      broadcast(:ok, user_idp_plan.reload.ai_assisted_idp_session)
+      assistable_service = AI::AssistableService::Idp.new(user_idp_plan, user_idp_plan.user, 'hi', options)
+      assistable_service.on(:ok) do
+        broadcast(:ok, user_idp_plan.reload.ai_assisted_idp_session)
+      end.
+        on(:error) do |error_message, _error|
+        broadcast(:error, error_message)
+      end.
+        call
     end
   end
 end

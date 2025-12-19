@@ -182,6 +182,12 @@ es-ES:
             manage: Gestión
             title: Plantillas de PDI
             view: Ver
+          interviewQuestions:
+            export: Exportar
+            import: Importación
+            manage: Gestionar
+            title: Preguntas de entrevista para IDP
+            view: Vista
           jobRoles:
             export_translations: Exportar traducciones de funciones
             import_translations: Importar traducciones de funciones
@@ -294,6 +300,7 @@ es-ES:
             view: Ver
           userIdpPlans:
             manage: Gestionar
+            reset: Restablecimiento
             title: Planes IDP de usuarios
             view: Vista
           users:
@@ -1961,6 +1968,7 @@ es-ES:
         udpated_at: Última actualización
       configuration: Configuración
       errors:
+        factor_code_or_field_name_required: factor_code o field_name es necesario
         factor_not_found: no se encuentra en el ámbito de evaluación
         inclusion: 'tipo no válido, tipos válidos: %{values}'
         not_found: no encontrado
@@ -2063,9 +2071,6 @@ es-ES:
       learning_styles:
         cannot_be_blank: No puede estar en blanco
         invalid: 'Debe ser uno de los siguientes: aprendizaje en el puesto de trabajo, aprendizaje estructurado o aprendizaje de otros'
-        learning_from_others: Aprender de los demás [20]
-        on_the_job: En el trabajo [70]
-        structured_learning: Aprendizaje estructurado [10]
       new:
         header: Nueva acción de desarrollo
       resource:

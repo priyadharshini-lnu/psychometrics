@@ -55,6 +55,17 @@ en-US:
               blank: Report Bundle ID can't be blank
             report_id:
               blank: Report ID can't be blank
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: AI Assistant with ID '%{id}' not found at row %{index}
+              blank: Column '%{entity}' can't be blank at row %{index}
+              duplicate_code: Duplicate code '%{code}' at row %{index}
+              invalid_code_format: Invalid code format '%{code}' at row %{index}
+              max_limit_reached: Total campaign AI artifacts exceed the maximum limit of %{count}
+              missing_headers: 'Missing required headers: %{headers}'
+            file:
+              invalid_format: Please upload CSV file
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ en-US:
         import_development_actions: Import Development Actions
         import_dimension_from_json: Import Dimension from JSON
         import_external_campaign_scoring: Import External Campaign Scoring
+        import_external_scoring_data: Import External Scoring Data
         import_factor_translations: Import Factor Translations
         import_factors: Import Factors
         import_interview_questions: Import Interview Questions
@@ -1050,6 +1062,7 @@ en-US:
         saville_assessment_name: Saville assessment Name
         simulation_assessment_name: Simulation Assessment Name
         skillvue_assessment_name: Skillvue Assessment Name
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: Translation Migrated
     create: Create
     dashboard: Dashboard

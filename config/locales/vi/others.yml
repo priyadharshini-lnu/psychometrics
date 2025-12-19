@@ -55,6 +55,17 @@ vi:
               blank: ID gói báo cáo không được để trống
             report_id:
               blank: ID báo cáo không được để trống
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: Không tìm thấy Trợ lý AI có ID '%{id}' ở hàng %{index}
+              blank: Cột '%{entity}' không được để trống ở hàng %{index}
+              duplicate_code: Trùng lặp mã '%{code}' ở hàng %{index}
+              invalid_code_format: Định dạng mã không hợp lệ '%{code}' ở hàng %{index}
+              max_limit_reached: Tổng số hiện vật AI của chiến dịch vượt quá giới hạn tối đa là %{count}
+              missing_headers: 'Thiếu tiêu đề bắt buộc: %{headers}'
+            file:
+              invalid_format: Vui lòng tải lên tệp CSV
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ vi:
         import_development_actions: Hành động phát triển nhập khẩu
         import_dimension_from_json: Nhập thứ nguyên từ JSON
         import_external_campaign_scoring: Nhập tính điểm chiến dịch bên ngoài
+        import_external_scoring_data: Nhập dữ liệu chấm điểm bên ngoài
         import_factor_translations: Bản dịch yếu tố nhập khẩu
         import_factors: Các yếu tố nhập khẩu
         import_interview_questions: Nhập câu hỏi phỏng vấn
@@ -1050,6 +1062,7 @@ vi:
         saville_assessment_name: Tên đánh giá Saville
         simulation_assessment_name: Tên đánh giá mô phỏng
         skillvue_assessment_name: Tên đánh giá Skillvue
+        yoodli_scenario_id: ID kịch bản Yoodli
       translations_migrated: Bản dịch đã di chuyển
     create: Tạo
     dashboard: Bảng điều khiển

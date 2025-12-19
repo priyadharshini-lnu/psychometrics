@@ -55,6 +55,17 @@ fr:
               blank: L'ID de l'ensemble de rapports ne peut pas être vide
             report_id:
               blank: L'ID du rapport ne peut pas être vide
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: Assistant IA avec l’ID '%{id}' non trouvé à la ligne %{index}
+              blank: La colonne « %{entity} » ne peut pas être vide à la ligne %{index}
+              duplicate_code: Duplique du code « %{code} » à la ligne %{index}
+              invalid_code_format: Format de code invalide '%{code}' à la ligne %{index}
+              max_limit_reached: Le total des artefacts de l’IA de la campagne dépasse la limite maximale de %{count}
+              missing_headers: 'En-têtes manquantes : %{headers}'
+            file:
+              invalid_format: Veuillez télécharger un fichier CSV
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ fr:
         import_development_actions: Actions de développement des importations
         import_dimension_from_json: Importer une dimension à partir de JSON
         import_external_campaign_scoring: Importer une notation de campagne externe
+        import_external_scoring_data: Importation des données de notation externes
         import_factor_translations: Traductions des facteurs d'importation
         import_factors: Facteurs d'importation
         import_interview_questions: Importer des questions d’entretien
@@ -1050,6 +1062,7 @@ fr:
         saville_assessment_name: Nom de l'évaluation de Saville
         simulation_assessment_name: Nom de l'évaluation de la simulation
         skillvue_assessment_name: Skillvue Nom de l'évaluation
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: Traduction migrée
     create: Créer
     dashboard: Tableau de bord

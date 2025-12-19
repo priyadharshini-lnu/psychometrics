@@ -12,7 +12,15 @@ cs:
     development: Vývoj
     direct_reportees: Přímí zástupci
     home: Přístrojová deska
+    idp_loading_fifth_step: Načítání vývojových akcí ze šablony
+    idp_loading_first_step: Analýza vaší hodnotící zprávy
+    idp_loading_fourth_step: Výběr relevantních dovedností
+    idp_loading_second_step: Identifikace vašich preferencí zmíněných v chatu
+    idp_loading_secondary_text: Klidně se odtáhněte. Tvůj plán bude připraven, až se vrátíš.
+    idp_loading_sixth_step: Vytváření vývojových akcí
+    idp_loading_third_step: Kontrola vaší externí zprávy
     idp_plan_approval_note: Poznámka ke schválení
+    idp_retake_steps_continue_with_this_information: Pokračujte s těmito informacemi
     insights: Poznatky
     lighthouse_assistant: Asistent majáku
     max_word_limit: Musí mít maximálně %{max} slov

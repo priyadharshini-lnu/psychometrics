@@ -5,8 +5,8 @@ import {
 import {
   Attachments, Prompts,
 } from '@ant-design/x'
-import Icon, {
-  CloudUploadOutlined, InfoCircleOutlined, LoadingOutlined,
+import {
+  CloudUploadOutlined, InfoCircleOutlined,
 } from '@ant-design/icons'
 import * as t from 'io-ts'
 import humps from 'humps'
@@ -21,10 +21,10 @@ import { DirectionalNavigateBackIcon } from '~/glint'
 import { setUserIdpPlanStatus } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 import { USER_IDP_PLAN_STATUS } from '~/components/IdpShared/constants'
 import { AIAssistantLayout } from '../AIAssistantLayout'
+import { AIIDPLoader } from './AIIDPLoader'
 import styles from './AIChat.less'
 import { RecordingProvider } from '~/context/RecordingContext'
 import { ChatCompose } from './ChatCompose'
-import Lighthouse from './assets/LighthouseIcon.svg?react'
 import useAsyncRequestResponse from '~/hooks/useAsyncRequestResponse'
 import BubbleTypes from './bubbles'
 import { ASSISTANT_FAILURE_FALLBACK_CONTENT, MAXIMUM_FILE_SIZE_MB } from './constants'
@@ -402,6 +402,11 @@ export const AIChat = () => {
       setRequestProcessing(false)
       setMessages(messages)
       scrollToBottom(false)
+    }).catch((error) => {
+      message.error(error || I18n.t('ai.errors.generic'))
+      setRequestProcessing(false)
+      setMessages([])
+      scrollToBottom(false)
     })
 
     return () => {
@@ -503,18 +508,7 @@ export const AIChat = () => {
   if (status === 'completed') {
     return (
       <AIAssistantLayout>
-        <Flex vertical align="center" justify="center" className={styles.chatCompleted}>
-          <div className={styles.spinner}>
-            <LoadingOutlined style={{ fontSize: 120, color: '#ccc' }} />
-            <Icon component={Lighthouse} className={styles.lighthouse} />
-          </div>
-          <Typography.Title level={3} style={{ marginTop: 20 }}>
-            {I18n.t('idp.ai.finishing.title')}
-          </Typography.Title>
-          <Typography.Text type="secondary">
-            {I18n.t('idp.ai.finishing.hint')}
-          </Typography.Text>
-        </Flex>
+        <AIIDPLoader />
       </AIAssistantLayout>
     )
   }

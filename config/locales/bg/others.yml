@@ -55,6 +55,17 @@ bg:
               blank: ИД на пакета за отчет не може да е празен
             report_id:
               blank: ИД на отчета не може да е празен
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: AI асистент с ID '%{id}' не се намира на ред %{index}
+              blank: Колона '%{entity}' не може да е празна в ред %{index}
+              duplicate_code: Дублиран код '%{code}' на ред %{index}
+              invalid_code_format: Невалиден формат на кода '%{code}' в ред %{index}
+              max_limit_reached: Общият брой AI артефакти в кампанията надвишава максималния лимит от %{count}
+              missing_headers: 'Липсващи задължителни заглавия: %{headers}'
+            file:
+              invalid_format: Моля, качете CSV файл
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ bg:
         import_development_actions: Действия за развитие на вноса
         import_dimension_from_json: Импортиране на измерение от JSON
         import_external_campaign_scoring: Импортиране на оценка на външни кампании
+        import_external_scoring_data: Импортиране на външни данни за оценяване
         import_factor_translations: Импортиране на факторни преводи
         import_factors: Фактори за внос
         import_interview_questions: Импортиране на въпроси за интервю
@@ -1050,6 +1062,7 @@ bg:
         saville_assessment_name: Оценка на Saville Име
         simulation_assessment_name: Име на оценка на симулацията
         skillvue_assessment_name: Име на оценка на Skillvue
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: Преводът е мигриран
     create: Създавам
     dashboard: Таблото

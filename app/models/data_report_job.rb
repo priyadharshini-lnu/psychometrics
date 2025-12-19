@@ -19,8 +19,11 @@ class DataReportJob < ApplicationRecord
   def self.scoped_by_client(restricted_client_subquery)
     return all if restricted_client_subquery.blank?
 
-    joins(data_report: :owner).
-      where.not(clients: { tte_id: restricted_client_subquery })
+    joins(:data_report).
+      where(
+        'data_reports.owner_id IS NULL OR data_reports.owner_id NOT IN (?)',
+        restricted_client_subquery
+      )
   end
 
   def attachment_storage_path(attribute_name, filename)

@@ -84,7 +84,8 @@ module AllowedPermissions
     'reflection_questions' => %w[view manage import export],
     'skills' => %w[view manage import export import_translations export_translations],
     'development_actions' => %w[view manage import export import_translations export_translations],
-    'ai_artifacts' => %w[view manage import export]
+    'ai_artifacts' => %w[view manage import export],
+    'interview_questions' => %w[view manage import export]
   }.freeze
 
   PROJECT_ADMIN_PERMISSIONS = {
@@ -159,7 +160,8 @@ module AllowedPermissions
     'job_roles' => %w[view manage import_translations export_translations],
     'development_actions' => %w[view manage import export import_translations export_translations],
     'ai_artifacts' => %w[view manage import export],
-    'reflection_questions' => %w[view manage import export]
+    'reflection_questions' => %w[view manage import export],
+    'interview_questions' => %w[view manage import export]
   }.freeze
 
   CAMPAIGN_ADMIN_PERMISSIONS = {

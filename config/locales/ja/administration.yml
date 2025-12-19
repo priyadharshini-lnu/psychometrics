@@ -182,6 +182,12 @@ ja:
             manage: 管理
             title: IDPテンプレート
             view: 表示
+          interviewQuestions:
+            export: 輸出
+            import: 輸入
+            manage: 管理
+            title: IDP面接に関する質問
+            view: 眺め
           jobRoles:
             export_translations: 仕事の役割の翻訳をエクスポート
             import_translations: 仕事の役割の翻訳をインポートする
@@ -294,6 +300,7 @@ ja:
             view: 表示
           userIdpPlans:
             manage: 取り締まる
+            reset: リセット
             title: ユーザーIDPプラン
             view: 眺める
           users:
@@ -1961,6 +1968,7 @@ ja:
         udpated_at: 最終更新日
       configuration: 構成
       errors:
+        factor_code_or_field_name_required: factor_codeまたはfield_nameが必要です
         factor_not_found: 評価対象外
         inclusion: '無効なタイプ、有効なタイプ: %{values}。'
         not_found: 見つからない
@@ -2063,9 +2071,6 @@ ja:
       learning_styles:
         cannot_be_blank: 空白は不可
         invalid: OJT、構造化された学習、他者からの学習のいずれかであること。
-        learning_from_others: 他者から学ぶ [20］
-        on_the_job: 仕事について [70］
-        structured_learning: 構造化学習 [10］
       new:
         header: 新規開発アクション
       resource:

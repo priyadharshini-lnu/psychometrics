@@ -32,6 +32,10 @@ module Api
       params.dig(:query, :campaign_id)
     end
 
+    def project_id
+      params.dig(:query, :project_id)
+    end
+
     private
 
     def meta_details

@@ -35,4 +35,20 @@ describe DataReports::FieldHandlers::CampaignScoreHandler do
     }
     expect(described_class.call!(field, campaign_user: campaign_user, ctx: context)).to eq(4)
   end
+
+  it 'finalized_date field' do
+    field = { 'field_name' => 'finalized_date', 'date_format' => '%Y-%m-%d' }
+    campaign_user.update!(campaign_scores_finalized_date: DateTime.new(2024, 1, 15, 10, 30, 0))
+
+    result = described_class.call!(field, campaign_user: campaign_user, ctx: {})
+    expect(result).to eq('2024-01-15')
+  end
+
+  it 'calculated_date field' do
+    field = { 'field_name' => 'calculated_date', 'date_format' => '%Y-%m-%d' }
+    campaign_user.update!(campaign_scores_calculated_date: DateTime.new(2024, 2, 20, 14, 45, 0))
+
+    result = described_class.call!(field, campaign_user: campaign_user, ctx: {})
+    expect(result).to eq('2024-02-20')
+  end
 end

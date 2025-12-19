@@ -20,6 +20,7 @@ en:
     ai_assistants_template_render_failed: Failed to render template
     ai_assistants_test_render: Test Render
     ai_assistants_test_render_tooltip: Test your prompt template with campaign data to check what will be sent to the AI assistant.
+    ai_assisted_idp_feature_disabled: AI Assisted IDP feature has been disabled for this project.
     assessments: Assessments
     assessments_reports: Assessments & Reports
     assessor_dashboard: Assessor Dashboard
@@ -95,6 +96,7 @@ en:
     import_upload: Upload
     import_users: Import Users
     invalid_csv_header: CSV file contains invalid headers.
+    learning_from_others: Collaborative Learning [20]
     libraries: Media Library
     library_invalid_type: Invalid Library Item
     manager_approval_required: Report for %{user} requires manager approval before download
@@ -104,12 +106,13 @@ en:
     norms: Norms
     not_completed: Not Completed
     not_completed_tooltip: "%{completed} evaluators are assigned but only %{submitted} have completed the evaluations"
-    nothing_assigned: Nothing Assigned
+    nothing_assigned: No Evaluators Assigned
     nothing_assigned_tooltip: No evaluations have been assigned to this user
     notification_bell_icon_alt_text: Notification Bell Icon
     notifications: Notifications
     number: Number
     occupations: Occupations
+    on_the_job: On the Job [70]
     options: Options
     participants: Participants
     profile_details: Profile Details
@@ -187,6 +190,7 @@ en:
     slot_name: Slot Name
     stats: Stats
     status_details: Status Details
+    structured_learning: Formal Learning [10]
     subject_part_of_other_invite: Subject with email %{user_email} is already invited to '%{workshop_invite_name}'
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: AI Suggestion

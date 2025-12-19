@@ -12,7 +12,15 @@ sl:
     development: Razvoj
     direct_reportees: Neposredni podrejeni
     home: Nadzorna plošča
+    idp_loading_fifth_step: Pridobivanje razvojnih dejanj iz predloge
+    idp_loading_first_step: Analiza vašega poročila o ocenjevanju
+    idp_loading_fourth_step: Izbira ustreznih veščin
+    idp_loading_second_step: Prepoznavanje vaših preferenc, omenjenih v klepetu
+    idp_loading_secondary_text: Prosto se umaknite. Tvoj načrt bo pripravljen, ko se vrneš.
+    idp_loading_sixth_step: Ustvarjanje razvojnih ukrepov
+    idp_loading_third_step: Pregled vašega zunanjega poročila
     idp_plan_approval_note: Opomba za odobritev
+    idp_retake_steps_continue_with_this_information: Nadaljujte s temi informacijami
     insights: Vpogledi
     lighthouse_assistant: Pomočnik svetilnika
     max_word_limit: Mora imeti največ %{max} besed

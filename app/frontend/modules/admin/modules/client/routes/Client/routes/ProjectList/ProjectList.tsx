@@ -198,9 +198,11 @@ const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
           title={I18n.t('administration.projects.columns.project_number')}
           key="number"
           dataIndex="number"
+          render={number => (
+            <div style={{ minWidth: 150 }}>{number}</div>
+          )}
           sorter
           sortOrder={getSortOrder('number')}
-          minWidth={200}
         />
 
         <Column

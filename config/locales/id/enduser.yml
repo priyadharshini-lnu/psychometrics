@@ -12,7 +12,15 @@ id:
     development: Pengembangan
     direct_reportees: Bawahan Langsung
     home: Beranda
+    idp_loading_fifth_step: Mengambil tindakan pengembangan dari templat
+    idp_loading_first_step: Menganalisis laporan penilaian Anda
+    idp_loading_fourth_step: Memilih keterampilan yang relevan
+    idp_loading_second_step: Mengidentifikasi preferensi Anda yang disebutkan dalam obrolan
+    idp_loading_secondary_text: Jangan ragu untuk menjauh. Paket Anda akan siap saat Anda kembali.
+    idp_loading_sixth_step: Membuat tindakan pengembangan
+    idp_loading_third_step: Meninjau laporan eksternal Anda
     idp_plan_approval_note: Catatan Persetujuan
+    idp_retake_steps_continue_with_this_information: Lanjutkan dengan informasi ini
     insights: Wawasan
     lighthouse_assistant: Asisten Mercusuar
     max_word_limit: Maksimal %{max} kata

@@ -55,6 +55,17 @@ id:
               blank: ID Paket Laporan tidak boleh kosong
             report_id:
               blank: ID Laporan tidak boleh kosong
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: Asisten AI dengan ID '%{id}' tidak ditemukan di baris %{index}
+              blank: Kolom '%{entity}' tidak boleh kosong di baris %{index}
+              duplicate_code: Gandakan kode '%{code}' di baris %{index}
+              invalid_code_format: Format kode tidak valid '%{code}' di baris %{index}
+              max_limit_reached: Total artefak AI kampanye melebihi batas maksimum %{count}
+              missing_headers: 'Header yang diperlukan tidak ada: %{headers}'
+            file:
+              invalid_format: Silakan unggah file CSV
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ id:
         import_development_actions: Tindakan Pengembangan Impor
         import_dimension_from_json: Impor Dimensi dari JSON
         import_external_campaign_scoring: Mengimpor Skor Kampanye Eksternal
+        import_external_scoring_data: Impor Data Penilaian Eksternal
         import_factor_translations: Terjemahan Faktor Impor
         import_factors: Faktor Impor
         import_interview_questions: Impor Pertanyaan Wawancara
@@ -1053,6 +1065,7 @@ id:
         saville_assessment_name: Penilaian Saville Nama
         simulation_assessment_name: Nama Penilaian Simulasi
         skillvue_assessment_name: Nama Penilaian Skillvue
+        yoodli_scenario_id: ID Skenario Yoodli
       translations_migrated: Terjemahan Dimigrasikan
     create: Menciptakan
     dashboard: Dashboard

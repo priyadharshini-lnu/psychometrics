@@ -55,6 +55,17 @@ pt:
               blank: O ID do pacote de relatórios não pode estar em branco
             report_id:
               blank: O ID do relatório não pode estar em branco
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: Assistente de IA com ID '%{id}' não encontrado na linha %{index}
+              blank: A coluna '%{entity}' não pode ficar em branco na linha %{index}
+              duplicate_code: Código duplicado '%{code}' na linha %{index}
+              invalid_code_format: Formato de código inválido '%{code}' na linha %{index}
+              max_limit_reached: O total de artefatos da IA da campanha excedem o limite máximo de %{count}
+              missing_headers: 'Cabeçalhos obrigatórios faltando: %{headers}'
+            file:
+              invalid_format: Por favor, envie o arquivo CSV
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ pt:
         import_development_actions: Importar acções de desenvolvimento
         import_dimension_from_json: Importar dimensão a partir de JSON
         import_external_campaign_scoring: Importar pontuação de campanha externa
+        import_external_scoring_data: Importar dados externos de pontuação
         import_factor_translations: Traduções de factores de importação
         import_factors: Factores de importação
         import_interview_questions: Importar perguntas da entrevista
@@ -1051,6 +1063,7 @@ pt:
         saville_assessment_name: Avaliação Saville Nome
         simulation_assessment_name: Nome da avaliação da simulação
         skillvue_assessment_name: Skillvue Nome da avaliação
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: Tradução Migrada
     create: Criar
     dashboard: Painel de controlo

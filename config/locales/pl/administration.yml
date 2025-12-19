@@ -182,6 +182,12 @@ pl:
             manage: Zarządzać
             title: Szablony IDP
             view: Widok
+          interviewQuestions:
+            export: Eksport
+            import: Import
+            manage: Zarządzaj
+            title: Pytania dotyczące rozmowy kwalifikacyjnej z IDP
+            view: Zobacz
           jobRoles:
             export_translations: Eksportuj tłumaczenia ról zawodowych
             import_translations: Importowanie tłumaczeń ról zadań
@@ -294,6 +300,7 @@ pl:
             view: Widok
           userIdpPlans:
             manage: Zarządzać
+            reset: Resetować
             title: Plany IDP dla użytkowników
             view: Widok
           users:
@@ -1961,6 +1968,7 @@ pl:
         udpated_at: Ostatnia aktualizacja o
       configuration: Konfiguracja
       errors:
+        factor_code_or_field_name_required: factor_code lub field_name jest wymagane
         factor_not_found: nie znaleziono w zakresie oceny
         inclusion: 'Nieprawidłowy typ, prawidłowe typy: %{values}'
         not_found: Nie znaleziono
@@ -2063,9 +2071,6 @@ pl:
       learning_styles:
         cannot_be_blank: Nie może być puste
         invalid: Musi być jednym z on_the_job, structured_learning learning_from_others
-        learning_from_others: Uczenie się od innych [20]
-        on_the_job: W pracy [70]
-        structured_learning: Ustrukturyzowane nauczanie [10]
       new:
         header: Nowe działanie na rzecz rozwoju
       resource:

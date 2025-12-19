@@ -25,9 +25,9 @@ type Props = {
 
 const tabs = [
   { key: 'all', label: I18n.t('idp.development_actions.all') },
-  { key: 'on_the_job', label: I18n.t('idp.development_actions.learning_on_the_job_label') },
-  { key: 'learning_from_others', label: I18n.t('idp.development_actions.learning_from_others_label') },
-  { key: 'structured_learning', label: I18n.t('idp.development_actions.structured_learning_label') },
+  { key: 'on_the_job', label: I18n.t('shared.learning_on_the_job_label') },
+  { key: 'learning_from_others', label: I18n.t('shared.collaborative_learning') },
+  { key: 'structured_learning', label: I18n.t('shared.formal_learning') },
 ]
 
 export const AddDevelopmentActionModal: React.FC<Props> = ({

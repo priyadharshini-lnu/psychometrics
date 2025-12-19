@@ -55,6 +55,17 @@ ja:
               blank: レポートバンドルIDは空白にできない
             report_id:
               blank: レポートIDは空白にできない
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: IDが「%{id}」のAIアシスタントが%{index}行に見つからない
+              blank: 列「%{entity}」は行目%{index}で空欄であってはなりません
+              duplicate_code: "%{index}行にコード「%{code}」が重複しています"
+              invalid_code_format: 行 %{index} に無効なコードフォーマット '%{code}'
+              max_limit_reached: キャンペーンAIのアーティファクト総数が最大制限を超えた%{count}
+              missing_headers: 必要なヘッダーが欠けている:%{headers}
+            file:
+              invalid_format: CSVファイルをアップロードしてください
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ ja:
         import_development_actions: インポート開発アクション
         import_dimension_from_json: JSONからのディメンションのインポート
         import_external_campaign_scoring: 外部キャンペーンスコアリングのインポート
+        import_external_scoring_data: 外部スコアリングデータのインポート
         import_factor_translations: 輸入係数翻訳
         import_factors: 輸入要因
         import_interview_questions: 面接の質問をインポートする
@@ -1050,6 +1062,7 @@ ja:
         saville_assessment_name: サヴィル査定名
         simulation_assessment_name: シミュレーション評価名
         skillvue_assessment_name: スキルビュー評価名
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: 翻訳の移行
     create: 作成
     dashboard: ダッシュボード

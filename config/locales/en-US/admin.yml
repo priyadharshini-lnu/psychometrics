@@ -1,6 +1,7 @@
 ---
 en-US:
   admin:
+    admin_approval_required: Report for %{user} requires admin approval before download
     admins: Admins
     ai_artifacts: AI Artifacts
     ai_artifacts_output_schema_key_constraint: Key must start with a lowercase letter and can only contain lowercase letters, numbers, and underscores
@@ -8,7 +9,18 @@ en-US:
     ai_assistant_model_label: Model
     ai_assistant_model_provider: Provider
     ai_assistant_model_region_label: Region
+    ai_assistant_required: AI Assistant is required
     ai_assistants: AI Assistants
+    ai_assistants_advanced_mode_tooltip: Use advanced mode for prompt templating using liquid template with available variables. Refer to documentation for more details.
+    ai_assistants_campaign_id_placeholder: Enter campaign ID
+    ai_assistants_no_rendered_output: No rendered output available
+    ai_assistants_render_button: Render Template
+    ai_assistants_rendered_prompt: Rendered Prompt
+    ai_assistants_template_and_campaign_required: Please provide both template and campaign ID
+    ai_assistants_template_render_failed: Failed to render template
+    ai_assistants_test_render: Test Render
+    ai_assistants_test_render_tooltip: Test your prompt template with campaign data to check what will be sent to the AI assistant.
+    ai_assisted_idp_feature_disabled: AI Assisted IDP feature has been disabled for this project.
     assessments: Assessments
     assessments_reports: Assessments & Reports
     assessor_dashboard: Assessor Dashboard
@@ -16,41 +28,85 @@ en-US:
     audit_logs: Audit Logs
     audit_reports: Audit Reports
     availability: Availability
+    available_languages: Report Available in Languages
     back_to_main: Main Menu
+    bulk_upload_ai_artifacts: Bulk Upload AI Artifacts
+    campaign_ai_artifact_updated_successfully: Campaign AI artifacts updated successfully
+    campaign_assessment_actions_disable_caching: Disable Assessment Caching
+    campaign_assessment_actions_enable_caching: Enable Assessment Caching
+    campaign_assessment_column_caching_enabled: Assessment Caching Enabled
+    campaign_assessment_modals_disable_caching_content: Are you sure you want to disable caching for this assessment?
+    campaign_assessment_modals_disable_caching_successfully: Caching has been disabled for this assessment.
+    campaign_assessment_modals_disable_caching_title: Disable Assessment Caching?
+    campaign_assessment_modals_enable_caching_content: Are you sure you want to enable caching for this assessment?
+    campaign_assessment_modals_enable_caching_successfully: Caching has been enabled for this assessment.
+    campaign_assessment_modals_enable_caching_title: Enable Assessment Caching?
     campaign_templates: Campaign Templates
     client: Client Tenancy
     client_admins: Client Admins
     clients: Client Tenancies
+    code_required: Code is required
     communication_center: Communication Center
+    completed: Completed
+    completed_tooltip: All evaluators have submitted the evaluation
     country: Country
     create_client: Create Client
     dashboard: Dashboard
     data_reports: Data Reports
     datasheet: Datasheet
+    declined: Declined
     delete_ok_text: Yes, Delete
+    denied: Denied
     development_actions: Development Actions
     dimensions: Dimensions
+    done: Done
+    done_tooltip: No more evaluation can be submitted for this user as this user's evaluation is marked as done by %{marked_by}
     empty_csv_file: CSV file does not contain any data.
+    evaluation_status: Evaluation Status
+    evaluation_status_not_done: Evaluation status is not 'Done' for one or more selected subjects. Please ensure all selected users have completed evaluations or mark as done.
+    fill_empty_score_msg: Fill all the final scores before saving.
+    final_score_empty_msg: Final score cannot be empty.
+    idp_plan_reset_success: Plan has been reset successfully
+    import_ai_artifacts: Import AI Artifacts
     import_csv_error: 'Row %{index}: user with email %{email} is not in this campaign'
+    import_csv_parsing_error: 'CSV parsing error: %{message}'
     import_description: Import users from a CSV file. Each row must contain an email address.
     import_download_sample: Download example CSV
     import_error: Import failed. Please try again.
+    import_error_saving_data: 'Error saving data for %{email}: %{message}'
     import_errors_title: Import Errors
+    import_external_scoring_action: Import External Scoring
+    import_external_scoring_body: Refer to the Export functionality to extract a template that can be used to Import here.
+    import_external_scoring_data_description: Importing external scoring data for the specified assessment and campaign
+    import_external_scoring_data_title: Import External Scoring Data
+    import_external_scoring_success_msg: Import was uploaded successfully
+    import_external_scoring_upload: Upload
     import_file_required: Please select a CSV file to upload.
     import_queued_success: Subjects import job was scheduled successfully. Please check your notification for status.
     import_sample_file_label: 'Sample file:'
+    import_scenario_id_mismatch: 'Scenario ID mismatch for %{email}: Expected %{expected_id}, but CSV contains different scenario IDs'
+    import_successfully_saved: Successfully saved external results for %{email} with %{goals_count} goals
     import_title: Import Subjects from CSV
     import_upload: Upload
     import_users: Import Users
     invalid_csv_header: CSV file contains invalid headers.
+    learning_from_others: Collaborative Learning [20]
     libraries: Media Library
     library_invalid_type: Invalid Library Item
+    manager_approval_required: Report for %{user} requires manager approval before download
+    name_required: Name is required
+    no_file_selected: No file selected
     no_notifications: No Notifications
     norms: Norms
+    not_completed: Not Completed
+    not_completed_tooltip: "%{completed} evaluators are assigned but only %{submitted} have completed the evaluations"
+    nothing_assigned: No Evaluators Assigned
+    nothing_assigned_tooltip: No evaluations have been assigned to this user
     notification_bell_icon_alt_text: Notification Bell Icon
     notifications: Notifications
     number: Number
     occupations: Occupations
+    on_the_job: On the Job [70]
     options: Options
     participants: Participants
     profile_details: Details
@@ -59,7 +115,19 @@ en-US:
     question_center: Question Center
     registration_codes: Registration codes
     report_approvals: Report Approvals
+    report_condition_not_met: Needs %{required} %{relationship} evaluation(s), but only has %{actual}
+    report_conditions_not_met_detailed: Report for %{user} does not meet availability conditions. %{conditions}
+    report_denied: Report for %{user} has been denied
+    report_no_evaluations: Report for %{user} is not available - no evaluations have been received.
+    report_not_generated: Report for %{user} meets availability conditions but has not been generated yet. Please generate the report first.
+    report_on_hold: Report for %{user} is currently on hold
+    report_status: Report Status
     reports: Reports
+    reports_limit_exceeded: Bulk download is limited to 1000 report files. If you have selected many languages, please reduce it.
+    reports_not_found: No reports found. Please generate the reports before downloading.
+    reset_idp_plan: Reset Plan
+    reset_idp_plan_confirmation: Are you sure you want to reset the plan?
+    reset_idp_plan_title: Reset Plan
     role: Role
     saml_idp_certificate_available: Available (click to copy)
     saml_idp_certificate_label: Certificate
@@ -79,12 +147,25 @@ en-US:
     saml_service_provider_entity_id_placeholder: Enter entity ID
     saml_service_provider_entity_id_required: Entity ID is required
     saml_service_provider_idp_config: IdP Configuration
+    saml_service_provider_integration_generic: Generic
+    saml_service_provider_integration_masking_info: The Email id of the candidates will be masked before sending to Yoodli. Masking of the first and last names of the candidates needs to be enabled from the
+    saml_service_provider_integration_type: Integration Type
+    saml_service_provider_integration_type_placeholder: Select integration type
+    saml_service_provider_integration_type_required: Integration type is required
+    saml_service_provider_integration_yoodli: Yoodli
     saml_service_provider_manage: Actions
+    saml_service_provider_mask_data_for: Mask data for
     saml_service_provider_mask_identity: Mask Identity
     saml_service_provider_masking_enabled: Enable Masking
+    saml_service_provider_masking_help_generic: Enable to mask user identities in SAML responses
+    saml_service_provider_masking_help_integration: Integration provider masking will be applied
+    saml_service_provider_masking_integration: "%{integration} Driven"
+    saml_service_provider_masking_manual_disabled: Disabled
+    saml_service_provider_masking_manual_enabled: Enabled
     saml_service_provider_name: Name
     saml_service_provider_name_placeholder: Enter service provider name
     saml_service_provider_name_required: Name is required
+    saml_service_provider_privacy_policy: Privacy Policy Page
     saml_service_provider_remove_content: 'Are you sure you want to remove SAML Service Provider: %{name}?'
     saml_service_provider_remove_title: Remove SAML Service Provider
     saml_service_provider_rotate_certificate_content: Are you sure you want to rotate the certificate for %{name}? This will generate a new certificate and invalidate the current one.
@@ -102,7 +183,14 @@ en-US:
     skills_taxonomy: Skills Taxonomy
     slot_name: Slot Name
     stats: Stats
+    status_details: Status Details
+    structured_learning: Formal Learning [10]
+    upload_success: Uploaded successfully
     user_report_events: Report Approval logs
     users: Users
     view_licenses: View Licenses
+    waiting: Waiting
     year: Year
+    yoodli_activity_id: Yoodli Activity ID
+    yoodli_email_id: Yoodli Candidate Email ID
+    yoodli_external_assessment_id: Yoodli Assessment ID

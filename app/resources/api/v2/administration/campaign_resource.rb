@@ -47,6 +47,7 @@ class Api::V2::Administration::CampaignResource < Api::V2::Administration::BaseR
           'manage_report_approval_settings',
           'export_dashboard_to_file',
           'view_ai_artifacts',
+          'manage_idp_plans',
           %w[view_campaign index]
         ],
         {
