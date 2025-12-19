@@ -240,7 +240,8 @@ interface ActionMenuData {
     parentId?: number,
     projectId?: number
     parentType?: ParentResourceType
-    testMode?: boolean
+    testMode?: boolean,
+    assessmentId?: number
   }): void
   modal: Omit<ModalStaticFunctions, 'warn'>
   message: MessageInstance
@@ -397,6 +398,7 @@ const getActionsMenuProps = ({
         parentId: assessment.id,
         testMode: false,
         projectId,
+        assessmentId: assessment.assessmentId,
       })
     }
     if (key === 'resetProgress') {

@@ -182,6 +182,12 @@ hu:
             manage: Kezel
             title: IDP-sablonok
             view: Nézet
+          interviewQuestions:
+            export: Export
+            import: Import
+            manage: Menedzsd
+            title: IDP interjúkérdések
+            view: Kilátás
           jobRoles:
             export_translations: Exportálás munkakörök fordítások
             import_translations: Munkakörök importálása Fordítások
@@ -294,6 +300,7 @@ hu:
             view: Nézet
           userIdpPlans:
             manage: Kezel
+            reset: Átszed
             title: Felhasználói IDP tervek
             view: Nézet
           users:
@@ -1963,6 +1970,7 @@ hu:
         udpated_at: Utolsó frissítés dátuma
       configuration: Konfiguráció
       errors:
+        factor_code_or_field_name_required: factor_code vagy field_name szükséges
         factor_not_found: nem található meg az értékelés körében
         inclusion: 'érvénytelen típus, érvényes típusok: %{values}'
         not_found: nem található
@@ -2065,9 +2073,6 @@ hu:
       learning_styles:
         cannot_be_blank: Nem lehet üres
         invalid: Az on_the_job, structured_learning, learning_from_others egyikének kell lennie
-        learning_from_others: Tanulás másoktól [20]
-        on_the_job: Munkában [70]
-        structured_learning: Strukturált tanulás [10]
       new:
         header: Új fejlesztési tevékenység
       resource:

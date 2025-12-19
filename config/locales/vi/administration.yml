@@ -182,6 +182,12 @@ vi:
             manage: Điều khiển
             title: Mẫu IDP
             view: Cảnh
+          interviewQuestions:
+            export: Xuất khẩu
+            import: Nhập khẩu
+            manage: Quản lý
+            title: Câu hỏi phỏng vấn IDP
+            view: Xem
           jobRoles:
             export_translations: Dịch các vị trí công việc cho xuất khẩu
             import_translations: Nhập bản dịch các vai trò công việc
@@ -294,6 +300,7 @@ vi:
             view: Cảnh
           userIdpPlans:
             manage: Điều khiển
+            reset: Reset
             title: Gói IDP người dùng
             view: Cảnh
           users:
@@ -1961,6 +1968,7 @@ vi:
         udpated_at: Cập nhật lần cuối lúc
       configuration: Cấu hình
       errors:
+        factor_code_or_field_name_required: factor_code hoặc field_name là bắt buộc
         factor_not_found: không nằm trong phạm vi đánh giá
         inclusion: 'loại không hợp lệ, loại hợp lệ: %{values}'
         not_found: Không tìm thấy
@@ -2063,9 +2071,6 @@ vi:
       learning_styles:
         cannot_be_blank: Không thể để trống
         invalid: Phải là một trong những on_the_job, structured_learning, learning_from_others
-        learning_from_others: Học hỏi từ những người khác [20]
-        on_the_job: Trong công việc [70]
-        structured_learning: Học tập có cấu trúc [10]
       new:
         header: Hành động phát triển mới
       resource:

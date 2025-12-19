@@ -48,7 +48,7 @@ const ParallaxBackgroundComponent = (props) => {
           style={{
             backgroundColor: layer.image ? 'transparent' : layer.color,
             backgroundImage: `url(${layer.image})`,
-            backgroundPositionX: `${offset * layer.speed}%`,
+            backgroundPositionX: `${offset * (layer.speed / 2)}%`,
           }}
         />
       )) : (

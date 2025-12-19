@@ -55,6 +55,17 @@ hu:
               blank: A jelentéscsomag azonosítója nem lehet üres
             report_id:
               blank: A jelentésazonosító nem lehet üres
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: AI asszisztens azonosítóval '%{id}' nem található meg a %{index} sorban
+              blank: A '%{entity}' oszlop nem lehet üres a %{index} sorban
+              duplicate_code: Duplán a '%{code}' kód a %{index}. sorban
+              invalid_code_format: Érvénytelen kódformátum '%{code}' a %{index}. sorban
+              max_limit_reached: A kampány összes MI artefaktumai meghaladja a maximális %{count}
+              missing_headers: 'Hiányzó kötelező fejlécek: %{headers}'
+            file:
+              invalid_format: Kérjük, töltsd fel CSV fájlt
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ hu:
         import_development_actions: Fejlesztési tevékenységek importálása
         import_dimension_from_json: Dimenzió importálása JSON-ból
         import_external_campaign_scoring: Külső kampánypontozás importálása
+        import_external_scoring_data: Külső pontozási adatok importálása
         import_factor_translations: Import Factor fordítások
         import_factors: Import tényezők
         import_interview_questions: Interjúkérdések importálása
@@ -1050,6 +1062,7 @@ hu:
         saville_assessment_name: Saville értékelés Név
         simulation_assessment_name: Szimulációs értékelés neve
         skillvue_assessment_name: Skillvue Értékelés neve
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: Fordítás migrálva
     create: Alkot
     dashboard: Műszerfal

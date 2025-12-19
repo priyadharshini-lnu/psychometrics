@@ -182,6 +182,12 @@ hr:
             manage: Upravljanje
             title: Predlošci IDP-a
             view: Pregled
+          interviewQuestions:
+            export: Izvoz
+            import: Uvoz
+            manage: Upravljaj
+            title: Pitanja za intervju za IDP
+            view: Pogled
           jobRoles:
             export_translations: Izvoz prijevoda radnih uloga
             import_translations: Uvoz prijevoda radnih uloga
@@ -294,6 +300,7 @@ hr:
             view: Pregled
           userIdpPlans:
             manage: Upravljati
+            reset: Brisanje
             title: Korisnički IDP planovi
             view: Pogled
           users:
@@ -1961,6 +1968,7 @@ hr:
         udpated_at: Posljednji put ažurirano u
       configuration: Konfiguracija
       errors:
+        factor_code_or_field_name_required: factor_code ili field_name je potreban
         factor_not_found: nije utvrđeno u opsegu procjene
         inclusion: 'nevažeći tip, valjani tipovi: %{values}'
         not_found: nije pronađeno
@@ -2063,9 +2071,6 @@ hr:
       learning_styles:
         cannot_be_blank: Ne može biti prazno
         invalid: Mora biti jedan od on_the_job, structured_learning, learning_from_others
-        learning_from_others: Učiti od drugih [20]
-        on_the_job: Na poslu [70]
-        structured_learning: Strukturirano učenje [10]
       new:
         header: Nova razvojna akcija
       resource:

@@ -467,7 +467,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
                   .map(style => (
                     <Option key={style} value={style}>
                       {I18n.t(
-                        `administration.development_actions.learning_styles.${style}`,
+                        `admin.${style}`,
                       )}
                     </Option>
                   ))

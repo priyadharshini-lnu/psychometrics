@@ -12,7 +12,7 @@ import { isRequestInProgress } from '~/core/request'
 import AssessmentsReports from './AssessmentsReports'
 import AssessmentCenter from './AssessmentCenter'
 import AssessmentCenterInvites from './AssessmentCenterInvites'
-import { Idp } from './Idp'
+import Idp from './Idp'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { getStatusesCount } from '~/modules/admin/modules/campaigns/core/userAssessments'
 import {
@@ -186,7 +186,7 @@ export const UserDetails: React.FC<Props> = ({
       children: <AssessmentCenterInvites />,
     })
   }
-  if (idpEnabled && projectIdpEnabled) {
+  if (user.permissions.viewIdpPlan && idpEnabled && projectIdpEnabled) {
     tabs.push({
       key: 'idp',
       label: I18n.t('assessments_reports.menu.idp'),

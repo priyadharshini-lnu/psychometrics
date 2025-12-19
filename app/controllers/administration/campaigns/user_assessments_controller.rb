@@ -63,6 +63,8 @@ module Administration
                    webhook_command.assessment_completed_data
                  when 'assessment_timeout'
                    webhook_command.publish_assessment_timeout
+                 when 'assessment_raw_response'
+                   webhook_command.assessment_raw_response_data
                end
 
         event_payload = Webhook::EVENTS[params['event_name'].to_sym].call(

@@ -16,9 +16,21 @@ class EndUser::AIAssistedIdpChatsController < ApplicationController
                   permit_params: ->(params) {}
 
   def index
-    session = @active_user_idp_plan.ai_assisted_idp_session || build_empty_session
+    if @active_user_idp_plan.ai_assisted_idp_session.present?
+      return render json: EndUser::AIAssistedUserIdpSessionSerializer.new.serialize(
+        @active_user_idp_plan.ai_assisted_idp_session
+      )
+    end
 
-    render json: EndUser::AIAssistedUserIdpSessionSerializer.new.serialize(session)
+    new_session = AI::IdpChat::CreateNewChatSession.new(@active_user_idp_plan)
+
+    new_session.on(:ok) do |session|
+      render json: EndUser::AIAssistedUserIdpSessionSerializer.new.serialize(session)
+    end.
+      on(:error) do |error_message|
+      render json: { errors: error_message }, status: :unprocessable_entity
+    end.
+      call
   end
 
   def meta_data

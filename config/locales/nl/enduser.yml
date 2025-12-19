@@ -12,7 +12,15 @@ nl:
     development: Ontwikkeling
     direct_reportees: Directe rapporten
     home: Dashboard
+    idp_loading_fifth_step: Ontwikkelingsacties ophalen uit het sjabloon
+    idp_loading_first_step: Je beoordelingsrapport analyseren
+    idp_loading_fourth_step: Relevante vaardigheden selecteren
+    idp_loading_second_step: Je voorkeuren identificeren die in de chat zijn genoemd
+    idp_loading_secondary_text: Voel je vrij om afstand te nemen. Je plan is klaar als je terugkomt.
+    idp_loading_sixth_step: Het creëren van ontwikkelingsacties
+    idp_loading_third_step: Je externe rapport beoordelen
     idp_plan_approval_note: Goedkeuringsnotitie
+    idp_retake_steps_continue_with_this_information: Ga verder met deze informatie
     insights: Inzichten
     lighthouse_assistant: Vuurtorenassistent
     max_word_limit: Mag maximaal %{max} woorden bevatten

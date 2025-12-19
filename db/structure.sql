@@ -11,6 +11,13 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -2538,10 +2545,10 @@ ALTER SEQUENCE public.data_geos_id_seq OWNED BY public.data_geos.id;
 
 CREATE TABLE public.data_report_jobs (
     id bigint NOT NULL,
-    data_report_id integer,
+    data_report_id bigint,
     status integer DEFAULT 0,
-    admin_job_record_id integer,
-    created_by_id integer,
+    admin_job_record_id bigint,
+    created_by_id bigint,
     password character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
@@ -2576,8 +2583,8 @@ CREATE TABLE public.data_reports (
     id bigint NOT NULL,
     name character varying,
     configuration jsonb,
-    owner_id integer,
-    last_updated_by_id integer,
+    owner_id bigint,
+    last_updated_by_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
@@ -19122,6 +19129,7 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20251215073428'),
+('20251217070713'),
 ('20251212100342'),
 ('20251206120622'),
 ('20251201130649'),

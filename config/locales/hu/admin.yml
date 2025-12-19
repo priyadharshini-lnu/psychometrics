@@ -1,6 +1,7 @@
 ---
 hu:
   admin:
+    admin_approval_required: A jelentés %{user} letöltése előtt adminisztrátor jóváhagyást igényel
     admins: Adminisztrátorok
     ai_artifacts: AI-összetevők
     ai_artifacts_output_schema_key_constraint: A kulcsnak kisbetűvel kell kezdődnie, és csak kisbetűket, számokat és aláhúzásokat tartalmazhat
@@ -8,7 +9,18 @@ hu:
     ai_assistant_model_label: Modell
     ai_assistant_model_provider: Szolgáltató
     ai_assistant_model_region_label: Régió
+    ai_assistant_required: Szükséges az AI Assistant
     ai_assistants: AI asszisztensek
+    ai_assistants_advanced_mode_tooltip: Használj fejlett módot prompt templáláshoz liquid sablon használatával, elérhető változókkal. További részletekért lásd a dokumentációt.
+    ai_assistants_campaign_id_placeholder: Jelentkezik a kampányazonosító
+    ai_assistants_no_rendered_output: Renderelt kimenet nem érhető el
+    ai_assistants_render_button: Render sablon
+    ai_assistants_rendered_prompt: Renderelt prompt
+    ai_assistants_template_and_campaign_required: Kérjük, adja meg mind a sablont, mind a kampányazonosítót
+    ai_assistants_template_render_failed: Nem sikerült megjeleníteni sablont
+    ai_assistants_test_render: Tesztrender
+    ai_assistants_test_render_tooltip: Teszteld a prompt sablonodat kampányadatokkal, hogy megbizonyosodj arról, mi fog elküldeni az AI asszisztensnek.
+    ai_assisted_idp_feature_disabled: Az AI Assisted IDP funkciót letiltották ehhez a projekthez.
     assessments: Értékelések
     assessments_reports: Felmérések és jelentések
     assessor_dashboard: Értékelő irányítópult
@@ -16,41 +28,85 @@ hu:
     audit_logs: Auditnaplók
     audit_reports: Auditjelentések
     availability: Elérhetőség
+    available_languages: Jelentés elérhető nyelveken
     back_to_main: Főmenü
+    bulk_upload_ai_artifacts: Tömeges feltöltési AI tárgyak
+    campaign_ai_artifact_updated_successfully: Kampány MI tárgyak sikeresen frissítették
+    campaign_assessment_actions_disable_caching: Letiltott értékelési gyorsítótár
+    campaign_assessment_actions_enable_caching: Engedélyezze az értékelési gyorsítótár használatát
+    campaign_assessment_column_caching_enabled: Értékelési gyorsítótár engedélyezve
+    campaign_assessment_modals_disable_caching_content: Biztos vagy benne, hogy ki akarod kapcsolni a gyorsítótárat ehhez az értékeléshez?
+    campaign_assessment_modals_disable_caching_successfully: A gyorsítótározást letiltották ehhez az értékeléshez.
+    campaign_assessment_modals_disable_caching_title: Ki lehet kapcsolni az értékelési gyorsítótárat?
+    campaign_assessment_modals_enable_caching_content: Biztos vagy benne, hogy szeretnéd bekapcsolni a gyorsítótárat ehhez az értékeléshez?
+    campaign_assessment_modals_enable_caching_successfully: A gyorsítótározás lehetővé vált ehhez az értékeléshez.
+    campaign_assessment_modals_enable_caching_title: Engedélyezni az értékelési gyorsítótárat?
     campaign_templates: Kampány sablonok
     client: Ügyfél bérleti joga
     client_admins: Ügyféladminisztrátorok
     clients: Ügyfélcsoportok
+    code_required: Kód szükséges
     communication_center: Kommunikációs központ
+    completed: Befejezett
+    completed_tooltip: Minden értékelő benyújtotta az értékelést
     country: Ország
     create_client: Ügyfél létrehozása
     dashboard: Irányítópult
     data_reports: Adatjelentések
     datasheet: Adatlap
+    declined: Csökkent
     delete_ok_text: Igen, töröld
+    denied: Tagadás
     development_actions: Fejlesztési tevékenységek
     dimensions: Dimenziók
+    done: Kész
+    done_tooltip: Több értékelést nem lehet benyújtani erre a felhasználóra, mivel az értékelést a %{marked_by}
     empty_csv_file: A CSV fájl nem tartalmaz adatokat.
+    evaluation_status: Értékelési állapot
+    evaluation_status_not_done: Az értékelési státusz nem 'Kész' egy vagy több kiválasztott tantárgy esetében. Kérjük, minden kiválasztott felhasználó elvégezte az értékeléseket vagy jelölje meg.
+    fill_empty_score_msg: Töltsd ki az összes végső pontszámot mentés előtt.
+    final_score_empty_msg: A végső pontszám nem lehet üres.
+    idp_plan_reset_success: A tervet sikeresen újraindították
+    import_ai_artifacts: MI tárgyak importálása
     import_csv_error: "%{index}. sor: %{email} e-mail felhasználó nem része ebben a kampányban"
+    import_csv_parsing_error: 'CSV elemzési hiba: %{message}'
     import_description: Felhasználókat importálj CSV fájlból. Minden sornak tartalmaznia kell egy e-mail címet.
     import_download_sample: Példás CSV letöltése
     import_error: Az import meghibásodott. Kérlek, próbáld meg újra.
+    import_error_saving_data: 'Hibamentés adat %{email}: %{message}'
     import_errors_title: Importi hibák
+    import_external_scoring_action: Külső pontozás importálása
+    import_external_scoring_body: Lásd az Export funkciót, hogy kinyerj egy sablont, amellyel importálhatsz.
+    import_external_scoring_data_description: Külső pontszám-adatok importálása a meghatározott értékeléshez és kampányhoz
+    import_external_scoring_data_title: Külső pontozási adatok importálása
+    import_external_scoring_success_msg: Az importot sikeresen feltöltették
+    import_external_scoring_upload: Feltölt
     import_file_required: Kérjük, válassz egy CSV fájlt a feltöltéshez.
     import_queued_success: Az alanyok importi munkája sikeresen beütemeződött. Kérjük, ellenőrizze az értesítésedet az állapot miatt.
     import_sample_file_label: 'Mintafájl:'
+    import_scenario_id_mismatch: 'Forgatókönyv-azonosító eltérés %{email}-re: Várható %{expected_id}, de a CSV eltérő forgatókönyv-azonosítókat tartalmaz'
+    import_successfully_saved: Sikeresen mentette el a külső eredményeket %{email} %{goals_count} célokkal
     import_title: Témák importálása a CSV-ből
     import_upload: Feltölt
     import_users: Importfelhasználók
     invalid_csv_header: A CSV fájl érvénytelen fejléceket tartalmaz.
+    learning_from_others: Együttműködő tanulás [20]
     libraries: Médiatár
     library_invalid_type: Érvénytelen könyvtári tétel
+    manager_approval_required: A jelentés %{user} letöltése előtt menedzser jóváhagyását igényel
+    name_required: Név szükséges
+    no_file_selected: Fájl nem volt kiválasztva
     no_notifications: Nincs értesítés
     norms: Normák
+    not_completed: Nem befejezve
+    not_completed_tooltip: "%{completed} értékelőt osztanak ki, de csak %{submitted} fejezték be az értékeléseket"
+    nothing_assigned: Nincsenek értékelők kijelölve
+    nothing_assigned_tooltip: Ehhez a felhasználóhoz nem rendeltek értékeléseket
     notification_bell_icon_alt_text: Értesítési csengő ikon
     notifications: Értesítések
     number: Szám
     occupations: Foglalkozások
+    on_the_job: A munkában [70]
     options: Beállítások
     participants: Résztvevők
     profile_details: Profil részletei
@@ -59,7 +115,19 @@ hu:
     question_center: Kérdésközpont
     registration_codes: Regisztrációs kódok
     report_approvals: Jelentés jóváhagyása
+    report_condition_not_met: Értékelésre %{required} %{relationship} szüksége, de csak %{actual}
+    report_conditions_not_met_detailed: A jelentés %{user} nem felel meg a rendelkezésre állási feltételeknek. %{conditions}
+    report_denied: A %{user} jelentését elutasították
+    report_no_evaluations: A %{user} jelentése nem érhető el – értékelések nem érkeztek.
+    report_not_generated: Jelentés %{user} megfelel a rendelkezésre állási feltételeknek, de még nem készült el. Kérem, előbb készítsd el a jelentést.
+    report_on_hold: A %{user} jelentése jelenleg szünetben van
+    report_status: Jelentés állapota
     reports: Jelentések
+    reports_limit_exceeded: A tömeges letöltés 1000 jelentésfájlra korlátozott. Ha sok nyelvet választottál, kérlek, csökkentsd a használatát.
+    reports_not_found: Nem találtak jelentést. Kérjük, készítsd a jelentéseket letöltés előtt.
+    reset_idp_plan: Reset terv
+    reset_idp_plan_confirmation: Biztos vagy benne, hogy újraindítanod a tervet?
+    reset_idp_plan_title: Reset terv
     role: Szerep
     saml_idp_certificate_available: Elérhető (kattints a másoláshoz)
     saml_idp_certificate_label: Igazolás
@@ -79,12 +147,25 @@ hu:
     saml_service_provider_entity_id_placeholder: Adja be az entitás azonosítóját
     saml_service_provider_entity_id_required: A Entity ID szükséges
     saml_service_provider_idp_config: IdP konfiguráció
+    saml_service_provider_integration_generic: Általános
+    saml_service_provider_integration_masking_info: A jelöltek e-mail azonosítóját elrejtik, mielőtt elküldik a Yoodlinak. A jelöltek kereszt- és vezetéknevének elfedését a következő
+    saml_service_provider_integration_type: Integrációs típus
+    saml_service_provider_integration_type_placeholder: Válassz integrációs típust
+    saml_service_provider_integration_type_required: Integrációs típus szükséges
+    saml_service_provider_integration_yoodli: Yoodli
     saml_service_provider_manage: Műveletek
+    saml_service_provider_mask_data_for: Maszkadatok a
     saml_service_provider_mask_identity: Maszk Identitás
     saml_service_provider_masking_enabled: Engedélyezd a maszkolást
+    saml_service_provider_masking_help_generic: Engedélyezzük a felhasználói identitások elfedését SAML válaszokban
+    saml_service_provider_masking_help_integration: Integrációs szolgáltató maszkolást alkalmaznak
+    saml_service_provider_masking_integration: "%{integration} Motivált"
+    saml_service_provider_masking_manual_disabled: Fogyatékos
+    saml_service_provider_masking_manual_enabled: Engedélyezve
     saml_service_provider_name: Név
     saml_service_provider_name_placeholder: Adja meg a szolgáltató nevét
     saml_service_provider_name_required: Név szükséges
+    saml_service_provider_privacy_policy: Adatvédelmi szabályzat oldal
     saml_service_provider_remove_content: 'Biztos vagy benne, hogy el akarod távolítani a SAML Service Provider: %{name}-t?'
     saml_service_provider_remove_title: Távolítsa el a SAML szolgáltatót
     saml_service_provider_rotate_certificate_content: Biztos vagy benne, hogy %{name} miatt szeretnéd váltani a tanúsítványt? Ez új tanúsítványt generál, és érvényteleníti a fennmaradót.
@@ -102,7 +183,14 @@ hu:
     skills_taxonomy: Készségek taxonómiája
     slot_name: Nyerő neve
     stats: Statisztika
+    status_details: Állapot részletei
+    structured_learning: Formális tanulás [10]
+    upload_success: Sikeresen feltöltve
     user_report_events: Felhasználói jelentés eseményei
     users: Felhasználók
     view_licenses: Licencek megtekintése
+    waiting: Várakozás
     year: Ország
+    yoodli_activity_id: Yoodli Activity ID
+    yoodli_email_id: Yoodli jelölt e-mail azonosító
+    yoodli_external_assessment_id: Yoodli Assessment ID

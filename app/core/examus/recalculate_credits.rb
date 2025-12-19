@@ -16,6 +16,8 @@ module Examus
       return broadcast :ok unless proctoring_session
 
       license_usage = proctoring_session.license_usage
+      return broadcast :ok unless license_usage
+
       license = license_usage.license
 
       return broadcast :ok if license_usage.proctoring_credits_credited

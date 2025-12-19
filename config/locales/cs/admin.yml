@@ -1,6 +1,7 @@
 ---
 cs:
   admin:
+    admin_approval_required: Report for %{user} vyžaduje schválení administrátora před stažením
     admins: Administrátoři
     ai_artifacts: Artefakty AI
     ai_artifacts_output_schema_key_constraint: Klíč musí začínat malým písmenem a může obsahovat pouze malá písmena, čísla a podtržítka
@@ -8,7 +9,18 @@ cs:
     ai_assistant_model_label: Model
     ai_assistant_model_provider: Poskytovatel
     ai_assistant_model_region_label: Oblast
+    ai_assistant_required: AI Assistant je povinný
     ai_assistants: Asistenti AI
+    ai_assistants_advanced_mode_tooltip: Použijte pokročilý režim pro šablonování promptů pomocí tekuté šablony s dostupnými proměnnými. Pro více informací se podívejte na dokumentaci.
+    ai_assistants_campaign_id_placeholder: Vstup do kampaně ID
+    ai_assistants_no_rendered_output: Žádný vykreslený výstup není k dispozici
+    ai_assistants_render_button: Šablona renderu
+    ai_assistants_rendered_prompt: Vykreslený prompt
+    ai_assistants_template_and_campaign_required: Prosím, uveďte jak šablonu, tak ID kampaně
+    ai_assistants_template_render_failed: Nepodařilo se vykreslit šablonu
+    ai_assistants_test_render: Testovací vykreslování
+    ai_assistants_test_render_tooltip: Vyzkoušejte šablonu promptu s daty kampaně, abyste zjistili, co bude AI asistentovi odesláno.
+    ai_assisted_idp_feature_disabled: Funkce AI asistovaného IDP byla pro tento projekt deaktivována.
     assessments: Hodnocení
     assessments_reports: Hodnocení a zprávy
     assessor_dashboard: Přístrojový panel hodnotitele
@@ -16,41 +28,85 @@ cs:
     audit_logs: Protokoly o auditu
     audit_reports: Auditní zprávy
     availability: Dostupnost
+    available_languages: Zpráva dostupná v jazycích
     back_to_main: Hlavní nabídka
+    bulk_upload_ai_artifacts: Hromadné AI artefakty
+    campaign_ai_artifact_updated_successfully: Artefakty AI kampaně byly úspěšně aktualizovány
+    campaign_assessment_actions_disable_caching: Vypnout cache hodnocení
+    campaign_assessment_actions_enable_caching: Povolit cache hodnocení
+    campaign_assessment_column_caching_enabled: Zapnuto cache hodnocení
+    campaign_assessment_modals_disable_caching_content: Jste si jistý, že chcete pro toto hodnocení zakázat cache?
+    campaign_assessment_modals_disable_caching_successfully: Cache byla pro toto hodnocení deaktivována.
+    campaign_assessment_modals_disable_caching_title: Vypnout cache hodnocení (Assessment)?
+    campaign_assessment_modals_enable_caching_content: Jste si jistý, že chcete pro toto hodnocení povolit cache?
+    campaign_assessment_modals_enable_caching_successfully: Pro toto hodnocení bylo zapnuto ukládání do mezipaměti.
+    campaign_assessment_modals_enable_caching_title: Povolit cache hodnocení?
     campaign_templates: Šablony kampaní
     client: Nájem klienta
     client_admins: Správci klientů
     clients: Nájemní smlouvy klientů
+    code_required: Je vyžadován kód
     communication_center: Komunikační centrum
+    completed: Hotový
+    completed_tooltip: Všichni hodnotitelé již podali hodnocení
     country: Země
     create_client: Vytvořit klienta
     dashboard: Přístrojová deska
     data_reports: Datové zprávy
     datasheet: Datový list
+    declined: Nepřijatý
     delete_ok_text: Ano, Smazat
+    denied: Popíral
     development_actions: Vývojové akce
     dimensions: Rozměry
+    done: Hotový
+    done_tooltip: Již nelze podat žádné další hodnocení tohoto uživatele, protože hodnocení tohoto uživatele je označeno jako provedené %{marked_by}
     empty_csv_file: CSV soubor neobsahuje žádná data.
+    evaluation_status: Stav hodnocení
+    evaluation_status_not_done: Status hodnocení není "Hotovo" u jednoho nebo více vybraných předmětů. Prosím, ujistěte se, že všichni vybraní uživatelé dokončili hodnocení nebo označili jako splněné.
+    fill_empty_score_msg: Vyplňte všechny konečné skóre před uložením.
+    final_score_empty_msg: Konečné skóre nemůže být prázdné.
+    idp_plan_reset_success: Plán byl úspěšně resetován
+    import_ai_artifacts: Import AI artefaktů
     import_csv_error: 'Řádek %{index}: uživatel s e-mailem %{email} není v této kampani'
+    import_csv_parsing_error: 'Chyba při CSV parsování: %{message}'
     import_description: Importujte uživatele z CSV souboru. Každý řádek musí obsahovat e-mailovou adresu.
     import_download_sample: Stáhnout ukázkový CSV
     import_error: Import selhal. Zkuste to prosím znovu.
+    import_error_saving_data: 'Ukládání dat o chybách pro %{email}: %{message}'
     import_errors_title: Chyby při importu
+    import_external_scoring_action: Importní externí bodování
+    import_external_scoring_body: Podívejte se na funkci Export, kde můžete extrahovat šablonu, kterou lze použít k importu zde.
+    import_external_scoring_data_description: Import externích hodnotících dat pro specifikované hodnocení a kampaň
+    import_external_scoring_data_title: Importovat externí skórovací data
+    import_external_scoring_success_msg: Import byl úspěšně nahrán
+    import_external_scoring_upload: Upload
     import_file_required: Vyberte prosím CSV soubor k nahrání.
     import_queued_success: Úkol dovozu subjektů byl úspěšně naplánován. Zkontrolujte prosím stav ve svém oznámení.
     import_sample_file_label: 'Ukázkový soubor:'
+    import_scenario_id_mismatch: 'Nesoulad ID scénáře pro %{email}: Očekávané %{expected_id}, ale CSV obsahuje různé ID scénářů'
+    import_successfully_saved: Úspěšně jsem uložil externí výsledky pro %{email} s %{goals_count} cíli
     import_title: Importovat předměty z CSV
     import_upload: Upload
     import_users: Importovat uživatele
     invalid_csv_header: CSV soubor obsahuje neplatné hlavičky.
+    learning_from_others: Společné učení [20]
     libraries: Knihovna médií
     library_invalid_type: Neplatný knihovní prvek
+    manager_approval_required: Report for %{user} vyžaduje schválení manažera před stažením
+    name_required: Jméno je vyžadováno
+    no_file_selected: Žádný soubor nebyl vybrán
     no_notifications: Žádná oznámení
     norms: Normy
+    not_completed: Nedokončeno
+    not_completed_tooltip: "%{completed} hodnotitelů je přiděleno, ale pouze %{submitted} hodnocení dokončili"
+    nothing_assigned: Žádní hodnotitelé nejsou přiděleni
+    nothing_assigned_tooltip: Tomuto uživateli nebyly přiřazeny žádné hodnocení
     notification_bell_icon_alt_text: Ikona zvonku oznámení
     notifications: Oznámení
     number: Číslo
     occupations: Povolání
+    on_the_job: V práci [70]
     options: Možnosti
     participants: Účastníci
     profile_details: Podrobnosti o profilu
@@ -59,7 +115,19 @@ cs:
     question_center: Centrum otázek
     registration_codes: Registrační kódy
     report_approvals: Schvalování zpráv
+    report_condition_not_met: Potřebuje %{required} %{relationship} hodnocení, ale má jen %{actual}
+    report_conditions_not_met_detailed: Report for %{user} nesplňuje podmínky dostupnosti. %{conditions}
+    report_denied: Zpráva o %{user} byla zamítnuta
+    report_no_evaluations: Zpráva o %{user} není k dispozici – nebyla přijata žádná hodnocení.
+    report_not_generated: Report pro %{user} splňuje podmínky dostupnosti, ale ještě nebyl vytvořen. Prosím, nejprve vygenerujte zprávu.
+    report_on_hold: Zpráva pro %{user} je momentálně pozastavena
+    report_status: Stav zprávy
     reports: Zprávy
+    reports_limit_exceeded: Hromadné stažení je omezeno na 1000 souborů zpráv. Pokud jste vybrali mnoho jazyků, prosím, omezte to.
+    reports_not_found: Žádné hlášení nenalezeny. Před stažením prosím vygenerujte zprávy.
+    reset_idp_plan: Plán resetu
+    reset_idp_plan_confirmation: Jste si jistý, že chcete plán resetovat?
+    reset_idp_plan_title: Plán resetu
     role: Role
     saml_idp_certificate_available: Dostupné (klikněte pro kopírování)
     saml_idp_certificate_label: Certifikát
@@ -79,12 +147,25 @@ cs:
     saml_service_provider_entity_id_placeholder: Zadejte ID subjektu
     saml_service_provider_entity_id_required: Je vyžadováno identifikační číslo subjektu
     saml_service_provider_idp_config: Konfigurace IdP
+    saml_service_provider_integration_generic: Generický
+    saml_service_provider_integration_masking_info: E-mailové ID kandidátů bude před odesláním Yoodlimu zamaskováno. Maskování křestního a příjmení kandidátů musí být umožněno z
+    saml_service_provider_integration_type: Typ integrace
+    saml_service_provider_integration_type_placeholder: Vyberte typ integrace
+    saml_service_provider_integration_type_required: Je vyžadován typ integrace
+    saml_service_provider_integration_yoodli: Yoodli
     saml_service_provider_manage: Akce
+    saml_service_provider_mask_data_for: Data o masce pro
     saml_service_provider_mask_identity: Identita masky
     saml_service_provider_masking_enabled: Povolit maskování
+    saml_service_provider_masking_help_generic: Povolit maskování identit uživatelů v SAML odpovědích
+    saml_service_provider_masking_help_integration: Bude aplikováno maskování integračních poskytovatelů
+    saml_service_provider_masking_integration: "%{integration} Driven"
+    saml_service_provider_masking_manual_disabled: Invalidní
+    saml_service_provider_masking_manual_enabled: Zpřístupněný
     saml_service_provider_name: Jméno
     saml_service_provider_name_placeholder: Zadejte název poskytovatele služby
     saml_service_provider_name_required: Jméno je vyžadováno
+    saml_service_provider_privacy_policy: Stránka s Zásadami ochrany osobních údajů
     saml_service_provider_remove_content: 'Jste si jistý, že chcete odstranit poskytovatele služeb SAML: %{name}?'
     saml_service_provider_remove_title: Odstraňte poskytovatele SAML služeb
     saml_service_provider_rotate_certificate_content: Jste si jistý, že chcete certifikát střídat pro %{name}? Tím vygenerujete nový certifikát a ten stávající zneplatníte.
@@ -102,7 +183,14 @@ cs:
     skills_taxonomy: Taxonomie dovedností
     slot_name: Název slotu
     stats: Statistiky
+    status_details: Podrobnosti o stavu
+    structured_learning: Formální učení [10]
+    upload_success: Úspěšně nahráno
     user_report_events: Hlášení uživatele Události
     users: Uživatelé
     view_licenses: Zobrazit licence
+    waiting: Čekání
     year: Země
+    yoodli_activity_id: Yoodli Activity ID
+    yoodli_email_id: E-mailové ID kandidáta Yoodli
+    yoodli_external_assessment_id: Yoodli Assessment ID

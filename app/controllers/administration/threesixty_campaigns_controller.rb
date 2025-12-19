@@ -92,7 +92,7 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
 
     result = ::UserReports::ValidateBulkDownloadEligibility.call(
       user_report_ids: user_report_ids,
-      locales: params[:selected_locales]
+      locales: selected_or_default_locale
     )
 
     if result[:invalid]
@@ -105,7 +105,7 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
       {
         campaign_id: resource.campaign_id,
         is_threesixty: true,
-        locales: params[:selected_locales],
+        locales: selected_or_default_locale,
         is_bulk_action: true,
         ids: user_report_ids
       },
@@ -166,5 +166,9 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
 
   def set_resource
     @_resource = ::Campaign.find(params[:id]).threesixty_campaign
+  end
+
+  def selected_or_default_locale
+    params[:selected_locales].presence || [resource.campaign_report_default_locale]
   end
 end

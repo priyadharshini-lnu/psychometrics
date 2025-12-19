@@ -27,6 +27,7 @@ const MODALS = {
 const connector = connect(
   (state: RootState) => ({
     clientId: getClientId(state),
+    aiAssistedIdpFeatureEnabled: state.config.project.aiAssistedIdpFeatureEnabled,
   }),
   {
     openModal,
@@ -36,7 +37,7 @@ const connector = connect(
 type PropsFromRedux = ConnectedProps<typeof connector>;
 type Props = PropsFromRedux;
 
-const IdpTable: React.FC<Props> = ({ openModal, clientId }) => {
+const IdpTable: React.FC<Props> = ({ openModal, clientId, aiAssistedIdpFeatureEnabled }) => {
   const { resource } = useResourceContext<Idp>()
   const { getSortOrder, removeResource } = resource
   const { projectId } = useParams() as { projectId: string }
@@ -52,7 +53,7 @@ const IdpTable: React.FC<Props> = ({ openModal, clientId }) => {
 
   return (
     <>
-      <IdpFilter openModal={() => openModal('IDPTemplateForm', { projectId, clientId })} />
+      <IdpFilter openModal={() => openModal('IDPTemplateForm', { projectId, clientId, aiAssistedIdpFeatureEnabled })} />
       <Resource.Table pagination>
         <Resource.Column<Idp>
           title={I18n.t('common.column.id')}

@@ -3,13 +3,24 @@ zh-Hant:
   enduser:
     add_idp_plan_note: 新增備註...
     add_idp_plan_rejection_reason: 新增原因...
+    ai_idp_assistant_response_no: 不
+    ai_idp_assistant_response_upload_different_document: 我想上傳另一份文件。
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: 是的，繼續制定計畫。
     approve_idp_plan: 批准計劃
     bookings: 預訂
     campaign: 活動
     development: 發展
     direct_reportees: 直屬下級
     home: 儀表板
+    idp_loading_fifth_step: 從範本擷取開發動作
+    idp_loading_first_step: 分析您的評估報告
+    idp_loading_fourth_step: 選擇相關技能
+    idp_loading_second_step: 說明聊天中提到的偏好
+    idp_loading_secondary_text: 請隨時離開。你的計畫會在你回來時準備好。
+    idp_loading_sixth_step: 創建開發行動
+    idp_loading_third_step: 檢視您的外部報告
     idp_plan_approval_note: 批准備註
+    idp_retake_steps_continue_with_this_information: 請繼續閱讀這些資訊
     insights: 洞察力
     lighthouse_assistant: 燈塔助理
     max_word_limit: 最多不得超過 %{max} 個字

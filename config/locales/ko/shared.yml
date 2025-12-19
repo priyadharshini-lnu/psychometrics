@@ -3,17 +3,25 @@ ko:
   shared:
     action: 액션
     add: 추가
+    advanced: 고급
+    authentication_failed: 인증에 실패했습니다. 다시 시도해 주세요.
+    basic: 기초의
+    campaign_id: 캠페인 ID
     cancel: 취소
     change_password: 비밀번호 변경
     clear_filters: 필터 지우기
+    collaborative_learning: 협력 학습
+    continue: 계속하다
     description: 묘사
     edit: 편집
     edited: 새로 만들기
+    formal_learning: 정식 학습
     group_question_max_validation_error: 각 그룹은 최대 {{max}} 항목까지 포함할 수 있습니다.
     group_question_min_validation_error: 각 그룹은 최소 {{min}} 항목(들)을 포함해야 합니다.
     id: ID
     idp_ai_assistant_disclaimer: 라이트하우스 AI IDP 어시스턴트는 실수를 할 수 있습니다. 답변을 사용할 때 조심해 주세요.
     internet_disconnected_message: 다시 연결하려고 합니다. 인터넷 연결을 확인하세요.
+    learning_on_the_job_label: 현장에서 배우기
     mte_logo_alt_text: 머서 탤런트 엔터프라이즈 로고
     name: 이름
     new: 새로 만들기
@@ -31,6 +39,7 @@ ko:
           other: '합계 : {{count}}'
           zero: '합계 : 0'
     terms_conditions_privacy: 개인정보 처리방침
+    tools: 도구
     transcriptions: 사본
     tte_terms_and_condition: 약관 및 개인정보 보호
     type: 유형

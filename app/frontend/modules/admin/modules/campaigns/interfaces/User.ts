@@ -27,6 +27,8 @@ export default interface User {
     accessProjectDevelopmentActions: boolean
     accessIdpTemplates: boolean
     accessReflectionQuestions: boolean
+    accessInterviewQuestions: boolean
     accessProjectTaxonomy: boolean
+    manageIdpProjectSettings: boolean
   }
 }

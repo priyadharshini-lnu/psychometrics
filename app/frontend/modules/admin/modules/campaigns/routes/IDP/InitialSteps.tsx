@@ -41,6 +41,10 @@ export const InitialStepsComponent = () => {
       apiConfig: {
         include: ['idp_template', 'skills.development_actions', 'skills'],
         include_resource_meta: ['permissions'],
+        query: {
+          project_id: projectId,
+          campaign_id: campaignId,
+        },
       },
     },
   )

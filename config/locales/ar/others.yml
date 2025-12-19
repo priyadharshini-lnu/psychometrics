@@ -55,6 +55,17 @@ ar:
               blank: لا يمكن أن يكون معرف حزمة التقرير فارغا
             report_id:
               blank: لا يمكن أن يكون معرف التقرير فارغا
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: مساعد الذكاء الاصطناعي مع معرف '%{id}' غير موجود في الصف %{index}
+              blank: لا يمكن أن يكون العمود '%{entity}' فارغا في الصف %{index}
+              duplicate_code: رمز مكرر '%{code}' في الصف %{index}
+              invalid_code_format: تنسيق الكود '%{code}' غير صالح في الصف %{index}
+              max_limit_reached: إجمالي الذكاء الاصطناعي القطع الأثرية في الحملة يتجاوز الحد الأقصى %{count}
+              missing_headers: 'العناوين المطلوبة المفقودة: %{headers}'
+            file:
+              invalid_format: يرجى رفع ملف CSV
         campaign_factor_import_form:
           attributes:
             file:
@@ -928,6 +939,7 @@ ar:
         import_development_actions: إجراءات تطوير الاستيراد
         import_dimension_from_json: استيراد البعد من JSON
         import_external_campaign_scoring: استيراد نقاط الحملة الخارجية
+        import_external_scoring_data: استيراد بيانات التسجيل الخارجية
         import_factor_translations: ترجمات عامل الاستيراد
         import_factors: عوامل الاستيراد
         import_interview_questions: استيراد أسئلة المقابلة
@@ -1090,6 +1102,7 @@ ar:
         saville_assessment_name: اسم تقييم سافيل
         simulation_assessment_name: اسم تقييم المحاكاة
         skillvue_assessment_name: اسم تقييم المهارات
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: الترجمة المهاجرة
     create: خلق
     dashboard: لوحه القياده

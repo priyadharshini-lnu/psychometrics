@@ -38,6 +38,7 @@ export interface OwnProps {
   parentType: ParentResourceType
   parentId: number
   testMode: boolean
+  assessmentId: string
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getWebhookPayload(campaignId: number, parentType: ParentResourceType, parentId: number, data: any): Promise<any>
 }
@@ -56,16 +57,17 @@ export type Props = OwnProps & PropsFromRedux
 
 const PushWebhookModal: React.FC<Props> = ({
   close, campaignId, projectId, parentId, parentType, getWebhookPayload, testMode,
-  webhook, fetchPossibleWebhookEvents, reportWebhookEvents,
+  webhook, fetchPossibleWebhookEvents, reportWebhookEvents, assessmentId,
 }) => {
   const [selectedWebhook, setSelectedWebhook] = useState<Pick<
-    Webhook, 'id' | 'url' | 'description' | 'topics'
+    Webhook, 'id' | 'url' | 'description' | 'topics' | 'assessmentIds'
   > | null | undefined>(
     {
       id: '',
       url: '',
       description: '',
       topics: [],
+      assessmentIds: [],
     },
   )
 
@@ -120,18 +122,31 @@ const PushWebhookModal: React.FC<Props> = ({
     }
   }, [])
 
-  const topics = (): string[] => {
-    switch (parentType) {
-      case ParentResourceType.UserAssessment:
-        return _.intersection(selectedWebhook?.topics, USER_ASSESSMENT_WEBHOOK_EVENTS)
-      case ParentResourceType.UserReport:
-        return _.intersection(selectedWebhook?.topics, reportWebhookEvents)
-      case ParentResourceType.CampaignUser:
-        return _.intersection(selectedWebhook?.topics, CAMPAIGN_WEBHOOK_EVENTS)
-      default:
-        return webhook?.topics || []
-    }
+  const isRawResponseAllowed = () => {
+    if (parentType !== ParentResourceType.UserAssessment) return false
+    if (!selectedWebhook) return false
+    return selectedWebhook.assessmentIds?.includes(assessmentId.toString())
   }
+
+  const topics = (): string[] => {
+    const allowedTopics = ({
+      [ParentResourceType.UserAssessment]:
+      _.intersection(selectedWebhook?.topics, USER_ASSESSMENT_WEBHOOK_EVENTS),
+
+      [ParentResourceType.UserReport]:
+      _.intersection(selectedWebhook?.topics, reportWebhookEvents),
+
+      [ParentResourceType.CampaignUser]:
+      _.intersection(selectedWebhook?.topics, CAMPAIGN_WEBHOOK_EVENTS),
+    }[parentType]) ?? webhook?.topics ?? []
+
+    return isRawResponseAllowed()
+      ? allowedTopics
+      : allowedTopics.filter(
+        topic => topic !== 'assessment_raw_response',
+      )
+  }
+
 
   const handlefetchPayload = (value) => {
     const webhookId = form.getFieldValue('webhookId')

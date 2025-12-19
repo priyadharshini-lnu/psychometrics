@@ -52,7 +52,7 @@ module UserAssessments
           question_id: question.id,
           question_type: question.type,
           question_name: question.name,
-          question_text: question.props['questionText'],
+          question_text: sanitize_text(question.props['questionText']),
           not_applicable: parser.get_not_applicable(user_result, question),
           answers: build_answers_with_labels(parser, question)
         }
@@ -83,10 +83,16 @@ module UserAssessments
       end
 
       def build_answer_object(label, answer)
-        value = answer == '' ? nil : answer
+        value = ['', nil].include?(answer) ? nil : Array.wrap(answer)
         return { value: value } if label.blank?
 
         { label: label, value: value }
+      end
+
+      def sanitize_text(text)
+        ActionText::ContentHelper.sanitizer.sanitize(
+          ActionText::Content.new(text).to_plain_text
+        )
       end
     end
   end

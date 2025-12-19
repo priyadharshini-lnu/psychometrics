@@ -30,6 +30,10 @@ describe AI::AssistableService::Idp do
 
   before do
     allow(Settings).to receive(:ai_providers).and_return([ai_provider_config])
+    allow(Settings.features).to receive(:ai_assistant_enabled).and_return(true)
+
+    # Ensure project has proper feature flags enabled by default
+    campaign.project.project_feature.update!(ai_assisted_idp: true)
   end
 
   shared_context 'assistant service mocking' do
@@ -82,6 +86,42 @@ describe AI::AssistableService::Idp do
         described_class.new(plan, user, instructions, options).call
 
         expect(AI::AssistantService).not_to have_received(:new)
+      end
+    end
+
+    context 'when assistance is disabled due to feature flags' do
+      shared_examples 'returns feature disabled error' do
+        it 'returns an error with message' do
+          result = described_class.call(plan, user, instructions, options)
+
+          expect(result[:error]).to eq(
+            I18n.t('administration.ai_assistants.errors.one_click_idp_assistance_not_enabled')
+          )
+        end
+
+        it 'does not call AssistantService' do
+          allow(AI::AssistantService).to receive(:new)
+
+          described_class.new(plan, user, instructions, options).call
+
+          expect(AI::AssistantService).not_to have_received(:new)
+        end
+      end
+
+      context 'when global AI assistant feature is disabled' do
+        before do
+          allow(Settings.features).to receive(:ai_assistant_enabled).and_return(false)
+        end
+
+        include_examples 'returns feature disabled error'
+      end
+
+      context 'when project AI assisted IDP feature is disabled' do
+        before do
+          campaign.project.project_feature.update!(ai_assisted_idp: false)
+        end
+
+        include_examples 'returns feature disabled error'
       end
     end
 

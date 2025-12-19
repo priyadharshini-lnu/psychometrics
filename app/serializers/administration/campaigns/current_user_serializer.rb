@@ -59,9 +59,15 @@ module Administration
         permissions['access_idp_templates'] = Api::Administration::IdpTemplatePolicy.new(
           object, IdpTemplate, project_id: context[:project_id]
         ).index?
-        permissions['accessReflectionQuestions'] = Api::Administration::ReflectionQuestionPolicy.new(
+        permissions['access_reflection_questions'] = Api::Administration::ReflectionQuestionPolicy.new(
           object, ReflectionQuestion, project_id: context[:project_id]
         ).index?
+        permissions['access_interview_questions'] = Api::Administration::InterviewQuestionPolicy.new(
+          object, InterviewQuestion, project_id: context[:project_id]
+        ).index?
+        permissions['manage_idp_project_settings'] = Api::Administration::IdpSettingPolicy.new(
+          object, IdpSetting, project_id: context[:project_id]
+        ).update?
         permissions['manageProjectFeatureFlags'] = Api::Administration::ProjectFeaturePolicy.new(
           object, ProjectFeature, project_id: context[:project_id]
         ).index?

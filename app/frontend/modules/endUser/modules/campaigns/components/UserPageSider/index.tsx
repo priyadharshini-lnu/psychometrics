@@ -34,6 +34,8 @@ const connector = connect((state: RootState) => ({
   showBookings: getShowBookings(state),
   features: getFeatures(state),
   projectIdpEnabled: state.config.idp.idpEnabled,
+  userHasActiveIdp: state.config.idp.userHasActiveIdp,
+  userHasDirectReporteesWithActiveIdp: state.config.idp.userHasDirectReporteesWithActiveIdp,
   logoAltText: getLogoAltText(state),
 }))
 
@@ -49,13 +51,23 @@ type UserPageSiderProps = {
 
 const { I18n } = window
 
-const getMenuItems = (
-  showCampaign?: boolean,
-  showInsights?: boolean,
-  showBookings?: boolean,
-  idpEnabled?: boolean,
-  projectIdpEnabled?: boolean,
-) => ([{
+const getMenuItems = ({
+  showCampaign,
+  showInsights,
+  showBookings,
+  idpEnabled,
+  projectIdpEnabled,
+  userHasDirectReporteesWithActiveIdp,
+  userHasActiveIdp,
+}: {
+  showCampaign?: boolean
+  showInsights?: boolean
+  showBookings?: boolean
+  idpEnabled?: boolean
+  projectIdpEnabled?: boolean
+  userHasDirectReporteesWithActiveIdp?: boolean
+  userHasActiveIdp?: boolean
+}) => ([{
   key: 'dashboard',
   label: I18n.t('enduser.home'),
   icon: <HomeOutlined className={styles.siderIcon} />,
@@ -70,13 +82,14 @@ const getMenuItems = (
   ] : [{ label: I18n.t('enduser.tasks'), key: 'tasks' }],
 }] : [],
 // eslint-disable-next-line no-constant-condition
-...(idpEnabled && projectIdpEnabled) ? [{
+...((idpEnabled && projectIdpEnabled) && (userHasActiveIdp || userHasDirectReporteesWithActiveIdp)) ? [{
   key: 'idp',
   label: I18n.t('enduser.development'),
   icon: <ReadOutlined className={styles.siderIcon} />,
   children: [
-    { label: I18n.t('enduser.my_plan'), key: 'my_plan' },
-    { label: I18n.t('enduser.direct_reportees'), key: 'direct_reportees' },
+    ...(userHasActiveIdp ? [{ label: I18n.t('enduser.my_plan'), key: 'my_plan' }] : []),
+    ...(userHasDirectReporteesWithActiveIdp
+      ? [{ label: I18n.t('enduser.direct_reportees'), key: 'direct_reportees' }] : []),
   ],
 }] : [],
 ...showBookings ? [{
@@ -97,6 +110,8 @@ const getMenuItems = (
 const UserPageSiderComponent: FC<UserPageSiderProps> = ({
   showInsights, siderFooter, logo, projectName, updateProfileRequired, showBookings, features, logoAltText,
   projectIdpEnabled,
+  userHasDirectReporteesWithActiveIdp,
+  userHasActiveIdp,
 }) => {
   const location = useLocation()
   const navigate = useNavigate()
@@ -104,7 +119,15 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
     idpEnabled,
   } = camelizeKeys(features)
   const { pathname } = location
-  let menuItems = getMenuItems(false, false, showBookings, idpEnabled, projectIdpEnabled)
+  let menuItems = getMenuItems({
+    showCampaign: false,
+    showInsights: false,
+    showBookings,
+    idpEnabled,
+    projectIdpEnabled,
+    userHasDirectReporteesWithActiveIdp,
+    userHasActiveIdp,
+  })
   let activeItem:string
   const campaignIdRef = useRef<string>('')
   const isAnonym = pathname.includes('/anonym/')
@@ -151,12 +174,15 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
   if (pathname.includes('/campaigns/') || isThreesixty) {
     const [,, campaignId] = location.pathname.split('/')
     campaignIdRef.current = campaignId
-    menuItems = getMenuItems(
-      true,
-      pathname.includes('/threesixty_campaigns/') ? false : showInsights,
+    menuItems = getMenuItems({
+      showCampaign: true,
+      showInsights: pathname.includes('/threesixty_campaigns/') ? false : showInsights,
       showBookings,
-      idpEnabled, projectIdpEnabled,
-    )
+      idpEnabled,
+      projectIdpEnabled,
+      userHasDirectReporteesWithActiveIdp,
+      userHasActiveIdp,
+    })
     activeItem = pathname.includes('insights') ? 'insights' : 'tasks'
   } else if (pathname.includes('/idp/')) {
     // destructuring is not required here as we are dealing with single entity

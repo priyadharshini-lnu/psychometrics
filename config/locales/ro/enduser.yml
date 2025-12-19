@@ -3,13 +3,24 @@ ro:
   enduser:
     add_idp_plan_note: Adaugă notă...
     add_idp_plan_rejection_reason: Adaugă motiv...
+    ai_idp_assistant_response_no: Nu
+    ai_idp_assistant_response_upload_different_document: Vreau să încarc un alt document.
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: Da, continuă cu crearea planului.
     approve_idp_plan: Aprobă planul
     bookings: Rezervări
     campaign: Campanie
     development: Dezvoltare
     direct_reportees: Raportări directe
     home: Tablou
+    idp_loading_fifth_step: Preluarea acțiunilor de dezvoltare din șablon
+    idp_loading_first_step: Analizarea raportului tău de evaluare
+    idp_loading_fourth_step: Selectarea abilităților relevante
+    idp_loading_second_step: Identificarea preferințelor menționate în chat
+    idp_loading_secondary_text: Simte-te liber să te retragi. Planul tău va fi gata când te întorci.
+    idp_loading_sixth_step: Crearea acțiunilor de dezvoltare
+    idp_loading_third_step: Revizuirea raportului tău extern
     idp_plan_approval_note: Notă de aprobare
+    idp_retake_steps_continue_with_this_information: Continuați cu aceste informații
     insights: Perspective
     lighthouse_assistant: Asistent de far
     max_word_limit: Trebuie să aibă cel mult %{max} cuvinte

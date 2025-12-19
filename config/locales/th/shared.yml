@@ -3,17 +3,25 @@ th:
   shared:
     action: ดำเนินการ
     add: เพิ่ม
+    advanced: ดึก
+    authentication_failed: การรับรองความถูกต้องล้มเหลว โปรดลองอีกครั้ง
+    basic: พื้นฐาน
+    campaign_id: รหัสแคมเปญ
     cancel: ยกเลิก
     change_password: เปลี่ยนรหัสผ่าน
     clear_filters: เคลียร์ตัวกรอง
+    collaborative_learning: การเรียนรู้ร่วมกัน
+    continue: ต่อเนื่อง
     description: คำอธิบาย
     edit: แก้ไข
     edited: ใหม่
+    formal_learning: การเรียนรู้อย่างเป็นทางการ
     group_question_max_validation_error: แต่ละกลุ่มสามารถมีไอเท็มได้สูงสุด {{max}} รายการ
     group_question_min_validation_error: แต่ละกลุ่มต้องมีอย่างน้อย {{min}} รายการ
     id: รหัส
     idp_ai_assistant_disclaimer: ผู้ช่วย Lighthouse AI IDP สามารถทําผิดพลาดได้ โปรดใช้ความระมัดระวังขณะใช้คําตอบ
     internet_disconnected_message: กำลังพยายามเชื่อมต่อใหม่ โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ
+    learning_on_the_job_label: การเรียนรู้ในการทํางาน
     mte_logo_alt_text: โลโก้ Mercer Talent Enterprise
     name: ชื่อ
     new: ใหม่
@@ -26,6 +34,7 @@ th:
         selected: เลือก 1 แถว
         total: 'รวม : 1'
     terms_conditions_privacy: คำชี้แจงความเป็นส่วนตัว
+    tools: เครื่อง มือ
     transcriptions: การถอดความ
     tte_terms_and_condition: เงื่อนไขและความเป็นส่วนตัว
     type: ประเภท

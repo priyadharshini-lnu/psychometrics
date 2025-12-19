@@ -182,6 +182,12 @@ it:
             manage: Azioni
             title: Modelli di IDP
             view: Vista
+          interviewQuestions:
+            export: Esportazione
+            import: Importazione
+            manage: Gestione
+            title: Domande per il colloquio IDP
+            view: Vista
           jobRoles:
             export_translations: Esporta di ruoli lavorativi Traduzioni
             import_translations: Importazione delle traduzioni dei ruoli lavorativi
@@ -294,6 +300,7 @@ it:
             view: Vista
           userIdpPlans:
             manage: Amministrare
+            reset: Resettare
             title: Piani IDP degli utenti
             view: Vista
           users:
@@ -1961,6 +1968,7 @@ it:
         udpated_at: Ultimo aggiornamento al
       configuration: Configurazione
       errors:
+        factor_code_or_field_name_required: factor_code o field_name è richiesto
         factor_not_found: non presente nell'ambito della valutazione
         inclusion: 'tipo non valido, tipi validi: %{values}'
         not_found: non trovato
@@ -2063,9 +2071,6 @@ it:
       learning_styles:
         cannot_be_blank: Non può essere vuoto
         invalid: 'Deve essere uno dei seguenti tipi di apprendimento: on_the_job, apprendimento strutturato, apprendimento da altri'
-        learning_from_others: Imparare dagli altri [20]
-        on_the_job: Sul lavoro [70]
-        structured_learning: Apprendimento strutturato [10]
       new:
         header: Nuova azione di sviluppo
       resource:

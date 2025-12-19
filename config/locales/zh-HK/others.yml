@@ -55,6 +55,17 @@ zh-HK:
               blank: 報告包 ID 不能是空白
             report_id:
               blank: 報告ID不能是空白的
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: ID 為 %{id} 的 AI 助理在第 %{index} 列找不到
+              blank: 第 %{entity} 欄不能在第 %{index} 列是空白的
+              duplicate_code: 在第 %{index} 列重複代碼「%{code}」
+              invalid_code_format: 第 %{index} 列有無效的程式碼格式 '%{code}'
+              max_limit_reached: 戰役 AI 遺跡總數超過 %{count}
+              missing_headers: 缺少必要的標頭：%{headers}
+            file:
+              invalid_format: 請上傳 CSV 檔案
         campaign_factor_import_form:
           attributes:
             file:
@@ -899,6 +910,7 @@ zh-HK:
         import_development_actions: 進口開發行動
         import_dimension_from_json: 從 JSON 匯入維度
         import_external_campaign_scoring: 匯入外部戰役評分
+        import_external_scoring_data: 匯入外部計分資料
         import_factor_translations: 進口因子翻譯
         import_factors: 進口因素
         import_interview_questions: 導入面試問題
@@ -1060,6 +1072,7 @@ zh-HK:
         saville_assessment_name: 薩維爾評估名稱
         simulation_assessment_name: 模擬評估名稱
         skillvue_assessment_name: Skillvue 評估名稱
+        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: 翻譯遷移
     create: 創造
     dashboard: 儀表板

@@ -55,6 +55,17 @@ ko:
               blank: 보고서 번들 ID는 비워 둘 수 없습니다
             report_id:
               blank: 신고 ID는 비워 둘 수 없습니다
+        campaign_ai_artifacts_import_form:
+          attributes:
+            base:
+              ai_assistant_not_found: ID '%{id}'의 AI 어시스턴트가 %{index}행에서 찾을 수 없습니다
+              blank: 열 '%{entity}'은 %{index}행에서 빈칸일 수 없습니다
+              duplicate_code: 코드 '%{code}' 중복 코드 %{index}
+              invalid_code_format: 행 %{index}에서 잘못된 코드 형식 '%{code}'
+              max_limit_reached: 총 캠페인 AI 아티팩트가 최대 한도를 초과%{count}
+              missing_headers: '필수 헤더 누락: %{headers}'
+            file:
+              invalid_format: CSV 파일을 업로드해 주세요
         campaign_factor_import_form:
           attributes:
             file:
@@ -889,6 +900,7 @@ ko:
         import_development_actions: 개발 작업 가져오기
         import_dimension_from_json: JSON에서 차원 가져오기
         import_external_campaign_scoring: 외부 캠페인 점수 가져오기
+        import_external_scoring_data: 외부 점수 데이터 가져오기
         import_factor_translations: 가져오기 계수 번역
         import_factors: 가져오기 요소
         import_interview_questions: 인터뷰 질문 가져오기
@@ -1050,6 +1062,7 @@ ko:
         saville_assessment_name: 새빌 평가 이름
         simulation_assessment_name: 시뮬레이션 평가 이름
         skillvue_assessment_name: 스킬뷰 평가 이름
+        yoodli_scenario_id: Yoodli 시나리오 ID
       translations_migrated: 번역 마이그레이션
     create: 만들기
     dashboard: 대시보드

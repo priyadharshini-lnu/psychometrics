@@ -182,6 +182,12 @@ bg:
             manage: Управлявам
             title: Шаблони за индивидуален план за развитие
             view: Изглед
+          interviewQuestions:
+            export: Износ
+            import: Импорт
+            manage: Управление
+            title: Въпроси за интервю за IDP
+            view: Изглед
           jobRoles:
             export_translations: Експорт на работни роли Преводи
             import_translations: Импортиране на работни роли Преводи
@@ -294,6 +300,7 @@ bg:
             view: Изглед
           userIdpPlans:
             manage: Управлявам
+            reset: Проучване
             title: Планове за потребителски IDP
             view: Изглед
           users:
@@ -1961,6 +1968,7 @@ bg:
         udpated_at: Последна актуализация на
       configuration: Конфигурация
       errors:
+        factor_code_or_field_name_required: factor_code или field_name е задължително
         factor_not_found: не е открита в обхвата на оценката
         inclusion: 'невалиден тип, валидни типове: %{values}'
         not_found: Не е намерен
@@ -2063,9 +2071,6 @@ bg:
       learning_styles:
         cannot_be_blank: Не може да бъде празно
         invalid: Трябва да е един от on_the_job, structured_learning, learning_from_others
-        learning_from_others: Учене от другите [20]
-        on_the_job: На работното място [70]
-        structured_learning: Структурирано обучение [10]
       new:
         header: Ново действие за развитие
       resource:

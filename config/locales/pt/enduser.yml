@@ -12,7 +12,15 @@ pt:
     development: Desenvolvimento
     direct_reportees: Subordinados Diretos
     home: Painel de controle
+    idp_loading_fifth_step: Obtendo ações de desenvolvimento a partir do template
+    idp_loading_first_step: Analisando seu relatório de avaliação
+    idp_loading_fourth_step: Seleção de habilidades relevantes
+    idp_loading_second_step: Identificar suas preferências mencionadas no chat
+    idp_loading_secondary_text: Fique à vontade para se afastar. Seu plano estará pronto quando você voltar.
+    idp_loading_sixth_step: Criação de ações de desenvolvimento
+    idp_loading_third_step: Revisando seu relatório externo
     idp_plan_approval_note: Nota de Aprovação
+    idp_retake_steps_continue_with_this_information: Continue com esta informação
     insights: Informações
     lighthouse_assistant: Assistente de Farol
     max_word_limit: Deve ter no máximo %{max} palavras

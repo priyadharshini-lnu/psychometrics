@@ -16,7 +16,7 @@ module Api
       end
 
       def update?
-        true
+        has_permission?(:user_idp_plans, :manage)
       end
 
       def reset?
