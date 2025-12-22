@@ -27,3 +27,7 @@ export const getFeature = (featureName: string): boolean => {
 export const isAiAssistantEnabled = (): boolean => (
   getFeature('ai_assistant_enabled')
 )
+
+export const isEnhanceWithAiEnabled = (): boolean => (
+  getFeature('enhance_with_ai_enabled')
+)

@@ -1,0 +1,87 @@
+.aiFloatingContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  will-change: transform, opacity;
+
+  &.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.aiCard {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12),
+              0 2px 8px rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  padding: 4px;
+  width: 180px;
+
+  &.resultContainer {
+    width: auto;
+  }
+}
+
+.resultContainer {
+  min-width: 460px;
+  max-width: clamp(460px, 50vw, 700px);
+  padding: 12px 14px;
+
+  &.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.resultHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.resultSection {
+  background: #fafafa;
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+
+.actionFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.subMenu {
+  z-index: 9999;
+
+  :global(.ant-menu-sub) {
+    max-height: 300px !important;
+    overflow-y: auto !important;
+  }
+}
+
+.aiTriggerBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    :global(.anticon) {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+}

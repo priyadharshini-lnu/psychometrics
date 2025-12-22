@@ -17,7 +17,7 @@ import AIContent from './SourceTypeForms/AIContent'
 import connect from '../connect'
 import { rgba2hex } from '~/utils/color'
 import DefaultProps from '~/modules/reports/consts/DefaultProps'
-import { isAiAssistantEnabled } from '~/modules/reports/utils/features'
+import { isAiAssistantEnabled, isEnhanceWithAiEnabled } from '~/modules/reports/utils/features'
 
 const SELECT_OPTIONS = [
   { label: 'Text', value: 'Text' },
@@ -143,6 +143,13 @@ const Properties = ({
   const changeEditAndApprove = (e) => {
     updateAll((model) => {
       model.props.editable = e.currentTarget.checked
+      model.update()
+    })
+  }
+
+  const changeEnhanceWithAI = (e) => {
+    updateAll((model) => {
+      model.props.enhanceWithAIEnabled = e.currentTarget.checked
       model.update()
     })
   }
@@ -367,8 +374,18 @@ const Properties = ({
           />
           Edit and Approve
         </label>
+        {isEnhanceWithAiEnabled() && (
+          <label className={styles.inputLabel}>
+            <input
+              style={{ marginRight: '5px' }}
+              type="checkbox"
+              checked={model.props.enhanceWithAIEnabled ?? true}
+              onChange={changeEnhanceWithAI}
+            />
+            Enhance with AI
+          </label>
+        )}
       </div>
-
       <hr className={styles.divider} />
       <div className={styles.block} style={{ position: 'relative' }}>
         Background Color

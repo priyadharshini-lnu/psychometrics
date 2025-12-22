@@ -15,6 +15,7 @@ interface ProjectFeatures {
   aiAssistants: boolean;
   aiAssistedIdp: boolean;
   globalSkills: boolean;
+  enhanceWithAi: boolean;
   idp: boolean;
   id: string;
 }
@@ -24,6 +25,7 @@ interface ClientFeatures {
   aiAssistants: boolean;
   aiAssistedIdp: boolean;
   globalSkills: boolean;
+  enhanceWithAi: boolean;
   idp: boolean;
   id: string;
 }
@@ -91,6 +93,7 @@ export const Features: React.FC = () => {
     aiAssistants: false,
     aiAssistedIdp: false,
     globalSkills: false,
+    enhanceWithAi: false,
     idp: false,
   }
 
@@ -99,6 +102,7 @@ export const Features: React.FC = () => {
     aiAssistants: false,
     aiAssistedIdp: false,
     globalSkills: false,
+    enhanceWithAi: false,
     idp: false,
   }
 
@@ -152,12 +156,25 @@ export const Features: React.FC = () => {
       aiAssistants: !clientFeatures.aiAssistants ? false : values.aiAssistants || false,
       aiAssistedIdp: (!clientFeatures.aiAssistants || !values.aiAssistants) ? false : values.aiAssistedIdp || false,
       idp: !clientFeatures.idp ? false : values.idp || false,
+      enhanceWithAi: !clientFeatures.enhanceWithAi ? false : values.enhanceWithAi || false,
       globalSkills: !clientFeatures.globalSkills ? false : values.globalSkills || false,
     }
     return {
       ...transformedValues,
     }
   }
+
+  const enhanceWithAiDisabledReason = (() => {
+    if (!clientFeatures.enhanceWithAi) {
+      return I18n.t('admin.enable_enhance_with_ai_client_level')
+    }
+
+    if (!clientFeatures.aiAssistants || !aiAssistants) {
+      return I18n.t('admin.enhance_with_ai_requires_ai_assistants')
+    }
+
+    return undefined
+  })()
 
   return (
     <Row className="pl">
@@ -233,6 +250,19 @@ export const Features: React.FC = () => {
                   }
                   >
                     <Switch disabled={!clientFeatures.idp} />
+                  </Form.Item>
+
+                  <Form.Item
+                    name="enhanceWithAi"
+                    label={I18n.t('admin.feature_enhance_with_ai')}
+                    help={enhanceWithAiDisabledReason}
+                  >
+                    <Switch
+                      disabled={!clientFeatures.enhanceWithAi
+                          || !clientFeatures.aiAssistants
+                          || !aiAssistants
+                        }
+                    />
                   </Form.Item>
 
                   <Form.Item

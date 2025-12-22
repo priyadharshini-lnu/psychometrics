@@ -32,7 +32,7 @@ const SingleLinePreview: FC<Props> = ({
   )
   const {
     result,
-    props: { type, allowContentCopy: allowContentCopyOnQuestion },
+    props: { type, allowContentCopy: allowContentCopyOnQuestion, enhanceWithAIEnabled = true },
     id: questionId,
   } = model
 
@@ -86,6 +86,7 @@ const SingleLinePreview: FC<Props> = ({
             onContextMenu={handleConextMenu}
             onCopy={handleCopyContentEvents}
             onCut={handleCopyContentEvents}
+            {...(enhanceWithAIEnabled && { 'data-ai-enabled': 'true' })}
           />
         </Col>
       </Row>

@@ -15,6 +15,10 @@ export const ASSISTANT_TYPES = {
     id: 'development_actions_assistant',
     name: 'Development Actions Assistant',
   },
+  writing_assistant: {
+    id: 'writing_assistant',
+    name: 'Writing Assistant',
+  },
 }
 
 export const DEPENDENCY_TYPES = {

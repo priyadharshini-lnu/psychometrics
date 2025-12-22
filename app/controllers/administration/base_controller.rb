@@ -60,7 +60,9 @@ module Administration
       return {} unless project
 
       {
-        idpEnabled: project.client.feature_enabled?(:idp) && project.project_feature_enabled?(:idp)
+        idpEnabled: project.client.feature_enabled?(:idp) && project.project_feature_enabled?(:idp),
+        enhanceWithAiEnabled: project.client.feature_enabled?(:enhance_with_ai) &&
+          project.project_feature_enabled?(:enhance_with_ai)
       }
     end
 

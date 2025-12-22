@@ -25,6 +25,7 @@ import {
 } from '~/modules/survey/components/modules/TextEntry/constant'
 
 const { I18n } = window
+const { enhance_with_ai_enabled } = window.PsyGlobalState.features
 
 interface Props {
   model: PropertiesModel
@@ -33,9 +34,12 @@ interface Props {
 
 export const Properties: FC<Props> = ({ model, showOnlyTranslatable }) => {
   const forceUpdate = useForceUpdate()
+  const showEnhanceWithAiOption = enhance_with_ai_enabled
 
   const {
-    props: { type, allowDictation, dateFormat },
+    props: {
+      type, allowDictation, dateFormat, enhanceWithAIEnabled = true,
+    },
   } = model
 
   const handleAnswerTypeChange = (selectedType: string) => {
@@ -69,6 +73,17 @@ export const Properties: FC<Props> = ({ model, showOnlyTranslatable }) => {
     forceUpdate()
   }
 
+  const handleEnhanceWithAIChange = (event: CheckboxChangeEvent) => {
+    const {
+      target: { checked },
+    } = event
+
+    model.changeProps({
+      enhanceWithAIEnabled: checked,
+    })
+    forceUpdate()
+  }
+
   const handleDateFormatChange = (selectedDateFormat: DateFormat) => {
     model.changeProps({
       dateFormat: selectedDateFormat,
@@ -94,6 +109,12 @@ export const Properties: FC<Props> = ({ model, showOnlyTranslatable }) => {
           model={model}
           title="Answers count"
           onChange={handleChatAnswerCount}
+        />
+      )}
+      {showEnhanceWithAiOption && ['MultiLine', 'EssayTextBox', 'SingleLine', 'RichText'].includes(type) && (
+        <EnhanceWithAI
+          checked={enhanceWithAIEnabled}
+          onChange={handleEnhanceWithAIChange}
         />
       )}
       {['MultiLine', 'EssayTextBox'].includes(type) && (
@@ -163,6 +184,15 @@ const VoiceDictationCheckbox = ({ checked, onChange }) => (
   <div className="ms-4 me-4 mb-4">
     <Checkbox checked={checked} onChange={onChange}>
       {I18n.t('administration.survey_builder.property_panel.voice_dictation')}
+    </Checkbox>
+    <Divider />
+  </div>
+)
+
+const EnhanceWithAI = ({ checked, onChange }) => (
+  <div className="ms-4 me-4 mb-4">
+    <Checkbox checked={checked} onChange={onChange}>
+      Enhance with AI
     </Checkbox>
     <Divider />
   </div>

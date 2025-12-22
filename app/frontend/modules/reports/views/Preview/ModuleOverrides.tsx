@@ -74,6 +74,8 @@ const OverrideComponent: FC<Props> = ({
   const [selectedModule, setSelectedModule] = useState<number>()
   const [approvingInProgress, setApprovingInProgress] = useState<boolean>(false)
 
+  const { enhanceWithAIEnabled = true } = module.props
+
   useEffect(() => {
     const el = document.querySelector(`[name=Module_${module.id}]`) as HTMLElement
     const page = el?.parentElement?.parentElement?.parentElement
@@ -142,6 +144,7 @@ const OverrideComponent: FC<Props> = ({
       }
       style={box}
       onClick={() => selectModule(module.id)}
+      {...(enhanceWithAIEnabled && { 'data-ai-enabled': 'true' })}
     >
       {edit && (
         <FroalaEditor
@@ -160,7 +163,6 @@ const OverrideComponent: FC<Props> = ({
           config="adminRichText"
         />
       )}
-
       <div className={styles.buttons}>
         {edit
           ? (

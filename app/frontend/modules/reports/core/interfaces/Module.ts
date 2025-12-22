@@ -45,6 +45,7 @@ export default interface Module {
       enabled: boolean,
       position: {width: number, height: number, top: number, left: number}
     }
+    enhanceWithAIEnabled?: boolean
   }
   meta: {
     hidden?: boolean

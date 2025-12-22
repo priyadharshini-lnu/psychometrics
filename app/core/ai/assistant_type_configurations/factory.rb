@@ -6,7 +6,8 @@ module AI
       TYPE_CONFIGURATIONS = {
         'content_writer' => ContentWriter,
         'idp_assistant' => IdpAssistant,
-        'development_actions_assistant' => DevelopmentActionsAssistant
+        'development_actions_assistant' => DevelopmentActionsAssistant,
+        'writing_assistant' => WritingAssistant
       }.freeze
 
       def self.for(assistant)

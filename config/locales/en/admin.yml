@@ -25,6 +25,8 @@ en:
     assessments_reports: Assessments & Reports
     assessor_dashboard: Assessor Dashboard
     assessor_workshops: Assessment Center
+    assistant_toolbar_failed: Failed to generate valid output after multiple attempts
+    assistant_toolbar_not_a_valid_operation: Unknown operation %{operation}.
     audit_logs: Audit Logs
     audit_reports: Audit Reports
     availability: Availability
@@ -62,8 +64,11 @@ en:
     done: Done
     done_tooltip: No more evaluation can be submitted for this user as this user's evaluation is marked as done by %{marked_by}
     empty_csv_file: CSV file does not contain any data.
+    enable_enhance_with_ai_client_level: Please enable Enhance with AI feature at client level
+    enhance_with_ai_requires_ai_assistants: Enhance with AI requires AI Assistants feature to be enabled
     evaluation_status: Evaluation Status
     evaluation_status_not_done: Evaluation status is not 'Done' for one or more selected subjects. Please ensure all selected users have completed evaluations or mark as done.
+    feature_enhance_with_ai: Enhance with AI
     fill_empty_score_msg: Fill all the final scores before saving.
     final_score_empty_msg: Final score cannot be empty.
     idp_plan_reset_success: Plan has been reset successfully
@@ -187,11 +192,18 @@ en:
     status_details: Status Details
     structured_learning: Formal Learning [10]
     subject_part_of_other_invite: Subject with email %{user_email} is already invited to '%{workshop_invite_name}'
+    toolbar_ai_insight: AI Insight
+    toolbar_ai_suggestion: AI Suggestion
+    toolbar_result_generating: Generating...
+    toolbar_text_copied: Copied to clipboard
+    toolbar_text_replaced: Text replaced!
+    toolbar_what_changed_and_why: What Changed & Why
     upload_success: Uploaded successfully
     user_report_events: User Report Events
     users: Users
     view_licenses: View Licenses
     waiting: Waiting
+    writing_assistant_not_configured: Writing Assistant not configured
     year: Year
     yoodli_activity_id: Yoodli Activity ID
     yoodli_email_id: Yoodli Candidate Email ID

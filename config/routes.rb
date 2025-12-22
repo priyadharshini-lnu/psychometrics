@@ -1668,6 +1668,12 @@ only: %i[index create update]
           jsonapi_resources :skill_groups, only: %i[index]
           jsonapi_resources :questions, only: %i[index]
 
+          jsonapi_resources :writing_assistants, only: [] do
+            collection do
+              post :assist
+            end
+          end
+
           namespace :ai do
             jsonapi_resources :assistants do
               jsonapi_relationships
