@@ -16,10 +16,11 @@ import {
   FC, useEffect, useRef, useState,
 } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { DirectionalNavigateBackIcon } from '~/glint'
 import { setUserIdpPlanStatus } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 import { USER_IDP_PLAN_STATUS } from '~/components/IdpShared/constants'
+import { RootState } from '~/modules/endUser/core/rootReducers'
 import { AIAssistantLayout } from '../AIAssistantLayout'
 import { AIIDPLoader } from './AIIDPLoader'
 import styles from './AIChat.less'
@@ -71,10 +72,11 @@ interface BubbleProps {
   onAction?: (action: string) => void,
   isCurrent?: boolean,
   status?: string
+  aiAssistedIdpHasDocumentAnalysis?: boolean
 }
 
 export const Bubble: FC<BubbleProps> = ({
-  content, onAction, isCurrent, status,
+  content, onAction, isCurrent, status, aiAssistedIdpHasDocumentAnalysis,
 }) => {
   const {
     component, message, data, role, error,
@@ -101,6 +103,7 @@ export const Bubble: FC<BubbleProps> = ({
       isCurrent={isCurrent}
       status={status}
       error={error}
+      aiAssistedIdpHasDocumentAnalysis={aiAssistedIdpHasDocumentAnalysis}
     />
   )
 }
@@ -130,6 +133,10 @@ export const AIChat = () => {
   const dispatch = useDispatch()
   const [recording, setRecording] = useState(false)
   const [resetInProgress, setResetInProgress] = useState(false)
+
+  const aiAssistedIdpHasDocumentAnalysis = useSelector(
+    (state: RootState) => state.config.idp.aiAssistedIdpHasDocumentAnalysis,
+  )
 
   const changeValue = (value: string) => {
     setUserPrompt(value)
@@ -326,7 +333,7 @@ export const AIChat = () => {
     scrollToBottom()
     if (messages.length > 0) {
       const lastMessage = messages[messages.length - 1]
-      if (lastMessage.component === 'RequestDocument') {
+      if (lastMessage.component === 'RequestDocument' && aiAssistedIdpHasDocumentAnalysis) {
         setStatus('document_upload')
       }
       if (lastMessage.component === 'Summary') {
@@ -564,9 +571,16 @@ export const AIChat = () => {
                 status={status}
                 isCurrent={index === messages.length - 1}
                 onAction={onAction}
+                aiAssistedIdpHasDocumentAnalysis={aiAssistedIdpHasDocumentAnalysis}
               />
             ))}
-            {requestProcessing && <Bubble content={{ component: 'BotLoading' }} />}
+            {requestProcessing
+              && (
+                <Bubble
+                  content={{ component: 'BotLoading' }}
+                  aiAssistedIdpHasDocumentAnalysis={aiAssistedIdpHasDocumentAnalysis}
+                />
+              )}
             <div style={{ marginBottom: 20 }} ref={listBottom} />
           </Flex>
           <Prompts
@@ -593,7 +607,7 @@ export const AIChat = () => {
               stopDictation={stopDictation}
             />
           )}
-          {status === 'document_upload' && renderUpload()}
+          {status === 'document_upload' && aiAssistedIdpHasDocumentAnalysis && renderUpload()}
           <Flex align="center" justify="center" gap={8} style={{ marginTop: 4 }}>
             <InfoCircleOutlined style={{ fontSize: '12px' }} />
             <Typography.Text type="secondary" style={{ fontSize: '12px' }}>

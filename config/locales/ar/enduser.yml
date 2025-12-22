@@ -6,6 +6,8 @@ ar:
     ai_idp_assistant_response_no: لا
     ai_idp_assistant_response_upload_different_document: أريد رفع مستند مختلف.
     ai_idp_assistant_response_yes_proceed_with_plan_creation: نعم، تابع في وضع الخطة.
+    ai_idp_retake_step_chat_hint_no_document: يمكنك إعادة تشغيل الدردشة لمشاركة المزيد من التفاصيل، وسأبذل قصارى جهدي لمساعدتك.
+    ai_idp_summary_hint_no_document: بإذنك، إذا قلت نعم، يمكنني إعداد خطة تطوير لك. إذا لم يكن كذلك، يمكنك إعادة تشغيل الدردشة لمشاركة المزيد من التفاصيل.
     approve_idp_plan: الموافقة على الخطة
     bookings: الحجوزات
     campaign: الحملة

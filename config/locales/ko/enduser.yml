@@ -6,6 +6,8 @@ ko:
     ai_idp_assistant_response_no: 아니요
     ai_idp_assistant_response_upload_different_document: 다른 문서를 업로드하고 싶습니다.
     ai_idp_assistant_response_yes_proceed_with_plan_creation: 네, 계획을 계속 작성하세요.
+    ai_idp_retake_step_chat_hint_no_document: 더 자세한 내용을 공유하려면 채팅을 다시 시작해 주시면 최선을 다해 도와드리겠습니다.
+    ai_idp_summary_hint_no_document: 허락해 주신다면, 제가 개발 계획을 세울 수 있습니다. 만약 그렇지 않다면, 채팅을 다시 시작해서 더 자세한 내용을 공유할 수 있습니다.
     approve_idp_plan: 계획 승인
     bookings: 예약
     campaign: 캠페인

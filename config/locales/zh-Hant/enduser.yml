@@ -6,6 +6,8 @@ zh-Hant:
     ai_idp_assistant_response_no: 不
     ai_idp_assistant_response_upload_different_document: 我想上傳另一份文件。
     ai_idp_assistant_response_yes_proceed_with_plan_creation: 是的，繼續制定計畫。
+    ai_idp_retake_step_chat_hint_no_document: 你可以重新開始聊天室，分享更多細節，我會盡力協助你。
+    ai_idp_summary_hint_no_document: 如果你同意，我可以幫你制定發展計畫。如果沒有，你可以重新開啟聊天室，分享更多細節。
     approve_idp_plan: 批准計劃
     bookings: 預訂
     campaign: 活動

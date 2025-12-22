@@ -6,6 +6,8 @@ hu:
     ai_idp_assistant_response_no: Nem
     ai_idp_assistant_response_upload_different_document: Szeretnék feltölteni egy másik dokumentumot.
     ai_idp_assistant_response_yes_proceed_with_plan_creation: Igen, folytasd a terv elkészítésével.
+    ai_idp_retake_step_chat_hint_no_document: Újraindíthatod a csevegést, hogy részletezhesd, és mindent megteszek, hogy segítsek.
+    ai_idp_summary_hint_no_document: Ha engedélyed van, ha igent mondasz, készíthetek neked fejlesztési tervet. Ha nem, újraindíthatod a csevegést, hogy részletesebben osszd meg.
     approve_idp_plan: Terv jóváhagyása
     bookings: Foglalások
     campaign: Kampány
