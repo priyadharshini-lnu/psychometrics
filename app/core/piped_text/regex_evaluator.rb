@@ -18,6 +18,7 @@ module PipedText
                     ''
                   end
           value = transformer.call(value) if transformer
+          value ||= ''
           yield(full_match, value)
         else
           yield(full_match, full_match)
