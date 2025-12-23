@@ -20,6 +20,7 @@ bg:
     ai_assistants_template_render_failed: Не успях да рендерирам шаблона
     ai_assistants_test_render: Тестов рендер
     ai_assistants_test_render_tooltip: Тествайте шаблона за подсказки с данни от кампанията, за да проверите какво ще бъде изпратено на AI асистента.
+    ai_assisted_idp_feature_disabled: Функцията AI Assisted IDP е деактивирана за този проект.
     assessments: Оценки
     assessments_reports: Оценки и отчети
     assessor_dashboard: Табло за управление на оценителя
@@ -63,6 +64,8 @@ bg:
     empty_csv_file: CSV файлът не съдържа никакви данни.
     evaluation_status: Статус на оценката
     evaluation_status_not_done: Статусът на оценяване не е "Завършен" за един или повече избрани предмети. Моля, уверете се, че всички избрани потребители са завършили оценките или са оценили като изпълнени.
+    fill_empty_score_msg: Запълнете всички крайни резултати преди да запазите.
+    final_score_empty_msg: Крайният резултат не може да бъде празен.
     idp_plan_reset_success: Планът беше успешно рестартиран
     import_ai_artifacts: Импортиране на AI артефакти
     import_csv_error: 'Ред %{index}: потребител с имейл %{email} не участва в тази кампания'

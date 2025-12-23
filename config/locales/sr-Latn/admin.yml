@@ -20,6 +20,7 @@ sr-Latn:
     ai_assistants_template_render_failed: Failed to render template
     ai_assistants_test_render: Test Render
     ai_assistants_test_render_tooltip: Testirajte svoj brzi predložak sa podacima o kampanji da biste proverili šta će biti poslato AI asistentu.
+    ai_assisted_idp_feature_disabled: AI Assisted IDP funkcija je onemogućena za ovaj projekat.
     assessments: Procene
     assessments_reports: Procene i izveštaji
     assessor_dashboard: Kontrolna tabla procenjivača
@@ -63,6 +64,8 @@ sr-Latn:
     empty_csv_file: CSV datoteka ne sadrži nikakve podatke.
     evaluation_status: Status evaluacije
     evaluation_status_not_done: Status evaluacije nije "Gotovo" za jedan ili više odabranih predmeta. Proverite da li su svi izabrani korisnici završili evaluacije ili označili kao urađeno.
+    fill_empty_score_msg: Popunite sve konačne rezultate pre čuvanja.
+    final_score_empty_msg: Konačni rezultat ne može biti prazan.
     idp_plan_reset_success: Plan je uspešno resetovan
     import_ai_artifacts: Uvoz AI artefakata
     import_csv_error: 'Red %{index}: korisnik sa e-poštom %{email} nije u ovoj kampanji'

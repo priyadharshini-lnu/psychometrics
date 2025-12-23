@@ -1968,6 +1968,7 @@ th:
         udpated_at: อัพเดทล่าสุดเมื่อ
       configuration: การกําหนดค่า
       errors:
+        factor_code_or_field_name_required: ต้องใช้ factor_code หรือ field_name
         factor_not_found: ไม่พบในขอบเขตการประเมิน
         inclusion: 'ชนิดไม่ถูกต้อง ชนิดที่ถูกต้อง: %{values}'
         not_found: ไม่พบ

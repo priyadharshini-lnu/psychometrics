@@ -20,6 +20,7 @@ hu:
     ai_assistants_template_render_failed: Nem sikerült megjeleníteni sablont
     ai_assistants_test_render: Tesztrender
     ai_assistants_test_render_tooltip: Teszteld a prompt sablonodat kampányadatokkal, hogy megbizonyosodj arról, mi fog elküldeni az AI asszisztensnek.
+    ai_assisted_idp_feature_disabled: Az AI Assisted IDP funkciót letiltották ehhez a projekthez.
     assessments: Értékelések
     assessments_reports: Felmérések és jelentések
     assessor_dashboard: Értékelő irányítópult
@@ -63,6 +64,8 @@ hu:
     empty_csv_file: A CSV fájl nem tartalmaz adatokat.
     evaluation_status: Értékelési állapot
     evaluation_status_not_done: Az értékelési státusz nem 'Kész' egy vagy több kiválasztott tantárgy esetében. Kérjük, minden kiválasztott felhasználó elvégezte az értékeléseket vagy jelölje meg.
+    fill_empty_score_msg: Töltsd ki az összes végső pontszámot mentés előtt.
+    final_score_empty_msg: A végső pontszám nem lehet üres.
     idp_plan_reset_success: A tervet sikeresen újraindították
     import_ai_artifacts: MI tárgyak importálása
     import_csv_error: "%{index}. sor: %{email} e-mail felhasználó nem része ebben a kampányban"

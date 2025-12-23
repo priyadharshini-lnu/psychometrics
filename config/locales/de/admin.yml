@@ -20,6 +20,7 @@ de:
     ai_assistants_template_render_failed: Vorlage wurde nicht gerendert
     ai_assistants_test_render: Testrendering
     ai_assistants_test_render_tooltip: Testen Sie Ihre Prompt-Vorlage mit Kampagnendaten, um zu sehen, was an den KI-Assistenten gesendet wird.
+    ai_assisted_idp_feature_disabled: Die KI-unterstützte IDP-Funktion wurde für dieses Projekt deaktiviert.
     assessments: Beurteilungen
     assessments_reports: Beurteilungen und Berichte
     assessor_dashboard: Assessor Dashboard
@@ -63,6 +64,8 @@ de:
     empty_csv_file: Die CSV-Datei enthält keine Daten.
     evaluation_status: Bewertungsstatus
     evaluation_status_not_done: Der Bewertungsstatus ist für eine oder mehrere ausgewählte Fächer nicht 'Erledigt'. Bitte stellen Sie sicher, dass alle ausgewählten Nutzer Bewertungen abgeschlossen haben oder als erledigt markiert werden.
+    fill_empty_score_msg: Füllen Sie alle Endpunktzahlen aus, bevor Sie speichern.
+    final_score_empty_msg: Das Endergebnis darf nicht leer sein.
     idp_plan_reset_success: Der Plan wurde erfolgreich zurückgesetzt
     import_ai_artifacts: KI-Artefakte importieren
     import_csv_error: 'Reihe %{index}: Nutzer mit E-Mail-%{email} ist nicht in dieser Kampagne'

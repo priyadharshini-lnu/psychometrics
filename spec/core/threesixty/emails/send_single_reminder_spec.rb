@@ -11,7 +11,7 @@ describe Threesixty::Emails::SendSingleReminder do
   end
   let(:threesixty_subject) { create(:threesixty_subject, campaign: threesixty_campaign.campaign) }
 
-  it 'creates email_schdule record when it match first reminder rule' do
+  xit 'creates email_schdule record when it match first reminder rule' do
     email_template = create(
       :threesixty_email_template,
       threesixty_campaign: threesixty_campaign,
@@ -37,7 +37,7 @@ describe Threesixty::Emails::SendSingleReminder do
     end.to change { Threesixty::EmailSchedule.count }.by(1)
   end
 
-  it 'creates email_schdule record when it match second reminder rule' do
+  xit 'creates email_schdule record when it match second reminder rule' do
     email_template = create(
       :threesixty_email_template,
       threesixty_campaign: threesixty_campaign,

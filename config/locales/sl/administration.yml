@@ -1968,6 +1968,7 @@ sl:
         udpated_at: Nazadnje posodobljeno na
       configuration: Konfiguracijo
       errors:
+        factor_code_or_field_name_required: factor_code ali field_name je potreben
         factor_not_found: ni bilo ugotovljeno v obsegu ocenjevanja
         inclusion: 'neveljavna vrsta, veljavne vrste: %{values}'
         not_found: ni mogoče najti

@@ -20,6 +20,7 @@ es-ES:
     ai_assistants_template_render_failed: No se ha podido renderizar la plantilla
     ai_assistants_test_render: Renderizado de prueba
     ai_assistants_test_render_tooltip: Prueba tu plantilla de prompts con datos de campaña para comprobar qué se enviará al asistente de IA.
+    ai_assisted_idp_feature_disabled: La función de desplazados internos asistidos por IA ha sido deshabilitada para este proyecto.
     assessments: Evaluaciones
     assessments_reports: Evaluaciones e informes
     assessor_dashboard: Panel de control del evaluador
@@ -63,6 +64,8 @@ es-ES:
     empty_csv_file: El archivo CSV no contiene ningún dato.
     evaluation_status: Estado de evaluación
     evaluation_status_not_done: El estado de la evaluación no está 'Hecho' para uno o más sujetos seleccionados. Por favor, asegúrese de que todos los usuarios seleccionados hayan completado las evaluaciones o marquen como hechos.
+    fill_empty_score_msg: Rellena todas las puntuaciones finales antes de guardar.
+    final_score_empty_msg: La puntuación final no puede estar vacía.
     idp_plan_reset_success: El plan se ha reiniciado con éxito
     import_ai_artifacts: Importar artefactos de IA
     import_csv_error: 'Fila %{index}: usuario con correo electrónico %{email} no está en esta campaña'

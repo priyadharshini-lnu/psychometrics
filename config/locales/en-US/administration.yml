@@ -1968,6 +1968,7 @@ en-US:
         udpated_at: Last Updated At
       configuration: Configuration
       errors:
+        factor_code_or_field_name_required: factor_code or field_name is required
         factor_not_found: not found in scope of assessment
         inclusion: 'invalid type, valid types: %{values}'
         not_found: not found

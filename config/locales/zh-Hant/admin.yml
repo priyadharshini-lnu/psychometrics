@@ -20,6 +20,7 @@ zh-Hant:
     ai_assistants_template_render_failed: 無法渲染範本
     ai_assistants_test_render: 測試渲染
     ai_assistants_test_render_tooltip: 用活動資料測試你的提示範本，看看會送給 AI 助理什麼。
+    ai_assisted_idp_feature_disabled: 本專案已停用 AI 輔助境內流離失所者功能。
     assessments: 評估
     assessments_reports: 評估與報告
     assessor_dashboard: 評估員儀表板
@@ -63,6 +64,8 @@ zh-Hant:
     empty_csv_file: CSV 檔案不包含任何資料。
     evaluation_status: 評估狀態
     evaluation_status_not_done: 一個或多個被選定的受試者，評估狀態並非「完成」。請確保所有被選中的使用者都已完成評估，或標記為已完成。
+    fill_empty_score_msg: 儲存前填寫所有最終分數。
+    final_score_empty_msg: 最終分數不能是空的。
     idp_plan_reset_success: 計畫已成功重置
     import_ai_artifacts: 匯入 AI 工件
     import_csv_error: 第 %{index} 列：擁有電子郵件 %{email} 的使用者未參與本次活動

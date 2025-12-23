@@ -1968,6 +1968,7 @@ zh:
         udpated_at: 最后更新时间
       configuration: 配置
       errors:
+        factor_code_or_field_name_required: 需要提供factor_code或field_name
         factor_not_found: 不在评估范围内
         inclusion: 无效类型，有效类型： %{values}
         not_found: 未找到

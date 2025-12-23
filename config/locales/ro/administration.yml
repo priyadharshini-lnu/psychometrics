@@ -1968,6 +1968,7 @@ ro:
         udpated_at: Ultima actualizare la
       configuration: Configurație
       errors:
+        factor_code_or_field_name_required: factor_code sau field_name este necesar
         factor_not_found: nu a fost găsit în domeniul de aplicare al evaluării
         inclusion: 'tip nevalid, tipuri valide: %{values}'
         not_found: nu a fost găsit

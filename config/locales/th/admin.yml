@@ -20,6 +20,7 @@ th:
     ai_assistants_template_render_failed: แสดงเทมเพลตไม่สําเร็จ
     ai_assistants_test_render: ทดสอบการแสดงผล
     ai_assistants_test_render_tooltip: ทดสอบเทมเพลตพร้อมท์ของคุณด้วยข้อมูลแคมเปญเพื่อตรวจสอบว่าอะไรจะถูกส่งไปยังผู้ช่วย AI
+    ai_assisted_idp_feature_disabled: คุณลักษณะ AI Assisted IDP ถูกปิดใช้งานสําหรับโครงการนี้
     assessments: การประเมิน
     assessments_reports: การประเมินและรายงาน
     assessor_dashboard: แดชบอร์ดผู้ประเมิน
@@ -63,6 +64,8 @@ th:
     empty_csv_file: ไฟล์ CSV ไม่มีข้อมูลใดๆ
     evaluation_status: สถานะการประเมิน
     evaluation_status_not_done: สถานะการประเมินไม่ใช่ "เสร็จสิ้น" สําหรับวิชาที่เลือกอย่างน้อยหนึ่งวิชา โปรดตรวจสอบให้แน่ใจว่าผู้ใช้ที่เลือกทั้งหมดได้ทําการประเมินหรือทําเครื่องหมายว่าเสร็จสิ้น
+    fill_empty_score_msg: กรอกคะแนนสุดท้ายทั้งหมดก่อนบันทึก
+    final_score_empty_msg: คะแนนสุดท้ายต้องไม่ว่างเปล่า
     idp_plan_reset_success: รีเซ็ตแผนเรียบร้อยแล้ว
     import_ai_artifacts: นําเข้าสิ่งประดิษฐ์ AI
     import_csv_error: 'แถวที่ %{index}: ผู้ใช้ที่มี %{email} อีเมลไม่ได้อยู่ในแคมเปญนี้'

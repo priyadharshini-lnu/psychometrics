@@ -20,6 +20,7 @@ ja:
     ai_assistants_template_render_failed: テンプレートのレンダリングに失敗しました
     ai_assistants_test_render: テストレンダリング
     ai_assistants_test_render_tooltip: プロンプトテンプレートをキャンペーンデータでテストし、AIアシスタントに送られる内容を確認しましょう。
+    ai_assisted_idp_feature_disabled: このプロジェクトではAI支援IDP機能は無効化されています。
     assessments: アセスメント
     assessments_reports: アセスメント＆レポート
     assessor_dashboard: 査定者ダッシュボード
@@ -63,6 +64,8 @@ ja:
     empty_csv_file: CSVファイルにはデータが含まれていません。
     evaluation_status: 評価状況
     evaluation_status_not_done: 選ばれた1つ以上の被験者の評価状況は「完了」ではありません。選ばれたすべてのユーザーが評価を完了しているか、完了したとマークしてください。
+    fill_empty_score_msg: 保存する前にすべての最終スコアを記入してください。
+    final_score_empty_msg: 最終スコアは空にはなりません。
     idp_plan_reset_success: 計画は正常にリセットされました
     import_ai_artifacts: AIアーティファクトのインポート
     import_csv_error: "%{index}行:メールアドレス%{email}のユーザーはこのキャンペーンに参加していません"

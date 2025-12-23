@@ -1968,6 +1968,7 @@ hr:
         udpated_at: Posljednji put ažurirano u
       configuration: Konfiguracija
       errors:
+        factor_code_or_field_name_required: factor_code ili field_name je potreban
         factor_not_found: nije utvrđeno u opsegu procjene
         inclusion: 'nevažeći tip, valjani tipovi: %{values}'
         not_found: nije pronađeno
