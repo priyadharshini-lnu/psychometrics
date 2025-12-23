@@ -261,7 +261,8 @@ export const AIChat = () => {
 
   const parseMessages = messages => messages.map((msg) => {
     const content = parseContent(msg.content)
-    const message = parseAssistantMessage(content || { message: msg.content })
+    const message = msg.role === 'assistant'
+      ? parseAssistantMessage(content || { message: msg.content }) : { message: msg.content }
     return ({
       ...message,
       role: msg.role,
@@ -333,6 +334,9 @@ export const AIChat = () => {
     scrollToBottom()
     if (messages.length > 0) {
       const lastMessage = messages[messages.length - 1]
+      if (lastMessage.component === 'AssistantMessage') {
+        setStatus('chat')
+      }
       if (lastMessage.component === 'RequestDocument' && aiAssistedIdpHasDocumentAnalysis) {
         setStatus('document_upload')
       }
@@ -381,15 +385,7 @@ export const AIChat = () => {
     setRequestProcessing(true)
     fetchMessages().then(({ response }) => {
       const { messages: fetchedMessages, error: aiSessionError } = response
-      const messages = fetchedMessages.map((msg) => {
-        const content = parseContent(msg.content)
-        const message = parseAssistantMessage(content || { message: msg.content })
-        return ({
-          // ...(content || { message: msg.content }),
-          ...message,
-          role: msg.role,
-        })
-      })
+      const messages = parseMessages(fetchedMessages)
 
       if (aiSessionError) {
         if (messages.length > 0) {
@@ -563,7 +559,7 @@ export const AIChat = () => {
               ) : null
             )}
           />
-          <Flex gap="middle" vertical className={styles.messages}>
+          <Flex gap="middle" vertical className={styles.messages} style={{ paddingInlineEnd: 16 }}>
             {messages.map((message, index) => (
               <Bubble
                 key={index}
