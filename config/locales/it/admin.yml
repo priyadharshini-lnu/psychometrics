@@ -20,6 +20,7 @@ it:
     ai_assistants_template_render_failed: Non è riuscito a renderizzare il template
     ai_assistants_test_render: Render di prova
     ai_assistants_test_render_tooltip: Testa il tuo modello di prompt con i dati della campagna per vedere cosa verrà inviato all'assistente AI.
+    ai_assisted_idp_feature_disabled: La funzione IDP assistita dall'IA è stata disabilitata per questo progetto.
     assessments: Assessment
     assessments_reports: Assessment e report
     assessor_dashboard: Dashboard valutatore
@@ -63,6 +64,8 @@ it:
     empty_csv_file: Il file CSV non contiene alcun dato.
     evaluation_status: Stato di valutazione
     evaluation_status_not_done: Lo stato di valutazione non è 'Fatto' per uno o più soggetti selezionati. Si prega di assicurarsi che tutti gli utenti selezionati abbiano completato le valutazioni o segnate come fatte.
+    fill_empty_score_msg: Compila tutti i punteggi finali prima di salvare.
+    final_score_empty_msg: Il punteggio finale non può essere vuoto.
     idp_plan_reset_success: Il piano è stato resettato con successo
     import_ai_artifacts: Importazione di artefatti IA
     import_csv_error: 'Riga %{index}: utente con email %{email} non è presente in questa campagna'

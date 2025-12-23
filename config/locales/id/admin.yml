@@ -20,6 +20,7 @@ id:
     ai_assistants_template_render_failed: Gagal merender templat
     ai_assistants_test_render: Uji Render
     ai_assistants_test_render_tooltip: Uji templat prompt Anda dengan data kampanye untuk memeriksa apa yang akan dikirim ke asisten AI.
+    ai_assisted_idp_feature_disabled: Fitur IDP Berbantuan AI telah dinonaktifkan untuk proyek ini.
     assessments: Penilaian
     assessments_reports: Penilaian & Laporan
     assessor_dashboard: Dasbor Penilai
@@ -63,6 +64,8 @@ id:
     empty_csv_file: CSV tidak berisi data apa pun.
     evaluation_status: Status Evaluasi
     evaluation_status_not_done: Status evaluasi tidak 'Selesai' untuk satu atau lebih mata pelajaran yang dipilih. Pastikan semua pengguna yang dipilih telah menyelesaikan evaluasi atau menandai sebagai selesai.
+    fill_empty_score_msg: Isi semua skor akhir sebelum menyimpan.
+    final_score_empty_msg: Skor akhir tidak bisa kosong.
     idp_plan_reset_success: Paket telah berhasil diatur ulang
     import_ai_artifacts: Impor Artefak AI
     import_csv_error: 'Baris %{index}: pengguna dengan email %{email} tidak ada dalam kampanye ini'

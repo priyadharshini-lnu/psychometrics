@@ -16,7 +16,7 @@ module UserReports
       user_reports.each do |user_report|
         report = user_report.report
 
-        unless report.provider_internal? || user_report.generatable?
+        unless user_report.generatable?
           job_record&.increment_completed_tasks!
           next
         end

@@ -20,6 +20,7 @@ ko:
     ai_assistants_template_render_failed: 템플릿 렌더링에 실패함
     ai_assistants_test_render: 테스트 렌더링
     ai_assistants_test_render_tooltip: 프롬프트 템플릿을 캠페인 데이터로 테스트해 AI 어시스턴트에 어떤 내용이 전송될지 확인하세요.
+    ai_assisted_idp_feature_disabled: 이 프로젝트에서는 AI 지원 국내 인류 처리 기능이 비활성화되었습니다.
     assessments: 평가
     assessments_reports: 평가 및 보고서
     assessor_dashboard: 평가자 대시보드
@@ -63,6 +64,8 @@ ko:
     empty_csv_file: CSV 파일에는 데이터가 포함되어 있지 않습니다.
     evaluation_status: 평가 현황
     evaluation_status_not_done: 한 명 이상의 선정 과목에 대한 평가 상태는 '완료'가 아닙니다. 모든 선택된 사용자가 평가를 완료했는지 확인하거나 완료 표시를 해 주세요.
+    fill_empty_score_msg: 저장하기 전에 모든 최종 점수를 입력하세요.
+    final_score_empty_msg: 최종 점수는 비어 있을 수 없습니다.
     idp_plan_reset_success: 계획이 성공적으로 재설정되었습니다
     import_ai_artifacts: AI 산출물 가져오기
     import_csv_error: "%{index}행: 이메일 %{email} 있는 사용자는 이 캠페인에 참여하지 않습니다"

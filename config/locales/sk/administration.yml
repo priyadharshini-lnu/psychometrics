@@ -1968,6 +1968,7 @@ sk:
         udpated_at: Posledná aktualizácia na
       configuration: Konfigurácia
       errors:
+        factor_code_or_field_name_required: factor_code alebo field_name je potrebné
         factor_not_found: nenájdené v rozsahu posúdenia
         inclusion: 'neplatný typ, platné typy: %{values}'
         not_found: Nenájdené

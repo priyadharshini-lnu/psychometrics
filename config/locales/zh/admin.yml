@@ -20,6 +20,7 @@ zh:
     ai_assistants_template_render_failed: 模板渲染失败
     ai_assistants_test_render: 测试渲染
     ai_assistants_test_render_tooltip: 用活动数据测试你的提示模板，看看会发送给AI助手的内容。
+    ai_assisted_idp_feature_disabled: 本项目已禁用AI辅助IDP功能。
     assessments: 评估
     assessments_reports: 评估与报告
     assessor_dashboard: 评估员仪表板
@@ -63,6 +64,8 @@ zh:
     empty_csv_file: CSV 文件不包含任何数据。
     evaluation_status: 评估状态
     evaluation_status_not_done: 一个或多个被选定的受试者的评估状态并非“完成”。请确保所有被选用户均完成评估，或标记为完成。
+    fill_empty_score_msg: 保存前填写所有最终分数。
+    final_score_empty_msg: 最终得分不能是空的。
     idp_plan_reset_success: 计划已成功重置
     import_ai_artifacts: 导入AI工件
     import_csv_error: 第%{index}行：带有电子邮件%{email}的用户未参与本次活动

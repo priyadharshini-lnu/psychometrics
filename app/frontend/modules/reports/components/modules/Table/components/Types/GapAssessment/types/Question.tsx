@@ -185,7 +185,7 @@ const QuestionTypeComponent: FC<Props> = ({
             })
           },
         )
-        return round(value, precision ?? 2) || 0
+        return _.isFinite(value) ? round(value, precision ?? 2) : null
       })
 
       if (!factor) {
@@ -198,7 +198,7 @@ const QuestionTypeComponent: FC<Props> = ({
         factorName: factor ? I18nStore.tFactorName(factor) : '',
         questionName: choice.name,
         factor,
-        diff: round(row.left - row.right, precision ?? 2),
+        diff: round((row.left || 0) - (row.right || 0), precision ?? 2),
       }
     })
 
@@ -504,8 +504,18 @@ const TBody: FC<TBodyProps> = ({
           {!columnsHeaderData.indicator.hide && <td>{gap.questionName}</td>}
           {!hideValues && (
             <>
-              {!hideLeftFilter && <td dir="ltr">{Utils.round(gap.left, precision ?? 2)}</td>}
-              {!hideRightFilter && <td dir="ltr">{Utils.round(gap.right, precision ?? 2)}</td>}
+              {!hideLeftFilter && (
+                <td dir="ltr">
+                  {gap.left !== null
+                    ? Utils.round(gap.left, precision ?? 2) : I18nStore.t('reports.modules.factors_table.na')}
+                </td>
+              )}
+              {!hideRightFilter && (
+                <td dir="ltr">
+                  {gap.right !== null
+                    ? Utils.round(gap.right, precision ?? 2) : I18nStore.t('reports.modules.factors_table.na')}
+                </td>
+              )}
               { !columnsHeaderData.gap.hide && (
                 <td dir="ltr" className={gapStyle(gap.diff)}>
                   {gapValue(gap.diff)}

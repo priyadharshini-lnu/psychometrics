@@ -1968,6 +1968,7 @@ ja:
         udpated_at: 最終更新日
       configuration: 構成
       errors:
+        factor_code_or_field_name_required: factor_codeまたはfield_nameが必要です
         factor_not_found: 評価対象外
         inclusion: '無効なタイプ、有効なタイプ: %{values}。'
         not_found: 見つからない

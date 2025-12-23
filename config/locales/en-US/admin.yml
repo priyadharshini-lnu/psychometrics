@@ -20,6 +20,7 @@ en-US:
     ai_assistants_template_render_failed: Failed to render template
     ai_assistants_test_render: Test Render
     ai_assistants_test_render_tooltip: Test your prompt template with campaign data to check what will be sent to the AI assistant.
+    ai_assisted_idp_feature_disabled: AI Assisted IDP feature has been disabled for this project.
     assessments: Assessments
     assessments_reports: Assessments & Reports
     assessor_dashboard: Assessor Dashboard
@@ -63,6 +64,8 @@ en-US:
     empty_csv_file: CSV file does not contain any data.
     evaluation_status: Evaluation Status
     evaluation_status_not_done: Evaluation status is not 'Done' for one or more selected subjects. Please ensure all selected users have completed evaluations or mark as done.
+    fill_empty_score_msg: Fill all the final scores before saving.
+    final_score_empty_msg: Final score cannot be empty.
     idp_plan_reset_success: Plan has been reset successfully
     import_ai_artifacts: Import AI Artifacts
     import_csv_error: 'Row %{index}: user with email %{email} is not in this campaign'

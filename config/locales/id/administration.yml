@@ -1968,6 +1968,7 @@ id:
         udpated_at: Terakhir Diperbarui di
       configuration: Konfigurasi
       errors:
+        factor_code_or_field_name_required: factor_code atau field_name diperlukan
         factor_not_found: tidak ditemukan dalam lingkup penilaian
         inclusion: 'Jenis tidak valid, jenis yang valid: %{values}'
         not_found: tidak ditemukan

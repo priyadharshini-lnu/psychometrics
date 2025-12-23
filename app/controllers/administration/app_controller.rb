@@ -3,6 +3,7 @@
 class Administration::AppController < Administration::BaseController
   skip_before_action :enforce_geo_restriction
   before_action :check_geo_restriction_if_client_context
+  skip_after_action :verify_authorized, only: [:dashboard]
 
   render_entrypoint :dashboard, element: 'admin-app-container', entry: 'admin/admin'
 
