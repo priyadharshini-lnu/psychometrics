@@ -44,12 +44,10 @@ export const Plan = () => {
     setIDPDevelopmentActionsPayload] = useState<UserIdpDevelopmentActionPayloadType[]>([])
   const [availableIDPDevelopmentActions, setAvailableIDPDevelopmentActions] = useState<UserIdpDevelopmentActions[]>([])
   const [selectedSkills, setSelectedSkills] = useState<UserIdpSkills[]>([])
-
   const {
     idpPlanId, projectId, campaignId, userId,
   } = useParams()
   const { tab: paramTab } = useParams()
-
   const [tab, setTab] = useState(paramTab || 'list')
 
   // eslint-disable-next-line max-len
@@ -205,7 +203,6 @@ export const Plan = () => {
     fetchIdpSkillDetails({
       apiConfig: {
         filter: {
-          project_id_eq: projectId as string,
           available_skills_by_plan_id: idpPlanId as string,
         },
         include: ['development_actions'],
@@ -249,7 +246,6 @@ export const Plan = () => {
       fetchIdpSkillDetails({
         apiConfig: {
           filter: {
-            project_id_eq: projectId as string,
             available_skills_by_plan_id: idpPlanId as string,
           },
           include: ['development_actions'],

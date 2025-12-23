@@ -1272,6 +1272,9 @@ as: :simulation_progress_notification
           jsonapi_resources :report_families do
             jsonapi_resources :report_families_reports
           end
+          namespace :idp_templates do
+            jsonapi_resources :skills, only: %i[index]
+          end
           jsonapi_resources :projects, only: :show do
             jsonapi_resources :idp_templates, only: %i[index create update destroy show],
               controller: 'projects/idp_templates' do
