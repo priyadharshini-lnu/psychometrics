@@ -16,6 +16,8 @@ module Threesixty
       private
 
       def get_status(subject)
+        return 'done' if subject.evaluation_status_completed?
+
         if valid_nomination_requirement?(subject) && all_evaluations_completed_by_subject?(subject)
           return 'completed'
         end
