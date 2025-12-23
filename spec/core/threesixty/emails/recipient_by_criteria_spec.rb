@@ -72,7 +72,7 @@ describe Threesixty::Emails::RecipientByCriteria do
 
     it 'adds default criteria for subject_reminder email' do
       recipient_criteria = default_recipient_criteria + [{
-        'field' => 'subject_status',
+        'field' => 'by_subject_self_activities',
         'value' => Threesixty::Participants::GetStatus::NOT_COMPLETED
       }]
       expect(Threesixty::ParticipatorByCriteria::Filter).to receive(:call!).
