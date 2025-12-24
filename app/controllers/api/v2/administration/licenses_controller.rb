@@ -40,5 +40,11 @@ module Api
         current_user, Client
       ).resolve.find(client_id)
     end
+
+    def enforce_geo_restriction
+      return if current_user.superadmin?
+
+      super
+    end
   end
 end

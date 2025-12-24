@@ -25,6 +25,7 @@ const ErrorModal: React.FC<Props> = ({ errors, clearRequestErrors }) => {
 
   const handleCancel = () => {
     setIsModalOpen(false)
+    clearRequestErrors()
   }
 
   useEffect(() => {
