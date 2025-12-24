@@ -15,7 +15,10 @@ RSpec.describe Api::V2::Administration::IdpTemplates::SkillsController, type: :c
       technical_global_skill_settings: 'all'
     )
   end
-  let(:plan) { create(:user_idp_plan, idp_template: idp_template) }
+  let(:campaign) { create(:campaign, project: project) }
+  let(:user) { create(:user) }
+  let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
+  let(:plan) { create(:user_idp_plan, idp_template: idp_template, campaign: campaign, user: user) }
   let!(:skills) { create_list(:skill, 5, project_id: idp_template.project_id) }
   let!(:other_skills) { create_list(:skill, 3) }
 
