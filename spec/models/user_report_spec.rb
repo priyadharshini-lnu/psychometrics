@@ -179,4 +179,87 @@ RSpec.describe UserReport, type: :model do
       end
     end
   end
+  describe '#generatable?' do
+    let(:user_report) { build(:user_report) }
+    let(:campaign_user) { instance_double(CampaignUser) }
+
+    before do
+      allow(user_report).to receive(:report_modules_empty?).and_return(false)
+      allow(user_report).to receive(:campaign_user).and_return(campaign_user)
+      allow(user_report).to receive(:has_approval_workflow?).and_return(false)
+    end
+
+    context 'when 360 report' do
+      before do
+        allow(user_report).to receive(:threesixty?).and_return(true)
+      end
+
+      it 'returns true when all conditions are met' do
+        expect(user_report).to be_generatable
+      end
+
+      it 'returns false when report_modules_empty? is true' do
+        allow(user_report).to receive(:report_modules_empty?).and_return(true)
+        expect(user_report).not_to be_generatable
+      end
+
+      context 'with approval workflow' do
+        before do
+          allow(user_report).to receive(:has_approval_workflow?).and_return(true)
+        end
+
+        it 'returns true if approved' do
+          allow(user_report).to receive(:approved?).and_return(true)
+          expect(user_report).to be_generatable
+        end
+
+        it 'returns false if not approved' do
+          allow(user_report).to receive(:approved?).and_return(false)
+          expect(user_report).not_to be_generatable
+        end
+      end
+
+      context 'with AI artifacts' do
+        let(:report) { instance_double(Report) }
+
+        before do
+          allow(user_report).to receive(:report).and_return(report)
+          allow(report).to receive(:campaign_ai_artifacts).and_return(['artifact'])
+        end
+
+        it 'returns true if artifacts finalized' do
+          allow(campaign_user).to receive(:campaign_artifact_results_finalized?).and_return(true)
+          expect(user_report).to be_generatable
+        end
+
+        it 'returns false if artifacts not finalized' do
+          allow(campaign_user).to receive(:campaign_artifact_results_finalized?).and_return(false)
+          expect(user_report).not_to be_generatable
+        end
+      end
+    end
+
+    context 'when common report' do
+      before do
+        allow(user_report).to receive(:threesixty?).and_return(false)
+        allow(user_report).to receive(:provider_custom_upload?).and_return(false)
+        allow(user_report).to receive(:all_assessments_are_scored?).and_return(true)
+        allow(user_report).to receive(:external_report?).and_return(false)
+      end
+
+      it 'returns true when all valid' do
+        expect(user_report).to be_generatable
+      end
+
+      it 'returns false if provider_custom_upload?' do
+        allow(user_report).to receive(:provider_custom_upload?).and_return(true)
+        expect(user_report).not_to be_generatable
+      end
+
+      it 'returns false if assessments not scored' do
+        allow(user_report).to receive(:all_assessments_are_scored?).and_return(false)
+        expect(user_report).not_to be_generatable
+      end
+    end
+  end
 end
