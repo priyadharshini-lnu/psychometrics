@@ -5,4 +5,5 @@ class Current < ActiveSupport::CurrentAttributes
   attribute :user_country
   attribute :project
   attribute :saml_service_provider
+  attribute :request_id
 end

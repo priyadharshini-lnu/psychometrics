@@ -67,6 +67,10 @@ end
 
 on_worker_boot do
   ActiveRecord::Base.establish_connection
+  # Reopen SemanticLogger to ensure worker processes log correctly after forking.
+  # Fixes issue where logging would shut down/stop unexpectedly.
+  # See: https://logger.rocketjob.io/forking.html
+  SemanticLogger.reopen
 end
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart

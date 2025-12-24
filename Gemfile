@@ -264,6 +264,9 @@ gem 'statistics', '~> 1.0'
 gem 'syslog'
 gem 'syslog-logger', '~> 1.6'
 
+gem 'rails_semantic_logger', '~> 4.14'
+gem 'semantic_logger', '~> 4.15'
+
 # TO handle authentication with Oracle
 gem 'oci', '~> 2.22.0'
 
