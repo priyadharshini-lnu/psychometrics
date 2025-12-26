@@ -25,7 +25,6 @@ export interface ConfigState {
     idpEnabled: boolean
     enhanceWithAiEnabled: boolean
     aiAssistedIdpFeatureEnabled: boolean,
-    enhanceWithAiEnabled: boolean
   },
   timezone: string,
   availableAiProviders: AiModel[]
@@ -39,7 +38,6 @@ export const defaultState: ConfigState = {
     idpEnabled: false,
     enhanceWithAiEnabled: false,
     aiAssistedIdpFeatureEnabled: false,
-    enhanceWithAiEnabled: false,
   },
   availableAiProviders: [],
 }
