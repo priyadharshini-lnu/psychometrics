@@ -6,6 +6,8 @@ bg:
     ai_idp_assistant_response_no: Не
     ai_idp_assistant_response_upload_different_document: Искам да кача друг документ.
     ai_idp_assistant_response_yes_proceed_with_plan_creation: Да, продължете с изготвянето на план.
+    ai_idp_retake_step_chat_hint_no_document: Можете да рестартирате чата, за да споделите повече подробности, а аз ще направя всичко възможно да ви помогна.
+    ai_idp_summary_hint_no_document: С твоето позволение, ако кажеш да, мога да създам план за развитие за теб. Ако не, можете да рестартирате чата, за да споделите повече подробности.
     approve_idp_plan: Одобри план
     bookings: Резервации
     campaign: Кампания

@@ -12,7 +12,7 @@ import styles from './styles.less'
 const { I18n } = window
 
 export const Summary = ({
-  message, data, isCurrent, onAction,
+  message, data, isCurrent, onAction, aiAssistedIdpHasDocumentAnalysis,
 }) => (
   <Bubble
     placement="start"
@@ -35,7 +35,7 @@ export const Summary = ({
           </ReactMarkdown>
         </Card>
         <Divider />
-        {data.documentSummary && (
+        {aiAssistedIdpHasDocumentAnalysis && data.documentSummary && (
           <>
             <Flex justify="space-between">
               <Typography.Title level={3}>{I18n.t('idp.ai.summary.file_title')}</Typography.Title>
@@ -78,7 +78,8 @@ export const Summary = ({
               {I18n.t('idp.ai.summary.title')}
             </Typography.Text>
             <Typography.Text strong style={{ margin: 0 }}>
-              {I18n.t('idp.ai.summary.hint')}
+              {aiAssistedIdpHasDocumentAnalysis
+                ? I18n.t('idp.ai.summary.hint') : I18n.t('enduser.ai_idp_summary_hint_no_document')}
             </Typography.Text>
           </Flex>
           {isCurrent && (

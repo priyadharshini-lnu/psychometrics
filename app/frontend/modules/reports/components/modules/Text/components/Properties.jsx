@@ -147,6 +147,7 @@ const Properties = ({
     })
   }
 
+
   const changeAITranslation = (e) => {
     updateAll((model) => {
       model.props.aiTranslationEnabled = e.currentTarget.checked

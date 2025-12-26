@@ -6,6 +6,8 @@ en-US:
     ai_idp_assistant_response_no: 'No'
     ai_idp_assistant_response_upload_different_document: I want to upload a different document.
     ai_idp_assistant_response_yes_proceed_with_plan_creation: Yes, proceed with plan creation.
+    ai_idp_retake_step_chat_hint_no_document: You can restart the chat to share more details, and I'll do my best to assist you.
+    ai_idp_summary_hint_no_document: With your permission, if you say yes, I can create a development plan for you. If not, you can restart the chat to share more details.
     approve_idp_plan: Approve Plan
     bookings: Bookings
     campaign: Campaign

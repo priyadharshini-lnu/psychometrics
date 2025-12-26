@@ -6,6 +6,8 @@ id:
     ai_idp_assistant_response_no: Tidak
     ai_idp_assistant_response_upload_different_document: Saya ingin mengunggah dokumen yang berbeda.
     ai_idp_assistant_response_yes_proceed_with_plan_creation: Ya, lanjutkan dengan pembuatan rencana.
+    ai_idp_retake_step_chat_hint_no_document: Anda dapat memulai ulang obrolan untuk membagikan detail lebih lanjut, dan saya akan melakukan yang terbaik untuk membantu Anda.
+    ai_idp_summary_hint_no_document: Dengan izin Anda, jika Anda mengatakan ya, saya dapat membuat rencana pengembangan untuk Anda. Jika tidak, Anda dapat memulai ulang obrolan untuk membagikan detail lebih lanjut.
     approve_idp_plan: Setujui Rencana
     bookings: Pemesanan
     campaign: Kampanye

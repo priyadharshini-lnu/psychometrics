@@ -6,6 +6,8 @@ sk:
     ai_idp_assistant_response_no: Nie
     ai_idp_assistant_response_upload_different_document: Chcem nahrať iný dokument.
     ai_idp_assistant_response_yes_proceed_with_plan_creation: Áno, pokračujte v tvorbe plánu.
+    ai_idp_retake_step_chat_hint_no_document: Môžeš začať chat, aby si zdieľal viac detailov, a ja sa budem snažiť ti pomôcť.
+    ai_idp_summary_hint_no_document: S vaším dovolením, ak poviete áno, môžem pre vás vytvoriť plán rozvoja. Ak nie, môžete chat reštartovať a zdieľať viac detailov.
     approve_idp_plan: Schváliť plán
     bookings: Rezervácie
     campaign: Kampaň

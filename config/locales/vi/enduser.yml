@@ -6,6 +6,8 @@ vi:
     ai_idp_assistant_response_no: Không
     ai_idp_assistant_response_upload_different_document: Tôi muốn tải lên một tài liệu khác.
     ai_idp_assistant_response_yes_proceed_with_plan_creation: Có, tiến hành tạo kế hoạch.
+    ai_idp_retake_step_chat_hint_no_document: Bạn có thể khởi động lại cuộc trò chuyện để chia sẻ thêm chi tiết và tôi sẽ cố gắng hết sức để hỗ trợ bạn.
+    ai_idp_summary_hint_no_document: Với sự cho phép của bạn, nếu bạn đồng ý, tôi có thể tạo một kế hoạch phát triển cho bạn. Nếu không, bạn có thể bắt đầu lại cuộc trò chuyện để chia sẻ thêm chi tiết.
     approve_idp_plan: Phê duyệt kế hoạch
     bookings: Đặt chỗ
     campaign: Chiến dịch

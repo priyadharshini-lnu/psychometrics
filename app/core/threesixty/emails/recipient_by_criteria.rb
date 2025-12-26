@@ -49,8 +49,8 @@ module Threesixty
       def add_default_criteria_for_subject_email(recipient_criteria)
         if email_name == ::Threesixty::Emails::Name::SUBJECT_REMINDER
           recipient_criteria << {
-            'field' => 'subject_status',
-            'value' => Threesixty::Participants::GetStatus::NOT_COMPLETED
+            'field' => 'by_subject_self_activities',
+            'value' => 'not_completed'
           }
         end
         recipient_criteria
