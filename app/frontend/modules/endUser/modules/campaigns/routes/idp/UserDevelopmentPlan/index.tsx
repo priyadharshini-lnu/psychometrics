@@ -251,22 +251,20 @@ const UserDevelopmentPlanComponent = ({
 
   useEffect(() => {
     if (currentUser.id === idpUserId) {
-      switch (approvalStatus) {
-        case USER_IDP_PLAN_STATUS.NOT_STARTED: {
-          const welcome_page = (aiAssistedIdpFeatureEnabled && oneClickIdpEnabled)
-            ? '/idp/ai_assistant/start' : '/idp/steps/getting_started'
-          navigate(welcome_page)
-          break
-        }
-        case USER_IDP_PLAN_STATUS.AI_ASSISTED_IDP_IN_PROGRESS: {
-          navigate('/idp/ai_assistant/chat')
-          break
-        }
-        default:
-          break
+      // Use approvalStatus to check AI assisted IDP in progress
+      // This is because status will be NOT_STARTED even when approvalStatus is AI_ASSISTED_IDP_IN_PROGRESS
+      if (approvalStatus === USER_IDP_PLAN_STATUS.AI_ASSISTED_IDP_IN_PROGRESS) {
+        navigate('/idp/ai_assistant/chat')
+        return
+      }
+
+      if (status === USER_IDP_PLAN_STATUS.NOT_STARTED) {
+        const welcome_page = (aiAssistedIdpFeatureEnabled && oneClickIdpEnabled)
+          ? '/idp/ai_assistant/start' : '/idp/steps/getting_started'
+        navigate(welcome_page)
       }
     }
-  }, [approvalStatus])
+  }, [status, approvalStatus])
 
   useEffect(() => {
     if (showAddSkill) {

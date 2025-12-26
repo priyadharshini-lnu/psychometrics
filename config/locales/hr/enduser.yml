@@ -6,6 +6,8 @@ hr:
     ai_idp_assistant_response_no: Ne
     ai_idp_assistant_response_upload_different_document: Želim učitati drugi dokument.
     ai_idp_assistant_response_yes_proceed_with_plan_creation: Da, nastavite s izradom plana.
+    ai_idp_retake_step_chat_hint_no_document: Možete ponovno pokrenuti chat da podijelite više detalja, a ja ću dati sve od sebe da vam pomognem.
+    ai_idp_summary_hint_no_document: Uz vaše dopuštenje, ako kažete da, mogu vam napraviti plan razvoja. Ako ne, možete ponovno pokrenuti chat kako biste podijelili više detalja.
     approve_idp_plan: Odobri plan
     bookings: Rezervacije
     campaign: Kampanja

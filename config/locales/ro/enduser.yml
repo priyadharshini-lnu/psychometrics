@@ -6,6 +6,8 @@ ro:
     ai_idp_assistant_response_no: Nu
     ai_idp_assistant_response_upload_different_document: Vreau să încarc un alt document.
     ai_idp_assistant_response_yes_proceed_with_plan_creation: Da, continuă cu crearea planului.
+    ai_idp_retake_step_chat_hint_no_document: Poți reporni chatul pentru a împărtăși mai multe detalii, iar eu voi face tot posibilul să te ajut.
+    ai_idp_summary_hint_no_document: Cu permisiunea dumneavoastră, dacă spuneți da, pot crea un plan de dezvoltare pentru dumneavoastră. Dacă nu, poți reporni chatul pentru a împărtăși mai multe detalii.
     approve_idp_plan: Aprobă planul
     bookings: Rezervări
     campaign: Campanie

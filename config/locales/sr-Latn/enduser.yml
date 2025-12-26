@@ -6,6 +6,8 @@ sr-Latn:
     ai_idp_assistant_response_no: Ne
     ai_idp_assistant_response_upload_different_document: Želim da otpremim drugi dokument.
     ai_idp_assistant_response_yes_proceed_with_plan_creation: Da, nastavite sa kreiranjem plana.
+    ai_idp_retake_step_chat_hint_no_document: Možete ponovo pokrenuti ćaskanje da biste podelili više detalja, a ja ću se potruditi da vam pomognem.
+    ai_idp_summary_hint_no_document: Uz vašu dozvolu, ako kažete da, mogu da napravim plan razvoja za vas. Ako ne, možete ponovo pokrenuti ćaskanje da biste podelili više detalja.
     approve_idp_plan: Odobri plan
     bookings: Rezervacije
     campaign: Kampanja

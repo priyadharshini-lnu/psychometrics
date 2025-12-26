@@ -12,8 +12,8 @@ import 'froala-editor/js/plugins.pkgd.min'
 const { I18n } = window
 
 function Editor ({
-  content, handleContentChange, readOnly = false, maxCharacterLimit = null, maxWordLimit = null,
-  allowContentCopyInReadOnlyMode = false,
+  content, handleContentChange, readOnly = false,
+  maxCharacterLimit = null, maxWordLimit = null, enhanceWithAIEnabled = true, allowContentCopyInReadOnlyMode = false,
 }, ref) {
   const [isInitialized, setIsInitialized] = useState(false)
   const showLimitExceededMessageRef = useRef(false)
@@ -113,7 +113,7 @@ function Editor ({
   })
 
   return (
-    <div className="classname">
+    <div className="classname" {...(enhanceWithAIEnabled && { 'data-ai-enabled': 'true' })}>
       {isInitialized && <FroalaEditor ref={ref} config={config} model={content} onModelChange={handleContentChange} />}
     </div>
   )

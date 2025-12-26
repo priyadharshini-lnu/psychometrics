@@ -14,6 +14,7 @@ module Api
             attribute[:ai_assistants].maybe(:bool)
             attribute[:ai_assisted_idp].maybe(:bool)
             attribute[:global_skills].maybe(:bool)
+            attribute[:enhance_with_ai].maybe(:bool)
             attribute[:idp].maybe(:bool)
           end
         end

@@ -9,6 +9,9 @@ module AI::IdpChat
             content: EndUser::AIAssistedUserIdpSessionSerializer.new.serialize(session).to_h
           }
         end
+        on(:error) do |error_message|
+          async_response.response_data = { content: { message: error_message, component: 'Error' } }
+        end
       end
 
       broadcast(:ok, async_response)

@@ -32,6 +32,7 @@ const RichTextPreview: FC<Props> = ({
     props: {
       predefinedRichText,
       usePredefinedRichText,
+      enhanceWithAIEnabled,
       allowContentCopy: allowContentCopyOnQuestion,
     },
 
@@ -65,6 +66,7 @@ const RichTextPreview: FC<Props> = ({
             readOnly={readOnly}
             allowContentCopyInReadOnlyMode={isCopyContentEnabledOnAssessment || allowContentCopyOnQuestion}
             ref={ref}
+            enhanceWithAIEnabled={enhanceWithAIEnabled}
             {...characterAndWordLimit(validation)}
           />
         </Col>

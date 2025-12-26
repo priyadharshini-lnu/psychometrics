@@ -269,14 +269,15 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
               <Input.TextArea rows={4} />
             )}
           </Form.Item>
-          <Form.Item
-            name="userPrompt"
-            label={I18n.t('administration.ai_assistants.form.user_prompt')}
-            rules={[{ required: true }]}
-          >
-            <Input.TextArea rows={4} />
-          </Form.Item>
-
+          {assistantType !== ASSISTANT_TYPES.writing_assistant.id && (
+            <Form.Item
+              name="userPrompt"
+              label={I18n.t('administration.ai_assistants.form.user_prompt')}
+              rules={[{ required: true }]}
+            >
+              <Input.TextArea rows={4} />
+            </Form.Item>
+          )}
           {assistantType === ASSISTANT_TYPES.content_writer.id && (
             <>
               <Form.Item

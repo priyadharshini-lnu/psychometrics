@@ -65,7 +65,8 @@ module Threesixty::InitialState
                         @current_project.project_feature_enabled?(:ai_assistants),
           aiAssistedIdpFeatureEnabled: @current_project.project_feature_enabled?(:ai_assisted_idp),
           userHasActiveIdp: @current_user.active_user_idp_plan.present?,
-          userHasDirectReporteesWithActiveIdp: current_user_has_direct_reportees_with_active_idp?
+          userHasDirectReporteesWithActiveIdp: current_user_has_direct_reportees_with_active_idp?,
+          aiAssistedIdpHasDocumentAnalysis: ai_assisted_idp_has_document_analysis?
         },
         securitySettings: {
           enableRecaptcha: @current_project.security_setting.enable_recaptcha
@@ -117,6 +118,10 @@ module Threesixty::InitialState
     @current_project.end_users.where(manager: @current_user).
       joins(:active_user_idp_plan).
       exists?
+  end
+
+  def ai_assisted_idp_has_document_analysis?
+    @current_user.active_user_idp_plan&.idp_template&.document_analysis_ai_assistant_id.present?
   end
 end
 # rubocop:enable Metrics/AbcSize

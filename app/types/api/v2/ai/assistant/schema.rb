@@ -29,7 +29,7 @@ module Api
               required(:name).filled(:string)
               required(:description).filled(:string)
               required(:system_prompt).filled(:string)
-              required(:user_prompt).filled(:string)
+              optional(:user_prompt).filled(:string)
               required(:assistant_type).filled(:string)
               required(:model_id).filled(:string)
               optional(:status).maybe(:string)

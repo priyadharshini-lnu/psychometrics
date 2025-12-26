@@ -27,6 +27,7 @@ export const defaultState = {
     idpEnabled: false,
     userHasActiveIdp: false,
     userHasDirectReporteesWithActiveIdp: false,
+    aiAssistedIdpHasDocumentAnalysis: false,
   },
   design: {
     primary_color: null,

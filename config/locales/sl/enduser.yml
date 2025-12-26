@@ -6,6 +6,8 @@ sl:
     ai_idp_assistant_response_no: Ne
     ai_idp_assistant_response_upload_different_document: Želim naložiti drug dokument.
     ai_idp_assistant_response_yes_proceed_with_plan_creation: Da, nadaljujte z ustvarjanjem načrta.
+    ai_idp_retake_step_chat_hint_no_document: Lahko ponovno začnete klepet, da delite več podrobnosti, in potrudil se bom, da vam pomagam.
+    ai_idp_summary_hint_no_document: Če dovolite, če rečete da, lahko pripravim razvojni načrt za vas. Če ne, lahko ponovno začnete klepet in delite več podrobnosti.
     approve_idp_plan: Odobri načrt
     bookings: Rezervacije
     campaign: Kampanja

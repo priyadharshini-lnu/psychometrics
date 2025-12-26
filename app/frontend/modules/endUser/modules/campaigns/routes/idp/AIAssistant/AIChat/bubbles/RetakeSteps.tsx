@@ -11,7 +11,7 @@ import styles from './styles.less'
 
 const { I18n } = window
 
-export const RetakeSteps = ({ onAction }) => (
+export const RetakeSteps = ({ onAction, aiAssistedIdpHasDocumentAnalysis }) => (
   <Bubble
     placement="start"
     variant="outlined"
@@ -23,10 +23,11 @@ export const RetakeSteps = ({ onAction }) => (
         <Flex vertical align="center" style={{ width: '100%' }}>
           <Typography.Title level={3}>{I18n.t('idp.ai.retake_steps.chat_title')}</Typography.Title>
           <Typography.Text type="secondary">
-            {I18n.t('idp.ai.retake_steps.chat_hint')}
+            {aiAssistedIdpHasDocumentAnalysis
+              ? I18n.t('idp.ai.retake_steps.chat_hint') : I18n.t('enduser.ai_idp_retake_step_chat_hint_no_document')}
           </Typography.Text>
         </Flex>
-        <Flex justify="space-between" style={{ width: '100%' }}>
+        <Flex justify={aiAssistedIdpHasDocumentAnalysis ? 'space-between' : 'space-around'} style={{ width: '100%' }}>
           <Flex vertical align="center" gap={12}>
             <div className={styles.iconContainer} style={{ background: '#a1d7d4' }}>
               <MessageOutlined className={styles.icon} />
@@ -46,15 +47,17 @@ export const RetakeSteps = ({ onAction }) => (
             </Popconfirm>
 
           </Flex>
-          <Flex vertical align="center" gap={12}>
-            <div className={styles.iconContainer} style={{ background: '#75c895' }}>
-              <FileOutlined className={styles.icon} />
-            </div>
-            <Typography.Text strong>{I18n.t('idp.ai.retake_steps.upload_document')}</Typography.Text>
-            <Button type="primary" size="small" icon={<UploadOutlined />} onClick={() => onAction('retakeDocument')}>
-              {I18n.t('idp.ai.retake_steps.upload_file')}
-            </Button>
-          </Flex>
+          {aiAssistedIdpHasDocumentAnalysis && (
+            <Flex vertical align="center" gap={12}>
+              <div className={styles.iconContainer} style={{ background: '#75c895' }}>
+                <FileOutlined className={styles.icon} />
+              </div>
+              <Typography.Text strong>{I18n.t('idp.ai.retake_steps.upload_document')}</Typography.Text>
+              <Button type="primary" size="small" icon={<UploadOutlined />} onClick={() => onAction('retakeDocument')}>
+                {I18n.t('idp.ai.retake_steps.upload_file')}
+              </Button>
+            </Flex>
+          )}
           <Flex vertical align="center" gap={12}>
             <div className={styles.iconContainer} style={{ background: '#75c895' }}>
               <CheckCircleOutlined className={styles.icon} />

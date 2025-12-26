@@ -6,6 +6,8 @@ nl:
     ai_idp_assistant_response_no: Nee
     ai_idp_assistant_response_upload_different_document: Ik wil een ander document uploaden.
     ai_idp_assistant_response_yes_proceed_with_plan_creation: Ja, ga door met het maken van een plan.
+    ai_idp_retake_step_chat_hint_no_document: Je kunt de chat opnieuw starten om meer details te delen, en ik zal mijn best doen om je te helpen.
+    ai_idp_summary_hint_no_document: Met uw toestemming, als u ja zegt, kan ik een ontwikkelingsplan voor u opstellen. Zo niet, dan kun je de chat opnieuw starten om meer details te delen.
     approve_idp_plan: Plan goedkeuren
     bookings: Boekingen
     campaign: Campagne

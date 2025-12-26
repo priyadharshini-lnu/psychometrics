@@ -6,6 +6,8 @@ ja:
     ai_idp_assistant_response_no: いいえ
     ai_idp_assistant_response_upload_different_document: 別のドキュメントをアップロードしたいです。
     ai_idp_assistant_response_yes_proceed_with_plan_creation: はい、計画作成を進めてください。
+    ai_idp_retake_step_chat_hint_no_document: 詳細を共有するためにチャットを再開しても構いません。できる限りお手伝いします。
+    ai_idp_summary_hint_no_document: もし許可があれば、開発計画を作成できます。もしそうでなければ、チャットを再開して詳細を共有してください。
     approve_idp_plan: プランを承認
     bookings: 予約
     campaign: キャンペーン

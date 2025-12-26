@@ -33,7 +33,9 @@ const MultiLinePreview: FC<Props> = ({
   questionTextId,
 }) => {
   const {
-    props: { type, allowDictation, allowContentCopy: allowContentCopyOnQuestion },
+    props: {
+      type, allowDictation, allowContentCopy: allowContentCopyOnQuestion, enhanceWithAIEnabled = true,
+    },
     id: questionId,
     result,
   } = model
@@ -94,6 +96,7 @@ const MultiLinePreview: FC<Props> = ({
                 focus={focus}
                 questionTextId={questionTextId}
                 allowContentCopyOnQuestion={allowContentCopyOnQuestion}
+                enhanceWithAIEnabled={enhanceWithAIEnabled}
               />
             </SpeechToTextInput>
           ) : (
@@ -107,6 +110,7 @@ const MultiLinePreview: FC<Props> = ({
               focus={focus}
               questionTextId={questionTextId}
               allowContentCopyOnQuestion={allowContentCopyOnQuestion}
+              enhanceWithAIEnabled={enhanceWithAIEnabled}
             />
           )}
         </Col>
@@ -126,6 +130,7 @@ interface MultiLineTextAreaProps {
   focus?:boolean
   questionTextId: string
   allowContentCopyOnQuestion?: boolean
+  enhanceWithAIEnabled?: boolean
 }
 
 const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
@@ -138,6 +143,7 @@ const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
   focus,
   questionTextId,
   allowContentCopyOnQuestion,
+  enhanceWithAIEnabled,
 }) => {
   const rows = type === 'MultiLine' ? 3 : 6
   const inputRef = useRef<HTMLTextAreaElement>(null)
@@ -176,6 +182,7 @@ const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
       onContextMenu={handleConextMenu}
       onCopy={handleCopyContentEvents}
       onCut={handleCopyContentEvents}
+      {...(enhanceWithAIEnabled && { 'data-ai-enabled': 'true' })}
     />
   )
 }

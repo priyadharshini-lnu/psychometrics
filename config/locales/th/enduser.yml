@@ -6,6 +6,8 @@ th:
     ai_idp_assistant_response_no: ไม่ใช่
     ai_idp_assistant_response_upload_different_document: ฉันต้องการอัปโหลดเอกสารอื่น
     ai_idp_assistant_response_yes_proceed_with_plan_creation: ใช่ ดําเนินการสร้างแผนต่อไป
+    ai_idp_retake_step_chat_hint_no_document: คุณสามารถเริ่มแชทใหม่เพื่อแบ่งปันรายละเอียดเพิ่มเติม และฉันจะพยายามอย่างเต็มที่เพื่อช่วยเหลือคุณ
+    ai_idp_summary_hint_no_document: หากคุณตอบตกลง ฉันสามารถสร้างแผนการพัฒนาให้คุณได้ หากไม่เป็นเช่นนั้น คุณสามารถเริ่มแชทใหม่เพื่อแบ่งปันรายละเอียดเพิ่มเติมได้
     approve_idp_plan: อนุมัติแผน
     bookings: การจอง
     campaign: รณรงค์
