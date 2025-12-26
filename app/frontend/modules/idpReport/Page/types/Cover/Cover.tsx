@@ -75,7 +75,7 @@ const Cover = ({ rtl }) => {
             )}
           </h1>
           <h2 className={styles.subtitle}>
-            {subtitle_text || '(all levels - for succession projects only)'}
+            {subtitle_text}
           </h2>
         </Flex>
 
