@@ -36,10 +36,14 @@ export const ChangePasswordComponent: React.FC<Props> = (
     recaptchaToken,
     recaptchaReady,
     recaptchaWidgetId,
+    resetRecaptcha,
   } = useRecaptcha({ formInstance: form, disable_recaptcha: !recaptchaEnabled })
 
   const handleChangePassword = values => changePassword(values).then(() => {
     window.location.href = '/users/sign_in'
+  }).catch((error) => {
+    resetRecaptcha()
+    throw error
   })
 
   return (

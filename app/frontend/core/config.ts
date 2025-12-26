@@ -22,7 +22,8 @@ export interface ConfigState {
   availableLocales: string[]
   features: FeaturesFlags,
   project: {
-    idpEnabled: boolean,
+    idpEnabled: boolean
+    enhanceWithAiEnabled: boolean
     aiAssistedIdpFeatureEnabled: boolean,
     enhanceWithAiEnabled: boolean
   },
@@ -36,6 +37,7 @@ export const defaultState: ConfigState = {
   timezone: '',
   project: {
     idpEnabled: false,
+    enhanceWithAiEnabled: false,
     aiAssistedIdpFeatureEnabled: false,
     enhanceWithAiEnabled: false,
   },

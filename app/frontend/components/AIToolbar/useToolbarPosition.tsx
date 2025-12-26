@@ -38,6 +38,17 @@ export const useToolbarPosition = (
         }
       }
     } else if (selectionData.type === 'input' && selectionData.element) {
+      if (selectionData.element.tagName === 'TEXTAREA') {
+        const textarea = selectionData.element as HTMLTextAreaElement
+        const isAllSelected = textarea.selectionStart === 0
+                             && textarea.selectionEnd === textarea.value.length
+                             && textarea.value.length > 0
+
+        if (isAllSelected) {
+          textarea.scrollTop = 0
+        }
+      }
+
       rect = getInputRect(selectionData.element)
     }
 

@@ -9,7 +9,11 @@ class SamlIdpController < ApplicationController
   before_action :authenticate_user!, except: [:show]
 
   def show
-    ::SamlIdp::GenerateProjectMetadata.call(project: @current_project, request: request) do
+    sp = SamlServiceProvider.find_by(id: params[:id], project: @current_project, enabled: true)
+    return render plain: 'Service provider not found', status: :not_found unless sp
+
+    ::SamlIdp::GenerateProjectMetadata.call(project: @current_project, service_provider: sp,
+                                            request: request) do
       on(:ok) do |metadata|
         respond_to do |format|
           format.xml { render plain: metadata, content_type: 'application/xml' }
@@ -79,7 +83,11 @@ class SamlIdpController < ApplicationController
   end
 
   def service_provider
-    @service_provider ||= SamlServiceProvider.find_by(entity_id: saml_request.issuer, enabled: true)
+    @service_provider ||= if params[:id].present?
+                            SamlServiceProvider.find_by(id: params[:id], project: @current_project, enabled: true)
+                          else
+                            SamlServiceProvider.find_by(entity_id: saml_request.issuer, enabled: true)
+                          end
   end
 
   def request_param

@@ -147,6 +147,14 @@ const Properties = ({
     })
   }
 
+
+  const changeAITranslation = (e) => {
+    updateAll((model) => {
+      model.props.aiTranslationEnabled = e.currentTarget.checked
+      model.update()
+    })
+  }
+
   const changeEnhanceWithAI = (e) => {
     updateAll((model) => {
       model.props.enhanceWithAIEnabled = e.currentTarget.checked
@@ -385,6 +393,15 @@ const Properties = ({
             Enhance with AI
           </label>
         )}
+        <label className={styles.inputLabel}>
+          <input
+            style={{ marginRight: '5px' }}
+            type="checkbox"
+            checked={model.props.aiTranslationEnabled ?? false}
+            onChange={changeAITranslation}
+          />
+          {I18n.t('administration.report_builder.property_panel.translate_with_ai')}
+        </label>
       </div>
       <hr className={styles.divider} />
       <div className={styles.block} style={{ position: 'relative' }}>

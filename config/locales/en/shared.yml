@@ -31,6 +31,7 @@ en:
     rte_paste_content_exceeds_char_limit: Text exceeds the character limit of {{maxCharacterLimit}} and cannot be pasted.
     rte_paste_content_exceeds_word_limit: Text exceeds the word limit of {{maxWordLimit}} and cannot be pasted.
     search: Search
+    show_more: Show More
     table:
       entries:
         selected:

@@ -271,12 +271,15 @@ class User < ApplicationRecord
   # If user was already created and was invited by mail (with link to set password)
   #   Then we just send him mail with link to new Client
   # Else we send him mail with link to set password
+  # We will not send invitation mail twice for the same user
   def invite!(invited_by = nil, membership = nil, options = {})
     return unless is?(:superadmin, :client_admin, :project_admin, :campaign_admin)
 
     if accepted_or_not_invited? && !sign_in_count.zero?
       return InvitationMailer.link_to_client(id, membership).deliver_later
     end
+
+    return if invited_to_sign_up?
 
     # Customizing default mail of devise_inviteable
     # Couse it's gem not support to change invite link

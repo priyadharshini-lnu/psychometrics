@@ -9,7 +9,7 @@ import dayjs from '~/utils/dayjs'
 const availableDates = [{ id: 1, date: '2524-07-15T09:00:00.100+05:30' }, { id: 2, date: '2524-07-15T09:30:00.100+05:30' }].map(({ id, date }) => ({ id, date: dayjs(date) }))
 const availableDateStrings = availableDates.map(({ id, date }) => date.date().toString())
 const DATE_TIME_FORMAT = 'DD/MM/YYYY hh:mm a'
-const timeZone = dayjs.tz.guess() || 'Asia/Calcutta'
+const timeZone = dayjs.tz.guess() || 'Asia/Kolkata'
 const availableDateAsPerTimezone_one = availableDates[0].date.tz(timeZone).clone()
 const availableDateAsPerTimezone_two = availableDates[1].date.tz(timeZone).clone()
 

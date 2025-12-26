@@ -49,9 +49,26 @@ module Idp::DevelopmentAction
       if user_idp_plan.pre_submission?
         user_idp_development_actions_to_cleanup.destroy_all
       else
-        user_idp_development_actions_to_cleanup.find_each do |orphaned_action|
-          orphaned_action.soft_delete!(current_user)
-        end
+        destroy_or_soft_delete_user_idp_development_actions(user_idp_development_actions_to_cleanup)
+      end
+    end
+
+    def destroy_or_soft_delete_user_idp_development_actions(user_idp_development_actions_to_cleanup)
+      last_version = @user_idp_plan.versions.where(
+        "object ->> 'approval_status' IN (?)", %w[approved rejected]
+      ).last&.reify(has_many: true, mark_for_destruction: true)
+
+      orphaned_user_idp_development_action_ids_to_destroy =
+        last_version&.user_idp_development_actions&.
+        select(&:marked_for_destruction?)&.
+        map(&:id) || []
+
+      user_idp_development_actions_to_cleanup.where(id: orphaned_user_idp_development_action_ids_to_destroy).destroy_all
+
+      user_idp_development_actions_to_cleanup.where.not(
+        id: orphaned_user_idp_development_action_ids_to_destroy
+      ).find_each do |orphaned_action|
+        orphaned_action.soft_delete!(current_user)
       end
     end
   end

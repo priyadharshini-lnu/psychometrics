@@ -117,7 +117,7 @@ module Administration
 
       def spoof
         audit! :sign_in_as, current_user, payload: { id: resource.user.id, sign_in_as: resource.user.email },
-          campaign: campaign
+               campaign: campaign
         sign_in(resource.user)
         flash.now[:success] = t('.successfully', name: resource.user.decorate.display_name)
         redirect_to assessors_dashboard_path

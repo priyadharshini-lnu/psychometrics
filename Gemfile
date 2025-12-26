@@ -107,8 +107,8 @@ gem 'acts-as-taggable-on', '~> 12.0'
 ### add fake destroying logic for models
 
 # Error tracking
-gem 'sentry-rails', '~> 5.15.2'
-gem 'sentry-sidekiq', '~> 5.15.2'
+gem 'sentry-rails', '~> 6.2.0'
+gem 'sentry-sidekiq', '~> 6.2.0'
 
 # DSL for activerecord
 gem 'baby_squeel', git: 'https://github.com/TheTalentEnterprise/baby_squeel', branch: 'master'
@@ -263,6 +263,9 @@ gem 'ostruct', '~> 0.6.1'
 gem 'statistics', '~> 1.0'
 gem 'syslog'
 gem 'syslog-logger', '~> 1.6'
+
+gem 'rails_semantic_logger', '~> 4.14'
+gem 'semantic_logger', '~> 4.15'
 
 # TO handle authentication with Oracle
 gem 'oci', '~> 2.22.0'

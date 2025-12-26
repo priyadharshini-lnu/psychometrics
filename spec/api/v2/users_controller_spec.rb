@@ -234,7 +234,7 @@ RSpec.describe Api::V2::Administration::UsersController, type: :request do
         last_name: 'Doe',
         user_profile_data: {
           locale: 'en',
-          timezone: 'Asia/Calcutta'
+          timezone: 'Asia/Kolkata'
         }
       }
 

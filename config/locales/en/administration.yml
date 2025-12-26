@@ -3581,6 +3581,7 @@ en:
           show_target_proficiency: Show Target Proficiency
           strengths_blindspots: Strengths & Blindspots
         text_condition_type: 'Text Condition Type:'
+        translate_with_ai: Translate with AI
     report_families:
       create:
         successfully: Report Bundle %{name} was created successfully.

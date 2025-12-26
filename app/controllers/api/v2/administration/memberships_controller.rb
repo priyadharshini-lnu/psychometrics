@@ -45,6 +45,12 @@ module Api
 
     private
 
+    def enforce_geo_restriction
+      return if current_user.superadmin?
+
+      super
+    end
+
     def set_resource
       @_resource = Api::Administration::MembershipPolicy::Scope.new(
         current_user, Membership
@@ -105,6 +111,8 @@ module Api
     end
 
     def check_geo_restriction_if_client_context
+      return if current_user.superadmin?
+
       client = client_from_attributes
       client&.check_geo_restriction!
     end
