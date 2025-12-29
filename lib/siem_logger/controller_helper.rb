@@ -49,7 +49,7 @@ module SiemLogger
       case found_by
         when :api_jwt, :lighthouse_jwt then 'JWT'
         when :sso then 'API Based SSO'
-        else found_by.to_s
+        else found_by.to_s.upcase
       end
     end
 

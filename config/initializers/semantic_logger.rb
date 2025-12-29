@@ -2,7 +2,7 @@
 
 require 'semantic_logger'
 
-SemanticLogger.default_level = Rails.env.production? ? :info : :debug
+SemanticLogger.default_level = Rails.env.test? ? :info : :debug
 
 $stdout.sync = true
 
