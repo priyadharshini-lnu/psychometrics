@@ -13,12 +13,14 @@ type FactorResults = {
 }
 
 export const Functions = {
-  Count (results) {
-    return results.length
+  Count (results, precision) {
+    const count = results.length
+    return _.round(count, precision ?? 1)
   },
-  Mean (results) {
+  Mean (results, precision) {
     const sum = results.reduce((n, result) => result.getValue() + n, 0)
-    return sum / results.length
+    const mean = sum / results.length
+    return _.round(mean, precision ?? 1)
   },
 }
 
@@ -26,11 +28,14 @@ export default {
   series (results: FactorResults[], factors, model: PropertiesModel, func: 'Count' | 'Mean' = 'Count', factorsData) {
     const useColorsFromGraphValueConditions = isGraphValueCondition(model.props.textConditionType)
     const colors = !useColorsFromGraphValueConditions ? model.props.colors.map(colorObj => colorObj.color) : []
+    const { precision } = model.props
+
     if (results) {
       const resultsData = model.props.hideEmptyFilters ? results.filter(r => !_.isEmpty(r.results.scoring)) : results
       return resultsData.map((res, i) => {
         const data = factors && factors.map((factor) => {
-          const y = (Functions[func] || Functions.Count)(result(res.results.scoring[factor.id], 'results', []))
+          const y = (Functions[func] || Functions.Count)(result(res.results.scoring[factor.id],
+            'results', []), precision)
           const barColor = useColorsFromGraphValueConditions
             ? getColorForGraphValue(model.props.graphValueConditions, y) : undefined
           return ({
