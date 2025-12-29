@@ -4,6 +4,7 @@ class BaseController < ActionController::Base
   include Pundit
   include SetLocale
   include AddCookie
+  include ControllerUtilities
   prepend AuditLogModule::ControllerHelper
   include SiemLogger::ControllerHelper
 
@@ -137,11 +138,6 @@ class BaseController < ActionController::Base
   end
 
   private
-
-  def end_user_side?
-    project_subdomain = request.subdomain.gsub(/\.{0,1}#{Settings.subdomain}/, '') if Settings.subdomain
-    project_subdomain.present?
-  end
 
   def siem_loggable_auth_method?(found_by)
     %i[api_jwt lighthouse_jwt sso].include?(found_by)

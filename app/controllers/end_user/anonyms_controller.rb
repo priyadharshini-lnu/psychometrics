@@ -4,13 +4,16 @@ module EndUser
   class AnonymsController < ActionController::Base
     include ::Threesixty::InitialState
     include SetLocale
+    include ControllerUtilities
     include AuthenticateAnonymousUser
+    include AssessmentUtilities
 
     layout 'layouts/end_user'
 
     protect_from_forgery with: :exception
     before_action :set_campaign_assessment
     before_action :authenticate_anonymous_user!, only: [:show]
+    before_action :redirect_and_ensure_valid_assessment_locale, only: [:show]
     before_action :find_or_create_anonymous_user, only: [:show]
     initial_state_for :show
     before_action :perform_browser_check, only: [:show]
@@ -69,7 +72,7 @@ module EndUser
     end
 
     def assessment
-      @assessment ||= @campaign_assessment.assessment
+      @assessment ||= @campaign_assessment&.assessment
     end
 
     def set_user_assessment_and_result
@@ -137,6 +140,11 @@ module EndUser
         secure: !(Rails.env.test? || Rails.env.development?),
         httponly: !(Rails.env.test? || Rails.env.development?)
       }
+    end
+
+    # Provides the assessment context for locale validation
+    def current_assessment
+      assessment
     end
 
     def set_locale

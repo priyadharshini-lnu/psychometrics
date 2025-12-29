@@ -46,6 +46,7 @@ describe EndUser::AnonymsController, type: :controller do
           user = Users::CreateAnonymCampaignUser.call!(campaign_assessment)
           allow(Users::AuthenticateAnonymousUser).to receive(:call!).and_return(user)
           project.update(locales: %w[en ar])
+          allow_any_instance_of(Assessment).to receive(:available_languages).and_return(%w[en ar])
         end
 
         it 'updates the selected locale for the user assessment' do
@@ -70,50 +71,74 @@ describe EndUser::AnonymsController, type: :controller do
           expect(User.last.reload.user_profile.locale).not_to eq('de')
         end
       end
-    end
 
-    context 'when assessment key is invalid' do
-      it 'returns not found status' do
-        get :show, params: { format: :json, assessment_key: 'invalid_key' }
+      context 'locale verification' do
+        before do
+          user = Users::CreateAnonymCampaignUser.call!(campaign_assessment)
+          allow(Users::AuthenticateAnonymousUser).to receive(:call!).and_return(user)
+          allow(Translation).
+            to receive(:available_translation_for_assessment).
+            and_return(%w[ar fr])
+        end
 
-        expect(response).to redirect_to(action: 'error')
-      end
-    end
+        it 'allows request when lang parameter is valid' do
+          get :show, params: { format: :json, assessment_key: campaign_assessment.assessment_key, lang: 'ar' }
 
-    context 'when assessment is archived' do
-      before do
-        assessment.update(archived: true)
-      end
+          expect(response).to have_http_status(:success)
+        end
 
-      it 'redirects to error action' do
-        get :show, params: { format: :json, assessment_key: campaign_assessment.assessment_key }
+        it 'redirects to default locale when lang parameter is invalid' do
+          get :show, params: { format: :json, assessment_key: campaign_assessment.assessment_key, lang: 'xyz' }
 
-        expect(response).to redirect_to(action: 'error')
-      end
-    end
-
-    context 'when universal links are not enabled' do
-      before do
-        campaign_assessment.update(enable_universal_links: false)
+          expect(response).to redirect_to(
+            anonym_pass_path(campaign_assessment.assessment_key, lang: I18n.default_locale)
+          )
+        end
       end
 
-      it 'redirects to error action' do
-        get :show, params: { format: :json, assessment_key: campaign_assessment.assessment_key }
+      context 'when assessment key is invalid' do
+        it 'returns not found status' do
+          get :show, params: { format: :json, assessment_key: 'invalid_key' }
 
-        expect(response).to redirect_to(action: 'error')
-      end
-    end
-
-    context 'when there are not enough licenses' do
-      before do
-        allow_any_instance_of(Users::CreateAnonymCampaignUser).to receive(:ensure_sufficient_licenses).
-          and_raise(Licenses::NotEnoughError)
+          expect(response).to redirect_to(action: 'error')
+        end
       end
 
-      it 'redirects to error action' do
-        get :show, params: { format: :json, assessment_key: campaign_assessment.assessment_key }
+      context 'when assessment is archived' do
+        before do
+          assessment.update(archived: true)
+        end
 
-        expect(response).to redirect_to(action: 'error')
+        it 'redirects to error action' do
+          get :show, params: { format: :json, assessment_key: campaign_assessment.assessment_key }
+
+          expect(response).to redirect_to(action: 'error')
+        end
+      end
+
+      context 'when universal links are not enabled' do
+        before do
+          campaign_assessment.update(enable_universal_links: false)
+        end
+
+        it 'redirects to error action' do
+          get :show, params: { format: :json, assessment_key: campaign_assessment.assessment_key }
+
+          expect(response).to redirect_to(action: 'error')
+        end
+      end
+
+      context 'when there are not enough licenses' do
+        before do
+          allow_any_instance_of(Users::CreateAnonymCampaignUser).to receive(:ensure_sufficient_licenses).
+            and_raise(Licenses::NotEnoughError)
+        end
+
+        it 'redirects to error action' do
+          get :show, params: { format: :json, assessment_key: campaign_assessment.assessment_key }
+
+          expect(response).to redirect_to(action: 'error')
+        end
       end
     end
   end
