@@ -180,16 +180,20 @@ RSpec.describe UserReport, type: :model do
     end
   end
   describe '#generatable?' do
-    let(:user_report) { build(:user_report) }
-    let(:campaign_user) { instance_double(CampaignUser) }
+    let(:user) { create(:user) }
+    let(:campaign) { create(:campaign) }
+    let(:report) { create(:report) }
+    let(:user_report) { create(:user_report, user: user, campaign: campaign, report: report) }
+    let!(:campaign_user) { create(:campaign_user, user: user, campaign: campaign) }
 
     before do
       allow(user_report).to receive(:report_modules_empty?).and_return(false)
-      allow(user_report).to receive(:campaign_user).and_return(campaign_user)
-      allow(user_report).to receive(:has_approval_workflow?).and_return(false)
     end
 
     context 'when 360 report' do
+      let(:campaign) { create(:campaign, :threesixty) }
+      let!(:threesixty_subject) { create(:threesixty_subject, user: user, campaign: campaign) }
+
       before do
         allow(user_report).to receive(:threesixty?).and_return(true)
       end
@@ -204,36 +208,36 @@ RSpec.describe UserReport, type: :model do
       end
 
       context 'with approval workflow' do
+        let(:approval_setting) { create(:report_approval_setting, report: report, campaign: campaign) }
+
         before do
-          allow(user_report).to receive(:has_approval_workflow?).and_return(true)
+          approval_setting
+          user_report.reload
         end
 
         it 'returns true if approved' do
-          allow(user_report).to receive(:approved?).and_return(true)
+          user_report.update!(approval_status: 'approved')
           expect(user_report).to be_generatable
         end
 
         it 'returns false if not approved' do
-          allow(user_report).to receive(:approved?).and_return(false)
+          user_report.update!(approval_status: 'not_ready')
           expect(user_report).not_to be_generatable
         end
       end
 
       context 'with AI artifacts' do
-        let(:report) { instance_double(Report) }
-
         before do
-          allow(user_report).to receive(:report).and_return(report)
           allow(report).to receive(:campaign_ai_artifacts).and_return(['artifact'])
         end
 
         it 'returns true if artifacts finalized' do
-          allow(campaign_user).to receive(:campaign_artifact_results_finalized?).and_return(true)
+          campaign_user.update!(campaign_artifact_results_finalized: true)
           expect(user_report).to be_generatable
         end
 
         it 'returns false if artifacts not finalized' do
-          allow(campaign_user).to receive(:campaign_artifact_results_finalized?).and_return(false)
+          campaign_user.update!(campaign_artifact_results_finalized: false)
           expect(user_report).not_to be_generatable
         end
       end
@@ -245,6 +249,7 @@ RSpec.describe UserReport, type: :model do
         allow(user_report).to receive(:provider_custom_upload?).and_return(false)
         allow(user_report).to receive(:all_assessments_are_scored?).and_return(true)
         allow(user_report).to receive(:external_report?).and_return(false)
+        allow(user_report).to receive(:report_modules_empty?).and_return(false)
       end
 
       it 'returns true when all valid' do
