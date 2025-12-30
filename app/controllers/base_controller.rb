@@ -42,7 +42,7 @@ class BaseController < ActionController::Base
 
     store_location_for(:user, request.original_fullpath) if request.get? && request.format.html?
     flash.delete(:notice)
-
+    I18n.locale = user_locale
     redirect_to change_password_required_path_for(:user),
                 alert: I18n.t('devise.password_expired.password_policy_changed')
   end
