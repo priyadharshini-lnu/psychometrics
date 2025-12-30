@@ -33,6 +33,7 @@ import { RescheduleAndCancel } from './RescheduleAndCancel'
 import { getLanguageNameFromCode } from '~/utils/locales'
 
 import styles from './BookingSuccess.less'
+import { normalizeTimeZone } from '~/hooks/useTimezones'
 
 const connector = connect(
   (state:RootState) => ({
@@ -66,7 +67,7 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
   const { inviteOrBookingId } = useParams() as { inviteOrBookingId: string }
   const bookedDateTime = bookingDetails?.bookedDate
   const bookedDateTimeMomentObject = bookedDateTime ? dayjs(bookedDateTime.date) : null
-  const currentTimezone = bookingDetails?.timezone || dayjs.tz.guess() || 'Asia/Dubai'
+  const currentTimezone = bookingDetails?.timezone || normalizeTimeZone(dayjs.tz.guess())
   const currentTime = dayjs().tz(currentTimezone)
   const bookedDateTimeMomentObjectTz = bookedDateTimeMomentObject?.clone().tz(currentTimezone)
   const duration = bookingDetails?.duration || 0

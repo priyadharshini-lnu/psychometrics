@@ -26,7 +26,7 @@ export const useTimezones = (currentZone?: string): TimezoneOption[] => useMemo(
   return timezoneOptions
 }, [currentZone])
 
-function normalizeTimeZone (zone?: string): string {
+export function normalizeTimeZone (zone: string): string {
   if (!zone) return 'UTC'
 
   const aliasMap: Record<string, string> = {

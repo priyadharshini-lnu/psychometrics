@@ -4259,15 +4259,10 @@ data-urls@^5.0.0:
     whatwg-mimetype "^4.0.0"
     whatwg-url "^14.0.0"
 
-dayjs@^1.11.10:
-  version "1.11.10"
-  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/dayjs/-/dayjs-1.11.10.tgz#68acea85317a6e164457d6d6947564029a6a16a0"
-  integrity sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==
-
-dayjs@^1.11.11, dayjs@^1.11.13:
-  version "1.11.13"
-  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/dayjs/-/dayjs-1.11.13.tgz#92430b0139055c3ebb60150aa13e860a4b5a366c"
-  integrity sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==
+dayjs@^1.11.10, dayjs@^1.11.11, dayjs@^1.11.19:
+  version "1.11.19"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/dayjs/-/dayjs-1.11.19.tgz#15dc98e854bb43917f12021806af897c58ae2938"
+  integrity sha512-t5EcLVS6QPBNqM2z8fakk/NKel+Xzshgt8FFKAn+qwlD1pzZWxh0nVCrvFK7ZDb6XucZeF9z8C7CBWTRIVApAw==
 
 debug@4, debug@4.3.4, debug@^3.2.6, debug@^3.2.7, debug@^4.0.0, debug@^4.1.0, debug@^4.1.1, debug@^4.3.1, debug@^4.3.2, debug@^4.3.4, debug@^4.3.7, debug@^4.4.0:
   version "4.3.4"
@@ -5453,11 +5448,6 @@ fraction.js@^4.2.0:
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/fraction.js/-/fraction.js-4.2.0.tgz#448e5109a313a3527f5a3ab2119ec4cf0e0e2950"
   integrity sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==
 
-froala-editor@4.5.1:
-  version "4.5.1"
-  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/froala-editor/-/froala-editor-4.5.1.tgz#4a5c9bd6bb72dfb19f80749ae68c810a4e16d1d8"
-  integrity sha512-hgx4JJAM80yM3PGdyj7+41OQHP+Yj59yMvknwQkizlkbo/aKn2lbEtiqPMm//thNEE6NCuGLpHCZqppR/7Vymg==
-
 framer-motion@^12.23.26:
   version "12.23.26"
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/framer-motion/-/framer-motion-12.23.26.tgz#2a684e9b156118e1c4989d7fc9327def83480391"
@@ -5466,6 +5456,11 @@ framer-motion@^12.23.26:
     motion-dom "^12.23.23"
     motion-utils "^12.23.6"
     tslib "^2.4.0"
+
+froala-editor@4.5.1:
+  version "4.5.1"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/froala-editor/-/froala-editor-4.5.1.tgz#4a5c9bd6bb72dfb19f80749ae68c810a4e16d1d8"
+  integrity sha512-hgx4JJAM80yM3PGdyj7+41OQHP+Yj59yMvknwQkizlkbo/aKn2lbEtiqPMm//thNEE6NCuGLpHCZqppR/7Vymg==
 
 fs-constants@^1.0.0:
   version "1.0.0"
