@@ -28,6 +28,7 @@ module Devtools
       prefix.register 'import_from_json', Devtools::CLI::Commands::I18n::ImportFromJson
       prefix.register 'fix_and_report_inconsistencies', Devtools::CLI::Commands::I18n::FixAndReportInconsistencies
       prefix.register 'generate_locales', Devtools::CLI::Commands::I18n::GenerateLocales
+      prefix.register 'export_to_xlsx', Devtools::CLI::Commands::I18n::ExportToXlsx
     end
   end
 end
