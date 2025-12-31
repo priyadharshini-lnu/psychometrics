@@ -1,7 +1,7 @@
 import { Button, Result } from 'antd'
 import React from 'react'
-import { DashboardOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
+import { DashboardOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import Modals from '~/modules/admin/components/Modals'
 import { DashboardFormModal } from '../DashboardFormModal'

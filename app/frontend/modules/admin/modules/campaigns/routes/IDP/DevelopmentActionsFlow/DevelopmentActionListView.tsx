@@ -3,9 +3,9 @@ import {
   Avatar, Button, Flex, Typography, Empty,
 } from 'antd'
 import { map, filter, sortBy } from 'lodash'
-import { PlusOutlined } from '@ant-design/icons'
 import { v4 as uuidv4 } from 'uuid'
 import { useMedia } from 'use-media'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Separator } from '~/components/IdpShared/Separator'
 import { DevelopmentActionLandscapeCard } from './DevelopmentActionLandscapeCard'
 import {

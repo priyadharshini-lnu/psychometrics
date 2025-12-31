@@ -5,7 +5,7 @@ import {
   Tag, Tabs, Row, Col, Avatar, Typography, Space, Divider,
 } from 'antd'
 import _ from 'lodash'
-import { CheckOutlined, UserOutlined } from '@ant-design/icons'
+import { CheckOutlined, UserOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 import {
   get as getUserReport,

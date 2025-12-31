@@ -2,9 +2,9 @@ import _ from 'lodash'
 import {
   Button, Popover, Popconfirm,
 } from 'antd'
-import { EditOutlined, PlusOutlined, DeleteOutlined } from '@ant-design/icons'
 import { connect } from 'react-redux'
 import { useState } from 'react'
+import { EditOutlined, PlusOutlined, DeleteOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from './StylesList.less'
 import Utils from '~/modules/reports/utils'
 

@@ -1,5 +1,5 @@
 import { Button, InputNumber, Select } from 'antd'
-import { DeleteOutlined } from '@ant-design/icons'
+import { DeleteOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 export default {
   run: (factor, onChange, onRemove, errors) => getColumns(onChange, onRemove, errors).filter(

@@ -6,7 +6,7 @@ import {
 import {
   useEffect, useState, useRef, useCallback,
 } from 'react'
-import { DeleteOutlined } from '@ant-design/icons'
+import { DeleteOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { useResources } from '~/hooks/useResources'
 import styles from './styles.less'
 

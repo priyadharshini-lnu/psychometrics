@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react'
 import { Dropdown, MenuProps, DropdownProps } from 'antd'
-import { MoreOutlined } from '@ant-design/icons'
 import compact from 'lodash/compact'
 import castArray from 'lodash/castArray'
+import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 interface Props extends Pick<DropdownProps, 'placement'> {
   menu: MenuProps | null

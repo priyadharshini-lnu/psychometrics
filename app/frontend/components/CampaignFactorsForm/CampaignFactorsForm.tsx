@@ -8,10 +8,9 @@ import {
   Row,
 } from 'antd'
 import type { InputRef, MenuProps } from 'antd'
-import { DeleteOutlined } from '@ant-design/icons'
 import { v4 as uuidv4 } from 'uuid'
 import styles from './CampaignFactorsForm.less'
-import { DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { DownOutlined, DeleteOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import BulkUploadModal from './BulkUploadModal'
 
 const { I18n } = window

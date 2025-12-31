@@ -5,9 +5,6 @@ import {
 import {
   Attachments, Prompts,
 } from '@ant-design/x'
-import {
-  CloudUploadOutlined, InfoCircleOutlined,
-} from '@ant-design/icons'
 import * as t from 'io-ts'
 import humps from 'humps'
 
@@ -17,6 +14,9 @@ import {
 } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import {
+  CloudUploadOutlined, InfoCircleOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { DirectionalNavigateBackIcon } from '~/glint'
 import { setUserIdpPlanStatus } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 import { USER_IDP_PLAN_STATUS } from '~/components/IdpShared/constants'

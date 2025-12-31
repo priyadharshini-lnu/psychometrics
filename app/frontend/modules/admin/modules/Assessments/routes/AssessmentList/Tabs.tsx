@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { Menu } from 'antd'
 import {
   ShopOutlined,
-} from '@ant-design/icons'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import settings from '../../settings'
 

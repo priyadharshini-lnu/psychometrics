@@ -3,7 +3,7 @@ import {
   FC, useEffect, useRef, useState, useMemo,
 } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { HistoryOutlined } from '@ant-design/icons'
+import { HistoryOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { getFeatures } from '~/core/config'
 import { EXTEND_SESSION, extendSession } from '~/core/extendSession'
 import { get as getCurrentUser } from '~/core/currentUser'

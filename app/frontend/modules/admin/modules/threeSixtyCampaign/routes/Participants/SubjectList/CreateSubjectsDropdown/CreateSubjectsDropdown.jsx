@@ -1,5 +1,5 @@
 import { Button, Dropdown } from 'antd'
-import { PlusOutlined, DownOutlined } from '@ant-design/icons'
+import { PlusOutlined, DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 const { I18n } = window
 

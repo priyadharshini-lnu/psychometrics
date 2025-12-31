@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import _ from 'lodash'
-import { PlayCircleOutlined } from '@ant-design/icons'
+import { PlayCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import ResultStore from '~/modules/reports/store/ResultStore'
 import userPresenter from '~/modules/reports/presenters/userPresenter'
 import I18nStore from '~/modules/reports/store/I18nStore'

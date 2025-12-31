@@ -2,9 +2,9 @@ import { useEffect } from 'react'
 import {
   Modal, Button, Row, Col,
 } from 'antd'
-import { PlusOutlined, CheckOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 import { useParams } from 'react-router-dom'
+import { PlusOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import List from './Tabs'
 import styles from './styles.less'
 

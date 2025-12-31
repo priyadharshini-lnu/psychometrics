@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import isEmpty from 'lodash/isEmpty'
 import wordsCount from 'words-count'
-import { InfoCircleOutlined } from '@ant-design/icons'
+import { InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { I18n } from '~/modules/survey/store/StoreWatchman'
 

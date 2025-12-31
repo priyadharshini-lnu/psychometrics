@@ -12,7 +12,7 @@ import {
   Checkbox,
 } from 'antd'
 import { connect } from 'react-redux'
-import { PlusOutlined, DeleteOutlined } from '@ant-design/icons'
+import { PlusOutlined, DeleteOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { PropertiesModel } from '~/modules/reports/interfaces/graphs/Bubble'
 

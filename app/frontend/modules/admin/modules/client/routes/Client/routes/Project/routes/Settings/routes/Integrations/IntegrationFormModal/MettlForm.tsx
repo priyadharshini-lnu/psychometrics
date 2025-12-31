@@ -4,7 +4,7 @@ import {
   Input,
   Select,
 } from 'antd'
-import { EditOutlined, CloseOutlined } from '@ant-design/icons'
+import { EditOutlined, CloseOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 const { Option } = Select
 

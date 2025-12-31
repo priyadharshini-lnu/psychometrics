@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 import {
   Table, Dropdown, Tag, message,
 } from 'antd'
-import { MoreOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
+import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 import { STATUSES } from '~/modules/admin/constants/mailHistory'
 import styles from './styles.less'

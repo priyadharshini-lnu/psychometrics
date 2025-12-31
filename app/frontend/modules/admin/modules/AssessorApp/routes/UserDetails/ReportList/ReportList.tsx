@@ -5,7 +5,7 @@ import {
   Table, Row, Col, Dropdown, MenuProps,
 } from 'antd'
 import { Link, useParams } from 'react-router-dom'
-import { MoreOutlined } from '@ant-design/icons'
+import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { get as getUserReports } from '~/modules/admin/modules/AssessorApp/core/userReports'
 import { RootState } from '~/modules/admin/core/rootReducers'
 

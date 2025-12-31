@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import _ from 'lodash'
 import { Button, Space } from 'antd'
-import { DeleteOutlined } from '@ant-design/icons'
+import { DeleteOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import panelStyles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import { ColorPicker } from '~/glint'
 import { rgba2hex } from '~/utils/color'

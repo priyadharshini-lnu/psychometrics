@@ -2,7 +2,7 @@ import React from 'react'
 import {
   message, Avatar, Button, Result, Space,
 } from 'antd'
-import { AudioOutlined } from '@ant-design/icons'
+import { AudioOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 const { I18n } = window
 

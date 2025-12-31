@@ -3,8 +3,8 @@ import _ from 'lodash'
 import {
   Modal, Button, Divider,
 } from 'antd'
-import { CheckOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
+import { CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import SpreadSheet from '~/components/SpreadSheet'
 import spreadSheetUtils from '~/modules/admin/utils/spreadSheet'
 import ErrorAlertBox from '~/components/ErrorAlertBox'

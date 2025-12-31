@@ -3,11 +3,11 @@ import cs from 'classnames'
 import {
   List, Space, Alert, Progress,
 } from 'antd'
+import _ from 'lodash'
 import {
   DownOutlined,
   UpOutlined,
-} from '@ant-design/icons'
-import _ from 'lodash'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 import { SafeHTML } from '~/components/SafeHTML'
 

@@ -1,11 +1,11 @@
 import { FC, useEffect, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Layout, Menu, Drawer } from 'antd'
-import {
-  ArrowLeftOutlined,
-} from '@ant-design/icons'
 import cs from 'classnames'
 import { useMedia } from 'use-media'
+import {
+  ArrowLeftOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { UserAvatar } from '~/components/UserAvatar'
 import styles from './Subnavigation.less'
 import { RootState } from '~/modules/admin/core/rootReducers'

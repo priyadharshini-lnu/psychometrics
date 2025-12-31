@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import {
   Modal, Button, Form, Select, App,
 } from 'antd'
-import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
+import { LoadingOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import {
   updateAvailableLocales,
   UPDATE_AVAILABLE_LOCALES,

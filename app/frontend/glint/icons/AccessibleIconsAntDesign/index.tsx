@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import Icon, {
+import AntdIcon, {
   InfoCircleOutlined as AntdInfoCircleOutlined,
   PlayCircleOutlined as AntdPlayCircleOutlined,
   ClockCircleOutlined as AntdClockCircleOutlined,
@@ -61,10 +61,88 @@ import Icon, {
   WarningFilled as AntWarningFilled,
   SendOutlined as AntdSendOutlined,
   SyncOutlined as AntdSyncOutlined,
+  ScissorOutlined as AntdScissorOutlined,
+  IdcardOutlined as AntdIdcardOutlined,
+  CopyOutlined as AntdCopyOutlined,
+  MoreOutlined as AntdMoreOutlined,
+  MenuOutlined as AntdMenuOutlined,
+  CloseCircleOutlined as AntdCloseCircleOutlined,
+  ContainerOutlined as AntdContainerOutlined,
+  BuildOutlined as AntdBuildOutlined,
+  DatabaseOutlined as AntdDatabaseOutlined,
+  FileImageOutlined as AntdFileImageOutlined,
+  AuditOutlined as AntdAuditOutlined,
+  ProfileOutlined as AntdProfileOutlined,
+  FileProtectOutlined as AntdFileProtectOutlined,
+  MailOutlined as AntdMailOutlined,
+  FundProjectionScreenOutlined as AntdFundProjectionScreenOutlined,
+  FormOutlined as AntdFormOutlined,
+  ClusterOutlined as AntdClusterOutlined,
+  ScheduleOutlined as AntdScheduleOutlined,
+  DashboardOutlined as AntdDashboardOutlined,
+  LayoutOutlined as AntdLayoutOutlined,
+  BookOutlined as AntdBookOutlined,
+  RobotOutlined as AntdRobotOutlined,
+  CompassOutlined as AntdCompassOutlined,
+  HistoryOutlined as AntdHistoryOutlined,
+  ExclamationCircleOutlined as AntdExclamationCircleOutlined,
+  UndoOutlined as AntdUndoOutlined,
+  EyeOutlined as AntdEyeOutlined,
+  FileTextOutlined as AntdFileTextOutlined,
+  ThunderboltOutlined as AntdThunderboltOutlined,
+  IssuesCloseOutlined as AntdIssuesCloseOutlined,
+  StarFilled as AntdStarFilled,
+  StarOutlined as AntdStarOutlined,
+  LockOutlined as AntdLockOutlined,
+  BellOutlined as AntdBellOutlined,
+  BellFilled as AntdBellFilled,
+  LogoutOutlined as AntdLogoutOutlined,
+  ShopOutlined as AntdShopOutlined,
+  EyeFilled as AntdEyeFilled,
+  SearchOutlined as AntdSearchOutlined,
+  SettingOutlined as AntdSettingOutlined,
+  PieChartOutlined as AntdPieChartOutlined,
+  QrcodeOutlined as AntdQrcodeOutlined,
+  SolutionOutlined as AntdSolutionOutlined,
+  LineChartOutlined as AntdLineChartOutlined,
+  RadarChartOutlined as AntdRadarChartOutlined,
+  ExportOutlined as AntdExportOutlined,
+  DragOutlined as AntdDragOutlined,
+  BlockOutlined as AntdBlockOutlined,
+  SaveOutlined as AntdSaveOutlined,
+  FilePdfOutlined as AntdFilePdfOutlined,
+  CrownOutlined as AntdCrownOutlined,
+  ApartmentOutlined as AntdApartmentOutlined,
+  ColumnWidthOutlined as AntdColumnWidthOutlined,
+  FullscreenOutlined as AntdFullscreenOutlined,
+  FileOutlined as AntdFileOutlined,
+  FolderOpenOutlined as AntdFolderOpenOutlined,
+  FolderOutlined as AntdFolderOutlined,
+  CloudUploadOutlined as AntdCloudUploadOutlined,
+  PauseCircleOutlined as AntdPauseCircleOutlined,
+  ImportOutlined as AntdImportOutlined,
+  SnippetsOutlined as AntdSnippetsOutlined,
+  RadiusUpleftOutlined as AntdRadiusUpleftOutlined,
+  RadiusUprightOutlined as AntdRadiusUprightOutlined,
+  RadiusBottomrightOutlined as AntdRadiusBottomrightOutlined,
+  RadiusBottomleftOutlined as AntdRadiusBottomleftOutlined,
+  BorderOuterOutlined as AntdBorderOuterOutlined,
+  UnlockOutlined as AntdUnlockOutlined,
+  PictureOutlined as AntdPictureOutlined,
+  FieldTimeOutlined as AntdFieldTimeOutlined,
+  ExclamationCircleFilled as AntdExclamationCircleFilled,
+  ClearOutlined as AntdClearOutlined,
+  CaretDownFilled as AntdCaretDownFilled,
+  CaretDownOutlined as AntdCaretDownOutlined,
+  InfoOutlined as AntdInfoOutlined,
+  SwapOutlined as AntdSwapOutlined,
+  PartitionOutlined as AntdPartitionOutlined,
+  TranslationOutlined as AntdTranslationOutlined,
+  TableOutlined as AntdTableOutlined,
 } from '@ant-design/icons'
 import type { IconComponentProps } from '@ant-design/icons/lib/components/Icon'
 
-const withAccessibilityProps = (AntIcon: typeof Icon) => {
+const withAccessibilityProps = (AntIcon: typeof AntdIcon) => {
   const WithAccessibilityProps:FC<IconComponentProps> = props => <AntIcon aria-hidden aria-label="" {...props} />
 
   return WithAccessibilityProps
@@ -131,3 +209,84 @@ export const ArrowUpOutlined = withAccessibilityProps(AntdArrowUpOutlined)
 export const ArrowDownOutlined = withAccessibilityProps(AntdArrowDownOutlined)
 export const SendOutlined = withAccessibilityProps(AntdSendOutlined)
 export const SyncOutlined = withAccessibilityProps(AntdSyncOutlined)
+export const ScissorOutlined = withAccessibilityProps(AntdScissorOutlined)
+export const IdcardOutlined = withAccessibilityProps(AntdIdcardOutlined)
+export const CopyOutlined = withAccessibilityProps(AntdCopyOutlined)
+export const MoreOutlined = withAccessibilityProps(AntdMoreOutlined)
+export const MenuOutlined = withAccessibilityProps(AntdMenuOutlined)
+export const CloseCircleOutlined = withAccessibilityProps(AntdCloseCircleOutlined)
+export const ContainerOutlined = withAccessibilityProps(AntdContainerOutlined)
+export const BuildOutlined = withAccessibilityProps(AntdBuildOutlined)
+export const DatabaseOutlined = withAccessibilityProps(AntdDatabaseOutlined)
+export const FileImageOutlined = withAccessibilityProps(AntdFileImageOutlined)
+export const AuditOutlined = withAccessibilityProps(AntdAuditOutlined)
+export const ProfileOutlined = withAccessibilityProps(AntdProfileOutlined)
+export const FileProtectOutlined = withAccessibilityProps(AntdFileProtectOutlined)
+export const MailOutlined = withAccessibilityProps(AntdMailOutlined)
+export const FundProjectionScreenOutlined = withAccessibilityProps(AntdFundProjectionScreenOutlined)
+export const FormOutlined = withAccessibilityProps(AntdFormOutlined)
+export const ClusterOutlined = withAccessibilityProps(AntdClusterOutlined)
+export const ScheduleOutlined = withAccessibilityProps(AntdScheduleOutlined)
+export const DashboardOutlined = withAccessibilityProps(AntdDashboardOutlined)
+export const LayoutOutlined = withAccessibilityProps(AntdLayoutOutlined)
+export const BookOutlined = withAccessibilityProps(AntdBookOutlined)
+export const RobotOutlined = withAccessibilityProps(AntdRobotOutlined)
+export const CompassOutlined = withAccessibilityProps(AntdCompassOutlined)
+export const HistoryOutlined = withAccessibilityProps(AntdHistoryOutlined)
+export const ExclamationCircleOutlined = withAccessibilityProps(AntdExclamationCircleOutlined)
+export const UndoOutlined = withAccessibilityProps(AntdUndoOutlined)
+export const EyeOutlined = withAccessibilityProps(AntdEyeOutlined)
+export const FileTextOutlined = withAccessibilityProps(AntdFileTextOutlined)
+export const ThunderboltOutlined = withAccessibilityProps(AntdThunderboltOutlined)
+export const IssuesCloseOutlined = withAccessibilityProps(AntdIssuesCloseOutlined)
+export const StarFilled = withAccessibilityProps(AntdStarFilled)
+export const StarOutlined = withAccessibilityProps(AntdStarOutlined)
+export const LockOutlined = withAccessibilityProps(AntdLockOutlined)
+export const BellOutlined = withAccessibilityProps(AntdBellOutlined)
+export const BellFilled = withAccessibilityProps(AntdBellFilled)
+export const LogoutOutlined = withAccessibilityProps(AntdLogoutOutlined)
+export const ShopOutlined = withAccessibilityProps(AntdShopOutlined)
+export const EyeFilled = withAccessibilityProps(AntdEyeFilled)
+export const SearchOutlined = withAccessibilityProps(AntdSearchOutlined)
+export const SettingOutlined = withAccessibilityProps(AntdSettingOutlined)
+export const PieChartOutlined = withAccessibilityProps(AntdPieChartOutlined)
+export const QrcodeOutlined = withAccessibilityProps(AntdQrcodeOutlined)
+export const SolutionOutlined = withAccessibilityProps(AntdSolutionOutlined)
+export const LineChartOutlined = withAccessibilityProps(AntdLineChartOutlined)
+export const RadarChartOutlined = withAccessibilityProps(AntdRadarChartOutlined)
+export const ExportOutlined = withAccessibilityProps(AntdExportOutlined)
+export const DragOutlined = withAccessibilityProps(AntdDragOutlined)
+export const BlockOutlined = withAccessibilityProps(AntdBlockOutlined)
+export const SaveOutlined = withAccessibilityProps(AntdSaveOutlined)
+export const FilePdfOutlined = withAccessibilityProps(AntdFilePdfOutlined)
+export const SearchIcon = withAccessibilityProps(AntdSearchOutlined)
+export const CrownOutlined = withAccessibilityProps(AntdCrownOutlined)
+export const ApartmentOutlined = withAccessibilityProps(AntdApartmentOutlined)
+export const ColumnWidthOutlined = withAccessibilityProps(AntdColumnWidthOutlined)
+export const FullscreenOutlined = withAccessibilityProps(AntdFullscreenOutlined)
+export const FileOutlined = withAccessibilityProps(AntdFileOutlined)
+export const FolderOpenOutlined = withAccessibilityProps(AntdFolderOpenOutlined)
+export const FolderOutlined = withAccessibilityProps(AntdFolderOutlined)
+export const CloudUploadOutlined = withAccessibilityProps(AntdCloudUploadOutlined)
+export const PauseCircleOutlined = withAccessibilityProps(AntdPauseCircleOutlined)
+export const ImportOutlined = withAccessibilityProps(AntdImportOutlined)
+export const SnippetsOutlined = withAccessibilityProps(AntdSnippetsOutlined)
+export const RadiusUpleftOutlined = withAccessibilityProps(AntdRadiusUpleftOutlined)
+export const RadiusUprightOutlined = withAccessibilityProps(AntdRadiusUprightOutlined)
+export const RadiusBottomrightOutlined = withAccessibilityProps(AntdRadiusBottomrightOutlined)
+export const RadiusBottomleftOutlined = withAccessibilityProps(AntdRadiusBottomleftOutlined)
+export const BorderOuterOutlined = withAccessibilityProps(AntdBorderOuterOutlined)
+export const UnlockOutlined = withAccessibilityProps(AntdUnlockOutlined)
+export const PictureOutlined = withAccessibilityProps(AntdPictureOutlined)
+export const FieldTimeOutlined = withAccessibilityProps(AntdFieldTimeOutlined)
+export const ExclamationCircleFilled = withAccessibilityProps(AntdExclamationCircleFilled)
+export const ClearOutlined = withAccessibilityProps(AntdClearOutlined)
+export const CaretDownFilled = withAccessibilityProps(AntdCaretDownFilled)
+export const CaretDownOutlined = withAccessibilityProps(AntdCaretDownOutlined)
+export const InfoOutlined = withAccessibilityProps(AntdInfoOutlined)
+export const SwapOutlined = withAccessibilityProps(AntdSwapOutlined)
+export const PartitionOutlined = withAccessibilityProps(AntdPartitionOutlined)
+export const TranslationOutlined = withAccessibilityProps(AntdTranslationOutlined)
+export const TableOutlined = withAccessibilityProps(AntdTableOutlined)
+
+export default withAccessibilityProps(AntdIcon)

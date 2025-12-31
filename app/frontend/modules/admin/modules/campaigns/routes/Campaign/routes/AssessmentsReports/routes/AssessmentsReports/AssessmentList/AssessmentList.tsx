@@ -3,9 +3,9 @@ import {
   Table, Row, Col, Switch, App,
 } from 'antd'
 
-import { MoreOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
+import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { getActionsMenuProps } from './getActionsMenuProps'
 import { PropsFromRedux } from './connect'

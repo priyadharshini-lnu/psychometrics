@@ -18,7 +18,7 @@ import {
   App,
   Skeleton,
 } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { MenuItem } from '~/interfaces/Antd'
 import { openModal } from '~/modules/admin/core/ui/modals'

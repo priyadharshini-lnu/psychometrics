@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Form, Input, Select, Button, Flex, Divider, Tooltip,
 } from 'antd'
-import { DeleteOutlined } from '@ant-design/icons'
+import { DeleteOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { SCHEMA_KEY_TYPES } from '~/modules/admin/modules/AiAssitant/core/constants'
 
 const { I18n } = window

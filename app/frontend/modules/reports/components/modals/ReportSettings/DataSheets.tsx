@@ -6,10 +6,10 @@ import {
   Alert, Button, Input, InputRef, Space, Empty, Typography,
   Badge, Table, Select,
 } from 'antd'
+import { useSelector, useDispatch } from 'react-redux'
 import {
   ImportOutlined, PlusOutlined, SaveOutlined, DeleteOutlined,
-} from '@ant-design/icons'
-import { useSelector, useDispatch } from 'react-redux'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { setIn } from '~/utils/immutable'
 import { DATA_SHEET_COLUMN_TYPES } from '~/components/DataSheetModal/constants'
 import styles from './DataSheets.less'

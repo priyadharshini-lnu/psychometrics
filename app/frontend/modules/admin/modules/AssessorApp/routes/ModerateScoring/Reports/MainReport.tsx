@@ -3,8 +3,8 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Button, Skeleton,
 } from 'antd'
-import { ReloadOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
+import { ReloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { useReportDimensions } from '~/hooks/useReportDimensions'
 import styles from './styles.less'
 import { RootState } from '~/modules/admin/core/rootReducers'

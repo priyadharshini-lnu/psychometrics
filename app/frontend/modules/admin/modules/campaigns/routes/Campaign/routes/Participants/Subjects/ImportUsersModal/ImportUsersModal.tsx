@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import {
   Button, Modal, message, Alert, Form, Radio, Input,
 } from 'antd'
 import Event from 'interfaces/Event'
 import _ from 'lodash'
+import { LoadingOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { PropsFromRedux } from './connect'
 
 const { I18n } = window

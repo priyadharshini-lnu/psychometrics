@@ -6,10 +6,10 @@ import { CSS } from '@dnd-kit/utilities'
 import {
   Card, Space, Button, Typography, App,
 } from 'antd'
+import { DraggableSyntheticListeners } from '@dnd-kit/core'
 import {
   DragOutlined, PlusOutlined, DeleteOutlined, EditOutlined,
-} from '@ant-design/icons'
-import { DraggableSyntheticListeners } from '@dnd-kit/core'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { GroupForm } from './AddGroupForm'
 
 export const FACTORS_LIMIT = 300

@@ -2,11 +2,11 @@ import React, { useEffect, useCallback, useState } from 'react'
 import {
   Form, Input, Select, Spin, Switch, Modal, Button, Tooltip, Flex, Alert, Checkbox,
 } from 'antd'
-import { EditOutlined } from '@ant-design/icons'
 import { FormInstance } from 'antd/lib/form'
 import _ from 'lodash'
 import { Tag } from 'modules/admin/core/tags'
 import { connect } from 'react-redux'
+import { EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { useResources } from '~/hooks/useResources'
 import { Report } from '~/modules/admin/modules/client/core/reports'
 import { Assessment } from '~/modules/admin/modules/client/core/assessments'

@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Button, Tooltip, MenuProps } from 'antd'
-import { MoreOutlined } from '@ant-design/icons'
+import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 
 import { isSuperAdmin } from '~/core/currentUser'

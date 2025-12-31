@@ -5,7 +5,7 @@ import {
 import { Bubble } from '@ant-design/x'
 import {
   MessageOutlined, FileOutlined, RightOutlined, UploadOutlined, CheckCircleOutlined,
-} from '@ant-design/icons'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { BotIcon } from './BotIcon'
 import styles from './styles.less'
 

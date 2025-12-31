@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import {
   Modal, Button, Spin, Form,
 } from 'antd'
-import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import { FormProps, FormInstance } from 'antd/lib/form'
 import { ModalProps } from 'antd/lib/modal'
 import { FieldData } from 'rc-field-form/lib/interface'
+import { LoadingOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import ResourceForm from '../ResourceForm'
 import { Status as ResourceStatus } from '../ResourceForm/constants'
 import { Resource } from '../ResourceForm/interfaces'

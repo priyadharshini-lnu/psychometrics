@@ -1,7 +1,7 @@
 import React from 'react'
 import { Collapse, Divider } from 'antd'
-import { DownOutlined, CloseOutlined } from '@ant-design/icons'
 import cs from 'classnames'
+import { DownOutlined, CloseOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { PanelTitle } from './PanelTitle'
 import { useWindowSize } from '~/hooks/useWindowSize'
 import { AdditionalDetails } from './AdditionalDetails'

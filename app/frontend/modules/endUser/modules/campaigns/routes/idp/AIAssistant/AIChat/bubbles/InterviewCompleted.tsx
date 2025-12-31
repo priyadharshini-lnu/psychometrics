@@ -3,7 +3,7 @@ import {
   Flex, Typography,
 } from 'antd'
 import { Bubble } from '@ant-design/x'
-import { CheckCircleFilled } from '@ant-design/icons'
+import { CheckCircleFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 import { BotIcon } from './BotIcon'
 import styles from './styles.less'
 

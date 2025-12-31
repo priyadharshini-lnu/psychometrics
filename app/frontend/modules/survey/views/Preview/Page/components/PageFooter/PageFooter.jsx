@@ -6,7 +6,7 @@ import cs from 'classnames'
 import {
   Popconfirm, Alert, message,
 } from 'antd'
-import { ExclamationCircleFilled } from '@ant-design/icons'
+import { ExclamationCircleFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 import { FixedWidthButton } from '~/glint'
 import { isRtl } from '~/utils/locales'
 import { getQuestion } from '~/modules/survey/core/preview/FlowProcessor/selectors'

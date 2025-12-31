@@ -1,6 +1,6 @@
 import { Steps, Typography } from 'antd'
-import { MessageOutlined, FileOutlined, AudioOutlined } from '@ant-design/icons'
 import cs from 'classnames'
+import { MessageOutlined, FileOutlined, AudioOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from './AISteps.less'
 
 const Icon = ({ children, className }) => <div className={cs(styles.icon, className)}>{children}</div>

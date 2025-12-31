@@ -1,5 +1,5 @@
 import { Button } from 'antd'
-import { PlusOutlined, DownOutlined } from '@ant-design/icons'
+import { PlusOutlined, DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const CreateEvaluatorsDropdown = ({ openModal, permissions, template }) => {

@@ -5,11 +5,11 @@ import {
   Button, Select, Row, Col, Space, List, Dropdown, Spin, Modal, Input, InputRef, FormInstance, Alert, message,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import {
-  CloudDownloadOutlined, SearchOutlined, DownOutlined,
-} from '@ant-design/icons'
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
+import {
+  CloudDownloadOutlined, SearchOutlined, DownOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { UserInfoCard } from '~/glint/components/UserInfoCard'
 import { Panel } from '~/glint/components/Panel/Panel'

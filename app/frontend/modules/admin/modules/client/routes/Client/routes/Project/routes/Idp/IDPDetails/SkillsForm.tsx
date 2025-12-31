@@ -2,9 +2,9 @@ import {
   Form, Card, Col, Row, Button, message, Space,
 } from 'antd'
 import _ from 'lodash'
-import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import { useEffect, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { LoadingOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { useResources } from '~/hooks/useResources'
 import SkillsAndTagsSelection, { SkillsOption } from './SkillsAndTagsSelection'
 import { Idp, IdpTR, Skill } from '~/modules/admin/modules/client/core/idp'

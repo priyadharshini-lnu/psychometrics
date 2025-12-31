@@ -5,8 +5,8 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Input, Button,
 } from 'antd'
-import { CheckCircleOutlined, EditOutlined } from '@ant-design/icons'
 import { PhoneNumberUtil } from 'google-libphonenumber'
+import { CheckCircleOutlined, EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import styles from './styles.less'
 import { RootState } from '../../core/reducers'

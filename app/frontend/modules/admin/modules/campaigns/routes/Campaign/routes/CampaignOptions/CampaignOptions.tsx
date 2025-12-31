@@ -5,7 +5,7 @@ import {
   Row, Col, Radio, Tooltip, InputRef,
 } from 'antd'
 import snakeCase from 'lodash/snakeCase'
-import { QuestionCircleOutlined } from '@ant-design/icons'
+import { QuestionCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { SafeHTML } from '~/components/SafeHTML'
 import { RootState } from '~/modules/admin/core/rootReducers'

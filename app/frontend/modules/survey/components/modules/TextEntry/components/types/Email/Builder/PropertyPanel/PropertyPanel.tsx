@@ -1,6 +1,6 @@
 import React from 'react'
 import { Input, Button, Divider } from 'antd'
-import { DeleteOutlined, PlusOutlined } from '@ant-design/icons'
+import { DeleteOutlined, PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import ChoicesInput from '~/modules/survey/components/ChoicesInput'
 
 import { PropertiesModel } from '~/modules/survey/interfaces/questions/TextEntry'

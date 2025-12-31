@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import {
   MessageOutlined,
-} from '@ant-design/icons'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { Comments } from '~/components/IdpShared/Comments'
 import { useSkillComments } from './useSkillsComments'

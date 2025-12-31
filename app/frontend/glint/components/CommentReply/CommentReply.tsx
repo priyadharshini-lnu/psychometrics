@@ -2,8 +2,8 @@ import { FC, useState } from 'react'
 import {
   Input, Avatar, Row, Col,
 } from 'antd'
-import { UserOutlined, SendOutlined, LoadingOutlined } from '@ant-design/icons'
 import cs from 'classnames'
+import { UserOutlined, SendOutlined, LoadingOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import styles from './CommentReply.less'
 

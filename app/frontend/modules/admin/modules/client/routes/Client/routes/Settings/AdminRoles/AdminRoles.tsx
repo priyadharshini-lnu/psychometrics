@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom'
 import {
   Button, message, MenuProps, Space, Checkbox, App,
 } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
 import { ConnectedProps, connect } from 'react-redux'
 import _ from 'lodash'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import { AdminRole, AdminRoleTR } from '~/modules/admin/modules/client/core/adminRole'
 import { AdminRolesForm } from './AdminRolesForm'

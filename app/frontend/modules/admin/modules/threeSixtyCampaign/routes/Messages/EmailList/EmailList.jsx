@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react'
 import {
   Input, Row, Col, Button, Empty, App, Switch, Select, TimePicker,
 } from 'antd'
-import { SaveOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import cs from 'classnames'
 import { useNavigate, useParams } from 'react-router-dom'
+import { SaveOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 import { CONSOLIDATED_EMAIL_NAMES, DAILY_DIGEST_EMAILS } from '~/modules/admin/constants/emailTemplate'
 import EmailEditor from '~/components/EmailEditor'

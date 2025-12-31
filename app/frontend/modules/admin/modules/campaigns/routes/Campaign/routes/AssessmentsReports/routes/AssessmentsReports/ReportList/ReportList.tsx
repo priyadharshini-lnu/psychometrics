@@ -2,8 +2,8 @@ import React from 'react'
 import {
   Table, MenuProps, Row, Col, Switch, App,
 } from 'antd'
-import { MoreOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
+import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { PropsFromRedux } from './connect'

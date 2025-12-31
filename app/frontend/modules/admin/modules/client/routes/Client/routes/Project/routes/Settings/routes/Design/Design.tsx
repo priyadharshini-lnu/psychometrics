@@ -3,12 +3,12 @@ import {
   Row, Col, Form, Radio, Button, Upload, ConfigProvider, App, Input,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import { UploadOutlined } from '@ant-design/icons'
 import { generate } from '@ant-design/colors'
 import { useParams } from 'react-router-dom'
 import _ from 'lodash'
 import { UploadFile } from 'antd/lib/upload/interface'
 import type { Theme } from 'antd/lib/config-provider/context'
+import { UploadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import {
   Files, DesignSettings as DesignSettingsType,

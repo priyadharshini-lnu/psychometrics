@@ -1,5 +1,5 @@
 import { Tooltip } from 'antd'
-import { QuestionCircleOutlined } from '@ant-design/icons'
+import { QuestionCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { SafeHTML } from '~/components/SafeHTML'
 

@@ -4,9 +4,9 @@ import {
 import {
   Col, Row, Form, Input, Radio, Checkbox, Button, Upload, Image, Flex, Card, Space, message,
 } from 'antd'
-import { UploadOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
+import { UploadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { LangDropdown } from '~/components/LangDropdown'
 import {
   Idp, IdpTR,

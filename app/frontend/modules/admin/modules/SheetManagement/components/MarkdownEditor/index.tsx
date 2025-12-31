@@ -2,8 +2,8 @@ import { ChangeEvent, FC } from 'react'
 import {
   Row, Col, Input, Typography, Tooltip,
 } from 'antd'
-import { InfoCircleOutlined } from '@ant-design/icons'
 import ReactMarkdown from 'react-markdown'
+import { InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import styles from './styles.less'
 

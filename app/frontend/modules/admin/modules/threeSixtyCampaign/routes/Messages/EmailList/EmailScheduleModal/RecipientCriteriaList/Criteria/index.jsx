@@ -1,7 +1,7 @@
 import { Select } from 'antd'
-import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import cs from 'classnames'
+import { MinusCircleOutlined, PlusCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { NAME } from '~/modules/admin/constants/emailTemplate'
 import { TYPES } from '~/modules/admin/constants/emailCriteria'
 import styles from './styles.less'

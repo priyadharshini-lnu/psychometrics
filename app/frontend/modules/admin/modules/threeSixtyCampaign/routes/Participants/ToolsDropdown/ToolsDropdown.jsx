@@ -1,9 +1,9 @@
 import {
   Button, App,
 } from 'antd'
-import { ToolOutlined, DownOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import { ToolOutlined, DownOutlined, ExclamationCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { updateCampaignAssessmentDetails } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignAssessments'
 

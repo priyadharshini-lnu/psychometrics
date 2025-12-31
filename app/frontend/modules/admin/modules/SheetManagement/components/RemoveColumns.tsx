@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Button, Space, Badge, App,
 } from 'antd'
-import { DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
+import { DeleteOutlined, ExclamationCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import settings from '~/modules/admin/settings'
 import {

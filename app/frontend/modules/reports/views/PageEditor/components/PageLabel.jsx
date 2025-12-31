@@ -1,7 +1,7 @@
 /* eslint-disable import/no-mutable-exports */
 import { Component } from 'react'
 import { DragSource, DropTarget } from 'react-dnd'
-import { RightOutlined } from '@ant-design/icons'
+import { RightOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import store from '~/modules/reports/store/PageList'
 import ScrollDispatcher from '~/modules/reports/dispatchers/ScrollDispatcher'
 import styles from './PageEditor.less'

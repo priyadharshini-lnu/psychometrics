@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import cs from 'classnames'
 import { Button, Radio } from 'antd'
-import { SaveOutlined } from '@ant-design/icons'
+import { SaveOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RECODING, SCORING } from '~/modules/survey/constants/scoring'
 import NotificationDispatcher from '~/modules/survey/dispatchers/NotificationDispatcher'
 import FactorsSelect from './FactorsSelect'

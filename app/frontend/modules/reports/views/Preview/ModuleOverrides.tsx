@@ -3,14 +3,14 @@ import {
   useRef,
 } from 'react'
 import { Button, Checkbox, Popconfirm } from 'antd'
-import {
-  EditOutlined, CheckOutlined, CloseOutlined, SaveOutlined,
-} from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 import { Store } from 'redux'
 import cs from 'classnames'
 import FroalaEditor from 'react-froala-wysiwyg'
 import _ from 'lodash'
+import {
+  EditOutlined, CheckOutlined, CloseOutlined, SaveOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import '~/libs/htmldiff.cjs'
 import { openRichEditor, closeRichEditor } from '~/modules/reports/core/builder/actions'
 import {

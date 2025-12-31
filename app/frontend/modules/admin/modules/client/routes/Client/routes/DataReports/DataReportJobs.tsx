@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Space, Button } from 'antd'
-import { EyeOutlined, DownloadOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
+import { EyeOutlined, DownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { useResources } from '~/hooks/useResources'
 import {
   DataReportJob, DataReportJobTR, Password, PasswordTR,

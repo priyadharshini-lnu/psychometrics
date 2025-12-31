@@ -5,12 +5,12 @@ import {
   Checkbox, Radio,
   Slider,
 } from 'antd'
+import _ from 'lodash'
 import {
   CopyOutlined, SnippetsOutlined, DeleteOutlined,
   RadiusUpleftOutlined, RadiusUprightOutlined, RadiusBottomrightOutlined,
   RadiusBottomleftOutlined, BorderOuterOutlined,
-} from '@ant-design/icons'
-import _ from 'lodash'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from './StylesEditor.less'
 import LabelEditor from '../LabelEditor'
 import { ColorPicker } from '~/glint'

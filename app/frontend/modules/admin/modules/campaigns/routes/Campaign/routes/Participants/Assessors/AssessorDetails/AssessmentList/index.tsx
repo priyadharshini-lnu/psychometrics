@@ -4,12 +4,12 @@ import {
 } from 'antd'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
 import type { MessageInstance } from 'antd/es/message/interface'
-import {
-  MoreOutlined, AppstoreOutlined, ExclamationCircleOutlined, PlusOutlined, DeleteOutlined,
-} from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
 import { useParams } from 'react-router-dom'
+import {
+  MoreOutlined, AppstoreOutlined, ExclamationCircleOutlined, PlusOutlined, DeleteOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import {

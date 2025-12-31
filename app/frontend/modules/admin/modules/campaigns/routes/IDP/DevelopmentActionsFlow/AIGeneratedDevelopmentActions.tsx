@@ -3,7 +3,7 @@ import {
   Button,
   Flex, Modal, Spin,
 } from 'antd'
-import { SyncOutlined } from '@ant-design/icons'
+import { SyncOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { BoxWithShadow, ButtonWithArrow } from '~/glint'
 import { AIGeneratedDevelopmentActionsList } from '~/components/IdpShared/DevelopmentActions/Common'
 import { useResources } from '~/hooks/useResources'

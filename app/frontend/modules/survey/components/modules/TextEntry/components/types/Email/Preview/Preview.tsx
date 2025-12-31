@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { SendOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
 import _ from 'lodash'
+import { SendOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { I18n } from '~/modules/survey/store/StoreWatchman'
 import { QuestionError } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 import { Question } from '../interfaces'

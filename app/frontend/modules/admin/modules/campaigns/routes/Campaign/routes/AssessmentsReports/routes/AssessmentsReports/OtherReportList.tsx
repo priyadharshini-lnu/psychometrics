@@ -3,8 +3,8 @@ import {
   Table, MenuProps, Row, Col, App, Pagination,
 } from 'antd'
 import { useParams } from 'react-router-dom'
-import { MoreOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
+import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import {

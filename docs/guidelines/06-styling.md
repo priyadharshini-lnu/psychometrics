@@ -91,11 +91,11 @@ padding: 16px;
 // ✅ Nest styles for better organization
 .container {
   padding: @space-4;
-  
+
   .header {
     margin-bottom: @space-2;
   }
-  
+
   // ✅ Use :global for third-party overrides
   :global {
     .ant-modal-body {
@@ -143,8 +143,8 @@ Example: [modules/admin/modules/campaigns/routes/Campaign/routes/IdpReportPrevie
 Example: [modules/admin/modules/campaigns/routes/Campaign/routes/IdpReportPreview/IdpReportPreview.tsx:4](../../app/frontend/modules/admin/modules/campaigns/routes/Campaign/routes/IdpReportPreview/IdpReportPreview.tsx#L4)
 
 ```typescript
-// ✅ Prefer Ant Design icons
-import { DownloadOutlined, DownOutlined } from '@ant-design/icons'
+// ✅ Prefer Ant Design icons, keeping accessibility in mind do not directly import from @ant-design/icons instead import them from glint/icons/AccessibleIconsAntDesign. If icon does not already exist then re-export from above file with withAccessibilityProps and use it.
+import { DownloadOutlined, DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 const Component = () => (
   <Button>

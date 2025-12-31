@@ -6,7 +6,7 @@ import {
 } from 'antd'
 import {
   CloseOutlined,
-} from '@ant-design/icons'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import Action from '~/modules/survey/undo'
 import LogicElement from '~/modules/survey/models/logic/LogicElement'
 import Question from '~/modules/survey/models/Question'

@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import {
   Modal, Button, Tabs, Row, Col, Avatar,
 } from 'antd'
-import { UserOutlined } from '@ant-design/icons'
-
 import { useParams } from 'react-router-dom'
+import { UserOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+
 import userPresenter from '~/presenters/user'
 import styles from './styles.less'
 import EvaluatorList from './EvaluatorList'

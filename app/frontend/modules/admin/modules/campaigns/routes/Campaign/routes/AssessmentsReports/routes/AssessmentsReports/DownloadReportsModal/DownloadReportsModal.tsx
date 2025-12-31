@@ -2,12 +2,12 @@ import { useState, useMemo } from 'react'
 import {
   Modal, Button, DatePicker, Select, Checkbox, Form, Flex, Typography, Tag, Divider,
 } from 'antd'
-import { FileTextOutlined, GlobalOutlined } from '@ant-design/icons'
 import reduce from 'lodash/reduce'
 import keyBy from 'lodash/keyBy'
 import map from 'lodash/map'
 import filter from 'lodash/filter'
 import mapValues from 'lodash/mapValues'
+import { FileTextOutlined, GlobalOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { PropsFromRedux } from './connect'
 import Report from '~/modules/admin/modules/campaigns/interfaces/Report'
 import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'

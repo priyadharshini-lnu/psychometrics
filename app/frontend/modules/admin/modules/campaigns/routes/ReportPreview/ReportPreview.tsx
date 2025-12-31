@@ -4,10 +4,10 @@ import { PageHeader } from '@ant-design/pro-layout'
 import {
   Layout, Button, Row, Col, Spin, Space, App, Affix, Dropdown, Tag,
 } from 'antd'
-import { ArrowLeftOutlined, DownOutlined } from '@ant-design/icons'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import _ from 'lodash'
 import { normalize } from 'normalizr'
+import { ArrowLeftOutlined, DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
 import Report from '~/modules/reports/report'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'

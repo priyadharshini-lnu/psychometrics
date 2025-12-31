@@ -1,7 +1,7 @@
 import {
   Button, MenuProps,
 } from 'antd'
-import { ToolOutlined, DownOutlined, MoreOutlined } from '@ant-design/icons'
+import { ToolOutlined, DownOutlined, MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 

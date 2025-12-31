@@ -6,9 +6,9 @@ import {
   Button,
   Card, Flex, Form, Input, message, Select, Spin, Splitter, Tooltip,
 } from 'antd'
-import { InfoCircleOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import { debounce, isEmpty, uniqBy } from 'lodash'
+import { InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { formDataToResource } from '~/libs/jsonApi/helpers'
 import { slugify } from '~/utils/string'
 import { useResources } from '~/hooks/useResources'

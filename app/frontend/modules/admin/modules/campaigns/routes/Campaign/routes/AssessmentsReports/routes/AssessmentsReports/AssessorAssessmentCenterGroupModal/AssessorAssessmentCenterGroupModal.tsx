@@ -4,8 +4,8 @@ import {
   Select,
   App,
 } from 'antd'
-import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
+import { LoadingOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { CampaignAssessorAssessments, useCampaignAssessorAssessmentsStore } from
   '~/modules/admin/modules/client/core/campaignAssessorAssessments'
 import {

@@ -4,11 +4,11 @@ import React, {
 import {
   Switch, Card, Space, Typography, Button, Tooltip, message, Result, App, Badge,
 } from 'antd'
-import {
-  DeleteOutlined, DragOutlined, BlockOutlined,
-} from '@ant-design/icons'
 import cs from 'classnames'
 import { DraggableSyntheticListeners } from '@dnd-kit/core'
+import {
+  DeleteOutlined, DragOutlined, BlockOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { ButtonColorType } from '~/interfaces/Antd'
 
 import { CampaignAssessmentGroup } from '~/modules/admin/modules/campaigns/core/assessmentGroups'

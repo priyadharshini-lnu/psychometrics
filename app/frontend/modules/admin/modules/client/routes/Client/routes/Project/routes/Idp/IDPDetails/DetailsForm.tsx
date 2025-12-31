@@ -2,13 +2,13 @@ import {
   Form, Input, Switch, Card, Col, Row, Button, Select, Spin, message, Space, Alert,
 } from 'antd'
 import _ from 'lodash'
-import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import {
   useCallback, useEffect, useMemo, useState,
 } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { useParams } from 'react-router-dom'
+import { LoadingOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { useResources } from '~/hooks/useResources'
 import {
   Idp, IdpTR, Skill, Report, ReportTR, IdpAssistant,

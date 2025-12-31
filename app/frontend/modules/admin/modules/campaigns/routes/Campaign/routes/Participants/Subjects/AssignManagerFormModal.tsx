@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import {
   Modal, Form, Button, Select, Row, Col, Space, Spin,
 } from 'antd'
-import { SearchOutlined } from '@ant-design/icons'
 import { ConnectedProps, connect } from 'react-redux'
+import { SearchOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { addManager } from '~/modules/admin/modules/campaigns/core/users'
 import { User, UserTR } from '~/modules/admin/modules/campaigns/core/user'
 import { useResources } from '~/hooks/useResources'

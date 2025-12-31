@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Avatar } from 'antd'
-import { PictureOutlined, StopOutlined } from '@ant-design/icons'
+import { PictureOutlined, StopOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { BuilderModel } from '~/modules/survey/interfaces/questions/MultipleChoice'
 

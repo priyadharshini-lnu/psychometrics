@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react'
 import {
   Flex, Button, Typography, Modal, Card, Tooltip,
 } from 'antd'
-import { EyeOutlined, EditOutlined } from '@ant-design/icons'
 import cs from 'classnames'
+import { EyeOutlined, EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { SafeHTML } from '~/components/SafeHTML'
 import { useResources } from '~/hooks/useResources/useResources'
 import '~/libs/htmldiff.cjs'

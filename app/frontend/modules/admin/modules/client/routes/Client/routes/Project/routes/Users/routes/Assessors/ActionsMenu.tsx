@@ -2,7 +2,7 @@ import { FC } from 'react'
 import {
   Button, MenuProps, Tooltip,
 } from 'antd'
-import { MoreOutlined } from '@ant-design/icons'
+import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { MenuItem } from '~/interfaces/Antd'
 import { Assessor } from '~/modules/admin/modules/client/core/assessors'

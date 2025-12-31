@@ -10,8 +10,8 @@ import {
   Row,
   Col,
 } from 'antd'
-import { InfoCircleOutlined } from '@ant-design/icons'
 import cs from 'classnames'
+import { InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { PreviewModel, TextType } from '~/modules/survey/interfaces/questions/SideBySide'
 import { I18nInterface } from '~/modules/survey/core/preview/FlowProcessor/interfaces'

@@ -3,9 +3,9 @@ import {
   Flex, Typography, Row, Col, Alert, Skeleton, Button,
   Statistic,
 } from 'antd'
-import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 import ReactMarkdown from 'react-markdown'
+import { EyeOutlined, EyeInvisibleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from '../styles.less'
 import { SafeHTML } from '~/components/SafeHTML'
 

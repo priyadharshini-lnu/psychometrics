@@ -1,7 +1,7 @@
 import {
   Button, Input, Dropdown, DatePicker,
 } from 'antd'
-import { CaretDownOutlined } from '@ant-design/icons'
+import { CaretDownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 import styles from './styles.less'
 

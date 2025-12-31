@@ -4,10 +4,10 @@ import {
 } from 'react-router-dom'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { Menu } from 'antd'
+import { connect, ConnectedProps } from 'react-redux'
 import {
   ShopOutlined, UserOutlined, SettingOutlined, SolutionOutlined, ExportOutlined, DatabaseOutlined,
-} from '@ant-design/icons'
-import { connect, ConnectedProps } from 'react-redux'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import { useResources } from '~/hooks/useResources'
 import { Client as ClientType, ClientTR } from '~/modules/admin/modules/client/core/clients'

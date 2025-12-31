@@ -2,7 +2,7 @@ import {
   Button, Space,
 } from 'antd'
 import { useNavigate } from 'react-router-dom'
-import { CheckCircleFilled } from '@ant-design/icons'
+import { CheckCircleFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Panel } from '~/glint'
 import styles from './Form.less'
 

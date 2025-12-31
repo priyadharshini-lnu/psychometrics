@@ -3,9 +3,9 @@ import {
   Button, Modal, Space, Switch, Row, Col, Alert, Popconfirm, Tooltip,
   Select,
 } from 'antd'
-import { QuestionCircleOutlined, FieldTimeOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import { connect } from 'react-redux'
+import { QuestionCircleOutlined, FieldTimeOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { setIn } from '~/utils/immutable'
 import InputDuration from '~/components/InputDuration'
 import { closeModal, getData } from '~/modules/admin/core/ui/modals'

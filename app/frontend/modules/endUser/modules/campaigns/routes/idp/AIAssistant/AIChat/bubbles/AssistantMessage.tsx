@@ -1,8 +1,7 @@
 import {
   Bubble,
 } from '@ant-design/x'
-import Icon from '@ant-design/icons'
-import Lighthouse from '../assets/LighthouseIcon.svg?react'
+import { BotIcon } from './BotIcon'
 
 export const AssistantMessage = ({ message, isCurrent }) => (
   <Bubble
@@ -14,6 +13,6 @@ export const AssistantMessage = ({ message, isCurrent }) => (
     placement="start"
     variant="borderless"
     content={message}
-    avatar={<Icon style={{ fontSize: 32 }} component={Lighthouse} />}
+    avatar={<BotIcon />}
   />
 )

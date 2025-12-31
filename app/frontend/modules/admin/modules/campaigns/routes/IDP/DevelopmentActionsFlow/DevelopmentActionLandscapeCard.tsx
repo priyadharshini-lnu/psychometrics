@@ -3,9 +3,9 @@ import {
   Progress, Button, Flex, Typography, DatePicker, Divider,
   Tooltip, Empty, Modal,
 } from 'antd'
-import { DeleteOutlined, PlusOutlined } from '@ant-design/icons'
 import useMedia from 'use-media'
 import cs from 'classnames'
+import { DeleteOutlined, PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Separator } from '~/components/IdpShared/Separator'
 import dayjs from '~/utils/dayjs'
 import styles from './DevelopmentActionLandscapeCard.less'
