@@ -78,7 +78,7 @@ Rails.application.configure do
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [:request_id]
+  config.log_tags = { request_id: :request_id }
 
   # Use a different cache store in production.
   if ENV['REDIS_URL']
@@ -137,12 +137,6 @@ Rails.application.configure do
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
-
-  if ENV['RAILS_LOG_TO_STDOUT'].present?
-    logger = ActiveSupport::Logger.new($stdout)
-    logger.formatter = config.log_formatter
-    config.logger = ActiveSupport::TaggedLogging.new(logger)
-  end
 
   # Only use :id for inspections in production.
   # config.active_record.attributes_for_inspect = [ :id ]
