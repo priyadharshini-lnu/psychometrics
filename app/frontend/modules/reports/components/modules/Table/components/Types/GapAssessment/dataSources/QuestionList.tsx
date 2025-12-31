@@ -1,10 +1,20 @@
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
+  Flex,
   TreeSelect, Typography,
 } from 'antd'
 import { DataNode as TreeDataNode } from 'rc-tree-select/lib/interface'
+import {
+  isEmpty,
+  includes,
+  toLower,
+  toString,
+  trim,
+  some,
+} from 'lodash'
 
+import { useLocalStorage } from '~/hooks/useLocalStorage'
 import { RootState } from '~/modules/reports/core/rootReducers'
 import { PropertiesModel } from '~/modules/reports/interfaces/tables/Gap'
 
@@ -40,25 +50,57 @@ const QuestionListComponent: FC<Props> = ({
   }
 
   const questions = getQuestions(assessmentId)
-  const questionChoicesInTree = questionsToTreeDataStructure(questions)
+  const questionChoicesInTree = useMemo(() => (
+    questionsToTreeDataStructure(questions)
+  ), [questions])
 
   const treeSelectedValues = questionChoicesToTreeValues(value)
 
+  const [settings] = useLocalStorage('reportSettings', {
+    propertiesPanel: {
+      width: 280,
+    },
+  })
+
+  const filterTreeNode = (inputValue: string, treeNode: TreeDataNode): boolean => {
+    const searchValue = toLower(trim(inputValue))
+    if (isEmpty(searchValue)) return true
+
+    // Check if the current node title matches
+    const nodeTitle = toLower(toString(treeNode.title ?? ''))
+    if (includes(nodeTitle, searchValue)) {
+      return true
+    }
+
+    // For parent nodes, check if any children match (with null safety)
+    if (treeNode.children && treeNode.children.length > 0) {
+      return some(treeNode.children, (child: TreeDataNode) => {
+        const childTitle = toLower(toString(child.title ?? ''))
+        return includes(childTitle, searchValue)
+      })
+    }
+
+    return false
+  }
+
   return (
-    <div>
+    <Flex vertical gap={8}>
       <Typography.Text>Question choices</Typography.Text>
       <TreeSelect
-        className="w-100"
-        style={{ maxWidth: 'calc(220px - 30px)' }}
+        style={{ width: `calc(${settings.propertiesPanel.width}px - 30px)` }}
         multiple
         maxTagCount={2}
         treeCheckable
+        showSearch
+        filterTreeNode={filterTreeNode}
         treeData={questionChoicesInTree}
         placeholder="All question choices"
         value={treeSelectedValues}
         onChange={handleOnChange}
+        treeDefaultExpandAll
+        allowClear
       />
-    </div>
+    </Flex>
   )
 }
 
