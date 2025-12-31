@@ -4,6 +4,7 @@ en:
     action: Action
     add: Add
     advanced: Advanced
+    agree_and_continue: Agree & Continue
     authentication_failed: Authentication failed. Please try again.
     basic: Basic
     campaign_id: Campaign ID
@@ -13,6 +14,7 @@ en:
     collaborative_learning: Collaborative Learning
     continue: Continue
     copy: Copy
+    decline: Decline
     description: Description
     edit: Edit
     edited: Edited
@@ -26,6 +28,9 @@ en:
     mte_logo_alt_text: Mercer Talent Enterprise logo
     name: Name
     new: New
+    recording_consent_notice: This meeting session will be recorded. Your participation in this meeting constitutes your consent to be recorded.
+    recording_consent_proceed_question: Do you agree to proceed with the recorded meeting?
+    recording_consent_title: Recording Consent Notice
     removed: Removed
     replace: Replace
     rte_paste_content_exceeds_char_limit: Text exceeds the character limit of {{maxCharacterLimit}} and cannot be pasted.

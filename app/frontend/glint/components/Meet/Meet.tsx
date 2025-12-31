@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from 'react'
 import DailyIframe, { DailyCall, DailyCallOptions } from '@daily-co/daily-js'
+import { Consent } from './Consent'
 
 const CALL_OPTIONS: DailyCallOptions = {
   iframeStyle: {
@@ -21,10 +22,12 @@ const CALL_OPTIONS: DailyCallOptions = {
 type Props = {
   url: string,
   token: string,
+  recordingEnabled: boolean,
 }
-const Meet = ({ url, token }: Props) => {
+const Meet = ({ url, token, recordingEnabled }: Props) => {
   const videoRef = useRef(null)
   const [callFrame, setCallFrame] = useState<DailyCall | null>(null)
+  const [consentGiven, setConsentGiven] = useState<boolean>(!recordingEnabled)
 
   useEffect(() => {
     if (!videoRef || !videoRef?.current || callFrame) return
@@ -43,7 +46,18 @@ const Meet = ({ url, token }: Props) => {
     newCallFrame.leave().then(() => {
       window.close()
     })
-  }, [videoRef])
+  }, [videoRef, consentGiven])
+
+  if (recordingEnabled && !consentGiven) {
+    return (
+      <Consent
+        onConsent={() => setConsentGiven(true)}
+        onDecline={() => {
+          window.location.href = '/'
+        }}
+      />
+    )
+  }
 
   return (
     <div style={{ width: '100%', height: '100%' }} ref={videoRef} />
