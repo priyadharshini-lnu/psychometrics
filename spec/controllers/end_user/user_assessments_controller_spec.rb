@@ -64,4 +64,40 @@ describe EndUser::UserAssessmentsController, type: :controller do
       end
     end
   end
+
+  describe 'GET #pass' do
+    let(:user_assessment) { create(:user_assessment, assessment: assessment, campaign: campaign) }
+
+    before do
+      user = user_assessment.user
+      user.update!(project: campaign.project)
+      create(:campaign_user, campaign: campaign, user: user, schedule_start_date: 1.day.ago,
+        schedule_end_date: 1.day.from_now)
+      login_user(user)
+      allow(GetProjectBySubdomain).to receive(:call!).and_return(campaign.project)
+      allow(UserAssessments::CanStart).to receive(:call!).and_return(false)
+      allow(UserAssessments::CanStartBasedOnSequencing).to receive(:call!).and_return(true)
+      allow(UserAssessments::Pass).to receive(:call!)
+      allow(Translation).
+        to receive(:available_translation_for_assessment).
+        and_return(%w[ar fr])
+      allow(assessment).to receive(:default_language).and_return(:en)
+      project.update(locales: %w[en ar fr])
+    end
+
+    it 'allows request when lang parameter is valid' do
+      allow_any_instance_of(ActionView::Base).to receive(:vite_javascript_tag).and_return('')
+      get :pass, params: { id: user_assessment.id, lang: 'ar' }
+
+      expect(response).to have_http_status(:success)
+      expect(response).not_to be_redirect
+    end
+
+    it 'redirects with default locale when lang parameter is invalid' do
+      get :pass, params: { id: user_assessment.id, lang: 'invalid' }
+
+      expect(response).to be_redirect
+      expect(response.location).to include('lang=en')
+    end
+  end
 end

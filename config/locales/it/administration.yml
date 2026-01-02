@@ -29,35 +29,11 @@ it:
     administrators:
       drawers:
         edit:
-          admin_role_select: Selezionare il ruolo di amministratore
-          admin_roles: Ruoli amministrativi
-          create_success: L'amministratore '%{name}' è stato creato con successo
-          email: Email
-          first_name: Nome
           first_name_required: Il nome è obbligatorio
-          last_name: Cognome
           last_name_required: Il cognome è obbligatorio
-          no_edit_permission: Non hai il permesso di modificare l'amministratore '%{name}'
-          save: Risparmiare
-          update: Aggiorna
-          update_success: L'amministratore '%{name}' è stato aggiornato con successo
-        notes:
-          threesixty_permission: Autorizzazioni specifiche per le campagne 360
-          title: Note
         view:
-          add_campaign_admin: Aggiungere l'amministratore della campagna
-          add_client_admin: Aggiungere l'amministratore del cliente
-          add_project_admin: Aggiungere l'amministratore del progetto
-          add_threesixty_campaign_admin: Aggiungere l'amministratore della campagna
-          edit_campaign_admin: Modifica dell'amministrazione della campagna
-          edit_client_admin: Modifica dell'amministrazione del cliente
-          edit_project_admin: Modifica dell'amministrazione del progetto
-          edit_threesixty_campaign_admin: Modifica dell'amministrazione della campagna
           first_name: Nome
           last_name: Cognome
-          project_admin: Progetto Admin
-          project_list: Elenco dei progetti
-          role: Admin della campagna
           title:
             campaign_admin: Admin della campagna
             client_admin: Amministratore del cliente
@@ -65,253 +41,20 @@ it:
       list:
         actions:
           api_keys: Chiavi API
-          cancel_text: Annullamento
-          change_password: Reimpostare la password
           edit: Modifica
           export_admins_with_permissions: Esporta dei ruoli e delle autorizzazioni dell'amministratore
           export_success: Il lavoro di esportazione dell'amministratore è stato pianificato con successo. Controllare la notifica per lo stato.
           login: Accesso
-          send_email: Inviare l'e-mail
           spoof:
             login_successful: Accesso riuscito.
           user_report_events: Registri di approvazione dei rapporti
         columns:
-          actions: Azioni
-          created_at: Creato presso
           email: Email
-          id: ID
-          name: Nome
-        header:
-          add_admin: Aggiungi amministratore
-          search_admins: Cerca amministratori
-        toolbar:
-          export_admins_with_permissions: Esporta dei ruoli e delle autorizzazioni dell'amministratore
       modals:
         delete:
           cancelText: Annullamento
-          content: Si è sicuri di voler rimuovere l'utente admin con l'email '%{email}'?
           okText: Ok
-          onSuccess: L'amministratore con l'email '%{email}' è stato rimosso con successo
           title: Confermare
-      permissions:
-        labels:
-          aiArtifacts:
-            export: Esportazione
-            import: Importazione
-            manage: Amministrare
-            title: Artefatti AI
-            view: Vista
-          apiKeys:
-            manage: Azioni
-            title: Chiavi API
-            view: Vista
-          assessments:
-            manage: Azioni
-            title: Assessment
-            view: Vista
-          assessors:
-            manage: Azioni
-            title: Valutatori
-            view: Vista
-          auditLogs:
-            title: Registri di controllo
-            view: Vista
-          auditReports:
-            admin_permissions: Esporta dei ruoli e delle autorizzazioni dell'amministratore
-            title: Report di audit
-            user_report_events: Registri di approvazione dei rapporti
-          campaignFactors:
-            manage: Azioni
-            title: Fattori della campagna
-            view: Vista
-          campaigns:
-            bulk_download: Scaricamento in blocco
-            bulk_regenerate_reports: Rigenerazione in blocco dei rapporti
-            manage: Azioni
-            manage_admins: Gestire gli amministratori
-            manage_factor_benchmark_scores: Gestire i punteggi di benchmark dei fattori
-            manage_messages: Gestione dei messaggi
-            manage_options: Gestire le opzioni
-            manage_report_approvals: Gestire le approvazioni dei rapporti
-            manage_users: Gestione degli utenti
-            participant_options: Opzioni per i partecipanti
-            report_options: Opzioni del rapporto
-            reset_nominations: Azzeramento delle nomine
-            title: Campagne
-            view: Vista
-            view_factor_benchmark_scores: Visualizza i punteggi dei benchmark dei fattori
-            view_stats: Visualizza le statistiche
-          clients:
-            export_data_report: Rapporto di esportazione dei dati
-            manage: Azioni
-            title: Clienti
-            view: Vista
-            view_licenses: Visualizza le licenze
-          communications:
-            manage: Azioni
-            title: Comunicazioni
-            view: Vista
-          dashboards:
-            accesssheet_manage: Gestione delle schede di accesso
-            accesssheet_settings: Impostazioni del foglio di accesso
-            accesssheet_view: Vista del foglio di accesso
-            export: Esportazione
-            title: Cruscotti
-            view: Vista
-          datasheets:
-            manage: Azioni
-            title: Schede tecniche
-            view: Vista
-          developmentActions:
-            export: Esporta
-            export_global: Esporta globale
-            export_global_translations: Esporta di traduzioni globali
-            export_translations: Traduzioni per l'esportazione
-            import: Importazione
-            import_global: Importazione globale
-            import_global_translations: Importazione di traduzioni globali
-            import_translations: Importazione di traduzioni
-            manage: Azioni
-            title: Azioni di sviluppo
-            view: Vista
-          dimensions:
-            manage: Azioni
-            title: Dimensioni
-            view: Vista
-          idpTemplates:
-            manage: Azioni
-            title: Modelli di IDP
-            view: Vista
-          interviewQuestions:
-            export: Esportazione
-            import: Importazione
-            manage: Gestione
-            title: Domande per il colloquio IDP
-            view: Vista
-          jobRoles:
-            export_translations: Esporta di ruoli lavorativi Traduzioni
-            import_translations: Importazione delle traduzioni dei ruoli lavorativi
-            manage: Azioni
-            title: Ruoli lavorativi
-            view: Vista
-          libraries:
-            manage: Azioni
-            title: Biblioteche multimediali
-            view: Vista
-          messages:
-            email: Email
-            instructions: Istruzioni
-            options: Opzioni
-            title: Messaggi
-          norms:
-            manage: Azioni
-            title: Norme
-            view: Vista
-          proficiencyLevels:
-            export: Livelli di competenza per l'esportazione
-            export_translations: Traduzioni dei livelli di competenza per l'esportazione
-            import: Livelli di competenza dell'importazione
-            import_translations: Importazione dei livelli di competenza Traduzioni
-            manage: Azioni
-            title: Livelli di competenza
-            view: Vista
-          proficiency_level:
-            title: Livelli di competenza
-          projectSettings:
-            assessments: Assessment
-            design: Design
-            feature_flags: Flag di funzionalità
-            idp: IDP
-            integrations: Integrazioni
-            privacy_settings: Impostazioni sulla privacy
-            saml: SAML
-            security: Sicurezza
-            smtp: SMTP
-            title: Impostazioni del progetto
-            webhooks: Ganci web
-          projects:
-            manage: Azioni
-            manage_admins: Azioni gli amministratori
-            manage_licenses: Gestione delle licenze
-            manage_users: Gestione degli utenti
-            title: Progetti
-            view: Vista
-            view_licenses: Visualizza licenze
-          questions:
-            manage: Azioni
-            title: Domande
-            view: Vista
-          reflectionQuestions:
-            export: Esporta
-            import: Importazione
-            manage: Azioni
-            title: Domande di riflessione sull'IDP
-            view: Vista
-          registrationCodes:
-            manage: Azioni
-            title: Codici di registrazione
-            view: Vista
-          registrationSettings:
-            manage: Azioni
-            title: Impostazioni di registrazione
-          reports:
-            manage: Azioni
-            title: Report
-            view: Vista
-          responseMeta:
-            title: Risposta Meta
-          results:
-            approve_report: Approvare il rapporto
-            bulk_download: Scaricamento in blocco
-            bulk_regenerate_reports: Rigenerazione in blocco dei rapporti
-            bulk_update_evaluation_status: Aggiorna massivo dello stato di valutazione
-            download_report: Scarica il report
-            edit_report: Rapporto di modifica
-            export_occupations: Occupazioni per l'esportazione
-            external_score_import: Importazione esterna dei punteggi
-            finalize_scores: Finalizzare i punteggi
-            normalize_factor_scores: Normalizzare i punteggi dei fattori
-            raw_responses: Risposte grezze
-            regenerate_report: Rapporto di rigenerazione
-            report_data: Dati del rapporto
-            report_file_upload: Caricamento dei file di report
-            rescore_responses: Risposte di rielaborazione
-            reset_progress: Azzeramento dei progressi
-            reset_responses: Risposte di reset
-            scores: Punteggi
-            title: Risultati
-            view_report: Visualizza il report
-            view_stats: Visualizza le statistiche
-          skills:
-            export: Esporta
-            export_translations: Traduzioni per l'esportazione
-            import: Importazione
-            import_translations: Traduzioni di importazione
-            manage: Azioni
-            title: Competenze
-            view: Vista
-          smsHistories:
-            manage: Azioni
-            title: Storie di SMS
-            view: Vista
-          smsInvites:
-            manage: Azioni
-            title: Inviti via SMS
-            view: Vista
-          userIdpPlans:
-            manage: Amministrare
-            reset: Resettare
-            title: Piani IDP degli utenti
-            view: Vista
-          users:
-            reset_password: Reimpostare la password
-            title: Utenti
-          workshops:
-            export_status: Stato dell'esportazione
-            manage: Azioni
-            title: Laboratori
-            view: Vista
-            view_recordings: Visualizza le registrazioni
     ai_artifacts:
       artifact_results: Risultati degli artefatti
       code: Codice
@@ -4050,12 +3793,7 @@ it:
       security_setting: Impostazione di sicurezza
     settings:
       admin_roles:
-        admin_role_single: Ruolo di amministratore
         confirm_message: Si è sicuri di voler eliminare il ruolo di amministratore '%{role_name}'?
-        create: Aggiungere il ruolo di amministratore
-        description: Descrizione
-        name: Nome
-        successful_remove: Il ruolo di amministratore '%{role_name}' è stato cancellato con successo.
       siem:
         description: Descrizione
         destination_type: Tipo di destinazione

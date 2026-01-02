@@ -2,8 +2,8 @@ import React from 'react'
 import {
   Alert, Form, Input, message,
 } from 'antd'
-import { CopyOutlined } from '@ant-design/icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { CopyOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 type Props = {
   assertionConsumerServiceUrl: string

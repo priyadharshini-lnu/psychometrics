@@ -1958,7 +1958,6 @@ ar:
       campaigns: الحملات
       completion_statuses: حالات الإنجاز
       datasheet: ورقة البيانات
-      projects: المشاريع
       report: تقرير
       reports: التقييم
       sms_contact: الاتصال بالرسائل النصية القصيرة
@@ -3233,7 +3232,7 @@ ar:
     change_password: غيّر كلمة المرور
     change_photo: غير صورتك
     email: البريد الإلكتروني
-    female: إناثا
+    female: انثى
     first_name: الاسم الاول
     gender: جنس
     incomplete: تفاصيل ملفك الشخصي غير مكتملة. يرجى إكمال تفاصيل ملفك الشخصي

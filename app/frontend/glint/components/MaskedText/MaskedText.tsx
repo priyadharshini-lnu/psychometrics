@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons'
 import { Tooltip, Typography } from 'antd'
+import { EyeInvisibleOutlined, EyeOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 type MaskedTextProps = {
   text: string,

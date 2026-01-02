@@ -1,7 +1,7 @@
 import {
   Button, Dropdown, Row, Col,
 } from 'antd'
-import { ScheduleOutlined, CaretDownOutlined } from '@ant-design/icons'
+import { ScheduleOutlined, CaretDownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from './styles.less'
 
 export default function TitleBar ({ emailTemplate, openModal }) {

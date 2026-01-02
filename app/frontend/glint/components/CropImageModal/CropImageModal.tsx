@@ -9,7 +9,7 @@ import { getAbsoluteZoom, getZoomFactor } from 'advanced-cropper/extensions/abso
 
 import {
   MinusOutlined, PlusOutlined, UndoOutlined, RedoOutlined,
-} from '@ant-design/icons'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import 'react-advanced-cropper/dist/style.css'
 
 export function CropImageModal ({

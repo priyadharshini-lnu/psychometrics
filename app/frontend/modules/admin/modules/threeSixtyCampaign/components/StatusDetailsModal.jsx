@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react'
 import {
   Modal, Descriptions, Tag,
 } from 'antd'
+import { useParams } from 'react-router-dom'
 import {
   InfoOutlined, CheckCircleOutlined, CloseCircleOutlined, ExclamationCircleOutlined,
-} from '@ant-design/icons'
-import { useParams } from 'react-router-dom'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 
 function StatusDetailsModal ({ close, subjectData }) {
   const [statusMessage, setStatusMessage] = useState(null)

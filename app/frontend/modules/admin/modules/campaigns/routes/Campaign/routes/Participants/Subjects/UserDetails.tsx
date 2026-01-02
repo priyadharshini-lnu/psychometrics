@@ -3,10 +3,10 @@ import {
   Row, Button, Descriptions, Switch, Tag, App, Tabs, Skeleton,
 } from 'antd'
 import { PageHeader } from '@ant-design/pro-layout'
-import { PlusOutlined, ExclamationCircleOutlined, EditOutlined } from '@ant-design/icons'
 import { useParams, useNavigate } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import _ from 'lodash'
+import { PlusOutlined, ExclamationCircleOutlined, EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { camelizeKeys } from '~/utils/object'
 import { isRequestInProgress } from '~/core/request'
 import AssessmentsReports from './AssessmentsReports'

@@ -1,5 +1,5 @@
 import { InputNumber } from 'antd'
-import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
+import { MinusCircleOutlined, PlusCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from './styles.less'
 
 export default function ReminderRule ({

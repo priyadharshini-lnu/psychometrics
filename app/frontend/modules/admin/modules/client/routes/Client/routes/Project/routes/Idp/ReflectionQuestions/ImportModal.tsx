@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 import React, { useState } from 'react'
-import { LoadingOutlined, CheckOutlined, CloudDownloadOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router'
 
 import {
@@ -9,6 +8,7 @@ import {
 
 import Event from 'interfaces/Event'
 import ApiAction from 'interfaces/ApiAction'
+import { LoadingOutlined, CheckOutlined, CloudDownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 const { I18n } = window
 

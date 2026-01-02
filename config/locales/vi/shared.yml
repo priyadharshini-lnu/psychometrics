@@ -2,8 +2,12 @@
 vi:
   shared:
     action: Hoạt động
+    actions: Hành động
+    active: Hoạt động
     add: Thêm vào
     advanced: Tiên tiến
+    archive: Lưu trữ
+    archived: Lưu trữ
     authentication_failed: Xác thực không thành công. Vui lòng thử lại.
     basic: Cơ bản
     campaign_id: ID chiến dịch
@@ -11,24 +15,41 @@ vi:
     change_password: Thay đổi mật khẩu
     clear_filters: Xóa bộ lọc
     collaborative_learning: Học tập hợp tác
+    confirm: Xác nhận
     continue: Tiếp tục
+    created_at: Được tạo ra tại
+    created_date: Ngày tạo
     description: Sự miêu tả
     edit: Biên tập
     edited: Mới
+    email: E-mail
+    export: Xuất khẩu
+    first_name: Tên đầu tiên
     formal_learning: Học chính thức
     group_question_max_validation_error: Mỗi nhóm có thể chứa tối đa {{max}} (các) mục.
     group_question_min_validation_error: Mỗi nhóm cần chứa ít nhất {{min}} (các) mục.
     id: ID
     idp_ai_assistant_disclaimer: Trợ lý IDP AI của Lighthouse có thể mắc sai lầm. Hãy cẩn thận khi sử dụng các câu trả lời.
     internet_disconnected_message: Đang cố gắng kết nối lại. Vui lòng kiểm tra kết nối internet của bạn.
+    last_name: Họ
     learning_on_the_job_label: Học tập trong công việc
+    login: Đăng nhập
+    modified_by: Sửa đổi bởi
+    modified_date: Ngày sửa đổi
+    more_actions: Hành động khác
     mte_logo_alt_text: Logo Mercer Talent Enterprise
     name: Tên
     new: Mới
+    ok: Được rồi
+    remove: Di dời
     removed: Gỡ bỏ
+    reset_password: Đặt lại mật khẩu
     rte_paste_content_exceeds_char_limit: Văn bản vượt quá giới hạn ký tự của {{maxCharacterLimit}} và không thể dán.
     rte_paste_content_exceeds_word_limit: Văn bản vượt quá giới hạn từ {{maxWordLimit}} và không thể dán.
+    save: Cứu
     search: Tìm kiếm
+    send_email: Gửi email
+    something_wrong: Có điều gì đó không ổn. Liên hệ với quản trị viên của bạn.
     table:
       entries:
         selected: 1 hàng đã chọn

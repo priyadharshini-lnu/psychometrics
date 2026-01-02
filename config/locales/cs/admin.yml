@@ -1,7 +1,20 @@
 ---
 cs:
   admin:
+    add_admin: Přidat správce
+    add_admin_role: Přidání role správce
+    add_campaign_admin: Přidání správce kampaně
+    add_client_admin: Přidání správce klienta
+    add_project: Přidat projekt
+    add_project_admin: Přidání správce projektu
+    add_threesixty_campaign_admin: Přidání správce kampaně
     admin_approval_required: Report for %{user} vyžaduje schválení administrátora před stažením
+    admin_created_successfully: Správce '%{name}' byl úspěšně vytvořen
+    admin_export_scheduled: Úloha exportu správce byla úspěšně naplánována. Zkontrolujte prosím stav oznámení.
+    admin_removed_successfully: Administrátor s e-mailem '%{email}' byl úspěšně odstraněn
+    admin_role_deleted: Role správce '%{role_name}' byla úspěšně odstraněna.
+    admin_roles: Role správce
+    admin_updated_successfully: Admin '%{name}' byl úspěšně aktualizován
     admins: Administrátoři
     ai_artifacts: Artefakty AI
     ai_artifacts_output_schema_key_constraint: Klíč musí začínat malým písmenem a může obsahovat pouze malá písmena, čísla a podtržítka
@@ -21,10 +34,12 @@ cs:
     ai_assistants_test_render: Testovací vykreslování
     ai_assistants_test_render_tooltip: Vyzkoušejte šablonu promptu s daty kampaně, abyste zjistili, co bude AI asistentovi odesláno.
     ai_assisted_idp_feature_disabled: Funkce AI asistovaného IDP byla pro tento projekt deaktivována.
+    api_keys: Klíče API
     assessments: Hodnocení
     assessments_reports: Hodnocení a zprávy
     assessor_dashboard: Přístrojový panel hodnotitele
     assessor_workshops: Hodnotící centrum
+    assessors: Posuzovatelé
     audit_logs: Protokoly o auditu
     audit_reports: Auditní zprávy
     availability: Dostupnost
@@ -41,17 +56,22 @@ cs:
     campaign_assessment_modals_enable_caching_content: Jste si jistý, že chcete pro toto hodnocení povolit cache?
     campaign_assessment_modals_enable_caching_successfully: Pro toto hodnocení bylo zapnuto ukládání do mezipaměti.
     campaign_assessment_modals_enable_caching_title: Povolit cache hodnocení?
+    campaign_factors: Faktory kampaně
     campaign_templates: Šablony kampaní
+    campaigns: Kampaně
     client: Nájem klienta
     client_admins: Správci klientů
     clients: Nájemní smlouvy klientů
     code_required: Je vyžadován kód
     communication_center: Komunikační centrum
+    communications: Komunikace
     completed: Hotový
     completed_tooltip: Všichni hodnotitelé již podali hodnocení
+    confirm_remove_admin: Jste si jisti, že chcete odstranit uživatele s e-mailem '%{email}'?
     country: Země
     create_client: Vytvořit klienta
     dashboard: Přístrojová deska
+    dashboards: Přístrojové panely
     data_reports: Datové zprávy
     datasheet: Datový list
     declined: Nepřijatý
@@ -61,12 +81,19 @@ cs:
     dimensions: Rozměry
     done: Hotový
     done_tooltip: Již nelze podat žádné další hodnocení tohoto uživatele, protože hodnocení tohoto uživatele je označeno jako provedené %{marked_by}
+    edit_campaign_admin: Upravit správce kampaně
+    edit_client_admin: Upravit správce klienta
+    edit_project_admin: Upravit správce projektu
+    edit_threesixty_campaign_admin: Upravit správce kampaně
     empty_csv_file: CSV soubor neobsahuje žádná data.
     evaluation_status: Stav hodnocení
     evaluation_status_not_done: Status hodnocení není "Hotovo" u jednoho nebo více vybraných předmětů. Prosím, ujistěte se, že všichni vybraní uživatelé dokončili hodnocení nebo označili jako splněné.
+    export_admin_roles_permissions: Export rolí a oprávnění správce
+    feature_flags: Příznaky funkcí
     fill_empty_score_msg: Vyplňte všechny konečné skóre před uložením.
     final_score_empty_msg: Konečné skóre nemůže být prázdné.
     idp_plan_reset_success: Plán byl úspěšně resetován
+    idp_templates: Šablony IDP
     import_ai_artifacts: Import AI artefaktů
     import_csv_error: 'Řádek %{index}: uživatel s e-mailem %{email} není v této kampani'
     import_csv_parsing_error: 'Chyba při CSV parsování: %{message}'
@@ -90,16 +117,20 @@ cs:
     import_upload: Upload
     import_users: Importovat uživatele
     invalid_csv_header: CSV soubor obsahuje neplatné hlavičky.
+    job_roles: Pracovní role
     learning_from_others: Společné učení [20]
     libraries: Knihovna médií
     library_invalid_type: Neplatný knihovní prvek
+    licenses: Licence
     manager_approval_required: Report for %{user} vyžaduje schválení manažera před stažením
+    messages: Zprávy
     name_required: Jméno je vyžadováno
     no_file_selected: Žádný soubor nebyl vybrán
     no_notifications: Žádná oznámení
     norms: Normy
     not_completed: Nedokončeno
     not_completed_tooltip: "%{completed} hodnotitelů je přiděleno, ale pouze %{submitted} hodnocení dokončili"
+    notes: Poznámky
     nothing_assigned: Žádní hodnotitelé nejsou přiděleni
     nothing_assigned_tooltip: Tomuto uživateli nebyly přiřazeny žádné hodnocení
     notification_bell_icon_alt_text: Ikona zvonku oznámení
@@ -109,11 +140,438 @@ cs:
     on_the_job: V práci [70]
     options: Možnosti
     participants: Účastníci
+    permissions:
+      aiArtifacts:
+        export: Vývoz
+        import: Dovoz
+        manage: Spravovat
+        title: AI artefakty
+        view: Pohled
+      apiKeys:
+        manage: Správa
+        title: Klíče API
+        view: Zobrazit
+      assessments:
+        manage: Správa
+        title: Hodnocení
+        view: Zobrazit
+      assessors:
+        manage: Správa
+        title: Posuzovatelé
+        view: Zobrazit
+      auditLogs:
+        title: Protokoly o auditu
+        view: Zobrazit
+      auditReports:
+        admin_permissions: Export rolí a oprávnění správce
+        title: Auditní zprávy
+        user_report_events: Protokoly o schvalování zpráv
+      campaignFactors:
+        manage: Správa
+        title: Faktory kampaně
+        view: Zobrazit
+      campaigns:
+        bulk_download: Hromadné stahování
+        bulk_regenerate_reports: Hromadné přegenerování sestav
+        manage: Správa
+        manage_admins: Správa správců
+        manage_factor_benchmark_scores: Srovnávací skóre faktorů správy
+        manage_messages: Správa zpráv
+        manage_options: Správa možností
+        manage_report_approvals: Správa schvalování zpráv
+        manage_users: Správa uživatelů
+        participant_options: Možnosti účastníků
+        report_options: Možnosti hlášení
+        reset_nominations: Obnovení nominací
+        title: Kampaně
+        view: Zobrazit
+        view_factor_benchmark_scores: Zobrazit výsledky srovnávacího testu faktorů
+        view_stats: Zobrazit statistiky
+      clients:
+        export_data_report: Zpráva o exportu dat
+        manage: Správa
+        title: Klienti
+        view: Zobrazit
+        view_licenses: Zobrazit licence
+      communications:
+        manage: Správa
+        title: Komunikace
+        view: Zobrazit
+      dashboards:
+        accesssheet_manage: Správa přístupových listů
+        accesssheet_settings: Nastavení přístupového listu
+        accesssheet_view: Zobrazení přístupového listu
+        export: Export
+        title: Přístrojové panely
+        view: Zobrazit
+      datasheets:
+        manage: Správa
+        title: Datové listy
+        view: Zobrazit
+      developmentActions:
+        export: Export
+        export_global: Export Global
+        export_global_translations: Export globálních překladů
+        export_translations: Exportní překlady
+        import: Import
+        import_global: Globální import
+        import_global_translations: Import globálních překladů
+        import_translations: Importovat překlady
+        manage: Správa
+        title: Vývojové akce
+        view: Zobrazit
+      dimensions:
+        manage: Správa
+        title: Rozměry
+        view: Zobrazit
+      idpTemplates:
+        manage: Správa
+        title: Šablony IDP
+        view: Zobrazit
+      interviewQuestions:
+        export: Export
+        import: Import
+        manage: Spravujte
+        title: Otázky k pohovoru s vnitřně vysídlenými pracovníky
+        view: Zobrazit
+      jobRoles:
+        export_translations: Export pracovních rolí Překlady
+        import_translations: Import pracovních rolí Překlady
+        manage: Správa
+        title: Pracovní role
+        view: Zobrazit
+      labels:
+        apiKeys:
+          manage: Správa
+          title: Klíče API
+          view: Zobrazit
+        assessments:
+          manage: Správa
+          title: Hodnocení
+          view: Zobrazit
+        assessors:
+          manage: Správa
+          title: Posuzovatelé
+          view: Zobrazit
+        auditLogs:
+          title: Protokoly o auditu
+          view: Zobrazit
+        auditReports:
+          admin_permissions: Export rolí a oprávnění správce
+          title: Auditní zprávy
+          user_report_events: Protokoly o schvalování zpráv
+        campaignFactors:
+          manage: Správa
+          title: Faktory kampaně
+          view: Zobrazit
+        campaigns:
+          bulk_download: Hromadné stahování
+          bulk_regenerate_reports: Hromadné přegenerování sestav
+          manage: Správa
+          manage_admins: Správa správců
+          manage_factor_benchmark_scores: Srovnávací skóre faktorů správy
+          manage_messages: Správa zpráv
+          manage_options: Správa možností
+          manage_report_approvals: Správa schvalování zpráv
+          manage_users: Správa uživatelů
+          participant_options: Možnosti účastníků
+          report_options: Možnosti hlášení
+          reset_nominations: Obnovení nominací
+          title: Kampaně
+          view: Zobrazit
+          view_factor_benchmark_scores: Zobrazit výsledky srovnávacího testu faktorů
+          view_stats: Zobrazit statistiky
+        clients:
+          export_data_report: Zpráva o exportu dat
+          manage: Správa
+          title: Klienti
+          view: Zobrazit
+          view_licenses: Zobrazit licence
+        communications:
+          manage: Správa
+          title: Komunikace
+          view: Zobrazit
+        dashboards:
+          accesssheet_manage: Správa přístupových listů
+          accesssheet_settings: Nastavení přístupového listu
+          accesssheet_view: Zobrazení přístupového listu
+          export: Export
+          title: Přístrojové panely
+          view: Zobrazit
+        datasheets:
+          manage: Správa
+          title: Datové listy
+          view: Zobrazit
+        developmentActions:
+          export: Export
+          export_global: Export Global
+          export_global_translations: Export globálních překladů
+          export_translations: Exportní překlady
+          import: Import
+          import_global: Globální import
+          import_global_translations: Import globálních překladů
+          import_translations: Importovat překlady
+          manage: Správa
+          title: Vývojové akce
+          view: Zobrazit
+        dimensions:
+          manage: Správa
+          title: Rozměry
+          view: Zobrazit
+        idpTemplates:
+          manage: Správa
+          title: Šablony IDP
+          view: Zobrazit
+        jobRoles:
+          export_translations: Export pracovních rolí Překlady
+          import_translations: Import pracovních rolí Překlady
+          manage: Správa
+          title: Pracovní role
+          view: Zobrazit
+        libraries:
+          manage: Správa
+          title: Knihovny médií
+          view: Zobrazit
+        messages:
+          email: E-mail
+          instructions: Pokyny
+          options: Možnosti
+          title: Zprávy
+        norms:
+          manage: Správa
+          title: Normy
+          view: Zobrazit
+        proficiencyLevels:
+          export: Úrovně odborné způsobilosti pro export
+          export_translations: Úrovně znalostí pro export překlady
+          import: Úrovně odborné způsobilosti importu
+          import_translations: Úrovně pokročilosti importu Překlady
+          manage: Správa
+          title: Úrovně odborné způsobilosti
+          view: Zobrazit
+        proficiency_level:
+          title: Úrovně odborné způsobilosti
+        projectSettings:
+          assessments: Hodnocení
+          design: Design
+          feature_flags: Příznaky funkcí
+          idp: IDP
+          integrations: Integrace
+          privacy_settings: Nastavení ochrany osobních údajů
+          saml: SAML
+          security: Zabezpečení
+          smtp: SMTP
+          title: Nastavení projektu
+          webhooks: Webové háčky
+        projects:
+          manage: Správa
+          manage_admins: Správa správců
+          manage_users: Správa uživatelů
+          title: Projekty
+          view: Zobrazit
+        questions:
+          manage: Správa
+          title: Otázky
+          view: Zobrazit
+        reflectionQuestions:
+          export: Export
+          import: Import
+          manage: Správa
+          title: Otázky k reflexi IDP
+          view: Zobrazit
+        registrationCodes:
+          manage: Správa
+          title: Registrační kódy
+          view: Zobrazit
+        registrationSettings:
+          manage: Správa
+          title: Nastavení registrace
+        reports:
+          manage: Správa
+          title: Zprávy
+          view: Zobrazit
+        responseMeta:
+          title: Reakce Meta
+        results:
+          approve_report: Schválení zprávy
+          bulk_download: Hromadné stahování
+          bulk_regenerate_reports: Hromadné přegenerování sestav
+          bulk_update_evaluation_status: Hromadná aktualizace stavu hodnocení
+          download_report: Stáhnout zprávu
+          edit_report: Upravit zprávu
+          export_occupations: Vývozní profese
+          external_score_import: Import externího skóre
+          finalize_scores: Finalizace skóre
+          normalize_factor_scores: Normalizace skóre faktorů
+          raw_responses: Surové odpovědi
+          regenerate_report: Zpráva o regeneraci
+          report_data: Údaje ze zprávy
+          report_file_upload: Nahrání souboru s hlášením
+          rescore_responses: Reakce na výsledky
+          reset_progress: Obnovení postupu
+          reset_responses: Resetování odpovědí
+          scores: Skóre
+          title: Výsledky
+          view_report: Zobrazit zprávu
+          view_stats: Zobrazit statistiky
+        skills:
+          export: Export
+          export_translations: Exportní překlady
+          import: Import
+          import_translations: Importovat překlady
+          manage: Správa
+          title: Dovednosti
+          view: Zobrazit
+        smsHistories:
+          manage: Správa
+          title: Historie SMS
+          view: Zobrazit
+        smsInvites:
+          manage: Správa
+          title: Pozvánky SMS
+          view: Zobrazit
+        users:
+          reset_password: Obnovení hesla
+          title: Uživatelé
+        workshops:
+          export_status: Stav exportu
+          manage: Správa
+          title: Workshopy
+          view: Zobrazit
+          view_recordings: Zobrazit nahrávky
+      libraries:
+        manage: Správa
+        title: Knihovny médií
+        view: Zobrazit
+      messages:
+        email: E-mail
+        instructions: Pokyny
+        options: Možnosti
+        title: Zprávy
+      norms:
+        manage: Správa
+        title: Normy
+        view: Zobrazit
+      proficiencyLevels:
+        export: Úrovně odborné způsobilosti pro export
+        export_translations: Úrovně znalostí pro export překlady
+        import: Úrovně odborné způsobilosti importu
+        import_translations: Úrovně pokročilosti importu Překlady
+        manage: Správa
+        title: Úrovně odborné způsobilosti
+        view: Zobrazit
+      proficiency_level:
+        title: Úrovně odborné způsobilosti
+      projectSettings:
+        assessments: Hodnocení
+        design: Design
+        feature_flags: Příznaky funkcí
+        idp: IDP
+        integrations: Integrace
+        privacy_settings: Nastavení ochrany osobních údajů
+        saml: SAML
+        security: Zabezpečení
+        smtp: SMTP
+        title: Nastavení projektu
+        webhooks: Webové háčky
+      projects:
+        manage: Správa
+        manage_admins: Správa správců
+        manage_licenses: Spravovat licence
+        manage_users: Správa uživatelů
+        title: Projekty
+        view: Zobrazit
+        view_licenses: Zobrazit licence
+      questions:
+        manage: Správa
+        title: Otázky
+        view: Zobrazit
+      reflectionQuestions:
+        export: Export
+        import: Import
+        manage: Správa
+        title: Otázky k reflexi IDP
+        view: Zobrazit
+      registrationCodes:
+        manage: Správa
+        title: Registrační kódy
+        view: Zobrazit
+      registrationSettings:
+        manage: Správa
+        title: Nastavení registrace
+      reports:
+        manage: Správa
+        title: Zprávy
+        view: Zobrazit
+      responseMeta:
+        title: Reakce Meta
+      results:
+        approve_report: Schválení zprávy
+        bulk_download: Hromadné stahování
+        bulk_regenerate_reports: Hromadné přegenerování sestav
+        bulk_update_evaluation_status: Hromadná aktualizace stavu hodnocení
+        download_report: Stáhnout zprávu
+        edit_report: Upravit zprávu
+        export_occupations: Vývozní profese
+        external_score_import: Import externího skóre
+        finalize_scores: Finalizace skóre
+        normalize_factor_scores: Normalizace skóre faktorů
+        raw_responses: Surové odpovědi
+        regenerate_report: Zpráva o regeneraci
+        report_data: Údaje ze zprávy
+        report_file_upload: Nahrání souboru s hlášením
+        rescore_responses: Reakce na výsledky
+        reset_progress: Obnovení postupu
+        reset_responses: Resetování odpovědí
+        scores: Skóre
+        title: Výsledky
+        view_report: Zobrazit zprávu
+        view_stats: Zobrazit statistiky
+      skills:
+        export: Export
+        export_translations: Exportní překlady
+        import: Import
+        import_translations: Importovat překlady
+        manage: Správa
+        title: Dovednosti
+        view: Zobrazit
+      smsHistories:
+        manage: Správa
+        title: Historie SMS
+        view: Zobrazit
+      smsInvites:
+        manage: Správa
+        title: Pozvánky SMS
+        view: Zobrazit
+      userIdpPlans:
+        manage: Spravovat
+        reset: Resetovat
+        title: Plány pro IDP uživatelů
+        view: Pohled
+      users:
+        reset_password: Obnovení hesla
+        title: Uživatelé
+      workshops:
+        export_status: Stav exportu
+        manage: Správa
+        title: Workshopy
+        view: Zobrazit
+        view_recordings: Zobrazit nahrávky
+    permissions_360_campaigns: Oprávnění specifická pro kampaně 360
+    privacy: Ochrana osobních údajů
+    proficiency_level: Klíče API
+    proficiency_levels: Úrovně odborné způsobilosti
     profile_details: Podrobnosti o profilu
     project_admins: Správci projektů
     project_manager: Projektový manažer
+    project_number: Číslo projektu
+    project_settings: Nastavení projektu
+    projects: Projekty
     question_center: Centrum otázek
+    questions: Otázky
+    reflection_questions: Otázky k zamyšlení
     registration_codes: Registrační kódy
+    registration_settings: Nastavení registrace
     report_approvals: Schvalování zpráv
     report_condition_not_met: Potřebuje %{required} %{relationship} hodnocení, ale má jen %{actual}
     report_conditions_not_met_detailed: Report for %{user} nesplňuje podmínky dostupnosti. %{conditions}
@@ -128,6 +586,8 @@ cs:
     reset_idp_plan: Plán resetu
     reset_idp_plan_confirmation: Jste si jistý, že chcete plán resetovat?
     reset_idp_plan_title: Plán resetu
+    response_meta: Reakce Meta
+    results: Výsledky
     role: Role
     saml_idp_certificate_available: Dostupné (klikněte pro kopírování)
     saml_idp_certificate_label: Certifikát
@@ -179,17 +639,28 @@ cs:
     saml_settings: SAML nastavení
     scheduling: Plánování
     scoring: Bodování
+    search_admins: Vyhledávání administrátorů
+    select_admin_role: Vyberte roli správce
+    send_email: Odeslat e-mail
+    settings: Nastavení
     show_submenu: Zobrazit dílčí nabídku
+    siem: SIEM
+    skill_aliases: Pseudonymy dovedností
+    skills: Dovednosti
     skills_taxonomy: Taxonomie dovedností
     slot_name: Název slotu
+    sms_histories: Historie SMS
+    sms_invites: Pozvánky SMS
     stats: Statistiky
     status_details: Podrobnosti o stavu
     structured_learning: Formální učení [10]
+    subdomain: Subdoména
     upload_success: Úspěšně nahráno
     user_report_events: Hlášení uživatele Události
     users: Uživatelé
     view_licenses: Zobrazit licence
     waiting: Čekání
+    workshops: Workshopy
     year: Země
     yoodli_activity_id: Yoodli Activity ID
     yoodli_email_id: E-mailové ID kandidáta Yoodli

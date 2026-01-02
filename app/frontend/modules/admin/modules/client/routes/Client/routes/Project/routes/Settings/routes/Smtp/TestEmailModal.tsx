@@ -3,11 +3,11 @@ import {
   Modal, Button, App, Input, Typography,
   Space,
 } from 'antd'
-import {
-  LoadingOutlined, CheckOutlined, MailOutlined, InfoCircleOutlined,
-} from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
+import {
+  LoadingOutlined, CheckOutlined, MailOutlined, InfoCircleOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import {
   SAVE_SETTINGS,
   saveSettings,

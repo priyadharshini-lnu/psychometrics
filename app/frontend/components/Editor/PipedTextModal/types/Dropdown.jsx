@@ -1,5 +1,5 @@
 import { Dropdown as AntDropdown } from 'antd'
-import { CaretDownFilled } from '@ant-design/icons'
+import { CaretDownFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 import { getMenuItems } from '~/utils/array'
 
 const getMenuProps = (field, context, insert) => {

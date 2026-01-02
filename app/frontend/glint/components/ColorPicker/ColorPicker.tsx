@@ -3,10 +3,10 @@ import {
   Popover, Space, Button, App,
 } from 'antd'
 import { TooltipPlacement } from 'antd/lib/tooltip'
-import { CopyOutlined, DeleteOutlined } from '@ant-design/icons'
 import { HexAlphaColorPicker, HexColorInput, RgbaColor } from 'react-colorful'
 import useEyeDropper from 'use-eye-dropper'
 import cs from 'classnames'
+import { CopyOutlined, DeleteOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { useLocalStorage } from '~/hooks/useLocalStorage'
 import useCopyToClipboard from '~/hooks/useCopyToClipboard'

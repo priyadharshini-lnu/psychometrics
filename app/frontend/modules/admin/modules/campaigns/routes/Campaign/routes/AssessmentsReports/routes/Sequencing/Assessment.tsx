@@ -2,10 +2,9 @@ import React, { CSSProperties, Ref } from 'react'
 import {
   Button, Card, Space, Typography, Col, Row,
 } from 'antd'
-import { MenuOutlined } from '@ant-design/icons'
 import { DraggableSyntheticListeners } from '@dnd-kit/core'
+import { MenuOutlined, EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { ButtonColorType } from '~/interfaces/Antd'
-import { EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { CampaignAssessment } from '~/modules/admin/modules/campaigns/core/assessmentGroups'
 

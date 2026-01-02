@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react'
-import { LoadingOutlined, CheckOutlined, CloudDownloadOutlined } from '@ant-design/icons'
 import {
   Button, Modal, Alert, Form, Input, Select, Spin, message,
 } from 'antd'
@@ -7,6 +6,7 @@ import Event from 'interfaces/Event'
 import { debounce } from 'lodash'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from 'modules/admin/core/rootReducers'
+import { LoadingOutlined, CheckOutlined, CloudDownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import { useResources } from '~/hooks/useResources'
 import { Client } from '~/modules/admin/modules/client/core/clients'

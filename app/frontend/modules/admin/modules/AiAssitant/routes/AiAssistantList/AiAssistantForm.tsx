@@ -5,8 +5,8 @@ import {
   Tooltip,
 } from 'antd'
 import { useSelector } from 'react-redux'
-import { PlusOutlined, InfoCircleOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
+import { PlusOutlined, InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { AiAssistantTR, AiAssistant } from '~/modules/admin/modules/AiAssitant/core/aiAssistant'
 import { getAvailableAiProviders } from '~/core/config'
 import { ASSISTANT_TYPES, DEPENDENCY_TYPES } from '~/modules/admin/modules/AiAssitant/core/constants'

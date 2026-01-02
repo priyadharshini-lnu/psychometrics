@@ -5,7 +5,7 @@ import {
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
-import { PlusOutlined } from '@ant-design/icons'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import { useResources } from '~/hooks/useResources'
 import { UpdateResource, BaseMeta } from '~/hooks/useResources/interfaces'

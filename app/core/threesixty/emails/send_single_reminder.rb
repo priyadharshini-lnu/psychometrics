@@ -68,7 +68,7 @@ module Threesixty
       end
 
       def send_email_applicable?
-        [::Threesixty::Emails::Name::EVALUATOR_REMINDER].any?(email_name)
+        [::Threesixty::Emails::Name::SUBJECT_REMINDER, ::Threesixty::Emails::Name::EVALUATOR_REMINDER].any?(email_name)
       end
     end
   end

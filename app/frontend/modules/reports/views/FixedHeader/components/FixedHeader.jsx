@@ -4,7 +4,7 @@ import { normalize } from 'normalizr'
 import {
   Space, Flex, Button, message, Dropdown,
 } from 'antd'
-import { ArrowLeftOutlined, SettingOutlined } from '@ant-design/icons'
+import { ArrowLeftOutlined, SettingOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import headerStore from '~/modules/reports/store/HeaderStore'
 import AppStore from '~/modules/reports/store/AppStore'
 import Module from '~/modules/reports/models/Module'

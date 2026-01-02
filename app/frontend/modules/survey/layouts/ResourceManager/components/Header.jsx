@@ -1,6 +1,6 @@
 import cs from 'classnames'
 import { Button } from 'antd'
-import { SaveOutlined } from '@ant-design/icons'
+import { SaveOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import NotificationDispatcher from '~/modules/survey/dispatchers/NotificationDispatcher'
 import styles from './ResourceManager.less'
 import { Tabs } from '../../Header/Tabs'

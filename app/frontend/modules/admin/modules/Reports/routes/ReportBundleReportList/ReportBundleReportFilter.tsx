@@ -1,8 +1,8 @@
 
 import React from 'react'
-import { PlusOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
 import { ReportBundle } from 'modules/admin/modules/client/core/reports'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 
 const { I18n } = window

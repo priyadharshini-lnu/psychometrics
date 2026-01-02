@@ -2,10 +2,10 @@ import { useState, useEffect, useCallback } from 'react'
 import {
   Modal, Button, Form, Input, Select,
 } from 'antd'
-import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import debounce from 'lodash/debounce'
+import { LoadingOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { isSuperAdmin } from '~/core/currentUser'
 import ErrorAlertBox from '~/components/ErrorAlertBox'
 import { getFeatures } from '~/core/config'

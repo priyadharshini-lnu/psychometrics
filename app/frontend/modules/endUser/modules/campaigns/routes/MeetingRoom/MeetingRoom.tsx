@@ -28,10 +28,13 @@ const MeetingRoom = ({ fetchMeeting }: Props) => {
   const { roomId } = useParams() as {roomId: string}
   const [token, setToken] = useState<string | null>(null)
   const [url, setUrl] = useState<string | null>(null)
+  const [recordingEnabled, setRecordingEnabled] = useState<boolean>(false)
+
   useEffect(() => {
-    fetchMeeting(roomId).then((res:{ response:{token: string, url:string} }) => {
+    fetchMeeting(roomId).then((res:{ response:{token: string, url:string, videoRecordingEnabled: boolean} }) => {
       setToken(res.response.token)
       setUrl(res.response.url)
+      setRecordingEnabled(res.response.videoRecordingEnabled)
     })
   }, [])
 
@@ -55,7 +58,7 @@ const MeetingRoom = ({ fetchMeeting }: Props) => {
     <div style={{ width: '100%', height: 'calc(100vh - 50px)', marginTop: '50px' }}>
       <Suspense fallback={<h3>Still Loading…</h3>}>
         {/* deepcode ignore OR: We are using sanitized url from our own backend */}
-        {token && url && (<Meet token={token} url={url} />)}
+        {token && url && (<Meet token={token} url={url} recordingEnabled={recordingEnabled} />)}
       </Suspense>
     </div>
   )

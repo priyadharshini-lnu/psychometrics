@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {
   Form, Input, Row, Col, Button, Radio, Typography,
 } from 'antd'
-import { CloseOutlined, PlusOutlined } from '@ant-design/icons'
+import { CloseOutlined, PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from './Form.less'
 
 const { Title } = Typography

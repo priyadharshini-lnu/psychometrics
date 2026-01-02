@@ -5,9 +5,9 @@ import { PageHeader } from '@ant-design/pro-layout'
 import {
   Layout, Button, Row, Col, Spin, Space,
 } from 'antd'
-import { ArrowLeftOutlined, DownloadOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
+import { ArrowLeftOutlined, DownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import {
   fetchExternalReportDetails, FETCH_EXTERNAL_REPORT_DETAILS, getExternalReport,

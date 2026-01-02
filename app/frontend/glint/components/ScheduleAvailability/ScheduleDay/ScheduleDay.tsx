@@ -3,10 +3,10 @@ import { FC } from 'react'
 import {
   TimePicker, Row, Col, Space, TimePickerProps, Form, FormInstance, Typography, Button,
 } from 'antd'
+import cs from 'classnames'
 import {
   PlusCircleOutlined, MinusCircleOutlined,
-} from '@ant-design/icons'
-import cs from 'classnames'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 import {
   allMinutes,

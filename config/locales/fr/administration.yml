@@ -29,35 +29,11 @@ fr:
     administrators:
       drawers:
         edit:
-          admin_role_select: Sélectionner le rôle d'administrateur
-          admin_roles: Rôles administratifs
-          create_success: L'administrateur '%{name}' a été créé avec succès
-          email: Courriel
-          first_name: Prénom
           first_name_required: Le prénom est obligatoire
-          last_name: Nom de famille
           last_name_required: Le nom de famille est obligatoire
-          no_edit_permission: Vous n'avez pas la permission de modifier l'admin '%{name}'
-          save: Économiser
-          update: Mettre à jour
-          update_success: L'administrateur '%{name}' a été mis à jour avec succès
-        notes:
-          threesixty_permission: Permissions spécifiques aux campagnes 360
-          title: Notes
         view:
-          add_campaign_admin: Ajouter un administrateur de campagne
-          add_client_admin: Ajouter un administrateur client
-          add_project_admin: Ajouter un administrateur de projet
-          add_threesixty_campaign_admin: Ajouter un administrateur de campagne
-          edit_campaign_admin: Modifier l'administration de la campagne
-          edit_client_admin: Modifier l'administration du client
-          edit_project_admin: Modifier l'administration du projet
-          edit_threesixty_campaign_admin: Modifier l'administration de la campagne
           first_name: Prénom
           last_name: Nom de famille
-          project_admin: Administrateur du projet
-          project_list: Liste des projets
-          role: Administrateur de la campagne
           title:
             campaign_admin: Administrateur de la campagne
             client_admin: Administration des clients
@@ -65,253 +41,20 @@ fr:
       list:
         actions:
           api_keys: Clés API
-          cancel_text: Annuler
-          change_password: Réinitialiser le mot de passe
           edit: Editer
           export_admins_with_permissions: Exportation des rôles et permissions des administrateurs
           export_success: La tâche d'exportation administrative a été programmée avec succès. Veuillez consulter votre notification pour connaître l'état d'avancement.
           login: Connexion
-          send_email: Envoyer un courriel
           spoof:
             login_successful: Connexion réussie.
           user_report_events: Rapport Journaux d'approbation
         columns:
-          actions: Actions
-          created_at: Créé à
           email: Courriel
-          id: ID
-          name: Nom
-        header:
-          add_admin: Ajouter un administrateur
-          search_admins: Recherche d'administrateurs
-        toolbar:
-          export_admins_with_permissions: Exportation des rôles et permissions des administrateurs
       modals:
         delete:
           cancelText: Annuler
-          content: Êtes-vous sûr de vouloir supprimer l'utilisateur administrateur dont l'adresse électronique est "%{email}" ?
           okText: Ok
-          onSuccess: L'administrateur dont l'adresse électronique est '%{email}' a été supprimé avec succès
           title: Confirmer
-      permissions:
-        labels:
-          aiArtifacts:
-            export: Exportation
-            import: Importation
-            manage: Gérer
-            title: Artefacts IA
-            view: Vue
-          apiKeys:
-            manage: Gérer
-            title: Clés API
-            view: Voir
-          assessments:
-            manage: Gérer
-            title: Évaluations
-            view: Voir
-          assessors:
-            manage: Gérer
-            title: Évaluateurs
-            view: Voir
-          auditLogs:
-            title: Journaux d'audit
-            view: Voir
-          auditReports:
-            admin_permissions: Exportation des rôles et permissions des administrateurs
-            title: Rapports d'audit
-            user_report_events: Rapport Journaux d'approbation
-          campaignFactors:
-            manage: Gérer
-            title: Facteurs de campagne
-            view: Voir
-          campaigns:
-            bulk_download: Téléchargement en masse
-            bulk_regenerate_reports: Régénération en bloc des rapports
-            manage: Gérer
-            manage_admins: Gérer les administrateurs
-            manage_factor_benchmark_scores: Gérer les scores de référence des facteurs
-            manage_messages: Gérer les messages
-            manage_options: Gérer les options
-            manage_report_approvals: Gérer les approbations des rapports
-            manage_users: Gérer les utilisateurs
-            participant_options: Options pour les participants
-            report_options: Options du rapport
-            reset_nominations: Réinitialiser les nominations
-            title: Campagnes
-            view: Voir
-            view_factor_benchmark_scores: Voir les notes d'évaluation des facteurs
-            view_stats: Voir les statistiques
-          clients:
-            export_data_report: Rapport d'exportation de données
-            manage: Gérer
-            title: Clients
-            view: Voir
-            view_licenses: Voir les licences
-          communications:
-            manage: Gérer
-            title: Communications
-            view: Voir
-          dashboards:
-            accesssheet_manage: Feuille d'accès Gérer
-            accesssheet_settings: Paramètres de la feuille d'accès
-            accesssheet_view: Vue de la feuille d'accès
-            export: Exportation
-            title: Tableaux de bord
-            view: Voir
-          datasheets:
-            manage: Gérer
-            title: Fiches techniques
-            view: Voir
-          developmentActions:
-            export: Exportation
-            export_global: Exportation mondiale
-            export_global_translations: Export Global Translations
-            export_translations: Traductions pour l'exportation
-            import: Importation
-            import_global: Importation mondiale
-            import_global_translations: Importer Global Translations
-            import_translations: Traductions des importations
-            manage: Gérer
-            title: Actions de développement
-            view: Voir
-          dimensions:
-            manage: Gérer
-            title: Dimensions
-            view: Voir
-          idpTemplates:
-            manage: Gérer
-            title: Modèles de PDI
-            view: Voir
-          interviewQuestions:
-            export: Exportation
-            import: Importation
-            manage: Gérer
-            title: Questions d’entretien pour les IDP
-            view: Vue
-          jobRoles:
-            export_translations: Exportation Rôles professionnels Traductions
-            import_translations: Importation Rôles professionnels Traductions
-            manage: Gérer
-            title: Rôles professionnels
-            view: Voir
-          libraries:
-            manage: Gérer
-            title: Bibliothèques des médias
-            view: Voir
-          messages:
-            email: Courriel
-            instructions: Instructions
-            options: Options
-            title: Messages
-          norms:
-            manage: Gérer
-            title: Normes
-            view: Voir
-          proficiencyLevels:
-            export: Niveaux de compétence à l'exportation
-            export_translations: Traductions des niveaux de compétence à l'exportation
-            import: Niveaux de compétence en matière d'importation
-            import_translations: Niveaux de compétence en matière d'importation Traductions
-            manage: Gérer
-            title: Niveaux de compétence
-            view: Voir
-          proficiency_level:
-            title: Niveaux de compétence
-          projectSettings:
-            assessments: Évaluations
-            design: Conception
-            feature_flags: Drapeaux de fonctionnalité
-            idp: PDI
-            integrations: Intégrations
-            privacy_settings: Paramètres de confidentialité
-            saml: SAML
-            security: Sécurité
-            smtp: SMTP
-            title: Paramètres du projet
-            webhooks: Crochets Web
-          projects:
-            manage: Gérer
-            manage_admins: Gérer les administrateurs
-            manage_licenses: Gestion des licences
-            manage_users: Gérer les utilisateurs
-            title: Projets
-            view: Voir
-            view_licenses: Voir les licences
-          questions:
-            manage: Gérer
-            title: Questions
-            view: Voir
-          reflectionQuestions:
-            export: Exportation
-            import: Importation
-            manage: Gérer
-            title: Questions de réflexion sur le PDI
-            view: Voir
-          registrationCodes:
-            manage: Gérer
-            title: Codes d'enregistrement
-            view: Voir
-          registrationSettings:
-            manage: Gérer
-            title: Paramètres d'enregistrement
-          reports:
-            manage: Gérer
-            title: Rapports
-            view: Voir
-          responseMeta:
-            title: Réponse Meta
-          results:
-            approve_report: Approuver le rapport
-            bulk_download: Téléchargement en masse
-            bulk_regenerate_reports: Régénération en bloc des rapports
-            bulk_update_evaluation_status: Mise à jour en bloc de l'état de l'évaluation
-            download_report: Télécharger le rapport
-            edit_report: Modifier le rapport
-            export_occupations: Métiers de l'exportation
-            external_score_import: Importation d'un score externe
-            finalize_scores: Finaliser les notes
-            normalize_factor_scores: Normaliser les scores des facteurs
-            raw_responses: Réponses brutes
-            regenerate_report: Rapport sur la régénération
-            report_data: Données du rapport
-            report_file_upload: Téléchargement du fichier de rapport
-            rescore_responses: Réponses à la réinitialisation
-            reset_progress: Réinitialiser la progression
-            reset_responses: Réponses à la réinitialisation
-            scores: Scores
-            title: Résultats
-            view_report: Voir le rapport
-            view_stats: Voir les statistiques
-          skills:
-            export: Exportation
-            export_translations: Traductions pour l'exportation
-            import: Importation
-            import_translations: Traductions des importations
-            manage: Gérer
-            title: Compétences
-            view: Voir
-          smsHistories:
-            manage: Gérer
-            title: Histoires de SMS
-            view: Voir
-          smsInvites:
-            manage: Gérer
-            title: Invitations par SMS
-            view: Voir
-          userIdpPlans:
-            manage: Gérer
-            reset: Réinitialisation
-            title: Plans IDP utilisateurs
-            view: Vue
-          users:
-            reset_password: Réinitialiser le mot de passe
-            title: Utilisateurs
-          workshops:
-            export_status: Statut de l'exportation
-            manage: Gérer
-            title: Ateliers
-            view: Voir
-            view_recordings: Voir les enregistrements
     ai_artifacts:
       artifact_results: Résultats de l’artefact
       code: Code
@@ -4050,12 +3793,7 @@ fr:
       security_setting: Paramètres de sécurité
     settings:
       admin_roles:
-        admin_role_single: Rôle de l'administrateur
         confirm_message: Êtes-vous sûr de vouloir supprimer le rôle d'administrateur "%{role_name}" ?
-        create: Ajouter un rôle d'administrateur
-        description: Description
-        name: Nom
-        successful_remove: Le rôle d'administrateur '%{role_name}' a été supprimé avec succès.
       siem:
         description: Description
         destination_type: Type de destination

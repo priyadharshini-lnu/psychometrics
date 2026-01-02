@@ -2,7 +2,7 @@ import React, { ReactNode, useState } from 'react'
 import {
   Modal, Input, Button, Alert,
 } from 'antd'
-import { CheckOutlined, LoadingOutlined } from '@ant-design/icons'
+import { CheckOutlined, LoadingOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 interface Props {
   confirmationTitle?: string

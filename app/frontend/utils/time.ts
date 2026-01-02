@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import dayjs from '~/utils/dayjs'
+import { normalizeTimeZone } from '~/hooks/useTimezones'
 
 export const SECONDS_IN_HOUR = 86400
 const FORMAT = 'DD MMM YYYY / HH:mm'
@@ -79,7 +80,7 @@ export const countdownAlertInSeconds = (totalSeconds: number): string => {
 export const mergeDateAndTime = (
   date: dayjs.Dayjs, time: dayjs.Dayjs | null, timezone: string| undefined = undefined,
 ) => {
-  const finalTimezone = timezone || dayjs.tz.guess() || 'Asia/Dubai'
+  const finalTimezone = timezone || normalizeTimeZone(dayjs.tz.guess())
   return (
     dayjs.tz(date.format('YYYY-MM-DD'), finalTimezone).set('hour',
       time?.hour() || 0).set('minute', time?.minute() || 0)

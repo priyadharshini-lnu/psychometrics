@@ -2,8 +2,12 @@
 ro:
   shared:
     action: Acțiuni
+    actions: Acțiuni
+    active: Active
     add: Adăugați
     advanced: Avansat
+    archive: Arhivă
+    archived: Arhivate
     authentication_failed: Autentificarea a eșuat. Vă rog să încercați din nou.
     basic: Bază
     campaign_id: ID-ul campaniei
@@ -11,24 +15,41 @@ ro:
     change_password: Schimbați parola
     clear_filters: Ștergeți filtrele
     collaborative_learning: Învățare colaborativă
+    confirm: Confirmați
     continue: Continua
+    created_at: Creat la
+    created_date: Data creării
     description: Descriere
     edit: Editați
     edited: Nou
+    email: E-mail
+    export: Exportați
+    first_name: Prenumele
     formal_learning: Învățământ formal
     group_question_max_validation_error: Fiecare grup poate conține cel mult {{max}} element(e).
     group_question_min_validation_error: Fiecare grup trebuie să conțină cel puțin {{min}} element(e).
     id: ID
     idp_ai_assistant_disclaimer: Asistentul IDP Lighthouse AI poate face greșeli. Te rog să fii atent când folosești răspunsurile.
     internet_disconnected_message: Încercați să vă reconectați. Vă rugăm să verificați conexiunea la internet.
+    last_name: Numele de familie
     learning_on_the_job_label: Învățarea la locul de muncă
+    login: Autentificare
+    modified_by: Modificat de
+    modified_date: Data modificării
+    more_actions: Mai multe acțiuni
     mte_logo_alt_text: Sigla Mercer Talent Enterprise
     name: Nume
     new: Nou
+    ok: Bine
+    remove: Eliminați
     removed: Scos
+    reset_password: Resetați parola
     rte_paste_content_exceeds_char_limit: Textul depășește limita de caractere {{maxCharacterLimit}} și nu poate fi lipit.
     rte_paste_content_exceeds_word_limit: Textul depășește limita de cuvinte a {{maxWordLimit}} și nu poate fi lipit.
+    save: Salvați
     search: Căutare
+    send_email: Trimite e-mail
+    something_wrong: Ceva nu a mers bine. Contactați administratorul.
     table:
       entries:
         selected: 1 rând selectat

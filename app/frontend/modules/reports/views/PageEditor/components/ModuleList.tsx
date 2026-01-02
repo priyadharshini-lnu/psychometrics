@@ -3,11 +3,11 @@ import {
   useSelector, useDispatch, connect, ConnectedProps,
 } from 'react-redux'
 import { Space, Divider, Button } from 'antd'
-import {
-  EyeOutlined, EyeInvisibleOutlined, LockOutlined, UnlockOutlined,
-} from '@ant-design/icons'
 import _ from 'lodash'
 import cs from 'classnames'
+import {
+  EyeOutlined, EyeInvisibleOutlined, LockOutlined, UnlockOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { getModules } from '~/modules/reports/core/builder/selectors'
 import {
   closeRichEditor,

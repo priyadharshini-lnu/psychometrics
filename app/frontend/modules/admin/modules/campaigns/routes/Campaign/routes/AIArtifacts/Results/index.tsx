@@ -5,8 +5,8 @@ import {
   Table, Pagination, Flex, Input, Skeleton, Popover, message, Typography,
   Tooltip,
 } from 'antd'
-import { AppstoreOutlined, CheckOutlined, WarningFilled } from '@ant-design/icons'
 import * as t from 'io-ts'
+import { AppstoreOutlined, CheckOutlined, WarningFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 import { formatedDate } from '~/utils/time'
 import { useResources } from '~/hooks/useResources'
 import { TableLayout } from '~/modules/admin/components/TableLayout'

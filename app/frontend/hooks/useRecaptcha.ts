@@ -4,7 +4,7 @@ import { loadRecaptchaScript, renderRecaptchaWidget } from '~/utils/recaptcha'
 
 const { recaptchaSiteKey } = window.PsyGlobalState
 
-type UseRecaptchaOptions ={
+type UseRecaptchaOptions = {
   formRef?: React.RefObject<HTMLFormElement>
   formInstance?: FormInstance
   disable_recaptcha?: boolean
@@ -43,9 +43,24 @@ export const useRecaptcha = ({ formRef, formInstance, disable_recaptcha }: UseRe
     })
   }, [recaptchaReady, disable_recaptcha, formRef, formInstance])
 
+  const resetRecaptcha = () => {
+    if (recaptchaWidgetId.current !== null) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window.grecaptcha as any).reset(recaptchaWidgetId.current)
+    }
+    setRecaptchaToken('')
+    if (formInstance) {
+      formInstance.setFieldsValue({ recaptcha_token: '' })
+    } else if (formRef && formRef.current) {
+      const input = formRef.current.querySelector('input[name="recaptcha_token"]') as HTMLInputElement
+      if (input) input.value = ''
+    }
+  }
+
   return {
     recaptchaToken,
     recaptchaReady,
     recaptchaWidgetId,
+    resetRecaptcha,
   }
 }

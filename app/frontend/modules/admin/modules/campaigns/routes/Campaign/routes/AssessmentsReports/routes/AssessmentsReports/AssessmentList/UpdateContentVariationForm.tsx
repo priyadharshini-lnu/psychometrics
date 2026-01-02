@@ -3,8 +3,8 @@ import _ from 'lodash'
 import {
   Button, Form, Checkbox, Select, message, Flex,
 } from 'antd'
-import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
+import { LoadingOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { RootState } from '~/modules/admin/core/rootReducers'
 import {

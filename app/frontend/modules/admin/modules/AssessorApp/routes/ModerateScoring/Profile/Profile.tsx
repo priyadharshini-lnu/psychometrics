@@ -1,10 +1,10 @@
 import {
   Card, Avatar, Flex, Skeleton, Button,
 } from 'antd'
-import { UserOutlined, CloseOutlined } from '@ant-design/icons'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import _ from 'lodash'
+import { UserOutlined, CloseOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from './styles.less'
 import { useResources } from '~/hooks/useResources'
 import { User, UserProfile } from '~/modules/admin/modules/campaigns/core/user'

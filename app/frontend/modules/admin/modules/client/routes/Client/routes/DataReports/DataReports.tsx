@@ -1,6 +1,6 @@
 import { Button, message } from 'antd'
-import { CaretRightOutlined } from '@ant-design/icons'
 import { Link, useParams } from 'react-router-dom'
+import { CaretRightOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { useResources } from '~/hooks/useResources'
 import { DataReport, DataReportTR, OkResponse } from '~/modules/admin/modules/DataReports/core/index'
 import { formatedDate } from '~/utils/time'

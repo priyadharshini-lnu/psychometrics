@@ -1,8 +1,8 @@
 import _ from 'lodash'
 import { Button, Space } from 'antd'
-import { DeleteOutlined, ClearOutlined } from '@ant-design/icons'
 import Select from 'react-select'
 import cs from 'classnames'
+import { DeleteOutlined, ClearOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import { ColorPicker } from '~/glint'
 import PropertyFonts, { styleClassess, getStyle } from '~/modules/reports/components/PropertyFonts'
@@ -143,6 +143,14 @@ const Properties = ({
   const changeEditAndApprove = (e) => {
     updateAll((model) => {
       model.props.editable = e.currentTarget.checked
+      model.update()
+    })
+  }
+
+
+  const changeAITranslation = (e) => {
+    updateAll((model) => {
+      model.props.aiTranslationEnabled = e.currentTarget.checked
       model.update()
     })
   }
@@ -385,6 +393,15 @@ const Properties = ({
             Enhance with AI
           </label>
         )}
+        <label className={styles.inputLabel}>
+          <input
+            style={{ marginRight: '5px' }}
+            type="checkbox"
+            checked={model.props.aiTranslationEnabled ?? false}
+            onChange={changeAITranslation}
+          />
+          {I18n.t('administration.report_builder.property_panel.translate_with_ai')}
+        </label>
       </div>
       <hr className={styles.divider} />
       <div className={styles.block} style={{ position: 'relative' }}>

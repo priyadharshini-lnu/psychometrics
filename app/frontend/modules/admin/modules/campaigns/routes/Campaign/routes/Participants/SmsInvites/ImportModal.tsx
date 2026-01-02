@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 
 
-import { LoadingOutlined, CheckOutlined, CloudDownloadOutlined } from '@ant-design/icons'
 import {
   Button, Modal, message, Alert, Form, Input,
 } from 'antd'
 import Event from 'interfaces/Event'
+import { LoadingOutlined, CheckOutlined, CloudDownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { importSmsInvites, IMPORT } from '~/modules/admin/modules/campaigns/core/smsInvites'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { isRequestInProgress } from '~/core/request'

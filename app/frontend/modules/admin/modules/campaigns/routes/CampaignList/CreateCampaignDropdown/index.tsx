@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Button, Dropdown,
 } from 'antd'
-import { PlusOutlined, DownOutlined } from '@ant-design/icons'
+import { PlusOutlined, DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 interface Props {
   openModal(name: string, data?: { projectId: number }): void

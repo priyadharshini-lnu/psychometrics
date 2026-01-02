@@ -4,9 +4,9 @@ import {
 import {
   Col, Row, Form, Input, Radio, Checkbox, Button, Upload, Image, Flex, Card, Space, message,
 } from 'antd'
-import { UploadOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
+import { UploadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { LangDropdown } from '~/components/LangDropdown'
 import {
   Idp, IdpTR,
@@ -45,6 +45,8 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
   const [translations, setTranslations] = useState(idp?.translations || {})
   const [loading, setLoading] = useState(false)
   const [form] = Form.useForm()
+  const background = Form.useWatch('background', form)
+  const clientLogo = Form.useWatch('clientLogo', form)
 
   const baseApiConfig = {
     basePath: `projects/${projectId}`,
@@ -89,10 +91,10 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
       if (values.clientLogo && values.clientLogo.file) {
         data.append('client_logo', values.clientLogo.file)
       }
-      if (values.removeBackground) {
+      if (values.removeBackground && !background) {
         data.append('purge_background', 'true')
       }
-      if (values.removeClientLogo) {
+      if (values.removeClientLogo && !clientLogo) {
         data.append('purge_client_logo', values.removeClientLogo)
       }
 
@@ -100,12 +102,14 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
         await uploadFileAction(`idp_templates/${idp.id}/uploads`, data)
         setLoading(false)
       } catch (e) { /* empty */ }
+      form.setFieldsValue({
+        background: null, clientLogo: null, removeBackground: null, removeClientLogo: null,
+      })
     }
     message.success(I18n.t('administration.idp.appearance_success'))
     await fetch()
     setLoading(false)
   }
-
 
   const changeTitle = (e) => {
     setTranslations({
@@ -169,12 +173,15 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
                     maxCount={1}
                     accept=".jpeg, .jpg, .png, .svg, .gif, .bmp, image/jpeg, image/png, image/svg+xml"
                     beforeUpload={() => false}
+                    showUploadList={!!background}
                   >
-                    <Button icon={<UploadOutlined />}>
-                      {I18n.t('administration.projects.design_settings.logo_upload')}
-                    </Button>
+                    <Space direction="vertical" className="mb-4">
+                      <Button icon={<UploadOutlined />}>
+                        {I18n.t('administration.projects.design_settings.logo_upload')}
+                      </Button>
+                      {idp?.background && <Image className="mt-4" height={100} src={idp?.background} />}
+                    </Space>
                   </Upload>
-                  {idp?.background && <Image className="mt-4" height={100} src={idp?.background} />}
                 </Form.Item>
                 {idp?.background && (
                   <Form.Item
@@ -198,12 +205,15 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
                     maxCount={1}
                     accept=".jpeg, .jpg, .png, .svg, .gif, .bmp, image/jpeg, image/png, image/svg+xml"
                     beforeUpload={() => false}
+                    showUploadList={!!clientLogo}
                   >
-                    <Button icon={<UploadOutlined />}>
-                      {I18n.t('administration.projects.design_settings.logo_upload')}
-                    </Button>
+                    <Space direction="vertical" className="mb-4">
+                      <Button icon={<UploadOutlined />}>
+                        {I18n.t('administration.projects.design_settings.logo_upload')}
+                      </Button>
+                      {idp?.clientLogo && <Image className="mt-4" height={100} src={idp?.clientLogo} />}
+                    </Space>
                   </Upload>
-                  {idp?.clientLogo && <Image className="mt-4" height={100} src={idp?.clientLogo} />}
                 </Form.Item>
                 {idp?.clientLogo && (
                   <Form.Item

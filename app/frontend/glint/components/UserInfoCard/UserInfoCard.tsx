@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react'
 import { Button, Card, Tooltip } from 'antd'
-import { CloseOutlined } from '@ant-design/icons'
 import cs from 'classnames'
+import { CloseOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { ResourceAvatar } from '~/glint'
 

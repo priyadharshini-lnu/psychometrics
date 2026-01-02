@@ -4,7 +4,7 @@ import {
   message,
 } from 'antd'
 import _ from 'lodash'
-import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
+import { LoadingOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { useResources } from '~/hooks/useResources'
 import { useResourceContext } from '~/modules/admin/components/Resource'
 import { Idp, Report, ReportTR } from '~/modules/admin/modules/client/core/idp'

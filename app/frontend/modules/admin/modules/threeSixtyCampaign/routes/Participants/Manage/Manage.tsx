@@ -2,8 +2,8 @@ import React from 'react'
 import {
   Button, MenuProps,
 } from 'antd'
-import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
+import { ToolOutlined, DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { openModal } from '~/modules/admin/core/ui/modals'

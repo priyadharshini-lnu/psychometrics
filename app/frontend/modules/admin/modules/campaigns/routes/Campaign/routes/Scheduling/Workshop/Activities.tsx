@@ -7,10 +7,10 @@ import {
   Space,
   message,
 } from 'antd'
-import { CopyOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { ConnectedProps, connect } from 'react-redux'
+import { CopyOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 import {
   WorkshopUserAcitivity, WorkshopUserAcitivityTR,

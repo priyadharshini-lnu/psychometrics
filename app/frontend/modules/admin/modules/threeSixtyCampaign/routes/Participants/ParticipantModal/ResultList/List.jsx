@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { Table } from 'antd'
-import { DeleteOutlined, EyeOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
+import { DeleteOutlined, EyeOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 import userPresenter from '~/presenters/user'
 import { ASSIGN_TYPES } from '~/constants/relationship'

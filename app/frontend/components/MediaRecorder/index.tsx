@@ -11,13 +11,13 @@ import {
   Select,
 } from 'antd'
 import humps from 'humps'
+import SparkMD5 from 'spark-md5'
 import {
   DeleteOutlined, StopOutlined, VideoCameraOutlined, LoadingOutlined,
   DownOutlined,
   AudioOutlined,
   CheckCircleFilled,
-} from '@ant-design/icons'
-import SparkMD5 from 'spark-md5'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { axiosWithRetry } from '~/utils/axiosWithRetry'
 import { MediaResponse } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 import { useReactMediaRecorder } from './components/MediaRecorder'

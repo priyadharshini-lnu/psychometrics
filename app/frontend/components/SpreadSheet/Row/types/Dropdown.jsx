@@ -1,5 +1,5 @@
 import { Dropdown as AntDropdown } from 'antd'
-import { DownOutlined } from '@ant-design/icons'
+import { DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { getMenuItems } from '~/utils/array'
 
 const getMenuProps = ({ values, onChange }) => (

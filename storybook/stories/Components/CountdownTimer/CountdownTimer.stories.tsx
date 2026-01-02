@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { Typography } from 'antd'
-import { ClockCircleOutlined } from '@ant-design/icons'
+import { ClockCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { CountdownTimer } from '~/glint/components/CountdownTimer'
 
 const { Text } = Typography

@@ -5,7 +5,6 @@ import {
   Col, Row, Button, Flex, Card, Select, Space, Typography, Divider,
   message, Table, Switch,
 } from 'antd'
-import { DeleteOutlined, PlusOutlined, MenuOutlined } from '@ant-design/icons'
 import { InterviewQuestion } from 'modules/admin/modules/client/core/interviewQuestion'
 import debounce from 'lodash/debounce'
 import { useParams } from 'react-router-dom'
@@ -20,6 +19,7 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
+import { DeleteOutlined, PlusOutlined, MenuOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import InputDuration from '~/components/InputDuration'
 import {
   Idp, IdpTR, IdpTemplateInterviewQuestion,

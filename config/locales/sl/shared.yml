@@ -2,8 +2,12 @@
 sl:
   shared:
     action: Aktivnost
+    actions: Aktivnosti
+    active: Aktivni
     add: Dodaj
     advanced: Napreden
+    archive: Arhiv
+    archived: Arhivirani
     authentication_failed: Avtentikacija ni uspela. Prosim, poskusite znova.
     basic: Osnoven
     campaign_id: ID kampanje
@@ -11,24 +15,41 @@ sl:
     change_password: Spremeni geslo
     clear_filters: Počistite filtre
     collaborative_learning: Sodelovalno učenje
+    confirm: Potrdi
     continue: Nadaljuj
+    created_at: Ustvarjeno
+    created_date: Ustvarjeno dne
     description: Opis
     edit: Uredi
     edited: Novo
+    email: E-pošta
+    export: Izvoz
+    first_name: Ime
     formal_learning: Formalno učenje
     group_question_max_validation_error: Vsaka skupina lahko vsebuje največ {{max}} elementov.
     group_question_min_validation_error: Vsaka skupina mora vsebovati vsaj {{min}} element(e).
     id: ID
     idp_ai_assistant_disclaimer: Lighthouse AI IDP asistent lahko naredi napake. Prosimo, bodite previdni pri uporabi odgovorov.
     internet_disconnected_message: Ponovno vzpostavljamo povezavo. Preverite internetno povezavo.
+    last_name: Priimek
     learning_on_the_job_label: Učenje na delovnem mestu
+    login: Prijava
+    modified_by: Spremenil
+    modified_date: Datum spremembe
+    more_actions: Več dejanj
     mte_logo_alt_text: Logotip Mercer Talent Enterprise
     name: Ime
     new: Novo
+    ok: Ok
+    remove: Odstranite
     removed: Odstranjen
+    reset_password: Ponastavitev gesla
     rte_paste_content_exceeds_char_limit: Besedilo presega omejitev znakov {{maxCharacterLimit}} in ga ni mogoče prilepiti.
     rte_paste_content_exceeds_word_limit: Besedilo presega omejitev besed {{maxWordLimit}} in ga ni mogoče prilepiti.
+    save: Shrani
     search: Iskanje
+    send_email: Pošlji e-pošto
+    something_wrong: Nekaj je šlo narobe. Obrnite se na skrbnika.
     table:
       entries:
         selected: Izbrana 1 vrstica

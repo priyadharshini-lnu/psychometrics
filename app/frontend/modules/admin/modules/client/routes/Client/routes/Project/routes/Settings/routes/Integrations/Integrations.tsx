@@ -3,10 +3,10 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Row, Col, Button, Table, Badge, Space, Tooltip, message, Typography,
 } from 'antd'
+import { useNavigate, useParams } from 'react-router-dom'
 import {
   DeleteOutlined, EditOutlined, PlusOutlined, LoadingOutlined, SyncOutlined, EyeOutlined,
-} from '@ant-design/icons'
-import { useNavigate, useParams } from 'react-router-dom'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import {
   get, fetch, remove, REMOVE, loadMettlAssessments, loadSkillvueAssessments,

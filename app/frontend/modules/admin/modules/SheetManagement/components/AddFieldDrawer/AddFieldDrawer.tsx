@@ -12,8 +12,8 @@ import {
   App,
   Tooltip,
 } from 'antd'
-import { InfoCircleOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
+import { InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { ParentResourceType } from '~/modules/admin/modules/SheetManagement/interfaces'

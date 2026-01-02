@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import {
   Input, Modal, Button, Switch, App,
 } from 'antd'
-import { CopyOutlined, DownloadOutlined } from '@ant-design/icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { CopyOutlined, DownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from './styles.less'
 import { useUpdateEffect } from '~/hooks/useUpdateEffect'
 

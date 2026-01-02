@@ -3,7 +3,7 @@ import {
   Button, DatePicker, Dropdown, Space,
 } from 'antd'
 import { MenuProps } from 'antd/lib/menu'
-import { DownOutlined } from '@ant-design/icons'
+import { DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { DateFormat } from '~/modules/survey/interfaces/questions/TextEntry'
 import { getMenuItems } from '~/utils/array'

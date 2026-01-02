@@ -34,11 +34,9 @@ export const AdminAddSkills = ({
     fetch: fetchIdpSkillDetails,
   } = useResources<UserIdpSkills>(
     'skills', {
+      basePath: '/idp_templates',
       apiConfig: {
         include: ['development_actions'],
-        page: {
-          size: 25,
-        },
       },
     },
   )
@@ -52,11 +50,6 @@ export const AdminAddSkills = ({
     setIsSkillsLoading(true)
     fetchIdpSkillDetails({
       apiConfig: {
-        // We can add page size instead of getting all the skills at once but there could be case
-        // that not all technical skills present in initial batch
-        // page: {
-        //   size: 25,
-        // },
         filter: {
           project_id_eq: projectId as string,
           available_skills_by_plan_id: idpPlanId as string,

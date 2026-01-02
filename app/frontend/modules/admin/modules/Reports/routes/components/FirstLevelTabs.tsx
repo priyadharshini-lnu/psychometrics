@@ -1,10 +1,10 @@
 import React from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { Menu } from 'antd'
+import { useSelector } from 'react-redux'
 import {
   FileOutlined, FolderOpenOutlined,
-} from '@ant-design/icons'
-import { useSelector } from 'react-redux'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import { isSuperAdmin, get as getCurrentUser } from '~/core/currentUser'
 import settings from '../../settings'

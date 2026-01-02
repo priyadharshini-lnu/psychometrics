@@ -6,9 +6,8 @@ import {
   Button, Form, Input, Table, message, Space, Row, Dropdown, type MenuProps,
   InputRef,
 } from 'antd'
-import { CloseOutlined } from '@ant-design/icons'
 import { v4 as uuidv4 } from 'uuid'
-import { DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { DownOutlined, CloseOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import BulkUploadModal from './BulkUploadModal'
 import { AiAssistant } from '~/modules/admin/modules/AiAssitant/core/aiAssistant'
 import { AIAssistantSelector } from './AiAssistantSelector'

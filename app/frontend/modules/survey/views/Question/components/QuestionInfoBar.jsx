@@ -7,7 +7,7 @@ import {
 import {
   EyeOutlined, SaveOutlined, PartitionOutlined, SettingOutlined, CheckCircleOutlined,
   EyeInvisibleOutlined, DeleteOutlined, SwapOutlined,
-} from '@ant-design/icons'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import LogicElement from '~/modules/survey/models/logic/LogicElement'
 import styles from './Question.less'
 

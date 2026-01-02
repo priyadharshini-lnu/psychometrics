@@ -7,7 +7,7 @@ import {
   CloseOutlined,
   ReloadOutlined,
 
-} from '@ant-design/icons'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from './styles.less'
 import { AssistantOutput } from './types'
 

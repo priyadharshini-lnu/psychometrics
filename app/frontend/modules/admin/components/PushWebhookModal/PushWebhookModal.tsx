@@ -4,7 +4,6 @@ import _ from 'lodash'
 import {
   Form, Select, Space, Button, message,
 } from 'antd'
-import { CopyOutlined } from '@ant-design/icons'
 import { UnControlled as CodeMirror } from 'react-codemirror2'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/javascript/javascript'
@@ -14,6 +13,7 @@ import 'codemirror/addon/fold/brace-fold'
 import 'codemirror/addon/fold/foldgutter.css'
 import cs from 'classnames'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { CopyOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import {
   Webhook, WebhookTR, getWebhookPayload, PushWebhookReponseTR,
 } from '~/modules/admin/modules/client/core/webhooks'

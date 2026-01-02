@@ -5,16 +5,16 @@ import {
   Avatar, Typography,
 } from 'antd'
 import type { MenuProps } from 'antd'
-import {
-  CheckOutlined, LockOutlined,
-  UserOutlined, BellOutlined, BellFilled, LogoutOutlined,
-  DownOutlined,
-} from '@ant-design/icons'
 import humps from 'humps'
 import InfiniteScroll from 'react-infinite-scroller'
 import { createAvatar } from '@dicebear/core'
 import { shapes } from '@dicebear/collection'
 import { useMedia } from 'use-media'
+import {
+  CheckOutlined, LockOutlined,
+  UserOutlined, BellOutlined, BellFilled, LogoutOutlined,
+  DownOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { useResources } from '~/hooks/useResources'
 import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
 import styles from './styles.less'

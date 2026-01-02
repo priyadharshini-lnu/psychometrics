@@ -1,11 +1,11 @@
 import {
   Flex, MenuProps, Button, Tooltip, Empty,
 } from 'antd'
-import {
-  DeleteOutlined, EditOutlined, PlusOutlined, StarFilled, StarOutlined,
-} from '@ant-design/icons'
 import { useEffect, useState } from 'react'
 import qs from 'qs'
+import {
+  DeleteOutlined, EditOutlined, PlusOutlined, StarFilled, StarOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { ResourceType, UserSavedFilter } from './core'
 import { useUserSavedFiltersApi } from './useSavedFiltersApi'
 import { generateSmartFilterName } from './helpers'

@@ -13,7 +13,7 @@ import {
   RadarChartOutlined,
   ExportOutlined,
   RobotOutlined,
-} from '@ant-design/icons'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import Campaign from '~/modules/admin/modules/campaigns/interfaces/Campaign'
 import routeUtils from '~/utils/route'
 import { Subnavigation } from '~/components/Subnavigation'

@@ -19128,8 +19128,8 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20251217070713'),
 ('20251215073428'),
+('20251217070713'),
 ('20251212100342'),
 ('20251206120622'),
 ('20251201130649'),

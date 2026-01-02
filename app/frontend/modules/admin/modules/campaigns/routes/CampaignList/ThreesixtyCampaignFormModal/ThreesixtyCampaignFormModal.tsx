@@ -7,7 +7,7 @@ import {
 } from 'antd'
 import {
   ExclamationCircleOutlined,
-} from '@ant-design/icons'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import connecter, { PropsFromRedux } from './connect'
 import styles from './ThreesixtyCampaignFormModal.less'
 import BaseSettingsForm from './BaseSettingsForm'

@@ -3,9 +3,9 @@ import {
   Form, Input, InputNumber, Space, Checkbox, Radio, Switch, Row, Col,
   Typography, Select,
 } from 'antd'
-import { EditOutlined, CloseOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import _ from 'lodash'
+import { EditOutlined, CloseOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { CreateResource, UpdateResource } from '~/hooks/useResources/interfaces'
 import { useResources } from '~/hooks/useResources'
 import ResourceFormModal from '~/components/ResourceFormModal'

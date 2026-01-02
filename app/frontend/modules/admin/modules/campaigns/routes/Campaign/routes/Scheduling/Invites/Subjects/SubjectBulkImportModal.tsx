@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import {
   Modal, Button, Space, Alert, Form, Input, InputRef,
 } from 'antd'
-import { CloudDownloadOutlined } from '@ant-design/icons'
+import { CloudDownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 const { I18n } = window
 

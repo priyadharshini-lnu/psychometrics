@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Button, Tooltip, MenuProps } from 'antd'
-import { MoreOutlined } from '@ant-design/icons'
+import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 
 import { isSuperAdmin } from '~/core/currentUser'
@@ -58,11 +58,11 @@ export const ActionsMenu: FC<Props> = ({
       })
     }
     innerElement={(
-      <Tooltip title={I18n.t('administration.table.more_actions')}>
+      <Tooltip title={I18n.t('shared.more_actions')}>
         <Button
           id={`menu-button_campaign-admins-${id}`}
           type="link"
-          aria-label={I18n.t('administration.table.more_actions')}
+          aria-label={I18n.t('shared.more_actions')}
           aria-controls={`menu_campaign-admins-${id}`}
           aria-haspopup
         >
@@ -110,7 +110,7 @@ const getActionMenuProps = ({
           target="_blank"
           rel="noopener noreferrer"
         >
-          {I18n.t('administration.administrators.list.actions.login')}
+          {I18n.t('shared.login')}
         </a>
       ),
     },
@@ -118,13 +118,13 @@ const getActionMenuProps = ({
   permissions.edit && menuItems.push(
     {
       key: 'edit',
-      label: I18n.t('administration.administrators.list.actions.edit'),
+      label: I18n.t('shared.edit'),
     },
   )
   permissions.resetPassword && menuItems.push(
     {
       key: 'resetPassword',
-      label: I18n.t('administration.administrators.list.actions.change_password'),
+      label: I18n.t('shared.reset_password'),
     },
   )
   permissions.sendMail && menuItems.push(
@@ -132,7 +132,7 @@ const getActionMenuProps = ({
       key: 'sendMail',
       label: (
         <a href={`mailto:${email}`} target="_blank" rel="noreferrer noopener">
-          {I18n.t('administration.administrators.list.actions.send_email')}
+          {I18n.t('shared.send_email')}
         </a>
       ),
     },
@@ -140,7 +140,7 @@ const getActionMenuProps = ({
   permissions.remove && menuItems.push(
     {
       key: 'remove',
-      label: I18n.t('common.actions.remove'),
+      label: I18n.t('shared.remove'),
     },
   )
 
@@ -149,7 +149,7 @@ const getActionMenuProps = ({
       key: 'apiKeys',
       label: (
         <a href={`/admin/users/admins/${userId}/api_keys`} rel="noreferrer noopener">
-          {I18n.t('administration.administrators.list.actions.api_keys')}
+          {I18n.t('admin.api_keys')}
         </a>
       ),
     },

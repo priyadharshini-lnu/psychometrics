@@ -8,7 +8,6 @@ export const useInputRect = () => {
 
       // Create mirror div
       const div = document.createElement('div')
-      const inputRect = input.getBoundingClientRect()
       const computed = window.getComputedStyle(input)
 
       // Copy styles for exact layout matching
@@ -36,41 +35,41 @@ export const useInputRect = () => {
       span.textContent = value.substring(selectionStart, selectionEnd) || '.'
       span.style.font = computed.font
       div.appendChild(span)
+
       document.body.appendChild(div)
 
       // Calculate coordinates
       const spanRect = span.getBoundingClientRect()
       const divRect = div.getBoundingClientRect()
-      document.body.removeChild(div)
+      const inputRect = input.getBoundingClientRect()
 
       const relativeTop = spanRect.top - divRect.top
       const relativeLeft = spanRect.left - divRect.left
 
+      document.body.removeChild(div)
+
+      // Map to viewport with scroll offset
       const top = inputRect.top + relativeTop + parseFloat(computed.borderTopWidth) - input.scrollTop
       const left = inputRect.left + relativeLeft + parseFloat(computed.borderLeftWidth) - input.scrollLeft
 
-      // If it's a multi-line/full selection in a scrolling area, center it.
-      // Otherwise, use the precise calculation for single lines.
-      const hasScroll = input.scrollHeight > input.clientHeight
-      const isMultiLineSelection = spanRect.height > (parseFloat(computed.lineHeight) || 24) * 1.5
+      // Check if calculated position is outside visible input area
+      const isOutsideVertical = top < inputRect.top || top > inputRect.bottom
+      const isOutsideHorizontal = left < inputRect.left || left > inputRect.right
 
-      if (hasScroll && isMultiLineSelection) {
-        const visibleTop = Math.max(inputRect.top, 0)
-        const visibleBottom = Math.min(inputRect.bottom, window.innerHeight)
+      // If selection is scrolled out of view, position toolbar near the visible input element
+      if (isOutsideVertical || isOutsideHorizontal) {
         return {
-          top: (visibleTop + visibleBottom) / 2,
-          left: inputRect.left + (inputRect.width / 2),
-          width: 1,
-          height: 20,
+          top: inputRect.top,
+          left: inputRect.left,
+          width: inputRect.width,
+          height: Math.min(spanRect.height, inputRect.height),
         }
       }
-
-      if (top < inputRect.top || top > inputRect.bottom) return null
 
       return {
         top,
         left,
-        width: spanRect.width || 1,
+        width: spanRect.width,
         height: spanRect.height,
       }
     } catch (e) {

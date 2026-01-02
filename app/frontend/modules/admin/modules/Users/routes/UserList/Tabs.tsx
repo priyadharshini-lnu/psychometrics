@@ -1,10 +1,10 @@
 import React from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { Menu } from 'antd'
+import { connect, ConnectedProps } from 'react-redux'
 import {
   ShopOutlined,
-} from '@ant-design/icons'
-import { connect, ConnectedProps } from 'react-redux'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'

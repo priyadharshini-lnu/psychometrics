@@ -1,6 +1,6 @@
 import React from 'react'
-import { EditOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
+import { EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { I18n } from '~/modules/survey/store/StoreWatchman'
 import styles from './styles.less'
 import commonStyles from '../../commonStyles.less'

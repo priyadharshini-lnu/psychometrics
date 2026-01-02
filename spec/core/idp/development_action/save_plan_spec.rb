@@ -5,7 +5,7 @@ require 'rails_helper'
 describe Idp::DevelopmentAction::SavePlan do
   let(:user) { create(:user) }
   let(:idp_template) { create(:idp_template) }
-  let(:user_idp_plan) { create(:user_idp_plan, user: user, idp_template: idp_template) }
+  let(:user_idp_plan) { create(:user_idp_plan, user: user, idp_template: idp_template, approval_status: :draft) }
   let(:skills) { create_list(:skill, 3) }
   let(:development_action) { create(:development_action) }
   let(:available_development_action) { create(:development_action) }
@@ -93,6 +93,59 @@ describe Idp::DevelopmentAction::SavePlan do
       # Expect all development actions to be removed when payload is empty
       expect(user_idp_plan.user_idp_development_actions.count).to eq(0)
       expect(UserIdpDevelopmentAction.exists?(@user_idp_development_action.id)).to be false
+    end
+
+    it 'soft deletes removed development actions which was present in approved plan' do
+      Timecop.travel(1.minute.ago) do
+        @user_idp_development_action_in_approved_plan = create(
+          :user_idp_development_action,
+          user_idp_plan: user_idp_plan,
+          user_idp_skill: user_idp_skills.last,
+          development_action: @development_action
+        )
+      end
+
+      PaperTrail.request.enable_model(UserIdpPlan)
+      user_idp_plan.approve!
+      user_idp_plan.draft!
+
+      body_params = []
+
+      described_class.call!(user_idp_plan, body_params, user)
+      user_idp_plan.reload
+
+      expect(@user_idp_development_action_in_approved_plan.reload.deleted_at).not_to be_nil
+    end
+
+    it 'destroys removed development actions which added after plan approval' do
+      Timecop.travel(1.minute.ago) do
+        @user_idp_development_action_in_approved_plan = create(
+          :user_idp_development_action,
+          user_idp_plan: user_idp_plan,
+          user_idp_skill: user_idp_skills.last,
+          development_action: @development_action
+        )
+      end
+
+      PaperTrail.request.enable_model(UserIdpPlan)
+      user_idp_plan.approve!
+      user_idp_plan.draft!
+
+      new_development_action = create(:development_action)
+      new_user_idp_development_action = create(
+        :user_idp_development_action,
+        user_idp_plan: user_idp_plan,
+        user_idp_skill: user_idp_skills.first,
+        development_action: new_development_action
+      )
+
+      body_params = []
+
+      described_class.call!(user_idp_plan, body_params, user)
+      user_idp_plan.reload
+
+      expect(@user_idp_development_action_in_approved_plan.reload.deleted_at).not_to be_nil
+      expect(UserIdpDevelopmentAction.exists?(new_user_idp_development_action.id)).to be false
     end
   end
 

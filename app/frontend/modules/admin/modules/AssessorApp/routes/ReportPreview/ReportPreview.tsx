@@ -5,8 +5,8 @@ import {
   Layout, Button, Row, Col, Spin, Space, Dropdown, Skeleton,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import { ArrowLeftOutlined, DownOutlined } from '@ant-design/icons'
 import { useParams, useLocation, useNavigate } from 'react-router-dom'
+import { ArrowLeftOutlined, DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import Report from '~/modules/reports/report'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import {

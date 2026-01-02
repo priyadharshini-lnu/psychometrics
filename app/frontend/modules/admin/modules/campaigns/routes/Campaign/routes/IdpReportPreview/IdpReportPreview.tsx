@@ -1,10 +1,10 @@
 import {
   Button, Space, Dropdown, message,
 } from 'antd'
-import { DownloadOutlined, DownOutlined } from '@ant-design/icons'
 import { useParams, useSearchParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'modules/admin/core/rootReducers'
+import { DownloadOutlined, DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
 import styles from './IdpReportPreview.less'
 import IdpReport from '~/modules/idpReport/EmbededIDP'

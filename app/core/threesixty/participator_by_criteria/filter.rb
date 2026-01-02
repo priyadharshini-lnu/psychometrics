@@ -49,8 +49,8 @@ module Threesixty
           class_name: ParticipatorByCriteria::ByManagerTasks
         },
         {
-          field_types: %w[subject_status],
-          class_name: ParticipatorByCriteria::BySubjectStatus
+          field_types: %w[by_subject_self_activities],
+          class_name: ParticipatorByCriteria::BySubjectSelfActivitiesStatus
         },
         {
           field_types: %w[atleast_one_non_self_evalaution],

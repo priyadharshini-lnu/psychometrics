@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom'
 import {
   Table, Row, Col, Pagination, App,
 } from 'antd'
-import { MoreOutlined } from '@ant-design/icons'
 import _ from 'lodash'
+import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { fetchOtherAssessments, getOther } from '~/modules/admin/modules/campaigns/core/assessments'
 import {
   rescoreResponses, remove, exportRawResults, exportScoringResults,

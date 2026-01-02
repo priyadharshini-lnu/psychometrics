@@ -3,9 +3,9 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Space, Card, Button, Image, Tabs, Skeleton,
 } from 'antd'
-import { EyeFilled } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import { Tab } from 'rc-tabs/lib/interface'
+import { EyeFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from './styles.less'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import bg from '~/modules/endUser/modules/campaigns/routes/Insights/media/Background2.png'

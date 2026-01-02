@@ -1,7 +1,20 @@
 ---
 ko:
   admin:
+    add_admin: 관리자 추가
+    add_admin_role: 관리자 역할 추가
+    add_campaign_admin: 캠페인 관리자 추가
+    add_client_admin: 클라이언트 관리자 추가
+    add_project: 프로젝트 추가
+    add_project_admin: 프로젝트 관리자 추가
+    add_threesixty_campaign_admin: 캠페인 관리자 추가
     admin_approval_required: "%{user} 보고서는 다운로드 전에 관리자의 승인이 필요합니다"
+    admin_created_successfully: 관리자 '%{name}'을(를) 성공적으로 만들었습니다
+    admin_export_scheduled: 관리자 내보내기 작업이 성공적으로 예약되었습니다. 알림에서 상태를 확인하세요.
+    admin_removed_successfully: 이메일 '%{email}'의 관리자가 성공적으로 제거되었습니다
+    admin_role_deleted: 관리자 역할 '%{role_name}'이 성공적으로 삭제되었습니다.
+    admin_roles: 관리자 역할
+    admin_updated_successfully: 관리자 '%{name}'이(가) 업데이트되었습니다
     admins: 관리자
     ai_artifacts: AI 아티팩트
     ai_artifacts_output_schema_key_constraint: 키는 소문자로 시작해야 하며, 소문자, 숫자, 밑줄만 포함할 수 있습니다
@@ -21,10 +34,12 @@ ko:
     ai_assistants_test_render: 테스트 렌더링
     ai_assistants_test_render_tooltip: 프롬프트 템플릿을 캠페인 데이터로 테스트해 AI 어시스턴트에 어떤 내용이 전송될지 확인하세요.
     ai_assisted_idp_feature_disabled: 이 프로젝트에서는 AI 지원 국내 인류 처리 기능이 비활성화되었습니다.
+    api_keys: API 키
     assessments: 평가
     assessments_reports: 평가 및 보고서
     assessor_dashboard: 평가자 대시보드
     assessor_workshops: 평가 센터
+    assessors: 평가자
     audit_logs: 감사 로그
     audit_reports: 감사 보고서
     availability: 가용성
@@ -41,17 +56,22 @@ ko:
     campaign_assessment_modals_enable_caching_content: 이 평가에 캐싱을 활성화할 것이 확실한가요?
     campaign_assessment_modals_enable_caching_successfully: 이 평가를 위해 캐싱이 활성화되어 있습니다.
     campaign_assessment_modals_enable_caching_title: 평가 캐싱을 활성화할 수 있나요?
+    campaign_factors: 캠페인 요인
     campaign_templates: 캠페인 템플릿
+    campaigns: 캠페인
     client: 클라이언트 테넌시
     client_admins: 클라이언트 관리자
     clients: 고객 임차
     code_required: 코드 필요
     communication_center: 커뮤니케이션 센터
+    communications: 커뮤니케이션
     completed: 완료
     completed_tooltip: 모든 평가자가 평가를 제출했습니다
+    confirm_remove_admin: 이메일 '%{email}'을 사용하는 관리자 사용자를 제거하시겠습니까?
     country: 국가
     create_client: 클라이언트 만들기
     dashboard: 대시보드
+    dashboards: 대시보드
     data_reports: 데이터 보고서
     datasheet: 데이터시트
     declined: 거부
@@ -61,12 +81,19 @@ ko:
     dimensions: 치수
     done: 수행
     done_tooltip: 이 사용자의 평가는 %{marked_by}에 의해 완료된 것으로 표시되어 있어 더 이상 평가를 제출할 수 없습니다
+    edit_campaign_admin: 캠페인 관리자 편집
+    edit_client_admin: 클라이언트 관리자 편집
+    edit_project_admin: 프로젝트 관리자 편집
+    edit_threesixty_campaign_admin: 캠페인 관리자 편집
     empty_csv_file: CSV 파일에는 데이터가 포함되어 있지 않습니다.
     evaluation_status: 평가 현황
     evaluation_status_not_done: 한 명 이상의 선정 과목에 대한 평가 상태는 '완료'가 아닙니다. 모든 선택된 사용자가 평가를 완료했는지 확인하거나 완료 표시를 해 주세요.
+    export_admin_roles_permissions: 관리자 역할 및 권한 내보내기
+    feature_flags: 기능 플래그
     fill_empty_score_msg: 저장하기 전에 모든 최종 점수를 입력하세요.
     final_score_empty_msg: 최종 점수는 비어 있을 수 없습니다.
     idp_plan_reset_success: 계획이 성공적으로 재설정되었습니다
+    idp_templates: IDP 템플릿
     import_ai_artifacts: AI 산출물 가져오기
     import_csv_error: "%{index}행: 이메일 %{email} 있는 사용자는 이 캠페인에 참여하지 않습니다"
     import_csv_parsing_error: 'CSV 파싱 오류: %{message}'
@@ -90,16 +117,20 @@ ko:
     import_upload: 업로드
     import_users: 사용자 가져오기
     invalid_csv_header: CSV 파일에는 잘못된 헤더가 포함되어 있습니다.
+    job_roles: 직무 역할
     learning_from_others: 협력 학습 [20]
     libraries: 미디어 라이브러리
     library_invalid_type: 유효하지 않은 라이브러리 항목
+    licenses: 라이선스
     manager_approval_required: "%{user} 보고서는 다운로드 전에 관리자의 승인이 필요합니다"
+    messages: 메시지
     name_required: 이름은 필수입니다
     no_file_selected: 선택된 파일이 없습니다
     no_notifications: 알림 없음
     norms: 규범
     not_completed: 미완성
     not_completed_tooltip: 평가자는 %{completed} 배정되지만 평가를 완료한 사람은 %{submitted}입니다
+    notes: 참고
     nothing_assigned: 평가자 배정 없음
     nothing_assigned_tooltip: 이 사용자에게는 평가가 할당되지 않았습니다
     notification_bell_icon_alt_text: 알림 벨 아이콘
@@ -109,11 +140,438 @@ ko:
     on_the_job: 현장 [70]
     options: 옵션
     participants: 참가자
+    permissions:
+      aiArtifacts:
+        export: 수출
+        import: 수입
+        manage: 관리하다
+        title: AI 아티팩트
+        view: 보기
+      apiKeys:
+        manage: 관리
+        title: API 키
+        view: 보기
+      assessments:
+        manage: 관리
+        title: 평가
+        view: 보기
+      assessors:
+        manage: 관리
+        title: 평가자
+        view: 보기
+      auditLogs:
+        title: 감사 로그
+        view: 보기
+      auditReports:
+        admin_permissions: 관리자 역할 및 권한 내보내기
+        title: 감사 보고서
+        user_report_events: 보고서 승인 로그
+      campaignFactors:
+        manage: 관리
+        title: 캠페인 요소
+        view: 보기
+      campaigns:
+        bulk_download: 대량 다운로드
+        bulk_regenerate_reports: 보고서 대량 재생성
+        manage: 관리
+        manage_admins: 관리자 관리
+        manage_factor_benchmark_scores: 요소 벤치마크 점수 관리
+        manage_messages: 메시지 관리
+        manage_options: 옵션 관리
+        manage_report_approvals: 보고서 승인 관리
+        manage_users: 사용자 관리
+        participant_options: 참가자 옵션
+        report_options: 보고서 옵션
+        reset_nominations: 추천 재설정
+        title: 캠페인
+        view: 보기
+        view_factor_benchmark_scores: 팩터 벤치마크 점수 보기
+        view_stats: 통계 보기
+      clients:
+        export_data_report: 데이터 내보내기 보고서
+        manage: 관리
+        title: 클라이언트
+        view: 보기
+        view_licenses: 라이선스 보기
+      communications:
+        manage: 관리
+        title: 커뮤니케이션
+        view: 보기
+      dashboards:
+        accesssheet_manage: 액세스 시트 관리
+        accesssheet_settings: 액세스 시트 설정
+        accesssheet_view: 액세스 시트 보기
+        export: 내보내기
+        title: 대시보드
+        view: 보기
+      datasheets:
+        manage: 관리
+        title: 데이터 시트
+        view: 보기
+      developmentActions:
+        export: 내보내기
+        export_global: 글로벌 내보내기
+        export_global_translations: 글로벌 번역 내보내기
+        export_translations: 번역 내보내기
+        import: 가져오기
+        import_global: 글로벌 가져오기
+        import_global_translations: 글로벌 번역 가져오기
+        import_translations: 번역 가져오기
+        manage: 관리
+        title: 개발 작업
+        view: 보기
+      dimensions:
+        manage: 관리
+        title: 치수
+        view: 보기
+      idpTemplates:
+        manage: 관리
+        title: IDP 템플릿
+        view: 보기
+      interviewQuestions:
+        export: 수출
+        import: 수입
+        manage: 관리하세요
+        title: IDP 면접 질문
+        view: 전망
+      jobRoles:
+        export_translations: 직무 역할 번역 내보내기
+        import_translations: 직무 역할 번역 가져오기
+        manage: 관리
+        title: 직무 역할
+        view: 보기
+      labels:
+        apiKeys:
+          manage: 관리
+          title: API 키
+          view: 보기
+        assessments:
+          manage: 관리
+          title: 평가
+          view: 보기
+        assessors:
+          manage: 관리
+          title: 평가자
+          view: 보기
+        auditLogs:
+          title: 감사 로그
+          view: 보기
+        auditReports:
+          admin_permissions: 관리자 역할 및 권한 내보내기
+          title: 감사 보고서
+          user_report_events: 보고서 승인 로그
+        campaignFactors:
+          manage: 관리
+          title: 캠페인 요소
+          view: 보기
+        campaigns:
+          bulk_download: 대량 다운로드
+          bulk_regenerate_reports: 보고서 대량 재생성
+          manage: 관리
+          manage_admins: 관리자 관리
+          manage_factor_benchmark_scores: 요소 벤치마크 점수 관리
+          manage_messages: 메시지 관리
+          manage_options: 옵션 관리
+          manage_report_approvals: 보고서 승인 관리
+          manage_users: 사용자 관리
+          participant_options: 참가자 옵션
+          report_options: 보고서 옵션
+          reset_nominations: 추천 재설정
+          title: 캠페인
+          view: 보기
+          view_factor_benchmark_scores: 팩터 벤치마크 점수 보기
+          view_stats: 통계 보기
+        clients:
+          export_data_report: 데이터 내보내기 보고서
+          manage: 관리
+          title: 클라이언트
+          view: 보기
+          view_licenses: 라이선스 보기
+        communications:
+          manage: 관리
+          title: 커뮤니케이션
+          view: 보기
+        dashboards:
+          accesssheet_manage: 액세스 시트 관리
+          accesssheet_settings: 액세스 시트 설정
+          accesssheet_view: 액세스 시트 보기
+          export: 내보내기
+          title: 대시보드
+          view: 보기
+        datasheets:
+          manage: 관리
+          title: 데이터 시트
+          view: 보기
+        developmentActions:
+          export: 내보내기
+          export_global: 글로벌 내보내기
+          export_global_translations: 글로벌 번역 내보내기
+          export_translations: 번역 내보내기
+          import: 가져오기
+          import_global: 글로벌 가져오기
+          import_global_translations: 글로벌 번역 가져오기
+          import_translations: 번역 가져오기
+          manage: 관리
+          title: 개발 작업
+          view: 보기
+        dimensions:
+          manage: 관리
+          title: 치수
+          view: 보기
+        idpTemplates:
+          manage: 관리
+          title: IDP 템플릿
+          view: 보기
+        jobRoles:
+          export_translations: 직무 역할 번역 내보내기
+          import_translations: 직무 역할 번역 가져오기
+          manage: 관리
+          title: 직무 역할
+          view: 보기
+        libraries:
+          manage: 관리
+          title: 미디어 라이브러리
+          view: 보기
+        messages:
+          email: 이메일
+          instructions: 지침
+          options: 옵션
+          title: 메시지
+        norms:
+          manage: 관리
+          title: 규범
+          view: 보기
+        proficiencyLevels:
+          export: 내보내기 숙련도 수준
+          export_translations: 숙련도 수준 번역 내보내기
+          import: 숙련도 수준 가져오기
+          import_translations: 숙련도 수준 번역 가져오기
+          manage: 관리
+          title: 숙련도 수준
+          view: 보기
+        proficiency_level:
+          title: 숙련도 수준
+        projectSettings:
+          assessments: 평가
+          design: 디자인
+          feature_flags: 기능 플래그
+          idp: IDP
+          integrations: 통합
+          privacy_settings: 개인정보 설정
+          saml: SAML
+          security: 보안
+          smtp: SMTP
+          title: 프로젝트 설정
+          webhooks: 웹훅
+        projects:
+          manage: 관리
+          manage_admins: 관리자 관리
+          manage_users: 사용자 관리
+          title: 프로젝트
+          view: 보기
+        questions:
+          manage: 관리
+          title: 질문
+          view: 보기
+        reflectionQuestions:
+          export: 내보내기
+          import: 가져오기
+          manage: 관리
+          title: IDP 반영 질문
+          view: 보기
+        registrationCodes:
+          manage: 관리
+          title: 등록 코드
+          view: 보기
+        registrationSettings:
+          manage: 관리
+          title: 등록 설정
+        reports:
+          manage: 관리
+          title: 보고서
+          view: 보기
+        responseMeta:
+          title: 응답 메타
+        results:
+          approve_report: 보고서 승인
+          bulk_download: 대량 다운로드
+          bulk_regenerate_reports: 보고서 대량 재생성
+          bulk_update_evaluation_status: 대량 업데이트 평가 상태
+          download_report: 보고서 다운로드
+          edit_report: 보고서 편집
+          export_occupations: 내보내기 직종
+          external_score_import: 외부 점수 가져오기
+          finalize_scores: 점수 확정
+          normalize_factor_scores: 팩터 점수 정규화
+          raw_responses: 원시 응답
+          regenerate_report: 보고서 다시 생성
+          report_data: 데이터 보고
+          report_file_upload: 보고서 파일 업로드
+          rescore_responses: 응답 재채점
+          reset_progress: 진행 상황 재설정
+          reset_responses: 응답 초기화
+          scores: 점수
+          title: 결과
+          view_report: 보고서 보기
+          view_stats: 통계 보기
+        skills:
+          export: 내보내기
+          export_translations: 번역 내보내기
+          import: 가져오기
+          import_translations: 번역 가져오기
+          manage: 관리
+          title: 기술
+          view: 보기
+        smsHistories:
+          manage: 관리
+          title: SMS 기록
+          view: 보기
+        smsInvites:
+          manage: 관리
+          title: SMS 초대
+          view: 보기
+        users:
+          reset_password: 비밀번호 재설정
+          title: 사용자
+        workshops:
+          export_status: 내보내기 상태
+          manage: 관리
+          title: 워크샵
+          view: 보기
+          view_recordings: 녹화 보기
+      libraries:
+        manage: 관리
+        title: 미디어 라이브러리
+        view: 보기
+      messages:
+        email: 이메일
+        instructions: 지침
+        options: 옵션
+        title: 메시지
+      norms:
+        manage: 관리
+        title: 규범
+        view: 보기
+      proficiencyLevels:
+        export: 내보내기 숙련도 수준
+        export_translations: 숙련도 수준 번역 내보내기
+        import: 숙련도 수준 가져오기
+        import_translations: 숙련도 수준 번역 가져오기
+        manage: 관리
+        title: 숙련도 수준
+        view: 보기
+      proficiency_level:
+        title: 숙련도 수준
+      projectSettings:
+        assessments: 평가
+        design: 디자인
+        feature_flags: 기능 플래그
+        idp: IDP
+        integrations: 통합
+        privacy_settings: 개인정보 설정
+        saml: SAML
+        security: 보안
+        smtp: SMTP
+        title: 프로젝트 설정
+        webhooks: 웹훅
+      projects:
+        manage: 관리
+        manage_admins: 관리자 관리
+        manage_licenses: 라이선스 관리
+        manage_users: 사용자 관리
+        title: 프로젝트
+        view: 보기
+        view_licenses: 라이선스 보기
+      questions:
+        manage: 관리
+        title: 질문
+        view: 보기
+      reflectionQuestions:
+        export: 내보내기
+        import: 가져오기
+        manage: 관리
+        title: IDP 반영 질문
+        view: 보기
+      registrationCodes:
+        manage: 관리
+        title: 등록 코드
+        view: 보기
+      registrationSettings:
+        manage: 관리
+        title: 등록 설정
+      reports:
+        manage: 관리
+        title: 보고서
+        view: 보기
+      responseMeta:
+        title: 응답 메타
+      results:
+        approve_report: 보고서 승인
+        bulk_download: 대량 다운로드
+        bulk_regenerate_reports: 보고서 대량 재생성
+        bulk_update_evaluation_status: 대량 업데이트 평가 상태
+        download_report: 보고서 다운로드
+        edit_report: 보고서 편집
+        export_occupations: 내보내기 직종
+        external_score_import: 외부 점수 가져오기
+        finalize_scores: 점수 확정
+        normalize_factor_scores: 팩터 점수 정규화
+        raw_responses: 원시 응답
+        regenerate_report: 보고서 다시 생성
+        report_data: 데이터 보고
+        report_file_upload: 보고서 파일 업로드
+        rescore_responses: 응답 재채점
+        reset_progress: 진행 상황 재설정
+        reset_responses: 응답 초기화
+        scores: 점수
+        title: 결과
+        view_report: 보고서 보기
+        view_stats: 통계 보기
+      skills:
+        export: 내보내기
+        export_translations: 번역 내보내기
+        import: 가져오기
+        import_translations: 번역 가져오기
+        manage: 관리
+        title: 기술
+        view: 보기
+      smsHistories:
+        manage: 관리
+        title: SMS 기록
+        view: 보기
+      smsInvites:
+        manage: 관리
+        title: SMS 초대
+        view: 보기
+      userIdpPlans:
+        manage: 관리하다
+        reset: 재설정
+        title: 사용자 IDP 계획
+        view: 보기
+      users:
+        reset_password: 비밀번호 재설정
+        title: 사용자
+      workshops:
+        export_status: 내보내기 상태
+        manage: 관리
+        title: 워크샵
+        view: 보기
+        view_recordings: 녹화 보기
+    permissions_360_campaigns: 360 캠페인 관련 권한
+    privacy: 개인정보 보호
+    proficiency_level: API 키
+    proficiency_levels: 숙련도 수준
     profile_details: 프로필 세부 정보
     project_admins: 프로젝트 관리자
     project_manager: 프로젝트 관리자
+    project_number: 프로젝트 번호
+    project_settings: 프로젝트 설정
+    projects: 프로젝트
     question_center: 질문 센터
+    questions: 질문
+    reflection_questions: 성찰 질문
     registration_codes: 등록 코드
+    registration_settings: 등록 설정
     report_approvals: 보고서 승인
     report_condition_not_met: 평가가 필요%{required} %{relationship} 있지만 %{actual}
     report_conditions_not_met_detailed: "%{user} 보고서가 가용성 조건을 충족하지 못합니다. %{conditions}"
@@ -128,6 +586,8 @@ ko:
     reset_idp_plan: 리셋 플랜
     reset_idp_plan_confirmation: 정말 계획을 다시 세우고 싶은 거야?
     reset_idp_plan_title: 리셋 플랜
+    response_meta: 응답 메타
+    results: 결과
     role: 역할
     saml_idp_certificate_available: 이용 가능 (클릭하여 복사)
     saml_idp_certificate_label: 증명서
@@ -179,17 +639,28 @@ ko:
     saml_settings: SAML 설정
     scheduling: 일정 예약
     scoring: 채점
+    search_admins: 검색 관리자
+    select_admin_role: 관리자 역할 선택
+    send_email: 이메일 보내기
+    settings: 설정
     show_submenu: 하위 메뉴 표시
+    siem: SIEM
+    skill_aliases: 스킬 별칭
+    skills: 기술
     skills_taxonomy: 기술 분류
     slot_name: 슬롯 이름
+    sms_histories: SMS 기록
+    sms_invites: SMS 초대
     stats: 통계
     status_details: 상태 세부사항
     structured_learning: 정식 학습 [10]
+    subdomain: 하위 도메인
     upload_success: 성공적으로 업로드됨
     user_report_events: 사용자 보고서 이벤트
     users: 사용자
     view_licenses: 라이선스 보기
     waiting: 기다리기
+    workshops: 워크샵
     year: 국가
     yoodli_activity_id: Yoodli 활동 ID
     yoodli_email_id: 유들리 후보자 이메일 ID

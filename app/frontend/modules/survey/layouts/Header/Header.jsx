@@ -3,12 +3,12 @@ import { useParams, useNavigate, useSearchParams } from 'react-router-dom'
 import {
   Button, Space, Dropdown, Select, Alert, Tag, notification,
 } from 'antd'
+import _ from 'lodash'
+import cs from 'classnames'
 import {
   EyeOutlined, SaveOutlined, PartitionOutlined, ClockCircleOutlined, SettingOutlined, DownOutlined,
   TranslationOutlined, PlusOutlined, CopyOutlined, TableOutlined, ImportOutlined, EditOutlined, ExportOutlined,
-} from '@ant-design/icons'
-import _ from 'lodash'
-import cs from 'classnames'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 import Block from '~/modules/survey/models/Block'
 import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'

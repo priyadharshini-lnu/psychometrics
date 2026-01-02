@@ -1,13 +1,14 @@
-import { type Editor } from 'codemirror'
-import { CopyOutlined } from '@ant-design/icons'
-import { UnControlled as CodeMirror } from 'react-codemirror2'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
-import 'codemirror/lib/codemirror.css'
-import 'codemirror/mode/javascript/javascript'
+import { useRef } from 'react'
 import {
   Button, Modal, Row, Tooltip, Typography,
 } from 'antd'
-import { useRef } from 'react'
+import { type Editor } from 'codemirror'
+import { UnControlled as CodeMirror } from 'react-codemirror2'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { CopyOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import 'codemirror/lib/codemirror.css'
+import 'codemirror/mode/javascript/javascript'
+
 import styles from './JSONViewCopy.less'
 
 const { I18n } = window

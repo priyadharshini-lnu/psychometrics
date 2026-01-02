@@ -2,8 +2,12 @@
 bg:
   shared:
     action: Действие
+    actions: Действия
+    active: Активен
     add: Добавете
     advanced: Напреднал
+    archive: Архивирайте
+    archived: Архивирани
     authentication_failed: Автентикацията не беше успешна. Моля, опитайте отново.
     basic: Основен
     campaign_id: Идентификация на кампанията
@@ -11,24 +15,41 @@ bg:
     change_password: Промяна на паролата
     clear_filters: Изчистете филтрите
     collaborative_learning: Съвместно обучение
+    confirm: Потвърдете
     continue: Продължавам
+    created_at: Създаден в
+    created_date: Дата на създаване
     description: Описание
     edit: Редактирайте
     edited: Нов
+    email: Имейл
+    export: Износ
+    first_name: Първо име
     formal_learning: Формално обучение
     group_question_max_validation_error: Всяка група може да съдържа най-много {{max}} елемент(и).
     group_question_min_validation_error: Всяка група трябва да съдържа поне {{min}} елемент(и).
     id: Идентификация
     idp_ai_assistant_disclaimer: Асистент за IDP в Lighthouse AI може да допуска грешки. Моля, бъдете внимателни, когато използвате отговорите.
     internet_disconnected_message: Опитвам се да възстановя връзката. Моля, проверете интернет връзката си.
+    last_name: Фамилия
     learning_on_the_job_label: Учене на работа
+    login: Вход
+    modified_by: Променено от
+    modified_date: Дата на промяна
+    more_actions: Още действия
     mte_logo_alt_text: Логото на Mercer Talent Enterprise
     name: Име
     new: Нов
+    ok: Добре
+    remove: Премахнете
     removed: Отстранени
+    reset_password: Възстановете на паролата
     rte_paste_content_exceeds_char_limit: Текстът надвишава лимита на символите {{maxCharacterLimit}} и не може да бъде поставен.
     rte_paste_content_exceeds_word_limit: Текстът надвишава лимита на думите {{maxWordLimit}} и не може да бъде поставен.
+    save: Запазете
     search: Търсете
+    send_email: Изпрати имейл
+    something_wrong: Нещо се обърка. Свържете се с администратора си.
     table:
       entries:
         selected: Избран е 1 ред

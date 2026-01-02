@@ -7,7 +7,7 @@ import {
   Tooltip,
   Modal,
 } from 'antd'
-import { DownloadOutlined, EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons'
+import { DownloadOutlined, EyeInvisibleOutlined, EyeOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { DateTimeWithZone } from '~/glint'
 import { getCurrent } from '~/modules/admin/modules/AssessorApp/core/users'
 import { get as getUserRecordings } from '~/modules/admin/modules/AssessorApp/core/userRecordings'

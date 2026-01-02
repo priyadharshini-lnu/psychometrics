@@ -29,35 +29,11 @@ hu:
     administrators:
       drawers:
         edit:
-          admin_role_select: Válassza ki az adminisztrátori szerepkört
-          admin_roles: Adminisztrátori szerepkörök
-          create_success: Az adminisztrátori '%{name}' létrehozása sikeresen megtörtént
-          email: E-mail
-          first_name: Keresztnév
           first_name_required: A keresztnév megadása kötelező
-          last_name: Vezetéknév
           last_name_required: A vezetéknév megadása kötelező
-          no_edit_permission: Nincs jogosultsága az adminisztátori '%{name}' szerkesztésére
-          save: Mentés
-          update: Frissítés
-          update_success: Az adminisztrátori '%{name}' frissítése sikeresen megtörtént
-        notes:
-          threesixty_permission: 360°-os kampányokra vonatkozó engedélyek
-          title: Megjegyzések
         view:
-          add_campaign_admin: Kampányadminisztrátor hozzáadása
-          add_client_admin: Ügyfél-adminisztrátor hozzáadása
-          add_project_admin: Projektadminisztrátor hozzáadása
-          add_threesixty_campaign_admin: Kampányadminisztrátor hozzáadása
-          edit_campaign_admin: Kampányadminisztrátor szerkesztése
-          edit_client_admin: Ügyfél-adminisztrátor szerkesztése
-          edit_project_admin: Projektadminisztrátorának szerkesztése
-          edit_threesixty_campaign_admin: Kampányadminisztrátor szerkesztése
           first_name: Keresztnév
           last_name: Vezetéknév
-          project_admin: Projektadminisztrátor
-          project_list: Projektlista
-          role: Kampányadminisztrátor
           title:
             campaign_admin: Kampányadminisztrátor
             client_admin: Ügyféladminisztrátor
@@ -65,253 +41,20 @@ hu:
       list:
         actions:
           api_keys: API-kulcsok
-          cancel_text: Mégse
-          change_password: Jelszó visszaállítása
           edit: Szerkeszt
           export_admins_with_permissions: Adminisztrátori szerepkörök és engedélyek exportálása
           export_success: Az adminisztrátori exportálási feladat ütemezése sikeresen megtörtént. Kérjük, ellenőrizze az értesítései állapotát.
           login: Bejelentkezés
-          send_email: E-mail küldése
           spoof:
             login_successful: A bejelentkezés sikeres.
           user_report_events: Jelentés jóváhagyási naplók
         columns:
-          actions: Műveletek
-          created_at: Létrehozva
           email: E-mail
-          id: Azonosító
-          name: Név
-        header:
-          add_admin: Adminisztrátor hozzáadása
-          search_admins: Adminisztrátorok keresése
-        toolbar:
-          export_admins_with_permissions: Adminisztrátori szerepkörök és engedélyek exportálása
       modals:
         delete:
           cancelText: Mégse
-          content: Biztosan el akarja távolítani az a(z) '%{email}' e-mail címmel rendelkező adminisztrátori felhasználót ?
           okText: Rendben
-          onSuccess: A(z) "%{email}" e-mail-címmel rendelkező adminisztrátor eltávolítása sikeresen megtörtént
           title: Megerősít
-      permissions:
-        labels:
-          aiArtifacts:
-            export: Kivitel
-            import: Importál
-            manage: Kezel
-            title: MI tárgyak
-            view: Nézet
-          apiKeys:
-            manage: Kezel
-            title: API-kulcsok
-            view: Nézet
-          assessments:
-            manage: Kezel
-            title: Értékelések
-            view: Nézet
-          assessors:
-            manage: Kezel
-            title: Értékelők
-            view: Nézet
-          auditLogs:
-            title: Auditnaplók
-            view: Nézet
-          auditReports:
-            admin_permissions: Adminisztrátori szerepkörök és engedélyek exportálása
-            title: Ellenőrzési jelentések
-            user_report_events: Jelentés jóváhagyási naplók
-          campaignFactors:
-            manage: Kezel
-            title: Kampánytényezők
-            view: Nézet
-          campaigns:
-            bulk_download: Tömeges letöltés
-            bulk_regenerate_reports: Jelentések tömeges újragenerálása
-            manage: Kezel
-            manage_admins: Adminisztrátorok kezelése
-            manage_factor_benchmark_scores: Tényező benchmark pontszámainak kezelése
-            manage_messages: Üzenetek kezelése
-            manage_options: Beállítások kezelése
-            manage_report_approvals: Jelentések jóváhagyásának kezelése
-            manage_users: Felhasználók kezelése
-            participant_options: Résztvevői beállítások
-            report_options: Jelentés beállításai
-            reset_nominations: Jelölések visszaállítása
-            title: Kampányok
-            view: Nézet
-            view_factor_benchmark_scores: Tényező benchmark pontszámainak kezelése
-            view_stats: Statisztikák megtekintése
-          clients:
-            export_data_report: Az adatokat tartalmazó jelentés exportálása
-            manage: Kezel
-            title: Ügyfelek
-            view: Nézet
-            view_licenses: Licencek megtekintése
-          communications:
-            manage: Kezel
-            title: Kommunikáció
-            view: Nézet
-          dashboards:
-            accesssheet_manage: Hozzáférési lap kezelése
-            accesssheet_settings: Hozzáférési lap beállításai
-            accesssheet_view: Hozzáférési lap nézet
-            export: Exportálás
-            title: Irányítópultok
-            view: Nézet
-          datasheets:
-            manage: Kezel
-            title: Adatlapok
-            view: Nézet
-          developmentActions:
-            export: Exportál
-            export_global: Globális exportálás
-            export_global_translations: Globális fordítások exportálása
-            export_translations: Fordítások exportálása
-            import: Importál
-            import_global: Globális importálás
-            import_global_translations: Globális fordítások importálása
-            import_translations: Fordítások importálása
-            manage: Kezel
-            title: Fejlesztési tevékenységek
-            view: Nézet
-          dimensions:
-            manage: Kezel
-            title: Méretek
-            view: Nézet
-          idpTemplates:
-            manage: Kezel
-            title: IDP-sablonok
-            view: Nézet
-          interviewQuestions:
-            export: Export
-            import: Import
-            manage: Menedzsd
-            title: IDP interjúkérdések
-            view: Kilátás
-          jobRoles:
-            export_translations: Exportálás munkakörök fordítások
-            import_translations: Munkakörök importálása Fordítások
-            manage: Kezel
-            title: Munkakörök
-            view: Nézet
-          libraries:
-            manage: Kezel
-            title: Médiakönyvtárak
-            view: Nézet
-          messages:
-            email: E-mail
-            instructions: Instrukciók
-            options: Beállítások
-            title: Üzenetek
-          norms:
-            manage: Kezel
-            title: Normák
-            view: Nézet
-          proficiencyLevels:
-            export: Tudásszintek exportálása
-            export_translations: Tudásszintek fordításainak exportálása
-            import: Tudásszintek importálása
-            import_translations: Tudásszintek fordításainak importálása
-            manage: Kezel
-            title: Tudásszintek
-            view: Nézet
-          proficiency_level:
-            title: Tudásszintek
-          projectSettings:
-            assessments: Értékelések
-            design: Tervezés
-            feature_flags: Funkció jelzők
-            idp: IDP
-            integrations: Integrációk
-            privacy_settings: Adatvédelmi beállítások
-            saml: SAML
-            security: Biztonság
-            smtp: SMTP
-            title: Projekt beállításai
-            webhooks: Webhookok
-          projects:
-            manage: Kezel
-            manage_admins: Adminisztrátorok kezelése
-            manage_licenses: Licencek kezelése
-            manage_users: Felhasználók kezelése
-            title: Projektek
-            view: Nézet
-            view_licenses: Engedélyek megtekintése
-          questions:
-            manage: Kezel
-            title: Kérdések
-            view: Nézet
-          reflectionQuestions:
-            export: Export
-            import: Import
-            manage: Kezel
-            title: IDP reflexiós kérdések
-            view: Nézet
-          registrationCodes:
-            manage: Kezel
-            title: Regisztrációs kódok
-            view: Nézet
-          registrationSettings:
-            manage: Kezel
-            title: Regisztrációs beállítások
-          reports:
-            manage: Kezel
-            title: Jelentések
-            view: Nézet
-          responseMeta:
-            title: Meta-válasz
-          results:
-            approve_report: Jelentés jóváhagyása
-            bulk_download: Tömeges letöltés
-            bulk_regenerate_reports: Jelentések tömeges újragenerálása
-            bulk_update_evaluation_status: Tömeges frissítés kiértékelési állapota
-            download_report: Jelentés letöltése
-            edit_report: Jelentés szerkesztése
-            export_occupations: Foglalkozások exportálása
-            external_score_import: Külső pontszám importálása
-            finalize_scores: Pontszámok véglegesítése
-            normalize_factor_scores: Faktorpontszámok normalizálása
-            raw_responses: Nyers válaszok
-            regenerate_report: Jelentés újragenerálása
-            report_data: Jelentés adatai
-            report_file_upload: Jelentésfájl feltöltése
-            rescore_responses: Pontozza újra a válaszokat
-            reset_progress: Folyamat visszaállítása
-            reset_responses: Válaszok visszaállítása
-            scores: Pontszámok
-            title: Eredmények
-            view_report: Jelentés megtekintése
-            view_stats: Statisztikák megtekintése
-          skills:
-            export: Készségek exportálása
-            export_translations: Készségek fordításainak exportálása
-            import: Készségek importálása
-            import_translations: Készségek fordításainak importálása
-            manage: Kezel
-            title: Készségek
-            view: Nézet
-          smsHistories:
-            manage: Kezel
-            title: SMS-előzmények
-            view: Nézet
-          smsInvites:
-            manage: Kezel
-            title: SMS-meghívók
-            view: Nézet
-          userIdpPlans:
-            manage: Kezel
-            reset: Átszed
-            title: Felhasználói IDP tervek
-            view: Nézet
-          users:
-            reset_password: Jelszó visszaállítása
-            title: Felhasználók
-          workshops:
-            export_status: Exportálás állapota
-            manage: Kezel
-            title: Workshopok
-            view: Nézet
-            view_recordings: Felvételek megtekintése
     ai_artifacts:
       artifact_results: Műtermék eredményei
       code: Kód
@@ -4049,12 +3792,7 @@ hu:
       security_setting: Biztonsági beállítás
     settings:
       admin_roles:
-        admin_role_single: Adminisztrátori szerepkör
         confirm_message: Biztosan törölni akarod a(z) '%{role_name}' adminisztrátori szerepkört?
-        create: Adminisztrátori szerepkör hozzáadása
-        description: Leírás
-        name: Név
-        successful_remove: A(z) %{role_name} adminisztrátori szerepkör törlése sikeresen megtörtént.
       siem:
         description: Leírás
         destination_type: Rendeltetési hely típusa

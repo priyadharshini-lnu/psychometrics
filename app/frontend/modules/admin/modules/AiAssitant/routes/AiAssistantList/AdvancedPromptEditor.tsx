@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from 'react'
 import {
   Button, Input, Card, Typography, Row, Col, Spin, message, Tooltip,
 } from 'antd'
-import { PlayCircleOutlined, InfoCircleOutlined } from '@ant-design/icons'
 import { Controlled as CodeMirror } from 'react-codemirror2'
+import { PlayCircleOutlined, InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { useResources } from '~/hooks/useResources/useResources'
 import 'codemirror/lib/codemirror.css'
 import styles from './styles.less'

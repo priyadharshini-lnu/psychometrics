@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Form, Input } from 'antd'
-import { EditOutlined, CloseOutlined } from '@ant-design/icons'
+import { EditOutlined, CloseOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 const { I18n } = window
 

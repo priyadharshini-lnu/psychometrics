@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 
 
-import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import {
   Button, Modal, message, Alert, Form, Input,
 } from 'antd'
 import Event from 'interfaces/Event'
 import _ from 'lodash'
+import { LoadingOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { importAssessors, IMPORT } from '~/modules/admin/modules/campaigns/core/assessors'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { isRequestInProgress } from '~/core/request'

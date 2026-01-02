@@ -9,7 +9,7 @@ import { CSS } from '@dnd-kit/utilities'
 import { DraggableSyntheticListeners } from '@dnd-kit/core'
 import {
   MenuOutlined, EditOutlined, DeleteOutlined, StarOutlined,
-} from '@ant-design/icons'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 
 const { I18n } = window
 

@@ -1,11 +1,11 @@
 /* eslint-disable max-len */
 import React from 'react'
-import { PlusOutlined } from '@ant-design/icons'
 import { Button, message } from 'antd'
 import { useParams } from 'react-router'
 import * as t from 'io-ts'
 import { useDispatch } from 'react-redux'
 import { ReflectionQuestion } from 'modules/admin/modules/client/core/reflectionQuestion'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { ToolsDropdown } from './ToolsDropdown'
 import { openModal } from '~/modules/admin/core/ui/modals'

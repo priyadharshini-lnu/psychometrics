@@ -4,8 +4,8 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Table, Row, Col, Input, Pagination, Typography,
 } from 'antd'
-import { AppstoreOutlined } from '@ant-design/icons'
 import { useNavigate, useParams } from 'react-router-dom'
+import { AppstoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import settings from '~/modules/admin/settings'
 import { get as getUsers, fetch } from '~/modules/admin/modules/AssessorApp/core/users'
 import { RootState } from '~/modules/admin/core/rootReducers'

@@ -4,8 +4,6 @@ import {
 import {
   Bubble,
 } from '@ant-design/x'
-import {
-} from '@ant-design/icons'
 import { CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { BotIcon } from './BotIcon'
 

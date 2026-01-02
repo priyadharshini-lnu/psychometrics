@@ -1,7 +1,7 @@
 import {
   Card, Select, Input, Button, Empty,
 } from 'antd'
-import { DeleteOutlined } from '@ant-design/icons'
+import { DeleteOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from '../SubFactorList/styles.less'
 import Title from './Title'
 

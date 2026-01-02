@@ -1,5 +1,5 @@
 import { Table } from 'antd'
-import { CheckOutlined } from '@ant-design/icons'
+import { CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import userPresenter from '~/presenters/user'
 import { getActionsMenuProps } from '../getActionsMenuProps'

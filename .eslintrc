@@ -127,6 +127,18 @@
           "error"
         ]
       }
+    ],
+    // add rule to not allow import from @ant-design/icons
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": [
+          {
+            "name": "@ant-design/icons",
+            "message": "Import of icons from @ant-design/icons is restricted. Instead import from ~/glint/icons/AccessibleIconsAntDesign."
+          }
+        ]
+      }
     ]
   },
   "overrides": [
@@ -150,6 +162,12 @@
       "extends": [
         "plugin:testing-library/react"
       ]
+    },
+    {
+      "files": ["app/frontend/glint/icons/AccessibleIconsAntDesign/**","app/frontend/glint/icons/**"],
+      "rules": {
+        "no-restricted-imports": 0
+      }
     }
   ],
   "globals": {

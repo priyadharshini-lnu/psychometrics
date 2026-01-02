@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import {
   CopyOutlined, DownOutlined, EyeOutlined, SnippetsOutlined, DeleteOutlined,
   SettingOutlined,
-} from '@ant-design/icons'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { getPage } from '~/modules/reports/core/builder/selectors'
 import LabelEditor from '~/modules/reports/components/LabelEditor'
 import styles from './Page.less'

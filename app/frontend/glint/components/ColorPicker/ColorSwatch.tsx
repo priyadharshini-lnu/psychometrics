@@ -1,7 +1,7 @@
 import { FC, MouseEventHandler } from 'react'
 import cs from 'classnames'
 import { RgbaColor } from 'react-colorful'
-import { CloseOutlined } from '@ant-design/icons'
+import { CloseOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { hexToRgba } from '~/utils/color'
 import styles from './colorSwatch.less'
 

@@ -37,14 +37,18 @@ module UserAssessments
     def instructions_enabled?
       return false if user_assessment.interrupted?
 
-      @user_assessment.assessment.fixed_timed? || @user_assessment.assessment.instructions&.dig('enabled')
+      assessment.fixed_timed? || assessment.instructions&.dig('enabled')
     end
 
     def time
       return user_assessment.additional_time if user_assessment.interrupted?
-      return user_assessment.assessment.extra['timer'] if user_assessment.not_started?
+      return assessment.extra['timer'] if user_assessment.not_started?
 
       nil
+    end
+
+    def assessment
+      @assessment ||= user_assessment.assessment
     end
   end
 end

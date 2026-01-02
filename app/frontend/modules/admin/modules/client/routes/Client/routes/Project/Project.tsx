@@ -1,6 +1,8 @@
 import { FC, useEffect, useState } from 'react'
 import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import { Flex, Menu, Spin } from 'antd'
+import some from 'lodash/some'
+import { connect, ConnectedProps } from 'react-redux'
 import {
   SettingOutlined,
   ShopOutlined,
@@ -10,9 +12,7 @@ import {
   CrownOutlined,
   ApartmentOutlined,
   UserOutlined,
-} from '@ant-design/icons'
-import some from 'lodash/some'
-import { connect, ConnectedProps } from 'react-redux'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import { getFeatures } from '~/core/config'
 import { camelizeKeys } from '~/utils/object'

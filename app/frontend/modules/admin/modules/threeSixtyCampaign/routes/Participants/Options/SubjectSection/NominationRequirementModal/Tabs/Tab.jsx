@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import _ from 'lodash'
 import { Dropdown, Input } from 'antd'
-import { CaretDownOutlined } from '@ant-design/icons'
 import cs from 'classnames'
+import { CaretDownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from './styles.less'
 
 export default function Tab ({

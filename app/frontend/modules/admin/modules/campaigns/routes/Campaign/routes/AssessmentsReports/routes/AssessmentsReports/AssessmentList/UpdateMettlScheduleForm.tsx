@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom'
 import {
   Button, Form, Checkbox, Select, message, Flex,
 } from 'antd'
-import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
+import { LoadingOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
 import {
   MettlScheduleRecords as MettlScheduleRecordsType, MettlScheduleRecord,

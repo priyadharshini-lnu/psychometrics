@@ -193,6 +193,23 @@ class UserReport < ApplicationRecord
   end
 
   def generatable?
+    if threesixty?
+      threesixty_report_generatable?
+    else
+      common_report_generatable?
+    end
+  end
+
+  def threesixty_report_generatable?
+    return false if report_modules_empty?
+
+    generate = true
+    generate &&= approved? if has_approval_workflow?
+    generate &&= campaign_user.campaign_artifact_results_finalized? if report.campaign_ai_artifacts.present?
+    generate
+  end
+
+  def common_report_generatable?
     return false if provider_custom_upload?
 
     generate = all_assessments_are_scored? && (external_report? || !report_modules_empty?)

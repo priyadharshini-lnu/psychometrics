@@ -4,12 +4,13 @@ import { act } from 'react-dom/test-utils'
 import { BookingCard } from '~/glint'
 import { TIME_FORMAT } from '~/glint/components/BookingCard/TimeSlotSelection'
 import dayjs from '~/utils/dayjs'
+import { normalizeTimeZone } from "~/hooks/useTimezones"
 
 
 const availableDates = [{ id: 1, date: '2524-07-15T09:00:00.100+05:30' }, { id: 2, date: '2524-07-15T09:30:00.100+05:30' }].map(({ id, date }) => ({ id, date: dayjs(date) }))
 const availableDateStrings = availableDates.map(({ id, date }) => date.date().toString())
 const DATE_TIME_FORMAT = 'DD/MM/YYYY hh:mm a'
-const timeZone = dayjs.tz.guess() || 'Asia/Calcutta'
+const timeZone = normalizeTimeZone(dayjs.tz.guess())
 const availableDateAsPerTimezone_one = availableDates[0].date.tz(timeZone).clone()
 const availableDateAsPerTimezone_two = availableDates[1].date.tz(timeZone).clone()
 

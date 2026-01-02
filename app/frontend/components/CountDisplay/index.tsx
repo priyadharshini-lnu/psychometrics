@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Space, Skeleton } from 'antd'
-import { AppstoreOutlined } from '@ant-design/icons'
+import { AppstoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 const { I18n } = window
 

@@ -1,8 +1,8 @@
 import {
   Table, Button, message, Tag, Space,
 } from 'antd'
-import { EditOutlined, CopyOutlined, DeleteOutlined } from '@ant-design/icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { EditOutlined, CopyOutlined, DeleteOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 
 import { ResourceAvatar } from '~/glint'

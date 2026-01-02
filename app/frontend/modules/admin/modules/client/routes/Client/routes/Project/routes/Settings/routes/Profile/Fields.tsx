@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import {
   Table, Checkbox, Button, Select, Space,
 } from 'antd'
-import { MenuOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import type { SortableContainerProps, SortEnd } from 'react-sortable-hoc'
 import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc'
 import { arrayMove } from '@dnd-kit/sortable'
+import { MenuOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import {
   ProfileField,
   QuestionField as QuestionFieldType,

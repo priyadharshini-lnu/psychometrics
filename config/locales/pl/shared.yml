@@ -2,8 +2,12 @@
 pl:
   shared:
     action: Działanie
+    actions: Działania
+    active: Aktywny
     add: Dodaj
     advanced: Zaawansowany
+    archive: Archiwuj
+    archived: Archiwizowane
     authentication_failed: Uwierzytelnianie się nie powiodło. Proszę, spróbuj ponownie.
     basic: Podstawowy
     campaign_id: Identyfikacja kampanii
@@ -11,24 +15,41 @@ pl:
     change_password: Zmień hasło
     clear_filters: Wyczyść filtry
     collaborative_learning: Uczenie się zespołowe
+    confirm: Potwierdź
     continue: Kontynuować
+    created_at: Utworzono w
+    created_date: Data utworzenia
     description: Opis
     edit: Edytuj
     edited: Nowy
+    email: E-mail
+    export: Eksport
+    first_name: Imię
     formal_learning: Uczenie się formalne
     group_question_max_validation_error: Każda grupa może zawierać co najwyżej {{max}} elementów.
     group_question_min_validation_error: Każda grupa musi zawierać co najmniej {{min}} elementów.
     id: ID
     idp_ai_assistant_disclaimer: Asystent IDP AI w Lighthouse może popełniać błędy. Proszę, bądźcie ostrożni podczas korzystania z odpowiedzi.
     internet_disconnected_message: Próba ponownego połączenia. Sprawdź połączenie internetowe.
+    last_name: Nazwisko
     learning_on_the_job_label: Nauka w pracy
+    login: Logowanie
+    modified_by: Zmodyfikowane przez
+    modified_date: Data modyfikacji
+    more_actions: Więcej akcji
     mte_logo_alt_text: Logo Mercer Talent Enterprise
     name: Nazwa
     new: Nowy
+    ok: Ok
+    remove: Usuń
     removed: Usunięte
+    reset_password: Zresetuj hasło
     rte_paste_content_exceeds_char_limit: Tekst przekracza limit znaków {{maxCharacterLimit}} i nie może być wklejony.
     rte_paste_content_exceeds_word_limit: Tekst przekracza limit słów {{maxWordLimit}} i nie może być wklejony.
+    save: Zapisz
     search: Szukaj
+    send_email: Wyślij wiadomość e-mail
+    something_wrong: Coś poszło nie tak. Skontaktuj się z administratorem.
     table:
       entries:
         selected: Wybrano 1 wiersz

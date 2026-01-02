@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import {
   Row, Col, Button, Empty, App, Select,
 } from 'antd'
-import { SaveOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import { useNavigate, useParams } from 'react-router-dom'
+import { SaveOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import Editor from '~/components/Editor'
 import ErrorAlertBox from '~/components/ErrorAlertBox'
 import { SafeHTML } from '~/components/SafeHTML'

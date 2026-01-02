@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import {
   Table, Space, Pagination, Button, MenuProps,
 } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { useResources } from '~/hooks/useResources'
 import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
 import {

@@ -1,5 +1,5 @@
 import { Popconfirm } from 'antd'
-import { WarningOutlined } from '@ant-design/icons'
+import { WarningOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 export default function Confirmation ({
   title, onConfirm, placement, children,

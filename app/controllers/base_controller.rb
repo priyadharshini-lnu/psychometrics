@@ -4,7 +4,9 @@ class BaseController < ActionController::Base
   include Pundit
   include SetLocale
   include AddCookie
+  include ControllerUtilities
   prepend AuditLogModule::ControllerHelper
+  include SiemLogger::ControllerHelper
 
   protect_from_forgery with: :exception
   add_flash_types :notice, :error, :success
@@ -12,7 +14,8 @@ class BaseController < ActionController::Base
   prepend_before_action :redirect_to_maintenance, if: -> { helpers.maintenance_started? }
   prepend_before_action :authenticate_user!, unless: -> { try(:skip_authentication?) }
   prepend_before_action :set_client_by_subdomain
-  before_action :set_current_attributes
+  prepend_before_action :set_request_id_in_current_attributes
+  before_action :set_current_user_in_current_attributes
   before_action :detect_mobile
   before_action :set_sentry_context
   before_action :enforce_password_change
@@ -39,7 +42,7 @@ class BaseController < ActionController::Base
 
     store_location_for(:user, request.original_fullpath) if request.get? && request.format.html?
     flash.delete(:notice)
-
+    I18n.locale = user_locale
     redirect_to change_password_required_path_for(:user),
                 alert: I18n.t('devise.password_expired.password_policy_changed')
   end
@@ -76,8 +79,14 @@ class BaseController < ActionController::Base
 
     Users::AuthenticateUser.call(params, @current_project) do
       on(:ok) { |user, found_by, auth_details| handle_successful_authentication(user, found_by, auth_details) }
-      on(:invalid_sso_token) { |url| redirect_to(url) && return if url }
-      on(:invalid_jwt_token) { |url| redirect_to(url) && return if url }
+      on(:invalid_sso_token) do |url|
+        siem_log_authentication_failure('sso')
+        redirect_to(url) && return if url
+      end
+      on(:invalid_jwt_token) do |url|
+        siem_log_authentication_failure('jwt')
+        redirect_to(url) && return if url
+      end
     end
     super
   end
@@ -85,6 +94,9 @@ class BaseController < ActionController::Base
   def handle_successful_authentication(user, found_by, auth_details)
     handle_spoofing(found_by)
     handle_sso_or_jwt(found_by, user)
+
+    siem_log_authentication_success(user, found_by) if siem_loggable_auth_method?(found_by)
+
     sign_in_and_redirect(user, found_by, auth_details)
   end
 
@@ -127,6 +139,10 @@ class BaseController < ActionController::Base
 
   private
 
+  def siem_loggable_auth_method?(found_by)
+    %i[api_jwt lighthouse_jwt sso].include?(found_by)
+  end
+
   def ignore_password_expire?
     session[:spoofed] || session[:login_via_magic_link] || session[:saml_login]
   end
@@ -156,7 +172,11 @@ class BaseController < ActionController::Base
     Settings.features.to_h.transform_values { |v| v == true }
   end
 
-  def set_current_attributes
+  def set_request_id_in_current_attributes
+    Current.request_id = request.request_id
+  end
+
+  def set_current_user_in_current_attributes
     Current.user = @current_user
   end
 

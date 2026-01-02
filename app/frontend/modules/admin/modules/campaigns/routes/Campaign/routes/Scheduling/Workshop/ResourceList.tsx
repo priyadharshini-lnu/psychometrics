@@ -6,9 +6,9 @@ import {
   message,
 } from 'antd'
 import { ConnectedProps, connect } from 'react-redux'
-import { CopyOutlined, PlusOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { CopyOutlined, PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import { ConfirmationModal } from '~/glint'
 

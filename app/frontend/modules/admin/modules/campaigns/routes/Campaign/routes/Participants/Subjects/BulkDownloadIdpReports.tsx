@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import {
   Button, Modal, message, Form, Select,
   Checkbox,
@@ -7,6 +6,7 @@ import {
 import {
   connect, ConnectedProps, useDispatch, useSelector,
 } from 'react-redux'
+import { LoadingOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import {
   bulkDownloadIdpReports, DOWNLOAD_IDP_REPORTS,

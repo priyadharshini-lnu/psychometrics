@@ -12,8 +12,8 @@ import {
   Tag,
   Space,
 } from 'antd'
-import { MoreOutlined } from '@ant-design/icons'
 import map from 'lodash/map'
+import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import dayjs from '~/utils/dayjs'
 import { ResourceAvatar } from '~/glint'

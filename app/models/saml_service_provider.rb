@@ -23,11 +23,11 @@ class SamlServiceProvider < ApplicationRecord
   end
 
   def issuer_uri
-    "#{Utility::Url.generate(:root_url, subdomain: project.subdomain)}saml/idp/metadata"
+    "#{Utility::Url.generate(:root_url, subdomain: project.subdomain)}saml/idp/metadata/#{id}"
   end
 
   def sso_service_url
-    "#{Utility::Url.generate(:root_url, subdomain: project.subdomain)}/saml/idp/auth"
+    "#{Utility::Url.generate(:root_url, subdomain: project.subdomain)}saml/idp/auth/#{id}"
   end
 
   def idp_certificate

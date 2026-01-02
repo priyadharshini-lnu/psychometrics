@@ -58,7 +58,8 @@ module DailyCo
 
       {
         token: JWT.encode(payload, config[:api_key], 'HS256'),
-        url: "https://#{config[:subdomain]}.daily.co/#{meeting_room.name}"
+        url: "https://#{config[:subdomain]}.daily.co/#{meeting_room.name}",
+        video_recording_enabled: meeting_room.video_recording_enabled?
       }
     end
   end

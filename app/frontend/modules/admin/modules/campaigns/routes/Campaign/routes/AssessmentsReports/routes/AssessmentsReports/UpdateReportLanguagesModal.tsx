@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import {
   Modal, Button, Form, Select, App,
 } from 'antd'
-import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 import filter from 'lodash/filter'
+import { LoadingOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import {
   updateDefaultAndAvailableLocales,
   UPDATE_DEFAULT_AND_AVAILABLE_LOCALES,

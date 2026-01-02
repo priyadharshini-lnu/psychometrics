@@ -76,7 +76,7 @@
     "crypto-js": "^4.2.0",
     "css-mediaquery": "^0.1.2",
     "d3": "^7.9.0",
-    "dayjs": "^1.11.13",
+    "dayjs": "^1.11.19",
     "dompurify": "^3.2.4",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-import-resolver-alias": "^1.1.2",

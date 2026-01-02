@@ -1,6 +1,6 @@
 import { FC, ReactElement } from 'react'
 import { Modal, Button } from 'antd'
-import { CheckOutlined } from '@ant-design/icons'
+import { CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 const { I18n } = window
 

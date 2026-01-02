@@ -38,7 +38,7 @@ export const AdminRolesForm: React.FC<Props> = ({
     <ResourceFormModal
       resourceName="roles"
       resource={role}
-      readableResourceName={I18n.t('administration.settings.admin_roles.admin_role_single')}
+      readableResourceName={I18n.t('admin.admin_roles')}
       showSuccessMessages
       close={close}
       storeManager={{ form }}
@@ -53,14 +53,14 @@ export const AdminRolesForm: React.FC<Props> = ({
         <>
           <Form.Item
             name="name"
-            label={I18n.t('administration.settings.admin_roles.name')}
+            label={I18n.t('shared.name')}
             rules={[{ required: true }]}
           >
             <Input name="admin_role_name" />
           </Form.Item>
           <Form.Item
             name="description"
-            label={I18n.t('administration.settings.admin_roles.description')}
+            label={I18n.t('shared.description')}
             rules={[{ required: true }]}
           >
             <Input.TextArea />
@@ -70,13 +70,13 @@ export const AdminRolesForm: React.FC<Props> = ({
             <Fragment key={grantFor}>
               <Form.Item
                 name={['permissions', `${grantFor}`]}
-                label={I18n.t(`administration.administrators.permissions.labels.${grantFor}.title`)}
+                label={I18n.t(`admin.permissions.${grantFor}.title`)}
                 className="mb-5"
               >
                 <Checkbox.Group>
                   {_.map(grants, grant => (
                     <Checkbox value={grant} key={grant as string}>
-                      {I18n.t(`administration.administrators.permissions.labels.${grantFor}.${grant}`)}
+                      {I18n.t(`admin.permissions.${grantFor}.${grant}`)}
                     </Checkbox>
                   ))}
                 </Checkbox.Group>

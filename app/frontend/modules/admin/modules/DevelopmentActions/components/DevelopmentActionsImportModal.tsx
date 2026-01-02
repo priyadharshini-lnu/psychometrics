@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import ApiAction from 'interfaces/ApiAction'
-import { LoadingOutlined, CheckOutlined, CloudDownloadOutlined } from '@ant-design/icons'
 import {
   Button, Modal, Alert, Form, Input,
 } from 'antd'
 import { useParams } from 'react-router'
 import Event from 'interfaces/Event'
+import { LoadingOutlined, CheckOutlined, CloudDownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 const { I18n } = window
 

@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import {
   Form, Input, Select, Space, Spin,
 } from 'antd'
-import { SearchOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
+import { SearchOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { useResourceContext } from '~/modules/admin/components/Resource'
 import { WorkshopInvitedSubject } from '~/modules/admin/modules/UserAvailability/core/workshopInvitedSubjects'

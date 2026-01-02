@@ -9,12 +9,12 @@ import {
   Divider,
 } from 'antd'
 import {
-  ArrowLeftOutlined,
-} from '@ant-design/icons'
-import {
   useNavigate,
   useParams,
 } from 'react-router-dom'
+import {
+  ArrowLeftOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { useResources } from '~/hooks/useResources'
 import { IdpUser } from '~/modules/admin/modules/campaigns/core/UserIdpPlan'
 

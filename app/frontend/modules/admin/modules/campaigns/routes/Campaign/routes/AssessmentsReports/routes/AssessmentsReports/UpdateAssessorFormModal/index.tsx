@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Modal, Button, Form, Select, message,
 } from 'antd'
-import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
+import { LoadingOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { updateAssessorForm, UPDATE_ASSESSOR_FORM } from '~/modules/admin/modules/campaigns/core/assessments/actions'
 import { getSingle } from '~/modules/admin/modules/campaigns/core/assessments'

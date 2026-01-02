@@ -2,15 +2,15 @@ import { useState, useMemo, useEffect } from 'react'
 import {
   Modal, Button, Select, Form, Typography, Tag, Flex,
 } from 'antd'
-import {
-  FileTextOutlined, DownloadOutlined, GlobalOutlined, ThunderboltOutlined,
-} from '@ant-design/icons'
 import reduce from 'lodash/reduce'
 import keyBy from 'lodash/keyBy'
 import map from 'lodash/map'
 import filter from 'lodash/filter'
 import mapValues from 'lodash/mapValues'
 import Report from 'modules/admin/modules/campaigns/interfaces/Report'
+import {
+  FileTextOutlined, DownloadOutlined, GlobalOutlined, ThunderboltOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'
 
 interface ReportLanguageValues {

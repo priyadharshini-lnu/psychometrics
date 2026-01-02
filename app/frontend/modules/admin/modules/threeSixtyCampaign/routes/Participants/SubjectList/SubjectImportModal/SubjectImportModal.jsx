@@ -3,9 +3,9 @@ import _ from 'lodash'
 import {
   Modal, Button,
 } from 'antd'
-import { LoadingOutlined, ImportOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 import { useParams } from 'react-router-dom'
+import { LoadingOutlined, ImportOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import UserList from '~/modules/admin/modules/threeSixtyCampaign/routes/UserList/UserList'
 import FileImport from './FileImport'
 

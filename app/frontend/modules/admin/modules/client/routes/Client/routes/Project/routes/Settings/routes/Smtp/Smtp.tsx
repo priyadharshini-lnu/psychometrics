@@ -4,8 +4,8 @@ import isEmpty from 'lodash/isEmpty'
 import {
   Row, Col, Form, Input, Button, Switch, Radio, Space, App, Skeleton,
 } from 'antd'
-import { MailOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
+import { MailOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import {
   get as getSmtpSetting,

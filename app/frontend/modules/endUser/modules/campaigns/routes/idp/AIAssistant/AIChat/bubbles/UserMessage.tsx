@@ -2,7 +2,7 @@ import { Space, Typography } from 'antd'
 import { Bubble } from '@ant-design/x'
 import {
   ExclamationCircleOutlined,
-} from '@ant-design/icons'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from './styles.less'
 
 

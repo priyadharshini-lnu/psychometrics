@@ -1,5 +1,5 @@
 import { Input, message } from 'antd'
-import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
+import { MinusCircleOutlined, PlusCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { GLOBAL } from '~/constants/relationship'
 import styles from './styles.less'
 

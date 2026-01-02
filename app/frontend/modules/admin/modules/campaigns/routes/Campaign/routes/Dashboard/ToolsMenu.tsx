@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import {
   Button, Dropdown, Menu, message, Modal, Select,
 } from 'antd'
+import { useDispatch } from 'react-redux'
 import {
   DownOutlined, ToolOutlined, FilePdfOutlined, LoadingOutlined,
-} from '@ant-design/icons'
-import { useDispatch } from 'react-redux'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { Dashboard } from '~/modules/admin/modules/campaigns/core/dashboard'
 import { exportDashboardFile } from '~/modules/admin/modules/campaigns/core/exportDashboardFile'
 

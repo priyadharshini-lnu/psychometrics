@@ -87,6 +87,8 @@ RSpec.describe ApplicationJob, type: :job do
     end
 
     describe 'job with exception tracking' do
+      let(:capture_logger) { SemanticLogger::Test::CaptureLogEvents.new }
+
       it 'raises the exception and creates the exception tracking record for job without any record' do
         ApplicationJob::DEFAULT_SUPPRESSION_THRESHOLD.times do
           expect { SampleJobWithExceptionTracking.perform_now }.to raise_exception(JobPerformError)
@@ -121,14 +123,16 @@ RSpec.describe ApplicationJob, type: :job do
           expect(tracker.consecutive_failure_count).to eq(ApplicationJob::DEFAULT_SUPPRESSION_THRESHOLD)
         end
 
+        allow_any_instance_of(SampleJobWithExceptionTracking).to receive(:logger).and_return(capture_logger)
+
         error = JobPerformError.new
 
-        expect(Rails.logger).to receive(:error).with(
+        expect { SampleJobWithExceptionTracking.perform_now }.not_to raise_exception
+        expect(capture_logger.events.last.message).to include(
           "Platform exception discarded #{error.class} due to a #{SuppressedExceptionError}." \
           "The original exception was #{error.inspect}."
         )
-
-        expect { SampleJobWithExceptionTracking.perform_now }.not_to raise_exception
+        expect(capture_logger.events.last.level).to eq(:error)
       end
 
       it 'resets the failure count after successful run' do

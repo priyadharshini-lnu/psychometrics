@@ -1,3 +1,6 @@
+javascript [nonce=content_security_policy_nonce]:
+  I18n.availableLocales = #{(Settings.enduser_locales).to_json.html_safe}
+
 #report_preview.html_preview[data-user="#{@data[:user]}"
   data-results="#{@data[:results]}"
   data-data="#{@data[:data]}"
