@@ -98,17 +98,17 @@ export const Client: FC<Props> = ({ currentUser }) => {
     const [primaryTab] = primaryLevelTab
     switch (primaryTab) {
       case 'projects':
-        return I18n.t('common.model.projects')
+        return I18n.t('admin.projects')
       case 'admins':
-        return I18n.t('administration.breadcrumbs.admins')
+        return I18n.t('admin.admins')
       case 'settings':
-        return I18n.t('administration.breadcrumbs.settings')
+        return I18n.t('admin.settings')
       case 'data_reports':
-        return I18n.t('administration.breadcrumbs.data_reports')
+        return I18n.t('admin.data_reports')
       case 'audit_reports':
-        return I18n.t('administration.breadcrumbs.audit_reports')
+        return I18n.t('admin.audit_reports')
       case 'licenses':
-        return I18n.t('administration.breadcrumbs.licenses')
+        return I18n.t('admin.licenses')
       default:
         return ''
     }

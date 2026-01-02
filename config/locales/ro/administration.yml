@@ -29,35 +29,11 @@ ro:
     administrators:
       drawers:
         edit:
-          admin_role_select: Selectați rolul de administrator
-          admin_roles: Roluri de administrator
-          create_success: Admin '%{name}' a fost creat cu succes
-          email: E-mail
-          first_name: Prenume
           first_name_required: Prenumele este obligatoriu
-          last_name: Nume de familie
           last_name_required: Numele de familie este obligatoriu
-          no_edit_permission: Nu aveți permisiunea de a edita admin '%{name}'
-          save: Salva
-          update: Actualiza
-          update_success: Admin '%{name}' a fost actualizat cu succes
-        notes:
-          threesixty_permission: Permisiuni specifice campaniilor 360
-          title: Note
         view:
-          add_campaign_admin: Adăugați administratorul campaniei
-          add_client_admin: Adăugați administrator client
-          add_project_admin: Adăugați administrator de proiect
-          add_threesixty_campaign_admin: Adăugați administratorul campaniei
-          edit_campaign_admin: Editați administratorul campaniei
-          edit_client_admin: Editați administratorul clientului
-          edit_project_admin: Editați administratorul proiectului
-          edit_threesixty_campaign_admin: Editați administratorul campaniei
           first_name: Prenume
           last_name: Nume de familie
-          project_admin: Administrator de proiect
-          project_list: Lista proiectelor
-          role: Administratorul campaniei
           title:
             campaign_admin: Administratorul campaniei
             client_admin: Administrator client
@@ -65,253 +41,20 @@ ro:
       list:
         actions:
           api_keys: Chei API
-          cancel_text: Anulați
-          change_password: Resetați parola
           edit: Editați
           export_admins_with_permissions: Exportul rolurilor și permisiunilor de administrator
           export_success: Lucrarea de export de administrator a fost programată cu succes. Vă rugăm să verificați starea notificării.
           login: Login
-          send_email: Trimite e-mail
           spoof:
             login_successful: Autentificare reușită.
           user_report_events: Jurnale de aprobare a rapoartelor
         columns:
-          actions: Acțiuni
-          created_at: Creat la
           email: E-mail
-          id: ID
-          name: Nume
-        header:
-          add_admin: Adăugați administrator
-          search_admins: Administratori de căutare
-        toolbar:
-          export_admins_with_permissions: Exportul rolurilor și permisiunilor de administrator
       modals:
         delete:
           cancelText: Anulați
-          content: Sigur doriți să eliminați utilizatorul administrator cu e-mailul "%{email}"?
           okText: Ok
-          onSuccess: Administratorul cu e-mailul "%{email}" a fost eliminat cu succes
           title: Confirma
-      permissions:
-        labels:
-          aiArtifacts:
-            export: Export
-            import: Importa
-            manage: Gestiona
-            title: Artefacte AI
-            view: Vedere
-          apiKeys:
-            manage: Acțiuni
-            title: Chei API
-            view: Vedere
-          assessments:
-            manage: Acțiuni
-            title: Evaluări
-            view: Vedere
-          assessors:
-            manage: Acțiuni
-            title: Evaluatori
-            view: Vedere
-          auditLogs:
-            title: Jurnale de audit
-            view: Vedere
-          auditReports:
-            admin_permissions: Exportul rolurilor și permisiunilor de administrator
-            title: Rapoarte de audit
-            user_report_events: Jurnale de aprobare a rapoartelor
-          campaignFactors:
-            manage: Acțiuni
-            title: Factorii campaniei
-            view: Vedere
-          campaigns:
-            bulk_download: Descărcare în bloc
-            bulk_regenerate_reports: Rapoarte de regenerare în bloc
-            manage: Acțiuni
-            manage_admins: Gestionați administratorii
-            manage_factor_benchmark_scores: Gestionați scorurile de referință ale factorilor
-            manage_messages: Gestionați mesajele
-            manage_options: Gestionați opțiunile
-            manage_report_approvals: Gestionarea aprobărilor rapoartelor
-            manage_users: Gestionați utilizatorii
-            participant_options: Opțiuni pentru participanți
-            report_options: Opțiuni de raportare
-            reset_nominations: Resetați nominalizările
-            title: Campanii
-            view: Vedere
-            view_factor_benchmark_scores: Vizualizați scorurile de referință ale factorilor
-            view_stats: Vezi statistici
-          clients:
-            export_data_report: Exportați raportul de date
-            manage: Acțiuni
-            title: Clientii
-            view: Vedere
-            view_licenses: Vizualizați licențele
-          communications:
-            manage: Acțiuni
-            title: Comunicaţii
-            view: Vedere
-          dashboards:
-            accesssheet_manage: Gestionarea foii de acces
-            accesssheet_settings: Setări foaie de acces
-            accesssheet_view: Vizualizare foaie de acces
-            export: Export
-            title: Dashboards
-            view: Vedere
-          datasheets:
-            manage: Acțiuni
-            title: Fișe tehnice
-            view: Vedere
-          developmentActions:
-            export: Exportați
-            export_global: Exportați Global
-            export_global_translations: Exportați traduceri globale
-            export_translations: Exportați traduceri
-            import: Importa
-            import_global: Import Global
-            import_global_translations: Importați traduceri globale
-            import_translations: Importați traduceri
-            manage: Acțiuni
-            title: Acțiune de dezvoltare
-            view: Vedere
-          dimensions:
-            manage: Acțiuni
-            title: Dimensiuni
-            view: Vedere
-          idpTemplates:
-            manage: Acțiuni
-            title: Șabloane IDP
-            view: Vedere
-          interviewQuestions:
-            export: Export
-            import: Import
-            manage: Gestionează
-            title: Întrebări de interviu pentru IDP
-            view: Vizualizare
-          jobRoles:
-            export_translations: Exportați Rolul postului Traduceri
-            import_translations: Import Rolul postului Traduceri
-            manage: Acțiuni
-            title: Roluri de post
-            view: Vedere
-          libraries:
-            manage: Acțiuni
-            title: Biblioteci media
-            view: Vedere
-          messages:
-            email: E-mail
-            instructions: Instrucţiuni
-            options: Opțiuni
-            title: Mesaje
-          norms:
-            manage: Acțiuni
-            title: Normele
-            view: Vedere
-          proficiencyLevels:
-            export: Niveluri de competență la export
-            export_translations: Traduceri ale nivelurilor de competență de export
-            import: Niveluri de competență de import
-            import_translations: Importați traduceri ale nivelurilor de competență
-            manage: Acțiuni
-            title: Niveluri de competență
-            view: Vedere
-          proficiency_level:
-            title: Niveluri de competență
-          projectSettings:
-            assessments: Evaluări
-            design: Design
-            feature_flags: Steaguri de caracteristici
-            idp: IDP
-            integrations: Integrări
-            privacy_settings: Setări de confidențialitate
-            saml: SAML
-            security: Securitate
-            smtp: SMTP
-            title: Setările proiectului
-            webhooks: Webhook-uri
-          projects:
-            manage: Acțiuni
-            manage_admins: Gestionați administratorii
-            manage_licenses: Gestionarea licențelor
-            manage_users: Gestionați utilizatorii
-            title: Proiecte
-            view: Vedere
-            view_licenses: Vezi licențele
-          questions:
-            manage: Acțiuni
-            title: Întrebări
-            view: Vedere
-          reflectionQuestions:
-            export: Exportați
-            import: Importa
-            manage: Acțiuni
-            title: Întrebări de reflecție pentru IDP
-            view: Vedere
-          registrationCodes:
-            manage: Acțiuni
-            title: Coduri de înregistrare
-            view: Vedere
-          registrationSettings:
-            manage: Acțiuni
-            title: Setări de înregistrare
-          reports:
-            manage: Acțiuni
-            title: Rapoarte
-            view: Vedere
-          responseMeta:
-            title: Răspuns Meta
-          results:
-            approve_report: Aprobarea raportului
-            bulk_download: Descărcare în bloc
-            bulk_regenerate_reports: Rapoarte de regenerare în bloc
-            bulk_update_evaluation_status: Stare evaluare actualizare în bloc
-            download_report: Descărcați raportul
-            edit_report: Editați raportul
-            export_occupations: Ocupații de export
-            external_score_import: Import scor extern
-            finalize_scores: Finalizați scorurile
-            normalize_factor_scores: Normalizați scorurile factorilor
-            raw_responses: Răspunsuri brute
-            regenerate_report: Regenerarea raportului
-            report_data: Date de raportare
-            report_file_upload: Încărcarea fișierului de raport
-            rescore_responses: Răspunsuri de reevaluare
-            reset_progress: Resetează progresul
-            reset_responses: Resetați răspunsurile
-            scores: Scoruri
-            title: Rezultatele
-            view_report: Vizualizați raportul
-            view_stats: Vezi statistici
-          skills:
-            export: Abilități de export
-            export_translations: Traduceri de abilități de export
-            import: Abilități de import
-            import_translations: Traduceri de abilități de import
-            manage: Acțiuni
-            title: Aptitudini
-            view: Vedere
-          smsHistories:
-            manage: Acțiuni
-            title: Istoricul SMS-urilor
-            view: Vedere
-          smsInvites:
-            manage: Acțiuni
-            title: Invitații prin SMS
-            view: Vedere
-          userIdpPlans:
-            manage: Gestiona
-            reset: Reseta
-            title: Planuri IDP pentru utilizatori
-            view: Vedere
-          users:
-            reset_password: Resetați parola
-            title: Utilizatorii
-          workshops:
-            export_status: Starea exportului
-            manage: Acțiuni
-            title: Ateliere
-            view: Vedere
-            view_recordings: Vizualizați înregistrările
     ai_artifacts:
       artifact_results: Rezultatele artefactelor
       code: Cod
@@ -4047,12 +3790,7 @@ ro:
       security_setting: Setare de securitate
     settings:
       admin_roles:
-        admin_role_single: Rol de administrator
         confirm_message: Sunteți sigur că doriți să ștergeți rolul de administrator '%{role_name}'?
-        create: Adăugați rol de administrator
-        description: Descriere
-        name: Nume
-        successful_remove: Rolul de administrator '%{role_name}' a fost șters cu succes.
       siem:
         description: Descriere
         destination_type: Tip de destinație

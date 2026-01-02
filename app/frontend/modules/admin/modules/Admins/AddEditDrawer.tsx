@@ -112,13 +112,13 @@ const AddEditDrawerComponent: FC<Props> = ({
   const showRequestSuccessMessage = (response) => {
     if (isEditMode) {
       message.success(
-        I18n.t('administration.administrators.drawers.edit.update_success', {
+        I18n.t('admin.admin_updated_successfully', {
           name: `${response.firstName} ${response.lastName}`,
         }),
       )
     } else {
       message.success(
-        I18n.t('administration.administrators.drawers.edit.create_success', {
+        I18n.t('admin.admin_created_successfully', {
           name: `${response.firstName} ${response.lastName}`,
         }),
       )
@@ -211,12 +211,12 @@ const AddEditDrawerComponent: FC<Props> = ({
   }, [selectedUser])
 
   const drawerTitle = isEditMode
-    ? I18n.t(`administration.administrators.drawers.view.edit_${adminType}`)
-    : I18n.t(`administration.administrators.drawers.view.add_${adminType}`)
+    ? I18n.t(`admin.edit_${adminType}`)
+    : I18n.t(`admin.add_${adminType}`)
 
   const actionButtonText = isEditMode
-    ? I18n.t('administration.administrators.drawers.edit.update')
-    : I18n.t('administration.administrators.drawers.edit.save')
+    ? I18n.t('shared.update')
+    : I18n.t('shared.save')
 
   const onClose = () => {
     handleClose()
@@ -253,7 +253,7 @@ const AddEditDrawerComponent: FC<Props> = ({
     && permissions.edit === false
   ) {
     message.error(
-      I18n.t('administration.administrators.drawers.edit.no_edit_permission', {
+      I18n.t('admin.edit_permission_denied', {
         name: `${admin?.firstName} ${admin?.lastName}`,
       }),
     )
@@ -282,7 +282,7 @@ const AddEditDrawerComponent: FC<Props> = ({
         onClick={onClose}
         disabled={addOrUpdateInProgress}
       >
-        {I18n.t('administration.administrators.list.actions.cancel_text')}
+        {I18n.t('shared.cancel')}
       </Button>
     </Space>
   )
@@ -322,23 +322,19 @@ const AddEditDrawerComponent: FC<Props> = ({
             {isEditMode && (
               <>
                 <Form.Item
-                  label={I18n.t('administration.administrators.list.columns.email')}
+                  label={I18n.t('shared.email')}
                   name="email"
                 >
                   <Input type="email" disabled />
                 </Form.Item>
                 <Form.Item
-                  label={I18n.t(
-                    'administration.administrators.drawers.edit.first_name',
-                  )}
+                  label={I18n.t('shared.first_name')}
                   name="firstName"
                 >
                   <Input disabled />
                 </Form.Item>
                 <Form.Item
-                  label={I18n.t(
-                    'administration.administrators.drawers.edit.last_name',
-                  )}
+                  label={I18n.t('shared.last_name')}
                   name="lastName"
                 >
                   <Input disabled />
@@ -349,9 +345,7 @@ const AddEditDrawerComponent: FC<Props> = ({
               <>
                 <Form.Item
                   name="userId"
-                  label={I18n.t(
-                    'administration.administrators.drawers.edit.email',
-                  )}
+                  label={I18n.t('shared.email')}
                   rules={[{ required: true }]}
                   validateStatus={errors.length > 0 ? 'error' : 'success'}
                   help={errors.length ? errors : null}
@@ -393,9 +387,7 @@ const AddEditDrawerComponent: FC<Props> = ({
                   </Select>
                 </Form.Item>
                 <Form.Item
-                  label={I18n.t(
-                    'administration.administrators.drawers.edit.first_name',
-                  )}
+                  label={I18n.t('shared.first_name')}
                   name="firstName"
                   rules={[
                     {
@@ -409,9 +401,7 @@ const AddEditDrawerComponent: FC<Props> = ({
                   <Input name="admin_first_name" />
                 </Form.Item>
                 <Form.Item
-                  label={I18n.t(
-                    'administration.administrators.drawers.edit.last_name',
-                  )}
+                  label={I18n.t('shared.last_name')}
                   name="lastName"
                   rules={[
                     {
@@ -428,13 +418,13 @@ const AddEditDrawerComponent: FC<Props> = ({
             )}
             {isSuperAdmin ? (
               <Form.Item
-                label={I18n.t('administration.administrators.drawers.edit.admin_roles')}
+                label={I18n.t('admin.admin_roles')}
                 name="adminRoleIds"
               >
                 <Select
                   mode="multiple"
                   showSearch={false}
-                  placeholder={I18n.t('administration.administrators.drawers.edit.admin_role_select')}
+                  placeholder={I18n.t('admin.select_admin_role')}
                   options={_.map(adminRoles, role => ({ label: role.name, value: role.id }))}
                   open={adminRolesOpen}
                   onFocus={() => setAdminRolesOpen(true)}
@@ -447,7 +437,7 @@ const AddEditDrawerComponent: FC<Props> = ({
               <Fragment key={grantFor}>
                 <Form.Item
                   name={['grantNames', `${grantFor}`]}
-                  label={I18n.t(`administration.administrators.permissions.labels.${grantFor}.title`)}
+                  label={I18n.t(`admin.permissions.${grantFor}.title`)}
                   initialValue={
                     _.map(admin?.grantNames?.[grantFor], grantName => grantName)
                   }
@@ -456,7 +446,7 @@ const AddEditDrawerComponent: FC<Props> = ({
                     <Checkbox.Group rootClassName={styles.grants_checkbox_group}>
                       {_.map(grants, grant => (
                         <Checkbox key={grant as string} value={grant}>
-                          {I18n.t(`administration.administrators.permissions.labels.${grantFor}.${grant}`)}
+                          {I18n.t(`admin.permissions.${grantFor}.${grant}`)}
                           {adminType !== AdminTypes.CampaignAdmin && _.includes(
                             ThreeSixtySpecificGrants[grantFor], grant,
                           ) && (
@@ -473,7 +463,7 @@ const AddEditDrawerComponent: FC<Props> = ({
                         {_.map(grants, grant => (
                           _.get(currentUserGrants, grantFor, [] as unknown[]).includes(grant) && (
                             <Checkbox value={grant} key={grant as string}>
-                              {I18n.t(`administration.administrators.permissions.labels.${grantFor}.${grant}`)}
+                              {I18n.t(`admin.permissions.${grantFor}.${grant}`)}
                             </Checkbox>
                           )
                         ))}
@@ -489,10 +479,10 @@ const AddEditDrawerComponent: FC<Props> = ({
       </ResourceForm>
       {adminType !== AdminTypes.CampaignAdmin && (
         <div className="notes">
-          {I18n.t('administration.administrators.drawers.notes.title')}
+          {I18n.t('admin.notes')}
           <ol className="notes">
             <li id="sup-note-1">
-              {I18n.t('administration.administrators.drawers.notes.threesixty_permission')}
+              {I18n.t('admin.permissions_360_campaigns')}
             </li>
           </ol>
         </div>

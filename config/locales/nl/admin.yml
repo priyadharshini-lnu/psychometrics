@@ -1,7 +1,20 @@
 ---
 nl:
   admin:
+    add_admin: Beheerder toevoegen
+    add_admin_role: Beheerdersrol toevoegen
+    add_campaign_admin: Campagne-admin toevoegen
+    add_client_admin: Client-admin toevoegen
+    add_project: Project toevoegen
+    add_project_admin: Projectbeheerder toevoegen
+    add_threesixty_campaign_admin: Campagne-admin toevoegen
     admin_approval_required: Rapporteer voor %{user} vereist goedkeuring van de beheerder voordat je downloadt
+    admin_created_successfully: Admin '%{name}' is succesvol aangemaakt
+    admin_export_scheduled: De exporttaak van de beheerder is met succes ingepland. Controleer uw melding voor de status.
+    admin_removed_successfully: Admin met email '%{email}' is succesvol verwijderd
+    admin_role_deleted: Beheerdersrol '%{role_name}' is succesvol verwijderd.
+    admin_roles: Beheerdersrollen
+    admin_updated_successfully: Admin '%{name}' is succesvol bijgewerkt
     admins: Admins
     ai_artifacts: AI-artefacten
     ai_artifacts_output_schema_key_constraint: De toonsoort moet beginnen met een kleine letter en mag alleen kleine letters, cijfers en onderstreepjes bevatten
@@ -21,10 +34,12 @@ nl:
     ai_assistants_test_render: Testrendering
     ai_assistants_test_render_tooltip: Test je prompttemplate met campagnedata om te zien wat er naar de AI-assistent wordt gestuurd.
     ai_assisted_idp_feature_disabled: De AI-ondersteunde IDP-functie is voor dit project uitgeschakeld.
+    api_keys: API-sleutels
     assessments: Beoordeling
     assessments_reports: Beoordelingen en rapporten
     assessor_dashboard: Dashboard voor beoordelaars
     assessor_workshops: Beoordelingscentrum
+    assessors: Taxateurs
     audit_logs: Controlelogboeken
     audit_reports: Controleverslagen
     availability: Beschikbaarheid
@@ -41,17 +56,22 @@ nl:
     campaign_assessment_modals_enable_caching_content: Weet je zeker dat je caching wilt inschakelen voor deze beoordeling?
     campaign_assessment_modals_enable_caching_successfully: Caching is ingeschakeld voor deze beoordeling.
     campaign_assessment_modals_enable_caching_title: Assessment caching mogelijk maken?
+    campaign_factors: Campagne factoren
     campaign_templates: Campagnesjablonen
+    campaigns: Campagnes
     client: Huurder
     client_admins: Klanten-admins
     clients: Huurcontracten voor klanten
     code_required: Code is vereist
     communication_center: Communicatiecentrum
+    communications: Communicatie
     completed: Volbracht
     completed_tooltip: Alle beoordelaars hebben de evaluatie ingediend
+    confirm_remove_admin: Weet je zeker dat je admin gebruiker met e-mail '%{email}' wilt verwijderen?
     country: Land
     create_client: Klant maken
     dashboard: Dashboard
+    dashboards: Dashboards
     data_reports: Gegevensrapporten
     datasheet: Technische fiche
     declined: Daalde
@@ -61,12 +81,19 @@ nl:
     dimensions: Afmetingen
     done: Klaar
     done_tooltip: Er kan geen verdere evaluatie worden ingediend voor deze gebruiker omdat de evaluatie van deze gebruiker als uitgevoerd door %{marked_by}
+    edit_campaign_admin: Campagnebeheer bewerken
+    edit_client_admin: Klantbeheer bewerken
+    edit_project_admin: Projectbeheer bewerken
+    edit_threesixty_campaign_admin: Campagnebeheer bewerken
     empty_csv_file: Het CSV-bestand bevat geen gegevens.
     evaluation_status: Evaluatiestatus
     evaluation_status_not_done: De evaluatiestatus is niet 'Klaar' voor één of meer geselecteerde proefpersonen. Zorg ervoor dat alle geselecteerde gebruikers evaluaties hebben afgerond of markeer als voltooid.
+    export_admin_roles_permissions: Beheerdersrollen en -rechten exporteren
+    feature_flags: Functie Vlaggen
     fill_empty_score_msg: Vul alle eindscores in voordat je opslaat.
     final_score_empty_msg: De eindscore mag niet leeg zijn.
     idp_plan_reset_success: Het plan is succesvol gereset.
+    idp_templates: IDP-sjablonen
     import_ai_artifacts: AI-artefacten importeren
     import_csv_error: 'Rij %{index}: gebruiker met e-mailadres %{email} niet in deze campagne zit'
     import_csv_parsing_error: 'CSV-parsingsfout: %{message}'
@@ -90,16 +117,20 @@ nl:
     import_upload: Uploaden
     import_users: Importgebruikers
     invalid_csv_header: CSV-bestand bevat ongeldige headers.
+    job_roles: Functierollen
     learning_from_others: Samenwerkend leren [20]
     libraries: Mediatheek
     library_invalid_type: Ongeldig bibliotheekitem
+    licenses: Licenties
     manager_approval_required: Rapporteer voor %{user} vereist goedkeuring van de manager voordat het wordt gedownload
+    messages: Berichten
     name_required: Naam is vereist
     no_file_selected: Geen bestand geselecteerd
     no_notifications: Geen meldingen
     norms: Normen
     not_completed: Niet voltooid
     not_completed_tooltip: "%{completed} evaluators worden toegewezen, maar alleen %{submitted} de evaluaties hebben afgerond"
+    notes: Opmerkingen
     nothing_assigned: Geen beoordelaars toegewezen
     nothing_assigned_tooltip: Er zijn geen evaluaties aan deze gebruiker toegekend
     notification_bell_icon_alt_text: Pictogram Meldingsbel
@@ -109,11 +140,438 @@ nl:
     on_the_job: Op het Werk [70]
     options: Opties
     participants: Deelnemers
+    permissions:
+      aiArtifacts:
+        export: Exporteren
+        import: Importeren
+        manage: Beheren
+        title: AI-artefacten
+        view: Bekijken
+      apiKeys:
+        manage: Beheer
+        title: API-sleutels
+        view: Bekijk
+      assessments:
+        manage: Beheer
+        title: Beoordeling
+        view: Bekijk
+      assessors:
+        manage: Beheer
+        title: Taxateurs
+        view: Bekijk
+      auditLogs:
+        title: Controlelogboeken
+        view: Bekijk
+      auditReports:
+        admin_permissions: Beheerdersrollen en -rechten exporteren
+        title: Controleverslagen
+        user_report_events: Logboeken voor goedkeuring van rapporten
+      campaignFactors:
+        manage: Beheer
+        title: Campagnefactoren
+        view: Bekijk
+      campaigns:
+        bulk_download: Bulk downloaden
+        bulk_regenerate_reports: Bulk rapporten opnieuw genereren
+        manage: Beheer
+        manage_admins: Beheer administrators
+        manage_factor_benchmark_scores: Beheer Factor Benchmark Scores
+        manage_messages: Berichten beheren
+        manage_options: Opties beheren
+        manage_report_approvals: Rapportgoedkeuringen beheren
+        manage_users: Gebruikers beheren
+        participant_options: Opties voor deelnemers
+        report_options: Rapportopties
+        reset_nominations: Nominaties opnieuw instellen
+        title: Campagnes
+        view: Bekijk
+        view_factor_benchmark_scores: Factor benchmarkscores bekijken
+        view_stats: Statistieken bekijken
+      clients:
+        export_data_report: Gegevens exporteren Rapport
+        manage: Beheer
+        title: Klanten
+        view: Bekijk
+        view_licenses: Licenties bekijken
+      communications:
+        manage: Beheer
+        title: Communicatie
+        view: Bekijk
+      dashboards:
+        accesssheet_manage: Toegangsblad Beheer
+        accesssheet_settings: Toegangsblad Instellingen
+        accesssheet_view: Toegangsblad bekijken
+        export: Exporteer
+        title: Dashboards
+        view: Bekijk
+      datasheets:
+        manage: Beheer
+        title: Datasheets
+        view: Bekijk
+      developmentActions:
+        export: Exporteer
+        export_global: Wereldwijde export
+        export_global_translations: Wereldwijde vertalingen exporteren
+        export_translations: Vertalingen exporteren
+        import: Importeren
+        import_global: Wereldwijde import
+        import_global_translations: Wereldwijde vertalingen importeren
+        import_translations: Vertalingen importeren
+        manage: Beheer
+        title: Ontwikkelingsacties
+        view: Bekijk
+      dimensions:
+        manage: Beheer
+        title: Afmetingen
+        view: Bekijk
+      idpTemplates:
+        manage: Beheer
+        title: IDP-sjablonen
+        view: Bekijk
+      interviewQuestions:
+        export: Export
+        import: Import
+        manage: Managen
+        title: IDP-interviewvragen
+        view: Uitzicht
+      jobRoles:
+        export_translations: Jobrollen exporteren Vertalingen
+        import_translations: Jobrollen importeren Vertalingen
+        manage: Beheer
+        title: Functierollen
+        view: Bekijk
+      labels:
+        apiKeys:
+          manage: Beheer
+          title: API-sleutels
+          view: Bekijk
+        assessments:
+          manage: Beheer
+          title: Beoordeling
+          view: Bekijk
+        assessors:
+          manage: Beheer
+          title: Taxateurs
+          view: Bekijk
+        auditLogs:
+          title: Controlelogboeken
+          view: Bekijk
+        auditReports:
+          admin_permissions: Beheerdersrollen en -rechten exporteren
+          title: Controleverslagen
+          user_report_events: Logboeken voor goedkeuring van rapporten
+        campaignFactors:
+          manage: Beheer
+          title: Campagnefactoren
+          view: Bekijk
+        campaigns:
+          bulk_download: Bulk downloaden
+          bulk_regenerate_reports: Bulk rapporten opnieuw genereren
+          manage: Beheer
+          manage_admins: Beheer administrators
+          manage_factor_benchmark_scores: Beheer Factor Benchmark Scores
+          manage_messages: Berichten beheren
+          manage_options: Opties beheren
+          manage_report_approvals: Rapportgoedkeuringen beheren
+          manage_users: Gebruikers beheren
+          participant_options: Opties voor deelnemers
+          report_options: Rapportopties
+          reset_nominations: Nominaties opnieuw instellen
+          title: Campagnes
+          view: Bekijk
+          view_factor_benchmark_scores: Factor benchmarkscores bekijken
+          view_stats: Statistieken bekijken
+        clients:
+          export_data_report: Gegevens exporteren Rapport
+          manage: Beheer
+          title: Klanten
+          view: Bekijk
+          view_licenses: Licenties bekijken
+        communications:
+          manage: Beheer
+          title: Communicatie
+          view: Bekijk
+        dashboards:
+          accesssheet_manage: Toegangsblad Beheer
+          accesssheet_settings: Toegangsblad Instellingen
+          accesssheet_view: Toegangsblad bekijken
+          export: Exporteer
+          title: Dashboards
+          view: Bekijk
+        datasheets:
+          manage: Beheer
+          title: Datasheets
+          view: Bekijk
+        developmentActions:
+          export: Exporteer
+          export_global: Wereldwijde export
+          export_global_translations: Wereldwijde vertalingen exporteren
+          export_translations: Vertalingen exporteren
+          import: Importeren
+          import_global: Wereldwijde import
+          import_global_translations: Wereldwijde vertalingen importeren
+          import_translations: Vertalingen importeren
+          manage: Beheer
+          title: Ontwikkelingsacties
+          view: Bekijk
+        dimensions:
+          manage: Beheer
+          title: Afmetingen
+          view: Bekijk
+        idpTemplates:
+          manage: Beheer
+          title: IDP-sjablonen
+          view: Bekijk
+        jobRoles:
+          export_translations: Jobrollen exporteren Vertalingen
+          import_translations: Jobrollen importeren Vertalingen
+          manage: Beheer
+          title: Functierollen
+          view: Bekijk
+        libraries:
+          manage: Beheer
+          title: Media Bibliotheken
+          view: Bekijk
+        messages:
+          email: E-mail
+          instructions: Instructies
+          options: Opties
+          title: Berichten
+        norms:
+          manage: Beheer
+          title: Normen
+          view: Bekijk
+        proficiencyLevels:
+          export: Exportvaardigheidsniveaus
+          export_translations: Vertalingen exportvaardigheidsniveaus
+          import: Niveaus importeren
+          import_translations: Niveaus importeren Vertalingen
+          manage: Beheer
+          title: Vaardigheidsniveaus
+          view: Bekijk
+        proficiency_level:
+          title: Vaardigheidsniveaus
+        projectSettings:
+          assessments: Beoordeling
+          design: Ontwerp
+          feature_flags: Functie vlaggen
+          idp: IDP
+          integrations: Integraties
+          privacy_settings: Privacy-instellingen
+          saml: SAML
+          security: Beveiliging
+          smtp: SMTP
+          title: Projectinstellingen
+          webhooks: Webhooks
+        projects:
+          manage: Beheer
+          manage_admins: Beheer administrators
+          manage_users: Gebruikers beheren
+          title: Projecten
+          view: Bekijk
+        questions:
+          manage: Beheer
+          title: Vragen
+          view: Bekijk
+        reflectionQuestions:
+          export: Exporteer
+          import: Importeren
+          manage: Beheer
+          title: Vragen voor IDP-reflectie
+          view: Bekijk
+        registrationCodes:
+          manage: Beheer
+          title: Registratiecodes
+          view: Bekijk
+        registrationSettings:
+          manage: Beheer
+          title: Registratie-instellingen
+        reports:
+          manage: Beheer
+          title: Rapporten
+          view: Bekijk
+        responseMeta:
+          title: Antwoord Meta
+        results:
+          approve_report: Verslag goedkeuren
+          bulk_download: Bulk downloaden
+          bulk_regenerate_reports: Bulk rapporten opnieuw genereren
+          bulk_update_evaluation_status: Evaluatiestatus in bulk bijwerken
+          download_report: Rapport downloaden
+          edit_report: Bewerk rapport
+          export_occupations: Exportberoepen
+          external_score_import: Externe score importeren
+          finalize_scores: Scores afronden
+          normalize_factor_scores: Factorscores normaliseren
+          raw_responses: Ruwe reacties
+          regenerate_report: Regenereren Rapport
+          report_data: Rapportgegevens
+          report_file_upload: Rapportbestand uploaden
+          rescore_responses: Reacties opnieuw scoren
+          reset_progress: Vooruitgang resetten
+          reset_responses: Reacties terugzetten
+          scores: Scores
+          title: Resultaten
+          view_report: Rapport bekijken
+          view_stats: Statistieken bekijken
+        skills:
+          export: Exporteer
+          export_translations: Vertalingen exporteren
+          import: Importeren
+          import_translations: Vertalingen importeren
+          manage: Beheer
+          title: Vaardigheden
+          view: Bekijk
+        smsHistories:
+          manage: Beheer
+          title: SMS-geschiedenis
+          view: Bekijk
+        smsInvites:
+          manage: Beheer
+          title: SMS Uitnodigingen
+          view: Bekijk
+        users:
+          reset_password: Wachtwoord opnieuw instellen
+          title: Gebruikers
+        workshops:
+          export_status: Exportstatus
+          manage: Beheer
+          title: Workshops
+          view: Bekijk
+          view_recordings: Opnames bekijken
+      libraries:
+        manage: Beheer
+        title: Media Bibliotheken
+        view: Bekijk
+      messages:
+        email: E-mail
+        instructions: Instructies
+        options: Opties
+        title: Berichten
+      norms:
+        manage: Beheer
+        title: Normen
+        view: Bekijk
+      proficiencyLevels:
+        export: Exportvaardigheidsniveaus
+        export_translations: Vertalingen exportvaardigheidsniveaus
+        import: Niveaus importeren
+        import_translations: Niveaus importeren Vertalingen
+        manage: Beheer
+        title: Vaardigheidsniveaus
+        view: Bekijk
+      proficiency_level:
+        title: Vaardigheidsniveaus
+      projectSettings:
+        assessments: Beoordeling
+        design: Ontwerp
+        feature_flags: Functie vlaggen
+        idp: IDP
+        integrations: Integraties
+        privacy_settings: Privacy-instellingen
+        saml: SAML
+        security: Beveiliging
+        smtp: SMTP
+        title: Projectinstellingen
+        webhooks: Webhooks
+      projects:
+        manage: Beheer
+        manage_admins: Beheer administrators
+        manage_licenses: Licenties beheren
+        manage_users: Gebruikers beheren
+        title: Projecten
+        view: Bekijk
+        view_licenses: Bekijk licenties
+      questions:
+        manage: Beheer
+        title: Vragen
+        view: Bekijk
+      reflectionQuestions:
+        export: Exporteer
+        import: Importeren
+        manage: Beheer
+        title: Vragen voor IDP-reflectie
+        view: Bekijk
+      registrationCodes:
+        manage: Beheer
+        title: Registratiecodes
+        view: Bekijk
+      registrationSettings:
+        manage: Beheer
+        title: Registratie-instellingen
+      reports:
+        manage: Beheer
+        title: Rapporten
+        view: Bekijk
+      responseMeta:
+        title: Antwoord Meta
+      results:
+        approve_report: Verslag goedkeuren
+        bulk_download: Bulk downloaden
+        bulk_regenerate_reports: Bulk rapporten opnieuw genereren
+        bulk_update_evaluation_status: Evaluatiestatus in bulk bijwerken
+        download_report: Rapport downloaden
+        edit_report: Bewerk rapport
+        export_occupations: Exportberoepen
+        external_score_import: Externe score importeren
+        finalize_scores: Scores afronden
+        normalize_factor_scores: Factorscores normaliseren
+        raw_responses: Ruwe reacties
+        regenerate_report: Regenereren Rapport
+        report_data: Rapportgegevens
+        report_file_upload: Rapportbestand uploaden
+        rescore_responses: Reacties opnieuw scoren
+        reset_progress: Vooruitgang resetten
+        reset_responses: Reacties terugzetten
+        scores: Scores
+        title: Resultaten
+        view_report: Rapport bekijken
+        view_stats: Statistieken bekijken
+      skills:
+        export: Exporteer
+        export_translations: Vertalingen exporteren
+        import: Importeren
+        import_translations: Vertalingen importeren
+        manage: Beheer
+        title: Vaardigheden
+        view: Bekijk
+      smsHistories:
+        manage: Beheer
+        title: SMS-geschiedenis
+        view: Bekijk
+      smsInvites:
+        manage: Beheer
+        title: SMS Uitnodigingen
+        view: Bekijk
+      userIdpPlans:
+        manage: Beheren
+        reset: Terugstellen
+        title: Gebruikers-IDP-plannen
+        view: Bekijken
+      users:
+        reset_password: Wachtwoord opnieuw instellen
+        title: Gebruikers
+      workshops:
+        export_status: Exportstatus
+        manage: Beheer
+        title: Workshops
+        view: Bekijk
+        view_recordings: Opnames bekijken
+    permissions_360_campaigns: Rechten specifiek voor 360 campagnes
+    privacy: Privacy
+    proficiency_level: API-sleutels
+    proficiency_levels: Vaardigheidsniveaus
     profile_details: Profielgegevens
     project_admins: Projectbeheerders
     project_manager: Projectmanager
+    project_number: Projectnummer
+    project_settings: Projectinstellingen
+    projects: Projecten
     question_center: Vragencentrum
+    questions: Vragen
+    reflection_questions: Reflectie vragen
     registration_codes: Registratiecodes
+    registration_settings: Registratie-instellingen
     report_approvals: Goedkeuringen
     report_condition_not_met: Heeft %{required} %{relationship} evaluatie(s) nodig, maar heeft alleen %{actual}
     report_conditions_not_met_detailed: Rapport voor %{user} voldoet niet aan de beschikbaarheidsvoorwaarden. %{conditions}
@@ -128,6 +586,8 @@ nl:
     reset_idp_plan: Resetplan
     reset_idp_plan_confirmation: Weet je zeker dat je het plan wilt resetten?
     reset_idp_plan_title: Resetplan
+    response_meta: Antwoord Meta
+    results: Resultaten
     role: Rol
     saml_idp_certificate_available: Beschikbaar (klik om te kopiëren)
     saml_idp_certificate_label: Certificaat
@@ -179,17 +639,28 @@ nl:
     saml_settings: SAML-instellingen
     scheduling: Planning
     scoring: Scoren
+    search_admins: Beheerders zoeken
+    select_admin_role: Selecteer beheerdersrol
+    send_email: Stuur e-mail
+    settings: Instellingen
     show_submenu: Submenu weergeven
+    siem: SIEM
+    skill_aliases: Vaardigheden aliassen
+    skills: Vaardigheden
     skills_taxonomy: Taxonomie van vaardigheden
     slot_name: Slot Name
+    sms_histories: SMS-geschiedenis
+    sms_invites: SMS Uitnodigingen
     stats: Stats
     status_details: Statusgegevens
     structured_learning: Formeel Leren [10]
+    subdomain: Subdomein
     upload_success: Succesvol geüpload
     user_report_events: Gebeurtenissen gebruikersrapport
     users: Gebruikers
     view_licenses: Licenties bekijken
     waiting: Wachten
+    workshops: Workshops
     year: Land
     yoodli_activity_id: Yoodli Activiteits-ID
     yoodli_email_id: Yoodli Kandidaat E-mailadres

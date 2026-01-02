@@ -29,35 +29,11 @@ nl:
     administrators:
       drawers:
         edit:
-          admin_role_select: Selecteer beheerdersrol
-          admin_roles: Beheerdersrollen
-          create_success: Admin '%{name}' is succesvol aangemaakt
-          email: E-mail
-          first_name: Voornaam
           first_name_required: Voornaam is verplicht
-          last_name: Achternaam
           last_name_required: Achternaam is verplicht
-          no_edit_permission: Je hebt geen rechten om admin '%{name}' te bewerken
-          save: Sla
-          update: Update
-          update_success: Admin '%{name}' is succesvol bijgewerkt
-        notes:
-          threesixty_permission: Rechten specifiek voor 360 campagnes
-          title: Opmerkingen
         view:
-          add_campaign_admin: Campagne-admin toevoegen
-          add_client_admin: Client-admin toevoegen
-          add_project_admin: Projectbeheerder toevoegen
-          add_threesixty_campaign_admin: Campagne-admin toevoegen
-          edit_campaign_admin: Campagnebeheer bewerken
-          edit_client_admin: Klantbeheer bewerken
-          edit_project_admin: Projectbeheer bewerken
-          edit_threesixty_campaign_admin: Campagnebeheer bewerken
           first_name: Voornaam
           last_name: Achternaam
-          project_admin: Projectbeheerder
-          project_list: Projectenlijst
-          role: Campagne Admin
           title:
             campaign_admin: Campagne Admin
             client_admin: Klant Admin
@@ -65,253 +41,20 @@ nl:
       list:
         actions:
           api_keys: API-sleutels
-          cancel_text: Annuleren
-          change_password: Wachtwoord opnieuw instellen
           edit: Bewerk
           export_admins_with_permissions: Beheerdersrollen en -rechten exporteren
           export_success: De exporttaak van de beheerder is met succes ingepland. Controleer uw melding voor de status.
           login: Inloggen
-          send_email: Stuur e-mail
           spoof:
             login_successful: Inloggen gelukt.
           user_report_events: Logboeken voor goedkeuring van rapporten
         columns:
-          actions: Acties
-          created_at: Gemaakt op
           email: E-mail
-          id: ID
-          name: Naam
-        header:
-          add_admin: Beheerder toevoegen
-          search_admins: Beheerders zoeken
-        toolbar:
-          export_admins_with_permissions: Beheerdersrollen en -rechten exporteren
       modals:
         delete:
           cancelText: Annuleren
-          content: Weet je zeker dat je admin gebruiker met e-mail '%{email}' wilt verwijderen?
           okText: Ok
-          onSuccess: Admin met email '%{email}' is succesvol verwijderd
           title: Bevestig
-      permissions:
-        labels:
-          aiArtifacts:
-            export: Exporteren
-            import: Importeren
-            manage: Beheren
-            title: AI-artefacten
-            view: Bekijken
-          apiKeys:
-            manage: Beheer
-            title: API-sleutels
-            view: Bekijk
-          assessments:
-            manage: Beheer
-            title: Beoordeling
-            view: Bekijk
-          assessors:
-            manage: Beheer
-            title: Taxateurs
-            view: Bekijk
-          auditLogs:
-            title: Controlelogboeken
-            view: Bekijk
-          auditReports:
-            admin_permissions: Beheerdersrollen en -rechten exporteren
-            title: Controleverslagen
-            user_report_events: Logboeken voor goedkeuring van rapporten
-          campaignFactors:
-            manage: Beheer
-            title: Campagnefactoren
-            view: Bekijk
-          campaigns:
-            bulk_download: Bulk downloaden
-            bulk_regenerate_reports: Bulk rapporten opnieuw genereren
-            manage: Beheer
-            manage_admins: Beheer administrators
-            manage_factor_benchmark_scores: Beheer Factor Benchmark Scores
-            manage_messages: Berichten beheren
-            manage_options: Opties beheren
-            manage_report_approvals: Rapportgoedkeuringen beheren
-            manage_users: Gebruikers beheren
-            participant_options: Opties voor deelnemers
-            report_options: Rapportopties
-            reset_nominations: Nominaties opnieuw instellen
-            title: Campagnes
-            view: Bekijk
-            view_factor_benchmark_scores: Factor benchmarkscores bekijken
-            view_stats: Statistieken bekijken
-          clients:
-            export_data_report: Gegevens exporteren Rapport
-            manage: Beheer
-            title: Klanten
-            view: Bekijk
-            view_licenses: Licenties bekijken
-          communications:
-            manage: Beheer
-            title: Communicatie
-            view: Bekijk
-          dashboards:
-            accesssheet_manage: Toegangsblad Beheer
-            accesssheet_settings: Toegangsblad Instellingen
-            accesssheet_view: Toegangsblad bekijken
-            export: Exporteer
-            title: Dashboards
-            view: Bekijk
-          datasheets:
-            manage: Beheer
-            title: Datasheets
-            view: Bekijk
-          developmentActions:
-            export: Exporteer
-            export_global: Wereldwijde export
-            export_global_translations: Wereldwijde vertalingen exporteren
-            export_translations: Vertalingen exporteren
-            import: Importeren
-            import_global: Wereldwijde import
-            import_global_translations: Wereldwijde vertalingen importeren
-            import_translations: Vertalingen importeren
-            manage: Beheer
-            title: Ontwikkelingsacties
-            view: Bekijk
-          dimensions:
-            manage: Beheer
-            title: Afmetingen
-            view: Bekijk
-          idpTemplates:
-            manage: Beheer
-            title: IDP-sjablonen
-            view: Bekijk
-          interviewQuestions:
-            export: Export
-            import: Import
-            manage: Managen
-            title: IDP-interviewvragen
-            view: Uitzicht
-          jobRoles:
-            export_translations: Jobrollen exporteren Vertalingen
-            import_translations: Jobrollen importeren Vertalingen
-            manage: Beheer
-            title: Functierollen
-            view: Bekijk
-          libraries:
-            manage: Beheer
-            title: Media Bibliotheken
-            view: Bekijk
-          messages:
-            email: E-mail
-            instructions: Instructies
-            options: Opties
-            title: Berichten
-          norms:
-            manage: Beheer
-            title: Normen
-            view: Bekijk
-          proficiencyLevels:
-            export: Exportvaardigheidsniveaus
-            export_translations: Vertalingen exportvaardigheidsniveaus
-            import: Niveaus importeren
-            import_translations: Niveaus importeren Vertalingen
-            manage: Beheer
-            title: Vaardigheidsniveaus
-            view: Bekijk
-          proficiency_level:
-            title: Vaardigheidsniveaus
-          projectSettings:
-            assessments: Beoordeling
-            design: Ontwerp
-            feature_flags: Functie vlaggen
-            idp: IDP
-            integrations: Integraties
-            privacy_settings: Privacy-instellingen
-            saml: SAML
-            security: Beveiliging
-            smtp: SMTP
-            title: Projectinstellingen
-            webhooks: Webhooks
-          projects:
-            manage: Beheer
-            manage_admins: Beheer administrators
-            manage_licenses: Licenties beheren
-            manage_users: Gebruikers beheren
-            title: Projecten
-            view: Bekijk
-            view_licenses: Bekijk licenties
-          questions:
-            manage: Beheer
-            title: Vragen
-            view: Bekijk
-          reflectionQuestions:
-            export: Exporteer
-            import: Importeren
-            manage: Beheer
-            title: Vragen voor IDP-reflectie
-            view: Bekijk
-          registrationCodes:
-            manage: Beheer
-            title: Registratiecodes
-            view: Bekijk
-          registrationSettings:
-            manage: Beheer
-            title: Registratie-instellingen
-          reports:
-            manage: Beheer
-            title: Rapporten
-            view: Bekijk
-          responseMeta:
-            title: Antwoord Meta
-          results:
-            approve_report: Verslag goedkeuren
-            bulk_download: Bulk downloaden
-            bulk_regenerate_reports: Bulk rapporten opnieuw genereren
-            bulk_update_evaluation_status: Evaluatiestatus in bulk bijwerken
-            download_report: Rapport downloaden
-            edit_report: Bewerk rapport
-            export_occupations: Exportberoepen
-            external_score_import: Externe score importeren
-            finalize_scores: Scores afronden
-            normalize_factor_scores: Factorscores normaliseren
-            raw_responses: Ruwe reacties
-            regenerate_report: Regenereren Rapport
-            report_data: Rapportgegevens
-            report_file_upload: Rapportbestand uploaden
-            rescore_responses: Reacties opnieuw scoren
-            reset_progress: Vooruitgang resetten
-            reset_responses: Reacties terugzetten
-            scores: Scores
-            title: Resultaten
-            view_report: Rapport bekijken
-            view_stats: Statistieken bekijken
-          skills:
-            export: Exporteer
-            export_translations: Vertalingen exporteren
-            import: Importeren
-            import_translations: Vertalingen importeren
-            manage: Beheer
-            title: Vaardigheden
-            view: Bekijk
-          smsHistories:
-            manage: Beheer
-            title: SMS-geschiedenis
-            view: Bekijk
-          smsInvites:
-            manage: Beheer
-            title: SMS Uitnodigingen
-            view: Bekijk
-          userIdpPlans:
-            manage: Beheren
-            reset: Terugstellen
-            title: Gebruikers-IDP-plannen
-            view: Bekijken
-          users:
-            reset_password: Wachtwoord opnieuw instellen
-            title: Gebruikers
-          workshops:
-            export_status: Exportstatus
-            manage: Beheer
-            title: Workshops
-            view: Bekijk
-            view_recordings: Opnames bekijken
     ai_artifacts:
       artifact_results: Artefact resultaten
       code: Code
@@ -4050,12 +3793,7 @@ nl:
       security_setting: Beveiligingsinstelling
     settings:
       admin_roles:
-        admin_role_single: Admin Rol
         confirm_message: Weet u zeker dat u beheerdersrol '%{role_name}' wilt verwijderen?
-        create: Beheerdersrol toevoegen
-        description: Beschrijving
-        name: Naam
-        successful_remove: Beheerdersrol '%{role_name}' is succesvol verwijderd.
       siem:
         description: Beschrijving
         destination_type: Type bestemming

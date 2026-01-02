@@ -46,7 +46,7 @@ const AdminRolesList: React.FC<Props> = ({ openModal }) => {
                   {_.startCase(permission)}
                   {Array.isArray(grants) && grants.map(grant => (
                     <Checkbox checked value={grant} key={grant as string}>
-                      {I18n.t(`administration.administrators.permissions.labels.${permission}.${grant}`)}
+                      {I18n.t(`admin.permissions.${permission}.${grant}`)}
                     </Checkbox>
                   ))}
                   <br />
@@ -58,15 +58,15 @@ const AdminRolesList: React.FC<Props> = ({ openModal }) => {
         }}
       >
         <Resource.Column<AdminRole>
-          title={I18n.t('administration.settings.admin_roles.name')}
+          title={I18n.t('shared.name')}
           id="name"
         />
         <Resource.Column<AdminRole>
-          title={I18n.t('administration.settings.admin_roles.description')}
+          title={I18n.t('shared.description')}
           id="description"
         />
         <Resource.Column<AdminRole>
-          title={I18n.t('common.column.action')}
+          title={I18n.t('shared.action')}
           id="actions"
           key="actions"
           width={100}
@@ -101,7 +101,7 @@ const ResourceFilter = ({ openModal }) => {
           onClick={() => openModal('AdminRolesForm')}
         >
           <PlusOutlined />
-          {I18n.t('administration.settings.admin_roles.create')}
+          {I18n.t('admin.add_admin_role')}
         </Button>
       )}
     </Resource.Filter>
@@ -121,22 +121,22 @@ const getActionsMenuProps = ({
 
   const handleRemove = () => {
     modal.confirm({
-      title: I18n.t('administration.administrators.modals.delete.title'),
+      title: I18n.t('shared.confirm'),
       content: I18n.t(
         'administration.settings.admin_roles.confirm_message',
         { role_name: role.name },
       ),
-      okText: I18n.t('administration.administrators.modals.delete.okText'),
+      okText: I18n.t('shared.ok'),
       cancelText: I18n.t(
         'administration.administrators.modals.delete.cancelText',
       ),
       onOk: async () => {
         await resource.removeResource(role.id).then(() => {
           message.success(
-            I18n.t('administration.settings.admin_roles.successful_remove', { role_name: role?.name }),
+            I18n.t('admin.admin_role_deleted', { role_name: role?.name }),
           )
         }).catch(() => {
-          message.error(I18n.t('common.errors.something_wrong'))
+          message.error(I18n.t('shared.something_wrong'))
         })
       },
     })
@@ -153,7 +153,7 @@ const getActionsMenuProps = ({
         }
         className="ps-0"
       >
-        {I18n.t('common.actions.edit')}
+        {I18n.t('shared.edit')}
       </Button>),
   })
   resource.meta.permissions?.remove && menuItems.push({
@@ -165,7 +165,7 @@ const getActionsMenuProps = ({
           onClick={handleRemove}
           className="ps-0"
         >
-          {I18n.t('common.actions.remove')}
+          {I18n.t('shared.remove')}
         </Button>
       </>
     ),

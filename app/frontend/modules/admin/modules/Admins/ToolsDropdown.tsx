@@ -16,13 +16,13 @@ const getMenuProps = ({
   const exportMenuItems = [
     {
       key: 'export_admins_with_permission',
-      label: I18n.t('administration.administrators.list.toolbar.export_admins_with_permissions'),
+      label: I18n.t('admin.export_admin_roles_permissions'),
     },
   ]
   permissions?.export && menuItems.push({
     type: 'group',
     key: 'export_group',
-    label: I18n.t('common.actions.export'),
+    label: I18n.t('shared.export'),
     children: exportMenuItems,
   })
 
@@ -52,7 +52,7 @@ const ToolsDropdown: React.FC<Props> = ({ permissions, onExportAdminsWithPermiss
     innerElement={(
       <Button>
         <ToolOutlined />
-        <span>{I18n.t('administration.tools')}</span>
+        <span>{I18n.t('shared.tools')}</span>
         <DownOutlined />
       </Button>
     )}

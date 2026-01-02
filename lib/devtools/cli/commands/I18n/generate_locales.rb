@@ -121,7 +121,11 @@ module Devtools
 
             display_configuration
 
-            generator = LocaleGenerator.new(@base_dir, @custom_paths, @target_keys, @create_missing)
+            generator = LocaleGenerator.new(@base_dir, {
+              custom_paths: @custom_paths,
+              target_keys: @target_keys,
+              create_missing: @create_missing
+            })
             generator.generate_all_locales
           end
 
@@ -319,23 +323,12 @@ module Devtools
 
           # Search for a specific English value in translation files to find its path
           def search_for_value_in_translation_files(target_value)
-            # Get all matching paths from English files
+            # Get all matching paths from translation target files only
+            # We should NOT search in source files (admin.yml, shared.yml, enduser.yml)
+            # as that would return the source path instead of the target path
             all_matches = []
 
-            # Search in all English source files
-            english_files = ['admin.yml', 'shared.yml', 'enduser.yml']
-
-            english_files.each do |file_name|
-              en_file = File.join(@base_dir, 'en', file_name)
-              next unless File.exist?(en_file)
-
-              en_data = YAML.load_file(en_file)
-              if en_data && en_data['en']
-                find_all_value_matches(en_data['en'], target_value, '', all_matches)
-              end
-            end
-
-            # Search in administration.yml (for translation source)
+            # Search in administration.yml (for translation targets)
             en_admin_file = File.join(@base_dir, 'en', 'administration.yml')
             if File.exist?(en_admin_file)
               en_admin_data = YAML.load_file(en_admin_file)
@@ -344,7 +337,7 @@ module Devtools
               end
             end
 
-            # Search in others.yml (for translation source)
+            # Search in others.yml (for translation targets)
             en_others_file = File.join(@base_dir, 'en', 'others.yml')
             if File.exist?(en_others_file)
               en_others_data = YAML.load_file(en_others_file)

@@ -29,35 +29,11 @@ vi:
     administrators:
       drawers:
         edit:
-          admin_role_select: Chọn vai trò quản trị viên
-          admin_roles: Vai trò quản trị viên
-          create_success: Quản trị viên '%{name}' đã được tạo thành công
-          email: Email
-          first_name: Tên riêng
           first_name_required: Tên riêng là bắt buộc
-          last_name: Họ
           last_name_required: Họ là bắt buộc
-          no_edit_permission: Bạn không có quyền chỉnh sửa quản trị viên '%{name}'
-          save: Lưu
-          update: Cập nhật
-          update_success: Quản trị viên '%{name}' đã được cập nhật thành công
-        notes:
-          threesixty_permission: Quyền truy cập dành riêng cho các chiến dịch 360
-          title: Ghi chú
         view:
-          add_campaign_admin: Thêm quản trị viên chiến dịch
-          add_client_admin: Thêm quản trị viên khách hàng
-          add_project_admin: Thêm quản trị viên dự án
-          add_threesixty_campaign_admin: Thêm quản trị viên chiến dịch
-          edit_campaign_admin: Chỉnh sửa quản trị viên chiến dịch
-          edit_client_admin: Chỉnh sửa quản trị viên khách hàng
-          edit_project_admin: Chỉnh sửa quản trị viên dự án
-          edit_threesixty_campaign_admin: Chỉnh sửa quản trị viên chiến dịch
           first_name: Tên riêng
           last_name: Họ
-          project_admin: Quản trị viên dự án
-          project_list: Danh sách dự án
-          role: Quản trị viên chiến dịch
           title:
             campaign_admin: Quản trị viên chiến dịch
             client_admin: Quản trị viên khách hàng
@@ -65,253 +41,20 @@ vi:
       list:
         actions:
           api_keys: Khóa API
-          cancel_text: Hủy
-          change_password: Đặt lại mật khẩu
           edit: Chỉnh sửa
           export_admins_with_permissions: Xuất vai trò và quyền của quản trị viên
           export_success: Tác vụ xuất dữ liệu quản trị viên đã được lên lịch thành công. Vui lòng kiểm tra thông báo của bạn để biết trạng thái.
           login: Đăng nhập
-          send_email: Gửi email
           spoof:
             login_successful: Đăng nhập thành công.
           user_report_events: Báo cáo nhật ký phê duyệt
         columns:
-          actions: Hành động
-          created_at: Được tạo tại
           email: Email
-          id: Mã định danh
-          name: Tên
-        header:
-          add_admin: Thêm quản trị viên
-          search_admins: Quản trị viên tìm kiếm
-        toolbar:
-          export_admins_with_permissions: Xuất vai trò và quyền hạn của quản trị viên
       modals:
         delete:
           cancelText: Hủy
-          content: Bạn có chắc chắn muốn xóa người dùng quản trị có email '%{email}' không?
           okText: Ok
-          onSuccess: Quản trị viên có email '%{email}' đã bị xóa thành công
           title: Xác nhận
-      permissions:
-        labels:
-          aiArtifacts:
-            export: Xuất khẩu
-            import: Nhập khẩu
-            manage: Điều khiển
-            title: Đồ tạo tác AI
-            view: Cảnh
-          apiKeys:
-            manage: Điều khiển
-            title: Khóa API
-            view: Xem
-          assessments:
-            manage: Điều khiển
-            title: Đánh giá
-            view: Cảnh
-          assessors:
-            manage: Điều khiển
-            title: Đánh giá viên
-            view: Xem
-          auditLogs:
-            title: Nhật ký kiểm tra
-            view: Xem
-          auditReports:
-            admin_permissions: Xuất vai trò và quyền hạn của quản trị viên
-            title: Báo cáo kiểm toán
-            user_report_events: Nhật ký phê duyệt báo cáo
-          campaignFactors:
-            manage: Điều khiển
-            title: Các yếu tố chiến dịch
-            view: Xem
-          campaigns:
-            bulk_download: Tải xuống hàng loạt
-            bulk_regenerate_reports: Tái tạo hàng loạt báo cáo
-            manage: Điều khiển
-            manage_admins: Quản lý quản trị viên
-            manage_factor_benchmark_scores: Quản lý điểm chuẩn theo yếu tố
-            manage_messages: Quản lý tin nhắn
-            manage_options: Quản lý tùy chọn
-            manage_report_approvals: Quản lý phê duyệt báo cáo
-            manage_users: Quản lý người dùng
-            participant_options: Lựa chọn người tham gia
-            report_options: Tùy chọn báo cáo
-            reset_nominations: Đặt lại đề cử
-            title: Chiến dịch
-            view: Xem
-            view_factor_benchmark_scores: Xem điểm chuẩn yếu tố
-            view_stats: Xem số liệu thống kê
-          clients:
-            export_data_report: Báo cáo dữ liệu xuất
-            manage: Điều khiển
-            title: Khách hàng
-            view: Cảnh
-            view_licenses: Xem giấy phép
-          communications:
-            manage: Điều khiển
-            title: Truyền thông
-            view: Cảnh
-          dashboards:
-            accesssheet_manage: Quản lý bảng truy cập
-            accesssheet_settings: Cài đặt bảng truy cập
-            accesssheet_view: Chế độ xem Accesssheet
-            export: Xuất khẩu
-            title: Dashboards
-            view: Cảnh
-          datasheets:
-            manage: Điều khiển
-            title: Bảng dữ liệu
-            view: Cảnh
-          developmentActions:
-            export: Xuất khẩu
-            export_global: Xuất khẩu toàn cầu
-            export_global_translations: Xuất bản dịch toàn cầu
-            export_translations: Xuất bản dịch
-            import: Nhập khẩu
-            import_global: Nhập khẩu toàn cầu
-            import_global_translations: Nhập bản dịch toàn cầu
-            import_translations: Nhập bản dịch
-            manage: Điều khiển
-            title: Hành động phát triển
-            view: Cảnh
-          dimensions:
-            manage: Điều khiển
-            title: Kích thước
-            view: Cảnh
-          idpTemplates:
-            manage: Điều khiển
-            title: Mẫu IDP
-            view: Cảnh
-          interviewQuestions:
-            export: Xuất khẩu
-            import: Nhập khẩu
-            manage: Quản lý
-            title: Câu hỏi phỏng vấn IDP
-            view: Xem
-          jobRoles:
-            export_translations: Dịch các vị trí công việc cho xuất khẩu
-            import_translations: Nhập bản dịch các vai trò công việc
-            manage: Điều khiển
-            title: Vai trò công việc
-            view: Cảnh
-          libraries:
-            manage: Điều khiển
-            title: Thư viện phương tiện
-            view: Cảnh
-          messages:
-            email: Email
-            instructions: Chỉ thị
-            options: Tùy chọn
-            title: Thư
-          norms:
-            manage: Điều khiển
-            title: Tiêu chuẩn
-            view: Cảnh
-          proficiencyLevels:
-            export: Mức độ thành thạo xuất khẩu
-            export_translations: Bản dịch Trình độ thông thạo xuất khẩu
-            import: Mức độ thành thạo nhập khẩu
-            import_translations: Bản dịch trình độ thành thạo nhập khẩu
-            manage: Điều khiển
-            title: Mức độ thành thạo
-            view: Cảnh
-          proficiency_level:
-            title: Mức độ thành thạo
-          projectSettings:
-            assessments: Đánh giá
-            design: Thiết kế
-            feature_flags: Cờ tính năng
-            idp: IDP
-            integrations: Tích hợp
-            privacy_settings: Cài đặt quyền riêng tư
-            saml: SAML
-            security: An ninh
-            smtp: SMTP
-            title: Cài đặt dự án
-            webhooks: Webhook
-          projects:
-            manage: Điều khiển
-            manage_admins: Quản lý quản trị viên
-            manage_licenses: Quản lý giấy phép
-            manage_users: Quản lý người dùng
-            title: Dự án
-            view: Cảnh
-            view_licenses: Xem giấy phép
-          questions:
-            manage: Điều khiển
-            title: Câu hỏi
-            view: Cảnh
-          reflectionQuestions:
-            export: Xuất khẩu
-            import: Nhập khẩu
-            manage: Điều khiển
-            title: Câu hỏi phản ánh IDP
-            view: Cảnh
-          registrationCodes:
-            manage: Điều khiển
-            title: Mã đăng ký
-            view: Cảnh
-          registrationSettings:
-            manage: Điều khiển
-            title: Cài đặt đăng ký
-          reports:
-            manage: Điều khiển
-            title: Báo cáo
-            view: Cảnh
-          responseMeta:
-            title: Phản hồi Meta
-          results:
-            approve_report: Phê duyệt báo cáo
-            bulk_download: Tải xuống hàng loạt
-            bulk_regenerate_reports: Tạo lại hàng loạt báo cáo
-            bulk_update_evaluation_status: Cập nhật hàng loạt trạng thái đánh giá
-            download_report: Tải xuống báo cáo
-            edit_report: Chỉnh sửa báo cáo
-            export_occupations: Nghề xuất khẩu
-            external_score_import: Nhập điểm bên ngoài
-            finalize_scores: Kết thúc điểm số
-            normalize_factor_scores: Chuẩn hóa điểm số yếu tố
-            raw_responses: Phản hồi thô
-            regenerate_report: Báo cáo tái tạo
-            report_data: Dữ liệu báo cáo
-            report_file_upload: Tải lên tệp báo cáo
-            rescore_responses: Chấm điểm lại câu trả lời
-            reset_progress: Đặt lại tiến trình
-            reset_responses: Đặt lại phản hồi
-            scores: Điểm
-            title: Kết quả
-            view_report: Xem báo cáo
-            view_stats: Xem số liệu thống kê
-          skills:
-            export: Kỹ năng xuất khẩu
-            export_translations: Bản dịch kỹ năng xuất khẩu
-            import: Kỹ năng nhập khẩu
-            import_translations: Bản dịch kỹ năng nhập khẩu
-            manage: Điều khiển
-            title: Kỹ năng
-            view: Cảnh
-          smsHistories:
-            manage: Điều khiển
-            title: Lịch sử SMS
-            view: Cảnh
-          smsInvites:
-            manage: Điều khiển
-            title: Lời mời SMS
-            view: Cảnh
-          userIdpPlans:
-            manage: Điều khiển
-            reset: Reset
-            title: Gói IDP người dùng
-            view: Cảnh
-          users:
-            reset_password: Đặt lại mật khẩu
-            title: Người dùng
-          workshops:
-            export_status: Tình trạng xuất khẩu
-            manage: Điều khiển
-            title: Hội thảo
-            view: Cảnh
-            view_recordings: Xem bản ghi
     ai_artifacts:
       artifact_results: Kết quả hiện vật
       code: Mã
@@ -4047,12 +3790,7 @@ vi:
       security_setting: Cài đặt bảo mật
     settings:
       admin_roles:
-        admin_role_single: Vai trò quản trị viên
         confirm_message: Bạn có chắc chắn muốn xóa vai trò quản trị viên '%{role_name}' không?
-        create: Thêm vai trò quản trị viên
-        description: Sự miêu tả
-        name: Tên
-        successful_remove: Vai trò quản trị viên '%{role_name}' đã bị xóa thành công.
       siem:
         description: Sự miêu tả
         destination_type: Loại điểm đến

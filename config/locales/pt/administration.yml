@@ -29,35 +29,11 @@ pt:
     administrators:
       drawers:
         edit:
-          admin_role_select: Selecionar a função de administrador
-          admin_roles: Funções de administrador
-          create_success: O administrador '%{name}' foi criado com êxito
-          email: Correio eletrónico
-          first_name: Nome próprio
           first_name_required: O nome próprio é obrigatório
-          last_name: Apelido
           last_name_required: O apelido é obrigatório
-          no_edit_permission: Não tem permissão para editar o administrador '%{name}'
-          save: Salvar
-          update: Atualização
-          update_success: O administrador '%{name}' foi atualizado com êxito
-        notes:
-          threesixty_permission: Permissões específicas para campanhas 360
-          title: Notas
         view:
-          add_campaign_admin: Adicionar administrador da campanha
-          add_client_admin: Adicionar administrador de cliente
-          add_project_admin: Adicionar administrador de projeto
-          add_threesixty_campaign_admin: Adicionar administrador da campanha
-          edit_campaign_admin: Editar administração da campanha
-          edit_client_admin: Editar administrador de clientes
-          edit_project_admin: Editar administrador do projeto
-          edit_threesixty_campaign_admin: Editar administração da campanha
           first_name: Nome próprio
           last_name: Apelido
-          project_admin: Administrador do projeto
-          project_list: Lista de projectos
-          role: Administração de campanhas
           title:
             campaign_admin: Administração de campanhas
             client_admin: Administrador de clientes
@@ -65,253 +41,20 @@ pt:
       list:
         actions:
           api_keys: Chaves API
-          cancel_text: Cancelar
-          change_password: Repor a palavra-passe
           edit: Editar
           export_admins_with_permissions: Exportação de funções e permissões de administrador
           export_success: A tarefa de exportação do administrador foi agendada com êxito. Consulte a sua notificação para obter o estado.
           login: Iniciar sessão
-          send_email: Enviar e-mail
           spoof:
             login_successful: Início de sessão bem sucedido.
           user_report_events: Relatório Registos de aprovação
         columns:
-          actions: Acções
-          created_at: Criado em
           email: Correio eletrónico
-          id: ID
-          name: Nome
-        header:
-          add_admin: Adicionar administrador
-          search_admins: Pesquisar administradores
-        toolbar:
-          export_admins_with_permissions: Exportação de funções e permissões de administrador
       modals:
         delete:
           cancelText: Cancelar
-          content: Tem a certeza de que pretende remover o utilizador administrativo com o e-mail '%{email}'?
           okText: Ok
-          onSuccess: O administrador com o endereço de correio eletrónico "%{email}" foi removido com êxito
           title: Confirmar
-      permissions:
-        labels:
-          aiArtifacts:
-            export: Exportação
-            import: Importação
-            manage: Gerir
-            title: Artefatos de IA
-            view: Vista
-          apiKeys:
-            manage: Gerenciar
-            title: Chaves da API
-            view: Ver
-          assessments:
-            manage: Gerenciar
-            title: Avaliações
-            view: Ver
-          assessors:
-            manage: Gerenciar
-            title: Avaliadores
-            view: Ver
-          auditLogs:
-            title: Registos de auditoria
-            view: Ver
-          auditReports:
-            admin_permissions: Exportação de funções e permissões de administrador
-            title: Relatórios de auditoria
-            user_report_events: Relatório Registos de aprovação
-          campaignFactors:
-            manage: Gerenciar
-            title: Factores de campanha
-            view: Ver
-          campaigns:
-            bulk_download: Transferência em massa
-            bulk_regenerate_reports: Regenerar relatórios em massa
-            manage: Gerenciar
-            manage_admins: Gerenciar administradores
-            manage_factor_benchmark_scores: Gerenciar pontuações de referência de factores
-            manage_messages: Gerenciar mensagens
-            manage_options: Gerenciar opções
-            manage_report_approvals: Gerenciar aprovações de relatórios
-            manage_users: Gerenciar utilizadores
-            participant_options: Opções do participante
-            report_options: Opções de relatório
-            reset_nominations: Redefinir nomeações
-            title: Campanhas
-            view: Ver
-            view_factor_benchmark_scores: Ver pontuações de referência de factores
-            view_stats: Ver estatísticas
-          clients:
-            export_data_report: Relatório de dados de exportação
-            manage: Gerenciar
-            title: Clientes
-            view: Ver
-            view_licenses: Ver licenças
-          communications:
-            manage: Gerenciar
-            title: Comunicações
-            view: Ver
-          dashboards:
-            accesssheet_manage: Folha de acesso Gerenciar
-            accesssheet_settings: Definições da folha de acesso
-            accesssheet_view: Visualização da folha de acesso
-            export: Exportação
-            title: Painéis de controlo
-            view: Ver
-          datasheets:
-            manage: Gerenciar
-            title: Fichas de dados
-            view: Ver
-          developmentActions:
-            export: Exportação
-            export_global: Exportação global
-            export_global_translations: Exportar traduções globais
-            export_translations: Traduções de exportação
-            import: Importação
-            import_global: Importação global
-            import_global_translations: Importar traduções globais
-            import_translations: Importação de traduções
-            manage: Gerenciar
-            title: Acções de desenvolvimento
-            view: Ver
-          dimensions:
-            manage: Gerenciar
-            title: Dimensões
-            view: Ver
-          idpTemplates:
-            manage: Gerenciar
-            title: Modelos de PDI
-            view: Ver
-          interviewQuestions:
-            export: Exportação
-            import: Importação
-            manage: Gerenciar
-            title: Perguntas para Entrevistas de IDP
-            view: Visão
-          jobRoles:
-            export_translations: Exportação Funções de trabalho Traduções
-            import_translations: Importar traduções de funções de trabalho
-            manage: Gerenciar
-            title: Funções
-            view: Ver
-          libraries:
-            manage: Gerenciar
-            title: Bibliotecas de média
-            view: Ver
-          messages:
-            email: Correio eletrónico
-            instructions: Instruções
-            options: Opções
-            title: Mensagens
-          norms:
-            manage: Gerenciar
-            title: Normas
-            view: Ver
-          proficiencyLevels:
-            export: Níveis de proficiência em exportação
-            export_translations: Tradução dos níveis de competência para exportação
-            import: Níveis de proficiência de importação
-            import_translations: Importação de traduções de níveis de proficiência
-            manage: Gerenciar
-            title: Níveis de proficiência
-            view: Ver
-          proficiency_level:
-            title: Níveis de proficiência
-          projectSettings:
-            assessments: Avaliações
-            design: Conceção
-            feature_flags: Sinalizadores de recursos
-            idp: PDI
-            integrations: Integrações
-            privacy_settings: Definições de privacidade
-            saml: SAML
-            security: Segurança
-            smtp: SMTP
-            title: Definições do projeto
-            webhooks: Webhooks
-          projects:
-            manage: Gerenciar
-            manage_admins: Gerenciar administradores
-            manage_licenses: Gerenciar Licenças
-            manage_users: Gerenciar utilizadores
-            title: Projectos
-            view: Ver
-            view_licenses: Veja licenças
-          questions:
-            manage: Gerenciar
-            title: Perguntas
-            view: Ver
-          reflectionQuestions:
-            export: Exportação
-            import: Importação
-            manage: Gerenciar
-            title: Perguntas de reflexão sobre o PDI
-            view: Ver
-          registrationCodes:
-            manage: Gerenciar
-            title: Códigos de registo
-            view: Ver
-          registrationSettings:
-            manage: Gerenciar
-            title: Definições de registo
-          reports:
-            manage: Gerenciar
-            title: Relatórios
-            view: Ver
-          responseMeta:
-            title: Resposta Meta
-          results:
-            approve_report: Aprovar o relatório
-            bulk_download: Transferência em massa
-            bulk_regenerate_reports: Regenerar relatórios em massa
-            bulk_update_evaluation_status: Atualização em massa do estado da análise
-            download_report: Descarregar o relatório
-            edit_report: Editar relatório
-            export_occupations: Actividades de exportação
-            external_score_import: Importação externa de pontuações
-            finalize_scores: Finalizar pontuações
-            normalize_factor_scores: Normalizar as pontuações dos factores
-            raw_responses: Respostas brutas
-            regenerate_report: Relatório Regenerar
-            report_data: Dados do relatório
-            report_file_upload: Carregamento de ficheiros de relatórios
-            rescore_responses: Respostas de reescrita
-            reset_progress: Reiniciar o progresso
-            reset_responses: Repor respostas
-            scores: Pontuações
-            title: Resultados
-            view_report: Ver relatório
-            view_stats: Ver estatísticas
-          skills:
-            export: Exportação
-            export_translations: Traduções de exportação
-            import: Importação
-            import_translations: Importação de traduções
-            manage: Gerenciar
-            title: Competências
-            view: Ver
-          smsHistories:
-            manage: Gerenciar
-            title: Histórias SMS
-            view: Ver
-          smsInvites:
-            manage: Gerenciar
-            title: Convites SMS
-            view: Ver
-          userIdpPlans:
-            manage: Gerir
-            reset: Repor
-            title: Planos IDP de Usuários
-            view: Vista
-          users:
-            reset_password: Repor a palavra-passe
-            title: Utilizadores
-          workshops:
-            export_status: Estado da exportação
-            manage: Gerenciar
-            title: Workshops
-            view: Ver
-            view_recordings: Ver gravações
     ai_artifacts:
       artifact_results: Resultados do artefato
       code: Código
@@ -4050,12 +3793,7 @@ pt:
       security_setting: Definição de segurança
     settings:
       admin_roles:
-        admin_role_single: Função de administrador
         confirm_message: Tem a certeza de que pretende eliminar a função de administrador '%{role_name}'?
-        create: Adicionar função de administrador
-        description: Descrição
-        name: Nome
-        successful_remove: A função de administrador '%{role_name}' foi eliminada com êxito.
       siem:
         description: Descrição
         destination_type: Tipo de destino

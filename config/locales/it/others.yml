@@ -1906,7 +1906,6 @@ it:
       campaigns: Campagne
       completion_statuses: Stati di completamento
       datasheet: Scheda tecnica
-      projects: Progetti
       report: Rapporto
       reports: Report
       sms_contact: Contatto SMS

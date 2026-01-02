@@ -29,35 +29,11 @@ cs:
     administrators:
       drawers:
         edit:
-          admin_role_select: Vyberte roli správce
-          admin_roles: Role správce
-          create_success: Správce '%{name}' byl úspěšně vytvořen
-          email: E-mail
-          first_name: Křestní jméno
           first_name_required: Křestní jméno je povinné
-          last_name: Příjmení
           last_name_required: Příjmení je povinné
-          no_edit_permission: Nemáte oprávnění k úpravám administrátora '%{name}'
-          save: Uložit
-          update: Aktualizace
-          update_success: Admin '%{name}' byl úspěšně aktualizován
-        notes:
-          threesixty_permission: Oprávnění specifická pro kampaně 360
-          title: Poznámky
         view:
-          add_campaign_admin: Přidání správce kampaně
-          add_client_admin: Přidání správce klienta
-          add_project_admin: Přidání správce projektu
-          add_threesixty_campaign_admin: Přidání správce kampaně
-          edit_campaign_admin: Upravit správce kampaně
-          edit_client_admin: Upravit správce klienta
-          edit_project_admin: Upravit správce projektu
-          edit_threesixty_campaign_admin: Upravit správce kampaně
           first_name: Křestní jméno
           last_name: Příjmení
-          project_admin: Administrátor projektu
-          project_list: Seznam projektů
-          role: Správce kampaně
           title:
             campaign_admin: Správce kampaně
             client_admin: Administrátor klienta
@@ -65,253 +41,20 @@ cs:
       list:
         actions:
           api_keys: Klíče API
-          cancel_text: Zrušit
-          change_password: Obnovení hesla
           edit: Upravit
           export_admins_with_permissions: Export rolí a oprávnění správce
           export_success: Úloha exportu správce byla úspěšně naplánována. Zkontrolujte prosím stav oznámení.
           login: Přihlášení
-          send_email: Odeslat e-mail
           spoof:
             login_successful: Přihlášení proběhlo úspěšně.
           user_report_events: Protokoly o schvalování zpráv
         columns:
-          actions: Akce
-          created_at: Vytvořeno v
           email: E-mail
-          id: ID
-          name: Název
-        header:
-          add_admin: Přidat správce
-          search_admins: Vyhledávání administrátorů
-        toolbar:
-          export_admins_with_permissions: Export rolí a oprávnění správce
       modals:
         delete:
           cancelText: Zrušit
-          content: Jste si jisti, že chcete odstranit uživatele s e-mailem '%{email}'?
           okText: Ok
-          onSuccess: Administrátor s e-mailem '%{email}' byl úspěšně odstraněn
           title: Potvrďte
-      permissions:
-        labels:
-          aiArtifacts:
-            export: Vývoz
-            import: Dovoz
-            manage: Spravovat
-            title: AI artefakty
-            view: Pohled
-          apiKeys:
-            manage: Správa
-            title: Klíče API
-            view: Zobrazit
-          assessments:
-            manage: Správa
-            title: Hodnocení
-            view: Zobrazit
-          assessors:
-            manage: Správa
-            title: Posuzovatelé
-            view: Zobrazit
-          auditLogs:
-            title: Protokoly o auditu
-            view: Zobrazit
-          auditReports:
-            admin_permissions: Export rolí a oprávnění správce
-            title: Auditní zprávy
-            user_report_events: Protokoly o schvalování zpráv
-          campaignFactors:
-            manage: Správa
-            title: Faktory kampaně
-            view: Zobrazit
-          campaigns:
-            bulk_download: Hromadné stahování
-            bulk_regenerate_reports: Hromadné přegenerování sestav
-            manage: Správa
-            manage_admins: Správa správců
-            manage_factor_benchmark_scores: Srovnávací skóre faktorů správy
-            manage_messages: Správa zpráv
-            manage_options: Správa možností
-            manage_report_approvals: Správa schvalování zpráv
-            manage_users: Správa uživatelů
-            participant_options: Možnosti účastníků
-            report_options: Možnosti hlášení
-            reset_nominations: Obnovení nominací
-            title: Kampaně
-            view: Zobrazit
-            view_factor_benchmark_scores: Zobrazit výsledky srovnávacího testu faktorů
-            view_stats: Zobrazit statistiky
-          clients:
-            export_data_report: Zpráva o exportu dat
-            manage: Správa
-            title: Klienti
-            view: Zobrazit
-            view_licenses: Zobrazit licence
-          communications:
-            manage: Správa
-            title: Komunikace
-            view: Zobrazit
-          dashboards:
-            accesssheet_manage: Správa přístupových listů
-            accesssheet_settings: Nastavení přístupového listu
-            accesssheet_view: Zobrazení přístupového listu
-            export: Export
-            title: Přístrojové panely
-            view: Zobrazit
-          datasheets:
-            manage: Správa
-            title: Datové listy
-            view: Zobrazit
-          developmentActions:
-            export: Export
-            export_global: Export Global
-            export_global_translations: Export globálních překladů
-            export_translations: Exportní překlady
-            import: Import
-            import_global: Globální import
-            import_global_translations: Import globálních překladů
-            import_translations: Importovat překlady
-            manage: Správa
-            title: Vývojové akce
-            view: Zobrazit
-          dimensions:
-            manage: Správa
-            title: Rozměry
-            view: Zobrazit
-          idpTemplates:
-            manage: Správa
-            title: Šablony IDP
-            view: Zobrazit
-          interviewQuestions:
-            export: Export
-            import: Import
-            manage: Spravujte
-            title: Otázky k pohovoru s vnitřně vysídlenými pracovníky
-            view: Zobrazit
-          jobRoles:
-            export_translations: Export pracovních rolí Překlady
-            import_translations: Import pracovních rolí Překlady
-            manage: Správa
-            title: Pracovní role
-            view: Zobrazit
-          libraries:
-            manage: Správa
-            title: Knihovny médií
-            view: Zobrazit
-          messages:
-            email: E-mail
-            instructions: Pokyny
-            options: Možnosti
-            title: Zprávy
-          norms:
-            manage: Správa
-            title: Normy
-            view: Zobrazit
-          proficiencyLevels:
-            export: Úrovně odborné způsobilosti pro export
-            export_translations: Úrovně znalostí pro export překlady
-            import: Úrovně odborné způsobilosti importu
-            import_translations: Úrovně pokročilosti importu Překlady
-            manage: Správa
-            title: Úrovně odborné způsobilosti
-            view: Zobrazit
-          proficiency_level:
-            title: Úrovně odborné způsobilosti
-          projectSettings:
-            assessments: Hodnocení
-            design: Design
-            feature_flags: Příznaky funkcí
-            idp: IDP
-            integrations: Integrace
-            privacy_settings: Nastavení ochrany osobních údajů
-            saml: SAML
-            security: Zabezpečení
-            smtp: SMTP
-            title: Nastavení projektu
-            webhooks: Webové háčky
-          projects:
-            manage: Správa
-            manage_admins: Správa správců
-            manage_licenses: Spravovat licence
-            manage_users: Správa uživatelů
-            title: Projekty
-            view: Zobrazit
-            view_licenses: Zobrazit licence
-          questions:
-            manage: Správa
-            title: Otázky
-            view: Zobrazit
-          reflectionQuestions:
-            export: Export
-            import: Import
-            manage: Správa
-            title: Otázky k reflexi IDP
-            view: Zobrazit
-          registrationCodes:
-            manage: Správa
-            title: Registrační kódy
-            view: Zobrazit
-          registrationSettings:
-            manage: Správa
-            title: Nastavení registrace
-          reports:
-            manage: Správa
-            title: Zprávy
-            view: Zobrazit
-          responseMeta:
-            title: Reakce Meta
-          results:
-            approve_report: Schválení zprávy
-            bulk_download: Hromadné stahování
-            bulk_regenerate_reports: Hromadné přegenerování sestav
-            bulk_update_evaluation_status: Hromadná aktualizace stavu hodnocení
-            download_report: Stáhnout zprávu
-            edit_report: Upravit zprávu
-            export_occupations: Vývozní profese
-            external_score_import: Import externího skóre
-            finalize_scores: Finalizace skóre
-            normalize_factor_scores: Normalizace skóre faktorů
-            raw_responses: Surové odpovědi
-            regenerate_report: Zpráva o regeneraci
-            report_data: Údaje ze zprávy
-            report_file_upload: Nahrání souboru s hlášením
-            rescore_responses: Reakce na výsledky
-            reset_progress: Obnovení postupu
-            reset_responses: Resetování odpovědí
-            scores: Skóre
-            title: Výsledky
-            view_report: Zobrazit zprávu
-            view_stats: Zobrazit statistiky
-          skills:
-            export: Export
-            export_translations: Exportní překlady
-            import: Import
-            import_translations: Importovat překlady
-            manage: Správa
-            title: Dovednosti
-            view: Zobrazit
-          smsHistories:
-            manage: Správa
-            title: Historie SMS
-            view: Zobrazit
-          smsInvites:
-            manage: Správa
-            title: Pozvánky SMS
-            view: Zobrazit
-          userIdpPlans:
-            manage: Spravovat
-            reset: Resetovat
-            title: Plány pro IDP uživatelů
-            view: Pohled
-          users:
-            reset_password: Obnovení hesla
-            title: Uživatelé
-          workshops:
-            export_status: Stav exportu
-            manage: Správa
-            title: Workshopy
-            view: Zobrazit
-            view_recordings: Zobrazit nahrávky
     ai_artifacts:
       artifact_results: Výsledky artefaktů
       code: Kód
@@ -4050,12 +3793,7 @@ cs:
       security_setting: Nastavení zabezpečení
     settings:
       admin_roles:
-        admin_role_single: Role správce
         confirm_message: Opravdu chcete odstranit roli správce '%{role_name}'?
-        create: Přidání role správce
-        description: Popis
-        name: Název
-        successful_remove: Role správce '%{role_name}' byla úspěšně odstraněna.
       siem:
         description: Popis
         destination_type: Typ cíle

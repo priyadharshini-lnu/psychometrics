@@ -1,7 +1,20 @@
 ---
 pl:
   admin:
+    add_admin: Dodaj administratora
+    add_admin_role: Dodawanie roli administratora
+    add_campaign_admin: Dodaj administratora kampanii
+    add_client_admin: Dodawanie administratora klienta
+    add_project: Dodaj projekt
+    add_project_admin: Dodawanie administratora projektu
+    add_threesixty_campaign_admin: Dodaj administratora kampanii
     admin_approval_required: Raport dla %{user} wymaga zgody administratora przed pobraniem
+    admin_created_successfully: Administrator "%{name}" został utworzony pomyślnie
+    admin_export_scheduled: Zadanie eksportu administratora zostało zaplanowane pomyślnie. Sprawdź status swojego powiadomienia.
+    admin_removed_successfully: Administrator z adresem e-mail "%{email}" został pomyślnie usunięty
+    admin_role_deleted: Rola administratora "%{role_name}" została pomyślnie usunięta.
+    admin_roles: Role administratora
+    admin_updated_successfully: Administrator "%{name}" został pomyślnie zaktualizowany
     admins: Administratorzy
     ai_artifacts: Artefakty SI
     ai_artifacts_output_schema_key_constraint: Klucz musi zaczynać się od małej litery i może zawierać tylko małe litery, cyfry i podkreślenia
@@ -21,10 +34,12 @@ pl:
     ai_assistants_test_render: Renderowanie testowe
     ai_assistants_test_render_tooltip: Przetestuj szablon promptu z danymi kampanii, aby sprawdzić, co zostanie wysłane do asystenta AI.
     ai_assisted_idp_feature_disabled: Funkcja wspomaganego IDP przez AI została wyłączona w tym projekcie.
+    api_keys: Klucze API
     assessments: Oceny
     assessments_reports: Oceny i raporty
     assessor_dashboard: Pulpit nawigacyjny asesora
     assessor_workshops: Centrum oceny zintegrowanej
+    assessors: Asesorów
     audit_logs: Dzienniki audytu
     audit_reports: Raporty z audytu
     availability: Dostępność
@@ -41,17 +56,22 @@ pl:
     campaign_assessment_modals_enable_caching_content: Czy na pewno chcesz włączyć bufor do tej oceny?
     campaign_assessment_modals_enable_caching_successfully: Do tej oceny włączono buforowanie.
     campaign_assessment_modals_enable_caching_title: Włączyć cache oceny (Assessment)?
+    campaign_factors: Czynniki kampanii
     campaign_templates: Szablony kampanii
+    campaigns: Kampanie
     client: Dzierżawa klienta
     client_admins: Administratorzy klienta
     clients: Umowy najmu dla klientów
     code_required: Wymagany jest kod
     communication_center: Centrum Komunikacyjne
+    communications: Komunikacji
     completed: Zakończone
     completed_tooltip: Wszyscy oceniający złożyli ocenę
+    confirm_remove_admin: Czy na pewno chcesz usunąć administratora za pomocą adresu e-mail "%{email}"?
     country: Kraj
     create_client: Utwórz klienta
     dashboard: Deska rozdzielcza
+    dashboards: Pulpity nawigacyjne
     data_reports: Raporty danych
     datasheet: Arkusz danych
     declined: Odrzucona
@@ -61,12 +81,19 @@ pl:
     dimensions: Wymiary
     done: Gotowy
     done_tooltip: Nie można już zgłosić oceny tego użytkownika, ponieważ jest oznaczana jako przeprowadzona przez %{marked_by}
+    edit_campaign_admin: Edytuj administratora kampanii
+    edit_client_admin: Edytowanie administratora klienta
+    edit_project_admin: Edytowanie administratora projektu
+    edit_threesixty_campaign_admin: Edytuj administratora kampanii
     empty_csv_file: Plik CSV nie zawiera żadnych danych.
     evaluation_status: Status oceny
     evaluation_status_not_done: Status oceny nie jest "Zakończony" dla jednego lub więcej wybranych przedmiotów. Prosimy o to, by wszyscy wybrani użytkownicy ukończyli oceny lub oznaczyli je jako ukończone.
+    export_admin_roles_permissions: Eksport ról i uprawnień administratora
+    feature_flags: Flagi funkcji
     fill_empty_score_msg: Wypełnij wszystkie końcowe wyniki przed zapisem.
     final_score_empty_msg: Ostateczny wynik nie może być pusty.
     idp_plan_reset_success: Plan został pomyślnie zresetowany
+    idp_templates: Szablony IDP
     import_ai_artifacts: Import artefaktów AI
     import_csv_error: 'Wiersz %{index}: użytkownik z %{email} e-mail nie występuje w tej kampanii'
     import_csv_parsing_error: 'Błąd parsowania CSV: %{message}'
@@ -90,16 +117,20 @@ pl:
     import_upload: Przesyłać
     import_users: Import użytkowników
     invalid_csv_header: Plik CSV zawiera nieprawidłowe nagłówki.
+    job_roles: Role zawodowe
     learning_from_others: Uczenie się zespołowe [20]
     libraries: Biblioteka multimediów
     library_invalid_type: Nieprawidłowy element biblioteczny
+    licenses: Licencje
     manager_approval_required: Raport %{user} wymaga zgody menedżera przed pobraniem
+    messages: Wiadomości
     name_required: Wymagane jest imię
     no_file_selected: Nie wybrano żadnego pliku
     no_notifications: Brak powiadomień
     norms: Normy
     not_completed: Nieukończone
     not_completed_tooltip: Przydzielani są %{completed} oceniający, ale tylko %{submitted} zakończyli oceny
+    notes: Notatki
     nothing_assigned: Nie przydzielono żadnych ewaluatorów
     nothing_assigned_tooltip: Nie przypisano temu użytkownikowi żadnych ocen
     notification_bell_icon_alt_text: Ikona dzwonka powiadomień
@@ -109,11 +140,438 @@ pl:
     on_the_job: W pracy [70]
     options: Opcje
     participants: Uczestników
+    permissions:
+      aiArtifacts:
+        export: Eksport
+        import: Import
+        manage: Zarządzać
+        title: Artefakty AI
+        view: Widok
+      apiKeys:
+        manage: Zarządzać
+        title: Klucze API
+        view: Widok
+      assessments:
+        manage: Zarządzać
+        title: Oceny
+        view: Widok
+      assessors:
+        manage: Zarządzać
+        title: Asesorów
+        view: Widok
+      auditLogs:
+        title: Dzienniki audytu
+        view: Widok
+      auditReports:
+        admin_permissions: Eksport ról i uprawnień administratora
+        title: Raporty z audytu
+        user_report_events: Dzienniki zatwierdzania raportów
+      campaignFactors:
+        manage: Zarządzać
+        title: Czynniki kampanii
+        view: Widok
+      campaigns:
+        bulk_download: Pobieranie zbiorcze
+        bulk_regenerate_reports: Zbiorcze ponowne generowanie raportów
+        manage: Zarządzać
+        manage_admins: Zarządzanie administratorami
+        manage_factor_benchmark_scores: Zarządzanie wynikami testów porównawczych czynników
+        manage_messages: Zarządzanie wiadomościami
+        manage_options: Zarządzanie opcjami
+        manage_report_approvals: Zarządzanie zatwierdzaniem raportów
+        manage_users: Zarządzanie użytkownikami
+        participant_options: Opcje uczestnika
+        report_options: Opcje raportu
+        reset_nominations: Resetowanie nominacji
+        title: Kampanie
+        view: Widok
+        view_factor_benchmark_scores: Wyświetlanie wyników testów porównawczych czynników
+        view_stats: Zobacz statystyki
+      clients:
+        export_data_report: Eksportowanie raportu danych
+        manage: Zarządzać
+        title: Klientów
+        view: Widok
+        view_licenses: Zobacz licencje
+      communications:
+        manage: Zarządzać
+        title: Komunikacji
+        view: Widok
+      dashboards:
+        accesssheet_manage: Zarządzanie arkuszem dostępu
+        accesssheet_settings: Ustawienia arkusza dostępu
+        accesssheet_view: Widok arkusza dostępu
+        export: Eksport
+        title: Pulpity nawigacyjne
+        view: Widok
+      datasheets:
+        manage: Zarządzać
+        title: Karty katalogowe
+        view: Widok
+      developmentActions:
+        export: Eksport
+        export_global: Eksport globalny
+        export_global_translations: Eksport tłumaczeń globalnych
+        export_translations: Eksport tłumaczeń
+        import: Import
+        import_global: Importuj globalnie
+        import_global_translations: Importowanie tłumaczeń globalnych
+        import_translations: Importowanie tłumaczeń
+        manage: Zarządzać
+        title: Działania rozwojowe
+        view: Widok
+      dimensions:
+        manage: Zarządzać
+        title: Wymiary
+        view: Widok
+      idpTemplates:
+        manage: Zarządzać
+        title: Szablony IDP
+        view: Widok
+      interviewQuestions:
+        export: Eksport
+        import: Import
+        manage: Zarządzaj
+        title: Pytania dotyczące rozmowy kwalifikacyjnej z IDP
+        view: Zobacz
+      jobRoles:
+        export_translations: Eksportuj tłumaczenia ról zawodowych
+        import_translations: Importowanie tłumaczeń ról zadań
+        manage: Zarządzać
+        title: Role zawodowe
+        view: Widok
+      labels:
+        apiKeys:
+          manage: Zarządzać
+          title: Klucze API
+          view: Widok
+        assessments:
+          manage: Zarządzać
+          title: Oceny
+          view: Widok
+        assessors:
+          manage: Zarządzać
+          title: Asesorów
+          view: Widok
+        auditLogs:
+          title: Dzienniki audytu
+          view: Widok
+        auditReports:
+          admin_permissions: Eksport ról i uprawnień administratora
+          title: Raporty z audytu
+          user_report_events: Dzienniki zatwierdzania raportów
+        campaignFactors:
+          manage: Zarządzać
+          title: Czynniki kampanii
+          view: Widok
+        campaigns:
+          bulk_download: Pobieranie zbiorcze
+          bulk_regenerate_reports: Zbiorcze ponowne generowanie raportów
+          manage: Zarządzać
+          manage_admins: Zarządzanie administratorami
+          manage_factor_benchmark_scores: Zarządzanie wynikami testów porównawczych czynników
+          manage_messages: Zarządzanie wiadomościami
+          manage_options: Zarządzanie opcjami
+          manage_report_approvals: Zarządzanie zatwierdzaniem raportów
+          manage_users: Zarządzanie użytkownikami
+          participant_options: Opcje uczestnika
+          report_options: Opcje raportu
+          reset_nominations: Resetowanie nominacji
+          title: Kampanie
+          view: Widok
+          view_factor_benchmark_scores: Wyświetlanie wyników testów porównawczych czynników
+          view_stats: Zobacz statystyki
+        clients:
+          export_data_report: Eksportowanie raportu danych
+          manage: Zarządzać
+          title: Klientów
+          view: Widok
+          view_licenses: Zobacz licencje
+        communications:
+          manage: Zarządzać
+          title: Komunikacji
+          view: Widok
+        dashboards:
+          accesssheet_manage: Zarządzanie arkuszem dostępu
+          accesssheet_settings: Ustawienia arkusza dostępu
+          accesssheet_view: Widok arkusza dostępu
+          export: Eksport
+          title: Pulpity nawigacyjne
+          view: Widok
+        datasheets:
+          manage: Zarządzać
+          title: Karty katalogowe
+          view: Widok
+        developmentActions:
+          export: Eksport
+          export_global: Eksport globalny
+          export_global_translations: Eksport tłumaczeń globalnych
+          export_translations: Eksport tłumaczeń
+          import: Import
+          import_global: Importuj globalnie
+          import_global_translations: Importowanie tłumaczeń globalnych
+          import_translations: Importowanie tłumaczeń
+          manage: Zarządzać
+          title: Działania rozwojowe
+          view: Widok
+        dimensions:
+          manage: Zarządzać
+          title: Wymiary
+          view: Widok
+        idpTemplates:
+          manage: Zarządzać
+          title: Szablony IDP
+          view: Widok
+        jobRoles:
+          export_translations: Eksportuj tłumaczenia ról zawodowych
+          import_translations: Importowanie tłumaczeń ról zadań
+          manage: Zarządzać
+          title: Role zawodowe
+          view: Widok
+        libraries:
+          manage: Zarządzać
+          title: Biblioteki multimediów
+          view: Widok
+        messages:
+          email: E-mail
+          instructions: Instrukcje
+          options: Opcje
+          title: Wiadomości
+        norms:
+          manage: Zarządzać
+          title: Normy
+          view: Widok
+        proficiencyLevels:
+          export: Poziomy biegłości eksportowej
+          export_translations: Tłumaczenia poziomów biegłości eksportowej
+          import: Poziomy biegłości w imporcie
+          import_translations: Importowanie poziomów biegłości Tłumaczenia
+          manage: Zarządzać
+          title: Poziomy biegłości
+          view: Widok
+        proficiency_level:
+          title: Poziomy biegłości
+        projectSettings:
+          assessments: Oceny
+          design: Projekt
+          feature_flags: Flagi funkcji
+          idp: IDP
+          integrations: Integracji
+          privacy_settings: Ustawienia prywatności
+          saml: SAML
+          security: Bezpieczeństwo
+          smtp: SMTP
+          title: Ustawienia projektu
+          webhooks: Elementy webhook
+        projects:
+          manage: Zarządzać
+          manage_admins: Zarządzanie administratorami
+          manage_users: Zarządzanie użytkownikami
+          title: Projekty
+          view: Widok
+        questions:
+          manage: Zarządzać
+          title: Pytania
+          view: Widok
+        reflectionQuestions:
+          export: Eksport
+          import: Import
+          manage: Zarządzać
+          title: Pytania do refleksji IDP
+          view: Widok
+        registrationCodes:
+          manage: Zarządzać
+          title: Kody rejestracyjne
+          view: Widok
+        registrationSettings:
+          manage: Zarządzać
+          title: Ustawienia rejestracji
+        reports:
+          manage: Zarządzać
+          title: Raporty
+          view: Widok
+        responseMeta:
+          title: Meta odpowiedzi
+        results:
+          approve_report: Zatwierdź raport
+          bulk_download: Pobieranie zbiorcze
+          bulk_regenerate_reports: Zbiorcze ponowne generowanie raportów
+          bulk_update_evaluation_status: Stan oceny aktualizacji zbiorczej
+          download_report: Pobierz raport
+          edit_report: Edytuj raport
+          export_occupations: Zawody związane z eksportem
+          external_score_import: Import wyników zewnętrznych
+          finalize_scores: Finalizowanie wyników
+          normalize_factor_scores: Normalizowanie wyników czynników
+          raw_responses: Surowe odpowiedzi
+          regenerate_report: Ponowne generowanie raportu
+          report_data: Dane raportu
+          report_file_upload: Przesyłanie pliku raportu
+          rescore_responses: Ponowne oceny odpowiedzi
+          reset_progress: Resetuj postęp
+          reset_responses: Resetowanie odpowiedzi
+          scores: Wyniki
+          title: Wyniki
+          view_report: Wyświetl raport
+          view_stats: Zobacz statystyki
+        skills:
+          export: Umiejętności eksportowe
+          export_translations: Tłumaczenia umiejętności eksportowych
+          import: Umiejętności importowe
+          import_translations: Importowanie tłumaczeń umiejętności
+          manage: Zarządzać
+          title: Umiejętności
+          view: Widok
+        smsHistories:
+          manage: Zarządzać
+          title: Historie SMS
+          view: Widok
+        smsInvites:
+          manage: Zarządzać
+          title: Zaproszenia SMS
+          view: Widok
+        users:
+          reset_password: Zresetuj hasło
+          title: Użytkowników
+        workshops:
+          export_status: Status eksportu
+          manage: Zarządzać
+          title: Warsztaty
+          view: Widok
+          view_recordings: Wyświetlanie nagrań
+      libraries:
+        manage: Zarządzać
+        title: Biblioteki multimediów
+        view: Widok
+      messages:
+        email: E-mail
+        instructions: Instrukcje
+        options: Opcje
+        title: Wiadomości
+      norms:
+        manage: Zarządzać
+        title: Normy
+        view: Widok
+      proficiencyLevels:
+        export: Poziomy biegłości eksportowej
+        export_translations: Tłumaczenia poziomów biegłości eksportowej
+        import: Poziomy biegłości w imporcie
+        import_translations: Importowanie poziomów biegłości Tłumaczenia
+        manage: Zarządzać
+        title: Poziomy biegłości
+        view: Widok
+      proficiency_level:
+        title: Poziomy biegłości
+      projectSettings:
+        assessments: Oceny
+        design: Projekt
+        feature_flags: Flagi funkcji
+        idp: IDP
+        integrations: Integracji
+        privacy_settings: Ustawienia prywatności
+        saml: SAML
+        security: Bezpieczeństwo
+        smtp: SMTP
+        title: Ustawienia projektu
+        webhooks: Elementy webhook
+      projects:
+        manage: Zarządzać
+        manage_admins: Zarządzanie administratorami
+        manage_licenses: Zarządzanie licencjami
+        manage_users: Zarządzanie użytkownikami
+        title: Projekty
+        view: Widok
+        view_licenses: Zobacz licencje
+      questions:
+        manage: Zarządzać
+        title: Pytania
+        view: Widok
+      reflectionQuestions:
+        export: Eksport
+        import: Import
+        manage: Zarządzać
+        title: Pytania do refleksji IDP
+        view: Widok
+      registrationCodes:
+        manage: Zarządzać
+        title: Kody rejestracyjne
+        view: Widok
+      registrationSettings:
+        manage: Zarządzać
+        title: Ustawienia rejestracji
+      reports:
+        manage: Zarządzać
+        title: Raporty
+        view: Widok
+      responseMeta:
+        title: Meta odpowiedzi
+      results:
+        approve_report: Zatwierdź raport
+        bulk_download: Pobieranie zbiorcze
+        bulk_regenerate_reports: Zbiorcze ponowne generowanie raportów
+        bulk_update_evaluation_status: Stan oceny aktualizacji zbiorczej
+        download_report: Pobierz raport
+        edit_report: Edytuj raport
+        export_occupations: Zawody związane z eksportem
+        external_score_import: Import wyników zewnętrznych
+        finalize_scores: Finalizowanie wyników
+        normalize_factor_scores: Normalizowanie wyników czynników
+        raw_responses: Surowe odpowiedzi
+        regenerate_report: Ponowne generowanie raportu
+        report_data: Dane raportu
+        report_file_upload: Przesyłanie pliku raportu
+        rescore_responses: Ponowne oceny odpowiedzi
+        reset_progress: Resetuj postęp
+        reset_responses: Resetowanie odpowiedzi
+        scores: Wyniki
+        title: Wyniki
+        view_report: Wyświetl raport
+        view_stats: Zobacz statystyki
+      skills:
+        export: Umiejętności eksportowe
+        export_translations: Tłumaczenia umiejętności eksportowych
+        import: Umiejętności importowe
+        import_translations: Importowanie tłumaczeń umiejętności
+        manage: Zarządzać
+        title: Umiejętności
+        view: Widok
+      smsHistories:
+        manage: Zarządzać
+        title: Historie SMS
+        view: Widok
+      smsInvites:
+        manage: Zarządzać
+        title: Zaproszenia SMS
+        view: Widok
+      userIdpPlans:
+        manage: Zarządzać
+        reset: Resetować
+        title: Plany IDP dla użytkowników
+        view: Widok
+      users:
+        reset_password: Zresetuj hasło
+        title: Użytkowników
+      workshops:
+        export_status: Status eksportu
+        manage: Zarządzać
+        title: Warsztaty
+        view: Widok
+        view_recordings: Wyświetlanie nagrań
+    permissions_360_campaigns: Uprawnienia specyficzne dla kampanii 360
+    privacy: Prywatność
+    proficiency_level: Klucze API
+    proficiency_levels: Poziomy biegłości
     profile_details: Szczegóły profilu
     project_admins: Administratorzy projektu
     project_manager: Kierownik Projektu
+    project_number: Numer projektu
+    project_settings: Ustawienia projektu
+    projects: Projekty
     question_center: Centrum pytań
+    questions: Pytania
+    reflection_questions: Pytania do refleksji
     registration_codes: Kody rejestracyjne
+    registration_settings: Ustawienia rejestracji
     report_approvals: Zatwierdzanie raportów
     report_condition_not_met: Potrzebuje %{required} %{relationship} oceny, ale ma tylko %{actual}
     report_conditions_not_met_detailed: Raport dla %{user} nie spełnia warunków dostępności. %{conditions}
@@ -128,6 +586,8 @@ pl:
     reset_idp_plan: Plan Resetu
     reset_idp_plan_confirmation: Jesteś pewien, że chcesz zresetować plan?
     reset_idp_plan_title: Plan Resetu
+    response_meta: Meta odpowiedzi
+    results: Wyniki
     role: Rola
     saml_idp_certificate_available: Dostępne (kliknij, aby skopiować)
     saml_idp_certificate_label: Certyfikat
@@ -179,17 +639,28 @@ pl:
     saml_settings: Ustawienia SAML
     scheduling: Planowania
     scoring: Punktacji
+    search_admins: Wyszukiwanie administratorów
+    select_admin_role: Wybierz rolę administratora
+    send_email: Wyślij wiadomość e-mail
+    settings: Ustawienia
     show_submenu: Pokaż podmenu
+    siem: SIEM (SIEM)
+    skill_aliases: Aliasy umiejętności
+    skills: Umiejętności
     skills_taxonomy: Taksonomia umiejętności
     slot_name: Nazwa slotu
+    sms_histories: Historie SMS
+    sms_invites: Zaproszenia SMS
     stats: Statystyki
     status_details: Szczegóły statusu
     structured_learning: Formalne uczenie się [10]
+    subdomain: Subdomena
     upload_success: Przesłanie pomyślnie
     user_report_events: Zdarzenia zgłaszane przez użytkownika
     users: Użytkowników
     view_licenses: Zobacz licencje
     waiting: Czekanie
+    workshops: Warsztaty
     year: Kraj
     yoodli_activity_id: Yoodli Activity ID
     yoodli_email_id: Identyfikator e-mail kandydata Yoodli

@@ -1,7 +1,20 @@
 ---
 en:
   admin:
+    add_admin: Add Admin
+    add_admin_role: Add Admin Role
+    add_campaign_admin: Add Campaign Admin
+    add_client_admin: Add Client Admin
+    add_project: Add Project
+    add_project_admin: Add Project Admin
+    add_threesixty_campaign_admin: Add Campaign Admin
     admin_approval_required: Report for %{user} requires admin approval before download
+    admin_created_successfully: Admin '%{name}' was created successfully
+    admin_export_scheduled: Admin export job was scheduled successfully. Please check your notification for status.
+    admin_removed_successfully: Admin with email '%{email}' was removed successfully
+    admin_role_deleted: Admin role '%{role_name}' was deleted successfully.
+    admin_roles: Admin Roles
+    admin_updated_successfully: Admin '%{name}' was updated successfully
     admins: Admins
     ai_artifacts: AI Artifacts
     ai_artifacts_output_schema_key_constraint: Key must start with a lowercase letter and can only contain lowercase letters, numbers, and underscores
@@ -21,10 +34,12 @@ en:
     ai_assistants_test_render: Test Render
     ai_assistants_test_render_tooltip: Test your prompt template with campaign data to check what will be sent to the AI assistant.
     ai_assisted_idp_feature_disabled: AI Assisted IDP feature has been disabled for this project.
+    api_keys: API keys
     assessments: Assessments
     assessments_reports: Assessments & Reports
     assessor_dashboard: Assessor Dashboard
     assessor_workshops: Assessment Center
+    assessors: Assessors
     assistant_toolbar_failed: Failed to generate valid output after multiple attempts
     assistant_toolbar_not_a_valid_operation: Unknown operation %{operation}.
     audit_logs: Audit Logs
@@ -43,17 +58,22 @@ en:
     campaign_assessment_modals_enable_caching_content: Are you sure you want to enable caching for this assessment?
     campaign_assessment_modals_enable_caching_successfully: Caching has been enabled for this assessment.
     campaign_assessment_modals_enable_caching_title: Enable Assessment Caching?
+    campaign_factors: Campaign Factors
     campaign_templates: Campaign Templates
+    campaigns: Campaigns
     client: Client
     client_admins: Client Admins
     clients: Clients
     code_required: Code is required
     communication_center: Communication Center
+    communications: Communications
     completed: Completed
     completed_tooltip: All evaluators have submitted the evaluation
+    confirm_remove_admin: Are you sure you want to remove admin user with email '%{email}'?
     country: Country
     create_client: Create Client
     dashboard: Dashboard
+    dashboards: Dashboards
     data_reports: Data Reports
     datasheet: Datasheet
     declined: Declined
@@ -63,15 +83,23 @@ en:
     dimensions: Dimensions
     done: Done
     done_tooltip: No more evaluation can be submitted for this user as this user's evaluation is marked as done by %{marked_by}
+    edit_campaign_admin: Edit Campaign Admin
+    edit_client_admin: Edit Client Admin
+    edit_permission_denied: You do not have permission to edit admin '%{name}'
+    edit_project_admin: Edit Project Admin
+    edit_threesixty_campaign_admin: Edit Campaign Admin
     empty_csv_file: CSV file does not contain any data.
     enable_enhance_with_ai_client_level: Please enable Enhance with AI feature at client level
     enhance_with_ai_requires_ai_assistants: Enhance with AI requires AI Assistants feature to be enabled
     evaluation_status: Evaluation Status
     evaluation_status_not_done: Evaluation status is not 'Done' for one or more selected subjects. Please ensure all selected users have completed evaluations or mark as done.
+    export_admin_roles_permissions: Admin Roles and Permissions export
     feature_enhance_with_ai: Enhance with AI
+    feature_flags: Feature Flags
     fill_empty_score_msg: Fill all the final scores before saving.
     final_score_empty_msg: Final score cannot be empty.
     idp_plan_reset_success: Plan has been reset successfully
+    idp_templates: IDP Templates
     import_ai_artifacts: Import AI Artifacts
     import_csv_assessment_group_error: 'Row %{index}: user with email %{email} is already invited to ''%{workshopInviteName}'''
     import_csv_error: 'Row %{index}: user with email %{email} is not in this campaign'
@@ -96,16 +124,20 @@ en:
     import_upload: Upload
     import_users: Import Users
     invalid_csv_header: CSV file contains invalid headers.
+    job_roles: Job Roles
     learning_from_others: Collaborative Learning [20]
     libraries: Media Library
     library_invalid_type: Invalid Library Item
+    licenses: Licenses
     manager_approval_required: Report for %{user} requires manager approval before download
+    messages: Messages
     name_required: Name is required
     no_file_selected: No file selected
     no_notifications: No Notifications
     norms: Norms
     not_completed: Not Completed
     not_completed_tooltip: "%{completed} evaluators are assigned but only %{submitted} have completed the evaluations"
+    notes: Notes
     nothing_assigned: No Evaluators Assigned
     nothing_assigned_tooltip: No evaluations have been assigned to this user
     notification_bell_icon_alt_text: Notification Bell Icon
@@ -115,11 +147,442 @@ en:
     on_the_job: On the Job [70]
     options: Options
     participants: Participants
+    permissions:
+      aiArtifacts:
+        export: Export
+        import: Import
+        manage: Manage
+        title: AI Artifacts
+        view: View
+      apiKeys:
+        manage: Manage
+        title: API Keys
+        view: View
+      assessments:
+        manage: Manage
+        title: Assessments
+        view: View
+      assessors:
+        manage: Manage
+        title: Assessors
+        view: View
+      auditLogs:
+        title: Audit Logs
+        view: View
+      auditReports:
+        admin_permissions: Admin Roles and Permissions export
+        title: Audit Reports
+        user_report_events: Report Approval logs
+      campaignFactors:
+        manage: Manage
+        title: Campaign Factors
+        view: View
+      campaigns:
+        bulk_download: Bulk Download
+        bulk_regenerate_reports: Bulk Regenerate Reports
+        manage: Manage
+        manage_admins: Manage Admins
+        manage_factor_benchmark_scores: Manage Factor Benchmark Scores
+        manage_messages: Manage Messages
+        manage_options: Manage Options
+        manage_report_approvals: Manage Report Approvals
+        manage_users: Manage Users
+        participant_options: Participant Options
+        report_options: Report Options
+        reset_nominations: Reset Nominations
+        title: Campaigns
+        view: View
+        view_factor_benchmark_scores: View Factor Benchmark Scores
+        view_stats: View Stats
+      clients:
+        export_data_report: Export Data Report
+        manage: Manage
+        title: Clients
+        view: View
+        view_licenses: View Licenses
+      communications:
+        manage: Manage
+        title: Communications
+        view: View
+      dashboards:
+        accesssheet_manage: Accesssheet Manage
+        accesssheet_settings: Accesssheet Settings
+        accesssheet_view: Accesssheet View
+        export: Export
+        title: Dashboards
+        view: View
+      datasheets:
+        manage: Manage
+        title: Datasheets
+        view: View
+      developmentActions:
+        export: Export
+        export_global: Export Global
+        export_global_translations: Export Global Translations
+        export_translations: Export Translations
+        import: Import
+        import_global: Import Global
+        import_global_translations: Import Global Translations
+        import_translations: Import Translations
+        manage: Manage
+        title: Development Actions
+        view: View
+      dimensions:
+        manage: Manage
+        title: Dimensions
+        view: View
+      idpTemplates:
+        manage: Manage
+        title: IDP Templates
+        view: View
+      interviewQuestions:
+        export: Export
+        import: Import
+        manage: Manage
+        title: IDP Interview Questions
+        view: View
+      jobRoles:
+        export_translations: Export Job Roles Translations
+        import_translations: Import Job Roles Translations
+        manage: Manage
+        title: Job Roles
+        view: View
+      labels:
+        apiKeys:
+          manage: Manage
+          title: API Keys
+          view: View
+        assessments:
+          manage: Manage
+          title: Assessments
+          view: View
+        assessors:
+          manage: Manage
+          title: Assessors
+          view: View
+        auditLogs:
+          title: Audit Logs
+          view: View
+        auditReports:
+          admin_permissions: Admin Roles and Permissions export
+          title: Audit Reports
+          user_report_events: Report Approval logs
+        campaignFactors:
+          manage: Manage
+          title: Campaign Factors
+          view: View
+        campaigns:
+          bulk_download: Bulk Download
+          bulk_regenerate_reports: Bulk Regenerate Reports
+          manage: Manage
+          manage_admins: Manage Admins
+          manage_factor_benchmark_scores: Manage Factor Benchmark Scores
+          manage_messages: Manage Messages
+          manage_options: Manage Options
+          manage_report_approvals: Manage Report Approvals
+          manage_users: Manage Users
+          participant_options: Participant Options
+          report_options: Report Options
+          reset_nominations: Reset Nominations
+          title: Campaigns
+          view: View
+          view_factor_benchmark_scores: View Factor Benchmark Scores
+          view_stats: View Stats
+        clients:
+          export_data_report: Export Data Report
+          manage: Manage
+          title: Clients
+          view: View
+          view_licenses: View Licenses
+        communications:
+          manage: Manage
+          title: Communications
+          view: View
+        dashboards:
+          accesssheet_manage: Accesssheet Manage
+          accesssheet_settings: Accesssheet Settings
+          accesssheet_view: Accesssheet View
+          export: Export
+          title: Dashboards
+          view: View
+        datasheets:
+          manage: Manage
+          title: Datasheets
+          view: View
+        developmentActions:
+          export: Export
+          export_global: Export Global
+          export_global_translations: Export Global Translations
+          export_translations: Export Translations
+          import: Import
+          import_global: Import Global
+          import_global_translations: Import Global Translations
+          import_translations: Import Translations
+          manage: Manage
+          title: Development Actions
+          view: View
+        dimensions:
+          manage: Manage
+          title: Dimensions
+          view: View
+        idpTemplates:
+          manage: Manage
+          title: IDP Templates
+          view: View
+        jobRoles:
+          export_translations: Export Job Roles Translations
+          import_translations: Import Job Roles Translations
+          manage: Manage
+          title: Job Roles
+          view: View
+        libraries:
+          manage: Manage
+          title: Media Libraries
+          view: View
+        messages:
+          email: Email
+          instructions: Instructions
+          options: Options
+          title: Messages
+        norms:
+          manage: Manage
+          title: Norms
+          view: View
+        proficiencyLevels:
+          export: Export Proficiency Levels
+          export_translations: Export Proficiency Levels translations
+          import: Import Proficiency Levels
+          import_translations: Import Proficiency Levels Translations
+          manage: Manage
+          title: Proficiency Levels
+          view: View
+        proficiency_level:
+          title: Proficiency Levels
+        projectSettings:
+          assessments: Assessments
+          design: Design
+          feature_flags: Feature Flags
+          idp: IDP
+          integrations: Integrations
+          privacy_settings: Privacy Settings
+          saml: SAML
+          security: Security
+          smtp: SMTP
+          title: Project Settings
+          webhooks: Webhooks
+        projects:
+          manage: Manage
+          manage_admins: Manage Admins
+          manage_users: Manage Users
+          title: Projects
+          view: View
+        questions:
+          manage: Manage
+          title: Questions
+          view: View
+        reflectionQuestions:
+          export: Export
+          import: Import
+          manage: Manage
+          title: IDP Reflection Questions
+          view: View
+        registrationCodes:
+          manage: Manage
+          title: Registration Codes
+          view: View
+        registrationSettings:
+          manage: Manage
+          title: Registration Settings
+        reports:
+          manage: Manage
+          title: Reports
+          view: View
+        responseMeta:
+          title: Response Meta
+        results:
+          approve_report: Approve Report
+          bulk_download: Bulk Download
+          bulk_regenerate_reports: Bulk Regenerate Reports
+          bulk_update_evaluation_status: Bulk Update Evaluation Status
+          download_report: Download Report
+          edit_report: Edit Report
+          export_occupations: Export occupations
+          external_score_import: External Score Import
+          finalize_scores: Finalize Scores
+          normalize_factor_scores: Normalize Factor Scores
+          raw_responses: Raw Responses
+          regenerate_report: Regenerate Report
+          report_data: Report Data
+          report_file_upload: Report File Upload
+          rescore_responses: Rescore Responses
+          reset_progress: Reset Progress
+          reset_responses: Reset Responses
+          scores: Scores
+          title: Results
+          view_report: View Report
+          view_stats: View Stats
+        skills:
+          export: Export Skills
+          export_translations: Export Skills Translations
+          import: Import Skills
+          import_translations: Import Skills Translations
+          manage: Manage
+          title: Skills
+          view: View
+        smsHistories:
+          manage: Manage
+          title: SMS Histories
+          view: View
+        smsInvites:
+          manage: Manage
+          title: SMS Invites
+          view: View
+        userIdpPlans:
+          manage: Manage
+          title: User IDP Plans
+          view: View
+        users:
+          reset_password: Reset Password
+          title: Users
+        workshops:
+          export_status: Export Status
+          manage: Manage
+          title: Workshops
+          view: View
+          view_recordings: View Recordings
+      libraries:
+        manage: Manage
+        title: Media Libraries
+        view: View
+      messages:
+        email: Email
+        instructions: Instructions
+        options: Options
+        title: Messages
+      norms:
+        manage: Manage
+        title: Norms
+        view: View
+      proficiencyLevels:
+        export: Export Proficiency Levels
+        export_translations: Export Proficiency Levels translations
+        import: Import Proficiency Levels
+        import_translations: Import Proficiency Levels Translations
+        manage: Manage
+        title: Proficiency Levels
+        view: View
+      proficiency_level:
+        title: Proficiency Levels
+      projectSettings:
+        assessments: Assessments
+        design: Design
+        feature_flags: Feature Flags
+        idp: IDP
+        integrations: Integrations
+        privacy_settings: Privacy Settings
+        saml: SAML
+        security: Security
+        smtp: SMTP
+        title: Project Settings
+        webhooks: Webhooks
+      projects:
+        manage: Manage
+        manage_admins: Manage Admins
+        manage_licenses: Manage Licenses
+        manage_users: Manage Users
+        title: Projects
+        view: View
+        view_licenses: View Licenses
+      questions:
+        manage: Manage
+        title: Questions
+        view: View
+      reflectionQuestions:
+        export: Export
+        import: Import
+        manage: Manage
+        title: IDP Reflection Questions
+        view: View
+      registrationCodes:
+        manage: Manage
+        title: Registration Codes
+        view: View
+      registrationSettings:
+        manage: Manage
+        title: Registration Settings
+      reports:
+        manage: Manage
+        title: Reports
+        view: View
+      responseMeta:
+        title: Response Meta
+      results:
+        approve_report: Approve Report
+        bulk_download: Bulk Download
+        bulk_regenerate_reports: Bulk Regenerate Reports
+        bulk_update_evaluation_status: Bulk Update Evaluation Status
+        download_report: Download Report
+        edit_report: Edit Report
+        export_occupations: Export occupations
+        external_score_import: External Score Import
+        finalize_scores: Finalize Scores
+        normalize_factor_scores: Normalize Factor Scores
+        raw_responses: Raw Responses
+        regenerate_report: Regenerate Report
+        report_data: Report Data
+        report_file_upload: Report File Upload
+        rescore_responses: Rescore Responses
+        reset_progress: Reset Progress
+        reset_responses: Reset Responses
+        scores: Scores
+        title: Results
+        view_report: View Report
+        view_stats: View Stats
+      skills:
+        export: Export Skills
+        export_translations: Export Skills Translations
+        import: Import Skills
+        import_translations: Import Skills Translations
+        manage: Manage
+        title: Skills
+        view: View
+      smsHistories:
+        manage: Manage
+        title: SMS Histories
+        view: View
+      smsInvites:
+        manage: Manage
+        title: SMS Invites
+        view: View
+      userIdpPlans:
+        manage: Manage
+        reset: Reset
+        title: User IDP Plans
+        view: View
+      users:
+        reset_password: Reset Password
+        title: Users
+      workshops:
+        export_status: Export Status
+        manage: Manage
+        title: Workshops
+        view: View
+        view_recordings: View Recordings
+    permissions_360_campaigns: Permissions specific to 360 campaigns
+    privacy: Privacy
+    proficiency_level: Proficiency Level
+    proficiency_levels: Proficiency Levels
     profile_details: Profile Details
     project_admins: Project Admins
     project_manager: Project Manager
+    project_number: Project Number
+    project_settings: Project Settings
+    projects: Projects
     question_center: Question Center
+    questions: Questions
+    reflection_questions: Reflection Questions
     registration_codes: Registration codes
+    registration_settings: Registration Settings
     report_approvals: Report Approvals
     report_condition_not_met: Needs %{required} %{relationship} evaluation(s), but only has %{actual}
     report_conditions_not_met_detailed: Report for %{user} does not meet availability conditions. %{conditions}
@@ -134,6 +597,8 @@ en:
     reset_idp_plan: Reset Plan
     reset_idp_plan_confirmation: Are you sure you want to reset the plan?
     reset_idp_plan_title: Reset Plan
+    response_meta: Response Meta
+    results: Results
     role: Role
     saml_idp_certificate_available: Available (click to copy)
     saml_idp_certificate_label: Certificate
@@ -185,12 +650,22 @@ en:
     saml_settings: SAML Settings
     scheduling: Scheduling
     scoring: Scoring
+    search_admins: Search admins
+    select_admin_role: Select admin role
+    send_email: Send email
+    settings: Settings
     show_submenu: Show Sub Menu
+    siem: SIEM
+    skill_aliases: Skill Aliases
+    skills: Skills
     skills_taxonomy: Skills Taxonomy
     slot_name: Slot Name
+    sms_histories: SMS Histories
+    sms_invites: SMS Invites
     stats: Stats
     status_details: Status Details
     structured_learning: Formal Learning [10]
+    subdomain: Subdomain
     subject_part_of_other_invite: Subject with email %{user_email} is already invited to '%{workshop_invite_name}'
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: AI Suggestion
@@ -203,6 +678,7 @@ en:
     users: Users
     view_licenses: View Licenses
     waiting: Waiting
+    workshops: Workshops
     writing_assistant_not_configured: Writing Assistant not configured
     year: Year
     yoodli_activity_id: Yoodli Activity ID

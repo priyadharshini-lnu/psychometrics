@@ -149,22 +149,17 @@ const AdminsComponent: React.FC<Props> = ({
     id: Admin['id'], firstName: Admin['firstName'], lastName: Admin['lastName'], email: Admin['email'],
   ) => {
     modal.confirm({
-      title: I18n.t('administration.administrators.modals.delete.title'),
+      title: I18n.t('shared.confirm'),
       content: I18n.t(
-        'administration.administrators.modals.delete.content',
+        'admin.confirm_remove_admin',
         { email },
       ),
-      okText: I18n.t('administration.administrators.modals.delete.okText'),
-      cancelText: I18n.t(
-        'administration.administrators.modals.delete.cancelText',
-      ),
+      okText: I18n.t('shared.ok'),
+      cancelText: I18n.t('shared.cancel'),
       onOk: async () => {
         removeResource(`${id}`).then(() => {
           message.info(
-            I18n.t(
-              'administration.administrators.modals.delete.onSuccess',
-              { email },
-            ),
+            I18n.t('admin.admin_removed_successfully', { email }),
           )
           close()
         }).catch((error) => {
@@ -194,7 +189,7 @@ const AdminsComponent: React.FC<Props> = ({
       body: { clientId, projectId, campaignId },
       responseType: t.literal('ok'),
     }).then(() => {
-      message.success(I18n.t('administration.administrators.list.actions.export_success'))
+      message.success(I18n.t('admin.admin_export_scheduled'))
     })
   }
 
@@ -215,9 +210,7 @@ const AdminsComponent: React.FC<Props> = ({
         <Col>
           <Space>
             <Input.Search
-              placeholder={I18n.t(
-                'administration.administrators.list.header.search_admins',
-              )}
+              placeholder={I18n.t('admin.search_admins')}
               value={getFilteredValue('filterable_fields')}
               onChange={e => changeFilter('filterable_fields', e.target.value)}
             />
@@ -231,7 +224,7 @@ const AdminsComponent: React.FC<Props> = ({
               onClick={handleAddAdminClick}
             >
               <PlusOutlined />
-              {I18n.t('administration.administrators.list.header.add_admin')}
+              {I18n.t('admin.add_admin')}
             </Button>
           </Space>
         </Col>
@@ -249,13 +242,13 @@ const AdminsComponent: React.FC<Props> = ({
               dataIndex="userId"
               key="userId"
               fixed={windowWidth > 800 ? 'left' : undefined}
-              title={I18n.t('administration.administrators.list.columns.id')}
+              title={I18n.t('shared.id')}
               sorter
               sortOrder={getSortOrder('userId')}
             />
             <Table.Column
               dataIndex="name"
-              title={I18n.t('administration.administrators.list.columns.name')}
+              title={I18n.t('shared.name')}
               render={(_, { id, firstName, lastName }) => (
                 <Link to={getIndividualAdminUrl(DrawerMode.View, id)}>
                   <Button type="link" className="ps-0">
@@ -267,7 +260,7 @@ const AdminsComponent: React.FC<Props> = ({
             <Table.Column
               dataIndex="email"
               key="user.email"
-              title={I18n.t('administration.administrators.list.columns.email')}
+              title={I18n.t('shared.email')}
               sorter
               sortOrder={getSortOrder('user.email')}
               render={(_, { email }) => (
@@ -279,18 +272,14 @@ const AdminsComponent: React.FC<Props> = ({
             <Table.Column
               dataIndex="createdAt"
               key="createdAt"
-              title={I18n.t(
-                'administration.administrators.list.columns.created_at',
-              )}
+              title={I18n.t('shared.created_at')}
               sorter
               sortOrder={getSortOrder('createdAt')}
             />
             <Table.Column
               dataIndex="actions"
               fixed={windowWidth > 800 ? 'right' : undefined}
-              title={I18n.t(
-                'administration.administrators.list.columns.actions',
-              )}
+              title={I18n.t('shared.actions')}
               render={(
                 _,
                 user: Admin,

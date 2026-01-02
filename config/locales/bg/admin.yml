@@ -1,7 +1,20 @@
 ---
 bg:
   admin:
+    add_admin: Добавяне на администратор
+    add_admin_role: Добавяне на администраторска роля
+    add_campaign_admin: Добавяне на администратор на кампанията
+    add_client_admin: Добавяне на клиентски администратор
+    add_project: Добавяне на проект
+    add_project_admin: Добавяне на администратор на проекта
+    add_threesixty_campaign_admin: Добавяне на администратор на кампанията
     admin_approval_required: Докладът за %{user} изисква одобрение от администратора преди изтегляне
+    admin_created_successfully: Администраторът '%{name}' е създаден успешно
+    admin_export_scheduled: Задачата за експортиране на администратор беше планирана успешно. Моля, проверете известието си за статус.
+    admin_removed_successfully: Администратор с имейл '%{email}' беше премахнат успешно
+    admin_role_deleted: Ролята на администратор '%{role_name}' беше изтрита успешно.
+    admin_roles: Администраторски роли
+    admin_updated_successfully: Администраторът '%{name}' е актуализиран успешно
     admins: Администратори
     ai_artifacts: Артефакти с изкуствен интелект
     ai_artifacts_output_schema_key_constraint: Ключът трябва да започва с малка буква и може да съдържа само малки букви, цифри и подчертавания
@@ -21,10 +34,12 @@ bg:
     ai_assistants_test_render: Тестов рендер
     ai_assistants_test_render_tooltip: Тествайте шаблона за подсказки с данни от кампанията, за да проверите какво ще бъде изпратено на AI асистента.
     ai_assisted_idp_feature_disabled: Функцията AI Assisted IDP е деактивирана за този проект.
+    api_keys: API ключове
     assessments: Оценки
     assessments_reports: Оценки и отчети
     assessor_dashboard: Табло за управление на оценителя
     assessor_workshops: Център за оценяване
+    assessors: Оценители
     audit_logs: Регистрационни файлове за одит
     audit_reports: Одиторски доклади
     availability: Наличност
@@ -41,17 +56,22 @@ bg:
     campaign_assessment_modals_enable_caching_content: Сигурни ли сте, че искате да включите кеширане за тази оценка?
     campaign_assessment_modals_enable_caching_successfully: Кеширането е активирано за тази оценка.
     campaign_assessment_modals_enable_caching_title: Да активирам кеширането на оценката?
+    campaign_factors: Фактори на кампанията
     campaign_templates: Шаблони за кампании
+    campaigns: Кампании
     client: Наемане на клиенти
     client_admins: Администратори на клиенти
     clients: Наеми на клиенти
     code_required: Изисква се код
     communication_center: Комуникационен център
+    communications: Комуникации
     completed: Завършен
     completed_tooltip: Всички оценители са подали оценката
+    confirm_remove_admin: Сигурни ли сте, че искате да премахнете администратор с имейл '%{email}'?
     country: Държава
     create_client: Създайте клиент
     dashboard: Таблото
+    dashboards: Табла
     data_reports: Отчети за данни
     datasheet: Лист с данни
     declined: Намалял
@@ -61,12 +81,19 @@ bg:
     dimensions: Размери
     done: Направи
     done_tooltip: Не може да се подава повече оценка за този потребител, тъй като оценката му се маркира като извършена от %{marked_by}
+    edit_campaign_admin: Редактиране на администратора на кампанията
+    edit_client_admin: Редактиране на администратор на клиента
+    edit_project_admin: Редактиране на администратора на проекта
+    edit_threesixty_campaign_admin: Редактиране на администратора на кампанията
     empty_csv_file: CSV файлът не съдържа никакви данни.
     evaluation_status: Статус на оценката
     evaluation_status_not_done: Статусът на оценяване не е "Завършен" за един или повече избрани предмети. Моля, уверете се, че всички избрани потребители са завършили оценките или са оценили като изпълнени.
+    export_admin_roles_permissions: Експортиране на администраторски роли и разрешения
+    feature_flags: Флагове за функции
     fill_empty_score_msg: Запълнете всички крайни резултати преди да запазите.
     final_score_empty_msg: Крайният резултат не може да бъде празен.
     idp_plan_reset_success: Планът беше успешно рестартиран
+    idp_templates: Шаблони за индивидуален план за развитие
     import_ai_artifacts: Импортиране на AI артефакти
     import_csv_error: 'Ред %{index}: потребител с имейл %{email} не участва в тази кампания'
     import_csv_parsing_error: 'Грешка при анализ на CSV: %{message}'
@@ -90,16 +117,20 @@ bg:
     import_upload: Качвам
     import_users: Импортиране на потребители
     invalid_csv_header: CSV файлът съдържа невалидни заглавия.
+    job_roles: Работни роли
     learning_from_others: Съвместно обучение [20]
     libraries: Медийна библиотека
     library_invalid_type: Невалиден библиотечен елемент
+    licenses: Лицензи
     manager_approval_required: Докладът за %{user} изисква одобрение от мениджъра преди изтегляне
+    messages: Съобщения
     name_required: Задължително е име
     no_file_selected: Няма избран файл
     no_notifications: Няма известия
     norms: Норми
     not_completed: Не е завършено
     not_completed_tooltip: "%{completed} оценители са назначени, но само %{submitted} са завършени оценките"
+    notes: Бележки
     nothing_assigned: Няма назначени оценители
     nothing_assigned_tooltip: Не са възложени оценки на този потребител
     notification_bell_icon_alt_text: Икона на звънец за известия
@@ -109,11 +140,438 @@ bg:
     on_the_job: На работа [70]
     options: Опции
     participants: Участниците
+    permissions:
+      aiArtifacts:
+        export: Износ
+        import: Внос
+        manage: Управлявам
+        title: AI артефакти
+        view: Изглед
+      apiKeys:
+        manage: Управлявам
+        title: API ключове
+        view: Изглед
+      assessments:
+        manage: Управлявам
+        title: Оценки
+        view: Изглед
+      assessors:
+        manage: Управлявам
+        title: Оценители
+        view: Изглед
+      auditLogs:
+        title: Регистрационни файлове за одит
+        view: Изглед
+      auditReports:
+        admin_permissions: Експортиране на администраторски роли и разрешения
+        title: Одиторски доклади
+        user_report_events: Отчет Регистрационни файлове за одобрение
+      campaignFactors:
+        manage: Управлявам
+        title: Фактори на кампанията
+        view: Изглед
+      campaigns:
+        bulk_download: Групово изтегляне
+        bulk_regenerate_reports: Групово регенериране на отчети
+        manage: Управлявам
+        manage_admins: Управление на администратори
+        manage_factor_benchmark_scores: Управление на резултатите от Factor Benchmark
+        manage_messages: Управление на съобщенията
+        manage_options: Управление на опциите
+        manage_report_approvals: Управление на одобренията на отчети
+        manage_users: Управление на потребителите
+        participant_options: Опции за участници
+        report_options: Опции за отчет
+        reset_nominations: Нулиране на номинациите
+        title: Кампании
+        view: Изглед
+        view_factor_benchmark_scores: Преглед на резултатите от Factor Benchmark
+        view_stats: Преглед на статистиката
+      clients:
+        export_data_report: Отчет за експортиране на данни
+        manage: Управлявам
+        title: Клиенти
+        view: Изглед
+        view_licenses: Преглед на лицензи
+      communications:
+        manage: Управлявам
+        title: Комуникации
+        view: Изглед
+      dashboards:
+        accesssheet_manage: Управление на формуляр за достъп
+        accesssheet_settings: Настройки на листа за достъп
+        accesssheet_view: Изглед на формуляр за достъп
+        export: Експорт
+        title: Табла
+        view: Изглед
+      datasheets:
+        manage: Управлявам
+        title: Технически данни
+        view: Изглед
+      developmentActions:
+        export: Износ
+        export_global: Глобален износ
+        export_global_translations: Експортиране на глобални преводи
+        export_translations: Експортиране на преводи
+        import: Внос
+        import_global: Глобален импорт
+        import_global_translations: Импортиране на глобални преводи
+        import_translations: Импортиране на преводи
+        manage: Управлявам
+        title: Действия за развитие
+        view: Изглед
+      dimensions:
+        manage: Управлявам
+        title: Размери
+        view: Изглед
+      idpTemplates:
+        manage: Управлявам
+        title: Шаблони за индивидуален план за развитие
+        view: Изглед
+      interviewQuestions:
+        export: Износ
+        import: Импорт
+        manage: Управление
+        title: Въпроси за интервю за IDP
+        view: Изглед
+      jobRoles:
+        export_translations: Експорт на работни роли Преводи
+        import_translations: Импортиране на работни роли Преводи
+        manage: Управлявам
+        title: Работни роли
+        view: Изглед
+      labels:
+        apiKeys:
+          manage: Управлявам
+          title: API ключове
+          view: Изглед
+        assessments:
+          manage: Управлявам
+          title: Оценки
+          view: Изглед
+        assessors:
+          manage: Управлявам
+          title: Оценители
+          view: Изглед
+        auditLogs:
+          title: Регистрационни файлове за одит
+          view: Изглед
+        auditReports:
+          admin_permissions: Експортиране на администраторски роли и разрешения
+          title: Одиторски доклади
+          user_report_events: Отчет Регистрационни файлове за одобрение
+        campaignFactors:
+          manage: Управлявам
+          title: Фактори на кампанията
+          view: Изглед
+        campaigns:
+          bulk_download: Групово изтегляне
+          bulk_regenerate_reports: Групово регенериране на отчети
+          manage: Управлявам
+          manage_admins: Управление на администратори
+          manage_factor_benchmark_scores: Управление на резултатите от Factor Benchmark
+          manage_messages: Управление на съобщенията
+          manage_options: Управление на опциите
+          manage_report_approvals: Управление на одобренията на отчети
+          manage_users: Управление на потребителите
+          participant_options: Опции за участници
+          report_options: Опции за отчет
+          reset_nominations: Нулиране на номинациите
+          title: Кампании
+          view: Изглед
+          view_factor_benchmark_scores: Преглед на резултатите от Factor Benchmark
+          view_stats: Преглед на статистиката
+        clients:
+          export_data_report: Отчет за експортиране на данни
+          manage: Управлявам
+          title: Клиенти
+          view: Изглед
+          view_licenses: Преглед на лицензи
+        communications:
+          manage: Управлявам
+          title: Комуникации
+          view: Изглед
+        dashboards:
+          accesssheet_manage: Управление на формуляр за достъп
+          accesssheet_settings: Настройки на листа за достъп
+          accesssheet_view: Изглед на формуляр за достъп
+          export: Експорт
+          title: Табла
+          view: Изглед
+        datasheets:
+          manage: Управлявам
+          title: Технически данни
+          view: Изглед
+        developmentActions:
+          export: Износ
+          export_global: Глобален износ
+          export_global_translations: Експортиране на глобални преводи
+          export_translations: Експортиране на преводи
+          import: Внос
+          import_global: Глобален импорт
+          import_global_translations: Импортиране на глобални преводи
+          import_translations: Импортиране на преводи
+          manage: Управлявам
+          title: Действия за развитие
+          view: Изглед
+        dimensions:
+          manage: Управлявам
+          title: Размери
+          view: Изглед
+        idpTemplates:
+          manage: Управлявам
+          title: Шаблони за индивидуален план за развитие
+          view: Изглед
+        jobRoles:
+          export_translations: Експорт на работни роли Преводи
+          import_translations: Импортиране на работни роли Преводи
+          manage: Управлявам
+          title: Работни роли
+          view: Изглед
+        libraries:
+          manage: Управлявам
+          title: Медийни библиотеки
+          view: Изглед
+        messages:
+          email: Имейл
+          instructions: Инструкции
+          options: Опции
+          title: Съобщения
+        norms:
+          manage: Управлявам
+          title: Норми
+          view: Изглед
+        proficiencyLevels:
+          export: Нива на владеене на износ
+          export_translations: Превод на нивата на владеене на износ
+          import: Импортиране на нива на владеене
+          import_translations: Превод на нивата на владеене на импортиране
+          manage: Управлявам
+          title: Нива на владеене
+          view: Изглед
+        proficiency_level:
+          title: Нива на владеене
+        projectSettings:
+          assessments: Оценки
+          design: Проектирам
+          feature_flags: Флагове на функциите
+          idp: Индивидуален план за развитие
+          integrations: Интеграции
+          privacy_settings: Настройки за поверителност
+          saml: Език за маркиране на твърдение за сигурност
+          security: Безопасност
+          smtp: Прост протокол за прехвърляне на поща
+          title: Настройки на проекта
+          webhooks: Уеб кукички
+        projects:
+          manage: Управлявам
+          manage_admins: Управление на администратори
+          manage_users: Управление на потребители
+          title: Проекти
+          view: Изглед
+        questions:
+          manage: Управлявам
+          title: Въпроси
+          view: Изглед
+        reflectionQuestions:
+          export: Износ
+          import: Внос
+          manage: Управлявам
+          title: Въпроси за размисъл от индивидуален план за равитие
+          view: Изглед
+        registrationCodes:
+          manage: Управлявам
+          title: Регистрационни кодове
+          view: Изглед
+        registrationSettings:
+          manage: Управлявам
+          title: Настройки за регистрация
+        reports:
+          manage: Управлявам
+          title: Доклади
+          view: Изглед
+        responseMeta:
+          title: Мета отговор
+        results:
+          approve_report: Одобряване на отчет
+          bulk_download: Групово изтегляне
+          bulk_regenerate_reports: Групово регенериране на отчети
+          bulk_update_evaluation_status: Статус на оценката на груповото актуализиране
+          download_report: Изтегляне на отчета
+          edit_report: Редактиране на отчета
+          export_occupations: Експортирам длъжности
+          external_score_import: Импортиране на външен резултат
+          finalize_scores: Финализиране на резултатите
+          normalize_factor_scores: Нормализиране на факторните резултати
+          raw_responses: Сурови отговори
+          regenerate_report: Регенериране на отчет
+          report_data: Отчетни Данни
+          report_file_upload: Качване на файл с отчет
+          rescore_responses: Преоценяване на отговорите
+          reset_progress: Нулиране на напредъка
+          reset_responses: Нулиране на отговорите
+          scores: Резултати
+          title: Резултати
+          view_report: Преглед на доклада
+          view_stats: Преглед на статистиката
+        skills:
+          export: Експортиране на умения
+          export_translations: Експортиране на преводи на умения
+          import: Импортиране на умения
+          import_translations: Импортиране на преводи на умения
+          manage: Управлявам
+          title: Умения
+          view: Изглед
+        smsHistories:
+          manage: Управлявам
+          title: История на SMS
+          view: Изглед
+        smsInvites:
+          manage: Управлявам
+          title: SMS покани
+          view: Изглед
+        users:
+          reset_password: Нулиране на паролата
+          title: Потребители
+        workshops:
+          export_status: Състояние на износ
+          manage: Управлявам
+          title: Семинари
+          view: Изглед
+          view_recordings: Преглед на записи
+      libraries:
+        manage: Управлявам
+        title: Медийни библиотеки
+        view: Изглед
+      messages:
+        email: Имейл
+        instructions: Инструкции
+        options: Опции
+        title: Съобщения
+      norms:
+        manage: Управлявам
+        title: Норми
+        view: Изглед
+      proficiencyLevels:
+        export: Нива на владеене на износ
+        export_translations: Превод на нивата на владеене на износ
+        import: Импортиране на нива на владеене
+        import_translations: Превод на нивата на владеене на импортиране
+        manage: Управлявам
+        title: Нива на владеене
+        view: Изглед
+      proficiency_level:
+        title: Нива на владеене
+      projectSettings:
+        assessments: Оценки
+        design: Проектирам
+        feature_flags: Флагове на функциите
+        idp: Индивидуален план за развитие
+        integrations: Интеграции
+        privacy_settings: Настройки за поверителност
+        saml: Език за маркиране на твърдение за сигурност
+        security: Безопасност
+        smtp: Прост протокол за прехвърляне на поща
+        title: Настройки на проекта
+        webhooks: Уеб кукички
+      projects:
+        manage: Управлявам
+        manage_admins: Управление на администратори
+        manage_licenses: Управление на лицензи
+        manage_users: Управление на потребители
+        title: Проекти
+        view: Изглед
+        view_licenses: Вижте лицензи
+      questions:
+        manage: Управлявам
+        title: Въпроси
+        view: Изглед
+      reflectionQuestions:
+        export: Износ
+        import: Внос
+        manage: Управлявам
+        title: Въпроси за размисъл от индивидуален план за равитие
+        view: Изглед
+      registrationCodes:
+        manage: Управлявам
+        title: Регистрационни кодове
+        view: Изглед
+      registrationSettings:
+        manage: Управлявам
+        title: Настройки за регистрация
+      reports:
+        manage: Управлявам
+        title: Доклади
+        view: Изглед
+      responseMeta:
+        title: Мета отговор
+      results:
+        approve_report: Одобряване на отчет
+        bulk_download: Групово изтегляне
+        bulk_regenerate_reports: Групово регенериране на отчети
+        bulk_update_evaluation_status: Статус на оценката на груповото актуализиране
+        download_report: Изтегляне на отчета
+        edit_report: Редактиране на отчета
+        export_occupations: Експортирам длъжности
+        external_score_import: Импортиране на външен резултат
+        finalize_scores: Финализиране на резултатите
+        normalize_factor_scores: Нормализиране на факторните резултати
+        raw_responses: Сурови отговори
+        regenerate_report: Регенериране на отчет
+        report_data: Отчетни Данни
+        report_file_upload: Качване на файл с отчет
+        rescore_responses: Преоценяване на отговорите
+        reset_progress: Нулиране на напредъка
+        reset_responses: Нулиране на отговорите
+        scores: Резултати
+        title: Резултати
+        view_report: Преглед на доклада
+        view_stats: Преглед на статистиката
+      skills:
+        export: Експортиране на умения
+        export_translations: Експортиране на преводи на умения
+        import: Импортиране на умения
+        import_translations: Импортиране на преводи на умения
+        manage: Управлявам
+        title: Умения
+        view: Изглед
+      smsHistories:
+        manage: Управлявам
+        title: История на SMS
+        view: Изглед
+      smsInvites:
+        manage: Управлявам
+        title: SMS покани
+        view: Изглед
+      userIdpPlans:
+        manage: Управлявам
+        reset: Проучване
+        title: Планове за потребителски IDP
+        view: Изглед
+      users:
+        reset_password: Нулиране на паролата
+        title: Потребители
+      workshops:
+        export_status: Състояние на износ
+        manage: Управлявам
+        title: Семинари
+        view: Изглед
+        view_recordings: Преглед на записи
+    permissions_360_campaigns: Разрешения, специфични за кампании в 360
+    privacy: Поверителност
+    proficiency_level: API ключове
+    proficiency_levels: Нива на владеене
     profile_details: Детайли за профила
     project_admins: Администратори на проекти
     project_manager: Ръководител на проект
+    project_number: Номер на проекта
+    project_settings: Настройки на проекта
+    projects: Проекти
     question_center: Център за въпроси
+    questions: Въпроси
+    reflection_questions: Въпроси за размисъл
     registration_codes: Регистрационни кодове
+    registration_settings: Настройки за регистрация
     report_approvals: Докладване на одобрения
     report_condition_not_met: Нуждае се %{required} %{relationship} оценка(и), но има само %{actual}
     report_conditions_not_met_detailed: Докладът за %{user} не отговаря на условията за наличност. %{conditions}
@@ -128,6 +586,8 @@ bg:
     reset_idp_plan: План за нулиране
     reset_idp_plan_confirmation: Сигурен ли си, че искаш да нулираш плана?
     reset_idp_plan_title: План за нулиране
+    response_meta: Мета отговор
+    results: Резултати
     role: Роля
     saml_idp_certificate_available: Наличен (кликнете за копиране)
     saml_idp_certificate_label: Сертификат
@@ -179,17 +639,28 @@ bg:
     saml_settings: SAML настройки
     scheduling: Планиране
     scoring: Точкуване
+    search_admins: Търсене на дминистратори
+    select_admin_role: Изберете роля на администратор
+    send_email: Изпрати имейл
+    settings: Настройки
     show_submenu: Покажи подменюто
+    siem: SIEM
+    skill_aliases: Псевдоними на уменията
+    skills: Умения
     skills_taxonomy: Таксономия на уменията
     slot_name: Име на слот
+    sms_histories: История на SMS
+    sms_invites: SMS покани
     stats: Статистика
     status_details: Детайли за статуса
     structured_learning: Формално обучение [10]
+    subdomain: Поддомейн
     upload_success: Качено успешно
     user_report_events: Събития с потребителски отчет
     users: Потребители
     view_licenses: Преглед на лицензи
     waiting: Чакат
+    workshops: Семинари
     year: Държава
     yoodli_activity_id: Yoodli ID на активността
     yoodli_email_id: Имейл ID на кандидата Yoodli

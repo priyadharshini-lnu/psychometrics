@@ -1,7 +1,20 @@
 ---
 ar:
   admin:
+    add_admin: إضافة مسؤول
+    add_admin_role: Add Admin Role
+    add_campaign_admin: إضافة مسؤول حملة
+    add_client_admin: إضافة مسؤول عميل
+    add_project: Add Project
+    add_project_admin: إضافة مسؤول مشروع
+    add_threesixty_campaign_admin: إضافة مسؤول حملة
     admin_approval_required: الإبلاغ %{user} يتطلب موافقة المسؤول قبل التحميل
+    admin_created_successfully: تم إنشاء المسؤول '%{name}' بنجاح
+    admin_export_scheduled: تم جدولة مهمة تصدير المسؤول بنجاح. يرجى التحقق من إشعارك للحصول على الحالة.
+    admin_removed_successfully: تم إزالة المسؤول بالبريد الإلكتروني '%{email}' بنجاح
+    admin_role_deleted: Admin role '%{role_name}' was deleted successfully.
+    admin_roles: Admin Roles
+    admin_updated_successfully: تم تحديث المسؤول '%{name}' بنجاح
     admins: المسؤولون
     ai_artifacts: قطع الذكاء الاصطناعي
     ai_artifacts_output_schema_key_constraint: يجب أن يبدأ المفتاح بحرف صغير ولا يحتوي إلا على الحروف الصغيرة والأرقام والخطوط السفلية
@@ -21,10 +34,12 @@ ar:
     ai_assistants_test_render: اختبار العرض
     ai_assistants_test_render_tooltip: اختبر قالب التوجيه الخاص بك باستخدام بيانات الحملة لمعرفة ما سيتم إرساله إلى مساعد الذكاء الاصطناعي.
     ai_assisted_idp_feature_disabled: تم تعطيل ميزة الذكاء الاصطناعي المساعد للنزول (IDP) لهذا المشروع.
+    api_keys: مفاتيح API
     assessments: التقييمات
     assessments_reports: التقييمات والتقارير
     assessor_dashboard: لوحة معلومات المقيم
     assessor_workshops: مركز التقييم
+    assessors: المقيمون
     audit_logs: سجلات التدقيق
     audit_reports: تقارير التدقيق
     availability: التوفر
@@ -41,17 +56,22 @@ ar:
     campaign_assessment_modals_enable_caching_content: هل أنت متأكد من رغبتك في تفعيل التخزين المؤقت لهذا التقييم؟
     campaign_assessment_modals_enable_caching_successfully: تم تفعيل التخزين المؤقت لهذا التقييم.
     campaign_assessment_modals_enable_caching_title: تمكين التخزين المؤقت للتقييم؟
+    campaign_factors: عوامل الحملة
     campaign_templates: قوالب الحملات
+    campaigns: الحملات
     client: مستأجر العميل
     client_admins: مسؤولو العملاء
     clients: عقود العملاء
     code_required: الكود مطلوب
     communication_center: مركز الاتصالات
+    communications: الاتصالات
     completed: اكمال
     completed_tooltip: جميع المقيمين قدموا التقييم
+    confirm_remove_admin: هل أنت متأكد أنك تريد إزالة المستخدم المسؤول بالبريد الإلكتروني '%{email}'؟
     country: البلد
     create_client: إنشاء عميل
     dashboard: لوحة القيادة
+    dashboards: لوحات التحكم
     data_reports: تقارير البيانات
     datasheet: ورقة البيانات
     declined: انخفض
@@ -61,12 +81,19 @@ ar:
     dimensions: الأبعاد
     done: منجز
     done_tooltip: لا يمكن تقديم تقييم إضافي لهذا المستخدم لأن تقييمه تم تصنيفه على أنه تم بواسطة %{marked_by}
+    edit_campaign_admin: تعديل مسؤول حملة
+    edit_client_admin: تعديل مسؤول عميل
+    edit_project_admin: تعديل مسؤول مشروع
+    edit_threesixty_campaign_admin: تعديل مسؤول حملة
     empty_csv_file: ملف CSV لا يحتوي على أي بيانات.
     evaluation_status: حالة التقييم
     evaluation_status_not_done: حالة التقييم ليست 'مكتملة' لشخص أو أكثر من المشاركات المختارة. يرجى التأكد من أن جميع المستخدمين المختارين قد أكملوا التقييمات أو وضع علامة على أنهم تم.
+    export_admin_roles_permissions: تصدير أدوار وأذونات المسؤولين
+    feature_flags: أعلام الميزات
     fill_empty_score_msg: املأ جميع الدرجات النهائية قبل الحفظ.
     final_score_empty_msg: لا يمكن أن تكون النتيجة النهائية فارغة.
     idp_plan_reset_success: تم إعادة ضبط الخطة بنجاح
+    idp_templates: قوالب IDP
     import_ai_artifacts: استيراد القطع الأثرية الذكاء الاصطناعي
     import_csv_error: 'الصف %{index}: مستخدم لديه بريد إلكتروني %{email} غير موجود في هذه الحملة'
     import_csv_parsing_error: 'خطأ في تحليل CSV: %{message}'
@@ -90,16 +117,20 @@ ar:
     import_upload: رفع
     import_users: استيراد المستخدمين
     invalid_csv_header: يحتوي ملف CSV على رؤوس غير صالحة.
+    job_roles: الأدوار الوظيفية
     learning_from_others: التعلم التعاوني [20]
     libraries: مكتبة الوسائط
     library_invalid_type: عنصر المكتبة غير الصالح
+    licenses: التراخيص
     manager_approval_required: يتطلب الإبلاغ عن %{user} موافقة المدير قبل التحميل
+    messages: Messages
     name_required: الاسم مطلوب
     no_file_selected: لم يتم اختيار ملف
     no_notifications: لا توجد إشعارات
     norms: المعايير
     not_completed: لم يكتمل
     not_completed_tooltip: يتم تعيين %{completed} المقيمين ولكن فقط %{submitted} أكمل التقييمات
+    notes: ملاحظات
     nothing_assigned: لا يتم تعيين مقيمين
     nothing_assigned_tooltip: لم يتم تعيين أي تقييمات لهذا المستخدم
     notification_bell_icon_alt_text: Notification Bell Icon
@@ -109,11 +140,407 @@ ar:
     on_the_job: في العمل [70]
     options: الخيارات
     participants: المشاركون
+    permissions:
+      aiArtifacts:
+        export: تصدير
+        import: استورد
+        manage: أدار
+        title: قطع الذكاء الاصطناعي
+        view: منظر
+      apiKeys:
+        manage: إدارة
+        title: مفاتيح واجهة برمجة التطبيقات
+        view: عرض
+      assessments:
+        manage: إدارة
+        title: التقييمات
+        view: عرض
+      assessors:
+        manage: إدارة
+        title: المقيّمون
+        view: عرض
+      auditLogs:
+        title: سجلات التدقيق
+        view: عرض
+      auditReports:
+        admin_permissions: تصدير أدوار وأذونات المسؤولين
+        title: تقارير المراجعة
+        user_report_events: سجلات موافقة التقارير
+      campaignFactors:
+        manage: إدارة
+        title: عوامل الحملة
+        view: عرض
+      campaigns:
+        bulk_download: تنزيل جماعي
+        bulk_regenerate_reports: إعادة إنشاء التقارير بشكل جماعي
+        manage: إدارة
+        manage_admins: إدارة المسؤولين
+        manage_factor_benchmark_scores: إدارة درجات عوامل القياس
+        manage_messages: إدارة الرسائل
+        manage_options: إدارة الخيارات
+        manage_report_approvals: إدارة موافقات التقارير
+        manage_users: إدارة المستخدمين
+        participant_options: خيارات المشاركين
+        report_options: خيارات التقارير
+        reset_nominations: إعادة تعيين الترشيحات
+        title: الحملات
+        view: عرض
+        view_factor_benchmark_scores: عرض درجات عوامل القياس
+        view_stats: عرض الإحصائيات
+      clients:
+        export_data_report: تصدير تقرير البيانات
+        manage: إدارة
+        title: العملاء
+        view: عرض
+        view_licenses: عرض التراخيص
+      communications:
+        manage: إدارة
+        title: الاتصالات
+        view: عرض
+      dashboards:
+        accesssheet_manage: إدارة ورقة الوصول
+        accesssheet_settings: إعدادات ورقة الوصول
+        accesssheet_view: عرض ورقة الوصول
+        export: التصدير
+        title: لوحات المعلومات
+        view: عرض
+      datasheets:
+        manage: إدارة
+        title: أوراق البيانات
+        view: عرض
+      developmentActions:
+        export: التصدير
+        export_global: التصدير العالمي
+        export_global_translations: تصدير الترجمات العالمية
+        export_translations: ترجمات التصدير
+        import: الاستيراد
+        import_global: الاستيراد العالمي
+        import_global_translations: استيراد الترجمات العالمية
+        import_translations: استيراد الترجمات
+        manage: الإدارة
+        title: إجراءات التنمية
+        view: عرض
+      dimensions:
+        manage: إدارة
+        title: الأبعاد
+        view: عرض
+      idpTemplates:
+        manage: إدارة
+        title: قوالب IDP
+        view: عرض
+      interviewQuestions:
+        export: التصدير
+        import: الاستيراد
+        manage: الإدارة
+        title: أسئلة مقابلات IDP
+        view: منظر
+      jobRoles:
+        export_translations: تصدير ترجمات الأدوار الوظيفية
+        import_translations: استيراد ترجمات الأدوار الوظيفية
+        manage: الإدارة
+        title: الأدوار الوظيفية
+        view: عرض
+      labels:
+        apiKeys:
+          manage: إدارة
+          view: عرض
+        assessments:
+          manage: إدارة
+          view: عرض
+        assessors:
+          manage: إدارة
+          view: عرض
+        auditLogs:
+          view: عرض
+        auditReports:
+          admin_permissions: تصدير أدوار وأذونات المسؤولين
+          user_report_events: سجلات موافقة التقارير
+        campaignFactors:
+          manage: إدارة
+          view: عرض
+        campaigns:
+          bulk_download: تنزيل جماعي
+          bulk_regenerate_reports: إعادة إنشاء التقارير بشكل جماعي
+          manage: إدارة
+          manage_admins: إدارة المسؤولين
+          manage_factor_benchmark_scores: إدارة درجات عوامل القياس
+          manage_messages: إدارة الرسائل
+          manage_options: إدارة الخيارات
+          manage_report_approvals: إدارة موافقات التقارير
+          manage_users: إدارة المستخدمين
+          participant_options: خيارات المشاركين
+          report_options: خيارات التقارير
+          reset_nominations: إعادة تعيين الترشيحات
+          view: عرض
+          view_factor_benchmark_scores: عرض درجات عوامل القياس
+          view_stats: عرض الإحصائيات
+        clients:
+          export_data_report: تصدير تقرير البيانات
+          manage: إدارة
+          view: عرض
+          view_licenses: عرض التراخيص
+        communications:
+          manage: إدارة
+          view: عرض
+        dashboards:
+          accesssheet_manage: إدارة ورقة الوصول
+          accesssheet_settings: إعدادات ورقة الوصول
+          accesssheet_view: عرض ورقة الوصول
+          export: التصدير
+          view: عرض
+        datasheets:
+          manage: إدارة
+          view: عرض
+        developmentActions:
+          export: التصدير
+          export_global: التصدير العالمي
+          export_global_translations: تصدير الترجمات العالمية
+          export_translations: ترجمات التصدير
+          import: الاستيراد
+          import_global: الاستيراد العالمي
+          import_global_translations: استيراد الترجمات العالمية
+          import_translations: استيراد الترجمات
+          manage: الإدارة
+          view: عرض
+        dimensions:
+          manage: إدارة
+          view: عرض
+        idpTemplates:
+          manage: إدارة
+          view: عرض
+        jobRoles:
+          export_translations: تصدير ترجمات الأدوار الوظيفية
+          import_translations: استيراد ترجمات الأدوار الوظيفية
+          manage: الإدارة
+          view: عرض
+        libraries:
+          manage: إدارة
+          view: عرض
+        messages:
+          email: البريد الإلكتروني
+          instructions: التعليمات
+          options: الخيارات
+        norms:
+          manage: إدارة
+          view: عرض
+        proficiencyLevels:
+          export: مستويات كفاءة التصدير
+          export_translations: ترجمات مستويات كفاءة التصدير
+          import: مستويات كفاءة الاستيراد
+          import_translations: ترجمات مستويات كفاءة الاستيراد
+          manage: الإدارة
+          view: عرض
+        projectSettings:
+          assessments: التقييمات
+          design: التصميم
+          feature_flags: علامات الميزة
+          idp: IDP
+          integrations: التكاملات
+          privacy_settings: إعدادات الخصوصية
+          saml: SAML
+          security: الأمان
+          smtp: SMTP
+          webhooks: Webhooks
+        projects:
+          manage: إدارة
+          manage_admins: إدارة المسؤولين
+          manage_users: إدارة المستخدمين
+          view: عرض
+        questions:
+          manage: إدارة
+          view: عرض
+        reflectionQuestions:
+          export: التصدير
+          import: الاستيراد
+          manage: الإدارة
+          view: عرض
+        registrationCodes:
+          manage: إدارة
+          view: عرض
+        registrationSettings:
+          manage: إدارة
+        reports:
+          manage: إدارة
+          view: عرض
+        results:
+          approve_report: الموافقة على التقرير
+          bulk_download: تنزيل جماعي
+          bulk_regenerate_reports: إعادة إنشاء التقارير بشكل جماعي
+          bulk_update_evaluation_status: حالة تقييم التحديث المجمّع للتقييم
+          download_report: تنزيل التقرير
+          edit_report: تعديل التقرير
+          export_occupations: تصدير المهن
+          external_score_import: استيراد الدرجات الخارجية
+          finalize_scores: إنهاء الدرجات
+          normalize_factor_scores: تطبيع درجات العوامل
+          raw_responses: الردود الخام
+          regenerate_report: إعادة إنشاء التقرير
+          report_data: بيانات التقرير
+          report_file_upload: تحميل ملف التقرير
+          rescore_responses: إعادة تقييم الردود
+          reset_progress: إعادة تعيين التقدم
+          reset_responses: إعادة تعيين الردود
+          scores: الدرجات
+          view_report: عرض التقرير
+          view_stats: عرض الإحصائيات
+        skills:
+          export: مهارات التصدير
+          export_translations: ترجمات مهارات التصدير
+          import: مهارات الاستيراد
+          import_translations: ترجمات مهارات الاستيراد
+          manage: إدارة
+          title: المهارات
+          view: عرض
+        smsHistories:
+          manage: إدارة
+          title: تواريخ الرسائل النصية القصيرة
+          view: عرض
+        smsInvites:
+          manage: إدارة
+          title: الدعوات عبر الرسائل النصية القصيرة
+          view: عرض
+        users:
+          reset_password: إعادة تعيين كلمة المرور
+          title: المستخدمون
+        workshops:
+          export_status: حالة التصدير
+          manage: إدارة
+          title: ورش العمل
+          view: منظر
+          view_recordings: عرض التسجيلات
+      libraries:
+        manage: إدارة
+        title: المكتبات الإعلامية
+        view: عرض
+      messages:
+        email: البريد الإلكتروني
+        instructions: التعليمات
+        options: الخيارات
+        title: الرسائل
+      norms:
+        manage: إدارة
+        title: المعايير
+        view: عرض
+      proficiencyLevels:
+        export: مستويات كفاءة التصدير
+        export_translations: ترجمات مستويات كفاءة التصدير
+        import: مستويات كفاءة الاستيراد
+        import_translations: ترجمات مستويات كفاءة الاستيراد
+        manage: الإدارة
+        title: مستويات الكفاءة
+        view: عرض
+      proficiency_level:
+        title: مستويات الكفاءة
+      projectSettings:
+        assessments: التقييمات
+        design: التصميم
+        feature_flags: علامات الميزة
+        idp: IDP
+        integrations: التكاملات
+        privacy_settings: إعدادات الخصوصية
+        saml: SAML
+        security: الأمان
+        smtp: SMTP
+        title: إعدادات المشروع
+        webhooks: Webhooks
+      projects:
+        manage: إدارة
+        manage_admins: إدارة المسؤولين
+        manage_licenses: إدارة التراخيص
+        manage_users: إدارة المستخدمين
+        title: المشاريع
+        view: عرض
+        view_licenses: عرض التراخيص
+      questions:
+        manage: إدارة
+        title: الأسئلة
+        view: عرض
+      reflectionQuestions:
+        export: التصدير
+        import: الاستيراد
+        manage: الإدارة
+        title: أسئلة التأملات الخاصة بالمشردين داخلياً
+        view: عرض
+      registrationCodes:
+        manage: إدارة
+        title: رموز التسجيل
+        view: عرض
+      registrationSettings:
+        manage: إدارة
+        title: إعدادات التسجيل
+      reports:
+        manage: إدارة
+        title: التقارير
+        view: عرض
+      responseMeta:
+        title: الاستجابة الفوقية
+      results:
+        approve_report: الموافقة على التقرير
+        bulk_download: تنزيل جماعي
+        bulk_regenerate_reports: إعادة إنشاء التقارير بشكل جماعي
+        bulk_update_evaluation_status: حالة تقييم التحديث المجمّع للتقييم
+        download_report: تنزيل التقرير
+        edit_report: تعديل التقرير
+        export_occupations: تصدير المهن
+        external_score_import: استيراد الدرجات الخارجية
+        finalize_scores: إنهاء الدرجات
+        normalize_factor_scores: تطبيع درجات العوامل
+        raw_responses: الردود الخام
+        regenerate_report: إعادة إنشاء التقرير
+        report_data: بيانات التقرير
+        report_file_upload: تحميل ملف التقرير
+        rescore_responses: إعادة تقييم الردود
+        reset_progress: إعادة تعيين التقدم
+        reset_responses: إعادة تعيين الردود
+        scores: الدرجات
+        title: النتائج
+        view_report: عرض التقرير
+        view_stats: عرض الإحصائيات
+      skills:
+        export: مهارات التصدير
+        export_translations: ترجمات مهارات التصدير
+        import: مهارات الاستيراد
+        import_translations: ترجمات مهارات الاستيراد
+        manage: إدارة
+        title: المهارات
+        view: عرض
+      smsHistories:
+        manage: إدارة
+        title: تواريخ الرسائل النصية القصيرة
+        view: عرض
+      smsInvites:
+        manage: إدارة
+        title: الدعوات عبر الرسائل النصية القصيرة
+        view: عرض
+      userIdpPlans:
+        manage: أدار
+        reset: اعاده تعيين
+        title: خطط IDP للمستخدمين
+        view: منظر
+      users:
+        reset_password: إعادة تعيين كلمة المرور
+        title: المستخدمون
+      workshops:
+        export_status: حالة التصدير
+        manage: إدارة
+        title: ورش العمل
+        view: منظر
+        view_recordings: عرض التسجيلات
+    permissions_360_campaigns: أذونات خاصة بحملات 360
+    privacy: Privacy
+    proficiency_level: مفاتيح API
+    proficiency_levels: مستويات الكفاءة
     profile_details: تفاصيل الملف الشخصي للمستخدم
     project_admins: مسؤولو المشاريع
     project_manager: مدير المشروع
+    project_number: رقم المشروع
+    project_settings: إعدادات المشروع
+    projects: المشاريع
     question_center: مركز الأسئلة
+    questions: أسئلة
+    reflection_questions: أسئلة للتفكير
     registration_codes: رموز التسجيل
+    registration_settings: إعدادات التسجيل
     report_approvals: موافقات التقارير
     report_condition_not_met: يحتاج %{required} %{relationship} تقييم(أو تقييمات)، لكنه لديه فقط %{actual}
     report_conditions_not_met_detailed: الإبلاغ عن %{user} لا يستوفي شروط التوفر. %{conditions}
@@ -128,6 +555,8 @@ ar:
     reset_idp_plan: خطة إعادة التعيين
     reset_idp_plan_confirmation: هل أنت متأكد أنك تريد إعادة ضبط الخطة؟
     reset_idp_plan_title: خطة إعادة التعيين
+    response_meta: الاستجابة الفوقية
+    results: النتائج
     role: دور
     saml_idp_certificate_available: متوفر (انقر للنسخة)
     saml_idp_certificate_label: شهادة
@@ -179,17 +608,28 @@ ar:
     saml_settings: إعدادات SAML
     scheduling: الجدولة
     scoring: سجل
+    search_admins: البحث عن المسؤولين
+    select_admin_role: اختر دور المسؤول
+    send_email: إرسال بريد إلكتروني
+    settings: الإعدادات
     show_submenu: عرض القائمة الفرعية
+    siem: SIEM
+    skill_aliases: Skill Aliases
+    skills: المهارات
     skills_taxonomy: تصنيف المهارات
     slot_name: اسم الماكينة
+    sms_histories: تواريخ الرسائل النصية القصيرة
+    sms_invites: الدعوات عبر الرسائل النصية القصيرة
     stats: الإحصائيات
     status_details: تفاصيل الحالة
     structured_learning: التعلم الرسمي [10]
+    subdomain: المجال الفرعي
     upload_success: تم الرفع بنجاح
     user_report_events: أحداث تقارير المستخدم
     users: المستخدمون
     view_licenses: عرض التراخيص
     waiting: انتظار
+    workshops: ورش العمل
     year: البلد
     yoodli_activity_id: معرف نشاط يودلي
     yoodli_email_id: معرف البريد الإلكتروني للمرشح في يودلي
