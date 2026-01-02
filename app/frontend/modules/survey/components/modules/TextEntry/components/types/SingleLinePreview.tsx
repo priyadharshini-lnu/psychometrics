@@ -32,9 +32,13 @@ const SingleLinePreview: FC<Props> = ({
   )
   const {
     result,
-    props: { type, allowContentCopy: allowContentCopyOnQuestion, enhanceWithAIEnabled = true },
+    props,
     id: questionId,
   } = model
+
+  const type = props?.type
+  const allowContentCopyOnQuestion = props?.allowContentCopy
+  const enhanceWithAIEnabled = props?.enhanceWithAIEnabled ?? false
 
   if (focus && inputRef.current) {
     inputRef.current.focus()

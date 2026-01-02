@@ -30,7 +30,7 @@ const Preview = ({
 }) => {
   const forceUpdate = useForceUpdate()
   const visiblePagesRef = useRef(null)
-  const { enhanceWithAiEnabled } = rstore ? rstore.getState().config?.project : { enhanceWithAiEnabled: false }
+  const enhanceWithAiEnabled = rstore?.getState()?.config?.project?.enhanceWithAiEnabled ?? false
 
   useEffect(() => {
     const storeListener = store.addListener('change', () => forceUpdate())
@@ -82,7 +82,9 @@ const Preview = ({
           moduleOverrides={moduleOverrides}
         />
       )}
-      {!pdfExport && <AIToolbar enabled={enhanceWithAiEnabled} withSpellchecker />}
+      {!pdfExport && enhanceWithAiEnabled && rstore && (
+        <AIToolbar enabled={enhanceWithAiEnabled} withSpellchecker />
+      )}
     </div>
   )
 }
