@@ -27,7 +27,7 @@ export const useTimezones = (currentZone?: string): TimezoneOption[] => useMemo(
 }, [currentZone])
 
 export function normalizeTimeZone (zone: string): string {
-  if (!zone) return 'UTC'
+  if (!zone) return 'Asia/Dubai'
 
   const aliasMap: Record<string, string> = {
     'Asia/Calcutta': 'Asia/Kolkata',
