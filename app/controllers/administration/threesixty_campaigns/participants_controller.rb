@@ -43,10 +43,12 @@ module Administration
         user = User.find(params[:id])
         if user.is?(:superadmin, :project_admin)
           audit! :sign_in_as, current_user, payload: { sign_in_as: resource.email }
+          siem_log_impersonation_event(user, 'Admin')
           sign_in(user)
         else
           spoof_token = SecureRandom.urlsafe_base64(64)
           user.update_column(:spoof_token, spoof_token)
+          siem_log_impersonation_event(user, 'End User')
           redirect_url = root_url(
             domain: Settings.domain,
             subdomain: threesixty_campaign.project.try(:subdomain),

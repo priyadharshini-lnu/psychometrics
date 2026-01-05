@@ -43,6 +43,23 @@ module SiemLogger
       })
     end
 
+    def siem_log_impersonation_event(target_user, current_user, role)
+      admin_actor = SiemLogger.user_identifier(current_user.email, current_user.id)
+      target_actor = SiemLogger.user_identifier(target_user.email, target_user.id)
+
+      context = "Admin logged in as #{role}"
+      message = "Admin #{admin_actor} Logged in as #{role} #{target_actor}"
+      message += " ##{target_user.project_id}" if target_user.project_id.present?
+
+      siem_log_security_event!('Impersonation', {
+        actor_name: admin_actor,
+        context: context,
+        msg: message,
+        acting_as_user: target_actor,
+        session_id: target_user.id
+      })
+    end
+
     private
 
     def determine_authentication_channel_for_success(found_by)

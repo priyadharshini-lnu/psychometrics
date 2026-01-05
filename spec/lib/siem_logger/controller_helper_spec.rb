@@ -69,5 +69,62 @@ RSpec.describe SiemLogger::ControllerHelper do
         controller.siem_log_authentication_success(user, :saml)
       end
     end
+
+    describe '#siem_log_impersonation_event' do
+      let(:target_user) { instance_double('User', email: 'target@example.com', id: 2, project_id: nil) }
+      let(:current_user) { instance_double('User', email: user_email, id: 1) }
+
+      it 'logs Impersonation event' do
+        expect(SiemLogger).to receive(:log_security_event!).with(
+          'Impersonation',
+          hash_including(
+            actor_name: user_email,
+            context: 'Admin logged in as Admin',
+            msg: "Admin #{user_email} Logged in as Admin target@example.com",
+            acting_as_user: 'target@example.com',
+            session_id: 2
+          )
+        )
+
+        controller.siem_log_impersonation_event(target_user, current_user, 'Admin')
+      end
+
+      it 'logs Impersonation event for user with project_id' do
+        allow(target_user).to receive(:project_id).and_return(123)
+        expect(SiemLogger).to receive(:log_security_event!).with(
+          'Impersonation',
+          hash_including(
+            actor_name: user_email,
+            context: 'Admin logged in as End User',
+            msg: "Admin #{user_email} Logged in as End User target@example.com #123",
+            acting_as_user: 'target@example.com',
+            session_id: 2
+          )
+        )
+
+        controller.siem_log_impersonation_event(target_user, current_user, 'End User')
+      end
+
+      context 'when DONT_SEND_PI_TO_SIEM is true' do
+        before do
+          allow(Settings.features).to receive(:dont_send_pi_to_siem).and_return(true)
+        end
+
+        it 'uses user ids instead of emails for the actor and target' do
+          expect(SiemLogger).to receive(:log_security_event!).with(
+            'Impersonation',
+            hash_including(
+              actor_name: '1',
+              context: 'Admin logged in as Admin',
+              msg: 'Admin 1 Logged in as Admin 2',
+              acting_as_user: '2',
+              session_id: 2
+            )
+          )
+
+          controller.siem_log_impersonation_event(target_user, current_user, 'Admin')
+        end
+      end
+    end
   end
 end
