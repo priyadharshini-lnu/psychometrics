@@ -846,6 +846,7 @@ as: :simulation_progress_notification
     post '/:project_id/skillvue/completion_notification', to: 'skillvue#completion_notification',
                                                             as: :skillvue_completion_notification
     post '/:project_id/skillvue/results', to: 'skillvue#results', as: :skillvue_results_notification
+    match '/mhs/webhook', to: 'mhs#webhook', via: %i[options post], as: :mhs_webhook
     post '/dailyco/recordings', to: 'daily_co#recordings', as: :dailyco_recordings
   end
 
