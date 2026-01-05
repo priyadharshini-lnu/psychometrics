@@ -14,7 +14,7 @@ class BaseController < ActionController::Base
   prepend_before_action :redirect_to_maintenance, if: -> { helpers.maintenance_started? }
   prepend_before_action :authenticate_user!, unless: -> { try(:skip_authentication?) }
   prepend_before_action :set_client_by_subdomain
-  prepend_before_action :set_request_id_in_current_attributes
+  prepend_before_action :set_request_related_current_attributes
   before_action :set_current_user_in_current_attributes
   before_action :detect_mobile
   before_action :set_sentry_context
@@ -172,8 +172,11 @@ class BaseController < ActionController::Base
     Settings.features.to_h.transform_values { |v| v == true }
   end
 
-  def set_request_id_in_current_attributes
+  def set_request_related_current_attributes
     Current.request_id = request.request_id
+    Current.ip_address = request.remote_ip
+    Current.request_url = request.url
+    Current.application_component = end_user_side? ? 'end_user' : 'admin'
   end
 
   def set_current_user_in_current_attributes

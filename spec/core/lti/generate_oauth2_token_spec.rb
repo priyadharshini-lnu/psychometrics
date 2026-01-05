@@ -14,7 +14,13 @@ RSpec.describe Lti::GenerateOauth2Token do
   let(:jwt_token) do
     JWT.encode({ iss: 'test-issuer', aud: 'test-audience', exp: 1.hour.from_now.to_i }, 'secret')
   end
-  let(:request) { double('request', remote_ip: '127.0.0.1', user_agent: 'Test') }
+  let(:request) do
+    double('request',
+           remote_ip: '127.0.0.1',
+           user_agent: 'Test',
+           url: 'http://test.host/lti/token',
+           env: { 'action_dispatch.request_id' => 'req-123' })
+  end
 
   before do
     allow_any_instance_of(described_class).to receive(:validate_jwt_assertion).and_return(project.id)

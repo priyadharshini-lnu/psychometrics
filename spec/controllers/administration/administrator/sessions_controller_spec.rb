@@ -43,4 +43,18 @@ RSpec.describe Administration::Administrator::SessionsController, type: :control
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    let(:client_admin) { create(:client_admin) }
+
+    before do
+      sign_in client_admin
+      allow(WardenAuthLogger).to receive(:log_sign_out)
+    end
+
+    it 'calls WardenAuthLogger.log_sign_out' do
+      delete :destroy
+      expect(WardenAuthLogger).to have_received(:log_sign_out).with(client_admin, anything, scope: :user)
+    end
+  end
 end

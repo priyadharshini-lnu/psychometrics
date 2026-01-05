@@ -242,6 +242,15 @@ class User < ApplicationRecord
     super unless disabled?
   end
 
+  def send_unlock_instructions
+    super
+    SiemLogger.log_security_event!('TokenIssuance',
+                                   actor_name: SiemLogger.user_identifier(email, id),
+                                   context: "User: #{SiemLogger.user_identifier(email, id)}",
+                                   msg: "Unlock token issued for #{SiemLogger.user_identifier(email, id)}",
+                                   authentication_channel: 'Unlock')
+  end
+
   def self.send_reset_password_instructions(recoverable)
     recoverable.send_reset_password_instructions if recoverable.persisted?
   end
@@ -289,6 +298,12 @@ class User < ApplicationRecord
     super(invited_by, options)
 
     InvitationMailer.invite_admin(id, @raw_invitation_token).deliver_later
+
+    SiemLogger.log_security_event!('TokenIssuance',
+                                   actor_name: SiemLogger.user_identifier(email, id),
+                                   context: "User: #{SiemLogger.user_identifier(email, id)}",
+                                   msg: "Invitation token issued for #{SiemLogger.user_identifier(email, id)}",
+                                   authentication_channel: 'Invitation')
   end
 
   def tenancy

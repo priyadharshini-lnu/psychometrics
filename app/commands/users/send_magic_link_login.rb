@@ -2,6 +2,8 @@
 
 module Users
   class SendMagicLinkLogin < BaseCommand
+    include SiemLogger::ControllerHelper
+
     attr_reader :project, :email
 
     def initialize(project, email)
@@ -20,6 +22,9 @@ module Users
       else
         MagicLinkLoginMailer.magic_link_email(user).deliver_now
       end
+
+      siem_log_token_issuance(user, 'MagicLink',
+                              context: "User: #{SiemLogger.user_identifier(user.email, user.id)}")
 
       broadcast :ok
     end

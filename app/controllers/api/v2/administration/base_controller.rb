@@ -27,6 +27,7 @@ module Api
 
     skip_before_action :verify_authenticity_token
     prepend_before_action :validate_requests_schema
+    prepend_before_action :set_request_related_current_attributes
     before_action :set_current_attributes
     before_action :ensure_project
     before_action :ensure_campaign
@@ -319,6 +320,13 @@ module Api
 
     def ignore_password_expire?
       session[:saml_login]
+    end
+
+    def set_request_related_current_attributes
+      Current.request_id = request.request_id
+      Current.ip_address = request.remote_ip
+      Current.request_url = request.url
+      Current.application_component = 'admin'
     end
   end
 end

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CreateApiKey < Rectify::Command
+  include SiemLogger::ControllerHelper
+
   def initialize(user)
     @user = user
   end
@@ -10,6 +12,9 @@ class CreateApiKey < Rectify::Command
     @api_key = user.api_keys.new(key: key, token: token)
 
     return broadcast :ivalid unless api_key.save
+
+    siem_log_token_issuance(user, 'API',
+                            context: "User: #{SiemLogger.user_identifier(user.email, user.id)}")
 
     broadcast :ok, api_key
   end

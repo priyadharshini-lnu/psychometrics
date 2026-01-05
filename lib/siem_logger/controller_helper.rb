@@ -60,6 +60,19 @@ module SiemLogger
       })
     end
 
+    def siem_log_token_issuance(user, channel, context:, identity_provider: nil)
+      actor = user ? SiemLogger.user_identifier(user.email, user.id) : nil
+
+      siem_log_security_event!('TokenIssuance', {
+        actor_name: actor,
+        context: context,
+        msg: "#{channel} token issued#{" for #{actor}" if actor}",
+        authentication_channel: channel,
+        request_details: { identity_provider: identity_provider },
+        session_id: user&.id
+      })
+    end
+
     private
 
     def determine_authentication_channel_for_success(found_by)

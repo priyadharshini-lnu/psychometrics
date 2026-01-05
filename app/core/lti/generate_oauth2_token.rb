@@ -2,6 +2,8 @@
 
 module Lti
   class GenerateOauth2Token < BaseCommand
+    include SiemLogger::ControllerHelper
+
     VALID_LTI_SCOPES = [
       'https://purl.imsglobal.org/spec/lti-ags/scope/lineitem',
       'https://purl.imsglobal.org/spec/lti-ags/scope/lineitem.readonly',
@@ -157,7 +159,11 @@ module Lti
         token_type: token_result[:token_type],
         expires_in: token_result[:expires_in],
         scope: form.scope
-      }
+      }.tap do
+        siem_log_token_issuance(nil, 'LTI',
+                                context: "Project: #{project_id}",
+                                identity_provider: 'LTI Tool')
+      end
     rescue StandardError => e
       Rails.logger.error "Failed to create OAuth2 access token: #{e.message}"
       broadcast(:error, {
