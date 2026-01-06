@@ -14,6 +14,7 @@ module AI
         DEFAULT_MAX_TOKENS = 600
         CITATION_QUALITY = 'FAST'
         SERVING_TYPE = 'ON_DEMAND'
+        DEFAULT_SAFETY_MODE = 'STRICT'
 
         # rubocop:disable Metrics/ParameterLists, Lint/UnusedMethodArgument
         def render_payload(messages, tools:, temperature:, model: nil, stream: false, schema: nil)
@@ -143,6 +144,11 @@ module AI
           # By default OCI doesn't have any specified limit mentioned that is internally used by the model
           # Through testing, we can see the limit is too low, setting it to 600 by default
           request_params[:max_tokens] ||= DEFAULT_MAX_TOKENS
+
+          # Set default safety mode as STRICT, safer for professional environment,
+          # OCI by default sets this value to CONTEXTUAL
+          # CONTEXTUAL may allow some unsafe content based on the context of the conversation
+          request_params[:safety_mode] ||= DEFAULT_SAFETY_MODE
         end
 
         def add_tools_if_present!(request_params, tools)
