@@ -34,6 +34,7 @@ en:
     ai_assistants_test_render: Test Render
     ai_assistants_test_render_tooltip: Test your prompt template with campaign data to check what will be sent to the AI assistant.
     ai_assisted_idp_feature_disabled: AI Assisted IDP feature has been disabled for this project.
+    all_corner_rounded: All corner rounded
     api_keys: API keys
     assessments: Assessments
     assessments_reports: Assessments & Reports
@@ -44,6 +45,7 @@ en:
     assistant_toolbar_not_a_valid_operation: Unknown operation %{operation}.
     audit_logs: Audit Logs
     audit_reports: Audit Reports
+    auto_placeholder: Auto
     availability: Availability
     available_languages: Report Available in Languages
     back_to_main: Main Menu
@@ -680,6 +682,8 @@ en:
     waiting: Waiting
     workshops: Workshops
     writing_assistant_not_configured: Writing Assistant not configured
+    x_axis_interval_label: X-Axis Interval
+    y_axis_interval_label: Y-Axis Interval
     year: Year
     yoodli_activity_id: Yoodli Activity ID
     yoodli_email_id: Yoodli Candidate Email ID

@@ -111,6 +111,18 @@ const Properties: React.FC<Props> = ({ modules, questions }: Props) => {
     })
   }
 
+  const changeYAxisInterval = (value: string) => {
+    updateAll((model) => {
+      model.props.yAxisInterval = value !== '' ? value : null
+    })
+  }
+
+  const changeXAxisInterval = (value: string) => {
+    updateAll((model) => {
+      model.props.xAxisInterval = value !== '' ? value : null
+    })
+  }
+
   const checkboxHandler = (type: string, e: CheckboxChangeEvent) => {
     updateAll((model) => {
       model.props[type] = e.target.checked
@@ -153,6 +165,12 @@ const Properties: React.FC<Props> = ({ modules, questions }: Props) => {
         value={model.props.graphicalPosition}
       />
       <MaxValueOptions value={model.props.maxValue || ''} changeHandler={changeMaxValue} />
+      <IntervalOptions
+        yAxisValue={model.props.yAxisInterval || ''}
+        xAxisValue={model.props.xAxisInterval || ''}
+        changeYAxisHandler={changeYAxisInterval}
+        changeXAxisHandler={changeXAxisInterval}
+      />
       <AxisOptions
         model={model}
         options={axisDisplayOptions.filter(
@@ -175,8 +193,9 @@ const Properties: React.FC<Props> = ({ modules, questions }: Props) => {
             <Checkbox
               checked={model.props.barBorderRadiusType}
               onChange={e => changeBarBorderRadiusType(e.target.checked)}
-            />
-            All corner rounded
+            >
+              {I18n.t('admin.all_corner_rounded')}
+            </Checkbox>
           </Space>
         </>
       )}
@@ -226,6 +245,41 @@ const MaxValueOptions: React.FC<MaxValueOptionsProps> = ({ value, changeHandler 
       value={value}
       onChange={changeHandler}
       placeholder={I18n.t('reports.builder.graph.properties.maxValueLabelPlaceholder')}
+      min="0"
+      className="w-100"
+    />
+  </>
+)
+
+interface IntervalOptionsProps {
+  yAxisValue: string | undefined
+  xAxisValue: string | undefined
+  changeYAxisHandler: (val: string) => void
+  changeXAxisHandler: (val: string) => void
+}
+
+const IntervalOptions: React.FC<IntervalOptionsProps> = ({
+  yAxisValue,
+  xAxisValue,
+  changeYAxisHandler,
+  changeXAxisHandler,
+}) => (
+  <>
+    <Typography.Text>{I18n.t('admin.y_axis_interval_label')}</Typography.Text>
+    <InputNumber
+      size="small"
+      value={yAxisValue}
+      onChange={changeYAxisHandler}
+      placeholder={I18n.t('admin.auto_placeholder')}
+      min="0"
+      className="w-100"
+    />
+    <Typography.Text>{I18n.t('admin.x_axis_interval_label')}</Typography.Text>
+    <InputNumber
+      size="small"
+      value={xAxisValue}
+      onChange={changeXAxisHandler}
+      placeholder={I18n.t('admin.auto_placeholder')}
       min="0"
       className="w-100"
     />

@@ -17,6 +17,8 @@ interface Props extends TextCondition {
   barBorderRadius: string
   barBorderRadiusType: boolean
   maxValue: string | null
+  yAxisInterval: string | null
+  xAxisInterval: string | null
   gaugeWidth:number | null
   gaugeBorder:number | null
   source: {
