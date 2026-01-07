@@ -20,7 +20,7 @@
     "prepare": "husky install"
   },
   "engines": {
-    "node": ">=18.16.1"
+    "node": ">=22.21.1"
   },
   "repository": {
     "type": "git",
