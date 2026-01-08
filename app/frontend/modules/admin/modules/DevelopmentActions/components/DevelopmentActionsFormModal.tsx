@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import {
   Form, Input, Select, Spin, Upload, Button, DatePicker, Flex, Switch,
 } from 'antd'
@@ -9,6 +9,7 @@ import { debounce, uniqBy } from 'lodash'
 import dayjs from 'dayjs'
 import { useDispatch } from 'react-redux'
 import { UploadFile } from 'antd/lib/upload/interface'
+import { Tag } from 'modules/admin/core/tags'
 import { UploadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Skill, SkillTR } from '~/modules/admin/modules/client/core/skills'
 import { Project } from '~/modules/admin/modules/client/core/projects'
@@ -23,9 +24,12 @@ import {
 } from '~/modules/admin/modules/client/core/developmentAction'
 import InputDuration from '~/components/InputDuration'
 import { durationValidator } from '~/components/DurationValidator'
+import { TaggableResourceType } from '~/modules/admin/components/Resource/TagFilter/constants'
 
 
 const { Option } = Select
+
+const MAX_TAG_BATCH_SIZE = 100
 
 type OptionsType = {
   id: string
@@ -67,6 +71,14 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
     apiConfig: {
       include: ['project'],
       fields: { skills: ['name'] },
+    },
+  })
+
+  const {
+    data: tags, fetch: fetchTags, isLoading: isTagsLoading,
+  } = useResources<Tag>('tags', {
+    apiConfig: {
+      query: { taggable_resource_type: TaggableResourceType.DevelopmentAction },
     },
   })
 
@@ -131,6 +143,18 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
       },
     })
   }, 300)
+
+  const debouncedFetchTags = useCallback(debounce((value) => {
+    fetchTags({
+      apiConfig: {
+        filter: { name_cont: value },
+        fields: { tags: ['name'] },
+        page: {
+          size: MAX_TAG_BATCH_SIZE,
+        },
+      },
+    })
+  }, 300), [])
 
   const developmentActionType = Form.useWatch('developmentActionType', form)
 
@@ -317,6 +341,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
           course_end_date: developmentAction?.courseEndDate ? dayjs(developmentAction.courseEndDate) : null,
           image: developmentAction?.image,
           availableLanguages: developmentAction?.availableLanguages || [],
+          tagList: developmentAction?.tagList || [],
         },
       }}
     >
@@ -515,6 +540,27 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
             >
               {skills.map(({ id, name }) => (
                 <Option key={id} value={id}>{name}</Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item
+            name="tagList"
+            label={I18n.t('admin.development_actions_form_tags')}
+          >
+            <Select
+              mode="tags"
+              style={{ width: '100%' }}
+              placeholder={I18n.t('admin.development_actions_form_tags')}
+              showSearch
+              onSearch={(value) => {
+                debouncedFetchTags(value)
+              }}
+              notFoundContent={isTagsLoading('fetch') ? <Spin size="small" /> : null}
+              filterOption={false}
+              maxTagCount="responsive"
+            >
+              {tags.map(({ name }) => (
+                <Select.Option key={name} value={name}>{name}</Select.Option>
               ))}
             </Select>
           </Form.Item>

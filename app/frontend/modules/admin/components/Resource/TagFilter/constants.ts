@@ -1,5 +1,6 @@
 export enum TaggableResourceType {
     Assessment = 'Assessment',
     Report = 'Report',
-    Skill = 'Skill'
+    Skill = 'Skill',
+    DevelopmentAction = 'DevelopmentAction'
 }

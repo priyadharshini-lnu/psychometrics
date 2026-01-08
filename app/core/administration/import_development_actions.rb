@@ -3,7 +3,7 @@
 module Administration
   class ImportDevelopmentActions < BaseCommand
     REQUIRED_FIELDS = %w[SkillID Name Description Type DevelopmentActionType].freeze
-    OPTIONAL_FIELDS = %w[ID CourseURL CourseStartDate CourseEndDate CourseImage AvailableLanguages Duration].freeze
+    OPTIONAL_FIELDS = %w[ID CourseURL CourseStartDate CourseEndDate CourseImage AvailableLanguages Duration Tags].freeze
 
     def initialize(file, project_id)
       @file = file
@@ -55,6 +55,8 @@ module Administration
       if row_data['CourseImage'].present?
         attach_image(development_action, row_data['CourseImage'])
       end
+
+      assign_tags(development_action, row_data)
 
       development_action.save!
     rescue ActiveRecord::RecordInvalid => e
@@ -117,6 +119,12 @@ message: e.message)
     rescue ActiveStorage::IntegrityError => e
       raise Errors::ImportError,
             I18n.t('administration.development_action_import.errors.invalid_image_file', message: e.message)
+    end
+
+    def assign_tags(development_action, row_data)
+      return if row_data['Tags'].blank?
+
+      development_action.tag_list = row_data['Tags'].split(',').map(&:strip)
     end
 
     def parse_date(date_string)

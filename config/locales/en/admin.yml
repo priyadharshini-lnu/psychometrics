@@ -82,6 +82,7 @@ en:
     delete_ok_text: Yes, Delete
     denied: Denied
     development_actions: Development Actions
+    development_actions_form_tags: Tags
     dimensions: Dimensions
     done: Done
     done_tooltip: No more evaluation can be submitted for this user as this user's evaluation is marked as done by %{marked_by}

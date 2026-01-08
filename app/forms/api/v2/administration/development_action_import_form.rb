@@ -7,7 +7,7 @@ module Api
         include ActiveModel::Model
 
         REQUIRED_FIELDS = %w[SkillID Name Description Type DevelopmentActionType].freeze
-        OPTIONAL_FIELDS = %w[ID CourseURL CourseStartDate CourseEndDate CourseImage].freeze
+        OPTIONAL_FIELDS = %w[ID CourseURL CourseStartDate CourseEndDate CourseImage Tags].freeze
         VALID_DEVELOPMENT_ACTION_TYPES = %w[course default].freeze
         VALID_LEARNING_STYLES = %w[structured_learning learning_from_others on_the_job].freeze
 

@@ -47,7 +47,7 @@ describe AI::Tools::Idp::AvailableSkillsAndDevelopmentActions do
         development_action = skill_result[:development_actions].first
         expect(development_action).to include(
           :id, :name, :description, :learning_style, :development_action_type,
-          :duration, :course_url, :course_start_date, :course_end_date, :type
+          :duration, :course_url, :course_start_date, :course_end_date, :type, :tags
         )
 
         expect(result[:meta]).to include(:result_count, :query_result_by_type, :total_available_skills)
@@ -83,6 +83,87 @@ describe AI::Tools::Idp::AvailableSkillsAndDevelopmentActions do
 
         expect(result).to have_key(:error)
         expect(result[:error]).to eq(error_message)
+      end
+    end
+
+    context 'with development_action_tags parameter' do
+      let(:query_text) { 'leadership skills' }
+
+      let!(:da_with_matching_tags) do
+        da = create(:development_action, name: 'Guided Leadership', skills: [skill1])
+        da.tag_list.add('guide', 'low')
+        da.save!
+        da
+      end
+
+      let!(:da_with_partial_match) do
+        da = create(:development_action, name: 'Quick Leadership', skills: [skill1])
+        da.tag_list.add('low')
+        da.save!
+        da
+      end
+
+      let!(:da_without_tags) do
+        create(:development_action, name: 'Basic Leadership', skills: [skill1])
+      end
+
+      let!(:da_three_matches) do
+        da = create(:development_action, name: 'Ultimate Guide Low', skills: [skill1])
+        da.tag_list.add('guide', 'low', 'ultimate')
+        da.save!
+        da
+      end
+
+      let!(:da_another_no_match1) do
+        create(:development_action, name: 'Advanced Leadership A', skills: [skill1])
+      end
+
+      let!(:da_another_no_match2) do
+        create(:development_action, name: 'Advanced Leadership B', skills: [skill1])
+      end
+
+      let!(:da_another_no_match3) do
+        create(:development_action, name: 'Advanced Leadership C', skills: [skill1])
+      end
+
+      before do
+        stub_wisper_publisher('Skills::EmbeddingQuery', :call, :ok, [skill1])
+      end
+
+      it 'orders development actions by tag match count (highest first)' do
+        result = subject.execute(query_text: query_text, development_action_tags: 'low, guide, ultimate')
+
+        development_actions = result[:skills].first[:development_actions]
+        action_names = development_actions.pluck(:name)
+
+        matching_actions = ['Ultimate Guide Low', 'Guided Leadership', 'Quick Leadership']
+        non_matching_actions = ['Basic Leadership', 'Advanced Leadership A', 'Advanced Leadership B',
+                                'Advanced Leadership C', 'APPLY HIGH Tagged DA']
+
+        matching_indices = matching_actions.filter_map { |name| action_names.index(name) }
+        non_matching_indices = non_matching_actions.filter_map { |name| action_names.index(name) }
+
+        expect(matching_indices.max).to be < non_matching_indices.min
+
+        expect(action_names.index('Ultimate Guide Low')).to be < action_names.index('Guided Leadership')
+        expect(action_names.index('Guided Leadership')).to be < action_names.index('Quick Leadership')
+      end
+
+      it 'includes non-matching development actions after matching ones' do
+        result = subject.execute(query_text: query_text, development_action_tags: 'guide')
+
+        development_actions = result[:skills].first[:development_actions]
+        action_names = development_actions.pluck(:name)
+
+        expect(action_names).to include('Basic Leadership')
+        expect(action_names.index('Guided Leadership')).to be < action_names.index('Basic Leadership')
+      end
+
+      it 'returns all development actions when development_action_tags is nil' do
+        result = subject.execute(query_text: query_text, development_action_tags: nil)
+
+        development_actions = result[:skills].first[:development_actions]
+        expect(development_actions.size).to be >= 3
       end
     end
   end

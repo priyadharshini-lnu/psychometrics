@@ -27,7 +27,17 @@ export const DevelopmentActionsTable: React.FC<Props> = ({ openModal }) => (
     <Resource.Column<DevelopmentAction>
       title={I18n.t('common.column.name')}
       id="name"
-      render={developmentAction => <Typography.Text>{developmentAction.name}</Typography.Text>}
+      render={(_, developmentAction) => (
+        <>
+          <Typography.Text style={{ marginRight: 12 }}>{developmentAction.name}</Typography.Text>
+          <TagList
+            initialTags={developmentAction.tagList as string[]}
+            config={{
+              editable: false,
+            }}
+          />
+        </>
+      )}
       sorter
       minWidth={200}
     />
