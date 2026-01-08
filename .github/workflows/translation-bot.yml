@@ -58,13 +58,12 @@ jobs:
           ruby .github/scripts/translation-bot/process-keys.rb "$BASE_REF"
 
       - name: Generate translations
-        if: steps.find_keys.outputs.new_keys != '[]'
+        if: steps.find_keys.outputs.has_new_keys == 'true'
         env:
-          NEW_KEYS: ${{ steps.find_keys.outputs.new_keys }}
           MICROSOFT_TRANSLATION_API_KEY: ${{ secrets.MICROSOFT_TRANSLATION_API_KEY }}
           MICROSOFT_TRANSLATION_API_REGION: ${{ vars.MICROSOFT_TRANSLATION_API_REGION }}
         run: |
-          ruby .github/scripts/translation-bot/generate-translations.rb "$NEW_KEYS"
+          ruby .github/scripts/translation-bot/generate-translations.rb --file ${{ steps.find_keys.outputs.new_keys_file }}
 
       - name: Check if translations were generated
         id: check_changes
@@ -97,11 +96,11 @@ jobs:
         env:
           PR_URL: ${{ steps.create_pr.outputs.pr_url }}
           TRANSLATION_BRANCH: ${{ steps.create_pr.outputs.translation_branch }}
-          NEW_KEYS: ${{ steps.find_keys.outputs.new_keys }}
+          NEW_KEYS_FILE: ${{ steps.find_keys.outputs.new_keys_file }}
           PR_NUMBER: ${{ steps.pr_details.outputs.pr_number }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ruby .github/scripts/translation-bot/comment-on-pr.rb "$PR_NUMBER" "$NEW_KEYS" "$PR_URL" "$TRANSLATION_BRANCH"
+          ruby .github/scripts/translation-bot/comment-on-pr.rb "$PR_NUMBER" --file "${NEW_KEYS_FILE:-/tmp/new_keys.json}" "$PR_URL" "$TRANSLATION_BRANCH"
 
       - name: Cleanup
         if: always()

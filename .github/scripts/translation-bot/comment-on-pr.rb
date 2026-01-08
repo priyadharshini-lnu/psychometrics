@@ -5,14 +5,41 @@ require 'json'
 require 'open3'
 
 # Parse command line arguments
+# Supports: script.rb <PR_NUMBER> [NEW_KEYS_JSON | --file <path>] [PR_URL] [TRANSLATION_BRANCH]
 pr_number = ARGV[0]
-new_keys_json = ARGV[1] || '[]'
-pr_url = ARGV[2] || ''
-translation_branch = ARGV[3] || ''
+new_keys_json = '[]'
+pr_url = ''
+translation_branch = ''
 
 if pr_number.nil?
-  warn "Usage: #{$PROGRAM_NAME} <PR_NUMBER> [NEW_KEYS_JSON] [PR_URL] [TRANSLATION_BRANCH]"
+  warn "Usage: #{$PROGRAM_NAME} <PR_NUMBER> [NEW_KEYS_JSON | --file <path>] [PR_URL] [TRANSLATION_BRANCH]"
   exit 1
+end
+
+# Parse remaining arguments
+i = 1
+while i < ARGV.length
+  if ARGV[i] == '--file' && ARGV[i + 1]
+    file_path = ARGV[i + 1]
+    if File.exist?(file_path)
+      new_keys_json = File.read(file_path).strip
+    else
+      warn "Warning: File not found: #{file_path}, using empty array"
+    end
+    i += 2
+  else
+    if pr_url.empty?
+      # First non-file argument after PR_NUMBER is either NEW_KEYS_JSON or PR_URL
+      if ARGV[i]&.start_with?('[', '{')
+        new_keys_json = ARGV[i] || '[]'
+      else
+        pr_url = ARGV[i] || ''
+      end
+    elsif translation_branch.empty?
+      translation_branch = ARGV[i] || ''
+    end
+    i += 1
+  end
 end
 
 # Helper method to run GitHub CLI commands

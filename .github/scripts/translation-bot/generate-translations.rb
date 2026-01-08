@@ -465,12 +465,43 @@ end
 
 # Main execution
 if __FILE__ == $PROGRAM_NAME
-  if ARGV.empty?
+  # Read input from various sources:
+  # 1. Command line argument
+  # 2. File specified with --file option
+  # 3. Environment variable NEW_KEYS_FILE
+  # 4. Stdin
+  new_keys_json = nil
+
+  if ARGV[0] == '--file' && ARGV[1]
+    # Read from file specified with --file option
+    file_path = ARGV[1]
+    if File.exist?(file_path)
+      puts "Reading keys from file: #{file_path}"
+      new_keys_json = File.read(file_path)
+    else
+      puts "Error: File not found: #{file_path}"
+      exit 1
+    end
+  elsif ENV['NEW_KEYS_FILE'] && File.exist?(ENV['NEW_KEYS_FILE'])
+    # Read from file specified in environment variable
+    file_path = ENV['NEW_KEYS_FILE']
+    puts "Reading keys from file (NEW_KEYS_FILE): #{file_path}"
+    new_keys_json = File.read(file_path)
+  elsif !ARGV.empty?
+    # Read from command line argument (original behavior)
+    new_keys_json = ARGV[0]
+  elsif !$stdin.tty?
+    # Read from stdin if available
+    puts 'Reading keys from stdin...'
+    new_keys_json = $stdin.read
+  else
     puts "Usage: #{$PROGRAM_NAME} <new_keys_json>"
+    puts "   or: #{$PROGRAM_NAME} --file <path_to_json_file>"
+    puts '   or: Set NEW_KEYS_FILE environment variable'
+    puts '   or: Pipe JSON to stdin'
     exit 1
   end
 
-  new_keys_json = ARGV[0]
   processor = TranslationProcessor.new
   changes_made = processor.process_new_keys(new_keys_json)
 
