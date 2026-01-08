@@ -2,9 +2,8 @@ import React, {
   ChangeEvent, FC, useState, MouseEvent,
 } from 'react'
 import { Button, Modal, Typography } from 'antd'
-import { CheckOutlined, StopOutlined } from '@ant-design/icons'
 import cs from 'classnames'
-import { ExpandOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { CheckOutlined, StopOutlined, ExpandOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { PreviewModel } from '~/modules/survey/interfaces/questions/MultipleChoice'
 import { I18nInterface } from '~/modules/survey/core/preview/FlowProcessor/interfaces'

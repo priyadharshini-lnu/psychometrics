@@ -2,8 +2,13 @@
 hu:
   shared:
     action: Akció
+    actions: Műveletek
+    active: Aktív
     add: Add
     advanced: Haladó
+    agree_and_continue: Egyetértek és folytatjuk
+    archive: Archívum
+    archived: Archivált
     authentication_failed: A hitelesítés sikertelen. Kérlek, próbáld meg újra.
     basic: Alapvető
     campaign_id: Kampányazonosító
@@ -11,24 +16,46 @@ hu:
     change_password: Jelszó módosítása
     clear_filters: Szűrők törlése
     collaborative_learning: Együttműködő tanulás
+    confirm: Megerősítés
     continue: Folytatódik
+    created_at: Létrehozva
+    created_date: Létrehozás dátuma
+    decline: Hanyatlás
     description: Leírás
     edit: Szerkesztés
     edited: Új
+    email: E-mail
+    export: Kivitel
+    first_name: Keresztnév
     formal_learning: Formális tanulás
     group_question_max_validation_error: Minden csoport legfeljebb {{max}} tételt tartalmazhat.
     group_question_min_validation_error: Minden csoportnak legalább {{min}} tételt kell tartalmaznia.
     id: ID
     idp_ai_assistant_disclaimer: A Lighthouse AI IDP asszisztense hibázhat. Kérlek, légy óvatos a válaszok használatakor.
     internet_disconnected_message: Próbálok újra kapcsolódni. Kérjük, ellenőrizze az internetkapcsolatát.
+    last_name: Vezetéknév
     learning_on_the_job_label: Tanulás munka közben
+    login: Bejelentkezés
+    modified_by: Módosította
+    modified_date: Módosítás dátuma
+    more_actions: További műveletek
     mte_logo_alt_text: Mercer Talent Enterprise logó
     name: Név
     new: Új
+    ok: Oké
+    recording_consent_notice: Ezt az ülést rögzítik. Részvétele ezen a találkozón azt jelenti, hogy beleegyezik a rögzítéshez.
+    recording_consent_proceed_question: Beleegyezik a rögzített találkozó folytatásába?
+    recording_consent_title: Felvételi beleegyezési értesítés
+    remove: Távolítsa el a
     removed: Eltávolított
+    reset_password: Jelszó visszaállítása
     rte_paste_content_exceeds_char_limit: A szöveg meghaladja a {{maxCharacterLimit}} karakterkorlátját, és nem lehet beilleszteni.
     rte_paste_content_exceeds_word_limit: A szöveg túllépi a {{maxWordLimit}} szóhatárát, és nem lehet beilleszteni.
+    save: Mentés
     search: Keresés
+    send_email: E-mail küldése
+    show_more: Több
+    something_wrong: Valami elromlott. Forduljon a rendszergazdához.
     table:
       entries:
         selected: 1 sor kiválasztva

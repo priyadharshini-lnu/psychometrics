@@ -1,5 +1,5 @@
 import { Button } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { Idp } from '~/modules/admin/modules/client/core/idp'
 

@@ -1,5 +1,5 @@
-import { DeleteOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
+import { DeleteOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { rgba2hex } from '~/utils/color'
 import { ColorPicker } from '~/glint'
 import styles from './styles.less'

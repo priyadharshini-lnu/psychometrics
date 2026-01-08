@@ -56,7 +56,7 @@ brew services stop minio/stable/minio
 
 3. Set public access for bucket
    ```
-   mc alias set local http://127.0.0.1:9000
+   mc alias set local http://127.0.0.1:9000 'minioadmin' 'minioadmin'
    mc anonymous set download local/s3-public-bucket
    ```
 

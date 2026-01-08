@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import {
   Table, Pagination, Space, Typography, Input, Button, MenuProps,
 } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
 import { useNavigate, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { useResources } from '~/hooks/useResources/useResources'

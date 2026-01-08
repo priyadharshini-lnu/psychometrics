@@ -2,7 +2,7 @@ import {
   useRef, FC, useState, useEffect,
 } from 'react'
 import { Button, ButtonProps } from 'antd'
-import { LoadingOutlined } from '@ant-design/icons'
+import { LoadingOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 export const FixedWidthButton: FC<ButtonProps> = ({ children, loading, ...props }) => {
   const buttonWidthRef = useRef<HTMLAnchorElement | HTMLButtonElement>(null)

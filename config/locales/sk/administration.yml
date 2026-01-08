@@ -29,35 +29,11 @@ sk:
     administrators:
       drawers:
         edit:
-          admin_role_select: Vyberte rolu správcu
-          admin_roles: Roly správcu
-          create_success: Správca '%{name}' bol úspešne vytvorený
-          email: E-mail
-          first_name: Krstné meno
           first_name_required: Krstné meno je povinné
-          last_name: Priezvisko
           last_name_required: Prízvisko je povinné
-          no_edit_permission: Nemáte povolenie na úpravu správcu '%{name}'
-          save: Zachrániť
-          update: Aktualizovať
-          update_success: Správca "%{name}" bol úspešne aktualizovaný
-        notes:
-          threesixty_permission: Povolenia špecifické pre 360° kampane
-          title: Poznámky
         view:
-          add_campaign_admin: Pridanie správcu kampane
-          add_client_admin: Pridať správcu klienta
-          add_project_admin: Pridanie správcu projektu
-          add_threesixty_campaign_admin: Pridanie správcu kampane
-          edit_campaign_admin: Upraviť správcu kampane
-          edit_client_admin: Upraviť správcu klienta
-          edit_project_admin: Upraviť správcu projektu
-          edit_threesixty_campaign_admin: Upraviť správcu kampane
           first_name: Krstné meno
           last_name: Priezvisko
-          project_admin: Správca projektu
-          project_list: Zoznam projektov
-          role: Správca kampane
           title:
             campaign_admin: Správca kampane
             client_admin: Správca klienta
@@ -65,253 +41,20 @@ sk:
       list:
         actions:
           api_keys: Kľúče API
-          cancel_text: Zrušiť
-          change_password: Obnoviť heslo
           edit: Editovať
           export_admins_with_permissions: Export rolí správcu a povolení
           export_success: Úloha exportu správcu bola úspešne naplánovaná. Skontrolujte stav svojho oznámenia.
           login: Prihlásenie
-          send_email: Odoslať e-mail
           spoof:
             login_successful: Prihlásenie bolo úspešné.
           user_report_events: Protokoly schválenia hlásenia
         columns:
-          actions: Akcie
-          created_at: Vytvorené v
           email: E-mail
-          id: ID
-          name: Meno
-        header:
-          add_admin: Pridať správcu
-          search_admins: Vyhľadávanie správcov
-        toolbar:
-          export_admins_with_permissions: Export rolí správcu a povolení
       modals:
         delete:
           cancelText: Zrušiť
-          content: Naozaj chcete odstrániť správcu používateľa s e-mailom '%{email}'?
           okText: Ok
-          onSuccess: Správca s e-mailom %{email} bol úspešne odstránený
           title: Potvrdiť
-      permissions:
-        labels:
-          aiArtifacts:
-            export: Vývoz
-            import: Import
-            manage: Ovládať
-            title: Artefakty AI
-            view: Pohľad
-          apiKeys:
-            manage: Ovládať
-            title: Kľúče API
-            view: Pohľad
-          assessments:
-            manage: Ovládať
-            title: Hodnotenia
-            view: Pohľad
-          assessors:
-            manage: Ovládať
-            title: Hodnotiteľov
-            view: Pohľad
-          auditLogs:
-            title: Protokoly auditu
-            view: Pohľad
-          auditReports:
-            admin_permissions: Export rolí správcu a povolení
-            title: Audítorské správy
-            user_report_events: Protokoly schválenia hlásenia
-          campaignFactors:
-            manage: Ovládať
-            title: Faktory kampane
-            view: Pohľad
-          campaigns:
-            bulk_download: Hromadné sťahovanie
-            bulk_regenerate_reports: Hromadné opätovné generovanie prehľadov
-            manage: Ovládať
-            manage_admins: Správa správcov
-            manage_factor_benchmark_scores: Správa skóre Factor Benchmark
-            manage_messages: Správa správ
-            manage_options: Spravovať možnosti
-            manage_report_approvals: Správa schválení zostáv
-            manage_users: Správa používateľov
-            participant_options: Možnosti účastníkov
-            report_options: Možnosti zostavy
-            reset_nominations: Obnoviť nominácie
-            title: Kampane
-            view: Pohľad
-            view_factor_benchmark_scores: Zobraziť skóre porovnávacích hodnôt faktorov
-            view_stats: Zobraziť štatistiky
-          clients:
-            export_data_report: Exportovať zostavu údajov
-            manage: Ovládať
-            title: Klientov
-            view: Pohľad
-            view_licenses: Zobraziť licencie
-          communications:
-            manage: Ovládať
-            title: Komunikácia
-            view: Pohľad
-          dashboards:
-            accesssheet_manage: Správa prístupového hárka
-            accesssheet_settings: Nastavenia prístupového hárka
-            accesssheet_view: Zobrazenie prístupovej hárky
-            export: Export
-            title: Tabule
-            view: Pohľad
-          datasheets:
-            manage: Ovládať
-            title: Technické listy
-            view: Pohľad
-          developmentActions:
-            export: Vývoz
-            export_global: Exportovať globálne
-            export_global_translations: Export globálnych prekladov
-            export_translations: Exportovať preklady
-            import: Import
-            import_global: Importovať globálne
-            import_global_translations: Import globálnych prekladov
-            import_translations: Importovať preklady
-            manage: Ovládať
-            title: Rozvojové akcie
-            view: Pohľad
-          dimensions:
-            manage: Ovládať
-            title: Rozmery
-            view: Pohľad
-          idpTemplates:
-            manage: Ovládať
-            title: Šablóny IDP
-            view: Pohľad
-          interviewQuestions:
-            export: Export
-            import: Import
-            manage: Manažment
-            title: Otázky k pohovoru pre IDP
-            view: Zobraziť
-          jobRoles:
-            export_translations: Export pracovných rolí Preklady
-            import_translations: Import pracovných rolí Preklady
-            manage: Ovládať
-            title: Pracovné pozície
-            view: Pohľad
-          libraries:
-            manage: Ovládať
-            title: Knižnice médií
-            view: Pohľad
-          messages:
-            email: E-mail
-            instructions: Inštrukcie
-            options: Možnosti
-            title: Správy
-          norms:
-            manage: Ovládať
-            title: Normy
-            view: Pohľad
-          proficiencyLevels:
-            export: Úrovne exportných znalostí
-            export_translations: Preklady úrovní odbornosti exportu
-            import: Úrovne odbornosti importu
-            import_translations: Importujte preklady úrovní odbornosti
-            manage: Ovládať
-            title: Úrovne odbornosti
-            view: Pohľad
-          proficiency_level:
-            title: Úrovne odbornosti
-          projectSettings:
-            assessments: Hodnotenia
-            design: Dizajn
-            feature_flags: Príznaky funkcií
-            idp: IDP
-            integrations: Integrácie
-            privacy_settings: Nastavenia ochrany osobných údajov
-            saml: SAML
-            security: Bezpečnosť
-            smtp: SMTP
-            title: Nastavenia projektu
-            webhooks: Webhooky
-          projects:
-            manage: Ovládať
-            manage_admins: Správa správcov
-            manage_licenses: Spravovať licencie
-            manage_users: Správa používateľov
-            title: Projekty
-            view: Pohľad
-            view_licenses: Zobraziť licencie
-          questions:
-            manage: Ovládať
-            title: Otázky
-            view: Pohľad
-          reflectionQuestions:
-            export: Vývoz
-            import: Import
-            manage: Ovládať
-            title: Otázky na reflexiu IDP
-            view: Pohľad
-          registrationCodes:
-            manage: Ovládať
-            title: Registračné kódy
-            view: Pohľad
-          registrationSettings:
-            manage: Ovládať
-            title: Nastavenia registrácie
-          reports:
-            manage: Ovládať
-            title: Správy
-            view: Pohľad
-          responseMeta:
-            title: Odpoveď Meta
-          results:
-            approve_report: Schváliť správu
-            bulk_download: Hromadné sťahovanie
-            bulk_regenerate_reports: Hromadné opätovné generovanie prehľadov
-            bulk_update_evaluation_status: Stav vyhodnotenia hromadnej aktualizácie
-            download_report: Stiahnuť správu
-            edit_report: Upraviť správu
-            export_occupations: Exportné povolania
-            external_score_import: Import externého skóre
-            finalize_scores: Finalizácia skóre
-            normalize_factor_scores: Normalizujte skóre faktorov
-            raw_responses: Nespracované odpovede
-            regenerate_report: Znovu vygenerovať správu
-            report_data: Údaje zostavy
-            report_file_upload: Nahratie súboru nahlásenia
-            rescore_responses: Opätovné hodnotenie odpovedí
-            reset_progress: Obnoviť priebeh
-            reset_responses: Obnoviť odpovede
-            scores: Skóre
-            title: Výsledky
-            view_report: Zobraziť prehľad
-            view_stats: Zobraziť štatistiky
-          skills:
-            export: Exportné zručnosti
-            export_translations: Exportné preklady zručností
-            import: Importné zručnosti
-            import_translations: Importujte preklady zručností
-            manage: Ovládať
-            title: Zručnosti
-            view: Pohľad
-          smsHistories:
-            manage: Ovládať
-            title: História SMS
-            view: Pohľad
-          smsInvites:
-            manage: Ovládať
-            title: SMS pozvánky
-            view: Pohľad
-          userIdpPlans:
-            manage: Ovládať
-            reset: Vynulovanie
-            title: Plány IDP používateľov
-            view: Pohľad
-          users:
-            reset_password: Obnoviť heslo
-            title: Používateľov
-          workshops:
-            export_status: Stav exportu
-            manage: Ovládať
-            title: Dielne
-            view: Pohľad
-            view_recordings: Zobraziť nahrávky
     ai_artifacts:
       artifact_results: Výsledky artefaktov
       code: Kód
@@ -3575,6 +3318,7 @@ sk:
           show_target_proficiency: Zobraziť cieľovú odbornosť
           strengths_blindspots: Silné stránky a slepé miesta
         text_condition_type: 'Typ textovej podmienky:'
+        translate_with_ai: Prekladajte pomocou AI
     report_families:
       create:
         successfully: Balík zostáv %{name} bol úspešne vytvorený.
@@ -4047,12 +3791,7 @@ sk:
       security_setting: Nastavenie zabezpečenia
     settings:
       admin_roles:
-        admin_role_single: Rola správcu
         confirm_message: Naozaj chcete zmazať rolu správcu '%{role_name}'?
-        create: Pridanie roly správcu
-        description: Popis
-        name: Meno
-        successful_remove: Rola správcu %{role_name} bola úspešne odstránená.
       siem:
         description: Popis
         destination_type: Typ cieľa

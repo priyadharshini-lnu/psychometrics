@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
-  Button, MenuProps, message, Typography,
+  Button, MenuProps, message, Typography, Drawer,
 } from 'antd'
 import { AiAssistant } from 'modules/admin/modules/AiAssitant/core/aiAssistant'
 import { useNavigate } from 'react-router-dom'
@@ -16,103 +16,165 @@ const { I18n } = window
 
 export const AiAssistantsTable = () => {
   const availableAiProviders = useSelector(getAvailableAiProviders)
+  const [drawerOpen, setDrawerOpen] = useState(false)
+  const [selectedPrompt, setSelectedPrompt] = useState<string>('')
+  const [drawerTitle, setDrawerTitle] = useState<string>('')
+  const { resource } = useResourceContext<AiAssistant>()
+
+  const handleShowPrompt = (prompt: string, title: string) => {
+    setSelectedPrompt(prompt)
+    setDrawerTitle(title)
+    setDrawerOpen(true)
+  }
+
+  const handleCloseDrawer = () => {
+    setDrawerOpen(false)
+    setSelectedPrompt('')
+    setDrawerTitle('')
+  }
+
+  const assistantTypeFilters = Object.values(ASSISTANT_TYPES).map(type => ({
+    text: type.name,
+    value: type.id,
+  }))
+
 
   return (
-    <Resource.Table pagination>
-      <Resource.Column<AiAssistant>
-        title={I18n.t('common.column.id')}
-        id="id"
-        sorter
-        render={aiAssistant => (
-          aiAssistant.id
-        )}
-        width={100}
-      />
-      <Resource.Column<AiAssistant>
-        title={I18n.t('common.column.name')}
-        id="name"
-        render={aiAssistant => <Typography.Text>{aiAssistant.name}</Typography.Text>}
-        sorter
-        width={200}
-      />
-      <Resource.Column<AiAssistant>
-        title={I18n.t('common.column.description')}
-        id="description"
-        render={aiAssistant => (
-          <Typography.Paragraph
-            ellipsis={{
-              rows: 2,
-              expandable: true,
-              symbol: 'Show more',
-            }}
-            style={{ margin: 0 }}
-          >
-            {aiAssistant.description}
-          </Typography.Paragraph>
-        )}
-        width={200}
-        sorter
-      />
-      <Resource.Column<AiAssistant>
-        title={I18n.t('administration.common.type')}
-        id="assistantType"
-        render={aiAssistant => <Typography.Text>{ASSISTANT_TYPES[aiAssistant.assistantType]?.name}</Typography.Text>}
-        sorter
-      />
-      <Resource.Column<AiAssistant>
-        title={I18n.t('administration.ai_assistants.column.provider')}
-        id="modelId"
-        render={aiAssistant => (availableAiProviders.find(provider => provider.model_id === aiAssistant.modelId)?.name)}
-        width={200}
-        sorter
-      />
-      <Resource.Column<AiAssistant>
-        title={I18n.t('administration.ai_assistants.form.system_prompt')}
-        id="system_prompt"
-        render={aiAssistant => (
-          <Typography.Paragraph
-            ellipsis={{
-              rows: 2,
-              expandable: true,
-              symbol: 'Show more',
-            }}
-            style={{ margin: 0 }}
-          >
-            {aiAssistant.systemPrompt}
-          </Typography.Paragraph>
-        )}
-        width={200}
-        sorter
-      />
-      <Resource.Column<AiAssistant>
-        title={I18n.t('administration.ai_assistants.form.user_prompt')}
-        id="user_prompt"
-        render={aiAssistant => (
-          <Typography.Paragraph
-            ellipsis={{
-              rows: 2,
-              expandable: true,
-              symbol: 'Show more',
-            }}
-            style={{ margin: 0 }}
-          >
-            {aiAssistant.userPrompt}
-          </Typography.Paragraph>
-        )}
-        width={200}
-        sorter
-      />
-      <Resource.Column<AiAssistant>
-        title={I18n.t('common.column.action')}
-        id="action"
-        render={(_, aiAssistant) => (
-          <Dropdown
-            aiAssistant={aiAssistant}
-          />
-        )}
-        width={100}
-      />
-    </Resource.Table>
+    <>
+      <Resource.Table pagination>
+        <Resource.Column<AiAssistant>
+          title={I18n.t('common.column.id')}
+          id="id"
+          sorter
+          render={aiAssistant => (
+            aiAssistant.id
+          )}
+          width={100}
+        />
+        <Resource.Column<AiAssistant>
+          title={I18n.t('common.column.name')}
+          id="name"
+          render={aiAssistant => <Typography.Text>{aiAssistant.name}</Typography.Text>}
+          sorter
+          width={200}
+        />
+        <Resource.Column<AiAssistant>
+          title={I18n.t('common.column.description')}
+          id="description"
+          render={aiAssistant => (
+            <Typography.Paragraph
+              ellipsis={{
+                rows: 2,
+                expandable: true,
+                symbol: 'Show more',
+              }}
+              style={{ margin: 0 }}
+            >
+              {aiAssistant.description}
+            </Typography.Paragraph>
+          )}
+          width={200}
+          sorter
+        />
+        <Resource.Column<AiAssistant>
+          title={I18n.t('administration.common.type')}
+          id="assistant_type"
+          render={aiAssistant => <Typography.Text>{ASSISTANT_TYPES[aiAssistant.assistantType]?.name}</Typography.Text>}
+          sorter
+          filters={assistantTypeFilters}
+          filteredValue={resource
+            .getFilteredValue('assistant_type_in') as string[]
+  }
+        />
+        <Resource.Column<AiAssistant>
+          title={I18n.t('administration.ai_assistants.column.provider')}
+          id="modelId"
+          render={
+            aiAssistant => (availableAiProviders.find(provider => provider.model_id === aiAssistant.modelId)?.name)
+          }
+          width={200}
+          sorter
+        />
+        <Resource.Column<AiAssistant>
+          title={I18n.t('administration.ai_assistants.form.system_prompt')}
+          id="system_prompt"
+          render={aiAssistant => (
+            <div>
+              <Typography.Paragraph
+                ellipsis={{ rows: 2 }}
+                style={{ margin: 0, marginBottom: 4 }}
+              >
+                {aiAssistant.systemPrompt}
+              </Typography.Paragraph>
+              <Button
+                type="link"
+                size="small"
+                onClick={() => handleShowPrompt(
+                  aiAssistant.systemPrompt,
+                  `${aiAssistant.name} - ${I18n.t('administration.ai_assistants.form.system_prompt')}`,
+                )}
+                className="p-0"
+                style={{ fontSize: '12px' }}
+              >
+                {I18n.t('shared.show_more')}
+              </Button>
+            </div>
+          )}
+          width={200}
+          sorter
+        />
+        <Resource.Column<AiAssistant>
+          title={I18n.t('administration.ai_assistants.form.user_prompt')}
+          id="user_prompt"
+          render={aiAssistant => (
+            <div>
+              <Typography.Paragraph
+                ellipsis={{ rows: 2 }}
+                style={{ margin: 0, marginBottom: 4 }}
+              >
+                {aiAssistant.userPrompt}
+              </Typography.Paragraph>
+              <Button
+                type="link"
+                size="small"
+                onClick={() => handleShowPrompt(
+                  aiAssistant.userPrompt,
+                  `${aiAssistant.name} - ${I18n.t('administration.ai_assistants.form.user_prompt')}`,
+                )}
+                className="p-0"
+                style={{ fontSize: '12px' }}
+              >
+                {I18n.t('shared.show_more')}
+              </Button>
+            </div>
+          )}
+          width={200}
+          sorter
+        />
+        <Resource.Column<AiAssistant>
+          title={I18n.t('common.column.action')}
+          id="action"
+          render={(_, aiAssistant) => (
+            <Dropdown
+              aiAssistant={aiAssistant}
+            />
+          )}
+          width={100}
+        />
+      </Resource.Table>
+      <Drawer
+        title={drawerTitle}
+        placement="right"
+        closable
+        onClose={handleCloseDrawer}
+        open={drawerOpen}
+        width="40%"
+      >
+        <Typography.Paragraph style={{ whiteSpace: 'pre-wrap', margin: 0 }}>
+          {selectedPrompt}
+        </Typography.Paragraph>
+      </Drawer>
+    </>
   )
 }
 

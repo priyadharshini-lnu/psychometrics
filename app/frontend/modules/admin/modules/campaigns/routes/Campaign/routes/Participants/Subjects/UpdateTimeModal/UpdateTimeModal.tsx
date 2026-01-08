@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {
   Modal, Button, Form, InputNumber,
 } from 'antd'
-import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
+import { LoadingOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { PropsFromRedux } from './connect'
 
 const { I18n } = window

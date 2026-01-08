@@ -12,8 +12,8 @@ import {
   Divider,
   Empty,
 } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
 import { FixedType } from 'rc-table/lib/interface'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import {
   DrawerModes,

@@ -2,8 +2,8 @@ import React from 'react'
 import {
   Button, Form, Input, message, Flex, Tooltip,
 } from 'antd'
-import { LoadingOutlined, CheckOutlined, InfoCircleOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
+import { LoadingOutlined, CheckOutlined, InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { RootState } from '~/modules/admin/core/rootReducers'
 import {

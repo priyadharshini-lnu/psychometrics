@@ -3,7 +3,7 @@ import {
 } from 'antd'
 import {
   DownOutlined,
-} from '@ant-design/icons'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 
 const saveFilterButtonStyles: React.CSSProperties = {
   marginLeft: 'auto', position: 'absolute', right: '10px', top: '-30px',

@@ -2,10 +2,10 @@ import React, { useEffect } from 'react'
 import {
   Row, Col, Button, Space, App,
 } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import _ from 'lodash'
 import dayjs from 'dayjs'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import UpdateReportLanguagesModal from './UpdateReportLanguagesModal'
 import Modals from '~/modules/admin/components/Modals'
 import ReportList from './ReportList'

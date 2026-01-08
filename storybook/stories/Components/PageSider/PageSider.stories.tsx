@@ -3,7 +3,7 @@ import { Col } from 'antd'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import {
   HomeOutlined, LockOutlined, QuestionCircleOutlined, MessageOutlined,
-} from '@ant-design/icons'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 
 import {
   PageSider, PageLayout, PageFooter, GlintProvider,

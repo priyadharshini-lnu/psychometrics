@@ -22,6 +22,9 @@ RSpec.describe AdminJobs::ExportDevelopmentActionsJob, type: :job do
     action.skills << skill
     action.skills << global_skill
 
+    action.tag_list.add('leadership', 'management', 'course')
+    action.save!
+
     action.image.attach(
       io: Rails.root.join('spec/fixtures/files/profile.png').open,
       filename: 'profile.png',
@@ -50,6 +53,7 @@ RSpec.describe AdminJobs::ExportDevelopmentActionsJob, type: :job do
         CourseEndDate
         CourseImage
         Duration
+        Tags
       ])
     end
   end
@@ -81,6 +85,9 @@ RSpec.describe AdminJobs::ExportDevelopmentActionsJob, type: :job do
       expect(row[10]).to eq(development_action_from_query.course_end_date.to_date.strftime('%Y-%m-%d'))
       expect(row[11]).to eq('http://example.com/test-image.png')
       expect(row[12]).to eq(120)
+
+      exported_tags = row[13].split(', ').sort
+      expect(exported_tags).to match_array(%w[course leadership management])
     end
 
     it 'handles missing image_url gracefully' do
@@ -88,7 +95,7 @@ RSpec.describe AdminJobs::ExportDevelopmentActionsJob, type: :job do
       allow(development_action).to receive(:image_url).and_return(nil)
 
       data_rows = job.data_row(development_action)
-      expect(data_rows.first[-2]).to be_nil
+      expect(data_rows.first[-3]).to be_nil
     end
   end
 

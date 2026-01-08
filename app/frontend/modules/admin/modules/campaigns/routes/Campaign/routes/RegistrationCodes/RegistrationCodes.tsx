@@ -4,13 +4,13 @@ import {
 } from 'antd'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
 import type { MessageInstance } from 'antd/es/message/interface'
-import {
-  CheckOutlined, CloseOutlined, PlusOutlined, AppstoreOutlined, MoreOutlined,
-  QrcodeOutlined, DownloadOutlined, CopyOutlined, ExclamationCircleOutlined,
-} from '@ant-design/icons'
 
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { useParams } from 'react-router-dom'
+import {
+  CheckOutlined, CloseOutlined, PlusOutlined, AppstoreOutlined, MoreOutlined,
+  QrcodeOutlined, DownloadOutlined, CopyOutlined, ExclamationCircleOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import dayjs from '~/utils/dayjs'
 import ConditionalDropdown from '~/components/ConditionalDropdown'

@@ -4,13 +4,13 @@ import {
   Flex, Form, Typography,
   Select, Splitter, Avatar,
 } from 'antd'
-import {
-  HistoryOutlined, EditOutlined, CheckOutlined, CloseOutlined,
-  UserOutlined, RobotOutlined,
-} from '@ant-design/icons'
 import { Bubble, Sender } from '@ant-design/x'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import {
+  HistoryOutlined, EditOutlined, CheckOutlined, CloseOutlined,
+  UserOutlined, RobotOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { AiAssistantsPlaygroundBreadcrumb } from './AiAssistantsPlaygroundBreadcrumb'
 import styles from './AiAssistantPlayground.less'
 import { useResources } from '~/hooks/useResources/useResources'

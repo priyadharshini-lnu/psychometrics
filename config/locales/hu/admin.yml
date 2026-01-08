@@ -1,7 +1,20 @@
 ---
 hu:
   admin:
+    add_admin: Adminisztrátor hozzáadása
+    add_admin_role: Adminisztrátori szerepkör hozzáadása
+    add_campaign_admin: Kampányadminisztrátor hozzáadása
+    add_client_admin: Ügyfél-adminisztrátor hozzáadása
+    add_project: Projekt hozzáadása
+    add_project_admin: Projektadminisztrátor hozzáadása
+    add_threesixty_campaign_admin: Kampányadminisztrátor hozzáadása
     admin_approval_required: A jelentés %{user} letöltése előtt adminisztrátor jóváhagyást igényel
+    admin_created_successfully: Az adminisztrátori '%{name}' létrehozása sikeresen megtörtént
+    admin_export_scheduled: Az adminisztrátori exportálási feladat ütemezése sikeresen megtörtént. Kérjük, ellenőrizze az értesítései állapotát.
+    admin_removed_successfully: A(z) "%{email}" e-mail-címmel rendelkező adminisztrátor eltávolítása sikeresen megtörtént
+    admin_role_deleted: A(z) %{role_name} adminisztrátori szerepkör törlése sikeresen megtörtént.
+    admin_roles: Adminisztrátori szerepkörök
+    admin_updated_successfully: Az adminisztrátori '%{name}' frissítése sikeresen megtörtént
     admins: Adminisztrátorok
     ai_artifacts: AI-összetevők
     ai_artifacts_output_schema_key_constraint: A kulcsnak kisbetűvel kell kezdődnie, és csak kisbetűket, számokat és aláhúzásokat tartalmazhat
@@ -21,10 +34,12 @@ hu:
     ai_assistants_test_render: Tesztrender
     ai_assistants_test_render_tooltip: Teszteld a prompt sablonodat kampányadatokkal, hogy megbizonyosodj arról, mi fog elküldeni az AI asszisztensnek.
     ai_assisted_idp_feature_disabled: Az AI Assisted IDP funkciót letiltották ehhez a projekthez.
+    api_keys: API-kulcsok
     assessments: Értékelések
     assessments_reports: Felmérések és jelentések
     assessor_dashboard: Értékelő irányítópult
     assessor_workshops: Értékelési központ
+    assessors: Értékelők
     audit_logs: Auditnaplók
     audit_reports: Auditjelentések
     availability: Elérhetőség
@@ -41,32 +56,46 @@ hu:
     campaign_assessment_modals_enable_caching_content: Biztos vagy benne, hogy szeretnéd bekapcsolni a gyorsítótárat ehhez az értékeléshez?
     campaign_assessment_modals_enable_caching_successfully: A gyorsítótározás lehetővé vált ehhez az értékeléshez.
     campaign_assessment_modals_enable_caching_title: Engedélyezni az értékelési gyorsítótárat?
+    campaign_factors: Kampány tényezők
     campaign_templates: Kampány sablonok
+    campaigns: Kampányok
     client: Ügyfél bérleti joga
     client_admins: Ügyféladminisztrátorok
     clients: Ügyfélcsoportok
     code_required: Kód szükséges
     communication_center: Kommunikációs központ
+    communications: Kommunikáció
     completed: Befejezett
     completed_tooltip: Minden értékelő benyújtotta az értékelést
+    confirm_remove_admin: Biztosan el akarja távolítani az a(z) '%{email}' e-mail címmel rendelkező adminisztrátori felhasználót ?
     country: Ország
     create_client: Ügyfél létrehozása
     dashboard: Irányítópult
+    dashboards: Irányítópultok
     data_reports: Adatjelentések
     datasheet: Adatlap
     declined: Csökkent
     delete_ok_text: Igen, töröld
     denied: Tagadás
     development_actions: Fejlesztési tevékenységek
+    development_actions_form_tags: Címkék
     dimensions: Dimenziók
     done: Kész
     done_tooltip: Több értékelést nem lehet benyújtani erre a felhasználóra, mivel az értékelést a %{marked_by}
+    edit_campaign_admin: Kampányadminisztrátor szerkesztése
+    edit_client_admin: Ügyfél-adminisztrátor szerkesztése
+    edit_permission_denied: Nincs engedélyed az admin '%{name}' szerkesztésére
+    edit_project_admin: Projektadminisztrátorának szerkesztése
+    edit_threesixty_campaign_admin: Kampányadminisztrátor szerkesztése
     empty_csv_file: A CSV fájl nem tartalmaz adatokat.
     evaluation_status: Értékelési állapot
     evaluation_status_not_done: Az értékelési státusz nem 'Kész' egy vagy több kiválasztott tantárgy esetében. Kérjük, minden kiválasztott felhasználó elvégezte az értékeléseket vagy jelölje meg.
+    export_admin_roles_permissions: Adminisztrátori szerepkörök és engedélyek exportálása
+    feature_flags: Feature flags
     fill_empty_score_msg: Töltsd ki az összes végső pontszámot mentés előtt.
     final_score_empty_msg: A végső pontszám nem lehet üres.
     idp_plan_reset_success: A tervet sikeresen újraindították
+    idp_templates: IDP-sablonok
     import_ai_artifacts: MI tárgyak importálása
     import_csv_error: "%{index}. sor: %{email} e-mail felhasználó nem része ebben a kampányban"
     import_csv_parsing_error: 'CSV elemzési hiba: %{message}'
@@ -90,16 +119,20 @@ hu:
     import_upload: Feltölt
     import_users: Importfelhasználók
     invalid_csv_header: A CSV fájl érvénytelen fejléceket tartalmaz.
+    job_roles: Munkakörök
     learning_from_others: Együttműködő tanulás [20]
     libraries: Médiatár
     library_invalid_type: Érvénytelen könyvtári tétel
+    licenses: Licencek
     manager_approval_required: A jelentés %{user} letöltése előtt menedzser jóváhagyását igényel
+    messages: Üzenetek
     name_required: Név szükséges
     no_file_selected: Fájl nem volt kiválasztva
     no_notifications: Nincs értesítés
     norms: Normák
     not_completed: Nem befejezve
     not_completed_tooltip: "%{completed} értékelőt osztanak ki, de csak %{submitted} fejezték be az értékeléseket"
+    notes: Megjegyzések
     nothing_assigned: Nincsenek értékelők kijelölve
     nothing_assigned_tooltip: Ehhez a felhasználóhoz nem rendeltek értékeléseket
     notification_bell_icon_alt_text: Értesítési csengő ikon
@@ -109,11 +142,442 @@ hu:
     on_the_job: A munkában [70]
     options: Beállítások
     participants: Résztvevők
+    permissions:
+      aiArtifacts:
+        export: Kivitel
+        import: Importál
+        manage: Kezel
+        title: MI tárgyak
+        view: Nézet
+      apiKeys:
+        manage: Kezel
+        title: API-kulcsok
+        view: Nézet
+      assessments:
+        manage: Kezel
+        title: Értékelések
+        view: Nézet
+      assessors:
+        manage: Kezel
+        title: Értékelők
+        view: Nézet
+      auditLogs:
+        title: Auditnaplók
+        view: Nézet
+      auditReports:
+        admin_permissions: Adminisztrátori szerepkörök és engedélyek exportálása
+        title: Ellenőrzési jelentések
+        user_report_events: Jelentés jóváhagyási naplók
+      campaignFactors:
+        manage: Kezel
+        title: Kampánytényezők
+        view: Nézet
+      campaigns:
+        bulk_download: Tömeges letöltés
+        bulk_regenerate_reports: Jelentések tömeges újragenerálása
+        manage: Kezel
+        manage_admins: Adminisztrátorok kezelése
+        manage_factor_benchmark_scores: Tényező benchmark pontszámainak kezelése
+        manage_messages: Üzenetek kezelése
+        manage_options: Beállítások kezelése
+        manage_report_approvals: Jelentések jóváhagyásának kezelése
+        manage_users: Felhasználók kezelése
+        participant_options: Résztvevői beállítások
+        report_options: Jelentés beállításai
+        reset_nominations: Jelölések visszaállítása
+        title: Kampányok
+        view: Nézet
+        view_factor_benchmark_scores: Tényező benchmark pontszámainak kezelése
+        view_stats: Statisztikák megtekintése
+      clients:
+        export_data_report: Az adatokat tartalmazó jelentés exportálása
+        manage: Kezel
+        title: Ügyfelek
+        view: Nézet
+        view_licenses: Licencek megtekintése
+      communications:
+        manage: Kezel
+        title: Kommunikáció
+        view: Nézet
+      dashboards:
+        accesssheet_manage: Hozzáférési lap kezelése
+        accesssheet_settings: Hozzáférési lap beállításai
+        accesssheet_view: Hozzáférési lap nézet
+        export: Exportálás
+        title: Irányítópultok
+        view: Nézet
+      datasheets:
+        manage: Kezel
+        title: Adatlapok
+        view: Nézet
+      developmentActions:
+        export: Exportál
+        export_global: Globális exportálás
+        export_global_translations: Globális fordítások exportálása
+        export_translations: Fordítások exportálása
+        import: Importál
+        import_global: Globális importálás
+        import_global_translations: Globális fordítások importálása
+        import_translations: Fordítások importálása
+        manage: Kezel
+        title: Fejlesztési tevékenységek
+        view: Nézet
+      dimensions:
+        manage: Kezel
+        title: Méretek
+        view: Nézet
+      idpTemplates:
+        manage: Kezel
+        title: IDP-sablonok
+        view: Nézet
+      interviewQuestions:
+        export: Export
+        import: Import
+        manage: Menedzsd
+        title: IDP interjúkérdések
+        view: Kilátás
+      jobRoles:
+        export_translations: Exportálás munkakörök fordítások
+        import_translations: Munkakörök importálása Fordítások
+        manage: Kezel
+        title: Munkakörök
+        view: Nézet
+      labels:
+        apiKeys:
+          manage: Kezel
+          title: API-kulcsok
+          view: Nézet
+        assessments:
+          manage: Kezel
+          title: Értékelések
+          view: Nézet
+        assessors:
+          manage: Kezel
+          title: Értékelők
+          view: Nézet
+        auditLogs:
+          title: Auditnaplók
+          view: Nézet
+        auditReports:
+          admin_permissions: Adminisztrátori szerepkörök és engedélyek exportálása
+          title: Ellenőrzési jelentések
+          user_report_events: Jelentés jóváhagyási naplók
+        campaignFactors:
+          manage: Kezel
+          title: Kampánytényezők
+          view: Nézet
+        campaigns:
+          bulk_download: Tömeges letöltés
+          bulk_regenerate_reports: Jelentések tömeges újragenerálása
+          manage: Kezel
+          manage_admins: Adminisztrátorok kezelése
+          manage_factor_benchmark_scores: Tényező benchmark pontszámainak kezelése
+          manage_messages: Üzenetek kezelése
+          manage_options: Beállítások kezelése
+          manage_report_approvals: Jelentések jóváhagyásának kezelése
+          manage_users: Felhasználók kezelése
+          participant_options: Résztvevői beállítások
+          report_options: Jelentés beállításai
+          reset_nominations: Jelölések visszaállítása
+          title: Kampányok
+          view: Nézet
+          view_factor_benchmark_scores: Tényező benchmark pontszámainak kezelése
+          view_stats: Statisztikák megtekintése
+        clients:
+          export_data_report: Az adatokat tartalmazó jelentés exportálása
+          manage: Kezel
+          title: Ügyfelek
+          view: Nézet
+          view_licenses: Licencek megtekintése
+        communications:
+          manage: Kezel
+          title: Kommunikáció
+          view: Nézet
+        dashboards:
+          accesssheet_manage: Hozzáférési lap kezelése
+          accesssheet_settings: Hozzáférési lap beállításai
+          accesssheet_view: Hozzáférési lap nézet
+          export: Exportálás
+          title: Irányítópultok
+          view: Nézet
+        datasheets:
+          manage: Kezel
+          title: Adatlapok
+          view: Nézet
+        developmentActions:
+          export: Exportál
+          export_global: Globális exportálás
+          export_global_translations: Globális fordítások exportálása
+          export_translations: Fordítások exportálása
+          import: Importál
+          import_global: Globális importálás
+          import_global_translations: Globális fordítások importálása
+          import_translations: Fordítások importálása
+          manage: Kezel
+          title: Fejlesztési tevékenységek
+          view: Nézet
+        dimensions:
+          manage: Kezel
+          title: Méretek
+          view: Nézet
+        idpTemplates:
+          manage: Kezel
+          title: IDP-sablonok
+          view: Nézet
+        jobRoles:
+          export_translations: Exportálás munkakörök fordítások
+          import_translations: Munkakörök importálása Fordítások
+          manage: Kezel
+          title: Munkakörök
+          view: Nézet
+        libraries:
+          manage: Kezel
+          title: Médiakönyvtárak
+          view: Nézet
+        messages:
+          email: E-mail
+          instructions: Instrukciók
+          options: Beállítások
+          title: Üzenetek
+        norms:
+          manage: Kezel
+          title: Normák
+          view: Nézet
+        proficiencyLevels:
+          export: Tudásszintek exportálása
+          export_translations: Tudásszintek fordításainak exportálása
+          import: Tudásszintek importálása
+          import_translations: Tudásszintek fordításainak importálása
+          manage: Kezel
+          title: Tudásszintek
+          view: Nézet
+        proficiency_level:
+          title: Tudásszintek
+        projectSettings:
+          assessments: Értékelések
+          design: Tervezés
+          feature_flags: Funkció jelzők
+          idp: IDP
+          integrations: Integrációk
+          privacy_settings: Adatvédelmi beállítások
+          saml: SAML
+          security: Biztonság
+          smtp: SMTP
+          title: Projekt beállításai
+          webhooks: Webhookok
+        projects:
+          manage: Kezel
+          manage_admins: Adminisztrátorok kezelése
+          manage_users: Felhasználók kezelése
+          title: Projektek
+          view: Nézet
+        questions:
+          manage: Kezel
+          title: Kérdések
+          view: Nézet
+        reflectionQuestions:
+          export: Export
+          import: Import
+          manage: Kezel
+          title: IDP reflexiós kérdések
+          view: Nézet
+        registrationCodes:
+          manage: Kezel
+          title: Regisztrációs kódok
+          view: Nézet
+        registrationSettings:
+          manage: Kezel
+          title: Regisztrációs beállítások
+        reports:
+          manage: Kezel
+          title: Jelentések
+          view: Nézet
+        responseMeta:
+          title: Meta-válasz
+        results:
+          approve_report: Jelentés jóváhagyása
+          bulk_download: Tömeges letöltés
+          bulk_regenerate_reports: Jelentések tömeges újragenerálása
+          bulk_update_evaluation_status: Tömeges frissítés kiértékelési állapota
+          download_report: Jelentés letöltése
+          edit_report: Jelentés szerkesztése
+          export_occupations: Foglalkozások exportálása
+          external_score_import: Külső pontszám importálása
+          finalize_scores: Pontszámok véglegesítése
+          normalize_factor_scores: Faktorpontszámok normalizálása
+          raw_responses: Nyers válaszok
+          regenerate_report: Jelentés újragenerálása
+          report_data: Jelentés adatai
+          report_file_upload: Jelentésfájl feltöltése
+          rescore_responses: Pontozza újra a válaszokat
+          reset_progress: Folyamat visszaállítása
+          reset_responses: Válaszok visszaállítása
+          scores: Pontszámok
+          title: Eredmények
+          view_report: Jelentés megtekintése
+          view_stats: Statisztikák megtekintése
+        skills:
+          export: Készségek exportálása
+          export_translations: Készségek fordításainak exportálása
+          import: Készségek importálása
+          import_translations: Készségek fordításainak importálása
+          manage: Kezel
+          title: Készségek
+          view: Nézet
+        smsHistories:
+          manage: Kezel
+          title: SMS-előzmények
+          view: Nézet
+        smsInvites:
+          manage: Kezel
+          title: SMS-meghívók
+          view: Nézet
+        userIdpPlans:
+          manage: Menedzsd
+          title: Felhasználói IDP tervek
+          view: Kilátás
+        users:
+          reset_password: Jelszó visszaállítása
+          title: Felhasználók
+        workshops:
+          export_status: Exportálás állapota
+          manage: Kezel
+          title: Workshopok
+          view: Nézet
+          view_recordings: Felvételek megtekintése
+      libraries:
+        manage: Kezel
+        title: Médiakönyvtárak
+        view: Nézet
+      messages:
+        email: E-mail
+        instructions: Instrukciók
+        options: Beállítások
+        title: Üzenetek
+      norms:
+        manage: Kezel
+        title: Normák
+        view: Nézet
+      proficiencyLevels:
+        export: Tudásszintek exportálása
+        export_translations: Tudásszintek fordításainak exportálása
+        import: Tudásszintek importálása
+        import_translations: Tudásszintek fordításainak importálása
+        manage: Kezel
+        title: Tudásszintek
+        view: Nézet
+      proficiency_level:
+        title: Tudásszintek
+      projectSettings:
+        assessments: Értékelések
+        design: Tervezés
+        feature_flags: Funkció jelzők
+        idp: IDP
+        integrations: Integrációk
+        privacy_settings: Adatvédelmi beállítások
+        saml: SAML
+        security: Biztonság
+        smtp: SMTP
+        title: Projekt beállításai
+        webhooks: Webhookok
+      projects:
+        manage: Kezel
+        manage_admins: Adminisztrátorok kezelése
+        manage_licenses: Licencek kezelése
+        manage_users: Felhasználók kezelése
+        title: Projektek
+        view: Nézet
+        view_licenses: Engedélyek megtekintése
+      questions:
+        manage: Kezel
+        title: Kérdések
+        view: Nézet
+      reflectionQuestions:
+        export: Export
+        import: Import
+        manage: Kezel
+        title: IDP reflexiós kérdések
+        view: Nézet
+      registrationCodes:
+        manage: Kezel
+        title: Regisztrációs kódok
+        view: Nézet
+      registrationSettings:
+        manage: Kezel
+        title: Regisztrációs beállítások
+      reports:
+        manage: Kezel
+        title: Jelentések
+        view: Nézet
+      responseMeta:
+        title: Meta-válasz
+      results:
+        approve_report: Jelentés jóváhagyása
+        bulk_download: Tömeges letöltés
+        bulk_regenerate_reports: Jelentések tömeges újragenerálása
+        bulk_update_evaluation_status: Tömeges frissítés kiértékelési állapota
+        download_report: Jelentés letöltése
+        edit_report: Jelentés szerkesztése
+        export_occupations: Foglalkozások exportálása
+        external_score_import: Külső pontszám importálása
+        finalize_scores: Pontszámok véglegesítése
+        normalize_factor_scores: Faktorpontszámok normalizálása
+        raw_responses: Nyers válaszok
+        regenerate_report: Jelentés újragenerálása
+        report_data: Jelentés adatai
+        report_file_upload: Jelentésfájl feltöltése
+        rescore_responses: Pontozza újra a válaszokat
+        reset_progress: Folyamat visszaállítása
+        reset_responses: Válaszok visszaállítása
+        scores: Pontszámok
+        title: Eredmények
+        view_report: Jelentés megtekintése
+        view_stats: Statisztikák megtekintése
+      skills:
+        export: Készségek exportálása
+        export_translations: Készségek fordításainak exportálása
+        import: Készségek importálása
+        import_translations: Készségek fordításainak importálása
+        manage: Kezel
+        title: Készségek
+        view: Nézet
+      smsHistories:
+        manage: Kezel
+        title: SMS-előzmények
+        view: Nézet
+      smsInvites:
+        manage: Kezel
+        title: SMS-meghívók
+        view: Nézet
+      userIdpPlans:
+        manage: Kezel
+        reset: Átszed
+        title: Felhasználói IDP tervek
+        view: Nézet
+      users:
+        reset_password: Jelszó visszaállítása
+        title: Felhasználók
+      workshops:
+        export_status: Exportálás állapota
+        manage: Kezel
+        title: Workshopok
+        view: Nézet
+        view_recordings: Felvételek megtekintése
+    permissions_360_campaigns: 360°-os kampányokra vonatkozó engedélyek
+    privacy: Adatvédelem
+    proficiency_level: API-kulcsok
+    proficiency_levels: Tudásszintek
     profile_details: Profil részletei
     project_admins: Projektadminisztrátorok
     project_manager: Projektmenedzser
+    project_number: Projekt száma
+    project_settings: Projekt beállításai
+    projects: Projektek
     question_center: Kérdésközpont
+    questions: Kérdések
+    reflection_questions: Reflexiós kérdések
     registration_codes: Regisztrációs kódok
+    registration_settings: Regisztrációs beállítások
     report_approvals: Jelentés jóváhagyása
     report_condition_not_met: Értékelésre %{required} %{relationship} szüksége, de csak %{actual}
     report_conditions_not_met_detailed: A jelentés %{user} nem felel meg a rendelkezésre állási feltételeknek. %{conditions}
@@ -128,6 +592,8 @@ hu:
     reset_idp_plan: Reset terv
     reset_idp_plan_confirmation: Biztos vagy benne, hogy újraindítanod a tervet?
     reset_idp_plan_title: Reset terv
+    response_meta: Meta-válasz
+    results: Eredmények
     role: Szerep
     saml_idp_certificate_available: Elérhető (kattints a másoláshoz)
     saml_idp_certificate_label: Igazolás
@@ -179,17 +645,28 @@ hu:
     saml_settings: SAML beállítások
     scheduling: Ütemezés
     scoring: Pontozás
+    search_admins: Adminisztrátorok keresése
+    select_admin_role: Válassza ki az adminisztrátori szerepkört
+    send_email: E-mail küldése
+    settings: Beállítások
     show_submenu: Almenü megjelenítése
+    siem: SIEM
+    skill_aliases: Készség aliasok
+    skills: Készségek
     skills_taxonomy: Készségek taxonómiája
     slot_name: Nyerő neve
+    sms_histories: SMS-előzmények
+    sms_invites: SMS-meghívók
     stats: Statisztika
     status_details: Állapot részletei
     structured_learning: Formális tanulás [10]
+    subdomain: Aldomain
     upload_success: Sikeresen feltöltve
     user_report_events: Felhasználói jelentés eseményei
     users: Felhasználók
     view_licenses: Licencek megtekintése
     waiting: Várakozás
+    workshops: Workshopok
     year: Ország
     yoodli_activity_id: Yoodli Activity ID
     yoodli_email_id: Yoodli jelölt e-mail azonosító

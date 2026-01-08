@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import {
   Upload, Modal, Button, message,
 } from 'antd'
-import { CheckOutlined, LoadingOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
+import { CheckOutlined, LoadingOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { uploadFile } from '~/modules/admin/modules/campaigns/core/userReports'
 
 const { I18n } = window

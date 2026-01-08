@@ -7,7 +7,7 @@ import {
   DeleteOutlined,
   EditOutlined,
   ExclamationCircleOutlined,
-} from '@ant-design/icons'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 
 import {
   fetch,

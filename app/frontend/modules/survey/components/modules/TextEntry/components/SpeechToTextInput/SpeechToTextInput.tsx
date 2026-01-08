@@ -11,7 +11,7 @@ import {
   Progress,
   notification as antdNotification,
 } from 'antd'
-import { InfoCircleOutlined } from '@ant-design/icons'
+import { InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import {
   transcribe,

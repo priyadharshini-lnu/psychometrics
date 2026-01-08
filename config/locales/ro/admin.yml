@@ -1,7 +1,20 @@
 ---
 ro:
   admin:
+    add_admin: Adăugați administrator
+    add_admin_role: Adăugați rol de administrator
+    add_campaign_admin: Adăugați administratorul campaniei
+    add_client_admin: Adăugați administrator client
+    add_project: Adaugă proiect
+    add_project_admin: Adăugați administrator de proiect
+    add_threesixty_campaign_admin: Adăugați administratorul campaniei
     admin_approval_required: Raportul pentru %{user} necesită aprobarea de la administrator înainte de descărcare
+    admin_created_successfully: Admin '%{name}' a fost creat cu succes
+    admin_export_scheduled: Lucrarea de export de administrator a fost programată cu succes. Vă rugăm să verificați starea notificării.
+    admin_removed_successfully: Administratorul cu e-mailul "%{email}" a fost eliminat cu succes
+    admin_role_deleted: Rolul de administrator '%{role_name}' a fost șters cu succes.
+    admin_roles: Roluri de administrator
+    admin_updated_successfully: Admin '%{name}' a fost actualizat cu succes
     admins: Administratori
     ai_artifacts: Artefacte AI
     ai_artifacts_output_schema_key_constraint: Cheia trebuie să înceapă cu literă mică și poate conține doar litere mici, cifre și sublinii
@@ -21,10 +34,12 @@ ro:
     ai_assistants_test_render: Randare de testare
     ai_assistants_test_render_tooltip: Testează-ți șablonul de prompt cu date de campanie pentru a vedea ce va fi trimis asistentului AI.
     ai_assisted_idp_feature_disabled: Funcția IDP asistată de AI a fost dezactivată pentru acest proiect.
+    api_keys: Chei API
     assessments: Evaluări
     assessments_reports: Evaluări și rapoarte
     assessor_dashboard: Tabloul de bord al evaluatorului
     assessor_workshops: Centrul de evaluare
+    assessors: Evaluatori
     audit_logs: Jurnale de audit
     audit_reports: Rapoarte de audit
     availability: Disponibilitate
@@ -41,32 +56,46 @@ ro:
     campaign_assessment_modals_enable_caching_content: Ești sigur că vrei să activezi cache-ul pentru această evaluare?
     campaign_assessment_modals_enable_caching_successfully: Cache-ul a fost activat pentru această evaluare.
     campaign_assessment_modals_enable_caching_title: Activarea cache-ului evaluării?
+    campaign_factors: Factorii campaniei
     campaign_templates: Șabloane de campanie
+    campaigns: Campanii
     client: Închirierea clientului
     client_admins: Administratori clienți
     clients: Clienți
     code_required: Este necesar codul
     communication_center: Centrul de comunicare
+    communications: Comunicaţii
     completed: Completat
     completed_tooltip: Toți evaluatorii au depus evaluarea
+    confirm_remove_admin: Sigur doriți să eliminați utilizatorul administrator cu e-mailul "%{email}"?
     country: Țara
     create_client: Creare client
     dashboard: Tablou
+    dashboards: Dashboards
     data_reports: Rapoarte de date
     datasheet: Fișă tehnică
     declined: Refuzată
     delete_ok_text: Da, șterge
     denied: Refuzat
     development_actions: Acțiune de dezvoltare
+    development_actions_form_tags: Etichete
     dimensions: Dimensiuni
     done: Făcut
     done_tooltip: Nu se mai poate trimite nicio evaluare pentru acest utilizator, deoarece evaluarea acestuia este marcată ca fiind făcută de %{marked_by}
+    edit_campaign_admin: Editați administratorul campaniei
+    edit_client_admin: Editați administratorul clientului
+    edit_permission_denied: Nu ai permisiunea să editezi "%{name}" de administrator
+    edit_project_admin: Editați administratorul proiectului
+    edit_threesixty_campaign_admin: Editați administratorul campaniei
     empty_csv_file: Fișierul CSV nu conține niciun fel de date.
     evaluation_status: Stare de evaluare
     evaluation_status_not_done: Starea evaluării nu este "Finalizată" pentru unul sau mai mulți subiecte selectate. Vă rugăm să vă asigurați că toți utilizatorii selectați au finalizat evaluările sau să marcheze ca fiind făcute.
+    export_admin_roles_permissions: Exportul rolurilor și permisiunilor de administrator
+    feature_flags: Steaguri de caracteristici
     fill_empty_score_msg: Completează toate scorurile finale înainte de a salva.
     final_score_empty_msg: Scorul final nu poate fi gol.
     idp_plan_reset_success: Planul a fost resetat cu succes
+    idp_templates: Șabloane IDP
     import_ai_artifacts: Importul artefactelor AI
     import_csv_error: 'Rândul %{index}: utilizator cu email %{email} nu face parte din această campanie'
     import_csv_parsing_error: 'Eroare de analiză CSV: %{message}'
@@ -90,16 +119,20 @@ ro:
     import_upload: Încărca
     import_users: Importă utilizatori
     invalid_csv_header: CSV conține antete invalide.
+    job_roles: Roluri de post
     learning_from_others: Învățare colaborativă [20]
     libraries: Bibliotecă media
     library_invalid_type: Element invalid din bibliotecă
+    licenses: Licenţe
     manager_approval_required: Raportul pentru %{user} necesită aprobarea managerului înainte de descărcare
+    messages: Mesaje
     name_required: Este necesar numele
     no_file_selected: Niciun fișier selectat
     no_notifications: Fără notificări
     norms: Normele
     not_completed: Nefinalizat
     not_completed_tooltip: "%{completed} evaluatori sunt atribuiți, dar doar %{submitted} au finalizat evaluările"
+    notes: Note
     nothing_assigned: Niciun evaluator desemnat
     nothing_assigned_tooltip: Nu au fost atribuite evaluări acestui utilizator
     notification_bell_icon_alt_text: Pictograma clopoțel de notificare
@@ -109,11 +142,442 @@ ro:
     on_the_job: La locul de muncă [70]
     options: Opțiuni
     participants: Participanţii
+    permissions:
+      aiArtifacts:
+        export: Export
+        import: Importa
+        manage: Gestiona
+        title: Artefacte AI
+        view: Vedere
+      apiKeys:
+        manage: Acțiuni
+        title: Chei API
+        view: Vedere
+      assessments:
+        manage: Acțiuni
+        title: Evaluări
+        view: Vedere
+      assessors:
+        manage: Acțiuni
+        title: Evaluatori
+        view: Vedere
+      auditLogs:
+        title: Jurnale de audit
+        view: Vedere
+      auditReports:
+        admin_permissions: Exportul rolurilor și permisiunilor de administrator
+        title: Rapoarte de audit
+        user_report_events: Jurnale de aprobare a rapoartelor
+      campaignFactors:
+        manage: Acțiuni
+        title: Factorii campaniei
+        view: Vedere
+      campaigns:
+        bulk_download: Descărcare în bloc
+        bulk_regenerate_reports: Rapoarte de regenerare în bloc
+        manage: Acțiuni
+        manage_admins: Gestionați administratorii
+        manage_factor_benchmark_scores: Gestionați scorurile de referință ale factorilor
+        manage_messages: Gestionați mesajele
+        manage_options: Gestionați opțiunile
+        manage_report_approvals: Gestionarea aprobărilor rapoartelor
+        manage_users: Gestionați utilizatorii
+        participant_options: Opțiuni pentru participanți
+        report_options: Opțiuni de raportare
+        reset_nominations: Resetați nominalizările
+        title: Campanii
+        view: Vedere
+        view_factor_benchmark_scores: Vizualizați scorurile de referință ale factorilor
+        view_stats: Vezi statistici
+      clients:
+        export_data_report: Exportați raportul de date
+        manage: Acțiuni
+        title: Clientii
+        view: Vedere
+        view_licenses: Vizualizați licențele
+      communications:
+        manage: Acțiuni
+        title: Comunicaţii
+        view: Vedere
+      dashboards:
+        accesssheet_manage: Gestionarea foii de acces
+        accesssheet_settings: Setări foaie de acces
+        accesssheet_view: Vizualizare foaie de acces
+        export: Export
+        title: Dashboards
+        view: Vedere
+      datasheets:
+        manage: Acțiuni
+        title: Fișe tehnice
+        view: Vedere
+      developmentActions:
+        export: Exportați
+        export_global: Exportați Global
+        export_global_translations: Exportați traduceri globale
+        export_translations: Exportați traduceri
+        import: Importa
+        import_global: Import Global
+        import_global_translations: Importați traduceri globale
+        import_translations: Importați traduceri
+        manage: Acțiuni
+        title: Acțiune de dezvoltare
+        view: Vedere
+      dimensions:
+        manage: Acțiuni
+        title: Dimensiuni
+        view: Vedere
+      idpTemplates:
+        manage: Acțiuni
+        title: Șabloane IDP
+        view: Vedere
+      interviewQuestions:
+        export: Export
+        import: Import
+        manage: Gestionează
+        title: Întrebări de interviu pentru IDP
+        view: Vizualizare
+      jobRoles:
+        export_translations: Exportați Rolul postului Traduceri
+        import_translations: Import Rolul postului Traduceri
+        manage: Acțiuni
+        title: Roluri de post
+        view: Vedere
+      labels:
+        apiKeys:
+          manage: Acțiuni
+          title: Chei API
+          view: Vedere
+        assessments:
+          manage: Acțiuni
+          title: Evaluări
+          view: Vedere
+        assessors:
+          manage: Acțiuni
+          title: Evaluatori
+          view: Vedere
+        auditLogs:
+          title: Jurnale de audit
+          view: Vedere
+        auditReports:
+          admin_permissions: Exportul rolurilor și permisiunilor de administrator
+          title: Rapoarte de audit
+          user_report_events: Jurnale de aprobare a rapoartelor
+        campaignFactors:
+          manage: Acțiuni
+          title: Factorii campaniei
+          view: Vedere
+        campaigns:
+          bulk_download: Descărcare în bloc
+          bulk_regenerate_reports: Rapoarte de regenerare în bloc
+          manage: Acțiuni
+          manage_admins: Gestionați administratorii
+          manage_factor_benchmark_scores: Gestionați scorurile de referință ale factorilor
+          manage_messages: Gestionați mesajele
+          manage_options: Gestionați opțiunile
+          manage_report_approvals: Gestionarea aprobărilor rapoartelor
+          manage_users: Gestionați utilizatorii
+          participant_options: Opțiuni pentru participanți
+          report_options: Opțiuni de raportare
+          reset_nominations: Resetați nominalizările
+          title: Campanii
+          view: Vedere
+          view_factor_benchmark_scores: Vizualizați scorurile de referință ale factorilor
+          view_stats: Vezi statistici
+        clients:
+          export_data_report: Exportați raportul de date
+          manage: Acțiuni
+          title: Clientii
+          view: Vedere
+          view_licenses: Vizualizați licențele
+        communications:
+          manage: Acțiuni
+          title: Comunicaţii
+          view: Vedere
+        dashboards:
+          accesssheet_manage: Gestionarea foii de acces
+          accesssheet_settings: Setări foaie de acces
+          accesssheet_view: Vizualizare foaie de acces
+          export: Export
+          title: Dashboards
+          view: Vedere
+        datasheets:
+          manage: Acțiuni
+          title: Fișe tehnice
+          view: Vedere
+        developmentActions:
+          export: Exportați
+          export_global: Exportați Global
+          export_global_translations: Exportați traduceri globale
+          export_translations: Exportați traduceri
+          import: Importa
+          import_global: Import Global
+          import_global_translations: Importați traduceri globale
+          import_translations: Importați traduceri
+          manage: Acțiuni
+          title: Acțiune de dezvoltare
+          view: Vedere
+        dimensions:
+          manage: Acțiuni
+          title: Dimensiuni
+          view: Vedere
+        idpTemplates:
+          manage: Acțiuni
+          title: Șabloane IDP
+          view: Vedere
+        jobRoles:
+          export_translations: Exportați Rolul postului Traduceri
+          import_translations: Import Rolul postului Traduceri
+          manage: Acțiuni
+          title: Roluri de post
+          view: Vedere
+        libraries:
+          manage: Acțiuni
+          title: Biblioteci media
+          view: Vedere
+        messages:
+          email: E-mail
+          instructions: Instrucţiuni
+          options: Opțiuni
+          title: Mesaje
+        norms:
+          manage: Acțiuni
+          title: Normele
+          view: Vedere
+        proficiencyLevels:
+          export: Niveluri de competență la export
+          export_translations: Traduceri ale nivelurilor de competență de export
+          import: Niveluri de competență de import
+          import_translations: Importați traduceri ale nivelurilor de competență
+          manage: Acțiuni
+          title: Niveluri de competență
+          view: Vedere
+        proficiency_level:
+          title: Niveluri de competență
+        projectSettings:
+          assessments: Evaluări
+          design: Design
+          feature_flags: Steaguri de caracteristici
+          idp: IDP
+          integrations: Integrări
+          privacy_settings: Setări de confidențialitate
+          saml: SAML
+          security: Securitate
+          smtp: SMTP
+          title: Setările proiectului
+          webhooks: Webhook-uri
+        projects:
+          manage: Acțiuni
+          manage_admins: Gestionați administratorii
+          manage_users: Gestionați utilizatorii
+          title: Proiecte
+          view: Vedere
+        questions:
+          manage: Acțiuni
+          title: Întrebări
+          view: Vedere
+        reflectionQuestions:
+          export: Exportați
+          import: Importa
+          manage: Acțiuni
+          title: Întrebări de reflecție pentru IDP
+          view: Vedere
+        registrationCodes:
+          manage: Acțiuni
+          title: Coduri de înregistrare
+          view: Vedere
+        registrationSettings:
+          manage: Acțiuni
+          title: Setări de înregistrare
+        reports:
+          manage: Acțiuni
+          title: Rapoarte
+          view: Vedere
+        responseMeta:
+          title: Răspuns Meta
+        results:
+          approve_report: Aprobarea raportului
+          bulk_download: Descărcare în bloc
+          bulk_regenerate_reports: Rapoarte de regenerare în bloc
+          bulk_update_evaluation_status: Stare evaluare actualizare în bloc
+          download_report: Descărcați raportul
+          edit_report: Editați raportul
+          export_occupations: Ocupații de export
+          external_score_import: Import scor extern
+          finalize_scores: Finalizați scorurile
+          normalize_factor_scores: Normalizați scorurile factorilor
+          raw_responses: Răspunsuri brute
+          regenerate_report: Regenerarea raportului
+          report_data: Date de raportare
+          report_file_upload: Încărcarea fișierului de raport
+          rescore_responses: Răspunsuri de reevaluare
+          reset_progress: Resetează progresul
+          reset_responses: Resetați răspunsurile
+          scores: Scoruri
+          title: Rezultatele
+          view_report: Vizualizați raportul
+          view_stats: Vezi statistici
+        skills:
+          export: Abilități de export
+          export_translations: Traduceri de abilități de export
+          import: Abilități de import
+          import_translations: Traduceri de abilități de import
+          manage: Acțiuni
+          title: Aptitudini
+          view: Vedere
+        smsHistories:
+          manage: Acțiuni
+          title: Istoricul SMS-urilor
+          view: Vedere
+        smsInvites:
+          manage: Acțiuni
+          title: Invitații prin SMS
+          view: Vedere
+        userIdpPlans:
+          manage: Gestionează
+          title: Planuri IDP pentru utilizatori
+          view: Vizualizare
+        users:
+          reset_password: Resetați parola
+          title: Utilizatorii
+        workshops:
+          export_status: Starea exportului
+          manage: Acțiuni
+          title: Ateliere
+          view: Vedere
+          view_recordings: Vizualizați înregistrările
+      libraries:
+        manage: Acțiuni
+        title: Biblioteci media
+        view: Vedere
+      messages:
+        email: E-mail
+        instructions: Instrucţiuni
+        options: Opțiuni
+        title: Mesaje
+      norms:
+        manage: Acțiuni
+        title: Normele
+        view: Vedere
+      proficiencyLevels:
+        export: Niveluri de competență la export
+        export_translations: Traduceri ale nivelurilor de competență de export
+        import: Niveluri de competență de import
+        import_translations: Importați traduceri ale nivelurilor de competență
+        manage: Acțiuni
+        title: Niveluri de competență
+        view: Vedere
+      proficiency_level:
+        title: Niveluri de competență
+      projectSettings:
+        assessments: Evaluări
+        design: Design
+        feature_flags: Steaguri de caracteristici
+        idp: IDP
+        integrations: Integrări
+        privacy_settings: Setări de confidențialitate
+        saml: SAML
+        security: Securitate
+        smtp: SMTP
+        title: Setările proiectului
+        webhooks: Webhook-uri
+      projects:
+        manage: Acțiuni
+        manage_admins: Gestionați administratorii
+        manage_licenses: Gestionarea licențelor
+        manage_users: Gestionați utilizatorii
+        title: Proiecte
+        view: Vedere
+        view_licenses: Vezi licențele
+      questions:
+        manage: Acțiuni
+        title: Întrebări
+        view: Vedere
+      reflectionQuestions:
+        export: Exportați
+        import: Importa
+        manage: Acțiuni
+        title: Întrebări de reflecție pentru IDP
+        view: Vedere
+      registrationCodes:
+        manage: Acțiuni
+        title: Coduri de înregistrare
+        view: Vedere
+      registrationSettings:
+        manage: Acțiuni
+        title: Setări de înregistrare
+      reports:
+        manage: Acțiuni
+        title: Rapoarte
+        view: Vedere
+      responseMeta:
+        title: Răspuns Meta
+      results:
+        approve_report: Aprobarea raportului
+        bulk_download: Descărcare în bloc
+        bulk_regenerate_reports: Rapoarte de regenerare în bloc
+        bulk_update_evaluation_status: Stare evaluare actualizare în bloc
+        download_report: Descărcați raportul
+        edit_report: Editați raportul
+        export_occupations: Ocupații de export
+        external_score_import: Import scor extern
+        finalize_scores: Finalizați scorurile
+        normalize_factor_scores: Normalizați scorurile factorilor
+        raw_responses: Răspunsuri brute
+        regenerate_report: Regenerarea raportului
+        report_data: Date de raportare
+        report_file_upload: Încărcarea fișierului de raport
+        rescore_responses: Răspunsuri de reevaluare
+        reset_progress: Resetează progresul
+        reset_responses: Resetați răspunsurile
+        scores: Scoruri
+        title: Rezultatele
+        view_report: Vizualizați raportul
+        view_stats: Vezi statistici
+      skills:
+        export: Abilități de export
+        export_translations: Traduceri de abilități de export
+        import: Abilități de import
+        import_translations: Traduceri de abilități de import
+        manage: Acțiuni
+        title: Aptitudini
+        view: Vedere
+      smsHistories:
+        manage: Acțiuni
+        title: Istoricul SMS-urilor
+        view: Vedere
+      smsInvites:
+        manage: Acțiuni
+        title: Invitații prin SMS
+        view: Vedere
+      userIdpPlans:
+        manage: Gestiona
+        reset: Reseta
+        title: Planuri IDP pentru utilizatori
+        view: Vedere
+      users:
+        reset_password: Resetați parola
+        title: Utilizatorii
+      workshops:
+        export_status: Starea exportului
+        manage: Acțiuni
+        title: Ateliere
+        view: Vedere
+        view_recordings: Vizualizați înregistrările
+    permissions_360_campaigns: Permisiuni specifice campaniilor 360
+    privacy: Intimitate
+    proficiency_level: Chei API
+    proficiency_levels: Niveluri de competență
     profile_details: Detalii profil
     project_admins: Administratori de proiect
     project_manager: Manager de proiect
+    project_number: Numărul proiectului
+    project_settings: Setările proiectului
+    projects: Proiecte
     question_center: Centrul de întrebări
+    questions: Întrebări
+    reflection_questions: Întrebări de reflecție
     registration_codes: Coduri de înregistrare
+    registration_settings: Setări de înregistrare
     report_approvals: Aprobări de rapoarte
     report_condition_not_met: Are nevoie %{required} %{relationship} evaluare, dar are nevoie doar de %{actual}
     report_conditions_not_met_detailed: Raportul pentru %{user} nu îndeplinește condițiile de disponibilitate. %{conditions}
@@ -128,6 +592,8 @@ ro:
     reset_idp_plan: Planul de Resetare
     reset_idp_plan_confirmation: Ești sigur că vrei să resetezi planul?
     reset_idp_plan_title: Planul de Resetare
+    response_meta: Răspuns Meta
+    results: Rezultatele
     role: Rol
     saml_idp_certificate_available: Disponibil (click pentru copiere)
     saml_idp_certificate_label: Certificat
@@ -179,17 +645,28 @@ ro:
     saml_settings: Setări SAML
     scheduling: Programarea
     scoring: Notare
+    search_admins: Administratori de căutare
+    select_admin_role: Selectați rolul de administrator
+    send_email: Trimite e-mail
+    settings: Setări
     show_submenu: Afișează submeniu
+    siem: SIEM
+    skill_aliases: Aliasuri de abilități
+    skills: Aptitudini
     skills_taxonomy: Taxonomia abilităților
     slot_name: Numele slotului
+    sms_histories: Istoricul SMS-urilor
+    sms_invites: Invitații prin SMS
     stats: Statistici
     status_details: Detalii despre stadiu
     structured_learning: Învățarea formală [10]
+    subdomain: Subdomeniu
     upload_success: Încărcat cu succes
     user_report_events: Evenimente de raportare a utilizatorilor
     users: Utilizatorii
     view_licenses: Vizualizați licențele
     waiting: Așteptare
+    workshops: Ateliere
     year: Țara
     yoodli_activity_id: ID-ul activității Yoodli
     yoodli_email_id: ID-ul de email al candidatului Yoodli

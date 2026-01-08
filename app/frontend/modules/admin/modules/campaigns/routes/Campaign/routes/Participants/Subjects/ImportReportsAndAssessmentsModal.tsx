@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import {
   Button, Modal, message, Alert, Form, Input,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import Event from 'interfaces/Event'
 import _ from 'lodash'
+import { LoadingOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import {
   assignReportsAndAssessments, ASSIGN_REPORTS_AND_ASSESSMENTS,

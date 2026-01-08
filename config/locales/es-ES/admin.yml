@@ -1,7 +1,20 @@
 ---
 es-ES:
   admin:
+    add_admin: Añadir admin
+    add_admin_role: Añadir función de administrador
+    add_campaign_admin: Añadir administrador de campaña
+    add_client_admin: Añadir Client Admin
+    add_project: Añadir proyecto
+    add_project_admin: Añadir administrador de proyecto
+    add_threesixty_campaign_admin: Añadir administrador de campaña
     admin_approval_required: Reporte para %{user} requiere aprobación de administrador antes de descargarla
+    admin_created_successfully: Admin '%{name}' se ha creado correctamente
+    admin_export_scheduled: El trabajo de exportación de Admin se ha programado correctamente. Compruebe el estado en su notificación.
+    admin_removed_successfully: Admin con email '%{email}' ha sido eliminado con éxito
+    admin_role_deleted: La función de administrador '%{role_name}' se ha eliminado correctamente.
+    admin_roles: Funciones administrativas
+    admin_updated_successfully: Admin '%{name}' se ha actualizado correctamente
     admins: Admins
     ai_artifacts: Artefactos de IA
     ai_artifacts_output_schema_key_constraint: La clave debe comenzar con una letra minúscula y solo puede contener letras minúsculas, números y guiones bajos
@@ -21,10 +34,12 @@ es-ES:
     ai_assistants_test_render: Renderizado de prueba
     ai_assistants_test_render_tooltip: Prueba tu plantilla de prompts con datos de campaña para comprobar qué se enviará al asistente de IA.
     ai_assisted_idp_feature_disabled: La función de desplazados internos asistidos por IA ha sido deshabilitada para este proyecto.
+    api_keys: Claves API
     assessments: Evaluaciones
     assessments_reports: Evaluaciones e informes
     assessor_dashboard: Panel de control del evaluador
     assessor_workshops: Assessment Center
+    assessors: Asesores
     audit_logs: Registros de auditoría
     audit_reports: Informes de auditoría
     availability: Disponibilidad
@@ -41,32 +56,46 @@ es-ES:
     campaign_assessment_modals_enable_caching_content: "¿Estás seguro de que quieres activar el caché para esta evaluación?"
     campaign_assessment_modals_enable_caching_successfully: Se ha habilitado la caché para esta evaluación.
     campaign_assessment_modals_enable_caching_title: "¿Habilitar la caché de evaluaciones?"
+    campaign_factors: Factores de campaña
     campaign_templates: Plantillas de campaña
+    campaigns: Campañas
     client: Arrendamiento de clientes
     client_admins: Administradores de clientes
     clients: Clientes
     code_required: Se requiere código
     communication_center: Centro de comunicaciones
+    communications: Comunicaciones
     completed: Completado
     completed_tooltip: Todos los evaluadores han presentado la evaluación
+    confirm_remove_admin: "¿Está seguro de que desea eliminar el usuario administrador con el correo electrónico '%{email}'?"
     country: País
     create_client: Crear cliente
     dashboard: Cuadro de mandos
+    dashboards: Cuadros de mando
     data_reports: Informes de datos
     datasheet: Hoja de datos
     declined: Disminuido
     delete_ok_text: Sí, eliminar
     denied: Negado
     development_actions: Acciones de desarrollo
+    development_actions_form_tags: Etiquetas
     dimensions: Dimensiones
     done: Hecho
     done_tooltip: No se puede enviar más evaluación para este usuario, ya que la evaluación de este usuario se marca como realizada por %{marked_by}
+    edit_campaign_admin: Editar administración de campaña
+    edit_client_admin: Editar Client Admin
+    edit_permission_denied: No tienes permiso para editar el '%{name}' de administrador
+    edit_project_admin: Editar Admin del proyecto
+    edit_threesixty_campaign_admin: Editar administración de campaña
     empty_csv_file: El archivo CSV no contiene ningún dato.
     evaluation_status: Estado de evaluación
     evaluation_status_not_done: El estado de la evaluación no está 'Hecho' para uno o más sujetos seleccionados. Por favor, asegúrese de que todos los usuarios seleccionados hayan completado las evaluaciones o marquen como hechos.
+    export_admin_roles_permissions: Exportación de funciones y permisos de administrador
+    feature_flags: Banderas de características
     fill_empty_score_msg: Rellena todas las puntuaciones finales antes de guardar.
     final_score_empty_msg: La puntuación final no puede estar vacía.
     idp_plan_reset_success: El plan se ha reiniciado con éxito
+    idp_templates: Plantillas de PDI
     import_ai_artifacts: Importar artefactos de IA
     import_csv_error: 'Fila %{index}: usuario con correo electrónico %{email} no está en esta campaña'
     import_csv_parsing_error: 'Error de análisis CSV: %{message}'
@@ -90,16 +119,20 @@ es-ES:
     import_upload: Subir
     import_users: Importar usuarios
     invalid_csv_header: CSV contiene cabeceras inválidas.
+    job_roles: Roles de trabajo
     learning_from_others: Aprendizaje colaborativo [20]
     libraries: Mediateca
     library_invalid_type: Elemento inválido de la biblioteca
+    licenses: Licencias
     manager_approval_required: Informe para %{user} requiere la aprobación del gestor antes de la descarga
+    messages: Mensajes
     name_required: Se requiere el nombre
     no_file_selected: No se selecciona ningún archivo
     no_notifications: Sin notificaciones
     norms: Normas
     not_completed: No completado
     not_completed_tooltip: "%{completed} se asignan evaluadores, pero solo %{submitted} han completado las evaluaciones"
+    notes: Notas
     nothing_assigned: No se asignaron evaluadores
     nothing_assigned_tooltip: No se han asignado evaluaciones a este usuario
     notification_bell_icon_alt_text: Icono de campana de notificación
@@ -109,11 +142,442 @@ es-ES:
     on_the_job: En el trabajo [70]
     options: Opciones
     participants: Participantes
+    permissions:
+      aiArtifacts:
+        export: Exportar
+        import: Importación
+        manage: Gestionar
+        title: Artefactos de IA
+        view: Vista
+      apiKeys:
+        manage: Gestión
+        title: Claves API
+        view: Ver
+      assessments:
+        manage: Gestión
+        title: Evaluaciones
+        view: Ver
+      assessors:
+        manage: Gestión
+        title: Asesores
+        view: Ver
+      auditLogs:
+        title: Registros de auditoría
+        view: Ver
+      auditReports:
+        admin_permissions: Exportación de funciones y permisos de administrador
+        title: Informes de auditoría
+        user_report_events: Registros de aprobación de informes
+      campaignFactors:
+        manage: Gestión
+        title: Factores de la campaña
+        view: Ver
+      campaigns:
+        bulk_download: Descarga masiva
+        bulk_regenerate_reports: Regeneración masiva de informes
+        manage: Gestión
+        manage_admins: Gestionar administradores
+        manage_factor_benchmark_scores: Gestionar las puntuaciones de referencia de los factores
+        manage_messages: Gestionar mensajes
+        manage_options: Gestionar opciones
+        manage_report_approvals: Gestión de aprobaciones de informes
+        manage_users: Gestionar usuarios
+        participant_options: Opciones para los participantes
+        report_options: Opciones de informe
+        reset_nominations: Reiniciar nominaciones
+        title: Campañas
+        view: Ver
+        view_factor_benchmark_scores: Ver las puntuaciones comparativas de los factores
+        view_stats: Ver estadísticas
+      clients:
+        export_data_report: Exportar informe de datos
+        manage: Gestión
+        title: Clientes
+        view: Ver
+        view_licenses: Ver licencias
+      communications:
+        manage: Gestión
+        title: Comunicaciones
+        view: Ver
+      dashboards:
+        accesssheet_manage: Hoja de acceso Gestionar
+        accesssheet_settings: Configuración de la hoja de acceso
+        accesssheet_view: Vista de la hoja de acceso
+        export: Exportar
+        title: Cuadros de mando
+        view: Ver
+      datasheets:
+        manage: Gestión
+        title: Fichas técnicas
+        view: Ver
+      developmentActions:
+        export: Exportar
+        export_global: Exportación mundial
+        export_global_translations: Exportar traducciones globales
+        export_translations: Exportar traducciones
+        import: Importar
+        import_global: Importación global
+        import_global_translations: Importar traducciones globales
+        import_translations: Importación de traducciones
+        manage: Gestión
+        title: Acciones de desarrollo
+        view: Ver
+      dimensions:
+        manage: Gestión
+        title: Dimensiones
+        view: Ver
+      idpTemplates:
+        manage: Gestión
+        title: Plantillas de PDI
+        view: Ver
+      interviewQuestions:
+        export: Exportar
+        import: Importación
+        manage: Gestionar
+        title: Preguntas de entrevista para IDP
+        view: Vista
+      jobRoles:
+        export_translations: Exportar traducciones de funciones
+        import_translations: Importar traducciones de funciones
+        manage: Gestión
+        title: Funciones
+        view: Ver
+      labels:
+        apiKeys:
+          manage: Gestión
+          title: Claves API
+          view: Ver
+        assessments:
+          manage: Gestión
+          title: Evaluaciones
+          view: Ver
+        assessors:
+          manage: Gestión
+          title: Asesores
+          view: Ver
+        auditLogs:
+          title: Registros de auditoría
+          view: Ver
+        auditReports:
+          admin_permissions: Exportación de funciones y permisos de administrador
+          title: Informes de auditoría
+          user_report_events: Registros de aprobación de informes
+        campaignFactors:
+          manage: Gestión
+          title: Factores de la campaña
+          view: Ver
+        campaigns:
+          bulk_download: Descarga masiva
+          bulk_regenerate_reports: Regeneración masiva de informes
+          manage: Gestión
+          manage_admins: Gestionar administradores
+          manage_factor_benchmark_scores: Gestionar las puntuaciones de referencia de los factores
+          manage_messages: Gestionar mensajes
+          manage_options: Gestionar opciones
+          manage_report_approvals: Gestión de aprobaciones de informes
+          manage_users: Gestionar usuarios
+          participant_options: Opciones para los participantes
+          report_options: Opciones de informe
+          reset_nominations: Reiniciar nominaciones
+          title: Campañas
+          view: Ver
+          view_factor_benchmark_scores: Ver las puntuaciones comparativas de los factores
+          view_stats: Ver estadísticas
+        clients:
+          export_data_report: Exportar informe de datos
+          manage: Gestión
+          title: Clientes
+          view: Ver
+          view_licenses: Ver licencias
+        communications:
+          manage: Gestión
+          title: Comunicaciones
+          view: Ver
+        dashboards:
+          accesssheet_manage: Hoja de acceso Gestionar
+          accesssheet_settings: Configuración de la hoja de acceso
+          accesssheet_view: Vista de la hoja de acceso
+          export: Exportar
+          title: Cuadros de mando
+          view: Ver
+        datasheets:
+          manage: Gestión
+          title: Fichas técnicas
+          view: Ver
+        developmentActions:
+          export: Exportar
+          export_global: Exportación mundial
+          export_global_translations: Exportar traducciones globales
+          export_translations: Exportar traducciones
+          import: Importar
+          import_global: Importación global
+          import_global_translations: Importar traducciones globales
+          import_translations: Importación de traducciones
+          manage: Gestión
+          title: Acciones de desarrollo
+          view: Ver
+        dimensions:
+          manage: Gestión
+          title: Dimensiones
+          view: Ver
+        idpTemplates:
+          manage: Gestión
+          title: Plantillas de PDI
+          view: Ver
+        jobRoles:
+          export_translations: Exportar traducciones de funciones
+          import_translations: Importar traducciones de funciones
+          manage: Gestión
+          title: Funciones
+          view: Ver
+        libraries:
+          manage: Gestión
+          title: Mediatecas
+          view: Ver
+        messages:
+          email: Correo electrónico
+          instructions: Instrucciones
+          options: Opciones
+          title: Mensajes
+        norms:
+          manage: Gestión
+          title: Normas
+          view: Ver
+        proficiencyLevels:
+          export: Niveles de aptitud para exportar
+          export_translations: Traducciones de los niveles de competencia de exportación
+          import: Niveles de competencia de importación
+          import_translations: Importar traducciones de niveles de competencia
+          manage: Gestión
+          title: Niveles de competencia
+          view: Ver
+        proficiency_level:
+          title: Niveles de competencia
+        projectSettings:
+          assessments: Evaluaciones
+          design: Diseño
+          feature_flags: Marcas de características
+          idp: PDI
+          integrations: Integraciones
+          privacy_settings: Privacidad
+          saml: SAML
+          security: Seguridad
+          smtp: SMTP
+          title: Configuración del proyecto
+          webhooks: Webhooks
+        projects:
+          manage: Gestión
+          manage_admins: Gestionar administradores
+          manage_users: Gestionar usuarios
+          title: Proyectos
+          view: Ver
+        questions:
+          manage: Gestión
+          title: Preguntas
+          view: Ver
+        reflectionQuestions:
+          export: Exportar
+          import: Importar
+          manage: Gestión
+          title: Preguntas de reflexión del PDI
+          view: Ver
+        registrationCodes:
+          manage: Gestión
+          title: Códigos de registro
+          view: Ver
+        registrationSettings:
+          manage: Gestión
+          title: Ajustes de registro
+        reports:
+          manage: Gestión
+          title: Informes
+          view: Ver
+        responseMeta:
+          title: Respuesta Meta
+        results:
+          approve_report: Aprobar el informe
+          bulk_download: Descarga masiva
+          bulk_regenerate_reports: Regeneración masiva de informes
+          bulk_update_evaluation_status: Actualización masiva del estado de la evaluación
+          download_report: Descargar informe
+          edit_report: Editar informe
+          export_occupations: Profesiones relacionadas con la exportación
+          external_score_import: Importación externa de partituras
+          finalize_scores: Finalizar las puntuaciones
+          normalize_factor_scores: Normalizar las puntuaciones de los factores
+          raw_responses: Respuestas en bruto
+          regenerate_report: Informe Regenerar
+          report_data: Datos del informe
+          report_file_upload: Carga de archivos de informe
+          rescore_responses: Rescore Respuestas
+          reset_progress: Restablecer progreso
+          reset_responses: Restablecer respuestas
+          scores: Partituras
+          title: Resultados
+          view_report: Ver informe
+          view_stats: Ver estadísticas
+        skills:
+          export: Exportar
+          export_translations: Exportar traducciones
+          import: Importar
+          import_translations: Importación de traducciones
+          manage: Gestión
+          title: Habilidades
+          view: Ver
+        smsHistories:
+          manage: Gestión
+          title: Historias de SMS
+          view: Ver
+        smsInvites:
+          manage: Gestión
+          title: Invitaciones por SMS
+          view: Ver
+        userIdpPlans:
+          manage: Gestionar
+          title: Planes IDP de usuarios
+          view: Vista
+        users:
+          reset_password: Restablecer contraseña
+          title: Usuarios
+        workshops:
+          export_status: Estado de la exportación
+          manage: Gestión
+          title: Talleres
+          view: Ver
+          view_recordings: Ver grabaciones
+      libraries:
+        manage: Gestión
+        title: Mediatecas
+        view: Ver
+      messages:
+        email: Correo electrónico
+        instructions: Instrucciones
+        options: Opciones
+        title: Mensajes
+      norms:
+        manage: Gestión
+        title: Normas
+        view: Ver
+      proficiencyLevels:
+        export: Niveles de aptitud para exportar
+        export_translations: Traducciones de los niveles de competencia de exportación
+        import: Niveles de competencia de importación
+        import_translations: Importar traducciones de niveles de competencia
+        manage: Gestión
+        title: Niveles de competencia
+        view: Ver
+      proficiency_level:
+        title: Niveles de competencia
+      projectSettings:
+        assessments: Evaluaciones
+        design: Diseño
+        feature_flags: Marcas de características
+        idp: PDI
+        integrations: Integraciones
+        privacy_settings: Privacidad
+        saml: SAML
+        security: Seguridad
+        smtp: SMTP
+        title: Configuración del proyecto
+        webhooks: Webhooks
+      projects:
+        manage: Gestión
+        manage_admins: Gestionar administradores
+        manage_licenses: Gestionar licencias
+        manage_users: Gestionar usuarios
+        title: Proyectos
+        view: Ver
+        view_licenses: Ver licencias
+      questions:
+        manage: Gestión
+        title: Preguntas
+        view: Ver
+      reflectionQuestions:
+        export: Exportar
+        import: Importar
+        manage: Gestión
+        title: Preguntas de reflexión del PDI
+        view: Ver
+      registrationCodes:
+        manage: Gestión
+        title: Códigos de registro
+        view: Ver
+      registrationSettings:
+        manage: Gestión
+        title: Ajustes de registro
+      reports:
+        manage: Gestión
+        title: Informes
+        view: Ver
+      responseMeta:
+        title: Respuesta Meta
+      results:
+        approve_report: Aprobar el informe
+        bulk_download: Descarga masiva
+        bulk_regenerate_reports: Regeneración masiva de informes
+        bulk_update_evaluation_status: Actualización masiva del estado de la evaluación
+        download_report: Descargar informe
+        edit_report: Editar informe
+        export_occupations: Profesiones relacionadas con la exportación
+        external_score_import: Importación externa de partituras
+        finalize_scores: Finalizar las puntuaciones
+        normalize_factor_scores: Normalizar las puntuaciones de los factores
+        raw_responses: Respuestas en bruto
+        regenerate_report: Informe Regenerar
+        report_data: Datos del informe
+        report_file_upload: Carga de archivos de informe
+        rescore_responses: Rescore Respuestas
+        reset_progress: Restablecer progreso
+        reset_responses: Restablecer respuestas
+        scores: Partituras
+        title: Resultados
+        view_report: Ver informe
+        view_stats: Ver estadísticas
+      skills:
+        export: Exportar
+        export_translations: Exportar traducciones
+        import: Importar
+        import_translations: Importación de traducciones
+        manage: Gestión
+        title: Habilidades
+        view: Ver
+      smsHistories:
+        manage: Gestión
+        title: Historias de SMS
+        view: Ver
+      smsInvites:
+        manage: Gestión
+        title: Invitaciones por SMS
+        view: Ver
+      userIdpPlans:
+        manage: Gestionar
+        reset: Restablecimiento
+        title: Planes IDP de usuarios
+        view: Vista
+      users:
+        reset_password: Restablecer contraseña
+        title: Usuarios
+      workshops:
+        export_status: Estado de la exportación
+        manage: Gestión
+        title: Talleres
+        view: Ver
+        view_recordings: Ver grabaciones
+    permissions_360_campaigns: Permisos específicos para campañas 360
+    privacy: Privacidad
+    proficiency_level: Claves API
+    proficiency_levels: Niveles de competencia
     profile_details: Detalles del perfil
     project_admins: Administradores de proyectos
     project_manager: Responsable de proyecto
+    project_number: Número de proyecto
+    project_settings: Configuración del proyecto
+    projects: Proyectos
     question_center: Centro de preguntas
+    questions: Preguntas
+    reflection_questions: Preguntas de reflexión
     registration_codes: Códigos de registro
+    registration_settings: Ajustes de registro
     report_approvals: Aprobación de informes
     report_condition_not_met: Necesita %{required} %{relationship} evaluación(es), pero solo tiene %{actual}
     report_conditions_not_met_detailed: El informe para %{user} no cumple las condiciones de disponibilidad. %{conditions}
@@ -128,6 +592,8 @@ es-ES:
     reset_idp_plan: Plan de Reinicio
     reset_idp_plan_confirmation: "¿Estás seguro de que quieres reiniciar el plan?"
     reset_idp_plan_title: Plan de Reinicio
+    response_meta: Respuesta Meta
+    results: Resultados
     role: Rol
     saml_idp_certificate_available: Disponible (haz clic para copiar)
     saml_idp_certificate_label: Certificado
@@ -179,17 +645,28 @@ es-ES:
     saml_settings: Configuración SAML
     scheduling: Programación
     scoring: Puntuación
+    search_admins: Buscar administradores
+    select_admin_role: Seleccione el rol de administrador
+    send_email: Enviar correo electrónico
+    settings: Ajustes
     show_submenu: Mostrar submenú
+    siem: SIEM
+    skill_aliases: Alias de habilidades
+    skills: Habilidades
     skills_taxonomy: Taxonomía de competencias
     slot_name: Nombre de la tragamonedas
+    sms_histories: Historias de SMS
+    sms_invites: Invitaciones por SMS
     stats: Estadísticas
     status_details: Detalles de estado
     structured_learning: Aprendizaje formal [10]
+    subdomain: Subdominio
     upload_success: Subido con éxito
     user_report_events: Informe de usuario Eventos
     users: Usuarios
     view_licenses: Ver licencias
     waiting: Espera
+    workshops: Talleres
     year: País
     yoodli_activity_id: ID de actividad Yoodli
     yoodli_email_id: ID de correo electrónico del candidato Yoodli

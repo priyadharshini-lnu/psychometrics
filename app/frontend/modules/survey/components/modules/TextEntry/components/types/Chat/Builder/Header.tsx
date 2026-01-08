@@ -1,6 +1,6 @@
 import React from 'react'
 import { Divider } from 'antd'
-import { UserOutlined } from '@ant-design/icons'
+import { UserOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import MultiInlineEditor from '../../../../../../MultiInlineEditor'
 import styles from './ChatStyle.less'
 import commonStyles from '../ChatStyle.less'

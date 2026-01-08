@@ -2,11 +2,11 @@ import { FC, useState } from 'react'
 import {
   Row, Col, Avatar, Dropdown, Typography, Space, Input, Button, Modal,
 } from 'antd'
-import {
-  MoreOutlined, UserOutlined, ExclamationCircleOutlined, CheckOutlined,
-} from '@ant-design/icons'
 import cs from 'classnames'
 import _ from 'lodash'
+import {
+  MoreOutlined, UserOutlined, ExclamationCircleOutlined, CheckOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import dayjs from '~/utils/dayjs'
 import styles from './CommentItem.less'

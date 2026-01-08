@@ -1,6 +1,5 @@
 /* eslint-disable react/no-danger */
 import React, { useState } from 'react'
-import { LoadingOutlined, CheckOutlined, InfoCircleOutlined } from '@ant-design/icons'
 import {
   Button, Modal, message, Alert, Form, Input, Typography,
 } from 'antd'
@@ -8,6 +7,7 @@ import { Store } from 'antd/lib/form/interface'
 import Event from 'interfaces/Event'
 import each from 'lodash/each'
 import { connect, ConnectedProps } from 'react-redux'
+import { LoadingOutlined, CheckOutlined, InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { RootState } from '~/modules/admin/core/rootReducers'
 

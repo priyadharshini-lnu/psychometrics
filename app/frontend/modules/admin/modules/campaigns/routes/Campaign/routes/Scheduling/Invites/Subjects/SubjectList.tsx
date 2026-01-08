@@ -4,13 +4,13 @@ import {
 } from 'antd'
 import { Link, useParams } from 'react-router-dom'
 
+import { ConnectedProps, connect } from 'react-redux'
+import * as t from 'io-ts'
 import {
   PlusOutlined,
   CloseOutlined,
   CloudDownloadOutlined,
-} from '@ant-design/icons'
-import { ConnectedProps, connect } from 'react-redux'
-import * as t from 'io-ts'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import {
   WorkshopInvitedSubjectTR, WorkshopInvitedSubject,
 } from '~/modules/admin/modules/UserAvailability/core/workshopInvitedSubjects'

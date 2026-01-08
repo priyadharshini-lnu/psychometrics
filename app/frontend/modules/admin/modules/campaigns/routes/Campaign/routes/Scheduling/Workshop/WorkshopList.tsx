@@ -5,11 +5,11 @@ import {
 import {
   useLocation, useNavigate, Link, useParams,
 } from 'react-router-dom'
+import { connect } from 'react-redux'
 import {
   PlusOutlined,
   MoreOutlined,
-} from '@ant-design/icons'
-import { connect } from 'react-redux'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 import { Workshop, WorkshopTR } from '~/modules/admin/modules/campaigns/core/workshop'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'

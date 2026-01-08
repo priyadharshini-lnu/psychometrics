@@ -139,7 +139,7 @@ function* genSaveResultsIfNoVideoQuestionInProgress () {
     if (!state.preview.end) {
       yield genSimulatePassingAssessment()
     } else {
-      yield genSaveResults()
+      yield takeLatest(SHOW_END, genSaveResults)
     }
   }
 }

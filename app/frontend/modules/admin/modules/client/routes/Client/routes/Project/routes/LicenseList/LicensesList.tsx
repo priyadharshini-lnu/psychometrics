@@ -4,8 +4,8 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Button,
 } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Resource } from '~/modules/admin/components/Resource'
 import { LicenseTR } from '~/modules/admin/modules/client/core/licenses'
 import { RootState } from '~/modules/admin/core/rootReducers'

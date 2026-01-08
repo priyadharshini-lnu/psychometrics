@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import { Descriptions, Button, List } from 'antd'
-import { EditOutlined } from '@ant-design/icons'
+import { EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
 import { MettlScheduleRecord } from '~/modules/admin/modules/client/core/mettlScheduleRecords'
 import { useResources } from '~/hooks/useResources'

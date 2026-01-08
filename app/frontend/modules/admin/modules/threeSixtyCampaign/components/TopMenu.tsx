@@ -7,7 +7,7 @@ import {
   DatabaseOutlined,
   MessageOutlined,
   SolutionOutlined,
-} from '@ant-design/icons'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { MenuItem } from '~/interfaces/Antd'
 import { RootState } from '~/modules/admin/core/rootReducers'

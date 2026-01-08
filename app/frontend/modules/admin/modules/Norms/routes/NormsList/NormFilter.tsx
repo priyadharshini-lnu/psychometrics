@@ -1,5 +1,5 @@
 import { Button } from 'antd'
-import { PlusOutlined, ToolOutlined, DownOutlined } from '@ant-design/icons'
+import { PlusOutlined, ToolOutlined, DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { Norm } from '~/modules/admin/modules/client/core/norms'

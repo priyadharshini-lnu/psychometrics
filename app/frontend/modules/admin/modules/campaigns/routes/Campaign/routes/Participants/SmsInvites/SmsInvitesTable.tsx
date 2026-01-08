@@ -3,10 +3,10 @@ import {
   Table, Row, Col, Input, Select, Pagination, Button, Space, MenuProps, App,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import {
   AppstoreOutlined, PlusOutlined, MoreOutlined, ExclamationCircleOutlined,
-} from '@ant-design/icons'
-import { useParams } from 'react-router-dom'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { isRequestInProgress } from '~/core/request'
 import { MenuItem } from '~/interfaces/Antd'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'

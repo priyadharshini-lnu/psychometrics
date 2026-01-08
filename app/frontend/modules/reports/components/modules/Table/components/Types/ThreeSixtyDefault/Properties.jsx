@@ -84,6 +84,18 @@ class Properties extends Component {
           <PropertyFilter modules={modules} />
         </div>
         <div className={styles.divider} />
+        <div className={styles.block} style={{ position: 'relative' }}>
+          <label className={styles.inputLabel}>
+            <input
+              style={{ marginRight: '5px' }}
+              type="checkbox"
+              checked={model.props.aiTranslationEnabled ?? false}
+              onChange={e => this.onChange('aiTranslationEnabled', e.target.checked)}
+            />
+            {I18n.t('administration.report_builder.property_panel.translate_with_ai')}
+          </label>
+        </div>
+        <div className={styles.divider} />
         <div className="mtm">
           <Checkbox
             value={model.props.randomizeAnswers}

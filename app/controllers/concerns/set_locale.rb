@@ -14,12 +14,20 @@ module SetLocale
 
   def user_locale # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
     @user_locale ||= begin
-      probably_locale = params[:lang] if I18n.available_locales.include?(params[:lang]&.to_sym)
-      probably_locale = ui_locale unless I18n.available_locales.include?(probably_locale&.to_sym)
-      probably_locale = user_preferred_locale unless I18n.available_locales.include?(probably_locale&.to_sym)
-      probably_locale = I18n.default_locale unless I18n.available_locales.include?(probably_locale&.to_sym)
+      probably_locale = params[:lang] if available_locales.include?(params[:lang]&.to_sym)
+      probably_locale = ui_locale unless available_locales.include?(probably_locale&.to_sym)
+      probably_locale = user_preferred_locale unless available_locales.include?(probably_locale&.to_sym)
+      probably_locale = I18n.default_locale unless available_locales.include?(probably_locale&.to_sym)
       probably_locale&.to_s
     end
+  end
+
+  def available_locales
+    if respond_to?(:end_user_side?, true) && end_user_side?
+      Settings.enduser_locales
+    else
+      ENV['ADMIN_LOCALES'].presence&.split(',') || ['en']
+    end.map(&:to_sym)
   end
 
   def user_locale_rtl?

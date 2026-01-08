@@ -10,7 +10,7 @@ import {
   Typography,
 } from 'antd'
 import { useParams } from 'react-router-dom'
-import { DownloadOutlined, EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons'
+import { DownloadOutlined, EyeInvisibleOutlined, EyeOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { DateTimeWithZone } from '~/glint'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import styles from './styles.less'

@@ -5,7 +5,7 @@ module PasswordReset
 
   included do
     before_action :set_project, only: %i[new create edit update]
-    prepend_before_action :verify_recaptcha_or_redirect, only: [:update]
+    prepend_before_action :verify_recaptcha_or_redirect, only: %i[create update]
   end
 
   def new

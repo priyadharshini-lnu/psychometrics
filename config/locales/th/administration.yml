@@ -29,35 +29,11 @@ th:
     administrators:
       drawers:
         edit:
-          admin_role_select: กรุณาเลือกผู้ดูแลระบบ
-          admin_roles: หน้าที่ผู้ดูแลระบบ
-          create_success: ผู้ดูแลระบบ '%{name}' ถูกสร้างขึ้นเรียบร้อยแล้ว
-          email: อีเมล
-          first_name: ชื่อจริง
           first_name_required: กรุณาระบุชื่อจริง
-          last_name: นามสกุล
           last_name_required: กรุณาระบุนามสกุล
-          no_edit_permission: คุณไม่มีสิทธิ์แก้ไขผู้ดูแลระบบ '%{name}'
-          save: บันทึก
-          update: อัพเดต
-          update_success: ผู้ดูแลระบบ '%{name}' อัปเดตเรียบร้อยแล้ว
-        notes:
-          threesixty_permission: สิทธิ์เฉพาะสําหรับแคมเปญ 360 องศา
-          title: หมายเหตุ
         view:
-          add_campaign_admin: เพิ่มผู้ดูแลแคมเปญ
-          add_client_admin: เพิ่มผู้ดูแลระบบลูกค้า
-          add_project_admin: เพิ่มผู้ดูแลระบบโครงการ
-          add_threesixty_campaign_admin: เพิ่มผู้ดูแลแคมเปญ
-          edit_campaign_admin: แก้ไขผู้ดูแลระบบแคมเปญ
-          edit_client_admin: แก้ไขผู้ดูแลระบบลูกค้า
-          edit_project_admin: แก้ไขผู้ดูแลระบบโครงการ
-          edit_threesixty_campaign_admin: แก้ไขผู้ดูแลระบบแคมเปญ
           first_name: ชื่อจริง
           last_name: นามสกุล
-          project_admin: ผู้ดูแลระบบโครงการ
-          project_list: รายชื่อโครงการ
-          role: ผู้ดูแลระบบแคมเปญ
           title:
             campaign_admin: ผู้ดูแลระบบแคมเปญ
             client_admin: ผู้ดูแลระบบลูกค้า
@@ -65,253 +41,20 @@ th:
       list:
         actions:
           api_keys: กุญแจ API
-          cancel_text: ยกเลิก
-          change_password: รีเซ็ตรหัสผ่าน
           edit: แก้ไข
           export_admins_with_permissions: ส่งออกหน้าที่และสิทธิ์ของผู้ดูแลระบบ
           export_success: การส่งออกงานของผู้ดูแลระบบถูกตั้งเวลาเรียบร้อยแล้ว กรุณาตรวจสอบสถานะการแจ้งเตือนของคุณ
           login: เข้าสู่ระบบ
-          send_email: ส่งอีเมล
           spoof:
             login_successful: เข้าสู่ระบบสําเร็จ
           user_report_events: รายงานบันทึกการอนุมัติ
         columns:
-          actions: การดําเนินการ
-          created_at: สร้างเมื่อ
           email: อีเมล
-          id: รหัส
-          name: ชื่อ
-        header:
-          add_admin: เพิ่มผู้ดูแลระบบ
-          search_admins: ค้นหาผู้ดูแลระบบ
-        toolbar:
-          export_admins_with_permissions: การส่งออกหน้าที่และสิทธิ์ของผู้ดูแลระบบ
       modals:
         delete:
           cancelText: ยกเลิก
-          content: คุณแน่ใจหรือไม่ว่าต้องการลบผู้ดูแลระบบอีเมล '%{email}'
           okText: ตกลง
-          onSuccess: ผู้ดูแลระบบอีเมล '%{email}' ถูกลบออกเรียบร้อยแล้ว
           title: ยืนยัน
-      permissions:
-        labels:
-          aiArtifacts:
-            export: ส่งออก
-            import: นําเข้า
-            manage: จัดการ
-            title: สิ่งประดิษฐ์ AI
-            view: ทิวทัศน์
-          apiKeys:
-            manage: จัดการ
-            title: กุญแจ API
-            view: ดู
-          assessments:
-            manage: จัดการ
-            title: การประเมิน
-            view: ดู
-          assessors:
-            manage: จัดการ
-            title: ผู้ประเมิน
-            view: ดู
-          auditLogs:
-            title: บันทึกการตรวจสอบ
-            view: ดู
-          auditReports:
-            admin_permissions: การส่งออกหน้าที่และสิทธิ์ของผู้ดูแลระบบ
-            title: รายงานการตรวจสอบ
-            user_report_events: รายงานบันทึกการอนุมัติ
-          campaignFactors:
-            manage: จัดการ
-            title: ปัจจัยของแคมเปญ
-            view: ดู
-          campaigns:
-            bulk_download: ดาวน์โหลดจำนวนมาก
-            bulk_regenerate_reports: สร้างรายงานใหม่ทั้งหมด
-            manage: จัดการ
-            manage_admins: จัดการผู้ดูแลระบบ
-            manage_factor_benchmark_scores: จัดการคะแนนเกณฑ์มาตรฐานของปัจจัย
-            manage_messages: จัดการข้อความ
-            manage_options: จัดการตัวเลือก
-            manage_report_approvals: จัดการรายงานการอนุมัติ
-            manage_users: จัดการผู้ใช้
-            participant_options: ตัวเลือกผู้เข้าร่วม
-            report_options: ตัวเลือกรายงาน
-            reset_nominations: รีเซ็ตการเสนอชื่อ
-            title: แคมเปญ
-            view: ดู
-            view_factor_benchmark_scores: ดูคะแนนเกณฑ์มาตรฐานของปัจจัย
-            view_stats: ดูสถิติ
-          clients:
-            export_data_report: รายงานการส่งออกข้อมูล
-            manage: จัดการ
-            title: ลูกค้า
-            view: ดู
-            view_licenses: ดูใบอนุญาต
-          communications:
-            manage: จัดการ
-            title: การสื่อสาร
-            view: ดู
-          dashboards:
-            accesssheet_manage: จัดการ Accesssheet
-            accesssheet_settings: ตั้งค่า Accesssheet
-            accesssheet_view: แสดง Accesssheet
-            export: ส่งออก
-            title: แดชบอร์ด
-            view: ดู
-          datasheets:
-            manage: จัดการ
-            title: เอกสารข้อมูล
-            view: ดู
-          developmentActions:
-            export: ส่งออก
-            export_global: ส่งออกข้อมูลทั้งหมด
-            export_global_translations: ส่งออกคำแปลทุกภาษา
-            export_translations: ส่งออกคําแปล
-            import: นําเข้า
-            import_global: นําเข้าข้อมูลทั้งหมด
-            import_global_translations: นําเข้าคําแปลทุกภาษา
-            import_translations: นําเข้าคําแปล
-            manage: จัดการ
-            title: การดำเนินการพัฒนา
-            view: ดู
-          dimensions:
-            manage: จัดการ
-            title: มิติ
-            view: ดู
-          idpTemplates:
-            manage: จัดการ
-            title: เทมเพลต IDP
-            view: ดู
-          interviewQuestions:
-            export: ส่งออก
-            import: นําเข้า
-            manage: จัดการ
-            title: คําถามสัมภาษณ์ IDP
-            view: ดู
-          jobRoles:
-            export_translations: ส่งออกบทบาทงานแปล
-            import_translations: นำเข้าการแปลบทบาทงาน
-            manage: จัดการ
-            title: บทบาทในงาน
-            view: ดู
-          libraries:
-            manage: จัดการ
-            title: ห้องสมุดสื่อ
-            view: ดู
-          messages:
-            email: อีเมล
-            instructions: คำแนะนำ
-            options: ตัวเลือก
-            title: ข้อความ
-          norms:
-            manage: จัดการ
-            title: ค่ามาตรฐาน
-            view: ดู
-          proficiencyLevels:
-            export: ส่งออกระดับความสามารถ
-            export_translations: ส่งออกคำแปลระดับความสามารถ
-            import: นําเข้าระดับความความสามารถ
-            import_translations: นําเข้าคำแปลระดับความสามารถ
-            manage: จัดการ
-            title: ระดับความสามารถ
-            view: ดู
-          proficiency_level:
-            title: ระดับความสามารถ
-          projectSettings:
-            assessments: การประเมิน
-            design: ออกแบบ
-            feature_flags: แฟล็กคุณลักษณะ
-            idp: IDP
-            integrations: การบูรณาการ
-            privacy_settings: การตั้งค่าความเป็นส่วนตัว
-            saml: SAML
-            security: ความปลอดภัย
-            smtp: SMTP
-            title: การตั้งค่าโครงการ
-            webhooks: Webhooks
-          projects:
-            manage: จัดการ
-            manage_admins: จัดการผู้ดูแลระบบ
-            manage_licenses: จัดการใบอนุญาต
-            manage_users: จัดการผู้ใช้
-            title: โครงการ
-            view: ดู
-            view_licenses: ดูใบอนุญาต
-          questions:
-            manage: จัดการ
-            title: คำถาม
-            view: ดู
-          reflectionQuestions:
-            export: ส่งออก
-            import: นําเข้า
-            manage: จัดการ
-            title: คําถามสะท้อน IDP
-            view: ดู
-          registrationCodes:
-            manage: จัดการ
-            title: รหัสการลงทะเบียน
-            view: ดู
-          registrationSettings:
-            manage: จัดการ
-            title: การตั้งค่าการลงทะเบียน
-          reports:
-            manage: จัดการ
-            title: รายงาน
-            view: ดู
-          responseMeta:
-            title: ตอบกลับ Meta
-          results:
-            approve_report: อนุมัติรายงาน
-            bulk_download: ดาวน์โหลดจำนวนมาก
-            bulk_regenerate_reports: สร้างรายงานใหม่จํานวนมาก
-            bulk_update_evaluation_status: สถานะอัปเดตการประเมินจํานวนมาก
-            download_report: ดาวน์โหลดรายงาน
-            edit_report: แก้ไขรายงาน
-            export_occupations: ส่งออกอาชีพ
-            external_score_import: นําเข้าคะแนนภายนอก
-            finalize_scores: สรุปคะแนน
-            normalize_factor_scores: ปรับคะแนนปัจจัยตามค่ามาตรฐาน
-            raw_responses: คําตอบดิบ
-            regenerate_report: สร้างรายงานใหม่
-            report_data: รายงานข้อมูล
-            report_file_upload: รายงานการอัปโหลดไฟล์
-            rescore_responses: ให้คะแนนคำตอบใหม่
-            reset_progress: รีเซ็ตความคืบหน้า
-            reset_responses: รีเซ็ตการตอบกลับ
-            scores: คะแนน
-            title: ผลลัพธ์
-            view_report: ดูรายงาน
-            view_stats: ดูสถิติ
-          skills:
-            export: ส่งออกทักษะ
-            export_translations: ส่งออกคำแปลทักษะ
-            import: นําเข้าทักษะ
-            import_translations: นําเข้าคำแปลทักษะ
-            manage: จัดการ
-            title: ทักษะ
-            view: ดู
-          smsHistories:
-            manage: จัดการ
-            title: ประวัติ SMS
-            view: ดู
-          smsInvites:
-            manage: จัดการ
-            title: คําเชิญทาง SMS
-            view: ดู
-          userIdpPlans:
-            manage: จัดการ
-            reset: รี เซ็ต
-            title: แผน ID ผู้ใช้
-            view: ทิวทัศน์
-          users:
-            reset_password: รีเซ็ตรหัสผ่าน
-            title: ผู้ใช้
-          workshops:
-            export_status: สถานะการส่งออก
-            manage: จัดการ
-            title: เวิร์กช็อป
-            view: ดู
-            view_recordings: ดูการบันทึก
     ai_artifacts:
       artifact_results: ผลลัพธ์สิ่งประดิษฐ์
       code: รหัส
@@ -3575,6 +3318,7 @@ th:
           show_target_proficiency: แสดงความเชี่ยวชาญเป้าหมาย
           strengths_blindspots: จุดแข็งและจุดบอด
         text_condition_type: 'ประเภทเงื่อนไขข้อความ:'
+        translate_with_ai: แปลด้วย AI
     report_families:
       create:
         successfully: สร้างชุดรายงาน %{name} เรียบร้อยแล้ว
@@ -4047,12 +3791,7 @@ th:
       security_setting: การตั้งค่าความปลอดภัย
     settings:
       admin_roles:
-        admin_role_single: บทบาทผู้ดูแลระบบ
         confirm_message: คุณแน่ใจหรือไม่ว่าต้องการลบบทบาทผู้ดูแลระบบ '%{role_name}'
-        create: เพิ่มบทบาทผู้ดูแลระบบ
-        description: คำอธิบาย
-        name: ชื่อ
-        successful_remove: บทบาทผู้ดูแลระบบ '%{role_name}' ถูกลบเรียบร้อยแล้ว
       siem:
         description: คำอธิบาย
         destination_type: ประเภทปลายทาง

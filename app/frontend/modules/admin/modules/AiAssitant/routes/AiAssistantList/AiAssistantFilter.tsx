@@ -1,7 +1,7 @@
 import React from 'react'
-import { PlusOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
 import { useNavigate } from 'react-router-dom'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { AiAssistant } from '~/modules/admin/modules/AiAssitant/core/aiAssistant'
 

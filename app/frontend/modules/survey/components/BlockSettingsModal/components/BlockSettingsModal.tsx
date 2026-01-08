@@ -9,7 +9,7 @@ import {
   SortableContainer, SortableContainerProps, SortableElement, SortableElementProps, SortableHandle,
 } from 'react-sortable-hoc'
 import { arrayMove } from '@dnd-kit/sortable'
-import { MenuOutlined, DeleteOutlined } from '@ant-design/icons'
+import { MenuOutlined, DeleteOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { ColorPicker } from '~/glint'
 import styles from './BlockSettingsModal.less'
 import LabelEditor from '~/modules/survey/components/LabelEditor'

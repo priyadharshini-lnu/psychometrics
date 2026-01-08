@@ -26,6 +26,7 @@ class Users::SamlSessionsController < Devise::SamlSessionsController
     audit! :saml_login, current_user, user: current_user, payload: params.except('SAMLResponse', 'RelayState').
       merge(email: current_user.email),
     outcome: 'successful'
+
     session[:saml_login] = true
   end
 

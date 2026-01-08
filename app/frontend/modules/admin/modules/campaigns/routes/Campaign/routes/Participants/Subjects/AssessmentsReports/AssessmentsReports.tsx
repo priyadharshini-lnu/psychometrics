@@ -2,8 +2,8 @@ import { useParams } from 'react-router-dom'
 import {
   Row, Col, Button, App, Space,
 } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
 import _ from 'lodash'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import ReportList from './ReportList'
 import AssessmentList from './AssessmentList'
 import { Strategies } from '../../../AssessmentsReports/routes/AssessmentsReports/AddReportModal/interfaces'

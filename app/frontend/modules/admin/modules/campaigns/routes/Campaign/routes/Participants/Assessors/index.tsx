@@ -3,10 +3,10 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Table, Row, Col, Input, Pagination, Button,
 } from 'antd'
+import { Link, useParams } from 'react-router-dom'
 import {
   AppstoreOutlined, PlusOutlined, MoreOutlined,
-} from '@ant-design/icons'
-import { Link, useParams } from 'react-router-dom'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { isRequestInProgress } from '~/core/request'
 import {
   fetch,

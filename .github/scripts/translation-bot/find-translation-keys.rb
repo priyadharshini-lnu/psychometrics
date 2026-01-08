@@ -67,33 +67,44 @@ class TranslationKeyFinder
       return
     end
 
-    diff_output = get_file_diff(file)
-    return if diff_output.empty?
+    # Get current (new) content
+    new_content = load_yaml_content(file)
+    return if new_content.empty?
 
-    new_lines = extract_added_lines(diff_output)
-    return if new_lines.empty?
+    # Get old content from base branch
+    old_content = load_yaml_content_from_base(file)
 
-    process_new_lines(file, new_lines)
+    # Find keys that exist in new but not in old
+    find_new_keys(file, old_content, new_content)
   end
 
-  def get_file_diff(file)
-    output, status = Open3.capture2("git diff origin/#{@base_ref}...HEAD -- \"#{file}\"")
-    return '' unless status.success?
+  def load_yaml_content_from_base(file)
+    # Get file content from base branch
+    output, status = Open3.capture2("git show origin/#{@base_ref}:#{file} 2>/dev/null")
+    return {} unless status.success?
 
-    output
+    yaml_content = YAML.safe_load(output, permitted_classes: [Symbol])
+    yaml_content&.dig('en') || {}
+  rescue StandardError => e
+    log "Note: Could not load #{file} from base branch (might be new file): #{e.message}"
+    {}
   end
 
-  def extract_added_lines(diff_output)
-    diff_output.lines.
-      select { |line| line.start_with?('+') && !line.start_with?('+++') }.
-      map { |line| line[1..] } # rubocop:disable Rails/Pluck -- pluck is not available in standalone Ruby
-  end
+  def find_new_keys(file, old_hash, new_hash, prefix = '')
+    new_hash.each do |key, value|
+      current_path = prefix.empty? ? key.to_s : "#{prefix}.#{key}"
 
-  def process_new_lines(file, new_lines)
-    en_content = load_yaml_content(file)
-
-    new_lines.each do |line|
-      process_single_line(file, line, en_content)
+      if value.is_a?(Hash)
+        old_value = old_hash.is_a?(Hash) ? old_hash[key] : nil
+        find_new_keys(file, old_value || {}, value, current_path)
+      else
+        # It's a leaf value - check if it's new or changed
+        old_value = old_hash.is_a?(Hash) ? old_hash[key] : nil
+        if old_value.nil?
+          # This is a new key
+          add_translation_key(file, current_path, value.to_s)
+        end
+      end
     end
   end
 
@@ -103,56 +114,6 @@ class TranslationKeyFinder
   rescue StandardError => e
     log "Warning: Could not parse YAML file #{file}: #{e.message}"
     {}
-  end
-
-  def process_single_line(file, line, en_content)
-    key_value_pair = extract_key_value_from_line(line)
-    return unless key_value_pair
-
-    key, clean_value = key_value_pair
-    full_keys = find_full_key_paths(en_content, clean_value)
-
-    add_keys_or_fallback(file, key, clean_value, full_keys)
-  end
-
-  def extract_key_value_from_line(line)
-    match = line.match(/^\s*([a-zA-Z_][a-zA-Z0-9_]*):(.*)$/)
-    return nil unless match
-
-    key = match[1]
-    value = match[2]&.strip || ''
-
-    # Skip if no value or just whitespace
-    return nil if value.empty? || value.match?(/^\s*$/)
-
-    # Clean up the value (remove quotes)
-    clean_value = value.gsub(/^["']|["']$/, '')
-    [key, clean_value]
-  end
-
-  def add_keys_or_fallback(file, key, clean_value, full_keys)
-    if full_keys.any?
-      full_keys.each { |full_key| add_translation_key(file, full_key, clean_value) }
-    else
-      log "Warning: Could not find full key path for '#{key}' in #{file}, using fallback"
-      add_translation_key(file, key, clean_value)
-    end
-  end
-
-  def find_full_key_paths(hash, target_value, prefix = '')
-    paths = []
-
-    hash.each do |key, value|
-      current_path = prefix.empty? ? key : "#{prefix}.#{key}"
-
-      if value == target_value
-        paths << current_path
-      elsif value.is_a?(Hash)
-        paths.concat(find_full_key_paths(value, target_value, current_path))
-      end
-    end
-
-    paths
   end
 
   def add_translation_key(file, key, value)

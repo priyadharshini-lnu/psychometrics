@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Select as BaseSelect, Dropdown, Button } from 'antd'
-import { DownOutlined } from '@ant-design/icons'
+import { DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { BuilderModel } from '~/modules/survey/interfaces/questions/TextEntry'
 import styles from '../../../FormStyle.less'
 import { getOptionListMenuProps } from './getOptionListMenuProps'

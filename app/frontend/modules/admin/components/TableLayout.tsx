@@ -3,8 +3,8 @@ import {
   Row, Col, Button, Empty,
   Checkbox,
 } from 'antd'
-import { ReloadOutlined, IssuesCloseOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
+import { ReloadOutlined, IssuesCloseOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { CountDisplay } from '~/components/CountDisplay'
 import { hasErrorsToHandle } from '~/components/ErrorModal/ErrorModal'
 import { getRequestErrors } from '~/core/errors'

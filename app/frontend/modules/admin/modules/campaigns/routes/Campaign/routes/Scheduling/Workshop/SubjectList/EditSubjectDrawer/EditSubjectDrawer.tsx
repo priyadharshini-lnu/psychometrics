@@ -7,14 +7,14 @@ import {
   Drawer, Space, Row, Col, Typography, Form, Select, Alert,
   Button, Divider,
 } from 'antd'
-import {
-  PlusOutlined,
-
-} from '@ant-design/icons'
 import * as t from 'io-ts'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { Dayjs } from 'dayjs'
+import {
+  PlusOutlined,
+
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { mergeDateAndTime } from '~/utils/time'
 import dayjs from '~/utils/dayjs'
 import InputDuration from '~/components/InputDuration'

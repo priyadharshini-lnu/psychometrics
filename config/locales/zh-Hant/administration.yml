@@ -29,35 +29,11 @@ zh-Hant:
     administrators:
       drawers:
         edit:
-          admin_role_select: 選擇管理員角色
-          admin_roles: 管理員角色
-          create_success: 管理員 '%{name}' 已成功建立
-          email: 電子郵件
-          first_name: 名字
           first_name_required: 必須填寫名字
-          last_name: 姓氏
           last_name_required: 必須填寫姓氏
-          no_edit_permission: 您沒有權限編輯管理員 '%{name}'
-          save: 節省
-          update: 更新
-          update_success: 管理員 '%{name}' 已成功更新
-        notes:
-          threesixty_permission: 360 活動的特定權限
-          title: 注意事項
         view:
-          add_campaign_admin: 新增活動管理員
-          add_client_admin: 新增客戶管理員
-          add_project_admin: 新增專案管理員
-          add_threesixty_campaign_admin: 新增活動管理員
-          edit_campaign_admin: 編輯活動管理
-          edit_client_admin: 編輯用戶端管理員
-          edit_project_admin: 編輯專案管理員
-          edit_threesixty_campaign_admin: 編輯活動管理
           first_name: 名字
           last_name: 姓氏
-          project_admin: 專案管理員
-          project_list: 專案清單
-          role: 活動管理員
           title:
             campaign_admin: 活動管理員
             client_admin: 客戶管理
@@ -65,253 +41,20 @@ zh-Hant:
       list:
         actions:
           api_keys: API 金鑰
-          cancel_text: 取消
-          change_password: 重設密碼
           edit: 編輯
           export_admins_with_permissions: 管理員角色和權限匯出
           export_success: 管理匯出工作已排程成功，請檢查您的通知以瞭解狀態。
           login: 登入
-          send_email: 發送電子郵件
           spoof:
             login_successful: 登入成功。
           user_report_events: 報告核准記錄
         columns:
-          actions: 行動
-          created_at: 建立於
           email: 電子郵件
-          id: 同上
-          name: 名稱
-        header:
-          add_admin: 新增管理員
-          search_admins: 搜尋管理員
-        toolbar:
-          export_admins_with_permissions: 管理員角色和權限匯出
       modals:
         delete:
           cancelText: 取消
-          content: 您確定要移除 email 名為「%{email}」的管理員使用者嗎？
           okText: 好的
-          onSuccess: 已成功移除電子郵件為 '%{email}' 的管理員
           title: 確認
-      permissions:
-        labels:
-          aiArtifacts:
-            export: 出口
-            import: 進口
-            manage: 司
-            title: AI 產物
-            view: 觀
-          apiKeys:
-            manage: 管理
-            title: API 金鑰
-            view: 檢視
-          assessments:
-            manage: 管理
-            title: 評估
-            view: 檢視
-          assessors:
-            manage: 管理
-            title: 評估員
-            view: 檢視
-          auditLogs:
-            title: 稽核日誌
-            view: 檢視
-          auditReports:
-            admin_permissions: 管理員角色和權限匯出
-            title: 審計報告
-            user_report_events: 報告核准記錄
-          campaignFactors:
-            manage: 管理
-            title: 活動因素
-            view: 檢視
-          campaigns:
-            bulk_download: 大量下載
-            bulk_regenerate_reports: 大量重新產生報表
-            manage: 管理
-            manage_admins: 管理管理員
-            manage_factor_benchmark_scores: 管理因子基準分數
-            manage_messages: 管理訊息
-            manage_options: 管理選項
-            manage_report_approvals: 管理報告核准
-            manage_users: 管理使用者
-            participant_options: 參與者選項
-            report_options: 報告選項
-            reset_nominations: 重設提名
-            title: 活動
-            view: 檢視
-            view_factor_benchmark_scores: 檢視因子基準評分
-            view_stats: 檢視統計資料
-          clients:
-            export_data_report: 匯出資料報告
-            manage: 管理
-            title: 客戶
-            view: 檢視
-            view_licenses: 檢視授權
-          communications:
-            manage: 管理
-            title: 通訊
-            view: 檢視
-          dashboards:
-            accesssheet_manage: 存取表管理
-            accesssheet_settings: 存取表設定
-            accesssheet_view: 存取表檢視
-            export: 出口
-            title: 儀表板
-            view: 檢視
-          datasheets:
-            manage: 管理
-            title: 資料表
-            view: 檢視
-          developmentActions:
-            export: 出口
-            export_global: 出口全球
-            export_global_translations: 出口全球翻譯
-            export_translations: 出口翻譯
-            import: 進口
-            import_global: 全球進口
-            import_global_translations: 導入全球翻譯
-            import_translations: 進口翻譯
-            manage: 管理
-            title: 發展行動
-            view: 檢視
-          dimensions:
-            manage: 管理
-            title: 尺寸
-            view: 檢視
-          idpTemplates:
-            manage: 管理
-            title: IDP 範本
-            view: 檢視
-          interviewQuestions:
-            export: 出口
-            import: 進口
-            manage: 管理
-            title: 流離失所者面試問題
-            view: 景觀
-          jobRoles:
-            export_translations: 匯出工作角色翻譯
-            import_translations: 匯入工作角色翻譯
-            manage: 管理
-            title: 工作角色
-            view: 檢視
-          libraries:
-            manage: 管理
-            title: 媒體圖書館
-            view: 檢視
-          messages:
-            email: 電子郵件
-            instructions: 說明
-            options: 選項
-            title: 訊息
-          norms:
-            manage: 管理
-            title: 規範
-            view: 檢視
-          proficiencyLevels:
-            export: 出口能力等級
-            export_translations: 出口能力等級翻譯
-            import: 進口能力等級
-            import_translations: 進口能力等級翻譯
-            manage: 管理
-            title: 能力等級
-            view: 檢視
-          proficiency_level:
-            title: 能力等級
-          projectSettings:
-            assessments: 評估
-            design: 設計
-            feature_flags: 功能旗標
-            idp: IDP
-            integrations: 整合
-            privacy_settings: 隱私設定
-            saml: SAML
-            security: 安全性
-            smtp: SMTP
-            title: 專案設定
-            webhooks: Webhooks
-          projects:
-            manage: 管理
-            manage_admins: 管理管理員
-            manage_licenses: 管理授權
-            manage_users: 管理使用者
-            title: 專案
-            view: 檢視
-            view_licenses: 查看授權
-          questions:
-            manage: 管理
-            title: 問題
-            view: 檢視
-          reflectionQuestions:
-            export: 出口
-            import: 進口
-            manage: 管理
-            title: IDP 反思問題
-            view: 檢視
-          registrationCodes:
-            manage: 管理
-            title: 註冊碼
-            view: 檢視
-          registrationSettings:
-            manage: 管理
-            title: 註冊設定
-          reports:
-            manage: 管理
-            title: 報告
-            view: 檢視
-          responseMeta:
-            title: 回應 Meta
-          results:
-            approve_report: 批准報告
-            bulk_download: 大量下載
-            bulk_regenerate_reports: 大量重新產生報表
-            bulk_update_evaluation_status: 大量更新評估狀態
-            download_report: 下載報告
-            edit_report: 編輯報告
-            export_occupations: 出口職業
-            external_score_import: 外部評分匯入
-            finalize_scores: 完成評分
-            normalize_factor_scores: 標準化因子分數
-            raw_responses: 原始回應
-            regenerate_report: 再生報告
-            report_data: 報告資料
-            report_file_upload: 報告檔案上傳
-            rescore_responses: 重核回應
-            reset_progress: 重設進度
-            reset_responses: 重設回應
-            scores: 得分
-            title: 結果
-            view_report: 檢視報告
-            view_stats: 檢視統計資料
-          skills:
-            export: 出口
-            export_translations: 出口翻譯
-            import: 進口
-            import_translations: 進口翻譯
-            manage: 管理
-            title: 技術
-            view: 檢視
-          smsHistories:
-            manage: 管理
-            title: 簡訊歷史
-            view: 檢視
-          smsInvites:
-            manage: 管理
-            title: 簡訊邀請
-            view: 檢視
-          userIdpPlans:
-            manage: 司
-            reset: 重排
-            title: 使用者 IDP 計畫
-            view: 觀
-          users:
-            reset_password: 重設密碼
-            title: 使用者
-          workshops:
-            export_status: 出口狀態
-            manage: 管理
-            title: 工作坊
-            view: 檢視
-            view_recordings: 查看錄音
     ai_artifacts:
       artifact_results: 神器結果
       code: 法典
@@ -3575,6 +3318,7 @@ zh-Hant:
           show_target_proficiency: 顯示目標熟練程度
           strengths_blindspots: 優勢與盲點
         text_condition_type: 文字條件類型：
+        translate_with_ai: 用 AI 翻譯
     report_families:
       create:
         successfully: 報告束 %{name} 已成功建立。
@@ -4050,12 +3794,7 @@ zh-Hant:
       security_setting: 安全設定
     settings:
       admin_roles:
-        admin_role_single: 管理員角色
         confirm_message: 您確定要刪除管理員角色「%{role_name}」嗎？
-        create: 新增管理員角色
-        description: 說明
-        name: 名稱
-        successful_remove: 管理員角色 '%{role_name}' 已成功刪除。
       siem:
         description: 說明
         destination_type: 目的地類型

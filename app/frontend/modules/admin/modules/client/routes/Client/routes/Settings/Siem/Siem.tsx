@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import {
   Row, Col, Form, Input, Button, Switch, Space, Typography, Select, App, Alert,
 } from 'antd'
-import { MailOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
+import { MailOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import ResourceForm from '~/components/ResourceForm'
 import { useResources } from '~/hooks/useResources'
 /* eslint-disable max-len */

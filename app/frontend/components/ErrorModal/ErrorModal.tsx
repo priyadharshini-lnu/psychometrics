@@ -1,7 +1,7 @@
 import { Button, Modal } from 'antd'
 import { useNavigate } from 'react-router-dom'
-import { CloseCircleOutlined } from '@ant-design/icons'
 import { useEffect, useState } from 'react'
+import { CloseCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from './styles.less'
 import { RequestError } from '~/core/errors'
 import { PropsFromRedux } from './connect'
@@ -25,6 +25,7 @@ const ErrorModal: React.FC<Props> = ({ errors, clearRequestErrors }) => {
 
   const handleCancel = () => {
     setIsModalOpen(false)
+    clearRequestErrors()
   }
 
   useEffect(() => {

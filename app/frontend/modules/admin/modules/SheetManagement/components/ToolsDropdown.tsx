@@ -2,9 +2,9 @@ import { FC } from 'react'
 import {
   Button, message,
 } from 'antd'
-import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 import pluralize from 'pluralize'
+import { ToolOutlined, DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import ConditionalDropdown from '~/components/ConditionalDropdown'

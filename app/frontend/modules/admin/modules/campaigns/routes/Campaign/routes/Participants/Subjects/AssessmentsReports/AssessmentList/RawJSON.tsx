@@ -5,8 +5,8 @@ import {
   FC, useEffect, useState,
 } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { CopyOutlined, EyeOutlined } from '@ant-design/icons'
 import _ from 'lodash'
+import { CopyOutlined, EyeOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { I18nInterface } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 import { useResources } from '~/hooks/useResources'
 import { JSONViewCopy } from '~/glint'

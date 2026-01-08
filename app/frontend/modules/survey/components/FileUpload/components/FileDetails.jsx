@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import { Button, Flex } from 'antd'
-import { FileOutlined } from '@ant-design/icons'
-import { DeleteOutlined, DownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { FileOutlined, DeleteOutlined, DownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from './FileUpload.less'
 
 const { I18n } = window

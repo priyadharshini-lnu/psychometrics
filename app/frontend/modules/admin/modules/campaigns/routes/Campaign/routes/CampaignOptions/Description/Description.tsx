@@ -3,8 +3,8 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Row, Col, Button, Select, Input, Typography, App,
 } from 'antd'
-import { SaveOutlined } from '@ant-design/icons'
 import find from 'lodash/find'
+import { SaveOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import {
   fetchDescriptions,
   update,

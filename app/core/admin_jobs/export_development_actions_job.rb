@@ -21,6 +21,7 @@ module AdminJobs
         CourseEndDate
         CourseImage
         Duration
+        Tags
       ]
     end
 
@@ -49,7 +50,8 @@ module AdminJobs
           development_action.course_start_date&.strftime('%Y-%m-%d'),
           development_action.course_end_date&.strftime('%Y-%m-%d'),
           development_action.image_url,
-          development_action.duration
+          development_action.duration,
+          development_action.tag_list.join(', ')
         ]
       ]
     end

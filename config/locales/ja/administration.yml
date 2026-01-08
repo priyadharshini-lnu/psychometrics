@@ -29,35 +29,11 @@ ja:
     administrators:
       drawers:
         edit:
-          admin_role_select: 管理者ロールの選択
-          admin_roles: 管理者の役割
-          create_success: 管理者 '%{name}' が正常に作成されました。
-          email: 電子メール
-          first_name: 名前
           first_name_required: 姓は必須
-          last_name: 姓
           last_name_required: 姓は必須
-          no_edit_permission: 管理者 '%{name}' を編集する権限がありません。
-          save: セーブ
-          update: 更新
-          update_success: 管理者 '%{name}' は正常に更新されました。
-        notes:
-          threesixty_permission: 360キャンペーンに特化したパーミッション
-          title: 備考
         view:
-          add_campaign_admin: キャンペーン管理者の追加
-          add_client_admin: クライアント管理者の追加
-          add_project_admin: プロジェクト管理者の追加
-          add_threesixty_campaign_admin: キャンペーン管理者の追加
-          edit_campaign_admin: キャンペーン管理者の編集
-          edit_client_admin: クライアント管理者の編集
-          edit_project_admin: プロジェクト管理者の編集
-          edit_threesixty_campaign_admin: キャンペーン管理者の編集
           first_name: 名前
           last_name: 姓
-          project_admin: プロジェクト管理者
-          project_list: プロジェクト一覧
-          role: キャンペーン管理者
           title:
             campaign_admin: キャンペーン管理者
             client_admin: クライアント管理者
@@ -65,253 +41,20 @@ ja:
       list:
         actions:
           api_keys: APIキー
-          cancel_text: キャンセル
-          change_password: パスワードのリセット
           edit: 編集
           export_admins_with_permissions: 管理者の役割と権限のエクスポート
           export_success: 管理者エクスポートジョブは正常にスケジュールされました。 ステータスについては通知を確認してください。
           login: ログイン
-          send_email: 電子メールを送信する
           spoof:
             login_successful: ログインに成功しました。
           user_report_events: レポート 承認ログ
         columns:
-          actions: 行動
-          created_at: で作成された。
           email: 電子メール
-          id: アイド
-          name: 名称
-        header:
-          add_admin: 管理者を追加する
-          search_admins: 管理者を検索
-        toolbar:
-          export_admins_with_permissions: 管理者の役割と権限のエクスポート
       modals:
         delete:
           cancelText: キャンセル
-          content: メール '%{email}' を持つ管理ユーザーを本当に削除しますか？
           okText: オッケー
-          onSuccess: 電子メール '%{email}' を持つ管理者は正常に削除されました。
           title: 確認
-      permissions:
-        labels:
-          aiArtifacts:
-            export: 輸出
-            import: 輸入
-            manage: 取り締まる
-            title: AIアーティファクト
-            view: 眺める
-          apiKeys:
-            manage: 管理
-            title: APIキー
-            view: 表示
-          assessments:
-            manage: 管理
-            title: アセスメント
-            view: 表示
-          assessors:
-            manage: 管理
-            title: アセッサ
-            view: 表示
-          auditLogs:
-            title: 監査ログ
-            view: 表示
-          auditReports:
-            admin_permissions: 管理者の役割と権限のエクスポート
-            title: 監査報告書
-            user_report_events: レポート 承認ログ
-          campaignFactors:
-            manage: 管理
-            title: キャンペーン要因
-            view: 表示
-          campaigns:
-            bulk_download: 一括ダウンロード
-            bulk_regenerate_reports: レポートの一括再生成
-            manage: 管理
-            manage_admins: 管理者の管理
-            manage_factor_benchmark_scores: ファクター・ベンチマーク・スコアの管理
-            manage_messages: メッセージの管理
-            manage_options: オプションの管理
-            manage_report_approvals: レポート承認の管理
-            manage_users: ユーザー管理
-            participant_options: 参加者オプション
-            report_options: レポートオプション
-            reset_nominations: 指名リセット
-            title: キャンペーン
-            view: 表示
-            view_factor_benchmark_scores: ファクター・ベンチマーク・スコアを見る
-            view_stats: 統計を見る
-          clients:
-            export_data_report: エクスポート・データ・レポート
-            manage: 管理
-            title: 顧客
-            view: 表示
-            view_licenses: ライセンスを見る
-          communications:
-            manage: 管理
-            title: コミュニケーション
-            view: 表示
-          dashboards:
-            accesssheet_manage: アクセスシート管理
-            accesssheet_settings: アクセスシートの設定
-            accesssheet_view: アクセスシートビュー
-            export: 輸出
-            title: ダッシュボード
-            view: 表示
-          datasheets:
-            manage: 管理
-            title: データシート
-            view: 表示
-          developmentActions:
-            export: 輸出
-            export_global: グローバル輸出
-            export_global_translations: グローバル翻訳の輸出
-            export_translations: 輸出翻訳
-            import: 輸入
-            import_global: インポート・グローバル
-            import_global_translations: グローバル翻訳のインポート
-            import_translations: 輸入翻訳
-            manage: 管理
-            title: 開発アクション
-            view: 表示
-          dimensions:
-            manage: 管理
-            title: 寸法
-            view: 表示
-          idpTemplates:
-            manage: 管理
-            title: IDPテンプレート
-            view: 表示
-          interviewQuestions:
-            export: 輸出
-            import: 輸入
-            manage: 管理
-            title: IDP面接に関する質問
-            view: 眺め
-          jobRoles:
-            export_translations: 仕事の役割の翻訳をエクスポート
-            import_translations: 仕事の役割の翻訳をインポートする
-            manage: 管理
-            title: 仕事の役割
-            view: 表示
-          libraries:
-            manage: 管理
-            title: メディア・ライブラリー
-            view: 表示
-          messages:
-            email: 電子メール
-            instructions: 使用方法
-            options: オプション
-            title: メッセージ
-          norms:
-            manage: 管理
-            title: 規範
-            view: 表示
-          proficiencyLevels:
-            export: 輸出技能レベル
-            export_translations: 輸出技能レベルの翻訳
-            import: インポート技能レベル
-            import_translations: 輸入熟練度翻訳
-            manage: 管理
-            title: 熟練度レベル
-            view: 表示
-          proficiency_level:
-            title: 熟練度レベル
-          projectSettings:
-            assessments: アセスメント
-            design: デザイン
-            feature_flags: 機能フラグ
-            idp: アイディーピー
-            integrations: 統合
-            privacy_settings: プライバシー設定
-            saml: サムル
-            security: セキュリティ
-            smtp: SMTP
-            title: プロジェクト設定
-            webhooks: ウェブフック
-          projects:
-            manage: 管理
-            manage_admins: 管理者の管理
-            manage_licenses: ライセンス管理
-            manage_users: ユーザー管理
-            title: プロジェクト
-            view: 表示
-            view_licenses: ライセンスを見る
-          questions:
-            manage: 管理
-            title: 質問
-            view: 表示
-          reflectionQuestions:
-            export: 輸出
-            import: 輸入
-            manage: 管理
-            title: IDPリフレクションの質問
-            view: 表示
-          registrationCodes:
-            manage: 管理
-            title: 登録コード
-            view: 表示
-          registrationSettings:
-            manage: 管理
-            title: 登録設定
-          reports:
-            manage: 管理
-            title: レポート
-            view: 表示
-          responseMeta:
-            title: レスポンス・メタ
-          results:
-            approve_report: 報告書の承認
-            bulk_download: 一括ダウンロード
-            bulk_regenerate_reports: レポートの一括再生成
-            bulk_update_evaluation_status: 評価ステータスの一括更新
-            download_report: レポートダウンロード
-            edit_report: 編集レポート
-            export_occupations: 輸出職業
-            external_score_import: 外部スコアインポート
-            finalize_scores: スコアの最終決定
-            normalize_factor_scores: 因子スコアを正規化する
-            raw_responses: 生の回答
-            regenerate_report: リジェネレイト・レポート
-            report_data: レポートデータ
-            report_file_upload: レポートファイルのアップロード
-            rescore_responses: リスコアの回答
-            reset_progress: 進行状況のリセット
-            reset_responses: 回答のリセット
-            scores: 得点
-            title: 結果
-            view_report: レポートを見る
-            view_stats: 統計を見る
-          skills:
-            export: 輸出
-            export_translations: 輸出翻訳
-            import: 輸入
-            import_translations: 輸入翻訳
-            manage: 管理
-            title: スキル
-            view: 表示
-          smsHistories:
-            manage: 管理
-            title: SMSヒストリー
-            view: 表示
-          smsInvites:
-            manage: 管理
-            title: SMS招待
-            view: 表示
-          userIdpPlans:
-            manage: 取り締まる
-            reset: リセット
-            title: ユーザーIDPプラン
-            view: 眺める
-          users:
-            reset_password: パスワードのリセット
-            title: ユーザー
-          workshops:
-            export_status: 輸出状況
-            manage: 管理
-            title: ワークショップ
-            view: 表示
-            view_recordings: 録画の表示
     ai_artifacts:
       artifact_results: アーティファクトの結果
       code: コード
@@ -3575,6 +3318,7 @@ ja:
           show_target_proficiency: ターゲット習熟度の表示
           strengths_blindspots: 強みと盲点
         text_condition_type: 'テキスト条件タイプ:'
+        translate_with_ai: AIで翻訳
     report_families:
       create:
         successfully: レポート・バンドル %{name} が正常に作成されました。
@@ -4050,12 +3794,7 @@ ja:
       security_setting: セキュリティ設定
     settings:
       admin_roles:
-        admin_role_single: 管理者の役割
         confirm_message: 本当に管理者ロール '%{role_name}' を削除しますか?
-        create: 管理者ロールの追加
-        description: 説明
-        name: 名称
-        successful_remove: 管理者ロール '%{role_name}' は正常に削除されました。
       siem:
         description: 説明
         destination_type: デスティネーション・タイプ

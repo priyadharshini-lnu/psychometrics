@@ -4,11 +4,11 @@ import {
 import {
   Flex, Button, Typography, Space, Tag, Statistic,
 } from 'antd'
+import dayjs from 'dayjs'
 import Icon, {
   EditOutlined, PauseCircleOutlined,
   CheckOutlined, RightOutlined,
-} from '@ant-design/icons'
-import dayjs from 'dayjs'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { ReactMediaRecorder } from '~/components/MediaRecorder/components/MediaRecorder'
 import AudioWaveVisualizer from '~/components/MediaRecorder/components/AudioWaveVisualizer'
 import styles from './AudioRecorder.less'

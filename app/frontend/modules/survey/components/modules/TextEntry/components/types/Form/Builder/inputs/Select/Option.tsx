@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import {
   CloseOutlined, CheckOutlined, EditOutlined,
-} from '@ant-design/icons'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from '../../../FormStyle.less'
 
 interface OptionData {

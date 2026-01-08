@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button } from 'antd'
-import { PlusOutlined, EditOutlined } from '@ant-design/icons'
+import { PlusOutlined, EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { DataReport, DataReportTR } from './core'
 import { DataReportForm } from './DataReportForm'
 import { formatedDate } from '~/utils/time'

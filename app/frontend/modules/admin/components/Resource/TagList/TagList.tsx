@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { PlusOutlined } from '@ant-design/icons'
 import {
   Input, Tag, Tooltip, InputRef,
 } from 'antd'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 type TagListProps = {
   initialTags: string[];

@@ -1,7 +1,20 @@
 ---
 sr-Latn:
   admin:
+    add_admin: Dodaj administratora
+    add_admin_role: Dodaj ulogu administratora
+    add_campaign_admin: Dodaj administratora kampanje
+    add_client_admin: Dodaj administratora klijenta
+    add_project: Dodaj projekat
+    add_project_admin: Dodaj administrator projekta
+    add_threesixty_campaign_admin: Dodaj administratora kampanje
     admin_approval_required: Izveštaj za %{user} zahteva odobrenje administratora pre preuzimanja
+    admin_created_successfully: Administrator '%{name}' je uspešno kreiran
+    admin_export_scheduled: Administrator izvoz je uspešno zakazan. Molimo Vas da proverite svoje obaveštenje za status.
+    admin_removed_successfully: Administrator sa imejlom '%{email}' je uspešno uklonjen
+    admin_role_deleted: Uloga administratora '%{role_name}' je uspešno obrisana.
+    admin_roles: Uloge administratora
+    admin_updated_successfully: Administrator '%{name}' je uspešno ažuriran
     admins: Admini
     ai_artifacts: AI artefakti
     ai_artifacts_output_schema_key_constraint: Ključ mora početi malim slovom i može sadržavati samo mala slova, brojeve i podvlake
@@ -21,10 +34,12 @@ sr-Latn:
     ai_assistants_test_render: Test Render
     ai_assistants_test_render_tooltip: Testirajte svoj brzi predložak sa podacima o kampanji da biste proverili šta će biti poslato AI asistentu.
     ai_assisted_idp_feature_disabled: AI Assisted IDP funkcija je onemogućena za ovaj projekat.
+    api_keys: API ključevi
     assessments: Procene
     assessments_reports: Procene i izveštaji
     assessor_dashboard: Kontrolna tabla procenjivača
     assessor_workshops: Centar za procenu
+    assessors: Ocenjivači
     audit_logs: Evidencije revizije
     audit_reports: Izveštaji o reviziji
     availability: Raspoloživost
@@ -41,32 +56,46 @@ sr-Latn:
     campaign_assessment_modals_enable_caching_content: Da li ste sigurni da želite da omogućite keširanje za ovu procenu?
     campaign_assessment_modals_enable_caching_successfully: Keširanje je omogućeno za ovu procenu.
     campaign_assessment_modals_enable_caching_title: Omogućite keširanje procene?
+    campaign_factors: Faktori kampanje
     campaign_templates: Predlošci kampanje
+    campaigns: Kampanje
     client: Zakup klijenta
     client_admins: Administratori klijenata
     clients: Klijentski prostor
     code_required: Kod je obavezan
     communication_center: Centar za komunikaciju
+    communications: Komunikacije
     completed: Dovršeno
     completed_tooltip: Svi evaluatori su dostavili ocenu
+    confirm_remove_admin: Da li ste sigurni da želite da uklonite administratora korisnika sa imejlom '%{email}'?
     country: Država
     create_client: Kreiraj klijenta
     dashboard: Dashboard
+    dashboards: Dashboard
     data_reports: Izveštaji o podacima
     datasheet: Mapa podataka
     declined: Odbio
     delete_ok_text: Da, Izbriši
     denied: Odbijen
     development_actions: Razvojne akcije
+    development_actions_form_tags: Bilten
     dimensions: Dimenzije
     done: Uradio
     done_tooltip: Za ovog korisnika se više ne može dostaviti evaluacija jer je evaluacija ovog korisnika označena kao urađeno od strane %{marked_by}
+    edit_campaign_admin: Uredi administratora kampanje
+    edit_client_admin: Uredi administratora klijenta
+    edit_permission_denied: Nemate dozvolu za uređivanje admin '%{name}'
+    edit_project_admin: Uredi Administrator projekta
+    edit_threesixty_campaign_admin: Uredi administratora kampanje
     empty_csv_file: CSV datoteka ne sadrži nikakve podatke.
     evaluation_status: Status evaluacije
     evaluation_status_not_done: Status evaluacije nije "Gotovo" za jedan ili više odabranih predmeta. Proverite da li su svi izabrani korisnici završili evaluacije ili označili kao urađeno.
+    export_admin_roles_permissions: Uloge administratora i izvoz dozvola
+    feature_flags: Feature flagovi
     fill_empty_score_msg: Popunite sve konačne rezultate pre čuvanja.
     final_score_empty_msg: Konačni rezultat ne može biti prazan.
     idp_plan_reset_success: Plan je uspešno resetovan
+    idp_templates: IDP Šabloni
     import_ai_artifacts: Uvoz AI artefakata
     import_csv_error: 'Red %{index}: korisnik sa e-poštom %{email} nije u ovoj kampanji'
     import_csv_parsing_error: 'CSV greška u raščlanjivanju: %{message}'
@@ -90,16 +119,20 @@ sr-Latn:
     import_upload: Otpremanje
     import_users: Uvoz korisnika
     invalid_csv_header: CSV fajl sadrži nevažeća zaglavlja.
+    job_roles: Radne uloge
     learning_from_others: Kolaborativno učenje [20]
     libraries: Biblioteka medija
     library_invalid_type: Neispravna stavka biblioteke
+    licenses: Licence
     manager_approval_required: Izveštaj za %{user} zahteva odobrenje menadžera pre preuzimanja
+    messages: Poruke
     name_required: Ime je obavezno
     no_file_selected: Nijedan fajl nije izabran
     no_notifications: Nema obaveštenja
     norms: Norme
     not_completed: Nije završeno
     not_completed_tooltip: "%{completed} evaluatori su dodeljeni, ali samo %{submitted} su završili evaluacije"
+    notes: Beleške
     nothing_assigned: Nema dodeljenih evaluatora
     nothing_assigned_tooltip: Nijedna evaluacija nije dodeljena ovom korisniku
     notification_bell_icon_alt_text: Ikona zvona obaveštenja
@@ -109,11 +142,442 @@ sr-Latn:
     on_the_job: Na Poslu [70]
     options: Opcije
     participants: Učesnici
+    permissions:
+      aiArtifacts:
+        export: Izvoz
+        import: Uvoz
+        manage: Upravljanje
+        title: AI artefakti
+        view: Prikaz
+      apiKeys:
+        manage: Upravljanje
+        title: API ključevi
+        view: Prikaz
+      assessments:
+        manage: Upravljanje
+        title: Procene
+        view: Prikaz
+      assessors:
+        manage: Upravljanje
+        title: Ocenjivači
+        view: Prikaz
+      auditLogs:
+        title: Evidencije revizije
+        view: Prikaz
+      auditReports:
+        admin_permissions: Uloge administratora i izvoz dozvola
+        title: Izveštaji o reviziji
+        user_report_events: Izveštaj Odobrenje evidencije
+      campaignFactors:
+        manage: Upravljanje
+        title: Faktori kampanje
+        view: Prikaz
+      campaigns:
+        bulk_download: Zbirno preuzimanje
+        bulk_regenerate_reports: Zbirno regeneriranje izveštaja
+        manage: Upravljanje
+        manage_admins: Upravljanje administratorima
+        manage_factor_benchmark_scores: Upravljanje rezultatima referentnih tačaka faktora
+        manage_messages: Upravljanje porukama
+        manage_options: Upravljanje opcijama
+        manage_report_approvals: Upravljanje odobrenjima izveštaja
+        manage_users: Upravljanje korisnicima
+        participant_options: Opcije učesnika
+        report_options: Opcije izveštaja
+        reset_nominations: Poništi nominacije
+        title: Kampanje
+        view: Prikaz
+        view_factor_benchmark_scores: Pogledaj rezultate referentnih tački faktora
+        view_stats: Pogledaj statistiku
+      clients:
+        export_data_report: Izvezi izveštaj sa podacima
+        manage: Upravljanje
+        title: Klijenti
+        view: Prikaz
+        view_licenses: Pogledaj licence
+      communications:
+        manage: Upravljanje
+        title: Komunikacije
+        view: Prikaz
+      dashboards:
+        accesssheet_manage: Upravljanje pristupnim listom
+        accesssheet_settings: Podešavanja pristupnog lista
+        accesssheet_view: Pregled prisutpnog lista
+        export: Izvoz
+        title: Kontrolne table
+        view: Prikaz
+      datasheets:
+        manage: Upravljanje
+        title: Tehnički listovi
+        view: Prikaz
+      developmentActions:
+        export: Izvoz
+        export_global: Izvezi globalno
+        export_global_translations: Izvezi globalne prevode
+        export_translations: Izvei prevode
+        import: Uvezi
+        import_global: Uvezi globalno
+        import_global_translations: Uvezi globalne prevode
+        import_translations: Uvezi prevode
+        manage: Upravljanje
+        title: Razvojne akcije
+        view: Prikaz
+      dimensions:
+        manage: Upravljanje
+        title: Dimenzije
+        view: Prikaz
+      idpTemplates:
+        manage: Upravljanje
+        title: IDP Šabloni
+        view: Prikaz
+      interviewQuestions:
+        export: Izvoz
+        import: Uvoz
+        manage: Upravljanje
+        title: Pitanja za intervju za IDP
+        view: Pretraga
+      jobRoles:
+        export_translations: Izvezi prevode radnih uloga
+        import_translations: Uvezi prevode radnih uloga
+        manage: Upravljanje
+        title: Uloge na poslu
+        view: Prikaz
+      labels:
+        apiKeys:
+          manage: Upravljanje
+          title: API ključevi
+          view: Prikaz
+        assessments:
+          manage: Upravljanje
+          title: Procene
+          view: Prikaz
+        assessors:
+          manage: Upravljanje
+          title: Ocenjivači
+          view: Prikaz
+        auditLogs:
+          title: Evidencije revizije
+          view: Prikaz
+        auditReports:
+          admin_permissions: Uloge administratora i izvoz dozvola
+          title: Izveštaji o reviziji
+          user_report_events: Izveštaj Odobrenje evidencije
+        campaignFactors:
+          manage: Upravljanje
+          title: Faktori kampanje
+          view: Prikaz
+        campaigns:
+          bulk_download: Zbirno preuzimanje
+          bulk_regenerate_reports: Zbirno regeneriranje izveštaja
+          manage: Upravljanje
+          manage_admins: Upravljanje administratorima
+          manage_factor_benchmark_scores: Upravljanje rezultatima referentnih tačaka faktora
+          manage_messages: Upravljanje porukama
+          manage_options: Upravljanje opcijama
+          manage_report_approvals: Upravljanje odobrenjima izveštaja
+          manage_users: Upravljanje korisnicima
+          participant_options: Opcije učesnika
+          report_options: Opcije izveštaja
+          reset_nominations: Poništi nominacije
+          title: Kampanje
+          view: Prikaz
+          view_factor_benchmark_scores: Pogledaj rezultate referentnih tački faktora
+          view_stats: Pogledaj statistiku
+        clients:
+          export_data_report: Izvezi izveštaj sa podacima
+          manage: Upravljanje
+          title: Klijenti
+          view: Prikaz
+          view_licenses: Pogledaj licence
+        communications:
+          manage: Upravljanje
+          title: Komunikacije
+          view: Prikaz
+        dashboards:
+          accesssheet_manage: Upravljanje pristupnim listom
+          accesssheet_settings: Podešavanja pristupnog lista
+          accesssheet_view: Pregled prisutpnog lista
+          export: Izvoz
+          title: Kontrolne table
+          view: Prikaz
+        datasheets:
+          manage: Upravljanje
+          title: Tehnički listovi
+          view: Prikaz
+        developmentActions:
+          export: Izvoz
+          export_global: Izvezi globalno
+          export_global_translations: Izvezi globalne prevode
+          export_translations: Izvei prevode
+          import: Uvezi
+          import_global: Uvezi globalno
+          import_global_translations: Uvezi globalne prevode
+          import_translations: Uvezi prevode
+          manage: Upravljanje
+          title: Razvojne akcije
+          view: Prikaz
+        dimensions:
+          manage: Upravljanje
+          title: Dimenzije
+          view: Prikaz
+        idpTemplates:
+          manage: Upravljanje
+          title: IDP Šabloni
+          view: Prikaz
+        jobRoles:
+          export_translations: Izvezi prevode radnih uloga
+          import_translations: Uvezi prevode radnih uloga
+          manage: Upravljanje
+          title: Uloge na poslu
+          view: Prikaz
+        libraries:
+          manage: Upravljanje
+          title: Medijske biblioteke
+          view: Prikaz
+        messages:
+          email: Imejl
+          instructions: Uputstva
+          options: Opcije
+          title: Poruke
+        norms:
+          manage: Upravljanje
+          title: Norme
+          view: Prikaz
+        proficiencyLevels:
+          export: Izvezi nivoe stručnosti
+          export_translations: Izvezi prevode nivoa stručnosti
+          import: Uvezi nivoe stručnosti
+          import_translations: Uvezi prevode nivoa stručnosti
+          manage: Upravljanje
+          title: Nivoi stručnosti
+          view: Prikaz
+        proficiency_level:
+          title: Nivoi stručnosti
+        projectSettings:
+          assessments: Procene
+          design: Dizajn
+          feature_flags: Feature Zastave
+          idp: IDP
+          integrations: Integracije
+          privacy_settings: Podešavanja privatnosti
+          saml: SAML
+          security: Bezbednost
+          smtp: SMTP
+          title: Podešavanja projekta
+          webhooks: Webhooks
+        projects:
+          manage: Upravljanje
+          manage_admins: Upravljanje administratorima
+          manage_users: Upravljanje korisnicima
+          title: Projekti
+          view: Prikaz
+        questions:
+          manage: Upravljanje
+          title: Pitanja
+          view: Prikaz
+        reflectionQuestions:
+          export: Izvoz
+          import: Uvoz
+          manage: Upravljanje
+          title: IDP pitanja za refleksiju
+          view: Prikaz
+        registrationCodes:
+          manage: Upravljanje
+          title: Registracioni kodovi
+          view: Prikaz
+        registrationSettings:
+          manage: Upravljanje
+          title: Podešavanja registracije
+        reports:
+          manage: Upravljanje
+          title: Izveštaji
+          view: Prikaz
+        responseMeta:
+          title: Odgovor Meta
+        results:
+          approve_report: Odobri izveštaj
+          bulk_download: Zbirno preuzimanje
+          bulk_regenerate_reports: Zbirno regeneriranje izveštaja
+          bulk_update_evaluation_status: Bulk Update Evaluation Status
+          download_report: Preuzmi izveštaj
+          edit_report: Uredi izveštaj
+          export_occupations: Izvezi zanimanja
+          external_score_import: Izvezi eksterne skorove
+          finalize_scores: Finalizujte skorove
+          normalize_factor_scores: Normalizujte skorove faktora
+          raw_responses: Sirovi odgovori
+          regenerate_report: Regeneriši izveštaj
+          report_data: Izveštaj o podacima
+          report_file_upload: Otpremi fajl sa izveštajem
+          rescore_responses: Ponovo skoruj odgovore
+          reset_progress: Resetuj napredak
+          reset_responses: Resetuj odgovore
+          scores: Skorovi
+          title: Rezultati
+          view_report: Pogledaj izveštaj
+          view_stats: Pogledaj statistiku
+        skills:
+          export: Izvezi veštine
+          export_translations: Izvezi prevode za veštine
+          import: Uvezi veštine
+          import_translations: Prevodi za uvoz veština
+          manage: Upravljanje
+          title: Veštine
+          view: Prikaz
+        smsHistories:
+          manage: Upravljanje
+          title: SMS istorije
+          view: Prikaz
+        smsInvites:
+          manage: Upravljanje
+          title: SMS pozivnice
+          view: Prikaz
+        userIdpPlans:
+          manage: Upravljanje
+          title: Korisnički IDP planovi
+          view: Pretraga
+        users:
+          reset_password: Resetuj lozinku
+          title: Korisnici
+        workshops:
+          export_status: Status izvoza
+          manage: Upravljanje
+          title: Radionice
+          view: Prikaz
+          view_recordings: Pogledaj snimke
+      libraries:
+        manage: Upravljanje
+        title: Medijske biblioteke
+        view: Prikaz
+      messages:
+        email: Imejl
+        instructions: Uputstva
+        options: Opcije
+        title: Poruke
+      norms:
+        manage: Upravljanje
+        title: Norme
+        view: Prikaz
+      proficiencyLevels:
+        export: Izvezi nivoe stručnosti
+        export_translations: Izvezi prevode nivoa stručnosti
+        import: Uvezi nivoe stručnosti
+        import_translations: Uvezi prevode nivoa stručnosti
+        manage: Upravljanje
+        title: Nivoi stručnosti
+        view: Prikaz
+      proficiency_level:
+        title: Nivoi stručnosti
+      projectSettings:
+        assessments: Procene
+        design: Dizajn
+        feature_flags: Feature Zastave
+        idp: IDP
+        integrations: Integracije
+        privacy_settings: Podešavanja privatnosti
+        saml: SAML
+        security: Bezbednost
+        smtp: SMTP
+        title: Podešavanja projekta
+        webhooks: Webhooks
+      projects:
+        manage: Upravljanje
+        manage_admins: Upravljanje administratorima
+        manage_licenses: Upravljanje licencama
+        manage_users: Upravljanje korisnicima
+        title: Projekti
+        view: Prikaz
+        view_licenses: Pogledaj licence
+      questions:
+        manage: Upravljanje
+        title: Pitanja
+        view: Prikaz
+      reflectionQuestions:
+        export: Izvoz
+        import: Uvoz
+        manage: Upravljanje
+        title: IDP pitanja za refleksiju
+        view: Prikaz
+      registrationCodes:
+        manage: Upravljanje
+        title: Registracioni kodovi
+        view: Prikaz
+      registrationSettings:
+        manage: Upravljanje
+        title: Podešavanja registracije
+      reports:
+        manage: Upravljanje
+        title: Izveštaji
+        view: Prikaz
+      responseMeta:
+        title: Odgovor Meta
+      results:
+        approve_report: Odobri izveštaj
+        bulk_download: Zbirno preuzimanje
+        bulk_regenerate_reports: Zbirno regeneriranje izveštaja
+        bulk_update_evaluation_status: Bulk Update Evaluation Status
+        download_report: Preuzmi izveštaj
+        edit_report: Uredi izveštaj
+        export_occupations: Izvezi zanimanja
+        external_score_import: Izvezi eksterne skorove
+        finalize_scores: Finalizujte skorove
+        normalize_factor_scores: Normalizujte skorove faktora
+        raw_responses: Sirovi odgovori
+        regenerate_report: Regeneriši izveštaj
+        report_data: Izveštaj o podacima
+        report_file_upload: Otpremi fajl sa izveštajem
+        rescore_responses: Ponovo skoruj odgovore
+        reset_progress: Resetuj napredak
+        reset_responses: Resetuj odgovore
+        scores: Skorovi
+        title: Rezultati
+        view_report: Pogledaj izveštaj
+        view_stats: Pogledaj statistiku
+      skills:
+        export: Izvezi veštine
+        export_translations: Izvezi prevode za veštine
+        import: Uvezi veštine
+        import_translations: Prevodi za uvoz veština
+        manage: Upravljanje
+        title: Veštine
+        view: Prikaz
+      smsHistories:
+        manage: Upravljanje
+        title: SMS istorije
+        view: Prikaz
+      smsInvites:
+        manage: Upravljanje
+        title: SMS pozivnice
+        view: Prikaz
+      userIdpPlans:
+        manage: Upravljanje
+        reset: Poništi
+        title: Korisnički IDP planovi
+        view: Prikaz
+      users:
+        reset_password: Resetuj lozinku
+        title: Korisnici
+      workshops:
+        export_status: Status izvoza
+        manage: Upravljanje
+        title: Radionice
+        view: Prikaz
+        view_recordings: Pogledaj snimke
+    permissions_360_campaigns: Dozvole specifične za 360 kampanje
+    privacy: Privatnosti
+    proficiency_level: API ključevi
+    proficiency_levels: Nivoi stručnosti
     profile_details: Detalji profila
     project_admins: Administratori projekta
     project_manager: Menadžer projekta
+    project_number: Broj projekta
+    project_settings: Podešavanja projekta
+    projects: Projekti
     question_center: Centar za pitanja
+    questions: Pitanja
+    reflection_questions: Pitanja za razmišljanje
     registration_codes: Registracioni kodovi
+    registration_settings: Podešavanja registracije
     report_approvals: Odobrenja izveštaja
     report_condition_not_met: Potrebno %{required} %{relationship} evaluaciju, ali ima samo %{actual}
     report_conditions_not_met_detailed: Izveštaj za %{user} ne ispunjava uslove dostupnosti. %{conditions}
@@ -128,6 +592,8 @@ sr-Latn:
     reset_idp_plan: Plan resetovanja
     reset_idp_plan_confirmation: Da li ste sigurni da želite da resetujete plan?
     reset_idp_plan_title: Plan resetovanja
+    response_meta: Odgovor Meta
+    results: Rezultate
     role: Ulogu
     saml_idp_certificate_available: Dostupno (kliknite da biste kopirali)
     saml_idp_certificate_label: Certifikat
@@ -179,17 +645,28 @@ sr-Latn:
     saml_settings: SAML podešavanja
     scheduling: Planiranje
     scoring: Bodovanja
+    search_admins: Pretraga administratora
+    select_admin_role: Izaberite ulogu administratora
+    send_email: Pošalji imejl
+    settings: Podešavanja
     show_submenu: Prikaži pod-meni
+    siem: SIEM
+    skill_aliases: Pseudonimi veština
+    skills: Veљtine
     skills_taxonomy: Taksonomija veština
     slot_name: Ime slota
+    sms_histories: SMS istorije
+    sms_invites: SMS pozivnice
     stats: Statistike
     status_details: Detalji o statusu
     structured_learning: Formalno učenje [10]
+    subdomain: Poddomen
     upload_success: Uspešno otpremljen
     user_report_events: Događaji Izveštaja korisnika
     users: Korisnici
     view_licenses: Pogledaj licence
     waiting: Иeka
+    workshops: Radionice
     year: Država
     yoodli_activity_id: Yoodli Activity ID
     yoodli_email_id: ID e-pošte kandidata za joodli

@@ -24,6 +24,7 @@ import { RootState } from '~/modules/admin/core/rootReducers'
 import { BookingConfirm } from './BookingsConfirm'
 
 import styles from './BookingsAndInvitesDetails.less'
+import { normalizeTimeZone } from '~/hooks/useTimezones'
 
 const { I18n } = window
 
@@ -59,7 +60,7 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
   const location = useLocation()
   const questionResponseValueRef = useRef<Store>({})
   const { message } = App.useApp()
-  const currentTimezone = inviteOrBookingDetails?.timezone || dayjs.tz.guess() || 'Asia/Dubai'
+  const currentTimezone = inviteOrBookingDetails?.timezone || normalizeTimeZone(dayjs.tz.guess())
   const currentTime = dayjs().tz(currentTimezone)
   const bookedDateTimeMomentObjectTz = bookedDateMomentObject
     ? bookedDateMomentObject.date.clone().tz(currentTimezone) : null
@@ -179,7 +180,7 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
             onCancelOfConfirmBooking={() => setBook(false)}
             bookingDateTime={selectedDateTime.date}
             language={questionForm.getFieldValue('language') ? questionForm.getFieldValue('preferredLanguage') : ''}
-            bookingTimeZone={inviteOrBookingDetails.timezone || dayjs.tz.guess()}
+            bookingTimeZone={inviteOrBookingDetails.timezone || normalizeTimeZone(dayjs.tz.guess())}
             duration={inviteOrBookingDetails.duration || 0}
             title={inviteOrBookingDetails.title || ''}
             onConfirmBooking={(reason) => {

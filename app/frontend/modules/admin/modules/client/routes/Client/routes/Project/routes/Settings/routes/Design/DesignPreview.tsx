@@ -3,7 +3,7 @@ import {
   Row, Col, Button, Space, Divider, Menu, Typography, Pagination, Dropdown, Spin, SpaceProps,
   ConfigProvider, theme,
 } from 'antd'
-import { MailOutlined, SettingOutlined, DownOutlined } from '@ant-design/icons'
+import { MailOutlined, SettingOutlined, DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'
 

@@ -3,7 +3,7 @@ import {
   Button, Form, Select, message, Descriptions, Flex,
   Checkbox,
 } from 'antd'
-import { CheckOutlined, LoadingOutlined, EditOutlined } from '@ant-design/icons'
+import { CheckOutlined, LoadingOutlined, EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
 import { I18nInterface } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { Button, Tabs } from 'antd'
-import { AudioOutlined, VideoCameraOutlined } from '@ant-design/icons'
+import { AudioOutlined, VideoCameraOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 const { TabPane } = Tabs
 

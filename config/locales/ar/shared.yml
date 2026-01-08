@@ -2,8 +2,13 @@
 ar:
   shared:
     action: نشاط
+    actions: الإجراءات
+    active: نشط
     add: إضافة
     advanced: متقدم
+    agree_and_continue: موافق واستمر
+    archive: أرشيف
+    archived: المؤرشفه
     authentication_failed: فشل المصادقة. يرجى المحاولة مرة أخرى.
     basic: أساسي
     campaign_id: معرف الحملة
@@ -11,24 +16,46 @@ ar:
     change_password: تغيير كلمة المرور
     clear_filters: امسح المُرشحات
     collaborative_learning: التعلم التعاوني
+    confirm: تأكيد
     continue: استمر
+    created_at: تم إنشاؤها في
+    created_date: تاريخ الإنشاء
+    decline: الانحدار
     description: وصف
     edit: تعديل
     edited: جديد
+    email: البريد الإلكتروني
+    export: تصدير
+    first_name: الاسم الاول
     formal_learning: التعلم الرسمي
     group_question_max_validation_error: يمكن لكل مجموعة أن تحتوي على عناصر(ات) في أقصى حد {{max}}.
     group_question_min_validation_error: يجب أن تحتوي كل مجموعة على الأقل {{min}} عنصر(ات).
     id: معرف
     idp_ai_assistant_disclaimer: مساعد IDP في الذكاء الاصطناعي في Lighthouse يمكن أن يرتكب أخطاء. يرجى الحذر عند استخدام الردود.
     internet_disconnected_message: نحاول إعادة الاتصال بالإنترنت. يرجى التحقق من اتصالك بالإنترنت الخاص بك.
+    last_name: إسم العائلة
     learning_on_the_job_label: التعلم أثناء العمل
+    login: تسجيل الدخول
+    modified_by: تم التعديل بواسطة
+    modified_date: تاريخ التعديل
+    more_actions: More actions
     mte_logo_alt_text: شعار Mercer Talent Enterprise
     name: اسم
     new: جديد
+    ok: موافق
+    recording_consent_notice: سيتم تسجيل جلسة الاجتماع هذه. مشاركتك في هذا الاجتماع تعني موافقتك على التسجيل.
+    recording_consent_proceed_question: هل توافق على المضي قدما في الاجتماع المسجل؟
+    recording_consent_title: تسجيل إشعار الموافقة
+    remove: إزالة
     removed: تمت الإزالة
+    reset_password: إعادة تعيين كلمة المرور
     rte_paste_content_exceeds_char_limit: النص يتجاوز حد الأحرف في {{maxCharacterLimit}} ولا يمكن لصقه.
     rte_paste_content_exceeds_word_limit: النص يتجاوز حد الكلمات في {{maxWordLimit}} ولا يمكن لصقه.
+    save: حفظ
     search: بحث
+    send_email: إرسال بريد إلكتروني
+    show_more: عرض المزيد
+    something_wrong: حدث خطأ ما. اتصل بالمشرف.
     table:
       entries:
         selected:

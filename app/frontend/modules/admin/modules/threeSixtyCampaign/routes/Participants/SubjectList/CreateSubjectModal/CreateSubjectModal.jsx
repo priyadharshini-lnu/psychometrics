@@ -2,10 +2,10 @@ import { useState, useEffect, useCallback } from 'react'
 import {
   Modal, Button, Form, Input, Select, Alert,
 } from 'antd'
-import { CheckOutlined, LoadingOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import debounce from 'lodash/debounce'
+import { CheckOutlined, LoadingOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { useResources } from '~/hooks/useResources'
 import { getFeatures } from '~/core/config'
 import { getCategory } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'

@@ -2,8 +2,8 @@ import React, { FC } from 'react'
 import {
   Col, Card, Result, Row,
 } from 'antd'
-import { BlockOutlined } from '@ant-design/icons'
 import { SortableContext, useSortable, horizontalListSortingStrategy } from '@dnd-kit/sortable'
+import { BlockOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 const { I18n } = window
 

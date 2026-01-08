@@ -29,35 +29,11 @@ ar:
     administrators:
       drawers:
         edit:
-          admin_role_select: اختر دور المسؤول
-          admin_roles: أدوار المسؤول
-          create_success: تم إنشاء المسؤول '%{name}' بنجاح
-          email: البريد الإلكتروني
-          first_name: الاسم الأول
           first_name_required: الاسم الأول مطلوب
-          last_name: الاسم الأخير
           last_name_required: الاسم الأخير مطلوب
-          no_edit_permission: ليس لديك إذن لتعديل المسؤول '%{name}'
-          save: حفظ
-          update: تحديث
-          update_success: تم تحديث المسؤول '%{name}' بنجاح
-        notes:
-          threesixty_permission: أذونات خاصة بحملات 360
-          title: ملاحظات
         view:
-          add_campaign_admin: إضافة مسؤول حملة
-          add_client_admin: إضافة مسؤول عميل
-          add_project_admin: إضافة مسؤول مشروع
-          add_threesixty_campaign_admin: إضافة مسؤول حملة
-          edit_campaign_admin: تعديل مسؤول حملة
-          edit_client_admin: تعديل مسؤول عميل
-          edit_project_admin: تعديل مسؤول مشروع
-          edit_threesixty_campaign_admin: تعديل مسؤول حملة
           first_name: الاسم الأول
           last_name: الاسم الأخير
-          project_admin: مسؤول مشروع
-          project_list: قائمة المشاريع
-          role: مسؤول حملة
           title:
             campaign_admin: مسؤول حملة
             client_admin: مسؤول عميل
@@ -65,253 +41,20 @@ ar:
       list:
         actions:
           api_keys: مفاتيح API
-          cancel_text: إلغاء
-          change_password: إعادة تعيين كلمة المرور
           edit: تعديل
           export_admins_with_permissions: تصدير أدوار وأذونات المسؤولين
           export_success: تم جدولة مهمة تصدير المسؤول بنجاح. يرجى التحقق من إشعارك للحصول على الحالة.
           login: تسجيل الدخول
-          send_email: إرسال بريد إلكتروني
           spoof:
             login_successful: تم تسجيل الدخول بنجاح.
           user_report_events: سجلات موافقة التقارير
         columns:
-          actions: الإجراءات
-          created_at: تم الإنشاء في
           email: البريد الإلكتروني
-          id: المعرف
-          name: الاسم
-        header:
-          add_admin: إضافة مسؤول
-          search_admins: البحث عن المسؤولين
-        toolbar:
-          export_admins_with_permissions: تصدير أدوار وأذونات المسؤولين
       modals:
         delete:
           cancelText: إلغاء
-          content: هل أنت متأكد أنك تريد إزالة المستخدم المسؤول بالبريد الإلكتروني '%{email}'؟
           okText: موافق
-          onSuccess: تم إزالة المسؤول بالبريد الإلكتروني '%{email}' بنجاح
           title: تأكيد
-      permissions:
-        labels:
-          aiArtifacts:
-            export: تصدير
-            import: استورد
-            manage: أدار
-            title: قطع الذكاء الاصطناعي
-            view: منظر
-          apiKeys:
-            manage: إدارة
-            title: مفاتيح واجهة برمجة التطبيقات
-            view: عرض
-          assessments:
-            manage: إدارة
-            title: التقييمات
-            view: عرض
-          assessors:
-            manage: إدارة
-            title: المقيّمون
-            view: عرض
-          auditLogs:
-            title: سجلات التدقيق
-            view: عرض
-          auditReports:
-            admin_permissions: تصدير أدوار وأذونات المسؤولين
-            title: تقارير المراجعة
-            user_report_events: سجلات موافقة التقارير
-          campaignFactors:
-            manage: إدارة
-            title: عوامل الحملة
-            view: عرض
-          campaigns:
-            bulk_download: تنزيل جماعي
-            bulk_regenerate_reports: إعادة إنشاء التقارير بشكل جماعي
-            manage: إدارة
-            manage_admins: إدارة المسؤولين
-            manage_factor_benchmark_scores: إدارة درجات عوامل القياس
-            manage_messages: إدارة الرسائل
-            manage_options: إدارة الخيارات
-            manage_report_approvals: إدارة موافقات التقارير
-            manage_users: إدارة المستخدمين
-            participant_options: خيارات المشاركين
-            report_options: خيارات التقارير
-            reset_nominations: إعادة تعيين الترشيحات
-            title: الحملات
-            view: عرض
-            view_factor_benchmark_scores: عرض درجات عوامل القياس
-            view_stats: عرض الإحصائيات
-          clients:
-            export_data_report: تصدير تقرير البيانات
-            manage: إدارة
-            title: العملاء
-            view: عرض
-            view_licenses: عرض التراخيص
-          communications:
-            manage: إدارة
-            title: الاتصالات
-            view: عرض
-          dashboards:
-            accesssheet_manage: إدارة ورقة الوصول
-            accesssheet_settings: إعدادات ورقة الوصول
-            accesssheet_view: عرض ورقة الوصول
-            export: التصدير
-            title: لوحات المعلومات
-            view: عرض
-          datasheets:
-            manage: إدارة
-            title: أوراق البيانات
-            view: عرض
-          developmentActions:
-            export: التصدير
-            export_global: التصدير العالمي
-            export_global_translations: تصدير الترجمات العالمية
-            export_translations: ترجمات التصدير
-            import: الاستيراد
-            import_global: الاستيراد العالمي
-            import_global_translations: استيراد الترجمات العالمية
-            import_translations: استيراد الترجمات
-            manage: الإدارة
-            title: إجراءات التنمية
-            view: عرض
-          dimensions:
-            manage: إدارة
-            title: الأبعاد
-            view: عرض
-          idpTemplates:
-            manage: إدارة
-            title: قوالب IDP
-            view: عرض
-          interviewQuestions:
-            export: التصدير
-            import: الاستيراد
-            manage: الإدارة
-            title: أسئلة مقابلات IDP
-            view: منظر
-          jobRoles:
-            export_translations: تصدير ترجمات الأدوار الوظيفية
-            import_translations: استيراد ترجمات الأدوار الوظيفية
-            manage: الإدارة
-            title: الأدوار الوظيفية
-            view: عرض
-          libraries:
-            manage: إدارة
-            title: المكتبات الإعلامية
-            view: عرض
-          messages:
-            email: البريد الإلكتروني
-            instructions: التعليمات
-            options: الخيارات
-            title: الرسائل
-          norms:
-            manage: إدارة
-            title: المعايير
-            view: عرض
-          proficiencyLevels:
-            export: مستويات كفاءة التصدير
-            export_translations: ترجمات مستويات كفاءة التصدير
-            import: مستويات كفاءة الاستيراد
-            import_translations: ترجمات مستويات كفاءة الاستيراد
-            manage: الإدارة
-            title: مستويات الكفاءة
-            view: عرض
-          proficiency_level:
-            title: مستويات الكفاءة
-          projectSettings:
-            assessments: التقييمات
-            design: التصميم
-            feature_flags: علامات الميزة
-            idp: IDP
-            integrations: التكاملات
-            privacy_settings: إعدادات الخصوصية
-            saml: SAML
-            security: الأمان
-            smtp: SMTP
-            title: إعدادات المشروع
-            webhooks: Webhooks
-          projects:
-            manage: إدارة
-            manage_admins: إدارة المسؤولين
-            manage_licenses: إدارة التراخيص
-            manage_users: إدارة المستخدمين
-            title: المشاريع
-            view: عرض
-            view_licenses: عرض التراخيص
-          questions:
-            manage: إدارة
-            title: الأسئلة
-            view: عرض
-          reflectionQuestions:
-            export: التصدير
-            import: الاستيراد
-            manage: الإدارة
-            title: أسئلة التأملات الخاصة بالمشردين داخلياً
-            view: عرض
-          registrationCodes:
-            manage: إدارة
-            title: رموز التسجيل
-            view: عرض
-          registrationSettings:
-            manage: إدارة
-            title: إعدادات التسجيل
-          reports:
-            manage: إدارة
-            title: التقارير
-            view: عرض
-          responseMeta:
-            title: الاستجابة الفوقية
-          results:
-            approve_report: الموافقة على التقرير
-            bulk_download: تنزيل جماعي
-            bulk_regenerate_reports: إعادة إنشاء التقارير بشكل جماعي
-            bulk_update_evaluation_status: حالة تقييم التحديث المجمّع للتقييم
-            download_report: تنزيل التقرير
-            edit_report: تعديل التقرير
-            export_occupations: تصدير المهن
-            external_score_import: استيراد الدرجات الخارجية
-            finalize_scores: إنهاء الدرجات
-            normalize_factor_scores: تطبيع درجات العوامل
-            raw_responses: الردود الخام
-            regenerate_report: إعادة إنشاء التقرير
-            report_data: بيانات التقرير
-            report_file_upload: تحميل ملف التقرير
-            rescore_responses: إعادة تقييم الردود
-            reset_progress: إعادة تعيين التقدم
-            reset_responses: إعادة تعيين الردود
-            scores: الدرجات
-            title: النتائج
-            view_report: عرض التقرير
-            view_stats: عرض الإحصائيات
-          skills:
-            export: مهارات التصدير
-            export_translations: ترجمات مهارات التصدير
-            import: مهارات الاستيراد
-            import_translations: ترجمات مهارات الاستيراد
-            manage: إدارة
-            title: المهارات
-            view: عرض
-          smsHistories:
-            manage: إدارة
-            title: تواريخ الرسائل النصية القصيرة
-            view: عرض
-          smsInvites:
-            manage: إدارة
-            title: الدعوات عبر الرسائل النصية القصيرة
-            view: عرض
-          userIdpPlans:
-            manage: أدار
-            reset: اعاده تعيين
-            title: خطط IDP للمستخدمين
-            view: منظر
-          users:
-            reset_password: إعادة تعيين كلمة المرور
-            title: المستخدمون
-          workshops:
-            export_status: حالة التصدير
-            manage: إدارة
-            title: ورش العمل
-            view: منظر
-            view_recordings: عرض التسجيلات
     ai_artifacts:
       artifact_results: نتائج القطع الأثرية
       code: رمز
@@ -3575,6 +3318,7 @@ ar:
           show_target_proficiency: إظهار الكفاءة المستهدفة
           strengths_blindspots: نقاط القوة والنقاط العمياء
         text_condition_type: 'نوع شرط النص:'
+        translate_with_ai: الترجمة باستخدام الذكاء الاصطناعي
     report_families:
       create:
         successfully: Report Bundle %{name} was created successfully.
@@ -4050,12 +3794,7 @@ ar:
       security_setting: إعدادات الأمان
     settings:
       admin_roles:
-        admin_role_single: Admin Role
         confirm_message: Are you sure you want to delete admin role '%{role_name}'?
-        create: Add Admin Role
-        description: Description
-        name: Name
-        successful_remove: Admin role '%{role_name}' was deleted successfully.
       siem:
         description: Description
         destination_type: Destination Type

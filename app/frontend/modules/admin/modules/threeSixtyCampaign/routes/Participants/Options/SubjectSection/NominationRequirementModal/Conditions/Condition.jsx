@@ -1,6 +1,6 @@
 import { Select, Input } from 'antd'
-import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
 import cs from 'classnames'
+import { MinusCircleOutlined, PlusCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from '../styles.less'
 
 export default function Condition ({

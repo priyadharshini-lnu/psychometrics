@@ -1,7 +1,20 @@
 ---
 th:
   admin:
+    add_admin: เพิ่มผู้ดูแลระบบ
+    add_admin_role: เพิ่มบทบาทผู้ดูแลระบบ
+    add_campaign_admin: เพิ่มผู้ดูแลแคมเปญ
+    add_client_admin: เพิ่มผู้ดูแลระบบลูกค้า
+    add_project: เพิ่มโครงการ
+    add_project_admin: เพิ่มผู้ดูแลระบบโครงการ
+    add_threesixty_campaign_admin: เพิ่มผู้ดูแลแคมเปญ
     admin_approval_required: รายงานสําหรับ %{user} ต้องได้รับการอนุมัติจากผู้ดูแลระบบก่อนดาวน์โหลด
+    admin_created_successfully: ผู้ดูแลระบบ '%{name}' ถูกสร้างขึ้นเรียบร้อยแล้ว
+    admin_export_scheduled: การส่งออกงานของผู้ดูแลระบบถูกตั้งเวลาเรียบร้อยแล้ว กรุณาตรวจสอบสถานะการแจ้งเตือนของคุณ
+    admin_removed_successfully: ผู้ดูแลระบบอีเมล '%{email}' ถูกลบออกเรียบร้อยแล้ว
+    admin_role_deleted: บทบาทผู้ดูแลระบบ '%{role_name}' ถูกลบเรียบร้อยแล้ว
+    admin_roles: บทบาทผู้ดูแลระบบ
+    admin_updated_successfully: ผู้ดูแลระบบ '%{name}' อัปเดตเรียบร้อยแล้ว
     admins: ผู้ดูแลระบบ
     ai_artifacts: สิ่งประดิษฐ์ AI
     ai_artifacts_output_schema_key_constraint: คีย์ต้องขึ้นต้นด้วยตัวพิมพ์เล็ก และสามารถมีได้เฉพาะตัวพิมพ์เล็ก ตัวเลข และขีดล่างเท่านั้น
@@ -21,10 +34,12 @@ th:
     ai_assistants_test_render: ทดสอบการแสดงผล
     ai_assistants_test_render_tooltip: ทดสอบเทมเพลตพร้อมท์ของคุณด้วยข้อมูลแคมเปญเพื่อตรวจสอบว่าอะไรจะถูกส่งไปยังผู้ช่วย AI
     ai_assisted_idp_feature_disabled: คุณลักษณะ AI Assisted IDP ถูกปิดใช้งานสําหรับโครงการนี้
+    api_keys: กุญแจ API
     assessments: การประเมิน
     assessments_reports: การประเมินและรายงาน
     assessor_dashboard: แดชบอร์ดผู้ประเมิน
     assessor_workshops: ศูนย์ประเมินผล
+    assessors: ผู้ประเมิน
     audit_logs: บันทึกการตรวจสอบ
     audit_reports: รายงานการตรวจสอบ
     availability: กำหนดการ
@@ -41,32 +56,46 @@ th:
     campaign_assessment_modals_enable_caching_content: คุณแน่ใจหรือไม่ว่าต้องการเปิดใช้งานการแคชสําหรับการประเมินนี้
     campaign_assessment_modals_enable_caching_successfully: เปิดใช้งานการแคชสําหรับการประเมินนี้
     campaign_assessment_modals_enable_caching_title: เปิดใช้งานการแคชการประเมิน?
+    campaign_factors: ปัจจัยของแคมเปญ
     campaign_templates: เทมเพลตแคมเปญ
+    campaigns: แคมเปญ
     client: การเช่าลูกค้า
     client_admins: ผู้ดูแลระบบไคลเอ็นต์
     clients: บัญชีลูกค้า
     code_required: ต้องใช้รหัส
     communication_center: ศูนย์สื่อสาร
+    communications: การสื่อสาร
     completed: เสร็จ สมบูรณ์
     completed_tooltip: ผู้ประเมินทั้งหมดได้ส่งการประเมินแล้ว
+    confirm_remove_admin: คุณแน่ใจหรือไม่ว่าต้องการลบผู้ดูแลระบบอีเมล '%{email}'
     country: ประเทศ
     create_client: สร้างไคลเอ็นต์
     dashboard: แดชบอร์ด
+    dashboards: แด ชบอร์ด
     data_reports: รายงานข้อมูล
     datasheet: เอกสารข้อมูลสินค้า
     declined: ปฏิเสธ
     delete_ok_text: ใช่ ลบ
     denied: ถูก ปฏิเสธ
     development_actions: การดําเนินการพัฒนา
+    development_actions_form_tags: แท็ก
     dimensions: มิติ
     done: เสร็จแล้ว
     done_tooltip: ไม่สามารถส่งการประเมินสําหรับผู้ใช้รายนี้ได้อีก เนื่องจากการประเมินของผู้ใช้รายนี้ถูกทําเครื่องหมายว่าเสร็จสิ้นโดย %{marked_by}
+    edit_campaign_admin: แก้ไขผู้ดูแลระบบแคมเปญ
+    edit_client_admin: แก้ไขผู้ดูแลระบบลูกค้า
+    edit_permission_denied: คุณไม่มีสิทธิ์แก้ไขผู้ดูแลระบบ '%{name}'
+    edit_project_admin: แก้ไขผู้ดูแลระบบโครงการ
+    edit_threesixty_campaign_admin: แก้ไขผู้ดูแลระบบแคมเปญ
     empty_csv_file: ไฟล์ CSV ไม่มีข้อมูลใดๆ
     evaluation_status: สถานะการประเมิน
     evaluation_status_not_done: สถานะการประเมินไม่ใช่ "เสร็จสิ้น" สําหรับวิชาที่เลือกอย่างน้อยหนึ่งวิชา โปรดตรวจสอบให้แน่ใจว่าผู้ใช้ที่เลือกทั้งหมดได้ทําการประเมินหรือทําเครื่องหมายว่าเสร็จสิ้น
+    export_admin_roles_permissions: ส่งออกหน้าที่และสิทธิ์ของผู้ดูแลระบบ
+    feature_flags: แฟล็กคุณสมบัติ
     fill_empty_score_msg: กรอกคะแนนสุดท้ายทั้งหมดก่อนบันทึก
     final_score_empty_msg: คะแนนสุดท้ายต้องไม่ว่างเปล่า
     idp_plan_reset_success: รีเซ็ตแผนเรียบร้อยแล้ว
+    idp_templates: เทมเพลต IDP
     import_ai_artifacts: นําเข้าสิ่งประดิษฐ์ AI
     import_csv_error: 'แถวที่ %{index}: ผู้ใช้ที่มี %{email} อีเมลไม่ได้อยู่ในแคมเปญนี้'
     import_csv_parsing_error: 'ข้อผิดพลาดในการแยกวิเคราะห์ CSV: %{message}'
@@ -90,16 +119,20 @@ th:
     import_upload: อัปโหลด
     import_users: นําเข้าผู้ใช้
     invalid_csv_header: ไฟล์ CSV มีส่วนหัวที่ไม่ถูกต้อง
+    job_roles: บทบาทงาน
     learning_from_others: การเรียนรู้ร่วมกัน [20]
     libraries: ห้องสมุดสื่อ
     library_invalid_type: รายการไลบรารีไม่ถูกต้อง
+    licenses: ใบ อนุญาต
     manager_approval_required: รายงานสําหรับ %{user} ต้องได้รับการอนุมัติจากผู้จัดการก่อนดาวน์โหลด
+    messages: ข้อความ
     name_required: ต้องระบุชื่อ
     no_file_selected: ไม่มีไฟล์ที่เลือก
     no_notifications: ไม่มีการแจ้งเตือน
     norms: ค่ามาตรฐาน
     not_completed: ยังไม่เสร็จสมบูรณ์
     not_completed_tooltip: "%{completed} ผู้ประเมินได้รับมอบหมาย แต่มีเพียง %{submitted} เท่านั้นที่ทําการประเมินเสร็จสมบูรณ์"
+    notes: หมายเหตุ
     nothing_assigned: ไม่มีการกําหนดผู้ประเมิน
     nothing_assigned_tooltip: ไม่มีการกําหนดการประเมินให้กับผู้ใช้รายนี้
     notification_bell_icon_alt_text: ไอคอนกระดิ่งแจ้งเตือน
@@ -109,11 +142,442 @@ th:
     on_the_job: ในการทํางาน [70]
     options: ตัวเลือก
     participants: ผู้เข้าร่วม
+    permissions:
+      aiArtifacts:
+        export: ส่งออก
+        import: นําเข้า
+        manage: จัดการ
+        title: สิ่งประดิษฐ์ AI
+        view: ทิวทัศน์
+      apiKeys:
+        manage: จัดการ
+        title: กุญแจ API
+        view: ดู
+      assessments:
+        manage: จัดการ
+        title: การประเมิน
+        view: ดู
+      assessors:
+        manage: จัดการ
+        title: ผู้ประเมิน
+        view: ดู
+      auditLogs:
+        title: บันทึกการตรวจสอบ
+        view: ดู
+      auditReports:
+        admin_permissions: การส่งออกหน้าที่และสิทธิ์ของผู้ดูแลระบบ
+        title: รายงานการตรวจสอบ
+        user_report_events: รายงานบันทึกการอนุมัติ
+      campaignFactors:
+        manage: จัดการ
+        title: ปัจจัยของแคมเปญ
+        view: ดู
+      campaigns:
+        bulk_download: ดาวน์โหลดจำนวนมาก
+        bulk_regenerate_reports: สร้างรายงานใหม่ทั้งหมด
+        manage: จัดการ
+        manage_admins: จัดการผู้ดูแลระบบ
+        manage_factor_benchmark_scores: จัดการคะแนนเกณฑ์มาตรฐานของปัจจัย
+        manage_messages: จัดการข้อความ
+        manage_options: จัดการตัวเลือก
+        manage_report_approvals: จัดการรายงานการอนุมัติ
+        manage_users: จัดการผู้ใช้
+        participant_options: ตัวเลือกผู้เข้าร่วม
+        report_options: ตัวเลือกรายงาน
+        reset_nominations: รีเซ็ตการเสนอชื่อ
+        title: แคมเปญ
+        view: ดู
+        view_factor_benchmark_scores: ดูคะแนนเกณฑ์มาตรฐานของปัจจัย
+        view_stats: ดูสถิติ
+      clients:
+        export_data_report: รายงานการส่งออกข้อมูล
+        manage: จัดการ
+        title: ลูกค้า
+        view: ดู
+        view_licenses: ดูใบอนุญาต
+      communications:
+        manage: จัดการ
+        title: การสื่อสาร
+        view: ดู
+      dashboards:
+        accesssheet_manage: จัดการ Accesssheet
+        accesssheet_settings: ตั้งค่า Accesssheet
+        accesssheet_view: แสดง Accesssheet
+        export: ส่งออก
+        title: แดชบอร์ด
+        view: ดู
+      datasheets:
+        manage: จัดการ
+        title: เอกสารข้อมูล
+        view: ดู
+      developmentActions:
+        export: ส่งออก
+        export_global: ส่งออกข้อมูลทั้งหมด
+        export_global_translations: ส่งออกคำแปลทุกภาษา
+        export_translations: ส่งออกคําแปล
+        import: นําเข้า
+        import_global: นําเข้าข้อมูลทั้งหมด
+        import_global_translations: นําเข้าคําแปลทุกภาษา
+        import_translations: นําเข้าคําแปล
+        manage: จัดการ
+        title: การดำเนินการพัฒนา
+        view: ดู
+      dimensions:
+        manage: จัดการ
+        title: มิติ
+        view: ดู
+      idpTemplates:
+        manage: จัดการ
+        title: เทมเพลต IDP
+        view: ดู
+      interviewQuestions:
+        export: ส่งออก
+        import: นําเข้า
+        manage: จัดการ
+        title: คําถามสัมภาษณ์ IDP
+        view: ดู
+      jobRoles:
+        export_translations: ส่งออกบทบาทงานแปล
+        import_translations: นำเข้าการแปลบทบาทงาน
+        manage: จัดการ
+        title: บทบาทในงาน
+        view: ดู
+      labels:
+        apiKeys:
+          manage: จัดการ
+          title: กุญแจ API
+          view: ดู
+        assessments:
+          manage: จัดการ
+          title: การประเมิน
+          view: ดู
+        assessors:
+          manage: จัดการ
+          title: ผู้ประเมิน
+          view: ดู
+        auditLogs:
+          title: บันทึกการตรวจสอบ
+          view: ดู
+        auditReports:
+          admin_permissions: การส่งออกหน้าที่และสิทธิ์ของผู้ดูแลระบบ
+          title: รายงานการตรวจสอบ
+          user_report_events: รายงานบันทึกการอนุมัติ
+        campaignFactors:
+          manage: จัดการ
+          title: ปัจจัยของแคมเปญ
+          view: ดู
+        campaigns:
+          bulk_download: ดาวน์โหลดจำนวนมาก
+          bulk_regenerate_reports: สร้างรายงานใหม่ทั้งหมด
+          manage: จัดการ
+          manage_admins: จัดการผู้ดูแลระบบ
+          manage_factor_benchmark_scores: จัดการคะแนนเกณฑ์มาตรฐานของปัจจัย
+          manage_messages: จัดการข้อความ
+          manage_options: จัดการตัวเลือก
+          manage_report_approvals: จัดการรายงานการอนุมัติ
+          manage_users: จัดการผู้ใช้
+          participant_options: ตัวเลือกผู้เข้าร่วม
+          report_options: ตัวเลือกรายงาน
+          reset_nominations: รีเซ็ตการเสนอชื่อ
+          title: แคมเปญ
+          view: ดู
+          view_factor_benchmark_scores: ดูคะแนนเกณฑ์มาตรฐานของปัจจัย
+          view_stats: ดูสถิติ
+        clients:
+          export_data_report: รายงานการส่งออกข้อมูล
+          manage: จัดการ
+          title: ลูกค้า
+          view: ดู
+          view_licenses: ดูใบอนุญาต
+        communications:
+          manage: จัดการ
+          title: การสื่อสาร
+          view: ดู
+        dashboards:
+          accesssheet_manage: จัดการ Accesssheet
+          accesssheet_settings: ตั้งค่า Accesssheet
+          accesssheet_view: แสดง Accesssheet
+          export: ส่งออก
+          title: แดชบอร์ด
+          view: ดู
+        datasheets:
+          manage: จัดการ
+          title: เอกสารข้อมูล
+          view: ดู
+        developmentActions:
+          export: ส่งออก
+          export_global: ส่งออกข้อมูลทั้งหมด
+          export_global_translations: ส่งออกคำแปลทุกภาษา
+          export_translations: ส่งออกคําแปล
+          import: นําเข้า
+          import_global: นําเข้าข้อมูลทั้งหมด
+          import_global_translations: นําเข้าคําแปลทุกภาษา
+          import_translations: นําเข้าคําแปล
+          manage: จัดการ
+          title: การดำเนินการพัฒนา
+          view: ดู
+        dimensions:
+          manage: จัดการ
+          title: มิติ
+          view: ดู
+        idpTemplates:
+          manage: จัดการ
+          title: เทมเพลต IDP
+          view: ดู
+        jobRoles:
+          export_translations: ส่งออกบทบาทงานแปล
+          import_translations: นำเข้าการแปลบทบาทงาน
+          manage: จัดการ
+          title: บทบาทในงาน
+          view: ดู
+        libraries:
+          manage: จัดการ
+          title: ห้องสมุดสื่อ
+          view: ดู
+        messages:
+          email: อีเมล
+          instructions: คำแนะนำ
+          options: ตัวเลือก
+          title: ข้อความ
+        norms:
+          manage: จัดการ
+          title: ค่ามาตรฐาน
+          view: ดู
+        proficiencyLevels:
+          export: ส่งออกระดับความสามารถ
+          export_translations: ส่งออกคำแปลระดับความสามารถ
+          import: นําเข้าระดับความความสามารถ
+          import_translations: นําเข้าคำแปลระดับความสามารถ
+          manage: จัดการ
+          title: ระดับความสามารถ
+          view: ดู
+        proficiency_level:
+          title: ระดับความสามารถ
+        projectSettings:
+          assessments: การประเมิน
+          design: ออกแบบ
+          feature_flags: แฟล็กคุณลักษณะ
+          idp: IDP
+          integrations: การบูรณาการ
+          privacy_settings: การตั้งค่าความเป็นส่วนตัว
+          saml: SAML
+          security: ความปลอดภัย
+          smtp: SMTP
+          title: การตั้งค่าโครงการ
+          webhooks: Webhooks
+        projects:
+          manage: จัดการ
+          manage_admins: จัดการผู้ดูแลระบบ
+          manage_users: จัดการผู้ใช้
+          title: โครงการ
+          view: ดู
+        questions:
+          manage: จัดการ
+          title: คำถาม
+          view: ดู
+        reflectionQuestions:
+          export: ส่งออก
+          import: นําเข้า
+          manage: จัดการ
+          title: คําถามสะท้อน IDP
+          view: ดู
+        registrationCodes:
+          manage: จัดการ
+          title: รหัสการลงทะเบียน
+          view: ดู
+        registrationSettings:
+          manage: จัดการ
+          title: การตั้งค่าการลงทะเบียน
+        reports:
+          manage: จัดการ
+          title: รายงาน
+          view: ดู
+        responseMeta:
+          title: ตอบกลับ Meta
+        results:
+          approve_report: อนุมัติรายงาน
+          bulk_download: ดาวน์โหลดจำนวนมาก
+          bulk_regenerate_reports: สร้างรายงานใหม่จํานวนมาก
+          bulk_update_evaluation_status: สถานะอัปเดตการประเมินจํานวนมาก
+          download_report: ดาวน์โหลดรายงาน
+          edit_report: แก้ไขรายงาน
+          export_occupations: ส่งออกอาชีพ
+          external_score_import: นําเข้าคะแนนภายนอก
+          finalize_scores: สรุปคะแนน
+          normalize_factor_scores: ปรับคะแนนปัจจัยตามค่ามาตรฐาน
+          raw_responses: คําตอบดิบ
+          regenerate_report: สร้างรายงานใหม่
+          report_data: รายงานข้อมูล
+          report_file_upload: รายงานการอัปโหลดไฟล์
+          rescore_responses: ให้คะแนนคำตอบใหม่
+          reset_progress: รีเซ็ตความคืบหน้า
+          reset_responses: รีเซ็ตการตอบกลับ
+          scores: คะแนน
+          title: ผลลัพธ์
+          view_report: ดูรายงาน
+          view_stats: ดูสถิติ
+        skills:
+          export: ส่งออกทักษะ
+          export_translations: ส่งออกคำแปลทักษะ
+          import: นําเข้าทักษะ
+          import_translations: นําเข้าคำแปลทักษะ
+          manage: จัดการ
+          title: ทักษะ
+          view: ดู
+        smsHistories:
+          manage: จัดการ
+          title: ประวัติ SMS
+          view: ดู
+        smsInvites:
+          manage: จัดการ
+          title: คําเชิญทาง SMS
+          view: ดู
+        userIdpPlans:
+          manage: จัดการ
+          title: แผน ID ผู้ใช้
+          view: ดู
+        users:
+          reset_password: รีเซ็ตรหัสผ่าน
+          title: ผู้ใช้
+        workshops:
+          export_status: สถานะการส่งออก
+          manage: จัดการ
+          title: เวิร์กช็อป
+          view: ดู
+          view_recordings: ดูการบันทึก
+      libraries:
+        manage: จัดการ
+        title: ห้องสมุดสื่อ
+        view: ดู
+      messages:
+        email: อีเมล
+        instructions: คำแนะนำ
+        options: ตัวเลือก
+        title: ข้อความ
+      norms:
+        manage: จัดการ
+        title: ค่ามาตรฐาน
+        view: ดู
+      proficiencyLevels:
+        export: ส่งออกระดับความสามารถ
+        export_translations: ส่งออกคำแปลระดับความสามารถ
+        import: นําเข้าระดับความความสามารถ
+        import_translations: นําเข้าคำแปลระดับความสามารถ
+        manage: จัดการ
+        title: ระดับความสามารถ
+        view: ดู
+      proficiency_level:
+        title: ระดับความสามารถ
+      projectSettings:
+        assessments: การประเมิน
+        design: ออกแบบ
+        feature_flags: แฟล็กคุณลักษณะ
+        idp: IDP
+        integrations: การบูรณาการ
+        privacy_settings: การตั้งค่าความเป็นส่วนตัว
+        saml: SAML
+        security: ความปลอดภัย
+        smtp: SMTP
+        title: การตั้งค่าโครงการ
+        webhooks: Webhooks
+      projects:
+        manage: จัดการ
+        manage_admins: จัดการผู้ดูแลระบบ
+        manage_licenses: จัดการใบอนุญาต
+        manage_users: จัดการผู้ใช้
+        title: โครงการ
+        view: ดู
+        view_licenses: ดูใบอนุญาต
+      questions:
+        manage: จัดการ
+        title: คำถาม
+        view: ดู
+      reflectionQuestions:
+        export: ส่งออก
+        import: นําเข้า
+        manage: จัดการ
+        title: คําถามสะท้อน IDP
+        view: ดู
+      registrationCodes:
+        manage: จัดการ
+        title: รหัสการลงทะเบียน
+        view: ดู
+      registrationSettings:
+        manage: จัดการ
+        title: การตั้งค่าการลงทะเบียน
+      reports:
+        manage: จัดการ
+        title: รายงาน
+        view: ดู
+      responseMeta:
+        title: ตอบกลับ Meta
+      results:
+        approve_report: อนุมัติรายงาน
+        bulk_download: ดาวน์โหลดจำนวนมาก
+        bulk_regenerate_reports: สร้างรายงานใหม่จํานวนมาก
+        bulk_update_evaluation_status: สถานะอัปเดตการประเมินจํานวนมาก
+        download_report: ดาวน์โหลดรายงาน
+        edit_report: แก้ไขรายงาน
+        export_occupations: ส่งออกอาชีพ
+        external_score_import: นําเข้าคะแนนภายนอก
+        finalize_scores: สรุปคะแนน
+        normalize_factor_scores: ปรับคะแนนปัจจัยตามค่ามาตรฐาน
+        raw_responses: คําตอบดิบ
+        regenerate_report: สร้างรายงานใหม่
+        report_data: รายงานข้อมูล
+        report_file_upload: รายงานการอัปโหลดไฟล์
+        rescore_responses: ให้คะแนนคำตอบใหม่
+        reset_progress: รีเซ็ตความคืบหน้า
+        reset_responses: รีเซ็ตการตอบกลับ
+        scores: คะแนน
+        title: ผลลัพธ์
+        view_report: ดูรายงาน
+        view_stats: ดูสถิติ
+      skills:
+        export: ส่งออกทักษะ
+        export_translations: ส่งออกคำแปลทักษะ
+        import: นําเข้าทักษะ
+        import_translations: นําเข้าคำแปลทักษะ
+        manage: จัดการ
+        title: ทักษะ
+        view: ดู
+      smsHistories:
+        manage: จัดการ
+        title: ประวัติ SMS
+        view: ดู
+      smsInvites:
+        manage: จัดการ
+        title: คําเชิญทาง SMS
+        view: ดู
+      userIdpPlans:
+        manage: จัดการ
+        reset: รี เซ็ต
+        title: แผน ID ผู้ใช้
+        view: ทิวทัศน์
+      users:
+        reset_password: รีเซ็ตรหัสผ่าน
+        title: ผู้ใช้
+      workshops:
+        export_status: สถานะการส่งออก
+        manage: จัดการ
+        title: เวิร์กช็อป
+        view: ดู
+        view_recordings: ดูการบันทึก
+    permissions_360_campaigns: สิทธิ์เฉพาะสําหรับแคมเปญ 360 องศา
+    privacy: ความเป็นส่วนตัว
+    proficiency_level: กุญแจ API
+    proficiency_levels: ระดับความสามารถ
     profile_details: รายละเอียดโปรไฟล์
     project_admins: ผู้ดูแลระบบโครงการ
     project_manager: ผู้จัดการโครงการ
+    project_number: หมายเลขโครงการ
+    project_settings: การตั้งค่าโครงการ
+    projects: โครงการ
     question_center: ศูนย์คําถาม
+    questions: คำถาม
+    reflection_questions: คําถามไตร่ตรอง
     registration_codes: รหัสการลงทะเบียน
+    registration_settings: การตั้งค่าการลงทะเบียน
     report_approvals: การอนุมัติรายงาน
     report_condition_not_met: ต้องการ %{required} %{relationship} การประเมิน แต่มีเพียง %{actual}
     report_conditions_not_met_detailed: รายงานสําหรับ %{user} ไม่ตรงตามเงื่อนไขความพร้อมใช้งาน %{conditions}
@@ -128,6 +592,8 @@ th:
     reset_idp_plan: รีเซ็ตแผน
     reset_idp_plan_confirmation: คุณแน่ใจหรือไม่ว่าต้องการรีเซ็ตแผน?
     reset_idp_plan_title: รีเซ็ตแผน
+    response_meta: ตอบกลับ Meta
+    results: ผลลัพธ์
     role: บทบาท
     saml_idp_certificate_available: มีจําหน่าย (คลิกเพื่อคัดลอก)
     saml_idp_certificate_label: ใบรับรอง
@@ -179,17 +645,28 @@ th:
     saml_settings: การตั้งค่า SAML
     scheduling: กำหนดการ
     scoring: การให้คะแนน
+    search_admins: ค้นหาผู้ดูแลระบบ
+    select_admin_role: กรุณาเลือกผู้ดูแลระบบ
+    send_email: ส่งอีเมล
+    settings: การตั้งค่า
     show_submenu: แสดงเมนูย่อย
+    siem: SIEM
+    skill_aliases: นามแฝงทักษะ
+    skills: ทักษะ
     skills_taxonomy: อนุกรมวิธานทักษะ
     slot_name: ชื่อสล็อต
+    sms_histories: ประวัติ SMS
+    sms_invites: คําเชิญทาง SMS
     stats: สถิติ
     status_details: รายละเอียดสถานะ
     structured_learning: การเรียนรู้อย่างเป็นทางการ [10]
+    subdomain: โดเมนย่อย
     upload_success: อัปโหลดสําเร็จ
     user_report_events: เหตุการณ์รายงานผู้ใช้
     users: ผู้เข้าร่วม
     view_licenses: ดูใบอนุญาต
     waiting: การรอคอย
+    workshops: เวิร์กช็อป
     year: ประเทศ
     yoodli_activity_id: รหัสกิจกรรม Yoodli
     yoodli_email_id: รหัสอีเมลผู้สมัคร Yoodli

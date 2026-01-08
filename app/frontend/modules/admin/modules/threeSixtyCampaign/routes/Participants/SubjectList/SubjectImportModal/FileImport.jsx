@@ -1,4 +1,4 @@
-import { CloudDownloadOutlined } from '@ant-design/icons'
+import { CloudDownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import ErrorAlertBox from '~/components/ErrorAlertBox'
 
 export default function FileImport ({

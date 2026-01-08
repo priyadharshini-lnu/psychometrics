@@ -29,35 +29,11 @@ hr:
     administrators:
       drawers:
         edit:
-          admin_role_select: Odaberite administratorsku ulogu
-          admin_roles: Administratorske uloge
-          create_success: Administrator '%{name}' je uspješno kreiran
-          email: E-pošta
-          first_name: Ime
           first_name_required: Ime je obavezno
-          last_name: Prezime
           last_name_required: Prezime je obavezno
-          no_edit_permission: Nemate dopuštenje za uređivanje administratora '%{name}'
-          save: Spremi
-          update: Ažuriraj
-          update_success: Administrator '%{name}' uspješno je ažuriran
-        notes:
-          threesixty_permission: Dopuštenja specifična za kampanje višesmjerne procjene
-          title: Bilješke
         view:
-          add_campaign_admin: Dodaj administratora kampanje
-          add_client_admin: Dodaj klijenta administratora
-          add_project_admin: Dodaj administratora projekta
-          add_threesixty_campaign_admin: Dodaj administratora kampanje
-          edit_campaign_admin: Uredi administratora kampanje
-          edit_client_admin: Uredi klijenta administratora
-          edit_project_admin: Uredi administratora projekta
-          edit_threesixty_campaign_admin: Uredi administratora kampanje
           first_name: Ime
           last_name: Prezime
-          project_admin: Administrator projekta
-          project_list: Popis projekata
-          role: Administrator kampanje
           title:
             campaign_admin: Administrator kampanje
             client_admin: Klijent administrator
@@ -65,253 +41,20 @@ hr:
       list:
         actions:
           api_keys: API ključevi
-          cancel_text: Odustani
-          change_password: Resetiraj lozinku
           edit: Uredi
           export_admins_with_permissions: Izvoz administratorskih uloga i dozvola
           export_success: Izvoz administratora uspješno je zakazan. Za status provjerite obavijesti.
           login: Prijava
-          send_email: Pošalji e-poštu
           spoof:
             login_successful: Prijava uspješna.
           user_report_events: Zapisnici odobrenja izvješća
         columns:
-          actions: Statusi
-          created_at: Stvoreno u
           email: E-pošta
-          id: ID
-          name: Ime
-        header:
-          add_admin: Dodaj administratora
-          search_admins: Pretraživanje administratora
-        toolbar:
-          export_admins_with_permissions: Izvoz administratorskih uloga i dozvola
       modals:
         delete:
           cancelText: Odustani
-          content: Jeste li sigurni da želite ukloniti administratora s e-poštom '%{email}'?
           okText: Ok
-          onSuccess: Administrator s e-poštom '%{email}' uspješno je uklonjen
           title: Potvrdi
-      permissions:
-        labels:
-          aiArtifacts:
-            export: Izvoz
-            import: Uvoz
-            manage: Upravljati
-            title: AI artefakti
-            view: Pogled
-          apiKeys:
-            manage: Upravljanje
-            title: API ključevi
-            view: Pregled
-          assessments:
-            manage: Upravljanje
-            title: Procjene
-            view: Pregled
-          assessors:
-            manage: Upravljanje
-            title: Procjenitelji
-            view: Pregled
-          auditLogs:
-            title: Zapisnici revizije
-            view: Pregled
-          auditReports:
-            admin_permissions: Izvoz administratorskih uloga i dozvola
-            title: Revizijska izvješća
-            user_report_events: Zapisnici odobrenja izvješća
-          campaignFactors:
-            manage: Upravljanje
-            title: Čimbenici kampanje
-            view: Pregled
-          campaigns:
-            bulk_download: Skupno preuzimanje
-            bulk_regenerate_reports: Izvješća o skupnom ponovnom obnavljanju
-            manage: Upravljanje
-            manage_admins: Upravljanje administratorima
-            manage_factor_benchmark_scores: Upravljanje rezultatima referentne vrijednosti faktora
-            manage_messages: Upravljanje porukama
-            manage_options: Upravljanje opcijama
-            manage_report_approvals: Upravljanje odobrenjima izvješća
-            manage_users: Upravljanje korisnicima
-            participant_options: Opcije sudionika
-            report_options: Opcije izvješća
-            reset_nominations: Resetiranje nominacija
-            title: Kampanje
-            view: Pregled
-            view_factor_benchmark_scores: Pogledajte rezultate referentne vrijednosti faktora
-            view_stats: Pogledajte statistiku
-          clients:
-            export_data_report: Izvješće o izvozu podataka
-            manage: Upravljanje
-            title: Klijenti
-            view: Pregled
-            view_licenses: Prikaz licenci
-          communications:
-            manage: Upravljanje
-            title: Komunikacije
-            view: Pregled
-          dashboards:
-            accesssheet_manage: Upravljanje pristupnom tablicom
-            accesssheet_settings: Postavke pristupne tablice
-            accesssheet_view: Pregled pristupne tablice
-            export: Izvoz
-            title: Nadzorne ploče
-            view: Pregled
-          datasheets:
-            manage: Upravljanje
-            title: Podatkovne tablice
-            view: Pregled
-          developmentActions:
-            export: Izvezi
-            export_global: Globalni izvoz
-            export_global_translations: Izvoz globalnih prijevoda
-            export_translations: Izvoz prijevoda
-            import: Uvoz
-            import_global: Globalni uvoz
-            import_global_translations: Uvoz globalnih prijevoda
-            import_translations: Uvoz prijevoda
-            manage: Upravljanje
-            title: Razvojne akcije
-            view: Pregled
-          dimensions:
-            manage: Upravljanje
-            title: Dimenzije
-            view: Pregled
-          idpTemplates:
-            manage: Upravljanje
-            title: Predlošci IDP-a
-            view: Pregled
-          interviewQuestions:
-            export: Izvoz
-            import: Uvoz
-            manage: Upravljaj
-            title: Pitanja za intervju za IDP
-            view: Pogled
-          jobRoles:
-            export_translations: Izvoz prijevoda radnih uloga
-            import_translations: Uvoz prijevoda radnih uloga
-            manage: Upravljanje
-            title: Poslovne uloge
-            view: Pregled
-          libraries:
-            manage: Upravljanje
-            title: Medijske biblioteke
-            view: Pregled
-          messages:
-            email: E-pošta
-            instructions: Upute
-            options: Opcije
-            title: Poruke
-          norms:
-            manage: Upravljanje
-            title: Kriteriji
-            view: Pregled
-          proficiencyLevels:
-            export: Izvoz razina stručnosti
-            export_translations: Izvoz razina stručnosti prijevoda
-            import: Razine znanja uvoza
-            import_translations: Uvoz razina stručnosti prijevoda
-            manage: Upravljanje
-            title: Razine stručnosti
-            view: Pregled
-          proficiency_level:
-            title: Razine stručnosti
-          projectSettings:
-            assessments: Procjene
-            design: Dizajn
-            feature_flags: Zastavice značajki
-            idp: IDP
-            integrations: Integracije
-            privacy_settings: Postavke privatnosti
-            saml: SAML
-            security: Sigurnost
-            smtp: SMTP
-            title: Postavke projekta
-            webhooks: Webhookovi
-          projects:
-            manage: Upravljanje
-            manage_admins: Upravljanje administratorima
-            manage_licenses: Upravljanje licencama
-            manage_users: Upravljanje korisnicima
-            title: Projekti
-            view: Pregled
-            view_licenses: Pogledaj licence
-          questions:
-            manage: Upravljanje
-            title: Pitanja
-            view: Pregled
-          reflectionQuestions:
-            export: Izvoz
-            import: Uvoz
-            manage: Upravljanje
-            title: Pitanja za razmišljanje o interno raseljenim osobama
-            view: Pregled
-          registrationCodes:
-            manage: Upravljanje
-            title: Registracijski kodovi
-            view: Pregled
-          registrationSettings:
-            manage: Upravljanje
-            title: Postavke registracije
-          reports:
-            manage: Upravljanje
-            title: Izvješća
-            view: Pregled
-          responseMeta:
-            title: Meta odgovor
-          results:
-            approve_report: Odobri izvješće
-            bulk_download: Skupno preuzimanje
-            bulk_regenerate_reports: Izvješća o skupnom ponovnom obnavljanju
-            bulk_update_evaluation_status: Status evaluacije skupnog ažuriranja
-            download_report: Preuzmanje izvješća
-            edit_report: Uređivanje izvješća
-            export_occupations: Izvoz zanimanja
-            external_score_import: Uvoz vanjskog rezultata
-            finalize_scores: Dovršite rezultate
-            normalize_factor_scores: Normalizirajte rezultate faktora
-            raw_responses: Neobrađeni odgovori
-            regenerate_report: Ponovno generiraj izvješće
-            report_data: Podaci izvješća
-            report_file_upload: Prijenos datoteke izvješća
-            rescore_responses: Ponovna procjena odgovora
-            reset_progress: Resetiranje napretka
-            reset_responses: Resetiranje odgovora
-            scores: Rezultati
-            title: Rezultati
-            view_report: Pregled izvješća
-            view_stats: PRegled statistike
-          skills:
-            export: Izvoz vještina
-            export_translations: Izvoz vještina prijevoda
-            import: Uvoz vještina
-            import_translations: Uvoz vještina prijevoda
-            manage: Upravljanje
-            title: Vještine
-            view: Pregled
-          smsHistories:
-            manage: Upravljanje
-            title: Povijest SMS-a
-            view: Pregled
-          smsInvites:
-            manage: Upravljanje
-            title: SMS pozivnice
-            view: Pregled
-          userIdpPlans:
-            manage: Upravljati
-            reset: Brisanje
-            title: Korisnički IDP planovi
-            view: Pogled
-          users:
-            reset_password: Resetiraj lozinku
-            title: Korisnici
-          workshops:
-            export_status: Izvoz statusa
-            manage: Upravljanje
-            title: Radionicama
-            view: Pregled
-            view_recordings: Pogledajte snimke
     ai_artifacts:
       artifact_results: Rezultati artefakata
       code: Zakonik
@@ -3575,6 +3318,7 @@ hr:
           show_target_proficiency: Pokažite stručnost cilja
           strengths_blindspots: Prednosti i slijepe točke
         text_condition_type: 'Vrsta tekstualnog uvjeta:'
+        translate_with_ai: Prevedite pomoću umjetne inteligencije
     report_families:
       create:
         successfully: Paket izvješća %{name} uspješno je stvoren.
@@ -4047,12 +3791,7 @@ hr:
       security_setting: Sigurnosna postavka
     settings:
       admin_roles:
-        admin_role_single: Uloga administratora
         confirm_message: Jeste li sigurni da želite izbrisati ulogu administratora '%{role_name}'?
-        create: Dodavanje administratorske uloge
-        description: Opis
-        name: Ime
-        successful_remove: Administratorska uloga '%{role_name}' uspješno je izbrisana.
       siem:
         description: Opis
         destination_type: Vrsta odredišta

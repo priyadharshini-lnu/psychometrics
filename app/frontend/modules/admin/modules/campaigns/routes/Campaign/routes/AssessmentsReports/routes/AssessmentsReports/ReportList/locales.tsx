@@ -1,6 +1,6 @@
 import { Button, Flex, Popover } from 'antd'
-import { EditOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
+import { EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { openModal } from '~/modules/admin/core/ui/modals'
 
 const { I18n } = window

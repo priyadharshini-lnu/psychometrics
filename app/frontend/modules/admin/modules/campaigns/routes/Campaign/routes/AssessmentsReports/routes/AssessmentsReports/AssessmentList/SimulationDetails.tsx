@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react'
 import {
   Descriptions, Button,
 } from 'antd'
-import { EditOutlined } from '@ant-design/icons'
+import { EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import UpdateContentVariationForm from './UpdateContentVariationForm'
 import SimulationContentVariation from '~/modules/admin/modules/campaigns/interfaces/SimulationContentVariation'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'

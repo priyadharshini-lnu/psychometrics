@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import {
   Modal, Button, App, Input, Alert,
 } from 'antd'
-import { LoadingOutlined, CheckOutlined, MailOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
+import { LoadingOutlined, CheckOutlined, MailOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import {
   TEST_SETTINGS,
   sendTestEmail,

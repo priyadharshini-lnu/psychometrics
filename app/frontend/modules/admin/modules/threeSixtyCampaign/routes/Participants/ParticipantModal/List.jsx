@@ -1,8 +1,8 @@
 import {
   Select, Table,
 } from 'antd'
-import { DeleteOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
+import { DeleteOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import userPresenter from '~/presenters/user'
 import { ASSIGN_TYPES } from '~/constants/relationship'
 import Confirmation from './Confirmation'

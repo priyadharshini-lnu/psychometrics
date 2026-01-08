@@ -15,12 +15,12 @@ import {
 import {
   SortableContext, rectSortingStrategy, arrayMove, verticalListSortingStrategy,
 } from '@dnd-kit/sortable'
-import { PlusOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 
 import { ConnectedProps, connect } from 'react-redux'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { Key } from 'antd/lib/table/interface'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { useResources } from '~/hooks/useResources'
 import {
   CAMPAIGN_FACTORS_AND_VALUE_PAGE_SIZE,

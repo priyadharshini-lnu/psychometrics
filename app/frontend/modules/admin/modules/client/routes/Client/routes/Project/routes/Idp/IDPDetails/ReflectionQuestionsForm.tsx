@@ -5,10 +5,10 @@ import {
   Col, Row, Button, Flex, Card, Select, Space, Typography, Divider,
   message, Table, InputNumber, Switch,
 } from 'antd'
-import { DeleteOutlined, PlusOutlined } from '@ant-design/icons'
 import { ReflectionQuestion } from 'modules/admin/modules/client/core/reflectionQuestion'
 import debounce from 'lodash/debounce'
 import { useParams } from 'react-router-dom'
+import { DeleteOutlined, PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { useResources } from '~/hooks/useResources'
 import {
   Idp, IdpTR, IdpTemplateReflectionQuestion,

@@ -29,35 +29,11 @@ en-US:
     administrators:
       drawers:
         edit:
-          admin_role_select: Select admin role
-          admin_roles: Admin roles
-          create_success: Admin '%{name}' was created successfully
-          email: Email
-          first_name: First name
           first_name_required: First name is required
-          last_name: Last name
           last_name_required: Last name is required
-          no_edit_permission: You do not have permission to edit admin '%{name}'
-          save: Save
-          update: Update
-          update_success: Admin '%{name}' was updated successfully
-        notes:
-          threesixty_permission: Permissions specific to 360 campaigns
-          title: Notes
         view:
-          add_campaign_admin: Add Campaign Admin
-          add_client_admin: Add Client Admin
-          add_project_admin: Add Project Admin
-          add_threesixty_campaign_admin: Add Campaign Admin
-          edit_campaign_admin: Edit Campaign Admin
-          edit_client_admin: Edit Client Admin
-          edit_project_admin: Edit Project Admin
-          edit_threesixty_campaign_admin: Edit Campaign Admin
           first_name: First name
           last_name: Last name
-          project_admin: Project Admin
-          project_list: Project List
-          role: Campaign Admin
           title:
             campaign_admin: Campaign Admin
             client_admin: Client Admin
@@ -65,253 +41,20 @@ en-US:
       list:
         actions:
           api_keys: API keys
-          cancel_text: Cancel
-          change_password: Reset password
           edit: Edit
           export_admins_with_permissions: Admin Roles and Permissions export
           export_success: Admin export job was scheduled successfully. Please check your notification for status.
           login: Login
-          send_email: Send email
           spoof:
             login_successful: Login successful.
           user_report_events: Report Approval logs
         columns:
-          actions: Actions
-          created_at: Created at
           email: Email
-          id: ID
-          name: Name
-        header:
-          add_admin: Add admin
-          search_admins: Search admins
-        toolbar:
-          export_admins_with_permissions: Admin Roles and Permissions export
       modals:
         delete:
           cancelText: Cancel
-          content: Are you sure you want to remove admin user with email '%{email}'?
           okText: Ok
-          onSuccess: Admin with email '%{email}' was removed successfully
           title: Confirm
-      permissions:
-        labels:
-          aiArtifacts:
-            export: Export
-            import: Import
-            manage: Manage
-            title: AI Artifacts
-            view: View
-          apiKeys:
-            manage: Manage
-            title: API Keys
-            view: View
-          assessments:
-            manage: Manage
-            title: Assessments
-            view: View
-          assessors:
-            manage: Manage
-            title: Assessors
-            view: View
-          auditLogs:
-            title: Audit Logs
-            view: View
-          auditReports:
-            admin_permissions: Admin Roles and Permissions export
-            title: Audit Reports
-            user_report_events: Report Approval logs
-          campaignFactors:
-            manage: Manage
-            title: Campaign Factors
-            view: View
-          campaigns:
-            bulk_download: Bulk Download
-            bulk_regenerate_reports: Bulk Regenerate Reports
-            manage: Manage
-            manage_admins: Manage Admins
-            manage_factor_benchmark_scores: Manage Factor Benchmark Scores
-            manage_messages: Manage Messages
-            manage_options: Manage Options
-            manage_report_approvals: Manage Report Approvals
-            manage_users: Manage Users
-            participant_options: Participant Options
-            report_options: Report Options
-            reset_nominations: Reset Nominations
-            title: Campaigns
-            view: View
-            view_factor_benchmark_scores: View Factor Benchmark Scores
-            view_stats: View Stats
-          clients:
-            export_data_report: Export Data Report
-            manage: Manage
-            title: Clients
-            view: View
-            view_licenses: View Licenses
-          communications:
-            manage: Manage
-            title: Communications
-            view: View
-          dashboards:
-            accesssheet_manage: Accesssheet Manage
-            accesssheet_settings: Accesssheet Settings
-            accesssheet_view: Accesssheet View
-            export: Export
-            title: Dashboards
-            view: View
-          datasheets:
-            manage: Manage
-            title: Datasheets
-            view: View
-          developmentActions:
-            export: Export
-            export_global: Export Global
-            export_global_translations: Export Global Translations
-            export_translations: Export Translations
-            import: Import
-            import_global: Import Global
-            import_global_translations: Import Global Translations
-            import_translations: Import Translations
-            manage: Manage
-            title: Development Actions
-            view: View
-          dimensions:
-            manage: Manage
-            title: Dimensions
-            view: View
-          idpTemplates:
-            manage: Manage
-            title: IDP Templates
-            view: View
-          interviewQuestions:
-            export: Export
-            import: Import
-            manage: Manage
-            title: IDP Interview Questions
-            view: View
-          jobRoles:
-            export_translations: Export Job Roles Translations
-            import_translations: Import Job Roles Translations
-            manage: Manage
-            title: Job Roles
-            view: View
-          libraries:
-            manage: Manage
-            title: Media Libraries
-            view: View
-          messages:
-            email: Email
-            instructions: Instructions
-            options: Options
-            title: Messages
-          norms:
-            manage: Manage
-            title: Norms
-            view: View
-          proficiencyLevels:
-            export: Export Proficiency Levels
-            export_translations: Export Proficiency Levels translations
-            import: Import Proficiency Levels
-            import_translations: Import Proficiency Levels Translations
-            manage: Manage
-            title: Proficiency Levels
-            view: View
-          proficiency_level:
-            title: Proficiency Levels
-          projectSettings:
-            assessments: Assessments
-            design: Design
-            feature_flags: Feature Flags
-            idp: IDP
-            integrations: Integrations
-            privacy_settings: Privacy Settings
-            saml: SAML
-            security: Security
-            smtp: SMTP
-            title: Project Settings
-            webhooks: Webhooks
-          projects:
-            manage: Manage
-            manage_admins: Manage Admins
-            manage_licenses: Manage Licenses
-            manage_users: Manage Users
-            title: Projects
-            view: View
-            view_licenses: View Licenses
-          questions:
-            manage: Manage
-            title: Questions
-            view: View
-          reflectionQuestions:
-            export: Export
-            import: Import
-            manage: Manage
-            title: IDP Reflection Questions
-            view: View
-          registrationCodes:
-            manage: Manage
-            title: Registration Codes
-            view: View
-          registrationSettings:
-            manage: Manage
-            title: Registration Settings
-          reports:
-            manage: Manage
-            title: Reports
-            view: View
-          responseMeta:
-            title: Response Meta
-          results:
-            approve_report: Approve Report
-            bulk_download: Bulk Download
-            bulk_regenerate_reports: Bulk Regenerate Reports
-            bulk_update_evaluation_status: Bulk Update Evaluation Status
-            download_report: Download Report
-            edit_report: Edit Report
-            export_occupations: Export occupations
-            external_score_import: External Score Import
-            finalize_scores: Finalize Scores
-            normalize_factor_scores: Normalize Factor Scores
-            raw_responses: Raw Responses
-            regenerate_report: Regenerate Report
-            report_data: Report Data
-            report_file_upload: Report File Upload
-            rescore_responses: Rescore Responses
-            reset_progress: Reset Progress
-            reset_responses: Reset Responses
-            scores: Scores
-            title: Results
-            view_report: View Report
-            view_stats: View Stats
-          skills:
-            export: Export Skills
-            export_translations: Export Skills Translations
-            import: Import Skills
-            import_translations: Import Skills Translations
-            manage: Manage
-            title: Skills
-            view: View
-          smsHistories:
-            manage: Manage
-            title: SMS Histories
-            view: View
-          smsInvites:
-            manage: Manage
-            title: SMS Invites
-            view: View
-          userIdpPlans:
-            manage: Manage
-            reset: Reset
-            title: User IDP Plans
-            view: View
-          users:
-            reset_password: Reset Password
-            title: Users
-          workshops:
-            export_status: Export Status
-            manage: Manage
-            title: Workshops
-            view: View
-            view_recordings: View Recordings
     ai_artifacts:
       artifact_results: Artifact Results
       code: Code
@@ -3575,6 +3318,7 @@ en-US:
           show_target_proficiency: Show Target Proficiency
           strengths_blindspots: Strengths & Blindspots
         text_condition_type: 'Text Condition Type:'
+        translate_with_ai: Translate with AI
     report_families:
       create:
         successfully: Report Bundle %{name} was created successfully.
@@ -4050,12 +3794,7 @@ en-US:
       security_setting: Security setting
     settings:
       admin_roles:
-        admin_role_single: Admin Role
         confirm_message: Are you sure you want to delete admin role '%{role_name}'?
-        create: Add Admin Role
-        description: Description
-        name: Name
-        successful_remove: Admin role '%{role_name}' was deleted successfully.
       siem:
         description: Description
         destination_type: Destination Type

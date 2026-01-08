@@ -6,7 +6,7 @@ import {
   Input,
   Row, Col,
 } from 'antd'
-import { UnorderedListOutlined } from '@ant-design/icons'
+import { UnorderedListOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 export interface Props {
   title: string

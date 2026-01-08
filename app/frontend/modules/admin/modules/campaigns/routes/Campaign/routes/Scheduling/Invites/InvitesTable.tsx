@@ -3,11 +3,11 @@ import {
 } from 'antd'
 import type { MessageInstance } from 'antd/es/message/interface'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
-import { PlusOutlined } from '@ant-design/icons'
 import {
   useParams, useLocation, useNavigate, Link,
 } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { WorkshopInvite } from '~/modules/admin/modules/campaigns/core/invites'
 import { MenuItem } from '~/interfaces/Antd'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'

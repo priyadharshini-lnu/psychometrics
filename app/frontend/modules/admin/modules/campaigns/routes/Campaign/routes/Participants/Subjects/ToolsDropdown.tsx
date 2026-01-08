@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Button, MenuProps, message,
 } from 'antd'
-import { ToolOutlined, DownOutlined } from '@ant-design/icons'
+import { ToolOutlined, DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { ExportUsers } from '~/modules/admin/modules/campaigns/core/users'

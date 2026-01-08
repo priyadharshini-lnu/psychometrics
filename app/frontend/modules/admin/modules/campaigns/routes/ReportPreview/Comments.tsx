@@ -5,8 +5,8 @@ import {
   Input, Tooltip, Divider, Switch, Space,
 } from 'antd'
 import { useTransition, animated as a } from 'react-spring'
-import { SendOutlined } from '@ant-design/icons'
 import _ from 'lodash'
+import { SendOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import {
   get,
   getCurrent,

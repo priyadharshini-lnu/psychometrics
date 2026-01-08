@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom'
 import {
   Button, message, MenuProps, App,
 } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
 import { ConnectedProps, connect } from 'react-redux'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import { SkillAliasForm } from './SkillAliasForm'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'

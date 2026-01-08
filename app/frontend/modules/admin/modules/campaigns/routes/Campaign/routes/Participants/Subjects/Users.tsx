@@ -4,11 +4,11 @@ import {
 } from 'antd'
 import type { MessageInstance } from 'antd/es/message/interface'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
-import {
-  AppstoreOutlined, PlusOutlined, MoreOutlined, ExclamationCircleOutlined,
-} from '@ant-design/icons'
 import { Link, useParams } from 'react-router-dom'
 import { FilterValue } from 'antd/lib/table/interface'
+import {
+  AppstoreOutlined, PlusOutlined, MoreOutlined, ExclamationCircleOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import { ResetPasswordModal } from '~/modules/admin/modules/Users/routes/UserList/ResetPasswordModal'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'

@@ -2,8 +2,13 @@
 es-ES:
   shared:
     action: Acción
+    actions: Acciones
+    active: Activo
     add: Añadir
     advanced: Avanzado
+    agree_and_continue: Acepta y continúa
+    archive: Archivar
+    archived: Archivado
     authentication_failed: Fallo de autenticación. Por favor, inténtalo de nuevo.
     basic: Básico
     campaign_id: ID de campaña
@@ -11,24 +16,46 @@ es-ES:
     change_password: Cambiar contraseña
     clear_filters: Quitar filtros
     collaborative_learning: Aprendizaje colaborativo
+    confirm: Confirmar
     continue: Continuar
+    created_at: Creado/a el
+    created_date: Fecha de creación
+    decline: Rechazar
     description: Descripción
     edit: Editar
     edited: Nuevo/a
+    email: Correo electrónico
+    export: Exportar
+    first_name: Nombre
     formal_learning: Aprendizaje formal
     group_question_max_validation_error: Cada grupo puede contener como máximo {{max}} elemento(s).
     group_question_min_validation_error: Cada grupo debe contener al menos {{min}} elemento(s).
     id: ID
     idp_ai_assistant_disclaimer: El asistente IDP de Lighthouse AI puede cometer errores. Por favor, ten cuidado al usar las respuestas.
     internet_disconnected_message: Intentando volver a conectar. Compruebe su conexión a internet.
+    last_name: Apellido(s)
     learning_on_the_job_label: Aprendizaje sobre el terreno
+    login: Iniciar sesión
+    modified_by: Modificado por
+    modified_date: Fecha de modificación
+    more_actions: Más acciones
     mte_logo_alt_text: Logotipo de Mercer Talent Enterprise
     name: Nombre
     new: Nuevo/a
+    ok: De acuerdo
+    recording_consent_notice: Esta sesión de reunión será grabada. Tu participación en esta reunión constituye tu consentimiento para ser grabado.
+    recording_consent_proceed_question: "¿Acepta continuar con la reunión grabada?"
+    recording_consent_title: Aviso de consentimiento de grabación
+    remove: Eliminar
     removed: Eliminado
+    reset_password: Restablecer contraseña
     rte_paste_content_exceeds_char_limit: El texto supera el límite de caracteres {{maxCharacterLimit}} y no puede pegarse.
     rte_paste_content_exceeds_word_limit: El texto supera el límite de palabras {{maxWordLimit}} y no puede pegarse.
+    save: Salvar
     search: Buscar
+    send_email: Enviar correo electrónico
+    show_more: Mostrar más
+    something_wrong: Algo ha ido mal. Póngase en contacto con su administrador.
     table:
       entries:
         selected:

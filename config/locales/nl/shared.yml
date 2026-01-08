@@ -2,8 +2,13 @@
 nl:
   shared:
     action: Actie
+    actions: Acties
+    active: Actief
     add: Voeg  toe
     advanced: Geavanceerd
+    agree_and_continue: Akkoord en Ga Door.
+    archive: Archief
+    archived: Gearchiveerd
     authentication_failed: Authenticatie mislukt. Probeer het alsjeblieft opnieuw.
     basic: Basisch
     campaign_id: Campagne-ID
@@ -11,24 +16,46 @@ nl:
     change_password: Wachtwoord wijzigen
     clear_filters: Filters wissen
     collaborative_learning: Samenwerkend leren
+    confirm: Bevestig
     continue: Voortzetten
+    created_at: Gemaakt op
+    created_date: Datum aangemaakt
+    decline: Neergang
     description: Beschrijving
     edit: Bewerk
     edited: Nieuw
+    email: E-mail
+    export: Exporteer
+    first_name: Voornaam
     formal_learning: Formeel Leren
     group_question_max_validation_error: Elke groep kan maximaal {{max}} item(s) bevatten.
     group_question_min_validation_error: Elke groep moet minstens {{min}} items(en) bevatten.
     id: ID
     idp_ai_assistant_disclaimer: De AI-assistent van de Lighthouse IDP kan fouten maken. Wees alsjeblieft voorzichtig met het gebruik van de reacties.
     internet_disconnected_message: Probeer opnieuw verbinding te maken. Controleer uw internetverbinding.
+    last_name: Achternaam
     learning_on_the_job_label: Leren op de werkvloer
+    login: Inloggen
+    modified_by: Gewijzigd door
+    modified_date: Gewijzigde datum
+    more_actions: Meer acties
     mte_logo_alt_text: Mercer logo voor talentondernemingen
     name: Naam
     new: Nieuw
+    ok: Ok
+    recording_consent_notice: Deze bijeenkomst zal worden opgenomen. Uw deelname aan deze bijeenkomst betekent dat u toestemming geeft om opgenomen te worden.
+    recording_consent_proceed_question: Gaat u akkoord met de opgenomen vergadering?
+    recording_consent_title: Opname Toestemming Kennisgeving
+    remove: Verwijder
     removed: Verwijderd
+    reset_password: Wachtwoord opnieuw instellen
     rte_paste_content_exceeds_char_limit: Tekst overschrijdt de tekenlimiet van {{maxCharacterLimit}} en kan niet worden geplakt.
     rte_paste_content_exceeds_word_limit: Tekst overschrijdt de woordlimiet van {{maxWordLimit}} en kan niet worden geplakt.
+    save: Sla
     search: Zoek op
+    send_email: Stuur e-mail
+    show_more: Laat meer zien
+    something_wrong: Er is iets misgegaan. Neem contact op met uw beheerder.
     table:
       entries:
         selected:

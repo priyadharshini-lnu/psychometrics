@@ -3,7 +3,7 @@ import {
   Modal, Button, Alert, message,
 } from 'antd'
 import Event from 'interfaces/Event'
-import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
+import { LoadingOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 const { I18n } = window
 

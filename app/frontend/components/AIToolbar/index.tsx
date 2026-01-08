@@ -7,7 +7,7 @@ import {
   ScissorOutlined,
   IdcardOutlined,
   GlobalOutlined,
-} from '@ant-design/icons'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { useSelectionDetection } from './useSelectionDetection'
 import { useToolbarPosition } from './useToolbarPosition'
 import { useAIEditors } from './useAIEditors'

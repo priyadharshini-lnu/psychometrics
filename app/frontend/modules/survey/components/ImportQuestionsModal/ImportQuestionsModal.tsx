@@ -2,9 +2,9 @@ import { useState } from 'react'
 import {
   Alert, Button, Form, Input, Modal, message,
 } from 'antd'
-import { LoadingOutlined, CheckOutlined, CloudDownloadOutlined } from '@ant-design/icons'
 import Event from 'interfaces/Event'
 import { ConnectedProps, connect } from 'react-redux'
+import { LoadingOutlined, CheckOutlined, CloudDownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import {
   importQuestions,
 } from '~/modules/survey/core/builder/assessment/actions'

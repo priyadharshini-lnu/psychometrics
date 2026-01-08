@@ -1,7 +1,20 @@
 ---
 ja:
   admin:
+    add_admin: 管理者を追加する
+    add_admin_role: 管理者ロールの追加
+    add_campaign_admin: キャンペーン管理者の追加
+    add_client_admin: クライアント管理者の追加
+    add_project: プロジェクトの追加
+    add_project_admin: プロジェクト管理者の追加
+    add_threesixty_campaign_admin: キャンペーン管理者の追加
     admin_approval_required: "%{user}のレポートはダウンロード前に管理者の承認が必要です"
+    admin_created_successfully: 管理者 '%{name}' が正常に作成されました。
+    admin_export_scheduled: 管理者エクスポートジョブは正常にスケジュールされました。 ステータスについては通知を確認してください。
+    admin_removed_successfully: 電子メール '%{email}' を持つ管理者は正常に削除されました。
+    admin_role_deleted: 管理者ロール '%{role_name}' は正常に削除されました。
+    admin_roles: 管理者の役割
+    admin_updated_successfully: 管理者 '%{name}' は正常に更新されました。
     admins: 管理者
     ai_artifacts: AIアーティファクト
     ai_artifacts_output_schema_key_constraint: キーは小文字で始まらず、小文字、数字、アンダースコアのみを含めます
@@ -21,10 +34,12 @@ ja:
     ai_assistants_test_render: テストレンダリング
     ai_assistants_test_render_tooltip: プロンプトテンプレートをキャンペーンデータでテストし、AIアシスタントに送られる内容を確認しましょう。
     ai_assisted_idp_feature_disabled: このプロジェクトではAI支援IDP機能は無効化されています。
+    api_keys: APIキー
     assessments: アセスメント
     assessments_reports: アセスメント＆レポート
     assessor_dashboard: 査定者ダッシュボード
     assessor_workshops: アセスメント・センター
+    assessors: アセッサ
     audit_logs: 監査ログ
     audit_reports: 監査報告書
     availability: 空室状況
@@ -41,32 +56,46 @@ ja:
     campaign_assessment_modals_enable_caching_content: この評価でキャッシュを有効にしたいと本当に思っていますか?
     campaign_assessment_modals_enable_caching_successfully: この評価のためにキャッシュが有効化されています。
     campaign_assessment_modals_enable_caching_title: 評価キャッシュを有効にする?
+    campaign_factors: キャンペーン要因
     campaign_templates: キャンペーンテンプレート
+    campaigns: キャンペーン
     client: クライアント・テナンシー
     client_admins: クライアント管理者
     clients: 顧客契約
     code_required: コードが必要です
     communication_center: コミュニケーション・センター
+    communications: コミュニケーション
     completed: 完了
     completed_tooltip: すべての評価者が評価を提出しました
+    confirm_remove_admin: メール '%{email}' を持つ管理ユーザーを本当に削除しますか？
     country: 国名
     create_client: クライアント作成
     dashboard: ダッシュボード
+    dashboards: ダッシュボード
     data_reports: データレポート
     datasheet: データシート
     declined: 減少
     delete_ok_text: はい、削除してください
     denied: 拒否
     development_actions: 開発アクション
+    development_actions_form_tags: タグ
     dimensions: 寸法
     done: 完成です
     done_tooltip: このユーザーの評価は%{marked_by}によって行われたとマークされているため、これ以上の評価は提出できません
+    edit_campaign_admin: キャンペーン管理者の編集
+    edit_client_admin: クライアント管理者の編集
+    edit_permission_denied: 管理者の「%{name}」を編集する権限はありません
+    edit_project_admin: プロジェクト管理者の編集
+    edit_threesixty_campaign_admin: キャンペーン管理者の編集
     empty_csv_file: CSVファイルにはデータが含まれていません。
     evaluation_status: 評価状況
     evaluation_status_not_done: 選ばれた1つ以上の被験者の評価状況は「完了」ではありません。選ばれたすべてのユーザーが評価を完了しているか、完了したとマークしてください。
+    export_admin_roles_permissions: 管理者の役割と権限のエクスポート
+    feature_flags: フィーチャー・フラッグ
     fill_empty_score_msg: 保存する前にすべての最終スコアを記入してください。
     final_score_empty_msg: 最終スコアは空にはなりません。
     idp_plan_reset_success: 計画は正常にリセットされました
+    idp_templates: IDPテンプレート
     import_ai_artifacts: AIアーティファクトのインポート
     import_csv_error: "%{index}行:メールアドレス%{email}のユーザーはこのキャンペーンに参加していません"
     import_csv_parsing_error: CSV解析エラー:%{message}
@@ -90,16 +119,20 @@ ja:
     import_upload: アップロード
     import_users: インポートユーザー
     invalid_csv_header: CSVファイルには無効なヘッダーが含まれています。
+    job_roles: 仕事の役割
     learning_from_others: 協働学習 [20]
     libraries: メディアライブラリー
     library_invalid_type: 無効なライブラリ項目
+    licenses: ライセンス
     manager_approval_required: "%{user}レポートはダウンロード前にマネージャーの承認が必要です"
+    messages: メッセージ
     name_required: 名前が必要です
     no_file_selected: ファイルが選択されていない
     no_notifications: 通知はありません
     norms: 規範
     not_completed: 未完成
     not_completed_tooltip: "%{completed}評価者が割り当てられますが、評価を完了したのは%{submitted}だけです"
+    notes: 備考
     nothing_assigned: 評価者は割り当てられていません
     nothing_assigned_tooltip: このユーザーには評価が割り当てられていません
     notification_bell_icon_alt_text: 通知ベルのアイコン
@@ -109,11 +142,442 @@ ja:
     on_the_job: オン・ザ・ジョブ [70]
     options: オプション
     participants: 参加者
+    permissions:
+      aiArtifacts:
+        export: 輸出
+        import: 輸入
+        manage: 取り締まる
+        title: AIアーティファクト
+        view: 眺める
+      apiKeys:
+        manage: 管理
+        title: APIキー
+        view: 表示
+      assessments:
+        manage: 管理
+        title: アセスメント
+        view: 表示
+      assessors:
+        manage: 管理
+        title: アセッサ
+        view: 表示
+      auditLogs:
+        title: 監査ログ
+        view: 表示
+      auditReports:
+        admin_permissions: 管理者の役割と権限のエクスポート
+        title: 監査報告書
+        user_report_events: レポート 承認ログ
+      campaignFactors:
+        manage: 管理
+        title: キャンペーン要因
+        view: 表示
+      campaigns:
+        bulk_download: 一括ダウンロード
+        bulk_regenerate_reports: レポートの一括再生成
+        manage: 管理
+        manage_admins: 管理者の管理
+        manage_factor_benchmark_scores: ファクター・ベンチマーク・スコアの管理
+        manage_messages: メッセージの管理
+        manage_options: オプションの管理
+        manage_report_approvals: レポート承認の管理
+        manage_users: ユーザー管理
+        participant_options: 参加者オプション
+        report_options: レポートオプション
+        reset_nominations: 指名リセット
+        title: キャンペーン
+        view: 表示
+        view_factor_benchmark_scores: ファクター・ベンチマーク・スコアを見る
+        view_stats: 統計を見る
+      clients:
+        export_data_report: エクスポート・データ・レポート
+        manage: 管理
+        title: 顧客
+        view: 表示
+        view_licenses: ライセンスを見る
+      communications:
+        manage: 管理
+        title: コミュニケーション
+        view: 表示
+      dashboards:
+        accesssheet_manage: アクセスシート管理
+        accesssheet_settings: アクセスシートの設定
+        accesssheet_view: アクセスシートビュー
+        export: 輸出
+        title: ダッシュボード
+        view: 表示
+      datasheets:
+        manage: 管理
+        title: データシート
+        view: 表示
+      developmentActions:
+        export: 輸出
+        export_global: グローバル輸出
+        export_global_translations: グローバル翻訳の輸出
+        export_translations: 輸出翻訳
+        import: 輸入
+        import_global: インポート・グローバル
+        import_global_translations: グローバル翻訳のインポート
+        import_translations: 輸入翻訳
+        manage: 管理
+        title: 開発アクション
+        view: 表示
+      dimensions:
+        manage: 管理
+        title: 寸法
+        view: 表示
+      idpTemplates:
+        manage: 管理
+        title: IDPテンプレート
+        view: 表示
+      interviewQuestions:
+        export: 輸出
+        import: 輸入
+        manage: 管理
+        title: IDP面接に関する質問
+        view: 眺め
+      jobRoles:
+        export_translations: 仕事の役割の翻訳をエクスポート
+        import_translations: 仕事の役割の翻訳をインポートする
+        manage: 管理
+        title: 仕事の役割
+        view: 表示
+      labels:
+        apiKeys:
+          manage: 管理
+          title: APIキー
+          view: 表示
+        assessments:
+          manage: 管理
+          title: アセスメント
+          view: 表示
+        assessors:
+          manage: 管理
+          title: アセッサ
+          view: 表示
+        auditLogs:
+          title: 監査ログ
+          view: 表示
+        auditReports:
+          admin_permissions: 管理者の役割と権限のエクスポート
+          title: 監査報告書
+          user_report_events: レポート 承認ログ
+        campaignFactors:
+          manage: 管理
+          title: キャンペーン要因
+          view: 表示
+        campaigns:
+          bulk_download: 一括ダウンロード
+          bulk_regenerate_reports: レポートの一括再生成
+          manage: 管理
+          manage_admins: 管理者の管理
+          manage_factor_benchmark_scores: ファクター・ベンチマーク・スコアの管理
+          manage_messages: メッセージの管理
+          manage_options: オプションの管理
+          manage_report_approvals: レポート承認の管理
+          manage_users: ユーザー管理
+          participant_options: 参加者オプション
+          report_options: レポートオプション
+          reset_nominations: 指名リセット
+          title: キャンペーン
+          view: 表示
+          view_factor_benchmark_scores: ファクター・ベンチマーク・スコアを見る
+          view_stats: 統計を見る
+        clients:
+          export_data_report: エクスポート・データ・レポート
+          manage: 管理
+          title: 顧客
+          view: 表示
+          view_licenses: ライセンスを見る
+        communications:
+          manage: 管理
+          title: コミュニケーション
+          view: 表示
+        dashboards:
+          accesssheet_manage: アクセスシート管理
+          accesssheet_settings: アクセスシートの設定
+          accesssheet_view: アクセスシートビュー
+          export: 輸出
+          title: ダッシュボード
+          view: 表示
+        datasheets:
+          manage: 管理
+          title: データシート
+          view: 表示
+        developmentActions:
+          export: 輸出
+          export_global: グローバル輸出
+          export_global_translations: グローバル翻訳の輸出
+          export_translations: 輸出翻訳
+          import: 輸入
+          import_global: インポート・グローバル
+          import_global_translations: グローバル翻訳のインポート
+          import_translations: 輸入翻訳
+          manage: 管理
+          title: 開発アクション
+          view: 表示
+        dimensions:
+          manage: 管理
+          title: 寸法
+          view: 表示
+        idpTemplates:
+          manage: 管理
+          title: IDPテンプレート
+          view: 表示
+        jobRoles:
+          export_translations: 仕事の役割の翻訳をエクスポート
+          import_translations: 仕事の役割の翻訳をインポートする
+          manage: 管理
+          title: 仕事の役割
+          view: 表示
+        libraries:
+          manage: 管理
+          title: メディア・ライブラリー
+          view: 表示
+        messages:
+          email: 電子メール
+          instructions: 使用方法
+          options: オプション
+          title: メッセージ
+        norms:
+          manage: 管理
+          title: 規範
+          view: 表示
+        proficiencyLevels:
+          export: 輸出技能レベル
+          export_translations: 輸出技能レベルの翻訳
+          import: インポート技能レベル
+          import_translations: 輸入熟練度翻訳
+          manage: 管理
+          title: 熟練度レベル
+          view: 表示
+        proficiency_level:
+          title: 熟練度レベル
+        projectSettings:
+          assessments: アセスメント
+          design: デザイン
+          feature_flags: 機能フラグ
+          idp: アイディーピー
+          integrations: 統合
+          privacy_settings: プライバシー設定
+          saml: サムル
+          security: セキュリティ
+          smtp: SMTP
+          title: プロジェクト設定
+          webhooks: ウェブフック
+        projects:
+          manage: 管理
+          manage_admins: 管理者の管理
+          manage_users: ユーザー管理
+          title: プロジェクト
+          view: 表示
+        questions:
+          manage: 管理
+          title: 質問
+          view: 表示
+        reflectionQuestions:
+          export: 輸出
+          import: 輸入
+          manage: 管理
+          title: IDPリフレクションの質問
+          view: 表示
+        registrationCodes:
+          manage: 管理
+          title: 登録コード
+          view: 表示
+        registrationSettings:
+          manage: 管理
+          title: 登録設定
+        reports:
+          manage: 管理
+          title: レポート
+          view: 表示
+        responseMeta:
+          title: レスポンス・メタ
+        results:
+          approve_report: 報告書の承認
+          bulk_download: 一括ダウンロード
+          bulk_regenerate_reports: レポートの一括再生成
+          bulk_update_evaluation_status: 評価ステータスの一括更新
+          download_report: レポートダウンロード
+          edit_report: 編集レポート
+          export_occupations: 輸出職業
+          external_score_import: 外部スコアインポート
+          finalize_scores: スコアの最終決定
+          normalize_factor_scores: 因子スコアを正規化する
+          raw_responses: 生の回答
+          regenerate_report: リジェネレイト・レポート
+          report_data: レポートデータ
+          report_file_upload: レポートファイルのアップロード
+          rescore_responses: リスコアの回答
+          reset_progress: 進行状況のリセット
+          reset_responses: 回答のリセット
+          scores: 得点
+          title: 結果
+          view_report: レポートを見る
+          view_stats: 統計を見る
+        skills:
+          export: 輸出
+          export_translations: 輸出翻訳
+          import: 輸入
+          import_translations: 輸入翻訳
+          manage: 管理
+          title: スキル
+          view: 表示
+        smsHistories:
+          manage: 管理
+          title: SMSヒストリー
+          view: 表示
+        smsInvites:
+          manage: 管理
+          title: SMS招待
+          view: 表示
+        userIdpPlans:
+          manage: 管理
+          title: ユーザーIDPプラン
+          view: 眺め
+        users:
+          reset_password: パスワードのリセット
+          title: ユーザー
+        workshops:
+          export_status: 輸出状況
+          manage: 管理
+          title: ワークショップ
+          view: 表示
+          view_recordings: 録画の表示
+      libraries:
+        manage: 管理
+        title: メディア・ライブラリー
+        view: 表示
+      messages:
+        email: 電子メール
+        instructions: 使用方法
+        options: オプション
+        title: メッセージ
+      norms:
+        manage: 管理
+        title: 規範
+        view: 表示
+      proficiencyLevels:
+        export: 輸出技能レベル
+        export_translations: 輸出技能レベルの翻訳
+        import: インポート技能レベル
+        import_translations: 輸入熟練度翻訳
+        manage: 管理
+        title: 熟練度レベル
+        view: 表示
+      proficiency_level:
+        title: 熟練度レベル
+      projectSettings:
+        assessments: アセスメント
+        design: デザイン
+        feature_flags: 機能フラグ
+        idp: アイディーピー
+        integrations: 統合
+        privacy_settings: プライバシー設定
+        saml: サムル
+        security: セキュリティ
+        smtp: SMTP
+        title: プロジェクト設定
+        webhooks: ウェブフック
+      projects:
+        manage: 管理
+        manage_admins: 管理者の管理
+        manage_licenses: ライセンス管理
+        manage_users: ユーザー管理
+        title: プロジェクト
+        view: 表示
+        view_licenses: ライセンスを見る
+      questions:
+        manage: 管理
+        title: 質問
+        view: 表示
+      reflectionQuestions:
+        export: 輸出
+        import: 輸入
+        manage: 管理
+        title: IDPリフレクションの質問
+        view: 表示
+      registrationCodes:
+        manage: 管理
+        title: 登録コード
+        view: 表示
+      registrationSettings:
+        manage: 管理
+        title: 登録設定
+      reports:
+        manage: 管理
+        title: レポート
+        view: 表示
+      responseMeta:
+        title: レスポンス・メタ
+      results:
+        approve_report: 報告書の承認
+        bulk_download: 一括ダウンロード
+        bulk_regenerate_reports: レポートの一括再生成
+        bulk_update_evaluation_status: 評価ステータスの一括更新
+        download_report: レポートダウンロード
+        edit_report: 編集レポート
+        export_occupations: 輸出職業
+        external_score_import: 外部スコアインポート
+        finalize_scores: スコアの最終決定
+        normalize_factor_scores: 因子スコアを正規化する
+        raw_responses: 生の回答
+        regenerate_report: リジェネレイト・レポート
+        report_data: レポートデータ
+        report_file_upload: レポートファイルのアップロード
+        rescore_responses: リスコアの回答
+        reset_progress: 進行状況のリセット
+        reset_responses: 回答のリセット
+        scores: 得点
+        title: 結果
+        view_report: レポートを見る
+        view_stats: 統計を見る
+      skills:
+        export: 輸出
+        export_translations: 輸出翻訳
+        import: 輸入
+        import_translations: 輸入翻訳
+        manage: 管理
+        title: スキル
+        view: 表示
+      smsHistories:
+        manage: 管理
+        title: SMSヒストリー
+        view: 表示
+      smsInvites:
+        manage: 管理
+        title: SMS招待
+        view: 表示
+      userIdpPlans:
+        manage: 取り締まる
+        reset: リセット
+        title: ユーザーIDPプラン
+        view: 眺める
+      users:
+        reset_password: パスワードのリセット
+        title: ユーザー
+      workshops:
+        export_status: 輸出状況
+        manage: 管理
+        title: ワークショップ
+        view: 表示
+        view_recordings: 録画の表示
+    permissions_360_campaigns: 360キャンペーンに特化したパーミッション
+    privacy: プライバシー
+    proficiency_level: APIキー
+    proficiency_levels: 熟練度レベル
     profile_details: プロフィール詳細
     project_admins: プロジェクト管理者
     project_manager: プロジェクトマネージャー
+    project_number: プロジェクト番号
+    project_settings: プロジェクト設定
+    projects: プロジェクト
     question_center: 質問センター
+    questions: 質問
+    reflection_questions: 振り返りの質問
     registration_codes: 登録コード
+    registration_settings: 登録設定
     report_approvals: レポートの承認
     report_condition_not_met: 評価%{required} %{relationship}必要ですが、持っているのは%{actual}
     report_conditions_not_met_detailed: "%{user}の報告は利用可能条件を満たしていません。%{conditions}"
@@ -128,6 +592,8 @@ ja:
     reset_idp_plan: リセットプラン
     reset_idp_plan_confirmation: 本当に計画をリセットしたいの?
     reset_idp_plan_title: リセットプラン
+    response_meta: レスポンス・メタ
+    results: 結果
     role: 役割
     saml_idp_certificate_available: 利用可能(クリックしてコピー)
     saml_idp_certificate_label: 証書
@@ -179,17 +645,28 @@ ja:
     saml_settings: SAML設定
     scheduling: スケジューリング
     scoring: 採点
+    search_admins: 管理者を検索
+    select_admin_role: 管理者ロールの選択
+    send_email: 電子メールを送信する
+    settings: 設定
     show_submenu: サブメニューを表示する
+    siem: シーイーエム
+    skill_aliases: スキルの別名
+    skills: スキル
     skills_taxonomy: スキル分類法
     slot_name: スロット名
+    sms_histories: SMSヒストリー
+    sms_invites: SMS招待
     stats: 統計
     status_details: 状況詳細
     structured_learning: 正式な学習 [10]
+    subdomain: サブドメイン
     upload_success: アップロード成功
     user_report_events: ユーザーレポートイベント
     users: ユーザー
     view_licenses: ライセンスを見る
     waiting: 待つこと
+    workshops: ワークショップ
     year: 国名
     yoodli_activity_id: YoodliアクティビティID
     yoodli_email_id: ユードリ候補者メールアドレス

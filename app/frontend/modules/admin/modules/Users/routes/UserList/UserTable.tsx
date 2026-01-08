@@ -9,7 +9,7 @@ import { Admin } from 'modules/admin/modules/client/core/admin'
 import { useNavigate } from 'react-router-dom'
 import {
   LockOutlined,
-} from '@ant-design/icons'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { isSuperAdmin } from '~/core/currentUser'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { User } from '~/modules/admin/modules/client/core/users'

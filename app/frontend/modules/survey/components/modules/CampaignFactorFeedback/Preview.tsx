@@ -3,8 +3,8 @@ import _ from 'lodash'
 import {
   Space, Select, Input, Form, Button,
 } from 'antd'
-import { MinusCircleOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
+import { MinusCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { PreviewModel } from '~/modules/survey/interfaces/questions/CampaignFactorFeedback'
 import useForceUpdate from '~/hooks/useUpdate'
 import { SafeHTML } from '~/components/SafeHTML'

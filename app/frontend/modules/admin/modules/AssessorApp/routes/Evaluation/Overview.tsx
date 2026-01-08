@@ -2,9 +2,9 @@ import {
   Avatar,
   Table,
 } from 'antd'
-import { UserOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import ReactMarkdown from 'react-markdown'
+import { UserOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { SafeHTML } from '~/components/SafeHTML'
 import styles from './styles.less'
 

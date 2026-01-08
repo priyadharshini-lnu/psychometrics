@@ -8,7 +8,7 @@ import {
 
 import cs from 'classnames'
 
-import { CopyOutlined } from '@ant-design/icons'
+import { CopyOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs, { localeMapping } from '~/utils/dayjs'
 import { ScheduleDay } from '~/glint/components/ScheduleAvailability/ScheduleDay'
 import { Panel } from '~/glint/components/Panel/Panel'

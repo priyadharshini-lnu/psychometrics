@@ -3534,6 +3534,14 @@ call-bind@^1.0.5, call-bind@^1.0.6, call-bind@^1.0.7:
     get-intrinsic "^1.2.4"
     set-function-length "^1.2.1"
 
+call-bound@^1.0.2:
+  version "1.0.4"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/call-bound/-/call-bound-1.0.4.tgz#238de935d2a2a692928c538c7ccfa91067fd062a"
+  integrity sha512-+ys997U96po4Kx/ABpBCqhA9EuxJaQWDQg7295H4hBphv3IZg0boBKuwYpt4YXp6MZ5AmZQnU/tyMTlRpaSejg==
+  dependencies:
+    call-bind-apply-helpers "^1.0.2"
+    get-intrinsic "^1.3.0"
+
 callbag-subscribe@^1.4.1:
   version "1.5.1"
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/callbag-subscribe/-/callbag-subscribe-1.5.1.tgz#1ecf12b1f041a6ae84bd071cbbaf8014eed2acc5"
@@ -4259,15 +4267,10 @@ data-urls@^5.0.0:
     whatwg-mimetype "^4.0.0"
     whatwg-url "^14.0.0"
 
-dayjs@^1.11.10:
-  version "1.11.10"
-  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/dayjs/-/dayjs-1.11.10.tgz#68acea85317a6e164457d6d6947564029a6a16a0"
-  integrity sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==
-
-dayjs@^1.11.11, dayjs@^1.11.13:
-  version "1.11.13"
-  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/dayjs/-/dayjs-1.11.13.tgz#92430b0139055c3ebb60150aa13e860a4b5a366c"
-  integrity sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==
+dayjs@^1.11.10, dayjs@^1.11.11, dayjs@^1.11.19:
+  version "1.11.19"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/dayjs/-/dayjs-1.11.19.tgz#15dc98e854bb43917f12021806af897c58ae2938"
+  integrity sha512-t5EcLVS6QPBNqM2z8fakk/NKel+Xzshgt8FFKAn+qwlD1pzZWxh0nVCrvFK7ZDb6XucZeF9z8C7CBWTRIVApAw==
 
 debug@4, debug@4.3.4, debug@^3.2.6, debug@^3.2.7, debug@^4.0.0, debug@^4.1.0, debug@^4.1.1, debug@^4.3.1, debug@^4.3.2, debug@^4.3.4, debug@^4.3.7, debug@^4.4.0:
   version "4.3.4"
@@ -4993,6 +4996,11 @@ eslint-plugin-testing-library@^5.10.0:
   dependencies:
     "@typescript-eslint/utils" "^5.58.0"
 
+"eslint-plugin-yaml-duplicate-keys@file:./eslint-plugins/eslint-plugin-yaml-duplicate-keys":
+  version "1.0.0"
+  dependencies:
+    yaml "^2.3.4"
+
 eslint-scope@7.1.1:
   version "7.1.1"
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/eslint-scope/-/eslint-scope-7.1.1.tgz#fff34894c2f65e5226d3041ac480b4513a163642"
@@ -5453,11 +5461,6 @@ fraction.js@^4.2.0:
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/fraction.js/-/fraction.js-4.2.0.tgz#448e5109a313a3527f5a3ab2119ec4cf0e0e2950"
   integrity sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==
 
-froala-editor@4.5.1:
-  version "4.5.1"
-  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/froala-editor/-/froala-editor-4.5.1.tgz#4a5c9bd6bb72dfb19f80749ae68c810a4e16d1d8"
-  integrity sha512-hgx4JJAM80yM3PGdyj7+41OQHP+Yj59yMvknwQkizlkbo/aKn2lbEtiqPMm//thNEE6NCuGLpHCZqppR/7Vymg==
-
 framer-motion@^12.23.26:
   version "12.23.26"
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/framer-motion/-/framer-motion-12.23.26.tgz#2a684e9b156118e1c4989d7fc9327def83480391"
@@ -5466,6 +5469,11 @@ framer-motion@^12.23.26:
     motion-dom "^12.23.23"
     motion-utils "^12.23.6"
     tslib "^2.4.0"
+
+froala-editor@4.5.1:
+  version "4.5.1"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/froala-editor/-/froala-editor-4.5.1.tgz#4a5c9bd6bb72dfb19f80749ae68c810a4e16d1d8"
+  integrity sha512-hgx4JJAM80yM3PGdyj7+41OQHP+Yj59yMvknwQkizlkbo/aKn2lbEtiqPMm//thNEE6NCuGLpHCZqppR/7Vymg==
 
 fs-constants@^1.0.0:
   version "1.0.0"
@@ -5580,7 +5588,7 @@ get-intrinsic@^1.2.1, get-intrinsic@^1.2.2, get-intrinsic@^1.2.3, get-intrinsic@
     has-symbols "^1.0.3"
     hasown "^2.0.0"
 
-get-intrinsic@^1.2.6:
+get-intrinsic@^1.2.5, get-intrinsic@^1.2.6, get-intrinsic@^1.3.0:
   version "1.3.0"
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/get-intrinsic/-/get-intrinsic-1.3.0.tgz#743f0e3b6964a93a5491ed1bffaae054d7f98d01"
   integrity sha512-9fSjSaos/fRIVIp+xSJlE6lfwhES7LNtKaCBIamHsjr2na1BiABJPo0mOjjz8GJDURarmCPGqaiVg5mfjb98CQ==
@@ -7445,6 +7453,11 @@ object-inspect@^1.13.1:
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/object-inspect/-/object-inspect-1.13.1.tgz#b96c6109324ccfef6b12216a956ca4dc2ff94bc2"
   integrity sha512-5qoj1RUiKOMsCCNLV1CBiPYE10sziTsnmNxkAI/rZhiD63CF7IqdFGC/XzjWjpSgLf0LxXX3bDFIh0E18f6UhQ==
 
+object-inspect@^1.13.3:
+  version "1.13.4"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/object-inspect/-/object-inspect-1.13.4.tgz#8375265e21bc20d0fa582c22e1b13485d6e00213"
+  integrity sha512-W67iLl4J2EXEGTbfeHCffrjDfitvLANg0UlX3wFUUSTx92KXRFegMHUVgSqE+wvhAbi4WqjGg9czysTV2Epbew==
+
 object-inspect@^1.9.0:
   version "1.9.0"
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/object-inspect/-/object-inspect-1.9.0.tgz#c90521d74e1127b67266ded3394ad6116986533a"
@@ -8247,11 +8260,11 @@ puppeteer@^23.11.1:
     typed-query-selector "^2.12.0"
 
 qs@>=6.9.7, qs@^6.10.3, qs@^6.11.0:
-  version "6.11.2"
-  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/qs/-/qs-6.11.2.tgz#64bea51f12c1f5da1bc01496f48ffcff7c69d7d9"
-  integrity sha512-tDNIz22aBzCDxLtVH++VnTfzxlfeK5CbqohpSqpJgj1Wg/cQbStNAz3NuqCs5vV+pjBsK4x4pN9HlVh7rcYRiA==
+  version "6.14.1"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/qs/-/qs-6.14.1.tgz#a41d85b9d3902f31d27861790506294881871159"
+  integrity sha512-4EK3+xJl8Ts67nLYNwqw/dsFVnCf+qR7RgXSK9jEEm9unao3njwMDdmsdvoKBKHzxd7tCYz5e5M+SnMjdtXGQQ==
   dependencies:
-    side-channel "^1.0.4"
+    side-channel "^1.1.0"
 
 querystringify@^2.1.1:
   version "2.2.0"
@@ -9604,6 +9617,35 @@ shuffle-array@^1.0.1:
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/shuffle-array/-/shuffle-array-1.0.1.tgz#c4ff3cfe74d16f93730592301b25e6577b12898b"
   integrity sha512-0TFRU8zVQaLatWKr0/czo19VyPNgb/a3sBc1GAjVfivfzEGaS54vueNgtAu/8/pW7EM/VF5fwq9zgpLdGyRmVw==
 
+side-channel-list@^1.0.0:
+  version "1.0.0"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/side-channel-list/-/side-channel-list-1.0.0.tgz#10cb5984263115d3b7a0e336591e290a830af8ad"
+  integrity sha512-FCLHtRD/gnpCiCHEiJLOwdmFP+wzCmDEkc9y7NsYxeF4u7Btsn1ZuwgwJGxImImHicJArLP4R0yX4c2KCrMrTA==
+  dependencies:
+    es-errors "^1.3.0"
+    object-inspect "^1.13.3"
+
+side-channel-map@^1.0.1:
+  version "1.0.1"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/side-channel-map/-/side-channel-map-1.0.1.tgz#d6bb6b37902c6fef5174e5f533fab4c732a26f42"
+  integrity sha512-VCjCNfgMsby3tTdo02nbjtM/ewra6jPHmpThenkTYh8pG9ucZ/1P8So4u4FGBek/BjpOVsDCMoLA/iuBKIFXRA==
+  dependencies:
+    call-bound "^1.0.2"
+    es-errors "^1.3.0"
+    get-intrinsic "^1.2.5"
+    object-inspect "^1.13.3"
+
+side-channel-weakmap@^1.0.2:
+  version "1.0.2"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/side-channel-weakmap/-/side-channel-weakmap-1.0.2.tgz#11dda19d5368e40ce9ec2bdc1fb0ecbc0790ecea"
+  integrity sha512-WPS/HvHQTYnHisLo9McqBHOJk2FkHO/tlpvldyrnem4aeQp4hai3gythswg6p01oSoTl58rcpiFAjF2br2Ak2A==
+  dependencies:
+    call-bound "^1.0.2"
+    es-errors "^1.3.0"
+    get-intrinsic "^1.2.5"
+    object-inspect "^1.13.3"
+    side-channel-map "^1.0.1"
+
 side-channel@^1.0.4:
   version "1.0.4"
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/side-channel/-/side-channel-1.0.4.tgz#efce5c8fdc104ee751b25c58d4290011fa5ea2cf"
@@ -9612,6 +9654,17 @@ side-channel@^1.0.4:
     call-bind "^1.0.0"
     get-intrinsic "^1.0.2"
     object-inspect "^1.9.0"
+
+side-channel@^1.1.0:
+  version "1.1.0"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/side-channel/-/side-channel-1.1.0.tgz#c3fcff9c4da932784873335ec9765fa94ff66bc9"
+  integrity sha512-ZX99e6tRweoUXqR+VBrslhda51Nh5MTQwou5tnUDgbtyM0dBgmhEDtWGP/xbKn6hqfPRHujUNwz5fy/wbbhnpw==
+  dependencies:
+    es-errors "^1.3.0"
+    object-inspect "^1.13.3"
+    side-channel-list "^1.0.0"
+    side-channel-map "^1.0.1"
+    side-channel-weakmap "^1.0.2"
 
 siginfo@^2.0.0:
   version "2.0.0"
@@ -11149,6 +11202,11 @@ yaml@^1.10.0:
   version "1.10.2"
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/yaml/-/yaml-1.10.2.tgz#2301c5ffbf12b467de8da2333a459e29e7920e4b"
   integrity sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==
+
+yaml@^2.3.4:
+  version "2.8.1"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/yaml/-/yaml-2.8.1.tgz#1870aa02b631f7e8328b93f8bc574fac5d6c4d79"
+  integrity sha512-lcYcMxX2PO9XMGvAJkJ3OsNMw+/7FKes7/hgerGUYWIoWu5j/+YQqcZr5JnPZWzOsEBgMbSbiSTn/dv/69Mkpw==
 
 yargs-parser@^21.1.1:
   version "21.1.1"

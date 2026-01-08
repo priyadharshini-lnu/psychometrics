@@ -1,4 +1,4 @@
-import Icon from '@ant-design/icons'
+import Icon from '~/glint/icons/AccessibleIconsAntDesign'
 import Lighthouse from '../assets/LighthouseIcon.svg?react'
 
 export const BotIcon = ({ size = 32 }) => (

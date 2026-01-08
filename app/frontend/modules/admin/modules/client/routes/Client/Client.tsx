@@ -4,10 +4,10 @@ import {
 } from 'react-router-dom'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { Menu } from 'antd'
+import { connect, ConnectedProps } from 'react-redux'
 import {
   ShopOutlined, UserOutlined, SettingOutlined, SolutionOutlined, ExportOutlined, DatabaseOutlined,
-} from '@ant-design/icons'
-import { connect, ConnectedProps } from 'react-redux'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import { useResources } from '~/hooks/useResources'
 import { Client as ClientType, ClientTR } from '~/modules/admin/modules/client/core/clients'
@@ -98,17 +98,17 @@ export const Client: FC<Props> = ({ currentUser }) => {
     const [primaryTab] = primaryLevelTab
     switch (primaryTab) {
       case 'projects':
-        return I18n.t('common.model.projects')
+        return I18n.t('admin.projects')
       case 'admins':
-        return I18n.t('administration.breadcrumbs.admins')
+        return I18n.t('admin.admins')
       case 'settings':
-        return I18n.t('administration.breadcrumbs.settings')
+        return I18n.t('admin.settings')
       case 'data_reports':
-        return I18n.t('administration.breadcrumbs.data_reports')
+        return I18n.t('admin.data_reports')
       case 'audit_reports':
-        return I18n.t('administration.breadcrumbs.audit_reports')
+        return I18n.t('admin.audit_reports')
       case 'licenses':
-        return I18n.t('administration.breadcrumbs.licenses')
+        return I18n.t('admin.licenses')
       default:
         return ''
     }

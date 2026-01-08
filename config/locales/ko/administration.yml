@@ -29,35 +29,11 @@ ko:
     administrators:
       drawers:
         edit:
-          admin_role_select: 관리자 역할 선택
-          admin_roles: 관리자 역할
-          create_success: 관리자 '%{name}'을(를) 성공적으로 만들었습니다
-          email: 이메일
-          first_name: 이름
           first_name_required: 이름 필수 입력
-          last_name: 성
           last_name_required: 성은 필수 입력 사항입니다
-          no_edit_permission: 관리자 '%{name}'을(를) 편집할 수 있는 권한이 없습니다
-          save: 저장
-          update: 업데이트
-          update_success: 관리자 '%{name}'이(가) 업데이트되었습니다
-        notes:
-          threesixty_permission: 360 캠페인 관련 권한
-          title: 참고
         view:
-          add_campaign_admin: 캠페인 관리자 추가
-          add_client_admin: 클라이언트 관리자 추가
-          add_project_admin: 프로젝트 관리자 추가
-          add_threesixty_campaign_admin: 캠페인 관리자 추가
-          edit_campaign_admin: 캠페인 관리자 편집
-          edit_client_admin: 클라이언트 관리자 편집
-          edit_project_admin: 프로젝트 관리자 편집
-          edit_threesixty_campaign_admin: 캠페인 관리자 편집
           first_name: 이름
           last_name: 성
-          project_admin: 프로젝트 관리자
-          project_list: 프로젝트 목록
-          role: 캠페인 관리자
           title:
             campaign_admin: 캠페인 관리자
             client_admin: 클라이언트 관리자
@@ -65,253 +41,20 @@ ko:
       list:
         actions:
           api_keys: API 키
-          cancel_text: 취소
-          change_password: 비밀번호 재설정
           edit: 편집
           export_admins_with_permissions: 관리자 역할 및 권한 내보내기
           export_success: 관리자 내보내기 작업이 성공적으로 예약되었습니다. 알림에서 상태를 확인하세요.
           login: 로그인
-          send_email: 이메일 보내기
           spoof:
             login_successful: 로그인에 성공했습니다.
           user_report_events: 보고서 승인 로그
         columns:
-          actions: 작업
-          created_at: 만든 곳
           email: 이메일
-          id: ID
-          name: 이름
-        header:
-          add_admin: 관리자 추가
-          search_admins: 검색 관리자
-        toolbar:
-          export_admins_with_permissions: 관리자 역할 및 권한 내보내기
       modals:
         delete:
           cancelText: 취소
-          content: 이메일 '%{email}'을 사용하는 관리자 사용자를 제거하시겠습니까?
           okText: 확인
-          onSuccess: 이메일 '%{email}'의 관리자가 성공적으로 제거되었습니다
           title: 확인
-      permissions:
-        labels:
-          aiArtifacts:
-            export: 수출
-            import: 수입
-            manage: 관리하다
-            title: AI 아티팩트
-            view: 보기
-          apiKeys:
-            manage: 관리
-            title: API 키
-            view: 보기
-          assessments:
-            manage: 관리
-            title: 평가
-            view: 보기
-          assessors:
-            manage: 관리
-            title: 평가자
-            view: 보기
-          auditLogs:
-            title: 감사 로그
-            view: 보기
-          auditReports:
-            admin_permissions: 관리자 역할 및 권한 내보내기
-            title: 감사 보고서
-            user_report_events: 보고서 승인 로그
-          campaignFactors:
-            manage: 관리
-            title: 캠페인 요소
-            view: 보기
-          campaigns:
-            bulk_download: 대량 다운로드
-            bulk_regenerate_reports: 보고서 대량 재생성
-            manage: 관리
-            manage_admins: 관리자 관리
-            manage_factor_benchmark_scores: 요소 벤치마크 점수 관리
-            manage_messages: 메시지 관리
-            manage_options: 옵션 관리
-            manage_report_approvals: 보고서 승인 관리
-            manage_users: 사용자 관리
-            participant_options: 참가자 옵션
-            report_options: 보고서 옵션
-            reset_nominations: 추천 재설정
-            title: 캠페인
-            view: 보기
-            view_factor_benchmark_scores: 팩터 벤치마크 점수 보기
-            view_stats: 통계 보기
-          clients:
-            export_data_report: 데이터 내보내기 보고서
-            manage: 관리
-            title: 클라이언트
-            view: 보기
-            view_licenses: 라이선스 보기
-          communications:
-            manage: 관리
-            title: 커뮤니케이션
-            view: 보기
-          dashboards:
-            accesssheet_manage: 액세스 시트 관리
-            accesssheet_settings: 액세스 시트 설정
-            accesssheet_view: 액세스 시트 보기
-            export: 내보내기
-            title: 대시보드
-            view: 보기
-          datasheets:
-            manage: 관리
-            title: 데이터 시트
-            view: 보기
-          developmentActions:
-            export: 내보내기
-            export_global: 글로벌 내보내기
-            export_global_translations: 글로벌 번역 내보내기
-            export_translations: 번역 내보내기
-            import: 가져오기
-            import_global: 글로벌 가져오기
-            import_global_translations: 글로벌 번역 가져오기
-            import_translations: 번역 가져오기
-            manage: 관리
-            title: 개발 작업
-            view: 보기
-          dimensions:
-            manage: 관리
-            title: 치수
-            view: 보기
-          idpTemplates:
-            manage: 관리
-            title: IDP 템플릿
-            view: 보기
-          interviewQuestions:
-            export: 수출
-            import: 수입
-            manage: 관리하세요
-            title: IDP 면접 질문
-            view: 전망
-          jobRoles:
-            export_translations: 직무 역할 번역 내보내기
-            import_translations: 직무 역할 번역 가져오기
-            manage: 관리
-            title: 직무 역할
-            view: 보기
-          libraries:
-            manage: 관리
-            title: 미디어 라이브러리
-            view: 보기
-          messages:
-            email: 이메일
-            instructions: 지침
-            options: 옵션
-            title: 메시지
-          norms:
-            manage: 관리
-            title: 규범
-            view: 보기
-          proficiencyLevels:
-            export: 내보내기 숙련도 수준
-            export_translations: 숙련도 수준 번역 내보내기
-            import: 숙련도 수준 가져오기
-            import_translations: 숙련도 수준 번역 가져오기
-            manage: 관리
-            title: 숙련도 수준
-            view: 보기
-          proficiency_level:
-            title: 숙련도 수준
-          projectSettings:
-            assessments: 평가
-            design: 디자인
-            feature_flags: 기능 플래그
-            idp: IDP
-            integrations: 통합
-            privacy_settings: 개인정보 설정
-            saml: SAML
-            security: 보안
-            smtp: SMTP
-            title: 프로젝트 설정
-            webhooks: 웹훅
-          projects:
-            manage: 관리
-            manage_admins: 관리자 관리
-            manage_licenses: 라이선스 관리
-            manage_users: 사용자 관리
-            title: 프로젝트
-            view: 보기
-            view_licenses: 라이선스 보기
-          questions:
-            manage: 관리
-            title: 질문
-            view: 보기
-          reflectionQuestions:
-            export: 내보내기
-            import: 가져오기
-            manage: 관리
-            title: IDP 반영 질문
-            view: 보기
-          registrationCodes:
-            manage: 관리
-            title: 등록 코드
-            view: 보기
-          registrationSettings:
-            manage: 관리
-            title: 등록 설정
-          reports:
-            manage: 관리
-            title: 보고서
-            view: 보기
-          responseMeta:
-            title: 응답 메타
-          results:
-            approve_report: 보고서 승인
-            bulk_download: 대량 다운로드
-            bulk_regenerate_reports: 보고서 대량 재생성
-            bulk_update_evaluation_status: 대량 업데이트 평가 상태
-            download_report: 보고서 다운로드
-            edit_report: 보고서 편집
-            export_occupations: 내보내기 직종
-            external_score_import: 외부 점수 가져오기
-            finalize_scores: 점수 확정
-            normalize_factor_scores: 팩터 점수 정규화
-            raw_responses: 원시 응답
-            regenerate_report: 보고서 다시 생성
-            report_data: 데이터 보고
-            report_file_upload: 보고서 파일 업로드
-            rescore_responses: 응답 재채점
-            reset_progress: 진행 상황 재설정
-            reset_responses: 응답 초기화
-            scores: 점수
-            title: 결과
-            view_report: 보고서 보기
-            view_stats: 통계 보기
-          skills:
-            export: 내보내기
-            export_translations: 번역 내보내기
-            import: 가져오기
-            import_translations: 번역 가져오기
-            manage: 관리
-            title: 기술
-            view: 보기
-          smsHistories:
-            manage: 관리
-            title: SMS 기록
-            view: 보기
-          smsInvites:
-            manage: 관리
-            title: SMS 초대
-            view: 보기
-          userIdpPlans:
-            manage: 관리하다
-            reset: 재설정
-            title: 사용자 IDP 계획
-            view: 보기
-          users:
-            reset_password: 비밀번호 재설정
-            title: 사용자
-          workshops:
-            export_status: 내보내기 상태
-            manage: 관리
-            title: 워크샵
-            view: 보기
-            view_recordings: 녹화 보기
     ai_artifacts:
       artifact_results: 아티팩트 결과
       code: 코드
@@ -3575,6 +3318,7 @@ ko:
           show_target_proficiency: 표적 숙련도 표시
           strengths_blindspots: 강점과 사각지대
         text_condition_type: '텍스트 조건 유형:'
+        translate_with_ai: AI로 번역하기
     report_families:
       create:
         successfully: 보고서 번들 %{name}을(를) 성공적으로 만들었습니다.
@@ -4050,12 +3794,7 @@ ko:
       security_setting: 보안 설정
     settings:
       admin_roles:
-        admin_role_single: 관리자 역할
         confirm_message: 관리자 역할 '%{role_name}'을 삭제하시겠습니까?
-        create: 관리자 역할 추가
-        description: 설명
-        name: 이름
-        successful_remove: 관리자 역할 '%{role_name}'이 성공적으로 삭제되었습니다.
       siem:
         description: 설명
         destination_type: 대상 유형

@@ -4,8 +4,8 @@ import {
   Form, Modal, Button, Alert, Input, message,
 } from 'antd'
 import { useParams } from 'react-router-dom'
-import { LoadingOutlined, CheckOutlined, CloudDownloadOutlined } from '@ant-design/icons'
 import Event from 'interfaces/Event'
+import { LoadingOutlined, CheckOutlined, CloudDownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { importExternalCampaignScores } from '~/modules/admin/modules/campaigns/core/scoring'
 
 const { I18n } = window

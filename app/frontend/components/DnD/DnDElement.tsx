@@ -1,7 +1,7 @@
 import React, { useRef, useCallback, useEffect } from 'react'
 import _ from 'lodash'
-import { MenuOutlined } from '@ant-design/icons'
 import { useDrop, useDrag, DragSourceMonitor } from 'react-dnd'
+import { MenuOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from './DnDStyle.less'
 import ItemTypes from './ItemTypes'
 

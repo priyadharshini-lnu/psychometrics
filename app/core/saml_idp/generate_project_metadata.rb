@@ -2,28 +2,24 @@
 
 module SamlIdp
   class GenerateProjectMetadata < BaseCommand
-    attr_reader :project, :request
+    attr_reader :project, :service_provider, :request
 
-    def initialize(project:, request:)
+    def initialize(project:, request:, service_provider:)
       @project = project
+      @service_provider = service_provider
       @request = request
     end
 
     def call
-      service_provider = SamlServiceProvider.find_by(project: project, enabled: true)
       if service_provider
         Current.saml_service_provider = service_provider
       end
 
       return broadcast(:ok, nil) unless service_provider
 
-      base_url = saml_idp_base_url
-
       default_config = ::SamlIdp.config.dup
-      default_config.entity_id = "#{base_url}/metadata"
-      default_config.single_service_post_location = "#{base_url}/auth"
-      default_config.single_logout_service_post_location = "#{base_url}/logout"
-      default_config.single_logout_service_redirect_location = "#{base_url}/logout"
+      default_config.entity_id = service_provider.issuer_uri
+      default_config.single_service_post_location = service_provider.sso_service_url
 
       begin
         metadata = ::SamlIdp::MetadataBuilder.new(default_config).signed
@@ -33,12 +29,6 @@ module SamlIdp
         metadata = ::SamlIdp::MetadataBuilder.new(default_config).fresh
         broadcast(:ok, metadata)
       end
-    end
-
-    private
-
-    def saml_idp_base_url
-      "#{Utility::Url.generate(:root_url, subdomain: project.subdomain)}saml/idp"
     end
   end
 end

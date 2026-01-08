@@ -1,7 +1,20 @@
 ---
 vi:
   admin:
+    add_admin: Thêm quản trị viên
+    add_admin_role: Thêm vai trò quản trị viên
+    add_campaign_admin: Thêm quản trị viên chiến dịch
+    add_client_admin: Thêm quản trị viên khách hàng
+    add_project: Thêm dự án
+    add_project_admin: Thêm quản trị viên dự án
+    add_threesixty_campaign_admin: Thêm quản trị viên chiến dịch
     admin_approval_required: Báo cáo cho %{user} yêu cầu sự chấp thuận của quản trị viên trước khi tải xuống
+    admin_created_successfully: Quản trị viên '%{name}' đã được tạo thành công
+    admin_export_scheduled: Tác vụ xuất dữ liệu quản trị viên đã được lên lịch thành công. Vui lòng kiểm tra thông báo của bạn để biết trạng thái.
+    admin_removed_successfully: Quản trị viên có email '%{email}' đã bị xóa thành công
+    admin_role_deleted: Vai trò quản trị viên '%{role_name}' đã bị xóa thành công.
+    admin_roles: Vai trò quản trị viên
+    admin_updated_successfully: Quản trị viên '%{name}' đã được cập nhật thành công
     admins: Quản trị viên
     ai_artifacts: Đồ tạo tác AI
     ai_artifacts_output_schema_key_constraint: Khóa phải bắt đầu bằng chữ thường và chỉ có thể chứa chữ thường, số và dấu gạch dưới
@@ -21,10 +34,12 @@ vi:
     ai_assistants_test_render: Kết xuất thử nghiệm
     ai_assistants_test_render_tooltip: Kiểm tra mẫu lời nhắc của bạn với dữ liệu chiến dịch để kiểm tra nội dung sẽ được gửi đến trợ lý AI.
     ai_assisted_idp_feature_disabled: Tính năng AI Assisted IDP đã bị vô hiệu hóa cho dự án này.
+    api_keys: Khóa API
     assessments: Đánh giá
     assessments_reports: Đánh giá & Báo cáo
     assessor_dashboard: Bảng điều khiển đánh giá viên
     assessor_workshops: Trung tâm đánh giá
+    assessors: Đánh giá viên
     audit_logs: Nhật ký kiểm tra
     audit_reports: Báo cáo kiểm toán
     availability: Sẵn sàng
@@ -41,32 +56,46 @@ vi:
     campaign_assessment_modals_enable_caching_content: Bạn có chắc chắn muốn bật bộ nhớ đệm cho đánh giá này không?
     campaign_assessment_modals_enable_caching_successfully: Bộ nhớ đệm đã được bật cho đánh giá này.
     campaign_assessment_modals_enable_caching_title: Bật bộ nhớ đệm đánh giá?
+    campaign_factors: Các yếu tố chiến dịch
     campaign_templates: Mẫu chiến dịch
+    campaigns: Chiến dịch
     client: Khách hàng thuê nhà
     client_admins: Quản trị viên khách hàng
     clients: Thuê khách hàng
     code_required: Mã là bắt buộc
     communication_center: Trung tâm truyền thông
+    communications: Truyền thông
     completed: Hoàn thành
     completed_tooltip: Tất cả các đánh giá viên đã gửi đánh giá
+    confirm_remove_admin: Bạn có chắc chắn muốn xóa người dùng quản trị có email '%{email}' không?
     country: Quốc gia
     create_client: Tạo khách hàng
     dashboard: Bảng điều khiển
+    dashboards: Dashboards
     data_reports: Báo cáo dữ liệu
     datasheet: Bảng dữ liệu
     declined: Từ chối
     delete_ok_text: Có, xóa
     denied: Bị từ chối
     development_actions: Hành động phát triển
+    development_actions_form_tags: thẻ
     dimensions: Kích thước
     done: Thực hiện
     done_tooltip: Không thể gửi thêm đánh giá cho người dùng này vì đánh giá của người dùng này được đánh dấu là đã thực hiện bởi %{marked_by}
+    edit_campaign_admin: Chỉnh sửa quản trị viên chiến dịch
+    edit_client_admin: Chỉnh sửa quản trị viên khách hàng
+    edit_permission_denied: Bạn không có quyền chỉnh sửa quản trị viên '%{name}'
+    edit_project_admin: Chỉnh sửa quản trị viên dự án
+    edit_threesixty_campaign_admin: Chỉnh sửa quản trị viên chiến dịch
     empty_csv_file: Tệp CSV không chứa bất kỳ dữ liệu nào.
     evaluation_status: Trạng thái đánh giá
     evaluation_status_not_done: Trạng thái đánh giá không phải là "Xong" đối với một hoặc nhiều đối tượng được chọn. Hãy đảm bảo rằng tất cả người dùng được chọn đã hoàn thành đánh giá hoặc đánh dấu là xong.
+    export_admin_roles_permissions: Xuất vai trò và quyền của quản trị viên
+    feature_flags: Cờ tính năng
     fill_empty_score_msg: Điền vào tất cả các điểm cuối cùng trước khi lưu.
     final_score_empty_msg: Điểm cuối cùng không thể trống.
     idp_plan_reset_success: Kế hoạch đã được đặt lại thành công
+    idp_templates: Mẫu IDP
     import_ai_artifacts: Nhập hiện vật AI
     import_csv_error: 'Hàng %{index}: người dùng có %{email} email không có trong chiến dịch này'
     import_csv_parsing_error: 'Lỗi phân tích cú pháp CSV: %{message}'
@@ -90,16 +119,20 @@ vi:
     import_upload: Tải lên
     import_users: Nhập người dùng
     invalid_csv_header: CSV chứa tiêu đề không hợp lệ.
+    job_roles: Vai trò công việc
     learning_from_others: Học tập hợp tác [20]
     libraries: Thư viện phương tiện
     library_invalid_type: Mục Thư viện không hợp lệ
+    licenses: Giấy phép
     manager_approval_required: Báo cáo cho %{user} yêu cầu sự chấp thuận của người quản lý trước khi tải xuống
+    messages: Thư
     name_required: Tên là bắt buộc
     no_file_selected: Không có tệp nào được chọn
     no_notifications: Không có thông báo
     norms: Tiêu chuẩn
     not_completed: Chưa hoàn thành
     not_completed_tooltip: "%{completed} người đánh giá được chỉ định nhưng chỉ %{submitted} đã hoàn thành đánh giá"
+    notes: Ghi chú
     nothing_assigned: Không có người đánh giá được chỉ định
     nothing_assigned_tooltip: Không có đánh giá nào được chỉ định cho người dùng này
     notification_bell_icon_alt_text: Biểu tượng chuông thông báo
@@ -109,11 +142,442 @@ vi:
     on_the_job: Trong công việc [70]
     options: Tùy chọn
     participants: Tham gia
+    permissions:
+      aiArtifacts:
+        export: Xuất khẩu
+        import: Nhập khẩu
+        manage: Điều khiển
+        title: Đồ tạo tác AI
+        view: Cảnh
+      apiKeys:
+        manage: Điều khiển
+        title: Khóa API
+        view: Xem
+      assessments:
+        manage: Điều khiển
+        title: Đánh giá
+        view: Cảnh
+      assessors:
+        manage: Điều khiển
+        title: Đánh giá viên
+        view: Xem
+      auditLogs:
+        title: Nhật ký kiểm tra
+        view: Xem
+      auditReports:
+        admin_permissions: Xuất vai trò và quyền hạn của quản trị viên
+        title: Báo cáo kiểm toán
+        user_report_events: Nhật ký phê duyệt báo cáo
+      campaignFactors:
+        manage: Điều khiển
+        title: Các yếu tố chiến dịch
+        view: Xem
+      campaigns:
+        bulk_download: Tải xuống hàng loạt
+        bulk_regenerate_reports: Tái tạo hàng loạt báo cáo
+        manage: Điều khiển
+        manage_admins: Quản lý quản trị viên
+        manage_factor_benchmark_scores: Quản lý điểm chuẩn theo yếu tố
+        manage_messages: Quản lý tin nhắn
+        manage_options: Quản lý tùy chọn
+        manage_report_approvals: Quản lý phê duyệt báo cáo
+        manage_users: Quản lý người dùng
+        participant_options: Lựa chọn người tham gia
+        report_options: Tùy chọn báo cáo
+        reset_nominations: Đặt lại đề cử
+        title: Chiến dịch
+        view: Xem
+        view_factor_benchmark_scores: Xem điểm chuẩn yếu tố
+        view_stats: Xem số liệu thống kê
+      clients:
+        export_data_report: Báo cáo dữ liệu xuất
+        manage: Điều khiển
+        title: Khách hàng
+        view: Cảnh
+        view_licenses: Xem giấy phép
+      communications:
+        manage: Điều khiển
+        title: Truyền thông
+        view: Cảnh
+      dashboards:
+        accesssheet_manage: Quản lý bảng truy cập
+        accesssheet_settings: Cài đặt bảng truy cập
+        accesssheet_view: Chế độ xem Accesssheet
+        export: Xuất khẩu
+        title: Dashboards
+        view: Cảnh
+      datasheets:
+        manage: Điều khiển
+        title: Bảng dữ liệu
+        view: Cảnh
+      developmentActions:
+        export: Xuất khẩu
+        export_global: Xuất khẩu toàn cầu
+        export_global_translations: Xuất bản dịch toàn cầu
+        export_translations: Xuất bản dịch
+        import: Nhập khẩu
+        import_global: Nhập khẩu toàn cầu
+        import_global_translations: Nhập bản dịch toàn cầu
+        import_translations: Nhập bản dịch
+        manage: Điều khiển
+        title: Hành động phát triển
+        view: Cảnh
+      dimensions:
+        manage: Điều khiển
+        title: Kích thước
+        view: Cảnh
+      idpTemplates:
+        manage: Điều khiển
+        title: Mẫu IDP
+        view: Cảnh
+      interviewQuestions:
+        export: Xuất khẩu
+        import: Nhập khẩu
+        manage: Quản lý
+        title: Câu hỏi phỏng vấn IDP
+        view: Xem
+      jobRoles:
+        export_translations: Dịch các vị trí công việc cho xuất khẩu
+        import_translations: Nhập bản dịch các vai trò công việc
+        manage: Điều khiển
+        title: Vai trò công việc
+        view: Cảnh
+      labels:
+        apiKeys:
+          manage: Điều khiển
+          title: Khóa API
+          view: Xem
+        assessments:
+          manage: Điều khiển
+          title: Đánh giá
+          view: Cảnh
+        assessors:
+          manage: Điều khiển
+          title: Đánh giá viên
+          view: Xem
+        auditLogs:
+          title: Nhật ký kiểm tra
+          view: Xem
+        auditReports:
+          admin_permissions: Xuất vai trò và quyền hạn của quản trị viên
+          title: Báo cáo kiểm toán
+          user_report_events: Nhật ký phê duyệt báo cáo
+        campaignFactors:
+          manage: Điều khiển
+          title: Các yếu tố chiến dịch
+          view: Xem
+        campaigns:
+          bulk_download: Tải xuống hàng loạt
+          bulk_regenerate_reports: Tái tạo hàng loạt báo cáo
+          manage: Điều khiển
+          manage_admins: Quản lý quản trị viên
+          manage_factor_benchmark_scores: Quản lý điểm chuẩn theo yếu tố
+          manage_messages: Quản lý tin nhắn
+          manage_options: Quản lý tùy chọn
+          manage_report_approvals: Quản lý phê duyệt báo cáo
+          manage_users: Quản lý người dùng
+          participant_options: Lựa chọn người tham gia
+          report_options: Tùy chọn báo cáo
+          reset_nominations: Đặt lại đề cử
+          title: Chiến dịch
+          view: Xem
+          view_factor_benchmark_scores: Xem điểm chuẩn yếu tố
+          view_stats: Xem số liệu thống kê
+        clients:
+          export_data_report: Báo cáo dữ liệu xuất
+          manage: Điều khiển
+          title: Khách hàng
+          view: Cảnh
+          view_licenses: Xem giấy phép
+        communications:
+          manage: Điều khiển
+          title: Truyền thông
+          view: Cảnh
+        dashboards:
+          accesssheet_manage: Quản lý bảng truy cập
+          accesssheet_settings: Cài đặt bảng truy cập
+          accesssheet_view: Chế độ xem Accesssheet
+          export: Xuất khẩu
+          title: Dashboards
+          view: Cảnh
+        datasheets:
+          manage: Điều khiển
+          title: Bảng dữ liệu
+          view: Cảnh
+        developmentActions:
+          export: Xuất khẩu
+          export_global: Xuất khẩu toàn cầu
+          export_global_translations: Xuất bản dịch toàn cầu
+          export_translations: Xuất bản dịch
+          import: Nhập khẩu
+          import_global: Nhập khẩu toàn cầu
+          import_global_translations: Nhập bản dịch toàn cầu
+          import_translations: Nhập bản dịch
+          manage: Điều khiển
+          title: Hành động phát triển
+          view: Cảnh
+        dimensions:
+          manage: Điều khiển
+          title: Kích thước
+          view: Cảnh
+        idpTemplates:
+          manage: Điều khiển
+          title: Mẫu IDP
+          view: Cảnh
+        jobRoles:
+          export_translations: Dịch các vị trí công việc cho xuất khẩu
+          import_translations: Nhập bản dịch các vai trò công việc
+          manage: Điều khiển
+          title: Vai trò công việc
+          view: Cảnh
+        libraries:
+          manage: Điều khiển
+          title: Thư viện phương tiện
+          view: Cảnh
+        messages:
+          email: Email
+          instructions: Chỉ thị
+          options: Tùy chọn
+          title: Thư
+        norms:
+          manage: Điều khiển
+          title: Tiêu chuẩn
+          view: Cảnh
+        proficiencyLevels:
+          export: Mức độ thành thạo xuất khẩu
+          export_translations: Bản dịch Trình độ thông thạo xuất khẩu
+          import: Mức độ thành thạo nhập khẩu
+          import_translations: Bản dịch trình độ thành thạo nhập khẩu
+          manage: Điều khiển
+          title: Mức độ thành thạo
+          view: Cảnh
+        proficiency_level:
+          title: Mức độ thành thạo
+        projectSettings:
+          assessments: Đánh giá
+          design: Thiết kế
+          feature_flags: Cờ tính năng
+          idp: IDP
+          integrations: Tích hợp
+          privacy_settings: Cài đặt quyền riêng tư
+          saml: SAML
+          security: An ninh
+          smtp: SMTP
+          title: Cài đặt dự án
+          webhooks: Webhook
+        projects:
+          manage: Điều khiển
+          manage_admins: Quản lý quản trị viên
+          manage_users: Quản lý người dùng
+          title: Dự án
+          view: Cảnh
+        questions:
+          manage: Điều khiển
+          title: Câu hỏi
+          view: Cảnh
+        reflectionQuestions:
+          export: Xuất khẩu
+          import: Nhập khẩu
+          manage: Điều khiển
+          title: Câu hỏi phản ánh IDP
+          view: Cảnh
+        registrationCodes:
+          manage: Điều khiển
+          title: Mã đăng ký
+          view: Cảnh
+        registrationSettings:
+          manage: Điều khiển
+          title: Cài đặt đăng ký
+        reports:
+          manage: Điều khiển
+          title: Báo cáo
+          view: Cảnh
+        responseMeta:
+          title: Phản hồi Meta
+        results:
+          approve_report: Phê duyệt báo cáo
+          bulk_download: Tải xuống hàng loạt
+          bulk_regenerate_reports: Tạo lại hàng loạt báo cáo
+          bulk_update_evaluation_status: Cập nhật hàng loạt trạng thái đánh giá
+          download_report: Tải xuống báo cáo
+          edit_report: Chỉnh sửa báo cáo
+          export_occupations: Nghề xuất khẩu
+          external_score_import: Nhập điểm bên ngoài
+          finalize_scores: Kết thúc điểm số
+          normalize_factor_scores: Chuẩn hóa điểm số yếu tố
+          raw_responses: Phản hồi thô
+          regenerate_report: Báo cáo tái tạo
+          report_data: Dữ liệu báo cáo
+          report_file_upload: Tải lên tệp báo cáo
+          rescore_responses: Chấm điểm lại câu trả lời
+          reset_progress: Đặt lại tiến trình
+          reset_responses: Đặt lại phản hồi
+          scores: Điểm
+          title: Kết quả
+          view_report: Xem báo cáo
+          view_stats: Xem số liệu thống kê
+        skills:
+          export: Kỹ năng xuất khẩu
+          export_translations: Bản dịch kỹ năng xuất khẩu
+          import: Kỹ năng nhập khẩu
+          import_translations: Bản dịch kỹ năng nhập khẩu
+          manage: Điều khiển
+          title: Kỹ năng
+          view: Cảnh
+        smsHistories:
+          manage: Điều khiển
+          title: Lịch sử SMS
+          view: Cảnh
+        smsInvites:
+          manage: Điều khiển
+          title: Lời mời SMS
+          view: Cảnh
+        userIdpPlans:
+          manage: Quản lý
+          title: Gói IDP người dùng
+          view: Xem
+        users:
+          reset_password: Đặt lại mật khẩu
+          title: Người dùng
+        workshops:
+          export_status: Tình trạng xuất khẩu
+          manage: Điều khiển
+          title: Hội thảo
+          view: Cảnh
+          view_recordings: Xem bản ghi
+      libraries:
+        manage: Điều khiển
+        title: Thư viện phương tiện
+        view: Cảnh
+      messages:
+        email: Email
+        instructions: Chỉ thị
+        options: Tùy chọn
+        title: Thư
+      norms:
+        manage: Điều khiển
+        title: Tiêu chuẩn
+        view: Cảnh
+      proficiencyLevels:
+        export: Mức độ thành thạo xuất khẩu
+        export_translations: Bản dịch Trình độ thông thạo xuất khẩu
+        import: Mức độ thành thạo nhập khẩu
+        import_translations: Bản dịch trình độ thành thạo nhập khẩu
+        manage: Điều khiển
+        title: Mức độ thành thạo
+        view: Cảnh
+      proficiency_level:
+        title: Mức độ thành thạo
+      projectSettings:
+        assessments: Đánh giá
+        design: Thiết kế
+        feature_flags: Cờ tính năng
+        idp: IDP
+        integrations: Tích hợp
+        privacy_settings: Cài đặt quyền riêng tư
+        saml: SAML
+        security: An ninh
+        smtp: SMTP
+        title: Cài đặt dự án
+        webhooks: Webhook
+      projects:
+        manage: Điều khiển
+        manage_admins: Quản lý quản trị viên
+        manage_licenses: Quản lý giấy phép
+        manage_users: Quản lý người dùng
+        title: Dự án
+        view: Cảnh
+        view_licenses: Xem giấy phép
+      questions:
+        manage: Điều khiển
+        title: Câu hỏi
+        view: Cảnh
+      reflectionQuestions:
+        export: Xuất khẩu
+        import: Nhập khẩu
+        manage: Điều khiển
+        title: Câu hỏi phản ánh IDP
+        view: Cảnh
+      registrationCodes:
+        manage: Điều khiển
+        title: Mã đăng ký
+        view: Cảnh
+      registrationSettings:
+        manage: Điều khiển
+        title: Cài đặt đăng ký
+      reports:
+        manage: Điều khiển
+        title: Báo cáo
+        view: Cảnh
+      responseMeta:
+        title: Phản hồi Meta
+      results:
+        approve_report: Phê duyệt báo cáo
+        bulk_download: Tải xuống hàng loạt
+        bulk_regenerate_reports: Tạo lại hàng loạt báo cáo
+        bulk_update_evaluation_status: Cập nhật hàng loạt trạng thái đánh giá
+        download_report: Tải xuống báo cáo
+        edit_report: Chỉnh sửa báo cáo
+        export_occupations: Nghề xuất khẩu
+        external_score_import: Nhập điểm bên ngoài
+        finalize_scores: Kết thúc điểm số
+        normalize_factor_scores: Chuẩn hóa điểm số yếu tố
+        raw_responses: Phản hồi thô
+        regenerate_report: Báo cáo tái tạo
+        report_data: Dữ liệu báo cáo
+        report_file_upload: Tải lên tệp báo cáo
+        rescore_responses: Chấm điểm lại câu trả lời
+        reset_progress: Đặt lại tiến trình
+        reset_responses: Đặt lại phản hồi
+        scores: Điểm
+        title: Kết quả
+        view_report: Xem báo cáo
+        view_stats: Xem số liệu thống kê
+      skills:
+        export: Kỹ năng xuất khẩu
+        export_translations: Bản dịch kỹ năng xuất khẩu
+        import: Kỹ năng nhập khẩu
+        import_translations: Bản dịch kỹ năng nhập khẩu
+        manage: Điều khiển
+        title: Kỹ năng
+        view: Cảnh
+      smsHistories:
+        manage: Điều khiển
+        title: Lịch sử SMS
+        view: Cảnh
+      smsInvites:
+        manage: Điều khiển
+        title: Lời mời SMS
+        view: Cảnh
+      userIdpPlans:
+        manage: Điều khiển
+        reset: Reset
+        title: Gói IDP người dùng
+        view: Cảnh
+      users:
+        reset_password: Đặt lại mật khẩu
+        title: Người dùng
+      workshops:
+        export_status: Tình trạng xuất khẩu
+        manage: Điều khiển
+        title: Hội thảo
+        view: Cảnh
+        view_recordings: Xem bản ghi
+    permissions_360_campaigns: Quyền truy cập dành riêng cho các chiến dịch 360
+    privacy: Sự riêng tư
+    proficiency_level: Khóa API
+    proficiency_levels: Mức độ thành thạo
     profile_details: Chi tiết hồ sơ
     project_admins: Quản trị viên dự án
     project_manager: Quản lý dự án
+    project_number: Số dự án
+    project_settings: Cài đặt dự án
+    projects: Dự án
     question_center: Trung tâm câu hỏi
+    questions: Câu hỏi
+    reflection_questions: Câu hỏi suy ngẫm
     registration_codes: Mã đăng ký
+    registration_settings: Cài đặt đăng ký
     report_approvals: Phê duyệt báo cáo
     report_condition_not_met: Cần %{required} %{relationship} đánh giá, nhưng chỉ có %{actual}
     report_conditions_not_met_detailed: Báo cáo cho %{user} không đáp ứng các điều kiện sẵn có. %{conditions}
@@ -128,6 +592,8 @@ vi:
     reset_idp_plan: Đặt lại kế hoạch
     reset_idp_plan_confirmation: Bạn có chắc chắn muốn đặt lại kế hoạch?
     reset_idp_plan_title: Đặt lại kế hoạch
+    response_meta: Phản hồi Meta
+    results: Kết quả
     role: Vai trò
     saml_idp_certificate_available: Có sẵn (bấm để sao chép)
     saml_idp_certificate_label: Chứng chỉ
@@ -179,17 +645,28 @@ vi:
     saml_settings: Cài đặt SAML
     scheduling: Lập kế hoạch
     scoring: Ghi
+    search_admins: Quản trị viên tìm kiếm
+    select_admin_role: Chọn vai trò quản trị viên
+    send_email: Gửi email
+    settings: Cài đặt
     show_submenu: Hiển thị menu phụ
+    siem: SIEM
+    skill_aliases: Bí danh kỹ năng
+    skills: Kỹ năng
     skills_taxonomy: Phân loại kỹ năng
     slot_name: Tên vị trí
+    sms_histories: Lịch sử SMS
+    sms_invites: Lời mời SMS
     stats: Thống kê
     status_details: Chi tiết trạng thái
     structured_learning: Học chính thức [10]
+    subdomain: Tên miền phụ
     upload_success: Tải lên thành công
     user_report_events: Sự kiện báo cáo người dùng
     users: Người dùng
     view_licenses: Xem giấy phép
     waiting: Chờ đợi
+    workshops: Hội thảo
     year: Quốc gia
     yoodli_activity_id: ID hoạt động Yoodli
     yoodli_email_id: ID email ứng viên Yoodli

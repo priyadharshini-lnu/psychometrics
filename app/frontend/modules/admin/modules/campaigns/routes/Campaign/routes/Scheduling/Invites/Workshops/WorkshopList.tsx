@@ -3,11 +3,11 @@ import {
 } from 'antd'
 import { useParams } from 'react-router-dom'
 
+import { ConnectedProps, connect } from 'react-redux'
 import {
   PlusOutlined,
   CloseOutlined,
-} from '@ant-design/icons'
-import { ConnectedProps, connect } from 'react-redux'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { WorkshopShort, WorkshopShortTR } from '~/modules/admin/modules/campaigns/core/workshop'
 import { WorkshopInvite } from '~/modules/admin/modules/campaigns/core/invites'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'

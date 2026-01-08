@@ -2,8 +2,13 @@
 fr:
   shared:
     action: Action
+    actions: Actions
+    active: Actif
     add: Ajouter
     advanced: Avancé
+    agree_and_continue: Acceptez et continuez
+    archive: Archives
+    archived: Archivé
     authentication_failed: L’authentification a échoué. Veuillez réessayer.
     basic: Basique
     campaign_id: ID de campagne
@@ -11,24 +16,46 @@ fr:
     change_password: Modifier le mot de passe
     clear_filters: Effacer les filtres
     collaborative_learning: Apprentissage collaboratif
+    confirm: Confirmer
     continue: Continuer
+    created_at: Créé à
+    created_date: Date de création
+    decline: Déclin
     description: Description
     edit: Editer
     edited: Nouveau
+    email: Courriel
+    export: Exportation
+    first_name: Prénom
     formal_learning: Apprentissage formel
     group_question_max_validation_error: Chaque groupe peut contenir au maximum {{max}} élément(s).
     group_question_min_validation_error: Chaque groupe doit contenir au moins {{min}} élément(s).
     id: ID
     idp_ai_assistant_disclaimer: L’assistant IDP IA de Lighthouse peut faire des erreurs. Merci de faire attention lors de l’utilisation des réponses.
     internet_disconnected_message: Essayez de vous reconnecter. Veuillez vérifier votre connexion internet.
+    last_name: Nom de famille
     learning_on_the_job_label: Apprendre sur le terrain
+    login: Connexion
+    modified_by: Modifié par
+    modified_date: Date de modification
+    more_actions: Plus d'actions
     mte_logo_alt_text: Logo Mercer Talent Enterprise
     name: Nom
     new: Nouveau
+    ok: Ok
+    recording_consent_notice: Cette réunion sera enregistrée. Votre participation à cette réunion constitue votre consentement à être enregistré.
+    recording_consent_proceed_question: Acceptez-vous de poursuivre la réunion enregistrée ?
+    recording_consent_title: Avis de consentement d’enregistrement
+    remove: Retirer
     removed: Supprimé
+    reset_password: Réinitialiser le mot de passe
     rte_paste_content_exceeds_char_limit: Le texte dépasse la limite de caractères {{maxCharacterLimit}} et ne peut pas être collé.
     rte_paste_content_exceeds_word_limit: Le texte dépasse la limite de mots {{maxWordLimit}} et ne peut pas être collé.
+    save: Économiser
     search: Recherche
+    send_email: Envoyer un courriel
+    show_more: Afficher plus
+    something_wrong: Contactez votre administrateur.
     table:
       entries:
         selected:

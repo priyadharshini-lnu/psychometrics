@@ -4,7 +4,7 @@ import isNaN from 'lodash/isNaN'
 import {
   Button, Col, Input, Row,
 } from 'antd'
-import { MinusOutlined, PlusOutlined } from '@ant-design/icons'
+import { MinusOutlined, PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { BasePropertiesModel } from '~/modules/survey/interfaces/questions/Base'
 

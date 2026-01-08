@@ -23,7 +23,7 @@ import {
   CompassOutlined,
   GlobalOutlined,
   CalendarOutlined,
-} from '@ant-design/icons'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { camelizeKeys } from '~/utils/object'
 
 const { I18n } = window

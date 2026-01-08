@@ -1,7 +1,7 @@
 
 import React from 'react'
-import { PlusOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { Report } from '~/modules/admin/modules/client/core/reports'
 import { TaggableResourceType } from '~/modules/admin/components/Resource/TagFilter/constants'

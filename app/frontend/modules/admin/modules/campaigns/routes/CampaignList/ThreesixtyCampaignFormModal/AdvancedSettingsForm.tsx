@@ -8,11 +8,11 @@ import {
   Tree,
   Typography,
 } from 'antd'
-import {
-  SearchOutlined, ContainerOutlined, LoadingOutlined,
-} from '@ant-design/icons'
 import _ from 'lodash'
 import { useDebouncedCallback } from 'use-debounce'
+import {
+  SearchOutlined, ContainerOutlined, LoadingOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { useResources } from '~/hooks/useResources'
 import QuestionList from './QuestionList'
 import { CampaignTemplate } from '~/modules/admin/modules/campaigns/core/list'

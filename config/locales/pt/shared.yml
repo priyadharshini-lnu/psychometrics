@@ -2,8 +2,13 @@
 pt:
   shared:
     action: Ação
+    actions: Acções
+    active: Ativo
     add: Adicionar
     advanced: Avançado
+    agree_and_continue: Concorde e continue
+    archive: Arquivar
+    archived: Arquivado
     authentication_failed: A autenticação falhou. Por favor, tente novamente.
     basic: Básico
     campaign_id: ID de campanha
@@ -11,24 +16,46 @@ pt:
     change_password: Alterar a palavra-passe
     clear_filters: Limpar filtros
     collaborative_learning: Aprendizagem Colaborativa
+    confirm: Confirmar
     continue: Continuar
+    created_at: Criado em
+    created_date: Data de criação
+    decline: Declínio
     description: Descrição
     edit: Editar
     edited: Novo
+    email: E-mail
+    export: Exportação
+    first_name: Nome próprio
     formal_learning: Aprendizagem Formal
     group_question_max_validation_error: Cada grupo pode conter no máximo {{max}} itens.
     group_question_min_validation_error: Cada grupo precisa conter pelo menos {{min}} item(s).
     id: ID
     idp_ai_assistant_disclaimer: O assistente IDP da IA do Farol pode cometer erros. Por favor, tenha cuidado ao usar as respostas.
     internet_disconnected_message: A tentar restabelecer a ligação. Verifique a sua ligação à Internet.
+    last_name: Apelido
     learning_on_the_job_label: Aprendendo no Trabalho
+    login: Iniciar sessão
+    modified_by: Modificado por
+    modified_date: Data de modificação
+    more_actions: Mais acções
     mte_logo_alt_text: Logótipo da Mercer Talent Enterprise
     name: Nome
     new: Novo
+    ok: OK
+    recording_consent_notice: Esta sessão de reunião será gravada. Sua participação nesta reunião constitui seu consentimento para ser gravado.
+    recording_consent_proceed_question: Você concorda em prosseguir com a reunião gravada?
+    recording_consent_title: Aviso de Consentimento de Gravação
+    remove: Remover
     removed: Removido
+    reset_password: Redefinir a palavra-passe
     rte_paste_content_exceeds_char_limit: O texto excede o limite de caracteres {{maxCharacterLimit}} e não pode ser colado.
     rte_paste_content_exceeds_word_limit: O texto excede o limite de palavras {{maxWordLimit}} e não pode ser colado.
+    save: Salvar
     search: Pesquisar
+    send_email: Enviar e-mail
+    show_more: Mostrar Mais
+    something_wrong: Algo correu mal. Contacte o seu administrador.
     table:
       entries:
         selected:

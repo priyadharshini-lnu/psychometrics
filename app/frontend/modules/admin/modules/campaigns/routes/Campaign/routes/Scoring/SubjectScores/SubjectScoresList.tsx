@@ -5,11 +5,11 @@ import {
   Flex,
 } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
-import { CheckOutlined, AppstoreOutlined, WarningFilled } from '@ant-design/icons'
 import _ from 'lodash'
 import * as t from 'io-ts'
 import cs from 'classnames'
 import { connect, ConnectedProps } from 'react-redux'
+import { CheckOutlined, AppstoreOutlined, WarningFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { useResources } from '~/hooks/useResources'
 import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'

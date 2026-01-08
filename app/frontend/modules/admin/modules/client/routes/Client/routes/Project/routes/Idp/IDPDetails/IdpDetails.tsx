@@ -1,7 +1,7 @@
 import { Tabs, Space, Skeleton } from 'antd'
 import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { LeftOutlined } from '@ant-design/icons'
+import { LeftOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Idp, IdpTR } from '~/modules/admin/modules/client/core/idp'
 import { useResources } from '~/hooks/useResources/useResources'
 import DetailsForm from './DetailsForm'

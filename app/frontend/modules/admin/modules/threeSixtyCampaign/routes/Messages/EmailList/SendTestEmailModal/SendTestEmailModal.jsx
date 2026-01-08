@@ -2,8 +2,8 @@ import { useState } from 'react'
 import {
   Modal, Button, Input, Alert, App,
 } from 'antd'
-import { CheckOutlined, MailOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
+import { CheckOutlined, MailOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import ErrorAlertBox from '~/components/ErrorAlertBox'
 
 export default function SendTestEmailModal ({

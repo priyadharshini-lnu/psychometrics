@@ -4,11 +4,11 @@ import {
   Row, Col, Table, Switch, Space, Button, Divider, Empty, Tooltip,
 } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
-import { PlusOutlined, MenuOutlined, InfoCircleOutlined } from '@ant-design/icons'
 import {
   SortableContainerProps, SortEnd, SortableContainer, SortableElement, SortableHandle,
 } from 'react-sortable-hoc'
 import { arrayMove } from '@dnd-kit/sortable'
+import { PlusOutlined, MenuOutlined, InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { RemoveColumns } from './components/RemoveColumns'
 import {

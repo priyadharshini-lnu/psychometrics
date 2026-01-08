@@ -2,8 +2,8 @@ import {
   Button, Col, Row, Space, App, Layout,
 } from 'antd'
 import { BaseMeta } from 'hooks/useResources/interfaces'
-import { PlusOutlined } from '@ant-design/icons'
 import { useEffect, useState } from 'react'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 import { useResources } from '~/hooks/useResources'
 import {

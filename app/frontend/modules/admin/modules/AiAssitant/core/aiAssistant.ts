@@ -8,7 +8,7 @@ export const AiAssistantTR = t.intersection([
     description: t.string,
     modelId: t.string,
     systemPrompt: t.string,
-    userPrompt: t.string,
+    userPrompt: t.union([t.string, t.null]),
     assistantType: t.string,
     advancedPromptingEnabled: t.boolean,
     assistantOutputSchemaKeysAttributes: t.array(t.type({
@@ -21,6 +21,14 @@ export const AiAssistantTR = t.intersection([
   }),
 ])
 
+
+export const ChangeValueTR = t.union([
+  t.string,
+  t.number,
+  t.array(t.union([t.string, t.number, t.null])),
+])
+
+
 export const AIAssistantRevisionTR = t.type({
   id: t.string,
   auditId: t.number,
@@ -28,13 +36,17 @@ export const AIAssistantRevisionTR = t.type({
   action: t.string,
   version: t.number,
   userId: t.union([t.number, t.null]),
-  changes: t.type({
-    name: t.array(t.union([t.string, t.null])),
-    userPrompt: t.array(t.union([t.string, t.null])),
-    systemPrompt: t.array(t.union([t.string, t.null])),
+  changes: t.partial({
+    name: ChangeValueTR,
+    userPrompt: ChangeValueTR,
+    systemPrompt: ChangeValueTR,
+    modelId: ChangeValueTR,
+    assistantType: ChangeValueTR,
   }),
 })
 
+
+export const AIAssistantRevisionsTR = t.array(AIAssistantRevisionTR)
 export type AiAssistant = t.TypeOf<typeof AiAssistantTR>
 export type AIAssistantRevision = t.TypeOf<typeof AIAssistantRevisionTR>
 

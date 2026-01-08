@@ -20,6 +20,7 @@ import { SendInvitation } from '../../Invites/Form/SendInvitations'
 import { SuccessPage } from '../../Invites/Form/SuccessPage'
 import { SuccessCreatedPage } from './SuccessCreatedStep'
 import { getData } from '~/modules/admin/core/ui/temp'
+import { normalizeTimeZone } from '~/hooks/useTimezones'
 
 const { I18n } = window
 
@@ -55,7 +56,7 @@ export const AssessmentCenterFormComponent = ({ workshop }) => {
     dates: [],
     time: dayjs(),
     duration: workshop?.duration || 0,
-    timezone: workshop?.timezone || dayjs.tz.guess(),
+    timezone: workshop?.timezone || normalizeTimeZone(dayjs.tz.guess()),
     video_call_type: VIDEO_CALL_TYPES[workshop?.videoCallType] || 0,
     meeting_link: workshop?.meetingLink || '',
     workshop_resources: workshop?.workshopResources || [{ key: 1, name: '', url: '' }],

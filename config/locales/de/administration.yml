@@ -29,35 +29,11 @@ de:
     administrators:
       drawers:
         edit:
-          admin_role_select: Admin-Rolle auswählen
-          admin_roles: Verwaltungsaufgaben
-          create_success: Admin '%{name}' wurde erfolgreich erstellt
-          email: E-Mail
-          first_name: Vornamen
           first_name_required: Vorname ist erforderlich
-          last_name: Nachname
           last_name_required: Nachname ist erforderlich
-          no_edit_permission: Sie haben keine Berechtigung zum Bearbeiten von admin '%{name}'
-          save: Speichern Sie
-          update: Update
-          update_success: Admin '%{name}' wurde erfolgreich aktualisiert
-        notes:
-          threesixty_permission: Spezifische Genehmigungen für 360-Kampagnen
-          title: Anmerkungen
         view:
-          add_campaign_admin: Kampagnenverwaltung hinzufügen
-          add_client_admin: Kundenverwaltung hinzufügen
-          add_project_admin: Projektverwaltung hinzufügen
-          add_threesixty_campaign_admin: Kampagnenverwaltung hinzufügen
-          edit_campaign_admin: Kampagnenverwaltung bearbeiten
-          edit_client_admin: Kundenverwaltung bearbeiten
-          edit_project_admin: Projektverwaltung bearbeiten
-          edit_threesixty_campaign_admin: Kampagnenverwaltung bearbeiten
           first_name: Vornamen
           last_name: Nachname
-          project_admin: Projektverwaltung
-          project_list: Projektliste
-          role: Kampagnenverwaltung
           title:
             campaign_admin: Kampagnenverwaltung
             client_admin: Kunde Verwaltung
@@ -65,253 +41,20 @@ de:
       list:
         actions:
           api_keys: API-Schlüssel
-          cancel_text: Abbrechen
-          change_password: Passwort zurücksetzen
           edit: Bearbeiten
           export_admins_with_permissions: Admin-Rollen und Berechtigungen exportieren
           export_success: Admin-Exportauftrag wurde erfolgreich geplant. Bitte prüfen Sie den Status in Ihrer Benachrichtigung.
           login: Anmeldung
-          send_email: E-Mail senden
           spoof:
             login_successful: Anmeldung erfolgreich.
           user_report_events: Bericht Genehmigungsprotokolle
         columns:
-          actions: Aktionen
-          created_at: Erstellt am
           email: E-Mail
-          id: ID
-          name: Name
-        header:
-          add_admin: Admin hinzufügen
-          search_admins: Admins suchen
-        toolbar:
-          export_admins_with_permissions: Admin-Rollen und Berechtigungen exportieren
       modals:
         delete:
           cancelText: Abbrechen
-          content: Sind Sie sicher, dass Sie den Admin-Benutzer mit der E-Mail '%{email}' entfernen möchten?
           okText: Ok
-          onSuccess: Admin mit E-Mail '%{email}' wurde erfolgreich entfernt
           title: Bestätigen Sie
-      permissions:
-        labels:
-          aiArtifacts:
-            export: Exportieren
-            import: Importieren
-            manage: Verwalten
-            title: KI-Artefakte
-            view: Ansehen
-          apiKeys:
-            manage: Verwalten Sie
-            title: API-Schlüssel
-            view: Siehe
-          assessments:
-            manage: Verwalten Sie
-            title: Beurteilungen
-            view: Siehe
-          assessors:
-            manage: Verwalten Sie
-            title: Beisitzer
-            view: Siehe
-          auditLogs:
-            title: Audit-Protokolle
-            view: Siehe
-          auditReports:
-            admin_permissions: Admin-Rollen und Berechtigungen exportieren
-            title: Audit-Berichte
-            user_report_events: Bericht Genehmigungsprotokolle
-          campaignFactors:
-            manage: Verwalten Sie
-            title: Kampagnen-Faktoren
-            view: Siehe
-          campaigns:
-            bulk_download: Massendownload
-            bulk_regenerate_reports: Berichte massenweise neu generieren
-            manage: Verwalten Sie
-            manage_admins: Verwalten von Admins
-            manage_factor_benchmark_scores: Verwalten von Faktor-Benchmark-Werten
-            manage_messages: Verwalten von Nachrichten
-            manage_options: Optionen verwalten
-            manage_report_approvals: Berichtsgenehmigungen verwalten
-            manage_users: Benutzer verwalten
-            participant_options: Optionen für Teilnehmer
-            report_options: Berichtsoptionen
-            reset_nominations: Nominierungen zurücksetzen
-            title: Kampagnen
-            view: Siehe
-            view_factor_benchmark_scores: Faktor-Benchmark-Ergebnisse anzeigen
-            view_stats: Statistiken ansehen
-          clients:
-            export_data_report: Datenbericht exportieren
-            manage: Verwalten Sie
-            title: Kunden
-            view: Siehe
-            view_licenses: Lizenzen anzeigen
-          communications:
-            manage: Verwalten Sie
-            title: Kommunikation
-            view: Siehe
-          dashboards:
-            accesssheet_manage: Zugangsdatenblatt Verwalten
-            accesssheet_settings: Arbeitsblatt-Einstellungen
-            accesssheet_view: Zugangsblatt Ansicht
-            export: Exportieren
-            title: Dashboards
-            view: Siehe
-          datasheets:
-            manage: Verwalten Sie
-            title: Datenblätter
-            view: Siehe
-          developmentActions:
-            export: Exportieren
-            export_global: Global exportieren
-            export_global_translations: Export Global Translations
-            export_translations: Übersetzungen exportieren
-            import: Importieren
-            import_global: Global einführen
-            import_global_translations: Globale Übersetzungen importieren
-            import_translations: Übersetzungen importieren
-            manage: Verwalten Sie
-            title: Entwicklungspolitische Maßnahmen
-            view: Siehe
-          dimensions:
-            manage: Verwalten Sie
-            title: Abmessungen
-            view: Siehe
-          idpTemplates:
-            manage: Verwalten Sie
-            title: IDP-Vorlagen
-            view: Siehe
-          interviewQuestions:
-            export: Export
-            import: Import
-            manage: Managen
-            title: Fragen zum IDP-Interview
-            view: Ansehen
-          jobRoles:
-            export_translations: Exportieren von Job-Rollen-Übersetzungen
-            import_translations: Importieren von Job-Rollen-Übersetzungen
-            manage: Verwalten Sie
-            title: Job-Rollen
-            view: Siehe
-          libraries:
-            manage: Verwalten Sie
-            title: Medienbibliotheken
-            view: Siehe
-          messages:
-            email: E-Mail
-            instructions: Anweisungen
-            options: Optionen
-            title: Nachrichten
-          norms:
-            manage: Verwalten Sie
-            title: Normen
-            view: Siehe
-          proficiencyLevels:
-            export: Leistungsniveaus exportieren
-            export_translations: Export Proficiency Levels Übersetzungen
-            import: Kompetenzstufen importieren
-            import_translations: Kompetenzstufen importieren Übersetzungen
-            manage: Verwalten Sie
-            title: Leistungsniveaus
-            view: Siehe
-          proficiency_level:
-            title: Leistungsniveaus
-          projectSettings:
-            assessments: Beurteilungen
-            design: Gestaltung
-            feature_flags: Feature-Flags
-            idp: IDP
-            integrations: Integrationen
-            privacy_settings: Datenschutz-Einstellungen
-            saml: SAML
-            security: Sicherheit
-            smtp: SMTP
-            title: Projekt-Einstellungen
-            webhooks: Webhaken
-          projects:
-            manage: Verwalten Sie
-            manage_admins: Verwalten von Admins
-            manage_licenses: Lizenzen verwalten
-            manage_users: Benutzer verwalten
-            title: Projekte
-            view: Siehe
-            view_licenses: Lizenzen anzeigen
-          questions:
-            manage: Verwalten Sie
-            title: Fragen
-            view: Siehe
-          reflectionQuestions:
-            export: Exportieren
-            import: Importieren
-            manage: Verwalten Sie
-            title: IDP-Reflexionsfragen
-            view: Siehe
-          registrationCodes:
-            manage: Verwalten Sie
-            title: Registrierungs-Codes
-            view: Siehe
-          registrationSettings:
-            manage: Verwalten Sie
-            title: Einstellungen für die Registrierung
-          reports:
-            manage: Verwalten Sie
-            title: Berichte
-            view: Siehe
-          responseMeta:
-            title: Antwort Meta
-          results:
-            approve_report: Bericht genehmigen
-            bulk_download: Massendownload
-            bulk_regenerate_reports: Berichte massenweise neu generieren
-            bulk_update_evaluation_status: Massenaktualisierung des Bewertungsstatus
-            download_report: Bericht herunterladen
-            edit_report: Bericht bearbeiten
-            export_occupations: Berufe exportieren
-            external_score_import: Externer Notenimport
-            finalize_scores: Partituren fertigstellen
-            normalize_factor_scores: Faktorwerte normalisieren
-            raw_responses: Unbearbeitete Antworten
-            regenerate_report: Bericht "Regenerieren
-            report_data: Bericht Daten
-            report_file_upload: Upload von Berichtsdateien
-            rescore_responses: Wiederholungsantworten
-            reset_progress: Fortschritt zurücksetzen
-            reset_responses: Antworten zurücksetzen
-            scores: Spielstände
-            title: Ergebnisse
-            view_report: Bericht ansehen
-            view_stats: Statistiken ansehen
-          skills:
-            export: Exportieren
-            export_translations: Übersetzungen exportieren
-            import: Importieren
-            import_translations: Übersetzungen importieren
-            manage: Verwalten Sie
-            title: Fertigkeiten
-            view: Siehe
-          smsHistories:
-            manage: Verwalten Sie
-            title: SMS-Geschichten
-            view: Siehe
-          smsInvites:
-            manage: Verwalten Sie
-            title: SMS-Einladungen
-            view: Siehe
-          userIdpPlans:
-            manage: Verwalten
-            reset: Zurücksetzen
-            title: Nutzer-IDP-Pläne
-            view: Ansehen
-          users:
-            reset_password: Passwort zurücksetzen
-            title: Benutzer
-          workshops:
-            export_status: Status der Ausfuhr
-            manage: Verwalten Sie
-            title: Werkstätten
-            view: Siehe
-            view_recordings: Aufzeichnungen ansehen
     ai_artifacts:
       artifact_results: Ergebnisse des Artefakts
       code: Code
@@ -3575,6 +3318,7 @@ de:
           show_target_proficiency: Zielkompetenz anzeigen
           strengths_blindspots: Stärken & blinde Flecken
         text_condition_type: 'Art der Textbedingung:'
+        translate_with_ai: Übersetzen mit KI
     report_families:
       create:
         successfully: Berichtsbündel %{name} wurde erfolgreich erstellt.
@@ -4050,12 +3794,7 @@ de:
       security_setting: Sicherheitseinstellungen
     settings:
       admin_roles:
-        admin_role_single: Rolle der Verwaltung
         confirm_message: Sind Sie sicher, dass Sie die Administratorrolle '%{role_name}' löschen möchten?
-        create: Admin-Rolle hinzufügen
-        description: Beschreibung
-        name: Name
-        successful_remove: Die Administratorrolle '%{role_name}' wurde erfolgreich gelöscht.
       siem:
         description: Beschreibung
         destination_type: Ziel Typ

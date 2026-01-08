@@ -2,8 +2,13 @@
 zh-HK:
   shared:
     action: 動作
+    actions: 行動
+    active: 現役
     add: 加
     advanced: 進階
+    agree_and_continue: 同意並繼續
+    archive: 檔案
+    archived: 已存檔
     authentication_failed: 驗證失敗。請再試一次。
     basic: 基本
     campaign_id: 競選識別碼
@@ -11,24 +16,46 @@ zh-HK:
     change_password: 更改密碼
     clear_filters: 透明過濾器
     collaborative_learning: 協作學習
+    confirm: 確認
     continue: 續
+    created_at: 創立於
+    created_date: 創建日期
+    decline: 衰落
     description: 描述
     edit: 編輯
     edited: 編輯
+    email: 電子郵件
+    export: 出口
+    first_name: 名字
     formal_learning: 正式學習
     group_question_max_validation_error: 每個群組最多可包含 {{max}} 個項目。
     group_question_min_validation_error: 每個群組至少需要包含 {{min}} 項目。
     id: 身分證
     idp_ai_assistant_disclaimer: Lighthouse AI IDP 助理可能會犯錯。使用回應時請小心。
     internet_disconnected_message: 正在嘗試重新連接。請檢查您的互聯網連接。
+    last_name: 姓氏
     learning_on_the_job_label: 邊做邊學
+    login: 登入
+    modified_by: 修改者
+    modified_date: 修改日期
+    more_actions: 更多動作
     mte_logo_alt_text: 默瑟人才企業標誌
     name: 名字
     new: 新
+    ok: 好
+    recording_consent_notice: 本次會議將被錄音。您參與本次會議即表示您同意被錄音。
+    recording_consent_proceed_question: 你同意繼續錄音會議嗎？
+    recording_consent_title: 登記同意書通知
+    remove: 移除
     removed: 已移除
+    reset_password: 重設密碼
     rte_paste_content_exceeds_char_limit: 文字超過 {{maxCharacterLimit}} 的字元限制，無法貼上。
     rte_paste_content_exceeds_word_limit: 文字超過 {{maxWordLimit}} 的字數限制，無法貼上。
+    save: 存檔
     search: 尋
+    send_email: 發送電子郵件
+    show_more: 顯示更多
+    something_wrong: 出了問題。請聯絡您的管理員
     table:
       entries:
         selected:

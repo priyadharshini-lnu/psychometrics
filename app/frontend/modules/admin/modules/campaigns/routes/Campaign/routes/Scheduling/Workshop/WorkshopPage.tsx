@@ -7,11 +7,11 @@ import {
   Space, Descriptions, Avatar, Skeleton, Divider,
   Radio, message, Button, Tag, Tooltip, Flex,
 } from 'antd'
-import {
-  ArrowLeftOutlined, CopyOutlined, InfoCircleOutlined,
-} from '@ant-design/icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import type { DescriptionsProps } from 'antd'
+import {
+  ArrowLeftOutlined, CopyOutlined, InfoCircleOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 import { WorkshopEditFormModal } from './WorkshopEditFormModal'
 import settings from '~/modules/admin/modules/campaigns/settings'

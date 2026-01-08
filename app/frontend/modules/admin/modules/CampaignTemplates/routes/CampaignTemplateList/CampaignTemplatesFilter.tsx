@@ -1,6 +1,6 @@
 import React from 'react'
-import { PlusOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { CampaignTemplate } from '~/modules/admin/core/types/campaignTemplates'
 

@@ -2,6 +2,7 @@
 
 class EndUser::UserAssessmentsController < ApplicationController
   include ::Threesixty::InitialState
+  include AssessmentUtilities
 
   layout 'layouts/end_user'
 
@@ -10,6 +11,7 @@ class EndUser::UserAssessmentsController < ApplicationController
   before_action :set_user_assessment,
                 only: %i[assessment details show pass begin validate_session upload_user_verification_image_url
                          user_verification_image_upload_callback mark_completed]
+  before_action :redirect_and_ensure_valid_assessment_locale, only: %i[pass begin]
   before_action :can_start_based_on_sequencing, only: %i[pass show begin]
   before_action :ensure_user_confirm, only: %i[pass begin]
   before_action :ensure_campaign_user_is_active
@@ -150,5 +152,10 @@ class EndUser::UserAssessmentsController < ApplicationController
 
   def ensure_campaign_user_is_active
     raise Pundit::NotAuthorizedError if @user_assessment.campaign_user.disabled
+  end
+
+  # Provides the assessment context for locale validation
+  def current_assessment
+    @user_assessment.assessment
   end
 end

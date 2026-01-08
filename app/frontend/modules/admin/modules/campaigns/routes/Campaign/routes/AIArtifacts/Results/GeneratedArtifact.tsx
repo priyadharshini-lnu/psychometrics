@@ -3,7 +3,7 @@ import React from 'react'
 import {
   Flex, Typography, Button, Tooltip,
 } from 'antd'
-import { FileTextOutlined } from '@ant-design/icons'
+import { FileTextOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import ParsedDependenciesModal from './ParsedDependenciesModal'
 import { ArtifactResults } from './ArtifactResults'
 

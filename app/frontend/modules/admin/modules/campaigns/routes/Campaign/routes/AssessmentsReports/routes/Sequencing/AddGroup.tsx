@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Button, Card, Space } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
 import cs from 'classnames'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { RootState } from '~/modules/admin/core/rootReducers'
 import {

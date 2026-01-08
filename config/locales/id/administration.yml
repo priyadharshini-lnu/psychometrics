@@ -29,35 +29,11 @@ id:
     administrators:
       drawers:
         edit:
-          admin_role_select: Pilih peran admin
-          admin_roles: Peran admin
-          create_success: Admin '%{name}' berhasil dibuat
-          email: Email
-          first_name: Nama depan
           first_name_required: Nama depan diperlukan
-          last_name: Nama belakang
           last_name_required: Nama belakang diperlukan
-          no_edit_permission: Anda tidak memiliki izin untuk mengedit admin '%{name}'
-          save: Simpan
-          update: Perbarui
-          update_success: Admin '%{name}' berhasil diperbarui
-        notes:
-          threesixty_permission: Izin khusus untuk kampanye 360
-          title: Catatan
         view:
-          add_campaign_admin: Tambahkan Admin Kampanye
-          add_client_admin: Tambahkan Admin Klien
-          add_project_admin: Tambahkan Admin Proyek
-          add_threesixty_campaign_admin: Tambahkan Admin Kampanye
-          edit_campaign_admin: Edit Admin Kampanye
-          edit_client_admin: Edit Admin Klien
-          edit_project_admin: Mengedit Admin Proyek
-          edit_threesixty_campaign_admin: Edit Admin Kampanye
           first_name: Nama depan
           last_name: Nama belakang
-          project_admin: Admin Proyek
-          project_list: Daftar Proyek
-          role: Admin Kampanye
           title:
             campaign_admin: Admin Kampanye
             client_admin: Admin Klien
@@ -65,253 +41,20 @@ id:
       list:
         actions:
           api_keys: Kunci API
-          cancel_text: Membatalkan
-          change_password: Setel ulang kata sandi
           edit: Mengedit
           export_admins_with_permissions: Ekspor Peran dan Izin Admin
           export_success: Pekerjaan ekspor admin berhasil dijadwalkan. Silakan periksa notifikasi Anda untuk status.
           login: Login
-          send_email: Kirim email
           spoof:
             login_successful: Login berhasil.
           user_report_events: Log Persetujuan Laporan
         columns:
-          actions: Tindakan
-          created_at: Dibuat di
           email: Email
-          id: ID
-          name: Nama
-        header:
-          add_admin: Tambahkan admin
-          search_admins: Cari Admin
-        toolbar:
-          export_admins_with_permissions: Ekspor Peran dan Izin Admin
       modals:
         delete:
           cancelText: Membatalkan
-          content: Apakah Anda yakin ingin menghapus pengguna admin dengan email '%{email}'?
           okText: Oke
-          onSuccess: Admin dengan email '%{email}' berhasil dihapus
           title: Mengkonfirmasi
-      permissions:
-        labels:
-          aiArtifacts:
-            export: Ekspor
-            import: Mengimpor
-            manage: Urus
-            title: Artefak AI
-            view: Melihat
-          apiKeys:
-            manage: Kelola
-            title: Kunci API
-            view: Lihat
-          assessments:
-            manage: Atur
-            title: Penilaian
-            view: Lihat
-          assessors:
-            manage: Atur
-            title: Assessors
-            view: Lihat
-          auditLogs:
-            title: Log Audit
-            view: Lihat
-          auditReports:
-            admin_permissions: Ekspor Peran dan Izin Admin
-            title: Laporan Audit
-            user_report_events: Log Persetujuan Laporan
-          campaignFactors:
-            manage: Kelola
-            title: Faktor Kampanye
-            view: Lihat
-          campaigns:
-            bulk_download: Unduh Massal
-            bulk_regenerate_reports: Pembuatan Ulang Laporan Massal
-            manage: Atur
-            manage_admins: Kelola Admin
-            manage_factor_benchmark_scores: Kelola Skor Tolok Ukur Faktor
-            manage_messages: Mengelola Pesan
-            manage_options: Kelola Opsi
-            manage_report_approvals: Mengelola Persetujuan Laporan
-            manage_users: Kelola Pengguna
-            participant_options: Opsi Peserta
-            report_options: Opsi Laporan
-            reset_nominations: Atur Ulang Nominasi
-            title: Kampanye
-            view: Melihat
-            view_factor_benchmark_scores: Lihat Skor Tolok Ukur Faktor
-            view_stats: Lihat Statistik
-          clients:
-            export_data_report: Ekspor Laporan Data
-            manage: Atur
-            title: Klien
-            view: Melihat
-            view_licenses: Lihat Lisensi
-          communications:
-            manage: Atur
-            title: Komunikasi
-            view: Melihat
-          dashboards:
-            accesssheet_manage: Kelola Lembar Akses
-            accesssheet_settings: Pengaturan Lembar Akses
-            accesssheet_view: Tampilan Lembar Akses
-            export: Ekspor
-            title: Dasbor
-            view: Melihat
-          datasheets:
-            manage: Atur
-            title: Lembar data
-            view: Melihat
-          developmentActions:
-            export: Ekspor
-            export_global: Ekspor Global
-            export_global_translations: Ekspor Terjemahan Global
-            export_translations: Ekspor Terjemahan
-            import: Mengimpor
-            import_global: Impor Global
-            import_global_translations: Impor Terjemahan Global
-            import_translations: Impor Terjemahan
-            manage: Atur
-            title: Tindakan Pengembangan
-            view: Melihat
-          dimensions:
-            manage: Atur
-            title: Dimensi
-            view: Melihat
-          idpTemplates:
-            manage: Atur
-            title: Template IDP
-            view: Melihat
-          interviewQuestions:
-            export: Ekspor
-            import: Impor
-            manage: Kelola
-            title: Pertanyaan Wawancara IDP
-            view: Lihat
-          jobRoles:
-            export_translations: Penerjemahan Peran Pekerjaan Ekspor
-            import_translations: Impor Terjemahan Peran Pekerjaan
-            manage: Kelola
-            title: Peran Pekerjaan
-            view: Melihat
-          libraries:
-            manage: Atur
-            title: Media Perpustakaan
-            view: Melihat
-          messages:
-            email: Email
-            instructions: Instruksi
-            options: Pilihan
-            title: Pesan
-          norms:
-            manage: Kelola
-            title: Norma
-            view: Melihat
-          proficiencyLevels:
-            export: Tingkat Kemahiran Ekspor
-            export_translations: Ekspor Tingkat Kecakapan terjemahan
-            import: Tingkat Kecakapan Impor
-            import_translations: Impor Terjemahan Tingkat Kecakapan
-            manage: Kelola
-            title: Tingkat Kemahiran
-            view: Melihat
-          proficiency_level:
-            title: Tingkat Kemahiran
-          projectSettings:
-            assessments: Penilaian
-            design: Desain
-            feature_flags: Bendera Fitur
-            idp: IDP
-            integrations: Integrasi
-            privacy_settings: Pengaturan Privasi
-            saml: SAML
-            security: Keamanan
-            smtp: SMTP
-            title: Pengaturan Proyek
-            webhooks: Webhook
-          projects:
-            manage: Kelola
-            manage_admins: Kelola Admin
-            manage_licenses: Kelola Lisensi
-            manage_users: Kelola Pengguna
-            title: Proyek
-            view: Melihat
-            view_licenses: Lihat Lisensi
-          questions:
-            manage: Kelola
-            title: Pertanyaan
-            view: Melihat
-          reflectionQuestions:
-            export: Ekspor
-            import: Mengimpor
-            manage: Kelola
-            title: Pertanyaan Refleksi IDP
-            view: Melihat
-          registrationCodes:
-            manage: Kelola
-            title: Kode Pendaftaran
-            view: Melihat
-          registrationSettings:
-            manage: Kelola
-            title: Pengaturan Pendaftaran
-          reports:
-            manage: Kelola
-            title: Laporan
-            view: Melihat
-          responseMeta:
-            title: Tanggapan Meta
-          results:
-            approve_report: Menyetujui Laporan
-            bulk_download: Unduh Massal
-            bulk_regenerate_reports: Pembuatan Ulang Laporan Massal
-            bulk_update_evaluation_status: Status Evaluasi Pembaruan Massal
-            download_report: Unduh Laporan
-            edit_report: Edit Laporan
-            export_occupations: Ekspor Pekerjaan
-            external_score_import: Impor Skor Eksternal
-            finalize_scores: Finalisasi Skor
-            normalize_factor_scores: Menormalkan Skor Faktor
-            raw_responses: Tanggapan Mentah
-            regenerate_report: Buat ulang laporan
-            report_data: Laporkan Data
-            report_file_upload: Laporkan Unggahan File
-            rescore_responses: Tanggapan Skor Ulang
-            reset_progress: Atur Ulang Progress
-            reset_responses: Atur Ulang Tanggapan
-            scores: Skor
-            title: Hasil
-            view_report: Lihat Laporan
-            view_stats: Lihat Statistik
-          skills:
-            export: Ekspor Keterampilan
-            export_translations: Ekspor Terjemahan Keterampilan
-            import: Keterampilan Impor
-            import_translations: Impor Terjemahan Keterampilan
-            manage: Kelola
-            title: Keterampilan
-            view: Melihat
-          smsHistories:
-            manage: Kelola
-            title: Riwayat SMS
-            view: Melihat
-          smsInvites:
-            manage: Kelola
-            title: Undangan SMS
-            view: Melihat
-          userIdpPlans:
-            manage: Urus
-            reset: Reset
-            title: Paket IDP Pengguna
-            view: Melihat
-          users:
-            reset_password: Atur Ulang Kata Sandi
-            title: Pengguna
-          workshops:
-            export_status: Status Ekspor
-            manage: Kelola
-            title: Lokakarya
-            view: Melihat
-            view_recordings: Lihat Rekaman
     ai_artifacts:
       artifact_results: Hasil Artefak
       code: Kode
@@ -3575,6 +3318,7 @@ id:
           show_target_proficiency: Tampilkan Kemahiran Target
           strengths_blindspots: Kekuatan & Titik Buta
         text_condition_type: 'Jenis Kondisi Teks:'
+        translate_with_ai: Terjemahkan dengan AI
     report_families:
       create:
         successfully: Bundel Laporan %{name} berhasil dibuat.
@@ -4047,12 +3791,7 @@ id:
       security_setting: Pengaturan keamanan
     settings:
       admin_roles:
-        admin_role_single: Peran Admin
         confirm_message: Apakah Anda yakin ingin menghapus peran admin '%{role_name}'?
-        create: Tambahkan Peran Admin
-        description: Deskripsi
-        name: Nama
-        successful_remove: Peran admin '%{role_name}' berhasil dihapus.
       siem:
         description: Deskripsi
         destination_type: Jenis Tujuan

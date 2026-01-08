@@ -53,6 +53,7 @@ export const DevelopmentActionTR = t.intersection([
       t.array(t.string),
       t.undefined,
     ]),
+    tagList: t.union([t.array(t.string), t.undefined]),
     meta: t.type({
       permissions: t.type({
         edit: t.boolean,

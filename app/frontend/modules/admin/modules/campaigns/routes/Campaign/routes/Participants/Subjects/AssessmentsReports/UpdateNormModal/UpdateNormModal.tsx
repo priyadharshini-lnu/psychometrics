@@ -3,7 +3,7 @@ import _ from 'lodash'
 import {
   Modal, Button, Form, Select, message,
 } from 'antd'
-import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
+import { LoadingOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
 import Norm from '~/modules/admin/modules/campaigns/interfaces/Norm'
 import { PropsFromRedux } from './connect'

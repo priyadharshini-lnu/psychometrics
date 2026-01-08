@@ -4,7 +4,7 @@ import {
   DropTargetMonitor,
 } from 'react-dnd'
 import cs from 'classnames'
-import { CloseOutlined } from '@ant-design/icons'
+import { CloseOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import MultiInlineEditor from '../../../../../../MultiInlineEditor'
 import styles from './ChatStyle.less'
 import commonStyles from '../ChatStyle.less'

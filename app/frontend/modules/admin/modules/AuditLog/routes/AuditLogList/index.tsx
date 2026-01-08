@@ -3,8 +3,8 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Table, Row, Col, Pagination, Input, Space, Button, DatePicker, Form, Select, Spin,
 } from 'antd'
-import { AppstoreOutlined, SearchOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
+import { AppstoreOutlined, SearchOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RangeValueType } from '~/interfaces/Antd'
 import dayjs from '~/utils/dayjs'
 import {

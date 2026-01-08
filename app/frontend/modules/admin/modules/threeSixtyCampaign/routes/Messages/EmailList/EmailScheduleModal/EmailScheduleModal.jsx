@@ -3,9 +3,9 @@ import _ from 'lodash'
 import {
   Modal, Button, Input, App, Switch,
 } from 'antd'
-import { CheckOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 import { useParams } from 'react-router-dom'
+import { CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { NAME, CONSOLIDATED_EMAIL_NAMES } from '~/modules/admin/constants/emailTemplate'
 import ErrorAlertBox from '~/components/ErrorAlertBox'
 import EmailEditor from '~/components/EmailEditor'

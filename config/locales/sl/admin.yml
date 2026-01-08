@@ -1,7 +1,20 @@
 ---
 sl:
   admin:
+    add_admin: Dodajanje skrbnika
+    add_admin_role: Dodajanje skrbniške vloge
+    add_campaign_admin: Dodajanje skrbnika oglaševalske akcije
+    add_client_admin: Dodajanje skrbnika odjemalca
+    add_project: Dodajanje projekta
+    add_project_admin: Dodajanje skrbnika projekta
+    add_threesixty_campaign_admin: Dodajanje skrbnika oglaševalske akcije
     admin_approval_required: Poročilo za %{user} zahteva odobritev administratorja pred prenosom
+    admin_created_successfully: Skrbnik '%{name}' je bil uspešno ustvarjen
+    admin_export_scheduled: Skrbniško izvozno opravilo je bilo uspešno načrtovano. Preverite stanje obvestila.
+    admin_removed_successfully: Skrbnik z e-poštnim naslovom »%{email}« je bil uspešno odstranjen
+    admin_role_deleted: Skrbniška vloga »%{role_name}« je bila uspešno izbrisana.
+    admin_roles: Skrbniške vloge
+    admin_updated_successfully: Skrbnik '%{name}' je bil uspešno posodobljen
     admins: Skrbniki
     ai_artifacts: Artefakti umetne inteligence
     ai_artifacts_output_schema_key_constraint: Ključ mora začeti z majhno črko in lahko vsebuje le male črke, številke in podčrte
@@ -21,10 +34,12 @@ sl:
     ai_assistants_test_render: Testni upodabljanje
     ai_assistants_test_render_tooltip: Preizkusite predlogo za poziv s podatki o kampanji, da preverite, kaj bo poslano AI asistentu.
     ai_assisted_idp_feature_disabled: Funkcija AI Assisted IDP je bila za ta projekt onemogočena.
+    api_keys: Ključi API-ja
     assessments: Ocenjevanja
     assessments_reports: Ocenjevanja in poročila
     assessor_dashboard: Nadzorna plošča ocenjevalca
     assessor_workshops: Ocenjevalni center
+    assessors: Ocenjevalcev
     audit_logs: Dnevniki nadzora
     audit_reports: Revizijska poročila
     availability: Razpoložljivost
@@ -41,32 +56,46 @@ sl:
     campaign_assessment_modals_enable_caching_content: Ste prepričani, da želite omogočiti predpomnjenje za to oceno?
     campaign_assessment_modals_enable_caching_successfully: Za to oceno je omogočeno predpomnjenje.
     campaign_assessment_modals_enable_caching_title: Omogočiti predpomnjenje ocenjevanja?
+    campaign_factors: Dejavniki oglaševalske akcije
     campaign_templates: Predloge oglaševalskih akcij
+    campaigns: Kampanje
     client: Najem stranke
     client_admins: Skrbniki odjemalcev
     clients: Spletno okolje naročnika
     code_required: Potrebna je koda
     communication_center: Komunikacijsko središče
+    communications: Komunikacije
     completed: Dokončan
     completed_tooltip: Vsi ocenjevalci so oddali oceno
+    confirm_remove_admin: Ali ste prepričani, da želite odstraniti skrbniškega uporabnika z e-poštnim sporočilom '%{email}'?
     country: Država
     create_client: Ustvari odjemalca
     dashboard: Nadzorna plošča
+    dashboards: Namizij
     data_reports: Poročila o podatkih
     datasheet: Podatkovni list
     declined: Zmanjšala
     delete_ok_text: Da, Izbriši
     denied: Zavrnjen
     development_actions: Razvojni ukrepi
+    development_actions_form_tags: Oznake
     dimensions: Dimenzije
     done: Storiti
     done_tooltip: Za tega uporabnika ni mogoče več opraviti ocene, saj je ocena označena kot opravljena s strani %{marked_by}
+    edit_campaign_admin: Urejanje skrbnika oglaševalske akcije
+    edit_client_admin: Urejanje skrbnika odjemalca
+    edit_permission_denied: Nimate dovoljenja za urejanje administratorskega '%{name}'
+    edit_project_admin: Urejanje skrbnika projekta
+    edit_threesixty_campaign_admin: Urejanje skrbnika oglaševalske akcije
     empty_csv_file: CSV datoteka ne vsebuje nobenih podatkov.
     evaluation_status: Status ocenjevanja
     evaluation_status_not_done: Status ocenjevanja ni 'končan' za enega ali več izbranih predmetov. Prosimo, poskrbite, da so vsi izbrani uporabniki opravili ocene ali označili kot opravljeno.
+    export_admin_roles_permissions: Izvoz skrbniških vlog in dovoljenj
+    feature_flags: Zastavice funkcij
     fill_empty_score_msg: Pred shranjevanjem izpolnite vse končne rezultate.
     final_score_empty_msg: Končni rezultat ne sme biti prazen.
     idp_plan_reset_success: Načrt je bil uspešno ponastavljen
+    idp_templates: Predloge IDP
     import_ai_artifacts: Uvoz AI artefaktov
     import_csv_error: 'Vrstica %{index}: uporabnik z e-poštnim %{email} ni v tej kampanji'
     import_csv_parsing_error: 'Napaka pri analizi CSV: %{message}'
@@ -90,16 +119,20 @@ sl:
     import_upload: Upload
     import_users: Uvoz uporabnikov
     invalid_csv_header: CSV datoteka vsebuje neveljavne glave.
+    job_roles: Delovna mesta
     learning_from_others: Sodelovalno učenje [20]
     libraries: Medijska knjižnica
     library_invalid_type: Neveljaven knjižnični element
+    licenses: Licence
     manager_approval_required: Poročilo za %{user} zahteva odobritev upravitelja pred prenosom
+    messages: Sporočila
     name_required: Ime je potrebno
     no_file_selected: Izbrana ni bila izbrana datoteka
     no_notifications: Brez obvestil
     norms: Norme
     not_completed: Ni dokončano
     not_completed_tooltip: Dodeljeni so %{completed} ocenjevalci, vendar so ocene zaključili le %{submitted}
+    notes: Opombe
     nothing_assigned: Brez dodeljenih ocenjevalcev
     nothing_assigned_tooltip: Uporabniku niso bile dodeljene nobene ocene
     notification_bell_icon_alt_text: Ikona zvonca za obvestila
@@ -109,11 +142,442 @@ sl:
     on_the_job: Na delovnem mestu [70]
     options: Možnosti
     participants: Udeleženci
+    permissions:
+      aiArtifacts:
+        export: Izvoz
+        import: Uvoz
+        manage: Upravljanje
+        title: Artefakti umetne inteligence
+        view: Pogled
+      apiKeys:
+        manage: Upravljanje
+        title: Ključi API
+        view: Pogled
+      assessments:
+        manage: Upravljanje
+        title: Ocenjevanja
+        view: Pogled
+      assessors:
+        manage: Upravljanje
+        title: Ocenjevalcev
+        view: Pogled
+      auditLogs:
+        title: Dnevniki nadzora
+        view: Pogled
+      auditReports:
+        admin_permissions: Izvoz skrbniških vlog in dovoljenj
+        title: Revizijska poročila
+        user_report_events: Dnevniki odobritve poročil
+      campaignFactors:
+        manage: Upravljanje
+        title: Dejavniki oglaševalske akcije
+        view: Pogled
+      campaigns:
+        bulk_download: Hkratni prenos večih datotek
+        bulk_regenerate_reports: Množična ponovna generiranje poročil
+        manage: Upravljanje
+        manage_admins: Upravljanje skrbnikov
+        manage_factor_benchmark_scores: Upravljanje rezultatov primerjalnih vrednosti faktorjev
+        manage_messages: Upravljanje sporočil
+        manage_options: Upravljanje možnosti
+        manage_report_approvals: Upravljanje odobritev poročil
+        manage_users: Upravljanje uporabnikov
+        participant_options: Možnosti za udeležence
+        report_options: Možnosti poročila
+        reset_nominations: Ponastavi nominacije
+        title: Kampanje
+        view: Pogled
+        view_factor_benchmark_scores: Oglejte si ocene primerjalnih vrednosti faktorjev
+        view_stats: Oglejte si statistiko
+      clients:
+        export_data_report: Izvoz poročila o podatkih
+        manage: Upravljanje
+        title: Stranke
+        view: Pogled
+        view_licenses: Ogled licenc
+      communications:
+        manage: Upravljanje
+        title: Komunikacije
+        view: Pogled
+      dashboards:
+        accesssheet_manage: Upravljanje dostopnega lista
+        accesssheet_settings: Nastavitve dostopnega lista
+        accesssheet_view: Pogled dostopnega lista
+        export: Izvoz
+        title: Namizij
+        view: Pogled
+      datasheets:
+        manage: Upravljanje
+        title: Podatkovni listi
+        view: Pogled
+      developmentActions:
+        export: Izvoz
+        export_global: Izvoz globalno
+        export_global_translations: Izvoz globalnih prevodov
+        export_translations: Izvoz prevodov
+        import: Uvoz
+        import_global: Uvoz globalno
+        import_global_translations: Uvoz globalnih prevodov
+        import_translations: Uvoz prevodov
+        manage: Upravljanje
+        title: Razvojni ukrepi
+        view: Pogled
+      dimensions:
+        manage: Upravljanje
+        title: Dimenzije
+        view: Pogled
+      idpTemplates:
+        manage: Upravljanje
+        title: Predloge IDP
+        view: Pogled
+      interviewQuestions:
+        export: Izvoz
+        import: Uvoz
+        manage: Upravljanje
+        title: Vprašanja za razgovor z IDP
+        view: Pogled
+      jobRoles:
+        export_translations: Izvoz delovnih vlog Prevodi
+        import_translations: Uvoz delovnih vlog Prevodi
+        manage: Upravljanje
+        title: Delovna mesta
+        view: Pogled
+      labels:
+        apiKeys:
+          manage: Upravljanje
+          title: Ključi API
+          view: Pogled
+        assessments:
+          manage: Upravljanje
+          title: Ocenjevanja
+          view: Pogled
+        assessors:
+          manage: Upravljanje
+          title: Ocenjevalcev
+          view: Pogled
+        auditLogs:
+          title: Dnevniki nadzora
+          view: Pogled
+        auditReports:
+          admin_permissions: Izvoz skrbniških vlog in dovoljenj
+          title: Revizijska poročila
+          user_report_events: Dnevniki odobritve poročil
+        campaignFactors:
+          manage: Upravljanje
+          title: Dejavniki oglaševalske akcije
+          view: Pogled
+        campaigns:
+          bulk_download: Hkratni prenos večih datotek
+          bulk_regenerate_reports: Množična ponovna generiranje poročil
+          manage: Upravljanje
+          manage_admins: Upravljanje skrbnikov
+          manage_factor_benchmark_scores: Upravljanje rezultatov primerjalnih vrednosti faktorjev
+          manage_messages: Upravljanje sporočil
+          manage_options: Upravljanje možnosti
+          manage_report_approvals: Upravljanje odobritev poročil
+          manage_users: Upravljanje uporabnikov
+          participant_options: Možnosti za udeležence
+          report_options: Možnosti poročila
+          reset_nominations: Ponastavi nominacije
+          title: Kampanje
+          view: Pogled
+          view_factor_benchmark_scores: Oglejte si ocene primerjalnih vrednosti faktorjev
+          view_stats: Oglejte si statistiko
+        clients:
+          export_data_report: Izvoz poročila o podatkih
+          manage: Upravljanje
+          title: Stranke
+          view: Pogled
+          view_licenses: Ogled licenc
+        communications:
+          manage: Upravljanje
+          title: Komunikacije
+          view: Pogled
+        dashboards:
+          accesssheet_manage: Upravljanje dostopnega lista
+          accesssheet_settings: Nastavitve dostopnega lista
+          accesssheet_view: Pogled dostopnega lista
+          export: Izvoz
+          title: Namizij
+          view: Pogled
+        datasheets:
+          manage: Upravljanje
+          title: Podatkovni listi
+          view: Pogled
+        developmentActions:
+          export: Izvoz
+          export_global: Izvoz globalno
+          export_global_translations: Izvoz globalnih prevodov
+          export_translations: Izvoz prevodov
+          import: Uvoz
+          import_global: Uvoz globalno
+          import_global_translations: Uvoz globalnih prevodov
+          import_translations: Uvoz prevodov
+          manage: Upravljanje
+          title: Razvojni ukrepi
+          view: Pogled
+        dimensions:
+          manage: Upravljanje
+          title: Dimenzije
+          view: Pogled
+        idpTemplates:
+          manage: Upravljanje
+          title: Predloge IDP
+          view: Pogled
+        jobRoles:
+          export_translations: Izvoz delovnih vlog Prevodi
+          import_translations: Uvoz delovnih vlog Prevodi
+          manage: Upravljanje
+          title: Delovna mesta
+          view: Pogled
+        libraries:
+          manage: Upravljanje
+          title: Predstavnostne knjižnice
+          view: Pogled
+        messages:
+          email: E-pošta
+          instructions: Navodila
+          options: Možnosti
+          title: Sporočila
+        norms:
+          manage: Upravljanje
+          title: Norme
+          view: Pogled
+        proficiencyLevels:
+          export: Ravni izvozne usposobljenosti
+          export_translations: Prevodi ravni znanja izvoza
+          import: Ravni znanja uvoza
+          import_translations: Uvoz prevodov ravni strokovnosti
+          manage: Upravljanje
+          title: Ravni strokovnosti
+          view: Pogled
+        proficiency_level:
+          title: Ravni strokovnosti
+        projectSettings:
+          assessments: Ocenjevanja
+          design: Dizajn
+          feature_flags: Zastavice funkcij
+          idp: IDP
+          integrations: Integracije
+          privacy_settings: Nastavitve zasebnosti
+          saml: SAML
+          security: Varnost
+          smtp: SMTP
+          title: Nastavitve projekta
+          webhooks: Spletni kavlji
+        projects:
+          manage: Upravljanje
+          manage_admins: Upravljanje skrbnikov
+          manage_users: Upravljanje uporabnikov
+          title: Projekti
+          view: Pogled
+        questions:
+          manage: Upravljanje
+          title: Vprašanja
+          view: Pogled
+        reflectionQuestions:
+          export: Izvoz
+          import: Uvoz
+          manage: Upravljanje
+          title: Vprašanja za razmislek IDP
+          view: Pogled
+        registrationCodes:
+          manage: Upravljanje
+          title: Registracijske kode
+          view: Pogled
+        registrationSettings:
+          manage: Upravljanje
+          title: Nastavitve registracije
+        reports:
+          manage: Upravljanje
+          title: Poročila
+          view: Pogled
+        responseMeta:
+          title: Odgovor Meta
+        results:
+          approve_report: Odobritev poročila
+          bulk_download: Hkratni prenos večih datotek
+          bulk_regenerate_reports: Množična ponovna generiranje poročil
+          bulk_update_evaluation_status: Status ocenjevanja množične posodobitve
+          download_report: Prenesi poročilo
+          edit_report: Urejanje poročila
+          export_occupations: Izvozni poklici
+          external_score_import: Uvoz zunanjega rezultata
+          finalize_scores: Dokončanoje rezultatov
+          normalize_factor_scores: Normalizirajte rezultate faktorjev
+          raw_responses: Surovi odzivi
+          regenerate_report: Poročilo o ponovni vzpostavitvi
+          report_data: Podatki poročila
+          report_file_upload: Prenos datoteke poročila
+          rescore_responses: Ponovno ocenjevanje odgovorov
+          reset_progress: Ponastavitev napredka
+          reset_responses: Ponastavitev odgovorov
+          scores: Rezultate
+          title: Rezultati
+          view_report: Ogled poročila
+          view_stats: Oglejte si statistiko
+        skills:
+          export: Izvozne spretnosti
+          export_translations: Izvoz veščin Prevodi
+          import: Uvozne spretnosti
+          import_translations: Uvoz prevodov spretnosti
+          manage: Upravljanje
+          title: Spretnosti
+          view: Pogled
+        smsHistories:
+          manage: Upravljanje
+          title: Zgodovina sporočil SMS
+          view: Pogled
+        smsInvites:
+          manage: Upravljanje
+          title: SMS vabila
+          view: Pogled
+        userIdpPlans:
+          manage: Upravljanje
+          title: Uporabniški IDP načrti
+          view: Pogled
+        users:
+          reset_password: Ponastavi geslo
+          title: Uporabniki
+        workshops:
+          export_status: Status izvoza
+          manage: Upravljanje
+          title: Delavnice
+          view: Pogled
+          view_recordings: Ogled posnetkov
+      libraries:
+        manage: Upravljanje
+        title: Predstavnostne knjižnice
+        view: Pogled
+      messages:
+        email: E-pošta
+        instructions: Navodila
+        options: Možnosti
+        title: Sporočila
+      norms:
+        manage: Upravljanje
+        title: Norme
+        view: Pogled
+      proficiencyLevels:
+        export: Ravni izvozne usposobljenosti
+        export_translations: Prevodi ravni znanja izvoza
+        import: Ravni znanja uvoza
+        import_translations: Uvoz prevodov ravni strokovnosti
+        manage: Upravljanje
+        title: Ravni strokovnosti
+        view: Pogled
+      proficiency_level:
+        title: Ravni strokovnosti
+      projectSettings:
+        assessments: Ocenjevanja
+        design: Dizajn
+        feature_flags: Zastavice funkcij
+        idp: IDP
+        integrations: Integracije
+        privacy_settings: Nastavitve zasebnosti
+        saml: SAML
+        security: Varnost
+        smtp: SMTP
+        title: Nastavitve projekta
+        webhooks: Spletni kavlji
+      projects:
+        manage: Upravljanje
+        manage_admins: Upravljanje skrbnikov
+        manage_licenses: Upravljanje licenc
+        manage_users: Upravljanje uporabnikov
+        title: Projekti
+        view: Pogled
+        view_licenses: Oglejte si licence
+      questions:
+        manage: Upravljanje
+        title: Vprašanja
+        view: Pogled
+      reflectionQuestions:
+        export: Izvoz
+        import: Uvoz
+        manage: Upravljanje
+        title: Vprašanja za razmislek IDP
+        view: Pogled
+      registrationCodes:
+        manage: Upravljanje
+        title: Registracijske kode
+        view: Pogled
+      registrationSettings:
+        manage: Upravljanje
+        title: Nastavitve registracije
+      reports:
+        manage: Upravljanje
+        title: Poročila
+        view: Pogled
+      responseMeta:
+        title: Odgovor Meta
+      results:
+        approve_report: Odobritev poročila
+        bulk_download: Hkratni prenos večih datotek
+        bulk_regenerate_reports: Množična ponovna generiranje poročil
+        bulk_update_evaluation_status: Status ocenjevanja množične posodobitve
+        download_report: Prenesi poročilo
+        edit_report: Urejanje poročila
+        export_occupations: Izvozni poklici
+        external_score_import: Uvoz zunanjega rezultata
+        finalize_scores: Dokončanoje rezultatov
+        normalize_factor_scores: Normalizirajte rezultate faktorjev
+        raw_responses: Surovi odzivi
+        regenerate_report: Poročilo o ponovni vzpostavitvi
+        report_data: Podatki poročila
+        report_file_upload: Prenos datoteke poročila
+        rescore_responses: Ponovno ocenjevanje odgovorov
+        reset_progress: Ponastavitev napredka
+        reset_responses: Ponastavitev odgovorov
+        scores: Rezultate
+        title: Rezultati
+        view_report: Ogled poročila
+        view_stats: Oglejte si statistiko
+      skills:
+        export: Izvozne spretnosti
+        export_translations: Izvoz veščin Prevodi
+        import: Uvozne spretnosti
+        import_translations: Uvoz prevodov spretnosti
+        manage: Upravljanje
+        title: Spretnosti
+        view: Pogled
+      smsHistories:
+        manage: Upravljanje
+        title: Zgodovina sporočil SMS
+        view: Pogled
+      smsInvites:
+        manage: Upravljanje
+        title: SMS vabila
+        view: Pogled
+      userIdpPlans:
+        manage: Upravljanje
+        reset: Ponastavi
+        title: Uporabniški IDP načrti
+        view: Pogled
+      users:
+        reset_password: Ponastavi geslo
+        title: Uporabniki
+      workshops:
+        export_status: Status izvoza
+        manage: Upravljanje
+        title: Delavnice
+        view: Pogled
+        view_recordings: Ogled posnetkov
+    permissions_360_campaigns: Dovoljenja za oglaševalske akcije 360
+    privacy: Zasebnost
+    proficiency_level: Ključi API-ja
+    proficiency_levels: Ravni strokovnosti
     profile_details: Podrobnosti profila
     project_admins: Skrbniki projekta
     project_manager: Vodja projekta
+    project_number: Številka projekta
+    project_settings: Nastavitve projekta
+    projects: Projekti
     question_center: Središče za vprašanja
+    questions: Vprašanja
+    reflection_questions: Vprašanja za razmislek
     registration_codes: Registracijske kode
+    registration_settings: Nastavitve registracije
     report_approvals: Odobritve poročil
     report_condition_not_met: Potrebna je %{required} %{relationship} ocena, a ima le %{actual}
     report_conditions_not_met_detailed: Poročilo za %{user} ne izpolnjuje pogojev razpoložljivosti. %{conditions}
@@ -128,6 +592,8 @@ sl:
     reset_idp_plan: Načrt za ponastavitev
     reset_idp_plan_confirmation: Ste prepričani, da želite ponastaviti načrt?
     reset_idp_plan_title: Načrt za ponastavitev
+    response_meta: Odgovor Meta
+    results: Rezultati
     role: Vloga
     saml_idp_certificate_available: Na voljo (kliknite za kopiranje)
     saml_idp_certificate_label: Potrdilo
@@ -179,17 +645,28 @@ sl:
     saml_settings: SAML nastavitve
     scheduling: Razporejanje
     scoring: Točkovanja
+    search_admins: Skrbniki za iskanje
+    select_admin_role: Izberite skrbniško vlogo
+    send_email: Pošlji e-pošto
+    settings: Nastavitve
     show_submenu: Pokaži podmeni
+    siem: SIEM
+    skill_aliases: Vzdevki spretnosti
+    skills: Spretnosti
     skills_taxonomy: Taksonomija spretnosti
     slot_name: Ime reže
+    sms_histories: Zgodovina sporočil SMS
+    sms_invites: SMS vabila
     stats: Statistika
     status_details: Podrobnosti o statusu
     structured_learning: Formalno učenje [10]
+    subdomain: Poddomena
     upload_success: Uspešno naloženo
     user_report_events: Dogodki uporabniškega poročila
     users: Uporabniki
     view_licenses: Ogled licenc
     waiting: Čaka
+    workshops: Delavnice
     year: Država
     yoodli_activity_id: Yoodli Activity ID
     yoodli_email_id: E-poštni ID kandidata Yoodli

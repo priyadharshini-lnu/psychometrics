@@ -6,7 +6,7 @@ import {
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { ConnectedProps, connect } from 'react-redux'
-import { DownloadOutlined, EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons'
+import { DownloadOutlined, EyeInvisibleOutlined, EyeOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Resource } from '~/modules/admin/components/Resource'
 import { get as getCurrentUser } from '~/core/currentUser'
 import { WorkshopRecordingTR } from '~/modules/admin/modules/campaigns/core/workshopRecording'
