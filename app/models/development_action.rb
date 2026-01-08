@@ -7,6 +7,7 @@ class DevelopmentAction < ApplicationRecord
   include RansackSearchableFields
 
   translates :name, :description
+  acts_as_taggable_on :tags
 
   belongs_to :owner, polymorphic: true, optional: true
   belongs_to :project, foreign_key: :owner_id, class_name: 'Client', optional: true
