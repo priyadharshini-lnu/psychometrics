@@ -134,10 +134,10 @@ resources:
   web:
     limits:
       # cpu: 100m
-      memory: 6.6G
+      memory: 7G
     requests:
       # cpu: 100m
-      memory: 6G
+      memory: 6.8G
   worker:
     limits:
       # cpu: 100m
