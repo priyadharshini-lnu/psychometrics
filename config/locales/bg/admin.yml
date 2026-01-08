@@ -78,11 +78,13 @@ bg:
     delete_ok_text: Да, изтрий
     denied: Отказан
     development_actions: Действия за развитие
+    development_actions_form_tags: Тагове
     dimensions: Размери
     done: Направи
     done_tooltip: Не може да се подава повече оценка за този потребител, тъй като оценката му се маркира като извършена от %{marked_by}
     edit_campaign_admin: Редактиране на администратора на кампанията
     edit_client_admin: Редактиране на администратор на клиента
+    edit_permission_denied: Нямате разрешение да редактирате администраторски '%{name}'
     edit_project_admin: Редактиране на администратора на проекта
     edit_threesixty_campaign_admin: Редактиране на администратора на кампанията
     empty_csv_file: CSV файлът не съдържа никакви данни.
@@ -429,6 +431,10 @@ bg:
         smsInvites:
           manage: Управлявам
           title: SMS покани
+          view: Изглед
+        userIdpPlans:
+          manage: Управление
+          title: Планове за потребителски IDP
           view: Изглед
         users:
           reset_password: Нулиране на паролата

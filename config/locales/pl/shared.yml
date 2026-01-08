@@ -6,6 +6,7 @@ pl:
     active: Aktywny
     add: Dodaj
     advanced: Zaawansowany
+    agree_and_continue: Zgadzam się i kontynuuj
     archive: Archiwuj
     archived: Archiwizowane
     authentication_failed: Uwierzytelnianie się nie powiodło. Proszę, spróbuj ponownie.
@@ -19,6 +20,7 @@ pl:
     continue: Kontynuować
     created_at: Utworzono w
     created_date: Data utworzenia
+    decline: Upadek
     description: Opis
     edit: Edytuj
     edited: Nowy
@@ -41,6 +43,9 @@ pl:
     name: Nazwa
     new: Nowy
     ok: Ok
+    recording_consent_notice: Sesja tego spotkania będzie nagrywana. Udział w tym spotkaniu oznacza zgodę na nagrywanie.
+    recording_consent_proceed_question: Czy zgadzasz się na kontynuowanie nagranego spotkania?
+    recording_consent_title: Zawiadomienie o zgodzie na nagranie
     remove: Usuń
     removed: Usunięte
     reset_password: Zresetuj hasło
@@ -49,6 +54,7 @@ pl:
     save: Zapisz
     search: Szukaj
     send_email: Wyślij wiadomość e-mail
+    show_more: Pokaż więcej
     something_wrong: Coś poszło nie tak. Skontaktuj się z administratorem.
     table:
       entries:

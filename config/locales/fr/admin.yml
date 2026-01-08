@@ -78,11 +78,13 @@ fr:
     delete_ok_text: Oui, supprimer
     denied: Nié
     development_actions: Actions de développement
+    development_actions_form_tags: Étiquettes
     dimensions: Dimensions
     done: Fait
     done_tooltip: Aucune autre évaluation ne peut être soumise pour cet utilisateur, car celle-ci est marquée comme effectuée par %{marked_by}
     edit_campaign_admin: Modifier l'administration de la campagne
     edit_client_admin: Modifier l'administration du client
+    edit_permission_denied: Vous n’avez pas la permission de modifier le '%{name}' admin
     edit_project_admin: Modifier l'administration du projet
     edit_threesixty_campaign_admin: Modifier l'administration de la campagne
     empty_csv_file: Le fichier CSV ne contient aucune donnée.
@@ -430,6 +432,10 @@ fr:
           manage: Gérer
           title: Invitations par SMS
           view: Voir
+        userIdpPlans:
+          manage: Gérer
+          title: Plans IDP utilisateurs
+          view: Vue
         users:
           reset_password: Réinitialiser le mot de passe
           title: Utilisateurs

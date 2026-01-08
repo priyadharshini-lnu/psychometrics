@@ -3318,6 +3318,7 @@ zh:
           show_target_proficiency: 显示目标熟练程度
           strengths_blindspots: 优势和盲点
         text_condition_type: 文本条件类型：
+        translate_with_ai: 用AI翻译
     report_families:
       create:
         successfully: 报告捆绑包 %{name} 创建成功。

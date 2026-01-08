@@ -78,11 +78,13 @@ zh-Hant:
     delete_ok_text: 是的，刪除
     denied: 拒絕
     development_actions: 發展行動
+    development_actions_form_tags: 標籤
     dimensions: 尺寸
     done: 熟
     done_tooltip: 此用戶無法再提交評估，因為該用戶的評估已被標記為已完成%{marked_by}
     edit_campaign_admin: 編輯活動管理
     edit_client_admin: 編輯用戶端管理員
+    edit_permission_denied: 你沒有權限編輯管理員的「%{name}」
     edit_project_admin: 編輯專案管理員
     edit_threesixty_campaign_admin: 編輯活動管理
     empty_csv_file: CSV 檔案不包含任何資料。
@@ -430,6 +432,10 @@ zh-Hant:
           manage: 管理
           title: 簡訊邀請
           view: 檢視
+        userIdpPlans:
+          manage: 管理
+          title: 使用者 IDP 計畫
+          view: 景觀
         users:
           reset_password: 重設密碼
           title: 使用者

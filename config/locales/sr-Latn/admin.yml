@@ -78,11 +78,13 @@ sr-Latn:
     delete_ok_text: Da, Izbriši
     denied: Odbijen
     development_actions: Razvojne akcije
+    development_actions_form_tags: Bilten
     dimensions: Dimenzije
     done: Uradio
     done_tooltip: Za ovog korisnika se više ne može dostaviti evaluacija jer je evaluacija ovog korisnika označena kao urađeno od strane %{marked_by}
     edit_campaign_admin: Uredi administratora kampanje
     edit_client_admin: Uredi administratora klijenta
+    edit_permission_denied: Nemate dozvolu za uređivanje admin '%{name}'
     edit_project_admin: Uredi Administrator projekta
     edit_threesixty_campaign_admin: Uredi administratora kampanje
     empty_csv_file: CSV datoteka ne sadrži nikakve podatke.
@@ -430,6 +432,10 @@ sr-Latn:
           manage: Upravljanje
           title: SMS pozivnice
           view: Prikaz
+        userIdpPlans:
+          manage: Upravljanje
+          title: Korisnički IDP planovi
+          view: Pretraga
         users:
           reset_password: Resetuj lozinku
           title: Korisnici

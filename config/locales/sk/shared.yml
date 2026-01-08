@@ -6,6 +6,7 @@ sk:
     active: Aktívny
     add: Pridať
     advanced: Pokročilý
+    agree_and_continue: Súhlasím a pokračujte
     archive: Archív
     archived: Archivované
     authentication_failed: Autentifikácia zlyhala. Prosím, skúste to znova.
@@ -19,6 +20,7 @@ sk:
     continue: Pokračovať
     created_at: Vytvorené v
     created_date: Dátum vytvorenia
+    decline: Úpadok
     description: Popis
     edit: Upraviť
     edited: Nové
@@ -41,6 +43,9 @@ sk:
     name: Meno
     new: Nové
     ok: Ok
+    recording_consent_notice: Toto zasadnutie bude zaznamenané. Vaša účasť na tomto stretnutí znamená váš súhlas s nahrávaním.
+    recording_consent_proceed_question: Súhlasíte s pokračovaním v nahrávanom stretnutí?
+    recording_consent_title: Oznámenie o súhlase s nahrávaním
     remove: Odstránenie stránky
     removed: Odstránený
     reset_password: Obnovenie hesla
@@ -49,6 +54,7 @@ sk:
     save: Uložiť
     search: Vyhľadávanie
     send_email: Odoslať e-mail
+    show_more: Zobraziť viac
     something_wrong: Niečo sa pokazilo. Obráťte sa na správcu.
     table:
       entries:

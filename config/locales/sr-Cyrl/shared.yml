@@ -2,8 +2,13 @@
 sr-Cyrl:
   shared:
     action: Радњу
+    actions: Акције
+    active: Активан
     add: Додати
     advanced: Напредне
+    agree_and_continue: Слажем се и настави
+    archive: Архива чланака
+    archived: Архивирано
     authentication_failed: Аутентификација није успела. Покушајте поново.
     basic: Основне
     campaign_id: ИД кампање
@@ -11,24 +16,46 @@ sr-Cyrl:
     change_password: Промена лозинке
     clear_filters: Обриши филтере
     collaborative_learning: Колаборативно учење
+    confirm: Потврди
     continue: Наставите
+    created_at: Креирано у
+    created_date: Датум креирања
+    decline: Претраживање
     description: Опис
     edit: Уређивање
     edited: Уређивати
+    email: Е-пошта
+    export: Извоз
+    first_name: Презиме
     formal_learning: Формално учење
     group_question_max_validation_error: Свака група може да садржи највише {{маx}} ставке.
     group_question_min_validation_error: Свака група треба да садржи најмање {{мин}} ставке.
     id: ИД
     idp_ai_assistant_disclaimer: Лигхтхоусе АИ ИДП асистент може да прави грешке. Молимо вас да будете опрезни док користите одговоре.
     internet_disconnected_message: Покушавам поновно повезивање. Проверите интернет везу.
+    last_name: Презиме
     learning_on_the_job_label: Учење на послу
+    login: Пријавите се
+    modified_by: Измењено од стране
+    modified_date: Датум измене
+    more_actions: Више акција
     mte_logo_alt_text: Мерцер Талент Ентерприсе лого
     name: Име
     new: Нови
+    ok: У реду
+    recording_consent_notice: Ова сесија састанка ће бити снимљена. Ваше учешће на овом састанку представља вашу сагласност да се снима.
+    recording_consent_proceed_question: Да ли се слажете да наставите са снимљеним састанком?
+    recording_consent_title: Обавештење о сагласности за снимање
+    remove: Уклони
     removed: Уклоњена
+    reset_password: Поништавање лозинке
     rte_paste_content_exceeds_char_limit: Текст прелази ограничење знакова {{маxЦхарацтерЛимит}} и не може се налепити.
     rte_paste_content_exceeds_word_limit: Текст прелази ограничење речи {{маxWордЛимит}} и не може се налепити.
+    save: Сачувај
     search: Претраге
+    send_email: Пошаљи е-пошту
+    show_more: Прикажи још
+    something_wrong: Нешто је пошло наопако. Контактирајте свог администратора
     table:
       entries:
         selected:

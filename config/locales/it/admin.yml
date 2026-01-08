@@ -78,11 +78,13 @@ it:
     delete_ok_text: Sì, elimina
     denied: Negato
     development_actions: Azioni di sviluppo
+    development_actions_form_tags: Tag
     dimensions: Dimensioni
     done: Fatto
     done_tooltip: Non è possibile sottoporre ulteriori valutazioni per questo utente poiché la valutazione di quest'utente viene contrassegnata come effettuata da %{marked_by}
     edit_campaign_admin: Modifica dell'amministrazione della campagna
     edit_client_admin: Modifica dell'amministrazione del cliente
+    edit_permission_denied: Non hai il permesso di modificare la '%{name}' admin
     edit_project_admin: Modifica dell'amministrazione del progetto
     edit_threesixty_campaign_admin: Modifica dell'amministrazione della campagna
     empty_csv_file: Il file CSV non contiene alcun dato.
@@ -429,6 +431,10 @@ it:
         smsInvites:
           manage: Azioni
           title: Inviti via SMS
+          view: Vista
+        userIdpPlans:
+          manage: Gestione
+          title: Piani IDP degli utenti
           view: Vista
         users:
           reset_password: Reimpostare la password

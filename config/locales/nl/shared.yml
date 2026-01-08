@@ -6,6 +6,7 @@ nl:
     active: Actief
     add: Voeg  toe
     advanced: Geavanceerd
+    agree_and_continue: Akkoord en Ga Door.
     archive: Archief
     archived: Gearchiveerd
     authentication_failed: Authenticatie mislukt. Probeer het alsjeblieft opnieuw.
@@ -19,6 +20,7 @@ nl:
     continue: Voortzetten
     created_at: Gemaakt op
     created_date: Datum aangemaakt
+    decline: Neergang
     description: Beschrijving
     edit: Bewerk
     edited: Nieuw
@@ -41,6 +43,9 @@ nl:
     name: Naam
     new: Nieuw
     ok: Ok
+    recording_consent_notice: Deze bijeenkomst zal worden opgenomen. Uw deelname aan deze bijeenkomst betekent dat u toestemming geeft om opgenomen te worden.
+    recording_consent_proceed_question: Gaat u akkoord met de opgenomen vergadering?
+    recording_consent_title: Opname Toestemming Kennisgeving
     remove: Verwijder
     removed: Verwijderd
     reset_password: Wachtwoord opnieuw instellen
@@ -49,6 +54,7 @@ nl:
     save: Sla
     search: Zoek op
     send_email: Stuur e-mail
+    show_more: Laat meer zien
     something_wrong: Er is iets misgegaan. Neem contact op met uw beheerder.
     table:
       entries:

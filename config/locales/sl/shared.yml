@@ -6,6 +6,7 @@ sl:
     active: Aktivni
     add: Dodaj
     advanced: Napreden
+    agree_and_continue: Strinjam se in nadaljujte
     archive: Arhiv
     archived: Arhivirani
     authentication_failed: Avtentikacija ni uspela. Prosim, poskusite znova.
@@ -19,6 +20,7 @@ sl:
     continue: Nadaljuj
     created_at: Ustvarjeno
     created_date: Ustvarjeno dne
+    decline: Upad
     description: Opis
     edit: Uredi
     edited: Novo
@@ -41,6 +43,9 @@ sl:
     name: Ime
     new: Novo
     ok: Ok
+    recording_consent_notice: Ta seja bo posneta. Vaša udeležba na tem sestanku pomeni vaše soglasje za snemanje.
+    recording_consent_proceed_question: Se strinjate, da nadaljujete s posnetim sestankom?
+    recording_consent_title: Obvestilo o snemanju soglasja
     remove: Odstranite
     removed: Odstranjen
     reset_password: Ponastavitev gesla
@@ -49,6 +54,7 @@ sl:
     save: Shrani
     search: Iskanje
     send_email: Pošlji e-pošto
+    show_more: Pokaži več
     something_wrong: Nekaj je šlo narobe. Obrnite se na skrbnika.
     table:
       entries:

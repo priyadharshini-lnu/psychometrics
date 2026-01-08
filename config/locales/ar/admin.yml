@@ -78,11 +78,13 @@ ar:
     delete_ok_text: نعم، حذف
     denied: نفي
     development_actions: إجراءات التطوير
+    development_actions_form_tags: الوسوم
     dimensions: الأبعاد
     done: منجز
     done_tooltip: لا يمكن تقديم تقييم إضافي لهذا المستخدم لأن تقييمه تم تصنيفه على أنه تم بواسطة %{marked_by}
     edit_campaign_admin: تعديل مسؤول حملة
     edit_client_admin: تعديل مسؤول عميل
+    edit_permission_denied: ليس لديك إذن بتعديل '%{name}' المسؤول
     edit_project_admin: تعديل مسؤول مشروع
     edit_threesixty_campaign_admin: تعديل مسؤول حملة
     empty_csv_file: ملف CSV لا يحتوي على أي بيانات.
@@ -243,20 +245,26 @@ ar:
       labels:
         apiKeys:
           manage: إدارة
+          title: مفاتيح API
           view: عرض
         assessments:
           manage: إدارة
+          title: التقييمات
           view: عرض
         assessors:
           manage: إدارة
+          title: المقيمون
           view: عرض
         auditLogs:
+          title: سجلات التدقيق
           view: عرض
         auditReports:
           admin_permissions: تصدير أدوار وأذونات المسؤولين
+          title: تقارير التدقيق
           user_report_events: سجلات موافقة التقارير
         campaignFactors:
           manage: إدارة
+          title: عوامل الحملة
           view: عرض
         campaigns:
           bulk_download: تنزيل جماعي
@@ -271,25 +279,30 @@ ar:
           participant_options: خيارات المشاركين
           report_options: خيارات التقارير
           reset_nominations: إعادة تعيين الترشيحات
+          title: الحملات
           view: عرض
           view_factor_benchmark_scores: عرض درجات عوامل القياس
           view_stats: عرض الإحصائيات
         clients:
           export_data_report: تصدير تقرير البيانات
           manage: إدارة
+          title: العملاء
           view: عرض
           view_licenses: عرض التراخيص
         communications:
           manage: إدارة
+          title: الاتصالات
           view: عرض
         dashboards:
           accesssheet_manage: إدارة ورقة الوصول
           accesssheet_settings: إعدادات ورقة الوصول
           accesssheet_view: عرض ورقة الوصول
           export: التصدير
+          title: لوحات المعلومات
           view: عرض
         datasheets:
           manage: إدارة
+          title: أوراق البيانات
           view: عرض
         developmentActions:
           export: التصدير
@@ -301,27 +314,34 @@ ar:
           import_global_translations: استيراد الترجمات العالمية
           import_translations: استيراد الترجمات
           manage: الإدارة
+          title: إجراءات التطوير
           view: عرض
         dimensions:
           manage: إدارة
+          title: الأبعاد
           view: عرض
         idpTemplates:
           manage: إدارة
+          title: قوالب IDP
           view: عرض
         jobRoles:
           export_translations: تصدير ترجمات الأدوار الوظيفية
           import_translations: استيراد ترجمات الأدوار الوظيفية
           manage: الإدارة
+          title: الأدوار الوظيفية
           view: عرض
         libraries:
           manage: إدارة
+          title: مكتبات الإعلام
           view: عرض
         messages:
           email: البريد الإلكتروني
           instructions: التعليمات
           options: الخيارات
+          title: الرسائل
         norms:
           manage: إدارة
+          title: المعايير
           view: عرض
         proficiencyLevels:
           export: مستويات كفاءة التصدير
@@ -329,7 +349,10 @@ ar:
           import: مستويات كفاءة الاستيراد
           import_translations: ترجمات مستويات كفاءة الاستيراد
           manage: الإدارة
+          title: مستويات الكفاءة
           view: عرض
+        proficiency_level:
+          title: مستويات الكفاءة
         projectSettings:
           assessments: التقييمات
           design: التصميم
@@ -340,28 +363,37 @@ ar:
           saml: SAML
           security: الأمان
           smtp: SMTP
+          title: إعدادات المشروع
           webhooks: Webhooks
         projects:
           manage: إدارة
           manage_admins: إدارة المسؤولين
           manage_users: إدارة المستخدمين
+          title: المشاريع
           view: عرض
         questions:
           manage: إدارة
+          title: أسئلة
           view: عرض
         reflectionQuestions:
           export: التصدير
           import: الاستيراد
           manage: الإدارة
+          title: أسئلة تأملات IDP
           view: عرض
         registrationCodes:
           manage: إدارة
+          title: رموز التسجيل
           view: عرض
         registrationSettings:
           manage: إدارة
+          title: إعدادات التسجيل
         reports:
           manage: إدارة
+          title: التقارير
           view: عرض
+        responseMeta:
+          title: الترجمة الميتا
         results:
           approve_report: الموافقة على التقرير
           bulk_download: تنزيل جماعي
@@ -381,6 +413,7 @@ ar:
           reset_progress: إعادة تعيين التقدم
           reset_responses: إعادة تعيين الردود
           scores: الدرجات
+          title: النتائج
           view_report: عرض التقرير
           view_stats: عرض الإحصائيات
         skills:
@@ -399,6 +432,10 @@ ar:
           manage: إدارة
           title: الدعوات عبر الرسائل النصية القصيرة
           view: عرض
+        userIdpPlans:
+          manage: الإدارة
+          title: خطط IDP للمستخدمين
+          view: منظر
         users:
           reset_password: إعادة تعيين كلمة المرور
           title: المستخدمون

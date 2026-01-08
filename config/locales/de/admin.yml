@@ -78,11 +78,13 @@ de:
     delete_ok_text: Ja, löschen
     denied: Verweigert
     development_actions: Entwicklungspolitische Maßnahmen
+    development_actions_form_tags: Schilder
     dimensions: Abmessungen
     done: Fertig
     done_tooltip: Für diesen Benutzer kann keine weitere Bewertung eingereicht werden, da die Bewertung als von %{marked_by}
     edit_campaign_admin: Kampagnenverwaltung bearbeiten
     edit_client_admin: Kundenverwaltung bearbeiten
+    edit_permission_denied: Du hast keine Berechtigung, Admin-'%{name}' zu bearbeiten
     edit_project_admin: Projektverwaltung bearbeiten
     edit_threesixty_campaign_admin: Kampagnenverwaltung bearbeiten
     empty_csv_file: Die CSV-Datei enthält keine Daten.
@@ -430,6 +432,10 @@ de:
           manage: Verwalten Sie
           title: SMS-Einladungen
           view: Siehe
+        userIdpPlans:
+          manage: Managen
+          title: Nutzer-IDP-Pläne
+          view: Ansehen
         users:
           reset_password: Passwort zurücksetzen
           title: Benutzer

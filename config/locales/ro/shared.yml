@@ -6,6 +6,7 @@ ro:
     active: Active
     add: Adăugați
     advanced: Avansat
+    agree_and_continue: Acceptă și continuă
     archive: Arhivă
     archived: Arhivate
     authentication_failed: Autentificarea a eșuat. Vă rog să încercați din nou.
@@ -19,6 +20,7 @@ ro:
     continue: Continua
     created_at: Creat la
     created_date: Data creării
+    decline: Declin
     description: Descriere
     edit: Editați
     edited: Nou
@@ -41,6 +43,9 @@ ro:
     name: Nume
     new: Nou
     ok: Bine
+    recording_consent_notice: Această ședință va fi înregistrată. Participarea ta la această întâlnire constituie consimțământul tău de a fi înregistrat.
+    recording_consent_proceed_question: Sunteți de acord să continuați cu întâlnirea înregistrată?
+    recording_consent_title: Notificare de consimțământ pentru înregistrare
     remove: Eliminați
     removed: Scos
     reset_password: Resetați parola
@@ -49,6 +54,7 @@ ro:
     save: Salvați
     search: Căutare
     send_email: Trimite e-mail
+    show_more: Afișează mai mult
     something_wrong: Ceva nu a mers bine. Contactați administratorul.
     table:
       entries:

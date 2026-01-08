@@ -3318,6 +3318,7 @@ it:
           show_target_proficiency: Mostra competenza target
           strengths_blindspots: Punti di forza e punti ciechi
         text_condition_type: 'Tipo di condizione del testo:'
+        translate_with_ai: Traduci con l'IA
     report_families:
       create:
         successfully: Il bundle di report %{name} è stato creato con successo.

@@ -6,6 +6,7 @@ zh:
     active: 活跃
     add: 添加
     advanced: 高深
+    agree_and_continue: 同意并继续
     archive: 存档
     archived: 存档
     authentication_failed: 身份验证失败。请再试一次。
@@ -19,6 +20,7 @@ zh:
     continue: 继续
     created_at: 创建时间
     created_date: 创建日期
+    decline: 衰落
     description: 描述
     edit: 编辑
     edited: 新的
@@ -41,6 +43,9 @@ zh:
     name: 名称
     new: 新的
     ok: 确定
+    recording_consent_notice: 本次会议将被录制。您参与此次会议即表示您同意被录音。
+    recording_consent_proceed_question: 你同意继续录音会议吗？
+    recording_consent_title: 录音同意通知
     remove: 移除
     removed: 已删除
     reset_password: 重置密码
@@ -49,6 +54,7 @@ zh:
     save: 保存
     search: 搜索
     send_email: 发送电子邮件
+    show_more: 显示更多
     something_wrong: 出错了，请联系管理员。
     table:
       entries:

@@ -3318,6 +3318,7 @@ ja:
           show_target_proficiency: ターゲット習熟度の表示
           strengths_blindspots: 強みと盲点
         text_condition_type: 'テキスト条件タイプ:'
+        translate_with_ai: AIで翻訳
     report_families:
       create:
         successfully: レポート・バンドル %{name} が正常に作成されました。

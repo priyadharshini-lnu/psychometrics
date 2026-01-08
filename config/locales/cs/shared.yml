@@ -6,6 +6,7 @@ cs:
     active: Aktivní
     add: Přidat
     advanced: Pokročilý
+    agree_and_continue: Souhlasím a pokračujte
     archive: Archivovat
     archived: Archivováno
     authentication_failed: Autentizace selhala. Zkuste to prosím znovu.
@@ -19,6 +20,7 @@ cs:
     continue: Pokračovat
     created_at: Vytvořeno v
     created_date: Datum vytvoření
+    decline: Úpadek
     description: Popis
     edit: Upravit
     edited: Nové
@@ -41,6 +43,9 @@ cs:
     name: Název
     new: Nové
     ok: OK
+    recording_consent_notice: Toto zasedání bude nahráváno. Vaše účast na tomto setkání znamená váš souhlas s nahráváním.
+    recording_consent_proceed_question: Souhlasíte s pokračováním v zaznamenaném setkání?
+    recording_consent_title: Oznámení o souhlasu s nahráváním
     remove: Odstranit
     removed: Odstraněno
     reset_password: Obnovit heslo
@@ -49,6 +54,7 @@ cs:
     save: Uložit
     search: Hledat
     send_email: Odeslat e-mail
+    show_more: Zobrazit více
     something_wrong: Něco se pokazilo. Kontaktujte správce.
     table:
       entries:

@@ -3318,6 +3318,7 @@ ar:
           show_target_proficiency: إظهار الكفاءة المستهدفة
           strengths_blindspots: نقاط القوة والنقاط العمياء
         text_condition_type: 'نوع شرط النص:'
+        translate_with_ai: الترجمة باستخدام الذكاء الاصطناعي
     report_families:
       create:
         successfully: Report Bundle %{name} was created successfully.

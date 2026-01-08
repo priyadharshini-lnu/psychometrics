@@ -6,6 +6,7 @@ hr:
     active: Aktivno
     add: Dodati
     advanced: Napredan
+    agree_and_continue: Slažem se i nastavi
     archive: Arhiva
     archived: Arhivirano
     authentication_failed: Autentifikacija nije uspjela. Molim te, pokušaj ponovno.
@@ -19,6 +20,7 @@ hr:
     continue: Nastaviti
     created_at: Kreirano u
     created_date: Datum izrade
+    decline: Pad
     description: Opis
     edit: Urediti
     edited: Novi
@@ -41,6 +43,9 @@ hr:
     name: Ime
     new: Novi
     ok: U redu
+    recording_consent_notice: Ova sjednica sjednice bit će snimljena. Vaše sudjelovanje na ovom sastanku znači vaš pristanak za snimanje.
+    recording_consent_proceed_question: Slažete li se da nastavite sa snimljenim sastankom?
+    recording_consent_title: Obavijest o pristanku za snimanje
     remove: Ukloniti
     removed: Uklonjeno
     reset_password: Poništiti lozinku
@@ -49,6 +54,7 @@ hr:
     save: Spremiti
     search: Pretražiti
     send_email: Pošalji e-poštu
+    show_more: Pokaži više
     something_wrong: Nešto je pošlo po zlu. Obratite se administratoru.
     table:
       entries:

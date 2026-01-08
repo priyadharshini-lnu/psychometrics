@@ -6,6 +6,7 @@ th:
     active: เปิดใช้งาน
     add: เพิ่ม
     advanced: ดึก
+    agree_and_continue: ตกลงและดําเนินการต่อ
     archive: เก็บถาวร
     archived: เก็บเข้าคลัง
     authentication_failed: การรับรองความถูกต้องล้มเหลว โปรดลองอีกครั้ง
@@ -19,6 +20,7 @@ th:
     continue: ต่อเนื่อง
     created_at: สร้างเมื่อ
     created_date: วันที่สร้าง
+    decline: ปฏิเสธ
     description: คำอธิบาย
     edit: แก้ไข
     edited: ใหม่
@@ -41,6 +43,9 @@ th:
     name: ชื่อ
     new: ใหม่
     ok: ตกลง
+    recording_consent_notice: เซสชั่นการประชุมนี้จะถูกบันทึกไว้ การเข้าร่วมการประชุมนี้ถือเป็นความยินยอมของคุณที่จะบันทึกไว้
+    recording_consent_proceed_question: คุณตกลงที่จะดําเนินการประชุมที่บันทึกไว้หรือไม่?
+    recording_consent_title: การแจ้งความยินยอมในการบันทึก
     remove: เอาออก
     removed: ถูก เอา ออก
     reset_password: รีเซ็ตรหัสผ่าน
@@ -49,6 +54,7 @@ th:
     save: บันทึก
     search: ค้นหา
     send_email: ส่งอีเมล
+    show_more: แสดงเพิ่มเติม
     something_wrong: มีบางอย่างผิดพลาด ติดต่อผู้ดูแลระบบ
     table:
       entries:

@@ -78,11 +78,13 @@ ja:
     delete_ok_text: はい、削除してください
     denied: 拒否
     development_actions: 開発アクション
+    development_actions_form_tags: タグ
     dimensions: 寸法
     done: 完成です
     done_tooltip: このユーザーの評価は%{marked_by}によって行われたとマークされているため、これ以上の評価は提出できません
     edit_campaign_admin: キャンペーン管理者の編集
     edit_client_admin: クライアント管理者の編集
+    edit_permission_denied: 管理者の「%{name}」を編集する権限はありません
     edit_project_admin: プロジェクト管理者の編集
     edit_threesixty_campaign_admin: キャンペーン管理者の編集
     empty_csv_file: CSVファイルにはデータが含まれていません。
@@ -430,6 +432,10 @@ ja:
           manage: 管理
           title: SMS招待
           view: 表示
+        userIdpPlans:
+          manage: 管理
+          title: ユーザーIDPプラン
+          view: 眺め
         users:
           reset_password: パスワードのリセット
           title: ユーザー

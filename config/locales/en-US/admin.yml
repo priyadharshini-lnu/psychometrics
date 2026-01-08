@@ -78,11 +78,13 @@ en-US:
     delete_ok_text: Yes, Delete
     denied: Denied
     development_actions: Development Actions
+    development_actions_form_tags: Tags
     dimensions: Dimensions
     done: Done
     done_tooltip: No more evaluation can be submitted for this user as this user's evaluation is marked as done by %{marked_by}
     edit_campaign_admin: Edit Campaign Admin
     edit_client_admin: Edit Client Admin
+    edit_permission_denied: You do not have permission to edit admin '%{name}'
     edit_project_admin: Edit Project Admin
     edit_threesixty_campaign_admin: Edit Campaign Admin
     empty_csv_file: CSV file does not contain any data.
@@ -429,6 +431,10 @@ en-US:
         smsInvites:
           manage: Manage
           title: SMS Invites
+          view: View
+        userIdpPlans:
+          manage: Manage
+          title: User IDP Plans
           view: View
         users:
           reset_password: Reset Password

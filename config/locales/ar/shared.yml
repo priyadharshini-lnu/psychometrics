@@ -6,6 +6,7 @@ ar:
     active: نشط
     add: إضافة
     advanced: متقدم
+    agree_and_continue: موافق واستمر
     archive: أرشيف
     archived: المؤرشفه
     authentication_failed: فشل المصادقة. يرجى المحاولة مرة أخرى.
@@ -19,6 +20,7 @@ ar:
     continue: استمر
     created_at: تم إنشاؤها في
     created_date: تاريخ الإنشاء
+    decline: الانحدار
     description: وصف
     edit: تعديل
     edited: جديد
@@ -41,6 +43,9 @@ ar:
     name: اسم
     new: جديد
     ok: موافق
+    recording_consent_notice: سيتم تسجيل جلسة الاجتماع هذه. مشاركتك في هذا الاجتماع تعني موافقتك على التسجيل.
+    recording_consent_proceed_question: هل توافق على المضي قدما في الاجتماع المسجل؟
+    recording_consent_title: تسجيل إشعار الموافقة
     remove: إزالة
     removed: تمت الإزالة
     reset_password: إعادة تعيين كلمة المرور
@@ -49,6 +54,7 @@ ar:
     save: حفظ
     search: بحث
     send_email: إرسال بريد إلكتروني
+    show_more: عرض المزيد
     something_wrong: حدث خطأ ما. اتصل بالمشرف.
     table:
       entries:

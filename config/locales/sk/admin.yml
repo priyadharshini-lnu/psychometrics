@@ -78,11 +78,13 @@ sk:
     delete_ok_text: Áno, vymazať
     denied: Odmietnutý
     development_actions: Rozvojové akcie
+    development_actions_form_tags: Tagy
     dimensions: Rozmery
     done: Robené
     done_tooltip: Pre tohto používateľa už nie je možné vykonať ďalšie hodnotenie, pretože hodnotenie je označené ako vykonané %{marked_by}
     edit_campaign_admin: Upraviť správcu kampane
     edit_client_admin: Upraviť správcu klienta
+    edit_permission_denied: Nemáte povolenie upravovať administrátorský '%{name}'
     edit_project_admin: Upraviť správcu projektu
     edit_threesixty_campaign_admin: Upraviť správcu kampane
     empty_csv_file: CSV súbor neobsahuje žiadne údaje.
@@ -430,6 +432,10 @@ sk:
           manage: Ovládať
           title: SMS pozvánky
           view: Pohľad
+        userIdpPlans:
+          manage: Manažment
+          title: Plány IDP používateľov
+          view: Zobraziť
         users:
           reset_password: Obnoviť heslo
           title: Používateľov

@@ -3318,6 +3318,7 @@ sk:
           show_target_proficiency: Zobraziť cieľovú odbornosť
           strengths_blindspots: Silné stránky a slepé miesta
         text_condition_type: 'Typ textovej podmienky:'
+        translate_with_ai: Prekladajte pomocou AI
     report_families:
       create:
         successfully: Balík zostáv %{name} bol úspešne vytvorený.

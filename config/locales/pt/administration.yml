@@ -3318,6 +3318,7 @@ pt:
           show_target_proficiency: Mostrar proficiência no alvo
           strengths_blindspots: Pontos fortes e pontos cegos
         text_condition_type: 'Tipo de condição de texto:'
+        translate_with_ai: Traduza com IA
     report_families:
       create:
         successfully: O pacote de relatórios %{name} foi criado com êxito.

@@ -3318,6 +3318,7 @@ ko:
           show_target_proficiency: 표적 숙련도 표시
           strengths_blindspots: 강점과 사각지대
         text_condition_type: '텍스트 조건 유형:'
+        translate_with_ai: AI로 번역하기
     report_families:
       create:
         successfully: 보고서 번들 %{name}을(를) 성공적으로 만들었습니다.

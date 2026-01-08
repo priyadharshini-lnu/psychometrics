@@ -3318,6 +3318,7 @@ zh-Hant:
           show_target_proficiency: 顯示目標熟練程度
           strengths_blindspots: 優勢與盲點
         text_condition_type: 文字條件類型：
+        translate_with_ai: 用 AI 翻譯
     report_families:
       create:
         successfully: 報告束 %{name} 已成功建立。

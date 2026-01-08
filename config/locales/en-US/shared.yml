@@ -6,6 +6,7 @@ en-US:
     active: Active
     add: Add
     advanced: Advanced
+    agree_and_continue: Agree & Continue
     archive: Archive
     archived: Archived
     authentication_failed: Authentication failed. Please try again.
@@ -19,6 +20,7 @@ en-US:
     continue: Continue
     created_at: Created At
     created_date: Created Date
+    decline: Decline
     description: Description
     edit: Edit
     edited: New
@@ -41,6 +43,9 @@ en-US:
     name: Name
     new: New
     ok: Ok
+    recording_consent_notice: This meeting session will be recorded. Your participation in this meeting constitutes your consent to be recorded.
+    recording_consent_proceed_question: Do you agree to proceed with the recorded meeting?
+    recording_consent_title: Recording Consent Notice
     remove: Remove
     removed: Removed
     reset_password: Reset Password
@@ -49,6 +54,7 @@ en-US:
     save: Save
     search: Search
     send_email: Send email
+    show_more: Show More
     something_wrong: Something went wrong. Contact your administrator.
     table:
       entries:

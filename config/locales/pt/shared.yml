@@ -6,6 +6,7 @@ pt:
     active: Ativo
     add: Adicionar
     advanced: Avançado
+    agree_and_continue: Concorde e continue
     archive: Arquivar
     archived: Arquivado
     authentication_failed: A autenticação falhou. Por favor, tente novamente.
@@ -19,6 +20,7 @@ pt:
     continue: Continuar
     created_at: Criado em
     created_date: Data de criação
+    decline: Declínio
     description: Descrição
     edit: Editar
     edited: Novo
@@ -41,6 +43,9 @@ pt:
     name: Nome
     new: Novo
     ok: OK
+    recording_consent_notice: Esta sessão de reunião será gravada. Sua participação nesta reunião constitui seu consentimento para ser gravado.
+    recording_consent_proceed_question: Você concorda em prosseguir com a reunião gravada?
+    recording_consent_title: Aviso de Consentimento de Gravação
     remove: Remover
     removed: Removido
     reset_password: Redefinir a palavra-passe
@@ -49,6 +54,7 @@ pt:
     save: Salvar
     search: Pesquisar
     send_email: Enviar e-mail
+    show_more: Mostrar Mais
     something_wrong: Algo correu mal. Contacte o seu administrador.
     table:
       entries:

@@ -6,6 +6,7 @@ de:
     active: Aktiv
     add: Hinzufügen
     advanced: Fortgeschritten
+    agree_and_continue: Zustimmen und fortfahren
     archive: Archiv
     archived: Archiviert
     authentication_failed: Authentifizierung fehlgeschlagen. Bitte versuchen Sie es erneut.
@@ -19,6 +20,7 @@ de:
     continue: Fortsetzen
     created_at: Erstellt am
     created_date: Erstellt am
+    decline: Ablehnen
     description: Beschreibung
     edit: Bearbeiten
     edited: Neu
@@ -41,6 +43,9 @@ de:
     name: Name
     new: Neu
     ok: Ok
+    recording_consent_notice: Diese Sitzung wird aufgezeichnet. Ihre Teilnahme an diesem Treffen stellt Ihre Zustimmung zur Aufnahme dar.
+    recording_consent_proceed_question: Stimmen Sie zu, mit dem aufgezeichneten Treffen fortzufahren?
+    recording_consent_title: Aufzeichnung der Einwilligungsmitteilung
     remove: Entfernen
     removed: Entfernt
     reset_password: Passwort zurücksetzen
@@ -49,6 +54,7 @@ de:
     save: speich
     search: Suchen
     send_email: E-Mail senden
+    show_more: Mehr anzeigen
     something_wrong: Es ist etwas schief gelaufen, wenden Sie sich an Ihren Administrator.
     table:
       entries:

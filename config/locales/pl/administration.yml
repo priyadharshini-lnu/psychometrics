@@ -3318,6 +3318,7 @@ pl:
           show_target_proficiency: Pokaż biegłość docelową
           strengths_blindspots: Mocne strony i słabe punkty
         text_condition_type: 'Typ warunku tekstowego:'
+        translate_with_ai: Tłumacz z pomocą AI
     report_families:
       create:
         successfully: Pakiet raportów %{name} został utworzony pomyślnie.

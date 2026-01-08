@@ -3318,6 +3318,7 @@ de:
           show_target_proficiency: Zielkompetenz anzeigen
           strengths_blindspots: Stärken & blinde Flecken
         text_condition_type: 'Art der Textbedingung:'
+        translate_with_ai: Übersetzen mit KI
     report_families:
       create:
         successfully: Berichtsbündel %{name} wurde erfolgreich erstellt.

@@ -3318,6 +3318,7 @@ nl:
           show_target_proficiency: Toon doelvaardigheid
           strengths_blindspots: Sterke punten en blinde vlekken
         text_condition_type: 'Tekst Conditie Type:'
+        translate_with_ai: Vertaal met AI
     report_families:
       create:
         successfully: Rapportbundel %{name} is succesvol aangemaakt.
