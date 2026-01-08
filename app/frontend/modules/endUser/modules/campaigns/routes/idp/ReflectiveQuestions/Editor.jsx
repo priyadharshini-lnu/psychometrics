@@ -17,6 +17,7 @@ import 'froala-editor/js/languages/ja'
 import 'froala-editor/js/languages/zh_cn'
 import 'froala-editor/js/languages/zh_tw'
 import styles from './ReflectiveQuestions.less'
+import { FROALA } from '~/constants/froala.ts'
 
 const { I18n } = window
 
@@ -50,7 +51,7 @@ function Editor ({
     heightMax: 500,
     charCounterCount: true,
     wordCounterCount: true,
-    key: 'DUA2yE2C2F1A6A3A2A3qYFd1UQRFQIVb1MSMc2IWPNe1IFg1yD4C3D2C1C4C1H1H4B1D2==',
+    key: FROALA,
     attribution: false,
     toolbarSticky: false,
     placeholderText: I18n.t('idp.reflective_questions.answer_placeholder'),

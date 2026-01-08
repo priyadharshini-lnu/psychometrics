@@ -8,6 +8,7 @@ import FroalaEditor from 'react-froala-wysiwyg'
 import '~/libs/Editor/commands/rtlLtr'
 import 'froala-editor/js/froala_editor.pkgd.min'
 import 'froala-editor/js/plugins.pkgd.min'
+import { FROALA } from '~/constants/froala.ts'
 
 const { I18n } = window
 
@@ -85,7 +86,7 @@ function Editor ({
     heightMax: 500,
     charCounterCount: true,
     wordCounterCount: true,
-    key: 'DUA2yE2C2F1A6A3A2A3qYFd1UQRFQIVb1MSMc2IWPNe1IFg1yD4C3D2C1C4C1H1H4B1D2==',
+    key: FROALA,
     attribution: false,
     toolbarSticky: false,
     pasteDeniedAttrs: ['style'],
