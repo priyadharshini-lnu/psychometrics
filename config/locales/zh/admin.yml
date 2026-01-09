@@ -78,11 +78,13 @@ zh:
     delete_ok_text: 是的，删除
     denied: 否认
     development_actions: 发展行动
+    development_actions_form_tags: 标签
     dimensions: 尺寸
     done: 做
     done_tooltip: 该用户无法提交更多评估，因为该用户的评估已被标记为已完成%{marked_by}
     edit_campaign_admin: 编辑活动管理
     edit_client_admin: 编辑客户管理员
+    edit_permission_denied: 你没有权限编辑管理员的“%{name}”
     edit_project_admin: 编辑项目管理
     edit_threesixty_campaign_admin: 编辑活动管理
     empty_csv_file: CSV 文件不包含任何数据。
@@ -430,6 +432,10 @@ zh:
           manage: 管理
           title: 短信邀请
           view: 查看
+        userIdpPlans:
+          manage: 管理
+          title: 用户IDP计划
+          view: 景观
         users:
           reset_password: 重置密码
           title: 用户

@@ -3318,6 +3318,7 @@ th:
           show_target_proficiency: แสดงความเชี่ยวชาญเป้าหมาย
           strengths_blindspots: จุดแข็งและจุดบอด
         text_condition_type: 'ประเภทเงื่อนไขข้อความ:'
+        translate_with_ai: แปลด้วย AI
     report_families:
       create:
         successfully: สร้างชุดรายงาน %{name} เรียบร้อยแล้ว

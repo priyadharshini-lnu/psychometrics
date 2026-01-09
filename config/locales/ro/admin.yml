@@ -78,11 +78,13 @@ ro:
     delete_ok_text: Da, șterge
     denied: Refuzat
     development_actions: Acțiune de dezvoltare
+    development_actions_form_tags: Etichete
     dimensions: Dimensiuni
     done: Făcut
     done_tooltip: Nu se mai poate trimite nicio evaluare pentru acest utilizator, deoarece evaluarea acestuia este marcată ca fiind făcută de %{marked_by}
     edit_campaign_admin: Editați administratorul campaniei
     edit_client_admin: Editați administratorul clientului
+    edit_permission_denied: Nu ai permisiunea să editezi "%{name}" de administrator
     edit_project_admin: Editați administratorul proiectului
     edit_threesixty_campaign_admin: Editați administratorul campaniei
     empty_csv_file: Fișierul CSV nu conține niciun fel de date.
@@ -430,6 +432,10 @@ ro:
           manage: Acțiuni
           title: Invitații prin SMS
           view: Vedere
+        userIdpPlans:
+          manage: Gestionează
+          title: Planuri IDP pentru utilizatori
+          view: Vizualizare
         users:
           reset_password: Resetați parola
           title: Utilizatorii

@@ -6,6 +6,7 @@ ja:
     active: アクティブ
     add: 追加
     advanced: アドバンスド
+    agree_and_continue: 同意して続けてください
     archive: アーカイブ
     archived: アーカイブ
     authentication_failed: 認証に失敗しました。もう一度お試しください。
@@ -19,6 +20,7 @@ ja:
     continue: 続ける
     created_at: 作成日時：
     created_date: 作成日
+    decline: 衰退
     description: 形容
     edit: 編集
     edited: 新規
@@ -41,6 +43,9 @@ ja:
     name: 名称
     new: 新規
     ok: OK
+    recording_consent_notice: この会議セッションは録画されます。この会議への参加は、記録されることへの同意を意味します。
+    recording_consent_proceed_question: 録画された面談を進めることに同意しますか?
+    recording_consent_title: 同意書の記録通知
     remove: 削除
     removed: 削除
     reset_password: パスワードをリセット
@@ -49,6 +54,7 @@ ja:
     save: 保存
     search: 検索
     send_email: 電子メールを送信する
+    show_more: 続きを表示
     something_wrong: 管理者に連絡してください。
     table:
       entries:

@@ -3318,6 +3318,7 @@ ro:
           show_target_proficiency: Arată competența țintă
           strengths_blindspots: Puncte forte și puncte oarbe
         text_condition_type: 'Tip de condiție text:'
+        translate_with_ai: Traduce cu AI
     report_families:
       create:
         successfully: Pachetul de rapoarte %{name} a fost creat cu succes.

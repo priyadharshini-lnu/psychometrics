@@ -6,6 +6,7 @@ vi:
     active: Hoạt động
     add: Thêm vào
     advanced: Tiên tiến
+    agree_and_continue: Đồng ý và tiếp tục
     archive: Lưu trữ
     archived: Lưu trữ
     authentication_failed: Xác thực không thành công. Vui lòng thử lại.
@@ -19,6 +20,7 @@ vi:
     continue: Tiếp tục
     created_at: Được tạo ra tại
     created_date: Ngày tạo
+    decline: Suy giảm
     description: Sự miêu tả
     edit: Biên tập
     edited: Mới
@@ -41,6 +43,9 @@ vi:
     name: Tên
     new: Mới
     ok: Được rồi
+    recording_consent_notice: Phiên họp này sẽ được ghi lại. Việc bạn tham gia cuộc họp này cấu thành sự đồng ý của bạn để được ghi lại.
+    recording_consent_proceed_question: Bạn có đồng ý tiến hành cuộc họp được ghi âm không?
+    recording_consent_title: Thông báo đồng ý ghi âm
     remove: Di dời
     removed: Gỡ bỏ
     reset_password: Đặt lại mật khẩu
@@ -49,6 +54,7 @@ vi:
     save: Cứu
     search: Tìm kiếm
     send_email: Gửi email
+    show_more: Hiển thị nhiều hơn
     something_wrong: Có điều gì đó không ổn. Liên hệ với quản trị viên của bạn.
     table:
       entries:

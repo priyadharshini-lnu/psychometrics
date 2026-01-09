@@ -78,11 +78,13 @@ cs:
     delete_ok_text: Ano, Smazat
     denied: Popíral
     development_actions: Vývojové akce
+    development_actions_form_tags: Štítky
     dimensions: Rozměry
     done: Hotový
     done_tooltip: Již nelze podat žádné další hodnocení tohoto uživatele, protože hodnocení tohoto uživatele je označeno jako provedené %{marked_by}
     edit_campaign_admin: Upravit správce kampaně
     edit_client_admin: Upravit správce klienta
+    edit_permission_denied: Nemáte oprávnění upravovat administrátorské '%{name}'
     edit_project_admin: Upravit správce projektu
     edit_threesixty_campaign_admin: Upravit správce kampaně
     empty_csv_file: CSV soubor neobsahuje žádná data.
@@ -429,6 +431,10 @@ cs:
         smsInvites:
           manage: Správa
           title: Pozvánky SMS
+          view: Zobrazit
+        userIdpPlans:
+          manage: Spravujte
+          title: Plány pro IDP uživatelů
           view: Zobrazit
         users:
           reset_password: Obnovení hesla

@@ -6,6 +6,7 @@ fr:
     active: Actif
     add: Ajouter
     advanced: Avancé
+    agree_and_continue: Acceptez et continuez
     archive: Archives
     archived: Archivé
     authentication_failed: L’authentification a échoué. Veuillez réessayer.
@@ -19,6 +20,7 @@ fr:
     continue: Continuer
     created_at: Créé à
     created_date: Date de création
+    decline: Déclin
     description: Description
     edit: Editer
     edited: Nouveau
@@ -41,6 +43,9 @@ fr:
     name: Nom
     new: Nouveau
     ok: Ok
+    recording_consent_notice: Cette réunion sera enregistrée. Votre participation à cette réunion constitue votre consentement à être enregistré.
+    recording_consent_proceed_question: Acceptez-vous de poursuivre la réunion enregistrée ?
+    recording_consent_title: Avis de consentement d’enregistrement
     remove: Retirer
     removed: Supprimé
     reset_password: Réinitialiser le mot de passe
@@ -49,6 +54,7 @@ fr:
     save: Économiser
     search: Recherche
     send_email: Envoyer un courriel
+    show_more: Afficher plus
     something_wrong: Contactez votre administrateur.
     table:
       entries:

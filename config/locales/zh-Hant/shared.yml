@@ -6,6 +6,7 @@ zh-Hant:
     active: 活躍
     add: 新增
     advanced: 進階
+    agree_and_continue: 同意並繼續
     archive: 存檔
     archived: 存檔
     authentication_failed: 驗證失敗。請再試一次。
@@ -19,6 +20,7 @@ zh-Hant:
     continue: 續
     created_at: 建立於
     created_date: 建立日期
+    decline: 衰落
     description: 描述
     edit: 編輯
     edited: 新
@@ -41,6 +43,9 @@ zh-Hant:
     name: 名稱
     new: 新
     ok: 好的
+    recording_consent_notice: 本次會議將被錄音。您參與本次會議即表示您同意被錄音。
+    recording_consent_proceed_question: 你同意繼續錄音會議嗎？
+    recording_consent_title: 登記同意書通知
     remove: 移除
     removed: 已移除
     reset_password: 重設密碼
@@ -49,6 +54,7 @@ zh-Hant:
     save: 節省
     search: 搜尋
     send_email: 發送電子郵件
+    show_more: 顯示更多
     something_wrong: 出錯了，請聯絡您的管理員。
     table:
       entries:

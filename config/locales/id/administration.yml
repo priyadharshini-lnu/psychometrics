@@ -3318,6 +3318,7 @@ id:
           show_target_proficiency: Tampilkan Kemahiran Target
           strengths_blindspots: Kekuatan & Titik Buta
         text_condition_type: 'Jenis Kondisi Teks:'
+        translate_with_ai: Terjemahkan dengan AI
     report_families:
       create:
         successfully: Bundel Laporan %{name} berhasil dibuat.

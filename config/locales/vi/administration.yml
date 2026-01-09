@@ -3318,6 +3318,7 @@ vi:
           show_target_proficiency: Thể hiện trình độ mục tiêu
           strengths_blindspots: Điểm mạnh & Điểm mù
         text_condition_type: 'Loại điều kiện văn bản:'
+        translate_with_ai: Dịch bằng AI
     report_families:
       create:
         successfully: Báo cáo Gói %{name} đã được tạo thành công.

@@ -3318,6 +3318,7 @@ cs:
           show_target_proficiency: Zobrazit cílovou úroveň znalostí
           strengths_blindspots: Silné stránky a slepá místa
         text_condition_type: 'Typ textové podmínky:'
+        translate_with_ai: Překlad pomocí AI
     report_families:
       create:
         successfully: Svazek sestav %{name} byl úspěšně vytvořen.

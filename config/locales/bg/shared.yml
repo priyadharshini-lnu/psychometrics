@@ -6,6 +6,7 @@ bg:
     active: Активен
     add: Добавете
     advanced: Напреднал
+    agree_and_continue: Съгласен и продължи
     archive: Архивирайте
     archived: Архивирани
     authentication_failed: Автентикацията не беше успешна. Моля, опитайте отново.
@@ -19,6 +20,7 @@ bg:
     continue: Продължавам
     created_at: Създаден в
     created_date: Дата на създаване
+    decline: Упадък
     description: Описание
     edit: Редактирайте
     edited: Нов
@@ -41,6 +43,9 @@ bg:
     name: Име
     new: Нов
     ok: Добре
+    recording_consent_notice: Тази сесия на срещата ще бъде записана. Вашето участие в тази среща представлява вашето съгласие да бъдете записани.
+    recording_consent_proceed_question: Съгласяваш ли се да продължиш с записаната среща?
+    recording_consent_title: Уведомление за съгласие за записване
     remove: Премахнете
     removed: Отстранени
     reset_password: Възстановете на паролата
@@ -49,6 +54,7 @@ bg:
     save: Запазете
     search: Търсете
     send_email: Изпрати имейл
+    show_more: Покажи повече
     something_wrong: Нещо се обърка. Свържете се с администратора си.
     table:
       entries:

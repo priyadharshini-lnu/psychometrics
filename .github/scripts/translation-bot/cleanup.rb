@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 # Clean up temporary files
-files_to_clean = ['translation_changes.txt']
+files_to_clean = ['translation_changes.txt', '/tmp/new_keys.json']
 
 files_to_clean.each do |file|
   if File.exist?(file)

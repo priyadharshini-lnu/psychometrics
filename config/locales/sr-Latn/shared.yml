@@ -6,6 +6,7 @@ sr-Latn:
     active: Aktivni
     add: Dodaj
     advanced: Napredne
+    agree_and_continue: Slažem se i nastavi
     archive: Arhiviraj
     archived: Arhiviranih
     authentication_failed: Autentifikacija nije uspela. Pokušajte ponovo.
@@ -19,6 +20,7 @@ sr-Latn:
     continue: Nastavite
     created_at: Kreiran u
     created_date: Datum kreiranja
+    decline: Pretraživanje
     description: Opis
     edit: Uredi
     edited: Novi
@@ -41,6 +43,9 @@ sr-Latn:
     name: Ime
     new: Novi
     ok: Ok
+    recording_consent_notice: Ova sesija sastanka će biti snimljena. Vaše učešće na ovom sastanku predstavlja vašu saglasnost da se snima.
+    recording_consent_proceed_question: Da li se slažete da nastavite sa snimljenim sastankom?
+    recording_consent_title: Obaveštenje o saglasnosti za snimanje
     remove: Ukloni
     removed: Uklonjeno
     reset_password: Poništi lozinku
@@ -49,6 +54,7 @@ sr-Latn:
     save: Sačuvaj
     search: Pretraži
     send_email: Pošalji imejl
+    show_more: Prikaži još
     something_wrong: Nešto je pošlo naopako. Obratite se svom administratoru.
     table:
       entries:

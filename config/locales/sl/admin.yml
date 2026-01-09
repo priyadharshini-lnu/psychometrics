@@ -78,11 +78,13 @@ sl:
     delete_ok_text: Da, Izbriši
     denied: Zavrnjen
     development_actions: Razvojni ukrepi
+    development_actions_form_tags: Oznake
     dimensions: Dimenzije
     done: Storiti
     done_tooltip: Za tega uporabnika ni mogoče več opraviti ocene, saj je ocena označena kot opravljena s strani %{marked_by}
     edit_campaign_admin: Urejanje skrbnika oglaševalske akcije
     edit_client_admin: Urejanje skrbnika odjemalca
+    edit_permission_denied: Nimate dovoljenja za urejanje administratorskega '%{name}'
     edit_project_admin: Urejanje skrbnika projekta
     edit_threesixty_campaign_admin: Urejanje skrbnika oglaševalske akcije
     empty_csv_file: CSV datoteka ne vsebuje nobenih podatkov.
@@ -429,6 +431,10 @@ sl:
         smsInvites:
           manage: Upravljanje
           title: SMS vabila
+          view: Pogled
+        userIdpPlans:
+          manage: Upravljanje
+          title: Uporabniški IDP načrti
           view: Pogled
         users:
           reset_password: Ponastavi geslo

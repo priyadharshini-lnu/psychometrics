@@ -3318,6 +3318,7 @@ sl:
           show_target_proficiency: Pokaži ciljno znanje
           strengths_blindspots: Prednosti in slepe pege
         text_condition_type: 'Vrsta besedilnega pogoja:'
+        translate_with_ai: Prevajajte z umetno inteligenco
     report_families:
       create:
         successfully: Sklop poročil%{name} je bil uspešno ustvarjen.

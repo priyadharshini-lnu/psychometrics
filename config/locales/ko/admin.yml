@@ -78,11 +78,13 @@ ko:
     delete_ok_text: 네, 삭제하세요
     denied: 거부
     development_actions: 개발 작업
+    development_actions_form_tags: 태그
     dimensions: 치수
     done: 수행
     done_tooltip: 이 사용자의 평가는 %{marked_by}에 의해 완료된 것으로 표시되어 있어 더 이상 평가를 제출할 수 없습니다
     edit_campaign_admin: 캠페인 관리자 편집
     edit_client_admin: 클라이언트 관리자 편집
+    edit_permission_denied: 관리자 '%{name}'를 편집할 권한이 없습니다
     edit_project_admin: 프로젝트 관리자 편집
     edit_threesixty_campaign_admin: 캠페인 관리자 편집
     empty_csv_file: CSV 파일에는 데이터가 포함되어 있지 않습니다.
@@ -430,6 +432,10 @@ ko:
           manage: 관리
           title: SMS 초대
           view: 보기
+        userIdpPlans:
+          manage: 관리하세요
+          title: 사용자 IDP 계획
+          view: 전망
         users:
           reset_password: 비밀번호 재설정
           title: 사용자

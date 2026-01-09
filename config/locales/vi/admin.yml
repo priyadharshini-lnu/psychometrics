@@ -78,11 +78,13 @@ vi:
     delete_ok_text: Có, xóa
     denied: Bị từ chối
     development_actions: Hành động phát triển
+    development_actions_form_tags: thẻ
     dimensions: Kích thước
     done: Thực hiện
     done_tooltip: Không thể gửi thêm đánh giá cho người dùng này vì đánh giá của người dùng này được đánh dấu là đã thực hiện bởi %{marked_by}
     edit_campaign_admin: Chỉnh sửa quản trị viên chiến dịch
     edit_client_admin: Chỉnh sửa quản trị viên khách hàng
+    edit_permission_denied: Bạn không có quyền chỉnh sửa quản trị viên '%{name}'
     edit_project_admin: Chỉnh sửa quản trị viên dự án
     edit_threesixty_campaign_admin: Chỉnh sửa quản trị viên chiến dịch
     empty_csv_file: Tệp CSV không chứa bất kỳ dữ liệu nào.
@@ -430,6 +432,10 @@ vi:
           manage: Điều khiển
           title: Lời mời SMS
           view: Cảnh
+        userIdpPlans:
+          manage: Quản lý
+          title: Gói IDP người dùng
+          view: Xem
         users:
           reset_password: Đặt lại mật khẩu
           title: Người dùng

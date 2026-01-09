@@ -78,11 +78,13 @@ th:
     delete_ok_text: ใช่ ลบ
     denied: ถูก ปฏิเสธ
     development_actions: การดําเนินการพัฒนา
+    development_actions_form_tags: แท็ก
     dimensions: มิติ
     done: เสร็จแล้ว
     done_tooltip: ไม่สามารถส่งการประเมินสําหรับผู้ใช้รายนี้ได้อีก เนื่องจากการประเมินของผู้ใช้รายนี้ถูกทําเครื่องหมายว่าเสร็จสิ้นโดย %{marked_by}
     edit_campaign_admin: แก้ไขผู้ดูแลระบบแคมเปญ
     edit_client_admin: แก้ไขผู้ดูแลระบบลูกค้า
+    edit_permission_denied: คุณไม่มีสิทธิ์แก้ไขผู้ดูแลระบบ '%{name}'
     edit_project_admin: แก้ไขผู้ดูแลระบบโครงการ
     edit_threesixty_campaign_admin: แก้ไขผู้ดูแลระบบแคมเปญ
     empty_csv_file: ไฟล์ CSV ไม่มีข้อมูลใดๆ
@@ -429,6 +431,10 @@ th:
         smsInvites:
           manage: จัดการ
           title: คําเชิญทาง SMS
+          view: ดู
+        userIdpPlans:
+          manage: จัดการ
+          title: แผน ID ผู้ใช้
           view: ดู
         users:
           reset_password: รีเซ็ตรหัสผ่าน

@@ -3318,6 +3318,7 @@ fr:
           show_target_proficiency: Montrer la compétence cible
           strengths_blindspots: Forces et angles morts
         text_condition_type: 'Type de condition de texte :'
+        translate_with_ai: Traduire avec l’IA
     report_families:
       create:
         successfully: L'ensemble de rapports %{name} a été créé avec succès.

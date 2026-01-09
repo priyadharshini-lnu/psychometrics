@@ -78,11 +78,13 @@ hr:
     delete_ok_text: Da, Izbriši
     denied: Odbijen
     development_actions: Razvojne akcije
+    development_actions_form_tags: Oznake
     dimensions: Dimenzije
     done: Učinjeno
     done_tooltip: Za ovog korisnika više se ne može podnijeti evaluacija jer je evaluacija označena kao %{marked_by}
     edit_campaign_admin: Uredi administratora kampanje
     edit_client_admin: Uredi klijenta administratora
+    edit_permission_denied: Nemate dopuštenje za uređivanje administratorskog '%{name}'
     edit_project_admin: Uredi administratora projekta
     edit_threesixty_campaign_admin: Uredi administratora kampanje
     empty_csv_file: CSV datoteka ne sadrži nikakve podatke.
@@ -430,6 +432,10 @@ hr:
           manage: Upravljanje
           title: SMS pozivnice
           view: Pregled
+        userIdpPlans:
+          manage: Upravljaj
+          title: Korisnički IDP planovi
+          view: Pogled
         users:
           reset_password: Resetiraj lozinku
           title: Korisnici

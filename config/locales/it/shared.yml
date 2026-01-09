@@ -6,6 +6,7 @@ it:
     active: Attivi
     add: Aggiungi
     advanced: Avanzato
+    agree_and_continue: Accetta e continua
     archive: Archivio
     archived: Archiviati
     authentication_failed: L'autenticazione è fallita. Per favore, riprova.
@@ -19,6 +20,7 @@ it:
     continue: Continuare
     created_at: Creato il
     created_date: Data di creazione
+    decline: Declino
     description: Descrizione
     edit: Modifica
     edited: Nuove
@@ -41,6 +43,9 @@ it:
     name: Nome
     new: Nuove
     ok: Ok
+    recording_consent_notice: Questa sessione di riunione sarà registrata. La tua partecipazione a questa riunione costituisce il tuo consenso a essere registrato.
+    recording_consent_proceed_question: Accetti di procedere con l'incontro registrato?
+    recording_consent_title: Avviso di Consenso alla Registrazione
     remove: Rimuovere
     removed: Rimosso
     reset_password: Reimpostare la password
@@ -49,6 +54,7 @@ it:
     save: Salva
     search: Cerca
     send_email: Inviare l'e-mail
+    show_more: Mostra di più
     something_wrong: Qualcosa è andato storto. Contattare l'amministratore.
     table:
       entries:

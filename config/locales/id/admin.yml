@@ -78,11 +78,13 @@ id:
     delete_ok_text: Ya, Hapus
     denied: Ditolak
     development_actions: Tindakan Pengembangan
+    development_actions_form_tags: Tag
     dimensions: Dimensi
     done: Selesai
     done_tooltip: Tidak ada lagi evaluasi yang dapat diajukan untuk pengguna ini karena evaluasi pengguna ini ditandai sebagai dilakukan oleh %{marked_by}
     edit_campaign_admin: Edit Admin Kampanye
     edit_client_admin: Edit Admin Klien
+    edit_permission_denied: Anda tidak memiliki izin untuk mengedit '%{name}' admin
     edit_project_admin: Mengedit Admin Proyek
     edit_threesixty_campaign_admin: Edit Admin Kampanye
     empty_csv_file: CSV tidak berisi data apa pun.
@@ -430,6 +432,10 @@ id:
           manage: Kelola
           title: Undangan SMS
           view: Melihat
+        userIdpPlans:
+          manage: Kelola
+          title: Paket IDP Pengguna
+          view: Lihat
         users:
           reset_password: Atur Ulang Kata Sandi
           title: Pengguna

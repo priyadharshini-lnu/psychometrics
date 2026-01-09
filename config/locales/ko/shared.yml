@@ -6,6 +6,7 @@ ko:
     active: 활성
     add: 추가
     advanced: 고급
+    agree_and_continue: 동의하고 계속하세요
     archive: 아카이브
     archived: 아카이브
     authentication_failed: 인증에 실패했습니다. 다시 시도해 주세요.
@@ -19,6 +20,7 @@ ko:
     continue: 계속하다
     created_at: 만든 곳
     created_date: 생성 날짜
+    decline: 쇠퇴
     description: 묘사
     edit: 편집
     edited: 새로 만들기
@@ -41,6 +43,9 @@ ko:
     name: 이름
     new: 새로 만들기
     ok: 확인
+    recording_consent_notice: 이 회의 세션은 녹화될 것입니다. 이 회의에 참여하는 것은 녹음에 동의한 것으로 간주됩니다.
+    recording_consent_proceed_question: 녹화된 회의를 진행하는 데 동의하십니까?
+    recording_consent_title: 동의서 기록 통지
     remove: 제거
     removed: 제거됨
     reset_password: 비밀번호 재설정
@@ -49,6 +54,7 @@ ko:
     save: 저장
     search: 검색
     send_email: 이메일 보내기
+    show_more: 더 보기
     something_wrong: 문제가 발생했습니다. 관리자에게 문의하세요.
     table:
       entries:

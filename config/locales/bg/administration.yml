@@ -3318,6 +3318,7 @@ bg:
           show_target_proficiency: Показване на целеви умения
           strengths_blindspots: Силни страни и слепи точки
         text_condition_type: 'Тип условие на текста:'
+        translate_with_ai: Превод с AI
     report_families:
       create:
         successfully: Пакетът за отчети %{name} е създаден успешно.

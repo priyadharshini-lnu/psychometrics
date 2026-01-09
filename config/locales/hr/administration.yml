@@ -3318,6 +3318,7 @@ hr:
           show_target_proficiency: Pokažite stručnost cilja
           strengths_blindspots: Prednosti i slijepe točke
         text_condition_type: 'Vrsta tekstualnog uvjeta:'
+        translate_with_ai: Prevedite pomoću umjetne inteligencije
     report_families:
       create:
         successfully: Paket izvješća %{name} uspješno je stvoren.

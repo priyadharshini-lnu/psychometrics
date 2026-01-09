@@ -78,11 +78,13 @@ hu:
     delete_ok_text: Igen, töröld
     denied: Tagadás
     development_actions: Fejlesztési tevékenységek
+    development_actions_form_tags: Címkék
     dimensions: Dimenziók
     done: Kész
     done_tooltip: Több értékelést nem lehet benyújtani erre a felhasználóra, mivel az értékelést a %{marked_by}
     edit_campaign_admin: Kampányadminisztrátor szerkesztése
     edit_client_admin: Ügyfél-adminisztrátor szerkesztése
+    edit_permission_denied: Nincs engedélyed az admin '%{name}' szerkesztésére
     edit_project_admin: Projektadminisztrátorának szerkesztése
     edit_threesixty_campaign_admin: Kampányadminisztrátor szerkesztése
     empty_csv_file: A CSV fájl nem tartalmaz adatokat.
@@ -430,6 +432,10 @@ hu:
           manage: Kezel
           title: SMS-meghívók
           view: Nézet
+        userIdpPlans:
+          manage: Menedzsd
+          title: Felhasználói IDP tervek
+          view: Kilátás
         users:
           reset_password: Jelszó visszaállítása
           title: Felhasználók

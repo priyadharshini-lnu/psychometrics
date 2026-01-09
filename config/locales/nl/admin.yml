@@ -78,11 +78,13 @@ nl:
     delete_ok_text: Ja, verwijder
     denied: Geweigerd
     development_actions: Ontwikkelingsacties
+    development_actions_form_tags: Tags
     dimensions: Afmetingen
     done: Klaar
     done_tooltip: Er kan geen verdere evaluatie worden ingediend voor deze gebruiker omdat de evaluatie van deze gebruiker als uitgevoerd door %{marked_by}
     edit_campaign_admin: Campagnebeheer bewerken
     edit_client_admin: Klantbeheer bewerken
+    edit_permission_denied: Je hebt geen toestemming om admin-'%{name}' te bewerken
     edit_project_admin: Projectbeheer bewerken
     edit_threesixty_campaign_admin: Campagnebeheer bewerken
     empty_csv_file: Het CSV-bestand bevat geen gegevens.
@@ -430,6 +432,10 @@ nl:
           manage: Beheer
           title: SMS Uitnodigingen
           view: Bekijk
+        userIdpPlans:
+          manage: Managen
+          title: Gebruikers-IDP-plannen
+          view: Uitzicht
         users:
           reset_password: Wachtwoord opnieuw instellen
           title: Gebruikers

@@ -3318,6 +3318,7 @@ es-ES:
           show_target_proficiency: Mostrar competencia en el objetivo
           strengths_blindspots: Fortalezas y puntos ciegos
         text_condition_type: 'Tipo de condición de texto:'
+        translate_with_ai: Traduce con IA
     report_families:
       create:
         successfully: El paquete de informes %{name} se ha creado correctamente.

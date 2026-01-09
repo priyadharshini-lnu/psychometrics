@@ -3320,6 +3320,7 @@ hu:
           show_target_proficiency: Céljártasság megjelenítése
           strengths_blindspots: Erősségek és vakfoltok
         text_condition_type: 'Szövegfeltétel típusa:'
+        translate_with_ai: Fordítson MI-vel
     report_families:
       create:
         successfully: A(z) %{name} jelentéscsomag létrehozása sikeresen megtörtént.
