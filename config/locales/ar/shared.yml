@@ -18,6 +18,7 @@ ar:
     collaborative_learning: التعلم التعاوني
     confirm: تأكيد
     continue: استمر
+    copy: نسخ
     created_at: تم إنشاؤها في
     created_date: تاريخ الإنشاء
     decline: الانحدار
@@ -48,6 +49,7 @@ ar:
     recording_consent_title: تسجيل إشعار الموافقة
     remove: إزالة
     removed: تمت الإزالة
+    replace: استبدال
     reset_password: إعادة تعيين كلمة المرور
     rte_paste_content_exceeds_char_limit: النص يتجاوز حد الأحرف في {{maxCharacterLimit}} ولا يمكن لصقه.
     rte_paste_content_exceeds_word_limit: النص يتجاوز حد الكلمات في {{maxWordLimit}} ولا يمكن لصقه.
@@ -68,6 +70,7 @@ ar:
     terms_conditions_privacy: بيان الخصوصية
     tools: ادوات
     transcriptions: تدوين
+    try_again: حاول مرة أخرى
     tte_terms_and_condition: " الشروط والأحكام وبيان الخصوصية الخاص بشركة"
     type: نوع
     update: تحديث

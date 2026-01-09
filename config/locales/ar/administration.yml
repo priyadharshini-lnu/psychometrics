@@ -2888,6 +2888,11 @@ ar:
           active:
             label: Active
             name: active
+          assessments:
+            help_text: يؤثر هذا الاختيار فقط على حدث "الرد الأولي على التقييم".
+            label: التقييمات
+            placeholder: تحديد التقييمات
+            required: يجب تحديد تقييم واحد على الأقل لحدث "الرد الأولي على التقييم".
           auth_type:
             api_key:
               label: مفتاح واجهة برمجة التطبيقات
@@ -2944,6 +2949,7 @@ ar:
             list:
               assessment_assigned: Assessment Assigned
               assessment_completed: Assessment Completed
+              assessment_raw_response: تقييم الردود الأولية
               assessment_started: Assessment Started
               assessment_timeout: Assessment Timeout
               campaign_results_available: Campaign Results Available

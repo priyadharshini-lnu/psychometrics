@@ -34,14 +34,18 @@ ar:
     ai_assistants_test_render: اختبار العرض
     ai_assistants_test_render_tooltip: اختبر قالب التوجيه الخاص بك باستخدام بيانات الحملة لمعرفة ما سيتم إرساله إلى مساعد الذكاء الاصطناعي.
     ai_assisted_idp_feature_disabled: تم تعطيل ميزة الذكاء الاصطناعي المساعد للنزول (IDP) لهذا المشروع.
+    all_corner_rounded: جميع الزوايا مستديرة
     api_keys: مفاتيح API
     assessments: التقييمات
     assessments_reports: التقييمات والتقارير
     assessor_dashboard: لوحة معلومات المقيم
     assessor_workshops: مركز التقييم
     assessors: المقيمون
+    assistant_toolbar_failed: فشل في إنشاء مخرجات صالحة بعد عدة محاولات
+    assistant_toolbar_not_a_valid_operation: عملية غير معروفة%{operation}.
     audit_logs: سجلات التدقيق
     audit_reports: تقارير التدقيق
+    auto_placeholder: السيارات
     availability: التوفر
     available_languages: التقرير متوفر باللغات
     back_to_main: القائمة الرئيسية
@@ -88,15 +92,19 @@ ar:
     edit_project_admin: تعديل مسؤول مشروع
     edit_threesixty_campaign_admin: تعديل مسؤول حملة
     empty_csv_file: ملف CSV لا يحتوي على أي بيانات.
+    enable_enhance_with_ai_client_level: يرجى تمكين ميزة "تحسين باستخدام الذكاء الاصطناعي" على مستوى العميل
+    enhance_with_ai_requires_ai_assistants: يتطلب تحسين الأداء باستخدام الذكاء الاصطناعي تمكين ميزة المساعدات الذكية.
     evaluation_status: حالة التقييم
     evaluation_status_not_done: حالة التقييم ليست 'مكتملة' لشخص أو أكثر من المشاركات المختارة. يرجى التأكد من أن جميع المستخدمين المختارين قد أكملوا التقييمات أو وضع علامة على أنهم تم.
     export_admin_roles_permissions: تصدير أدوار وأذونات المسؤولين
+    feature_enhance_with_ai: تعزيز بالذكاء الاصطناعي
     feature_flags: أعلام الميزات
     fill_empty_score_msg: املأ جميع الدرجات النهائية قبل الحفظ.
     final_score_empty_msg: لا يمكن أن تكون النتيجة النهائية فارغة.
     idp_plan_reset_success: تم إعادة ضبط الخطة بنجاح
     idp_templates: قوالب IDP
     import_ai_artifacts: استيراد القطع الأثرية الذكاء الاصطناعي
+    import_csv_assessment_group_error: 'الصف %{index}: تمت دعوة المستخدم الذي يحمل عنوان البريد الإلكتروني %{email} بالفعل إلى "%{workshopInviteName}"'
     import_csv_error: 'الصف %{index}: مستخدم لديه بريد إلكتروني %{email} غير موجود في هذه الحملة'
     import_csv_parsing_error: 'خطأ في تحليل CSV: %{message}'
     import_description: استيراد المستخدمين من ملف CSV. يجب أن يحتوي كل صف على عنوان بريد إلكتروني.
@@ -661,12 +669,22 @@ ar:
     status_details: تفاصيل الحالة
     structured_learning: التعلم الرسمي [10]
     subdomain: المجال الفرعي
+    subject_part_of_other_invite: الموضوع مع البريد الإلكتروني %{user_email} تمت دعوته بالفعل إلى "%{workshop_invite_name}"
+    toolbar_ai_insight: رؤية الذكاء الاصطناعي
+    toolbar_ai_suggestion: اقتراح الذكاء الاصطناعي
+    toolbar_result_generating: جاري التوليد...
+    toolbar_text_copied: نسخ إلى الحافظة
+    toolbar_text_replaced: تم استبدال النص!
+    toolbar_what_changed_and_why: ما الذي تغير ولماذا
     upload_success: تم الرفع بنجاح
     user_report_events: أحداث تقارير المستخدم
     users: المستخدمون
     view_licenses: عرض التراخيص
     waiting: انتظار
     workshops: ورش العمل
+    writing_assistant_not_configured: مساعد الكتابة غير مهيأ
+    x_axis_interval_label: فاصل المحور السيني
+    y_axis_interval_label: فاصل المحور Y
     year: البلد
     yoodli_activity_id: معرف نشاط يودلي
     yoodli_email_id: معرف البريد الإلكتروني للمرشح في يودلي
