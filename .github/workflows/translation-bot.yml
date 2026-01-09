@@ -12,141 +12,76 @@ permissions:
   issues: write
 
 jobs:
-  generate_translations:
-    # Trigger on 'translate' label OR /translate command in PR comment
+  translate:
+    name: Generate Translations
     if: |
       (github.event_name == 'pull_request' && github.event.label.name == 'translate') ||
       (github.event_name == 'issue_comment' && github.event.issue.pull_request && startsWith(github.event.comment.body, '/translate'))
     runs-on: ubuntu-latest
-    
+    env:
+      GH_TOKEN: ${{ github.token }}
+
     steps:
-      - name: Debug trigger
-        run: |
-          echo "Event name: ${{ github.event_name }}"
-          echo "Actor: ${{ github.actor }}"
-          if [ "${{ github.event_name }}" == "issue_comment" ]; then
-            echo "Comment body: ${{ github.event.comment.body }}"
-            echo "Issue/PR number: ${{ github.event.issue.number }}"
-          else
-            echo "Label name: ${{ github.event.label.name }}"
-            echo "PR number: ${{ github.event.pull_request.number }}"
-          fi
-
-      - name: Parse command arguments
-        id: parse_args
-        run: |
-          if [ "${{ github.event_name }}" == "issue_comment" ]; then
-            # Extract languages from /translate command
-            # Supports: /translate, /translate ar, /translate ar,fr,es
-            COMMENT="${{ github.event.comment.body }}"
-            LANGUAGES=$(echo "$COMMENT" | grep -oP '(?<=/translate\s)[\w,-]+' | head -1 || echo "")
-            if [ -n "$LANGUAGES" ]; then
-              # Replace commas with spaces for i18n-tasks
-              LANG_ARG="-l $(echo $LANGUAGES | tr ',' ' ' | tr ' ' ',')"
-              echo "languages=$LANG_ARG" >> $GITHUB_OUTPUT
-              echo "Translating languages: $LANGUAGES"
-            else
-              echo "languages=" >> $GITHUB_OUTPUT
-              echo "Translating all languages"
-            fi
-          else
-            # Label trigger - translate all by default (remove -l ar for production)
-            echo "languages=-l ar" >> $GITHUB_OUTPUT
-            echo "Label trigger: translating Arabic only (testing mode)"
-          fi
-
-      - name: Get PR details
-        id: pr_details
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if [ "${{ github.event_name }}" == "issue_comment" ]; then
-            PR_NUMBER="${{ github.event.issue.number }}"
-            # Fetch PR details via API
-            PR_DATA=$(gh pr view $PR_NUMBER --json headRefName,baseRefName,headRefOid)
-            HEAD_REF=$(echo "$PR_DATA" | jq -r '.headRefName')
-            BASE_REF=$(echo "$PR_DATA" | jq -r '.baseRefName')
-            HEAD_SHA=$(echo "$PR_DATA" | jq -r '.headRefOid')
-          else
-            PR_NUMBER="${{ github.event.pull_request.number }}"
-            HEAD_REF="${{ github.event.pull_request.head.ref }}"
-            BASE_REF="${{ github.event.pull_request.base.ref }}"
-            HEAD_SHA="${{ github.event.pull_request.head.sha }}"
-          fi
-          echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
-          echo "head_ref=$HEAD_REF" >> $GITHUB_OUTPUT
-          echo "base_ref=$BASE_REF" >> $GITHUB_OUTPUT
-          echo "head_sha=$HEAD_SHA" >> $GITHUB_OUTPUT
-          echo "PR #$PR_NUMBER: $HEAD_REF -> $BASE_REF"
-
-      - name: React to comment
-        if: github.event_name == 'issue_comment'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh api repos/${{ github.repository }}/issues/comments/${{ github.event.comment.id }}/reactions -f content='+1'
-
-      - name: Checkout PR code
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          ref: ${{ steps.pr_details.outputs.head_ref }}
-          fetch-depth: 0
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.4'
+          ruby-version: "3.4"
 
-      - name: Install i18n-tasks
+      - name: Parse command arguments
+        id: parse_args
+        run: |
+          ruby .github/scripts/translation-bot/parse-trigger.rb \
+            "${{ github.event_name }}" \
+            "${{ github.event.comment.body }}" \
+            "${{ github.event.issue.number }}" \
+            "${{ github.event.pull_request.number }}"
+
+      - name: Checkout PR code
+        run: |
+          gh pr checkout ${{ steps.parse_args.outputs.pr_number }} \
+            --repo ${{ github.repository }}
+
+      - name: Get branch info
+        id: branch_info
+        run: |
+          ruby .github/scripts/translation-bot/get-branch-info.rb \
+            "${{ steps.parse_args.outputs.pr_number }}"
+
+      - name: Install dependencies
         run: |
           gem install psych -v 5.2.6 --no-document
           gem install i18n-tasks byebug deepl-rb --no-document
 
-      - name: Translate missing keys with DeepL
+      - name: Translate missing keys
         env:
           DEEPL_AUTH_KEY: ${{ secrets.DEEPL_AUTH_KEY }}
         run: |
-          LANG_ARG="${{ steps.parse_args.outputs.languages }}"
-          echo "Running: i18n-tasks translate-missing $LANG_ARG --backend=deepl"
-          i18n-tasks translate-missing $LANG_ARG --backend=deepl
+          i18n-tasks translate-missing ${{ steps.parse_args.outputs.languages }} --backend=deepl
 
       - name: Normalize locale files
-        run: |
-          i18n-tasks normalize -p
+        run: i18n-tasks normalize -p
 
-      - name: Check if translations were generated
+      - name: Check for changes
         id: check_changes
-        run: |
-          ruby .github/scripts/translation-bot/check-changes.rb
-
-      - name: Debug git status before PR creation
-        if: steps.check_changes.outputs.changes_made == 'true'
-        run: |
-          echo "Git status:"
-          git status
-          echo "Git status --porcelain config/locales/:"
-          git status --porcelain config/locales/
-          echo "Git diff --name-only:"
-          git diff --name-only
+        run: ruby .github/scripts/translation-bot/check-changes.rb
 
       - name: Create translation PR
-        if: steps.check_changes.outputs.changes_made == 'true'
         id: create_pr
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: steps.check_changes.outputs.changes_made == 'true'
         run: |
-          bash .github/scripts/translation-bot/create-translation-pr.sh \
-            "${{ steps.pr_details.outputs.pr_number }}" \
-            "${{ steps.pr_details.outputs.head_ref }}" \
-            "${{ steps.pr_details.outputs.base_ref }}"
+          ruby .github/scripts/translation-bot/create-translation-pr.rb \
+            "${{ steps.parse_args.outputs.pr_number }}" \
+            "${{ steps.branch_info.outputs.head_ref }}" \
+            "${{ steps.branch_info.outputs.base_ref }}"
 
-      - name: Comment on original PR
+      - name: Comment on PR
         if: always()
-        env:
-          PR_URL: ${{ steps.create_pr.outputs.pr_url }}
-          TRANSLATION_BRANCH: ${{ steps.create_pr.outputs.translation_branch }}
-          CHANGES_MADE: ${{ steps.check_changes.outputs.changes_made }}
-          PR_NUMBER: ${{ steps.pr_details.outputs.pr_number }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ruby .github/scripts/translation-bot/comment-on-pr.rb "$PR_NUMBER" "$CHANGES_MADE" "$PR_URL" "$TRANSLATION_BRANCH"
+          ruby .github/scripts/translation-bot/comment-on-pr.rb \
+            "${{ steps.parse_args.outputs.pr_number }}" \
+            "${{ steps.check_changes.outputs.changes_made }}" \
+            "${{ steps.create_pr.outputs.pr_url }}" \
+            "${{ steps.create_pr.outputs.translation_branch }}"
