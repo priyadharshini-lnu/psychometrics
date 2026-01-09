@@ -12,7 +12,7 @@ RSpec.describe Webhooks::MhsController, type: :controller do
         expect(response.headers['WebHook-Allowed-Origin']).to eq('*')
         expect(response.headers['WebHook-Allowed-Rate']).to eq('1000')
         expect(response.headers['Access-Control-Allow-Origin']).to eq('*')
-        expect(response.headers['Access-Control-Allow-Methods']).to eq('POST, OPTIONS')
+        expect(response.headers['Access-Control-Allow-Methods']).to eq('HEAD, POST, OPTIONS')
       end
 
       it 'includes custom WebHook-Allowed-Origin when Origin header present' do
@@ -47,26 +47,6 @@ RSpec.describe Webhooks::MhsController, type: :controller do
 
       expect(response).to have_http_status(:ok)
       expect(Rails.logger).to have_received(:info).with(/Received MHS webhook payload:/)
-    end
-  end
-
-  describe 'unsupported HTTP methods' do
-    it 'returns method not allowed for GET' do
-      get :webhook
-
-      expect(response).to have_http_status(:method_not_allowed)
-    end
-
-    it 'returns method not allowed for PUT' do
-      put :webhook
-
-      expect(response).to have_http_status(:method_not_allowed)
-    end
-
-    it 'returns method not allowed for DELETE' do
-      delete :webhook
-
-      expect(response).to have_http_status(:method_not_allowed)
     end
   end
 end

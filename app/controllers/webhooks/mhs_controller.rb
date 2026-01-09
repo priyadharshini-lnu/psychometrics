@@ -6,6 +6,8 @@ module Webhooks
 
     def webhook
       case request.method
+        when 'HEAD'
+          handle_head_request
         when 'OPTIONS'
           handle_webhook_verification
         when 'POST'
@@ -17,12 +19,17 @@ module Webhooks
 
     private
 
+    def handle_head_request
+      response.headers['Cache-Control'] = 'no-cache, no-store'
+      head :ok
+    end
+
     def handle_webhook_verification
       # https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/http-webhook.md#41-validation-request
       response.headers['WebHook-Allowed-Origin'] = request.headers['Origin'] || '*'
       response.headers['WebHook-Allowed-Rate'] = '1000'
       response.headers['Access-Control-Allow-Origin'] = '*'
-      response.headers['Access-Control-Allow-Methods'] = 'POST, OPTIONS'
+      response.headers['Access-Control-Allow-Methods'] = 'HEAD, POST, OPTIONS'
       response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
 
       head :ok
