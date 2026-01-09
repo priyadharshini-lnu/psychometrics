@@ -163,7 +163,7 @@ commands:
             - vite-compile-cache-{{ .Environment.CACHE_VERSION }}-<< parameters.node-env >>-{{ arch }}-{{ .Branch }}-{{ checksum "webpack-files.txt" }}
       - restore_cache:
           keys:
-            - rspec-cacheflag-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum "rspec-files.txt" }}
+            - rspec-cacheflag---{{ .Environment.CIRCLE_NODE_INDEX }}---{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum "rspec-files.txt" }}
 
   abort_on_assets_files:
     steps:
@@ -464,7 +464,7 @@ jobs:
           name: Save RSpec cacheflag
           command: mkdir -p ~/cachedflags/ && touch ~/cachedflags/job.rspec.flag
       - save_cache:
-          key: rspec-cacheflag-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum "rspec-files.txt" }}
+          key: rspec-cacheflag---{{ .Environment.CIRCLE_NODE_INDEX }}---{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum "rspec-files.txt" }}
           paths:
             - ~/cachedflags/job.rspec.flag
 
