@@ -130,6 +130,9 @@ class UserAssessment < ApplicationRecord
   after_commit -> { finish_proctoring_session },
                if: proc { status_previously_changed? && deemed_completed? }, on: %i[update]
 
+  after_commit :enqueue_media_response_transcriptions,
+               if: proc { status_previously_changed? && completed? }, on: %i[update]
+
   alias result users_result
 
   def self.ransackable_attributes(_auth_object = nil)
@@ -437,6 +440,18 @@ class UserAssessment < ApplicationRecord
 
   def caching_enabled?
     campaign_assessment&.caching_enabled?
+  end
+
+  def enqueue_media_response_transcriptions
+    users_result&.media_responses&.
+      joins(:question)&.
+      where(questions: { type: %w[VideoResponse AudioResponse] })&.
+      where("questions.props ->> 'enableTranscription' = ?", 'true')&.
+      find_each do |media_response|
+      next unless media_response.transcription_not_requested?
+
+      MediaResponses::AddTranscriptionJob.perform_later(media_response.id)
+    end
   end
 end
 # rubocop:enable Metrics/ClassLength

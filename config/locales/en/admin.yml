@@ -94,6 +94,7 @@ en:
     edit_threesixty_campaign_admin: Edit Campaign Admin
     empty_csv_file: CSV file does not contain any data.
     enable_enhance_with_ai_client_level: Please enable Enhance with AI feature at client level
+    enable_transcription: Enable Transcription
     enhance_with_ai_requires_ai_assistants: Enhance with AI requires AI Assistants feature to be enabled
     evaluation_status: Evaluation Status
     evaluation_status_not_done: Evaluation status is not 'Done' for one or more selected subjects. Please ensure all selected users have completed evaluations or mark as done.

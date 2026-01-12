@@ -34,8 +34,9 @@ const PropertyPanelComponent = (props) => {
     bottom: isOverflown ? 0 : 'unset',
   }
   const serializedQuestion = QuestionSerializer.wrap(question)
-  const { allowContentCopy } = serializedQuestion.props
+  const { allowContentCopy, enableTranscription } = serializedQuestion.props
   const View = Properties[`${serializedQuestion.type}Properties`]
+  const showEnableTranscription = ['AudioResponse', 'VideoResponse'].includes(serializedQuestion.type)
 
   useEffect(() => {
     const htmlElement = document.getElementsByTagName('html')[0]
@@ -163,6 +164,17 @@ const PropertyPanelComponent = (props) => {
     </div>
   )
 
+  const transcriptionProperties = showEnableTranscription ? (
+    <div className={styles.fieldset}>
+      <Checkbox
+        onChange={({ target: { checked } }) => serializedQuestion.changeProps({ enableTranscription: checked })}
+        defaultChecked={enableTranscription}
+      >
+        {I18n.t('admin.enable_transcription')}
+      </Checkbox>
+    </div>
+  ) : null
+
   return (
     <ConfigProvider componentSize="small">
       <div className={styles.main} style={style}>
@@ -178,6 +190,7 @@ const PropertyPanelComponent = (props) => {
           {questiontypeBtn}
           {customProperties}
           {commonProperties}
+          {transcriptionProperties}
           {defaultAction}
         </Space>
       </div>

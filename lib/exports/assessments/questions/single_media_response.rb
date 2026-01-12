@@ -16,8 +16,10 @@ module Exports
         end
 
         def self.media_response_answers(media_response, duration)
+          transcription = media_response&.transcription&.text
           [
             media_response.asset.url(expires_in: 1.week),
+            transcription,
             media_response.encoded_id,
             duration
           ]

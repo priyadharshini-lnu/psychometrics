@@ -1,6 +1,13 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
+import {
+  Button,
+  Card,
+  Input,
+  Typography,
+} from 'antd'
 
+import { DownloadOutlined, EyeInvisibleOutlined, EyeOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { getFeatures } from '~/core/config.ts'
 import {
   getI18n,
@@ -18,6 +25,7 @@ import { BROWSER_FEATURES } from '~/modules/survey/constants/browser'
 import VideoRecorder from '~/modules/survey/components/VideoRecorder'
 import { SafeHTML } from '~/components/SafeHTML'
 import { checkBrowserSupportForFeature } from '~/utils/uaParser'
+import { downloadTextFile } from '~/utils/downloadTextFile'
 import { UnsupportedBrowser } from './UnsupportedBrowser'
 import VideoPlayer from './VideoPlayer'
 import MediaRecorder from '~/components/MediaRecorder'
@@ -90,6 +98,9 @@ class SupportedVideoRecorder extends Component {
   constructor (props) {
     super(props)
     this.VideoRecorderComponent = VideoRecorder
+    this.state = {
+      showTranscription: false,
+    }
   }
 
   successUpload = (data) => {
@@ -100,6 +111,16 @@ class SupportedVideoRecorder extends Component {
   deleteMedia = () => {
     const { model, removeMediaResponse } = this.props
     removeMediaResponse(model.id)
+  }
+
+  handleDownloadTranscription = (mediaResponse) => {
+    const { model } = this.props
+
+    if (!mediaResponse?.transcriptionText) return
+    downloadTextFile(
+      mediaResponse.transcriptionText,
+      `transcription_${model.id}.txt`,
+    )
   }
 
   renderVideoRecorder () {
@@ -115,11 +136,48 @@ class SupportedVideoRecorder extends Component {
       features,
     } = this.props
     const { VideoRecorderComponent } = this
+    const { showTranscription } = this.state
 
     if (readOnly) {
       const mediaResponse = mediaResponses.filter(({ userSelected }) => userSelected)[0]
       return (
-        <VideoPlayer mediaResponse={mediaResponse} mediaUrl={mediaUrl} />
+        <>
+          <VideoPlayer mediaResponse={mediaResponse} mediaUrl={mediaUrl} />
+          {mediaResponse?.transcriptionText && (
+            <Card>
+              <div>
+                <Typography.Text strong>
+                  {I18n.t('shared.transcriptions')}
+                  {': '}
+                </Typography.Text>
+                <Button
+                  className="ms-2"
+                  type="text"
+                  icon={showTranscription ? <EyeInvisibleOutlined /> : <EyeOutlined />}
+                  onClick={() => this.setState({ showTranscription: !showTranscription })}
+                >
+                  {I18n.t('shared.view')}
+                </Button>
+                <Button
+                  className="ms-2"
+                  type="text"
+                  icon={<DownloadOutlined />}
+                  onClick={() => this.handleDownloadTranscription(mediaResponse)}
+                >
+                  {I18n.t('shared.download')}
+                </Button>
+              </div>
+              {showTranscription && (
+                <Input.TextArea
+                  value={mediaResponse.transcriptionText}
+                  readOnly
+                  autoSize={{ minRows: 2, maxRows: 6 }}
+                  className="mt-4"
+                />
+              )}
+            </Card>
+          )}
+        </>
       )
     }
 

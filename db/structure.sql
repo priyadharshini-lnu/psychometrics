@@ -4043,7 +4043,8 @@ CREATE TABLE public.media_responses (
     updated_at timestamp without time zone NOT NULL,
     users_result_id integer,
     assign_id integer,
-    user_selected boolean DEFAULT false
+    user_selected boolean DEFAULT false,
+    transcription_status integer DEFAULT 0 NOT NULL
 );
 
 
@@ -7405,6 +7406,39 @@ ALTER SEQUENCE public.threesixty_subjects_id_seq OWNED BY public.threesixty_subj
 
 
 --
+-- Name: transcriptions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.transcriptions (
+    id bigint NOT NULL,
+    transcribable_type character varying NOT NULL,
+    transcribable_id bigint NOT NULL,
+    text text NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: transcriptions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.transcriptions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: transcriptions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.transcriptions_id_seq OWNED BY public.transcriptions.id;
+
+
+--
 -- Name: translations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -10071,6 +10105,13 @@ ALTER TABLE ONLY public.threesixty_subjects ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
+-- Name: transcriptions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.transcriptions ALTER COLUMN id SET DEFAULT nextval('public.transcriptions_id_seq'::regclass);
+
+
+--
 -- Name: translations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -11871,6 +11912,14 @@ ALTER TABLE ONLY public.threesixty_reminder_histories
 
 ALTER TABLE ONLY public.threesixty_subjects
     ADD CONSTRAINT threesixty_subjects_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: transcriptions transcriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.transcriptions
+    ADD CONSTRAINT transcriptions_pkey PRIMARY KEY (id);
 
 
 --
@@ -14137,6 +14186,13 @@ CREATE INDEX index_media_responses_on_question_id ON public.media_responses USIN
 
 
 --
+-- Name: index_media_responses_on_transcription_status; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_media_responses_on_transcription_status ON public.media_responses USING btree (transcription_status);
+
+
+--
 -- Name: index_media_responses_on_users_result_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15324,6 +15380,13 @@ CREATE INDEX index_threesixty_subjects_on_evaluation_status_updated_by_id ON pub
 --
 
 CREATE INDEX index_threesixty_subjects_on_user_id ON public.threesixty_subjects USING btree (user_id);
+
+
+--
+-- Name: index_transcriptions_on_transcribable; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_transcriptions_on_transcribable ON public.transcriptions USING btree (transcribable_type, transcribable_id);
 
 
 --
@@ -19128,9 +19191,12 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20251215073428'),
+('20260106133315'),
 ('20251217070713'),
+('20251215073428'),
+('20251214060951'),
 ('20251212100342'),
+('20251211083522'),
 ('20251206120622'),
 ('20251201130649'),
 ('20251127063311'),

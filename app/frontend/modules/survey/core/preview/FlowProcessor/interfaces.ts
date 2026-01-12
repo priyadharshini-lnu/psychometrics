@@ -193,6 +193,8 @@ export interface MediaResponse {
   userSelected: boolean
   url: string
   createdAt: string
+  transcriptionText?: string
+  transcriptionUrl?: string
 }
 
 export interface I18nInterface {

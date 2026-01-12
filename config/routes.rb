@@ -20,10 +20,12 @@ Rails.application.routes.draw do
   get '/s/:id' => 'shortener/shortened_urls#show', as: :shortened
   post '/faas_notifications/url_to_pdf'
   post '/faas_notifications/zip_s3_files'
+  post '/faas_notifications/media_to_transcription'
 
   # TODO: Can be removed once we update the SNS
   post '/lambda_notifications/url_to_pdf', to: 'faas_notifications#url_to_pdf'
   post '/lambda_notifications/zip_s3_files', to: 'faas_notifications#zip_s3_files'
+  post '/lambda_notifications/media_to_transcription', to: 'faas_notifications#media_to_transcription'
 
   get '/maintenance', to: 'maintenance#index', as: :maintenance
 
@@ -848,6 +850,7 @@ as: :simulation_progress_notification
     post '/:project_id/skillvue/results', to: 'skillvue#results', as: :skillvue_results_notification
     match '/mhs/webhook', to: 'mhs#webhook', via: %i[head options post], as: :mhs_webhook
     post '/dailyco/recordings', to: 'daily_co#recordings', as: :dailyco_recordings
+    post '/oci_speech_transcription', to: 'oci_speech_transcription#create', as: :oci_speech_transcription
   end
 
   devise_scope :user do
@@ -1675,6 +1678,12 @@ only: %i[index create update]
           jsonapi_resources :writing_assistants, only: [] do
             collection do
               post :assist
+            end
+          end
+
+          jsonapi_resources :media_responses, only: %i[index] do
+            member do
+              post :generate_transcription
             end
           end
 

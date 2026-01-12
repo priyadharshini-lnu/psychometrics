@@ -38,6 +38,7 @@ protocol: <%= ENV["APP_PROTOCOL"] || 'http' %>
 asset_host: <%= ENV["ASSET_HOST"] %>
 file_host: <%= ENV["FILE_HOST"] %>
 platform_admins: <%= ENV["PLATFORM_ADMINS"] %>
+real_env: <%= ENV["REAL_ENV"] %>
 cloud_functions_service: <%= ENV.fetch('CLOUD_FUNCTION_SERVICE', 'aws') %>
 timezone_tip: ' (GST)'
 skip_recaptcha_for_ips: <%= ENV.fetch('SKIP_RECAPTCHA_FOR_IPS', '').split(',').map(&:strip) %>
@@ -79,6 +80,7 @@ features:
   proctoring: <%= ENV.fetch('PROCTORING_ENABLED', 'false') == 'true' %>
   url_to_pdf_faas: <%= ENV.fetch('URL_TO_PDF_FAAS_ENABLED', 'false') == 'true' %>
   zip_s3_files_faas: <%= ENV.fetch('ZIP_S3_FILES_FAAS_ENABLED', 'false') == 'true' %>
+  media_to_transcription_faas: <%= ENV.fetch('MEDIA_TO_TRANSCRIPTION_FAAS_ENABLED', 'false') == 'true' %>
   smtp_enabled: <%= ENV.fetch('SMTP_ENABLED', 'false') == 'true' %>
   webhooks_enabled: <%= ENV.fetch('WEBHOOKS_ENABLED', 'false') == 'true' %>
   react_project_list: <%= ENV.fetch('REACT_PROJECT_LIST', 'false') == 'true' %>
@@ -2409,6 +2411,9 @@ ai_embedding_provider:
   api_key: <%= ENV.fetch('EMBEDDING_API_KEY', nil) %>
   api_endpoint: <%= ENV.fetch('EMBEDDING_API_ENDPOINT', nil) %>
 
+ai_transcription_provider:
+  provider: <%= ENV.fetch('TRANSCRIPTION_PROVIDER', 'oci') %>
+  model: <%= ENV.fetch('TRANSCRIPTION_MODEL', 'WHISPER_MEDIUM') %>
 
 # Default SMTP throttling limits used when a project has no SMTP setting
 smtp_default:
