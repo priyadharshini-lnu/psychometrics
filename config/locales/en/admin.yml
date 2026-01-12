@@ -43,6 +43,7 @@ en:
     assessors: Assessors
     assistant_toolbar_failed: Failed to generate valid output after multiple attempts
     assistant_toolbar_not_a_valid_operation: Unknown operation %{operation}.
+    assistant_validation_failed: Failed to generate valid output after multiple attempts
     audit_logs: Audit Logs
     audit_reports: Audit Reports
     auto_placeholder: Auto
@@ -676,6 +677,7 @@ en:
     toolbar_text_copied: Copied to clipboard
     toolbar_text_replaced: Text replaced!
     toolbar_what_changed_and_why: What Changed & Why
+    translation_assistant_not_configured: Translation Assistant not configured
     upload_success: Uploaded successfully
     user_report_events: User Report Events
     users: Users
