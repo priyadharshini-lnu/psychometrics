@@ -33,6 +33,9 @@ describe UsersResults::Reset do
   let!(:user_report_pdf) do
     create(:user_report_pdf, :with_pdf, user_report: user_report)
   end
+  let!(:user_report_pdf_fr) do
+    create(:user_report_pdf, :with_pdf, locale: 'fr', user_report: user_report)
+  end
   let(:user_assessment) do
     users_result.user_assessment
     # create(:user_assessment, campaign: campaign, subject: user, assessment: assessment, users_result: users_result)
@@ -130,7 +133,9 @@ describe UsersResults::Reset do
   it 'reset user_report data if assessment is completed' do
     allow(user_assessment).to receive(:completed?).and_return(true)
     subject
-    expect(user_report.user_report_pdf.pdf_file.attached?).to be_falsey
+    user_report.user_report_pdfs.each do |pdf|
+      expect(pdf.pdf_file.attached?).to be_falsey
+    end
     expect(user_report.reload.status).to eq('not_prepared')
   end
 

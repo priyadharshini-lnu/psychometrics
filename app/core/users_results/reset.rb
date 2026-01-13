@@ -71,7 +71,7 @@ module UsersResults
         report_id: users_result.assessment.report_ids,
         user_id: user_assessment.subject_id,
         campaign_id: user_assessment.campaign_id
-      ).find_each(&:remove_report_pdf!)
+      ).find_each(&:remove_all_report_pdfs!)
     end
   end
 end
