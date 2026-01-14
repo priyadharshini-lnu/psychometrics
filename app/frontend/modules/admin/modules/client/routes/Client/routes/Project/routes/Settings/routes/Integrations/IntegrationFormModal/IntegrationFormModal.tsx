@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { Form, Switch, Select } from 'antd'
+import {
+  Form, Switch, Select, GetProp,
+} from 'antd'
 import { useParams } from 'react-router-dom'
-import { FieldData } from 'rc-field-form/lib/interface'
+import { FormProps } from 'antd/lib/form'
 import { Integration, integrationNames } from '~/modules/admin/modules/client/core/integrations'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { IihtForm } from './IihtForm'
@@ -9,6 +11,8 @@ import { HoganForm } from './HoganForm'
 import { MettlForm } from './MettlForm'
 import { SkillvueForm } from './SkillvueForm'
 import { YoodliForm } from './YoodliForm'
+
+type FieldData = GetProp<FormProps, 'fields'>[number]
 
 const { Option } = Select
 const { I18n } = window

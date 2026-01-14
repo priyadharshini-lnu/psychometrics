@@ -1,5 +1,4 @@
 import { MenuProps } from 'antd'
-import { MenuItemType } from 'rc-menu/lib/interface'
 import { MessageInstance } from 'antd/es/message/interface'
 import { MenuItem } from '~/interfaces/Antd'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
@@ -108,7 +107,7 @@ export const getActionsMenuProps = ({
     }
   }
 
-  const exportGroupItems: MenuItemType[] = []
+  const exportGroupItems: MenuItem[] = []
   permissions.exportOccupations && exportGroupItems.push({
     key: 'export_occupations',
     label: I18n.t('campaign_assessment.actions.export_occupations'),
@@ -138,7 +137,7 @@ export const getActionsMenuProps = ({
     label: I18n.t('campaign_assessment.actions.export_external'),
   })
 
-  const importGroupItems: MenuItemType[] = [
+  const importGroupItems: MenuItem[] = [
     { key: 'import_raw', label: I18n.t('campaign_assessment.actions.import_raw') },
     { key: 'import_scoring', label: I18n.t('campaign_assessment.actions.import_scoring') },
     { key: 'import_external_scoring', label: I18n.t('admin.import_external_scoring_action') },

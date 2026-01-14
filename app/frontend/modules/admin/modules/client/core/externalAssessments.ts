@@ -8,6 +8,7 @@ export const ExternalAssessmentTR = t.type({
 
 export type ExternalAssessment = t.TypeOf<typeof ExternalAssessmentTR>
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const HoganDataTR = t.type({
   url: t.string,
   userId: t.string,

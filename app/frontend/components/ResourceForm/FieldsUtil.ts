@@ -1,5 +1,7 @@
-import { FieldData } from 'rc-field-form/lib/interface'
+import type { FormProps, GetProp } from 'antd'
 import _ from 'lodash'
+
+type FieldData = GetProp<FormProps, 'fields'>[number]
 
 export default class FieldsUtil {
   fields: FieldData[]

@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
-import { Layout } from 'antd'
-import { SelectEventHandler } from 'rc-menu/lib/interface'
+import { Layout, GetProp, MenuProps } from 'antd'
 
 import lighthouseLogo from '~/modules/endUser/assets/images/lighthouseLogoWide.svg'
 
@@ -8,6 +7,8 @@ import { PageSider, SiderMenuItem } from '../PageSider'
 import { PageHeader } from '../PageHeader'
 
 import styles from './styles.less'
+
+type SelectEventHandler = GetProp<MenuProps, 'onSelect'>
 
 const { Content } = Layout
 

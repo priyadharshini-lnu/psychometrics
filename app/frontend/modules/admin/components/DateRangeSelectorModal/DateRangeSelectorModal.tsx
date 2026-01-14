@@ -13,8 +13,8 @@ interface Props {
   dateFormat?: string
   modalTitle?:string
   showTime?: boolean
-  disabledDate?: (current: dayjs.Dayjs, range: RangeValueType<dayjs.Dayjs>) => boolean
-  initialRange?: RangeValueType<dayjs.Dayjs>
+  disabledDate?: (current: dayjs.Dayjs, range: RangeValueType) => boolean
+  initialRange?: RangeValueType
 }
 
 const { I18n } = window
@@ -23,10 +23,11 @@ export const DateRangeSelectorModal: React.FC<Props> = ({
   open, onCancel, onDownload, dateFormat = 'YYYY-MM-DD HH:mm', modalTitle, showTime,
   disabledDate, initialRange,
 }) => {
-  const [dateRange, setDateRange] = useState<RangeValueType<dayjs.Dayjs>>(initialRange || [null, null])
+  const [dateRange, setDateRange] = useState<RangeValueType>(initialRange || [null, null])
   const [includeInactiveUsers, setIncludeInactiveUsers] = useState(false)
 
   const handleDownload = () => {
+    if (!dateRange) return
     const [startDate, endDate] = dateRange
     onDownload(startDate || undefined, endDate || undefined, includeInactiveUsers)
     resetDates()
@@ -78,7 +79,7 @@ export const DateRangeSelectorModal: React.FC<Props> = ({
           {I18n.t('user.modals.exports.include_inactive_users')}
         </Checkbox>
         <DatePicker.RangePicker
-          value={[dateRange[0], dateRange[1]]}
+          value={dateRange}
           onCalendarChange={dateRange => dateRange && setDateRange(dateRange)}
           disabledDate={handleDisableDate}
           format={dateFormat}

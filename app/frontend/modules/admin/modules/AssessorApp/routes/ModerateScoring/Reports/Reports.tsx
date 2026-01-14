@@ -1,10 +1,9 @@
 import { FC, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Space, Card, Button, Image, Tabs, Skeleton,
+  Space, Card, Button, Image, Tabs, Skeleton, GetProp, TabsProps,
 } from 'antd'
 import { useParams } from 'react-router-dom'
-import { Tab } from 'rc-tabs/lib/interface'
 import { EyeFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from './styles.less'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -12,6 +11,8 @@ import bg from '~/modules/endUser/modules/campaigns/routes/Insights/media/Backgr
 import { MainReport } from './MainReport'
 import { fetchReports, FETCH_REPORTS } from '../../../core/scoreModerate'
 import { isRequestInProgress } from '~/core/request'
+
+type Tab = GetProp<TabsProps, 'items'>[number]
 
 const { I18n } = window
 

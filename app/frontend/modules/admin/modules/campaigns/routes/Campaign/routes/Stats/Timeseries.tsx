@@ -68,6 +68,7 @@ const TimeseriesComponent: React.FC<Props> = ({
 
     const chartOptions: Options = buildHighchartOptions(timeseries, range[0], range[1])
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     containerRef.current ? Highcharts.chart(containerRef.current, chartOptions) : undefined
   }
 

@@ -1,4 +1,6 @@
-import React, { FC, HTMLAttributes, useContext } from 'react'
+import {
+  FC, HTMLAttributes, ReactNode, useContext,
+} from 'react'
 import { Col, Row, Typography } from 'antd'
 import cs from 'classnames'
 
@@ -9,7 +11,7 @@ const { Text } = Typography
 
 type ProgressStatusProps = {
   statusText: string
-  StatusIcon: (props: HTMLAttributes<HTMLAnchorElement>) => React.ReactElement | null
+  StatusIcon: (props: HTMLAttributes<HTMLAnchorElement>) => ReactNode
   count: number
   theme?: 'light' | 'dark'
 }

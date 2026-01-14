@@ -144,7 +144,7 @@ export class TableBodyPreview extends Component<Props> {
                             })}
                           </Typography.Paragraph>
                         )}
-                        arrowPointAtCenter
+                        arrow={{ pointAtCenter: true }}
                       >
                         <InfoCircleOutlined />
                       </Popover>

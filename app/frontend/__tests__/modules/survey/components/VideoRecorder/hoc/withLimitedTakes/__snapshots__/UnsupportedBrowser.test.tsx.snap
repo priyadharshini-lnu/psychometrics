@@ -3,13 +3,13 @@
 exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with given list of supported browsers and os 1`] = `
 <DocumentFragment>
   <div
-    class="ant-card ant-card-bordered css-dev-only-do-not-override-tjsggz"
+    class="ant-card ant-card-bordered css-dev-only-do-not-override-p45i5k css-var-root"
   >
     <div
       class="ant-card-body"
     >
       <div
-        class="ant-result ant-result-warning css-dev-only-do-not-override-tjsggz"
+        class="ant-result ant-result-warning css-dev-only-do-not-override-p45i5k css-var-root"
       >
         <div
           class="ant-result-icon"
@@ -46,14 +46,15 @@ exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with 
           class="ant-result-extra"
         >
           <div
-            class="ant-space css-dev-only-do-not-override-tjsggz ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small ta-c flex justify-center"
+            class="ant-space css-dev-only-do-not-override-p45i5k ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small ta-c flex justify-center css-var-root"
             style="flex-wrap: wrap;"
           >
             <div
               class="ant-space-item"
             >
               <a
-                class="ant-btn css-dev-only-do-not-override-tjsggz ant-btn-link ant-btn-color-link ant-btn-variant-link"
+                aria-disabled="false"
+                class="ant-btn css-dev-only-do-not-override-p45i5k css-var-root ant-btn-link ant-btn-color-link ant-btn-variant-link"
                 href="https://www.mozilla.org/en-US/firefox/mobile/"
                 rel="noopener noreferrer"
                 tabindex="0"
@@ -66,7 +67,7 @@ exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with 
                 />
                 <div>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-tjsggz"
+                    class="ant-typography css-dev-only-do-not-override-p45i5k css-var-root"
                   >
                     Mozilla Firefox 29+
                   </span>
@@ -77,7 +78,8 @@ exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with 
               class="ant-space-item"
             >
               <a
-                class="ant-btn css-dev-only-do-not-override-tjsggz ant-btn-link ant-btn-color-link ant-btn-variant-link"
+                aria-disabled="false"
+                class="ant-btn css-dev-only-do-not-override-p45i5k css-var-root ant-btn-link ant-btn-color-link ant-btn-variant-link"
                 href="https://www.google.com/chrome/"
                 rel="noopener noreferrer"
                 tabindex="0"
@@ -90,7 +92,7 @@ exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with 
                 />
                 <div>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-tjsggz"
+                    class="ant-typography css-dev-only-do-not-override-p45i5k css-var-root"
                   >
                     Google Chrome 49+
                   </span>
@@ -101,7 +103,8 @@ exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with 
               class="ant-space-item"
             >
               <a
-                class="ant-btn css-dev-only-do-not-override-tjsggz ant-btn-link ant-btn-color-link ant-btn-variant-link"
+                aria-disabled="false"
+                class="ant-btn css-dev-only-do-not-override-p45i5k css-var-root ant-btn-link ant-btn-color-link ant-btn-variant-link"
                 href="https://www.microsoft.com/en-us/edge"
                 rel="noopener noreferrer"
                 tabindex="0"
@@ -114,7 +117,7 @@ exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with 
                 />
                 <div>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-tjsggz"
+                    class="ant-typography css-dev-only-do-not-override-p45i5k css-var-root"
                   >
                     Microsoft Edge 79+
                   </span>

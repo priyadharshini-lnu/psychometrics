@@ -45,6 +45,7 @@ export const ProjectAdminTR = t.type({
   })),
 })
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const AdminPermissionsTR = t.type({
   loginAs: t.boolean,
   edit: t.boolean,

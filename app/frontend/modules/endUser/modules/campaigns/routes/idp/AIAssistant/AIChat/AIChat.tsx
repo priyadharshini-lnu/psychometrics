@@ -8,7 +8,7 @@ import {
 import * as t from 'io-ts'
 import humps from 'humps'
 
-import { PageHeader } from '@ant-design/pro-layout'
+import { PageHeader } from '@ant-design/pro-components'
 import {
   FC, useEffect, useRef, useState,
 } from 'react'
