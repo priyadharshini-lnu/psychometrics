@@ -3836,6 +3836,13 @@ pt:
       on_hold: Em espera
       prepared: Feito
       released: Lançado
+    statuses:
+      completed: Concluído
+      declined: Declinado
+      denied: Recusado
+      done: Concluído
+      not_completed: Não concluído
+      waiting: Em espera
   threesixty:
     accept_privacy_modal:
       accept: Aceitar

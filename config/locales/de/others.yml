@@ -3832,6 +3832,13 @@ de:
       on_hold: In der Warteschleife
       prepared: Erledigt
       released: Freigegeben
+    statuses:
+      completed: abgeschlossen
+      declined: Abgelehnt
+      denied: verweigert
+      done: Erledigt
+      not_completed: nicht abgeschlossen
+      waiting: warten
   threesixty:
     accept_privacy_modal:
       accept: Annehmen

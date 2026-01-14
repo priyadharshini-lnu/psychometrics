@@ -3815,6 +3815,13 @@ zh:
       on_hold: 搁置
       prepared: 已完成
       released: 已发布
+    statuses:
+      completed: 已完成
+      declined: 已拒绝
+      denied: 已拒绝
+      done: 完成
+      not_completed: 未完成
+      waiting: 等待中
   threesixty:
     accept_privacy_modal:
       accept: 接受

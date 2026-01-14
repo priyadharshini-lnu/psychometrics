@@ -11,13 +11,13 @@ module Threesixty
           context[:threesixty_campaign]
         )
 
-        is_report_available = Threesixty::Subjects::IsReportAvailable.call!(
+        availability_result = Threesixty::Subjects::IsReportAvailable.call!(
           context[:subject],
           context[:threesixty_campaign].option,
-          subject_evaluator_counters.dig(context[:subject].user_id, :completed)
+          subject_evaluator_counters.dig(context[:subject].user_id, :completed) || {}
         )
 
-        broadcast :ok, is_report_available
+        broadcast :ok, availability_result[:available]
       end
 
       private

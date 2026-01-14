@@ -3826,6 +3826,13 @@ id:
       on_hold: Ditunda
       prepared: Selesai
       released: Dirilis
+    statuses:
+      completed: Selesai
+      declined: Ditolak
+      denied: Ditolak
+      done: Selesai
+      not_completed: Tidak Selesai
+      waiting: Menunggu
   threesixty:
     accept_privacy_modal:
       accept: Terima

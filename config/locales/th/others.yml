@@ -3819,6 +3819,13 @@ th:
       on_hold: ระงับชั่วคราว
       prepared: เสร็จแล้ว
       released: ปล่อยแล้ว
+    statuses:
+      completed: เสร็จสมบูรณ์
+      declined: ปฏิเสธ
+      denied: ปฏิเสธ
+      done: เสร็จ
+      not_completed: ยังไม่เสร็จสมบูรณ์
+      waiting: รอ
   threesixty:
     accept_privacy_modal:
       accept: ยอมรับ

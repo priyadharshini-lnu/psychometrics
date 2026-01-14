@@ -3,17 +3,19 @@
 module AdminJobs
   class RegenerateThreesixtyReport < AdminJobs::Base
     def call
-      if available?
+      result = availability_result
+
+      if result[:available]
         user_reports = campaign.user_reports.where(user_id: subject.user_id)
         ::UserReports::GenerateAndSavePdf.call!(user_reports, owner, options, record)
       else
-        return broadcast :ok, content: "Report can't be generated"
+        return broadcast :ok, { error_messages: [result[:status_message]] }
       end
 
       broadcast :waiting
     end
 
-    def available?
+    def availability_result
       options = threesixty_campaign.option
       subject_evaluator_counters = ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
         [subject.user_id],

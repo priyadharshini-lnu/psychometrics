@@ -3831,6 +3831,13 @@ sl:
       on_hold: Zadržano
       prepared: Opravljeno
       released: Odobreno za objavo
+    statuses:
+      completed: Zaključeno
+      declined: Zavrnjeno
+      denied: Zavrnjeno
+      done: Opravljeno
+      not_completed: Ni zaključeno
+      waiting: V čakanju
   threesixty:
     accept_privacy_modal:
       accept: Sprejmi

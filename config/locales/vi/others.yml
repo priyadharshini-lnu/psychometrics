@@ -3816,6 +3816,13 @@ vi:
       on_hold: Đang tạm dừng
       prepared: Xong
       released: Phát hành
+    statuses:
+      completed: Hoàn thành
+      declined: Từ chối
+      denied: Từ chối
+      done: Xong
+      not_completed: Chưa hoàn thành
+      waiting: Chờ
   threesixty:
     accept_privacy_modal:
       accept: Chấp nhận

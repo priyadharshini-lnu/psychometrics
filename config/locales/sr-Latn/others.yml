@@ -3822,6 +3822,13 @@ sr-Latn:
       on_hold: Na čekanju
       prepared: Urađeno
       released: Objavljeno
+    statuses:
+      completed: Završeno
+      declined: Odbijeno
+      denied: Odbijeno
+      done: Urađeno
+      not_completed: Nije završeno
+      waiting: Čekanje
   threesixty:
     accept_privacy_modal:
       accept: Prihvati

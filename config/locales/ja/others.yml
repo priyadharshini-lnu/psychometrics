@@ -3812,6 +3812,13 @@ ja:
       on_hold: 保留中
       prepared: 完了
       released: リリース
+    statuses:
+      completed: 完了済み
+      declined: 辞退済み
+      denied: 却下
+      done: 完了
+      not_completed: 未完了
+      waiting: 待機中
   threesixty:
     accept_privacy_modal:
       accept: 同意する

@@ -3822,6 +3822,13 @@ bg:
       on_hold: В режим на задържане
       prepared: Готов
       released: Пусат
+    statuses:
+      completed: Завършен
+      declined: Отказан
+      denied: Отказан
+      done: Готово
+      not_completed: Не е завършено
+      waiting: В очакване
   threesixty:
     accept_privacy_modal:
       accept: Приемете

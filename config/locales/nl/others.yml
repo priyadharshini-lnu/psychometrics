@@ -3798,6 +3798,13 @@ nl:
       on_hold: In de wacht
       prepared: Gedaan
       released: Vrijgegeven
+    statuses:
+      completed: Voltooid
+      declined: Afgewezen
+      denied: Geweigerd
+      done: Gedaan
+      not_completed: Niet voltooid
+      waiting: Wachten
   threesixty:
     accept_privacy_modal:
       accept: Accepteer

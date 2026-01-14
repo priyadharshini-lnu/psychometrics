@@ -3837,6 +3837,13 @@ hr:
       on_hold: Na čekanju
       prepared: Završeno
       released: Objavljeno
+    statuses:
+      completed: Završeno
+      declined: Odbijeno
+      denied: Odbijeno
+      done: Završeno
+      not_completed: Nije dovršeno
+      waiting: Čekanje
   threesixty:
     accept_privacy_modal:
       accept: Prihvatiti
