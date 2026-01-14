@@ -3811,6 +3811,13 @@ cs:
       on_hold: Pozastaveno
       prepared: Hotovo
       released: Uvolněno
+    statuses:
+      completed: Dokončeno
+      declined: Odmítnuto
+      denied: Zamítnuto
+      done: Hotovo
+      not_completed: Nedokončeno
+      waiting: Čekání
   threesixty:
     accept_privacy_modal:
       accept: Přijmout

@@ -3720,6 +3720,13 @@ sr-Cyrl:
       on_hold: На чекању
       prepared: Готово
       released: Објављено
+    statuses:
+      completed: Завршено
+      declined: Одбијено
+      denied: Одбијено
+      done: Готово
+      not_completed: Није завршено
+      waiting: Чекање
   threesixty:
     accept_privacy_modal:
       accept: Прихвати

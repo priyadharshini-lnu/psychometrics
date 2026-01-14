@@ -3823,6 +3823,13 @@ it:
       on_hold: In attesa
       prepared: Fatto
       released: Rilasciato
+    statuses:
+      completed: Completati
+      declined: Declinato
+      denied: Negato
+      done: Fatto
+      not_completed: Non completato
+      waiting: In attesa
   threesixty:
     accept_privacy_modal:
       accept: Accetta

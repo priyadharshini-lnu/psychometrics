@@ -3803,6 +3803,13 @@ hu:
       on_hold: Várakozáson
       prepared: Kész
       released: Megjelent
+    statuses:
+      completed: Befejezett
+      declined: Visszautasított
+      denied: Elutasítva
+      done: Kész
+      not_completed: Nem fejeződött be
+      waiting: Várakozás
   threesixty:
     accept_privacy_modal:
       accept: Elfogadom

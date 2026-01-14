@@ -3823,6 +3823,13 @@ fr:
       on_hold: En attente
       prepared: Terminé
       released: Libéré
+    statuses:
+      completed: Terminé
+      declined: Refusé
+      denied: Refusé
+      done: Terminé
+      not_completed: Non achevé
+      waiting: En attente
   threesixty:
     accept_privacy_modal:
       accept: Accepter

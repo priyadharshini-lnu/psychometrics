@@ -3820,6 +3820,13 @@ en-US:
       on_hold: On Hold
       prepared: Done
       released: Released
+    statuses:
+      completed: Completed
+      declined: Declined
+      denied: Denied
+      done: Done
+      not_completed: Not Completed
+      waiting: Waiting
   threesixty:
     accept_privacy_modal:
       accept: Accept

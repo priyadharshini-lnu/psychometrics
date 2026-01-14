@@ -3786,6 +3786,13 @@ ko:
       on_hold: 보류 중
       prepared: 완료
       released: 출시
+    statuses:
+      completed: 완료
+      declined: 거부됨
+      denied: 거부됨
+      done: 완료
+      not_completed: 완료되지 않음
+      waiting: 대기 중
   threesixty:
     accept_privacy_modal:
       accept: 수락

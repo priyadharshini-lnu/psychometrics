@@ -3822,6 +3822,13 @@ ro:
       on_hold: În așteptare
       prepared: Efectuat
       released: Eliberat
+    statuses:
+      completed: Completat
+      declined: Declinat
+      denied: Refuzat
+      done: Efectuat
+      not_completed: Nefinalizat
+      waiting: În așteptare
   threesixty:
     accept_privacy_modal:
       accept: Acceptați

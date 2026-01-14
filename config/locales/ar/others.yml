@@ -3874,6 +3874,13 @@ ar:
       on_hold: قيد الانتظار
       prepared: تم
       released: تم الإصدار
+    statuses:
+      completed: تم اكماله
+      declined: رُفض
+      denied: تم رفضه
+      done: منجز
+      not_completed: لم يتم اكماله
+      waiting: منتظر
   threesixty:
     accept_privacy_modal:
       accept: اقبل

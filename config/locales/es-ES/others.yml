@@ -3888,6 +3888,13 @@ es-ES:
       on_hold: En espera
       prepared: Hecho
       released: Publicado en
+    statuses:
+      completed: Completado/a
+      declined: Rechazado/a
+      denied: Denegado/a
+      done: Hecho
+      not_completed: No completado/a
+      waiting: En espera
   threesixty:
     accept_privacy_modal:
       accept: Aceptar

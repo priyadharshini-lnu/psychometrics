@@ -3822,6 +3822,13 @@ sk:
       on_hold: Na počkanie
       prepared: Hotovo
       released: Uvoľnené
+    statuses:
+      completed: Dokončené
+      declined: Odmietnuté
+      denied: Odmietnuté
+      done: Hotovo
+      not_completed: Nie je dokončené
+      waiting: Čakanie
   threesixty:
     accept_privacy_modal:
       accept: Prijať

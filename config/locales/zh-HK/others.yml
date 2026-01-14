@@ -3770,6 +3770,13 @@ zh-HK:
       on_hold: 暫停
       prepared: 完成
       released: 已發行
+    statuses:
+      completed: 已完成
+      declined: 已拒絕
+      denied: 已拒絕
+      done: 完成
+      not_completed: 未完成
+      waiting: 正在等待
   threesixty:
     accept_privacy_modal:
       accept: 接受
