@@ -117,7 +117,7 @@ class Administration::AssessmentsController < Administration::BaseController
                  :enable_video_check, :enable_audio_check, :enable_network_check, :translations_migrated,
                  :owner_id, :project_id, :linked_questions,
                  { external_settings: %i[assessment_id norm_id schedule_config],
-                   resources: %i[assessmentId questionId], options: {} }]
+                   resources: [%i[assessmentId questionId]], options: {} }]
     )
   end
 end
