@@ -34,6 +34,8 @@ en:
     first_name: First Name
     formal_learning: Formal Learning
     generate: Generate
+    generate_transcription_confirm_content: Are you sure you want to generate the transcription for this media response?
+    generate_transcription_confirm_title: Generate Transcription
     generating: Generating
     group_question_max_validation_error: Each group can contain at most {{max}} item(s).
     group_question_min_validation_error: Each group needs to contain at least {{min}} item(s).
@@ -43,7 +45,7 @@ en:
     last_name: Last Name
     learning_on_the_job_label: Learning on the Job
     login: Login
-    media_response: Media Response
+    media_question_transcriptions: Media Question Transcriptions
     modified_by: Modified By
     modified_date: Modified Date
     more_actions: More actions
@@ -54,6 +56,7 @@ en:
     ok: Ok
     pending: Pending
     processing: Processing
+    question_id: Question ID
     recording_consent_notice: This meeting session will be recorded. Your participation in this meeting constitutes your consent to be recorded.
     recording_consent_proceed_question: Do you agree to proceed with the recorded meeting?
     recording_consent_title: Recording Consent Notice

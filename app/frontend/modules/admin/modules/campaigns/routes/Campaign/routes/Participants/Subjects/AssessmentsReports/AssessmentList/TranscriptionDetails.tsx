@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import {
-  Table, Button, Tooltip, Divider,
+  Table, Button, Tooltip, Divider, Modal,
 } from 'antd'
 import { DownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { TableSkeleton } from '~/glint'
@@ -33,6 +33,8 @@ const TranscriptionDetails: FC<Props> = ({
   const [mediaResponses, setMediaResponses] = useState<MediaResponse[]>([])
   const [loading, setLoading] = useState<boolean>(true)
   const [generatingIds, setGeneratingIds] = useState<Set<number>>(new Set())
+  const [confirmModalVisible, setConfirmModalVisible] = useState<boolean>(false)
+  const [selectedMediaResponseId, setSelectedMediaResponseId] = useState<number | null>(null)
 
   useEffect(() => {
     if (assessment?.id) {
@@ -56,11 +58,29 @@ const TranscriptionDetails: FC<Props> = ({
     }
   }
 
+  const showGenerateConfirmation = (mediaResponseId: number) => {
+    setSelectedMediaResponseId(mediaResponseId)
+    setConfirmModalVisible(true)
+  }
+
+  const handleConfirmGenerate = () => {
+    if (selectedMediaResponseId) {
+      handleGenerateTranscription(selectedMediaResponseId)
+    }
+    setConfirmModalVisible(false)
+    setSelectedMediaResponseId(null)
+  }
+
+  const handleCancelGenerate = () => {
+    setConfirmModalVisible(false)
+    setSelectedMediaResponseId(null)
+  }
+
   const handleDownloadTranscription = (transcriptionText: string, questionId: number) => {
-    if (!transcriptionText) return
+    if (!transcriptionText || !assessment?.id) return
     downloadTextFile(
       transcriptionText,
-      `transcription_${questionId}.txt`,
+      `transcription_${assessment.id}_${questionId}.txt`,
     )
   }
 
@@ -83,9 +103,9 @@ const TranscriptionDetails: FC<Props> = ({
 
   const columns = [
     {
-      title: I18n.t('common.column.id'),
-      dataIndex: 'id',
-      key: 'id',
+      title: I18n.t('shared.question_id'),
+      dataIndex: 'questionId',
+      key: 'questionId',
     },
     {
       title: I18n.t('common.column.type'),
@@ -108,7 +128,6 @@ const TranscriptionDetails: FC<Props> = ({
         } = record
         const isAudioOrVideo = questionType === 'audio' || questionType === 'video'
         const hasTranscription = !!transcriptionText
-        const canGenerateTranscription = transcriptionStatus === 'not_requested'
         const isGenerating = generatingIds.has(id) || transcriptionStatus === 'processing'
 
         if (hasTranscription) {
@@ -125,12 +144,12 @@ const TranscriptionDetails: FC<Props> = ({
         }
 
         if (isAudioOrVideo && transcriptionEnabled) {
-          if (canGenerateTranscription && !isGenerating) {
+          if (!isGenerating) {
             return (
               <Button
                 className="pn"
                 type="link"
-                onClick={() => handleGenerateTranscription(id)}
+                onClick={() => showGenerateConfirmation(id)}
               >
                 {I18n.t('shared.generate')}
               </Button>
@@ -170,17 +189,34 @@ const TranscriptionDetails: FC<Props> = ({
   if (!mediaResponses.length) return null
 
   return (
-    <Table
-      rowKey="id"
-      dataSource={mediaResponses}
-      columns={columns}
-      pagination={false}
-      title={() => (
-        <span className="font-bold">
-          {I18n.t('shared.media_response')}
-        </span>
-      )}
-    />
+    <>
+      <Table
+        rowKey="id"
+        dataSource={mediaResponses}
+        columns={columns}
+        pagination={false}
+        title={() => (
+          <span className="font-bold">
+            {I18n.t('shared.media_question_transcriptions')}
+          </span>
+        )}
+      />
+      <Modal
+        title={I18n.t('shared.generate_transcription_confirm_title')}
+        open={confirmModalVisible}
+        closable={false}
+        footer={[
+          <Button key="cancel" onClick={handleCancelGenerate}>
+            {I18n.t('common.actions.cancel')}
+          </Button>,
+          <Button key="submit" type="primary" onClick={handleConfirmGenerate}>
+            {I18n.t('shared.generate')}
+          </Button>,
+        ]}
+      >
+        <p>{I18n.t('shared.generate_transcription_confirm_content')}</p>
+      </Modal>
+    </>
   )
 }
 
