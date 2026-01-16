@@ -2888,6 +2888,11 @@ ko:
           active:
             label: 활성
             name: 활성
+          assessments:
+            help_text: 이 선택 사항은 평가 원시 응답 이벤트에만 영향을 미칩니다.
+            label: 평가
+            placeholder: 평가 선택
+            required: 평가 원시 응답 이벤트에 대해 최소한 하나의 평가가 선택되어야 합니다.
           auth_type:
             api_key:
               label: API 키
@@ -2944,6 +2949,7 @@ ko:
             list:
               assessment_assigned: 평가 할당됨
               assessment_completed: 평가 완료
+              assessment_raw_response: 평가 원시 응답
               assessment_started: 평가 시작
               assessment_timeout: 평가 시간 초과
               campaign_results_available: 캠페인 결과 사용 가능
@@ -3657,7 +3663,7 @@ ko:
         preworks: 사전 작업
         re_enroll: 재등록
         re_enroll_confirm_message: "'%{subject_email}' 이메일로 주제를 다시 등록하시겠습니까?"
-        re_enroll_success: 이메일로 주제를 재등록 <x>subject_email</x>.
+        re_enroll_success: 이메일로 주제를 재등록 %{subject_email}.
         schedule: 일정
         unschedule: 일정 취소
       tabs:

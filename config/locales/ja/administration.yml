@@ -2888,6 +2888,11 @@ ja:
           active:
             label: アクティブ
             name: アクティブ
+          assessments:
+            help_text: この選択は評価の生の応答イベントにのみ影響します。
+            label: 評価
+            placeholder: 評価を選択
+            required: 評価生データ応答イベントには、少なくとも1つの評価を選択する必要があります。
           auth_type:
             api_key:
               label: APIキー
@@ -2944,6 +2949,7 @@ ja:
             list:
               assessment_assigned: 評価
               assessment_completed: アセスメント完了
+              assessment_raw_response: 評価 生の回答
               assessment_started: アセスメント開始
               assessment_timeout: 評価タイムアウト
               campaign_results_available: キャンペーン結果発表
@@ -3656,8 +3662,8 @@ ja:
         override_existing: 既存のスケジュールを上書きする
         preworks: プレワーク
         re_enroll: 再登録
-        re_enroll_confirm_message: 件名を「<x>subject_email</x> 」に変更しますか？
-        re_enroll_success: 電子メールでの再登録対象<x>subject_email</x>.
+        re_enroll_confirm_message: 件名を「%{subject_email} 」に変更しますか？
+        re_enroll_success: 電子メールでの再登録対象%{subject_email}.
         schedule: スケジュール
         unschedule: スケジュール解除
       tabs:

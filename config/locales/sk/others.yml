@@ -837,6 +837,10 @@ sk:
           reply_to_reply: Nie je možné odpovedať na odpoveď (povolená je iba jedna úroveň vnorenia)
         user_idp_plan:
           no_active_plan: Nenašiel sa žiadny aktívny plán IDP
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: Je možné vybrať iba hodnotenia typu „psychometria“ a „org survey“.
   admin_jobs:
     attrs:
       operations:
@@ -2210,16 +2214,16 @@ sk:
       password_complexity:
         digit:
           one: musí obsahovať aspoň jednu číslicu
-          other: musí obsahovať aspoň <x>count</x> číslice
+          other: musí obsahovať aspoň %{count} číslice
         lower:
           one: musí obsahovať aspoň jedno malé písmeno
-          other: musí obsahovať aspoň <x>count</x> malé písmená
+          other: musí obsahovať aspoň %{count} malé písmená
         symbol:
           one: musí obsahovať aspoň jedno interpunkčné znamienko alebo symbol
-          other: musí obsahovať aspoň <x>count</x> interpunkčné znamienka alebo symboly
+          other: musí obsahovať aspoň %{count} interpunkčné znamienka alebo symboly
         upper:
           one: musí obsahovať aspoň jedno veľké písmeno
-          other: musí obsahovať aspoň <x>count</x> veľké písmená
+          other: musí obsahovať aspoň %{count} veľké písmená
       taken_in_past: nesmie byť rovnaké ako predtým použité heslo.
     module_error: Niečo sa s týmto modulom pokazilo, kontaktujte prosím administráciu.
     module_error_editor: Niečo sa s týmto modulom pokazilo, skontrolujte prosím nastavenia modulu.
@@ -3090,7 +3094,7 @@ sk:
     footer:
       regards: S pozdravom,
       team_name: Tím Lighthouse
-      technical_support: V prípade akýchkoľvek technických problémov nám napíšte na <x>email</x> a my vám odpovieme do 24 hodín.
+      technical_support: V prípade akýchkoľvek technických problémov nám napíšte na %{email} a my vám odpovieme do 24 hodín.
     from: Talentový podnik
     idp:
       manager_unread_comments:

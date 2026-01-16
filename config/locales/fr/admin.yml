@@ -34,14 +34,19 @@ fr:
     ai_assistants_test_render: Rendu de test
     ai_assistants_test_render_tooltip: Testez votre modèle de prompt avec les données de la campagne pour vérifier ce qui sera envoyé à l’assistant IA.
     ai_assisted_idp_feature_disabled: La fonctionnalité d’IDP assistée par IA a été désactivée pour ce projet.
+    all_corner_rounded: Tous les coins arrondis
     api_keys: Clés API
     assessments: Évaluations
     assessments_reports: Évaluations et rapports
     assessor_dashboard: Tableau de bord de l'évaluateur
     assessor_workshops: Centre d'évaluation
     assessors: Évaluateurs
+    assistant_toolbar_failed: Échec de la génération d'une sortie valide après plusieurs tentatives
+    assistant_toolbar_not_a_valid_operation: Opération inconnue %{operation}.
+    assistant_validation_failed: Échec de la génération d'une sortie valide après plusieurs tentatives
     audit_logs: Journaux d'audit
     audit_reports: Rapports d'audit
+    auto_placeholder: Auto
     availability: Disponibilité
     available_languages: Rapport disponible en langues
     back_to_main: Menu principal
@@ -88,15 +93,20 @@ fr:
     edit_project_admin: Modifier l'administration du projet
     edit_threesixty_campaign_admin: Modifier l'administration de la campagne
     empty_csv_file: Le fichier CSV ne contient aucune donnée.
+    enable_enhance_with_ai_client_level: Veuillez activer la fonctionnalité « Améliorer avec l'IA » au niveau du client.
+    enable_transcription: Activer la transcription
+    enhance_with_ai_requires_ai_assistants: Pour améliorer avec l'IA, la fonctionnalité Assistants IA doit être activée.
     evaluation_status: Statut d’évaluation
     evaluation_status_not_done: Le statut d’évaluation n’est pas « Terminé » pour un ou plusieurs sujets sélectionnés. Veuillez vous assurer que tous les utilisateurs sélectionnés ont terminé les évaluations ou les marquent comme terminées.
     export_admin_roles_permissions: Exportation des rôles et permissions des administrateurs
+    feature_enhance_with_ai: Améliorer grâce à l'IA
     feature_flags: Drapeaux de caractéristiques
     fill_empty_score_msg: Remplissez tous les scores finaux avant de sauvegarder.
     final_score_empty_msg: Le score final ne peut pas être vide.
     idp_plan_reset_success: Le plan a été réinitialisé avec succès
     idp_templates: Modèles de PDI
     import_ai_artifacts: Importer des artefacts IA
+    import_csv_assessment_group_error: "%{index} de ligne : l'utilisateur dont l'adresse e-mail est %{email} a déjà été invité à rejoindre « %{workshopInviteName} »."
     import_csv_error: 'Ligne %{index} : utilisateur avec un %{email} email n’est pas dans cette campagne'
     import_csv_parsing_error: 'Erreur d’analyse CSV : %{message}'
     import_description: Importez des utilisateurs à partir d’un fichier CSV. Chaque ligne doit contenir une adresse e-mail.
@@ -661,12 +671,23 @@ fr:
     status_details: Détails de statut
     structured_learning: Apprentissage formel [10]
     subdomain: Sous-domaine
+    subject_part_of_other_invite: Le sujet avec l'adresse e-mail %{user_email} a déjà été invité à « %{workshop_invite_name} ».
+    toolbar_ai_insight: Perspectives sur l'IA
+    toolbar_ai_suggestion: Suggestion IA
+    toolbar_result_generating: Génération en cours...
+    toolbar_text_copied: Copié dans le presse-papiers
+    toolbar_text_replaced: Texte remplacé !
+    toolbar_what_changed_and_why: Ce qui a changé et pourquoi
+    translation_assistant_not_configured: Assistant de traduction non configuré
     upload_success: Téléversement réussi
     user_report_events: Rapport de l'utilisateur Événements
     users: Utilisateurs
     view_licenses: Voir les licences
     waiting: Attente
     workshops: Ateliers
+    writing_assistant_not_configured: Assistant de rédaction non configuré
+    x_axis_interval_label: Intervalle de l'axe X
+    y_axis_interval_label: Intervalle de l'axe Y
     year: Pays
     yoodli_activity_id: ID d’activité Yoodli
     yoodli_email_id: ID Email du candidat Yoodli

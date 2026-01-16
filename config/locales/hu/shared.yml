@@ -9,6 +9,7 @@ hu:
     agree_and_continue: Egyetértek és folytatjuk
     archive: Archívum
     archived: Archivált
+    audio: Audio
     authentication_failed: A hitelesítés sikertelen. Kérlek, próbáld meg újra.
     basic: Alapvető
     campaign_id: Kampányazonosító
@@ -16,18 +17,26 @@ hu:
     change_password: Jelszó módosítása
     clear_filters: Szűrők törlése
     collaborative_learning: Együttműködő tanulás
+    completed: Befejezett
     confirm: Megerősítés
     continue: Folytatódik
+    copy: Másolás
     created_at: Létrehozva
     created_date: Létrehozás dátuma
     decline: Hanyatlás
     description: Leírás
+    download: Letöltés
     edit: Szerkesztés
     edited: Új
     email: E-mail
     export: Kivitel
+    failed: Sikertelen
     first_name: Keresztnév
     formal_learning: Formális tanulás
+    generate: Generálás
+    generate_transcription_confirm_content: Biztosan szeretné létrehozni a transzkripciót ehhez a médiaválaszhoz?
+    generate_transcription_confirm_title: Átírás létrehozása
+    generating: Generálás
     group_question_max_validation_error: Minden csoport legfeljebb {{max}} tételt tartalmazhat.
     group_question_min_validation_error: Minden csoportnak legalább {{min}} tételt kell tartalmaznia.
     id: ID
@@ -36,18 +45,24 @@ hu:
     last_name: Vezetéknév
     learning_on_the_job_label: Tanulás munka közben
     login: Bejelentkezés
+    media_question_transcriptions: Média kérdések átirata
     modified_by: Módosította
     modified_date: Módosítás dátuma
     more_actions: További műveletek
     mte_logo_alt_text: Mercer Talent Enterprise logó
     name: Név
     new: Új
+    not_requested: Még nem kért
     ok: Oké
+    pending: Függőben
+    processing: Feldolgozás
+    question_id: Kérdés azonosító
     recording_consent_notice: Ezt az ülést rögzítik. Részvétele ezen a találkozón azt jelenti, hogy beleegyezik a rögzítéshez.
     recording_consent_proceed_question: Beleegyezik a rögzített találkozó folytatásába?
     recording_consent_title: Felvételi beleegyezési értesítés
     remove: Távolítsa el a
     removed: Eltávolított
+    replace: Cserélje ki
     reset_password: Jelszó visszaállítása
     rte_paste_content_exceeds_char_limit: A szöveg meghaladja a {{maxCharacterLimit}} karakterkorlátját, és nem lehet beilleszteni.
     rte_paste_content_exceeds_word_limit: A szöveg túllépi a {{maxWordLimit}} szóhatárát, és nem lehet beilleszteni.
@@ -62,7 +77,13 @@ hu:
         total: 'Összesen : 1'
     terms_conditions_privacy: Adatvédelmi nyilatkozat
     tools: Eszközök
+    transcription: Átírás
+    transcription_already_requested: A leírás már megrendelve vagy folyamatban van
+    transcription_not_enabled: A transzkripció nem engedélyezett a média válaszokhoz.
     transcriptions: Átiratok
+    try_again: Próbáld újra
     tte_terms_and_condition: Feltételek és adatvédelem
     type: Típus
     update: Frissítés
+    video: Videó
+    view: Megtekintés

@@ -34,14 +34,19 @@ en-US:
     ai_assistants_test_render: Test Render
     ai_assistants_test_render_tooltip: Test your prompt template with campaign data to check what will be sent to the AI assistant.
     ai_assisted_idp_feature_disabled: AI Assisted IDP feature has been disabled for this project.
+    all_corner_rounded: All corner rounded
     api_keys: API keys
     assessments: Assessments
     assessments_reports: Assessments & Reports
     assessor_dashboard: Assessor Dashboard
     assessor_workshops: Assessment Center
     assessors: Assessors
+    assistant_toolbar_failed: Failed to generate valid output after multiple attempts
+    assistant_toolbar_not_a_valid_operation: Unknown operation %{operation}.
+    assistant_validation_failed: Failed to generate valid output after multiple attempts
     audit_logs: Audit Logs
     audit_reports: Audit Reports
+    auto_placeholder: Auto
     availability: Availability
     available_languages: Report Available in Languages
     back_to_main: Main Menu
@@ -88,15 +93,20 @@ en-US:
     edit_project_admin: Edit Project Admin
     edit_threesixty_campaign_admin: Edit Campaign Admin
     empty_csv_file: CSV file does not contain any data.
+    enable_enhance_with_ai_client_level: Please enable Enhance with AI feature at client level
+    enable_transcription: Enable Transcription
+    enhance_with_ai_requires_ai_assistants: Enhance with AI requires AI Assistants feature to be enabled
     evaluation_status: Evaluation Status
     evaluation_status_not_done: Evaluation status is not 'Done' for one or more selected subjects. Please ensure all selected users have completed evaluations or mark as done.
     export_admin_roles_permissions: Admin Roles and Permissions export
+    feature_enhance_with_ai: Enhance with AI
     feature_flags: Feature Flags
     fill_empty_score_msg: Fill all the final scores before saving.
     final_score_empty_msg: Final score cannot be empty.
     idp_plan_reset_success: Plan has been reset successfully
     idp_templates: IDP Templates
     import_ai_artifacts: Import AI Artifacts
+    import_csv_assessment_group_error: 'Row %{index}: user with email %{email} is already invited to ''%{workshopInviteName}'''
     import_csv_error: 'Row %{index}: user with email %{email} is not in this campaign'
     import_csv_parsing_error: 'CSV parsing error: %{message}'
     import_description: Import users from a CSV file. Each row must contain an email address.
@@ -661,12 +671,23 @@ en-US:
     status_details: Status Details
     structured_learning: Formal Learning [10]
     subdomain: Subdomain
+    subject_part_of_other_invite: Subject with email %{user_email} is already invited to '%{workshop_invite_name}'
+    toolbar_ai_insight: AI Insight
+    toolbar_ai_suggestion: AI Suggestion
+    toolbar_result_generating: Generating...
+    toolbar_text_copied: Copied to clipboard
+    toolbar_text_replaced: Text replaced!
+    toolbar_what_changed_and_why: What Changed & Why
+    translation_assistant_not_configured: Translation Assistant not configured
     upload_success: Uploaded successfully
     user_report_events: Report Approval logs
     users: Users
     view_licenses: View Licenses
     waiting: Waiting
     workshops: Workshops
+    writing_assistant_not_configured: Writing Assistant not configured
+    x_axis_interval_label: X-Axis Interval
+    y_axis_interval_label: Y-Axis Interval
     year: Year
     yoodli_activity_id: Yoodli Activity ID
     yoodli_email_id: Yoodli Candidate Email ID

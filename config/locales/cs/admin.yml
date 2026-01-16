@@ -34,14 +34,19 @@ cs:
     ai_assistants_test_render: Testovací vykreslování
     ai_assistants_test_render_tooltip: Vyzkoušejte šablonu promptu s daty kampaně, abyste zjistili, co bude AI asistentovi odesláno.
     ai_assisted_idp_feature_disabled: Funkce AI asistovaného IDP byla pro tento projekt deaktivována.
+    all_corner_rounded: Všechny rohy zaoblené
     api_keys: Klíče API
     assessments: Hodnocení
     assessments_reports: Hodnocení a zprávy
     assessor_dashboard: Přístrojový panel hodnotitele
     assessor_workshops: Hodnotící centrum
     assessors: Posuzovatelé
+    assistant_toolbar_failed: Po několika pokusech se nepodařilo vygenerovat platný výstup.
+    assistant_toolbar_not_a_valid_operation: Neznámá operace %{operation}.
+    assistant_validation_failed: Po několika pokusech se nepodařilo vygenerovat platný výstup.
     audit_logs: Protokoly o auditu
     audit_reports: Auditní zprávy
+    auto_placeholder: Auto
     availability: Dostupnost
     available_languages: Zpráva dostupná v jazycích
     back_to_main: Hlavní nabídka
@@ -88,15 +93,20 @@ cs:
     edit_project_admin: Upravit správce projektu
     edit_threesixty_campaign_admin: Upravit správce kampaně
     empty_csv_file: CSV soubor neobsahuje žádná data.
+    enable_enhance_with_ai_client_level: Povolte funkci Vylepšit pomocí AI na úrovni klienta.
+    enable_transcription: Povolit přepis
+    enhance_with_ai_requires_ai_assistants: Funkce Vylepšit pomocí AI vyžaduje, aby byla povolena funkce AI asistenti.
     evaluation_status: Stav hodnocení
     evaluation_status_not_done: Status hodnocení není "Hotovo" u jednoho nebo více vybraných předmětů. Prosím, ujistěte se, že všichni vybraní uživatelé dokončili hodnocení nebo označili jako splněné.
     export_admin_roles_permissions: Export rolí a oprávnění správce
+    feature_enhance_with_ai: Vylepšete pomocí AI
     feature_flags: Příznaky funkcí
     fill_empty_score_msg: Vyplňte všechny konečné skóre před uložením.
     final_score_empty_msg: Konečné skóre nemůže být prázdné.
     idp_plan_reset_success: Plán byl úspěšně resetován
     idp_templates: Šablony IDP
     import_ai_artifacts: Import AI artefaktů
+    import_csv_assessment_group_error: 'Řádek %{index}: uživatel s e-mailem %{email} již byl pozván do skupiny „%{workshopInviteName}“.'
     import_csv_error: 'Řádek %{index}: uživatel s e-mailem %{email} není v této kampani'
     import_csv_parsing_error: 'Chyba při CSV parsování: %{message}'
     import_description: Importujte uživatele z CSV souboru. Každý řádek musí obsahovat e-mailovou adresu.
@@ -661,12 +671,23 @@ cs:
     status_details: Podrobnosti o stavu
     structured_learning: Formální učení [10]
     subdomain: Subdoména
+    subject_part_of_other_invite: Osoba s e-mailovou adresou %{user_email} již byla pozvána do skupiny „%{workshop_invite_name}“.
+    toolbar_ai_insight: AI Insight
+    toolbar_ai_suggestion: Návrh AI
+    toolbar_result_generating: Generování...
+    toolbar_text_copied: Zkopírováno do schránky
+    toolbar_text_replaced: Text nahrazen!
+    toolbar_what_changed_and_why: Co se změnilo a proč
+    translation_assistant_not_configured: Překladač není nakonfigurován
     upload_success: Úspěšně nahráno
     user_report_events: Hlášení uživatele Události
     users: Uživatelé
     view_licenses: Zobrazit licence
     waiting: Čekání
     workshops: Workshopy
+    writing_assistant_not_configured: Asistent psaní není nakonfigurován
+    x_axis_interval_label: Interval osy X
+    y_axis_interval_label: Interval osy Y
     year: Země
     yoodli_activity_id: Yoodli Activity ID
     yoodli_email_id: E-mailové ID kandidáta Yoodli

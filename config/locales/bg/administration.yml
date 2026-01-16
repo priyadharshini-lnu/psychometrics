@@ -2791,7 +2791,7 @@ bg:
           default_project_exists_id_missing: 'Ред %{row_number}: Вече съществува ниво на квалификация "по подразбиране" на ниво проект. Моля, посочете идентификатора, за да го актуализирате.'
           invalid_csv_format: 'Невалиден CSV формат: %{message}'
           invalid_proficiency_type: 'Ред %{row_number}: Невалиден или липсващ ProficiencyType'
-          invalid_skill_type: 'Ред %{row_number}: Невалиден тип умение "<x>skill_type</x>". Валидните типове са: %{valid_types}'
+          invalid_skill_type: 'Ред %{row_number}: Невалиден тип умение "%{skill_type}". Валидните типове са: %{valid_types}'
           missing_columns: 'Липсват задължителни колони: %{fields}'
           skill_not_found: 'Ред %{row_number}: Невалидно или липсващо умение'
         job_queued: Заданието за импортиране на нива на владеене е поставено на опашка
@@ -2888,6 +2888,11 @@ bg:
           active:
             label: Активен
             name: активен
+          assessments:
+            help_text: Този избор засяга само събитието „Оценка на необработения отговор“.
+            label: Оценки
+            placeholder: Изберете оценки
+            required: Трябва да бъде избрана поне една оценка за събитието „Оценка на необработени отговори“.
           auth_type:
             api_key:
               label: API ключ
@@ -2944,6 +2949,7 @@ bg:
             list:
               assessment_assigned: Възложена оценка
               assessment_completed: Оценката е завършена
+              assessment_raw_response: Оценка на необработения отговор
               assessment_started: Оценката започна
               assessment_timeout: Време за изчакване на оценяването
               campaign_results_available: Налични резултати от кампанията
@@ -3654,7 +3660,7 @@ bg:
         preworks: Предварителна работа
         re_enroll: Презаписване
         re_enroll_confirm_message: Сигурни ли сте, че искате да запишете отново темата с имейл '%{subject_email}'?
-        re_enroll_success: Отново регистриран субект с имейл <x>subject_email</x>.
+        re_enroll_success: Отново регистриран субект с имейл %{subject_email}.
         schedule: Разписание
         unschedule: Непланирано
       tabs:

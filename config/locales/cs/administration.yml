@@ -2888,6 +2888,11 @@ cs:
           active:
             label: Aktivní
             name: aktivní
+          assessments:
+            help_text: Tento výběr má vliv pouze na událost „Hodnocení surové odpovědi“.
+            label: Hodnocení
+            placeholder: Vybrat hodnocení
+            required: Pro událost „Hrubá odpověď hodnocení“ musí být vybráno alespoň jedno hodnocení.
           auth_type:
             api_key:
               label: Klíč API
@@ -2944,6 +2949,7 @@ cs:
             list:
               assessment_assigned: Přiřazené hodnocení
               assessment_completed: Hodnocení dokončeno
+              assessment_raw_response: Hodnocení surové odpovědi
               assessment_started: Hodnocení zahájeno
               assessment_timeout: Časový limit hodnocení
               campaign_results_available: Výsledky kampaně jsou k dispozici
@@ -3657,7 +3663,7 @@ cs:
         preworks: Předpráce
         re_enroll: Opětovný zápis
         re_enroll_confirm_message: Jste si jisti, že chcete znovu zapsat předmět s e-mailem '%{subject_email}'?
-        re_enroll_success: Znovuzapsaný subjekt s e-mailem <x>subject_email</x>.
+        re_enroll_success: Znovuzapsaný subjekt s e-mailem %{subject_email}.
         schedule: Plán
         unschedule: Zrušit plánování
       tabs:

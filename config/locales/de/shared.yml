@@ -9,6 +9,7 @@ de:
     agree_and_continue: Zustimmen und fortfahren
     archive: Archiv
     archived: Archiviert
+    audio: Audio
     authentication_failed: Authentifizierung fehlgeschlagen. Bitte versuchen Sie es erneut.
     basic: Grundlegend
     campaign_id: Wahlkampf-ID
@@ -16,18 +17,26 @@ de:
     change_password: Passwort ändern
     clear_filters: Filter löschen
     collaborative_learning: Kollaboratives Lernen
+    completed: Abgeschlossen
     confirm: bestätigen
     continue: Fortsetzen
+    copy: Kopie
     created_at: Erstellt am
     created_date: Erstellt am
     decline: Ablehnen
     description: Beschreibung
+    download: Herunterladen
     edit: Bearbeiten
     edited: Neu
     email: E-Mail
     export: Exportieren
+    failed: Fehlgeschlagen
     first_name: Vorname
     formal_learning: Formales Lernen
+    generate: Generieren
+    generate_transcription_confirm_content: Sind Sie sicher, dass Sie die Transkription für diese Medienreaktion erstellen möchten?
+    generate_transcription_confirm_title: Transkription erstellen
+    generating: Erzeugen
     group_question_max_validation_error: Jede Gruppe kann höchstens {{max}} Elemente enthalten.
     group_question_min_validation_error: Jede Gruppe muss mindestens {{min}} Elemente enthalten.
     id: ID
@@ -36,18 +45,24 @@ de:
     last_name: Familienname, Nachname
     learning_on_the_job_label: Lernen am Arbeitsplatz
     login: Anmelden
+    media_question_transcriptions: Transkriptionen von Medienfragen
     modified_by: Geändert von
     modified_date: Geändertes Datum
     more_actions: Weitere Aktionen
     mte_logo_alt_text: Mercer Talent Enterprise Logo
     name: Name
     new: Neu
+    not_requested: Noch nicht angefordert
     ok: Ok
+    pending: Ausstehend
+    processing: Verarbeitung
+    question_id: Fragen-ID
     recording_consent_notice: Diese Sitzung wird aufgezeichnet. Ihre Teilnahme an diesem Treffen stellt Ihre Zustimmung zur Aufnahme dar.
     recording_consent_proceed_question: Stimmen Sie zu, mit dem aufgezeichneten Treffen fortzufahren?
     recording_consent_title: Aufzeichnung der Einwilligungsmitteilung
     remove: Entfernen
     removed: Entfernt
+    replace: Ersetzen
     reset_password: Passwort zurücksetzen
     rte_paste_content_exceeds_char_limit: Der Text überschreitet das Zeichenlimit von {{maxCharacterLimit}} und kann nicht eingefügt werden.
     rte_paste_content_exceeds_word_limit: Der Text überschreitet das Wortlimit von {{maxWordLimit}} und kann nicht eingefügt werden.
@@ -67,7 +82,13 @@ de:
           zero: 'Gesamt : 0'
     terms_conditions_privacy: Datenschutzerklärung
     tools: Werkzeuge
+    transcription: Transkription
+    transcription_already_requested: Transkription bereits angefordert oder in Bearbeitung
+    transcription_not_enabled: Die Transkription ist für die Medienantwort nicht aktiviert.
     transcriptions: Abschriften
+    try_again: Erneut versuchen
     tte_terms_and_condition: TTE – Geschäftsbedingungen und Datenschutzerklärung
     type: Typ
     update: Aktualisieren
+    video: Video
+    view: Ansicht

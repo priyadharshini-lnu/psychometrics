@@ -2890,6 +2890,11 @@ hu:
           active:
             label: Aktív
             name: aktív
+          assessments:
+            help_text: Ez a kiválasztás csak az Értékelés nyers válasz eseményre van hatással.
+            label: Értékelések
+            placeholder: Értékelések kiválasztása
+            required: Legalább egy értékelést ki kell választani az Értékelés nyers válasz eseményhez.
           auth_type:
             api_key:
               label: API-kulcs
@@ -2946,6 +2951,7 @@ hu:
             list:
               assessment_assigned: Hozzárendelt értékelés
               assessment_completed: Az értékelés befejeződött
+              assessment_raw_response: Értékelés Nyers válasz
               assessment_started: Megkezdődött az értékelés
               assessment_timeout: Értékelési időtúllépés
               campaign_results_available: Elérhető kampányeredmények
@@ -3656,7 +3662,7 @@ hu:
         preworks: Előkészítés
         re_enroll: Újbóli beiratkozás
         re_enroll_confirm_message: Biztos, hogy újra be akarja írni a tárgyat a '%{subject_email}' e-mail címmel?
-        re_enroll_success: Újra beiratkozott téma az <x>subject_email</x> e-mail címen.
+        re_enroll_success: Újra beiratkozott téma az %{subject_email} e-mail címen.
         schedule: Ütemezés
         unschedule: Ütemezés törlése
       tabs:

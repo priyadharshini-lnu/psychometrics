@@ -2888,6 +2888,11 @@ pl:
           active:
             label: Aktywny
             name: aktywny
+          assessments:
+            help_text: Ten wybór dotyczy wyłącznie zdarzenia „Ocena surowej odpowiedzi”.
+            label: Oceny
+            placeholder: Wybierz oceny
+            required: Należy wybrać co najmniej jedną ocenę dla zdarzenia „Surowa odpowiedź z oceny”.
           auth_type:
             api_key:
               label: Klucz API
@@ -2944,6 +2949,7 @@ pl:
             list:
               assessment_assigned: Przypisana ocena
               assessment_completed: Ocena zakończona
+              assessment_raw_response: Ocena surowej odpowiedzi
               assessment_started: Ocena rozpoczęta
               assessment_timeout: Limit czasu oceny
               campaign_results_available: Dostępne wyniki kampanii
@@ -3653,8 +3659,8 @@ pl:
         override_existing: Zastępowanie istniejących zestawień dla tematów
         preworks: Przygotowanie do pracy
         re_enroll: Ponowna rejestracja
-        re_enroll_confirm_message: Czy na pewno chcesz ponownie zarejestrować temat za pomocą wiadomości e-mail "<x>subject_email</x>"?
-        re_enroll_success: Ponownie zarejestrowany temat z adresem e-mail <x>subject_email</x>.
+        re_enroll_confirm_message: Czy na pewno chcesz ponownie zarejestrować temat za pomocą wiadomości e-mail "%{subject_email}"?
+        re_enroll_success: Ponownie zarejestrowany temat z adresem e-mail %{subject_email}.
         schedule: Harmonogram
         unschedule: Bez harmonogramu
       tabs:

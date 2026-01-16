@@ -14,35 +14,36 @@ def parse_issue_comment(comment_body, issue_number)
 
   if languages
     puts "→ Translating specific languages: #{languages}"
-    write_output("languages", "-l #{languages}")
+    write_output('languages', "-l #{languages}")
   else
-    puts "→ Translating all languages"
-    write_output("languages", "")
+    puts '→ Translating all languages'
+    write_output('languages', '')
   end
 
-  write_output("pr_number", issue_number)
+  write_output('pr_number', issue_number)
 end
 
 def parse_label_trigger(pr_number)
-  puts "→ Label trigger: Arabic only (testing mode)"
-  write_output("languages", "-l ar")
-  write_output("pr_number", pr_number)
+  # Empty languages = translate to all locales except base_locale (en)
+  puts '→ Label trigger: Translating all languages (except English)'
+  write_output('languages', '')
+  write_output('pr_number', pr_number)
 end
 
 def write_output(key, value)
-  github_output = ENV.fetch("GITHUB_OUTPUT", nil)
+  github_output = ENV.fetch('GITHUB_OUTPUT', nil)
   return unless github_output
 
-  File.open(github_output, "a") { |f| f.puts "#{key}=#{value}" }
+  File.open(github_output, 'a') { |f| f.puts "#{key}=#{value}" }
 end
 
 def main
   event_name = ARGV[0]
-  comment_body = ARGV[1] || ""
-  issue_number = ARGV[2] || ""
-  pr_number = ARGV[3] || ""
+  comment_body = ARGV[1] || ''
+  issue_number = ARGV[2] || ''
+  pr_number = ARGV[3] || ''
 
-  if event_name == "issue_comment"
+  if event_name == 'issue_comment'
     parse_issue_comment(comment_body, issue_number)
   else
     parse_label_trigger(pr_number)

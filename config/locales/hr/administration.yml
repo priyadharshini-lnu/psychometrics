@@ -2888,6 +2888,11 @@ hr:
           active:
             label: Aktivan
             name: aktivan
+          assessments:
+            help_text: Ovaj odabir utječe samo na događaj Procjena sirovog odgovora.
+            label: Procjene
+            placeholder: Odabrane procjene
+            required: Za događaj Procjena sirovih odgovora mora biti odabrana barem jedna procjena.
           auth_type:
             api_key:
               label: API ključ
@@ -2944,6 +2949,7 @@ hr:
             list:
               assessment_assigned: Dodijeljena procjena
               assessment_completed: Procjena završena
+              assessment_raw_response: Procjena sirovog odgovora
               assessment_started: Procjena je započela
               assessment_timeout: Vremensko ograničenje procjene
               campaign_results_available: Dostupni rezultati kampanje

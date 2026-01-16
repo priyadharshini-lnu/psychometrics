@@ -837,6 +837,10 @@ es-ES:
           reply_to_reply: No puedo responder a una respuesta (solo se permite un nivel de anidamiento)
         user_idp_plan:
           no_active_plan: No se ha encontrado ningún plan PDI activo
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: Solo se pueden seleccionar evaluaciones de tipo «psicometría» y «encuesta organizativa».
   admin_jobs:
     attrs:
       operations:
@@ -2276,16 +2280,16 @@ es-ES:
       password_complexity:
         digit:
           one: debe contener al menos un dígito
-          other: debe contener al menos <x>count</x> dígitos
+          other: debe contener al menos %{count} dígitos
         lower:
           one: debe contener al menos una letra minúscula
-          other: debe contener al menos <x>count</x> letras minúsculas
+          other: debe contener al menos %{count} letras minúsculas
         symbol:
           one: debe contener al menos un signo de puntuación o símbolo
-          other: debe contener al menos <x>count</x> signos de puntuación o símbolos
+          other: debe contener al menos %{count} signos de puntuación o símbolos
         upper:
           one: debe contener al menos una letra mayúscula
-          other: debe contener al menos <x>count</x> letras mayúsculas
+          other: debe contener al menos %{count} letras mayúsculas
       taken_in_past: no debe coincidir con ninguna contraseña utilizada anteriormente.
     module_error: Algo ha ido mal con este módulo, por favor contacte con la administración.
     module_error_editor: Algo ha ido mal con este módulo, por favor compruebe la configuración del módulo.

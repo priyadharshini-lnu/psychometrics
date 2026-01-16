@@ -34,14 +34,19 @@ id:
     ai_assistants_test_render: Uji Render
     ai_assistants_test_render_tooltip: Uji templat prompt Anda dengan data kampanye untuk memeriksa apa yang akan dikirim ke asisten AI.
     ai_assisted_idp_feature_disabled: Fitur IDP Berbantuan AI telah dinonaktifkan untuk proyek ini.
+    all_corner_rounded: Semua sudut bulat
     api_keys: Kunci API
     assessments: Penilaian
     assessments_reports: Penilaian & Laporan
     assessor_dashboard: Dasbor Penilai
     assessor_workshops: Pusat Penilaian
     assessors: Asesor
+    assistant_toolbar_failed: Gagal menghasilkan output yang valid setelah beberapa kali percobaan.
+    assistant_toolbar_not_a_valid_operation: Operasi tidak dikenal %{operation}.
+    assistant_validation_failed: Gagal menghasilkan output yang valid setelah beberapa kali percobaan.
     audit_logs: Log Audit
     audit_reports: Laporan Audit
+    auto_placeholder: Otomatis
     availability: Ketersediaan
     available_languages: Laporan tersedia dalam bahasa
     back_to_main: Menu Utama
@@ -88,15 +93,20 @@ id:
     edit_project_admin: Mengedit Admin Proyek
     edit_threesixty_campaign_admin: Edit Admin Kampanye
     empty_csv_file: CSV tidak berisi data apa pun.
+    enable_enhance_with_ai_client_level: Silakan aktifkan fitur "Enhance with AI" di tingkat klien.
+    enable_transcription: Aktifkan Transkripsi
+    enhance_with_ai_requires_ai_assistants: Untuk menggunakan fitur Peningkatan dengan AI, fitur Asisten AI harus diaktifkan.
     evaluation_status: Status Evaluasi
     evaluation_status_not_done: Status evaluasi tidak 'Selesai' untuk satu atau lebih mata pelajaran yang dipilih. Pastikan semua pengguna yang dipilih telah menyelesaikan evaluasi atau menandai sebagai selesai.
     export_admin_roles_permissions: Ekspor Peran dan Izin Admin
+    feature_enhance_with_ai: Perkuat dengan AI
     feature_flags: Bendera Fitur
     fill_empty_score_msg: Isi semua skor akhir sebelum menyimpan.
     final_score_empty_msg: Skor akhir tidak bisa kosong.
     idp_plan_reset_success: Paket telah berhasil diatur ulang
     idp_templates: Template IDP
     import_ai_artifacts: Impor Artefak AI
+    import_csv_assessment_group_error: 'Baris %{index}: Pengguna dengan alamat email %{email} sudah diundang ke ''%{workshopInviteName}'''
     import_csv_error: 'Baris %{index}: pengguna dengan email %{email} tidak ada dalam kampanye ini'
     import_csv_parsing_error: 'Kesalahan penguraian CSV: %{message}'
     import_description: Mengimpor pengguna dari file CSV. Setiap baris harus berisi alamat email.
@@ -661,12 +671,23 @@ id:
     status_details: Detail Status
     structured_learning: Pembelajaran Formal [10]
     subdomain: Subdomain
+    subject_part_of_other_invite: Subjek dengan alamat email %{user_email} sudah diundang ke '%{workshop_invite_name}'
+    toolbar_ai_insight: Wawasan Kecerdasan Buatan
+    toolbar_ai_suggestion: Saran AI
+    toolbar_result_generating: Sedang diproses...
+    toolbar_text_copied: Disalin ke clipboard
+    toolbar_text_replaced: Teks telah diganti!
+    toolbar_what_changed_and_why: Apa yang Berubah & Mengapa
+    translation_assistant_not_configured: Asisten Terjemahan belum dikonfigurasi
     upload_success: Berhasil diunggah
     user_report_events: Peristiwa Laporan Pengguna
     users: Pengguna
     view_licenses: Lihat Lisensi
     waiting: Menunggu
     workshops: Lokakarya
+    writing_assistant_not_configured: Asisten Penulisan belum dikonfigurasi
+    x_axis_interval_label: Interval Sumbu X
+    y_axis_interval_label: Interval Sumbu Y
     year: Negara
     yoodli_activity_id: ID Aktivitas Yoodli
     yoodli_email_id: ID Email Kandidat Yoodli

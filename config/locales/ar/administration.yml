@@ -2791,7 +2791,7 @@ ar:
           default_project_exists_id_missing: 'الصف %{row_number}: مستوى الكفاءة "الافتراضي" على مستوى المشروع موجود بالفعل. يرجى تقديم المعرف لتحديثه.'
           invalid_csv_format: 'تنسيق ملف CSV غير صالح: %{message}'
           invalid_proficiency_type: 'الصف %{row_number}: نوع الكفاءة غير صالح أو مفقود'
-          invalid_skill_type: 'الصف %{row_number}: نوع المهارة غير صالح "<x>skill_type</x>". الأنواع الصالحة هي: %{valid_types}'
+          invalid_skill_type: 'الصف %{row_number}: نوع المهارة غير صالح "%{skill_type}". الأنواع الصالحة هي: %{valid_types}'
           missing_columns: 'الأعمدة المطلوبة المفقودة: %{fields}'
           skill_not_found: 'الصف %{row_number}: مهارة غير صالحة أو مفقودة'
         job_queued: تم وضع مهمة استيراد مستويات الكفاءة في قائمة الانتظار
@@ -3662,8 +3662,8 @@ ar:
         override_existing: Override existing schedules for subjects
         preworks: Prework
         re_enroll: إعادة التسجيل
-        re_enroll_confirm_message: هل أنت متأكد من رغبتك في إعادة تسجيل الموضوع بالبريد الإلكتروني "<x>subject_email</x>"؟
-        re_enroll_success: موضوع إعادة التسجيل مع البريد الإلكتروني <x>subject_email</x>.
+        re_enroll_confirm_message: هل أنت متأكد من رغبتك في إعادة تسجيل الموضوع بالبريد الإلكتروني "%{subject_email}"؟
+        re_enroll_success: موضوع إعادة التسجيل مع البريد الإلكتروني %{subject_email}.
         schedule: Schedule
         unschedule: Unschedule
       tabs:

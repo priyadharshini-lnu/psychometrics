@@ -1,0 +1,694 @@
+---
+zh-HK:
+  admin:
+    add_admin: 添加管理员
+    add_admin_role: 添加管理员角色
+    add_campaign_admin: 添加活动管理员
+    add_client_admin: 添加客户管理员
+    add_project: 添加项目
+    add_project_admin: 添加项目管理员
+    add_threesixty_campaign_admin: 添加活动管理员
+    admin_approval_required: "%{user}的报告需经管理员批准后方可下载"
+    admin_created_successfully: 管理员 '%{name}' 已成功创建
+    admin_export_scheduled: 管理员导出任务已成功安排。请查看通知以获取状态。
+    admin_removed_successfully: 管理员（邮箱：%{email}）已成功移除
+    admin_role_deleted: 管理员角色“%{role_name}”已成功删除。
+    admin_roles: 管理员角色
+    admin_updated_successfully: 管理员 '%{name}' 已成功更新
+    admins: 管理员
+    ai_artifacts: 人工智能产物
+    ai_artifacts_output_schema_key_constraint: 密钥必须以小写字母开头，且只能包含小写字母、数字和下划线。
+    ai_assistant_model_id_label: 模型ID
+    ai_assistant_model_label: 模型
+    ai_assistant_model_provider: 提供者
+    ai_assistant_model_region_label: 区域
+    ai_assistant_required: 需要人工智能助手
+    ai_assistants: 人工智能助手
+    ai_assistants_advanced_mode_tooltip: 使用高级模式进行提示模板设计，可利用Liquid模板及其可用变量。更多详情请参阅文档。
+    ai_assistants_campaign_id_placeholder: 输入活动ID
+    ai_assistants_no_rendered_output: 无渲染输出可用
+    ai_assistants_render_button: 渲染模板
+    ai_assistants_rendered_prompt: 渲染提示
+    ai_assistants_template_and_campaign_required: 请同时提供模板ID和活动ID
+    ai_assistants_template_render_failed: 模板渲染失败
+    ai_assistants_test_render: 测试渲染
+    ai_assistants_test_render_tooltip: 使用活动数据测试您的提示模板，以确认将发送给AI助手的内容。
+    ai_assisted_idp_feature_disabled: 本项目已禁用AI辅助IDP功能。
+    all_corner_rounded: 所有边角均已圆角处理
+    api_keys: API密钥
+    assessments: 评估
+    assessments_reports: 评估与报告
+    assessor_dashboard: 评估员仪表盘
+    assessor_workshops: 评估中心
+    assessors: 评估员
+    assistant_toolbar_failed: 多次尝试后仍未能生成有效输出
+    assistant_toolbar_not_a_valid_operation: 未知操作 %{operation}。
+    assistant_validation_failed: 多次尝试后仍未能生成有效输出
+    audit_logs: 审计日志
+    audit_reports: 审计报告
+    auto_placeholder: 汽车
+    availability: 可用性
+    available_languages: 报告提供多种语言版本
+    back_to_main: 主菜单
+    bulk_upload_ai_artifacts: 批量上传人工智能艺术品
+    campaign_ai_artifact_updated_successfully: 活动AI工件更新成功
+    campaign_assessment_actions_disable_caching: 禁用评估缓存
+    campaign_assessment_actions_enable_caching: 启用评估缓存
+    campaign_assessment_column_caching_enabled: 评估缓存已启用
+    campaign_assessment_modals_disable_caching_content: 您确定要禁用此评估的缓存功能吗？
+    campaign_assessment_modals_disable_caching_successfully: 缓存功能已在此评估中禁用。
+    campaign_assessment_modals_disable_caching_title: 禁用评估缓存？
+    campaign_assessment_modals_enable_caching_content: 您确定要为本次评估启用缓存功能吗？
+    campaign_assessment_modals_enable_caching_successfully: 已为本次评估启用缓存功能。
+    campaign_assessment_modals_enable_caching_title: 启用评估缓存？
+    campaign_factors: 竞选因素
+    campaign_templates: 活动模板
+    campaigns: 活动
+    client: 客户
+    client_admins: 客户管理员
+    clients: 客户
+    code_required: 需要代码
+    communication_center: 通讯中心
+    communications: 通信
+    completed: 已完成
+    completed_tooltip: 所有评估员均已提交评估报告。
+    confirm_remove_admin: 您确定要删除邮箱为 '%{email}' 的管理员用户吗？
+    country: 国家
+    create_client: 创建客户
+    dashboard: 仪表板
+    dashboards: 仪表板
+    data_reports: 数据报告
+    datasheet: 数据表
+    declined: 被拒绝
+    delete_ok_text: 是的，删除
+    denied: 被拒绝
+    development_actions: 发展行动
+    development_actions_form_tags: 标签
+    dimensions: 尺寸
+    done: 完成
+    done_tooltip: 该用户的评估已由 %{marked_by} 标记为完成，因此无法再提交评估。
+    edit_campaign_admin: 编辑活动管理
+    edit_client_admin: 编辑客户管理
+    edit_permission_denied: 您没有权限编辑管理员 '%{name}'
+    edit_project_admin: 编辑项目管理
+    edit_threesixty_campaign_admin: 编辑活动管理
+    empty_csv_file: CSV文件不包含任何数据。
+    enable_enhance_with_ai_client_level: 请在客户端级别启用AI增强功能
+    enable_transcription: 启用转录功能
+    enhance_with_ai_requires_ai_assistants: 增强AI功能需启用AI助手功能
+    evaluation_status: 评估状态
+    evaluation_status_not_done: 所选科目中存在未标记为"已完成"的评估状态。请确保所有选定用户已完成评估或将其标记为完成。
+    export_admin_roles_permissions: 管理员角色与权限导出
+    feature_enhance_with_ai: 增强AI
+    feature_flags: 功能开关
+    fill_empty_score_msg: 在保存前请填写所有最终分数。
+    final_score_empty_msg: 最终得分不能为空。
+    idp_plan_reset_success: 计划已成功重置
+    idp_templates: IDP模板
+    import_ai_artifacts: 导入人工智能艺术品
+    import_csv_assessment_group_error: "%{index} 行：邮箱为 %{email} 的用户已受邀加入 '%{workshopInviteName}'"
+    import_csv_error: "%{index}行：邮箱为 %{email} 的用户不在本次活动中"
+    import_csv_parsing_error: CSV解析错误：%{message}
+    import_description: 从CSV文件导入用户。每行必须包含一个电子邮件地址。
+    import_download_sample: 下载示例CSV文件
+    import_error: 导入失败。请重试。
+    import_error_saving_data: 保存%{email}数据时出错：%{message}
+    import_errors_title: 导入错误
+    import_external_scoring_action: 导入外部评分
+    import_external_scoring_body: 请参考导出功能，提取可用于在此处导入的模板。
+    import_external_scoring_data_description: 为指定评估和活动导入外部评分数据
+    import_external_scoring_data_title: 导入外部评分数据
+    import_external_scoring_success_msg: 导入已成功上传
+    import_external_scoring_upload: 上传
+    import_file_required: 请选择一个CSV文件进行上传。
+    import_queued_success: 科目导入任务已成功安排。请查看通知以获取状态信息。
+    import_sample_file_label: 示例文件：
+    import_scenario_id_mismatch: 场景ID不匹配：%{email}预期%{expected_id}，但CSV文件包含不同场景ID
+    import_successfully_saved: 成功保存了%{email}的外部结果，包含%{goals_count}个目标
+    import_title: 从CSV导入科目
+    import_upload: 上传
+    import_users: 导入用户
+    invalid_csv_header: CSV文件包含无效的标题行。
+    job_roles: 职位角色
+    learning_from_others: 协作学习 [20]
+    libraries: 媒体库
+    library_invalid_type: 无效的图书馆项目
+    licenses: 许可证
+    manager_approval_required: "%{user}的报告需经经理批准后方可下载"
+    messages: 消息
+    name_required: 姓名必填
+    no_file_selected: 未选择文件
+    no_notifications: 无通知
+    norms: 规范
+    not_completed: 未完成
+    not_completed_tooltip: "%{completed} 评估员已分配，但仅有%{submitted}人完成了评估。"
+    notes: 注释
+    nothing_assigned: 未分配评估员
+    nothing_assigned_tooltip: 尚未为该用户分配任何评估。
+    notification_bell_icon_alt_text: 通知铃图标
+    notifications: 通知
+    number: 数字
+    occupations: 职业
+    on_the_job: 在职 [70]
+    options: 选项
+    participants: 参与者
+    permissions:
+      aiArtifacts:
+        export: 导出
+        import: 导入
+        manage: 管理
+        title: 人工智能产物
+        view: 查看
+      apiKeys:
+        manage: 管理
+        title: API密钥
+        view: 查看
+      assessments:
+        manage: 管理
+        title: 评估
+        view: 查看
+      assessors:
+        manage: 管理
+        title: 评估员
+        view: 查看
+      auditLogs:
+        title: 审计日志
+        view: 查看
+      auditReports:
+        admin_permissions: 管理员角色与权限导出
+        title: 审计报告
+        user_report_events: 报告审批日志
+      campaignFactors:
+        manage: 管理
+        title: 竞选因素
+        view: 查看
+      campaigns:
+        bulk_download: 批量下载
+        bulk_regenerate_reports: 批量再生成报告
+        manage: 管理
+        manage_admins: 管理管理员
+        manage_factor_benchmark_scores: 管理因子基准得分
+        manage_messages: 管理消息
+        manage_options: 管理选项
+        manage_report_approvals: 管理报告审批
+        manage_users: 管理用户
+        participant_options: 参与者选项
+        report_options: 报告选项
+        reset_nominations: 重置提名
+        title: 活动
+        view: 查看
+        view_factor_benchmark_scores: 视差因子基准得分
+        view_stats: 查看统计数据
+      clients:
+        export_data_report: 数据导出报告
+        manage: 管理
+        title: 客户
+        view: 查看
+        view_licenses: 查看许可证
+      communications:
+        manage: 管理
+        title: 通信
+        view: 查看
+      dashboards:
+        accesssheet_manage: 访问表管理
+        accesssheet_settings: 访问表设置
+        accesssheet_view: 访问表单视图
+        export: 导出
+        title: 仪表板
+        view: 查看
+      datasheets:
+        manage: 管理
+        title: 数据表
+        view: 查看
+      developmentActions:
+        export: 导出
+        export_global: 全球导出
+        export_global_translations: 导出全球翻译
+        export_translations: 导出翻译
+        import: 导入
+        import_global: 导入全局
+        import_global_translations: 导入全局翻译
+        import_translations: 导入翻译
+        manage: 管理
+        title: 发展行动
+        view: 查看
+      dimensions:
+        manage: 管理
+        title: 尺寸
+        view: 查看
+      idpTemplates:
+        manage: 管理
+        title: IDP模板
+        view: 查看
+      interviewQuestions:
+        export: 导出
+        import: 导入
+        manage: 管理
+        title: IDP面试问题
+        view: 查看
+      jobRoles:
+        export_translations: 导出职位角色翻译
+        import_translations: 导入职位角色翻译
+        manage: 管理
+        title: 职位角色
+        view: 查看
+      labels:
+        apiKeys:
+          manage: 管理
+          title: API密钥
+          view: 查看
+        assessments:
+          manage: 管理
+          title: 评估
+          view: 查看
+        assessors:
+          manage: 管理
+          title: 评估员
+          view: 查看
+        auditLogs:
+          title: 审计日志
+          view: 查看
+        auditReports:
+          admin_permissions: 管理员角色与权限导出
+          title: 审计报告
+          user_report_events: 报告审批日志
+        campaignFactors:
+          manage: 管理
+          title: 竞选因素
+          view: 查看
+        campaigns:
+          bulk_download: 批量下载
+          bulk_regenerate_reports: 批量再生成报告
+          manage: 管理
+          manage_admins: 管理管理员
+          manage_factor_benchmark_scores: 管理因子基准得分
+          manage_messages: 管理消息
+          manage_options: 管理选项
+          manage_report_approvals: 管理报告审批
+          manage_users: 管理用户
+          participant_options: 参与者选项
+          report_options: 报告选项
+          reset_nominations: 重置提名
+          title: 活动
+          view: 查看
+          view_factor_benchmark_scores: 视差因子基准得分
+          view_stats: 查看统计数据
+        clients:
+          export_data_report: 数据导出报告
+          manage: 管理
+          title: 客户
+          view: 查看
+          view_licenses: 查看许可证
+        communications:
+          manage: 管理
+          title: 通信
+          view: 查看
+        dashboards:
+          accesssheet_manage: 访问表管理
+          accesssheet_settings: 访问表设置
+          accesssheet_view: 访问表单视图
+          export: 导出
+          title: 仪表板
+          view: 查看
+        datasheets:
+          manage: 管理
+          title: 数据表
+          view: 查看
+        developmentActions:
+          export: 导出
+          export_global: 全球导出
+          export_global_translations: 导出全球翻译
+          export_translations: 导出翻译
+          import: 导入
+          import_global: 导入全局
+          import_global_translations: 导入全局翻译
+          import_translations: 导入翻译
+          manage: 管理
+          title: 发展行动
+          view: 查看
+        dimensions:
+          manage: 管理
+          title: 尺寸
+          view: 查看
+        idpTemplates:
+          manage: 管理
+          title: IDP模板
+          view: 查看
+        jobRoles:
+          export_translations: 导出职位角色翻译
+          import_translations: 导入职位角色翻译
+          manage: 管理
+          title: 职位角色
+          view: 查看
+        libraries:
+          manage: 管理
+          title: 媒体库
+          view: 查看
+        messages:
+          email: 电子邮件
+          instructions: 说明
+          options: 选项
+          title: 消息
+        norms:
+          manage: 管理
+          title: 规范
+          view: 查看
+        proficiencyLevels:
+          export: 出口能力等级
+          export_translations: 出口能力等级翻译
+          import: 进口能力等级
+          import_translations: 导入熟练度等级翻译
+          manage: 管理
+          title: 熟练程度等级
+          view: 查看
+        proficiency_level:
+          title: 熟练程度等级
+        projectSettings:
+          assessments: 评估
+          design: 设计
+          feature_flags: 功能开关
+          idp: 国内流离失所者
+          integrations: 集成
+          privacy_settings: 隐私设置
+          saml: SAML
+          security: 安全
+          smtp: SMTP
+          title: 项目设置
+          webhooks: 网络钩子
+        projects:
+          manage: 管理
+          manage_admins: 管理管理员
+          manage_users: 管理用户
+          title: 项目
+          view: 查看
+        questions:
+          manage: 管理
+          title: 问题
+          view: 查看
+        reflectionQuestions:
+          export: 导出
+          import: 导入
+          manage: 管理
+          title: IDP反思问题
+          view: 查看
+        registrationCodes:
+          manage: 管理
+          title: 注册码
+          view: 查看
+        registrationSettings:
+          manage: 管理
+          title: 注册设置
+        reports:
+          manage: 管理
+          title: 报告
+          view: 查看
+        responseMeta:
+          title: 响应元数据
+        results:
+          approve_report: 批准报告
+          bulk_download: 批量下载
+          bulk_regenerate_reports: 批量再生成报告
+          bulk_update_evaluation_status: 批量更新评估状态
+          download_report: 下载报告
+          edit_report: 编辑报告
+          export_occupations: 出口职业
+          external_score_import: 外部评分导入
+          finalize_scores: 最终确定分数
+          normalize_factor_scores: 归一化因子得分
+          raw_responses: 原始响应
+          regenerate_report: 重新生成报告
+          report_data: 报告数据
+          report_file_upload: 报告文件上传
+          rescore_responses: 重新评分响应
+          reset_progress: 重置进度
+          reset_responses: 重置响应
+          scores: 分数
+          title: 结果
+          view_report: 查看报告
+          view_stats: 查看统计数据
+        skills:
+          export: 出口技能
+          export_translations: 技能翻译导出
+          import: 导入技能
+          import_translations: 导入技能翻译
+          manage: 管理
+          title: 技能
+          view: 查看
+        smsHistories:
+          manage: 管理
+          title: 短信历史记录
+          view: 查看
+        smsInvites:
+          manage: 管理
+          title: 短信邀请
+          view: 查看
+        userIdpPlans:
+          manage: 管理
+          title: 用户IDP计划
+          view: 查看
+        users:
+          reset_password: 重置密码
+          title: 用户
+        workshops:
+          export_status: 出口状态
+          manage: 管理
+          title: 研讨会
+          view: 查看
+          view_recordings: 查看录制内容
+      libraries:
+        manage: 管理
+        title: 媒体库
+        view: 查看
+      messages:
+        email: 电子邮件
+        instructions: 说明
+        options: 选项
+        title: 消息
+      norms:
+        manage: 管理
+        title: 规范
+        view: 查看
+      proficiencyLevels:
+        export: 出口能力等级
+        export_translations: 出口能力等级翻译
+        import: 进口能力等级
+        import_translations: 导入熟练度等级翻译
+        manage: 管理
+        title: 熟练程度等级
+        view: 查看
+      proficiency_level:
+        title: 熟练程度等级
+      projectSettings:
+        assessments: 评估
+        design: 设计
+        feature_flags: 功能开关
+        idp: 国内流离失所者
+        integrations: 集成
+        privacy_settings: 隐私设置
+        saml: SAML
+        security: 安全
+        smtp: SMTP
+        title: 项目设置
+        webhooks: 网络钩子
+      projects:
+        manage: 管理
+        manage_admins: 管理管理员
+        manage_licenses: 管理许可证
+        manage_users: 管理用户
+        title: 项目
+        view: 查看
+        view_licenses: 查看许可证
+      questions:
+        manage: 管理
+        title: 问题
+        view: 查看
+      reflectionQuestions:
+        export: 导出
+        import: 导入
+        manage: 管理
+        title: IDP反思问题
+        view: 查看
+      registrationCodes:
+        manage: 管理
+        title: 注册码
+        view: 查看
+      registrationSettings:
+        manage: 管理
+        title: 注册设置
+      reports:
+        manage: 管理
+        title: 报告
+        view: 查看
+      responseMeta:
+        title: 响应元数据
+      results:
+        approve_report: 批准报告
+        bulk_download: 批量下载
+        bulk_regenerate_reports: 批量再生成报告
+        bulk_update_evaluation_status: 批量更新评估状态
+        download_report: 下载报告
+        edit_report: 编辑报告
+        export_occupations: 出口职业
+        external_score_import: 外部评分导入
+        finalize_scores: 最终确定分数
+        normalize_factor_scores: 归一化因子得分
+        raw_responses: 原始响应
+        regenerate_report: 重新生成报告
+        report_data: 报告数据
+        report_file_upload: 报告文件上传
+        rescore_responses: 重新评分响应
+        reset_progress: 重置进度
+        reset_responses: 重置响应
+        scores: 分数
+        title: 结果
+        view_report: 查看报告
+        view_stats: 查看统计数据
+      skills:
+        export: 出口技能
+        export_translations: 技能翻译导出
+        import: 导入技能
+        import_translations: 导入技能翻译
+        manage: 管理
+        title: 技能
+        view: 查看
+      smsHistories:
+        manage: 管理
+        title: 短信历史记录
+        view: 查看
+      smsInvites:
+        manage: 管理
+        title: 短信邀请函
+        view: 查看
+      userIdpPlans:
+        manage: 管理
+        reset: 重置
+        title: 用户IDP计划
+        view: 查看
+      users:
+        reset_password: 重置密码
+        title: 用户
+      workshops:
+        export_status: 出口状态
+        manage: 管理
+        title: 研讨会
+        view: 查看
+        view_recordings: 查看录制内容
+    permissions_360_campaigns: 360广告活动专属权限
+    privacy: 隐私
+    proficiency_level: 熟练程度
+    proficiency_levels: 熟练程度等级
+    profile_details: 个人资料详情
+    project_admins: 项目管理员
+    project_manager: 项目经理
+    project_number: 项目编号
+    project_settings: 项目设置
+    projects: 项目
+    question_center: 问题中心
+    questions: 问题
+    reflection_questions: 反思问题
+    registration_codes: 注册码
+    registration_settings: 注册设置
+    report_approvals: 报告审批
+    report_condition_not_met: 需要%{required}%{relationship}个评价，但仅有%{actual}个评价。
+    report_conditions_not_met_detailed: "%{user} 的报告不符合可用性条件。%{conditions}"
+    report_denied: "%{user}的报告已被拒绝"
+    report_no_evaluations: "%{user}的报告不可用——尚未收到任何评估。"
+    report_not_generated: "%{user}的报告满足可用性条件，但尚未生成。请先生成该报告。"
+    report_on_hold: "%{user}的报告目前处于暂停状态"
+    report_status: 报告状态
+    reports: 报告
+    reports_limit_exceeded: 批量下载限制为1000份报告文件。若您选择了多种语言，请减少选择数量。
+    reports_not_found: 未找到任何报告。请在下载前生成报告。
+    reset_idp_plan: 重置计划
+    reset_idp_plan_confirmation: 您确定要重置计划吗？
+    reset_idp_plan_title: 重置计划
+    response_meta: 响应元数据
+    results: 结果
+    role: 角色
+    saml_idp_certificate_available: 可用（点击复制）
+    saml_idp_certificate_label: 证书
+    saml_idp_entity_id_label: 实体标识符/签发者
+    saml_idp_sso_url_label: 单点登录服务URL
+    saml_service_provider: SAML服务提供商
+    saml_service_provider_acs_urls: ACS 网址
+    saml_service_provider_acs_urls_placeholder: 请输入以逗号分隔的URL，例如：https://app1.com/saml/acs, https://app2.com/saml/acs
+    saml_service_provider_acs_urls_required: ACS URLs是必需的
+    saml_service_provider_action_delete_label: 删除
+    saml_service_provider_action_edit_label: 编辑
+    saml_service_provider_action_rotate_certificate_label: 旋转证书
+    saml_service_provider_add: 添加 SAML 服务提供商
+    saml_service_provider_delete_success: SAML服务提供商已成功删除
+    saml_service_provider_enabled: 启用
+    saml_service_provider_entity_id: 实体ID
+    saml_service_provider_entity_id_placeholder: 输入实体ID
+    saml_service_provider_entity_id_required: 实体ID是必需的
+    saml_service_provider_idp_config: 身份提供者配置
+    saml_service_provider_integration_generic: 通用
+    saml_service_provider_integration_masking_info: 候选人的电子邮箱地址在发送至Yoodli前将被屏蔽处理。需从系统中启用候选人姓名（包括姓氏和名字）的屏蔽功能。
+    saml_service_provider_integration_type: 集成类型
+    saml_service_provider_integration_type_placeholder: 选择集成类型
+    saml_service_provider_integration_type_required: 集成类型是必需的
+    saml_service_provider_integration_yoodli: 优迪
+    saml_service_provider_manage: 行动
+    saml_service_provider_mask_data_for: 掩码数据用于
+    saml_service_provider_mask_identity: 面具身份
+    saml_service_provider_masking_enabled: 启用遮罩
+    saml_service_provider_masking_help_generic: 启用在SAML响应中隐藏用户身份的功能
+    saml_service_provider_masking_help_integration: 集成提供商的屏蔽功能将被应用
+    saml_service_provider_masking_integration: "%{integration} 驱使"
+    saml_service_provider_masking_manual_disabled: 残障人士
+    saml_service_provider_masking_manual_enabled: 启用
+    saml_service_provider_name: 名称
+    saml_service_provider_name_placeholder: 输入服务提供商名称
+    saml_service_provider_name_required: 姓名必填
+    saml_service_provider_privacy_policy: 隐私政策页面
+    saml_service_provider_remove_content: 您确定要删除 SAML 服务提供商：%{name}？
+    saml_service_provider_remove_title: 移除 SAML 服务提供商
+    saml_service_provider_rotate_certificate_content: 您确定要轮换 %{name} 的证书吗？此操作将生成新证书并使当前证书失效。
+    saml_service_provider_rotate_certificate_error: 证书旋转失败
+    saml_service_provider_rotate_certificate_ok: 旋转证书
+    saml_service_provider_rotate_certificate_success: 证书旋转成功
+    saml_service_provider_rotate_certificate_title: 旋转证书
+    saml_service_provider_search: 搜索 SAML 服务提供商...
+    saml_service_provider_updated_date: 更新日期
+    saml_service_providers: 服务提供商
+    saml_settings: SAML 设置
+    scheduling: 排程
+    scoring: 评分
+    search_admins: 搜索管理员
+    select_admin_role: 选择管理员角色
+    send_email: 发送电子邮件
+    settings: 设置
+    show_submenu: 显示子菜单
+    siem: 安全信息与事件管理
+    skill_aliases: 技能别名
+    skills: 技能
+    skills_taxonomy: 技能分类法
+    slot_name: 插槽名称
+    sms_histories: 短信历史记录
+    sms_invites: 短信邀请
+    stats: 统计数据
+    status_details: 状态详情
+    structured_learning: 正式学习 [10]
+    subdomain: 子域名
+    subject_part_of_other_invite: 邮箱地址为 %{user_email} 的用户已受邀加入 '%{workshop_invite_name}' 群组。
+    toolbar_ai_insight: 人工智能洞察
+    toolbar_ai_suggestion: AI建议
+    toolbar_result_generating: 生成中...
+    toolbar_text_copied: 已复制到剪贴板
+    toolbar_text_replaced: 文本已替换！
+    toolbar_what_changed_and_why: 发生了什么变化及原因
+    translation_assistant_not_configured: 翻译助手未配置
+    upload_success: 上传成功
+    user_report_events: 用户报告事件
+    users: 用户
+    view_licenses: 查看许可证
+    waiting: 等待
+    workshops: 研讨会
+    writing_assistant_not_configured: 写作助手尚未配置
+    x_axis_interval_label: X轴间隔
+    y_axis_interval_label: Y轴间隔
+    year: 年
+    yoodli_activity_id: 优迪活动ID
+    yoodli_email_id: 优迪候选人电子邮箱ID
+    yoodli_external_assessment_id: 优德利评估ID

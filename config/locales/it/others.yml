@@ -837,6 +837,10 @@ it:
           reply_to_reply: Impossibile rispondere a una risposta (è consentito un solo livello di nidificazione)
         user_idp_plan:
           no_active_plan: Nessun piano IDP attivo trovato
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: È possibile selezionare solo valutazioni di tipo "psicometrico" e "sondaggio organizzativo".
   admin_jobs:
     attrs:
       operations:
@@ -2205,16 +2209,16 @@ it:
       password_complexity:
         digit:
           one: deve contenere almeno una cifra
-          other: deve contenere almeno <x>count</x> cifre
+          other: deve contenere almeno %{count} cifre
         lower:
           one: deve contenere almeno una lettera minuscola
-          other: deve contenere almeno <x>count</x> lettere minuscole
+          other: deve contenere almeno %{count} lettere minuscole
         symbol:
           one: deve contenere almeno un segno di punteggiatura o un simbolo
-          other: deve contenere almeno <x>count</x> segni di punteggiatura o simboli
+          other: deve contenere almeno %{count} segni di punteggiatura o simboli
         upper:
           one: deve contenere almeno una lettera maiuscola
-          other: deve contenere almeno <x>count</x> lettere maiuscole
+          other: deve contenere almeno %{count} lettere maiuscole
       taken_in_past: non deve essere uguale a una password usata in precedenza.
     module_error: Qualcosa è andato storto con questo modulo, si prega di contattare l'amministrazione.
     module_error_editor: Qualcosa è andato storto con questo modulo, controllare le impostazioni del modulo.
@@ -3091,7 +3095,7 @@ it:
     footer:
       regards: Saluti,
       team_name: Squadra Lighthouse
-      technical_support: Per qualsiasi problema tecnico, scriveteci a <x>email</x> e vi risponderemo entro 24 ore.
+      technical_support: Per qualsiasi problema tecnico, scriveteci a %{email} e vi risponderemo entro 24 ore.
     from: L'impresa dei talenti
     idp:
       manager_unread_comments:

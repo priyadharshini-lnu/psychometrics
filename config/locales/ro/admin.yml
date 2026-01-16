@@ -34,14 +34,19 @@ ro:
     ai_assistants_test_render: Randare de testare
     ai_assistants_test_render_tooltip: Testează-ți șablonul de prompt cu date de campanie pentru a vedea ce va fi trimis asistentului AI.
     ai_assisted_idp_feature_disabled: Funcția IDP asistată de AI a fost dezactivată pentru acest proiect.
+    all_corner_rounded: Toate colțurile rotunjite
     api_keys: Chei API
     assessments: Evaluări
     assessments_reports: Evaluări și rapoarte
     assessor_dashboard: Tabloul de bord al evaluatorului
     assessor_workshops: Centrul de evaluare
     assessors: Evaluatori
+    assistant_toolbar_failed: Nu s-a reușit generarea unei ieșiri valide după mai multe încercări
+    assistant_toolbar_not_a_valid_operation: Operațiune necunoscută %{operation}.
+    assistant_validation_failed: Nu s-a reușit generarea unei ieșiri valide după mai multe încercări
     audit_logs: Jurnale de audit
     audit_reports: Rapoarte de audit
+    auto_placeholder: Auto
     availability: Disponibilitate
     available_languages: Raport disponibil în limbi
     back_to_main: Meniul principal
@@ -88,15 +93,20 @@ ro:
     edit_project_admin: Editați administratorul proiectului
     edit_threesixty_campaign_admin: Editați administratorul campaniei
     empty_csv_file: Fișierul CSV nu conține niciun fel de date.
+    enable_enhance_with_ai_client_level: Vă rugăm să activați funcția Îmbunătățire cu AI la nivel de client.
+    enable_transcription: Activați transcrierea
+    enhance_with_ai_requires_ai_assistants: Pentru a îmbunătăți cu AI, este necesar să fie activată funcția Asistenți AI.
     evaluation_status: Stare de evaluare
     evaluation_status_not_done: Starea evaluării nu este "Finalizată" pentru unul sau mai mulți subiecte selectate. Vă rugăm să vă asigurați că toți utilizatorii selectați au finalizat evaluările sau să marcheze ca fiind făcute.
     export_admin_roles_permissions: Exportul rolurilor și permisiunilor de administrator
+    feature_enhance_with_ai: Îmbunătățiți cu AI
     feature_flags: Steaguri de caracteristici
     fill_empty_score_msg: Completează toate scorurile finale înainte de a salva.
     final_score_empty_msg: Scorul final nu poate fi gol.
     idp_plan_reset_success: Planul a fost resetat cu succes
     idp_templates: Șabloane IDP
     import_ai_artifacts: Importul artefactelor AI
+    import_csv_assessment_group_error: "%{index} de rând: utilizatorul cu adresa de e-mail %{email} este deja invitat la „%{workshopInviteName}”"
     import_csv_error: 'Rândul %{index}: utilizator cu email %{email} nu face parte din această campanie'
     import_csv_parsing_error: 'Eroare de analiză CSV: %{message}'
     import_description: Importă utilizatori dintr-un fișier CSV. Fiecare rând trebuie să conțină o adresă de email.
@@ -661,12 +671,23 @@ ro:
     status_details: Detalii despre stadiu
     structured_learning: Învățarea formală [10]
     subdomain: Subdomeniu
+    subject_part_of_other_invite: Persoana cu adresa de e-mail %{user_email} este deja invitată la „%{workshop_invite_name}”.
+    toolbar_ai_insight: Perspectivă AI
+    toolbar_ai_suggestion: Sugestie AI
+    toolbar_result_generating: Se generează...
+    toolbar_text_copied: Copiată în clipboard
+    toolbar_text_replaced: Text înlocuit!
+    toolbar_what_changed_and_why: Ce s-a schimbat și de ce
+    translation_assistant_not_configured: Asistentul de traducere nu este configurat
     upload_success: Încărcat cu succes
     user_report_events: Evenimente de raportare a utilizatorilor
     users: Utilizatorii
     view_licenses: Vizualizați licențele
     waiting: Așteptare
     workshops: Ateliere
+    writing_assistant_not_configured: Asistentul de scriere nu este configurat
+    x_axis_interval_label: Intervalul axei X
+    y_axis_interval_label: Intervalul axei Y
     year: Țara
     yoodli_activity_id: ID-ul activității Yoodli
     yoodli_email_id: ID-ul de email al candidatului Yoodli

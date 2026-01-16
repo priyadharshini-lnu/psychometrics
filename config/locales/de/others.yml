@@ -837,6 +837,10 @@ de:
           reply_to_reply: Auf eine Antwort kann nicht geantwortet werden (nur eine Verschachtelungsebene zulässig)
         user_idp_plan:
           no_active_plan: Kein aktiver IDP-Plan gefunden
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: Es können nur Bewertungen vom Typ „Psychometrie“ und „Organisationsumfrage“ ausgewählt werden.
   admin_jobs:
     attrs:
       operations:
@@ -2219,16 +2223,16 @@ de:
       password_complexity:
         digit:
           one: muss mindestens eine Ziffer enthalten
-          other: muss mindestens <x>count</x> Ziffern enthalten
+          other: muss mindestens %{count} Ziffern enthalten
         lower:
           one: muss mindestens einen Kleinbuchstaben enthalten
-          other: muss mindestens <x>count</x> Kleinbuchstaben enthalten
+          other: muss mindestens %{count} Kleinbuchstaben enthalten
         symbol:
           one: muss mindestens ein Interpunktionszeichen oder Symbol enthalten
-          other: muss mindestens <x>count</x> Interpunktionszeichen oder Symbole enthalten
+          other: muss mindestens %{count} Interpunktionszeichen oder Symbole enthalten
         upper:
           one: muss mindestens einen Großbuchstaben enthalten
-          other: muss mindestens <x>count</x> Großbuchstaben enthalten
+          other: muss mindestens %{count} Großbuchstaben enthalten
       taken_in_past: darf nicht mit einem zuvor verwendeten Passwort übereinstimmen.
     module_error: Bei diesem Modul ist ein Fehler aufgetreten. Bitte kontaktieren Sie die Administration.
     module_error_editor: Bei diesem Modul ist etwas schief gelaufen, bitte überprüfen Sie die Moduleinstellungen.

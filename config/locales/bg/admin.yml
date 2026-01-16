@@ -34,14 +34,19 @@ bg:
     ai_assistants_test_render: Тестов рендер
     ai_assistants_test_render_tooltip: Тествайте шаблона за подсказки с данни от кампанията, за да проверите какво ще бъде изпратено на AI асистента.
     ai_assisted_idp_feature_disabled: Функцията AI Assisted IDP е деактивирана за този проект.
+    all_corner_rounded: Всички ъгли са заоблени
     api_keys: API ключове
     assessments: Оценки
     assessments_reports: Оценки и отчети
     assessor_dashboard: Табло за управление на оценителя
     assessor_workshops: Център за оценяване
     assessors: Оценители
+    assistant_toolbar_failed: Не успях да генерирам валиден резултат след многократни опити
+    assistant_toolbar_not_a_valid_operation: Неизвестна операция „%{operation}“.
+    assistant_validation_failed: Не успях да генерирам валиден резултат след многократни опити
     audit_logs: Регистрационни файлове за одит
     audit_reports: Одиторски доклади
+    auto_placeholder: Авто
     availability: Наличност
     available_languages: Докладът е наличен на езици
     back_to_main: Главно меню
@@ -88,15 +93,20 @@ bg:
     edit_project_admin: Редактиране на администратора на проекта
     edit_threesixty_campaign_admin: Редактиране на администратора на кампанията
     empty_csv_file: CSV файлът не съдържа никакви данни.
+    enable_enhance_with_ai_client_level: Моля, активирайте функцията „Подобрение с AI“ на ниво клиент.
+    enable_transcription: Активиране на транскрипция
+    enhance_with_ai_requires_ai_assistants: За да използвате функцията „Подобрение с AI“, трябва да активирате функцията „AI асистенти“.
     evaluation_status: Статус на оценката
     evaluation_status_not_done: Статусът на оценяване не е "Завършен" за един или повече избрани предмети. Моля, уверете се, че всички избрани потребители са завършили оценките или са оценили като изпълнени.
     export_admin_roles_permissions: Експортиране на администраторски роли и разрешения
+    feature_enhance_with_ai: Подобрете с AI
     feature_flags: Флагове за функции
     fill_empty_score_msg: Запълнете всички крайни резултати преди да запазите.
     final_score_empty_msg: Крайният резултат не може да бъде празен.
     idp_plan_reset_success: Планът беше успешно рестартиран
     idp_templates: Шаблони за индивидуален план за развитие
     import_ai_artifacts: Импортиране на AI артефакти
+    import_csv_assessment_group_error: 'Ред „%{index}“: потребителят с имейл адрес %{email} вече е поканен в „%{workshopInviteName}“.'
     import_csv_error: 'Ред %{index}: потребител с имейл %{email} не участва в тази кампания'
     import_csv_parsing_error: 'Грешка при анализ на CSV: %{message}'
     import_description: Импортирайте потребители от CSV файл. Всеки ред трябва да съдържа имейл адрес.
@@ -661,12 +671,23 @@ bg:
     status_details: Детайли за статуса
     structured_learning: Формално обучение [10]
     subdomain: Поддомейн
+    subject_part_of_other_invite: Получателят на имейла %{user_email} вече е поканен на „%{workshop_invite_name}”
+    toolbar_ai_insight: AI Insight
+    toolbar_ai_suggestion: Предложение за изкуствен интелект
+    toolbar_result_generating: Генериране...
+    toolbar_text_copied: Копирано в клипборда
+    toolbar_text_replaced: Текстът е заменен!
+    toolbar_what_changed_and_why: Какво се промени и защо
+    translation_assistant_not_configured: Помощникът за превод не е конфигуриран
     upload_success: Качено успешно
     user_report_events: Събития с потребителски отчет
     users: Потребители
     view_licenses: Преглед на лицензи
     waiting: Чакат
     workshops: Семинари
+    writing_assistant_not_configured: Писателският асистент не е конфигуриран
+    x_axis_interval_label: Интервал по ос Х
+    y_axis_interval_label: Интервал на Y-ос
     year: Държава
     yoodli_activity_id: Yoodli ID на активността
     yoodli_email_id: Имейл ID на кандидата Yoodli

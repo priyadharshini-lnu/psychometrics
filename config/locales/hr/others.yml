@@ -843,6 +843,10 @@ hr:
           reply_to_reply: ne mogu odgovoriti na odgovor (dopuštena je samo jedna razina ugniježđenja)
         user_idp_plan:
           no_active_plan: Nije pronađen aktivan IDP plan
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: Mogu se odabrati samo procjene tipa 'psihofizika' i 'org survey'.
   admin_jobs:
     attrs:
       operations:

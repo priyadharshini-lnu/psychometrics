@@ -837,6 +837,10 @@ ja:
           reply_to_reply: 返信に返信できません (1 つのレベルのネストのみが許可されます)
         user_idp_plan:
           no_active_plan: 有効なIDP計画が見つからない
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: "「心理測定」および「組織調査」タイプの評価のみを選択できます"
   admin_jobs:
     attrs:
       operations:
@@ -2200,16 +2204,16 @@ ja:
       password_complexity:
         digit:
           one: には少なくとも1桁の数字が含まれていなければならない。
-          other: 少なくとも<x>count</x> 桁の数字が含まれていなければならない。
+          other: 少なくとも%{count} 桁の数字が含まれていなければならない。
         lower:
           one: 少なくとも1つの小文字が含まれていなければならない
-          other: 少なくとも<x>count</x> の小文字が含まれていなければならない。
+          other: 少なくとも%{count} の小文字が含まれていなければならない。
         symbol:
           one: 少なくとも1つの句読点または記号を含むこと。
-          other: 少なくとも<x>count</x> の句読点または記号を含むこと。
+          other: 少なくとも%{count} の句読点または記号を含むこと。
         upper:
           one: 少なくとも1つの大文字が含まれていなければならない
-          other: 少なくとも<x>count</x> の大文字が含まれていなければならない。
+          other: 少なくとも%{count} の大文字が含まれていなければならない。
       taken_in_past: 以前に使用したパスワードと同じであってはならない。
     module_error: このモジュールに何か問題が発生しました。
     module_error_editor: モジュールの設定を確認してください。
@@ -3080,7 +3084,7 @@ ja:
     footer:
       regards: ありがとう、
       team_name: ライトハウス・チーム
-      technical_support: 技術的な問題については、<x>email</x> 。
+      technical_support: 技術的な問題については、%{email} 。
     from: タレント・エンタープライズ
     idp:
       manager_unread_comments:

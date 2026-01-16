@@ -9,6 +9,7 @@ zh-HK:
     agree_and_continue: 同意並繼續
     archive: 檔案
     archived: 已存檔
+    audio: 音频
     authentication_failed: 驗證失敗。請再試一次。
     basic: 基本
     campaign_id: 競選識別碼
@@ -16,18 +17,26 @@ zh-HK:
     change_password: 更改密碼
     clear_filters: 透明過濾器
     collaborative_learning: 協作學習
+    completed: 已完成
     confirm: 確認
     continue: 續
+    copy: 复制
     created_at: 創立於
     created_date: 創建日期
     decline: 衰落
     description: 描述
+    download: 下载
     edit: 編輯
     edited: 編輯
     email: 電子郵件
     export: 出口
+    failed: 失败
     first_name: 名字
     formal_learning: 正式學習
+    generate: 生成
+    generate_transcription_confirm_content: 您确定要为本次媒体回应生成文字记录吗？
+    generate_transcription_confirm_title: 生成转录文本
+    generating: 生成
     group_question_max_validation_error: 每個群組最多可包含 {{max}} 個項目。
     group_question_min_validation_error: 每個群組至少需要包含 {{min}} 項目。
     id: 身分證
@@ -36,18 +45,24 @@ zh-HK:
     last_name: 姓氏
     learning_on_the_job_label: 邊做邊學
     login: 登入
+    media_question_transcriptions: 媒体提问记录
     modified_by: 修改者
     modified_date: 修改日期
     more_actions: 更多動作
     mte_logo_alt_text: 默瑟人才企業標誌
     name: 名字
     new: 新
+    not_requested: 尚未请求
     ok: 好
+    pending: 待定
+    processing: 处理中
+    question_id: 问题ID
     recording_consent_notice: 本次會議將被錄音。您參與本次會議即表示您同意被錄音。
     recording_consent_proceed_question: 你同意繼續錄音會議嗎？
     recording_consent_title: 登記同意書通知
     remove: 移除
     removed: 已移除
+    replace: 替换
     reset_password: 重設密碼
     rte_paste_content_exceeds_char_limit: 文字超過 {{maxCharacterLimit}} 的字元限制，無法貼上。
     rte_paste_content_exceeds_word_limit: 文字超過 {{maxWordLimit}} 的字數限制，無法貼上。
@@ -67,7 +82,13 @@ zh-HK:
           zero: 總計：0
     terms_conditions_privacy: 私隱聲明
     tools: 工具
+    transcription: 转录
+    transcription_already_requested: 转录已请求或正在进行中
+    transcription_not_enabled: 媒体响应未启用转录功能
     transcriptions: 轉錄
+    try_again: 重试
     tte_terms_and_condition: 條款和私隱
     type: 型
     update: 更新
+    video: 视频
+    view: 查看

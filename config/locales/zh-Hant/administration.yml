@@ -2888,6 +2888,11 @@ zh-Hant:
           active:
             label: 活躍
             name: 活躍
+          assessments:
+            help_text: 此选项仅影响评估原始响应事件。
+            label: 评估
+            placeholder: 选择评估
+            required: 评估原始响应事件必须至少选择一项评估。
           auth_type:
             api_key:
               label: API 金鑰
@@ -2944,6 +2949,7 @@ zh-Hant:
             list:
               assessment_assigned: 指定評估
               assessment_completed: 評估完成
+              assessment_raw_response: 评估原始答复
               assessment_started: 評估開始
               assessment_timeout: 評估超時
               campaign_results_available: 提供活動結果
@@ -3657,7 +3663,7 @@ zh-Hant:
         preworks: 前期工作
         re_enroll: 重新註冊
         re_enroll_confirm_message: 您確定要重新註冊電子郵件 '%{subject_email}' 的主旨嗎？
-        re_enroll_success: 重新註冊的主題與電子郵件<x>subject_email</x> 。
+        re_enroll_success: 重新註冊的主題與電子郵件%{subject_email} 。
         schedule: 時間表
         unschedule: 取消排程
       tabs:

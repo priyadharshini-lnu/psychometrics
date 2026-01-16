@@ -2888,6 +2888,11 @@ it:
           active:
             label: Attivi
             name: attivo
+          assessments:
+            help_text: Questa selezione influisce solo sull'evento Risposta grezza della valutazione.
+            label: Valutazioni
+            placeholder: Seleziona valutazioni
+            required: È necessario selezionare almeno una valutazione per l'evento Risposta grezza alla valutazione.
           auth_type:
             api_key:
               label: Chiave API
@@ -2944,6 +2949,7 @@ it:
             list:
               assessment_assigned: Valutazione assegnata
               assessment_completed: Valutazione completata
+              assessment_raw_response: Valutazione Risposta grezza
               assessment_started: Valutazione avviata
               assessment_timeout: Timeout di valutazione
               campaign_results_available: Risultati della campagna disponibili
@@ -3657,7 +3663,7 @@ it:
         preworks: Prelavoro
         re_enroll: Iscriversi di nuovo
         re_enroll_confirm_message: Sei sicuro di voler reinserire l'oggetto con l'email '%{subject_email}'?
-        re_enroll_success: Soggetto reiscritto con email <x>subject_email</x>.
+        re_enroll_success: Soggetto reiscritto con email %{subject_email}.
         schedule: Programma
         unschedule: Non programmato
       tabs:

@@ -2888,6 +2888,11 @@ sk:
           active:
             label: Aktívny
             name: aktívny
+          assessments:
+            help_text: Tento výber ovplyvňuje iba udalosť „Hodnotenie surových odpovedí“.
+            label: Hodnotenia
+            placeholder: Vyberte hodnotenia
+            required: Pre udalosť „Hodnotenie surových odpovedí“ je potrebné vybrať aspoň jedno hodnotenie.
           auth_type:
             api_key:
               label: Kľúč API
@@ -2944,6 +2949,7 @@ sk:
             list:
               assessment_assigned: Pridelené hodnotenie
               assessment_completed: Hodnotenie ukončené
+              assessment_raw_response: Hodnotenie surových odpovedí
               assessment_started: Začiatok hodnotenia
               assessment_timeout: Časový limit hodnotenia
               campaign_results_available: Dostupné výsledky kampane
@@ -3654,7 +3660,7 @@ sk:
         preworks: Príprava
         re_enroll: Opätovný zápis
         re_enroll_confirm_message: Ste si istí, že chcete opätovne zapísať predmet s e-mailom '%{subject_email}'?
-        re_enroll_success: Znovuzapísaný subjekt s e-mailom <x>subject_email</x>.
+        re_enroll_success: Znovuzapísaný subjekt s e-mailom %{subject_email}.
         schedule: Rozvrh
         unschedule: Zrušiť plán
       tabs:

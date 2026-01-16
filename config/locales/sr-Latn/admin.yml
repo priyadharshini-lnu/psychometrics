@@ -34,14 +34,19 @@ sr-Latn:
     ai_assistants_test_render: Test Render
     ai_assistants_test_render_tooltip: Testirajte svoj brzi predložak sa podacima o kampanji da biste proverili šta će biti poslato AI asistentu.
     ai_assisted_idp_feature_disabled: AI Assisted IDP funkcija je onemogućena za ovaj projekat.
+    all_corner_rounded: Сви углови заобљени
     api_keys: API ključevi
     assessments: Procene
     assessments_reports: Procene i izveštaji
     assessor_dashboard: Kontrolna tabla procenjivača
     assessor_workshops: Centar za procenu
     assessors: Ocenjivači
+    assistant_toolbar_failed: Није успело да генерише важећи излаз након више покушаја
+    assistant_toolbar_not_a_valid_operation: Непозната операција %{operation}.
+    assistant_validation_failed: Није успело да генерише важећи излаз након више покушаја
     audit_logs: Evidencije revizije
     audit_reports: Izveštaji o reviziji
+    auto_placeholder: Ауто
     availability: Raspoloživost
     available_languages: Izveštaj dostupan na jezicima
     back_to_main: Glavni meni
@@ -88,15 +93,20 @@ sr-Latn:
     edit_project_admin: Uredi Administrator projekta
     edit_threesixty_campaign_admin: Uredi administratora kampanje
     empty_csv_file: CSV datoteka ne sadrži nikakve podatke.
+    enable_enhance_with_ai_client_level: Молимо омогућите функцију Enhance with AI на нивоу клијента.
+    enable_transcription: Омогући транскрипцију
+    enhance_with_ai_requires_ai_assistants: Побољшање помоћу вештачке интелигенције захтева да је омогућена функција AI Assistants.
     evaluation_status: Status evaluacije
     evaluation_status_not_done: Status evaluacije nije "Gotovo" za jedan ili više odabranih predmeta. Proverite da li su svi izabrani korisnici završili evaluacije ili označili kao urađeno.
     export_admin_roles_permissions: Uloge administratora i izvoz dozvola
+    feature_enhance_with_ai: Унапредите помоћу вештачке интелигенције
     feature_flags: Feature flagovi
     fill_empty_score_msg: Popunite sve konačne rezultate pre čuvanja.
     final_score_empty_msg: Konačni rezultat ne može biti prazan.
     idp_plan_reset_success: Plan je uspešno resetovan
     idp_templates: IDP Šabloni
     import_ai_artifacts: Uvoz AI artefakata
+    import_csv_assessment_group_error: 'Ред%{index}: корисник са адресом електронске поште %{email} је већ позван у ''%{workshopInviteName}'''
     import_csv_error: 'Red %{index}: korisnik sa e-poštom %{email} nije u ovoj kampanji'
     import_csv_parsing_error: 'CSV greška u raščlanjivanju: %{message}'
     import_description: Uvezite korisnike iz CSV datoteke. Svaki red mora da sadrži adresu e-pošte.
@@ -661,12 +671,23 @@ sr-Latn:
     status_details: Detalji o statusu
     structured_learning: Formalno učenje [10]
     subdomain: Poddomen
+    subject_part_of_other_invite: Корисник са адресом електронске поште %{user_email} већ је позван на '%{workshop_invite_name}'
+    toolbar_ai_insight: Увид вештачке интелигенције
+    toolbar_ai_suggestion: Предлог вештачке интелигенције
+    toolbar_result_generating: Генерисање...
+    toolbar_text_copied: Копирано у међуспремник
+    toolbar_text_replaced: Текст замењен!
+    toolbar_what_changed_and_why: Шта се променило и зашто
+    translation_assistant_not_configured: Помоћник за превод није конфигурисан
     upload_success: Uspešno otpremljen
     user_report_events: Događaji Izveštaja korisnika
     users: Korisnici
     view_licenses: Pogledaj licence
     waiting: Иeka
     workshops: Radionice
+    writing_assistant_not_configured: Асистент за писање није конфигурисан
+    x_axis_interval_label: Интервал X-осе
+    y_axis_interval_label: Y-оска интервала
     year: Država
     yoodli_activity_id: Yoodli Activity ID
     yoodli_email_id: ID e-pošte kandidata za joodli

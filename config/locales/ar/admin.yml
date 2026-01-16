@@ -43,6 +43,7 @@ ar:
     assessors: المقيمون
     assistant_toolbar_failed: فشل في إنشاء مخرجات صالحة بعد عدة محاولات
     assistant_toolbar_not_a_valid_operation: عملية غير معروفة%{operation}.
+    assistant_validation_failed: فشل في إنشاء مخرجات صالحة بعد عدة محاولات
     audit_logs: سجلات التدقيق
     audit_reports: تقارير التدقيق
     auto_placeholder: السيارات
@@ -93,6 +94,7 @@ ar:
     edit_threesixty_campaign_admin: تعديل مسؤول حملة
     empty_csv_file: ملف CSV لا يحتوي على أي بيانات.
     enable_enhance_with_ai_client_level: يرجى تمكين ميزة "تحسين باستخدام الذكاء الاصطناعي" على مستوى العميل
+    enable_transcription: تمكين النسخ
     enhance_with_ai_requires_ai_assistants: يتطلب تحسين الأداء باستخدام الذكاء الاصطناعي تمكين ميزة المساعدات الذكية.
     evaluation_status: حالة التقييم
     evaluation_status_not_done: حالة التقييم ليست 'مكتملة' لشخص أو أكثر من المشاركات المختارة. يرجى التأكد من أن جميع المستخدمين المختارين قد أكملوا التقييمات أو وضع علامة على أنهم تم.
@@ -676,6 +678,7 @@ ar:
     toolbar_text_copied: نسخ إلى الحافظة
     toolbar_text_replaced: تم استبدال النص!
     toolbar_what_changed_and_why: ما الذي تغير ولماذا
+    translation_assistant_not_configured: مساعد الترجمة غير مهيأ
     upload_success: تم الرفع بنجاح
     user_report_events: أحداث تقارير المستخدم
     users: المستخدمون

@@ -2888,6 +2888,11 @@ ro:
           active:
             label: Activă
             name: activ
+          assessments:
+            help_text: Această selecție afectează numai evenimentul „Răspuns brut la evaluare”.
+            label: Evaluări
+            placeholder: Selectați evaluările
+            required: Trebuie selectată cel puțin o evaluare pentru evenimentul „Răspuns brut la evaluare”.
           auth_type:
             api_key:
               label: Cheie API
@@ -2944,6 +2949,7 @@ ro:
             list:
               assessment_assigned: Evaluare atribuită
               assessment_completed: Evaluare finalizată
+              assessment_raw_response: Evaluarea răspunsurilor brute
               assessment_started: Evaluarea a început
               assessment_timeout: Expirare evaluare
               campaign_results_available: Rezultatele campaniei disponibile
@@ -3654,7 +3660,7 @@ ro:
         preworks: Prework
         re_enroll: Reînscriere
         re_enroll_confirm_message: Sunteți sigur că doriți să înscrieți din nou subiectul cu adresa de e-mail '%{subject_email}'?
-        re_enroll_success: Subiect reînscris cu e-mail <x>subject_email</x>.
+        re_enroll_success: Subiect reînscris cu e-mail %{subject_email}.
         schedule: Orar
         unschedule: Deprogramare
       tabs:

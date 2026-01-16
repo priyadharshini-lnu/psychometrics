@@ -2888,6 +2888,11 @@ es-ES:
           active:
             label: Activo
             name: activo
+          assessments:
+            help_text: Esta selección solo afecta al evento «Respuesta sin procesar de la evaluación».
+            label: Evaluaciones
+            placeholder: Seleccionar evaluaciones
+            required: Se debe seleccionar al menos una evaluación para el evento Respuesta sin procesar de la evaluación.
           auth_type:
             api_key:
               label: Clave API
@@ -2944,6 +2949,7 @@ es-ES:
             list:
               assessment_assigned: Evaluación asignada
               assessment_completed: Evaluación finalizada
+              assessment_raw_response: Evaluación Respuesta sin procesar
               assessment_started: Evaluación iniciada
               assessment_timeout: Tiempo de evaluación
               campaign_results_available: Resultados de la campaña disponibles
@@ -3657,7 +3663,7 @@ es-ES:
         preworks: Trabajo previo
         re_enroll: Vuelva a inscribirse
         re_enroll_confirm_message: "¿Está seguro de que desea volver a inscribir el asunto con el correo electrónico '%{subject_email}'?"
-        re_enroll_success: Asunto reinscrito con correo electrónico <x>subject_email</x>.
+        re_enroll_success: Asunto reinscrito con correo electrónico %{subject_email}.
         schedule: Horario
         unschedule: Desprogramar
       tabs:

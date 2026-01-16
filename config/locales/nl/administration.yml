@@ -2888,6 +2888,11 @@ nl:
           active:
             label: Actief
             name: actief
+          assessments:
+            help_text: Deze selectie heeft alleen invloed op de gebeurtenis 'Ruwe beoordelingsreactie'.
+            label: Beoordelingen
+            placeholder: Selecteer beoordelingen
+            required: Er moet ten minste één beoordeling worden geselecteerd voor de gebeurtenis 'Ruwe beoordelingsrespons'.
           auth_type:
             api_key:
               label: API-sleutel
@@ -2944,6 +2949,7 @@ nl:
             list:
               assessment_assigned: Beoordeling Toegewezen
               assessment_completed: Beoordeling Voltooid
+              assessment_raw_response: Beoordeling Ruwe respons
               assessment_started: Beoordeling gestart
               assessment_timeout: Time-out beoordeling
               campaign_results_available: Campagne resultaten beschikbaar
@@ -3657,7 +3663,7 @@ nl:
         preworks: Voorwerk
         re_enroll: Opnieuw inschrijven
         re_enroll_confirm_message: Weet je zeker dat je het onderwerp opnieuw wilt opgeven met de e-mail '%{subject_email}'?
-        re_enroll_success: Opnieuw ingeschreven onderwerp met e-mail <x>subject_email</x>.
+        re_enroll_success: Opnieuw ingeschreven onderwerp met e-mail %{subject_email}.
         schedule: Schema
         unschedule: Uitschakelen
       tabs:

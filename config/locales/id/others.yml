@@ -837,6 +837,10 @@ id:
           reply_to_reply: tidak dapat membalas balasan (hanya satu tingkat bersarang yang diizinkan)
         user_idp_plan:
           no_active_plan: Tidak ada paket IDP aktif yang ditemukan
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: Hanya penilaian jenis 'psycometrics' dan 'org survey' yang dapat dipilih.
   admin_jobs:
     attrs:
       operations:
@@ -3094,7 +3098,7 @@ id:
     footer:
       regards: Salam,
       team_name: Tim Lighthouse
-      technical_support: Untuk masalah teknis apa pun, silakan kirim email kepada kami di <x>email</x> dan kami akan merespons dalam waktu 24 jam.
+      technical_support: Untuk masalah teknis apa pun, silakan kirim email kepada kami di %{email} dan kami akan merespons dalam waktu 24 jam.
     from: Perusahaan Bakat
     idp:
       manager_unread_comments:

@@ -2888,6 +2888,11 @@ fr:
           active:
             label: Actif
             name: actif
+          assessments:
+            help_text: Cette sélection n'affecte que l'événement « Réponse brute à l'évaluation ».
+            label: Évaluations
+            placeholder: Sélectionner les évaluations
+            required: Au moins une évaluation doit être sélectionnée pour l'événement « Réponse brute à l'évaluation ».
           auth_type:
             api_key:
               label: Clé API
@@ -2944,6 +2949,7 @@ fr:
             list:
               assessment_assigned: Évaluation attribuée
               assessment_completed: Évaluation terminée
+              assessment_raw_response: Évaluation Réponse brute
               assessment_started: Début de l'évaluation
               assessment_timeout: Délai d'évaluation
               campaign_results_available: Résultats de la campagne disponibles
@@ -3657,7 +3663,7 @@ fr:
         preworks: Prétravail
         re_enroll: Réinscription
         re_enroll_confirm_message: Etes-vous sûr de vouloir réinscrire le sujet avec l'email '%{subject_email}' ?
-        re_enroll_success: Sujet réinscrit à l'adresse électronique <x>subject_email</x>.
+        re_enroll_success: Sujet réinscrit à l'adresse électronique %{subject_email}.
         schedule: Calendrier
         unschedule: Déprogrammation
       tabs:

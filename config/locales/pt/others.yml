@@ -837,6 +837,10 @@ pt:
           reply_to_reply: não é possível responder a uma resposta (apenas um nível de aninhamento permitido)
         user_idp_plan:
           no_active_plan: Não foi encontrado nenhum plano IDP ativo
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: Apenas avaliações do tipo "psicometria" e "pesquisa organizacional" podem ser selecionadas.
   admin_jobs:
     attrs:
       operations:
@@ -2218,16 +2222,16 @@ pt:
       password_complexity:
         digit:
           one: deve conter pelo menos um dígito
-          other: deve conter pelo menos <x>count</x> dígitos
+          other: deve conter pelo menos %{count} dígitos
         lower:
           one: deve conter pelo menos uma letra minúscula
-          other: deve conter pelo menos <x>count</x> letras minúsculas
+          other: deve conter pelo menos %{count} letras minúsculas
         symbol:
           one: deve conter pelo menos um sinal de pontuação ou símbolo
-          other: deve conter pelo menos <x>count</x> sinais de pontuação ou símbolos
+          other: deve conter pelo menos %{count} sinais de pontuação ou símbolos
         upper:
           one: deve conter pelo menos uma letra maiúscula
-          other: deve conter pelo menos <x>count</x> letras maiúsculas
+          other: deve conter pelo menos %{count} letras maiúsculas
       taken_in_past: não deve ser igual a nenhuma palavra-passe utilizada anteriormente.
     module_error: Algo ocorreu mal com este módulo, contacte a administração.
     module_error_editor: Algo ocorreu mal com este módulo, verifique as definições do módulo.
@@ -3104,7 +3108,7 @@ pt:
     footer:
       regards: Com os meus cumprimentos,
       team_name: Equipa Lighthouse
-      technical_support: Para quaisquer problemas técnicos, escreva-nos para <x>email</x> e responderemos no prazo de 24 horas.
+      technical_support: Para quaisquer problemas técnicos, escreva-nos para %{email} e responderemos no prazo de 24 horas.
     from: A Empresa de Talentos
     idp:
       manager_unread_comments:

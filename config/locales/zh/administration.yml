@@ -2888,6 +2888,11 @@ zh:
           active:
             label: 活跃
             name: 活动
+          assessments:
+            help_text: 此选项仅影响评估原始响应事件。
+            label: 评估
+            placeholder: 选择评估
+            required: 评估原始响应事件必须至少选择一项评估。
           auth_type:
             api_key:
               label: API 密钥
@@ -2944,6 +2949,7 @@ zh:
             list:
               assessment_assigned: 指定评估
               assessment_completed: 已完成评估
+              assessment_raw_response: 评估原始答复
               assessment_started: 评估开始
               assessment_timeout: 评估超时
               campaign_results_available: 活动结果已公布
@@ -3656,8 +3662,8 @@ zh:
         override_existing: 覆盖现有的科目时间表
         preworks: 前期工作
         re_enroll: 重新注册
-        re_enroll_confirm_message: 您确定要使用电子邮件 "<x>subject_email</x>"重新注册主题吗？
-        re_enroll_success: 重新注册主题，电子邮件：<x>subject_email</x> 。
+        re_enroll_confirm_message: 您确定要使用电子邮件 "%{subject_email}"重新注册主题吗？
+        re_enroll_success: 重新注册主题，电子邮件：%{subject_email} 。
         schedule: 时间安排
         unschedule: 取消计划
       tabs:

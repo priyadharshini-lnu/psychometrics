@@ -9,6 +9,7 @@ ko:
     agree_and_continue: 동의하고 계속하세요
     archive: 아카이브
     archived: 아카이브
+    audio: 오디오
     authentication_failed: 인증에 실패했습니다. 다시 시도해 주세요.
     basic: 기초의
     campaign_id: 캠페인 ID
@@ -16,18 +17,26 @@ ko:
     change_password: 비밀번호 변경
     clear_filters: 필터 지우기
     collaborative_learning: 협력 학습
+    completed: 완료됨
     confirm: 확인
     continue: 계속하다
+    copy: 복사
     created_at: 만든 곳
     created_date: 생성 날짜
     decline: 쇠퇴
     description: 묘사
+    download: 다운로드
     edit: 편집
     edited: 새로 만들기
     email: 이메일
     export: 내보내기
+    failed: 실패함
     first_name: 이름
     formal_learning: 정식 학습
+    generate: 생성
+    generate_transcription_confirm_content: 이 미디어 응답에 대한 트랜스크립션을 생성하시겠습니까?
+    generate_transcription_confirm_title: 자막 생성
+    generating: 생성
     group_question_max_validation_error: 각 그룹은 최대 {{max}} 항목까지 포함할 수 있습니다.
     group_question_min_validation_error: 각 그룹은 최소 {{min}} 항목(들)을 포함해야 합니다.
     id: ID
@@ -36,18 +45,24 @@ ko:
     last_name: 성
     learning_on_the_job_label: 현장에서 배우기
     login: 로그인
+    media_question_transcriptions: 미디어 질문 전문
     modified_by: 수정자
     modified_date: 수정된 날짜
     more_actions: 더 많은 작업
     mte_logo_alt_text: 머서 탤런트 엔터프라이즈 로고
     name: 이름
     new: 새로 만들기
+    not_requested: 아직 요청되지 않음
     ok: 확인
+    pending: 보류 중
+    processing: 처리
+    question_id: 질문 ID
     recording_consent_notice: 이 회의 세션은 녹화될 것입니다. 이 회의에 참여하는 것은 녹음에 동의한 것으로 간주됩니다.
     recording_consent_proceed_question: 녹화된 회의를 진행하는 데 동의하십니까?
     recording_consent_title: 동의서 기록 통지
     remove: 제거
     removed: 제거됨
+    replace: 교체
     reset_password: 비밀번호 재설정
     rte_paste_content_exceeds_char_limit: 텍스트는 {{maxCharacterLimit}}의 문자 한도를 초과하며, 붙여넣을 수 없습니다.
     rte_paste_content_exceeds_word_limit: 텍스트가 {{maxWordLimit}}의 단어 수를 초과하여 붙여넣을 수 없습니다.
@@ -67,7 +82,13 @@ ko:
           zero: '합계 : 0'
     terms_conditions_privacy: 개인정보 처리방침
     tools: 도구
+    transcription: 전사
+    transcription_already_requested: 이미 요청되었거나 진행 중인 전사
+    transcription_not_enabled: 미디어 응답에 대한 트랜스크립션이 활성화되지 않았습니다.
     transcriptions: 사본
+    try_again: 다시 시도해 보세요
     tte_terms_and_condition: 약관 및 개인정보 보호
     type: 유형
     update: 업데이트
+    video: 영상
+    view: 보기

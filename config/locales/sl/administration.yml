@@ -2888,6 +2888,11 @@ sl:
           active:
             label: Aktivni
             name: dejaven
+          assessments:
+            help_text: Ta izbira vpliva samo na dogodek Ocena surovega odgovora.
+            label: Ocene
+            placeholder: Izberite ocene
+            required: Za dogodek Ocena surovega odgovora je treba izbrati vsaj eno oceno.
           auth_type:
             api_key:
               label: API ključ
@@ -2944,6 +2949,7 @@ sl:
             list:
               assessment_assigned: Dodeljena ocena
               assessment_completed: Ocena zaključena
+              assessment_raw_response: Ocena surovega odgovora
               assessment_started: Ocenjevanje se je začelo
               assessment_timeout: Časovna omejitev ocenjevanja
               campaign_results_available: Rezultati oglaševalske akcije so na voljo
@@ -3654,7 +3660,7 @@ sl:
         preworks: Priprava
         re_enroll: Ponovni vpis
         re_enroll_confirm_message: Ali ste prepričani, da želite ponovno vpisati predmet z e-pošto '%{subject_email}'?
-        re_enroll_success: Ponovno vpisan predmet z e-pošto <x>subject_email</x>.
+        re_enroll_success: Ponovno vpisan predmet z e-pošto %{subject_email}.
         schedule: Urnik
         unschedule: Prekliči razpored
       tabs:

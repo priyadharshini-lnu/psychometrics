@@ -837,6 +837,10 @@ zh-Hant:
           reply_to_reply: 無法回覆回覆回覆（只允許一個等級的嵌套）
         user_idp_plan:
           no_active_plan: 未找到有效的 IDP 計劃
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: 仅可选择类型为'心理测量学'和'组织调查'的评估
   admin_jobs:
     attrs:
       operations:
@@ -2187,16 +2191,16 @@ zh-Hant:
       password_complexity:
         digit:
           one: 必須至少包含一位數
-          other: 必須至少包含<x>count</x> 位數
+          other: 必須至少包含%{count} 位數
         lower:
           one: 必須包含至少一個小寫字母
-          other: 必須至少包含<x>count</x> 小寫字母
+          other: 必須至少包含%{count} 小寫字母
         symbol:
           one: 必須包含至少一個標點符號或符號
-          other: 必須至少包含<x>count</x> 標點符號或符號
+          other: 必須至少包含%{count} 標點符號或符號
         upper:
           one: 必須至少包含一個大寫字母
-          other: 必須至少包含<x>count</x> 大寫字母
+          other: 必須至少包含%{count} 大寫字母
       taken_in_past: 不得與之前使用的密碼相同。
     module_error: 此模組出錯，請聯絡管理員。
     module_error_editor: 此模組出錯，請檢查模組設定。
@@ -3073,7 +3077,7 @@ zh-Hant:
     footer:
       regards: 關於
       team_name: Lighthouse團隊
-      technical_support: 如有任何技術問題，請寫信至<x>email</x> ，我們會在 24 小時內回覆。
+      technical_support: 如有任何技術問題，請寫信至%{email} ，我們會在 24 小時內回覆。
     from: 人才企業
     idp:
       manager_unread_comments:

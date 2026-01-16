@@ -2888,6 +2888,11 @@ vi:
           active:
             label: Hoạt động
             name: hoạt động
+          assessments:
+            help_text: Lựa chọn này chỉ ảnh hưởng đến sự kiện Phản hồi thô của Đánh giá.
+            label: Đánh giá
+            placeholder: Chọn các bài đánh giá
+            required: Ít nhất một đánh giá phải được chọn cho sự kiện Phản hồi thô của đánh giá.
           auth_type:
             api_key:
               label: Khóa API
@@ -2944,6 +2949,7 @@ vi:
             list:
               assessment_assigned: Đánh giá được giao
               assessment_completed: Đánh giá đã hoàn thành
+              assessment_raw_response: Đánh giá Phản hồi thô
               assessment_started: Đánh giá bắt đầu
               assessment_timeout: Thời gian chờ đánh giá
               campaign_results_available: Kết quả chiến dịch có sẵn
@@ -3654,7 +3660,7 @@ vi:
         preworks: Làm việc trước
         re_enroll: Đăng ký lại
         re_enroll_confirm_message: Bạn có chắc chắn muốn đăng ký lại môn học với địa chỉ email '%{subject_email}' không?
-        re_enroll_success: Học viên đã đăng ký lại với địa chỉ email <x>subject_email</x>.
+        re_enroll_success: Học viên đã đăng ký lại với địa chỉ email %{subject_email}.
         schedule: Lịch
         unschedule: Hủy lên lịch
       tabs:

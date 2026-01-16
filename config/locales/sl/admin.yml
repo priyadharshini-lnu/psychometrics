@@ -34,14 +34,19 @@ sl:
     ai_assistants_test_render: Testni upodabljanje
     ai_assistants_test_render_tooltip: Preizkusite predlogo za poziv s podatki o kampanji, da preverite, kaj bo poslano AI asistentu.
     ai_assisted_idp_feature_disabled: Funkcija AI Assisted IDP je bila za ta projekt onemogočena.
+    all_corner_rounded: Vsi koti so zaobljeni
     api_keys: Ključi API-ja
     assessments: Ocenjevanja
     assessments_reports: Ocenjevanja in poročila
     assessor_dashboard: Nadzorna plošča ocenjevalca
     assessor_workshops: Ocenjevalni center
     assessors: Ocenjevalcev
+    assistant_toolbar_failed: Po več poskusih ni bilo mogoče ustvariti veljavnega izhoda.
+    assistant_toolbar_not_a_valid_operation: Neznana operacija %{operation}.
+    assistant_validation_failed: Po več poskusih ni bilo mogoče ustvariti veljavnega izhoda.
     audit_logs: Dnevniki nadzora
     audit_reports: Revizijska poročila
+    auto_placeholder: Avto
     availability: Razpoložljivost
     available_languages: Poročilo je na voljo v jezikih
     back_to_main: Glavni meni
@@ -88,15 +93,20 @@ sl:
     edit_project_admin: Urejanje skrbnika projekta
     edit_threesixty_campaign_admin: Urejanje skrbnika oglaševalske akcije
     empty_csv_file: CSV datoteka ne vsebuje nobenih podatkov.
+    enable_enhance_with_ai_client_level: Omogočite funkcijo Izboljšaj z AI na ravni odjemalca.
+    enable_transcription: Omogoči prepis
+    enhance_with_ai_requires_ai_assistants: Za izboljšanje z umetno inteligenco je treba omogočiti funkcijo AI Assistants.
     evaluation_status: Status ocenjevanja
     evaluation_status_not_done: Status ocenjevanja ni 'končan' za enega ali več izbranih predmetov. Prosimo, poskrbite, da so vsi izbrani uporabniki opravili ocene ali označili kot opravljeno.
     export_admin_roles_permissions: Izvoz skrbniških vlog in dovoljenj
+    feature_enhance_with_ai: Izboljšajte z umetno inteligenco
     feature_flags: Zastavice funkcij
     fill_empty_score_msg: Pred shranjevanjem izpolnite vse končne rezultate.
     final_score_empty_msg: Končni rezultat ne sme biti prazen.
     idp_plan_reset_success: Načrt je bil uspešno ponastavljen
     idp_templates: Predloge IDP
     import_ai_artifacts: Uvoz AI artefaktov
+    import_csv_assessment_group_error: "%{index} vrstica: uporabnik z e-poštnim naslovom %{email} je že povabljen v skupino „%{workshopInviteName}“."
     import_csv_error: 'Vrstica %{index}: uporabnik z e-poštnim %{email} ni v tej kampanji'
     import_csv_parsing_error: 'Napaka pri analizi CSV: %{message}'
     import_description: Uvozite uporabnike iz CSV datoteke. Vsaka vrstica mora vsebovati e-poštni naslov.
@@ -661,12 +671,23 @@ sl:
     status_details: Podrobnosti o statusu
     structured_learning: Formalno učenje [10]
     subdomain: Poddomena
+    subject_part_of_other_invite: Oseba z e-poštnim naslovom %{user_email} je že povabljena na »%{workshop_invite_name}«.
+    toolbar_ai_insight: Vpogled v umetno inteligenco
+    toolbar_ai_suggestion: Predlog AI
+    toolbar_result_generating: Ustvarjanje...
+    toolbar_text_copied: Kopirano v odložišče
+    toolbar_text_replaced: Besedilo zamenjano!
+    toolbar_what_changed_and_why: Kaj se je spremenilo in zakaj
+    translation_assistant_not_configured: Pomočnik za prevajanje ni nastavljen
     upload_success: Uspešno naloženo
     user_report_events: Dogodki uporabniškega poročila
     users: Uporabniki
     view_licenses: Ogled licenc
     waiting: Čaka
     workshops: Delavnice
+    writing_assistant_not_configured: Pomočnik za pisanje ni nastavljen
+    x_axis_interval_label: Interval osi X
+    y_axis_interval_label: Interval osi Y
     year: Država
     yoodli_activity_id: Yoodli Activity ID
     yoodli_email_id: E-poštni ID kandidata Yoodli

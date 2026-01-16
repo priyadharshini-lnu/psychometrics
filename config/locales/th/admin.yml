@@ -34,14 +34,19 @@ th:
     ai_assistants_test_render: ทดสอบการแสดงผล
     ai_assistants_test_render_tooltip: ทดสอบเทมเพลตพร้อมท์ของคุณด้วยข้อมูลแคมเปญเพื่อตรวจสอบว่าอะไรจะถูกส่งไปยังผู้ช่วย AI
     ai_assisted_idp_feature_disabled: คุณลักษณะ AI Assisted IDP ถูกปิดใช้งานสําหรับโครงการนี้
+    all_corner_rounded: มุมทั้งหมดโค้งมน
     api_keys: กุญแจ API
     assessments: การประเมิน
     assessments_reports: การประเมินและรายงาน
     assessor_dashboard: แดชบอร์ดผู้ประเมิน
     assessor_workshops: ศูนย์ประเมินผล
     assessors: ผู้ประเมิน
+    assistant_toolbar_failed: ไม่สามารถสร้างผลลัพธ์ที่ถูกต้องได้หลังจากพยายามหลายครั้ง
+    assistant_toolbar_not_a_valid_operation: ไม่สามารถดำเนินการได้ %{operation}.
+    assistant_validation_failed: ไม่สามารถสร้างผลลัพธ์ที่ถูกต้องได้หลังจากพยายามหลายครั้ง
     audit_logs: บันทึกการตรวจสอบ
     audit_reports: รายงานการตรวจสอบ
+    auto_placeholder: ออโต้
     availability: กำหนดการ
     available_languages: รายงานมีให้บริการในภาษาต่างๆ
     back_to_main: เมนูหลัก
@@ -88,15 +93,20 @@ th:
     edit_project_admin: แก้ไขผู้ดูแลระบบโครงการ
     edit_threesixty_campaign_admin: แก้ไขผู้ดูแลระบบแคมเปญ
     empty_csv_file: ไฟล์ CSV ไม่มีข้อมูลใดๆ
+    enable_enhance_with_ai_client_level: โปรดเปิดใช้งานฟีเจอร์เพิ่มประสิทธิภาพด้วย AI ที่ระดับลูกค้า
+    enable_transcription: เปิดใช้งานการถอดเสียง
+    enhance_with_ai_requires_ai_assistants: การเพิ่มประสิทธิภาพด้วย AI ต้องเปิดใช้งานฟีเจอร์ผู้ช่วย AI
     evaluation_status: สถานะการประเมิน
     evaluation_status_not_done: สถานะการประเมินไม่ใช่ "เสร็จสิ้น" สําหรับวิชาที่เลือกอย่างน้อยหนึ่งวิชา โปรดตรวจสอบให้แน่ใจว่าผู้ใช้ที่เลือกทั้งหมดได้ทําการประเมินหรือทําเครื่องหมายว่าเสร็จสิ้น
     export_admin_roles_permissions: ส่งออกหน้าที่และสิทธิ์ของผู้ดูแลระบบ
+    feature_enhance_with_ai: เพิ่มประสิทธิภาพด้วย AI
     feature_flags: แฟล็กคุณสมบัติ
     fill_empty_score_msg: กรอกคะแนนสุดท้ายทั้งหมดก่อนบันทึก
     final_score_empty_msg: คะแนนสุดท้ายต้องไม่ว่างเปล่า
     idp_plan_reset_success: รีเซ็ตแผนเรียบร้อยแล้ว
     idp_templates: เทมเพลต IDP
     import_ai_artifacts: นําเข้าสิ่งประดิษฐ์ AI
+    import_csv_assessment_group_error: 'แถว%{index}: ผู้ใช้ที่มีอีเมล %{email} ได้รับเชิญแล้วสำหรับ ''%{workshopInviteName}'''
     import_csv_error: 'แถวที่ %{index}: ผู้ใช้ที่มี %{email} อีเมลไม่ได้อยู่ในแคมเปญนี้'
     import_csv_parsing_error: 'ข้อผิดพลาดในการแยกวิเคราะห์ CSV: %{message}'
     import_description: นําเข้าผู้ใช้จากไฟล์ CSV แต่ละแถวต้องมีที่อยู่อีเมล
@@ -661,12 +671,23 @@ th:
     status_details: รายละเอียดสถานะ
     structured_learning: การเรียนรู้อย่างเป็นทางการ [10]
     subdomain: โดเมนย่อย
+    subject_part_of_other_invite: หัวข้อพร้อมอีเมล %{user_email} ได้รับเชิญแล้วสำหรับ '%{workshop_invite_name}'
+    toolbar_ai_insight: AI อินไซต์
+    toolbar_ai_suggestion: คำแนะนำจาก AI
+    toolbar_result_generating: กำลังสร้าง...
+    toolbar_text_copied: คัดลอกไปยังคลิปบอร์ด
+    toolbar_text_replaced: ข้อความถูกแทนที่แล้ว!
+    toolbar_what_changed_and_why: อะไรที่เปลี่ยนไป & ทำไม
+    translation_assistant_not_configured: ผู้ช่วยแปลยังไม่ได้กำหนดค่า
     upload_success: อัปโหลดสําเร็จ
     user_report_events: เหตุการณ์รายงานผู้ใช้
     users: ผู้เข้าร่วม
     view_licenses: ดูใบอนุญาต
     waiting: การรอคอย
     workshops: เวิร์กช็อป
+    writing_assistant_not_configured: ผู้ช่วยการเขียนยังไม่ได้รับการกำหนดค่า
+    x_axis_interval_label: แกน X ช่วง
+    y_axis_interval_label: แกน Y ช่วง
     year: ประเทศ
     yoodli_activity_id: รหัสกิจกรรม Yoodli
     yoodli_email_id: รหัสอีเมลผู้สมัคร Yoodli

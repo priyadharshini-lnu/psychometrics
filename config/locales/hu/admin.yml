@@ -34,14 +34,19 @@ hu:
     ai_assistants_test_render: Tesztrender
     ai_assistants_test_render_tooltip: Teszteld a prompt sablonodat kampányadatokkal, hogy megbizonyosodj arról, mi fog elküldeni az AI asszisztensnek.
     ai_assisted_idp_feature_disabled: Az AI Assisted IDP funkciót letiltották ehhez a projekthez.
+    all_corner_rounded: Minden sarok lekerekített
     api_keys: API-kulcsok
     assessments: Értékelések
     assessments_reports: Felmérések és jelentések
     assessor_dashboard: Értékelő irányítópult
     assessor_workshops: Értékelési központ
     assessors: Értékelők
+    assistant_toolbar_failed: Többszöri próbálkozás után sem sikerült érvényes kimenetet generálni.
+    assistant_toolbar_not_a_valid_operation: Ismeretlen művelet %{operation}.
+    assistant_validation_failed: Többszöri próbálkozás után sem sikerült érvényes kimenetet generálni.
     audit_logs: Auditnaplók
     audit_reports: Auditjelentések
+    auto_placeholder: Auto
     availability: Elérhetőség
     available_languages: Jelentés elérhető nyelveken
     back_to_main: Főmenü
@@ -88,15 +93,20 @@ hu:
     edit_project_admin: Projektadminisztrátorának szerkesztése
     edit_threesixty_campaign_admin: Kampányadminisztrátor szerkesztése
     empty_csv_file: A CSV fájl nem tartalmaz adatokat.
+    enable_enhance_with_ai_client_level: Kérjük, engedélyezze az AI-vel történő fejlesztés funkciót ügyfélszinten.
+    enable_transcription: Feliratozás engedélyezése
+    enhance_with_ai_requires_ai_assistants: Az AI-val történő fejlesztéshez engedélyezni kell az AI-asszisztensek funkciót.
     evaluation_status: Értékelési állapot
     evaluation_status_not_done: Az értékelési státusz nem 'Kész' egy vagy több kiválasztott tantárgy esetében. Kérjük, minden kiválasztott felhasználó elvégezte az értékeléseket vagy jelölje meg.
     export_admin_roles_permissions: Adminisztrátori szerepkörök és engedélyek exportálása
+    feature_enhance_with_ai: Fejlesztés mesterséges intelligenciával
     feature_flags: Feature flags
     fill_empty_score_msg: Töltsd ki az összes végső pontszámot mentés előtt.
     final_score_empty_msg: A végső pontszám nem lehet üres.
     idp_plan_reset_success: A tervet sikeresen újraindították
     idp_templates: IDP-sablonok
     import_ai_artifacts: MI tárgyak importálása
+    import_csv_assessment_group_error: "%{index} sor: a %{email} e-mail címmel rendelkező felhasználó már meghívást kapott a „%{workshopInviteName}” csoportba."
     import_csv_error: "%{index}. sor: %{email} e-mail felhasználó nem része ebben a kampányban"
     import_csv_parsing_error: 'CSV elemzési hiba: %{message}'
     import_description: Felhasználókat importálj CSV fájlból. Minden sornak tartalmaznia kell egy e-mail címet.
@@ -661,12 +671,23 @@ hu:
     status_details: Állapot részletei
     structured_learning: Formális tanulás [10]
     subdomain: Aldomain
+    subject_part_of_other_invite: Az e-mail címmel %{user_email} rendelkező személy már meghívást kapott a „%{workshop_invite_name}” rendezvényre.
+    toolbar_ai_insight: AI betekintés
+    toolbar_ai_suggestion: AI javaslat
+    toolbar_result_generating: Generálás...
+    toolbar_text_copied: Másolva a vágólapra
+    toolbar_text_replaced: Szöveg kicserélve!
+    toolbar_what_changed_and_why: Mi változott és miért?
+    translation_assistant_not_configured: Fordítási segédprogram nincs konfigurálva
     upload_success: Sikeresen feltöltve
     user_report_events: Felhasználói jelentés eseményei
     users: Felhasználók
     view_licenses: Licencek megtekintése
     waiting: Várakozás
     workshops: Workshopok
+    writing_assistant_not_configured: Írási asszisztens nincs konfigurálva
+    x_axis_interval_label: X-tengely intervallum
+    y_axis_interval_label: Y-tengely intervallum
     year: Ország
     yoodli_activity_id: Yoodli Activity ID
     yoodli_email_id: Yoodli jelölt e-mail azonosító

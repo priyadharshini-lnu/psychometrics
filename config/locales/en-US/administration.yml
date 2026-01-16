@@ -2888,6 +2888,11 @@ en-US:
           active:
             label: Active
             name: active
+          assessments:
+            help_text: This selection only affects the Assessment Raw Response event.
+            label: Assessments
+            placeholder: Select Assessments
+            required: At least one assessment must be selected for Assessment Raw Response event.
           auth_type:
             api_key:
               label: API Key
@@ -2944,6 +2949,7 @@ en-US:
             list:
               assessment_assigned: Assessment Assigned
               assessment_completed: Assessment Completed
+              assessment_raw_response: Assessment Raw Response
               assessment_started: Assessment Started
               assessment_timeout: Assessment Timeout
               campaign_results_available: Campaign Results Available
@@ -3657,7 +3663,7 @@ en-US:
         preworks: Prework
         re_enroll: Re-Enroll
         re_enroll_confirm_message: Are you sure you want to re-enroll the subject with the email '%{subject_email}'?
-        re_enroll_success: Re-enrolled subject with email <x>subject_email</x>.
+        re_enroll_success: Re-enrolled subject with email %{subject_email}.
         schedule: Schedule
         unschedule: Unschedule
       tabs:

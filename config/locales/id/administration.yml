@@ -2888,6 +2888,11 @@ id:
           active:
             label: Aktif
             name: aktif
+          assessments:
+            help_text: Pilihan ini hanya berlaku untuk acara Respons Mentah Penilaian.
+            label: Penilaian
+            placeholder: Pilih Penilaian
+            required: Setidaknya satu penilaian harus dipilih untuk acara Respons Mentah Penilaian.
           auth_type:
             api_key:
               label: Kunci API
@@ -2944,6 +2949,7 @@ id:
             list:
               assessment_assigned: Penilaian Ditugaskan
               assessment_completed: Penilaian Selesai
+              assessment_raw_response: Penilaian Tanggapan Mentah
               assessment_started: Penilaian Dimulai
               assessment_timeout: Batas Waktu Penilaian
               campaign_results_available: Hasil Kampanye Tersedia
@@ -3654,7 +3660,7 @@ id:
         preworks: Prakerja
         re_enroll: Daftar Ulang
         re_enroll_confirm_message: Apakah Anda yakin ingin mendaftarkan ulang subjek dengan email '%{subject_email}'?
-        re_enroll_success: Subjek yang didaftarkan ulang dengan email <x>subject_email</x>.
+        re_enroll_success: Subjek yang didaftarkan ulang dengan email %{subject_email}.
         schedule: Jadwal
         unschedule: Batalkan jadwal
       tabs:

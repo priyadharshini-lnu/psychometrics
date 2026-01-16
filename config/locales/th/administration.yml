@@ -2888,6 +2888,11 @@ th:
           active:
             label: เปิดใช้งาน
             name: เปิดใช้งาน
+          assessments:
+            help_text: การเลือกนี้จะมีผลเฉพาะกับเหตุการณ์การตอบสนองดิบของการประเมินเท่านั้น
+            label: การประเมิน
+            placeholder: เลือกการประเมิน
+            required: ต้องเลือกการประเมินอย่างน้อยหนึ่งรายการสำหรับเหตุการณ์การตอบสนองการประเมินดิบ
           auth_type:
             api_key:
               label: คีย์ API
@@ -2944,6 +2949,7 @@ th:
             list:
               assessment_assigned: การประเมินที่ได้รับมอบหมาย
               assessment_completed: การประเมินเสร็จสมบูรณ์
+              assessment_raw_response: การประเมินผล ตอบแบบดิบ
               assessment_started: เริ่มการประเมินแล้ว
               assessment_timeout: หมดเวลาการประเมิน
               campaign_results_available: ผลลัพธ์แคมเปญพร้อมใช้งาน
@@ -3654,7 +3660,7 @@ th:
         preworks: งานก่อนเริ่ม
         re_enroll: ลงทะเบียนใหม่
         re_enroll_confirm_message: คุณแน่ใจหรือไม่ว่าต้องการลงทะเบียนวิชาใหม่ด้วยอีเมล '%{subject_email}'
-        re_enroll_success: นักเรียนลงทะเบียนใหม่ด้วยอีเมล<x>subject_email</x>
+        re_enroll_success: นักเรียนลงทะเบียนใหม่ด้วยอีเมล%{subject_email}
         schedule: ตาราง
         unschedule: ยกเลิกกําหนดเวลา
       tabs:

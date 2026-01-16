@@ -34,14 +34,19 @@ vi:
     ai_assistants_test_render: Kết xuất thử nghiệm
     ai_assistants_test_render_tooltip: Kiểm tra mẫu lời nhắc của bạn với dữ liệu chiến dịch để kiểm tra nội dung sẽ được gửi đến trợ lý AI.
     ai_assisted_idp_feature_disabled: Tính năng AI Assisted IDP đã bị vô hiệu hóa cho dự án này.
+    all_corner_rounded: Tất cả các góc đều được bo tròn.
     api_keys: Khóa API
     assessments: Đánh giá
     assessments_reports: Đánh giá & Báo cáo
     assessor_dashboard: Bảng điều khiển đánh giá viên
     assessor_workshops: Trung tâm đánh giá
     assessors: Đánh giá viên
+    assistant_toolbar_failed: Không thể tạo ra kết quả hợp lệ sau nhiều lần thử.
+    assistant_toolbar_not_a_valid_operation: 'Hoạt động không xác định: %{operation}.'
+    assistant_validation_failed: Không thể tạo ra kết quả hợp lệ sau nhiều lần thử.
     audit_logs: Nhật ký kiểm tra
     audit_reports: Báo cáo kiểm toán
+    auto_placeholder: Tự động
     availability: Sẵn sàng
     available_languages: Báo cáo có sẵn bằng ngôn ngữ
     back_to_main: Menu chính
@@ -88,15 +93,20 @@ vi:
     edit_project_admin: Chỉnh sửa quản trị viên dự án
     edit_threesixty_campaign_admin: Chỉnh sửa quản trị viên chiến dịch
     empty_csv_file: Tệp CSV không chứa bất kỳ dữ liệu nào.
+    enable_enhance_with_ai_client_level: Vui lòng kích hoạt tính năng "Enhance with AI" ở cấp độ khách hàng.
+    enable_transcription: Bật tính năng chuyển văn bản
+    enhance_with_ai_requires_ai_assistants: Để sử dụng tính năng "Enhance with AI", bạn cần kích hoạt tính năng "AI Assistants".
     evaluation_status: Trạng thái đánh giá
     evaluation_status_not_done: Trạng thái đánh giá không phải là "Xong" đối với một hoặc nhiều đối tượng được chọn. Hãy đảm bảo rằng tất cả người dùng được chọn đã hoàn thành đánh giá hoặc đánh dấu là xong.
     export_admin_roles_permissions: Xuất vai trò và quyền của quản trị viên
+    feature_enhance_with_ai: Nâng cao với Trí tuệ nhân tạo (AI)
     feature_flags: Cờ tính năng
     fill_empty_score_msg: Điền vào tất cả các điểm cuối cùng trước khi lưu.
     final_score_empty_msg: Điểm cuối cùng không thể trống.
     idp_plan_reset_success: Kế hoạch đã được đặt lại thành công
     idp_templates: Mẫu IDP
     import_ai_artifacts: Nhập hiện vật AI
+    import_csv_assessment_group_error: 'Dòng %{index}: Người dùng có địa chỉ email %{email} đã được mời tham gia ''%{workshopInviteName}''.'
     import_csv_error: 'Hàng %{index}: người dùng có %{email} email không có trong chiến dịch này'
     import_csv_parsing_error: 'Lỗi phân tích cú pháp CSV: %{message}'
     import_description: Nhập người dùng từ tệp CSV. Mỗi hàng phải chứa một địa chỉ email.
@@ -661,12 +671,23 @@ vi:
     status_details: Chi tiết trạng thái
     structured_learning: Học chính thức [10]
     subdomain: Tên miền phụ
+    subject_part_of_other_invite: Người dùng có địa chỉ email %{user_email} đã được mời tham gia '%{workshop_invite_name}'.
+    toolbar_ai_insight: Nhận định về Trí tuệ Nhân tạo
+    toolbar_ai_suggestion: Đề xuất của Trí tuệ nhân tạo
+    toolbar_result_generating: Đang tạo...
+    toolbar_text_copied: Đã sao chép vào khay nhớ tạm
+    toolbar_text_replaced: Nội dung đã được thay thế!
+    toolbar_what_changed_and_why: Điều gì đã thay đổi và tại sao
+    translation_assistant_not_configured: Trợ lý Dịch thuật chưa được cấu hình
     upload_success: Tải lên thành công
     user_report_events: Sự kiện báo cáo người dùng
     users: Người dùng
     view_licenses: Xem giấy phép
     waiting: Chờ đợi
     workshops: Hội thảo
+    writing_assistant_not_configured: Trợ lý Viết chưa được cấu hình
+    x_axis_interval_label: Khoảng cách trục X
+    y_axis_interval_label: Khoảng cách trục tung
     year: Quốc gia
     yoodli_activity_id: ID hoạt động Yoodli
     yoodli_email_id: ID email ứng viên Yoodli

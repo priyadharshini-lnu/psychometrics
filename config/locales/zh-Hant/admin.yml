@@ -34,14 +34,19 @@ zh-Hant:
     ai_assistants_test_render: 測試渲染
     ai_assistants_test_render_tooltip: 用活動資料測試你的提示範本，看看會送給 AI 助理什麼。
     ai_assisted_idp_feature_disabled: 本專案已停用 AI 輔助境內流離失所者功能。
+    all_corner_rounded: 所有边角均已圆角处理
     api_keys: API 金鑰
     assessments: 評估
     assessments_reports: 評估與報告
     assessor_dashboard: 評估員儀表板
     assessor_workshops: 評估中心
     assessors: 評估員
+    assistant_toolbar_failed: 多次尝试后仍未能生成有效输出
+    assistant_toolbar_not_a_valid_operation: 未知操作%{operation}。
+    assistant_validation_failed: 多次尝试后仍未能生成有效输出
     audit_logs: 稽核記錄
     audit_reports: 審計報告
+    auto_placeholder: 汽车
     availability: 可用性
     available_languages: 報告提供多種語言版本
     back_to_main: 主選單
@@ -88,15 +93,20 @@ zh-Hant:
     edit_project_admin: 編輯專案管理員
     edit_threesixty_campaign_admin: 編輯活動管理
     empty_csv_file: CSV 檔案不包含任何資料。
+    enable_enhance_with_ai_client_level: 请在客户端级别启用AI增强功能
+    enable_transcription: 启用转录功能
+    enhance_with_ai_requires_ai_assistants: 增强AI功能需启用AI助手功能
     evaluation_status: 評估狀態
     evaluation_status_not_done: 一個或多個被選定的受試者，評估狀態並非「完成」。請確保所有被選中的使用者都已完成評估，或標記為已完成。
     export_admin_roles_permissions: 管理員角色和權限匯出
+    feature_enhance_with_ai: 增强AI
     feature_flags: 功能旗標
     fill_empty_score_msg: 儲存前填寫所有最終分數。
     final_score_empty_msg: 最終分數不能是空的。
     idp_plan_reset_success: 計畫已成功重置
     idp_templates: IDP 範本
     import_ai_artifacts: 匯入 AI 工件
+    import_csv_assessment_group_error: "%{index} 行：邮箱为 %{email} 的用户已受邀加入 '%{workshopInviteName}'"
     import_csv_error: 第 %{index} 列：擁有電子郵件 %{email} 的使用者未參與本次活動
     import_csv_parsing_error: CSV 解析錯誤：%{message}
     import_description: 從 CSV 檔案匯入使用者。每一列必須包含電子郵件地址。
@@ -661,12 +671,23 @@ zh-Hant:
     status_details: 狀態詳情
     structured_learning: 正式學習 [10]
     subdomain: 子網域
+    subject_part_of_other_invite: 邮箱地址为 %{user_email} 的用户已受邀加入 '%{workshop_invite_name}' 群组。
+    toolbar_ai_insight: 人工智能洞察
+    toolbar_ai_suggestion: AI建议
+    toolbar_result_generating: 生成中...
+    toolbar_text_copied: 已复制到剪贴板
+    toolbar_text_replaced: 文本已替换！
+    toolbar_what_changed_and_why: 发生了什么变化及原因
+    translation_assistant_not_configured: 翻译助手未配置
     upload_success: 上傳成功
     user_report_events: 使用者報告事件
     users: 使用者
     view_licenses: 檢視授權
     waiting: 等待
     workshops: 工作坊
+    writing_assistant_not_configured: 写作助手未配置
+    x_axis_interval_label: X轴间隔
+    y_axis_interval_label: Y轴间隔
     year: 國家
     yoodli_activity_id: Yoodli 活動識別碼
     yoodli_email_id: Yoodli 候選人電子郵件 ID

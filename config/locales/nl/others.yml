@@ -837,6 +837,10 @@ nl:
           reply_to_reply: Kan niet reageren op een antwoord (slechts één niveau van nesten toegestaan)
         user_idp_plan:
           no_active_plan: Geen actief IDP-plan gevonden
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: Alleen beoordelingen van het type 'psychometrie' en 'organisatieonderzoek' kunnen worden geselecteerd.
   admin_jobs:
     attrs:
       operations:
@@ -2205,16 +2209,16 @@ nl:
       password_complexity:
         digit:
           one: moet ten minste één cijfer bevatten
-          other: moet ten minste <x>count</x> cijfers bevatten
+          other: moet ten minste %{count} cijfers bevatten
         lower:
           one: moet ten minste één kleine letter bevatten
-          other: moet ten minste <x>count</x> kleine letters bevatten
+          other: moet ten minste %{count} kleine letters bevatten
         symbol:
           one: moet ten minste één leesteken of symbool bevatten
-          other: moet ten minste <x>count</x> leestekens of symbolen bevatten
+          other: moet ten minste %{count} leestekens of symbolen bevatten
         upper:
           one: moet minstens één hoofdletter bevatten
-          other: moet ten minste <x>count</x> hoofdletters bevatten
+          other: moet ten minste %{count} hoofdletters bevatten
       taken_in_past: mag niet hetzelfde zijn als een eerder gebruikt wachtwoord.
     module_error: Er is iets misgegaan met deze module. Neem contact op met de administratie.
     module_error_editor: Er is iets misgegaan met deze module. Controleer de module-instellingen.
@@ -3066,7 +3070,7 @@ nl:
     footer:
       regards: Groeten,
       team_name: Lighthouse Team
-      technical_support: Voor technische problemen kunt u ons schrijven op <x>email</x> en we zullen binnen 24 uur reageren.
+      technical_support: Voor technische problemen kunt u ons schrijven op %{email} en we zullen binnen 24 uur reageren.
     from: De talentenonderneming
     idp:
       manager_unread_comments:

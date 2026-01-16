@@ -2888,6 +2888,11 @@ de:
           active:
             label: Aktiv
             name: aktiv
+          assessments:
+            help_text: Diese Auswahl wirkt sich nur auf das Ereignis „Assessment Raw Response“ (Bewertung der Rohantworten) aus.
+            label: Beurteilungen
+            placeholder: Bewertungen auswählen
+            required: Für das Ereignis „Bewertung – Rohantwort“ muss mindestens eine Bewertung ausgewählt werden.
           auth_type:
             api_key:
               label: API-Schlüssel
@@ -2944,6 +2949,7 @@ de:
             list:
               assessment_assigned: Zugewiesene Bewertung
               assessment_completed: Bewertung abgeschlossen
+              assessment_raw_response: Bewertung der Rohantworten
               assessment_started: Begonnene Bewertung
               assessment_timeout: Bewertung Timeout
               campaign_results_available: Kampagnenergebnisse verfügbar
@@ -3657,7 +3663,7 @@ de:
         preworks: Vorarbeit
         re_enroll: Neuanmeldung
         re_enroll_confirm_message: Sind Sie sicher, dass Sie den Betreff mit der E-Mail '%{subject_email}' neu eintragen wollen?
-        re_enroll_success: Neu eingeschriebener Betreff mit E-Mail <x>subject_email</x>.
+        re_enroll_success: Neu eingeschriebener Betreff mit E-Mail %{subject_email}.
         schedule: Zeitplan
         unschedule: Abmeldung
       tabs:

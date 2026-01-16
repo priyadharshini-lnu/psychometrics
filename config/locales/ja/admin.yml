@@ -34,14 +34,19 @@ ja:
     ai_assistants_test_render: テストレンダリング
     ai_assistants_test_render_tooltip: プロンプトテンプレートをキャンペーンデータでテストし、AIアシスタントに送られる内容を確認しましょう。
     ai_assisted_idp_feature_disabled: このプロジェクトではAI支援IDP機能は無効化されています。
+    all_corner_rounded: すべての角が丸みを帯びている
     api_keys: APIキー
     assessments: アセスメント
     assessments_reports: アセスメント＆レポート
     assessor_dashboard: 査定者ダッシュボード
     assessor_workshops: アセスメント・センター
     assessors: アセッサ
+    assistant_toolbar_failed: 複数回の試行後も有効な出力を生成できませんでした
+    assistant_toolbar_not_a_valid_operation: "%{operation} という操作は不明です。"
+    assistant_validation_failed: 複数回の試行後も有効な出力を生成できませんでした
     audit_logs: 監査ログ
     audit_reports: 監査報告書
+    auto_placeholder: 自動車
     availability: 空室状況
     available_languages: 報告書は言語で提供可能
     back_to_main: メインメニュー
@@ -88,15 +93,20 @@ ja:
     edit_project_admin: プロジェクト管理者の編集
     edit_threesixty_campaign_admin: キャンペーン管理者の編集
     empty_csv_file: CSVファイルにはデータが含まれていません。
+    enable_enhance_with_ai_client_level: クライアントレベルで「AIによる強化」機能を有効にしてください
+    enable_transcription: 文字起こしを有効にする
+    enhance_with_ai_requires_ai_assistants: AIによる強化には、AIアシスタント機能の有効化が必要です
     evaluation_status: 評価状況
     evaluation_status_not_done: 選ばれた1つ以上の被験者の評価状況は「完了」ではありません。選ばれたすべてのユーザーが評価を完了しているか、完了したとマークしてください。
     export_admin_roles_permissions: 管理者の役割と権限のエクスポート
+    feature_enhance_with_ai: AIで強化する
     feature_flags: フィーチャー・フラッグ
     fill_empty_score_msg: 保存する前にすべての最終スコアを記入してください。
     final_score_empty_msg: 最終スコアは空にはなりません。
     idp_plan_reset_success: 計画は正常にリセットされました
     idp_templates: IDPテンプレート
     import_ai_artifacts: AIアーティファクトのインポート
+    import_csv_assessment_group_error: "%{index} 行: メールアドレス %{email} のユーザーは既に '%{workshopInviteName}' に招待済みです"
     import_csv_error: "%{index}行:メールアドレス%{email}のユーザーはこのキャンペーンに参加していません"
     import_csv_parsing_error: CSV解析エラー:%{message}
     import_description: CSVファイルからユーザーをインポートします。各行にはメールアドレスが必要です。
@@ -661,12 +671,23 @@ ja:
     status_details: 状況詳細
     structured_learning: 正式な学習 [10]
     subdomain: サブドメイン
+    subject_part_of_other_invite: メールアドレス %{user_email} のユーザーは既に「%{workshop_invite_name}」に招待済みです
+    toolbar_ai_insight: AIインサイト
+    toolbar_ai_suggestion: AI提案
+    toolbar_result_generating: 生成中...
+    toolbar_text_copied: クリップボードにコピーされました
+    toolbar_text_replaced: テキストが置換されました！
+    toolbar_what_changed_and_why: 何が変わったのか、そしてその理由
+    translation_assistant_not_configured: 翻訳アシスタントが設定されていません
     upload_success: アップロード成功
     user_report_events: ユーザーレポートイベント
     users: ユーザー
     view_licenses: ライセンスを見る
     waiting: 待つこと
     workshops: ワークショップ
+    writing_assistant_not_configured: ライティングアシスタントが設定されていません
+    x_axis_interval_label: X軸間隔
+    y_axis_interval_label: Y軸間隔
     year: 国名
     yoodli_activity_id: YoodliアクティビティID
     yoodli_email_id: ユードリ候補者メールアドレス
