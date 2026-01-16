@@ -145,7 +145,7 @@
     "react-overlays": "^0.9.3",
     "react-pdf": "^9.2.1",
     "react-redux": "^7.2.6",
-    "react-router-dom": "^6.23.1",
+    "react-router-dom": "^6.30.3",
     "react-select": "^5.7.1",
     "react-sortable-hoc": "^2.0.0",
     "react-spring": "^9.3.0",
