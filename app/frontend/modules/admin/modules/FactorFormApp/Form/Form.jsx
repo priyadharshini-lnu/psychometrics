@@ -2,7 +2,7 @@ import { useState } from 'react'
 import _ from 'lodash'
 import {
   Form as AntForm, Checkbox,
-  InputNumber, Alert,
+  InputNumber, Alert, Flex, Typography,
 } from 'antd'
 import BaseForm from '~/modules/admin/components/Form'
 import HiddenInputList from './HiddenInputList'
@@ -159,9 +159,7 @@ export default function Form (props) {
           </AntForm>
         )
       }
-      <div className="ant-form-vertical">
-        <InputFile onChange={onChange} value={resource.icon} />
-      </div>
+      <InputFile onChange={onChange} value={resource.icon} />
     </>
   )
 }
@@ -169,13 +167,8 @@ export default function Form (props) {
 
 // TODO (atanych): dont use this component in future. We should avoid ruby form and ruby modal and use react entirely
 const InputFile = ({ value, onChange }) => (
-  <AntForm.Item
-    colon={false}
-    labelAlign="left"
-    label="Icon"
-    className={styles.fileContainer}
-    labelCol={{ flex: 'none' }}
-  >
+  <Flex vertical gap="small" className={styles.fileContainer}>
+    <Typography.Text>Icon</Typography.Text>
     <input name="resource[icon]" type="file" className="mbm" />
     {value && (
       <div className="mtm">
@@ -188,5 +181,5 @@ const InputFile = ({ value, onChange }) => (
     >
       Remove icon
     </Checkbox>
-  </AntForm.Item>
+  </Flex>
 )
