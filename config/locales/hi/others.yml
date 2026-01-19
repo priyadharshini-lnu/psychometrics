@@ -3042,13 +3042,10 @@ hi:
     client_usage: ग्राहक उपयोग
     enabled: सक्षम
     end_date: अंतिम तिथि
-    not_enough_idp_license: IDP लाइसेंस पर्याप्त नहीं हैं, कृपया प्रशासक से संपर्क करें।
     not_enough_license: "%{client_name} के पास %{report_name} के लिए पर्याप्त लाइसेंस नहीं हैं।"
     not_enough_license_count: पर्याप्त लाइसेंस नहीं हैं, कृपया प्रशासक से संपर्क करें
-    not_enough_proctoring_credits: प्रॉक्टरिंग सत्र शुरू करने के लिए पर्याप्त क्रेडिट नहीं हैं।
     number: संख्या
     overuse_number: अधिक उपयोग भत्ता
-    project_limit_reached: "'%{license_name}' के लिए उपयोग सीमा समाप्त हो गई है, कृपया प्रशासक से संपर्क करें।"
     project_specific: परियोजना-विशिष्ट
     project_specific_license: परियोजना-विशिष्ट लाइसेंस
     project_usage: परियोजना उपयोग
