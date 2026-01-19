@@ -9,7 +9,7 @@ module SiemLogger
 
       hash = build_base_hash(log)
       enrich_request_id(hash, log)
-      enrich_user_id(hash)
+      enrich_user_id(hash, log)
       deduplicate_tags(hash)
 
       hash.to_json
@@ -41,7 +41,12 @@ module SiemLogger
       end
     end
 
-    def enrich_user_id(hash)
+    def enrich_user_id(hash, log)
+      if log.named_tags && log.named_tags[:user_id]
+        hash[:user_id] = log.named_tags[:user_id]
+        return
+      end
+
       return unless defined?(Current) && Current.respond_to?(:user) && Current.user.respond_to?(:id)
 
       hash[:user_id] = Current.user.id
@@ -50,6 +55,7 @@ module SiemLogger
     def deduplicate_tags(hash)
       if hash[:named_tags].is_a?(Hash)
         hash[:named_tags].delete(:request_id)
+        hash[:named_tags].delete(:user_id)
         hash.delete(:named_tags) if hash[:named_tags].empty?
       end
 
