@@ -4,6 +4,7 @@ module OciSpeech
   class NotificationSetup < BaseCommand
     TOPIC_NAME = "#{Settings.real_env}_speech_transcription_topic".freeze
     COMPARTMENT_ID = Settings.secrets.oci.compartment_id
+    RULE_NAME = "#{Settings.real_env}_speech_transcription_events".freeze
 
     WEBHOOK_URL = Rails.application.routes.url_helpers.webhooks_oci_speech_transcription_url(
       host: Settings.domain,
@@ -12,13 +13,10 @@ module OciSpeech
       port: Settings.port
     ).freeze
 
-    EVENT_RULES = [
-      { name: "#{Settings.real_env}_speech_transcription_created",
-        event_type: 'com.oraclecloud.aiservicespeech.createtranscriptionjob' },
-      { name: "#{Settings.real_env}_speech_transcription_completed",
-        event_type: 'com.oraclecloud.aiservicespeech.completedtranscriptionjob' },
-      { name: "#{Settings.real_env}_speech_transcription_failed",
-        event_type: 'com.oraclecloud.aiservicespeech.failedtranscriptionjob' }
+    EVENT_TYPES = [
+      'com.oraclecloud.aiservicespeech.createtranscriptionjob',
+      'com.oraclecloud.aiservicespeech.completedtranscriptionjob',
+      'com.oraclecloud.aiservicespeech.failedtranscriptionjob'
     ].freeze
 
     def initialize
@@ -41,23 +39,19 @@ module OciSpeech
     end
 
     def cleanup_existing_resources
-      deleted_rules = delete_existing_event_rules
+      deleted_rule = delete_existing_event_rule
       deleted_topic = delete_existing_topic
-      Rails.logger.info 'No existing resources found' unless deleted_rules || deleted_topic
+      Rails.logger.info 'No existing resources found' unless deleted_rule || deleted_topic
     end
 
-    def delete_existing_event_rules
+    def delete_existing_event_rule
       rules = @events_client.list_rules(COMPARTMENT_ID).data
-      deleted = false
-      EVENT_RULES.each do |rule_config|
-        existing_rule = rules.find { |r| r.display_name == rule_config[:name] }
-        next unless existing_rule
+      existing_rule = rules.find { |r| r.display_name == RULE_NAME }
+      return false unless existing_rule
 
-        @events_client.delete_rule(existing_rule.id)
-        Rails.logger.info { "Deleted existing event rule: #{rule_config[:name]}" }
-        deleted = true
-      end
-      deleted
+      @events_client.delete_rule(existing_rule.id)
+      Rails.logger.info { "Deleted existing event rule: #{RULE_NAME}" }
+      true
     rescue OCI::Errors::NetworkError, Net::OpenTimeout
       Rails.logger.info 'Network timeout while checking event rules, continuing...'
       false
@@ -118,8 +112,8 @@ module OciSpeech
       Rails.logger.info { "Created topic: #{@topic_id}" }
       create_subscription
       Rails.logger.info 'Created subscription'
-      create_event_rules
-      Rails.logger.info 'Created event rules'
+      create_event_rule
+      Rails.logger.info 'Created event rule'
     end
 
     def create_topic
@@ -142,23 +136,15 @@ module OciSpeech
       @notification_data_client.create_subscription(subscription_details)
     end
 
-    def create_event_rules
-      EVENT_RULES.each do |rule_config|
-        create_event_rule(rule_config[:name], rule_config[:event_type])
-      end
-    rescue OCI::Errors::NetworkError, Net::OpenTimeout
-      Rails.logger.info 'Network timeout while creating event rules.'
-      Rails.logger.info 'Topic and subscription are created successfully.'
-    end
-
-    def create_event_rule(rule_name, event_type)
+    def create_event_rule
       rule_details = OCI::Events::Models::CreateRuleDetails.new
-      rule_details.display_name = rule_name
-      rule_details.description = "Route AI Speech #{event_type} to notification topic"
+      rule_details.display_name = RULE_NAME
+      rule_details.description = 'Route all AI Speech transcription events to notification topic'
       rule_details.is_enabled = true
       rule_details.compartment_id = COMPARTMENT_ID
+
       condition = {
-        eventType: [event_type],
+        eventType: EVENT_TYPES,
         data: {
           resourceName: ["#{Settings.real_env}*"]
         }
@@ -176,7 +162,10 @@ module OciSpeech
       rule_details.actions = action_list
 
       @events_client.create_rule(rule_details)
-      Rails.logger.info { "Created event rule: #{rule_name}" }
+      Rails.logger.info { "Created event rule: #{RULE_NAME}" }
+    rescue OCI::Errors::NetworkError, Net::OpenTimeout
+      Rails.logger.info 'Network timeout while creating event rule.'
+      Rails.logger.info 'Topic and subscription are created successfully.'
     end
 
     def setup_oci_clients
