@@ -19,7 +19,7 @@ describe UserAssessments::Webhooks::AssessmentRawResponsePayload do
     end
 
     it 'returns a hash with the correct top-level keys' do
-      expect(payload.keys).to contain_exactly(:campaign, :assessment, :subject, :event_time, :answers)
+      expect(payload.keys).to contain_exactly(:campaign, :assessment, :subject, :event_time, :answers, :evaluator)
     end
 
     it 'returns the correct campaign, assessment, and subject' do
