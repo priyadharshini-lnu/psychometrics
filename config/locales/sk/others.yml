@@ -3039,13 +3039,10 @@ sk:
     client_usage: Použitie na klientovi
     enabled: Povolené
     end_date: Dátum ukončenia
-    not_enough_idp_license: Nedostatok licencií IDP, kontaktujte správcu
     not_enough_license: "'%{client_name}' nemá dostatok licencií pre '%{report_name}'"
     not_enough_license_count: Nedostatok licencií, kontaktujte administrátora
-    not_enough_proctoring_credits: Nedostatok kreditov na začatie proctoringovej relácie
     number: Číslo
     overuse_number: Povolenie na nadmerné používanie
-    project_limit_reached: Dosiahnutý limit použitia pre '%{license_name}', kontaktujte prosím administrátora
     project_specific: Špecifické pre projekt
     project_specific_license: Špecifická licencia pre projekt
     project_usage: Využitie projektu

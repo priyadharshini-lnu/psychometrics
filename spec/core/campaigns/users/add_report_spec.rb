@@ -14,7 +14,7 @@ describe Campaigns::Users::AddReport do
   end
 
   before(:each) do
-    allow(Licenses::Use).to receive(:call!)
+    allow(LicenseManager::Deductor).to receive(:call!)
   end
 
   it 'picks require_scheduling from campaign_assessment' do

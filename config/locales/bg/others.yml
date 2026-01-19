@@ -3039,13 +3039,10 @@ bg:
     client_usage: Използване от клиент
     enabled: Разрешено
     end_date: Крайна дата
-    not_enough_idp_license: Няма достатъчно IDP лицензи, моля, свържете се с администратора
     not_enough_license: "'%{client_name}' няма достатъчно лицензи за '%{report_name}'"
     not_enough_license_count: Няма достатъчно лицензи, моля, свържете се с администратора
-    not_enough_proctoring_credits: Няма достатъчно кредити за започване на прокторинг сесия
     number: Номер
     overuse_number: Надбавка за прекомерна употреба
-    project_limit_reached: Достигнат лимит на използване до '%{license_name}', моля, свържете се с администратора
     project_specific: Специфично за проекта
     project_specific_license: Лиценз, специфичен за проекта
     project_usage: Използване на проекта

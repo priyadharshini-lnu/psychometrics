@@ -3036,13 +3036,10 @@ th:
     client_usage: การใช้งานไคลเอ็นต์
     enabled: เปิด
     end_date: วันที่สิ้นสุด
-    not_enough_idp_license: ใบอนุญาต IDP ไม่เพียงพอ โปรดติดต่อผู้ดูแลระบบ
     not_enough_license: "'%{client_name}' มีใบอนุญาตไม่เพียงพอสําหรับ '%{report_name}'"
     not_enough_license_count: ใบอนุญาตไม่เพียงพอ โปรดติดต่อผู้ดูแลระบบ
-    not_enough_proctoring_credits: เครดิตไม่เพียงพอที่จะเริ่มเซสชันการคุมสอบ
     number: เลข
     overuse_number: ค่าเผื่อการใช้งานเกิน
-    project_limit_reached: ถึงขีดจํากัดการใช้งานสําหรับ '%{license_name}' โปรดติดต่อผู้ดูแลระบบ
     project_specific: เฉพาะโครงการ
     project_specific_license: สิทธิ์การใช้งานเฉพาะโครงการ
     project_usage: การใช้โครงการ

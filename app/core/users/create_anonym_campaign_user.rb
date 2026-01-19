@@ -66,7 +66,8 @@ module Users
 
     def ensure_sufficient_licenses
       campaign_reports.each do |campaign_report|
-        Licenses::Use.call!(campaign, user, campaign_report.report, campaign_report.report_family_id)
+        LicenseManager::Deductor.call!(campaign: campaign, user: user, license_type: 'common',
+                                       context: { report_family_id: campaign_report.report_family_id })
       end
     end
 

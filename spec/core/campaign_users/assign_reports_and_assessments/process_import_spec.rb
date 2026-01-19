@@ -62,7 +62,7 @@ describe CampaignUsers::AssignReportsAndAssessments::ProcessImport do
   end
 
   it '.call' do
-    allow(Licenses::Use).to receive(:call!)
+    allow(LicenseManager::Deductor).to receive(:call!)
 
     described_class.call!(
       campaign, current_user, import_data, admin_job_record
@@ -94,6 +94,8 @@ describe CampaignUsers::AssignReportsAndAssessments::ProcessImport do
       campaign, current_user, import_data, admin_job_record
     )
 
-    expect(admin_job_record.exception).to eq("'Client Tenancy 3' does not have enough licenses for 'report 6'")
+    expect(admin_job_record.exception).to eq(I18n.t('licenses.not_enough_license',
+                                                    client_name: campaign.client.name,
+                                                    report_name: report.report_families.first.name))
   end
 end

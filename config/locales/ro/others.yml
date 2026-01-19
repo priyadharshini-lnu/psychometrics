@@ -3039,13 +3039,10 @@ ro:
     client_usage: Utilizarea clientului
     enabled: Activat
     end_date: Data de încheiere
-    not_enough_idp_license: Nu sunt suficiente licențe IDP, vă rugăm să contactați administratorul
     not_enough_license: "'%{client_name}' nu are suficiente licențe pentru '%{report_name}'"
     not_enough_license_count: Nu sunt suficiente licențe, vă rugăm să contactați administratorul
-    not_enough_proctoring_credits: Nu sunt suficiente credite pentru a începe sesiunea de supraveghere
     number: Număr
     overuse_number: Suprautilizare
-    project_limit_reached: Limita de utilizare atinsă pentru '%{license_name}', vă rugăm să contactați administratorul
     project_specific: Proiect specific
     project_specific_license: Licență Specifică Proiectului
     project_usage: Utilizarea proiectului

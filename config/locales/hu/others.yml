@@ -3020,13 +3020,10 @@ hu:
     client_usage: Klienshasználat
     enabled: Engedélyezve
     end_date: Befejezés dátuma
-    not_enough_idp_license: Nincs elég IDP-licenc, forduljon a rendszergazdához
     not_enough_license: A(z) "%{client_name}" nem rendelkezik elegendő licenccel a(z) "%{report_name}"
     not_enough_license_count: Nincs elég licenc, forduljon az adminisztrátorhoz
-    not_enough_proctoring_credits: Nincs elég kredit a felügyelet megkezdéséhez
     number: Szám
     overuse_number: Túlhasználati engedmény
-    project_limit_reached: A használati korlát '%{license_name}' esetén kérlek, vegye fel a kapcsolatot az adminisztrátorral
     project_specific: Projektspecifikus
     project_specific_license: Projektspecifikus engedély
     project_usage: Projekt használata

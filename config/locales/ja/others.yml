@@ -3029,13 +3029,10 @@ ja:
     client_usage: クライアントの利用
     enabled: 有効
     end_date: 終了日
-    not_enough_idp_license: IDPライセンスが不足しています。
     not_enough_license: '"%{client_name}" には "%{report_name}" 用の十分なライセンスがありません。'
     not_enough_license_count: ライセンスが足りません。
-    not_enough_proctoring_credits: 試験監督セッションを開始する単位が足りない
     number: 番号
     overuse_number: 超過使用手当
-    project_limit_reached: "「%{license_name}」の使用制限に達しました。管理者にお問い合わせください。"
     project_specific: プロジェクト特有
     project_specific_license: プロジェクト固有のライセンス
     project_usage: プロジェクトの利用

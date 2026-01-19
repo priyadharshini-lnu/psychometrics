@@ -23,10 +23,6 @@ describe Api::Campaigns::Users::Upsert do
     ).with_context(user: current_user)
   end
 
-  before(:each) do
-    allow(Licenses::Use).to receive(:call!)
-  end
-
   it 'calls create command for each campaign provided in campaigns' do
     # rubocop:disable Style/OpenStructUse
     struct = OpenStruct.new(

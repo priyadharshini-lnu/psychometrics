@@ -6,9 +6,6 @@ describe Campaigns::Users::JoinCampaignByRegistrationCode do
   let!(:campaign) { create(:campaign) }
   let!(:current_user) { create(:user) }
   let!(:registration_code) { create(:registration_code, project: campaign.project, campaign: campaign, use_count: 0) }
-  before(:each) do
-    allow(Licenses::Use).to receive(:call!)
-  end
 
   it "creates campaign user record if user doesn't exists in the project" do
     described_class.call!(current_user, campaign, registration_code)
@@ -46,7 +43,6 @@ describe Campaigns::Users::JoinCampaignByRegistrationCode do
     end
 
     it 'broadcasts an error if there are not enough licenses' do
-      allow(Licenses::Use).to receive(:call!).and_raise(Licenses::NotEnoughError)
       result = described_class.call(current_user, campaign, registration_code)
       expect(result).to eq({ error: I18n.t('licenses.not_enough_license_count') })
     end

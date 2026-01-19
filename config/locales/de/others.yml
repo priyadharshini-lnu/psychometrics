@@ -3049,13 +3049,10 @@ de:
     client_usage: Client-Nutzung
     enabled: Aktiviert
     end_date: Datum des Endes
-    not_enough_idp_license: Nicht genügend IDP-Lizenzen, bitte kontaktieren Sie den Administrator
     not_enough_license: "'%{client_name}' hat nicht genügend Lizenzen für '%{report_name}'"
     not_enough_license_count: Nicht genügend Lizenzen, bitte kontaktieren Sie den Administrator
-    not_enough_proctoring_credits: Nicht genügend Credits, um mit dem Proctoring zu beginnen
     number: Nummer
     overuse_number: Mehrverbrauchsvergütung
-    project_limit_reached: Nutzungslimit erreicht für '%{license_name}', bitte kontaktieren Sie den Administrator
     project_specific: Projektspezifisch
     project_specific_license: Projektspezifische Lizenz
     project_usage: Projektnutzung

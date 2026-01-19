@@ -3032,13 +3032,10 @@ zh:
     client_usage: 客户端使用
     enabled: 已启用
     end_date: 结束日期
-    not_enough_idp_license: 没有足够的 IDP 许可证，请联系管理员
     not_enough_license: '%{client_name}"没有足够的许可用于"%{report_name}"。'
     not_enough_license_count: 许可证数量不足，请联系管理员
-    not_enough_proctoring_credits: 学分不足，无法开始监考课程
     number: 数量
     overuse_number: 超额使用津贴
-    project_limit_reached: "“%{license_name}”使用量已达上限，请联系管理员"
     project_specific: 项目专属
     project_specific_license: 项目专用许可
     project_usage: 项目用途

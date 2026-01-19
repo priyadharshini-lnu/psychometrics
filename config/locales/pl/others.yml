@@ -3043,13 +3043,10 @@ pl:
     client_usage: Użycie klienta
     enabled: Włączone
     end_date: Data zakończenia
-    not_enough_idp_license: Za mało licencji IDP, skontaktuj się z administratorem
     not_enough_license: '"%{client_name}" nie ma wystarczającej liczby licencji dla "%{report_name}"'
     not_enough_license_count: Za mało licencji, skontaktuj się z administratorem
-    not_enough_proctoring_credits: Za mało kredytów, aby rozpocząć sesję nadzorczą
     number: Numer
     overuse_number: Dodatek za nadmierne zużycie
-    project_limit_reached: Limit użytkowania został osiągnięty dla '%{license_name}', prosimy o kontakt z administratorem
     project_specific: Specyficzne dla projektu
     project_specific_license: Licencja specyficzna dla projektu
     project_usage: Użytkowanie projektu

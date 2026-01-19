@@ -123,13 +123,6 @@ class Campaign < ApplicationRecord
     %w[id name status type start_date end_date]
   end
 
-  def proctoring_license_with_enough_credits
-    credits = Campaigns::Proctoring::GetProctoringCredits.call!(self)
-    client.active_licenses.where(type: :proctoring).order(end_date: :asc).find do |license|
-      license.enough_license_credits?(credits)
-    end
-  end
-
   def real_status
     return 'closed' if end_date && end_date < Time.zone.now
 

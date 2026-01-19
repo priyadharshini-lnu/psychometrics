@@ -8,12 +8,4 @@ class ProjectLicense < ApplicationRecord
 
   scope :enabled, -> { where(enabled: true) }
   scope :disabled, -> { where(enabled: false) }
-
-  def enough_licenses?
-    usage_limit > used_number
-  end
-
-  def enough_license_credits?(credit)
-    (usage_limit - used_number) >= credit
-  end
 end

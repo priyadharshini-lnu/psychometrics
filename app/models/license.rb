@@ -28,6 +28,11 @@ class License < ApplicationRecord
                         where('end_date >= :date and start_date <= :date and number + overuse_number > used_number',
                               date: Time.zone.today)
                     }
+  scope :not_expired, lambda {
+    active.
+      where('end_date >= :date and start_date <= :date',
+            date: Time.zone.today)
+  }
 
   enum :type, { common: 0, threesixty: 1, proctoring: 2, idp: 3, ai_assistant: 4 }, prefix: :type
 
@@ -93,10 +98,6 @@ class License < ApplicationRecord
     license_usages.joins(assigns_report: { assign: :membership }).
       where(assigns_report: { assign: { memberships: { client_id: [client.subtree_ids].flatten } } }).
       size
-  end
-
-  def enough_license_credits?(credits)
-    number + overuse_number - used_number >= credits
   end
 
   private

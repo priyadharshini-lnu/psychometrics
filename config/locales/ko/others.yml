@@ -3003,13 +3003,10 @@ ko:
     client_usage: 클라이언트 사용
     enabled: 활성화됨
     end_date: 종료 날짜
-    not_enough_idp_license: IDP 라이선스가 충분하지 않은 경우 관리자에게 문의하세요
     not_enough_license: "'%{client_name}'에 '%{report_name}'에 대한 라이선스가 충분하지 않습니다"
     not_enough_license_count: 라이선스가 충분하지 않은 경우 관리자에게 문의하세요
-    not_enough_proctoring_credits: 감독 세션을 시작하기에 학점이 부족합니다
     number: 번호
     overuse_number: 초과 사용 허용량
-    project_limit_reached: "'%{license_name}' 사용 한도에 도달했으니 관리자에게 연락해 주세요"
     project_specific: 프로젝트 특화
     project_specific_license: 프로젝트 특별 라이선스
     project_usage: 프로젝트 활용

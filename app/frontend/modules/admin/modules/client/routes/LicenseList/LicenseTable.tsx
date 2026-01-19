@@ -83,10 +83,12 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
         title={I18n.t('licenses.overuse_number')}
         id="overuse_number"
         dataIndex="overuseNumber"
-        render={(_, { overuseNumber, usedNumber, number }) => I18n.t('licenses.used_out_of', {
+        render={(_, {
+          overuseNumber, usedNumber, number, isProjectSpecific,
+        }) => (isProjectSpecific ? '-' : I18n.t('licenses.used_out_of', {
           used: usedOveruseNumber(usedNumber, number),
           total: overuseNumber,
-        })}
+        }))}
         width={300}
       />
       <Resource.Column<License>

@@ -50,20 +50,23 @@ describe Licenses::GetStats do
   end
 
   it 'gets stats of license usage for a week' do
-    create(:license, type: :threesixty, number: 5,
+    license = create(:license, type: :threesixty, number: 5,
       client: client_one, start_date: 10.days.ago, end_date: 2.months.since)
 
     create(:license_usage, client: client_one,
-      license: client_one.licenses.find_by(type: 'threesixty'),
+      license: license,
       user: user, campaign: campaign, created_at: 1.day.ago)
+    license.increment!(:used_number)
 
     create(:license_usage, client: client_one,
-      license: client_one.licenses.find_by(type: 'threesixty'),
+      license: license,
       user: user, campaign: campaign, created_at: 8.days.ago)
+    license.increment!(:used_number)
 
     create(:license_usage, client: client_one,
-      license: client_one.licenses.find_by(type: 'threesixty'),
+      license: license,
       user: user, campaign: campaign, created_at: 21.days.ago)
+    license.increment!(:used_number)
 
     get_stats = Licenses::GetStats.call!
     get_stats.except!(:expiring_licenses)

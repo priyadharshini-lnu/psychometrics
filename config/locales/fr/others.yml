@@ -3040,13 +3040,10 @@ fr:
     client_usage: Utilisation client
     enabled: Activé
     end_date: Date de fin
-    not_enough_idp_license: Pas assez de licences IDP, veuillez contacter l'administrateur
     not_enough_license: "'%{client_name}' n'a pas assez de licences pour '%{report_name}'"
     not_enough_license_count: Pas assez de licences, veuillez contacter l'administrateur
-    not_enough_proctoring_credits: Pas assez de crédits pour commencer la session d'examen
     number: Nombre
     overuse_number: Indemnité de dépassement
-    project_limit_reached: Limite d’utilisation atteinte pour « %{license_name} », veuillez contacter l’administrateur
     project_specific: Projet spécifique
     project_specific_license: Licence spécifique au projet
     project_usage: Utilisation du projet

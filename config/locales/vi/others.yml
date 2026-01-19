@@ -3033,13 +3033,10 @@ vi:
     client_usage: Sử dụng khách hàng
     enabled: Kích hoạt
     end_date: Ngày kết thúc
-    not_enough_idp_license: Không đủ giấy phép IDP, vui lòng liên hệ với quản trị viên
     not_enough_license: "'%{client_name}' không có đủ giấy phép cho '%{report_name}'"
     not_enough_license_count: Không đủ giấy phép, vui lòng liên hệ với quản trị viên
-    not_enough_proctoring_credits: Không đủ tín chỉ để bắt đầu buổi giám sát
     number: Số
     overuse_number: Phụ cấp sử dụng quá mức
-    project_limit_reached: Đã đạt đến giới hạn sử dụng cho '%{license_name}', vui lòng liên hệ với quản trị viên
     project_specific: Dự án cụ thể
     project_specific_license: Giấy phép cụ thể của dự án
     project_usage: Sử dụng dự án

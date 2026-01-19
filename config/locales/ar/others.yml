@@ -3091,13 +3091,10 @@ ar:
     client_usage: استخدام العميل
     enabled: تمكين
     end_date: تاريخ الانتهاء
-    not_enough_idp_license: لا توجد تراخيص IDP كافية، يرجى الاتصال بالمسؤول
     not_enough_license: لا يحتوي "%{client_name}" على تراخيص كافية ل "%{report_name}"
     not_enough_license_count: لا توجد تراخيص كافية، يرجى الاتصال بالمسؤول
-    not_enough_proctoring_credits: لا توجد اعتمادات كافية لبدء جلسة المراقبة
     number: رقم
     overuse_number: بدل الاستخدام الزائد
-    project_limit_reached: تم الوصول إلى حد الاستخدام ل '%{license_name}'، يرجى التواصل مع المسؤول
     project_specific: مشروع محدد
     project_specific_license: ترخيص المشروع الخاص
     project_usage: استخدام المشروع

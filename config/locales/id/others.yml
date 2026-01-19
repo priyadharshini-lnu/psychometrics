@@ -3043,13 +3043,10 @@ id:
     client_usage: Penggunaan Klien
     enabled: Diaktifkan
     end_date: Tanggal akhir
-    not_enough_idp_license: Lisensi IDP tidak cukup, silakan hubungi administrator
     not_enough_license: "'%{client_name}' tidak memiliki cukup lisensi untuk '%{report_name}'"
     not_enough_license_count: Lisensi tidak cukup, silakan hubungi administrator
-    not_enough_proctoring_credits: Tidak cukup kredit untuk memulai sesi pengawasan
     number: Angka
     overuse_number: Tunjangan penggunaan berlebih
-    project_limit_reached: Batas penggunaan tercapai untuk '%{license_name}', silakan hubungi administrator
     project_specific: Khusus Proyek
     project_specific_license: Lisensi Khusus Proyek
     project_usage: Penggunaan Proyek

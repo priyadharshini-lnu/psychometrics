@@ -3048,13 +3048,10 @@ sl:
     client_usage: Uporaba odjemalcev
     enabled: Omogočeno
     end_date: Datum zaključka
-    not_enough_idp_license: Ni dovolj licenc IDP, se obrnite na skrbnika
     not_enough_license: "'%{client_name}' nima dovolj licenc za '%{report_name}'"
     not_enough_license_count: Ni dovolj licenc, obrnite se na skrbnika
-    not_enough_proctoring_credits: Premalo kreditov za začetek nadzorne seje
     number: Številka
     overuse_number: Nadomestilo za prekomerno uporabo
-    project_limit_reached: Dosežena omejitev uporabe za '%{license_name}', prosimo, kontaktirajte administratorja
     project_specific: Specifično za projekte
     project_specific_license: Licenca specifična za projekte
     project_usage: Uporaba projekta

@@ -16,7 +16,10 @@ module Campaigns
 
       def call
         user_report, user_assessments = ActiveRecord::Base.transaction(requires_new: true) do
-          Licenses::Use.call!(campaign, user, report, options[:report_family_id]) unless idp_license_usage
+          unless idp_license_usage
+            LicenseManager::Deductor.call!(campaign: campaign, user: user, license_type: 'common',
+                                           context: { report_family_id: options[:report_family_id] })
+          end
           user_report = UserReport.find_by(campaign: campaign, report: report, user: user)
           user_report ||= create_user_report
 
