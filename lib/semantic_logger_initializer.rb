@@ -86,10 +86,10 @@ class SemanticLoggerInitializer
     end
 
     def setup_appenders
-      # Clear existing appenders to avoid Sidekiq's default stdout logger,
+      # Clear existing IO appenders to avoid Sidekiq's default stdout logger,
       # which overrides the configured JSON formatter.
       SemanticLogger.appenders.each do |appender|
-        SemanticLogger.remove_appender(appender)
+        SemanticLogger.remove_appender(appender) if appender.is_a?(SemanticLogger::Appender::IO)
       end
 
       formatter = Settings.features.rails_log_to_json ? SiemLogger::Formatter.new : :color

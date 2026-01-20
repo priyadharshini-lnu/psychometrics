@@ -27,5 +27,3 @@ end
 # due to new :zeitwerk loader
 # https://guides.rubyonrails.org/v6.0/autoloading_and_reloading_constants.html
 # CronJobsLoader.load_jobs is fired to load existing sidekiq jobs
-
-Rails.logger = Sidekiq.logger if Sidekiq.server? && Rails.env.development?
