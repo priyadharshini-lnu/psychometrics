@@ -3,16 +3,15 @@ import { connect, ConnectedProps } from 'react-redux'
 import { MenuProps, Switch } from 'antd'
 import { Link, useParams } from 'react-router-dom'
 import { RootState } from '~/modules/admin/core/rootReducers'
-import { Resource } from '~/modules/admin/components/Resource'
+import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { License } from '~/modules/admin/modules/client/core/licenses'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import User from '~/modules/admin/modules/campaigns/interfaces/User'
-
-
 import { get as getCurrentUser } from '~/core/currentUser'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const { I18n } = window
+
 
 const connector = connect(
   (state: RootState) => ({
@@ -27,10 +26,12 @@ const connector = connect(
 type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
-const ClientLicensesTableComponent: React.FC<Props> = ({
+const ProjectLicensesTableComponent: React.FC<Props> = ({
   currentUser, openModal, clientId,
 }) => {
   const { projectId } = useParams() as { projectId: string }
+  const { resource } = useResourceContext<License>()
+  const typeFilteredValue = resource.getFilteredValue('type_in') as string[] | undefined
 
   return (
     <>
@@ -44,6 +45,15 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
           title={I18n.t('licenses.type')}
           id="type"
           render={(_, { type }) => I18n.t(`licenses.types.${type}`)}
+          filters={
+            [
+              { value: 'common', text: I18n.t('licenses.types.common') },
+              { value: 'threesixty', text: I18n.t('licenses.types.threesixty') },
+              { value: 'idp', text: I18n.t('licenses.types.idp') },
+              { value: 'proctoring', text: I18n.t('licenses.types.proctoring') },
+            ]
+          }
+          filteredValue={typeFilteredValue}
         />
         <Resource.Column<License>
           title={I18n.t('licenses.project_specific')}
@@ -147,4 +157,4 @@ function usedOveruseNumber (used: number, total: number): number {
   return total >= used ? 0 : used - total
 }
 
-export const ClientLicensesTable = connector(ClientLicensesTableComponent)
+export const ProjectLicensesTable = connector(ProjectLicensesTableComponent)

@@ -123,6 +123,7 @@ describe Examus::FindOrCreateSession do
       project_license.destroy
 
       result = described_class.call(campaign_user)
+      expect(Campaigns::Proctoring::GetProctoringCredits).not_to receive(:call!)
 
       expect(result[:error]).to eq(I18n.t('licenses.not_enough_license',
                                           client_name: client.name,

@@ -60,8 +60,14 @@ class License < ApplicationRecord
     )
   }
 
+  scope :type_in, lambda { |*values|
+    enum_values = values.flatten.map(&:to_s).filter_map { |v| types[v] }
+
+    enum_values.any? ? where(type: enum_values) : none
+  }
+
   def self.ransackable_scopes(_auth_object = nil)
-    %i[project_specific report_name for_project report_name_or_type_cont]
+    %i[project_specific report_name for_project report_name_or_type_cont type_in]
   end
 
   def self.ransackable_attributes(_auth_object = nil)
