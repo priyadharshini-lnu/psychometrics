@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
 import { Col, Row, Table } from 'antd'
 import { CSVLink } from 'react-csv/lib/index'
 import { CommonPropTypes } from 'react-csv/components/CommonPropTypes'
@@ -28,11 +28,23 @@ export const ScoringTable: FC<ScoringTableProps> = ({
     return null
   }
 
-  const data = map(scoring, (s, id) => ({
-    id,
-    competency: find(factors, { id: +id })?.name,
-    score: s.score,
-  }))
+  const data = useMemo(() => {
+    const mappedData = map(scoring, (s, id) => ({
+      id,
+      competency: find(factors, { id: +id })?.name,
+      score: s.score,
+    }))
+
+    const [withEmptyScore, withScore] = _.partition(
+      mappedData,
+      item => item.score === null || item.score === undefined || item.score === '',
+    )
+
+    const sortedWithScore = _.sortBy(withScore, item => item.competency?.toLowerCase())
+    const sortedWithEmptyScore = _.sortBy(withEmptyScore, item => item.competency?.toLowerCase())
+
+    return [...sortedWithScore, ...sortedWithEmptyScore]
+  }, [scoring, factors])
 
   const columns = [
     {

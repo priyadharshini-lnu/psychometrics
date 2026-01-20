@@ -1,3 +1,6 @@
+javascript [nonce=content_security_policy_nonce]:
+  I18n.availableLocales = #{(Settings.enduser_locales).to_json.html_safe}
+
 div#individual-dashboard-container
 
 = vite_javascript_tag 'entrypoints/admin/individual_dashboard.jsx'
