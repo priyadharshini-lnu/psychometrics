@@ -23,6 +23,10 @@ RSpec.describe SiemLogger::ControllerHelper do
   let(:controller) { dummy_class.new(request) }
   let(:user_email) { 'test@example.com' }
 
+  before do
+    allow(Settings.features).to receive(:dont_send_pi_to_siem).and_return(false)
+  end
+
   describe '#siem_log_authentication_success' do
     let(:user) { instance_double('User', email: user_email, id: 1) }
 

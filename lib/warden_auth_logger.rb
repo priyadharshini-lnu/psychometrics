@@ -32,7 +32,7 @@ module WardenAuthLogger
                                      actor_name: actor,
                                      context: "User email: #{actor}",
                                      request_details: SiemLogger.build_request_details(request, identity_provider),
-                                     msg: "Failed login attempt for #{email}, reason: #{reason}",
+                                     msg: "Failed login attempt for #{actor}, reason: #{reason}",
                                      authentication_channel: auth_channel, identity_provider: identity_provider)
     end
 
@@ -68,7 +68,7 @@ module WardenAuthLogger
                                      actor_name: actor,
                                      context: "User email: #{actor}",
                                      request_details: SiemLogger.build_request_details(request),
-                                     msg: "User #{user.email} signed out",
+                                     msg: "User #{actor} signed out",
                                      session_id: user.id)
     end
 

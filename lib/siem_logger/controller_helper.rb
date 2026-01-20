@@ -73,6 +73,28 @@ module SiemLogger
       })
     end
 
+    def siem_log_mfa_success(user)
+      actor = SiemLogger.user_identifier(user.email, user.id)
+
+      siem_log_security_event!('MFAAuthenticationSuccess', {
+        context: "User: #{actor}",
+        msg: "Two-factor authentication successful for #{actor}",
+        authentication_channel: 'TwoFactor',
+        actor_name: actor
+      })
+    end
+
+    def siem_log_mfa_failure(user)
+      actor = SiemLogger.user_identifier(user.email, user.id)
+
+      siem_log_security_event!('MFAAuthenticationFailure', {
+        context: "User: #{actor}",
+        msg: "Two-factor authentication failed for #{actor}",
+        authentication_channel: 'TwoFactor',
+        actor_name: actor
+      })
+    end
+
     private
 
     def determine_authentication_channel_for_success(found_by)

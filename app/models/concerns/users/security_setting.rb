@@ -12,6 +12,39 @@ module Users
       validates :password, repeats_in_password: true, if: :restrict_sequences?
       validate :validate_password_length, if: :password_required?
 
+      after_commit :log_user_provision_event, on: :create
+      after_destroy :log_user_deprovision_event
+
+      def log_user_deprovision_event
+        actor = Current.user || modifier
+        actor_name = actor ? SiemLogger.user_identifier(actor.email, actor.id) : 'System'
+        context = "User: #{SiemLogger.user_identifier(email, id)}"
+
+        SiemLogger.log_security_event!(
+          'UserDeprovision',
+          actor_name: actor_name,
+          context: context,
+          msg: "User account deleted for #{SiemLogger.user_identifier(email, id)}"
+        )
+      rescue StandardError => e
+        Rails.logger.error("Failed to log UserDeprovision event: #{e.message}")
+      end
+
+      def log_user_provision_event
+        actor = Current.user || creator
+        actor_name = actor ? SiemLogger.user_identifier(actor.email, actor.id) : 'System'
+        context = "User: #{SiemLogger.user_identifier(email, id)}"
+
+        SiemLogger.log_security_event!(
+          'UserProvision',
+          actor_name: actor_name,
+          context: context,
+          msg: "User account created for #{SiemLogger.user_identifier(email, id)}"
+        )
+      rescue StandardError => e
+        Rails.logger.error("Failed to log UserProvision event: #{e.message}")
+      end
+
       def generate_strong_password
         ::Utility::String.generate_strong_password(applicable_security_setting.min_password_length)
       end
@@ -104,6 +137,18 @@ module Users
           send_unlock_instructions
         else
           save(validate: false)
+        end
+
+        begin
+          actor = SiemLogger.user_identifier(email, id)
+          SiemLogger.log_security_event!('AccountLocked',
+                                         actor_name: actor,
+                                         context: "Account locked for #{actor}",
+                                         msg: "Account locked for #{actor} due to too many failed login attempts",
+                                         authentication_channel: 'Password Login')
+        rescue StandardError => e
+          Rails.logger.error("Failed to log 'AccountLocked' SIEM event for user #{id} || #{email}: " \
+                             "#{e.class}: #{e.message}")
         end
       end
 
