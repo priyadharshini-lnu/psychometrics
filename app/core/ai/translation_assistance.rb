@@ -10,7 +10,6 @@ module AI
       @user = user
       @texts = texts
       @options = options
-      @retry_count = 0
     end
 
     def call

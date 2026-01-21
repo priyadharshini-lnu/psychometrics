@@ -653,6 +653,40 @@ ALTER SEQUENCE public.ai_model_registries_id_seq OWNED BY public.ai_model_regist
 
 
 --
+-- Name: ai_translation_results; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.ai_translation_results (
+    id bigint NOT NULL,
+    results json,
+    translatable_id bigint,
+    translatable_type character varying,
+    hashsum bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: ai_translation_results_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.ai_translation_results_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: ai_translation_results_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.ai_translation_results_id_seq OWNED BY public.ai_translation_results.id;
+
+
+--
 -- Name: api_keys; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1965,7 +1999,8 @@ CREATE TABLE public.client_features (
     ai_assistants boolean DEFAULT false NOT NULL,
     global_skills boolean DEFAULT false NOT NULL,
     idp boolean DEFAULT false NOT NULL,
-    enhance_with_ai boolean DEFAULT false NOT NULL
+    enhance_with_ai boolean DEFAULT false NOT NULL,
+    ai_translation boolean DEFAULT false NOT NULL
 );
 
 
@@ -5297,7 +5332,8 @@ CREATE TABLE public.project_features (
     idp boolean DEFAULT false NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    enhance_with_ai boolean DEFAULT false NOT NULL
+    enhance_with_ai boolean DEFAULT false NOT NULL,
+    ai_translation boolean DEFAULT false NOT NULL
 );
 
 
@@ -8888,6 +8924,13 @@ ALTER TABLE ONLY public.ai_model_registries ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
+-- Name: ai_translation_results id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_translation_results ALTER COLUMN id SET DEFAULT nextval('public.ai_translation_results_id_seq'::regclass);
+
+
+--
 -- Name: api_keys id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -10489,6 +10532,14 @@ ALTER TABLE ONLY public.ai_assisted_user_sessions
 
 ALTER TABLE ONLY public.ai_model_registries
     ADD CONSTRAINT ai_model_registries_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ai_translation_results ai_translation_results_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_translation_results
+    ADD CONSTRAINT ai_translation_results_pkey PRIMARY KEY (id);
 
 
 --
@@ -19192,8 +19243,10 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260119122705'),
 ('20260113071404'),
 ('20260106133315'),
+('20260102064238'),
 ('20251217070713'),
 ('20251215073428'),
 ('20251214060951'),

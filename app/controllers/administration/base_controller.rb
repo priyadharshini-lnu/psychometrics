@@ -63,7 +63,9 @@ module Administration
       {
         idpEnabled: project.client.feature_enabled?(:idp) && project.project_feature_enabled?(:idp),
         enhanceWithAiEnabled: project.client.feature_enabled?(:enhance_with_ai) &&
-          project.project_feature_enabled?(:enhance_with_ai)
+          project.project_feature_enabled?(:enhance_with_ai),
+        aiTranslationEnabled: project.client.feature_enabled?(:ai_translation) &&
+          project.project_feature_enabled?(:ai_translation)
       }
     end
 

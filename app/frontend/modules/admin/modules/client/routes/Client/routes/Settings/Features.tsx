@@ -16,6 +16,7 @@ interface ClientFeatures {
   globalSkills: boolean;
   idp: boolean;
   id: string;
+  aiTranslation: boolean;
 }
 
 export const Features: React.FC = () => {
@@ -63,6 +64,7 @@ export const Features: React.FC = () => {
       aiAssistedIdp: !values.aiAssistants ? false : values.aiAssistedIdp || false,
       globalSkills: values.globalSkills || false,
       idp: values.idp || false,
+      aiTranslation: values.aiTranslation || false,
     }
     return {
       ...transformedValues,
@@ -136,6 +138,12 @@ export const Features: React.FC = () => {
                 <Form.Item
                   name="globalSkills"
                   label={I18n.t('administration.client_features.form.global_skills')}
+                >
+                  <Switch />
+                </Form.Item>
+                <Form.Item
+                  name="aiTranslation"
+                  label={I18n.t('administration.client_features.form.ai_translation')}
                 >
                   <Switch />
                 </Form.Item>

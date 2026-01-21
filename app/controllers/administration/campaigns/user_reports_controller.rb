@@ -6,13 +6,17 @@ module Administration
   module Campaigns
     class UserReportsController < Administration::Campaigns::BaseController
       include UserReports::PdfGeneration
+      include AsyncRequestHandler
 
       before_action :ensure_project, except: %i[dashboard]
 
       before_action :set_resource, only: %i[show approve destroy download pdf_preview toggle_user_access
                                             start_qc abort_qc send_for_approval request_changes possible_webhook_events
-                                            remove_approval webhook_payload upload_file remove_file]
+                                            remove_approval webhook_payload upload_file remove_file translate]
       before_action :pundit_authorize
+
+      async_request :translate, handler: ::AI::Translations::UserReport,
+                  permit_params: ->(params) { params.permit! }
 
       def create
         form = ::Campaigns::UserReports::AddForm.from_params(resource_params)
@@ -207,6 +211,12 @@ module Administration
       end
 
       private
+
+      def meta_data
+        {
+          user_report_id: resource.id
+        }
+      end
 
       def create_event(from)
         UserReportEvent.create!(

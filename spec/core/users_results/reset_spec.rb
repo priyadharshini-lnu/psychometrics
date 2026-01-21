@@ -41,6 +41,7 @@ describe UsersResults::Reset do
     # create(:user_assessment, campaign: campaign, subject: user, assessment: assessment, users_result: users_result)
   end
   let!(:media_response) { create(:media_response, users_result: users_result) }
+  let!(:ai_translation) { create(:ai_translation_result, translatable: user_report) }
 
   subject { described_class.call(user_assessment) }
 
@@ -147,5 +148,10 @@ describe UsersResults::Reset do
   it 'remove media response record associated with users_result' do
     expect { subject }.to change { MediaResponse.count }.by(-1)
     expect(MediaResponse.find_by(id: media_response.id)).to be_nil
+  end
+
+  it 'remove AI translation record associated with users_result' do
+    expect { subject }.to change { AI::TranslationResult.count }.by(-1)
+    expect(AI::TranslationResult.find_by(id: ai_translation.id)).to be_nil
   end
 end

@@ -22,6 +22,28 @@ const ModuleOverrideTR = t.type({
   updatedAt: t.string,
 })
 
+export const TranslationTR = t.type({
+  lang: t.string,
+  texts: t.record(t.string, t.array(t.string)),
+})
+
+export const AsyncTranslationTR = t.type({
+  status: t.string,
+  response: t.type({
+    asyncRequestUuid: t.string,
+    processingStatus: t.string,
+    responseType: t.string,
+    responseData: t.union([
+      t.string,
+      t.null,
+      t.type({}),
+    ]),
+  }),
+})
+
+export type AsyncTranslation = t.TypeOf<typeof AsyncTranslationTR>
+
+
 export interface Comment {
   id: string
   text: string

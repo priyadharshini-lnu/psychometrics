@@ -53,7 +53,7 @@ module AI
     def validate_response(response)
       return nil unless @validate_response_structure
 
-      parsed_response = JSON.parse(response)
+      parsed_response = response.is_a?(String) ? JSON.parse(response) : response
       assistant.output_schema_class.validate_response(parsed_response)
 
       nil

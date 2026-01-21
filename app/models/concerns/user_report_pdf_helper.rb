@@ -55,11 +55,16 @@ module UserReportPdfHelper
 
   def remove_report_pdf!(locale: nil)
     remove_pdf_async(locale: locale)
+    remove_ai_translations
     self.status = :not_prepared
     if !threesixty? && has_approval_workflow?
       self.approval_status = :not_ready
     end
     save!
+  end
+
+  def remove_ai_translations
+    ai_translation&.destroy
   end
 
   def remove_all_report_pdfs!

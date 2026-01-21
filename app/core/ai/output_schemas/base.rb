@@ -20,7 +20,7 @@ module AI
           errors << 'Please ensure the response is an JSON object'
         end
         required_keys.each do |key|
-          errors << "Please ensure the response includes the \"#{key}\" key" unless response.key?(key)
+          errors << "Please ensure the response includes the \"#{key}\" key" unless response.key?(key.to_s)
         end
 
         throw InvalidResponseStructureError.new(errors.join(', ')) unless errors.empty?

@@ -1,3 +1,4 @@
+
 @import '~/styles/spacing.less';
 @import '~/styles/antv4.variable.less';
 
@@ -116,6 +117,7 @@
   background-color: white;
 
   .reportPreviewBody {
+    position: relative;
     border: 1px solid #ccc;
     flex-wrap: nowrap;
   }
@@ -189,4 +191,43 @@
 
 .lang {
   width: 130px;
+}
+
+.translate {
+  display: flex;
+  justify-content: flex-end;
+  z-index: 9999;
+}
+
+.aiTranslationPopover {
+  width: 100%;
+  min-width: 200px;
+}
+
+.aiBadge {
+  width: 100%;
+  z-index: 9999;
+  .aiBadgeContent {
+    padding: 8px 12px;
+    background: #000000CC;
+    color: #fff;
+  }
+}
+
+
+.translationHeader {
+  font-size: 16px;
+  padding-inline-end: 160px;
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+}
+.translationInfo, .translationControls {
+  font-weight: normal;
+
+}
+
+.errorContainer {
+  font-weight: normal;
+  color: red;
 }

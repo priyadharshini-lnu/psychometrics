@@ -34,6 +34,8 @@ en:
     ai_assistants_test_render: Test Render
     ai_assistants_test_render_tooltip: Test your prompt template with campaign data to check what will be sent to the AI assistant.
     ai_assisted_idp_feature_disabled: AI Assisted IDP feature has been disabled for this project.
+    ai_notice: Highlighted sections AI-translated and may contains innacuracies.
+    ai_translation: AI Translation
     all_corner_rounded: All corner rounded
     api_keys: API keys
     assessments: Assessments
@@ -666,10 +668,13 @@ en:
     search_admins: Search admins
     search_job_role: Search job role
     select_admin_role: Select admin role
+    select_language_to_translate: Please select language to translate
     select_level: Select level
     send_email: Send email
     settings: Settings
+    show_original: Show Original
     show_submenu: Show Sub Menu
+    show_translated: Show Translated
     siem: SIEM
     skill_aliases: Skill Aliases
     skills: Skills
@@ -689,6 +694,12 @@ en:
     toolbar_text_copied: Copied to clipboard
     toolbar_text_replaced: Text replaced!
     toolbar_what_changed_and_why: What Changed & Why
+    translate: Translate
+    translate_to: Translate To
+    translate_with_ai: Translate with AI
+    translated_from: Translated from
+    translated_to: 'Translated to:'
+    translated_with_ai_notice: AI Translated
     translation_assistant_not_configured: Translation Assistant not configured
     upload_success: Uploaded successfully
     user_report_events: User Report Events

@@ -264,6 +264,7 @@ Rails.application.routes.draw do
             get :possible_webhook_events
             put :upload_file
             delete :remove_file
+            post :translate
           end
           collection do
             post :regenerate

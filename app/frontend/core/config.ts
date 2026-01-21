@@ -47,6 +47,7 @@ type FetchType = ApiActionResponse<{
 }>
 
 export const getFeatures = (state): FeaturesFlags => _.get(state, ['config', 'features'], {})
+export const getProjectFeatures = (state): FeaturesFlags => _.get(state, ['config', 'project'], {})
 export const getTimezone = (state): string => _.get(state, ['config', 'timezone'])
 export const availableLocales = (state: RootState): string[] => _.get(state, ['config', 'availableLocales'], [])
 export const getAvailableAiProviders = (state: RootState): AiModel[] => _.get(state,
