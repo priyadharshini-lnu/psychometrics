@@ -17,6 +17,7 @@ module Campaigns
       attribute :external_id, String, default: nil
       attribute :current_job_role, String, default: nil
       attribute :target_job_role, String, default: nil
+      attribute :level, String, default: nil
 
       validates :first_name, :last_name, :email, presence: true
       validates :email, format: { with: Devise.email_regexp }

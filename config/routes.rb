@@ -286,6 +286,8 @@ Rails.application.routes.draw do
             post :extend_time
             post :create_hogan_credentials
             get :webhook_payload
+            put :update_level
+            put :update_job_role
           end
           collection do
             post :import

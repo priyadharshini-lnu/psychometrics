@@ -20,12 +20,17 @@ module Campaigns
         attribute :external_id, String, default: nil
         attribute :current_job_role, String, default: nil
         attribute :target_job_role, String, default: nil
+        attribute :level, String, default: nil
 
         validates :first_name, :last_name, :email, presence: true
         validates :email, format: { with: Devise.email_regexp }
         validates :mobile_number, format: { with: /\A\+(?:[0-9] ?){6,14}[0-9]\z/ }, allow_blank: true
         validates :operation, inclusion: { in: %w[skip_existing add_with_existing_response add_and_allow_new_response] }
         validates :locale, inclusion: { in: I18n.available_locales.map(&:to_s), allow_blank: true }
+        validates :level, inclusion: {
+          in: CampaignUser.levels.keys,
+          message: I18n.t('admin.level_validation_message', values: CampaignUser.levels.keys.join(', '))
+        }, allow_blank: true
         validate :user_exists_in_project, if: -> { operation == 'skip_existing' }
         validates_length_of :password, within: Devise.password_length, allow_blank: true
 

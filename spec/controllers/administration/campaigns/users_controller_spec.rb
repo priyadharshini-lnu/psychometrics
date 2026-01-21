@@ -63,6 +63,28 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
     end
   end
 
+  describe 'PUT update_level' do
+    it 'updates campaign user level' do
+      put :update_level, params: { new_campaign_id: campaign.id, id: user.id, level: 'apply' }
+      expect(response).to have_http_status(:success)
+      expect(campaign_user.reload.level).to eq('apply')
+    end
+  end
+
+  describe 'PUT update_job_role' do
+    it 'updates campaign user job roles' do
+      put :update_job_role, params: {
+        new_campaign_id: campaign.id,
+        id: user.id,
+        current_job_role_id: current_job_role.id,
+        target_job_role_id: target_job_role.id
+      }
+      expect(response).to have_http_status(:success)
+      expect(campaign_user.reload.current_job_role_id).to eq(current_job_role.id)
+      expect(campaign_user.reload.target_job_role_id).to eq(target_job_role.id)
+    end
+  end
+
   describe 'DELETE' do
     it 'removes campaign user and dependant data' do
       campaign_user = create(:campaign_user)
@@ -113,7 +135,10 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       },
       'manager' => {},
       'hogan_id' => hogan_credential.participant_id,
-      'hogan_provider' => hogan_credential.provider
+      'hogan_provider' => hogan_credential.provider,
+      'current_job_role' => {},
+      'level' => campaign_user.level,
+      'target_job_role' => {}
     })
   end
 

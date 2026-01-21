@@ -19,6 +19,7 @@ module Campaigns
         manager_email
         current_job_role
         target_job_role
+        level
       ].freeze
 
       def initialize(import_data, campaign)

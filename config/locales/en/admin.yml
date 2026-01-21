@@ -75,6 +75,7 @@ en:
     confirm_remove_admin: Are you sure you want to remove admin user with email '%{email}'?
     country: Country
     create_client: Create Client
+    current_job_role: Current Job Role
     dashboard: Dashboard
     dashboards: Dashboards
     data_reports: Data Reports
@@ -89,6 +90,8 @@ en:
     done_tooltip: No more evaluation can be submitted for this user as this user's evaluation is marked as done by %{marked_by}
     edit_campaign_admin: Edit Campaign Admin
     edit_client_admin: Edit Client Admin
+    edit_job_roles: Edit Job Roles
+    edit_level: Edit Level
     edit_permission_denied: You do not have permission to edit admin '%{name}'
     edit_project_admin: Edit Project Admin
     edit_threesixty_campaign_admin: Edit Campaign Admin
@@ -131,6 +134,11 @@ en:
     invalid_csv_header: CSV file contains invalid headers.
     job_roles: Job Roles
     learning_from_others: Collaborative Learning [20]
+    level: Level
+    level_apply: Apply
+    level_guide: Guide
+    level_shape: Shape
+    level_validation_message: 'must be one of: %{values}'
     libraries: Media Library
     library_invalid_type: Invalid Library Item
     licenses: Licenses
@@ -656,7 +664,9 @@ en:
     scheduling: Scheduling
     scoring: Scoring
     search_admins: Search admins
+    search_job_role: Search job role
     select_admin_role: Select admin role
+    select_level: Select level
     send_email: Send email
     settings: Settings
     show_submenu: Show Sub Menu
@@ -672,6 +682,7 @@ en:
     structured_learning: Formal Learning [10]
     subdomain: Subdomain
     subject_part_of_other_invite: Subject with email %{user_email} is already invited to '%{workshop_invite_name}'
+    target_job_role: Target Job Role
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: AI Suggestion
     toolbar_result_generating: Generating...

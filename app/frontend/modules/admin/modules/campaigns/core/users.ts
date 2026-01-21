@@ -60,6 +60,8 @@ export const EXPORT_REPORTS_AND_ASSESSMENTS = 'resource/campaigns/users/EXPORT_R
 export const DOWNLOAD_IDP_REPORTS = 'resource/campaigns/users/DOWNLOAD_IDP_REPORTS'
 export const ADD_MANAGER = 'users/ADD_MANAGER'
 export const CREATE_HOGAN_CREDENTIAL = 'users/CREATE_HOGAN_CREDENTIAL'
+export const UPDATE_LEVEL = 'users/UPDATE_LEVEL'
+export const UPDATE_JOB_ROLE = 'users/UPDATE_JOB_ROLE'
 export interface ShortUser {
   firstName: string
   lastName: string
@@ -199,6 +201,29 @@ export const addManager = (projectId: number, UserId: number, managerId: number 
   },
 })
 
+export const updateLevel = (campaignId: number, userId: number, level: string | null) => ({
+  type: UPDATE_LEVEL,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/users/${userId}/update_level`,
+    body: { level },
+  },
+})
+
+export const updateJobRole = (
+  campaignId: number,
+  userId: number,
+  currentJobRoleId: number | null,
+  targetJobRoleId: number | null,
+) => ({
+  type: UPDATE_JOB_ROLE,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/users/${userId}/update_job_role`,
+    body: { currentJobRoleId, targetJobRoleId },
+  },
+})
+
 export const createHoganCredentials = (campaignId: string, UserId: number): ApiAction<{}> => ({
   type: CREATE_HOGAN_CREDENTIAL,
   request: {
@@ -238,6 +263,15 @@ export interface UserDetails {
     name: string | null
     email: string | null
   }
+  level: string | null
+  currentJobRole: {
+    id: number
+    name: string
+  } | null
+  targetJobRole: {
+    id: number
+    name: string
+  } | null
   hoganId: string | null
   hoganProvider: string | null
 }
@@ -331,6 +365,12 @@ const HANDLERS = {
       },
     } as State
   },
+  [UPDATE_LEVEL]: (state: State, { response }: FetchSingleType) => ({
+    ...state, current: response,
+  }),
+  [UPDATE_JOB_ROLE]: (state: State, { response }: FetchSingleType) => ({
+    ...state, current: response,
+  }),
 }
 
 export default createReducer(HANDLERS, defaultState)
@@ -345,7 +385,8 @@ function* genSetUserDetails ({ response }: FetchSingleType) {
 
 export const watchers = [
   takeEvery(
-    [FETCH_SINGLE, CREATE_REPORT, REMOVE_REPORT, EXTEND_ASSESSMENT_TIME, RESET_ASSESSMENT, REMOVE_ASSESSMENT],
+    [FETCH_SINGLE, CREATE_REPORT, REMOVE_REPORT, EXTEND_ASSESSMENT_TIME, RESET_ASSESSMENT, REMOVE_ASSESSMENT,
+      UPDATE_LEVEL, UPDATE_JOB_ROLE],
     genSetUserDetails,
   ),
 ]

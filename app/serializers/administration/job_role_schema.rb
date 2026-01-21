@@ -1,0 +1,15 @@
+# frozen_string_literal: true
+
+module Administration
+  class JobRoleSchema < BaseSchema
+    def self.schema(_, _)
+      Dry::Schema.JSON do
+        config.validate_keys = true
+
+        required(:id).filled(:int?)
+        required(:name).filled(:str?)
+        required(:code).filled(:str?)
+      end
+    end
+  end
+end

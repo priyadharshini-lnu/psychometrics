@@ -57,6 +57,8 @@ class CampaignUser < ApplicationRecord
   delegate :proctoring_enabled?, :proctoring_enabled_on_workshop_activity?, to: :campaign
   delegate :pending_assessments, to: :user_assessments
 
+  enum :level, { apply: 0, guide: 1, shape: 2 }
+
   def campaign_factor_values
     CampaignFactorValue.where(campaign_id: campaign_id, user_id: user_id)
   end

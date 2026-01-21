@@ -147,6 +147,14 @@ module Administration
         ) || @user.is?(:assessor)
       end
 
+      def update_level?
+        can_mange_campaign_users?
+      end
+
+      def update_job_role?
+        can_mange_campaign_users?
+      end
+
       private
 
       def can_mange_campaign_users?

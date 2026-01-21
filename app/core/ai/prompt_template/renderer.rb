@@ -22,6 +22,9 @@ module AI
         if campaign
           render_context['campaign'] = AI::PromptTemplate::CampaignDrop.new(campaign)
           render_context['campaign_factors'] = AI::PromptTemplate::CampaignFactorsDrop.new(campaign, user)
+
+          campaign_user = campaign.campaign_users.find_by(user_id: user.id)
+          render_context['campaign_user'] = AI::PromptTemplate::CampaignUserDrop.new(campaign_user) if campaign_user
         end
 
         result = template.render(render_context, filters: [AI::PromptTemplate::Filters])
