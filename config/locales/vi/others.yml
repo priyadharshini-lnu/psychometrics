@@ -1403,7 +1403,6 @@ vi:
       collapse_link_text: Hiển thị ít hơn
       expand_aria_label: 'Hiển thị ít thông tin ở trên: Trung tâm học tập ảo'
       expand_link_text: Hiển thị thêm
-      heading: Vui lòng xem lại các hướng dẫn bên dưới trước khi bạn bắt đầu. Chúng tôi chúc bạn mọi điều tốt đẹp nhất!
     language:
       content: Nhiệm vụ này không khả dụng bằng ngôn ngữ hiện đang chọn. Vui lòng chọn một trong các ngôn ngữ khả dụng để tiếp tục.
       single_lang: Nhiệm vụ này chỉ khả dụng trong %{lang}. Nhấp vào &quot;Tiếp tục&quot; để tiếp tục.
@@ -1763,16 +1762,7 @@ vi:
       continue: Vâng, Ok để tiếp tục
       description: Nhấp vào Bắt đầu ghi âm và tự ghi âm khi đọc đoạn văn bên dưới bằng giọng nói của bạn
       random_phrases:
-        eight: Nếu bạn có thể nhìn thấy tôi thì video đã thành công. Nếu không, chúng ta sẽ khắc phục sự cố!
-        five: Đừng lo lắng khi đang kiểm tra video của bạn, không cần đề cử giải Oscar.
-        four: Sẵn sàng, chuẩn bị, tập trung! Máy ảnh chính là sân khấu của bạn.
-        nine: Cười thật tươi và quay video rõ nét, chúng ta hãy hoàn thành bài kiểm tra này thật tốt nhé!
-        one: Hãy giơ tay lên nếu bạn có thể nghe thấy tôi hoặc chỉ cần vẫy tay chào máy ảnh!
-        seven: Gương kia, gương kia trên màn hình, hãy kiểm tra video cho sạch sẽ.
-        six: Đèn, máy quay, hành động, đây là thời điểm bạn tỏa sáng!
-        ten: Một cái vẫy tay thân thiện sẽ đảm bảo mọi thứ hoạt động tốt.
-        three: Nói &quot;cheese&quot;! Hoặc chỉ cần thử nụ cười hoàn hảo của bạn.
-        two: Nhìn vào ống kính, mỉm cười và tưởng tượng bạn đang ở trong đoạn giới thiệu phim.
+        one: Sem sẵn sàng. Đây là bài kiểm tra để xác nhận rằng micrô và máy ảnh của tôi hoạt động đúng cách.
       rec_text: GHI NHẬN
       retake: Không, tôi muốn thi lại
       run_again: Chạy lại

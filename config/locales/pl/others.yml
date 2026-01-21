@@ -1413,7 +1413,6 @@ pl:
       collapse_link_text: Pokaż mniej
       expand_aria_label: 'Pokaż mniej informacji powyżej: Wirtualne Centrum Nauczania'
       expand_link_text: Pokaż więcej
-      heading: Zanim zaczniesz, zapoznaj się z poniższymi wytycznymi. Życzymy Ci wszystkiego najlepszego!
     language:
       content: To zadanie nie jest dostępne w aktualnie wybranym języku. Aby kontynuować, wybierz jeden z dostępnych języków.
       single_lang: To zadanie jest dostępne tylko w %{lang}. Kliknij „Kontynuuj”, aby kontynuować.
@@ -1773,16 +1772,7 @@ pl:
       continue: Tak, można kontynuować
       description: Kliknij przycisk "Rozpocznij nagrywanie" i nagraj siebie, czytając poniższy fragment własnym głosem
       random_phrases:
-        eight: Jeśli mnie widzisz, wideo jest udane. Jeśli nie, rozwiążemy problem!
-        five: Testowanie wideo, bez obaw, nie wymaga nominacji do Oscara.
-        four: Kamera to twoja scena.
-        nine: Wielkie uśmiechy i wyraźne wideo, zróbmy ten test dobrze!
-        one: Podnieś rękę, jeśli mnie słyszysz lub po prostu pomachaj do kamery!
-        seven: Lustro, lustro na ekranie, niech kontrola wideo będzie czysta.
-        six: Światła, kamera, akcja, nadszedł czas, aby zabłysnąć!
-        ten: Przyjazny uśmiech sprawia, że wszystko działa jak należy.
-        three: Powiedz ser! Lub po prostu przetestuj ten idealny uśmiech.
-        two: Spójrz w obiektyw, uśmiechnij się i udawaj, że jesteś w zwiastunie filmowym.
+        one: Jestem gotowy. To nagranie testowe, które ma potwierdzić, czy mój mikrofon i kamera działają prawidłowo.
       rec_text: REC
       retake: Nie, chcę powtórzyć
       run_again: Uruchom ponownie

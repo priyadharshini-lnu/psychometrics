@@ -1409,7 +1409,6 @@ hu:
       collapse_link_text: Kevesebb mutatása
       expand_aria_label: 'Kevesebb információ fent: Virtuális Tanulási Központ'
       expand_link_text: Többet mutasson
-      heading: Kérjük, mielőtt belevágna, olvassa el az alábbi irányelveket. Sok sikert kívánunk!
     language:
       content: Ez a feladat nem érhető el az aktuálisan kiválasztott nyelven. Kérjük, a folytatáshoz válassza ki az elérhető nyelvek egyikét.
       single_lang: Ez a feladat csak %{lang} nyelven érhető el. A folytatáshoz kattintson a "Folytatás" gombra.
@@ -1769,16 +1768,7 @@ hu:
       continue: Igen, oké a folytatáshoz
       description: Kattintson a Start Recording gombra, és vegye fel magát, miközben az alábbi szöveget olvassa a saját hangján
       random_phrases:
-        eight: Ha látsz engem, akkor a videó sikeres, ha nem, akkor orvosoljuk a hibákat!
-        five: Teszteld a videódat, ne aggódj, nincs szükség Oscar-jelölésre.
-        four: Kész, kész, fókusz! A kamera a te színpadod.
-        nine: Nagy mosoly és tiszta videó,csináljuk meg ezt a tesztet jól!
-        one: Emelje fel a kezét, ha hall engem, vagy csak integessen a kamerának!
-        seven: Tükör, tükör a képernyőn, legyen tiszta a videóellenőrzés.
-        six: Fények, kamera, akció, itt az idő, hogy tündökölj!
-        ten: Egy barátságos integetéssel megbizonyosodik arról, hogy minden rendben működik.
-        three: Mondj sajtot! Vagy csak teszteld azt a tökéletes mosolyt.
-        two: Nézz a lencsébe, mosolyogj, és tégy úgy, mintha egy filmtrailerben lennél.
+        one: Készen állok. Ez egy tesztfelvétel, hogy megbizonyosodjak arról, hogy a videóm és a mikrofonom megfelelően működik.
       rec_text: REC
       retake: Nem, újra akarom venni
       run_again: Fuss újra

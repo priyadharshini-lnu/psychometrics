@@ -1409,7 +1409,6 @@ fr:
       collapse_link_text: Montrer moins
       expand_aria_label: 'Montrer moins d''informations ci-dessus : Centre d''apprentissage virtuel'
       expand_link_text: Afficher plus
-      heading: Veuillez lire les consignes ci-dessous avant de commencer. Nous vous souhaitons bonne chance !
     language:
       content: Cette tâche n'est pas disponible dans la langue sélectionnée. Veuillez sélectionner une des langues disponibles pour continuer.
       single_lang: Cette tâche n'est disponible qu'en %{lang}. Cliquez sur "Continuer" pour poursuivre.
@@ -1769,16 +1768,7 @@ fr:
       continue: Oui, Ok pour continuer
       description: Cliquez sur Démarrer l'enregistrement et enregistrez-vous en lisant le passage ci-dessous de votre propre voix
       random_phrases:
-        eight: Si vous pouvez me voir, la vidéo est réussie, sinon, on règle le problème !
-        five: Testez votre vidéo, ne vous inquiétez pas, aucune nomination aux Oscars n'est requise.
-        four: L'appareil photo est votre scène.
-        nine: De grands sourires et une vidéo claire, faisons en sorte que ce test soit bien fait !
-        one: Levez la main si vous m'entendez ou faites un signe à la caméra !
-        seven: Miroir, miroir sur l'écran, que le contrôle vidéo soit propre.
-        six: Lumière, caméra, action, c'est le moment de briller !
-        ten: Une vague amicale s'assure que tout fonctionne bien.
-        three: Dites "cheese" ou testez ce sourire parfait.
-        two: Regardez l'objectif, souriez et faites comme si vous étiez dans une bande-annonce de film.
+        one: Je suis prêt. Ceci est un enregistrement test pour confirmer que ma vidéo et mon microphone fonctionnent correctement.
       rec_text: REC
       retake: Non, je veux repasser
       run_again: Recommencer

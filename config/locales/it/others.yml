@@ -1409,7 +1409,6 @@ it:
       collapse_link_text: Mostra meno
       expand_aria_label: 'Mostra meno informazioni sopra: Centro di apprendimento virtuale'
       expand_link_text: Mostra di più
-      heading: Ti invitiamo a leggere le indicazioni qui sotto prima di iniziare. Ti auguriamo il meglio!
     language:
       content: Questa attività non è disponibile nella lingua attualmente selezionata. Selezionare una delle lingue disponibili per procedere.
       single_lang: Questa attività è disponibile solo in %{lang}. Fare clic su "Procedi" per continuare.
@@ -1769,16 +1768,7 @@ it:
       continue: Sì, è possibile procedere
       description: Cliccate su Avvia registrazione e registrate voi stessi mentre leggete il brano sottostante con la vostra voce
       random_phrases:
-        eight: Se riuscite a vedermi, il video è un successo, altrimenti risolviamo il problema!
-        five: Per testare il vostro video, non preoccupatevi, non è necessaria una nomination agli Oscar.
-        four: Pronti, attenti, concentrati! La macchina fotografica è il vostro palcoscenico.
-        nine: Grandi sorrisi e video chiari, facciamo bene questo test!
-        one: Alzate la mano se riuscite a sentirmi o salutate per la telecamera!
-        seven: Specchio, specchio sullo schermo, che il controllo video sia pulito.
-        six: Luci, telecamera, azione, è il vostro momento di brillare!
-        ten: Un saluto amichevole per assicurarsi che tutto funzioni bene.
-        three: Dite "cheese" o semplicemente testate quel sorriso perfetto.
-        two: Guardate l'obiettivo, sorridete e fate finta di essere in un trailer cinematografico.
+        one: Sono pronto. Questa è una registrazione di prova per assicurarmi che il mio video e il mio microfono funzionino correttamente.
       rec_text: REC
       retake: No, voglio rifare il test
       run_again: Correre di nuovo

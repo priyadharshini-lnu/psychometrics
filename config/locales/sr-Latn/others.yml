@@ -1420,7 +1420,6 @@ sr-Latn:
       collapse_link_text: Prikaži manje
       expand_aria_label: 'Prikaži manje informacija iznad: Virtuelni centar za učenje'
       expand_link_text: Prikaži više
-      heading: Molimo vas da pregledate smernice ispod pre nego što počnete. Želimo vam sve najbolje!
     language:
       content: Ovaj zadatak nije dostupan na trenutno izabranom jeziku. Izaberite jedan od dostupnih jezika da biste nastavili.
       single_lang: Ovaj zadatak je dostupan samo u %{lang}. Kliknite na "Nastavi" da biste nastavili.
@@ -1780,16 +1779,7 @@ sr-Latn:
       continue: Da, u redu da se nastavi
       description: Kliknite na Počni snimanje i snimite se dok čitate donji pasus svojim glasom
       random_phrases:
-        eight: Ako me vidite, video je uspešan. Ako ne, mi rešavamo probleme!
-        five: Testiramo vaš video, ne brinite, nije potrebna nominacija za Oskara.
-        four: Fokusirajte se! Kamera je vaša pozornica.
-        nine: Veliki osmesi i jasan video, hajde da ovaj test uradimo kako treba!
-        one: Podignite ruku ako me čujete ili samo mahnite za kameru!
-        seven: Ogledalo, ogledalo na ekranu, neka video provera bude čista.
-        six: Svetla, kamera, akcija, ovo je vaše vreme da sijate!
-        ten: Prijateljsko mahanje osigurava da sve funkcioniše dobro.
-        three: Recite sir! Ili samo testirajte taj savršeni osmeh.
-        two: Pogledajte objektiv, osmehnite se i pretvarajte se da ste u filmskom trejleru.
+        one: Sem spreman. Ovo je testni snimak da potvrdim da li moj mikrofon i kamera ispravno rade.
       rec_text: REC
       retake: Ne, želim da ponovim
       run_again: Pokreni ponovo

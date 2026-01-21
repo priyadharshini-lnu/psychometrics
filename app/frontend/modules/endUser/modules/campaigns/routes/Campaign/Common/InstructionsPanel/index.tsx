@@ -59,7 +59,7 @@ export const InstructionsPanel: FC<InstructionsPanelProps> = ({
       })}
     >
       <div className={styles.instructionsContent}>
-        <Text className="fs-16" strong>{title}</Text>
+        { title !== '' && <Text className="fs-16" strong>{title}</Text>}
         <div aria-hidden={showExpandLink && collapsed ? 'true' : 'false'}>{description}</div>
         {showExpandLink && (
           <div className={styles['container-button']}>

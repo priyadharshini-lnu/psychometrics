@@ -1416,7 +1416,6 @@ hr:
       collapse_link_text: Prikazati manje
       expand_aria_label: 'Prikažite manje informacija iznad: Virtualni centar za učenje'
       expand_link_text: Prikazati više
-      heading: Molimo da prije početka progledate dolje navedene smjernice. Sretno!
     language:
       content: Ovaj zadatak nije dostupan na trenutno odabranom jeziku. Odaberite jedan od dostupnih jezika za nastavak.
       single_lang: Ovaj zadatak je dostupan samo u %{lang} jeziku. Kliknite "Nastaviti" za nastavak.
@@ -1776,16 +1775,7 @@ hr:
       continue: Da, nastaviti
       description: Kliknite na "Pokrenuti snimanje" i snimite se dok čitate donji odlomak naglas
       random_phrases:
-        eight: Ako me vidite, video je uspješno snimljen. Ako ne, prijavite problem!
-        five: Testiramo video, ne brinite, nećemo Vas nominirati za Oscara.
-        four: Priprema, pozor, sad! Kamera je Vaša pozornica.
-        nine: Veliki osmijesi i jasan video, napravimo ovaj test kako treba!
-        one: Podignite ruku ako me čujete ili samo mahnite kameri!
-        seven: Ogledalce, ogledalce na ekranu, neka video provjera bude čista.
-        six: Svjetla, kamera, akcija, ovo je Vaše vrijeme da zablistate!
-        ten: Prijateljsko mahanje osigurava da sve bude u redu.
-        three: 'Smiješak! '
-        two: Pogledajte u objektiv, nasmiješite se i pretvarajte se da ste u filmskoj najavi.
+        one: Spreman sam. Ovo je probna snimka kako bih potvrdio da moja video i mikrofon ispravno rade.
       rec_text: SNIMITI
       retake: Ne, želim ponovno snimiti
       run_again: Pokušati ponovno
