@@ -3,7 +3,8 @@ import axios from 'axios'
 import axiosRetry, { IAxiosRetryConfig } from 'axios-retry'
 import { assign } from 'lodash'
 
-const MAX_RETRIES = 5
+const DEFAULT_MAX_RETRIES = 5
+const DEFAULT_DELAY_FUNC = () => 5000
 
 const { I18n } = window
 
@@ -25,8 +26,8 @@ export const axiosWithRetry = (
     }
   })
   const defaults: IAxiosRetryConfig = {
-    retries: MAX_RETRIES,
-    retryDelay: (retryCount, error) => axiosRetry.exponentialDelay(retryCount, error, 600),
+    retries: DEFAULT_MAX_RETRIES,
+    retryDelay: DEFAULT_DELAY_FUNC,
     retryCondition: axiosRetry.isRetryableError,
     onRetry: handleRetry,
   }
