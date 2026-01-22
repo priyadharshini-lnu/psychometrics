@@ -39,6 +39,8 @@ module Webhooks
     def handle_webhook_event
       response.headers['WebHook-Allowed-Origin'] = request.headers['Origin'] || '*'
 
+      Rails.logger.info("MHS webhook - Authorization: #{request.headers['Authorization']}")
+
       payload = JSON.parse(request.raw_post)
       process_webhook_payload(payload)
 
