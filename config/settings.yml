@@ -1,35 +1,7 @@
 project_name: Psychometrics
 application_code: 'MTELGHTH'
 privacy_policy_version: 4
-enduser_locales:
-  - ar
-  - cs
-  - de
-  - en
-  - en-US
-  - es-ES
-  - fr
-  - hi
-  - it
-  - ja
-  - pl
-  - pt
-  - zh
-  - zh-Hant
-  - zh-HK
-  - nl
-  - ko
-  - bg
-  - hr
-  - hu
-  - id
-  - ro
-  - sk
-  - sl
-  - th
-  - vi
-  - sr-Cyrl
-  - sr-Latn
+enduser_locales: <%= ENV.fetch('ENDUSER_LOCALES', 'ar,cs,de,en,en-US,es-ES,fr,hi,it,ja,pl,pt,zh,zh-Hant,zh-HK,nl,ko,bg,hr,hu,id,ro,sk,sl,th,vi,sr-Cyrl,sr-Latn').split(',').map(&:strip) %>
 admin_user_locales:  <%= ENV["ADMIN_LOCALES"]%>
 timezone: Abu Dhabi
 domain: <%= ENV["APP_DOMAIN"] || 'tte-lighthouse.com' %> # psychometrics.co.uk
