@@ -1428,7 +1428,6 @@ es-ES:
       collapse_link_text: Mostrar menos
       expand_aria_label: 'Mostrar menos información arriba: Centro de Aprendizaje Virtual'
       expand_link_text: Mostrar más
-      heading: Consulte las directrices a continuación antes de empezar. Le deseamos los mejores resultados.
     language:
       content: Esta tarea no está disponible en el idioma que ha seleccionado. Seleccione uno de los idiomas disponibles para proceder.
       single_lang: Esta tarea solo está disponible en %{lang}. Haga clic en «Proceder» para continuar.
@@ -1788,16 +1787,7 @@ es-ES:
       continue: Continuar
       description: Los vídeos o las fotos que se registren en esta fase no se guardarán ni se usarán. Se utilizarán de forma local en su dispositivo para comprobar que la cámara funciona en caso de que alguna pregunta requiera la grabación de vídeo.
       random_phrases:
-        eight: Si puedes verme, el vídeo es un éxito. ¡Si no, solucionamos el problema!
-        five: Probando tu vídeo, no te preocupes, no hace falta nominación al Oscar.
-        four: "¡Listos, listos, enfoque! La cámara es su escenario."
-        nine: Grandes sonrisas y video claro, ¡hagamos bien esta prueba!
         one: Levanta la mano si me oyes o saluda a la cámara
-        seven: Espejito, espejito en la pantalla, que la comprobación del vídeo sea limpia.
-        six: Luces, cámara, acción, ¡es tu momento de brillar!
-        ten: Un saludo amistoso para asegurarse de que todo funciona bien.
-        three: "¡Di queso! O simplemente prueba esa sonrisa perfecta."
-        two: Mira al objetivo, sonríe y haz como si estuvieras en el tráiler de una película.
       rec_text: REC
       retake: No, quiero retomar
       run_again: Volver a ejecutar

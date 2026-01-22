@@ -1413,7 +1413,6 @@ nl:
       collapse_link_text: Minder tonen
       expand_aria_label: 'Toon minder informatie hierboven: Virtueel leercentrum'
       expand_link_text: Meer tonen
-      heading: Lees de onderstaande richtlijnen voordat je aan de slag gaat. We wensen je het allerbeste!
     language:
       content: Deze taak is niet beschikbaar in de huidige geselecteerde taal. Selecteer een van de beschikbare talen om verder te gaan.
       single_lang: Deze taak is alleen beschikbaar in %{lang}. Klik op "Doorgaan" om door te gaan.
@@ -1773,16 +1772,7 @@ nl:
       continue: Ja, oké om door te gaan
       description: Klik op Start opname en neem jezelf op terwijl je de onderstaande passage voorleest met je eigen stem
       random_phrases:
-        eight: Als je me kunt zien, is de video geslaagd. Zo niet, dan lossen we het probleem op!
-        five: Test je video, maak je geen zorgen, je hoeft geen Oscarnominatie te krijgen.
-        four: Ready, set, focus! De camera is je podium.
-        nine: Grote glimlachen en duidelijke video, laten we deze test goed doen!
-        one: Steek je hand op als je me kunt horen of zwaai voor de camera!
-        seven: Spiegel, spiegel op het scherm, laat de videocontrole schoon zijn.
-        six: Licht, camera, actie, dit is jouw tijd om te schitteren!
-        ten: Een vriendelijk zwaai zorgt ervoor dat alles goed werkt.
-        three: Zeg cheese! Of test gewoon die perfecte glimlach.
-        two: Kijk naar de lens, glimlach en doe alsof je in een filmtrailer zit.
+        one: Ik ben er klaar voor. Dit is een testopname om te controleren of mijn video en microfoon goed werken.
       rec_text: REC
       retake: Nee, ik wil een herkansing
       run_again: Opnieuw rennen

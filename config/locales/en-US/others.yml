@@ -1411,7 +1411,6 @@ en-US:
       collapse_link_text: Show less
       expand_aria_label: 'Show less information above: Virtual Learning Centre'
       expand_link_text: Show more
-      heading: Please review the guidelines below before you get started. We wish you all the best!
     language:
       content: This task is not available in the currently selected language. Please select one of the available languages to proceed.
       single_lang: This task is available only in %{lang}. Click "Continue" to proceed.
@@ -1771,16 +1770,7 @@ en-US:
       continue: Yes, Ok to proceed
       description: Click on Start Recording and Record yourself while reading the below passage in your own voice
       random_phrases:
-        eight: If you can see me, the video's a success. If not, we troubleshoot!
-        five: Testing your video,don't worry, no Oscar nomination required.
-        four: Ready, set, focus! The camera is your stage.
-        nine: Big smiles and clear video,let's get this test done right!
-        one: Raise your hand if you can hear me or just wave for the camera!
-        seven: Mirror, mirror on the screen, let the video check be clean.
-        six: Lights, camera, action,this is your time to shine!
-        ten: A friendly wave makes sure everything works fine.
-        three: Say cheese! Or just test that perfect smile.
-        two: Look at the lens, smile, and pretend you're in a movie trailer.
+        one: I am ready. This is a test recording to confirm that my video and microphone are working properly.
       rec_text: REC
       retake: No, I want to retake
       run_again: Run again

@@ -11,6 +11,7 @@ import { FixedWidthButton } from '~/glint'
 import { isRtl } from '~/utils/locales'
 import { getQuestion } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 import styles from './styles.less'
+import { SafeHTML } from '~/components/SafeHTML'
 
 const BACK = 'BACK'
 const NEXT = 'NEXT'
@@ -116,7 +117,7 @@ class PageFooter extends Component {
           <div>
             <Alert
               message={I18n.t('assessments.page.submissionFailedAlert.title')}
-              description={I18n.t('assessments.page.submissionFailedAlert.description')}
+              description={<SafeHTML html={I18n.t('assessments.page.submissionFailedAlert.description')} />}
               type="error"
               showIcon
             />

@@ -1425,7 +1425,6 @@ cs:
       collapse_link_text: Zobrazit méně
       expand_aria_label: 'Zobrazit méně informací výše: Virtuální vzdělávací centrum'
       expand_link_text: Zobrazit více
-      heading: Než začnete, přečtěte si pokyny níže. Přejeme vám hodně štěstí!
     language:
       content: Tento úkol není k dispozici v aktuálně vybraném jazyce. Chcete-li pokračovat, vyberte jeden z dostupných jazyků.
       single_lang: Tato úloha je k dispozici pouze v jazyce %{lang}. Pokračujte kliknutím na tlačítko Pokračovat.
@@ -1785,16 +1784,7 @@ cs:
       continue: Ano, můžeme pokračovat
       description: Klikněte na Spustit nahrávání a nahrajte svůj hlas při čtení níže uvedené pasáže
       random_phrases:
-        eight: Pokud mě vidíte, video funguje. Pokud ne, problém vyřešíme.
-        five: Testování videa, nebojte, nejsou nutné žádné oscarové výkony.
-        four: Připravit, pozor, zaostřit! Fotoaparát je vaše jeviště.
-        nine: Široké úsměvy a ostré video, pojďme to udělat správně!
-        one: Zvedněte ruku, jestli mě slyšíte, nebo jen zamávejte do kamery!
-        seven: Zrcadlo, zrcadlo na obrazovce, nechť kontrola videa proběhne lehce.
-        six: Světla, kamera, akce! Tohle je váš čas zazářit.
-        ten: Stačí úsměv a mávat, a všechno bude v pořádku.
-        three: Řekněte „sýr“! Nebo se jen přesvědčte o svém dokonalém úsměvu.
-        two: Podívejte se do objektivu, usmějte se a předstírejte, že jste ve filmovém traileru.
+        one: Jsem připraven/a. Toto je zkušební nahrávka, která potvrdí, že moje video a mikrofon fungují správně.
       rec_text: NAHRÁVÁNÍ
       retake: Ne, chci to zkusit znovu
       run_again: Zkusit znovu

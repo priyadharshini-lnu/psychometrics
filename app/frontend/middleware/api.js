@@ -121,6 +121,7 @@ const apiMiddleware = () => next => (action) => {
         next({ type: FAILURE, errors })
         throw errors
       } else {
+        next({ type: FAILURE, errors: {} })
         throw error
       }
     })

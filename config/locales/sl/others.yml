@@ -1422,7 +1422,6 @@ sl:
       collapse_link_text: Pokaži manj
       expand_aria_label: 'Prikaži manj informacij zgoraj: Virtualni učni center'
       expand_link_text: Pokaži več
-      heading: Pred začetkom si prosimo oglejte spodnja navodila. Želimo vam veliko uspeha!
     language:
       content: Ta naloga v trenutno izbranem jeziku ni na voljo. Za nadaljevanje izberite enega izmed razpoložljivih jezikov.
       single_lang: Ta naloga je na voljo samo v jeziku %{lang}. Za nadaljevanje kliknite "Nadaljuj".
@@ -1782,16 +1781,7 @@ sl:
       continue: Da, nadaljuj
       description: Kliknite »Začni snemanje« in se posnemite med branjem spodnjega besedila
       random_phrases:
-        eight: Če me vidite, je videoposnetek uspel. Če ne, bomo poiskali rešitev!
-        five: Preizkušamo vaš video – brez skrbi, za to ni potrebna nominacija za Oskarja.
-        four: Pripravljeni, pozor, osredotočite se! Kamera je vaš oder.
-        nine: Širok nasmeh in jasen video – opravimo ta preizkus, kot se spodobi!
-        one: Dvignite roko, če me slišite – ali pa samo pomahajte kameri!
-        seven: Zrcalce, zrcalce na ekranu, naj video steče kot po planu.
-        six: Luči, kamera, akcija – zdaj je čas, da zasijete!
-        ten: Pomahajte in preverite, če vse brezhibno deluje.
-        three: Recite sir! Ali pa samo preverite svoj popoln nasmeh.
-        two: Poglejte v objektiv, nasmehnite se in se pretvarjajte, da ste v napovedniku za film.
+        one: Sem pripravljen. To je testni posnetek za potrditev, ali moj mikrofon in kamera delujeta pravilno.
       rec_text: REC
       retake: Ne, želim poskusiti znova
       run_again: Začnite znova

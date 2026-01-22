@@ -1427,7 +1427,6 @@ de:
       collapse_link_text: Details verbergen
       expand_aria_label: 'Weniger Informationen oben anzeigen: Virtual Learning Centre'
       expand_link_text: Mehr Details
-      heading: Bitte lies die folgenden Richtlinien, bevor du beginnst. Alles Gute für dich!
     language:
       content: Diese Aufgabe ist in der aktuell ausgewählten Sprache nicht verfügbar. Bitte wählen Sie eine der verfügbaren Sprachen aus, um fortzufahren.
       single_lang: Diese Aufgabe ist nur in %{lang} verfügbar. Klicken Sie auf "Weiter", um fortzufahren.
@@ -1787,16 +1786,7 @@ de:
       continue: fortfahren
       description: Klicken Sie auf Aufnahme starten und nehmen Sie sich selbst auf, während Sie den folgenden Text mit Ihrer eigenen Stimme lesen
       random_phrases:
-        eight: Wenn Sie mich sehen können, ist das Video ein Erfolg, wenn nicht, suchen wir nach Problemen!
-        five: Testen Sie Ihr Video, keine Sorge, eine Oscar-Nominierung ist nicht erforderlich.
-        four: Auf die Plätze, fertig, los! Die Kamera ist deine Bühne.
-        nine: Ein breites Lächeln und ein klares Video, damit wir diesen Test richtig durchführen können!
-        one: Heben Sie die Hand, wenn Sie mich hören können, oder winken Sie einfach in die Kamera!
-        seven: Spieglein, Spieglein auf dem Bildschirm, lass die Videokontrolle sauber sein.
-        six: Licht, Kamera, Action, das ist deine Zeit zu glänzen!
-        ten: Ein freundliches Winken stellt sicher, dass alles gut funktioniert.
-        three: Sagen Sie "Cheese" oder testen Sie einfach das perfekte Lächeln.
-        two: Schauen Sie in die Linse, lächeln Sie und tun Sie so, als ob Sie in einem Filmtrailer wären.
+        one: Ich bin bereit. Dies ist eine Testaufnahme, um zu bestätigen, dass meine Kamera und mein Mikrofon einwandfrei funktionieren.
       rec_text: REC
       retake: Nein, ich möchte die Wiederholung
       run_again: Wieder laufen

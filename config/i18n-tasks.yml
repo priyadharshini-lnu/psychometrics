@@ -226,6 +226,7 @@ ignore_unused:
   - idp.history.added_da.*
   - idp.history.removed_da.*
   - idp.history.modified_da.*
+  - checking_wizard.video_check.random_phrases.one
 
 
 ## Exclude these keys from the `i18n-tasks eq-base' report:

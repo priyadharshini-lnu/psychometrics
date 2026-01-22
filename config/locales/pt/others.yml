@@ -1426,7 +1426,6 @@ pt:
       collapse_link_text: Mostrar menos
       expand_aria_label: 'Mostrar menos informações acima: Centro Virtual de Aprendizagem'
       expand_link_text: Mostrar mais
-      heading: Consulte as orientações abaixo antes de começar. Desejamos-lhe sucesso!
     language:
       content: Esta tarefa não está disponível no idioma atualmente selecionado. Selecione um dos idiomas disponíveis para prosseguir.
       single_lang: Esta tarefa está disponível apenas em %{lang}. Clique em "Prosseguir" para continuar.
@@ -1786,16 +1785,7 @@ pt:
       continue: Continuar
       description: Clique em Iniciar Gravação e grave-se a si próprio enquanto lê o texto abaixo com a sua própria voz.
       random_phrases:
-        eight: Se conseguir me ver, o vídeo foi um sucesso. Caso contrário, vamos resolver o problema!
-        five: Testar o seu vídeo, não se preocupe, não é necessária uma nomeação para o Óscar.
-        four: Preparar, preparar, focar! A câmara é o seu palco.
-        nine: Grandes sorrisos e vídeo nítido, vamos fazer este teste bem feito!
-        one: Levantem a mão se me consegue ouvir ou acene para a câmara!
-        seven: Espelho, espelho no ecrã, que o controlo de vídeo seja limpo.
-        six: Luzes, câmara, ação, este é o seu tempo para brilhar!
-        ten: Um aceno amigável garante que tudo funciona bem.
-        three: Dizer "queijo"! Ou testar aquele sorriso perfeito.
-        two: Olhe para a lente, sorria e finja que está num trailer de um filme.
+        one: Estou pronto. Esta é uma gravação de teste para confirmar se o meu microfone e câmara estão a funcionar corretamente.
       rec_text: REC
       retake: Não, quero repetir
       run_again: Executar novamente

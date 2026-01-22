@@ -1413,7 +1413,6 @@ ro:
       collapse_link_text: Arată mai puțin
       expand_aria_label: 'Afișați mai puține informații mai sus: Centrul virtual de învățare'
       expand_link_text: Arată mai multe
-      heading: Vă rugăm să consultați liniile directoare de mai jos înainte de a începe. Vă dorim toate cele bune!
     language:
       content: Această sarcină nu este disponibilă în limba selectată în prezent. Vă rugăm să selectați una dintre limbile disponibile pentru a continua.
       single_lang: Această sarcină este disponibilă numai în %{lang}. Faceți clic pe "Continuați" pentru a continua.
@@ -1773,16 +1772,7 @@ ro:
       continue: Da, Ok pentru a continua
       description: Faceți clic pe Start Recording și înregistrați-vă în timp ce citiți pasajul de mai jos cu propria voce
       random_phrases:
-        eight: Dacă mă puteți vedea, videoclipul este un succes. Dacă nu, rezolvăm problemele!
-        five: Testați-vă videoclipul, nu vă faceți griji, nu este necesară nominalizarea la Oscar.
-        four: Gata, set, focalizare! Camera este scena ta.
-        nine: Zâmbete mari și video clar, să facem acest test cum trebuie!
-        one: Ridicați mâna dacă mă auziți sau doar faceți cu mâna pentru cameră!
-        seven: Oglindă, oglindă pe ecran, ca verificarea video să fie curată.
-        six: Lumini, cameră, acțiune, acesta este momentul tău să strălucești!
-        ten: Un val prietenos se asigură că totul funcționează bine.
-        three: Spuneți cheese! Sau testați zâmbetul perfect.
-        two: Uitați-vă la obiectiv, zâmbiți și prefaceți-vă că sunteți într-o rulotă de film.
+        one: Sunt gata. Aceasta este o înregistrare de test pentru a confirma dacă microfonul și camera mea funcționează corect.
       rec_text: REC
       retake: Nu, vreau să reiau
       run_again: Aleargă din nou
