@@ -196,5 +196,17 @@ describe Mhs::CreateSession do
         subject.call
       end
     end
+
+    context 'when REAL_ENV is production' do
+      before do
+        allow(ENV).to receive(:fetch).and_call_original
+        allow(ENV).to receive(:fetch).with('REAL_ENV', 'local').and_return('production')
+      end
+
+      it 'sends Prd as routingCode in request body' do
+        body = JSON.parse(subject.send(:request_body).to_json)
+        expect(body['routingCode']).to eq('Prd')
+      end
+    end
   end
 end

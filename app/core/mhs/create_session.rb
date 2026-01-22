@@ -76,7 +76,7 @@ module Mhs
     end
 
     def routing_code
-      Rails.env.production? ? 'Prod' : 'Dev'
+      ENV.fetch('REAL_ENV', 'local').starts_with?('production') ? 'Prd' : 'Dev'
     end
 
     def event_notifications
