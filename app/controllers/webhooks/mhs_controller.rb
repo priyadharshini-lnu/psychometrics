@@ -3,7 +3,7 @@
 module Webhooks
   class MhsController < ActionController::Base
     skip_before_action :verify_authenticity_token
-    before_action :authenticate_webhook, only: [:webhook]
+    before_action :authenticate_webhook, only: [:webhook], if: -> { request.post? }
 
     def webhook
       case request.method
@@ -39,8 +39,6 @@ module Webhooks
     def handle_webhook_event
       response.headers['WebHook-Allowed-Origin'] = request.headers['Origin'] || '*'
 
-      Rails.logger.info("MHS webhook - Authorization: #{request.headers['Authorization']}")
-
       payload = JSON.parse(request.raw_post)
       process_webhook_payload(payload)
 
@@ -51,7 +49,16 @@ module Webhooks
     end
 
     def authenticate_webhook
-      # TODO: Implement based on MHS requirements - ignoring auth for now
+      provided_key = request.headers['Authorization']
+      expected_key = Settings.secrets.mhs.webhook_api_key
+
+      if expected_key.blank? || provided_key.blank? ||
+         !ActiveSupport::SecurityUtils.secure_compare(provided_key, expected_key)
+        Rails.logger.warn('MHS webhook authentication failed')
+        head :unauthorized
+        return false
+      end
+
       true
     end
 

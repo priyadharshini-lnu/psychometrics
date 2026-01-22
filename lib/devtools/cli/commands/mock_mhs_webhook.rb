@@ -72,7 +72,8 @@ module Devtools
 
           response = Faraday.post(url, payload.to_json, {
             'Content-Type' => 'application/json',
-            'Accept' => 'application/json'
+            'Accept' => 'application/json',
+            'Authorization' => Settings.secrets.mhs.webhook_api_key
           })
 
           cli_log "Response: #{response.status}"

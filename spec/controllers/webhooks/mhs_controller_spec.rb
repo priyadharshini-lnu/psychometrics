@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe Webhooks::MhsController, type: :controller do
+  let(:webhook_api_key) { 'test-webhook-api-key' }
+
+  before do
+    allow(Settings.secrets.mhs).to receive(:webhook_api_key).and_return(webhook_api_key)
+  end
+
   describe 'HEAD #webhook' do
     it 'returns ok with cache control headers' do
       head :webhook
@@ -42,35 +48,66 @@ RSpec.describe Webhooks::MhsController, type: :controller do
       }
     end
 
-    context 'with successful completion' do
-      it 'marks user assessment as completed' do
+    context 'with valid authentication' do
+      before do
+        request.headers['Authorization'] = webhook_api_key
+      end
+
+      context 'with successful completion' do
+        it 'marks user assessment as completed' do
+          post :webhook, body: payload.to_json, as: :json
+
+          user_assessment.reload
+          expect(user_assessment.status).to eq('completed')
+          expect(response).to have_http_status(:ok)
+        end
+      end
+
+      context 'with invalid JSON' do
+        it 'returns bad request' do
+          expect(Rails.logger).to receive(:error).with(/Invalid JSON in MHS webhook/)
+
+          post :webhook, body: 'invalid json'
+
+          expect(response).to have_http_status(:bad_request)
+        end
+      end
+
+      context 'with unsupported event type' do
+        let(:unsupported_payload) do
+          payload.merge('type' => 'MHS.Janus.Other.Event')
+        end
+
+        it 'ignores the event' do
+          post :webhook, body: unsupported_payload.to_json, as: :json
+
+          expect(response).to have_http_status(:ok)
+        end
+      end
+    end
+
+    context 'with invalid authentication' do
+      it 'returns unauthorized when no Authorization header' do
         post :webhook, body: payload.to_json, as: :json
 
-        user_assessment.reload
-        expect(user_assessment.status).to eq('completed')
-        expect(response).to have_http_status(:ok)
-      end
-    end
-
-    context 'with invalid JSON' do
-      it 'returns bad request' do
-        expect(Rails.logger).to receive(:error).with(/Invalid JSON in MHS webhook/)
-
-        post :webhook, body: 'invalid json'
-
-        expect(response).to have_http_status(:bad_request)
-      end
-    end
-
-    context 'with unsupported event type' do
-      let(:unsupported_payload) do
-        payload.merge('type' => 'MHS.Janus.Other.Event')
+        expect(response).to have_http_status(:unauthorized)
       end
 
-      it 'ignores the event' do
-        post :webhook, body: unsupported_payload.to_json, as: :json
+      it 'returns unauthorized when Authorization header is wrong' do
+        request.headers['Authorization'] = 'wrong-key'
 
-        expect(response).to have_http_status(:ok)
+        post :webhook, body: payload.to_json, as: :json
+
+        expect(response).to have_http_status(:unauthorized)
+      end
+
+      it 'returns unauthorized when webhook_api_key is not configured' do
+        allow(Settings.secrets.mhs).to receive(:webhook_api_key).and_return('')
+        request.headers['Authorization'] = webhook_api_key
+
+        post :webhook, body: payload.to_json, as: :json
+
+        expect(response).to have_http_status(:unauthorized)
       end
     end
   end
