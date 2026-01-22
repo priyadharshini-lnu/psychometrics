@@ -24,10 +24,6 @@ module Faas
         )
       end
 
-      def media_response
-        @media_response ||= MediaResponse.find_by(id: data['meta']['media_response_id'])
-      end
-
       def save_transcription
         if transcribable_record.transcription.present?
           transcribable_record.transcription.update!(text: data['transcription'])

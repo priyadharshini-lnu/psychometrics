@@ -33,7 +33,7 @@ module Faas
         host: Settings.domain,
         subdomain: Settings.subdomain,
         port: Settings.port,
-        protocol: 'https'
+        protocol: Settings.protocol
       )
     end
 
