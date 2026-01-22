@@ -860,7 +860,6 @@ nl:
         campaign: Campagne
         copy_factors: Kopieer factoren
         inactive_notice: Campagnestatus wordt automatisch gewijzigd in Active op de geselecteerde startdatum
-        instruction: Dit kan alleen worden ingeschakeld tijdens het maken van campagne
         name: Naam
         practice_campaign: Praktijk Campagne
         status: Status

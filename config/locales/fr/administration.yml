@@ -860,7 +860,6 @@ fr:
         campaign: Campagne
         copy_factors: Facteurs de copie
         inactive_notice: L'état de la campagne passera automatiquement à actif à la date de début sélectionnée
-        instruction: Cela ne peut être activé que lors de la création de la campagne
         name: Nom
         practice_campaign: Campagne d'entraînement
         status: Statut

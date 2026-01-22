@@ -183,6 +183,7 @@ en:
     number: Number
     occupations: Occupations
     on_the_job: On the Job [70]
+    only_editable_on_create: This option is editable only while creating.
     options: Options
     participants: Participants
     permissions:

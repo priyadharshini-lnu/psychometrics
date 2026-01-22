@@ -860,7 +860,6 @@ ar:
         campaign: الحملة
         copy_factors: عوامل النسخ
         inactive_notice: ستتغير حالة الحملة تلقائيًا إلى نشط في تاريخ البدء المحدد
-        instruction: يمكن تمكين هذا فقط أثناء إنشاء الحملة
         name: الاسم
         practice_campaign: حملة تدريبية
         status: الحالة

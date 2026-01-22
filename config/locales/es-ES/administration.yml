@@ -860,7 +860,6 @@ es-ES:
         campaign: Campaña
         copy_factors: Copiar factores
         inactive_notice: El estado de la campaña cambiará automáticamente a activo en la fecha de inicio seleccionada
-        instruction: Esto solo se puede habilitar mientras crea una campaña
         name: Nombre
         practice_campaign: Campaña práctica
         status: Estado

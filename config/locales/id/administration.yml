@@ -860,7 +860,6 @@ id:
         campaign: Kampanye
         copy_factors: Faktor Salin
         inactive_notice: Status kampanye akan secara otomatis berubah menjadi aktif pada tanggal mulai yang dipilih
-        instruction: Ini hanya dapat diaktifkan saat membuat kampanye
         name: Nama
         practice_campaign: Kampanye Latihan
         status: Status

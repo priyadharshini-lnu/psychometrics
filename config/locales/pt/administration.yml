@@ -860,7 +860,6 @@ pt:
         campaign: Campanha
         copy_factors: Fatores de cópia
         inactive_notice: O status de campanha mudará automaticamente para ativo na data de início selecionada
-        instruction: Isso só pode ser ativado ao criar campanha
         name: Nome
         practice_campaign: Campanha prática
         status: Estado

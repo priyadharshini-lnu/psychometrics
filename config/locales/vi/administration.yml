@@ -860,7 +860,6 @@ vi:
         campaign: Chiến dịch
         copy_factors: Yếu tố sao chép
         inactive_notice: Trạng thái chiến dịch sẽ tự động thay đổi thành hoạt động vào ngày bắt đầu đã chọn
-        instruction: Điều này chỉ có thể được bật trong khi tạo chiến dịch
         name: Tên
         practice_campaign: Chiến dịch thực hành
         status: Tình trạng

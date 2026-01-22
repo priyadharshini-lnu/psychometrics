@@ -860,7 +860,6 @@ pl:
         campaign: Kampania
         copy_factors: Współczynniki kopiowania
         inactive_notice: Status kampanii automatycznie zmieni się na aktywne w wybranym dniu rozpoczęcia
-        instruction: Można to włączyć tylko podczas tworzenia kampanii
         name: Nazwa
         practice_campaign: Kampania treningowa
         status: Stan

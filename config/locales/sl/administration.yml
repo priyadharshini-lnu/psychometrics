@@ -860,7 +860,6 @@ sl:
         campaign: Kampanja
         copy_factors: Faktorji kopiranja
         inactive_notice: Status kampanje se bo samodejno spremenil v aktivni na izbrani datum začetka
-        instruction: To je mogoče omogočiti le med ustvarjanjem kampanje
         name: Ime
         practice_campaign: Vadbena kampanja
         status: Status

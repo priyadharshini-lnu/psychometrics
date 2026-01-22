@@ -860,7 +860,6 @@ sk:
         campaign: Kampaň
         copy_factors: Kopírovacie faktory
         inactive_notice: Stav kampane sa automaticky zmení na aktívny k zvolenému dátumu začiatku
-        instruction: To sa dá povoliť iba pri vytváraní kampane
         name: Meno
         practice_campaign: Cvičná kampaň
         status: Stav

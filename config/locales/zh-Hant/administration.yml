@@ -860,7 +860,6 @@ zh-Hant:
         campaign: 活動
         copy_factors: 複製因素
         inactive_notice: 廣告系列狀態將在選定的開始日期自動更改為活動
-        instruction: 這只能在創建廣告系列時啟用
         name: 名稱
         practice_campaign: 實踐活動
         status: 狀態

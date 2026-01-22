@@ -860,7 +860,6 @@ sr-Latn:
         campaign: Kampanja
         copy_factors: Faktori kopiranja
         inactive_notice: Статус кампање аутоматски ће се пребацити на активно на одабрани датум почетка
-        instruction: То се може омогућити само истовремено стварање кампање
         name: Ime
         practice_campaign: Kampanja prakse
         status: Status

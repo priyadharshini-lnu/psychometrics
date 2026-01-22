@@ -860,7 +860,6 @@ zh:
         campaign: 活动
         copy_factors: 复制因子
         inactive_notice: 广告系列状态将在选定的开始日期自动更改为活动
-        instruction: 这只能在创建广告系列时启用
         name: 名称
         practice_campaign: 实践活动
         status: 现状

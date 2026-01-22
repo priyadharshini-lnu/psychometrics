@@ -860,7 +860,6 @@ ja:
         campaign: キャンペーン
         copy_factors: コピー係数
         inactive_notice: キャンペーンのステータスは、選択した開始日に自動的にアクティブに変更されます
-        instruction: これは、キャンペーンの作成中にのみ有効にできます
         name: 名称
         practice_campaign: 練習キャンペーン
         status: ステータス

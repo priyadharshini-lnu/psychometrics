@@ -860,7 +860,6 @@ zh-HK:
         campaign: 活动
         copy_factors: 复制因素
         inactive_notice: 活动状态将在选定的开始日期和时间自动变为活跃状态
-        instruction: 此功能仅可在创建时启用
         name: 名称
         practice_campaign: 实践活动
         status: 状态

@@ -860,7 +860,6 @@ cs:
         campaign: Kampaň
         copy_factors: Faktory kopírování
         inactive_notice: Stav kampaně se v vybraném datu zahájení automaticky změní na aktivní
-        instruction: To lze povolit pouze při vytváření kampaně
         name: Název
         practice_campaign: Praktická kampaň
         status: Stav

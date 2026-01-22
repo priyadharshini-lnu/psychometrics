@@ -860,7 +860,6 @@ hu:
         campaign: Kampány
         copy_factors: Másolási tényezők
         inactive_notice: A kampány állapota automatikusan aktívra változik a kiválasztott kezdési dátumon
-        instruction: Ez csak kampány létrehozásakor engedélyezhető
         name: Név
         practice_campaign: Gyakorló kampány
         status: Állapot

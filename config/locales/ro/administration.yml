@@ -860,7 +860,6 @@ ro:
         campaign: Campanie
         copy_factors: Factori de copiere
         inactive_notice: Starea campaniei se va schimba automat la Active la data de început selectată
-        instruction: Această opțiune poate fi activată doar în timpul creării campaniei.
         name: Nume
         practice_campaign: Campanie de probă
         status: Stare

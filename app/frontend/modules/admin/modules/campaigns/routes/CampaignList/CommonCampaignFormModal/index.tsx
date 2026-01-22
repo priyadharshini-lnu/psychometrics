@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Form, Input, Select, DatePicker, Alert, Space, Switch, Tooltip,
+  Form, Input, Select, DatePicker, Alert, Space, Switch,
 } from 'antd'
 import _ from 'lodash'
 import dayjs from '~/utils/dayjs'
@@ -110,12 +110,9 @@ const CommonCampaignFormModal: React.FC<Props> = ({
             name="practiceCampaign"
             valuePropName="checked"
             label={I18n.t('administration.campaigns.form.practice_campaign')}
+            extra={isEdit ? I18n.t('admin.only_editable_on_create') : ''}
           >
-            {isEdit ? (
-              <Tooltip title={I18n.t('administration.campaigns.form.instruction')}>
-                <Switch disabled={isEdit} />
-              </Tooltip>
-            ) : <Switch />}
+            <Switch disabled={isEdit} />
           </Form.Item>
           <Space>
             {notice && <Alert message="Note" description={notice} type="warning" showIcon />}
