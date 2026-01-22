@@ -27,6 +27,7 @@ module UserReports
         generate_saville_report(user_report) if report.provider_saville?
         generate_pearson_report(user_report) if report.provider_pearson?
         generate_internal_report(user_report) if report.provider_internal?
+        generate_mhs_report(user_report) if report.provider_mhs?
         job_record&.increment_completed_tasks! unless async_report_generation?(report)
       end
 
@@ -81,6 +82,12 @@ module UserReports
     def generate_pearson_report(user_report)
       user_report.user_results.includes(:user_assessment).find_each do |ur|
         Pearson::SaveScoresAndReports.call!(ur.user_assessment)
+      end
+    end
+
+    def generate_mhs_report(user_report)
+      user_report.user_results.includes(:user_assessment).find_each do |ur|
+        Mhs::SaveReportsAndScoresJob.perform_later(ur.user_assessment, [user_report])
       end
     end
 

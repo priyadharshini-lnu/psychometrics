@@ -19,6 +19,8 @@ module Administration
             broadcast(:ok, build_saville)
           when 'pearson'
             broadcast(:ok, build_pearson)
+          when 'mhs'
+            broadcast(:ok, build_mhs)
           else
             broadcast(:ok, {})
         end
@@ -43,6 +45,10 @@ module Administration
 
       def build_pearson
         {}
+      end
+
+      def build_mhs
+        { report_id: raw_external_settings[:report_id] }
       end
     end
   end

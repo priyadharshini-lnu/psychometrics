@@ -232,6 +232,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'saville_user_assessment_details' => nil,
       'skillvue_user_assessment_details' => nil,
       'yoodli_user_assessment_details' => nil,
+      'mhs_user_assessment_details' => nil,
       'users_result_id' => user_assessment.users_result_id
     })
   end

@@ -41,6 +41,10 @@ module Administration
           optional(:normalize_factor_scores).maybe(:bool?)
           required(:update_content_variation).filled(:bool?)
           required(:update_pearson_variation).filled(:bool?)
+          required(:update_mhs_confidence_interval).filled(:bool?)
+          required(:update_mhs_leadership_bar).filled(:bool?)
+          required(:update_mhs_norm_region).filled(:bool?)
+          required(:update_mhs_norm_option).filled(:bool?)
           required(:update_available_locales).filled(:bool?)
           optional(:export_occupations).filled(:bool?)
           required(:toggle_require_scheduling).filled(:bool?)
@@ -55,6 +59,10 @@ module Administration
           optional(:passPercentage).maybe(:int?)
           optional(:content_variation_id).maybe(:str?)
           optional(:variation).maybe(:str?)
+          optional(:confidence_interval).maybe(:int?)
+          optional(:leadership_bar).maybe(:int?)
+          optional(:norm_region).maybe(:int?)
+          optional(:norm_option).maybe(:int?)
         end
         required(:campaign_assessment_id).filled(:int?)
         required(:prework).filled(:bool?)
@@ -71,6 +79,12 @@ module Administration
         end
         required(:pearson_variations).maybe do
           array(PearsonVariationSchema.schema(_, _))
+        end
+        required(:mhs_norm_regions).maybe do
+          array(MhsNormRegionSchema.schema(_, _))
+        end
+        required(:mhs_norm_options).maybe do
+          array(MhsNormOptionSchema.schema(_, _))
         end
       end
     end

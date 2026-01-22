@@ -19,7 +19,8 @@ class Report < ApplicationRecord
     custom_upload: 5,
     mettl: 6,
     skillvue: 7,
-    yoodli: 8
+    yoodli: 8,
+    mhs: 9
   }.freeze
 
   MAX_ASSESSMENT_COUNT = 10
@@ -85,9 +86,11 @@ class Report < ApplicationRecord
   validates :owner, presence: true, allow_nil: true
   validate :max_assessments_count
   validate :min_assessments_count, unless: :assessment_not_applicable?
-  validates :external_settings, presence: true, if: :provider_hogan? || :provider_saville?
+  validates :external_settings, presence: true, if: :provider_hogan? || :provider_saville? || :provider_mhs?
+  validate :all_assessments_mhs, if: :provider_mhs?
   validate :all_assessments_hogan, if: :provider_hogan?
   validate :all_assessments_saville, if: :provider_saville?
+  validate :all_assessments_mhs, if: :provider_mhs?
 
   #   CALLBACKS
   #
@@ -318,6 +321,10 @@ class Report < ApplicationRecord
 
   def all_assessments_saville
     errors.add(:base, :assessments_not_saville) unless assessments.all?(&:saville?)
+  end
+
+  def all_assessments_mhs
+    errors.add(:base, I18n.t('admin.assessments_not_mhs')) unless assessments.all?(&:mhs?)
   end
 end
 # rubocop:enable all

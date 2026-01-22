@@ -11,13 +11,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
--- *not* creating schema, since initdb creates it
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -4378,6 +4371,48 @@ ALTER SEQUENCE public.mettl_user_assessments_id_seq OWNED BY public.mettl_user_a
 
 
 --
+-- Name: mhs_user_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.mhs_user_assessments (
+    id bigint NOT NULL,
+    user_assessment_id bigint NOT NULL,
+    url character varying,
+    email character varying,
+    session_id character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    data_gatherer_id character varying,
+    data_gathering_id character varying,
+    observation_item_sets json,
+    active boolean DEFAULT true NOT NULL,
+    confidence_interval integer DEFAULT 0,
+    leadership_bar integer DEFAULT 0,
+    norm_region integer DEFAULT 0,
+    norm_option integer DEFAULT 0
+);
+
+
+--
+-- Name: mhs_user_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.mhs_user_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: mhs_user_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.mhs_user_assessments_id_seq OWNED BY public.mhs_user_assessments.id;
+
+
+--
 -- Name: sheet_columns; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5049,7 +5084,8 @@ CREATE TABLE public.privacy_settings (
     allow_video_call_recording boolean DEFAULT false NOT NULL,
     enable_video_call_recording_for_all_new_campaigns boolean DEFAULT false NOT NULL,
     video_call_recording_expiry_in_seconds integer,
-    mask_identity_for_yoodli boolean DEFAULT false
+    mask_identity_for_yoodli boolean DEFAULT false,
+    mask_identity_for_mhs boolean DEFAULT false NOT NULL
 );
 
 
@@ -9582,6 +9618,13 @@ ALTER TABLE ONLY public.mettl_user_assessments ALTER COLUMN id SET DEFAULT nextv
 
 
 --
+-- Name: mhs_user_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mhs_user_assessments ALTER COLUMN id SET DEFAULT nextval('public.mhs_user_assessments_id_seq'::regclass);
+
+
+--
 -- Name: norms id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -11308,6 +11351,14 @@ ALTER TABLE ONLY public.mettl_schedule_records
 
 ALTER TABLE ONLY public.mettl_user_assessments
     ADD CONSTRAINT mettl_user_assessments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: mhs_user_assessments mhs_user_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mhs_user_assessments
+    ADD CONSTRAINT mhs_user_assessments_pkey PRIMARY KEY (id);
 
 
 --
@@ -14382,6 +14433,13 @@ CREATE INDEX index_mettl_schedule_records_on_project_id ON public.mettl_schedule
 --
 
 CREATE INDEX index_mettl_user_assessments_on_user_assessment_id ON public.mettl_user_assessments USING btree (user_assessment_id);
+
+
+--
+-- Name: index_mhs_user_assessments_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_mhs_user_assessments_on_user_assessment_id ON public.mhs_user_assessments USING btree (user_assessment_id);
 
 
 --
@@ -17717,6 +17775,14 @@ ALTER TABLE ONLY public.user_assessments
 
 
 --
+-- Name: mhs_user_assessments fk_rails_81bd2b6ddf; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mhs_user_assessments
+    ADD CONSTRAINT fk_rails_81bd2b6ddf FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id);
+
+
+--
 -- Name: ai_assistant_requests fk_rails_81e44e1700; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -19243,16 +19309,26 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260122034210'),
+('20260119144024'),
 ('20260119122705'),
+('20260119063943'),
+('20260119052541'),
+('20260119030942'),
 ('20260113071404'),
+('20260109141947'),
 ('20260106133315'),
 ('20260102064238'),
+('20260102051528'),
 ('20251217070713'),
+('20251216163732'),
 ('20251215073428'),
+('20251215063046'),
 ('20251214060951'),
 ('20251212110032'),
 ('20251212100342'),
 ('20251211083522'),
+('20251210125615'),
 ('20251206120622'),
 ('20251201130649'),
 ('20251127063311'),
@@ -20211,3 +20287,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

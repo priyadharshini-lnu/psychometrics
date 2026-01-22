@@ -2,6 +2,9 @@
 
 module Campaigns
   module Users
+    # rubocop:disable Metrics/ClassLength
+    # rubocop:disable Metrics/CyclomaticComplexity
+    # rubocop:disable Metrics/PerceivedComplexity
     class AddReport < BaseCommand
       private_attr_reader :campaign_user, :user, :campaign, :report, :options, :idp_license_usage
 
@@ -146,6 +149,8 @@ module Campaigns
           create_skillvue_assessment(user_assessment, existing_result)
         elsif assessment.yoodli?
           create_yoodli_assessment(user_assessment, existing_result)
+        elsif assessment.mhs?
+          create_mhs_assessment(user_assessment, existing_result, campaign_assessment)
         end
       end
 
@@ -210,6 +215,21 @@ module Campaigns
         )
       end
 
+      def create_mhs_assessment(user_assessment, existing_result, campaign_assessment)
+        existing_mhs_user_assessment = existing_result&.mhs_user_assessment
+        mhs_config = default_mhs_config(existing_mhs_user_assessment, user_assessment, campaign_assessment)
+
+        user_assessment.create_mhs_user_assessment(
+          url: existing_mhs_user_assessment&.url,
+          email: existing_mhs_user_assessment&.email,
+          session_id: existing_mhs_user_assessment&.session_id,
+          confidence_interval: mhs_config[:confidence_interval],
+          leadership_bar: mhs_config[:leadership_bar],
+          norm_region: mhs_config[:norm_region],
+          norm_option: mhs_config[:norm_option]
+        )
+      end
+
       def existing_user_result_to_copy(assessment)
         return if options[:operation] == 'add_and_allow_new_response'
 
@@ -232,6 +252,29 @@ module Campaigns
         campaign_assessment&.external_config&.dig('variation') ||
           assessment.pearson_variations&.find(&:default)&.code
       end
+
+      def default_mhs_config(existing_mhs_user_assessment, user_assessment, campaign_assessment)
+        mhs_settings = user_assessment.assessment.mhs_settings
+        external_config = campaign_assessment&.external_config
+
+        {
+          confidence_interval: existing_mhs_user_assessment&.confidence_interval ||
+            external_config&.dig('confidence_interval') ||
+            mhs_settings[:default_confidence_interval],
+          leadership_bar: existing_mhs_user_assessment&.leadership_bar ||
+            external_config&.dig('leadership_bar') ||
+            mhs_settings[:default_leadership_bar],
+          norm_region: existing_mhs_user_assessment&.norm_region ||
+            external_config&.dig('norm_region') ||
+            mhs_settings&.norm_regions&.first&.value,
+          norm_option: existing_mhs_user_assessment&.norm_option ||
+            external_config&.dig('norm_option') ||
+            mhs_settings&.norm_options&.first&.value
+        }
+      end
     end
+    # rubocop:enable Metrics/ClassLength
+    # rubocop:enable Metrics/CyclomaticComplexity
+    # rubocop:enable Metrics/PerceivedComplexity
   end
 end

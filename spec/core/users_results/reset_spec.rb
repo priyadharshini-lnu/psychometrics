@@ -115,6 +115,12 @@ describe UsersResults::Reset do
     subject
   end
 
+  it 'calls Mhs::ResetAssessment is it is a mhs assessment' do
+    allow(user_assessment.assessment).to receive(:mhs?).and_return(true)
+    expect(Mhs::ResetAssessment).to receive(:call!).with(user_assessment)
+    subject
+  end
+
   it 'reset users_result data' do
     expect { subject }.to change { users_result.answers }.from(test).to({}).
       and change { users_result.scoring }.from(test).to(nil).

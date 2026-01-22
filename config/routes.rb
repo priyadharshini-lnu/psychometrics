@@ -348,6 +348,10 @@ Rails.application.routes.draw do
             post :update_mettl_schedule
             put :update_content_variation
             put :update_pearson_variation
+            put :update_mhs_confidence_interval
+            put :update_mhs_leadership_bar
+            put :update_mhs_norm_region
+            put :update_mhs_norm_option
             put :update_assessor_form
             put :update_available_locales
             post :rescore_responses
@@ -1005,6 +1009,12 @@ as: :simulation_progress_notification
       end
 
       resources :yoodli_user_assessments, only: [] do
+        member do
+          post :pass
+        end
+      end
+
+      resources :mhs_user_assessments, only: [] do
         member do
           post :pass
         end

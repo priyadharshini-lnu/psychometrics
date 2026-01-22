@@ -11,7 +11,8 @@ module Api
 
     INTEGRATIONS_CONTRACTS = {
       'hogan' => Api::V2::Report::HoganContract,
-      'saville' => Api::V2::Report::SavilleContract
+      'saville' => Api::V2::Report::SavilleContract,
+      'mhs' => Api::V2::Report::MhsContract
     }.freeze
 
     def create_contract_based_on_provider

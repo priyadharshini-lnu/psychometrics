@@ -37,6 +37,15 @@ describe Administration::Reports::BuildExternalSettings do
     end
   end
 
+  context 'when report has a mhs provider' do
+    it 'returns external settings as is' do
+      result = described_class.call!(report, { report_id: 'report_id' }, 'mhs')
+      expect(result).to eq(
+        report_id: 'report_id'
+      )
+    end
+  end
+
   context 'when report has internal provider' do
     it 'returns empty object' do
       result = described_class.call!(report, { provider: 'provider', anything: 'bla' }, 'common')

@@ -171,6 +171,7 @@ class Client < ApplicationRecord
   delegate :mask_identity_for_pearson?, :mask_identity_for_saville?, :mask_identity_for_hogan?,
            :mask_identity_for_iiht?, :mask_identity_for_examus?,
            :mask_identity_for_mettl?, :mask_identity_for_skillvue?, :mask_identity_for_yoodli?,
+           :mask_identity_for_mhs?,
            :custom_privacy_consent, to: :privacy_setting
   delegate :idp?, :ai_assistants?, :global_skills?, :sms_notification?,
            :ai_assisted_idp?, to: :project_feature, allow_nil: true

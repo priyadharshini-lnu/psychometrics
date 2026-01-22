@@ -7,7 +7,7 @@ module Administration
                :mettl_schedule_name, :mettl_schedule_record_id, :dimension_id, :simulation_content_variations,
                :users_result_id, :hogan_participant_id, :prework,
                :saville_user_assessment_details, :simulation_user_assessment_details, :pearson_user_assessment_details,
-               :skillvue_user_assessment_details, :yoodli_user_assessment_details
+               :skillvue_user_assessment_details, :yoodli_user_assessment_details, :mhs_user_assessment_details
 
     delegate :name, :category, :dimension_id, to: :assessment
 
@@ -81,6 +81,12 @@ module Administration
       return nil unless object.yoodli?
 
       Administration::YoodliUserAssessmentSerializer.new.serialize(object.yoodli_user_assessment)
+    end
+
+    def mhs_user_assessment_details
+      return nil unless object.mhs?
+
+      Administration::MhsUserAssessmentSerializer.new.serialize(object.mhs_user_assessment)
     end
 
     def permissions

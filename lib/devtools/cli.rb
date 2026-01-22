@@ -10,6 +10,7 @@ require_relative 'cli/commands/I18n/translation_import'
 require_relative 'cli/commands/I18n/import_from_json'
 require_relative 'cli/commands/I18n/fix_and_report_inconsistencies'
 require_relative 'cli/commands/I18n/generate_locales'
+require_relative 'cli/commands/mock_mhs_webhook'
 require_relative 'cli/commands/send_email'
 
 module Devtools
@@ -18,6 +19,7 @@ module Devtools
 
     register 'assign-user-report', Devtools::CLI::Commands::AssignUserReport
     register 'export-schema', Devtools::CLI::Commands::ExportSchema
+    register 'mock-mhs-webhook', Devtools::CLI::Commands::MockMhsWebhook
     register 'send-email', Devtools::CLI::Commands::SendEmail
 
     register 'I18n' do |prefix|

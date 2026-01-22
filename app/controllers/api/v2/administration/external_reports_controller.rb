@@ -17,6 +17,8 @@ module Api
           render_json_api_response(hogan_assessments(assessment_ids))
         when 'saville'
           render_json_api_response(saville_assessments(assessment_ids))
+        when 'mhs'
+          render_json_api_response(mhs_assessments(assessment_ids))
         else
           render_json_api_response([])
       end
@@ -61,6 +63,22 @@ module Api
       return [] unless assessment
 
       Settings.providers.saville.reports.select { |r| assessment[:report_ids].include?(r[:id]) }.map do |report|
+        { id: report.id.downcase, name: report.name }
+      end
+    end
+
+    def mhs_assessments(assessment_ids)
+      return [] unless assessment_ids.one?
+
+      mhs_assessment_ids = Assessment.where(id: assessment_ids, type: Assessment::TYPES[:mhs]).map do |a|
+        a.external_settings['assessment_id']
+      end.uniq
+
+      assessment = Settings.providers.mhs.assessments.find { |a| mhs_assessment_ids.include?(a[:id].downcase) }
+
+      return [] unless assessment
+
+      Settings.providers.mhs.reports.select { |r| assessment[:report_ids].include?(r[:id]) }.map do |report|
         { id: report.id.downcase, name: report.name }
       end
     end

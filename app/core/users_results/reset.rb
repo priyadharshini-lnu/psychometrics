@@ -21,6 +21,7 @@ module UsersResults
         Simulation::ResetAssessment.call!(user_assessment) if user_assessment.simulation?
         Skillvue::ResetAssessment.call!(user_assessment) if user_assessment.skillvue?
         Yoodli::ResetAssessment.call!(user_assessment) if user_assessment.yoodli?
+        Mhs::ResetAssessment.call!(user_assessment) if user_assessment.mhs?
       end
 
       broadcast :ok

@@ -11,26 +11,22 @@ module Administration
       end
 
       def call
-        case assessment.type
-          when Assessment::TYPES[:hogan]
-            broadcast(:ok, build_hogan)
-          when Assessment::TYPES[:pearson]
-            broadcast(:ok, build_pearson)
-          when Assessment::TYPES[:iiht]
-            broadcast(:ok, build_iiht)
-          when Assessment::TYPES[:mettl]
-            broadcast(:ok, build_mettl)
-          when Assessment::TYPES[:saville]
-            broadcast(:ok, build_saville)
-          when Assessment::TYPES[:common]
-            broadcast(:ok, {})
-          when Assessment::TYPES[:simulation]
-            broadcast(:ok, build_simulation)
-          when Assessment::TYPES[:skillvue]
-            broadcast(:ok, build_skillvue)
-          when Assessment::TYPES[:yoodli]
-            broadcast(:ok, build_yoodli)
-        end
+        type_to_method = {
+          Assessment::TYPES[:hogan] => :build_hogan,
+          Assessment::TYPES[:pearson] => :build_pearson,
+          Assessment::TYPES[:iiht] => :build_iiht,
+          Assessment::TYPES[:mettl] => :build_mettl,
+          Assessment::TYPES[:saville] => :build_saville,
+          Assessment::TYPES[:common] => nil,
+          Assessment::TYPES[:simulation] => :build_simulation,
+          Assessment::TYPES[:skillvue] => :build_skillvue,
+          Assessment::TYPES[:yoodli] => :build_yoodli,
+          Assessment::TYPES[:mhs] => :build_mhs
+        }
+
+        method = type_to_method[assessment.type]
+        result = method ? send(method) : {}
+        broadcast(:ok, result)
       end
 
       private
@@ -80,6 +76,10 @@ module Administration
       end
 
       def build_yoodli
+        { assessment_id: raw_external_settings[:assessment_id] }
+      end
+
+      def build_mhs
         { assessment_id: raw_external_settings[:assessment_id] }
       end
     end

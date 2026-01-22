@@ -25,6 +25,8 @@ module Api
           render_json_api_response(skillvue_assessments(search))
         when 'yoodli'
           render_json_api_response(yoodli_assessments(search))
+        when 'mhs'
+          render_json_api_response(mhs_assessments(search))
       end
     end
 
@@ -83,6 +85,12 @@ module Api
       SkillvueAssessment.filterable_fields(search).
         where(project_id: params[:filter][:project_id_eq]).
         map { |a| { id: a.product_id, name: a.name } }
+    end
+
+    def mhs_assessments(_search)
+      Settings.providers.mhs.assessments.sort_by { |a| a[:name] }.map do |a|
+        { id: a[:id].downcase, name: a[:name] }
+      end
     end
   end
 end

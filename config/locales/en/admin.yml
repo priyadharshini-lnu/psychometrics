@@ -38,7 +38,9 @@ en:
     ai_translation: AI Translation
     all_corner_rounded: All corner rounded
     api_keys: API keys
+    apply_to_existing_users: Apply this change to existing users in this campaign
     assessments: Assessments
+    assessments_not_mhs: All Assessment must be a MHS type
     assessments_reports: Assessments & Reports
     assessor_dashboard: Assessor Dashboard
     assessor_workshops: Assessment Center
@@ -57,6 +59,19 @@ en:
     campaign_assessment_actions_disable_caching: Disable Assessment Caching
     campaign_assessment_actions_enable_caching: Enable Assessment Caching
     campaign_assessment_column_caching_enabled: Assessment Caching Enabled
+    campaign_assessment_mhs_confidence_interval: Confidence Interval
+    campaign_assessment_mhs_confidence_interval_update_success: Confidence interval updated successfully
+    campaign_assessment_mhs_invalid_confidence_interval: confidence_interval must be 0 or 1
+    campaign_assessment_mhs_invalid_leadership_bar: leadership_bar must be 0 or 1
+    campaign_assessment_mhs_invalid_norm_option: Norm Option must be between 0 and 3
+    campaign_assessment_mhs_leadership_bar: Leadership Bar
+    campaign_assessment_mhs_leadership_bar_update_success: Leadership Bar updated successfully
+    campaign_assessment_mhs_norm_option: Norm Option
+    campaign_assessment_mhs_norm_option_form_select: Select Norm Option
+    campaign_assessment_mhs_norm_option_update_success: Norm Option updated successfully
+    campaign_assessment_mhs_norm_region: Norm Region
+    campaign_assessment_mhs_norm_region_form_select: Select Norm Region
+    campaign_assessment_mhs_norm_region_update_success: Norm Region updated successfully
     campaign_assessment_modals_disable_caching_content: Are you sure you want to disable caching for this assessment?
     campaign_assessment_modals_disable_caching_successfully: Caching has been disabled for this assessment.
     campaign_assessment_modals_disable_caching_title: Disable Assessment Caching?
@@ -146,6 +161,14 @@ en:
     licenses: Licenses
     manager_approval_required: Report for %{user} requires manager approval before download
     messages: Messages
+    mhs: MHS
+    mhs_assessment: MHS Assessment
+    mhs_assessment_name: MHS Assessment Name
+    mhs_data_gatherer_id: Mhs Data Gatherer ID
+    mhs_data_gathering_id: Mhs Data Gathering ID
+    mhs_external_assessment_id: Mhs Assessment ID
+    mhs_report_id: MHS Report ID
+    mhs_session_id: Mhs Session ID
     name_required: Name is required
     no_file_selected: No file selected
     no_notifications: No Notifications

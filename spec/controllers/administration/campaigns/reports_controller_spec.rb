@@ -192,6 +192,8 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         pearson_variations
         allow_caching
         caching_enabled
+        mhs_norm_regions
+        mhs_norm_options
       ]
     )
     expect(assessment_response).to include({
