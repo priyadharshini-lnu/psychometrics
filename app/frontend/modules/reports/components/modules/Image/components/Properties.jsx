@@ -1,6 +1,5 @@
 import { useRef, useEffect } from 'react'
-import Select from 'react-select'
-import { Space, InputNumber, Select as AntSelect } from 'antd'
+import { Space, InputNumber, Select } from 'antd'
 import { LibraryStore } from '~/libs/library'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import LibraryTransport from '~/modules/reports/cable/LibraryChannel'
@@ -8,7 +7,6 @@ import Socket from '~/modules/reports/cable'
 import I18nStore from '~/modules/reports/store/I18nStore'
 import AssessmentProperties from '~/modules/reports/components/modules/CommonProperties/AssessmentProperties'
 import clearAfterAssessmentChange from '~/modules/reports/components/modules/CommonMethods/clearAfterAssessmentChange'
-import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
 import { rgba2hex } from '~/utils/color'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'
 import { ColorPicker } from '~/glint'
@@ -109,9 +107,9 @@ const Properties = ({
     updateAll()
   }
 
-  const changeSourceType = (obj) => {
+  const changeSourceType = (value) => {
     updateAll((model) => {
-      model.props.sourceType = obj.value
+      model.props.sourceType = value
       if (model.props.sourceType === 'ConditionalImage') {
         model.props.url = null
       }
@@ -149,12 +147,11 @@ const Properties = ({
       <hr className={styles.divider} />
       <div className="margin-top-10 margin-bottom-10">
         <Select
-          name="form-field-name"
-          value={getValue(TYPE_OPTIONS, model.props.sourceType)}
+          style={{ width: '100%' }}
+          value={model.props.sourceType}
           options={TYPE_OPTIONS}
-          getOptionValue={opt => opt.value}
           autoFocus={false}
-          clearable={false}
+          allowClear={false}
           onChange={changeSourceType}
         />
         {model.props.sourceType === 'ConditionalImage' && (
@@ -233,7 +230,7 @@ const Properties = ({
             </div>
             <div className={styles.inline}>
               <label>Style</label>
-              <AntSelect
+              <Select
                 style={{ width: '100%' }}
                 onChange={changeBorderStyle}
                 value={borderStyle}

@@ -5,6 +5,8 @@ import 'codemirror/mode/xml/xml'
 import embedMedia from '~/modules/survey/commands/froalaCommands/embedMedia'
 import events from '~/components/Editor/events'
 import { FROALA } from '~/constants/froala.ts'
+import { getFeatures } from '~/modules/reports/utils/features'
+import { camelizeKeys } from '~/utils/object'
 
 FroalaEditor.PLUGINS.embedMedia = embedMedia
 
@@ -83,11 +85,14 @@ export default {
       events.video_link_error(this, link)
     },
     initialized () {
-      // eslint needs to be disabled for WEBSPELLCHECKER, since it is loaded from the component using this config
+      // WEBSPELLCHECKER is loaded via backend when ENABLE_WEBSPELLCHECKER env is true
       /* eslint-disable */
-      WEBSPELLCHECKER.init({
-        container: this.$iframe ? this.$iframe[0] : this.el,
-      })
+      const features = camelizeKeys(getFeatures())
+      if (features.enableWebspellchecker) {
+        WEBSPELLCHECKER.init({
+          container: this.$iframe ? this.$iframe[0] : this.el,
+        })
+      }
     },
   },
 }
