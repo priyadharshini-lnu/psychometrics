@@ -16,6 +16,8 @@ module MediaResponses
       private
 
       def generate_transcription
+        return unless media_response.asset.attached?
+
         media_response.update!(transcription_status: :processing)
         video_url = media_response.asset_url
 

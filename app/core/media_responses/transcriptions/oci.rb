@@ -39,6 +39,8 @@ module MediaResponses
       end
 
       def start_transcription_job
+        return unless media_response.asset.attached?
+
         media_response.update!(transcription_status: :pending)
         job_details = build_transcription_job_details
         response = speech_client.create_transcription_job(job_details)

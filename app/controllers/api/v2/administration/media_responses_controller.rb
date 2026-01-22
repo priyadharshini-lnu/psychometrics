@@ -36,7 +36,8 @@ module Api
 
     def can_generate_transcription?
       @media_response.question.type.in?(%w[VideoResponse AudioResponse]) &&
-        @media_response.question.props&.[]('enableTranscription')
+        @media_response.question.props&.[]('enableTranscription') &&
+        @media_response.asset.attached?
     end
 
     def context

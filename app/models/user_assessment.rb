@@ -455,6 +455,7 @@ class UserAssessment < ApplicationRecord
       where("questions.props ->> 'enableTranscription' = ?", 'true')&.
       find_each do |media_response|
       next unless media_response.transcription_not_requested?
+      next unless media_response.asset.attached?
 
       MediaResponses::AddTranscriptionJob.perform_later(media_response.id)
     end
