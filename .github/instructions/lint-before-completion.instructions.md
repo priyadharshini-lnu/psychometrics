@@ -1,5 +1,5 @@
 ---
-applyTo: '**'
+applyTo: 'app/frontend/**'
 ---
 
 # Linting Rule

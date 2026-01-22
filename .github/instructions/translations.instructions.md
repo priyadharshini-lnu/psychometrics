@@ -1,5 +1,5 @@
 ---
-applyTo: '**'
+applyTo: 'app/**'
 ---
 
 # Translations Rule
