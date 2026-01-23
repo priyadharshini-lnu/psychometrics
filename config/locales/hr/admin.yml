@@ -102,7 +102,6 @@ hr:
     feature_enhance_with_ai: Unaprijedite pomoću umjetne inteligencije
     feature_flags: Značajne zastavice
     fill_empty_score_msg: Popunite sve konačne rezultate prije spremanja.
-    final_score_empty_msg: Konačni rezultat ne može biti prazan.
     idp_plan_reset_success: Plan je uspješno resetiran
     idp_templates: Predlošci IDP-a
     import_ai_artifacts: Uvoz AI artefakata

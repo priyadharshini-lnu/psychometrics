@@ -102,7 +102,6 @@ pl:
     feature_enhance_with_ai: Wzbogać dzięki sztucznej inteligencji
     feature_flags: Flagi funkcji
     fill_empty_score_msg: Wypełnij wszystkie końcowe wyniki przed zapisem.
-    final_score_empty_msg: Ostateczny wynik nie może być pusty.
     idp_plan_reset_success: Plan został pomyślnie zresetowany
     idp_templates: Szablony IDP
     import_ai_artifacts: Import artefaktów AI

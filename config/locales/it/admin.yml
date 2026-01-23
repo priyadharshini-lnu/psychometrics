@@ -102,7 +102,6 @@ it:
     feature_enhance_with_ai: Migliora con l'AI
     feature_flags: Bandiere delle funzioni
     fill_empty_score_msg: Compila tutti i punteggi finali prima di salvare.
-    final_score_empty_msg: Il punteggio finale non può essere vuoto.
     idp_plan_reset_success: Il piano è stato resettato con successo
     idp_templates: Modelli di IDP
     import_ai_artifacts: Importazione di artefatti IA

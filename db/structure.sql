@@ -1595,7 +1595,10 @@ CREATE TABLE public.campaign_factors (
     updated_at timestamp(6) without time zone NOT NULL,
     assessment_score_type integer DEFAULT 0,
     formula text,
-    ranked boolean DEFAULT false NOT NULL
+    ranked boolean DEFAULT false NOT NULL,
+    min_value integer,
+    max_value integer,
+    is_na_allowed boolean DEFAULT false NOT NULL
 );
 
 
@@ -19309,12 +19312,14 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260123071239'),
 ('20260122034210'),
 ('20260119144024'),
 ('20260119122705'),
 ('20260119063943'),
 ('20260119052541'),
 ('20260119030942'),
+('20260113120000'),
 ('20260113071404'),
 ('20260109141947'),
 ('20260106133315'),

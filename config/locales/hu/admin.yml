@@ -102,7 +102,6 @@ hu:
     feature_enhance_with_ai: Fejlesztés mesterséges intelligenciával
     feature_flags: Feature flags
     fill_empty_score_msg: Töltsd ki az összes végső pontszámot mentés előtt.
-    final_score_empty_msg: A végső pontszám nem lehet üres.
     idp_plan_reset_success: A tervet sikeresen újraindították
     idp_templates: IDP-sablonok
     import_ai_artifacts: MI tárgyak importálása

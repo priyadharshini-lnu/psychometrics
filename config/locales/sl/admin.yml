@@ -102,7 +102,6 @@ sl:
     feature_enhance_with_ai: Izboljšajte z umetno inteligenco
     feature_flags: Zastavice funkcij
     fill_empty_score_msg: Pred shranjevanjem izpolnite vse končne rezultate.
-    final_score_empty_msg: Končni rezultat ne sme biti prazen.
     idp_plan_reset_success: Načrt je bil uspešno ponastavljen
     idp_templates: Predloge IDP
     import_ai_artifacts: Uvoz AI artefaktov

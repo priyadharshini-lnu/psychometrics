@@ -102,7 +102,6 @@ sr-Cyrl:
     feature_enhance_with_ai: Унапредите помоћу вештачке интелигенције
     feature_flags: Фичер флагс
     fill_empty_score_msg: Попуните све коначне резултате пре сачувања.
-    final_score_empty_msg: Коначан резултат не може бити празан.
     idp_plan_reset_success: План је успешно ресетован
     idp_templates: Шаблони ИДП
     import_ai_artifacts: Увоз АИ артефаката

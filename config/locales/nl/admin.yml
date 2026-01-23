@@ -102,7 +102,6 @@ nl:
     feature_enhance_with_ai: Verbeteren met AI
     feature_flags: Functie Vlaggen
     fill_empty_score_msg: Vul alle eindscores in voordat je opslaat.
-    final_score_empty_msg: De eindscore mag niet leeg zijn.
     idp_plan_reset_success: Het plan is succesvol gereset.
     idp_templates: IDP-sjablonen
     import_ai_artifacts: AI-artefacten importeren

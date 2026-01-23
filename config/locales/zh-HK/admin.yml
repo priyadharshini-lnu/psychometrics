@@ -102,7 +102,6 @@ zh-HK:
     feature_enhance_with_ai: 增强AI
     feature_flags: 功能开关
     fill_empty_score_msg: 在保存前请填写所有最终分数。
-    final_score_empty_msg: 最终得分不能为空。
     idp_plan_reset_success: 计划已成功重置
     idp_templates: IDP模板
     import_ai_artifacts: 导入人工智能艺术品

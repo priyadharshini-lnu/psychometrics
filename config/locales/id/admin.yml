@@ -102,7 +102,6 @@ id:
     feature_enhance_with_ai: Perkuat dengan AI
     feature_flags: Bendera Fitur
     fill_empty_score_msg: Isi semua skor akhir sebelum menyimpan.
-    final_score_empty_msg: Skor akhir tidak bisa kosong.
     idp_plan_reset_success: Paket telah berhasil diatur ulang
     idp_templates: Template IDP
     import_ai_artifacts: Impor Artefak AI

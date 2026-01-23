@@ -102,7 +102,6 @@ fr:
     feature_enhance_with_ai: Améliorer grâce à l'IA
     feature_flags: Drapeaux de caractéristiques
     fill_empty_score_msg: Remplissez tous les scores finaux avant de sauvegarder.
-    final_score_empty_msg: Le score final ne peut pas être vide.
     idp_plan_reset_success: Le plan a été réinitialisé avec succès
     idp_templates: Modèles de PDI
     import_ai_artifacts: Importer des artefacts IA

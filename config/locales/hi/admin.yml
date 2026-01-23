@@ -102,7 +102,6 @@ hi:
     feature_enhance_with_ai: एआई से बेहतर बनाएँ
     feature_flags: फ़ीचर फ़्लैग्स
     fill_empty_score_msg: सहेजने से पहले सभी अंतिम स्कोर भरें।
-    final_score_empty_msg: अंतिम स्कोर खाली नहीं हो सकता।
     idp_plan_reset_success: योजना सफलतापूर्वक रीसेट हो गई है।
     idp_templates: आईडीपी टेम्पलेट्स
     import_ai_artifacts: AI कलाकृतियों को आयात करें

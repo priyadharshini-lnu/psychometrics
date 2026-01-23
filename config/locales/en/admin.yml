@@ -1,6 +1,7 @@
 ---
 en:
   admin:
+    accept_na_values: Accept N/A values
     add_admin: Add Admin
     add_admin_role: Add Admin Role
     add_campaign_admin: Add Campaign Admin
@@ -122,7 +123,7 @@ en:
     feature_enhance_with_ai: Enhance with AI
     feature_flags: Feature Flags
     fill_empty_score_msg: Fill all the final scores before saving.
-    final_score_empty_msg: Final score cannot be empty.
+    final_score_empty_err_msg: Final score of %{factor_name} cannot be empty.
     idp_plan_reset_success: Plan has been reset successfully
     idp_templates: IDP Templates
     import_ai_artifacts: Import AI Artifacts
@@ -160,6 +161,7 @@ en:
     library_invalid_type: Invalid Library Item
     licenses: Licenses
     manager_approval_required: Report for %{user} requires manager approval before download
+    max_value: Max value
     messages: Messages
     mhs: MHS
     mhs_assessment: MHS Assessment
@@ -169,6 +171,8 @@ en:
     mhs_external_assessment_id: Mhs Assessment ID
     mhs_report_id: MHS Report ID
     mhs_session_id: Mhs Session ID
+    min_value: Min value
+    missing_min_max_values: Minimum and Maximum values are required.
     name_required: Name is required
     no_file_selected: No file selected
     no_notifications: No Notifications
@@ -690,6 +694,8 @@ en:
     saml_settings: SAML Settings
     scheduling: Scheduling
     scoring: Scoring
+    scoring_value_info: Score must be between %{min} and %{max}.
+    scoring_value_out_of_range_err_msg: Score for %{factor_name} must be between %{min} and %{max}.
     search_admins: Search admins
     search_job_role: Search job role
     select_admin_role: Select admin role

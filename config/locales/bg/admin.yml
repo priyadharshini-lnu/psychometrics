@@ -102,7 +102,6 @@ bg:
     feature_enhance_with_ai: Подобрете с AI
     feature_flags: Флагове за функции
     fill_empty_score_msg: Запълнете всички крайни резултати преди да запазите.
-    final_score_empty_msg: Крайният резултат не може да бъде празен.
     idp_plan_reset_success: Планът беше успешно рестартиран
     idp_templates: Шаблони за индивидуален план за развитие
     import_ai_artifacts: Импортиране на AI артефакти

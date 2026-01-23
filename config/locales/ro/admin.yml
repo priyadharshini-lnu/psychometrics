@@ -102,7 +102,6 @@ ro:
     feature_enhance_with_ai: Îmbunătățiți cu AI
     feature_flags: Steaguri de caracteristici
     fill_empty_score_msg: Completează toate scorurile finale înainte de a salva.
-    final_score_empty_msg: Scorul final nu poate fi gol.
     idp_plan_reset_success: Planul a fost resetat cu succes
     idp_templates: Șabloane IDP
     import_ai_artifacts: Importul artefactelor AI

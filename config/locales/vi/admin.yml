@@ -102,7 +102,6 @@ vi:
     feature_enhance_with_ai: Nâng cao với Trí tuệ nhân tạo (AI)
     feature_flags: Cờ tính năng
     fill_empty_score_msg: Điền vào tất cả các điểm cuối cùng trước khi lưu.
-    final_score_empty_msg: Điểm cuối cùng không thể trống.
     idp_plan_reset_success: Kế hoạch đã được đặt lại thành công
     idp_templates: Mẫu IDP
     import_ai_artifacts: Nhập hiện vật AI

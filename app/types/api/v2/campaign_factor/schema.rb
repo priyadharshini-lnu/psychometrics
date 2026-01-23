@@ -39,6 +39,9 @@ module Api
             optional(:factor_id).maybe(:string)
             optional(:description).maybe(:string)
             optional(:ranked).maybe(:bool)
+            optional(:min_value).maybe(:integer)
+            optional(:max_value).maybe(:integer)
+            optional(:is_na_allowed).maybe(:bool)
           end
         end
 
@@ -56,6 +59,9 @@ module Api
             optional(:factor_id).maybe(:string)
             optional(:description).maybe(:string)
             optional(:ranked).maybe(:bool)
+            optional(:min_value).maybe(:integer)
+            optional(:max_value).maybe(:integer)
+            optional(:is_na_allowed).maybe(:bool)
           end
         end
 
@@ -77,6 +83,9 @@ module Api
                 optional(:description).maybe(:string)
                 optional(:ranked).maybe(:bool)
                 optional(:formula).maybe(:string)
+                optional(:min_value).maybe(:integer)
+                optional(:max_value).maybe(:integer)
+                optional(:is_na_allowed).maybe(:bool)
               end
             end
           end

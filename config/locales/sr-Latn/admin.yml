@@ -102,7 +102,6 @@ sr-Latn:
     feature_enhance_with_ai: Унапредите помоћу вештачке интелигенције
     feature_flags: Feature flagovi
     fill_empty_score_msg: Popunite sve konačne rezultate pre čuvanja.
-    final_score_empty_msg: Konačni rezultat ne može biti prazan.
     idp_plan_reset_success: Plan je uspešno resetovan
     idp_templates: IDP Šabloni
     import_ai_artifacts: Uvoz AI artefakata

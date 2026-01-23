@@ -102,7 +102,6 @@ ar:
     feature_enhance_with_ai: تعزيز بالذكاء الاصطناعي
     feature_flags: أعلام الميزات
     fill_empty_score_msg: املأ جميع الدرجات النهائية قبل الحفظ.
-    final_score_empty_msg: لا يمكن أن تكون النتيجة النهائية فارغة.
     idp_plan_reset_success: تم إعادة ضبط الخطة بنجاح
     idp_templates: قوالب IDP
     import_ai_artifacts: استيراد القطع الأثرية الذكاء الاصطناعي

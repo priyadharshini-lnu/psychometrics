@@ -102,7 +102,6 @@ zh-Hant:
     feature_enhance_with_ai: 增强AI
     feature_flags: 功能旗標
     fill_empty_score_msg: 儲存前填寫所有最終分數。
-    final_score_empty_msg: 最終分數不能是空的。
     idp_plan_reset_success: 計畫已成功重置
     idp_templates: IDP 範本
     import_ai_artifacts: 匯入 AI 工件

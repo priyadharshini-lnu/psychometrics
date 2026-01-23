@@ -102,7 +102,6 @@ cs:
     feature_enhance_with_ai: Vylepšete pomocí AI
     feature_flags: Příznaky funkcí
     fill_empty_score_msg: Vyplňte všechny konečné skóre před uložením.
-    final_score_empty_msg: Konečné skóre nemůže být prázdné.
     idp_plan_reset_success: Plán byl úspěšně resetován
     idp_templates: Šablony IDP
     import_ai_artifacts: Import AI artefaktů

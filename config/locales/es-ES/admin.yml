@@ -102,7 +102,6 @@ es-ES:
     feature_enhance_with_ai: Mejora con IA
     feature_flags: Banderas de características
     fill_empty_score_msg: Rellena todas las puntuaciones finales antes de guardar.
-    final_score_empty_msg: La puntuación final no puede estar vacía.
     idp_plan_reset_success: El plan se ha reiniciado con éxito
     idp_templates: Plantillas de PDI
     import_ai_artifacts: Importar artefactos de IA

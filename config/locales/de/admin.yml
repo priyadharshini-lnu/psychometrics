@@ -102,7 +102,6 @@ de:
     feature_enhance_with_ai: Mit KI verbessern
     feature_flags: Merkmalskennzeichen
     fill_empty_score_msg: Füllen Sie alle Endpunktzahlen aus, bevor Sie speichern.
-    final_score_empty_msg: Das Endergebnis darf nicht leer sein.
     idp_plan_reset_success: Der Plan wurde erfolgreich zurückgesetzt
     idp_templates: IDP-Vorlagen
     import_ai_artifacts: KI-Artefakte importieren

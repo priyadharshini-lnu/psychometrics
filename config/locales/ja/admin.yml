@@ -102,7 +102,6 @@ ja:
     feature_enhance_with_ai: AIで強化する
     feature_flags: フィーチャー・フラッグ
     fill_empty_score_msg: 保存する前にすべての最終スコアを記入してください。
-    final_score_empty_msg: 最終スコアは空にはなりません。
     idp_plan_reset_success: 計画は正常にリセットされました
     idp_templates: IDPテンプレート
     import_ai_artifacts: AIアーティファクトのインポート
