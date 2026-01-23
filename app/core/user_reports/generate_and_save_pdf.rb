@@ -21,7 +21,7 @@ module UserReports
           next
         end
 
-        user_report.update!(status: :generating) unless report.hogan?
+        user_report.update!(status: :generating) unless report.hogan? || report.provider_mhs?
 
         generate_hogan_report(user_report) if report.hogan?
         generate_saville_report(user_report) if report.provider_saville?
