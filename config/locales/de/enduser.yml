@@ -13,6 +13,7 @@ de:
     campaign: Kampagne
     development: Entwicklung
     direct_reportees: Direkte Berichte
+    download_pdf: PDF herunterladen
     home: Dashboard
     idp_loading_fifth_step: Entwicklungsaktionen aus der Vorlage abrufen
     idp_loading_first_step: Analyse Ihres Bewertungsberichts
@@ -20,7 +21,6 @@ de:
     idp_loading_second_step: Identifizierung der im Chat genannten Präferenzen
     idp_loading_secondary_text: Fühlen Sie sich frei, sich zurückzuziehen. Dein Plan wird bereit sein, wenn du zurückkehrst.
     idp_loading_sixth_step: Entwicklung von Entwicklungsmaßnahmen
-    idp_loading_third_step: Überprüfung Ihres externen Berichts
     idp_plan_approval_note: Genehmigungsnotiz
     idp_retake_steps_continue_with_this_information: Fahren Sie mit diesen Informationen fort
     insights: Einblicke

@@ -13,6 +13,7 @@ th:
     campaign: รณรงค์
     development: การพัฒนา
     direct_reportees: ผู้รายงานโดยตรง
+    download_pdf: ดาวน์โหลดไฟล์ PDF
     home: แดชบอร์ด
     idp_loading_fifth_step: การดึงการดําเนินการพัฒนาจากเทมเพลต
     idp_loading_first_step: การวิเคราะห์รายงานการประเมินของคุณ
@@ -20,7 +21,6 @@ th:
     idp_loading_second_step: การระบุการตั้งค่าของคุณที่กล่าวถึงในการแชท
     idp_loading_secondary_text: อย่าลังเลที่จะก้าวออกไป แผนของคุณจะพร้อมเมื่อคุณกลับมา
     idp_loading_sixth_step: การสร้างการดําเนินการเพื่อการพัฒนา
-    idp_loading_third_step: การตรวจทานรายงานภายนอกของคุณ
     idp_plan_approval_note: หมายเหตุการอนุมัติ
     idp_retake_steps_continue_with_this_information: ดําเนินการต่อด้วยข้อมูลนี้
     insights: ข้อมูลเชิงลึก

@@ -3,7 +3,6 @@ import { motion, AnimatePresence, useReducedMotion } from 'motion/react'
 import { Flex } from 'antd'
 import { AnalyzingIcon } from './AnalyzingIcon'
 import { BuildingBlocksIcon } from './BuildingBlocksIcon'
-import { MilestonesIcon } from './MilestoneIcon'
 import { PersonalizingIcon } from './PersonalizingIcon'
 import { LighthouseIcon } from './LighthouseIcon'
 import { FinalizingIcon } from './FinalizingIcon'
@@ -25,11 +24,6 @@ const stages: LoadingStage[] = [
   {
     component: <BuildingBlocksIcon />,
     message: I18n.t('enduser.idp_loading_second_step'),
-    duration: 8000,
-  },
-  {
-    component: <MilestonesIcon />,
-    message: I18n.t('enduser.idp_loading_third_step'),
     duration: 8000,
   },
   {
