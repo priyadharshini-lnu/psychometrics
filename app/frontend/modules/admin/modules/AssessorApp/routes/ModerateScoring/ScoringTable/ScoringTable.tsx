@@ -48,7 +48,7 @@ const getScoreStatus = (
 
   const { minValue, maxValue } = factor
 
-  if ((minValue && numericValue < minValue) || (maxValue && numericValue > maxValue)) {
+  if ((minValue !== null && numericValue < minValue) || (maxValue !== null && numericValue > maxValue)) {
     return 'error'
   }
 
@@ -239,7 +239,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
         return false
       }
 
-      if (!minValue && !maxValue && value == null) {
+      if (minValue == null && maxValue == null && value == null) {
         message.error(I18n.t('admin.final_score_empty_err_msg', {
           factor_name: factor.name,
         }))
@@ -248,8 +248,8 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
 
       const numericValue = Number(value)
 
-      if ((minValue && numericValue < minValue)
-         || (maxValue && numericValue > maxValue)
+      if ((minValue !== null && numericValue < minValue)
+         || (maxValue !== null && numericValue > maxValue)
          || (value == null && !enabledNAFactors[key]
          )) {
         message.error(I18n.t('admin.scoring_value_out_of_range_err_msg', {
