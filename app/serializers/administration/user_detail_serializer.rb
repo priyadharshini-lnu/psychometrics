@@ -4,9 +4,10 @@ module Administration
   class UserDetailSerializer < Panko::Serializer
     attributes :id, :full_name, :email, :created_at, :last_sign_in_at, :campaigns, :started_at,
                :completion_status, :status, :additional_time, :active, :hogan_id, :hogan_provider, :permissions,
-               :completed_at, :proctoring_sessions, :user_assessments, :user_reports, :manager
+               :completed_at, :proctoring_sessions, :user_assessments, :user_reports, :manager,
+               :level, :current_job_role, :target_job_role
 
-    delegate :active, :completion_status, :additional_time, to: :campaign_user
+    delegate :active, :completion_status, :additional_time, :level, to: :campaign_user
 
     def status
       campaign_user.real_status
@@ -136,6 +137,18 @@ module Administration
 
     def campaign_user
       CampaignUser.find_by(user_id: object.id, campaign_id: campaign.id)
+    end
+
+    def current_job_role
+      return {} unless campaign_user&.current_job_role
+
+      ::Administration::JobRoleSerializer.new.serialize(campaign_user.current_job_role)
+    end
+
+    def target_job_role
+      return {} unless campaign_user&.target_job_role
+
+      ::Administration::JobRoleSerializer.new.serialize(campaign_user.target_job_role)
     end
   end
 end

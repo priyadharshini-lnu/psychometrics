@@ -20,6 +20,9 @@ module CampaignFactors
     attribute :position, Integer, default: 0
     attribute :public_visibility, Boolean, default: false
     attribute :campaign_factor_group_name, String
+    attribute :min_value, Integer
+    attribute :max_value, Integer
+    attribute :is_na_allowed, Boolean, default: false
 
     validates :code, :name, :output_type, :position, :factor_type, :public_visibility, presence: true
     validates :position, numericality: { only_integer: true }
@@ -34,6 +37,7 @@ module CampaignFactors
     validate :validate_assessment_score_type_presence
     validate :validate_ranked_applicability
     validate :validate_factor_belongs_to_assessment_dimension
+    validate :validate_min_and_max_values_presence
 
     private
 
@@ -80,6 +84,12 @@ module CampaignFactors
     def validate_assessment_score_type_presence
       if %w[assessment assessor_scoring].include?(factor_type) && assessment_score_type.blank?
         errors.add(:base, I18n.t('administration.campaign_factor_import.errors.missing_assessment_score_type'))
+      end
+    end
+
+    def validate_min_and_max_values_presence
+      if %w[assessor_scoring].include?(factor_type) && (min_value.nil? || max_value.nil?)
+        errors.add(:base, I18n.t('admin.missing_min_max_values'))
       end
     end
 

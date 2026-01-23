@@ -25,6 +25,8 @@ module Administration
             Administration::Reports::ExternalSettings::HoganForm
           when 'saville'
             Administration::Reports::ExternalSettings::SavilleForm
+          when 'mhs'
+            Administration::Reports::ExternalSettings::MhsForm
         end
       end
     end

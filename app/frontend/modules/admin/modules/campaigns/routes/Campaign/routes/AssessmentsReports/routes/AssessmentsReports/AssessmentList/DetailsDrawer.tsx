@@ -7,6 +7,10 @@ import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
 import { SimulationDetails } from './SimulationDetails'
 import { MettlScheduleRecordDetails } from './MettlScheduleRecordDetails'
 import { PearsonVariationForm } from './PearsonVariationForm'
+import MhsConfidenceIntervalForm from './MhsConfidenceIntervalForm'
+import MhsLeadershipBarForm from './MhsLeadershipBarForm'
+import MhsNormRegionForm from './MhsNormRegionForm'
+import { MhsNormOptionForm } from './MhsNormOptionForm'
 
 const { I18n } = window
 
@@ -19,6 +23,14 @@ interface Props {
   ) => Promise<{ response: unknown }>
   loadingUpdateMettlSchedule: boolean,
   updatePearsonVariation: (campaignId: string, assessmentId: number, body: object) => Promise<{ response: unknown }>
+  updateMhsConfidenceInterval: (
+    campaignId: string,
+    assessmentId: number,
+    body: object
+  ) => Promise<{ response: unknown }>
+  updateMhsLeadershipBar: (campaignId: string, assessmentId: number, body: object) => Promise<{ response: unknown }>
+  updateMhsNormRegion: (campaignId: string, assessmentId: number, body: object) => Promise<{ response: unknown }>
+  updateMhsNormOption: (campaignId: string, assessmentId: number, body: object) => Promise<{ response: unknown }>
   toggleAssessmentCaching: (campaignId: number, id: number, cachingEnabled: boolean) => void
 }
 
@@ -28,7 +40,11 @@ export const DetailsDrawer: FC<Props> = ({
   campaignId,
   updateMettlSchedule,
   loadingUpdateMettlSchedule,
+  updateMhsConfidenceInterval,
   updatePearsonVariation,
+  updateMhsLeadershipBar,
+  updateMhsNormRegion,
+  updateMhsNormOption,
   toggleAssessmentCaching,
 }) => {
   if (!assessment) {
@@ -44,7 +60,7 @@ export const DetailsDrawer: FC<Props> = ({
       closable
       onClose={close}
       open
-      width="40%"
+      size="40%"
     >
       <Row>
         <Descriptions
@@ -57,8 +73,10 @@ export const DetailsDrawer: FC<Props> = ({
             label={I18n.t('campaign_assessment.column.id')}
             key="id"
             className="va-t w-30"
-            labelStyle={{ width: '40%' }}
-            contentStyle={{ width: '60%' }}
+            styles={{
+              label: { width: '40%' },
+              content: { width: '60%' },
+            }}
           >
             {assessment.campaignAssessmentId}
           </Descriptions.Item>
@@ -120,6 +138,30 @@ export const DetailsDrawer: FC<Props> = ({
           assessment={assessment}
           campaignId={campaignId}
           updatePearsonVariation={updatePearsonVariation}
+        />
+        <MhsConfidenceIntervalForm
+          I18n={I18n}
+          assessment={assessment}
+          campaignId={campaignId}
+          updateMhsConfidenceInterval={updateMhsConfidenceInterval}
+        />
+        <MhsLeadershipBarForm
+          I18n={I18n}
+          assessment={assessment}
+          campaignId={campaignId}
+          updateMhsLeadershipBar={updateMhsLeadershipBar}
+        />
+        <MhsNormRegionForm
+          I18n={I18n}
+          assessment={assessment}
+          campaignId={campaignId}
+          updateMhsNormRegion={updateMhsNormRegion}
+        />
+        <MhsNormOptionForm
+          I18n={I18n}
+          assessment={assessment}
+          campaignId={campaignId}
+          updateMhsNormOption={updateMhsNormOption}
         />
       </Row>
     </Drawer>

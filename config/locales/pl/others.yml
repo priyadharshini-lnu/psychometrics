@@ -837,6 +837,10 @@ pl:
           reply_to_reply: Nie można odpowiedzieć na odpowiedź (dozwolony jest tylko jeden poziom zagnieżdżania)
         user_idp_plan:
           no_active_plan: Nie znaleziono aktywnego planu IDP
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: Można wybierać wyłącznie oceny typu „psychometria” i „badanie organizacyjne”.
   admin_jobs:
     attrs:
       operations:
@@ -1413,7 +1417,6 @@ pl:
       collapse_link_text: Pokaż mniej
       expand_aria_label: 'Pokaż mniej informacji powyżej: Wirtualne Centrum Nauczania'
       expand_link_text: Pokaż więcej
-      heading: Zanim zaczniesz, zapoznaj się z poniższymi wytycznymi. Życzymy Ci wszystkiego najlepszego!
     language:
       content: To zadanie nie jest dostępne w aktualnie wybranym języku. Aby kontynuować, wybierz jeden z dostępnych języków.
       single_lang: To zadanie jest dostępne tylko w %{lang}. Kliknij „Kontynuuj”, aby kontynuować.
@@ -1773,16 +1776,7 @@ pl:
       continue: Tak, można kontynuować
       description: Kliknij przycisk "Rozpocznij nagrywanie" i nagraj siebie, czytając poniższy fragment własnym głosem
       random_phrases:
-        eight: Jeśli mnie widzisz, wideo jest udane. Jeśli nie, rozwiążemy problem!
-        five: Testowanie wideo, bez obaw, nie wymaga nominacji do Oscara.
-        four: Kamera to twoja scena.
-        nine: Wielkie uśmiechy i wyraźne wideo, zróbmy ten test dobrze!
-        one: Podnieś rękę, jeśli mnie słyszysz lub po prostu pomachaj do kamery!
-        seven: Lustro, lustro na ekranie, niech kontrola wideo będzie czysta.
-        six: Światła, kamera, akcja, nadszedł czas, aby zabłysnąć!
-        ten: Przyjazny uśmiech sprawia, że wszystko działa jak należy.
-        three: Powiedz ser! Lub po prostu przetestuj ten idealny uśmiech.
-        two: Spójrz w obiektyw, uśmiechnij się i udawaj, że jesteś w zwiastunie filmowym.
+        one: Jestem gotowy. To nagranie testowe, które ma potwierdzić, czy mój mikrofon i kamera działają prawidłowo.
       rec_text: REC
       retake: Nie, chcę powtórzyć
       run_again: Uruchom ponownie
@@ -2214,16 +2208,16 @@ pl:
       password_complexity:
         digit:
           one: musi zawierać co najmniej jedną cyfrę
-          other: musi zawierać co najmniej <x>count</x> cyfr
+          other: musi zawierać co najmniej %{count} cyfr
         lower:
           one: musi zawierać co najmniej jedną małą literę
-          other: musi zawierać co najmniej <x>count</x> małych liter
+          other: musi zawierać co najmniej %{count} małych liter
         symbol:
           one: musi zawierać co najmniej jeden znak interpunkcyjny lub symbol
-          other: musi zawierać co najmniej <x>count</x> znaków interpunkcyjnych lub symboli
+          other: musi zawierać co najmniej %{count} znaków interpunkcyjnych lub symboli
         upper:
           one: musi zawierać co najmniej jedną wielką literę
-          other: musi zawierać co najmniej <x>count</x> wielkich liter
+          other: musi zawierać co najmniej %{count} wielkich liter
       taken_in_past: nie może być takie samo jak poprzednio używane hasło.
     module_error: Coś poszło nie tak z tym modułem, prosimy o kontakt z administracją.
     module_error_editor: Coś poszło nie tak z tym modułem, sprawdź ustawienia modułu.
@@ -3039,13 +3033,10 @@ pl:
     client_usage: Użycie klienta
     enabled: Włączone
     end_date: Data zakończenia
-    not_enough_idp_license: Za mało licencji IDP, skontaktuj się z administratorem
     not_enough_license: '"%{client_name}" nie ma wystarczającej liczby licencji dla "%{report_name}"'
     not_enough_license_count: Za mało licencji, skontaktuj się z administratorem
-    not_enough_proctoring_credits: Za mało kredytów, aby rozpocząć sesję nadzorczą
     number: Numer
     overuse_number: Dodatek za nadmierne zużycie
-    project_limit_reached: Limit użytkowania został osiągnięty dla '%{license_name}', prosimy o kontakt z administratorem
     project_specific: Specyficzne dla projektu
     project_specific_license: Licencja specyficzna dla projektu
     project_usage: Użytkowanie projektu
@@ -3094,7 +3085,7 @@ pl:
     footer:
       regards: Pozdrawiam,
       team_name: Zespół Lighthouse
-      technical_support: W przypadku jakichkolwiek problemów technicznych prosimy o kontakt pod adresem <x>email</x>, a my odpowiemy w ciągu 24 godzin.
+      technical_support: W przypadku jakichkolwiek problemów technicznych prosimy o kontakt pod adresem %{email}, a my odpowiemy w ciągu 24 godzin.
     from: Przedsiębiorstwo Talentów
     idp:
       manager_unread_comments:
@@ -3826,6 +3817,13 @@ pl:
       on_hold: W oczekiwaniu
       prepared: Gotowe
       released: Wydany
+    statuses:
+      completed: Zakończony
+      declined: Odrzucony
+      denied: Odmówiono
+      done: Gotowe
+      not_completed: Nie skończone
+      waiting: Czekanie
   threesixty:
     accept_privacy_modal:
       accept: Akceptuj

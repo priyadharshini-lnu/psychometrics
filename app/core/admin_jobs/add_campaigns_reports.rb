@@ -5,9 +5,20 @@ module AdminJobs
     def call
       form = ::Campaigns::Reports::Form.from_params(resource_params)
 
-      responses = ::Campaigns::Reports::Add.call(form, campaign, owner, job_record) if form.valid?
+      return broadcast :ok, { error_messages: form.errors.full_messages } unless form.valid?
 
-      broadcast :ok, { error_messages: responses.dig(:ok, :responses, :error_messages) }
+      error_messages = []
+
+      ::Campaigns::Reports::Add.call(form, campaign, owner, job_record) do
+        on(:ok) do |responses|
+          error_messages = responses.dig(:ok, :responses, :error_messages) || []
+        end
+        on(:error) do |error_response|
+          error_messages = Array(error_response[:base])
+        end
+      end
+
+      broadcast :ok, { error_messages: error_messages }
     end
 
     def generate_title_link

@@ -1,0 +1,120 @@
+---
+hi:
+  dry_errors:
+    errors:
+      add_edit_project:
+        invalid_subdomain_format: गलत सबडोमेन प्रारूप।
+        reserved_subdomain: उपडोमेन %{value} आरक्षित है
+        uniq_subdomain: सबडोमेन अद्वितीय होना चाहिए।
+      add_manager:
+        cannot_be_self: उपयोगकर्ता को स्वयं का प्रबंधक नहीं बनाया जा सकता।
+        manager_not_found: प्रबंधक नहीं मिला या एक ही परियोजना का हिस्सा नहीं है
+        user_not_found: उपयोगकर्ता नहीं मिला या एक ही परियोजना का हिस्सा नहीं है
+      admin:
+        already_added: ईमेल पहले से ही जोड़ दिया गया है।
+      already_assigned?: इस मूल्यांकन को लिंक नहीं किया जा सकता - यह पहले से ही '%{linked_assessor_form_name}' को आवंटित है।
+      already_invited: आप जिस मूल्यांकन केंद्र में इस उपयोगकर्ता को जोड़ने का प्रयास कर रहे हैं, वह पहले से ही मौजूद है।
+      assessor_assessment:
+        already_added: असेसमेंट पहले से ही अभियान में जोड़ दिया गया है।
+        lead_already_added: अभियान में केवल एक लीड असेसमेंट जोड़ा जा सकता है।
+      campaign_factor:
+        code_already_exists: एक ही कोड वाला एक कारक पहले से ही मौजूद है।
+        invalid_lua_name: वैध Lua चर नाम होना चाहिए।
+        limit_exceeded: आपने %{limit} अभियान कारकों की अधिकतम सीमा तक पहुँच गए हैं।
+        name_already_exists: इसी नाम का एक कारक पहले से ही मौजूद है।
+        rank_not_allowed: केवल उन कारकों को रैंक किया जा सकता है जिनका आउटपुट प्रकार संख्यात्मक हो।
+      campaign_factor_group:
+        group_already_exists: उसी नाम का एक समूह पहले से ही मौजूद है।
+        last_factor_group: अंतिम अभियान कारक समूह को हटाया नहीं जा सकता।
+      campaign_idps:
+        idp_template_not_published: यह Idp टेम्पलेट अभी तक प्रकाशित नहीं हुआ है, कृपया इसे अभियान में असाइन करने से पहले प्रकाशित करें।
+      cant_be_deleted: इस रिकॉर्ड को हटाया नहीं जा सकता।
+      client_feature:
+        ai_assisted_idp_feature_error: अगर एआई असिस्टेंट सुविधा अक्षम है तो यह सच नहीं हो सकता।
+      create_superadmin:
+        uniq_email: ईमेल अद्वितीय होना चाहिए।
+      development_actions:
+        only_global_skills_allowed: चुने गए कौशल वैश्विक कौशल होने चाहिए।
+        skills_not_belong_to_project: चुने गए कौशल निर्दिष्ट परियोजना से संबंधित होने चाहिए।
+        skills_required: कृपया कम से कम एक कौशल चुनें।
+      exceeded_subjects_count: आप प्रति निमंत्रण केवल %{count} विषय जोड़ सकते हैं।
+      filled?: खाली नहीं हो सकता
+      idp_template:
+        content_required: निर्देशों के लिए सामग्री आवश्यक है।
+        tag_or_skill_required: कृपया 'चयनित' विकल्प चुनने पर या तो टैग या कौशल चुनें।
+      invalid_name: केवल अक्षर, अंक, रिक्त स्थान, डैश और डॉट ही मान्य वर्ण के रूप में अनुमत हैं।
+      invalid_value: अमान्य कथन '%{value}' पंक्ति संख्या %{row} पर
+      job_roles:
+        unique_within_job_group: उसी नाम की एक नौकरी की भूमिका पहले से ही मौजूद है।
+      json?: वैध JSON होना चाहिए।
+      key?: खाली नहीं हो सकता
+      match_regexp?: अमान्य मान
+      mettl_schedule_record_create:
+        uniq_schedule_name: अनुसूची का नाम अद्वितीय होना चाहिए।
+      missed?: खाली नहीं हो सकता
+      not_allowed?: बदलने की अनुमति नहीं है
+      not_in_the_list?: अमान्य मान दिया गया
+      not_uniq_variable: चर '%{value}' को पंक्ति संख्या %{row} पर पुनर्परिभाषित किया गया।
+      project_assessments:
+        should_be_greater_than_zero: परिणाम वैधता 0 दिनों से अधिक होनी चाहिए।
+      project_feature:
+        global_skills_not_enabled_on_client: इस परियोजना के लिए ग्लोबल स्किल्स सक्षम करने हेतु, कृपया इसे क्लाइंट सेटिंग्स में फीचर फ्लैग्स के अंतर्गत सक्रिय करें।
+      report_approval_settings:
+        report_exists: इस रिपोर्ट के लिए अनुमोदन सेटिंग पहले से ही मौजूद है।
+        validates_admins: प्रशासकों के पास अभियान तक पहुंच नहीं है।
+      report_families_reports:
+        report_exists: यह रिपोर्ट पहले से ही रिपोर्ट बंडल का हिस्सा है।
+      saml_service_provider:
+        invalid_url: 'अमान्य URL प्रारूप: %{url}'
+        must_be_array: एक ऐरे होना चाहिए
+        must_not_be_empty: खाली नहीं हो सकता
+      size?: आकार कम होना चाहिए %{size}
+      skill:
+        already_added: उसी नाम का कौशल पहले से ही जोड़ दिया गया है।
+      skill_alias:
+        unique_alias: अलीस अद्वितीय होना चाहिए।
+        unique_skill: कौशल अनूठा होना चाहिए।
+      skills_job_roles:
+        must_belong_to_same_project_or_be_global: कौशल और नौकरी की भूमिका एक ही परियोजना से होनी चाहिए या वैश्विक होनी चाहिए।
+        unique_mappings: एक ही कौशल और नौकरी की भूमिका के साथ एक मैपिंग पहले से ही मौजूद है।
+      uniq: यह Mettl मूल्यांकन पहले से ही सिस्टम में मौजूद है। इस मूल्यांकन की आईडी %{id} है।
+      uniq?: अद्वितीय होना चाहिए
+      uniq_simulation: यह सिमुलेशन मूल्यांकन पहले से ही सिस्टम में मौजूद है। इस मूल्यांकन की आईडी %{id} है।
+      uniq_skillvue: यह Skillvue मूल्यांकन पहले से ही सिस्टम में मौजूद है। इस मूल्यांकन की आईडी %{id} है।
+      uniq_yoodli: यह Yoodli मूल्यांकन पहले से ही सिस्टम में मौजूद है। इस मूल्यांकन की आईडी %{id} है।
+      update_workshop:
+        bookings_exist: प्रतिभागियों ने पहले ही इस समय स्लॉट को बुक कर लिया है, इसलिए अनुसूची में संशोधन नहीं किया जा सकता।
+        less_than_booked: कुल सीटें बुक की गई सीटों से अधिक होनी चाहिए।
+      user_availability_date:
+        overlaps_date: दूसरी उपलब्धता से ओवरलैप करता है %{range}
+        overlaps_time: ओवरलैप्स अंतराल %{interval}
+        start_date_should_be_less: शुरुआत की तारीख अंत की तारीख से कम होनी चाहिए।
+        start_time_should_be_less: शुरुआत का समय अंत के समय से कम होना चाहिए।
+      user_idp_plan:
+        idp_template_already_assigned_to_user: यह Idp टेम्पलेट पहले से ही इस उपयोगकर्ता को असाइन किया गया है और सक्रिय है।
+        idp_template_not_published: यह Idp टेम्पलेट अभी तक प्रकाशित नहीं हुआ है, कृपया उपयोगकर्ता को असाइन करने से पहले इसे प्रकाशित करें।
+      user_saved_filters:
+        limit_exceeded: आपके पास केवल %{limit} संग्रहीत फ़िल्टर हो सकते हैं, कृपया अधिक जोड़ने के लिए संग्रहीत फ़िल्टर हटा दें।
+        unique_name: इसी नाम का एक फ़िल्टर पहले से मौजूद है।
+      workshop_invited_subject_create:
+        already_exists: विषय पहले से ही निमंत्रण में मौजूद है।
+        part_of_other_workshop_invite: विषय को पहले ही '%{workshop_invite_name}' में आमंत्रित किया जा चुका है।
+      workshop_subject_create:
+        already_exists: विषय पहले से ही इस मूल्यांकन केंद्र में मौजूद है।
+        part_of_other_workshop: विषय पहले से ही '%{workshop_name}' का प्रतिभागी है।
+      workshop_subject_re_enroll:
+        no_seats_available: इस कार्यशाला के लिए कोई सीट उपलब्ध नहीं है।
+        scheduling_lead_time_passed: निर्धारित समय सीमा समाप्त हो चुकी है, आप विषय में पुनः नामांकन नहीं कर सकते।
+        workshop_subject_not_found: कार्यशाला का विषय नहीं मिला
+      workshops:
+        no_available_assessor_slots: मूल्यांकनकर्ता %{assessor} के लिए कोई उपलब्ध स्लॉट नहीं हैं।
+        no_available_manager_slots: मैनेजर %{manager} के लिए कोई उपलब्ध स्लॉट नहीं हैं।
+    users:
+      registrations:
+        new:
+          register: पंजीकरण करें
+          sign_in: साइन इन
+      sessions:
+        new:
+          register: पंजीकरण करें
+          sign_in: साइन इन

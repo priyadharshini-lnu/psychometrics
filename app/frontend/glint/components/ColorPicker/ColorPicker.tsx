@@ -153,11 +153,12 @@ export const ColorPicker: FC<props> = ({
             root: styles.popover,
           }}
         >
-          <ColorSwatchItem
-            color={pickedColorHex}
-            onClick={() => setPopoverOpen(true)}
-            className={swatchClassName}
-          />
+          <span>
+            <ColorSwatchItem
+              color={pickedColorHex}
+              className={swatchClassName}
+            />
+          </span>
         </Popover>
         {value && onClear && <Button type="link" size="small" danger onClick={onClear} icon={<DeleteOutlined />} /> }
       </Space>

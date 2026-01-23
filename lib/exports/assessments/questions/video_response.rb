@@ -16,8 +16,13 @@ module Exports
         end
 
         def self.video_response_answers(media_responses, duration)
+          selected_media = media_responses.find(&:user_selected?)
+          selected_video_url = selected_media&.asset&.url(expires_in: 1.week)
+          selected_transcription = selected_media&.transcription&.text
+
           [
-            user_selected_url(media_responses),
+            selected_video_url,
+            selected_transcription,
             all_takes_urls(media_responses),
             all_takes_encoded_media_ids(media_responses),
             duration

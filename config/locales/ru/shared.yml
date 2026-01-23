@@ -1,0 +1,95 @@
+---
+ru:
+  shared:
+    action: Действие
+    actions: Действия
+    active: Активный
+    add: Добавить
+    advanced: Продвинутый
+    agree_and_continue: Согласен и продолжить
+    archive: Архив
+    archived: Архив
+    audio: Аудио
+    authentication_failed: Аутентификация не удалась. Повторите попытку.
+    basic: Базовый
+    campaign_id: Идентификатор кампании
+    cancel: Отменить
+    change_password: Изменить пароль
+    clear_filters: Очистить фильтры
+    collaborative_learning: Совместное обучение
+    completed: Завершено
+    confirm: Подтвердить
+    continue: Продолжить
+    copy: Копировать
+    created_at: Создано в
+    created_date: Дата создания
+    decline: Спад
+    description: Описание
+    download: Скачать
+    edit: Редактировать
+    edited: Отредактировано
+    email: Электронная почта
+    export: Экспорт
+    failed: Неудача
+    first_name: Имя
+    formal_learning: Формальное обучение
+    generate: Генерировать
+    generate_transcription_confirm_content: Вы уверены, что хотите создать транскрипцию для этого ответа в СМИ?
+    generate_transcription_confirm_title: Создать транскрипцию
+    generating: Генерация
+    group_question_max_validation_error: Каждая группа может содержать не более {{max}} элементов.
+    group_question_min_validation_error: Каждая группа должна содержать не менее {{min}} элементов.
+    id: ID
+    idp_ai_assistant_disclaimer: Помощник Lighthouse AI IDP может допускать ошибки. Пожалуйста, будьте осторожны при использовании ответов.
+    internet_disconnected_message: Попытка восстановить соединение. Проверьте подключение к Интернету.
+    last_name: Фамилия
+    learning_on_the_job_label: Обучение на рабочем месте
+    login: Вход
+    media_question_transcriptions: Транскрипции вопросов СМИ
+    modified_by: Изменено
+    modified_date: Дата изменения
+    more_actions: Дополнительные действия
+    mte_logo_alt_text: Логотип Mercer Talent Enterprise
+    na_text: Неприменимо
+    name: Имя
+    new: Новый
+    not_requested: Еще не запрошено
+    ok: Хорошо
+    pending: В ожидании
+    processing: Обработка
+    question_id: Идентификатор вопроса
+    recording_consent_notice: Эта сессия будет записываться. Ваше участие в этой встрече означает ваше согласие на запись.
+    recording_consent_proceed_question: Согласны ли вы продолжить запись встречи?
+    recording_consent_title: Уведомление о согласии на запись
+    remove: Удалить
+    removed: Удалено
+    replace: Заменить
+    reset_password: Сбросить пароль
+    rte_paste_content_exceeds_char_limit: Текст превышает ограничение по количеству символов {{maxCharacterLimit}} и не может быть вставлен.
+    rte_paste_content_exceeds_word_limit: Текст превышает ограничение по количеству слов {{maxWordLimit}} и не может быть вставлен.
+    save: Сохранить
+    search: Поиск
+    send_email: Отправить электронное письмо
+    show_more: Показать больше
+    something_wrong: Что-то пошло не так. Обратитесь к администратору.
+    table:
+      entries:
+        selected:
+          one: Выбран 1 ряд
+          other: "{{count}} строк выбрано"
+        total:
+          one: 'Всего: 1'
+          other: 'Всего: {{count}}'
+          zero: 'Всего: 0'
+    terms_conditions_privacy: Заявление о конфиденциальности
+    tools: Инструменты
+    transcription: Транскрипция
+    transcription_already_requested: Транскрипция уже заказана или находится в процессе выполнения
+    transcription_not_enabled: Транскрипция не включена для медиа-ответа
+    transcriptions: Транскрипции
+    try_again: Попробовать еще раз
+    tte_terms_and_condition: Условия и конфиденциальность
+    type: Тип
+    update: Обновление
+    video: Видео
+    view: Просмотр

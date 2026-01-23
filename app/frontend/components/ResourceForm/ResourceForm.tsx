@@ -1,14 +1,17 @@
 import React, { useState, useEffect, ReactNode } from 'react'
-import { Form, App, Alert } from 'antd'
+import {
+  Form, App, Alert, GetProp, FormProps,
+} from 'antd'
 import _ from 'lodash'
-import { FieldData } from 'rc-field-form/lib/interface'
 import { scrollIntoView } from 'scroll-js'
-import { FormProps, FormInstance } from 'antd/lib/form'
+import { FormInstance } from 'antd/lib/form'
 import { formDataToResource, resourceToFormData } from '~/libs/jsonApi/helpers'
 import { Status } from './constants'
 import { PropsFromRedux } from './connect'
 import { Resource } from './interfaces'
 import FieldsUtil from './FieldsUtil'
+
+type FieldData = GetProp<FormProps, 'fields'>[number]
 
 type Props = PropsFromRedux & OwnProps
 

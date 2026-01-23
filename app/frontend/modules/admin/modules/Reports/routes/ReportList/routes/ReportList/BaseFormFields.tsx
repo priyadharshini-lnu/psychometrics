@@ -118,6 +118,7 @@ const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
     const assessmentType = getAssessmentType()
     if (assessmentType === 'hogan' && !externalReportId) return INTERNAL
     if (assessmentType === 'saville' && !externalReportId) return INTERNAL
+    if (assessmentType === 'mhs' && !externalReportId) return INTERNAL
     if (provider === INTERNAL && !isCustomUpload && !externalReportId) return INTERNAL
 
     return assessmentType

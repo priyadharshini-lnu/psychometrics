@@ -1,6 +1,7 @@
 ---
 id:
   admin:
+    accept_na_values: Terima nilai N/A
     add_admin: Tambahkan admin
     add_admin_role: Tambahkan Peran Admin
     add_campaign_admin: Tambahkan Admin Kampanye
@@ -34,14 +35,23 @@ id:
     ai_assistants_test_render: Uji Render
     ai_assistants_test_render_tooltip: Uji templat prompt Anda dengan data kampanye untuk memeriksa apa yang akan dikirim ke asisten AI.
     ai_assisted_idp_feature_disabled: Fitur IDP Berbantuan AI telah dinonaktifkan untuk proyek ini.
+    ai_notice: Bagian yang ditandai telah diterjemahkan oleh AI dan mungkin mengandung ketidakakuratan.
+    ai_translation: Terjemahan AI
+    all_corner_rounded: Semua sudut bulat
     api_keys: Kunci API
+    apply_to_existing_users: Terapkan perubahan ini kepada pengguna yang sudah ada dalam kampanye ini.
     assessments: Penilaian
+    assessments_not_mhs: Semua penilaian harus berupa jenis MHS.
     assessments_reports: Penilaian & Laporan
     assessor_dashboard: Dasbor Penilai
     assessor_workshops: Pusat Penilaian
     assessors: Asesor
+    assistant_toolbar_failed: Gagal menghasilkan output yang valid setelah beberapa kali percobaan.
+    assistant_toolbar_not_a_valid_operation: Operasi tidak dikenal %{operation}.
+    assistant_validation_failed: Gagal menghasilkan output yang valid setelah beberapa kali percobaan.
     audit_logs: Log Audit
     audit_reports: Laporan Audit
+    auto_placeholder: Otomatis
     availability: Ketersediaan
     available_languages: Laporan tersedia dalam bahasa
     back_to_main: Menu Utama
@@ -50,6 +60,19 @@ id:
     campaign_assessment_actions_disable_caching: Nonaktifkan Penilaian Caching
     campaign_assessment_actions_enable_caching: Mengaktifkan Penilaian Caching
     campaign_assessment_column_caching_enabled: Caching Penilaian Diaktifkan
+    campaign_assessment_mhs_confidence_interval: Interval Kepercayaan
+    campaign_assessment_mhs_confidence_interval_update_success: Interval kepercayaan telah diperbarui dengan sukses.
+    campaign_assessment_mhs_invalid_confidence_interval: Interval kepercayaan harus 0 atau 1
+    campaign_assessment_mhs_invalid_leadership_bar: leadership_bar harus bernilai 0 atau 1
+    campaign_assessment_mhs_invalid_norm_option: Opsi Norm harus berada antara 0 dan 3
+    campaign_assessment_mhs_leadership_bar: Bar Kepemimpinan
+    campaign_assessment_mhs_leadership_bar_update_success: Bar Kepemimpinan telah diperbarui dengan sukses
+    campaign_assessment_mhs_norm_option: Opsi Standar
+    campaign_assessment_mhs_norm_option_form_select: Pilih Opsi Standar
+    campaign_assessment_mhs_norm_option_update_success: Opsi Norm telah diperbarui dengan sukses
+    campaign_assessment_mhs_norm_region: Wilayah Norma
+    campaign_assessment_mhs_norm_region_form_select: Pilih Wilayah Standar
+    campaign_assessment_mhs_norm_region_update_success: Wilayah Norm telah diperbarui dengan sukses.
     campaign_assessment_modals_disable_caching_content: Apakah Anda yakin ingin menonaktifkan caching untuk penilaian ini?
     campaign_assessment_modals_disable_caching_successfully: Caching telah dinonaktifkan untuk penilaian ini.
     campaign_assessment_modals_disable_caching_title: Nonaktifkan Assessment Caching?
@@ -70,6 +93,7 @@ id:
     confirm_remove_admin: Apakah Anda yakin ingin menghapus pengguna admin dengan email '%{email}'?
     country: Negara
     create_client: Buat Klien
+    current_job_role: Posisi Pekerjaan Saat Ini
     dashboard: Dashboard
     dashboards: Dashboard
     data_reports: Laporan Data
@@ -84,19 +108,26 @@ id:
     done_tooltip: Tidak ada lagi evaluasi yang dapat diajukan untuk pengguna ini karena evaluasi pengguna ini ditandai sebagai dilakukan oleh %{marked_by}
     edit_campaign_admin: Edit Admin Kampanye
     edit_client_admin: Edit Admin Klien
+    edit_job_roles: Edit Peran Pekerjaan
+    edit_level: Tingkat Edit
     edit_permission_denied: Anda tidak memiliki izin untuk mengedit '%{name}' admin
     edit_project_admin: Mengedit Admin Proyek
     edit_threesixty_campaign_admin: Edit Admin Kampanye
     empty_csv_file: CSV tidak berisi data apa pun.
+    enable_enhance_with_ai_client_level: Silakan aktifkan fitur "Enhance with AI" di tingkat klien.
+    enable_transcription: Aktifkan Transkripsi
+    enhance_with_ai_requires_ai_assistants: Untuk menggunakan fitur Peningkatan dengan AI, fitur Asisten AI harus diaktifkan.
     evaluation_status: Status Evaluasi
     evaluation_status_not_done: Status evaluasi tidak 'Selesai' untuk satu atau lebih mata pelajaran yang dipilih. Pastikan semua pengguna yang dipilih telah menyelesaikan evaluasi atau menandai sebagai selesai.
     export_admin_roles_permissions: Ekspor Peran dan Izin Admin
+    feature_enhance_with_ai: Perkuat dengan AI
     feature_flags: Bendera Fitur
     fill_empty_score_msg: Isi semua skor akhir sebelum menyimpan.
-    final_score_empty_msg: Skor akhir tidak bisa kosong.
+    final_score_empty_err_msg: Skor akhir dari %{factor_name} tidak boleh kosong.
     idp_plan_reset_success: Paket telah berhasil diatur ulang
     idp_templates: Template IDP
     import_ai_artifacts: Impor Artefak AI
+    import_csv_assessment_group_error: 'Baris %{index}: Pengguna dengan alamat email %{email} sudah diundang ke ''%{workshopInviteName}'''
     import_csv_error: 'Baris %{index}: pengguna dengan email %{email} tidak ada dalam kampanye ini'
     import_csv_parsing_error: 'Kesalahan penguraian CSV: %{message}'
     import_description: Mengimpor pengguna dari file CSV. Setiap baris harus berisi alamat email.
@@ -121,11 +152,27 @@ id:
     invalid_csv_header: File CSV berisi header yang tidak valid.
     job_roles: Peran Pekerjaan
     learning_from_others: Pembelajaran Kolaboratif [20]
+    level: Tingkat
+    level_apply: Ajukan
+    level_guide: Panduan
+    level_shape: Bentuk
+    level_validation_message: 'harus salah satu dari: %{values}'
     libraries: Perpustakaan Media
     library_invalid_type: Item Perpustakaan Tidak Valid
     licenses: Lisensi
     manager_approval_required: Laporan untuk %{user} memerlukan persetujuan manajer sebelum diunduh
+    max_value: Nilai maksimum
     messages: Pesan
+    mhs: MHS
+    mhs_assessment: Penilaian MHS
+    mhs_assessment_name: Nama Penilaian MHS
+    mhs_data_gatherer_id: ID Pengumpul Data Mhs
+    mhs_data_gathering_id: Pengumpulan Data Mhs ID
+    mhs_external_assessment_id: ID Penilaian Mhs
+    mhs_report_id: Laporan MHS ID
+    mhs_session_id: ID Sesi Mhs
+    min_value: Nilai minimum
+    missing_min_max_values: Nilai minimum dan maksimum diharuskan.
     name_required: Nama diperlukan
     no_file_selected: Tidak ada file yang dipilih
     no_notifications: Tidak ada pemberitahuan
@@ -140,6 +187,7 @@ id:
     number: Nomor
     occupations: Pekerjaan
     on_the_job: Di Tempat Kerja [70]
+    only_editable_on_create: Opsi ini hanya dapat diedit saat sedang dibuat.
     options: Pilihan
     participants: Peserta
     permissions:
@@ -564,6 +612,7 @@ id:
         view: Melihat
         view_recordings: Lihat Rekaman
     permissions_360_campaigns: Izin khusus untuk kampanye 360
+    piped_text: Teks yang disalurkan
     privacy: Privasi
     proficiency_level: Kunci API
     proficiency_levels: Tingkat Kemahiran
@@ -645,11 +694,18 @@ id:
     saml_settings: Pengaturan SAML
     scheduling: Penjadwalan
     scoring: Penilaian
+    scoring_value_info: Skor harus berada di antara %{min} dan %{max}.
+    scoring_value_out_of_range_err_msg: Poin untuk "%{factor_name}" harus berada di antara %{min} dan %{max}.
     search_admins: Cari Admin
+    search_job_role: Cari peran pekerjaan
     select_admin_role: Pilih peran admin
+    select_language_to_translate: Silakan pilih bahasa yang ingin diterjemahkan.
+    select_level: Pilih tingkat
     send_email: Kirim email
     settings: Pengaturan
+    show_original: Tampilkan Asli
     show_submenu: Tampilkan Sub Menu
+    show_translated: Tampilkan Terjemahan
     siem: SIEM
     skill_aliases: Alias Keterampilan
     skills: Keterampilan
@@ -661,12 +717,30 @@ id:
     status_details: Detail Status
     structured_learning: Pembelajaran Formal [10]
     subdomain: Subdomain
+    subject_part_of_other_invite: Subjek dengan alamat email %{user_email} sudah diundang ke '%{workshop_invite_name}'
+    target_job_role: Posisi Pekerjaan yang Dituju
+    toolbar_ai_insight: Wawasan Kecerdasan Buatan
+    toolbar_ai_suggestion: Saran AI
+    toolbar_result_generating: Sedang diproses...
+    toolbar_text_copied: Disalin ke clipboard
+    toolbar_text_replaced: Teks telah diganti!
+    toolbar_what_changed_and_why: Apa yang Berubah & Mengapa
+    translate: Terjemahkan
+    translate_to: Terjemahkan ke
+    translate_with_ai: Terjemahkan dengan AI
+    translated_from: Diterjemahkan dari
+    translated_to: 'Diterjemahkan ke:'
+    translated_with_ai_notice: Diterjemahkan oleh AI
+    translation_assistant_not_configured: Asisten Terjemahan belum dikonfigurasi
     upload_success: Berhasil diunggah
     user_report_events: Peristiwa Laporan Pengguna
     users: Pengguna
     view_licenses: Lihat Lisensi
     waiting: Menunggu
     workshops: Lokakarya
+    writing_assistant_not_configured: Asisten Penulisan belum dikonfigurasi
+    x_axis_interval_label: Interval Sumbu X
+    y_axis_interval_label: Interval Sumbu Y
     year: Negara
     yoodli_activity_id: ID Aktivitas Yoodli
     yoodli_email_id: ID Email Kandidat Yoodli

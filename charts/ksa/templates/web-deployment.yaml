@@ -16,11 +16,10 @@ spec:
       release: "{{ .Release.Name }}"
       role: web
   minReadySeconds: 10
+  {{- with .Values.webDeploymentStrategy }}
   strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 50%
-      maxSurge: 50%
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
   template:
     metadata:
       creationTimestamp: null

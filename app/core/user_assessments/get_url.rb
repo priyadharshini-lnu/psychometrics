@@ -21,6 +21,7 @@ module UserAssessments
       url = pass_simulation_user_assessment_path(user_assessment.id) if assessment.simulation?
       url = pass_skillvue_user_assessment_path(user_assessment.id) if assessment.skillvue?
       url = pass_yoodli_user_assessment_path(user_assessment.id) if assessment.yoodli?
+      url = pass_mhs_user_assessment_path(user_assessment.id) if assessment.mhs?
 
       url ||= pass_user_assessment_path(user_assessment)
 

@@ -1,9 +1,8 @@
 import React from 'react'
 import {
-  render, within, fireEvent, screen
+  render, within, fireEvent, screen, waitFor
 } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { act } from 'react-dom/test-utils'
 
 import { Panel } from '~/glint'
 
@@ -24,8 +23,7 @@ test('it renders correctly', async () => {
   expect(additionalDetailsElement?.textContent).toContain(props.additionalDetails[0].label)
   expect(additionalDetailsElement?.textContent).toContain(props.additionalDetails[0].value)
 
-  const contentElement = getContentElement(container)
-  expect(contentElement?.textContent).toContain(props.children)
+  expect(container.textContent).toContain(props.children)
 })
 
 test("adds nonCollapsiblePanel class if Panel is not collapsible", async () => {
@@ -58,10 +56,6 @@ const getHeaderElement = (container: HTMLElement): HTMLElement | null => {
 
 const getAdditionalElement = (container: HTMLElement): HTMLElement | null => {
   return container.querySelector('.ant-collapse-extra')
-}
-
-const getContentElement = (container: HTMLElement): HTMLElement | null => {
-  return container.querySelector('.ant-collapse-content')
 }
 
 

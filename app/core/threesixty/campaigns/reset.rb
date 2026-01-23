@@ -23,8 +23,8 @@ module Threesixty
         threesixty_campaign_user_ids = threesixty_campaign.subjects.pluck(:user_id)
         ASSOCIATIONS_TO_REMOVE.each { |association| threesixty_campaign.public_send(association).find_each(&:destroy!) }
         if remove_license_usage
-          ::Threesixty::LicenseUsages::Deactivate.call!(
-            threesixty_campaign: threesixty_campaign,
+          LicenseManager::Deactivator.call!(
+            campaign: threesixty_campaign,
             updater_id: updater_id,
             user_ids_for_deactivation: threesixty_campaign_user_ids
           )

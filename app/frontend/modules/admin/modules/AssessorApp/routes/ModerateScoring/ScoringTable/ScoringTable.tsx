@@ -3,15 +3,19 @@ import React, {
 } from 'react'
 import {
   Table, InputNumber, Skeleton, Flex, Button, Typography, Modal, App, Popover,
+  Switch,
+  Tooltip,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import _ from 'lodash'
 import type { ColumnsType } from 'antd/es/table'
+import { InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { CAMPAIGN_FACTORS_AND_VALUE_PAGE_SIZE } from '~/modules/admin/constants/campaignFactors'
 import {
   Factor, FactorTR, Score, ScoreTR, CampaignFactorValue, CampaignFactorValueTR, Weightage,
 } from '~/modules/admin/modules/campaigns/core/combinedScoring'
 import { median } from '~/utils/array'
+import { EMPTY_SCORE_INDICATOR } from '~/modules/admin/constants/string'
 import styles from './ScoringTable.less'
 import { useResources } from '~/hooks/useResources'
 import { Weightages } from './Weightages'
@@ -31,6 +35,27 @@ interface ScoringTableProps {
 type DataType = {
   [key: string]: string | number | boolean | null;
 }
+
+const getScoreStatus = (
+  value: number | string | null | undefined,
+  factor: Factor,
+): '' | 'error' => {
+  if (value === null || value === undefined || value === '') {
+    return ''
+  }
+
+  const numericValue = typeof value === 'number' ? value : Number(value)
+
+  const { minValue, maxValue } = factor
+
+  if ((minValue !== null && numericValue < minValue) || (maxValue !== null && numericValue > maxValue)) {
+    return 'error'
+  }
+
+  return ''
+}
+
+
 const sortEvaluatorsByEmail = (
   evaluators: Score[],
 ) => evaluators.slice().sort((a, b) => a.evaluator.email.localeCompare(b.evaluator.email))
@@ -117,6 +142,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
 
   const [disabled, setDisabled] = useState<boolean>(true)
   const [disabledSave, setDisabledSave] = useState<boolean>(false)
+  const [enabledNAFactors, setEnabledNAFactors] = useState<Record<string, boolean>>({})
 
   useMessageBus('lead_assessor_assessment:status_change', (status) => {
     if (status === 'completed') {
@@ -141,7 +167,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
     factorWeightagesData,
   ),
   [columnsData, evaluatorsData, factorWeightagesData])
-  const [finalScores, setFinalScores] = useState<Record<string, number| string>>(averageScores)
+  const [finalScores, setFinalScores] = useState<Record<string, number| string | null>>(averageScores)
   const factorIdToIdMap = useMemo(() => columnsData.reduce((acc, factor) => {
     acc[`factorId${factor.factorId}`] = factor.id
     acc[`CampaignFactorId${factor.id}`] = factor.factorId
@@ -167,20 +193,27 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
 
   const initializeFinalScores = useCallback(() => {
     const newFinalScores = {}
+    const newFinalNAScores = {}
     if (finalScoreData && finalScoreData.length > 0 && factorIdToIdMap) {
       finalScoreData.forEach((scoreData) => {
         const id = scoreData.campaignFactorId
         const factorId = factorIdToIdMap[`CampaignFactorId${id}`]
         if (factorId) {
-          newFinalScores[factorId] = scoreData.numericValue ?? scoreData.stringValue ?? '-'
+          newFinalScores[factorId] = scoreData.numericValue ?? scoreData.stringValue
+          newFinalNAScores[factorId] = scoreData.numericValue === null && scoreData.stringValue === null
         }
       })
     } else if (weightedAverageScores && Object.keys(weightedAverageScores).length > 0) {
-      Object.assign(newFinalScores, weightedAverageScores)
+      Object.keys(weightedAverageScores).forEach((key) => {
+        newFinalScores[key] = weightedAverageScores[key] === EMPTY_SCORE_INDICATOR ? null : weightedAverageScores[key]
+      })
     } else {
-      Object.assign(newFinalScores, averageScores)
+      Object.keys(averageScores).forEach((key) => {
+        newFinalScores[key] = averageScores[key] === EMPTY_SCORE_INDICATOR ? null : averageScores[key]
+      })
     }
     setFinalScores(newFinalScores)
+    setEnabledNAFactors(newFinalNAScores)
   }, [finalScoreData, weightedAverageScores, averageScores, factorIdToIdMap])
 
   useEffect(() => {
@@ -188,16 +221,56 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
   }, [initializeFinalScores])
 
   const handleFinalScoreChange = (factorId: string, value: number | string | null) => {
-    setFinalScores({ ...finalScores, [factorId]: value ?? '-' })
+    setFinalScores({ ...finalScores, [factorId]: value })
   }
 
   const handleSave = () => {
     if (readOnly) { return }
 
+    const factorOutOfRange = Object.keys(finalScores).find((key) => {
+      const factor = columnsData.find(f => f.factorId === key)
+
+      if (!factor) return false
+
+      const value = finalScores[key]
+      const { minValue, maxValue } = factor
+
+      if (enabledNAFactors[key] && value == null) {
+        return false
+      }
+
+      if (minValue == null && maxValue == null && value == null) {
+        message.error(I18n.t('admin.final_score_empty_err_msg', {
+          factor_name: factor.name,
+        }))
+        return true
+      }
+
+      const numericValue = Number(value)
+
+      if ((minValue !== null && numericValue < minValue)
+         || (maxValue !== null && numericValue > maxValue)
+         || (value == null && !enabledNAFactors[key]
+         )) {
+        message.error(I18n.t('admin.scoring_value_out_of_range_err_msg', {
+          factor_name: factor.name,
+          min: factor.minValue,
+          max: factor.maxValue,
+        }))
+        return true
+      }
+
+      return false
+    })
+
+    if (factorOutOfRange) {
+      return
+    }
+
     setDisabledSave(true)
     const scores = Object.keys(finalScores).map(key => ({
       campaign_factor_id: factorIdToIdMap[`factorId${key}`],
-      score: Number(finalScores[key]),
+      score: Number.isNaN((finalScores[key])) ? Number(finalScores[key]) : finalScores[key],
     }))
     return updateFinalScore(
       {
@@ -285,16 +358,55 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
     scores: columnsData.reduce((acc, factor) => ({
       ...acc,
       [factor.factorId]: (
-        <InputNumber
-          disabled={readOnly}
-          min={0}
-          value={finalScores[factor.factorId]}
-          precision={2}
-          onChange={value => handleFinalScoreChange(factor.factorId, value)}
-        />
+        <>
+          {enabledNAFactors[factor.factorId]
+            ? (
+              <Typography.Text className="mr16">
+                {I18n.t('shared.na_text')}
+              </Typography.Text>
+            )
+            : (
+              <>
+                <InputNumber
+                  disabled={readOnly}
+                  status={getScoreStatus(finalScores[factor.factorId], factor)}
+                  value={finalScores[factor.factorId]}
+                  precision={2}
+                  onChange={value => handleFinalScoreChange(factor.factorId, value)}
+                />
+                {
+                 !readOnly && (factor.minValue !== null && factor.maxValue !== null) && (
+                   <Tooltip
+                     title={I18n.t('admin.scoring_value_info', {
+                       min: factor.minValue,
+                       max: factor.maxValue,
+                     })}
+                   >
+                     <Button style={{ width: '20px' }} icon={<InfoCircleOutlined />} type="text" />
+                   </Tooltip>
+                 )}
+              </>
+            )}
+          {columnsData.find(f => f.factorId === factor.factorId)?.isNaAllowed
+           && (
+             <Switch
+               className="ml"
+               onChange={(checked) => {
+                 setEnabledNAFactors(prev => ({ ...prev, [factor.factorId]: checked }))
+                 if (checked) {
+                   handleFinalScoreChange(factor.factorId, null)
+                 }
+               }}
+               checked={!!enabledNAFactors[factor.factorId]}
+               checkedChildren={I18n.t('shared.na_text')}
+               unCheckedChildren={I18n.t('shared.na_text')}
+               disabled={readOnly}
+             />
+           )}
+        </>
       ),
     }), {}),
-  }), [finalScores, columnsData, readOnly])
+  }), [finalScores, columnsData, readOnly, enabledNAFactors])
 
   const rowClassName = (record, index): string => {
     if (record.key === 'final') {
@@ -304,9 +416,9 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
     } if (record.key === 'scoreRange') {
       return styles.scoreRange
     }
-    const currentEmail = record.key.split('-')[1]
+    const currentEmail = record.key.split(EMPTY_SCORE_INDICATOR)[1]
     const nextRecord = dataWithAverages[index + 1]
-    const nextEmail = nextRecord ? nextRecord.key.split('-')[1] : null
+    const nextEmail = nextRecord ? nextRecord.key.split(EMPTY_SCORE_INDICATOR)[1] : null
 
     if (currentEmail === nextEmail) {
       return styles.noBottomBorder
@@ -339,7 +451,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
       dataIndex: ['scores', factor.factorId],
       key: factor.factorId,
       render: (score) => {
-        if (score === undefined) return '-'
+        if (score === undefined) return EMPTY_SCORE_INDICATOR
         if (typeof score !== 'number') return score
         const medianDistance = Math.abs((medians[factor.name] / score) - 1)
         if (medianDistance <= 0.25) {

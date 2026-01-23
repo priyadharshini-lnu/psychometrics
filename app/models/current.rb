@@ -6,4 +6,8 @@ class Current < ActiveSupport::CurrentAttributes
   attribute :project
   attribute :saml_service_provider
   attribute :request_id
+  attribute :ip_address
+  attribute :request_url
+  attribute :user_agent
+  attribute :application_component
 end

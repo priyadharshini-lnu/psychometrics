@@ -9,6 +9,7 @@ ja:
     agree_and_continue: 同意して続けてください
     archive: アーカイブ
     archived: アーカイブ
+    audio: オーディオ
     authentication_failed: 認証に失敗しました。もう一度お試しください。
     basic: 基本的な
     campaign_id: キャンペーンID
@@ -16,18 +17,26 @@ ja:
     change_password: パスワードの変更
     clear_filters: 絞り込みをクリア
     collaborative_learning: 協働学習
+    completed: 完了
     confirm: 確認
     continue: 続ける
+    copy: コピー
     created_at: 作成日時：
     created_date: 作成日
     decline: 衰退
     description: 形容
+    download: ダウンロード
     edit: 編集
     edited: 新規
     email: Eメール
     export: 輸出
+    failed: 失敗した
     first_name: 名
     formal_learning: 正式な学習
+    generate: 生成
+    generate_transcription_confirm_content: このメディア対応の文字起こしを生成してもよろしいですか？
+    generate_transcription_confirm_title: 文字起こしを生成する
+    generating: 生成
     group_question_max_validation_error: 各グループは最大で{{max}}アイテムを含めることができます。
     group_question_min_validation_error: 各グループには少なくとも{{min}}のアイテムが含まれている必要があります。
     id: ID
@@ -36,18 +45,25 @@ ja:
     last_name: 姓
     learning_on_the_job_label: 現場での学び
     login: ログイン
+    media_question_transcriptions: メディア質問の文字起こし
     modified_by: 変更者
     modified_date: 変更日
     more_actions: より多くの行動
     mte_logo_alt_text: マーサー・タレント・エンタープライズのロゴ
+    na_text: 該当なし
     name: 名称
     new: 新規
+    not_requested: まだリクエストされていません
     ok: OK
+    pending: 保留中
+    processing: 処理
+    question_id: 質問ID
     recording_consent_notice: この会議セッションは録画されます。この会議への参加は、記録されることへの同意を意味します。
     recording_consent_proceed_question: 録画された面談を進めることに同意しますか?
     recording_consent_title: 同意書の記録通知
     remove: 削除
     removed: 削除
+    replace: 置換
     reset_password: パスワードをリセット
     rte_paste_content_exceeds_char_limit: テキストは{{maxCharacterLimit}}の文字数制限を超えており、貼り付けができません。
     rte_paste_content_exceeds_word_limit: テキストは{{maxWordLimit}}のワード制限を超えており、貼り付けができません。
@@ -67,7 +83,13 @@ ja:
           zero: 合計：0
     terms_conditions_privacy: プライバシーに関する声明
     tools: ツール
+    transcription: 文字起こし
+    transcription_already_requested: 文字起こしは既に依頼済み、または進行中です
+    transcription_not_enabled: メディア応答に対して文字起こし機能は有効化されていません
     transcriptions: 編曲
+    try_again: もう一度試す
     tte_terms_and_condition: 利用規約とプライバシー
     type: タイプ
     update: 更新
+    video: 動画
+    view: 表示

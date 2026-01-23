@@ -49,11 +49,13 @@ module Threesixty
         @campaign
       ).dig(subject.user_id, :completed) || {}
 
-      Threesixty::Subjects::IsReportAvailable.call!(
+      result = Threesixty::Subjects::IsReportAvailable.call!(
         subject,
         options,
         subject_evaluator_counters
       )
+
+      result[:available]
     end
 
     def subject_report_available_for_manager?(subject)

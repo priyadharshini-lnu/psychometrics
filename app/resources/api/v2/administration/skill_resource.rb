@@ -10,6 +10,15 @@ class Api::V2::Administration::SkillResource < Api::V2::Administration::BaseReso
 
   add_tag_filter
 
+  def records_for_development_actions(_options = {})
+    plan_id = context&.dig(:filter, 'available_skills_by_plan_id')
+
+    user_idp_plan = UserIdpPlan.find_by(id: plan_id)
+    return @model.development_actions unless user_idp_plan
+
+    ::Idp::DevelopmentAction::AvailableActionsQuery.new(@model, user_idp_plan).query
+  end
+
   def created_at
     @model.decorate.created_at
   end

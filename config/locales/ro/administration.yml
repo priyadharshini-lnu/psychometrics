@@ -860,7 +860,6 @@ ro:
         campaign: Campanie
         copy_factors: Factori de copiere
         inactive_notice: Starea campaniei se va schimba automat la Active la data de început selectată
-        instruction: Această opțiune poate fi activată doar în timpul creării campaniei.
         name: Nume
         practice_campaign: Campanie de probă
         status: Stare
@@ -1007,6 +1006,8 @@ ro:
         ai_assistants_disabled_by_client: AI Assistants este dezactivat de client
         ai_assisted_idp: IDP asistat de AI
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP necesită activarea funcției AI Assistants
+        ai_translation: Traduceri AI
+        ai_translation_disabled_by_client: Traducerile AI sunt dezactivate de client
         global_skills: Competențe globale
         global_skills_disabled_by_client: Global Skills este dezactivat de client
         idp: IDP
@@ -2888,6 +2889,11 @@ ro:
           active:
             label: Activă
             name: activ
+          assessments:
+            help_text: Această selecție afectează numai evenimentul „Răspuns brut la evaluare”.
+            label: Evaluări
+            placeholder: Selectați evaluările
+            required: Trebuie selectată cel puțin o evaluare pentru evenimentul „Răspuns brut la evaluare”.
           auth_type:
             api_key:
               label: Cheie API
@@ -2944,6 +2950,7 @@ ro:
             list:
               assessment_assigned: Evaluare atribuită
               assessment_completed: Evaluare finalizată
+              assessment_raw_response: Evaluarea răspunsurilor brute
               assessment_started: Evaluarea a început
               assessment_timeout: Expirare evaluare
               campaign_results_available: Rezultatele campaniei disponibile
@@ -3097,6 +3104,7 @@ ro:
         mask_identity_for_hogan: Date despre măști pentru Hogan
         mask_identity_for_iiht: Date despre mască pentru IIHT
         mask_identity_for_mettl: Date despre măști pentru METTL
+        mask_identity_for_mhs: Date mască pentru MHS
         mask_identity_for_pearson: Date despre măști pentru Pearson
         mask_identity_for_saville: Date despre măști pentru Saville
         mask_identity_for_skillvue: Date despre mască pentru Skillvue
@@ -3654,7 +3662,7 @@ ro:
         preworks: Prework
         re_enroll: Reînscriere
         re_enroll_confirm_message: Sunteți sigur că doriți să înscrieți din nou subiectul cu adresa de e-mail '%{subject_email}'?
-        re_enroll_success: Subiect reînscris cu e-mail <x>subject_email</x>.
+        re_enroll_success: Subiect reînscris cu e-mail %{subject_email}.
         schedule: Orar
         unschedule: Deprogramare
       tabs:

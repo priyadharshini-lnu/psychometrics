@@ -84,6 +84,8 @@ module Administration
 
     def spoof
       audit! :sign_in_as, current_user, payload: { sign_in_as: resource.user.email }
+      role_name = resource.role.to_s.humanize.titleize
+      siem_log_impersonation_event(resource.user, role_name)
       sign_in(resource.user)
       redirect_url ||= admin_path
       flash.now[:success] = t('administration.memberships.spoof.successfully', name: resource.decorate.display_name)

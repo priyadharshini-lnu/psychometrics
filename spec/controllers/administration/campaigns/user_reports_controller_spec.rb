@@ -751,7 +751,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
         mettl_schedule_name mettl_schedule_record_id dimension_id
         simulation_content_variations hogan_participant_id users_result_id prework
         pearson_user_assessment_details saville_user_assessment_details simulation_user_assessment_details
-        skillvue_user_assessment_details yoodli_user_assessment_details
+        skillvue_user_assessment_details yoodli_user_assessment_details mhs_user_assessment_details
       ]
     )
     expect(assessment_response).to include({

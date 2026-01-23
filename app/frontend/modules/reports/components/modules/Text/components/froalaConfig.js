@@ -2,6 +2,7 @@ import CodeMirror from 'codemirror'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/xml/xml'
 import events from '~/components/Editor/events'
+import { FROALA } from '~/constants/froala.ts'
 
 export default {
   iconsTemplate: 'font_awesome',
@@ -47,7 +48,7 @@ export default {
   // saveParams: { type },
   width: '100%',
   height: '100%',
-  key: 'DUA2yE2C2F1A6A3A2A3qYFd1UQRFQIVb1MSMc2IWPNe1IFg1yD4C3D2C1C4C1H1H4B1D2==',
+  key: FROALA,
   attribution: false,
   autofocus: true,
   videoInsertButtons: ['videoByURL', '|', 'videoEmbed'],

@@ -90,7 +90,7 @@ const Header = (props) => {
       },
     ],
   } : {
-    onClick: handleCreateBlock,
+    onClick: () => handleCreateBlock(),
   }
 
   const exportTranslations = () => {

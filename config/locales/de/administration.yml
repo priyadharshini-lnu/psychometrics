@@ -860,7 +860,6 @@ de:
         campaign: Kampagne
         copy_factors: Faktoren kopieren
         inactive_notice: Der Kampagnenstatus wechselt automatisch auf aktiv am ausgewählten Startdatum
-        instruction: Dies kann nur beim Erstellen von Kampagnen aktiviert werden
         name: Name
         practice_campaign: Praxis-Kampagne
         status: Status
@@ -1007,6 +1006,8 @@ de:
         ai_assistants_disabled_by_client: AI Assistants ist vom Client deaktiviert
         ai_assisted_idp: AI-unterstützte IDP
         ai_assisted_idp_requires_ai_assistants: Für AI Assisted IDP muss die Funktion AI Assistants aktiviert sein
+        ai_translation: KI-Übersetzungen
+        ai_translation_disabled_by_client: KI-Übersetzungen sind vom Kunden deaktiviert.
         global_skills: Globale Fertigkeiten
         global_skills_disabled_by_client: Global Skills ist vom Client deaktiviert
         idp: IDP
@@ -2888,6 +2889,11 @@ de:
           active:
             label: Aktiv
             name: aktiv
+          assessments:
+            help_text: Diese Auswahl wirkt sich nur auf das Ereignis „Assessment Raw Response“ (Bewertung der Rohantworten) aus.
+            label: Beurteilungen
+            placeholder: Bewertungen auswählen
+            required: Für das Ereignis „Bewertung – Rohantwort“ muss mindestens eine Bewertung ausgewählt werden.
           auth_type:
             api_key:
               label: API-Schlüssel
@@ -2944,6 +2950,7 @@ de:
             list:
               assessment_assigned: Zugewiesene Bewertung
               assessment_completed: Bewertung abgeschlossen
+              assessment_raw_response: Bewertung der Rohantworten
               assessment_started: Begonnene Bewertung
               assessment_timeout: Bewertung Timeout
               campaign_results_available: Kampagnenergebnisse verfügbar
@@ -3097,6 +3104,7 @@ de:
         mask_identity_for_hogan: Maskendaten für Hogan
         mask_identity_for_iiht: Maskendaten für IIHT
         mask_identity_for_mettl: Maskendaten für METTL
+        mask_identity_for_mhs: Masken-Daten für MHS
         mask_identity_for_pearson: Maskendaten für Pearson
         mask_identity_for_saville: Maskendaten für Saville
         mask_identity_for_skillvue: Maskendaten für Skillvue
@@ -3657,7 +3665,7 @@ de:
         preworks: Vorarbeit
         re_enroll: Neuanmeldung
         re_enroll_confirm_message: Sind Sie sicher, dass Sie den Betreff mit der E-Mail '%{subject_email}' neu eintragen wollen?
-        re_enroll_success: Neu eingeschriebener Betreff mit E-Mail <x>subject_email</x>.
+        re_enroll_success: Neu eingeschriebener Betreff mit E-Mail %{subject_email}.
         schedule: Zeitplan
         unschedule: Abmeldung
       tabs:

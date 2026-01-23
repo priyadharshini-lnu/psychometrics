@@ -33,6 +33,7 @@ class Devise::TwoFactorAuthenticationController < DeviseController
   end
 
   def after_two_factor_success_for(resource)
+    siem_log_mfa_success(resource)
     set_remember_two_factor_cookie(resource)
 
     warden.session(resource_name)[TwoFactorAuthentication::NEED_AUTHENTICATION] = false
@@ -67,6 +68,7 @@ class Devise::TwoFactorAuthenticationController < DeviseController
   end
 
   def after_two_factor_fail_for(resource)
+    siem_log_mfa_failure(resource)
     resource.second_factor_attempts_count += 1
     resource.save
 

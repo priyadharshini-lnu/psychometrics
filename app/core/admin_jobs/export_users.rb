@@ -30,7 +30,8 @@ module AdminJobs
         user.decorate.created_at,
         user.manager_email,
         campaign_user.current_job_role&.name,
-        campaign_user.target_job_role&.name
+        campaign_user.target_job_role&.name,
+        campaign_user.level
       ]
 
       profile_fields.each do |field|

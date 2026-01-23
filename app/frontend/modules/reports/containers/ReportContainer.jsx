@@ -56,7 +56,7 @@ class ReportContainer extends Component {
 
   render () {
     const {
-      userReport, userReport: { moduleOverrides }, dashboard, allowEdit, allowApprove,
+      userReport, userReport: { moduleOverrides }, dashboard, allowEdit, allowApprove, aiTranslations,
     } = this.props
 
     return (
@@ -71,6 +71,7 @@ class ReportContainer extends Component {
               allowApprove={allowApprove}
               moduleOverrides={moduleOverrides}
               dashboard={dashboard}
+              aiTranslations={aiTranslations}
             />
           </div>
         </ErrorBoundary>

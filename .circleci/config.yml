@@ -12,7 +12,7 @@ executors:
   tte-executor-full:
     docker:
       - &docker_image
-        image: talententerprise/tte:ruby-3.4.6-node-18.16.1-lua-5.4
+        image: talententerprise/tte:ruby-3.4.6-node-22.21.1-lua-5.4
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
@@ -163,7 +163,7 @@ commands:
             - vite-compile-cache-{{ .Environment.CACHE_VERSION }}-<< parameters.node-env >>-{{ arch }}-{{ .Branch }}-{{ checksum "webpack-files.txt" }}
       - restore_cache:
           keys:
-            - rspec-cacheflag-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum "rspec-files.txt" }}
+            - rspec-cacheflag---{{ .Environment.CIRCLE_NODE_INDEX }}---{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum "rspec-files.txt" }}
 
   abort_on_assets_files:
     steps:
@@ -464,7 +464,7 @@ jobs:
           name: Save RSpec cacheflag
           command: mkdir -p ~/cachedflags/ && touch ~/cachedflags/job.rspec.flag
       - save_cache:
-          key: rspec-cacheflag-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum "rspec-files.txt" }}
+          key: rspec-cacheflag---{{ .Environment.CIRCLE_NODE_INDEX }}---{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum "rspec-files.txt" }}
           paths:
             - ~/cachedflags/job.rspec.flag
 

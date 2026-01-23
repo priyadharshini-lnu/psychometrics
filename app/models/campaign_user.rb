@@ -33,6 +33,7 @@ class CampaignUser < ApplicationRecord
   has_many :communication_emails
 
   validates :external_id, uniqueness: { scope: :campaign_id }, allow_nil: true
+  validate :ensure_job_roles_are_different
 
   scope :in_progress, -> { where(completion_status: :in_progress) }
   scope :completed, -> { where(completion_status: :completed) }
@@ -56,6 +57,8 @@ class CampaignUser < ApplicationRecord
 
   delegate :proctoring_enabled?, :proctoring_enabled_on_workshop_activity?, to: :campaign
   delegate :pending_assessments, to: :user_assessments
+
+  enum :level, { apply: 0, guide: 1, shape: 2 }
 
   def campaign_factor_values
     CampaignFactorValue.where(campaign_id: campaign_id, user_id: user_id)
@@ -239,5 +242,15 @@ class CampaignUser < ApplicationRecord
         campaign_ai_artifacts: { campaign_id: campaign_id },
         user_id: user_id
       ).count == campaign_ai_artifacts.count
+  end
+
+  private
+
+  def ensure_job_roles_are_different
+    return if current_job_role_id.blank? || target_job_role_id.blank?
+
+    if current_job_role_id == target_job_role_id
+      errors.add(:base, I18n.t('admin.campaign_user_job_roles_cannot_be_same'))
+    end
   end
 end

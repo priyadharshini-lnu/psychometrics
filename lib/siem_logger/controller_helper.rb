@@ -43,6 +43,58 @@ module SiemLogger
       })
     end
 
+    def siem_log_impersonation_event(target_user, current_user, role)
+      admin_actor = SiemLogger.user_identifier(current_user.email, current_user.id)
+      target_actor = SiemLogger.user_identifier(target_user.email, target_user.id)
+
+      context = "Admin logged in as #{role}"
+      message = "Admin #{admin_actor} Logged in as #{role} #{target_actor}"
+      message += " ##{target_user.project_id}" if target_user.project_id.present?
+
+      siem_log_security_event!('Impersonation', {
+        actor_name: admin_actor,
+        context: context,
+        msg: message,
+        acting_as_user: target_actor,
+        session_id: target_user.id
+      })
+    end
+
+    def siem_log_token_issuance(user, channel, context:, identity_provider: nil)
+      actor = user ? SiemLogger.user_identifier(user.email, user.id) : nil
+
+      siem_log_security_event!('TokenIssuance', {
+        actor_name: actor,
+        context: context,
+        msg: "#{channel} token issued#{" for #{actor}" if actor}",
+        authentication_channel: channel,
+        request_details: { identity_provider: identity_provider },
+        session_id: user&.id
+      })
+    end
+
+    def siem_log_mfa_success(user)
+      actor = SiemLogger.user_identifier(user.email, user.id)
+
+      siem_log_security_event!('MFAAuthenticationSuccess', {
+        context: "User: #{actor}",
+        msg: "Two-factor authentication successful for #{actor}",
+        authentication_channel: 'TwoFactor',
+        actor_name: actor
+      })
+    end
+
+    def siem_log_mfa_failure(user)
+      actor = SiemLogger.user_identifier(user.email, user.id)
+
+      siem_log_security_event!('MFAAuthenticationFailure', {
+        context: "User: #{actor}",
+        msg: "Two-factor authentication failed for #{actor}",
+        authentication_channel: 'TwoFactor',
+        actor_name: actor
+      })
+    end
+
     private
 
     def determine_authentication_channel_for_success(found_by)

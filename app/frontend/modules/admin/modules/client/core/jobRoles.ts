@@ -8,7 +8,9 @@ export const JobRoleTR = t.intersection([
     name: t.string,
     code: t.string,
     description: t.string,
-    jobGroupId: t.number,
+  }),
+  t.partial({
+    jobGroupId: t.union([t.number, t.string]),
     project: t.union([
       t.type({
         id: t.string,

@@ -9,6 +9,7 @@ const settings = {
     [6, 'mettl'],
     [7, 'skillvue'],
     [8, 'yoodli'],
+    [9, 'mhs'],
   ],
 }
 

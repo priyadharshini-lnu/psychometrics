@@ -1,5 +1,5 @@
 import {
-  Button, Input, Dropdown, DatePicker,
+  Button, Space, Dropdown, DatePicker,
 } from 'antd'
 import { CaretDownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
@@ -22,7 +22,7 @@ export default function ScheduledDateField ({ scheduledDate, updateScheduleDate 
 
   const date = scheduledDate ? dayjs(scheduledDate) : undefined
   return (
-    <Input.Group compact>
+    <Space.Compact>
       <DatePicker
         showTime={{ format: 'hh:mm a' }}
         format="MMMM Do YYYY, hh:mm a"
@@ -40,6 +40,6 @@ export default function ScheduledDateField ({ scheduledDate, updateScheduleDate 
           <CaretDownOutlined />
         </Button>
       </Dropdown>
-    </Input.Group>
+    </Space.Compact>
   )
 }

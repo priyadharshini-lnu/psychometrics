@@ -860,7 +860,6 @@ ja:
         campaign: キャンペーン
         copy_factors: コピー係数
         inactive_notice: キャンペーンのステータスは、選択した開始日に自動的にアクティブに変更されます
-        instruction: これは、キャンペーンの作成中にのみ有効にできます
         name: 名称
         practice_campaign: 練習キャンペーン
         status: ステータス
@@ -1007,6 +1006,8 @@ ja:
         ai_assistants_disabled_by_client: AI アシスタントはクライアントによって無効になっています
         ai_assisted_idp: AIアシストIDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP では、AI アシスタント機能を有効にする必要があります
+        ai_translation: AI翻訳
+        ai_translation_disabled_by_client: クライアントによりAI翻訳が無効化されています
         global_skills: グローバル・スキル
         global_skills_disabled_by_client: グローバルスキルがクライアントによって無効になっている
         idp: アイディーピー
@@ -2888,6 +2889,11 @@ ja:
           active:
             label: アクティブ
             name: アクティブ
+          assessments:
+            help_text: この選択は評価の生の応答イベントにのみ影響します。
+            label: 評価
+            placeholder: 評価を選択
+            required: 評価生データ応答イベントには、少なくとも1つの評価を選択する必要があります。
           auth_type:
             api_key:
               label: APIキー
@@ -2944,6 +2950,7 @@ ja:
             list:
               assessment_assigned: 評価
               assessment_completed: アセスメント完了
+              assessment_raw_response: 評価 生の回答
               assessment_started: アセスメント開始
               assessment_timeout: 評価タイムアウト
               campaign_results_available: キャンペーン結果発表
@@ -3097,6 +3104,7 @@ ja:
         mask_identity_for_hogan: ホーガンのマスクデータ
         mask_identity_for_iiht: IIHTのマスクデータ
         mask_identity_for_mettl: METTLのマスクデータ
+        mask_identity_for_mhs: MHS用マスクデータ
         mask_identity_for_pearson: ピアソンのマスクデータ
         mask_identity_for_saville: サヴィルのマスクデータ
         mask_identity_for_skillvue: スキルビューのマスクデータ
@@ -3656,8 +3664,8 @@ ja:
         override_existing: 既存のスケジュールを上書きする
         preworks: プレワーク
         re_enroll: 再登録
-        re_enroll_confirm_message: 件名を「<x>subject_email</x> 」に変更しますか？
-        re_enroll_success: 電子メールでの再登録対象<x>subject_email</x>.
+        re_enroll_confirm_message: 件名を「%{subject_email} 」に変更しますか？
+        re_enroll_success: 電子メールでの再登録対象%{subject_email}.
         schedule: スケジュール
         unschedule: スケジュール解除
       tabs:

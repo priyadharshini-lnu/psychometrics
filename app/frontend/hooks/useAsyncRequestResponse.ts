@@ -12,7 +12,7 @@ const { I18n } = window
 
 interface UseAsyncRequestResponseProps<T> {
   url: string,
-  data: { [key: string]: unknown },
+  data?: { [key: string]: unknown },
   responseType: t.Type<T>,
   numberOfTimesToPoll?: number,
   pollingInterval?: number,

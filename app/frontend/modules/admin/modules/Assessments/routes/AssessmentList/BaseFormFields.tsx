@@ -92,6 +92,7 @@ const BaseFormFieldsComp: React.FC<Props> = ({
   const ExternalAssessmentFieldsComponent = ExternalAssessmentFields[type]
   const categories = assessment ? UPDATABLE_CATEGORIES : CREATABLE_CATEGORIES
   const isCategoryHidden = () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     assessment && assessment.category && !categories.includes(assessment.category)
     if (assessment) {
       return !categories.includes(assessment.category)
@@ -172,7 +173,13 @@ const BaseFormFieldsComp: React.FC<Props> = ({
       >
         <Select>
           {categories.map(
-            c => <Select.Option key={c} value={c}>{I18n.t(`assessments.fields.category.${c}`)}</Select.Option>,
+            c => (
+              <Select.Option key={c} value={c}>
+                {c === 'mhs'
+                  ? I18n.t('admin.mhs')
+                  : I18n.t(`assessments.fields.category.${c}`)}
+              </Select.Option>
+            ),
           )}
         </Select>
       </Form.Item>

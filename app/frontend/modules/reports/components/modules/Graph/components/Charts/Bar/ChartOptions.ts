@@ -56,6 +56,7 @@ export default function ChartOptions (
     xAxis: {
       ...xAxisOptions,
       type: 'category',
+      tickInterval: model.props.xAxisInterval ? parseInt(model.props.xAxisInterval, 10) : undefined,
       labels: {
         style: {
           fontSize: fontSize || '11px',
@@ -70,6 +71,7 @@ export default function ChartOptions (
     },
     yAxis: {
       max: model.props.maxValue ? parseInt(model.props.maxValue, 10) : null,
+      tickInterval: model.props.yAxisInterval ? parseInt(model.props.yAxisInterval, 10) : undefined,
       gridLineWidth: model.props.yAxisLinesHide ? 0 : 1,
       title: {
         text: null,

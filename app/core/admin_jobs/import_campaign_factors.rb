@@ -23,7 +23,8 @@ module AdminJobs
         campaign_id: campaign.id
       ) do |campaign_factor|
         campaign_factor.attributes = row.merge(
-          campaign_factor_group_id: campaign_factor_group.id
+          campaign_factor_group_id: campaign_factor_group.id,
+          is_na_allowed: row['is_na_allowed'] || false
         )
       end
     end

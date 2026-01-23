@@ -9,6 +9,7 @@ sr-Latn:
     agree_and_continue: Slažem se i nastavi
     archive: Arhiviraj
     archived: Arhiviranih
+    audio: Аудио
     authentication_failed: Autentifikacija nije uspela. Pokušajte ponovo.
     basic: Osnovne
     campaign_id: ID kampanje
@@ -16,18 +17,26 @@ sr-Latn:
     change_password: Promeni lozinku
     clear_filters: Obriši filtere
     collaborative_learning: Kolaborativno učenje
+    completed: Завршено
     confirm: Potvrdi
     continue: Nastavite
+    copy: Копирај
     created_at: Kreiran u
     created_date: Datum kreiranja
     decline: Pretraživanje
     description: Opis
+    download: Преузми
     edit: Uredi
     edited: Novi
     email: Imejl
     export: Izvoz
+    failed: Неуспело
     first_name: Ime
     formal_learning: Formalno učenje
+    generate: Генериши
+    generate_transcription_confirm_content: Да ли сте сигурни да желите да генеришете транскрипт овог медијског одговора?
+    generate_transcription_confirm_title: Генериши транскрипцију
+    generating: Генерисање
     group_question_max_validation_error: Svaka grupa može da sadrži najviše {{max}} stavke.
     group_question_min_validation_error: Svaka grupa treba da sadrži najmanje {{min}} stavke.
     id: ID
@@ -36,18 +45,25 @@ sr-Latn:
     last_name: Prezime
     learning_on_the_job_label: Učenje na poslu
     login: Prijava
+    media_question_transcriptions: Транскрипти медијских питања
     modified_by: Modifikovan od strane
     modified_date: Datum izmene
     more_actions: Više akcija
     mte_logo_alt_text: Mercer Talent Enterprise logo
+    na_text: Н/А
     name: Ime
     new: Novi
+    not_requested: Још није затражено
     ok: Ok
+    pending: Учешће
+    processing: Обрада
+    question_id: Идентификациони број питања
     recording_consent_notice: Ova sesija sastanka će biti snimljena. Vaše učešće na ovom sastanku predstavlja vašu saglasnost da se snima.
     recording_consent_proceed_question: Da li se slažete da nastavite sa snimljenim sastankom?
     recording_consent_title: Obaveštenje o saglasnosti za snimanje
     remove: Ukloni
     removed: Uklonjeno
+    replace: Замени
     reset_password: Poništi lozinku
     rte_paste_content_exceeds_char_limit: Tekst prelazi ograničenje znakova {{maxCharacterLimit}} i ne može se nalepiti.
     rte_paste_content_exceeds_word_limit: Tekst prelazi ograničenje reči {{maxWordLimit}} i ne može se nalepiti.
@@ -62,7 +78,13 @@ sr-Latn:
         total: 'Ukupno : 1'
     terms_conditions_privacy: Izjava o privatnosti
     tools: Alatke
+    transcription: Транскрипција
+    transcription_already_requested: Транскрипција је већ затражена или у току
+    transcription_not_enabled: Транскрипција није омогућена за медијски одговор
     transcriptions: Transkripcije
+    try_again: Покушај поново
     tte_terms_and_condition: Uslovi i privatnost
     type: Tip
     update: Ažuriraj
+    video: Видео
+    view: Приказ

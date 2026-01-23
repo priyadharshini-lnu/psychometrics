@@ -837,6 +837,10 @@ ro:
           reply_to_reply: nu poate răspunde la un răspuns (este permis un singur nivel de imbricare)
         user_idp_plan:
           no_active_plan: Nu s-a găsit niciun plan IDP activ
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: Se pot selecta numai evaluările de tip „psihometrie” și „anchetă organizațională”.
   admin_jobs:
     attrs:
       operations:
@@ -1409,7 +1413,6 @@ ro:
       collapse_link_text: Arată mai puțin
       expand_aria_label: 'Afișați mai puține informații mai sus: Centrul virtual de învățare'
       expand_link_text: Arată mai multe
-      heading: Vă rugăm să consultați liniile directoare de mai jos înainte de a începe. Vă dorim toate cele bune!
     language:
       content: Această sarcină nu este disponibilă în limba selectată în prezent. Vă rugăm să selectați una dintre limbile disponibile pentru a continua.
       single_lang: Această sarcină este disponibilă numai în %{lang}. Faceți clic pe "Continuați" pentru a continua.
@@ -1769,16 +1772,7 @@ ro:
       continue: Da, Ok pentru a continua
       description: Faceți clic pe Start Recording și înregistrați-vă în timp ce citiți pasajul de mai jos cu propria voce
       random_phrases:
-        eight: Dacă mă puteți vedea, videoclipul este un succes. Dacă nu, rezolvăm problemele!
-        five: Testați-vă videoclipul, nu vă faceți griji, nu este necesară nominalizarea la Oscar.
-        four: Gata, set, focalizare! Camera este scena ta.
-        nine: Zâmbete mari și video clar, să facem acest test cum trebuie!
-        one: Ridicați mâna dacă mă auziți sau doar faceți cu mâna pentru cameră!
-        seven: Oglindă, oglindă pe ecran, ca verificarea video să fie curată.
-        six: Lumini, cameră, acțiune, acesta este momentul tău să strălucești!
-        ten: Un val prietenos se asigură că totul funcționează bine.
-        three: Spuneți cheese! Sau testați zâmbetul perfect.
-        two: Uitați-vă la obiectiv, zâmbiți și prefaceți-vă că sunteți într-o rulotă de film.
+        one: Sunt gata. Aceasta este o înregistrare de test pentru a confirma dacă microfonul și camera mea funcționează corect.
       rec_text: REC
       retake: Nu, vreau să reiau
       run_again: Aleargă din nou
@@ -3035,13 +3029,10 @@ ro:
     client_usage: Utilizarea clientului
     enabled: Activat
     end_date: Data de încheiere
-    not_enough_idp_license: Nu sunt suficiente licențe IDP, vă rugăm să contactați administratorul
     not_enough_license: "'%{client_name}' nu are suficiente licențe pentru '%{report_name}'"
     not_enough_license_count: Nu sunt suficiente licențe, vă rugăm să contactați administratorul
-    not_enough_proctoring_credits: Nu sunt suficiente credite pentru a începe sesiunea de supraveghere
     number: Număr
     overuse_number: Suprautilizare
-    project_limit_reached: Limita de utilizare atinsă pentru '%{license_name}', vă rugăm să contactați administratorul
     project_specific: Proiect specific
     project_specific_license: Licență Specifică Proiectului
     project_usage: Utilizarea proiectului
@@ -3090,7 +3081,7 @@ ro:
     footer:
       regards: Regards,
       team_name: Echipa Lighthouse
-      technical_support: Pentru orice probleme tehnice, vă rugăm să ne scrieți la <x>email</x> și vă vom răspunde în termen de 24 de ore.
+      technical_support: Pentru orice probleme tehnice, vă rugăm să ne scrieți la %{email} și vă vom răspunde în termen de 24 de ore.
     from: Întreprinderea talentelor
     idp:
       manager_unread_comments:
@@ -3822,6 +3813,13 @@ ro:
       on_hold: În așteptare
       prepared: Efectuat
       released: Eliberat
+    statuses:
+      completed: Completat
+      declined: Declinat
+      denied: Refuzat
+      done: Efectuat
+      not_completed: Nefinalizat
+      waiting: În așteptare
   threesixty:
     accept_privacy_modal:
       accept: Acceptați

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { PageHeader } from '@ant-design/pro-layout'
+import { PageHeader } from '@ant-design/pro-components'
 import { Tabs } from 'antd'
 import { useParams } from 'react-router-dom'
 import { getCurrent, fetchSingle } from '~/modules/admin/modules/AssessorApp/core/users'

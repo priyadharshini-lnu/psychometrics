@@ -13,7 +13,7 @@ import { openModal } from '~/modules/admin/core/ui/modals'
 import Modals from '~/modules/admin/components/Modals'
 import { get as getCurrentUser } from '~/core/currentUser'
 import { LicenseFormModal } from './LicenseFormModal'
-import { ClientLicensesTable } from './LicenseTable'
+import { ProjectLicensesTable } from './LicenseTable'
 
 const { I18n } = window
 
@@ -53,7 +53,7 @@ const LicenseList: React.FC<Props> = ({ currentUser, openModal }) => {
   return (
     <>
       <Resource config={config} name="licenses">
-        <Resource.Filter placeholder={I18n.t('common.actions.search')} name="report_family_name_cont" hideSearch>
+        <Resource.Filter placeholder={I18n.t('common.actions.search')} name="report_family_name_cont">
           {(currentUser.permissions.manageProjectLicenses)
               && (
                 <Button
@@ -68,7 +68,7 @@ const LicenseList: React.FC<Props> = ({ currentUser, openModal }) => {
                 </Button>
               )}
         </Resource.Filter>
-        <ClientLicensesTable />
+        <ProjectLicensesTable />
         <Modals modals={MODALS} />
       </Resource>
     </>

@@ -1,6 +1,7 @@
 ---
 it:
   admin:
+    accept_na_values: Accetta valori N/A
     add_admin: Aggiungi amministratore
     add_admin_role: Aggiungere il ruolo di amministratore
     add_campaign_admin: Aggiungere l'amministratore della campagna
@@ -34,14 +35,23 @@ it:
     ai_assistants_test_render: Render di prova
     ai_assistants_test_render_tooltip: Testa il tuo modello di prompt con i dati della campagna per vedere cosa verrà inviato all'assistente AI.
     ai_assisted_idp_feature_disabled: La funzione IDP assistita dall'IA è stata disabilitata per questo progetto.
+    ai_notice: Le sezioni evidenziate sono state tradotte dall'intelligenza artificiale e potrebbero contenere imprecisioni.
+    ai_translation: Traduzione AI
+    all_corner_rounded: Tutti gli angoli arrotondati
     api_keys: Chiavi API
+    apply_to_existing_users: Applica questa modifica agli utenti esistenti in questa campagna
     assessments: Assessment
+    assessments_not_mhs: Tutte le valutazioni devono essere di tipo MHS.
     assessments_reports: Assessment e report
     assessor_dashboard: Dashboard valutatore
     assessor_workshops: Centro di valutazione
     assessors: Valutatori
+    assistant_toolbar_failed: Impossibile generare un output valido dopo diversi tentativi
+    assistant_toolbar_not_a_valid_operation: Operazione sconosciuta %{operation}.
+    assistant_validation_failed: Impossibile generare un output valido dopo diversi tentativi
     audit_logs: Registri di controllo
     audit_reports: Report di audit
+    auto_placeholder: Auto
     availability: Disponibilità
     available_languages: Report disponibile nelle lingue
     back_to_main: Menù principale
@@ -50,6 +60,19 @@ it:
     campaign_assessment_actions_disable_caching: Disabilita la cache di valutazione
     campaign_assessment_actions_enable_caching: Abilita la Valutazione Cache
     campaign_assessment_column_caching_enabled: Cache di valutazione abilitata
+    campaign_assessment_mhs_confidence_interval: Intervallo di confidenza
+    campaign_assessment_mhs_confidence_interval_update_success: Intervallo di confidenza aggiornato con successo
+    campaign_assessment_mhs_invalid_confidence_interval: confidence_interval deve essere 0 o 1
+    campaign_assessment_mhs_invalid_leadership_bar: leadership_bar deve essere 0 o 1
+    campaign_assessment_mhs_invalid_norm_option: L'opzione Norm deve essere compresa tra 0 e 3
+    campaign_assessment_mhs_leadership_bar: Barra di leadership
+    campaign_assessment_mhs_leadership_bar_update_success: Barra di leadership aggiornata con successo
+    campaign_assessment_mhs_norm_option: Opzione Norm
+    campaign_assessment_mhs_norm_option_form_select: Seleziona opzione Norm
+    campaign_assessment_mhs_norm_option_update_success: Opzione Norm aggiornata con successo
+    campaign_assessment_mhs_norm_region: Regione Norm
+    campaign_assessment_mhs_norm_region_form_select: Seleziona regione standard
+    campaign_assessment_mhs_norm_region_update_success: Regione Norm aggiornata con successo
     campaign_assessment_modals_disable_caching_content: Sei sicuro di voler disabilitare la cache per questa valutazione?
     campaign_assessment_modals_disable_caching_successfully: La cache è stata disabilitata per questa valutazione.
     campaign_assessment_modals_disable_caching_title: Disabilitare la cache delle valutazioni?
@@ -70,6 +93,7 @@ it:
     confirm_remove_admin: Si è sicuri di voler rimuovere l'utente admin con l'email '%{email}'?
     country: Paese
     create_client: Creare il cliente
+    current_job_role: Ruolo professionale attuale
     dashboard: Dashboard
     dashboards: Cruscotti
     data_reports: Report sui dati
@@ -84,19 +108,26 @@ it:
     done_tooltip: Non è possibile sottoporre ulteriori valutazioni per questo utente poiché la valutazione di quest'utente viene contrassegnata come effettuata da %{marked_by}
     edit_campaign_admin: Modifica dell'amministrazione della campagna
     edit_client_admin: Modifica dell'amministrazione del cliente
+    edit_job_roles: Modifica ruoli lavorativi
+    edit_level: Modifica livello
     edit_permission_denied: Non hai il permesso di modificare la '%{name}' admin
     edit_project_admin: Modifica dell'amministrazione del progetto
     edit_threesixty_campaign_admin: Modifica dell'amministrazione della campagna
     empty_csv_file: Il file CSV non contiene alcun dato.
+    enable_enhance_with_ai_client_level: Abilita la funzione Migliora con l'IA a livello client
+    enable_transcription: Abilita trascrizione
+    enhance_with_ai_requires_ai_assistants: Per migliorare con l'IA è necessario che la funzione Assistenti IA sia abilitata.
     evaluation_status: Stato di valutazione
     evaluation_status_not_done: Lo stato di valutazione non è 'Fatto' per uno o più soggetti selezionati. Si prega di assicurarsi che tutti gli utenti selezionati abbiano completato le valutazioni o segnate come fatte.
     export_admin_roles_permissions: Esporta dei ruoli e delle autorizzazioni dell'amministratore
+    feature_enhance_with_ai: Migliora con l'AI
     feature_flags: Bandiere delle funzioni
     fill_empty_score_msg: Compila tutti i punteggi finali prima di salvare.
-    final_score_empty_msg: Il punteggio finale non può essere vuoto.
+    final_score_empty_err_msg: Il punteggio finale di %{factor_name} non può essere vuoto.
     idp_plan_reset_success: Il piano è stato resettato con successo
     idp_templates: Modelli di IDP
     import_ai_artifacts: Importazione di artefatti IA
+    import_csv_assessment_group_error: 'Riga %{index}: l''utente con indirizzo e-mail %{email} è già stato invitato a "%{workshopInviteName}".'
     import_csv_error: 'Riga %{index}: utente con email %{email} non è presente in questa campagna'
     import_csv_parsing_error: 'Errore di parsing CSV: %{message}'
     import_description: Importa gli utenti da un file CSV. Ogni riga deve contenere un indirizzo email.
@@ -121,11 +152,27 @@ it:
     invalid_csv_header: Il file CSV contiene intestazioni non valide.
     job_roles: Ruoli lavorativi
     learning_from_others: Apprendimento collaborativo [20]
+    level: Livello
+    level_apply: Applicare
+    level_guide: Guida
+    level_shape: Forma
+    level_validation_message: 'deve essere uno dei seguenti: %{values}'
     libraries: Biblioteca multimediale
     library_invalid_type: Voce della biblioteca invalida
     licenses: Licenze
     manager_approval_required: Report for %{user} richiede l'approvazione del manager prima del download
+    max_value: Valore massimo
     messages: Messaggi
+    mhs: MHS
+    mhs_assessment: Valutazione MHS
+    mhs_assessment_name: Nome della valutazione MHS
+    mhs_data_gatherer_id: ID raccoglitore dati Mhs
+    mhs_data_gathering_id: Raccolta dati Mhs ID
+    mhs_external_assessment_id: ID valutazione Mhs
+    mhs_report_id: ID rapporto MHS
+    mhs_session_id: ID sessione Mhs
+    min_value: Valore minimo
+    missing_min_max_values: Sono richiesti valori minimi e massimi.
     name_required: Il nome è richiesto
     no_file_selected: Nessun file selezionato
     no_notifications: Nessun messaggio
@@ -140,6 +187,7 @@ it:
     number: Numero
     occupations: Occupazioni
     on_the_job: Sul lavoro [70]
+    only_editable_on_create: Questa opzione è modificabile solo durante la creazione.
     options: Opzioni
     participants: Partecipanti
     permissions:
@@ -564,6 +612,7 @@ it:
         view: Vista
         view_recordings: Visualizza le registrazioni
     permissions_360_campaigns: Autorizzazioni specifiche per le campagne 360
+    piped_text: Testo incorniciato
     privacy: La privacy
     proficiency_level: Chiavi API
     proficiency_levels: Livelli di competenza
@@ -645,11 +694,18 @@ it:
     saml_settings: Impostazioni SAML
     scheduling: Programmazione
     scoring: Punteggio
+    scoring_value_info: Il punteggio deve essere compreso tra %{min} e %{max}.
+    scoring_value_out_of_range_err_msg: Il punteggio per %{factor_name} deve essere compreso tra %{min} e %{max}.
     search_admins: Cerca amministratori
+    search_job_role: Cerca ruolo lavorativo
     select_admin_role: Selezionare il ruolo di amministratore
+    select_language_to_translate: Seleziona la lingua da tradurre
+    select_level: Seleziona livello
     send_email: Inviare l'e-mail
     settings: Impostazioni
+    show_original: Mostra originale
     show_submenu: Mostra menu secondario
+    show_translated: Mostra tradotto
     siem: SIEM
     skill_aliases: Alias di abilità
     skills: Competenze
@@ -661,12 +717,30 @@ it:
     status_details: Dettagli di stato
     structured_learning: Apprendimento Formale [10]
     subdomain: Sottodominio
+    subject_part_of_other_invite: Il soggetto con indirizzo e-mail %{user_email} è già stato invitato a "%{workshop_invite_name}".
+    target_job_role: Ruolo lavorativo target
+    toolbar_ai_insight: Approfondimento sull'intelligenza artificiale
+    toolbar_ai_suggestion: Suggerimento AI
+    toolbar_result_generating: Generazione in corso...
+    toolbar_text_copied: Copiato negli appunti
+    toolbar_text_replaced: Testo sostituito!
+    toolbar_what_changed_and_why: Cosa è cambiato e perché
+    translate: Tradurre
+    translate_to: Traduci in
+    translate_with_ai: Traduci con l'IA
+    translated_from: Tradotto da
+    translated_to: 'Tradotto in:'
+    translated_with_ai_notice: Tradotto dall'intelligenza artificiale
+    translation_assistant_not_configured: Assistente di traduzione non configurato
     upload_success: Caricato con successo
     user_report_events: Segnalazione di eventi da parte dell'utente
     users: Utenti
     view_licenses: Visualizza le licenze
     waiting: Attesa
     workshops: Laboratori
+    writing_assistant_not_configured: Assistente di scrittura non configurato
+    x_axis_interval_label: Intervallo asse X
+    y_axis_interval_label: Intervallo asse Y
     year: Paese
     yoodli_activity_id: ID attività Yoodli
     yoodli_email_id: ID email del candidato Yoodli

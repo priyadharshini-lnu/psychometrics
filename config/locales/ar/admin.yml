@@ -1,6 +1,7 @@
 ---
 ar:
   admin:
+    accept_na_values: قبول القيم غير المتوفرة
     add_admin: إضافة مسؤول
     add_admin_role: Add Admin Role
     add_campaign_admin: إضافة مسؤول حملة
@@ -34,14 +35,23 @@ ar:
     ai_assistants_test_render: اختبار العرض
     ai_assistants_test_render_tooltip: اختبر قالب التوجيه الخاص بك باستخدام بيانات الحملة لمعرفة ما سيتم إرساله إلى مساعد الذكاء الاصطناعي.
     ai_assisted_idp_feature_disabled: تم تعطيل ميزة الذكاء الاصطناعي المساعد للنزول (IDP) لهذا المشروع.
+    ai_notice: الأقسام المميزة مترجمة بواسطة الذكاء الاصطناعي وقد تحتوي على أخطاء.
+    ai_translation: ترجمة بالذكاء الاصطناعي
+    all_corner_rounded: جميع الزوايا مستديرة
     api_keys: مفاتيح API
+    apply_to_existing_users: تطبيق هذا التغيير على المستخدمين الحاليين في هذه الحملة
     assessments: التقييمات
+    assessments_not_mhs: يجب أن تكون جميع التقييمات من نوع MHS
     assessments_reports: التقييمات والتقارير
     assessor_dashboard: لوحة معلومات المقيم
     assessor_workshops: مركز التقييم
     assessors: المقيمون
+    assistant_toolbar_failed: فشل في إنشاء مخرجات صالحة بعد عدة محاولات
+    assistant_toolbar_not_a_valid_operation: عملية غير معروفة%{operation}.
+    assistant_validation_failed: فشل في إنشاء مخرجات صالحة بعد عدة محاولات
     audit_logs: سجلات التدقيق
     audit_reports: تقارير التدقيق
+    auto_placeholder: السيارات
     availability: التوفر
     available_languages: التقرير متوفر باللغات
     back_to_main: القائمة الرئيسية
@@ -50,6 +60,19 @@ ar:
     campaign_assessment_actions_disable_caching: تعطيل التخزين المؤقت للتقييم
     campaign_assessment_actions_enable_caching: تمكين التخزين المؤقت للتقييم
     campaign_assessment_column_caching_enabled: تمكين التخزين المؤقت للتقييم
+    campaign_assessment_mhs_confidence_interval: فاصل الثقة
+    campaign_assessment_mhs_confidence_interval_update_success: تم تحديث فاصل الثقة بنجاح
+    campaign_assessment_mhs_invalid_confidence_interval: يجب أن يكون confidence_interval 0 أو 1
+    campaign_assessment_mhs_invalid_leadership_bar: يجب أن يكون leadership_bar 0 أو 1
+    campaign_assessment_mhs_invalid_norm_option: يجب أن يكون خيار المعيار بين 0 و 3
+    campaign_assessment_mhs_leadership_bar: شريط القيادة
+    campaign_assessment_mhs_leadership_bar_update_success: تم تحديث شريط القيادة بنجاح
+    campaign_assessment_mhs_norm_option: خيار القاعدة
+    campaign_assessment_mhs_norm_option_form_select: حدد خيار القاعدة
+    campaign_assessment_mhs_norm_option_update_success: تم تحديث خيار المعيار بنجاح
+    campaign_assessment_mhs_norm_region: منطقة نورم
+    campaign_assessment_mhs_norm_region_form_select: حدد منطقة المعيار
+    campaign_assessment_mhs_norm_region_update_success: تم تحديث منطقة Norm بنجاح
     campaign_assessment_modals_disable_caching_content: هل أنت متأكد من أنك تريد تعطيل التخزين المؤقت لهذا التقييم؟
     campaign_assessment_modals_disable_caching_successfully: تم تعطيل التخزين المؤقت لهذا التقييم.
     campaign_assessment_modals_disable_caching_title: تعطيل التخزين المؤقت للتقييم؟
@@ -70,6 +93,7 @@ ar:
     confirm_remove_admin: هل أنت متأكد أنك تريد إزالة المستخدم المسؤول بالبريد الإلكتروني '%{email}'؟
     country: البلد
     create_client: إنشاء عميل
+    current_job_role: الوظيفة الحالية
     dashboard: لوحة القيادة
     dashboards: لوحات التحكم
     data_reports: تقارير البيانات
@@ -84,19 +108,26 @@ ar:
     done_tooltip: لا يمكن تقديم تقييم إضافي لهذا المستخدم لأن تقييمه تم تصنيفه على أنه تم بواسطة %{marked_by}
     edit_campaign_admin: تعديل مسؤول حملة
     edit_client_admin: تعديل مسؤول عميل
+    edit_job_roles: تحرير أدوار الوظائف
+    edit_level: تحرير المستوى
     edit_permission_denied: ليس لديك إذن بتعديل '%{name}' المسؤول
     edit_project_admin: تعديل مسؤول مشروع
     edit_threesixty_campaign_admin: تعديل مسؤول حملة
     empty_csv_file: ملف CSV لا يحتوي على أي بيانات.
+    enable_enhance_with_ai_client_level: يرجى تمكين ميزة "تحسين باستخدام الذكاء الاصطناعي" على مستوى العميل
+    enable_transcription: تمكين النسخ
+    enhance_with_ai_requires_ai_assistants: يتطلب تحسين الأداء باستخدام الذكاء الاصطناعي تمكين ميزة المساعدات الذكية.
     evaluation_status: حالة التقييم
     evaluation_status_not_done: حالة التقييم ليست 'مكتملة' لشخص أو أكثر من المشاركات المختارة. يرجى التأكد من أن جميع المستخدمين المختارين قد أكملوا التقييمات أو وضع علامة على أنهم تم.
     export_admin_roles_permissions: تصدير أدوار وأذونات المسؤولين
+    feature_enhance_with_ai: تعزيز بالذكاء الاصطناعي
     feature_flags: أعلام الميزات
     fill_empty_score_msg: املأ جميع الدرجات النهائية قبل الحفظ.
-    final_score_empty_msg: لا يمكن أن تكون النتيجة النهائية فارغة.
+    final_score_empty_err_msg: لا يمكن أن تكون النتيجة النهائية لـ %{factor_name} فارغة.
     idp_plan_reset_success: تم إعادة ضبط الخطة بنجاح
     idp_templates: قوالب IDP
     import_ai_artifacts: استيراد القطع الأثرية الذكاء الاصطناعي
+    import_csv_assessment_group_error: 'الصف %{index}: تمت دعوة المستخدم الذي يحمل عنوان البريد الإلكتروني %{email} بالفعل إلى "%{workshopInviteName}"'
     import_csv_error: 'الصف %{index}: مستخدم لديه بريد إلكتروني %{email} غير موجود في هذه الحملة'
     import_csv_parsing_error: 'خطأ في تحليل CSV: %{message}'
     import_description: استيراد المستخدمين من ملف CSV. يجب أن يحتوي كل صف على عنوان بريد إلكتروني.
@@ -121,11 +152,27 @@ ar:
     invalid_csv_header: يحتوي ملف CSV على رؤوس غير صالحة.
     job_roles: الأدوار الوظيفية
     learning_from_others: التعلم التعاوني [20]
+    level: المستوى
+    level_apply: تقدم بطلب
+    level_guide: دليل
+    level_shape: الشكل
+    level_validation_message: 'يجب أن يكون أحد الخيارات التالية: %{values}'
     libraries: مكتبة الوسائط
     library_invalid_type: عنصر المكتبة غير الصالح
     licenses: التراخيص
     manager_approval_required: يتطلب الإبلاغ عن %{user} موافقة المدير قبل التحميل
+    max_value: القيمة القصوى
     messages: Messages
+    mhs: MHS
+    mhs_assessment: تقييم MHS
+    mhs_assessment_name: اسم تقييم MHS
+    mhs_data_gatherer_id: معرف جامع البيانات Mhs
+    mhs_data_gathering_id: معرف جمع البيانات Mhs
+    mhs_external_assessment_id: رقم تقييم Mhs
+    mhs_report_id: رقم تقرير MHS
+    mhs_session_id: معرف جلسة Mhs
+    min_value: القيمة الدنيا
+    missing_min_max_values: القيم الدنيا والقصوى مطلوبة.
     name_required: الاسم مطلوب
     no_file_selected: لم يتم اختيار ملف
     no_notifications: لا توجد إشعارات
@@ -140,6 +187,7 @@ ar:
     number: العدد
     occupations: المهن
     on_the_job: في العمل [70]
+    only_editable_on_create: هذا الخيار قابل للتعديل فقط أثناء الإنشاء.
     options: الخيارات
     participants: المشاركون
     permissions:
@@ -564,6 +612,7 @@ ar:
         view: منظر
         view_recordings: عرض التسجيلات
     permissions_360_campaigns: أذونات خاصة بحملات 360
+    piped_text: نص موصول
     privacy: Privacy
     proficiency_level: مفاتيح API
     proficiency_levels: مستويات الكفاءة
@@ -645,11 +694,18 @@ ar:
     saml_settings: إعدادات SAML
     scheduling: الجدولة
     scoring: سجل
+    scoring_value_info: يجب أن تكون النتيجة بين %{min} و %{max}.
+    scoring_value_out_of_range_err_msg: يجب أن تكون درجة لعبة "%{factor_name}" بين %{min} و %{max}.
     search_admins: البحث عن المسؤولين
+    search_job_role: البحث عن وظيفة
     select_admin_role: اختر دور المسؤول
+    select_language_to_translate: يرجى تحديد اللغة المطلوب ترجمتها
+    select_level: اختر المستوى
     send_email: إرسال بريد إلكتروني
     settings: الإعدادات
+    show_original: عرض الأصل
     show_submenu: عرض القائمة الفرعية
+    show_translated: عرض المترجم
     siem: SIEM
     skill_aliases: Skill Aliases
     skills: المهارات
@@ -661,12 +717,30 @@ ar:
     status_details: تفاصيل الحالة
     structured_learning: التعلم الرسمي [10]
     subdomain: المجال الفرعي
+    subject_part_of_other_invite: الموضوع مع البريد الإلكتروني %{user_email} تمت دعوته بالفعل إلى "%{workshop_invite_name}"
+    target_job_role: الوظيفة المستهدفة
+    toolbar_ai_insight: رؤية الذكاء الاصطناعي
+    toolbar_ai_suggestion: اقتراح الذكاء الاصطناعي
+    toolbar_result_generating: جاري التوليد...
+    toolbar_text_copied: نسخ إلى الحافظة
+    toolbar_text_replaced: تم استبدال النص!
+    toolbar_what_changed_and_why: ما الذي تغير ولماذا
+    translate: ترجمة
+    translate_to: ترجم إلى
+    translate_with_ai: ترجمة باستخدام الذكاء الاصطناعي
+    translated_from: ترجم من
+    translated_to: 'ترجم إلى:'
+    translated_with_ai_notice: ترجمة بالذكاء الاصطناعي
+    translation_assistant_not_configured: مساعد الترجمة غير مهيأ
     upload_success: تم الرفع بنجاح
     user_report_events: أحداث تقارير المستخدم
     users: المستخدمون
     view_licenses: عرض التراخيص
     waiting: انتظار
     workshops: ورش العمل
+    writing_assistant_not_configured: مساعد الكتابة غير مهيأ
+    x_axis_interval_label: فاصل المحور السيني
+    y_axis_interval_label: فاصل المحور Y
     year: البلد
     yoodli_activity_id: معرف نشاط يودلي
     yoodli_email_id: معرف البريد الإلكتروني للمرشح في يودلي

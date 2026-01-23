@@ -1,6 +1,7 @@
 ---
 nl:
   admin:
+    accept_na_values: N.v.t.-waarden accepteren
     add_admin: Beheerder toevoegen
     add_admin_role: Beheerdersrol toevoegen
     add_campaign_admin: Campagne-admin toevoegen
@@ -34,14 +35,23 @@ nl:
     ai_assistants_test_render: Testrendering
     ai_assistants_test_render_tooltip: Test je prompttemplate met campagnedata om te zien wat er naar de AI-assistent wordt gestuurd.
     ai_assisted_idp_feature_disabled: De AI-ondersteunde IDP-functie is voor dit project uitgeschakeld.
+    ai_notice: Gemarkeerde secties zijn door AI vertaald en kunnen onnauwkeurigheden bevatten.
+    ai_translation: AI-vertaling
+    all_corner_rounded: Alle hoeken afgerond
     api_keys: API-sleutels
+    apply_to_existing_users: Pas deze wijziging toe op bestaande gebruikers in deze campagne
     assessments: Beoordeling
+    assessments_not_mhs: Alle beoordelingen moeten van het type MHS zijn.
     assessments_reports: Beoordelingen en rapporten
     assessor_dashboard: Dashboard voor beoordelaars
     assessor_workshops: Beoordelingscentrum
     assessors: Taxateurs
+    assistant_toolbar_failed: Na meerdere pogingen is het niet gelukt om geldige uitvoer te genereren.
+    assistant_toolbar_not_a_valid_operation: Onbekende bewerking %{operation}.
+    assistant_validation_failed: Na meerdere pogingen is het niet gelukt om geldige uitvoer te genereren.
     audit_logs: Controlelogboeken
     audit_reports: Controleverslagen
+    auto_placeholder: Auto
     availability: Beschikbaarheid
     available_languages: Rapport beschikbaar in talen
     back_to_main: Hoofdmenu
@@ -50,6 +60,19 @@ nl:
     campaign_assessment_actions_disable_caching: Uitschakel beoordelingscaching
     campaign_assessment_actions_enable_caching: Mogelijk maken van beoordelingscachen mogelijk
     campaign_assessment_column_caching_enabled: Assessment Caching ingeschakeld
+    campaign_assessment_mhs_confidence_interval: Betrouwbaarheidsinterval
+    campaign_assessment_mhs_confidence_interval_update_success: Betrouwbaarheidsinterval succesvol bijgewerkt
+    campaign_assessment_mhs_invalid_confidence_interval: confidence_interval moet 0 of 1 zijn
+    campaign_assessment_mhs_invalid_leadership_bar: leadership_bar moet 0 of 1 zijn
+    campaign_assessment_mhs_invalid_norm_option: De optie Norm moet tussen 0 en 3 liggen.
+    campaign_assessment_mhs_leadership_bar: Leiderschapspalk
+    campaign_assessment_mhs_leadership_bar_update_success: Leiderschapsbalk succesvol bijgewerkt
+    campaign_assessment_mhs_norm_option: Normoptie
+    campaign_assessment_mhs_norm_option_form_select: Selecteer Normoptie
+    campaign_assessment_mhs_norm_option_update_success: Normoptie succesvol bijgewerkt
+    campaign_assessment_mhs_norm_region: Norm Regio
+    campaign_assessment_mhs_norm_region_form_select: Selecteer Norm Regio
+    campaign_assessment_mhs_norm_region_update_success: Normregio succesvol bijgewerkt
     campaign_assessment_modals_disable_caching_content: Weet je zeker dat je caching wilt uitschakelen voor deze beoordeling?
     campaign_assessment_modals_disable_caching_successfully: Caching is uitgeschakeld voor deze beoordeling.
     campaign_assessment_modals_disable_caching_title: Assessment caching uitschakelen?
@@ -70,6 +93,7 @@ nl:
     confirm_remove_admin: Weet je zeker dat je admin gebruiker met e-mail '%{email}' wilt verwijderen?
     country: Land
     create_client: Klant maken
+    current_job_role: Huidige functie
     dashboard: Dashboard
     dashboards: Dashboards
     data_reports: Gegevensrapporten
@@ -84,19 +108,26 @@ nl:
     done_tooltip: Er kan geen verdere evaluatie worden ingediend voor deze gebruiker omdat de evaluatie van deze gebruiker als uitgevoerd door %{marked_by}
     edit_campaign_admin: Campagnebeheer bewerken
     edit_client_admin: Klantbeheer bewerken
+    edit_job_roles: Functies bewerken
+    edit_level: Bewerk niveau
     edit_permission_denied: Je hebt geen toestemming om admin-'%{name}' te bewerken
     edit_project_admin: Projectbeheer bewerken
     edit_threesixty_campaign_admin: Campagnebeheer bewerken
     empty_csv_file: Het CSV-bestand bevat geen gegevens.
+    enable_enhance_with_ai_client_level: Schakel de functie Verbeteren met AI in op klantniveau.
+    enable_transcription: Transcriptie inschakelen
+    enhance_with_ai_requires_ai_assistants: Verbeteren met AI vereist dat de functie AI-assistenten is ingeschakeld.
     evaluation_status: Evaluatiestatus
     evaluation_status_not_done: De evaluatiestatus is niet 'Klaar' voor één of meer geselecteerde proefpersonen. Zorg ervoor dat alle geselecteerde gebruikers evaluaties hebben afgerond of markeer als voltooid.
     export_admin_roles_permissions: Beheerdersrollen en -rechten exporteren
+    feature_enhance_with_ai: Verbeteren met AI
     feature_flags: Functie Vlaggen
     fill_empty_score_msg: Vul alle eindscores in voordat je opslaat.
-    final_score_empty_msg: De eindscore mag niet leeg zijn.
+    final_score_empty_err_msg: De eindscore van %{factor_name} mag niet leeg zijn.
     idp_plan_reset_success: Het plan is succesvol gereset.
     idp_templates: IDP-sjablonen
     import_ai_artifacts: AI-artefacten importeren
+    import_csv_assessment_group_error: "%{index} van de rij: gebruiker met e-mailadres %{email} is al uitgenodigd voor '%{workshopInviteName}'."
     import_csv_error: 'Rij %{index}: gebruiker met e-mailadres %{email} niet in deze campagne zit'
     import_csv_parsing_error: 'CSV-parsingsfout: %{message}'
     import_description: Importeer gebruikers uit een CSV-bestand. Elke rij moet een e-mailadres bevatten.
@@ -121,11 +152,27 @@ nl:
     invalid_csv_header: CSV-bestand bevat ongeldige headers.
     job_roles: Functierollen
     learning_from_others: Samenwerkend leren [20]
+    level: Niveau
+    level_apply: Toepassen
+    level_guide: Gids
+    level_shape: Vorm
+    level_validation_message: 'moet een van de volgende zijn: %{values}'
     libraries: Mediatheek
     library_invalid_type: Ongeldig bibliotheekitem
     licenses: Licenties
     manager_approval_required: Rapporteer voor %{user} vereist goedkeuring van de manager voordat het wordt gedownload
+    max_value: Maximale waarde
     messages: Berichten
+    mhs: MHS
+    mhs_assessment: MHS-beoordeling
+    mhs_assessment_name: MHS-beoordeling Naam
+    mhs_data_gatherer_id: Mhs-gegevensverzamelaar-ID
+    mhs_data_gathering_id: Mhs Gegevensverzameling ID
+    mhs_external_assessment_id: Mhs-beoordelings-ID
+    mhs_report_id: MHS-rapport-ID
+    mhs_session_id: Mhs-sessie-ID
+    min_value: Minimale waarde
+    missing_min_max_values: Minimale en maximale waarden zijn vereist.
     name_required: Naam is vereist
     no_file_selected: Geen bestand geselecteerd
     no_notifications: Geen meldingen
@@ -140,6 +187,7 @@ nl:
     number: Aantal
     occupations: Beroepen
     on_the_job: Op het Werk [70]
+    only_editable_on_create: Deze optie kan alleen tijdens het aanmaken worden bewerkt.
     options: Opties
     participants: Deelnemers
     permissions:
@@ -564,6 +612,7 @@ nl:
         view: Bekijk
         view_recordings: Opnames bekijken
     permissions_360_campaigns: Rechten specifiek voor 360 campagnes
+    piped_text: Tekst in pijpen
     privacy: Privacy
     proficiency_level: API-sleutels
     proficiency_levels: Vaardigheidsniveaus
@@ -645,11 +694,18 @@ nl:
     saml_settings: SAML-instellingen
     scheduling: Planning
     scoring: Scoren
+    scoring_value_info: De score moet tussen %{min} en %{max} liggen.
+    scoring_value_out_of_range_err_msg: De score voor %{factor_name} moet tussen %{min} en %{max} liggen.
     search_admins: Beheerders zoeken
+    search_job_role: Zoek functie
     select_admin_role: Selecteer beheerdersrol
+    select_language_to_translate: Selecteer de taal die u wilt vertalen
+    select_level: Selecteer niveau
     send_email: Stuur e-mail
     settings: Instellingen
+    show_original: Origineel weergeven
     show_submenu: Submenu weergeven
+    show_translated: Vertaling weergeven
     siem: SIEM
     skill_aliases: Vaardigheden aliassen
     skills: Vaardigheden
@@ -661,12 +717,30 @@ nl:
     status_details: Statusgegevens
     structured_learning: Formeel Leren [10]
     subdomain: Subdomein
+    subject_part_of_other_invite: De persoon met e-mailadres %{user_email} is al uitgenodigd voor '%{workshop_invite_name}'.
+    target_job_role: Beoogde functie
+    toolbar_ai_insight: AI-inzicht
+    toolbar_ai_suggestion: AI-suggestie
+    toolbar_result_generating: Bezig met genereren...
+    toolbar_text_copied: Gekopieerd naar klembord
+    toolbar_text_replaced: Tekst vervangen!
+    toolbar_what_changed_and_why: Wat is er veranderd en waarom?
+    translate: Vertalen
+    translate_to: Vertalen naar
+    translate_with_ai: Vertalen met AI
+    translated_from: Vertaald uit
+    translated_to: 'Vertaald naar:'
+    translated_with_ai_notice: AI vertaald
+    translation_assistant_not_configured: Vertaalassistent niet geconfigureerd
     upload_success: Succesvol geüpload
     user_report_events: Gebeurtenissen gebruikersrapport
     users: Gebruikers
     view_licenses: Licenties bekijken
     waiting: Wachten
     workshops: Workshops
+    writing_assistant_not_configured: Schrijfhulp niet geconfigureerd
+    x_axis_interval_label: X-as interval
+    y_axis_interval_label: Y-as interval
     year: Land
     yoodli_activity_id: Yoodli Activiteits-ID
     yoodli_email_id: Yoodli Kandidaat E-mailadres

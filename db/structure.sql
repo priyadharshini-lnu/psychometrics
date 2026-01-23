@@ -11,13 +11,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
--- *not* creating schema, since initdb creates it
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -650,6 +643,40 @@ CREATE SEQUENCE public.ai_model_registries_id_seq
 --
 
 ALTER SEQUENCE public.ai_model_registries_id_seq OWNED BY public.ai_model_registries.id;
+
+
+--
+-- Name: ai_translation_results; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.ai_translation_results (
+    id bigint NOT NULL,
+    results json,
+    translatable_id bigint,
+    translatable_type character varying,
+    hashsum bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: ai_translation_results_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.ai_translation_results_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: ai_translation_results_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.ai_translation_results_id_seq OWNED BY public.ai_translation_results.id;
 
 
 --
@@ -1568,7 +1595,10 @@ CREATE TABLE public.campaign_factors (
     updated_at timestamp(6) without time zone NOT NULL,
     assessment_score_type integer DEFAULT 0,
     formula text,
-    ranked boolean DEFAULT false NOT NULL
+    ranked boolean DEFAULT false NOT NULL,
+    min_value integer,
+    max_value integer,
+    is_na_allowed boolean DEFAULT false NOT NULL
 );
 
 
@@ -1809,7 +1839,8 @@ CREATE TABLE public.campaign_users (
     external_id character varying,
     current_job_role_id bigint,
     target_job_role_id bigint,
-    campaign_artifact_results_finalized boolean DEFAULT false
+    campaign_artifact_results_finalized boolean DEFAULT false,
+    level integer
 );
 
 
@@ -1964,7 +1995,8 @@ CREATE TABLE public.client_features (
     ai_assistants boolean DEFAULT false NOT NULL,
     global_skills boolean DEFAULT false NOT NULL,
     idp boolean DEFAULT false NOT NULL,
-    enhance_with_ai boolean DEFAULT false NOT NULL
+    enhance_with_ai boolean DEFAULT false NOT NULL,
+    ai_translation boolean DEFAULT false NOT NULL
 );
 
 
@@ -4043,7 +4075,8 @@ CREATE TABLE public.media_responses (
     updated_at timestamp without time zone NOT NULL,
     users_result_id integer,
     assign_id integer,
-    user_selected boolean DEFAULT false
+    user_selected boolean DEFAULT false,
+    transcription_status integer DEFAULT 0 NOT NULL
 );
 
 
@@ -4338,6 +4371,48 @@ CREATE SEQUENCE public.mettl_user_assessments_id_seq
 --
 
 ALTER SEQUENCE public.mettl_user_assessments_id_seq OWNED BY public.mettl_user_assessments.id;
+
+
+--
+-- Name: mhs_user_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.mhs_user_assessments (
+    id bigint NOT NULL,
+    user_assessment_id bigint NOT NULL,
+    url character varying,
+    email character varying,
+    session_id character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    data_gatherer_id character varying,
+    data_gathering_id character varying,
+    observation_item_sets json,
+    active boolean DEFAULT true NOT NULL,
+    confidence_interval integer DEFAULT 0,
+    leadership_bar integer DEFAULT 0,
+    norm_region integer DEFAULT 0,
+    norm_option integer DEFAULT 0
+);
+
+
+--
+-- Name: mhs_user_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.mhs_user_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: mhs_user_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.mhs_user_assessments_id_seq OWNED BY public.mhs_user_assessments.id;
 
 
 --
@@ -5012,7 +5087,8 @@ CREATE TABLE public.privacy_settings (
     allow_video_call_recording boolean DEFAULT false NOT NULL,
     enable_video_call_recording_for_all_new_campaigns boolean DEFAULT false NOT NULL,
     video_call_recording_expiry_in_seconds integer,
-    mask_identity_for_yoodli boolean DEFAULT false
+    mask_identity_for_yoodli boolean DEFAULT false,
+    mask_identity_for_mhs boolean DEFAULT false NOT NULL
 );
 
 
@@ -5295,7 +5371,8 @@ CREATE TABLE public.project_features (
     idp boolean DEFAULT false NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    enhance_with_ai boolean DEFAULT false NOT NULL
+    enhance_with_ai boolean DEFAULT false NOT NULL,
+    ai_translation boolean DEFAULT false NOT NULL
 );
 
 
@@ -7405,6 +7482,39 @@ ALTER SEQUENCE public.threesixty_subjects_id_seq OWNED BY public.threesixty_subj
 
 
 --
+-- Name: transcriptions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.transcriptions (
+    id bigint NOT NULL,
+    transcribable_type character varying NOT NULL,
+    transcribable_id bigint NOT NULL,
+    text text NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: transcriptions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.transcriptions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: transcriptions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.transcriptions_id_seq OWNED BY public.transcriptions.id;
+
+
+--
 -- Name: translations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -8853,6 +8963,13 @@ ALTER TABLE ONLY public.ai_model_registries ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
+-- Name: ai_translation_results id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_translation_results ALTER COLUMN id SET DEFAULT nextval('public.ai_translation_results_id_seq'::regclass);
+
+
+--
 -- Name: api_keys id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -9504,6 +9621,13 @@ ALTER TABLE ONLY public.mettl_user_assessments ALTER COLUMN id SET DEFAULT nextv
 
 
 --
+-- Name: mhs_user_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mhs_user_assessments ALTER COLUMN id SET DEFAULT nextval('public.mhs_user_assessments_id_seq'::regclass);
+
+
+--
 -- Name: norms id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -10071,6 +10195,13 @@ ALTER TABLE ONLY public.threesixty_subjects ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
+-- Name: transcriptions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.transcriptions ALTER COLUMN id SET DEFAULT nextval('public.transcriptions_id_seq'::regclass);
+
+
+--
 -- Name: translations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -10447,6 +10578,14 @@ ALTER TABLE ONLY public.ai_assisted_user_sessions
 
 ALTER TABLE ONLY public.ai_model_registries
     ADD CONSTRAINT ai_model_registries_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ai_translation_results ai_translation_results_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_translation_results
+    ADD CONSTRAINT ai_translation_results_pkey PRIMARY KEY (id);
 
 
 --
@@ -11218,6 +11357,14 @@ ALTER TABLE ONLY public.mettl_user_assessments
 
 
 --
+-- Name: mhs_user_assessments mhs_user_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mhs_user_assessments
+    ADD CONSTRAINT mhs_user_assessments_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: norms norms_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -11871,6 +12018,14 @@ ALTER TABLE ONLY public.threesixty_reminder_histories
 
 ALTER TABLE ONLY public.threesixty_subjects
     ADD CONSTRAINT threesixty_subjects_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: transcriptions transcriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.transcriptions
+    ADD CONSTRAINT transcriptions_pkey PRIMARY KEY (id);
 
 
 --
@@ -14137,6 +14292,13 @@ CREATE INDEX index_media_responses_on_question_id ON public.media_responses USIN
 
 
 --
+-- Name: index_media_responses_on_transcription_status; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_media_responses_on_transcription_status ON public.media_responses USING btree (transcription_status);
+
+
+--
 -- Name: index_media_responses_on_users_result_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14274,6 +14436,13 @@ CREATE INDEX index_mettl_schedule_records_on_project_id ON public.mettl_schedule
 --
 
 CREATE INDEX index_mettl_user_assessments_on_user_assessment_id ON public.mettl_user_assessments USING btree (user_assessment_id);
+
+
+--
+-- Name: index_mhs_user_assessments_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_mhs_user_assessments_on_user_assessment_id ON public.mhs_user_assessments USING btree (user_assessment_id);
 
 
 --
@@ -15324,6 +15493,13 @@ CREATE INDEX index_threesixty_subjects_on_evaluation_status_updated_by_id ON pub
 --
 
 CREATE INDEX index_threesixty_subjects_on_user_id ON public.threesixty_subjects USING btree (user_id);
+
+
+--
+-- Name: index_transcriptions_on_transcribable; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_transcriptions_on_transcribable ON public.transcriptions USING btree (transcribable_type, transcribable_id);
 
 
 --
@@ -17602,6 +17778,14 @@ ALTER TABLE ONLY public.user_assessments
 
 
 --
+-- Name: mhs_user_assessments fk_rails_81bd2b6ddf; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mhs_user_assessments
+    ADD CONSTRAINT fk_rails_81bd2b6ddf FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id);
+
+
+--
 -- Name: ai_assistant_requests fk_rails_81e44e1700; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -19128,9 +19312,28 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20251215073428'),
+('20260123071239'),
+('20260122034210'),
+('20260119144024'),
+('20260119122705'),
+('20260119063943'),
+('20260119052541'),
+('20260119030942'),
+('20260113120000'),
+('20260113071404'),
+('20260109141947'),
+('20260106133315'),
+('20260102064238'),
+('20260102051528'),
 ('20251217070713'),
+('20251216163732'),
+('20251215073428'),
+('20251215063046'),
+('20251214060951'),
+('20251212110032'),
 ('20251212100342'),
+('20251211083522'),
+('20251210125615'),
 ('20251206120622'),
 ('20251201130649'),
 ('20251127063311'),
@@ -20089,3 +20292,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

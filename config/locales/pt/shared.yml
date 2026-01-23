@@ -9,6 +9,7 @@ pt:
     agree_and_continue: Concorde e continue
     archive: Arquivar
     archived: Arquivado
+    audio: Áudio
     authentication_failed: A autenticação falhou. Por favor, tente novamente.
     basic: Básico
     campaign_id: ID de campanha
@@ -16,18 +17,26 @@ pt:
     change_password: Alterar a palavra-passe
     clear_filters: Limpar filtros
     collaborative_learning: Aprendizagem Colaborativa
+    completed: Concluído
     confirm: Confirmar
     continue: Continuar
+    copy: Copiar
     created_at: Criado em
     created_date: Data de criação
     decline: Declínio
     description: Descrição
+    download: Baixar
     edit: Editar
     edited: Novo
     email: E-mail
     export: Exportação
+    failed: Falhou
     first_name: Nome próprio
     formal_learning: Aprendizagem Formal
+    generate: Gerar
+    generate_transcription_confirm_content: Tem certeza de que deseja gerar a transcrição para esta resposta da mídia?
+    generate_transcription_confirm_title: Gerar transcrição
+    generating: Gerando
     group_question_max_validation_error: Cada grupo pode conter no máximo {{max}} itens.
     group_question_min_validation_error: Cada grupo precisa conter pelo menos {{min}} item(s).
     id: ID
@@ -36,18 +45,25 @@ pt:
     last_name: Apelido
     learning_on_the_job_label: Aprendendo no Trabalho
     login: Iniciar sessão
+    media_question_transcriptions: Transcrições de perguntas da mídia
     modified_by: Modificado por
     modified_date: Data de modificação
     more_actions: Mais acções
     mte_logo_alt_text: Logótipo da Mercer Talent Enterprise
+    na_text: Não se aplica
     name: Nome
     new: Novo
+    not_requested: Ainda não solicitado
     ok: OK
+    pending: Pendente
+    processing: Processamento
+    question_id: ID da pergunta
     recording_consent_notice: Esta sessão de reunião será gravada. Sua participação nesta reunião constitui seu consentimento para ser gravado.
     recording_consent_proceed_question: Você concorda em prosseguir com a reunião gravada?
     recording_consent_title: Aviso de Consentimento de Gravação
     remove: Remover
     removed: Removido
+    replace: Substituir
     reset_password: Redefinir a palavra-passe
     rte_paste_content_exceeds_char_limit: O texto excede o limite de caracteres {{maxCharacterLimit}} e não pode ser colado.
     rte_paste_content_exceeds_word_limit: O texto excede o limite de palavras {{maxWordLimit}} e não pode ser colado.
@@ -67,7 +83,13 @@ pt:
           zero: 'Total : 0'
     terms_conditions_privacy: Declaração de privacidade
     tools: Ferramentas
+    transcription: Transcrição
+    transcription_already_requested: Transcrição já solicitada ou em andamento
+    transcription_not_enabled: A transcrição não está habilitada para a resposta da mídia.
     transcriptions: Transcrições
+    try_again: Tente novamente
     tte_terms_and_condition: Termos e privacidade
     type: Tipo
     update: Atualizar
+    video: Vídeo
+    view: Ver

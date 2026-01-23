@@ -1,6 +1,7 @@
 ---
 zh:
   admin:
+    accept_na_values: 接受 N/A 值
     add_admin: 添加管理员
     add_admin_role: 添加管理员角色
     add_campaign_admin: 添加活动管理
@@ -34,14 +35,23 @@ zh:
     ai_assistants_test_render: 测试渲染
     ai_assistants_test_render_tooltip: 用活动数据测试你的提示模板，看看会发送给AI助手的内容。
     ai_assisted_idp_feature_disabled: 本项目已禁用AI辅助IDP功能。
+    ai_notice: 标记部分由AI翻译生成，可能存在不准确之处。
+    ai_translation: 人工智能翻译
+    all_corner_rounded: 所有边角均已圆角处理
     api_keys: API 密钥
+    apply_to_existing_users: 将此更改应用于此活动中的现有用户
     assessments: 评估
+    assessments_not_mhs: 所有评估必须采用MHS类型
     assessments_reports: 评估与报告
     assessor_dashboard: 评估员仪表板
     assessor_workshops: 评估中心
     assessors: 评估员
+    assistant_toolbar_failed: 多次尝试后仍未能生成有效输出
+    assistant_toolbar_not_a_valid_operation: 未知操作%{operation}。
+    assistant_validation_failed: 多次尝试后仍未能生成有效输出
     audit_logs: 审计日志
     audit_reports: 审计报告
+    auto_placeholder: 汽车
     availability: 可用性
     available_languages: 报告提供多种语言版本
     back_to_main: 主菜单
@@ -50,6 +60,19 @@ zh:
     campaign_assessment_actions_disable_caching: 关闭评估缓存
     campaign_assessment_actions_enable_caching: 启用评估缓存
     campaign_assessment_column_caching_enabled: 启用评估缓存
+    campaign_assessment_mhs_confidence_interval: 置信区间
+    campaign_assessment_mhs_confidence_interval_update_success: 置信区间更新成功
+    campaign_assessment_mhs_invalid_confidence_interval: 置信区间必须为0或1
+    campaign_assessment_mhs_invalid_leadership_bar: leadership_bar 必须为 0 或 1
+    campaign_assessment_mhs_invalid_norm_option: Norm Option 必须在 0 到 3 之间
+    campaign_assessment_mhs_leadership_bar: 领导力条
+    campaign_assessment_mhs_leadership_bar_update_success: 领导力条更新成功
+    campaign_assessment_mhs_norm_option: 标准选项
+    campaign_assessment_mhs_norm_option_form_select: 选择标准选项
+    campaign_assessment_mhs_norm_option_update_success: 规范选项更新成功
+    campaign_assessment_mhs_norm_region: 诺姆地区
+    campaign_assessment_mhs_norm_region_form_select: 选择标准区域
+    campaign_assessment_mhs_norm_region_update_success: Norm Region 更新成功
     campaign_assessment_modals_disable_caching_content: 你确定要在这次评估中禁用缓存吗？
     campaign_assessment_modals_disable_caching_successfully: 本次评估已禁用缓存功能。
     campaign_assessment_modals_disable_caching_title: 禁用评估缓存？
@@ -70,6 +93,7 @@ zh:
     confirm_remove_admin: 您确定要删除电子邮件地址为"%{email}"的管理员用户吗？
     country: 国家
     create_client: 创建客户
+    current_job_role: 当前职位
     dashboard: 仪表板
     dashboards: 仪表板
     data_reports: 数据报告
@@ -84,19 +108,26 @@ zh:
     done_tooltip: 该用户无法提交更多评估，因为该用户的评估已被标记为已完成%{marked_by}
     edit_campaign_admin: 编辑活动管理
     edit_client_admin: 编辑客户管理员
+    edit_job_roles: 编辑职位角色
+    edit_level: 编辑级别
     edit_permission_denied: 你没有权限编辑管理员的“%{name}”
     edit_project_admin: 编辑项目管理
     edit_threesixty_campaign_admin: 编辑活动管理
     empty_csv_file: CSV 文件不包含任何数据。
+    enable_enhance_with_ai_client_level: 请在客户端级别启用AI增强功能
+    enable_transcription: 启用转录功能
+    enhance_with_ai_requires_ai_assistants: 增强AI功能需启用AI助手功能
     evaluation_status: 评估状态
     evaluation_status_not_done: 一个或多个被选定的受试者的评估状态并非“完成”。请确保所有被选用户均完成评估，或标记为完成。
     export_admin_roles_permissions: 导出管理员角色和权限
+    feature_enhance_with_ai: 增强AI
     feature_flags: 功能标志
     fill_empty_score_msg: 保存前填写所有最终分数。
-    final_score_empty_msg: 最终得分不能是空的。
+    final_score_empty_err_msg: "%{factor_name}的最终得分不能为空。"
     idp_plan_reset_success: 计划已成功重置
     idp_templates: IDP 模板
     import_ai_artifacts: 导入AI工件
+    import_csv_assessment_group_error: "%{index} 行：邮箱为 %{email} 的用户已受邀加入 '%{workshopInviteName}'"
     import_csv_error: 第%{index}行：带有电子邮件%{email}的用户未参与本次活动
     import_csv_parsing_error: CSV 解析错误：%{message}
     import_description: 从CSV文件导入用户。每一行必须包含一个电子邮件地址。
@@ -121,11 +152,27 @@ zh:
     invalid_csv_header: CSV 文件中包含无效的头部。
     job_roles: 工作角色
     learning_from_others: 协作学习 [20]
+    level: 等级
+    level_apply: 申请
+    level_guide: 指南
+    level_shape: 形状
+    level_validation_message: 必须是以下之一：%{values}
     libraries: 媒体图书馆
     library_invalid_type: 无效的图书馆项目
     licenses: 许可证
     manager_approval_required: "%{user}报告下载前需要经理批准"
+    max_value: 最大值
     messages: 信息
+    mhs: MHS
+    mhs_assessment: MHS评估
+    mhs_assessment_name: MHS评估名称
+    mhs_data_gatherer_id: Mhs数据采集器ID
+    mhs_data_gathering_id: MHS数据采集ID
+    mhs_external_assessment_id: Mhs评估ID
+    mhs_report_id: MHS报告编号
+    mhs_session_id: Mhs 会话标识符
+    min_value: 最小值
+    missing_min_max_values: 必须提供最小值和最大值。
     name_required: 需要命名
     no_file_selected: 未选择文件
     no_notifications: 没有通知
@@ -140,6 +187,7 @@ zh:
     number: 数量
     occupations: 职业
     on_the_job: 在职 [70]
+    only_editable_on_create: 此选项仅在创建时可编辑。
     options: 选项
     participants: 参与者
     permissions:
@@ -564,6 +612,7 @@ zh:
         view: 查看
         view_recordings: 查看录制文件
     permissions_360_campaigns: 360 活动的特定权限
+    piped_text: 管道文本
     privacy: 隐私权
     proficiency_level: API 密钥
     proficiency_levels: 能力水平
@@ -645,11 +694,18 @@ zh:
     saml_settings: SAML设置
     scheduling: 日程安排
     scoring: 计分
+    scoring_value_info: 分数必须介于 %{min} 和 %{max} 之间。
+    scoring_value_out_of_range_err_msg: "%{factor_name} 的评分必须介于 %{min} 与 %{max} 之间。"
     search_admins: 搜索管理员
+    search_job_role: 搜索职位
     select_admin_role: 选择管理员角色
+    select_language_to_translate: 请选择要翻译的语言
+    select_level: 选择级别
     send_email: 发送电子邮件
     settings: 设置
+    show_original: 显示原文
     show_submenu: 显示子菜单
+    show_translated: 显示翻译
     siem: SIEM
     skill_aliases: 技能别名
     skills: 技能
@@ -661,12 +717,30 @@ zh:
     status_details: 状态详情
     structured_learning: 正规学习 [10]
     subdomain: 子域
+    subject_part_of_other_invite: 邮箱地址为 %{user_email} 的用户已获邀加入 '%{workshop_invite_name}' 群组。
+    target_job_role: 目标职位
+    toolbar_ai_insight: 人工智能洞察
+    toolbar_ai_suggestion: AI建议
+    toolbar_result_generating: 生成中...
+    toolbar_text_copied: 已复制到剪贴板
+    toolbar_text_replaced: 文本已替换！
+    toolbar_what_changed_and_why: 发生了什么变化及原因
+    translate: 翻译
+    translate_to: 翻译为
+    translate_with_ai: 使用AI翻译
+    translated_from: 译自
+    translated_to: 翻译为：
+    translated_with_ai_notice: AI翻译
+    translation_assistant_not_configured: 翻译助手未配置
     upload_success: 上传成功
     user_report_events: 用户报告事件
     users: 用户
     view_licenses: 查看许可证
     waiting: 等待
     workshops: 工作坊
+    writing_assistant_not_configured: 写作助手尚未配置
+    x_axis_interval_label: X轴间隔
+    y_axis_interval_label: Y轴间隔
     year: 国家
     yoodli_activity_id: Yoodli 活动ID
     yoodli_email_id: Yoodli候选人邮箱ID

@@ -837,6 +837,10 @@ id:
           reply_to_reply: tidak dapat membalas balasan (hanya satu tingkat bersarang yang diizinkan)
         user_idp_plan:
           no_active_plan: Tidak ada paket IDP aktif yang ditemukan
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: Hanya penilaian jenis 'psycometrics' dan 'org survey' yang dapat dipilih.
   admin_jobs:
     attrs:
       operations:
@@ -1413,7 +1417,6 @@ id:
       collapse_link_text: Tampilkan lebih sedikit
       expand_aria_label: 'Tampilkan informasi lebih sedikit di atas: Pusat Pembelajaran Virtual'
       expand_link_text: Tampilkan lebih banyak
-      heading: Silakan tinjau panduan di bawah ini sebelum Anda memulai. Selamat mengerjakan!
     language:
       content: Tugas ini tidak tersedia dalam bahasa yang dipilih saat ini. Pilih salah satu bahasa yang tersedia untuk melanjutkan.
       single_lang: Tugas ini hanya tersedia di %{lang}. Klik "Lanjutkan" untuk melanjutkan.
@@ -1773,16 +1776,7 @@ id:
       continue: Ya, Oke untuk melanjutkan
       description: Klik Mulai Merekam dan Rekam diri Anda sambil membaca bagian di bawah ini dengan suara Anda sendiri
       random_phrases:
-        eight: Jika Anda bisa melihat saya, berarti video berhasil, jika tidak, kami akan memperbaikinya!
-        five: Menguji video Anda, jangan khawatir, tidak perlu nominasi Oscar.
-        four: Siap, siap, fokus! Kamera adalah panggung Anda.
-        nine: Senyum lebar dan video yang jernih, mari selesaikan tes ini dengan baik!
-        one: Angkat tangan Anda jika Anda bisa mendengar saya atau lambaikan tangan ke arah kamera!
-        seven: Cermin, cermin di layar, biarkan pemeriksaan video tidak menemui kendala.
-        six: Lampu, kamera, aksi, inilah saatnya Anda bersinar!
-        ten: Lambaikan tangan dengan ramah untuk memastikan semuanya bekerja dengan baik.
-        three: Senyum! Atau setidaknya uji senyum yang sempurna itu.
-        two: Lihatlah ke arah lensa, tersenyumlah, dan berpura-puralah Anda sedang berada dalam cuplikan film.
+        one: Saya siap. Ini adalah rekaman uji coba untuk memastikan video dan mikrofon saya berfungsi dengan baik.
       rec_text: REC
       retake: Tidak, saya ingin mengulang
       run_again: Jalankan lagi
@@ -3039,13 +3033,10 @@ id:
     client_usage: Penggunaan Klien
     enabled: Diaktifkan
     end_date: Tanggal akhir
-    not_enough_idp_license: Lisensi IDP tidak cukup, silakan hubungi administrator
     not_enough_license: "'%{client_name}' tidak memiliki cukup lisensi untuk '%{report_name}'"
     not_enough_license_count: Lisensi tidak cukup, silakan hubungi administrator
-    not_enough_proctoring_credits: Tidak cukup kredit untuk memulai sesi pengawasan
     number: Angka
     overuse_number: Tunjangan penggunaan berlebih
-    project_limit_reached: Batas penggunaan tercapai untuk '%{license_name}', silakan hubungi administrator
     project_specific: Khusus Proyek
     project_specific_license: Lisensi Khusus Proyek
     project_usage: Penggunaan Proyek
@@ -3094,7 +3085,7 @@ id:
     footer:
       regards: Salam,
       team_name: Tim Lighthouse
-      technical_support: Untuk masalah teknis apa pun, silakan kirim email kepada kami di <x>email</x> dan kami akan merespons dalam waktu 24 jam.
+      technical_support: Untuk masalah teknis apa pun, silakan kirim email kepada kami di %{email} dan kami akan merespons dalam waktu 24 jam.
     from: Perusahaan Bakat
     idp:
       manager_unread_comments:
@@ -3826,6 +3817,13 @@ id:
       on_hold: Ditunda
       prepared: Selesai
       released: Dirilis
+    statuses:
+      completed: Selesai
+      declined: Ditolak
+      denied: Ditolak
+      done: Selesai
+      not_completed: Tidak Selesai
+      waiting: Menunggu
   threesixty:
     accept_privacy_modal:
       accept: Terima

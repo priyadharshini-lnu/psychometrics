@@ -40,7 +40,7 @@ export const DisplayExceptionModal = () => {
     <Modal
       title={`Exception: ${exception.type}`}
       width={700}
-      visible
+      open
       onCancel={() => setException(null)}
       footer={[
         <Button key="close" onClick={() => setException(null)}>

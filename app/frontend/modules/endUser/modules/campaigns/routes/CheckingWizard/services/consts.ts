@@ -1,4 +1,4 @@
 
-const RANDOM_CONSTS_ARRAY = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+const RANDOM_CONSTS_ARRAY = ['one']
 
 export { RANDOM_CONSTS_ARRAY }

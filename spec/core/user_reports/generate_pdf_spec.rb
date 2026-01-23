@@ -82,7 +82,8 @@ describe UserReports::GeneratePdf do
 
   context 'using local puppeter' do
     before(:each) do
-      allow(Settings).to receive_message_chain(:features, :url_to_pdf_faas) { false }
+      features = double('features', url_to_pdf_faas: false, dont_send_pi_to_siem: false)
+      allow(Settings).to receive(:features).and_return(features)
       frozen_time = Time.zone.local(2020, 1, 1, 12, 0, 0)
       allow(Time.zone).to receive(:now).and_return(frozen_time)
     end
@@ -110,7 +111,8 @@ describe UserReports::GeneratePdf do
 
   context 'using Faas' do
     before(:each) do
-      allow(Settings).to receive_message_chain(:features, :url_to_pdf_faas) { true }
+      features = double('features', url_to_pdf_faas: true, dont_send_pi_to_siem: false)
+      allow(Settings).to receive(:features).and_return(features)
     end
 
     it 'calls Faas::UrlToPdf ' do

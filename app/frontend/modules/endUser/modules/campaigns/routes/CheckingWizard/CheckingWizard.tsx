@@ -32,7 +32,6 @@ const connector = connect(({ checkingWizard }: RootState) => ({
 
 export type PropsFromRedux = ConnectedProps<typeof connector>
 
-const { Step } = Steps
 const { I18n } = window
 const { Content } = Layout
 
@@ -173,14 +172,7 @@ const CheckingWizardComponent: React.FC<Props> = ({
               </div>
             </div>,
               }))}
-            >
-              {getSteps().map((step, i) => (
-                <Step
-                  key={i}
-                  title={<span style={{ fontSize: '12px' }}>{I18n.t(step.title)}</span>}
-                />
-              ))}
-            </Steps>
+            />
             <Content className={styles.pageLayout}>
               <Flex justify="center" align="center">
                 {CurrentCheck && <CurrentCheck nextStep={nextStep} config={config} />}

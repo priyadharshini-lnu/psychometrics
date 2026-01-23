@@ -61,7 +61,7 @@ export const ResourcesItems: React.FC<Props> = ({
           {videoCallType === 2 && (
             <Form.Item
               label={I18n.t('administration.scheduling.assessment_center_form.meeting_link')}
-              name="meeting_link"
+              name={fieldName !== undefined ? [fieldName, 'meeting_link'] : 'meeting_link'}
               {...fieldLayout}
               rules={[{ required: true },
                 { type: 'url', message: I18n.t('administration.scheduling.errors.invalid_url') },

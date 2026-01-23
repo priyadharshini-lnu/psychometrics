@@ -8,7 +8,7 @@ module Examus
       @campaign_user = campaign_user
     end
 
-    def call # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity,Metrics/AbcSize
+    def call
       proctoring_session = ProctoringSession.order(id: :desc).find_by(
         campaign_user_id: campaign_user.id, invalid_session: false, completed_at: nil
       )
@@ -17,22 +17,13 @@ module Examus
       existing_session_can_be_used = %w[started ready_to_start].include?(status_response&.dig('status'))
 
       if proctoring_session.nil? || !existing_session_can_be_used
-        license = campaign_user.campaign.proctoring_license_with_enough_credits
-
-        if license.nil? && !campaign_user.campaign.campaign_options.proctoring_trial?
-          return broadcast :error, I18n.t('licenses.not_enough_proctoring_credits')
-        end
-
-        if license&.is_project_specific?
-          project_license = ProjectLicense.find_by(
-            project_id: campaign_user.campaign.project_id,
-            license_id: license.id
+        unless campaign_user.campaign.campaign_options.proctoring_trial?
+          license_usage_details = LicenseManager::Deductor.call!(
+            campaign: campaign_user.campaign,
+            user: campaign_user,
+            license_type: 'proctoring',
+            context: {}
           )
-          credits = Campaigns::Proctoring::GetProctoringCredits.call!(campaign_user.campaign)
-          unless project_license&.enabled? && project_license.enough_license_credits?(credits)
-            message = I18n.t('licenses.project_limit_reached', license_name: 'Proctoring License')
-            return broadcast :error, message
-          end
         end
 
         proctoring_session = ProctoringSession.create(
@@ -41,39 +32,16 @@ module Examus
           started_at: Time.zone.now
         )
 
-        if license && !campaign_user.campaign.campaign_options.proctoring_trial?
-          deduct_license(license, proctoring_session)
-        end
+        license_usage_details&.update!(
+          proctoring_session_id: proctoring_session.id,
+          proctoring_credits_debited: Campaigns::Proctoring::GetProctoringCredits.call!(campaign_user.campaign)
+        )
+
       end
 
       broadcast :ok, proctoring_session
-    end
-
-    def deduct_license(license, proctoring_session)
-      credits = Campaigns::Proctoring::GetProctoringCredits.call!(campaign_user.campaign)
-      if license.is_project_specific?
-        project_license = ProjectLicense.find_by(
-          project_id: campaign_user.campaign.project_id,
-          license_id: license.id
-        )
-      end
-      LicenseUsage.create(
-        campaign_id: campaign_user.campaign_id,
-        user_id: campaign_user.user_id,
-        client_id: campaign_user.campaign.client.id,
-        project_id: campaign_user.campaign.project.id,
-        license_id: license.id,
-        project_license_id: project_license&.id,
-        proctoring_session_id: proctoring_session.id,
-        proctoring_credits_debited: credits,
-        extras: {
-          subject_name: campaign_user.user.name,
-          subject_email: campaign_user.user.email,
-          campaign_name: campaign_user.campaign.name
-        }
-      )
-      license.increment!(:used_number, credits)
-      project_license&.increment!(:used_number, credits)
+    rescue Licenses::NotEnoughError => e
+      broadcast :error, e.message
     end
   end
 end

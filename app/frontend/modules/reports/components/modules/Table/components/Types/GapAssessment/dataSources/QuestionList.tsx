@@ -2,9 +2,8 @@ import { FC, useMemo } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
   Flex,
-  TreeSelect, Typography,
+  TreeSelect, Typography, GetProp, TreeSelectProps,
 } from 'antd'
-import { DataNode as TreeDataNode } from 'rc-tree-select/lib/interface'
 import {
   isEmpty,
   includes,
@@ -20,6 +19,8 @@ import { PropertiesModel } from '~/modules/reports/interfaces/tables/Gap'
 
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
 import { BasePropertiesModel as BaseQuestionModelInProperties } from '~/modules/survey/interfaces/questions/Base'
+
+type TreeDataNode = GetProp<TreeSelectProps, 'treeData'>[number]
 
 const AVAILABLE_QUESTION_TYPES = ['MatrixTable', 'SideBySide', 'Slider']
 const QUESTION_CHOICE_SEPERATOR = '_'

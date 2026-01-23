@@ -860,7 +860,6 @@ pl:
         campaign: Kampania
         copy_factors: Współczynniki kopiowania
         inactive_notice: Status kampanii automatycznie zmieni się na aktywne w wybranym dniu rozpoczęcia
-        instruction: Można to włączyć tylko podczas tworzenia kampanii
         name: Nazwa
         practice_campaign: Kampania treningowa
         status: Stan
@@ -1007,6 +1006,8 @@ pl:
         ai_assistants_disabled_by_client: Asystenci AI są wyłączeni przez klienta
         ai_assisted_idp: Dostawca tożsamości wspomagany przez sztuczną inteligencję
         ai_assisted_idp_requires_ai_assistants: Usługa AI Assisted IDP wymaga włączenia funkcji AI Assistants
+        ai_translation: Tłumaczenia AI
+        ai_translation_disabled_by_client: Tłumaczenia AI są wyłączone przez klienta.
         global_skills: Umiejętności globalne
         global_skills_disabled_by_client: Umiejętności globalne są wyłączone przez klienta
         idp: PRI
@@ -2888,6 +2889,11 @@ pl:
           active:
             label: Aktywny
             name: aktywny
+          assessments:
+            help_text: Ten wybór dotyczy wyłącznie zdarzenia „Ocena surowej odpowiedzi”.
+            label: Oceny
+            placeholder: Wybierz oceny
+            required: Należy wybrać co najmniej jedną ocenę dla zdarzenia „Surowa odpowiedź z oceny”.
           auth_type:
             api_key:
               label: Klucz API
@@ -2944,6 +2950,7 @@ pl:
             list:
               assessment_assigned: Przypisana ocena
               assessment_completed: Ocena zakończona
+              assessment_raw_response: Ocena surowej odpowiedzi
               assessment_started: Ocena rozpoczęta
               assessment_timeout: Limit czasu oceny
               campaign_results_available: Dostępne wyniki kampanii
@@ -3097,6 +3104,7 @@ pl:
         mask_identity_for_hogan: Dane maski dla Hogana
         mask_identity_for_iiht: Dane maski dla IIHT
         mask_identity_for_mettl: Dane maski dla METTL
+        mask_identity_for_mhs: Dane maski dla MHS
         mask_identity_for_pearson: Dane maski dla Pearson
         mask_identity_for_saville: Dane maski dla Saville
         mask_identity_for_skillvue: Dane maski dla Skillvue
@@ -3653,8 +3661,8 @@ pl:
         override_existing: Zastępowanie istniejących zestawień dla tematów
         preworks: Przygotowanie do pracy
         re_enroll: Ponowna rejestracja
-        re_enroll_confirm_message: Czy na pewno chcesz ponownie zarejestrować temat za pomocą wiadomości e-mail "<x>subject_email</x>"?
-        re_enroll_success: Ponownie zarejestrowany temat z adresem e-mail <x>subject_email</x>.
+        re_enroll_confirm_message: Czy na pewno chcesz ponownie zarejestrować temat za pomocą wiadomości e-mail "%{subject_email}"?
+        re_enroll_success: Ponownie zarejestrowany temat z adresem e-mail %{subject_email}.
         schedule: Harmonogram
         unschedule: Bez harmonogramu
       tabs:

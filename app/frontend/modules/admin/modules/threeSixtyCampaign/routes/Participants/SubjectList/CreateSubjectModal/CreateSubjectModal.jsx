@@ -37,7 +37,9 @@ function CreateSubjectModal ({
     isLoading: fetchingJobRoles,
   } = useResources('job_roles', {
     apiConfig: {
-      project_id: projectId,
+      query: {
+        project_id: projectId,
+      },
       filter: {
         name_or_code_cont: jobRoleFilter,
       },
@@ -51,7 +53,9 @@ function CreateSubjectModal ({
       setJobRoleFilter(value)
       fetchJobRoles({
         apiConfig: {
-          project_id: projectId,
+          query: {
+            project_id: projectId,
+          },
           filter: {
             name_or_code_cont: value,
           },

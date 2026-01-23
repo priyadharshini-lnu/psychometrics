@@ -8,7 +8,9 @@ import { TableColumnList } from '~/modules/reports/components/modules/Table/comp
 import { SettingsOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 const TableModule = (props) => {
-  const { module, reportStyles, preview } = props
+  const {
+    module, reportStyles, preview, aiTranslation,
+  } = props
   const View = Types[module.props.type] || Types.SimpleTable
   const selectedIds = useSelector(state => state.report.ui.selection.selected)
   const isTableSelected = selectedIds.includes(module.id)
@@ -27,7 +29,7 @@ const TableModule = (props) => {
   }
 
   return (
-    <Foundation {...props} preview={preview} outerStyle={outerStyle}>
+    <Foundation {...props} preview={preview} outerStyle={outerStyle} hasTranslation={aiTranslation}>
       {!preview && isTableSelected && onlyOneTableSelected && (
         <Popover
           title="Edit columns"

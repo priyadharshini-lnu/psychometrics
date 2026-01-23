@@ -18,6 +18,7 @@ const AdminInfoTR = {
   }),
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const AdminTR = t.type({
   ...AdminInfoTR,
 })

@@ -12,7 +12,7 @@ interface OwnProps {
 type Props = OwnProps
 
 export const ProctoringSessionList: React.FC<Props> = ({ proctoringSessions }) => (
-  <Table<ProctoringSession> className="mtm" rowKey="id" dataSource={proctoringSessions} pagination={false}>
+  <Table className="mtm" rowKey="id" dataSource={proctoringSessions} pagination={false}>
     <Column
       title={I18n.t('administration.proctoring_sessions.columns.session_id')}
       key="sessionId"

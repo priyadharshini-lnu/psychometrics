@@ -32,6 +32,8 @@ module Administration
             Administration::Assessments::ExternalSettings::IihtForm
           when Assessment::TYPES[:saville]
             Administration::Assessments::ExternalSettings::SavilleForm
+          when Assessment::TYPES[:mhs]
+            Administration::Assessments::ExternalSettings::MhsForm
         end
       end
     end

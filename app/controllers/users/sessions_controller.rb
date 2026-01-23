@@ -20,6 +20,7 @@ module Users
           user: logged_in_user,
           payload: { email: logged_in_user.email }
         )
+        WardenAuthLogger.log_sign_out(logged_in_user, request, scope: :user)
       end
     end
 

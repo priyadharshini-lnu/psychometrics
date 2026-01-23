@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Row, Button, Descriptions, Switch, Tag, App, Tabs, Skeleton,
+  Row, Button, Descriptions, Switch, Tag, App, Tabs, Skeleton, Space,
 } from 'antd'
-import { PageHeader } from '@ant-design/pro-layout'
+import { PageHeader } from '@ant-design/pro-components'
 import { useParams, useNavigate } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import _ from 'lodash'
@@ -37,6 +37,8 @@ import { AssignManagerFormModal } from './AssignManagerFormModal'
 import UploadFileModal from './AssessmentsReports/UploadFileModal'
 import { getFeatures } from '~/core/config'
 import CreateHoganCredentialsModal from './CreateHoganCredentialsModal'
+import { EditLevelFormModal } from './EditLevelFormModal'
+import { EditJobRoleFormModal } from './EditJobRoleFormModal'
 import ReportsLanguageSelectionModal from '~/modules/admin/components/ReportsLanguageSelectionModal'
 import DownloadIndividualReportModal from '~/components/DownloadIndividualReportModal'
 import { Recordings } from './Recordings'
@@ -55,6 +57,8 @@ const MODALS = {
   CreateHoganCredentialsModal,
   ReportsLanguageSelectionModal,
   DownloadIndividualReportModal,
+  EditLevelFormModal,
+  EditJobRoleFormModal,
 }
 
 export const connecter = connect(
@@ -163,6 +167,16 @@ export const UserDetails: React.FC<Props> = ({
     fetchSingleUser(parsedCampaignId, parsedUserId)
   }
 
+  const handleEditJobRole = () => {
+    openModal('EditJobRoleFormModal', {
+      projectId,
+      campaignId: parsedCampaignId,
+      userId: parsedUserId,
+      currentJobRole: user.currentJobRole,
+      targetJobRole: user.targetJobRole,
+    })
+  }
+
   const isFixedTime = campaign?.campaignOptions?.fixedTime || false
   const canExtendTime = (isFixedTime && ['timed_out', 'completed'].includes(user.status))
   const tabs = [
@@ -262,26 +276,61 @@ export const UserDetails: React.FC<Props> = ({
               {user.createdAt}
             </Descriptions.Item>
             <Descriptions.Item label={I18n.t('campaign_users.details.manager')}>
-              {user.manager.name && (
-                <>
-                  {user.manager.name}
-                  {' '}
-                  (
-                  {user.manager.email}
-                  )
-                </>
-              )}
-              <Button size="small">
-                <EditOutlined
-                  onClick={() => openModal('AssignManagerFormModal', {
-                    projectId,
-                    campaignId: parsedCampaignId,
-                    userId,
-                    manager: user.manager,
-                  })
-                  }
-                />
-              </Button>
+              <Space align="center">
+                <span>
+                  {user.manager.name && (
+                    <>
+                      {user.manager.name}
+                      {' '}
+                      (
+                      {user.manager.email}
+                      )
+                    </>
+                  )}
+                </span>
+                <Button size="small">
+                  <EditOutlined
+                    onClick={() => openModal('AssignManagerFormModal', {
+                      projectId,
+                      campaignId: parsedCampaignId,
+                      userId,
+                      manager: user.manager,
+                    })
+                    }
+                  />
+                </Button>
+              </Space>
+            </Descriptions.Item>
+            <Descriptions.Item label={I18n.t('admin.level')}>
+              <Space align="center">
+                <span>{user.level && I18n.t(`admin.level_${user.level}`)}</span>
+                <Button size="small">
+                  <EditOutlined
+                    onClick={() => openModal('EditLevelFormModal', {
+                      campaignId: parsedCampaignId,
+                      userId: parsedUserId,
+                      level: user.level,
+                    })
+                    }
+                  />
+                </Button>
+              </Space>
+            </Descriptions.Item>
+            <Descriptions.Item label={I18n.t('admin.current_job_role')}>
+              <Space align="center">
+                <span>{user.currentJobRole?.name}</span>
+                <Button size="small">
+                  <EditOutlined onClick={handleEditJobRole} />
+                </Button>
+              </Space>
+            </Descriptions.Item>
+            <Descriptions.Item label={I18n.t('admin.target_job_role')}>
+              <Space align="center">
+                <span>{user.targetJobRole?.name}</span>
+                <Button size="small">
+                  <EditOutlined onClick={handleEditJobRole} />
+                </Button>
+              </Space>
             </Descriptions.Item>
             {canExtendTime && (
               <>

@@ -50,6 +50,13 @@ module Administration
       manage_approval?
     end
 
+    def translate?
+      project = Project.find_by(id: project_id)
+      if show?
+        project.client.feature_enabled?(:ai_translation) && project.project_feature_enabled?(:ai_translation)
+      end
+    end
+
     def start_qc?
       return true if @user.is?(:superadmin)
 

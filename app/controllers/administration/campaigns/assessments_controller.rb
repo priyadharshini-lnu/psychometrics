@@ -263,6 +263,38 @@ module Administration
         render json: { variation: campaign_assessment.external_config['variation'] }
       end
 
+      def update_mhs_leadership_bar
+        campaign_assessment.update_mhs_leadership_bar!(params[:leadership_bar], params[:apply])
+
+        audit! :update_mhs_leadership_bar, assessment, campaign: campaign
+
+        render json: { leadership_bar: campaign_assessment.external_config['leadership_bar'] }
+      end
+
+      def update_mhs_confidence_interval
+        campaign_assessment.update_mhs_confidence_interval!(params[:confidence_interval], params[:apply])
+
+        audit! :update_mhs_confidence_interval, assessment, campaign: campaign
+
+        render json: { confidence_interval: campaign_assessment.external_config['confidence_interval'] }
+      end
+
+      def update_mhs_norm_region
+        campaign_assessment.update_mhs_norm_region!(params[:norm_region], params[:apply])
+
+        audit! :update_mhs_norm_region, assessment, campaign: campaign
+
+        render json: { norm_region: campaign_assessment.external_config['norm_region'] }
+      end
+
+      def update_mhs_norm_option
+        campaign_assessment.update_mhs_norm_option!(params[:norm_option], params[:apply])
+
+        audit! :update_mhs_norm_option, assessment, campaign: campaign
+
+        render json: { norm_option: campaign_assessment.external_config['norm_option'] }
+      end
+
       def toggle_caching
         campaign_assessment.update!(caching_enabled: params[:caching_enabled])
 

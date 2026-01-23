@@ -9,6 +9,7 @@ en:
     agree_and_continue: Agree & Continue
     archive: Archive
     archived: Archived
+    audio: Audio
     authentication_failed: Authentication failed. Please try again.
     basic: Basic
     campaign_id: Campaign ID
@@ -16,6 +17,7 @@ en:
     change_password: Change Password
     clear_filters: Clear Filters
     collaborative_learning: Collaborative Learning
+    completed: Completed
     confirm: Confirm
     continue: Continue
     copy: Copy
@@ -23,12 +25,18 @@ en:
     created_date: Created Date
     decline: Decline
     description: Description
+    download: Download
     edit: Edit
     edited: Edited
     email: Email
     export: Export
+    failed: Failed
     first_name: First Name
     formal_learning: Formal Learning
+    generate: Generate
+    generate_transcription_confirm_content: Are you sure you want to generate the transcription for this media response?
+    generate_transcription_confirm_title: Generate Transcription
+    generating: Generating
     group_question_max_validation_error: Each group can contain at most {{max}} item(s).
     group_question_min_validation_error: Each group needs to contain at least {{min}} item(s).
     id: ID
@@ -37,13 +45,19 @@ en:
     last_name: Last Name
     learning_on_the_job_label: Learning on the Job
     login: Login
+    media_question_transcriptions: Media Question Transcriptions
     modified_by: Modified By
     modified_date: Modified Date
     more_actions: More actions
     mte_logo_alt_text: Mercer Talent Enterprise logo
+    na_text: N/A
     name: Name
     new: New
+    not_requested: Not Yet Requested
     ok: Ok
+    pending: Pending
+    processing: Processing
+    question_id: Question ID
     recording_consent_notice: This meeting session will be recorded. Your participation in this meeting constitutes your consent to be recorded.
     recording_consent_proceed_question: Do you agree to proceed with the recorded meeting?
     recording_consent_title: Recording Consent Notice
@@ -69,8 +83,13 @@ en:
           zero: 'Total : 0'
     terms_conditions_privacy: Privacy Statement
     tools: Tools
+    transcription: Transcription
+    transcription_already_requested: Transcription already requested or in progress
+    transcription_not_enabled: Transcription is not enabled for the media response
     transcriptions: Transcriptions
     try_again: Try Again
     tte_terms_and_condition: Terms & Privacy
     type: Type
     update: Update
+    video: Video
+    view: View

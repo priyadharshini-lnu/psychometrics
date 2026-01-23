@@ -9,6 +9,7 @@ ro:
     agree_and_continue: Acceptă și continuă
     archive: Arhivă
     archived: Arhivate
+    audio: Audio
     authentication_failed: Autentificarea a eșuat. Vă rog să încercați din nou.
     basic: Bază
     campaign_id: ID-ul campaniei
@@ -16,18 +17,26 @@ ro:
     change_password: Schimbați parola
     clear_filters: Ștergeți filtrele
     collaborative_learning: Învățare colaborativă
+    completed: Finalizat
     confirm: Confirmați
     continue: Continua
+    copy: Copiere
     created_at: Creat la
     created_date: Data creării
     decline: Declin
     description: Descriere
+    download: Descărcare
     edit: Editați
     edited: Nou
     email: E-mail
     export: Exportați
+    failed: Eșuat
     first_name: Prenumele
     formal_learning: Învățământ formal
+    generate: Generați
+    generate_transcription_confirm_content: Sunteți sigur că doriți să generați transcrierea pentru acest răspuns media?
+    generate_transcription_confirm_title: Generați transcrierea
+    generating: Generare
     group_question_max_validation_error: Fiecare grup poate conține cel mult {{max}} element(e).
     group_question_min_validation_error: Fiecare grup trebuie să conțină cel puțin {{min}} element(e).
     id: ID
@@ -36,18 +45,25 @@ ro:
     last_name: Numele de familie
     learning_on_the_job_label: Învățarea la locul de muncă
     login: Autentificare
+    media_question_transcriptions: Transcrieri ale întrebărilor adresate de mass-media
     modified_by: Modificat de
     modified_date: Data modificării
     more_actions: Mai multe acțiuni
     mte_logo_alt_text: Sigla Mercer Talent Enterprise
+    na_text: Nu se aplică
     name: Nume
     new: Nou
+    not_requested: Nu a fost încă solicitat
     ok: Bine
+    pending: În așteptare
+    processing: Prelucrare
+    question_id: ID întrebare
     recording_consent_notice: Această ședință va fi înregistrată. Participarea ta la această întâlnire constituie consimțământul tău de a fi înregistrat.
     recording_consent_proceed_question: Sunteți de acord să continuați cu întâlnirea înregistrată?
     recording_consent_title: Notificare de consimțământ pentru înregistrare
     remove: Eliminați
     removed: Scos
+    replace: Înlocuiți
     reset_password: Resetați parola
     rte_paste_content_exceeds_char_limit: Textul depășește limita de caractere {{maxCharacterLimit}} și nu poate fi lipit.
     rte_paste_content_exceeds_word_limit: Textul depășește limita de cuvinte a {{maxWordLimit}} și nu poate fi lipit.
@@ -62,7 +78,13 @@ ro:
         total: 'Total: 1'
     terms_conditions_privacy: Declarație de confidențialitate
     tools: Instrumente
+    transcription: Transcriere
+    transcription_already_requested: Transcrierea deja solicitată sau în curs de realizare
+    transcription_not_enabled: Transcrierea nu este activată pentru răspunsul media.
     transcriptions: Transcrieri
+    try_again: Încercați din nou
     tte_terms_and_condition: Termeni și confidențialitate
     type: Tip
     update: Actualizați
+    video: Video
+    view: Vizualizare

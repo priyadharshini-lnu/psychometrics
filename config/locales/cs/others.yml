@@ -837,6 +837,10 @@ cs:
           reply_to_reply: Nelze odpovědět na odpověď (povolena je pouze jedna úroveň vnoření)
         user_idp_plan:
           no_active_plan: Nebyl nalezen žádný aktivní plán IDP
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: Lze vybrat pouze hodnocení typu „psychometrie“ a „org survey“.
   admin_jobs:
     attrs:
       operations:
@@ -1421,7 +1425,6 @@ cs:
       collapse_link_text: Zobrazit méně
       expand_aria_label: 'Zobrazit méně informací výše: Virtuální vzdělávací centrum'
       expand_link_text: Zobrazit více
-      heading: Než začnete, přečtěte si pokyny níže. Přejeme vám hodně štěstí!
     language:
       content: Tento úkol není k dispozici v aktuálně vybraném jazyce. Chcete-li pokračovat, vyberte jeden z dostupných jazyků.
       single_lang: Tato úloha je k dispozici pouze v jazyce %{lang}. Pokračujte kliknutím na tlačítko Pokračovat.
@@ -1781,16 +1784,7 @@ cs:
       continue: Ano, můžeme pokračovat
       description: Klikněte na Spustit nahrávání a nahrajte svůj hlas při čtení níže uvedené pasáže
       random_phrases:
-        eight: Pokud mě vidíte, video funguje. Pokud ne, problém vyřešíme.
-        five: Testování videa, nebojte, nejsou nutné žádné oscarové výkony.
-        four: Připravit, pozor, zaostřit! Fotoaparát je vaše jeviště.
-        nine: Široké úsměvy a ostré video, pojďme to udělat správně!
-        one: Zvedněte ruku, jestli mě slyšíte, nebo jen zamávejte do kamery!
-        seven: Zrcadlo, zrcadlo na obrazovce, nechť kontrola videa proběhne lehce.
-        six: Světla, kamera, akce! Tohle je váš čas zazářit.
-        ten: Stačí úsměv a mávat, a všechno bude v pořádku.
-        three: Řekněte „sýr“! Nebo se jen přesvědčte o svém dokonalém úsměvu.
-        two: Podívejte se do objektivu, usmějte se a předstírejte, že jste ve filmovém traileru.
+        one: Jsem připraven/a. Toto je zkušební nahrávka, která potvrdí, že moje video a mikrofon fungují správně.
       rec_text: NAHRÁVÁNÍ
       retake: Ne, chci to zkusit znovu
       run_again: Zkusit znovu
@@ -2199,16 +2193,16 @@ cs:
       password_complexity:
         digit:
           one: musí obsahovat alespoň jednu číslici
-          other: musí obsahovat alespoň <x>count</x> číslic.
+          other: musí obsahovat alespoň %{count} číslic.
         lower:
           one: musí obsahovat alespoň jedno malé písmeno
-          other: musí obsahovat alespoň <x>count</x> malá písmena.
+          other: musí obsahovat alespoň %{count} malá písmena.
         symbol:
           one: musí obsahovat alespoň jedno interpunkční znaménko nebo symbol.
-          other: musí obsahovat alespoň <x>count</x> interpunkční znaménka nebo symboly.
+          other: musí obsahovat alespoň %{count} interpunkční znaménka nebo symboly.
         upper:
           one: musí obsahovat alespoň jedno velké písmeno
-          other: musí obsahovat alespoň <x>count</x> velká písmena.
+          other: musí obsahovat alespoň %{count} velká písmena.
       taken_in_past: nesmí být stejné jako dříve použité heslo.
     module_error: S tímto modulem se něco pokazilo, obraťte se na správce.
     module_error_editor: S tímto modulem se něco pokazilo, zkontrolujte nastavení modulu.
@@ -3024,13 +3018,10 @@ cs:
     client_usage: Použití klientem
     enabled: Povoleno
     end_date: Datum ukončení
-    not_enough_idp_license: Není dostatek licencí IDP, kontaktujte správce
     not_enough_license: "'%{client_name}' nemá dostatek licencí pro '%{report_name}'"
     not_enough_license_count: Nedostatek licencí, kontaktujte prosím správce
-    not_enough_proctoring_credits: Nedostatek kreditů pro zahájení proctoringu
     number: Číslo
     overuse_number: Příspěvek na nadměrné použití
-    project_limit_reached: Dosažený limit použití pro '%{license_name}', kontaktujte prosím administrátora
     project_specific: Specifické pro projekt
     project_specific_license: Specifická licence pro projekt
     project_usage: Využití projektu
@@ -3079,7 +3070,7 @@ cs:
     footer:
       regards: S pozdravem,
       team_name: Tým Lighthouse
-      technical_support: V případě jakýchkoli technických problémů nám napište na adresu <x>email</x> a my vám odpovíme do 24 hodin.
+      technical_support: V případě jakýchkoli technických problémů nám napište na adresu %{email} a my vám odpovíme do 24 hodin.
     from: Talentovaný podnik
     idp:
       manager_unread_comments:
@@ -3811,6 +3802,13 @@ cs:
       on_hold: Pozastaveno
       prepared: Hotovo
       released: Uvolněno
+    statuses:
+      completed: Dokončeno
+      declined: Odmítnuto
+      denied: Zamítnuto
+      done: Hotovo
+      not_completed: Nedokončeno
+      waiting: Čekání
   threesixty:
     accept_privacy_modal:
       accept: Přijmout

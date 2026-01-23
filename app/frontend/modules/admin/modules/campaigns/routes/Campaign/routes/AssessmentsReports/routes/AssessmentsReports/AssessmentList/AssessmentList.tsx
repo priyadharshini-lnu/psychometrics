@@ -40,6 +40,10 @@ const AssessmentList: React.FC<Props> = ({
   normalizeFactorScores,
   loadingUpdateMettlSchedule,
   updatePearsonVariation,
+  updateMhsConfidenceInterval,
+  updateMhsLeadershipBar,
+  updateMhsNormRegion,
+  updateMhsNormOption,
   toggleAssessmentCaching,
 }) => {
   const [drawerAssessment, setDrawerAssessment] = useState<Assessment | undefined>()
@@ -263,6 +267,10 @@ const AssessmentList: React.FC<Props> = ({
             updateMettlSchedule={updateMettlSchedule}
             loadingUpdateMettlSchedule={loadingUpdateMettlSchedule}
             updatePearsonVariation={updatePearsonVariation}
+            updateMhsConfidenceInterval={updateMhsConfidenceInterval}
+            updateMhsLeadershipBar={updateMhsLeadershipBar}
+            updateMhsNormRegion={updateMhsNormRegion}
+            updateMhsNormOption={updateMhsNormOption}
             toggleAssessmentCaching={toggleAssessmentCaching}
           />
         ) : null}

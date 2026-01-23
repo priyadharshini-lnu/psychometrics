@@ -837,6 +837,10 @@ sk:
           reply_to_reply: Nie je možné odpovedať na odpoveď (povolená je iba jedna úroveň vnorenia)
         user_idp_plan:
           no_active_plan: Nenašiel sa žiadny aktívny plán IDP
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: Je možné vybrať iba hodnotenia typu „psychometria“ a „org survey“.
   admin_jobs:
     attrs:
       operations:
@@ -1409,7 +1413,6 @@ sk:
       collapse_link_text: Zobraziť menej
       expand_aria_label: 'Zobraziť menej informácií vyššie: Virtuálne vzdelávacie centrum'
       expand_link_text: Zobraziť viac
-      heading: Skôr ako začnete, prečítajte si nižšie uvedené pokyny. Želáme vám všetko najlepšie!
     language:
       content: Táto úloha nie je dostupná v aktuálne vybranom jazyku. Ak chcete pokračovať, vyberte jeden z dostupných jazykov.
       single_lang: Táto úloha je dostupná len v %{lang}. Kliknutím na tlačidlo "Pokračovať" pokračujte.
@@ -1769,16 +1772,7 @@ sk:
       continue: Áno, môžete pokračovať
       description: Kliknite na Spustiť nahrávanie a nahrajte sa pri čítaní nižšie uvedeného úryvku vlastným hlasom
       random_phrases:
-        eight: Ak ma vidíte, video je úspešné. Ak nie, riešime problémy!
-        five: Testovanie videa, nebojte sa, nie je potrebná nominácia na Oscara.
-        four: Pripraviť, nastaviť, zaostriť! Fotoaparát je vaše javisko.
-        nine: Veľké úsmevy a jasné video, urobme tento test správne!
-        one: Zdvihnite ruku, ak ma počujete, alebo len zamávajte do kamery!
-        seven: Zrkadlo, zrkadlo na obrazovke, nech je kontrola videa čistá.
-        six: Svetlá, kamera, akcia, teraz je váš čas zažiariť!
-        ten: Priateľským zamávaním sa uistíte, že všetko funguje správne.
-        three: Povedzte syr! Alebo si len vyskúšajte ten dokonalý úsmev.
-        two: Pozrite sa do objektívu, usmejte sa a predstierajte, že ste vo filmovom traileri.
+        one: Som pripravený. Toto je testovací záznam na potvrdenie, či môj mikrofón a kamera fungujú správne.
       rec_text: REC
       retake: Nie, chcem si zopakovať
       run_again: Znovu bežať
@@ -2210,16 +2204,16 @@ sk:
       password_complexity:
         digit:
           one: musí obsahovať aspoň jednu číslicu
-          other: musí obsahovať aspoň <x>count</x> číslice
+          other: musí obsahovať aspoň %{count} číslice
         lower:
           one: musí obsahovať aspoň jedno malé písmeno
-          other: musí obsahovať aspoň <x>count</x> malé písmená
+          other: musí obsahovať aspoň %{count} malé písmená
         symbol:
           one: musí obsahovať aspoň jedno interpunkčné znamienko alebo symbol
-          other: musí obsahovať aspoň <x>count</x> interpunkčné znamienka alebo symboly
+          other: musí obsahovať aspoň %{count} interpunkčné znamienka alebo symboly
         upper:
           one: musí obsahovať aspoň jedno veľké písmeno
-          other: musí obsahovať aspoň <x>count</x> veľké písmená
+          other: musí obsahovať aspoň %{count} veľké písmená
       taken_in_past: nesmie byť rovnaké ako predtým použité heslo.
     module_error: Niečo sa s týmto modulom pokazilo, kontaktujte prosím administráciu.
     module_error_editor: Niečo sa s týmto modulom pokazilo, skontrolujte prosím nastavenia modulu.
@@ -3035,13 +3029,10 @@ sk:
     client_usage: Použitie na klientovi
     enabled: Povolené
     end_date: Dátum ukončenia
-    not_enough_idp_license: Nedostatok licencií IDP, kontaktujte správcu
     not_enough_license: "'%{client_name}' nemá dostatok licencií pre '%{report_name}'"
     not_enough_license_count: Nedostatok licencií, kontaktujte administrátora
-    not_enough_proctoring_credits: Nedostatok kreditov na začatie proctoringovej relácie
     number: Číslo
     overuse_number: Povolenie na nadmerné používanie
-    project_limit_reached: Dosiahnutý limit použitia pre '%{license_name}', kontaktujte prosím administrátora
     project_specific: Špecifické pre projekt
     project_specific_license: Špecifická licencia pre projekt
     project_usage: Využitie projektu
@@ -3090,7 +3081,7 @@ sk:
     footer:
       regards: S pozdravom,
       team_name: Tím Lighthouse
-      technical_support: V prípade akýchkoľvek technických problémov nám napíšte na <x>email</x> a my vám odpovieme do 24 hodín.
+      technical_support: V prípade akýchkoľvek technických problémov nám napíšte na %{email} a my vám odpovieme do 24 hodín.
     from: Talentový podnik
     idp:
       manager_unread_comments:
@@ -3822,6 +3813,13 @@ sk:
       on_hold: Na počkanie
       prepared: Hotovo
       released: Uvoľnené
+    statuses:
+      completed: Dokončené
+      declined: Odmietnuté
+      denied: Odmietnuté
+      done: Hotovo
+      not_completed: Nie je dokončené
+      waiting: Čakanie
   threesixty:
     accept_privacy_modal:
       accept: Prijať

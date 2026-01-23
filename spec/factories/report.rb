@@ -20,5 +20,11 @@ FactoryBot.define do
       assessments { build_list(:assessment, 1, :hogan) }
       external_settings { { report_id: 'EcHDSLFCML' } }
     end
+
+    trait :mhs do
+      provider { 'mhs' }
+      assessments { build_list(:assessment, 1, :mhs) }
+      external_settings { { report_id: 'reportId' } }
+    end
   end
 end

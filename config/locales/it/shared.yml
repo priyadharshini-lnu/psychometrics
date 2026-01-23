@@ -9,6 +9,7 @@ it:
     agree_and_continue: Accetta e continua
     archive: Archivio
     archived: Archiviati
+    audio: Audio
     authentication_failed: L'autenticazione è fallita. Per favore, riprova.
     basic: Basico
     campaign_id: ID della campagna elettorale
@@ -16,18 +17,26 @@ it:
     change_password: Modifica la password
     clear_filters: Cancella i filtri
     collaborative_learning: Apprendimento collaborativo
+    completed: Completato
     confirm: Confermare
     continue: Continuare
+    copy: Copia
     created_at: Creato il
     created_date: Data di creazione
     decline: Declino
     description: Descrizione
+    download: Scarica
     edit: Modifica
     edited: Nuove
     email: Email
     export: Esporta
+    failed: Fallito
     first_name: Nome
     formal_learning: Apprendimento Formale
+    generate: Generare
+    generate_transcription_confirm_content: Sei sicuro di voler generare la trascrizione per questa risposta multimediale?
+    generate_transcription_confirm_title: Genera trascrizione
+    generating: Generazione
     group_question_max_validation_error: Ogni gruppo può contenere al massimo {{max}} elemento(i).
     group_question_min_validation_error: Ogni gruppo deve contenere almeno {{min}} elemento(i).
     id: ID
@@ -36,18 +45,25 @@ it:
     last_name: Cognome
     learning_on_the_job_label: Imparare sul campo
     login: Accesso
+    media_question_transcriptions: Trascrizioni delle domande dei media
     modified_by: Modificato da
     modified_date: Data di modifica
     more_actions: Altre azioni
     mte_logo_alt_text: Logo Mercer Talent Enterprise
+    na_text: N/A
     name: Nome
     new: Nuove
+    not_requested: Non ancora richiesto
     ok: Ok
+    pending: In sospeso
+    processing: Elaborazione
+    question_id: ID domanda
     recording_consent_notice: Questa sessione di riunione sarà registrata. La tua partecipazione a questa riunione costituisce il tuo consenso a essere registrato.
     recording_consent_proceed_question: Accetti di procedere con l'incontro registrato?
     recording_consent_title: Avviso di Consenso alla Registrazione
     remove: Rimuovere
     removed: Rimosso
+    replace: Sostituisci
     reset_password: Reimpostare la password
     rte_paste_content_exceeds_char_limit: Il testo supera il limite di caratteri di {{maxCharacterLimit}} e non può essere incollato.
     rte_paste_content_exceeds_word_limit: Il testo supera il limite di parole di {{maxWordLimit}} e non può essere incollato.
@@ -67,7 +83,13 @@ it:
           zero: 'Totale : 0'
     terms_conditions_privacy: Dichiarazione sulla privacy
     tools: Utensileria
+    transcription: Trascrizione
+    transcription_already_requested: Trascrizione già richiesta o in corso
+    transcription_not_enabled: La trascrizione non è abilitata per la risposta multimediale.
     transcriptions: Trascrizioni
+    try_again: Riprova
     tte_terms_and_condition: Condizioni e privacy
     type: Tipo
     update: Aggiorna
+    video: Video
+    view: Visualizza

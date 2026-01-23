@@ -837,6 +837,10 @@ de:
           reply_to_reply: Auf eine Antwort kann nicht geantwortet werden (nur eine Verschachtelungsebene zulässig)
         user_idp_plan:
           no_active_plan: Kein aktiver IDP-Plan gefunden
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: Es können nur Bewertungen vom Typ „Psychometrie“ und „Organisationsumfrage“ ausgewählt werden.
   admin_jobs:
     attrs:
       operations:
@@ -1423,7 +1427,6 @@ de:
       collapse_link_text: Details verbergen
       expand_aria_label: 'Weniger Informationen oben anzeigen: Virtual Learning Centre'
       expand_link_text: Mehr Details
-      heading: Bitte lies die folgenden Richtlinien, bevor du beginnst. Alles Gute für dich!
     language:
       content: Diese Aufgabe ist in der aktuell ausgewählten Sprache nicht verfügbar. Bitte wählen Sie eine der verfügbaren Sprachen aus, um fortzufahren.
       single_lang: Diese Aufgabe ist nur in %{lang} verfügbar. Klicken Sie auf "Weiter", um fortzufahren.
@@ -1783,16 +1786,7 @@ de:
       continue: fortfahren
       description: Klicken Sie auf Aufnahme starten und nehmen Sie sich selbst auf, während Sie den folgenden Text mit Ihrer eigenen Stimme lesen
       random_phrases:
-        eight: Wenn Sie mich sehen können, ist das Video ein Erfolg, wenn nicht, suchen wir nach Problemen!
-        five: Testen Sie Ihr Video, keine Sorge, eine Oscar-Nominierung ist nicht erforderlich.
-        four: Auf die Plätze, fertig, los! Die Kamera ist deine Bühne.
-        nine: Ein breites Lächeln und ein klares Video, damit wir diesen Test richtig durchführen können!
-        one: Heben Sie die Hand, wenn Sie mich hören können, oder winken Sie einfach in die Kamera!
-        seven: Spieglein, Spieglein auf dem Bildschirm, lass die Videokontrolle sauber sein.
-        six: Licht, Kamera, Action, das ist deine Zeit zu glänzen!
-        ten: Ein freundliches Winken stellt sicher, dass alles gut funktioniert.
-        three: Sagen Sie "Cheese" oder testen Sie einfach das perfekte Lächeln.
-        two: Schauen Sie in die Linse, lächeln Sie und tun Sie so, als ob Sie in einem Filmtrailer wären.
+        one: Ich bin bereit. Dies ist eine Testaufnahme, um zu bestätigen, dass meine Kamera und mein Mikrofon einwandfrei funktionieren.
       rec_text: REC
       retake: Nein, ich möchte die Wiederholung
       run_again: Wieder laufen
@@ -2219,16 +2213,16 @@ de:
       password_complexity:
         digit:
           one: muss mindestens eine Ziffer enthalten
-          other: muss mindestens <x>count</x> Ziffern enthalten
+          other: muss mindestens %{count} Ziffern enthalten
         lower:
           one: muss mindestens einen Kleinbuchstaben enthalten
-          other: muss mindestens <x>count</x> Kleinbuchstaben enthalten
+          other: muss mindestens %{count} Kleinbuchstaben enthalten
         symbol:
           one: muss mindestens ein Interpunktionszeichen oder Symbol enthalten
-          other: muss mindestens <x>count</x> Interpunktionszeichen oder Symbole enthalten
+          other: muss mindestens %{count} Interpunktionszeichen oder Symbole enthalten
         upper:
           one: muss mindestens einen Großbuchstaben enthalten
-          other: muss mindestens <x>count</x> Großbuchstaben enthalten
+          other: muss mindestens %{count} Großbuchstaben enthalten
       taken_in_past: darf nicht mit einem zuvor verwendeten Passwort übereinstimmen.
     module_error: Bei diesem Modul ist ein Fehler aufgetreten. Bitte kontaktieren Sie die Administration.
     module_error_editor: Bei diesem Modul ist etwas schief gelaufen, bitte überprüfen Sie die Moduleinstellungen.
@@ -3045,13 +3039,10 @@ de:
     client_usage: Client-Nutzung
     enabled: Aktiviert
     end_date: Datum des Endes
-    not_enough_idp_license: Nicht genügend IDP-Lizenzen, bitte kontaktieren Sie den Administrator
     not_enough_license: "'%{client_name}' hat nicht genügend Lizenzen für '%{report_name}'"
     not_enough_license_count: Nicht genügend Lizenzen, bitte kontaktieren Sie den Administrator
-    not_enough_proctoring_credits: Nicht genügend Credits, um mit dem Proctoring zu beginnen
     number: Nummer
     overuse_number: Mehrverbrauchsvergütung
-    project_limit_reached: Nutzungslimit erreicht für '%{license_name}', bitte kontaktieren Sie den Administrator
     project_specific: Projektspezifisch
     project_specific_license: Projektspezifische Lizenz
     project_usage: Projektnutzung
@@ -3832,6 +3823,13 @@ de:
       on_hold: In der Warteschleife
       prepared: Erledigt
       released: Freigegeben
+    statuses:
+      completed: abgeschlossen
+      declined: Abgelehnt
+      denied: verweigert
+      done: Erledigt
+      not_completed: nicht abgeschlossen
+      waiting: warten
   threesixty:
     accept_privacy_modal:
       accept: Annehmen

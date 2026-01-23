@@ -47,6 +47,7 @@ export const LuaEditor: React.FC<LuaEditorProps> = ({
         ref={codemirrorRef}
         value={value || ''}
         options={options}
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         onBeforeChange={(editor, data, value) => { onChange ? onChange(value) : null }}
       />
     ) : (
@@ -54,6 +55,7 @@ export const LuaEditor: React.FC<LuaEditorProps> = ({
         ref={codemirrorRef}
         value={value}
         options={options}
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         onChange={(editor, data, value) => { onChange ? onChange(value) : null }}
       />
     )

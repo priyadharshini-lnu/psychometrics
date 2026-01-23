@@ -1,0 +1,747 @@
+---
+hi:
+  admin:
+    accept_na_values: N/A मान स्वीकार करें
+    add_admin: प्रशासक जोड़ें
+    add_admin_role: प्रशासक भूमिका जोड़ें
+    add_campaign_admin: अभियान प्रशासक जोड़ें
+    add_client_admin: क्लाइंट एडमिन जोड़ें
+    add_project: परियोजना जोड़ें
+    add_project_admin: परियोजना प्रशासक जोड़ें
+    add_threesixty_campaign_admin: अभियान प्रशासक जोड़ें
+    admin_approval_required: "%{user} के लिए रिपोर्ट डाउनलोड करने से पहले व्यवस्थापक की मंजूरी आवश्यक है।"
+    admin_created_successfully: प्रशासक '%{name}' सफलतापूर्वक बनाया गया
+    admin_export_scheduled: प्रशासन निर्यात कार्य सफलतापूर्वक निर्धारित हो गया है। कृपया स्थिति के लिए अपनी अधिसूचना देखें।
+    admin_removed_successfully: ईमेल '%{email}' वाला एडमिन सफलतापूर्वक हटा दिया गया।
+    admin_role_deleted: प्रशासनिक भूमिका '%{role_name}' सफलतापूर्वक हटा दी गई।
+    admin_roles: प्रशासन भूमिकाएँ
+    admin_updated_successfully: प्रशासक '%{name}' सफलतापूर्वक अपडेट किया गया।
+    admins: प्रशासक
+    ai_artifacts: एआई कलाकृतियाँ
+    ai_artifacts_output_schema_key_constraint: की एक छोटे अक्षर से शुरू होनी चाहिए और इसमें केवल छोटे अक्षर, अंक और अंडरस्कोर हो सकते हैं।
+    ai_assistant_model_id_label: मॉडल आईडी
+    ai_assistant_model_label: मॉडल
+    ai_assistant_model_provider: प्रदाता
+    ai_assistant_model_region_label: क्षेत्र
+    ai_assistant_required: एआई सहायक आवश्यक है
+    ai_assistants: एआई सहायक
+    ai_assistants_advanced_mode_tooltip: उपलब्ध वेरिएबल्स के साथ लिक्विड टेम्पलेट का उपयोग करके प्रॉम्प्ट टेम्पलेटिंग के लिए एडवांस्ड मोड का उपयोग करें। अधिक जानकारी के लिए दस्तावेज़ीकरण देखें।
+    ai_assistants_campaign_id_placeholder: अभियान आईडी दर्ज करें
+    ai_assistants_no_rendered_output: कोई रेंडर आउटपुट उपलब्ध नहीं है
+    ai_assistants_render_button: रेंडर टेम्पलेट
+    ai_assistants_rendered_prompt: प्रस्तुत अनुरोध
+    ai_assistants_template_and_campaign_required: कृपया टेम्पलेट और अभियान दोनों आईडी प्रदान करें।
+    ai_assistants_template_render_failed: टेम्पलेट रेंडर करने में असफल
+    ai_assistants_test_render: परीक्षण रेंडर
+    ai_assistants_test_render_tooltip: यह जांचने के लिए कि AI सहायक को क्या भेजा जाएगा, अपने प्रॉम्प्ट टेम्पलेट को अभियान डेटा के साथ परीक्षण करें।
+    ai_assisted_idp_feature_disabled: इस परियोजना के लिए AI-सहायक IDP सुविधा अक्षम कर दी गई है।
+    ai_notice: उजागर किए गए खंड एआई द्वारा अनुवादित हैं और इनमें अशुद्धियाँ हो सकती हैं।
+    ai_translation: एआई अनुवाद
+    all_corner_rounded: सभी कोने गोल
+    api_keys: एपीआई कुंजी
+    apply_to_existing_users: इस अभियान में मौजूदा उपयोगकर्ताओं पर यह परिवर्तन लागू करें।
+    assessments: मूल्यांकन
+    assessments_not_mhs: सभी मूल्यांकन एमएचएस प्रकार के होने चाहिए।
+    assessments_reports: मूल्यांकन एवं रिपोर्टें
+    assessor_dashboard: मूल्यांकनकर्ता डैशबोर्ड
+    assessor_workshops: मूल्यांकन केंद्र
+    assessors: मूल्यांकनकर्ता
+    assistant_toolbar_failed: कई प्रयासों के बाद भी मान्य आउटपुट उत्पन्न नहीं हो सका।
+    assistant_toolbar_not_a_valid_operation: अज्ञात ऑपरेशन %{operation}।
+    assistant_validation_failed: कई प्रयासों के बाद भी मान्य आउटपुट उत्पन्न नहीं हो सका।
+    audit_logs: ऑडिट लॉग्स
+    audit_reports: लेखा परीक्षा रिपोर्टें
+    auto_placeholder: स्वचालित
+    availability: उपलब्धता
+    available_languages: रिपोर्ट भाषाओं में उपलब्ध है
+    back_to_main: मुख्य मेनू
+    bulk_upload_ai_artifacts: बल्क अपलोड एआई आर्टिफैक्ट्स
+    campaign_ai_artifact_updated_successfully: अभियान एआई कलाकृतियाँ सफलतापूर्वक अद्यतन की गईं
+    campaign_assessment_actions_disable_caching: मूल्यांकन कैशिंग अक्षम करें
+    campaign_assessment_actions_enable_caching: मूल्यांकन कैशिंग सक्षम करें
+    campaign_assessment_column_caching_enabled: मूल्यांकन कैशिंग सक्षम
+    campaign_assessment_mhs_confidence_interval: विश्वास अंतराल
+    campaign_assessment_mhs_confidence_interval_update_success: विश्वास अंतराल सफलतापूर्वक अद्यतन किया गया
+    campaign_assessment_mhs_invalid_confidence_interval: confidence_interval 0 या 1 होना चाहिए।
+    campaign_assessment_mhs_invalid_leadership_bar: leadership_bar 0 या 1 होना चाहिए
+    campaign_assessment_mhs_invalid_norm_option: नॉर्म विकल्प 0 और 3 के बीच होना चाहिए।
+    campaign_assessment_mhs_leadership_bar: नेतृत्व बार
+    campaign_assessment_mhs_leadership_bar_update_success: लीडरशिप बार सफलतापूर्वक अपडेट हो गया।
+    campaign_assessment_mhs_norm_option: नॉर्म विकल्प
+    campaign_assessment_mhs_norm_option_form_select: नॉर्म विकल्प चुनें
+    campaign_assessment_mhs_norm_option_update_success: नॉर्म विकल्प सफलतापूर्वक अपडेट किया गया
+    campaign_assessment_mhs_norm_region: नॉर्म क्षेत्र
+    campaign_assessment_mhs_norm_region_form_select: नॉर्म क्षेत्र चुनें
+    campaign_assessment_mhs_norm_region_update_success: नॉर्म क्षेत्र सफलतापूर्वक अपडेट किया गया
+    campaign_assessment_modals_disable_caching_content: क्या आप सुनिश्चित हैं कि आप इस मूल्यांकन के लिए कैशिंग अक्षम करना चाहते हैं?
+    campaign_assessment_modals_disable_caching_successfully: इस मूल्यांकन के लिए कैशिंग अक्षम कर दी गई है।
+    campaign_assessment_modals_disable_caching_title: मूल्यांकन कैशिंग अक्षम करें?
+    campaign_assessment_modals_enable_caching_content: क्या आप सुनिश्चित हैं कि आप इस मूल्यांकन के लिए कैशिंग सक्षम करना चाहते हैं?
+    campaign_assessment_modals_enable_caching_successfully: इस मूल्यांकन के लिए कैशिंग सक्षम कर दी गई है।
+    campaign_assessment_modals_enable_caching_title: मूल्यांकन कैशिंग सक्षम करें?
+    campaign_factors: अभियान कारक
+    campaign_templates: अभियान टेम्पलेट्स
+    campaigns: अभियान
+    client: ग्राहक
+    client_admins: क्लाइंट एडमिन
+    clients: ग्राहक
+    code_required: कोड आवश्यक है
+    communication_center: संचार केंद्र
+    communications: संचार
+    completed: पूर्ण
+    completed_tooltip: सभी मूल्यांकनकर्ताओं ने मूल्यांकन जमा कर दिया है।
+    confirm_remove_admin: क्या आप सुनिश्चित हैं कि आप '%{email}' ईमेल वाले एडमिन उपयोगकर्ता को हटाना चाहते हैं?
+    country: देश
+    create_client: ग्राहक बनाएँ
+    current_job_role: वर्तमान नौकरी की भूमिका
+    dashboard: डैशबोर्ड
+    dashboards: डैशबोर्ड
+    data_reports: डेटा रिपोर्टें
+    datasheet: डेटाशीट
+    declined: अस्वीकृत
+    delete_ok_text: हाँ, हटाएँ
+    denied: अस्वीकृत
+    development_actions: विकास कार्यवाही
+    development_actions_form_tags: टैग
+    dimensions: आयाम
+    done: हो गया
+    done_tooltip: इस उपयोगकर्ता के लिए कोई और मूल्यांकन प्रस्तुत नहीं किया जा सकता क्योंकि इस उपयोगकर्ता का मूल्यांकन %{marked_by} द्वारा पूरा किया हुआ चिह्नित है।
+    edit_campaign_admin: अभियान प्रशासक संपादित करें
+    edit_client_admin: क्लाइंट एडमिन संपादित करें
+    edit_job_roles: नौकरी भूमिकाएँ संपादित करें
+    edit_level: स्तर संपादित करें
+    edit_permission_denied: आपके पास एडमिन '%{name}' को संपादित करने की अनुमति नहीं है।
+    edit_project_admin: परियोजना प्रशासक संपादित करें
+    edit_threesixty_campaign_admin: अभियान प्रशासक संपादित करें
+    empty_csv_file: CSV फ़ाइल में कोई डेटा नहीं है।
+    enable_enhance_with_ai_client_level: कृपया क्लाइंट स्तर पर एआई के साथ एनहेंस सुविधा सक्षम करें।
+    enable_transcription: प्रतिलेखन सक्षम करें
+    enhance_with_ai_requires_ai_assistants: AI के साथ बढ़ाएँ के लिए AI सहायक सुविधा सक्षम होना आवश्यक है।
+    evaluation_status: मूल्यांकन स्थिति
+    evaluation_status_not_done: एक या अधिक चयनित विषयों के लिए मूल्यांकन की स्थिति 'Done' नहीं है। कृपया सुनिश्चित करें कि सभी चयनित उपयोगकर्ताओं ने मूल्यांकन पूरे कर लिए हैं या उन्हें 'Done' के रूप में चिह्नित कर दें।
+    export_admin_roles_permissions: प्रशासन भूमिकाएँ और अनुमतियाँ निर्यात
+    feature_enhance_with_ai: एआई से बेहतर बनाएँ
+    feature_flags: फ़ीचर फ़्लैग्स
+    fill_empty_score_msg: सहेजने से पहले सभी अंतिम स्कोर भरें।
+    final_score_empty_err_msg: "%{factor_name} का अंतिम स्कोर शून्य नहीं हो सकता।"
+    idp_plan_reset_success: योजना सफलतापूर्वक रीसेट हो गई है।
+    idp_templates: आईडीपी टेम्पलेट्स
+    import_ai_artifacts: AI कलाकृतियों को आयात करें
+    import_csv_assessment_group_error: "%{index} पंक्ति: %{email} ईमेल वाले उपयोगकर्ता को पहले ही '%{workshopInviteName}' में आमंत्रित किया जा चुका है।"
+    import_csv_error: "%{index} पंक्ति: ईमेल %{email} वाला उपयोगकर्ता इस अभियान में नहीं है।"
+    import_csv_parsing_error: 'CSV पार्सिंग त्रुटि: %{message}'
+    import_description: CSV फ़ाइल से उपयोगकर्ताओं को आयात करें। प्रत्येक पंक्ति में एक ईमेल पता होना चाहिए।
+    import_download_sample: उदाहरण CSV डाउनलोड करें
+    import_error: आयात विफल हो गया। कृपया फिर से प्रयास करें।
+    import_error_saving_data: "%{email} के लिए डेटा सहेजने में त्रुटि: %{message}"
+    import_errors_title: आयात त्रुटियाँ
+    import_external_scoring_action: बाहरी स्कोरिंग आयात करें
+    import_external_scoring_body: यहाँ आयात करने के लिए उपयोग किए जाने वाले टेम्पलेट को निकालने हेतु निर्यात कार्यक्षमता देखें।
+    import_external_scoring_data_description: निर्दिष्ट मूल्यांकन और अभियान के लिए बाहरी स्कोरिंग डेटा आयात करना
+    import_external_scoring_data_title: बाहरी स्कोरिंग डेटा आयात करें
+    import_external_scoring_success_msg: आयात सफलतापूर्वक अपलोड हो गया।
+    import_external_scoring_upload: अपलोड
+    import_file_required: कृपया अपलोड करने के लिए एक CSV फ़ाइल चुनें।
+    import_queued_success: विषयों का आयात कार्य सफलतापूर्वक निर्धारित किया गया। कृपया स्थिति के लिए अपनी अधिसूचना देखें।
+    import_sample_file_label: 'नमूना फ़ाइल:'
+    import_scenario_id_mismatch: "%{email} के लिए परिदृश्य आईडी असंगति: अपेक्षित %{expected_id}, लेकिन CSV में अलग परिदृश्य आईडी हैं।"
+    import_successfully_saved: "%{email} के लिए %{goals_count} लक्ष्यों के साथ बाहरी परिणाम सफलतापूर्वक सहेजे गए।"
+    import_title: CSV से विषय आयात करें
+    import_upload: अपलोड
+    import_users: उपयोगकर्ताओं को आयात करें
+    invalid_csv_header: CSV फ़ाइल में अमान्य हेडर हैं।
+    job_roles: भूमिकाएँ
+    learning_from_others: सहयोगात्मक अधिगम [20]
+    level: स्तर
+    level_apply: लागू करें
+    level_guide: मार्गदर्शक
+    level_shape: आकार
+    level_validation_message: 'निम्नलिखित में से एक होना चाहिए: %{values}'
+    libraries: मीडिया पुस्तकालय
+    library_invalid_type: अमान्य पुस्तकालय आइटम
+    licenses: लाइसेंस
+    manager_approval_required: "%{user} के लिए रिपोर्ट डाउनलोड करने से पहले प्रबंधक की मंजूरी आवश्यक है।"
+    max_value: अधिकतम मान
+    messages: संदेश
+    mhs: एमएचएस
+    mhs_assessment: एमएचएस मूल्यांकन
+    mhs_assessment_name: एमएचएस मूल्यांकन नाम
+    mhs_data_gatherer_id: एमएचएस डेटा संग्रहकर्ता आईडी
+    mhs_data_gathering_id: एमएचएस डेटा संग्रह आईडी
+    mhs_external_assessment_id: एमएचएस मूल्यांकन आईडी
+    mhs_report_id: एमएचएस रिपोर्ट आईडी
+    mhs_session_id: एमएचएस सत्र आईडी
+    min_value: न्यूनतम मान
+    missing_min_max_values: न्यूनतम और अधिकतम मान आवश्यक हैं।
+    name_required: नाम आवश्यक है
+    no_file_selected: कोई फ़ाइल चयनित नहीं है
+    no_notifications: कोई सूचना नहीं
+    norms: मानदंड
+    not_completed: पूर्ण नहीं
+    not_completed_tooltip: "%{completed} मूल्यांकनकर्ता नियुक्त कर दिए गए हैं, लेकिन केवल %{submitted} ने ही मूल्यांकन पूरे किए हैं।"
+    notes: टिप्पणियाँ
+    nothing_assigned: कोई मूल्यांकनकर्ता नियुक्त नहीं हैं
+    nothing_assigned_tooltip: इस उपयोगकर्ता को कोई मूल्यांकन नहीं दिया गया है।
+    notification_bell_icon_alt_text: सूचना घंटी आइकन
+    notifications: सूचनाएं
+    number: संख्या
+    occupations: व्यवसाय
+    on_the_job: काम पर [70]
+    only_editable_on_create: यह विकल्प केवल निर्माण के दौरान ही संपादित किया जा सकता है।
+    options: विकल्प
+    participants: प्रतिभागी
+    permissions:
+      aiArtifacts:
+        export: निर्यात
+        import: आयात
+        manage: प्रबंध करें
+        title: एआई कलाकृतियाँ
+        view: देखें
+      apiKeys:
+        manage: प्रबंध करें
+        title: एपीआई कुंजी
+        view: देखें
+      assessments:
+        manage: प्रबंध करें
+        title: मूल्यांकन
+        view: देखें
+      assessors:
+        manage: प्रबंध करें
+        title: मूल्यांकनकर्ता
+        view: देखें
+      auditLogs:
+        title: ऑडिट लॉग्स
+        view: देखें
+      auditReports:
+        admin_permissions: प्रशासन भूमिकाएँ और अनुमतियाँ निर्यात
+        title: लेखा परीक्षा रिपोर्टें
+        user_report_events: अनुमोदन लॉग रिपोर्ट
+      campaignFactors:
+        manage: प्रबंध करें
+        title: अभियान कारक
+        view: देखें
+      campaigns:
+        bulk_download: थोक डाउनलोड
+        bulk_regenerate_reports: बल्क पुनर्जनित रिपोर्टें
+        manage: प्रबंध करें
+        manage_admins: प्रशासकों का प्रबंधन करें
+        manage_factor_benchmark_scores: फैक्टर बेंचमार्क स्कोर प्रबंधित करें
+        manage_messages: संदेश प्रबंधित करें
+        manage_options: विकल्प प्रबंधित करें
+        manage_report_approvals: रिपोर्ट अनुमोदनों का प्रबंधन करें
+        manage_users: उपयोगकर्ताओं का प्रबंधन करें
+        participant_options: प्रतिभागी विकल्प
+        report_options: रिपोर्ट विकल्प
+        reset_nominations: नामांकन रीसेट करें
+        title: अभियान
+        view: देखें
+        view_factor_benchmark_scores: दृश्यता कारक बेंचमार्क स्कोर देखें
+        view_stats: आँकड़े देखें
+      clients:
+        export_data_report: निर्यात डेटा रिपोर्ट
+        manage: प्रबंध करें
+        title: ग्राहक
+        view: देखें
+        view_licenses: लाइसेंस देखें
+      communications:
+        manage: प्रबंध करें
+        title: संचार
+        view: देखें
+      dashboards:
+        accesssheet_manage: एक्सेसशीट प्रबंधित करें
+        accesssheet_settings: एक्सेसशीट सेटिंग्स
+        accesssheet_view: एक्सेसशीट दृश्य
+        export: निर्यात
+        title: डैशबोर्ड
+        view: देखें
+      datasheets:
+        manage: प्रबंध करें
+        title: डेटाशीट्स
+        view: देखें
+      developmentActions:
+        export: निर्यात
+        export_global: वैश्विक निर्यात
+        export_global_translations: वैश्विक अनुवाद निर्यात करें
+        export_translations: अनुवाद निर्यात करें
+        import: आयात
+        import_global: वैश्विक आयात
+        import_global_translations: वैश्विक अनुवाद आयात करें
+        import_translations: अनुवाद आयात करें
+        manage: प्रबंध करें
+        title: विकास कार्यवाही
+        view: देखें
+      dimensions:
+        manage: प्रबंध करें
+        title: आयाम
+        view: देखें
+      idpTemplates:
+        manage: प्रबंध करें
+        title: आईडीपी टेम्पलेट्स
+        view: देखें
+      interviewQuestions:
+        export: निर्यात
+        import: आयात
+        manage: प्रबंध करें
+        title: आईडीपी साक्षात्कार प्रश्न
+        view: देखें
+      jobRoles:
+        export_translations: निर्यात जॉब भूमिका अनुवाद
+        import_translations: नौकरी भूमिकाओं का अनुवाद आयात करें
+        manage: प्रबंध करें
+        title: भूमिकाएँ
+        view: देखें
+      labels:
+        apiKeys:
+          manage: प्रबंध करें
+          title: एपीआई कुंजी
+          view: देखें
+        assessments:
+          manage: प्रबंध करें
+          title: मूल्यांकन
+          view: देखें
+        assessors:
+          manage: प्रबंध करें
+          title: मूल्यांकनकर्ता
+          view: देखें
+        auditLogs:
+          title: ऑडिट लॉग्स
+          view: देखें
+        auditReports:
+          admin_permissions: प्रशासन भूमिकाएँ और अनुमतियाँ निर्यात
+          title: लेखा परीक्षा रिपोर्टें
+          user_report_events: अनुमोदन लॉग रिपोर्ट
+        campaignFactors:
+          manage: प्रबंध करें
+          title: अभियान कारक
+          view: देखें
+        campaigns:
+          bulk_download: थोक डाउनलोड
+          bulk_regenerate_reports: बल्क पुनर्जनित रिपोर्टें
+          manage: प्रबंध करें
+          manage_admins: प्रशासकों का प्रबंधन करें
+          manage_factor_benchmark_scores: फैक्टर बेंचमार्क स्कोर प्रबंधित करें
+          manage_messages: संदेश प्रबंधित करें
+          manage_options: विकल्प प्रबंधित करें
+          manage_report_approvals: रिपोर्ट अनुमोदनों का प्रबंधन करें
+          manage_users: उपयोगकर्ताओं का प्रबंधन करें
+          participant_options: प्रतिभागी विकल्प
+          report_options: रिपोर्ट विकल्प
+          reset_nominations: नामांकन रीसेट करें
+          title: अभियान
+          view: देखें
+          view_factor_benchmark_scores: दृश्यता कारक बेंचमार्क स्कोर देखें
+          view_stats: आँकड़े देखें
+        clients:
+          export_data_report: निर्यात डेटा रिपोर्ट
+          manage: प्रबंध करें
+          title: ग्राहक
+          view: देखें
+          view_licenses: लाइसेंस देखें
+        communications:
+          manage: प्रबंध करें
+          title: संचार
+          view: देखें
+        dashboards:
+          accesssheet_manage: एक्सेसशीट प्रबंधित करें
+          accesssheet_settings: एक्सेसशीट सेटिंग्स
+          accesssheet_view: एक्सेसशीट दृश्य
+          export: निर्यात
+          title: डैशबोर्ड
+          view: देखें
+        datasheets:
+          manage: प्रबंध करें
+          title: डेटाशीट्स
+          view: देखें
+        developmentActions:
+          export: निर्यात
+          export_global: वैश्विक निर्यात
+          export_global_translations: वैश्विक अनुवाद निर्यात करें
+          export_translations: अनुवाद निर्यात करें
+          import: आयात
+          import_global: वैश्विक आयात
+          import_global_translations: वैश्विक अनुवाद आयात करें
+          import_translations: अनुवाद आयात करें
+          manage: प्रबंध करें
+          title: विकास कार्यवाही
+          view: देखें
+        dimensions:
+          manage: प्रबंध करें
+          title: आयाम
+          view: देखें
+        idpTemplates:
+          manage: प्रबंध करें
+          title: आईडीपी टेम्पलेट्स
+          view: देखें
+        jobRoles:
+          export_translations: निर्यात जॉब भूमिका अनुवाद
+          import_translations: नौकरी भूमिकाओं का अनुवाद आयात करें
+          manage: प्रबंध करें
+          title: भूमिकाएँ
+          view: देखें
+        libraries:
+          manage: प्रबंध करें
+          title: मीडिया पुस्तकालय
+          view: देखें
+        messages:
+          email: ईमेल
+          instructions: निर्देश
+          options: विकल्प
+          title: संदेश
+        norms:
+          manage: प्रबंध करें
+          title: मानदंड
+          view: देखें
+        proficiencyLevels:
+          export: निर्यात प्रवीणता स्तर
+          export_translations: निर्यात प्रवीणता स्तर अनुवाद
+          import: प्रवीणता स्तर आयात करें
+          import_translations: अनुवादों के लिए प्रवीणता स्तर आयात करें
+          manage: प्रबंध करें
+          title: प्रवीणता स्तर
+          view: देखें
+        proficiency_level:
+          title: प्रवीणता स्तर
+        projectSettings:
+          assessments: मूल्यांकन
+          design: डिज़ाइन
+          feature_flags: फ़ीचर फ़्लैग्स
+          idp: आईडीपी
+          integrations: एकीकरण
+          privacy_settings: गोपनीयता सेटिंग्स
+          saml: एसएएमएल
+          security: सुरक्षा
+          smtp: एसएमटीपी
+          title: परियोजना सेटिंग्स
+          webhooks: वेबहूक्स
+        projects:
+          manage: प्रबंध करें
+          manage_admins: प्रशासकों का प्रबंधन करें
+          manage_users: उपयोगकर्ताओं का प्रबंधन करें
+          title: परियोजनाएँ
+          view: देखें
+        questions:
+          manage: प्रबंध करें
+          title: प्रश्न
+          view: देखें
+        reflectionQuestions:
+          export: निर्यात
+          import: आयात
+          manage: प्रबंध करें
+          title: आईडीपी प्रतिबिंब प्रश्न
+          view: देखें
+        registrationCodes:
+          manage: प्रबंध करें
+          title: पंजीकरण कोड
+          view: देखें
+        registrationSettings:
+          manage: प्रबंध करें
+          title: पंजीकरण सेटिंग्स
+        reports:
+          manage: प्रबंध करें
+          title: रिपोर्टें
+          view: देखें
+        responseMeta:
+          title: प्रतिक्रिया मेटा
+        results:
+          approve_report: रिपोर्ट को अनुमोदित करें
+          bulk_download: थोक डाउनलोड
+          bulk_regenerate_reports: बल्क पुनर्जनित रिपोर्टें
+          bulk_update_evaluation_status: बल्क अपडेट मूल्यांकन स्थिति
+          download_report: रिपोर्ट डाउनलोड करें
+          edit_report: रिपोर्ट संपादित करें
+          export_occupations: निर्यात व्यवसाय
+          external_score_import: बाहरी स्कोर आयात
+          finalize_scores: अंतिम स्कोर
+          normalize_factor_scores: कारक स्कोर का सामान्यीकरण करें
+          raw_responses: कच्ची प्रतिक्रियाएँ
+          regenerate_report: रिपोर्ट पुनः उत्पन्न करें
+          report_data: डेटा रिपोर्ट करें
+          report_file_upload: रिपोर्ट फ़ाइल अपलोड
+          rescore_responses: प्रतिक्रियाओं का पुनः स्कोर करें
+          reset_progress: प्रगति रीसेट करें
+          reset_responses: प्रतिक्रियाओं को रीसेट करें
+          scores: स्कोर
+          title: परिणाम
+          view_report: रिपोर्ट देखें
+          view_stats: आँकड़े देखें
+        skills:
+          export: निर्यात कौशल
+          export_translations: निर्यात कौशल अनुवाद
+          import: कौशल आयात करें
+          import_translations: कौशल अनुवाद आयात करें
+          manage: प्रबंध करें
+          title: कौशल
+          view: देखें
+        smsHistories:
+          manage: प्रबंध करें
+          title: एसएमएस इतिहास
+          view: देखें
+        smsInvites:
+          manage: प्रबंध करें
+          title: एसएमएस निमंत्रण
+          view: देखें
+        userIdpPlans:
+          manage: प्रबंध करें
+          title: यूज़र आईडीपी योजनाएँ
+          view: देखें
+        users:
+          reset_password: पासवर्ड रीसेट करें
+          title: उपयोगकर्ता
+        workshops:
+          export_status: निर्यात स्थिति
+          manage: प्रबंध करें
+          title: कार्यशालाएँ
+          view: देखें
+          view_recordings: रिकॉर्डिंग देखें
+      libraries:
+        manage: प्रबंध करें
+        title: मीडिया पुस्तकालय
+        view: देखें
+      messages:
+        email: ईमेल
+        instructions: निर्देश
+        options: विकल्प
+        title: संदेश
+      norms:
+        manage: प्रबंध करें
+        title: मानदंड
+        view: देखें
+      proficiencyLevels:
+        export: निर्यात प्रवीणता स्तर
+        export_translations: निर्यात प्रवीणता स्तर अनुवाद
+        import: प्रवीणता स्तर आयात करें
+        import_translations: अनुवादों के लिए प्रवीणता स्तर आयात करें
+        manage: प्रबंध करें
+        title: प्रवीणता स्तर
+        view: देखें
+      proficiency_level:
+        title: प्रवीणता स्तर
+      projectSettings:
+        assessments: मूल्यांकन
+        design: डिज़ाइन
+        feature_flags: फ़ीचर फ़्लैग्स
+        idp: आईडीपी
+        integrations: एकीकरण
+        privacy_settings: गोपनीयता सेटिंग्स
+        saml: एसएएमएल
+        security: सुरक्षा
+        smtp: एसएमटीपी
+        title: परियोजना सेटिंग्स
+        webhooks: वेबहूक्स
+      projects:
+        manage: प्रबंध करें
+        manage_admins: प्रशासकों का प्रबंधन करें
+        manage_licenses: लाइसेंस प्रबंधित करें
+        manage_users: उपयोगकर्ताओं का प्रबंधन करें
+        title: परियोजनाएँ
+        view: देखें
+        view_licenses: लाइसेंस देखें
+      questions:
+        manage: प्रबंध करें
+        title: प्रश्न
+        view: देखें
+      reflectionQuestions:
+        export: निर्यात
+        import: आयात
+        manage: प्रबंध करें
+        title: आईडीपी प्रतिबिंब प्रश्न
+        view: देखें
+      registrationCodes:
+        manage: प्रबंध करें
+        title: पंजीकरण कोड
+        view: देखें
+      registrationSettings:
+        manage: प्रबंध करें
+        title: पंजीकरण सेटिंग्स
+      reports:
+        manage: प्रबंध करें
+        title: रिपोर्टें
+        view: देखें
+      responseMeta:
+        title: प्रतिक्रिया मेटा
+      results:
+        approve_report: रिपोर्ट को अनुमोदित करें
+        bulk_download: थोक डाउनलोड
+        bulk_regenerate_reports: बल्क पुनर्जनित रिपोर्टें
+        bulk_update_evaluation_status: बल्क अपडेट मूल्यांकन स्थिति
+        download_report: रिपोर्ट डाउनलोड करें
+        edit_report: रिपोर्ट संपादित करें
+        export_occupations: निर्यात व्यवसाय
+        external_score_import: बाहरी स्कोर आयात
+        finalize_scores: अंतिम स्कोर
+        normalize_factor_scores: कारक स्कोर का सामान्यीकरण करें
+        raw_responses: कच्ची प्रतिक्रियाएँ
+        regenerate_report: रिपोर्ट पुनः उत्पन्न करें
+        report_data: डेटा रिपोर्ट करें
+        report_file_upload: रिपोर्ट फ़ाइल अपलोड
+        rescore_responses: प्रतिक्रियाओं का पुनः स्कोर करें
+        reset_progress: प्रगति रीसेट करें
+        reset_responses: प्रतिक्रियाओं को रीसेट करें
+        scores: स्कोर
+        title: परिणाम
+        view_report: रिपोर्ट देखें
+        view_stats: आँकड़े देखें
+      skills:
+        export: निर्यात कौशल
+        export_translations: निर्यात कौशल अनुवाद
+        import: कौशल आयात करें
+        import_translations: कौशल अनुवाद आयात करें
+        manage: प्रबंध करें
+        title: कौशल
+        view: देखें
+      smsHistories:
+        manage: प्रबंध करें
+        title: एसएमएस इतिहास
+        view: देखें
+      smsInvites:
+        manage: प्रबंध करें
+        title: एसएमएस निमंत्रण
+        view: देखें
+      userIdpPlans:
+        manage: प्रबंध करें
+        reset: पुनः आरंभ करें
+        title: यूज़र आईडीपी योजनाएँ
+        view: देखें
+      users:
+        reset_password: पासवर्ड रीसेट करें
+        title: उपयोगकर्ता
+      workshops:
+        export_status: निर्यात स्थिति
+        manage: प्रबंध करें
+        title: कार्यशालाएँ
+        view: देखें
+        view_recordings: रिकॉर्डिंग देखें
+    permissions_360_campaigns: 360 अभियानों के लिए विशिष्ट अनुमतियाँ
+    piped_text: पाइप्ड टेक्स्ट
+    privacy: गोपनीयता
+    proficiency_level: प्रवीणता स्तर
+    proficiency_levels: प्रवीणता स्तर
+    profile_details: प्रोफ़ाइल विवरण
+    project_admins: परियोजना प्रशासक
+    project_manager: परियोजना प्रबंधक
+    project_number: परियोजना संख्या
+    project_settings: परियोजना सेटिंग्स
+    projects: परियोजनाएँ
+    question_center: प्रश्न केंद्र
+    questions: प्रश्न
+    reflection_questions: चिंतन प्रश्न
+    registration_codes: पंजीकरण कोड
+    registration_settings: पंजीकरण सेटिंग्स
+    report_approvals: रिपोर्ट अनुमोदन
+    report_condition_not_met: "%{required}%{relationship} मूल्यांकन(ओं) की आवश्यकता है, लेकिन केवल %{actual} है।"
+    report_conditions_not_met_detailed: "%{user} के लिए रिपोर्ट उपलब्धता की शर्तों को पूरा नहीं करता। %{conditions}"
+    report_denied: "%{user} के लिए रिपोर्ट अस्वीकार कर दी गई है।"
+    report_no_evaluations: "%{user} के लिए रिपोर्ट उपलब्ध नहीं है - कोई मूल्यांकन प्राप्त नहीं हुए हैं।"
+    report_not_generated: "%{user} के लिए रिपोर्ट उपलब्धता की शर्तों को पूरा करती है लेकिन अभी तक उत्पन्न नहीं की गई है। कृपया पहले रिपोर्ट उत्पन्न करें।"
+    report_on_hold: "%{user} के लिए रिपोर्ट वर्तमान में रोक दी गई है।"
+    report_status: रिपोर्ट की स्थिति
+    reports: रिपोर्टें
+    reports_limit_exceeded: थोक डाउनलोड 1000 रिपोर्ट फ़ाइलों तक सीमित है। यदि आपने कई भाषाएँ चुनी हैं, तो कृपया उन्हें कम करें।
+    reports_not_found: कोई रिपोर्ट नहीं मिली। कृपया डाउनलोड करने से पहले रिपोर्टें उत्पन्न करें।
+    reset_idp_plan: पुनर्स्थापना योजना
+    reset_idp_plan_confirmation: क्या आप योजना को रीसेट करना चाहते हैं?
+    reset_idp_plan_title: पुनर्स्थापना योजना
+    response_meta: प्रतिक्रिया मेटा
+    results: परिणाम
+    role: भूमिका
+    saml_idp_certificate_available: उपलब्ध (नकल करने के लिए क्लिक करें)
+    saml_idp_certificate_label: प्रमाणपत्र
+    saml_idp_entity_id_label: इकाई आईडी/जारीकर्ता
+    saml_idp_sso_url_label: एसएसओ सेवा यूआरएल
+    saml_service_provider: SAML सेवा प्रदाता
+    saml_service_provider_acs_urls: एसीएस यूआरएल
+    saml_service_provider_acs_urls_placeholder: अल्पविराम से अलग किए गए यूआरएल दर्ज करें, उदाहरण के लिए https://app1.com/saml/acs, https://app2.com/saml/acs
+    saml_service_provider_acs_urls_required: एसीएस यूआरएल आवश्यक हैं।
+    saml_service_provider_action_delete_label: मिटायें
+    saml_service_provider_action_edit_label: संपादित करें
+    saml_service_provider_action_rotate_certificate_label: प्रमाणपत्र घुमाएँ
+    saml_service_provider_add: SAML सेवा प्रदाता जोड़ें
+    saml_service_provider_delete_success: SAML सेवा प्रदाता सफलतापूर्वक हटा दिया गया
+    saml_service_provider_enabled: सक्षम
+    saml_service_provider_entity_id: इकाई आईडी
+    saml_service_provider_entity_id_placeholder: एंटिटी आईडी दर्ज करें
+    saml_service_provider_entity_id_required: एंटिटी आईडी आवश्यक है।
+    saml_service_provider_idp_config: IdP कॉन्फ़िगरेशन
+    saml_service_provider_integration_generic: सामान्य
+    saml_service_provider_integration_masking_info: उम्मीदवारों की ईमेल आईडी Yoodli को भेजने से पहले मास्क की जाएगी। उम्मीदवारों के पहले और अंतिम नामों का मास्किंग सक्षम करने की आवश्यकता है।
+    saml_service_provider_integration_type: एकीकरण का प्रकार
+    saml_service_provider_integration_type_placeholder: एकीकरण का प्रकार चुनें
+    saml_service_provider_integration_type_required: एकीकरण प्रकार आवश्यक है।
+    saml_service_provider_integration_yoodli: यूडली
+    saml_service_provider_manage: क्रियाएँ
+    saml_service_provider_mask_data_for: के लिए मास्क डेटा
+    saml_service_provider_mask_identity: मास्क पहचान
+    saml_service_provider_masking_enabled: मास्किंग सक्षम करें
+    saml_service_provider_masking_help_generic: SAML प्रतिक्रियाओं में उपयोगकर्ता की पहचान मास्क करने की सुविधा सक्षम करें
+    saml_service_provider_masking_help_integration: एकीकरण प्रदाता मास्किंग लागू की जाएगी।
+    saml_service_provider_masking_integration: "%{integration} प्रेरित"
+    saml_service_provider_masking_manual_disabled: अक्षम
+    saml_service_provider_masking_manual_enabled: सक्षम
+    saml_service_provider_name: नाम
+    saml_service_provider_name_placeholder: सेवा प्रदाता का नाम दर्ज करें
+    saml_service_provider_name_required: नाम आवश्यक है
+    saml_service_provider_privacy_policy: गोपनीयता नीति पृष्ठ
+    saml_service_provider_remove_content: 'क्या आप SAML सेवा प्रदाता: %{name} को हटाना चाहते हैं?'
+    saml_service_provider_remove_title: SAML सेवा प्रदाता हटाएँ
+    saml_service_provider_rotate_certificate_content: क्या आप सुनिश्चित हैं कि आप %{name} के लिए प्रमाणपत्र रोटेट करना चाहते हैं? इससे एक नया प्रमाणपत्र उत्पन्न होगा और वर्तमान प्रमाणपत्र अमान्य हो जाएगा।
+    saml_service_provider_rotate_certificate_error: सर्टिफिकेट घूमने में असफल रहा
+    saml_service_provider_rotate_certificate_ok: प्रमाणपत्र घुमाएँ
+    saml_service_provider_rotate_certificate_success: प्रमाणपत्र सफलतापूर्वक घुमाया गया
+    saml_service_provider_rotate_certificate_title: प्रमाणपत्र घुमाएँ
+    saml_service_provider_search: SAML सेवा प्रदाताओं को खोजें...
+    saml_service_provider_updated_date: अद्यतन तिथि
+    saml_service_providers: सेवा प्रदाता
+    saml_settings: SAML सेटिंग्स
+    scheduling: अनुसूचीकरण
+    scoring: स्कोरिंग
+    scoring_value_info: स्कोर %{min} और %{max} के बीच होना चाहिए।
+    scoring_value_out_of_range_err_msg: "%{factor_name} के लिए स्कोर %{min} और %{max} के बीच होना चाहिए।"
+    search_admins: प्रशासकों को खोजें
+    search_job_role: नौकरी की भूमिका खोजें
+    select_admin_role: प्रशासक भूमिका चुनें
+    select_language_to_translate: कृपया अनुवाद के लिए भाषा चुनें
+    select_level: स्तर चुनें
+    send_email: ईमेल भेजें
+    settings: सेटिंग्स
+    show_original: मूल दिखाएँ
+    show_submenu: उप मेनू दिखाएँ
+    show_translated: अनुवादित दिखाएँ
+    siem: एसआईईएम
+    skill_aliases: कौशल उपनाम
+    skills: कौशल
+    skills_taxonomy: कौशल वर्गीकरण
+    slot_name: स्लॉट का नाम
+    sms_histories: एसएमएस इतिहास
+    sms_invites: एसएमएस निमंत्रण
+    stats: आँकड़े
+    status_details: स्थिति विवरण
+    structured_learning: औपचारिक अधिगम [10]
+    subdomain: उप-डोमेन
+    subject_part_of_other_invite: "%{user_email} ईमेल वाले विषय को पहले ही '%{workshop_invite_name}' में आमंत्रित किया जा चुका है।"
+    target_job_role: लक्षित नौकरी की भूमिका
+    toolbar_ai_insight: एआई अंतर्दृष्टि
+    toolbar_ai_suggestion: एआई सुझाव
+    toolbar_result_generating: उत्पादित हो रहा है...
+    toolbar_text_copied: क्लिपबोर्ड पर कॉपी हो गया
+    toolbar_text_replaced: टेक्स्ट बदल दिया गया!
+    toolbar_what_changed_and_why: क्या बदला और क्यों
+    translate: अनुवाद करें
+    translate_to: अनुवाद करें
+    translate_with_ai: एआई से अनुवाद करें
+    translated_from: से अनुवादित
+    translated_to: 'अनुवादित:'
+    translated_with_ai_notice: एआई द्वारा अनुवादित
+    translation_assistant_not_configured: अनुवाद सहायक कॉन्फ़िगर नहीं किया गया है
+    upload_success: सफलतापूर्वक अपलोड किया गया
+    user_report_events: उपयोगकर्ता रिपोर्ट घटनाएँ
+    users: उपयोगकर्ता
+    view_licenses: लाइसेंस देखें
+    waiting: इंतज़ार
+    workshops: कार्यशालाएँ
+    writing_assistant_not_configured: राइटिंग असिस्टेंट कॉन्फ़िगर नहीं किया गया है
+    x_axis_interval_label: एक्स-अक्ष अंतराल
+    y_axis_interval_label: वाई-अक्ष अंतराल
+    year: वर्ष
+    yoodli_activity_id: यूडल एक्टिविटी आईडी
+    yoodli_email_id: यूडली उम्मीदवार ईमेल आईडी
+    yoodli_external_assessment_id: यूडली मूल्यांकन आईडी

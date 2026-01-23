@@ -49,7 +49,7 @@ RSpec.describe Assessment, type: :model do
   end
 
   describe '#external?' do
-    external_types = %i[hogan saville pearson iiht mettl simulation]
+    external_types = %i[hogan saville pearson iiht mettl simulation mhs]
 
     external_types.each do |type|
       it "returns true for #{type} assessment" do
@@ -155,6 +155,19 @@ RSpec.describe Assessment, type: :model do
 
       it 'returns the assessment title' do
         expect(mettl_assessment.external_assessment_name).to eq('Mettl Assessment')
+      end
+    end
+
+    context 'when assessment type is mhs' do
+      before do
+        allow(Settings.providers.mhs.assessments).to receive(:find).
+          and_return(Struct.new(:name).new('EQ-i 2.0'))
+      end
+
+      let(:mhs_assessment) { create(:assessment, :mhs) }
+
+      it 'returns the assessment name' do
+        expect(mhs_assessment.external_assessment_name).to eq('EQ-i 2.0')
       end
     end
 

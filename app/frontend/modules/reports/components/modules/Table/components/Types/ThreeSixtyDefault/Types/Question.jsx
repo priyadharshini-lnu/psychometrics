@@ -13,7 +13,7 @@ import { SafeHTML } from '~/components/SafeHTML'
 import array from '~/utils/array'
 
 const Question = ({
-  model, questions, insertPaginationPage, preview,
+  model, questions, insertPaginationPage, preview, aiTranslation,
 }) => {
   if (!model.props.filter) return null
   const question = _.find(questions, q => q.id === model.props.questionId)
@@ -43,6 +43,7 @@ const Question = ({
             model={model}
             questions={questions}
             paginationContext={paginationContext}
+            aiTranslation={aiTranslation}
           />
         ))}
       </table>
@@ -53,7 +54,7 @@ const Question = ({
 const MOCK_RESULTS = ['First answer', 'Second answer']
 
 function FilterTable ({
-  filterId, model, questions, paginationContext,
+  filterId, model, questions, paginationContext, aiTranslation,
 }) {
   const filter = AppStore.report.filters.find(f => f.id === filterId)
   const question = _.find(questions, q => q.id === model.props.questionId)
@@ -110,12 +111,19 @@ function FilterTable ({
           {I18nStore.tFilterName(filter)}
         </td>
       </tr>
-      <Results filterId={filterId} results={results} paginationContext={paginationContext} />
+      <Results
+        filterId={filterId}
+        results={results}
+        paginationContext={paginationContext}
+        aiTranslation={aiTranslation}
+      />
     </tbody>
   )
 }
 
-const Results = ({ results, filterId, paginationContext }) => {
+const Results = ({
+  results, filterId, paginationContext, aiTranslation,
+}) => {
   if (!results || results.length === 0) {
     return (
       <tr data-paginatable={2}>
@@ -131,7 +139,10 @@ const Results = ({ results, filterId, paginationContext }) => {
       paginationContext.resultIndexes[filterId].map(i => (
         <tr>
           <td key={i} className={styles.answer}>
-            <SafeHTML html={results[i]} />
+            <SafeHTML
+              html={aiTranslation?.[`${filterId}-${i}`] || results[i]}
+              data-ai-translation={`${filterId}-${i}`}
+            />
           </td>
         </tr>
       ))
@@ -141,7 +152,7 @@ const Results = ({ results, filterId, paginationContext }) => {
   return results.map((r, i) => (
     <tr key={i} data-index={i} data-paginatable={2}>
       <td className={styles.answer}>
-        <SafeHTML html={r} />
+        <SafeHTML html={aiTranslation?.[i] || r} data-ai-translation={i} />
       </td>
     </tr>
   ))

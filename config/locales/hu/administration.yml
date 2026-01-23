@@ -860,7 +860,6 @@ hu:
         campaign: Kampány
         copy_factors: Másolási tényezők
         inactive_notice: A kampány állapota automatikusan aktívra változik a kiválasztott kezdési dátumon
-        instruction: Ez csak kampány létrehozásakor engedélyezhető
         name: Név
         practice_campaign: Gyakorló kampány
         status: Állapot
@@ -1007,6 +1006,8 @@ hu:
         ai_assistants_disabled_by_client: Az AI Assistants le van tiltva az ügyfél által
         ai_assisted_idp: AI által támogatott IDP
         ai_assisted_idp_requires_ai_assistants: Az AI-asszisztált IDP-hez engedélyezni kell az AI Assistants funkciót
+        ai_translation: AI fordítások
+        ai_translation_disabled_by_client: Az AI fordítások az ügyfél által letiltva vannak
         global_skills: Globális készségek
         global_skills_disabled_by_client: A globális képességeket az ügyfél letiltja
         idp: IDP
@@ -2890,6 +2891,11 @@ hu:
           active:
             label: Aktív
             name: aktív
+          assessments:
+            help_text: Ez a kiválasztás csak az Értékelés nyers válasz eseményre van hatással.
+            label: Értékelések
+            placeholder: Értékelések kiválasztása
+            required: Legalább egy értékelést ki kell választani az Értékelés nyers válasz eseményhez.
           auth_type:
             api_key:
               label: API-kulcs
@@ -2946,6 +2952,7 @@ hu:
             list:
               assessment_assigned: Hozzárendelt értékelés
               assessment_completed: Az értékelés befejeződött
+              assessment_raw_response: Értékelés Nyers válasz
               assessment_started: Megkezdődött az értékelés
               assessment_timeout: Értékelési időtúllépés
               campaign_results_available: Elérhető kampányeredmények
@@ -3099,6 +3106,7 @@ hu:
         mask_identity_for_hogan: Adatok maszkolása a Hogan számára
         mask_identity_for_iiht: Adatok maszkolása az IIHT számára
         mask_identity_for_mettl: Adatok maszkolása a METTL számára
+        mask_identity_for_mhs: MHS maszkadatok
         mask_identity_for_pearson: Adatok maszkolása a Pearson számára
         mask_identity_for_saville: Adatok maszkolása a Saville számára
         mask_identity_for_skillvue: Adatok maszkolása a Skillvue számára
@@ -3656,7 +3664,7 @@ hu:
         preworks: Előkészítés
         re_enroll: Újbóli beiratkozás
         re_enroll_confirm_message: Biztos, hogy újra be akarja írni a tárgyat a '%{subject_email}' e-mail címmel?
-        re_enroll_success: Újra beiratkozott téma az <x>subject_email</x> e-mail címen.
+        re_enroll_success: Újra beiratkozott téma az %{subject_email} e-mail címen.
         schedule: Ütemezés
         unschedule: Ütemezés törlése
       tabs:

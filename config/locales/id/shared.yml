@@ -9,6 +9,7 @@ id:
     agree_and_continue: Setuju & Lanjutkan
     archive: Arsip
     archived: Diarsipkan
+    audio: Audio
     authentication_failed: Autentikasi gagal. Silakan coba lagi.
     basic: Dasar
     campaign_id: ID Kampanye
@@ -16,18 +17,26 @@ id:
     change_password: Ubah Kata Sandi
     clear_filters: Hapus Filter
     collaborative_learning: Pembelajaran Kolaboratif
+    completed: Selesai
     confirm: Konfirmasi
     continue: Terus
+    copy: Salin
     created_at: Dibuat di
     created_date: Tanggal Dibuat
     decline: Penurunan
     description: Deskripsi
+    download: Unduh
     edit: Sunting
     edited: Baru
     email: Email
     export: Ekspor
+    failed: Gagal
     first_name: Nama depan
     formal_learning: Pembelajaran Formal
+    generate: Generate
+    generate_transcription_confirm_content: Apakah Anda yakin ingin menghasilkan transkrip untuk tanggapan media ini?
+    generate_transcription_confirm_title: Buat Transkrip
+    generating: Pembangkitan
     group_question_max_validation_error: Setiap grup dapat berisi paling banyak item {{max}}.
     group_question_min_validation_error: Setiap grup harus berisi setidaknya {{min}} item.
     id: ID
@@ -36,18 +45,25 @@ id:
     last_name: Nama belakang
     learning_on_the_job_label: Belajar di Tempat Kerja
     login: Masuk
+    media_question_transcriptions: Transkrip Pertanyaan Media
     modified_by: Dimodifikasi oleh
     modified_date: Tanggal Dimodifikasi
     more_actions: Tindakan lainnya
     mte_logo_alt_text: Logo Mercer Talent Enterprise
+    na_text: Tidak tersedia
     name: Nama
     new: Baru
+    not_requested: Belum Diminta
     ok: Ok
+    pending: Menunggu
+    processing: Pengolahan
+    question_id: ID Pertanyaan
     recording_consent_notice: Sesi rapat ini akan direkam. Partisipasi Anda dalam pertemuan ini merupakan persetujuan Anda untuk direkam.
     recording_consent_proceed_question: Apakah Anda setuju untuk melanjutkan rekaman rapat?
     recording_consent_title: Merekam Pemberitahuan Persetujuan
     remove: Menghapus
     removed: Dihapus
+    replace: Ganti
     reset_password: Atur Ulang Kata Sandi
     rte_paste_content_exceeds_char_limit: Teks melebihi batas karakter {{maxCharacterLimit}} dan tidak dapat ditempelkan.
     rte_paste_content_exceeds_word_limit: Teks melebihi batas kata {{maxWordLimit}} dan tidak dapat ditempelkan.
@@ -62,7 +78,13 @@ id:
         total: 'Jumlah : 1'
     terms_conditions_privacy: Pernyataan Privasi
     tools: Perkakas
+    transcription: Transkripsi
+    transcription_already_requested: Transkripsi sudah diminta atau sedang dalam proses.
+    transcription_not_enabled: Transkripsi tidak diaktifkan untuk respons media.
     transcriptions: Transkripsi
+    try_again: Coba Lagi
     tte_terms_and_condition: Ketentuan & Privasi
     type: Jenis
     update: Memperbarui
+    video: Video
+    view: Lihat

@@ -32,6 +32,15 @@ describe AI::Tools::Idp::AvailableSkillsAndDevelopmentActions do
         stub_wisper_publisher('Skills::EmbeddingQuery', :call, :ok, expected_skills)
       end
 
+      it 'calls AvailableActionsQuery to get development actions for each skill' do
+        allow(Idp::DevelopmentAction::AvailableActionsQuery).to receive(:new).and_call_original
+
+        subject.execute(query_text: query_text, limit: 5)
+
+        expect(Idp::DevelopmentAction::AvailableActionsQuery).to have_received(:new).with(skill1, user_idp_plan)
+        expect(Idp::DevelopmentAction::AvailableActionsQuery).to have_received(:new).with(skill2, user_idp_plan)
+      end
+
       it 'returns skills with development actions based on semantic similarity' do
         result = subject.execute(query_text: query_text, limit: 10)
 
@@ -155,8 +164,15 @@ describe AI::Tools::Idp::AvailableSkillsAndDevelopmentActions do
         development_actions = result[:skills].first[:development_actions]
         action_names = development_actions.pluck(:name)
 
-        expect(action_names).to include('Basic Leadership')
-        expect(action_names.index('Guided Leadership')).to be < action_names.index('Basic Leadership')
+        guide_tagged_actions = ['Guided Leadership', 'Ultimate Guide Low']
+
+        expect(action_names).to include('Guided Leadership', 'Ultimate Guide Low')
+
+        # Guide-tagged actions should be at the beginning
+        guide_indices = guide_tagged_actions.map { |name| action_names.index(name) }
+        expect(guide_indices).to all(be < 3)
+
+        expect(guide_tagged_actions).to include(action_names.first)
       end
 
       it 'returns all development actions when development_action_tags is nil' do

@@ -118,6 +118,7 @@ class Administration::UsersController < Administration::BaseController
                      "#{admin_path}/user_availabilities"
                    end
     audit! :sign_in_as, current_user, payload: { sign_in_as: resource.email }
+    siem_log_impersonation_event(resource, 'Admin')
     sign_in(resource)
     flash.now[:success] = I18n.t('administration.administrators.list.actions.spoof.login_successful')
     redirect_to redirect_url
@@ -125,6 +126,7 @@ class Administration::UsersController < Administration::BaseController
 
   def login_as_end_user
     audit! :sign_in_as, current_user, payload: { sign_in_as: resource.email }
+    siem_log_impersonation_event(resource, 'End User')
     spoof_token = SecureRandom.urlsafe_base64(64)
     resource.update_column(:spoof_token, spoof_token)
 

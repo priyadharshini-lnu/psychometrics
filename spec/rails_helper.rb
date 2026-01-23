@@ -64,7 +64,10 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.before(:each) { Timecop.freeze(Time.zone.local(2018, 9, 15, 9, 31, 42)) }
-  config.after(:each) { Timecop.return }
+  config.after(:each) do
+    Timecop.return
+    Current.reset
+  end
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :deletion, { except: %w[data_geos] }

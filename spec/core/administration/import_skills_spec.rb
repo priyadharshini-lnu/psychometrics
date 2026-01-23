@@ -222,7 +222,7 @@ RSpec.describe Administration::ImportSkills do
         expect(skill.skill_group).to eq(skill_group)
       end
 
-      it 'does not assign non-existent skill group' do
+      it 'creates and assigns new skill group if it does not exist' do
         csv_with_group = [
           ['ID', 'Name', 'Description', 'SkillType', 'SkillGroup', 'Tag'],
           [nil, 'JavaScript', 'JavaScript programming', 'technical', 'NonExistent', 'frontend']
@@ -234,7 +234,8 @@ RSpec.describe Administration::ImportSkills do
         expect_successful_import(result, ['JavaScript'])
 
         skill = Skill.find_by(name: 'JavaScript')
-        expect(skill.skill_group).to be_nil
+        skill_group = SkillGroup.find_by(name: 'NonExistent', project_id: project.id)
+        expect(skill.skill_group).to eq(skill_group)
       end
     end
 

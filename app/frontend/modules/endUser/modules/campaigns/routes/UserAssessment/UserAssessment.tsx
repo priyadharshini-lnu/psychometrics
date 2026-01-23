@@ -4,7 +4,7 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import {
   Watermark, Layout, Col, Progress, Space, ProgressProps, Button, Modal,
 } from 'antd'
-import { PageHeader } from '@ant-design/pro-layout'
+import { PageHeader } from '@ant-design/pro-components'
 import qs from 'qs'
 import { ClockCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 

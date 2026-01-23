@@ -2,7 +2,9 @@
 import { EventEmitter } from 'fbemitter'
 
 const dispatcher = new EventEmitter()
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 if (process.env.NODE_ENV === 'test') require('jquery')
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const noty = process.env.NODE_ENV === 'test' ? require('noty') : window.noty
 
 function addNotification (args) {

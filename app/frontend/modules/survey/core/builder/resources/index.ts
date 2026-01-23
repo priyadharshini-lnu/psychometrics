@@ -88,7 +88,8 @@ const HANDLERS = {
       resources: assessment.resources || [],
       assessmentQuestions: {
         ...assessment.resources_data,
-        [id]: _.filter(allQuestions({ questions }), q => q.type === 'StaticContent'),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        [id]: _.filter(allQuestions({ questions }), (q: any) => q.type === 'StaticContent'),
       },
     }
   },

@@ -92,6 +92,7 @@ export const CATEGORIES = [
   'pearson',
   'iiht',
   'meeting',
+  'mhs',
 ]
 
 export const UPDATABLE_CATEGORIES = [
@@ -117,6 +118,7 @@ export const TYPES = [
   'pearson',
   'saville',
   'mettl',
+  'mhs',
   'simulation',
   'skillvue',
   'yoodli',

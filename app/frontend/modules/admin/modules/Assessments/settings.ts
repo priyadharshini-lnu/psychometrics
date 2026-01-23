@@ -14,6 +14,7 @@ const settings = {
     'pearson',
     'iiht',
     'mettl',
+    'mhs',
     'simulation',
     'skillvue',
     'yoodli',

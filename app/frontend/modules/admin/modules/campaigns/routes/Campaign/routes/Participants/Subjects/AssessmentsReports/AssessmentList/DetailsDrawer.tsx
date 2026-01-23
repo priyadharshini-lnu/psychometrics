@@ -11,6 +11,8 @@ import { SkillvueDetails } from './SkillvueDetails'
 import { YoodliDetails } from './YoodliDetails'
 import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
 import RawJSON from './RawJSON'
+import { MhsDetails } from './MhsDetails'
+import TranscriptionDetails from './TranscriptionDetails'
 
 const { I18n } = window
 
@@ -124,6 +126,10 @@ export const DetailsDrawer: FC<Props> = ({
               I18n={I18n}
               assessment={assessment}
             />
+            <MhsDetails
+              I18n={I18n}
+              assessment={assessment}
+            />
 
             <RawJSON
               I18n={I18n}
@@ -132,6 +138,9 @@ export const DetailsDrawer: FC<Props> = ({
           </>
         )}
       </Row>
+      <TranscriptionDetails
+        assessment={assessment}
+      />
     </Drawer>
   )
 }

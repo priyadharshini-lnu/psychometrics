@@ -837,6 +837,10 @@ zh-Hant:
           reply_to_reply: 無法回覆回覆回覆（只允許一個等級的嵌套）
         user_idp_plan:
           no_active_plan: 未找到有效的 IDP 計劃
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: 仅可选择类型为'心理测量学'和'组织调查'的评估
   admin_jobs:
     attrs:
       operations:
@@ -1409,7 +1413,6 @@ zh-Hant:
       collapse_link_text: 顯示更少
       expand_aria_label: 顯示上方較少資訊： 虛擬學習中心
       expand_link_text: 顯示更多
-      heading: 在您開始之前，請先閱讀下列指引。 我們祝您一切順利！
     language:
       content: 目前所選的語言無法執行此任務，請選擇其中一種可用語言繼續。
       single_lang: 此任務僅在 %{lang} 中可用。 按一下「繼續」繼續。
@@ -1769,16 +1772,7 @@ zh-Hant:
       continue: 是，可以繼續
       description: 按一下「開始錄音」，然後用您自己的聲音朗讀以下段落時錄音
       random_phrases:
-        eight: 如果你能看到我，視訊就成功了；如果看不到，我們就得排除故障！
-        five: 測試您的影片，別擔心，不需要奧斯卡提名。
-        four: 準備、就位、對焦！ 攝影機就是你的舞台。
-        nine: 燦爛的笑容和清晰的視訊，讓我們把測試做好！
-        one: 能聽到我說話的請舉手，或對著鏡頭揮手！
-        seven: 鏡子，鏡子上的屏幕，讓視頻檢查是乾淨的。
-        six: 燈光、攝影機、動作，這是您大放異彩的時刻！
-        ten: 友善的招手，確保一切運作正常。
-        three: 說起司！或者只是測試一下完美的笑容。
-        two: 看著鏡頭，微笑，假裝你在電影預告片中。
+        one: 我準備好了。這是一段測試錄像，用來確認我的影片和麥克風運作正常。
       rec_text: REC
       retake: 不，我要重考
       run_again: 再跑一次
@@ -2187,16 +2181,16 @@ zh-Hant:
       password_complexity:
         digit:
           one: 必須至少包含一位數
-          other: 必須至少包含<x>count</x> 位數
+          other: 必須至少包含%{count} 位數
         lower:
           one: 必須包含至少一個小寫字母
-          other: 必須至少包含<x>count</x> 小寫字母
+          other: 必須至少包含%{count} 小寫字母
         symbol:
           one: 必須包含至少一個標點符號或符號
-          other: 必須至少包含<x>count</x> 標點符號或符號
+          other: 必須至少包含%{count} 標點符號或符號
         upper:
           one: 必須至少包含一個大寫字母
-          other: 必須至少包含<x>count</x> 大寫字母
+          other: 必須至少包含%{count} 大寫字母
       taken_in_past: 不得與之前使用的密碼相同。
     module_error: 此模組出錯，請聯絡管理員。
     module_error_editor: 此模組出錯，請檢查模組設定。
@@ -3018,13 +3012,10 @@ zh-Hant:
     client_usage: 用戶端使用
     enabled: 已啟用
     end_date: 結束日期
-    not_enough_idp_license: 沒有足夠的 IDP 授權，請聯絡管理員
     not_enough_license: "%{client_name}「 沒有足夠的 」%{report_name}' 授權。"
     not_enough_license_count: 許可證數量不足，請聯絡管理員
-    not_enough_proctoring_credits: 學分不足，無法開始監考環節
     number: 數量
     overuse_number: 超額使用免稅額
-    project_limit_reached: "「%{license_name}」使用量已達上限，請聯絡管理員"
     project_specific: 專案專屬
     project_specific_license: 專案特定授權
     project_usage: 專案應用
@@ -3073,7 +3064,7 @@ zh-Hant:
     footer:
       regards: 關於
       team_name: Lighthouse團隊
-      technical_support: 如有任何技術問題，請寫信至<x>email</x> ，我們會在 24 小時內回覆。
+      technical_support: 如有任何技術問題，請寫信至%{email} ，我們會在 24 小時內回覆。
     from: 人才企業
     idp:
       manager_unread_comments:
@@ -3805,6 +3796,13 @@ zh-Hant:
       on_hold: 暫停
       prepared: 完成
       released: 已發行
+    statuses:
+      completed: 已完成
+      declined: 已拒絕
+      denied: 拒絕
+      done: 完成
+      not_completed: 未完成
+      waiting: 等待
   threesixty:
     accept_privacy_modal:
       accept: 接受

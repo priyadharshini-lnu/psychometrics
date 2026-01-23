@@ -62,6 +62,9 @@ module Administration
         required(:yoodli_user_assessment_details).maybe do
           hash(Administration::YoodliUserAssessmentSchema.schema(_, _))
         end
+        required(:mhs_user_assessment_details).maybe do
+          hash(Administration::MhsUserAssessmentSchema.schema(_, _))
+        end
         required(:hogan_participant_id).maybe(:str?)
       end
     end

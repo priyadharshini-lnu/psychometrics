@@ -860,7 +860,6 @@ hr:
         campaign: Kampanja
         copy_factors: Faktori kopiranja
         inactive_notice: Status kampanje automatski će se promijeniti u aktivni na odabrani datum početka
-        instruction: To može biti omogućeno samo tijekom stvaranja kampanje
         name: Ime
         practice_campaign: Kampanja za vježbu
         status: Status
@@ -1007,6 +1006,8 @@ hr:
         ai_assistants_disabled_by_client: AI pomoćnike onemogućuje klijent
         ai_assisted_idp: IDP potpomognut umjetnom inteligencijom
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP zahtijeva omogućavanje značajke AI Assistants
+        ai_translation: AI prijevodi
+        ai_translation_disabled_by_client: AI prijevodi su onemogućeni od strane klijenta.
         global_skills: Globalne vještine
         global_skills_disabled_by_client: Klijent onemogućuje globalne vještine
         idp: IDP
@@ -2888,6 +2889,11 @@ hr:
           active:
             label: Aktivan
             name: aktivan
+          assessments:
+            help_text: Ovaj odabir utječe samo na događaj Procjena sirovog odgovora.
+            label: Procjene
+            placeholder: Odabrane procjene
+            required: Za događaj Procjena sirovih odgovora mora biti odabrana barem jedna procjena.
           auth_type:
             api_key:
               label: API ključ
@@ -2944,6 +2950,7 @@ hr:
             list:
               assessment_assigned: Dodijeljena procjena
               assessment_completed: Procjena završena
+              assessment_raw_response: Procjena sirovog odgovora
               assessment_started: Procjena je započela
               assessment_timeout: Vremensko ograničenje procjene
               campaign_results_available: Dostupni rezultati kampanje
@@ -3097,6 +3104,7 @@ hr:
         mask_identity_for_hogan: Podaci o maski za Hogana
         mask_identity_for_iiht: Podaci o maski za IIHT
         mask_identity_for_mettl: Podaci o maski za METTL
+        mask_identity_for_mhs: Podaci o maskama za MHS
         mask_identity_for_pearson: Podaci o maski za Pearson
         mask_identity_for_saville: Podaci o maskama za Saville
         mask_identity_for_skillvue: Podaci o maskama za Skillvue

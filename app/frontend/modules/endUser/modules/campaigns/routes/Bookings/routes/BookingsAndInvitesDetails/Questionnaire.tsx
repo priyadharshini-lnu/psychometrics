@@ -2,14 +2,14 @@ import {
   FC, useState, useRef,
 } from 'react'
 import {
-  Form, Radio, Input, Select, FormInstance,
+  Form, Radio, Input, Select, FormInstance, GetProp, FormProps,
 } from 'antd'
 import { Store } from 'antd/lib/form/interface'
-
-import { ValidateMessages } from 'rc-field-form/lib/interface'
 import { getLanguageNameFromCode } from '~/utils/locales'
 
 import styles from './Questionnaire.less'
+
+type ValidateMessages = GetProp<FormProps, 'validateMessages'>
 
 type Props = {
   allowedLanguages: string[],

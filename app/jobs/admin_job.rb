@@ -114,8 +114,12 @@ class AdminJob < ApplicationJob
 
     JOBS[record.operation.to_sym].call(record, stage) do
       on(:ok) do |response|
-        record.complete!
-        record.update(response) if response
+        if response
+          record.complete!(response[:error_messages], response[:exception])
+          record.update(response)
+        else
+          record.complete!
+        end
       end
       on(:waiting) do |response|
         record.update(response) if response

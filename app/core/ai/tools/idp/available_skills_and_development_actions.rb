@@ -56,12 +56,14 @@ module AI
 
         def format_skills_with_development_actions(query_result, tags = [])
           query_result.map do |skill|
+            development_actions = ::Idp::DevelopmentAction::AvailableActionsQuery.new(skill, user_idp_plan).query
+
             {
               id: skill.id,
               name: skill.name,
               description: skill.description,
               skill_type: skill.skill_type,
-              development_actions: format_development_actions(skill.development_actions, tags)
+              development_actions: format_development_actions(development_actions, tags)
             }
           end
         end

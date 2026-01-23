@@ -86,6 +86,7 @@ export const UserActiveIdpTemplateTR = t.type({
   oneClickIdpEnabled: t.union([t.undefined, t.boolean]),
 })
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const IDPUserTR = t.type({
   id: t.string,
   photoUrl: t.string,
@@ -120,6 +121,7 @@ const DefaultLanguageTR = t.type({
   name: t.string,
 })
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const SkillGapTR = t.type({
   id: t.number,
   campaign_id: t.number,

@@ -41,7 +41,8 @@ module UsersResults
         assessment.saville? ||
         assessment.simulation? ||
         assessment.skillvue? ||
-        assessment.yoodli?
+        assessment.yoodli? ||
+        assessment.mhs?
     end
 
     def mettl_assessment_resettable?(assessment)

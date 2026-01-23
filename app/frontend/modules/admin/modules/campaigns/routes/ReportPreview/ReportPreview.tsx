@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import cs from 'classnames'
-import { PageHeader } from '@ant-design/pro-layout'
+import { PageHeader } from '@ant-design/pro-components'
 import {
   Layout, Button, Row, Col, Spin, Space, App, Affix, Dropdown, Tag,
 } from 'antd'
@@ -17,8 +17,10 @@ import Sidebar, { lookUpModules } from './Sidebar'
 import { camelizeKeys } from '~/utils/object'
 import schema from '~/modules/reports/store/schema'
 import { isRtl } from '~/utils/locales'
+import { AIEditorIcon } from '~/glint/icons/AIEditorIcon'
 
 import styles from './styles.less'
+import ReportTranslation from './ReportTranslation'
 
 const { Content } = Layout
 const { I18n } = window
@@ -31,6 +33,7 @@ const TAG_COLORS = {
   change_requested: 'warning',
   approved: 'success',
 }
+
 type Params = {
   projectId: string
   campaignId: string
@@ -45,6 +48,7 @@ export default function ReportPreview ({
   download,
   downloadInProgress,
   features,
+  projectFeatures,
   asyncDownload,
   clearUseReportDetails,
   startQC,
@@ -53,8 +57,11 @@ export default function ReportPreview ({
   approveReport,
   requestChanges,
   removeApproval,
+  availableLanguages,
 }: Props) {
   const [pages, setPages] = useState([])
+  const [showTranslation, setShowTranslation] = useState(false)
+
   const location = useLocation()
   const navigate = useNavigate()
   const {
@@ -247,6 +254,15 @@ export default function ReportPreview ({
       )
     }
 
+    if (projectFeatures.aiTranslationEnabled) {
+      actionList.unshift(
+        <Button type="primary" onClick={() => setShowTranslation(!showTranslation)}>
+          <AIEditorIcon style={{ fill: '#fff' }} />
+          {I18n.t('admin.translate_with_ai')}
+        </Button>,
+      )
+    }
+
     return [
       <Tag color={TAG_COLORS[userReport.approvalStatus]}>
         {I18n.t(`administration.report_review.statuses.${userReport.approvalStatus}`)}
@@ -297,7 +313,6 @@ export default function ReportPreview ({
               {!reportIsLoaded() && <Spin />}
             </Space>
           )}
-          className="page-header"
           backIcon={(
             <div>
               <ArrowLeftOutlined />
@@ -311,7 +326,7 @@ export default function ReportPreview ({
             </Affix>
           )}
           <Row justify="space-between" className={styles.reportPreviewBody} gutter={20}>
-            <Col flex={1}>
+            <Col flex={1} style={{ position: 'relative' }}>
               <Row justify="center">
                 <Col>
                   <div className="reportContainer">
@@ -319,6 +334,14 @@ export default function ReportPreview ({
                   </div>
                 </Col>
               </Row>
+              {projectFeatures.aiTranslationEnabled && (
+                <ReportTranslation
+                  userReport={userReport}
+                  availableLanguages={availableLanguages}
+                  show={showTranslation}
+                  onClose={() => setShowTranslation(false)}
+                />
+              )}
             </Col>
             {userReport.requireApproval
               && (

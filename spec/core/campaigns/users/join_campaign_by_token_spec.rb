@@ -7,10 +7,6 @@ describe Campaigns::Users::JoinCampaignByToken do
   let!(:campaign) { create(:campaign, project: current_user.project) }
   let!(:token) { Campaigns::JwtTokenizer.encode({ campaign_id: campaign.id, subject_id: current_user.id }) }
 
-  before(:each) do
-    allow(Licenses::Use).to receive(:call!)
-  end
-
   it "creates campaign user record if user doesn't exists in the project" do
     described_class.call!(current_user, token)
     expect(campaign.campaign_users.exists?(user_id: current_user.id)).to be_truthy

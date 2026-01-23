@@ -8,7 +8,7 @@ image:
   pullPolicy: IfNotPresent
 
 web:
-  replica: 12
+  replica: 14
 worker:
   replica: 2
 
@@ -134,10 +134,10 @@ resources:
   web:
     limits:
       # cpu: 100m
-      memory: 6.6G
+      memory: 7G
     requests:
       # cpu: 100m
-      memory: 6G
+      memory: 7G
   worker:
     limits:
       # cpu: 100m
@@ -152,6 +152,12 @@ autoscaling:
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
+
+webDeploymentStrategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 10%
+    maxSurge: 10%
 
 nodeSelector: {}
 

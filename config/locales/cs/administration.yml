@@ -860,7 +860,6 @@ cs:
         campaign: Kampaň
         copy_factors: Faktory kopírování
         inactive_notice: Stav kampaně se v vybraném datu zahájení automaticky změní na aktivní
-        instruction: To lze povolit pouze při vytváření kampaně
         name: Název
         practice_campaign: Praktická kampaň
         status: Stav
@@ -1007,6 +1006,8 @@ cs:
         ai_assistants_disabled_by_client: AI Assistants je klientem deaktivován
         ai_assisted_idp: IDP s asistencí AI
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP vyžaduje povolení funkce AI Assistants
+        ai_translation: Překlady pomocí umělé inteligence
+        ai_translation_disabled_by_client: AI překlady jsou klientem zakázány
         global_skills: Globální dovednosti
         global_skills_disabled_by_client: Globální dovednosti jsou klientem zakázány
         idp: IDP
@@ -2888,6 +2889,11 @@ cs:
           active:
             label: Aktivní
             name: aktivní
+          assessments:
+            help_text: Tento výběr má vliv pouze na událost „Hodnocení surové odpovědi“.
+            label: Hodnocení
+            placeholder: Vybrat hodnocení
+            required: Pro událost „Hrubá odpověď hodnocení“ musí být vybráno alespoň jedno hodnocení.
           auth_type:
             api_key:
               label: Klíč API
@@ -2944,6 +2950,7 @@ cs:
             list:
               assessment_assigned: Přiřazené hodnocení
               assessment_completed: Hodnocení dokončeno
+              assessment_raw_response: Hodnocení surové odpovědi
               assessment_started: Hodnocení zahájeno
               assessment_timeout: Časový limit hodnocení
               campaign_results_available: Výsledky kampaně jsou k dispozici
@@ -3097,6 +3104,7 @@ cs:
         mask_identity_for_hogan: Údaje o masce pro Hogan
         mask_identity_for_iiht: Údaje o masce pro IIHT
         mask_identity_for_mettl: Údaje masky pro METTL
+        mask_identity_for_mhs: Údaje o masce pro MHS
         mask_identity_for_pearson: Údaje o masce pro Pearson
         mask_identity_for_saville: Údaje o masce pro Saville
         mask_identity_for_skillvue: Údaje o masce pro Skillvue
@@ -3657,7 +3665,7 @@ cs:
         preworks: Předpráce
         re_enroll: Opětovný zápis
         re_enroll_confirm_message: Jste si jisti, že chcete znovu zapsat předmět s e-mailem '%{subject_email}'?
-        re_enroll_success: Znovuzapsaný subjekt s e-mailem <x>subject_email</x>.
+        re_enroll_success: Znovuzapsaný subjekt s e-mailem %{subject_email}.
         schedule: Plán
         unschedule: Zrušit plánování
       tabs:

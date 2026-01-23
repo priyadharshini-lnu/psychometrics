@@ -20,7 +20,8 @@ module UserAssessments
           assessment: user_assessment.assessment,
           subject: user_assessment.subject,
           event_time: user_assessment.completed_at,
-          answers: formatted_answers
+          answers: formatted_answers,
+          evaluator: user_assessment.evaluator
         }
       end
 

@@ -860,7 +860,6 @@ pt:
         campaign: Campanha
         copy_factors: Fatores de cópia
         inactive_notice: O status de campanha mudará automaticamente para ativo na data de início selecionada
-        instruction: Isso só pode ser ativado ao criar campanha
         name: Nome
         practice_campaign: Campanha prática
         status: Estado
@@ -1007,6 +1006,8 @@ pt:
         ai_assistants_disabled_by_client: Os assistentes de IA são desativados pelo cliente
         ai_assisted_idp: PDI assistida por IA
         ai_assisted_idp_requires_ai_assistants: O IDP assistido por IA requer que o recurso AI Assistants seja ativado
+        ai_translation: Traduções com IA
+        ai_translation_disabled_by_client: As traduções por IA estão desativadas pelo cliente
         global_skills: Competências globais
         global_skills_disabled_by_client: A Global Skills é desativada pelo cliente
         idp: PDI
@@ -2888,6 +2889,11 @@ pt:
           active:
             label: Ativo
             name: ativo
+          assessments:
+            help_text: Esta seleção afeta apenas o evento Resposta bruta da avaliação.
+            label: Avaliações
+            placeholder: Selecionar Avaliações
+            required: É necessário selecionar pelo menos uma avaliação para o evento Resposta bruta da avaliação.
           auth_type:
             api_key:
               label: Chave API
@@ -2944,6 +2950,7 @@ pt:
             list:
               assessment_assigned: Avaliação Atribuída
               assessment_completed: Avaliação concluída
+              assessment_raw_response: Avaliação Resposta bruta
               assessment_started: Avaliação iniciada
               assessment_timeout: Tempo limite de avaliação
               campaign_results_available: Resultados da campanha disponíveis
@@ -3097,6 +3104,7 @@ pt:
         mask_identity_for_hogan: Dados de máscara para Hogan
         mask_identity_for_iiht: Dados da máscara para IIHT
         mask_identity_for_mettl: Dados de máscara para METTL
+        mask_identity_for_mhs: Dados de máscara para MHS
         mask_identity_for_pearson: Dados da máscara para Pearson
         mask_identity_for_saville: Dados de máscara para Saville
         mask_identity_for_skillvue: Dados de máscara para Skillvue
@@ -3657,7 +3665,7 @@ pt:
         preworks: Pré-trabalho
         re_enroll: Reinscrever-se
         re_enroll_confirm_message: Tem a certeza de que pretende voltar a registar o assunto com o e-mail '%{subject_email}'?
-        re_enroll_success: Assunto reinscrito com o correio eletrónico <x>subject_email</x>.
+        re_enroll_success: Assunto reinscrito com o correio eletrónico %{subject_email}.
         schedule: Horário
         unschedule: Anular o agendamento
       tabs:

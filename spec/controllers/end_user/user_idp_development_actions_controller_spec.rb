@@ -54,6 +54,16 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
     let!(:development_action2) { create(:development_action, skills: [skill_for_development_action]) }
     let!(:development_action_with_different_skill) { create(:development_action) }
 
+    it 'calls AvailableActionsQuery to get development actions' do
+      allow(Idp::DevelopmentAction::AvailableActionsQuery).to receive(:new).and_call_original
+
+      get :available_development_actions,
+          params: { user_id: user.id, user_idp_skill_id: user_idp_skill.id }
+
+      expect(Idp::DevelopmentAction::AvailableActionsQuery).to have_received(:new).
+        with(skill_for_development_action, user_idp_plan)
+    end
+
     it 'get development actions available for the skill' do
       get :available_development_actions,
           params: { user_id: user.id, user_idp_skill_id: user_idp_skill.id }

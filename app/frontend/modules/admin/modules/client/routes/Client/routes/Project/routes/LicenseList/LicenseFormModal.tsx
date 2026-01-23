@@ -98,9 +98,10 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
                 const hasReportFamilyName = !!reportFamily?.name
                 const formattedStartDate = dayjs(startDate).format('DD MMM YYYY')
                 const formattedEndDate = dayjs(endDate).format('DD MMM YYYY')
+                const dateRange = `(${formattedStartDate} – ${formattedEndDate})`
                 const label = hasReportFamilyName
-                  ? reportFamily.name
-                  : `${type} (${formattedStartDate} – ${formattedEndDate})`
+                  ? `${reportFamily.name} ${dateRange}`
+                  : `${type} ${dateRange}`
 
                 return (
                   <Select.Option key={id} value={id}>

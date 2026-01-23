@@ -94,7 +94,7 @@ module SiemLogger
         'EventType' => 'MMC-Security',
         'Severity' => SEVERITY_MAPPINGS[event_name],
         'Timestamp' => Time.current.utc.strftime('%Y-%m-%dT%H:%M:%S.%3NZ'),
-        'ClientIPAddress' => options.dig(:request_details, :ip) || '0.0.0.0',
+        'ClientIPAddress' => options.dig(:request_details, :ip) || Current.ip_address || '0.0.0.0',
         'Location' => determine_location(options),
         'ApplicationCode' => Settings.application_code,
         'ApplicationComponent' => determine_app_component(options),
@@ -113,14 +113,11 @@ module SiemLogger
     end
 
     def determine_app_component(options)
-      return options[:application_component] if options[:application_component]
-      return 'admin' if options.dig(:request_details, :url)&.include?('/admin')
-
-      'end_user'
+      options[:application_component] || Current.application_component || 'Unknown'
     end
 
     def determine_location(options)
-      url = options.dig(:request_details, :url)
+      url = options.dig(:request_details, :url) || Current.request_url
       return (ENV['APP_DOMAIN'] || '').to_s if url.blank?
 
       URI.parse(url).host || (ENV['APP_DOMAIN'] || '').to_s

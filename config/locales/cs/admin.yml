@@ -1,6 +1,7 @@
 ---
 cs:
   admin:
+    accept_na_values: Přijmout hodnoty N/A
     add_admin: Přidat správce
     add_admin_role: Přidání role správce
     add_campaign_admin: Přidání správce kampaně
@@ -34,14 +35,23 @@ cs:
     ai_assistants_test_render: Testovací vykreslování
     ai_assistants_test_render_tooltip: Vyzkoušejte šablonu promptu s daty kampaně, abyste zjistili, co bude AI asistentovi odesláno.
     ai_assisted_idp_feature_disabled: Funkce AI asistovaného IDP byla pro tento projekt deaktivována.
+    ai_notice: Zvýrazněné části byly přeloženy pomocí umělé inteligence a mohou obsahovat nepřesnosti.
+    ai_translation: Překlad pomocí umělé inteligence
+    all_corner_rounded: Všechny rohy zaoblené
     api_keys: Klíče API
+    apply_to_existing_users: Použít tuto změnu na stávající uživatele v této kampani
     assessments: Hodnocení
+    assessments_not_mhs: Všechna hodnocení musí být typu MHS.
     assessments_reports: Hodnocení a zprávy
     assessor_dashboard: Přístrojový panel hodnotitele
     assessor_workshops: Hodnotící centrum
     assessors: Posuzovatelé
+    assistant_toolbar_failed: Po několika pokusech se nepodařilo vygenerovat platný výstup.
+    assistant_toolbar_not_a_valid_operation: Neznámá operace %{operation}.
+    assistant_validation_failed: Po několika pokusech se nepodařilo vygenerovat platný výstup.
     audit_logs: Protokoly o auditu
     audit_reports: Auditní zprávy
+    auto_placeholder: Auto
     availability: Dostupnost
     available_languages: Zpráva dostupná v jazycích
     back_to_main: Hlavní nabídka
@@ -50,6 +60,19 @@ cs:
     campaign_assessment_actions_disable_caching: Vypnout cache hodnocení
     campaign_assessment_actions_enable_caching: Povolit cache hodnocení
     campaign_assessment_column_caching_enabled: Zapnuto cache hodnocení
+    campaign_assessment_mhs_confidence_interval: Interval spolehlivosti
+    campaign_assessment_mhs_confidence_interval_update_success: Interval spolehlivosti byl úspěšně aktualizován.
+    campaign_assessment_mhs_invalid_confidence_interval: confidence_interval musí být 0 nebo 1
+    campaign_assessment_mhs_invalid_leadership_bar: leadership_bar musí být 0 nebo 1
+    campaign_assessment_mhs_invalid_norm_option: Normální volba musí být mezi 0 a 3
+    campaign_assessment_mhs_leadership_bar: Bar vedení
+    campaign_assessment_mhs_leadership_bar_update_success: Lišta vedení úspěšně aktualizována
+    campaign_assessment_mhs_norm_option: Normální volba
+    campaign_assessment_mhs_norm_option_form_select: Vyberte možnost Norm
+    campaign_assessment_mhs_norm_option_update_success: Norm Option úspěšně aktualizováno
+    campaign_assessment_mhs_norm_region: Normální oblast
+    campaign_assessment_mhs_norm_region_form_select: Vyberte normu Region
+    campaign_assessment_mhs_norm_region_update_success: Norm Region úspěšně aktualizován
     campaign_assessment_modals_disable_caching_content: Jste si jistý, že chcete pro toto hodnocení zakázat cache?
     campaign_assessment_modals_disable_caching_successfully: Cache byla pro toto hodnocení deaktivována.
     campaign_assessment_modals_disable_caching_title: Vypnout cache hodnocení (Assessment)?
@@ -70,6 +93,7 @@ cs:
     confirm_remove_admin: Jste si jisti, že chcete odstranit uživatele s e-mailem '%{email}'?
     country: Země
     create_client: Vytvořit klienta
+    current_job_role: Současná pracovní pozice
     dashboard: Přístrojová deska
     dashboards: Přístrojové panely
     data_reports: Datové zprávy
@@ -84,19 +108,26 @@ cs:
     done_tooltip: Již nelze podat žádné další hodnocení tohoto uživatele, protože hodnocení tohoto uživatele je označeno jako provedené %{marked_by}
     edit_campaign_admin: Upravit správce kampaně
     edit_client_admin: Upravit správce klienta
+    edit_job_roles: Upravit pracovní role
+    edit_level: Úroveň úprav
     edit_permission_denied: Nemáte oprávnění upravovat administrátorské '%{name}'
     edit_project_admin: Upravit správce projektu
     edit_threesixty_campaign_admin: Upravit správce kampaně
     empty_csv_file: CSV soubor neobsahuje žádná data.
+    enable_enhance_with_ai_client_level: Povolte funkci Vylepšit pomocí AI na úrovni klienta.
+    enable_transcription: Povolit přepis
+    enhance_with_ai_requires_ai_assistants: Funkce Vylepšit pomocí AI vyžaduje, aby byla povolena funkce AI asistenti.
     evaluation_status: Stav hodnocení
     evaluation_status_not_done: Status hodnocení není "Hotovo" u jednoho nebo více vybraných předmětů. Prosím, ujistěte se, že všichni vybraní uživatelé dokončili hodnocení nebo označili jako splněné.
     export_admin_roles_permissions: Export rolí a oprávnění správce
+    feature_enhance_with_ai: Vylepšete pomocí AI
     feature_flags: Příznaky funkcí
     fill_empty_score_msg: Vyplňte všechny konečné skóre před uložením.
-    final_score_empty_msg: Konečné skóre nemůže být prázdné.
+    final_score_empty_err_msg: Konečné skóre hry „%{factor_name}“ nesmí být prázdné.
     idp_plan_reset_success: Plán byl úspěšně resetován
     idp_templates: Šablony IDP
     import_ai_artifacts: Import AI artefaktů
+    import_csv_assessment_group_error: 'Řádek %{index}: uživatel s e-mailem %{email} již byl pozván do skupiny „%{workshopInviteName}“.'
     import_csv_error: 'Řádek %{index}: uživatel s e-mailem %{email} není v této kampani'
     import_csv_parsing_error: 'Chyba při CSV parsování: %{message}'
     import_description: Importujte uživatele z CSV souboru. Každý řádek musí obsahovat e-mailovou adresu.
@@ -121,11 +152,27 @@ cs:
     invalid_csv_header: CSV soubor obsahuje neplatné hlavičky.
     job_roles: Pracovní role
     learning_from_others: Společné učení [20]
+    level: Úroveň
+    level_apply: Použít
+    level_guide: Průvodce
+    level_shape: Tvar
+    level_validation_message: 'musí být jedním z následujících: %{values}'
     libraries: Knihovna médií
     library_invalid_type: Neplatný knihovní prvek
     licenses: Licence
     manager_approval_required: Report for %{user} vyžaduje schválení manažera před stažením
+    max_value: Maximální hodnota
     messages: Zprávy
+    mhs: MHS
+    mhs_assessment: Hodnocení MHS
+    mhs_assessment_name: Název hodnocení MHS
+    mhs_data_gatherer_id: ID sběrače dat Mhs
+    mhs_data_gathering_id: Mhs Shromažďování dat ID
+    mhs_external_assessment_id: ID hodnocení Mhs
+    mhs_report_id: ID zprávy MHS
+    mhs_session_id: ID relace Mhs
+    min_value: Minimální hodnota
+    missing_min_max_values: Minimální a maximální hodnoty jsou povinné.
     name_required: Jméno je vyžadováno
     no_file_selected: Žádný soubor nebyl vybrán
     no_notifications: Žádná oznámení
@@ -140,6 +187,7 @@ cs:
     number: Číslo
     occupations: Povolání
     on_the_job: V práci [70]
+    only_editable_on_create: Tuto možnost lze upravit pouze při vytváření.
     options: Možnosti
     participants: Účastníci
     permissions:
@@ -564,6 +612,7 @@ cs:
         view: Zobrazit
         view_recordings: Zobrazit nahrávky
     permissions_360_campaigns: Oprávnění specifická pro kampaně 360
+    piped_text: Text v potrubí
     privacy: Ochrana osobních údajů
     proficiency_level: Klíče API
     proficiency_levels: Úrovně odborné způsobilosti
@@ -645,11 +694,18 @@ cs:
     saml_settings: SAML nastavení
     scheduling: Plánování
     scoring: Bodování
+    scoring_value_info: Skóre musí být mezi %{min} a %{max}.
+    scoring_value_out_of_range_err_msg: Skóre pro %{factor_name} musí být mezi %{min} a %{max}.
     search_admins: Vyhledávání administrátorů
+    search_job_role: Hledat pracovní pozici
     select_admin_role: Vyberte roli správce
+    select_language_to_translate: Vyberte jazyk, do kterého chcete překládat
+    select_level: Vyberte úroveň
     send_email: Odeslat e-mail
     settings: Nastavení
+    show_original: Zobrazit originál
     show_submenu: Zobrazit dílčí nabídku
+    show_translated: Zobrazit překlad
     siem: SIEM
     skill_aliases: Pseudonymy dovedností
     skills: Dovednosti
@@ -661,12 +717,30 @@ cs:
     status_details: Podrobnosti o stavu
     structured_learning: Formální učení [10]
     subdomain: Subdoména
+    subject_part_of_other_invite: Osoba s e-mailovou adresou %{user_email} již byla pozvána do skupiny „%{workshop_invite_name}“.
+    target_job_role: Cílová pracovní pozice
+    toolbar_ai_insight: AI Insight
+    toolbar_ai_suggestion: Návrh AI
+    toolbar_result_generating: Generování...
+    toolbar_text_copied: Zkopírováno do schránky
+    toolbar_text_replaced: Text nahrazen!
+    toolbar_what_changed_and_why: Co se změnilo a proč
+    translate: Přeložit
+    translate_to: Přeložit do
+    translate_with_ai: Přeložit pomocí AI
+    translated_from: Přeloženo z
+    translated_to: 'Přeloženo do:'
+    translated_with_ai_notice: Přeloženo umělou inteligencí
+    translation_assistant_not_configured: Překladač není nakonfigurován
     upload_success: Úspěšně nahráno
     user_report_events: Hlášení uživatele Události
     users: Uživatelé
     view_licenses: Zobrazit licence
     waiting: Čekání
     workshops: Workshopy
+    writing_assistant_not_configured: Asistent psaní není nakonfigurován
+    x_axis_interval_label: Interval osy X
+    y_axis_interval_label: Interval osy Y
     year: Země
     yoodli_activity_id: Yoodli Activity ID
     yoodli_email_id: E-mailové ID kandidáta Yoodli

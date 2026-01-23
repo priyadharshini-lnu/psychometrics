@@ -51,7 +51,10 @@ RSpec.describe CampaignFactors::Export do
         campaign_factor.formula,
         (campaign_factor.ranked ? 1 : 0),
         (campaign_factor.public_visibility ? 1 : 0),
-        campaign_factor.campaign_factor_group.name
+        campaign_factor.campaign_factor_group.name,
+        campaign_factor.min_value,
+        campaign_factor.max_value,
+        (campaign_factor.is_na_allowed ? 1 : 0)
       ])
     end
   end

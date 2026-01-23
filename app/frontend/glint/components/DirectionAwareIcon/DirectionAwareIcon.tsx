@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes } from 'react'
+import { FC, HTMLAttributes, ReactNode } from 'react'
 import {
   LeftOutlined, RightOutlined, ArrowLeftOutlined, ArrowRightOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
@@ -10,8 +10,8 @@ const uiLocale = I18n && I18n.uiLocale
 const rtl = uiLocale && isRtl(uiLocale)
 
 type Props = {
-  RtlIcon: (iconProps: HTMLAttributes<HTMLAnchorElement>) => React.ReactElement | null
-  LtrIcon: (iconProps: HTMLAttributes<HTMLAnchorElement>) => React.ReactElement | null
+  RtlIcon: (iconProps: HTMLAttributes<HTMLAnchorElement>) => ReactNode
+  LtrIcon: (iconProps: HTMLAttributes<HTMLAnchorElement>) => ReactNode
 }
 
 export const DirectionAwareIcon:FC<Props> = ({

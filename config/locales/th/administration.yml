@@ -860,7 +860,6 @@ th:
         campaign: แคมเปญ
         copy_factors: คัดลอกปัจจัย
         inactive_notice: สถานะแคมเปญจะเปลี่ยนไปใช้งานโดยอัตโนมัติในวันที่เริ่มต้นที่เลือก
-        instruction: สามารถเปิดใช้งานได้ในขณะที่สร้างแคมเปญเท่านั้น
         name: ชื่อ
         practice_campaign: แคมเปญฝึกหัด
         status: สถานะ
@@ -1007,6 +1006,8 @@ th:
         ai_assistants_disabled_by_client: ผู้ช่วย AI ถูกปิดใช้งานโดยไคลเอ็นต์
         ai_assisted_idp: AI ช่วยเหลือ IDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP ต้องการคุณสมบัติ AI Assistants เพื่อเปิดใช้งาน
+        ai_translation: การแปลโดยปัญญาประดิษฐ์
+        ai_translation_disabled_by_client: การแปลด้วย AI ถูกปิดใช้งานโดยลูกค้า
         global_skills: ทักษะระดับโลก
         global_skills_disabled_by_client: Global Skills ถูกปิดใช้งานโดยลูกค้า
         idp: ผู้พลัดถิ่นภายในประเทศ
@@ -2888,6 +2889,11 @@ th:
           active:
             label: เปิดใช้งาน
             name: เปิดใช้งาน
+          assessments:
+            help_text: การเลือกนี้จะมีผลเฉพาะกับเหตุการณ์การตอบสนองดิบของการประเมินเท่านั้น
+            label: การประเมิน
+            placeholder: เลือกการประเมิน
+            required: ต้องเลือกการประเมินอย่างน้อยหนึ่งรายการสำหรับเหตุการณ์การตอบสนองการประเมินดิบ
           auth_type:
             api_key:
               label: คีย์ API
@@ -2944,6 +2950,7 @@ th:
             list:
               assessment_assigned: การประเมินที่ได้รับมอบหมาย
               assessment_completed: การประเมินเสร็จสมบูรณ์
+              assessment_raw_response: การประเมินผล ตอบแบบดิบ
               assessment_started: เริ่มการประเมินแล้ว
               assessment_timeout: หมดเวลาการประเมิน
               campaign_results_available: ผลลัพธ์แคมเปญพร้อมใช้งาน
@@ -3097,6 +3104,7 @@ th:
         mask_identity_for_hogan: ข้อมูลหน้ากากสําหรับ Hogan
         mask_identity_for_iiht: ข้อมูลหน้ากากสําหรับ IIHT
         mask_identity_for_mettl: ข้อมูลหน้ากากสําหรับ METTL
+        mask_identity_for_mhs: ปกปิดข้อมูลสำหรับ MHS
         mask_identity_for_pearson: ข้อมูลหน้ากากสําหรับ Pearson
         mask_identity_for_saville: ข้อมูลหน้ากากสําหรับ Saville
         mask_identity_for_skillvue: ข้อมูลมาสก์สําหรับ Skillvue
@@ -3654,7 +3662,7 @@ th:
         preworks: งานก่อนเริ่ม
         re_enroll: ลงทะเบียนใหม่
         re_enroll_confirm_message: คุณแน่ใจหรือไม่ว่าต้องการลงทะเบียนวิชาใหม่ด้วยอีเมล '%{subject_email}'
-        re_enroll_success: นักเรียนลงทะเบียนใหม่ด้วยอีเมล<x>subject_email</x>
+        re_enroll_success: นักเรียนลงทะเบียนใหม่ด้วยอีเมล%{subject_email}
         schedule: ตาราง
         unschedule: ยกเลิกกําหนดเวลา
       tabs:

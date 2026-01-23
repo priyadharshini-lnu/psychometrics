@@ -1,10 +1,11 @@
+import { Form as AntForm } from 'antd'
 import Item from './Item'
 
 export default function Form ({
   fields, context, onChange, resource,
 }) {
   return (
-    <>
+    <AntForm layout="vertical" colon={false}>
       {fields.map(field => (
         <Item
           key={field.name}
@@ -13,6 +14,6 @@ export default function Form ({
           onChange={onChange}
         />
       ))}
-    </>
+    </AntForm>
   )
 }

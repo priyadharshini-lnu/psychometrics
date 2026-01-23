@@ -5,7 +5,7 @@ class Api::V2::Administration::PrivacySettingResource < Api::V2::Administration:
              :privacy_link_text, :privacy_link_url, :enable_privacy_link,
              :custom_privacy_consent, :mask_identity_for_pearson, :mask_identity_for_saville, :mask_identity_for_hogan,
              :mask_identity_for_iiht, :mask_identity_for_examus, :mask_identity_for_mettl, :mask_identity_for_skillvue,
-             :mask_identity_for_yoodli, :disable_data_processing,
+             :mask_identity_for_yoodli, :disable_data_processing, :mask_identity_for_mhs,
              :allow_video_call_recording,
              :enable_video_call_recording_for_all_new_campaigns,
              :video_call_recording_expiry_in_seconds

@@ -837,6 +837,10 @@ zh:
           reply_to_reply: 无法回复回复（只允许一个级别的嵌套）
         user_idp_plan:
           no_active_plan: 未找到有效的 IDP 计划
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: 仅可选择类型为'心理测量学'和'组织调查'的评估
   admin_jobs:
     attrs:
       operations:
@@ -1419,7 +1423,6 @@ zh:
       collapse_link_text: 显示更少
       expand_aria_label: 显示更少信息： 虚拟学习中心
       expand_link_text: 显示更多
-      heading: 开始之前，请查看以下准则。祝你一切顺利！
     language:
       content: 此任务不支持当前选定的语言。请选择一种可用语言以继续。
       single_lang: 此任务仅支持%{lang}。点击“继续”按钮以继续。
@@ -1779,16 +1782,7 @@ zh:
       continue: 继续
       description: 点击“开始录音”，用朗读下面的文章
       random_phrases:
-        eight: 如果你能看到我，视频就成功了。 如果看不到，我们就得排除故障！
-        five: 测试您的视频，别担心，无需奥斯卡提名。
-        four: 准备、就位、对焦！摄像机就是你的舞台。
-        nine: 灿烂的笑容和清晰的视频，让我们把这次测试做好！
-        one: 能听到我说话的请举手，或者对着镜头挥挥手！
-        seven: 镜头，屏幕上的镜头，让视频检查干净利落。
-        six: 灯光、镜头、动作，这是你大显身手的时刻！
-        ten: 友好地挥挥手，确保一切正常。
-        three: 说 "茄子"！或者尝试露出完美的微笑。
-        two: 看着镜头，面带微笑，假装自己在拍电影预告片。
+        one: 我准备好了。这是一段测试录像，用来确认我的视频和麦克风工作正常。
       rec_text: 录制
       retake: 不，我想重做
       run_again: 再次运行
@@ -2197,16 +2191,16 @@ zh:
       password_complexity:
         digit:
           one: 必须至少包含一个数字
-          other: 必须至少包含<x>count</x> 位数
+          other: 必须至少包含%{count} 位数
         lower:
           one: 必须至少包含一个小写字母
-          other: 必须至少包含<x>count</x> 小写字母
+          other: 必须至少包含%{count} 小写字母
         symbol:
           one: 必须至少包含一个标点符号或符号
-          other: 必须至少包含<x>count</x> 标点符号或符号
+          other: 必须至少包含%{count} 标点符号或符号
         upper:
           one: 必须至少包含一个大写字母
-          other: 必须至少包含<x>count</x> 大写字母
+          other: 必须至少包含%{count} 大写字母
       taken_in_past: 不得与之前使用的任何密码相同。
     module_error: 此模块出错，请联系管理部门。
     module_error_editor: 此模块出错，请检查模块设置。
@@ -3028,13 +3022,10 @@ zh:
     client_usage: 客户端使用
     enabled: 已启用
     end_date: 结束日期
-    not_enough_idp_license: 没有足够的 IDP 许可证，请联系管理员
     not_enough_license: '%{client_name}"没有足够的许可用于"%{report_name}"。'
     not_enough_license_count: 许可证数量不足，请联系管理员
-    not_enough_proctoring_credits: 学分不足，无法开始监考课程
     number: 数量
     overuse_number: 超额使用津贴
-    project_limit_reached: "“%{license_name}”使用量已达上限，请联系管理员"
     project_specific: 项目专属
     project_specific_license: 项目专用许可
     project_usage: 项目用途
@@ -3083,7 +3074,7 @@ zh:
     footer:
       regards: 谢谢、
       team_name: Lighthouse 团队
-      technical_support: 如有任何技术问题，请致信<x>email</x> ，我们将在 24 小时内给予答复。
+      technical_support: 如有任何技术问题，请致信%{email} ，我们将在 24 小时内给予答复。
     from: 人才企业
     idp:
       manager_unread_comments:
@@ -3815,6 +3806,13 @@ zh:
       on_hold: 搁置
       prepared: 已完成
       released: 已发布
+    statuses:
+      completed: 已完成
+      declined: 已拒绝
+      denied: 已拒绝
+      done: 完成
+      not_completed: 未完成
+      waiting: 等待中
   threesixty:
     accept_privacy_modal:
       accept: 接受

@@ -69,6 +69,12 @@ FactoryBot.define do
       type { Assessments::Yoodli }
       external_settings { { assessment_id: 'assessmentId' } }
     end
+
+    trait :mhs do
+      category { Assessment::CATEGORIES[:mhs] }
+      type { Assessments::Mhs }
+      external_settings { { assessment_id: 'assessmentId' } }
+    end
   end
 
   factory :assessment_hogan, class: 'Assessments::Hogan' do

@@ -1,8 +1,10 @@
 import React, {
   useContext, useState, useEffect, useRef,
 } from 'react'
-import { InputNumber, Form } from 'antd'
+import { InputNumber, Form, GetRef } from 'antd'
 import { EditableContext } from './constants'
+
+type InputNumberRef = GetRef<typeof InputNumber>
 
 const { I18n } = window
 
@@ -32,7 +34,7 @@ export const EditableCell: React.FC<EditableCellProps> = ({
   ...restProps
 }) => {
   const [editing, setEditing] = useState(false)
-  const inputRef = useRef<HTMLInputElement>(null)
+  const inputRef = useRef<InputNumberRef>(null)
   const form = useContext(EditableContext)
 
   useEffect(() => {

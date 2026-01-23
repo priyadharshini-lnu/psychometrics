@@ -3,12 +3,11 @@ import {
 } from 'react'
 import _ from 'lodash'
 import {
-  Row, Typography, Col, Space, App,
+  Row, Typography, Col, Space, App, Tour,
 } from 'antd'
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom'
 import cs from 'classnames'
 import { connect, ConnectedProps } from 'react-redux'
-import Tour from '@rc-component/tour'
 import { CheckCircleFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 import {

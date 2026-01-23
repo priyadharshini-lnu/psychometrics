@@ -164,6 +164,13 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+webDeploymentStrategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 50%
+    maxSurge: 50%
+
+
 nodeSelector: {}
 
 tolerations: []

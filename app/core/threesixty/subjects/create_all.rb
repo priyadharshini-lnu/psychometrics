@@ -58,7 +58,7 @@ module Threesixty
         # TODO: (atanych): I doubt that good way, but current licenses absolutely are not intended for threesixty
         subject_exisits = threesixty_campaign.subjects.exists?(user: user)
         unless subject_exisits
-          Licenses::CreateThreesixtySubject.call!(user: user, campaign: threesixty_campaign.campaign)
+          LicenseManager::Deductor.call(user: user, campaign: threesixty_campaign.campaign, license_type: 'threesixty')
           ::Threesixty::Subject.create!(user: user, campaign: threesixty_campaign.campaign)
         end
         threesixty_campaign.participants.find_or_create_by!(evaluator: user, subject: user) do |participant|
@@ -67,6 +67,8 @@ module Threesixty
         end
 
         ::Threesixty::Evaluator.find_or_create_by!(user: user, campaign: threesixty_campaign.campaign)
+      rescue Licenses::NotEnoughError => e
+        raise Errors::LicenseError.new(threesixty_campaign.campaign.client, nil, user, e.message)
       end
 
       private

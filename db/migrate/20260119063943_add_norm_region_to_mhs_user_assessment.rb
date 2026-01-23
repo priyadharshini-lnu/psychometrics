@@ -1,0 +1,7 @@
+# frozen_string_literal: true
+
+class AddNormRegionToMhsUserAssessment < ActiveRecord::Migration[8.0]
+  def change
+    add_column :mhs_user_assessments, :norm_region, :integer, default: 0
+  end
+end

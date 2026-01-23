@@ -76,6 +76,44 @@ RSpec.describe AI::PromptTemplate::Renderer do
       end
     end
 
+    context 'campaign_user context' do
+      let!(:campaign_user) do
+        create(:campaign_user,
+               user: user,
+               campaign: campaign,
+               level: :guide)
+      end
+
+      it 'provides access to campaign_user level' do
+        prompt = 'User {{user.full_name}} has level: {{campaign_user.level}}'
+        result = described_class.call!(prompt, user: user, campaign: campaign)
+
+        expect(result).to eq('User John Doe has level: guide')
+      end
+
+      it 'renders correctly when campaign_user does not exist' do
+        other_campaign = create(:campaign, name: 'Other Campaign')
+        prompt = 'Level: {{campaign_user.level}}'
+        result = described_class.call!(prompt, user: user, campaign: other_campaign)
+
+        expect(result).to eq('Level: ')
+      end
+
+      it 'works in combination with other context variables' do
+        prompt = <<~PROMPT
+          User: {{user.first_name}} {{user.last_name}}
+          Campaign: {{campaign.name}}
+          Level: {{campaign_user.level}}
+        PROMPT
+
+        result = described_class.call!(prompt, user: user, campaign: campaign)
+
+        expect(result).to include('User: John Doe')
+        expect(result).to include('Campaign: Test Campaign')
+        expect(result).to include('Level: guide')
+      end
+    end
+
     context 'campaign factors context' do
       it 'provides direct access to individual factors by code' do
         prompt = <<~PROMPT

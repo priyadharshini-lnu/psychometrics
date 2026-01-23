@@ -4,7 +4,7 @@ FROM ruby:3.4.6-slim-trixie as ruby-base
 # Can be overriden at run-time with -e
 ENV APP_DIR="/app"
 ENV PATH="${PATH}:${APP_DIR}/bin" \
-    NODE_VERSION="18.16.1" \
+    NODE_VERSION="22.21.1" \
     YARN_VERSION="1.22.5" \
     BUNDLER_VERSION="2.3.17" \
     RAILS_ENV="production" \
@@ -17,7 +17,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 #
 # We're also installing the latest nodejs and lua
 RUN apt-get update -qq && apt-get install -yq --no-install-recommends curl gnupg2 lsb-release python-is-python3 liblua5.4 zlib1g-dev \
-    && curl -sL https://deb.nodesource.com/setup_18.x | bash \
+    && curl -sL https://deb.nodesource.com/setup_22.x | bash \
     && curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor -o /usr/share/keyrings/yarnkey.gpg \
     && echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
     && curl -sL https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor -o /usr/share/keyrings/pgdg.gpg \
@@ -52,7 +52,7 @@ WORKDIR ${APP_DIR}
 FROM ruby-base as ruby-gems
 ENV APP_DIR=/app
 ENV PATH="${PATH}:${APP_DIR}/bin"
-ENV NODE_VERSION 18.16.1
+ENV NODE_VERSION 22.21.1
 ENV YARN_VERSION 1.22.5
 ENV BUNDLER_VERSION=2.3.17
 ENV RAILS_ENV=production
@@ -81,7 +81,7 @@ ARG GITHUB_TOKEN=""
 
 ENV APP_DIR=/app
 ENV PATH="${PATH}:${APP_DIR}/bin"
-ENV NODE_VERSION 18.16.1
+ENV NODE_VERSION 22.21.1
 ENV YARN_VERSION 1.22.5
 ENV BUNDLER_VERSION=2.3.17
 ENV RAILS_ENV=production
@@ -102,7 +102,7 @@ FROM ruby-base as bundle-assets
 
 ENV APP_DIR=/app
 ENV PATH="${PATH}:${APP_DIR}/bin"
-ENV NODE_VERSION 18.16.1
+ENV NODE_VERSION 22.21.1
 ENV YARN_VERSION 1.22.5
 ENV BUNDLER_VERSION=2.3.17
 ENV RAILS_ENV=production
@@ -149,7 +149,7 @@ FROM ruby:3.4.6-slim-trixie
 
 ENV APP_DIR=/app
 ENV PATH="${PATH}:${APP_DIR}/bin"
-ENV NODE_VERSION 18.16.1
+ENV NODE_VERSION 22.21.1
 ENV YARN_VERSION 1.22.5
 ENV BUNDLER_VERSION=2.3.17
 ENV RAILS_ENV=production

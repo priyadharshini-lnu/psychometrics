@@ -14,7 +14,10 @@ module Api
     end
 
     def spoof
-      sign_in(@_resource.user)
+      target_user = @_resource.user
+      role_name = @_resource.role.to_s.humanize.titleize
+      siem_log_impersonation_event(target_user, role_name)
+      sign_in(target_user)
       redirect_url ||= admin_path
       flash.now[:success] = I18n.t('administration.administrators.list.actions.spoof.login_successful')
       redirect_to redirect_url

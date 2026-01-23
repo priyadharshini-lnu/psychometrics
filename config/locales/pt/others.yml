@@ -837,6 +837,10 @@ pt:
           reply_to_reply: não é possível responder a uma resposta (apenas um nível de aninhamento permitido)
         user_idp_plan:
           no_active_plan: Não foi encontrado nenhum plano IDP ativo
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: Apenas avaliações do tipo "psicometria" e "pesquisa organizacional" podem ser selecionadas.
   admin_jobs:
     attrs:
       operations:
@@ -1422,7 +1426,6 @@ pt:
       collapse_link_text: Mostrar menos
       expand_aria_label: 'Mostrar menos informações acima: Centro Virtual de Aprendizagem'
       expand_link_text: Mostrar mais
-      heading: Consulte as orientações abaixo antes de começar. Desejamos-lhe sucesso!
     language:
       content: Esta tarefa não está disponível no idioma atualmente selecionado. Selecione um dos idiomas disponíveis para prosseguir.
       single_lang: Esta tarefa está disponível apenas em %{lang}. Clique em "Prosseguir" para continuar.
@@ -1782,16 +1785,7 @@ pt:
       continue: Continuar
       description: Clique em Iniciar Gravação e grave-se a si próprio enquanto lê o texto abaixo com a sua própria voz.
       random_phrases:
-        eight: Se conseguir me ver, o vídeo foi um sucesso. Caso contrário, vamos resolver o problema!
-        five: Testar o seu vídeo, não se preocupe, não é necessária uma nomeação para o Óscar.
-        four: Preparar, preparar, focar! A câmara é o seu palco.
-        nine: Grandes sorrisos e vídeo nítido, vamos fazer este teste bem feito!
-        one: Levantem a mão se me consegue ouvir ou acene para a câmara!
-        seven: Espelho, espelho no ecrã, que o controlo de vídeo seja limpo.
-        six: Luzes, câmara, ação, este é o seu tempo para brilhar!
-        ten: Um aceno amigável garante que tudo funciona bem.
-        three: Dizer "queijo"! Ou testar aquele sorriso perfeito.
-        two: Olhe para a lente, sorria e finja que está num trailer de um filme.
+        one: Estou pronto. Esta é uma gravação de teste para confirmar se o meu microfone e câmara estão a funcionar corretamente.
       rec_text: REC
       retake: Não, quero repetir
       run_again: Executar novamente
@@ -2218,16 +2212,16 @@ pt:
       password_complexity:
         digit:
           one: deve conter pelo menos um dígito
-          other: deve conter pelo menos <x>count</x> dígitos
+          other: deve conter pelo menos %{count} dígitos
         lower:
           one: deve conter pelo menos uma letra minúscula
-          other: deve conter pelo menos <x>count</x> letras minúsculas
+          other: deve conter pelo menos %{count} letras minúsculas
         symbol:
           one: deve conter pelo menos um sinal de pontuação ou símbolo
-          other: deve conter pelo menos <x>count</x> sinais de pontuação ou símbolos
+          other: deve conter pelo menos %{count} sinais de pontuação ou símbolos
         upper:
           one: deve conter pelo menos uma letra maiúscula
-          other: deve conter pelo menos <x>count</x> letras maiúsculas
+          other: deve conter pelo menos %{count} letras maiúsculas
       taken_in_past: não deve ser igual a nenhuma palavra-passe utilizada anteriormente.
     module_error: Algo ocorreu mal com este módulo, contacte a administração.
     module_error_editor: Algo ocorreu mal com este módulo, verifique as definições do módulo.
@@ -3049,13 +3043,10 @@ pt:
     client_usage: Uso do Cliente
     enabled: Ativado
     end_date: Data final
-    not_enough_idp_license: Não existem licenças IDP suficientes, contactar o administrador
     not_enough_license: "'%{client_name}' não tem licenças suficientes para '%{report_name}'"
     not_enough_license_count: Não existem licenças suficientes, contacte o administrador
-    not_enough_proctoring_credits: Não há créditos suficientes para iniciar a sessão de controlo
     number: Número
     overuse_number: Subsídio por utilização excessiva
-    project_limit_reached: Limite de uso atingido para '%{license_name}', por favor, entre em contato com o administrador
     project_specific: Projeto Específico
     project_specific_license: Licença Específica do Projeto
     project_usage: Uso do Projeto
@@ -3104,7 +3095,7 @@ pt:
     footer:
       regards: Com os meus cumprimentos,
       team_name: Equipa Lighthouse
-      technical_support: Para quaisquer problemas técnicos, escreva-nos para <x>email</x> e responderemos no prazo de 24 horas.
+      technical_support: Para quaisquer problemas técnicos, escreva-nos para %{email} e responderemos no prazo de 24 horas.
     from: A Empresa de Talentos
     idp:
       manager_unread_comments:
@@ -3836,6 +3827,13 @@ pt:
       on_hold: Em espera
       prepared: Feito
       released: Lançado
+    statuses:
+      completed: Concluído
+      declined: Declinado
+      denied: Recusado
+      done: Concluído
+      not_completed: Não concluído
+      waiting: Em espera
   threesixty:
     accept_privacy_modal:
       accept: Aceitar

@@ -23,6 +23,7 @@ import {
   backButtonPressed,
   showErrorWarning,
   setAnswersSaved,
+  showEnd,
 } from './actions'
 import {
   getPrevPage,
@@ -134,6 +135,7 @@ function* genSaveResultsIfNoVideoQuestionInProgress () {
   if (state.preview.assessmentTimedOut && !inProgressVideoQuestion) {
     if (state.preview.showSubmitPage) {
       yield put(hideSubmitPage())
+      yield put(showEnd())
       return
     }
     if (!state.preview.end) {

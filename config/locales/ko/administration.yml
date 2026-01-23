@@ -860,7 +860,6 @@ ko:
         campaign: 캠페인
         copy_factors: 카피 팩터
         inactive_notice: 캠페인 상태는 선택한 시작일에 자동으로 활성화됩니다.
-        instruction: 이것은 캠페인을 만들 때만 활성화 될 수 있습니다
         name: 이름
         practice_campaign: 실천 캠페인
         status: 상태
@@ -1007,6 +1006,8 @@ ko:
         ai_assistants_disabled_by_client: AI Assistants는 클라이언트에 의해 비활성화됩니다.
         ai_assisted_idp: AI 지원 IDP
         ai_assisted_idp_requires_ai_assistants: AI 지원 IDP를 사용하려면 AI 어시스턴트 기능을 활성화해야 합니다.
+        ai_translation: 인공지능 번역
+        ai_translation_disabled_by_client: AI 번역 기능은 클라이언트 측에서 비활성화되었습니다.
         global_skills: 글로벌 기술
         global_skills_disabled_by_client: 클라이언트에 의해 글로벌 스킬이 비활성화됨
         idp: IDP
@@ -2888,6 +2889,11 @@ ko:
           active:
             label: 활성
             name: 활성
+          assessments:
+            help_text: 이 선택 사항은 평가 원시 응답 이벤트에만 영향을 미칩니다.
+            label: 평가
+            placeholder: 평가 선택
+            required: 평가 원시 응답 이벤트에 대해 최소한 하나의 평가가 선택되어야 합니다.
           auth_type:
             api_key:
               label: API 키
@@ -2944,6 +2950,7 @@ ko:
             list:
               assessment_assigned: 평가 할당됨
               assessment_completed: 평가 완료
+              assessment_raw_response: 평가 원시 응답
               assessment_started: 평가 시작
               assessment_timeout: 평가 시간 초과
               campaign_results_available: 캠페인 결과 사용 가능
@@ -3097,6 +3104,7 @@ ko:
         mask_identity_for_hogan: Hogan의 마스크 데이터
         mask_identity_for_iiht: IIHT용 마스크 데이터
         mask_identity_for_mettl: METTL용 마스크 데이터
+        mask_identity_for_mhs: MHS용 마스크 데이터
         mask_identity_for_pearson: 피어슨의 마스크 데이터
         mask_identity_for_saville: Saville의 마스크 데이터
         mask_identity_for_skillvue: 스킬뷰용 마스크 데이터
@@ -3657,7 +3665,7 @@ ko:
         preworks: 사전 작업
         re_enroll: 재등록
         re_enroll_confirm_message: "'%{subject_email}' 이메일로 주제를 다시 등록하시겠습니까?"
-        re_enroll_success: 이메일로 주제를 재등록 <x>subject_email</x>.
+        re_enroll_success: 이메일로 주제를 재등록 %{subject_email}.
         schedule: 일정
         unschedule: 일정 취소
       tabs:

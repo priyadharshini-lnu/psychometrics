@@ -847,6 +847,10 @@ zh-HK:
           reply_to_reply: 無法回覆回覆（只允許一層巢狀）
         user_idp_plan:
           no_active_plan: 未發現有效的IDP計畫
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: 仅可选择类型为'心理测量学'和'组织调查'的评估
   admin_jobs:
     attrs:
       operations:
@@ -1433,7 +1437,6 @@ zh-HK:
       collapse_link_text: 顯示更少。
       expand_aria_label: 上方顯示較少資訊：虛擬學習中心
       expand_link_text: 顯示更多。
-      heading: 開始之前，請查看以下準則。祝您一切順利！
     language:
       content: 此任務無法使用目前所選語言。請選擇其中一種可用語言繼續。
       single_lang: 此任務僅能使用%{lang}。點擊「繼續」以繼續。
@@ -1793,16 +1796,7 @@ zh-HK:
       continue: 繼續
       description: 在此階段拍攝的任何影片或相片都不會被儲存或使用。它會在您的裝置上本地使用，以確保相機正常運作，因為即將有需要錄製影片的問題。
       random_phrases:
-        eight: 如果你能看到我，視訊就成功了；如果看不到，我們就得排除故障！
-        five: 測試您的影片，別擔心，不需要奧斯卡提名。
-        four: 準備、就位、對焦！ 攝影機就是你的舞台。
-        nine: 燦爛的笑容和清晰的視訊，讓我們把測試做好！
-        one: 能聽到我說話的請舉手，或對著鏡頭揮手！
-        seven: 鏡子，鏡子上的屏幕，讓視頻檢查是乾淨的。
-        six: 燈光、攝影機、動作，這是您大放異彩的時刻！
-        ten: 友善的招手，確保一切運作正常。
-        three: 說起司！或者只是測試一下完美的笑容。
-        two: 看著鏡頭，微笑，假裝你在電影預告片中。
+        one: 我準備好了。這是一段測試錄像，用來確認我的影片和麥克風運作正常。
       rec_text: REC
       retake: 不，我要重考
       run_again: 再次執行
@@ -2234,16 +2228,16 @@ zh-HK:
       password_complexity:
         digit:
           one: 必須至少包含一位數
-          other: 必須至少包含<x>count</x> 位數
+          other: 必須至少包含%{count} 位數
         lower:
           one: 必須包含至少一個小寫字母
-          other: 必須至少包含<x>count</x> 小寫字母
+          other: 必須至少包含%{count} 小寫字母
         symbol:
           one: 必須包含至少一個標點符號或符號
-          other: 必須至少包含<x>count</x> 標點符號或符號
+          other: 必須至少包含%{count} 標點符號或符號
         upper:
           one: 必須至少包含一個大寫字母
-          other: 必須至少包含<x>count</x> 大寫字母
+          other: 必須至少包含%{count} 大寫字母
       taken_in_past: 不得與之前使用的密碼相同。
     module_error: 此模組出錯，請聯絡管理員。
     module_error_editor: 此模組出錯，請檢查模組設定。
@@ -2975,21 +2969,94 @@ zh-HK:
           error_description: 你的報告產生失敗了。請聯絡管理員或嘗試<b>重新下載</b>。
           message: 報告準備好了
   languages:
+    af: 南非荷兰语
+    ar: 阿拉伯语
+    az: 阿塞拜疆人
+    bg: 保加利亚
+    bs: 波斯尼亚人
+    by: 白俄罗斯人
+    ca: 加泰罗尼亚语
+    cn: 中文
+    cs: 捷克
+    cy: 威尔士语
+    da: 丹麦语
+    de: 德语
+    el: 希腊语
+    en: 英语
+    en-GB: 英语 - 英国
+    en-US: 英语 - 美国
+    eo: 世界语
+    es: 西班牙语（拉丁美洲）
+    es-ES: 西班牙语（西班牙）
+    et: 爱沙尼亚语
+    fa: 波斯语
+    fi: 芬兰语
+    fr: 法语
+    gu: 古吉拉特语
+    he: 希伯来语
+    hi: 印地语
+    hr: 克罗地亚
+    hu: 匈牙利语
+    id: 印尼语
+    it: 意大利语
+    ja: 日语
+    km: 高棉族
+    ko: 韩国
+    lt: 立陶宛
+    lv: 拉脱维亚
+    mk: 马其顿语
+    mn: 蒙古族
+    ms: 马来西亚语
+    my: 缅甸
+    nb: 挪威语（布克莫尔）
+    nl: 荷兰
+    'no': 挪威语
+    pl: 波兰语
+    pt: 葡萄牙语
+    pt-BR: 巴西葡萄牙语
+    pt-PT: 葡萄牙语（葡萄牙）
+    pt_BR: 葡萄牙语（巴西）
     ro: 羅馬尼亞
+    ru: 俄罗斯
+    sk: 斯洛伐克
     sl: 斯洛文什奇納
+    sr-Cyrl: 塞尔维亚语西里尔字母
+    sr-Latn: 塞尔维亚拉丁字母
+    sv: 瑞典
+    sw: 斯瓦希里语
+    ta: 泰米尔语
+    th: 泰
+    tl: 他加禄语
+    tr: 土耳其
+    ua: 乌克兰
+    uk: 乌克兰
+    ur: 乌尔都语
+    vi: 越南语
+    zh: 简体中文
+    zh-CN: 中国（中华人民共和国）
+    zh-HK: 中文（香港）
+    zh-Hant: 中文 - 繁體
+    zh-TW: 中文（台灣）
   languages_localized:
     sl: 斯洛文什奇納
+  license_usage:
+    active: 活动
+    campaign_name: 活动名称
+    inactive: 非活动状态
+    status_updated_at: 最后状态更新
+    status_updated_by: 最后由...更新
+    subject_email: 邮件主题
+    subject_name: 科目名称
+    usage_overview: 查看许可证使用情况
+    usages: 用法
   licenses:
     client_usage: 用戶端使用
     enabled: 已啟用
     end_date: 結束日期
-    not_enough_idp_license: IDP執照不足，請聯絡管理員
     not_enough_license: "「%{client_name}」沒有足夠的授權給「%{report_name}」"
     not_enough_license_count: 授權不足，請聯絡管理員
-    not_enough_proctoring_credits: 學分不夠開始監考
     number: 數
     overuse_number: 過度使用津貼
-    project_limit_reached: "「%{license_name}」使用量已達上限，請聯絡管理員"
     project_specific: 專案專屬
     project_specific_license: 專案特定授權
     project_usage: 專案應用
@@ -3038,7 +3105,7 @@ zh-HK:
     footer:
       regards: 關於
       team_name: 燈塔團隊
-      technical_support: 如有任何技術問題，請寫信至<x>email</x> ，我們會在 24 小時內回覆。
+      technical_support: 如有任何技術問題，請寫信至%{email} ，我們會在 24 小時內回覆。
     from: 人才企業
     idp:
       manager_unread_comments:
@@ -3770,6 +3837,13 @@ zh-HK:
       on_hold: 暫停
       prepared: 完成
       released: 已發行
+    statuses:
+      completed: 已完成
+      declined: 已拒絕
+      denied: 已拒絕
+      done: 完成
+      not_completed: 未完成
+      waiting: 正在等待
   threesixty:
     accept_privacy_modal:
       accept: 接受

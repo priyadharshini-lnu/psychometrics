@@ -10,7 +10,8 @@ module AI
       SCHEMA_REGISTRY = {
         idp_assistant: IdpAssistant,
         development_actions_assistant: DevelopmentActionsAssistant,
-        writing_assistant: WritingAssistant
+        writing_assistant: WritingAssistant,
+        translation_assistant: TranslationAssistant
       }.freeze
 
       # Check if a given assistant type has a RubyLLM::Schema defined

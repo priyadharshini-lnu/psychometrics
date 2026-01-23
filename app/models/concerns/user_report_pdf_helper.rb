@@ -12,40 +12,12 @@ module UserReportPdfHelper
 
   def attach_pdf!(data, filename = nil, locale: nil)
     user_report_pdf = find_or_create_user_report_pdf(locale: locale)
-    case data
-      when String
-        if data.start_with?('http://', 'https://')
-          url = URI.parse(data)
-          file = URI(data).open
 
-          user_report_pdf.pdf_file.attach(
-            io: file,
-            filename: filename || File.basename(url.path),
-            content_type: PDF_CONTENT_TYPE
-          )
-        else
-          data_to_attach = ActiveStorageSupport::Base64Attach.attachment_from_data({
-            data: "data:application/pdf;base64,[#{data}]"
-          })
-          data_to_attach[:filename] = filename if filename
-          user_report_pdf.pdf_file.attach(data_to_attach)
-        end
-      when File, ActionDispatch::Http::UploadedFile
-        user_report_pdf.pdf_file.attach(
-          io: data,
-          filename: filename || File.basename(data),
-          content_type: PDF_CONTENT_TYPE
-        )
-      else
-        return false
-    end
-    user_report_pdf.set_generated_timestamps
-    user_report_pdf.save!
-    self.status = :prepared
-    save!
-    if user_report_pdf.pdf_file.attached? && user_report_pdf.persisted?
-      UserReports::Webhook.new(UserReport.find(user_report_pdf.user_report_id), locale).publish_report_available
-    end
+    attachment_params = build_attachment_params(data, filename)
+    return false unless attachment_params
+
+    user_report_pdf.pdf_file.attach(attachment_params)
+    finalize_pdf_attachment(user_report_pdf, locale)
   end
 
   def pdf_exists?(locale: nil)
@@ -55,11 +27,16 @@ module UserReportPdfHelper
 
   def remove_report_pdf!(locale: nil)
     remove_pdf_async(locale: locale)
+    remove_ai_translations
     self.status = :not_prepared
     if !threesixty? && has_approval_workflow?
       self.approval_status = :not_ready
     end
     save!
+  end
+
+  def remove_ai_translations
+    ai_translation&.destroy
   end
 
   def remove_all_report_pdfs!
@@ -120,5 +97,76 @@ module UserReportPdfHelper
 
   def pdf_url(locale: nil, expires_in: 10.minutes)
     user_report_pdf(locale: locale)&.pdf_file&.url(expires_in: expires_in)
+  end
+
+  private
+
+  def build_attachment_params(data, filename)
+    case data
+      when String
+        handle_string_data(data, filename)
+      when File, ActionDispatch::Http::UploadedFile
+        handle_file_data(data, filename)
+      when StringIO
+        handle_stringio_data(data, filename)
+    end
+  end
+
+  def handle_string_data(data, filename)
+    if data.start_with?('http://', 'https://')
+      handle_url_data(data, filename)
+    else
+      handle_base64_data(data, filename)
+    end
+  end
+
+  def handle_url_data(data, filename)
+    url = URI.parse(data)
+    file = URI(data).open
+
+    {
+      io: file,
+      filename: filename || File.basename(url.path),
+      content_type: PDF_CONTENT_TYPE
+    }
+  end
+
+  def handle_base64_data(data, filename)
+    data_to_attach = ActiveStorageSupport::Base64Attach.attachment_from_data({
+      data: "data:application/pdf;base64,[#{data}]"
+    })
+    data_to_attach[:filename] = filename if filename
+    data_to_attach
+  end
+
+  def handle_file_data(data, filename)
+    {
+      io: data,
+      filename: filename || File.basename(data),
+      content_type: PDF_CONTENT_TYPE
+    }
+  end
+
+  def handle_stringio_data(data, filename)
+    {
+      io: data,
+      filename: filename || 'report.pdf',
+      content_type: PDF_CONTENT_TYPE
+    }
+  end
+
+  def finalize_pdf_attachment(user_report_pdf, locale)
+    user_report_pdf.set_generated_timestamps
+    user_report_pdf.save!
+    self.status = :prepared
+    save!
+
+    publish_webhook_if_ready(user_report_pdf, locale)
+  end
+
+  def publish_webhook_if_ready(user_report_pdf, locale)
+    return unless user_report_pdf.pdf_file.attached? && user_report_pdf.persisted?
+
+    UserReports::Webhook.new(UserReport.find(user_report_pdf.user_report_id), locale).publish_report_available
   end
 end

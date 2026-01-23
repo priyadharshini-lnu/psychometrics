@@ -26,7 +26,7 @@ export const DetailsDrawer: FC<Props> = ({
       placement="right"
       closable
       onClose={close}
-      visible
+      open
       width="40%"
     >
       <Row>

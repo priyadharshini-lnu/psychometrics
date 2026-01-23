@@ -7,6 +7,7 @@ import { actions } from '~/modules/reports/core/temp/selection'
 
 const Foundation = ({
   module, shadow, preview, outerStyle, children, error, closeRichEditor, pageSize, flipContent, defaultLanguage,
+  hasTranslation,
 }) => {
   const selectedIds = useSelector(state => state.report.ui.selection.selected)
   const dispatch = useDispatch()
@@ -67,6 +68,7 @@ const Foundation = ({
       [styles.selected]: isSelected,
       [styles.locked]: module.meta.locked,
       [styles.error]: error,
+      [styles.aiTranslated]: preview && !!hasTranslation,
       rtl: isRTL,
     }, 'fe-module-container')
 
@@ -77,6 +79,8 @@ const Foundation = ({
       style={style}
       onClick={select}
       onDoubleClick={forceSelect}
+      data-module-id={module.id}
+      data-ai-translatable={!!module.props.aiTranslationEnabled}
     >
       <div className={styles.sizeBox} />
       <div className={cs(styles.frame)} style={outerStyle}>

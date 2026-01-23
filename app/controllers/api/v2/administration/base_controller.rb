@@ -5,12 +5,17 @@
 module Api
   class V2::Administration::BaseController < ActionController::Base
     include AuditLogModule::ControllerHelper
+    include SiemLogger::ControllerHelper
     include JSONAPI::Utils
     include V2::Administration::Concerns::ApiController
     include Pundit
     include AddCookie
     include SetCurrentCountry
     include GeoRestriction
+
+    def siem_log_impersonation_event(target_user, role)
+      super(target_user, current_user, role)
+    end
 
     ACTION_TO_SCHEMA_NAME = {
       create: :create_request, update: :update_request, create_relationship:
@@ -22,6 +27,7 @@ module Api
 
     skip_before_action :verify_authenticity_token
     prepend_before_action :validate_requests_schema
+    prepend_before_action :set_request_related_current_attributes
     before_action :set_current_attributes
     before_action :ensure_project
     before_action :ensure_campaign
@@ -314,6 +320,13 @@ module Api
 
     def ignore_password_expire?
       session[:saml_login]
+    end
+
+    def set_request_related_current_attributes
+      Current.request_id = request.request_id
+      Current.ip_address = request.remote_ip
+      Current.request_url = request.url
+      Current.application_component = 'admin'
     end
   end
 end

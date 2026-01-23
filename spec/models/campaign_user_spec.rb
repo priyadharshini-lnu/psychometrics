@@ -3,6 +3,16 @@
 require 'rails_helper'
 
 describe CampaignUser, type: :model do
+  describe 'Validations' do
+    it 'does not allow same current and target job roles' do
+      job_role = create(:job_role)
+      campaign_user = build(:campaign_user, current_job_role: job_role, target_job_role: job_role)
+
+      expect(campaign_user).not_to be_valid
+      expect(campaign_user.errors[:base]).to include(I18n.t('admin.campaign_user_job_roles_cannot_be_same'))
+    end
+  end
+
   describe 'Callbacks' do
     context '#publish_campaign_results_available' do
       let!(:campaign_user) { create(:campaign_user) }

@@ -127,6 +127,7 @@ export class ConditionCollection extends Component {
         value={fontColor || '#ccc'}
         onChange={(color) => {
           this.changeFontColor(color)
+          // eslint-disable-next-line @typescript-eslint/no-unused-expressions
           this.update
         }}
       />

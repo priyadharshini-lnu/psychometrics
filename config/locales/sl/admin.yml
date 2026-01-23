@@ -1,6 +1,7 @@
 ---
 sl:
   admin:
+    accept_na_values: Sprejmi vrednosti N/A
     add_admin: Dodajanje skrbnika
     add_admin_role: Dodajanje skrbniške vloge
     add_campaign_admin: Dodajanje skrbnika oglaševalske akcije
@@ -34,14 +35,23 @@ sl:
     ai_assistants_test_render: Testni upodabljanje
     ai_assistants_test_render_tooltip: Preizkusite predlogo za poziv s podatki o kampanji, da preverite, kaj bo poslano AI asistentu.
     ai_assisted_idp_feature_disabled: Funkcija AI Assisted IDP je bila za ta projekt onemogočena.
+    ai_notice: Poudarjene dele je prevedel AI in lahko vsebujejo netočnosti.
+    ai_translation: Prevod z umetno inteligenco
+    all_corner_rounded: Vsi koti so zaobljeni
     api_keys: Ključi API-ja
+    apply_to_existing_users: Uporabi to spremembo za obstoječe uporabnike v tej kampanji
     assessments: Ocenjevanja
+    assessments_not_mhs: Vse ocene morajo biti tipa MHS.
     assessments_reports: Ocenjevanja in poročila
     assessor_dashboard: Nadzorna plošča ocenjevalca
     assessor_workshops: Ocenjevalni center
     assessors: Ocenjevalcev
+    assistant_toolbar_failed: Po več poskusih ni bilo mogoče ustvariti veljavnega izhoda.
+    assistant_toolbar_not_a_valid_operation: Neznana operacija %{operation}.
+    assistant_validation_failed: Po več poskusih ni bilo mogoče ustvariti veljavnega izhoda.
     audit_logs: Dnevniki nadzora
     audit_reports: Revizijska poročila
+    auto_placeholder: Avto
     availability: Razpoložljivost
     available_languages: Poročilo je na voljo v jezikih
     back_to_main: Glavni meni
@@ -50,6 +60,19 @@ sl:
     campaign_assessment_actions_disable_caching: Onemogoči predpomnjenje ocenjevanja
     campaign_assessment_actions_enable_caching: Omogočite predpomnjenje ocenjevanja
     campaign_assessment_column_caching_enabled: Omogočeno predpomnjenje ocenjevanja
+    campaign_assessment_mhs_confidence_interval: Interval zaupanja
+    campaign_assessment_mhs_confidence_interval_update_success: Zaupanjski interval je bil uspešno posodobljen.
+    campaign_assessment_mhs_invalid_confidence_interval: interval zaupanja mora biti 0 ali 1
+    campaign_assessment_mhs_invalid_leadership_bar: vodstvena_palica mora biti 0 ali 1
+    campaign_assessment_mhs_invalid_norm_option: Norm Option mora biti med 0 in 3.
+    campaign_assessment_mhs_leadership_bar: Vodstvena palica
+    campaign_assessment_mhs_leadership_bar_update_success: Vodstvena vrstica uspešno posodobljena
+    campaign_assessment_mhs_norm_option: Normativna možnost
+    campaign_assessment_mhs_norm_option_form_select: Izberite možnost Norm
+    campaign_assessment_mhs_norm_option_update_success: Norm Option uspešno posodobljen
+    campaign_assessment_mhs_norm_region: Norm Regija
+    campaign_assessment_mhs_norm_region_form_select: Izberite normativno regijo
+    campaign_assessment_mhs_norm_region_update_success: Regija Norm uspešno posodobljena
     campaign_assessment_modals_disable_caching_content: Ste prepričani, da želite onemogočiti predpomnjenje za to oceno?
     campaign_assessment_modals_disable_caching_successfully: Za to oceno je bilo predpomnjenje onemogočeno.
     campaign_assessment_modals_disable_caching_title: Onemogočiti predpomnjenje ocenjevanja?
@@ -70,6 +93,7 @@ sl:
     confirm_remove_admin: Ali ste prepričani, da želite odstraniti skrbniškega uporabnika z e-poštnim sporočilom '%{email}'?
     country: Država
     create_client: Ustvari odjemalca
+    current_job_role: Trenutna delovna vloga
     dashboard: Nadzorna plošča
     dashboards: Namizij
     data_reports: Poročila o podatkih
@@ -84,19 +108,26 @@ sl:
     done_tooltip: Za tega uporabnika ni mogoče več opraviti ocene, saj je ocena označena kot opravljena s strani %{marked_by}
     edit_campaign_admin: Urejanje skrbnika oglaševalske akcije
     edit_client_admin: Urejanje skrbnika odjemalca
+    edit_job_roles: Uredi delovna mesta
+    edit_level: Uredi raven
     edit_permission_denied: Nimate dovoljenja za urejanje administratorskega '%{name}'
     edit_project_admin: Urejanje skrbnika projekta
     edit_threesixty_campaign_admin: Urejanje skrbnika oglaševalske akcije
     empty_csv_file: CSV datoteka ne vsebuje nobenih podatkov.
+    enable_enhance_with_ai_client_level: Omogočite funkcijo Izboljšaj z AI na ravni odjemalca.
+    enable_transcription: Omogoči prepis
+    enhance_with_ai_requires_ai_assistants: Za izboljšanje z umetno inteligenco je treba omogočiti funkcijo AI Assistants.
     evaluation_status: Status ocenjevanja
     evaluation_status_not_done: Status ocenjevanja ni 'končan' za enega ali več izbranih predmetov. Prosimo, poskrbite, da so vsi izbrani uporabniki opravili ocene ali označili kot opravljeno.
     export_admin_roles_permissions: Izvoz skrbniških vlog in dovoljenj
+    feature_enhance_with_ai: Izboljšajte z umetno inteligenco
     feature_flags: Zastavice funkcij
     fill_empty_score_msg: Pred shranjevanjem izpolnite vse končne rezultate.
-    final_score_empty_msg: Končni rezultat ne sme biti prazen.
+    final_score_empty_err_msg: Končni rezultat igre »%{factor_name}« ne sme biti prazen.
     idp_plan_reset_success: Načrt je bil uspešno ponastavljen
     idp_templates: Predloge IDP
     import_ai_artifacts: Uvoz AI artefaktov
+    import_csv_assessment_group_error: "%{index} vrstica: uporabnik z e-poštnim naslovom %{email} je že povabljen v skupino „%{workshopInviteName}“."
     import_csv_error: 'Vrstica %{index}: uporabnik z e-poštnim %{email} ni v tej kampanji'
     import_csv_parsing_error: 'Napaka pri analizi CSV: %{message}'
     import_description: Uvozite uporabnike iz CSV datoteke. Vsaka vrstica mora vsebovati e-poštni naslov.
@@ -121,11 +152,27 @@ sl:
     invalid_csv_header: CSV datoteka vsebuje neveljavne glave.
     job_roles: Delovna mesta
     learning_from_others: Sodelovalno učenje [20]
+    level: Raven
+    level_apply: Prijavi se
+    level_guide: Vodnik
+    level_shape: Oblika
+    level_validation_message: 'mora biti eden od naslednjih: %{values}'
     libraries: Medijska knjižnica
     library_invalid_type: Neveljaven knjižnični element
     licenses: Licence
     manager_approval_required: Poročilo za %{user} zahteva odobritev upravitelja pred prenosom
+    max_value: Največja vrednost
     messages: Sporočila
+    mhs: MHS
+    mhs_assessment: Ocena MHS
+    mhs_assessment_name: Ime ocene MHS
+    mhs_data_gatherer_id: Mhs ID zbiralca podatkov
+    mhs_data_gathering_id: ID za zbiranje podatkov Mhs
+    mhs_external_assessment_id: Mhs ocena ID
+    mhs_report_id: ID poročila MHS
+    mhs_session_id: Mhs ID seje
+    min_value: Najmanjša vrednost
+    missing_min_max_values: Zahtevane so minimalne in maksimalne vrednosti.
     name_required: Ime je potrebno
     no_file_selected: Izbrana ni bila izbrana datoteka
     no_notifications: Brez obvestil
@@ -140,6 +187,7 @@ sl:
     number: Številka
     occupations: Poklicev
     on_the_job: Na delovnem mestu [70]
+    only_editable_on_create: Ta možnost je urejljiva samo med ustvarjanjem.
     options: Možnosti
     participants: Udeleženci
     permissions:
@@ -564,6 +612,7 @@ sl:
         view: Pogled
         view_recordings: Ogled posnetkov
     permissions_360_campaigns: Dovoljenja za oglaševalske akcije 360
+    piped_text: Besedilo v cevi
     privacy: Zasebnost
     proficiency_level: Ključi API-ja
     proficiency_levels: Ravni strokovnosti
@@ -645,11 +694,18 @@ sl:
     saml_settings: SAML nastavitve
     scheduling: Razporejanje
     scoring: Točkovanja
+    scoring_value_info: Rezultat mora biti med %{min} in %{max}.
+    scoring_value_out_of_range_err_msg: Ocena za %{factor_name} mora biti med %{min} in %{max}.
     search_admins: Skrbniki za iskanje
+    search_job_role: Iskanje delovnega mesta
     select_admin_role: Izberite skrbniško vlogo
+    select_language_to_translate: Izberite jezik za prevajanje
+    select_level: Izberite raven
     send_email: Pošlji e-pošto
     settings: Nastavitve
+    show_original: Pokaži izvirnik
     show_submenu: Pokaži podmeni
+    show_translated: Pokaži prevedeno
     siem: SIEM
     skill_aliases: Vzdevki spretnosti
     skills: Spretnosti
@@ -661,12 +717,30 @@ sl:
     status_details: Podrobnosti o statusu
     structured_learning: Formalno učenje [10]
     subdomain: Poddomena
+    subject_part_of_other_invite: Oseba z e-poštnim naslovom %{user_email} je že povabljena na »%{workshop_invite_name}«.
+    target_job_role: Ciljna delovna vloga
+    toolbar_ai_insight: Vpogled v umetno inteligenco
+    toolbar_ai_suggestion: Predlog AI
+    toolbar_result_generating: Ustvarjanje...
+    toolbar_text_copied: Kopirano v odložišče
+    toolbar_text_replaced: Besedilo zamenjano!
+    toolbar_what_changed_and_why: Kaj se je spremenilo in zakaj
+    translate: Prevedi
+    translate_to: Prevedi v
+    translate_with_ai: Prevedi z umetno inteligenco
+    translated_from: Prevedeno iz
+    translated_to: 'Prevedeno v:'
+    translated_with_ai_notice: Prevedeno z umetno inteligenco
+    translation_assistant_not_configured: Pomočnik za prevajanje ni nastavljen
     upload_success: Uspešno naloženo
     user_report_events: Dogodki uporabniškega poročila
     users: Uporabniki
     view_licenses: Ogled licenc
     waiting: Čaka
     workshops: Delavnice
+    writing_assistant_not_configured: Pomočnik za pisanje ni nastavljen
+    x_axis_interval_label: Interval osi X
+    y_axis_interval_label: Interval osi Y
     year: Država
     yoodli_activity_id: Yoodli Activity ID
     yoodli_email_id: E-poštni ID kandidata Yoodli

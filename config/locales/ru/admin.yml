@@ -1,0 +1,748 @@
+---
+ru:
+  admin:
+    accept_na_values: Принять значения N/A
+    add_admin: Добавить администратора
+    add_admin_role: Добавить роль администратора
+    add_campaign_admin: Добавить администратора кампании
+    add_client_admin: Добавить администратора клиента
+    add_project: Добавить проект
+    add_project_admin: Добавить администратора проекта
+    add_threesixty_campaign_admin: Добавить администратора кампании
+    admin_approval_required: Отчет для %{user} требует утверждения администратора перед загрузкой
+    admin_created_successfully: Администратор «%{name}» был успешно создан.
+    admin_export_scheduled: Задание экспорта администратора было успешно запланировано. Пожалуйста, проверьте уведомление о статусе.
+    admin_removed_successfully: Администратор с адресом электронной почты «%{email}» был успешно удален.
+    admin_role_deleted: Роль администратора «%{role_name}» была успешно удалена.
+    admin_roles: Роли администратора
+    admin_updated_successfully: Администратор «%{name}» был успешно обновлен.
+    admins: Администраторы
+    ai_artifacts: Артефакты искусственного интеллекта
+    ai_artifacts_output_schema_key_constraint: Ключ должен начинаться с строчной буквы и может содержать только строчные буквы, цифры и символы подчеркивания.
+    ai_assistant_model_id_label: Идентификатор модели
+    ai_assistant_model_label: Модель
+    ai_assistant_model_provider: Провайдер
+    ai_assistant_model_region_label: Регион
+    ai_assistant_required: Требуется помощник с искусственным интеллектом
+    ai_assistants: ИИ-помощники
+    ai_assistants_advanced_mode_tooltip: Используйте расширенный режим для быстрого создания шаблонов с помощью шаблона Liquid с доступными переменными. Более подробную информацию см. в документации.
+    ai_assistants_campaign_id_placeholder: Введите идентификатор кампании
+    ai_assistants_no_rendered_output: Нет доступного рендеринга
+    ai_assistants_render_button: Шаблон рендеринга
+    ai_assistants_rendered_prompt: Отображаемый подсказка
+    ai_assistants_template_and_campaign_required: Пожалуйста, укажите идентификатор шаблона и кампании.
+    ai_assistants_template_render_failed: Не удалось отобразить шаблон
+    ai_assistants_test_render: Тестовый рендер
+    ai_assistants_test_render_tooltip: Протестируйте свой шаблон подсказки с помощью данных кампании, чтобы проверить, что будет отправлено помощнику ИИ.
+    ai_assisted_idp_feature_disabled: Функция AI Assisted IDP была отключена для этого проекта.
+    ai_notice: Выделенные фрагменты переведены с помощью искусственного интеллекта и могут содержать неточности.
+    ai_translation: Перевод с помощью искусственного интеллекта
+    all_corner_rounded: Все углы закруглены
+    api_keys: API-ключи
+    apply_to_existing_users: Применить это изменение к существующим пользователям в этой кампании
+    assessments: Оценки
+    assessments_not_mhs: Все оценки должны быть типа MHS.
+    assessments_reports: Оценки и отчеты
+    assessor_dashboard: Панель инструментов оценщика
+    assessor_workshops: Центр оценки
+    assessors: Оценщики
+    assistant_toolbar_failed: Не удалось сгенерировать действительный результат после нескольких попыток
+    assistant_toolbar_not_a_valid_operation: Неизвестная операция %{operation}.
+    assistant_validation_failed: Не удалось сгенерировать действительный результат после нескольких попыток
+    audit_logs: Журналы аудита
+    audit_reports: Аудиторские отчеты
+    auto_placeholder: Авто
+    availability: Доступность
+    available_languages: Отчет доступен на следующих языках
+    back_to_main: Главное меню
+    bulk_upload_ai_artifacts: Массовая загрузка артефактов искусственного интеллекта
+    campaign_ai_artifact_updated_successfully: Артефакты искусственного интеллекта кампании успешно обновлены
+    campaign_assessment_actions_disable_caching: Отключить кэширование оценок
+    campaign_assessment_actions_enable_caching: Включить кэширование оценок
+    campaign_assessment_column_caching_enabled: Кэширование оценок включено
+    campaign_assessment_mhs_confidence_interval: Доверительный интервал
+    campaign_assessment_mhs_confidence_interval_update_success: Доверительный интервал обновлен успешно
+    campaign_assessment_mhs_invalid_confidence_interval: confidence_interval должен быть равен 0 или 1
+    campaign_assessment_mhs_invalid_leadership_bar: leadership_bar должен быть равен 0 или 1
+    campaign_assessment_mhs_invalid_norm_option: Параметр Norm должен быть в диапазоне от 0 до 3.
+    campaign_assessment_mhs_leadership_bar: Лидерство Бар
+    campaign_assessment_mhs_leadership_bar_update_success: Панель лидерства обновлена успешно
+    campaign_assessment_mhs_norm_option: Нормальный вариант
+    campaign_assessment_mhs_norm_option_form_select: Выберите опцию «Норма»
+    campaign_assessment_mhs_norm_option_update_success: Опция Norm успешно обновлена
+    campaign_assessment_mhs_norm_region: Норма Регион
+    campaign_assessment_mhs_norm_region_form_select: Выберите регион Норм
+    campaign_assessment_mhs_norm_region_update_success: Регион Норм успешно обновлен
+    campaign_assessment_modals_disable_caching_content: Вы уверены, что хотите отключить кэширование для этой оценки?
+    campaign_assessment_modals_disable_caching_successfully: Кэширование отключено для этой оценки.
+    campaign_assessment_modals_disable_caching_title: Отключить кэширование оценок?
+    campaign_assessment_modals_enable_caching_content: Вы уверены, что хотите включить кэширование для этой оценки?
+    campaign_assessment_modals_enable_caching_successfully: Для этой оценки включено кэширование.
+    campaign_assessment_modals_enable_caching_title: Включить кэширование оценок?
+    campaign_factors: Факторы кампании
+    campaign_templates: Шаблоны кампаний
+    campaigns: Кампании
+    client: Клиент
+    client_admins: Администраторы клиентов
+    clients: Клиенты
+    code_required: Требуется код
+    communication_center: Коммуникационный центр
+    communications: Коммуникации
+    completed: Завершено
+    completed_tooltip: Все эксперты представили свои оценки.
+    confirm_remove_admin: Вы уверены, что хотите удалить администратора с адресом электронной почты «%{email}»?
+    country: Страна
+    create_client: Создать клиента
+    current_job_role: Текущая должность
+    dashboard: Панель управления
+    dashboards: Панели инструментов
+    data_reports: Отчеты по данным
+    datasheet: Технические характеристики
+    declined: Отклонено
+    delete_ok_text: Да, удалить
+    denied: Отклонено
+    development_actions: Действия по развитию
+    development_actions_form_tags: Теги
+    dimensions: Размеры
+    done: Готово
+    done_tooltip: Для этого пользователя больше не может быть отправлена оценка, так как оценка этого пользователя помечена как выполненная %{marked_by}
+    edit_campaign_admin: Редактировать кампанию Администратор
+    edit_client_admin: Редактировать клиентский админ
+    edit_job_roles: Редактировать должностные обязанности
+    edit_level: Уровень редактирования
+    edit_permission_denied: У вас нет прав на редактирование администратора «%{name}»
+    edit_project_admin: Редактировать проект Администратор
+    edit_threesixty_campaign_admin: Редактировать кампанию Администратор
+    empty_csv_file: CSV-файл не содержит никаких данных.
+    enable_enhance_with_ai_client_level: Пожалуйста, включите функцию «Улучшение с помощью ИИ» на уровне клиента.
+    enable_transcription: Включить транскрипцию
+    enhance_with_ai_requires_ai_assistants: Для улучшения с помощью ИИ необходимо включить функцию «ИИ-помощники».
+    evaluation_status: Статус оценки
+    evaluation_status_not_done: Статус оценки для одного или нескольких выбранных предметов не является «Выполнено». Убедитесь, что все выбранные пользователи завершили оценки, или пометьте их как выполненные.
+    export_admin_roles_permissions: Экспорт ролей и разрешений администратора
+    feature_enhance_with_ai: Улучшайте с помощью ИИ
+    feature_flags: Флаги функций
+    fill_empty_score_msg: Заполните все окончательные результаты перед сохранением.
+    final_score_empty_err_msg: Итоговый счет «%{factor_name}» не может быть пустым.
+    final_score_empty_msg: Итоговый счет не может быть пустым.
+    idp_plan_reset_success: План был успешно сброшен
+    idp_templates: Шаблоны IDP
+    import_ai_artifacts: Импорт артефактов искусственного интеллекта
+    import_csv_assessment_group_error: 'Строка %{index}: пользователь с адресом электронной почты %{email} уже приглашен в «%{workshopInviteName}».'
+    import_csv_error: "%{index}: пользователь с адресом электронной почты %{email} не участвует в этой кампании"
+    import_csv_parsing_error: 'Ошибка разбора CSV: %{message}'
+    import_description: Импорт пользователей из файла CSV. Каждая строка должна содержать адрес электронной почты.
+    import_download_sample: Скачать пример CSV
+    import_error: Импорт не удался. Повторите попытку.
+    import_error_saving_data: 'Ошибка при сохранении данных для %{email}: %{message}'
+    import_errors_title: Ошибки импорта
+    import_external_scoring_action: Импорт внешней оценки
+    import_external_scoring_body: Обратитесь к функции «Экспорт», чтобы извлечь шаблон, который можно использовать для импорта здесь.
+    import_external_scoring_data_description: Импорт внешних данных оценки для указанной оценки и кампании
+    import_external_scoring_data_title: Импорт внешних данных оценки
+    import_external_scoring_success_msg: Импорт был успешно загружен
+    import_external_scoring_upload: Загрузить
+    import_file_required: Выберите CSV-файл для загрузки.
+    import_queued_success: Задание по импорту предметов было успешно запланировано. Пожалуйста, проверьте уведомление о статусе.
+    import_sample_file_label: 'Пример файла:'
+    import_scenario_id_mismatch: 'Несоответствие идентификатора сценария для %{email}: ожидалось %{expected_id} , но CSV содержит другие идентификаторы сценария.'
+    import_successfully_saved: Успешно сохранены внешние результаты для %{email} с целями %{goals_count}
+    import_title: Импорт предметов из CSV
+    import_upload: Загрузить
+    import_users: Импорт пользователей
+    invalid_csv_header: CSV-файл содержит недействительные заголовки.
+    job_roles: Должностные обязанности
+    learning_from_others: Совместное обучение [20]
+    level: Уровень
+    level_apply: Применить
+    level_guide: Руководство
+    level_shape: Форма
+    level_validation_message: должно быть одним из следующих:%{values}
+    libraries: Медиатека
+    library_invalid_type: Недействительный элемент библиотеки
+    licenses: Лицензии
+    manager_approval_required: Отчет для %{user} требует утверждения менеджера перед загрузкой
+    max_value: Максимальное значение
+    messages: Сообщения
+    mhs: MHS
+    mhs_assessment: Оценка MHS
+    mhs_assessment_name: Название оценки MHS
+    mhs_data_gatherer_id: Идентификатор сборщика данных Mhs
+    mhs_data_gathering_id: Идентификатор сбора данных Mhs
+    mhs_external_assessment_id: Идентификатор оценки Mhs
+    mhs_report_id: Идентификатор отчета MHS
+    mhs_session_id: Идентификатор сеанса Mhs
+    min_value: Минимальное значение
+    missing_min_max_values: Требуются минимальные и максимальные значения.
+    name_required: Имя обязательно
+    no_file_selected: Файл не выбран
+    no_notifications: Нет уведомлений
+    norms: Нормы
+    not_completed: Не завершено
+    not_completed_tooltip: "%{completed} оценщики назначены, но только %{submitted} завершили оценки"
+    notes: Примечания
+    nothing_assigned: Оценщики не назначены
+    nothing_assigned_tooltip: Этому пользователю не было присвоено никаких оценок.
+    notification_bell_icon_alt_text: Значок уведомления
+    notifications: Уведомления
+    number: Номер
+    occupations: Профессии
+    on_the_job: На работе [70]
+    only_editable_on_create: Этот параметр можно изменить только во время создания.
+    options: Варианты
+    participants: Участники
+    permissions:
+      aiArtifacts:
+        export: Экспорт
+        import: Импорт
+        manage: Управлять
+        title: Артефакты искусственного интеллекта
+        view: Просмотр
+      apiKeys:
+        manage: Управлять
+        title: Ключи API
+        view: Просмотр
+      assessments:
+        manage: Управлять
+        title: Оценки
+        view: Просмотр
+      assessors:
+        manage: Управлять
+        title: Оценщики
+        view: Просмотр
+      auditLogs:
+        title: Журналы аудита
+        view: Просмотр
+      auditReports:
+        admin_permissions: Экспорт ролей и разрешений администратора
+        title: Аудиторские отчеты
+        user_report_events: Журналы утверждения отчетов
+      campaignFactors:
+        manage: Управлять
+        title: Факторы кампании
+        view: Просмотр
+      campaigns:
+        bulk_download: Массовая загрузка
+        bulk_regenerate_reports: Массовое восстановление отчетов
+        manage: Управлять
+        manage_admins: Управление администраторами
+        manage_factor_benchmark_scores: Управление базовыми показателями факторов
+        manage_messages: Управление сообщениями
+        manage_options: Управление параметрами
+        manage_report_approvals: Управление утверждением отчетов
+        manage_users: Управление пользователями
+        participant_options: Варианты для участников
+        report_options: Параметры отчета
+        reset_nominations: Сбросить номинации
+        title: Кампании
+        view: Просмотр
+        view_factor_benchmark_scores: Просмотреть результаты тестирования View Factor
+        view_stats: Просмотр статистики
+      clients:
+        export_data_report: Отчет об экспорте данных
+        manage: Управлять
+        title: Клиенты
+        view: Просмотр
+        view_licenses: Просмотр лицензий
+      communications:
+        manage: Управлять
+        title: Коммуникации
+        view: Просмотр
+      dashboards:
+        accesssheet_manage: Лист доступа Управление
+        accesssheet_settings: Настройки листа доступа
+        accesssheet_view: Просмотр листа доступа
+        export: Экспорт
+        title: Панели инструментов
+        view: Просмотр
+      datasheets:
+        manage: Управлять
+        title: Технические характеристики
+        view: Просмотр
+      developmentActions:
+        export: Экспорт
+        export_global: Экспорт Глобальный
+        export_global_translations: Экспорт глобальных переводов
+        export_translations: Экспорт переводов
+        import: Импорт
+        import_global: Импорт глобальный
+        import_global_translations: Импорт глобальных переводов
+        import_translations: Импорт переводов
+        manage: Управлять
+        title: Действия по развитию
+        view: Просмотр
+      dimensions:
+        manage: Управлять
+        title: Размеры
+        view: Просмотр
+      idpTemplates:
+        manage: Управлять
+        title: Шаблоны IDP
+        view: Просмотр
+      interviewQuestions:
+        export: Экспорт
+        import: Импорт
+        manage: Управлять
+        title: Вопросы для собеседования IDP
+        view: Просмотр
+      jobRoles:
+        export_translations: Экспорт переводов должностных инструкций
+        import_translations: Импорт переводов должностных инструкций
+        manage: Управлять
+        title: Должностные обязанности
+        view: Просмотр
+      labels:
+        apiKeys:
+          manage: Управлять
+          title: Ключи API
+          view: Просмотр
+        assessments:
+          manage: Управлять
+          title: Оценки
+          view: Просмотр
+        assessors:
+          manage: Управлять
+          title: Оценщики
+          view: Просмотр
+        auditLogs:
+          title: Журналы аудита
+          view: Просмотр
+        auditReports:
+          admin_permissions: Экспорт ролей и разрешений администратора
+          title: Аудиторские отчеты
+          user_report_events: Журналы утверждения отчетов
+        campaignFactors:
+          manage: Управлять
+          title: Факторы кампании
+          view: Просмотр
+        campaigns:
+          bulk_download: Массовая загрузка
+          bulk_regenerate_reports: Массовое восстановление отчетов
+          manage: Управлять
+          manage_admins: Управление администраторами
+          manage_factor_benchmark_scores: Управление базовыми показателями факторов
+          manage_messages: Управление сообщениями
+          manage_options: Управление параметрами
+          manage_report_approvals: Управление утверждением отчетов
+          manage_users: Управление пользователями
+          participant_options: Варианты для участников
+          report_options: Параметры отчета
+          reset_nominations: Сбросить номинации
+          title: Кампании
+          view: Просмотр
+          view_factor_benchmark_scores: Просмотреть результаты тестирования View Factor
+          view_stats: Просмотр статистики
+        clients:
+          export_data_report: Отчет об экспорте данных
+          manage: Управлять
+          title: Клиенты
+          view: Просмотр
+          view_licenses: Просмотр лицензий
+        communications:
+          manage: Управлять
+          title: Коммуникации
+          view: Просмотр
+        dashboards:
+          accesssheet_manage: Лист доступа Управление
+          accesssheet_settings: Настройки листа доступа
+          accesssheet_view: Просмотр листа доступа
+          export: Экспорт
+          title: Панели инструментов
+          view: Просмотр
+        datasheets:
+          manage: Управлять
+          title: Технические характеристики
+          view: Просмотр
+        developmentActions:
+          export: Экспорт
+          export_global: Экспорт Глобальный
+          export_global_translations: Экспорт глобальных переводов
+          export_translations: Экспорт переводов
+          import: Импорт
+          import_global: Импорт глобальный
+          import_global_translations: Импорт глобальных переводов
+          import_translations: Импорт переводов
+          manage: Управлять
+          title: Действия по развитию
+          view: Просмотр
+        dimensions:
+          manage: Управлять
+          title: Размеры
+          view: Просмотр
+        idpTemplates:
+          manage: Управлять
+          title: Шаблоны IDP
+          view: Просмотр
+        jobRoles:
+          export_translations: Экспорт переводов должностных инструкций
+          import_translations: Импорт переводов должностных инструкций
+          manage: Управлять
+          title: Должностные обязанности
+          view: Просмотр
+        libraries:
+          manage: Управлять
+          title: Медиа-библиотеки
+          view: Просмотр
+        messages:
+          email: Электронная почта
+          instructions: Инструкции
+          options: Варианты
+          title: Сообщения
+        norms:
+          manage: Управлять
+          title: Нормы
+          view: Просмотр
+        proficiencyLevels:
+          export: Уровни владения экспортом
+          export_translations: Уровни владения экспортом переводов
+          import: Уровни владения импортом
+          import_translations: Уровни владения языком при импорте переводов
+          manage: Управлять
+          title: Уровни владения языком
+          view: Просмотр
+        proficiency_level:
+          title: Уровни владения языком
+        projectSettings:
+          assessments: Оценки
+          design: Дизайн
+          feature_flags: Флаги функций
+          idp: ВПЛ
+          integrations: Интеграции
+          privacy_settings: Настройки конфиденциальности
+          saml: SAML
+          security: Безопасность
+          smtp: SMTP
+          title: Настройки проекта
+          webhooks: Веб-хуки
+        projects:
+          manage: Управлять
+          manage_admins: Управление администраторами
+          manage_users: Управление пользователями
+          title: Проекты
+          view: Просмотр
+        questions:
+          manage: Управлять
+          title: Вопросы
+          view: Просмотр
+        reflectionQuestions:
+          export: Экспорт
+          import: Импорт
+          manage: Управлять
+          title: Вопросы для размышления по IDP
+          view: Просмотр
+        registrationCodes:
+          manage: Управлять
+          title: Регистрационные коды
+          view: Просмотр
+        registrationSettings:
+          manage: Управлять
+          title: Настройки регистрации
+        reports:
+          manage: Управлять
+          title: Отчеты
+          view: Просмотр
+        responseMeta:
+          title: Ответ Мета
+        results:
+          approve_report: Утвердить отчет
+          bulk_download: Массовая загрузка
+          bulk_regenerate_reports: Массовое восстановление отчетов
+          bulk_update_evaluation_status: Массовое обновление статуса оценки
+          download_report: Скачать отчет
+          edit_report: Редактировать отчет
+          export_occupations: Экспортные профессии
+          external_score_import: Импорт внешних оценок
+          finalize_scores: Окончательные результаты
+          normalize_factor_scores: Нормализация факторных оценок
+          raw_responses: Необработанные ответы
+          regenerate_report: Восстановить отчет
+          report_data: Данные отчета
+          report_file_upload: Отправить файл
+          rescore_responses: Пересчет ответов
+          reset_progress: Сбросить прогресс
+          reset_responses: Сбросить ответы
+          scores: Оценки
+          title: Результаты
+          view_report: Просмотреть отчет
+          view_stats: Просмотр статистики
+        skills:
+          export: Экспорт навыков
+          export_translations: Экспорт навыков Переводы
+          import: Импорт навыков
+          import_translations: Импорт навыков Переводы
+          manage: Управлять
+          title: Навыки
+          view: Просмотр
+        smsHistories:
+          manage: Управлять
+          title: История SMS-сообщений
+          view: Просмотр
+        smsInvites:
+          manage: Управлять
+          title: SMS-приглашения
+          view: Просмотр
+        userIdpPlans:
+          manage: Управлять
+          title: Планы IDP для пользователей
+          view: Просмотр
+        users:
+          reset_password: Сбросить пароль
+          title: Пользователи
+        workshops:
+          export_status: Статус экспорта
+          manage: Управлять
+          title: Семинары
+          view: Просмотр
+          view_recordings: Просмотр записей
+      libraries:
+        manage: Управлять
+        title: Медиа-библиотеки
+        view: Просмотр
+      messages:
+        email: Электронная почта
+        instructions: Инструкции
+        options: Варианты
+        title: Сообщения
+      norms:
+        manage: Управлять
+        title: Нормы
+        view: Просмотр
+      proficiencyLevels:
+        export: Уровни владения экспортом
+        export_translations: Уровни владения экспортом переводов
+        import: Уровни владения импортом
+        import_translations: Уровни владения языком при импорте переводов
+        manage: Управлять
+        title: Уровни владения языком
+        view: Просмотр
+      proficiency_level:
+        title: Уровни владения языком
+      projectSettings:
+        assessments: Оценки
+        design: Дизайн
+        feature_flags: Флаги функций
+        idp: ВПЛ
+        integrations: Интеграции
+        privacy_settings: Настройки конфиденциальности
+        saml: SAML
+        security: Безопасность
+        smtp: SMTP
+        title: Настройки проекта
+        webhooks: Веб-хуки
+      projects:
+        manage: Управлять
+        manage_admins: Управление администраторами
+        manage_licenses: Управление лицензиями
+        manage_users: Управление пользователями
+        title: Проекты
+        view: Просмотр
+        view_licenses: Просмотр лицензий
+      questions:
+        manage: Управлять
+        title: Вопросы
+        view: Просмотр
+      reflectionQuestions:
+        export: Экспорт
+        import: Импорт
+        manage: Управлять
+        title: Вопросы для размышления по IDP
+        view: Просмотр
+      registrationCodes:
+        manage: Управлять
+        title: Регистрационные коды
+        view: Просмотр
+      registrationSettings:
+        manage: Управлять
+        title: Настройки регистрации
+      reports:
+        manage: Управлять
+        title: Отчеты
+        view: Просмотр
+      responseMeta:
+        title: Ответ Мета
+      results:
+        approve_report: Утвердить отчет
+        bulk_download: Массовая загрузка
+        bulk_regenerate_reports: Массовое восстановление отчетов
+        bulk_update_evaluation_status: Массовое обновление статуса оценки
+        download_report: Скачать отчет
+        edit_report: Редактировать отчет
+        export_occupations: Экспортные профессии
+        external_score_import: Импорт внешних оценок
+        finalize_scores: Окончательные результаты
+        normalize_factor_scores: Нормализация факторных оценок
+        raw_responses: Необработанные ответы
+        regenerate_report: Восстановить отчет
+        report_data: Данные отчета
+        report_file_upload: Отправить файл
+        rescore_responses: Пересчет ответов
+        reset_progress: Сбросить прогресс
+        reset_responses: Сбросить ответы
+        scores: Оценки
+        title: Результаты
+        view_report: Просмотреть отчет
+        view_stats: Просмотр статистики
+      skills:
+        export: Экспорт навыков
+        export_translations: Экспорт навыков Переводы
+        import: Импорт навыков
+        import_translations: Импорт навыков Переводы
+        manage: Управлять
+        title: Навыки
+        view: Просмотр
+      smsHistories:
+        manage: Управлять
+        title: История SMS-сообщений
+        view: Просмотр
+      smsInvites:
+        manage: Управлять
+        title: SMS-приглашения
+        view: Просмотр
+      userIdpPlans:
+        manage: Управлять
+        reset: Сброс
+        title: Планы IDP для пользователей
+        view: Просмотр
+      users:
+        reset_password: Сбросить пароль
+        title: Пользователи
+      workshops:
+        export_status: Статус экспорта
+        manage: Управлять
+        title: Семинары
+        view: Просмотр
+        view_recordings: Просмотр записей
+    permissions_360_campaigns: Разрешения, специфичные для кампаний 360
+    piped_text: Текст в трубе
+    privacy: Конфиденциальность
+    proficiency_level: Уровень владения языком
+    proficiency_levels: Уровни владения языком
+    profile_details: Детали профиля
+    project_admins: Администраторы проекта
+    project_manager: Руководитель проекта
+    project_number: Номер проекта
+    project_settings: Настройки проекта
+    projects: Проекты
+    question_center: Центр вопросов
+    questions: Вопросы
+    reflection_questions: Вопросы для размышления
+    registration_codes: Регистрационные коды
+    registration_settings: Настройки регистрации
+    report_approvals: Утверждение отчетов
+    report_condition_not_met: Требуется оценка %{required} %{relationship}, но имеется только %{actual}
+    report_conditions_not_met_detailed: Отчет для %{user} не соответствует условиям доступности. %{conditions}
+    report_denied: Отчет по делу «%{user}» был отклонен
+    report_no_evaluations: Отчет по программе «%{user}» недоступен — оценки не поступали.
+    report_not_generated: Отчет «%{user}» соответствует условиям доступности, но еще не сгенерирован. Сначала сгенерируйте отчет.
+    report_on_hold: Отчет по программе «%{user}» в настоящее время приостановлен.
+    report_status: Состояние отчета
+    reports: Отчеты
+    reports_limit_exceeded: Массовая загрузка ограничена 1000 файлами отчетов. Если вы выбрали много языков, пожалуйста, уменьшите их количество.
+    reports_not_found: Отчеты не найдены. Пожалуйста, сгенерируйте отчеты перед загрузкой.
+    reset_idp_plan: Сбросить план
+    reset_idp_plan_confirmation: Вы уверены, что хотите сбросить план?
+    reset_idp_plan_title: Сбросить план
+    response_meta: Ответ Мета
+    results: Результаты
+    role: Роль
+    saml_idp_certificate_available: Доступно (щелкните, чтобы скопировать)
+    saml_idp_certificate_label: Сертификат
+    saml_idp_entity_id_label: Идентификатор субъекта/эмитента
+    saml_idp_sso_url_label: URL службы SSO
+    saml_service_provider: Поставщик услуг SAML
+    saml_service_provider_acs_urls: URL-адреса ACS
+    saml_service_provider_acs_urls_placeholder: 'Введите URL-адреса, разделенные запятыми, например: https://app1.com/saml/acs, https://app2.com/saml/acs'
+    saml_service_provider_acs_urls_required: URL-адреса ACS являются обязательными
+    saml_service_provider_action_delete_label: Удалить
+    saml_service_provider_action_edit_label: Редактировать
+    saml_service_provider_action_rotate_certificate_label: Повернуть сертификат
+    saml_service_provider_add: Добавить поставщика услуг SAML
+    saml_service_provider_delete_success: Поставщик услуг SAML удален успешно
+    saml_service_provider_enabled: Включено
+    saml_service_provider_entity_id: Идентификатор объекта
+    saml_service_provider_entity_id_placeholder: Введите идентификатор объекта
+    saml_service_provider_entity_id_required: Идентификатор объекта обязателен
+    saml_service_provider_idp_config: Конфигурация IdP
+    saml_service_provider_integration_generic: Общий
+    saml_service_provider_integration_masking_info: Идентификатор электронной почты кандидатов будет замаскирован перед отправкой в Yoodli. Маскировка имен и фамилий кандидатов должна быть включена в
+    saml_service_provider_integration_type: Тип интеграции
+    saml_service_provider_integration_type_placeholder: Выберите тип интеграции
+    saml_service_provider_integration_type_required: Требуется тип интеграции
+    saml_service_provider_integration_yoodli: Yoodli
+    saml_service_provider_manage: Действия
+    saml_service_provider_mask_data_for: Данные маски для
+    saml_service_provider_mask_identity: Маска личности
+    saml_service_provider_masking_enabled: Включить маскирование
+    saml_service_provider_masking_help_generic: Включить маскировку идентификационных данных пользователей в ответах SAML
+    saml_service_provider_masking_help_integration: Будет применено маскирование поставщика интеграции
+    saml_service_provider_masking_integration: "%{integration} Управляемый"
+    saml_service_provider_masking_manual_disabled: Инвалиды
+    saml_service_provider_masking_manual_enabled: Включено
+    saml_service_provider_name: Имя
+    saml_service_provider_name_placeholder: Введите название поставщика услуг
+    saml_service_provider_name_required: Имя обязательно
+    saml_service_provider_privacy_policy: Страница политики конфиденциальности
+    saml_service_provider_remove_content: 'Вы уверены, что хотите удалить поставщика услуг SAML: %{name}?'
+    saml_service_provider_remove_title: Удалить поставщика услуг SAML
+    saml_service_provider_rotate_certificate_content: Вы уверены, что хотите обновить сертификат для %{name}? Это приведет к созданию нового сертификата и аннулированию текущего.
+    saml_service_provider_rotate_certificate_error: Не удалось повернуть сертификат
+    saml_service_provider_rotate_certificate_ok: Повернуть сертификат
+    saml_service_provider_rotate_certificate_success: Сертификат успешно повернут
+    saml_service_provider_rotate_certificate_title: Повернуть сертификат
+    saml_service_provider_search: Поиск поставщиков услуг SAML...
+    saml_service_provider_updated_date: Дата обновления
+    saml_service_providers: Поставщики услуг
+    saml_settings: Настройки SAML
+    scheduling: Планирование
+    scoring: Оценка
+    scoring_value_info: Оценка должна быть в диапазоне от %{min} до %{max}.
+    scoring_value_out_of_range_err_msg: Оценка для «%{factor_name}» должна быть в диапазоне от %{min} до %{max}.
+    search_admins: Администраторы поиска
+    search_job_role: Поиск вакансии
+    select_admin_role: Выберите роль администратора
+    select_language_to_translate: Выберите язык для перевода
+    select_level: Выберите уровень
+    send_email: Отправить электронное письмо
+    settings: Настройки
+    show_original: Показать оригинал
+    show_submenu: Показать подменю
+    show_translated: Показать перевод
+    siem: SIEM
+    skill_aliases: Псевдонимы навыков
+    skills: Навыки
+    skills_taxonomy: Таксономия навыков
+    slot_name: Название слота
+    sms_histories: История SMS-сообщений
+    sms_invites: SMS-приглашения
+    stats: Статистика
+    status_details: Детали статуса
+    structured_learning: Формальное обучение [10]
+    subdomain: Субдомен
+    subject_part_of_other_invite: Участник с адресом электронной почты %{user_email} уже приглашен в «%{workshop_invite_name}».
+    target_job_role: Целевая должность
+    toolbar_ai_insight: AI Insight
+    toolbar_ai_suggestion: Предложение ИИ
+    toolbar_result_generating: Генерирование...
+    toolbar_text_copied: Скопировано в буфер обмена
+    toolbar_text_replaced: Текст заменен!
+    toolbar_what_changed_and_why: Что изменилось и почему
+    translate: Перевести
+    translate_to: Перевести на
+    translate_with_ai: Перевести с помощью ИИ
+    translated_from: Переведено с
+    translated_to: 'Переведено на:'
+    translated_with_ai_notice: Перевод с помощью ИИ
+    translation_assistant_not_configured: Помощник перевода не настроен
+    upload_success: Загрузка успешно завершена
+    user_report_events: Сообщения пользователей о событиях
+    users: Пользователи
+    view_licenses: Просмотр лицензий
+    waiting: Ожидание
+    workshops: Семинары
+    writing_assistant_not_configured: Помощник по написанию не настроен
+    x_axis_interval_label: Интервал по оси X
+    y_axis_interval_label: Интервал по оси Y
+    year: Год
+    yoodli_activity_id: Идентификатор активности Yoodli
+    yoodli_email_id: Идентификатор электронной почты кандидата Yoodli
+    yoodli_external_assessment_id: Идентификатор оценки Yoodli

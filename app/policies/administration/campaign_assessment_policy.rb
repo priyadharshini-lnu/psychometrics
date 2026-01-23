@@ -71,6 +71,22 @@ module Administration
       @record.pearson? && can_manage_campaign_and_users?
     end
 
+    def update_mhs_confidence_interval?
+      @record.mhs? && can_manage_campaign_and_users?
+    end
+
+    def update_mhs_leadership_bar?
+      @record.mhs? && can_manage_campaign_and_users?
+    end
+
+    def update_mhs_norm_region?
+      @record.mhs? && can_manage_campaign_and_users?
+    end
+
+    def update_mhs_norm_option?
+      @record.mhs? && can_manage_campaign_and_users?
+    end
+
     def update_prework?
       can_manage_campaign_and_users?
     end

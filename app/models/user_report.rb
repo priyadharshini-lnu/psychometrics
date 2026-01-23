@@ -28,6 +28,7 @@ class UserReport < ApplicationRecord
   has_many :communication_email_resources, as: :resource
   has_many :communication_emails, through: :communication_email_resources
   has_many :user_report_pdfs, dependent: :destroy
+  has_one :ai_translation, class_name: 'AI::TranslationResult', as: 'translatable', dependent: :destroy
 
   alias report_pdfs user_report_pdfs
 

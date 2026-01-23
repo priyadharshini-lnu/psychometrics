@@ -59,6 +59,7 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
           ...values,
           startDate: values.startDate.format(requestResponseDateFormat),
           endDate: values.endDate.format(requestResponseDateFormat),
+          overuseNumber: values.overuseNumber || 0,
         })
 
       }
@@ -110,6 +111,14 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
           )}
 
           <Form.Item
+            name="isProjectSpecific"
+            label={I18n.t('licenses.project_specific_license')}
+            valuePropName="checked"
+          >
+            <Switch disabled={!!license} />
+          </Form.Item>
+
+          <Form.Item
             name="number"
             label={I18n.t('licenses.number')}
             rules={[{ required: true }]}
@@ -117,13 +126,18 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
             <InputNumber style={{ width: '25%' }} />
           </Form.Item>
 
-          <Form.Item
-            name="overuseNumber"
-            label={I18n.t('licenses.overuse_number')}
-            rules={[{ required: true }]}
-          >
-            <InputNumber style={{ width: '25%' }} />
-          </Form.Item>
+          {
+            form.getFieldValue('isProjectSpecific') !== true && (
+              <Form.Item
+                name="overuseNumber"
+                label={I18n.t('licenses.overuse_number')}
+                rules={[{ required: true }]}
+              >
+                <InputNumber style={{ width: '25%' }} />
+              </Form.Item>
+            )
+          }
+
 
           <Form.Item
             name="startDate"
@@ -147,14 +161,6 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
             valuePropName="checked"
           >
             <Switch />
-          </Form.Item>
-
-          <Form.Item
-            name="isProjectSpecific"
-            label={I18n.t('licenses.project_specific_license')}
-            valuePropName="checked"
-          >
-            <Switch disabled={!!license} />
           </Form.Item>
         </>
       )}

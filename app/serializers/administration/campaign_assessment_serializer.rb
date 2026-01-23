@@ -7,7 +7,8 @@ module Administration
                :has_external_norm, :available_locales, :all_locales, :external_config, :campaign_assessment_id,
                :prework, :workshop_activity, :workshop_activity_duration, :allow_multiple_responses,
                :require_scheduling, :auto_assign, :mettl_schedule_name, :mettl_schedule_record_id, :dimension_id,
-               :simulation_content_variations, :pearson_variations, :caching_enabled, :allow_caching
+               :simulation_content_variations, :pearson_variations, :caching_enabled, :allow_caching, :mhs_norm_regions,
+               :mhs_norm_options
 
     delegate :id, :name, :dimension_id, :category, to: :assessment
     delegate :name, :id, to: :linked_assessment, prefix: true, allow_nil: true
@@ -43,6 +44,18 @@ module Administration
       return [] unless assessment.pearson?
 
       assessment.pearson_variations&.map { |v| v.to_h.except(:configuration, :default) }
+    end
+
+    def mhs_norm_regions
+      return [] unless assessment.mhs?
+
+      assessment.mhs_settings&.norm_regions || []
+    end
+
+    def mhs_norm_options
+      return [] unless assessment.mhs?
+
+      assessment.mhs_settings&.norm_options || []
     end
 
     def external_config
@@ -88,6 +101,10 @@ module Administration
           'update_content_variation',
           'update_available_locales',
           'update_pearson_variation',
+          'update_mhs_confidence_interval',
+          'update_mhs_leadership_bar',
+          'update_mhs_norm_region',
+          'update_mhs_norm_option',
           'toggle_require_scheduling',
           'update_prework',
           'toggle_caching'

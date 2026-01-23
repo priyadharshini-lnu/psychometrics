@@ -9,6 +9,7 @@ sr-Cyrl:
     agree_and_continue: Слажем се и настави
     archive: Архива чланака
     archived: Архивирано
+    audio: Аудио
     authentication_failed: Аутентификација није успела. Покушајте поново.
     basic: Основне
     campaign_id: ИД кампање
@@ -16,18 +17,26 @@ sr-Cyrl:
     change_password: Промена лозинке
     clear_filters: Обриши филтере
     collaborative_learning: Колаборативно учење
+    completed: Завршено
     confirm: Потврди
     continue: Наставите
+    copy: Копирај
     created_at: Креирано у
     created_date: Датум креирања
     decline: Претраживање
     description: Опис
+    download: Преузми
     edit: Уређивање
     edited: Уређивати
     email: Е-пошта
     export: Извоз
+    failed: Неуспело
     first_name: Презиме
     formal_learning: Формално учење
+    generate: Генериши
+    generate_transcription_confirm_content: Да ли сте сигурни да желите да генеришете транскрипт овог медијског одговора?
+    generate_transcription_confirm_title: Генеришите транскрипцију
+    generating: Генерисање
     group_question_max_validation_error: Свака група може да садржи највише {{маx}} ставке.
     group_question_min_validation_error: Свака група треба да садржи најмање {{мин}} ставке.
     id: ИД
@@ -36,18 +45,25 @@ sr-Cyrl:
     last_name: Презиме
     learning_on_the_job_label: Учење на послу
     login: Пријавите се
+    media_question_transcriptions: Транскрипти медијских питања
     modified_by: Измењено од стране
     modified_date: Датум измене
     more_actions: Више акција
     mte_logo_alt_text: Мерцер Талент Ентерприсе лого
+    na_text: Н/А
     name: Име
     new: Нови
+    not_requested: Још није затражено
     ok: У реду
+    pending: У току
+    processing: Обрада
+    question_id: Идентификациони број питања
     recording_consent_notice: Ова сесија састанка ће бити снимљена. Ваше учешће на овом састанку представља вашу сагласност да се снима.
     recording_consent_proceed_question: Да ли се слажете да наставите са снимљеним састанком?
     recording_consent_title: Обавештење о сагласности за снимање
     remove: Уклони
     removed: Уклоњена
+    replace: Заменити
     reset_password: Поништавање лозинке
     rte_paste_content_exceeds_char_limit: Текст прелази ограничење знакова {{маxЦхарацтерЛимит}} и не може се налепити.
     rte_paste_content_exceeds_word_limit: Текст прелази ограничење речи {{маxWордЛимит}} и не може се налепити.
@@ -67,7 +83,13 @@ sr-Cyrl:
           zero: 'Укупан : 0'
     terms_conditions_privacy: Изјава о приватности
     tools: Алатке
+    transcription: Транскрипција
+    transcription_already_requested: Транскрипција је већ затражена или у току
+    transcription_not_enabled: Транскрипција није омогућена за медијски одговор
     transcriptions: Транскрипције
+    try_again: Покушај поново
     tte_terms_and_condition: Услови и приватност
     type: Тип
     update: Ажурирање
+    video: Видео
+    view: Приказ

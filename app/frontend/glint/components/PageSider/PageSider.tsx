@@ -2,15 +2,16 @@ import React, {
   useContext, FC, useState,
 } from 'react'
 import {
-  Layout, Drawer, Button,
+  Layout, Drawer, Button, GetProp, MenuProps,
 } from 'antd'
 import { Link } from 'react-router-dom'
-import { SelectInfo } from 'rc-menu/lib/interface'
 import cs from 'classnames'
 
 import { MediaQueryContext, AccessibleMenu } from '~/glint'
 import { MenuTriggerIcon } from '~/glint/icons'
 import styles from './styles.less'
+
+type SelectInfo = Parameters<GetProp<MenuProps, 'onSelect'>>[0]
 
 const { Sider } = Layout
 const { I18n } = window

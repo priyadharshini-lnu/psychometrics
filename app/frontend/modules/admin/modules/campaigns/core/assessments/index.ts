@@ -26,6 +26,10 @@ import {
   TOGGLE_AUTO_ASSIGN,
   TOGGLE_ASSESSMENT_CACHING,
   UPDATE_METTL_SCHEDULE,
+  UPDATE_MHS_CONFIDENCE_INTERVAL,
+  UPDATE_MHS_LEADERSHIP_BAR,
+  UPDATE_MHS_NORM_REGION,
+  UPDATE_MHS_NORM_OPTION,
 } from './actions'
 
 const defaultState: State = {
@@ -206,6 +210,78 @@ const HANDLERS = {
       assessment.id === response.id ? response : assessment
     )))
   ),
+  [UPDATE_MHS_CONFIDENCE_INTERVAL]: (state, {
+    response,
+    requestAction: { request },
+  }: ApiActionResponse<{ confidenceInterval: number }>) => {
+    const { id: requestId } = request.body
+
+    return updateIn(state, ['list'], (assessments: Assessment[]) => assessments.map((assessment: Assessment) => {
+      if (assessment.id !== requestId) return assessment
+
+      return {
+        ...assessment,
+        externalConfig: {
+          ...assessment.externalConfig,
+          confidenceInterval: response.confidenceInterval,
+        },
+      }
+    }))
+  },
+  [UPDATE_MHS_LEADERSHIP_BAR]: (state, {
+    response,
+    requestAction: { request },
+  }: ApiActionResponse<{ leadershipBar: number }>) => {
+    const { id: requestId } = request.body
+
+    return updateIn(state, ['list'], (assessments: Assessment[]) => assessments.map((assessment: Assessment) => {
+      if (assessment.id !== requestId) return assessment
+
+      return {
+        ...assessment,
+        externalConfig: {
+          ...assessment.externalConfig,
+          leadershipBar: response.leadershipBar,
+        },
+      }
+    }))
+  },
+  [UPDATE_MHS_NORM_REGION]: (state, {
+    response,
+    requestAction: { request },
+  }: ApiActionResponse<{ normRegion: number }>) => {
+    const { id: requestId } = request.body
+
+    return updateIn(state, ['list'], (assessments: Assessment[]) => assessments.map((assessment: Assessment) => {
+      if (assessment.id !== requestId) return assessment
+
+      return {
+        ...assessment,
+        externalConfig: {
+          ...assessment.externalConfig,
+          normRegion: response.normRegion,
+        },
+      }
+    }))
+  },
+  [UPDATE_MHS_NORM_OPTION]: (state, {
+    response,
+    requestAction: { request },
+  }: ApiActionResponse<{ normOption: number }>) => {
+    const { id: requestId } = request.body
+
+    return updateIn(state, ['list'], (assessments: Assessment[]) => assessments.map((assessment: Assessment) => {
+      if (assessment.id !== requestId) return assessment
+
+      return {
+        ...assessment,
+        externalConfig: {
+          ...assessment.externalConfig,
+          normOption: response.normOption,
+        },
+      }
+    }))
+  },
 }
 
 export default createReducer(HANDLERS, defaultState)

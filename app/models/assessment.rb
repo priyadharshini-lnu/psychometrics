@@ -27,6 +27,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   SIMULATION = 'simulation'
   SKILLVUE = 'skillvue'
   YOODLI = 'yoodli'
+  MHS = 'mhs'
 
   DEFAULT_SCORE_VALIDITY_PERIOD = 18.months.in_days
 
@@ -42,7 +43,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     SAVILLE,
     PEARSON,
     IIHT,
-    MEETING
+    MEETING,
+    MHS
   ].freeze
 
   COMMON_CATEGORIES_TYPES = [
@@ -72,7 +74,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     meeting: MEETING,
     simulation: SIMULATION,
     skillvue: SKILLVUE,
-    yoodli: YOODLI
+    yoodli: YOODLI,
+    mhs: MHS
   }.freeze
 
   # Assessments constant
@@ -85,7 +88,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     mettl: 'Assessments::Mettl',
     simulation: 'Assessments::Simulation',
     skillvue: 'Assessments::Skillvue',
-    yoodli: 'Assessments::Yoodli'
+    yoodli: 'Assessments::Yoodli',
+    mhs: 'Assessments::Mhs'
   }.freeze
 
   NON_USER_ASSESSMENT_CATEGORY = [
@@ -192,6 +196,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   scope :pearson, -> { where(type: TYPES[:pearson]) }
   scope :iiht, -> { where(type: TYPES[:iiht]) }
   scope :mettl, -> { where(type: TYPES[:mettl]) }
+  scope :mhs, -> { where(type: TYPES[:mhs]) }
   scope :simulation, -> { where(type: TYPES[:simulation]) }
   scope :skillvue, -> { where(type: TYPES[:skillvue]) }
   scope :yoodli, -> { where(type: TYPES[:yoodli]) }
@@ -248,7 +253,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     saville? || pearson?
   end
 
-  def external_assessment_name # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  def external_assessment_name # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity,  Metrics/AbcSize
     return if external_assessment_id.nil? || common?
 
     case category
@@ -270,6 +275,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
         Iiht::GetAssessments.call!(project).find do |a|
           a['assessmentIdNumber'].include?(external_assessment_id)
         end&.fetch('name')
+      when 'mhs'
+        Settings.providers.mhs.assessments.find { |a| a.id.casecmp?(external_assessment_id) }&.name
     end
   end
 
@@ -307,6 +314,12 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     Settings.providers.pearson.products.find do |p|
       external_assessment_id.end_with?(p.id)
     end&.variations
+  end
+
+  def mhs_settings
+    Settings.providers.mhs.assessments.find do |a|
+      a.id == external_assessment_id
+    end
   end
 
   def external_assessment_id
@@ -372,8 +385,12 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     type == TYPES[:simulation]
   end
 
+  def mhs?
+    type == TYPES[:mhs]
+  end
+
   def external?
-    hogan? || saville? || pearson? || iiht? || mettl? || simulation? || skillvue? || yoodli?
+    hogan? || saville? || pearson? || iiht? || mettl? || simulation? || skillvue? || yoodli? || mhs?
   end
 
   def internal?

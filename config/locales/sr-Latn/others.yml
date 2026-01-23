@@ -844,6 +844,10 @@ sr-Latn:
           reply_to_reply: Ne mogu da odgovorim na odgovor (dozvoljen je samo jedan nivo gnežđenja)
         user_idp_plan:
           no_active_plan: Nije pronađen aktivan IDP plan
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: Могу се изабрати само процене типа 'psycometrics' и 'org survey'.
   admin_jobs:
     attrs:
       operations:
@@ -1420,7 +1424,6 @@ sr-Latn:
       collapse_link_text: Prikaži manje
       expand_aria_label: 'Prikaži manje informacija iznad: Virtuelni centar za učenje'
       expand_link_text: Prikaži više
-      heading: Molimo vas da pregledate smernice ispod pre nego što počnete. Želimo vam sve najbolje!
     language:
       content: Ovaj zadatak nije dostupan na trenutno izabranom jeziku. Izaberite jedan od dostupnih jezika da biste nastavili.
       single_lang: Ovaj zadatak je dostupan samo u %{lang}. Kliknite na "Nastavi" da biste nastavili.
@@ -1780,16 +1783,7 @@ sr-Latn:
       continue: Da, u redu da se nastavi
       description: Kliknite na Počni snimanje i snimite se dok čitate donji pasus svojim glasom
       random_phrases:
-        eight: Ako me vidite, video je uspešan. Ako ne, mi rešavamo probleme!
-        five: Testiramo vaš video, ne brinite, nije potrebna nominacija za Oskara.
-        four: Fokusirajte se! Kamera je vaša pozornica.
-        nine: Veliki osmesi i jasan video, hajde da ovaj test uradimo kako treba!
-        one: Podignite ruku ako me čujete ili samo mahnite za kameru!
-        seven: Ogledalo, ogledalo na ekranu, neka video provera bude čista.
-        six: Svetla, kamera, akcija, ovo je vaše vreme da sijate!
-        ten: Prijateljsko mahanje osigurava da sve funkcioniše dobro.
-        three: Recite sir! Ili samo testirajte taj savršeni osmeh.
-        two: Pogledajte objektiv, osmehnite se i pretvarajte se da ste u filmskom trejleru.
+        one: Sem spreman. Ovo je testni snimak da potvrdim da li moj mikrofon i kamera ispravno rade.
       rec_text: REC
       retake: Ne, želim da ponovim
       run_again: Pokreni ponovo
@@ -3035,13 +3029,10 @@ sr-Latn:
     client_usage: Korišćenje klijenta
     enabled: Omogućen
     end_date: Datum završetka
-    not_enough_idp_license: Nema dovoljno IDP dozvola, kontaktirajte administratora
     not_enough_license: "'%{client_name}' nema dovoljno licenci za '%{report_name}'"
     not_enough_license_count: Nema dovoljno dozvola, kontaktirajte administratora
-    not_enough_proctoring_credits: Nema dovoljno kredita za početak proctoring sesije
     number: Broj
     overuse_number: Dodatak za prekomernu upotrebu
-    project_limit_reached: Ograničenje korišćenja dostignut za '%{license_name}', obratite se administratoru
     project_specific: Specifično za projekat
     project_specific_license: Specifična licenca za projekat
     project_usage: Korišćenje projekta
@@ -3822,6 +3813,13 @@ sr-Latn:
       on_hold: Na čekanju
       prepared: Urađeno
       released: Objavljeno
+    statuses:
+      completed: Završeno
+      declined: Odbijeno
+      denied: Odbijeno
+      done: Urađeno
+      not_completed: Nije završeno
+      waiting: Čekanje
   threesixty:
     accept_privacy_modal:
       accept: Prihvati

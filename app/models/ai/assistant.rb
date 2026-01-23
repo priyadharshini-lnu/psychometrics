@@ -24,7 +24,8 @@ class AI::Assistant < ApplicationRecord
     idp_assistant: 1,
     assistant_tool: 2,
     development_actions_assistant: 3,
-    writing_assistant: 4
+    writing_assistant: 4,
+    translation_assistant: 5
   }
 
   enum :status, {
