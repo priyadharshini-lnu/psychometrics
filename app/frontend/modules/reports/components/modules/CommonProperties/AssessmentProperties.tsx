@@ -1,5 +1,6 @@
 import React from 'react'
-import { Select, Typography } from 'antd'
+import Select from 'react-select'
+import { Typography } from 'antd'
 
 import AppStore from '~/modules/reports/store/AppStore'
 
@@ -17,15 +18,16 @@ const AssessmentProperties: React.FC<Props> = ({
     value: assessment.id,
   }))
 
+  const selectedValue = assessmentOptions.find(opt => opt.value === assessmentId)
+
   return (
     <div>
       <Typography.Text>Assessment</Typography.Text>
       <Select
-        className="w-100"
-        size="small"
         options={assessmentOptions}
-        value={assessmentId}
-        onChange={value => changeAssessment(value)}
+        value={selectedValue}
+        onChange={option => option && changeAssessment(option.value)}
+        isClearable={false}
       />
     </div>
   )
