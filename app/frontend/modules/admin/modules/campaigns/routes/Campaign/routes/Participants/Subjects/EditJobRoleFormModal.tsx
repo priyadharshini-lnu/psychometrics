@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, useMemo } from 'react'
 import {
-  Modal, Form, Button, Select, Row, Col, Space, Spin,
+  Modal, Form, Button, Select, Row, Col, Space, Spin, message,
 } from 'antd'
 import { ConnectedProps, connect } from 'react-redux'
 import debounce from 'lodash/debounce'
@@ -78,6 +78,13 @@ export const EditJobRoleFormModalComponent: React.FC<Props> = ({
     )
       .then(() => {
         close()
+      })
+      .catch((error) => {
+        if (error?.base) {
+          message.error(error.base[0])
+        } else {
+          message.error(I18n.t('common.errors.something_wrong'))
+        }
       })
   }
 

@@ -4,6 +4,7 @@ import {
 } from 'antd'
 import { ConnectedProps, connect } from 'react-redux'
 import { updateLevel } from '~/modules/admin/modules/campaigns/core/users'
+import { IDP_LEVELS } from '~/components/IdpShared/constants'
 
 interface FormValues {
   level?: string
@@ -34,12 +35,6 @@ export const EditLevelFormModalComponent: React.FC<Props> = ({
         close()
       })
   }
-
-  const levelOptions = [
-    { label: I18n.t('admin.level_apply'), value: 'apply' },
-    { label: I18n.t('admin.level_guide'), value: 'guide' },
-    { label: I18n.t('admin.level_shape'), value: 'shape' },
-  ]
 
   return (
     <Modal
@@ -75,7 +70,7 @@ export const EditLevelFormModalComponent: React.FC<Props> = ({
               <Select
                 allowClear
                 placeholder={I18n.t('admin.select_level')}
-                options={levelOptions}
+                options={IDP_LEVELS}
               />
             </Form.Item>
           </Form>

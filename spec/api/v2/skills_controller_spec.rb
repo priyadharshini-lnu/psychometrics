@@ -13,6 +13,34 @@ RSpec.describe Api::V2::Administration::SkillsController, type: :request do
 
   before { sign_in(superadmin) }
 
+  describe 'GET /skills with development_actions include' do
+    let!(:user_idp_plan) { create(:user_idp_plan) }
+    let!(:test_skill) { create(:skill) }
+
+    it 'calls AvailableActionsQuery when available_skills_by_plan_id filter is present' do
+      allow(Idp::DevelopmentAction::AvailableActionsQuery).to receive(:new).and_call_original
+
+      get "/api/v2/administration/skills/#{test_skill.id}",
+          params: { filter: { available_skills_by_plan_id: user_idp_plan.id }, include: 'development_actions' },
+          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:ok)
+      expect(Idp::DevelopmentAction::AvailableActionsQuery).to have_received(:new).
+        with(test_skill, user_idp_plan).at_least(:once)
+    end
+
+    it 'does not call AvailableActionsQuery when available_skills_by_plan_id filter is not present' do
+      allow(Idp::DevelopmentAction::AvailableActionsQuery).to receive(:new).and_call_original
+
+      get "/api/v2/administration/skills/#{test_skill.id}",
+          params: { include: 'development_actions' },
+          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:ok)
+      expect(Idp::DevelopmentAction::AvailableActionsQuery).not_to have_received(:new)
+    end
+  end
+
   describe 'GET /tags_search' do
     before do
       ActsAsTaggableOn::Tag.create!(name: 'ruby programming')

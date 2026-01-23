@@ -260,20 +260,23 @@ module Administration
       end
 
       def update_job_role
-        campaign_user.update!(
+        if campaign_user.update(
           current_job_role_id: params[:current_job_role_id],
           target_job_role_id: params[:target_job_role_id]
         )
-        audit! :update_job_role, campaign_user, payload: {
-          current_job_role_id: params[:current_job_role_id],
-          target_job_role_id: params[:target_job_role_id]
-        }
-        render json: Administration::UserDetailSerializer.new(
-          context: {
-            campaign: campaign,
-            current_user: current_user
+          audit! :update_job_role, campaign_user, payload: {
+            current_job_role_id: params[:current_job_role_id],
+            target_job_role_id: params[:target_job_role_id]
           }
-        ).serialize(resource)
+          render json: Administration::UserDetailSerializer.new(
+            context: {
+              campaign: campaign,
+              current_user: current_user
+            }
+          ).serialize(resource)
+        else
+          render json: { errors: campaign_user.errors.messages }, status: 422
+        end
       end
 
       def create_hogan_credentials

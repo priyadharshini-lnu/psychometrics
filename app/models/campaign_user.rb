@@ -33,6 +33,7 @@ class CampaignUser < ApplicationRecord
   has_many :communication_emails
 
   validates :external_id, uniqueness: { scope: :campaign_id }, allow_nil: true
+  validate :ensure_job_roles_are_different
 
   scope :in_progress, -> { where(completion_status: :in_progress) }
   scope :completed, -> { where(completion_status: :completed) }
@@ -241,5 +242,15 @@ class CampaignUser < ApplicationRecord
         campaign_ai_artifacts: { campaign_id: campaign_id },
         user_id: user_id
       ).count == campaign_ai_artifacts.count
+  end
+
+  private
+
+  def ensure_job_roles_are_different
+    return if current_job_role_id.blank? || target_job_role_id.blank?
+
+    if current_job_role_id == target_job_role_id
+      errors.add(:base, I18n.t('admin.campaign_user_job_roles_cannot_be_same'))
+    end
   end
 end

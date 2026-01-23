@@ -37,3 +37,11 @@ export enum SKILL_TYPE {
   TECHNICAL = 'technical',
   BEHAVIORAL = 'behavioral',
 }
+
+const { I18n } = window
+
+export const IDP_LEVELS = [
+  { label: I18n.t('admin.level_apply'), value: 'apply' },
+  { label: I18n.t('admin.level_guide'), value: 'guide' },
+  { label: I18n.t('admin.level_shape'), value: 'shape' },
+]

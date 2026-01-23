@@ -7,6 +7,7 @@ describe LicenseManager::Deductor do
   let(:project) { create(:client, parent: client, subdomain: 'test-subdomain') }
   let(:campaign) { create(:campaign, project: project) }
   let(:user) { create(:user) }
+  let(:report_family) { create(:report_family) }
 
   describe '#initialize' do
     context 'with valid parameters' do
@@ -15,7 +16,7 @@ describe LicenseManager::Deductor do
           campaign: campaign,
           user: user,
           license_type: 'common',
-          context: { report_family_id: 1 }
+          context: { report_family_id: report_family.id }
         )
 
         expect(deductor.send(:campaign)).to eq(campaign)

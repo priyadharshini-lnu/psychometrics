@@ -44,8 +44,13 @@ module EndUser
     end
 
     def available_development_actions
+      development_actions = Idp::DevelopmentAction::AvailableActionsQuery.new(
+        @user_idp_skill.skill,
+        user_idp_plan
+      ).query
+
       serialized_avaialable_development_actions = Panko::ArraySerializer.new(
-        @user_idp_skill.development_actions,
+        development_actions,
         each_serializer: EndUser::AvailableDevelopmentActionSerializer
       ).to_a
 
