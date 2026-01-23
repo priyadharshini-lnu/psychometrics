@@ -1006,6 +1006,8 @@ bg:
         ai_assistants_disabled_by_client: AI Assistants е деактивиран от клиента
         ai_assisted_idp: Подпомагано от AI IDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP изисква функцията AI Assistants да бъде активирана
+        ai_translation: Преводи с изкуствен интелект
+        ai_translation_disabled_by_client: AI Translations е деактивирана от клиента
         global_skills: Глобални умения
         global_skills_disabled_by_client: Global Skills е деактивиран от клиента
         idp: IDP
@@ -3102,6 +3104,7 @@ bg:
         mask_identity_for_hogan: Данни за маски за Хоган
         mask_identity_for_iiht: Данни за маски за IIHT
         mask_identity_for_mettl: Данни за маски за METTL
+        mask_identity_for_mhs: Маскиране на данни за MHS
         mask_identity_for_pearson: Данни за маски за Pearson
         mask_identity_for_saville: Данни за маски за Saville
         mask_identity_for_skillvue: Данни за маска за Skillvue

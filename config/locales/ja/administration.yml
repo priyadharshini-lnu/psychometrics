@@ -1006,6 +1006,8 @@ ja:
         ai_assistants_disabled_by_client: AI アシスタントはクライアントによって無効になっています
         ai_assisted_idp: AIアシストIDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP では、AI アシスタント機能を有効にする必要があります
+        ai_translation: AI翻訳
+        ai_translation_disabled_by_client: クライアントによりAI翻訳が無効化されています
         global_skills: グローバル・スキル
         global_skills_disabled_by_client: グローバルスキルがクライアントによって無効になっている
         idp: アイディーピー
@@ -3102,6 +3104,7 @@ ja:
         mask_identity_for_hogan: ホーガンのマスクデータ
         mask_identity_for_iiht: IIHTのマスクデータ
         mask_identity_for_mettl: METTLのマスクデータ
+        mask_identity_for_mhs: MHS用マスクデータ
         mask_identity_for_pearson: ピアソンのマスクデータ
         mask_identity_for_saville: サヴィルのマスクデータ
         mask_identity_for_skillvue: スキルビューのマスクデータ

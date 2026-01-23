@@ -1,6 +1,7 @@
 ---
 hi:
   admin:
+    accept_na_values: N/A मान स्वीकार करें
     add_admin: प्रशासक जोड़ें
     add_admin_role: प्रशासक भूमिका जोड़ें
     add_campaign_admin: अभियान प्रशासक जोड़ें
@@ -34,9 +35,13 @@ hi:
     ai_assistants_test_render: परीक्षण रेंडर
     ai_assistants_test_render_tooltip: यह जांचने के लिए कि AI सहायक को क्या भेजा जाएगा, अपने प्रॉम्प्ट टेम्पलेट को अभियान डेटा के साथ परीक्षण करें।
     ai_assisted_idp_feature_disabled: इस परियोजना के लिए AI-सहायक IDP सुविधा अक्षम कर दी गई है।
+    ai_notice: उजागर किए गए खंड एआई द्वारा अनुवादित हैं और इनमें अशुद्धियाँ हो सकती हैं।
+    ai_translation: एआई अनुवाद
     all_corner_rounded: सभी कोने गोल
     api_keys: एपीआई कुंजी
+    apply_to_existing_users: इस अभियान में मौजूदा उपयोगकर्ताओं पर यह परिवर्तन लागू करें।
     assessments: मूल्यांकन
+    assessments_not_mhs: सभी मूल्यांकन एमएचएस प्रकार के होने चाहिए।
     assessments_reports: मूल्यांकन एवं रिपोर्टें
     assessor_dashboard: मूल्यांकनकर्ता डैशबोर्ड
     assessor_workshops: मूल्यांकन केंद्र
@@ -55,6 +60,19 @@ hi:
     campaign_assessment_actions_disable_caching: मूल्यांकन कैशिंग अक्षम करें
     campaign_assessment_actions_enable_caching: मूल्यांकन कैशिंग सक्षम करें
     campaign_assessment_column_caching_enabled: मूल्यांकन कैशिंग सक्षम
+    campaign_assessment_mhs_confidence_interval: विश्वास अंतराल
+    campaign_assessment_mhs_confidence_interval_update_success: विश्वास अंतराल सफलतापूर्वक अद्यतन किया गया
+    campaign_assessment_mhs_invalid_confidence_interval: confidence_interval 0 या 1 होना चाहिए।
+    campaign_assessment_mhs_invalid_leadership_bar: leadership_bar 0 या 1 होना चाहिए
+    campaign_assessment_mhs_invalid_norm_option: नॉर्म विकल्प 0 और 3 के बीच होना चाहिए।
+    campaign_assessment_mhs_leadership_bar: नेतृत्व बार
+    campaign_assessment_mhs_leadership_bar_update_success: लीडरशिप बार सफलतापूर्वक अपडेट हो गया।
+    campaign_assessment_mhs_norm_option: नॉर्म विकल्प
+    campaign_assessment_mhs_norm_option_form_select: नॉर्म विकल्प चुनें
+    campaign_assessment_mhs_norm_option_update_success: नॉर्म विकल्प सफलतापूर्वक अपडेट किया गया
+    campaign_assessment_mhs_norm_region: नॉर्म क्षेत्र
+    campaign_assessment_mhs_norm_region_form_select: नॉर्म क्षेत्र चुनें
+    campaign_assessment_mhs_norm_region_update_success: नॉर्म क्षेत्र सफलतापूर्वक अपडेट किया गया
     campaign_assessment_modals_disable_caching_content: क्या आप सुनिश्चित हैं कि आप इस मूल्यांकन के लिए कैशिंग अक्षम करना चाहते हैं?
     campaign_assessment_modals_disable_caching_successfully: इस मूल्यांकन के लिए कैशिंग अक्षम कर दी गई है।
     campaign_assessment_modals_disable_caching_title: मूल्यांकन कैशिंग अक्षम करें?
@@ -75,6 +93,7 @@ hi:
     confirm_remove_admin: क्या आप सुनिश्चित हैं कि आप '%{email}' ईमेल वाले एडमिन उपयोगकर्ता को हटाना चाहते हैं?
     country: देश
     create_client: ग्राहक बनाएँ
+    current_job_role: वर्तमान नौकरी की भूमिका
     dashboard: डैशबोर्ड
     dashboards: डैशबोर्ड
     data_reports: डेटा रिपोर्टें
@@ -89,6 +108,8 @@ hi:
     done_tooltip: इस उपयोगकर्ता के लिए कोई और मूल्यांकन प्रस्तुत नहीं किया जा सकता क्योंकि इस उपयोगकर्ता का मूल्यांकन %{marked_by} द्वारा पूरा किया हुआ चिह्नित है।
     edit_campaign_admin: अभियान प्रशासक संपादित करें
     edit_client_admin: क्लाइंट एडमिन संपादित करें
+    edit_job_roles: नौकरी भूमिकाएँ संपादित करें
+    edit_level: स्तर संपादित करें
     edit_permission_denied: आपके पास एडमिन '%{name}' को संपादित करने की अनुमति नहीं है।
     edit_project_admin: परियोजना प्रशासक संपादित करें
     edit_threesixty_campaign_admin: अभियान प्रशासक संपादित करें
@@ -102,6 +123,7 @@ hi:
     feature_enhance_with_ai: एआई से बेहतर बनाएँ
     feature_flags: फ़ीचर फ़्लैग्स
     fill_empty_score_msg: सहेजने से पहले सभी अंतिम स्कोर भरें।
+    final_score_empty_err_msg: "%{factor_name} का अंतिम स्कोर शून्य नहीं हो सकता।"
     idp_plan_reset_success: योजना सफलतापूर्वक रीसेट हो गई है।
     idp_templates: आईडीपी टेम्पलेट्स
     import_ai_artifacts: AI कलाकृतियों को आयात करें
@@ -130,11 +152,27 @@ hi:
     invalid_csv_header: CSV फ़ाइल में अमान्य हेडर हैं।
     job_roles: भूमिकाएँ
     learning_from_others: सहयोगात्मक अधिगम [20]
+    level: स्तर
+    level_apply: लागू करें
+    level_guide: मार्गदर्शक
+    level_shape: आकार
+    level_validation_message: 'निम्नलिखित में से एक होना चाहिए: %{values}'
     libraries: मीडिया पुस्तकालय
     library_invalid_type: अमान्य पुस्तकालय आइटम
     licenses: लाइसेंस
     manager_approval_required: "%{user} के लिए रिपोर्ट डाउनलोड करने से पहले प्रबंधक की मंजूरी आवश्यक है।"
+    max_value: अधिकतम मान
     messages: संदेश
+    mhs: एमएचएस
+    mhs_assessment: एमएचएस मूल्यांकन
+    mhs_assessment_name: एमएचएस मूल्यांकन नाम
+    mhs_data_gatherer_id: एमएचएस डेटा संग्रहकर्ता आईडी
+    mhs_data_gathering_id: एमएचएस डेटा संग्रह आईडी
+    mhs_external_assessment_id: एमएचएस मूल्यांकन आईडी
+    mhs_report_id: एमएचएस रिपोर्ट आईडी
+    mhs_session_id: एमएचएस सत्र आईडी
+    min_value: न्यूनतम मान
+    missing_min_max_values: न्यूनतम और अधिकतम मान आवश्यक हैं।
     name_required: नाम आवश्यक है
     no_file_selected: कोई फ़ाइल चयनित नहीं है
     no_notifications: कोई सूचना नहीं
@@ -149,6 +187,7 @@ hi:
     number: संख्या
     occupations: व्यवसाय
     on_the_job: काम पर [70]
+    only_editable_on_create: यह विकल्प केवल निर्माण के दौरान ही संपादित किया जा सकता है।
     options: विकल्प
     participants: प्रतिभागी
     permissions:
@@ -573,6 +612,7 @@ hi:
         view: देखें
         view_recordings: रिकॉर्डिंग देखें
     permissions_360_campaigns: 360 अभियानों के लिए विशिष्ट अनुमतियाँ
+    piped_text: पाइप्ड टेक्स्ट
     privacy: गोपनीयता
     proficiency_level: प्रवीणता स्तर
     proficiency_levels: प्रवीणता स्तर
@@ -654,11 +694,18 @@ hi:
     saml_settings: SAML सेटिंग्स
     scheduling: अनुसूचीकरण
     scoring: स्कोरिंग
+    scoring_value_info: स्कोर %{min} और %{max} के बीच होना चाहिए।
+    scoring_value_out_of_range_err_msg: "%{factor_name} के लिए स्कोर %{min} और %{max} के बीच होना चाहिए।"
     search_admins: प्रशासकों को खोजें
+    search_job_role: नौकरी की भूमिका खोजें
     select_admin_role: प्रशासक भूमिका चुनें
+    select_language_to_translate: कृपया अनुवाद के लिए भाषा चुनें
+    select_level: स्तर चुनें
     send_email: ईमेल भेजें
     settings: सेटिंग्स
+    show_original: मूल दिखाएँ
     show_submenu: उप मेनू दिखाएँ
+    show_translated: अनुवादित दिखाएँ
     siem: एसआईईएम
     skill_aliases: कौशल उपनाम
     skills: कौशल
@@ -671,12 +718,19 @@ hi:
     structured_learning: औपचारिक अधिगम [10]
     subdomain: उप-डोमेन
     subject_part_of_other_invite: "%{user_email} ईमेल वाले विषय को पहले ही '%{workshop_invite_name}' में आमंत्रित किया जा चुका है।"
+    target_job_role: लक्षित नौकरी की भूमिका
     toolbar_ai_insight: एआई अंतर्दृष्टि
     toolbar_ai_suggestion: एआई सुझाव
     toolbar_result_generating: उत्पादित हो रहा है...
     toolbar_text_copied: क्लिपबोर्ड पर कॉपी हो गया
     toolbar_text_replaced: टेक्स्ट बदल दिया गया!
     toolbar_what_changed_and_why: क्या बदला और क्यों
+    translate: अनुवाद करें
+    translate_to: अनुवाद करें
+    translate_with_ai: एआई से अनुवाद करें
+    translated_from: से अनुवादित
+    translated_to: 'अनुवादित:'
+    translated_with_ai_notice: एआई द्वारा अनुवादित
     translation_assistant_not_configured: अनुवाद सहायक कॉन्फ़िगर नहीं किया गया है
     upload_success: सफलतापूर्वक अपलोड किया गया
     user_report_events: उपयोगकर्ता रिपोर्ट घटनाएँ

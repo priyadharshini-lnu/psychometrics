@@ -1006,6 +1006,8 @@ vi:
         ai_assistants_disabled_by_client: Trợ lý AI bị vô hiệu hóa bởi khách hàng
         ai_assisted_idp: IDP hỗ trợ AI
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP yêu cầu bật tính năng Trợ lý AI
+        ai_translation: Dịch thuật bằng Trí tuệ nhân tạo
+        ai_translation_disabled_by_client: Chức năng dịch thuật AI đã bị vô hiệu hóa bởi khách hàng.
         global_skills: Kỹ năng toàn cầu
         global_skills_disabled_by_client: Kỹ năng toàn cầu bị vô hiệu hóa bởi khách hàng
         idp: IDP
@@ -3102,6 +3104,7 @@ vi:
         mask_identity_for_hogan: Dữ liệu mặt nạ cho Hogan
         mask_identity_for_iiht: Dữ liệu mặt nạ cho IIHT
         mask_identity_for_mettl: Dữ liệu mặt nạ cho METTL
+        mask_identity_for_mhs: Dữ liệu mặt nạ cho MHS
         mask_identity_for_pearson: Dữ liệu mặt nạ cho Pearson
         mask_identity_for_saville: Dữ liệu mặt nạ cho Saville
         mask_identity_for_skillvue: Dữ liệu mặt nạ cho Skillvue

@@ -1018,6 +1018,8 @@ sr-Cyrl:
         ai_assistants_disabled_by_client: АИ асистенти су онемогућени од стране клијента
         ai_assisted_idp: ИДП уз помоћ вештачке интелигенције
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP захтева да је омогућена функција AI Assistants.
+        ai_translation: Преводи вештачке интелигенције
+        ai_translation_disabled_by_client: Превођење вештачком интелигенцијом је онемогућено од стране клијента.
         global_skills: Глобалне вештине
         global_skills_disabled_by_client: Global Skills је онемогућен од стране клијента
         idp: ИДП
@@ -3142,6 +3144,7 @@ sr-Cyrl:
         mask_identity_for_hogan: Маске података за Хогана
         mask_identity_for_iiht: Маске података за IIHT
         mask_identity_for_mettl: Маске података за METTL
+        mask_identity_for_mhs: Маске података за МХС
         mask_identity_for_pearson: Маске података за Пирсона
         mask_identity_for_saville: Маскни подаци за Савил
         mask_identity_for_skillvue: Маске података за Skillvue

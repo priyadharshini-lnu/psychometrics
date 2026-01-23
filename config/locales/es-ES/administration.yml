@@ -1006,6 +1006,8 @@ es-ES:
         ai_assistants_disabled_by_client: El cliente deshabilita AI Assistants
         ai_assisted_idp: AI PDI asistido
         ai_assisted_idp_requires_ai_assistants: El IDP asistido por IA requiere que la función de asistentes de IA esté habilitada
+        ai_translation: Traducciones con IA
+        ai_translation_disabled_by_client: Las traducciones con IA están desactivadas por el cliente.
         global_skills: Habilidades globales
         global_skills_disabled_by_client: El cliente desactiva Global Skills
         idp: PDI
@@ -3102,6 +3104,7 @@ es-ES:
         mask_identity_for_hogan: Datos de la máscara de Hogan
         mask_identity_for_iiht: Datos de la máscara del IIHT
         mask_identity_for_mettl: Datos de la máscara METTL
+        mask_identity_for_mhs: Datos de máscara para MHS
         mask_identity_for_pearson: Datos de la máscara de Pearson
         mask_identity_for_saville: Datos de la máscara de Saville
         mask_identity_for_skillvue: Datos de la máscara Skillvue

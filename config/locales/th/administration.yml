@@ -1006,6 +1006,8 @@ th:
         ai_assistants_disabled_by_client: ผู้ช่วย AI ถูกปิดใช้งานโดยไคลเอ็นต์
         ai_assisted_idp: AI ช่วยเหลือ IDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP ต้องการคุณสมบัติ AI Assistants เพื่อเปิดใช้งาน
+        ai_translation: การแปลโดยปัญญาประดิษฐ์
+        ai_translation_disabled_by_client: การแปลด้วย AI ถูกปิดใช้งานโดยลูกค้า
         global_skills: ทักษะระดับโลก
         global_skills_disabled_by_client: Global Skills ถูกปิดใช้งานโดยลูกค้า
         idp: ผู้พลัดถิ่นภายในประเทศ
@@ -3102,6 +3104,7 @@ th:
         mask_identity_for_hogan: ข้อมูลหน้ากากสําหรับ Hogan
         mask_identity_for_iiht: ข้อมูลหน้ากากสําหรับ IIHT
         mask_identity_for_mettl: ข้อมูลหน้ากากสําหรับ METTL
+        mask_identity_for_mhs: ปกปิดข้อมูลสำหรับ MHS
         mask_identity_for_pearson: ข้อมูลหน้ากากสําหรับ Pearson
         mask_identity_for_saville: ข้อมูลหน้ากากสําหรับ Saville
         mask_identity_for_skillvue: ข้อมูลมาสก์สําหรับ Skillvue

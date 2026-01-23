@@ -1006,6 +1006,8 @@ sl:
         ai_assistants_disabled_by_client: Odjemalec onemogoči AI Assistants
         ai_assisted_idp: IDP s pomočjo AI
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP zahteva, da je omogočena funkcija AI Assistants
+        ai_translation: Prevodi z umetno inteligenco
+        ai_translation_disabled_by_client: AI prevajanje je onemogočeno s strani stranke
         global_skills: Globalne spretnosti
         global_skills_disabled_by_client: Global Skills je onemogočen po stranki
         idp: IDP
@@ -3102,6 +3104,7 @@ sl:
         mask_identity_for_hogan: Podatki o maski za Hogana
         mask_identity_for_iiht: Podatki o maski za IIHT
         mask_identity_for_mettl: Podatki maske za METTL
+        mask_identity_for_mhs: Podatki o maskah za MHS
         mask_identity_for_pearson: Podatki o maski za Pearson
         mask_identity_for_saville: Podatki o maski za Saville
         mask_identity_for_skillvue: Podatki o maski za Skillvue

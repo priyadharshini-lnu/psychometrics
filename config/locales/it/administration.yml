@@ -1006,6 +1006,8 @@ it:
         ai_assistants_disabled_by_client: AI Assistants è disabilitato dal client
         ai_assisted_idp: AI Assistito IDP
         ai_assisted_idp_requires_ai_assistants: L'IDP assistito dall'intelligenza artificiale richiede l'abilitazione della funzione Assistenti all'intelligenza artificiale
+        ai_translation: Traduzioni AI
+        ai_translation_disabled_by_client: Le traduzioni AI sono disabilitate dal cliente
         global_skills: Competenze globali
         global_skills_disabled_by_client: Le competenze globali sono disabilitate dal client
         idp: IDP
@@ -3102,6 +3104,7 @@ it:
         mask_identity_for_hogan: Dati della maschera per Hogan
         mask_identity_for_iiht: Dati della maschera per IIHT
         mask_identity_for_mettl: Dati della maschera per METTL
+        mask_identity_for_mhs: Dati maschera per MHS
         mask_identity_for_pearson: Dati della maschera per Pearson
         mask_identity_for_saville: Dati della maschera per Saville
         mask_identity_for_skillvue: Dati della maschera per Skillvue

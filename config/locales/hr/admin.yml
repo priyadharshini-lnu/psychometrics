@@ -1,6 +1,7 @@
 ---
 hr:
   admin:
+    accept_na_values: Prihvati vrijednosti N/A
     add_admin: Dodaj administratora
     add_admin_role: Dodavanje administratorske uloge
     add_campaign_admin: Dodaj administratora kampanje
@@ -34,9 +35,13 @@ hr:
     ai_assistants_test_render: Testni render
     ai_assistants_test_render_tooltip: Testirajte svoj predložak prompta s podacima kampanje kako biste vidjeli što će biti poslano AI asistentu.
     ai_assisted_idp_feature_disabled: Značajka AI Assisted IDP je onemogućena za ovaj projekt.
+    ai_notice: Istaknuti odlomci su prevedeni pomoću umjetne inteligencije i mogu sadržavati netočnosti.
+    ai_translation: AI prijevod
     all_corner_rounded: Svi kutovi zaobljeni
     api_keys: API ključevi
+    apply_to_existing_users: Primijeni ovu promjenu na postojeće korisnike u ovoj kampanji.
     assessments: Procjene
+    assessments_not_mhs: Sva procjena mora biti tipa MHS.
     assessments_reports: Procjene i izvješća
     assessor_dashboard: Nadzorna ploča procjenitelja
     assessor_workshops: Centar za procjenu
@@ -55,6 +60,19 @@ hr:
     campaign_assessment_actions_disable_caching: Onemogući predmeširanje procjene
     campaign_assessment_actions_enable_caching: Omogući keširanje procjene
     campaign_assessment_column_caching_enabled: Omogućeno keširanje procjene
+    campaign_assessment_mhs_confidence_interval: Povjerljivostni interval
+    campaign_assessment_mhs_confidence_interval_update_success: Interval pouzdanosti uspješno ažuriran
+    campaign_assessment_mhs_invalid_confidence_interval: interval_pouzdanosti mora biti 0 ili 1
+    campaign_assessment_mhs_invalid_leadership_bar: leadership_bar mora biti 0 ili 1
+    campaign_assessment_mhs_invalid_norm_option: Opcija Norm mora biti između 0 i 3
+    campaign_assessment_mhs_leadership_bar: Šipka vodstva
+    campaign_assessment_mhs_leadership_bar_update_success: Vođstvo je uspješno ažurirano.
+    campaign_assessment_mhs_norm_option: Norma Opcija
+    campaign_assessment_mhs_norm_option_form_select: Odaberite normu
+    campaign_assessment_mhs_norm_option_update_success: Opcija Norm uspješno ažurirana
+    campaign_assessment_mhs_norm_region: Norma regije
+    campaign_assessment_mhs_norm_region_form_select: Odaberite normu regije
+    campaign_assessment_mhs_norm_region_update_success: Regija Norm uspješno ažurirana
     campaign_assessment_modals_disable_caching_content: Jeste li sigurni da želite onemogućiti keširanje za ovu procjenu?
     campaign_assessment_modals_disable_caching_successfully: Keširanje je onemogućeno za ovu procjenu.
     campaign_assessment_modals_disable_caching_title: Onemogućiti keširanje procjene?
@@ -75,6 +93,7 @@ hr:
     confirm_remove_admin: Jeste li sigurni da želite ukloniti administratora s e-poštom '%{email}'?
     country: Država
     create_client: Kreiraj klijenta
+    current_job_role: Trenutna radna uloga
     dashboard: Nadzorna ploča
     dashboards: Nadzorne ploče
     data_reports: Izvješća o podacima
@@ -89,6 +108,8 @@ hr:
     done_tooltip: Za ovog korisnika više se ne može podnijeti evaluacija jer je evaluacija označena kao %{marked_by}
     edit_campaign_admin: Uredi administratora kampanje
     edit_client_admin: Uredi klijenta administratora
+    edit_job_roles: Uređivanje uloga na poslu
+    edit_level: Uredi razinu
     edit_permission_denied: Nemate dopuštenje za uređivanje administratorskog '%{name}'
     edit_project_admin: Uredi administratora projekta
     edit_threesixty_campaign_admin: Uredi administratora kampanje
@@ -102,6 +123,7 @@ hr:
     feature_enhance_with_ai: Unaprijedite pomoću umjetne inteligencije
     feature_flags: Značajne zastavice
     fill_empty_score_msg: Popunite sve konačne rezultate prije spremanja.
+    final_score_empty_err_msg: Konačni rezultat utakmice %{factor_name} ne može biti prazan.
     idp_plan_reset_success: Plan je uspješno resetiran
     idp_templates: Predlošci IDP-a
     import_ai_artifacts: Uvoz AI artefakata
@@ -130,11 +152,27 @@ hr:
     invalid_csv_header: CSV datoteka sadrži nevažeća zaglavlja.
     job_roles: Uloge na poslu
     learning_from_others: Suradničko učenje [20]
+    level: Razina
+    level_apply: Prijaviti se
+    level_guide: Vodič
+    level_shape: Oblik
+    level_validation_message: 'mora biti jedna od: %{values}'
     libraries: Medijska biblioteka
     library_invalid_type: Nevažeća knjižnična stavka
     licenses: Licence
     manager_approval_required: Izvještaj za %{user} zahtijeva odobrenje menadžera prije preuzimanja
+    max_value: Najveća vrijednost
     messages: Poruke
+    mhs: MHS
+    mhs_assessment: MHS procjena
+    mhs_assessment_name: Naziv MHS procjene
+    mhs_data_gatherer_id: ID prikupljača podataka MHS-a
+    mhs_data_gathering_id: ID prikupljanja podataka Mhs
+    mhs_external_assessment_id: ID procjene MHS
+    mhs_report_id: ID izvještaja MHS
+    mhs_session_id: ID sesije Mhs
+    min_value: Minimalna vrijednost
+    missing_min_max_values: Potrebne su minimalne i maksimalne vrijednosti.
     name_required: Ime je potrebno
     no_file_selected: Nijedna datoteka nije odabrana
     no_notifications: Nema obavijesti
@@ -149,6 +187,7 @@ hr:
     number: Broj
     occupations: Zanimanja
     on_the_job: Na poslu [70]
+    only_editable_on_create: Ovu opciju je moguće uređivati samo tijekom izrade.
     options: Mogućnosti
     participants: Sudionici
     permissions:
@@ -573,6 +612,7 @@ hr:
         view: Pregled
         view_recordings: Pogledajte snimke
     permissions_360_campaigns: Dopuštenja specifična za kampanje višesmjerne procjene
+    piped_text: Tekst u cijevima
     privacy: Privatnost
     proficiency_level: API ključevi
     proficiency_levels: Razine stručnosti
@@ -654,11 +694,18 @@ hr:
     saml_settings: SAML postavke
     scheduling: Vremensko planiranje
     scoring: Bodovanja
+    scoring_value_info: Rezultat mora biti između %{min} i %{max}.
+    scoring_value_out_of_range_err_msg: Rezultat za %{factor_name} mora biti između %{min} i %{max}.
     search_admins: Pretraživanje administratora
+    search_job_role: Pretraži radnu poziciju
     select_admin_role: Odaberite administratorsku ulogu
+    select_language_to_translate: Molimo odaberite jezik za prijevod
+    select_level: Odabir razine
     send_email: Pošalji e-poštu
     settings: Postavke
+    show_original: Prikaži izvorno
     show_submenu: Prikaži podizbornik
+    show_translated: Prikaži prevedeno
     siem: SIEM
     skill_aliases: Pseudonimi vještina
     skills: Vještine
@@ -671,12 +718,19 @@ hr:
     structured_learning: Formalno učenje [10]
     subdomain: Poddomena
     subject_part_of_other_invite: Subjekt s e-poštom %{user_email} već je pozvan na '%{workshop_invite_name}'
+    target_job_role: Ciljana radna uloga
     toolbar_ai_insight: Uvid u umjetnu inteligenciju
     toolbar_ai_suggestion: Prijedlog AI-a
     toolbar_result_generating: Generiranje...
     toolbar_text_copied: Kopirano u međuspremnik
     toolbar_text_replaced: Tekst zamijenjen!
     toolbar_what_changed_and_why: Što se promijenilo i zašto
+    translate: Prevodi
+    translate_to: Prevodi na
+    translate_with_ai: Prevodi pomoću umjetne inteligencije
+    translated_from: Prevedeno iz
+    translated_to: 'Prevedeno na:'
+    translated_with_ai_notice: AI prevedeno
     translation_assistant_not_configured: Pomoćnik za prijevod nije konfiguriran
     upload_success: Uspješno učitano
     user_report_events: Događaji u izvješću korisnika

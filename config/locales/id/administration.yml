@@ -1006,6 +1006,8 @@ id:
         ai_assistants_disabled_by_client: Asisten AI dinonaktifkan oleh klien
         ai_assisted_idp: IDP yang Dibantu AI
         ai_assisted_idp_requires_ai_assistants: IDP Berbantuan AI memerlukan fitur Asisten AI untuk diaktifkan
+        ai_translation: Terjemahan AI
+        ai_translation_disabled_by_client: Fitur Terjemahan AI dinonaktifkan oleh klien.
         global_skills: Keterampilan Global
         global_skills_disabled_by_client: Keterampilan Global dinonaktifkan oleh klien
         idp: IDP
@@ -3102,6 +3104,7 @@ id:
         mask_identity_for_hogan: Data topeng untuk Hogan
         mask_identity_for_iiht: Data masker untuk IIHT
         mask_identity_for_mettl: Data masker untuk METTL
+        mask_identity_for_mhs: Data masker untuk MHS
         mask_identity_for_pearson: Data topeng untuk Pearson
         mask_identity_for_saville: Data masker untuk Saville
         mask_identity_for_skillvue: Data topeng untuk Skillvue

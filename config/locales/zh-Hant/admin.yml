@@ -1,6 +1,7 @@
 ---
 zh-Hant:
   admin:
+    accept_na_values: 接受 N/A 值
     add_admin: 新增管理員
     add_admin_role: 新增管理員角色
     add_campaign_admin: 新增活動管理員
@@ -34,9 +35,13 @@ zh-Hant:
     ai_assistants_test_render: 測試渲染
     ai_assistants_test_render_tooltip: 用活動資料測試你的提示範本，看看會送給 AI 助理什麼。
     ai_assisted_idp_feature_disabled: 本專案已停用 AI 輔助境內流離失所者功能。
+    ai_notice: 标记部分由AI翻译生成，可能存在不准确之处。
+    ai_translation: 人工智能翻译
     all_corner_rounded: 所有边角均已圆角处理
     api_keys: API 金鑰
+    apply_to_existing_users: 将此更改应用于此活动中的现有用户
     assessments: 評估
+    assessments_not_mhs: 所有评估必须采用MHS类型
     assessments_reports: 評估與報告
     assessor_dashboard: 評估員儀表板
     assessor_workshops: 評估中心
@@ -55,6 +60,19 @@ zh-Hant:
     campaign_assessment_actions_disable_caching: 停用評估快取
     campaign_assessment_actions_enable_caching: 啟用評估快取
     campaign_assessment_column_caching_enabled: 啟用評估快取
+    campaign_assessment_mhs_confidence_interval: 置信区间
+    campaign_assessment_mhs_confidence_interval_update_success: 置信区间更新成功
+    campaign_assessment_mhs_invalid_confidence_interval: 置信区间必须为0或1
+    campaign_assessment_mhs_invalid_leadership_bar: leadership_bar 必须为 0 或 1
+    campaign_assessment_mhs_invalid_norm_option: Norm Option 必须在 0 到 3 之间
+    campaign_assessment_mhs_leadership_bar: 领导力条
+    campaign_assessment_mhs_leadership_bar_update_success: 领导力条更新成功
+    campaign_assessment_mhs_norm_option: 标准选项
+    campaign_assessment_mhs_norm_option_form_select: 选择标准选项
+    campaign_assessment_mhs_norm_option_update_success: 规范选项更新成功
+    campaign_assessment_mhs_norm_region: 诺姆地区
+    campaign_assessment_mhs_norm_region_form_select: 选择标准区域
+    campaign_assessment_mhs_norm_region_update_success: Norm Region 更新成功
     campaign_assessment_modals_disable_caching_content: 你確定要在這次評估中關閉快取嗎？
     campaign_assessment_modals_disable_caching_successfully: 本次評估已關閉快取功能。
     campaign_assessment_modals_disable_caching_title: 關閉評估快取？
@@ -75,6 +93,7 @@ zh-Hant:
     confirm_remove_admin: 您確定要移除 email 名為「%{email}」的管理員使用者嗎？
     country: 國家
     create_client: 建立客戶端
+    current_job_role: 当前职位
     dashboard: 儀表板
     dashboards: 儀表板
     data_reports: 資料報告
@@ -89,6 +108,8 @@ zh-Hant:
     done_tooltip: 此用戶無法再提交評估，因為該用戶的評估已被標記為已完成%{marked_by}
     edit_campaign_admin: 編輯活動管理
     edit_client_admin: 編輯用戶端管理員
+    edit_job_roles: 编辑职位角色
+    edit_level: 编辑级别
     edit_permission_denied: 你沒有權限編輯管理員的「%{name}」
     edit_project_admin: 編輯專案管理員
     edit_threesixty_campaign_admin: 編輯活動管理
@@ -102,6 +123,7 @@ zh-Hant:
     feature_enhance_with_ai: 增强AI
     feature_flags: 功能旗標
     fill_empty_score_msg: 儲存前填寫所有最終分數。
+    final_score_empty_err_msg: "%{factor_name}的最终得分不能为空。"
     idp_plan_reset_success: 計畫已成功重置
     idp_templates: IDP 範本
     import_ai_artifacts: 匯入 AI 工件
@@ -130,11 +152,27 @@ zh-Hant:
     invalid_csv_header: CSV 檔案包含無效標頭。
     job_roles: 工作角色
     learning_from_others: 協作學習 [20]
+    level: 等级
+    level_apply: 申请
+    level_guide: 指南
+    level_shape: 形状
+    level_validation_message: 必须是以下之一：%{values}
     libraries: 媒體圖書館
     library_invalid_type: 無效圖書館項目
     licenses: 許可證
     manager_approval_required: "%{user}報告需要經理批准才能下載。"
+    max_value: 最大值
     messages: 訊息
+    mhs: MHS
+    mhs_assessment: MHS评估
+    mhs_assessment_name: MHS评估名称
+    mhs_data_gatherer_id: Mhs数据采集器ID
+    mhs_data_gathering_id: MHS数据采集ID
+    mhs_external_assessment_id: Mhs评估ID
+    mhs_report_id: MHS报告编号
+    mhs_session_id: Mhs 会话标识符
+    min_value: 最小值
+    missing_min_max_values: 必须提供最小值和最大值。
     name_required: 需命名
     no_file_selected: 未選取任何檔案
     no_notifications: 沒有通知
@@ -149,6 +187,7 @@ zh-Hant:
     number: 數量
     occupations: 職業
     on_the_job: 在職 [70]
+    only_editable_on_create: 此选项仅在创建时可编辑。
     options: 選項
     participants: 參與者
     permissions:
@@ -573,6 +612,7 @@ zh-Hant:
         view: 檢視
         view_recordings: 查看錄音
     permissions_360_campaigns: 360 活動的特定權限
+    piped_text: 管道文本
     privacy: 隱私權
     proficiency_level: API 金鑰
     proficiency_levels: 能力等級
@@ -654,11 +694,18 @@ zh-Hant:
     saml_settings: SAML 設定
     scheduling: 排程
     scoring: 計分
+    scoring_value_info: 分数必须介于 %{min} 和 %{max} 之间。
+    scoring_value_out_of_range_err_msg: "%{factor_name} 的评分必须介于 %{min} 与 %{max} 之间。"
     search_admins: 搜尋管理員
+    search_job_role: 搜索职位
     select_admin_role: 選擇管理員角色
+    select_language_to_translate: 请选择要翻译的语言
+    select_level: 选择级别
     send_email: 發送電子郵件
     settings: 設定
+    show_original: 显示原文
     show_submenu: 顯示子選單
+    show_translated: 显示翻译
     siem: SIEM
     skill_aliases: 技能別名
     skills: 技術
@@ -671,12 +718,19 @@ zh-Hant:
     structured_learning: 正式學習 [10]
     subdomain: 子網域
     subject_part_of_other_invite: 邮箱地址为 %{user_email} 的用户已受邀加入 '%{workshop_invite_name}' 群组。
+    target_job_role: 目标职位
     toolbar_ai_insight: 人工智能洞察
     toolbar_ai_suggestion: AI建议
     toolbar_result_generating: 生成中...
     toolbar_text_copied: 已复制到剪贴板
     toolbar_text_replaced: 文本已替换！
     toolbar_what_changed_and_why: 发生了什么变化及原因
+    translate: 翻译
+    translate_to: 翻译为
+    translate_with_ai: 使用AI翻译
+    translated_from: 译自
+    translated_to: 翻译为：
+    translated_with_ai_notice: AI翻译
     translation_assistant_not_configured: 翻译助手未配置
     upload_success: 上傳成功
     user_report_events: 使用者報告事件

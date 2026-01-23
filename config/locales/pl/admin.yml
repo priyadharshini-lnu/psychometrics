@@ -1,6 +1,7 @@
 ---
 pl:
   admin:
+    accept_na_values: Akceptuj wartości N/A
     add_admin: Dodaj administratora
     add_admin_role: Dodawanie roli administratora
     add_campaign_admin: Dodaj administratora kampanii
@@ -34,9 +35,13 @@ pl:
     ai_assistants_test_render: Renderowanie testowe
     ai_assistants_test_render_tooltip: Przetestuj szablon promptu z danymi kampanii, aby sprawdzić, co zostanie wysłane do asystenta AI.
     ai_assisted_idp_feature_disabled: Funkcja wspomaganego IDP przez AI została wyłączona w tym projekcie.
+    ai_notice: Podświetlone fragmenty zostały przetłumaczone przez sztuczną inteligencję i mogą zawierać nieścisłości.
+    ai_translation: Tłumaczenie AI
     all_corner_rounded: Wszystkie rogi zaokrąglone
     api_keys: Klucze API
+    apply_to_existing_users: Zastosuj tę zmianę do obecnych użytkowników w tej kampanii
     assessments: Oceny
+    assessments_not_mhs: Wszystkie oceny muszą być typu MHS.
     assessments_reports: Oceny i raporty
     assessor_dashboard: Pulpit nawigacyjny asesora
     assessor_workshops: Centrum oceny zintegrowanej
@@ -55,6 +60,19 @@ pl:
     campaign_assessment_actions_disable_caching: Wyłącz buforowanie oceny
     campaign_assessment_actions_enable_caching: Włącz buforowanie oceny
     campaign_assessment_column_caching_enabled: Włączone buforowanie oceny
+    campaign_assessment_mhs_confidence_interval: Przedział ufności
+    campaign_assessment_mhs_confidence_interval_update_success: Przedział ufności zaktualizowany pomyślnie
+    campaign_assessment_mhs_invalid_confidence_interval: confidence_interval musi wynosić 0 lub 1
+    campaign_assessment_mhs_invalid_leadership_bar: leadership_bar musi mieć wartość 0 lub 1
+    campaign_assessment_mhs_invalid_norm_option: Opcja Norm musi mieścić się w zakresie od 0 do 3.
+    campaign_assessment_mhs_leadership_bar: Pasek przywództwa
+    campaign_assessment_mhs_leadership_bar_update_success: Pasek przywództwa zaktualizowany pomyślnie
+    campaign_assessment_mhs_norm_option: Opcja normy
+    campaign_assessment_mhs_norm_option_form_select: Wybierz opcję Norm
+    campaign_assessment_mhs_norm_option_update_success: Opcja Norm została pomyślnie zaktualizowana.
+    campaign_assessment_mhs_norm_region: Region norm
+    campaign_assessment_mhs_norm_region_form_select: Wybierz region normy
+    campaign_assessment_mhs_norm_region_update_success: Region Norm zaktualizowany pomyślnie
     campaign_assessment_modals_disable_caching_content: Jesteś pewien, że chcesz wyłączyć buforowanie dla tej oceny?
     campaign_assessment_modals_disable_caching_successfully: Dla tej oceny wyłączono buforowanie.
     campaign_assessment_modals_disable_caching_title: Wyłączyć cache oceny cache?
@@ -75,6 +93,7 @@ pl:
     confirm_remove_admin: Czy na pewno chcesz usunąć administratora za pomocą adresu e-mail "%{email}"?
     country: Kraj
     create_client: Utwórz klienta
+    current_job_role: Obecna rola zawodowa
     dashboard: Deska rozdzielcza
     dashboards: Pulpity nawigacyjne
     data_reports: Raporty danych
@@ -89,6 +108,8 @@ pl:
     done_tooltip: Nie można już zgłosić oceny tego użytkownika, ponieważ jest oznaczana jako przeprowadzona przez %{marked_by}
     edit_campaign_admin: Edytuj administratora kampanii
     edit_client_admin: Edytowanie administratora klienta
+    edit_job_roles: Edytuj role stanowisk
+    edit_level: Poziom edycji
     edit_permission_denied: Nie masz uprawnień do edycji administratora '%{name}'
     edit_project_admin: Edytowanie administratora projektu
     edit_threesixty_campaign_admin: Edytuj administratora kampanii
@@ -102,6 +123,7 @@ pl:
     feature_enhance_with_ai: Wzbogać dzięki sztucznej inteligencji
     feature_flags: Flagi funkcji
     fill_empty_score_msg: Wypełnij wszystkie końcowe wyniki przed zapisem.
+    final_score_empty_err_msg: Ostateczny wynik gry „%{factor_name}” nie może być pusty.
     idp_plan_reset_success: Plan został pomyślnie zresetowany
     idp_templates: Szablony IDP
     import_ai_artifacts: Import artefaktów AI
@@ -130,11 +152,27 @@ pl:
     invalid_csv_header: Plik CSV zawiera nieprawidłowe nagłówki.
     job_roles: Role zawodowe
     learning_from_others: Uczenie się zespołowe [20]
+    level: Poziom
+    level_apply: Zastosuj
+    level_guide: Przewodnik
+    level_shape: Kształt
+    level_validation_message: 'musi być jednym z następujących: %{values}'
     libraries: Biblioteka multimediów
     library_invalid_type: Nieprawidłowy element biblioteczny
     licenses: Licencje
     manager_approval_required: Raport %{user} wymaga zgody menedżera przed pobraniem
+    max_value: Wartość maksymalna
     messages: Wiadomości
+    mhs: MHS
+    mhs_assessment: Ocena MHS
+    mhs_assessment_name: Nazwa oceny MHS
+    mhs_data_gatherer_id: Identyfikator programu Mhs Data Gatherer
+    mhs_data_gathering_id: Identyfikator gromadzenia danych Mhs
+    mhs_external_assessment_id: Identyfikator oceny Mhs
+    mhs_report_id: Numer raportu MHS
+    mhs_session_id: Identyfikator sesji Mhs
+    min_value: Wartość minimalna
+    missing_min_max_values: Wymagane są wartości minimalne i maksymalne.
     name_required: Wymagane jest imię
     no_file_selected: Nie wybrano żadnego pliku
     no_notifications: Brak powiadomień
@@ -149,6 +187,7 @@ pl:
     number: Liczba
     occupations: Zawodów
     on_the_job: W pracy [70]
+    only_editable_on_create: Ta opcja jest edytowalna tylko podczas tworzenia.
     options: Opcje
     participants: Uczestników
     permissions:
@@ -573,6 +612,7 @@ pl:
         view: Widok
         view_recordings: Wyświetlanie nagrań
     permissions_360_campaigns: Uprawnienia specyficzne dla kampanii 360
+    piped_text: Tekst z rury
     privacy: Prywatność
     proficiency_level: Klucze API
     proficiency_levels: Poziomy biegłości
@@ -654,11 +694,18 @@ pl:
     saml_settings: Ustawienia SAML
     scheduling: Planowania
     scoring: Punktacji
+    scoring_value_info: Wynik musi mieścić się w przedziale od %{min} do %{max}.
+    scoring_value_out_of_range_err_msg: Wynik dla „%{factor_name}” musi mieścić się w przedziale od %{min} do %{max}.
     search_admins: Wyszukiwanie administratorów
+    search_job_role: Wyszukaj stanowisko
     select_admin_role: Wybierz rolę administratora
+    select_language_to_translate: Wybierz język do tłumaczenia
+    select_level: Wybierz poziom
     send_email: Wyślij wiadomość e-mail
     settings: Ustawienia
+    show_original: Pokaż oryginał
     show_submenu: Pokaż podmenu
+    show_translated: Pokaż przetłumaczone
     siem: SIEM (SIEM)
     skill_aliases: Aliasy umiejętności
     skills: Umiejętności
@@ -671,12 +718,19 @@ pl:
     structured_learning: Formalne uczenie się [10]
     subdomain: Subdomena
     subject_part_of_other_invite: Osoba o adresie e-mail %{user_email} została już zaproszona do „%{workshop_invite_name}”.
+    target_job_role: Docelowa rola zawodowa
     toolbar_ai_insight: Wgląd w sztuczną inteligencję
     toolbar_ai_suggestion: Sugestia AI
     toolbar_result_generating: Generowanie...
     toolbar_text_copied: Skopiowano do schowka
     toolbar_text_replaced: Tekst zastąpiony!
     toolbar_what_changed_and_why: Co się zmieniło i dlaczego
+    translate: Przetłumacz
+    translate_to: Przetłumacz na
+    translate_with_ai: Tłumacz za pomocą sztucznej inteligencji
+    translated_from: Przetłumaczone z
+    translated_to: 'Przetłumaczone na:'
+    translated_with_ai_notice: Tłumaczenie AI
     translation_assistant_not_configured: Asystent tłumaczenia nie został skonfigurowany.
     upload_success: Przesłanie pomyślnie
     user_report_events: Zdarzenia zgłaszane przez użytkownika

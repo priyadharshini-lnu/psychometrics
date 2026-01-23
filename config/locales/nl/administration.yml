@@ -1006,6 +1006,8 @@ nl:
         ai_assistants_disabled_by_client: AI-assistenten is uitgeschakeld door de client
         ai_assisted_idp: AI Geassisteerde IDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP vereist dat de functie AI Assistants is ingeschakeld
+        ai_translation: AI-vertalingen
+        ai_translation_disabled_by_client: AI-vertalingen zijn uitgeschakeld door de klant
         global_skills: Wereldwijde vaardigheden
         global_skills_disabled_by_client: Global Skills is uitgeschakeld door de klant
         idp: IDP
@@ -3102,6 +3104,7 @@ nl:
         mask_identity_for_hogan: Maskergegevens voor Hogan
         mask_identity_for_iiht: Maskergegevens voor IIHT
         mask_identity_for_mettl: Maskergegevens voor METTL
+        mask_identity_for_mhs: Gegevensmasker voor MHS
         mask_identity_for_pearson: Maskergegevens voor Pearson
         mask_identity_for_saville: Maskergegevens voor Saville
         mask_identity_for_skillvue: Maskergegevens voor Skillvue

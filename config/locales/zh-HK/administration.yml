@@ -1006,6 +1006,8 @@ zh-HK:
         ai_assistants_disabled_by_client: AI助手功能已被客户端禁用
         ai_assisted_idp: 人工智能辅助的内部流离失所者
         ai_assisted_idp_requires_ai_assistants: AI辅助IDP需要启用AI助手功能
+        ai_translation: AI翻译
+        ai_translation_disabled_by_client: AI 翻译功能已被客户端禁用
         global_skills: 全球技能
         global_skills_disabled_by_client: Global Skills 已被客户端禁用
         idp: 国内流离失所者
@@ -3102,6 +3104,7 @@ zh-HK:
         mask_identity_for_hogan: 霍根的面具数据
         mask_identity_for_iiht: IIHT的掩码数据
         mask_identity_for_mettl: METTL的掩码数据
+        mask_identity_for_mhs: MHS的掩码数据
         mask_identity_for_pearson: 皮尔逊的掩码数据
         mask_identity_for_saville: 萨维尔的面具数据
         mask_identity_for_skillvue: 为Skillvue掩码数据

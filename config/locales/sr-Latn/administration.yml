@@ -1006,6 +1006,8 @@ sr-Latn:
         ai_assistants_disabled_by_client: AI asistenti je onemogućen od strane klijenta
         ai_assisted_idp: AI asistirani IDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP zahteva da AI Assistants funkcija bude omogućena
+        ai_translation: Преводи вештачке интелигенције
+        ai_translation_disabled_by_client: Превођење вештачком интелигенцијом је онемогућено од стране клијента.
         global_skills: Globalne veštine
         global_skills_disabled_by_client: Global Skills je onemogućen od strane klijenta
         idp: IDP
@@ -3102,6 +3104,7 @@ sr-Latn:
         mask_identity_for_hogan: Maskiraj podatke za Hogan
         mask_identity_for_iiht: Maskiraj podatke za IIHT
         mask_identity_for_mettl: Maskiraj podatke za METTL
+        mask_identity_for_mhs: Маске података за МХС
         mask_identity_for_pearson: Maskiraj podatke za Pearson
         mask_identity_for_saville: Maskiraj podatke za Saville
         mask_identity_for_skillvue: Maskiraj podatke za Skillvue

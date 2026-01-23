@@ -1,6 +1,7 @@
 ---
 ru:
   admin:
+    accept_na_values: Принять значения N/A
     add_admin: Добавить администратора
     add_admin_role: Добавить роль администратора
     add_campaign_admin: Добавить администратора кампании
@@ -122,6 +123,7 @@ ru:
     feature_enhance_with_ai: Улучшайте с помощью ИИ
     feature_flags: Флаги функций
     fill_empty_score_msg: Заполните все окончательные результаты перед сохранением.
+    final_score_empty_err_msg: Итоговый счет «%{factor_name}» не может быть пустым.
     final_score_empty_msg: Итоговый счет не может быть пустым.
     idp_plan_reset_success: План был успешно сброшен
     idp_templates: Шаблоны IDP
@@ -160,6 +162,7 @@ ru:
     library_invalid_type: Недействительный элемент библиотеки
     licenses: Лицензии
     manager_approval_required: Отчет для %{user} требует утверждения менеджера перед загрузкой
+    max_value: Максимальное значение
     messages: Сообщения
     mhs: MHS
     mhs_assessment: Оценка MHS
@@ -169,6 +172,8 @@ ru:
     mhs_external_assessment_id: Идентификатор оценки Mhs
     mhs_report_id: Идентификатор отчета MHS
     mhs_session_id: Идентификатор сеанса Mhs
+    min_value: Минимальное значение
+    missing_min_max_values: Требуются минимальные и максимальные значения.
     name_required: Имя обязательно
     no_file_selected: Файл не выбран
     no_notifications: Нет уведомлений
@@ -690,6 +695,8 @@ ru:
     saml_settings: Настройки SAML
     scheduling: Планирование
     scoring: Оценка
+    scoring_value_info: Оценка должна быть в диапазоне от %{min} до %{max}.
+    scoring_value_out_of_range_err_msg: Оценка для «%{factor_name}» должна быть в диапазоне от %{min} до %{max}.
     search_admins: Администраторы поиска
     search_job_role: Поиск вакансии
     select_admin_role: Выберите роль администратора

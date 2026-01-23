@@ -1006,6 +1006,8 @@ zh-Hant:
         ai_assistants_disabled_by_client: AI 助理被用戶端停用
         ai_assisted_idp: AI 協助的 IDP
         ai_assisted_idp_requires_ai_assistants: AI 輔助 IDP 需要啟用 AI 助理功能
+        ai_translation: AI翻译
+        ai_translation_disabled_by_client: AI 翻译功能已被客户端禁用
         global_skills: 全球技能
         global_skills_disabled_by_client: 客戶禁用了全局技能
         idp: IDP
@@ -3102,6 +3104,7 @@ zh-Hant:
         mask_identity_for_hogan: Hogan 的面具資料
         mask_identity_for_iiht: IIHT 的遮罩資料
         mask_identity_for_mettl: METTL 的掩模資料
+        mask_identity_for_mhs: MHS的掩码数据
         mask_identity_for_pearson: Pearson 的遮罩資料
         mask_identity_for_saville: 薩維爾的面具資料
         mask_identity_for_skillvue: Skillvue 的掩膜資料

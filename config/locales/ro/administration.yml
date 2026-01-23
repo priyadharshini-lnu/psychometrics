@@ -1006,6 +1006,8 @@ ro:
         ai_assistants_disabled_by_client: AI Assistants este dezactivat de client
         ai_assisted_idp: IDP asistat de AI
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP necesită activarea funcției AI Assistants
+        ai_translation: Traduceri AI
+        ai_translation_disabled_by_client: Traducerile AI sunt dezactivate de client
         global_skills: Competențe globale
         global_skills_disabled_by_client: Global Skills este dezactivat de client
         idp: IDP
@@ -3102,6 +3104,7 @@ ro:
         mask_identity_for_hogan: Date despre măști pentru Hogan
         mask_identity_for_iiht: Date despre mască pentru IIHT
         mask_identity_for_mettl: Date despre măști pentru METTL
+        mask_identity_for_mhs: Date mască pentru MHS
         mask_identity_for_pearson: Date despre măști pentru Pearson
         mask_identity_for_saville: Date despre măști pentru Saville
         mask_identity_for_skillvue: Date despre mască pentru Skillvue

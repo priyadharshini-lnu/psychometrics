@@ -1,6 +1,7 @@
 ---
 ro:
   admin:
+    accept_na_values: Acceptați valorile N/A
     add_admin: Adăugați administrator
     add_admin_role: Adăugați rol de administrator
     add_campaign_admin: Adăugați administratorul campaniei
@@ -34,9 +35,13 @@ ro:
     ai_assistants_test_render: Randare de testare
     ai_assistants_test_render_tooltip: Testează-ți șablonul de prompt cu date de campanie pentru a vedea ce va fi trimis asistentului AI.
     ai_assisted_idp_feature_disabled: Funcția IDP asistată de AI a fost dezactivată pentru acest proiect.
+    ai_notice: Secțiunile evidențiate sunt traduse cu ajutorul inteligenței artificiale și pot conține inexactități.
+    ai_translation: Traducere AI
     all_corner_rounded: Toate colțurile rotunjite
     api_keys: Chei API
+    apply_to_existing_users: Aplică această modificare utilizatorilor existenți din această campanie
     assessments: Evaluări
+    assessments_not_mhs: Toate evaluările trebuie să fie de tip MHS.
     assessments_reports: Evaluări și rapoarte
     assessor_dashboard: Tabloul de bord al evaluatorului
     assessor_workshops: Centrul de evaluare
@@ -55,6 +60,19 @@ ro:
     campaign_assessment_actions_disable_caching: Dezactivează caching-ul evaluărilor
     campaign_assessment_actions_enable_caching: Activează cache-ul evaluării
     campaign_assessment_column_caching_enabled: Caching de evaluare activat
+    campaign_assessment_mhs_confidence_interval: Interval de încredere
+    campaign_assessment_mhs_confidence_interval_update_success: Intervalul de încredere actualizat cu succes
+    campaign_assessment_mhs_invalid_confidence_interval: intervalul_de_încredere trebuie să fie 0 sau 1
+    campaign_assessment_mhs_invalid_leadership_bar: leadership_bar trebuie să fie 0 sau 1
+    campaign_assessment_mhs_invalid_norm_option: Opțiunea Normă trebuie să fie între 0 și 3
+    campaign_assessment_mhs_leadership_bar: Barul conducerii
+    campaign_assessment_mhs_leadership_bar_update_success: Bara de leadership actualizată cu succes
+    campaign_assessment_mhs_norm_option: Opțiunea Normă
+    campaign_assessment_mhs_norm_option_form_select: Selectați opțiunea Normă
+    campaign_assessment_mhs_norm_option_update_success: Opțiunea Normă actualizată cu succes
+    campaign_assessment_mhs_norm_region: Regiunea normă
+    campaign_assessment_mhs_norm_region_form_select: Selectați regiunea normă
+    campaign_assessment_mhs_norm_region_update_success: Regiunea Norm a fost actualizată cu succes
     campaign_assessment_modals_disable_caching_content: Ești sigur că vrei să dezactivezi cache-ul pentru această evaluare?
     campaign_assessment_modals_disable_caching_successfully: Cache-ul a fost dezactivat pentru această evaluare.
     campaign_assessment_modals_disable_caching_title: Dezactivarea caching-ului de evaluare?
@@ -75,6 +93,7 @@ ro:
     confirm_remove_admin: Sigur doriți să eliminați utilizatorul administrator cu e-mailul "%{email}"?
     country: Țara
     create_client: Creare client
+    current_job_role: Funcția actuală
     dashboard: Tablou
     dashboards: Dashboards
     data_reports: Rapoarte de date
@@ -89,6 +108,8 @@ ro:
     done_tooltip: Nu se mai poate trimite nicio evaluare pentru acest utilizator, deoarece evaluarea acestuia este marcată ca fiind făcută de %{marked_by}
     edit_campaign_admin: Editați administratorul campaniei
     edit_client_admin: Editați administratorul clientului
+    edit_job_roles: Editați rolurile posturilor
+    edit_level: Nivel de editare
     edit_permission_denied: Nu ai permisiunea să editezi "%{name}" de administrator
     edit_project_admin: Editați administratorul proiectului
     edit_threesixty_campaign_admin: Editați administratorul campaniei
@@ -102,6 +123,7 @@ ro:
     feature_enhance_with_ai: Îmbunătățiți cu AI
     feature_flags: Steaguri de caracteristici
     fill_empty_score_msg: Completează toate scorurile finale înainte de a salva.
+    final_score_empty_err_msg: Scorul final al jocului „%{factor_name}” nu poate fi gol.
     idp_plan_reset_success: Planul a fost resetat cu succes
     idp_templates: Șabloane IDP
     import_ai_artifacts: Importul artefactelor AI
@@ -130,11 +152,27 @@ ro:
     invalid_csv_header: CSV conține antete invalide.
     job_roles: Roluri de post
     learning_from_others: Învățare colaborativă [20]
+    level: Nivel
+    level_apply: Aplicați
+    level_guide: Ghid
+    level_shape: Formă
+    level_validation_message: 'trebuie să fie unul dintre următoarele: %{values}'
     libraries: Bibliotecă media
     library_invalid_type: Element invalid din bibliotecă
     licenses: Licenţe
     manager_approval_required: Raportul pentru %{user} necesită aprobarea managerului înainte de descărcare
+    max_value: Valoarea maximă
     messages: Mesaje
+    mhs: MHS
+    mhs_assessment: Evaluarea MHS
+    mhs_assessment_name: Numele evaluării MHS
+    mhs_data_gatherer_id: ID colector de date Mhs
+    mhs_data_gathering_id: ID colectare date Mhs
+    mhs_external_assessment_id: ID evaluare Mhs
+    mhs_report_id: ID raport MHS
+    mhs_session_id: ID sesiune Mhs
+    min_value: Valoarea minimă
+    missing_min_max_values: Sunt necesare valorile minime și maxime.
     name_required: Este necesar numele
     no_file_selected: Niciun fișier selectat
     no_notifications: Fără notificări
@@ -149,6 +187,7 @@ ro:
     number: Număr
     occupations: Ocupaţii
     on_the_job: La locul de muncă [70]
+    only_editable_on_create: Această opțiune poate fi editată numai în timpul creării.
     options: Opțiuni
     participants: Participanţii
     permissions:
@@ -573,6 +612,7 @@ ro:
         view: Vedere
         view_recordings: Vizualizați înregistrările
     permissions_360_campaigns: Permisiuni specifice campaniilor 360
+    piped_text: Text încadrat
     privacy: Intimitate
     proficiency_level: Chei API
     proficiency_levels: Niveluri de competență
@@ -654,11 +694,18 @@ ro:
     saml_settings: Setări SAML
     scheduling: Programarea
     scoring: Notare
+    scoring_value_info: Scorul trebuie să fie între %{min} și %{max}.
+    scoring_value_out_of_range_err_msg: Scorul pentru „%{factor_name}” trebuie să fie între %{min} și %{max}.
     search_admins: Administratori de căutare
+    search_job_role: Căutare post
     select_admin_role: Selectați rolul de administrator
+    select_language_to_translate: Vă rugăm să selectați limba pentru traducere
+    select_level: Selectați nivelul
     send_email: Trimite e-mail
     settings: Setări
+    show_original: Afișează originalul
     show_submenu: Afișează submeniu
+    show_translated: Afișează traducerea
     siem: SIEM
     skill_aliases: Aliasuri de abilități
     skills: Aptitudini
@@ -671,12 +718,19 @@ ro:
     structured_learning: Învățarea formală [10]
     subdomain: Subdomeniu
     subject_part_of_other_invite: Persoana cu adresa de e-mail %{user_email} este deja invitată la „%{workshop_invite_name}”.
+    target_job_role: Postul vizat
     toolbar_ai_insight: Perspectivă AI
     toolbar_ai_suggestion: Sugestie AI
     toolbar_result_generating: Se generează...
     toolbar_text_copied: Copiată în clipboard
     toolbar_text_replaced: Text înlocuit!
     toolbar_what_changed_and_why: Ce s-a schimbat și de ce
+    translate: Traduce
+    translate_to: Traduceți în
+    translate_with_ai: Traduceți cu AI
+    translated_from: Tradus din
+    translated_to: 'Tradus în:'
+    translated_with_ai_notice: Traducere AI
     translation_assistant_not_configured: Asistentul de traducere nu este configurat
     upload_success: Încărcat cu succes
     user_report_events: Evenimente de raportare a utilizatorilor

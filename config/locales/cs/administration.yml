@@ -1006,6 +1006,8 @@ cs:
         ai_assistants_disabled_by_client: AI Assistants je klientem deaktivován
         ai_assisted_idp: IDP s asistencí AI
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP vyžaduje povolení funkce AI Assistants
+        ai_translation: Překlady pomocí umělé inteligence
+        ai_translation_disabled_by_client: AI překlady jsou klientem zakázány
         global_skills: Globální dovednosti
         global_skills_disabled_by_client: Globální dovednosti jsou klientem zakázány
         idp: IDP
@@ -3102,6 +3104,7 @@ cs:
         mask_identity_for_hogan: Údaje o masce pro Hogan
         mask_identity_for_iiht: Údaje o masce pro IIHT
         mask_identity_for_mettl: Údaje masky pro METTL
+        mask_identity_for_mhs: Údaje o masce pro MHS
         mask_identity_for_pearson: Údaje o masce pro Pearson
         mask_identity_for_saville: Údaje o masce pro Saville
         mask_identity_for_skillvue: Údaje o masce pro Skillvue

@@ -1,6 +1,7 @@
 ---
 ja:
   admin:
+    accept_na_values: N/A値を受け入れる
     add_admin: 管理者を追加する
     add_admin_role: 管理者ロールの追加
     add_campaign_admin: キャンペーン管理者の追加
@@ -34,9 +35,13 @@ ja:
     ai_assistants_test_render: テストレンダリング
     ai_assistants_test_render_tooltip: プロンプトテンプレートをキャンペーンデータでテストし、AIアシスタントに送られる内容を確認しましょう。
     ai_assisted_idp_feature_disabled: このプロジェクトではAI支援IDP機能は無効化されています。
+    ai_notice: ハイライトされた部分はAI翻訳であり、不正確な部分が含まれる可能性があります。
+    ai_translation: AI翻訳
     all_corner_rounded: すべての角が丸みを帯びている
     api_keys: APIキー
+    apply_to_existing_users: この変更をこのキャンペーンの既存ユーザーに適用する
     assessments: アセスメント
+    assessments_not_mhs: すべての評価はMHSタイプでなければならない
     assessments_reports: アセスメント＆レポート
     assessor_dashboard: 査定者ダッシュボード
     assessor_workshops: アセスメント・センター
@@ -55,6 +60,19 @@ ja:
     campaign_assessment_actions_disable_caching: 評価キャッシュを無効にする
     campaign_assessment_actions_enable_caching: 評価キャッシュの有効化
     campaign_assessment_column_caching_enabled: 評価キャッシュ有効
+    campaign_assessment_mhs_confidence_interval: 信頼区間
+    campaign_assessment_mhs_confidence_interval_update_success: 信頼区間が正常に更新されました
+    campaign_assessment_mhs_invalid_confidence_interval: confidence_interval は 0 または 1 でなければなりません
+    campaign_assessment_mhs_invalid_leadership_bar: leadership_bar は 0 または 1 でなければなりません
+    campaign_assessment_mhs_invalid_norm_option: Norm Option は 0 から 3 の間でなければなりません
+    campaign_assessment_mhs_leadership_bar: リーダーシップバー
+    campaign_assessment_mhs_leadership_bar_update_success: リーダーシップバーの更新に成功しました
+    campaign_assessment_mhs_norm_option: 標準オプション
+    campaign_assessment_mhs_norm_option_form_select: 標準オプションを選択
+    campaign_assessment_mhs_norm_option_update_success: 標準オプションの更新に成功しました
+    campaign_assessment_mhs_norm_region: ノーム地域
+    campaign_assessment_mhs_norm_region_form_select: 標準地域を選択
+    campaign_assessment_mhs_norm_region_update_success: Norm Region の更新に成功しました
     campaign_assessment_modals_disable_caching_content: この評価でキャッシュを無効にするつもりですか?
     campaign_assessment_modals_disable_caching_successfully: この評価ではキャッシュは無効化されています。
     campaign_assessment_modals_disable_caching_title: 評価キャッシュを無効にする?
@@ -75,6 +93,7 @@ ja:
     confirm_remove_admin: メール '%{email}' を持つ管理ユーザーを本当に削除しますか？
     country: 国名
     create_client: クライアント作成
+    current_job_role: 現在の職務内容
     dashboard: ダッシュボード
     dashboards: ダッシュボード
     data_reports: データレポート
@@ -89,6 +108,8 @@ ja:
     done_tooltip: このユーザーの評価は%{marked_by}によって行われたとマークされているため、これ以上の評価は提出できません
     edit_campaign_admin: キャンペーン管理者の編集
     edit_client_admin: クライアント管理者の編集
+    edit_job_roles: 職務内容の編集
+    edit_level: 編集レベル
     edit_permission_denied: 管理者の「%{name}」を編集する権限はありません
     edit_project_admin: プロジェクト管理者の編集
     edit_threesixty_campaign_admin: キャンペーン管理者の編集
@@ -102,6 +123,7 @@ ja:
     feature_enhance_with_ai: AIで強化する
     feature_flags: フィーチャー・フラッグ
     fill_empty_score_msg: 保存する前にすべての最終スコアを記入してください。
+    final_score_empty_err_msg: "%{factor_name}の最終スコアは空欄であってはならない。"
     idp_plan_reset_success: 計画は正常にリセットされました
     idp_templates: IDPテンプレート
     import_ai_artifacts: AIアーティファクトのインポート
@@ -130,11 +152,27 @@ ja:
     invalid_csv_header: CSVファイルには無効なヘッダーが含まれています。
     job_roles: 仕事の役割
     learning_from_others: 協働学習 [20]
+    level: レベル
+    level_apply: 適用する
+    level_guide: ガイド
+    level_shape: 形状
+    level_validation_message: '次のいずれかでなければなりません: %{values}'
     libraries: メディアライブラリー
     library_invalid_type: 無効なライブラリ項目
     licenses: ライセンス
     manager_approval_required: "%{user}レポートはダウンロード前にマネージャーの承認が必要です"
+    max_value: 最大値
     messages: メッセージ
+    mhs: MHS
+    mhs_assessment: MHS評価
+    mhs_assessment_name: MHS 評価名
+    mhs_data_gatherer_id: Mhsデータ収集者ID
+    mhs_data_gathering_id: MHSデータ収集ID
+    mhs_external_assessment_id: Mhs 評価ID
+    mhs_report_id: MHSレポートID
+    mhs_session_id: Mhs セッション ID
+    min_value: 最小値
+    missing_min_max_values: 最小値と最大値が必要です。
     name_required: 名前が必要です
     no_file_selected: ファイルが選択されていない
     no_notifications: 通知はありません
@@ -149,6 +187,7 @@ ja:
     number: 番号
     occupations: 職業
     on_the_job: オン・ザ・ジョブ [70]
+    only_editable_on_create: このオプションは作成時のみ編集可能です。
     options: オプション
     participants: 参加者
     permissions:
@@ -573,6 +612,7 @@ ja:
         view: 表示
         view_recordings: 録画の表示
     permissions_360_campaigns: 360キャンペーンに特化したパーミッション
+    piped_text: パイプ付きテキスト
     privacy: プライバシー
     proficiency_level: APIキー
     proficiency_levels: 熟練度レベル
@@ -654,11 +694,18 @@ ja:
     saml_settings: SAML設定
     scheduling: スケジューリング
     scoring: 採点
+    scoring_value_info: スコアは%{min}から%{max}の間でなければなりません。
+    scoring_value_out_of_range_err_msg: "%{factor_name} のスコアは、%{min} と %{max} の間でなければなりません。"
     search_admins: 管理者を検索
+    search_job_role: 職種を検索
     select_admin_role: 管理者ロールの選択
+    select_language_to_translate: 翻訳する言語を選択してください
+    select_level: レベルを選択
     send_email: 電子メールを送信する
     settings: 設定
+    show_original: 原文を表示
     show_submenu: サブメニューを表示する
+    show_translated: 翻訳を表示
     siem: シーイーエム
     skill_aliases: スキルの別名
     skills: スキル
@@ -671,12 +718,19 @@ ja:
     structured_learning: 正式な学習 [10]
     subdomain: サブドメイン
     subject_part_of_other_invite: メールアドレス %{user_email} のユーザーは既に「%{workshop_invite_name}」に招待済みです
+    target_job_role: 対象職務
     toolbar_ai_insight: AIインサイト
     toolbar_ai_suggestion: AI提案
     toolbar_result_generating: 生成中...
     toolbar_text_copied: クリップボードにコピーされました
     toolbar_text_replaced: テキストが置換されました！
     toolbar_what_changed_and_why: 何が変わったのか、そしてその理由
+    translate: 翻訳
+    translate_to: 翻訳する
+    translate_with_ai: AIで翻訳する
+    translated_from: 翻訳元
+    translated_to: 翻訳：
+    translated_with_ai_notice: AI翻訳
     translation_assistant_not_configured: 翻訳アシスタントが設定されていません
     upload_success: アップロード成功
     user_report_events: ユーザーレポートイベント

@@ -1018,6 +1018,8 @@ hi:
         ai_assistants_disabled_by_client: एआई सहायक ग्राहक द्वारा अक्षम कर दिए गए हैं।
         ai_assisted_idp: एआई-सहायित आईडीपी
         ai_assisted_idp_requires_ai_assistants: एआई-सहायक आईडीपी के लिए एआई सहायक सुविधा सक्षम होना आवश्यक है।
+        ai_translation: एआई अनुवाद
+        ai_translation_disabled_by_client: AI अनुवाद ग्राहक द्वारा अक्षम कर दिए गए हैं।
         global_skills: वैश्विक कौशल
         global_skills_disabled_by_client: ग्लोबल स्किल्स क्लाइंट द्वारा अक्षम किया गया है।
         idp: आईडीपी
@@ -3142,6 +3144,7 @@ hi:
         mask_identity_for_hogan: होगन के लिए मास्क डेटा
         mask_identity_for_iiht: आईआईएचटी के लिए मास्क डेटा
         mask_identity_for_mettl: METTL के लिए मास्क डेटा
+        mask_identity_for_mhs: MHS के लिए मास्क डेटा
         mask_identity_for_pearson: पियर्सन के लिए मास्क डेटा
         mask_identity_for_saville: सैविल के लिए मास्क डेटा
         mask_identity_for_skillvue: स्किलव्यू के लिए मास्क डेटा
