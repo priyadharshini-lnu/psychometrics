@@ -9,6 +9,7 @@ en:
     agree_and_continue: Agree & Continue
     archive: Archive
     archived: Archived
+    asset_not_present: Asset not present
     audio: Audio
     authentication_failed: Authentication failed. Please try again.
     basic: Basic

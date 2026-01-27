@@ -39,4 +39,8 @@ class Api::V2::Administration::MediaResponseResource < Api::V2::Administration::
   def transcription_enabled
     @model.question&.props&.[]('enableTranscription') || false
   end
+
+  def asset_attached
+    @model.asset.attached?
+  end
 end
