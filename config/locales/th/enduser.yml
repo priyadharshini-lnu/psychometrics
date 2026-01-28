@@ -32,11 +32,15 @@ th:
     profile_details: รายละเอียด
     question_counter: Question %{current} of %{total}
     reason_for_idp_plan_rejection: เหตุผลในการปฏิเสธ
+    recorded: บันทึก
+    recording: การบันทึก
     reject_idp_plan: ปฏิเสธแผน
     request_retry_message: คุณออฟไลน์อยู่ ไม่สามารถบันทึกคําตอบของคุณได้ แต่จะถูกบันทึกโดยอัตโนมัติเมื่อคุณกลับมาออนไลน์อีกครั้ง โปรดอย่ารีเฟรชหรือปิดหน้า
+    saving_video_text: กําลังบันทึกวิดีโอ... กรุณาอย่าปิดหรือรีเฟรชเบราว์เซอร์
     selected_count: เลือก
     skill_type: ประเภททักษะ
     start_campaign_message_proctored: นี่คือแคมเปญที่มีผู้คุมสอบ โปรดคลิกปุ่ม '%{buttonText}' เพื่อเริ่มกิจกรรม
     start_campaign_message_timed: นี่เป็นแคมเปญแบบกําหนดเวลา โปรดคลิกปุ่ม '%{buttonText}' เพื่อเริ่มกิจกรรม
     start_campaign_message_timed_proctored: นี่คือแคมเปญแบบกําหนดเวลาและควบคุม โปรดคลิกปุ่ม '%{buttonText}' เพื่อเริ่มกิจกรรม
+    status_unknown: ไม่ทราบสถานะ
     tasks: งาน

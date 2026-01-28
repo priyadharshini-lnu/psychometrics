@@ -1244,7 +1244,6 @@ ar:
       save: حفظ
       saved:
         label: تم الحفظ
-      saving: جاري الحفظ
       seek: نشد
       start_recording: ابدأ التسجيل
       stop_recording: توقف عن التسجيل

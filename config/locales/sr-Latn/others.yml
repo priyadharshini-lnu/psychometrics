@@ -1212,7 +1212,6 @@ sr-Latn:
       save: Sačuvaj
       saved:
         label: Video sačuvan
-      saving: Sačuvavanje video zapisa ...
       seek: Traћim
       start_recording: Započni snimanje
       stop_recording: Zaustavi snimanje

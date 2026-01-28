@@ -1205,7 +1205,6 @@ pt:
       save: Salvar
       saved:
         label: Guardado
-      saving: A Salvar...
       seek: Procurar
       start_recording: Iniciar gravação
       stop_recording: Parar a gravação

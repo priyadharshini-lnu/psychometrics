@@ -1201,7 +1201,6 @@ bg:
       save: Запазете
       saved:
         label: Видеото е записано
-      saving: Запазване на видео...
       seek: Търся
       start_recording: Стартирайте записа
       stop_recording: Спрете записа

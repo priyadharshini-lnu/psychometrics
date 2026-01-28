@@ -1204,7 +1204,6 @@ id:
       save: Simpan
       saved:
         label: Video Tersimpan
-      saving: Menyimpan Video...
       seek: Mencari
       start_recording: Mulai merekam
       stop_recording: Berhenti merekam

@@ -1201,7 +1201,6 @@ vi:
       save: Cứu
       saved:
         label: Video đã lưu
-      saving: Đang lưu video...
       seek: Tìm kiếm
       start_recording: Bắt đầu ghi âm
       stop_recording: Dừng ghi âm

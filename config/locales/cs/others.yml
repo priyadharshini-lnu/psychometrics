@@ -1204,7 +1204,6 @@ cs:
       save: Uložit
       saved:
         label: Video uloženo
-      saving: Ukládání videa…
       seek: Hledat
       start_recording: Spustit nahrávání
       stop_recording: Zastavit nahrávání

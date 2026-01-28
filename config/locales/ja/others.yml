@@ -1206,7 +1206,6 @@ ja:
       save: 保存
       saved:
         label: 保存済み
-      saving: 保存中...
       seek: シーク
       start_recording: 録画を開始
       stop_recording: 録音停止

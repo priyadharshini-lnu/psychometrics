@@ -1201,7 +1201,6 @@ th:
       save: บันทึก
       saved:
         label: บันทึกวีดีโอ
-      saving: กำลังบันทึกวีดีโอ...
       seek: หา
       start_recording: เริ่มการบันทึก
       stop_recording: หยุดการบันทึก

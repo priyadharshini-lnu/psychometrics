@@ -1208,7 +1208,6 @@ hr:
       save: Spremiti
       saved:
         label: Videozapis spremljen
-      saving: Spremanje videa...
       seek: Tražiti
       start_recording: Započeti snimanje
       stop_recording: Zaustaviti snimanje

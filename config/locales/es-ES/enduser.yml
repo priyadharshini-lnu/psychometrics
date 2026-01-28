@@ -32,11 +32,15 @@ es-ES:
     profile_details: Datos
     question_counter: Pregunta %{current} de %{total}
     reason_for_idp_plan_rejection: Motivo del rechazo
+    recorded: Grabado
+    recording: Grabación
     reject_idp_plan: Plan de rechazo
     request_retry_message: Estás desconectado. Tus respuestas no pudieron guardarse, pero se guardarán automáticamente cuando vuelvas a estar en línea. Por favor, no actualices ni cierres la página.
+    saving_video_text: Guardando vídeo... Por favor, no cierres ni actualices el navegador
     selected_count: Selección
     skill_type: Tipo de habilidad
     start_campaign_message_proctored: Esta es una campaña supervisada, por favor haz clic en el botón '%{buttonText}' para iniciar las actividades.
     start_campaign_message_timed: Esta es una campaña cronometrada, por favor haz clic en el botón '%{buttonText}' para iniciar las actividades.
     start_campaign_message_timed_proctored: Esta es una campaña cronometrada y supervisada, por favor haz clic en el botón '%{buttonText}' para iniciar las actividades.
+    status_unknown: Estado desconocido
     tasks: Tareas

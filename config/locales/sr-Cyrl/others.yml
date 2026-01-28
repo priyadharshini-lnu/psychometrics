@@ -1202,7 +1202,6 @@ sr-Cyrl:
       save: Сачувај
       saved:
         label: Видео је сачуван
-      saving: Чување видеа...
       seek: Траћим
       start_recording: Почни снимање
       stop_recording: Заустави снимање
