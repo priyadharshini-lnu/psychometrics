@@ -125,11 +125,11 @@ const TranscriptionDetails: FC<Props> = ({
       key: 'transcriptionText',
       render: (record: MediaResponse) => {
         const {
-          id, questionType, transcriptionEnabled, transcriptionText, questionId, transcriptionStatus, assetAttached,
+          id, questionType, transcriptionEnabled, transcriptionText, questionId, assetAttached,
         } = record
         const isAudioOrVideo = questionType === 'audio' || questionType === 'video'
         const hasTranscription = !!transcriptionText
-        const isGenerating = generatingIds.has(id) || transcriptionStatus === 'processing'
+        const isGenerating = generatingIds.has(id)
 
         if (!assetAttached) {
           return (
