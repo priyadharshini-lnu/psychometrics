@@ -31,9 +31,13 @@ interface ScoringTableProps {
 type DataType = {
   [key: string]: string | number | boolean | null;
 }
-const sortEvaluatorsByEmail = (
+const sortEvaluators = (
   evaluators: Score[],
-) => evaluators.slice().sort((a, b) => a.evaluator.email.localeCompare(b.evaluator.email))
+) => evaluators.slice().sort((a, b) => {
+  const emailCompare = a.evaluator.email.localeCompare(b.evaluator.email)
+  if (emailCompare !== 0) return emailCompare
+  return a.assessment.name.localeCompare(b.assessment.name, undefined, { numeric: true })
+})
 
 const processData = (dataWithAverages, averageRow, scoreRange, weightedAverageRow, finalRow): DataType[] => {
   if (dataWithAverages.length === 0) return []
@@ -130,7 +134,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
     handleSave()
   })
 
-  const sortedEvaluatorsData = useMemo(() => sortEvaluatorsByEmail(evaluatorsData), [evaluatorsData])
+  const sortedEvaluatorsData = useMemo(() => sortEvaluators(evaluatorsData), [evaluatorsData])
   const averageScores = useMemo(() => calculateAverageScores(columnsData, evaluatorsData),
     [columnsData, evaluatorsData])
   const highLowScores = useMemo(() => calculateHighLowScores(columnsData, evaluatorsData),
