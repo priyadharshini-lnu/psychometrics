@@ -122,6 +122,7 @@ class UserReportSerializer < Panko::Serializer
         one_level_qc
         approvers_can_edit
         manage_approval
+        translate
       ],
       {
         project_id: object.campaign.project_id,

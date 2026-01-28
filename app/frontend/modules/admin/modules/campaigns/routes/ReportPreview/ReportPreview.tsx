@@ -48,7 +48,6 @@ export default function ReportPreview ({
   download,
   downloadInProgress,
   features,
-  projectFeatures,
   asyncDownload,
   clearUseReportDetails,
   startQC,
@@ -88,7 +87,7 @@ export default function ReportPreview ({
   const reportIsLoaded = (): boolean | undefined => (userReport && userReport.loaded)
 
   const renderReportPreview = () => {
-    if (!reportIsLoaded()) {
+    if (!reportIsLoaded() || showTranslation) {
       return null
     }
 
@@ -254,7 +253,7 @@ export default function ReportPreview ({
       )
     }
 
-    if (projectFeatures.aiTranslationEnabled) {
+    if (userReport.permissions.translate) {
       actionList.unshift(
         <Button type="primary" onClick={() => setShowTranslation(!showTranslation)}>
           <AIEditorIcon style={{ fill: '#fff' }} />
@@ -334,7 +333,7 @@ export default function ReportPreview ({
                   </div>
                 </Col>
               </Row>
-              {projectFeatures.aiTranslationEnabled && (
+              {userReport.permissions.translate && (
                 <ReportTranslation
                   userReport={userReport}
                   availableLanguages={availableLanguages}

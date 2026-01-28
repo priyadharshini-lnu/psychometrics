@@ -68,6 +68,11 @@
     padding-top: 6px;
   }
 
+  &:hover {
+    .translationPopover {
+      opacity: 1;
+    }
+  }
 }
 
 .editor {
@@ -110,4 +115,12 @@
       border-bottom: 0;
     }
   }
+}
+
+.translationPopover {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  transition: 0.4s;
 }
