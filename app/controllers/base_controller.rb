@@ -125,6 +125,7 @@ class BaseController < ActionController::Base
   def sign_in_and_redirect(user, found_by, auth_details)
     skip_session_limitable = found_by == :spoof || auth_details['skip_session_limitable'] == true
     sign_in(user, skip_session_limitable: skip_session_limitable)
+    flash.discard(:alert)
 
     return Utility::Url.redirect_to_safe_internal_url(self, url_without_spoof) if found_by == :spoof
 
