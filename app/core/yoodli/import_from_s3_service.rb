@@ -39,9 +39,13 @@ module Yoodli
 
       response.contents.select do |object|
         object.key.downcase.end_with?('.csv') &&
-          object.key.include?(date) &&
+          (object.key.include?(date) || object.key.include?(previous_date)) &&
           object.size.positive?
       end
+    end
+
+    def previous_date
+      @previous_date ||= (Date.parse(date) - 1.day).strftime('%Y-%m-%d')
     end
 
     def process_csv_file(csv_file, total_processed_emails, total_errors)
