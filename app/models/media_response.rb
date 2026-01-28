@@ -7,7 +7,6 @@ class MediaResponse < ApplicationRecord
   include ActiveStorageAttachable
 
   has_one_attachment :asset, service: Settings.storage.private_storage_service
-  has_one_attachment :transcription_audio_file, service: Settings.storage.private_storage_service
   has_one :transcription, as: :transcribable, dependent: :destroy
 
   belongs_to :users_assessment

@@ -13,6 +13,7 @@ hr:
     campaign: Kampanja
     development: Razvoj
     direct_reportees: Izravni podređeni
+    download_pdf: Preuzmite PDF
     home: Nadzorna ploča
     idp_loading_fifth_step: Dohvaćanje razvojnih akcija iz predloška
     idp_loading_first_step: Analiza vašeg izvještaja o procjeni
@@ -20,7 +21,6 @@ hr:
     idp_loading_second_step: Identificiranje vaših preferencija spomenutih u chatu
     idp_loading_secondary_text: Slobodno se udaljite. Tvoj plan bit će spreman kad se vratiš.
     idp_loading_sixth_step: Kreiranje razvojnih akcija
-    idp_loading_third_step: Pregled vašeg vanjskog izvještaja
     idp_plan_approval_note: Napomena o odobrenju
     idp_retake_steps_continue_with_this_information: Nastavite s ovim informacijama
     insights: Uvidi

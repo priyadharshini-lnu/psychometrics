@@ -13,6 +13,7 @@ it:
     campaign: Campagna
     development: Sviluppo
     direct_reportees: Collegati
+    download_pdf: Scarica PDF
     home: Dashboard
     idp_loading_fifth_step: Recupero delle azioni di sviluppo dal template
     idp_loading_first_step: Analisi del tuo rapporto di valutazione
@@ -20,7 +21,6 @@ it:
     idp_loading_second_step: Identificare le tue preferenze menzionate nella chat
     idp_loading_secondary_text: Sentiti libero di allontanarti. Il tuo piano sarà pronto al tuo ritorno.
     idp_loading_sixth_step: Creazione di azioni di sviluppo
-    idp_loading_third_step: Revisione del tuo rapporto esterno
     idp_plan_approval_note: Nota di Approvazione
     idp_retake_steps_continue_with_this_information: Continua con queste informazioni
     insights: Approfondimenti

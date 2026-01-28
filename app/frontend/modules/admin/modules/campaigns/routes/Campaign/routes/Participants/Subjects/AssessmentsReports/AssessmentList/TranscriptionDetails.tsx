@@ -24,6 +24,7 @@ interface MediaResponse {
   questionType: string
   transcriptionStatus: string
   transcriptionEnabled: boolean
+  assetAttached: boolean
 }
 
 const TranscriptionDetails: FC<Props> = ({
@@ -124,11 +125,19 @@ const TranscriptionDetails: FC<Props> = ({
       key: 'transcriptionText',
       render: (record: MediaResponse) => {
         const {
-          id, questionType, transcriptionEnabled, transcriptionText, questionId, transcriptionStatus,
+          id, questionType, transcriptionEnabled, transcriptionText, questionId, transcriptionStatus, assetAttached,
         } = record
         const isAudioOrVideo = questionType === 'audio' || questionType === 'video'
         const hasTranscription = !!transcriptionText
         const isGenerating = generatingIds.has(id) || transcriptionStatus === 'processing'
+
+        if (!assetAttached) {
+          return (
+            <Tooltip title={I18n.t('shared.asset_not_present')}>
+              {I18n.t('common.text.na')}
+            </Tooltip>
+          )
+        }
 
         if (hasTranscription) {
           return (

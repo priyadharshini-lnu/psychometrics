@@ -271,7 +271,8 @@ const IntervalOptions: React.FC<IntervalOptionsProps> = ({
       value={yAxisValue}
       onChange={changeYAxisHandler}
       placeholder={I18n.t('admin.auto_placeholder')}
-      min="0"
+      min="1"
+      precision={0}
       className="w-100"
     />
     <Typography.Text>{I18n.t('admin.x_axis_interval_label')}</Typography.Text>
@@ -280,7 +281,8 @@ const IntervalOptions: React.FC<IntervalOptionsProps> = ({
       value={xAxisValue}
       onChange={changeXAxisHandler}
       placeholder={I18n.t('admin.auto_placeholder')}
-      min="0"
+      min="1"
+      precision={0}
       className="w-100"
     />
   </>

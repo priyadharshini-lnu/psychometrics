@@ -94,6 +94,14 @@ class ApplicationController < BaseController
   end
 
   def allowed_domains
-    inside_sso_iframe? ? ['*.maialearning.com'] : ['*.proctor.constructor.app', '*.proctor.alemira.com']
+    if inside_sso_iframe?
+      ['*.maialearning.com']
+    else
+      [
+        '*.proctor.constructor.app',
+        '*.proctor.alemira.com',
+        "*.#{Settings.domain}"
+      ]
+    end
   end
 end
