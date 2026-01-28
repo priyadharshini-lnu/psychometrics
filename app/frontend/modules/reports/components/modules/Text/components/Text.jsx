@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import { Component } from 'react'
+import { Popover, Button } from 'antd'
 import { renderToStaticMarkup } from 'react-dom/server'
 import cs from 'classnames'
 import PropTypes from 'prop-types'
@@ -14,6 +15,7 @@ import RichEditorStore from '~/modules/reports/store/RichEditorStore'
 import I18nStore from '~/modules/reports/store/I18nStore'
 import { SafeHTML } from '~/components/SafeHTML'
 import '~/modules/reports/commands/froalaCommands'
+import { ExpandOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import ResponseTextByQuestionType from './ResponseTextByQuestionType'
 import styles from './Text.less'
 import config from './froalaConfig'
@@ -266,7 +268,7 @@ class Text extends Component {
           return null
         }
         return (
-          <div ref={(ref) => { this.editor = ref }} className={styles.editor}>
+          <div ref={(ref) => { this.editor = ref }} className={styles.editor} data-ai-translation="0">
             <QuestionTypeModel
               result={particularResult}
               model={model}
@@ -385,16 +387,24 @@ class Text extends Component {
         )
       }
     }
+    const hasTranslation = !!aiTranslation
 
     return (
       <Foundation
         {...this.props}
         preview={preview || this.edit}
         outerStyle={outerStyle}
-        hasTranslation={!!aiTranslation}
+        hasTranslation={hasTranslation}
       >
         <div style={style} onClick={this.click} className={styles.text} onDoubleClick={this.openEditor}>
           {this.renderText()}
+          {preview && hasTranslation && (
+            <div className={styles.translationPopover}>
+              <Popover content={<div>{this.renderText()}</div>} trigger="click">
+                <Button icon={<ExpandOutlined />} />
+              </Popover>
+            </div>
+          )}
         </div>
       </Foundation>
     )

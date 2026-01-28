@@ -22,6 +22,9 @@ module Mhs
           norm_region: current_active_assessment&.norm_region,
           norm_option: current_active_assessment&.norm_option
         )
+
+        user_assessment.user_reports.update_all(external_added: false)
+        user_assessment.user_reports.each(&:remove_report_pdf!)
       end
 
       broadcast :ok

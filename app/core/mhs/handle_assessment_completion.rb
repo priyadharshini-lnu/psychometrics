@@ -11,7 +11,7 @@ module Mhs
     def call
       all_mhs_reports = user_assessment.user_reports(:mhs)
 
-      if user_assessment.users_result.external_results.present? && all_mhs_reports.all?(&:pdf?)
+      if user_assessment.users_result.external_results.present? && all_mhs_reports.all?(&:pdf_exists?)
         return broadcast :reports_and_scores_already_available
       end
 

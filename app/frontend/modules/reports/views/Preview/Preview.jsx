@@ -74,7 +74,7 @@ const Preview = ({
           aiTranslations={aiTranslations}
         />
       ))}
-      {!pdfExport && (
+      {!pdfExport && _.isEmpty(aiTranslations) && (
         <ModuleOverrides
           allowEdit={allowEdit}
           allowApprove={allowApprove}

@@ -2,7 +2,7 @@
 
 class Api::V2::Administration::MediaResponseResource < Api::V2::Administration::BaseResource
   attributes :id, :question_id, :transcription_text, :question_type, :transcription_status,
-             :transcription_enabled
+             :transcription_enabled, :asset_attached
 
   def self.records(opts = {})
     user_assessment_id = opts[:context][:user_assessment_id]

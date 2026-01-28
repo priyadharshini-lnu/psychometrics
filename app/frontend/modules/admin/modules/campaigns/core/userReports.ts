@@ -139,6 +139,7 @@ interface UserReportDetails {
     manageApproval: boolean
     oneLevelQc: boolean
     approversCanEdit: boolean
+    translate: boolean
   }
   possibleWebhookEvents?: string[]
 }
@@ -177,6 +178,7 @@ const defaultState: State = {
       manageApproval: false,
       oneLevelQc: false,
       approversCanEdit: false,
+      translate: false,
     },
     possibleWebhookEvents: [],
   },

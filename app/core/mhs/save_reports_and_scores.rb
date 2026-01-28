@@ -20,14 +20,15 @@ module Mhs
         Mhs::CreateEvaluator.call!(user_assessment)
       end
 
-      user_reports.reject(&:external_added?).each do |user_report|
-        next if user_report.pdf?
+      user_reports.each do |user_report|
+        user_report.reload
+        next if user_report.external_added? || user_report.pdf_exists?
+
+        user_report.update!(status: :generating)
 
         enrichment_result = get_participant_report(user_report)
 
         next if enrichment_result.blank? || enrichment_result[:content].blank?
-
-        user_report.update!(status: :generating)
 
         pdf_io = StringIO.new(enrichment_result[:content])
         filename = enrichment_result[:filename] || "#{user_report.report.name.parameterize}.pdf"
