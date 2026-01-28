@@ -13,6 +13,7 @@ ar:
     campaign: الحملة
     development: تطوير
     direct_reportees: الموظفين المباشرين
+    download_pdf: تحميل ملف PDF
     home: لوحة التحكم
     idp_loading_fifth_step: جلب إجراءات التطوير من القالب
     idp_loading_first_step: تحليل تقرير التقييم الخاص بك
@@ -20,7 +21,6 @@ ar:
     idp_loading_second_step: تحديد تفضيلاتك المذكورة في الدردشة
     idp_loading_secondary_text: يمكنك اخذ استراحة الان،خطتك ستكون جاهزة عند عودتك
     idp_loading_sixth_step: إنشاء إجراءات التطوير
-    idp_loading_third_step: مراجعة تقريرك الخارجي
     idp_plan_approval_note: مذكرة الموافقة
     idp_retake_steps_continue_with_this_information: تابع هذه المعلومات
     insights: البصائر
