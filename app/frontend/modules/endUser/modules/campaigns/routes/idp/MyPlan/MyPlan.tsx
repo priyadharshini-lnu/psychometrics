@@ -27,6 +27,8 @@ import styles from './MyPlan.less'
 import { DownloadOutlined, DownOutlined, EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { SafeHTML } from '~/components/SafeHTML'
 import { MediaQueryContext } from '~/glint'
+import { useReflectiveQuestions } from '../ReflectiveQuestions/useReflectiveQuestions'
+import { DownloadButton } from '~/components/IdpShared/DownloadButton'
 
 const { I18n } = window
 
@@ -116,6 +118,10 @@ const MyPlanComponent = ({
            || (managerApprovesIdp && status === USER_IDP_PLAN_STATUS.APPROVED)
 
   const showEditPlanButton = !['reflective_questions'].includes(paramTab)
+
+  const {
+    reflectionQuestions,
+  } = useReflectiveQuestions()
 
   const handleCompletion = () => {
     const hasIncompleteDAs = _.values(idpDevelopmentActions).some(action => action.progress < 100)
@@ -223,6 +229,25 @@ const MyPlanComponent = ({
     pollingInterval: 15,
   })
 
+  const handleDownloadReport = (includeReflectiveQuestions: boolean) => {
+    message.success(I18n.t('threesixty.report_generation_in_progress'), 3)
+
+    makeAsyncRequest({
+      lang: I18n.currentLocale(),
+      includeReflectiveQuestions,
+    }).then((response) => {
+      const config = {
+        message: I18n.t('jobs.threesixty.reports.download.message'),
+        description: <SafeHTML html={
+            I18n.t('idp.download.description', { url: response.responseData })}
+        />,
+        duration: 10 * 60 * 1000, // 10 minutes,
+      }
+      const type = response.type || 'success'
+      notification[type](config)
+    })
+  }
+
   const menu = {
     items: [{
       label: I18n.t('idp.without_reflection_questions'),
@@ -230,22 +255,7 @@ const MyPlanComponent = ({
       icon: <DownloadOutlined />,
     }],
     onClick: ({ key }) => {
-      message.success(I18n.t('threesixty.report_generation_in_progress'), 3)
-
-      makeAsyncRequest({
-        lang: I18n.currentLocale(),
-        includeReflectiveQuestions: key === 'with_rq',
-      }).then((response) => {
-        const config = {
-          message: I18n.t('jobs.threesixty.reports.download.message'),
-          description: <SafeHTML html={
-            I18n.t('idp.download.description', { url: response.responseData })}
-          />,
-          duration: 10 * 60 * 1000, // 10 minutes,
-        }
-        const type = response.type || 'success'
-        notification[type](config)
-      })
+      handleDownloadReport(key === 'with_rq')
     },
   }
 
@@ -257,19 +267,35 @@ const MyPlanComponent = ({
 
   const operations = (
     <Flex gap={8} flex={1} justify="end" wrap>
-      <Dropdown placement={isMobile ? 'bottom' : 'bottomRight'} menu={menu} trigger={['click']}>
-        <Tooltip zIndex={isMobile ? -1 : 999} title={I18n.t('common.actions.download')}>
-          <Button
-            aria-label={I18n.t('idp.download_plan')}
-            loading={asyncLoading}
-            icon={<DownloadOutlined />}
-          >
-            <Space>
-              <DownOutlined />
-            </Space>
-          </Button>
+      {reflectionQuestions.length > 0 ? (
+        <Dropdown placement={isMobile ? 'bottom' : 'bottomRight'} menu={menu} trigger={['click']}>
+          <Tooltip zIndex={isMobile ? -1 : 999} title={I18n.t('common.actions.download')}>
+            <Button
+              aria-label={I18n.t('idp.download_plan')}
+              loading={asyncLoading}
+              icon={<DownloadOutlined />}
+            >
+              <Space>
+                <DownOutlined />
+              </Space>
+            </Button>
+          </Tooltip>
+        </Dropdown>
+      ) : (
+        <Tooltip zIndex={isMobile ? -1 : 999} title={I18n.t('enduser.download_pdf')}>
+          <div>
+            <DownloadButton
+              style={{
+                height: '2rem',
+                width: '2rem',
+              }}
+              onClick={() => handleDownloadReport(false)}
+            />
+          </div>
+
         </Tooltip>
-      </Dropdown>
+      )}
+
       {showEditPlanButton && editMode ? (
         <Button
           onClick={handleSave}
