@@ -3,7 +3,7 @@
 class OciFunctionInvokerJob < ApplicationJob
   queue_as :reports
 
-  CONCURRENCY_LIMIT = 20
+  CONCURRENCY_LIMIT = 15
   FUNCTION_RATES = {
     url_to_pdf: 4,
     zip_s3_files: 0.5
@@ -11,13 +11,14 @@ class OciFunctionInvokerJob < ApplicationJob
 
   # OCI total-concurrency-limit is 60 GB by default shared by functions in the region.
   # url_to_pdf uses 2 GB memory per function, zip_s3_files uses 1 GB.
-  # At 20 concurrent :url_to_pdf, memory used = 40 GB; for :zip_s3_files, 20 GB.
+  # At 15 concurrent :url_to_pdf, memory used = 30 GB; for :zip_s3_files, 15 GB.
   #
-  # As we are using detached mode there would be more oci functions running than 20
-  # as job finishes early with 202 response in detached mode
-  # Adding the following rate limit to maintain the concurrent requests limitation
-  # Considering url_to_pdf takes 15s to complete, it can complete 4 requests in a minutes
-  # Similarly, zip_s3_files takes 2 minutes to complete, so it can complete 0.5 requests in a minute
+  # As we are using detached mode there would be more OCI functions running than 15
+  # as job finishes early with 202 response in detached mode.
+  # Keeping limit at 15 provides ~25% headroom for overlapping detached executions.
+  # Adding the following rate limit to maintain the concurrent requests limitation.
+  # Considering url_to_pdf takes 15s to complete, it can complete 4 requests in a minute.
+  # Similarly, zip_s3_files takes 2 minutes to complete, so it can complete 0.5 requests in a minute.
   sidekiq_throttle(
     concurrency: {
       limit: CONCURRENCY_LIMIT,
