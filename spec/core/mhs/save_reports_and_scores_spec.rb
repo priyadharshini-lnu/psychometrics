@@ -54,7 +54,7 @@ describe Mhs::SaveReportsAndScores do
 
     context 'when reports already have PDFs' do
       before do
-        allow(user_report1).to receive(:pdf?).and_return(true)
+        allow(user_report1).to receive(:pdf_exists?).and_return(true)
       end
 
       it 'skips reports that already have PDFs' do
@@ -115,6 +115,46 @@ describe Mhs::SaveReportsAndScores do
         expect(user_report1).to receive(:update!).with(status: :generating)
         expect(user_report1).to receive(:attach_pdf!)
         expect(user_report1).to receive(:update!).with(external_added: true)
+
+        subject.call
+      end
+    end
+
+    context 'when retry job runs after report was already processed' do
+      let!(:user_report_for_retry) do
+        create(:user_report, user: user_assessment.subject, campaign: campaign, report: report, external_added: false)
+      end
+
+      subject { described_class.new(user_assessment, [user_report_for_retry], retry_count: 1) }
+
+      it 'skips processing if external_added was set by another job' do
+        # Simulate another job completing the report before this retry runs
+        user_report_for_retry.update!(external_added: true)
+
+        expect(Mhs::CreateEnrichmentResult).not_to receive(:call!)
+
+        subject.call
+      end
+
+      it 'skips processing if PDF was attached by another job' do
+        # Simulate PDF being attached by another job
+        allow_any_instance_of(UserReport).to receive(:pdf_exists?).and_return(true)
+
+        expect(Mhs::CreateEnrichmentResult).not_to receive(:call!)
+
+        subject.call
+      end
+
+      it 'reloads user_report to get fresh state from database' do
+        allow(Mhs::CreateEnrichmentResult).to receive(:call!).and_return({
+          pdf: 'https://example.com/test-report.pdf'
+        })
+        allow(Mhs::GetEnrichmentResult).to receive(:call).and_return({
+          ok: { content: 'test pdf content', filename: 'test.pdf' }
+        })
+        allow(user_report_for_retry).to receive(:attach_pdf!)
+
+        expect(user_report_for_retry).to receive(:reload).and_call_original
 
         subject.call
       end
