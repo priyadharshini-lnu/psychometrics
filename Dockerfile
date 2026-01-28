@@ -17,7 +17,8 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 #
 # We're also installing the latest nodejs and lua
 RUN apt-get update -qq && apt-get install -yq --no-install-recommends curl gnupg2 lsb-release python-is-python3 liblua5.4 zlib1g-dev \
-    && curl -sL https://deb.nodesource.com/setup_18.x | bash \
+    && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+    && apt-get install -y nodejs \
 
     # && curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor -o /usr/share/keyrings/yarnkey.gpg \
     # && echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
