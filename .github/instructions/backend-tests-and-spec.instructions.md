@@ -5,8 +5,6 @@ applyTo: 'spec/**/*.rb'
 # Writing spec instruction
 When writing tests for classes, unless specified, only test the public methods. Never be verbose, we need to test the important functionality. No need to write tests for private method calls. The private method calls should be tested indirectly by calling public methods. Avoid mocking of such things instead create data that can be manupulated.
 
-When a test file is modified or a test is modify, end the message with the command that user can use to run the spec.
-
 ## Using comments
 A spec with descirption should
 
