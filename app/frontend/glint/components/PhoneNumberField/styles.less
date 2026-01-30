@@ -1,15 +1,12 @@
 .input {
   margin: 8px 0;
 
-  label {
-    font-weight: 600;
-    &:after {
-      content: ''
-    }
+  & :global(.ant-form-item-label) {
+    padding: 0 0 4px !important;
   }
 
-  & :global(.ant-form-item-row) {
-    flex-direction: column;
+  label {
+    font-weight: 600;
   }
 }
 
