@@ -522,7 +522,7 @@ class VideoRecorder extends Component {
               message={(
                 <Space>
                   <LoadingOutlined />
-                  {I18n.t('assessments.video_response.saving')}
+                  {I18n.t('enduser.saving_video_text')}
                 </Space>
               )}
             />

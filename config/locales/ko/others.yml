@@ -1205,7 +1205,6 @@ ko:
       save: 저장
       saved:
         label: 동영상 저장
-      saving: 저장
       seek: Seek
       start_recording: 녹화 시작
       stop_recording: 녹화 중지

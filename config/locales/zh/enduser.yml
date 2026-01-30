@@ -32,11 +32,15 @@ zh:
     profile_details: 详细信息
     question_counter: 第 %{current} 题，共 %{total} 题
     reason_for_idp_plan_rejection: 拒绝原因
+    recorded: 录制
+    recording: 录音
     reject_idp_plan: 拒绝计划
     request_retry_message: 你已经离线了。你的答案无法保存，但一旦你重新上线，答案将自动保存。请不要刷新或关闭页面。
+    saving_video_text: 正在保存视频......请不要关闭或刷新浏览器
     selected_count: 已选择
     skill_type: 技能类型
     start_campaign_message_proctored: 这是一个监考活动，请点击“%{buttonText}”按钮开始活动。
     start_campaign_message_timed: 这是一个限时活动，请点击“%{buttonText}”按钮开始活动。
     start_campaign_message_timed_proctored: 这是一个限时监考的活动，请点击“%{buttonText}”按钮开始活动。
+    status_unknown: 状态不明
     tasks: 任务

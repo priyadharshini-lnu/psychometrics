@@ -32,11 +32,15 @@ ja:
     profile_details: 詳細
     question_counter: 質問 %{current} / %{total}
     reason_for_idp_plan_rejection: 拒否理由
+    recorded: 録音
+    recording: 録音
     reject_idp_plan: 計画を拒否する
     request_retry_message: あなたはオフラインです。回答は保存できませんでしたが、オンラインに戻ったら自動的に保存されます。ページを更新したり閉じたりしないでください。
+    saving_video_text: ビデオ保存中...ブラウザを閉じたり更新したりしないでください
     selected_count: 選択済み
     skill_type: スキルの種類
     start_campaign_message_proctored: これは監督付きキャンペーンです。活動を開始するには「%{buttonText}」ボタンをクリックしてください。
     start_campaign_message_timed: これは時間制限のあるキャンペーンです。アクティビティを開始するには「%{buttonText}」ボタンをクリックしてください。
     start_campaign_message_timed_proctored: このキャンペーンは時間制限付きで監督制です。活動を開始するには「%{buttonText}」ボタンをクリックしてください。
+    status_unknown: 状況不明
     tasks: タスク

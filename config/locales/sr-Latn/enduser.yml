@@ -32,11 +32,15 @@ sr-Latn:
     profile_details: Detalji
     question_counter: Питање %{current} од %{total}
     reason_for_idp_plan_rejection: Razlog za odbijanje
+    recorded: snimljeno
+    recording: snimanje
     reject_idp_plan: Odbaci plan
     request_retry_message: Vi ste offline. Vaši odgovori se ne mogu sačuvati, ali će biti automatski sačuvani kada se vratite na mrežu. Molimo vas da ne osvežavate ili zatvarate stranicu.
+    saving_video_text: Čuvanje video zapisa ... Molimo vas da ne zatvarate ili osvežavate pretraživač
     selected_count: Izabrano
     skill_type: Tip veštine
     start_campaign_message_proctored: Ovo je kampanja pod nadzorom, kliknite na dugme "%{buttonText}" da biste započeli aktivnosti.
     start_campaign_message_timed: Ovo je vremenska kampanja, kliknite na dugme "%{buttonText}" da biste započeli aktivnosti.
     start_campaign_message_timed_proctored: Ovo je vremenska i nadzorovana kampanja, kliknite na dugme "%{buttonText}" da biste započeli aktivnosti.
+    status_unknown: Status Nepoznat
     tasks: Zadaci

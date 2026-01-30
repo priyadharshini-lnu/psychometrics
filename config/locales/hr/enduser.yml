@@ -32,11 +32,15 @@ hr:
     profile_details: Detalji
     question_counter: Pitanje %{current} od %{total}
     reason_for_idp_plan_rejection: Razlog odbijanja
+    recorded: snimljeno
+    recording: Snimanje
     reject_idp_plan: Plan odbijanja
     request_retry_message: Offline si. Vaši odgovori nisu mogli biti spremljeni, ali će biti automatski spremljeni čim se vratite online. Molimo vas da ne osvježavate niti zatvarate stranicu.
+    saving_video_text: Spremanje videa... Molimo vas da ne zatvarate niti osvježavate preglednik
     selected_count: Odabrano
     skill_type: Vrsta vještine
     start_campaign_message_proctored: Ovo je nadzirana kampanja, molimo kliknite gumb '%{buttonText}' za pokretanje aktivnosti.
     start_campaign_message_timed: Ovo je vremenski ograničena kampanja, molimo kliknite gumb '%{buttonText}' za pokretanje aktivnosti.
     start_campaign_message_timed_proctored: Ovo je vremenski ograničena i nadzirana kampanja, molimo kliknite gumb '%{buttonText}' za početak aktivnosti.
+    status_unknown: Status nepoznat
     tasks: Zadaci

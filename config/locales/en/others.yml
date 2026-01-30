@@ -1208,7 +1208,6 @@ en:
       save: Save
       saved:
         label: Video Saved
-      saving: Saving Video...
       seek: Seek
       start_recording: Start recording
       stop_recording: Stop recording
