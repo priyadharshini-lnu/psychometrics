@@ -2889,13 +2889,13 @@ ar:
         created_by: أنشئ بواسطة
         current_status: الحالة الحالية لخطة التطوير الفردية
         custom: إنشائي
-        custom_count: مخصص
+        custom_count: إنشائي
         da_count: عدد إجراءات التطوير
         formal_learn: التعلم الرسمي
         generated_ai: الذكاء الاصطناعي التوليدي
         learn_on_job: التعلم أثناء العمل
         learn_pathway: مسار التعلم
-        lib_count: مكتبة خطة التطوير الفردية
+        lib_count: مكتبة خطط التطوير
         library: مكتبة خطط التطوير
         skills_count: عدد المهارات
         title: ملخص التقرير
