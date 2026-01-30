@@ -19,13 +19,8 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN apt-get update -qq && apt-get install -yq --no-install-recommends curl gnupg2 lsb-release python-is-python3 liblua5.4 zlib1g-dev \
     && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
     && apt-get install -y nodejs \
-
-    # && curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor -o /usr/share/keyrings/yarnkey.gpg \
-    # && echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
-
-    && curl -fsSL "https://keys.openpgp.org/vks/v1/by-fingerprint/72ECF46A56B4AD39C907BBB71646B01B86E50310" | gpg --dearmor --yes -o /usr/share/keyrings/yarn-archive-keyring.gpg \
-    && echo "deb [signed-by=/usr/share/keyrings/yarn-archive-keyring.gpg] https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
-
+    && corepack enable \
+    && corepack prepare yarn@${YARN_VERSION} --activate \
     && curl -sL https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor -o /usr/share/keyrings/pgdg.gpg \
     && echo "deb [signed-by=/usr/share/keyrings/pgdg.gpg] http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
     && apt-get clean \
@@ -33,8 +28,7 @@ RUN apt-get update -qq && apt-get install -yq --no-install-recommends curl gnupg
 
 
 RUN apt-get update -qq &&  apt-get install -yq --no-install-recommends build-essential git ruby-dev libpq-dev \
-    postgresql-client nodejs shared-mime-info imagemagick libjemalloc2 libyaml-dev pkg-config \
-    && apt-get install -yq yarn --no-install-recommends \
+    postgresql-client-11 nodejs shared-mime-info imagemagick libjemalloc2 libyaml-dev pkg-config \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -172,7 +166,7 @@ RUN apt-get update -qq && apt-get install -yq --no-install-recommends curl gnupg
     && curl -sL https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor -o /usr/share/keyrings/pgdg.gpg \
     && echo "deb [signed-by=/usr/share/keyrings/pgdg.gpg] http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
     && apt-get update -qq &&  apt-get install -yq --no-install-recommends build-essential libpq-dev \
-    postgresql-client shared-mime-info imagemagick liblua5.4 \
+    postgresql-client-11 shared-mime-info imagemagick liblua5.4 \
     && gem update --system && gem install bundler -v $BUNDLER_VERSION \
     && apt-get --purge remove build-essential libpq-dev -y -qq \
     && apt-get clean \
