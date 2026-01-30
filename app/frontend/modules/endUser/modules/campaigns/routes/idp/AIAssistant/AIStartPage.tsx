@@ -1,25 +1,16 @@
 import {
-  Button, Flex, Typography, Spin,
+  Button, Flex, Spin,
 } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { connect, useSelector } from 'react-redux'
 import { RootState } from '~/modules/endUser/core/rootReducers'
-import { RocketLaunchIcon } from '~/glint/icons'
-
 import { SafeHTML } from '~/components/SafeHTML'
-import { Separator } from '~/components/IdpShared/Separator'
 import { fetchUserIdpPlan } from '~/modules/endUser/modules/campaigns/core/idp/userIdpPlan'
 import IdpPageLayoutWrapper from '~/components/IdpShared/IdpPageLayoutWrapper'
 import styles from './AIStartPage.less'
 
 const { I18n } = window
-
-const LaunchIcon = () => (
-  <div className={`${styles.iconContainer} flex justify-center items-center`}>
-    <RocketLaunchIcon height="3em" width="3em" />
-  </div>
-)
 
 const connector = connect((state: RootState) => ({
   skillGapReportAvailable: state.campaigns.idp.skillGapReportAvailable,
@@ -49,13 +40,6 @@ export const AIStartPageComponent = ({ fetchUserIdpPlan, skillGapReportAvailable
         : (
           <Flex vertical className="ms-4 me-4">
             <Flex vertical align="center" justify="center" className="ta-c">
-              <Flex vertical justify="center" align="center" className="mt-8 mb-4">
-                <LaunchIcon />
-                <Typography.Title className="mb-0" level={4}>
-                  {I18n.t('idp.initial_steps.getting_started')}
-                </Typography.Title>
-              </Flex>
-              <Separator className="mb-4 mt-0" />
               <section className={styles.contentContainer}>
                 <SafeHTML html={introMessage} config="adminRichText" />
               </section>

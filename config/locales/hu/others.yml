@@ -1205,7 +1205,6 @@ hu:
       save: Mentés
       saved:
         label: Megtakarított videó
-      saving: Videó mentése...
       seek: Keres
       start_recording: Felvétel indítása
       stop_recording: Felvétel leállítása

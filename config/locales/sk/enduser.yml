@@ -32,11 +32,15 @@ sk:
     profile_details: Podrobnosti profilu
     question_counter: Otázka %{current} z %{total}
     reason_for_idp_plan_rejection: Dôvod odmietnutia
+    recorded: Nahrané
+    recording: Nahrávanie
     reject_idp_plan: Plán odmietnuť
     request_retry_message: Si offline. Vaše odpovede sa nedajú uložiť automaticky, keď sa opäť pripojíte. Prosím, neobnovujte ani nezatvárajte stránku.
+    saving_video_text: Ukladanie videa... Prosím, nezatvárajte ani neobnovujte prehliadač
     selected_count: Vybrané
     skill_type: Typ zručnosti
     start_campaign_message_proctored: Toto je dozorovaná kampaň, kliknite prosím na tlačidlo '%{buttonText}' pre spustenie aktivít.
     start_campaign_message_timed: Toto je časovo obmedzená kampaň, kliknite prosím na tlačidlo '%{buttonText}' pre spustenie aktivít.
     start_campaign_message_timed_proctored: Ide o časovo obmedzenú a dozorovanú kampaň, kliknite prosím na tlačidlo '%{buttonText}' pre spustenie aktivít.
+    status_unknown: Stav neznámy
     tasks: Úlohy

@@ -1248,7 +1248,6 @@ ar:
       save: حفظ
       saved:
         label: تم الحفظ
-      saving: جاري الحفظ
       seek: نشد
       start_recording: ابدأ التسجيل
       stop_recording: توقف عن التسجيل
@@ -2675,7 +2674,7 @@ ar:
       create_development_actions_with_ai: إنشاء إجراءات التطوير باستخدام الذكاء الاصطناعي
       create_from_ai: الإنشاء من الذكاء الاصطناعي
       create_my_own: إنشاء خاص بي
-      custom: تقليد
+      custom: إنشائي
       custom_da_description: قم بإنشاء إجراء تطوير مخصص لتلبية احتياجات التطوير الفريدة.
       date_range: تاريخ البداية - تاريخ النهاية
       development_action_learning_style: أسلوب التعلم العملي التنموي
@@ -2693,7 +2692,7 @@ ar:
       generative_ai: الذكاء الاصطناعي التوليدي
       generative_ai_description_msg: دع الذكاء الاصطناعي ينشئ إجراء تطوير مخصصا لك فقط
       heading: إجراءات التطوير
-      idp_library: مكتبة آي دي بي
+      idp_library: مكتبة خطط التطوير
       idp_library_description: حدد إجراء تطويري مثبت من مكتبتنا المنسقة من قبل الخبراء.
       incomplete_error: إجراءات تطويرية غير مكتملة
       incomplete_error_message: بعض إجراءات التطوير غير مكتملة. يرجى إكمالها قبل تقديم خطة التطوير الفردية الخاصة بك.
@@ -2893,21 +2892,21 @@ ar:
         collaborative_learn: التعلم التعاوني
         created_by: أنشئ بواسطة
         current_status: الحالة الحالية لخطة التطوير الفردية
-        custom: مخصص
-        custom_count: مخصص
+        custom: إنشائي
+        custom_count: إنشائي
         da_count: عدد إجراءات التطوير
         formal_learn: التعلم الرسمي
         generated_ai: الذكاء الاصطناعي التوليدي
         learn_on_job: التعلم أثناء العمل
         learn_pathway: مسار التعلم
-        lib_count: مكتبة خطة التطوير الفردية
-        library: مكتبة خطة التطوير الفردية
+        lib_count: مكتبة خطط التطوير
+        library: مكتبة خطط التطوير
         skills_count: عدد المهارات
         title: ملخص التقرير
     plan: خطة
     plan_status: حالة الباقة %{status}
     plan_submitted_for_manager_approval: تم تقديم خطة التطوير الفردية الخاصة بك لموافقة المدير.
-    private: عسكري
+    private: خاص
     public: عام
     reason_for_rejection: سبب الرفض
     reflective_questions:

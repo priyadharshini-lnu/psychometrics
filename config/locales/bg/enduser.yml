@@ -32,11 +32,15 @@ bg:
     profile_details: Подробности
     question_counter: Въпрос %{current} от %{total}
     reason_for_idp_plan_rejection: Причина за отказ на плана
+    recorded: Записан
+    recording: Запис
     reject_idp_plan: Отхвърляне на плана
     request_retry_message: Ти си офлайн. Отговорите ви не могат да бъдат запазени, но ще бъдат запазени автоматично, след като сте отново онлайн. Моля, не обновявайте и не затваряйте страницата.
+    saving_video_text: Запазвам видео... Моля, не затваряйте и не обновявайте браузъра
     selected_count: Избран
     skill_type: Тип умение
     start_campaign_message_proctored: Това е кампания с проктор, моля, натиснете бутона '%{buttonText}', за да започнете дейностите.
     start_campaign_message_timed: Това е кампания с ограничено време, моля, натиснете бутона '%{buttonText}', за да започнете дейностите.
     start_campaign_message_timed_proctored: Това е кампания с ограничено време и наблюдение, моля, натиснете бутона '%{buttonText}', за да започнете дейностите.
+    status_unknown: Статус неизвестен
     tasks: Задачи

@@ -1205,7 +1205,6 @@ sl:
       save: Shrani
       saved:
         label: Posnetek je shranjen
-      saving: Shranjevanje posnetka...
       seek: Iskati
       start_recording: Začetek snemanja
       stop_recording: Konec snemanja

@@ -32,11 +32,15 @@ en-US:
     profile_details: Details
     question_counter: Question %{current} of %{total}
     reason_for_idp_plan_rejection: Reason for Rejection
+    recorded: recorded
+    recording: recording
     reject_idp_plan: Reject Plan
     request_retry_message: You are offline. Your answers could not be saved but will be saved automatically once you are back online. Please do not refresh or close the page.
+    saving_video_text: Saving Video... Please do not close or refresh the browser
     selected_count: Selected
     skill_type: Skill Type
     start_campaign_message_proctored: This is a proctored campaign, please click '%{buttonText}' button to start the activities.
     start_campaign_message_timed: This is a timed campaign, please click '%{buttonText}' button to start the activities.
     start_campaign_message_timed_proctored: This is a timed and proctored campaign, please click '%{buttonText}' button to start the activities.
+    status_unknown: Status Unknown
     tasks: Tasks

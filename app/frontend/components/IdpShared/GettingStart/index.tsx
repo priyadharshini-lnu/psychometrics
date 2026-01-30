@@ -1,8 +1,7 @@
 import {
-  Typography, Flex,
+  Flex,
 } from 'antd'
 import { ButtonWithArrow } from '~/glint'
-import { RocketLaunchIcon } from '~/glint/icons'
 import styles from './GettingStart.less'
 import { SafeHTML } from '~/components/SafeHTML'
 import { Separator } from '../Separator'
@@ -11,11 +10,6 @@ const { I18n } = window
 
 export const GettingStart = ({ next, introMessage }) => (
   <Flex vertical align="center" justify="center" className="ta-c">
-    <Flex vertical justify="center" align="center" className="mt-8 mb-4">
-      <LaunchIcon />
-      <Typography.Title className="mb-0" level={4}>{I18n.t('idp.initial_steps.getting_started')}</Typography.Title>
-    </Flex>
-    <Separator className="mb-4 mt-0" />
     <section className={styles.contentContainer}>
       <SafeHTML html={introMessage} config="adminRichText" />
     </section>
@@ -31,10 +25,4 @@ export const GettingStart = ({ next, introMessage }) => (
       />
     </div>
   </Flex>
-)
-
-const LaunchIcon = () => (
-  <div className={`${styles.iconContainer} flex justify-center items-center`}>
-    <RocketLaunchIcon aria-hidden="true" height="3em" width="3em" />
-  </div>
 )

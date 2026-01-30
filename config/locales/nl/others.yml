@@ -1205,7 +1205,6 @@ nl:
       save: Sla
       saved:
         label: Video opgeslagen
-      saving: Video opslaan...
       seek: Zoek
       start_recording: Opname starten
       stop_recording: Opname stoppen

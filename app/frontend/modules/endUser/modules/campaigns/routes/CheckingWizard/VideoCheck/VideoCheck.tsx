@@ -285,7 +285,7 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
   )
 
   const renderButtons = () => {
-    if (state.access !== CheckListStatus.Failed) {
+    if (state.uploading !== CheckListStatus.Failed) {
       return (
         <Space className="m-12">
           {isAccessDone && (

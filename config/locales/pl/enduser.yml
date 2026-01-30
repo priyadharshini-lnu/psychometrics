@@ -32,11 +32,15 @@ pl:
     profile_details: Szczegóły
     question_counter: Pytanie %{current} z %{total}
     reason_for_idp_plan_rejection: Powód odrzucenia
+    recorded: Nagranie
+    recording: Nagrania
     reject_idp_plan: Plan Odrzucenia
     request_retry_message: Jesteś offline. Twoje odpowiedzi nie mogły zostać zapisane, ale zostaną zapisane automatycznie po powrocie do sieci. Prosimy nie odświeżać ani nie zamykać strony.
+    saving_video_text: Zapisywanie wideo... Prosimy nie zamykać ani nie odświeżać przeglądarki
     selected_count: Wybrane
     skill_type: Typ umiejętności
     start_campaign_message_proctored: To jest kampania nadzorowana, kliknij przycisk '%{buttonText}', aby rozpocząć aktywność.
     start_campaign_message_timed: To jest kampania na czas, kliknij przycisk '%{buttonText}', aby rozpocząć aktywności.
     start_campaign_message_timed_proctored: To jest kampania z nadzorem czasowym i nadzorowana, prosimy kliknąć przycisk '%{buttonText}', aby rozpocząć aktywności.
+    status_unknown: Status nieznany
     tasks: Zadania

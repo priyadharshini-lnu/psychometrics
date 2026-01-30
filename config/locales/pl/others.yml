@@ -1205,7 +1205,6 @@ pl:
       save: Zapisz
       saved:
         label: Zapisane wideo
-      saving: Zapisywanie wideo...
       seek: Szukać
       start_recording: Rozpocznij nagrywanie
       stop_recording: Zatrzymaj nagrywanie
