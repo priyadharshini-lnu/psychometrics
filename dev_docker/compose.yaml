@@ -1,0 +1,53 @@
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: ./dev_docker/Dockerfile
+    ports:
+      - "3000:3000"
+      - "5173:5173"
+    command: bundle exec puma -t 3:3 -p "${PORT:-3000}" -e "${RACK_ENV:-production}"
+    env_file:
+      - ./.env.local
+#    mem_limit: 8g
+#    cpus: 4.0
+
+  worker:
+    build:
+      context: ..
+      dockerfile: ./dev_docker/Dockerfile
+    command: bundle exec sidekiq -C ./config/sidekiq.yml
+    env_file:
+      - ./.env.local
+
+  minio:
+    image: minio/minio
+    container_name: minio
+    env_file:
+      - ./.env.local
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  minio-init:
+    image: minio/mc
+    depends_on:
+      minio:
+        condition: service_healthy
+    volumes:
+      - ./minio-init.sh:/usr/local/bin/minio-init.sh:ro
+    entrypoint: ["/bin/sh"]
+    command: ["/usr/local/bin/minio-init.sh"]
+    env_file:
+      - ./.env.local
+
+volumes:
+  minio_data:
