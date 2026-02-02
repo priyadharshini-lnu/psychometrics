@@ -433,6 +433,7 @@ const ScoringGroupsComponent = (props: Props) => {
     }).then(() => {
       fetchAndUpdateFactors()
       handleFormClose()
+      message.success(I18n.t('admin.update_success', { readableResourceName: 'Campaign factors' }))
     })
   }
 
