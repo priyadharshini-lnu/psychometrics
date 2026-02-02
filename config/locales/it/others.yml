@@ -1205,7 +1205,6 @@ it:
       save: Salva
       saved:
         label: Video salvato
-      saving: Salvataggio dei video...
       seek: Cercare
       start_recording: Avviare la registrazione
       stop_recording: Interrompere la registrazione

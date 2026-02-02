@@ -23,7 +23,7 @@ class StatusText extends videojs.getComponent('Component') {
 
   updateTextContent (text) {
     if (typeof text !== 'string') {
-      text = 'Status unknown'
+      text = I18n.t('enduser.status_unknown')
     }
 
     const oldNode = this.textNode
@@ -61,7 +61,15 @@ class StatusText extends videojs.getComponent('Component') {
     }
 
     this.contentEl.parentElement.classList.remove('default')
-    this.updateTextContent(detail.status)
+
+    let translatedStatus = detail.status
+    if (detail.status === 'recording') {
+      translatedStatus = I18n.t('enduser.recording')
+    } else if (detail.status === 'recorded') {
+      translatedStatus = I18n.t('enduser.recorded')
+    }
+
+    this.updateTextContent(translatedStatus)
   }
 }
 

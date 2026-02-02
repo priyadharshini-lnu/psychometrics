@@ -28,6 +28,8 @@ const AssessmentProperties: React.FC<Props> = ({
         value={selectedValue}
         onChange={option => option && changeAssessment(option.value)}
         isClearable={false}
+        menuPortalTarget={document.body}
+        styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
       />
     </div>
   )

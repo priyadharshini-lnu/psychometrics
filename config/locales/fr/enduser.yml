@@ -32,11 +32,15 @@ fr:
     profile_details: Détails
     question_counter: Question %{current} sur %{total}
     reason_for_idp_plan_rejection: Raison du rejet
+    recorded: Enregistré
+    recording: Enregistrement
     reject_idp_plan: Plan de rejet
     request_retry_message: Tu es hors ligne. Vos réponses n’ont pas pu être sauvegardées mais le seront automatiquement une fois que vous serez de nouveau en ligne. Merci de ne pas actualiser ni fermer la page.
+    saving_video_text: Sauvegarde vidéo... Merci de ne pas fermer ni rafraîchir le navigateur
     selected_count: Sélectionné
     skill_type: Type de compétence
     start_campaign_message_proctored: Il s’agit d’une campagne surveillée, veuillez cliquer sur le bouton « %{buttonText} » pour lancer les activités.
     start_campaign_message_timed: Il s’agit d’une campagne chronométrée, veuillez cliquer sur le bouton « %{buttonText} » pour lancer les activités.
     start_campaign_message_timed_proctored: Il s’agit d’une campagne chronométrée et surveillée, veuillez cliquer sur le bouton « %{buttonText} » pour lancer les activités.
+    status_unknown: Statut inconnu
     tasks: Tâches

@@ -32,11 +32,15 @@ ko:
     profile_details: 세부 정보
     question_counter: 질문 %{current} / %{total}
     reason_for_idp_plan_rejection: 거절 이유
+    recorded: 녹음
+    recording: 녹음
     reject_idp_plan: 계획 거부
     request_retry_message: 당신은 오프라인입니다. 답변은 저장할 수 없었지만, 다시 온라인에 접속하면 자동으로 저장됩니다. 페이지를 새로고침하거나 닫지 말아 주세요.
+    saving_video_text: 비디오 저장 중... 브라우저를 닫거나 새로고침하지 마세요
     selected_count: 선택됨
     skill_type: 스킬 유형
     start_campaign_message_proctored: 이 캠페인은 감독 캠페인입니다. 활동을 시작하려면 '%{buttonText}' 버튼을 클릭해 주세요.
     start_campaign_message_timed: 이 캠페인은 시간 제한이 있는 캠페인입니다. 활동을 시작하려면 '%{buttonText}' 버튼을 클릭해 주세요.
     start_campaign_message_timed_proctored: 이 캠페인은 시간 제한과 감독 방식으로 진행되며, 활동을 시작하려면 '%{buttonText}' 버튼을 클릭해 주세요.
+    status_unknown: 상태 미상
     tasks: 작업
