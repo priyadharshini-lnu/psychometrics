@@ -82,16 +82,17 @@ export const AddEditMettlScheduleRecordModal: React.FC<Props> = ({
                 >
                   <Select
                     disabled={!!mettlScheduleRecord}
-                    showSearch
-                    onSearch={(value) => {
-                      fetchAssessments({
-                        apiConfig: {
-                          filter: { category_eq: 'mettl', filterable_fields: value, project_id_eq: projectId },
-                        },
-                      })
+                    showSearch={{
+                      filterOption: false,
+                      onSearch: (value) => {
+                        fetchAssessments({
+                          apiConfig: {
+                            filter: { category_eq: 'mettl', filterable_fields: value, project_id_eq: projectId },
+                          },
+                        })
+                      },
                     }}
-                    notFoundContent={assessmentsLoading ? <Spin size="small" /> : null}
-                    filterOption={false}
+                    notFoundContent={assessmentsLoading ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
                   >
                     {getAssessments().map(({ id, name }) => (
                       <Select.Option key={id} value={id}>

@@ -81,6 +81,7 @@ vi:
     campaign_assessment_modals_enable_caching_title: Bật bộ nhớ đệm đánh giá?
     campaign_factors: Các yếu tố chiến dịch
     campaign_templates: Mẫu chiến dịch
+    campaign_user_job_roles_cannot_be_same: Vị trí công việc mục tiêu phải khác với vị trí công việc hiện tại.
     campaigns: Chiến dịch
     client: Khách hàng thuê nhà
     client_admins: Quản trị viên khách hàng

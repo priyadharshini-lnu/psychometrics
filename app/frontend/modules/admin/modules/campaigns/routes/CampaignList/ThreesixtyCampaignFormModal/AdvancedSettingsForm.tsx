@@ -395,9 +395,7 @@ const AdvancedSettingsForm = ({
             >
               <Select
                 onChange={handleCampaignTemplateChange}
-                showSearch
-                filterOption={false}
-                onSearch={handleTemplateSearch}
+                showSearch={{ filterOption: false, onSearch: handleTemplateSearch }}
                 options={(campaignTemplatesData || []).map(template => ({
                   value: template.id,
                   label: template.name,
@@ -410,10 +408,8 @@ const AdvancedSettingsForm = ({
                 label={I18n.t('administration.campaigns.modals.create_threesixity.advance_settings.factors')}
               >
                 <Select
-                  onSearch={handleSearch}
-                  showSearch
+                  showSearch={{ filterOption: false, onSearch: handleSearch }}
                   suffixIcon={<SearchOutlined />}
-                  filterOption={false}
                   notFoundContent={factorsSelectDropdownEmptyState}
                   onChange={handleFactorChange}
                   options={(factors || []).map(f => ({

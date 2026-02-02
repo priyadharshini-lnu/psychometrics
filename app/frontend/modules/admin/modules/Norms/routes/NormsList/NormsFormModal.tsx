@@ -95,14 +95,15 @@ export const NormsFormModalComponent: React.FC<Props> = ({
             initialValue={norm?.owner?.id || null}
           >
             <Select
-              showSearch
-              onSearch={(value) => {
-                fetchClients({
-                  apiConfig: { filter: { filterable_fields: value }, fields: { clients: ['name'] } },
-                })
+              showSearch={{
+                filterOption: false,
+                onSearch: (value) => {
+                  fetchClients({
+                    apiConfig: { filter: { filterable_fields: value }, fields: { clients: ['name'] } },
+                  })
+                },
               }}
-              notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : null}
-              filterOption={false}
+              notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >
               {isSuperAdmin(currentUser) && <Select.Option>{I18n.t('administration.tte')}</Select.Option>}
               {getClients().map(({ id, name }) => (
@@ -117,14 +118,15 @@ export const NormsFormModalComponent: React.FC<Props> = ({
             rules={[{ required: true }]}
           >
             <Select
-              showSearch
-              onSearch={(value) => {
-                fetchDimensions({
-                  apiConfig: { filter: { filterable_fields: value }, fields: { dimensions: ['name'] } },
-                })
+              showSearch={{
+                filterOption: false,
+                onSearch: (value) => {
+                  fetchDimensions({
+                    apiConfig: { filter: { filterable_fields: value }, fields: { dimensions: ['name'] } },
+                  })
+                },
               }}
-              notFoundContent={isDimensionsLoading('fetch') ? <Spin size="small" /> : null}
-              filterOption={false}
+              notFoundContent={isDimensionsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >
               {getDimensions().map(({ id, name }) => (
                 <Select.Option key={id} value={id}>{name}</Select.Option>

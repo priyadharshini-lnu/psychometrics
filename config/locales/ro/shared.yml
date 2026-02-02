@@ -9,6 +9,7 @@ ro:
     agree_and_continue: Acceptă și continuă
     archive: Arhivă
     archived: Arhivate
+    asset_not_present: Activul nu este prezent
     audio: Audio
     authentication_failed: Autentificarea a eșuat. Vă rog să încercați din nou.
     basic: Bază
@@ -53,6 +54,7 @@ ro:
     na_text: Nu se aplică
     name: Nume
     new: Nou
+    no_results_found: Nu s-au găsit rezultate
     not_requested: Nu a fost încă solicitat
     ok: Bine
     pending: În așteptare

@@ -262,13 +262,11 @@ const DetailsDrawerComponent: FC<Props> = ({
                           style={{ marginBottom: 0 }}
                         >
                           <Select
-                            showSearch
+                            showSearch={{ filterOption: false, onSearch: debouncedFetchSkills }}
                             loading={isSkillsLoading('fetch')}
-                            onSearch={(value) => {
-                              debouncedFetchSkills(value)
-                            }}
-                            notFoundContent={isSkillsLoading('fetch') ? <Spin size="small" /> : null}
-                            filterOption={false}
+                            notFoundContent={
+                              isSkillsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')
+                            }
                             options={getSkills().map(p => ({
                               value: p.id,
                               label: p.name,

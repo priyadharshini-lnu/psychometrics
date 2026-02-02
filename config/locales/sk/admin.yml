@@ -81,6 +81,7 @@ sk:
     campaign_assessment_modals_enable_caching_title: Povoliť cache hodnotenia?
     campaign_factors: Faktory kampane
     campaign_templates: Šablóny kampaní
+    campaign_user_job_roles_cannot_be_same: Cieľová pracovná pozícia sa musí líšiť od súčasnej pracovnej pozície.
     campaigns: Kampane
     client: Prenájom klienta
     client_admins: Správcovia klientov

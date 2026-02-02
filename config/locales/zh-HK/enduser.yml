@@ -13,6 +13,7 @@ zh-HK:
     campaign: 活动
     development: 发展
     direct_reportees: 直接下属
+    download_pdf: 下载PDF
     home: 首页
     idp_loading_fifth_step: 从模板中获取开发操作
     idp_loading_first_step: 分析您的评估报告
@@ -31,11 +32,15 @@ zh-HK:
     profile_details: 详情
     question_counter: 问题 %{current} 来自 %{total}
     reason_for_idp_plan_rejection: 拒绝原因
+    recorded: 记录
+    recording: 录音
     reject_idp_plan: 拒绝计划
     request_retry_message: 您当前处于离线状态。您的答案未能保存，但将在您重新上线后自动保存。请勿刷新或关闭页面。
+    saving_video_text: 正在保存视频... 请勿关闭或刷新浏览器
     selected_count: "%{count} 选定"
     skill_type: 技能类型
     start_campaign_message_proctored: 这是一项监考活动，请点击“%{buttonText}”按钮开始活动。
     start_campaign_message_timed: 这是一项限时活动，请点击“%{buttonText}”按钮开始参与。
     start_campaign_message_timed_proctored: 这是一项限时且受监考的活动，请点击“%{buttonText}”按钮开始参与。
+    status_unknown: 状态未知
     tasks: 任务

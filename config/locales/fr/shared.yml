@@ -9,6 +9,7 @@ fr:
     agree_and_continue: Acceptez et continuez
     archive: Archives
     archived: Archivé
+    asset_not_present: Actif non présent
     audio: Audio
     authentication_failed: L’authentification a échoué. Veuillez réessayer.
     basic: Basique
@@ -53,6 +54,7 @@ fr:
     na_text: Sans objet
     name: Nom
     new: Nouveau
+    no_results_found: Aucun résultat trouvé
     not_requested: Pas encore demandé
     ok: Ok
     pending: En attente

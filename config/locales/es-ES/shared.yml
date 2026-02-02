@@ -9,6 +9,7 @@ es-ES:
     agree_and_continue: Acepta y continúa
     archive: Archivar
     archived: Archivado
+    asset_not_present: Activo no presente
     audio: Audio
     authentication_failed: Fallo de autenticación. Por favor, inténtalo de nuevo.
     basic: Básico
@@ -53,6 +54,7 @@ es-ES:
     na_text: N/A
     name: Nombre
     new: Nuevo/a
+    no_results_found: No se han encontrado resultados.
     not_requested: Aún no solicitado
     ok: De acuerdo
     pending: Pendiente

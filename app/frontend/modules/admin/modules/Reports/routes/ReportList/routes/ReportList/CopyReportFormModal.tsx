@@ -95,14 +95,15 @@ const CopyReportFormModal: React.FC<Props> = ({
             initialValue={report?.owner?.id || null}
           >
             <Select
-              showSearch
-              onSearch={(value) => {
-                fetchClients({
-                  apiConfig: { filter: { filterable_fields: value }, fields: { clients: ['name'] } },
-                })
+              showSearch={{
+                filterOption: false,
+                onSearch: (value) => {
+                  fetchClients({
+                    apiConfig: { filter: { filterable_fields: value }, fields: { clients: ['name'] } },
+                  })
+                },
               }}
-              notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : null}
-              filterOption={false}
+              notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >
               {isSuperAdmin(currentUser) && <Select.Option>TTE</Select.Option>}
               {getClients().map(({ id, name }) => (

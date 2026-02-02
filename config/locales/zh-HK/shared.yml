@@ -9,6 +9,7 @@ zh-HK:
     agree_and_continue: 同意並繼續
     archive: 檔案
     archived: 已存檔
+    asset_not_present: 资产不存在
     audio: 音频
     authentication_failed: 驗證失敗。請再試一次。
     basic: 基本
@@ -53,6 +54,7 @@ zh-HK:
     na_text: 不适用
     name: 名字
     new: 新
+    no_results_found: 未找到任何结果
     not_requested: 尚未请求
     ok: 好
     pending: 待定

@@ -363,21 +363,22 @@ const AddEditDrawerComponent: FC<Props> = ({
                     }}
                     onFocus={() => setUserSelectOpen(true)}
                     onBlur={() => setUserSelectOpen(false)}
-                    showSearch
-                    onSearch={(value) => {
-                      setUserSelectOpen(true)
-                      fetchUsers({
-                        apiConfig: {
-                          filter: { search_query: value, admins: 'true' },
-                          fields: { users: ['id', 'email', 'first_name', 'last_name'] },
-                        },
-                      })
+                    showSearch={{
+                      filterOption: (input, option) => {
+                        const optionText = typeof option?.children === 'string' ? option.children : ''
+                        return optionText.toLowerCase().includes(input.trim().toLowerCase())
+                      },
+                      onSearch: (value) => {
+                        setUserSelectOpen(true)
+                        fetchUsers({
+                          apiConfig: {
+                            filter: { search_query: value, admins: 'true' },
+                            fields: { users: ['id', 'email', 'first_name', 'last_name'] },
+                          },
+                        })
+                      },
                     }}
-                    notFoundContent={isUserLoading('fetch') ? <Spin size="small" /> : null}
-                    filterOption={(input, option) => {
-                      const optionText = typeof option?.children === 'string' ? option.children : ''
-                      return optionText.toLowerCase().includes(input.trim().toLowerCase())
-                    }}
+                    notFoundContent={isUserLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
                   >
                     {users.map(({ id, email }) => (
                       <Option key={id} value={id}>
@@ -429,7 +430,9 @@ const AddEditDrawerComponent: FC<Props> = ({
                   open={adminRolesOpen}
                   onFocus={() => setAdminRolesOpen(true)}
                   onBlur={() => setAdminRolesOpen(false)}
-                  notFoundContent={isAdminRolesLoading('fetch') ? <Spin size="small" /> : null}
+                  notFoundContent={
+                    isAdminRolesLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')
+                  }
                 />
               </Form.Item>
             ) : null}

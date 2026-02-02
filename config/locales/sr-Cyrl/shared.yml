@@ -9,6 +9,7 @@ sr-Cyrl:
     agree_and_continue: Слажем се и настави
     archive: Архива чланака
     archived: Архивирано
+    asset_not_present: Имовина није присутна
     audio: Аудио
     authentication_failed: Аутентификација није успела. Покушајте поново.
     basic: Основне
@@ -53,6 +54,7 @@ sr-Cyrl:
     na_text: Н/А
     name: Име
     new: Нови
+    no_results_found: Није пронађено ниједно резултат
     not_requested: Још није затражено
     ok: У реду
     pending: У току

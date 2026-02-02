@@ -9,6 +9,7 @@ th:
     agree_and_continue: ตกลงและดําเนินการต่อ
     archive: เก็บถาวร
     archived: เก็บเข้าคลัง
+    asset_not_present: ไม่มีสินทรัพย์
     audio: เสียง
     authentication_failed: การรับรองความถูกต้องล้มเหลว โปรดลองอีกครั้ง
     basic: พื้นฐาน
@@ -53,6 +54,7 @@ th:
     na_text: ไม่เกี่ยวข้อง
     name: ชื่อ
     new: ใหม่
+    no_results_found: ไม่พบผลลัพธ์
     not_requested: ยังไม่ได้ร้องขอ
     ok: ตกลง
     pending: รอดำเนินการ

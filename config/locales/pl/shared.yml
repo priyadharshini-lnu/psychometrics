@@ -9,6 +9,7 @@ pl:
     agree_and_continue: Zgadzam się i kontynuuj
     archive: Archiwuj
     archived: Archiwizowane
+    asset_not_present: Brak zasobów
     audio: Audio
     authentication_failed: Uwierzytelnianie się nie powiodło. Proszę, spróbuj ponownie.
     basic: Podstawowy
@@ -53,6 +54,7 @@ pl:
     na_text: Nie dotyczy
     name: Nazwa
     new: Nowy
+    no_results_found: Nie znaleziono żadnych wyników
     not_requested: Jeszcze nie zgłoszone
     ok: Ok
     pending: W toku

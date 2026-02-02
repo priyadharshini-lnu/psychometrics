@@ -9,6 +9,7 @@ hr:
     agree_and_continue: Slažem se i nastavi
     archive: Arhiva
     archived: Arhivirano
+    asset_not_present: Imovina nije prisutna
     audio: Audio
     authentication_failed: Autentifikacija nije uspjela. Molim te, pokušaj ponovno.
     basic: Osnovni
@@ -53,6 +54,7 @@ hr:
     na_text: Ne primjenjivo
     name: Ime
     new: Novi
+    no_results_found: Nisu pronađeni rezultati
     not_requested: Još nije zatraženo
     ok: U redu
     pending: U čekanju

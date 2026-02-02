@@ -109,12 +109,10 @@ export const TagFilter: FC<Props> = ({
         placeholder={placeholder || defaultPlaceholder}
         value={null} // Set value to null to clear the input field
         onChange={handleTagSelect}
-        onSearch={handleInputChange}
         style={{ minWidth: '200px' }}
-        showSearch
-        filterOption={false}
+        showSearch={{ filterOption: false, onSearch: handleInputChange }}
         defaultActiveFirstOption={false}
-        notFoundContent={isTagsLoading('fetch') ? <Spin size="small" /> : null}
+        notFoundContent={isTagsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
       >
         {/* Display only the filtered options */}
         {dropdownOptions.map(({ name }) => (

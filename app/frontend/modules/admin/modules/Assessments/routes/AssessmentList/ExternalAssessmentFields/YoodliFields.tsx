@@ -42,17 +42,18 @@ export const YoodliFields: React.FC<{
       >
         <Select
           disabled={!!assessment}
-          showSearch
-          onSearch={(value) => {
-            fetchProjects({
-              apiConfig: {
-                filter: { filterable_fields: value, has_integration: 'yoodli' },
-                fields: { clients: ['name'] },
-              },
-            })
+          showSearch={{
+            filterOption: false,
+            onSearch: (value) => {
+              fetchProjects({
+                apiConfig: {
+                  filter: { filterable_fields: value, has_integration: 'yoodli' },
+                  fields: { clients: ['name'] },
+                },
+              })
+            },
           }}
           notFoundContent={projectIsLoading('fetch') ? 'Loading...' : null}
-          filterOption={false}
         >
           {getProjects().map(({ id, name }) => (
             <Select.Option key={id} value={id}>{name}</Select.Option>

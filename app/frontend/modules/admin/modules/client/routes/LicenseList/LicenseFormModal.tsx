@@ -91,15 +91,21 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
               rules={[{ required: form.getFieldValue('type') === 'common' }]}
             >
               <Select
-                showSearch
-                disabled={!!license}
-                onSearch={(value) => {
-                  fetchReportFamilies({
-                    apiConfig: { fields: { report_families: ['id', 'name'] }, filter: { name_cont: value } },
-                  })
+                showSearch={{
+                  filterOption: false,
+                  onSearch: (value) => {
+                    fetchReportFamilies({
+                      apiConfig: {
+                        fields: { report_families: ['id', 'name'] },
+                        filter: { name_cont: value },
+                      },
+                    })
+                  },
                 }}
-                notFoundContent={isReportFamilyLoading('fetch') ? <Spin size="small" /> : null}
-                filterOption={false}
+                disabled={!!license}
+                notFoundContent={
+                  isReportFamilyLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')
+                }
               >
                 {reportFamilyOpts.map(({ id, name }) => (
                   <Select.Option key={id} value={id}>

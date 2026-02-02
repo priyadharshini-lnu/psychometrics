@@ -28,9 +28,8 @@ export const SavilleFields: React.FC<{
         rules={[{ required: true }]}
       >
         <Select
-          notFoundContent={isLoading('fetch') ? <Spin size="small" /> : null}
-          showSearch
-          optionFilterProp="label"
+          notFoundContent={isLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
+          showSearch={{ optionFilterProp: 'label' }}
           onSelect={(value) => {
             const selectedOption = externalAssessments.find(option => option.id === value)
 

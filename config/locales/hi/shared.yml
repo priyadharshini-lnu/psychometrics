@@ -9,6 +9,7 @@ hi:
     agree_and_continue: सहमत हूँ और जारी रखें
     archive: संग्रह
     archived: संचित
+    asset_not_present: संपत्ति मौजूद नहीं है
     audio: ऑडियो
     authentication_failed: प्रमाणीकरण विफल हो गया। कृपया फिर से प्रयास करें।
     basic: मूलभूत
@@ -53,6 +54,7 @@ hi:
     na_text: लागू नहीं
     name: नाम
     new: नया
+    no_results_found: कोई परिणाम नहीं मिला
     not_requested: अभी तक अनुरोध नहीं किया गया
     ok: ठीक है
     pending: लंबित

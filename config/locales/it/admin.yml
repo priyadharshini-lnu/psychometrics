@@ -81,6 +81,7 @@ it:
     campaign_assessment_modals_enable_caching_title: Abilitare la cache delle valutazioni?
     campaign_factors: Fattori della campagna
     campaign_templates: Modelli di campagna
+    campaign_user_job_roles_cannot_be_same: Il ruolo lavorativo desiderato deve essere diverso da quello attuale.
     campaigns: Campagne
     client: Contratto di locazione del cliente
     client_admins: Amministratori clienti

@@ -81,6 +81,7 @@ id:
     campaign_assessment_modals_enable_caching_title: Aktifkan Assessment Caching?
     campaign_factors: Faktor Kampanye
     campaign_templates: Templat Kampanye
+    campaign_user_job_roles_cannot_be_same: Posisi pekerjaan yang ditargetkan harus berbeda dari posisi pekerjaan saat ini.
     campaigns: Kampanye
     client: Klien Pengguna
     client_admins: Admin Klien

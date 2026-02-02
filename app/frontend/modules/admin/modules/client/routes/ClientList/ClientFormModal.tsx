@@ -103,14 +103,20 @@ export const ClientFormModal: React.FC<Props> = ({
             rules={[{ required: true }]}
           >
             <Select
-              showSearch
-              onSearch={(value) => {
-                fetchProjectManager({
-                  apiConfig: { filter: { search_query: value, admins: 'true' }, fields: { users: ['name', 'email'] } },
-                })
+              showSearch={{
+                filterOption: false,
+                onSearch: (value) => {
+                  fetchProjectManager({
+                    apiConfig: {
+                      filter: { search_query: value, admins: 'true' },
+                      fields: { users: ['name', 'email'] },
+                    },
+                  })
+                },
               }}
-              notFoundContent={isProjectManagerLoading('fetch') ? <Spin size="small" /> : null}
-              filterOption={false}
+              notFoundContent={
+                isProjectManagerLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')
+              }
             >
               {projectManagersOpts.map(({ id, name, email }) => (
                 <Option key={id} value={id}>

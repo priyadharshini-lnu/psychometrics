@@ -29,7 +29,7 @@ export const MhsFields: React.FC<{
       >
         <Select
           disabled={!!assessment}
-          notFoundContent={isLoading('fetch') ? <Spin size="small" /> : null}
+          notFoundContent={isLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
           onSelect={(value) => {
             const selectedOption = externalAssessments.find(option => option.id === value)
 

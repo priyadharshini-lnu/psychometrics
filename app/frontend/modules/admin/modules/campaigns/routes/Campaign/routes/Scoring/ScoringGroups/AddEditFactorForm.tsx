@@ -182,23 +182,24 @@ export const AddEditFactorForm: FC<Props> = ({
         label={I18n.t('administration.scoring.assessment')}
       >
         <Select
-          showSearch
-          onSearch={(value) => {
-            fetchAssessments({
-              apiConfig: {
-                filter: {
-                  assessment_name_cont: value,
+          showSearch={{
+            filterOption: false,
+            onSearch: (value) => {
+              fetchAssessments({
+                apiConfig: {
+                  filter: {
+                    assessment_name_cont: value,
+                  },
                 },
-              },
-            })
+              })
+            },
           }}
           onSelect={(_, option) => {
             setDimensionId(option.assessment?.dimension?.id)
             form.setFieldValue('factor_id', undefined)
             setFactorsData([])
           }}
-          notFoundContent={isAssessmentsLoading('fetch') ? <Spin size="small" /> : null}
-          filterOption={false}
+          notFoundContent={isAssessmentsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
           allowClear
           options={getAssessments().map(({ assessment }) => ({
             value: assessment.id,
@@ -213,20 +214,21 @@ export const AddEditFactorForm: FC<Props> = ({
       >
         <Select
           disabled={!dimensionId}
-          showSearch
-          onSearch={value => fetchFactors({
-            apiConfig: {
-              filter: {
-                dimension_id_eq: dimensionId,
-                filterable_fields: value,
+          showSearch={{
+            filterOption: false,
+            onSearch: value => fetchFactors({
+              apiConfig: {
+                filter: {
+                  dimension_id_eq: dimensionId,
+                  filterable_fields: value,
+                },
               },
-            },
-          })}
+            }),
+          }}
           placeholder={!dimensionId
             ? I18n.t('administration.scoring.select_assessment_first')
             : I18n.t('administration.scoring.select_factor')}
-          notFoundContent={isFactorsLoading('fetch') ? <Spin size="small" /> : null}
-          filterOption={false}
+          notFoundContent={isFactorsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
           allowClear
           options={getFactors().map(factor => ({
             value: factor.id,
@@ -245,25 +247,30 @@ export const AddEditFactorForm: FC<Props> = ({
       <Fragment key="assessor_scoring">
         <Form.Item name="dimension_id" label={I18n.t('administration.scoring.dimension')}>
           <Select
-            showSearch
-            onSearch={(value) => {
-              fetchDimensions({
-                action: 'assessor_dimensions',
-                method: 'get',
-                apiConfig: {
-                  filter: {
-                    filterable_fields: value,
+            showSearch={{
+              filterOption: false,
+              onSearch: (value) => {
+                fetchDimensions({
+                  action: 'assessor_dimensions',
+                  method: 'get',
+                  apiConfig: {
+                    filter: {
+                      filterable_fields: value,
+                    },
                   },
-                },
-              }).then(setDimensions)
+                }).then(setDimensions)
+              },
             }}
             onSelect={(value) => {
               setDimensionId(value)
               form.setFieldValue('factor_id', undefined)
               setFactorsData([])
             }}
-            filterOption={false}
-            notFoundContent={isDimensionsLoading('get/assessor_dimensions') ? <Spin size="small" /> : null}
+            notFoundContent={
+              isDimensionsLoading('get/assessor_dimensions')
+                ? <Spin size="small" />
+                : I18n.t('shared.no_results_found')
+            }
             options={getDimensions().map(dimension => ({
               value: dimension.id,
               label: dimension.name,
@@ -276,20 +283,21 @@ export const AddEditFactorForm: FC<Props> = ({
         >
           <Select
             disabled={!dimensionId}
-            showSearch
-            onSearch={value => fetchFactors({
-              apiConfig: {
-                filter: {
-                  dimension_id_eq: dimensionId,
-                  filterable_fields: value,
+            showSearch={{
+              filterOption: false,
+              onSearch: value => fetchFactors({
+                apiConfig: {
+                  filter: {
+                    dimension_id_eq: dimensionId,
+                    filterable_fields: value,
+                  },
                 },
-              },
-            })}
+              }),
+            }}
             placeholder={!dimensionId
               ? I18n.t('administration.scoring.select_assessment_first')
               : I18n.t('administration.scoring.select_factor')}
-            notFoundContent={isFactorsLoading('fetch') ? <Spin size="small" /> : null}
-            filterOption={false}
+            notFoundContent={isFactorsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             allowClear
             options={getFactors().map(factor => ({
               value: factor.id,

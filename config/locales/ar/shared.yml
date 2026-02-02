@@ -9,6 +9,7 @@ ar:
     agree_and_continue: موافق واستمر
     archive: أرشيف
     archived: المؤرشفه
+    asset_not_present: الأصل غير موجود
     audio: الصوت
     authentication_failed: فشل المصادقة. يرجى المحاولة مرة أخرى.
     basic: أساسي
@@ -53,6 +54,7 @@ ar:
     na_text: غير متوفر
     name: اسم
     new: جديد
+    no_results_found: لم يتم العثور على نتائج
     not_requested: لم يتم طلبه بعد
     ok: موافق
     pending: قيد الانتظار

@@ -134,11 +134,9 @@ export const NormImportModalComponent: React.FC<Props> = ({ close, currentUser }
           initialValue={null}
         >
           <Select
-            showSearch
-            onSearch={debouncedFetchClients}
+            showSearch={{ filterOption: false, onSearch: debouncedFetchClients }}
             onChange={value => setOwnerId(value)}
-            notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : null}
-            filterOption={false}
+            notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             placeholder="Select an Owner"
           >
             {isSuperAdmin(currentUser) && <Select.Option>{I18n.t('administration.tte')}</Select.Option>}

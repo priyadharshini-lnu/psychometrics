@@ -280,11 +280,11 @@ export const SettingsForm = forwardRef<SettingsFormRef, Props>(({ aiArtifact, on
             rules={[{ required: true }]}
           >
             <Select
-              showSearch
-              filterOption={false}
+              showSearch={{ filterOption: false, onSearch: debouncedFetchAiAssistantsGroups }}
               loading={isAiAssistantsLoading('fetch')}
-              onSearch={debouncedFetchAiAssistantsGroups}
-              notFoundContent={isAiAssistantsLoading('fetch') ? <Spin size="small" /> : null}
+              notFoundContent={
+                isAiAssistantsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')
+              }
               placeholder={I18n.t('administration.ai_artifacts.form.select_ai_assistant')}
             >
               {aiAssistants.map(({ id, name }) => (

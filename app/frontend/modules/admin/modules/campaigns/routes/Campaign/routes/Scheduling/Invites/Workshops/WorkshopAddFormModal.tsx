@@ -143,7 +143,14 @@ export const WorkshopAddFormModal:React.FC<Props> = ({ close }) => {
                   {I18n.t('administration.assessment_center.invite.basic_info.assessment_centers_hint')}
                 </div>
                 <Select
-                  showSearch
+                  showSearch={{
+                    filterOption: false,
+                    searchValue,
+                    onSearch: (value) => {
+                      setSearchValue(value)
+                      searchWorkshops()
+                    },
+                  }}
                   placeholder={
                     I18n.t('administration.assessment_center.invite.basic_info.assessment_centers_placeholder')
                   }
@@ -151,13 +158,7 @@ export const WorkshopAddFormModal:React.FC<Props> = ({ close }) => {
                     label: formatWorkshopDate(workshop.startTime), value: workshop.id,
                   }))}
                   onSelect={changeWorkshops}
-                  filterOption={false}
-                  searchValue={searchValue}
                   value={null}
-                  onSearch={(value) => {
-                    setSearchValue(value)
-                    searchWorkshops()
-                  }}
                 />
               </Col>
               <Col span={24}>

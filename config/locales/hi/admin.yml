@@ -81,6 +81,7 @@ hi:
     campaign_assessment_modals_enable_caching_title: मूल्यांकन कैशिंग सक्षम करें?
     campaign_factors: अभियान कारक
     campaign_templates: अभियान टेम्पलेट्स
+    campaign_user_job_roles_cannot_be_same: लक्षित नौकरी की भूमिका वर्तमान नौकरी की भूमिका से भिन्न होनी चाहिए।
     campaigns: अभियान
     client: ग्राहक
     client_admins: क्लाइंट एडमिन

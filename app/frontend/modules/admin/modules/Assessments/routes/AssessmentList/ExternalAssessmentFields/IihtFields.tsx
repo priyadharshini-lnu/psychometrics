@@ -52,18 +52,19 @@ export const IihtFields: React.FC<{
         rules={[{ required: true }]}
       >
         <Select
-          showSearch
-          disabled={!!assessment}
-          onSearch={(value) => {
-            fetchProjects({
-              apiConfig: {
-                filter: { filterable_fields: value, has_integration: 'iiht' },
-                fields: { clients: ['name'] },
-              },
-            })
+          showSearch={{
+            filterOption: false,
+            onSearch: (value) => {
+              fetchProjects({
+                apiConfig: {
+                  filter: { filterable_fields: value, has_integration: 'iiht' },
+                  fields: { clients: ['name'] },
+                },
+              })
+            },
           }}
-          notFoundContent={projectIsLoading('fetch') ? <Spin size="small" /> : null}
-          filterOption={false}
+          disabled={!!assessment}
+          notFoundContent={projectIsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
         >
           {getProjects().map(({ id, name }) => (
             <Select.Option key={id} value={id}>{name}</Select.Option>
@@ -76,13 +77,15 @@ export const IihtFields: React.FC<{
         rules={[{ required: true }]}
       >
         <Select
-          showSearch
-          disabled={!!assessment}
-          onSearch={(value) => {
-            fetchAssessments({
-              apiConfig: { filter: { type_eq: 'iiht', filterable_fields: value, project_id_eq: projectId } },
-            })
+          showSearch={{
+            filterOption: false,
+            onSearch: (value) => {
+              fetchAssessments({
+                apiConfig: { filter: { type_eq: 'iiht', filterable_fields: value, project_id_eq: projectId } },
+              })
+            },
           }}
+          disabled={!!assessment}
           onSelect={(value) => {
             const selectedOption = externalAssessments.find(option => option.id === value)
 
@@ -90,8 +93,7 @@ export const IihtFields: React.FC<{
               handleAssessmentSelect(selectedOption.name)
             }
           }}
-          notFoundContent={assessmentIsLoading('fetch') ? <Spin size="small" /> : null}
-          filterOption={false}
+          notFoundContent={assessmentIsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
         >
           {!projectId ? [] : getAllExternalAssessments(externalAssessments, assessment?.externalSettings).map(
             ({ id, name }) => (

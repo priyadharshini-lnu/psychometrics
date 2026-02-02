@@ -9,6 +9,7 @@ ru:
     agree_and_continue: Согласен и продолжить
     archive: Архив
     archived: Архив
+    asset_not_present: Актив отсутствует
     audio: Аудио
     authentication_failed: Аутентификация не удалась. Повторите попытку.
     basic: Базовый
@@ -53,6 +54,7 @@ ru:
     na_text: Неприменимо
     name: Имя
     new: Новый
+    no_results_found: Результаты не найдены
     not_requested: Еще не запрошено
     ok: Хорошо
     pending: В ожидании

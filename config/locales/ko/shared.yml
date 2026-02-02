@@ -9,6 +9,7 @@ ko:
     agree_and_continue: 동의하고 계속하세요
     archive: 아카이브
     archived: 아카이브
+    asset_not_present: 자산이 존재하지 않습니다
     audio: 오디오
     authentication_failed: 인증에 실패했습니다. 다시 시도해 주세요.
     basic: 기초의
@@ -53,6 +54,7 @@ ko:
     na_text: 해당 없음
     name: 이름
     new: 새로 만들기
+    no_results_found: 검색 결과 없음
     not_requested: 아직 요청되지 않음
     ok: 확인
     pending: 보류 중

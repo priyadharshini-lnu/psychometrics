@@ -55,10 +55,8 @@ export const SkillAliasForm: React.FC<Props> = ({
           >
             <Select
               placeholder={I18n.t('administration.settings.skill_aliases.select_skill')}
-              showSearch
-              onSearch={handleSkillSearch}
-              notFoundContent={isSkillLoading('fetch') ? <Spin size="small" /> : null}
-              filterOption={false}
+              showSearch={{ filterOption: false, onSearch: handleSkillSearch }}
+              notFoundContent={isSkillLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >
               {skillsOpts.map(({ id, name }) => (
                 <Option key={id} value={id}>

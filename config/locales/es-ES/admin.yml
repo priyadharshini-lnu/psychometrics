@@ -81,6 +81,7 @@ es-ES:
     campaign_assessment_modals_enable_caching_title: "¿Habilitar la caché de evaluaciones?"
     campaign_factors: Factores de campaña
     campaign_templates: Plantillas de campaña
+    campaign_user_job_roles_cannot_be_same: El puesto de trabajo objetivo debe ser diferente del puesto de trabajo actual.
     campaigns: Campañas
     client: Arrendamiento de clientes
     client_admins: Administradores de clientes

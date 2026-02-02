@@ -9,6 +9,7 @@ bg:
     agree_and_continue: Съгласен и продължи
     archive: Архивирайте
     archived: Архивирани
+    asset_not_present: Активът не е наличен
     audio: Аудио
     authentication_failed: Автентикацията не беше успешна. Моля, опитайте отново.
     basic: Основен
@@ -53,6 +54,7 @@ bg:
     na_text: Н/Д
     name: Име
     new: Нов
+    no_results_found: Няма намерени резултати
     not_requested: Все още не е поискано
     ok: Добре
     pending: В очакване
