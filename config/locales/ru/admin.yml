@@ -734,6 +734,7 @@ ru:
     translated_to: 'Переведено на:'
     translated_with_ai_notice: Перевод с помощью ИИ
     translation_assistant_not_configured: Помощник перевода не настроен
+    update_success: "%{readableResourceName} был успешно обновлен"
     upload_success: Загрузка успешно завершена
     user_report_events: Сообщения пользователей о событиях
     users: Пользователи

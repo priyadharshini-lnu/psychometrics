@@ -733,6 +733,7 @@ ko:
     translated_to: '번역됨:'
     translated_with_ai_notice: AI 번역
     translation_assistant_not_configured: 번역 보조 기능이 설정되지 않았습니다.
+    update_success: "%{readableResourceName}이(가) 성공적으로 업데이트되었습니다"
     upload_success: 성공적으로 업로드됨
     user_report_events: 사용자 보고서 이벤트
     users: 사용자

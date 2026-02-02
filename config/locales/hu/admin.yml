@@ -733,6 +733,7 @@ hu:
     translated_to: 'Fordítás:'
     translated_with_ai_notice: AI fordítás
     translation_assistant_not_configured: Fordítási segédprogram nincs konfigurálva
+    update_success: "%{readableResourceName} sikeresen frissült"
     upload_success: Sikeresen feltöltve
     user_report_events: Felhasználói jelentés eseményei
     users: Felhasználók

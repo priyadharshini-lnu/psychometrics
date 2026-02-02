@@ -734,6 +734,7 @@ en-US:
     translated_to: 'Translated to:'
     translated_with_ai_notice: AI Translated
     translation_assistant_not_configured: Translation Assistant not configured
+    update_success: "%{readableResourceName} was updated successfully"
     upload_success: Uploaded successfully
     user_report_events: Report Approval logs
     users: Users

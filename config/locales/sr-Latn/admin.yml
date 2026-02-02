@@ -733,6 +733,7 @@ sr-Latn:
     translated_to: 'Преведено на:'
     translated_with_ai_notice: Преведено помоћу вештачке интелигенције
     translation_assistant_not_configured: Помоћник за превод није конфигурисан
+    update_success: "%{readableResourceName} je uspešno ažuriran"
     upload_success: Uspešno otpremljen
     user_report_events: Događaji Izveštaja korisnika
     users: Korisnici

@@ -733,6 +733,7 @@ zh-Hant:
     translated_to: 翻译为：
     translated_with_ai_notice: AI翻译
     translation_assistant_not_configured: 翻译助手未配置
+    update_success: "%{readableResourceName} 已成功更新"
     upload_success: 上傳成功
     user_report_events: 使用者報告事件
     users: 使用者

@@ -733,6 +733,7 @@ th:
     translated_to: 'แปลเป็น:'
     translated_with_ai_notice: AI แปล
     translation_assistant_not_configured: ผู้ช่วยแปลยังไม่ได้กำหนดค่า
+    update_success: "%{readableResourceName} ได้รับการอัปเดตเรียบร้อยแล้ว"
     upload_success: อัปโหลดสําเร็จ
     user_report_events: เหตุการณ์รายงานผู้ใช้
     users: ผู้เข้าร่วม

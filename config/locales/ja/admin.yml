@@ -733,6 +733,7 @@ ja:
     translated_to: 翻訳：
     translated_with_ai_notice: AI翻訳
     translation_assistant_not_configured: 翻訳アシスタントが設定されていません
+    update_success: "%{readableResourceName}が正常に更新されました"
     upload_success: アップロード成功
     user_report_events: ユーザーレポートイベント
     users: ユーザー

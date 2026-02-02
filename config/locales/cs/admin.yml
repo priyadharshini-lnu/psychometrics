@@ -733,6 +733,7 @@ cs:
     translated_to: 'Přeloženo do:'
     translated_with_ai_notice: Přeloženo umělou inteligencí
     translation_assistant_not_configured: Překladač není nakonfigurován
+    update_success: Zdroj %{readableResourceName} byl úspěšně aktualizován
     upload_success: Úspěšně nahráno
     user_report_events: Hlášení uživatele Události
     users: Uživatelé

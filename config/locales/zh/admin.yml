@@ -733,6 +733,7 @@ zh:
     translated_to: 翻译为：
     translated_with_ai_notice: AI翻译
     translation_assistant_not_configured: 翻译助手未配置
+    update_success: 已成功更新 %{readableResourceName}
     upload_success: 上传成功
     user_report_events: 用户报告事件
     users: 用户

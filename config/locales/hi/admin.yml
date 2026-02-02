@@ -733,6 +733,7 @@ hi:
     translated_to: 'अनुवादित:'
     translated_with_ai_notice: एआई द्वारा अनुवादित
     translation_assistant_not_configured: अनुवाद सहायक कॉन्फ़िगर नहीं किया गया है
+    update_success: "%{readableResourceName} सफलतापूर्वक अपडेट किया गया"
     upload_success: सफलतापूर्वक अपलोड किया गया
     user_report_events: उपयोगकर्ता रिपोर्ट घटनाएँ
     users: उपयोगकर्ता

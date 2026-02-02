@@ -733,6 +733,7 @@ id:
     translated_to: 'Diterjemahkan ke:'
     translated_with_ai_notice: Diterjemahkan oleh AI
     translation_assistant_not_configured: Asisten Terjemahan belum dikonfigurasi
+    update_success: "%{readableResourceName} berhasil diperbarui"
     upload_success: Berhasil diunggah
     user_report_events: Peristiwa Laporan Pengguna
     users: Pengguna

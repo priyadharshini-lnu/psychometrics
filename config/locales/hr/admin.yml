@@ -733,6 +733,7 @@ hr:
     translated_to: 'Prevedeno na:'
     translated_with_ai_notice: AI prevedeno
     translation_assistant_not_configured: Pomoćnik za prijevod nije konfiguriran
+    update_success: "%{readableResourceName} je uspješno ažuriran"
     upload_success: Uspješno učitano
     user_report_events: Događaji u izvješću korisnika
     users: Korisnici

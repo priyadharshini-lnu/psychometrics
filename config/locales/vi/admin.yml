@@ -733,6 +733,7 @@ vi:
     translated_to: 'Dịch sang:'
     translated_with_ai_notice: Dịch bởi Trí tuệ nhân tạo
     translation_assistant_not_configured: Trợ lý Dịch thuật chưa được cấu hình
+    update_success: "%{readableResourceName} đã được cập nhật thành công"
     upload_success: Tải lên thành công
     user_report_events: Sự kiện báo cáo người dùng
     users: Người dùng

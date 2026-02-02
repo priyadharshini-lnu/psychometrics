@@ -733,6 +733,7 @@ ar:
     translated_to: 'ترجم إلى:'
     translated_with_ai_notice: ترجمة بالذكاء الاصطناعي
     translation_assistant_not_configured: مساعد الترجمة غير مهيأ
+    update_success: "%{readableResourceName} تم تحديثه بنجاح"
     upload_success: تم الرفع بنجاح
     user_report_events: أحداث تقارير المستخدم
     users: المستخدمون

@@ -733,6 +733,7 @@ sr-Cyrl:
     translated_to: 'Преведено на:'
     translated_with_ai_notice: Преведено помоћу вештачке интелигенције
     translation_assistant_not_configured: Помоћник за превод није конфигурисан
+    update_success: "%{readableResourceName} је успешно ажуриран"
     upload_success: Успешно отпремљено
     user_report_events: Извештај корисника о догађајима
     users: Корисници

@@ -733,6 +733,7 @@ nl:
     translated_to: 'Vertaald naar:'
     translated_with_ai_notice: AI vertaald
     translation_assistant_not_configured: Vertaalassistent niet geconfigureerd
+    update_success: "%{readableResourceName} is succesvol bijgewerkt"
     upload_success: Succesvol geüpload
     user_report_events: Gebeurtenissen gebruikersrapport
     users: Gebruikers

@@ -733,6 +733,7 @@ sl:
     translated_to: 'Prevedeno v:'
     translated_with_ai_notice: Prevedeno z umetno inteligenco
     translation_assistant_not_configured: Pomočnik za prevajanje ni nastavljen
+    update_success: "%{readableResourceName} je bil uspešno posodobljen"
     upload_success: Uspešno naloženo
     user_report_events: Dogodki uporabniškega poročila
     users: Uporabniki

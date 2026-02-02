@@ -733,6 +733,7 @@ sk:
     translated_to: 'Preložené do:'
     translated_with_ai_notice: Preložené umelou inteligenciou
     translation_assistant_not_configured: Prekladateľský asistent nie je nakonfigurovaný
+    update_success: "%{readableResourceName} bol úspešne aktualizovaný"
     upload_success: Úspešne nahrané
     user_report_events: Udalosti v hlásení používateľa
     users: Používateľov

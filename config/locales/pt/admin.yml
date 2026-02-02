@@ -733,6 +733,7 @@ pt:
     translated_to: 'Traduzido para:'
     translated_with_ai_notice: Traduzido por IA
     translation_assistant_not_configured: Assistente de tradução não configurado
+    update_success: "%{readableResourceName} atualizado com êxito"
     upload_success: Carregado com sucesso
     user_report_events: Eventos do relatório do utilizador
     users: Utilizadores
