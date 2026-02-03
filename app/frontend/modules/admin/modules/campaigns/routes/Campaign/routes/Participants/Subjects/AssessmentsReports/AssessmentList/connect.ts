@@ -3,6 +3,7 @@ import {
   get as getAssessments, rescoreResponse, reset, remove, resetProgress,
   toggleRequireScheduling, togglePrework, updateMettlSchedule, normalizeFactorScores,
   updateContentVariation, UPDATE_CONTENT_VARIATION, UPDATE_METTL_SCHEDULE, markComplete,
+  updateMhsConfidenceInterval, updateMhsLeadershipBar, updateMhsNormRegion, updateMhsNormOption,
 } from '~/modules/admin/modules/campaigns/core/userAssessments'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -27,6 +28,10 @@ const connecter = connect(
     normalizeFactorScores,
     updateContentVariation,
     markComplete,
+    updateMhsConfidenceInterval,
+    updateMhsLeadershipBar,
+    updateMhsNormRegion,
+    updateMhsNormOption,
   },
 )
 

@@ -51,6 +51,10 @@ const AssessmentList: React.FC<Props> = ({
   markComplete,
   loadingUpdateMettlSchedule,
   currentUser,
+  updateMhsConfidenceInterval,
+  updateMhsLeadershipBar,
+  updateMhsNormRegion,
+  updateMhsNormOption,
 }) => {
   const [drawerAssessment, setDrawerAssessment] = useState<UserAssessment | undefined>()
 
@@ -214,6 +218,10 @@ const AssessmentList: React.FC<Props> = ({
             updateMettlSchedule={updateMettlSchedule}
             loadingUpdateMettlSchedule={loadingUpdateMettlSchedule}
             isSuperAdmin={isSuperAdmin(currentUser)}
+            updateMhsConfidenceInterval={updateMhsConfidenceInterval}
+            updateMhsLeadershipBar={updateMhsLeadershipBar}
+            updateMhsNormRegion={updateMhsNormRegion}
+            updateMhsNormOption={updateMhsNormOption}
           />
         ) : null}
       </Col>

@@ -397,6 +397,34 @@ class UserAssessment < ApplicationRecord
     simulation_user_assessment.update!(content_variation_id: content_variation_id)
   end
 
+  def update_mhs_confidence_interval!(confidence_interval)
+    return unless not_started?
+    return unless mhs?
+
+    mhs_user_assessment.update!(confidence_interval: confidence_interval)
+  end
+
+  def update_mhs_leadership_bar!(leadership_bar)
+    return unless not_started?
+    return unless mhs?
+
+    mhs_user_assessment.update!(leadership_bar: leadership_bar)
+  end
+
+  def update_mhs_norm_region!(norm_region)
+    return unless not_started?
+    return unless mhs?
+
+    mhs_user_assessment.update!(norm_region: norm_region)
+  end
+
+  def update_mhs_norm_option!(norm_option)
+    return unless not_started?
+    return unless mhs?
+
+    mhs_user_assessment.update!(norm_option: norm_option)
+  end
+
   def associated_workshops
     campaign_assessment&.campaign_assessment_group&.workshops
   end

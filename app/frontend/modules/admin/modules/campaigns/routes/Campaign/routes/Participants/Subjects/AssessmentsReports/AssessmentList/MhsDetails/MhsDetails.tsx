@@ -1,16 +1,38 @@
 import { FC } from 'react'
-import { Descriptions, Switch } from 'antd'
+import { Descriptions } from 'antd'
 import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
 import { I18nInterface } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
+import MhsConfidenceInterval from './MhsConfidenceInterval'
+import MhsLeadershipBar from './MhsLeadershipBar'
+import MhsNormRegion from './MhsNormRegion'
+import MhsNormOption from './MhsNormOption'
 
 interface Props {
   I18n: I18nInterface
   assessment: UserAssessment | undefined
+  campaignId: string
+  updateMhsConfidenceInterval: (
+    campaignId: string, campaignAssessmentId: number, body: {assessment: {id: string}}
+  ) => Promise<{ response: unknown; }>
+  updateMhsLeadershipBar: (
+    campaignId: string, campaignAssessmentId: number, body: {assessment: {id: string}}
+  ) => Promise<{ response: unknown; }>
+   updateMhsNormRegion: (
+    campaignId: string, campaignAssessmentId: number, body: {assessment: {id: string}}
+  ) => Promise<{ response: unknown; }>
+  updateMhsNormOption: (
+    campaignId: string, campaignAssessmentId: number, body: {assessment: {id: string}}
+  ) => Promise<{ response: unknown; }>
 }
 
 export const MhsDetails: FC<Props> = ({
   assessment,
   I18n,
+  campaignId,
+  updateMhsConfidenceInterval,
+  updateMhsLeadershipBar,
+  updateMhsNormRegion,
+  updateMhsNormOption,
 }) => {
   if (!assessment || assessment.category !== 'mhs') {
     return null
@@ -68,57 +90,31 @@ export const MhsDetails: FC<Props> = ({
         >
           {assessment.mhsUserAssessmentDetails?.dataGatheringId ?? ''}
         </Descriptions.Item>
-        <Descriptions.Item
-          className="va-t w-30"
-          styles={{
-            label: { width: '40%' },
-            content: { width: '60%' },
-          }}
-          label={I18n.t('admin.campaign_assessment_mhs_confidence_interval')}
-          key="mhs_confidence_interval"
-        >
-          <Switch
-            checked={Boolean(assessment.mhsUserAssessmentDetails?.confidenceInterval)}
-            disabled
-          />
-        </Descriptions.Item>
-        <Descriptions.Item
-          className="va-t w-30"
-          styles={{
-            label: { width: '40%' },
-            content: { width: '60%' },
-          }}
-          label={I18n.t('admin.campaign_assessment_mhs_leadership_bar')}
-          key="mhs_leadership_bar"
-        >
-          <Switch
-            checked={Boolean(assessment.mhsUserAssessmentDetails?.leadershipBar)}
-            disabled
-          />
-        </Descriptions.Item>
-        <Descriptions.Item
-          className="va-t w-30"
-          styles={{
-            label: { width: '40%' },
-            content: { width: '60%' },
-          }}
-          label={I18n.t('admin.campaign_assessment_mhs_norm_region')}
-          key="mhs_norm_region"
-        >
-          {assessment.mhsUserAssessmentDetails?.normRegion ?? ''}
-        </Descriptions.Item>
-        <Descriptions.Item
-          className="va-t w-30"
-          styles={{
-            label: { width: '40%' },
-            content: { width: '60%' },
-          }}
-          label={I18n.t('admin.campaign_assessment_mhs_norm_option')}
-          key="mhs_norm_option"
-        >
-          {assessment.mhsUserAssessmentDetails?.normOption ?? ''}
-        </Descriptions.Item>
       </Descriptions>
+      <MhsConfidenceInterval
+        I18n={I18n}
+        assessment={assessment}
+        campaignId={campaignId}
+        updateMhsConfidenceInterval={updateMhsConfidenceInterval}
+      />
+      <MhsLeadershipBar
+        I18n={I18n}
+        assessment={assessment}
+        campaignId={campaignId}
+        updateMhsLeadershipBar={updateMhsLeadershipBar}
+      />
+      <MhsNormRegion
+        I18n={I18n}
+        assessment={assessment}
+        campaignId={campaignId}
+        updateMhsNormRegion={updateMhsNormRegion}
+      />
+      <MhsNormOption
+        I18n={I18n}
+        assessment={assessment}
+        campaignId={campaignId}
+        updateMhsNormOption={updateMhsNormOption}
+      />
     </>
   )
 }

@@ -383,6 +383,10 @@ Rails.application.routes.draw do
             put :update_simulation_time_extension
             put :toggle_prework
             post :mark_complete
+            post :update_mhs_confidence_interval
+            post :update_mhs_leadership_bar
+            post :update_mhs_norm_region
+            post :update_mhs_norm_option
           end
         end
 

@@ -51,6 +51,38 @@ module Administration
         render json: { time_extension: resource.simulation_user_assessment.time_extension }
       end
 
+      def update_mhs_confidence_interval
+        resource.update_mhs_confidence_interval!(params[:assessment][:confidence_interval])
+
+        audit! :update_mhs_confidence_interval, resource, campaign: resource.campaign
+
+        render json: { confidence_interval: resource.mhs_user_assessment.confidence_interval }
+      end
+
+      def update_mhs_leadership_bar
+        resource.update_mhs_leadership_bar!(params[:assessment][:leadership_bar])
+
+        audit! :update_mhs_leadership_bar, resource, campaign: resource.campaign
+
+        render json: { leadership_bar: resource.mhs_user_assessment.leadership_bar }
+      end
+
+      def update_mhs_norm_region
+        resource.update_mhs_norm_region!(params[:assessment][:norm_region])
+
+        audit! :update_mhs_norm_region, resource, campaign: resource.campaign
+
+        render json: { norm_region: resource.mhs_user_assessment.norm_region }
+      end
+
+      def update_mhs_norm_option
+        resource.update_mhs_norm_option!(params[:assessment][:norm_option])
+
+        audit! :update_mhs_norm_option, resource, campaign: resource.campaign
+
+        render json: { norm_option: resource.mhs_user_assessment.norm_option }
+      end
+
       def webhook_command
         @webhook_command ||= UserAssessments::Webhook.new(resource, params[:webhook_id])
       end
