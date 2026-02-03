@@ -6,43 +6,38 @@ module Users
 
     # rubocop:disable Metrics/BlockLength
     included do
+      include SecurityContextLoggable
+
       # file deepcode ignore WeakPassword: <password_complexity handles this>
       validates :password, presence: { if: :password_required? }
       validates :password, confirmation: { if: :password_required? }
       validates :password, repeats_in_password: true, if: :restrict_sequences?
       validate :validate_password_length, if: :password_required?
 
+      before_save :capture_security_changes
+      before_save :capture_alter_user_changes
+      before_save :capture_password_change_status
       after_commit :log_user_provision_event, on: :create
+      after_commit :log_security_context_change, on: :update
+      after_commit :log_alter_user_event, on: :update
+      after_commit :log_password_change_event, on: :update
       after_destroy :log_user_deprovision_event
 
-      def log_user_deprovision_event
-        actor = Current.user || modifier
-        actor_name = actor ? SiemLogger.user_identifier(actor.email, actor.id) : 'System'
-        context = "User: #{SiemLogger.user_identifier(email, id)}"
+      attr_accessor :security_changes, :alter_user_changes, :password_just_changed
 
-        SiemLogger.log_security_event!(
-          'UserDeprovision',
-          actor_name: actor_name,
-          context: context,
-          msg: "User account deleted for #{SiemLogger.user_identifier(email, id)}"
+      def log_security_context_change
+        return unless security_changes&.any?
+
+        log_security_context_event(
+          target_user: self,
+          msg: "Security context changed for #{SiemLogger.user_identifier(email, id)}. #{security_changes.join(', ')}"
         )
-      rescue StandardError => e
-        Rails.logger.error("Failed to log UserDeprovision event: #{e.message}")
       end
 
-      def log_user_provision_event
-        actor = Current.user || creator
-        actor_name = actor ? SiemLogger.user_identifier(actor.email, actor.id) : 'System'
-        context = "User: #{SiemLogger.user_identifier(email, id)}"
-
-        SiemLogger.log_security_event!(
-          'UserProvision',
-          actor_name: actor_name,
-          context: context,
-          msg: "User account created for #{SiemLogger.user_identifier(email, id)}"
-        )
-      rescue StandardError => e
-        Rails.logger.error("Failed to log UserProvision event: #{e.message}")
+      def capture_security_changes
+        self.security_changes = []
+        security_changes << "Role changed from #{changes['role'][0]} to #{changes['role'][1]}" if changes['role']
+        security_changes << 'Grants modified' if changes['grants']
       end
 
       def generate_strong_password

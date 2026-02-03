@@ -3,6 +3,10 @@
 # rubocop:disable Metrics/ClassLength
 class Client < ApplicationRecord
   audited
+  include ApplicationConfigurationLoggable
+
+  monitored_configuration_attributes :subdomain, :restricted_to_countries, :webhook, :webhook_auth_enabled,
+                                     :webhook_username, :webhook_password
 
   include Copyable
   include RansackSearchableFields

@@ -13,23 +13,24 @@ RSpec.describe SiemLogger::ControllerHelper do
       def initialize(request)
         @request = request
       end
+
+      def current_user; end
     end
   end
 
   let(:request) do
     instance_double(ActionDispatch::Request, remote_ip: '127.0.0.1', user_agent: 'RSpec Agent',
-   env: { 'action_dispatch.request_id' => 'req-123' }, url: 'http://test.host')
+    env: { 'action_dispatch.request_id' => 'req-123' }, url: 'http://test.host')
   end
   let(:controller) { dummy_class.new(request) }
   let(:user_email) { 'test@example.com' }
+  let(:user) { instance_double('User', email: user_email, id: 1) }
 
   before do
     allow(Settings.features).to receive(:dont_send_pi_to_siem).and_return(false)
   end
 
   describe '#siem_log_authentication_success' do
-    let(:user) { instance_double('User', email: user_email, id: 1) }
-
     it 'logs SAML success with identity provider' do
       expect(SiemLogger).to receive(:log_security_event!).with(
         'LoginSuccessful',
@@ -77,7 +78,7 @@ RSpec.describe SiemLogger::ControllerHelper do
 
   describe '#siem_log_impersonation_event' do
     let(:target_user) { instance_double('User', email: 'target@example.com', id: 2, project_id: nil) }
-    let(:current_user) { instance_double('User', email: user_email, id: 1) }
+    let(:current_user) { user }
 
     it 'logs Impersonation event' do
       expect(SiemLogger).to receive(:log_security_event!).with(
@@ -132,7 +133,6 @@ RSpec.describe SiemLogger::ControllerHelper do
     end
   end
   describe '#siem_log_token_issuance' do
-    let(:user) { instance_double('User', email: user_email, id: 1) }
     let(:context_msg) { 'Test context' }
 
     it 'logs TokenIssuance event' do
@@ -166,6 +166,166 @@ RSpec.describe SiemLogger::ControllerHelper do
         )
 
         controller.siem_log_token_issuance(user, 'TestChannel', context: context_msg)
+      end
+    end
+  end
+  describe '#siem_log_authorization_failure' do
+    let(:resource) { 'TestResource' }
+    let(:action) { 'test_action' }
+
+    context 'when user is authenticated' do
+      before do
+        allow(controller).to receive(:current_user).and_return(user)
+      end
+
+      it 'logs AuthorizationFailure event' do
+        expect(SiemLogger).to receive(:log_security_event!).with(
+          'AuthorizationFailure',
+          hash_including(
+            context: "Authorization failed for #{user_email}",
+            msg: "User #{user_email} was denied access to TestResource (Action: test_action)",
+            actor_name: user_email,
+            session_id: 1,
+            request_details: hash_including(
+              resource_type: resource,
+              action: action
+            ),
+            tags: %w[authorization_failure security_event]
+          )
+        )
+
+        controller.siem_log_authorization_failure(resource: resource, action: action)
+      end
+    end
+
+    context 'when action is not provided' do
+      before do
+        allow(controller).to receive(:current_user).and_return(user)
+      end
+
+      it 'logs AuthorizationFailure event without action suffix' do
+        expect(SiemLogger).to receive(:log_security_event!).with(
+          'AuthorizationFailure',
+          hash_including(
+            msg: "User #{user_email} was denied access to #{resource}",
+            request_details: hash_including(
+              resource_type: resource,
+              action: nil
+            ),
+            tags: %w[authorization_failure security_event]
+          )
+        )
+
+        controller.siem_log_authorization_failure(resource: resource, action: nil)
+      end
+    end
+
+    context 'when resource is a Class' do
+      let(:resource_class) { String }
+
+      before do
+        allow(controller).to receive(:current_user).and_return(user)
+      end
+
+      it 'correctly extracts the resource name' do
+        expect(SiemLogger).to receive(:log_security_event!).with(
+          'AuthorizationFailure',
+          hash_including(
+            msg: "User #{user_email} was denied access to String (Action: #{action})",
+            request_details: hash_including(
+              resource_type: 'String'
+            )
+          )
+        )
+
+        controller.siem_log_authorization_failure(resource: resource_class, action: action)
+      end
+    end
+
+    context 'when user is not authenticated' do
+      before do
+        allow(controller).to receive(:current_user).and_return(nil)
+      end
+
+      it 'logs AuthorizationFailure event with Unknown actor' do
+        expect(SiemLogger).to receive(:log_security_event!).with(
+          'AuthorizationFailure',
+          hash_including(
+            context: 'Authorization failed for Unknown',
+            msg: 'User Unknown was denied access to TestResource (Action: test_action)',
+            actor_name: 'Unknown',
+            session_id: nil,
+            tags: %w[authorization_failure security_event]
+          )
+        )
+
+        controller.siem_log_authorization_failure(resource: resource, action: action)
+      end
+    end
+
+    context 'when user is explicitly passed' do
+      it 'logs AuthorizationFailure event using passed user' do
+        expect(SiemLogger).to receive(:log_security_event!).with(
+          'AuthorizationFailure',
+          hash_including(
+            context: "Authorization failed for #{user_email}",
+            actor_name: user_email,
+            session_id: 1,
+            tags: %w[authorization_failure security_event]
+          )
+        )
+
+        controller.siem_log_authorization_failure(resource: resource, action: action, user: user)
+      end
+    end
+  end
+
+  describe '#siem_log_session_management_exception' do
+    let(:exception) { StandardError.new('Invalid token') }
+
+    context 'when user is authenticated' do
+      before do
+        allow(controller).to receive(:current_user).and_return(user)
+      end
+
+      it 'logs SessionManagementExceptions event' do
+        expect(SiemLogger).to receive(:log_security_event!).with(
+          'SessionManagementExceptions',
+          hash_including(
+            context: "Session verification failed for #{user_email}",
+            msg: 'SessionManagementException: Invalid token',
+            actor_name: user_email,
+            session_id: 1,
+            request_details: hash_including(
+              exception_class: 'StandardError'
+            )
+          )
+        )
+
+        controller.siem_log_session_management_exception(exception)
+      end
+    end
+
+    context 'when user is not authenticated' do
+      before do
+        allow(controller).to receive(:current_user).and_return(nil)
+      end
+
+      it 'logs SessionManagementExceptions event with Unknown actor' do
+        expect(SiemLogger).to receive(:log_security_event!).with(
+          'SessionManagementExceptions',
+          hash_including(
+            context: 'Session verification failed for Unknown',
+            msg: 'SessionManagementException: Invalid token',
+            actor_name: 'Unknown',
+            session_id: nil,
+            request_details: hash_including(
+              exception_class: 'StandardError'
+            )
+          )
+        )
+
+        controller.siem_log_session_management_exception(exception)
       end
     end
   end

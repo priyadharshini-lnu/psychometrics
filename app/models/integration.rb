@@ -2,6 +2,7 @@
 
 class Integration < ApplicationRecord
   audited
+  include ApplicationConfigurationLoggable
 
   belongs_to :project, class_name: 'Client'
 

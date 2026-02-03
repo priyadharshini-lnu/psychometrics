@@ -22,7 +22,7 @@ module Threesixty
           @participant.update(evaluation_session_id: Devise.friendly_token)
 
           if params[:is_edit] == 'true'
-            render(json: { error: '403' }, status: 403) && return unless policy(@participant).edit?
+            authorize(@participant, :edit?)
 
             ::UserAssessments::ResetProgress.call!(@participant)
           end

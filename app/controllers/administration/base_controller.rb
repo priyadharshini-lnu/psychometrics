@@ -24,6 +24,13 @@ module Administration
     def user_not_authorized
       audit! :user_not_authorized, current_user, payload: params, outcome: :failed,
       failure_reason: :user_not_authorized
+
+      siem_log_authorization_failure(
+        resource: resource_class || (respond_to?(:model_class_name,
+                                                 true) && model_class_name) || controller_name.classify,
+        action: params[:action]
+      )
+
       render plain: I18n.t('errors.forbidden'), status: 403
     end
 

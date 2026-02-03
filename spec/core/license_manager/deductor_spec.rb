@@ -12,6 +12,7 @@ describe LicenseManager::Deductor do
   describe '#initialize' do
     context 'with valid parameters' do
       it 'initializes successfully' do
+        report_family = create(:report_family)
         deductor = described_class.new(
           campaign: campaign,
           user: user,

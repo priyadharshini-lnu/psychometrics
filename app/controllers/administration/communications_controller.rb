@@ -2,6 +2,8 @@
 
 module Administration
   class CommunicationsController < Administration::BaseController
+    include Administration::Communications::Translatable
+
     skip_before_action :enforce_geo_restriction
     prepend_before_action :set_resource_class
     before_action :set_resource,
@@ -80,6 +82,12 @@ module Administration
       respond_to do |format|
         if validated_and_saved_resource_with_locale?(locale)
           audit! :create, resource, payload: resource_params
+          siem_log_sensitive_operation(
+            context: 'Mass Communication',
+            action_description: "sent mass communication: #{resource.subject}",
+            action_type: 'MassCommunication',
+            resource: 'Communication'
+          )
           format.js
         else
           format.js { render :new }
@@ -115,6 +123,12 @@ module Administration
     def download_history
       csv = ::Services::ExportCsv::CommunicationEmailsHistory.call(communication: resource).result
       audit! :download_history, resource
+      siem_log_sensitive_operation(
+        context: 'Communication History Export',
+        action_description: "exported history for communication #{resource.id}",
+        action_type: 'Export',
+        resource: 'Communication'
+      )
       send_data csv, filename: "#{resource.subject}-#{Time.current}.csv"
     end
 
@@ -129,53 +143,6 @@ module Administration
 
       respond_to do |format|
         format.js { render :new }
-      end
-    end
-
-    def update_translation
-      locale = params[:locale] || I18n.default_locale
-
-      form = Communications::TranslationForm.new(translation_params.merge(locale: locale)).
-             with_context(communication: resource)
-
-      if form.valid? && form.persist!
-        audit! :update_translation, resource,
-               payload: { locale: locale, subject: params.dig(:communication, :subject),
-                          body: params.dig(:communication, :body) }
-        render json: { success: true, message: t('.successfully_updated') }
-      else
-        render json: { errors: form.errors.messages }, status: 400
-      end
-    end
-
-    def edit_translation
-      @communication = resource
-      @selected_locale = params[:locale] || params[:lang] || I18n.default_locale.to_s
-
-      @available_locales = I18n.available_locales.map(&:to_s).sort
-
-      @reference_subject = @communication.subject
-      @reference_body = @communication.body
-
-      Mobility.with_locale(@selected_locale) do
-        @translated_subject = @communication.subject
-        @translated_body = @communication.body
-      end
-
-      respond_to do |format|
-        if params[:locale].present?
-          format.json do
-            render json: {
-              translated_subject: @translated_subject,
-              translated_body: @translated_body,
-              reference_subject: @reference_subject,
-              reference_body: @reference_body,
-              selected_locale: @selected_locale
-            }
-          end
-        else
-          format.js { render :edit_translation }
-        end
       end
     end
 

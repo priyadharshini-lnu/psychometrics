@@ -5,6 +5,8 @@ class Membership < ApplicationRecord
 
   audited
 
+  include SecurityContextLoggable
+
   # Roles constant
   MEMBERSHIP_ROLES = [
     MEMBER_ROLE = 'member',
@@ -59,7 +61,31 @@ class Membership < ApplicationRecord
   validate :relevant_role, if: -> { client.present? }
 
   before_save :set_project_membership, if: -> { client.end_level? }
+  # Standard saved_change_to_role? checks fail in after_commit for this model,
+  # due to conflicts with external gems (e.g. audited).
+  # We must manually capture changes before save to ensure logging occurs.
+  before_save :capture_security_changes
   after_destroy :clear_project_membership, if: -> { client.end_level? }
+  after_commit :log_security_context_change, on: :update
+
+  attr_accessor :role_change_tuple
+
+  def capture_security_changes
+    changes_to_role = changes['role']
+    self.role_change_tuple = changes_to_role if changes_to_role.present?
+  end
+
+  def log_security_context_change
+    return unless role_change_tuple
+
+    msg = "Membership role changed from #{role_change_tuple[0]} to #{role_change_tuple[1]} " \
+          "for client #{client_id}"
+
+    log_security_context_event(
+      target_user: user,
+      msg: msg
+    )
+  end
 
   has_ancestry
 

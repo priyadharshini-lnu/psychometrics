@@ -107,7 +107,7 @@ module SiemLogger
         'ActingAsUser' => options[:acting_as_user] || '',
         'AuthenticationChannel' => options[:authentication_channel] || '',
         'TrackingNumber' => options[:tracking_number] || '',
-        'SessionID' => (options[:session_id] || '').to_s,
+        'SessionID' => (options[:session_id] || Current.user&.id || '').to_s,
         'CorrelationID' => options.dig(:request_details, :request_id) || Current.request_id || ''
       }
     end

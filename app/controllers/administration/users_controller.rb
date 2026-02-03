@@ -98,6 +98,12 @@ class Administration::UsersController < Administration::BaseController
   def export
     @_resources = policy_scope(resource_class).includes(:clients).all
     audit! :export_users, resource
+    siem_log_sensitive_operation(
+      context: 'User Data Export',
+      action_description: 'exported user list',
+      action_type: 'Export',
+      resource: 'User'
+    )
     respond_to do |format|
       filename = "#{resource_class.model_name.plural}-#{Time.zone.today}"
       format.csv do

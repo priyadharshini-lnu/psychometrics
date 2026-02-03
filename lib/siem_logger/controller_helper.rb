@@ -95,6 +95,77 @@ module SiemLogger
       })
     end
 
+    def siem_log_authorization_failure(resource:, action:, user: nil)
+      user ||= (current_user if respond_to?(:current_user))
+
+      if user
+        actor = SiemLogger.user_identifier(user.email, user.id)
+        session_id = user.id
+      else
+        actor = 'Unknown'
+        session_id = nil
+      end
+
+      context = "Authorization failed for #{actor}"
+      msg = "User #{actor} was denied access to #{resource}"
+      msg += " (Action: #{action})" if action.present?
+
+      siem_log_security_event!('AuthorizationFailure', {
+        context: context,
+        msg: msg,
+        actor_name: actor,
+        session_id: session_id,
+        tags: %w[authorization_failure security_event],
+        request_details: {
+          resource_type: resource.is_a?(Module) ? resource.name : resource.to_s,
+          action: action
+        }
+      })
+    end
+
+    def siem_log_sensitive_operation(context:, action_description:, action_type:, resource: nil)
+      user = (current_user if respond_to?(:current_user, true))
+      actor = user ? SiemLogger.user_identifier(user.email, user.id) : 'System'
+
+      message = "User #{actor} #{action_description}"
+
+      siem_log_security_event!('SensitiveOperation', {
+        context: "#{context} by #{actor}",
+        msg: message,
+        actor_name: actor,
+        session_id: user&.id,
+        request_details: {
+          action_type: action_type,
+          resource: resource
+        }
+      })
+    end
+
+    def siem_log_session_management_exception(exception)
+      user = (current_user if respond_to?(:current_user, true))
+      if user
+        actor = SiemLogger.user_identifier(user.email, user.id)
+        session_id = user.id
+      else
+        actor = 'Unknown'
+        session_id = nil
+      end
+
+      context = "Session verification failed for #{actor}"
+      error_message = exception&.message || 'Verification failed'
+      msg = "SessionManagementException: #{error_message}"
+
+      siem_log_security_event!('SessionManagementExceptions', {
+        context: context,
+        msg: msg,
+        actor_name: actor,
+        session_id: session_id,
+        request_details: {
+          exception_class: exception&.class&.name
+        }
+      })
+    end
+
     private
 
     def determine_authentication_channel_for_success(found_by)

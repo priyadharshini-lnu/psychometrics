@@ -204,7 +204,9 @@ class BaseController < ActionController::Base
     Sentry.set_extras(params: params.to_unsafe_h, url: request.url)
   end
 
-  def handle_invalid_authenticity_token
+  def handle_invalid_authenticity_token(exception = nil)
+    siem_log_session_management_exception(exception)
+
     respond_to do |f|
       f.html do
         flash[:notice] = t('errors.try_again')

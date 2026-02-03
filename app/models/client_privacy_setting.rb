@@ -2,6 +2,7 @@
 
 class ClientPrivacySetting < ApplicationRecord
   audited
+  include ApplicationConfigurationLoggable
 
   belongs_to :client
 

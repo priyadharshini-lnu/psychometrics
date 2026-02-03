@@ -18,6 +18,13 @@ class Administration::ImportsController < Administration::BaseController
     respond_to do |format|
       if @form.valid?
         begin
+          siem_log_sensitive_operation(
+            context: 'Data Import',
+            action_description: "initiated import of type #{params[:type]}",
+            action_type: 'Import',
+            resource: params[:type]
+          )
+
           @import.engine.new(
             @form.file.path, current_user, import_params[:owner_id]
           ).process
