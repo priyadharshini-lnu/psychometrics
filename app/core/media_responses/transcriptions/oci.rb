@@ -7,19 +7,6 @@ module MediaResponses
     class Oci < BaseCommand
       attr_reader :media_response
 
-      APP_TO_WHISPER_LOCALE_MAP = {
-        'cn' => 'zh',
-        'en-GB' => 'en',
-        'en-US' => 'en',
-        'es-ES' => 'es',
-        'pt-BR' => 'pt',
-        'zh-TW' => 'zh',
-        'zh-HK' => 'zh',
-        'zh-Hant' => 'zh',
-        'sr-Cyrl' => 'sr',
-        'sr-Latn' => 'sr'
-      }.freeze
-
       def initialize(media_response)
         @media_response = media_response
       end
@@ -55,8 +42,6 @@ module MediaResponses
         compartment_id = Settings.secrets.oci.compartment_id
         namespace = Settings.secrets.oci.namespace
         bucket_name = Settings.secrets.s3_compatible_storage.private_bucket
-        user_locale = media_response.users_result.user_assessment.selected_locale
-        language_code = APP_TO_WHISPER_LOCALE_MAP[user_locale.to_s] || user_locale
         input_object_name = media_response.asset.key
 
         OCI::AiSpeech::Models::CreateTranscriptionJobDetails.new(
@@ -78,7 +63,7 @@ module MediaResponses
           ),
           model_details: OCI::AiSpeech::Models::TranscriptionModelDetails.new(
             model_type: Settings.ai_transcription_provider.model,
-            language_code: language_code
+            language_code: 'auto'
           ),
           normalization: OCI::AiSpeech::Models::TranscriptionNormalization.new(
             is_punctuation_enabled: true,
