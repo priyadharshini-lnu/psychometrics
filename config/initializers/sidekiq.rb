@@ -17,10 +17,12 @@ redis_connection = if Rails.env.development?
 Sidekiq.configure_server do |config|
   pool_size = ENV.fetch('SIDEKIQ_DB_POOL', Sidekiq.options[:concurrency] + 2)
   config.redis = redis_connection.merge(size: pool_size)
+  Sidekiq.logger = SemanticLogger[Sidekiq]
 end
 
 Sidekiq.configure_client do |config|
   config.redis = redis_connection
+  Sidekiq.logger = SemanticLogger[Sidekiq]
 end
 
 # calling Sidekiq::Cron::Job is moved to application.rb in Rails.application.config.to_prepare
