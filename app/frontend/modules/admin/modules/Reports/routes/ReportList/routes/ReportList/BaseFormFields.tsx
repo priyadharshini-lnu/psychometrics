@@ -195,14 +195,15 @@ const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
         initialValue={report?.owner?.id || null}
       >
         <Select
-          showSearch
-          onSearch={(value) => {
-            fetchClients({
-              apiConfig: { filter: { filterable_fields: value }, fields: { clients: ['name'] } },
-            })
+          showSearch={{
+            filterOption: false,
+            onSearch: (value) => {
+              fetchClients({
+                apiConfig: { filter: { filterable_fields: value }, fields: { clients: ['name'] } },
+              })
+            },
           }}
-          notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : null}
-          filterOption={false}
+          notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
         >
           {isSuperAdmin(currentUser) && <Select.Option>TTE</Select.Option>}
           {getClients().map(({ id, name }) => (
@@ -232,15 +233,16 @@ const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
             rules={[{ required: true }]}
           >
             <Select
-              showSearch
-              mode="multiple"
-              onSearch={(value) => {
-                fetchAssessments({
-                  apiConfig: { filter: { filterable_fields: value }, fields: { assessments: ['name'] } },
-                })
+              showSearch={{
+                filterOption: false,
+                onSearch: (value) => {
+                  fetchAssessments({
+                    apiConfig: { filter: { filterable_fields: value }, fields: { assessments: ['name'] } },
+                  })
+                },
               }}
-              notFoundContent={isAssessmentLoading('fetch') ? <Spin size="small" /> : null}
-              filterOption={false}
+              mode="multiple"
+              notFoundContent={isAssessmentLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >
               {getAssessments().map(({ id, name }) => (
                 <Select.Option key={id} value={id}>{name}</Select.Option>
@@ -309,12 +311,8 @@ const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
           mode="tags"
           style={{ width: '100%' }}
           placeholder={I18n.t('common.column.tags')}
-          showSearch
-          onSearch={(value) => {
-            debouncedFetchTags(value)
-          }}
-          notFoundContent={isTagsLoading('fetch') ? <Spin size="small" /> : null}
-          filterOption={false}
+          showSearch={{ filterOption: false, onSearch: debouncedFetchTags }}
+          notFoundContent={isTagsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
         >
           {tags.map(({ name }) => (
             <Select.Option key={name} value={name}>{name}</Select.Option>

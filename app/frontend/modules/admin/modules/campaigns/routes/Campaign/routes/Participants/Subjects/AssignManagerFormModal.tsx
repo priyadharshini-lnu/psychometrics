@@ -104,7 +104,7 @@ export const AssignManagerFormModalComponent: React.FC<Props> = ({
               label={I18n.t('campaign_users.details.manager')}
             >
               <Select
-                showSearch
+                showSearch={{ filterOption: false, onSearch: handleInputChange }}
                 allowClear
                 placeholder={(
                   <Space>
@@ -114,9 +114,7 @@ export const AssignManagerFormModalComponent: React.FC<Props> = ({
                 )}
                 value={selectedManagerId}
                 onChange={(value: number) => setSelectedManagerId(value)}
-                onSearch={handleInputChange}
-                notFoundContent={isUsersLoading('fetch') ? <Spin size="small" /> : null}
-                filterOption={false}
+                notFoundContent={isUsersLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
               >
                 {users.map(({ id, name, email }) => (
                   <Select.Option key={id} value={id}>

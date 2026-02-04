@@ -9,6 +9,7 @@ nl:
     agree_and_continue: Akkoord en Ga Door.
     archive: Archief
     archived: Gearchiveerd
+    asset_not_present: Asset niet aanwezig
     audio: Audio
     authentication_failed: Authenticatie mislukt. Probeer het alsjeblieft opnieuw.
     basic: Basisch
@@ -53,6 +54,7 @@ nl:
     na_text: N.v.t.
     name: Naam
     new: Nieuw
+    no_results_found: Geen resultaten gevonden
     not_requested: Nog niet aangevraagd
     ok: Ok
     pending: In behandeling

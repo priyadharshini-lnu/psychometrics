@@ -9,6 +9,7 @@ sl:
     agree_and_continue: Strinjam se in nadaljujte
     archive: Arhiv
     archived: Arhivirani
+    asset_not_present: Sredstvo ni prisotno
     audio: Avdio
     authentication_failed: Avtentikacija ni uspela. Prosim, poskusite znova.
     basic: Osnoven
@@ -53,6 +54,7 @@ sl:
     na_text: Ni podatka
     name: Ime
     new: Novo
+    no_results_found: Ni bilo najdenih rezultatov
     not_requested: Še ni zahtevano
     ok: Ok
     pending: V obravnavi

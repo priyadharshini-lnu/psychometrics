@@ -108,14 +108,10 @@ export const JobRolesFormModal: React.FC<Props> = ({ close, jobRole }) => {
             label={I18n.t('administration.job_role.form.job_group')}
           >
             <Select
-              showSearch
+              showSearch={{ filterOption: false, onSearch: debouncedFetchJobGroups }}
               allowClear
-              filterOption={false}
               loading={isJobGroupsLoading('fetch')}
-              onSearch={(value) => {
-                debouncedFetchJobGroups(value)
-              }}
-              notFoundContent={isJobGroupsLoading('fetch') ? <Spin size="small" /> : null}
+              notFoundContent={isJobGroupsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
               options={getJobGroups().map(p => ({
                 value: p.id,
                 label: p.name,

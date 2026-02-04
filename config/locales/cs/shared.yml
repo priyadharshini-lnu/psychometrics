@@ -9,6 +9,7 @@ cs:
     agree_and_continue: Souhlasím a pokračujte
     archive: Archivovat
     archived: Archivováno
+    asset_not_present: Aktivum není k dispozici
     audio: Audio
     authentication_failed: Autentizace selhala. Zkuste to prosím znovu.
     basic: Základní
@@ -53,6 +54,7 @@ cs:
     na_text: N/A
     name: Název
     new: Nové
+    no_results_found: Nenalezeny žádné výsledky
     not_requested: Dosud nepožadováno
     ok: OK
     pending: Čeká na vyřízení

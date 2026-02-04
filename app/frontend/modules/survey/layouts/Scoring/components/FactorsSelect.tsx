@@ -47,10 +47,8 @@ const FactorsSelect = ({ factors, selectedFactor, selectFactor }) => {
         placeholder="Please select"
         defaultValue={selectedFactor.id || 'Choose Factor'}
         options={options}
-        filterOption={false}
-        showSearch
+        showSearch={{ filterOption: false, onSearch: handleSearch }}
         onChange={selectFactor}
-        onSearch={handleSearch}
       />
     </>
   )

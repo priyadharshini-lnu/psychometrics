@@ -68,10 +68,8 @@ export const OwnerAndProjectDropdown = forwardRef(({
           label={I18n.t('common.column.client')}
         >
           <Select
-            showSearch
-            filterOption={false}
+            showSearch={{ filterOption: false, onSearch: handleOwnersSearch }}
             placeholder={I18n.t('administration.skills.form.client_placeholder')}
-            onSearch={handleOwnersSearch}
             options={ownerOpts?.map(p => ({
               value: p.id,
               label: p.name,
@@ -83,17 +81,15 @@ export const OwnerAndProjectDropdown = forwardRef(({
           label={I18n.t('common.column.project')}
         >
           <Select
-            showSearch
-            filterOption={false}
+            showSearch={{ filterOption: false, onSearch: handleProjectsSearch }}
             key={ownerId}
-            onSearch={handleProjectsSearch}
             options={projectOpts?.map(p => ({
               value: p.id,
               label: p.name,
             }))}
             disabled={!ownerId}
             placeholder={I18n.t('administration.skills.form.project_placeholder')}
-            notFoundContent={isLoading?.('fetch') ? <Spin size="small" /> : null}
+            notFoundContent={isLoading?.('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
           />
         </Form.Item>
       </>

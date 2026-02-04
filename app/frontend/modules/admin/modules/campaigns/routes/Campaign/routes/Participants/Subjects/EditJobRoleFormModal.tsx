@@ -142,7 +142,7 @@ export const EditJobRoleFormModalComponent: React.FC<Props> = ({
                   onSearch: handleJobRoleSearch,
                   filterOption: false,
                 }}
-                notFoundContent={isJobRolesLoading('fetch') ? <Spin size="small" /> : null}
+                notFoundContent={isJobRolesLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
                 options={jobRoleOptions}
               />
             </Form.Item>
@@ -162,7 +162,7 @@ export const EditJobRoleFormModalComponent: React.FC<Props> = ({
                   onSearch: handleJobRoleSearch,
                   filterOption: false,
                 }}
-                notFoundContent={isJobRolesLoading('fetch') ? <Spin size="small" /> : null}
+                notFoundContent={isJobRolesLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
                 options={jobRoleOptions}
               />
             </Form.Item>

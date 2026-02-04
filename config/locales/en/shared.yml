@@ -54,6 +54,7 @@ en:
     na_text: N/A
     name: Name
     new: New
+    no_results_found: No results found
     not_requested: Not Yet Requested
     ok: Ok
     pending: Pending

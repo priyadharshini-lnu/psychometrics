@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Form, Select, Spin } from 'antd'
+import debounce from 'lodash/debounce'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { useResourceContext } from '~/modules/admin/components/Resource'
 import { Report, HoganReportPackages } from '~/modules/admin/modules/client/core/reports'
@@ -19,6 +20,15 @@ export const ReportBundleReportFormModal: React.FC<Props> = ({ close }) => {
   const {
     data: reports, fetch: fetchReports, isLoading: isReportLoading,
   } = useResources<Report>('reports')
+
+  const debouncedFetchReports = debounce((value: string) => {
+    fetchReports({
+      apiConfig: {
+        filter: { filterable_fields: value, category_eq: 'common' },
+        fields: { reports: ['name', 'hogan_report_packages'] },
+      },
+    })
+  }, 300)
 
   const handleReportSelect = (reportId: string) => {
     const selectedReport = reports.find(report => report.id === reportId)
@@ -47,23 +57,14 @@ export const ReportBundleReportFormModal: React.FC<Props> = ({ close }) => {
             rules={[{ required: true }]}
           >
             <Select
-              showSearch
-              onSearch={(value) => {
-                fetchReports({
-                  apiConfig: {
-                    filter: { filterable_fields: value, category_eq: 'common' },
-                    fields: { reports: ['name', 'hogan_report_packages'] },
-                  },
-                })
-              }}
-              notFoundContent={isReportLoading('fetch') ? <Spin size="small" /> : null}
-              filterOption={false}
+              showSearch={{ filterOption: false, onSearch: debouncedFetchReports }}
               onChange={handleReportSelect}
-            >
-              {reports.map(({ id, name }) => (
-                <Select.Option key={id} value={id}>{name}</Select.Option>
-              ))}
-            </Select>
+              notFoundContent={isReportLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
+              options={reports.map(({ id, name }) => ({
+                label: name,
+                value: id,
+              }))}
+            />
           </Form.Item>
           {hoganPackages.length > 0 && (
             <Form.Item

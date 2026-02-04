@@ -95,13 +95,11 @@ const AddAssessorAssessmentModal: React.FC<Props> = ({
             label={I18n.t('administration.assessor_assessment.name')}
           >
             <Select
-              showSearch
-              filterOption={false}
+              showSearch={{ filterOption: false, onSearch: searchAvailableAssessments }}
               placeholder={
                 I18n.t('administration.assessor_assessment.modals.add_assessor_assessment.assessment_placeholder')
               }
-              onSearch={searchAvailableAssessments}
-              notFoundContent={assessmentsLoading ? <Spin size="small" /> : null}
+              notFoundContent={assessmentsLoading ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >
               {
                 assessments.map(({ id, name }) => (

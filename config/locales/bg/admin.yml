@@ -81,6 +81,7 @@ bg:
     campaign_assessment_modals_enable_caching_title: Да активирам кеширането на оценката?
     campaign_factors: Фактори на кампанията
     campaign_templates: Шаблони за кампании
+    campaign_user_job_roles_cannot_be_same: Целевата длъжност трябва да е различна от настоящата длъжност.
     campaigns: Кампании
     client: Наемане на клиенти
     client_admins: Администратори на клиенти
@@ -732,6 +733,7 @@ bg:
     translated_to: 'Преведено на:'
     translated_with_ai_notice: Преведено от AI
     translation_assistant_not_configured: Помощникът за превод не е конфигуриран
+    update_success: "%{readableResourceName} е актуализиран успешно"
     upload_success: Качено успешно
     user_report_events: Събития с потребителски отчет
     users: Потребители

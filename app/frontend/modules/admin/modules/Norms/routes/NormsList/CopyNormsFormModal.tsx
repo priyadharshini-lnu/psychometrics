@@ -88,14 +88,15 @@ const CopyNormsFormModal: React.FC<Props> = ({
             label={I18n.t('common.column.owner')}
           >
             <Select
-              showSearch
-              onSearch={(value) => {
-                fetchClients({
-                  apiConfig: { filter: { filterable_fields: value }, fields: { clients: ['name'] } },
-                })
+              showSearch={{
+                filterOption: false,
+                onSearch: (value) => {
+                  fetchClients({
+                    apiConfig: { filter: { filterable_fields: value }, fields: { clients: ['name'] } },
+                  })
+                },
               }}
-              notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : null}
-              filterOption={false}
+              notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >
               <Select.Option>{I18n.t('administration.tte')}</Select.Option>
               {getClients().map(({ id, name }) => (

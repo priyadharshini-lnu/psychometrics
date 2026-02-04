@@ -124,11 +124,12 @@ export const ReflectionQuestionsForm: FC<ReflectionQuestionsFormProps> = ({ idp,
                   width: '100%', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap',
                 }}
                 placeholder={I18n.t('administration.idp.select_reflection_question')}
-                showSearch
-                onSearch={(query) => {
-                  searchHandler(query)
+                showSearch={{
+                  filterOption: false,
+                  onSearch: (query) => {
+                    searchHandler(query)
+                  },
                 }}
-                filterOption={false}
                 value={selectedQuestion}
                 onChange={handleSelectChange}
               >

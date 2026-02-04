@@ -1045,15 +1045,15 @@ ar:
       export_raw_without_labels: خام (بدون ملصقات)
       extend_time: تمديد الوقت
       external_scores_export: الدرجات الخارجية
-      goto_dashboard: اضغط هنا للأستمرار
+      goto_dashboard: اضغط هنا للمتابعة
       manage_mettl_schedule: إدارة جدول Mettle
       moderate: درجات معتدلة
       new_response: استجابة جديدة
       next_assessment: انتقل إلى التقييم التالي
       pending_tasks:
-        one: لديك مهمة واحدة معلقة
-        other: لديك %{count} مهام معلقة
-        two: لديك مهمتان لم تنفذ حتى الان
+        one: لديك مهمة واحدة متبقية
+        other: لديك %{count} مهام متبقية
+        two: لديك مهمتان متبقيتان
       re_evaluate: انقر هنا لإعادة التقييم
       reevaluate: إعادة التقييم
       remove:
@@ -1171,20 +1171,20 @@ ar:
     instructions:
       begin_assessment: ابدأ
       cancel: إلغاء
-      default: هذا نشاط محدد بوقت ، بمجرد النقر فوق بدء التقييم ، سيكون لديك %{time} دقيقة لإكماله
+      default: هذا التقييم محدد المدة، سيكون لديك %{time} دقيقة لإكماله بعد النقر فوق  زر "ابدأ"
       title: تعليمات
     messages:
       external_scores_export_scheduled: تمت جدولة مهمة تصدير درجات التقييم بنجاح
-      finish: شكراً على وقتك الثمين. لقد تم تسجيل أجوبتك.
+      finish: شكرا لوقتك، تم حفظ إجاباتك
       norm_results_export_scheduled: تمت جدولة مهمة تصدير النتائج المعيارية للتقييم بنجاح
       raw_factor_export_scheduled: تم جدولة مهمة تصدير العامل الخام للتقييم بنجاح
       raw_results_export_scheduled: تمت جدولة مهمة تصدير النتائج الأولية للتقييم بنجاح
     page:
       back: عودة
       confirm_message: |-
-        #### سيتم إرسال الردود الخاصة بك ولن تتمكن من تغييرها بعد ذلك.
+        #### سيتم إرسال إجاباتك، ولا يمكنك تعديلها بعد ذلك.
 
-        انقر على زر **عودة لمراجعة** ردودك للمرة الأخيرة أو انقر على زر **تسليم** إذا كنت قد انتهيت.
+        اضغط على **عودة** لمراجعة إجاباتك للمرة الأخيرة، أو اضغط على **إرسال** إذا انتهيت.
       invalid_session:
         description: وقد ألغيت جلسة التقييم هذه. يمكن أن يحدث هذا إذا واصلت التقييم في علامة تبويب أو متصفح أو جهاز منفصل.
         title: فشل الطلب الأخير
@@ -1491,7 +1491,7 @@ ar:
       notification: كان وقتك المخصص لهذه المهمة "%{assessmentName}" هو %{totalAssessmentTime} دقيقة فقط. نظراً للوقت المنقضي الإجمالي، لديك الآن %{remainingCampaignTime} دقيقة لإكمال هذه المهمة.
     timer:
       notification_hours: لديك %{hours}   لإكمال التقييمات
-      notification_minutes: لديك %{minutes}   لإكمال التقييمات
+      notification_minutes: لديك %{minutes} دقيقة لإكمال التقييمات
   campaign_assessment:
     actions:
       bulk_download: تحميل بالجملة
@@ -1660,7 +1660,7 @@ ar:
       progress: قيد التنفيذ
       timed_out: انتهت المهلة
       universal_link: رابط عالمي
-    ungrouped_assessments_heading: فك تجميع
+    ungrouped_assessments_heading: مهام أخرى
   campaign_join_token:
     campaign_id: معرف الحملة
     expire_in: تنتهي الصلاحية في (ثانية)

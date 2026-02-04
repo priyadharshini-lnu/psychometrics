@@ -9,6 +9,7 @@ pt:
     agree_and_continue: Concorde e continue
     archive: Arquivar
     archived: Arquivado
+    asset_not_present: Ativo não presente
     audio: Áudio
     authentication_failed: A autenticação falhou. Por favor, tente novamente.
     basic: Básico
@@ -53,6 +54,7 @@ pt:
     na_text: Não se aplica
     name: Nome
     new: Novo
+    no_results_found: Não foram encontrados resultados
     not_requested: Ainda não solicitado
     ok: OK
     pending: Pendente

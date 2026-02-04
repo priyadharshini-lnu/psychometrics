@@ -81,6 +81,7 @@ pt:
     campaign_assessment_modals_enable_caching_title: Habilitar o cache de avaliação?
     campaign_factors: Fatores da campanha
     campaign_templates: Modelos de campanha
+    campaign_user_job_roles_cannot_be_same: A função alvo deve ser diferente da função atual.
     campaigns: Campanhas
     client: Locação de clientes
     client_admins: Administradores de clientes
@@ -732,6 +733,7 @@ pt:
     translated_to: 'Traduzido para:'
     translated_with_ai_notice: Traduzido por IA
     translation_assistant_not_configured: Assistente de tradução não configurado
+    update_success: "%{readableResourceName} atualizado com êxito"
     upload_success: Carregado com sucesso
     user_report_events: Eventos do relatório do utilizador
     users: Utilizadores

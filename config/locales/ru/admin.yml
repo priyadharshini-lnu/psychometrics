@@ -81,6 +81,7 @@ ru:
     campaign_assessment_modals_enable_caching_title: Включить кэширование оценок?
     campaign_factors: Факторы кампании
     campaign_templates: Шаблоны кампаний
+    campaign_user_job_roles_cannot_be_same: Целевая должность должна отличаться от текущей должности.
     campaigns: Кампании
     client: Клиент
     client_admins: Администраторы клиентов
@@ -733,6 +734,7 @@ ru:
     translated_to: 'Переведено на:'
     translated_with_ai_notice: Перевод с помощью ИИ
     translation_assistant_not_configured: Помощник перевода не настроен
+    update_success: "%{readableResourceName} был успешно обновлен"
     upload_success: Загрузка успешно завершена
     user_report_events: Сообщения пользователей о событиях
     users: Пользователи

@@ -81,6 +81,7 @@ ar:
     campaign_assessment_modals_enable_caching_title: تمكين التخزين المؤقت للتقييم؟
     campaign_factors: عوامل الحملة
     campaign_templates: قوالب الحملات
+    campaign_user_job_roles_cannot_be_same: يجب أن تكون الوظيفة المستهدفة مختلفة عن الوظيفة الحالية
     campaigns: الحملات
     client: مستأجر العميل
     client_admins: مسؤولو العملاء
@@ -732,6 +733,7 @@ ar:
     translated_to: 'ترجم إلى:'
     translated_with_ai_notice: ترجمة بالذكاء الاصطناعي
     translation_assistant_not_configured: مساعد الترجمة غير مهيأ
+    update_success: "%{readableResourceName} تم تحديثه بنجاح"
     upload_success: تم الرفع بنجاح
     user_report_events: أحداث تقارير المستخدم
     users: المستخدمون

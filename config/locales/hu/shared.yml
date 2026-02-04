@@ -9,6 +9,7 @@ hu:
     agree_and_continue: Egyetértek és folytatjuk
     archive: Archívum
     archived: Archivált
+    asset_not_present: Az eszköz nincs jelen
     audio: Audio
     authentication_failed: A hitelesítés sikertelen. Kérlek, próbáld meg újra.
     basic: Alapvető
@@ -53,6 +54,7 @@ hu:
     na_text: N/A
     name: Név
     new: Új
+    no_results_found: Nincs találat
     not_requested: Még nem kért
     ok: Oké
     pending: Függőben

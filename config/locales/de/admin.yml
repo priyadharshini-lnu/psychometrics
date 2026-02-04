@@ -81,6 +81,7 @@ de:
     campaign_assessment_modals_enable_caching_title: Assessment Caching ermöglichen?
     campaign_factors: Faktoren der Kampagne
     campaign_templates: Vorlagen für Kampagnen
+    campaign_user_job_roles_cannot_be_same: Die angestrebte Position muss sich von der aktuellen Position unterscheiden.
     campaigns: Kampagnen
     client: Client Mietverhältnis
     client_admins: Client-Admins
@@ -732,6 +733,7 @@ de:
     translated_to: 'Übersetzt in:'
     translated_with_ai_notice: KI-Übersetzung
     translation_assistant_not_configured: Übersetzungsassistent nicht konfiguriert
+    update_success: "%{readableResourceName} wurde erfolgreich aktualisiert"
     upload_success: Erfolgreich hochgeladen
     user_report_events: Benutzerbericht Ereignisse
     users: Benutzer

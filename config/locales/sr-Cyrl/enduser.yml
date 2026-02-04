@@ -13,6 +13,7 @@ sr-Cyrl:
     campaign: Кампања
     development: Развој
     direct_reportees: Директни извештачи
+    download_pdf: Преузмите ПДФ
     home: Почетна
     idp_loading_fifth_step: Преузимање акција развоја из шаблона
     idp_loading_first_step: Анализа вашег извештаја о процењивању
@@ -31,11 +32,15 @@ sr-Cyrl:
     profile_details: Детаљи
     question_counter: Питање %{current}-а из %{total}
     reason_for_idp_plan_rejection: Разлог за одбијање
+    recorded: снимано
+    recording: снимање
     reject_idp_plan: Одбацити план
     request_retry_message: Ви сте ван мреже. Ваши одговори нису могли да се сачувају, али ће бити аутоматски сачувани чим се поново повежете на интернет. Молимо вас да не освежавате или не затварате страницу.
+    saving_video_text: Сачувај видео... Молимо вас да не затварате или освежавате прегледач.
     selected_count: "%{count} изабрано"
     skill_type: Тип вештине
     start_campaign_message_proctored: Ово је надгледана кампања, кликните на дугме "%{buttonText}" да бисте започели активности.
     start_campaign_message_timed: Ово је временски ограничена кампања, кликните на дугме "%{buttonText}" да бисте започели активности.
     start_campaign_message_timed_proctored: Ово је временски ограничена и надгледана кампања, кликните на дугме "%{buttonText}" да бисте започели активности.
+    status_unknown: Статус непознат
     tasks: Задаци

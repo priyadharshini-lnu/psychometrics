@@ -81,6 +81,7 @@ sr-Latn:
     campaign_assessment_modals_enable_caching_title: Omogućite keširanje procene?
     campaign_factors: Faktori kampanje
     campaign_templates: Predlošci kampanje
+    campaign_user_job_roles_cannot_be_same: Циљна радна улога мора бити различита од тренутне радне улоге.
     campaigns: Kampanje
     client: Zakup klijenta
     client_admins: Administratori klijenata
@@ -732,6 +733,7 @@ sr-Latn:
     translated_to: 'Преведено на:'
     translated_with_ai_notice: Преведено помоћу вештачке интелигенције
     translation_assistant_not_configured: Помоћник за превод није конфигурисан
+    update_success: "%{readableResourceName} je uspešno ažuriran"
     upload_success: Uspešno otpremljen
     user_report_events: Događaji Izveštaja korisnika
     users: Korisnici

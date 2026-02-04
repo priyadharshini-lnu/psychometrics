@@ -81,6 +81,7 @@ fr:
     campaign_assessment_modals_enable_caching_title: Activer la mise en cache des évaluations ?
     campaign_factors: Facteurs de campagne
     campaign_templates: Modèles de campagne
+    campaign_user_job_roles_cannot_be_same: Le poste visé doit être différent du poste actuel.
     campaigns: Campagnes
     client: Location par le client
     client_admins: Administrateurs clients
@@ -732,6 +733,7 @@ fr:
     translated_to: 'Traduit en :'
     translated_with_ai_notice: Traduit par l'IA
     translation_assistant_not_configured: Assistant de traduction non configuré
+    update_success: la mise à jour de %{readableResourceName} a été effectuée avec succès
     upload_success: Téléversement réussi
     user_report_events: Rapport de l'utilisateur Événements
     users: Utilisateurs

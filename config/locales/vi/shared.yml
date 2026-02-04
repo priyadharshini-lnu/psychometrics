@@ -9,6 +9,7 @@ vi:
     agree_and_continue: Đồng ý và tiếp tục
     archive: Lưu trữ
     archived: Lưu trữ
+    asset_not_present: Tài sản không có sẵn
     audio: Âm thanh
     authentication_failed: Xác thực không thành công. Vui lòng thử lại.
     basic: Cơ bản
@@ -53,6 +54,7 @@ vi:
     na_text: Không áp dụng
     name: Tên
     new: Mới
+    no_results_found: Không tìm thấy kết quả nào.
     not_requested: Chưa được yêu cầu
     ok: Được rồi
     pending: Đang chờ xử lý

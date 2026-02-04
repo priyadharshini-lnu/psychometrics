@@ -81,6 +81,7 @@ hu:
     campaign_assessment_modals_enable_caching_title: Engedélyezni az értékelési gyorsítótárat?
     campaign_factors: Kampány tényezők
     campaign_templates: Kampány sablonok
+    campaign_user_job_roles_cannot_be_same: A célpozíció nem lehet azonos a jelenlegi pozícióval.
     campaigns: Kampányok
     client: Ügyfél bérleti joga
     client_admins: Ügyféladminisztrátorok
@@ -732,6 +733,7 @@ hu:
     translated_to: 'Fordítás:'
     translated_with_ai_notice: AI fordítás
     translation_assistant_not_configured: Fordítási segédprogram nincs konfigurálva
+    update_success: "%{readableResourceName} sikeresen frissült"
     upload_success: Sikeresen feltöltve
     user_report_events: Felhasználói jelentés eseményei
     users: Felhasználók

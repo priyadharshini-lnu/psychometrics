@@ -239,20 +239,22 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
                     </div>
                     <Select
                       disabled={workshops && (workshops.length > 0)}
-                      showSearch
-                      // eslint-disable-next-line max-len
-                      placeholder={I18n.t('administration.assessment_center.invite.basic_info.assessment_centers_placeholder')}
+                      showSearch={{
+                        filterOption: false,
+                        searchValue,
+                        onSearch: (value) => {
+                          setSearchValue(value)
+                          searchWorkshops()
+                        },
+                      }}
+                      placeholder={
+                        I18n.t('administration.assessment_center.invite.basic_info.assessment_centers_placeholder')
+                      }
                       options={assessmentCenters.map(workshop => ({
                         label: workshop.name, value: workshop.id,
                       }))}
                       onSelect={changeWorkshops}
-                      filterOption={false}
-                      searchValue={searchValue}
                       value={null}
-                      onSearch={(value) => {
-                        setSearchValue(value)
-                        searchWorkshops()
-                      }}
                     />
                   </Col>
                   <Col span={24}>

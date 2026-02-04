@@ -22,9 +22,10 @@ export const SavilleFields: React.FC<{ form: FormInstance }> = ({ form }) => {
         label={I18n.t('reports.columns.external_settings.saville_report_id')}
       >
         <Select
-          notFoundContent={isLoading('fetch') ? <Spin size="small" /> : null}
-          showSearch
-          filterOption={(input, option) => (option?.key.toLowerCase().indexOf(input.toLowerCase()) >= 0)}
+          notFoundContent={isLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
+          showSearch={{
+            filterOption: (input, option) => (option?.key?.toLowerCase().indexOf(input.toLowerCase()) >= 0),
+          }}
         >
           {externalReports.map(({ id, name }) => {
             const label = `${name} - ${id}`

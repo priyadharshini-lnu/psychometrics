@@ -121,14 +121,15 @@ const BaseFormFieldsComp: React.FC<Props> = ({
         initialValue={assessment?.owner?.id || null}
       >
         <Select
-          showSearch={!assessment}
-          onSearch={(value) => {
-            fetchClients({
-              apiConfig: { filter: { filterable_fields: value }, fields: { clients: ['name'] } },
-            })
-          }}
-          notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : null}
-          filterOption={false}
+          showSearch={!assessment ? {
+            filterOption: false,
+            onSearch: (value) => {
+              fetchClients({
+                apiConfig: { filter: { filterable_fields: value }, fields: { clients: ['name'] } },
+              })
+            },
+          } : false}
+          notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
         >
           {isSuperAdmin(currentUser) && <Select.Option>TTE</Select.Option>}
           {getClients().map(({ id, name }) => (
@@ -189,21 +190,22 @@ const BaseFormFieldsComp: React.FC<Props> = ({
           label={I18n.t('common.column.linked_assessment')}
         >
           <Select
-            showSearch
-            onSearch={(value) => {
-              fetchAssessments({
-                apiConfig: {
-                  filter: {
-                    filterable_fields: value,
-                    category_in: ['psychometric', 'agile', 'case_study', 'organisational', 'meeting'],
-                    archived_eq: 'false',
+            showSearch={{
+              filterOption: false,
+              onSearch: (value) => {
+                fetchAssessments({
+                  apiConfig: {
+                    filter: {
+                      filterable_fields: value,
+                      category_in: ['psychometric', 'agile', 'case_study', 'organisational', 'meeting'],
+                      archived_eq: 'false',
+                    },
+                    fields: { assessments: ['name'] },
                   },
-                  fields: { assessments: ['name'] },
-                },
-              })
+                })
+              },
             }}
-            notFoundContent={isAssessmentsLoading('fetch') ? <Spin size="small" /> : null}
-            filterOption={false}
+            notFoundContent={isAssessmentsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             allowClear
           >
             {getAssessments().map(({ id, name }) => <Select.Option key={id} value={id}>{name}</Select.Option>)}
@@ -216,14 +218,15 @@ const BaseFormFieldsComp: React.FC<Props> = ({
         rules={[{ required: true }]}
       >
         <Select
-          showSearch
-          onSearch={(value) => {
-            fetchDimensions({
-              apiConfig: { filter: { filterable_fields: value }, fields: { dimensions: ['name'] } },
-            })
+          showSearch={{
+            filterOption: false,
+            onSearch: (value) => {
+              fetchDimensions({
+                apiConfig: { filter: { filterable_fields: value }, fields: { dimensions: ['name'] } },
+              })
+            },
           }}
-          notFoundContent={isDimensionsLoading('fetch') ? <Spin size="small" /> : null}
-          filterOption={false}
+          notFoundContent={isDimensionsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
         >
           {getDimensions().map(({ id, name }) => (
             <Select.Option key={id} value={id}>{name}</Select.Option>
@@ -251,12 +254,13 @@ const BaseFormFieldsComp: React.FC<Props> = ({
           mode="tags"
           style={{ width: '100%' }}
           placeholder={I18n.t('common.column.tags')}
-          showSearch
-          onSearch={(value) => {
-            debouncedFetchTags(value)
+          showSearch={{
+            filterOption: false,
+            onSearch: (value) => {
+              debouncedFetchTags(value)
+            },
           }}
-          notFoundContent={isTagsLoading('fetch') ? <Spin size="small" /> : null}
-          filterOption={false}
+          notFoundContent={isTagsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
         >
           {tags.map(({ name }) => (
             <Select.Option key={name} value={name}>{name}</Select.Option>

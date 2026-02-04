@@ -76,21 +76,22 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
             rules={[{ required: true }]}
           >
             <Select
-              showSearch
-              disabled={!!license}
-              onSearch={(value) => {
-                fetchLicenses({
-                  apiConfig: {
-                    filter: {
-                      is_project_specific_eq: 'true',
-                      report_name_or_type_cont: value,
+              showSearch={{
+                filterOption: false,
+                onSearch: (value) => {
+                  fetchLicenses({
+                    apiConfig: {
+                      filter: {
+                        is_project_specific_eq: 'true',
+                        report_name_or_type_cont: value,
+                      },
+                      include: ['report_family'],
                     },
-                    include: ['report_family'],
-                  },
-                })
+                  })
+                },
               }}
-              notFoundContent={isLicensesLoading('fetch') ? <Spin size="small" /> : null}
-              filterOption={false}
+              disabled={!!license}
+              notFoundContent={isLicensesLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >
               {projectSpecificLicenses.map(({
                 id, reportFamily, startDate, endDate, type,

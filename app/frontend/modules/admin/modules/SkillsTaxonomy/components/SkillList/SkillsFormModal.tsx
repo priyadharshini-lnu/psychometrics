@@ -133,13 +133,11 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
             label={I18n.t('administration.skills.form.skill_group')}
           >
             <Select
-              showSearch
-              filterOption={false}
+              showSearch={{ filterOption: false, onSearch: debouncedFetchSkillGroups }}
               loading={isSkillGroupsLoading('fetch')}
-              onSearch={(value) => {
-                debouncedFetchSkillGroups(value)
-              }}
-              notFoundContent={isSkillGroupsLoading('fetch') ? <Spin size="small" /> : null}
+              notFoundContent={isSkillGroupsLoading('fetch')
+                ? <Spin size="small" /> : I18n.t('shared.no_results_found')
+            }
               options={getSkillGroups().map(p => ({
                 value: p.id,
                 label: p.name,
@@ -154,12 +152,8 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
               mode="tags"
               style={{ width: '100%' }}
               placeholder={I18n.t('common.column.tags')}
-              showSearch
-              onSearch={(value) => {
-                debouncedFetchTags(value)
-              }}
-              notFoundContent={isTagsLoading('fetch') ? <Spin size="small" /> : null}
-              filterOption={false}
+              showSearch={{ filterOption: false, onSearch: debouncedFetchTags }}
+              notFoundContent={isTagsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >
               {tags.map(({ name }) => (
                 <Select.Option key={name} value={name}>{name}</Select.Option>

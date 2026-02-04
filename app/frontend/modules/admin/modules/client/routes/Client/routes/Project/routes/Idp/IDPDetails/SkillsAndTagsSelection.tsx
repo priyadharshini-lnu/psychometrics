@@ -124,10 +124,12 @@ const SkillsAndTagsSelection = ({
               mode="multiple"
               style={{ width: '100%' }}
               placeholder={I18n.t('administration.idp.select_by_tags')}
-              onSearch={(query) => {
-                searchSkillsHandler(query, false)
+              showSearch={{
+                filterOption: false,
+                onSearch: (query) => {
+                  searchSkillsHandler(query, false)
+                },
               }}
-              filterOption={false}
             >
               {skillsByTagSearchData.map(tag => (
                 <Option key={tag.id} value={tag.name}>
@@ -148,10 +150,12 @@ const SkillsAndTagsSelection = ({
               mode="multiple"
               style={{ width: '100%' }}
               placeholder={I18n.t('administration.idp.select_specific_skills')}
-              onSearch={(query) => {
-                searchSkillsHandler(query, true)
+              showSearch={{
+                filterOption: false,
+                onSearch: (query) => {
+                  searchSkillsHandler(query, true)
+                },
               }}
-              filterOption={false}
             >
               {skills?.map(skill => (
                 <Option key={skill.id} value={skill.id}>{skill.name}</Option>

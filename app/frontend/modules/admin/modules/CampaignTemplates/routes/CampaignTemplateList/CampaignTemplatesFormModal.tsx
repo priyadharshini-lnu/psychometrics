@@ -149,13 +149,11 @@ export const CampaignTemplatesFormModal: React.FC<Props> = ({
           >
             <Select
               disabled={disabled}
-              showSearch
-              filterOption={false}
+              showSearch={{ filterOption: false, onSearch: searchAvailableAssessments }}
               placeholder={
                 I18n.t('administration.campaign_templates.form.assessment_placeholder')
               }
-              onSearch={searchAvailableAssessments}
-              notFoundContent={assessmentsLoading ? <Spin size="small" /> : null}
+              notFoundContent={assessmentsLoading ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >
               {
                 assessmentsOpts.map(({
@@ -174,13 +172,11 @@ export const CampaignTemplatesFormModal: React.FC<Props> = ({
           >
             <Select
               disabled={disabled}
-              showSearch
-              filterOption={false}
+              showSearch={{ filterOption: false, onSearch: searchAvailableReports }}
               placeholder={
                 I18n.t('administration.campaign_templates.form.report_placeholder')
               }
-              onSearch={searchAvailableReports}
-              notFoundContent={reportsLoading ? <Spin size="small" /> : null}
+              notFoundContent={reportsLoading ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >
               {
                 reportsOpts.map(({
@@ -199,13 +195,11 @@ export const CampaignTemplatesFormModal: React.FC<Props> = ({
           >
             <Select
               disabled={disabled}
-              showSearch
-              filterOption={false}
+              showSearch={{ filterOption: false, onSearch: searchAvailableOwners }}
               placeholder={
                 I18n.t('administration.campaign_templates.form.owner_placeholder')
               }
-              onSearch={searchAvailableOwners}
-              notFoundContent={ownersLoading ? <Spin size="small" /> : null}
+              notFoundContent={ownersLoading ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >
               {isSuperAdmin(currentUser) && <Select.Option>TTE</Select.Option>}
               {

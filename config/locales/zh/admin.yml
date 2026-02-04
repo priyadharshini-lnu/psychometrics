@@ -81,6 +81,7 @@ zh:
     campaign_assessment_modals_enable_caching_title: 启用评估缓存？
     campaign_factors: 活动因素
     campaign_templates: 活动模板
+    campaign_user_job_roles_cannot_be_same: 目标职位必须与当前职位不同
     campaigns: 活动
     client: 客户平台
     client_admins: 客户管理员
@@ -732,6 +733,7 @@ zh:
     translated_to: 翻译为：
     translated_with_ai_notice: AI翻译
     translation_assistant_not_configured: 翻译助手未配置
+    update_success: 已成功更新 %{readableResourceName}
     upload_success: 上传成功
     user_report_events: 用户报告事件
     users: 用户

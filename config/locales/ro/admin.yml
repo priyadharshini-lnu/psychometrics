@@ -81,6 +81,7 @@ ro:
     campaign_assessment_modals_enable_caching_title: Activarea cache-ului evaluării?
     campaign_factors: Factorii campaniei
     campaign_templates: Șabloane de campanie
+    campaign_user_job_roles_cannot_be_same: Funcția vizată trebuie să fie diferită de funcția actuală.
     campaigns: Campanii
     client: Închirierea clientului
     client_admins: Administratori clienți
@@ -732,6 +733,7 @@ ro:
     translated_to: 'Tradus în:'
     translated_with_ai_notice: Traducere AI
     translation_assistant_not_configured: Asistentul de traducere nu este configurat
+    update_success: "%{readableResourceName} a fost actualizat cu succes"
     upload_success: Încărcat cu succes
     user_report_events: Evenimente de raportare a utilizatorilor
     users: Utilizatorii

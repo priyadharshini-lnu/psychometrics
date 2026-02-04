@@ -171,7 +171,18 @@ export const AddSubjectsComponent: FC<Props> = ({
             <Space>
               <Select
                 style={{ width: 200 }}
-                showSearch
+                showSearch={{
+                  filterOption: false,
+                  onSearch: (value) => {
+                    fetchUsers({
+                      apiConfig: {
+                        filter: {
+                          search_query: value,
+                        },
+                      },
+                    })
+                  },
+                }}
                 value={null}
                 placeholder={(
                   <Space>
@@ -179,18 +190,8 @@ export const AddSubjectsComponent: FC<Props> = ({
                     {I18n.t('administration.assessment_center.invite.subjects.search_user')}
                   </Space>
                 )}
-                onSearch={(value) => {
-                  fetchUsers({
-                    apiConfig: {
-                      filter: {
-                        search_query: value,
-                      },
-                    },
-                  })
-                }}
                 onSelect={selectUser}
-                notFoundContent={isUsersLoading('fetch') ? <Spin size="small" /> : null}
-                filterOption={false}
+                notFoundContent={isUsersLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
               >
                 {users.map(({ id, name, email }) => (
                   <Select.Option key={id} value={id}>

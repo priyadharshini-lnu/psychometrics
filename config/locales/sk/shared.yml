@@ -9,6 +9,7 @@ sk:
     agree_and_continue: Súhlasím a pokračujte
     archive: Archív
     archived: Archivované
+    asset_not_present: Aktívum nie je prítomné
     audio: Audio
     authentication_failed: Autentifikácia zlyhala. Prosím, skúste to znova.
     basic: Základný
@@ -53,6 +54,7 @@ sk:
     na_text: N/A
     name: Meno
     new: Nové
+    no_results_found: Nenašli sa žiadne výsledky
     not_requested: Ešte nebolo požiadané
     ok: Ok
     pending: Čaká na vybavenie

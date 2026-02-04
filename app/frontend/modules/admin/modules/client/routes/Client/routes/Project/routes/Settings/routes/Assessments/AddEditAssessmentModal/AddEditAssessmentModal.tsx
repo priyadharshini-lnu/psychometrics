@@ -74,20 +74,21 @@ export const AddEditAssessmentModal: React.FC<Props> = ({
             >
               <Select
                 placeholder={I18n.t('administration.project_tabs.assessments.form.assessment_placeholder')}
-                showSearch
-                filterOption={false}
-                onSearch={(value) => {
-                  fetchAssessments({
-                    apiConfig: {
-                      filter: {
-                        filterable_fields: value,
-                        owned_by_client_or_tte: `${clientId}`,
+                showSearch={{
+                  filterOption: false,
+                  onSearch: (value) => {
+                    fetchAssessments({
+                      apiConfig: {
+                        filter: {
+                          filterable_fields: value,
+                          owned_by_client_or_tte: `${clientId}`,
+                        },
+                        fields: {
+                          assessments: ['name', 'type'],
+                        },
                       },
-                      fields: {
-                        assessments: ['name', 'type'],
-                      },
-                    },
-                  })
+                    })
+                  },
                 }}
                 onChange={handleAssessmentChange}
               >

@@ -9,6 +9,7 @@ sr-Latn:
     agree_and_continue: Slažem se i nastavi
     archive: Arhiviraj
     archived: Arhiviranih
+    asset_not_present: Имовина није присутна
     audio: Аудио
     authentication_failed: Autentifikacija nije uspela. Pokušajte ponovo.
     basic: Osnovne
@@ -53,6 +54,7 @@ sr-Latn:
     na_text: Н/А
     name: Ime
     new: Novi
+    no_results_found: Није пронађено ниједно резултат
     not_requested: Још није затражено
     ok: Ok
     pending: Учешће
