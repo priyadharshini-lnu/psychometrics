@@ -65,7 +65,7 @@ module LicenseManager
       license.increment!(:used_number, credits_required)
       project_license&.increment!(:used_number, credits_required)
 
-      Licenses::OveruseJob.perform_later(license.id) if license.overuse_number.positive?
+      Licenses::OveruseJob.perform_later(license.id) if license.used_overuse_number == 1
     end
 
     def credits_required

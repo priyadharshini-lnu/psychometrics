@@ -327,7 +327,7 @@ describe LicenseManager::Base do
       license.update(
         number: 10,
         used_number: 0,
-        overuse_number: 0
+        overuse_number: 2
       )
     end
 
@@ -360,11 +360,8 @@ describe LicenseManager::Base do
     end
 
     context 'when overuse is triggered' do
-      before do
-        license.update(overuse_number: 1)
-      end
-
-      it 'enqueues OveruseJob' do
+      it 'enqueues OveruseJob only when used_overuse_number equals 1' do
+        allow(license).to receive(:used_overuse_number).and_return(1)
         expect(Licenses::OveruseJob).to receive(:perform_later).with(license.id)
 
         license_manager.send(:after_license_usage_created_callback)
@@ -377,6 +374,7 @@ describe LicenseManager::Base do
       end
 
       it 'does not enqueue OveruseJob' do
+        allow(license).to receive(:used_overuse_number).and_return(0)
         expect(Licenses::OveruseJob).not_to receive(:perform_later)
 
         license_manager.send(:after_license_usage_created_callback)
