@@ -91,7 +91,6 @@ export const AiAssistantRevisions: React.FC<Props> = ({ aiAssistantId, onSelect 
       <Modal
         open={!!showDiff}
         onOk={() => setShowDiff(null)}
-        onClose={() => setShowDiff(null)}
         onCancel={() => setShowDiff(null)}
         closable
         width="80vw"

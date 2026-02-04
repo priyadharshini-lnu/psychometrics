@@ -10,7 +10,7 @@ import { CheckCircleOutlined, EditOutlined } from '~/glint/icons/AccessibleIcons
 
 import styles from './styles.less'
 import { RootState } from '../../core/reducers'
-import { PhoneNumberField } from '../../../../glint/components/PhoneNumberField'
+import { PhoneNumberField } from '~/glint/components/PhoneNumberField'
 import { OtpVerificationForm } from './OtpVerificationForm'
 import useAsyncRequestResponse from '~/hooks/useAsyncRequestResponse'
 import {

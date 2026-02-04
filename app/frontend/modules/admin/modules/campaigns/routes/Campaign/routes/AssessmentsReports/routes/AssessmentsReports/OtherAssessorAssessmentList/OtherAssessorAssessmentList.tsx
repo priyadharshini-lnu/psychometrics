@@ -2,7 +2,6 @@ import React from 'react'
 import {
   Table, MenuProps, Row, Col, App,
 } from 'antd'
-import { MenuItemType } from 'rc-menu/lib/interface'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { MessageInstance } from 'antd/es/message/interface'
@@ -163,7 +162,7 @@ const getActionsMenuProps = ({
     })
   }
 
-  const exportGroupItems: MenuItemType[] = []
+  const exportGroupItems: MenuItem[] = []
   permissions.exportRawResults && exportGroupItems.push({
     key: 'export_raw_labels',
     label: 'Raw (with labels)',
@@ -189,7 +188,7 @@ const getActionsMenuProps = ({
     label: 'External',
   })
 
-  const importGroupItems: MenuItemType[] = [
+  const importGroupItems: MenuItem[] = [
     { key: 'import_raw', label: 'Raw' },
     { key: 'import_scoring', label: 'Scoring' },
   ]

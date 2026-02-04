@@ -3,7 +3,7 @@ import React, {
 } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { PageHeader } from '@ant-design/pro-layout'
+import { PageHeader } from '@ant-design/pro-components'
 import {
   Row, Col, Dropdown, Tag, theme, Space,
   Button,

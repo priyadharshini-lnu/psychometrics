@@ -33,11 +33,15 @@ describe UsersResults::Reset do
   let!(:user_report_pdf) do
     create(:user_report_pdf, :with_pdf, user_report: user_report)
   end
+  let!(:user_report_pdf_fr) do
+    create(:user_report_pdf, :with_pdf, locale: 'fr', user_report: user_report)
+  end
   let(:user_assessment) do
     users_result.user_assessment
     # create(:user_assessment, campaign: campaign, subject: user, assessment: assessment, users_result: users_result)
   end
   let!(:media_response) { create(:media_response, users_result: users_result) }
+  let!(:ai_translation) { create(:ai_translation_result, translatable: user_report) }
 
   subject { described_class.call(user_assessment) }
 
@@ -111,6 +115,12 @@ describe UsersResults::Reset do
     subject
   end
 
+  it 'calls Mhs::ResetAssessment is it is a mhs assessment' do
+    allow(user_assessment.assessment).to receive(:mhs?).and_return(true)
+    expect(Mhs::ResetAssessment).to receive(:call!).with(user_assessment)
+    subject
+  end
+
   it 'reset users_result data' do
     expect { subject }.to change { users_result.answers }.from(test).to({}).
       and change { users_result.scoring }.from(test).to(nil).
@@ -130,7 +140,9 @@ describe UsersResults::Reset do
   it 'reset user_report data if assessment is completed' do
     allow(user_assessment).to receive(:completed?).and_return(true)
     subject
-    expect(user_report.user_report_pdf.pdf_file.attached?).to be_falsey
+    user_report.user_report_pdfs.each do |pdf|
+      expect(pdf.pdf_file.attached?).to be_falsey
+    end
     expect(user_report.reload.status).to eq('not_prepared')
   end
 
@@ -142,5 +154,10 @@ describe UsersResults::Reset do
   it 'remove media response record associated with users_result' do
     expect { subject }.to change { MediaResponse.count }.by(-1)
     expect(MediaResponse.find_by(id: media_response.id)).to be_nil
+  end
+
+  it 'remove AI translation record associated with users_result' do
+    expect { subject }.to change { AI::TranslationResult.count }.by(-1)
+    expect(AI::TranslationResult.find_by(id: ai_translation.id)).to be_nil
   end
 end

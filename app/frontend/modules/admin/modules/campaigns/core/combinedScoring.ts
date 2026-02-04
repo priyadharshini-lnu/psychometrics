@@ -13,6 +13,9 @@ export const FactorTR = t.type({
   id: t.string,
   factorId: t.string,
   name: t.string,
+  minValue: t.union([t.number, t.null]),
+  maxValue: t.union([t.number, t.null]),
+  isNaAllowed: t.boolean,
   description: t.union([t.string, t.null]),
 })
 

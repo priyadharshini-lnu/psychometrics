@@ -860,7 +860,6 @@ sr-Latn:
         campaign: Kampanja
         copy_factors: Faktori kopiranja
         inactive_notice: Статус кампање аутоматски ће се пребацити на активно на одабрани датум почетка
-        instruction: То се може омогућити само истовремено стварање кампање
         name: Ime
         practice_campaign: Kampanja prakse
         status: Status
@@ -1007,6 +1006,8 @@ sr-Latn:
         ai_assistants_disabled_by_client: AI asistenti je onemogućen od strane klijenta
         ai_assisted_idp: AI asistirani IDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP zahteva da AI Assistants funkcija bude omogućena
+        ai_translation: Преводи вештачке интелигенције
+        ai_translation_disabled_by_client: Превођење вештачком интелигенцијом је онемогућено од стране клијента.
         global_skills: Globalne veštine
         global_skills_disabled_by_client: Global Skills je onemogućen od strane klijenta
         idp: IDP
@@ -2888,6 +2889,11 @@ sr-Latn:
           active:
             label: Aktivno
             name: Aktivno
+          assessments:
+            help_text: Овај избор утиче само на догађај "Assessment Raw Response".
+            label: Оцењивања
+            placeholder: Одабране процене
+            required: За догађај "Оцењивање сировог одговора" мора бити изабрана барем једна процена.
           auth_type:
             api_key:
               label: API ključ
@@ -2944,6 +2950,7 @@ sr-Latn:
             list:
               assessment_assigned: Procena dodeljena
               assessment_completed: Procena završena
+              assessment_raw_response: Оцењивање сировог одговора
               assessment_started: Procena je počela
               assessment_timeout: Vremensko ograničenje procene
               campaign_results_available: Dostupni su rezultati kampanje
@@ -3097,6 +3104,7 @@ sr-Latn:
         mask_identity_for_hogan: Maskiraj podatke za Hogan
         mask_identity_for_iiht: Maskiraj podatke za IIHT
         mask_identity_for_mettl: Maskiraj podatke za METTL
+        mask_identity_for_mhs: Маске података за МХС
         mask_identity_for_pearson: Maskiraj podatke za Pearson
         mask_identity_for_saville: Maskiraj podatke za Saville
         mask_identity_for_skillvue: Maskiraj podatke za Skillvue
@@ -4499,7 +4507,7 @@ sr-Latn:
               title: "<strong>%{status}</strong> %{name} je članstvo?"
           toggle_enable_2fa:
             body: "<p>Da li ste sigurni da želite da %{status} dvofaktorsku autentifikaciju za %{name}?</p>\n"
-            title:
+            title: "%{status} 2FA"
           toggle_status:
             body: "<p>Da li ste sigurni da želite da %{status} ovog korisnika?</p>\n"
             title: "<strong>%{status}</strong> %{name}?"

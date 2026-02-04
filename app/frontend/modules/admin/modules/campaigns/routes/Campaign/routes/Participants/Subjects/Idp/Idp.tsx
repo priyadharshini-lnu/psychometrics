@@ -114,16 +114,14 @@ const Idp: React.FC<PropsFromRedux> = ({
       <Flex wrap justify="space-between">
         <Flex className="m4">
           <Select
-            showSearch
+            showSearch={{ filterOption: false, onSearch: debouncedFetchIdpTemplates }}
             placeholder={I18n.t('idp_templates.placeholder')}
             style={{ width: '700px' }}
             onChange={(value) => {
               handleSelectChange(value)
             }}
-            onSearch={debouncedFetchIdpTemplates}
             value={selectedIdpTemplate || (activeIdpPlan?.idpTemplateId.toString())}
-            notFoundContent={isTemplatesLoading('fetch') ? <Spin size="small" /> : null}
-            filterOption={false}
+            notFoundContent={isTemplatesLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
           >
             {_.map(idpTemplates, (idpTemplate: IdpTemplate) => (
               <Select.Option key={idpTemplate.id} value={idpTemplate.id}>

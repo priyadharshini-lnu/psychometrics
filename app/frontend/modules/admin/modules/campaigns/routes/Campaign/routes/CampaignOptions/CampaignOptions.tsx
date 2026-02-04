@@ -400,6 +400,10 @@ const CampaignOptions: React.FC<Props> = ({
               <Col span={5} offset={2}>
                 <MaskedInput
                   masked
+                  zIndex={{
+                    input: 5003,
+                    backdrop: 5002,
+                  }}
                   className="mbl"
                   placeholder={I18n.t('administration.campaigns.options.watermark_content')}
                   {...parametersWatermarkContent}

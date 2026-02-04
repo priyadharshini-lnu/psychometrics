@@ -8,6 +8,11 @@ module TwoFactorAuthenticatable
     # unless they have TOTP enabled.
     def send_two_factor_authentication_code(code)
       SendTwoFactorCodeJob.perform_later(self, code)
+      SiemLogger.log_security_event!('TokenIssuance',
+                                     actor_name: SiemLogger.user_identifier(email, id),
+                                     context: "User: #{SiemLogger.user_identifier(email, id)}",
+                                     msg: "TwoFactor token issued for #{SiemLogger.user_identifier(email, id)}",
+                                     authentication_channel: 'TwoFactor')
     end
 
     # By default, two factor authentication is required for each user.

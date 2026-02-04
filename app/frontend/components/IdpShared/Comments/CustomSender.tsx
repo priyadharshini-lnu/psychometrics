@@ -15,6 +15,7 @@ export const CustomSender = ({
         shape="square"
         style={{
           color: 'var(--ant-primary-color)',
+          background: 'transparent',
         }}
       />
     )

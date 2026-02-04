@@ -123,12 +123,19 @@ const ReportTableCompnent: React.FC<Props> = ({
           id="provider"
           width={300}
           filters={
-          settings.providers.map(
-            (t: [number, string]) => ({ text: I18n.t(`reports.fields.provider.${t[1]}`), value: t[0] }),
-          )
+            settings.providers.map(
+              (t: [number, string]) => ({
+                text: t[1] === 'mhs'
+                  ? I18n.t('admin.mhs')
+                  : I18n.t(`reports.fields.provider.${t[1]}`),
+                value: t[0],
+              }),
+            )
         }
           filteredValue={providerFilteredValue}
-          render={report => I18n.t(`reports.fields.provider.${report.provider}`)}
+          render={report => (report.provider === 'mhs'
+            ? I18n.t('admin.mhs')
+            : I18n.t(`reports.fields.provider.${report.provider}`))}
         />
         <Resource.Column<Report>
           title={I18n.t('common.column.owner')}

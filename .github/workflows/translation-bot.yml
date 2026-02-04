@@ -3,6 +3,8 @@ name: Translation Bot
 on:
   pull_request:
     types: [labeled]
+  issue_comment:
+    types: [created]
 
 permissions:
   contents: write
@@ -10,99 +12,76 @@ permissions:
   issues: write
 
 jobs:
-  generate_translations:
-    if: github.event.label.name == 'translate'
+  translate:
+    name: Generate Translations
+    if: |
+      (github.event_name == 'pull_request' && github.event.label.name == 'translate') ||
+      (github.event_name == 'issue_comment' && github.event.issue.pull_request && startsWith(github.event.comment.body, '/translate'))
     runs-on: ubuntu-latest
-    
-    steps:
-      - name: Debug label trigger
-        run: |
-          echo "Event name: ${{ github.event_name }}"
-          echo "Label name: ${{ github.event.label.name }}"
-          echo "PR number: ${{ github.event.pull_request.number }}"
-          echo "PR head ref: ${{ github.event.pull_request.head.ref }}"
-          echo "PR base ref: ${{ github.event.pull_request.base.ref }}"
-          echo "Repository: ${{ github.repository }}"
-          echo "Actor: ${{ github.actor }}"
-          
-      - name: Set PR details
-        id: pr_details
-        run: |
-          echo "pr_number=${{ github.event.pull_request.number }}" >> $GITHUB_OUTPUT
-          echo "head_ref=${{ github.event.pull_request.head.ref }}" >> $GITHUB_OUTPUT
-          echo "head_sha=${{ github.event.pull_request.head.sha }}" >> $GITHUB_OUTPUT
-          echo "base_ref=${{ github.event.pull_request.base.ref }}" >> $GITHUB_OUTPUT
+    env:
+      GH_TOKEN: ${{ github.token }}
 
-      - name: Checkout PR code
+    steps:
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          ref: ${{ steps.pr_details.outputs.head_ref }}
-          fetch-depth: 0
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2'
-          bundler-cache: false
+          ruby-version: "3.4"
 
-      - name: Install Microsoft Translator dependencies
+      - name: Parse command arguments
+        id: parse_args
         run: |
-          echo "Microsoft Translator uses standard Ruby libraries - no gems needed"
-          echo "Microsoft Translator dependencies ready"
+          ruby .github/scripts/translation-bot/parse-trigger.rb \
+            "${{ github.event_name }}" \
+            "${{ github.event.comment.body }}" \
+            "${{ github.event.issue.number }}" \
+            "${{ github.event.pull_request.number }}"
 
-      - name: Find new translation keys
-        id: find_keys
+      - name: Checkout PR code
+        run: |
+          gh pr checkout ${{ steps.parse_args.outputs.pr_number }} \
+            --repo ${{ github.repository }}
+
+      - name: Get branch info
+        id: branch_info
+        run: |
+          ruby .github/scripts/translation-bot/get-branch-info.rb \
+            "${{ steps.parse_args.outputs.pr_number }}"
+
+      - name: Install dependencies
+        run: |
+          gem install psych -v 5.2.6 --no-document
+          gem install i18n-tasks byebug deepl-rb --no-document
+
+      - name: Translate missing keys
         env:
-          BASE_REF: ${{ steps.pr_details.outputs.base_ref }}
+          DEEPL_AUTH_KEY: ${{ secrets.DEEPL_AUTH_KEY }}
         run: |
-          ruby .github/scripts/translation-bot/process-keys.rb "$BASE_REF"
+          i18n-tasks translate-missing ${{ steps.parse_args.outputs.languages }} --backend=deepl
 
-      - name: Generate translations
-        if: steps.find_keys.outputs.has_new_keys == 'true'
-        env:
-          MICROSOFT_TRANSLATION_API_KEY: ${{ secrets.MICROSOFT_TRANSLATION_API_KEY }}
-          MICROSOFT_TRANSLATION_API_REGION: ${{ vars.MICROSOFT_TRANSLATION_API_REGION }}
-        run: |
-          ruby .github/scripts/translation-bot/generate-translations.rb --file ${{ steps.find_keys.outputs.new_keys_file }}
+      - name: Normalize locale files
+        run: i18n-tasks normalize -p
 
-      - name: Check if translations were generated
+      - name: Check for changes
         id: check_changes
-        run: |
-          ruby .github/scripts/translation-bot/check-changes.rb
-
-      - name: Debug git status before PR creation
-        if: steps.check_changes.outputs.changes_made == 'true'
-        run: |
-          echo "Git status:"
-          git status
-          echo "Git status --porcelain config/locales/:"
-          git status --porcelain config/locales/
-          echo "Git diff --name-only:"
-          git diff --name-only
+        run: ruby .github/scripts/translation-bot/check-changes.rb
 
       - name: Create translation PR
-        if: steps.check_changes.outputs.changes_made == 'true'
         id: create_pr
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: steps.check_changes.outputs.changes_made == 'true'
         run: |
-          bash .github/scripts/translation-bot/create-translation-pr.sh \
-            "${{ steps.pr_details.outputs.pr_number }}" \
-            "${{ steps.pr_details.outputs.head_ref }}" \
-            "${{ steps.pr_details.outputs.base_ref }}"
+          ruby .github/scripts/translation-bot/create-translation-pr.rb \
+            "${{ steps.parse_args.outputs.pr_number }}" \
+            "${{ steps.branch_info.outputs.head_ref }}" \
+            "${{ steps.branch_info.outputs.base_ref }}"
 
-      - name: Comment on original PR
-        if: always()
-        env:
-          PR_URL: ${{ steps.create_pr.outputs.pr_url }}
-          TRANSLATION_BRANCH: ${{ steps.create_pr.outputs.translation_branch }}
-          NEW_KEYS_FILE: ${{ steps.find_keys.outputs.new_keys_file }}
-          PR_NUMBER: ${{ steps.pr_details.outputs.pr_number }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          ruby .github/scripts/translation-bot/comment-on-pr.rb "$PR_NUMBER" --file "${NEW_KEYS_FILE:-/tmp/new_keys.json}" "$PR_URL" "$TRANSLATION_BRANCH"
-
-      - name: Cleanup
+      - name: Comment on PR
         if: always()
         run: |
-          ruby .github/scripts/translation-bot/cleanup.rb
+          ruby .github/scripts/translation-bot/comment-on-pr.rb \
+            "${{ steps.parse_args.outputs.pr_number }}" \
+            "${{ steps.check_changes.outputs.changes_made }}" \
+            "${{ steps.create_pr.outputs.pr_url }}" \
+            "${{ steps.create_pr.outputs.translation_branch }}"

@@ -9,6 +9,8 @@ vi:
     agree_and_continue: Đồng ý và tiếp tục
     archive: Lưu trữ
     archived: Lưu trữ
+    asset_not_present: Tài sản không có sẵn
+    audio: Âm thanh
     authentication_failed: Xác thực không thành công. Vui lòng thử lại.
     basic: Cơ bản
     campaign_id: ID chiến dịch
@@ -16,18 +18,26 @@ vi:
     change_password: Thay đổi mật khẩu
     clear_filters: Xóa bộ lọc
     collaborative_learning: Học tập hợp tác
+    completed: Hoàn thành
     confirm: Xác nhận
     continue: Tiếp tục
+    copy: Sao chép
     created_at: Được tạo ra tại
     created_date: Ngày tạo
     decline: Suy giảm
     description: Sự miêu tả
+    download: Tải xuống
     edit: Biên tập
     edited: Mới
     email: E-mail
     export: Xuất khẩu
+    failed: Thất bại
     first_name: Tên đầu tiên
     formal_learning: Học chính thức
+    generate: Tạo ra
+    generate_transcription_confirm_content: Bạn có chắc chắn muốn tạo bản chép lời cho phản hồi truyền thông này không?
+    generate_transcription_confirm_title: Tạo bản chép lời
+    generating: Tạo ra
     group_question_max_validation_error: Mỗi nhóm có thể chứa tối đa {{max}} (các) mục.
     group_question_min_validation_error: Mỗi nhóm cần chứa ít nhất {{min}} (các) mục.
     id: ID
@@ -36,18 +46,26 @@ vi:
     last_name: Họ
     learning_on_the_job_label: Học tập trong công việc
     login: Đăng nhập
+    media_question_transcriptions: Bản ghi chép câu hỏi của truyền thông
     modified_by: Sửa đổi bởi
     modified_date: Ngày sửa đổi
     more_actions: Hành động khác
     mte_logo_alt_text: Logo Mercer Talent Enterprise
+    na_text: Không áp dụng
     name: Tên
     new: Mới
+    no_results_found: Không tìm thấy kết quả nào.
+    not_requested: Chưa được yêu cầu
     ok: Được rồi
+    pending: Đang chờ xử lý
+    processing: Xử lý
+    question_id: ID câu hỏi
     recording_consent_notice: Phiên họp này sẽ được ghi lại. Việc bạn tham gia cuộc họp này cấu thành sự đồng ý của bạn để được ghi lại.
     recording_consent_proceed_question: Bạn có đồng ý tiến hành cuộc họp được ghi âm không?
     recording_consent_title: Thông báo đồng ý ghi âm
     remove: Di dời
     removed: Gỡ bỏ
+    replace: Thay thế
     reset_password: Đặt lại mật khẩu
     rte_paste_content_exceeds_char_limit: Văn bản vượt quá giới hạn ký tự của {{maxCharacterLimit}} và không thể dán.
     rte_paste_content_exceeds_word_limit: Văn bản vượt quá giới hạn từ {{maxWordLimit}} và không thể dán.
@@ -62,7 +80,13 @@ vi:
         total: 'Tổng số : 1'
     terms_conditions_privacy: Tuyên bố về quyền riêng tư
     tools: Công cụ
+    transcription: Phiên âm
+    transcription_already_requested: Phiên âm đã được yêu cầu hoặc đang được thực hiện.
+    transcription_not_enabled: Chức năng chuyển đổi văn bản không được kích hoạt cho phản hồi phương tiện.
     transcriptions: Phiên âm
+    try_again: Thử lại
     tte_terms_and_condition: Điều khoản &amp; Quyền riêng tư
     type: Kiểu
     update: Cập nhật
+    video: Video
+    view: Xem

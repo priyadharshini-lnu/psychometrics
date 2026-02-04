@@ -88,8 +88,8 @@ module Administration
       return if row['SkillGroup'].blank?
 
       name = row['SkillGroup'].strip
-      skill_group = SkillGroup.find_by(name: name, project_id: @project_id)
-      skill.skill_group = skill_group if skill_group.present?
+      skill_group = SkillGroup.find_or_create_by(name: name, project_id: @project_id)
+      skill.skill_group = skill_group
     end
 
     def normalize_skill_type(skill_type)

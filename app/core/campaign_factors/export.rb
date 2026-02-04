@@ -7,7 +7,7 @@ module CampaignFactors
     ALLOWED_HEADERS = [
       'Position', 'Name', 'Code', 'Description', 'Factor Type', 'Output Type',
       'Factor Id', 'Assessment Id', 'Sheet Column Name', 'Assessment Score Type', 'Formula',
-      'Ranked', 'Public Visibility', 'Campaign Factor Group Name'
+      'Ranked', 'Public Visibility', 'Campaign Factor Group Name', 'Min Value', 'Max Value', 'Is NA Allowed'
     ].freeze
 
     def initialize(campaign)
@@ -46,7 +46,10 @@ module CampaignFactors
         campaign_factor.formula,
         campaign_factor.ranked,
         campaign_factor.public_visibility,
-        campaign_factor.campaign_factor_group.name
+        campaign_factor.campaign_factor_group.name,
+        campaign_factor.min_value,
+        campaign_factor.max_value,
+        campaign_factor.is_na_allowed
       ]
     end
 

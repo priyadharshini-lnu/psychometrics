@@ -7,10 +7,15 @@ import styles from './MaskedInput.less'
 
 type Props = InputProps & {
   masked?: boolean
+  zIndex?: {
+    backdrop: number,
+    input: number,
+  }
 }
 
 export const MaskedInput = forwardRef<InputRef, Props>(({
   masked = false,
+  zIndex,
   onBlur,
   onChange,
   ...restInputProps
@@ -33,12 +38,13 @@ export const MaskedInput = forwardRef<InputRef, Props>(({
       {masked && showMask && (
         <div
           className={styles.mask}
+          style={{ zIndex: zIndex?.backdrop }}
           onClick={handleOnBlur}
         />
       )}
       <Input
         ref={ref}
-        style={{ zIndex: (masked && showMask) ? 5001 : 'initial' }}
+        style={{ zIndex: (masked && showMask) ? zIndex?.input ?? 5001 : 'initial' }}
         onBlur={handleOnBlur}
         onChange={handleOnChange}
         onFocus={() => setShowMask(true)}

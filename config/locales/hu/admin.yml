@@ -1,6 +1,7 @@
 ---
 hu:
   admin:
+    accept_na_values: N/A értékek elfogadása
     add_admin: Adminisztrátor hozzáadása
     add_admin_role: Adminisztrátori szerepkör hozzáadása
     add_campaign_admin: Kampányadminisztrátor hozzáadása
@@ -34,14 +35,23 @@ hu:
     ai_assistants_test_render: Tesztrender
     ai_assistants_test_render_tooltip: Teszteld a prompt sablonodat kampányadatokkal, hogy megbizonyosodj arról, mi fog elküldeni az AI asszisztensnek.
     ai_assisted_idp_feature_disabled: Az AI Assisted IDP funkciót letiltották ehhez a projekthez.
+    ai_notice: Kiemelt szakaszok AI-fordításúak és pontatlanságokat tartalmazhatnak.
+    ai_translation: AI fordítás
+    all_corner_rounded: Minden sarok lekerekített
     api_keys: API-kulcsok
+    apply_to_existing_users: Alkalmazzuk ezt a változást a kampányban szereplő meglévő felhasználókra
     assessments: Értékelések
+    assessments_not_mhs: Minden értékelésnek MHS típusúnak kell lennie.
     assessments_reports: Felmérések és jelentések
     assessor_dashboard: Értékelő irányítópult
     assessor_workshops: Értékelési központ
     assessors: Értékelők
+    assistant_toolbar_failed: Többszöri próbálkozás után sem sikerült érvényes kimenetet generálni.
+    assistant_toolbar_not_a_valid_operation: Ismeretlen művelet %{operation}.
+    assistant_validation_failed: Többszöri próbálkozás után sem sikerült érvényes kimenetet generálni.
     audit_logs: Auditnaplók
     audit_reports: Auditjelentések
+    auto_placeholder: Auto
     availability: Elérhetőség
     available_languages: Jelentés elérhető nyelveken
     back_to_main: Főmenü
@@ -50,6 +60,19 @@ hu:
     campaign_assessment_actions_disable_caching: Letiltott értékelési gyorsítótár
     campaign_assessment_actions_enable_caching: Engedélyezze az értékelési gyorsítótár használatát
     campaign_assessment_column_caching_enabled: Értékelési gyorsítótár engedélyezve
+    campaign_assessment_mhs_confidence_interval: Bizalmi intervallum
+    campaign_assessment_mhs_confidence_interval_update_success: A konfidencia intervallum frissítése sikeresen megtörtént.
+    campaign_assessment_mhs_invalid_confidence_interval: A confidence_interval értékének 0 vagy 1 kell lennie.
+    campaign_assessment_mhs_invalid_leadership_bar: A leadership_bar értékének 0 vagy 1 kell lennie.
+    campaign_assessment_mhs_invalid_norm_option: A Norm opció értéke 0 és 3 között kell legyen.
+    campaign_assessment_mhs_leadership_bar: Vezetői sáv
+    campaign_assessment_mhs_leadership_bar_update_success: A vezetői sáv frissítése sikeresen megtörtént
+    campaign_assessment_mhs_norm_option: Norm opció
+    campaign_assessment_mhs_norm_option_form_select: Norm opció kiválasztása
+    campaign_assessment_mhs_norm_option_update_success: Norm Option frissítése sikeresen megtörtént
+    campaign_assessment_mhs_norm_region: Norm régió
+    campaign_assessment_mhs_norm_region_form_select: Norm régió kiválasztása
+    campaign_assessment_mhs_norm_region_update_success: Norm Region frissítése sikeresen megtörtént
     campaign_assessment_modals_disable_caching_content: Biztos vagy benne, hogy ki akarod kapcsolni a gyorsítótárat ehhez az értékeléshez?
     campaign_assessment_modals_disable_caching_successfully: A gyorsítótározást letiltották ehhez az értékeléshez.
     campaign_assessment_modals_disable_caching_title: Ki lehet kapcsolni az értékelési gyorsítótárat?
@@ -58,6 +81,7 @@ hu:
     campaign_assessment_modals_enable_caching_title: Engedélyezni az értékelési gyorsítótárat?
     campaign_factors: Kampány tényezők
     campaign_templates: Kampány sablonok
+    campaign_user_job_roles_cannot_be_same: A célpozíció nem lehet azonos a jelenlegi pozícióval.
     campaigns: Kampányok
     client: Ügyfél bérleti joga
     client_admins: Ügyféladminisztrátorok
@@ -70,6 +94,7 @@ hu:
     confirm_remove_admin: Biztosan el akarja távolítani az a(z) '%{email}' e-mail címmel rendelkező adminisztrátori felhasználót ?
     country: Ország
     create_client: Ügyfél létrehozása
+    current_job_role: Jelenlegi munkakör
     dashboard: Irányítópult
     dashboards: Irányítópultok
     data_reports: Adatjelentések
@@ -84,19 +109,26 @@ hu:
     done_tooltip: Több értékelést nem lehet benyújtani erre a felhasználóra, mivel az értékelést a %{marked_by}
     edit_campaign_admin: Kampányadminisztrátor szerkesztése
     edit_client_admin: Ügyfél-adminisztrátor szerkesztése
+    edit_job_roles: Munkakörök szerkesztése
+    edit_level: Szinten szerkesztés
     edit_permission_denied: Nincs engedélyed az admin '%{name}' szerkesztésére
     edit_project_admin: Projektadminisztrátorának szerkesztése
     edit_threesixty_campaign_admin: Kampányadminisztrátor szerkesztése
     empty_csv_file: A CSV fájl nem tartalmaz adatokat.
+    enable_enhance_with_ai_client_level: Kérjük, engedélyezze az AI-vel történő fejlesztés funkciót ügyfélszinten.
+    enable_transcription: Feliratozás engedélyezése
+    enhance_with_ai_requires_ai_assistants: Az AI-val történő fejlesztéshez engedélyezni kell az AI-asszisztensek funkciót.
     evaluation_status: Értékelési állapot
     evaluation_status_not_done: Az értékelési státusz nem 'Kész' egy vagy több kiválasztott tantárgy esetében. Kérjük, minden kiválasztott felhasználó elvégezte az értékeléseket vagy jelölje meg.
     export_admin_roles_permissions: Adminisztrátori szerepkörök és engedélyek exportálása
+    feature_enhance_with_ai: Fejlesztés mesterséges intelligenciával
     feature_flags: Feature flags
     fill_empty_score_msg: Töltsd ki az összes végső pontszámot mentés előtt.
-    final_score_empty_msg: A végső pontszám nem lehet üres.
+    final_score_empty_err_msg: "%{factor_name} végső pontszáma nem lehet üres."
     idp_plan_reset_success: A tervet sikeresen újraindították
     idp_templates: IDP-sablonok
     import_ai_artifacts: MI tárgyak importálása
+    import_csv_assessment_group_error: "%{index} sor: a %{email} e-mail címmel rendelkező felhasználó már meghívást kapott a „%{workshopInviteName}” csoportba."
     import_csv_error: "%{index}. sor: %{email} e-mail felhasználó nem része ebben a kampányban"
     import_csv_parsing_error: 'CSV elemzési hiba: %{message}'
     import_description: Felhasználókat importálj CSV fájlból. Minden sornak tartalmaznia kell egy e-mail címet.
@@ -121,11 +153,27 @@ hu:
     invalid_csv_header: A CSV fájl érvénytelen fejléceket tartalmaz.
     job_roles: Munkakörök
     learning_from_others: Együttműködő tanulás [20]
+    level: Szint
+    level_apply: Jelentkezés
+    level_guide: Útmutató
+    level_shape: Alak
+    level_validation_message: "%{values}"
     libraries: Médiatár
     library_invalid_type: Érvénytelen könyvtári tétel
     licenses: Licencek
     manager_approval_required: A jelentés %{user} letöltése előtt menedzser jóváhagyását igényel
+    max_value: Maximális érték
     messages: Üzenetek
+    mhs: MHS
+    mhs_assessment: MHS értékelés
+    mhs_assessment_name: MHS értékelés neve
+    mhs_data_gatherer_id: Mhs adatgyűjtő azonosító
+    mhs_data_gathering_id: Mhs adatgyűjtési azonosító
+    mhs_external_assessment_id: Mhs értékelési azonosító
+    mhs_report_id: MHS jelentés azonosítója
+    mhs_session_id: Mhs munkamenet azonosító
+    min_value: Minimális érték
+    missing_min_max_values: A minimális és maximális értékek megadása kötelező.
     name_required: Név szükséges
     no_file_selected: Fájl nem volt kiválasztva
     no_notifications: Nincs értesítés
@@ -140,6 +188,7 @@ hu:
     number: Szám
     occupations: Foglalkozások
     on_the_job: A munkában [70]
+    only_editable_on_create: Ez az opció csak létrehozáskor szerkeszthető.
     options: Beállítások
     participants: Résztvevők
     permissions:
@@ -564,6 +613,7 @@ hu:
         view: Nézet
         view_recordings: Felvételek megtekintése
     permissions_360_campaigns: 360°-os kampányokra vonatkozó engedélyek
+    piped_text: Csővezetékes szöveg
     privacy: Adatvédelem
     proficiency_level: API-kulcsok
     proficiency_levels: Tudásszintek
@@ -645,11 +695,18 @@ hu:
     saml_settings: SAML beállítások
     scheduling: Ütemezés
     scoring: Pontozás
+    scoring_value_info: A pontszámnak %{min} és %{max} között kell lennie.
+    scoring_value_out_of_range_err_msg: "%{factor_name} pontszáma %{min} és %{max} között kell lennie."
     search_admins: Adminisztrátorok keresése
+    search_job_role: Álláskeresés
     select_admin_role: Válassza ki az adminisztrátori szerepkört
+    select_language_to_translate: Kérjük, válassza ki a fordítani kívánt nyelvet
+    select_level: Szint kiválasztása
     send_email: E-mail küldése
     settings: Beállítások
+    show_original: Eredeti megjelenítése
     show_submenu: Almenü megjelenítése
+    show_translated: Fordítás megjelenítése
     siem: SIEM
     skill_aliases: Készség aliasok
     skills: Készségek
@@ -661,12 +718,31 @@ hu:
     status_details: Állapot részletei
     structured_learning: Formális tanulás [10]
     subdomain: Aldomain
+    subject_part_of_other_invite: Az e-mail címmel %{user_email} rendelkező személy már meghívást kapott a „%{workshop_invite_name}” rendezvényre.
+    target_job_role: Célkitűzés
+    toolbar_ai_insight: AI betekintés
+    toolbar_ai_suggestion: AI javaslat
+    toolbar_result_generating: Generálás...
+    toolbar_text_copied: Másolva a vágólapra
+    toolbar_text_replaced: Szöveg kicserélve!
+    toolbar_what_changed_and_why: Mi változott és miért?
+    translate: Fordítás
+    translate_to: Fordítás
+    translate_with_ai: Fordítás AI segítségével
+    translated_from: 'Fordítás:'
+    translated_to: 'Fordítás:'
+    translated_with_ai_notice: AI fordítás
+    translation_assistant_not_configured: Fordítási segédprogram nincs konfigurálva
+    update_success: "%{readableResourceName} sikeresen frissült"
     upload_success: Sikeresen feltöltve
     user_report_events: Felhasználói jelentés eseményei
     users: Felhasználók
     view_licenses: Licencek megtekintése
     waiting: Várakozás
     workshops: Workshopok
+    writing_assistant_not_configured: Írási asszisztens nincs konfigurálva
+    x_axis_interval_label: X-tengely intervallum
+    y_axis_interval_label: Y-tengely intervallum
     year: Ország
     yoodli_activity_id: Yoodli Activity ID
     yoodli_email_id: Yoodli jelölt e-mail azonosító

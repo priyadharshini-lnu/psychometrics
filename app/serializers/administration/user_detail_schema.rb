@@ -82,6 +82,17 @@ module Administration
         required(:user_assessments).array(Administration::UserAssessmentSchema.schema(_, _))
         required(:user_reports).array(Administration::UserReportSchema.schema(_, _))
         required(:proctoring_sessions).array(Administration::ProctoringSessionSchema.schema(_, _))
+        required(:level).maybe(:str?)
+        required(:current_job_role).hash do
+          optional(:id).maybe(:int?)
+          optional(:name).maybe(:str?)
+          optional(:code).maybe(:str?)
+        end
+        required(:target_job_role).hash do
+          optional(:id).maybe(:int?)
+          optional(:name).maybe(:str?)
+          optional(:code).maybe(:str?)
+        end
       end
     end
   end

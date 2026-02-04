@@ -221,7 +221,7 @@ export const Component: FC<PropsFromRedux> = ({
           mask: {
             backgroundColor: 'rgba(0,0,0,0.05)',
           },
-          content: {
+          wrapper: {
             boxShadow: 'none',
           },
         }}

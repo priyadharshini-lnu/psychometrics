@@ -9,6 +9,7 @@ const DefaultLanguageTR = t.type({
   name: t.string,
 })
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const SkillGapTR = t.type({
   id: t.number,
   campaign_id: t.number,

@@ -837,6 +837,10 @@ nl:
           reply_to_reply: Kan niet reageren op een antwoord (slechts één niveau van nesten toegestaan)
         user_idp_plan:
           no_active_plan: Geen actief IDP-plan gevonden
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: Alleen beoordelingen van het type 'psychometrie' en 'organisatieonderzoek' kunnen worden geselecteerd.
   admin_jobs:
     attrs:
       operations:
@@ -2194,16 +2198,16 @@ nl:
       password_complexity:
         digit:
           one: moet ten minste één cijfer bevatten
-          other: moet ten minste <x>count</x> cijfers bevatten
+          other: moet ten minste %{count} cijfers bevatten
         lower:
           one: moet ten minste één kleine letter bevatten
-          other: moet ten minste <x>count</x> kleine letters bevatten
+          other: moet ten minste %{count} kleine letters bevatten
         symbol:
           one: moet ten minste één leesteken of symbool bevatten
-          other: moet ten minste <x>count</x> leestekens of symbolen bevatten
+          other: moet ten minste %{count} leestekens of symbolen bevatten
         upper:
           one: moet minstens één hoofdletter bevatten
-          other: moet ten minste <x>count</x> hoofdletters bevatten
+          other: moet ten minste %{count} hoofdletters bevatten
       taken_in_past: mag niet hetzelfde zijn als een eerder gebruikt wachtwoord.
     module_error: Er is iets misgegaan met deze module. Neem contact op met de administratie.
     module_error_editor: Er is iets misgegaan met deze module. Controleer de module-instellingen.
@@ -3000,13 +3004,10 @@ nl:
     client_usage: Klantgebruik
     enabled: Ingeschakeld
     end_date: Einddatum
-    not_enough_idp_license: Niet genoeg IDP-licenties, neem contact op met beheerder
     not_enough_license: "%{client_name}' heeft niet genoeg licenties voor '%{report_name}'"
     not_enough_license_count: Niet genoeg licenties, neem contact op met beheerder
-    not_enough_proctoring_credits: Niet genoeg studiepunten om proctoraatsessie te beginnen
     number: Aantal
     overuse_number: Vergoeding voor overmatig gebruik
-    project_limit_reached: Gebruikslimiet bereikt voor '%{license_name}', neem contact op met de beheerder
     project_specific: Projectspecifiek
     project_specific_license: Projectspecifieke licentie
     project_usage: Projectgebruik
@@ -3055,7 +3056,7 @@ nl:
     footer:
       regards: Groeten,
       team_name: Lighthouse Team
-      technical_support: Voor technische problemen kunt u ons schrijven op <x>email</x> en we zullen binnen 24 uur reageren.
+      technical_support: Voor technische problemen kunt u ons schrijven op %{email} en we zullen binnen 24 uur reageren.
     from: De talentenonderneming
     idp:
       manager_unread_comments:

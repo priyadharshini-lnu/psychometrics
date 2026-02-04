@@ -1,0 +1,46 @@
+---
+zh-HK:
+  enduser:
+    add_idp_plan_note: 添加注释...
+    add_idp_plan_rejection_reason: 添加原因...
+    ai_idp_assistant_response_no: 不
+    ai_idp_assistant_response_upload_different_document: 我想上传另一份文档。
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: 是的，请继续制定计划。
+    ai_idp_retake_step_chat_hint_no_document: 您可以重新开始聊天以分享更多细节，我会尽力为您提供帮助。
+    ai_idp_summary_hint_no_document: 若您同意，我便可为您制定发展计划。若不同意，您可重新开始对话以分享更多细节。
+    approve_idp_plan: 批准计划
+    bookings: 预订
+    campaign: 活动
+    development: 发展
+    direct_reportees: 直接下属
+    download_pdf: 下载PDF
+    home: 首页
+    idp_loading_fifth_step: 从模板中获取开发操作
+    idp_loading_first_step: 分析您的评估报告
+    idp_loading_fourth_step: 选择相关技能
+    idp_loading_second_step: 识别您在聊天中提及的偏好
+    idp_loading_secondary_text: 请随意离开。等您回来时，您的计划就会准备就绪。
+    idp_loading_sixth_step: 创建开发操作
+    idp_plan_approval_note: 批准说明
+    idp_retake_steps_continue_with_this_information: 继续使用这些信息
+    insights: 洞见
+    lighthouse_assistant: 灯塔助手
+    max_word_limit: 最多%{max}个单词
+    min_word_limit: 至少需要%{min}个单词
+    my_plan: 我的计划
+    profile: 个人资料
+    profile_details: 详情
+    question_counter: 问题 %{current} 来自 %{total}
+    reason_for_idp_plan_rejection: 拒绝原因
+    recorded: 记录
+    recording: 录音
+    reject_idp_plan: 拒绝计划
+    request_retry_message: 您当前处于离线状态。您的答案未能保存，但将在您重新上线后自动保存。请勿刷新或关闭页面。
+    saving_video_text: 正在保存视频... 请勿关闭或刷新浏览器
+    selected_count: "%{count} 选定"
+    skill_type: 技能类型
+    start_campaign_message_proctored: 这是一项监考活动，请点击“%{buttonText}”按钮开始活动。
+    start_campaign_message_timed: 这是一项限时活动，请点击“%{buttonText}”按钮开始参与。
+    start_campaign_message_timed_proctored: 这是一项限时且受监考的活动，请点击“%{buttonText}”按钮开始参与。
+    status_unknown: 状态未知
+    tasks: 任务

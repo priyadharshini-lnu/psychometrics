@@ -79,17 +79,9 @@ export const ToolsMenu: React.FC<ToolsMenuProps> = ({
     }
   }
 
-
-  const menu = (
-    <Menu
-      items={menuItems}
-      style={{ minWidth: 150 }}
-    />
-  )
-
   return (
     <>
-      <Dropdown overlay={menu} trigger={['click']} placement="bottomRight" className="me-4">
+      <Dropdown menu={{ items: menuItems }} trigger={['click']} placement="bottomRight" className="me-4">
         <Button
           type="default"
           icon={isExporting ? <LoadingOutlined /> : <ToolOutlined />}
@@ -102,7 +94,7 @@ export const ToolsMenu: React.FC<ToolsMenuProps> = ({
       </Dropdown>
       <Modal
         title={I18n.t('administration.dashboard.export_dashboard_to_file')}
-        visible={isModalVisible}
+        open={isModalVisible}
         onOk={handleExportConfirm}
         onCancel={() => setIsModalVisible(false)}
         okButtonProps={{ disabled: isExporting }}

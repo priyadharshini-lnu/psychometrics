@@ -30,6 +30,17 @@ interface YoodliUserAssessmentDetails {
   yoodliActivityId: string | null
 }
 
+interface MhsUserAssessmentDetails {
+  externalAssessmentId: string | null
+  sessionId: string | null
+  dataGathererId: string | null
+  dataGatheringId: string | null
+  confidenceInterval: number | null
+  leadershipBar: number | null
+  normRegion: string | null
+  normOption: string | null
+}
+
 export default interface UserAssessment {
   id: number
   name: string
@@ -52,6 +63,7 @@ export default interface UserAssessment {
   pearsonUserAssessmentDetails: PearsonUserAssessmentDetails | null
   skillvueUserAssessmentDetails: SkillvueUserAssessmentDetails | null
   yoodliUserAssessmentDetails: YoodliUserAssessmentDetails | null
+  mhsUserAssessmentDetails: MhsUserAssessmentDetails | null
 
   permissions: {
     updateAdditionalTime: boolean

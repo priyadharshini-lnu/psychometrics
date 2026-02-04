@@ -369,8 +369,9 @@ the campaign\'s default assessments and reports.'
           expect(error).to eq(
             'code' => 1003,
             'message' => 'Not enough licenses',
-            'more_info' => "'#{membership.client.name}' does not have \
-enough licenses for '#{report.name}'",
+            'more_info' => I18n.t('licenses.not_enough_license',
+                                  client_name: membership.client.name,
+                                  report_name: report.report_families.first.name),
             'meta' => nil
           )
         end
@@ -474,7 +475,13 @@ enough licenses for '#{report.name}'",
         end
 
         before do
-          allow(Licenses::Use).to receive(:call!)
+          create(
+            :license,
+            client: membership.client,
+            type: 'common',
+            report_family: report_family,
+            end_date: 1.month.from_now
+          )
         end
 
         run_test! do |response|

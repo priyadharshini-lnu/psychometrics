@@ -131,7 +131,7 @@ const EditDrawerComponent: FC<Props> = ({
               <Input />
             </Form.Item>
             <Form.Item label={I18n.t('administration.project_participants.column_created_at')}>
-              <Input value={participant?.createdAt} bordered={false} />
+              <Input value={participant?.createdAt} variant="borderless" />
             </Form.Item>
             <Form.Item name="campaigns" label={I18n.t('administration.project_participants.column_campaigns')}>
               <List

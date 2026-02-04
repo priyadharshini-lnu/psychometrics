@@ -134,11 +134,9 @@ export const SkillsGroupCard: FC<Props> = ({
             aria-label={I18n.t('idp.search_and_select_skills_of_skill_type',
               { skillType: I18n.t(`idp.${skillType.skillType}`) })}
             placeholder={I18n.t('idp.initial_steps.select_skills_placeholder')}
-            showSearch
-            onSearch={handleSkillSearch}
+            showSearch={{ filterOption: false, onSearch: handleSkillSearch }}
             onSelect={handleSelectSkill}
-            notFoundContent={isSearching ? <Spin size="small" /> : null}
-            filterOption={false}
+            notFoundContent={isSearching ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             onDeselect={handleDeselectSkill}
             value={null}
           >

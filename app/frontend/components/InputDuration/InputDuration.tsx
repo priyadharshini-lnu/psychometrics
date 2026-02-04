@@ -78,6 +78,10 @@ const InputDuration = forwardRef<InputRef, Props>(({
       <MaskedInput
         ref={ref}
         masked={masked}
+        zIndex={{
+          input: 5003,
+          backdrop: 5002,
+        }}
         onBlur={maskAndReturnIntValue}
         onChange={handleOnChange}
         onKeyPress={handleOnKeyPress}

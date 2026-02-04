@@ -45,7 +45,7 @@ module Campaigns
             user_attributes = form.to_h.except(
               :operation, :campaign_ids, :active, :locale,
               :schedule_start_date, :schedule_start_date, :schedule_end_date, :user_external_id,
-              :campaign_user_external_id, :datasheet, :current_job_role, :target_job_role
+              :campaign_user_external_id, :datasheet, :current_job_role, :target_job_role, :level
             ).merge(
               project: project,
               create_by_invite: true,
@@ -71,7 +71,8 @@ module Campaigns
           schedule_start_date: form.schedule_start_date,
           schedule_end_date: form.schedule_end_date,
           current_job_role: find_job_role(form[:current_job_role]),
-          target_job_role: find_job_role(form[:target_job_role])
+          target_job_role: find_job_role(form[:target_job_role]),
+          level: form[:level]
         }
         attributes[:external_id] = form.campaign_user_external_id if form.respond_to?(:campaign_user_external_id)
         campaign_user.assign_attributes(attributes)

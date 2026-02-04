@@ -189,10 +189,8 @@ export const AddEditWebhookModal: React.FC<Props> = ({
               >
                 <Select
                   mode="multiple"
-                  showSearch
+                  showSearch={{ filterOption: false, onSearch: handleAssessmentSearch }}
                   placeholder={I18n.t('administration.project_tabs.webhooks.form.assessments.placeholder')}
-                  onSearch={handleAssessmentSearch}
-                  filterOption={false}
                   options={assessmentOptions}
                 />
               </Form.Item>

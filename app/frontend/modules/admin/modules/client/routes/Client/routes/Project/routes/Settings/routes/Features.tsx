@@ -18,6 +18,7 @@ interface ProjectFeatures {
   enhanceWithAi: boolean;
   idp: boolean;
   id: string;
+  aiTranslation: boolean;
 }
 
 interface ClientFeatures {
@@ -28,6 +29,7 @@ interface ClientFeatures {
   enhanceWithAi: boolean;
   idp: boolean;
   id: string;
+  aiTranslation: boolean;
 }
 
 interface Project {
@@ -95,6 +97,7 @@ export const Features: React.FC = () => {
     globalSkills: false,
     enhanceWithAi: false,
     idp: false,
+    aiTranslation: false,
   }
 
   const clientFeatures = clientFeaturesData[0] || {
@@ -104,6 +107,7 @@ export const Features: React.FC = () => {
     globalSkills: false,
     enhanceWithAi: false,
     idp: false,
+    aiTranslation: false,
   }
 
   useEffect(() => {
@@ -158,6 +162,7 @@ export const Features: React.FC = () => {
       idp: !clientFeatures.idp ? false : values.idp || false,
       enhanceWithAi: !clientFeatures.enhanceWithAi ? false : values.enhanceWithAi || false,
       globalSkills: !clientFeatures.globalSkills ? false : values.globalSkills || false,
+      aiTranslation: !clientFeatures.aiTranslation ? false : values.aiTranslation || false,
     }
     return {
       ...transformedValues,
@@ -275,6 +280,17 @@ export const Features: React.FC = () => {
                   }
                   >
                     <Switch disabled={!clientFeatures.globalSkills} />
+                  </Form.Item>
+                  <Form.Item
+                    name="aiTranslation"
+                    label={I18n.t('administration.client_features.form.ai_translation')}
+                    help={
+                    !clientFeatures.aiTranslation
+                      ? I18n.t('administration.client_features.form.ai_translation_disabled_by_client')
+                      : undefined
+                  }
+                  >
+                    <Switch disabled={!clientFeatures.aiTranslation} />
                   </Form.Item>
                   <Button
                     type="primary"

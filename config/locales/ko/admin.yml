@@ -1,6 +1,7 @@
 ---
 ko:
   admin:
+    accept_na_values: N/A 값 허용
     add_admin: 관리자 추가
     add_admin_role: 관리자 역할 추가
     add_campaign_admin: 캠페인 관리자 추가
@@ -34,14 +35,23 @@ ko:
     ai_assistants_test_render: 테스트 렌더링
     ai_assistants_test_render_tooltip: 프롬프트 템플릿을 캠페인 데이터로 테스트해 AI 어시스턴트에 어떤 내용이 전송될지 확인하세요.
     ai_assisted_idp_feature_disabled: 이 프로젝트에서는 AI 지원 국내 인류 처리 기능이 비활성화되었습니다.
+    ai_notice: 강조된 부분은 AI 번역으로 처리되었으며 부정확한 내용이 포함될 수 있습니다.
+    ai_translation: 인공지능 번역
+    all_corner_rounded: 모든 모서리가 둥글게 처리됨
     api_keys: API 키
+    apply_to_existing_users: 이 캠페인의 기존 사용자에게 이 변경 사항을 적용하십시오
     assessments: 평가
+    assessments_not_mhs: 모든 평가는 MHS 유형이어야 합니다
     assessments_reports: 평가 및 보고서
     assessor_dashboard: 평가자 대시보드
     assessor_workshops: 평가 센터
     assessors: 평가자
+    assistant_toolbar_failed: 여러 번 시도한 후에도 유효한 출력을 생성하지 못했습니다.
+    assistant_toolbar_not_a_valid_operation: 알 수 없는 작업%{operation}.
+    assistant_validation_failed: 여러 번 시도한 후에도 유효한 출력을 생성하지 못했습니다
     audit_logs: 감사 로그
     audit_reports: 감사 보고서
+    auto_placeholder: 자동
     availability: 가용성
     available_languages: 보고서는 언어로 제공됩니다
     back_to_main: 메인 메뉴
@@ -50,6 +60,19 @@ ko:
     campaign_assessment_actions_disable_caching: 평가 캐싱 비활성화
     campaign_assessment_actions_enable_caching: 평가 캐싱 활성화
     campaign_assessment_column_caching_enabled: 평가 캐싱 활성화
+    campaign_assessment_mhs_confidence_interval: 신뢰 구간
+    campaign_assessment_mhs_confidence_interval_update_success: 신뢰 구간이 성공적으로 업데이트되었습니다
+    campaign_assessment_mhs_invalid_confidence_interval: confidence_interval은 0 또는 1이어야 합니다
+    campaign_assessment_mhs_invalid_leadership_bar: leadership_bar는 0 또는 1이어야 합니다
+    campaign_assessment_mhs_invalid_norm_option: Norm Option은 0과 3 사이여야 합니다
+    campaign_assessment_mhs_leadership_bar: 리더십 바
+    campaign_assessment_mhs_leadership_bar_update_success: 리더십 바가 성공적으로 업데이트되었습니다
+    campaign_assessment_mhs_norm_option: 표준 옵션
+    campaign_assessment_mhs_norm_option_form_select: 표준 옵션 선택
+    campaign_assessment_mhs_norm_option_update_success: Norm Option이 성공적으로 업데이트되었습니다.
+    campaign_assessment_mhs_norm_region: 노름 지역
+    campaign_assessment_mhs_norm_region_form_select: 표준 영역 선택
+    campaign_assessment_mhs_norm_region_update_success: Norm Region이 성공적으로 업데이트되었습니다.
     campaign_assessment_modals_disable_caching_content: 이번 평가에서 캐싱을 비활성화할 것이 확실한가요?
     campaign_assessment_modals_disable_caching_successfully: 이번 평가에서는 캐싱이 비활성화되었습니다.
     campaign_assessment_modals_disable_caching_title: 평가 캐싱을 비활성화할 수 있나요?
@@ -58,6 +81,7 @@ ko:
     campaign_assessment_modals_enable_caching_title: 평가 캐싱을 활성화할 수 있나요?
     campaign_factors: 캠페인 요인
     campaign_templates: 캠페인 템플릿
+    campaign_user_job_roles_cannot_be_same: 지원 직무는 현재 직무와 달라야 합니다.
     campaigns: 캠페인
     client: 클라이언트 테넌시
     client_admins: 클라이언트 관리자
@@ -70,6 +94,7 @@ ko:
     confirm_remove_admin: 이메일 '%{email}'을 사용하는 관리자 사용자를 제거하시겠습니까?
     country: 국가
     create_client: 클라이언트 만들기
+    current_job_role: 현재 직무 역할
     dashboard: 대시보드
     dashboards: 대시보드
     data_reports: 데이터 보고서
@@ -84,19 +109,26 @@ ko:
     done_tooltip: 이 사용자의 평가는 %{marked_by}에 의해 완료된 것으로 표시되어 있어 더 이상 평가를 제출할 수 없습니다
     edit_campaign_admin: 캠페인 관리자 편집
     edit_client_admin: 클라이언트 관리자 편집
+    edit_job_roles: 작업 역할 편집
+    edit_level: 편집 수준
     edit_permission_denied: 관리자 '%{name}'를 편집할 권한이 없습니다
     edit_project_admin: 프로젝트 관리자 편집
     edit_threesixty_campaign_admin: 캠페인 관리자 편집
     empty_csv_file: CSV 파일에는 데이터가 포함되어 있지 않습니다.
+    enable_enhance_with_ai_client_level: 클라이언트 수준에서 AI로 향상 기능을 활성화하십시오
+    enable_transcription: 자막 활성화
+    enhance_with_ai_requires_ai_assistants: AI로 향상시키려면 AI 어시스턴트 기능이 활성화되어 있어야 합니다
     evaluation_status: 평가 현황
     evaluation_status_not_done: 한 명 이상의 선정 과목에 대한 평가 상태는 '완료'가 아닙니다. 모든 선택된 사용자가 평가를 완료했는지 확인하거나 완료 표시를 해 주세요.
     export_admin_roles_permissions: 관리자 역할 및 권한 내보내기
+    feature_enhance_with_ai: AI로 향상시키다
     feature_flags: 기능 플래그
     fill_empty_score_msg: 저장하기 전에 모든 최종 점수를 입력하세요.
-    final_score_empty_msg: 최종 점수는 비어 있을 수 없습니다.
+    final_score_empty_err_msg: "%{factor_name}의 최종 점수는 비어 있을 수 없습니다."
     idp_plan_reset_success: 계획이 성공적으로 재설정되었습니다
     idp_templates: IDP 템플릿
     import_ai_artifacts: AI 산출물 가져오기
+    import_csv_assessment_group_error: "%{index} 행: 이메일 %{email} 사용자는 이미 '%{workshopInviteName}'에 초대되었습니다."
     import_csv_error: "%{index}행: 이메일 %{email} 있는 사용자는 이 캠페인에 참여하지 않습니다"
     import_csv_parsing_error: 'CSV 파싱 오류: %{message}'
     import_description: CSV 파일에서 사용자를 불러와. 각 행에는 이메일 주소가 반드시 포함되어야 합니다.
@@ -121,11 +153,27 @@ ko:
     invalid_csv_header: CSV 파일에는 잘못된 헤더가 포함되어 있습니다.
     job_roles: 직무 역할
     learning_from_others: 협력 학습 [20]
+    level: 레벨
+    level_apply: 지원하다
+    level_guide: 가이드
+    level_shape: 모양
+    level_validation_message: '다음 중 하나여야 합니다: %{values}'
     libraries: 미디어 라이브러리
     library_invalid_type: 유효하지 않은 라이브러리 항목
     licenses: 라이선스
     manager_approval_required: "%{user} 보고서는 다운로드 전에 관리자의 승인이 필요합니다"
+    max_value: 최대값
     messages: 메시지
+    mhs: MHS
+    mhs_assessment: MHS 평가
+    mhs_assessment_name: MHS 평가명
+    mhs_data_gatherer_id: MHS 데이터 수집기 ID
+    mhs_data_gathering_id: MHS 데이터 수집 ID
+    mhs_external_assessment_id: Mhs 평가 ID
+    mhs_report_id: MHS 보고서 ID
+    mhs_session_id: Mhs 세션 ID
+    min_value: 최소값
+    missing_min_max_values: 최소값과 최대값이 필요합니다.
     name_required: 이름은 필수입니다
     no_file_selected: 선택된 파일이 없습니다
     no_notifications: 알림 없음
@@ -140,6 +188,7 @@ ko:
     number: 번호
     occupations: 직업
     on_the_job: 현장 [70]
+    only_editable_on_create: 이 옵션은 생성 중에만 편집할 수 있습니다.
     options: 옵션
     participants: 참가자
     permissions:
@@ -564,6 +613,7 @@ ko:
         view: 보기
         view_recordings: 녹화 보기
     permissions_360_campaigns: 360 캠페인 관련 권한
+    piped_text: 파이핑된 텍스트
     privacy: 개인정보 보호
     proficiency_level: API 키
     proficiency_levels: 숙련도 수준
@@ -645,11 +695,18 @@ ko:
     saml_settings: SAML 설정
     scheduling: 일정 예약
     scoring: 채점
+    scoring_value_info: 점수는 %{min}와 %{max} 사이여야 합니다.
+    scoring_value_out_of_range_err_msg: "%{factor_name}의 점수는 %{min}와 %{max} 사이여야 합니다."
     search_admins: 검색 관리자
+    search_job_role: 직무 검색
     select_admin_role: 관리자 역할 선택
+    select_language_to_translate: 번역할 언어를 선택해 주세요
+    select_level: 레벨 선택
     send_email: 이메일 보내기
     settings: 설정
+    show_original: 원문 표시
     show_submenu: 하위 메뉴 표시
+    show_translated: 번역된 내용 표시
     siem: SIEM
     skill_aliases: 스킬 별칭
     skills: 기술
@@ -661,12 +718,31 @@ ko:
     status_details: 상태 세부사항
     structured_learning: 정식 학습 [10]
     subdomain: 하위 도메인
+    subject_part_of_other_invite: 이메일 주소 %{user_email}을 가진 사용자는 이미 '%{workshop_invite_name}'에 초대되었습니다.
+    target_job_role: 목표 직무 역할
+    toolbar_ai_insight: AI 인사이트
+    toolbar_ai_suggestion: AI 제안
+    toolbar_result_generating: 생성 중...
+    toolbar_text_copied: 클립보드에 복사됨
+    toolbar_text_replaced: 텍스트가 대체되었습니다!
+    toolbar_what_changed_and_why: 무엇이 바뀌었으며 그 이유는 무엇인가
+    translate: 번역
+    translate_to: 번역하기
+    translate_with_ai: AI로 번역
+    translated_from: 번역됨
+    translated_to: '번역됨:'
+    translated_with_ai_notice: AI 번역
+    translation_assistant_not_configured: 번역 보조 기능이 설정되지 않았습니다.
+    update_success: "%{readableResourceName}이(가) 성공적으로 업데이트되었습니다"
     upload_success: 성공적으로 업로드됨
     user_report_events: 사용자 보고서 이벤트
     users: 사용자
     view_licenses: 라이선스 보기
     waiting: 기다리기
     workshops: 워크샵
+    writing_assistant_not_configured: 작성 보조 기능이 설정되지 않았습니다.
+    x_axis_interval_label: X축 간격
+    y_axis_interval_label: Y축 간격
     year: 국가
     yoodli_activity_id: Yoodli 활동 ID
     yoodli_email_id: 유들리 후보자 이메일 ID

@@ -30,6 +30,12 @@ export const UPDATE_CONTENT_VARIATION = 'campaigns/assessments/UPDATE_CONTENT_VA
 
 export const UPDATE_PREWORK = 'campaigns/assessments/UPDATE_PREWORK'
 export const TOGGLE_ASSESSMENT_CACHING = 'campaigns/assessments/TOGGLE_ASSESSMENT_CACHING'
+
+export const UPDATE_MHS_LEADERSHIP_BAR = 'campaigns/assessments/UPDATE_MHS_LEADERSHIP_BAR'
+export const UPDATE_MHS_CONFIDENCE_INTERVAL = 'campaigns/assessments/UPDATE_MHS_CONFIDENCE_INTERVAL'
+export const UPDATE_MHS_NORM_REGION = 'campaigns/assessments/UPDATE_MHS_NORM_REGION'
+export const UPDATE_MHS_NORM_OPTION = 'campaigns/assessments/UPDATE_MHS_NORM_OPTION'
+
 export const updatePrework = (campaignId: number, id: number, body: object) => ({
   type: UPDATE_PREWORK,
   request: {
@@ -211,6 +217,49 @@ export const updatePearsonVariation = (campaignId: string, assessmentId: number,
   },
 })
 
+export const updateMhsConfidenceInterval = (campaignId: string, assessmentId: number, body) => ({
+  type: UPDATE_MHS_CONFIDENCE_INTERVAL,
+  assessmentId,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/update_mhs_confidence_interval`,
+    body: { ...body, id: assessmentId },
+    loader: true,
+  },
+})
+
+export const updateMhsLeadershipBar = (campaignId: string, assessmentId: number, body) => ({
+  type: UPDATE_MHS_LEADERSHIP_BAR,
+  assessmentId,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/update_mhs_leadership_bar`,
+    body: { ...body, id: assessmentId },
+    loader: true,
+  },
+})
+
+export const updateMhsNormRegion = (campaignId: string, assessmentId: number, body) => ({
+  type: UPDATE_MHS_NORM_REGION,
+  assessmentId,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/update_mhs_norm_region`,
+    body: { ...body, id: assessmentId },
+    loader: true,
+  },
+})
+
+export const updateMhsNormOption = (campaignId: string, assessmentId: number, body) => ({
+  type: UPDATE_MHS_NORM_OPTION,
+  assessmentId,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/update_mhs_norm_option`,
+    body: { ...body, id: assessmentId },
+    loader: true,
+  },
+})
 
 const UpdateAssessorFormTR = t.type({
   assessorFormName: t.union([t.string, t.null]),

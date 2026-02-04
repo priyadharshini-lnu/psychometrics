@@ -35,7 +35,12 @@ module Idp
           campaign = Campaign.find(campaign_id)
           idp_plan = user.user_idp_plans.create(idp_template_id: idp_template_id, campaign_id: campaign_id,
                                                 active: true, creator_id: creator&.id)
-          Licenses::IdpUse.call!(campaign, user, idp_plan)
+          LicenseManager::Deductor.call!(
+            campaign: campaign,
+            user: user,
+            license_type: 'idp',
+            context: { idp_plan: idp_plan }
+          )
           idp_plan
         end
       end

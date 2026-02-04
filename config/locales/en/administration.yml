@@ -860,7 +860,6 @@ en:
         campaign: Campaign
         copy_factors: Copy Factors
         inactive_notice: Campaign status will automatically change to active on the selected start date & time
-        instruction: This can be only enabled while creating
         name: Name
         practice_campaign: Practice Campaign
         status: Status
@@ -1007,6 +1006,8 @@ en:
         ai_assistants_disabled_by_client: AI Assistants is disabled by client
         ai_assisted_idp: AI Assisted IDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP requires AI Assistants feature to be enabled
+        ai_translation: AI Translations
+        ai_translation_disabled_by_client: AI Translations is disabled by client
         global_skills: Global Skills
         global_skills_disabled_by_client: Global Skills is disabled by client
         idp: IDP
@@ -3103,6 +3104,7 @@ en:
         mask_identity_for_hogan: Mask data for Hogan
         mask_identity_for_iiht: Mask data for IIHT
         mask_identity_for_mettl: Mask data for METTL
+        mask_identity_for_mhs: Mask data for MHS
         mask_identity_for_pearson: Mask data for Pearson
         mask_identity_for_saville: Mask data for Saville
         mask_identity_for_skillvue: Mask data for Skillvue

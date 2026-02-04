@@ -837,6 +837,10 @@ ko:
           reply_to_reply: 응답에 응답할 수 없음(한 수준의 중첩만 허용됨)
         user_idp_plan:
           no_active_plan: 활성 IDP 요금제를 찾을 수 없습니다
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: "'심리측정' 및 '조직 설문' 유형의 평가만 선택할 수 있습니다."
   admin_jobs:
     attrs:
       operations:
@@ -2182,16 +2186,16 @@ ko:
       password_complexity:
         digit:
           one: 숫자 한 자리 이상 포함해야 합니다.
-          other: 최소 <x>count</x> 숫자를 포함해야 합니다.
+          other: 최소 %{count} 숫자를 포함해야 합니다.
         lower:
           one: 소문자 하나 이상을 포함해야 합니다.
-          other: 는 <x>count</x> 소문자 이상을 포함해야 합니다.
+          other: 는 %{count} 소문자 이상을 포함해야 합니다.
         symbol:
           one: 하나 이상의 구두점 또는 기호를 포함해야 합니다.
-          other: 최소 <x>count</x> 구두점 또는 기호를 포함해야 합니다.
+          other: 최소 %{count} 구두점 또는 기호를 포함해야 합니다.
         upper:
           one: 하나 이상의 대문자를 포함해야 합니다.
-          other: "<x>count</x> 대문자 이상을 포함해야 합니다."
+          other: "%{count} 대문자 이상을 포함해야 합니다."
       taken_in_past: 이전에 사용한 비밀번호와 동일하지 않아야 합니다.
     module_error: 이 모듈에 문제가 발생했습니다. 관리팀에 문의하세요.
     module_error_editor: 이 모듈에 문제가 발생했습니다. 모듈 설정을 확인하세요.
@@ -2988,13 +2992,10 @@ ko:
     client_usage: 클라이언트 사용
     enabled: 활성화됨
     end_date: 종료 날짜
-    not_enough_idp_license: IDP 라이선스가 충분하지 않은 경우 관리자에게 문의하세요
     not_enough_license: "'%{client_name}'에 '%{report_name}'에 대한 라이선스가 충분하지 않습니다"
     not_enough_license_count: 라이선스가 충분하지 않은 경우 관리자에게 문의하세요
-    not_enough_proctoring_credits: 감독 세션을 시작하기에 학점이 부족합니다
     number: 번호
     overuse_number: 초과 사용 허용량
-    project_limit_reached: "'%{license_name}' 사용 한도에 도달했으니 관리자에게 연락해 주세요"
     project_specific: 프로젝트 특화
     project_specific_license: 프로젝트 특별 라이선스
     project_usage: 프로젝트 활용
@@ -3043,7 +3044,7 @@ ko:
     footer:
       regards: 안녕히 계세요,
       team_name: 라이트하우스 팀
-      technical_support: 기술적 문제가 있는 경우 이메일( <x>email</x> )로 문의해 주시면 24시간 이내에 답변해 드리겠습니다.
+      technical_support: 기술적 문제가 있는 경우 이메일( %{email} )로 문의해 주시면 24시간 이내에 답변해 드리겠습니다.
     from: 인재 기업
     idp:
       manager_unread_comments:

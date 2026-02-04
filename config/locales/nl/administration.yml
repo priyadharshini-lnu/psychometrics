@@ -860,7 +860,6 @@ nl:
         campaign: Campagne
         copy_factors: Kopieer factoren
         inactive_notice: Campagnestatus wordt automatisch gewijzigd in Active op de geselecteerde startdatum
-        instruction: Dit kan alleen worden ingeschakeld tijdens het maken van campagne
         name: Naam
         practice_campaign: Praktijk Campagne
         status: Status
@@ -1007,6 +1006,8 @@ nl:
         ai_assistants_disabled_by_client: AI-assistenten is uitgeschakeld door de client
         ai_assisted_idp: AI Geassisteerde IDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP vereist dat de functie AI Assistants is ingeschakeld
+        ai_translation: AI-vertalingen
+        ai_translation_disabled_by_client: AI-vertalingen zijn uitgeschakeld door de klant
         global_skills: Wereldwijde vaardigheden
         global_skills_disabled_by_client: Global Skills is uitgeschakeld door de klant
         idp: IDP
@@ -2888,6 +2889,11 @@ nl:
           active:
             label: Actief
             name: actief
+          assessments:
+            help_text: Deze selectie heeft alleen invloed op de gebeurtenis 'Ruwe beoordelingsreactie'.
+            label: Beoordelingen
+            placeholder: Selecteer beoordelingen
+            required: Er moet ten minste één beoordeling worden geselecteerd voor de gebeurtenis 'Ruwe beoordelingsrespons'.
           auth_type:
             api_key:
               label: API-sleutel
@@ -2944,6 +2950,7 @@ nl:
             list:
               assessment_assigned: Beoordeling Toegewezen
               assessment_completed: Beoordeling Voltooid
+              assessment_raw_response: Beoordeling Ruwe respons
               assessment_started: Beoordeling gestart
               assessment_timeout: Time-out beoordeling
               campaign_results_available: Campagne resultaten beschikbaar
@@ -3097,6 +3104,7 @@ nl:
         mask_identity_for_hogan: Maskergegevens voor Hogan
         mask_identity_for_iiht: Maskergegevens voor IIHT
         mask_identity_for_mettl: Maskergegevens voor METTL
+        mask_identity_for_mhs: Gegevensmasker voor MHS
         mask_identity_for_pearson: Maskergegevens voor Pearson
         mask_identity_for_saville: Maskergegevens voor Saville
         mask_identity_for_skillvue: Maskergegevens voor Skillvue
@@ -3657,7 +3665,7 @@ nl:
         preworks: Voorwerk
         re_enroll: Opnieuw inschrijven
         re_enroll_confirm_message: Weet je zeker dat je het onderwerp opnieuw wilt opgeven met de e-mail '%{subject_email}'?
-        re_enroll_success: Opnieuw ingeschreven onderwerp met e-mail <x>subject_email</x>.
+        re_enroll_success: Opnieuw ingeschreven onderwerp met e-mail %{subject_email}.
         schedule: Schema
         unschedule: Uitschakelen
       tabs:

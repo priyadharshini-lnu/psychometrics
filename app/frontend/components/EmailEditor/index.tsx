@@ -9,6 +9,7 @@ import '~/libs/Editor/commands/rtlLtr'
 import 'froala-editor/js/froala_editor.pkgd.min'
 import 'froala-editor/js/plugins.pkgd.min'
 import { isRtl } from '~/utils/locales'
+import { FROALA } from '~/constants/froala'
 
 interface Props {
   content: string
@@ -82,7 +83,7 @@ export const EmailEditor: React.FC<Props> = ({
     saveParams: { type, details },
     heightMin: 250,
     heightMax: 500,
-    key: 'DUA2yE2C2F1A6A3A2A3qYFd1UQRFQIVb1MSMc2IWPNe1IFg1yD4C3D2C1C4C1H1H4B1D2==',
+    key: FROALA,
     attribution: false,
     fontFamily: {
       'Arial,Helvetica,sans-serif': 'Arial',

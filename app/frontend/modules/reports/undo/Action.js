@@ -12,6 +12,7 @@ const Action = function (subject, redo, undo, rArgs = [], uArgs = [], name = '')
 Action.prototype = {
   undo () {
     if (_.isFunction(this.undoAction)) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       this.undoAction
     }
     _.invoke(this.subject, this.undoAction, ...this.undoArgs)

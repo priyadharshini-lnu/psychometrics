@@ -39,6 +39,18 @@ module Api
           end
         end
 
+        rule(data: { attributes: :min_value }) do
+          if %w[assessor_scoring].include?(values.dig(:data, :attributes, :factor_type)) && value.blank?
+            key.failure(:filled?)
+          end
+        end
+
+        rule(data: { attributes: :max_value }) do
+          if %w[assessor_scoring].include?(values.dig(:data, :attributes, :factor_type)) && value.blank?
+            key.failure(:filled?)
+          end
+        end
+
         rule(data: { attributes: :ranked }) do
           key.failure(:rank_not_allowed) if values.dig(:data, :attributes, :output_type) != 'numeric' && value.present?
         end

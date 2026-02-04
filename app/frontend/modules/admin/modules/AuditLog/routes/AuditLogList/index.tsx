@@ -82,7 +82,7 @@ const AuditLogList: React.FC<Props> = (
   const today = dayjs()
   const initialRange: [dayjs.Dayjs, dayjs.Dayjs] = [today.startOf('day'), today.endOf('day')]
 
-  const [range, setRange] = useState<RangeValueType<dayjs.Dayjs> | null>(initialRange)
+  const [range, setRange] = useState<RangeValueType | null>(initialRange)
 
   const [form] = Form.useForm()
   const [isExpanded, setIsExpanded] = useState(false)

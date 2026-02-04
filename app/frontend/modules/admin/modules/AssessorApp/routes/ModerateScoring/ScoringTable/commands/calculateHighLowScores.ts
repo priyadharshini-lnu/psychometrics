@@ -1,3 +1,4 @@
+import { EMPTY_SCORE_INDICATOR } from '~/modules/admin/constants/string'
 import { Factor, Score } from '~/modules/admin/modules/campaigns/core/combinedScoring'
 
 export const calculateHighLowScores = (
@@ -16,8 +17,8 @@ export const calculateHighLowScores = (
       }
     })
     highLows[factor.factorId] = {
-      high: high === -Infinity ? '-' : high.toString(),
-      low: low === Infinity ? '-' : low.toString(),
+      high: high === -Infinity ? EMPTY_SCORE_INDICATOR : high.toString(),
+      low: low === Infinity ? EMPTY_SCORE_INDICATOR : low.toString(),
     }
   })
   return highLows

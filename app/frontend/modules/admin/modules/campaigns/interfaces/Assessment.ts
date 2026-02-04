@@ -1,12 +1,18 @@
 import Norm from './Norm'
 import SimulationContentVariation from './SimulationContentVariation'
 import PearsonVariation from './PearsonVariation'
+import MhsNormRegion from './MhsNormRegion'
+import MhsNormOption from './MhsNormOption'
 
 interface ExternalConfig {
   duration: number
   passPercentage: number
   contentVariationId: string | null
   variation: string
+  confidenceInterval: number
+  leadershipBar: number
+  normRegion: number
+  normOption: number
 }
 
 export default interface Assessment {
@@ -27,6 +33,8 @@ export default interface Assessment {
   norms?: Norm[]
   simulationContentVariations?: SimulationContentVariation[]
   pearsonVariations?: PearsonVariation[]
+  mhsNormRegions?: MhsNormRegion[]
+  mhsNormOptions?: MhsNormOption[]
   iconUrl: string | null
   iconColor: string | null
   permissions: {
@@ -47,6 +55,10 @@ export default interface Assessment {
     updateContentVariation: boolean
     updateAvailableLocales: boolean
     updatePearsonVariation: boolean
+    updateMhsConfidenceInterval: boolean;
+    updateMhsLeadershipBar: boolean
+    updateMhsNormRegion: boolean
+    updateMhsNormOption: boolean
     toggleCaching: boolean | undefined;
   },
   externalConfig: ExternalConfig,

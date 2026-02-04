@@ -56,6 +56,7 @@ export const fetch = (projectId: number, tableConfig: TableConfig): ApiAction<Fe
 })
 
 export const FETCH_SINGLE = 'resource/projects/participants/FETCH'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const FetchSingleResponseTR = ParticipantTR
 type FetchSingleResponse = t.TypeOf<typeof FetchSingleResponseTR>
 type FetchSingleAction = ApiActionResponse<FetchSingleResponse>

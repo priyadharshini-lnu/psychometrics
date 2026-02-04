@@ -3107,13 +3107,10 @@ en:
     client_usage: Client Usage
     enabled: Enabled
     end_date: End date
-    not_enough_idp_license: Not enough IDP licenses, please contact administrator
-    not_enough_license: "'%{client_name}' does not have enough licenses for '%{report_name}'"
+    not_enough_license: "'%{client_name}' does not have enough licenses for '%{report_name}'. Please check if you have enough project or client licenses available, or contact the administrator."
     not_enough_license_count: Not enough licenses, please contact administrator
-    not_enough_proctoring_credits: Not enough credits to begin proctoring session
     number: Number
     overuse_number: Over use allowance
-    project_limit_reached: Usage limit reached for '%{license_name}', please contact administrator
     project_specific: Project Specific
     project_specific_license: Project Specific License
     project_usage: Project Usage

@@ -4,7 +4,6 @@ import {
 } from 'antd'
 import type { MessageInstance } from 'antd/es/message/interface'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
-import { MenuItemType } from 'rc-menu/lib/interface'
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
 import { MoreOutlined, ExclamationCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
@@ -331,7 +330,7 @@ const getActionsMenuProps = ({
     })
   }
 
-  const responseGroupItems: MenuItemType[] = []
+  const responseGroupItems: MenuItem[] = []
   permissions.resetResults && responseGroupItems.push({
     key: 'reset',
     label: I18n.t('common.actions.reset'),

@@ -7,19 +7,28 @@ class MediaResponse < ApplicationRecord
   include ActiveStorageAttachable
 
   has_one_attachment :asset, service: Settings.storage.private_storage_service
-
-  def attachment_storage_path(attribute_name, filename)
-    project_id = users_result.campaign.project_id
-    "private/projects/#{project_id}/media_response/#{users_result_id}/#{question_id}/#{id}/#{attribute_name}/#{filename}" # rubocop:disable Layout/LineLength
-  end
+  has_one :transcription, as: :transcribable, dependent: :destroy
 
   belongs_to :users_assessment
   belongs_to :question
   belongs_to :users_result
 
+  enum :transcription_status, {
+    not_requested: 0,
+    pending: 1,
+    processing: 2,
+    completed: 3,
+    failed: 4
+  }, prefix: :transcription
+
   validate :verify_multiple_take_limit, on: :create
 
   before_create :set_user_selected
+
+  def attachment_storage_path(attribute_name, filename)
+    project_id = users_result.campaign.project_id
+    "private/projects/#{project_id}/media_response/#{users_result_id}/#{question_id}/#{id}/#{attribute_name}/#{filename}" # rubocop:disable Layout/LineLength
+  end
 
   def filename
     asset&.filename.to_s

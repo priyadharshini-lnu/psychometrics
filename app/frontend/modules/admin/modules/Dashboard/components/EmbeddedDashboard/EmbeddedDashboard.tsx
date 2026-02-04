@@ -1,7 +1,7 @@
 import React, {
   useEffect, useRef, useState,
 } from 'react'
-import { PageHeader } from '@ant-design/pro-layout'
+import { PageHeader } from '@ant-design/pro-components'
 import { Button } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import * as pbi from 'powerbi-client'

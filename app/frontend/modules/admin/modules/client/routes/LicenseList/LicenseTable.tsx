@@ -2,13 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { MenuProps, Switch } from 'antd'
-import { RootState } from '~/modules/admin/core/rootReducers'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import { License } from '~/modules/admin/modules/client/core/licenses'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import { UpdateResource } from '~/hooks/useResources/interfaces'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+
 
 const { I18n } = window
 
@@ -29,6 +30,7 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
   openModal,
 }) => {
   const { resource } = useResourceContext<License>()
+  const typeFilteredValue = resource.getFilteredValue('type_in') as string[] | undefined
 
   return (
     <Resource.Table pagination>
@@ -60,6 +62,15 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
         dataIndex="type"
         render={(_, { type }) => I18n.t(`licenses.types.${type}`)}
         width={300}
+        filters={
+          [
+            { value: 'common', text: I18n.t('licenses.types.common') },
+            { value: 'threesixty', text: I18n.t('licenses.types.threesixty') },
+            { value: 'idp', text: I18n.t('licenses.types.idp') },
+            { value: 'proctoring', text: I18n.t('licenses.types.proctoring') },
+          ]
+        }
+        filteredValue={typeFilteredValue}
       />
       <Resource.Column<License>
         title={I18n.t('licenses.project_specific')}
@@ -83,10 +94,12 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
         title={I18n.t('licenses.overuse_number')}
         id="overuse_number"
         dataIndex="overuseNumber"
-        render={(_, { overuseNumber, usedNumber, number }) => I18n.t('licenses.used_out_of', {
+        render={(_, {
+          overuseNumber, usedNumber, number, isProjectSpecific,
+        }) => (isProjectSpecific ? '-' : I18n.t('licenses.used_out_of', {
           used: usedOveruseNumber(usedNumber, number),
           total: overuseNumber,
-        })}
+        }))}
         width={300}
       />
       <Resource.Column<License>

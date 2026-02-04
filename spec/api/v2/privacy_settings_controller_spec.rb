@@ -81,6 +81,11 @@ RSpec.describe Api::V2::Administration::PrivacySettingsController, type: :reques
       expect(privacy_setting_response).
         to have_attribute(:video_call_recording_expiry_in_seconds).
         with_value(privacy_setting_recotrd.video_call_recording_expiry_in_seconds)
+      expect(
+        privacy_setting_response
+      ).to have_attribute(
+        :mask_identity_for_mhs
+      ).with_value(privacy_setting_recotrd.mask_identity_for_mhs)
     end
   end
 end

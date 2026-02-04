@@ -61,6 +61,6 @@ export function getAudioEventMessage (buffer: Buffer): Message {
         value: 'AudioEvent',
       },
     },
-    body: buffer,
+    body: new Uint8Array(buffer) as Uint8Array<ArrayBuffer>,
   }
 }

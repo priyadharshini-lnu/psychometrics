@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react'
 import cs from 'classnames'
-import { PageHeader } from '@ant-design/pro-layout'
+import { PageHeader } from '@ant-design/pro-components'
 import {
   Layout, Button, Row, Col, Spin, Space, Dropdown, Skeleton,
 } from 'antd'

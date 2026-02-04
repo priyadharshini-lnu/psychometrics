@@ -9,10 +9,17 @@ describe Threesixty::Subjects::CreateAll do
   let!(:current_role) { create(:job_role, name: 'Developer', project: project) }
   let!(:target_role) { create(:job_role, name: 'Senior Developer', project: project) }
   let!(:global_role) { create(:job_role, name: 'Global Role', project: nil) }
+  let!(:threesixty_license) do
+    create(
+      :license,
+      client: campaign.client,
+      type: 'threesixty',
+      start_date: 1.day.ago,
+      end_date: 1.day.from_now
+    )
+  end
 
   before do
-    allow(Licenses::CreateThreesixtySubject).to receive(:call!).and_return(true)
-
     user = create(:user, project: project, email: 'fedor@gmail.com')
     create(:campaign_user, user: user, campaign: campaign)
     create(:threesixty_subject, user: user, campaign: campaign)

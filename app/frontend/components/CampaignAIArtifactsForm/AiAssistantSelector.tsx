@@ -67,12 +67,10 @@ export const AIAssistantSelector: React.FC<Props> = ({
 
   return (
     <Select
-      showSearch
-      filterOption={false}
+      showSearch={{ filterOption: false, onSearch: handleSearch }}
       value={value}
       placeholder={I18n.t('administration.ai_assistants.selector.placeholder')}
       loading={isLoading('fetch')}
-      onSearch={handleSearch}
       onChange={handleChange}
       className={className}
       options={getOptions()}

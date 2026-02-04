@@ -20,10 +20,12 @@ Rails.application.routes.draw do
   get '/s/:id' => 'shortener/shortened_urls#show', as: :shortened
   post '/faas_notifications/url_to_pdf'
   post '/faas_notifications/zip_s3_files'
+  post '/faas_notifications/media_to_transcription'
 
   # TODO: Can be removed once we update the SNS
   post '/lambda_notifications/url_to_pdf', to: 'faas_notifications#url_to_pdf'
   post '/lambda_notifications/zip_s3_files', to: 'faas_notifications#zip_s3_files'
+  post '/lambda_notifications/media_to_transcription', to: 'faas_notifications#media_to_transcription'
 
   get '/maintenance', to: 'maintenance#index', as: :maintenance
 
@@ -262,6 +264,7 @@ Rails.application.routes.draw do
             get :possible_webhook_events
             put :upload_file
             delete :remove_file
+            post :translate
           end
           collection do
             post :regenerate
@@ -284,6 +287,8 @@ Rails.application.routes.draw do
             post :extend_time
             post :create_hogan_credentials
             get :webhook_payload
+            put :update_level
+            put :update_job_role
           end
           collection do
             post :import
@@ -343,6 +348,10 @@ Rails.application.routes.draw do
             post :update_mettl_schedule
             put :update_content_variation
             put :update_pearson_variation
+            put :update_mhs_confidence_interval
+            put :update_mhs_leadership_bar
+            put :update_mhs_norm_region
+            put :update_mhs_norm_option
             put :update_assessor_form
             put :update_available_locales
             post :rescore_responses
@@ -846,7 +855,9 @@ as: :simulation_progress_notification
     post '/:project_id/skillvue/completion_notification', to: 'skillvue#completion_notification',
                                                             as: :skillvue_completion_notification
     post '/:project_id/skillvue/results', to: 'skillvue#results', as: :skillvue_results_notification
+    match '/mhs/webhook', to: 'mhs#webhook', via: %i[head options post], as: :mhs_webhook
     post '/dailyco/recordings', to: 'daily_co#recordings', as: :dailyco_recordings
+    post '/oci_speech_transcription', to: 'oci_speech_transcription#create', as: :oci_speech_transcription
   end
 
   devise_scope :user do
@@ -998,6 +1009,12 @@ as: :simulation_progress_notification
       end
 
       resources :yoodli_user_assessments, only: [] do
+        member do
+          post :pass
+        end
+      end
+
+      resources :mhs_user_assessments, only: [] do
         member do
           post :pass
         end
@@ -1674,6 +1691,12 @@ only: %i[index create update]
           jsonapi_resources :writing_assistants, only: [] do
             collection do
               post :assist
+            end
+          end
+
+          jsonapi_resources :media_responses, only: %i[index] do
+            member do
+              post :generate_transcription
             end
           end
 

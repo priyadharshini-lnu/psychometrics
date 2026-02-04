@@ -1,12 +1,11 @@
 import { Component } from 'react'
-import { Modal } from 'react-bootstrap'
-import styles from './PipedTextModal.less'
+import {
+  Modal, Button, Card, Row, Col,
+} from 'antd'
 import types from './types'
 import FIELDS from './fields'
 
-const {
-  Header, Body, Footer, Title,
-} = Modal
+const { I18n } = window
 
 export class PipedTextModal extends Component {
   insert = (value) => {
@@ -20,37 +19,34 @@ export class PipedTextModal extends Component {
   render () {
     const { dataSheetColumns, close, questions } = this.props
     return (
-      <Modal show keyboard={false} bsSize="lg" dialogClassName={styles.modal}>
-        <Header>
-          <Title>Piped Text</Title>
-        </Header>
-        <Body>
+      <Modal
+        open
+        width="80vw"
+        title={I18n.t('admin.piped_text')}
+        onCancel={close}
+        footer={[
+          <Button key="cancel" danger onClick={close}>{I18n.t('shared.cancel')}</Button>,
+        ]}
+      >
+        <Row gutter={16}>
           {FIELDS.map((branch, i) => (
-            <div key={i} className="col-sm-6">
-              <div className="panel">
-                <div className="panel-heading">
-                  <h3 className="panel-title">{branch.branch}</h3>
-                </div>
-                <div className="panel-body">
-                  {branch.fields.map((field) => {
-                    const Component = types[field.type]
-                    return (
-                      <Component
-                        insert={value => this.insert(value)}
-                        key={field.name}
-                        field={field}
-                        context={{ datasheetFields: dataSheetColumns || [], questions }}
-                      />
-                    )
-                  })}
-                </div>
-              </div>
-            </div>
+            <Col key={i} span={12}>
+              <Card title={branch.branch} size="small" style={{ marginBottom: 16 }}>
+                {branch.fields.map((field) => {
+                  const Component = types[field.type]
+                  return (
+                    <Component
+                      insert={value => this.insert(value)}
+                      key={field.name}
+                      field={field}
+                      context={{ datasheetFields: dataSheetColumns || [], questions }}
+                    />
+                  )
+                })}
+              </Card>
+            </Col>
           ))}
-        </Body>
-        <Footer>
-          <button className="btn btn-danger" onClick={close}>Cancel</button>
-        </Footer>
+        </Row>
       </Modal>
     )
   }

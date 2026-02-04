@@ -22,6 +22,7 @@ interface Props {
 }
 
 const { I18n } = window
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ResetPasswordTr = t.type({
   id: t.string, password: t.union([t.string, t.null, t.undefined]), loginUrl: t.string, successMessage: t.string,
 })

@@ -1,6 +1,7 @@
 ---
 th:
   admin:
+    accept_na_values: ยอมรับค่า N/A
     add_admin: เพิ่มผู้ดูแลระบบ
     add_admin_role: เพิ่มบทบาทผู้ดูแลระบบ
     add_campaign_admin: เพิ่มผู้ดูแลแคมเปญ
@@ -34,14 +35,23 @@ th:
     ai_assistants_test_render: ทดสอบการแสดงผล
     ai_assistants_test_render_tooltip: ทดสอบเทมเพลตพร้อมท์ของคุณด้วยข้อมูลแคมเปญเพื่อตรวจสอบว่าอะไรจะถูกส่งไปยังผู้ช่วย AI
     ai_assisted_idp_feature_disabled: คุณลักษณะ AI Assisted IDP ถูกปิดใช้งานสําหรับโครงการนี้
+    ai_notice: ส่วนที่ถูกเน้นได้รับการแปลโดย AI และอาจมีข้อผิดพลาด
+    ai_translation: การแปลโดยปัญญาประดิษฐ์
+    all_corner_rounded: มุมทั้งหมดโค้งมน
     api_keys: กุญแจ API
+    apply_to_existing_users: นำการเปลี่ยนแปลงนี้ไปใช้กับผู้ใช้ที่มีอยู่ในแคมเปญนี้
     assessments: การประเมิน
+    assessments_not_mhs: การประเมินทั้งหมดต้องเป็นประเภท MHS
     assessments_reports: การประเมินและรายงาน
     assessor_dashboard: แดชบอร์ดผู้ประเมิน
     assessor_workshops: ศูนย์ประเมินผล
     assessors: ผู้ประเมิน
+    assistant_toolbar_failed: ไม่สามารถสร้างผลลัพธ์ที่ถูกต้องได้หลังจากพยายามหลายครั้ง
+    assistant_toolbar_not_a_valid_operation: ไม่สามารถดำเนินการได้ %{operation}.
+    assistant_validation_failed: ไม่สามารถสร้างผลลัพธ์ที่ถูกต้องได้หลังจากพยายามหลายครั้ง
     audit_logs: บันทึกการตรวจสอบ
     audit_reports: รายงานการตรวจสอบ
+    auto_placeholder: ออโต้
     availability: กำหนดการ
     available_languages: รายงานมีให้บริการในภาษาต่างๆ
     back_to_main: เมนูหลัก
@@ -50,6 +60,19 @@ th:
     campaign_assessment_actions_disable_caching: ปิดใช้งานการแคชการประเมิน
     campaign_assessment_actions_enable_caching: เปิดใช้งานการแคชการประเมิน
     campaign_assessment_column_caching_enabled: เปิดใช้งานการแคชการประเมิน
+    campaign_assessment_mhs_confidence_interval: ช่วงความเชื่อมั่น
+    campaign_assessment_mhs_confidence_interval_update_success: ช่วงความเชื่อมั่นได้รับการอัปเดตสำเร็จ
+    campaign_assessment_mhs_invalid_confidence_interval: confidence_interval ต้องเป็น 0 หรือ 1
+    campaign_assessment_mhs_invalid_leadership_bar: leadership_bar ต้องเป็น 0 หรือ 1
+    campaign_assessment_mhs_invalid_norm_option: ตัวเลือกค่าปกติต้องอยู่ระหว่าง 0 ถึง 3
+    campaign_assessment_mhs_leadership_bar: บาร์ผู้นำ
+    campaign_assessment_mhs_leadership_bar_update_success: บาร์ผู้นำได้รับการอัปเดตสำเร็จ
+    campaign_assessment_mhs_norm_option: ตัวเลือกมาตรฐาน
+    campaign_assessment_mhs_norm_option_form_select: เลือกตัวเลือกมาตรฐาน
+    campaign_assessment_mhs_norm_option_update_success: ตัวเลือกปกติได้รับการอัปเดตสำเร็จ
+    campaign_assessment_mhs_norm_region: ภูมิภาคปกติ
+    campaign_assessment_mhs_norm_region_form_select: เลือกภูมิภาคมาตรฐาน
+    campaign_assessment_mhs_norm_region_update_success: ภูมิภาคปกติได้รับการอัปเดตสำเร็จ
     campaign_assessment_modals_disable_caching_content: คุณแน่ใจหรือไม่ว่าต้องการปิดใช้งานการแคชสําหรับการประเมินนี้
     campaign_assessment_modals_disable_caching_successfully: การแคชถูกปิดใช้งานสําหรับการประเมินนี้
     campaign_assessment_modals_disable_caching_title: ปิดใช้งานการแคชการประเมิน?
@@ -58,6 +81,7 @@ th:
     campaign_assessment_modals_enable_caching_title: เปิดใช้งานการแคชการประเมิน?
     campaign_factors: ปัจจัยของแคมเปญ
     campaign_templates: เทมเพลตแคมเปญ
+    campaign_user_job_roles_cannot_be_same: ตำแหน่งงานเป้าหมายต้องแตกต่างจากตำแหน่งงานปัจจุบัน
     campaigns: แคมเปญ
     client: การเช่าลูกค้า
     client_admins: ผู้ดูแลระบบไคลเอ็นต์
@@ -70,6 +94,7 @@ th:
     confirm_remove_admin: คุณแน่ใจหรือไม่ว่าต้องการลบผู้ดูแลระบบอีเมล '%{email}'
     country: ประเทศ
     create_client: สร้างไคลเอ็นต์
+    current_job_role: บทบาทงานปัจจุบัน
     dashboard: แดชบอร์ด
     dashboards: แด ชบอร์ด
     data_reports: รายงานข้อมูล
@@ -84,19 +109,26 @@ th:
     done_tooltip: ไม่สามารถส่งการประเมินสําหรับผู้ใช้รายนี้ได้อีก เนื่องจากการประเมินของผู้ใช้รายนี้ถูกทําเครื่องหมายว่าเสร็จสิ้นโดย %{marked_by}
     edit_campaign_admin: แก้ไขผู้ดูแลระบบแคมเปญ
     edit_client_admin: แก้ไขผู้ดูแลระบบลูกค้า
+    edit_job_roles: แก้ไขบทบาทงาน
+    edit_level: แก้ไขระดับ
     edit_permission_denied: คุณไม่มีสิทธิ์แก้ไขผู้ดูแลระบบ '%{name}'
     edit_project_admin: แก้ไขผู้ดูแลระบบโครงการ
     edit_threesixty_campaign_admin: แก้ไขผู้ดูแลระบบแคมเปญ
     empty_csv_file: ไฟล์ CSV ไม่มีข้อมูลใดๆ
+    enable_enhance_with_ai_client_level: โปรดเปิดใช้งานฟีเจอร์เพิ่มประสิทธิภาพด้วย AI ที่ระดับลูกค้า
+    enable_transcription: เปิดใช้งานการถอดเสียง
+    enhance_with_ai_requires_ai_assistants: การเพิ่มประสิทธิภาพด้วย AI ต้องเปิดใช้งานฟีเจอร์ผู้ช่วย AI
     evaluation_status: สถานะการประเมิน
     evaluation_status_not_done: สถานะการประเมินไม่ใช่ "เสร็จสิ้น" สําหรับวิชาที่เลือกอย่างน้อยหนึ่งวิชา โปรดตรวจสอบให้แน่ใจว่าผู้ใช้ที่เลือกทั้งหมดได้ทําการประเมินหรือทําเครื่องหมายว่าเสร็จสิ้น
     export_admin_roles_permissions: ส่งออกหน้าที่และสิทธิ์ของผู้ดูแลระบบ
+    feature_enhance_with_ai: เพิ่มประสิทธิภาพด้วย AI
     feature_flags: แฟล็กคุณสมบัติ
     fill_empty_score_msg: กรอกคะแนนสุดท้ายทั้งหมดก่อนบันทึก
-    final_score_empty_msg: คะแนนสุดท้ายต้องไม่ว่างเปล่า
+    final_score_empty_err_msg: คะแนนสุดท้ายของ %{factor_name} ไม่สามารถเป็นค่าว่างได้
     idp_plan_reset_success: รีเซ็ตแผนเรียบร้อยแล้ว
     idp_templates: เทมเพลต IDP
     import_ai_artifacts: นําเข้าสิ่งประดิษฐ์ AI
+    import_csv_assessment_group_error: 'แถว%{index}: ผู้ใช้ที่มีอีเมล %{email} ได้รับเชิญแล้วสำหรับ ''%{workshopInviteName}'''
     import_csv_error: 'แถวที่ %{index}: ผู้ใช้ที่มี %{email} อีเมลไม่ได้อยู่ในแคมเปญนี้'
     import_csv_parsing_error: 'ข้อผิดพลาดในการแยกวิเคราะห์ CSV: %{message}'
     import_description: นําเข้าผู้ใช้จากไฟล์ CSV แต่ละแถวต้องมีที่อยู่อีเมล
@@ -121,11 +153,27 @@ th:
     invalid_csv_header: ไฟล์ CSV มีส่วนหัวที่ไม่ถูกต้อง
     job_roles: บทบาทงาน
     learning_from_others: การเรียนรู้ร่วมกัน [20]
+    level: ระดับ
+    level_apply: สมัคร
+    level_guide: คู่มือ
+    level_shape: รูปร่าง
+    level_validation_message: 'ต้องเป็นหนึ่งใน: %{values}'
     libraries: ห้องสมุดสื่อ
     library_invalid_type: รายการไลบรารีไม่ถูกต้อง
     licenses: ใบ อนุญาต
     manager_approval_required: รายงานสําหรับ %{user} ต้องได้รับการอนุมัติจากผู้จัดการก่อนดาวน์โหลด
+    max_value: ค่าสูงสุด
     messages: ข้อความ
+    mhs: MHS
+    mhs_assessment: การประเมินผล MHS
+    mhs_assessment_name: ชื่อการประเมิน MHS
+    mhs_data_gatherer_id: Mhs Data Gatherer ID
+    mhs_data_gathering_id: Mhs ข้อมูลการเก็บข้อมูล ID
+    mhs_external_assessment_id: รหัสการประเมิน Mhs
+    mhs_report_id: รหัสรายงาน MHS
+    mhs_session_id: รหัสเซสชันของนักศึกษา
+    min_value: ค่าต่ำสุด
+    missing_min_max_values: จำเป็นต้องระบุค่าต่ำสุดและค่าสูงสุด
     name_required: ต้องระบุชื่อ
     no_file_selected: ไม่มีไฟล์ที่เลือก
     no_notifications: ไม่มีการแจ้งเตือน
@@ -140,6 +188,7 @@ th:
     number: หมายเลข
     occupations: อาชีพ
     on_the_job: ในการทํางาน [70]
+    only_editable_on_create: ตัวเลือกนี้สามารถแก้ไขได้เฉพาะในขณะสร้างเท่านั้น
     options: ตัวเลือก
     participants: ผู้เข้าร่วม
     permissions:
@@ -564,6 +613,7 @@ th:
         view: ดู
         view_recordings: ดูการบันทึก
     permissions_360_campaigns: สิทธิ์เฉพาะสําหรับแคมเปญ 360 องศา
+    piped_text: ข้อความที่จัดรูปแบบ
     privacy: ความเป็นส่วนตัว
     proficiency_level: กุญแจ API
     proficiency_levels: ระดับความสามารถ
@@ -645,11 +695,18 @@ th:
     saml_settings: การตั้งค่า SAML
     scheduling: กำหนดการ
     scoring: การให้คะแนน
+    scoring_value_info: คะแนนต้องอยู่ระหว่าง %{min} ถึง %{max}
+    scoring_value_out_of_range_err_msg: คะแนนสำหรับ %{factor_name} ต้องอยู่ระหว่าง %{min} ถึง %{max}
     search_admins: ค้นหาผู้ดูแลระบบ
+    search_job_role: ค้นหางานในตำแหน่ง
     select_admin_role: กรุณาเลือกผู้ดูแลระบบ
+    select_language_to_translate: กรุณาเลือกภาษาเพื่อแปล
+    select_level: เลือกระดับ
     send_email: ส่งอีเมล
     settings: การตั้งค่า
+    show_original: แสดงต้นฉบับ
     show_submenu: แสดงเมนูย่อย
+    show_translated: แสดงคำแปล
     siem: SIEM
     skill_aliases: นามแฝงทักษะ
     skills: ทักษะ
@@ -661,12 +718,31 @@ th:
     status_details: รายละเอียดสถานะ
     structured_learning: การเรียนรู้อย่างเป็นทางการ [10]
     subdomain: โดเมนย่อย
+    subject_part_of_other_invite: หัวข้อพร้อมอีเมล %{user_email} ได้รับเชิญแล้วสำหรับ '%{workshop_invite_name}'
+    target_job_role: ตำแหน่งงานเป้าหมาย
+    toolbar_ai_insight: AI อินไซต์
+    toolbar_ai_suggestion: คำแนะนำจาก AI
+    toolbar_result_generating: กำลังสร้าง...
+    toolbar_text_copied: คัดลอกไปยังคลิปบอร์ด
+    toolbar_text_replaced: ข้อความถูกแทนที่แล้ว!
+    toolbar_what_changed_and_why: อะไรที่เปลี่ยนไป & ทำไม
+    translate: แปล
+    translate_to: แปลเป็น
+    translate_with_ai: แปลด้วย AI
+    translated_from: แปลจาก
+    translated_to: 'แปลเป็น:'
+    translated_with_ai_notice: AI แปล
+    translation_assistant_not_configured: ผู้ช่วยแปลยังไม่ได้กำหนดค่า
+    update_success: "%{readableResourceName} ได้รับการอัปเดตเรียบร้อยแล้ว"
     upload_success: อัปโหลดสําเร็จ
     user_report_events: เหตุการณ์รายงานผู้ใช้
     users: ผู้เข้าร่วม
     view_licenses: ดูใบอนุญาต
     waiting: การรอคอย
     workshops: เวิร์กช็อป
+    writing_assistant_not_configured: ผู้ช่วยการเขียนยังไม่ได้รับการกำหนดค่า
+    x_axis_interval_label: แกน X ช่วง
+    y_axis_interval_label: แกน Y ช่วง
     year: ประเทศ
     yoodli_activity_id: รหัสกิจกรรม Yoodli
     yoodli_email_id: รหัสอีเมลผู้สมัคร Yoodli

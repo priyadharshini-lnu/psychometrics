@@ -40,7 +40,7 @@ export const ExportUsersModal: React.FC<OwnProps> = ({
     <Modal
       width={700}
       title={I18n.t('user.modals.exports.title')}
-      visible
+      open
       onCancel={close}
       footer={[
         <Button

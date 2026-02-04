@@ -55,7 +55,7 @@ export class RecorderCore {
 
   freqBufferLength: number
 
-  freqDataArray: Uint8Array
+  freqDataArray: Uint8Array<ArrayBuffer>
 
   freqAnalyser: AnalyserNode
 

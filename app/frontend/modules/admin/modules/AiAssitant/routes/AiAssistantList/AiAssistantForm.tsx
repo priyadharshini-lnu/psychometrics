@@ -85,6 +85,10 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
       resource.createResource(data).then(() => {
         message.success(I18n.t('administration.ai_assistants.created_successfully'))
         navigate('/admin/ai_assistants')
+      }).catch((error) => {
+        if (error?.assistantType) {
+          message.error(error?.assistantType.title)
+        }
       })
     }).catch((error) => {
       if (error

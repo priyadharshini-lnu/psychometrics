@@ -1,9 +1,8 @@
-import _ from 'lodash'
+import filter from 'lodash/filter'
 import React from 'react'
-import Select from 'react-select'
+import { Select } from 'antd'
 import AssessmentProperties from '~/modules/reports/components/modules/CommonProperties/AssessmentProperties'
 import panelStyles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
-import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
 
 interface Question {
   id: number
@@ -29,7 +28,7 @@ export const QuestionSelect: React.FC<Props> = ({ model, questions, onSelect }) 
     onSelect()
   }
 
-  const getQuestions = () => _.filter(questions, q => q.type === 'FileUpload')
+  const getQuestions = () => filter(questions, q => q.type === 'FileUpload')
     .map(q => ({ label: q.name, value: q.id }))
 
   const changeAssessment = (assessmentId) => {
@@ -37,8 +36,8 @@ export const QuestionSelect: React.FC<Props> = ({ model, questions, onSelect }) 
     select()
   }
 
-  const changeSourceQuestion = (value) => {
-    model.props.sourceQuestion = value.value
+  const changeSourceQuestion = (value: number) => {
+    model.props.sourceQuestion = value
     select()
   }
 
@@ -49,10 +48,10 @@ export const QuestionSelect: React.FC<Props> = ({ model, questions, onSelect }) 
         <AssessmentProperties assessmentId={model.assessment_id} changeAssessment={changeAssessment} />
         <span>Question</span>
         <Select
-          name="form-field-name"
-          value={getValue(getQuestions(), _.result(model, 'props.sourceQuestion', 'Choose question'))}
+          style={{ width: '100%' }}
+          value={model.props.sourceQuestion}
           options={getQuestions()}
-          isClearable={false}
+          allowClear={false}
           autoFocus={false}
           onChange={changeSourceQuestion}
         />

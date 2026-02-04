@@ -28,6 +28,8 @@ describe Campaigns::UserReports::Add do
     result = described_class.call(form, campaign_user, current_user)
 
     expect(result[:insufficient_license][:base]).
-      to eq("'#{campaign.client.name}' does not have enough licenses for '#{report.name}'")
+      to eq(I18n.t('licenses.not_enough_license',
+                   client_name: campaign.client.name,
+                   report_name: report.report_families.first.name))
   end
 end

@@ -1,15 +1,16 @@
 import { FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  TreeSelect, Typography,
+  TreeSelect, Typography, GetProp, TreeSelectProps,
 } from 'antd'
-import { DataNode as TreeDataNode } from 'rc-tree-select/lib/interface'
 
 import { RootState } from '~/modules/reports/core/rootReducers'
 import { PropertiesModel } from '~/modules/reports/interfaces/tables/Gap'
 
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
 import { BasePropertiesModel as BaseQuestionModelInProperties } from '~/modules/survey/interfaces/questions/Base'
+
+type TreeDataNode = GetProp<TreeSelectProps, 'treeData'>[number]
 
 const AVAILABLE_QUESTION_TYPES = ['MatrixTable', 'SideBySide']
 const QUESTION_CHOICE_SEPERATOR = '_'

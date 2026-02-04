@@ -11,14 +11,16 @@ RSpec.describe Report, type: :model do
     let(:common_assessment) { create(:assessment) }
     let(:saville_assessment) { create(:assessment, :saville) }
     let(:hogan_assessment) { create(:assessment, :hogan) }
+    let(:mhs_assessment) { create(:assessment, :mhs) }
 
     subject { report.valid? }
 
     it 'valid' do
-      report.assessment_ids = [common_assessment.id, saville_assessment.id, saville_assessment.id]
+      report.assessment_ids = [common_assessment.id, saville_assessment.id, saville_assessment.id, mhs_assessment.id]
       subject
       expect(report.errors.details[:base]).not_to include(error: :assessments_not_saville)
       expect(report.errors.details[:base]).not_to include(error: :assessments_not_hogan)
+      expect(report.errors.details[:base]).not_to include(error: :assessments_not_mhs)
     end
   end
 
@@ -86,6 +88,28 @@ RSpec.describe Report, type: :model do
         report.assessment_ids = [hogan_assessment.id]
         subject
         expect(report.errors.details[:base]).not_to include(error: :assessments_not_hogan)
+      end
+    end
+  end
+
+  context 'validation Mhs report' do
+    context '#all_assessments_mhs' do
+      let(:report) { build(:report, provider: 'mhs', external_settings: { report_id: 'reportId' }) }
+
+      let(:common_assessment) { create(:assessment) }
+      let(:mhs_assessment) { create(:assessment, :mhs) }
+      subject { report.valid? }
+
+      it 'invalid' do
+        report.assessment_ids = [common_assessment.id, mhs_assessment.id]
+        subject
+        expect(report.errors[:base]).to include(I18n.t('admin.assessments_not_mhs'))
+      end
+
+      it 'valid' do
+        report.assessment_ids = [mhs_assessment.id]
+        subject
+        expect(report.errors[:base]).not_to include(I18n.t('admin.assessments_not_mhs'))
       end
     end
   end

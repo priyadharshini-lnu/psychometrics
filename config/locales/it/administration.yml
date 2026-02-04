@@ -860,7 +860,6 @@ it:
         campaign: Campagna
         copy_factors: Fattori di copia
         inactive_notice: Lo stato della campagna cambierà automaticamente in attivo nella data di inizio selezionata
-        instruction: Questo può essere abilitato solo durante la creazione di una campagna
         name: Nome
         practice_campaign: Campagna pratica
         status: Stato
@@ -1007,6 +1006,8 @@ it:
         ai_assistants_disabled_by_client: AI Assistants è disabilitato dal client
         ai_assisted_idp: AI Assistito IDP
         ai_assisted_idp_requires_ai_assistants: L'IDP assistito dall'intelligenza artificiale richiede l'abilitazione della funzione Assistenti all'intelligenza artificiale
+        ai_translation: Traduzioni AI
+        ai_translation_disabled_by_client: Le traduzioni AI sono disabilitate dal cliente
         global_skills: Competenze globali
         global_skills_disabled_by_client: Le competenze globali sono disabilitate dal client
         idp: IDP
@@ -2888,6 +2889,11 @@ it:
           active:
             label: Attivi
             name: attivo
+          assessments:
+            help_text: Questa selezione influisce solo sull'evento Risposta grezza della valutazione.
+            label: Valutazioni
+            placeholder: Seleziona valutazioni
+            required: È necessario selezionare almeno una valutazione per l'evento Risposta grezza alla valutazione.
           auth_type:
             api_key:
               label: Chiave API
@@ -2944,6 +2950,7 @@ it:
             list:
               assessment_assigned: Valutazione assegnata
               assessment_completed: Valutazione completata
+              assessment_raw_response: Valutazione Risposta grezza
               assessment_started: Valutazione avviata
               assessment_timeout: Timeout di valutazione
               campaign_results_available: Risultati della campagna disponibili
@@ -3097,6 +3104,7 @@ it:
         mask_identity_for_hogan: Dati della maschera per Hogan
         mask_identity_for_iiht: Dati della maschera per IIHT
         mask_identity_for_mettl: Dati della maschera per METTL
+        mask_identity_for_mhs: Dati maschera per MHS
         mask_identity_for_pearson: Dati della maschera per Pearson
         mask_identity_for_saville: Dati della maschera per Saville
         mask_identity_for_skillvue: Dati della maschera per Skillvue
@@ -3657,7 +3665,7 @@ it:
         preworks: Prelavoro
         re_enroll: Iscriversi di nuovo
         re_enroll_confirm_message: Sei sicuro di voler reinserire l'oggetto con l'email '%{subject_email}'?
-        re_enroll_success: Soggetto reiscritto con email <x>subject_email</x>.
+        re_enroll_success: Soggetto reiscritto con email %{subject_email}.
         schedule: Programma
         unschedule: Non programmato
       tabs:

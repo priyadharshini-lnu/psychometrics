@@ -28,6 +28,11 @@ class License < ApplicationRecord
                         where('end_date >= :date and start_date <= :date and number + overuse_number > used_number',
                               date: Time.zone.today)
                     }
+  scope :not_expired, lambda {
+    active.
+      where('end_date >= :date and start_date <= :date',
+            date: Time.zone.today)
+  }
 
   enum :type, { common: 0, threesixty: 1, proctoring: 2, idp: 3, ai_assistant: 4 }, prefix: :type
 
@@ -55,8 +60,14 @@ class License < ApplicationRecord
     )
   }
 
+  scope :type_in, lambda { |*values|
+    enum_values = values.flatten.map(&:to_s).filter_map { |v| types[v] }
+
+    enum_values.any? ? where(type: enum_values) : none
+  }
+
   def self.ransackable_scopes(_auth_object = nil)
-    %i[project_specific report_name for_project report_name_or_type_cont]
+    %i[project_specific report_name for_project report_name_or_type_cont type_in]
   end
 
   def self.ransackable_attributes(_auth_object = nil)
@@ -93,10 +104,6 @@ class License < ApplicationRecord
     license_usages.joins(assigns_report: { assign: :membership }).
       where(assigns_report: { assign: { memberships: { client_id: [client.subtree_ids].flatten } } }).
       size
-  end
-
-  def enough_license_credits?(credits)
-    number + overuse_number - used_number >= credits
   end
 
   private

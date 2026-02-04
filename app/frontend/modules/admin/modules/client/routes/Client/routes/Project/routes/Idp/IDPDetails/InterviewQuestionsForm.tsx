@@ -153,11 +153,12 @@ export const InterviewQuestionsForm: FC<InterviewQuestionsFormProps> = ({ idp, f
               <Select
                 style={{ width: '100%' }}
                 placeholder={I18n.t('administration.idp.select_reflection_question')}
-                showSearch
-                onSearch={(query) => {
-                  searchHandler(query)
+                showSearch={{
+                  filterOption: false,
+                  onSearch: (query) => {
+                    searchHandler(query)
+                  },
                 }}
-                filterOption={false}
                 value={selectedQuestion}
                 onChange={handleSelectChange}
               >

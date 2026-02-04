@@ -56,25 +56,25 @@ export const SubjectAddFormModal:React.FC<Props> = ({ close }) => {
             rules={[{ required: true }]}
           >
             <Select
-              showSearch
+              showSearch={{
+                filterOption: false,
+                onSearch: (value) => {
+                  fetchUsers({
+                    apiConfig: {
+                      filter: {
+                        search_query: value,
+                      },
+                    },
+                  })
+                },
+              }}
               placeholder={(
                 <Space>
                   <SearchOutlined />
                   {I18n.t('administration.assessment_center.invite.subjects.search_user')}
                 </Space>
               )}
-              onSearch={(value) => {
-                fetchUsers({
-                  apiConfig: {
-                    filter: {
-                      search_query: value,
-                    },
-                  },
-                })
-              }}
-              // onSelect={selectUser}
-              notFoundContent={isUsersLoading('fetch') ? <Spin size="small" /> : null}
-              filterOption={false}
+              notFoundContent={isUsersLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >
               {users.map(({ id, name, email }) => (
                 <Select.Option key={id} value={id}>

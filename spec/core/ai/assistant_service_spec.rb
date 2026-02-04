@@ -94,4 +94,66 @@ user_prompt: 'How can I help you?')
       end
     end
   end
+
+  context 'with validation responses with multiple attempts' do
+    let(:assistant_with_validation) do
+      create(:assistant, model_id: 'gpt-4', system_prompt: 'You are a helpful assistant.',
+             user_prompt: 'How can I help you?')
+    end
+    let(:chat) do
+      AI::AssistantChat.new(ai_assistant: assistant_with_validation, user: user)
+    end
+    let(:output_schema_class) { double('OutputSchemaClass') }
+    let(:invalid_llm_response) do
+      instance_double(RubyLLM::Message, content: '{"error": "invalid"}', input_tokens: 12, output_tokens: 8)
+    end
+    let(:valid_llm_response) do
+      instance_double(RubyLLM::Message, content: '{"translated_texts": ["Hello"]}', input_tokens: 15, output_tokens: 10)
+    end
+
+    before do
+      allow(assistant_with_validation).to receive(:output_schema_class).and_return(output_schema_class)
+      allow(AI::Assistant).to receive(:find).with(assistant_with_validation.id).and_return(assistant_with_validation)
+      allow_any_instance_of(described_class).to receive(:chat).and_return(chat)
+    end
+
+    context 'when validation fails for max retry attempts' do
+      it 'returns error after 3 failed attempts' do
+        allow(output_schema_class).to receive(:validate_response).
+          and_raise(AI::OutputSchemas::Base::InvalidResponseStructureError.new('Validation error'))
+        allow(chat).to receive(:ask).and_return(invalid_llm_response)
+        allow(chat).to receive(:with_instructions)
+        allow(chat).to receive(:complete).and_return(invalid_llm_response)
+
+        result = described_class.call(assistant_with_validation.id, user, nil, validate_response_structure: true,
+                                      max_retry_count: 3)
+
+        expect(result[:error]).to include(I18n.t('admin.assistant_validation_failed'))
+        expect(output_schema_class).to have_received(:validate_response).at_least(3).times
+      end
+    end
+
+    context 'when validation passes on second attempt' do
+      it 'returns successful response on second attempt' do
+        call_count = 0
+        allow(output_schema_class).to receive(:validate_response) do
+          call_count += 1
+          if call_count == 1
+            raise AI::OutputSchemas::Base::InvalidResponseStructureError, 'Validation error'
+          end
+        end
+
+        allow(chat).to receive(:ask).and_return(invalid_llm_response)
+        allow(chat).to receive(:with_instructions)
+        allow(chat).to receive(:complete).and_return(valid_llm_response)
+
+        result = described_class.call!(assistant_with_validation.id, user, nil, validate_response_structure: true,
+                                       max_retry_count: 3)
+
+        expect(result[:message]).to eq(valid_llm_response.content)
+        expect(result[:input_tokens]).to eq(valid_llm_response.input_tokens)
+        expect(result[:output_tokens]).to eq(valid_llm_response.output_tokens)
+      end
+    end
+  end
 end

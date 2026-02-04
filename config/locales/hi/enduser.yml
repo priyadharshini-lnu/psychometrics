@@ -1,0 +1,46 @@
+---
+hi:
+  enduser:
+    add_idp_plan_note: नोट जोड़ें...
+    add_idp_plan_rejection_reason: कारण जोड़ें...
+    ai_idp_assistant_response_no: नहीं
+    ai_idp_assistant_response_upload_different_document: मैं एक अलग दस्तावेज़ अपलोड करना चाहता हूँ।
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: हाँ, योजना निर्माण के साथ आगे बढ़ें।
+    ai_idp_retake_step_chat_hint_no_document: आप अधिक विवरण साझा करने के लिए चैट को फिर से शुरू कर सकते हैं, और मैं आपकी सहायता करने की पूरी कोशिश करूंगा।
+    ai_idp_summary_hint_no_document: आपकी अनुमति से, यदि आप हाँ कहें तो मैं आपके लिए एक विकास योजना बना सकता हूँ। यदि नहीं, तो आप अधिक विवरण साझा करने के लिए चैट फिर से शुरू कर सकते हैं।
+    approve_idp_plan: योजना को अनुमोदित करें
+    bookings: बुकिंग्स
+    campaign: अभियान
+    development: विकास
+    direct_reportees: प्रत्यक्ष अधीनस्थ
+    download_pdf: पीडीएफ डाउनलोड करें
+    home: होम
+    idp_loading_fifth_step: टेम्पलेट से विकास क्रियाएँ प्राप्त करना
+    idp_loading_first_step: आपकी मूल्यांकन रिपोर्ट का विश्लेषण
+    idp_loading_fourth_step: प्रासंगिक कौशल चुनना
+    idp_loading_second_step: चैट में आपके द्वारा बताई गई प्राथमिकताओं की पहचान करना
+    idp_loading_secondary_text: बेझिझक दूर हट जाएँ। जब आप लौटेंगे तो आपकी योजना तैयार होगी।
+    idp_loading_sixth_step: विकास कार्यों का निर्माण
+    idp_plan_approval_note: अनुमोदन नोट
+    idp_retake_steps_continue_with_this_information: इस जानकारी के साथ जारी रखें
+    insights: अंतर्दृष्टियाँ
+    lighthouse_assistant: लाइटहाउस सहायक
+    max_word_limit: अधिकतम %{max} शब्द होना चाहिए।
+    min_word_limit: कम से कम %{min} शब्द होना चाहिए।
+    my_plan: मेरी योजना
+    profile: प्रोफ़ाइल
+    profile_details: विवरण
+    question_counter: प्रश्न %{current} का %{total}
+    reason_for_idp_plan_rejection: अस्वीकृति का कारण
+    recorded: रिकॉर्ड किया गया
+    recording: रिकॉर्डिंग
+    reject_idp_plan: योजना अस्वीकार करें
+    request_retry_message: आप ऑफ़लाइन हैं। आपके उत्तर सहेजे नहीं जा सके, लेकिन आप ऑनलाइन होते ही वे स्वचालित रूप से सहेज लिए जाएँगे। कृपया पेज को रिफ्रेश या बंद न करें।
+    saving_video_text: वीडियो सहेज रहा है... कृपया ब्राउज़र बंद न करें या रिफ्रेश न करें।
+    selected_count: "%{count} चयनित"
+    skill_type: कौशल का प्रकार
+    start_campaign_message_proctored: यह एक पर्यवेक्षित अभियान है, कृपया गतिविधियाँ शुरू करने के लिए '%{buttonText}' बटन पर क्लिक करें।
+    start_campaign_message_timed: यह एक समयबद्ध अभियान है, कृपया गतिविधियाँ शुरू करने के लिए '%{buttonText}' बटन पर क्लिक करें।
+    start_campaign_message_timed_proctored: यह एक समयबद्ध और पर्यवेक्षित अभियान है, कृपया गतिविधियाँ शुरू करने के लिए '%{buttonText}' बटन पर क्लिक करें।
+    status_unknown: स्थिति अज्ञात
+    tasks: कार्य

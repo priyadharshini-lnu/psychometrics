@@ -18,8 +18,8 @@ module Threesixty
         remove_all_participants
 
         if remove_license_usage
-          ::Threesixty::LicenseUsages::Deactivate.call!(
-            threesixty_campaign: threesixty_campaign,
+          LicenseManager::Deactivator.call!(
+            campaign: threesixty_campaign,
             updater_id: updater_id,
             user_ids_for_deactivation: subject.user_id
           )

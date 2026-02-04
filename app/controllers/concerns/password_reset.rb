@@ -22,6 +22,9 @@ module PasswordReset
       if user
         resource_class.send_reset_password_instructions(user)
         audit! :request_change_password, user
+
+        siem_log_token_issuance(user, 'Password Login',
+                                context: "User: #{SiemLogger.user_identifier(user.email, user.id)}")
       end
       set_flash_message! :notice, :send_instructions
 

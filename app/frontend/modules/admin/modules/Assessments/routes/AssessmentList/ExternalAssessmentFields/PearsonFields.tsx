@@ -41,14 +41,15 @@ export const PearsonFields: React.FC<{
       >
         <Select
           disabled={!!assessment}
-          showSearch
-          onSearch={(value) => {
-            fetchAssessments({
-              apiConfig: { filter: { type_eq: 'pearson', filterable_fields: value } },
-            })
+          showSearch={{
+            filterOption: false,
+            onSearch: (value) => {
+              fetchAssessments({
+                apiConfig: { filter: { type_eq: 'pearson', filterable_fields: value } },
+              })
+            },
           }}
-          notFoundContent={assessmentIsLoading('fetch') ? <Spin size="small" /> : null}
-          filterOption={false}
+          notFoundContent={assessmentIsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
           onSelect={(value) => {
             const selectedOption = externalAssessments.find(option => option.id === value)
             if (selectedOption) {
@@ -66,8 +67,10 @@ export const PearsonFields: React.FC<{
         label={I18n.t('assessments.column.external_settings.pearson_norm_id')}
       >
         <Select
-          notFoundContent={normIsLoading('fetch') ? <Spin size="small" /> : null}
-          filterOption={false}
+          notFoundContent={normIsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
+          showSearch={{
+            filterOption: false,
+          }}
         >
           {!assessmentId ? [] : norms.map(({ id, name }) => (
             <Select.Option key={id} value={id}>{name}</Select.Option>

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Table, MenuProps, Row, Col, Input, Select, Pagination, Button, Switch, Tag, App, Tooltip,
+  Table, MenuProps, Row, Col, Input, Select, Pagination, Button, Switch, Tag, App, Tooltip, Flex,
 } from 'antd'
 import type { MessageInstance } from 'antd/es/message/interface'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
@@ -146,7 +146,7 @@ const UserList: React.FC<Props> = ({
           <AppstoreOutlined style={{ fontSize: '16px' }} />
           <span className="mlm">{`${total} ${I18n.t('administration.campaigns.users.title')}`}</span>
         </Col>
-        <div>
+        <Flex gap={8}>
           <ToolsDropdown
             campaignId={parseInt(campaignId, 10)}
             exportCompletionStatuses={exportCompletionStatuses}
@@ -180,7 +180,7 @@ const UserList: React.FC<Props> = ({
               </Button>
             </div>
           )}
-        </div>
+        </Flex>
       </Row>
       <Row>
         <Col span={24}>

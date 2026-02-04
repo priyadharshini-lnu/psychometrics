@@ -9,6 +9,8 @@ bg:
     agree_and_continue: Съгласен и продължи
     archive: Архивирайте
     archived: Архивирани
+    asset_not_present: Активът не е наличен
+    audio: Аудио
     authentication_failed: Автентикацията не беше успешна. Моля, опитайте отново.
     basic: Основен
     campaign_id: Идентификация на кампанията
@@ -16,18 +18,26 @@ bg:
     change_password: Промяна на паролата
     clear_filters: Изчистете филтрите
     collaborative_learning: Съвместно обучение
+    completed: Завършено
     confirm: Потвърдете
     continue: Продължавам
+    copy: Копиране
     created_at: Създаден в
     created_date: Дата на създаване
     decline: Упадък
     description: Описание
+    download: Изтегляне
     edit: Редактирайте
     edited: Нов
     email: Имейл
     export: Износ
+    failed: Неуспешен
     first_name: Първо име
     formal_learning: Формално обучение
+    generate: Генериране
+    generate_transcription_confirm_content: Сигурен ли сте, че искате да генерирате транскрипцията за този медиен отговор?
+    generate_transcription_confirm_title: Генериране на транскрипция
+    generating: Генериране
     group_question_max_validation_error: Всяка група може да съдържа най-много {{max}} елемент(и).
     group_question_min_validation_error: Всяка група трябва да съдържа поне {{min}} елемент(и).
     id: Идентификация
@@ -36,18 +46,26 @@ bg:
     last_name: Фамилия
     learning_on_the_job_label: Учене на работа
     login: Вход
+    media_question_transcriptions: Транскрипции на въпроси от медиите
     modified_by: Променено от
     modified_date: Дата на промяна
     more_actions: Още действия
     mte_logo_alt_text: Логото на Mercer Talent Enterprise
+    na_text: Н/Д
     name: Име
     new: Нов
+    no_results_found: Няма намерени резултати
+    not_requested: Все още не е поискано
     ok: Добре
+    pending: В очакване
+    processing: Обработка
+    question_id: Идентификационен номер на въпроса
     recording_consent_notice: Тази сесия на срещата ще бъде записана. Вашето участие в тази среща представлява вашето съгласие да бъдете записани.
     recording_consent_proceed_question: Съгласяваш ли се да продължиш с записаната среща?
     recording_consent_title: Уведомление за съгласие за записване
     remove: Премахнете
     removed: Отстранени
+    replace: Замени
     reset_password: Възстановете на паролата
     rte_paste_content_exceeds_char_limit: Текстът надвишава лимита на символите {{maxCharacterLimit}} и не може да бъде поставен.
     rte_paste_content_exceeds_word_limit: Текстът надвишава лимита на думите {{maxWordLimit}} и не може да бъде поставен.
@@ -62,7 +80,13 @@ bg:
         total: 'Общо : 1'
     terms_conditions_privacy: Декларация за поверителност
     tools: Инструменти
+    transcription: Транскрипция
+    transcription_already_requested: Транскрипцията вече е заявена или е в процес на изготвяне
+    transcription_not_enabled: Транскрипцията не е активирана за медийния отговор
     transcriptions: Транскрипции
+    try_again: Опитайте отново
     tte_terms_and_condition: Условия и поверителност
     type: Вид
     update: Актуализирайте
+    video: Видео
+    view: Преглед

@@ -1,0 +1,749 @@
+---
+sr-Cyrl:
+  admin:
+    accept_na_values: Прихватити вредности N/A
+    add_admin: Додај администратора
+    add_admin_role: Додајте улогу администратора
+    add_campaign_admin: Додај администратора кампање
+    add_client_admin: Додај администратора клијента
+    add_project: Додај пројекат
+    add_project_admin: Додај администратора пројекта
+    add_threesixty_campaign_admin: Додај администратора кампање
+    admin_approval_required: Извештај за %{user} захтева одобрење администратора пре преузимања.
+    admin_created_successfully: Админ '%{name}' је успешно креиран
+    admin_export_scheduled: Задатак административног извоза је успешно заказан. Погледајте обавештење за статус.
+    admin_removed_successfully: Админ са имејлом '%{email}' је успешно уклоњен
+    admin_role_deleted: Улога администратора "%{role_name}" је успешно избрисана.
+    admin_roles: Администраторске улоге
+    admin_updated_successfully: Админ '%{name}' је успешно ажуриран
+    admins: Администратори
+    ai_artifacts: АИ артефакти
+    ai_artifacts_output_schema_key_constraint: Кључ мора да почне малим словом и може да садржи само мала слова, бројеве и подвлаке.
+    ai_assistant_model_id_label: ИД модела
+    ai_assistant_model_label: Модел
+    ai_assistant_model_provider: Пружалац
+    ai_assistant_model_region_label: Регион
+    ai_assistant_required: Потребан је АИ асистент.
+    ai_assistants: АИ асистенти
+    ai_assistants_advanced_mode_tooltip: Користите напредни режим за израду шаблона упитника користећи Liquid шаблон са расположивим променљивим. Погледајте документацију за више детаља.
+    ai_assistants_campaign_id_placeholder: Унесите ИД кампање
+    ai_assistants_no_rendered_output: Није доступан приказани излаз
+    ai_assistants_render_button: Шаблон рендера
+    ai_assistants_rendered_prompt: Генерисан одговор
+    ai_assistants_template_and_campaign_required: Молимо вас да наведете и ИД шаблона и ИД кампање.
+    ai_assistants_template_render_failed: Неуспело приказивање шаблона
+    ai_assistants_test_render: Тест рендеровања
+    ai_assistants_test_render_tooltip: Тестирајте шаблон упитa са подацима о кампањи да бисте проверили шта ће бити послато АИ асистенту.
+    ai_assisted_idp_feature_disabled: Функција AI Assisted IDP је онемогућена за овај пројекат.
+    ai_notice: Истакнуте секције су преведене вештачком интелигенцијом и могу садржати нетачности.
+    ai_translation: Превод вештачке интелигенције
+    all_corner_rounded: Сви углови заобљени
+    api_keys: АПИ кључеви
+    apply_to_existing_users: Примени ову промену на постојеће кориснике у овој кампањи.
+    assessments: Оцењивања
+    assessments_not_mhs: Свака процена мора бити типа MHS.
+    assessments_reports: Процене и извештаји
+    assessor_dashboard: Контролна табла процењивача
+    assessor_workshops: Центар за процену
+    assessors: Процењивачи
+    assistant_toolbar_failed: Није успело да генерише важећи излаз након више покушаја
+    assistant_toolbar_not_a_valid_operation: Непозната операција %{operation}.
+    assistant_validation_failed: Није успело да генерише важећи излаз након више покушаја
+    audit_logs: Логови ревизије
+    audit_reports: Извештаји о ревизији
+    auto_placeholder: Ауто
+    availability: Доступност
+    available_languages: Извештај доступан на језицима
+    back_to_main: Главно мени
+    bulk_upload_ai_artifacts: Масовни унос АИ артефаката
+    campaign_ai_artifact_updated_successfully: Артифакти вештачке интелигенције кампање успешно ажурирани
+    campaign_assessment_actions_disable_caching: Онемогући кеширање процене
+    campaign_assessment_actions_enable_caching: Омогући кеширање процене
+    campaign_assessment_column_caching_enabled: Омогућено кеширање процена
+    campaign_assessment_mhs_confidence_interval: Поверјени интервал
+    campaign_assessment_mhs_confidence_interval_update_success: Поверљиви интервал успешно ажуриран
+    campaign_assessment_mhs_invalid_confidence_interval: interвал_поуздања мора бити 0 или 1
+    campaign_assessment_mhs_invalid_leadership_bar: leadership_bar мора бити 0 или 1
+    campaign_assessment_mhs_invalid_norm_option: Норм опција мора бити између 0 и 3
+    campaign_assessment_mhs_leadership_bar: Шипка за лидерство
+    campaign_assessment_mhs_leadership_bar_update_success: Лидерска бар успешно ажурирана
+    campaign_assessment_mhs_norm_option: Норм опција
+    campaign_assessment_mhs_norm_option_form_select: Изаберите опцију норме
+    campaign_assessment_mhs_norm_option_update_success: Опција Norm успешно ажурирана
+    campaign_assessment_mhs_norm_region: Норм регион
+    campaign_assessment_mhs_norm_region_form_select: Изаберите регион норме
+    campaign_assessment_mhs_norm_region_update_success: Норм регион је успешно ажуриран
+    campaign_assessment_modals_disable_caching_content: Да ли сте сигурни да желите да онемогућите кеширање за ову процену?
+    campaign_assessment_modals_disable_caching_successfully: Кеширање је онемогућено за ову процену.
+    campaign_assessment_modals_disable_caching_title: Онемогући кеширање процене?
+    campaign_assessment_modals_enable_caching_content: Да ли сте сигурни да желите да омогућите кеширање за ову процену?
+    campaign_assessment_modals_enable_caching_successfully: За ово оцењивање омогућено је кеширање.
+    campaign_assessment_modals_enable_caching_title: Омогући кеширање процене?
+    campaign_factors: Фактори кампање
+    campaign_templates: Шаблони кампања
+    campaign_user_job_roles_cannot_be_same: Циљна радна улога мора бити различита од тренутне радне улоге.
+    campaigns: Кампање
+    client: Клијент
+    client_admins: Администратори клијената
+    clients: Клијенти
+    code_required: Код је потребан
+    communication_center: Центар за комуникацију
+    communications: Коммуникације
+    completed: Завршено
+    completed_tooltip: Сви оцењивачи су доставили оцењивање.
+    confirm_remove_admin: Да ли сте сигурни да желите да уклоните администраторског корисника са е-поштом '%{email}'?
+    country: Земља
+    create_client: Креирај клијента
+    current_job_role: Тренутна радна улога
+    dashboard: Табла
+    dashboards: Крме
+    data_reports: Извештаји о подацима
+    datasheet: Лист са подацима
+    declined: Одбијено
+    delete_ok_text: Да, обриши
+    denied: Одбијено
+    development_actions: Развојне акције
+    development_actions_form_tags: Ознаке
+    dimensions: Димензије
+    done: Готово
+    done_tooltip: За овог корисника више не могу бити поднете оцене јер је његова оцена означена као завршена од стране %{marked_by}
+    edit_campaign_admin: Уреди администратора кампање
+    edit_client_admin: Уреди администратора клијента
+    edit_job_roles: Уређивање улога посла
+    edit_level: Уреди ниво
+    edit_permission_denied: Немате дозволу да уређујете администратора "%{name}"
+    edit_project_admin: Уреди администратора пројекта
+    edit_threesixty_campaign_admin: Уреди администратора кампање
+    empty_csv_file: CSV фајл не садржи никакве податке.
+    enable_enhance_with_ai_client_level: Молимо омогућите функцију Enhance with AI на нивоу клијента.
+    enable_transcription: Омогући транскрипцију
+    enhance_with_ai_requires_ai_assistants: Побољшање помоћу вештачке интелигенције захтева да је омогућена функција AI Assistants.
+    evaluation_status: Статус процене
+    evaluation_status_not_done: Статус евалуације није "Завршено" за једног или више изабраних субјеката. Молимо вас да обезбедите да су сви изабрани корисници завршили евалуације или их означите као завршене.
+    export_admin_roles_permissions: Извоз улога и дозвола администратора
+    feature_enhance_with_ai: Унапредите помоћу вештачке интелигенције
+    feature_flags: Фичер флагс
+    fill_empty_score_msg: Попуните све коначне резултате пре сачувања.
+    final_score_empty_err_msg: Коначан резултат у %{factor_name}-у не може бити празан.
+    idp_plan_reset_success: План је успешно ресетован
+    idp_templates: Шаблони ИДП
+    import_ai_artifacts: Увоз АИ артефаката
+    import_csv_assessment_group_error: 'Ред%{index}: корисник са адресом електронске поште %{email} је већ позван у ''%{workshopInviteName}'''
+    import_csv_error: 'Ред%{index}: корисник са адресом електронске поште %{email} није у овој кампањи'
+    import_csv_parsing_error: 'Грешка при парсирању CSV-а: %{message}'
+    import_description: Импортујте кориснике из CSV фајла. Сваки ред мора да садржи адресу електронске поште.
+    import_download_sample: Преузмите пример CSV-а
+    import_error: Увоз је пропао. Молимо поново покушајте.
+    import_error_saving_data: 'Грешка при сачувању података за %{email}: %{message}'
+    import_errors_title: Грешке при увозу
+    import_external_scoring_action: Увоз спољног бодовања
+    import_external_scoring_body: Погледајте функционалност за извоз да бисте извукли шаблон који се овде може користити за увоз.
+    import_external_scoring_data_description: Увоз спољних података о бодовању за наведено оцењивање и кампању
+    import_external_scoring_data_title: Увоз спољних података о бодовању
+    import_external_scoring_success_msg: Увоз је успешно отпремљен
+    import_external_scoring_upload: Отпреми
+    import_file_required: Молимо изаберите CSV фајл за отпремање.
+    import_queued_success: Задатак увоза података је успешно заказан. Погледајте обавештење за статус.
+    import_sample_file_label: 'Узорни фајл:'
+    import_scenario_id_mismatch: 'Неподударност ИД сценарија за %{email}: Очекивано %{expected_id}, али CSV садржи другачије ИД сценарија'
+    import_successfully_saved: Успешно сачувани спољни резултати за %{email} са %{goals_count} циљевима
+    import_title: Увоз предмета из CSV-а
+    import_upload: Отпреми
+    import_users: Увоз корисника
+    invalid_csv_header: CSV фајл садржи неважеће заглавља.
+    job_roles: Радне улоге
+    learning_from_others: Колаборативно учење [20]
+    level: Ниво
+    level_apply: Примени
+    level_guide: Водич
+    level_shape: Облик
+    level_validation_message: 'мора бити један од: %{values}'
+    libraries: Медијска библиотека
+    library_invalid_type: Неважећи библиотечки предмет
+    licenses: Лиценце
+    manager_approval_required: Извештај за %{user} захтева одобрење менаџера пре преузимања.
+    max_value: Максимална вредност
+    messages: Поруке
+    mhs: МХС
+    mhs_assessment: МХС процена
+    mhs_assessment_name: Назив процене MHS
+    mhs_data_gatherer_id: ИД прикупљача података МХС
+    mhs_data_gathering_id: ИД за прикупљање података МХС
+    mhs_external_assessment_id: ИД процене МХС
+    mhs_report_id: ИД извештаја МХС
+    mhs_session_id: ID сесије Mhs
+    min_value: Минимална вредност
+    missing_min_max_values: Потребне су минималне и максималне вредности.
+    name_required: Име је обавезно
+    no_file_selected: Није изабрана датотека
+    no_notifications: Нема обавештења
+    norms: Норме
+    not_completed: Није завршено
+    not_completed_tooltip: "%{completed} Процењивачи су додељени, али само %{submitted} су завршили процене."
+    notes: Белешке
+    nothing_assigned: Није додељено ниједног оцењивача
+    nothing_assigned_tooltip: Овом кориснику нису додељене никакве оцене.
+    notification_bell_icon_alt_text: Икона звона за обавештења
+    notifications: Обавештења
+    number: Број
+    occupations: Занимања
+    on_the_job: На послу [70]
+    only_editable_on_create: Ову опцију је могуће уређивати само током креирања.
+    options: Опције
+    participants: Учесници
+    permissions:
+      aiArtifacts:
+        export: Извоз
+        import: Увоз
+        manage: Управљај
+        title: АИ артефакти
+        view: Приказ
+      apiKeys:
+        manage: Управљај
+        title: АПИ кључеви
+        view: Приказ
+      assessments:
+        manage: Управљај
+        title: Оцењивања
+        view: Приказ
+      assessors:
+        manage: Управљај
+        title: Процењивачи
+        view: Приказ
+      auditLogs:
+        title: Логови ревизије
+        view: Приказ
+      auditReports:
+        admin_permissions: Извоз улога и дозвола администратора
+        title: Извештаји о ревизији
+        user_report_events: Извештај о одобрењима
+      campaignFactors:
+        manage: Управљај
+        title: Фактори кампање
+        view: Приказ
+      campaigns:
+        bulk_download: Масовни преузимање
+        bulk_regenerate_reports: Масовна регенерација извештаја
+        manage: Управљај
+        manage_admins: Управљај администраторима
+        manage_factor_benchmark_scores: Управљање оценама референтног фактора
+        manage_messages: Управљање порукама
+        manage_options: Управљање опцијама
+        manage_report_approvals: Управљање одобрењима извештаја
+        manage_users: Управљање корисницима
+        participant_options: Опције учесника
+        report_options: Опције извештаја
+        reset_nominations: Ресетовање номинација
+        title: Кампање
+        view: Приказ
+        view_factor_benchmark_scores: Преглед резултата бенчмарка
+        view_stats: Прикажи статистику
+      clients:
+        export_data_report: Извештај о извозу података
+        manage: Управљај
+        title: Клијенти
+        view: Приказ
+        view_licenses: Прикажи лиценце
+      communications:
+        manage: Управљај
+        title: Коммуникације
+        view: Приказ
+      dashboards:
+        accesssheet_manage: Приступни лист управљање
+        accesssheet_settings: Подешавања приступног листа
+        accesssheet_view: Приказ приступног листа
+        export: Извоз
+        title: Крме
+        view: Приказ
+      datasheets:
+        manage: Управљај
+        title: Технички листови
+        view: Приказ
+      developmentActions:
+        export: Извоз
+        export_global: Глобални извоз
+        export_global_translations: Извези глобалне преводе
+        export_translations: Извоз превода
+        import: Увоз
+        import_global: Увези глобално
+        import_global_translations: Увоз глобалних превода
+        import_translations: Увоз превода
+        manage: Управљај
+        title: Развојне акције
+        view: Приказ
+      dimensions:
+        manage: Управљај
+        title: Димензије
+        view: Приказ
+      idpTemplates:
+        manage: Управљај
+        title: Шаблони ИДП
+        view: Приказ
+      interviewQuestions:
+        export: Извоз
+        import: Увоз
+        manage: Управљај
+        title: Питања за интервју за ИДП
+        view: Приказ
+      jobRoles:
+        export_translations: Преводи радних улога за извоз
+        import_translations: Увоз превода назива радних места
+        manage: Управљај
+        title: Радне улоге
+        view: Приказ
+      labels:
+        apiKeys:
+          manage: Управљај
+          title: АПИ кључеви
+          view: Приказ
+        assessments:
+          manage: Управљај
+          title: Оцењивања
+          view: Приказ
+        assessors:
+          manage: Управљај
+          title: Процењивачи
+          view: Приказ
+        auditLogs:
+          title: Логови ревизије
+          view: Приказ
+        auditReports:
+          admin_permissions: Извоз улога и дозвола администратора
+          title: Извештаји о ревизији
+          user_report_events: Извештај о одобрењима
+        campaignFactors:
+          manage: Управљај
+          title: Фактори кампање
+          view: Приказ
+        campaigns:
+          bulk_download: Масовни преузимање
+          bulk_regenerate_reports: Масовна регенерација извештаја
+          manage: Управљај
+          manage_admins: Управљај администраторима
+          manage_factor_benchmark_scores: Управљање оценама референтног фактора
+          manage_messages: Управљање порукама
+          manage_options: Управљање опцијама
+          manage_report_approvals: Управљање одобрењима извештаја
+          manage_users: Управљање корисницима
+          participant_options: Опције учесника
+          report_options: Опције извештаја
+          reset_nominations: Ресетовање номинација
+          title: Кампање
+          view: Приказ
+          view_factor_benchmark_scores: Преглед резултата бенчмарка
+          view_stats: Прикажи статистику
+        clients:
+          export_data_report: Извештај о извозу података
+          manage: Управљај
+          title: Клијенти
+          view: Приказ
+          view_licenses: Прикажи лиценце
+        communications:
+          manage: Управљај
+          title: Коммуникације
+          view: Приказ
+        dashboards:
+          accesssheet_manage: Приступни лист управљање
+          accesssheet_settings: Подешавања приступног листа
+          accesssheet_view: Приказ приступног листа
+          export: Извоз
+          title: Крме
+          view: Приказ
+        datasheets:
+          manage: Управљај
+          title: Технички листови
+          view: Приказ
+        developmentActions:
+          export: Извоз
+          export_global: Глобални извоз
+          export_global_translations: Извези глобалне преводе
+          export_translations: Извоз превода
+          import: Увоз
+          import_global: Увези глобално
+          import_global_translations: Увоз глобалних превода
+          import_translations: Увоз превода
+          manage: Управљај
+          title: Развојне акције
+          view: Приказ
+        dimensions:
+          manage: Управљај
+          title: Димензије
+          view: Приказ
+        idpTemplates:
+          manage: Управљај
+          title: Шаблони ИДП
+          view: Приказ
+        jobRoles:
+          export_translations: Преводи радних улога за извоз
+          import_translations: Увоз превода назива радних места
+          manage: Управљај
+          title: Радне улоге
+          view: Приказ
+        libraries:
+          manage: Управљај
+          title: Медијске библиотеке
+          view: Приказ
+        messages:
+          email: Е-пошта
+          instructions: Упутства
+          options: Опције
+          title: Поруке
+        norms:
+          manage: Управљај
+          title: Норме
+          view: Приказ
+        proficiencyLevels:
+          export: Извоз нивоа профицијенције
+          export_translations: Преводи нивоа профицијенције за извоз
+          import: Увоз нивоа профицијенције
+          import_translations: Увоз нивоа владења језиком Преводе
+          manage: Управљај
+          title: Нивои владења
+          view: Приказ
+        proficiency_level:
+          title: Нивои владења
+        projectSettings:
+          assessments: Оцењивања
+          design: Дизајн
+          feature_flags: Фичер флагс
+          idp: ИДП
+          integrations: Интеграције
+          privacy_settings: Подешавања приватности
+          saml: SAML
+          security: Безбедност
+          smtp: СМТП
+          title: Подешавања пројекта
+          webhooks: Вебхукови
+        projects:
+          manage: Управљај
+          manage_admins: Управљај администраторима
+          manage_users: Управљање корисницима
+          title: Пројекти
+          view: Приказ
+        questions:
+          manage: Управљај
+          title: Питања
+          view: Приказ
+        reflectionQuestions:
+          export: Извоз
+          import: Увоз
+          manage: Управљај
+          title: Питања за рефлексију о ИДП-у
+          view: Приказ
+        registrationCodes:
+          manage: Управљај
+          title: Кодови за регистрацију
+          view: Приказ
+        registrationSettings:
+          manage: Управљај
+          title: Подешавања регистрације
+        reports:
+          manage: Управљај
+          title: Извештаји
+          view: Приказ
+        responseMeta:
+          title: Респонсе Мета
+        results:
+          approve_report: Одобри извештај
+          bulk_download: Масовни преузимање
+          bulk_regenerate_reports: Масовна регенерација извештаја
+          bulk_update_evaluation_status: Масовно ажурирање статуса процене
+          download_report: Преузми извештај
+          edit_report: Уреди извештај
+          export_occupations: Извези занимања
+          external_score_import: Увоз спољног резултата
+          finalize_scores: Завршите резултате
+          normalize_factor_scores: Нормализујте факторске резултате
+          raw_responses: Сирови одговори
+          regenerate_report: Поново генериши извештај
+          report_data: Извештај о подацима
+          report_file_upload: Пријави отпремање датотеке
+          rescore_responses: Поново оцењивање одговора
+          reset_progress: Ресетовање напретка
+          reset_responses: Ресетовање одговора
+          scores: Резултати
+          title: Резултати
+          view_report: Погледај извештај
+          view_stats: Прикажи статистику
+        skills:
+          export: Извези вештине
+          export_translations: Извоз превода вештина
+          import: Увоз вештина
+          import_translations: Увоз превода вештина
+          manage: Управљај
+          title: Вештине
+          view: Приказ
+        smsHistories:
+          manage: Управљај
+          title: СМС историје
+          view: Приказ
+        smsInvites:
+          manage: Управљај
+          title: SMS позиви
+          view: Приказ
+        userIdpPlans:
+          manage: Управљај
+          title: Кориснички IDP планови
+          view: Приказ
+        users:
+          reset_password: Ресетовање лозинке
+          title: Корисници
+        workshops:
+          export_status: Статус извоза
+          manage: Управљај
+          title: Радионице
+          view: Приказ
+          view_recordings: Погледајте снимке
+      libraries:
+        manage: Управљај
+        title: Медијске библиотеке
+        view: Приказ
+      messages:
+        email: Е-пошта
+        instructions: Упутства
+        options: Опције
+        title: Поруке
+      norms:
+        manage: Управљај
+        title: Норме
+        view: Приказ
+      proficiencyLevels:
+        export: Извоз нивоа профицијенције
+        export_translations: Преводи нивоа профицијенције за извоз
+        import: Увоз нивоа профицијенције
+        import_translations: Увоз нивоа владења језиком Преводе
+        manage: Управљај
+        title: Нивои владења
+        view: Приказ
+      proficiency_level:
+        title: Нивои владења
+      projectSettings:
+        assessments: Оцењивања
+        design: Дизајн
+        feature_flags: Фичер флагс
+        idp: ИДП
+        integrations: Интеграције
+        privacy_settings: Подешавања приватности
+        saml: SAML
+        security: Безбедност
+        smtp: СМТП
+        title: Подешавања пројекта
+        webhooks: Вебхукови
+      projects:
+        manage: Управљај
+        manage_admins: Управљај администраторима
+        manage_licenses: Управљање лиценцама
+        manage_users: Управљање корисницима
+        title: Пројекти
+        view: Приказ
+        view_licenses: Прикажи лиценце
+      questions:
+        manage: Управљај
+        title: Питања
+        view: Приказ
+      reflectionQuestions:
+        export: Извоз
+        import: Увоз
+        manage: Управљај
+        title: Питања за рефлексију о ИДП-у
+        view: Приказ
+      registrationCodes:
+        manage: Управљај
+        title: Кодови за регистрацију
+        view: Приказ
+      registrationSettings:
+        manage: Управљај
+        title: Подешавања регистрације
+      reports:
+        manage: Управљај
+        title: Извештаји
+        view: Приказ
+      responseMeta:
+        title: Респонсе Мета
+      results:
+        approve_report: Одобри извештај
+        bulk_download: Масовни преузимање
+        bulk_regenerate_reports: Масовна регенерација извештаја
+        bulk_update_evaluation_status: Масовно ажурирање статуса процене
+        download_report: Преузми извештај
+        edit_report: Уреди извештај
+        export_occupations: Извези занимања
+        external_score_import: Увоз спољног резултата
+        finalize_scores: Завршите резултате
+        normalize_factor_scores: Нормализујте факторске резултате
+        raw_responses: Сирови одговори
+        regenerate_report: Поново генериши извештај
+        report_data: Извештај о подацима
+        report_file_upload: Пријави отпремање датотеке
+        rescore_responses: Поново оцењивање одговора
+        reset_progress: Ресетовање напретка
+        reset_responses: Ресетовање одговора
+        scores: Резултати
+        title: Резултати
+        view_report: Погледај извештај
+        view_stats: Прикажи статистику
+      skills:
+        export: Извези вештине
+        export_translations: Извоз превода вештина
+        import: Увоз вештина
+        import_translations: Увоз превода вештина
+        manage: Управљај
+        title: Вештине
+        view: Приказ
+      smsHistories:
+        manage: Управљај
+        title: СМС историје
+        view: Приказ
+      smsInvites:
+        manage: Управљај
+        title: SMS позиви
+        view: Приказ
+      userIdpPlans:
+        manage: Управљај
+        reset: Ресетовати
+        title: Кориснички IDP планови
+        view: Приказ
+      users:
+        reset_password: Ресетовање лозинке
+        title: Корисници
+      workshops:
+        export_status: Статус извоза
+        manage: Управљај
+        title: Радионице
+        view: Приказ
+        view_recordings: Погледајте снимке
+    permissions_360_campaigns: Дозволе специфичне за 360 кампање
+    piped_text: Текст у цевци
+    privacy: Приватност
+    proficiency_level: Ниво владења
+    proficiency_levels: Нивои владења
+    profile_details: Детаљи профила
+    project_admins: Администратори пројекта
+    project_manager: Менаџер пројекта
+    project_number: Број пројекта
+    project_settings: Подешавања пројекта
+    projects: Пројекти
+    question_center: Центар за питања
+    questions: Питања
+    reflection_questions: Питања за размишљање
+    registration_codes: Кодови за регистрацију
+    registration_settings: Подешавања регистрације
+    report_approvals: Извештаји о одобрењима
+    report_condition_not_met: Потребне су евалуације за %{required} и %{relationship}, али има само %{actual}
+    report_conditions_not_met_detailed: Извештај за %{user} не испуњава услове доступности. %{conditions}
+    report_denied: Извештај за %{user} је одбијен
+    report_no_evaluations: Извештај за "%{user}" није доступан – нису примљене никакве оцене.
+    report_not_generated: Извештај за "%{user}" испуњава услове доступности, али још није генерисан. Молимо вас да прво генеришете извештај.
+    report_on_hold: Извештај за "%{user}" је тренутно обустављен.
+    report_status: Извештај о статусу
+    reports: Извештаји
+    reports_limit_exceeded: Масовно преузимање је ограничено на 1000 извештаја. Ако сте изабрали много језика, смањите тај број.
+    reports_not_found: Није пронађен ниједан извештај. Молимо генеришите извештаје пре преузимања.
+    reset_idp_plan: Ресетовање плана
+    reset_idp_plan_confirmation: Да ли сте сигурни да желите да ресетујете план?
+    reset_idp_plan_title: Ресетовање плана
+    response_meta: Респонсе Мета
+    results: Резултати
+    role: Улога
+    saml_idp_certificate_available: Доступно (кликните да копирате)
+    saml_idp_certificate_label: Сертификат
+    saml_idp_entity_id_label: ИД ентитета/Издавач
+    saml_idp_sso_url_label: SSO URL услуге
+    saml_service_provider: SAML пружалац услуга
+    saml_service_provider_acs_urls: АЦС УРЛ-ови
+    saml_service_provider_acs_urls_placeholder: Унесите УРЛ адресе раздвојене зарезом, нпр. https://app1.com/saml/acs, https://app2.com/saml/acs
+    saml_service_provider_acs_urls_required: АЦС УРЛ-ови су обавезни
+    saml_service_provider_action_delete_label: Избриши
+    saml_service_provider_action_edit_label: Уреди
+    saml_service_provider_action_rotate_certificate_label: Ротирај сертификат
+    saml_service_provider_add: Додајте SAML провајдера услуга
+    saml_service_provider_delete_success: SAML сервис провајдер је успешно избрисан
+    saml_service_provider_enabled: Омогућено
+    saml_service_provider_entity_id: ИД ентитета
+    saml_service_provider_entity_id_placeholder: Унесите ИД ентитета
+    saml_service_provider_entity_id_required: ИД ентитета је обавезан
+    saml_service_provider_idp_config: Конфигурација IdP
+    saml_service_provider_integration_generic: Генерички
+    saml_service_provider_integration_masking_info: Имејл адреса кандидата биће замагљена пре слања Yoodli-ју. Замагљивање имена и презимена кандидата треба омогућити од
+    saml_service_provider_integration_type: Тип интеграције
+    saml_service_provider_integration_type_placeholder: Изаберите тип интеграције
+    saml_service_provider_integration_type_required: Тип интеграције је обавезан
+    saml_service_provider_integration_yoodli: Јуудили
+    saml_service_provider_manage: Акције
+    saml_service_provider_mask_data_for: Маскни подаци за
+    saml_service_provider_mask_identity: Идентитет маске
+    saml_service_provider_masking_enabled: Омогући маскирање
+    saml_service_provider_masking_help_generic: Омогући маскирање идентитета корисника у SAML одговорима
+    saml_service_provider_masking_help_integration: Примењиће се маскирање провајдера интеграције
+    saml_service_provider_masking_integration: "%{integration} Покренут"
+    saml_service_provider_masking_manual_disabled: Онеспособљен
+    saml_service_provider_masking_manual_enabled: Омогућено
+    saml_service_provider_name: Име
+    saml_service_provider_name_placeholder: Унесите назив пружаоца услуге
+    saml_service_provider_name_required: Име је обавезно
+    saml_service_provider_privacy_policy: Страница политике приватности
+    saml_service_provider_remove_content: 'Да ли сте сигурни да желите да уклоните SAML провајдера услуга: %{name}?'
+    saml_service_provider_remove_title: Уклоните SAML провајдера услуга
+    saml_service_provider_rotate_certificate_content: Да ли сте сигурни да желите да ротирате сертификат за %{name}? Ово ће генерисати нови сертификат и поништити постојећи.
+    saml_service_provider_rotate_certificate_error: Није успело ротирање сертификата
+    saml_service_provider_rotate_certificate_ok: Ротирај сертификат
+    saml_service_provider_rotate_certificate_success: Сертификат је успешно ротиран
+    saml_service_provider_rotate_certificate_title: Ротирај сертификат
+    saml_service_provider_search: Претражи SAML провајдере услуга...
+    saml_service_provider_updated_date: Датум ажурирања
+    saml_service_providers: Пружаоци услуга
+    saml_settings: SAML подешавања
+    scheduling: Распоређивање
+    scoring: Поентирање
+    scoring_value_info: Резултат мора бити између %{min} и %{max}.
+    scoring_value_out_of_range_err_msg: Резултат за %{factor_name} мора бити између %{min} и %{max}.
+    search_admins: Претрага администратора
+    search_job_role: Претражи пословање улогу
+    select_admin_role: Изаберите улогу администратора
+    select_language_to_translate: Молимо изаберите језик за превод
+    select_level: Изабери ниво
+    send_email: Пошаљи имејл
+    settings: Подешавања
+    show_original: Прикажи оригинал
+    show_submenu: Прикажи подмени
+    show_translated: Прикажи превод
+    siem: СИЕМ
+    skill_aliases: Алијасе вештина
+    skills: Вештине
+    skills_taxonomy: Таксономија вештина
+    slot_name: Назив слота
+    sms_histories: СМС историје
+    sms_invites: SMS позиви
+    stats: Статистика
+    status_details: Детаљи статуса
+    structured_learning: Формално учење [10]
+    subdomain: Поддомен
+    subject_part_of_other_invite: Корисник са адресом електронске поште %{user_email} је већ позван на '%{workshop_invite_name}'
+    target_job_role: Циљна радна улога
+    toolbar_ai_insight: Увид вештачке интелигенције
+    toolbar_ai_suggestion: Предлог вештачке интелигенције
+    toolbar_result_generating: Генерисање...
+    toolbar_text_copied: Копирано у међуспречник
+    toolbar_text_replaced: Текст замењен!
+    toolbar_what_changed_and_why: Шта се променило и зашто
+    translate: Преведите
+    translate_to: Преведи на
+    translate_with_ai: Преведите помоћу вештачке интелигенције
+    translated_from: Преведено из
+    translated_to: 'Преведено на:'
+    translated_with_ai_notice: Преведено помоћу вештачке интелигенције
+    translation_assistant_not_configured: Помоћник за превод није конфигурисан
+    update_success: "%{readableResourceName} је успешно ажуриран"
+    upload_success: Успешно отпремљено
+    user_report_events: Извештај корисника о догађајима
+    users: Корисници
+    view_licenses: Прикажи лиценце
+    waiting: Чекање
+    workshops: Радионице
+    writing_assistant_not_configured: Асистент за писање није конфигурисан
+    x_axis_interval_label: Интервал X-осе
+    y_axis_interval_label: Y-оска интервала
+    year: Година
+    yoodli_activity_id: Јуудили ИД активности
+    yoodli_email_id: Јуубли идентификациони број кандидата
+    yoodli_external_assessment_id: Идентификатор процене Yoodli

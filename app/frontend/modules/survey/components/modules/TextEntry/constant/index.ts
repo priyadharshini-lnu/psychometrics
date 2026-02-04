@@ -1,6 +1,8 @@
-import { PickerMode as DatePickerModes } from 'rc-picker/lib/interface'
+import type { DatePickerProps } from 'antd'
 
 import { DateFormat } from '~/modules/survey/interfaces/questions/TextEntry'
+
+type DatePickerModes = DatePickerProps['picker']
 
 const { I18n } = window
 

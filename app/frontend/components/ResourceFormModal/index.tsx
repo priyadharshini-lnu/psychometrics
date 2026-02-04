@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import {
-  Modal, Button, Spin, Form,
+  Modal, Button, Spin, Form, GetProp,
 } from 'antd'
 import { FormProps, FormInstance } from 'antd/lib/form'
 import { ModalProps } from 'antd/lib/modal'
-import { FieldData } from 'rc-field-form/lib/interface'
 import { LoadingOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import ResourceForm from '../ResourceForm'
 import { Status as ResourceStatus } from '../ResourceForm/constants'
 import { Resource } from '../ResourceForm/interfaces'
 import FieldsUtil from '../ResourceForm/FieldsUtil'
+
+type FieldData = GetProp<FormProps, 'fields'>[number]
 
 type ChildrenProps = {
   form: FormInstance,

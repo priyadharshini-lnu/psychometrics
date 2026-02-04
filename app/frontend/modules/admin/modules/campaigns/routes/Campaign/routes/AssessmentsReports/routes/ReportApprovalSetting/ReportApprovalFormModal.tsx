@@ -182,11 +182,9 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
             rules={[{ required: true }]}
           >
             <Select
-              showSearch
+              showSearch={{ filterOption: false, onSearch: fetchReportDebounce }}
               disabled={!!reportApprovalSettings}
-              onSearch={fetchReportDebounce}
-              notFoundContent={isReportsLoading('fetch') ? <Spin size="small" /> : null}
-              filterOption={false}
+              notFoundContent={isReportsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >
               {reportOpts.map(({ id, name }) => (
                 <Option key={id} value={id}>
@@ -414,10 +412,8 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
           >
             <Select
               mode="multiple"
-              showSearch
-              onSearch={fetchQcDebounce}
-              notFoundContent={isQcUsersLoading('fetch') ? <Spin size="small" /> : null}
-              filterOption={false}
+              showSearch={{ filterOption: false, onSearch: fetchQcDebounce }}
+              notFoundContent={isQcUsersLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >
               {qcUserOpts.map(({ id, name, email }) => (
                 <Option key={id} value={id}>
@@ -439,10 +435,10 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
             >
               <Select
                 mode="multiple"
-                showSearch
-                onSearch={fetchApproverDebounce}
-                notFoundContent={isApproverUsersLoading('fetch') ? <Spin size="small" /> : null}
-                filterOption={false}
+                showSearch={{ filterOption: false, onSearch: fetchApproverDebounce }}
+                notFoundContent={
+                  isApproverUsersLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')
+                }
               >
                 {approversOpts.map(({ id, name, email }) => (
                   <Option key={`approvers_${id}`} value={id}>
@@ -464,10 +460,10 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
             >
               <Select
                 mode="multiple"
-                showSearch
-                onSearch={fetchNotificationDebounce}
-                notFoundContent={isNotificationUsersLoading('fetch') ? <Spin size="small" /> : null}
-                filterOption={false}
+                showSearch={{ filterOption: false, onSearch: fetchNotificationDebounce }}
+                notFoundContent={
+                  isNotificationUsersLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')
+                }
               >
                 {notificationUserOpts.map(({ id, name, email }) => (
                   <Option key={`notiification_user_${id}`} value={id}>

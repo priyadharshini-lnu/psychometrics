@@ -93,6 +93,8 @@ export const Facilitators: React.FC<Props> = ({
     timezone: basicInfoData.timezone,
     workshop_resources: filterInvalidResources(facilitator.workshop_resources),
     campaignAssessmentGroupId: basicInfoData.campaignAssessmentGroupId,
+    video_call_type: facilitator.video_call_type ?? basicInfoData.video_call_type ?? 0,
+    meeting_link: facilitator.meeting_link ?? basicInfoData.meeting_link,
   })
 
   const handleSubmit = async () => {
@@ -301,34 +303,32 @@ const FacilitatorsForm = ({
         </>
       )}
     >
-      <Input.Group>
-        <Row gutter={16}>
-          <Col xs={24} sm={8}>
-            <Form.Item
-              label={I18n.t('administration.scheduling.assessment_center_form.name_label')}
-              name={[field.name, 'name']}
-              rules={[{ required: true }]}
-            >
-              <Input />
-            </Form.Item>
-          </Col>
-          <Col xs={24} sm={4}>
-            <Form.Item
-              label={I18n.t('administration.scheduling.assessment_center_form.seats_label')}
-              name={[field.name, 'total_seats']}
-              rules={[
-                {
-                  required: true,
-                  message: I18n.t('validations.blank'),
-                },
-                { type: 'number', min: 1 },
-              ]}
-            >
-              <InputNumber placeholder="e.g 2,3,..." style={{ width: '100%' }} />
-            </Form.Item>
-          </Col>
-        </Row>
-      </Input.Group>
+      <Row gutter={16}>
+        <Col xs={24} sm={20}>
+          <Form.Item
+            label={I18n.t('administration.scheduling.assessment_center_form.name_label')}
+            name={[field.name, 'name']}
+            rules={[{ required: true }]}
+          >
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col xs={24} sm={4}>
+          <Form.Item
+            label={I18n.t('administration.scheduling.assessment_center_form.seats_label')}
+            name={[field.name, 'total_seats']}
+            rules={[
+              {
+                required: true,
+                message: I18n.t('validations.blank'),
+              },
+              { type: 'number', min: 1 },
+            ]}
+          >
+            <InputNumber placeholder="e.g 2,3,..." style={{ width: '100%' }} />
+          </Form.Item>
+        </Col>
+      </Row>
       <Form.Item
         name={[field.name, 'center_manager_ids']}
         label={I18n.t('administration.scheduling.assessment_center_form.manager_ids_label')}

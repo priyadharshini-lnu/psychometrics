@@ -843,6 +843,10 @@ hr:
           reply_to_reply: ne mogu odgovoriti na odgovor (dopuštena je samo jedna razina ugniježđenja)
         user_idp_plan:
           no_active_plan: Nije pronađen aktivan IDP plan
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: Mogu se odabrati samo procjene tipa 'psihofizika' i 'org survey'.
   admin_jobs:
     attrs:
       operations:
@@ -3039,13 +3043,10 @@ hr:
     client_usage: Korištenje na klijentima
     enabled: Omogućeno
     end_date: Datum završetka
-    not_enough_idp_license: Nema dovoljno IDP licenci, obratite se administratoru
     not_enough_license: "'%{client_name}' nema dovoljno licenci za '%{report_name}'"
     not_enough_license_count: Nema dovoljno licenci, obratite se administratoru
-    not_enough_proctoring_credits: Nema dovoljno bodova za početak sesije nadzora
     number: Broj
     overuse_number: Dopuštenje prekomjerne upotrebe
-    project_limit_reached: Dosegnut limit korištenja za '%{license_name}', molimo kontaktirajte administratora
     project_specific: Specifično za projekte
     project_specific_license: Licenca specifična za projekt
     project_usage: Korištenje projekta

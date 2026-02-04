@@ -270,11 +270,9 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
         ]}
       >
         <Select
-          showSearch
-          filterOption={false}
+          showSearch={{ filterOption: false, onSearch: searchAvailableOwners }}
           placeholder={I18n.t('administration.development_actions.form.client_placeholder')}
-          onSearch={searchAvailableOwners}
-          notFoundContent={ownersLoading ? <Spin size="small" /> : null}
+          notFoundContent={ownersLoading ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
         >
           {
             owners.map(({ id, name }) => (
@@ -304,17 +302,15 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
         ]}
       >
         <Select
-          showSearch
-          filterOption={false}
+          showSearch={{ filterOption: false, onSearch: handleProjectSearch }}
           disabled={!!developmentAction}
-          onSearch={handleProjectSearch}
           options={(getProjects() || []).map(p => ({
             value: p.id,
             label: p.name,
           }))}
           placeholder={I18n.t('administration.development_actions.form.project_placeholder')}
           value={form.getFieldValue('projectId')}
-          notFoundContent={projectIsLoading('fetch') ? <Spin size="small" /> : null}
+          notFoundContent={projectIsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
         />
       </Form.Item>
     )
@@ -527,12 +523,10 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
             rules={[{ required: true }]}
           >
             <Select
-              showSearch
-              filterOption={false}
+              showSearch={{ filterOption: false, onSearch: searchAvailableSkills }}
               placeholder={I18n.t('administration.development_actions.form.skills_placeholder')}
-              onSearch={searchAvailableSkills}
               mode="multiple"
-              notFoundContent={isSkillsLoading('fetch') ? <Spin size="small" /> : null}
+              notFoundContent={isSkillsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
               defaultActiveFirstOption={false}
               maxTagCount="responsive"
               virtual={false}
@@ -551,12 +545,8 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
               mode="tags"
               style={{ width: '100%' }}
               placeholder={I18n.t('admin.development_actions_form_tags')}
-              showSearch
-              onSearch={(value) => {
-                debouncedFetchTags(value)
-              }}
-              notFoundContent={isTagsLoading('fetch') ? <Spin size="small" /> : null}
-              filterOption={false}
+              showSearch={{ filterOption: false, onSearch: debouncedFetchTags }}
+              notFoundContent={isTagsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
               maxTagCount="responsive"
             >
               {tags.map(({ name }) => (

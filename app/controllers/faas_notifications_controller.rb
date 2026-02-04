@@ -16,6 +16,12 @@ class FaasNotificationsController < ActionController::Base
     head :ok
   end
 
+  def media_to_transcription
+    Faas::NotificationHandlers::MediaToTranscription.call!(get_message)
+
+    head :ok
+  end
+
   private
 
   def log_subscription_confirmation_details

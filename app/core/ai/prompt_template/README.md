@@ -28,6 +28,12 @@ Access campaign information:
 - `campaign.description` - Campaign description
 - `campaign.type` - Campaign type
 
+### Campaign User Drop
+
+Access campaign user relationship information:
+
+- `campaign_user.level` - User's level in the campaign (apply/guide/shape)
+
 ### Campaign Factors Drop
 
 Access campaign factors by code or iterate through all:
@@ -60,6 +66,17 @@ user = User.find_by(email: 'sritabh@example.com')
 prompt = "Hi {{user.first_name}} {{user.last_name}}! Your age is {{user.age}}."
 
 AI::PromptTemplate::Renderer.call!(prompt, user: user)
+```
+
+### Campaign User Template
+
+```ruby
+user = User.find(5)
+campaign = Campaign.find(1)
+
+prompt = "User: {{user.full_name}}, Level: {{campaign_user.level}}"
+
+AI::PromptTemplate::Renderer.call!(prompt, user: user, campaign: campaign)
 ```
 
 ### Campaign Factors Template

@@ -8,7 +8,7 @@ class Api::V2::Administration::LicenseResource < Api::V2::Administration::BaseRe
   has_one :report_family
 
   ransack_filters %i[report_family_name_cont is_project_specific_eq for_project
-                     report_name_or_type_cont]
+                     report_name_or_type_cont type_in]
 
   before_create -> { @model.client_id = context[:client].id }
 

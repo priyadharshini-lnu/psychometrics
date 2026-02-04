@@ -15,11 +15,13 @@ module UsersResults
         remove_reports if user_assessment.completed?
         reset_user_result
         remove_media_responses
+        remove_ai_translation
         Saville::ResetAssessment.call!(user_assessment) if user_assessment.saville?
         Mettl::ResetCandidateAssessment.call!(user_assessment) if user_assessment.mettl?
         Simulation::ResetAssessment.call!(user_assessment) if user_assessment.simulation?
         Skillvue::ResetAssessment.call!(user_assessment) if user_assessment.skillvue?
         Yoodli::ResetAssessment.call!(user_assessment) if user_assessment.yoodli?
+        Mhs::ResetAssessment.call!(user_assessment) if user_assessment.mhs?
       end
 
       broadcast :ok
@@ -66,12 +68,20 @@ module UsersResults
       MediaResponse.where(users_result_id: users_result.id).destroy_all
     end
 
+    def remove_ai_translation
+      AI::TranslationResult.where(translatable_type: 'UserReport', translatable_id: user_reports.ids).destroy_all
+    end
+
     def remove_reports
+      user_reports.find_each(&:remove_all_report_pdfs!)
+    end
+
+    def user_reports
       UserReport.where(
         report_id: users_result.assessment.report_ids,
         user_id: user_assessment.subject_id,
         campaign_id: user_assessment.campaign_id
-      ).find_each(&:remove_report_pdf!)
+      )
     end
   end
 end

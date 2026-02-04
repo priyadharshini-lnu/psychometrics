@@ -837,6 +837,10 @@ cs:
           reply_to_reply: Nelze odpovědět na odpověď (povolena je pouze jedna úroveň vnoření)
         user_idp_plan:
           no_active_plan: Nebyl nalezen žádný aktivní plán IDP
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: Lze vybrat pouze hodnocení typu „psychometrie“ a „org survey“.
   admin_jobs:
     attrs:
       operations:
@@ -2188,16 +2192,16 @@ cs:
       password_complexity:
         digit:
           one: musí obsahovat alespoň jednu číslici
-          other: musí obsahovat alespoň <x>count</x> číslic.
+          other: musí obsahovat alespoň %{count} číslic.
         lower:
           one: musí obsahovat alespoň jedno malé písmeno
-          other: musí obsahovat alespoň <x>count</x> malá písmena.
+          other: musí obsahovat alespoň %{count} malá písmena.
         symbol:
           one: musí obsahovat alespoň jedno interpunkční znaménko nebo symbol.
-          other: musí obsahovat alespoň <x>count</x> interpunkční znaménka nebo symboly.
+          other: musí obsahovat alespoň %{count} interpunkční znaménka nebo symboly.
         upper:
           one: musí obsahovat alespoň jedno velké písmeno
-          other: musí obsahovat alespoň <x>count</x> velká písmena.
+          other: musí obsahovat alespoň %{count} velká písmena.
       taken_in_past: nesmí být stejné jako dříve použité heslo.
     module_error: S tímto modulem se něco pokazilo, obraťte se na správce.
     module_error_editor: S tímto modulem se něco pokazilo, zkontrolujte nastavení modulu.
@@ -3013,13 +3017,10 @@ cs:
     client_usage: Použití klientem
     enabled: Povoleno
     end_date: Datum ukončení
-    not_enough_idp_license: Není dostatek licencí IDP, kontaktujte správce
     not_enough_license: "'%{client_name}' nemá dostatek licencí pro '%{report_name}'"
     not_enough_license_count: Nedostatek licencí, kontaktujte prosím správce
-    not_enough_proctoring_credits: Nedostatek kreditů pro zahájení proctoringu
     number: Číslo
     overuse_number: Příspěvek na nadměrné použití
-    project_limit_reached: Dosažený limit použití pro '%{license_name}', kontaktujte prosím administrátora
     project_specific: Specifické pro projekt
     project_specific_license: Specifická licence pro projekt
     project_usage: Využití projektu
@@ -3068,7 +3069,7 @@ cs:
     footer:
       regards: S pozdravem,
       team_name: Tým Lighthouse
-      technical_support: V případě jakýchkoli technických problémů nám napište na adresu <x>email</x> a my vám odpovíme do 24 hodin.
+      technical_support: V případě jakýchkoli technických problémů nám napište na adresu %{email} a my vám odpovíme do 24 hodin.
     from: Talentovaný podnik
     idp:
       manager_unread_comments:

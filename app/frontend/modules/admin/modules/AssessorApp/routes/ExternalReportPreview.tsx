@@ -1,7 +1,7 @@
 import {
   useEffect, FC, useState, lazy, Suspense,
 } from 'react'
-import { PageHeader } from '@ant-design/pro-layout'
+import { PageHeader } from '@ant-design/pro-components'
 import {
   Layout, Button, Row, Col, Spin, Space,
 } from 'antd'

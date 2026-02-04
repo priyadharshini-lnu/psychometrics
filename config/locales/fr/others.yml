@@ -837,6 +837,10 @@ fr:
           reply_to_reply: Impossible de répondre à une réponse (un seul niveau d’imbrication autorisé)
         user_idp_plan:
           no_active_plan: Aucun plan d'action actif n'a été trouvé
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: Seules les évaluations de type « psychométrie » et « enquête organisationnelle » peuvent être sélectionnées.
   admin_jobs:
     attrs:
       operations:
@@ -2194,16 +2198,16 @@ fr:
       password_complexity:
         digit:
           one: doit contenir au moins un chiffre
-          other: doit contenir au moins <x>count</x> chiffres
+          other: doit contenir au moins %{count} chiffres
         lower:
           one: doit contenir au moins une lettre minuscule
-          other: doit contenir au moins <x>count</x> lettres minuscules
+          other: doit contenir au moins %{count} lettres minuscules
         symbol:
           one: doit contenir au moins un signe de ponctuation ou un symbole
-          other: doit contenir au moins <x>count</x> signes de ponctuation ou symboles
+          other: doit contenir au moins %{count} signes de ponctuation ou symboles
         upper:
           one: doit contenir au moins une lettre majuscule
-          other: doit contenir au moins <x>count</x> lettres majuscules
+          other: doit contenir au moins %{count} lettres majuscules
       taken_in_past: ne doit pas être identique à un mot de passe utilisé précédemment.
     module_error: Un problème est survenu avec ce module, veuillez contacter l'administration.
     module_error_editor: Quelque chose n'a pas fonctionné avec ce module, veuillez vérifier les paramètres du module.
@@ -3025,13 +3029,10 @@ fr:
     client_usage: Utilisation client
     enabled: Activé
     end_date: Date de fin
-    not_enough_idp_license: Pas assez de licences IDP, veuillez contacter l'administrateur
     not_enough_license: "'%{client_name}' n'a pas assez de licences pour '%{report_name}'"
     not_enough_license_count: Pas assez de licences, veuillez contacter l'administrateur
-    not_enough_proctoring_credits: Pas assez de crédits pour commencer la session d'examen
     number: Nombre
     overuse_number: Indemnité de dépassement
-    project_limit_reached: Limite d’utilisation atteinte pour « %{license_name} », veuillez contacter l’administrateur
     project_specific: Projet spécifique
     project_specific_license: Licence spécifique au projet
     project_usage: Utilisation du projet

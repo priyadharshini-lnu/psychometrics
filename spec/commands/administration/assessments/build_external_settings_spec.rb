@@ -89,4 +89,13 @@ describe Administration::Assessments::BuildExternalSettings do
       expect(subject).to eql(assessment_id: 'yoodli_assessment_id')
     end
   end
+
+  context 'when the assessment is mhs' do
+    let(:type) { Assessments::Mhs }
+    let(:external_settings) { { assessment_id: 'mhs_assessment_id' } }
+
+    it 'returns valid external_settings' do
+      expect(subject).to eql(assessment_id: 'mhs_assessment_id')
+    end
+  end
 end

@@ -39,6 +39,11 @@ class UserAssessment < ApplicationRecord
     where(active: false)
   }, class_name: 'YoodliUserAssessment', dependent: :destroy
 
+  has_one :mhs_user_assessment, -> { where(active: true) }, dependent: :destroy
+  has_many :previous_mhs_user_assessments, lambda {
+    where(active: false)
+  }, class_name: 'MhsUserAssessment', dependent: :destroy
+
   enum :status, { not_started: 0, in_progress: 1, completed: 2, interrupted: 3, timed_out: 4, ineligible: 5 }
   enum :completion_reason, { user_completed: 0, time_out_online: 1, time_out_offline: 2 }
   enum :manager_nomination_status, { waiting: 0, approved: 1, denied: 2 }, prefix: :manager_nomination
@@ -46,7 +51,8 @@ class UserAssessment < ApplicationRecord
   enum :manager_evaluation_status, { waiting: 0, approved: 1, denied: 2 }, prefix: :manager_evaluation
   enum :meeting_type, { not_available: 0, internal: 1, custom: 2 }, prefix: :meeting
 
-  delegate :saville?, :iiht?, :pearson?, :mettl?, :simulation?, :hogan?, :skillvue?, :yoodli?, :assessor_form?,
+  delegate :saville?, :iiht?, :pearson?, :mettl?, :simulation?, :hogan?, :skillvue?, :yoodli?,
+           :mhs?, :assessor_form?,
            :external?, :external_settings, :combined_hogan_assessment?, to: :assessment
   delegate :workshop_activity?, :workshop_activity, :workshop_activity_duration,
            to: :campaign_assessment, allow_nil: true
@@ -129,6 +135,9 @@ class UserAssessment < ApplicationRecord
   after_commit :send_workshop_invite_email, if: :should_send_workshop_invite_email?, on: %i[update]
   after_commit -> { finish_proctoring_session },
                if: proc { status_previously_changed? && deemed_completed? }, on: %i[update]
+
+  after_commit :enqueue_media_response_transcriptions,
+               if: proc { status_previously_changed? && completed? }, on: %i[update]
 
   alias result users_result
 
@@ -437,6 +446,19 @@ class UserAssessment < ApplicationRecord
 
   def caching_enabled?
     campaign_assessment&.caching_enabled?
+  end
+
+  def enqueue_media_response_transcriptions
+    users_result&.media_responses&.
+      joins(:question)&.
+      where(questions: { type: %w[VideoResponse AudioResponse] })&.
+      where("questions.props ->> 'enableTranscription' = ?", 'true')&.
+      find_each do |media_response|
+      next unless media_response.transcription_not_requested?
+      next unless media_response.asset.attached?
+
+      MediaResponses::AddTranscriptionJob.perform_later(media_response.id)
+    end
   end
 end
 # rubocop:enable Metrics/ClassLength

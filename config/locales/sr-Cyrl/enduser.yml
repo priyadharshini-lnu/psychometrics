@@ -1,0 +1,46 @@
+---
+sr-Cyrl:
+  enduser:
+    add_idp_plan_note: Додај белешку...
+    add_idp_plan_rejection_reason: Додај разлог...
+    ai_idp_assistant_response_no: Не
+    ai_idp_assistant_response_upload_different_document: Желим да отпремим други документ.
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: Да, наставите са креирањем плана.
+    ai_idp_retake_step_chat_hint_no_document: Можете поново започети разговор да бисте поделили више детаља, и ја ћу учинити све што могу да вам помогнем.
+    ai_idp_summary_hint_no_document: Са вашег одобрења, ако кажете да, могу да направим план развоја за вас. Ако не, можете поново да покренете разговор да бисте поделили више детаља.
+    approve_idp_plan: Одобрити план
+    bookings: Резервације
+    campaign: Кампања
+    development: Развој
+    direct_reportees: Директни извештачи
+    download_pdf: Преузмите ПДФ
+    home: Почетна
+    idp_loading_fifth_step: Преузимање акција развоја из шаблона
+    idp_loading_first_step: Анализа вашег извештаја о процењивању
+    idp_loading_fourth_step: Избор релевантних вештина
+    idp_loading_second_step: Идентификација ваших преференција наведених у ћаскању
+    idp_loading_secondary_text: Слободно се удаљите. Ваш план ће бити спреман када се вратите.
+    idp_loading_sixth_step: Креирање акција развоја
+    idp_plan_approval_note: Белешка о одобрењу
+    idp_retake_steps_continue_with_this_information: Наставите са овим информацијама
+    insights: Увиди
+    lighthouse_assistant: Помагач светионика
+    max_word_limit: Мора да буде највише %{max} речи
+    min_word_limit: Мора да има најмање %{min} речи
+    my_plan: Мој план
+    profile: Профил
+    profile_details: Детаљи
+    question_counter: Питање %{current}-а из %{total}
+    reason_for_idp_plan_rejection: Разлог за одбијање
+    recorded: снимано
+    recording: снимање
+    reject_idp_plan: Одбацити план
+    request_retry_message: Ви сте ван мреже. Ваши одговори нису могли да се сачувају, али ће бити аутоматски сачувани чим се поново повежете на интернет. Молимо вас да не освежавате или не затварате страницу.
+    saving_video_text: Сачувај видео... Молимо вас да не затварате или освежавате прегледач.
+    selected_count: "%{count} изабрано"
+    skill_type: Тип вештине
+    start_campaign_message_proctored: Ово је надгледана кампања, кликните на дугме "%{buttonText}" да бисте започели активности.
+    start_campaign_message_timed: Ово је временски ограничена кампања, кликните на дугме "%{buttonText}" да бисте започели активности.
+    start_campaign_message_timed_proctored: Ово је временски ограничена и надгледана кампања, кликните на дугме "%{buttonText}" да бисте започели активности.
+    status_unknown: Статус непознат
+    tasks: Задаци

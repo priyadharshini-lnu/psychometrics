@@ -5,7 +5,7 @@ module Administration
     class UsersController < Administration::Campaigns::BaseController # rubocop:disable Metrics/ClassLength
       before_action :set_resource,
                     only: %i[update spoof show destroy toggle_status reset_password extend_time webhook_payload
-                             create_hogan_credentials]
+                             create_hogan_credentials update_level update_job_role]
       skip_before_action :pundit_authorize, only: %i[spoof]
 
       rescue_from AdminJob::AlreadyExistsError do |e|
@@ -229,6 +229,7 @@ module Administration
       def spoof
         authorize(resource, nil, policy_class: Campaigns::UserPolicy)
         audit! :sign_in_as, current_user, payload: { sign_in_as: resource.email }
+        siem_log_impersonation_event(resource, 'End User')
         spoof_token = SecureRandom.urlsafe_base64(64)
         resource.update_column(:spoof_token, spoof_token)
 
@@ -245,6 +246,37 @@ module Administration
             current_user: current_user
           }
         ).serialize(resource)
+      end
+
+      def update_level
+        campaign_user.update!(level: params[:level])
+        audit! :update_level, campaign_user, payload: { level: params[:level] }
+        render json: Administration::UserDetailSerializer.new(
+          context: {
+            campaign: campaign,
+            current_user: current_user
+          }
+        ).serialize(resource)
+      end
+
+      def update_job_role
+        if campaign_user.update(
+          current_job_role_id: params[:current_job_role_id],
+          target_job_role_id: params[:target_job_role_id]
+        )
+          audit! :update_job_role, campaign_user, payload: {
+            current_job_role_id: params[:current_job_role_id],
+            target_job_role_id: params[:target_job_role_id]
+          }
+          render json: Administration::UserDetailSerializer.new(
+            context: {
+              campaign: campaign,
+              current_user: current_user
+            }
+          ).serialize(resource)
+        else
+          render json: { errors: campaign_user.errors.messages }, status: 422
+        end
       end
 
       def create_hogan_credentials

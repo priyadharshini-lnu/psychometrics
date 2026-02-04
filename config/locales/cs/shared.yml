@@ -9,6 +9,8 @@ cs:
     agree_and_continue: Souhlasím a pokračujte
     archive: Archivovat
     archived: Archivováno
+    asset_not_present: Aktivum není k dispozici
+    audio: Audio
     authentication_failed: Autentizace selhala. Zkuste to prosím znovu.
     basic: Základní
     campaign_id: Identifikace kampaně
@@ -16,18 +18,26 @@ cs:
     change_password: Změna hesla
     clear_filters: Vymazat filtry
     collaborative_learning: Společné učení
+    completed: Dokončeno
     confirm: Potvrdit
     continue: Pokračovat
+    copy: Kopírovat
     created_at: Vytvořeno v
     created_date: Datum vytvoření
     decline: Úpadek
     description: Popis
+    download: Stáhnout
     edit: Upravit
     edited: Nové
     email: E-mail
     export: Export
+    failed: Neúspěšný
     first_name: Jméno
     formal_learning: Formální učení
+    generate: Generovat
+    generate_transcription_confirm_content: Opravdu chcete vygenerovat přepis této mediální reakce?
+    generate_transcription_confirm_title: Vytvořit přepis
+    generating: Generování
     group_question_max_validation_error: Každá skupina může obsahovat nejvýše {{max}} položku.
     group_question_min_validation_error: Každá skupina musí obsahovat alespoň {{min}} položku.
     id: ID
@@ -36,18 +46,26 @@ cs:
     last_name: Příjmení
     learning_on_the_job_label: Učení se přímo v práci
     login: Přihlášení
+    media_question_transcriptions: Přepisy otázek médií
     modified_by: Upraveno podle
     modified_date: Datum úpravy
     more_actions: Další akce
     mte_logo_alt_text: Logo Mercer Talent Enterprise
+    na_text: N/A
     name: Název
     new: Nové
+    no_results_found: Nenalezeny žádné výsledky
+    not_requested: Dosud nepožadováno
     ok: OK
+    pending: Čeká na vyřízení
+    processing: Zpracování
+    question_id: ID otázky
     recording_consent_notice: Toto zasedání bude nahráváno. Vaše účast na tomto setkání znamená váš souhlas s nahráváním.
     recording_consent_proceed_question: Souhlasíte s pokračováním v zaznamenaném setkání?
     recording_consent_title: Oznámení o souhlasu s nahráváním
     remove: Odstranit
     removed: Odstraněno
+    replace: Nahradit
     reset_password: Obnovit heslo
     rte_paste_content_exceeds_char_limit: Text překračuje limit znaků {{maxCharacterLimit}} a nelze jej vložit.
     rte_paste_content_exceeds_word_limit: Text překračuje limit slov {{maxWordLimit}} a nelze jej vložit.
@@ -67,7 +85,13 @@ cs:
           zero: 'Celkem : 0'
     terms_conditions_privacy: Prohlášení o ochraně soukromí
     tools: Nářadí
+    transcription: Přepis
+    transcription_already_requested: Přepis již byl vyžádán nebo je v procesu
+    transcription_not_enabled: Přepis není pro mediální odezvu povolen.
     transcriptions: Přepisy
+    try_again: Zkusit znovu
     tte_terms_and_condition: Smluvní podmínky a ochrana soukromí
     type: Typ
     update: Aktualizovat
+    video: Video
+    view: Zobrazit

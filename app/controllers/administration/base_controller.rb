@@ -2,6 +2,7 @@
 
 module Administration
   class BaseController < ::BaseController
+    include SiemLogger::ControllerHelper
     include SetCurrentCountry
     include GeoRestriction
     include Administration::Policies
@@ -120,6 +121,10 @@ module Administration
         @do_not_render_rails_menu = true
         render('shared/frontend_entry', locals: { element: element, entry: entry }) && return
       end
+    end
+
+    def siem_log_impersonation_event(target_user, role)
+      super(target_user, current_user, role)
     end
   end
 end

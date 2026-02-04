@@ -844,6 +844,10 @@ sr-Latn:
           reply_to_reply: Ne mogu da odgovorim na odgovor (dozvoljen je samo jedan nivo gnežđenja)
         user_idp_plan:
           no_active_plan: Nije pronađen aktivan IDP plan
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: Могу се изабрати само процене типа 'psycometrics' и 'org survey'.
   admin_jobs:
     attrs:
       operations:
@@ -3024,13 +3028,10 @@ sr-Latn:
     client_usage: Korišćenje klijenta
     enabled: Omogućen
     end_date: Datum završetka
-    not_enough_idp_license: Nema dovoljno IDP dozvola, kontaktirajte administratora
     not_enough_license: "'%{client_name}' nema dovoljno licenci za '%{report_name}'"
     not_enough_license_count: Nema dovoljno dozvola, kontaktirajte administratora
-    not_enough_proctoring_credits: Nema dovoljno kredita za početak proctoring sesije
     number: Broj
     overuse_number: Dodatak za prekomernu upotrebu
-    project_limit_reached: Ograničenje korišćenja dostignut za '%{license_name}', obratite se administratoru
     project_specific: Specifično za projekat
     project_specific_license: Specifična licenca za projekat
     project_usage: Korišćenje projekta

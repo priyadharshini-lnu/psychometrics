@@ -17,8 +17,6 @@ class LicenseUsage < ApplicationRecord
 
   enum :status, { active: 0, inactive: 1 }
 
-  after_create :increase_license_used_number, unless: -> { license.type_proctoring? }
-
   ransack_searchable_json_fields :subject_name, :campaign_name, :subject_email, column: :extras
   ransack_alias :subject, :subject_name_or_subject_email_or_campaign_name
   ransacker :status, formatter: proc { |v| statuses[v] } do |parent|
@@ -31,20 +29,5 @@ class LicenseUsage < ApplicationRecord
 
   def self.ransackable_associations(_auth_object = nil)
     %w[client campaign user]
-  end
-
-  def increase_license_used_number
-    license.increment!(:used_number)
-    if license.in_overuse?
-      client.license_msg[license_id] = I18n.t('activerecord.errors.models.license.overuse',
-                                              name: license.decorate.display_name)
-    end
-
-    if license.is_project_specific? && project.present?
-      project_license = license.project_licenses.enabled.find_by!(project: project)
-      project_license&.increment!(:used_number)
-    end
-
-    Licenses::OveruseJob.perform_later(license.id) if license.used_overuse_number == 1
   end
 end

@@ -1,16 +1,19 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# Check if translation changes were made
-changes_file = 'translation_changes.txt'
-
+# Check if translation changes were made by checking git status
 github_output = ENV.fetch('GITHUB_OUTPUT', nil)
-if File.exist?(changes_file) && File.read(changes_file).strip == 'true'
+
+# Check if there are any changes in locale files using git
+changed_files = `git status --porcelain config/locales/`.strip
+
+if !changed_files.empty?
   # Output for GitHub Actions
   if github_output
     File.open(github_output, 'a') { |f| f.puts 'changes_made=true' }
   end
-  puts 'Placeholder translation files were generated'
+  puts 'Translation files were generated'
+  puts "Changed files:\n#{changed_files}"
 else
   # Output for GitHub Actions
   if github_output

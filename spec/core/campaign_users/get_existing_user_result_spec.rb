@@ -18,10 +18,6 @@ describe CampaignUsers::GetExistingUserResult do
     { 'assessmentDetails' => [{ 'assessmentId' => '1', 'formId' => '2', 'status' => 'Completed' }] }
   end
 
-  before(:each) do
-    allow(Licenses::Use).to receive(:call!)
-  end
-
   it 'returns the users_result within the validity period' do
     user_assessment = create(:user_assessment, assessment: assessment, subject: user, evaluator: user,
 completed_at: 10.days.ago)

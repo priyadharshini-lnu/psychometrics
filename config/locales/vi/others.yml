@@ -837,6 +837,10 @@ vi:
           reply_to_reply: không thể trả lời câu trả lời (chỉ cho phép một cấp độ lồng nhau)
         user_idp_plan:
           no_active_plan: Không tìm thấy gói IDP đang hoạt động
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: Chỉ các đánh giá thuộc loại 'psycometrics' và 'org survey' mới có thể được chọn.
   admin_jobs:
     attrs:
       operations:
@@ -2193,16 +2197,16 @@ vi:
       password_complexity:
         digit:
           one: Phải chứa ít nhất một chữ số.
-          other: Phải chứa ít nhất 1 ký tự số, 1 ký tự chữ cái ( <x>count</x> )
+          other: Phải chứa ít nhất 1 ký tự số, 1 ký tự chữ cái ( %{count} )
         lower:
           one: Phải chứa ít nhất một chữ cái viết thường.
-          other: Phải chứa ít nhất 1 ký tự đặc biệt ( <x>count</x> ) và chữ thường.
+          other: Phải chứa ít nhất 1 ký tự đặc biệt ( %{count} ) và chữ thường.
         symbol:
           one: Phải chứa ít nhất một dấu câu hoặc ký hiệu.
-          other: 'Phải chứa ít nhất các dấu câu hoặc ký hiệu sau: <x>count</x> '
+          other: 'Phải chứa ít nhất các dấu câu hoặc ký hiệu sau: %{count} '
         upper:
           one: Phải chứa ít nhất một chữ cái viết hoa.
-          other: Phải chứa ít nhất 1 ký tự đặc biệt ( <x>count</x> ) và 1 chữ cái viết hoa.
+          other: Phải chứa ít nhất 1 ký tự đặc biệt ( %{count} ) và 1 chữ cái viết hoa.
       taken_in_past: Không được trùng với bất kỳ mật khẩu nào đã sử dụng trước đó.
     module_error: Có lỗi xảy ra với module này, vui lòng liên hệ với ban quản trị.
     module_error_editor: Có lỗi xảy ra với module này, vui lòng kiểm tra cài đặt module.
@@ -3018,13 +3022,10 @@ vi:
     client_usage: Sử dụng khách hàng
     enabled: Kích hoạt
     end_date: Ngày kết thúc
-    not_enough_idp_license: Không đủ giấy phép IDP, vui lòng liên hệ với quản trị viên
     not_enough_license: "'%{client_name}' không có đủ giấy phép cho '%{report_name}'"
     not_enough_license_count: Không đủ giấy phép, vui lòng liên hệ với quản trị viên
-    not_enough_proctoring_credits: Không đủ tín chỉ để bắt đầu buổi giám sát
     number: Số
     overuse_number: Phụ cấp sử dụng quá mức
-    project_limit_reached: Đã đạt đến giới hạn sử dụng cho '%{license_name}', vui lòng liên hệ với quản trị viên
     project_specific: Dự án cụ thể
     project_specific_license: Giấy phép cụ thể của dự án
     project_usage: Sử dụng dự án
@@ -3073,7 +3074,7 @@ vi:
     footer:
       regards: Trân trọng,
       team_name: Đội Lighthouse
-      technical_support: Đối với bất kỳ vấn đề kỹ thuật nào, vui lòng liên hệ với chúng tôi qua email <x>email</x> và chúng tôi sẽ phản hồi trong vòng 24 giờ.
+      technical_support: Đối với bất kỳ vấn đề kỹ thuật nào, vui lòng liên hệ với chúng tôi qua email %{email} và chúng tôi sẽ phản hồi trong vòng 24 giờ.
     from: Doanh nghiệp nhân tài
     idp:
       manager_unread_comments:

@@ -26,7 +26,7 @@ const applyPagination = (pages, module, pagination) => {
 
 const Preview = ({
   loaded, rstore, moduleOverrides, pdfExport, skipLogic, dashboard,
-  allowEdit, allowApprove, flipContent,
+  allowEdit, allowApprove, flipContent, aiTranslations,
 }) => {
   const forceUpdate = useForceUpdate()
   const visiblePagesRef = useRef(null)
@@ -71,9 +71,10 @@ const Preview = ({
           pdfExport={pdfExport}
           dashboard={dashboard}
           insertPaginationPage={insertPaginationPage}
+          aiTranslations={aiTranslations}
         />
       ))}
-      {!pdfExport && (
+      {!pdfExport && _.isEmpty(aiTranslations) && (
         <ModuleOverrides
           allowEdit={allowEdit}
           allowApprove={allowApprove}

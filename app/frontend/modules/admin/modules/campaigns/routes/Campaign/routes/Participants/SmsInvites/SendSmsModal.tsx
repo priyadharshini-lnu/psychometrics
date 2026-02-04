@@ -139,9 +139,8 @@ const SendSmsModalComponent: React.FC<Props> = ({
           <Form.Item name={['filters', 'idIn']} label={I18n.t('administration.sms_invites.send_sms.fields.users')}>
             <Select
               mode="multiple"
-              filterOption={false}
-              onSearch={handleSearchUsers}
-              notFoundContent={searching ? <Spin size="small" /> : null}
+              showSearch={{ filterOption: false, onSearch: handleSearchUsers }}
+              notFoundContent={searching ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
               options={options}
             />
           </Form.Item>

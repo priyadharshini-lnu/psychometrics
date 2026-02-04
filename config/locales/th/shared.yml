@@ -9,6 +9,8 @@ th:
     agree_and_continue: ตกลงและดําเนินการต่อ
     archive: เก็บถาวร
     archived: เก็บเข้าคลัง
+    asset_not_present: ไม่มีสินทรัพย์
+    audio: เสียง
     authentication_failed: การรับรองความถูกต้องล้มเหลว โปรดลองอีกครั้ง
     basic: พื้นฐาน
     campaign_id: รหัสแคมเปญ
@@ -16,18 +18,26 @@ th:
     change_password: เปลี่ยนรหัสผ่าน
     clear_filters: เคลียร์ตัวกรอง
     collaborative_learning: การเรียนรู้ร่วมกัน
+    completed: เสร็จสมบูรณ์
     confirm: ยืนยัน
     continue: ต่อเนื่อง
+    copy: คัดลอก
     created_at: สร้างเมื่อ
     created_date: วันที่สร้าง
     decline: ปฏิเสธ
     description: คำอธิบาย
+    download: ดาวน์โหลด
     edit: แก้ไข
     edited: ใหม่
     email: อีเมล
     export: ส่งออก
+    failed: ล้มเหลว
     first_name: ชื่อจริง
     formal_learning: การเรียนรู้อย่างเป็นทางการ
+    generate: สร้าง
+    generate_transcription_confirm_content: คุณแน่ใจหรือไม่ว่าคุณต้องการสร้างการถอดความสำหรับการตอบสนองสื่อนี้?
+    generate_transcription_confirm_title: สร้างการถอดความ
+    generating: การสร้าง
     group_question_max_validation_error: แต่ละกลุ่มสามารถมีไอเท็มได้สูงสุด {{max}} รายการ
     group_question_min_validation_error: แต่ละกลุ่มต้องมีอย่างน้อย {{min}} รายการ
     id: รหัส
@@ -36,18 +46,26 @@ th:
     last_name: นามสกุล
     learning_on_the_job_label: การเรียนรู้ในการทํางาน
     login: เข้าสู่ระบบ
+    media_question_transcriptions: ถอดความคำถามจากสื่อ
     modified_by: แก้ไขโดย
     modified_date: วันที่แก้ไข
     more_actions: การดําเนินการเพิ่มเติม
     mte_logo_alt_text: โลโก้ Mercer Talent Enterprise
+    na_text: ไม่เกี่ยวข้อง
     name: ชื่อ
     new: ใหม่
+    no_results_found: ไม่พบผลลัพธ์
+    not_requested: ยังไม่ได้ร้องขอ
     ok: ตกลง
+    pending: รอดำเนินการ
+    processing: การประมวลผล
+    question_id: รหัสคำถาม
     recording_consent_notice: เซสชั่นการประชุมนี้จะถูกบันทึกไว้ การเข้าร่วมการประชุมนี้ถือเป็นความยินยอมของคุณที่จะบันทึกไว้
     recording_consent_proceed_question: คุณตกลงที่จะดําเนินการประชุมที่บันทึกไว้หรือไม่?
     recording_consent_title: การแจ้งความยินยอมในการบันทึก
     remove: เอาออก
     removed: ถูก เอา ออก
+    replace: แทนที่
     reset_password: รีเซ็ตรหัสผ่าน
     rte_paste_content_exceeds_char_limit: ข้อความเกินขีดจํากัดอักขระของ {{maxCharacterLimit}} และไม่สามารถวางได้
     rte_paste_content_exceeds_word_limit: ข้อความเกินขีดจํากัดของคําที่ {{maxWordLimit}} และไม่สามารถวางได้
@@ -62,7 +80,13 @@ th:
         total: 'รวม : 1'
     terms_conditions_privacy: คำชี้แจงความเป็นส่วนตัว
     tools: เครื่อง มือ
+    transcription: การถอดเสียง
+    transcription_already_requested: การถอดเสียงได้รับการร้องขอแล้วหรือกำลังดำเนินการอยู่
+    transcription_not_enabled: การถอดเสียงไม่ได้รับการเปิดใช้งานสำหรับการตอบสนองของสื่อ
     transcriptions: การถอดความ
+    try_again: ลองอีกครั้ง
     tte_terms_and_condition: เงื่อนไขและความเป็นส่วนตัว
     type: ประเภท
     update: อัปเดต
+    video: วิดีโอ
+    view: มุมมอง

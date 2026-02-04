@@ -11,8 +11,9 @@ import {
   Pagination,
   Divider,
   Empty,
+  GetProp,
+  TableProps as AntTableProps,
 } from 'antd'
-import { FixedType } from 'rc-table/lib/interface'
 import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import {
@@ -49,6 +50,8 @@ import { useDeepCompareEffect } from '~/hooks/useDeepCompareEffect'
 import { CountDisplay } from '~/components/CountDisplay'
 import { isRequestInProgress } from '~/core/request'
 import { useWindowSize } from '~/hooks/useWindowSize'
+
+type FixedType = GetProp<GetProp<AntTableProps, 'columns'>[number], 'fixed'>
 
 const { I18n } = window
 

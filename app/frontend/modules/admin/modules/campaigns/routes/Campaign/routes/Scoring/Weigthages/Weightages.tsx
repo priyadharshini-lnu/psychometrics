@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import {
   Button, Flex, Form, Input, Space, Table, App,
 } from 'antd'
-import { PageHeader } from '@ant-design/pro-layout'
+import { PageHeader } from '@ant-design/pro-components'
 import _ from 'lodash'
 import { ColumnProps } from 'antd/es/table'
 import styles from './styles.less'

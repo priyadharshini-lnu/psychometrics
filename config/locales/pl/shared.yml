@@ -9,6 +9,8 @@ pl:
     agree_and_continue: Zgadzam się i kontynuuj
     archive: Archiwuj
     archived: Archiwizowane
+    asset_not_present: Brak zasobów
+    audio: Audio
     authentication_failed: Uwierzytelnianie się nie powiodło. Proszę, spróbuj ponownie.
     basic: Podstawowy
     campaign_id: Identyfikacja kampanii
@@ -16,18 +18,26 @@ pl:
     change_password: Zmień hasło
     clear_filters: Wyczyść filtry
     collaborative_learning: Uczenie się zespołowe
+    completed: Ukończone
     confirm: Potwierdź
     continue: Kontynuować
+    copy: Kopiuj
     created_at: Utworzono w
     created_date: Data utworzenia
     decline: Upadek
     description: Opis
+    download: Pobierz
     edit: Edytuj
     edited: Nowy
     email: E-mail
     export: Eksport
+    failed: Niepowodzenie
     first_name: Imię
     formal_learning: Uczenie się formalne
+    generate: Generuj
+    generate_transcription_confirm_content: Czy na pewno chcesz wygenerować transkrypcję tej odpowiedzi medialnej?
+    generate_transcription_confirm_title: Wygeneruj transkrypcję
+    generating: Generowanie
     group_question_max_validation_error: Każda grupa może zawierać co najwyżej {{max}} elementów.
     group_question_min_validation_error: Każda grupa musi zawierać co najmniej {{min}} elementów.
     id: ID
@@ -36,18 +46,26 @@ pl:
     last_name: Nazwisko
     learning_on_the_job_label: Nauka w pracy
     login: Logowanie
+    media_question_transcriptions: Transkrypcje pytań mediów
     modified_by: Zmodyfikowane przez
     modified_date: Data modyfikacji
     more_actions: Więcej akcji
     mte_logo_alt_text: Logo Mercer Talent Enterprise
+    na_text: Nie dotyczy
     name: Nazwa
     new: Nowy
+    no_results_found: Nie znaleziono żadnych wyników
+    not_requested: Jeszcze nie zgłoszone
     ok: Ok
+    pending: W toku
+    processing: Przetwarzanie
+    question_id: Numer pytania
     recording_consent_notice: Sesja tego spotkania będzie nagrywana. Udział w tym spotkaniu oznacza zgodę na nagrywanie.
     recording_consent_proceed_question: Czy zgadzasz się na kontynuowanie nagranego spotkania?
     recording_consent_title: Zawiadomienie o zgodzie na nagranie
     remove: Usuń
     removed: Usunięte
+    replace: Zastąp
     reset_password: Zresetuj hasło
     rte_paste_content_exceeds_char_limit: Tekst przekracza limit znaków {{maxCharacterLimit}} i nie może być wklejony.
     rte_paste_content_exceeds_word_limit: Tekst przekracza limit słów {{maxWordLimit}} i nie może być wklejony.
@@ -62,7 +80,13 @@ pl:
         total: 'Ogółem : 1'
     terms_conditions_privacy: Oświadczenie o ochronie prywatności
     tools: Narzędzia
+    transcription: Transkrypcja
+    transcription_already_requested: Transkrypcja już zamówiona lub w trakcie realizacji
+    transcription_not_enabled: Transkrypcja nie jest włączona dla odpowiedzi mediów.
     transcriptions: Transkrypcje
+    try_again: Spróbuj ponownie
     tte_terms_and_condition: Warunki i prywatność
     type: Typ
     update: Odarchiwizuj
+    video: Wideo
+    view: Widok

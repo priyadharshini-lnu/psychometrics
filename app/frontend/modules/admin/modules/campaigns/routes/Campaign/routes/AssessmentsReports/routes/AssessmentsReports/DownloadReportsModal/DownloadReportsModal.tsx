@@ -16,7 +16,7 @@ import { RangeValueType } from '~/interfaces/Antd'
 
 interface FormValues {
   includeInactiveUsers: boolean
-  dateRange: RangeValueType<dayjs.Dayjs>
+  dateRange: RangeValueType
 }
 
 interface ReportLanguageValues {
@@ -48,6 +48,7 @@ export default function DownloadReportsModal ({
 
   const handleDownload = (values: FormValues & ReportLanguageValues) => {
     const { dateRange, includeInactiveUsers, ...reportLanguages } = values
+    if (!dateRange) return
     const [startDate, endDate] = dateRange
     if (!startDate || !endDate) return
     const convertedReports = mapValues(reportLanguages, language => [language])

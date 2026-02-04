@@ -28,8 +28,8 @@ export const MultilineScoring: FC<Props> = ({ lines, onChange, ...props }) => {
       content={<ChoicesMultiedit lines={lines} onChange={handleChange} {...props} />}
       placement="left"
       trigger="click"
-      visible={multiedit}
-      onVisibleChange={v => setMultiedit(v)}
+      open={multiedit}
+      onOpenChange={v => setMultiedit(v)}
     >
       <Button type="primary">
         <UnorderedListOutlined />

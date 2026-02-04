@@ -57,6 +57,7 @@ export const fetch = (
 })
 
 export const FETCH_SINGLE = 'resource/projects/assesssors/FETCH'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const FetchSingleResponseTR = AssessorTR
 type FetchSingleResponse = t.TypeOf<typeof FetchSingleResponseTR>
 type FetchSingleAction = ApiActionResponse<FetchSingleResponse>

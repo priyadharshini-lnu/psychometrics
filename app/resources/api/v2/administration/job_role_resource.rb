@@ -25,9 +25,12 @@ class Api::V2::Administration::JobRoleResource < Api::V2::Administration::BaseRe
   end
 
   def self.records(opts = {})
+    project_id = opts[:context][:project]&.id ||
+                 opts[:context][:params].dig('query', 'project_id')&.to_i
+
     ::Api::Administration::JobRolePolicy::Scope.new(
       opts[:context][:user], ::JobRole,
-      { project_id: opts[:context][:project]&.id,
+      { project_id: project_id,
         filter: opts[:context][:filter] }
     ).resolve.
       includes(:translations)

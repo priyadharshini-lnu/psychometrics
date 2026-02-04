@@ -1,0 +1,46 @@
+---
+ru:
+  enduser:
+    add_idp_plan_note: Добавить примечание...
+    add_idp_plan_rejection_reason: Добавить причину...
+    ai_idp_assistant_response_no: Нет
+    ai_idp_assistant_response_upload_different_document: Я хочу загрузить другой документ.
+    ai_idp_assistant_response_yes_proceed_with_plan_creation: Да, приступайте к созданию плана.
+    ai_idp_retake_step_chat_hint_no_document: Вы можете возобновить чат, чтобы поделиться более подробной информацией, и я сделаю все возможное, чтобы вам помочь.
+    ai_idp_summary_hint_no_document: С вашего разрешения, если вы согласитесь, я могу составить для вас план развития. Если нет, вы можете перезапустить чат, чтобы поделиться более подробной информацией.
+    approve_idp_plan: Утвердить план
+    bookings: Бронирование
+    campaign: Кампания
+    development: Разработка
+    direct_reportees: Непосредственные подчиненные
+    download_pdf: Скачать PDF
+    home: Главная
+    idp_loading_fifth_step: Извлечение действий разработки из шаблона
+    idp_loading_first_step: Анализ вашего отчета об оценке
+    idp_loading_fourth_step: Выбор соответствующих навыков
+    idp_loading_second_step: Определение ваших предпочтений, упомянутых в чате
+    idp_loading_secondary_text: Не стесняйтесь уйти. Ваш план будет готов, когда вы вернетесь.
+    idp_loading_sixth_step: Создание действий по развитию
+    idp_plan_approval_note: Примечание об утверждении
+    idp_retake_steps_continue_with_this_information: Продолжить с этой информацией
+    insights: Инсайты
+    lighthouse_assistant: Помощник маяка
+    max_word_limit: Должно быть не более %{max} слов
+    min_word_limit: Должно быть не менее %{min} слов
+    my_plan: Мой план
+    profile: Профиль
+    profile_details: Подробности
+    question_counter: Вопрос %{current} из %{total}
+    reason_for_idp_plan_rejection: Причина отказа
+    recorded: записанный
+    recording: запись
+    reject_idp_plan: Отклонить план
+    request_retry_message: Вы не подключены к Интернету. Ваши ответы не могут быть сохранены, но будут сохранены автоматически, как только вы снова подключитесь к Интернету. Пожалуйста, не обновляйте и не закрывайте страницу.
+    saving_video_text: Сохранение видео... Пожалуйста, не закрывайте и не обновляйте браузер
+    selected_count: "%{count} выбранный"
+    skill_type: Тип навыка
+    start_campaign_message_proctored: Это контролируемая кампания, пожалуйста, нажмите кнопку «%{buttonText}» (Начать), чтобы приступить к выполнению заданий.
+    start_campaign_message_timed: Это ограниченная по времени кампания, пожалуйста, нажмите кнопку «%{buttonText}», чтобы начать участие в мероприятиях.
+    start_campaign_message_timed_proctored: Это кампания с ограниченным временем и под наблюдением, пожалуйста, нажмите кнопку «%{buttonText}» (Начать кампанию), чтобы приступить к действиям.
+    status_unknown: Статус неизвестен
+    tasks: Задачи

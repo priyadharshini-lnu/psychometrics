@@ -1,6 +1,13 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 
+import {
+  Button,
+  Card,
+  Input,
+  Typography,
+} from 'antd'
+import { DownloadOutlined, EyeInvisibleOutlined, EyeOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RootState } from '~/modules/survey/core/rootReducers'
 import { MediaResponse } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 import { PreviewModel } from '~/modules/survey/interfaces/questions/AudioResponse'
@@ -17,6 +24,7 @@ import {
 
 import AudioRecorder from '~/modules/survey/components/AudioRecorder'
 import { SafeHTML } from '~/components/SafeHTML'
+import { downloadTextFile } from '~/utils/downloadTextFile'
 
 interface OwnProps {
   model: PreviewModel
@@ -54,12 +62,22 @@ const PreviewComponent: FC<Props> = ({
   removeQuestionInProgress,
   markQuestionInProgress,
 }) => {
+  const [showTranscription, setShowTranscription] = useState(false)
+
   const handleUploadSuccess = (data: MediaResponse) => {
     addMediaResponse(data)
   }
 
   const handleDiscardRecording = () => {
     removeMediaResponse(model.id)
+  }
+
+  const handleDownloadTranscription = () => {
+    if (!mediaResponse?.transcriptionText) return
+    downloadTextFile(
+      mediaResponse.transcriptionText,
+      `transcription_${model.id}.txt`,
+    )
   }
 
   const isPreview = type === 'preview_assessment'
@@ -82,6 +100,40 @@ const PreviewComponent: FC<Props> = ({
         markQuestionInProgress={markQuestionInProgress}
         removeQuestionInProgress={removeQuestionInProgress}
       />
+      {mediaResponse?.transcriptionText && (
+        <Card>
+          <div>
+            <Typography.Text strong>
+              {I18n.t('shared.transcriptions')}
+              {': '}
+            </Typography.Text>
+            <Button
+              className="ms-2"
+              type="text"
+              icon={showTranscription ? <EyeInvisibleOutlined /> : <EyeOutlined />}
+              onClick={() => setShowTranscription(!showTranscription)}
+            >
+              {I18n.t('shared.view')}
+            </Button>
+            <Button
+              className="ms-2"
+              type="text"
+              icon={<DownloadOutlined />}
+              onClick={handleDownloadTranscription}
+            >
+              {I18n.t('shared.download')}
+            </Button>
+          </div>
+          {showTranscription && (
+            <Input.TextArea
+              value={mediaResponse.transcriptionText}
+              readOnly
+              autoSize={{ minRows: 2, maxRows: 6 }}
+              className="mt-4"
+            />
+          )}
+        </Card>
+      )}
     </div>
   )
 }

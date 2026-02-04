@@ -13,10 +13,6 @@ describe Campaigns::Users::Create do
   let!(:campaign) { create(:campaign) }
   let!(:current_user) { create(:user) }
 
-  before(:each) do
-    allow(Licenses::Use).to receive(:call!)
-  end
-
   it "creates user record if user doesn't exists in the project" do
     expect do
       described_class.call!(form, campaign, current_user)
@@ -46,6 +42,7 @@ describe Campaigns::Users::Create do
   end
 
   it 'adds audit log fro user, user_report and user_assessment' do
+    allow(LicenseManager::Deductor).to receive(:call!)
     assessments = create_list(:assessment, 2)
     reports = create_list(:report, 2, assessments: assessments)
     campaign_report1 = create(:campaign_report, campaign: campaign, report: reports[0])
@@ -124,6 +121,7 @@ describe Campaigns::Users::Create do
     end
 
     it 'calls InvitationMailer if user are created through registration' do
+      allow(LicenseManager::Deductor).to receive(:call!)
       expect(InvitationMailer).to receive_message_chain(:invite, :deliver_later)
 
       described_class.call!(form, campaign)
@@ -158,7 +156,7 @@ describe Campaigns::Users::Create do
 
     it 'calls Idp::AssignUserIdp' do
       expect(described_class.call(form, campaign, current_user)[:insufficient_license]).to eq(
-        'Not enough IDP licenses, please contact administrator'
+        I18n.t('licenses.not_enough_license', client_name: campaign.client.name, report_name: 'Idp')
       )
     end
   end

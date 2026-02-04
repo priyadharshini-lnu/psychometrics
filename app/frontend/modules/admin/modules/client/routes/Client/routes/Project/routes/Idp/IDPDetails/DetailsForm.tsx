@@ -259,10 +259,8 @@ const IDPDetailsForm = ({
                 label={I18n.t('administration.idp.skill_gap_report')}
               >
                 <Select
-                  showSearch
-                  onSearch={debouncedFetchReports}
-                  notFoundContent={isReportLoading('fetch') ? <Spin size="small" /> : null}
-                  filterOption={false}
+                  showSearch={{ filterOption: false, onSearch: debouncedFetchReports }}
+                  notFoundContent={isReportLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
                   placeholder={I18n.t('administration.idp.select_skill_gap_report')}
                 >
                   {reports.map(({ id, name }) => (
@@ -315,14 +313,19 @@ const IDPDetailsForm = ({
                     >
                       <Select
                         disabled={!aiAssistedIdpFeatureEnabled}
-                        showSearch
-                        onSearch={(value) => {
-                          fetchIdpAssistants({
-                            apiConfig: { filter: { filterable_fields: value } },
-                          })
+                        showSearch={{
+                          filterOption: false,
+                          onSearch: (value) => {
+                            fetchIdpAssistants({
+                              apiConfig: { filter: { filterable_fields: value } },
+                            })
+                          },
                         }}
-                        notFoundContent={isIdpAssistantsLoading('fetch') ? <Spin size="small" /> : null}
-                        filterOption={false}
+                        notFoundContent={
+                          isIdpAssistantsLoading('fetch')
+                            ? <Spin size="small" />
+                            : I18n.t('shared.no_results_found')
+                        }
                       >
                         {getIdpAssistants().map(({ id, name }) => (
                           <Select.Option key={id} value={id}>{name}</Select.Option>
@@ -336,14 +339,19 @@ const IDPDetailsForm = ({
                     >
                       <Select
                         disabled={!aiAssistedIdpFeatureEnabled}
-                        showSearch
-                        onSearch={(value) => {
-                          fetchDocumentAssistants({
-                            apiConfig: { filter: { filterable_fields: value } },
-                          })
+                        showSearch={{
+                          filterOption: false,
+                          onSearch: (value) => {
+                            fetchDocumentAssistants({
+                              apiConfig: { filter: { filterable_fields: value } },
+                            })
+                          },
                         }}
-                        notFoundContent={isDocumentAssistantsLoading('fetch') ? <Spin size="small" /> : null}
-                        filterOption={false}
+                        notFoundContent={
+                          isDocumentAssistantsLoading('fetch')
+                            ? <Spin size="small" />
+                            : I18n.t('shared.no_results_found')
+                        }
                       >
                         {getDocumentAssistants().map(({ id, name }) => (
                           <Select.Option key={id} value={id}>{name}</Select.Option>
@@ -356,14 +364,19 @@ const IDPDetailsForm = ({
                     >
                       <Select
                         disabled={!aiAssistedIdpFeatureEnabled}
-                        showSearch
-                        onSearch={(value) => {
-                          fetchDocumentAssistants({
-                            apiConfig: { filter: { filterable_fields: value } },
-                          })
+                        showSearch={{
+                          filterOption: false,
+                          onSearch: (value) => {
+                            fetchDocumentAssistants({
+                              apiConfig: { filter: { filterable_fields: value } },
+                            })
+                          },
                         }}
-                        notFoundContent={isDocumentAssistantsLoading('fetch') ? <Spin size="small" /> : null}
-                        filterOption={false}
+                        notFoundContent={
+                          isDocumentAssistantsLoading('fetch')
+                            ? <Spin size="small" />
+                            : I18n.t('shared.no_results_found')
+                        }
                       >
                         {getDocumentAssistants().map(({ id, name }) => (
                           <Select.Option key={id} value={id}>{name}</Select.Option>

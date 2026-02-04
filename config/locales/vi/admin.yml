@@ -1,6 +1,7 @@
 ---
 vi:
   admin:
+    accept_na_values: Chấp nhận giá trị N/A
     add_admin: Thêm quản trị viên
     add_admin_role: Thêm vai trò quản trị viên
     add_campaign_admin: Thêm quản trị viên chiến dịch
@@ -34,14 +35,23 @@ vi:
     ai_assistants_test_render: Kết xuất thử nghiệm
     ai_assistants_test_render_tooltip: Kiểm tra mẫu lời nhắc của bạn với dữ liệu chiến dịch để kiểm tra nội dung sẽ được gửi đến trợ lý AI.
     ai_assisted_idp_feature_disabled: Tính năng AI Assisted IDP đã bị vô hiệu hóa cho dự án này.
+    ai_notice: Các phần được đánh dấu đã được dịch bằng trí tuệ nhân tạo (AI) và có thể chứa sai sót.
+    ai_translation: Dịch thuật bằng Trí tuệ nhân tạo
+    all_corner_rounded: Tất cả các góc đều được bo tròn.
     api_keys: Khóa API
+    apply_to_existing_users: Áp dụng thay đổi này cho các người dùng hiện có trong chiến dịch này.
     assessments: Đánh giá
+    assessments_not_mhs: Tất cả các đánh giá phải là loại MHS.
     assessments_reports: Đánh giá & Báo cáo
     assessor_dashboard: Bảng điều khiển đánh giá viên
     assessor_workshops: Trung tâm đánh giá
     assessors: Đánh giá viên
+    assistant_toolbar_failed: Không thể tạo ra kết quả hợp lệ sau nhiều lần thử.
+    assistant_toolbar_not_a_valid_operation: 'Hoạt động không xác định: %{operation}.'
+    assistant_validation_failed: Không thể tạo ra kết quả hợp lệ sau nhiều lần thử.
     audit_logs: Nhật ký kiểm tra
     audit_reports: Báo cáo kiểm toán
+    auto_placeholder: Tự động
     availability: Sẵn sàng
     available_languages: Báo cáo có sẵn bằng ngôn ngữ
     back_to_main: Menu chính
@@ -50,6 +60,19 @@ vi:
     campaign_assessment_actions_disable_caching: Tắt bộ nhớ đệm đánh giá
     campaign_assessment_actions_enable_caching: Bật bộ nhớ đệm đánh giá
     campaign_assessment_column_caching_enabled: Đã bật bộ nhớ đệm đánh giá
+    campaign_assessment_mhs_confidence_interval: Khoảng tin cậy
+    campaign_assessment_mhs_confidence_interval_update_success: Khoảng tin cậy đã được cập nhật thành công.
+    campaign_assessment_mhs_invalid_confidence_interval: Khoảng tin cậy phải là 0 hoặc 1.
+    campaign_assessment_mhs_invalid_leadership_bar: Thanh lãnh đạo phải là 0 hoặc 1
+    campaign_assessment_mhs_invalid_norm_option: Tùy chọn Norm phải nằm trong khoảng từ 0 đến 3.
+    campaign_assessment_mhs_leadership_bar: Thanh lãnh đạo
+    campaign_assessment_mhs_leadership_bar_update_success: Thanh công cụ Lãnh đạo đã được cập nhật thành công.
+    campaign_assessment_mhs_norm_option: Tùy chọn tiêu chuẩn
+    campaign_assessment_mhs_norm_option_form_select: Chọn tùy chọn tiêu chuẩn
+    campaign_assessment_mhs_norm_option_update_success: Tùy chọn Norm đã được cập nhật thành công.
+    campaign_assessment_mhs_norm_region: Vùng Norm
+    campaign_assessment_mhs_norm_region_form_select: Chọn Khu vực tiêu chuẩn
+    campaign_assessment_mhs_norm_region_update_success: Khu vực Norm đã được cập nhật thành công.
     campaign_assessment_modals_disable_caching_content: Bạn có chắc chắn muốn tắt bộ nhớ đệm cho đánh giá này không?
     campaign_assessment_modals_disable_caching_successfully: Bộ nhớ đệm đã bị vô hiệu hóa cho đánh giá này.
     campaign_assessment_modals_disable_caching_title: Tắt bộ nhớ đệm đánh giá?
@@ -58,6 +81,7 @@ vi:
     campaign_assessment_modals_enable_caching_title: Bật bộ nhớ đệm đánh giá?
     campaign_factors: Các yếu tố chiến dịch
     campaign_templates: Mẫu chiến dịch
+    campaign_user_job_roles_cannot_be_same: Vị trí công việc mục tiêu phải khác với vị trí công việc hiện tại.
     campaigns: Chiến dịch
     client: Khách hàng thuê nhà
     client_admins: Quản trị viên khách hàng
@@ -70,6 +94,7 @@ vi:
     confirm_remove_admin: Bạn có chắc chắn muốn xóa người dùng quản trị có email '%{email}' không?
     country: Quốc gia
     create_client: Tạo khách hàng
+    current_job_role: Vị trí công việc hiện tại
     dashboard: Bảng điều khiển
     dashboards: Dashboards
     data_reports: Báo cáo dữ liệu
@@ -84,19 +109,26 @@ vi:
     done_tooltip: Không thể gửi thêm đánh giá cho người dùng này vì đánh giá của người dùng này được đánh dấu là đã thực hiện bởi %{marked_by}
     edit_campaign_admin: Chỉnh sửa quản trị viên chiến dịch
     edit_client_admin: Chỉnh sửa quản trị viên khách hàng
+    edit_job_roles: Chỉnh sửa vai trò công việc
+    edit_level: Chỉnh sửa cấp độ
     edit_permission_denied: Bạn không có quyền chỉnh sửa quản trị viên '%{name}'
     edit_project_admin: Chỉnh sửa quản trị viên dự án
     edit_threesixty_campaign_admin: Chỉnh sửa quản trị viên chiến dịch
     empty_csv_file: Tệp CSV không chứa bất kỳ dữ liệu nào.
+    enable_enhance_with_ai_client_level: Vui lòng kích hoạt tính năng "Enhance with AI" ở cấp độ khách hàng.
+    enable_transcription: Bật tính năng chuyển văn bản
+    enhance_with_ai_requires_ai_assistants: Để sử dụng tính năng "Enhance with AI", bạn cần kích hoạt tính năng "AI Assistants".
     evaluation_status: Trạng thái đánh giá
     evaluation_status_not_done: Trạng thái đánh giá không phải là "Xong" đối với một hoặc nhiều đối tượng được chọn. Hãy đảm bảo rằng tất cả người dùng được chọn đã hoàn thành đánh giá hoặc đánh dấu là xong.
     export_admin_roles_permissions: Xuất vai trò và quyền của quản trị viên
+    feature_enhance_with_ai: Nâng cao với Trí tuệ nhân tạo (AI)
     feature_flags: Cờ tính năng
     fill_empty_score_msg: Điền vào tất cả các điểm cuối cùng trước khi lưu.
-    final_score_empty_msg: Điểm cuối cùng không thể trống.
+    final_score_empty_err_msg: Kết quả cuối cùng của "%{factor_name}" không được để trống.
     idp_plan_reset_success: Kế hoạch đã được đặt lại thành công
     idp_templates: Mẫu IDP
     import_ai_artifacts: Nhập hiện vật AI
+    import_csv_assessment_group_error: 'Dòng %{index}: Người dùng có địa chỉ email %{email} đã được mời tham gia ''%{workshopInviteName}''.'
     import_csv_error: 'Hàng %{index}: người dùng có %{email} email không có trong chiến dịch này'
     import_csv_parsing_error: 'Lỗi phân tích cú pháp CSV: %{message}'
     import_description: Nhập người dùng từ tệp CSV. Mỗi hàng phải chứa một địa chỉ email.
@@ -121,11 +153,27 @@ vi:
     invalid_csv_header: CSV chứa tiêu đề không hợp lệ.
     job_roles: Vai trò công việc
     learning_from_others: Học tập hợp tác [20]
+    level: Cấp độ
+    level_apply: Đăng ký
+    level_guide: Hướng dẫn
+    level_shape: Hình dạng
+    level_validation_message: 'Phải là một trong các liên kết sau: %{values}'
     libraries: Thư viện phương tiện
     library_invalid_type: Mục Thư viện không hợp lệ
     licenses: Giấy phép
     manager_approval_required: Báo cáo cho %{user} yêu cầu sự chấp thuận của người quản lý trước khi tải xuống
+    max_value: Giá trị tối đa
     messages: Thư
+    mhs: Trường Trung học MHS
+    mhs_assessment: Đánh giá MHS
+    mhs_assessment_name: Tên đánh giá MHS
+    mhs_data_gatherer_id: Mã định danh của công cụ thu thập dữ liệu MHS
+    mhs_data_gathering_id: Mhs Thu thập dữ liệu ID
+    mhs_external_assessment_id: Mã đánh giá MHS
+    mhs_report_id: Mã báo cáo MHS
+    mhs_session_id: ID phiên làm việc MHS
+    min_value: Giá trị nhỏ nhất
+    missing_min_max_values: Giá trị tối thiểu và tối đa là bắt buộc.
     name_required: Tên là bắt buộc
     no_file_selected: Không có tệp nào được chọn
     no_notifications: Không có thông báo
@@ -140,6 +188,7 @@ vi:
     number: Số
     occupations: Nghề
     on_the_job: Trong công việc [70]
+    only_editable_on_create: Tùy chọn này chỉ có thể chỉnh sửa khi đang tạo.
     options: Tùy chọn
     participants: Tham gia
     permissions:
@@ -564,6 +613,7 @@ vi:
         view: Cảnh
         view_recordings: Xem bản ghi
     permissions_360_campaigns: Quyền truy cập dành riêng cho các chiến dịch 360
+    piped_text: Văn bản được truyền qua ống
     privacy: Sự riêng tư
     proficiency_level: Khóa API
     proficiency_levels: Mức độ thành thạo
@@ -645,11 +695,18 @@ vi:
     saml_settings: Cài đặt SAML
     scheduling: Lập kế hoạch
     scoring: Ghi
+    scoring_value_info: Điểm số phải nằm trong khoảng từ %{min} đến %{max}.
+    scoring_value_out_of_range_err_msg: Điểm số cho "%{factor_name}" phải nằm trong khoảng từ %{min} đến %{max}.
     search_admins: Quản trị viên tìm kiếm
+    search_job_role: Tìm kiếm vị trí công việc
     select_admin_role: Chọn vai trò quản trị viên
+    select_language_to_translate: Vui lòng chọn ngôn ngữ để dịch.
+    select_level: Chọn cấp độ
     send_email: Gửi email
     settings: Cài đặt
+    show_original: Hiển thị bản gốc
     show_submenu: Hiển thị menu phụ
+    show_translated: Hiển thị bản dịch
     siem: SIEM
     skill_aliases: Bí danh kỹ năng
     skills: Kỹ năng
@@ -661,12 +718,31 @@ vi:
     status_details: Chi tiết trạng thái
     structured_learning: Học chính thức [10]
     subdomain: Tên miền phụ
+    subject_part_of_other_invite: Người dùng có địa chỉ email %{user_email} đã được mời tham gia '%{workshop_invite_name}'.
+    target_job_role: Vị trí công việc mục tiêu
+    toolbar_ai_insight: Nhận định về Trí tuệ Nhân tạo
+    toolbar_ai_suggestion: Đề xuất của Trí tuệ nhân tạo
+    toolbar_result_generating: Đang tạo...
+    toolbar_text_copied: Đã sao chép vào khay nhớ tạm
+    toolbar_text_replaced: Nội dung đã được thay thế!
+    toolbar_what_changed_and_why: Điều gì đã thay đổi và tại sao
+    translate: Dịch
+    translate_to: Dịch sang
+    translate_with_ai: Dịch bằng trí tuệ nhân tạo
+    translated_from: Dịch từ
+    translated_to: 'Dịch sang:'
+    translated_with_ai_notice: Dịch bởi Trí tuệ nhân tạo
+    translation_assistant_not_configured: Trợ lý Dịch thuật chưa được cấu hình
+    update_success: "%{readableResourceName} đã được cập nhật thành công"
     upload_success: Tải lên thành công
     user_report_events: Sự kiện báo cáo người dùng
     users: Người dùng
     view_licenses: Xem giấy phép
     waiting: Chờ đợi
     workshops: Hội thảo
+    writing_assistant_not_configured: Trợ lý Viết chưa được cấu hình
+    x_axis_interval_label: Khoảng cách trục X
+    y_axis_interval_label: Khoảng cách trục tung
     year: Quốc gia
     yoodli_activity_id: ID hoạt động Yoodli
     yoodli_email_id: ID email ứng viên Yoodli

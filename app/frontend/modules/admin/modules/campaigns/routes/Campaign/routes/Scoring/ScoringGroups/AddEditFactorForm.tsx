@@ -3,7 +3,8 @@ import {
 } from 'react'
 import _ from 'lodash'
 import {
-  Drawer, Form, Input, Button, Select, Spin, Switch, Tree,
+  Drawer, Form, Input, InputNumber, Button, Select, Spin, Switch, Tree,
+  Checkbox,
 } from 'antd'
 import { Store } from 'antd/lib/form/interface'
 import { useParams } from 'react-router-dom'
@@ -181,23 +182,24 @@ export const AddEditFactorForm: FC<Props> = ({
         label={I18n.t('administration.scoring.assessment')}
       >
         <Select
-          showSearch
-          onSearch={(value) => {
-            fetchAssessments({
-              apiConfig: {
-                filter: {
-                  assessment_name_cont: value,
+          showSearch={{
+            filterOption: false,
+            onSearch: (value) => {
+              fetchAssessments({
+                apiConfig: {
+                  filter: {
+                    assessment_name_cont: value,
+                  },
                 },
-              },
-            })
+              })
+            },
           }}
           onSelect={(_, option) => {
             setDimensionId(option.assessment?.dimension?.id)
             form.setFieldValue('factor_id', undefined)
             setFactorsData([])
           }}
-          notFoundContent={isAssessmentsLoading('fetch') ? <Spin size="small" /> : null}
-          filterOption={false}
+          notFoundContent={isAssessmentsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
           allowClear
           options={getAssessments().map(({ assessment }) => ({
             value: assessment.id,
@@ -212,20 +214,21 @@ export const AddEditFactorForm: FC<Props> = ({
       >
         <Select
           disabled={!dimensionId}
-          showSearch
-          onSearch={value => fetchFactors({
-            apiConfig: {
-              filter: {
-                dimension_id_eq: dimensionId,
-                filterable_fields: value,
+          showSearch={{
+            filterOption: false,
+            onSearch: value => fetchFactors({
+              apiConfig: {
+                filter: {
+                  dimension_id_eq: dimensionId,
+                  filterable_fields: value,
+                },
               },
-            },
-          })}
+            }),
+          }}
           placeholder={!dimensionId
             ? I18n.t('administration.scoring.select_assessment_first')
             : I18n.t('administration.scoring.select_factor')}
-          notFoundContent={isFactorsLoading('fetch') ? <Spin size="small" /> : null}
-          filterOption={false}
+          notFoundContent={isFactorsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
           allowClear
           options={getFactors().map(factor => ({
             value: factor.id,
@@ -244,25 +247,30 @@ export const AddEditFactorForm: FC<Props> = ({
       <Fragment key="assessor_scoring">
         <Form.Item name="dimension_id" label={I18n.t('administration.scoring.dimension')}>
           <Select
-            showSearch
-            onSearch={(value) => {
-              fetchDimensions({
-                action: 'assessor_dimensions',
-                method: 'get',
-                apiConfig: {
-                  filter: {
-                    filterable_fields: value,
+            showSearch={{
+              filterOption: false,
+              onSearch: (value) => {
+                fetchDimensions({
+                  action: 'assessor_dimensions',
+                  method: 'get',
+                  apiConfig: {
+                    filter: {
+                      filterable_fields: value,
+                    },
                   },
-                },
-              }).then(setDimensions)
+                }).then(setDimensions)
+              },
             }}
             onSelect={(value) => {
               setDimensionId(value)
               form.setFieldValue('factor_id', undefined)
               setFactorsData([])
             }}
-            filterOption={false}
-            notFoundContent={isDimensionsLoading('get/assessor_dimensions') ? <Spin size="small" /> : null}
+            notFoundContent={
+              isDimensionsLoading('get/assessor_dimensions')
+                ? <Spin size="small" />
+                : I18n.t('shared.no_results_found')
+            }
             options={getDimensions().map(dimension => ({
               value: dimension.id,
               label: dimension.name,
@@ -275,20 +283,21 @@ export const AddEditFactorForm: FC<Props> = ({
         >
           <Select
             disabled={!dimensionId}
-            showSearch
-            onSearch={value => fetchFactors({
-              apiConfig: {
-                filter: {
-                  dimension_id_eq: dimensionId,
-                  filterable_fields: value,
+            showSearch={{
+              filterOption: false,
+              onSearch: value => fetchFactors({
+                apiConfig: {
+                  filter: {
+                    dimension_id_eq: dimensionId,
+                    filterable_fields: value,
+                  },
                 },
-              },
-            })}
+              }),
+            }}
             placeholder={!dimensionId
               ? I18n.t('administration.scoring.select_assessment_first')
               : I18n.t('administration.scoring.select_factor')}
-            notFoundContent={isFactorsLoading('fetch') ? <Spin size="small" /> : null}
-            filterOption={false}
+            notFoundContent={isFactorsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             allowClear
             options={getFactors().map(factor => ({
               value: factor.id,
@@ -299,6 +308,36 @@ export const AddEditFactorForm: FC<Props> = ({
         <Form.Item name="assessmentScoreType" label={I18n.t('administration.scoring.assessment_scoring_type')}>
           <Select options={assessmentScoreTypes} />
         </Form.Item>
+        {outputType === 'numeric'
+          ? (
+            <>
+              <Form.Item
+                name="minValue"
+                rules={[{
+                  required: true,
+                }]}
+                label={I18n.t('admin.min_value')}
+              >
+                <InputNumber className="w-100" />
+              </Form.Item>
+              <Form.Item
+                name="maxValue"
+                rules={[{
+                  required: true,
+                }]}
+                label={I18n.t('admin.max_value')}
+              >
+                <InputNumber className="w-100" />
+              </Form.Item>
+              <Form.Item
+                name="isNaAllowed"
+                valuePropName="checked"
+              >
+                <Checkbox>{I18n.t('admin.accept_na_values')}</Checkbox>
+              </Form.Item>
+            </>
+          ) : null
+        }
       </Fragment>
     )
   }

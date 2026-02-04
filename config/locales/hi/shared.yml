@@ -1,0 +1,97 @@
+---
+hi:
+  shared:
+    action: कार्रवाई
+    actions: क्रियाएँ
+    active: सक्रिय
+    add: जोड़ें
+    advanced: उन्नत
+    agree_and_continue: सहमत हूँ और जारी रखें
+    archive: संग्रह
+    archived: संचित
+    asset_not_present: संपत्ति मौजूद नहीं है
+    audio: ऑडियो
+    authentication_failed: प्रमाणीकरण विफल हो गया। कृपया फिर से प्रयास करें।
+    basic: मूलभूत
+    campaign_id: अभियान आईडी
+    cancel: रद्द करें
+    change_password: पासवर्ड बदलें
+    clear_filters: फ़िल्टर साफ़ करें
+    collaborative_learning: सहयोगात्मक अधिगम
+    completed: पूर्ण
+    confirm: पुष्टि करें
+    continue: जारी रखें
+    copy: प्रतिलिपि
+    created_at: पर बनाया गया
+    created_date: निर्मित तिथि
+    decline: पतन
+    description: विवरण
+    download: डाउनलोड
+    edit: संपादित करें
+    edited: संपादित
+    email: ईमेल
+    export: निर्यात
+    failed: असफल
+    first_name: पहला नाम
+    formal_learning: औपचारिक अधिगम
+    generate: उत्पन्न करें
+    generate_transcription_confirm_content: क्या आप सुनिश्चित हैं कि आप इस मीडिया प्रतिक्रिया के लिए ट्रांसक्रिप्शन उत्पन्न करना चाहते हैं?
+    generate_transcription_confirm_title: प्रतिलेखन उत्पन्न करें
+    generating: उत्पादित कर रहा है
+    group_question_max_validation_error: प्रत्येक समूह में अधिकतम {{max}} आइटम हो सकते हैं।
+    group_question_min_validation_error: प्रत्येक समूह में कम से कम {{min}} आइटम होने चाहिए।
+    id: आईडी
+    idp_ai_assistant_disclaimer: लाइटहाउस AI IDP असिस्टेंट त्रुटियाँ कर सकता है। कृपया प्रतिक्रियाओं का उपयोग करते समय सावधान रहें।
+    internet_disconnected_message: फिर से जुड़ने की कोशिश कर रहा हूँ। कृपया अपना इंटरनेट कनेक्शन जांचें।
+    last_name: आखिरी नाम
+    learning_on_the_job_label: काम करते हुए सीखना
+    login: लॉगिन
+    media_question_transcriptions: मीडिया प्रश्न प्रतिलेखन
+    modified_by: द्वारा संशोधित
+    modified_date: संशोधित तिथि
+    more_actions: अधिक क्रियाएँ
+    mte_logo_alt_text: मर्सर टैलेंट एंटरप्राइज लोगो
+    na_text: लागू नहीं
+    name: नाम
+    new: नया
+    no_results_found: कोई परिणाम नहीं मिला
+    not_requested: अभी तक अनुरोध नहीं किया गया
+    ok: ठीक है
+    pending: लंबित
+    processing: प्रसंस्करण
+    question_id: प्रश्न आईडी
+    recording_consent_notice: इस बैठक सत्र को रिकॉर्ड किया जाएगा। इस बैठक में आपकी भागीदारी रिकॉर्ड किए जाने की आपकी सहमति मानी जाएगी।
+    recording_consent_proceed_question: क्या आप रिकॉर्ड की गई बैठक को जारी रखने के लिए सहमत हैं?
+    recording_consent_title: रिकॉर्डिंग सहमति सूचना
+    remove: हटाएँ
+    removed: हटाया गया
+    replace: बदलें
+    reset_password: पासवर्ड रीसेट करें
+    rte_paste_content_exceeds_char_limit: टेक्स्ट {{maxCharacterLimit}} की वर्ण सीमा से अधिक है और इसे पेस्ट नहीं किया जा सकता।
+    rte_paste_content_exceeds_word_limit: टेक्स्ट {{maxWordLimit}} शब्दों की सीमा से अधिक है और इसे पेस्ट नहीं किया जा सकता।
+    save: बचाएँ
+    search: खोजें
+    send_email: ईमेल भेजें
+    show_more: और दिखाएँ
+    something_wrong: कुछ गलत हो गया। अपने व्यवस्थापक से संपर्क करें।
+    table:
+      entries:
+        selected:
+          one: 1 पंक्ति चयनित
+          other: "{{count}} पंक्तियाँ चयनित"
+        total:
+          one: 'कुल : 1'
+          other: 'कुल : {{count}}'
+          zero: 'कुल : 0'
+    terms_conditions_privacy: गोपनीयता कथन
+    tools: उपकरण
+    transcription: प्रतिलिपि
+    transcription_already_requested: प्रतिलेखन पहले से ही अनुरोधित या प्रगति पर है।
+    transcription_not_enabled: मीडिया प्रतिक्रिया के लिए प्रतिलेखन सक्षम नहीं है।
+    transcriptions: प्रतिलिपियाँ
+    try_again: फिर से कोशिश करें
+    tte_terms_and_condition: शर्तें और गोपनीयता
+    type: प्रकार
+    update: अपडेट
+    video: वीडियो
+    view: देखें

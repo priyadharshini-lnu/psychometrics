@@ -56,7 +56,10 @@ module CampaignFactors
         :description,
         :ranked,
         :formula,
-        :campaign_factor_group_id
+        :campaign_factor_group_id,
+        :min_value,
+        :max_value,
+        :is_na_allowed
       )
     end
   end

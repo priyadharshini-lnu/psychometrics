@@ -46,7 +46,7 @@ const BulkDownloadModal: React.FC<Props> = ({ visible, onCancel, onDownload }) =
   return (
     <Modal
       title="Bulk Download"
-      visible={visible}
+      open={visible}
       onCancel={handleCancel}
       footer={[
         <Button key="cancel" onClick={handleCancel}>

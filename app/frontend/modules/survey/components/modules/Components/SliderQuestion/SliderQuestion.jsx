@@ -243,7 +243,7 @@ export const SliderQuestion = ({
                     value={preview
                       ? values[choiceId] && scaledValue(values[choiceId].value)
                       : props.fakeResults[choiceId]}
-                    style={{ maxWidth: '100%' }}
+                    style={{ maxWidth: '100%', padding: 'unset' }}
                     min={minValue}
                     max={maxValue}
                     controls={false}

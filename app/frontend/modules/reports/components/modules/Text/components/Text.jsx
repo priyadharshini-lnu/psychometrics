@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import { Component } from 'react'
+import { Popover, Button } from 'antd'
 import { renderToStaticMarkup } from 'react-dom/server'
 import cs from 'classnames'
 import PropTypes from 'prop-types'
@@ -14,6 +15,7 @@ import RichEditorStore from '~/modules/reports/store/RichEditorStore'
 import I18nStore from '~/modules/reports/store/I18nStore'
 import { SafeHTML } from '~/components/SafeHTML'
 import '~/modules/reports/commands/froalaCommands'
+import { ExpandOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import ResponseTextByQuestionType from './ResponseTextByQuestionType'
 import styles from './Text.less'
 import config from './froalaConfig'
@@ -236,10 +238,23 @@ class Text extends Component {
       questions,
       preview,
       moduleOverrides,
+      aiTranslation,
     } = this.props
 
     if (preview) {
       const override = _.find(moduleOverrides, { moduleId: model.id })
+
+      if (aiTranslation) {
+        return (
+          <SafeHTML
+            html={aiTranslation[0]}
+            ref={(ref) => { this.editor = ref }}
+            className={cs(styles.editor)}
+            config="adminRichText"
+            data-ai-translation="0"
+          />
+        )
+      }
 
       if ((sourceType === 'ResponseText') && !override?.content) {
         const question = _.find(questions, { id: modelQuestion })
@@ -253,7 +268,7 @@ class Text extends Component {
           return null
         }
         return (
-          <div ref={(ref) => { this.editor = ref }} className={styles.editor}>
+          <div ref={(ref) => { this.editor = ref }} className={styles.editor} data-ai-translation="0">
             <QuestionTypeModel
               result={particularResult}
               model={model}
@@ -272,6 +287,7 @@ class Text extends Component {
             ref={(ref) => { this.editor = ref }}
             className={cs(styles.editor)}
             config="adminRichText"
+            data-ai-translation="0"
           />
         )
       }
@@ -281,6 +297,7 @@ class Text extends Component {
           <div
             ref={(ref) => { this.editor = ref }}
             className={cs(styles.editor, 'fr-view')}
+            data-ai-translation="0"
           >
             <ReactMarkdown>
               {this.pipedText(model.getTextByCondition())}
@@ -292,6 +309,7 @@ class Text extends Component {
           <div
             ref={(ref) => { this.editor = ref }}
             className={cs(styles.editor, 'fr-view')}
+            data-ai-translation="0"
           >
             <ReactMarkdown>
               {GetText.run(model)}
@@ -304,12 +322,13 @@ class Text extends Component {
             ref={(ref) => { this.editor = ref }}
             className={cs(styles.editor)}
             html={this.pipedText()}
+            data-ai-translation="0"
           />
         )
       } if (sourceType === 'ResultText' || sourceType === 'AIContent') {
         const textValue = LookupResultTextValue.run(model)
         return (
-          <div ref={(ref) => { this.editor = ref }} className={cs(styles.editor, 'fr-view')}>
+          <div ref={(ref) => { this.editor = ref }} className={cs(styles.editor, 'fr-view')} data-ai-translation="0">
             <div>{textValue}</div>
           </div>
         )
@@ -321,12 +340,13 @@ class Text extends Component {
           ref={(ref) => { this.editor = ref }}
           className={cs(styles.editor)}
           config="adminRichText"
+          data-ai-translation="0"
         />
       )
     }
     if (sourceType === 'ResultText' || sourceType === 'AIContent') {
       return (
-        <div ref={(ref) => { this.editor = ref }} className={cs(styles.editor, 'fr-view')}>
+        <div ref={(ref) => { this.editor = ref }} className={cs(styles.editor, 'fr-view')} data-ai-translation="0">
           {/* TODO: Render as markdown only for Datasheet where the column is markdown */}
           <div>{`${JSON.stringify(source)}`}</div>
         </div>
@@ -343,12 +363,12 @@ class Text extends Component {
           onModelChange={this.onChange}
         />
       )
-      : <SafeHTML className={styles.editor} html={I18nStore.tModule(model, 'text')} />
+      : <SafeHTML className={styles.editor} html={I18nStore.tModule(model, 'text')} data-ai-translation="0" />
   }
 
   render () {
     const {
-      module: model, preview, reportStyles,
+      module: model, preview, reportStyles, aiTranslation,
     } = this.props
     const { styleIds } = model.props
     let [style, outerStyle] = this.buildStyles(joinStyles(reportStyles, styleIds), model.props.style)
@@ -367,11 +387,24 @@ class Text extends Component {
         )
       }
     }
+    const hasTranslation = !!aiTranslation
 
     return (
-      <Foundation {...this.props} preview={preview || this.edit} outerStyle={outerStyle}>
+      <Foundation
+        {...this.props}
+        preview={preview || this.edit}
+        outerStyle={outerStyle}
+        hasTranslation={hasTranslation}
+      >
         <div style={style} onClick={this.click} className={styles.text} onDoubleClick={this.openEditor}>
           {this.renderText()}
+          {preview && hasTranslation && (
+            <div className={styles.translationPopover}>
+              <Popover content={<div>{this.renderText()}</div>} trigger="click">
+                <Button icon={<ExpandOutlined />} />
+              </Popover>
+            </div>
+          )}
         </div>
       </Foundation>
     )

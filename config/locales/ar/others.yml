@@ -844,6 +844,10 @@ ar:
           reply_to_reply: لا يمكن الرد على رد (يسمح بمستوى واحد فقط من التداخل)
         user_idp_plan:
           no_active_plan: لم يتم العثور على خطة IDP نشطة
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: يمكن فقط اختيار التقييمات من نوع "القياسات النفسية" و"استطلاع المنظمة"
       register:
         attributes:
           mobile_number:
@@ -2251,16 +2255,16 @@ ar:
       password_complexity:
         digit:
           one: يجب أن يحتوي على رقم واحد على الأقل
-          other: يجب أن تحتوي على <x>count</x> رقم على الأقل
+          other: يجب أن تحتوي على %{count} رقم على الأقل
         lower:
           one: يجب أن يحتوي على حرف واحد على الأقل من الأحرف الصغيرة
-          other: 'يجب أن تحتوي على <x>count</x> على الأقل على حروف صغيرة '
+          other: 'يجب أن تحتوي على %{count} على الأقل على حروف صغيرة '
         symbol:
           one: يجب أن يحتوي على علامة أو رمز ترقيم واحدة على الأقل
-          other: 'يجب أن تحتوي على <x>count</x> على الأقل على علامات أو رموز ترقيم '
+          other: 'يجب أن تحتوي على %{count} على الأقل على علامات أو رموز ترقيم '
         upper:
           one: يجب أن يحتوي على حرف واحد كبير على الأقل
-          other: 'يجب أن تحتوي على <x>count</x> على الأقل على حروف كبيرة '
+          other: 'يجب أن تحتوي على %{count} على الأقل على حروف كبيرة '
       taken_in_past: يجب ألا تكون هي نفسها كلمة المرور المستخدمة سابقاً.
     module_error: حدث خطأ ما في هذه الوحدة، يرجى الاتصال بالإدارة.
     module_error_editor: حدث خطأ ما في هذه الوحدة، يرجى التحقق من إعدادات الوحدة.
@@ -3076,13 +3080,10 @@ ar:
     client_usage: استخدام العميل
     enabled: تمكين
     end_date: تاريخ الانتهاء
-    not_enough_idp_license: لا توجد تراخيص IDP كافية، يرجى الاتصال بالمسؤول
     not_enough_license: لا يحتوي "%{client_name}" على تراخيص كافية ل "%{report_name}"
     not_enough_license_count: لا توجد تراخيص كافية، يرجى الاتصال بالمسؤول
-    not_enough_proctoring_credits: لا توجد اعتمادات كافية لبدء جلسة المراقبة
     number: رقم
     overuse_number: بدل الاستخدام الزائد
-    project_limit_reached: تم الوصول إلى حد الاستخدام ل '%{license_name}'، يرجى التواصل مع المسؤول
     project_specific: مشروع محدد
     project_specific_license: ترخيص المشروع الخاص
     project_usage: استخدام المشروع

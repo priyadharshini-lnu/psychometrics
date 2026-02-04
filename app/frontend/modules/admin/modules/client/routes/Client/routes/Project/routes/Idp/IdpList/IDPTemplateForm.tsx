@@ -142,10 +142,8 @@ const IDPTemplateForm = ({
                 label={I18n.t('administration.idp.skill_gap_report')}
               >
                 <Select
-                  showSearch
-                  onSearch={debouncedFetchReports}
-                  notFoundContent={isReportLoading('fetch') ? <Spin size="small" /> : null}
-                  filterOption={false}
+                  showSearch={{ filterOption: false, onSearch: debouncedFetchReports }}
+                  notFoundContent={isReportLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
                   placeholder={I18n.t('administration.idp.select_skill_gap_report')}
                 >
                   {reports.map(({ id, name }) => (

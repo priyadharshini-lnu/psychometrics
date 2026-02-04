@@ -837,6 +837,10 @@ hu:
           reply_to_reply: Nem tud válaszolni egy válaszra (csak egy beágyazási szint engedélyezett)
         user_idp_plan:
           no_active_plan: Nem található aktív IDP-terv
+        webhook:
+          attributes:
+            assessment_ids:
+              invalid_assessment_type: Csak a „pszichometria” és „szervezeti felmérés” típusú értékelések választhatók ki.
   admin_jobs:
     attrs:
       operations:
@@ -2199,16 +2203,16 @@ hu:
       password_complexity:
         digit:
           one: legalább egy számjegyet kell tartalmaznia
-          other: legalább <x>count</x> számjegyeket kell tartalmaznia
+          other: legalább %{count} számjegyeket kell tartalmaznia
         lower:
           one: legalább egy kisbetűt kell tartalmaznia
-          other: legalább <x>count</x> kisbetűket kell tartalmaznia.
+          other: legalább %{count} kisbetűket kell tartalmaznia.
         symbol:
           one: legalább egy írásjelet vagy szimbólumot kell tartalmaznia.
-          other: legalább <x>count</x> írásjeleket vagy szimbólumokat kell tartalmaznia.
+          other: legalább %{count} írásjeleket vagy szimbólumokat kell tartalmaznia.
         upper:
           one: legalább egy nagybetűt kell tartalmaznia
-          other: legalább <x>count</x> nagybetűket kell tartalmaznia.
+          other: legalább %{count} nagybetűket kell tartalmaznia.
       taken_in_past: nem lehet azonos a korábban használt jelszóval.
     module_error: Valami baj történt ezzel a modullal, kérjük, lépjen kapcsolatba az adminisztrációval.
     module_error_editor: Valami elromlott ezzel a modullal, kérjük, ellenőrizze a modul beállításait.
@@ -3005,13 +3009,10 @@ hu:
     client_usage: Klienshasználat
     enabled: Engedélyezve
     end_date: Befejezés dátuma
-    not_enough_idp_license: Nincs elég IDP-licenc, forduljon a rendszergazdához
     not_enough_license: A(z) "%{client_name}" nem rendelkezik elegendő licenccel a(z) "%{report_name}"
     not_enough_license_count: Nincs elég licenc, forduljon az adminisztrátorhoz
-    not_enough_proctoring_credits: Nincs elég kredit a felügyelet megkezdéséhez
     number: Szám
     overuse_number: Túlhasználati engedmény
-    project_limit_reached: A használati korlát '%{license_name}' esetén kérlek, vegye fel a kapcsolatot az adminisztrátorral
     project_specific: Projektspecifikus
     project_specific_license: Projektspecifikus engedély
     project_usage: Projekt használata
@@ -3060,7 +3061,7 @@ hu:
     footer:
       regards: Üdvözlettel,
       team_name: Lighthouse csapat
-      technical_support: Bármilyen technikai probléma esetén kérjük, írjon nekünk a <x>email</x> címre, és 24 órán belül válaszolunk.
+      technical_support: Bármilyen technikai probléma esetén kérjük, írjon nekünk a %{email} címre, és 24 órán belül válaszolunk.
     from: A tehetség vállalkozás
     idp:
       manager_unread_comments:
