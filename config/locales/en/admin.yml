@@ -83,6 +83,7 @@ en:
     campaign_templates: Campaign Templates
     campaign_user_job_roles_cannot_be_same: Target job role must be different from current job role
     campaigns: Campaigns
+    cancellation_and_rescheduling_disabled: Cancellation and Rescheduling is disabled
     client: Client
     client_admins: Client Admins
     clients: Clients
