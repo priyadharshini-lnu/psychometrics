@@ -1,5 +1,5 @@
 import {
-  forwardRef, useState, useEffect, useRef,
+  forwardRef, useRef,
 } from 'react'
 import { message } from 'antd'
 import 'froala-editor/css/froala_style.min.css'
@@ -16,7 +16,6 @@ function Editor ({
   content, handleContentChange, readOnly = false, maxCharacterLimit = null, maxWordLimit = null,
   allowContentCopyInReadOnlyMode = false, enhanceWithAIEnabled = true,
 }, ref) {
-  const [isInitialized, setIsInitialized] = useState(false)
   const showLimitExceededMessageRef = useRef(false)
 
   const config = {
@@ -101,21 +100,9 @@ function Editor ({
     // config.wordCounterMax = maxWordLimit
   }
 
-  useEffect(() => {
-    async function initPlugins () {
-      // Refer: https://github.com/froala/react-froala-wysiwyg/issues/410#issuecomment-2627465406
-      // Import  Froala Editor plugin lazily;
-      await import('froala-editor/js/plugins.pkgd.min')
-      setIsInitialized(true)
-    }
-    if (!isInitialized) {
-      initPlugins()
-    }
-  })
-
   return (
     <div className="classname" {...(enhanceWithAIEnabled && { 'data-ai-enabled': 'true' })}>
-      {isInitialized && <FroalaEditor ref={ref} config={config} model={content} onModelChange={handleContentChange} />}
+      <FroalaEditor ref={ref} config={config} model={content} onModelChange={handleContentChange} />
     </div>
   )
 }

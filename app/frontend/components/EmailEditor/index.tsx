@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import 'codemirror/lib/codemirror.css'
 import CodeMirror from 'codemirror'
 import 'codemirror/mode/xml/xml'
@@ -10,6 +10,14 @@ import 'froala-editor/js/froala_editor.pkgd.min'
 import 'froala-editor/js/plugins.pkgd.min'
 import { isRtl } from '~/utils/locales'
 import { FROALA } from '~/constants/froala'
+
+interface FroalaEditorRef extends FroalaEditor {
+  editor?: {
+    opts?: {
+      saveParams?: Record<string, unknown>
+    }
+  }
+}
 
 interface Props {
   content: string
@@ -27,7 +35,7 @@ export const EmailEditor: React.FC<Props> = ({
 }) => {
   const direction = isRtl(I18n?.currentLocale()) ? 'rtl' : 'ltr'
 
-  const [isInitialized, setIsInitialized] = useState(false)
+  const ref = useRef<FroalaEditorRef>(null)
   const config = {
     iconsTemplate: 'font_awesome',
     imageUpload: false,
@@ -110,30 +118,15 @@ export const EmailEditor: React.FC<Props> = ({
 
   withPipedText && config.toolbarButtons.unshift('pipedText')
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const ref = useRef<any>(null)
-
   useEffect(() => {
     if (ref.current?.editor?.opts) {
       ref.current.editor.opts.saveParams = { type, details }
     }
   }, [type, details])
 
-  useEffect(() => {
-    async function initPlugins () {
-      // Refer: https://github.com/froala/react-froala-wysiwyg/issues/410#issuecomment-2627465406
-      // Import  Froala Editor plugin lazily;
-      await import('froala-editor/js/plugins.pkgd.min')
-      setIsInitialized(true)
-    }
-    if (!isInitialized) {
-      initPlugins()
-    }
-  })
-
   return (
     <div className={className}>
-      {isInitialized && <FroalaEditor ref={ref} config={config} model={content} onModelChange={handleContentChange} />}
+      <FroalaEditor ref={ref} config={config} model={content} onModelChange={handleContentChange} />
     </div>
   )
 }
