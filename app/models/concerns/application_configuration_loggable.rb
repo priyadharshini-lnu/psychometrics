@@ -81,11 +81,17 @@ module ApplicationConfigurationLoggable
   end
 
   def format_attribute_change(attr, old_value, new_value)
-    if sensitive_attribute?(attr)
+    if sensitive_attribute?(attr) || redaction_required?(attr)
       "#{attr.humanize} changed"
     else
       "#{attr.humanize} changed from '#{format_value(old_value)}' to '#{format_value(new_value)}'"
     end
+  end
+
+  def redaction_required?(attr)
+    return false unless Settings.features.dont_send_pi_to_siem
+
+    %w[email user_name from_email from_name].include?(attr.to_s)
   end
 
   def sensitive_attribute?(attr)

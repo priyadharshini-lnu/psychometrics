@@ -11,6 +11,10 @@ RSpec.describe ApplicationConfigurationLoggable, type: :model do
         t.string :api_key
         t.string :password
         t.string :description
+        t.string :email
+        t.string :user_name
+        t.string :from_email
+        t.string :from_name
         t.integer :project_id
         t.timestamps
       end
@@ -171,6 +175,64 @@ RSpec.describe ApplicationConfigurationLoggable, type: :model do
       it 'does not log' do
         TestConfigurableModel.create(name: 'config')
         expect(SiemLogger).not_to have_received(:log_security_event!)
+      end
+    end
+
+    context 'when dont_send_pi_to_siem is true' do
+      before do
+        allow(Settings.features).to receive(:dont_send_pi_to_siem).and_return(true)
+      end
+
+      it 'redacts email, user_name, from_email, and from_name' do
+        TestConfigurableModel.create(
+          email: 'test@example.com',
+          user_name: 'admin',
+          from_email: 'sender@example.com',
+          from_name: 'Sender'
+        )
+
+        expect(SiemLogger).to have_received(:log_security_event!).with(
+          'ApplicationConfigurationChange',
+          actor_name: anything,
+          context: anything,
+          msg: satisfy do |m|
+            m.include?('Email changed') &&
+              m.include?('User name changed') &&
+              m.include?('From email changed') &&
+              m.include?('From name changed') &&
+              m.exclude?('test@example.com') &&
+              m.exclude?('admin') &&
+              m.exclude?('sender@example.com') &&
+              m.exclude?('Sender')
+          end
+        )
+      end
+    end
+
+    context 'when dont_send_pi_to_siem is false' do
+      before do
+        allow(Settings.features).to receive(:dont_send_pi_to_siem).and_return(false)
+      end
+
+      it 'logs email and user_name in plain text' do
+        TestConfigurableModel.create(
+          email: 'test@example.com',
+          user_name: 'admin',
+          from_email: 'sender@example.com',
+          from_name: 'Sender'
+        )
+
+        expect(SiemLogger).to have_received(:log_security_event!).with(
+          'ApplicationConfigurationChange',
+          actor_name: anything,
+          context: anything,
+          msg: satisfy do |m|
+            m.include?("Email changed from 'nil' to 'test@example.com'") &&
+              m.include?("User name changed from 'nil' to 'admin'") &&
+              m.include?("From email changed from 'nil' to 'sender@example.com'") &&
+              m.include?("From name changed from 'nil' to 'Sender'")
+          end
+        )
       end
     end
   end
