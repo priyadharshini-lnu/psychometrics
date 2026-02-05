@@ -1,4 +1,4 @@
-import { createRef, useEffect, useState } from 'react'
+import { useRef, useEffect } from 'react'
 import 'codemirror/lib/codemirror.css'
 import CodeMirror from 'codemirror'
 import 'codemirror/mode/xml/xml'
@@ -108,13 +108,11 @@ function Editor ({
     direction,
   }
 
-  const [isInitialized, setIsInitialized] = useState(false)
-
   config = { ...config, ...configOverrides }
 
   withPipedText && config.toolbarButtons.unshift('pipedText')
 
-  const ref = createRef()
+  const ref = useRef(null)
 
   useEffect(() => {
     if (ref.current?.editor?.opts) {
@@ -122,21 +120,9 @@ function Editor ({
     }
   }, [type, details])
 
-  useEffect(() => {
-    async function initPlugins () {
-      // Refer: https://github.com/froala/react-froala-wysiwyg/issues/410#issuecomment-2627465406
-      // Import  Froala Editor plugin lazily;
-      await import('froala-editor/js/plugins.pkgd.min')
-      setIsInitialized(true)
-    }
-    if (!isInitialized) {
-      initPlugins()
-    }
-  })
-
   return (
     <div className={className}>
-      {isInitialized && <FroalaEditor ref={ref} config={config} model={content} onModelChange={handleContentChange} />}
+      <FroalaEditor ref={ref} config={config} model={content} onModelChange={handleContentChange} />
     </div>
   )
 }
