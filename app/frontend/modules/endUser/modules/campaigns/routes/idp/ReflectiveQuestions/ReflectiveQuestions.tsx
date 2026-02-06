@@ -124,7 +124,7 @@ export const ReflectiveQuestions: FC<Props> = ({
       />
 
       <div className={cs(styles.questionsBox, 'mt-4', isMobile && 'mb-8')}>
-        <Space direction="vertical" size="large" style={{ width: '100%' }}>
+        <Space orientation="vertical" size="large" style={{ width: '100%' }}>
           <ReflectiveQuestion
             key={currentReflectionQuestion.id}
             status={status}
@@ -166,7 +166,7 @@ const ReflectiveQuestion = ({
   question, value, onChange, error, status, index, total,
 }) => (
   <Flex vertical flex={1}>
-    <Space direction="vertical">
+    <Space orientation="vertical">
       <Space className={cs(styles.questionCounter, 'mb-4')}>
         {I18n.t('enduser.question_counter', { current: index + 1, total })}
       </Space>

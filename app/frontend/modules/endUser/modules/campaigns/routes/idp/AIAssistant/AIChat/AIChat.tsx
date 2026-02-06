@@ -542,7 +542,7 @@ export const AIChat = () => {
               showResetChat ? (
                 <Popconfirm
                   disabled={requestProcessing}
-                  overlayStyle={{ zIndex: 9999 }}
+                  styles={{ root: { zIndex: 9999 } }}
                   title={I18n.t('idp.ai.reset_confirmation')}
                   onConfirm={() => handleReset()}
                   okText={I18n.t('common.actions.yes')}

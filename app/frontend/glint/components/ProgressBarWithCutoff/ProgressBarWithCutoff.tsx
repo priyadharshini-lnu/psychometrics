@@ -14,7 +14,7 @@ type CustomProgressBarProps = {
 export const ProgressBarWithCutoff: FC<CustomProgressBarProps> = ({ percent, title, cutoffPercent }) => {
   const { token } = useToken()
   return (
-    <Space size={0} className="w-100" direction="vertical">
+    <Space size={0} className="w-100" orientation="vertical">
       {title}
       <div className={styles.progressContainer}>
         <Progress

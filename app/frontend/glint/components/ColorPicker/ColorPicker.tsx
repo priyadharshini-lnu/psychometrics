@@ -93,7 +93,7 @@ export const ColorPicker: FC<props> = ({
       <Space>
         <Popover
           content={(
-            <Space direction="vertical" size="middle">
+            <Space orientation="vertical" size="middle">
               <HexAlphaColorPicker className={styles.colorPicker} color={pickedColorHex} onChange={handleColorChange} />
               <div className={styles.inputContainer}>
                 {eyeDroppeSupported()
@@ -120,7 +120,7 @@ export const ColorPicker: FC<props> = ({
                   className={styles.copyButton}
                 />
               </div>
-              <Space direction="vertical">
+              <Space orientation="vertical">
                 {recommendedColors && recommendedColors.length
                   ? (
                     <ColorSwatch

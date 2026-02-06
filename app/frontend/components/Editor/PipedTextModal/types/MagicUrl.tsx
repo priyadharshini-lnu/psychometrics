@@ -33,7 +33,7 @@ const MagicUrl = ({ field: { getValue }, insert }) => {
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16, style: { paddingLeft: '10px' } }}
     >
-      <Space direction="vertical">
+      <Space orientation="vertical">
         <Form.Item
           name="campaignId"
           label={I18n.t('administration.piped_text_modal.campaign_id')}

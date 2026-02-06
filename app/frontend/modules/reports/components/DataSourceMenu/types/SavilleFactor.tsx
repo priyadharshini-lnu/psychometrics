@@ -63,7 +63,7 @@ export const SavilleFactor: React.FC<Props> = ({
   const selectedValueType = model.getValueType()
 
   return (
-    <Space direction="vertical" className="w-100">
+    <Space orientation="vertical" className="w-100">
       <Select
         name="form-field-name"
         value={getValue(valueTypes, selectedValueType)}

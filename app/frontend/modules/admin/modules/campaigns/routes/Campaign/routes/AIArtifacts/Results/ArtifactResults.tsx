@@ -134,7 +134,7 @@ export const ArtifactResults: React.FC<ArtifactResultsProps> = ({
                 <Statistic
                   title={I18n.t('administration.ai_artifacts.used_tokens.input_tokens')}
                   value={totalInputTokens}
-                  valueStyle={{ fontSize: 14 }}
+                  styles={{ content: { fontSize: 14 } }}
                 />
               </Skeleton>
             </Col>
@@ -143,7 +143,7 @@ export const ArtifactResults: React.FC<ArtifactResultsProps> = ({
                 <Statistic
                   title={I18n.t('administration.ai_artifacts.used_tokens.output_tokens')}
                   value={totalOutputTokens}
-                  valueStyle={{ fontSize: 14 }}
+                  styles={{ content: { fontSize: 14 } }}
                 />
               </Skeleton>
             </Col>

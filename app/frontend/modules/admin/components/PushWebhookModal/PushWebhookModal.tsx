@@ -291,7 +291,7 @@ const PushWebhookModal: React.FC<Props> = ({
                 </CopyToClipboard>
               </>
             )}
-            <Space direction="vertical" className="w-100">
+            <Space orientation="vertical" className="w-100">
               {responseVisible && (
                 <>
                   <div className={cs(styles.tabContent, 'pb-2')}>

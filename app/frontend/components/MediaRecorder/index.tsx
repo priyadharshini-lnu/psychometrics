@@ -605,7 +605,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
           suffixIcon={<DownOutlined style={{ color: PLACEHOLDER_BLACK, pointerEvents: 'none' }} />}
           variant="borderless"
           disabled={status === 'recording'}
-          dropdownStyle={{ minWidth: '300px' }}
+          styles={{ popup: { root: { minWidth: '300px' } } }}
           options={getMicrophoneDevices()}
         />
         <VideoCameraOutlined style={{ alignSelf: 'center' }} />
@@ -616,7 +616,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
               {I18n.t('assessments.video_response.device_selection.camera')}
             </p>
           )}
-          dropdownStyle={{ minWidth: '300px' }}
+          styles={{ popup: { root: { minWidth: '300px' } } }}
           suffixIcon={<DownOutlined style={{ color: PLACEHOLDER_BLACK, pointerEvents: 'none' }} />}
           onChange={handleChangeVideoDevice}
           variant="borderless"

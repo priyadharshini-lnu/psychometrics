@@ -216,7 +216,7 @@ export const Component: FC<PropsFromRedux> = ({
         size="large"
         title={`${I18n.t('idp.summary_logs', { reporteeName: currentSummary?.reporteeName })}`}
         open={!!currentSummary}
-        destroyOnClose
+        destroyOnHidden
         styles={{
           mask: {
             backgroundColor: 'rgba(0,0,0,0.05)',

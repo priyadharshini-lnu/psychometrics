@@ -23,7 +23,7 @@ export const AddGroupForm: FC<AddGroupFormProps> = ({ open, onClose, addGroup })
 
   return (
     <Drawer
-      destroyOnClose
+      destroyOnHidden
       closeIcon={<DirectionalNavigateBackIcon />}
       title={I18n.t('administration.scoring.add_group')}
       open={open}

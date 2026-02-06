@@ -54,7 +54,7 @@ export const TimeSlotSelection:FC<Props> = ({
   }, [selectedDateTime, isMobile, isTablet])
 
   return (
-    <Space className="w-100" direction="vertical">
+    <Space className="w-100" orientation="vertical">
       <div>
         <Space size={0}>
           {/* Show back icon when time-slot is selected.

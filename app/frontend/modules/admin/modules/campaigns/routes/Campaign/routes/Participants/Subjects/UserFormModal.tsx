@@ -108,7 +108,7 @@ const UserFormModal: React.FC<Props> = ({ campaignId, close, user }) => {
               rules={[{ required: true }]}
             >
               <Radio.Group>
-                <Space direction="vertical">
+                <Space orientation="vertical">
                   {OPERATIONS_OPTIONS.map(operation => (
                     <Radio key={operation} value={operation}>
                       {I18n.t(`user.form.operation_options.${operation}`)}

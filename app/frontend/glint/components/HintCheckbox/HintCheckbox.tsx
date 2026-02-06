@@ -8,7 +8,7 @@ type Props = {
   label?: ReactNode
   className?: string
   hintClassName?: string
-  overlayClassName?: string
+  rootClassName?: string
   checked: boolean
   hints: [active: string, inactive: string]
   onChange: (checked: boolean) => void
@@ -17,12 +17,12 @@ type Props = {
 }
 
 export const HintCheckbox: FC<Props> = ({
-  checked, onChange, disabled, label, hints, className, hintClassName, overlayClassName, placement = 'left',
+  checked, onChange, disabled, label, hints, className, hintClassName, rootClassName, placement = 'left',
 }) => (
   <div className={styles.container} onClick={() => !disabled && onChange(!checked)}>
     <Tooltip
       placement={placement}
-      overlayClassName={cs(styles.tooltip, overlayClassName)}
+      classNames={{ root: cs(styles.tooltip, rootClassName) }}
       title={(
         <div className={cs(styles.hint, className)}>
           <div className={cs(hintClassName, { [styles.active]: checked })}>

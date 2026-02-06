@@ -117,7 +117,7 @@ export const ReflectionQuestionsForm: FC<ReflectionQuestionsFormProps> = ({ idp,
     <Row gutter={[16, 16]}>
       <Col span={16}>
         <Card title={I18n.t('administration.idp.reflection_questions')}>
-          <Space direction="vertical" style={{ width: '100%' }}>
+          <Space orientation="vertical" style={{ width: '100%' }}>
             <Flex gap={16}>
               <Select
                 style={{

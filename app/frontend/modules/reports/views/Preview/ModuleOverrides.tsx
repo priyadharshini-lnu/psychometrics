@@ -218,7 +218,7 @@ const OverrideComponent: FC<Props> = ({
                       Accepted
                     </Button>
                     <Popconfirm
-                      overlayStyle={{ zIndex: 9999 }}
+                      styles={{ root: { zIndex: 9999 } }}
                       title="Are you sure to remove approval for this text?"
                       onConfirm={() => disapproveTextOverride(userReport.campaignId, override.id)}
                       okText="Yes"
@@ -243,7 +243,7 @@ const OverrideComponent: FC<Props> = ({
                 ))}
               {allowEdit && override && (
                 <Popconfirm
-                  overlayStyle={{ zIndex: 9999 }}
+                  styles={{ root: { zIndex: 9999 } }}
                   title="Are you sure to discard this text?"
                   onConfirm={() => removeTextOverride(userReport.campaignId, override.id, userReport.id)}
                   okText="Yes"

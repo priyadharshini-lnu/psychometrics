@@ -147,8 +147,8 @@ const CheckingWizardComponent: React.FC<Props> = ({
           <>
             <Steps
               current={currentStep}
-              direction={isMobile ? 'vertical' : 'horizontal'}
-              labelPlacement="vertical"
+              orientation={isMobile ? 'vertical' : 'horizontal'}
+              titlePlacement="vertical"
               className={styles.steps}
               items={getSteps().map((step, index) => ({
                 title:

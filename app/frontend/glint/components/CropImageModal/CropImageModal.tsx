@@ -111,7 +111,7 @@ export function CropImageModal ({
       {showControls && (
         <Row justify="center">
           <Col>
-            <Space direction="vertical">
+            <Space orientation="vertical">
               <Space.Compact>
                 <Button type="link" icon={<MinusOutlined />} onClick={() => changeScale(scale - 0.1)} />
                 <Slider style={{ width: 250 }} value={scale} min={0} onChange={changeScale} step={0.01} max={1} />

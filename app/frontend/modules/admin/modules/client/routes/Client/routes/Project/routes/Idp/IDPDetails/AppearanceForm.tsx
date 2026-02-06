@@ -148,7 +148,7 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
 
   return (
     <Form form={form} layout="vertical" initialValues={initialValues}>
-      <Space direction="vertical" className="w-100">
+      <Space orientation="vertical" className="w-100">
         <Row gutter={[16, 16]}>
           <Col xs={24} md={12}>
             <Card title={I18n.t('administration.idp.template_details')}>
@@ -175,7 +175,7 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
                     beforeUpload={() => false}
                     showUploadList={!!background}
                   >
-                    <Space direction="vertical" className="mb-4">
+                    <Space orientation="vertical" className="mb-4">
                       <Button icon={<UploadOutlined />}>
                         {I18n.t('administration.projects.design_settings.logo_upload')}
                       </Button>
@@ -207,7 +207,7 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
                     beforeUpload={() => false}
                     showUploadList={!!clientLogo}
                   >
-                    <Space direction="vertical" className="mb-4">
+                    <Space orientation="vertical" className="mb-4">
                       <Button icon={<UploadOutlined />}>
                         {I18n.t('administration.projects.design_settings.logo_upload')}
                       </Button>

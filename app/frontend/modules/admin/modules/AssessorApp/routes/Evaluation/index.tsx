@@ -148,7 +148,7 @@ const Evaluation: FC<Props> = ({
               const assessment = _.last<AssessorAssessmentType>(assessments)
               return assessment && (
                 <TabPane
-                  destroyInactiveTabPane
+                  destroyOnHidden
                   tab={assessment.name}
                   key={id}
                   className="lh-splitter-fullscreen-wrapper"

@@ -133,7 +133,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
   }
 
   return (
-    <Space direction="vertical" size="large" style={{ display: 'flex' }}>
+    <Space orientation="vertical" size="large" style={{ display: 'flex' }}>
       <Panel
         title={I18n.t('administration.scheduling.assessment_center_form.basic_info_panel.title')}
         description={I18n.t('administration.scheduling.assessment_center_form.basic_info_panel.description')}

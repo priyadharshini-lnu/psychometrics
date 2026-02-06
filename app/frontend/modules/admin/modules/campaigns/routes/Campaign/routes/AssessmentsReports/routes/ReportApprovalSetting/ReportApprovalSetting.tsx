@@ -94,7 +94,7 @@ const ReportApprovalSettingComponent: React.FC<Props> = ({
           title={I18n.t('common.column.qc_user_list')}
           render={({ qcs }) => (
             <Space
-              direction="vertical"
+              orientation="vertical"
             >
               {qcs.map(qc => <div key={`qcs_${qc.id}`}>{qc.email}</div>)}
             </Space>
@@ -104,7 +104,7 @@ const ReportApprovalSettingComponent: React.FC<Props> = ({
           key="approvers_list"
           title={I18n.t('common.column.approvers_list')}
           render={({ approvers }) => (
-            <Space direction="vertical">
+            <Space orientation="vertical">
               {approvers.map(approver => (
                 <div key={`approvers_${approver.id}`}>
                   {approver.email}
@@ -117,7 +117,7 @@ const ReportApprovalSettingComponent: React.FC<Props> = ({
           key="approval_notification_list"
           title={I18n.t('common.column.approval_notification_list')}
           render={({ approvalNotificationUsers }) => (
-            <Space direction="vertical">
+            <Space orientation="vertical">
               {approvalNotificationUsers.map(
                 user => <div key={`an_${user.id}`}>{user.email}</div>,
               )}

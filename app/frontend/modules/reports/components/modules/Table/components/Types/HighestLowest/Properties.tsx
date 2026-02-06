@@ -92,7 +92,7 @@ export const Properties: FC<Props> = ({ modules }) => {
   }
 
   return (
-    <Space direction="vertical" size="small">
+    <Space orientation="vertical" size="small">
       <SourceTypeButtonGroup model={model} onChange={onChange} />
 
 
@@ -187,7 +187,7 @@ interface TablePreferencesProps {
 const TablePreferences: FC<TablePreferencesProps> = ({
   hideValues, noOfItems, scoreCutoff, onChange,
 }) => (
-  <Space direction="vertical">
+  <Space orientation="vertical">
     <Checkbox
       checked={hideValues === true}
       onChange={e => onChange('hideValues', e.target.checked)}

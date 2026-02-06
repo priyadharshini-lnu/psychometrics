@@ -60,7 +60,7 @@ export const ReportSettingsComponent = ({
     >
       <Tabs
         defaultActiveKey="page_settings"
-        tabPosition="left"
+        tabPlacement="start"
         items={tabItems}
       />
     </Modal>

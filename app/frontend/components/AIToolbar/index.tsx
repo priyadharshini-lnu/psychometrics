@@ -160,7 +160,7 @@ const AIToolbar: React.FC<AIToolbarProps> = ({ enabled = true, withSpellchecker 
         key: `${action.id}::${opt.id}`,
         label: opt.label,
       })),
-      popupClassName: styles.subMenu,
+      classNames: { popup: styles.subMenu },
       popupOffset: [0, 0],
     }
   }), [])

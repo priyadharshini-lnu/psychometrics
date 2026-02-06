@@ -136,7 +136,7 @@ const StatsComponent: React.FC<Props> = ({
             <Statistic
               title={I18n.t('administration.stats.top_metrics.not_started')}
               value={users.not_started || 0}
-              valueStyle={{ color: COLORS.not_started }}
+              styles={{ content: { color: COLORS.not_started } }}
             />
           </Card>
         </Col>
@@ -145,7 +145,7 @@ const StatsComponent: React.FC<Props> = ({
             <Statistic
               title={I18n.t('administration.stats.top_metrics.in_progress')}
               value={users.in_progress || 0}
-              valueStyle={{ color: COLORS.in_progress }}
+              styles={{ content: { color: COLORS.in_progress } }}
             />
           </Card>
         </Col>
@@ -154,7 +154,7 @@ const StatsComponent: React.FC<Props> = ({
             <Statistic
               title={I18n.t('administration.stats.top_metrics.completed')}
               value={users.completed || 0}
-              valueStyle={{ color: COLORS.completed }}
+              styles={{ content: { color: COLORS.completed } }}
             />
           </Card>
         </Col>
@@ -163,7 +163,7 @@ const StatsComponent: React.FC<Props> = ({
             <Statistic
               title={I18n.t('administration.stats.top_metrics.interrupted')}
               value={users.interrupted || 0}
-              valueStyle={{ color: COLORS.interrupted }}
+              styles={{ content: { color: COLORS.interrupted } }}
             />
           </Card>
         </Col>
@@ -172,7 +172,7 @@ const StatsComponent: React.FC<Props> = ({
             <Statistic
               title={I18n.t('administration.stats.top_metrics.timed_out')}
               value={users.timed_out || 0}
-              valueStyle={{ color: COLORS.timed_out }}
+              styles={{ content: { color: COLORS.timed_out } }}
             />
           </Card>
         </Col>
@@ -200,7 +200,7 @@ const StatsComponent: React.FC<Props> = ({
                 showCheckedStrategy={TreeSelect.SHOW_CHILD}
                 treeData={dataSheetColumnsTreeData}
                 placeholder="Select Available Data Sheet Columns"
-                dropdownMatchSelectWidth={false}
+                popupMatchSelectWidth={false}
                 value={Object.entries(selectedDataSheetColumns).flatMap(([originalKey, values]) => {
                   const lowerKey = originalKey.toLowerCase()
                   return values.map(val => (val === null

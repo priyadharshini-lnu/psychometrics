@@ -31,7 +31,7 @@ export const CommentItemContent = ({
 
   return (
     <Space
-      direction="vertical"
+      orientation="vertical"
       size={0}
       className={styles.commentContent}
     >

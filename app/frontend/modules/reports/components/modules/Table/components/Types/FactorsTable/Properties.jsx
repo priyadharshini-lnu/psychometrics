@@ -207,7 +207,7 @@ class Properties extends Component {
     const model = modules[0]
 
     return (
-      <Space direction="vertical">
+      <Space orientation="vertical">
         <HintCheckbox
           label="All Factors"
           checked={model.props.allFactors}

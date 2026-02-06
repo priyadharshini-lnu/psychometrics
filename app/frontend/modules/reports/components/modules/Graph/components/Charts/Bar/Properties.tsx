@@ -145,7 +145,7 @@ const Properties: React.FC<Props> = ({ modules, questions }: Props) => {
   const funcs = typeof seriesFunction === 'function' ? seriesFunction(question) : seriesFunction
 
   return (
-    <Space direction="vertical">
+    <Space orientation="vertical">
       <GraphPropertyDropdown
         label={I18n.t('reports.builder.graph.properties.dataFormat')}
         options={funcs}
@@ -295,7 +295,7 @@ interface AxisOptionsProps {
 }
 
 const AxisOptions: React.FC<AxisOptionsProps> = ({ model, options, changeHandler }) => (
-  <Space direction="vertical">
+  <Space orientation="vertical">
     {options.map(displayOption => (
       <Checkbox
         key={displayOption.propName}

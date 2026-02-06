@@ -13,7 +13,7 @@ const { I18n } = window
 
 
 export const SavedFiltersDropdown = ({ savedFilters }) => (
-  <Dropdown overlayStyle={{ width: '500px' }} menu={{ items: savedFilters }}>
+  <Dropdown styles={{ root: { width: '500px' } }} menu={{ items: savedFilters }}>
     <Button style={saveFilterButtonStyles}>
       <Space>
         {I18n.t('administration.report_approval.saving_filters.actions.saved_filters')}

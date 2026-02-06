@@ -199,7 +199,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
               key: '1',
               label: I18n.t('administration.campaigns.assessment_reports.report_approval.settings'),
               children: (
-                <Space direction="vertical" size="middle">
+                <Space orientation="vertical" size="middle">
                   <Space align="center">
                     <Form.Item
                       name="approversNotRequired"

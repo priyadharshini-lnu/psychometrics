@@ -102,7 +102,7 @@ const ChartsMenu = ({
           />
         </div>
         {GRAPH_TYPES_SUPPORTING_CUSTOM_FACTOR_FIELDS[model.props.type] && model.props.source?.type === 'Factor' && (
-          <Space direction="vertical" className="w-100">
+          <Space orientation="vertical" className="w-100">
             <div>
               <span>{I18n.t('administration.report_builder.property_panel.factor_value_type.label')}</span>
               <Radio.Group onChange={handleSourceSubtypeChange} value={model.props.source.subType || 'default'}>
@@ -159,7 +159,7 @@ const ChartsMenu = ({
   const assessment = AppStore.getAssessmentById(model.assessment_id)
 
   return (
-    <Space direction="vertical" className="w-100" size={12}>
+    <Space orientation="vertical" className="w-100" size={12}>
       <hr className={panelStyles.divider} />
       <BaseTypeProperties model={model} onSelect={handleSelect} />
       {renderSettingsBasedOnAssessment()}

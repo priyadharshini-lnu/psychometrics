@@ -209,7 +209,7 @@ const SamlServiceProvidersListComponent: React.FC<Props> = ({ openModal }) => {
           key="idp_configuration"
           title={I18n.t('admin.saml_service_provider_idp_config')}
           render={saml_service_provider => (
-            <Space direction="vertical" size="small" className="w-100">
+            <Space orientation="vertical" size="small" className="w-100">
               <div>
                 <Typography.Text strong>
                   {I18n.t('admin.saml_idp_entity_id_label')}

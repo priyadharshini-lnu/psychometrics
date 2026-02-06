@@ -73,7 +73,7 @@ export const CommentItemHeader = ({
                   onResolveComment(comment.id)
                 }}
                 aria-label={I18n.t('idp.comments.mark_comment_as_resolved')}
-                iconPosition="end"
+                iconPlacement="end"
               >
                 {I18n.t('idp.comments.resolve')}
               </Button>
@@ -85,7 +85,7 @@ export const CommentItemHeader = ({
                 size="small"
                 icon={<CheckOutlined />}
                 className={styles.commentResolvedButton}
-                iconPosition="end"
+                iconPlacement="end"
                 onClick={(e) => {
                   e.stopPropagation()
                   onUnresolveComment(comment.id)
@@ -143,7 +143,7 @@ export const CommentItemHeader = ({
                   onScrollToSkill(comment.resourceId)
                 }}
                 icon={<ArrowRightOutlined />}
-                iconPosition="end"
+                iconPlacement="end"
               >
                 {I18n.t('idp.comment_details.go_to_skill')}
               </Button>

@@ -52,7 +52,7 @@ const DetailsDrawerComponent: FC<Props> = ({
       maskClosable
       closable
       open={!!skill}
-      destroyOnClose
+      destroyOnHidden
       width="50%"
     >
       <Row>

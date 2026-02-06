@@ -181,7 +181,7 @@ const PropertyPanelComponent = (props) => {
         <Space
           className={styles.innerContent}
           key={serializedQuestion.id}
-          direction="vertical"
+          orientation="vertical"
           split={<Divider style={{ margin: 0 }} />}
           size={1}
           ref={panelRef}

@@ -121,7 +121,7 @@ export const CommentItem: FC<Props> = ({
         {editComment ? (
           <>
             <TextArea autoSize size="small" onChange={handleCommentEdit} value={commentText} />
-            <Space direction="horizontal" className={styles.btnContainer}>
+            <Space orientation="horizontal" className={styles.btnContainer}>
               <Button size="small" onClick={handleCancelEdit}>{I18n.t('common.actions.cancel')}</Button>
               <Button
                 disabled={!commentText.length}

@@ -37,7 +37,7 @@ export const AssessorEvaluations: FC<Props> = ({
       <div className={styles.evaluations}>
         {assessorAssessments.length > 0
           ? (
-            <Tabs tabBarStyle={{ padding: '0 12px' }} destroyInactiveTabPane defaultActiveKey="1">
+            <Tabs tabBarStyle={{ padding: '0 12px' }} destroyOnHidden defaultActiveKey="1">
               {assessorAssessments.map(assessment => (
                 <TabPane tab={assessment.name} key={assessment.id}>
                   <AssessorAssessment assessmentId={+assessment.assessment_id} />

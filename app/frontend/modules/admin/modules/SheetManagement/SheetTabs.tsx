@@ -30,7 +30,7 @@ const SheetTabsComponent: FC<Props> = ({ parentResourceType, parentResourceId })
   if (!resourceId) { return null }
 
   return (
-    <Tabs defaultActiveKey="rows" tabBarStyle={{ padding: '0 20px' }} destroyInactiveTabPane>
+    <Tabs defaultActiveKey="rows" tabBarStyle={{ padding: '0 20px' }} destroyOnHidden>
       <TabPane
         tab={(
           <span>

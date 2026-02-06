@@ -105,8 +105,10 @@ export const AddDevelopmentActionModal: React.FC<Props> = ({
           overflow: 'hidden',
         },
       }}
-      destroyOnClose
-      focusTriggerAfterClose
+      destroyOnHidden
+      focusable={{
+        focusTriggerAfterClose: true,
+      }}
       getContainer={document.querySelector('#endUserContainer') as HTMLElement}
       closeIcon={<Button style={{ border: 'none' }} ref={btnRef} icon={<CloseOutlined />} />}
       wrapClassName={wrapClassName}

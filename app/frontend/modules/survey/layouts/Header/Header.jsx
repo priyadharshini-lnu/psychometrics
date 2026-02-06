@@ -146,7 +146,7 @@ const Header = (props) => {
 
 
   return (
-    <Space direction="vertical" className="w-100">
+    <Space orientation="vertical" className="w-100">
       {translations_migrated ? (
         <Space className="w-100 justify-end pe-3">
           {!showAssessmentOptions ? (

@@ -54,7 +54,7 @@ export const LangDropdown: React.FC<Props & { useLoading?: boolean }> = ({
     <div>
       <Space>
         <Dropdown
-          overlayClassName={styles.dropdownContainer}
+          classNames={{ root: styles.dropdownContainer }}
           onOpenChange={setOpenChange}
           menu={{ items: menuItems, onClick: onSelect }}
           trigger={['click']}

@@ -12,7 +12,7 @@ type Props = {
 } & SkeletonInputProps
 
 export const FullWidthSkeleton:FC<Props> = ({ rows, height, ...props }) => (
-  <Space className="w-100" direction="vertical">
+  <Space className="w-100" orientation="vertical">
     {
       _.range(0, rows || DEFAULT_ROWS).map(number => (
         <Skeleton.Input

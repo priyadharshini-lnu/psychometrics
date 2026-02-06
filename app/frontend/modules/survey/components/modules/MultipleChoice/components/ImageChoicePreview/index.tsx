@@ -135,7 +135,9 @@ export const ImageChoices: FC<Props> = ({
         className={styles.modalBody}
         width={800}
         footer={null}
-        focusTriggerAfterClose={false}
+        focusable={{
+          focusTriggerAfterClose: true,
+        }}
         open={isPreviewModalOpen}
         onCancel={() => toggleImagePreviewer()}
       >

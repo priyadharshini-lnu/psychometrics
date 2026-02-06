@@ -21,7 +21,7 @@ export const EditForm: React.FC<Props> = ({ assessment, memberAction }) => (
       </Panel>
     </Col>
     <Col lg={12} sm={24} className="pl">
-      <Space direction="vertical" style={{ display: 'flex' }} size="large">
+      <Space orientation="vertical" style={{ display: 'flex' }} size="large">
         <Panel title={I18n.t('assessments.pages.edit.assets')} collapsible>
           <Assets assessment={assessment} />
         </Panel>

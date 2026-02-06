@@ -181,7 +181,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
               label: I18n.t('administration.campaigns.assessment_reports.report_approval.settings'),
               forceRender: true,
               children: (
-                <Space direction="vertical" size="middle">
+                <Space orientation="vertical" size="middle">
                   <Space align="center">
                     <Form.Item
                       name="approversNotRequired"

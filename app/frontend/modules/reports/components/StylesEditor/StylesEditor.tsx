@@ -188,7 +188,7 @@ export const StylesEditor = ({ style, onSave, onCancel }) => {
       >
         {_.map(TEXT_DECORATIONS, (value, key) => <Select.Option value={key} key={key}>{value}</Select.Option>)}
       </Select>
-      <Space direction="vertical" style={{ marginTop: 5 }}>
+      <Space orientation="vertical" style={{ marginTop: 5 }}>
         <div className={styles.flexLabel}>
           <ColorPicker
             swatchClassName={styles.swatch}
@@ -199,7 +199,7 @@ export const StylesEditor = ({ style, onSave, onCancel }) => {
           />
           <span>Font Color</span>
         </div>
-        <Space direction="vertical">
+        <Space orientation="vertical">
           <span>Font Size</span>
           <div className={styles.fontSize}>
             <InputNumber
@@ -255,7 +255,7 @@ export const StylesEditor = ({ style, onSave, onCancel }) => {
         Border
       </div>
       {get('border') && (
-        <Space direction="vertical">
+        <Space orientation="vertical">
           <Space.Compact block>
             <div className={styles.inline}>
               <label>Width</label>
@@ -300,9 +300,9 @@ export const StylesEditor = ({ style, onSave, onCancel }) => {
         </Space>
       )}
       <hr className={styles.divider} />
-      <Space direction="vertical">
+      <Space orientation="vertical">
         Border Radius
-        <Space direction="vertical">
+        <Space orientation="vertical">
           <Space>
             <BorderOuterOutlined />
             <InputNumber
@@ -362,7 +362,7 @@ export const StylesEditor = ({ style, onSave, onCancel }) => {
         </Space>
       </Space>
       <hr className={styles.divider} />
-      <Space direction="vertical" className="w-100">
+      <Space orientation="vertical" className="w-100">
         Background
 
         <div className={styles.flexLabel}>
@@ -397,7 +397,7 @@ export const StylesEditor = ({ style, onSave, onCancel }) => {
               optionType="button"
             />
             {get('gradient').type === 'linear' && (
-              <Space direction="vertical">
+              <Space orientation="vertical">
                 Gradient Degree
                 <Slider
                   value={get('gradient').degree}
@@ -465,7 +465,7 @@ export const StylesEditor = ({ style, onSave, onCancel }) => {
         Box Shadow
       </div>
       {get('boxShadow')?.enabled && (
-        <Space direction="vertical">
+        <Space orientation="vertical">
           <Space.Compact block>
             <div className={styles.inline}>
               <label>X</label>
