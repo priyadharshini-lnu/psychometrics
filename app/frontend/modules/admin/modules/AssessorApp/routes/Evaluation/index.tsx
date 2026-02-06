@@ -174,6 +174,7 @@ const Evaluation: FC<Props> = ({
             onChange={changeAssessorForm}
             className={styles.assessorTabs}
             items={assessorTabItems}
+            animated={false}
           />
         </Splitter.Panel>
         <Splitter.Panel defaultSize="50%" min={300}>
@@ -183,6 +184,7 @@ const Evaluation: FC<Props> = ({
               onChange={changeSubjectForm}
               className={styles.assessorTabs}
               items={subjectTabItems}
+              animated={false}
             />
           )}
         </Splitter.Panel>
