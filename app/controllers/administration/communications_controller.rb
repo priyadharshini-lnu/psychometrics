@@ -199,7 +199,7 @@ module Administration
     end
 
     def current_locale
-      cookies[:locale] || I18n.default_locale
+      LocaleValidator.sanitize(cookies[:locale])
     end
   end
 end

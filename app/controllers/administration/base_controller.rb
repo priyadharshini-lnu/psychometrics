@@ -56,7 +56,7 @@ module Administration
     end
 
     def set_locale
-      I18n.locale = cookies[:locale].presence || I18n.default_locale
+      I18n.locale = LocaleValidator.sanitize(cookies[:locale])
     end
 
     def project_flags
