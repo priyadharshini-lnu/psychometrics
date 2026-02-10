@@ -390,7 +390,7 @@ const getActionsMenuProps = ({
     },
     assessment.meta.permissions.exportRawResults && { type: 'divider' },
     assessment.meta.permissions.exportRawResults
-     && { key: 'export', label: I18n.t('assessments.actions.export') },
+     && { key: 'export', label: I18n.t('assessments.actions.export'), disabled: true },
     assessment.meta.permissions.exportRawResults && {
       key: 'export_with_label',
       label: I18n.t('assessments.actions.export_raw_labels'),
