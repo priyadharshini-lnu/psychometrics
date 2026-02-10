@@ -119,7 +119,9 @@ export const Result = () => {
                     </div>
                     )}
                 >
-                  <WarningFilled className={styles.warning} />
+                  <span>
+                    <WarningFilled className={styles.warning} />
+                  </span>
                 </Popover>
               )
             }
@@ -130,7 +132,9 @@ export const Result = () => {
                   title={I18n.t('administration.ai_artifacts.generated_at_time',
                     { time: formatedDate(record.artifacts[art].generatedAt) })}
                 >
-                  <CheckOutlined style={{ color: '#52c41a' }} />
+                  <span>
+                    <CheckOutlined style={{ color: '#52c41a' }} />
+                  </span>
                 </Tooltip>
               )
             }
