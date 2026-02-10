@@ -3929,11 +3929,6 @@ hu:
         generate_embedding_failure_msg: Nem sikerült sorba sorolni a képesség beágyazó generáló feladatot. Kérlek, próbáld meg újra.
         generate_embedding_success_msg: A képességbeágyazású generáló munka sikeresen sorba került. Kérjük, ellenőrizze az állapotot az értesítésekben.
         label: Vektoros DB
-    skills_taxonomy:
-      tabs:
-        job_roles: Munkakörök
-        proficiency: Szakértelem
-        skills: Készségek
     sms_histories:
       columns:
         first_name: Keresztnév
@@ -4186,9 +4181,6 @@ hu:
         success_msg: A feltöltött fájl importálási várólistára került. Kérjük, ellenőrizze az állapotot az értesítésekben.
       import_action:
         taxonomy: Import taxonómia
-      job_roles: Munkakörök
-      proficiency: Szakértelem
-      skills: Készségek
       title: Rendszertan
     templates:
       blocks:

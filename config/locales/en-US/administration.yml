@@ -3930,11 +3930,6 @@ en-US:
         generate_embedding_failure_msg: Failed to queue skill embedding generation job. Please try again.
         generate_embedding_success_msg: Skill embedding generation job has been queued successfully. Please check the status in the notifications.
         label: Vector DB
-    skills_taxonomy:
-      tabs:
-        job_roles: Job Roles
-        proficiency: Proficiency
-        skills: Skills
     sms_histories:
       columns:
         first_name: First Name
@@ -4192,9 +4187,6 @@ en-US:
         success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
       import_action:
         taxonomy: Import Taxonomy
-      job_roles: Job Roles
-      proficiency: Proficiency
-      skills: Skills
       title: Taxonomy
     templates:
       blocks:

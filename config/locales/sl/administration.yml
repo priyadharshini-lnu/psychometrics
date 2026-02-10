@@ -3927,11 +3927,6 @@ sl:
         generate_embedding_failure_msg: Nisem uspel v vrsti za generiranje veščin v vrsti. Prosim, poskusite znova.
         generate_embedding_success_msg: Delo za generiranje veščin je bilo uspešno uvrščeno v čakalno vrsto. Prosimo, preverite status v obvestilih.
         label: Vector DB
-    skills_taxonomy:
-      tabs:
-        job_roles: Delovna mesta
-        proficiency: Znanje
-        skills: Spretnosti
     sms_histories:
       columns:
         first_name: Ime
@@ -4184,9 +4179,6 @@ sl:
         success_msg: Naložena datoteka je bila uvrščena v čakalno vrsto za uvoz. Preverite stanje v obvestilih.
       import_action:
         taxonomy: Uvozna taksonomija
-      job_roles: Delovna mesta
-      proficiency: Znanje
-      skills: Spretnosti
       title: Taksonomija
     templates:
       blocks:

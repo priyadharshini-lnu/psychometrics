@@ -3930,11 +3930,6 @@ pt:
         generate_embedding_failure_msg: Falhei em enfileirar o trabalho de geração de habilidade embedding. Por favor, tente novamente.
         generate_embedding_success_msg: O trabalho de geração de embedding de habilidades foi enfileirado com sucesso. Por favor, verifique o status nas notificações.
         label: Vector DB
-    skills_taxonomy:
-      tabs:
-        job_roles: Funções
-        proficiency: Proficiência
-        skills: Competências
     sms_histories:
       columns:
         first_name: Nome próprio
@@ -4192,9 +4187,6 @@ pt:
         success_msg: O ficheiro carregado foi colocado em fila de espera para importação. Verifique o estado nas notificações.
       import_action:
         taxonomy: Importar a taxonomia de competências
-      job_roles: Funções
-      proficiency: Proficiência
-      skills: Competências
       title: Taxonomia de competências
     templates:
       blocks:

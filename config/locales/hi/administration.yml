@@ -3988,11 +3988,6 @@ hi:
         generate_embedding_failure_msg: कौशल एम्बेडिंग जनरेशन जॉब को कतारबद्ध करने में विफल। कृपया फिर से प्रयास करें।
         generate_embedding_success_msg: स्किल एम्बेडिंग जनरेशन जॉब सफलतापूर्वक कतारबद्ध हो गया है। कृपया सूचनाओं में स्थिति देखें।
         label: वेक्टर डेटाबेस
-    skills_taxonomy:
-      tabs:
-        job_roles: भूमिकाएँ
-        proficiency: निपुणता
-        skills: कौशल
     sms_histories:
       columns:
         first_name: पहला नाम
@@ -4252,9 +4247,6 @@ hi:
         success_msg: अपलोड की गई फ़ाइल आयात के लिए कतार में रखी गई है। कृपया सूचनाओं में स्थिति देखें।
       import_action:
         taxonomy: कौशल वर्गीकरण आयात करें
-      job_roles: भूमिकाएँ
-      proficiency: निपुणता
-      skills: कौशल
       title: कौशल वर्गीकरण
     templates:
       blocks:

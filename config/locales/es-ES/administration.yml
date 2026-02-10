@@ -3930,11 +3930,6 @@ es-ES:
         generate_embedding_failure_msg: No se pudo poner en cola el trabajo de generación de incrustación de habilidades. Por favor, inténtalo de nuevo.
         generate_embedding_success_msg: El trabajo de generación de incrustación de habilidades se ha puesto en cola con éxito. Por favor, revisa el estado en las notificaciones.
         label: Vector DB
-    skills_taxonomy:
-      tabs:
-        job_roles: Funciones
-        proficiency: Dominio
-        skills: Habilidades
     sms_histories:
       columns:
         first_name: Nombre
@@ -4192,9 +4187,6 @@ es-ES:
         success_msg: El archivo cargado se ha puesto en cola para su importación. Compruebe el estado en las notificaciones.
       import_action:
         taxonomy: Importar taxonomía de competencias
-      job_roles: Roles de trabajo
-      proficiency: Dominio
-      skills: Habilidades
       title: Taxonomía de competencias
     templates:
       blocks:

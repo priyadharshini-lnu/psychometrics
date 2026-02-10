@@ -3930,11 +3930,6 @@ ko:
         generate_embedding_failure_msg: 기술 임베딩 생성 작업을 대기열에 넣지 못했습니다. 다시 시도해 주세요.
         generate_embedding_success_msg: 기술 임베딩 생성 작업이 성공적으로 대기열에 들어왔습니다. 알림에서 상태를 확인해 주세요.
         label: 벡터 DB
-    skills_taxonomy:
-      tabs:
-        job_roles: 직무 역할
-        proficiency: 숙련도
-        skills: 기술
     sms_histories:
       columns:
         first_name: 이름
@@ -4192,9 +4187,6 @@ ko:
         success_msg: 업로드한 파일을 가져오기 위해 대기 중입니다. 알림에서 상태를 확인하세요.
       import_action:
         taxonomy: 스킬 분류 가져오기
-      job_roles: 직무 역할
-      proficiency: 숙련도
-      skills: 기술
       title: 기술 분류
     templates:
       blocks:

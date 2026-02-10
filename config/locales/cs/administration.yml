@@ -3930,11 +3930,6 @@ cs:
         generate_embedding_failure_msg: Nepodařilo se mi zařadit generování dovedností do fronty. Zkuste to prosím znovu.
         generate_embedding_success_msg: Generování dovedností bylo úspěšně zařazeno. Prosím, zkontrolujte stav v oznámeních.
         label: Vector DB
-    skills_taxonomy:
-      tabs:
-        job_roles: Pracovní role
-        proficiency: Proficience
-        skills: Dovednosti
     sms_histories:
       columns:
         first_name: Jméno
@@ -4192,9 +4187,6 @@ cs:
         success_msg: Nahraný soubor byl zařazen do fronty pro import. Zkontrolujte prosím stav v oznámeních.
       import_action:
         taxonomy: Import taxonomie dovedností
-      job_roles: Pracovní role
-      proficiency: Znalost
-      skills: Dovednosti
       title: Taxonomie dovedností
     templates:
       blocks:

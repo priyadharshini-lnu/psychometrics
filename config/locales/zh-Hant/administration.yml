@@ -3930,11 +3930,6 @@ zh-Hant:
         generate_embedding_failure_msg: 無法排隊完成技能嵌入生成任務。請再試一次。
         generate_embedding_success_msg: 技能嵌入生成工作已成功排隊。請查看通知中的狀態。
         label: 向量資料庫
-    skills_taxonomy:
-      tabs:
-        job_roles: 工作角色
-        proficiency: 精通
-        skills: 技能
     sms_histories:
       columns:
         first_name: 姓名
@@ -4192,9 +4187,6 @@ zh-Hant:
         success_msg: 上傳的檔案已排隊等待匯入。請在通知中查看狀態。
       import_action:
         taxonomy: 匯入技能分類系統
-      job_roles: 工作角色
-      proficiency: 能力
-      skills: 技術
       title: 技能分類學
     templates:
       blocks:

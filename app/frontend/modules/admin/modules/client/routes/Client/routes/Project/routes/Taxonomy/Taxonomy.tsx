@@ -54,23 +54,23 @@ const TaxonomyComponent: FC<PropsFromRedux> = ({ features }) => {
 
   menuItems.push({
     key: '/skills',
-    label: I18n.t('administration.taxonomy.skills'),
+    label: I18n.t('admin.skills'),
   })
 
   if (skillRaterEnabled) {
     menuItems.push({
       key: '/job_roles',
-      label: I18n.t('administration.taxonomy.job_roles'),
+      label: I18n.t('admin.job_roles'),
     })
 
     menuItems.push({
       key: '/proficiency',
-      label: I18n.t('administration.taxonomy.proficiency'),
+      label: I18n.t('admin.proficiency'),
     })
 
     menuItems.push({
       key: '/settings',
-      label: I18n.t('administration.breadcrumbs.settings'),
+      label: I18n.t('admin.tools'),
     })
   }
 

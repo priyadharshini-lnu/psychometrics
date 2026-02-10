@@ -3930,11 +3930,6 @@ zh:
         generate_embedding_failure_msg: 未能排队技能嵌入生成任务。请再试一次。
         generate_embedding_success_msg: 技能嵌入生成任务已成功排队。请查看通知中的状态。
         label: 向量数据库
-    skills_taxonomy:
-      tabs:
-        job_roles: 工作角色
-        proficiency: 熟练
-        skills: 技能
     sms_histories:
       columns:
         first_name: 姓名
@@ -4192,9 +4187,6 @@ zh:
         success_msg: 上传的文件已排队等待导入。请查看通知中的状态。
       import_action:
         taxonomy: 导入技能分类标准
-      job_roles: 工作角色
-      proficiency: 熟练程度
-      skills: 技能
       title: 技能分类法
     templates:
       blocks:

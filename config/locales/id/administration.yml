@@ -3927,11 +3927,6 @@ id:
         generate_embedding_failure_msg: Gagal mengantrekan pekerjaan pembuatan penyematan keterampilan. Silakan coba lagi.
         generate_embedding_success_msg: Pekerjaan pembuatan penyematan keterampilan telah berhasil diantri. Silakan periksa status di notifikasi.
         label: DB Vektor
-    skills_taxonomy:
-      tabs:
-        job_roles: Peran Pekerjaan
-        proficiency: Kemampuan
-        skills: Keterampilan
     sms_histories:
       columns:
         first_name: Nama depan
@@ -4184,9 +4179,6 @@ id:
         success_msg: File yang diunggah telah diantrekan untuk impor. Silakan periksa status di notifikasi.
       import_action:
         taxonomy: Taksonomi Impor
-      job_roles: Peran Pekerjaan
-      proficiency: Kemampuan
-      skills: Keterampilan
       title: Taksonomi
     templates:
       blocks:

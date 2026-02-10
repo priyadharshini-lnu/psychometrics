@@ -3927,11 +3927,6 @@ th:
         generate_embedding_failure_msg: ล้มเหลวในการจัดคิวงานการสร้างการฝังทักษะ โปรดลองอีกครั้ง
         generate_embedding_success_msg: งานการสร้างการฝังทักษะได้รับการจัดคิวเรียบร้อยแล้ว โปรดตรวจสอบสถานะในการแจ้งเตือน
         label: เวกเตอร์ DB
-    skills_taxonomy:
-      tabs:
-        job_roles: บทบาทงาน
-        proficiency: ความสามารถ
-        skills: ทักษะ
     sms_histories:
       columns:
         first_name: ชื่อ
@@ -4184,9 +4179,6 @@ th:
         success_msg: ไฟล์ที่อัปโหลดถูกจัดคิวสําหรับการนําเข้า โปรดตรวจสอบสถานะในการแจ้งเตือน
       import_action:
         taxonomy: อนุกรมวิธานนําเข้า
-      job_roles: บทบาทงาน
-      proficiency: ความสามารถ
-      skills: ทักษะ
       title: อนุกรมวิธาน
     templates:
       blocks:

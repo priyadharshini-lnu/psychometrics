@@ -616,6 +616,7 @@ en:
     permissions_360_campaigns: Permissions specific to 360 campaigns
     piped_text: Piped Text
     privacy: Privacy
+    proficiency: Proficiency
     proficiency_level: Proficiency Level
     proficiency_levels: Proficiency Levels
     profile_details: Profile Details
@@ -727,6 +728,7 @@ en:
     toolbar_text_copied: Copied to clipboard
     toolbar_text_replaced: Text replaced!
     toolbar_what_changed_and_why: What Changed & Why
+    tools: Tools
     translate: Translate
     translate_to: Translate To
     translate_with_ai: Translate with AI

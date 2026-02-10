@@ -3927,11 +3927,6 @@ bg:
         generate_embedding_failure_msg: Не успях да поставя задачата за генериране на умения за вграждане. Моля, опитайте отново.
         generate_embedding_success_msg: Задачата за генериране на вграждане на умения е успешно поставена в опашка. Моля, проверете статуса в известията.
         label: Vector DB
-    skills_taxonomy:
-      tabs:
-        job_roles: Работни роли
-        proficiency: Владеене
-        skills: Умения
     sms_histories:
       columns:
         first_name: Собствено име
@@ -4184,9 +4179,6 @@ bg:
         success_msg: Каченият файл е поставен на опашка за импортиране. Моля, проверете статуса в известията.
       import_action:
         taxonomy: Таксономия на вноса
-      job_roles: Работни роли
-      proficiency: Владеене
-      skills: Умения
       title: Таксономия
     templates:
       blocks:

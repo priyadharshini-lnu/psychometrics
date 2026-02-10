@@ -3930,11 +3930,6 @@ ar:
         generate_embedding_failure_msg: فشل في حجز وظيفة توليد المهارات في قائمة الانتظار. يرجى المحاولة مرة أخرى.
         generate_embedding_success_msg: تم تأسيس وظيفة توليد المهارات بنجاح. يرجى التحقق من الحالة في الإشعارات.
         label: فيكتور DB
-    skills_taxonomy:
-      tabs:
-        job_roles: الأدوار الوظيفية
-        proficiency: الكفاءة
-        skills: المهارات
     sms_histories:
       columns:
         first_name: First Name
@@ -4192,9 +4187,6 @@ ar:
         success_msg: تم وضع الملف الذي تم تحميله في قائمة الانتظار للاستيراد. يرجى التحقق من الحالة في الإشعارات.
       import_action:
         taxonomy: تصنيف مهارات الاستيراد
-      job_roles: الأدوار الوظيفية
-      proficiency: الكفاءة
-      skills: المهارات
       title: تصنيف المهارات
     templates:
       blocks:

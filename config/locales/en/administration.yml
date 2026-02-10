@@ -3930,11 +3930,6 @@ en:
         generate_embedding_failure_msg: Failed to queue skill embedding generation job. Please try again.
         generate_embedding_success_msg: Skill embedding generation job has been queued successfully. Please check the status in the notifications.
         label: Vector DB
-    skills_taxonomy:
-      tabs:
-        job_roles: Job Roles
-        proficiency: Proficiency
-        skills: Skills
     sms_histories:
       columns:
         first_name: First Name
@@ -4188,13 +4183,15 @@ en:
       more_actions: More actions
     taxonomy:
       import:
+        description: Upload an Excel file to import or update your skills taxonomy. This will add new skills, job roles, and proficiency levels.
         download_example_file: Download Example File
+        drag_text: Click or drag file to this area to upload
+        error_title: Import Failed
+        file_hint: Supports .xls and .xlsx files
+        import_button: Import Taxonomy
         success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
       import_action:
         taxonomy: Import Skills Taxonomy
-      job_roles: Job Roles
-      proficiency: Proficiency
-      skills: Skills
       title: Skills Taxonomy
     templates:
       blocks:

@@ -21,7 +21,7 @@ export const routes = [
     component: <Proficiency />,
   },
   {
-    path: '/settings',
+    path: '/tools',
     component: <Settings />,
   },
 ]

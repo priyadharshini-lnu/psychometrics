@@ -3927,11 +3927,6 @@ pl:
         generate_embedding_failure_msg: Nie udało się ustawić zadania generowania umiejętności w kolejce. Proszę, spróbuj ponownie.
         generate_embedding_success_msg: Zadanie generowania umiejętności zostało pomyślnie zaksięgowane. Proszę sprawdzić status w powiadomieniach.
         label: Vector DB
-    skills_taxonomy:
-      tabs:
-        job_roles: Role zawodowe
-        proficiency: Biegłość
-        skills: Umiejętności
     sms_histories:
       columns:
         first_name: Imię
@@ -4184,9 +4179,6 @@ pl:
         success_msg: Przesłany plik został umieszczony w kolejce do importu. Sprawdź status w powiadomieniach.
       import_action:
         taxonomy: Taksonomia importu
-      job_roles: Role zawodowe
-      proficiency: Biegłość
-      skills: Umiejętności
       title: Taksonomia
     templates:
       blocks:

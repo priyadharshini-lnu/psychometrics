@@ -3927,11 +3927,6 @@ vi:
         generate_embedding_failure_msg: Không thể xếp hàng công việc tạo nhúng kỹ năng. Vui lòng thử lại.
         generate_embedding_success_msg: Công việc tạo nhúng kỹ năng đã được xếp hàng thành công. Vui lòng kiểm tra trạng thái trong thông báo.
         label: Cơ sở dữ liệu vectơ
-    skills_taxonomy:
-      tabs:
-        job_roles: Vai trò công việc
-        proficiency: Thông thạo
-        skills: Kỹ năng
     sms_histories:
       columns:
         first_name: Tên thánh
@@ -4184,9 +4179,6 @@ vi:
         success_msg: Tệp đã tải lên đã được xếp hàng để nhập. Vui lòng kiểm tra trạng thái trong thông báo.
       import_action:
         taxonomy: Phân loại nhập khẩu
-      job_roles: Vai trò công việc
-      proficiency: Thông thạo
-      skills: Kỹ năng
       title: Phân loại học
     templates:
       blocks:

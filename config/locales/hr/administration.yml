@@ -3927,11 +3927,6 @@ hr:
         generate_embedding_failure_msg: Nisam uspio staviti posao generiranja vještina u red. Molim te, pokušaj ponovno.
         generate_embedding_success_msg: Posao generiranja vještina uspješno je stavljen u red. Molimo provjerite status u obavijestima.
         label: Vector DB
-    skills_taxonomy:
-      tabs:
-        job_roles: Uloge na poslu
-        proficiency: Znanje
-        skills: Vještine
     sms_histories:
       columns:
         first_name: Ime
@@ -4184,9 +4179,6 @@ hr:
         success_msg: Prenesena datoteka stavljena je u red čekanja za uvoz. Provjerite status u obavijestima.
       import_action:
         taxonomy: Uvozna taksonomija
-      job_roles: Uloge na poslu
-      proficiency: Znanje
-      skills: Vještine
       title: Taksonomija
     templates:
       blocks:

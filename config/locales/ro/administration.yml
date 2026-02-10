@@ -3927,11 +3927,6 @@ ro:
         generate_embedding_failure_msg: Am eșuat să pun la coadă jobul de generare de skill embedding. Vă rog să încercați din nou.
         generate_embedding_success_msg: Jobul de generare pentru încorporarea abilităților a fost pus în coadă cu succes. Vă rugăm să verificați statusul din notificări.
         label: Vector DB
-    skills_taxonomy:
-      tabs:
-        job_roles: Roluri de post
-        proficiency: Competenţă
-        skills: Aptitudini
     sms_histories:
       columns:
         first_name: Prenume
@@ -4184,9 +4179,6 @@ ro:
         success_msg: Fișierul încărcat a fost pus în coadă pentru import. Vă rugăm să verificați starea în notificări.
       import_action:
         taxonomy: Taxonomia importurilor
-      job_roles: Roluri de post
-      proficiency: Competenţă
-      skills: Aptitudini
       title: Taxonomie
     templates:
       blocks:

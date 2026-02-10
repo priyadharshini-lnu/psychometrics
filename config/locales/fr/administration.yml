@@ -3930,11 +3930,6 @@ fr:
         generate_embedding_failure_msg: Échec à mettre en file d’attente la génération d’intégration de compétences. Veuillez réessayer.
         generate_embedding_success_msg: Le job de génération d’intégration de compétences a été mis en file d’attente avec succès. Veuillez vérifier le statut dans les notifications.
         label: Vector DB
-    skills_taxonomy:
-      tabs:
-        job_roles: Rôles professionnels
-        proficiency: Compétence
-        skills: Compétences
     sms_histories:
       columns:
         first_name: Prénom
@@ -4192,9 +4187,6 @@ fr:
         success_msg: Le fichier téléchargé a été mis en file d'attente pour l'importation. Veuillez vérifier le statut dans les notifications.
       import_action:
         taxonomy: Importer la taxonomie des compétences
-      job_roles: Rôles professionnels
-      proficiency: Compétence
-      skills: Compétences
       title: Taxonomie des compétences
     templates:
       blocks:
