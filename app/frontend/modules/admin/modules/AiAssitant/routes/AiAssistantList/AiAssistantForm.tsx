@@ -51,30 +51,22 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
         advancedPromptingEnabled: isAdvancedPrompt,
       }
 
-      let updatedAssistantOutputSchemaKeysAttributes: {
-        id: number;
-        key: string;
-        description: string;
-        keyType: string;
-    }[] = []
-
-      if (aiAssistant?.assistantOutputSchemaKeysAttributes) {
-        updatedAssistantOutputSchemaKeysAttributes = aiAssistant?.assistantOutputSchemaKeysAttributes?.map((item) => {
-          const existingKeys = assistantOutputSchemaKeys.filter(schKey => schKey.id)
-          if (existingKeys.filter(schKey => schKey.id.toString() === item.id.toString()).length) {
-            return { ...existingKeys[0] }
-          }
-          return { ...item, _destroy: true }
-        })
-      }
-
-
       if (aiAssistant?.id) {
+        const existingKeyIdsInForm = assistantOutputSchemaKeys
+          .filter(key => key.id)
+          .map(key => key.id.toString())
+
+        const removedKeys = aiAssistant.assistantOutputSchemaKeysAttributes
+          ?.filter(keyInRecord => !existingKeyIdsInForm.includes(keyInRecord.id.toString()))
+          .map(key => ({ ...key, _destroy: true })) || []
+
         resource.updateResource({
           id: aiAssistant.id,
           ...data,
-          assistantOutputSchemaKeysAttributes:
-          [...assistantOutputSchemaKeys, ...updatedAssistantOutputSchemaKeysAttributes],
+          assistantOutputSchemaKeysAttributes: [
+            ...assistantOutputSchemaKeys,
+            ...removedKeys,
+          ],
         }).then(() => {
           message.success(I18n.t('administration.ai_assistants.updated_successfully'))
           navigate('/admin/ai_assistants')

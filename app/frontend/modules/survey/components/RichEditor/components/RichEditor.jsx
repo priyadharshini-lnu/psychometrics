@@ -25,7 +25,16 @@ export const RichEditor = ({ value, onSave, close }) => {
 
 
   return (
-    <Modal width={1000} title="Choice Text" open okText="Save" cancelText="Cancel" onOk={saveText} onCancel={close}>
+    <Modal
+      focusable={{ trap: false }}
+      width={1000}
+      title="Choice Text"
+      open
+      okText="Save"
+      cancelText="Cancel"
+      onOk={saveText}
+      onCancel={close}
+    >
       <FroalaEditor config={config} model={text} onModelChange={value => setText(value)} />
     </Modal>
   )

@@ -53,7 +53,8 @@ module Api
         private
 
         def feature_enabled?
-          campaign&.project&.project_feature_enabled?(:ai_assistants)
+          campaign&.project&.client&.feature_enabled?(:ai_assistants) &&
+            campaign&.project&.project_feature_enabled?(:ai_assistants)
         end
 
         def can_view?

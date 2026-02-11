@@ -9,8 +9,8 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactsController, type: 
   let(:ai_assistant) { create(:assistant) }
 
   before do
-    project_feature = campaign.project.project_feature || campaign.project.create_project_feature!
-    project_feature.update!(ai_assistants: true)
+    campaign.project.client.client_feature.update!(ai_assistants: true)
+    campaign.project.project_feature.update!(ai_assistants: true)
     sign_in superadmin
   end
 

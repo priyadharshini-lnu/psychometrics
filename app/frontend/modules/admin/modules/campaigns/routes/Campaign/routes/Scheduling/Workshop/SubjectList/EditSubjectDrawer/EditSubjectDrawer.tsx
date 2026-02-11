@@ -397,6 +397,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
         open={open}
         onClose={handleClose}
         destroyOnHidden
+        focusable={{ trap: false }}
         styles={{
           footer: { textAlign: 'end' },
         }}
