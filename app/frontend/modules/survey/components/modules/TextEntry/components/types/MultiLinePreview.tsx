@@ -3,6 +3,7 @@ import {
 } from 'react'
 import { Row, Col } from 'antd'
 import { useSelector } from 'react-redux'
+import { AITextArea } from '~/components/AIToolbar'
 
 import { PreviewModel } from '~/modules/survey/interfaces/questions/TextEntry'
 
@@ -20,6 +21,7 @@ interface Props {
   errors: string[]
   focus?: boolean
   questionTextId: string
+  showEnhanceWithAI?: boolean
 }
 
 const MultiLinePreview: FC<Props> = ({
@@ -31,6 +33,7 @@ const MultiLinePreview: FC<Props> = ({
   errors,
   focus,
   questionTextId,
+  showEnhanceWithAI,
 }) => {
   const {
     props: {
@@ -97,6 +100,7 @@ const MultiLinePreview: FC<Props> = ({
                 questionTextId={questionTextId}
                 allowContentCopyOnQuestion={allowContentCopyOnQuestion}
                 enhanceWithAIEnabled={enhanceWithAIEnabled}
+                showEnhanceWithAI={showEnhanceWithAI}
               />
             </SpeechToTextInput>
           ) : (
@@ -111,6 +115,7 @@ const MultiLinePreview: FC<Props> = ({
               questionTextId={questionTextId}
               allowContentCopyOnQuestion={allowContentCopyOnQuestion}
               enhanceWithAIEnabled={enhanceWithAIEnabled}
+              showEnhanceWithAI={showEnhanceWithAI}
             />
           )}
         </Col>
@@ -131,6 +136,7 @@ interface MultiLineTextAreaProps {
   questionTextId: string
   allowContentCopyOnQuestion?: boolean
   enhanceWithAIEnabled?: boolean
+  showEnhanceWithAI?: boolean
 }
 
 const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
@@ -144,6 +150,7 @@ const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
   questionTextId,
   allowContentCopyOnQuestion,
   enhanceWithAIEnabled,
+  showEnhanceWithAI = false,
 }) => {
   const rows = type === 'MultiLine' ? 3 : 6
   const inputRef = useRef<HTMLTextAreaElement>(null)
@@ -166,6 +173,27 @@ const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
     }
   }
 
+  if (enhanceWithAIEnabled && showEnhanceWithAI) {
+    return (
+      <AITextArea
+        aria-invalid={!!errors.length}
+        autoComplete="off"
+        aria-describedby={`error-for-question-${questionId}`}
+        disabled={disabled}
+        rows={rows}
+        className="w-100 ant-input"
+        onChange={handleOnChange}
+        value={value}
+        id={`question-${questionId}`}
+        ref={inputRef}
+        aria-labelledby={questionTextId}
+        onContextMenu={handleConextMenu}
+        onCopy={handleCopyContentEvents}
+        onCut={handleCopyContentEvents}
+      />
+    )
+  }
+
   return (
     <textarea
       aria-invalid={!!errors.length}
@@ -182,7 +210,6 @@ const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
       onContextMenu={handleConextMenu}
       onCopy={handleCopyContentEvents}
       onCut={handleCopyContentEvents}
-      {...(enhanceWithAIEnabled && { 'data-ai-enabled': 'true' })}
     />
   )
 }

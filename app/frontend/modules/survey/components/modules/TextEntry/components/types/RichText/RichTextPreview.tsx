@@ -11,6 +11,7 @@ interface Props {
   model: PreviewModel
   readOnly: boolean
   focus?: boolean
+  showEnhanceWithAI?: boolean
 }
 
 type RichTextEditorRef = {
@@ -25,7 +26,7 @@ type RichTextEditorRef = {
 }
 
 const RichTextPreview: FC<Props> = ({
-  model, readOnly, focus,
+  model, readOnly, focus, showEnhanceWithAI,
 }) => {
   const {
     result,
@@ -67,6 +68,7 @@ const RichTextPreview: FC<Props> = ({
             allowContentCopyInReadOnlyMode={isCopyContentEnabledOnAssessment || allowContentCopyOnQuestion}
             ref={ref}
             enhanceWithAIEnabled={enhanceWithAIEnabled}
+            showEnhanceWithAI={showEnhanceWithAI}
             {...characterAndWordLimit(validation)}
           />
         </Col>

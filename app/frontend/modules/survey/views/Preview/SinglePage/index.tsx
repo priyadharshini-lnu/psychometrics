@@ -15,11 +15,12 @@ export type PropsFromRedux = ConnectedProps<typeof connecter>
 const { I18n } = window
 interface Props extends PropsFromRedux {
   questions: []
+  showEnhanceWithAI?: boolean
 }
 let divScrollTop = 0
 
 const SinglePage: React.FC<Props> = ({
-  questions, blocks, preview,
+  questions, blocks, preview, showEnhanceWithAI,
 }) => {
   const [visibleQuestions, setVisibleQuestions] = useState<number[]>([])
   const ref = useRef<HTMLDivElement>(null)
@@ -95,6 +96,7 @@ const SinglePage: React.FC<Props> = ({
                   questions={questions}
                   backButtonPressed={false}
                   singleQuestionPerPage={preview.enableSingleQuestionPage}
+                  showEnhanceWithAI={showEnhanceWithAI}
                 />
               </div>
             </div>

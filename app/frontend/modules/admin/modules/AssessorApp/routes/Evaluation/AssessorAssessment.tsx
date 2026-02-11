@@ -7,7 +7,6 @@ import {
 import _ from 'lodash'
 import { useLocation } from 'react-router-dom'
 import cs from 'classnames'
-import AIToolbar from '~/components/AIToolbar'
 import { useMessageBus } from '~/hooks/useMessageBus'
 import AssessmentContainer from '~/modules/survey/containers/AssessmentContainer'
 import { getProgress } from '~/modules/survey/core/preview/FlowProcessor/selectors'
@@ -31,7 +30,6 @@ const connecter = connect((state: RootState) => ({
   assessorForms: getAssessorForms(state.assessors.evaluation),
   preview: state.preview,
   progress: state.preview.initialized && getProgress(state.preview),
-  config: state.config,
 }), {
   fetch: fetchAssessorAssessment,
   updateAssessorAssessmentStatus,
@@ -60,7 +58,6 @@ const AssessorAssessment: React.FC<Props> = ({
   allowMultipleResponses,
   updateAssessorAssessmentStatus,
   validateSession,
-  config,
 }) => {
   const { search } = useLocation()
   const params = new URLSearchParams(search)
@@ -181,10 +178,10 @@ const AssessorAssessment: React.FC<Props> = ({
             showScoringOnEndPage
             showQuestionScoring
             isAssessor
+            showEnhanceWithAI
           />
         )}
       </Content>
-      <AIToolbar enabled={config.project.enhanceWithAiEnabled} withSpellchecker />
     </Card>
   )
 }

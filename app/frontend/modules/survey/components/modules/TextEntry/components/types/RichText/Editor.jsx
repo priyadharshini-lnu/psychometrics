@@ -5,6 +5,7 @@ import { message } from 'antd'
 import 'froala-editor/css/froala_style.min.css'
 import 'froala-editor/css/froala_editor.pkgd.min.css'
 import FroalaEditor from 'react-froala-wysiwyg'
+import { AIFroalaWrapper } from '~/components/AIToolbar'
 import '~/libs/Editor/commands/rtlLtr'
 import 'froala-editor/js/froala_editor.pkgd.min'
 import 'froala-editor/js/plugins.pkgd.min'
@@ -14,9 +15,10 @@ const { I18n } = window
 
 function Editor ({
   content, handleContentChange, readOnly = false, maxCharacterLimit = null, maxWordLimit = null,
-  allowContentCopyInReadOnlyMode = false, enhanceWithAIEnabled = true,
+  allowContentCopyInReadOnlyMode = false, enhanceWithAIEnabled = true, showEnhanceWithAI = false,
 }, ref) {
   const showLimitExceededMessageRef = useRef(false)
+
 
   const config = {
     iconsTemplate: 'font_awesome',
@@ -100,8 +102,17 @@ function Editor ({
     // config.wordCounterMax = maxWordLimit
   }
 
+
+  if (enhanceWithAIEnabled && showEnhanceWithAI) {
+    return (
+      <AIFroalaWrapper className="classname" editorRef={ref}>
+        <FroalaEditor ref={ref} config={config} model={content} onModelChange={handleContentChange} />
+      </AIFroalaWrapper>
+    )
+  }
+
   return (
-    <div className="classname" {...(enhanceWithAIEnabled && { 'data-ai-enabled': 'true' })}>
+    <div className="classname">
       <FroalaEditor ref={ref} config={config} model={content} onModelChange={handleContentChange} />
     </div>
   )

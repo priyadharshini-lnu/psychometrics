@@ -9,6 +9,7 @@ en:
     add_project: Add Project
     add_project_admin: Add Project Admin
     add_threesixty_campaign_admin: Add Campaign Admin
+    add_word_count: Add Word Count
     admin_approval_required: Report for %{user} requires admin approval before download
     admin_created_successfully: Admin '%{name}' was created successfully
     admin_export_scheduled: Admin export job was scheduled successfully. Please check your notification for status.
@@ -87,6 +88,7 @@ en:
     campaigns: Campaigns
     cancellation_and_rescheduling_disabled: Cancellation and Rescheduling is disabled
     case_study: Case Studies
+    casual: Casual
     client: Client
     client_admins: Client Admins
     clients: Clients
@@ -96,6 +98,7 @@ en:
     communications: Communications
     completed: Completed
     completed_tooltip: All evaluators have submitted the evaluation
+    concise: Concise
     confirm_remove_admin: Are you sure you want to remove admin user with email '%{email}'?
     country: Country
     create_client: Create Client
@@ -122,7 +125,9 @@ en:
     empty_csv_file: CSV file does not contain any data.
     enable_enhance_with_ai_client_level: Please enable Enhance with AI feature at client level
     enable_transcription: Enable Transcription
+    enhance_with_ai: Enhance with AI
     enhance_with_ai_requires_ai_assistants: Enhance with AI requires AI Assistants feature to be enabled
+    error: Error
     evaluation_status: Evaluation Status
     evaluation_status_not_done: Evaluation status is not 'Done' for one or more selected subjects. Please ensure all selected users have completed evaluations or mark as done.
     export_admin_roles_permissions: Admin Roles and Permissions export
@@ -130,6 +135,8 @@ en:
     feature_flags: Feature Flags
     fill_empty_score_msg: Fill all the final scores before saving.
     final_score_empty_err_msg: Final score of %{factor_name} cannot be empty.
+    fix_grammar: Fix Grammar
+    formal: Formal
     hogan: Hogan
     hogan_assessment: Hogan Assessment
     idp_plan_reset_success: Plan has been reset successfully
@@ -205,6 +212,7 @@ en:
     only_editable_on_create: This option is editable only while creating.
     options: Options
     organisational: Org Surveys
+    original_text: Original Text
     participants: Participants
     pearson: Pearson
     pearson_assessment: Pearson Assessment
@@ -632,6 +640,7 @@ en:
     permissions_360_campaigns: Permissions specific to 360 campaigns
     piped_text: Piped Text
     privacy: Privacy
+    professional: Professional
     proficiency: Proficiency
     proficiency_level: Proficiency Level
     proficiency_levels: Proficiency Levels
@@ -662,6 +671,7 @@ en:
     reset_idp_plan_confirmation: Are you sure you want to reset the plan?
     reset_idp_plan_title: Reset Plan
     response_meta: Response Meta
+    result: Result
     results: Results
     role: Role
     saml_idp_certificate_available: Available (click to copy)
@@ -746,6 +756,7 @@ en:
     subject_part_of_other_invite: Subject with email %{user_email} is already invited to '%{workshop_invite_name}'
     target_job_role: Target Job Role
     threesixty: 360 Campaign
+    tone: Tone
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: AI Suggestion
     toolbar_result_generating: Generating...
@@ -766,6 +777,7 @@ en:
     users: Users
     view_licenses: View Licenses
     waiting: Waiting
+    words: Words
     workshops: Workshops
     writing_assistant_not_configured: Writing Assistant not configured
     x_axis_interval_label: X-Axis Interval

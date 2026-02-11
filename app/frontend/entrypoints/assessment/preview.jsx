@@ -35,6 +35,7 @@ const props = {
   resultsUrl,
   showAsSinglePage,
   readOnly,
+  showEnhanceWithAI: false,
 }
 
 const root = createRoot(rootElement)

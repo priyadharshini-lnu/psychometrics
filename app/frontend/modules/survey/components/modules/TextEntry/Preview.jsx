@@ -52,6 +52,7 @@ class PreviewComponent extends Component {
       nextPage,
       singleQuestionFlow,
       focus,
+      showEnhanceWithAI,
     } = this.props
     const View = Previews[type]
 
@@ -67,6 +68,7 @@ class PreviewComponent extends Component {
         errors={errors}
         focus={focus}
         questionTextId={this.getQuestionId()}
+        showEnhanceWithAI={showEnhanceWithAI}
       />
     )
   }
