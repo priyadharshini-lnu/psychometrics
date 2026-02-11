@@ -49,7 +49,7 @@
     "@rails/activestorage": "^7.1.2",
     "@reduxjs/toolkit": "^2.2.6",
     "@sentry/react": "^8.47.0",
-    "@thetalententerprise/interactive-assessments": "1.9.23",
+    "@thetalententerprise/interactive-assessments": "1.10.0",
     "@thetalententerprise/jsonapi-react": "0.0.31",
     "@types/actioncable": "^5.2.11",
     "@types/lodash": "^4.17.0",

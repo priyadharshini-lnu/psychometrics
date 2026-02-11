@@ -2567,10 +2567,10 @@
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/@testing-library/user-event/-/user-event-14.5.2.tgz#db7257d727c891905947bd1c1a99da20e03c2ebd"
   integrity sha512-YAh82Wh4TIrxYLmfGcixwD18oIjyC1pFQC2Y01F2lzV2HTMiYrI0nze0FD0ocB//CKS/7jIUgae+adPqxK5yCQ==
 
-"@thetalententerprise/interactive-assessments@1.9.23":
-  version "1.9.23"
-  resolved "https://npm.pkg.github.com/download/@TheTalentEnterprise/interactive-assessments/1.9.23/1abab6ffdeebab2b3766373081aa051dc5b7ea0a#1abab6ffdeebab2b3766373081aa051dc5b7ea0a"
-  integrity sha512-C8uEqJaa0fN5m2khQpREc6Nq7R1ey9Z79X/89+4mycZAKQWIIRN4kl/CIL25E4rcbFx5Xz9FB9wUNTGfqhdzxg==
+"@thetalententerprise/interactive-assessments@1.10.0":
+  version "1.10.0"
+  resolved "https://npm.pkg.github.com/download/@TheTalentEnterprise/interactive-assessments/1.10.0/3a5fbc6cc64614a2712e284e963068a9d91a5c25#3a5fbc6cc64614a2712e284e963068a9d91a5c25"
+  integrity sha512-gJqf6eFh829q1UqsUijoAdWSaKIkUk8vfXTh58L4pL1W6CTkJEk96+ZG/APN84UXVE8lbPrPJBTIifXLsUGAaA==
   dependencies:
     javascript-obfuscator "^4.0.2"
 
