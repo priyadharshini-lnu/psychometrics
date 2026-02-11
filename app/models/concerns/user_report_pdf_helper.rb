@@ -99,6 +99,18 @@ module UserReportPdfHelper
     user_report_pdf(locale: locale)&.pdf_file&.url(expires_in: expires_in)
   end
 
+  def active_user_idp_plan_for_skill_gap_analysis
+    UserIdpPlan.joins(:idp_template).
+      active.
+      where(
+        user_id: user_id,
+        campaign_id: campaign_id,
+        idp_templates: { report_id: report_id }
+      ).
+      where.not(idp_templates: { skill_gap_report_analysis_ai_assistant_id: nil }).
+      first
+  end
+
   private
 
   def build_attachment_params(data, filename)
@@ -162,6 +174,13 @@ module UserReportPdfHelper
     save!
 
     publish_webhook_if_ready(user_report_pdf, locale)
+    schedule_skill_gap_report_analysis
+  end
+
+  def schedule_skill_gap_report_analysis
+    return if active_user_idp_plan_for_skill_gap_analysis.blank?
+
+    Idp::PrecomputeSkillGapReportAnalysisJob.perform_later(id)
   end
 
   def publish_webhook_if_ready(user_report_pdf, locale)

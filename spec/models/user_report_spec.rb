@@ -267,4 +267,92 @@ RSpec.describe UserReport, type: :model do
       end
     end
   end
+
+  describe '#attach_pdf! with skill gap report analysis' do
+    let(:user) { create(:user) }
+    let(:campaign) { create(:campaign) }
+    let(:report) { create(:report) }
+    let(:user_report) { create(:user_report, user: user, campaign: campaign, report: report) }
+    let(:data) { Rails.root.join('spec/fixtures/files/reports/test.pdf').open }
+
+    before do
+      allow_any_instance_of(ActiveStorageAttachable).to receive(:disk_service?).and_return(false)
+    end
+
+    context 'when report is linked to active IDP plan with AI assistant' do
+      let(:ai_assistant) { create(:assistant) }
+      let(:idp_template) do
+        create(:idp_template,
+               project: campaign.project,
+               report: report,
+               skill_gap_report_analysis_ai_assistant: ai_assistant)
+      end
+      let!(:user_idp_plan) do
+        create(:user_idp_plan,
+               user: user,
+               campaign: campaign,
+               idp_template: idp_template,
+               active: true)
+      end
+
+      it 'schedules skill gap report analysis job' do
+        expect(Idp::PrecomputeSkillGapReportAnalysisJob).to receive(:perform_later).with(user_report.id)
+
+        user_report.attach_pdf!(data)
+      end
+    end
+
+    context 'when report is not linked to any IDP template' do
+      it 'does not schedule skill gap report analysis job' do
+        expect(Idp::PrecomputeSkillGapReportAnalysisJob).not_to receive(:perform_later)
+
+        user_report.attach_pdf!(data)
+      end
+    end
+
+    context 'when IDP template has no AI assistant configured' do
+      let(:idp_template) do
+        create(:idp_template,
+               project: campaign.project,
+               report: report,
+               skill_gap_report_analysis_ai_assistant: nil)
+      end
+      let!(:user_idp_plan) do
+        create(:user_idp_plan,
+               user: user,
+               campaign: campaign,
+               idp_template: idp_template,
+               active: true)
+      end
+
+      it 'does not schedule skill gap report analysis job' do
+        expect(Idp::PrecomputeSkillGapReportAnalysisJob).not_to receive(:perform_later)
+
+        user_report.attach_pdf!(data)
+      end
+    end
+
+    context 'when user IDP plan is not active' do
+      let(:ai_assistant) { create(:assistant) }
+      let(:idp_template) do
+        create(:idp_template,
+               project: campaign.project,
+               report: report,
+               skill_gap_report_analysis_ai_assistant: ai_assistant)
+      end
+      let!(:user_idp_plan) do
+        create(:user_idp_plan,
+               user: user,
+               campaign: campaign,
+               idp_template: idp_template,
+               active: false)
+      end
+
+      it 'does not schedule skill gap report analysis job' do
+        expect(Idp::PrecomputeSkillGapReportAnalysisJob).not_to receive(:perform_later)
+
+        user_report.attach_pdf!(data)
+      end
+    end
+  end
 end
