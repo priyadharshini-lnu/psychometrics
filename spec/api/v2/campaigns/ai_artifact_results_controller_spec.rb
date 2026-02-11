@@ -28,7 +28,11 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactResultsController, 
   let!(:api_key) { create(:api_key, user: superadmin) }
   let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
-  before { sign_in(superadmin) }
+  before do
+    sign_in(superadmin)
+    campaign.project.client.client_feature.update!(ai_assistants: true)
+    campaign.project.project_feature.update!(ai_assistants: true)
+  end
 
   describe 'GET /api/v2/administration/campaigns/{campaign_id}/ai_artifact_results' do
     it 'returns AI artifact results list' do
@@ -80,6 +84,8 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactResultsController, 
 
     it 'returns empty results when campaign has no artifacts' do
       campaign_without_artifacts = create(:campaign)
+      campaign_without_artifacts.project.client.client_feature.update!(ai_assistants: true)
+      campaign_without_artifacts.project.project_feature.update!(ai_assistants: true)
       user_without_artifacts = create(:user)
       create(:campaign_user, campaign: campaign_without_artifacts, user: user_without_artifacts)
 

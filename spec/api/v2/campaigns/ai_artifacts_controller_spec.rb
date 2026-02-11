@@ -35,6 +35,8 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactsController, type: 
 
   before do
     sign_in(superadmin)
+    campaign.project.client.client_feature.update!(ai_assistants: true)
+    campaign.project.project_feature.update!(ai_assistants: true)
     question1.update!(props: { 'questionText' => 'What is your favorite color?' })
     question2.update!(props: { 'questionText' => 'Please describe your experience.' })
   end
