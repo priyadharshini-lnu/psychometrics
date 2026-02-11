@@ -17,6 +17,7 @@ es-ES:
     admin_roles: Funciones administrativas
     admin_updated_successfully: Admin '%{name}' se ha actualizado correctamente
     admins: Admins
+    agile: AGIL
     ai_artifacts: Artefactos de IA
     ai_artifacts_output_schema_key_constraint: La clave debe comenzar con una letra minúscula y solo puede contener letras minúsculas, números y guiones bajos
     ai_assistant_model_id_label: ID del modelo
@@ -44,6 +45,7 @@ es-ES:
     assessments_not_mhs: Todas las evaluaciones deben ser del tipo MHS.
     assessments_reports: Evaluaciones e informes
     assessor_dashboard: Panel de control del evaluador
+    assessor_form: Formulario para evaluadores
     assessor_workshops: Assessment Center
     assessors: Asesores
     assistant_toolbar_failed: No se ha podido generar una salida válida tras varios intentos.
@@ -83,10 +85,12 @@ es-ES:
     campaign_templates: Plantillas de campaña
     campaign_user_job_roles_cannot_be_same: El puesto de trabajo objetivo debe ser diferente del puesto de trabajo actual.
     campaigns: Campañas
+    case_study: Casos prácticos
     client: Arrendamiento de clientes
     client_admins: Administradores de clientes
     clients: Clientes
     code_required: Se requiere código
+    common_assessment: Evaluación TTE
     communication_center: Centro de comunicaciones
     communications: Comunicaciones
     completed: Completado
@@ -125,8 +129,12 @@ es-ES:
     feature_flags: Banderas de características
     fill_empty_score_msg: Rellena todas las puntuaciones finales antes de guardar.
     final_score_empty_err_msg: La puntuación final de %{factor_name} no puede estar vacía.
+    hogan: Hogan
+    hogan_assessment: AGIL
     idp_plan_reset_success: El plan se ha reiniciado con éxito
     idp_templates: Plantillas de PDI
+    iiht: IIHT
+    iiht_assessment: Evaluación del IIHT
     import_ai_artifacts: Importar artefactos de IA
     import_csv_assessment_group_error: "%{index} de fila: el usuario con el correo electrónico %{email} ya ha sido invitado a «%{workshopInviteName}»."
     import_csv_error: 'Fila %{index}: usuario con correo electrónico %{email} no está en esta campaña'
@@ -152,6 +160,7 @@ es-ES:
     import_users: Importar usuarios
     invalid_csv_header: CSV contiene cabeceras inválidas.
     job_roles: Roles de trabajo
+    lead_assessor_form: Formulario del asesor principal
     learning_from_others: Aprendizaje colaborativo [20]
     level: Nivel
     level_apply: Aplicar
@@ -163,7 +172,10 @@ es-ES:
     licenses: Licencias
     manager_approval_required: Informe para %{user} requiere la aprobación del gestor antes de la descarga
     max_value: Valor máximo
+    meeting: Reunión
     messages: Mensajes
+    mettl: Mettl
+    mettl_assessment: Evaluación Mettl
     mhs: MHS
     mhs_assessment: Evaluación MHS
     mhs_assessment_name: Nombre de la evaluación de MHS
@@ -190,7 +202,10 @@ es-ES:
     on_the_job: En el trabajo [70]
     only_editable_on_create: Esta opción solo se puede editar durante la creación.
     options: Opciones
+    organisational: Org Encuestas
     participants: Participantes
+    pearson: Pearson
+    pearson_assessment: Evaluación Pearson
     permissions:
       aiArtifacts:
         export: Exportar
@@ -623,6 +638,7 @@ es-ES:
     project_number: Número de proyecto
     project_settings: Configuración del proyecto
     projects: Proyectos
+    psychometric: Psicométrico
     question_center: Centro de preguntas
     questions: Preguntas
     reflection_questions: Preguntas de reflexión
@@ -693,6 +709,8 @@ es-ES:
     saml_service_provider_updated_date: Fecha de actualización
     saml_service_providers: Proveedores de servicios
     saml_settings: Configuración SAML
+    saville: Saville
+    saville_assessment: Evaluación Saville
     scheduling: Programación
     scoring: Puntuación
     scoring_value_info: La puntuación debe estar entre %{min} y %{max}.
@@ -708,9 +726,13 @@ es-ES:
     show_submenu: Mostrar submenú
     show_translated: Mostrar traducido
     siem: SIEM
+    simulation: Simulación
+    simulation_assessment: Evaluación de la simulación
     skill_aliases: Alias de habilidades
     skills: Habilidades
     skills_taxonomy: Taxonomía de competencias
+    skillvue: Skillvue
+    skillvue_assessment: Evaluación de habilidades
     slot_name: Nombre de la tragamonedas
     sms_histories: Historias de SMS
     sms_invites: Invitaciones por SMS
@@ -720,6 +742,7 @@ es-ES:
     subdomain: Subdominio
     subject_part_of_other_invite: El destinatario con la dirección de correo electrónico %{user_email} ya ha sido invitado a «%{workshop_invite_name}».
     target_job_role: Puesto de trabajo objetivo
+    threesixty: campaña 360
     toolbar_ai_insight: Perspectiva sobre la IA
     toolbar_ai_suggestion: Sugerencia de IA
     toolbar_result_generating: Generando...
@@ -744,6 +767,8 @@ es-ES:
     x_axis_interval_label: Intervalo del eje X
     y_axis_interval_label: Intervalo del eje Y
     year: País
+    yoodli: Yoodli
     yoodli_activity_id: ID de actividad Yoodli
+    yoodli_assessment: Evaluación de Yoodli
     yoodli_email_id: ID de correo electrónico del candidato Yoodli
     yoodli_external_assessment_id: ID de evaluación Yoodli

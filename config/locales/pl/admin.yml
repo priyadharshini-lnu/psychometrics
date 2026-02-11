@@ -17,6 +17,7 @@ pl:
     admin_roles: Role administratora
     admin_updated_successfully: Administrator "%{name}" został pomyślnie zaktualizowany
     admins: Administratorzy
+    agile: ZWINNY
     ai_artifacts: Artefakty SI
     ai_artifacts_output_schema_key_constraint: Klucz musi zaczynać się od małej litery i może zawierać tylko małe litery, cyfry i podkreślenia
     ai_assistant_model_id_label: Identyfikacja modelu
@@ -44,6 +45,7 @@ pl:
     assessments_not_mhs: Wszystkie oceny muszą być typu MHS.
     assessments_reports: Oceny i raporty
     assessor_dashboard: Pulpit nawigacyjny asesora
+    assessor_form: Formularz asesora
     assessor_workshops: Centrum oceny zintegrowanej
     assessors: Asesorów
     assistant_toolbar_failed: Nie udało się wygenerować prawidłowego wyniku po wielu próbach.
@@ -83,10 +85,12 @@ pl:
     campaign_templates: Szablony kampanii
     campaign_user_job_roles_cannot_be_same: Docelowe stanowisko musi różnić się od obecnego stanowiska.
     campaigns: Kampanie
+    case_study: Przypadków
     client: Dzierżawa klienta
     client_admins: Administratorzy klienta
     clients: Umowy najmu dla klientów
     code_required: Wymagany jest kod
+    common_assessment: Ocena TTE
     communication_center: Centrum Komunikacyjne
     communications: Komunikacji
     completed: Zakończone
@@ -125,8 +129,12 @@ pl:
     feature_flags: Flagi funkcji
     fill_empty_score_msg: Wypełnij wszystkie końcowe wyniki przed zapisem.
     final_score_empty_err_msg: Ostateczny wynik gry „%{factor_name}” nie może być pusty.
+    hogan: Hogan
+    hogan_assessment: ZWINNY
     idp_plan_reset_success: Plan został pomyślnie zresetowany
     idp_templates: Szablony IDP
+    iiht: Międzynarodowa Biblioteka Medyczna (IIH
+    iiht_assessment: Ocena IIHT
     import_ai_artifacts: Import artefaktów AI
     import_csv_assessment_group_error: "%{index}: użytkownik o adresie e-mail %{email} został już zaproszony do „%{workshopInviteName}”."
     import_csv_error: 'Wiersz %{index}: użytkownik z %{email} e-mail nie występuje w tej kampanii'
@@ -152,6 +160,7 @@ pl:
     import_users: Import użytkowników
     invalid_csv_header: Plik CSV zawiera nieprawidłowe nagłówki.
     job_roles: Role zawodowe
+    lead_assessor_form: Formularz głównego asesora
     learning_from_others: Uczenie się zespołowe [20]
     level: Poziom
     level_apply: Zastosuj
@@ -163,7 +172,10 @@ pl:
     licenses: Licencje
     manager_approval_required: Raport %{user} wymaga zgody menedżera przed pobraniem
     max_value: Wartość maksymalna
+    meeting: Spotkanie
     messages: Wiadomości
+    mettl: 'Mettl powiedział:'
+    mettl_assessment: Ocena Mettl
     mhs: MHS
     mhs_assessment: Ocena MHS
     mhs_assessment_name: Nazwa oceny MHS
@@ -190,7 +202,10 @@ pl:
     on_the_job: W pracy [70]
     only_editable_on_create: Ta opcja jest edytowalna tylko podczas tworzenia.
     options: Opcje
+    organisational: Ankiety organizacyjne
     participants: Uczestników
+    pearson: Pearson
+    pearson_assessment: Ocena Pearsona
     permissions:
       aiArtifacts:
         export: Eksport
@@ -623,6 +638,7 @@ pl:
     project_number: Numer projektu
     project_settings: Ustawienia projektu
     projects: Projekty
+    psychometric: Psychometryczne
     question_center: Centrum pytań
     questions: Pytania
     reflection_questions: Pytania do refleksji
@@ -693,6 +709,8 @@ pl:
     saml_service_provider_updated_date: Data aktualizacji
     saml_service_providers: Usługodawców
     saml_settings: Ustawienia SAML
+    saville: Saville (Wyspa Saville
+    saville_assessment: Ocena Saville'a
     scheduling: Planowania
     scoring: Punktacji
     scoring_value_info: Wynik musi mieścić się w przedziale od %{min} do %{max}.
@@ -708,9 +726,13 @@ pl:
     show_submenu: Pokaż podmenu
     show_translated: Pokaż przetłumaczone
     siem: SIEM (SIEM)
+    simulation: Symulacja
+    simulation_assessment: Ocena symulacyjna
     skill_aliases: Aliasy umiejętności
     skills: Umiejętności
     skills_taxonomy: Taksonomia umiejętności
+    skillvue: Umiejętne
+    skillvue_assessment: Ocena Skillvue
     slot_name: Nazwa slotu
     sms_histories: Historie SMS
     sms_invites: Zaproszenia SMS
@@ -720,6 +742,7 @@ pl:
     subdomain: Subdomena
     subject_part_of_other_invite: Osoba o adresie e-mail %{user_email} została już zaproszona do „%{workshop_invite_name}”.
     target_job_role: Docelowa rola zawodowa
+    threesixty: Kampania 360
     toolbar_ai_insight: Wgląd w sztuczną inteligencję
     toolbar_ai_suggestion: Sugestia AI
     toolbar_result_generating: Generowanie...
@@ -744,6 +767,8 @@ pl:
     x_axis_interval_label: Interwał osi X
     y_axis_interval_label: Interwał osi Y
     year: Kraj
+    yoodli: Yoodli
     yoodli_activity_id: Yoodli Activity ID
+    yoodli_assessment: Ocena Yoodli
     yoodli_email_id: Identyfikator e-mail kandydata Yoodli
     yoodli_external_assessment_id: Yoodli Assessment ID

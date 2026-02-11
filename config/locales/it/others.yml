@@ -1092,36 +1092,9 @@ it:
       title: Dettagli sulla valutazione
     edit: Modifica
     fields:
-      category:
-        agile: AGILE
-        assessor_form: Modulo per il valutatore
-        case_study: Casi di studio
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Modulo per il valutatore responsabile
-        meeting: Riunione
-        mettl: Mettl
-        organisational: Indagini sull'organizzazione
-        pearson: Pearson
-        psychometric: Psicometrico
-        saville: Saville
-        simulation: Simulazione
-        skillvue: Skillvue
-        threesixty: campagna 360
-        yoodli: Yoodli
       status:
         finished: Finito
         in_progress: In corso
-      type:
-        common: Valutazione TTE
-        hogan: Hogan
-        iiht: Valutazione IIHT
-        mettl: Valutazione Mettl
-        pearson: Valutazione Pearson
-        saville: Valutazione Saville
-        simulation: Valutazione della simulazione
-        skillvue: Valutazione Skillvue
-        yoodli: Valutazione Yoodli
     flow:
       end_assessment_modal:
         custom_message: Messaggio di fine valutazione personalizzato
@@ -3314,13 +3287,6 @@ it:
     fields:
       provider:
         custom_upload: Caricamento personalizzato
-        hogan: Hogan
-        internal: Interno
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Carico da Mettl
       load_from_pearson: Carico da Pearson

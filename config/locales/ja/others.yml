@@ -1092,36 +1092,9 @@ ja:
       title: 評価内容
     edit: 編集
     fields:
-      category:
-        agile: AGILE
-        assessor_form: アセッサフォーム
-        case_study: ケーススタディ
-        hogan: ホーガン
-        iiht: IIHT
-        lead_assessor_form: 主任査定者フォーム
-        meeting: ミーティング
-        mettl: メトル
-        organisational: 組織調査
-        pearson: ピアソン
-        psychometric: サイコメトリック
-        saville: サヴィル
-        simulation: シミュレーション
-        skillvue: スキルビュー
-        threesixty: 360キャンペーン
-        yoodli: ユードリ
       status:
         finished: 終了
         in_progress: 進行中
-      type:
-        common: TTEアセスメント
-        hogan: ホーガン
-        iiht: IIHTアセスメント
-        mettl: メトル・アセスメント
-        pearson: ピアソン・アセスメント
-        saville: サヴィル査定
-        simulation: シミュレーション評価
-        skillvue: Skillvueの評価
-        yoodli: ユードリ評価
     flow:
       end_assessment_modal:
         custom_message: カスタム評価終了メッセージ
@@ -3303,13 +3276,6 @@ ja:
     fields:
       provider:
         custom_upload: カスタムアップロード
-        hogan: ホーガン
-        internal: 内部
-        mettl: メトル
-        pearson: ピアソン
-        saville: サヴィル
-        skillvue: スキルビュー
-        yoodli: ユードリ
     form:
       load_from_mettl: メトルからのロード
       load_from_pearson: ピアソンからのロード

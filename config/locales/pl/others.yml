@@ -1092,36 +1092,9 @@ pl:
       title: Szczegóły oceny
     edit: Redagować
     fields:
-      category:
-        agile: ZWINNY
-        assessor_form: Formularz asesora
-        case_study: Przypadków
-        hogan: Hogan
-        iiht: Międzynarodowa Biblioteka Medyczna (IIH
-        lead_assessor_form: Formularz głównego asesora
-        meeting: Spotkanie
-        mettl: 'Mettl powiedział:'
-        organisational: Ankiety organizacyjne
-        pearson: Pearson
-        psychometric: Psychometryczne
-        saville: Saville (Wyspa Saville
-        simulation: Symulacja
-        skillvue: Skillvue
-        threesixty: Kampania 360
-        yoodli: Yoodli
       status:
         finished: Gotowy
         in_progress: W toku
-      type:
-        common: Ocena TTE
-        hogan: Hogan
-        iiht: Ocena IIHT
-        mettl: Ocena Mettl
-        pearson: Ocena Pearsona
-        saville: Ocena Saville'a
-        simulation: Ocena symulacyjna
-        skillvue: Ocena Skillvue
-        yoodli: Ocena Yoodli
     flow:
       end_assessment_modal:
         custom_message: Niestandardowy komunikat o zakończeniu oceny
@@ -3317,13 +3290,6 @@ pl:
     fields:
       provider:
         custom_upload: Przesyłanie niestandardowe
-        hogan: Hogan
-        internal: Wewnętrzny
-        mettl: 'Mettl powiedział:'
-        pearson: Pearson
-        saville: Saville (Wyspa Saville
-        skillvue: Umiejętne
-        yoodli: Yoodli
     form:
       load_from_mettl: Załadunek z Mettl
       load_from_pearson: Załadunek z firmy Pearson

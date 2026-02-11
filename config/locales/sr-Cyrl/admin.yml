@@ -17,6 +17,7 @@ sr-Cyrl:
     admin_roles: Администраторске улоге
     admin_updated_successfully: Админ '%{name}' је успешно ажуриран
     admins: Администратори
+    agile: Окретан
     ai_artifacts: АИ артефакти
     ai_artifacts_output_schema_key_constraint: Кључ мора да почне малим словом и може да садржи само мала слова, бројеве и подвлаке.
     ai_assistant_model_id_label: ИД модела
@@ -44,6 +45,7 @@ sr-Cyrl:
     assessments_not_mhs: Свака процена мора бити типа MHS.
     assessments_reports: Процене и извештаји
     assessor_dashboard: Контролна табла процењивача
+    assessor_form: Образац за оцењивача
     assessor_workshops: Центар за процену
     assessors: Процењивачи
     assistant_toolbar_failed: Није успело да генерише важећи излаз након више покушаја
@@ -83,10 +85,12 @@ sr-Cyrl:
     campaign_templates: Шаблони кампања
     campaign_user_job_roles_cannot_be_same: Циљна радна улога мора бити различита од тренутне радне улоге.
     campaigns: Кампање
+    case_study: Студије случаја
     client: Клијент
     client_admins: Администратори клијената
     clients: Клијенти
     code_required: Код је потребан
+    common_assessment: ТТЕ Процена
     communication_center: Центар за комуникацију
     communications: Коммуникације
     completed: Завршено
@@ -125,8 +129,12 @@ sr-Cyrl:
     feature_flags: Фичер флагс
     fill_empty_score_msg: Попуните све коначне резултате пре сачувања.
     final_score_empty_err_msg: Коначан резултат у %{factor_name}-у не може бити празан.
+    hogan: Хоган
+    hogan_assessment: Окретан
     idp_plan_reset_success: План је успешно ресетован
     idp_templates: Шаблони ИДП
+    iiht: ИИХТ
+    iiht_assessment: ИИХТ Процена
     import_ai_artifacts: Увоз АИ артефаката
     import_csv_assessment_group_error: 'Ред%{index}: корисник са адресом електронске поште %{email} је већ позван у ''%{workshopInviteName}'''
     import_csv_error: 'Ред%{index}: корисник са адресом електронске поште %{email} није у овој кампањи'
@@ -152,6 +160,7 @@ sr-Cyrl:
     import_users: Увоз корисника
     invalid_csv_header: CSV фајл садржи неважеће заглавља.
     job_roles: Радне улоге
+    lead_assessor_form: Образац главног процењивача
     learning_from_others: Колаборативно учење [20]
     level: Ниво
     level_apply: Примени
@@ -163,7 +172,10 @@ sr-Cyrl:
     licenses: Лиценце
     manager_approval_required: Извештај за %{user} захтева одобрење менаџера пре преузимања.
     max_value: Максимална вредност
+    meeting: Састанак
     messages: Поруке
+    mettl: ОМИЉЕНО
+    mettl_assessment: Меттл Процена
     mhs: МХС
     mhs_assessment: МХС процена
     mhs_assessment_name: Назив процене MHS
@@ -190,7 +202,10 @@ sr-Cyrl:
     on_the_job: На послу [70]
     only_editable_on_create: Ову опцију је могуће уређивати само током креирања.
     options: Опције
+    organisational: Орг анкете
     participants: Учесници
+    pearson: Пирсон
+    pearson_assessment: Пирсонова процена
     permissions:
       aiArtifacts:
         export: Извоз
@@ -623,6 +638,7 @@ sr-Cyrl:
     project_number: Број пројекта
     project_settings: Подешавања пројекта
     projects: Пројекти
+    psychometric: Психометријски
     question_center: Центар за питања
     questions: Питања
     reflection_questions: Питања за размишљање
@@ -693,6 +709,8 @@ sr-Cyrl:
     saml_service_provider_updated_date: Датум ажурирања
     saml_service_providers: Пружаоци услуга
     saml_settings: SAML подешавања
+    saville: Ел Салвадор
+    saville_assessment: Савилле Процена
     scheduling: Распоређивање
     scoring: Поентирање
     scoring_value_info: Резултат мора бити између %{min} и %{max}.
@@ -708,9 +726,13 @@ sr-Cyrl:
     show_submenu: Прикажи подмени
     show_translated: Прикажи превод
     siem: СИЕМ
+    simulation: Симулација
+    simulation_assessment: Симулација Процена
     skill_aliases: Алијасе вештина
     skills: Вештине
     skills_taxonomy: Таксономија вештина
+    skillvue: ОМИЉЕНО
+    skillvue_assessment: Скиллвуе Процена
     slot_name: Назив слота
     sms_histories: СМС историје
     sms_invites: SMS позиви
@@ -720,6 +742,7 @@ sr-Cyrl:
     subdomain: Поддомен
     subject_part_of_other_invite: Корисник са адресом електронске поште %{user_email} је већ позван на '%{workshop_invite_name}'
     target_job_role: Циљна радна улога
+    threesixty: 360 Кампања
     toolbar_ai_insight: Увид вештачке интелигенције
     toolbar_ai_suggestion: Предлог вештачке интелигенције
     toolbar_result_generating: Генерисање...
@@ -744,6 +767,8 @@ sr-Cyrl:
     x_axis_interval_label: Интервал X-осе
     y_axis_interval_label: Y-оска интервала
     year: Година
+    yoodli: Јоодли
     yoodli_activity_id: Јуудили ИД активности
+    yoodli_assessment: Јоодли Процена
     yoodli_email_id: Јуубли идентификациони број кандидата
     yoodli_external_assessment_id: Идентификатор процене Yoodli

@@ -17,6 +17,7 @@ ar:
     admin_roles: Admin Roles
     admin_updated_successfully: تم تحديث المسؤول '%{name}' بنجاح
     admins: المسؤولون
+    agile: رشيق
     ai_artifacts: قطع الذكاء الاصطناعي
     ai_artifacts_output_schema_key_constraint: يجب أن يبدأ المفتاح بحرف صغير ولا يحتوي إلا على الحروف الصغيرة والأرقام والخطوط السفلية
     ai_assistant_model_id_label: معرف الطراز
@@ -44,6 +45,7 @@ ar:
     assessments_not_mhs: يجب أن تكون جميع التقييمات من نوع MHS
     assessments_reports: التقييمات والتقارير
     assessor_dashboard: لوحة معلومات المقيم
+    assessor_form: نموذج المقيم
     assessor_workshops: مركز التقييم
     assessors: المقيمون
     assistant_toolbar_failed: فشل في إنشاء مخرجات صالحة بعد عدة محاولات
@@ -83,10 +85,12 @@ ar:
     campaign_templates: قوالب الحملات
     campaign_user_job_roles_cannot_be_same: يجب أن تكون الوظيفة المستهدفة مختلفة عن الوظيفة الحالية
     campaigns: الحملات
+    case_study: دراسات الحالة
     client: مستأجر العميل
     client_admins: مسؤولو العملاء
     clients: عقود العملاء
     code_required: الكود مطلوب
+    common_assessment: تقييم TTE
     communication_center: مركز الاتصالات
     communications: الاتصالات
     completed: اكمال
@@ -125,8 +129,12 @@ ar:
     feature_flags: أعلام الميزات
     fill_empty_score_msg: املأ جميع الدرجات النهائية قبل الحفظ.
     final_score_empty_err_msg: لا يمكن أن تكون النتيجة النهائية لـ %{factor_name} فارغة.
+    hogan: هوجان
+    hogan_assessment: رشيق
     idp_plan_reset_success: تم إعادة ضبط الخطة بنجاح
     idp_templates: قوالب IDP
+    iiht: IIHT
+    iiht_assessment: تقييم IIHT
     import_ai_artifacts: استيراد القطع الأثرية الذكاء الاصطناعي
     import_csv_assessment_group_error: 'الصف %{index}: تمت دعوة المستخدم الذي يحمل عنوان البريد الإلكتروني %{email} بالفعل إلى "%{workshopInviteName}"'
     import_csv_error: 'الصف %{index}: مستخدم لديه بريد إلكتروني %{email} غير موجود في هذه الحملة'
@@ -152,6 +160,7 @@ ar:
     import_users: استيراد المستخدمين
     invalid_csv_header: يحتوي ملف CSV على رؤوس غير صالحة.
     job_roles: الأدوار الوظيفية
+    lead_assessor_form: نموذج المقيم الرئيسي
     learning_from_others: التعلم التعاوني [20]
     level: المستوى
     level_apply: تقدم بطلب
@@ -163,7 +172,10 @@ ar:
     licenses: التراخيص
     manager_approval_required: يتطلب الإبلاغ عن %{user} موافقة المدير قبل التحميل
     max_value: القيمة القصوى
+    meeting: اجتماع
     messages: Messages
+    mettl: ميتل
+    mettl_assessment: تقييم Mettl
     mhs: MHS
     mhs_assessment: تقييم MHS
     mhs_assessment_name: اسم تقييم MHS
@@ -190,7 +202,10 @@ ar:
     on_the_job: في العمل [70]
     only_editable_on_create: هذا الخيار قابل للتعديل فقط أثناء الإنشاء.
     options: الخيارات
+    organisational: استطلاعات المؤسسة
     participants: المشاركون
+    pearson: بيرسون
+    pearson_assessment: تقييم بيرسون
     permissions:
       aiArtifacts:
         export: تصدير
@@ -623,6 +638,7 @@ ar:
     project_number: رقم المشروع
     project_settings: إعدادات المشروع
     projects: المشاريع
+    psychometric: القياس النفسي
     question_center: مركز الأسئلة
     questions: أسئلة
     reflection_questions: أسئلة للتفكير
@@ -693,6 +709,8 @@ ar:
     saml_service_provider_updated_date: تاريخ التحديث
     saml_service_providers: مزودو الخدمة
     saml_settings: إعدادات SAML
+    saville: سافيل
+    saville_assessment: تقييم سافيل
     scheduling: الجدولة
     scoring: سجل
     scoring_value_info: يجب أن تكون النتيجة بين %{min} و %{max}.
@@ -708,9 +726,13 @@ ar:
     show_submenu: عرض القائمة الفرعية
     show_translated: عرض المترجم
     siem: SIEM
+    simulation: محاكاة
+    simulation_assessment: تقييم المحاكاة
     skill_aliases: Skill Aliases
     skills: المهارات
     skills_taxonomy: تصنيف المهارات
+    skillvue: سكيلفيو
+    skillvue_assessment: تقييم Skillvue
     slot_name: اسم الماكينة
     sms_histories: تواريخ الرسائل النصية القصيرة
     sms_invites: الدعوات عبر الرسائل النصية القصيرة
@@ -720,6 +742,7 @@ ar:
     subdomain: المجال الفرعي
     subject_part_of_other_invite: الموضوع مع البريد الإلكتروني %{user_email} تمت دعوته بالفعل إلى "%{workshop_invite_name}"
     target_job_role: الوظيفة المستهدفة
+    threesixty: حملة 360
     toolbar_ai_insight: رؤية الذكاء الاصطناعي
     toolbar_ai_suggestion: اقتراح الذكاء الاصطناعي
     toolbar_result_generating: جاري التوليد...
@@ -744,6 +767,8 @@ ar:
     x_axis_interval_label: فاصل المحور السيني
     y_axis_interval_label: فاصل المحور Y
     year: البلد
+    yoodli: يودلي
     yoodli_activity_id: معرف نشاط يودلي
+    yoodli_assessment: تقييم يودلي
     yoodli_email_id: معرف البريد الإلكتروني للمرشح في يودلي
     yoodli_external_assessment_id: معرف تقييم يودلي

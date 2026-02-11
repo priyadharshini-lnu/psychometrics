@@ -17,6 +17,7 @@ ja:
     admin_roles: 管理者の役割
     admin_updated_successfully: 管理者 '%{name}' は正常に更新されました。
     admins: 管理者
+    agile: AGILE
     ai_artifacts: AIアーティファクト
     ai_artifacts_output_schema_key_constraint: キーは小文字で始まらず、小文字、数字、アンダースコアのみを含めます
     ai_assistant_model_id_label: モデルID
@@ -44,6 +45,7 @@ ja:
     assessments_not_mhs: すべての評価はMHSタイプでなければならない
     assessments_reports: アセスメント＆レポート
     assessor_dashboard: 査定者ダッシュボード
+    assessor_form: アセッサフォーム
     assessor_workshops: アセスメント・センター
     assessors: アセッサ
     assistant_toolbar_failed: 複数回の試行後も有効な出力を生成できませんでした
@@ -83,10 +85,12 @@ ja:
     campaign_templates: キャンペーンテンプレート
     campaign_user_job_roles_cannot_be_same: 対象となる職務は現在の職務とは異なるものでなければならない
     campaigns: キャンペーン
+    case_study: ケーススタディ
     client: クライアント・テナンシー
     client_admins: クライアント管理者
     clients: 顧客契約
     code_required: コードが必要です
+    common_assessment: TTEアセスメント
     communication_center: コミュニケーション・センター
     communications: コミュニケーション
     completed: 完了
@@ -125,8 +129,12 @@ ja:
     feature_flags: フィーチャー・フラッグ
     fill_empty_score_msg: 保存する前にすべての最終スコアを記入してください。
     final_score_empty_err_msg: "%{factor_name}の最終スコアは空欄であってはならない。"
+    hogan: ホーガン
+    hogan_assessment: AGILE
     idp_plan_reset_success: 計画は正常にリセットされました
     idp_templates: IDPテンプレート
+    iiht: IIHT
+    iiht_assessment: IIHTアセスメント
     import_ai_artifacts: AIアーティファクトのインポート
     import_csv_assessment_group_error: "%{index} 行: メールアドレス %{email} のユーザーは既に '%{workshopInviteName}' に招待済みです"
     import_csv_error: "%{index}行:メールアドレス%{email}のユーザーはこのキャンペーンに参加していません"
@@ -152,6 +160,7 @@ ja:
     import_users: インポートユーザー
     invalid_csv_header: CSVファイルには無効なヘッダーが含まれています。
     job_roles: 仕事の役割
+    lead_assessor_form: 主任査定者フォーム
     learning_from_others: 協働学習 [20]
     level: レベル
     level_apply: 適用する
@@ -163,7 +172,10 @@ ja:
     licenses: ライセンス
     manager_approval_required: "%{user}レポートはダウンロード前にマネージャーの承認が必要です"
     max_value: 最大値
+    meeting: ミーティング
     messages: メッセージ
+    mettl: メトル
+    mettl_assessment: メトル・アセスメント
     mhs: MHS
     mhs_assessment: MHS評価
     mhs_assessment_name: MHS 評価名
@@ -190,7 +202,10 @@ ja:
     on_the_job: オン・ザ・ジョブ [70]
     only_editable_on_create: このオプションは作成時のみ編集可能です。
     options: オプション
+    organisational: 組織調査
     participants: 参加者
+    pearson: ピアソン
+    pearson_assessment: ピアソン・アセスメント
     permissions:
       aiArtifacts:
         export: 輸出
@@ -623,6 +638,7 @@ ja:
     project_number: プロジェクト番号
     project_settings: プロジェクト設定
     projects: プロジェクト
+    psychometric: サイコメトリック
     question_center: 質問センター
     questions: 質問
     reflection_questions: 振り返りの質問
@@ -693,6 +709,8 @@ ja:
     saml_service_provider_updated_date: 更新日
     saml_service_providers: サービスプロバイダー
     saml_settings: SAML設定
+    saville: サヴィル
+    saville_assessment: サヴィル査定
     scheduling: スケジューリング
     scoring: 採点
     scoring_value_info: スコアは%{min}から%{max}の間でなければなりません。
@@ -708,9 +726,13 @@ ja:
     show_submenu: サブメニューを表示する
     show_translated: 翻訳を表示
     siem: シーイーエム
+    simulation: シミュレーション
+    simulation_assessment: シミュレーション評価
     skill_aliases: スキルの別名
     skills: スキル
     skills_taxonomy: スキル分類法
+    skillvue: スキルビュー
+    skillvue_assessment: Skillvueの評価
     slot_name: スロット名
     sms_histories: SMSヒストリー
     sms_invites: SMS招待
@@ -720,6 +742,7 @@ ja:
     subdomain: サブドメイン
     subject_part_of_other_invite: メールアドレス %{user_email} のユーザーは既に「%{workshop_invite_name}」に招待済みです
     target_job_role: 対象職務
+    threesixty: 360キャンペーン
     toolbar_ai_insight: AIインサイト
     toolbar_ai_suggestion: AI提案
     toolbar_result_generating: 生成中...
@@ -744,6 +767,8 @@ ja:
     x_axis_interval_label: X軸間隔
     y_axis_interval_label: Y軸間隔
     year: 国名
+    yoodli: ユードリ
     yoodli_activity_id: YoodliアクティビティID
+    yoodli_assessment: ユードリ評価
     yoodli_email_id: ユードリ候補者メールアドレス
     yoodli_external_assessment_id: Yoodli評価ID

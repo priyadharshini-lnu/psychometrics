@@ -17,6 +17,7 @@ zh:
     admin_roles: 管理员角色
     admin_updated_successfully: 管理员"%{name}"已成功更新
     admins: 管理员
+    agile: AGILE
     ai_artifacts: AI 工件
     ai_artifacts_output_schema_key_constraint: 键必须以小写字母开头，且只能包含小写字母、数字和下划线
     ai_assistant_model_id_label: 型号ID
@@ -44,6 +45,7 @@ zh:
     assessments_not_mhs: 所有评估必须采用MHS类型
     assessments_reports: 评估与报告
     assessor_dashboard: 评估员仪表板
+    assessor_form: 评估员表格
     assessor_workshops: 评估中心
     assessors: 评估员
     assistant_toolbar_failed: 多次尝试后仍未能生成有效输出
@@ -83,10 +85,12 @@ zh:
     campaign_templates: 活动模板
     campaign_user_job_roles_cannot_be_same: 目标职位必须与当前职位不同
     campaigns: 活动
+    case_study: 案例研究
     client: 客户平台
     client_admins: 客户管理员
     clients: 客户平台
     code_required: 需要规范
+    common_assessment: TTE 评估
     communication_center: 通信中心
     communications: 通信
     completed: 完成
@@ -125,8 +129,12 @@ zh:
     feature_flags: 功能标志
     fill_empty_score_msg: 保存前填写所有最终分数。
     final_score_empty_err_msg: "%{factor_name}的最终得分不能为空。"
+    hogan: 霍根
+    hogan_assessment: AGILE
     idp_plan_reset_success: 计划已成功重置
     idp_templates: IDP 模板
+    iiht: IIHT
+    iiht_assessment: IIHT 评估
     import_ai_artifacts: 导入AI工件
     import_csv_assessment_group_error: "%{index} 行：邮箱为 %{email} 的用户已受邀加入 '%{workshopInviteName}'"
     import_csv_error: 第%{index}行：带有电子邮件%{email}的用户未参与本次活动
@@ -152,6 +160,7 @@ zh:
     import_users: 导入用户
     invalid_csv_header: CSV 文件中包含无效的头部。
     job_roles: 工作角色
+    lead_assessor_form: 主任评估员表格
     learning_from_others: 协作学习 [20]
     level: 等级
     level_apply: 申请
@@ -163,7 +172,10 @@ zh:
     licenses: 许可证
     manager_approval_required: "%{user}报告下载前需要经理批准"
     max_value: 最大值
+    meeting: 会议
     messages: 信息
+    mettl: 水
+    mettl_assessment: 梅特尔评估
     mhs: MHS
     mhs_assessment: MHS评估
     mhs_assessment_name: MHS评估名称
@@ -190,7 +202,10 @@ zh:
     on_the_job: 在职 [70]
     only_editable_on_create: 此选项仅在创建时可编辑。
     options: 选项
+    organisational: 组织调查
     participants: 参与者
+    pearson: 皮尔森
+    pearson_assessment: 培生评估
     permissions:
       aiArtifacts:
         export: 出口
@@ -623,6 +638,7 @@ zh:
     project_number: 项目编号
     project_settings: 项目设置
     projects: 项目
+    psychometric: 心理测量
     question_center: 问题中心
     questions: 问题
     reflection_questions: 思考题
@@ -693,6 +709,8 @@ zh:
     saml_service_provider_updated_date: 更新日期
     saml_service_providers: 服务提供商
     saml_settings: SAML设置
+    saville: 萨维尔
+    saville_assessment: 萨维尔评估
     scheduling: 日程安排
     scoring: 计分
     scoring_value_info: 分数必须介于 %{min} 和 %{max} 之间。
@@ -708,9 +726,13 @@ zh:
     show_submenu: 显示子菜单
     show_translated: 显示翻译
     siem: SIEM
+    simulation: 模拟
+    simulation_assessment: 模拟评估
     skill_aliases: 技能别名
     skills: 技能
     skills_taxonomy: 技能分类法
+    skillvue: Skillvue
+    skillvue_assessment: Skillvue 评估
     slot_name: 车位名称
     sms_histories: 短信历史
     sms_invites: 短信邀请
@@ -720,6 +742,7 @@ zh:
     subdomain: 子域
     subject_part_of_other_invite: 邮箱地址为 %{user_email} 的用户已获邀加入 '%{workshop_invite_name}' 群组。
     target_job_role: 目标职位
+    threesixty: 360 运动
     toolbar_ai_insight: 人工智能洞察
     toolbar_ai_suggestion: AI建议
     toolbar_result_generating: 生成中...
@@ -744,6 +767,8 @@ zh:
     x_axis_interval_label: X轴间隔
     y_axis_interval_label: Y轴间隔
     year: 国家
+    yoodli: 尤德利
     yoodli_activity_id: Yoodli 活动ID
+    yoodli_assessment: 尤德利评估
     yoodli_email_id: Yoodli候选人邮箱ID
     yoodli_external_assessment_id: Yoodli 评估 ID

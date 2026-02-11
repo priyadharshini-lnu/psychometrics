@@ -17,6 +17,7 @@ ro:
     admin_roles: Roluri de administrator
     admin_updated_successfully: Admin '%{name}' a fost actualizat cu succes
     admins: Administratori
+    agile: AGIL
     ai_artifacts: Artefacte AI
     ai_artifacts_output_schema_key_constraint: Cheia trebuie să înceapă cu literă mică și poate conține doar litere mici, cifre și sublinii
     ai_assistant_model_id_label: Model ID
@@ -44,6 +45,7 @@ ro:
     assessments_not_mhs: Toate evaluările trebuie să fie de tip MHS.
     assessments_reports: Evaluări și rapoarte
     assessor_dashboard: Tabloul de bord al evaluatorului
+    assessor_form: Formular evaluator
     assessor_workshops: Centrul de evaluare
     assessors: Evaluatori
     assistant_toolbar_failed: Nu s-a reușit generarea unei ieșiri valide după mai multe încercări
@@ -83,10 +85,12 @@ ro:
     campaign_templates: Șabloane de campanie
     campaign_user_job_roles_cannot_be_same: Funcția vizată trebuie să fie diferită de funcția actuală.
     campaigns: Campanii
+    case_study: Studii de caz
     client: Închirierea clientului
     client_admins: Administratori clienți
     clients: Clienți
     code_required: Este necesar codul
+    common_assessment: Evaluarea TTE
     communication_center: Centrul de comunicare
     communications: Comunicaţii
     completed: Completat
@@ -125,8 +129,12 @@ ro:
     feature_flags: Steaguri de caracteristici
     fill_empty_score_msg: Completează toate scorurile finale înainte de a salva.
     final_score_empty_err_msg: Scorul final al jocului „%{factor_name}” nu poate fi gol.
+    hogan: Hogan
+    hogan_assessment: AGIL
     idp_plan_reset_success: Planul a fost resetat cu succes
     idp_templates: Șabloane IDP
+    iiht: IIHT
+    iiht_assessment: Evaluarea IIHT
     import_ai_artifacts: Importul artefactelor AI
     import_csv_assessment_group_error: "%{index} de rând: utilizatorul cu adresa de e-mail %{email} este deja invitat la „%{workshopInviteName}”"
     import_csv_error: 'Rândul %{index}: utilizator cu email %{email} nu face parte din această campanie'
@@ -152,6 +160,7 @@ ro:
     import_users: Importă utilizatori
     invalid_csv_header: CSV conține antete invalide.
     job_roles: Roluri de post
+    lead_assessor_form: Formular de evaluator principal
     learning_from_others: Învățare colaborativă [20]
     level: Nivel
     level_apply: Aplicați
@@ -163,7 +172,10 @@ ro:
     licenses: Licenţe
     manager_approval_required: Raportul pentru %{user} necesită aprobarea managerului înainte de descărcare
     max_value: Valoarea maximă
+    meeting: Ședință
     messages: Mesaje
+    mettl: Mettl
+    mettl_assessment: Evaluarea Mettl
     mhs: MHS
     mhs_assessment: Evaluarea MHS
     mhs_assessment_name: Numele evaluării MHS
@@ -190,7 +202,10 @@ ro:
     on_the_job: La locul de muncă [70]
     only_editable_on_create: Această opțiune poate fi editată numai în timpul creării.
     options: Opțiuni
+    organisational: Sondaje organizaționale
     participants: Participanţii
+    pearson: Pearson
+    pearson_assessment: Evaluarea Pearson
     permissions:
       aiArtifacts:
         export: Export
@@ -623,6 +638,7 @@ ro:
     project_number: Numărul proiectului
     project_settings: Setările proiectului
     projects: Proiecte
+    psychometric: Psihometrice
     question_center: Centrul de întrebări
     questions: Întrebări
     reflection_questions: Întrebări de reflecție
@@ -693,6 +709,8 @@ ro:
     saml_service_provider_updated_date: Data actualizării
     saml_service_providers: Furnizori de servicii
     saml_settings: Setări SAML
+    saville: Saville
+    saville_assessment: Evaluarea Saville
     scheduling: Programarea
     scoring: Notare
     scoring_value_info: Scorul trebuie să fie între %{min} și %{max}.
@@ -708,9 +726,13 @@ ro:
     show_submenu: Afișează submeniu
     show_translated: Afișează traducerea
     siem: SIEM
+    simulation: Simulare
+    simulation_assessment: Evaluarea simulării
     skill_aliases: Aliasuri de abilități
     skills: Aptitudini
     skills_taxonomy: Taxonomia abilităților
+    skillvue: Skillvue
+    skillvue_assessment: Evaluarea Skillvue
     slot_name: Numele slotului
     sms_histories: Istoricul SMS-urilor
     sms_invites: Invitații prin SMS
@@ -720,6 +742,7 @@ ro:
     subdomain: Subdomeniu
     subject_part_of_other_invite: Persoana cu adresa de e-mail %{user_email} este deja invitată la „%{workshop_invite_name}”.
     target_job_role: Postul vizat
+    threesixty: Campania 360
     toolbar_ai_insight: Perspectivă AI
     toolbar_ai_suggestion: Sugestie AI
     toolbar_result_generating: Se generează...
@@ -744,6 +767,8 @@ ro:
     x_axis_interval_label: Intervalul axei X
     y_axis_interval_label: Intervalul axei Y
     year: Țara
+    yoodli: Yoodli
     yoodli_activity_id: ID-ul activității Yoodli
+    yoodli_assessment: Evaluarea Yoodli
     yoodli_email_id: ID-ul de email al candidatului Yoodli
     yoodli_external_assessment_id: ID de evaluare Yoodli

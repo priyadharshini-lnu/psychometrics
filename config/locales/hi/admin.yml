@@ -17,6 +17,7 @@ hi:
     admin_roles: प्रशासन भूमिकाएँ
     admin_updated_successfully: प्रशासक '%{name}' सफलतापूर्वक अपडेट किया गया।
     admins: प्रशासक
+    agile: चपल
     ai_artifacts: एआई कलाकृतियाँ
     ai_artifacts_output_schema_key_constraint: की एक छोटे अक्षर से शुरू होनी चाहिए और इसमें केवल छोटे अक्षर, अंक और अंडरस्कोर हो सकते हैं।
     ai_assistant_model_id_label: मॉडल आईडी
@@ -44,6 +45,7 @@ hi:
     assessments_not_mhs: सभी मूल्यांकन एमएचएस प्रकार के होने चाहिए।
     assessments_reports: मूल्यांकन एवं रिपोर्टें
     assessor_dashboard: मूल्यांकनकर्ता डैशबोर्ड
+    assessor_form: मूल्यांकनकर्ता प्रपत्र
     assessor_workshops: मूल्यांकन केंद्र
     assessors: मूल्यांकनकर्ता
     assistant_toolbar_failed: कई प्रयासों के बाद भी मान्य आउटपुट उत्पन्न नहीं हो सका।
@@ -83,10 +85,12 @@ hi:
     campaign_templates: अभियान टेम्पलेट्स
     campaign_user_job_roles_cannot_be_same: लक्षित नौकरी की भूमिका वर्तमान नौकरी की भूमिका से भिन्न होनी चाहिए।
     campaigns: अभियान
+    case_study: केस स्टडीज़
     client: ग्राहक
     client_admins: क्लाइंट एडमिन
     clients: ग्राहक
     code_required: कोड आवश्यक है
+    common_assessment: टीटीई मूल्यांकन
     communication_center: संचार केंद्र
     communications: संचार
     completed: पूर्ण
@@ -125,8 +129,12 @@ hi:
     feature_flags: फ़ीचर फ़्लैग्स
     fill_empty_score_msg: सहेजने से पहले सभी अंतिम स्कोर भरें।
     final_score_empty_err_msg: "%{factor_name} का अंतिम स्कोर शून्य नहीं हो सकता।"
+    hogan: होगन
+    hogan_assessment: चपल
     idp_plan_reset_success: योजना सफलतापूर्वक रीसेट हो गई है।
     idp_templates: आईडीपी टेम्पलेट्स
+    iiht: आईआईएचटी
+    iiht_assessment: आईआईएचटी मूल्यांकन
     import_ai_artifacts: AI कलाकृतियों को आयात करें
     import_csv_assessment_group_error: "%{index} पंक्ति: %{email} ईमेल वाले उपयोगकर्ता को पहले ही '%{workshopInviteName}' में आमंत्रित किया जा चुका है।"
     import_csv_error: "%{index} पंक्ति: ईमेल %{email} वाला उपयोगकर्ता इस अभियान में नहीं है।"
@@ -152,6 +160,7 @@ hi:
     import_users: उपयोगकर्ताओं को आयात करें
     invalid_csv_header: CSV फ़ाइल में अमान्य हेडर हैं।
     job_roles: भूमिकाएँ
+    lead_assessor_form: प्रमुख मूल्यांकनकर्ता प्रपत्र
     learning_from_others: सहयोगात्मक अधिगम [20]
     level: स्तर
     level_apply: लागू करें
@@ -163,7 +172,10 @@ hi:
     licenses: लाइसेंस
     manager_approval_required: "%{user} के लिए रिपोर्ट डाउनलोड करने से पहले प्रबंधक की मंजूरी आवश्यक है।"
     max_value: अधिकतम मान
+    meeting: बैठक
     messages: संदेश
+    mettl: मेटल
+    mettl_assessment: मेटल असेसमेंट
     mhs: एमएचएस
     mhs_assessment: एमएचएस मूल्यांकन
     mhs_assessment_name: एमएचएस मूल्यांकन नाम
@@ -190,7 +202,10 @@ hi:
     on_the_job: काम पर [70]
     only_editable_on_create: यह विकल्प केवल निर्माण के दौरान ही संपादित किया जा सकता है।
     options: विकल्प
+    organisational: संगठन सर्वेक्षण
     participants: प्रतिभागी
+    pearson: पियर्सन
+    pearson_assessment: पियर्सन मूल्यांकन
     permissions:
       aiArtifacts:
         export: निर्यात
@@ -623,6 +638,7 @@ hi:
     project_number: परियोजना संख्या
     project_settings: परियोजना सेटिंग्स
     projects: परियोजनाएँ
+    psychometric: मनोमापी
     question_center: प्रश्न केंद्र
     questions: प्रश्न
     reflection_questions: चिंतन प्रश्न
@@ -693,6 +709,8 @@ hi:
     saml_service_provider_updated_date: अद्यतन तिथि
     saml_service_providers: सेवा प्रदाता
     saml_settings: SAML सेटिंग्स
+    saville: सैविल
+    saville_assessment: सैविल मूल्यांकन
     scheduling: अनुसूचीकरण
     scoring: स्कोरिंग
     scoring_value_info: स्कोर %{min} और %{max} के बीच होना चाहिए।
@@ -708,9 +726,13 @@ hi:
     show_submenu: उप मेनू दिखाएँ
     show_translated: अनुवादित दिखाएँ
     siem: एसआईईएम
+    simulation: अनुकरण
+    simulation_assessment: अनुकरण मूल्यांकन
     skill_aliases: कौशल उपनाम
     skills: कौशल
     skills_taxonomy: कौशल वर्गीकरण
+    skillvue: स्किलव्यू
+    skillvue_assessment: स्किलव्यू मूल्यांकन
     slot_name: स्लॉट का नाम
     sms_histories: एसएमएस इतिहास
     sms_invites: एसएमएस निमंत्रण
@@ -720,6 +742,7 @@ hi:
     subdomain: उप-डोमेन
     subject_part_of_other_invite: "%{user_email} ईमेल वाले विषय को पहले ही '%{workshop_invite_name}' में आमंत्रित किया जा चुका है।"
     target_job_role: लक्षित नौकरी की भूमिका
+    threesixty: 360 अभियान
     toolbar_ai_insight: एआई अंतर्दृष्टि
     toolbar_ai_suggestion: एआई सुझाव
     toolbar_result_generating: उत्पादित हो रहा है...
@@ -744,6 +767,8 @@ hi:
     x_axis_interval_label: एक्स-अक्ष अंतराल
     y_axis_interval_label: वाई-अक्ष अंतराल
     year: वर्ष
+    yoodli: यूडली
     yoodli_activity_id: यूडल एक्टिविटी आईडी
+    yoodli_assessment: यूडली मूल्यांकन
     yoodli_email_id: यूडली उम्मीदवार ईमेल आईडी
     yoodli_external_assessment_id: यूडली मूल्यांकन आईडी

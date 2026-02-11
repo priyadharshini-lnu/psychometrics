@@ -17,6 +17,7 @@ sr-Latn:
     admin_roles: Uloge administratora
     admin_updated_successfully: Administrator '%{name}' je uspešno ažuriran
     admins: Admini
+    agile: GIBGIB
     ai_artifacts: AI artefakti
     ai_artifacts_output_schema_key_constraint: Ključ mora početi malim slovom i može sadržavati samo mala slova, brojeve i podvlake
     ai_assistant_model_id_label: Broj modela
@@ -44,6 +45,7 @@ sr-Latn:
     assessments_not_mhs: Свака процена мора бити типа MHS.
     assessments_reports: Procene i izveštaji
     assessor_dashboard: Kontrolna tabla procenjivača
+    assessor_form: Obrazac ocenjivača
     assessor_workshops: Centar za procenu
     assessors: Ocenjivači
     assistant_toolbar_failed: Није успело да генерише важећи излаз након више покушаја
@@ -83,10 +85,12 @@ sr-Latn:
     campaign_templates: Predlošci kampanje
     campaign_user_job_roles_cannot_be_same: Циљна радна улога мора бити различита од тренутне радне улоге.
     campaigns: Kampanje
+    case_study: Studije slučaja
     client: Zakup klijenta
     client_admins: Administratori klijenata
     clients: Klijentski prostor
     code_required: Kod je obavezan
+    common_assessment: TTE Procena
     communication_center: Centar za komunikaciju
     communications: Komunikacije
     completed: Dovršeno
@@ -125,8 +129,12 @@ sr-Latn:
     feature_flags: Feature flagovi
     fill_empty_score_msg: Popunite sve konačne rezultate pre čuvanja.
     final_score_empty_err_msg: Коначан резултат у %{factor_name}-у не може бити празан.
+    hogan: Hogan
+    hogan_assessment: GIBGIB
     idp_plan_reset_success: Plan je uspešno resetovan
     idp_templates: IDP Šabloni
+    iiht: OMILjENO
+    iiht_assessment: IIHT procena
     import_ai_artifacts: Uvoz AI artefakata
     import_csv_assessment_group_error: 'Ред%{index}: корисник са адресом електронске поште %{email} је већ позван у ''%{workshopInviteName}'''
     import_csv_error: 'Red %{index}: korisnik sa e-poštom %{email} nije u ovoj kampanji'
@@ -152,6 +160,7 @@ sr-Latn:
     import_users: Uvoz korisnika
     invalid_csv_header: CSV fajl sadrži nevažeća zaglavlja.
     job_roles: Radne uloge
+    lead_assessor_form: Obrazac glavnog procenjivača
     learning_from_others: Kolaborativno učenje [20]
     level: Ниво
     level_apply: Примени
@@ -163,7 +172,10 @@ sr-Latn:
     licenses: Licence
     manager_approval_required: Izveštaj za %{user} zahteva odobrenje menadžera pre preuzimanja
     max_value: Максимална вредност
+    meeting: Sastanak
     messages: Poruke
+    mettl: OMILjENO
+    mettl_assessment: Mettl Procena
     mhs: МХС
     mhs_assessment: МХС процена
     mhs_assessment_name: Назив процене MHS
@@ -190,7 +202,10 @@ sr-Latn:
     on_the_job: Na Poslu [70]
     only_editable_on_create: Ову опцију је могуће уређивати само током креирања.
     options: Opcije
+    organisational: Org Ankete
     participants: Učesnici
+    pearson: Pirson
+    pearson_assessment: Pirsonova procena
     permissions:
       aiArtifacts:
         export: Izvoz
@@ -623,6 +638,7 @@ sr-Latn:
     project_number: Broj projekta
     project_settings: Podešavanja projekta
     projects: Projekti
+    psychometric: Psihometrijski
     question_center: Centar za pitanja
     questions: Pitanja
     reflection_questions: Pitanja za razmišljanje
@@ -693,6 +709,8 @@ sr-Latn:
     saml_service_provider_updated_date: Ažurirani datum
     saml_service_providers: Pružaoci usluga
     saml_settings: SAML podešavanja
+    saville: San-Tome i Prinsipi
+    saville_assessment: Savil Procena
     scheduling: Planiranje
     scoring: Bodovanja
     scoring_value_info: Резултат мора бити између %{min} и %{max}.
@@ -708,9 +726,13 @@ sr-Latn:
     show_submenu: Prikaži pod-meni
     show_translated: Прикажи превод
     siem: SIEM
+    simulation: Simulacija
+    simulation_assessment: Simulacija Procena
     skill_aliases: Pseudonimi veština
     skills: Veљtine
     skills_taxonomy: Taksonomija veština
+    skillvue: OMILjENO
+    skillvue_assessment: Skillvue Procena
     slot_name: Ime slota
     sms_histories: SMS istorije
     sms_invites: SMS pozivnice
@@ -720,6 +742,7 @@ sr-Latn:
     subdomain: Poddomen
     subject_part_of_other_invite: Корисник са адресом електронске поште %{user_email} већ је позван на '%{workshop_invite_name}'
     target_job_role: Циљна радна улога
+    threesixty: 360 Kampanja
     toolbar_ai_insight: Увид вештачке интелигенције
     toolbar_ai_suggestion: Предлог вештачке интелигенције
     toolbar_result_generating: Генерисање...
@@ -744,6 +767,8 @@ sr-Latn:
     x_axis_interval_label: Интервал X-осе
     y_axis_interval_label: Y-оска интервала
     year: Država
+    yoodli: Joodli
     yoodli_activity_id: Yoodli Activity ID
+    yoodli_assessment: Joodli Procena
     yoodli_email_id: ID e-pošte kandidata za joodli
     yoodli_external_assessment_id: Ioodli Procena ID

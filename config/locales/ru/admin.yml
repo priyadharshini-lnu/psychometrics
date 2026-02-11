@@ -17,6 +17,7 @@ ru:
     admin_roles: Роли администратора
     admin_updated_successfully: Администратор «%{name}» был успешно обновлен.
     admins: Администраторы
+    agile: AGILE
     ai_artifacts: Артефакты искусственного интеллекта
     ai_artifacts_output_schema_key_constraint: Ключ должен начинаться с строчной буквы и может содержать только строчные буквы, цифры и символы подчеркивания.
     ai_assistant_model_id_label: Идентификатор модели
@@ -44,6 +45,7 @@ ru:
     assessments_not_mhs: Все оценки должны быть типа MHS.
     assessments_reports: Оценки и отчеты
     assessor_dashboard: Панель инструментов оценщика
+    assessor_form: Форма оценщика
     assessor_workshops: Центр оценки
     assessors: Оценщики
     assistant_toolbar_failed: Не удалось сгенерировать действительный результат после нескольких попыток
@@ -83,10 +85,12 @@ ru:
     campaign_templates: Шаблоны кампаний
     campaign_user_job_roles_cannot_be_same: Целевая должность должна отличаться от текущей должности.
     campaigns: Кампании
+    case_study: Примеры из практики
     client: Клиент
     client_admins: Администраторы клиентов
     clients: Клиенты
     code_required: Требуется код
+    common_assessment: Оценка TTE
     communication_center: Коммуникационный центр
     communications: Коммуникации
     completed: Завершено
@@ -126,8 +130,12 @@ ru:
     fill_empty_score_msg: Заполните все окончательные результаты перед сохранением.
     final_score_empty_err_msg: Итоговый счет «%{factor_name}» не может быть пустым.
     final_score_empty_msg: Итоговый счет не может быть пустым.
+    hogan: Хоган
+    hogan_assessment: AGILE
     idp_plan_reset_success: План был успешно сброшен
     idp_templates: Шаблоны IDP
+    iiht: IIHT
+    iiht_assessment: Оценка IIHT
     import_ai_artifacts: Импорт артефактов искусственного интеллекта
     import_csv_assessment_group_error: 'Строка %{index}: пользователь с адресом электронной почты %{email} уже приглашен в «%{workshopInviteName}».'
     import_csv_error: "%{index}: пользователь с адресом электронной почты %{email} не участвует в этой кампании"
@@ -153,6 +161,7 @@ ru:
     import_users: Импорт пользователей
     invalid_csv_header: CSV-файл содержит недействительные заголовки.
     job_roles: Должностные обязанности
+    lead_assessor_form: Форма ведущего оценщика
     learning_from_others: Совместное обучение [20]
     level: Уровень
     level_apply: Применить
@@ -164,7 +173,10 @@ ru:
     licenses: Лицензии
     manager_approval_required: Отчет для %{user} требует утверждения менеджера перед загрузкой
     max_value: Максимальное значение
+    meeting: Встреча
     messages: Сообщения
+    mettl: Меттл
+    mettl_assessment: Оценка Mettl
     mhs: MHS
     mhs_assessment: Оценка MHS
     mhs_assessment_name: Название оценки MHS
@@ -191,7 +203,10 @@ ru:
     on_the_job: На работе [70]
     only_editable_on_create: Этот параметр можно изменить только во время создания.
     options: Варианты
+    organisational: Опросы Org
     participants: Участники
+    pearson: Пирсон
+    pearson_assessment: Оценка Пирсона
     permissions:
       aiArtifacts:
         export: Экспорт
@@ -624,6 +639,7 @@ ru:
     project_number: Номер проекта
     project_settings: Настройки проекта
     projects: Проекты
+    psychometric: Психометрический
     question_center: Центр вопросов
     questions: Вопросы
     reflection_questions: Вопросы для размышления
@@ -694,6 +710,8 @@ ru:
     saml_service_provider_updated_date: Дата обновления
     saml_service_providers: Поставщики услуг
     saml_settings: Настройки SAML
+    saville: Сэвилл
+    saville_assessment: Оценка Saville
     scheduling: Планирование
     scoring: Оценка
     scoring_value_info: Оценка должна быть в диапазоне от %{min} до %{max}.
@@ -709,9 +727,13 @@ ru:
     show_submenu: Показать подменю
     show_translated: Показать перевод
     siem: SIEM
+    simulation: Моделирование
+    simulation_assessment: Оценка моделирования
     skill_aliases: Псевдонимы навыков
     skills: Навыки
     skills_taxonomy: Таксономия навыков
+    skillvue: Skillvue
+    skillvue_assessment: Оценка Skillvue
     slot_name: Название слота
     sms_histories: История SMS-сообщений
     sms_invites: SMS-приглашения
@@ -721,6 +743,7 @@ ru:
     subdomain: Субдомен
     subject_part_of_other_invite: Участник с адресом электронной почты %{user_email} уже приглашен в «%{workshop_invite_name}».
     target_job_role: Целевая должность
+    threesixty: Кампания 360
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: Предложение ИИ
     toolbar_result_generating: Генерирование...
@@ -745,6 +768,8 @@ ru:
     x_axis_interval_label: Интервал по оси X
     y_axis_interval_label: Интервал по оси Y
     year: Год
+    yoodli: Yoodli
     yoodli_activity_id: Идентификатор активности Yoodli
+    yoodli_assessment: Оценка Yoodli
     yoodli_email_id: Идентификатор электронной почты кандидата Yoodli
     yoodli_external_assessment_id: Идентификатор оценки Yoodli

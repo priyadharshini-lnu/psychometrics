@@ -1092,36 +1092,9 @@ sr-Cyrl:
       title: Детаљи процене
     edit: Уређивање
     fields:
-      category:
-        agile: Окретан
-        assessor_form: Образац за оцењивача
-        case_study: Студије случаја
-        hogan: Хоган
-        iiht: ИИХТ
-        lead_assessor_form: Образац главног процењивача
-        meeting: Састанак
-        mettl: ОМИЉЕНО
-        organisational: Орг анкете
-        pearson: Пирсон
-        psychometric: Психометријски
-        saville: Ел Салвадор
-        simulation: Симулација
-        skillvue: ОМИЉЕНО
-        threesixty: 360 Кампања
-        yoodli: Јоодли
       status:
         finished: Заврљио
         in_progress: У току
-      type:
-        common: ТТЕ Процена
-        hogan: Хоган
-        iiht: ИИХТ Процена
-        mettl: Меттл Процена
-        pearson: Пирсонова процена
-        saville: Савилле Процена
-        simulation: Симулација Процена
-        skillvue: Скиллвуе Процена
-        yoodli: Јоодли Процена
     flow:
       end_assessment_modal:
         custom_message: Прилагођена порука о крају процене
@@ -3288,13 +3261,6 @@ sr-Cyrl:
     fields:
       provider:
         custom_upload: Прилагођено отпремање
-        hogan: Хоган
-        internal: Унутрашње
-        mettl: ОМИЉЕНО
-        pearson: Пирсон
-        saville: Ел Салвадор
-        skillvue: ОМИЉЕНО
-        yoodli: Јоодли
     form:
       load_from_mettl: Учитавање из Меттла
       load_from_pearson: Оптерећење од Пеарсона

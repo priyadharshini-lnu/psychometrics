@@ -1092,36 +1092,9 @@ zh-Hant:
       title: 評估細節
     edit: 編輯
     fields:
-      category:
-        agile: AGILE
-        assessor_form: 評估員表格
-        case_study: 案例研究
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: 首席評估員表格
-        meeting: 會議
-        mettl: 濕度
-        organisational: 組織調查
-        pearson: 培生
-        psychometric: 心理測量
-        saville: 薩維爾
-        simulation: 模擬
-        skillvue: Skillvue
-        threesixty: 360 活動
-        yoodli: 尤德利
       status:
         finished: 完成
         in_progress: 進行中
-      type:
-        common: TTE 評估
-        hogan: Hogan
-        iiht: IIHT 評估
-        mettl: Mettl 評估
-        pearson: 培生評估
-        saville: 薩維爾評估
-        simulation: 模擬評估
-        skillvue: Skillvue 評估
-        yoodli: Yoodli 評估
     flow:
       end_assessment_modal:
         custom_message: 自訂評估結束訊息
@@ -3296,13 +3269,6 @@ zh-Hant:
     fields:
       provider:
         custom_upload: 自訂上傳
-        hogan: Hogan
-        internal: 內部
-        mettl: 濕度
-        pearson: 培生
-        saville: 薩維爾
-        skillvue: Skillvue
-        yoodli: 尤德利
     form:
       load_from_mettl: 從 Mettl 載入
       load_from_pearson: 從 Pearson 載入

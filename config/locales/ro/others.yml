@@ -1092,36 +1092,9 @@ ro:
       title: Detalii de evaluare
     edit: Editați
     fields:
-      category:
-        agile: AGIL
-        assessor_form: Formular evaluator
-        case_study: Studii de caz
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Formular de evaluator principal
-        meeting: Ședință
-        mettl: Mettl
-        organisational: Sondaje organizaționale
-        pearson: Pearson
-        psychometric: Psihometrice
-        saville: Saville
-        simulation: Simulare
-        skillvue: Skillvue
-        threesixty: Campania 360
-        yoodli: Yoodli
       status:
         finished: Complet
         in_progress: În curs de desfășurare
-      type:
-        common: Evaluarea TTE
-        hogan: Hogan
-        iiht: Evaluarea IIHT
-        mettl: Evaluarea Mettl
-        pearson: Evaluarea Pearson
-        saville: Evaluarea Saville
-        simulation: Evaluarea simulării
-        skillvue: Evaluarea Skillvue
-        yoodli: Evaluarea Yoodli
     flow:
       end_assessment_modal:
         custom_message: Mesaj personalizat de sfârșit de evaluare
@@ -3313,13 +3286,6 @@ ro:
     fields:
       provider:
         custom_upload: Încărcare personalizată
-        hogan: Hogan
-        internal: Intern
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Încărcare de la Mettl
       load_from_pearson: Încărcare de la Pearson

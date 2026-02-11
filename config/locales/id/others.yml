@@ -1095,36 +1095,9 @@ id:
       title: Detail Penilaian
     edit: Mengedit
     fields:
-      category:
-        agile: LINCAH
-        assessor_form: Formulir Penilai
-        case_study: Studi Kasus
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Formulir Penilai Utama
-        meeting: Rapat
-        mettl: Mettl
-        organisational: Survei Organisasi
-        pearson: Pearson
-        psychometric: Psikometrik
-        saville: Saville
-        simulation: Simulasi
-        skillvue: Skillvue
-        threesixty: Kampanye 360
-        yoodli: Yoodli
       status:
         finished: Selesai
         in_progress: Sedang Berlangsung
-      type:
-        common: Penilaian TTE
-        hogan: Hogan
-        iiht: Penilaian IIHT
-        mettl: Penilaian Mettl
-        pearson: Penilaian Pearson
-        saville: Penilaian Saville
-        simulation: Penilaian Simulasi
-        skillvue: Penilaian Skillvue
-        yoodli: Penilaian Yoodli
     flow:
       end_assessment_modal:
         custom_message: Pesan akhir penilaian kustom
@@ -3317,13 +3290,6 @@ id:
     fields:
       provider:
         custom_upload: Unggahan Kustom
-        hogan: Hogan
-        internal: Intern
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Keterampilan
-        yoodli: Yoodli
     form:
       load_from_mettl: Muat dari Mettl
       load_from_pearson: Muat dari Pearson

@@ -17,6 +17,7 @@ nl:
     admin_roles: Beheerdersrollen
     admin_updated_successfully: Admin '%{name}' is succesvol bijgewerkt
     admins: Admins
+    agile: AGIEL
     ai_artifacts: AI-artefacten
     ai_artifacts_output_schema_key_constraint: De toonsoort moet beginnen met een kleine letter en mag alleen kleine letters, cijfers en onderstreepjes bevatten
     ai_assistant_model_id_label: Model-ID
@@ -44,6 +45,7 @@ nl:
     assessments_not_mhs: Alle beoordelingen moeten van het type MHS zijn.
     assessments_reports: Beoordelingen en rapporten
     assessor_dashboard: Dashboard voor beoordelaars
+    assessor_form: Beoordelaarsformulier
     assessor_workshops: Beoordelingscentrum
     assessors: Taxateurs
     assistant_toolbar_failed: Na meerdere pogingen is het niet gelukt om geldige uitvoer te genereren.
@@ -83,10 +85,12 @@ nl:
     campaign_templates: Campagnesjablonen
     campaign_user_job_roles_cannot_be_same: De beoogde functie moet verschillen van de huidige functie.
     campaigns: Campagnes
+    case_study: Casestudies
     client: Huurder
     client_admins: Klanten-admins
     clients: Huurcontracten voor klanten
     code_required: Code is vereist
+    common_assessment: TTE-beoordeling
     communication_center: Communicatiecentrum
     communications: Communicatie
     completed: Volbracht
@@ -125,8 +129,12 @@ nl:
     feature_flags: Functie Vlaggen
     fill_empty_score_msg: Vul alle eindscores in voordat je opslaat.
     final_score_empty_err_msg: De eindscore van %{factor_name} mag niet leeg zijn.
+    hogan: Hogan
+    hogan_assessment: AGIEL
     idp_plan_reset_success: Het plan is succesvol gereset.
     idp_templates: IDP-sjablonen
+    iiht: IIHT
+    iiht_assessment: IIHT-beoordeling
     import_ai_artifacts: AI-artefacten importeren
     import_csv_assessment_group_error: "%{index} van de rij: gebruiker met e-mailadres %{email} is al uitgenodigd voor '%{workshopInviteName}'."
     import_csv_error: 'Rij %{index}: gebruiker met e-mailadres %{email} niet in deze campagne zit'
@@ -152,6 +160,7 @@ nl:
     import_users: Importgebruikers
     invalid_csv_header: CSV-bestand bevat ongeldige headers.
     job_roles: Functierollen
+    lead_assessor_form: Formulier hoofdbeoordelaar
     learning_from_others: Samenwerkend leren [20]
     level: Niveau
     level_apply: Toepassen
@@ -163,7 +172,10 @@ nl:
     licenses: Licenties
     manager_approval_required: Rapporteer voor %{user} vereist goedkeuring van de manager voordat het wordt gedownload
     max_value: Maximale waarde
+    meeting: Vergadering
     messages: Berichten
+    mettl: Mettl
+    mettl_assessment: Mettl Beoordeling
     mhs: MHS
     mhs_assessment: MHS-beoordeling
     mhs_assessment_name: MHS-beoordeling Naam
@@ -190,7 +202,10 @@ nl:
     on_the_job: Op het Werk [70]
     only_editable_on_create: Deze optie kan alleen tijdens het aanmaken worden bewerkt.
     options: Opties
+    organisational: Organisatie Enquêtes
     participants: Deelnemers
+    pearson: Pearson
+    pearson_assessment: Pearson Beoordeling
     permissions:
       aiArtifacts:
         export: Exporteren
@@ -623,6 +638,7 @@ nl:
     project_number: Projectnummer
     project_settings: Projectinstellingen
     projects: Projecten
+    psychometric: Psychometrisch
     question_center: Vragencentrum
     questions: Vragen
     reflection_questions: Reflectie vragen
@@ -693,6 +709,8 @@ nl:
     saml_service_provider_updated_date: Bijgewerkte datum
     saml_service_providers: Dienstverleners
     saml_settings: SAML-instellingen
+    saville: Saville
+    saville_assessment: Beoordeling Saville
     scheduling: Planning
     scoring: Scoren
     scoring_value_info: De score moet tussen %{min} en %{max} liggen.
@@ -708,9 +726,13 @@ nl:
     show_submenu: Submenu weergeven
     show_translated: Vertaling weergeven
     siem: SIEM
+    simulation: Simulatie
+    simulation_assessment: Simulatie Beoordeling
     skill_aliases: Vaardigheden aliassen
     skills: Vaardigheden
     skills_taxonomy: Taxonomie van vaardigheden
+    skillvue: Skillvue
+    skillvue_assessment: Skillvue Assessment
     slot_name: Slot Name
     sms_histories: SMS-geschiedenis
     sms_invites: SMS Uitnodigingen
@@ -720,6 +742,7 @@ nl:
     subdomain: Subdomein
     subject_part_of_other_invite: De persoon met e-mailadres %{user_email} is al uitgenodigd voor '%{workshop_invite_name}'.
     target_job_role: Beoogde functie
+    threesixty: 360 Campagne
     toolbar_ai_insight: AI-inzicht
     toolbar_ai_suggestion: AI-suggestie
     toolbar_result_generating: Bezig met genereren...
@@ -744,6 +767,8 @@ nl:
     x_axis_interval_label: X-as interval
     y_axis_interval_label: Y-as interval
     year: Land
+    yoodli: Yoodli
     yoodli_activity_id: Yoodli Activiteits-ID
+    yoodli_assessment: Yoodli-beoordeling
     yoodli_email_id: Yoodli Kandidaat E-mailadres
     yoodli_external_assessment_id: Yoodli Assessment ID

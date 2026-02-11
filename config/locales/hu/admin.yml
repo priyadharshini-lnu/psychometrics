@@ -17,6 +17,7 @@ hu:
     admin_roles: Adminisztrátori szerepkörök
     admin_updated_successfully: Az adminisztrátori '%{name}' frissítése sikeresen megtörtént
     admins: Adminisztrátorok
+    agile: FÜRGE
     ai_artifacts: AI-összetevők
     ai_artifacts_output_schema_key_constraint: A kulcsnak kisbetűvel kell kezdődnie, és csak kisbetűket, számokat és aláhúzásokat tartalmazhat
     ai_assistant_model_id_label: Model ID
@@ -44,6 +45,7 @@ hu:
     assessments_not_mhs: Minden értékelésnek MHS típusúnak kell lennie.
     assessments_reports: Felmérések és jelentések
     assessor_dashboard: Értékelő irányítópult
+    assessor_form: Értékelő űrlap
     assessor_workshops: Értékelési központ
     assessors: Értékelők
     assistant_toolbar_failed: Többszöri próbálkozás után sem sikerült érvényes kimenetet generálni.
@@ -83,10 +85,12 @@ hu:
     campaign_templates: Kampány sablonok
     campaign_user_job_roles_cannot_be_same: A célpozíció nem lehet azonos a jelenlegi pozícióval.
     campaigns: Kampányok
+    case_study: Esettanulmányok
     client: Ügyfél bérleti joga
     client_admins: Ügyféladminisztrátorok
     clients: Ügyfélcsoportok
     code_required: Kód szükséges
+    common_assessment: TTE értékelés
     communication_center: Kommunikációs központ
     communications: Kommunikáció
     completed: Befejezett
@@ -125,8 +129,12 @@ hu:
     feature_flags: Feature flags
     fill_empty_score_msg: Töltsd ki az összes végső pontszámot mentés előtt.
     final_score_empty_err_msg: "%{factor_name} végső pontszáma nem lehet üres."
+    hogan: Hogan
+    hogan_assessment: FÜRGE
     idp_plan_reset_success: A tervet sikeresen újraindították
     idp_templates: IDP-sablonok
+    iiht: IIHT
+    iiht_assessment: IIHT értékelés
     import_ai_artifacts: MI tárgyak importálása
     import_csv_assessment_group_error: "%{index} sor: a %{email} e-mail címmel rendelkező felhasználó már meghívást kapott a „%{workshopInviteName}” csoportba."
     import_csv_error: "%{index}. sor: %{email} e-mail felhasználó nem része ebben a kampányban"
@@ -152,6 +160,7 @@ hu:
     import_users: Importfelhasználók
     invalid_csv_header: A CSV fájl érvénytelen fejléceket tartalmaz.
     job_roles: Munkakörök
+    lead_assessor_form: Vezető értékelői űrlap
     learning_from_others: Együttműködő tanulás [20]
     level: Szint
     level_apply: Jelentkezés
@@ -163,7 +172,10 @@ hu:
     licenses: Licencek
     manager_approval_required: A jelentés %{user} letöltése előtt menedzser jóváhagyását igényel
     max_value: Maximális érték
+    meeting: Találkozó
     messages: Üzenetek
+    mettl: Mettl
+    mettl_assessment: Mettl értékelés
     mhs: MHS
     mhs_assessment: MHS értékelés
     mhs_assessment_name: MHS értékelés neve
@@ -190,7 +202,10 @@ hu:
     on_the_job: A munkában [70]
     only_editable_on_create: Ez az opció csak létrehozáskor szerkeszthető.
     options: Beállítások
+    organisational: Szervezeti felmérések
     participants: Résztvevők
+    pearson: Pearson
+    pearson_assessment: Pearson értékelés
     permissions:
       aiArtifacts:
         export: Kivitel
@@ -623,6 +638,7 @@ hu:
     project_number: Projekt száma
     project_settings: Projekt beállításai
     projects: Projektek
+    psychometric: Pszichometriai
     question_center: Kérdésközpont
     questions: Kérdések
     reflection_questions: Reflexiós kérdések
@@ -693,6 +709,8 @@ hu:
     saml_service_provider_updated_date: Frissített dátum
     saml_service_providers: Szolgáltatók
     saml_settings: SAML beállítások
+    saville: Saville
+    saville_assessment: Saville-értékelés
     scheduling: Ütemezés
     scoring: Pontozás
     scoring_value_info: A pontszámnak %{min} és %{max} között kell lennie.
@@ -708,9 +726,13 @@ hu:
     show_submenu: Almenü megjelenítése
     show_translated: Fordítás megjelenítése
     siem: SIEM
+    simulation: Szimuláció
+    simulation_assessment: Szimulációs értékelés
     skill_aliases: Készség aliasok
     skills: Készségek
     skills_taxonomy: Készségek taxonómiája
+    skillvue: Skillvue
+    skillvue_assessment: Skillvue értékelés
     slot_name: Nyerő neve
     sms_histories: SMS-előzmények
     sms_invites: SMS-meghívók
@@ -720,6 +742,7 @@ hu:
     subdomain: Aldomain
     subject_part_of_other_invite: Az e-mail címmel %{user_email} rendelkező személy már meghívást kapott a „%{workshop_invite_name}” rendezvényre.
     target_job_role: Célkitűzés
+    threesixty: 360 fokos kampány
     toolbar_ai_insight: AI betekintés
     toolbar_ai_suggestion: AI javaslat
     toolbar_result_generating: Generálás...
@@ -744,6 +767,8 @@ hu:
     x_axis_interval_label: X-tengely intervallum
     y_axis_interval_label: Y-tengely intervallum
     year: Ország
+    yoodli: Yoodli
     yoodli_activity_id: Yoodli Activity ID
+    yoodli_assessment: Yoodli értékelés
     yoodli_email_id: Yoodli jelölt e-mail azonosító
     yoodli_external_assessment_id: Yoodli Assessment ID

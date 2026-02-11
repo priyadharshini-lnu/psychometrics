@@ -17,6 +17,7 @@ en-US:
     admin_roles: Admin Roles
     admin_updated_successfully: Admin '%{name}' was updated successfully
     admins: Admins
+    agile: AGILE
     ai_artifacts: AI Artifacts
     ai_artifacts_output_schema_key_constraint: Key must start with a lowercase letter and can only contain lowercase letters, numbers, and underscores
     ai_assistant_model_id_label: Model ID
@@ -44,6 +45,7 @@ en-US:
     assessments_not_mhs: All Assessment must be a MHS type
     assessments_reports: Assessments & Reports
     assessor_dashboard: Assessor Dashboard
+    assessor_form: Assessor Form
     assessor_workshops: Assessment Center
     assessors: Assessors
     assistant_toolbar_failed: Failed to generate valid output after multiple attempts
@@ -83,10 +85,12 @@ en-US:
     campaign_templates: Campaign Templates
     campaign_user_job_roles_cannot_be_same: Target job role must be different from current job role
     campaigns: Campaigns
+    case_study: Case Studies
     client: Client Tenancy
     client_admins: Client Admins
     clients: Client Tenancies
     code_required: Code is required
+    common_assessment: TTE Assessment
     communication_center: Communication Center
     communications: Communications
     completed: Completed
@@ -126,8 +130,12 @@ en-US:
     fill_empty_score_msg: Fill all the final scores before saving.
     final_score_empty_err_msg: Final score of %{factor_name} cannot be empty.
     final_score_empty_msg: Final score cannot be empty.
+    hogan: Hogan
+    hogan_assessment: AGILE
     idp_plan_reset_success: Plan has been reset successfully
     idp_templates: IDP Templates
+    iiht: IIHT
+    iiht_assessment: IIHT Assessment
     import_ai_artifacts: Import AI Artifacts
     import_csv_assessment_group_error: 'Row %{index}: user with email %{email} is already invited to ''%{workshopInviteName}'''
     import_csv_error: 'Row %{index}: user with email %{email} is not in this campaign'
@@ -153,6 +161,7 @@ en-US:
     import_users: Import Users
     invalid_csv_header: CSV file contains invalid headers.
     job_roles: Job Roles
+    lead_assessor_form: Lead Assessor Form
     learning_from_others: Collaborative Learning [20]
     level: Level
     level_apply: Apply
@@ -164,7 +173,10 @@ en-US:
     licenses: Licenses
     manager_approval_required: Report for %{user} requires manager approval before download
     max_value: Max value
+    meeting: Meeting
     messages: Messages
+    mettl: Mettl
+    mettl_assessment: Mettl Assessment
     mhs: MHS
     mhs_assessment: MHS Assessment
     mhs_assessment_name: MHS Assessment Name
@@ -191,7 +203,10 @@ en-US:
     on_the_job: On the Job [70]
     only_editable_on_create: This option is editable only while creating.
     options: Options
+    organisational: Org Surveys
     participants: Participants
+    pearson: Pearson
+    pearson_assessment: Pearson Assessment
     permissions:
       aiArtifacts:
         export: Export
@@ -624,6 +639,7 @@ en-US:
     project_number: Project Number
     project_settings: Project Settings
     projects: Projects
+    psychometric: Psychometric
     question_center: Question Center
     questions: Questions
     reflection_questions: Reflection Questions
@@ -694,6 +710,8 @@ en-US:
     saml_service_provider_updated_date: Updated Date
     saml_service_providers: Service Providers
     saml_settings: SAML Settings
+    saville: Saville
+    saville_assessment: Saville Assessment
     scheduling: Scheduling
     scoring: Scoring
     scoring_value_info: Score must be between %{min} and %{max}.
@@ -709,9 +727,13 @@ en-US:
     show_submenu: Show Sub Menu
     show_translated: Show Translated
     siem: SIEM
+    simulation: Simulation
+    simulation_assessment: Simulation Assessment
     skill_aliases: Skill Aliases
     skills: Skills
     skills_taxonomy: Skills Taxonomy
+    skillvue: Skillvue
+    skillvue_assessment: Skillvue Assessment
     slot_name: Slot Name
     sms_histories: SMS Histories
     sms_invites: SMS Invites
@@ -721,6 +743,7 @@ en-US:
     subdomain: Subdomain
     subject_part_of_other_invite: Subject with email %{user_email} is already invited to '%{workshop_invite_name}'
     target_job_role: Target Job Role
+    threesixty: 360 Campaign
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: AI Suggestion
     toolbar_result_generating: Generating...
@@ -745,6 +768,8 @@ en-US:
     x_axis_interval_label: X-Axis Interval
     y_axis_interval_label: Y-Axis Interval
     year: Year
+    yoodli: Yoodli
     yoodli_activity_id: Yoodli Activity ID
+    yoodli_assessment: Yoodli Assessment
     yoodli_email_id: Yoodli Candidate Email ID
     yoodli_external_assessment_id: Yoodli Assessment ID
