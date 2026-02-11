@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Col,
   Layout,
 } from 'antd'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import qs from 'qs'
-import { ClockCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
-import { SubHeader } from '~/modules/endUser/modules/campaigns/components/SubHeader'
 import { get as getConfig } from '~/modules/endUser/core/config'
 import { isRequestInProgress } from '~/core/request'
 import { RootState } from '~/modules/endUser/core/rootReducers'
@@ -17,10 +14,9 @@ import {
   get as getCampaign, getUserAssessmentData, getCampaignOptions,
 } from '~/modules/endUser/modules/campaigns/core/campaign/selectors'
 import {
-  fetchAssessment, getCampaignRemainingTime, FETCH_RESULTS,
+  fetchAssessment, FETCH_RESULTS,
 } from '~/modules/endUser/modules/campaigns/core/userAssessment'
 import styles from './styles.less'
-import { CountdownTimer, PageHeader as GlintPageHeader } from '~/glint'
 
 const InteractiveAssessmentsModule = () => import('@thetalententerprise/interactive-assessments')
 
@@ -31,7 +27,6 @@ const connector = connect(
     campaignId: getCampaign(state).id,
     userAssessment: getUserAssessmentData(state),
     assessment: state.campaigns.userAssessment.assessment,
-    remainingCampaignTime: getCampaignRemainingTime(state),
     campaignOptions: getCampaignOptions(state),
     resultsLoading: isRequestInProgress(state, FETCH_RESULTS),
   }),
@@ -64,12 +59,10 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
   assessment,
   userAssessment,
   fetchAssessment,
-  remainingCampaignTime,
   campaignOptions,
   resultsLoading,
 }) => {
   const campaignId = agileCampaign || userAssessment.campaignId
-  const navigate = useNavigate()
   const params = useParams() as Params
 
   const [assessmentLoading, setAssessmentLoading] = useState(true)
@@ -92,6 +85,7 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
         assetsBaseURL: agileAssetsUrl,
         locale: lang?.toString(),
         watermark: campaignOptions?.show_watermark ? campaignOptions.watermark_content : null,
+        exitURL: isAnonym ? '' : `/campaigns/${campaignId}`,
       },
     }
     InteractiveAssessmentsModule().then(({ InteractiveAssessments }) => {
@@ -114,40 +108,9 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
     }
   }, [assessmentLoading, resultsLoading])
 
-  const notificationMessage = (minutes: number) => {
-    if (minutes >= 60) {
-      const hours = Math.floor(minutes / 60)
-      return I18n.t('campaign.timer.notification_hours', { hours })
-    } return I18n.t('campaign.timer.notification_minutes', { minutes })
-  }
-
   return (
     <>
       <title>{`${assessment.name} - ${I18n.t('frontend.lighthouse_app')}`}</title>
-      {remainingCampaignTime > 0 && (
-        <GlintPageHeader>
-          <Col span={16} className="ta-c">
-            <CountdownTimer
-              prefix={(
-                <>
-                  {I18n.t('user_assessments.timer_title.campaign')}
-                  {': '}
-                  <ClockCircleOutlined />
-                </>
-            )}
-            // notificationPoints={notificationDurations}
-              notificationTemplate={notificationMessage}
-              seconds={remainingCampaignTime}
-            />
-          </Col>
-        </GlintPageHeader>
-      )}
-      <SubHeader
-        hideBackIcon={isAnonym}
-        title={assessment.name}
-        onBack={() => navigate(`/campaigns/${campaignId}`)}
-        backButtonAriaLabel={I18n.t('frontend.aria.back_to_tasks')}
-      />
       <Content className={styles.agileContent}>
         <div id="agile-container" className={styles.agileContainer} />
       </Content>
