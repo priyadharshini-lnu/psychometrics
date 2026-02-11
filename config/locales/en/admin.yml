@@ -86,6 +86,7 @@ en:
     campaign_user_job_roles_cannot_be_same: Target job role must be different from current job role
     campaigns: Campaigns
     cancellation_and_rescheduling_disabled: Cancellation and Rescheduling is disabled
+    case_study: Case Studies
     client: Client
     client_admins: Client Admins
     clients: Clients
@@ -158,6 +159,7 @@ en:
     import_title: Import Subjects from CSV
     import_upload: Upload
     import_users: Import Users
+    internal: Internal
     invalid_csv_header: CSV file contains invalid headers.
     job_roles: Job Roles
     lead_assessor_form: Lead Assessor Form
