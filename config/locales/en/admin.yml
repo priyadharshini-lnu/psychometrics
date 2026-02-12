@@ -93,6 +93,7 @@ en:
     client_admins: Client Admins
     clients: Clients
     code_required: Code is required
+    common: TTE Assessment
     common_assessment: TTE Assessment
     communication_center: Communication Center
     communications: Communications
@@ -141,6 +142,7 @@ en:
     final_score_empty_err_msg: Final score of %{factor_name} cannot be empty.
     fix_grammar: Fix Grammar
     formal: Formal
+    generate_transcription: Generate Transcription
     hogan: Hogan
     hogan_assessment: Hogan Assessment
     idp_plan_reset_success: Plan has been reset successfully
@@ -768,6 +770,9 @@ en:
     toolbar_text_replaced: Text replaced!
     toolbar_what_changed_and_why: What Changed & Why
     tools: Tools
+    transcription_record_not_found: Transcription record not found
+    transcription_schedule_failed: Failed to schedule transcription job
+    transcription_scheduled: Transcription job is scheduled. Please close the modal and check notification status.
     translate: Translate
     translate_to: Translate To
     translate_with_ai: Translate with AI

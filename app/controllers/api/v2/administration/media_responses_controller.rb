@@ -7,7 +7,12 @@ module Api
     before_action :validate_transcription_eligibility, only: [:generate_transcription]
 
     def generate_transcription
-      MediaResponses::AddTranscriptionJob.perform_later(@media_response.id)
+      AdminJob.call(
+        :generate_transcription,
+        { media_response_id: @media_response.id, campaign_id: campaign&.id },
+        current_user
+      )
+
       render json: { success: true }, status: :ok
     end
 

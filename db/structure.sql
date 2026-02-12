@@ -4673,8 +4673,7 @@ CREATE TABLE public.media_responses (
     updated_at timestamp without time zone NOT NULL,
     users_result_id integer,
     assign_id integer,
-    user_selected boolean DEFAULT false,
-    transcription_status integer DEFAULT 0 NOT NULL
+    user_selected boolean DEFAULT false
 );
 
 
@@ -7867,9 +7866,11 @@ CREATE TABLE public.transcriptions (
     id bigint NOT NULL,
     transcribable_type character varying NOT NULL,
     transcribable_id bigint NOT NULL,
-    text text NOT NULL,
+    text text DEFAULT ''::text NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    error_details jsonb DEFAULT '{}'::jsonb NOT NULL,
+    status integer DEFAULT 0 NOT NULL
 );
 
 
@@ -14608,13 +14609,6 @@ CREATE INDEX index_media_responses_on_question_id ON public.media_responses USIN
 
 
 --
--- Name: index_media_responses_on_transcription_status; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_media_responses_on_transcription_status ON public.media_responses USING btree (transcription_status);
-
-
---
 -- Name: index_media_responses_on_users_result_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15809,6 +15803,13 @@ CREATE INDEX index_threesixty_subjects_on_evaluation_status_updated_by_id ON pub
 --
 
 CREATE INDEX index_threesixty_subjects_on_user_id ON public.threesixty_subjects USING btree (user_id);
+
+
+--
+-- Name: index_transcriptions_on_status; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_transcriptions_on_status ON public.transcriptions USING btree (status);
 
 
 --
@@ -19628,6 +19629,9 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260209123134'),
+('20260209112420'),
+('20260209020330'),
 ('20260123071239'),
 ('20260122034210'),
 ('20260119144024'),

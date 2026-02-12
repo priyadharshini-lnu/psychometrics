@@ -15,10 +15,12 @@ module OciSpeech
 
       def auth_token(params)
         freeform_tags = extract_freeform_tags(params)
-        return nil unless freeform_tags.is_a?(Hash) || freeform_tags.is_a?(ActionController::Parameters)
+        (freeform_tags['auth_token'] || freeform_tags[:auth_token]).presence
+      end
 
-        auth_token = freeform_tags['auth_token'] || freeform_tags[:auth_token]
-        auth_token.presence
+      def admin_job_record_id(params)
+        freeform_tags = extract_freeform_tags(params)
+        freeform_tags['admin_job_record_id'] || freeform_tags[:admin_job_record_id]
       end
 
       def job_id(params)

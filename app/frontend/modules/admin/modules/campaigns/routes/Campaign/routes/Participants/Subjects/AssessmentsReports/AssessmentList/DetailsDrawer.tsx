@@ -161,6 +161,7 @@ export const DetailsDrawer: FC<Props> = ({
       </Row>
       <TranscriptionDetails
         assessment={assessment}
+        campaignId={campaignId}
       />
     </Drawer>
   )

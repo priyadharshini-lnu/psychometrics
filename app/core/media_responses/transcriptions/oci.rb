@@ -5,16 +5,18 @@ require 'oci'
 module MediaResponses
   module Transcriptions
     class Oci < BaseCommand
-      attr_reader :media_response
+      attr_reader :media_response, :admin_job_record_id
 
-      def initialize(media_response)
-        @media_response = media_response
+      def initialize(options)
+        @media_response = options[:media_response]
+        @admin_job_record_id = options[:admin_job_record_id]
       end
 
       def call
         broadcast :ok, start_transcription_job
       rescue StandardError => e
-        media_response.update!(transcription_status: :failed)
+        error_details = { message: e.message }
+        media_response.save_transcription_failed!(error_details)
         Rails.logger.error("OCI Speech Transcription failed: #{e.message}")
         raise
       end
@@ -28,7 +30,7 @@ module MediaResponses
       def start_transcription_job
         return unless media_response.asset.attached?
 
-        media_response.update!(transcription_status: :pending)
+        media_response.save_transcription_status!(:pending)
         job_details = build_transcription_job_details
         response = speech_client.create_transcription_job(job_details)
         job_id = response.data.id
@@ -76,7 +78,8 @@ module MediaResponses
           freeform_tags: {
             record_id: media_response.id.to_s,
             record_type: media_response.class.name,
-            auth_token: JWT.encode({ sub: 'transcription' }, Settings.secrets.webhook_jwt_secret, 'HS256')
+            auth_token: JWT.encode({ sub: 'transcription' }, Settings.secrets.webhook_jwt_secret, 'HS256'),
+            admin_job_record_id: admin_job_record_id.to_s
           }
         )
       end
