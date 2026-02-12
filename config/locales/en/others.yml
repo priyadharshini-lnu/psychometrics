@@ -923,6 +923,8 @@ en:
         import_users: Import Users
         migrate_assessment_translations: Assessment Translation migration
         normalize_factor_scores: Normalize Factor Scores
+        project_compact_completion_status_export: Compact Completion Status Export
+        project_completion_status_export: Completion Status Export
         regenerate_campaign_reports: Regenerate Campaign Reports
         regenerate_report: Regenerate Report
         regenerate_threesixty_report: Regenerate Threesixty Report

@@ -1319,6 +1319,8 @@ as: :simulation_progress_notification
               get :workshop_status_export
               get :seach_user
               put :add_manager
+              get :export_completion_status
+              get :export_compact_completion_status
             end
           end
           jsonapi_resources :memberships, only: %i[index create update show destroy] do

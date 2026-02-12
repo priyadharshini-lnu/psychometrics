@@ -131,6 +131,10 @@ en:
     evaluation_status: Evaluation Status
     evaluation_status_not_done: Evaluation status is not 'Done' for one or more selected subjects. Please ensure all selected users have completed evaluations or mark as done.
     export_admin_roles_permissions: Admin Roles and Permissions export
+    export_compact_completion_status: Compact
+    export_completion_status: Export Completion Status
+    export_completion_statuses_scheduled: Completion Statuses export job was scheduled successfully
+    export_detailed_completion_status: Detailed
     feature_enhance_with_ai: Enhance with AI
     feature_flags: Feature Flags
     fill_empty_score_msg: Fill all the final scores before saving.

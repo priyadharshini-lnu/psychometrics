@@ -27,6 +27,18 @@ module Api
         has_permission?(:workshops, :export_status, project_id: project_id)
       end
 
+      def export_completion_status?
+        @user.is?(:superadmin) || @user.has_permission?(
+          :campaigns, :view, project_id: project_id, campaign_id: campaign_id
+        )
+      end
+
+      def export_compact_completion_status?
+        @user.is?(:superadmin) || @user.has_permission?(
+          :campaigns, :view, project_id: project_id, campaign_id: campaign_id
+        )
+      end
+
       class Scope < BasePolicy::Scope
         def resolve
           ::Administration::ClientPolicy::Scope.new(
