@@ -19,6 +19,7 @@ th:
     clear_filters: เคลียร์ตัวกรอง
     collaborative_learning: การเรียนรู้ร่วมกัน
     completed: เสร็จสมบูรณ์
+    configurations: การกำหนดค่า
     confirm: ยืนยัน
     continue: ต่อเนื่อง
     copy: คัดลอก
@@ -27,6 +28,9 @@ th:
     decline: ปฏิเสธ
     description: คำอธิบาย
     download: ดาวน์โหลด
+    download_audio: ดาวน์โหลดเสียง
+    download_transcription: ดาวน์โหลดการถอดความ
+    download_video: ดาวน์โหลดวิดีโอ
     edit: แก้ไข
     edited: ใหม่
     email: อีเมล
@@ -46,6 +50,7 @@ th:
     last_name: นามสกุล
     learning_on_the_job_label: การเรียนรู้ในการทํางาน
     login: เข้าสู่ระบบ
+    media_responses: การตอบสนองของสื่อ
     modified_by: แก้ไขโดย
     modified_date: วันที่แก้ไข
     more_actions: การดําเนินการเพิ่มเติม
@@ -59,6 +64,7 @@ th:
     pending: รอดำเนินการ
     processing: การประมวลผล
     question_id: รหัสคำถาม
+    question_transcription_disabled: การถอดเสียงถูกปิดใช้งานสำหรับคำถามนี้
     recording_consent_notice: เซสชั่นการประชุมนี้จะถูกบันทึกไว้ การเข้าร่วมการประชุมนี้ถือเป็นความยินยอมของคุณที่จะบันทึกไว้
     recording_consent_proceed_question: คุณตกลงที่จะดําเนินการประชุมที่บันทึกไว้หรือไม่?
     recording_consent_title: การแจ้งความยินยอมในการบันทึก
@@ -82,6 +88,7 @@ th:
     transcription: การถอดเสียง
     transcription_already_requested: การถอดเสียงได้รับการร้องขอแล้วหรือกำลังดำเนินการอยู่
     transcription_not_enabled: การถอดเสียงไม่ได้รับการเปิดใช้งานสำหรับการตอบสนองของสื่อ
+    transcription_status: สถานะการถอดความ
     transcriptions: การถอดความ
     try_again: ลองอีกครั้ง
     tte_terms_and_condition: เงื่อนไขและความเป็นส่วนตัว

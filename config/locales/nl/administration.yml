@@ -4183,7 +4183,12 @@ nl:
       more_actions: Meer acties
     taxonomy:
       import:
+        description: Upload een Excel-bestand om uw vaardigheidstaxonomie te importeren of bij te werken. Hierdoor worden nieuwe vaardigheden, functies en vaardigheidsniveaus toegevoegd.
         download_example_file: Voorbeeldbestand downloaden
+        drag_text: Klik of sleep het bestand naar dit gebied om het te uploaden
+        error_title: Importeren mislukt
+        file_hint: Ondersteunt .xls- en .xlsx-bestanden
+        import_button: Importtaxonomie
         success_msg: Het geüploade bestand is in de wachtrij geplaatst om te worden geïmporteerd. Controleer de status in de meldingen.
       import_action:
         taxonomy: Taxonomie vaardigheden importeren

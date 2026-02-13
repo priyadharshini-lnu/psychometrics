@@ -893,6 +893,7 @@ en-US:
         export_users: Campaign Users Export
         external_assessment_export: External Results Export
         generate_embedding_skills: Generate Embedding for Skills
+        generate_transcription: Generate Transcription
         import_accesssheet: Import Accessheet
         import_assessment_questions: Import Assessment Questions
         import_assessment_translations: Import Assessment Translations
@@ -923,6 +924,8 @@ en-US:
         import_users: Import Users
         migrate_assessment_translations: Assessment Translation migration
         normalize_factor_scores: Normalize Factor Scores
+        project_compact_completion_status_export: Compact Completion Status Export
+        project_completion_status_export: Completion Status Export
         regenerate_campaign_reports: Regenerate Campaign Reports
         regenerate_report: Regenerate Report
         regenerate_threesixty_report: Regenerate Threesixty Report

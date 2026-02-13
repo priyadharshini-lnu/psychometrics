@@ -4175,7 +4175,12 @@ id:
       more_actions: Tindakan lainnya
     taxonomy:
       import:
+        description: Unggah berkas Excel untuk mengimpor atau memperbarui taksonomi keterampilan Anda. Hal ini akan menambahkan keterampilan baru, peran pekerjaan, dan tingkat keahlian.
         download_example_file: Unduh Contoh File
+        drag_text: Klik atau seret file ke area ini untuk mengunggah.
+        error_title: Impor Gagal
+        file_hint: Mendukung file .xls dan .xlsx
+        import_button: Impor Taksonomi
         success_msg: File yang diunggah telah diantrekan untuk impor. Silakan periksa status di notifikasi.
       import_action:
         taxonomy: Taksonomi Impor

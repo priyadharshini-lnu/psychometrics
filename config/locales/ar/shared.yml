@@ -19,6 +19,7 @@ ar:
     clear_filters: امسح المُرشحات
     collaborative_learning: التعلم التعاوني
     completed: مكتمل
+    configurations: التكوينات
     confirm: تأكيد
     continue: استمر
     copy: نسخ
@@ -27,6 +28,9 @@ ar:
     decline: الانحدار
     description: وصف
     download: تنزيل
+    download_audio: تنزيل الصوت
+    download_transcription: تنزيل النص
+    download_video: تنزيل الفيديو
     edit: تعديل
     edited: جديد
     email: البريد الإلكتروني
@@ -46,6 +50,7 @@ ar:
     last_name: إسم العائلة
     learning_on_the_job_label: التعلم أثناء العمل
     login: تسجيل الدخول
+    media_responses: ردود فعل وسائل الإعلام
     modified_by: تم التعديل بواسطة
     modified_date: تاريخ التعديل
     more_actions: More actions
@@ -59,6 +64,7 @@ ar:
     pending: قيد الانتظار
     processing: المعالجة
     question_id: رقم السؤال
+    question_transcription_disabled: النسخ معطل لهذا السؤال
     recording_consent_notice: سيتم تسجيل جلسة الاجتماع هذه. مشاركتك في هذا الاجتماع تعني موافقتك على التسجيل.
     recording_consent_proceed_question: هل توافق على المضي قدما في الاجتماع المسجل؟
     recording_consent_title: تسجيل إشعار الموافقة
@@ -87,6 +93,7 @@ ar:
     transcription: نسخ
     transcription_already_requested: النسخ مطلوب بالفعل أو قيد التنفيذ
     transcription_not_enabled: النسخ غير ممكّن لرد وسائل الإعلام
+    transcription_status: حالة النسخ
     transcriptions: تدوين
     try_again: حاول مرة أخرى
     tte_terms_and_condition: " الشروط والأحكام وبيان الخصوصية الخاص بشركة"

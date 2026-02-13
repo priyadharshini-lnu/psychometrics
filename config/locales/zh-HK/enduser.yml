@@ -28,6 +28,7 @@ zh-HK:
     max_word_limit: 最多%{max}个单词
     min_word_limit: 至少需要%{min}个单词
     my_plan: 我的计划
+    no_audio_warning: 未检测到音频。请检查麦克风是否已连接且工作正常。
     profile: 个人资料
     profile_details: 详情
     question_counter: 问题 %{current} 来自 %{total}

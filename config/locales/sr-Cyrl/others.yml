@@ -893,6 +893,7 @@ sr-Cyrl:
         export_users: Извоз корисника кампање
         external_assessment_export: Екстерни резултати Извоз
         generate_embedding_skills: Генеришите уградњу за вештине
+        generate_transcription: Генеришите транскрипцију
         import_accesssheet: Увоз Аццессхеет
         import_assessment_questions: Питања за процену увоза
         import_assessment_translations: Увоз Процена Преводи
@@ -923,6 +924,8 @@ sr-Cyrl:
         import_users: Увоз корисника
         migrate_assessment_translations: Процена Миграција превода
         normalize_factor_scores: Нормализујте резултате фактора
+        project_compact_completion_status_export: Компактни извоз статуса завршетка
+        project_completion_status_export: Извоз статуса завршетка
         regenerate_campaign_reports: Регенеришите извештаје о кампањи
         regenerate_report: Регенеришите извештај
         regenerate_threesixty_report: Регенерате Тхреесиxтy Репорт

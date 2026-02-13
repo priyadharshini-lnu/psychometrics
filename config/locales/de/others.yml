@@ -893,6 +893,7 @@ de:
         export_users: Kampagnenbenutzer exportieren
         external_assessment_export: Export von externen Ergebnissen
         generate_embedding_skills: Einbettung für Fertigkeiten generieren
+        generate_transcription: Transkription erstellen
         import_accesssheet: Zugangsdatenblatt importieren
         import_assessment_questions: Bewertungsfragen importieren
         import_assessment_translations: Importieren von Assessment-Übersetzungen
@@ -923,6 +924,8 @@ de:
         import_users: Benutzer importieren
         migrate_assessment_translations: Bewertung Übersetzung Migration
         normalize_factor_scores: Faktorwerte normalisieren
+        project_compact_completion_status_export: Kompakter Export des Fertigstellungsstatus
+        project_completion_status_export: Export des Fertigstellungsstatus
         regenerate_campaign_reports: Kampagnenberichte neu generieren
         regenerate_report: Bericht "Regenerieren
         regenerate_threesixty_report: Bericht über die Regenerierung von Threesixty

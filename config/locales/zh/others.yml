@@ -893,6 +893,7 @@ zh:
         export_users: 活动用户导出
         external_assessment_export: 外部结果导出
         generate_embedding_skills: 生成技能嵌入
+        generate_transcription: 生成转录文本
         import_accesssheet: 导入 Accessheet
         import_assessment_questions: 进口评估问题
         import_assessment_translations: 导入评估翻译
@@ -923,6 +924,8 @@ zh:
         import_users: 导入用户
         migrate_assessment_translations: 评估 翻译迁移
         normalize_factor_scores: 因子得分标准化
+        project_compact_completion_status_export: 紧凑型完成状态导出
+        project_completion_status_export: 完成状态导出
         regenerate_campaign_reports: 再生活动报告
         regenerate_report: 再生报告
         regenerate_threesixty_report: 再生三六零报告

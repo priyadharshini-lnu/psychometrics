@@ -893,6 +893,7 @@ bg:
         export_users: Експортиране на потребители на кампанията
         external_assessment_export: Експортиране на външни резултати
         generate_embedding_skills: Генериране на вграждане за умения
+        generate_transcription: Генериране на транскрипция
         import_accesssheet: Импортиране на accessheet
         import_assessment_questions: Въпроси за оценка на импортиране
         import_assessment_translations: Импортиране на преводи за оценяване
@@ -923,6 +924,8 @@ bg:
         import_users: Импортиране на потребители
         migrate_assessment_translations: Оценяване Преводаческа миграция
         normalize_factor_scores: Нормализиране на факторните резултати
+        project_compact_completion_status_export: Експорт на състоянието на завършеност на компактния файл
+        project_completion_status_export: Статус на завършване Износ
         regenerate_campaign_reports: Генериране на отчети за кампании
         regenerate_report: Регенериране на отчет
         regenerate_threesixty_report: Регенерирайте доклад на Threesixty

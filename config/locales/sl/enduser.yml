@@ -28,6 +28,7 @@ sl:
     max_word_limit: Mora imeti največ %{max} besed
     min_word_limit: Mora imeti najmanj %{min} besed
     my_plan: Moj načrt
+    no_audio_warning: Zvok ni zaznan. Preverite, ali je mikrofon priključen in deluje pravilno.
     profile: Profil
     profile_details: Podrobnosti profila
     question_counter: Vprašanje %{current} od %{total}

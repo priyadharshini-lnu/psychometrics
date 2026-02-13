@@ -4183,7 +4183,12 @@ it:
       more_actions: Altre azioni
     taxonomy:
       import:
+        description: Carica un file Excel per importare o aggiornare la tua tassonomia delle competenze. In questo modo verranno aggiunte nuove competenze, ruoli professionali e livelli di competenza.
         download_example_file: Scarica il file di esempio
+        drag_text: Clicca o trascina il file in quest'area per caricarlo
+        error_title: Importazione non riuscita
+        file_hint: Supporta file .xls e .xlsx
+        import_button: Importa tassonomia
         success_msg: Il file caricato è stato messo in coda per l'importazione. Controllare lo stato nelle notifiche.
       import_action:
         taxonomy: Importazione della tassonomia delle competenze

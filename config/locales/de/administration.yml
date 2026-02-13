@@ -4183,7 +4183,12 @@ de:
       more_actions: Weitere Aktionen
     taxonomy:
       import:
+        description: Laden Sie eine Excel-Datei hoch, um Ihre Kompetenztaxonomie zu importieren oder zu aktualisieren. Dadurch werden neue Kompetenzen, Berufsrollen und Kompetenzstufen hinzugefügt.
         download_example_file: Beispieldatei herunterladen
+        drag_text: Klicken oder ziehen Sie die Datei in diesen Bereich, um sie hochzuladen.
+        error_title: Import fehlgeschlagen
+        file_hint: Unterstützt .xls- und .xlsx-Dateien
+        import_button: Import-Taxonomie
         success_msg: Die hochgeladene Datei wurde in die Warteschlange für den Import aufgenommen. Bitte überprüfen Sie den Status in den Benachrichtigungen.
       import_action:
         taxonomy: Taxonomie der Fertigkeiten importieren

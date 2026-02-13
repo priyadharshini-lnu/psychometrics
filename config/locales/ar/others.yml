@@ -932,6 +932,7 @@ ar:
         export_users: تصدير مستخدمي الحملة
         external_assessment_export: تصدير النتائج الخارجية
         generate_embedding_skills: توليد تضمين للمهارات
+        generate_transcription: إنشاء نسخة مكتوبة
         import_accesssheet: استيراد الحجز
         import_assessment_questions: أسئلة تقييم الاستيراد
         import_assessment_translations: استيراد ترجمات التقييم
@@ -962,6 +963,8 @@ ar:
         import_users: استيراد المستخدمين
         migrate_assessment_translations: ترحيل ترجمة التقييم
         normalize_factor_scores: تطبيع درجات العامل
+        project_compact_completion_status_export: تصدير حالة الإكمال المضغوط
+        project_completion_status_export: حالة الإكمال التصدير
         regenerate_campaign_reports: إعادة إنشاء تقارير الحملة
         regenerate_report: إعادة إنشاء التقرير
         regenerate_threesixty_report: إعادة إنشاء تقرير Threesixty

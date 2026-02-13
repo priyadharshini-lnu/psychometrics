@@ -899,6 +899,7 @@ hr:
         export_users: Izvoz korisnika kampanje
         external_assessment_export: Izvoz vanjskih rezultata
         generate_embedding_skills: Generiranje ugradnje za vještine
+        generate_transcription: Generiraj transkripciju
         import_accesssheet: Uvoz pristupnog lista
         import_assessment_questions: Pitanja za procjenu uvoza
         import_assessment_translations: Prijevodi procjene uvoza
@@ -929,6 +930,8 @@ hr:
         import_users: Uvoz korisnika
         migrate_assessment_translations: Procjena Migracija prijevoda
         normalize_factor_scores: Normalizirajte rezultate faktora
+        project_compact_completion_status_export: Izvoz statusa dovršetka kompaktno
+        project_completion_status_export: Izvoz statusa dovršenosti
         regenerate_campaign_reports: Ponovno generiranje izvješća kampanje
         regenerate_report: Ponovno generiraj izvješće
         regenerate_threesixty_report: Ponovno generiraj izvješće Threesixty

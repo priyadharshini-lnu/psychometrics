@@ -9,6 +9,7 @@ sl:
     add_project: Dodajanje projekta
     add_project_admin: Dodajanje skrbnika projekta
     add_threesixty_campaign_admin: Dodajanje skrbnika oglaševalske akcije
+    add_word_count: Dodaj število besed
     admin_approval_required: Poročilo za %{user} zahteva odobritev administratorja pred prenosom
     admin_created_successfully: Skrbnik '%{name}' je bil uspešno ustvarjen
     admin_export_scheduled: Skrbniško izvozno opravilo je bilo uspešno načrtovano. Preverite stanje obvestila.
@@ -25,6 +26,7 @@ sl:
     ai_assistant_model_provider: Ponudnik
     ai_assistant_model_region_label: Regija
     ai_assistant_required: Obvezen je AI Assistant
+    ai_assistant_select_dependencies: Izberite odvisnosti
     ai_assistants: Pomočniki za umetno inteligenco
     ai_assistants_advanced_mode_tooltip: Uporabite napredni način za predloge pozivov z uporabo tekoče predloge z razpoložljivimi spremenljivkami. Za več podrobnosti glejte dokumentacijo.
     ai_assistants_campaign_id_placeholder: Vnesite ID kampanje
@@ -36,6 +38,10 @@ sl:
     ai_assistants_test_render: Testni upodabljanje
     ai_assistants_test_render_tooltip: Preizkusite predlogo za poziv s podatki o kampanji, da preverite, kaj bo poslano AI asistentu.
     ai_assisted_idp_feature_disabled: Funkcija AI Assisted IDP je bila za ta projekt onemogočena.
+    ai_idp_assistant_configure_dependencies: Konfigurirajte odvisnosti AI
+    ai_idp_assistant_configure_dependencies_description: Konfigurirajte, do katerih podatkov o odvisnostih ima IDP AI Assistant dostop kot kontekst. To velja samo, če je pomočnik konfiguriran tako, da sprejema odvisnosti.
+    ai_idp_assistant_dependencies_updated: Odvisnosti so bile uspešno posodobljene.
+    ai_idp_assistant_update_dependencies: Posodobite odvisnosti
     ai_notice: Poudarjene dele je prevedel AI in lahko vsebujejo netočnosti.
     ai_translation: Prevod z umetno inteligenco
     all_corner_rounded: Vsi koti so zaobljeni
@@ -85,16 +91,20 @@ sl:
     campaign_templates: Predloge oglaševalskih akcij
     campaign_user_job_roles_cannot_be_same: Ciljna delovna vloga mora biti drugačna od trenutne delovne vloge.
     campaigns: Kampanje
+    cancellation_and_rescheduling_disabled: Preklic in sprememba termina sta onemogočena.
     case_study: Študije primerov
+    casual: Površno
     client: Najem stranke
     client_admins: Skrbniki odjemalcev
     clients: Spletno okolje naročnika
     code_required: Potrebna je koda
+    common: Ocena TTE
     common_assessment: Ocena TTE
     communication_center: Komunikacijsko središče
     communications: Komunikacije
     completed: Dokončan
     completed_tooltip: Vsi ocenjevalci so oddali oceno
+    concise: Kratek
     confirm_remove_admin: Ali ste prepričani, da želite odstraniti skrbniškega uporabnika z e-poštnim sporočilom '%{email}'?
     country: Država
     create_client: Ustvari odjemalca
@@ -121,14 +131,23 @@ sl:
     empty_csv_file: CSV datoteka ne vsebuje nobenih podatkov.
     enable_enhance_with_ai_client_level: Omogočite funkcijo Izboljšaj z AI na ravni odjemalca.
     enable_transcription: Omogoči prepis
+    enhance_with_ai: Izboljšajte z umetno inteligenco
     enhance_with_ai_requires_ai_assistants: Za izboljšanje z umetno inteligenco je treba omogočiti funkcijo AI Assistants.
+    error: Napaka
     evaluation_status: Status ocenjevanja
     evaluation_status_not_done: Status ocenjevanja ni 'končan' za enega ali več izbranih predmetov. Prosimo, poskrbite, da so vsi izbrani uporabniki opravili ocene ali označili kot opravljeno.
     export_admin_roles_permissions: Izvoz skrbniških vlog in dovoljenj
+    export_compact_completion_status: Kompakten
+    export_completion_status: Stanje zaključka izvoza
+    export_completion_statuses_scheduled: Izvoz stanja dokončanja je bil uspešno načrtovan.
+    export_detailed_completion_status: Podrobno
     feature_enhance_with_ai: Izboljšajte z umetno inteligenco
     feature_flags: Zastavice funkcij
     fill_empty_score_msg: Pred shranjevanjem izpolnite vse končne rezultate.
     final_score_empty_err_msg: Končni rezultat igre »%{factor_name}« ne sme biti prazen.
+    fix_grammar: Popravi slovnico
+    formal: Formalno
+    generate_transcription: Ustvari transkripcijo
     hogan: Hogan
     hogan_assessment: AGILE
     idp_plan_reset_success: Načrt je bil uspešno ponastavljen
@@ -158,6 +177,7 @@ sl:
     import_title: Uvoz subjektov iz CSV
     import_upload: Upload
     import_users: Uvoz uporabnikov
+    internal: Notranji
     invalid_csv_header: CSV datoteka vsebuje neveljavne glave.
     job_roles: Delovna mesta
     lead_assessor_form: Obrazec vodilnega ocenjevalca
@@ -203,6 +223,7 @@ sl:
     only_editable_on_create: Ta možnost je urejljiva samo med ustvarjanjem.
     options: Možnosti
     organisational: Ankete organizacij
+    original_text: Izvirno besedilo
     participants: Udeleženci
     pearson: Pearson
     pearson_assessment: Pearsonova ocena
@@ -630,6 +651,8 @@ sl:
     permissions_360_campaigns: Dovoljenja za oglaševalske akcije 360
     piped_text: Besedilo v cevi
     privacy: Zasebnost
+    professional: Profesionalni
+    proficiency: Usposobljenost
     proficiency_level: Ključi API-ja
     proficiency_levels: Ravni strokovnosti
     profile_details: Podrobnosti profila
@@ -659,6 +682,7 @@ sl:
     reset_idp_plan_confirmation: Ste prepričani, da želite ponastaviti načrt?
     reset_idp_plan_title: Načrt za ponastavitev
     response_meta: Odgovor Meta
+    result: Rezultat
     results: Rezultati
     role: Vloga
     saml_idp_certificate_available: Na voljo (kliknite za kopiranje)
@@ -743,12 +767,17 @@ sl:
     subject_part_of_other_invite: Oseba z e-poštnim naslovom %{user_email} je že povabljena na »%{workshop_invite_name}«.
     target_job_role: Ciljna delovna vloga
     threesixty: 360-stopinjska kampanja
+    tone: Ton
     toolbar_ai_insight: Vpogled v umetno inteligenco
     toolbar_ai_suggestion: Predlog AI
     toolbar_result_generating: Ustvarjanje...
     toolbar_text_copied: Kopirano v odložišče
     toolbar_text_replaced: Besedilo zamenjano!
     toolbar_what_changed_and_why: Kaj se je spremenilo in zakaj
+    tools: Orodja
+    transcription_record_not_found: Zapis transkripcije ni bil najden
+    transcription_schedule_failed: Naloga za prepis ni bila uspešno načrtovana
+    transcription_scheduled: Prepisovanje je načrtovano. Zaprite okno in preverite stanje obvestila.
     translate: Prevedi
     translate_to: Prevedi v
     translate_with_ai: Prevedi z umetno inteligenco
@@ -762,6 +791,7 @@ sl:
     users: Uporabniki
     view_licenses: Ogled licenc
     waiting: Čaka
+    words: Besede
     workshops: Delavnice
     writing_assistant_not_configured: Pomočnik za pisanje ni nastavljen
     x_axis_interval_label: Interval osi X

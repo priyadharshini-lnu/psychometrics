@@ -28,6 +28,7 @@ hi:
     max_word_limit: अधिकतम %{max} शब्द होना चाहिए।
     min_word_limit: कम से कम %{min} शब्द होना चाहिए।
     my_plan: मेरी योजना
+    no_audio_warning: ऑडियो का पता नहीं चल रहा है। कृपया जांचें कि आपका माइक्रोफ़ोन जुड़ा हुआ है और ठीक से काम कर रहा है।
     profile: प्रोफ़ाइल
     profile_details: विवरण
     question_counter: प्रश्न %{current} का %{total}

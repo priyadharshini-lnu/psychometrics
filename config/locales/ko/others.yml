@@ -893,6 +893,7 @@ ko:
         export_users: 캠페인 사용자 내보내기
         external_assessment_export: 외부 결과 내보내기
         generate_embedding_skills: 스킬 삽입 생성
+        generate_transcription: 자막 생성
         import_accesssheet: 액세스 시트 가져오기
         import_assessment_questions: 가져오기 평가 질문
         import_assessment_translations: 평가 번역 가져오기
@@ -923,6 +924,8 @@ ko:
         import_users: 사용자 가져오기
         migrate_assessment_translations: 평가 번역 마이그레이션
         normalize_factor_scores: 팩터 점수 정규화
+        project_compact_completion_status_export: 컴팩트 완료 상태 내보내기
+        project_completion_status_export: 완료 상태 내보내기
         regenerate_campaign_reports: 캠페인 보고서 재생성
         regenerate_report: 보고서 다시 생성
         regenerate_threesixty_report: 삼십육 보고서 재생성

@@ -893,6 +893,7 @@ nl:
         export_users: Campagne gebruikers exporteren
         external_assessment_export: Exporteren van externe resultaten
         generate_embedding_skills: Genereer embedding voor vaardigheden
+        generate_transcription: Transcriptie genereren
         import_accesssheet: Accessheet importeren
         import_assessment_questions: Vragen over importeren
         import_assessment_translations: Import Assessment Vertalingen
@@ -923,6 +924,8 @@ nl:
         import_users: Gebruikers importeren
         migrate_assessment_translations: Beoordeling Vertaalmigratie
         normalize_factor_scores: Factorscores normaliseren
+        project_compact_completion_status_export: Compacte voltooiingsstatus exporteren
+        project_completion_status_export: Export voltooiingsstatus
         regenerate_campaign_reports: Campagneverslagen opnieuw genereren
         regenerate_report: Regenereren Rapport
         regenerate_threesixty_report: Regenereren Drieënzestig Verslag

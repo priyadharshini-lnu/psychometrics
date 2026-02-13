@@ -28,6 +28,7 @@ hr:
     max_word_limit: Mora imati najviše %{max} riječi
     min_word_limit: Mora imati najmanje %{min} riječi
     my_plan: Moj plan
+    no_audio_warning: Nije detektiran zvuk. Molimo provjerite je li vaš mikrofon priključen i ispravno radi.
     profile: Profil
     profile_details: Detalji
     question_counter: Pitanje %{current} od %{total}

@@ -9,6 +9,7 @@ sr-Latn:
     add_project: Dodaj projekat
     add_project_admin: Dodaj administrator projekta
     add_threesixty_campaign_admin: Dodaj administratora kampanje
+    add_word_count: Додај број речи
     admin_approval_required: Izveštaj za %{user} zahteva odobrenje administratora pre preuzimanja
     admin_created_successfully: Administrator '%{name}' je uspešno kreiran
     admin_export_scheduled: Administrator izvoz je uspešno zakazan. Molimo Vas da proverite svoje obaveštenje za status.
@@ -25,6 +26,7 @@ sr-Latn:
     ai_assistant_model_provider: Dobavljača
     ai_assistant_model_region_label: Regiona
     ai_assistant_required: AI asistent je potreban
+    ai_assistant_select_dependencies: Изаберите зависности
     ai_assistants: AI asistenti
     ai_assistants_advanced_mode_tooltip: Koristite napredni režim za brzu šablonu koristeći tečni šablon sa dostupnim promenljivim. Pogledajte dokumentaciju za više detalja.
     ai_assistants_campaign_id_placeholder: Unesite ID kampanje
@@ -36,6 +38,10 @@ sr-Latn:
     ai_assistants_test_render: Test Render
     ai_assistants_test_render_tooltip: Testirajte svoj brzi predložak sa podacima o kampanji da biste proverili šta će biti poslato AI asistentu.
     ai_assisted_idp_feature_disabled: AI Assisted IDP funkcija je onemogućena za ovaj projekat.
+    ai_idp_assistant_configure_dependencies: Конфигуришите зависности вештачке интелигенције
+    ai_idp_assistant_configure_dependencies_description: Конфигуришите које податке о зависностима IDP AI асистент може да користи као контекст. Ово важи само када је асистент конфигурисан да прихвата зависности.
+    ai_idp_assistant_dependencies_updated: Зависности су успешно ажуриране
+    ai_idp_assistant_update_dependencies: Ажурирај зависности
     ai_notice: Истакнути делови су преведени вештачком интелигенцијом и могу садржати нетачности.
     ai_translation: Превод вештачке интелигенције
     all_corner_rounded: Сви углови заобљени
@@ -85,16 +91,20 @@ sr-Latn:
     campaign_templates: Predlošci kampanje
     campaign_user_job_roles_cannot_be_same: Циљна радна улога мора бити различита од тренутне радне улоге.
     campaigns: Kampanje
+    cancellation_and_rescheduling_disabled: Отказивање и поновно заказивање су онемогућени
     case_study: Studije slučaja
+    casual: Неформално
     client: Zakup klijenta
     client_admins: Administratori klijenata
     clients: Klijentski prostor
     code_required: Kod je obavezan
+    common: ТТЕ процена
     common_assessment: TTE Procena
     communication_center: Centar za komunikaciju
     communications: Komunikacije
     completed: Dovršeno
     completed_tooltip: Svi evaluatori su dostavili ocenu
+    concise: Сажето
     confirm_remove_admin: Da li ste sigurni da želite da uklonite administratora korisnika sa imejlom '%{email}'?
     country: Država
     create_client: Kreiraj klijenta
@@ -121,14 +131,23 @@ sr-Latn:
     empty_csv_file: CSV datoteka ne sadrži nikakve podatke.
     enable_enhance_with_ai_client_level: Молимо омогућите функцију Enhance with AI на нивоу клијента.
     enable_transcription: Омогући транскрипцију
+    enhance_with_ai: Унапредите помоћу вештачке интелигенције
     enhance_with_ai_requires_ai_assistants: Побољшање помоћу вештачке интелигенције захтева да је омогућена функција AI Assistants.
+    error: Грешка
     evaluation_status: Status evaluacije
     evaluation_status_not_done: Status evaluacije nije "Gotovo" za jedan ili više odabranih predmeta. Proverite da li su svi izabrani korisnici završili evaluacije ili označili kao urađeno.
     export_admin_roles_permissions: Uloge administratora i izvoz dozvola
+    export_compact_completion_status: Компактни
+    export_completion_status: Статус завршетка извоза
+    export_completion_statuses_scheduled: Извоз задатака за статусе завршетка је успешно заказан
+    export_detailed_completion_status: Детаљно
     feature_enhance_with_ai: Унапредите помоћу вештачке интелигенције
     feature_flags: Feature flagovi
     fill_empty_score_msg: Popunite sve konačne rezultate pre čuvanja.
     final_score_empty_err_msg: Коначан резултат у %{factor_name}-у не може бити празан.
+    fix_grammar: Поправите граматику
+    formal: Формално
+    generate_transcription: Генеришите транскрипцију
     hogan: Hogan
     hogan_assessment: GIBGIB
     idp_plan_reset_success: Plan je uspešno resetovan
@@ -158,6 +177,7 @@ sr-Latn:
     import_title: Uvoz predmeta iz CSV-a
     import_upload: Otpremanje
     import_users: Uvoz korisnika
+    internal: Унутрашњи
     invalid_csv_header: CSV fajl sadrži nevažeća zaglavlja.
     job_roles: Radne uloge
     lead_assessor_form: Obrazac glavnog procenjivača
@@ -203,6 +223,7 @@ sr-Latn:
     only_editable_on_create: Ову опцију је могуће уређивати само током креирања.
     options: Opcije
     organisational: Org Ankete
+    original_text: Оригинални текст
     participants: Učesnici
     pearson: Pirson
     pearson_assessment: Pirsonova procena
@@ -630,6 +651,8 @@ sr-Latn:
     permissions_360_campaigns: Dozvole specifične za 360 kampanje
     piped_text: Текст у цевководу
     privacy: Privatnosti
+    professional: Професионални
+    proficiency: Владање
     proficiency_level: API ključevi
     proficiency_levels: Nivoi stručnosti
     profile_details: Detalji profila
@@ -659,6 +682,7 @@ sr-Latn:
     reset_idp_plan_confirmation: Da li ste sigurni da želite da resetujete plan?
     reset_idp_plan_title: Plan resetovanja
     response_meta: Odgovor Meta
+    result: Резултат
     results: Rezultate
     role: Ulogu
     saml_idp_certificate_available: Dostupno (kliknite da biste kopirali)
@@ -743,12 +767,17 @@ sr-Latn:
     subject_part_of_other_invite: Корисник са адресом електронске поште %{user_email} већ је позван на '%{workshop_invite_name}'
     target_job_role: Циљна радна улога
     threesixty: 360 Kampanja
+    tone: Тон
     toolbar_ai_insight: Увид вештачке интелигенције
     toolbar_ai_suggestion: Предлог вештачке интелигенције
     toolbar_result_generating: Генерисање...
     toolbar_text_copied: Копирано у међуспремник
     toolbar_text_replaced: Текст замењен!
     toolbar_what_changed_and_why: Шта се променило и зашто
+    tools: Алати
+    transcription_record_not_found: Запис транскрипције није пронађен
+    transcription_schedule_failed: Није успело заказивање посла транскрипције
+    transcription_scheduled: Посао транскрипције је заказан. Молимо затворите модални прозор и проверите статус обавештења.
     translate: Преведите
     translate_to: Преведи на
     translate_with_ai: Преведите помоћу вештачке интелигенције
@@ -762,6 +791,7 @@ sr-Latn:
     users: Korisnici
     view_licenses: Pogledaj licence
     waiting: Иeka
+    words: Речи
     workshops: Radionice
     writing_assistant_not_configured: Асистент за писање није конфигурисан
     x_axis_interval_label: Интервал X-осе

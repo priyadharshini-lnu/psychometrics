@@ -4183,7 +4183,12 @@ pt:
       more_actions: Mais acções
     taxonomy:
       import:
+        description: Carregue um arquivo Excel para importar ou atualizar sua taxonomia de habilidades. Isso adicionará novas habilidades, funções de trabalho e níveis de proficiência.
         download_example_file: Descarregar ficheiro de exemplo
+        drag_text: Clique ou arraste o arquivo para esta área para fazer o upload
+        error_title: Falha na importação
+        file_hint: Suporta arquivos .xls e .xlsx
+        import_button: Importar taxonomia
         success_msg: O ficheiro carregado foi colocado em fila de espera para importação. Verifique o estado nas notificações.
       import_action:
         taxonomy: Importar a taxonomia de competências

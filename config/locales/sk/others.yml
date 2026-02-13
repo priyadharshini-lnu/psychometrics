@@ -893,6 +893,7 @@ sk:
         export_users: Export používateľov kampane
         external_assessment_export: Export externých výsledkov
         generate_embedding_skills: Generovanie vkladania pre zručnosti
+        generate_transcription: Vytvoriť prepis
         import_accesssheet: Import prístupu
         import_assessment_questions: Otázky na hodnotenie dovozu
         import_assessment_translations: Preklady hodnotenia importu
@@ -923,6 +924,8 @@ sk:
         import_users: Importovať používateľov
         migrate_assessment_translations: Hodnotenie Migrácia prekladu
         normalize_factor_scores: Normalizujte skóre faktorov
+        project_compact_completion_status_export: Export stavu dokončenia kompaktného súboru
+        project_completion_status_export: Export stavu dokončenia
         regenerate_campaign_reports: Opätovné generovanie prehľadov kampaní
         regenerate_report: Znovu vygenerovať správu
         regenerate_threesixty_report: Obnoviť správu Threesixty

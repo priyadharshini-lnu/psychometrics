@@ -28,6 +28,7 @@ fr:
     max_word_limit: Doit contenir au maximum %{max} mots
     min_word_limit: Doit contenir au minimum %{min} mots
     my_plan: Mon plan
+    no_audio_warning: Aucun son détecté. Veuillez vérifier que votre microphone est connecté et fonctionne correctement.
     profile: Profil
     profile_details: Détails
     question_counter: Question %{current} sur %{total}

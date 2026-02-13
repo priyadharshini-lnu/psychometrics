@@ -28,6 +28,7 @@ hu:
     max_word_limit: Legfeljebb %{max} szó lehet
     min_word_limit: Legalább %{min} szó kell
     my_plan: A tervem
+    no_audio_warning: Nincs hangjelzés. Kérjük, ellenőrizze, hogy a mikrofon csatlakoztatva van-e és megfelelően működik-e.
     profile: Profil
     profile_details: Részletek
     question_counter: Kérdés %{current} / %{total}

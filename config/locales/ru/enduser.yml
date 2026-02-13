@@ -28,6 +28,7 @@ ru:
     max_word_limit: Должно быть не более %{max} слов
     min_word_limit: Должно быть не менее %{min} слов
     my_plan: Мой план
+    no_audio_warning: Аудио не обнаружено. Проверьте, подключен ли микрофон и работает ли он правильно.
     profile: Профиль
     profile_details: Подробности
     question_counter: Вопрос %{current} из %{total}

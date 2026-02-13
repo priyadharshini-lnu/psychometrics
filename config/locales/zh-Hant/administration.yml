@@ -4183,7 +4183,12 @@ zh-Hant:
       more_actions: 更多行動
     taxonomy:
       import:
+        description: 上传Excel文件以导入或更新您的技能分类体系。此操作将添加新技能、职位角色及熟练程度等级。
         download_example_file: 下載範例檔案
+        drag_text: 点击或拖拽文件至此区域进行上传
+        error_title: 导入失败
+        file_hint: 支持 .xls 和 .xlsx 文件
+        import_button: 导入分类法
         success_msg: 上傳的檔案已排隊等待匯入。請在通知中查看狀態。
       import_action:
         taxonomy: 匯入技能分類系統

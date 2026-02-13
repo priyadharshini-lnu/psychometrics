@@ -19,6 +19,7 @@ id:
     clear_filters: Hapus Filter
     collaborative_learning: Pembelajaran Kolaboratif
     completed: Selesai
+    configurations: Konfigurasi
     confirm: Konfirmasi
     continue: Terus
     copy: Salin
@@ -27,6 +28,9 @@ id:
     decline: Penurunan
     description: Deskripsi
     download: Unduh
+    download_audio: Unduh Audio
+    download_transcription: Unduh Transkrip
+    download_video: Unduh Video
     edit: Sunting
     edited: Baru
     email: Email
@@ -46,6 +50,7 @@ id:
     last_name: Nama belakang
     learning_on_the_job_label: Belajar di Tempat Kerja
     login: Masuk
+    media_responses: Tanggapan Media
     modified_by: Dimodifikasi oleh
     modified_date: Tanggal Dimodifikasi
     more_actions: Tindakan lainnya
@@ -59,6 +64,7 @@ id:
     pending: Menunggu
     processing: Pengolahan
     question_id: ID Pertanyaan
+    question_transcription_disabled: Transkripsi dinonaktifkan untuk pertanyaan ini.
     recording_consent_notice: Sesi rapat ini akan direkam. Partisipasi Anda dalam pertemuan ini merupakan persetujuan Anda untuk direkam.
     recording_consent_proceed_question: Apakah Anda setuju untuk melanjutkan rekaman rapat?
     recording_consent_title: Merekam Pemberitahuan Persetujuan
@@ -82,6 +88,7 @@ id:
     transcription: Transkripsi
     transcription_already_requested: Transkripsi sudah diminta atau sedang dalam proses.
     transcription_not_enabled: Transkripsi tidak diaktifkan untuk respons media.
+    transcription_status: Status Transkripsi
     transcriptions: Transkripsi
     try_again: Coba Lagi
     tte_terms_and_condition: Ketentuan & Privasi

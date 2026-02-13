@@ -28,6 +28,7 @@ de:
     max_word_limit: Darf höchstens %{max} Wörter haben
     min_word_limit: Muss mindestens %{min} Wörter haben
     my_plan: Mein Plan
+    no_audio_warning: Es wurde kein Ton erkannt. Bitte überprüfen Sie, ob Ihr Mikrofon angeschlossen ist und ordnungsgemäß funktioniert.
     profile: Profil
     profile_details: Details
     question_counter: Frage %{current} von %{total}

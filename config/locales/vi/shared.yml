@@ -19,6 +19,7 @@ vi:
     clear_filters: Xóa bộ lọc
     collaborative_learning: Học tập hợp tác
     completed: Hoàn thành
+    configurations: Cấu hình
     confirm: Xác nhận
     continue: Tiếp tục
     copy: Sao chép
@@ -27,6 +28,9 @@ vi:
     decline: Suy giảm
     description: Sự miêu tả
     download: Tải xuống
+    download_audio: Tải xuống âm thanh
+    download_transcription: Tải xuống bản chép lời
+    download_video: Tải video
     edit: Biên tập
     edited: Mới
     email: E-mail
@@ -46,6 +50,7 @@ vi:
     last_name: Họ
     learning_on_the_job_label: Học tập trong công việc
     login: Đăng nhập
+    media_responses: Phản ứng của truyền thông
     modified_by: Sửa đổi bởi
     modified_date: Ngày sửa đổi
     more_actions: Hành động khác
@@ -59,6 +64,7 @@ vi:
     pending: Đang chờ xử lý
     processing: Xử lý
     question_id: ID câu hỏi
+    question_transcription_disabled: Chức năng chuyển đổi văn bản đã bị vô hiệu hóa cho câu hỏi này.
     recording_consent_notice: Phiên họp này sẽ được ghi lại. Việc bạn tham gia cuộc họp này cấu thành sự đồng ý của bạn để được ghi lại.
     recording_consent_proceed_question: Bạn có đồng ý tiến hành cuộc họp được ghi âm không?
     recording_consent_title: Thông báo đồng ý ghi âm
@@ -82,6 +88,7 @@ vi:
     transcription: Phiên âm
     transcription_already_requested: Phiên âm đã được yêu cầu hoặc đang được thực hiện.
     transcription_not_enabled: Chức năng chuyển đổi văn bản không được kích hoạt cho phản hồi phương tiện.
+    transcription_status: Trạng thái chuyển đổi văn bản
     transcriptions: Phiên âm
     try_again: Thử lại
     tte_terms_and_condition: Điều khoản &amp; Quyền riêng tư

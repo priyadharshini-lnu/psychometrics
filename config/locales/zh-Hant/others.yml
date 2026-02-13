@@ -893,6 +893,7 @@ zh-Hant:
         export_users: 活動使用者匯出
         external_assessment_export: 外部結果匯出
         generate_embedding_skills: 生成技能嵌入
+        generate_transcription: 生成转录文本
         import_accesssheet: 匯入 Accessheet
         import_assessment_questions: 進口評估問題
         import_assessment_translations: 匯入評量翻譯
@@ -923,6 +924,8 @@ zh-Hant:
         import_users: 匯入使用者
         migrate_assessment_translations: 評估 翻譯轉移
         normalize_factor_scores: 標準化因子分數
+        project_compact_completion_status_export: 紧凑型完成状态导出
+        project_completion_status_export: 完成状态导出
         regenerate_campaign_reports: 再生活動報告
         regenerate_report: 再生報告
         regenerate_threesixty_report: 再生三六零報告

@@ -28,6 +28,7 @@ sr-Cyrl:
     max_word_limit: Мора да буде највише %{max} речи
     min_word_limit: Мора да има најмање %{min} речи
     my_plan: Мој план
+    no_audio_warning: Нема звука. Молимо проверите да ли је ваш микрофон прикључен и да ли исправно ради.
     profile: Профил
     profile_details: Детаљи
     question_counter: Питање %{current}-а из %{total}

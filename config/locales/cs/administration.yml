@@ -4183,7 +4183,12 @@ cs:
       more_actions: Další akce
     taxonomy:
       import:
+        description: Nahrajte soubor Excel, abyste mohli importovat nebo aktualizovat taxonomii svých dovedností. Tím přidáte nové dovednosti, pracovní pozice a úrovně znalostí.
         download_example_file: Stáhnout soubor s příkladem
+        drag_text: Klikněte nebo přetáhněte soubor do této oblasti pro nahrání
+        error_title: Import se nezdařil
+        file_hint: Podporuje soubory .xls a .xlsx
+        import_button: Importovat taxonomii
         success_msg: Nahraný soubor byl zařazen do fronty pro import. Zkontrolujte prosím stav v oznámeních.
       import_action:
         taxonomy: Import taxonomie dovedností

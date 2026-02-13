@@ -28,6 +28,7 @@ sk:
     max_word_limit: Musí mať najviac %{max} slov
     min_word_limit: Musí mať najmenej %{min} slov
     my_plan: Môj plán
+    no_audio_warning: Nebol zaznamenaný žiadny zvuk. Skontrolujte, či je mikrofón pripojený a funguje správne.
     profile: Profil
     profile_details: Podrobnosti profilu
     question_counter: Otázka %{current} z %{total}

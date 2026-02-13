@@ -19,6 +19,7 @@ ro:
     clear_filters: Ștergeți filtrele
     collaborative_learning: Învățare colaborativă
     completed: Finalizat
+    configurations: Configurații
     confirm: Confirmați
     continue: Continua
     copy: Copiere
@@ -27,6 +28,9 @@ ro:
     decline: Declin
     description: Descriere
     download: Descărcare
+    download_audio: Descărcați fișierul audio
+    download_transcription: Descărcați transcrierea
+    download_video: Descărcați videoclipul
     edit: Editați
     edited: Nou
     email: E-mail
@@ -46,6 +50,7 @@ ro:
     last_name: Numele de familie
     learning_on_the_job_label: Învățarea la locul de muncă
     login: Autentificare
+    media_responses: Răspunsurile mass-media
     modified_by: Modificat de
     modified_date: Data modificării
     more_actions: Mai multe acțiuni
@@ -59,6 +64,7 @@ ro:
     pending: În așteptare
     processing: Prelucrare
     question_id: ID întrebare
+    question_transcription_disabled: Transcrierea este dezactivată pentru această întrebare.
     recording_consent_notice: Această ședință va fi înregistrată. Participarea ta la această întâlnire constituie consimțământul tău de a fi înregistrat.
     recording_consent_proceed_question: Sunteți de acord să continuați cu întâlnirea înregistrată?
     recording_consent_title: Notificare de consimțământ pentru înregistrare
@@ -82,6 +88,7 @@ ro:
     transcription: Transcriere
     transcription_already_requested: Transcrierea deja solicitată sau în curs de realizare
     transcription_not_enabled: Transcrierea nu este activată pentru răspunsul media.
+    transcription_status: Starea transcrierii
     transcriptions: Transcrieri
     try_again: Încercați din nou
     tte_terms_and_condition: Termeni și confidențialitate

@@ -9,6 +9,7 @@ ar:
     add_project: Add Project
     add_project_admin: إضافة مسؤول مشروع
     add_threesixty_campaign_admin: إضافة مسؤول حملة
+    add_word_count: إضافة عدد الكلمات
     admin_approval_required: الإبلاغ %{user} يتطلب موافقة المسؤول قبل التحميل
     admin_created_successfully: تم إنشاء المسؤول '%{name}' بنجاح
     admin_export_scheduled: تم جدولة مهمة تصدير المسؤول بنجاح. يرجى التحقق من إشعارك للحصول على الحالة.
@@ -25,6 +26,7 @@ ar:
     ai_assistant_model_provider: كاسب
     ai_assistant_model_region_label: قطر
     ai_assistant_required: المساعد الذكاء الاصطناعي مطلوب
+    ai_assistant_select_dependencies: تحديد التبعيات
     ai_assistants: مساعدو الذكاء الاصطناعي
     ai_assistants_advanced_mode_tooltip: استخدم الوضع المتقدم لقالب الأوامر باستخدام قالب سائل مع المتغيرات المتاحة. راجع الوثائق لمزيد من التفاصيل.
     ai_assistants_campaign_id_placeholder: ادخل معرف الحملة
@@ -36,6 +38,10 @@ ar:
     ai_assistants_test_render: اختبار العرض
     ai_assistants_test_render_tooltip: اختبر قالب التوجيه الخاص بك باستخدام بيانات الحملة لمعرفة ما سيتم إرساله إلى مساعد الذكاء الاصطناعي.
     ai_assisted_idp_feature_disabled: تم تعطيل ميزة الذكاء الاصطناعي المساعد للنزول (IDP) لهذا المشروع.
+    ai_idp_assistant_configure_dependencies: تكوين تبعيات الذكاء الاصطناعي
+    ai_idp_assistant_configure_dependencies_description: تكوين بيانات التبعية التي يمكن لمساعد IDP AI الوصول إليها كسياق. ينطبق هذا فقط عندما يتم تكوين المساعد لقبول التبعيات.
+    ai_idp_assistant_dependencies_updated: تم تحديث التبعيات بنجاح
+    ai_idp_assistant_update_dependencies: تحديث التبعيات
     ai_notice: الأقسام المميزة مترجمة بواسطة الذكاء الاصطناعي وقد تحتوي على أخطاء.
     ai_translation: ترجمة بالذكاء الاصطناعي
     all_corner_rounded: جميع الزوايا مستديرة
@@ -85,16 +91,20 @@ ar:
     campaign_templates: قوالب الحملات
     campaign_user_job_roles_cannot_be_same: يجب أن تكون الوظيفة المستهدفة مختلفة عن الوظيفة الحالية
     campaigns: الحملات
+    cancellation_and_rescheduling_disabled: تم تعطيل الإلغاء وإعادة الجدولة
     case_study: دراسات الحالة
+    casual: غير رسمي
     client: مستأجر العميل
     client_admins: مسؤولو العملاء
     clients: عقود العملاء
     code_required: الكود مطلوب
+    common: تقييم TTE
     common_assessment: تقييم TTE
     communication_center: مركز الاتصالات
     communications: الاتصالات
     completed: اكمال
     completed_tooltip: جميع المقيمين قدموا التقييم
+    concise: موجز
     confirm_remove_admin: هل أنت متأكد أنك تريد إزالة المستخدم المسؤول بالبريد الإلكتروني '%{email}'؟
     country: البلد
     create_client: إنشاء عميل
@@ -121,14 +131,23 @@ ar:
     empty_csv_file: ملف CSV لا يحتوي على أي بيانات.
     enable_enhance_with_ai_client_level: يرجى تمكين ميزة "تحسين باستخدام الذكاء الاصطناعي" على مستوى العميل
     enable_transcription: تمكين النسخ
+    enhance_with_ai: تعزيز بالذكاء الاصطناعي
     enhance_with_ai_requires_ai_assistants: يتطلب تحسين الأداء باستخدام الذكاء الاصطناعي تمكين ميزة المساعدات الذكية.
+    error: خطأ
     evaluation_status: حالة التقييم
     evaluation_status_not_done: حالة التقييم ليست 'مكتملة' لشخص أو أكثر من المشاركات المختارة. يرجى التأكد من أن جميع المستخدمين المختارين قد أكملوا التقييمات أو وضع علامة على أنهم تم.
     export_admin_roles_permissions: تصدير أدوار وأذونات المسؤولين
+    export_compact_completion_status: مضغوط
+    export_completion_status: حالة إتمام التصدير
+    export_completion_statuses_scheduled: تمت جدولة مهمة تصدير حالات الإنجاز بنجاح
+    export_detailed_completion_status: مفصل
     feature_enhance_with_ai: تعزيز بالذكاء الاصطناعي
     feature_flags: أعلام الميزات
     fill_empty_score_msg: املأ جميع الدرجات النهائية قبل الحفظ.
     final_score_empty_err_msg: لا يمكن أن تكون النتيجة النهائية لـ %{factor_name} فارغة.
+    fix_grammar: تصحيح القواعد النحوية
+    formal: رسمي
+    generate_transcription: إنشاء نسخة مكتوبة
     hogan: هوجان
     hogan_assessment: رشيق
     idp_plan_reset_success: تم إعادة ضبط الخطة بنجاح
@@ -158,6 +177,7 @@ ar:
     import_title: المواد المستوردة من CSV
     import_upload: رفع
     import_users: استيراد المستخدمين
+    internal: داخلي
     invalid_csv_header: يحتوي ملف CSV على رؤوس غير صالحة.
     job_roles: الأدوار الوظيفية
     lead_assessor_form: نموذج المقيم الرئيسي
@@ -203,6 +223,7 @@ ar:
     only_editable_on_create: هذا الخيار قابل للتعديل فقط أثناء الإنشاء.
     options: الخيارات
     organisational: استطلاعات المؤسسة
+    original_text: النص الأصلي
     participants: المشاركون
     pearson: بيرسون
     pearson_assessment: تقييم بيرسون
@@ -630,6 +651,8 @@ ar:
     permissions_360_campaigns: أذونات خاصة بحملات 360
     piped_text: نص موصول
     privacy: Privacy
+    professional: محترف
+    proficiency: الكفاءة
     proficiency_level: مفاتيح API
     proficiency_levels: مستويات الكفاءة
     profile_details: تفاصيل الملف الشخصي للمستخدم
@@ -659,6 +682,7 @@ ar:
     reset_idp_plan_confirmation: هل أنت متأكد أنك تريد إعادة ضبط الخطة؟
     reset_idp_plan_title: خطة إعادة التعيين
     response_meta: الاستجابة الفوقية
+    result: النتيجة
     results: النتائج
     role: دور
     saml_idp_certificate_available: متوفر (انقر للنسخة)
@@ -743,12 +767,17 @@ ar:
     subject_part_of_other_invite: الموضوع مع البريد الإلكتروني %{user_email} تمت دعوته بالفعل إلى "%{workshop_invite_name}"
     target_job_role: الوظيفة المستهدفة
     threesixty: حملة 360
+    tone: نغمة
     toolbar_ai_insight: رؤية الذكاء الاصطناعي
     toolbar_ai_suggestion: اقتراح الذكاء الاصطناعي
     toolbar_result_generating: جاري التوليد...
     toolbar_text_copied: نسخ إلى الحافظة
     toolbar_text_replaced: تم استبدال النص!
     toolbar_what_changed_and_why: ما الذي تغير ولماذا
+    tools: الأدوات
+    transcription_record_not_found: لم يتم العثور على سجل النسخ
+    transcription_schedule_failed: فشل جدولة مهمة النسخ
+    transcription_scheduled: تم جدولة مهمة النسخ. يرجى إغلاق النافذة المنبثقة والتحقق من حالة الإشعار.
     translate: ترجمة
     translate_to: ترجم إلى
     translate_with_ai: ترجمة باستخدام الذكاء الاصطناعي
@@ -762,6 +791,7 @@ ar:
     users: المستخدمون
     view_licenses: عرض التراخيص
     waiting: انتظار
+    words: الكلمات
     workshops: ورش العمل
     writing_assistant_not_configured: مساعد الكتابة غير مهيأ
     x_axis_interval_label: فاصل المحور السيني

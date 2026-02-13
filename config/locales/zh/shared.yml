@@ -19,6 +19,7 @@ zh:
     clear_filters: 清除筛选
     collaborative_learning: 协作学习
     completed: 已完成
+    configurations: 配置
     confirm: 确认
     continue: 继续
     copy: 复制
@@ -27,6 +28,9 @@ zh:
     decline: 衰落
     description: 描述
     download: 下载
+    download_audio: 下载音频
+    download_transcription: 下载转录文本
+    download_video: 下载视频
     edit: 编辑
     edited: 新的
     email: 电子邮箱
@@ -46,6 +50,7 @@ zh:
     last_name: 姓
     learning_on_the_job_label: 边学边学
     login: 登录
+    media_responses: 媒体反应
     modified_by: 修改
     modified_date: 修改日期
     more_actions: 更多行动
@@ -59,6 +64,7 @@ zh:
     pending: 待定
     processing: 处理中
     question_id: 问题ID
+    question_transcription_disabled: 此问题已禁用转录功能
     recording_consent_notice: 本次会议将被录制。您参与此次会议即表示您同意被录音。
     recording_consent_proceed_question: 你同意继续录音会议吗？
     recording_consent_title: 录音同意通知
@@ -87,6 +93,7 @@ zh:
     transcription: 转录
     transcription_already_requested: 转录已请求或正在进行中
     transcription_not_enabled: 媒体响应未启用转录功能
+    transcription_status: 转录状态
     transcriptions: 改编
     try_again: 重试
     tte_terms_and_condition: 条款和隐私

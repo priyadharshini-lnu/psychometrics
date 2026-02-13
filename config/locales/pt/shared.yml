@@ -19,6 +19,7 @@ pt:
     clear_filters: Limpar filtros
     collaborative_learning: Aprendizagem Colaborativa
     completed: Concluído
+    configurations: Configurações
     confirm: Confirmar
     continue: Continuar
     copy: Copiar
@@ -27,6 +28,9 @@ pt:
     decline: Declínio
     description: Descrição
     download: Baixar
+    download_audio: Baixar áudio
+    download_transcription: Baixar transcrição
+    download_video: Baixar vídeo
     edit: Editar
     edited: Novo
     email: E-mail
@@ -46,6 +50,7 @@ pt:
     last_name: Apelido
     learning_on_the_job_label: Aprendendo no Trabalho
     login: Iniciar sessão
+    media_responses: Respostas da mídia
     modified_by: Modificado por
     modified_date: Data de modificação
     more_actions: Mais acções
@@ -59,6 +64,7 @@ pt:
     pending: Pendente
     processing: Processamento
     question_id: ID da pergunta
+    question_transcription_disabled: A transcrição está desativada para esta pergunta.
     recording_consent_notice: Esta sessão de reunião será gravada. Sua participação nesta reunião constitui seu consentimento para ser gravado.
     recording_consent_proceed_question: Você concorda em prosseguir com a reunião gravada?
     recording_consent_title: Aviso de Consentimento de Gravação
@@ -87,6 +93,7 @@ pt:
     transcription: Transcrição
     transcription_already_requested: Transcrição já solicitada ou em andamento
     transcription_not_enabled: A transcrição não está habilitada para a resposta da mídia.
+    transcription_status: Status da transcrição
     transcriptions: Transcrições
     try_again: Tente novamente
     tte_terms_and_condition: Termos e privacidade

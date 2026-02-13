@@ -9,6 +9,7 @@ zh-Hant:
     add_project: 新增專案
     add_project_admin: 新增專案管理員
     add_threesixty_campaign_admin: 新增活動管理員
+    add_word_count: 添加字数统计
     admin_approval_required: "%{user}報告需經管理員批准後才能下載。"
     admin_created_successfully: 管理員 '%{name}' 已成功建立
     admin_export_scheduled: 管理匯出工作已排程成功，請檢查您的通知以瞭解狀態。
@@ -25,6 +26,7 @@ zh-Hant:
     ai_assistant_model_provider: 提供者
     ai_assistant_model_region_label: 區
     ai_assistant_required: 必須使用 AI 助理
+    ai_assistant_select_dependencies: 选择依赖项
     ai_assistants: AI 助理
     ai_assistants_advanced_mode_tooltip: 使用進階模式使用帶有可用變數的液態範本來做提示模板。詳情請參閱文件。
     ai_assistants_campaign_id_placeholder: 這時，活動識別碼登場
@@ -36,6 +38,10 @@ zh-Hant:
     ai_assistants_test_render: 測試渲染
     ai_assistants_test_render_tooltip: 用活動資料測試你的提示範本，看看會送給 AI 助理什麼。
     ai_assisted_idp_feature_disabled: 本專案已停用 AI 輔助境內流離失所者功能。
+    ai_idp_assistant_configure_dependencies: 配置 AI 依赖项
+    ai_idp_assistant_configure_dependencies_description: 配置IDP AI助手可访问的依赖数据作为上下文。此设置仅在助手配置为接受依赖关系时生效。
+    ai_idp_assistant_dependencies_updated: 依赖项更新成功
+    ai_idp_assistant_update_dependencies: 更新依赖项
     ai_notice: 标记部分由AI翻译生成，可能存在不准确之处。
     ai_translation: 人工智能翻译
     all_corner_rounded: 所有边角均已圆角处理
@@ -85,16 +91,20 @@ zh-Hant:
     campaign_templates: 活動範本
     campaign_user_job_roles_cannot_be_same: 目标职位必须与当前职位不同
     campaigns: 活動
+    cancellation_and_rescheduling_disabled: 取消和重新安排功能已禁用
     case_study: 案例研究
+    casual: 休闲
     client: 客戶租約
     client_admins: 客戶端管理員
     clients: 客戶租約
     code_required: 必須使用程式碼
+    common: TTE评估
     common_assessment: TTE 評估
     communication_center: 通訊中心
     communications: 通訊
     completed: 成
     completed_tooltip: 所有評審人員均已提交評鑑
+    concise: 简洁
     confirm_remove_admin: 您確定要移除 email 名為「%{email}」的管理員使用者嗎？
     country: 國家
     create_client: 建立客戶端
@@ -121,14 +131,23 @@ zh-Hant:
     empty_csv_file: CSV 檔案不包含任何資料。
     enable_enhance_with_ai_client_level: 请在客户端级别启用AI增强功能
     enable_transcription: 启用转录功能
+    enhance_with_ai: 增强AI
     enhance_with_ai_requires_ai_assistants: 增强AI功能需启用AI助手功能
+    error: 错误
     evaluation_status: 評估狀態
     evaluation_status_not_done: 一個或多個被選定的受試者，評估狀態並非「完成」。請確保所有被選中的使用者都已完成評估，或標記為已完成。
     export_admin_roles_permissions: 管理員角色和權限匯出
+    export_compact_completion_status: 紧凑
+    export_completion_status: 出口完成状态
+    export_completion_statuses_scheduled: 完成状态导出作业已成功安排
+    export_detailed_completion_status: 详细
     feature_enhance_with_ai: 增强AI
     feature_flags: 功能旗標
     fill_empty_score_msg: 儲存前填寫所有最終分數。
     final_score_empty_err_msg: "%{factor_name}的最终得分不能为空。"
+    fix_grammar: 修正语法
+    formal: 正式
+    generate_transcription: 生成转录文本
     hogan: Hogan
     hogan_assessment: AGILE
     idp_plan_reset_success: 計畫已成功重置
@@ -158,6 +177,7 @@ zh-Hant:
     import_title: 從 CSV 匯入主體
     import_upload: 上傳
     import_users: 匯入使用者
+    internal: 内部
     invalid_csv_header: CSV 檔案包含無效標頭。
     job_roles: 工作角色
     lead_assessor_form: 首席評估員表格
@@ -203,6 +223,7 @@ zh-Hant:
     only_editable_on_create: 此选项仅在创建时可编辑。
     options: 選項
     organisational: 組織調查
+    original_text: 原文
     participants: 參與者
     pearson: 培生
     pearson_assessment: 培生評估
@@ -630,6 +651,8 @@ zh-Hant:
     permissions_360_campaigns: 360 活動的特定權限
     piped_text: 管道文本
     privacy: 隱私權
+    professional: 专业人士
+    proficiency: 熟练程度
     proficiency_level: API 金鑰
     proficiency_levels: 能力等級
     profile_details: 詳細資料
@@ -659,6 +682,7 @@ zh-Hant:
     reset_idp_plan_confirmation: 你確定要重置計畫嗎？
     reset_idp_plan_title: 重置計畫
     response_meta: 回應 Meta
+    result: 结果
     results: 結果
     role: 角色
     saml_idp_certificate_available: 可購買（點擊複製）
@@ -743,12 +767,17 @@ zh-Hant:
     subject_part_of_other_invite: 邮箱地址为 %{user_email} 的用户已受邀加入 '%{workshop_invite_name}' 群组。
     target_job_role: 目标职位
     threesixty: 360 活動
+    tone: 语调
     toolbar_ai_insight: 人工智能洞察
     toolbar_ai_suggestion: AI建议
     toolbar_result_generating: 生成中...
     toolbar_text_copied: 已复制到剪贴板
     toolbar_text_replaced: 文本已替换！
     toolbar_what_changed_and_why: 发生了什么变化及原因
+    tools: 工具
+    transcription_record_not_found: 未找到转录记录
+    transcription_schedule_failed: 转录任务调度失败
+    transcription_scheduled: 转录任务已安排。请关闭弹出窗口并查看通知状态。
     translate: 翻译
     translate_to: 翻译为
     translate_with_ai: 使用AI翻译
@@ -762,6 +791,7 @@ zh-Hant:
     users: 使用者
     view_licenses: 檢視授權
     waiting: 等待
+    words: 词语
     workshops: 工作坊
     writing_assistant_not_configured: 写作助手未配置
     x_axis_interval_label: X轴间隔

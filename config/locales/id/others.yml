@@ -893,6 +893,7 @@ id:
         export_users: Ekspor Pengguna Kampanye
         external_assessment_export: Ekspor Hasil Eksternal
         generate_embedding_skills: Hasilkan Penyematan untuk Keterampilan
+        generate_transcription: Buat Transkrip
         import_accesssheet: Impor Accessheet
         import_assessment_questions: Pertanyaan Penilaian Impor
         import_assessment_translations: Impor Terjemahan Penilaian
@@ -923,6 +924,8 @@ id:
         import_users: Impor Pengguna
         migrate_assessment_translations: Migrasi Terjemahan Penilaian
         normalize_factor_scores: Menormalkan Skor Faktor
+        project_compact_completion_status_export: Ekspor Status Penyelesaian Kompak
+        project_completion_status_export: Status Penyelesaian Ekspor
         regenerate_campaign_reports: Buat Ulang Laporan Kampanye
         regenerate_report: Buat ulang laporan
         regenerate_threesixty_report: Buat Ulang Laporan Threesixty

@@ -893,6 +893,7 @@ ja:
         export_users: キャンペーン・ユーザーのエクスポート
         external_assessment_export: 外部結果エクスポート
         generate_embedding_skills: スキルの埋め込み生成
+        generate_transcription: 文字起こしを生成する
         import_accesssheet: アクセスシートのインポート
         import_assessment_questions: 輸入評価に関する質問
         import_assessment_translations: アセスメント翻訳のインポート
@@ -923,6 +924,8 @@ ja:
         import_users: インポートユーザー
         migrate_assessment_translations: アセスメント 翻訳移行
         normalize_factor_scores: 因子スコアを正規化する
+        project_compact_completion_status_export: コンパクト完了状況エクスポート
+        project_completion_status_export: 完了状況のエクスポート
         regenerate_campaign_reports: キャンペーンレポートの再生成
         regenerate_report: リジェネレイト・レポート
         regenerate_threesixty_report: リジェネレイト・スリーシックスティ レポート

@@ -28,6 +28,7 @@ ar:
     max_word_limit: يجب أن تكون على الأكثر %{max} كلمة
     min_word_limit: يجب أن تكون على الأقل %{min} كلمة
     my_plan: خطتي
+    no_audio_warning: لم يتم الكشف عن أي صوت. يرجى التحقق من توصيل الميكروفون وتشغيله بشكل صحيح.
     profile: تفاصيلي
     profile_details: تفاصيل
     question_counter: السؤال %{current} من %{total}

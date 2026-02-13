@@ -4183,7 +4183,12 @@ ja:
       more_actions: より多くの行動
     taxonomy:
       import:
+        description: Excelファイルをアップロードして、スキル分類体系をインポートまたは更新してください。これにより、新しいスキル、職務役割、習熟度レベルが追加されます。
         download_example_file: 例題ファイルのダウンロード
+        drag_text: ファイルをこの領域にクリックまたはドラッグしてアップロードしてください
+        error_title: インポートに失敗しました
+        file_hint: ".xls および .xlsx ファイルをサポートします"
+        import_button: 輸入分類
         success_msg: アップロードされたファイルはインポートのためにキューに入れられました。通知でステータスを確認してください。
       import_action:
         taxonomy: スキル分類法のインポート

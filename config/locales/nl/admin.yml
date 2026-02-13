@@ -9,6 +9,7 @@ nl:
     add_project: Project toevoegen
     add_project_admin: Projectbeheerder toevoegen
     add_threesixty_campaign_admin: Campagne-admin toevoegen
+    add_word_count: Woordentelling toevoegen
     admin_approval_required: Rapporteer voor %{user} vereist goedkeuring van de beheerder voordat je downloadt
     admin_created_successfully: Admin '%{name}' is succesvol aangemaakt
     admin_export_scheduled: De exporttaak van de beheerder is met succes ingepland. Controleer uw melding voor de status.
@@ -25,6 +26,7 @@ nl:
     ai_assistant_model_provider: Aanbieder
     ai_assistant_model_region_label: Regio
     ai_assistant_required: AI Assistant is vereist
+    ai_assistant_select_dependencies: Selecteer afhankelijkheden
     ai_assistants: AI assistenten
     ai_assistants_advanced_mode_tooltip: Gebruik de geavanceerde modus voor prompt-templates met vloeibare template en beschikbare variabelen. Raadpleeg de documentatie voor meer details.
     ai_assistants_campaign_id_placeholder: Voer campagne-ID in
@@ -36,6 +38,10 @@ nl:
     ai_assistants_test_render: Testrendering
     ai_assistants_test_render_tooltip: Test je prompttemplate met campagnedata om te zien wat er naar de AI-assistent wordt gestuurd.
     ai_assisted_idp_feature_disabled: De AI-ondersteunde IDP-functie is voor dit project uitgeschakeld.
+    ai_idp_assistant_configure_dependencies: AI-afhankelijkheden configureren
+    ai_idp_assistant_configure_dependencies_description: Configureer welke afhankelijkheidsgegevens de IDP AI-assistent als context kan gebruiken. Dit is alleen van toepassing wanneer de assistent is geconfigureerd om afhankelijkheden te accepteren.
+    ai_idp_assistant_dependencies_updated: Afhankelijkheden succesvol bijgewerkt
+    ai_idp_assistant_update_dependencies: Afhankelijkheden bijwerken
     ai_notice: Gemarkeerde secties zijn door AI vertaald en kunnen onnauwkeurigheden bevatten.
     ai_translation: AI-vertaling
     all_corner_rounded: Alle hoeken afgerond
@@ -85,16 +91,20 @@ nl:
     campaign_templates: Campagnesjablonen
     campaign_user_job_roles_cannot_be_same: De beoogde functie moet verschillen van de huidige functie.
     campaigns: Campagnes
+    cancellation_and_rescheduling_disabled: Annuleren en verzetten is uitgeschakeld
     case_study: Casestudies
+    casual: Casual
     client: Huurder
     client_admins: Klanten-admins
     clients: Huurcontracten voor klanten
     code_required: Code is vereist
+    common: TTE-beoordeling
     common_assessment: TTE-beoordeling
     communication_center: Communicatiecentrum
     communications: Communicatie
     completed: Volbracht
     completed_tooltip: Alle beoordelaars hebben de evaluatie ingediend
+    concise: Beknopt
     confirm_remove_admin: Weet je zeker dat je admin gebruiker met e-mail '%{email}' wilt verwijderen?
     country: Land
     create_client: Klant maken
@@ -121,14 +131,23 @@ nl:
     empty_csv_file: Het CSV-bestand bevat geen gegevens.
     enable_enhance_with_ai_client_level: Schakel de functie Verbeteren met AI in op klantniveau.
     enable_transcription: Transcriptie inschakelen
+    enhance_with_ai: Verbeter met AI
     enhance_with_ai_requires_ai_assistants: Verbeteren met AI vereist dat de functie AI-assistenten is ingeschakeld.
+    error: Fout
     evaluation_status: Evaluatiestatus
     evaluation_status_not_done: De evaluatiestatus is niet 'Klaar' voor één of meer geselecteerde proefpersonen. Zorg ervoor dat alle geselecteerde gebruikers evaluaties hebben afgerond of markeer als voltooid.
     export_admin_roles_permissions: Beheerdersrollen en -rechten exporteren
+    export_compact_completion_status: Compact
+    export_completion_status: Status van voltooiing van export
+    export_completion_statuses_scheduled: De exporttaak voor voltooiingsstatussen is succesvol gepland.
+    export_detailed_completion_status: Gedetailleerd
     feature_enhance_with_ai: Verbeteren met AI
     feature_flags: Functie Vlaggen
     fill_empty_score_msg: Vul alle eindscores in voordat je opslaat.
     final_score_empty_err_msg: De eindscore van %{factor_name} mag niet leeg zijn.
+    fix_grammar: Grammatica corrigeren
+    formal: Formeel
+    generate_transcription: Transcriptie genereren
     hogan: Hogan
     hogan_assessment: AGIEL
     idp_plan_reset_success: Het plan is succesvol gereset.
@@ -158,6 +177,7 @@ nl:
     import_title: Importeer onderwerpen uit CSV
     import_upload: Uploaden
     import_users: Importgebruikers
+    internal: Intern
     invalid_csv_header: CSV-bestand bevat ongeldige headers.
     job_roles: Functierollen
     lead_assessor_form: Formulier hoofdbeoordelaar
@@ -203,6 +223,7 @@ nl:
     only_editable_on_create: Deze optie kan alleen tijdens het aanmaken worden bewerkt.
     options: Opties
     organisational: Organisatie Enquêtes
+    original_text: Oorspronkelijke tekst
     participants: Deelnemers
     pearson: Pearson
     pearson_assessment: Pearson Beoordeling
@@ -630,6 +651,8 @@ nl:
     permissions_360_campaigns: Rechten specifiek voor 360 campagnes
     piped_text: Tekst in pijpen
     privacy: Privacy
+    professional: Professioneel
+    proficiency: Vaardigheid
     proficiency_level: API-sleutels
     proficiency_levels: Vaardigheidsniveaus
     profile_details: Profielgegevens
@@ -659,6 +682,7 @@ nl:
     reset_idp_plan_confirmation: Weet je zeker dat je het plan wilt resetten?
     reset_idp_plan_title: Resetplan
     response_meta: Antwoord Meta
+    result: Resultaat
     results: Resultaten
     role: Rol
     saml_idp_certificate_available: Beschikbaar (klik om te kopiëren)
@@ -743,12 +767,17 @@ nl:
     subject_part_of_other_invite: De persoon met e-mailadres %{user_email} is al uitgenodigd voor '%{workshop_invite_name}'.
     target_job_role: Beoogde functie
     threesixty: 360 Campagne
+    tone: Toon
     toolbar_ai_insight: AI-inzicht
     toolbar_ai_suggestion: AI-suggestie
     toolbar_result_generating: Bezig met genereren...
     toolbar_text_copied: Gekopieerd naar klembord
     toolbar_text_replaced: Tekst vervangen!
     toolbar_what_changed_and_why: Wat is er veranderd en waarom?
+    tools: Gereedschap
+    transcription_record_not_found: Transcriptie niet gevonden
+    transcription_schedule_failed: Transcriptietaak kan niet worden gepland
+    transcription_scheduled: De transcriptietaak is gepland. Sluit het venster en controleer de status van de melding.
     translate: Vertalen
     translate_to: Vertalen naar
     translate_with_ai: Vertalen met AI
@@ -762,6 +791,7 @@ nl:
     users: Gebruikers
     view_licenses: Licenties bekijken
     waiting: Wachten
+    words: Woorden
     workshops: Workshops
     writing_assistant_not_configured: Schrijfhulp niet geconfigureerd
     x_axis_interval_label: X-as interval

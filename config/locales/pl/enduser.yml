@@ -28,6 +28,7 @@ pl:
     max_word_limit: Musi mieć maksymalnie %{max} słów
     min_word_limit: Musi mieć co najmniej %{min} słów
     my_plan: Mój plan
+    no_audio_warning: Nie wykryto dźwięku. Sprawdź, czy mikrofon jest podłączony i działa prawidłowo.
     profile: Profil
     profile_details: Szczegóły
     question_counter: Pytanie %{current} z %{total}

@@ -28,6 +28,7 @@ bg:
     max_word_limit: Трябва да бъде най-много %{max} думи
     min_word_limit: Трябва да бъде най-малко %{min} думи
     my_plan: Моят план
+    no_audio_warning: Не е открит звук. Моля, проверете дали микрофонът ви е свързан и работи правилно.
     profile: Профил
     profile_details: Подробности
     question_counter: Въпрос %{current} от %{total}

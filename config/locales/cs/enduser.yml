@@ -28,6 +28,7 @@ cs:
     max_word_limit: Musí mít maximálně %{max} slov
     min_word_limit: Musí mít nejméně %{min} slov
     my_plan: Můj plán
+    no_audio_warning: Nebylo detekováno žádné zvukové zařízení. Zkontrolujte, zda je mikrofon připojen a správně funguje.
     profile: Profil
     profile_details: Detaily
     question_counter: Otázka %{current} z %{total}

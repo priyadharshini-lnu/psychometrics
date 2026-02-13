@@ -893,6 +893,7 @@ th:
         export_users: ส่งออกผู้ใช้แคมเปญ
         external_assessment_export: ส่งออกผลลัพธ์ภายนอก
         generate_embedding_skills: สร้างการฝังสําหรับทักษะ
+        generate_transcription: สร้างการถอดความ
         import_accesssheet: นําเข้าอุปกรณ์เสริม
         import_assessment_questions: คําถามการประเมินการนําเข้า
         import_assessment_translations: การแปลการประเมินการนําเข้า
@@ -923,6 +924,8 @@ th:
         import_users: นําเข้าผู้ใช้
         migrate_assessment_translations: การโยกย้ายการแปลการประเมิน
         normalize_factor_scores: ทําให้คะแนนปัจจัยเป็นมาตรฐาน
+        project_compact_completion_status_export: การส่งออกสถานะการทำงานที่เสร็จสมบูรณ์แบบกะทัดรัด
+        project_completion_status_export: สถานะการเสร็จสิ้น ส่งออก
         regenerate_campaign_reports: สร้างรายงานแคมเปญใหม่
         regenerate_report: สร้างรายงานใหม่
         regenerate_threesixty_report: สร้างรายงาน Threesixty ใหม่

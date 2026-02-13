@@ -9,6 +9,7 @@ sr-Cyrl:
     add_project: Додај пројекат
     add_project_admin: Додај администратора пројекта
     add_threesixty_campaign_admin: Додај администратора кампање
+    add_word_count: Додај број речи
     admin_approval_required: Извештај за %{user} захтева одобрење администратора пре преузимања.
     admin_created_successfully: Админ '%{name}' је успешно креиран
     admin_export_scheduled: Задатак административног извоза је успешно заказан. Погледајте обавештење за статус.
@@ -25,6 +26,7 @@ sr-Cyrl:
     ai_assistant_model_provider: Пружалац
     ai_assistant_model_region_label: Регион
     ai_assistant_required: Потребан је АИ асистент.
+    ai_assistant_select_dependencies: Изаберите зависности
     ai_assistants: АИ асистенти
     ai_assistants_advanced_mode_tooltip: Користите напредни режим за израду шаблона упитника користећи Liquid шаблон са расположивим променљивим. Погледајте документацију за више детаља.
     ai_assistants_campaign_id_placeholder: Унесите ИД кампање
@@ -36,6 +38,10 @@ sr-Cyrl:
     ai_assistants_test_render: Тест рендеровања
     ai_assistants_test_render_tooltip: Тестирајте шаблон упитa са подацима о кампањи да бисте проверили шта ће бити послато АИ асистенту.
     ai_assisted_idp_feature_disabled: Функција AI Assisted IDP је онемогућена за овај пројекат.
+    ai_idp_assistant_configure_dependencies: Конфигуришите зависности вештачке интелигенције
+    ai_idp_assistant_configure_dependencies_description: Конфигуришите које податке о зависностима IDP AI асистент може да користи као контекст. Ово важи само када је асистент конфигурисан да прихвата зависности.
+    ai_idp_assistant_dependencies_updated: Зависности су успешно ажуриране
+    ai_idp_assistant_update_dependencies: Ажурирај зависности
     ai_notice: Истакнуте секције су преведене вештачком интелигенцијом и могу садржати нетачности.
     ai_translation: Превод вештачке интелигенције
     all_corner_rounded: Сви углови заобљени
@@ -85,16 +91,20 @@ sr-Cyrl:
     campaign_templates: Шаблони кампања
     campaign_user_job_roles_cannot_be_same: Циљна радна улога мора бити различита од тренутне радне улоге.
     campaigns: Кампање
+    cancellation_and_rescheduling_disabled: Отказивање и поновно заказивање су онемогућени
     case_study: Студије случаја
+    casual: Неформално
     client: Клијент
     client_admins: Администратори клијената
     clients: Клијенти
     code_required: Код је потребан
+    common: ТТЕ процена
     common_assessment: ТТЕ Процена
     communication_center: Центар за комуникацију
     communications: Коммуникације
     completed: Завршено
     completed_tooltip: Сви оцењивачи су доставили оцењивање.
+    concise: Сажето
     confirm_remove_admin: Да ли сте сигурни да желите да уклоните администраторског корисника са е-поштом '%{email}'?
     country: Земља
     create_client: Креирај клијента
@@ -121,14 +131,23 @@ sr-Cyrl:
     empty_csv_file: CSV фајл не садржи никакве податке.
     enable_enhance_with_ai_client_level: Молимо омогућите функцију Enhance with AI на нивоу клијента.
     enable_transcription: Омогући транскрипцију
+    enhance_with_ai: Унапредите помоћу вештачке интелигенције
     enhance_with_ai_requires_ai_assistants: Побољшање помоћу вештачке интелигенције захтева да је омогућена функција AI Assistants.
+    error: Грешка
     evaluation_status: Статус процене
     evaluation_status_not_done: Статус евалуације није "Завршено" за једног или више изабраних субјеката. Молимо вас да обезбедите да су сви изабрани корисници завршили евалуације или их означите као завршене.
     export_admin_roles_permissions: Извоз улога и дозвола администратора
+    export_compact_completion_status: Компактни
+    export_completion_status: Статус завршетка извоза
+    export_completion_statuses_scheduled: Извоз задатака за статусе завршетка је успешно заказан
+    export_detailed_completion_status: Детаљно
     feature_enhance_with_ai: Унапредите помоћу вештачке интелигенције
     feature_flags: Фичер флагс
     fill_empty_score_msg: Попуните све коначне резултате пре сачувања.
     final_score_empty_err_msg: Коначан резултат у %{factor_name}-у не може бити празан.
+    fix_grammar: Поправите граматику
+    formal: Формално
+    generate_transcription: Генеришите транскрипцију
     hogan: Хоган
     hogan_assessment: Окретан
     idp_plan_reset_success: План је успешно ресетован
@@ -158,6 +177,7 @@ sr-Cyrl:
     import_title: Увоз предмета из CSV-а
     import_upload: Отпреми
     import_users: Увоз корисника
+    internal: Унутрашњи
     invalid_csv_header: CSV фајл садржи неважеће заглавља.
     job_roles: Радне улоге
     lead_assessor_form: Образац главног процењивача
@@ -203,6 +223,7 @@ sr-Cyrl:
     only_editable_on_create: Ову опцију је могуће уређивати само током креирања.
     options: Опције
     organisational: Орг анкете
+    original_text: Оригинални текст
     participants: Учесници
     pearson: Пирсон
     pearson_assessment: Пирсонова процена
@@ -630,6 +651,8 @@ sr-Cyrl:
     permissions_360_campaigns: Дозволе специфичне за 360 кампање
     piped_text: Текст у цевци
     privacy: Приватност
+    professional: Професионални
+    proficiency: Владање
     proficiency_level: Ниво владења
     proficiency_levels: Нивои владења
     profile_details: Детаљи профила
@@ -659,6 +682,7 @@ sr-Cyrl:
     reset_idp_plan_confirmation: Да ли сте сигурни да желите да ресетујете план?
     reset_idp_plan_title: Ресетовање плана
     response_meta: Респонсе Мета
+    result: Резултат
     results: Резултати
     role: Улога
     saml_idp_certificate_available: Доступно (кликните да копирате)
@@ -743,12 +767,17 @@ sr-Cyrl:
     subject_part_of_other_invite: Корисник са адресом електронске поште %{user_email} је већ позван на '%{workshop_invite_name}'
     target_job_role: Циљна радна улога
     threesixty: 360 Кампања
+    tone: Тон
     toolbar_ai_insight: Увид вештачке интелигенције
     toolbar_ai_suggestion: Предлог вештачке интелигенције
     toolbar_result_generating: Генерисање...
     toolbar_text_copied: Копирано у међуспречник
     toolbar_text_replaced: Текст замењен!
     toolbar_what_changed_and_why: Шта се променило и зашто
+    tools: Алати
+    transcription_record_not_found: Запис транскрипције није пронађен
+    transcription_schedule_failed: Није успело заказивање посла транскрипције
+    transcription_scheduled: Посао транскрипције је заказан. Молимо затворите модални прозор и проверите статус обавештења.
     translate: Преведите
     translate_to: Преведи на
     translate_with_ai: Преведите помоћу вештачке интелигенције
@@ -762,6 +791,7 @@ sr-Cyrl:
     users: Корисници
     view_licenses: Прикажи лиценце
     waiting: Чекање
+    words: Речи
     workshops: Радионице
     writing_assistant_not_configured: Асистент за писање није конфигурисан
     x_axis_interval_label: Интервал X-осе

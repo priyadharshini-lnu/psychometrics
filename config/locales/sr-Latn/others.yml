@@ -900,6 +900,7 @@ sr-Latn:
         export_users: Izvezi korisnike kampanje
         external_assessment_export: Eksterni Rezultati Izvoz
         generate_embedding_skills: Generišite ugradnju za veštine
+        generate_transcription: Генеришите транскрипцију
         import_accesssheet: Uvoz Pristupa
         import_assessment_questions: Pitanja za procenu uvoza
         import_assessment_translations: Uvoz Procena Prevodi
@@ -930,6 +931,8 @@ sr-Latn:
         import_users: Uvezi korisnike
         migrate_assessment_translations: Procena Prevod migracija
         normalize_factor_scores: Normalizujte rezultate faktora
+        project_compact_completion_status_export: Компактни извоз статуса завршетка
+        project_completion_status_export: Извоз статуса завршетка
         regenerate_campaign_reports: Regenerišite izveštaje o kampanji
         regenerate_report: Regeneriši izveštaj
         regenerate_threesixty_report: Regenerišite Threesixty izveštaj

@@ -28,6 +28,7 @@ nl:
     max_word_limit: Mag maximaal %{max} woorden bevatten
     min_word_limit: Moet minstens %{min} woorden bevatten
     my_plan: Mijn plan
+    no_audio_warning: Er is geen geluid gedetecteerd. Controleer of uw microfoon is aangesloten en goed werkt.
     profile: Profiel
     profile_details: Details
     question_counter: Vraag %{current} van %{total}

@@ -4183,7 +4183,12 @@ fr:
       more_actions: Plus d'actions
     taxonomy:
       import:
+        description: Téléchargez un fichier Excel pour importer ou mettre à jour votre taxonomie des compétences. Cela permettra d'ajouter de nouvelles compétences, de nouveaux postes et de nouveaux niveaux de maîtrise.
         download_example_file: Télécharger le fichier d'exemple
+        drag_text: Cliquez ou faites glisser le fichier vers cette zone pour le télécharger.
+        error_title: Échec de l'importation
+        file_hint: Prend en charge les fichiers .xls et .xlsx
+        import_button: Importation de la taxonomie
         success_msg: Le fichier téléchargé a été mis en file d'attente pour l'importation. Veuillez vérifier le statut dans les notifications.
       import_action:
         taxonomy: Importer la taxonomie des compétences

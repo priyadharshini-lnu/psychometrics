@@ -28,6 +28,7 @@ ko:
     max_word_limit: 최대 %{max}단어여야 합니다
     min_word_limit: 최소 %{min}단어여야 합니다
     my_plan: 내 계획
+    no_audio_warning: 오디오가 감지되지 않았습니다. 마이크가 연결되어 있고 정상적으로 작동하는지 확인해 주세요.
     profile: 프로필
     profile_details: 세부 정보
     question_counter: 질문 %{current} / %{total}

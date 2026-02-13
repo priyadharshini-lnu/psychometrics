@@ -28,6 +28,7 @@ vi:
     max_word_limit: Phải có tối đa %{max} từ
     min_word_limit: Phải có ít nhất %{min} từ
     my_plan: Kế hoạch của tôi
+    no_audio_warning: Không phát hiện âm thanh. Vui lòng kiểm tra xem micro của bạn đã được kết nối và hoạt động bình thường chưa.
     profile: Hồ sơ
     profile_details: Chi tiết
     question_counter: Câu hỏi %{current} trong tổng số %{total}

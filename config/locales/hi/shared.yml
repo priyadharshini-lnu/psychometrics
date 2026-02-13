@@ -19,6 +19,7 @@ hi:
     clear_filters: फ़िल्टर साफ़ करें
     collaborative_learning: सहयोगात्मक अधिगम
     completed: पूर्ण
+    configurations: संरचनाएँ
     confirm: पुष्टि करें
     continue: जारी रखें
     copy: प्रतिलिपि
@@ -27,6 +28,9 @@ hi:
     decline: पतन
     description: विवरण
     download: डाउनलोड
+    download_audio: ऑडियो डाउनलोड करें
+    download_transcription: प्रतिलिपि डाउनलोड करें
+    download_video: वीडियो डाउनलोड करें
     edit: संपादित करें
     edited: संपादित
     email: ईमेल
@@ -46,6 +50,7 @@ hi:
     last_name: आखिरी नाम
     learning_on_the_job_label: काम करते हुए सीखना
     login: लॉगिन
+    media_responses: मीडिया की प्रतिक्रियाएँ
     modified_by: द्वारा संशोधित
     modified_date: संशोधित तिथि
     more_actions: अधिक क्रियाएँ
@@ -59,6 +64,7 @@ hi:
     pending: लंबित
     processing: प्रसंस्करण
     question_id: प्रश्न आईडी
+    question_transcription_disabled: इस प्रश्न के लिए प्रतिलेखन अक्षम है।
     recording_consent_notice: इस बैठक सत्र को रिकॉर्ड किया जाएगा। इस बैठक में आपकी भागीदारी रिकॉर्ड किए जाने की आपकी सहमति मानी जाएगी।
     recording_consent_proceed_question: क्या आप रिकॉर्ड की गई बैठक को जारी रखने के लिए सहमत हैं?
     recording_consent_title: रिकॉर्डिंग सहमति सूचना
@@ -87,6 +93,7 @@ hi:
     transcription: प्रतिलिपि
     transcription_already_requested: प्रतिलेखन पहले से ही अनुरोधित या प्रगति पर है।
     transcription_not_enabled: मीडिया प्रतिक्रिया के लिए प्रतिलेखन सक्षम नहीं है।
+    transcription_status: प्रतिलिपि स्थिति
     transcriptions: प्रतिलिपियाँ
     try_again: फिर से कोशिश करें
     tte_terms_and_condition: शर्तें और गोपनीयता

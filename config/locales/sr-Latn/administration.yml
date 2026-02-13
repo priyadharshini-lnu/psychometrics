@@ -4175,7 +4175,12 @@ sr-Latn:
       more_actions: Više akcija
     taxonomy:
       import:
+        description: Отпремите Excel фајл да бисте увезли или ажурирали своју таксономију вештина. Ово ће додати нове вештине, улоге на пословима и нивое владења.
         download_example_file: Preuzmite primernu datoteku
+        drag_text: Кликните или повуците фајл у ово поље да бисте га отпремили.
+        error_title: Увоз није успео
+        file_hint: Подржава .xls и .xlsx датотеке
+        import_button: Увоз таксономије
         success_msg: Postavljena datoteka je stavljena u red za uvoz. Molimo Vas da proverite status u obaveštenjima.
       import_action:
         taxonomy: Uvozna taksonomija

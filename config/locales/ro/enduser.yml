@@ -28,6 +28,7 @@ ro:
     max_word_limit: Trebuie să aibă cel mult %{max} cuvinte
     min_word_limit: Trebuie să aibă cel puțin %{min} cuvinte
     my_plan: Planul meu
+    no_audio_warning: Nu s-a detectat sunet. Verificați dacă microfonul este conectat și funcționează corect.
     profile: Profil
     profile_details: Detalii
     question_counter: Întrebarea %{current} din %{total}

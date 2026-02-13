@@ -893,6 +893,7 @@ hu:
         export_users: Kampányfelhasználók exportálása
         external_assessment_export: Külső eredmények exportálása
         generate_embedding_skills: Creating Embedding for Skills
+        generate_transcription: Átírás létrehozása
         import_accesssheet: Accessheet importálása
         import_assessment_questions: Import értékelési kérdések
         import_assessment_translations: Import Assessment fordítások
@@ -923,6 +924,8 @@ hu:
         import_users: Felhasználók importálása
         migrate_assessment_translations: Értékelés Fordítás áttelepítése
         normalize_factor_scores: Faktorpontszámok normalizálása
+        project_compact_completion_status_export: Kompakt befejezési állapot export
+        project_completion_status_export: Befejezési állapot exportálása
         regenerate_campaign_reports: Kampányjelentések újragenerálása
         regenerate_report: Jelentés újragenerálása
         regenerate_threesixty_report: Újra generálás a Threesixty jelentést

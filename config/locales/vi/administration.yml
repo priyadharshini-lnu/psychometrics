@@ -4175,7 +4175,12 @@ vi:
       more_actions: Hành động khác
     taxonomy:
       import:
+        description: Tải lên tệp Excel để nhập hoặc cập nhật hệ thống phân loại kỹ năng của bạn. Điều này sẽ thêm các kỹ năng mới, vị trí công việc và mức độ thành thạo.
         download_example_file: Tải xuống tệp ví dụ
+        drag_text: Nhấp chuột hoặc kéo tệp vào khu vực này để tải lên.
+        error_title: Nhập khẩu thất bại
+        file_hint: Hỗ trợ các tệp .xls và .xlsx.
+        import_button: Nhập khẩu phân loại
         success_msg: Tệp đã tải lên đã được xếp hàng để nhập. Vui lòng kiểm tra trạng thái trong thông báo.
       import_action:
         taxonomy: Phân loại nhập khẩu

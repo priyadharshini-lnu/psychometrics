@@ -893,6 +893,7 @@ sl:
         export_users: Izvoz uporabnikov oglaševalske akcije
         external_assessment_export: Izvoz zunanjih rezultatov
         generate_embedding_skills: Generiranje vdelave za veščine
+        generate_transcription: Ustvari transkripcijo
         import_accesssheet: Uvoz dodatka
         import_assessment_questions: Vprašanja za oceno uvoza
         import_assessment_translations: Prevodi ocenjevanja uvoza
@@ -923,6 +924,8 @@ sl:
         import_users: Uvoz uporabnikov
         migrate_assessment_translations: Ocenjevanje Selitev prevoda
         normalize_factor_scores: Normalizirajte rezultate faktorjev
+        project_compact_completion_status_export: Izvoz stanja zaključka kompaktnega izvoza
+        project_completion_status_export: Izvoz stanja dokončanja
         regenerate_campaign_reports: Vnovična generacija poročil o oglaševalskih akcijah
         regenerate_report: Poročilo o ponovni vzpostavitvi
         regenerate_threesixty_report: Obnovi poročilo Threesixty

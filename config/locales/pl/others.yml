@@ -893,6 +893,7 @@ pl:
         export_users: Eksport użytkowników kampanii
         external_assessment_export: Eksport wyników zewnętrznych
         generate_embedding_skills: Generuj osadzanie dla umiejętności
+        generate_transcription: Wygeneruj transkrypcję
         import_accesssheet: Import Accessheet
         import_assessment_questions: Pytania oceniające import
         import_assessment_translations: Importowanie tłumaczeń oceny
@@ -923,6 +924,8 @@ pl:
         import_users: Importowanie użytkowników
         migrate_assessment_translations: Migracja tłumaczenia oceny
         normalize_factor_scores: Normalizowanie wyników czynników
+        project_compact_completion_status_export: Eksport stanu ukończenia kompaktowego
+        project_completion_status_export: Status ukończenia Eksport
         regenerate_campaign_reports: Ponowne generowanie raportów kampanii
         regenerate_report: Ponowne generowanie raportu
         regenerate_threesixty_report: Raport Regenerate Threesixty

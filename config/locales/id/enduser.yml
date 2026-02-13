@@ -28,6 +28,7 @@ id:
     max_word_limit: Maksimal %{max} kata
     min_word_limit: Minimal %{min} kata
     my_plan: Rencanaku
+    no_audio_warning: Tidak terdeteksi suara. Silakan periksa apakah mikrofon Anda terhubung dan berfungsi dengan baik.
     profile: Profil
     profile_details: Detail
     question_counter: Pertanyaan %{current} dari %{total}

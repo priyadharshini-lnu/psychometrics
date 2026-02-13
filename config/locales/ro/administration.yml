@@ -4175,7 +4175,12 @@ ro:
       more_actions: Mai multe acțiuni
     taxonomy:
       import:
+        description: Încărcați un fișier Excel pentru a importa sau actualiza taxonomia competențelor. Astfel se vor adăuga noi competențe, roluri profesionale și niveluri de competență.
         download_example_file: Descărcați fișierul de exemplu
+        drag_text: Faceți clic sau trageți fișierul în această zonă pentru a-l încărca
+        error_title: Importul a eșuat
+        file_hint: Suportă fișiere .xls și .xlsx
+        import_button: Import taxonomie
         success_msg: Fișierul încărcat a fost pus în coadă pentru import. Vă rugăm să verificați starea în notificări.
       import_action:
         taxonomy: Taxonomia importurilor

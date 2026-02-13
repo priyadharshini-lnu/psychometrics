@@ -893,6 +893,7 @@ vi:
         export_users: Xuất khẩu của người dùng chiến dịch
         external_assessment_export: Xuất kết quả bên ngoài
         generate_embedding_skills: Tạo nhúng cho các kỹ năng
+        generate_transcription: Tạo bản chép lời
         import_accesssheet: Phụ kiện nhập khẩu
         import_assessment_questions: Câu hỏi đánh giá nhập khẩu
         import_assessment_translations: Bản dịch đánh giá nhập khẩu
@@ -923,6 +924,8 @@ vi:
         import_users: Nhập người dùng
         migrate_assessment_translations: Di chuyển dịch thuật đánh giá
         normalize_factor_scores: Chuẩn hóa điểm số yếu tố
+        project_compact_completion_status_export: Xuất trạng thái hoàn thành gọn nhẹ
+        project_completion_status_export: Tình trạng hoàn thành xuất khẩu
         regenerate_campaign_reports: Tạo lại báo cáo chiến dịch
         regenerate_report: Báo cáo tái tạo
         regenerate_threesixty_report: Báo cáo tái tạo Threesixty

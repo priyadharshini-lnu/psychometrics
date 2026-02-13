@@ -28,6 +28,7 @@ pt:
     max_word_limit: Deve ter no máximo %{max} palavras
     min_word_limit: Deve ter pelo menos %{min} palavras
     my_plan: Meu plano
+    no_audio_warning: Não foi detectado áudio. Verifique se o microfone está conectado e funcionando corretamente.
     profile: Perfil
     profile_details: Detalhes
     question_counter: Pergunta %{current} de %{total}

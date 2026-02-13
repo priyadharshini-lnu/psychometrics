@@ -9,6 +9,7 @@ ro:
     add_project: Adaugă proiect
     add_project_admin: Adăugați administrator de proiect
     add_threesixty_campaign_admin: Adăugați administratorul campaniei
+    add_word_count: Adăugați numărul de cuvinte
     admin_approval_required: Raportul pentru %{user} necesită aprobarea de la administrator înainte de descărcare
     admin_created_successfully: Admin '%{name}' a fost creat cu succes
     admin_export_scheduled: Lucrarea de export de administrator a fost programată cu succes. Vă rugăm să verificați starea notificării.
@@ -25,6 +26,7 @@ ro:
     ai_assistant_model_provider: Furnizor
     ai_assistant_model_region_label: Regiune
     ai_assistant_required: Asistentul AI este necesar
+    ai_assistant_select_dependencies: Selectați dependențele
     ai_assistants: Asistenți AI
     ai_assistants_advanced_mode_tooltip: Folosește modul avansat pentru modelarea prompturilor folosind șablonul lichid cu variabile disponibile. Consultați documentația pentru mai multe detalii.
     ai_assistants_campaign_id_placeholder: Introduceți ID-ul campaniei
@@ -36,6 +38,10 @@ ro:
     ai_assistants_test_render: Randare de testare
     ai_assistants_test_render_tooltip: Testează-ți șablonul de prompt cu date de campanie pentru a vedea ce va fi trimis asistentului AI.
     ai_assisted_idp_feature_disabled: Funcția IDP asistată de AI a fost dezactivată pentru acest proiect.
+    ai_idp_assistant_configure_dependencies: Configurați dependențele AI
+    ai_idp_assistant_configure_dependencies_description: Configurați datele de dependență la care asistentul AI IDP poate avea acces ca context. Acest lucru se aplică numai atunci când asistentul este configurat să accepte dependențe.
+    ai_idp_assistant_dependencies_updated: Dependențele au fost actualizate cu succes
+    ai_idp_assistant_update_dependencies: Actualizare dependențe
     ai_notice: Secțiunile evidențiate sunt traduse cu ajutorul inteligenței artificiale și pot conține inexactități.
     ai_translation: Traducere AI
     all_corner_rounded: Toate colțurile rotunjite
@@ -85,16 +91,20 @@ ro:
     campaign_templates: Șabloane de campanie
     campaign_user_job_roles_cannot_be_same: Funcția vizată trebuie să fie diferită de funcția actuală.
     campaigns: Campanii
+    cancellation_and_rescheduling_disabled: Anularea și reprogramarea sunt dezactivate
     case_study: Studii de caz
+    casual: Casual
     client: Închirierea clientului
     client_admins: Administratori clienți
     clients: Clienți
     code_required: Este necesar codul
+    common: Evaluarea TTE
     common_assessment: Evaluarea TTE
     communication_center: Centrul de comunicare
     communications: Comunicaţii
     completed: Completat
     completed_tooltip: Toți evaluatorii au depus evaluarea
+    concise: Concis
     confirm_remove_admin: Sigur doriți să eliminați utilizatorul administrator cu e-mailul "%{email}"?
     country: Țara
     create_client: Creare client
@@ -121,14 +131,23 @@ ro:
     empty_csv_file: Fișierul CSV nu conține niciun fel de date.
     enable_enhance_with_ai_client_level: Vă rugăm să activați funcția Îmbunătățire cu AI la nivel de client.
     enable_transcription: Activați transcrierea
+    enhance_with_ai: Îmbunătățiți cu AI
     enhance_with_ai_requires_ai_assistants: Pentru a îmbunătăți cu AI, este necesar să fie activată funcția Asistenți AI.
+    error: Eroare
     evaluation_status: Stare de evaluare
     evaluation_status_not_done: Starea evaluării nu este "Finalizată" pentru unul sau mai mulți subiecte selectate. Vă rugăm să vă asigurați că toți utilizatorii selectați au finalizat evaluările sau să marcheze ca fiind făcute.
     export_admin_roles_permissions: Exportul rolurilor și permisiunilor de administrator
+    export_compact_completion_status: Compact
+    export_completion_status: Starea finalizării exportului
+    export_completion_statuses_scheduled: Sarcina de exportare a stărilor de finalizare a fost programată cu succes
+    export_detailed_completion_status: Detaliat
     feature_enhance_with_ai: Îmbunătățiți cu AI
     feature_flags: Steaguri de caracteristici
     fill_empty_score_msg: Completează toate scorurile finale înainte de a salva.
     final_score_empty_err_msg: Scorul final al jocului „%{factor_name}” nu poate fi gol.
+    fix_grammar: Corectează gramatica
+    formal: Formal
+    generate_transcription: Generați transcrierea
     hogan: Hogan
     hogan_assessment: AGIL
     idp_plan_reset_success: Planul a fost resetat cu succes
@@ -158,6 +177,7 @@ ro:
     import_title: Subiecte de import din CSV
     import_upload: Încărca
     import_users: Importă utilizatori
+    internal: Intern
     invalid_csv_header: CSV conține antete invalide.
     job_roles: Roluri de post
     lead_assessor_form: Formular de evaluator principal
@@ -203,6 +223,7 @@ ro:
     only_editable_on_create: Această opțiune poate fi editată numai în timpul creării.
     options: Opțiuni
     organisational: Sondaje organizaționale
+    original_text: Textul original
     participants: Participanţii
     pearson: Pearson
     pearson_assessment: Evaluarea Pearson
@@ -630,6 +651,8 @@ ro:
     permissions_360_campaigns: Permisiuni specifice campaniilor 360
     piped_text: Text încadrat
     privacy: Intimitate
+    professional: Profesional
+    proficiency: Competență
     proficiency_level: Chei API
     proficiency_levels: Niveluri de competență
     profile_details: Detalii profil
@@ -659,6 +682,7 @@ ro:
     reset_idp_plan_confirmation: Ești sigur că vrei să resetezi planul?
     reset_idp_plan_title: Planul de Resetare
     response_meta: Răspuns Meta
+    result: Rezultat
     results: Rezultatele
     role: Rol
     saml_idp_certificate_available: Disponibil (click pentru copiere)
@@ -743,12 +767,17 @@ ro:
     subject_part_of_other_invite: Persoana cu adresa de e-mail %{user_email} este deja invitată la „%{workshop_invite_name}”.
     target_job_role: Postul vizat
     threesixty: Campania 360
+    tone: Ton
     toolbar_ai_insight: Perspectivă AI
     toolbar_ai_suggestion: Sugestie AI
     toolbar_result_generating: Se generează...
     toolbar_text_copied: Copiată în clipboard
     toolbar_text_replaced: Text înlocuit!
     toolbar_what_changed_and_why: Ce s-a schimbat și de ce
+    tools: Instrumente
+    transcription_record_not_found: Înregistrarea transcrierii nu a fost găsită
+    transcription_schedule_failed: Nu s-a putut programa sarcina de transcriere
+    transcription_scheduled: Sarcina de transcriere este programată. Închideți fereastra modală și verificați starea notificării.
     translate: Traduce
     translate_to: Traduceți în
     translate_with_ai: Traduceți cu AI
@@ -762,6 +791,7 @@ ro:
     users: Utilizatorii
     view_licenses: Vizualizați licențele
     waiting: Așteptare
+    words: Cuvinte
     workshops: Ateliere
     writing_assistant_not_configured: Asistentul de scriere nu este configurat
     x_axis_interval_label: Intervalul axei X

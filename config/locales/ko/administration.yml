@@ -4183,7 +4183,12 @@ ko:
       more_actions: 더 많은 작업
     taxonomy:
       import:
+        description: 스킬 분류 체계를 가져오거나 업데이트하려면 Excel 파일을 업로드하세요. 이렇게 하면 새로운 스킬, 직무 역할 및 숙련도 수준이 추가됩니다.
         download_example_file: 예제 파일 다운로드
+        drag_text: 파일을 이 영역에 클릭하거나 드래그하여 업로드하세요
+        error_title: 가져오기 실패
+        file_hint: ".xls 및 .xlsx 파일을 지원합니다."
+        import_button: 수입 분류 체계
         success_msg: 업로드한 파일을 가져오기 위해 대기 중입니다. 알림에서 상태를 확인하세요.
       import_action:
         taxonomy: 스킬 분류 가져오기

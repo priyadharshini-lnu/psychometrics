@@ -9,6 +9,7 @@ bg:
     add_project: Добавяне на проект
     add_project_admin: Добавяне на администратор на проекта
     add_threesixty_campaign_admin: Добавяне на администратор на кампанията
+    add_word_count: Добави броя на думите
     admin_approval_required: Докладът за %{user} изисква одобрение от администратора преди изтегляне
     admin_created_successfully: Администраторът '%{name}' е създаден успешно
     admin_export_scheduled: Задачата за експортиране на администратор беше планирана успешно. Моля, проверете известието си за статус.
@@ -25,6 +26,7 @@ bg:
     ai_assistant_model_provider: Доставчик
     ai_assistant_model_region_label: Регион
     ai_assistant_required: Изисква се AI асистент
+    ai_assistant_select_dependencies: Изберете зависимости
     ai_assistants: AI асистенти
     ai_assistants_advanced_mode_tooltip: Използвайте разширен режим за шаблониране на prompt с течен шаблон с налични променливи. Вижте документацията за повече подробности.
     ai_assistants_campaign_id_placeholder: Въведете ID на кампанията
@@ -36,6 +38,10 @@ bg:
     ai_assistants_test_render: Тестов рендер
     ai_assistants_test_render_tooltip: Тествайте шаблона за подсказки с данни от кампанията, за да проверите какво ще бъде изпратено на AI асистента.
     ai_assisted_idp_feature_disabled: Функцията AI Assisted IDP е деактивирана за този проект.
+    ai_idp_assistant_configure_dependencies: Конфигуриране на AI зависимости
+    ai_idp_assistant_configure_dependencies_description: Конфигурирайте кои данни за зависимости IDP AI Assistant може да използва като контекст. Това важи само когато асистентът е конфигуриран да приема зависимости.
+    ai_idp_assistant_dependencies_updated: Зависимостите са актуализирани успешно
+    ai_idp_assistant_update_dependencies: Актуализиране на зависимости
     ai_notice: Подчертаните части са преведени с изкуствен интелект и може да съдържат неточности.
     ai_translation: AI превод
     all_corner_rounded: Всички ъгли са заоблени
@@ -85,16 +91,20 @@ bg:
     campaign_templates: Шаблони за кампании
     campaign_user_job_roles_cannot_be_same: Целевата длъжност трябва да е различна от настоящата длъжност.
     campaigns: Кампании
+    cancellation_and_rescheduling_disabled: Отмяната и пренасрочването са деактивирани
     case_study: Казуси
+    casual: Неформален
     client: Наемане на клиенти
     client_admins: Администратори на клиенти
     clients: Наеми на клиенти
     code_required: Изисква се код
+    common: Оценка на TTE
     common_assessment: Оценка на TTE
     communication_center: Комуникационен център
     communications: Комуникации
     completed: Завършен
     completed_tooltip: Всички оценители са подали оценката
+    concise: Кратък
     confirm_remove_admin: Сигурни ли сте, че искате да премахнете администратор с имейл '%{email}'?
     country: Държава
     create_client: Създайте клиент
@@ -121,14 +131,23 @@ bg:
     empty_csv_file: CSV файлът не съдържа никакви данни.
     enable_enhance_with_ai_client_level: Моля, активирайте функцията „Подобрение с AI“ на ниво клиент.
     enable_transcription: Активиране на транскрипция
+    enhance_with_ai: Подобрете с AI
     enhance_with_ai_requires_ai_assistants: За да използвате функцията „Подобрение с AI“, трябва да активирате функцията „AI асистенти“.
+    error: Грешка
     evaluation_status: Статус на оценката
     evaluation_status_not_done: Статусът на оценяване не е "Завършен" за един или повече избрани предмети. Моля, уверете се, че всички избрани потребители са завършили оценките или са оценили като изпълнени.
     export_admin_roles_permissions: Експортиране на администраторски роли и разрешения
+    export_compact_completion_status: Компактен
+    export_completion_status: Статус на завършване на експорта
+    export_completion_statuses_scheduled: Задачата за експортиране на статусите на завършеност беше успешно планирана.
+    export_detailed_completion_status: Подробно
     feature_enhance_with_ai: Подобрете с AI
     feature_flags: Флагове за функции
     fill_empty_score_msg: Запълнете всички крайни резултати преди да запазите.
     final_score_empty_err_msg: Крайният резултат на „%{factor_name}“ не може да бъде празен.
+    fix_grammar: Поправи граматиката
+    formal: Официален
+    generate_transcription: Генериране на транскрипция
     hogan: Хоган
     hogan_assessment: ПОДВИЖЕН
     idp_plan_reset_success: Планът беше успешно рестартиран
@@ -158,6 +177,7 @@ bg:
     import_title: Вносни теми от CSV
     import_upload: Качвам
     import_users: Импортиране на потребители
+    internal: Вътрешен
     invalid_csv_header: CSV файлът съдържа невалидни заглавия.
     job_roles: Работни роли
     lead_assessor_form: Формуляр за водещ оценител
@@ -203,6 +223,7 @@ bg:
     only_editable_on_create: Тази опция може да се редактира само по време на създаването.
     options: Опции
     organisational: Организационни проучвания
+    original_text: Оригинален текст
     participants: Участниците
     pearson: Пиърсън
     pearson_assessment: Оценка на Пиърсън
@@ -630,6 +651,8 @@ bg:
     permissions_360_campaigns: Разрешения, специфични за кампании в 360
     piped_text: Текст в тръба
     privacy: Поверителност
+    professional: Професионален
+    proficiency: Умения
     proficiency_level: API ключове
     proficiency_levels: Нива на владеене
     profile_details: Детайли за профила
@@ -659,6 +682,7 @@ bg:
     reset_idp_plan_confirmation: Сигурен ли си, че искаш да нулираш плана?
     reset_idp_plan_title: План за нулиране
     response_meta: Мета отговор
+    result: Резултат
     results: Резултати
     role: Роля
     saml_idp_certificate_available: Наличен (кликнете за копиране)
@@ -743,12 +767,17 @@ bg:
     subject_part_of_other_invite: Получателят на имейла %{user_email} вече е поканен на „%{workshop_invite_name}”
     target_job_role: Целева длъжност
     threesixty: Кампания 360
+    tone: Тон
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: Предложение за изкуствен интелект
     toolbar_result_generating: Генериране...
     toolbar_text_copied: Копирано в клипборда
     toolbar_text_replaced: Текстът е заменен!
     toolbar_what_changed_and_why: Какво се промени и защо
+    tools: Инструменти
+    transcription_record_not_found: Не е намерен запис на транскрипцията
+    transcription_schedule_failed: Неуспешно планиране на задача за транскрипция
+    transcription_scheduled: Задачата за транскрипция е планирана. Моля, затворете модалния прозорец и проверете състоянието на уведомлението.
     translate: Преведи
     translate_to: Преведи на
     translate_with_ai: Преведи с AI
@@ -762,6 +791,7 @@ bg:
     users: Потребители
     view_licenses: Преглед на лицензи
     waiting: Чакат
+    words: Думи
     workshops: Семинари
     writing_assistant_not_configured: Писателският асистент не е конфигуриран
     x_axis_interval_label: Интервал по ос Х

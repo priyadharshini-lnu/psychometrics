@@ -893,6 +893,7 @@ ru:
         export_users: Экспорт пользователей кампании
         external_assessment_export: Экспорт внешних результатов
         generate_embedding_skills: Создание встраивания для навыков
+        generate_transcription: Создать транскрипцию
         import_accesssheet: Импорт таблицы доступа
         import_assessment_questions: Вопросы по оценке импорта
         import_assessment_translations: Перевод оценок импорта
@@ -923,6 +924,8 @@ ru:
         import_users: Импорт пользователей
         migrate_assessment_translations: Оценка Перевод миграция
         normalize_factor_scores: Нормализация факторных оценок
+        project_compact_completion_status_export: Экспорт статуса завершения компактного формата
+        project_completion_status_export: Статус завершения Экспорт
         regenerate_campaign_reports: Восстановить отчеты по кампании
         regenerate_report: Восстановить отчет
         regenerate_threesixty_report: Восстановить отчет Threesixty

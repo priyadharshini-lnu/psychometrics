@@ -4175,7 +4175,12 @@ pl:
       more_actions: Więcej akcji
     taxonomy:
       import:
+        description: Prześlij plik Excel, aby zaimportować lub zaktualizować swoją taksonomię umiejętności. Spowoduje to dodanie nowych umiejętności, stanowisk i poziomów biegłości.
         download_example_file: Pobierz przykładowy plik
+        drag_text: Kliknij lub przeciągnij plik do tego obszaru, aby go przesłać.
+        error_title: Import nie powiódł się
+        file_hint: Obsługuje pliki .xls i .xlsx
+        import_button: Importuj taksonomię
         success_msg: Przesłany plik został umieszczony w kolejce do importu. Sprawdź status w powiadomieniach.
       import_action:
         taxonomy: Taksonomia importu

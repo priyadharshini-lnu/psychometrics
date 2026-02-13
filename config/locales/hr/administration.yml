@@ -4175,7 +4175,12 @@ hr:
       more_actions: Više radnji
     taxonomy:
       import:
+        description: Otpremite Excel datoteku za uvoz ili ažuriranje vaše taksonomije vještina. Time ćete dodati nove vještine, radne uloge i razine stručnosti.
         download_example_file: Preuzmite primjer datoteke
+        drag_text: Kliknite ili povucite datoteku u ovo područje za učitavanje.
+        error_title: Uvoz nije uspio
+        file_hint: Podržava datoteke .xls i .xlsx
+        import_button: Uvoz taksonomije
         success_msg: Prenesena datoteka stavljena je u red čekanja za uvoz. Provjerite status u obavijestima.
       import_action:
         taxonomy: Uvozna taksonomija

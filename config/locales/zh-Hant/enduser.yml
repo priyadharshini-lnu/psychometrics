@@ -28,6 +28,7 @@ zh-Hant:
     max_word_limit: 最多不得超過 %{max} 個字
     min_word_limit: 至少需要 %{min} 個字
     my_plan: 我的計劃
+    no_audio_warning: 未检测到音频。请检查麦克风是否已连接且工作正常。
     profile: 簡介
     profile_details: 詳細資訊
     question_counter: 問題 %{current} / %{total}

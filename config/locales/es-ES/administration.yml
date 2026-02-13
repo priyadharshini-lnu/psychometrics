@@ -4183,7 +4183,12 @@ es-ES:
       more_actions: Más acciones
     taxonomy:
       import:
+        description: Sube un archivo Excel para importar o actualizar tu taxonomía de habilidades. Esto añadirá nuevas habilidades, puestos de trabajo y niveles de competencia.
         download_example_file: Descargar archivo de ejemplo
+        drag_text: Haga clic o arrastre el archivo a esta área para cargarlo.
+        error_title: Error al importar
+        file_hint: Admite archivos .xls y .xlsx.
+        import_button: Importar taxonomía
         success_msg: El archivo cargado se ha puesto en cola para su importación. Compruebe el estado en las notificaciones.
       import_action:
         taxonomy: Importar taxonomía de competencias

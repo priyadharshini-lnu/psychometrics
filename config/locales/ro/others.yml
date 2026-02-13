@@ -893,6 +893,7 @@ ro:
         export_users: Exportul utilizatorilor campaniei
         external_assessment_export: Exportați rezultate externe
         generate_embedding_skills: Generează Embedding pentru abilități
+        generate_transcription: Generați transcrierea
         import_accesssheet: Import Accessheet
         import_assessment_questions: Întrebări de evaluare a importurilor
         import_assessment_translations: Importați traduceri de evaluare
@@ -923,6 +924,8 @@ ro:
         import_users: Importați utilizatori
         migrate_assessment_translations: Migrarea traducerii de evaluare
         normalize_factor_scores: Normalizați scorurile factorilor
+        project_compact_completion_status_export: Exportare stare finalizare compactă
+        project_completion_status_export: Stare finalizare Export
         regenerate_campaign_reports: Regenerarea rapoartelor de campanie
         regenerate_report: Regenerarea raportului
         regenerate_threesixty_report: Regenerarea raportului Threesixty
