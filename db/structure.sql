@@ -1237,7 +1237,9 @@ CREATE TABLE public.ai_assistant_requests (
     ai_assistant_id bigint,
     ai_assistant_chat_id bigint NOT NULL,
     ai_assistant_tool_call_id bigint,
-    ai_model_registry_id bigint
+    ai_model_registry_id bigint,
+    request_status integer DEFAULT 0 NOT NULL,
+    meta jsonb
 );
 
 
@@ -19770,6 +19772,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260209114529'),
 ('20260210130000'),
 ('20260212060354'),
 ('20260209123134'),

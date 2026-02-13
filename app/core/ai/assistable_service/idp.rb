@@ -9,8 +9,12 @@ module AI
 
       def initialize(plan, current_user, instructions = nil, options = {})
         @locale = options[:locale]
+        @retry_last_request = options[:retry_last_request]
 
-        super(plan, current_user, instructions, options.merge(ignore_user_prompt: true))
+        super(plan, current_user, instructions, options.merge(
+          ignore_user_prompt: true,
+          validate_response_structure: true
+        ))
       end
 
       def call
@@ -28,7 +32,7 @@ module AI
           on(:error) do |error_message, error|
             handle_assistant_service_error(error_message, error)
           end.
-          call
+          then { |service| @retry_last_request ? service.retry_last_request : service.call }
       rescue ServiceConfigurationError => e
         handle_assistant_service_error(e.message, e)
       end
@@ -47,7 +51,7 @@ module AI
       def handle_assistant_service_error(error_message, error = nil)
         error_response, error_meta = handle_assistant_error_response(error_message, error)
         mark_session_failed!(error_response, meta: error_meta)
-        broadcast(:error, error_response)
+        broadcast(:error, error_response, error)
       end
 
       def handle_assistant_service_success(assistant_response)

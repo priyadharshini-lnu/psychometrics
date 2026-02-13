@@ -256,7 +256,8 @@ describe AI::AssistableService::Idp do
           ignore_user_prompt: true,
           ask_params: nil,
           prompt_template_context: nil,
-          params: {}
+          params: {},
+          validate_response_structure: true
         )
       end
     end
@@ -295,7 +296,7 @@ describe AI::AssistableService::Idp do
 
         expected_message = I18n.t('ai.errors.generic')
         expect_session_status(session, 'failed', expected_message)
-        expect(result[:error]).to eq(expected_message)
+        expect(result[:error].first).to eq(expected_message)
 
         # Verify metadata is saved
         session.reload

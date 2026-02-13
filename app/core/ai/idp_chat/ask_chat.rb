@@ -2,15 +2,18 @@
 
 module AI::IdpChat
   class AskChat < AsyncResponseRequest::AsyncRequestHandler
+    include AsyncResponseRequest::AIRequestErrorHandler
+
     def call
       params = context[:params]
+      options = { start_new_chat: params['restart_chat'] }.merge(retry_options)
 
-      AI::AssistableService::Idp.call(plan, current_user, params['message'], start_new_chat: params['restart_chat']) do
+      AI::AssistableService::Idp.call(plan, current_user, params['message'], **options) do
         on(:ok) do |response|
           async_response.response_data = response
         end
-        on(:error) do |error_message|
-          async_response.response_data = { content: { message: error_message, component: 'Error' } }
+        on(:error) do |error_message, error|
+          handle_error_with_retry(error_message, error)
         end
       end
 

@@ -14,8 +14,8 @@ module AI::IdpChat
       assistable_service.on(:ok) do
         broadcast(:ok, user_idp_plan.reload.ai_assisted_idp_session)
       end.
-        on(:error) do |error_message, _error|
-        broadcast(:error, error_message)
+        on(:error) do |error_message, error|
+        broadcast(:error, error_message, error)
       end.
         call
     end

@@ -2,21 +2,23 @@
 
 module AI::IdpChat
   class ResetChat < AsyncResponseRequest::AsyncRequestHandler
+    include AsyncResponseRequest::AIRequestErrorHandler
+
     def call
-      AI::IdpChat::CreateNewChatSession.call(plan, start_new_chat: true) do
+      options = { start_new_chat: true }.merge(retry_options)
+
+      AI::IdpChat::CreateNewChatSession.call(plan, **options) do
         on(:ok) do |session|
           async_response.response_data = {
             content: EndUser::AIAssistedUserIdpSessionSerializer.new.serialize(session).to_h
           }
         end
-        on(:error) do |error_message|
-          async_response.response_data = { content: { message: error_message, component: 'Error' } }
+        on(:error) do |error_message, error|
+          handle_error_with_retry(error_message, error)
         end
       end
 
       broadcast(:ok, async_response)
-    rescue StandardError => e
-      async_response.response_data = { content: { message: e.error, component: 'Error' } }
     end
 
     private
