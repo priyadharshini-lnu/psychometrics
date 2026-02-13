@@ -158,7 +158,7 @@ export const BlockSettingsModal = ({ model, close, updateBlockProps }) => {
     >
       <div>
         <div className={styles.generalSettings}>
-          <Space direction="vertical">
+          <Space orientation="vertical">
             <div>
               <Space>
                 <Switch
@@ -210,7 +210,7 @@ export const BlockSettingsModal = ({ model, close, updateBlockProps }) => {
         >
           {_.map(state.layers, (layer, index) => (
             <SortableItem key={layer.id} index={index} className={styles.layer}>
-              <Space direction="vertical">
+              <Space orientation="vertical">
                 <Space>
                   <DragHandle />
                   <LabelEditor value={layer.name} onChange={v => changeLayerName(layer, v)} />

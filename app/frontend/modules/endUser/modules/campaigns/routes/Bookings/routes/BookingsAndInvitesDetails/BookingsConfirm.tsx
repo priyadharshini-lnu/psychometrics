@@ -59,7 +59,7 @@ const BookingConfirmComponent: FC<Props> = ({
   )
 
   const detailsContent = (
-    <Space size="middle" className="w-100" direction="vertical">
+    <Space size="middle" className="w-100" orientation="vertical">
       <Row wrap={false}>
         <Col span={6}><Text type="secondary">{I18n.t('frontend.bookings.what')}</Text></Col>
         <Col><Text>{title}</Text></Col>
@@ -67,7 +67,7 @@ const BookingConfirmComponent: FC<Props> = ({
       <Row>
         <Col span={6}><Text type="secondary">{I18n.t('frontend.bookings.when')}</Text></Col>
         <Col>
-          <Space size={6} direction="vertical">
+          <Space size={6} orientation="vertical">
             <Text>{bookingDateTime.clone().format('dddd, MMMM DD, YYYY')}</Text>
             <Text>
               {meetingTime}
@@ -86,7 +86,7 @@ const BookingConfirmComponent: FC<Props> = ({
   )
 
   const footerContent = (
-    <Space className="w-100" direction="vertical">
+    <Space className="w-100" orientation="vertical">
       {isRescheduleFlow && !allowRescheduleByUser ? (
         <Input.TextArea
           value={reasonForReschedule}

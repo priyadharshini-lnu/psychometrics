@@ -255,7 +255,7 @@ const Recorder = ({
                     value={Date.now() + remainingTime}
                     className={styles.countdown}
                     format="mm:ss"
-                    valueStyle={{ fontSize: 14 }}
+                    styles={{ content: { fontSize: 14 } }}
                   />
                 )}
 

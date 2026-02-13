@@ -92,7 +92,7 @@ export default function ConvertOrCopyTemplateModal ({
         </Button>,
       ]}
     >
-      <Space direction="vertical" size="middle">
+      <Space orientation="vertical" size="middle">
         <Paragraph>
           {I18n.t('administration.threesixty_campaigns.convert_template_modal.description')}
         </Paragraph>
@@ -105,7 +105,7 @@ export default function ConvertOrCopyTemplateModal ({
         }}
         value={mode}
       >
-        <Space direction="vertical" size={8}>
+        <Space orientation="vertical" size={8}>
           <Radio value="convert">
             <Text strong>
               {I18n.t('administration.threesixty_campaigns.convert_template_modal.convert_option')}

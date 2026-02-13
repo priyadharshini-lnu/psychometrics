@@ -136,7 +136,7 @@ export const MoveQuestionModal = ({
             value={position}
             onChange={e => setPosition(e.target.value)}
           >
-            <Space direction="vertical">
+            <Space orientation="vertical">
               <Radio value="before">{I18n.t('administration.survey_builder.move_question.moveBefore')}</Radio>
               <Radio value="after">{I18n.t('administration.survey_builder.move_question.moveAfter')}</Radio>
             </Space>

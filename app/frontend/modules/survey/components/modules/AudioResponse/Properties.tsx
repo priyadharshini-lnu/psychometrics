@@ -98,7 +98,7 @@ interface DurationSelectProps {
 
 const DurationSelect: FC<DurationSelectProps> = ({ value, onSelect }) => (
   <div className="ms-4 me-4">
-    <Space direction="vertical" className="w-100">
+    <Space orientation="vertical" className="w-100">
       <label htmlFor="duration_select">
         <Typography.Text strong>
           {I18n.t('administration.survey_builder.property_panel.max_duration')}

@@ -3930,11 +3930,6 @@ fr:
         generate_embedding_failure_msg: Échec à mettre en file d’attente la génération d’intégration de compétences. Veuillez réessayer.
         generate_embedding_success_msg: Le job de génération d’intégration de compétences a été mis en file d’attente avec succès. Veuillez vérifier le statut dans les notifications.
         label: Vector DB
-    skills_taxonomy:
-      tabs:
-        job_roles: Rôles professionnels
-        proficiency: Compétence
-        skills: Compétences
     sms_histories:
       columns:
         first_name: Prénom
@@ -4188,13 +4183,15 @@ fr:
       more_actions: Plus d'actions
     taxonomy:
       import:
+        description: Téléchargez un fichier Excel pour importer ou mettre à jour votre taxonomie des compétences. Cela permettra d'ajouter de nouvelles compétences, de nouveaux postes et de nouveaux niveaux de maîtrise.
         download_example_file: Télécharger le fichier d'exemple
+        drag_text: Cliquez ou faites glisser le fichier vers cette zone pour le télécharger.
+        error_title: Échec de l'importation
+        file_hint: Prend en charge les fichiers .xls et .xlsx
+        import_button: Importation de la taxonomie
         success_msg: Le fichier téléchargé a été mis en file d'attente pour l'importation. Veuillez vérifier le statut dans les notifications.
       import_action:
         taxonomy: Importer la taxonomie des compétences
-      job_roles: Rôles professionnels
-      proficiency: Compétence
-      skills: Compétences
       title: Taxonomie des compétences
     templates:
       blocks:

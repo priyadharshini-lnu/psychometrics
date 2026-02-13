@@ -28,9 +28,13 @@ describe Faas::NotificationHandlers::MediaToTranscription do
     context 'when status is failed' do
       let(:status) { 'failed' }
 
-      it 'broadcasts :ok and does not save transcription' do
-        expect(media_response).not_to receive(:create_transcription!)
-        expect(media_response).to receive(:update!).with(transcription_status: :failed)
+      before do
+        allow(media_response).to receive(:save_transcription_failed!)
+        allow(media_response).to receive(:update!)
+      end
+
+      it 'broadcasts :ok and saves error details in a new transcription' do
+        expect(media_response).to receive(:save_transcription_failed!).with({ message: 'Some error' })
         expect(subject).to receive(:broadcast).with(:ok).once
         subject.call
       end
@@ -40,14 +44,12 @@ describe Faas::NotificationHandlers::MediaToTranscription do
       let(:status) { 'completed' }
 
       before do
-        allow(media_response).to receive(:transcription).and_return(nil)
-        allow(media_response).to receive(:create_transcription!)
+        allow(media_response).to receive(:save_transcription_completed!)
         allow(media_response).to receive(:update!)
       end
 
       it 'saves transcription, updates status, logs, and broadcasts :ok' do
-        expect(media_response).to receive(:create_transcription!).with(text: transcription)
-        expect(media_response).to receive(:update!).with(transcription_status: :completed)
+        expect(media_response).to receive(:save_transcription_completed!).with('This is the transcription text.')
         expect(subject).to receive(:broadcast).with(:ok).once
         subject.call
       end

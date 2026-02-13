@@ -9,11 +9,9 @@ module MediaResponses
 
       case Settings.ai_transcription_provider.provider
         when 'oci'
-          MediaResponses::Transcriptions::Oci.call!(media_response)
+          MediaResponses::Transcriptions::Oci.call!(media_response: media_response)
         when 'faas'
-          MediaResponses::Transcriptions::Faas.call!(media_response)
-        else
-          raise "Unknown transcription provider: #{Settings.ai_transcription_provider.provider}"
+          MediaResponses::Transcriptions::Faas.call!(media_response: media_response)
       end
     end
   end

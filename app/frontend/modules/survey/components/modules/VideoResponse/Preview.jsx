@@ -185,12 +185,16 @@ class SupportedVideoRecorder extends Component {
       <div className="col">
         {features?.new_video_recording_ui ? (
           <MediaRecorder
+            key={model.id}
             mediaUrl={mediaUrl}
             questionId={model.id}
             maxDuration={model.props.duration}
             onSuccessUpload={this.successUpload}
             onDeleteMedia={this.deleteMedia}
             mediaResponse={mediaResponses[mediaResponses.length - 1]}
+            markQuestionInProgress={markQuestionInProgress}
+            removeQuestionInProgress={removeQuestionInProgress}
+            isAssessmentTimedOut={isAssessmentTimedOut}
           />
         ) : (
           <VideoRecorderComponent

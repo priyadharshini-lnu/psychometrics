@@ -9,8 +9,9 @@ class EndUser::UserAssessmentsController < ApplicationController
   prepend_before_action :authenticate_anonymous_user!
   initial_state_for %i[show pass begin]
   before_action :set_user_assessment,
-                only: %i[assessment details show pass begin validate_session upload_user_verification_image_url
-                         user_verification_image_upload_callback mark_completed]
+                only: %i[assessment show pass begin validate_session
+                         upload_user_verification_media_url user_verification_media_upload_callback
+                         mark_completed]
   before_action :redirect_and_ensure_valid_assessment_locale, only: %i[pass begin]
   before_action :can_start_based_on_sequencing, only: %i[pass show begin]
   before_action :ensure_user_confirm, only: %i[pass begin]
@@ -86,26 +87,34 @@ class EndUser::UserAssessmentsController < ApplicationController
     end
   end
 
-  def upload_user_verification_image_url
-    UserAssessmentVerificationImages::GetImageUploadUrl.call(@user_assessment, params['blob']) do
+  def upload_user_verification_media_url
+    media_type = params[:media_type].to_s
+    return head :unprocessable_entity unless %w[video audio].include?(media_type)
+
+    UserAssessmentVerificationMedia::GetMediaUploadUrl.call(@user_assessment, params['blob'], media_type) do
       on(:ok) { |data| render json: data }
       on(:error) do |error|
-        render json: {
-          error: error
-        }, status: 400
+        render json: { error: error }, status: :bad_request
       end
     end
   end
 
-  def user_verification_image_upload_callback
-    media = @user_assessment.user_assessment_verification_images.find(params[:media_id])
+  def user_verification_media_upload_callback
+    media = @user_assessment.user_assessment_verification_media.find_by(id: params[:media_id])
+
+    unless media
+      render json: { error_message: 'Media not found' }, status: :not_found
+      return
+    end
+
     media.file = params[:asset_key]
+
     if media.save
-      render json: :ok
+      render json: { status: :ok }, status: :ok
     else
-      error_message = media.errors.messages.values.join(',')
+      error_message = media.errors.full_messages.join(', ')
       media.destroy
-      render json: { error_message: error_message }, status: 422
+      render json: { error_message: error_message }, status: :unprocessable_entity
     end
   end
 

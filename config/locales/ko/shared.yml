@@ -19,6 +19,7 @@ ko:
     clear_filters: 필터 지우기
     collaborative_learning: 협력 학습
     completed: 완료됨
+    configurations: 구성
     confirm: 확인
     continue: 계속하다
     copy: 복사
@@ -27,6 +28,9 @@ ko:
     decline: 쇠퇴
     description: 묘사
     download: 다운로드
+    download_audio: 오디오 다운로드
+    download_transcription: 다운로드 트랜스크립션
+    download_video: 동영상 다운로드
     edit: 편집
     edited: 새로 만들기
     email: 이메일
@@ -46,7 +50,7 @@ ko:
     last_name: 성
     learning_on_the_job_label: 현장에서 배우기
     login: 로그인
-    media_question_transcriptions: 미디어 질문 전문
+    media_responses: 미디어 반응
     modified_by: 수정자
     modified_date: 수정된 날짜
     more_actions: 더 많은 작업
@@ -60,6 +64,7 @@ ko:
     pending: 보류 중
     processing: 처리
     question_id: 질문 ID
+    question_transcription_disabled: 이 질문에 대해서는 음성 인식 기능이 비활성화되었습니다.
     recording_consent_notice: 이 회의 세션은 녹화될 것입니다. 이 회의에 참여하는 것은 녹음에 동의한 것으로 간주됩니다.
     recording_consent_proceed_question: 녹화된 회의를 진행하는 데 동의하십니까?
     recording_consent_title: 동의서 기록 통지
@@ -88,6 +93,7 @@ ko:
     transcription: 전사
     transcription_already_requested: 이미 요청되었거나 진행 중인 전사
     transcription_not_enabled: 미디어 응답에 대한 트랜스크립션이 활성화되지 않았습니다.
+    transcription_status: 전사 상태
     transcriptions: 사본
     try_again: 다시 시도해 보세요
     tte_terms_and_condition: 약관 및 개인정보 보호

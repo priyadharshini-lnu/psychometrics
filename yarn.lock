@@ -2567,10 +2567,10 @@
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/@testing-library/user-event/-/user-event-14.5.2.tgz#db7257d727c891905947bd1c1a99da20e03c2ebd"
   integrity sha512-YAh82Wh4TIrxYLmfGcixwD18oIjyC1pFQC2Y01F2lzV2HTMiYrI0nze0FD0ocB//CKS/7jIUgae+adPqxK5yCQ==
 
-"@thetalententerprise/interactive-assessments@1.10.0":
-  version "1.10.0"
-  resolved "https://npm.pkg.github.com/download/@TheTalentEnterprise/interactive-assessments/1.10.0/3a5fbc6cc64614a2712e284e963068a9d91a5c25#3a5fbc6cc64614a2712e284e963068a9d91a5c25"
-  integrity sha512-gJqf6eFh829q1UqsUijoAdWSaKIkUk8vfXTh58L4pL1W6CTkJEk96+ZG/APN84UXVE8lbPrPJBTIifXLsUGAaA==
+"@thetalententerprise/interactive-assessments@1.10.1":
+  version "1.10.1"
+  resolved "https://npm.pkg.github.com/download/@TheTalentEnterprise/interactive-assessments/1.10.1/8db3ef8f7893d2a46d43731ab93ef4ced007fea9#8db3ef8f7893d2a46d43731ab93ef4ced007fea9"
+  integrity sha512-/KRXtMwKhpx0/yB7G6NByKsDtG8qi2vQ3PWy7mbmBsZhCw7TUqRcuwl/WX2A+7QUQsCSogiOC0J4BiemRnchfA==
   dependencies:
     javascript-obfuscator "^4.0.2"
 
@@ -5812,10 +5812,10 @@ framer-motion@^12.23.26:
     motion-utils "^12.23.6"
     tslib "^2.4.0"
 
-froala-editor@4.7.1:
-  version "4.7.1"
-  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/froala-editor/-/froala-editor-4.7.1.tgz#206c057fcb85fe58a39a8476967425f1ac4f2ecb"
-  integrity sha512-cVoRPTdJXPfacZDS07c8OmtA9PNnqi85GAllG/OXPEa4GsXhujHgxjcXW3cwGBJ8GlRNxnEs9+z/zW/6XIkL4w==
+froala-editor@5.0.0:
+  version "5.0.0"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/froala-editor/-/froala-editor-5.0.0.tgz#c196755b9729edef8de89b2da81208da2468491e"
+  integrity sha512-eIjsX+CUBbOFBIKOFN+Dyfo2hstlh2bg+i6nqR11iJWrfSgwlwsL8xmyA9fAjVrRl9zivsoT+Hrdu4mhZQXc3g==
 
 fs-constants@^1.0.0:
   version "1.0.0"
@@ -7227,9 +7227,9 @@ lodash.throttle@^4.1.1:
   integrity sha512-wIkUCfVKpVsWo3JSZlc+8MB5it+2AN5W8J7YVMST30UrvcQNZ1Okbj+rbVniijTWE6FGYy4XJq/rHkas8qJMLQ==
 
 lodash@^4.17.15, lodash@^4.17.21, lodash@~4.17.15:
-  version "4.17.21"
-  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
-  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
+  version "4.17.23"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/lodash/-/lodash-4.17.23.tgz#f113b0378386103be4f6893388c73d0bde7f2c5a"
+  integrity sha512-LgVTMpQtIopCi79SJeDiP0TfWi5CNEc/L/aRdTh3yIvmZXTnheWpKjSZhnvMl8iXbC1tFg9gdHHDMLoV7CnG+w==
 
 loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.4.0:
   version "1.4.0"
@@ -7492,7 +7492,7 @@ mimic-response@^3.1.0:
 
 min-document@^2.19.0:
   version "2.19.2"
-  resolved "https://registry.yarnpkg.com/min-document/-/min-document-2.19.2.tgz#f95db44639eaae3ac8ea85ae6809ae85ff7e3b81"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/min-document/-/min-document-2.19.2.tgz#f95db44639eaae3ac8ea85ae6809ae85ff7e3b81"
   integrity sha512-8S5I8db/uZN8r9HSLFVWPdJCvYOejMcEC82VIzNUc6Zkklf/d1gg2psfE79/vyhWOj4+J8MtwmoOz3TmvaGu5A==
   dependencies:
     dom-walk "^0.1.0"
@@ -8876,12 +8876,12 @@ react-flip-move@^3.0.4:
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/react-flip-move/-/react-flip-move-3.0.5.tgz#8b87510ad32ebef01ebca94902b445f456bbc0f7"
   integrity sha512-Mf4XpbkUNZy9eu80iXXFIjToDvw+bnHxmKHVoositbMpV87O/EQswnXUqVovRHoTx/F+4dE+p//PyJnAT7OtPA==
 
-react-froala-wysiwyg@^4.7.1:
-  version "4.7.1"
-  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/react-froala-wysiwyg/-/react-froala-wysiwyg-4.7.1.tgz#1774af3e8d8dd25bddd99917ee78817af4e07242"
-  integrity sha512-nJONaqdODMi786HKlf/1kQg2+6QqIWipwmx5i6rRFYQdx0fvxQLCheKa0PvyPTY68CXMYZcHCRoIkn9ulXzdpw==
+react-froala-wysiwyg@^5.0.0:
+  version "5.0.0"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/react-froala-wysiwyg/-/react-froala-wysiwyg-5.0.0.tgz#983969dda51c56055441393f2338e98bffe66b38"
+  integrity sha512-1pTOXbwDOzP+zOJ0P3fdD1cA24D0VEv+AIh8ofMLOgJyTFMmxqlKiPGCA+cpdM7n9GnC/bKhqjR5MHAtb1fHDA==
   dependencies:
-    froala-editor "4.7.1"
+    froala-editor "5.0.0"
     serialize-javascript "^6.0.2"
 
 react-google-recaptcha@^2.0.0-rc.1:

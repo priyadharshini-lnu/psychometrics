@@ -893,6 +893,7 @@ ro:
         export_users: Exportul utilizatorilor campaniei
         external_assessment_export: Exportați rezultate externe
         generate_embedding_skills: Generează Embedding pentru abilități
+        generate_transcription: Generați transcrierea
         import_accesssheet: Import Accessheet
         import_assessment_questions: Întrebări de evaluare a importurilor
         import_assessment_translations: Importați traduceri de evaluare
@@ -923,6 +924,8 @@ ro:
         import_users: Importați utilizatori
         migrate_assessment_translations: Migrarea traducerii de evaluare
         normalize_factor_scores: Normalizați scorurile factorilor
+        project_compact_completion_status_export: Exportare stare finalizare compactă
+        project_completion_status_export: Stare finalizare Export
         regenerate_campaign_reports: Regenerarea rapoartelor de campanie
         regenerate_report: Regenerarea raportului
         regenerate_threesixty_report: Regenerarea raportului Threesixty
@@ -1092,36 +1095,9 @@ ro:
       title: Detalii de evaluare
     edit: Editați
     fields:
-      category:
-        agile: AGIL
-        assessor_form: Formular evaluator
-        case_study: Studii de caz
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Formular de evaluator principal
-        meeting: Ședință
-        mettl: Mettl
-        organisational: Sondaje organizaționale
-        pearson: Pearson
-        psychometric: Psihometrice
-        saville: Saville
-        simulation: Simulare
-        skillvue: Skillvue
-        threesixty: Campania 360
-        yoodli: Yoodli
       status:
         finished: Complet
         in_progress: În curs de desfășurare
-      type:
-        common: Evaluarea TTE
-        hogan: Hogan
-        iiht: Evaluarea IIHT
-        mettl: Evaluarea Mettl
-        pearson: Evaluarea Pearson
-        saville: Evaluarea Saville
-        simulation: Evaluarea simulării
-        skillvue: Evaluarea Skillvue
-        yoodli: Evaluarea Yoodli
     flow:
       end_assessment_modal:
         custom_message: Mesaj personalizat de sfârșit de evaluare
@@ -1717,23 +1693,6 @@ ro:
     title: Schimbare parolă
     warning_message: 'Important: Schimbarea parolei vă va deconecta.'
   checking_wizard:
-    audio_check:
-      access: Acces
-      continue: Da, Ok pentru a continua
-      random_phrases:
-        eight: Fie ca cafeaua ta să fie tare și ziua ta să fie productivă.
-        five: Viața este mai frumoasă atunci când zâmbești. Zâmbește pentru microfon!
-        four: Ea vinde scoici pe malul mării.
-        nine: Atunci când aveți îndoieli, testați acest microfon funcționează!
-        one: Eu strig, tu strigi, toți strigăm după înghețată!
-        seven: Fiecare zi este un nou început. Spune-o tare și mândru!
-        six: Pizza sau paste? Deciziile sunt dificile.
-        three: Testare, unu doi trei, sunetul este cât se poate de clar!.
-        two: Vulpea maro iute sare peste câinele leneș.
-      record_title: Vă rugăm să vorbiți și să repetați următoarea propoziție de 3 ori.
-      retake: Nu, vreau să reiau
-      run_again: Aleargă din nou
-      test_message: mă bucur să vorbesc cu tine
     network_check:
       continue: Continuați
       download: Descărcare
@@ -1766,18 +1725,10 @@ ro:
       permissions: Permisiuni pentru webcam și audio
       title: Înainte de a începe această evaluare, sistemul dvs. trebuie să fie supus unor verificări.
     video_check:
-      access: Acces
-      camera_preview: Previzualizarea camerei va apărea aici
-      continue: Da, Ok pentru a continua
       description: Faceți clic pe Start Recording și înregistrați-vă în timp ce citiți pasajul de mai jos cu propria voce
       random_phrases:
         one: Sunt gata. Aceasta este o înregistrare de test pentru a confirma dacă microfonul și camera mea funcționează corect.
-      rec_text: REC
-      retake: Nu, vreau să reiau
-      run_again: Aleargă din nou
       title: Trebuie să ne asigurăm că sistemul dvs. poate înregistra înregistrarea video
-      upload_again: Încarcă din nou
-      uploading: Încărcare
   common:
     actions:
       add: Adăugați
@@ -3313,13 +3264,6 @@ ro:
     fields:
       provider:
         custom_upload: Încărcare personalizată
-        hogan: Hogan
-        internal: Intern
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Încărcare de la Mettl
       load_from_pearson: Încărcare de la Pearson

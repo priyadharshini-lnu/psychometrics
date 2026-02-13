@@ -5,6 +5,7 @@ import {
   Input, Row, Col, InputRef,
 } from 'antd'
 import { useSelector } from 'react-redux'
+import { AIInput } from '~/components/AIToolbar'
 
 import { PreviewModel } from '~/modules/survey/interfaces/questions/TextEntry'
 
@@ -20,10 +21,11 @@ interface Props {
   errors: string[]
   focus?: boolean
   questionTextId?: string
+  showEnhanceWithAI?: boolean
 }
 
 const SingleLinePreview: FC<Props> = ({
-  model, readOnly, nextPage, singleQuestionFlow, errors, focus, questionTextId,
+  model, readOnly, nextPage, singleQuestionFlow, errors, focus, questionTextId, showEnhanceWithAI = false,
 }) => {
   const inputRef = useRef<InputRef>(null)
   const forceUpdate = useForceUpdate()
@@ -72,22 +74,39 @@ const SingleLinePreview: FC<Props> = ({
     <div>
       <Row>
         <Col span={24}>
-          <Input
-            aria-invalid={!!errors.length}
-            aria-describedby={`error-for-question-${questionId}`}
-            autoComplete="off"
-            disabled={readOnly}
-            onChange={handleOnChange}
-            onKeyDown={handleKeyDown}
-            value={value}
-            type={type === 'SingleLine' ? 'text' : 'password'}
-            ref={inputRef}
-            aria-labelledby={questionTextId}
-            onContextMenu={handleConextMenu}
-            onCopy={handleCopyContentEvents}
-            onCut={handleCopyContentEvents}
-            {...(enhanceWithAIEnabled && { 'data-ai-enabled': 'true' })}
-          />
+          {enhanceWithAIEnabled && showEnhanceWithAI ? (
+            <AIInput
+              aria-invalid={!!errors.length}
+              aria-describedby={`error-for-question-${questionId}`}
+              autoComplete="off"
+              disabled={readOnly}
+              onChange={handleOnChange}
+              onKeyDown={handleKeyDown}
+              value={value}
+              type={type === 'SingleLine' ? 'text' : 'password'}
+              ref={inputRef}
+              aria-labelledby={questionTextId}
+              onContextMenu={handleConextMenu}
+              onCopy={handleCopyContentEvents}
+              onCut={handleCopyContentEvents}
+            />
+          ) : (
+            <Input
+              aria-invalid={!!errors.length}
+              aria-describedby={`error-for-question-${questionId}`}
+              autoComplete="off"
+              disabled={readOnly}
+              onChange={handleOnChange}
+              onKeyDown={handleKeyDown}
+              value={value}
+              type={type === 'SingleLine' ? 'text' : 'password'}
+              ref={inputRef}
+              aria-labelledby={questionTextId}
+              onContextMenu={handleConextMenu}
+              onCopy={handleCopyContentEvents}
+              onCut={handleCopyContentEvents}
+            />
+          )}
         </Col>
       </Row>
       <TextEntryCounter model={model} />

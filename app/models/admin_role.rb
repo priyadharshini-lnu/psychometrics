@@ -2,6 +2,7 @@
 
 class AdminRole < ApplicationRecord
   audited
+  include ApplicationConfigurationLoggable
   include AllowedPermissions
 
   has_many :memberships_admin_roles, dependent: :destroy

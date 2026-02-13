@@ -8,9 +8,8 @@ module Api
       result_generator = ::AI::WritingAssistance::ResultGenerator.new(
         user: current_user,
         text: assist_params[:text],
-        operation: assist_params[:operation],
-        context: assist_params[:context],
-        options: assist_params[:options]
+        operations: assist_params[:operations],
+        user_locale: assist_params[:user_locale]
       )
 
       result_generator.
@@ -23,12 +22,13 @@ module Api
         call
     end
 
+    private
+
     def assist_params
       params.require(:data).require(:attributes).permit(
-        :operation,
         :text,
-        context: {},
-        options: {}
+        :user_locale,
+        operations: [:type, { options: {} }]
       )
     end
 

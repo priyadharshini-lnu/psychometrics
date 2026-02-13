@@ -29,7 +29,7 @@ module Webhooks
           :resourceId,
           :availabilityDomain,
           {
-            freeformTags: %i[record_id record_type auth_token],
+            freeformTags: %i[record_id record_type auth_token admin_job_record_id],
             definedTags: { 'Oracle-Tags': %i[CreatedBy CreatedOn] },
             additionalDetails: {}
           }

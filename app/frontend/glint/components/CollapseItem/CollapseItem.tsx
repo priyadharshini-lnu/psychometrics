@@ -17,7 +17,7 @@ export const CollapseItem: FC<Props> = ({ title, list, children }) => (
       key: 'panel',
       label: title,
       children: (
-        <Space size={0} direction="vertical">
+        <Space size={0} orientation="vertical">
           {list.map(item => children(item))}
         </Space>
       ),

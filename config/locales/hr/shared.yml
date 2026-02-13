@@ -19,6 +19,7 @@ hr:
     clear_filters: Obriši filtere
     collaborative_learning: Suradničko učenje
     completed: Završeno
+    configurations: Konfiguracije
     confirm: Potvrditi
     continue: Nastaviti
     copy: Kopiraj
@@ -27,6 +28,9 @@ hr:
     decline: Pad
     description: Opis
     download: Preuzmi
+    download_audio: Preuzmi audio
+    download_transcription: Preuzmi transkripciju
+    download_video: Preuzmi video
     edit: Urediti
     edited: Novi
     email: Email
@@ -46,7 +50,7 @@ hr:
     last_name: Prezime
     learning_on_the_job_label: Učenje na poslu
     login: Prijava
-    media_question_transcriptions: Transkripti medijskih pitanja
+    media_responses: Odgovori medija
     modified_by: Autor izmjene
     modified_date: Datum izmjene
     more_actions: Više radnji
@@ -60,6 +64,7 @@ hr:
     pending: U čekanju
     processing: Obrada
     question_id: ID pitanja
+    question_transcription_disabled: Transkripcija je onemogućena za ovo pitanje.
     recording_consent_notice: Ova sjednica sjednice bit će snimljena. Vaše sudjelovanje na ovom sastanku znači vaš pristanak za snimanje.
     recording_consent_proceed_question: Slažete li se da nastavite sa snimljenim sastankom?
     recording_consent_title: Obavijest o pristanku za snimanje
@@ -83,6 +88,7 @@ hr:
     transcription: Transkripcija
     transcription_already_requested: Transkripcija je već zatražena ili je u tijeku.
     transcription_not_enabled: Transkripcija nije omogućena za medijski odgovor.
+    transcription_status: Status transkripcije
     transcriptions: Prijepisa
     try_again: Pokušaj ponovno
     tte_terms_and_condition: Uvjeti i privatnost

@@ -19,6 +19,7 @@ en-US:
     clear_filters: Clear Filters
     collaborative_learning: Collaborative Learning
     completed: Completed
+    configurations: Configurations
     confirm: Confirm
     continue: Continue
     copy: Copy
@@ -27,6 +28,9 @@ en-US:
     decline: Decline
     description: Description
     download: Download
+    download_audio: Download Audio
+    download_transcription: Download Transcription
+    download_video: Download Video
     edit: Edit
     edited: New
     email: Email
@@ -46,7 +50,7 @@ en-US:
     last_name: Last Name
     learning_on_the_job_label: Learning on the Job
     login: Login
-    media_question_transcriptions: Media Question Transcriptions
+    media_responses: Media Responses
     modified_by: Modified By
     modified_date: Modified Date
     more_actions: More actions
@@ -60,6 +64,7 @@ en-US:
     pending: Pending
     processing: Processing
     question_id: Question ID
+    question_transcription_disabled: Transcription is disabled for this question
     recording_consent_notice: This meeting session will be recorded. Your participation in this meeting constitutes your consent to be recorded.
     recording_consent_proceed_question: Do you agree to proceed with the recorded meeting?
     recording_consent_title: Recording Consent Notice
@@ -83,6 +88,7 @@ en-US:
     transcription: Transcription
     transcription_already_requested: Transcription already requested or in progress
     transcription_not_enabled: Transcription is not enabled for the media response
+    transcription_status: Transcription Status
     transcriptions: Transcriptions
     try_again: Try Again
     tte_terms_and_condition: Terms & Privacy

@@ -101,7 +101,7 @@ export const ModerateScoringComponent: FC<Props> = ({ assessorResult, canModerat
           <Tabs
             onChange={onChange}
             onTabClick={onChange}
-            tabPosition="right"
+            tabPlacement="end"
             activeKey={tab}
             items={items.map(({ icon, key }) => ({
               label: icon,

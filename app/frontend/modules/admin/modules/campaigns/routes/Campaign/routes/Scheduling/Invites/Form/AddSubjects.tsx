@@ -142,7 +142,7 @@ export const AddSubjectsComponent: FC<Props> = ({
           </Button>,
         ]}
       >
-        <Space direction="vertical">
+        <Space orientation="vertical">
           <div>
             <Space>
               {I18n.t('administration.assessment_center.invite.subjects.file_example')}

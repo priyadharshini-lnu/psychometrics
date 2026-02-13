@@ -893,6 +893,7 @@ pl:
         export_users: Eksport użytkowników kampanii
         external_assessment_export: Eksport wyników zewnętrznych
         generate_embedding_skills: Generuj osadzanie dla umiejętności
+        generate_transcription: Wygeneruj transkrypcję
         import_accesssheet: Import Accessheet
         import_assessment_questions: Pytania oceniające import
         import_assessment_translations: Importowanie tłumaczeń oceny
@@ -923,6 +924,8 @@ pl:
         import_users: Importowanie użytkowników
         migrate_assessment_translations: Migracja tłumaczenia oceny
         normalize_factor_scores: Normalizowanie wyników czynników
+        project_compact_completion_status_export: Eksport stanu ukończenia kompaktowego
+        project_completion_status_export: Status ukończenia Eksport
         regenerate_campaign_reports: Ponowne generowanie raportów kampanii
         regenerate_report: Ponowne generowanie raportu
         regenerate_threesixty_report: Raport Regenerate Threesixty
@@ -1092,36 +1095,9 @@ pl:
       title: Szczegóły oceny
     edit: Redagować
     fields:
-      category:
-        agile: ZWINNY
-        assessor_form: Formularz asesora
-        case_study: Przypadków
-        hogan: Hogan
-        iiht: Międzynarodowa Biblioteka Medyczna (IIH
-        lead_assessor_form: Formularz głównego asesora
-        meeting: Spotkanie
-        mettl: 'Mettl powiedział:'
-        organisational: Ankiety organizacyjne
-        pearson: Pearson
-        psychometric: Psychometryczne
-        saville: Saville (Wyspa Saville
-        simulation: Symulacja
-        skillvue: Skillvue
-        threesixty: Kampania 360
-        yoodli: Yoodli
       status:
         finished: Gotowy
         in_progress: W toku
-      type:
-        common: Ocena TTE
-        hogan: Hogan
-        iiht: Ocena IIHT
-        mettl: Ocena Mettl
-        pearson: Ocena Pearsona
-        saville: Ocena Saville'a
-        simulation: Ocena symulacyjna
-        skillvue: Ocena Skillvue
-        yoodli: Ocena Yoodli
     flow:
       end_assessment_modal:
         custom_message: Niestandardowy komunikat o zakończeniu oceny
@@ -1721,23 +1697,6 @@ pl:
     title: Zmień hasło
     warning_message: 'Ważne: zmiana hasła spowoduje wylogowanie.'
   checking_wizard:
-    audio_check:
-      access: Dostęp
-      continue: Tak, można kontynuować
-      random_phrases:
-        eight: Niech Twoja kawa będzie mocna, a dzień produktywny.
-        five: Życie jest lepsze, gdy się uśmiechasz. Uśmiechnij się do mikrofonu!
-        four: Sprzedaje muszelki nad brzegiem morza.
-        nine: W razie wątpliwości przetestuj ten mikrofon!
-        one: Ja krzyczę, ty krzyczysz, wszyscy krzyczymy o lody!
-        seven: Każdy dzień to nowy początek - powiedz to głośno i z dumą!
-        six: Pizza czy pasta? Decyzje są trudne.
-        three: Testowanie, raz dwa trzy, dźwięk jest czysty jak może być!
-        two: Szybki brązowy lis przeskakuje leniwego psa.
-      record_title: Wypowiedz i powtórz poniższe zdanie 3 razy.
-      retake: Nie, chcę powtórzyć
-      run_again: Uruchom ponownie
-      test_message: świetnie się z tobą rozmawia
     network_check:
       continue: Kontynuuj
       download: Pobierz
@@ -1770,18 +1729,10 @@ pl:
       permissions: Uprawnienia do kamery internetowej i dźwięku
       title: Przed rozpoczęciem tej oceny system musi przejść kilka testów.
     video_check:
-      access: Dostęp
-      camera_preview: Podgląd kamery pojawi się tutaj
-      continue: Tak, można kontynuować
       description: Kliknij przycisk "Rozpocznij nagrywanie" i nagraj siebie, czytając poniższy fragment własnym głosem
       random_phrases:
         one: Jestem gotowy. To nagranie testowe, które ma potwierdzić, czy mój mikrofon i kamera działają prawidłowo.
-      rec_text: REC
-      retake: Nie, chcę powtórzyć
-      run_again: Uruchom ponownie
       title: Musimy upewnić się, że system może nagrywać wideo
-      upload_again: Prześlij ponownie
-      uploading: Przesyłanie
   common:
     actions:
       add: Dodaj
@@ -3317,13 +3268,6 @@ pl:
     fields:
       provider:
         custom_upload: Przesyłanie niestandardowe
-        hogan: Hogan
-        internal: Wewnętrzny
-        mettl: 'Mettl powiedział:'
-        pearson: Pearson
-        saville: Saville (Wyspa Saville
-        skillvue: Umiejętne
-        yoodli: Yoodli
     form:
       load_from_mettl: Załadunek z Mettl
       load_from_pearson: Załadunek z firmy Pearson

@@ -312,7 +312,7 @@ class VideoRecorder extends Component {
         const { model, preview, fitInFrame } = this.props
 
         if (!preview) { this.getUploadUrl(model.id) }
-        this.setState({ recordingState: 'recording' })
+        this.setState({ recordingState: 'recording', percent: {} })
         this.player.trigger('statechanged', { status: 'recording' })
         markQuestionInProgress(model.id, 'recording')
 

@@ -17,6 +17,14 @@ export const OutputSchemaKeyFields: React.FC<Props> = ({
   name, remove, index, ...restField
 }) => (
   <>
+    {/* Hidden field to preserve the id when editing existing records */}
+    <Form.Item
+      {...restField}
+      name={[name, 'id']}
+      hidden
+    >
+      <Input />
+    </Form.Item>
     <Flex
       className="mt-4"
       gap={16}

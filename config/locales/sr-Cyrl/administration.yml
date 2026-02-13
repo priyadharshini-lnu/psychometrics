@@ -3988,11 +3988,6 @@ sr-Cyrl:
         generate_embedding_failure_msg: Покушај додавања посла у ред за генерисање уградње вештина није успео. Молимо покушајте поново.
         generate_embedding_success_msg: Посао за генерисање уградње вештина је успешно стављен у ред. Молимо проверите статус у обавештењима.
         label: Векторска база података
-    skills_taxonomy:
-      tabs:
-        job_roles: Радне улоге
-        proficiency: Владање
-        skills: Вештине
     sms_histories:
       columns:
         first_name: Прво име
@@ -4248,13 +4243,15 @@ sr-Cyrl:
       more_actions: Више акција
     taxonomy:
       import:
+        description: Отпремите Excel фајл да бисте увезли или ажурирали своју таксономију вештина. Ово ће додати нове вештине, улоге на пословима и нивое владења.
         download_example_file: Преузмите пример фајла
+        drag_text: Кликните или повуците фајл у ово поље да бисте га отпремили.
+        error_title: Увоз није успео
+        file_hint: Подржава .xls и .xlsx датотеке
+        import_button: Увоз таксономије
         success_msg: Поднети фајл је стављен у ред за увоз. Молимо проверите статус у обавештењима.
       import_action:
         taxonomy: Увоз таксономије вештина
-      job_roles: Радне улоге
-      proficiency: Владање
-      skills: Вештине
       title: Таксономија вештина
     templates:
       blocks:

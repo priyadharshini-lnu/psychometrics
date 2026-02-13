@@ -20,8 +20,10 @@ Warden::Manager.after_set_user do |user, auth, _opts|
   next unless notice
 
   unless session.dig('warden.user.user.session', 'need_two_factor_authentication')
+    I18n.locale = user.locale || user.project&.available_locales&.first || I18n.default_locale
 
     if user.last_unsuccessful_attempt.present?
+
       flash['notice'] += "  #{I18n.t('devise.sessions.unsuccessful_sign_in_time',
                                      date_time: I18n.l(user.last_unsuccessful_attempt.in_time_zone(Time.zone),
                                                        format: :short))}"

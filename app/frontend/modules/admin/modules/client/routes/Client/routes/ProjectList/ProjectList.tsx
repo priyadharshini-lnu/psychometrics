@@ -168,7 +168,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
                 </Col>
                 <Col>
                   <Space
-                    direction="vertical"
+                    orientation="vertical"
                   >
                     <Link
                       className={styles.campaignLink}

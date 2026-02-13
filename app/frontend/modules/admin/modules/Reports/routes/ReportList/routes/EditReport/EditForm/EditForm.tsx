@@ -19,7 +19,7 @@ export const EditForm: React.FC<Props> = ({ report }) => (
       </Panel>
     </Col>
     <Col lg={12} sm={24} className="pl">
-      <Space direction="vertical" style={{ display: 'flex' }} size="large">
+      <Space orientation="vertical" style={{ display: 'flex' }} size="large">
         <Panel title={I18n.t('reports.pages.edit.assets')} collapsible>
           <Assets report={report} />
         </Panel>

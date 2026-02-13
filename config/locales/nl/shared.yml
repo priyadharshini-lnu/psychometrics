@@ -19,6 +19,7 @@ nl:
     clear_filters: Filters wissen
     collaborative_learning: Samenwerkend leren
     completed: Voltooid
+    configurations: Configuraties
     confirm: Bevestig
     continue: Voortzetten
     copy: Kopieer
@@ -27,6 +28,9 @@ nl:
     decline: Neergang
     description: Beschrijving
     download: Downloaden
+    download_audio: Audio downloaden
+    download_transcription: Transcriptie downloaden
+    download_video: Video downloaden
     edit: Bewerk
     edited: Nieuw
     email: E-mail
@@ -46,7 +50,7 @@ nl:
     last_name: Achternaam
     learning_on_the_job_label: Leren op de werkvloer
     login: Inloggen
-    media_question_transcriptions: Transcripties van vragen van de media
+    media_responses: Reacties in de media
     modified_by: Gewijzigd door
     modified_date: Gewijzigde datum
     more_actions: Meer acties
@@ -60,6 +64,7 @@ nl:
     pending: In behandeling
     processing: Verwerking
     question_id: Vraag-ID
+    question_transcription_disabled: Transcriptie is uitgeschakeld voor deze vraag.
     recording_consent_notice: Deze bijeenkomst zal worden opgenomen. Uw deelname aan deze bijeenkomst betekent dat u toestemming geeft om opgenomen te worden.
     recording_consent_proceed_question: Gaat u akkoord met de opgenomen vergadering?
     recording_consent_title: Opname Toestemming Kennisgeving
@@ -88,6 +93,7 @@ nl:
     transcription: Transcriptie
     transcription_already_requested: Transcriptie al aangevraagd of in uitvoering
     transcription_not_enabled: Transcriptie is niet ingeschakeld voor de mediareactie.
+    transcription_status: Transcriptiestatus
     transcriptions: Transcripties
     try_again: Probeer het opnieuw
     tte_terms_and_condition: Voorwaarden en privacy

@@ -9,6 +9,7 @@ ko:
     add_project: 프로젝트 추가
     add_project_admin: 프로젝트 관리자 추가
     add_threesixty_campaign_admin: 캠페인 관리자 추가
+    add_word_count: 단어 수 추가
     admin_approval_required: "%{user} 보고서는 다운로드 전에 관리자의 승인이 필요합니다"
     admin_created_successfully: 관리자 '%{name}'을(를) 성공적으로 만들었습니다
     admin_export_scheduled: 관리자 내보내기 작업이 성공적으로 예약되었습니다. 알림에서 상태를 확인하세요.
@@ -17,6 +18,7 @@ ko:
     admin_roles: 관리자 역할
     admin_updated_successfully: 관리자 '%{name}'이(가) 업데이트되었습니다
     admins: 관리자
+    agile: AGILE
     ai_artifacts: AI 아티팩트
     ai_artifacts_output_schema_key_constraint: 키는 소문자로 시작해야 하며, 소문자, 숫자, 밑줄만 포함할 수 있습니다
     ai_assistant_model_id_label: 모델 ID
@@ -24,6 +26,7 @@ ko:
     ai_assistant_model_provider: 공급자
     ai_assistant_model_region_label: 부위
     ai_assistant_required: AI 어시스턴트가 필요합니다
+    ai_assistant_select_dependencies: 의존성 선택
     ai_assistants: AI 어시스턴트
     ai_assistants_advanced_mode_tooltip: 고급 모드를 사용해 액체 템플릿과 사용 가능한 변수를 사용해 프롬프트 템플릿을 작성하세요. 자세한 내용은 문서를 참고하세요.
     ai_assistants_campaign_id_placeholder: 캠페인 ID 등장
@@ -35,6 +38,10 @@ ko:
     ai_assistants_test_render: 테스트 렌더링
     ai_assistants_test_render_tooltip: 프롬프트 템플릿을 캠페인 데이터로 테스트해 AI 어시스턴트에 어떤 내용이 전송될지 확인하세요.
     ai_assisted_idp_feature_disabled: 이 프로젝트에서는 AI 지원 국내 인류 처리 기능이 비활성화되었습니다.
+    ai_idp_assistant_configure_dependencies: AI 종속성 구성
+    ai_idp_assistant_configure_dependencies_description: IDP AI 어시스턴트가 컨텍스트로 접근할 수 있는 종속성 데이터를 구성합니다. 이는 어시스턴트가 종속성을 수락하도록 구성된 경우에만 적용됩니다.
+    ai_idp_assistant_dependencies_updated: 의존성 업데이트 성공
+    ai_idp_assistant_update_dependencies: 의존성 업데이트
     ai_notice: 강조된 부분은 AI 번역으로 처리되었으며 부정확한 내용이 포함될 수 있습니다.
     ai_translation: 인공지능 번역
     all_corner_rounded: 모든 모서리가 둥글게 처리됨
@@ -44,6 +51,7 @@ ko:
     assessments_not_mhs: 모든 평가는 MHS 유형이어야 합니다
     assessments_reports: 평가 및 보고서
     assessor_dashboard: 평가자 대시보드
+    assessor_form: 평가자 양식
     assessor_workshops: 평가 센터
     assessors: 평가자
     assistant_toolbar_failed: 여러 번 시도한 후에도 유효한 출력을 생성하지 못했습니다.
@@ -83,14 +91,20 @@ ko:
     campaign_templates: 캠페인 템플릿
     campaign_user_job_roles_cannot_be_same: 지원 직무는 현재 직무와 달라야 합니다.
     campaigns: 캠페인
+    cancellation_and_rescheduling_disabled: 취소 및 일정 변경 기능이 비활성화되었습니다
+    case_study: 사례 연구
+    casual: 캐주얼
     client: 클라이언트 테넌시
     client_admins: 클라이언트 관리자
     clients: 고객 임차
     code_required: 코드 필요
+    common: TTE 평가
+    common_assessment: TTE 평가
     communication_center: 커뮤니케이션 센터
     communications: 커뮤니케이션
     completed: 완료
     completed_tooltip: 모든 평가자가 평가를 제출했습니다
+    concise: 간결한
     confirm_remove_admin: 이메일 '%{email}'을 사용하는 관리자 사용자를 제거하시겠습니까?
     country: 국가
     create_client: 클라이언트 만들기
@@ -117,16 +131,29 @@ ko:
     empty_csv_file: CSV 파일에는 데이터가 포함되어 있지 않습니다.
     enable_enhance_with_ai_client_level: 클라이언트 수준에서 AI로 향상 기능을 활성화하십시오
     enable_transcription: 자막 활성화
+    enhance_with_ai: AI로 향상시키다
     enhance_with_ai_requires_ai_assistants: AI로 향상시키려면 AI 어시스턴트 기능이 활성화되어 있어야 합니다
+    error: 오류
     evaluation_status: 평가 현황
     evaluation_status_not_done: 한 명 이상의 선정 과목에 대한 평가 상태는 '완료'가 아닙니다. 모든 선택된 사용자가 평가를 완료했는지 확인하거나 완료 표시를 해 주세요.
     export_admin_roles_permissions: 관리자 역할 및 권한 내보내기
+    export_compact_completion_status: 컴팩트
+    export_completion_status: 수출 완료 상태
+    export_completion_statuses_scheduled: 완료 상태 내보내기 작업이 성공적으로 예약되었습니다
+    export_detailed_completion_status: 상세한
     feature_enhance_with_ai: AI로 향상시키다
     feature_flags: 기능 플래그
     fill_empty_score_msg: 저장하기 전에 모든 최종 점수를 입력하세요.
     final_score_empty_err_msg: "%{factor_name}의 최종 점수는 비어 있을 수 없습니다."
+    fix_grammar: 문법 수정
+    formal: 공식적인
+    generate_transcription: 자막 생성
+    hogan: Hogan
+    hogan_assessment: AGILE
     idp_plan_reset_success: 계획이 성공적으로 재설정되었습니다
     idp_templates: IDP 템플릿
+    iiht: IIHT
+    iiht_assessment: IIHT 평가
     import_ai_artifacts: AI 산출물 가져오기
     import_csv_assessment_group_error: "%{index} 행: 이메일 %{email} 사용자는 이미 '%{workshopInviteName}'에 초대되었습니다."
     import_csv_error: "%{index}행: 이메일 %{email} 있는 사용자는 이 캠페인에 참여하지 않습니다"
@@ -150,8 +177,10 @@ ko:
     import_title: CSV에서 주제 가져오기
     import_upload: 업로드
     import_users: 사용자 가져오기
+    internal: 내부
     invalid_csv_header: CSV 파일에는 잘못된 헤더가 포함되어 있습니다.
     job_roles: 직무 역할
+    lead_assessor_form: 리드 평가자 양식
     learning_from_others: 협력 학습 [20]
     level: 레벨
     level_apply: 지원하다
@@ -163,7 +192,10 @@ ko:
     licenses: 라이선스
     manager_approval_required: "%{user} 보고서는 다운로드 전에 관리자의 승인이 필요합니다"
     max_value: 최대값
+    meeting: 회의
     messages: 메시지
+    mettl: Mettl
+    mettl_assessment: Mettl 평가
     mhs: MHS
     mhs_assessment: MHS 평가
     mhs_assessment_name: MHS 평가명
@@ -190,7 +222,11 @@ ko:
     on_the_job: 현장 [70]
     only_editable_on_create: 이 옵션은 생성 중에만 편집할 수 있습니다.
     options: 옵션
+    organisational: 조직 설문 조사
+    original_text: 원문
     participants: 참가자
+    pearson: Pearson
+    pearson_assessment: 피어슨 평가
     permissions:
       aiArtifacts:
         export: 수출
@@ -615,6 +651,8 @@ ko:
     permissions_360_campaigns: 360 캠페인 관련 권한
     piped_text: 파이핑된 텍스트
     privacy: 개인정보 보호
+    professional: 전문적인
+    proficiency: 숙련도
     proficiency_level: API 키
     proficiency_levels: 숙련도 수준
     profile_details: 프로필 세부 정보
@@ -623,6 +661,7 @@ ko:
     project_number: 프로젝트 번호
     project_settings: 프로젝트 설정
     projects: 프로젝트
+    psychometric: 사이코메트릭
     question_center: 질문 센터
     questions: 질문
     reflection_questions: 성찰 질문
@@ -643,6 +682,7 @@ ko:
     reset_idp_plan_confirmation: 정말 계획을 다시 세우고 싶은 거야?
     reset_idp_plan_title: 리셋 플랜
     response_meta: 응답 메타
+    result: 결과
     results: 결과
     role: 역할
     saml_idp_certificate_available: 이용 가능 (클릭하여 복사)
@@ -693,6 +733,8 @@ ko:
     saml_service_provider_updated_date: 업데이트 날짜
     saml_service_providers: 서비스 제공자
     saml_settings: SAML 설정
+    saville: Saville
+    saville_assessment: 새빌 평가
     scheduling: 일정 예약
     scoring: 채점
     scoring_value_info: 점수는 %{min}와 %{max} 사이여야 합니다.
@@ -708,9 +750,13 @@ ko:
     show_submenu: 하위 메뉴 표시
     show_translated: 번역된 내용 표시
     siem: SIEM
+    simulation: 시뮬레이션
+    simulation_assessment: 시뮬레이션 평가
     skill_aliases: 스킬 별칭
     skills: 기술
     skills_taxonomy: 기술 분류
+    skillvue: 스킬뷰
+    skillvue_assessment: Skillvue 평가
     slot_name: 슬롯 이름
     sms_histories: SMS 기록
     sms_invites: SMS 초대
@@ -720,12 +766,18 @@ ko:
     subdomain: 하위 도메인
     subject_part_of_other_invite: 이메일 주소 %{user_email}을 가진 사용자는 이미 '%{workshop_invite_name}'에 초대되었습니다.
     target_job_role: 목표 직무 역할
+    threesixty: 360 캠페인
+    tone: 톤
     toolbar_ai_insight: AI 인사이트
     toolbar_ai_suggestion: AI 제안
     toolbar_result_generating: 생성 중...
     toolbar_text_copied: 클립보드에 복사됨
     toolbar_text_replaced: 텍스트가 대체되었습니다!
     toolbar_what_changed_and_why: 무엇이 바뀌었으며 그 이유는 무엇인가
+    tools: 도구
+    transcription_record_not_found: 전사 기록을 찾을 수 없습니다
+    transcription_schedule_failed: 전사 작업 예약에 실패했습니다.
+    transcription_scheduled: 전사 작업이 예약되었습니다. 모달을 닫고 알림 상태를 확인해 주세요.
     translate: 번역
     translate_to: 번역하기
     translate_with_ai: AI로 번역
@@ -739,11 +791,14 @@ ko:
     users: 사용자
     view_licenses: 라이선스 보기
     waiting: 기다리기
+    words: 단어
     workshops: 워크샵
     writing_assistant_not_configured: 작성 보조 기능이 설정되지 않았습니다.
     x_axis_interval_label: X축 간격
     y_axis_interval_label: Y축 간격
     year: 국가
+    yoodli: 유들리
     yoodli_activity_id: Yoodli 활동 ID
+    yoodli_assessment: 유들리 평가
     yoodli_email_id: 유들리 후보자 이메일 ID
     yoodli_external_assessment_id: Yoodli 평가 ID

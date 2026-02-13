@@ -85,7 +85,7 @@ export const GraphValueConditionModal = () => {
     <Modal
       title={I18n.t('administration.report_builder.property_panel.graph_value_conditions_title')}
       width={800}
-      destroyOnClose
+      destroyOnHidden
       closable={!isGraphTypeSupported}
       open
       onCancel={() => dispatch(closeModal('graphValueConditionModal'))}
@@ -97,7 +97,7 @@ export const GraphValueConditionModal = () => {
         <Form initialValues={{ graphValueConditions }} form={form}>
           <Form.List name="graphValueConditions">
             {(fields, { add, remove }) => (
-              <Space direction="vertical" className="w-100" size="middle">
+              <Space orientation="vertical" className="w-100" size="middle">
                 {fields.map((field, index) => (
                   <div className={styles.conditionContainer}>
                     {fields.length > 1 && (
@@ -109,7 +109,7 @@ export const GraphValueConditionModal = () => {
                         className={styles.removeBtn}
                       />
                     )}
-                    <Space className="w-100" direction="vertical">
+                    <Space className="w-100" orientation="vertical">
                       <Form.List name={[field.name, 'conditions']}>
                         {(fields, { add, remove }) => (
                           <>
@@ -211,7 +211,7 @@ export const GraphValueConditionModal = () => {
           </Form.List>
         </Form>
       ) : (
-        <Space direction="vertical">
+        <Space orientation="vertical">
           <Alert
             message={(
               <>

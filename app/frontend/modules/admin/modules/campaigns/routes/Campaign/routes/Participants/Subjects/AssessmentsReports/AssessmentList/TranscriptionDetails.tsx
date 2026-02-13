@@ -1,11 +1,14 @@
 import { FC, useEffect, useState } from 'react'
 import {
-  Table, Button, Tooltip, Divider, Modal,
+  Table, Button, Divider, Modal, MenuProps,
+  message,
 } from 'antd'
-import { DownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { TableSkeleton } from '~/glint'
 import { downloadTextFile } from '~/utils/downloadTextFile'
 import { useResources } from '~/hooks/useResources'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { MenuItem } from '~/interfaces/Antd'
 
 const { I18n } = window
 
@@ -15,27 +18,28 @@ interface Assessment {
 
 interface Props {
   assessment?: Assessment
+  campaignId: string
 }
 
 interface MediaResponse {
-  id: number
+  id: string
   questionId: number
   transcriptionText: string | null
   questionType: string
   transcriptionStatus: string
   transcriptionEnabled: boolean
-  assetAttached: boolean
+  assetUrl: string
 }
 
 const TranscriptionDetails: FC<Props> = ({
   assessment,
+  campaignId,
 }) => {
   const { collectionAction, memberAction } = useResources('media_responses')
   const [mediaResponses, setMediaResponses] = useState<MediaResponse[]>([])
   const [loading, setLoading] = useState<boolean>(true)
-  const [generatingIds, setGeneratingIds] = useState<Set<number>>(new Set())
   const [confirmModalVisible, setConfirmModalVisible] = useState<boolean>(false)
-  const [selectedMediaResponseId, setSelectedMediaResponseId] = useState<number | null>(null)
+  const [selectedMediaResponseId, setSelectedMediaResponseId] = useState<string | null>(null)
 
   useEffect(() => {
     if (assessment?.id) {
@@ -59,7 +63,7 @@ const TranscriptionDetails: FC<Props> = ({
     }
   }
 
-  const showGenerateConfirmation = (mediaResponseId: number) => {
+  const showGenerateConfirmation = (mediaResponseId: string) => {
     setSelectedMediaResponseId(mediaResponseId)
     setConfirmModalVisible(true)
   }
@@ -77,7 +81,7 @@ const TranscriptionDetails: FC<Props> = ({
     setSelectedMediaResponseId(null)
   }
 
-  const handleDownloadTranscription = (transcriptionText: string, questionId: number) => {
+  const handleDownloadTranscription = (transcriptionText: string | null, questionId: number) => {
     if (!transcriptionText || !assessment?.id) return
     downloadTextFile(
       transcriptionText,
@@ -85,21 +89,61 @@ const TranscriptionDetails: FC<Props> = ({
     )
   }
 
-  const handleGenerateTranscription = async (mediaResponseId: number) => {
-    setGeneratingIds(prev => new Set(prev).add(mediaResponseId))
+  const handleGenerateTranscription = async (mediaResponseId: string) => {
     try {
       await memberAction({
-        id: mediaResponseId.toString(),
-        action: 'generate_transcription',
+        id: mediaResponseId,
+        action: `generate_transcription?campaign_id=${campaignId}`,
         method: 'post',
       })
+      message.success(I18n.t('admin.transcription_scheduled'))
     } catch (error) {
-      setGeneratingIds((prev) => {
-        const next = new Set(prev)
-        next.delete(mediaResponseId)
-        return next
+      message.error(I18n.t('admin.transcription_schedule_failed'))
+    }
+  }
+
+  const getActionsMenuProps = (record: MediaResponse): MenuProps => {
+    const {
+      id, questionType, transcriptionEnabled, transcriptionText, questionId, assetUrl,
+    } = record
+    const isAudioOrVideo = questionType === 'audio' || questionType === 'video'
+    const menuItems: MenuItem[] = []
+
+    if (assetUrl) {
+      menuItems.push({
+        key: 'downloadMedia',
+        label: (
+          <a href={assetUrl} target="_blank" rel="noopener noreferrer">
+            {I18n.t(`shared.download_${questionType}`)}
+          </a>
+        ),
       })
     }
+
+    if (transcriptionEnabled && transcriptionText) {
+      menuItems.push({
+        key: 'downloadTranscription',
+        label: I18n.t('shared.download_transcription'),
+      })
+    }
+
+    if (isAudioOrVideo && transcriptionEnabled) {
+      menuItems.push({
+        key: 'generateTranscription',
+        label: I18n.t('admin.generate_transcription'),
+      })
+    }
+
+    const handleMenuClick = ({ key }) => {
+      if (key === 'downloadTranscription') {
+        handleDownloadTranscription(transcriptionText, questionId)
+      }
+      if (key === 'generateTranscription') {
+        showGenerateConfirmation(id)
+      }
+    }
+
+    return { items: menuItems, onClick: handleMenuClick }
   }
 
   const columns = [
@@ -115,72 +159,41 @@ const TranscriptionDetails: FC<Props> = ({
       render: (type: string) => (type ? I18n.t(`shared.${type}`) : I18n.t('common.text.na')),
     },
     {
-      title: I18n.t('common.column.status'),
-      dataIndex: 'transcriptionStatus',
+      title: I18n.t('shared.transcription_status'),
       key: 'transcriptionStatus',
-      render: (status: string) => (status ? I18n.t(`shared.${status}`) : I18n.t('common.text.na')),
+      render: (record: MediaResponse) => {
+        const { transcriptionStatus, transcriptionEnabled } = record
+
+        return (
+          <span>
+            {
+              transcriptionEnabled
+                ? I18n.t(`shared.${transcriptionStatus}`)
+                : I18n.t('shared.question_transcription_disabled')
+            }
+          </span>
+        )
+      },
     },
     {
-      title: I18n.t('shared.transcription'),
-      key: 'transcriptionText',
+      title: I18n.t('common.column.action'),
+      key: 'action',
       render: (record: MediaResponse) => {
-        const {
-          id, questionType, transcriptionEnabled, transcriptionText, questionId, assetAttached,
-        } = record
-        const isAudioOrVideo = questionType === 'audio' || questionType === 'video'
-        const hasTranscription = !!transcriptionText
-        const isGenerating = generatingIds.has(id)
+        const menu = getActionsMenuProps(record)
 
-        if (!assetAttached) {
-          return (
-            <Tooltip title={I18n.t('shared.asset_not_present')}>
-              {I18n.t('common.text.na')}
-            </Tooltip>
-          )
-        }
-
-        if (hasTranscription) {
-          return (
-            <Button
-              className="pn"
-              type="link"
-              icon={<DownloadOutlined />}
-              onClick={() => handleDownloadTranscription(transcriptionText, questionId)}
-            >
-              {I18n.t('shared.download')}
-            </Button>
-          )
-        }
-
-        if (isAudioOrVideo && transcriptionEnabled) {
-          if (!isGenerating) {
-            return (
-              <Button
-                className="pn"
-                type="link"
-                onClick={() => showGenerateConfirmation(id)}
-              >
-                {I18n.t('shared.generate')}
-              </Button>
-            )
-          }
-
-          return (
-            <Button
-              className="pn"
-              type="link"
-              disabled
-              loading={isGenerating}
-            >
-              {I18n.t('shared.generating')}
-            </Button>
-          )
+        if (!menu.items || menu.items.length === 0) {
+          return I18n.t('common.text.na')
         }
 
         return (
-          <Tooltip title={I18n.t('shared.transcription_not_enabled')}>
-            {I18n.t('common.text.na')}
-          </Tooltip>
+          <ConditionalDropdown
+            menu={menu}
+            innerElement={(
+              <a>
+                <MoreOutlined />
+              </a>
+            )}
+          />
         )
       },
     },
@@ -206,7 +219,7 @@ const TranscriptionDetails: FC<Props> = ({
         pagination={false}
         title={() => (
           <span className="font-bold">
-            {I18n.t('shared.media_question_transcriptions')}
+            {I18n.t('shared.media_responses')}
           </span>
         )}
       />

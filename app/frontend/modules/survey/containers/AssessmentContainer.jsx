@@ -74,7 +74,7 @@ class AssessmentContainer extends Component {
 
   render () {
     const {
-      disabled, selectedLocale, type, showAsSinglePage, data, renderedByEnduser,
+      disabled, selectedLocale, type, showAsSinglePage, data, renderedByEnduser, showEnhanceWithAI = false,
     } = this.props
 
     const { loading } = this.state
@@ -102,6 +102,7 @@ class AssessmentContainer extends Component {
                   ? (
                     <RecordingProvider>
                       <AssessmentPreview
+                        showEnhanceWithAI={showEnhanceWithAI}
                         showAsSinglePage={showAsSinglePage}
                         type={type}
                         defaultLanguage={data.default_language}

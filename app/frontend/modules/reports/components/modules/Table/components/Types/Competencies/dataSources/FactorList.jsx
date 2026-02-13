@@ -17,7 +17,7 @@ export default function FactorList ({ model, onChange }) {
 
   return (
     <div className="mtm">
-      <Space direction="vertical">
+      <Space orientation="vertical">
         <div>
           <Checkbox checked={model.props.allFactors} onChange={changeAll} />
           {' '}

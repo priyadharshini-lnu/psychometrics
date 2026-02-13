@@ -893,6 +893,7 @@ es-ES:
         export_users: Exportación de usuarios de campañas
         external_assessment_export: Exportación de resultados externos
         generate_embedding_skills: Generar incrustación para habilidades
+        generate_transcription: Generar transcripción
         import_accesssheet: Importar Accessheet
         import_assessment_questions: Preguntas de evaluación de las importaciones
         import_assessment_translations: Traducciones de evaluación de importaciones
@@ -923,6 +924,8 @@ es-ES:
         import_users: Importar usuarios
         migrate_assessment_translations: Evaluación Traducción migración
         normalize_factor_scores: Normalizar las puntuaciones de los factores
+        project_compact_completion_status_export: Exportación del estado de finalización compacto
+        project_completion_status_export: Estado de finalización Exportar
         regenerate_campaign_reports: Regenerar informes de campaña
         regenerate_report: Informe Regenerar
         regenerate_threesixty_report: Informe Regenerar Threesixty
@@ -1093,36 +1096,9 @@ es-ES:
       title: Detalles de la evaluación
     edit: Editar
     fields:
-      category:
-        agile: AGIL
-        assessor_form: Formulario para evaluadores
-        case_study: Casos prácticos
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Formulario del asesor principal
-        meeting: Reunión
-        mettl: Mettl
-        organisational: Org Encuestas
-        pearson: Pearson
-        psychometric: Psicométrico
-        saville: Saville
-        simulation: Simulación
-        skillvue: Skillvue
-        threesixty: campaña 360
-        yoodli: Yoodli
       status:
         finished: Terminado
         in_progress: En curso
-      type:
-        common: Evaluación TTE
-        hogan: Hogan
-        iiht: Evaluación del IIHT
-        mettl: Evaluación Mettl
-        pearson: Evaluación Pearson
-        saville: Evaluación Saville
-        simulation: Evaluación de la simulación
-        skillvue: Evaluación de habilidades
-        yoodli: Evaluación de Yoodli
     flow:
       end_assessment_modal:
         custom_message: Mensaje personalizado de fin de evaluación
@@ -1732,23 +1708,6 @@ es-ES:
     title: Cambiar contraseña
     warning_message: 'Importante: cambiar su contraseña cerrará su sesión.'
   checking_wizard:
-    audio_check:
-      access: Acceder
-      continue: Continuar
-      random_phrases:
-        eight: Que tu café sea fuerte y tu día productivo.
-        five: La vida es mejor cuando sonríes. ¡Sonríe para el micro!
-        four: Vende conchas en la orilla del mar.
-        nine: 'En caso de duda, pruébalo: ¡este micrófono funciona!'
-        one: Yo grito, tú gritas, ¡todos gritamos por un helado!
-        seven: Cada día es un nuevo comienzo. ¡Dilo alto y orgulloso!
-        six: "¿Pizza o pasta? Las decisiones son difíciles."
-        three: Probando, uno dos tres, ¡el sonido es clarísimo!.
-        two: El zorro marrón rápido salta sobre el perro perezoso.
-      record_title: Hable y repita 3 veces las siguientes frases.
-      retake: No, quiero retomar
-      run_again: Corre otra vez
-      test_message: es un placer hablar con usted
     network_check:
       continue: Continuar
       download: Descargar
@@ -1781,18 +1740,10 @@ es-ES:
       permissions: Permisos de cámara web y audio
       title: Antes de comenzar con esta evaluación, es necesario realizar algunas comprobaciones en su equipo.
     video_check:
-      access: Acceder
-      camera_preview: La vista previa de la cámara aparecerá aquí
-      continue: Continuar
       description: Los vídeos o las fotos que se registren en esta fase no se guardarán ni se usarán. Se utilizarán de forma local en su dispositivo para comprobar que la cámara funciona en caso de que alguna pregunta requiera la grabación de vídeo.
       random_phrases:
         one: Levanta la mano si me oyes o saluda a la cámara
-      rec_text: REC
-      retake: No, quiero retomar
-      run_again: Volver a ejecutar
       title: Tenemos que comprobar si su sistema puede grabar vídeo
-      upload_again: Cargar de nuevo
-      uploading: Cargar
   common:
     actions:
       add: Añadir
@@ -3379,13 +3330,6 @@ es-ES:
     fields:
       provider:
         custom_upload: Carga personalizada
-        hogan: Hogan
-        internal: Interno
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Carga de Mettl
       load_from_pearson: Carga de Pearson

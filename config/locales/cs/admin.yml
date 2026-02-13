@@ -9,6 +9,7 @@ cs:
     add_project: Přidat projekt
     add_project_admin: Přidání správce projektu
     add_threesixty_campaign_admin: Přidání správce kampaně
+    add_word_count: Přidat počet slov
     admin_approval_required: Report for %{user} vyžaduje schválení administrátora před stažením
     admin_created_successfully: Správce '%{name}' byl úspěšně vytvořen
     admin_export_scheduled: Úloha exportu správce byla úspěšně naplánována. Zkontrolujte prosím stav oznámení.
@@ -17,6 +18,7 @@ cs:
     admin_roles: Role správce
     admin_updated_successfully: Admin '%{name}' byl úspěšně aktualizován
     admins: Administrátoři
+    agile: AGILE
     ai_artifacts: Artefakty AI
     ai_artifacts_output_schema_key_constraint: Klíč musí začínat malým písmenem a může obsahovat pouze malá písmena, čísla a podtržítka
     ai_assistant_model_id_label: Identifikace modelu
@@ -24,6 +26,7 @@ cs:
     ai_assistant_model_provider: Poskytovatel
     ai_assistant_model_region_label: Oblast
     ai_assistant_required: AI Assistant je povinný
+    ai_assistant_select_dependencies: Vyberte závislosti
     ai_assistants: Asistenti AI
     ai_assistants_advanced_mode_tooltip: Použijte pokročilý režim pro šablonování promptů pomocí tekuté šablony s dostupnými proměnnými. Pro více informací se podívejte na dokumentaci.
     ai_assistants_campaign_id_placeholder: Vstup do kampaně ID
@@ -35,6 +38,10 @@ cs:
     ai_assistants_test_render: Testovací vykreslování
     ai_assistants_test_render_tooltip: Vyzkoušejte šablonu promptu s daty kampaně, abyste zjistili, co bude AI asistentovi odesláno.
     ai_assisted_idp_feature_disabled: Funkce AI asistovaného IDP byla pro tento projekt deaktivována.
+    ai_idp_assistant_configure_dependencies: Konfigurace závislostí AI
+    ai_idp_assistant_configure_dependencies_description: Nakonfigurujte, ke kterým závislostním datům má IDP AI Assistant přístup jako kontext. To platí pouze v případě, že je asistent nakonfigurován tak, aby přijímal závislosti.
+    ai_idp_assistant_dependencies_updated: Závislosti byly úspěšně aktualizovány
+    ai_idp_assistant_update_dependencies: Aktualizovat závislosti
     ai_notice: Zvýrazněné části byly přeloženy pomocí umělé inteligence a mohou obsahovat nepřesnosti.
     ai_translation: Překlad pomocí umělé inteligence
     all_corner_rounded: Všechny rohy zaoblené
@@ -44,6 +51,7 @@ cs:
     assessments_not_mhs: Všechna hodnocení musí být typu MHS.
     assessments_reports: Hodnocení a zprávy
     assessor_dashboard: Přístrojový panel hodnotitele
+    assessor_form: Formulář hodnotitele
     assessor_workshops: Hodnotící centrum
     assessors: Posuzovatelé
     assistant_toolbar_failed: Po několika pokusech se nepodařilo vygenerovat platný výstup.
@@ -83,14 +91,20 @@ cs:
     campaign_templates: Šablony kampaní
     campaign_user_job_roles_cannot_be_same: Cílová pracovní pozice se musí lišit od současné pracovní pozice.
     campaigns: Kampaně
+    cancellation_and_rescheduling_disabled: Zrušení a změna termínu jsou zakázány.
+    case_study: Případové studie
+    casual: Neformální
     client: Nájem klienta
     client_admins: Správci klientů
     clients: Nájemní smlouvy klientů
     code_required: Je vyžadován kód
+    common: Hodnocení TTE
+    common_assessment: Hodnocení TTE
     communication_center: Komunikační centrum
     communications: Komunikace
     completed: Hotový
     completed_tooltip: Všichni hodnotitelé již podali hodnocení
+    concise: Stručný
     confirm_remove_admin: Jste si jisti, že chcete odstranit uživatele s e-mailem '%{email}'?
     country: Země
     create_client: Vytvořit klienta
@@ -117,16 +131,29 @@ cs:
     empty_csv_file: CSV soubor neobsahuje žádná data.
     enable_enhance_with_ai_client_level: Povolte funkci Vylepšit pomocí AI na úrovni klienta.
     enable_transcription: Povolit přepis
+    enhance_with_ai: Vylepšete pomocí AI
     enhance_with_ai_requires_ai_assistants: Funkce Vylepšit pomocí AI vyžaduje, aby byla povolena funkce AI asistenti.
+    error: Chyba
     evaluation_status: Stav hodnocení
     evaluation_status_not_done: Status hodnocení není "Hotovo" u jednoho nebo více vybraných předmětů. Prosím, ujistěte se, že všichni vybraní uživatelé dokončili hodnocení nebo označili jako splněné.
     export_admin_roles_permissions: Export rolí a oprávnění správce
+    export_compact_completion_status: Kompaktní
+    export_completion_status: Stav dokončení exportu
+    export_completion_statuses_scheduled: Úloha exportu stavů dokončení byla úspěšně naplánována.
+    export_detailed_completion_status: Podrobný
     feature_enhance_with_ai: Vylepšete pomocí AI
     feature_flags: Příznaky funkcí
     fill_empty_score_msg: Vyplňte všechny konečné skóre před uložením.
     final_score_empty_err_msg: Konečné skóre hry „%{factor_name}“ nesmí být prázdné.
+    fix_grammar: Opravit gramatiku
+    formal: Formální
+    generate_transcription: Vytvořit přepis
+    hogan: Hogan
+    hogan_assessment: AGILE
     idp_plan_reset_success: Plán byl úspěšně resetován
     idp_templates: Šablony IDP
+    iiht: IIHT
+    iiht_assessment: Hodnocení IIHT
     import_ai_artifacts: Import AI artefaktů
     import_csv_assessment_group_error: 'Řádek %{index}: uživatel s e-mailem %{email} již byl pozván do skupiny „%{workshopInviteName}“.'
     import_csv_error: 'Řádek %{index}: uživatel s e-mailem %{email} není v této kampani'
@@ -150,8 +177,10 @@ cs:
     import_title: Importovat předměty z CSV
     import_upload: Upload
     import_users: Importovat uživatele
+    internal: Interní
     invalid_csv_header: CSV soubor obsahuje neplatné hlavičky.
     job_roles: Pracovní role
+    lead_assessor_form: Formulář vedoucího hodnotitele
     learning_from_others: Společné učení [20]
     level: Úroveň
     level_apply: Použít
@@ -163,7 +192,10 @@ cs:
     licenses: Licence
     manager_approval_required: Report for %{user} vyžaduje schválení manažera před stažením
     max_value: Maximální hodnota
+    meeting: Setkání
     messages: Zprávy
+    mettl: Mettl
+    mettl_assessment: Hodnocení Mettl
     mhs: MHS
     mhs_assessment: Hodnocení MHS
     mhs_assessment_name: Název hodnocení MHS
@@ -190,7 +222,11 @@ cs:
     on_the_job: V práci [70]
     only_editable_on_create: Tuto možnost lze upravit pouze při vytváření.
     options: Možnosti
+    organisational: Org Průzkumy
+    original_text: Původní text
     participants: Účastníci
+    pearson: Pearson
+    pearson_assessment: Hodnocení Pearson
     permissions:
       aiArtifacts:
         export: Vývoz
@@ -615,6 +651,8 @@ cs:
     permissions_360_campaigns: Oprávnění specifická pro kampaně 360
     piped_text: Text v potrubí
     privacy: Ochrana osobních údajů
+    professional: Profesionální
+    proficiency: Znalost
     proficiency_level: Klíče API
     proficiency_levels: Úrovně odborné způsobilosti
     profile_details: Podrobnosti o profilu
@@ -623,6 +661,7 @@ cs:
     project_number: Číslo projektu
     project_settings: Nastavení projektu
     projects: Projekty
+    psychometric: Psychometrické údaje
     question_center: Centrum otázek
     questions: Otázky
     reflection_questions: Otázky k zamyšlení
@@ -643,6 +682,7 @@ cs:
     reset_idp_plan_confirmation: Jste si jistý, že chcete plán resetovat?
     reset_idp_plan_title: Plán resetu
     response_meta: Reakce Meta
+    result: Výsledek
     results: Výsledky
     role: Role
     saml_idp_certificate_available: Dostupné (klikněte pro kopírování)
@@ -693,6 +733,8 @@ cs:
     saml_service_provider_updated_date: Datum aktualizace
     saml_service_providers: Poskytovatelé služeb
     saml_settings: SAML nastavení
+    saville: Saville
+    saville_assessment: Hodnocení Saville
     scheduling: Plánování
     scoring: Bodování
     scoring_value_info: Skóre musí být mezi %{min} a %{max}.
@@ -708,9 +750,13 @@ cs:
     show_submenu: Zobrazit dílčí nabídku
     show_translated: Zobrazit překlad
     siem: SIEM
+    simulation: Simulace
+    simulation_assessment: Hodnocení simulací
     skill_aliases: Pseudonymy dovedností
     skills: Dovednosti
     skills_taxonomy: Taxonomie dovedností
+    skillvue: Skillvue
+    skillvue_assessment: Hodnocení dovedností
     slot_name: Název slotu
     sms_histories: Historie SMS
     sms_invites: Pozvánky SMS
@@ -720,12 +766,18 @@ cs:
     subdomain: Subdoména
     subject_part_of_other_invite: Osoba s e-mailovou adresou %{user_email} již byla pozvána do skupiny „%{workshop_invite_name}“.
     target_job_role: Cílová pracovní pozice
+    threesixty: kampaň 360
+    tone: Tón
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: Návrh AI
     toolbar_result_generating: Generování...
     toolbar_text_copied: Zkopírováno do schránky
     toolbar_text_replaced: Text nahrazen!
     toolbar_what_changed_and_why: Co se změnilo a proč
+    tools: Nástroje
+    transcription_record_not_found: Transkripční záznam nebyl nalezen
+    transcription_schedule_failed: Nepodařilo se naplánovat úlohu přepisování
+    transcription_scheduled: Přepis je naplánován. Zavřete modální okno a zkontrolujte stav oznámení.
     translate: Přeložit
     translate_to: Přeložit do
     translate_with_ai: Přeložit pomocí AI
@@ -739,11 +791,14 @@ cs:
     users: Uživatelé
     view_licenses: Zobrazit licence
     waiting: Čekání
+    words: Slova
     workshops: Workshopy
     writing_assistant_not_configured: Asistent psaní není nakonfigurován
     x_axis_interval_label: Interval osy X
     y_axis_interval_label: Interval osy Y
     year: Země
+    yoodli: Yoodli
     yoodli_activity_id: Yoodli Activity ID
+    yoodli_assessment: Yoodliho hodnocení
     yoodli_email_id: E-mailové ID kandidáta Yoodli
     yoodli_external_assessment_id: Yoodli Assessment ID

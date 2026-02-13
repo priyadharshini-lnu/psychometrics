@@ -7,7 +7,6 @@ import Page from './Page'
 import { ModuleOverrides } from './ModuleOverrides'
 import useForceUpdate from '~/hooks/useUpdate'
 import PaginationPage from '~/modules/reports/models/PaginationPage'
-import AIToolbar from '~/components/AIToolbar'
 
 const { I18n } = window
 const applyPagination = (pages, module, pagination) => {
@@ -30,7 +29,6 @@ const Preview = ({
 }) => {
   const forceUpdate = useForceUpdate()
   const visiblePagesRef = useRef(null)
-  const enhanceWithAiEnabled = rstore?.getState()?.config?.project?.enhanceWithAiEnabled ?? false
 
   useEffect(() => {
     const storeListener = store.addListener('change', () => forceUpdate())
@@ -82,9 +80,6 @@ const Preview = ({
           rstore={rstore}
           moduleOverrides={moduleOverrides}
         />
-      )}
-      {!pdfExport && enhanceWithAiEnabled && rstore && (
-        <AIToolbar enabled={enhanceWithAiEnabled} withSpellchecker />
       )}
     </div>
   )

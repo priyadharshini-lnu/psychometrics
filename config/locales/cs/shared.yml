@@ -19,6 +19,7 @@ cs:
     clear_filters: Vymazat filtry
     collaborative_learning: Společné učení
     completed: Dokončeno
+    configurations: Konfigurace
     confirm: Potvrdit
     continue: Pokračovat
     copy: Kopírovat
@@ -27,6 +28,9 @@ cs:
     decline: Úpadek
     description: Popis
     download: Stáhnout
+    download_audio: Stáhnout zvukový soubor
+    download_transcription: Stáhnout přepis
+    download_video: Stáhnout video
     edit: Upravit
     edited: Nové
     email: E-mail
@@ -46,7 +50,7 @@ cs:
     last_name: Příjmení
     learning_on_the_job_label: Učení se přímo v práci
     login: Přihlášení
-    media_question_transcriptions: Přepisy otázek médií
+    media_responses: Reakce médií
     modified_by: Upraveno podle
     modified_date: Datum úpravy
     more_actions: Další akce
@@ -60,6 +64,7 @@ cs:
     pending: Čeká na vyřízení
     processing: Zpracování
     question_id: ID otázky
+    question_transcription_disabled: Přepis je pro tuto otázku zakázán.
     recording_consent_notice: Toto zasedání bude nahráváno. Vaše účast na tomto setkání znamená váš souhlas s nahráváním.
     recording_consent_proceed_question: Souhlasíte s pokračováním v zaznamenaném setkání?
     recording_consent_title: Oznámení o souhlasu s nahráváním
@@ -88,6 +93,7 @@ cs:
     transcription: Přepis
     transcription_already_requested: Přepis již byl vyžádán nebo je v procesu
     transcription_not_enabled: Přepis není pro mediální odezvu povolen.
+    transcription_status: Stav přepisu
     transcriptions: Přepisy
     try_again: Zkusit znovu
     tte_terms_and_condition: Smluvní podmínky a ochrana soukromí

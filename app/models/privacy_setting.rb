@@ -2,6 +2,7 @@
 
 class PrivacySetting < ApplicationRecord
   audited
+  include ApplicationConfigurationLoggable
 
   extend Mobility
 

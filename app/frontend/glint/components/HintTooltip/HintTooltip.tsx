@@ -10,20 +10,20 @@ type Props = {
   show?: boolean
   className?: string
   hintClassName?: string
-  overlayClassName?: string
+  rootClassName?: string
   hint: string
   placement?: TooltipPlacement
   children?: ReactElement
 }
 
 export const HintTooltip: FC<Props> = ({
-  hint, className, hintClassName, overlayClassName, placement = 'left', children = null, show = true,
+  hint, className, hintClassName, rootClassName, placement = 'left', children = null, show = true,
 }) => (
   show ? (
     <div className={styles.container}>
       <Tooltip
         placement={placement}
-        overlayClassName={cs(styles.tooltip, overlayClassName)}
+        classNames={{ root: cs(styles.tooltip, rootClassName) }}
         title={(
           <div className={cs(styles.hint, className)}>
             <div className={cs(hintClassName, styles.active)}>

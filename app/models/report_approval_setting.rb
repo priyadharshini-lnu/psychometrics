@@ -2,6 +2,7 @@
 
 class ReportApprovalSetting < ApplicationRecord
   audited
+  include ApplicationConfigurationLoggable
 
   belongs_to :campaign
   belongs_to :report

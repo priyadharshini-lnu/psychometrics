@@ -11,7 +11,7 @@ import { SkillvueDetails } from './SkillvueDetails'
 import { YoodliDetails } from './YoodliDetails'
 import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
 import RawJSON from './RawJSON'
-import { MhsDetails } from './MhsDetails'
+import MhsDetails from './MhsDetails'
 import TranscriptionDetails from './TranscriptionDetails'
 
 const { I18n } = window
@@ -25,6 +25,18 @@ interface Props {
   ) => Promise<{ response: unknown; }>
   loadingUpdateMettlSchedule: boolean
   isSuperAdmin: boolean
+  updateMhsConfidenceInterval: (
+    campaignId: string, campaignAssessmentId: number, body: {assessment: {id: string}}
+  ) => Promise<{ response: unknown; }>
+  updateMhsLeadershipBar: (
+    campaignId: string, campaignAssessmentId: number, body: {assessment: {id: string}}
+  ) => Promise<{ response: unknown; }>
+  updateMhsNormRegion: (
+    campaignId: string, campaignAssessmentId: number, body: {assessment: {id: string}}
+  ) => Promise<{ response: unknown; }>
+  updateMhsNormOption: (
+    campaignId: string, campaignAssessmentId: number, body: {assessment: {id: string}}
+  ) => Promise<{ response: unknown; }>
 }
 
 export const DetailsDrawer: FC<Props> = ({
@@ -34,6 +46,10 @@ export const DetailsDrawer: FC<Props> = ({
   updateMettlSchedule,
   loadingUpdateMettlSchedule,
   isSuperAdmin,
+  updateMhsConfidenceInterval,
+  updateMhsLeadershipBar,
+  updateMhsNormRegion,
+  updateMhsNormOption,
 }) => {
   if (!assessment) {
     return null
@@ -129,6 +145,11 @@ export const DetailsDrawer: FC<Props> = ({
             <MhsDetails
               I18n={I18n}
               assessment={assessment}
+              campaignId={campaignId}
+              updateMhsConfidenceInterval={updateMhsConfidenceInterval}
+              updateMhsLeadershipBar={updateMhsLeadershipBar}
+              updateMhsNormRegion={updateMhsNormRegion}
+              updateMhsNormOption={updateMhsNormOption}
             />
 
             <RawJSON
@@ -140,6 +161,7 @@ export const DetailsDrawer: FC<Props> = ({
       </Row>
       <TranscriptionDetails
         assessment={assessment}
+        campaignId={campaignId}
       />
     </Drawer>
   )

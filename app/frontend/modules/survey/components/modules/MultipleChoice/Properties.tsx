@@ -110,7 +110,7 @@ export const Properties: FC<Props> = (props) => {
     <div>
       <AnswerTypeSelect value={type} onSelect={handleAnswerTypeChange} />
       <Divider className="mt-4 mb-4" />
-      <Space direction="vertical" size="small">
+      <Space orientation="vertical" size="small">
         <ChoicesCountInput model={model} onChange={handleChoiceCountChange} />
         <Space className="ms-4 me-4">
           <MultilineEdit title="Choices" lines={model.props.choicesTexts} onChange={handleMultilineChange} />
@@ -177,7 +177,7 @@ interface ChoicesCountInputProps {
 
 
 const ChoicesCountInput: FC<ChoicesCountInputProps> = ({ model, onChange }) => (
-  <Space direction="vertical" className="ms-4 me-4">
+  <Space orientation="vertical" className="ms-4 me-4">
     <Typography.Text strong>
       {I18n.t(
         'administration.survey_builder.property_panel.no_of_choices',

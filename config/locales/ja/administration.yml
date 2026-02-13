@@ -3930,11 +3930,6 @@ ja:
         generate_embedding_failure_msg: スキル埋め込み生成ジョブのキューに入れませんでした。もう一度お試しください。
         generate_embedding_success_msg: スキル埋め込み生成ジョブは成功裏にキューに入りました。通知の状況を確認してください。
         label: ベクトルDB
-    skills_taxonomy:
-      tabs:
-        job_roles: 仕事の役割
-        proficiency: 熟練度
-        skills: スキル
     sms_histories:
       columns:
         first_name: 名前
@@ -4188,13 +4183,15 @@ ja:
       more_actions: より多くの行動
     taxonomy:
       import:
+        description: Excelファイルをアップロードして、スキル分類体系をインポートまたは更新してください。これにより、新しいスキル、職務役割、習熟度レベルが追加されます。
         download_example_file: 例題ファイルのダウンロード
+        drag_text: ファイルをこの領域にクリックまたはドラッグしてアップロードしてください
+        error_title: インポートに失敗しました
+        file_hint: ".xls および .xlsx ファイルをサポートします"
+        import_button: 輸入分類
         success_msg: アップロードされたファイルはインポートのためにキューに入れられました。通知でステータスを確認してください。
       import_action:
         taxonomy: スキル分類法のインポート
-      job_roles: 仕事の役割
-      proficiency: 熟練度
-      skills: スキル
       title: スキル分類法
     templates:
       blocks:

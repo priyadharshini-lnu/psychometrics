@@ -65,7 +65,7 @@ export const PaginationOptions = ({ module, onChange, pageModules }) => {
       </div>
       <div>
         <HintTooltip hint={I18n.t('administration.report_builder.pagination.hints.repeat_modules')}>
-          <Space direction="vertical" className="w-100">
+          <Space orientation="vertical" className="w-100">
             {I18n.t('administration.report_builder.pagination.repeat_modules')}
             <Select
               className="w-100"

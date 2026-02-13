@@ -97,7 +97,8 @@ describe AI::AssistableService::Base do
           ignore_user_prompt: nil,
           ask_params: nil,
           params: {},
-          prompt_template_context: prompt_context
+          prompt_template_context: prompt_context,
+          validate_response_structure: nil
         ).and_call_original
 
         service.send(:assistant_service)
@@ -245,7 +246,8 @@ describe AI::AssistableService::Base do
         ignore_user_prompt: options[:ignore_user_prompt],
         ask_params: options[:ask_params],
         prompt_template_context: options[:prompt_template_context],
-        params: options[:params] || {}
+        params: options[:params] || {},
+        validate_response_structure: options[:validate_response_structure]
       ).and_call_original
 
       service.send(:assistant_service)

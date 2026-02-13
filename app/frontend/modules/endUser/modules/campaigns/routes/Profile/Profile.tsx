@@ -197,7 +197,7 @@ function ProfileComponent ({
             <Row>
               <Col span={18}>
                 <Title level={5}>{I18n.t('profile.update_required')}</Title>
-                <Space size="middle" direction="vertical">
+                <Space size="middle" orientation="vertical">
                   <Text>{user.updateProfileMessage}</Text>
                 </Space>
               </Col>

@@ -19,6 +19,7 @@ sk:
     clear_filters: Vymazať filtre
     collaborative_learning: Kolaboratívne učenie
     completed: Dokončené
+    configurations: Konfigurácie
     confirm: Potvrďte
     continue: Pokračovať
     copy: Kopírovať
@@ -27,6 +28,9 @@ sk:
     decline: Úpadok
     description: Popis
     download: Stiahnuť
+    download_audio: Stiahnuť zvuk
+    download_transcription: Stiahnuť prepis
+    download_video: Stiahnuť video
     edit: Upraviť
     edited: Nové
     email: E-mail
@@ -46,7 +50,7 @@ sk:
     last_name: Priezvisko
     learning_on_the_job_label: Učenie sa priamo v práci
     login: Prihlásenie
-    media_question_transcriptions: Prepisy otázok médií
+    media_responses: Reakcie médií
     modified_by: Upravené
     modified_date: Dátum úpravy
     more_actions: Ďalšie akcie
@@ -60,6 +64,7 @@ sk:
     pending: Čaká na vybavenie
     processing: Spracovanie
     question_id: ID otázky
+    question_transcription_disabled: Pre túto otázku je prepis vypnutý.
     recording_consent_notice: Toto zasadnutie bude zaznamenané. Vaša účasť na tomto stretnutí znamená váš súhlas s nahrávaním.
     recording_consent_proceed_question: Súhlasíte s pokračovaním v nahrávanom stretnutí?
     recording_consent_title: Oznámenie o súhlase s nahrávaním
@@ -83,6 +88,7 @@ sk:
     transcription: Prepis
     transcription_already_requested: Prepis už bol požiadaný alebo je v procese
     transcription_not_enabled: Pre médiá nie je povolená transkripcia.
+    transcription_status: Stav prepisovania
     transcriptions: Prepisy
     try_again: Skúste to znovu
     tte_terms_and_condition: Podmienky a ochrana osobných údajov

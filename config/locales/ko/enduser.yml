@@ -28,6 +28,7 @@ ko:
     max_word_limit: 최대 %{max}단어여야 합니다
     min_word_limit: 최소 %{min}단어여야 합니다
     my_plan: 내 계획
+    no_audio_warning: 오디오가 감지되지 않았습니다. 마이크가 연결되어 있고 정상적으로 작동하는지 확인해 주세요.
     profile: 프로필
     profile_details: 세부 정보
     question_counter: 질문 %{current} / %{total}
@@ -43,4 +44,27 @@ ko:
     start_campaign_message_timed: 이 캠페인은 시간 제한이 있는 캠페인입니다. 활동을 시작하려면 '%{buttonText}' 버튼을 클릭해 주세요.
     start_campaign_message_timed_proctored: 이 캠페인은 시간 제한과 감독 방식으로 진행되며, 활동을 시작하려면 '%{buttonText}' 버튼을 클릭해 주세요.
     status_unknown: 상태 미상
+    system_check_access: 액세스
+    system_check_audio_random_phrases:
+      eight: 커피가 진하고 생산적인 하루가 되길 바랍니다.
+      five: 웃으면 인생이 더 즐거워집니다. 마이크를 향해 웃어보세요!
+      four: 그녀는 해변에서 조개를 팔고 있습니다.
+      nine: 확실하지 않다면 이 마이크가 작동하는지 테스트해 보세요!
+      one: 나도 비명을 지르고, 당신도 비명을 지르고, 우리 모두 아이스크림을 원합니다!
+      seven: 매일이 새로운 시작입니다. 큰 소리로 자랑스럽게 말하세요!
+      six: 피자 아니면 파스타? 결정은 어렵습니다.
+      three: 테스트, 하나 둘 셋, 소리가 깨끗하게 들립니다!
+      two: 재빠른 갈색 여우가 게으른 개를 뛰어넘습니다.
+    system_check_audio_title: 다음 문장을 3번 말하고 반복해 주세요.
+    system_check_camera_preview: 카메라 미리보기가 여기에 표시됩니다
+    system_check_proceed: 계속하기
+    system_check_rec_text: REC
+    system_check_retake: 아니요, 재응시하고 싶습니다
+    system_check_run_again: 다시 실행
+    system_check_start_recording: 녹화 시작
+    system_check_stop_recording: 녹화 중지
+    system_check_test_message: 만나서 반가웠습니다
+    system_check_upload_again: 다시 업로드
+    system_check_uploading: 업로드
+    system_check_video_random_phrase: 준비됐습니다. 이 녹화는 제 비디오와 마이크가 제대로 작동하는지 확인하기 위한 테스트 녹화입니다.
     tasks: 작업

@@ -106,7 +106,10 @@ class AdminJob < ApplicationJob
     export_campaign_ai_artifacts: AdminJobs::ExportCampaignAIArtifactsJob,
     import_campaign_ai_artifacts: AdminJobs::ImportCampaignAIArtifactsJob,
     generate_embedding_skills: AdminJobs::GenerateEmbeddingSkillsJob,
-    import_external_scoring_data: AdminJobs::ImportExternalScoringData
+    import_external_scoring_data: AdminJobs::ImportExternalScoringData,
+    generate_transcription: AdminJobs::GenerateTranscriptionJob,
+    project_completion_status_export: AdminJobs::ProjectCompletionStatusExport,
+    project_compact_completion_status_export: AdminJobs::ProjectCompactCompletionStatusExport
   }.freeze
 
   def perform(record, stage = nil)

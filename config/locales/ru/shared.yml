@@ -19,6 +19,7 @@ ru:
     clear_filters: Очистить фильтры
     collaborative_learning: Совместное обучение
     completed: Завершено
+    configurations: Конфигурации
     confirm: Подтвердить
     continue: Продолжить
     copy: Копировать
@@ -27,6 +28,9 @@ ru:
     decline: Спад
     description: Описание
     download: Скачать
+    download_audio: Скачать аудио
+    download_transcription: Скачать транскрипцию
+    download_video: Скачать видео
     edit: Редактировать
     edited: Отредактировано
     email: Электронная почта
@@ -46,7 +50,7 @@ ru:
     last_name: Фамилия
     learning_on_the_job_label: Обучение на рабочем месте
     login: Вход
-    media_question_transcriptions: Транскрипции вопросов СМИ
+    media_responses: Реакция СМИ
     modified_by: Изменено
     modified_date: Дата изменения
     more_actions: Дополнительные действия
@@ -60,6 +64,7 @@ ru:
     pending: В ожидании
     processing: Обработка
     question_id: Идентификатор вопроса
+    question_transcription_disabled: Транскрипция для этого вопроса отключена.
     recording_consent_notice: Эта сессия будет записываться. Ваше участие в этой встрече означает ваше согласие на запись.
     recording_consent_proceed_question: Согласны ли вы продолжить запись встречи?
     recording_consent_title: Уведомление о согласии на запись
@@ -88,6 +93,7 @@ ru:
     transcription: Транскрипция
     transcription_already_requested: Транскрипция уже заказана или находится в процессе выполнения
     transcription_not_enabled: Транскрипция не включена для медиа-ответа
+    transcription_status: Статус транскрипции
     transcriptions: Транскрипции
     try_again: Попробовать еще раз
     tte_terms_and_condition: Условия и конфиденциальность

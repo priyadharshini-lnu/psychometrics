@@ -658,7 +658,7 @@ const ScoringGroupsComponent = (props: Props) => {
                         strategy={verticalListSortingStrategy}
                         id={`group_${group.id}`}
                       >
-                        <Space className="w-100" direction="vertical">
+                        <Space className="w-100" orientation="vertical">
                           {factors.map(factor => (
                             <FactorSortable
                               key={factor.id}

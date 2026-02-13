@@ -99,7 +99,7 @@ class Factor extends Component {
 
     return (
       <>
-        <Space direction="vertical">
+        <Space orientation="vertical">
         <RenderJobFactorModes modules={modules} />
         <RenderSkillTypeModes modules={modules} callback={this.changeSkillType} />
           <HintCheckbox

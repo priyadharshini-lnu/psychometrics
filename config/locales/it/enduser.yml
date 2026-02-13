@@ -28,6 +28,7 @@ it:
     max_word_limit: Deve essere al massimo %{max} parole
     min_word_limit: Deve essere almeno %{min} parole
     my_plan: Il mio piano
+    no_audio_warning: Nessun audio rilevato. Verifica che il microfono sia collegato e funzioni correttamente.
     profile: Profilo
     profile_details: Dettagli
     question_counter: Domanda %{current} di %{total}
@@ -43,4 +44,27 @@ it:
     start_campaign_message_timed: Questa è una campagna a tempo, clicca sul pulsante '%{buttonText}' per iniziare le attività.
     start_campaign_message_timed_proctored: Questa è una campagna a tempo e sorvegliata, clicca sul pulsante '%{buttonText}' per avviare le attività.
     status_unknown: Stato sconosciuto
+    system_check_access: Accesso
+    system_check_audio_random_phrases:
+      eight: Che il vostro caffè sia forte e la vostra giornata produttiva.
+      five: La vita è migliore quando si sorride. Sorridete per il microfono!
+      four: Vende conchiglie in riva al mare.
+      nine: 'In caso di dubbio, provatelo: questo microfono funziona!'
+      one: Io urlo, tu urli, tutti urliamo per il gelato!
+      seven: 'Ogni giorno è un nuovo inizio: ditelo forte e con orgoglio!'
+      six: Pizza o pasta? Le decisioni sono difficili.
+      three: Prova, uno due tre, il suono è chiarissimo!
+      two: La volpe marrone veloce salta il cane pigro.
+    system_check_audio_title: Parlate e ripetete la seguente frase per 3 volte.
+    system_check_camera_preview: L'anteprima della fotocamera viene visualizzata qui
+    system_check_proceed: Sì, è possibile procedere
+    system_check_rec_text: REC
+    system_check_retake: No, voglio rifare il test
+    system_check_run_again: Correre di nuovo
+    system_check_start_recording: Avvio della registrazione
+    system_check_stop_recording: Interrompere la registrazione
+    system_check_test_message: è stato un piacere parlare con voi
+    system_check_upload_again: Caricare di nuovo
+    system_check_uploading: Caricamento
+    system_check_video_random_phrase: Sono pronto. Questa è una registrazione di prova per assicurarmi che il mio video e il mio microfono funzionino correttamente.
     tasks: Campagne

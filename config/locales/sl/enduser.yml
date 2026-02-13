@@ -28,6 +28,7 @@ sl:
     max_word_limit: Mora imeti največ %{max} besed
     min_word_limit: Mora imeti najmanj %{min} besed
     my_plan: Moj načrt
+    no_audio_warning: Zvok ni zaznan. Preverite, ali je mikrofon priključen in deluje pravilno.
     profile: Profil
     profile_details: Podrobnosti profila
     question_counter: Vprašanje %{current} od %{total}
@@ -43,4 +44,27 @@ sl:
     start_campaign_message_timed: To je časovno omejena kampanja, kliknite gumb '%{buttonText}' za začetek aktivnosti.
     start_campaign_message_timed_proctored: To je časovno omejena in nadzorovana kampanja, za začetek aktivnosti kliknite gumb '%{buttonText}'.
     status_unknown: Status neznan
+    system_check_access: Dostop
+    system_check_audio_random_phrases:
+      eight: Naj bo vaša kava močna in dan čim bolj produktiven.
+      five: Življenje je lepše, če se nasmehneš. Nasmehnite se za mikrofon!
+      four: Na morski obali prodaja školjke.
+      nine: Niste prepričani? Preizkusite – mikrofon deluje brezhibno!
+      one: Jaz bi sladoled, ti bi sladoled – vsi želimo sladoled!
+      seven: Vsak dan je nova priložnost. Povej ponosno in naglas!
+      six: Pica ali testenine? Včasih so odločitve res težke.
+      three: Test, ena, dve, tri – zvok je povsem jasen!.
+      two: Hitra rjava lisica preskoči lenega psa.
+    system_check_audio_title: Izgovorite in trikrat ponovite spodnji stavek.
+    system_check_camera_preview: Predogled kamere bo prikazan tukaj
+    system_check_proceed: Da, nadaljuj
+    system_check_rec_text: REC
+    system_check_retake: Ne, želim poskusiti znova
+    system_check_run_again: Začnite znova
+    system_check_start_recording: Začni snemati
+    system_check_stop_recording: Konec snemanja
+    system_check_test_message: V veselje mi je klepetati z vami
+    system_check_upload_again: Znova naloži
+    system_check_uploading: Nalaganje
+    system_check_video_random_phrase: Sem pripravljen. To je testni posnetek za potrditev, ali moj mikrofon in kamera delujeta pravilno.
     tasks: Naloge

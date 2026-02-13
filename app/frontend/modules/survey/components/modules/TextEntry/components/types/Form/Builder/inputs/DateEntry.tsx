@@ -35,7 +35,7 @@ export const DateEntry: React.FC<Props> = ({
   )?.picker ?? 'date'
 
   return (
-    <Space direction="horizontal">
+    <Space orientation="horizontal">
       <DatePicker
         size="middle"
         format={dateFormat}

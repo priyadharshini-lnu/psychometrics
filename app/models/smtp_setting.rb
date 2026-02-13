@@ -2,6 +2,7 @@
 
 class SmtpSetting < ApplicationRecord
   audited except: %i[encrypted_password encrypted_password_iv]
+  include ApplicationConfigurationLoggable
 
   belongs_to :project, class_name: 'Client'
 

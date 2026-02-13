@@ -296,7 +296,7 @@ const AddEditDrawerComponent: FC<Props> = ({
       width="80%"
       zIndex={1001}
       open={isOpen}
-      destroyOnClose
+      destroyOnHidden
       extra={buttons}
     >
       <ResourceForm

@@ -15,7 +15,7 @@ export const TranscriptionDetailsDrawer: React.FC<{
     maskClosable
     closable
     open={showTranscription}
-    destroyOnClose
+    destroyOnHidden
     width="50%"
   >
     <pre>

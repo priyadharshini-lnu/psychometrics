@@ -179,12 +179,21 @@ export const WorkshopPage: FC = () => {
       children: (
         <Flex gap={4}>
           <span>
-            {secondsToDayHoursAndMinutes(workshop.schedulingLeadTime)}
+            { workshop.disableCancellationAndRescheduling
+              ? I18n.t('administration.scheduling.info.not_allowed')
+              : secondsToDayHoursAndMinutes(workshop.schedulingLeadTime)
+            }
           </span>
           <Tooltip
-            title={schedulingTooltip(workshop)}
+            title={
+              workshop.disableCancellationAndRescheduling
+                ? I18n.t('admin.cancellation_and_rescheduling_disabled')
+                : schedulingTooltip(workshop)
+            }
           >
-            <InfoCircleOutlined />
+            <span>
+              <InfoCircleOutlined style={{ cursor: 'pointer' }} />
+            </span>
           </Tooltip>
         </Flex>
       ),
@@ -194,12 +203,21 @@ export const WorkshopPage: FC = () => {
       children: (
         <Flex gap={4}>
           <span>
-            {secondsToDayHoursAndMinutes(workshop.cancellationLeadTime)}
+            { workshop.disableCancellationAndRescheduling
+              ? I18n.t('administration.scheduling.info.not_allowed')
+              : secondsToDayHoursAndMinutes(workshop.cancellationLeadTime)
+            }
           </span>
           <Tooltip
-            title={cancellationTooltip(workshop)}
+            title={
+              workshop.disableCancellationAndRescheduling
+                ? I18n.t('admin.cancellation_and_rescheduling_disabled')
+                : cancellationTooltip(workshop)
+            }
           >
-            <InfoCircleOutlined />
+            <span>
+              <InfoCircleOutlined style={{ cursor: 'pointer' }} />
+            </span>
           </Tooltip>
         </Flex>),
     },

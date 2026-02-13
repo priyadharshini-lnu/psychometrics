@@ -144,7 +144,7 @@ const ModuleListComponent: FC<Props> = ({
   }
 
   return (
-    <Space direction="vertical" style={{ width: '100%' }} split={<Divider style={{ margin: 0 }} />} size={4}>
+    <Space orientation="vertical" style={{ width: '100%' }} separator={<Divider style={{ margin: 0 }} />} size={4}>
       {_.map(modules, module => !module.removed && (
         <div className={cs(styles.row, { [styles.selected]: selectedIds.includes(module.id) })} key={module.id}>
           <div className={styles.moduleName} onClick={() => select(module)}>

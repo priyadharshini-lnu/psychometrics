@@ -19,6 +19,7 @@ sr-Latn:
     clear_filters: Obriši filtere
     collaborative_learning: Kolaborativno učenje
     completed: Завршено
+    configurations: Конфигурације
     confirm: Potvrdi
     continue: Nastavite
     copy: Копирај
@@ -27,6 +28,9 @@ sr-Latn:
     decline: Pretraživanje
     description: Opis
     download: Преузми
+    download_audio: Преузми аудио
+    download_transcription: Преузми транскрипт
+    download_video: Преузми видео
     edit: Uredi
     edited: Novi
     email: Imejl
@@ -46,7 +50,7 @@ sr-Latn:
     last_name: Prezime
     learning_on_the_job_label: Učenje na poslu
     login: Prijava
-    media_question_transcriptions: Транскрипти медијских питања
+    media_responses: Реакције медија
     modified_by: Modifikovan od strane
     modified_date: Datum izmene
     more_actions: Više akcija
@@ -60,6 +64,7 @@ sr-Latn:
     pending: Учешће
     processing: Обрада
     question_id: Идентификациони број питања
+    question_transcription_disabled: Транскрипција је онемогућена за ово питање
     recording_consent_notice: Ova sesija sastanka će biti snimljena. Vaše učešće na ovom sastanku predstavlja vašu saglasnost da se snima.
     recording_consent_proceed_question: Da li se slažete da nastavite sa snimljenim sastankom?
     recording_consent_title: Obaveštenje o saglasnosti za snimanje
@@ -83,6 +88,7 @@ sr-Latn:
     transcription: Транскрипција
     transcription_already_requested: Транскрипција је већ затражена или у току
     transcription_not_enabled: Транскрипција није омогућена за медијски одговор
+    transcription_status: Статус транскрипције
     transcriptions: Transkripcije
     try_again: Покушај поново
     tte_terms_and_condition: Uslovi i privatnost

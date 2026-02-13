@@ -159,9 +159,9 @@ function Sidebar ({
         </Tabs.TabPane>
         <Tabs.TabPane tab={I18n.t('administration.reports.preview.history')} key="history">
           <Space
-            direction="vertical"
+            orientation="vertical"
             className={styles.events}
-            split={
+            separator={
               <Divider style={{ margin: 0 }} />
           }
           >

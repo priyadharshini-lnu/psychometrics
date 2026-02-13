@@ -86,7 +86,7 @@ export const DetailsCard: FC<DetailsCardProps> = ({
           </Col>
         </Row>
       )}
-      <Space direction="vertical">
+      <Space orientation="vertical">
         {!showStatusAtTop && (
           <Row>
             <Col span={24}>{titleElement}</Col>

@@ -24,7 +24,7 @@ const InsightPageLink = ({ field: { getValue, name }, insert }) => {
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16, style: { paddingLeft: '10px' } }}
     >
-      <Space direction="vertical">
+      <Space orientation="vertical">
         <div className="flex flex-col">
           <Form.Item
             name="text"

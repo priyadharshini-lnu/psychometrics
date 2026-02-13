@@ -43,6 +43,7 @@ const MODALS = {
   DownloadIndividualReportModal,
   ConvertOrCopyAsTemplateModal,
   StatusDetailsModal,
+  ParticipantModal,
 }
 
 const routes = [
@@ -100,7 +101,6 @@ function Index ({ setSelectedTab, selectedTab, campaignPermissions }) {
             urlPrefix=""
           />
         </div>
-        <ParticipantModal />
         <ManageRelationshipsModal />
         <ResetCampaignModal />
         <CampaignNameConfirmationModal />

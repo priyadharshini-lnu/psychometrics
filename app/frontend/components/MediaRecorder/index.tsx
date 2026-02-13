@@ -62,6 +62,9 @@ interface Props {
     url: string;
     id: number;
   };
+  markQuestionInProgress: (questionId: string, progressState: string) => void;
+  removeQuestionInProgress: (questionId: string) => void;
+  isAssessmentTimedOut: boolean;
 }
 
 const UPLOAD_CHUNK_SIZE = 5.5 * 1024 * 1024 // 5.5MB in bytes
@@ -102,7 +105,8 @@ const calculateMD5Checksum = async (blob: Blob): Promise<string> => {
 }
 
 const MediaRecorderComponent: React.FC<Props> = ({
-  mediaUrl, questionId, maxDuration, mediaResponse, onSuccessUpload, onDeleteMedia,
+  mediaUrl, questionId, maxDuration, mediaResponse, onSuccessUpload, onDeleteMedia, markQuestionInProgress,
+  removeQuestionInProgress, isAssessmentTimedOut,
 }) => {
   const { isRecording, startVideoRecording, stopVideoRecording } = useRecording()
   const [permissionGranted, setPermissionGranted] = useState<boolean>(false)
@@ -260,7 +264,6 @@ const MediaRecorderComponent: React.FC<Props> = ({
       )
       const camelizedData = humps.camelizeKeys(data)
       handleRecordingSaved(camelizedData)
-      stopVideoRecording()
     } catch (error) {
       console.error('Error completing media upload:', error)
       setError('complete')(I18n.t('assessments.video_response.error_while_uploading'))
@@ -275,6 +278,8 @@ const MediaRecorderComponent: React.FC<Props> = ({
   }
 
   const handleRecordingSaved = (data: MediaResponse): void => {
+    stopVideoRecording()
+    removeQuestionInProgress(questionId)
     onSuccessUpload(data)
     setRecordingState('saved')
     setExistingMedia(data)
@@ -339,6 +344,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
       }
       setPermissionGranted(true)
       startVideoRecording()
+      markQuestionInProgress(questionId, 'recording')
       handleStartRecording()
     } catch (error) {
       console.error('Permission denied:', error)
@@ -406,6 +412,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
 
   const handleStopRecording = useCallback((): void => {
     stopVideoRecording()
+    removeQuestionInProgress(questionId)
     stopRecording()
     if (mediaStreamRef.current) {
       mediaStreamRef.current.getTracks().forEach(track => track.stop())
@@ -498,6 +505,13 @@ const MediaRecorderComponent: React.FC<Props> = ({
     }, 3000)
   }
 
+  // Effect to handle assessment timeout
+  useEffect(() => {
+    if (isAssessmentTimedOut && status === 'recording') {
+      handleStopRecording()
+    }
+  }, [isAssessmentTimedOut, status])
+
   // Effect to handle countdown for starting recording
   useEffect(() => {
     let countdownInterval: NodeJS.Timeout
@@ -515,9 +529,11 @@ const MediaRecorderComponent: React.FC<Props> = ({
       }, 1000)
     }
 
-
-    return () => clearInterval(countdownInterval)
-  }, [status])
+    return () => {
+      clearInterval(countdownInterval)
+      stopVideoRecording()
+    }
+  }, [status, stopVideoRecording])
 
 
   const getProgressProps = (): ProgressWithCountdownProps => {
@@ -605,7 +621,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
           suffixIcon={<DownOutlined style={{ color: PLACEHOLDER_BLACK, pointerEvents: 'none' }} />}
           variant="borderless"
           disabled={status === 'recording'}
-          dropdownStyle={{ minWidth: '300px' }}
+          styles={{ popup: { root: { minWidth: '300px' } } }}
           options={getMicrophoneDevices()}
         />
         <VideoCameraOutlined style={{ alignSelf: 'center' }} />
@@ -616,7 +632,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
               {I18n.t('assessments.video_response.device_selection.camera')}
             </p>
           )}
-          dropdownStyle={{ minWidth: '300px' }}
+          styles={{ popup: { root: { minWidth: '300px' } } }}
           suffixIcon={<DownOutlined style={{ color: PLACEHOLDER_BLACK, pointerEvents: 'none' }} />}
           onChange={handleChangeVideoDevice}
           variant="borderless"

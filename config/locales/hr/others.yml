@@ -899,6 +899,7 @@ hr:
         export_users: Izvoz korisnika kampanje
         external_assessment_export: Izvoz vanjskih rezultata
         generate_embedding_skills: Generiranje ugradnje za vještine
+        generate_transcription: Generiraj transkripciju
         import_accesssheet: Uvoz pristupnog lista
         import_assessment_questions: Pitanja za procjenu uvoza
         import_assessment_translations: Prijevodi procjene uvoza
@@ -929,6 +930,8 @@ hr:
         import_users: Uvoz korisnika
         migrate_assessment_translations: Procjena Migracija prijevoda
         normalize_factor_scores: Normalizirajte rezultate faktora
+        project_compact_completion_status_export: Izvoz statusa dovršetka kompaktno
+        project_completion_status_export: Izvoz statusa dovršenosti
         regenerate_campaign_reports: Ponovno generiranje izvješća kampanje
         regenerate_report: Ponovno generiraj izvješće
         regenerate_threesixty_report: Ponovno generiraj izvješće Threesixty
@@ -1099,36 +1102,9 @@ hr:
       title: Pojedinosti o procjeni
     edit: Urediti
     fields:
-      category:
-        agile: OKRETAN
-        assessor_form: Obrazac procjenitelja
-        case_study: Studije slučaja
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Obrazac glavnog procjenitelja
-        meeting: Sastanak
-        mettl: Mettl
-        organisational: Org ankete
-        pearson: Pearson
-        psychometric: Psihometrijski
-        saville: Saville
-        simulation: Simulacija
-        skillvue: Skillvue
-        threesixty: Kampanja 360
-        yoodli: Yoodli
       status:
         finished: Završen
         in_progress: U tijeku
-      type:
-        common: Procjena TTE
-        hogan: Hogan
-        iiht: Procjena IIHT-a
-        mettl: Mettl procjena
-        pearson: Pearsonova procjena
-        saville: Procjena Savillea
-        simulation: Simulacijska procjena
-        skillvue: Procjena vještina
-        yoodli: Yoodli procjena
     flow:
       end_assessment_modal:
         custom_message: Prilagođena poruka o završetku procjene
@@ -1724,23 +1700,6 @@ hr:
     title: Promjena lozinke
     warning_message: 'Važno: Ako promijenite lozinku, automatski ćete se odjaviti.'
   checking_wizard:
-    audio_check:
-      access: Pristup
-      continue: Da, nastaviti
-      random_phrases:
-        eight: Neka vam kava bude jaka, a dan produktivan.
-        five: Život je bolji kad se smijemo. Nasmiješite se za mikrofon!
-        four: Riba ribi grize rep.
-        nine: Kada ste u nedoumici, isprobajte radi li mikrofon!
-        one: Ja volim, ti voliš, svi volimo sladoled!
-        seven: Svaki dan je novi početak. Recite to glasno i ponosno!
-        six: Pizza ili tjestenina? Odluke su teške.
-        three: Testiranje, jedan, dva, tri, zvuk je jasan koliko god može biti!
-        two: Žućkasti đak čita džepnu knjigu s ljubičastim šarenim ćilom.
-      record_title: Molimo, ponovite sljedeću rečenicu 3 puta.
-      retake: Ne, želim ponovno snimati
-      run_again: Pokušati ponovno
-      test_message: bilo mi je drago razgovarati s tobom
     network_check:
       continue: Nastaviti
       download: Preuzeti
@@ -1773,18 +1732,10 @@ hr:
       permissions: Dozvole za kameru i zvuk
       title: Prije početka ove procjene, Vaš sustav mora proći kroz neke provjere.
     video_check:
-      access: Pristupiti
-      camera_preview: Pregled kamere će se pojaviti ovdje
-      continue: Da, nastaviti
       description: Kliknite na "Pokrenuti snimanje" i snimite se dok čitate donji odlomak naglas
       random_phrases:
         one: Spreman sam. Ovo je probna snimka kako bih potvrdio da moja video i mikrofon ispravno rade.
-      rec_text: SNIMITI
-      retake: Ne, želim ponovno snimiti
-      run_again: Pokušati ponovno
       title: Moramo osigurati da Vaš sustav može snimati video
-      upload_again: Ponovno učitavanje
-      uploading: Prenijeti
   common:
     actions:
       add: Dodati
@@ -3328,13 +3279,6 @@ hr:
     fields:
       provider:
         custom_upload: Prilagođeni prijenos
-        hogan: Hogan
-        internal: Unutarnje
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Učitaj iz Mettl
       load_from_pearson: Učitaj iz Pearsona

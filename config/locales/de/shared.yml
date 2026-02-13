@@ -19,6 +19,7 @@ de:
     clear_filters: Filter löschen
     collaborative_learning: Kollaboratives Lernen
     completed: Abgeschlossen
+    configurations: Konfigurationen
     confirm: bestätigen
     continue: Fortsetzen
     copy: Kopie
@@ -27,6 +28,9 @@ de:
     decline: Ablehnen
     description: Beschreibung
     download: Herunterladen
+    download_audio: Audio herunterladen
+    download_transcription: Transkription herunterladen
+    download_video: Video herunterladen
     edit: Bearbeiten
     edited: Neu
     email: E-Mail
@@ -46,7 +50,7 @@ de:
     last_name: Familienname, Nachname
     learning_on_the_job_label: Lernen am Arbeitsplatz
     login: Anmelden
-    media_question_transcriptions: Transkriptionen von Medienfragen
+    media_responses: Medienreaktionen
     modified_by: Geändert von
     modified_date: Geändertes Datum
     more_actions: Weitere Aktionen
@@ -60,6 +64,7 @@ de:
     pending: Ausstehend
     processing: Verarbeitung
     question_id: Fragen-ID
+    question_transcription_disabled: Die Transkription ist für diese Frage deaktiviert.
     recording_consent_notice: Diese Sitzung wird aufgezeichnet. Ihre Teilnahme an diesem Treffen stellt Ihre Zustimmung zur Aufnahme dar.
     recording_consent_proceed_question: Stimmen Sie zu, mit dem aufgezeichneten Treffen fortzufahren?
     recording_consent_title: Aufzeichnung der Einwilligungsmitteilung
@@ -88,6 +93,7 @@ de:
     transcription: Transkription
     transcription_already_requested: Transkription bereits angefordert oder in Bearbeitung
     transcription_not_enabled: Die Transkription ist für die Medienantwort nicht aktiviert.
+    transcription_status: Transkriptionsstatus
     transcriptions: Abschriften
     try_again: Erneut versuchen
     tte_terms_and_condition: TTE – Geschäftsbedingungen und Datenschutzerklärung

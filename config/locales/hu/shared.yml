@@ -19,6 +19,7 @@ hu:
     clear_filters: Szűrők törlése
     collaborative_learning: Együttműködő tanulás
     completed: Befejezett
+    configurations: Konfigurációk
     confirm: Megerősítés
     continue: Folytatódik
     copy: Másolás
@@ -27,6 +28,9 @@ hu:
     decline: Hanyatlás
     description: Leírás
     download: Letöltés
+    download_audio: Audio letöltése
+    download_transcription: Letöltés Átírás
+    download_video: Videó letöltése
     edit: Szerkesztés
     edited: Új
     email: E-mail
@@ -46,7 +50,7 @@ hu:
     last_name: Vezetéknév
     learning_on_the_job_label: Tanulás munka közben
     login: Bejelentkezés
-    media_question_transcriptions: Média kérdések átirata
+    media_responses: Média reakciók
     modified_by: Módosította
     modified_date: Módosítás dátuma
     more_actions: További műveletek
@@ -60,6 +64,7 @@ hu:
     pending: Függőben
     processing: Feldolgozás
     question_id: Kérdés azonosító
+    question_transcription_disabled: A leírás le van tiltva ehhez a kérdéshez.
     recording_consent_notice: Ezt az ülést rögzítik. Részvétele ezen a találkozón azt jelenti, hogy beleegyezik a rögzítéshez.
     recording_consent_proceed_question: Beleegyezik a rögzített találkozó folytatásába?
     recording_consent_title: Felvételi beleegyezési értesítés
@@ -83,6 +88,7 @@ hu:
     transcription: Átírás
     transcription_already_requested: A leírás már megrendelve vagy folyamatban van
     transcription_not_enabled: A transzkripció nem engedélyezett a média válaszokhoz.
+    transcription_status: Átírási állapot
     transcriptions: Átiratok
     try_again: Próbáld újra
     tte_terms_and_condition: Feltételek és adatvédelem

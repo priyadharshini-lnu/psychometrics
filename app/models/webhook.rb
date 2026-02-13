@@ -2,6 +2,7 @@
 
 class Webhook < WebhookSystem::Subscription
   include SoftDelete
+  include ApplicationConfigurationLoggable
 
   EVENTS = {
     assessment_started: WebhookEvents::AssessmentStarted,

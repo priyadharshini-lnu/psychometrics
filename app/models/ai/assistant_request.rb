@@ -34,7 +34,44 @@ class AI::AssistantRequest < ApplicationRecord
            source: :result,
            class_name: 'AI::AssistantRequest'
 
+  enum :request_status, {
+    success: 0,
+    invalid: 1,
+    failed: 2
+  }, prefix: true
+
+  def mark_invalid!(error_message, error: nil)
+    update!(request_status: :invalid, meta: append_error_to_meta(error_message, 'invalid', error))
+  end
+
+  def mark_failed!(error_message, error: nil)
+    update!(request_status: :failed, meta: append_error_to_meta(error_message, 'failed', error))
+  end
+
+  def error_history
+    meta&.dig('error_history') || []
+  end
+
+  def last_error_message
+    error_history.last&.dig('message')
+  end
+
   private
+
+  def append_error_to_meta(error_message, error_type, error = nil)
+    current_meta = meta || {}
+    current_history = current_meta['error_history'] || []
+
+    error_entry = {
+      'message' => error_message,
+      'type' => error_type,
+      'timestamp' => Time.current.iso8601
+    }
+    error_entry['error'] = error.inspect if error.present?
+    updated_history = current_history + [error_entry]
+
+    current_meta.merge('error_history' => updated_history)
+  end
 
   def attachment_storage_path(attribute_name, filename)
     "private/ai_assistants/#{chat.ai_assistant_id}/ai_assistant_chats/#{ai_assistant_chat_id}/" \

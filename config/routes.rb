@@ -383,6 +383,10 @@ Rails.application.routes.draw do
             put :update_simulation_time_extension
             put :toggle_prework
             post :mark_complete
+            post :update_mhs_confidence_interval
+            post :update_mhs_leadership_bar
+            post :update_mhs_norm_region
+            post :update_mhs_norm_option
           end
         end
 
@@ -1034,8 +1038,8 @@ as: :simulation_progress_notification
           get :pass
           get :begin
           get :validate_session
-          post :upload_user_verification_image_url
-          put :user_verification_image_upload_callback
+          post :upload_user_verification_media_url
+          put :user_verification_media_upload_callback
           post :mark_completed
         end
       end
@@ -1315,6 +1319,8 @@ as: :simulation_progress_notification
               get :workshop_status_export
               get :seach_user
               put :add_manager
+              get :export_completion_status
+              get :export_compact_completion_status
             end
           end
           jsonapi_resources :memberships, only: %i[index create update show destroy] do

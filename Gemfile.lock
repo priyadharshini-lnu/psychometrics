@@ -437,7 +437,7 @@ GEM
       railties (>= 6.1.0)
     faker (2.23.0)
       i18n (>= 1.8.11, < 2)
-    faraday (1.10.4)
+    faraday (1.10.5)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
       faraday-excon (~> 1.1)
@@ -455,7 +455,7 @@ GEM
       faraday
     faraday-excon (1.1.0)
     faraday-httpclient (1.0.1)
-    faraday-multipart (1.1.1)
+    faraday-multipart (1.2.0)
       multipart-post (~> 2.0)
     faraday-net_http (1.0.2)
     faraday-net_http_persistent (1.2.0)
@@ -1223,7 +1223,7 @@ DEPENDENCIES
   enum_help (~> 0.0.17)
   factory_bot_rails
   faker (~> 2.21)
-  faraday (~> 1.10.0)
+  faraday (~> 1.10.5)
   fast_excel (~> 0.5.0)
   figaro (~> 1.2.0)
   file_validators (~> 3.0.0)

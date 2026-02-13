@@ -3927,11 +3927,6 @@ sr-Latn:
         generate_embedding_failure_msg: Failed to queue skill embedding generation job. Pokušajte ponovo.
         generate_embedding_success_msg: Posao generacije za ugradnju veština je uspešno stavljen u red. Molimo Vas da proverite status u obaveštenjima.
         label: Vektor DB
-    skills_taxonomy:
-      tabs:
-        job_roles: Radne uloge
-        proficiency: Stručnost
-        skills: Veštine
     sms_histories:
       columns:
         first_name: Ime
@@ -4180,13 +4175,15 @@ sr-Latn:
       more_actions: Više akcija
     taxonomy:
       import:
+        description: Отпремите Excel фајл да бисте увезли или ажурирали своју таксономију вештина. Ово ће додати нове вештине, улоге на пословима и нивое владења.
         download_example_file: Preuzmite primernu datoteku
+        drag_text: Кликните или повуците фајл у ово поље да бисте га отпремили.
+        error_title: Увоз није успео
+        file_hint: Подржава .xls и .xlsx датотеке
+        import_button: Увоз таксономије
         success_msg: Postavljena datoteka je stavljena u red za uvoz. Molimo Vas da proverite status u obaveštenjima.
       import_action:
         taxonomy: Uvozna taksonomija
-      job_roles: Radne uloge
-      proficiency: Stručnost
-      skills: Veštine
       title: Taksonomija
     templates:
       blocks:

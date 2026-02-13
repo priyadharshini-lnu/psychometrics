@@ -73,7 +73,9 @@ export default function List ({
             title={I18n.t('threesixty.confirm')}
             onConfirm={() => destroyParticipant(id)}
           >
-            <DeleteOutlined />
+            <span style={{ cursor: 'pointer' }}>
+              <DeleteOutlined />
+            </span>
           </Confirmation>
         )}
       />

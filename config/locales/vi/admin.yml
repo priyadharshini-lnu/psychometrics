@@ -9,6 +9,7 @@ vi:
     add_project: Thêm dự án
     add_project_admin: Thêm quản trị viên dự án
     add_threesixty_campaign_admin: Thêm quản trị viên chiến dịch
+    add_word_count: Thêm số từ
     admin_approval_required: Báo cáo cho %{user} yêu cầu sự chấp thuận của quản trị viên trước khi tải xuống
     admin_created_successfully: Quản trị viên '%{name}' đã được tạo thành công
     admin_export_scheduled: Tác vụ xuất dữ liệu quản trị viên đã được lên lịch thành công. Vui lòng kiểm tra thông báo của bạn để biết trạng thái.
@@ -17,6 +18,7 @@ vi:
     admin_roles: Vai trò quản trị viên
     admin_updated_successfully: Quản trị viên '%{name}' đã được cập nhật thành công
     admins: Quản trị viên
+    agile: NHANH NHẸN
     ai_artifacts: Đồ tạo tác AI
     ai_artifacts_output_schema_key_constraint: Khóa phải bắt đầu bằng chữ thường và chỉ có thể chứa chữ thường, số và dấu gạch dưới
     ai_assistant_model_id_label: ID mô hình
@@ -24,6 +26,7 @@ vi:
     ai_assistant_model_provider: Cung cấp
     ai_assistant_model_region_label: Vùng
     ai_assistant_required: Trợ lý AI là bắt buộc
+    ai_assistant_select_dependencies: Chọn các phụ thuộc
     ai_assistants: Trợ lý AI
     ai_assistants_advanced_mode_tooltip: Sử dụng chế độ nâng cao để tạo mẫu nhanh bằng cách sử dụng mẫu liquid với các biến có sẵn. Tham khảo tài liệu để biết thêm chi tiết.
     ai_assistants_campaign_id_placeholder: Nhập mã chiến dịch
@@ -35,6 +38,10 @@ vi:
     ai_assistants_test_render: Kết xuất thử nghiệm
     ai_assistants_test_render_tooltip: Kiểm tra mẫu lời nhắc của bạn với dữ liệu chiến dịch để kiểm tra nội dung sẽ được gửi đến trợ lý AI.
     ai_assisted_idp_feature_disabled: Tính năng AI Assisted IDP đã bị vô hiệu hóa cho dự án này.
+    ai_idp_assistant_configure_dependencies: Cấu hình các phụ thuộc của AI
+    ai_idp_assistant_configure_dependencies_description: Cấu hình dữ liệu phụ thuộc mà Trợ lý AI của IDP có thể truy cập làm bối cảnh. Điều này chỉ áp dụng khi trợ lý được cấu hình để chấp nhận các phụ thuộc.
+    ai_idp_assistant_dependencies_updated: Các phụ thuộc đã được cập nhật thành công.
+    ai_idp_assistant_update_dependencies: Cập nhật các phụ thuộc
     ai_notice: Các phần được đánh dấu đã được dịch bằng trí tuệ nhân tạo (AI) và có thể chứa sai sót.
     ai_translation: Dịch thuật bằng Trí tuệ nhân tạo
     all_corner_rounded: Tất cả các góc đều được bo tròn.
@@ -44,6 +51,7 @@ vi:
     assessments_not_mhs: Tất cả các đánh giá phải là loại MHS.
     assessments_reports: Đánh giá & Báo cáo
     assessor_dashboard: Bảng điều khiển đánh giá viên
+    assessor_form: Biểu mẫu đánh giá viên
     assessor_workshops: Trung tâm đánh giá
     assessors: Đánh giá viên
     assistant_toolbar_failed: Không thể tạo ra kết quả hợp lệ sau nhiều lần thử.
@@ -83,14 +91,20 @@ vi:
     campaign_templates: Mẫu chiến dịch
     campaign_user_job_roles_cannot_be_same: Vị trí công việc mục tiêu phải khác với vị trí công việc hiện tại.
     campaigns: Chiến dịch
+    cancellation_and_rescheduling_disabled: Chức năng hủy bỏ và thay đổi lịch trình đã bị vô hiệu hóa.
+    case_study: Nghiên cứu điển hình
+    casual: Thường ngày
     client: Khách hàng thuê nhà
     client_admins: Quản trị viên khách hàng
     clients: Thuê khách hàng
     code_required: Mã là bắt buộc
+    common: Đánh giá TTE
+    common_assessment: Đánh giá TTE
     communication_center: Trung tâm truyền thông
     communications: Truyền thông
     completed: Hoàn thành
     completed_tooltip: Tất cả các đánh giá viên đã gửi đánh giá
+    concise: Ngắn gọn
     confirm_remove_admin: Bạn có chắc chắn muốn xóa người dùng quản trị có email '%{email}' không?
     country: Quốc gia
     create_client: Tạo khách hàng
@@ -117,16 +131,29 @@ vi:
     empty_csv_file: Tệp CSV không chứa bất kỳ dữ liệu nào.
     enable_enhance_with_ai_client_level: Vui lòng kích hoạt tính năng "Enhance with AI" ở cấp độ khách hàng.
     enable_transcription: Bật tính năng chuyển văn bản
+    enhance_with_ai: Nâng cao với Trí tuệ nhân tạo (AI)
     enhance_with_ai_requires_ai_assistants: Để sử dụng tính năng "Enhance with AI", bạn cần kích hoạt tính năng "AI Assistants".
+    error: Lỗi
     evaluation_status: Trạng thái đánh giá
     evaluation_status_not_done: Trạng thái đánh giá không phải là "Xong" đối với một hoặc nhiều đối tượng được chọn. Hãy đảm bảo rằng tất cả người dùng được chọn đã hoàn thành đánh giá hoặc đánh dấu là xong.
     export_admin_roles_permissions: Xuất vai trò và quyền của quản trị viên
+    export_compact_completion_status: Gọn nhẹ
+    export_completion_status: Tình trạng hoàn thành xuất khẩu
+    export_completion_statuses_scheduled: Công việc xuất trạng thái hoàn thành đã được lên lịch thành công.
+    export_detailed_completion_status: Chi tiết
     feature_enhance_with_ai: Nâng cao với Trí tuệ nhân tạo (AI)
     feature_flags: Cờ tính năng
     fill_empty_score_msg: Điền vào tất cả các điểm cuối cùng trước khi lưu.
     final_score_empty_err_msg: Kết quả cuối cùng của "%{factor_name}" không được để trống.
+    fix_grammar: Sửa lỗi ngữ pháp
+    formal: Chính thức
+    generate_transcription: Tạo bản chép lời
+    hogan: Hogan
+    hogan_assessment: NHANH NHẸN
     idp_plan_reset_success: Kế hoạch đã được đặt lại thành công
     idp_templates: Mẫu IDP
+    iiht: IIHT
+    iiht_assessment: Đánh giá IIHT
     import_ai_artifacts: Nhập hiện vật AI
     import_csv_assessment_group_error: 'Dòng %{index}: Người dùng có địa chỉ email %{email} đã được mời tham gia ''%{workshopInviteName}''.'
     import_csv_error: 'Hàng %{index}: người dùng có %{email} email không có trong chiến dịch này'
@@ -150,8 +177,10 @@ vi:
     import_title: Nhập chủ đề từ CSV
     import_upload: Tải lên
     import_users: Nhập người dùng
+    internal: Nội bộ
     invalid_csv_header: CSV chứa tiêu đề không hợp lệ.
     job_roles: Vai trò công việc
+    lead_assessor_form: Biểu mẫu đánh giá viên chính
     learning_from_others: Học tập hợp tác [20]
     level: Cấp độ
     level_apply: Đăng ký
@@ -163,7 +192,10 @@ vi:
     licenses: Giấy phép
     manager_approval_required: Báo cáo cho %{user} yêu cầu sự chấp thuận của người quản lý trước khi tải xuống
     max_value: Giá trị tối đa
+    meeting: Hội nghị
     messages: Thư
+    mettl: Mettl
+    mettl_assessment: Đánh giá Mettl
     mhs: Trường Trung học MHS
     mhs_assessment: Đánh giá MHS
     mhs_assessment_name: Tên đánh giá MHS
@@ -190,7 +222,11 @@ vi:
     on_the_job: Trong công việc [70]
     only_editable_on_create: Tùy chọn này chỉ có thể chỉnh sửa khi đang tạo.
     options: Tùy chọn
+    organisational: Khảo sát tổ chức
+    original_text: Văn bản gốc
     participants: Tham gia
+    pearson: Pearson
+    pearson_assessment: Đánh giá Pearson
     permissions:
       aiArtifacts:
         export: Xuất khẩu
@@ -615,6 +651,8 @@ vi:
     permissions_360_campaigns: Quyền truy cập dành riêng cho các chiến dịch 360
     piped_text: Văn bản được truyền qua ống
     privacy: Sự riêng tư
+    professional: Chuyên nghiệp
+    proficiency: Năng lực
     proficiency_level: Khóa API
     proficiency_levels: Mức độ thành thạo
     profile_details: Chi tiết hồ sơ
@@ -623,6 +661,7 @@ vi:
     project_number: Số dự án
     project_settings: Cài đặt dự án
     projects: Dự án
+    psychometric: Tâm lý học
     question_center: Trung tâm câu hỏi
     questions: Câu hỏi
     reflection_questions: Câu hỏi suy ngẫm
@@ -643,6 +682,7 @@ vi:
     reset_idp_plan_confirmation: Bạn có chắc chắn muốn đặt lại kế hoạch?
     reset_idp_plan_title: Đặt lại kế hoạch
     response_meta: Phản hồi Meta
+    result: Kết quả
     results: Kết quả
     role: Vai trò
     saml_idp_certificate_available: Có sẵn (bấm để sao chép)
@@ -693,6 +733,8 @@ vi:
     saml_service_provider_updated_date: Ngày cập nhật
     saml_service_providers: Nhà cung cấp dịch vụ
     saml_settings: Cài đặt SAML
+    saville: Saville
+    saville_assessment: Đánh giá Saville
     scheduling: Lập kế hoạch
     scoring: Ghi
     scoring_value_info: Điểm số phải nằm trong khoảng từ %{min} đến %{max}.
@@ -708,9 +750,13 @@ vi:
     show_submenu: Hiển thị menu phụ
     show_translated: Hiển thị bản dịch
     siem: SIEM
+    simulation: Mô phỏng
+    simulation_assessment: Đánh giá mô phỏng
     skill_aliases: Bí danh kỹ năng
     skills: Kỹ năng
     skills_taxonomy: Phân loại kỹ năng
+    skillvue: Kỹ năng
+    skillvue_assessment: Đánh giá Skillvue
     slot_name: Tên vị trí
     sms_histories: Lịch sử SMS
     sms_invites: Lời mời SMS
@@ -720,12 +766,18 @@ vi:
     subdomain: Tên miền phụ
     subject_part_of_other_invite: Người dùng có địa chỉ email %{user_email} đã được mời tham gia '%{workshop_invite_name}'.
     target_job_role: Vị trí công việc mục tiêu
+    threesixty: Chiến dịch 360
+    tone: Giọng điệu
     toolbar_ai_insight: Nhận định về Trí tuệ Nhân tạo
     toolbar_ai_suggestion: Đề xuất của Trí tuệ nhân tạo
     toolbar_result_generating: Đang tạo...
     toolbar_text_copied: Đã sao chép vào khay nhớ tạm
     toolbar_text_replaced: Nội dung đã được thay thế!
     toolbar_what_changed_and_why: Điều gì đã thay đổi và tại sao
+    tools: Công cụ
+    transcription_record_not_found: Không tìm thấy bản ghi chép.
+    transcription_schedule_failed: Không thể lên lịch công việc chuyển đổi văn bản
+    transcription_scheduled: Công việc chuyển đổi văn bản đã được lên lịch. Vui lòng đóng cửa sổ pop-up và kiểm tra trạng thái thông báo.
     translate: Dịch
     translate_to: Dịch sang
     translate_with_ai: Dịch bằng trí tuệ nhân tạo
@@ -739,11 +791,14 @@ vi:
     users: Người dùng
     view_licenses: Xem giấy phép
     waiting: Chờ đợi
+    words: Từ
     workshops: Hội thảo
     writing_assistant_not_configured: Trợ lý Viết chưa được cấu hình
     x_axis_interval_label: Khoảng cách trục X
     y_axis_interval_label: Khoảng cách trục tung
     year: Quốc gia
+    yoodli: Yoodli
     yoodli_activity_id: ID hoạt động Yoodli
+    yoodli_assessment: Đánh giá Yoodli
     yoodli_email_id: ID email ứng viên Yoodli
     yoodli_external_assessment_id: ID đánh giá Yoodli

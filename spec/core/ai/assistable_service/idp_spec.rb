@@ -256,7 +256,8 @@ describe AI::AssistableService::Idp do
           ignore_user_prompt: true,
           ask_params: nil,
           prompt_template_context: nil,
-          params: {}
+          params: {},
+          validate_response_structure: true
         )
       end
     end
@@ -295,7 +296,7 @@ describe AI::AssistableService::Idp do
 
         expected_message = I18n.t('ai.errors.generic')
         expect_session_status(session, 'failed', expected_message)
-        expect(result[:error]).to eq(expected_message)
+        expect(result[:error].first).to eq(expected_message)
 
         # Verify metadata is saved
         session.reload
@@ -364,6 +365,45 @@ describe AI::AssistableService::Idp do
       context = service.send(:prompt_template_context)
 
       expect(context[:user]).to eq(user)
+    end
+  end
+
+  describe '#assistant_context' do
+    let(:service) { described_class.new(plan, user, instructions, options) }
+
+    context 'when assistant has assessment dependency configured' do
+      let!(:campaign_idp) { create(:campaign_idp, campaign: campaign, idp_template: idp_template) }
+      let!(:assessment) { create(:assessment) }
+      let!(:question) { create(:question, assessment: assessment) }
+      let!(:campaign_idp_dependency) do
+        create(:campaign_idp_dependency, campaign_idp: campaign_idp, dependency: question)
+      end
+
+      before do
+        ai_assistant.update!(dependencies: ['assessments'])
+      end
+
+      it 'includes parsed assessment dependency in context' do
+        parsed_assessment_data = '<assessment>Sample parsed assessment data</assessment>'
+        allow_any_instance_of(AI::Utils::DependencyParser::Assessment).to receive(:parse).
+          and_return(parsed_assessment_data)
+
+        context = service.send(:assistant_context)
+
+        expect(context).to include(parsed_assessment_data)
+      end
+    end
+
+    context 'when assistant does not have assessment dependency' do
+      before do
+        ai_assistant.update!(dependencies: [])
+      end
+
+      it 'does not include assessment dependency in context' do
+        context = service.send(:assistant_context)
+
+        expect(context).not_to include('<assessment>')
+      end
     end
   end
 end

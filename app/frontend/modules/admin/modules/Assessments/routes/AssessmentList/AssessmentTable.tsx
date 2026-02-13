@@ -109,9 +109,7 @@ const AssessmentTableComponent: React.FC<Props> = ({
           id="type"
           width={300}
           sorter
-          render={assessment => (assessment.type === 'mhs'
-            ? I18n.t('admin.mhs_assessment')
-            : I18n.t(`assessments.fields.type.${assessment.type}`))}
+          render={assessment => I18n.t(`admin.${assessment.type}_assessment`)}
         />
         <Resource.Column<Assessment>
           title={I18n.t('common.column.category')}
@@ -120,16 +118,12 @@ const AssessmentTableComponent: React.FC<Props> = ({
           sorter
           filters={
             settings.categories.map((t: string) => ({
-              text: t === 'mhs'
-                ? I18n.t('admin.mhs')
-                : I18n.t(`assessments.fields.category.${t}`),
+              text: I18n.t(`admin.${t}`),
               value: t,
             }))
           }
           filteredValue={collectionFilteredValue}
-          render={assessment => (assessment.category === 'mhs'
-            ? I18n.t('admin.mhs')
-            : I18n.t(`assessments.fields.category.${assessment.category}`))}
+          render={assessment => I18n.t(`admin.${assessment.category}`)}
         />
         <Resource.Column<Assessment>
           title={I18n.t('common.column.updated_at')}
@@ -390,7 +384,7 @@ const getActionsMenuProps = ({
     },
     assessment.meta.permissions.exportRawResults && { type: 'divider' },
     assessment.meta.permissions.exportRawResults
-     && { key: 'export', label: I18n.t('assessments.actions.export') },
+     && { key: 'export', label: I18n.t('assessments.actions.export'), disabled: true },
     assessment.meta.permissions.exportRawResults && {
       key: 'export_with_label',
       label: I18n.t('assessments.actions.export_raw_labels'),

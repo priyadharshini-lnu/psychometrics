@@ -127,7 +127,7 @@ export const AssessmentsContainer = ({
           }
           let prevGroup
           return (
-            <Space direction="vertical" className="w-100">
+            <Space orientation="vertical" className="w-100">
               {assessmentGroups.map((group) => {
                 if (group.hide) {
                   return null
@@ -212,7 +212,7 @@ export const AssessmentsContainer = ({
                       </Title>
                       <Space
                         align={(alignCardItemsInCenter) ? 'center' : undefined}
-                        direction="vertical"
+                        orientation="vertical"
                         size="middle"
                         className="w-100"
                       >

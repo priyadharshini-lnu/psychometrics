@@ -903,6 +903,7 @@ zh-HK:
         export_users: 活動使用者匯出
         external_assessment_export: 外部結果匯出
         generate_embedding_skills: 生成技能嵌入
+        generate_transcription: 生成转录文本
         import_accesssheet: Import Accessheet
         import_assessment_questions: 進口評估問題
         import_assessment_translations: 匯入評量翻譯
@@ -933,6 +934,8 @@ zh-HK:
         import_users: 匯入使用者
         migrate_assessment_translations: 評估翻譯遷移
         normalize_factor_scores: 標準化因子分數
+        project_compact_completion_status_export: 紧凑型完成状态导出
+        project_completion_status_export: 完成状态导出
         regenerate_campaign_reports: Regenerate Campaign 報告
         regenerate_report: 重生報告
         regenerate_threesixty_report: 再生三百六十報告
@@ -1102,36 +1105,9 @@ zh-HK:
       title: 評估詳情
     edit: 編輯
     fields:
-      category:
-        agile: 敏捷
-        assessor_form: 評估員表格
-        case_study: 案例研究
-        hogan: 霍根
-        iiht: IIHT
-        lead_assessor_form: 首席評估員表格
-        meeting: 會
-        mettl: 梅特爾
-        organisational: 組織調查
-        pearson: 皮爾森
-        psychometric: 心理測量學
-        saville: 薩維爾
-        simulation: 模擬
-        skillvue: Skillvue
-        threesixty: 360 戰役
-        yoodli: 尤德利
       status:
         finished: 已
         in_progress: 進行中
-      type:
-        common: TTE 評量
-        hogan: 霍根
-        iiht: IIHT 評量
-        mettl: Mettl 評估
-        pearson: 皮爾森評估
-        saville: 薩維爾評估
-        simulation: 模擬評估
-        skillvue: Skillvue 評估
-        yoodli: Yoodli 評估
     flow:
       end_assessment_modal:
         custom_message: 自訂評估結束訊息
@@ -1741,23 +1717,6 @@ zh-HK:
     title: 更改密碼
     warning_message: 重要事項：變更密碼將會登出。
   checking_wizard:
-    audio_check:
-      access: 存取
-      continue: 繼續
-      random_phrases:
-        eight: 祝您咖啡香濃，工作順利。
-        five: 笑一笑，人生更美好。 笑一笑，麥克風！
-        four: 她在海邊賣貝殼。
-        nine: 有疑問時，請測試一下這個麥克風是否有效！
-        one: 我尖叫，你尖叫，我們都為冰淇淋尖叫！
-        seven: 每天都是新的開始，大聲自豪地說出來！
-        six: 披薩還是義大利麵？
-        three: 測試，一二三，聲音清晰可辨！。
-        two: 敏捷的棕狐跳過了懶狗。
-      record_title: 請讀出並重複以下句子 3 次。
-      retake: 不，我要重考
-      run_again: 再跑一次
-      test_message: 很高興與您交談
     network_check:
       continue: 繼續
       download: 下載
@@ -1790,18 +1749,10 @@ zh-HK:
       permissions: 網路攝影機與音訊權限
       title: 在開始此評估之前，您的系統需要進行一些檢查。
     video_check:
-      access: 存取
-      camera_preview: 相機預覽將在此出現
-      continue: 繼續
       description: 在此階段拍攝的任何影片或相片都不會被儲存或使用。它會在您的裝置上本地使用，以確保相機正常運作，因為即將有需要錄製影片的問題。
       random_phrases:
         one: 我準備好了。這是一段測試錄像，用來確認我的影片和麥克風運作正常。
-      rec_text: REC
-      retake: 不，我要重考
-      run_again: 再次執行
       title: 我們需要確保您的系統可以錄影
-      upload_again: 再上傳一次
-      uploading: 上傳
   common:
     actions:
       add: 添加
@@ -3337,13 +3288,6 @@ zh-HK:
     fields:
       provider:
         custom_upload: 自訂上傳
-        hogan: 霍根
-        internal: 國內的
-        mettl: 梅特爾
-        pearson: 皮爾森
-        saville: 薩維爾
-        skillvue: 技能
-        yoodli: 尤德利
     form:
       load_from_mettl: 來自Mettl的貨物
       load_from_pearson: 來自皮爾森的貨物

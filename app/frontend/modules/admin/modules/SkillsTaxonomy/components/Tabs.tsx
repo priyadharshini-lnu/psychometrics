@@ -16,24 +16,24 @@ export const Tabs: React.FC<{ featureFlags?: Record<string, boolean> }> = ({ fea
   const onSelect = ({ key }) => routeUtils.moveTo(navigate, settings.urlPrefix, key)
   const pathnameWithoutBasePath = pathname.replace(settings.urlPrefix, '')
   const activeMenu = [
-    '/skills', '/job_roles', '/proficiency', '/settings',
+    '/skills', '/job_roles', '/proficiency', '/tools',
   ].find(val => pathnameWithoutBasePath.includes(val))
   const menuItems = [
     {
       key: '/skills',
-      label: I18n.t('administration.skills_taxonomy.tabs.skills'),
+      label: I18n.t('admin.skills'),
     },
     skillRaterEnabled ? {
       key: '/job_roles',
-      label: I18n.t('administration.skills_taxonomy.tabs.job_roles'),
+      label: I18n.t('admin.job_roles'),
     } : null,
     skillRaterEnabled ? {
       key: '/proficiency',
-      label: I18n.t('administration.skills_taxonomy.tabs.proficiency'),
+      label: I18n.t('admin.proficiency'),
     } : null,
     skillRaterEnabled ? {
-      key: '/settings',
-      label: I18n.t('administration.breadcrumbs.settings'),
+      key: '/tools',
+      label: I18n.t('admin.tools'),
     } : null,
   ]
 

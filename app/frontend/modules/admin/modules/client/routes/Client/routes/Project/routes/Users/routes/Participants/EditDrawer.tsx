@@ -74,7 +74,7 @@ const EditDrawerComponent: FC<Props> = ({
       width="40%"
       zIndex={1001}
       open={isOpen}
-      destroyOnClose
+      destroyOnHidden
     >
       <Row justify="space-between" align="middle" className="mb-4">
         <Col>

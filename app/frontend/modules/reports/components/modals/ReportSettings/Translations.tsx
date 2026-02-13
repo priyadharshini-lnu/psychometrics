@@ -74,7 +74,7 @@ const TranslationsComponent = ({ report, importTranslations }) => {
       </Typography.Title>
 
       <Card>
-        <Space direction="vertical">
+        <Space orientation="vertical">
           <div>
             {I18n.t('administration.translations.reports.import_descr')}
           </div>

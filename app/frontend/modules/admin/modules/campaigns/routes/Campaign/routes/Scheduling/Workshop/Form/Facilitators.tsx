@@ -163,7 +163,7 @@ export const Facilitators: React.FC<Props> = ({
   const [form] = Form.useForm()
 
   return (
-    <Space direction="vertical" size="large" style={{ display: 'flex' }}>
+    <Space orientation="vertical" size="large" style={{ display: 'flex' }}>
       <Form
         form={form}
         layout="vertical"

@@ -227,7 +227,7 @@ const IDPDetailsForm = ({
 
   return (
     <Form form={form} layout="vertical" initialValues={initialValues}>
-      <Space direction="vertical" className="w-100">
+      <Space orientation="vertical" className="w-100">
         {idp.aiEnabled && !aiAssistedIdpFeatureEnabled && (
           <Alert
             message={I18n.t('admin.ai_assisted_idp_feature_disabled')}

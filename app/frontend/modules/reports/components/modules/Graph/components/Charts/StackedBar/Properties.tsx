@@ -59,7 +59,7 @@ export const StackedBarProperties: React.FC<Props> = ({ modules }) => {
   }
 
   return (
-    <Space direction="vertical">
+    <Space orientation="vertical">
       <GraphPropertyDropdown
         options={graphSubtypeOptions}
         label={I18n.t('reports.builder.graph.properties.graphSubType')}
@@ -95,7 +95,7 @@ interface AxisOptionsProps {
 }
 
 const AxisOptions: React.FC<AxisOptionsProps> = ({ model, changeHandler, options }) => (
-  <Space direction="vertical">
+  <Space orientation="vertical">
     {options.map(displayOption => (
       <Checkbox
         key={displayOption.label}

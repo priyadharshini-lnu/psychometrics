@@ -90,7 +90,7 @@ export const ScheduleDay:FC<Props> = ({
                 <>
                   <Row key={key} wrap={false} gutter={[10, 0]}>
                     <Col span={20}>
-                      <Space direction="horizontal" size="small" align="baseline">
+                      <Space orientation="horizontal" size="small" align="baseline">
                         <Form.Item
                           rules={[{ required: true }]}
                           {...restField}
@@ -131,7 +131,7 @@ export const ScheduleDay:FC<Props> = ({
                     </Col>
 
                     <Col>
-                      <Space direction="horizontal">
+                      <Space orientation="horizontal">
                         <div className="mb-3">
                           <Button
                             disabled={fields.length === 1}
@@ -183,7 +183,7 @@ export const ScheduleDay:FC<Props> = ({
                     </Form.Item>
                   </Col>
                   <Col>
-                    <Space size="small" direction="horizontal">
+                    <Space size="small" orientation="horizontal">
                       <Form.Item className="mb-3">
                         <Button
                           shape="circle"

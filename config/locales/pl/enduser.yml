@@ -28,6 +28,7 @@ pl:
     max_word_limit: Musi mieć maksymalnie %{max} słów
     min_word_limit: Musi mieć co najmniej %{min} słów
     my_plan: Mój plan
+    no_audio_warning: Nie wykryto dźwięku. Sprawdź, czy mikrofon jest podłączony i działa prawidłowo.
     profile: Profil
     profile_details: Szczegóły
     question_counter: Pytanie %{current} z %{total}
@@ -43,4 +44,27 @@ pl:
     start_campaign_message_timed: To jest kampania na czas, kliknij przycisk '%{buttonText}', aby rozpocząć aktywności.
     start_campaign_message_timed_proctored: To jest kampania z nadzorem czasowym i nadzorowana, prosimy kliknąć przycisk '%{buttonText}', aby rozpocząć aktywności.
     status_unknown: Status nieznany
+    system_check_access: Dostęp
+    system_check_audio_random_phrases:
+      eight: Niech Twoja kawa będzie mocna, a dzień produktywny.
+      five: Życie jest lepsze, gdy się uśmiechasz. Uśmiechnij się do mikrofonu!
+      four: Sprzedaje muszelki nad brzegiem morza.
+      nine: W razie wątpliwości przetestuj ten mikrofon!
+      one: Ja krzyczę, ty krzyczysz, wszyscy krzyczymy o lody!
+      seven: Każdy dzień to nowy początek - powiedz to głośno i z dumą!
+      six: Pizza czy pasta? Decyzje są trudne.
+      three: Testowanie, raz dwa trzy, dźwięk jest czysty jak może być!
+      two: Szybki brązowy lis przeskakuje leniwego psa.
+    system_check_audio_title: Wypowiedz i powtórz poniższe zdanie 3 razy.
+    system_check_camera_preview: Podgląd kamery pojawi się tutaj
+    system_check_proceed: Tak, można kontynuować
+    system_check_rec_text: REC
+    system_check_retake: Nie, chcę powtórzyć
+    system_check_run_again: Uruchom ponownie
+    system_check_start_recording: Rozpocznij nagrywanie
+    system_check_stop_recording: Zatrzymaj nagrywanie
+    system_check_test_message: świetnie się z tobą rozmawia
+    system_check_upload_again: Prześlij ponownie
+    system_check_uploading: Przesyłanie
+    system_check_video_random_phrase: Jestem gotowy. To nagranie testowe, które ma potwierdzić, czy mój mikrofon i kamera działają prawidłowo.
     tasks: Zadania

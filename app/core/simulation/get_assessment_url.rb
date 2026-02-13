@@ -21,7 +21,7 @@ module Simulation
 
     def generate_jwt_token
       payload = {
-        name: subject.name,
+        # name: subject.name, Do not send PII
         userId: participant_id,
         simulationId: participant_id,
         scenarioId: scenario_id,

@@ -3930,11 +3930,6 @@ zh:
         generate_embedding_failure_msg: 未能排队技能嵌入生成任务。请再试一次。
         generate_embedding_success_msg: 技能嵌入生成任务已成功排队。请查看通知中的状态。
         label: 向量数据库
-    skills_taxonomy:
-      tabs:
-        job_roles: 工作角色
-        proficiency: 熟练
-        skills: 技能
     sms_histories:
       columns:
         first_name: 姓名
@@ -4188,13 +4183,15 @@ zh:
       more_actions: 更多行动
     taxonomy:
       import:
+        description: 上传Excel文件以导入或更新您的技能分类体系。此操作将添加新技能、职位角色及熟练程度等级。
         download_example_file: 下载示例文件
+        drag_text: 点击或拖拽文件至此区域进行上传
+        error_title: 导入失败
+        file_hint: 支持 .xls 和 .xlsx 文件
+        import_button: 导入分类法
         success_msg: 上传的文件已排队等待导入。请查看通知中的状态。
       import_action:
         taxonomy: 导入技能分类标准
-      job_roles: 工作角色
-      proficiency: 熟练程度
-      skills: 技能
       title: 技能分类法
     templates:
       blocks:

@@ -71,6 +71,12 @@ class ApplicationController < BaseController
   def user_not_authorized
     audit! :user_not_authorized, current_user, payload: params, outcome: :failed,
     failure_reason: :user_not_authorized
+
+    siem_log_authorization_failure(
+      resource: request.path,
+      action: params[:action]
+    )
+
     respond_to do |format|
       format.html { render plain: I18n.t('errors.forbidden'), status: 403 }
       format.json { render json: { error: [I18n.t('errors.forbidden_action')] }, status: 403 }

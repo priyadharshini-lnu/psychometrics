@@ -143,6 +143,12 @@ module Administration
       end
 
       def bulk_download
+        siem_log_sensitive_operation(
+          context: 'Bulk Report Download',
+          action_description: "downloaded bulk reports for campaign #{campaign.id}",
+          action_type: 'Export',
+          resource: 'UserReport'
+        )
         AdminJob.call(:bulk_download_user_reports, {
           ids: params[:ids],
           selected_reports: params[:selected_reports],

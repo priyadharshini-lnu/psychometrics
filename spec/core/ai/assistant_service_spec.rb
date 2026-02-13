@@ -156,4 +156,85 @@ user_prompt: 'How can I help you?')
       end
     end
   end
+
+  describe '#retry_last_request' do
+    let(:chat) do
+      AI::AssistantChat.create!(ai_assistant: assistant, user: user)
+    end
+    let(:existing_message) do
+      AI::AssistantRequest.create!(
+        ai_assistant_chat: chat,
+        role: 'user',
+        content: 'Previous message'
+      )
+    end
+
+    before do
+      existing_message # Create the existing message
+    end
+
+    context 'when complete succeeds' do
+      it 'does not create a new message record' do
+        allow_any_instance_of(AI::AssistantChat).to receive(:complete).and_return(llm_response)
+
+        expect do
+          described_class.new(assistant.id, user, nil, chat: chat).retry_last_request
+        end.not_to change(AI::AssistantRequest, :count)
+      end
+
+      it 'broadcasts success with response data' do
+        allow_any_instance_of(AI::AssistantChat).to receive(:complete).and_return(llm_response)
+
+        service = described_class.new(assistant.id, user, nil, chat: chat)
+        result = nil
+
+        service.on(:ok) { |response| result = response }
+        service.retry_last_request
+
+        expect(result[:message]).to eq(llm_response.content)
+        expect(result[:input_tokens]).to eq(llm_response.input_tokens)
+        expect(result[:output_tokens]).to eq(llm_response.output_tokens)
+      end
+    end
+
+    context 'when RubyLLM raises an error' do
+      let(:error_message) { 'Rate limit exceeded' }
+
+      before do
+        allow_any_instance_of(AI::AssistantChat).to receive(:complete).and_raise(
+          RubyLLM::BadRequestError.new(nil, error_message)
+        )
+      end
+
+      it 'does not create a new message record' do
+        expect do
+          described_class.new(assistant.id, user, nil, chat: chat).retry_last_request
+        end.not_to change(AI::AssistantRequest, :count)
+      end
+
+      it 'marks the last request as failed with error' do
+        service = described_class.new(assistant.id, user, nil, chat: chat)
+        service.retry_last_request
+
+        existing_message.reload
+        expect(existing_message.request_status_failed?).to be true
+        expect(existing_message.last_error_message).to eq(error_message)
+      end
+
+      it 'broadcasts error with error message' do
+        service = described_class.new(assistant.id, user, nil, chat: chat)
+        error_result = nil
+        error_obj = nil
+
+        service.on(:error) do |msg, err|
+          error_result = msg
+          error_obj = err
+        end
+        service.retry_last_request
+
+        expect(error_result).to eq(error_message)
+        expect(error_obj).to be_a(RubyLLM::BadRequestError)
+      end
+    end
+  end
 end

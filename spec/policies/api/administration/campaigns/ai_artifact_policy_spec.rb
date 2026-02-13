@@ -9,9 +9,8 @@ RSpec.describe Api::Administration::Campaigns::AIArtifactPolicy do
 
   let(:campaign) do
     create(:campaign).tap do |record|
-      project_feature = record.project.project_feature ||
-                        record.project.create_project_feature!
-      project_feature.update!(ai_assistants: true)
+      record.project.client.client_feature.update!(ai_assistants: true)
+      record.project.project_feature.update!(ai_assistants: true)
     end
   end
 

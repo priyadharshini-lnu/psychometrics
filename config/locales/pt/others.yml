@@ -893,6 +893,7 @@ pt:
         export_users: Exportação de utilizadores de campanhas
         external_assessment_export: Exportação de resultados externos
         generate_embedding_skills: Gerar Embedding para Habilidades
+        generate_transcription: Gerar transcrição
         import_accesssheet: Importar folha de acesso
         import_assessment_questions: Questões de avaliação da importação
         import_assessment_translations: Traduções de avaliação de importação
@@ -923,6 +924,8 @@ pt:
         import_users: Importar utilizadores
         migrate_assessment_translations: Avaliação Tradução migração
         normalize_factor_scores: Normalizar as pontuações dos factores
+        project_compact_completion_status_export: Exportação compacta do status de conclusão
+        project_completion_status_export: Status de conclusão Exportar
         regenerate_campaign_reports: Regenerar relatórios de campanha
         regenerate_report: Relatório Regenerar
         regenerate_threesixty_report: Relatório Regenerate Threesixty
@@ -1093,36 +1096,9 @@ pt:
       title: Detalhes da avaliação
     edit: Editar
     fields:
-      category:
-        agile: ÁGIL
-        assessor_form: Formulário do assessor
-        case_study: Estudos de caso
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Formulário do avaliador principal
-        meeting: Reunião
-        mettl: Mettl
-        organisational: Inquéritos Org
-        pearson: Pearson
-        psychometric: Psicométrico
-        saville: Saville
-        simulation: Simulação
-        skillvue: Skillvue
-        threesixty: campanha 360
-        yoodli: Yoodli
       status:
         finished: Acabado
         in_progress: Em curso
-      type:
-        common: Avaliação TTE
-        hogan: Hogan
-        iiht: Avaliação IIHT
-        mettl: Avaliação Mettl
-        pearson: Avaliação da Pearson
-        saville: Avaliação Saville
-        simulation: Avaliação da simulação
-        skillvue: Avaliação de Skillvue
-        yoodli: Avaliação de Yoodli
     flow:
       end_assessment_modal:
         custom_message: Mensagem personalizada de fim de avaliação
@@ -1730,23 +1706,6 @@ pt:
     title: Alterar a palavra-passe
     warning_message: 'Importante: Alterar a sua palavra-passe irá desconectá-lo.'
   checking_wizard:
-    audio_check:
-      access: Acesso
-      continue: Continuar
-      random_phrases:
-        eight: Que o seu café seja forte e que o seu dia seja produtivo.
-        five: A vida é melhor quando se sorri. Sorria para o microfone!
-        four: Ela vende conchas à beira-mar.
-        nine: Em caso de dúvida, teste-o. Este microfone funciona!
-        one: Eu grito, tu gritas, todos nós gritamos por gelado!
-        seven: Cada dia é um novo começo, diga-o alto e com orgulho!
-        six: Pizza ou massa? As decisões são difíceis.
-        three: Testando, um, dois, três, o som é claro como pode ser!
-        two: A rápida raposa castanha salta sobre o cão preguiçoso.
-      record_title: Diga e repita a seguinte frase 3 vezes.
-      retake: Não, quero repetir
-      run_again: Voltar a correr
-      test_message: é ótimo falar consigo
     network_check:
       continue: Continuar
       download: Descarregar
@@ -1779,18 +1738,10 @@ pt:
       permissions: Permissões de câmara web e áudio
       title: Antes de iniciar esta avaliação, é necessário realizar algumas verificações ao seu sistema.
     video_check:
-      access: Acesso
-      camera_preview: A pré-visualização da câmara aparecerá aqui
-      continue: Continuar
       description: Clique em Iniciar Gravação e grave-se a si próprio enquanto lê o texto abaixo com a sua própria voz.
       random_phrases:
         one: Estou pronto. Esta é uma gravação de teste para confirmar se o meu microfone e câmara estão a funcionar corretamente.
-      rec_text: REC
-      retake: Não, quero repetir
-      run_again: Executar novamente
       title: Necessitamos de garantir que o seu sistema consegue gravar o vídeo
-      upload_again: Carregar novamente
-      uploading: Carregamento
   common:
     actions:
       add: Adicionar
@@ -3327,13 +3278,6 @@ pt:
     fields:
       provider:
         custom_upload: Carregamento personalizado
-        hogan: Hogan
-        internal: Interno
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Carga de Mettl
       load_from_pearson: Carregar de Pearson

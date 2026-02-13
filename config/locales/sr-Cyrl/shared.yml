@@ -19,6 +19,7 @@ sr-Cyrl:
     clear_filters: Обриши филтере
     collaborative_learning: Колаборативно учење
     completed: Завршено
+    configurations: Конфигурације
     confirm: Потврди
     continue: Наставите
     copy: Копирај
@@ -27,6 +28,9 @@ sr-Cyrl:
     decline: Претраживање
     description: Опис
     download: Преузми
+    download_audio: Преузми аудио
+    download_transcription: Преузми транскрипт
+    download_video: Преузми видео
     edit: Уређивање
     edited: Уређивати
     email: Е-пошта
@@ -46,7 +50,7 @@ sr-Cyrl:
     last_name: Презиме
     learning_on_the_job_label: Учење на послу
     login: Пријавите се
-    media_question_transcriptions: Транскрипти медијских питања
+    media_responses: Реакције медија
     modified_by: Измењено од стране
     modified_date: Датум измене
     more_actions: Више акција
@@ -60,6 +64,7 @@ sr-Cyrl:
     pending: У току
     processing: Обрада
     question_id: Идентификациони број питања
+    question_transcription_disabled: Транскрипција је онемогућена за ово питање
     recording_consent_notice: Ова сесија састанка ће бити снимљена. Ваше учешће на овом састанку представља вашу сагласност да се снима.
     recording_consent_proceed_question: Да ли се слажете да наставите са снимљеним састанком?
     recording_consent_title: Обавештење о сагласности за снимање
@@ -88,6 +93,7 @@ sr-Cyrl:
     transcription: Транскрипција
     transcription_already_requested: Транскрипција је већ затражена или у току
     transcription_not_enabled: Транскрипција није омогућена за медијски одговор
+    transcription_status: Статус транскрипције
     transcriptions: Транскрипције
     try_again: Покушај поново
     tte_terms_and_condition: Услови и приватност

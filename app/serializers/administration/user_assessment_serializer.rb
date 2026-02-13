@@ -106,6 +106,10 @@ module Administration
           'push_webhook',
           'mark_complete',
           'normalize_factor_scores',
+          'update_mhs_confidence_interval',
+          'update_mhs_leadership_bar',
+          'update_mhs_norm_region',
+          'update_mhs_norm_option',
           %w[reset_results reset]
         ],
         {

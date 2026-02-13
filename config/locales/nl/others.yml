@@ -893,6 +893,7 @@ nl:
         export_users: Campagne gebruikers exporteren
         external_assessment_export: Exporteren van externe resultaten
         generate_embedding_skills: Genereer embedding voor vaardigheden
+        generate_transcription: Transcriptie genereren
         import_accesssheet: Accessheet importeren
         import_assessment_questions: Vragen over importeren
         import_assessment_translations: Import Assessment Vertalingen
@@ -923,6 +924,8 @@ nl:
         import_users: Gebruikers importeren
         migrate_assessment_translations: Beoordeling Vertaalmigratie
         normalize_factor_scores: Factorscores normaliseren
+        project_compact_completion_status_export: Compacte voltooiingsstatus exporteren
+        project_completion_status_export: Export voltooiingsstatus
         regenerate_campaign_reports: Campagneverslagen opnieuw genereren
         regenerate_report: Regenereren Rapport
         regenerate_threesixty_report: Regenereren Drieënzestig Verslag
@@ -1092,36 +1095,9 @@ nl:
       title: Beoordeling Details
     edit: Bewerk
     fields:
-      category:
-        agile: AGIEL
-        assessor_form: Beoordelaarsformulier
-        case_study: Casestudies
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Formulier hoofdbeoordelaar
-        meeting: Vergadering
-        mettl: Mettl
-        organisational: Organisatie Enquêtes
-        pearson: Pearson
-        psychometric: Psychometrisch
-        saville: Saville
-        simulation: Simulatie
-        skillvue: Skillvue
-        threesixty: 360 Campagne
-        yoodli: Yoodli
       status:
         finished: Afgewerkt
         in_progress: In uitvoering
-      type:
-        common: TTE-beoordeling
-        hogan: Hogan
-        iiht: IIHT-beoordeling
-        mettl: Mettl Beoordeling
-        pearson: Pearson Beoordeling
-        saville: Beoordeling Saville
-        simulation: Simulatie Beoordeling
-        skillvue: Skillvue Assessment
-        yoodli: Yoodli-beoordeling
     flow:
       end_assessment_modal:
         custom_message: Aangepast bericht einde beoordeling
@@ -1717,23 +1693,6 @@ nl:
     title: Wachtwoord wijzigen
     warning_message: 'Belangrijk: Als je je wachtwoord wijzigt, word je uitgelogd.'
   checking_wizard:
-    audio_check:
-      access: Toegang
-      continue: Ja, oké om door te gaan
-      random_phrases:
-        eight: Moge je koffie sterk zijn en je dag productief.
-        five: Het leven is beter als je lacht. Lach voor de microfoon!
-        four: Ze verkoopt zeeschelpen aan de kust.
-        nine: Bij twijfel, test deze microfoon!
-        one: Ik schreeuw, jij schreeuw, we schreeuwen allemaal om ijs!
-        seven: Elke dag is een nieuw begin. Zeg het luid en trots!
-        six: Pizza of pasta? Beslissingen zijn moeilijk.
-        three: Test, één twee drie, het geluid is zo helder als maar kan!
-        two: De snelle bruine vos springt over de luie hond.
-      record_title: Spreek en herhaal de volgende zin 3 keer.
-      retake: Nee, ik wil een herkansing
-      run_again: Opnieuw rennen
-      test_message: leuk om met je te praten
     network_check:
       continue: Ga verder
       download: Downloaden
@@ -1766,18 +1725,10 @@ nl:
       permissions: Webcam en audio rechten
       title: Voordat je met deze beoordeling begint, moet je systeem een aantal controles ondergaan.
     video_check:
-      access: Toegang
-      camera_preview: Hier verschijnt het voorbeeld van de camera
-      continue: Ja, oké om door te gaan
       description: Klik op Start opname en neem jezelf op terwijl je de onderstaande passage voorleest met je eigen stem
       random_phrases:
         one: Ik ben er klaar voor. Dit is een testopname om te controleren of mijn video en microfoon goed werken.
-      rec_text: REC
-      retake: Nee, ik wil een herkansing
-      run_again: Opnieuw rennen
       title: We moeten ervoor zorgen dat je systeem de video kan opnemen
-      upload_again: Opnieuw uploaden
-      uploading: Uploaden
   common:
     actions:
       add: Voeg  toe
@@ -3289,13 +3240,6 @@ nl:
     fields:
       provider:
         custom_upload: Aangepast uploaden
-        hogan: Hogan
-        internal: Intern
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Belasting van Mettl
       load_from_pearson: Laden van Pearson

@@ -73,7 +73,8 @@ module AI
           ignore_user_prompt: options[:ignore_user_prompt],
           ask_params: options[:ask_params],
           params: request_params,
-          prompt_template_context: options[:prompt_template_context]
+          prompt_template_context: options[:prompt_template_context],
+          validate_response_structure: options[:validate_response_structure]
         )
       end
 

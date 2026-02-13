@@ -2,6 +2,7 @@
 
 class SamlSetting < ApplicationRecord
   audited except: %i[cert test_settings]
+  include ApplicationConfigurationLoggable
 
   include Rails.application.routes.url_helpers
 

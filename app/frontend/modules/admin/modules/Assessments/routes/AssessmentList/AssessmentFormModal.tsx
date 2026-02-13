@@ -56,9 +56,7 @@ export const AssessmentFormModal: React.FC<Props> = ({ close }) => {
               {TYPES.map(
                 t => (
                   <Select.Option key={t} value={t}>
-                    {t === 'mhs'
-                      ? I18n.t('admin.mhs_assessment')
-                      : I18n.t(`assessments.fields.type.${t}`)}
+                    {I18n.t(`admin.${t}_assessment`)}
                   </Select.Option>
                 ),
               )}

@@ -115,7 +115,7 @@ export const PrivacyConsentComponent: FC<Props> = ({
             : <PageContentSkeleton />
           }
           <div className={styles.privacyPageFooterButtons}>
-            <Space direction="vertical">
+            <Space orientation="vertical">
               <Flex gap={8}>
                 <Checkbox
                   checked={accepted}

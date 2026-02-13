@@ -129,7 +129,7 @@ export class TableBodyPreview extends Component<Props> {
             {!hideHeaders && this.renderHeaders(choice)}
             <tr className={styles.mainRow} key={choice}>
               <td className={`${styles.firstColumn} ps-2 pe-2 pt-2 pb-2`}>
-                <Space direction="horizontal">
+                <Space orientation="horizontal">
                   {I18n.tQuestion(model, `choicesTexts${choice + 1}`, {
                     choice,
                   }) || moduleConfig.defaultChoiceText(choice + 1)}

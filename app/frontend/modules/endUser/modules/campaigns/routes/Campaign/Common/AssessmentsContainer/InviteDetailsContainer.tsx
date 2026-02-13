@@ -71,7 +71,7 @@ export const InviteDeatilsContainer = ({
   return (
     <>
       {inviteDetails ? (
-        <Space size={6} className="w-100" direction="vertical">
+        <Space size={6} className="w-100" orientation="vertical">
           <p className="mb-0 ta-c">{I18n.t('frontend.bookings.accept_invite_msg')}</p>
           <DetailsCard
             title={inviteDetails.title}

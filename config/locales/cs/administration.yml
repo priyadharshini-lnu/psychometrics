@@ -3930,11 +3930,6 @@ cs:
         generate_embedding_failure_msg: Nepodařilo se mi zařadit generování dovedností do fronty. Zkuste to prosím znovu.
         generate_embedding_success_msg: Generování dovedností bylo úspěšně zařazeno. Prosím, zkontrolujte stav v oznámeních.
         label: Vector DB
-    skills_taxonomy:
-      tabs:
-        job_roles: Pracovní role
-        proficiency: Proficience
-        skills: Dovednosti
     sms_histories:
       columns:
         first_name: Jméno
@@ -4188,13 +4183,15 @@ cs:
       more_actions: Další akce
     taxonomy:
       import:
+        description: Nahrajte soubor Excel, abyste mohli importovat nebo aktualizovat taxonomii svých dovedností. Tím přidáte nové dovednosti, pracovní pozice a úrovně znalostí.
         download_example_file: Stáhnout soubor s příkladem
+        drag_text: Klikněte nebo přetáhněte soubor do této oblasti pro nahrání
+        error_title: Import se nezdařil
+        file_hint: Podporuje soubory .xls a .xlsx
+        import_button: Importovat taxonomii
         success_msg: Nahraný soubor byl zařazen do fronty pro import. Zkontrolujte prosím stav v oznámeních.
       import_action:
         taxonomy: Import taxonomie dovedností
-      job_roles: Pracovní role
-      proficiency: Znalost
-      skills: Dovednosti
       title: Taxonomie dovedností
     templates:
       blocks:

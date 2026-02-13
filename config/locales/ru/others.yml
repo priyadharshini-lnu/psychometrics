@@ -893,6 +893,7 @@ ru:
         export_users: Экспорт пользователей кампании
         external_assessment_export: Экспорт внешних результатов
         generate_embedding_skills: Создание встраивания для навыков
+        generate_transcription: Создать транскрипцию
         import_accesssheet: Импорт таблицы доступа
         import_assessment_questions: Вопросы по оценке импорта
         import_assessment_translations: Перевод оценок импорта
@@ -923,6 +924,8 @@ ru:
         import_users: Импорт пользователей
         migrate_assessment_translations: Оценка Перевод миграция
         normalize_factor_scores: Нормализация факторных оценок
+        project_compact_completion_status_export: Экспорт статуса завершения компактного формата
+        project_completion_status_export: Статус завершения Экспорт
         regenerate_campaign_reports: Восстановить отчеты по кампании
         regenerate_report: Восстановить отчет
         regenerate_threesixty_report: Восстановить отчет Threesixty
@@ -1092,36 +1095,9 @@ ru:
       title: Детали оценки
     edit: Редактировать
     fields:
-      category:
-        agile: AGILE
-        assessor_form: Форма оценщика
-        case_study: Примеры из практики
-        hogan: Хоган
-        iiht: IIHT
-        lead_assessor_form: Форма ведущего оценщика
-        meeting: Встреча
-        mettl: Меттл
-        organisational: Опросы Org
-        pearson: Пирсон
-        psychometric: Психометрический
-        saville: Сэвилл
-        simulation: Моделирование
-        skillvue: Skillvue
-        threesixty: Кампания 360
-        yoodli: Yoodli
       status:
         finished: Завершено
         in_progress: В процессе
-      type:
-        common: Оценка TTE
-        hogan: Хоган
-        iiht: Оценка IIHT
-        mettl: Оценка Mettl
-        pearson: Оценка Пирсона
-        saville: Оценка Saville
-        simulation: Оценка моделирования
-        skillvue: Оценка Skillvue
-        yoodli: Оценка Yoodli
     flow:
       end_assessment_modal:
         custom_message: Пользовательское сообщение об окончании оценки
@@ -1729,23 +1705,6 @@ ru:
     title: Изменить пароль
     warning_message: 'Важно: при смене пароля вы будете выведены из системы.'
   checking_wizard:
-    audio_check:
-      access: Доступ
-      continue: Да, можно продолжать
-      random_phrases:
-        eight: Пусть ваш кофе будет крепким, а день — продуктивным.
-        five: Жизнь лучше, когда ты улыбаешься. Улыбнись в микрофон!
-        four: Она продает ракушки на берегу моря.
-        nine: Если сомневаетесь, проверьте — этот микрофон работает!
-        one: 'Я кричу, ты кричишь, мы все кричим: «Мороженое!»'
-        seven: Каждый день – это новое начало. Скажите это громко и с гордостью!
-        six: Пицца или паста? Решение принимать сложно.
-        three: Проверка, раз, два, три, звук чистый, как только может быть!
-        two: Быстрая коричневая лиса прыгает через ленивую собаку.
-      record_title: Пожалуйста, произнесите и повторите следующее предложение 3 раза.
-      retake: Нет, я хочу пересдать
-      run_again: Запустить снова
-      test_message: рад с вами поговорить
     network_check:
       continue: Продолжить
       download: Скачать
@@ -1778,18 +1737,10 @@ ru:
       permissions: Разрешения для веб-камеры и аудио
       title: Перед началом этой оценки ваша система должна пройти некоторые проверки.
     video_check:
-      access: Доступ
-      camera_preview: Здесь появится предварительный просмотр камеры
-      continue: Да, можно продолжать
       description: Нажмите «Начать запись» и запишите себя, читая нижеприведенный отрывок своим голосом.
       random_phrases:
         one: Поднимите руку, если вы меня слышите, или просто помашите рукой в камеру!
-      rec_text: REC
-      retake: Нет, я хочу пересдать
-      run_again: Запустить снова
       title: Мы должны убедиться, что ваша система может записывать видео.
-      upload_again: Загрузить снова
-      uploading: Загрузка
   common:
     actions:
       add: Добавить
@@ -3327,13 +3278,6 @@ ru:
     fields:
       provider:
         custom_upload: Пользовательская загрузка
-        hogan: Хоган
-        internal: Внутренний
-        mettl: Меттл
-        pearson: Пирсон
-        saville: Сэвилл
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Загрузить из Mettl
       load_from_pearson: Нагрузка от Пирсона

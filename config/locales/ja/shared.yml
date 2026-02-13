@@ -19,6 +19,7 @@ ja:
     clear_filters: 絞り込みをクリア
     collaborative_learning: 協働学習
     completed: 完了
+    configurations: 構成
     confirm: 確認
     continue: 続ける
     copy: コピー
@@ -27,6 +28,9 @@ ja:
     decline: 衰退
     description: 形容
     download: ダウンロード
+    download_audio: オーディオをダウンロード
+    download_transcription: 文字起こしをダウンロード
+    download_video: 動画をダウンロード
     edit: 編集
     edited: 新規
     email: Eメール
@@ -46,7 +50,7 @@ ja:
     last_name: 姓
     learning_on_the_job_label: 現場での学び
     login: ログイン
-    media_question_transcriptions: メディア質問の文字起こし
+    media_responses: メディアの反応
     modified_by: 変更者
     modified_date: 変更日
     more_actions: より多くの行動
@@ -60,6 +64,7 @@ ja:
     pending: 保留中
     processing: 処理
     question_id: 質問ID
+    question_transcription_disabled: この質問の文字起こしは無効です
     recording_consent_notice: この会議セッションは録画されます。この会議への参加は、記録されることへの同意を意味します。
     recording_consent_proceed_question: 録画された面談を進めることに同意しますか?
     recording_consent_title: 同意書の記録通知
@@ -88,6 +93,7 @@ ja:
     transcription: 文字起こし
     transcription_already_requested: 文字起こしは既に依頼済み、または進行中です
     transcription_not_enabled: メディア応答に対して文字起こし機能は有効化されていません
+    transcription_status: 転写ステータス
     transcriptions: 編曲
     try_again: もう一度試す
     tte_terms_and_condition: 利用規約とプライバシー

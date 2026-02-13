@@ -68,7 +68,7 @@ export const ListView: FC<Props> = ({ onSave }) => {
     <>
       <Space
         className="ps-8 pe-8 pt-8"
-        direction="vertical"
+        orientation="vertical"
         size="large"
         style={{ maxWidth: '1200px', width: '100%' }}
       >

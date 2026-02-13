@@ -90,5 +90,21 @@ module Administration
     def normalize_factor_scores?
       has_permission?(:results, :scores) && record.normalize_factor_scores?
     end
+
+    def update_mhs_confidence_interval?
+      @record.mhs? && can_manage_campaign_and_users? && record.not_started?
+    end
+
+    def update_mhs_leadership_bar?
+      @record.mhs? && can_manage_campaign_and_users? && record.not_started?
+    end
+
+    def update_mhs_norm_region?
+      @record.mhs? && can_manage_campaign_and_users? && record.not_started?
+    end
+
+    def update_mhs_norm_option?
+      @record.mhs? && can_manage_campaign_and_users? && record.not_started?
+    end
   end
 end

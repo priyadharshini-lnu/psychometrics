@@ -28,6 +28,7 @@ bg:
     max_word_limit: Трябва да бъде най-много %{max} думи
     min_word_limit: Трябва да бъде най-малко %{min} думи
     my_plan: Моят план
+    no_audio_warning: Не е открит звук. Моля, проверете дали микрофонът ви е свързан и работи правилно.
     profile: Профил
     profile_details: Подробности
     question_counter: Въпрос %{current} от %{total}
@@ -43,4 +44,27 @@ bg:
     start_campaign_message_timed: Това е кампания с ограничено време, моля, натиснете бутона '%{buttonText}', за да започнете дейностите.
     start_campaign_message_timed_proctored: Това е кампания с ограничено време и наблюдение, моля, натиснете бутона '%{buttonText}', за да започнете дейностите.
     status_unknown: Статус неизвестен
+    system_check_access: Влезте
+    system_check_audio_random_phrases:
+      eight: Нека кафето Ви е силно, а денят ви - продуктивен.
+      five: Животът е по-добър, когато се усмихваш. Усмихни се за микрофона!
+      four: Тя продава мидички на брега на морето.
+      nine: Когато се съмнявате, изпробвайте този микрофон!
+      one: Аз викам, ти викаш, всички викаме за сладолед!
+      seven: Всеки ден е ново начало. Кажете го на висок глас и с гордост!
+      six: Пица или паста? Решенията са трудни.
+      three: Тестване, едно две три, звукът е толкова ясен, колкото може да бъде!
+      two: Бързата кафява лисица прескача мързеливото куче.
+    system_check_audio_title: Моля, кажете и повторете 3 пъти следното изречение.
+    system_check_camera_preview: Прегледът на камерата ще се появи тук
+    system_check_proceed: Да, може да продължите
+    system_check_rec_text: REC
+    system_check_retake: Не, искам да презапиша
+    system_check_run_again: Пуснете отново
+    system_check_start_recording: Започнете да записвате
+    system_check_stop_recording: Спрете записа
+    system_check_test_message: Страхотно е да говоря с Вас
+    system_check_upload_again: Качване отново
+    system_check_uploading: Качване
+    system_check_video_random_phrase: Готов съм. Това е тестов запис, за да се потвърди, че видеото и микрофонът ми работят правилно.
     tasks: Задачи

@@ -194,7 +194,7 @@ const RecordingUrlColumn: React.FC<{
         footer={null}
         width={800}
         title={`Recording #${serialNo} - ${recordingDate}`}
-        destroyOnClose
+        destroyOnHidden
       >
         <RecordingPlayer url={recordingUrl} />
       </Modal>

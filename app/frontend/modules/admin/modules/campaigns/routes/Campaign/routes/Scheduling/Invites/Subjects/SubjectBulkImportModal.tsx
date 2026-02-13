@@ -60,7 +60,7 @@ export const SubjectBulkImportModal: React.FC<SubjectBulkImportModalProps> = ({
         </Button>,
       ]}
     >
-      <Space direction="vertical" style={{ width: '100%' }}>
+      <Space orientation="vertical" style={{ width: '100%' }}>
         <div>
           {I18n.t('admin.import_description')}
         </div>

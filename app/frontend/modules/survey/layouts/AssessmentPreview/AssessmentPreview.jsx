@@ -13,7 +13,7 @@ const InteractiveAssessmentsModule = () => import('@thetalententerprise/interact
 const AssessmentPreview = ({
   end, initialized, assessmentCategory, agileAssignUrl, agileAssetsUrl, showSubmitPage, showAsSinglePage,
   started, type, isAnonymousAssessment, showErrorWarning, fixedTimed, instructions, submissionInProgress,
-  submissionFailed, submitRequired, defaultLanguage, invalidSession, answersSaved,
+  submissionFailed, submitRequired, defaultLanguage, invalidSession, answersSaved, showEnhanceWithAI,
 }) => {
   const isAgile = () => assessmentCategory === 'agile'
 
@@ -61,7 +61,7 @@ const AssessmentPreview = ({
   }
 
   if (showAsSinglePage) {
-    return <SinglePage />
+    return <SinglePage showEnhanceWithAI={showEnhanceWithAI} />
   }
 
   if (showErrorWarning) {
@@ -77,7 +77,12 @@ const AssessmentPreview = ({
   }
 
   return (
-    end && !submissionInProgress && !submissionFailed ? <EndPage /> : <Page defaultLanguage={defaultLanguage} />
+    end && !submissionInProgress && !submissionFailed ? <EndPage /> : (
+      <Page
+        defaultLanguage={defaultLanguage}
+        showEnhanceWithAI={showEnhanceWithAI}
+      />
+    )
   )
 }
 

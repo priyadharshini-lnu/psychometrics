@@ -900,6 +900,7 @@ sr-Latn:
         export_users: Izvezi korisnike kampanje
         external_assessment_export: Eksterni Rezultati Izvoz
         generate_embedding_skills: Generišite ugradnju za veštine
+        generate_transcription: Генеришите транскрипцију
         import_accesssheet: Uvoz Pristupa
         import_assessment_questions: Pitanja za procenu uvoza
         import_assessment_translations: Uvoz Procena Prevodi
@@ -930,6 +931,8 @@ sr-Latn:
         import_users: Uvezi korisnike
         migrate_assessment_translations: Procena Prevod migracija
         normalize_factor_scores: Normalizujte rezultate faktora
+        project_compact_completion_status_export: Компактни извоз статуса завршетка
+        project_completion_status_export: Извоз статуса завршетка
         regenerate_campaign_reports: Regenerišite izveštaje o kampanji
         regenerate_report: Regeneriši izveštaj
         regenerate_threesixty_report: Regenerišite Threesixty izveštaj
@@ -1100,36 +1103,9 @@ sr-Latn:
       title: Detalji procene
     edit: Uređivanje
     fields:
-      category:
-        agile: GIBGIB
-        assessor_form: Obrazac ocenjivača
-        case_study: Studije slučaja
-        hogan: Hogan
-        iiht: OMILjENO
-        lead_assessor_form: Obrazac glavnog procenjivača
-        meeting: Sastanak
-        mettl: OMILjENO
-        organisational: Org Ankete
-        pearson: Pirson
-        psychometric: Psihometrijski
-        saville: San-Tome i Prinsipi
-        simulation: Simulacija
-        skillvue: Skillvue
-        threesixty: 360 Kampanja
-        yoodli: Joodli
       status:
         finished: Zavrљio
         in_progress: U toku
-      type:
-        common: TTE Procena
-        hogan: Hogan
-        iiht: IIHT procena
-        mettl: Mettl Procena
-        pearson: Pirsonova procena
-        saville: Savil Procena
-        simulation: Simulacija Procena
-        skillvue: Skillvue Procena
-        yoodli: Joodli Procena
     flow:
       end_assessment_modal:
         custom_message: Prilagođeni kraj poruke o proceni
@@ -1728,23 +1704,6 @@ sr-Latn:
     title: Promena lozinka
     warning_message: 'Važno: Promena lozinka će vas odjaviti.'
   checking_wizard:
-    audio_check:
-      access: Pristup
-      continue: Da, može da se nastavi
-      random_phrases:
-        eight: Neka vaša kafa bude jaka i vaš dan biti produktivan.
-        five: Život je bolji kada se smeješ. Osmeh za mikrofon!
-        four: Ona prodaje školjke na obali mora.
-        nine: Kada ste u nedoumici, testirajte da li ovaj mikrofon radi!
-        one: Ja vrištim, ti vrištiš, svi vrištimo za sladoledom!
-        seven: Svaki dan je novi početak. Reci to glasno i ponosno!
-        six: Pica ili testenina? Odluke su teške.
-        three: Testiranje, jedan, dva, tri, zvuk je potpuno jasan!.
-        two: Brza smeđa lisica preskače lenjog psa.
-      record_title: Molimo Vas da govorite i ponovite sledeću rečenicu 3 puta.
-      retake: Ne, želim da ponovim
-      run_again: Pokreni ponovo
-      test_message: Sjajno je razgovarati sa vama
     network_check:
       continue: Nastavi
       download: Preuzmi
@@ -1777,18 +1736,10 @@ sr-Latn:
       permissions: Dozvole za veb kameru i audio
       title: Pre nego što započnete ovu procenu, vaš sistem mora da prođe neke provere.
     video_check:
-      access: Pristupi
-      camera_preview: Pregled kamere će se pojaviti ovde
-      continue: Da, u redu da se nastavi
       description: Kliknite na Počni snimanje i snimite se dok čitate donji pasus svojim glasom
       random_phrases:
         one: Sem spreman. Ovo je testni snimak da potvrdim da li moj mikrofon i kamera ispravno rade.
-      rec_text: REC
-      retake: Ne, želim da ponovim
-      run_again: Pokreni ponovo
       title: Moramo da obezbedimo vaš sistem može da snima video
-      upload_again: Otpremi ponovo
-      uploading: Otpremanje
   common:
     actions:
       add: Dodaj
@@ -3313,13 +3264,6 @@ sr-Latn:
     fields:
       provider:
         custom_upload: Prilagođeno otpremanje
-        hogan: Hogan
-        internal: Unutrašnje
-        mettl: OMILjENO
-        pearson: Pirson
-        saville: San-Tome i Prinsipi
-        skillvue: OMILjENO
-        yoodli: Joodli
     form:
       load_from_mettl: Učitaj od Mettl
       load_from_pearson: Učitaj od Pirsona

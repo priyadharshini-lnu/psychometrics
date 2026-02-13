@@ -12,6 +12,7 @@ import store from '~/modules/reports/store/PreviewStore'
 import '~/modules/reports/styles/globals.less'
 import globalStore from '~/modules/admin/store'
 import ErrorWarning from '~/modules/reports/views/Preview/ErrorWarning'
+import { camelizeKeys } from '~/utils/object'
 import rstore from '../store'
 import { init, changeSkipLogic } from '../core/builder/actions'
 import schema from '../store/schema'
@@ -32,9 +33,13 @@ class ReportContainer extends Component {
 
     data.skipLogic = skipLogic
     const normalizedData = normalize(data, schema)
+    const {
+      campaignAiArtifactResults = [],
+    } = camelizeKeys(userReport)
     store.init(
       data, results, user, campaign,
-      userReport.reportData || [], userReport.campaignFactorResults || [], userReport.campaignAiArtifactResults || [],
+      userReport.reportData || [], userReport.campaignFactorResults || [],
+      campaignAiArtifactResults,
     )
     rstore.dispatch(init(normalizedData, userReport))
 

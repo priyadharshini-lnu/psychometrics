@@ -87,6 +87,12 @@ module Administration
 
       def export_completion_status
         audit! :export_completion_status, campaign, campaign: campaign
+        siem_log_sensitive_operation(
+          context: 'Campaign Completion Status Export',
+          action_description: "exported completion status for campaign #{campaign.id}",
+          action_type: 'Export',
+          resource: 'Campaign'
+        )
         AdminJob.call(
           :completion_status_export,
           { campaign_id: campaign.id, include_inactive_users: include_inactive_users },
@@ -97,6 +103,12 @@ module Administration
 
       def export_compact_completion_status
         audit! :export_compact_completion_status, campaign, campaign: campaign
+        siem_log_sensitive_operation(
+          context: 'Campaign Completion Status Export',
+          action_description: "exported compact completion status for campaign #{campaign.id}",
+          action_type: 'Export',
+          resource: 'Campaign'
+        )
         AdminJob.call(
           :compact_completion_status_export,
           { campaign_id: campaign.id, include_inactive_users: include_inactive_users },
@@ -147,6 +159,12 @@ module Administration
 
       def export
         audit! :export_users, campaign, campaign: campaign
+        siem_log_sensitive_operation(
+          context: 'Campaign User Export',
+          action_description: "exported users for campaign #{campaign.id}",
+          action_type: 'Export',
+          resource: 'Campaign'
+        )
         AdminJob.call(
           :export_users,
           {

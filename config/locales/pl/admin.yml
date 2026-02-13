@@ -9,6 +9,7 @@ pl:
     add_project: Dodaj projekt
     add_project_admin: Dodawanie administratora projektu
     add_threesixty_campaign_admin: Dodaj administratora kampanii
+    add_word_count: Dodaj liczbę słów
     admin_approval_required: Raport dla %{user} wymaga zgody administratora przed pobraniem
     admin_created_successfully: Administrator "%{name}" został utworzony pomyślnie
     admin_export_scheduled: Zadanie eksportu administratora zostało zaplanowane pomyślnie. Sprawdź status swojego powiadomienia.
@@ -17,6 +18,7 @@ pl:
     admin_roles: Role administratora
     admin_updated_successfully: Administrator "%{name}" został pomyślnie zaktualizowany
     admins: Administratorzy
+    agile: ZWINNY
     ai_artifacts: Artefakty SI
     ai_artifacts_output_schema_key_constraint: Klucz musi zaczynać się od małej litery i może zawierać tylko małe litery, cyfry i podkreślenia
     ai_assistant_model_id_label: Identyfikacja modelu
@@ -24,6 +26,7 @@ pl:
     ai_assistant_model_provider: Dostawca
     ai_assistant_model_region_label: Region
     ai_assistant_required: Wymagany jest asystent AI
+    ai_assistant_select_dependencies: Wybierz zależności
     ai_assistants: Asystenci AI
     ai_assistants_advanced_mode_tooltip: Użyj zaawansowanego trybu szablonowego promptu za pomocą szablonu płynnego z dostępnymi zmiennymi. Więcej szczegółów można znaleźć w dokumentacji.
     ai_assistants_campaign_id_placeholder: Na scenę wchodzi identyfikacja kampanii
@@ -35,6 +38,10 @@ pl:
     ai_assistants_test_render: Renderowanie testowe
     ai_assistants_test_render_tooltip: Przetestuj szablon promptu z danymi kampanii, aby sprawdzić, co zostanie wysłane do asystenta AI.
     ai_assisted_idp_feature_disabled: Funkcja wspomaganego IDP przez AI została wyłączona w tym projekcie.
+    ai_idp_assistant_configure_dependencies: Skonfiguruj zależności AI
+    ai_idp_assistant_configure_dependencies_description: Skonfiguruj, do których danych zależności asystent AI IDP może uzyskać dostęp jako kontekst. Dotyczy to wyłącznie sytuacji, gdy asystent jest skonfigurowany tak, aby akceptować zależności.
+    ai_idp_assistant_dependencies_updated: Zależności zaktualizowane pomyślnie
+    ai_idp_assistant_update_dependencies: Zaktualizuj zależności
     ai_notice: Podświetlone fragmenty zostały przetłumaczone przez sztuczną inteligencję i mogą zawierać nieścisłości.
     ai_translation: Tłumaczenie AI
     all_corner_rounded: Wszystkie rogi zaokrąglone
@@ -44,6 +51,7 @@ pl:
     assessments_not_mhs: Wszystkie oceny muszą być typu MHS.
     assessments_reports: Oceny i raporty
     assessor_dashboard: Pulpit nawigacyjny asesora
+    assessor_form: Formularz asesora
     assessor_workshops: Centrum oceny zintegrowanej
     assessors: Asesorów
     assistant_toolbar_failed: Nie udało się wygenerować prawidłowego wyniku po wielu próbach.
@@ -83,14 +91,20 @@ pl:
     campaign_templates: Szablony kampanii
     campaign_user_job_roles_cannot_be_same: Docelowe stanowisko musi różnić się od obecnego stanowiska.
     campaigns: Kampanie
+    cancellation_and_rescheduling_disabled: Anulowanie i zmiana terminu są wyłączone.
+    case_study: Przypadków
+    casual: Nieformalny
     client: Dzierżawa klienta
     client_admins: Administratorzy klienta
     clients: Umowy najmu dla klientów
     code_required: Wymagany jest kod
+    common: Ocena TTE
+    common_assessment: Ocena TTE
     communication_center: Centrum Komunikacyjne
     communications: Komunikacji
     completed: Zakończone
     completed_tooltip: Wszyscy oceniający złożyli ocenę
+    concise: Zwięzły
     confirm_remove_admin: Czy na pewno chcesz usunąć administratora za pomocą adresu e-mail "%{email}"?
     country: Kraj
     create_client: Utwórz klienta
@@ -117,16 +131,29 @@ pl:
     empty_csv_file: Plik CSV nie zawiera żadnych danych.
     enable_enhance_with_ai_client_level: Włącz funkcję „Ulepsz za pomocą AI” na poziomie klienta.
     enable_transcription: Włącz transkrypcję
+    enhance_with_ai: Wzbogać dzięki sztucznej inteligencji
     enhance_with_ai_requires_ai_assistants: Funkcja „Wzbogać dzięki AI” wymaga włączenia funkcji asystentów AI.
+    error: Błąd
     evaluation_status: Status oceny
     evaluation_status_not_done: Status oceny nie jest "Zakończony" dla jednego lub więcej wybranych przedmiotów. Prosimy o to, by wszyscy wybrani użytkownicy ukończyli oceny lub oznaczyli je jako ukończone.
     export_admin_roles_permissions: Eksport ról i uprawnień administratora
+    export_compact_completion_status: Kompaktowy
+    export_completion_status: Status zakończenia eksportu
+    export_completion_statuses_scheduled: Zadanie eksportu statusów ukończenia zostało pomyślnie zaplanowane.
+    export_detailed_completion_status: Szczegółowy
     feature_enhance_with_ai: Wzbogać dzięki sztucznej inteligencji
     feature_flags: Flagi funkcji
     fill_empty_score_msg: Wypełnij wszystkie końcowe wyniki przed zapisem.
     final_score_empty_err_msg: Ostateczny wynik gry „%{factor_name}” nie może być pusty.
+    fix_grammar: Popraw gramatykę
+    formal: Formalny
+    generate_transcription: Wygeneruj transkrypcję
+    hogan: Hogan
+    hogan_assessment: ZWINNY
     idp_plan_reset_success: Plan został pomyślnie zresetowany
     idp_templates: Szablony IDP
+    iiht: Międzynarodowa Biblioteka Medyczna (IIH
+    iiht_assessment: Ocena IIHT
     import_ai_artifacts: Import artefaktów AI
     import_csv_assessment_group_error: "%{index}: użytkownik o adresie e-mail %{email} został już zaproszony do „%{workshopInviteName}”."
     import_csv_error: 'Wiersz %{index}: użytkownik z %{email} e-mail nie występuje w tej kampanii'
@@ -150,8 +177,10 @@ pl:
     import_title: Importuj tematy z CSV
     import_upload: Przesyłać
     import_users: Import użytkowników
+    internal: Wewnętrzny
     invalid_csv_header: Plik CSV zawiera nieprawidłowe nagłówki.
     job_roles: Role zawodowe
+    lead_assessor_form: Formularz głównego asesora
     learning_from_others: Uczenie się zespołowe [20]
     level: Poziom
     level_apply: Zastosuj
@@ -163,7 +192,10 @@ pl:
     licenses: Licencje
     manager_approval_required: Raport %{user} wymaga zgody menedżera przed pobraniem
     max_value: Wartość maksymalna
+    meeting: Spotkanie
     messages: Wiadomości
+    mettl: 'Mettl powiedział:'
+    mettl_assessment: Ocena Mettl
     mhs: MHS
     mhs_assessment: Ocena MHS
     mhs_assessment_name: Nazwa oceny MHS
@@ -190,7 +222,11 @@ pl:
     on_the_job: W pracy [70]
     only_editable_on_create: Ta opcja jest edytowalna tylko podczas tworzenia.
     options: Opcje
+    organisational: Ankiety organizacyjne
+    original_text: Oryginalny tekst
     participants: Uczestników
+    pearson: Pearson
+    pearson_assessment: Ocena Pearsona
     permissions:
       aiArtifacts:
         export: Eksport
@@ -615,6 +651,8 @@ pl:
     permissions_360_campaigns: Uprawnienia specyficzne dla kampanii 360
     piped_text: Tekst z rury
     privacy: Prywatność
+    professional: Profesjonalny
+    proficiency: Biegłość
     proficiency_level: Klucze API
     proficiency_levels: Poziomy biegłości
     profile_details: Szczegóły profilu
@@ -623,6 +661,7 @@ pl:
     project_number: Numer projektu
     project_settings: Ustawienia projektu
     projects: Projekty
+    psychometric: Psychometryczne
     question_center: Centrum pytań
     questions: Pytania
     reflection_questions: Pytania do refleksji
@@ -643,6 +682,7 @@ pl:
     reset_idp_plan_confirmation: Jesteś pewien, że chcesz zresetować plan?
     reset_idp_plan_title: Plan Resetu
     response_meta: Meta odpowiedzi
+    result: Wynik
     results: Wyniki
     role: Rola
     saml_idp_certificate_available: Dostępne (kliknij, aby skopiować)
@@ -693,6 +733,8 @@ pl:
     saml_service_provider_updated_date: Data aktualizacji
     saml_service_providers: Usługodawców
     saml_settings: Ustawienia SAML
+    saville: Saville (Wyspa Saville
+    saville_assessment: Ocena Saville'a
     scheduling: Planowania
     scoring: Punktacji
     scoring_value_info: Wynik musi mieścić się w przedziale od %{min} do %{max}.
@@ -708,9 +750,13 @@ pl:
     show_submenu: Pokaż podmenu
     show_translated: Pokaż przetłumaczone
     siem: SIEM (SIEM)
+    simulation: Symulacja
+    simulation_assessment: Ocena symulacyjna
     skill_aliases: Aliasy umiejętności
     skills: Umiejętności
     skills_taxonomy: Taksonomia umiejętności
+    skillvue: Umiejętne
+    skillvue_assessment: Ocena Skillvue
     slot_name: Nazwa slotu
     sms_histories: Historie SMS
     sms_invites: Zaproszenia SMS
@@ -720,12 +766,18 @@ pl:
     subdomain: Subdomena
     subject_part_of_other_invite: Osoba o adresie e-mail %{user_email} została już zaproszona do „%{workshop_invite_name}”.
     target_job_role: Docelowa rola zawodowa
+    threesixty: Kampania 360
+    tone: Ton
     toolbar_ai_insight: Wgląd w sztuczną inteligencję
     toolbar_ai_suggestion: Sugestia AI
     toolbar_result_generating: Generowanie...
     toolbar_text_copied: Skopiowano do schowka
     toolbar_text_replaced: Tekst zastąpiony!
     toolbar_what_changed_and_why: Co się zmieniło i dlaczego
+    tools: Narzędzia
+    transcription_record_not_found: Nie znaleziono zapisu transkrypcji.
+    transcription_schedule_failed: Nie udało się zaplanować zadania transkrypcji
+    transcription_scheduled: Zadanie transkrypcji zostało zaplanowane. Zamknij okno modalne i sprawdź status powiadomienia.
     translate: Przetłumacz
     translate_to: Przetłumacz na
     translate_with_ai: Tłumacz za pomocą sztucznej inteligencji
@@ -739,11 +791,14 @@ pl:
     users: Użytkowników
     view_licenses: Zobacz licencje
     waiting: Czekanie
+    words: Słowa
     workshops: Warsztaty
     writing_assistant_not_configured: Asystent pisania nie został skonfigurowany
     x_axis_interval_label: Interwał osi X
     y_axis_interval_label: Interwał osi Y
     year: Kraj
+    yoodli: Yoodli
     yoodli_activity_id: Yoodli Activity ID
+    yoodli_assessment: Ocena Yoodli
     yoodli_email_id: Identyfikator e-mail kandydata Yoodli
     yoodli_external_assessment_id: Yoodli Assessment ID

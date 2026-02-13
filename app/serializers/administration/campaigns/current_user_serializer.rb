@@ -83,6 +83,12 @@ module Administration
         permissions['manageProjectLicenses'] = Api::Administration::Projects::LicensePolicy.new(
           object, ProjectLicense, project_id: context[:project_id], campaign_id: context[:campaign_id]
         ).create?
+        permissions['export_completion_status'] = Api::Administration::ProjectPolicy.new(
+          object, Project, project_id: context[:project_id], campaign_id: context[:campaign_id]
+        ).export_completion_status?
+        permissions['export_compact_completion_status'] = Api::Administration::ProjectPolicy.new(
+          object, Project, project_id: context[:project_id], campaign_id: context[:campaign_id]
+        ).export_completion_status?
         permissions.transform_keys! { |k| k.camelcase(:lower) }
       end
 

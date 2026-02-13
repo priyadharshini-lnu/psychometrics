@@ -20,7 +20,7 @@ export const SelectedSkillsCard: FC<Props> = ({ selectedSkills, onRemoveSkill })
       title={`${I18n.t('idp.initial_steps.selected_skills')} (${selectedSkills.length})`}
     >
       {selectedSkills.length ? (
-        <Space direction="vertical">
+        <Space orientation="vertical">
           {
           selectedSkills.map(userIdpSkill => (
             <Tag

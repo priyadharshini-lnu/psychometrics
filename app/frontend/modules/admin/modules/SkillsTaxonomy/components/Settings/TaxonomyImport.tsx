@@ -1,24 +1,29 @@
 import React, { useState } from 'react'
 import {
-  App, Button, Alert, Form, Upload, Typography, Flex,
+  App, Button, Alert, Upload, Typography, Card, Space, Flex,
 } from 'antd'
+import type { UploadFile } from 'antd'
 import { useParams } from 'react-router'
 import { User } from '~/modules/admin/modules/client/core/users'
-import { CheckOutlined, LoadingOutlined, UploadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import {
+  CheckOutlined, LoadingOutlined, UploadOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { useResources } from '~/hooks/useResources'
+import styles from './styles.less'
 
 const { I18n } = window
+const { Text, Link } = Typography
 
 const TAXONOMY_IMPORT = 'skill_rater_assessments/import_taxonomies'
 
 export const TaxonomyImport: React.FC = () => {
   const { message } = App.useApp()
-  const [form] = Form.useForm()
-  const [file, setFile] = useState<File | null>(null)
+  const [file, setFile] = useState<UploadFile | null>(null)
   const [errors, setErrors] = useState([])
+  const [loading, setLoading] = useState(false)
 
   const { projectId: projectIdParam } = useParams()
-  const { uploadFileAction, isLoading } = useResources<User>(TAXONOMY_IMPORT)
+  const { uploadFileAction } = useResources<User>(TAXONOMY_IMPORT)
 
   const handleTaxonomyImport = (data: FormData, projectId: number | null) => {
     let action = TAXONOMY_IMPORT
@@ -27,79 +32,92 @@ export const TaxonomyImport: React.FC = () => {
     }
 
     setErrors([])
+    setLoading(true)
 
     uploadFileAction(action, data)
       .then(() => {
-        form.resetFields()
         setFile(null)
         message.info(I18n.t('administration.taxonomy.import.success_msg'))
       })
       .catch((error) => {
         setErrors(error)
       })
+      .finally(() => {
+        setLoading(false)
+      })
   }
 
   const handleUpload = () => {
-    if (!file) return
+    if (!file || loading) return
 
     const data = new FormData()
-    data.append('file', file)
+    data.append('file', file.originFileObj as Blob, file.name)
 
     handleTaxonomyImport(data, projectIdParam ? Number(projectIdParam) : null)
   }
 
   return (
-    <Flex vertical className="pl">
-      {errors.length ? (
+    <Flex vertical className={styles.container}>
+      {errors.length > 0 && (
         <Alert
-          message={false}
+          message={I18n.t('administration.taxonomy.import.error_title')}
           description={errors.map((e, i) => <div key={i}>{e}</div>)}
           type="error"
-          className="mbm"
+          showIcon
+          closable
+          onClose={() => setErrors([])}
+          className="mb-24"
         />
-      ) : null}
-      <Flex gap={20} align="center">
-        <Typography.Title className="fs-20 mt-2 self-start" level={1}>
-          {I18n.t('administration.taxonomy.import_action.taxonomy')}
-          :
-        </Typography.Title>
-        <Upload
-          accept=".xls,.xlsx"
-          showUploadList
-          beforeUpload={(file) => {
-            setFile(file)
-            return false
-          }}
-          maxCount={1}
-          onRemove={() => {
-            setFile(null)
-            setErrors([])
-            return true
-          }}
-          fileList={file ? [{
-            uid: '1',
-            name: file.name,
-          }] : []}
-        >
-          <Button icon={<UploadOutlined />}>{I18n.t('common.actions.upload')}</Button>
-        </Upload>
-        { !file && (
-          <Typography.Link target="_blank" href="/example_csv/import_taxonomy_sample_file.xlsx">
+      )}
+
+      <Card title={I18n.t('administration.taxonomy.import_action.taxonomy')}>
+        <Text type="secondary" className="mb-16">
+          {I18n.t('administration.taxonomy.import.description')}
+        </Text>
+
+        <Space orientation="vertical" size="middle" className={styles.spaceFullWidth}>
+          <Link
+            href="/example_csv/import_taxonomy_sample_file.xlsx"
+            target="_blank"
+          >
             {I18n.t('administration.taxonomy.import.download_example_file')}
-          </Typography.Link>
-        )}
-      </Flex>
-      <Button
-        className="mt-2 self-start"
-        type="primary"
-        htmlType="submit"
-        disabled={!file}
-        loading={isLoading(`upload/${TAXONOMY_IMPORT}`)}
-        onClick={handleUpload}
-        icon={isLoading(`upload/${TAXONOMY_IMPORT}`) ? <LoadingOutlined /> : <CheckOutlined />}
-      >
-        {I18n.t('common.actions.update')}
-      </Button>
+          </Link>
+
+          <Upload.Dragger
+            accept=".xlsx,.xls"
+            multiple={false}
+            beforeUpload={() => false}
+            onChange={info => setFile(info.fileList[0] || null)}
+            onRemove={() => {
+              setFile(null)
+              setErrors([])
+            }}
+            fileList={file ? [file] : []}
+          >
+            <UploadOutlined className={styles.uploadIcon} />
+            <div className="mt-4">
+              <Text>
+                {I18n.t('administration.taxonomy.import.drag_text')}
+              </Text>
+            </div>
+            <div>
+              <Text type="secondary">
+                {I18n.t('administration.taxonomy.import.file_hint')}
+              </Text>
+            </div>
+          </Upload.Dragger>
+
+          <Button
+            type="primary"
+            disabled={!file || loading}
+            loading={loading}
+            onClick={handleUpload}
+            icon={loading ? <LoadingOutlined /> : <CheckOutlined />}
+          >
+            {I18n.t('administration.taxonomy.import.import_button')}
+          </Button>
+        </Space>
+      </Card>
     </Flex>
   )
 }

@@ -9,6 +9,7 @@ hu:
     add_project: Projekt hozzáadása
     add_project_admin: Projektadminisztrátor hozzáadása
     add_threesixty_campaign_admin: Kampányadminisztrátor hozzáadása
+    add_word_count: Szószám hozzáadása
     admin_approval_required: A jelentés %{user} letöltése előtt adminisztrátor jóváhagyást igényel
     admin_created_successfully: Az adminisztrátori '%{name}' létrehozása sikeresen megtörtént
     admin_export_scheduled: Az adminisztrátori exportálási feladat ütemezése sikeresen megtörtént. Kérjük, ellenőrizze az értesítései állapotát.
@@ -17,6 +18,7 @@ hu:
     admin_roles: Adminisztrátori szerepkörök
     admin_updated_successfully: Az adminisztrátori '%{name}' frissítése sikeresen megtörtént
     admins: Adminisztrátorok
+    agile: FÜRGE
     ai_artifacts: AI-összetevők
     ai_artifacts_output_schema_key_constraint: A kulcsnak kisbetűvel kell kezdődnie, és csak kisbetűket, számokat és aláhúzásokat tartalmazhat
     ai_assistant_model_id_label: Model ID
@@ -24,6 +26,7 @@ hu:
     ai_assistant_model_provider: Szolgáltató
     ai_assistant_model_region_label: Régió
     ai_assistant_required: Szükséges az AI Assistant
+    ai_assistant_select_dependencies: Függőségek kiválasztása
     ai_assistants: AI asszisztensek
     ai_assistants_advanced_mode_tooltip: Használj fejlett módot prompt templáláshoz liquid sablon használatával, elérhető változókkal. További részletekért lásd a dokumentációt.
     ai_assistants_campaign_id_placeholder: Jelentkezik a kampányazonosító
@@ -35,6 +38,10 @@ hu:
     ai_assistants_test_render: Tesztrender
     ai_assistants_test_render_tooltip: Teszteld a prompt sablonodat kampányadatokkal, hogy megbizonyosodj arról, mi fog elküldeni az AI asszisztensnek.
     ai_assisted_idp_feature_disabled: Az AI Assisted IDP funkciót letiltották ehhez a projekthez.
+    ai_idp_assistant_configure_dependencies: AI-függőségek konfigurálása
+    ai_idp_assistant_configure_dependencies_description: Állítsa be, hogy az IDP AI Assistant mely függőségi adatokhoz férhet hozzá kontextusként. Ez csak akkor érvényes, ha az asszisztens úgy van beállítva, hogy elfogadja a függőségeket.
+    ai_idp_assistant_dependencies_updated: A függőségek frissítése sikeresen megtörtént
+    ai_idp_assistant_update_dependencies: Függőségek frissítése
     ai_notice: Kiemelt szakaszok AI-fordításúak és pontatlanságokat tartalmazhatnak.
     ai_translation: AI fordítás
     all_corner_rounded: Minden sarok lekerekített
@@ -44,6 +51,7 @@ hu:
     assessments_not_mhs: Minden értékelésnek MHS típusúnak kell lennie.
     assessments_reports: Felmérések és jelentések
     assessor_dashboard: Értékelő irányítópult
+    assessor_form: Értékelő űrlap
     assessor_workshops: Értékelési központ
     assessors: Értékelők
     assistant_toolbar_failed: Többszöri próbálkozás után sem sikerült érvényes kimenetet generálni.
@@ -83,14 +91,20 @@ hu:
     campaign_templates: Kampány sablonok
     campaign_user_job_roles_cannot_be_same: A célpozíció nem lehet azonos a jelenlegi pozícióval.
     campaigns: Kampányok
+    cancellation_and_rescheduling_disabled: A lemondás és az átütemezés funkció le van tiltva.
+    case_study: Esettanulmányok
+    casual: Alkalmi
     client: Ügyfél bérleti joga
     client_admins: Ügyféladminisztrátorok
     clients: Ügyfélcsoportok
     code_required: Kód szükséges
+    common: TTE értékelés
+    common_assessment: TTE értékelés
     communication_center: Kommunikációs központ
     communications: Kommunikáció
     completed: Befejezett
     completed_tooltip: Minden értékelő benyújtotta az értékelést
+    concise: Tömör
     confirm_remove_admin: Biztosan el akarja távolítani az a(z) '%{email}' e-mail címmel rendelkező adminisztrátori felhasználót ?
     country: Ország
     create_client: Ügyfél létrehozása
@@ -117,16 +131,29 @@ hu:
     empty_csv_file: A CSV fájl nem tartalmaz adatokat.
     enable_enhance_with_ai_client_level: Kérjük, engedélyezze az AI-vel történő fejlesztés funkciót ügyfélszinten.
     enable_transcription: Feliratozás engedélyezése
+    enhance_with_ai: Fejlesztés mesterséges intelligenciával
     enhance_with_ai_requires_ai_assistants: Az AI-val történő fejlesztéshez engedélyezni kell az AI-asszisztensek funkciót.
+    error: Hiba
     evaluation_status: Értékelési állapot
     evaluation_status_not_done: Az értékelési státusz nem 'Kész' egy vagy több kiválasztott tantárgy esetében. Kérjük, minden kiválasztott felhasználó elvégezte az értékeléseket vagy jelölje meg.
     export_admin_roles_permissions: Adminisztrátori szerepkörök és engedélyek exportálása
+    export_compact_completion_status: Kompakt
+    export_completion_status: Exportálás befejezési állapota
+    export_completion_statuses_scheduled: A befejezési állapotok exportálási feladata sikeresen ütemezésre került.
+    export_detailed_completion_status: Részletes
     feature_enhance_with_ai: Fejlesztés mesterséges intelligenciával
     feature_flags: Feature flags
     fill_empty_score_msg: Töltsd ki az összes végső pontszámot mentés előtt.
     final_score_empty_err_msg: "%{factor_name} végső pontszáma nem lehet üres."
+    fix_grammar: Helyesírás javítása
+    formal: Hivatalos
+    generate_transcription: Átírás létrehozása
+    hogan: Hogan
+    hogan_assessment: FÜRGE
     idp_plan_reset_success: A tervet sikeresen újraindították
     idp_templates: IDP-sablonok
+    iiht: IIHT
+    iiht_assessment: IIHT értékelés
     import_ai_artifacts: MI tárgyak importálása
     import_csv_assessment_group_error: "%{index} sor: a %{email} e-mail címmel rendelkező felhasználó már meghívást kapott a „%{workshopInviteName}” csoportba."
     import_csv_error: "%{index}. sor: %{email} e-mail felhasználó nem része ebben a kampányban"
@@ -150,8 +177,10 @@ hu:
     import_title: Témák importálása a CSV-ből
     import_upload: Feltölt
     import_users: Importfelhasználók
+    internal: Belső
     invalid_csv_header: A CSV fájl érvénytelen fejléceket tartalmaz.
     job_roles: Munkakörök
+    lead_assessor_form: Vezető értékelői űrlap
     learning_from_others: Együttműködő tanulás [20]
     level: Szint
     level_apply: Jelentkezés
@@ -163,7 +192,10 @@ hu:
     licenses: Licencek
     manager_approval_required: A jelentés %{user} letöltése előtt menedzser jóváhagyását igényel
     max_value: Maximális érték
+    meeting: Találkozó
     messages: Üzenetek
+    mettl: Mettl
+    mettl_assessment: Mettl értékelés
     mhs: MHS
     mhs_assessment: MHS értékelés
     mhs_assessment_name: MHS értékelés neve
@@ -190,7 +222,11 @@ hu:
     on_the_job: A munkában [70]
     only_editable_on_create: Ez az opció csak létrehozáskor szerkeszthető.
     options: Beállítások
+    organisational: Szervezeti felmérések
+    original_text: Eredeti szöveg
     participants: Résztvevők
+    pearson: Pearson
+    pearson_assessment: Pearson értékelés
     permissions:
       aiArtifacts:
         export: Kivitel
@@ -615,6 +651,8 @@ hu:
     permissions_360_campaigns: 360°-os kampányokra vonatkozó engedélyek
     piped_text: Csővezetékes szöveg
     privacy: Adatvédelem
+    professional: Professzionális
+    proficiency: Jártasság
     proficiency_level: API-kulcsok
     proficiency_levels: Tudásszintek
     profile_details: Profil részletei
@@ -623,6 +661,7 @@ hu:
     project_number: Projekt száma
     project_settings: Projekt beállításai
     projects: Projektek
+    psychometric: Pszichometriai
     question_center: Kérdésközpont
     questions: Kérdések
     reflection_questions: Reflexiós kérdések
@@ -643,6 +682,7 @@ hu:
     reset_idp_plan_confirmation: Biztos vagy benne, hogy újraindítanod a tervet?
     reset_idp_plan_title: Reset terv
     response_meta: Meta-válasz
+    result: Eredmény
     results: Eredmények
     role: Szerep
     saml_idp_certificate_available: Elérhető (kattints a másoláshoz)
@@ -693,6 +733,8 @@ hu:
     saml_service_provider_updated_date: Frissített dátum
     saml_service_providers: Szolgáltatók
     saml_settings: SAML beállítások
+    saville: Saville
+    saville_assessment: Saville-értékelés
     scheduling: Ütemezés
     scoring: Pontozás
     scoring_value_info: A pontszámnak %{min} és %{max} között kell lennie.
@@ -708,9 +750,13 @@ hu:
     show_submenu: Almenü megjelenítése
     show_translated: Fordítás megjelenítése
     siem: SIEM
+    simulation: Szimuláció
+    simulation_assessment: Szimulációs értékelés
     skill_aliases: Készség aliasok
     skills: Készségek
     skills_taxonomy: Készségek taxonómiája
+    skillvue: Skillvue
+    skillvue_assessment: Skillvue értékelés
     slot_name: Nyerő neve
     sms_histories: SMS-előzmények
     sms_invites: SMS-meghívók
@@ -720,12 +766,18 @@ hu:
     subdomain: Aldomain
     subject_part_of_other_invite: Az e-mail címmel %{user_email} rendelkező személy már meghívást kapott a „%{workshop_invite_name}” rendezvényre.
     target_job_role: Célkitűzés
+    threesixty: 360 fokos kampány
+    tone: Hangszín
     toolbar_ai_insight: AI betekintés
     toolbar_ai_suggestion: AI javaslat
     toolbar_result_generating: Generálás...
     toolbar_text_copied: Másolva a vágólapra
     toolbar_text_replaced: Szöveg kicserélve!
     toolbar_what_changed_and_why: Mi változott és miért?
+    tools: Eszközök
+    transcription_record_not_found: A leírás nem található
+    transcription_schedule_failed: A leírási feladat ütemezése sikertelen
+    transcription_scheduled: A transzkripciós feladat ütemezve van. Kérjük, zárja be a modált, és ellenőrizze az értesítés állapotát.
     translate: Fordítás
     translate_to: Fordítás
     translate_with_ai: Fordítás AI segítségével
@@ -739,11 +791,14 @@ hu:
     users: Felhasználók
     view_licenses: Licencek megtekintése
     waiting: Várakozás
+    words: Szavak
     workshops: Workshopok
     writing_assistant_not_configured: Írási asszisztens nincs konfigurálva
     x_axis_interval_label: X-tengely intervallum
     y_axis_interval_label: Y-tengely intervallum
     year: Ország
+    yoodli: Yoodli
     yoodli_activity_id: Yoodli Activity ID
+    yoodli_assessment: Yoodli értékelés
     yoodli_email_id: Yoodli jelölt e-mail azonosító
     yoodli_external_assessment_id: Yoodli Assessment ID

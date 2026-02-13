@@ -2,6 +2,7 @@
 
 class ClientFeature < ApplicationRecord
   belongs_to :client
+  include ApplicationConfigurationLoggable
 
   validates :client, presence: true
 

@@ -893,6 +893,7 @@ sk:
         export_users: Export používateľov kampane
         external_assessment_export: Export externých výsledkov
         generate_embedding_skills: Generovanie vkladania pre zručnosti
+        generate_transcription: Vytvoriť prepis
         import_accesssheet: Import prístupu
         import_assessment_questions: Otázky na hodnotenie dovozu
         import_assessment_translations: Preklady hodnotenia importu
@@ -923,6 +924,8 @@ sk:
         import_users: Importovať používateľov
         migrate_assessment_translations: Hodnotenie Migrácia prekladu
         normalize_factor_scores: Normalizujte skóre faktorov
+        project_compact_completion_status_export: Export stavu dokončenia kompaktného súboru
+        project_completion_status_export: Export stavu dokončenia
         regenerate_campaign_reports: Opätovné generovanie prehľadov kampaní
         regenerate_report: Znovu vygenerovať správu
         regenerate_threesixty_report: Obnoviť správu Threesixty
@@ -1092,36 +1095,9 @@ sk:
       title: Podrobnosti o hodnotení
     edit: Editovať
     fields:
-      category:
-        agile: ŽIVÝ
-        assessor_form: Formulár hodnotiteľa
-        case_study: Prípadové štúdie
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Formulár hlavného hodnotiteľa
-        meeting: Schôdza
-        mettl: Mettl
-        organisational: Prieskumy organizácie
-        pearson: Pearson
-        psychometric: Psychometrické
-        saville: Saville
-        simulation: Simulácia
-        skillvue: Skillvue
-        threesixty: 360° Kampaň
-        yoodli: Yoodli
       status:
         finished: Hotový
         in_progress: Prebieha
-      type:
-        common: Hodnotenie TTE
-        hogan: Hogan
-        iiht: Hodnotenie IIHT
-        mettl: Hodnotenie Mettl
-        pearson: Pearsonovo hodnotenie
-        saville: Hodnotenie Saville
-        simulation: Simulačné hodnotenie
-        skillvue: Hodnotenie zručností
-        yoodli: Yoodli hodnotenie
     flow:
       end_assessment_modal:
         custom_message: Vlastná správa o ukončení hodnotenia
@@ -1717,23 +1693,6 @@ sk:
     title: Zmena hesla
     warning_message: 'Dôležité: Zmena hesla vás odhlási.'
   checking_wizard:
-    audio_check:
-      access: Prístup
-      continue: Áno, môžete pokračovať
-      random_phrases:
-        eight: Nech je vaša káva silná a váš deň produktívny.
-        five: Život je lepší, keď sa usmievaš. Úsmev pre mikrofón!
-        four: Na pobreží predáva mušle.
-        nine: Keď máte pochybnosti, vyskúšajte tento mikrofón!
-        one: Ja kričím, ty kričíš, všetci kričíme po zmrzline!
-        seven: Každý deň je nový začiatok. Povedzte to nahlas a hrdo!
-        six: Pizza alebo cestoviny? Rozhodovanie je ťažké.
-        three: Testovanie, jeden dva tri, zvuk je jasný ako môže byť!.
-        two: Rýchla hnedá líška preskočí lenivého psa.
-      record_title: Vyslovte a zopakujte 3-krát nasledujúcu vetu.
-      retake: Nie, chcem si zopakovať
-      run_again: Znovu bežať
-      test_message: skvelé hovoriť s vami
     network_check:
       continue: Pokračovať
       download: Stiahnite si
@@ -1766,18 +1725,10 @@ sk:
       permissions: Oprávnenia na webovú kameru a zvuk
       title: Pred začatím tohto hodnotenia je potrebné vykonať niekoľko kontrol vášho systému.
     video_check:
-      access: Prístup
-      camera_preview: Tu sa zobrazí náhľad fotoaparátu
-      continue: Áno, môžete pokračovať
       description: Kliknite na Spustiť nahrávanie a nahrajte sa pri čítaní nižšie uvedeného úryvku vlastným hlasom
       random_phrases:
         one: Som pripravený. Toto je testovací záznam na potvrdenie, či môj mikrofón a kamera fungujú správne.
-      rec_text: REC
-      retake: Nie, chcem si zopakovať
-      run_again: Znovu bežať
       title: Musíme sa uistiť, že váš systém dokáže nahrávať video
-      upload_again: Znova nahrať
-      uploading: Nahrávanie
   common:
     actions:
       add: Pridať
@@ -3313,13 +3264,6 @@ sk:
     fields:
       provider:
         custom_upload: Vlastné nahrávanie
-        hogan: Hogan
-        internal: Vnútorný
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Načítajte od spoločnosti Mettl
       load_from_pearson: Náklad od Pearson

@@ -114,7 +114,7 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({
       <Spin spinning={isSkillsLoading}>
         <Row gutter={[24, 24]} className="mt-6">
           <Col>
-            <Space size={24} className="w-100" direction="vertical">
+            <Space size={24} className="w-100" orientation="vertical">
               {
             skillTypes.map((skillType, index) => (
               <Flex vertical key={skillType.skillType}>

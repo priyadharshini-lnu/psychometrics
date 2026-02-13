@@ -19,7 +19,7 @@ export const InvitationTitle:FC<Props> = ({
 }) => (
   <div>
     <Title level={4}>{title}</Title>
-    <Space className="w-100" direction="vertical" size="large">
+    <Space className="w-100" orientation="vertical" size="large">
       <p>{description}</p>
       <span className="text-nowrap">
         <GlobalOutlined className="pe-1" />

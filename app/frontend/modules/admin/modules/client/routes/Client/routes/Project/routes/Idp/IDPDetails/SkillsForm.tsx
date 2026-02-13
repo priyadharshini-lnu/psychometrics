@@ -162,7 +162,7 @@ const SkillsForm = ({
       layout="vertical"
       initialValues={initialValues}
     >
-      <Space direction="vertical" className="w-100">
+      <Space orientation="vertical" className="w-100">
         <Row gutter={[16, 16]}>
           <Col xs={24} md={24}>
             <Row gutter={16}>

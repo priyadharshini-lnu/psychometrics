@@ -893,6 +893,7 @@ bg:
         export_users: Експортиране на потребители на кампанията
         external_assessment_export: Експортиране на външни резултати
         generate_embedding_skills: Генериране на вграждане за умения
+        generate_transcription: Генериране на транскрипция
         import_accesssheet: Импортиране на accessheet
         import_assessment_questions: Въпроси за оценка на импортиране
         import_assessment_translations: Импортиране на преводи за оценяване
@@ -923,6 +924,8 @@ bg:
         import_users: Импортиране на потребители
         migrate_assessment_translations: Оценяване Преводаческа миграция
         normalize_factor_scores: Нормализиране на факторните резултати
+        project_compact_completion_status_export: Експорт на състоянието на завършеност на компактния файл
+        project_completion_status_export: Статус на завършване Износ
         regenerate_campaign_reports: Генериране на отчети за кампании
         regenerate_report: Регенериране на отчет
         regenerate_threesixty_report: Регенерирайте доклад на Threesixty
@@ -1092,36 +1095,9 @@ bg:
       title: Подробности за оценката
     edit: Редактирам
     fields:
-      category:
-        agile: ПОДВИЖЕН
-        assessor_form: Формуляр за оценител
-        case_study: Казуси
-        hogan: Хоган
-        iiht: ИИХТ
-        lead_assessor_form: Формуляр за водещ оценител
-        meeting: Събрание
-        mettl: Метл
-        organisational: Организационни проучвания
-        pearson: Пиърсън
-        psychometric: Психометрични
-        saville: Савил
-        simulation: Симулация
-        skillvue: Skillvue
-        threesixty: Кампания 360
-        yoodli: Юдли
       status:
         finished: Завършен
         in_progress: В процес на изпълнение
-      type:
-        common: Оценка на TTE
-        hogan: Хоган
-        iiht: Оценка на IIHT
-        mettl: Оценка на Mettl
-        pearson: Оценка на Пиърсън
-        saville: Оценка на Saville
-        simulation: Оценка на симулацията
-        skillvue: Оценка на Skillvue
-        yoodli: Оценка на Yoodli
     flow:
       end_assessment_modal:
         custom_message: Персонализирано съобщение за края на оценяването
@@ -1717,23 +1693,6 @@ bg:
     title: Променете паролата
     warning_message: 'Важно: Промяната на паролата Ви ще доведе до излизане от системата.'
   checking_wizard:
-    audio_check:
-      access: Влезте
-      continue: Да, може да продължите
-      random_phrases:
-        eight: Нека кафето Ви е силно, а денят ви - продуктивен.
-        five: Животът е по-добър, когато се усмихваш. Усмихни се за микрофона!
-        four: Тя продава мидички на брега на морето.
-        nine: Когато се съмнявате, изпробвайте този микрофон!
-        one: Аз викам, ти викаш, всички викаме за сладолед!
-        seven: Всеки ден е ново начало. Кажете го на висок глас и с гордост!
-        six: Пица или паста? Решенията са трудни.
-        three: Тестване, едно две три, звукът е толкова ясен, колкото може да бъде!
-        two: Бързата кафява лисица прескача мързеливото куче.
-      record_title: Моля, кажете и повторете 3 пъти следното изречение.
-      retake: Не, искам да презапиша
-      run_again: Пуснете отново
-      test_message: Страхотно е да говоря с Вас
     network_check:
       continue: Продължете
       download: Изтеглете
@@ -1766,18 +1725,10 @@ bg:
       permissions: Разрешения за уеб камера и аудио
       title: Преди да започнете тази оценка, системата Ви трябва да премине през някои проверки.
     video_check:
-      access: Достъпете
-      camera_preview: Прегледът на камерата ще се появи тук
-      continue: Да, разрешено е да продължите
       description: Кликнете върху Започнете запис и запишете себе си, докато четете долния пасаж със собствения си глас
       random_phrases:
         one: Готов съм. Това е тестов запис, за да се потвърди, че видеото и микрофонът ми работят правилно.
-      rec_text: REC
-      retake: Не, искам да презапиша
-      run_again: Пуснете отново
       title: Трябва да сме сигурни, че Вашата система може да записва видеото
-      upload_again: Качване отново
-      uploading: Качване
   common:
     actions:
       add: Добавете
@@ -3313,13 +3264,6 @@ bg:
     fields:
       provider:
         custom_upload: Персонализирано качване
-        hogan: Хоган
-        internal: Вътрешния
-        mettl: Метл
-        pearson: Пиърсън
-        saville: Савил
-        skillvue: Skillvue
-        yoodli: Юдли
     form:
       load_from_mettl: Натоварване от Mettl
       load_from_pearson: Зареждане от Pearson
