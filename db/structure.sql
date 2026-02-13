@@ -1,6 +1,7 @@
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
@@ -2268,6 +2269,39 @@ CREATE SEQUENCE public.campaign_factors_id_seq
 --
 
 ALTER SEQUENCE public.campaign_factors_id_seq OWNED BY public.campaign_factors.id;
+
+
+--
+-- Name: campaign_idp_dependencies; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.campaign_idp_dependencies (
+    id bigint NOT NULL,
+    campaign_idp_id bigint,
+    dependency_type character varying,
+    dependency_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: campaign_idp_dependencies_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.campaign_idp_dependencies_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: campaign_idp_dependencies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.campaign_idp_dependencies_id_seq OWNED BY public.campaign_idp_dependencies.id;
 
 
 --
@@ -9434,6 +9468,13 @@ ALTER TABLE ONLY public.campaign_factors ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
+-- Name: campaign_idp_dependencies id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_idp_dependencies ALTER COLUMN id SET DEFAULT nextval('public.campaign_idp_dependencies_id_seq'::regclass);
+
+
+--
 -- Name: campaign_idps id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -11079,6 +11120,14 @@ ALTER TABLE ONLY public.campaign_factor_values
 
 ALTER TABLE ONLY public.campaign_factors
     ADD CONSTRAINT campaign_factors_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: campaign_idp_dependencies campaign_idp_dependencies_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_idp_dependencies
+    ADD CONSTRAINT campaign_idp_dependencies_pkey PRIMARY KEY (id);
 
 
 --
@@ -13531,6 +13580,20 @@ CREATE INDEX index_campaign_factors_on_factor_id ON public.campaign_factors USIN
 
 
 --
+-- Name: index_campaign_idp_dependencies_on_campaign_idp_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_idp_dependencies_on_campaign_idp_id ON public.campaign_idp_dependencies USING btree (campaign_idp_id);
+
+
+--
+-- Name: index_campaign_idp_dependencies_on_dependency; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_idp_dependencies_on_dependency ON public.campaign_idp_dependencies USING btree (dependency_type, dependency_id);
+
+
+--
 -- Name: index_campaign_idps_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15841,6 +15904,13 @@ CREATE UNIQUE INDEX index_unique_dependency_per_artifact ON public.campaign_ai_a
 
 
 --
+-- Name: index_unique_dependency_per_campaign_idp; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_unique_dependency_per_campaign_idp ON public.campaign_idp_dependencies USING btree (campaign_idp_id, dependency_type, dependency_id);
+
+
+--
 -- Name: index_user_assessment_factor_scores_on_factor_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16708,6 +16778,14 @@ ALTER TABLE ONLY public.sms_invites
 
 ALTER TABLE ONLY public.sms_records
     ADD CONSTRAINT creator_id FOREIGN KEY (creator_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: campaign_idp_dependencies fk_rails_00704dede9; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_idp_dependencies
+    ADD CONSTRAINT fk_rails_00704dede9 FOREIGN KEY (campaign_idp_id) REFERENCES public.campaign_idps(id);
 
 
 --
@@ -19629,6 +19707,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260212060354'),
 ('20260209123134'),
 ('20260209112420'),
 ('20260209020330'),

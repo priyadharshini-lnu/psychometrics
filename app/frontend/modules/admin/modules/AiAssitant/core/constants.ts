@@ -2,26 +2,32 @@ export const ASSISTANT_TYPES = {
   content_writer: {
     id: 'content_writer',
     name: 'Content Writer',
+    supportedDependencies: ['datasheet', 'assessments', 'campaign_factors'],
   },
   idp_assistant: {
     id: 'idp_assistant',
     name: 'IDP Assistant',
+    supportedDependencies: ['assessments'],
   },
   assistant_tool: {
     id: 'assistant_tool',
     name: 'Assistant Tool',
+    supportedDependencies: [],
   },
   development_actions_assistant: {
     id: 'development_actions_assistant',
     name: 'Development Actions Assistant',
+    supportedDependencies: [],
   },
   writing_assistant: {
     id: 'writing_assistant',
     name: 'Writing Assistant',
+    supportedDependencies: [],
   },
   translation_assistant: {
     id: 'translation_assistant',
     name: 'Translation Assistant',
+    supportedDependencies: [],
   },
 }
 

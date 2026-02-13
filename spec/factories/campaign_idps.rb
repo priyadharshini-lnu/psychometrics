@@ -6,4 +6,9 @@ FactoryBot.define do
     campaign
     idp_template
   end
+
+  factory :campaign_idp_dependency do
+    campaign_idp
+    association :dependency, factory: :question
+  end
 end

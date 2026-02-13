@@ -43,6 +43,14 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
   const assistantOutputSchemaKeys = Form.useWatch('assistantOutputSchemaKeysAttributes', form) || []
   const assistantType = Form.useWatch('assistantType', form)
 
+  const currentAssistantTypeConfig = Object.values(ASSISTANT_TYPES).find(type => type.id === assistantType)
+  const supportedDependencies = currentAssistantTypeConfig?.supportedDependencies || []
+  const hasDependenciesSupport = supportedDependencies.length > 0
+
+  const allowedDependencies = Object.values(DEPENDENCY_TYPES).filter(
+    dep => supportedDependencies.includes(dep.id),
+  )
+
   const handleSubmit = () => {
     form.validateFields().then(() => {
       setIsLoading(true)
@@ -274,72 +282,77 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
               <Input.TextArea rows={4} />
             </Form.Item>
           )}
-          {assistantType === ASSISTANT_TYPES.content_writer.id && (
+          {hasDependenciesSupport && (
             <>
               <Form.Item
                 name="dependencies"
                 label={I18n.t('administration.ai_assistants.form.dependencies')}
-                rules={[{ required: true }]}
+                rules={[{ required: assistantType === ASSISTANT_TYPES.content_writer.id }]}
               >
                 <Select
                   showSearch
                   filterOption={false}
                   mode="multiple"
+                  placeholder={I18n.t('admin.ai_assistant_select_dependencies')}
                 >
-                  {Object.values(DEPENDENCY_TYPES).map(({ id, name }) => (
+                  {allowedDependencies.map(({ id, name }) => (
                     <Select.Option key={id} value={id}>{name}</Select.Option>
                   ))}
                 </Select>
               </Form.Item>
-              <Typography.Title style={{ fontSize: '1.167rem' }}>
-                {I18n.t('administration.ai_assistants.form.output_schema_keys')}
-              </Typography.Title>
-              <div style={{
-                border: '1px solid #d9d9d9',
-                padding: '16px',
-                borderRadius: '4px',
-                marginBottom: '16px',
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-              >
-                <Form.List name="assistantOutputSchemaKeysAttributes">
-                  {(fields, { add, remove }) => (
-                    <>
-                      {fields.map(({ name, ...restField }, index) => (
-                        <OutputSchemaKeyFields
-                          remove={remove}
-                          name={name}
-                          index={index}
-                          {...restField}
-                        />
-                      ))}
-                      <Row>
-                        <Col>
-                          <Button
-                            onClick={() => add()}
-                            icon={<PlusOutlined />}
-                          >
-                            {I18n.t('administration.ai_assistants.form.add_output_schema_key')}
-                          </Button>
-                        </Col>
-                      </Row>
-                    </>
-                  )}
-                </Form.List>
-                <Form.Item
-                  name="assistantOutputSchemaKeysAttributesValidator"
-                  shouldUpdate
-                  rules={[{ validator: checkKeyUniqueness }]}
-                  noStyle
-                  dependencies={['assistantOutputSchemaKeysAttributes']}
-                />
-                {listError && (
-                  <Typography.Text type="danger" style={{ marginTop: '8px' }}>
-                    {listError}
-                  </Typography.Text>
-                )}
-              </div>
+              {assistantType === ASSISTANT_TYPES.content_writer.id && (
+                <>
+                  <Typography.Title style={{ fontSize: '1.167rem' }}>
+                    {I18n.t('administration.ai_assistants.form.output_schema_keys')}
+                  </Typography.Title>
+                  <div style={{
+                    border: '1px solid #d9d9d9',
+                    padding: '16px',
+                    borderRadius: '4px',
+                    marginBottom: '16px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                  }}
+                  >
+                    <Form.List name="assistantOutputSchemaKeysAttributes">
+                      {(fields, { add, remove }) => (
+                        <>
+                          {fields.map(({ name, ...restField }, index) => (
+                            <OutputSchemaKeyFields
+                              remove={remove}
+                              name={name}
+                              index={index}
+                              {...restField}
+                            />
+                          ))}
+                          <Row>
+                            <Col>
+                              <Button
+                                onClick={() => add()}
+                                icon={<PlusOutlined />}
+                              >
+                                {I18n.t('administration.ai_assistants.form.add_output_schema_key')}
+                              </Button>
+                            </Col>
+                          </Row>
+                        </>
+                      )}
+                    </Form.List>
+                    <Form.Item
+                      name="assistantOutputSchemaKeysAttributesValidator"
+                      shouldUpdate
+                      rules={[{ validator: checkKeyUniqueness }]}
+                      noStyle
+                      dependencies={['assistantOutputSchemaKeysAttributes']}
+                    />
+                    {listError && (
+                      <Typography.Text type="danger" style={{ marginTop: '8px' }}>
+                        {listError}
+                      </Typography.Text>
+                    )}
+                  </div>
+                </>
+              )}
             </>
           )}
           <Button type="primary" htmlType="submit" onClick={handleSubmit}>

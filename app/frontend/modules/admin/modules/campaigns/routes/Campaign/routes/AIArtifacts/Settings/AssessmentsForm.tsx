@@ -124,6 +124,11 @@ export const AssessmentsForm: React.FC<Props> = ({ questions, form }: Props) => 
       setSelectedAssessments(new Set(Object.keys(existingAssessment)))
       setAssessmentsAndQuestionsOptionsMap(existingAssessment)
       setAssessmentsAndQuestionsMap(existingAssessment)
+
+      // Fetch all questions for each assessment to populate the dropdown
+      Object.keys(existingAssessment).forEach((assessmentId) => {
+        searchQuestions(assessmentId)
+      })
     } else {
       setSelectedAssessments(new Set())
       setAssessmentsAndQuestionsOptionsMap({})
@@ -186,32 +191,27 @@ export const AssessmentsForm: React.FC<Props> = ({ questions, form }: Props) => 
 
     setAssessmentsAndQuestionsMap((prev) => {
       const updated = { ...prev }
-      const current = updated[prevAssessmentId]
-      if (current) {
-        delete updated[prevAssessmentId]
-        updated[newAssessmentId] = {
-          ...current,
-          id: newAssessmentId,
-          name: allAssessments.find(a => a.id.toString() === newAssessmentId)?.name,
-          questions: [],
-        }
+      delete updated[prevAssessmentId]
+      updated[newAssessmentId] = {
+        id: newAssessmentId,
+        name: allAssessments.find(a => a.id.toString() === newAssessmentId)?.name,
+        questions: [],
       }
       return updated
     })
 
     // Initialize the new assessment in the options map if it doesn't exist
     setAssessmentsAndQuestionsOptionsMap((prev) => {
-      if (!prev[newAssessmentId]) {
-        return {
-          ...prev,
-          [newAssessmentId]: {
-            id: newAssessmentId,
-            name: allAssessments.find(a => a.id.toString() === newAssessmentId)?.name || '',
-            questions: [],
-          },
+      const updated = { ...prev }
+      delete updated[prevAssessmentId]
+      if (!updated[newAssessmentId]) {
+        updated[newAssessmentId] = {
+          id: newAssessmentId,
+          name: allAssessments.find(a => a.id.toString() === newAssessmentId)?.name || '',
+          questions: [],
         }
       }
-      return prev
+      return updated
     })
 
     setSelectedAssessments((prev) => {
