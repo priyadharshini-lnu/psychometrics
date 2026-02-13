@@ -8,7 +8,7 @@ gem 'bundler',                    '~> 2.3.17'
 gem 'rack',                       '~> 2.2.20'
 
 gem 'barnes',                     '~> 0.0.7'
-gem 'faraday',                    '~> 1.10.0'
+gem 'faraday',                    '~> 1.10.5'
 gem 'jbuilder',                   '~> 2.12.0'
 gem 'jquery-rails',               '~> 4.4.0'
 gem 'jwt',                        '~> 2.6.0'
