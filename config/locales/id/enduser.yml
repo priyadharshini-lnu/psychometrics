@@ -43,4 +43,27 @@ id:
     start_campaign_message_timed: Ini adalah kampanye berjangka waktu, silakan klik tombol '%{buttonText}' untuk memulai aktivitas.
     start_campaign_message_timed_proctored: Ini adalah kampanye berjangka waktu dan diawasi, silakan klik tombol '%{buttonText}' untuk memulai aktivitas.
     status_unknown: Status Tidak Diketahui
+    system_check_access: Akses
+    system_check_audio_random_phrases:
+      eight: Semoga kopi Anda kuat dan hari Anda menjadi produktif. (May your coffee be strong and your day be productive.)
+      five: Hidup akan lebih baik jika Anda tersenyum. Tersenyumlah ke mikrofon! (Life is better when you smile. Smile for the mic!)
+      four: Dia menjual kerang di tepi pantai (She sells seashells by the seashore.)
+      nine: Jika ragu, cobalah untuk menguji apakah mikrofon ini berfungsi dengan baik! (When in doubt, test it out this mic works!)
+      one: Saya berteriak, Anda berteriak, kita semua berteriak minta es krim! (I scream, you scream, we all scream for ice cream!)
+      seven: Setiap hari adalah awal yang baru. Katakan dengan keras dan bangga! (Every day is a new beginning. Say it loud and proud!)
+      six: Pizza atau pasta? Keputusan yang sulit. (Pizza or pasta? Decisions are hard.)
+      three: Tes, satu dua tiga, suaranya jernih sekali! (Testing, one two three, the sound is clear as can be!)
+      two: Rubah coklat yang cepat melompati anjing yang malas. (The quick brown fox jumps over the lazy dog.)
+    system_check_audio_title: Silakan ucapkan dan ulangi kalimat berikut ini sebanyak 3 kali.
+    system_check_camera_preview: Pratinjau kamera akan muncul di sini
+    system_check_proceed: Ya, Oke untuk melanjutkan
+    system_check_rec_text: REC
+    system_check_retake: Tidak, saya ingin mengulang
+    system_check_run_again: Jalankan lagi
+    system_check_start_recording: Mulai merekam
+    system_check_stop_recording: Berhenti merekam
+    system_check_test_message: senang berbicara dengan Anda
+    system_check_upload_again: Unggah lagi
+    system_check_uploading: Mengunggah
+    system_check_video_random_phrase: Saya siap. Ini adalah rekaman uji coba untuk memastikan video dan mikrofon saya berfungsi dengan baik.
     tasks: Tugas

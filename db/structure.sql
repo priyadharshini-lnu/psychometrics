@@ -8016,6 +8016,39 @@ ALTER SEQUENCE public.user_assessment_verification_images_id_seq OWNED BY public
 
 
 --
+-- Name: user_assessment_verification_media; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_assessment_verification_media (
+    id bigint NOT NULL,
+    file character varying,
+    media_type integer DEFAULT 0 NOT NULL,
+    user_assessment_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_assessment_verification_media_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_assessment_verification_media_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_assessment_verification_media_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_assessment_verification_media_id_seq OWNED BY public.user_assessment_verification_media.id;
+
+
+--
 -- Name: user_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -10581,6 +10614,13 @@ ALTER TABLE ONLY public.user_assessment_verification_images ALTER COLUMN id SET 
 
 
 --
+-- Name: user_assessment_verification_media id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_assessment_verification_media ALTER COLUMN id SET DEFAULT nextval('public.user_assessment_verification_media_id_seq'::regclass);
+
+
+--
 -- Name: user_assessments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -12416,6 +12456,14 @@ ALTER TABLE ONLY public.user_assessment_factor_scores
 
 ALTER TABLE ONLY public.user_assessment_verification_images
     ADD CONSTRAINT user_assessment_verification_images_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_assessment_verification_media user_assessment_verification_media_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_assessment_verification_media
+    ADD CONSTRAINT user_assessment_verification_media_pkey PRIMARY KEY (id);
 
 
 --
@@ -15925,6 +15973,13 @@ CREATE INDEX index_user_assessment_factor_scores_on_user_assessment_id ON public
 
 
 --
+-- Name: index_user_assessment_verification_media_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_assessment_verification_media_on_user_assessment_id ON public.user_assessment_verification_media USING btree (user_assessment_id);
+
+
+--
 -- Name: index_user_assessments_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -18677,6 +18732,14 @@ ALTER TABLE ONLY public.threesixty_email_schedules
 
 
 --
+-- Name: user_assessment_verification_media fk_rails_ad009f2bd6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_assessment_verification_media
+    ADD CONSTRAINT fk_rails_ad009f2bd6 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id) ON DELETE CASCADE;
+
+
+--
 -- Name: reports_campaign_factors fk_rails_ad96b42625; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -19707,6 +19770,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260210130000'),
 ('20260212060354'),
 ('20260209123134'),
 ('20260209112420'),

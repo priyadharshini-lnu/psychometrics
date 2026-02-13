@@ -1705,23 +1705,6 @@ es-ES:
     title: Cambiar contraseña
     warning_message: 'Importante: cambiar su contraseña cerrará su sesión.'
   checking_wizard:
-    audio_check:
-      access: Acceder
-      continue: Continuar
-      random_phrases:
-        eight: Que tu café sea fuerte y tu día productivo.
-        five: La vida es mejor cuando sonríes. ¡Sonríe para el micro!
-        four: Vende conchas en la orilla del mar.
-        nine: 'En caso de duda, pruébalo: ¡este micrófono funciona!'
-        one: Yo grito, tú gritas, ¡todos gritamos por un helado!
-        seven: Cada día es un nuevo comienzo. ¡Dilo alto y orgulloso!
-        six: "¿Pizza o pasta? Las decisiones son difíciles."
-        three: Probando, uno dos tres, ¡el sonido es clarísimo!.
-        two: El zorro marrón rápido salta sobre el perro perezoso.
-      record_title: Hable y repita 3 veces las siguientes frases.
-      retake: No, quiero retomar
-      run_again: Corre otra vez
-      test_message: es un placer hablar con usted
     network_check:
       continue: Continuar
       download: Descargar
@@ -1754,18 +1737,10 @@ es-ES:
       permissions: Permisos de cámara web y audio
       title: Antes de comenzar con esta evaluación, es necesario realizar algunas comprobaciones en su equipo.
     video_check:
-      access: Acceder
-      camera_preview: La vista previa de la cámara aparecerá aquí
-      continue: Continuar
       description: Los vídeos o las fotos que se registren en esta fase no se guardarán ni se usarán. Se utilizarán de forma local en su dispositivo para comprobar que la cámara funciona en caso de que alguna pregunta requiera la grabación de vídeo.
       random_phrases:
         one: Levanta la mano si me oyes o saluda a la cámara
-      rec_text: REC
-      retake: No, quiero retomar
-      run_again: Volver a ejecutar
       title: Tenemos que comprobar si su sistema puede grabar vídeo
-      upload_again: Cargar de nuevo
-      uploading: Cargar
   common:
     actions:
       add: Añadir

@@ -43,4 +43,27 @@ nl:
     start_campaign_message_timed: Dit is een getimede campagne, klik op de knop '%{buttonText}' om de activiteiten te starten.
     start_campaign_message_timed_proctored: Dit is een getimede en toezichthoudende campagne, klik op de knop '%{buttonText}' om de activiteiten te starten.
     status_unknown: Status onbekend
+    system_check_access: Toegang
+    system_check_audio_random_phrases:
+      eight: Moge je koffie sterk zijn en je dag productief.
+      five: Het leven is beter als je lacht. Lach voor de microfoon!
+      four: Ze verkoopt zeeschelpen aan de kust.
+      nine: Bij twijfel, test deze microfoon!
+      one: Ik schreeuw, jij schreeuw, we schreeuwen allemaal om ijs!
+      seven: Elke dag is een nieuw begin. Zeg het luid en trots!
+      six: Pizza of pasta? Beslissingen zijn moeilijk.
+      three: Test, één twee drie, het geluid is zo helder als maar kan!
+      two: De snelle bruine vos springt over de luie hond.
+    system_check_audio_title: Spreek en herhaal de volgende zin 3 keer.
+    system_check_camera_preview: Hier verschijnt het voorbeeld van de camera
+    system_check_proceed: Ja, oké om door te gaan
+    system_check_rec_text: REC
+    system_check_retake: Nee, ik wil een herkansing
+    system_check_run_again: Opnieuw rennen
+    system_check_start_recording: Opname starten
+    system_check_stop_recording: Opname stoppen
+    system_check_test_message: leuk om met je te praten
+    system_check_upload_again: Opnieuw uploaden
+    system_check_uploading: Uploaden
+    system_check_video_random_phrase: Ik ben er klaar voor. Dit is een testopname om te controleren of mijn video en microfoon goed werken.
     tasks: Taken

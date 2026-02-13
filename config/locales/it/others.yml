@@ -1690,23 +1690,6 @@ it:
     title: Modifica password
     warning_message: 'Importante: la modifica della password comporta la disconnessione.'
   checking_wizard:
-    audio_check:
-      access: Accesso
-      continue: Sì, è possibile procedere
-      random_phrases:
-        eight: Che il vostro caffè sia forte e la vostra giornata produttiva.
-        five: La vita è migliore quando si sorride. Sorridete per il microfono!
-        four: Vende conchiglie in riva al mare.
-        nine: 'In caso di dubbio, provatelo: questo microfono funziona!'
-        one: Io urlo, tu urli, tutti urliamo per il gelato!
-        seven: 'Ogni giorno è un nuovo inizio: ditelo forte e con orgoglio!'
-        six: Pizza o pasta? Le decisioni sono difficili.
-        three: Prova, uno due tre, il suono è chiarissimo!
-        two: La volpe marrone veloce salta il cane pigro.
-      record_title: Parlate e ripetete la seguente frase per 3 volte.
-      retake: No, voglio rifare il test
-      run_again: Correre di nuovo
-      test_message: è stato un piacere parlare con voi
     network_check:
       continue: Continua
       download: Scarica
@@ -1739,18 +1722,10 @@ it:
       permissions: Autorizzazioni webcam e audio
       title: Prima di iniziare questa valutazione, il sistema deve essere sottoposto ad alcuni controlli.
     video_check:
-      access: Accesso
-      camera_preview: L'anteprima della fotocamera viene visualizzata qui
-      continue: Sì, è possibile procedere
       description: Cliccate su Avvia registrazione e registrate voi stessi mentre leggete il brano sottostante con la vostra voce
       random_phrases:
         one: Sono pronto. Questa è una registrazione di prova per assicurarmi che il mio video e il mio microfono funzionino correttamente.
-      rec_text: REC
-      retake: No, voglio rifare il test
-      run_again: Correre di nuovo
       title: Dobbiamo assicurarci che il vostro sistema sia in grado di registrare il video
-      upload_again: Caricare di nuovo
-      uploading: Caricamento
   common:
     actions:
       add: Aggiungi

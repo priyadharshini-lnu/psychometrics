@@ -1690,23 +1690,6 @@ hu:
     title: Jelszó módosítása
     warning_message: 'Fontos: A jelszó megváltoztatása kijelentkezést eredményez.'
   checking_wizard:
-    audio_check:
-      access: Hozzáférés
-      continue: Igen, oké a folytatáshoz
-      random_phrases:
-        eight: Legyen erős a kávéja, és legyen termékeny a napja.
-        five: Az élet jobb, ha mosolyogsz. Mosolyogj a mikrofonért!
-        four: Kagylókat árul a tengerparton.
-        nine: Ha kétségeid vannak, próbáld ki, ez a mikrofon működik!
-        one: Én sikítok, te sikítasz, mindannyian sikítunk a fagylaltért!
-        seven: Minden nap egy új kezdet. Mondd ezt hangosan és büszkén!
-        six: Pizza vagy tészta? A döntés nehéz.
-        three: Tesztelés, egy kettő három, a hang tiszta, mint lehet!.
-        two: A gyors barna róka átugrik a lusta kutyán.
-      record_title: Kérem, beszéljen és ismételje meg a következő mondatot háromszor.
-      retake: Nem, újra akarom venni
-      run_again: Fuss újra
-      test_message: nagyszerű, hogy beszélhetek veled
     network_check:
       continue: Folytatás
       download: Letöltés
@@ -1739,18 +1722,10 @@ hu:
       permissions: Webkamera és hang engedélyek
       title: Az értékelés megkezdése előtt a rendszernek át kell esnie néhány ellenőrzésen.
     video_check:
-      access: Hozzáférés
-      camera_preview: A kamera előnézet itt jelenik meg
-      continue: Igen, oké a folytatáshoz
       description: Kattintson a Start Recording gombra, és vegye fel magát, miközben az alábbi szöveget olvassa a saját hangján
       random_phrases:
         one: Készen állok. Ez egy tesztfelvétel, hogy megbizonyosodjak arról, hogy a videóm és a mikrofonom megfelelően működik.
-      rec_text: REC
-      retake: Nem, újra akarom venni
-      run_again: Fuss újra
       title: Biztosítanunk kell, hogy a rendszer képes legyen a videó rögzítésére
-      upload_again: Feltöltés újra
-      uploading: A  feltöltése
   common:
     actions:
       add: Add

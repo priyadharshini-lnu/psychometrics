@@ -43,4 +43,27 @@ sk:
     start_campaign_message_timed: Toto je časovo obmedzená kampaň, kliknite prosím na tlačidlo '%{buttonText}' pre spustenie aktivít.
     start_campaign_message_timed_proctored: Ide o časovo obmedzenú a dozorovanú kampaň, kliknite prosím na tlačidlo '%{buttonText}' pre spustenie aktivít.
     status_unknown: Stav neznámy
+    system_check_access: Prístup
+    system_check_audio_random_phrases:
+      eight: Nech je vaša káva silná a váš deň produktívny.
+      five: Život je lepší, keď sa usmievaš. Úsmev pre mikrofón!
+      four: Na pobreží predáva mušle.
+      nine: Keď máte pochybnosti, vyskúšajte tento mikrofón!
+      one: Ja kričím, ty kričíš, všetci kričíme po zmrzline!
+      seven: Každý deň je nový začiatok. Povedzte to nahlas a hrdo!
+      six: Pizza alebo cestoviny? Rozhodovanie je ťažké.
+      three: Testovanie, jeden dva tri, zvuk je jasný ako môže byť!.
+      two: Rýchla hnedá líška preskočí lenivého psa.
+    system_check_audio_title: Vyslovte a zopakujte 3-krát nasledujúcu vetu.
+    system_check_camera_preview: Tu sa zobrazí náhľad fotoaparátu
+    system_check_proceed: Áno, môžete pokračovať
+    system_check_rec_text: REC
+    system_check_retake: Nie, chcem si zopakovať
+    system_check_run_again: Znovu bežať
+    system_check_start_recording: Spustiť nahrávanie
+    system_check_stop_recording: Zastavenie nahrávania
+    system_check_test_message: skvelé hovoriť s vami
+    system_check_upload_again: Znova nahrať
+    system_check_uploading: Nahrávanie
+    system_check_video_random_phrase: Som pripravený. Toto je testovací záznam na potvrdenie, či môj mikrofón a kamera fungujú správne.
     tasks: Úlohy

@@ -43,4 +43,27 @@ de:
     start_campaign_message_timed: Dies ist eine zeitlich begrenzte Kampagne, bitte klicken Sie auf die Schaltfläche '%{buttonText}', um die Aktivitäten zu starten.
     start_campaign_message_timed_proctored: Dies ist eine zeitlich begrenzte und überwachte Kampagne, bitte klicken Sie auf die Schaltfläche '%{buttonText}', um die Aktivitäten zu starten.
     status_unknown: Status unbekannt
+    system_check_access: Zugriff
+    system_check_audio_random_phrases:
+      eight: Möge Ihr Kaffee stark und Ihr Tag produktiv sein.
+      five: Das Leben ist besser, wenn du lächelst. Lächle für das Mikrofon!
+      four: Sie verkauft Muscheln am Meeresufer.
+      nine: Im Zweifelsfall einfach ausprobieren, ob dieses Mikrofon funktioniert!
+      one: Ich schreie, du schreist, wir alle schreien nach Eiscreme!
+      seven: Jeder Tag ist ein neuer Anfang, sagen Sie es laut und stolz!
+      six: Pizza oder Pasta? Die Entscheidung fällt schwer.
+      three: Test, eins, zwei, drei, der Ton ist so klar wie nur möglich!
+      two: Der schnelle braune Fuchs springt über den faulen Hund.
+    system_check_audio_title: Bitte sprechen Sie und wiederholen Sie den folgenden Satz 3 Mal.
+    system_check_camera_preview: Die Kamera-Vorschau wird hier angezeigt
+    system_check_proceed: fortfahren
+    system_check_rec_text: REC
+    system_check_retake: Nein, ich möchte die Wiederholung
+    system_check_run_again: Wieder laufen
+    system_check_start_recording: Aufnahme starten
+    system_check_stop_recording: Aufnahme stoppen
+    system_check_test_message: schön, mit Ihnen zu sprechen
+    system_check_upload_again: Erneut hochladen
+    system_check_uploading: Hochladen
+    system_check_video_random_phrase: Ich bin bereit. Dies ist eine Testaufnahme, um zu bestätigen, dass meine Kamera und mein Mikrofon einwandfrei funktionieren.
     tasks: Aufgaben

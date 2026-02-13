@@ -2,11 +2,10 @@ import React, {
   useReducer, useRef, useEffect, useState,
 } from 'react'
 import {
-  Button, Flex, Space,
+  Button, Flex, Space, Alert,
 } from 'antd'
 import { DirectUpload } from '@rails/activestorage'
 import axios from 'axios'
-import * as faceapi from 'face-api.js'
 import { connect, ConnectedProps } from 'react-redux'
 import {
   StopOutlined, VideoCameraOutlined, RightOutlined, RedoOutlined,
@@ -20,13 +19,16 @@ import reducer, {
 import { CheckListStatus } from '../interfaces'
 import styles from './styles.less'
 import { useReactMediaRecorder } from '~/components/MediaRecorder/components/MediaRecorder'
-import { RANDOM_CONSTS_ARRAY } from '../services/consts'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { preSignUrl } from '~/modules/endUser/modules/campaigns/core/checkingWizard'
-import { getRandomVideoTestPhrase } from '../services/service'
+import {
+  getRandomVideoTestPhrase,
+  startAudioLevelMonitoring,
+  cleanupAudioMonitoring,
+} from '../services/service'
 
 
-const { I18n, $ } = window
+const { I18n } = window
 
 export const MAX_DURATION = 30
 
@@ -46,18 +48,30 @@ type Props = PropsFromRedux & {
 const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
   const videoRef = useRef<HTMLVideoElement>(null)
   const mediaStreamRef = useRef<MediaStream | null>(null)
+  const audioContextRef = useRef<AudioContext | null>(null)
+  const analyserRef = useRef<AnalyserNode | null>(null)
+  const audioCheckIntervalRef = useRef<NodeJS.Timeout | null>(null)
+  const audioDetectedRef = useRef<boolean>(false)
 
   const [state, dispatch] = useReducer(reducer, initialState)
-  const [img, setImg] = useState<Blob | null>(null)
+  const [videoBlob, setVideoBlob] = useState<Blob | null>(null)
   const [stream, setStream] = useState<MediaStream | null>(null)
   const [visualizing, setVisualizing] = useState<boolean>(false)
+  const [showAudioWarning, setShowAudioWarning] = useState<boolean>(false)
 
-  const onStop = React.useCallback(() => {
+  const onStop = React.useCallback((blobUrl: string, lastBlob: Blob, completeBlob: Blob) => {
     setVisualizing(false)
     if (stream) {
       stream.getTracks().forEach(track => track.stop())
     }
-  }, [])
+    cleanupAudioMonitoring({
+      audioContextRef,
+      analyserRef,
+      audioCheckIntervalRef,
+      audioDetectedRef,
+    })
+    setVideoBlob(completeBlob)
+  }, [stream])
 
   const isAccessDone = state.access === CheckListStatus.Done
   const isUploadingInProgress = state.uploading === CheckListStatus.InProgress
@@ -89,15 +103,22 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
   }, [])
 
   useEffect(() => {
-    faceapi.nets.tinyFaceDetector.loadFromUri('/face-api/models')
     if ((mediaBlobUrl) && videoRef.current) {
       videoRef.current.srcObject = null
       videoRef.current.src = mediaBlobUrl
+      videoRef.current.currentTime = 0
+      videoRef.current.load()
     }
     preSignUrl()
-    const random = getRandomVideoTestPhrase(RANDOM_CONSTS_ARRAY)
+    const random = getRandomVideoTestPhrase()
     dispatch(updateSpeechTestText(random))
   }, [mediaBlobUrl])
+
+  useEffect(() => {
+    if (videoBlob && status === 'stopped') {
+      videoUpload()
+    }
+  }, [videoBlob, status])
 
 
   const requestAccess = async () => {
@@ -117,62 +138,38 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
       }
       dispatch(updateAccess(CheckListStatus.Done))
       setVisualizing(true)
+
+      audioDetectedRef.current = false
+
+      startAudioLevelMonitoring(
+        mediaStream,
+        {
+          audioContextRef,
+          analyserRef,
+          audioCheckIntervalRef,
+          audioDetectedRef,
+        },
+        {
+          onAudioDetected: () => setShowAudioWarning(false),
+          onNoAudio: () => setShowAudioWarning(true),
+        },
+      )
+
       startRecording()
-      setTimeout(() => track(), 1000)
     } catch (e) {
       dispatch(updateAccess(CheckListStatus.Failed))
     }
   }
 
 
-  const createBlobFromCanvas = (canvas: HTMLCanvasElement): Promise<Blob> => new Promise((resolve, reject) => {
-    try {
-      canvas.toBlob((blob) => {
-        if (blob !== null) {
-          resolve(blob)
-        } else {
-          reject(new Error('Failed to create blob from canvas'))
-        }
-      }, 'image/jpeg', 0.95)
-    } catch (err) {
-      reject(err)
-    }
-  })
-
-
-  const track = async (): Promise<Blob | null> => {
-    if (!videoRef.current) return null
-
-    try {
-      const canvas = document.createElement('canvas')
-      const video = videoRef.current
-      canvas.width = video.videoWidth
-      canvas.height = video.videoHeight
-
-      const ctx = canvas.getContext('2d')
-      ctx?.translate(canvas.width, 0)
-      ctx?.scale(-1, 1)
-      ctx?.drawImage(video, 0, 0, canvas.width, canvas.height)
-
-      // wait for the blob to be created with latest video frame received
-      const blob = await createBlobFromCanvas(canvas)
-      setImg(blob)
-      return blob
-    } catch (err) {
-      handleStopRecording()
-      return null
-    }
-  }
-
-
-  const imageUpload = async () => {
-    if (!img) {
+  const videoUpload = async () => {
+    if (!videoBlob) {
       dispatch(updateUploading(CheckListStatus.Failed))
       return
     }
     const upload = new DirectUpload(
-      img,
-      `${location.pathname}/upload_user_verification_image_url`,
+      videoBlob,
+      `${location.pathname}/upload_user_verification_media_url?media_type=video`,
       {
         directUploadWillStoreFileWithXHR: (xhr: XMLHttpRequest) => {
           xhr.upload.addEventListener('progress', () => {
@@ -194,11 +191,12 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
   }
 
   const onUploadDone = (blob) => {
-    axios.put(`${location.pathname}/user_verification_image_upload_callback`, {
+    axios.put(`${location.pathname}/user_verification_media_upload_callback`, {
       media_id: blob.media_id,
       asset_key: blob.signed_id,
+      media_type: 'video',
     }, {
-      headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+      headers: { 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '' },
     }).then(() => {
       dispatch(updateUploading(CheckListStatus.Done))
     }).catch(() => {
@@ -208,19 +206,22 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
 
   const handleStopRecording = React.useCallback(async (): Promise<void> => {
     try {
-      // awaiting for the image blob to be created with latest video frame before we make an API call
-      const blob = await track()
-      if (blob) {
-        stopRecording()
-        setVisualizing(false)
-        if (mediaStreamRef.current) {
-          mediaStreamRef.current.getTracks().forEach(track => track.stop())
-          mediaStreamRef.current = null
-        }
-        imageUpload()
+      stopRecording()
+      setVisualizing(false)
+
+      cleanupAudioMonitoring({
+        audioContextRef,
+        analyserRef,
+        audioCheckIntervalRef,
+        audioDetectedRef,
+      })
+
+      if (mediaStreamRef.current) {
+        mediaStreamRef.current.getTracks().forEach(track => track.stop())
+        mediaStreamRef.current = null
       }
     } catch (e) {
-      console.error('Error in final frame capture:', e)
+      console.error('Error stopping recording:', e)
     }
   }, [stopRecording])
 
@@ -229,7 +230,7 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
       return (
         <Flex vertical align="center" gap={8}>
           <Button onClick={handleStopRecording} type="primary" danger icon={<StopOutlined />}>
-            {I18n.t('assessments.video_response.stop_recording')}
+            {I18n.t('enduser.system_check_stop_recording')}
           </Button>
         </Flex>
       )
@@ -241,7 +242,7 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
         type="primary"
         icon={<VideoCameraOutlined />}
       >
-        {I18n.t('assessments.video_response.start_recording')}
+        {I18n.t('enduser.system_check_start_recording')}
       </Button>
     )
   }
@@ -254,8 +255,17 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
 
   const rerun = async () => {
     clearBlobUrl()
-    setImg(null)
+    setVideoBlob(null)
+    setShowAudioWarning(false)
     dispatch(updateUploading(CheckListStatus.Pending))
+
+    cleanupAudioMonitoring({
+      audioContextRef,
+      analyserRef,
+      audioCheckIntervalRef,
+      audioDetectedRef,
+    })
+
     if (mediaStreamRef.current) {
       mediaStreamRef.current.getTracks().forEach(track => track.stop())
       mediaStreamRef.current = null
@@ -277,8 +287,8 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
       <CheckList
         className="mt14"
         dataSource={[
-          { name: I18n.t('checking_wizard.video_check.access'), status: state.access },
-          { name: I18n.t('checking_wizard.video_check.uploading'), status: state.uploading },
+          { name: I18n.t('enduser.system_check_access'), status: state.access },
+          { name: I18n.t('enduser.system_check_uploading'), status: state.uploading },
         ]}
       />
     </div>
@@ -295,7 +305,7 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
               icon={<RedoOutlined />}
               disabled={isUploadingInProgress}
             >
-              {I18n.t('checking_wizard.video_check.retake')}
+              {I18n.t('enduser.system_check_retake')}
             </Button>
           )}
           <Button
@@ -305,7 +315,7 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
             onClick={nextStep}
             disabled={isUploadingInProgress}
           >
-            {I18n.t('checking_wizard.video_check.continue')}
+            {I18n.t('enduser.system_check_proceed')}
             <RightOutlined />
           </Button>
         </Space>
@@ -316,11 +326,11 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
         <Button
           type="primary"
           className="m-12"
-          onClick={imageUpload}
+          onClick={videoUpload}
           icon={<RedoOutlined />}
           loading={isUploadingInProgress}
         >
-          {I18n.t('checking_wizard.video_check.upload_again')}
+          {I18n.t('enduser.system_check_upload_again')}
         </Button>
       )
     }
@@ -331,7 +341,7 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
         onClick={rerun}
         icon={<RedoOutlined />}
       >
-        {I18n.t('checking_wizard.video_check.run_again')}
+        {I18n.t('enduser.system_check_run_again')}
       </Button>
     )
   }
@@ -365,6 +375,14 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
         visualizing={visualizing}
         getMediaStream={getMediaStream}
       />
+
+      {showAudioWarning && status === 'recording' && (
+        <Alert
+          title={I18n.t('enduser.no_audio_warning')}
+          type="warning"
+          className="mt-4"
+        />
+      )}
 
       <Controls />
 

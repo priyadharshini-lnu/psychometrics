@@ -43,4 +43,27 @@ pt:
     start_campaign_message_timed: Esta é uma campanha cronometrada, por favor clique no botão '%{buttonText}' para iniciar as atividades.
     start_campaign_message_timed_proctored: Esta é uma campanha cronometrada e supervisionada, por favor, clique no botão '%{buttonText}' para iniciar as atividades.
     status_unknown: Status Desconhecido
+    system_check_access: Acesso
+    system_check_audio_random_phrases:
+      eight: Que o seu café seja forte e que o seu dia seja produtivo.
+      five: A vida é melhor quando se sorri. Sorria para o microfone!
+      four: Ela vende conchas à beira-mar.
+      nine: Em caso de dúvida, teste-o. Este microfone funciona!
+      one: Eu grito, tu gritas, todos nós gritamos por gelado!
+      seven: Cada dia é um novo começo, diga-o alto e com orgulho!
+      six: Pizza ou massa? As decisões são difíceis.
+      three: Testando, um, dois, três, o som é claro como pode ser!
+      two: A rápida raposa castanha salta sobre o cão preguiçoso.
+    system_check_audio_title: Diga e repita a seguinte frase 3 vezes.
+    system_check_camera_preview: A pré-visualização da câmara aparecerá aqui
+    system_check_proceed: Continuar
+    system_check_rec_text: REC
+    system_check_retake: Não, quero repetir
+    system_check_run_again: Voltar a correr
+    system_check_start_recording: Iniciar a gravação
+    system_check_stop_recording: Parar a gravação
+    system_check_test_message: é ótimo falar consigo
+    system_check_upload_again: Carregar novamente
+    system_check_uploading: Carregamento
+    system_check_video_random_phrase: Estou pronto. Esta é uma gravação de teste para confirmar se o meu microfone e câmara estão a funcionar corretamente.
     tasks: Tarefas

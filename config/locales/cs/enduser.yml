@@ -43,4 +43,27 @@ cs:
     start_campaign_message_timed: Toto je časově omezená kampaň, klikněte prosím na tlačítko '%{buttonText}' pro zahájení aktivit.
     start_campaign_message_timed_proctored: Jedná se o časově omezenou a dozorovanou kampaň, klikněte prosím na tlačítko '%{buttonText}' pro zahájení aktivit.
     status_unknown: Stav neznámý
+    system_check_access: Přístup
+    system_check_audio_random_phrases:
+      eight: Ať je vaše káva silná a váš den produktivní.
+      five: S úsměvem na rtech je život lepší. Usmějte se na mikrofon!
+      four: Od poklopu ku poklopu kyklop koulí kouli.
+      nine: Pokud máte pochybnosti, vyzkoušejte tento mikrofon.
+      one: Strč prst skrz krk!
+      seven: Každý den je nový začátek. Řekněte to nahlas a hrdě!
+      six: Pizza nebo těstoviny? Těžká rozhodnutí.
+      three: Zkouška, raz, dva, tři, zvuk je čistý, jak jen může být.
+      two: Šíleně žluťoučký kůň úpěl ďábelské ódy.
+    system_check_audio_title: Vyslovte a třikrát zopakujte následující větu.
+    system_check_camera_preview: Tady se zobrazí náhled fotoaparátu
+    system_check_proceed: Ano, můžeme pokračovat
+    system_check_rec_text: NAHRÁVÁNÍ
+    system_check_retake: Ne, chci to zkusit znovu
+    system_check_run_again: Zkusit znovu
+    system_check_start_recording: Spuštění nahrávání
+    system_check_stop_recording: Zastavit nahrávání
+    system_check_test_message: je skvělé si s vámi popovídat
+    system_check_upload_again: Znovu nahrát
+    system_check_uploading: Nahrává se
+    system_check_video_random_phrase: Jsem připraven/a. Toto je zkušební nahrávka, která potvrdí, že moje video a mikrofon fungují správně.
     tasks: Úkoly

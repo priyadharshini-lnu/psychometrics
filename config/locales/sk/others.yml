@@ -1690,23 +1690,6 @@ sk:
     title: Zmena hesla
     warning_message: 'Dôležité: Zmena hesla vás odhlási.'
   checking_wizard:
-    audio_check:
-      access: Prístup
-      continue: Áno, môžete pokračovať
-      random_phrases:
-        eight: Nech je vaša káva silná a váš deň produktívny.
-        five: Život je lepší, keď sa usmievaš. Úsmev pre mikrofón!
-        four: Na pobreží predáva mušle.
-        nine: Keď máte pochybnosti, vyskúšajte tento mikrofón!
-        one: Ja kričím, ty kričíš, všetci kričíme po zmrzline!
-        seven: Každý deň je nový začiatok. Povedzte to nahlas a hrdo!
-        six: Pizza alebo cestoviny? Rozhodovanie je ťažké.
-        three: Testovanie, jeden dva tri, zvuk je jasný ako môže byť!.
-        two: Rýchla hnedá líška preskočí lenivého psa.
-      record_title: Vyslovte a zopakujte 3-krát nasledujúcu vetu.
-      retake: Nie, chcem si zopakovať
-      run_again: Znovu bežať
-      test_message: skvelé hovoriť s vami
     network_check:
       continue: Pokračovať
       download: Stiahnite si
@@ -1739,18 +1722,10 @@ sk:
       permissions: Oprávnenia na webovú kameru a zvuk
       title: Pred začatím tohto hodnotenia je potrebné vykonať niekoľko kontrol vášho systému.
     video_check:
-      access: Prístup
-      camera_preview: Tu sa zobrazí náhľad fotoaparátu
-      continue: Áno, môžete pokračovať
       description: Kliknite na Spustiť nahrávanie a nahrajte sa pri čítaní nižšie uvedeného úryvku vlastným hlasom
       random_phrases:
         one: Som pripravený. Toto je testovací záznam na potvrdenie, či môj mikrofón a kamera fungujú správne.
-      rec_text: REC
-      retake: Nie, chcem si zopakovať
-      run_again: Znovu bežať
       title: Musíme sa uistiť, že váš systém dokáže nahrávať video
-      upload_again: Znova nahrať
-      uploading: Nahrávanie
   common:
     actions:
       add: Pridať

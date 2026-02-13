@@ -1690,23 +1690,6 @@ fr:
     title: Modifier le mot de passe
     warning_message: 'Important : Si vous changez votre mot de passe, vous serez déconnecté.'
   checking_wizard:
-    audio_check:
-      access: Accès
-      continue: Oui, Ok pour continuer
-      random_phrases:
-        eight: Que votre café soit fort et que votre journée soit productive.
-        five: La vie est plus belle quand on sourit. Souriez pour le micro !
-        four: Elle vend des coquillages au bord de la mer.
-        nine: 'En cas de doute, testez-le : ce micro fonctionne !'
-        one: Je crie, tu cries, nous crions tous pour de la glace !
-        seven: Chaque jour est un nouveau départ. Dites-le haut et fort !
-        six: Pizza ou pâtes ? les décisions sont difficiles à prendre.
-        three: Test, un deux trois, le son est clair comme de l'eau de roche !
-        two: Le renard brun et rapide saute par-dessus le chien paresseux.
-      record_title: Veuillez prononcer et répéter la phrase suivante trois fois.
-      retake: Non, je veux repasser
-      run_again: Recommencer
-      test_message: c'est un plaisir de parler avec vous
     network_check:
       continue: Continuer
       download: Télécharger
@@ -1739,18 +1722,10 @@ fr:
       permissions: Autorisations pour la webcam et l'audio
       title: Avant de commencer cette évaluation, votre système doit subir quelques vérifications.
     video_check:
-      access: Accès
-      camera_preview: L'aperçu de l'appareil photo apparaît ici
-      continue: Oui, Ok pour continuer
       description: Cliquez sur Démarrer l'enregistrement et enregistrez-vous en lisant le passage ci-dessous de votre propre voix
       random_phrases:
         one: Je suis prêt. Ceci est un enregistrement test pour confirmer que ma vidéo et mon microphone fonctionnent correctement.
-      rec_text: REC
-      retake: Non, je veux repasser
-      run_again: Recommencer
       title: Nous devons nous assurer que votre système peut enregistrer la vidéo
-      upload_again: Télécharger à nouveau
-      uploading: Téléchargement
   common:
     actions:
       add: Ajouter

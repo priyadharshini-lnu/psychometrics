@@ -1694,23 +1694,6 @@ pl:
     title: Zmień hasło
     warning_message: 'Ważne: zmiana hasła spowoduje wylogowanie.'
   checking_wizard:
-    audio_check:
-      access: Dostęp
-      continue: Tak, można kontynuować
-      random_phrases:
-        eight: Niech Twoja kawa będzie mocna, a dzień produktywny.
-        five: Życie jest lepsze, gdy się uśmiechasz. Uśmiechnij się do mikrofonu!
-        four: Sprzedaje muszelki nad brzegiem morza.
-        nine: W razie wątpliwości przetestuj ten mikrofon!
-        one: Ja krzyczę, ty krzyczysz, wszyscy krzyczymy o lody!
-        seven: Każdy dzień to nowy początek - powiedz to głośno i z dumą!
-        six: Pizza czy pasta? Decyzje są trudne.
-        three: Testowanie, raz dwa trzy, dźwięk jest czysty jak może być!
-        two: Szybki brązowy lis przeskakuje leniwego psa.
-      record_title: Wypowiedz i powtórz poniższe zdanie 3 razy.
-      retake: Nie, chcę powtórzyć
-      run_again: Uruchom ponownie
-      test_message: świetnie się z tobą rozmawia
     network_check:
       continue: Kontynuuj
       download: Pobierz
@@ -1743,18 +1726,10 @@ pl:
       permissions: Uprawnienia do kamery internetowej i dźwięku
       title: Przed rozpoczęciem tej oceny system musi przejść kilka testów.
     video_check:
-      access: Dostęp
-      camera_preview: Podgląd kamery pojawi się tutaj
-      continue: Tak, można kontynuować
       description: Kliknij przycisk "Rozpocznij nagrywanie" i nagraj siebie, czytając poniższy fragment własnym głosem
       random_phrases:
         one: Jestem gotowy. To nagranie testowe, które ma potwierdzić, czy mój mikrofon i kamera działają prawidłowo.
-      rec_text: REC
-      retake: Nie, chcę powtórzyć
-      run_again: Uruchom ponownie
       title: Musimy upewnić się, że system może nagrywać wideo
-      upload_again: Prześlij ponownie
-      uploading: Przesyłanie
   common:
     actions:
       add: Dodaj

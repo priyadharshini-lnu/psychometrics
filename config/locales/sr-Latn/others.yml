@@ -1701,23 +1701,6 @@ sr-Latn:
     title: Promena lozinka
     warning_message: 'Važno: Promena lozinka će vas odjaviti.'
   checking_wizard:
-    audio_check:
-      access: Pristup
-      continue: Da, može da se nastavi
-      random_phrases:
-        eight: Neka vaša kafa bude jaka i vaš dan biti produktivan.
-        five: Život je bolji kada se smeješ. Osmeh za mikrofon!
-        four: Ona prodaje školjke na obali mora.
-        nine: Kada ste u nedoumici, testirajte da li ovaj mikrofon radi!
-        one: Ja vrištim, ti vrištiš, svi vrištimo za sladoledom!
-        seven: Svaki dan je novi početak. Reci to glasno i ponosno!
-        six: Pica ili testenina? Odluke su teške.
-        three: Testiranje, jedan, dva, tri, zvuk je potpuno jasan!.
-        two: Brza smeđa lisica preskače lenjog psa.
-      record_title: Molimo Vas da govorite i ponovite sledeću rečenicu 3 puta.
-      retake: Ne, želim da ponovim
-      run_again: Pokreni ponovo
-      test_message: Sjajno je razgovarati sa vama
     network_check:
       continue: Nastavi
       download: Preuzmi
@@ -1750,18 +1733,10 @@ sr-Latn:
       permissions: Dozvole za veb kameru i audio
       title: Pre nego što započnete ovu procenu, vaš sistem mora da prođe neke provere.
     video_check:
-      access: Pristupi
-      camera_preview: Pregled kamere će se pojaviti ovde
-      continue: Da, u redu da se nastavi
       description: Kliknite na Počni snimanje i snimite se dok čitate donji pasus svojim glasom
       random_phrases:
         one: Sem spreman. Ovo je testni snimak da potvrdim da li moj mikrofon i kamera ispravno rade.
-      rec_text: REC
-      retake: Ne, želim da ponovim
-      run_again: Pokreni ponovo
       title: Moramo da obezbedimo vaš sistem može da snima video
-      upload_again: Otpremi ponovo
-      uploading: Otpremanje
   common:
     actions:
       add: Dodaj

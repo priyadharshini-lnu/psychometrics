@@ -43,4 +43,27 @@ es-ES:
     start_campaign_message_timed: Esta es una campaña cronometrada, por favor haz clic en el botón '%{buttonText}' para iniciar las actividades.
     start_campaign_message_timed_proctored: Esta es una campaña cronometrada y supervisada, por favor haz clic en el botón '%{buttonText}' para iniciar las actividades.
     status_unknown: Estado desconocido
+    system_check_access: Acceder
+    system_check_audio_random_phrases:
+      eight: Que tu café sea fuerte y tu día productivo.
+      five: La vida es mejor cuando sonríes. ¡Sonríe para el micro!
+      four: Vende conchas en la orilla del mar.
+      nine: 'En caso de duda, pruébalo: ¡este micrófono funciona!'
+      one: Yo grito, tú gritas, ¡todos gritamos por un helado!
+      seven: Cada día es un nuevo comienzo. ¡Dilo alto y orgulloso!
+      six: "¿Pizza o pasta? Las decisiones son difíciles."
+      three: Probando, uno dos tres, ¡el sonido es clarísimo!.
+      two: El zorro marrón rápido salta sobre el perro perezoso.
+    system_check_audio_title: Hable y repita 3 veces las siguientes frases.
+    system_check_camera_preview: La vista previa de la cámara aparecerá aquí
+    system_check_proceed: Continuar
+    system_check_rec_text: REC
+    system_check_retake: No, quiero retomar
+    system_check_run_again: Corre otra vez
+    system_check_start_recording: Iniciar grabación
+    system_check_stop_recording: Detener la grabación
+    system_check_test_message: es un placer hablar con usted
+    system_check_upload_again: Cargar de nuevo
+    system_check_uploading: Cargar
+    system_check_video_random_phrase: Levanta la mano si me oyes o saluda a la cámara
     tasks: Tareas

@@ -1690,23 +1690,6 @@ ro:
     title: Schimbare parolă
     warning_message: 'Important: Schimbarea parolei vă va deconecta.'
   checking_wizard:
-    audio_check:
-      access: Acces
-      continue: Da, Ok pentru a continua
-      random_phrases:
-        eight: Fie ca cafeaua ta să fie tare și ziua ta să fie productivă.
-        five: Viața este mai frumoasă atunci când zâmbești. Zâmbește pentru microfon!
-        four: Ea vinde scoici pe malul mării.
-        nine: Atunci când aveți îndoieli, testați acest microfon funcționează!
-        one: Eu strig, tu strigi, toți strigăm după înghețată!
-        seven: Fiecare zi este un nou început. Spune-o tare și mândru!
-        six: Pizza sau paste? Deciziile sunt dificile.
-        three: Testare, unu doi trei, sunetul este cât se poate de clar!.
-        two: Vulpea maro iute sare peste câinele leneș.
-      record_title: Vă rugăm să vorbiți și să repetați următoarea propoziție de 3 ori.
-      retake: Nu, vreau să reiau
-      run_again: Aleargă din nou
-      test_message: mă bucur să vorbesc cu tine
     network_check:
       continue: Continuați
       download: Descărcare
@@ -1739,18 +1722,10 @@ ro:
       permissions: Permisiuni pentru webcam și audio
       title: Înainte de a începe această evaluare, sistemul dvs. trebuie să fie supus unor verificări.
     video_check:
-      access: Acces
-      camera_preview: Previzualizarea camerei va apărea aici
-      continue: Da, Ok pentru a continua
       description: Faceți clic pe Start Recording și înregistrați-vă în timp ce citiți pasajul de mai jos cu propria voce
       random_phrases:
         one: Sunt gata. Aceasta este o înregistrare de test pentru a confirma dacă microfonul și camera mea funcționează corect.
-      rec_text: REC
-      retake: Nu, vreau să reiau
-      run_again: Aleargă din nou
       title: Trebuie să ne asigurăm că sistemul dvs. poate înregistra înregistrarea video
-      upload_again: Încarcă din nou
-      uploading: Încărcare
   common:
     actions:
       add: Adăugați

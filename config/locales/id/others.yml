@@ -1694,23 +1694,6 @@ id:
     title: Ubah Kata Sandi
     warning_message: 'Penting: Mengubah kata sandi akan membuat Anda keluar.'
   checking_wizard:
-    audio_check:
-      access: Akses
-      continue: Ya, Oke untuk melanjutkan
-      random_phrases:
-        eight: Semoga kopi Anda kuat dan hari Anda menjadi produktif. (May your coffee be strong and your day be productive.)
-        five: Hidup akan lebih baik jika Anda tersenyum. Tersenyumlah ke mikrofon! (Life is better when you smile. Smile for the mic!)
-        four: Dia menjual kerang di tepi pantai (She sells seashells by the seashore.)
-        nine: Jika ragu, cobalah untuk menguji apakah mikrofon ini berfungsi dengan baik! (When in doubt, test it out this mic works!)
-        one: Saya berteriak, Anda berteriak, kita semua berteriak minta es krim! (I scream, you scream, we all scream for ice cream!)
-        seven: Setiap hari adalah awal yang baru. Katakan dengan keras dan bangga! (Every day is a new beginning. Say it loud and proud!)
-        six: Pizza atau pasta? Keputusan yang sulit. (Pizza or pasta? Decisions are hard.)
-        three: Tes, satu dua tiga, suaranya jernih sekali! (Testing, one two three, the sound is clear as can be!)
-        two: Rubah coklat yang cepat melompati anjing yang malas. (The quick brown fox jumps over the lazy dog.)
-      record_title: Silakan ucapkan dan ulangi kalimat berikut ini sebanyak 3 kali.
-      retake: Tidak, saya ingin mengulang
-      run_again: Jalankan lagi
-      test_message: senang berbicara dengan Anda
     network_check:
       continue: Lanjutkan
       download: Unduh
@@ -1743,18 +1726,10 @@ id:
       permissions: Izin Webcam & Audio
       title: Sebelum memulai penilaian ini, sistem Anda perlu menjalani beberapa pemeriksaan.
     video_check:
-      access: Akses
-      camera_preview: Pratinjau kamera akan muncul di sini
-      continue: Ya, Oke untuk melanjutkan
       description: Klik Mulai Merekam dan Rekam diri Anda sambil membaca bagian di bawah ini dengan suara Anda sendiri
       random_phrases:
         one: Saya siap. Ini adalah rekaman uji coba untuk memastikan video dan mikrofon saya berfungsi dengan baik.
-      rec_text: REC
-      retake: Tidak, saya ingin mengulang
-      run_again: Jalankan lagi
       title: Kami perlu memastikan sistem Anda dapat merekam video
-      upload_again: Unggah lagi
-      uploading: Mengunggah
   common:
     actions:
       add: Menambahkan

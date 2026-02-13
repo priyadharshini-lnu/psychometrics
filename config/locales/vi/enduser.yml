@@ -43,4 +43,27 @@ vi:
     start_campaign_message_timed: Đây là một chiến dịch có thời gian, vui lòng nhấp vào nút '%{buttonText}' để bắt đầu các hoạt động.
     start_campaign_message_timed_proctored: Đây là một chiến dịch có thời gian và giám sát, vui lòng nhấp vào nút '%{buttonText}' để bắt đầu các hoạt động.
     status_unknown: Trạng thái không xác định
+    system_check_access: Truy cập
+    system_check_audio_random_phrases:
+      eight: Chúc bạn có một tách cà phê ngon và một ngày làm việc hiệu quả.
+      five: Cuộc sống sẽ tốt đẹp hơn khi bạn mỉm cười. Hãy mỉm cười trước mic!
+      four: Cô ấy bán vỏ sò ở bờ biển.
+      nine: Nếu còn nghi ngờ, hãy thử xem mic này có hoạt động không!
+      one: Tôi hét lên, bạn hét lên, tất cả chúng ta đều hét lên vì kem!
+      seven: Mỗi ngày là một khởi đầu mới. Hãy nói to và tự hào nhé!
+      six: Pizza hay mì ống? Quyết định thật khó khăn.
+      three: Kiểm tra, một hai ba, âm thanh rõ ràng nhất có thể!.
+      two: Con cáo nâu nhanh nhẹn nhảy qua con chó lười.
+    system_check_audio_title: Hãy nói và lặp lại câu sau 3 lần.
+    system_check_camera_preview: Bản xem trước của máy ảnh sẽ xuất hiện ở đây
+    system_check_proceed: Vâng, Ok để tiếp tục
+    system_check_rec_text: GHI NHẬN
+    system_check_retake: Không, tôi muốn thi lại
+    system_check_run_again: Chạy lại
+    system_check_start_recording: Bắt đầu ghi âm
+    system_check_stop_recording: Dừng ghi âm
+    system_check_test_message: rất vui khi được nói chuyện với bạn
+    system_check_upload_again: Tải lên lại
+    system_check_uploading: Đang tải lên
+    system_check_video_random_phrase: Sem sẵn sàng. Đây là bài kiểm tra để xác nhận rằng micrô và máy ảnh của tôi hoạt động đúng cách.
     tasks: Nhiệm vụ

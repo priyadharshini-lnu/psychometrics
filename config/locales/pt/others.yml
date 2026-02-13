@@ -1703,23 +1703,6 @@ pt:
     title: Alterar a palavra-passe
     warning_message: 'Importante: Alterar a sua palavra-passe irá desconectá-lo.'
   checking_wizard:
-    audio_check:
-      access: Acesso
-      continue: Continuar
-      random_phrases:
-        eight: Que o seu café seja forte e que o seu dia seja produtivo.
-        five: A vida é melhor quando se sorri. Sorria para o microfone!
-        four: Ela vende conchas à beira-mar.
-        nine: Em caso de dúvida, teste-o. Este microfone funciona!
-        one: Eu grito, tu gritas, todos nós gritamos por gelado!
-        seven: Cada dia é um novo começo, diga-o alto e com orgulho!
-        six: Pizza ou massa? As decisões são difíceis.
-        three: Testando, um, dois, três, o som é claro como pode ser!
-        two: A rápida raposa castanha salta sobre o cão preguiçoso.
-      record_title: Diga e repita a seguinte frase 3 vezes.
-      retake: Não, quero repetir
-      run_again: Voltar a correr
-      test_message: é ótimo falar consigo
     network_check:
       continue: Continuar
       download: Descarregar
@@ -1752,18 +1735,10 @@ pt:
       permissions: Permissões de câmara web e áudio
       title: Antes de iniciar esta avaliação, é necessário realizar algumas verificações ao seu sistema.
     video_check:
-      access: Acesso
-      camera_preview: A pré-visualização da câmara aparecerá aqui
-      continue: Continuar
       description: Clique em Iniciar Gravação e grave-se a si próprio enquanto lê o texto abaixo com a sua própria voz.
       random_phrases:
         one: Estou pronto. Esta é uma gravação de teste para confirmar se o meu microfone e câmara estão a funcionar corretamente.
-      rec_text: REC
-      retake: Não, quero repetir
-      run_again: Executar novamente
       title: Necessitamos de garantir que o seu sistema consegue gravar o vídeo
-      upload_again: Carregar novamente
-      uploading: Carregamento
   common:
     actions:
       add: Adicionar

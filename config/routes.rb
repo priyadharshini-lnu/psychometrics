@@ -1038,8 +1038,8 @@ as: :simulation_progress_notification
           get :pass
           get :begin
           get :validate_session
-          post :upload_user_verification_image_url
-          put :user_verification_image_upload_callback
+          post :upload_user_verification_media_url
+          put :user_verification_media_upload_callback
           post :mark_completed
         end
       end

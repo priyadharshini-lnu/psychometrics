@@ -33,6 +33,8 @@ class UserAssessment < ApplicationRecord
   has_many :project_assessments, through: :project
   has_many :user_assessment_factor_scores, dependent: :destroy
   has_many :user_assessment_verification_images, dependent: :destroy
+  has_many :user_assessment_verification_media, dependent: :destroy,
+                                               class_name: 'UserAssessmentVerificationMedium'
 
   has_one :yoodli_user_assessment, -> { where(active: true) }, dependent: :destroy
   has_many :previous_yoodli_user_assessments, lambda {

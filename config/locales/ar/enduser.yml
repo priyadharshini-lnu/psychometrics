@@ -43,4 +43,27 @@ ar:
     start_campaign_message_timed: هذه حملة محددة بالوقت، يرجى الضغط على زر '%{buttonText}' لبدء الأنشطة.
     start_campaign_message_timed_proctored: هذه حملة محددة بالوقت وتحت المراقبة، يرجى الضغط على زر '%{buttonText}' لبدء الأنشطة.
     status_unknown: الحالة غير معروفة
+    system_check_access: إذن الدخول
+    system_check_audio_random_phrases:
+      eight: نرجو أن تكون قهوتك قوية ويومك مثمرًا.
+      five: الحياة أفضل عندما تبتسم. ابتسم للميكروفون!
+      four: إنها تبيع الأصداف البحرية على شاطئ البحر.
+      nine: عندما تكون في شك، اختبر أن هذا الميكروفون يعمل!
+      one: أنا أصرخ، أنت تصرخ، كلنا نصرخ من أجل الآيس كريم!
+      seven: كل يوم هو بداية جديدة. قلها بصوت عالٍ وفخور!
+      six: البيتزا أو المعكرونة؟ القرارات صعبة.
+      three: اختبار، واحد اثنان ثلاثة، الصوت واضح قدر الإمكان!.
+      two: يقفز الثعلب البني السريع فوق الكلب الكسول.
+    system_check_audio_title: الرجاء التحدث وتكرار الجملة التالية 3 مرات
+    system_check_camera_preview: ستظهر معاينة الكاميرا هنا
+    system_check_proceed: نعم موافق للمضي قدما
+    system_check_rec_text: REC
+    system_check_retake: لا، أريد أن أستعيد
+    system_check_run_again: تشغيل مرة أخرى
+    system_check_start_recording: بدء التسجيل
+    system_check_stop_recording: توقف عن التسجيل
+    system_check_test_message: سُررت بالتحدث معك
+    system_check_upload_again: تحميل مرة أخرى
+    system_check_uploading: جاري التحميل
+    system_check_video_random_phrase: أنا جاهز. هذا تسجيل تجريبي للتأكد من أن الفيديو والميكروفون يعملان بشكل صحيح.
     tasks: مهامي

@@ -1702,23 +1702,6 @@ cs:
     title: Změnit heslo
     warning_message: 'Důležité: Změna hesla vás odhlásí.'
   checking_wizard:
-    audio_check:
-      access: Přístup
-      continue: Ano, můžeme pokračovat
-      random_phrases:
-        eight: Ať je vaše káva silná a váš den produktivní.
-        five: S úsměvem na rtech je život lepší. Usmějte se na mikrofon!
-        four: Od poklopu ku poklopu kyklop koulí kouli.
-        nine: Pokud máte pochybnosti, vyzkoušejte tento mikrofon.
-        one: Strč prst skrz krk!
-        seven: Každý den je nový začátek. Řekněte to nahlas a hrdě!
-        six: Pizza nebo těstoviny? Těžká rozhodnutí.
-        three: Zkouška, raz, dva, tři, zvuk je čistý, jak jen může být.
-        two: Šíleně žluťoučký kůň úpěl ďábelské ódy.
-      record_title: Vyslovte a třikrát zopakujte následující větu.
-      retake: Ne, chci to zkusit znovu
-      run_again: Zkusit znovu
-      test_message: je skvělé si s vámi popovídat
     network_check:
       continue: Pokračovat
       download: Stahování
@@ -1751,18 +1734,10 @@ cs:
       permissions: Oprávnění k webové kameře a zvuku
       title: Před zahájením tohoto hodnocení je třeba systém podrobit několika kontrolám.
     video_check:
-      access: Přístup
-      camera_preview: Tady se zobrazí náhled fotoaparátu
-      continue: Ano, můžeme pokračovat
       description: Klikněte na Spustit nahrávání a nahrajte svůj hlas při čtení níže uvedené pasáže
       random_phrases:
         one: Jsem připraven/a. Toto je zkušební nahrávka, která potvrdí, že moje video a mikrofon fungují správně.
-      rec_text: NAHRÁVÁNÍ
-      retake: Ne, chci to zkusit znovu
-      run_again: Zkusit znovu
       title: Musíme se ujistit, že váš systém dokáže nahrávat video
-      upload_again: Znovu nahrát
-      uploading: Nahrává se
   common:
     actions:
       add: Přidat

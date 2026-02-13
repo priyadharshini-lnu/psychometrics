@@ -43,4 +43,27 @@ zh-HK:
     start_campaign_message_timed: 这是一项限时活动，请点击“%{buttonText}”按钮开始参与。
     start_campaign_message_timed_proctored: 这是一项限时且受监考的活动，请点击“%{buttonText}”按钮开始参与。
     status_unknown: 状态未知
+    system_check_access: 存取
+    system_check_audio_random_phrases:
+      eight: 祝您咖啡香濃，工作順利。
+      five: 笑一笑，人生更美好。 笑一笑，麥克風！
+      four: 她在海邊賣貝殼。
+      nine: 有疑問時，請測試一下這個麥克風是否有效！
+      one: 我尖叫，你尖叫，我們都為冰淇淋尖叫！
+      seven: 每天都是新的開始，大聲自豪地說出來！
+      six: 披薩還是義大利麵？
+      three: 測試，一二三，聲音清晰可辨！。
+      two: 敏捷的棕狐跳過了懶狗。
+    system_check_audio_title: 請讀出並重複以下句子 3 次。
+    system_check_camera_preview: 相機預覽將在此出現
+    system_check_proceed: 繼續
+    system_check_rec_text: REC
+    system_check_retake: 不，我要重考
+    system_check_run_again: 再跑一次
+    system_check_start_recording: 開始錄音
+    system_check_stop_recording: 停止錄影
+    system_check_test_message: 很高興與您交談
+    system_check_upload_again: 再上傳一次
+    system_check_uploading: 上傳
+    system_check_video_random_phrase: 我準備好了。這是一段測試錄像，用來確認我的影片和麥克風運作正常。
     tasks: 任务

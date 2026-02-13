@@ -1700,23 +1700,6 @@ zh:
     title: 更改密码
     warning_message: 重要： 更改密码将使你退出登录。
   checking_wizard:
-    audio_check:
-      access: 权限
-      continue: 继续
-      random_phrases:
-        eight: 愿你的咖啡香浓，愿你的一天富有成效。
-        five: 笑一笑，生活会更美好！
-        four: 她在海边卖贝壳。
-        nine: 如果有疑问，请测试一下这个麦克风是否有效！
-        one: 我尖叫，你尖叫，我们都为冰淇淋尖叫！
-        seven: 每一天都是新的开始，大声说出来，自豪地说出来！
-        six: 披萨还是意大利面？这是一个艰难的选择。
-        three: 测试，一二三，声音清晰无比
-        two: 敏捷的棕狐狸跳过了懒惰的狗。
-      record_title: 请读出并重复以下句子 3 次。
-      retake: 不，我想重做
-      run_again: 再来一次
-      test_message: 很高兴与你交谈
     network_check:
       continue: 继续
       download: 下载
@@ -1749,18 +1732,10 @@ zh:
       permissions: 摄像头和音频权限
       title: 在开始此评估之前，你的系统需要进行一些检查。
     video_check:
-      access: 权限
-      camera_preview: 此处将显示相机预览
-      continue: 继续
       description: 点击“开始录音”，用朗读下面的文章
       random_phrases:
         one: 我准备好了。这是一段测试录像，用来确认我的视频和麦克风工作正常。
-      rec_text: 录制
-      retake: 不，我想重做
-      run_again: 再次运行
       title: 我们需要确保你的系统可以录制视频
-      upload_again: 再次上传
-      uploading: 上传
   common:
     actions:
       add: 添加
