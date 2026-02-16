@@ -107,10 +107,18 @@ export function ActionRenderer ({
             getPopupContainer={getPopupContainer}
             content={(
               <Flex vertical gap="small">
-                <div style={{ fontWeight: 500 }}>{I18n.t('admin.add_word_count')}</div>
+                <Flex align="center" gap={4}>
+                  <Typography.Text strong>{I18n.t('admin.add_word_count')}</Typography.Text>
+                  <Typography.Text style={{ color: 'var(--grey-text)' }}>
+                    (
+                    {I18n.t('admin.minimum_10_words')}
+                    )
+                  </Typography.Text>
+                </Flex>
                 <InputNumber
                   ref={conciseInputRef}
                   value={conciseCount}
+                  min={10}
                   onChange={v => handleConciseCountChange(v as number | null)}
                   style={{ width: '100%' }}
                   onPressEnter={() => setShowConciseEditor(false)}
