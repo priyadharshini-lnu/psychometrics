@@ -72,7 +72,7 @@ class EndUser::CampaignUsersController < ApplicationController
   end
 
   def ensure_proctoring_maintenance_not_active
-    return unless @campaign_user.proctoring_enabled?
+    return unless @campaign_user.proctoring_enabled? && !params[:continue_without_proctoring]
 
     maintenance = MaintenanceSetting.find_by(sub_system: :proctoring)
     if maintenance&.active?
