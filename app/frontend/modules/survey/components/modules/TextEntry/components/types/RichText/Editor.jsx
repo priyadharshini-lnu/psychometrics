@@ -21,6 +21,7 @@ function Editor ({
   const config = {
     iconsTemplate: 'font_awesome',
     pluginsEnabled: [
+      'table',
       'lists',
       'paragraphFormat',
       'fullscreen',
