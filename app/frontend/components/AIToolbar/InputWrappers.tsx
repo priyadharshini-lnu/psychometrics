@@ -148,7 +148,7 @@ export const AIFroalaWrapper: React.FC<AIFroalaWrapperProps> = ({
               position: 'absolute',
               bottom: hasCounterPlugins ? 45 : 35,
               right: wscBadge ? 120 : 25,
-              zIndex: 10,
+              zIndex: 5002,
             }}
           />
         </div>
