@@ -3,6 +3,8 @@
 class MaintenanceSetting < ApplicationRecord
   enum :sub_system, { proctoring: 1 }
 
+  validates :sub_system, uniqueness: true
+
   def active?
     return false unless maintenance_window_enabled
     return false if start_time.blank? || end_time.blank?

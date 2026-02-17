@@ -7,6 +7,15 @@ RSpec.describe MaintenanceSetting, type: :model do
     it { should define_enum_for(:sub_system).with_values(proctoring: 1) }
   end
 
+  describe 'uniqueness constraint' do
+    it 'does not allow two maintenance settings with the same sub_system' do
+      create(:maintenance_setting, sub_system: :proctoring)
+      duplicate = build(:maintenance_setting, sub_system: :proctoring)
+      expect(duplicate).not_to be_valid
+      expect(duplicate.errors[:sub_system]).to include('has already been taken')
+    end
+  end
+
   describe 'create' do
     it 'creates a maintenance setting with all required fields' do
       maintenance_setting = create(:maintenance_setting,

@@ -14335,6 +14335,13 @@ CREATE UNIQUE INDEX index_lti_oauth2_access_tokens_on_token_hash ON public.lti_o
 
 
 --
+-- Name: index_maintenance_settings_on_sub_system; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_maintenance_settings_on_sub_system ON public.maintenance_settings USING btree (sub_system);
+
+
+--
 -- Name: index_media_responses_on_question_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -19362,6 +19369,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260217103234'),
 ('20260211083300'),
 ('20260123071239'),
 ('20260122034210'),

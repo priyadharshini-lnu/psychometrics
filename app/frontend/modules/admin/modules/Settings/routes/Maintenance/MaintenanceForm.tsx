@@ -150,6 +150,7 @@ export const MaintenanceForm: React.FC<MaintenanceFormProps> = ({
                   format={`${DATE_FORMAT} ${TIME_FORMAT}`}
                   style={{ width: '100%' }}
                   placeholder={I18n.t('admin.select_start_time')}
+                  disabledDate={date => date.isBefore(dayjs(), 'day')}
                 />
               </Form.Item>
               <Form.Item
