@@ -46,6 +46,13 @@ ar:
     last_name: إسم العائلة
     learning_on_the_job_label: التعلم أثناء العمل
     login: تسجيل الدخول
+    maintenance_in_hours: "%{hours} ساعات"
+    maintenance_in_minutes: "%{minutes} دقائق"
+    maintenance_in_progress_description: نقوم حاليًا بإجراء صيانة للنظام لضمان الأداء الأمثل للمنصة وتحسين تجربتك. نشكرك على تفهمك.
+    maintenance_in_progress_title: الصيانة المجدولة قيد التنفيذ
+    maintenance_time_remaining: الوقت المتبقي
+    maintenance_upcoming_description: سنقوم بإجراء صيانة مجدولة على %{date} لمدة تقارب %{duration} لتحسين تجربتك. خلال هذه الفترة، لن تتمكن من الوصول إلى أي مهام مخصصة أو إكمالها. نقدر صبرك.
+    maintenance_upcoming_title: الصيانة القادمة
     media_question_transcriptions: نصوص أسئلة وسائل الإعلام
     modified_by: تم التعديل بواسطة
     modified_date: تاريخ التعديل
@@ -59,6 +66,8 @@ ar:
     ok: موافق
     pending: قيد الانتظار
     processing: المعالجة
+    proctoring_maintenance_active: يخضع نظام Proctoring حاليًا للصيانة من %{start_time} إلى %{end_time}. يرجى المحاولة مرة أخرى بعد انتهاء فترة الصيانة.
+    proctoring_maintenance_upcoming: سيتم إجراء صيانة على نظام المراقبة من %{start_time} إلى %{end_time}.
     question_id: رقم السؤال
     recording_consent_notice: سيتم تسجيل جلسة الاجتماع هذه. مشاركتك في هذا الاجتماع تعني موافقتك على التسجيل.
     recording_consent_proceed_question: هل توافق على المضي قدما في الاجتماع المسجل؟

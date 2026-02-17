@@ -116,7 +116,10 @@ hi:
     edit_threesixty_campaign_admin: अभियान प्रशासक संपादित करें
     empty_csv_file: CSV फ़ाइल में कोई डेटा नहीं है।
     enable_enhance_with_ai_client_level: कृपया क्लाइंट स्तर पर एआई के साथ एनहेंस सुविधा सक्षम करें।
+    enable_maintenance: रखरखाव सक्षम करें
     enable_transcription: प्रतिलेखन सक्षम करें
+    end_time: अंत समय
+    end_time_must_be_after_start_time: अंतिम समय प्रारंभ समय के बाद होना चाहिए।
     enhance_with_ai_requires_ai_assistants: AI के साथ बढ़ाएँ के लिए AI सहायक सुविधा सक्षम होना आवश्यक है।
     evaluation_status: मूल्यांकन स्थिति
     evaluation_status_not_done: एक या अधिक चयनित विषयों के लिए मूल्यांकन की स्थिति 'Done' नहीं है। कृपया सुनिश्चित करें कि सभी चयनित उपयोगकर्ताओं ने मूल्यांकन पूरे कर लिए हैं या उन्हें 'Done' के रूप में चिह्नित कर दें।
@@ -161,6 +164,9 @@ hi:
     libraries: मीडिया पुस्तकालय
     library_invalid_type: अमान्य पुस्तकालय आइटम
     licenses: लाइसेंस
+    maintenance: रखरखाव
+    maintenance_settings: रखरखाव सेटिंग्स
+    maintenance_settings_description: सिस्टम रखरखाव विंडो और सेटिंग्स प्रबंधित करें
     manager_approval_required: "%{user} के लिए रिपोर्ट डाउनलोड करने से पहले प्रबंधक की मंजूरी आवश्यक है।"
     max_value: अधिकतम मान
     messages: संदेश
@@ -615,6 +621,7 @@ hi:
     permissions_360_campaigns: 360 अभियानों के लिए विशिष्ट अनुमतियाँ
     piped_text: पाइप्ड टेक्स्ट
     privacy: गोपनीयता
+    proctoring: निगरानी
     proficiency_level: प्रवीणता स्तर
     proficiency_levels: प्रवीणता स्तर
     profile_details: प्रोफ़ाइल विवरण
@@ -700,8 +707,10 @@ hi:
     search_admins: प्रशासकों को खोजें
     search_job_role: नौकरी की भूमिका खोजें
     select_admin_role: प्रशासक भूमिका चुनें
+    select_end_time: अंत का समय चुनें
     select_language_to_translate: कृपया अनुवाद के लिए भाषा चुनें
     select_level: स्तर चुनें
+    select_start_time: आरंभ समय चुनें
     send_email: ईमेल भेजें
     settings: सेटिंग्स
     show_original: मूल दिखाएँ
@@ -714,12 +723,14 @@ hi:
     slot_name: स्लॉट का नाम
     sms_histories: एसएमएस इतिहास
     sms_invites: एसएमएस निमंत्रण
+    start_time: शुरुआत का समय
     stats: आँकड़े
     status_details: स्थिति विवरण
     structured_learning: औपचारिक अधिगम [10]
     subdomain: उप-डोमेन
     subject_part_of_other_invite: "%{user_email} ईमेल वाले विषय को पहले ही '%{workshop_invite_name}' में आमंत्रित किया जा चुका है।"
     target_job_role: लक्षित नौकरी की भूमिका
+    timezone: समय क्षेत्र
     toolbar_ai_insight: एआई अंतर्दृष्टि
     toolbar_ai_suggestion: एआई सुझाव
     toolbar_result_generating: उत्पादित हो रहा है...

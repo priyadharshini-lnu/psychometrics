@@ -116,7 +116,10 @@ sr-Cyrl:
     edit_threesixty_campaign_admin: Уреди администратора кампање
     empty_csv_file: CSV фајл не садржи никакве податке.
     enable_enhance_with_ai_client_level: Молимо омогућите функцију Enhance with AI на нивоу клијента.
+    enable_maintenance: Омогући одржавање
     enable_transcription: Омогући транскрипцију
+    end_time: Кrajње време
+    end_time_must_be_after_start_time: Крајње време мора бити након почетног времена
     enhance_with_ai_requires_ai_assistants: Побољшање помоћу вештачке интелигенције захтева да је омогућена функција AI Assistants.
     evaluation_status: Статус процене
     evaluation_status_not_done: Статус евалуације није "Завршено" за једног или више изабраних субјеката. Молимо вас да обезбедите да су сви изабрани корисници завршили евалуације или их означите као завршене.
@@ -161,6 +164,9 @@ sr-Cyrl:
     libraries: Медијска библиотека
     library_invalid_type: Неважећи библиотечки предмет
     licenses: Лиценце
+    maintenance: Одрживање
+    maintenance_settings: Подешавања одржавања
+    maintenance_settings_description: Управљајте прозорима и подешавањама за одржавање система
     manager_approval_required: Извештај за %{user} захтева одобрење менаџера пре преузимања.
     max_value: Максимална вредност
     messages: Поруке
@@ -615,6 +621,7 @@ sr-Cyrl:
     permissions_360_campaigns: Дозволе специфичне за 360 кампање
     piped_text: Текст у цевци
     privacy: Приватност
+    proctoring: Надгледање
     proficiency_level: Ниво владења
     proficiency_levels: Нивои владења
     profile_details: Детаљи профила
@@ -700,8 +707,10 @@ sr-Cyrl:
     search_admins: Претрага администратора
     search_job_role: Претражи пословање улогу
     select_admin_role: Изаберите улогу администратора
+    select_end_time: Изаберите време завршетка
     select_language_to_translate: Молимо изаберите језик за превод
     select_level: Изабери ниво
+    select_start_time: Изаберите време почетка
     send_email: Пошаљи имејл
     settings: Подешавања
     show_original: Прикажи оригинал
@@ -714,12 +723,14 @@ sr-Cyrl:
     slot_name: Назив слота
     sms_histories: СМС историје
     sms_invites: SMS позиви
+    start_time: Време почетка
     stats: Статистика
     status_details: Детаљи статуса
     structured_learning: Формално учење [10]
     subdomain: Поддомен
     subject_part_of_other_invite: Корисник са адресом електронске поште %{user_email} је већ позван на '%{workshop_invite_name}'
     target_job_role: Циљна радна улога
+    timezone: Временска зона
     toolbar_ai_insight: Увид вештачке интелигенције
     toolbar_ai_suggestion: Предлог вештачке интелигенције
     toolbar_result_generating: Генерисање...

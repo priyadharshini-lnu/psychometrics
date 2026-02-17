@@ -116,7 +116,10 @@ th:
     edit_threesixty_campaign_admin: แก้ไขผู้ดูแลระบบแคมเปญ
     empty_csv_file: ไฟล์ CSV ไม่มีข้อมูลใดๆ
     enable_enhance_with_ai_client_level: โปรดเปิดใช้งานฟีเจอร์เพิ่มประสิทธิภาพด้วย AI ที่ระดับลูกค้า
+    enable_maintenance: เปิดใช้งานการบำรุงรักษา
     enable_transcription: เปิดใช้งานการถอดเสียง
+    end_time: เวลาสิ้นสุด
+    end_time_must_be_after_start_time: เวลาสิ้นสุดต้องเป็นหลังจากเวลาเริ่มต้น
     enhance_with_ai_requires_ai_assistants: การเพิ่มประสิทธิภาพด้วย AI ต้องเปิดใช้งานฟีเจอร์ผู้ช่วย AI
     evaluation_status: สถานะการประเมิน
     evaluation_status_not_done: สถานะการประเมินไม่ใช่ "เสร็จสิ้น" สําหรับวิชาที่เลือกอย่างน้อยหนึ่งวิชา โปรดตรวจสอบให้แน่ใจว่าผู้ใช้ที่เลือกทั้งหมดได้ทําการประเมินหรือทําเครื่องหมายว่าเสร็จสิ้น
@@ -161,6 +164,9 @@ th:
     libraries: ห้องสมุดสื่อ
     library_invalid_type: รายการไลบรารีไม่ถูกต้อง
     licenses: ใบ อนุญาต
+    maintenance: การบำรุงรักษา
+    maintenance_settings: การตั้งค่าการบำรุงรักษา
+    maintenance_settings_description: จัดการช่วงเวลาการบำรุงรักษาระบบและการตั้งค่า
     manager_approval_required: รายงานสําหรับ %{user} ต้องได้รับการอนุมัติจากผู้จัดการก่อนดาวน์โหลด
     max_value: ค่าสูงสุด
     messages: ข้อความ
@@ -615,6 +621,7 @@ th:
     permissions_360_campaigns: สิทธิ์เฉพาะสําหรับแคมเปญ 360 องศา
     piped_text: ข้อความที่จัดรูปแบบ
     privacy: ความเป็นส่วนตัว
+    proctoring: การคุมสอบ
     proficiency_level: กุญแจ API
     proficiency_levels: ระดับความสามารถ
     profile_details: รายละเอียดโปรไฟล์
@@ -700,8 +707,10 @@ th:
     search_admins: ค้นหาผู้ดูแลระบบ
     search_job_role: ค้นหางานในตำแหน่ง
     select_admin_role: กรุณาเลือกผู้ดูแลระบบ
+    select_end_time: เลือกเวลาสิ้นสุด
     select_language_to_translate: กรุณาเลือกภาษาเพื่อแปล
     select_level: เลือกระดับ
+    select_start_time: เลือกเวลาเริ่มต้น
     send_email: ส่งอีเมล
     settings: การตั้งค่า
     show_original: แสดงต้นฉบับ
@@ -714,12 +723,14 @@ th:
     slot_name: ชื่อสล็อต
     sms_histories: ประวัติ SMS
     sms_invites: คําเชิญทาง SMS
+    start_time: เวลาเริ่มต้น
     stats: สถิติ
     status_details: รายละเอียดสถานะ
     structured_learning: การเรียนรู้อย่างเป็นทางการ [10]
     subdomain: โดเมนย่อย
     subject_part_of_other_invite: หัวข้อพร้อมอีเมล %{user_email} ได้รับเชิญแล้วสำหรับ '%{workshop_invite_name}'
     target_job_role: ตำแหน่งงานเป้าหมาย
+    timezone: เขตเวลา
     toolbar_ai_insight: AI อินไซต์
     toolbar_ai_suggestion: คำแนะนำจาก AI
     toolbar_result_generating: กำลังสร้าง...

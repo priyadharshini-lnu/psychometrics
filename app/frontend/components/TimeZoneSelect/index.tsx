@@ -4,9 +4,9 @@ import { useTimezones } from '~/hooks/useTimezones'
 
 const { Option } = Select
 interface Props extends SelectProps {
-  value: string
+  value?: string
   label?: string
-  onChange(zone: string): void
+  onChange?(zone: string): void
 }
 
 const TimeZoneSelect: React.FC<Props> = ({

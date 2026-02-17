@@ -4,6 +4,8 @@ class EndUser::CampaignUsersController < ApplicationController
   include AsyncRequestHandler
 
   before_action :set_campaign_user
+  before_action :ensure_proctoring_maintenance_not_active,
+                only: %i[begin_campaign continue_campaign proctoring_redirect]
   before_action :check_all_prework_are_completed,
                 only: %i[begin_campaign continue_campaign proctoring_redirect]
 
@@ -67,6 +69,15 @@ class EndUser::CampaignUsersController < ApplicationController
     return if @campaign_user.all_prework_completed?
 
     render json: { errors: I18n.t('campaign.complete_tasks') }, status: 422
+  end
+
+  def ensure_proctoring_maintenance_not_active
+    return unless @campaign_user.proctoring_enabled?
+
+    maintenance = MaintenanceSetting.find_by(sub_system: :proctoring)
+    if maintenance&.active?
+      render json: { errors: I18n.t('shared.maintenance_in_progress_title') }, status: :forbidden
+    end
   end
 
   def redirect_to_campaign

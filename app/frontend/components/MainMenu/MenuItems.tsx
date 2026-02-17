@@ -23,6 +23,7 @@ import {
   CompassOutlined,
   GlobalOutlined,
   CalendarOutlined,
+  ToolOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { camelizeKeys } from '~/utils/object'
 
@@ -50,6 +51,7 @@ type Permissions = {
   userAvailability?: string;
   dataReports?: string;
   aiAssistants?: string;
+  settings?: string;
 };
 
 export const getSelected = (): string => {
@@ -143,6 +145,10 @@ export const getSelected = (): string => {
     return 'aiAssistants'
   }
 
+  if (location.href.match(/\/admin(\/)(settings)/)) {
+    return 'settings'
+  }
+
   return 'clients'
 }
 
@@ -174,6 +180,7 @@ const Link = ({
       'skillsTaxonomy',
       'developmentActions',
       'aiAssistants',
+      'settings',
     ]
     return !allowedPages.includes(selected)
   }
@@ -447,6 +454,17 @@ export const menuItems = (
           </a>
         ),
         icon: <DatabaseOutlined aria-hidden="true" />,
+      }
+      : null,
+    permissions.settings
+      ? {
+        key: 'settings',
+        label: (
+          <Link href={permissions.settings}>
+            {I18n.t('admin.settings')}
+          </Link>
+        ),
+        icon: <ToolOutlined />,
       }
       : null,
   ].filter(Boolean)

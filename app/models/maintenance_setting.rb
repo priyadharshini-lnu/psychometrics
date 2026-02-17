@@ -1,0 +1,13 @@
+# frozen_string_literal: true
+
+class MaintenanceSetting < ApplicationRecord
+  enum :sub_system, { proctoring: 1 }
+
+  def active?
+    return false unless maintenance_window_enabled
+    return false if start_time.blank? || end_time.blank?
+
+    current_time = Time.current.in_time_zone(time_zone)
+    current_time.between?(start_time, end_time)
+  end
+end

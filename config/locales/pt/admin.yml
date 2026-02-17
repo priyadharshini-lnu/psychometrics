@@ -116,7 +116,10 @@ pt:
     edit_threesixty_campaign_admin: Editar administração da campanha
     empty_csv_file: CSV não contém nenhum dado.
     enable_enhance_with_ai_client_level: Ative o recurso Aprimorar com IA no nível do cliente.
+    enable_maintenance: Ativar manutenção
     enable_transcription: Ativar transcrição
+    end_time: Hora do fim
+    end_time_must_be_after_start_time: A hora de término deve ser posterior à hora de início.
     enhance_with_ai_requires_ai_assistants: Para melhorar com IA, é necessário ativar o recurso Assistentes de IA.
     evaluation_status: Status de Avaliação
     evaluation_status_not_done: O status de avaliação não é 'Concluído' para um ou mais sujeitos selecionados. Por favor, certifique-se de que todos os usuários selecionados tenham concluído as avaliações ou marquem como concluídos.
@@ -161,6 +164,9 @@ pt:
     libraries: Biblioteca multimédia
     library_invalid_type: Item da Biblioteca Inválido
     licenses: Licenças
+    maintenance: Manutenção
+    maintenance_settings: Configurações de manutenção
+    maintenance_settings_description: Gerenciar janelas e configurações de manutenção do sistema
     manager_approval_required: Relatório para %{user} requer aprovação do gerente antes do download
     max_value: Valor máximo
     messages: Mensagens
@@ -615,6 +621,7 @@ pt:
     permissions_360_campaigns: Permissões específicas para campanhas 360
     piped_text: Texto canalizado
     privacy: Privacidade
+    proctoring: Supervisão
     proficiency_level: Chaves API
     proficiency_levels: Níveis de proficiência
     profile_details: Detalhes do perfil
@@ -700,8 +707,10 @@ pt:
     search_admins: Pesquisar administradores
     search_job_role: Pesquisar função profissional
     select_admin_role: Selecionar a função de administrador
+    select_end_time: Selecionar hora de término
     select_language_to_translate: Selecione o idioma para traduzir
     select_level: Selecione o nível
+    select_start_time: Selecione a hora de início
     send_email: Enviar e-mail
     settings: Definições
     show_original: Mostrar original
@@ -714,12 +723,14 @@ pt:
     slot_name: Nome do Slot
     sms_histories: Histórias SMS
     sms_invites: Convites SMS
+    start_time: Hora de início
     stats: Estatísticas
     status_details: Detalhes de Status
     structured_learning: Aprendizagem Formal [10]
     subdomain: Subdomínio
     subject_part_of_other_invite: O destinatário com o e-mail %{user_email} já foi convidado para o "%{workshop_invite_name}".
     target_job_role: Função alvo
+    timezone: Fuso horário
     toolbar_ai_insight: Visão sobre IA
     toolbar_ai_suggestion: Sugestão de IA
     toolbar_result_generating: Gerando...

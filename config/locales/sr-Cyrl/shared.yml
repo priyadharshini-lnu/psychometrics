@@ -46,6 +46,13 @@ sr-Cyrl:
     last_name: Презиме
     learning_on_the_job_label: Учење на послу
     login: Пријавите се
+    maintenance_in_hours: "%{hours} сати"
+    maintenance_in_minutes: "%{minutes} минута"
+    maintenance_in_progress_description: Тренутно вршимо одржавање система како бисмо осигурали оптималан рад платформе и унапредили ваше искуство. Хвала вам на разумевању.
+    maintenance_in_progress_title: Планирани прекид рада у току
+    maintenance_time_remaining: Преостало време
+    maintenance_upcoming_description: Извршићемо планирани одржавање на %{date} током отприлике %{duration} како бисмо побољшали ваше искуство. Током тог периода нећете моћи да приступите или завршите ниједан додељени задатак. Ценимо ваше стрпљење.
+    maintenance_upcoming_title: Предстојеће одржавање
     media_question_transcriptions: Транскрипти медијских питања
     modified_by: Измењено од стране
     modified_date: Датум измене
@@ -59,6 +66,8 @@ sr-Cyrl:
     ok: У реду
     pending: У току
     processing: Обрада
+    proctoring_maintenance_active: Проктинг је тренутно у одржавању са %{start_time} на %{end_time}. Молимо покушајте поново након завршетка прозора за одржавање.
+    proctoring_maintenance_upcoming: Прокторинг ће бити у одржавању од %{start_time} до %{end_time}.
     question_id: Идентификациони број питања
     recording_consent_notice: Ова сесија састанка ће бити снимљена. Ваше учешће на овом састанку представља вашу сагласност да се снима.
     recording_consent_proceed_question: Да ли се слажете да наставите са снимљеним састанком?

@@ -116,7 +116,10 @@ ro:
     edit_threesixty_campaign_admin: Editați administratorul campaniei
     empty_csv_file: Fișierul CSV nu conține niciun fel de date.
     enable_enhance_with_ai_client_level: Vă rugăm să activați funcția Îmbunătățire cu AI la nivel de client.
+    enable_maintenance: Activați întreținerea
     enable_transcription: Activați transcrierea
+    end_time: Ora de încheiere
+    end_time_must_be_after_start_time: Ora de încheiere trebuie să fie după ora de începere
     enhance_with_ai_requires_ai_assistants: Pentru a îmbunătăți cu AI, este necesar să fie activată funcția Asistenți AI.
     evaluation_status: Stare de evaluare
     evaluation_status_not_done: Starea evaluării nu este "Finalizată" pentru unul sau mai mulți subiecte selectate. Vă rugăm să vă asigurați că toți utilizatorii selectați au finalizat evaluările sau să marcheze ca fiind făcute.
@@ -161,6 +164,9 @@ ro:
     libraries: Bibliotecă media
     library_invalid_type: Element invalid din bibliotecă
     licenses: Licenţe
+    maintenance: Întreținere
+    maintenance_settings: Setări de întreținere
+    maintenance_settings_description: Gestionați ferestrele și setările de întreținere a sistemului
     manager_approval_required: Raportul pentru %{user} necesită aprobarea managerului înainte de descărcare
     max_value: Valoarea maximă
     messages: Mesaje
@@ -615,6 +621,7 @@ ro:
     permissions_360_campaigns: Permisiuni specifice campaniilor 360
     piped_text: Text încadrat
     privacy: Intimitate
+    proctoring: Supravegherea
     proficiency_level: Chei API
     proficiency_levels: Niveluri de competență
     profile_details: Detalii profil
@@ -700,8 +707,10 @@ ro:
     search_admins: Administratori de căutare
     search_job_role: Căutare post
     select_admin_role: Selectați rolul de administrator
+    select_end_time: Selectați ora de încheiere
     select_language_to_translate: Vă rugăm să selectați limba pentru traducere
     select_level: Selectați nivelul
+    select_start_time: Selectați ora de începere
     send_email: Trimite e-mail
     settings: Setări
     show_original: Afișează originalul
@@ -714,12 +723,14 @@ ro:
     slot_name: Numele slotului
     sms_histories: Istoricul SMS-urilor
     sms_invites: Invitații prin SMS
+    start_time: Ora de începere
     stats: Statistici
     status_details: Detalii despre stadiu
     structured_learning: Învățarea formală [10]
     subdomain: Subdomeniu
     subject_part_of_other_invite: Persoana cu adresa de e-mail %{user_email} este deja invitată la „%{workshop_invite_name}”.
     target_job_role: Postul vizat
+    timezone: Fus orar
     toolbar_ai_insight: Perspectivă AI
     toolbar_ai_suggestion: Sugestie AI
     toolbar_result_generating: Se generează...

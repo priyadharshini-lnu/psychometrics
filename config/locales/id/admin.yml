@@ -116,7 +116,10 @@ id:
     edit_threesixty_campaign_admin: Edit Admin Kampanye
     empty_csv_file: CSV tidak berisi data apa pun.
     enable_enhance_with_ai_client_level: Silakan aktifkan fitur "Enhance with AI" di tingkat klien.
+    enable_maintenance: Aktifkan Pemeliharaan
     enable_transcription: Aktifkan Transkripsi
+    end_time: Waktu Akhir
+    end_time_must_be_after_start_time: Waktu akhir harus setelah waktu mulai.
     enhance_with_ai_requires_ai_assistants: Untuk menggunakan fitur Peningkatan dengan AI, fitur Asisten AI harus diaktifkan.
     evaluation_status: Status Evaluasi
     evaluation_status_not_done: Status evaluasi tidak 'Selesai' untuk satu atau lebih mata pelajaran yang dipilih. Pastikan semua pengguna yang dipilih telah menyelesaikan evaluasi atau menandai sebagai selesai.
@@ -161,6 +164,9 @@ id:
     libraries: Perpustakaan Media
     library_invalid_type: Item Perpustakaan Tidak Valid
     licenses: Lisensi
+    maintenance: Perawatan
+    maintenance_settings: Pengaturan Pemeliharaan
+    maintenance_settings_description: Mengelola jendela pemeliharaan sistem dan pengaturan
     manager_approval_required: Laporan untuk %{user} memerlukan persetujuan manajer sebelum diunduh
     max_value: Nilai maksimum
     messages: Pesan
@@ -615,6 +621,7 @@ id:
     permissions_360_campaigns: Izin khusus untuk kampanye 360
     piped_text: Teks yang disalurkan
     privacy: Privasi
+    proctoring: Pengawasan
     proficiency_level: Kunci API
     proficiency_levels: Tingkat Kemahiran
     profile_details: Detail profil
@@ -700,8 +707,10 @@ id:
     search_admins: Cari Admin
     search_job_role: Cari peran pekerjaan
     select_admin_role: Pilih peran admin
+    select_end_time: Pilih Waktu Berakhir
     select_language_to_translate: Silakan pilih bahasa yang ingin diterjemahkan.
     select_level: Pilih tingkat
+    select_start_time: Pilih Waktu Mulai
     send_email: Kirim email
     settings: Pengaturan
     show_original: Tampilkan Asli
@@ -714,12 +723,14 @@ id:
     slot_name: Nama Slot
     sms_histories: Riwayat SMS
     sms_invites: Undangan SMS
+    start_time: Waktu Mulai
     stats: Statistik
     status_details: Detail Status
     structured_learning: Pembelajaran Formal [10]
     subdomain: Subdomain
     subject_part_of_other_invite: Subjek dengan alamat email %{user_email} sudah diundang ke '%{workshop_invite_name}'
     target_job_role: Posisi Pekerjaan yang Dituju
+    timezone: Zona Waktu
     toolbar_ai_insight: Wawasan Kecerdasan Buatan
     toolbar_ai_suggestion: Saran AI
     toolbar_result_generating: Sedang diproses...
