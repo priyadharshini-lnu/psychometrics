@@ -27,7 +27,7 @@ module AI
           join ai_scoring_approval_settings as setting on user_assessments.campaign_id = setting.campaign_id
           AND user_assessments.assessment_id = setting.assessment_id
         )
-      )
+      ).joins(:users_result).where(users_result: { ai_scoring_status: :completed })
 
       return scope if user.is?(:superadmin)
 
