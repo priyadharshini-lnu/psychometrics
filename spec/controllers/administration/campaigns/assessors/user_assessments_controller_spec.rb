@@ -24,7 +24,7 @@ RSpec.describe Administration::Campaigns::Assessors::UserAssessmentsController, 
         'status' => user_assessment.users_result.status,
         'subject_email' => user_assessment.subject.email,
         'subject_name' => user_assessment.subject.decorate.full_name,
-        'permissions' => { 'reset_evaluation' => true }
+        'permissions' => { 'reset_evaluation' => true, 'reset_progress' => true, 'rescore' => true }
       }])
     end
   end

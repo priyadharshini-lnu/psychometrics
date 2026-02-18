@@ -227,6 +227,8 @@ interface ActionsMenuData {
   resetProgress(): Promise<{ response: unknown}>
   permissions: {
     resetEvaluation: boolean
+    resetProgress: boolean
+    rescore: boolean
   }
   modal: Omit<ModalStaticFunctions, 'warn'>
   message: MessageInstance
@@ -268,12 +270,19 @@ const getActionsMenuProps = ({
   }
 
   const menuItems: MenuItem[] = []
-  const resetEvaluationMenuItems = [
-    { key: 'reset', label: I18n.t('administration.assessor.assessments.actions.reset') },
-    { key: 'resetProgress', label: I18n.t('administration.assessor.assessments.actions.reset_progress') },
-    { key: 'rescore', label: I18n.t('administration.assessor.assessments.actions.rescore') },
-  ]
-  permissions.resetEvaluation && menuItems.push(...resetEvaluationMenuItems)
+  if (permissions.resetEvaluation) {
+    menuItems.push({ key: 'reset', label: I18n.t('administration.assessor.assessments.actions.reset') })
+  }
+  if (permissions.resetProgress) {
+    menuItems.push({
+      key: 'resetProgress',
+      label: I18n.t('administration.assessor.assessments.actions.reset_progress'),
+    })
+  }
+  if (permissions.rescore) {
+    menuItems.push({ key: 'rescore', label: I18n.t('administration.assessor.assessments.actions.rescore') })
+  }
+
 
   const handleMenuClick = ({ key }) => {
     if (key === 'reset') {
