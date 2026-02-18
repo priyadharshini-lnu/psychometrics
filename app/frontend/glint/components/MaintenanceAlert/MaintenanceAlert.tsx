@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import {
-  Alert, Statistic,
+  Alert, Statistic, theme,
 } from 'antd'
+import { ExclamationCircleFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 import { dateTimeWithZone } from '~/utils/time'
 
@@ -33,6 +34,8 @@ export const MaintenanceAlert: React.FC<MaintenanceAlertProps> = ({
   maintenanceStatus,
   onStatusChange,
 }) => {
+  const { token } = theme.useToken()
+
   const {
     maintenanceWindowEnabled,
     startTime,
@@ -68,27 +71,39 @@ export const MaintenanceAlert: React.FC<MaintenanceAlertProps> = ({
     <>
       <Alert
         type="warning"
-        title={alert?.message}
         banner
-        description={(
-          <>
-            {alert?.description}
-            {maintenanceStatus === 'inProgress' && (
-              <div className="mt-2 font-bold fs-14 flex items-center">
-                <span>
-                  {I18n.t('shared.maintenance_time_remaining')}
-                </span>
-                <Timer
-                  type="countdown"
-                  value={end.valueOf()}
-                  onFinish={() => onStatusChange?.('')}
-                  styles={{ content: { fontSize: '14px', marginLeft: '8px' } }}
-                />
-              </div>
-            )}
-          </>
+        showIcon={false}
+        title={(
+          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+            <div className="flex items-start">
+              <ExclamationCircleFilled style={{
+                color: token.colorWarning, fontSize: 16, marginRight: 8, marginTop: 4,
+              }}
+              />
+              <span className="fs-16">{alert?.message}</span>
+            </div>
+          </div>
         )}
-        showIcon
+        description={(
+          <div style={{ maxWidth: 1200, margin: '0 auto', paddingLeft: 24 }}>
+            <div>
+              {alert?.description}
+              {maintenanceStatus === 'inProgress' && (
+                <div className="mt-2 font-bold fs-14 flex items-center">
+                  <span>
+                    {I18n.t('shared.maintenance_time_remaining')}
+                  </span>
+                  <Timer
+                    type="countdown"
+                    value={end.valueOf()}
+                    onFinish={() => onStatusChange?.('')}
+                    styles={{ content: { fontSize: '14px', marginLeft: '8px' } }}
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       />
       {maintenanceStatus === 'upcoming' && (
         <Timer
@@ -99,7 +114,6 @@ export const MaintenanceAlert: React.FC<MaintenanceAlertProps> = ({
         />
       )}
     </>
-
   )
 }
 
