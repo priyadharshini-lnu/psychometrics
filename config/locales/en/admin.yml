@@ -20,7 +20,6 @@ en:
     admin_roles: Admin Roles
     admin_updated_successfully: Admin '%{name}' was updated successfully
     admins: Admins
-    agile: AGILE
     ai_artifact_result_generation_admin_job_failed: Artifact '%{artifact_name}' cannot be generated for User '%{user_email}'
     ai_artifacts: AI Artifacts
     ai_artifacts_output_schema_key_constraint: Key must start with a lowercase letter and can only contain lowercase letters, numbers, and underscores
@@ -214,8 +213,6 @@ en:
     formal: Formal
     generate_transcription: Generate Transcription
     hide_middle_scores: Hide middle scores
-    hogan: Hogan
-    hogan_assessment: Hogan Assessment
     idp_plan_reset_success: Plan has been reset successfully
     idp_templates: IDP Templates
     import_ai_artifacts: Import AI Artifacts
@@ -246,7 +243,6 @@ en:
     job_roles: Job Roles
     keywords: Keywords
     keywords_placeholder: Enter keywords separated by commas.
-    lead_assessor_form: Lead Assessor Form
     learning_from_others: Collaborative Learning [20]
     level: Level
     level_apply: Apply
@@ -729,7 +725,6 @@ en:
     project_settings: Project Settings
     projects: Projects
     prompt: Prompt
-    psychometric: Psychometric
     question_center: Question Center
     questions: Questions
     range_min_max: RANGE %{min} - %{max}
@@ -804,8 +799,6 @@ en:
     saml_settings: SAML Settings
     save: Save
     save_assessment_for_scoring_management: Save Assessment before getting started with Scoring.
-    saville: Saville
-    saville_assessment: Saville Assessment
     scheduling: Scheduling
     score: Score
     score_definition_placeholder: Enter the definition for this score level
@@ -855,7 +848,6 @@ en:
     subject_part_of_other_invite: Subject with email %{user_email} is already invited to '%{workshop_invite_name}'
     target_job_role: Target Job Role
     this_field_is_required: This field is required
-    threesixty: 360 Campaign
     tone: Tone
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: AI Suggestion
