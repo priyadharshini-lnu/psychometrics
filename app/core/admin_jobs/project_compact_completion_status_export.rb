@@ -14,11 +14,16 @@ module AdminJobs
 
     def headers
       base_headers = base_record_headers
-      insert_campaign_headers(base_headers)
+      final_headers = insert_campaign_headers(base_headers)
+      titleize_headers(final_headers)
+    end
+
+    def titleize_headers(headers)
+      headers.map { |header| header.to_s.titleize }
     end
 
     def campaign_headers
-      %w[campaign_id campaign_name]
+      ['Campaign Id', 'Campaign Name']
     end
 
     def base_record_headers
