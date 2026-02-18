@@ -1095,9 +1095,36 @@ th:
       title: รายละเอียดการประเมิน
     edit: แก้ไข
     fields:
+      category:
+        agile: ว่องไว
+        assessor_form: แบบฟอร์มผู้ประเมิน
+        case_study: กรณีศึกษา
+        hogan: โฮแกน
+        iiht: ไอเอชที
+        lead_assessor_form: แบบฟอร์มผู้ประเมินหลัก
+        meeting: การประชุม
+        mettl: เมทเทล
+        organisational: แบบสํารวจขององค์กร
+        pearson: เพียร์สัน
+        psychometric: ไซโครเมตริก
+        saville: ซาวิลล์
+        simulation: การลอกเลียนแบบ
+        skillvue: Skillvue
+        threesixty: แคมเปญ 360
+        yoodli: ยุดลี
       status:
         finished: เสร็จแล้ว
         in_progress: อยู่ระหว่างดําเนินการ
+      type:
+        common: การประเมิน TTE
+        hogan: โฮแกน
+        iiht: การประเมิน IIHT
+        mettl: การประเมิน Mettl
+        pearson: การประเมินเพียร์สัน
+        saville: การประเมิน Saville
+        simulation: การประเมินการจําลอง
+        skillvue: การประเมิน Skillvue
+        yoodli: การประเมิน Yoodli
     flow:
       end_assessment_modal:
         custom_message: ข้อความสิ้นสุดการประเมินแบบกําหนดเอง
@@ -3261,6 +3288,13 @@ th:
     fields:
       provider:
         custom_upload: อัปโหลดแบบกําหนดเอง
+        hogan: โฮแกน
+        internal: ภายใน
+        mettl: เมทเทล
+        pearson: เพียร์สัน
+        saville: ซาวิลล์
+        skillvue: สกิลวิว
+        yoodli: ยุดลี
     form:
       load_from_mettl: โหลดจาก Mettl
       load_from_pearson: โหลดจาก Pearson

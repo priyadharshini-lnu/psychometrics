@@ -18,7 +18,6 @@ ko:
     admin_roles: 관리자 역할
     admin_updated_successfully: 관리자 '%{name}'이(가) 업데이트되었습니다
     admins: 관리자
-    agile: AGILE
     ai_artifacts: AI 아티팩트
     ai_artifacts_output_schema_key_constraint: 키는 소문자로 시작해야 하며, 소문자, 숫자, 밑줄만 포함할 수 있습니다
     ai_assistant_model_id_label: 모델 ID
@@ -51,7 +50,6 @@ ko:
     assessments_not_mhs: 모든 평가는 MHS 유형이어야 합니다
     assessments_reports: 평가 및 보고서
     assessor_dashboard: 평가자 대시보드
-    assessor_form: 평가자 양식
     assessor_workshops: 평가 센터
     assessors: 평가자
     assistant_toolbar_failed: 여러 번 시도한 후에도 유효한 출력을 생성하지 못했습니다.
@@ -92,14 +90,11 @@ ko:
     campaign_user_job_roles_cannot_be_same: 지원 직무는 현재 직무와 달라야 합니다.
     campaigns: 캠페인
     cancellation_and_rescheduling_disabled: 취소 및 일정 변경 기능이 비활성화되었습니다
-    case_study: 사례 연구
     casual: 캐주얼
     client: 클라이언트 테넌시
     client_admins: 클라이언트 관리자
     clients: 고객 임차
     code_required: 코드 필요
-    common: TTE 평가
-    common_assessment: TTE 평가
     communication_center: 커뮤니케이션 센터
     communications: 커뮤니케이션
     completed: 완료
@@ -148,12 +143,8 @@ ko:
     fix_grammar: 문법 수정
     formal: 공식적인
     generate_transcription: 자막 생성
-    hogan: Hogan
-    hogan_assessment: AGILE
     idp_plan_reset_success: 계획이 성공적으로 재설정되었습니다
     idp_templates: IDP 템플릿
-    iiht: IIHT
-    iiht_assessment: IIHT 평가
     import_ai_artifacts: AI 산출물 가져오기
     import_csv_assessment_group_error: "%{index} 행: 이메일 %{email} 사용자는 이미 '%{workshopInviteName}'에 초대되었습니다."
     import_csv_error: "%{index}행: 이메일 %{email} 있는 사용자는 이 캠페인에 참여하지 않습니다"
@@ -180,7 +171,6 @@ ko:
     internal: 내부
     invalid_csv_header: CSV 파일에는 잘못된 헤더가 포함되어 있습니다.
     job_roles: 직무 역할
-    lead_assessor_form: 리드 평가자 양식
     learning_from_others: 협력 학습 [20]
     level: 레벨
     level_apply: 지원하다
@@ -192,10 +182,7 @@ ko:
     licenses: 라이선스
     manager_approval_required: "%{user} 보고서는 다운로드 전에 관리자의 승인이 필요합니다"
     max_value: 최대값
-    meeting: 회의
     messages: 메시지
-    mettl: Mettl
-    mettl_assessment: Mettl 평가
     mhs: MHS
     mhs_assessment: MHS 평가
     mhs_assessment_name: MHS 평가명
@@ -222,11 +209,8 @@ ko:
     on_the_job: 현장 [70]
     only_editable_on_create: 이 옵션은 생성 중에만 편집할 수 있습니다.
     options: 옵션
-    organisational: 조직 설문 조사
     original_text: 원문
     participants: 참가자
-    pearson: Pearson
-    pearson_assessment: 피어슨 평가
     permissions:
       aiArtifacts:
         export: 수출
@@ -661,7 +645,6 @@ ko:
     project_number: 프로젝트 번호
     project_settings: 프로젝트 설정
     projects: 프로젝트
-    psychometric: 사이코메트릭
     question_center: 질문 센터
     questions: 질문
     reflection_questions: 성찰 질문
@@ -733,8 +716,6 @@ ko:
     saml_service_provider_updated_date: 업데이트 날짜
     saml_service_providers: 서비스 제공자
     saml_settings: SAML 설정
-    saville: Saville
-    saville_assessment: 새빌 평가
     scheduling: 일정 예약
     scoring: 채점
     scoring_value_info: 점수는 %{min}와 %{max} 사이여야 합니다.
@@ -750,13 +731,9 @@ ko:
     show_submenu: 하위 메뉴 표시
     show_translated: 번역된 내용 표시
     siem: SIEM
-    simulation: 시뮬레이션
-    simulation_assessment: 시뮬레이션 평가
     skill_aliases: 스킬 별칭
     skills: 기술
     skills_taxonomy: 기술 분류
-    skillvue: 스킬뷰
-    skillvue_assessment: Skillvue 평가
     slot_name: 슬롯 이름
     sms_histories: SMS 기록
     sms_invites: SMS 초대
@@ -766,7 +743,6 @@ ko:
     subdomain: 하위 도메인
     subject_part_of_other_invite: 이메일 주소 %{user_email}을 가진 사용자는 이미 '%{workshop_invite_name}'에 초대되었습니다.
     target_job_role: 목표 직무 역할
-    threesixty: 360 캠페인
     tone: 톤
     toolbar_ai_insight: AI 인사이트
     toolbar_ai_suggestion: AI 제안
@@ -797,8 +773,6 @@ ko:
     x_axis_interval_label: X축 간격
     y_axis_interval_label: Y축 간격
     year: 국가
-    yoodli: 유들리
     yoodli_activity_id: Yoodli 활동 ID
-    yoodli_assessment: 유들리 평가
     yoodli_email_id: 유들리 후보자 이메일 ID
     yoodli_external_assessment_id: Yoodli 평가 ID

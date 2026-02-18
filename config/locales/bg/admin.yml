@@ -18,7 +18,6 @@ bg:
     admin_roles: Администраторски роли
     admin_updated_successfully: Администраторът '%{name}' е актуализиран успешно
     admins: Администратори
-    agile: ПОДВИЖЕН
     ai_artifacts: Артефакти с изкуствен интелект
     ai_artifacts_output_schema_key_constraint: Ключът трябва да започва с малка буква и може да съдържа само малки букви, цифри и подчертавания
     ai_assistant_model_id_label: Модел ID
@@ -51,7 +50,6 @@ bg:
     assessments_not_mhs: Всички оценки трябва да бъдат от тип MHS.
     assessments_reports: Оценки и отчети
     assessor_dashboard: Табло за управление на оценителя
-    assessor_form: Формуляр за оценител
     assessor_workshops: Център за оценяване
     assessors: Оценители
     assistant_toolbar_failed: Не успях да генерирам валиден резултат след многократни опити
@@ -92,14 +90,11 @@ bg:
     campaign_user_job_roles_cannot_be_same: Целевата длъжност трябва да е различна от настоящата длъжност.
     campaigns: Кампании
     cancellation_and_rescheduling_disabled: Отмяната и пренасрочването са деактивирани
-    case_study: Казуси
     casual: Неформален
     client: Наемане на клиенти
     client_admins: Администратори на клиенти
     clients: Наеми на клиенти
     code_required: Изисква се код
-    common: Оценка на TTE
-    common_assessment: Оценка на TTE
     communication_center: Комуникационен център
     communications: Комуникации
     completed: Завършен
@@ -148,12 +143,8 @@ bg:
     fix_grammar: Поправи граматиката
     formal: Официален
     generate_transcription: Генериране на транскрипция
-    hogan: Хоган
-    hogan_assessment: ПОДВИЖЕН
     idp_plan_reset_success: Планът беше успешно рестартиран
     idp_templates: Шаблони за индивидуален план за развитие
-    iiht: ИИХТ
-    iiht_assessment: Оценка на IIHT
     import_ai_artifacts: Импортиране на AI артефакти
     import_csv_assessment_group_error: 'Ред „%{index}“: потребителят с имейл адрес %{email} вече е поканен в „%{workshopInviteName}“.'
     import_csv_error: 'Ред %{index}: потребител с имейл %{email} не участва в тази кампания'
@@ -180,7 +171,6 @@ bg:
     internal: Вътрешен
     invalid_csv_header: CSV файлът съдържа невалидни заглавия.
     job_roles: Работни роли
-    lead_assessor_form: Формуляр за водещ оценител
     learning_from_others: Съвместно обучение [20]
     level: Ниво
     level_apply: Кандидатствай
@@ -192,10 +182,7 @@ bg:
     licenses: Лицензи
     manager_approval_required: Докладът за %{user} изисква одобрение от мениджъра преди изтегляне
     max_value: Максимална стойност
-    meeting: Събрание
     messages: Съобщения
-    mettl: Метл
-    mettl_assessment: Оценка на Mettl
     mhs: MHS
     mhs_assessment: Оценка на MHS
     mhs_assessment_name: Име на оценката на MHS
@@ -222,11 +209,8 @@ bg:
     on_the_job: На работа [70]
     only_editable_on_create: Тази опция може да се редактира само по време на създаването.
     options: Опции
-    organisational: Организационни проучвания
     original_text: Оригинален текст
     participants: Участниците
-    pearson: Пиърсън
-    pearson_assessment: Оценка на Пиърсън
     permissions:
       aiArtifacts:
         export: Износ
@@ -661,7 +645,6 @@ bg:
     project_number: Номер на проекта
     project_settings: Настройки на проекта
     projects: Проекти
-    psychometric: Психометрични
     question_center: Център за въпроси
     questions: Въпроси
     reflection_questions: Въпроси за размисъл
@@ -733,8 +716,6 @@ bg:
     saml_service_provider_updated_date: Актуализирана дата
     saml_service_providers: Доставчици
     saml_settings: SAML настройки
-    saville: Савил
-    saville_assessment: Оценка на Saville
     scheduling: Планиране
     scoring: Точкуване
     scoring_value_info: Резултатът трябва да е между %{min} и %{max}.
@@ -750,13 +731,9 @@ bg:
     show_submenu: Покажи подменюто
     show_translated: Покажи преведеното
     siem: SIEM
-    simulation: Симулация
-    simulation_assessment: Оценка на симулацията
     skill_aliases: Псевдоними на уменията
     skills: Умения
     skills_taxonomy: Таксономия на уменията
-    skillvue: Skillvue
-    skillvue_assessment: Оценка на Skillvue
     slot_name: Име на слот
     sms_histories: История на SMS
     sms_invites: SMS покани
@@ -766,7 +743,6 @@ bg:
     subdomain: Поддомейн
     subject_part_of_other_invite: Получателят на имейла %{user_email} вече е поканен на „%{workshop_invite_name}”
     target_job_role: Целева длъжност
-    threesixty: Кампания 360
     tone: Тон
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: Предложение за изкуствен интелект
@@ -797,8 +773,6 @@ bg:
     x_axis_interval_label: Интервал по ос Х
     y_axis_interval_label: Интервал на Y-ос
     year: Държава
-    yoodli: Юдли
     yoodli_activity_id: Yoodli ID на активността
-    yoodli_assessment: Оценка на Yoodli
     yoodli_email_id: Имейл ID на кандидата Yoodli
     yoodli_external_assessment_id: Yoodli Assessment ID

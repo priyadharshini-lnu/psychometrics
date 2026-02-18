@@ -1095,9 +1095,36 @@ zh:
       title: 评估细节
     edit: 编辑
     fields:
+      category:
+        agile: AGILE
+        assessor_form: 评估员表格
+        case_study: 案例研究
+        hogan: 霍根
+        iiht: IIHT
+        lead_assessor_form: 主任评估员表格
+        meeting: 会议
+        mettl: 水
+        organisational: 组织调查
+        pearson: 皮尔森
+        psychometric: 心理测量
+        saville: 萨维尔
+        simulation: 模拟
+        skillvue: Skillvue
+        threesixty: 360 运动
+        yoodli: 尤德利
       status:
         finished: 完成
         in_progress: 进行中
+      type:
+        common: TTE 评估
+        hogan: 霍根
+        iiht: IIHT 评估
+        mettl: 梅特尔评估
+        pearson: 培生评估
+        saville: 萨维尔评估
+        simulation: 模拟评估
+        skillvue: Skillvue 评估
+        yoodli: 尤德利评估
     flow:
       end_assessment_modal:
         custom_message: 自定义评估结束信息
@@ -3257,6 +3284,13 @@ zh:
     fields:
       provider:
         custom_upload: 自定义上传
+        hogan: 霍根
+        internal: 内部
+        mettl: 水
+        pearson: 皮尔森
+        saville: 萨维尔
+        skillvue: Skillvue
+        yoodli: 尤德利
     form:
       load_from_mettl: 来自 Mettl 的负载
       load_from_pearson: 从培生加载

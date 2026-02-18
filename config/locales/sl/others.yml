@@ -1095,9 +1095,36 @@ sl:
       title: Podrobnosti ocenjevanja
     edit: Uredi
     fields:
+      category:
+        agile: AGILE
+        assessor_form: Obrazec ocenjevalca
+        case_study: Študije primerov
+        hogan: Hogan
+        iiht: IIHT
+        lead_assessor_form: Obrazec vodilnega ocenjevalca
+        meeting: Srečanje
+        mettl: Mettl
+        organisational: Ankete organizacij
+        pearson: Pearson
+        psychometric: Psihometrični
+        saville: Saville
+        simulation: Simulacija
+        skillvue: Skillvue
+        threesixty: 360-stopinjska kampanja
+        yoodli: Yoodli
       status:
         finished: Končal
         in_progress: V teku
+      type:
+        common: Ocena TTE
+        hogan: Hogan
+        iiht: Ocena IIHT
+        mettl: Mettl ocenjevanje
+        pearson: Pearsonova ocena
+        saville: Ocena Saville
+        simulation: Simulacijska ocena
+        skillvue: Ocena spretnosti
+        yoodli: Yoodlijeva ocena
     flow:
       end_assessment_modal:
         custom_message: Sporočilo o koncu ocenjevanja po meri
@@ -3273,6 +3300,13 @@ sl:
     fields:
       provider:
         custom_upload: Nalaganje po meri
+        hogan: Hogan
+        internal: Notranji
+        mettl: Mettl
+        pearson: Pearson
+        saville: Saville
+        skillvue: Skillvue
+        yoodli: Yoodli
     form:
       load_from_mettl: Nalaganje od Mettl
       load_from_pearson: Nalaganje od Pearsona

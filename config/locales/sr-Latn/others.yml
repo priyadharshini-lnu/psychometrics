@@ -1103,9 +1103,36 @@ sr-Latn:
       title: Detalji procene
     edit: Uređivanje
     fields:
+      category:
+        agile: GIBGIB
+        assessor_form: Obrazac ocenjivača
+        case_study: Studije slučaja
+        hogan: Hogan
+        iiht: OMILjENO
+        lead_assessor_form: Obrazac glavnog procenjivača
+        meeting: Sastanak
+        mettl: OMILjENO
+        organisational: Org Ankete
+        pearson: Pirson
+        psychometric: Psihometrijski
+        saville: San-Tome i Prinsipi
+        simulation: Simulacija
+        skillvue: Skillvue
+        threesixty: 360 Kampanja
+        yoodli: Joodli
       status:
         finished: Zavrљio
         in_progress: U toku
+      type:
+        common: TTE Procena
+        hogan: Hogan
+        iiht: IIHT procena
+        mettl: Mettl Procena
+        pearson: Pirsonova procena
+        saville: Savil Procena
+        simulation: Simulacija Procena
+        skillvue: Skillvue Procena
+        yoodli: Joodli Procena
     flow:
       end_assessment_modal:
         custom_message: Prilagođeni kraj poruke o proceni
@@ -3264,6 +3291,13 @@ sr-Latn:
     fields:
       provider:
         custom_upload: Prilagođeno otpremanje
+        hogan: Hogan
+        internal: Unutrašnje
+        mettl: OMILjENO
+        pearson: Pirson
+        saville: San-Tome i Prinsipi
+        skillvue: OMILjENO
+        yoodli: Joodli
     form:
       load_from_mettl: Učitaj od Mettl
       load_from_pearson: Učitaj od Pirsona
