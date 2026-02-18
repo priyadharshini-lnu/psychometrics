@@ -23,6 +23,7 @@ import {
   CompassOutlined,
   GlobalOutlined,
   CalendarOutlined,
+  CheckCircleOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { camelizeKeys } from '~/utils/object'
 
@@ -50,6 +51,7 @@ type Permissions = {
   userAvailability?: string;
   dataReports?: string;
   aiAssistants?: string;
+  aiScoringApprovals?: string;
 };
 
 export const getSelected = (): string => {
@@ -99,6 +101,10 @@ export const getSelected = (): string => {
 
   if (location.href.match(/\/admin(\/)(report_approvals)/)) {
     return 'reportApprovals'
+  }
+
+  if (location.href.match(/\/admin(\/)(ai_scoring_approvals)/)) {
+    return 'aiScoringApprovals'
   }
 
   if (location.href.match(/\/admin(\/)(campaign_templates)/)) {
@@ -204,6 +210,7 @@ export const menuItems = (
   const isContentEnabled = permissions.assessments
     || permissions.norms || permissions.dimensions || permissions.reports
     || permissions.questionCenter || permissions.libraries
+  const isApprovalEnabled = permissions.reportApprovals || permissions.aiScoringApprovals
 
   return [
     hasSubmenu
@@ -405,17 +412,35 @@ export const menuItems = (
         icon: <MailOutlined aria-hidden="true" />,
       }
       : null,
-    permissions.reportApprovals
-      ? {
-        key: 'reportApprovals',
-        label: (
-          <Link href={permissions.reportApprovals}>
-            {I18n.t('admin.report_approvals')}
-          </Link>
-        ),
-        icon: <FileProtectOutlined aria-hidden="true" />,
-      }
-      : null,
+    isApprovalEnabled ? ({
+      key: 'approvals',
+      label: I18n.t('administration.navigation.approvals'),
+      icon: <CheckCircleOutlined />,
+      children: [
+        permissions.reportApprovals
+          ? {
+            key: 'reportApprovals',
+            label: (
+              <Link href={permissions.reportApprovals}>
+                {I18n.t('admin.report_approvals')}
+              </Link>
+            ),
+            icon: <FileProtectOutlined aria-hidden="true" />,
+          }
+          : null,
+        permissions.aiScoringApprovals
+          ? {
+            key: 'aiScoringApprovals',
+            label: (
+              <Link href={permissions.aiScoringApprovals}>
+                {I18n.t('admin.ai_scoring_approvals')}
+              </Link>
+            ),
+            icon: <RobotOutlined />,
+          }
+          : null,
+      ],
+    }) : null,
     permissions.userAvailability
       ? {
         key: 'userAvailability',

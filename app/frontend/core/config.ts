@@ -54,9 +54,9 @@ export const getAvailableAiProviders = (state: RootState): AiModel[] => _.get(st
   ['config', 'availableAiProviders'], [])
 
 const HANDLERS = {
-  [FETCH_PROJECT]: (state: ConfigState, { response }: FetchType) => ({
+  [FETCH_PROJECT]: (state: ConfigState, action: FetchType) => ({
     ...state,
-    ...response.config,
+    ...action.response.config,
   }),
 }
 

@@ -11,7 +11,8 @@ module AI
         idp_assistant: IdpAssistant,
         development_actions_assistant: DevelopmentActionsAssistant,
         writing_assistant: WritingAssistant,
-        translation_assistant: TranslationAssistant
+        translation_assistant: TranslationAssistant,
+        content_analysis_assistant: ContentAnalysisAssistant
       }.freeze
 
       # Check if a given assistant type has a RubyLLM::Schema defined

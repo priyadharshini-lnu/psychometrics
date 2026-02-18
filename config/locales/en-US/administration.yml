@@ -1985,7 +1985,7 @@ en-US:
           sub_factors_conditional_average: Conditional Weighted Average of Factors
           sub_factors_sum: Weighted Sum of Factors
         scoring_strategy: Scoring strategy
-        sub_factors: Sub factors
+        sub_factors: Sub factors / Indicators
         title: Factors
       list:
         active: Active

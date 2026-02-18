@@ -4,6 +4,7 @@ import {
 } from 'antd'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 
+import ScoreWithAI from '~/modules/survey/components/ScoreWithAI'
 import {
   PropertiesModel,
   DateFormat,
@@ -134,6 +135,9 @@ export const Properties: FC<Props> = ({ model, showOnlyTranslatable }) => {
 
       <RequiredValidations model={model} update={forceUpdate} />
       <ValidationTypes model={model} update={() => forceUpdate()} />
+      {['MultiLine', 'EssayTextBox', 'SingleLine', 'RichText'].includes(type) && (
+        <ScoreWithAI model={model} update={forceUpdate} />
+      )}
     </>
   )
 }

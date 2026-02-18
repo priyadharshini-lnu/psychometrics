@@ -5,7 +5,7 @@ import {
 } from 'antd'
 
 export default function Title ({ factors, factor, onAdd }) {
-  const availableFactors = _.filter(factors, f => f.key !== factor.id)
+  const availableFactors = _.filter(factors, f => f.key !== factor.id && f.factor_type !== 'indicator')
   const [selectedFactor, setSelectedFactor] = useState()
 
   const add = (factor) => {

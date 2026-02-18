@@ -12,4 +12,14 @@ class Transcription < ApplicationRecord
   }
 
   validates :transcribable_id, uniqueness: { scope: :transcribable_type }
+
+  after_commit :trigger_ai_scoring_if_ready, on: %i[create update], if: -> { saved_change_to_status? && completed? }
+
+  private
+
+  def trigger_ai_scoring_if_ready
+    return unless transcribable.is_a?(MediaResponse)
+
+    transcribable.users_result&.trigger_ai_scoring
+  end
 end

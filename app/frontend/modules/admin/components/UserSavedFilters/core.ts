@@ -4,6 +4,9 @@ export enum ResourceType {
   ReportApprovalAll = 'report_approvals_all',
   ReportApprovalMyTasks = 'report_approvals_my_tasks',
   ReportApprovalApproved = 'report_approvals_approved',
+  ScoreApprovalAll = 'score_approvals_all',
+  ScoreApprovalMyTasks = 'score_approvals_my_tasks',
+  ScoreApprovalApproved = 'score_approvals_approved',
 }
 
 const ResourceTypeTR = t.union([

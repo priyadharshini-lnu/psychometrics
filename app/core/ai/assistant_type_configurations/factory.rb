@@ -8,7 +8,8 @@ module AI
         'idp_assistant' => IdpAssistant,
         'development_actions_assistant' => DevelopmentActionsAssistant,
         'writing_assistant' => WritingAssistant,
-        'translation_assistant' => TranslationAssistant
+        'translation_assistant' => TranslationAssistant,
+        'content_analysis_assistant' => ContentAnalysisAssistant
       }.freeze
 
       def self.for(assistant)

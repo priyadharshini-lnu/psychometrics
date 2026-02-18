@@ -3,7 +3,8 @@
 module UsersResults
   module Scoring
     class Extend < BaseCommand
-      private_attr_reader :scoring, :norm_data, :dimension, :external_results, :factors_question_count, :answers
+      private_attr_reader :scoring, :norm_data, :dimension, :external_results, :factors_question_count, :answers,
+                          :factors_scope
 
       def initialize(context)
         @dimension = context[:dimension]
@@ -12,11 +13,13 @@ module UsersResults
         @external_results = context[:external_results] || {}
         @answers = context[:answers] || {}
         @factors_question_count = context[:factors_question_count] || {}
+        @factors_scope = context[:factors_scope]
       end
 
       def call
         # Do not change this to use dimension.all_factors. It leaks memory.
-        factor_hash = Factor.where(dimension_id: dimension.id, skill_id: nil).index_by(&:id)
+
+        factor_hash = (factors_scope || Factor.where(dimension_id: dimension.id, skill_id: nil)).index_by(&:id)
 
         sub_factor_hash = FactorsSubFactor.
                           where(factor_id: factor_hash.keys, sub_factor_id: factor_hash.keys).

@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { Component } from 'react'
 import PropTypes from 'prop-types'
-import FillingScoring from '~/modules/survey/components/FillingScoring'
+import { FillScoringButton } from '~/modules/survey/components/FillScoringButton'
 import Utils from '~/modules/survey/utils'
 import ScoringGradingRow from './components/ScoringGradingRow'
 
@@ -74,7 +74,7 @@ export class Scoring extends Component {
     const { scoring } = this.props
     return (
       <div>
-        <FillingScoring scoring={scoring} onChange={this.fillScoring} />
+        <FillScoringButton hasScore={scoring && !scoring.isEmpty()} onClick={this.fillScoring} />
         {this.renderFilledScoring()}
       </div>
     )

@@ -44,7 +44,9 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
   const assistantType = Form.useWatch('assistantType', form)
 
   const currentAssistantTypeConfig = Object.values(ASSISTANT_TYPES).find(type => type.id === assistantType)
-  const supportedDependencies = currentAssistantTypeConfig?.supportedDependencies || []
+  const supportedDependencies = currentAssistantTypeConfig && 'supportedDependencies' in currentAssistantTypeConfig
+    ? currentAssistantTypeConfig.supportedDependencies
+    : []
   const hasDependenciesSupport = supportedDependencies.length > 0
 
   const allowedDependencies = Object.values(DEPENDENCY_TYPES).filter(
@@ -270,7 +272,7 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
             {isAdvancedPrompt && allowAdvancedPrompting ? (
               <AdvancedPromptEditor />
             ) : (
-              <Input.TextArea rows={4} />
+              <Input.TextArea rows={12} />
             )}
           </Form.Item>
           {assistantType !== ASSISTANT_TYPES.writing_assistant.id && (
@@ -279,7 +281,7 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
               label={I18n.t('administration.ai_assistants.form.user_prompt')}
               rules={[{ required: true }]}
             >
-              <Input.TextArea rows={4} />
+              <Input.TextArea rows={6} />
             </Form.Item>
           )}
           {hasDependenciesSupport && (
@@ -355,9 +357,8 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
               )}
             </>
           )}
-          <Button type="primary" htmlType="submit" onClick={handleSubmit}>
-            {aiAssistant?.id ? I18n.t('administration.ai_assistants.actions.edit')
-              : I18n.t('administration.ai_assistants.actions.create')}
+          <Button type="primary" htmlType="submit" onClick={handleSubmit} loading={isLoading} className="mb-16">
+            {I18n.t('common.actions.save')}
           </Button>
         </Form>
         <Flex>

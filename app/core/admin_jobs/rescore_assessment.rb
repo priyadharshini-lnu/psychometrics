@@ -9,14 +9,23 @@ module AdminJobs
       end
 
       record.update(total_tasks: results.count)
+
       results.find_each(batch_size: 200) do |res|
-        record.increment_completed_tasks!
         user_assessment = res.user_assessment
         user_assessment.update_norm!(record.data['norm_id']) if record.data['norm_id'].present?
-        ::UsersResults::Recompute.call!(res, owner)
+
+        recompute = ::UsersResults::Recompute.new(
+          res,
+          owner,
+          admin_job_record_id: record.id
+        )
+        recompute.on(:ok) { record.increment_completed_tasks! }
+        recompute.on(:waiting) { nil }
+        recompute.call
       end
+
       remove_reports_pdf if campaign.threesixty?
-      broadcast :ok
+      broadcast :waiting
     end
 
     def generate_title_link

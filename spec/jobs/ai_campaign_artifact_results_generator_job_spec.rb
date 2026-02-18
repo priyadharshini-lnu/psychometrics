@@ -22,18 +22,10 @@ describe AICampaignArtifactResultsGeneratorJob, type: :job do
       }
     end
 
-    before do
-      allow(AI::CampaignArtifacts::ResultGenerator).to receive(:call)
-    end
-
     it 'calls the result generator with correct parameters' do
-      described_class.perform_now(ai_artifact, user, nil, options)
+      stub_wisper_publisher('AI::CampaignArtifacts::ResultGenerator', :call, :ok)
 
-      expect(AI::CampaignArtifacts::ResultGenerator).to have_received(:call).with(
-        ai_artifact,
-        user,
-        options
-      )
+      described_class.perform_now(ai_artifact, user, nil, options)
     end
 
     context 'with admin job record' do
@@ -43,25 +35,44 @@ describe AICampaignArtifactResultsGeneratorJob, type: :job do
         allow(admin_job_record).to receive(:increment_completed_tasks!)
       end
 
-      it 'increments completed tasks on admin job record' do
+      it 'increments completed tasks on admin job record on success' do
+        stub_wisper_publisher('AI::CampaignArtifacts::ResultGenerator', :call, :ok)
+
         described_class.perform_now(ai_artifact, user, admin_job_record, options)
 
         expect(admin_job_record).to have_received(:increment_completed_tasks!)
       end
 
-      it 'still calls the service class correctly' do
-        described_class.perform_now(ai_artifact, user, admin_job_record, options)
+      context 'when result generator broadcasts error' do
+        let(:error_message) { 'Dependency not available' }
 
-        expect(AI::CampaignArtifacts::ResultGenerator).to have_received(:call).with(
-          ai_artifact,
-          user,
-          options
-        )
+        before do
+          stub_wisper_publisher('AI::CampaignArtifacts::ResultGenerator', :call, :error, error_message)
+        end
+
+        it 'adds error to admin job record' do
+          described_class.perform_now(ai_artifact, user, admin_job_record, options)
+
+          admin_job_record.reload
+          expect(admin_job_record.error_messages).to include(
+            I18n.t('admin.ai_artifact_result_generation_admin_job_failed',
+                   artifact_name: ai_artifact.name,
+                   user_email: user.email)
+          )
+        end
+
+        it 'increments completed tasks after error' do
+          described_class.perform_now(ai_artifact, user, admin_job_record, options)
+
+          expect(admin_job_record).to have_received(:increment_completed_tasks!)
+        end
       end
     end
 
     context 'without admin job record' do
       it 'does not raise error when admin_job_record is nil' do
+        stub_wisper_publisher('AI::CampaignArtifacts::ResultGenerator', :call, :ok)
+
         expect do
           described_class.perform_now(ai_artifact, user, nil, options)
         end.not_to raise_error

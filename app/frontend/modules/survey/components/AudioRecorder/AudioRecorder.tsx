@@ -64,7 +64,7 @@ export const AudioRecorder: React.FC<Props> = ({
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const recorderRef = useRef<RecorderCore>()
-  const maxDuration = model.props.duration || DEFAULT_MAX_DURATION
+  const maxDuration = model?.props?.duration || DEFAULT_MAX_DURATION
   const playerRef = useRef<HTMLAudioElement>()
 
   const [{ level, pulse }, { updatePulse, resetMetrics }] = useAudioMetrics(recorderRef)

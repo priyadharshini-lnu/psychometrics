@@ -110,6 +110,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   has_one :threesixty_campaign, class_name: 'Threesixty::Campaign'
   has_one :campaign, through: :threesixty_campaign
+  has_one :assessment_assistant, dependent: :destroy
+  has_one :ai_assistant, through: :assessment_assistant
 
   has_many :blocks, -> { order(position: :asc) }, dependent: :destroy
   has_many :questions, dependent: :destroy
@@ -147,6 +149,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   # HABTM Clients
   has_many :clients, through: :reports
+
+  has_many :ai_score_approvals, dependent: :destroy, class_name: 'AI::ScoreApproval'
 
   has_one :agile
 
@@ -251,6 +255,16 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   def has_external_norm?
     saville? || pearson?
+  end
+
+  def has_ai_questions?
+    scorable_ai_questions.present?
+  end
+
+  def scorable_ai_questions
+    questions.ai_scored.
+      where('EXISTS (SELECT 1 FROM factors_scoring WHERE factors_scoring.question_id = questions.id)').
+      preload(:factors_scorings)
   end
 
   def external_assessment_name # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity,  Metrics/AbcSize

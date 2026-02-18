@@ -16,6 +16,7 @@ module UsersResults
         reset_user_result
         remove_media_responses
         remove_ai_translation
+        remove_ai_scores
         Saville::ResetAssessment.call!(user_assessment) if user_assessment.saville?
         Mettl::ResetCandidateAssessment.call!(user_assessment) if user_assessment.mettl?
         Simulation::ResetAssessment.call!(user_assessment) if user_assessment.simulation?
@@ -46,7 +47,13 @@ module UsersResults
         completion_status_code: nil,
         evaluation_session_id: nil,
         score_calculated: false,
-        score_calculated_at: nil
+        score_calculated_at: nil,
+        approval_status: :pending,
+        approval_status_updated_at: nil,
+        score_assessed_by_id: nil,
+        score_approved_by_id: nil,
+        score_assessed_at: nil,
+        score_approved_at: nil
       )
       users_result.generate_randomseed
       users_result.update!(
@@ -60,7 +67,8 @@ module UsersResults
         current_element: nil,
         current_page: nil,
         prev_pages: [],
-        progress: 0
+        progress: 0,
+        ai_scoring_status: nil
       )
     end
 
@@ -74,6 +82,19 @@ module UsersResults
 
     def remove_reports
       user_reports.find_each(&:remove_all_report_pdfs!)
+    end
+
+    def remove_ai_scores
+      remove_ai_factor_scores
+      remove_ai_question_scoring_sessions
+    end
+
+    def remove_ai_factor_scores
+      AI::FactorScore.where(users_result_id: users_result.id).destroy_all
+    end
+
+    def remove_ai_question_scoring_sessions
+      AI::QuestionScoringSession.where(resource_id: user_assessment.id, resource_type: 'UserAssessment').destroy_all
     end
 
     def user_reports

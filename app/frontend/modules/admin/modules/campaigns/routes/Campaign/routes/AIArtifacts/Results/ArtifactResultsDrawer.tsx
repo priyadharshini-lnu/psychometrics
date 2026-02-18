@@ -5,28 +5,34 @@ import {
 } from 'antd'
 import { useResources } from '~/hooks/useResources'
 import styles from '../styles.less'
-import { AiArtifact, CampaignAiArtifactDataSource, ArtifactResultsAttributes }
+import {
+  AiArtifact, CampaignAiArtifactDataSource, ArtifactResultsAttributes, CampaignAiArtifactResult,
+}
   from '~/modules/admin/modules/campaigns/core/aiArtifacts'
 import { GeneratedArtifact } from './GeneratedArtifact'
 
 export interface ArtifactResultsDrawerProps {
   close: () => void
-  artifact: CampaignAiArtifactDataSource
+  userArtifactsResults: CampaignAiArtifactDataSource
   campaignId: string | undefined
+  rawTableData: CampaignAiArtifactResult[]
+  updateRawTableData: (data: CampaignAiArtifactResult[]) => void
 }
 
 const { I18n } = window
 
 export const ArtifactResultsDrawer: React.FC<ArtifactResultsDrawerProps> = ({
   close,
-  artifact,
+  userArtifactsResults,
   campaignId,
+  rawTableData,
+  updateRawTableData,
 }) => {
-  if (!artifact) {
+  if (!userArtifactsResults) {
     return null
   }
 
-  const [artifactData, setArtifactData] = React.useState<CampaignAiArtifactDataSource>(artifact)
+  const [artifactData, setArtifactData] = React.useState<CampaignAiArtifactDataSource>(userArtifactsResults)
 
   const {
     memberAction: memberActionAIArtifactResults,
@@ -40,7 +46,7 @@ export const ArtifactResultsDrawer: React.FC<ArtifactResultsDrawerProps> = ({
     method: 'post',
     apiConfig: {
       query: {
-        user_id: artifact.id,
+        user_id: userArtifactsResults.id,
         save_results: true,
       },
     },
@@ -63,9 +69,71 @@ export const ArtifactResultsDrawer: React.FC<ArtifactResultsDrawerProps> = ({
           artifacts: updatedArtifacts,
         }
       })
+
+      // Update listing page's local state
+      const updatedTableData = rawTableData.map((record) => {
+        if (record.user.data.id === userArtifactsResults.participantId) {
+          return {
+            ...record,
+            artifactsResults: {
+              ...record.artifactsResults,
+              data: record.artifactsResults.data.map((item) => {
+                if (item.attributes.artifact.id === res.artifact.id) {
+                  return { ...item, attributes: res }
+                }
+                return item
+              }),
+            },
+            generatedAt: res.generatedAt,
+          }
+        }
+        return record
+      })
+
+      updateRawTableData(updatedTableData)
     })
     .catch((e) => {
-      throw new Error(e.base[0].detail)
+      const errorMessage = e.base[0].detail
+
+      // Update drawer state with error
+      setArtifactData((prevData) => {
+        const updatedArtifacts = { ...prevData.artifacts }
+        Object.keys(updatedArtifacts).forEach((key) => {
+          updatedArtifacts[key] = {
+            ...updatedArtifacts[key],
+            error: errorMessage,
+          }
+        })
+
+        return {
+          ...prevData,
+          artifacts: updatedArtifacts,
+        }
+      })
+
+      // Update listing page's local state
+      const updatedTableData = rawTableData.map((record) => {
+        if (record.user.data.id === userArtifactsResults.participantId) {
+          return {
+            ...record,
+            artifactsResults: {
+              ...record.artifactsResults,
+              data: record.artifactsResults.data.map(item => ({
+                ...item,
+                attributes: {
+                  ...item.attributes,
+                  error: errorMessage,
+                },
+              })),
+            },
+          }
+        }
+        return record
+      })
+
+      updateRawTableData(updatedTableData)
+
+      throw new Error(errorMessage)
     })
 
   return (
@@ -75,7 +143,7 @@ export const ArtifactResultsDrawer: React.FC<ArtifactResultsDrawerProps> = ({
       closable
       onClose={close}
       open
-      width="40%"
+      size="large"
       className={styles.artifactResultsDrawer}
     >
       <Flex vertical>

@@ -57,6 +57,18 @@ class TextEntry extends BaseScoringModule {
       object.value = null
     })
   }
+
+  changeAiScoringConfig (...args) {
+    super.changeAiScoringConfig(...args)
+  }
+
+  removeAiScoringConfig () {
+    super.removeAiScoringConfig()
+  }
+
+  initializeAiScoringConfig (defaultValue) {
+    super.initializeAiScoringConfig(defaultValue)
+  }
 }
 
 export default TextEntry

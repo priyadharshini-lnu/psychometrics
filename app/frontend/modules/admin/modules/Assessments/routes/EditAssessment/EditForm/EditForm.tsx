@@ -5,6 +5,7 @@ import { Assessment } from '~/modules/admin/modules/client/core/assessments'
 import { General } from './Sections/General'
 import { Assets } from './Sections/Assets'
 import { Translations } from './Sections/Translations'
+import { AIAssistant } from './Sections/AIAssistant'
 import { Panel } from '~/glint'
 
 const { I18n } = window
@@ -27,6 +28,9 @@ export const EditForm: React.FC<Props> = ({ assessment, memberAction }) => (
         </Panel>
         <Panel title={I18n.t('assessments.pages.edit.translations')} collapsible>
           <Translations assessment={assessment} memberAction={memberAction} />
+        </Panel>
+        <Panel title={I18n.t('admin.ai_assistant')} collapsible>
+          <AIAssistant assessment={assessment} />
         </Panel>
       </Space>
     </Col>

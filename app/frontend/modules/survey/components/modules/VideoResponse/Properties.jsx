@@ -2,6 +2,7 @@ import { Component } from 'react'
 import PropTypes from 'prop-types'
 import cs from 'classnames'
 import { Button, InputNumber } from 'antd'
+import ScoreWithAI from '~/modules/survey/components/ScoreWithAI'
 import InputDuration from '~/components/InputDuration'
 import { DefaultTrackerOptions } from '~/modules/survey/constants/DefaultProps'
 import styles from '~/modules/survey/views/PropertyPanel/components/PropertyPanel.less'
@@ -171,6 +172,10 @@ export class Properties extends Component {
             model={model}
             update={() => this.forceUpdate()}
           />
+          <ScoreWithAI
+            model={model}
+            update={() => this.forceUpdate()}
+          />
         </div>
       )
     }
@@ -190,6 +195,10 @@ export class Properties extends Component {
             update={() => this.forceUpdate()}
           />
         )}
+        <ScoreWithAI
+          model={model}
+          update={() => this.forceUpdate()}
+        />
       </div>
     )
   }

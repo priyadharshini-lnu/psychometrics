@@ -18,7 +18,6 @@ module Simulation
       user_assessment.update(status: :completed) unless user_assessment.completed?
 
       calculate_assessment_scores
-      generate_internal_reports
 
       broadcast :ok
     end
@@ -31,10 +30,6 @@ module Simulation
 
     def calculate_assessment_scores
       UserAssessments::SaveScores.call!(user_assessment)
-    end
-
-    def generate_internal_reports
-      ::UsersResults::GenerateReports.call(user_assessment.users_result, user_assessment.user)
     end
 
     def decisions
