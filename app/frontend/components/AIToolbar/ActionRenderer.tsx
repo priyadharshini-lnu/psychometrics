@@ -95,22 +95,35 @@ export function ActionRenderer ({
         <Checkbox
           checked={checked}
           onChange={e => onToggle(e.target.checked)}
+          aria-label={action.label}
         />
         <Flex align="center" gap={4} style={{ flex: 1 }}>
           {action.icon}
           <Typography.Text>{action.label}</Typography.Text>
           <Popover
             style={{ zIndex: 10000 }}
-            open={showConciseEditor}
-            onOpenChange={setShowConciseEditor}
+            open={showConciseEditor && checked}
+            onOpenChange={(open) => {
+              if (open && !checked) return
+              setShowConciseEditor(open)
+            }}
             trigger="click"
             getPopupContainer={getPopupContainer}
             content={(
               <Flex vertical gap="small">
-                <div style={{ fontWeight: 500 }}>{I18n.t('admin.add_word_count')}</div>
+                <Flex align="center" gap={4}>
+                  <Typography.Text strong>{I18n.t('admin.add_word_count')}</Typography.Text>
+                  <Typography.Text style={{ color: 'var(--grey-text)' }}>
+                    (
+                    {I18n.t('admin.minimum_10_words')}
+                    )
+                  </Typography.Text>
+                </Flex>
                 <InputNumber
                   ref={conciseInputRef}
                   value={conciseCount}
+                  min={10}
+                  type="number"
                   onChange={v => handleConciseCountChange(v as number | null)}
                   style={{ width: '100%' }}
                   onPressEnter={() => setShowConciseEditor(false)}
@@ -128,7 +141,7 @@ export function ActionRenderer ({
               </Flex>
             )}
           >
-            <Space style={{ cursor: 'pointer', marginLeft: 'auto' }}>
+            <Space style={{ cursor: checked ? 'pointer' : 'not-allowed', marginLeft: 'auto' }}>
               {conciseCount !== null ? (
                 <Typography.Text style={{ color: TEXT_COLOR }}>
                   {conciseCount}
@@ -236,6 +249,7 @@ export function ActionRenderer ({
       <Checkbox
         checked={checked}
         onChange={e => onToggle(e.target.checked)}
+        aria-label={action.label}
       />
       <Flex align="center" gap={8} style={{ flex: 1 }}>
         {action.icon}
