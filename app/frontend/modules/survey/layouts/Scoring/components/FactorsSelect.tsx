@@ -2,6 +2,9 @@ import { Select } from 'antd'
 import _ from 'lodash'
 import { useMemo, useState, useCallback } from 'react'
 
+const INDICATOR_TYPE = 'indicator'
+const ALLOWED_SCORING_STRATEGIES_IF_HAVING_SUB_INDICATORS = { sub_factors_average: true, sub_factors_sum: true }
+
 const ALLOWED_SCORING_STRATEGIES = ['questions', 'questions_sum', 'questions_percentage']
 
 type Option = {
@@ -10,7 +13,13 @@ type Option = {
 };
 
 const renderOptions = (factors): Option[] => _.chain(factors)
-  .filter(f => ALLOWED_SCORING_STRATEGIES.includes(f.scoring_strategy))
+  .filter((f) => {
+    const hasIndicatorsAsSubFactors = (
+      ALLOWED_SCORING_STRATEGIES_IF_HAVING_SUB_INDICATORS[f.scoring_strategy] && f.child_factor_type === INDICATOR_TYPE
+    )
+    return (ALLOWED_SCORING_STRATEGIES.includes(f.scoring_strategy) || hasIndicatorsAsSubFactors)
+      && f.factor_type !== INDICATOR_TYPE
+  })
   .flatMap(factor => [
     { label: factor.name, value: factor.id },
     ..._.map(factor.sub_factors?.list, subFactor => ({

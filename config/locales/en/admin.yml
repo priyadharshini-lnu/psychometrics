@@ -2,10 +2,12 @@
 en:
   admin:
     accept_na_values: Accept N/A values
+    actions: Actions
     add_admin: Add Admin
     add_admin_role: Add Admin Role
     add_campaign_admin: Add Campaign Admin
     add_client_admin: Add Client Admin
+    add_indicator: Add Indicator
     add_project: Add Project
     add_project_admin: Add Project Admin
     add_threesixty_campaign_admin: Add Campaign Admin
@@ -22,6 +24,7 @@ en:
     ai_artifact_result_generation_admin_job_failed: Artifact '%{artifact_name}' cannot be generated for User '%{user_email}'
     ai_artifacts: AI Artifacts
     ai_artifacts_output_schema_key_constraint: Key must start with a lowercase letter and can only contain lowercase letters, numbers, and underscores
+    ai_assistant: AI Assistant
     ai_assistant_model_id_label: Model ID
     ai_assistant_model_label: Model
     ai_assistant_model_provider: Provider
@@ -38,16 +41,37 @@ en:
     ai_assistants_template_render_failed: Failed to render template
     ai_assistants_test_render: Test Render
     ai_assistants_test_render_tooltip: Test your prompt template with campaign data to check what will be sent to the AI assistant.
+    ai_assisted_idp_disabled_by_client: AI Assisted IDP is disabled by client
     ai_assisted_idp_feature_disabled: AI Assisted IDP feature has been disabled for this project.
     ai_idp_assistant_configure_dependencies: Configure AI Dependencies
     ai_idp_assistant_configure_dependencies_description: Configure which dependency data the IDP AI Assistant can access as context. This only applies when the assistant is configured to accept dependencies.
     ai_idp_assistant_dependencies_updated: Dependencies updated successfully
     ai_idp_assistant_update_dependencies: Update Dependencies
     ai_notice: Highlighted sections AI-translated and may contains innacuracies.
+    ai_scoring_appoval_approve_all_questions: Approve All Questions
+    ai_scoring_appoval_approve_question: Approve Question
+    ai_scoring_appoval_back: Reset Score
+    ai_scoring_appoval_change_reason: Change reason
+    ai_scoring_appoval_change_score: changed score
+    ai_scoring_appoval_change_score_log: Change Score Log
+    ai_scoring_appoval_discarded_changes: discarded changes
+    ai_scoring_appoval_evidence_from_transcript: Evidence from Transcript
+    ai_scoring_appoval_new_score: New Score
+    ai_scoring_appoval_next: Next Question
+    ai_scoring_appoval_rational: Rational
+    ai_scoring_appoval_reason_for_changes: Reason for changes
+    ai_scoring_appoval_reset_score: Reset Score
+    ai_scoring_appoval_reset_score_description: The score will be reverted to the original AI value.
+    ai_scoring_appoval_responses: AI Responses
+    ai_scoring_appoval_score_not_applicable: Score not applicable
+    ai_scoring_approval: AI Scoring Approval
+    ai_scoring_approval_settings: AI Scoring Approval Settings
+    ai_scoring_approvals: AI Scoring Approvals
     ai_translation: AI Translation
     all_corner_rounded: All corner rounded
     api_keys: API keys
     apply_to_existing_users: Apply this change to existing users in this campaign
+    assessment_question_not_supported: This question type is not currently supported.
     assessments: Assessments
     assessments_not_mhs: All Assessment must be a MHS type
     assessments_reports: Assessments & Reports
@@ -92,9 +116,11 @@ en:
     campaign_templates: Campaign Templates
     campaign_user_job_roles_cannot_be_same: Target job role must be different from current job role
     campaigns: Campaigns
+    cancel: Cancel
     cancellation_and_rescheduling_disabled: Cancellation and Rescheduling is disabled
     case_study: Case Studies
     casual: Casual
+    characters: characters
     client: Client
     client_admins: Client Admins
     clients: Clients
@@ -106,35 +132,66 @@ en:
     completed: Completed
     completed_tooltip: All evaluators have submitted the evaluation
     concise: Concise
+    configure_model_answer_title: Configure Model Answer and Keywords
     confirm_remove_admin: Are you sure you want to remove admin user with email '%{email}'?
+    copied: Copied
     country: Country
     create_client: Create Client
+    create_indicator: Create Indicator
     current_job_role: Current Job Role
     dashboard: Dashboard
     dashboards: Dashboards
     data_reports: Data Reports
     datasheet: Datasheet
     declined: Declined
+    define_max_score_text: Define a score of %{maxScore} (maximum score)
+    define_min_score_text: Define a score of %{minScore} (minimum score)
+    define_optional_score_range_text: Define scores %{minScore} to %{maxScore} (optional)
+    define_score_text: Define a score of %{score}
+    definition: Definition
     delete_ok_text: Yes, Delete
     denied: Denied
+    description: Description
     development_actions: Development Actions
     development_actions_form_tags: Tags
+    digest_delivery_mode:
+      form_label: Digest Delivery Mode
+      immediate: Immediate - Send whenever there is a bulk submission
+      scheduled: Scheduled - Send a digest email at a scheduled time
+    digest_frequency:
+      daily: Daily
+      form_label: Digest Frequency
+      weekdays: Weekdays
+      weekly: Weekly
+    digest_weekdays:
+      form_label: Digest Weekdays(s)
+      friday: Friday
+      monday: Monday
+      saturday: Saturday
+      sunday: Sunday
+      thursday: Thursday
+      tuesday: Tuesday
+      wednesday: Wednesday
     dimensions: Dimensions
     done: Done
     done_tooltip: No more evaluation can be submitted for this user as this user's evaluation is marked as done by %{marked_by}
     edit_campaign_admin: Edit Campaign Admin
     edit_client_admin: Edit Client Admin
+    edit_indicator: Edit Indicator
     edit_job_roles: Edit Job Roles
     edit_level: Edit Level
     edit_permission_denied: You do not have permission to edit admin '%{name}'
     edit_project_admin: Edit Project Admin
     edit_threesixty_campaign_admin: Edit Campaign Admin
     empty_csv_file: CSV file does not contain any data.
-    enable_enhance_with_ai_client_level: Please enable Enhance with AI feature at client level
+    enable_enhance_with_ai_client_level: Enhance with AI is disabled by client
     enable_transcription: Enable Transcription
     enhance_with_ai: Enhance with AI
     enhance_with_ai_requires_ai_assistants: Enhance with AI requires AI Assistants feature to be enabled
+    enter_description: Enter description
+    enter_name: Enter name
     error: Error
+    estimated_tokens: tokens (estimated)
     evaluation_status: Evaluation Status
     evaluation_status_not_done: Evaluation status is not 'Done' for one or more selected subjects. Please ensure all selected users have completed evaluations or mark as done.
     export_admin_roles_permissions: Admin Roles and Permissions export
@@ -142,13 +199,25 @@ en:
     export_completion_status: Export Completion Status
     export_completion_statuses_scheduled: Completion Statuses export job was scheduled successfully
     export_detailed_completion_status: Detailed
+    feature_ai_assistants_description: Enable AI-powered assistants for enhanced user experience
+    feature_ai_assisted_idp_description: Use AI to assist with Individual Development Planning recommendations
+    feature_ai_content_analysis_description: Enable AI-powered content analysis for assessments
+    feature_ai_translation_description: Enable automatic AI-powered content translation in reports
     feature_enhance_with_ai: Enhance with AI
+    feature_enhance_with_ai_description: Enable AI-powered content enhancement features
     feature_flags: Feature Flags
+    feature_flags_ai_group: AI Features
+    feature_flags_communication_group: Communication
+    feature_flags_platform_group: Platform Features
+    feature_global_skills_description: Access the global skills library for assessments
+    feature_idp_description: Enable Individual Development Planning for participants
+    feature_sms_notification_description: Enable SMS notifications for campaign invitations and reminders
     fill_empty_score_msg: Fill all the final scores before saving.
     final_score_empty_err_msg: Final score of %{factor_name} cannot be empty.
     fix_grammar: Fix Grammar
     formal: Formal
     generate_transcription: Generate Transcription
+    hide_middle_scores: Hide middle scores
     hogan: Hogan
     hogan_assessment: Hogan Assessment
     idp_plan_reset_success: Plan has been reset successfully
@@ -181,6 +250,8 @@ en:
     internal: Internal
     invalid_csv_header: CSV file contains invalid headers.
     job_roles: Job Roles
+    keywords: Keywords
+    keywords_placeholder: Enter keywords separated by commas.
     lead_assessor_form: Lead Assessor Form
     learning_from_others: Collaborative Learning [20]
     level: Level
@@ -208,6 +279,9 @@ en:
     min_value: Min value
     minimum_10_words: Minimum 10 words
     missing_min_max_values: Minimum and Maximum values are required.
+    model_answer: Model Answer
+    model_answer_placeholder: Enter the model answer for AI scoring.
+    name: Name
     name_required: Name is required
     no_file_selected: No file selected
     no_notifications: No Notifications
@@ -226,6 +300,7 @@ en:
     options: Options
     organisational: Org Surveys
     original_text: Original Text
+    overall_score: Overall Score
     participants: Participants
     pearson: Pearson
     pearson_assessment: Pearson Assessment
@@ -264,6 +339,7 @@ en:
         bulk_regenerate_reports: Bulk Regenerate Reports
         manage: Manage
         manage_admins: Manage Admins
+        manage_ai_scoring_approval_settings: Manage AI Scoring Approval Settings
         manage_factor_benchmark_scores: Manage Factor Benchmark Scores
         manage_messages: Manage Messages
         manage_options: Manage Options
@@ -652,6 +728,7 @@ en:
         view_recordings: View Recordings
     permissions_360_campaigns: Permissions specific to 360 campaigns
     piped_text: Piped Text
+    precision: Precision
     privacy: Privacy
     professional: Professional
     proficiency: Proficiency
@@ -663,9 +740,11 @@ en:
     project_number: Project Number
     project_settings: Project Settings
     projects: Projects
+    prompt: Prompt
     psychometric: Psychometric
     question_center: Question Center
     questions: Questions
+    range_min_max: RANGE %{min} - %{max}
     reflection_questions: Reflection Questions
     registration_codes: Registration codes
     registration_settings: Registration Settings
@@ -735,10 +814,31 @@ en:
     saml_service_provider_updated_date: Updated Date
     saml_service_providers: Service Providers
     saml_settings: SAML Settings
+    save: Save
+    save_assessment_for_scoring_management: Save Assessment before getting started with Scoring.
     saville: Saville
     saville_assessment: Saville Assessment
     scheduling: Scheduling
+    score: Score
+    score_definition_placeholder: Enter the definition for this score level
+    score_definitions: Score Definitions
+    score_max: Score Max
+    score_min: Score Min
+    score_range_info: 'Score Range: %{min} - %{max}'
+    score_with_ai: Score with AI
     scoring: Scoring
+    scoring_approval_add_settings: Add settings
+    scoring_approval_allow_bulk_approve: Allow Bulk Approve
+    scoring_approval_allow_bulk_approve_scores: Allow Bulk Approve Scores
+    scoring_approval_allow_one_level_approve: Allow One Level Approve
+    scoring_approval_approver_users: Approver Users
+    scoring_approval_approvers: Approvers
+    scoring_approval_assessment: Assessment
+    scoring_approval_assessor_users: Assessor Users
+    scoring_approval_modal_title: Scoring Approval Settings
+    scoring_approval_remove_modal_success: 'Approval setting for assessment id: %{assessmentId} was deleted successfully'
+    scoring_approval_remove_modal_text: 'Are you sure you want to delete this setting for assessment id: %{assessmentId}?'
+    scoring_supported_only_for_ai_questions: Scoring is allowed only on AI enabled questions for currently selected factor.
     scoring_value_info: Score must be between %{min} and %{max}.
     scoring_value_out_of_range_err_msg: Score for %{factor_name} must be between %{min} and %{max}.
     search_admins: Search admins
@@ -747,7 +847,9 @@ en:
     select_language_to_translate: Please select language to translate
     select_level: Select level
     send_email: Send email
+    set_min_max_scores_warning: Please set minimum and maximum scores for this factor to configure AI scoring.
     settings: Settings
+    show_middle_scores: Show %{count} more scores (optional)...
     show_original: Show Original
     show_submenu: Show Sub Menu
     show_translated: Show Translated
@@ -768,6 +870,7 @@ en:
     subdomain: Subdomain
     subject_part_of_other_invite: Subject with email %{user_email} is already invited to '%{workshop_invite_name}'
     target_job_role: Target Job Role
+    this_field_is_required: This field is required
     threesixty: 360 Campaign
     tone: Tone
     toolbar_ai_insight: AI Insight
@@ -791,8 +894,12 @@ en:
     upload_success: Uploaded successfully
     user_report_events: User Report Events
     users: Users
+    validation_error: Please fill in all required fields
     view_licenses: View Licenses
     waiting: Waiting
+    weight: Weight
+    what_to_look_for: What to Look For
+    what_to_look_for_placeholder: Evidence of behaviors, actions, or outcomes that demonstrate this factor
     words: Words
     workshops: Workshops
     writing_assistant_not_configured: Writing Assistant not configured

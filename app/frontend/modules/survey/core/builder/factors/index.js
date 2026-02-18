@@ -7,10 +7,11 @@ import { setIn } from '~/utils/immutable'
 import Scoring from '~/modules/survey/models/Scoring'
 import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
 import * as assessmentActions from '../assessment/actions'
-import { allQuestions } from '../assessment/selectors'
+import { allQuestions, selectedQuestion } from '../assessment/selectors'
 import { selectedFactor } from './selectors'
 
 export const SELECT_FACTOR = 'builder/factors/SELECT_FACTOR'
+export const SELECT_INDICATOR = 'builder/factors/SELECT_INDICATOR'
 export const UPDATE_FACTOR = 'builder/factors/UPDATE_FACTOR'
 export const SET_CURRENT_SCORING_AND_RECODING = 'builder/factors/SET_CURRENT_SCORING_AND_RECODING'
 export const UPDATE_SCORING = 'builder/factors/UPDATE_SCORING'
@@ -21,8 +22,12 @@ export const selectFactor = id => ({
   type: SELECT_FACTOR, id,
 })
 
-export const setCurrentScoringAndRecoding = (scoring, recoding) => ({
-  type: SET_CURRENT_SCORING_AND_RECODING, scoring, recoding,
+export const selectIndicator = (indicatorId, questionId) => ({
+  type: SELECT_INDICATOR, factorId: indicatorId, questionId,
+})
+
+export const setCurrentScoringAndRecoding = (scoring, recoding, factorId) => ({
+  type: SET_CURRENT_SCORING_AND_RECODING, scoring, recoding, factorId,
 })
 
 // Save Scoring
@@ -57,8 +62,8 @@ const HANDLERS = {
     return { ...state, factors, recoding }
   },
   [SELECT_FACTOR]: (state, { id }) => setIn(state, ['current'], id),
-  [SET_CURRENT_SCORING_AND_RECODING]: (state, { scoring, recoding }) => setIn(
-    { ...state, recoding }, ['factors', state.current, 'scoring'], scoring,
+  [SET_CURRENT_SCORING_AND_RECODING]: (state, { scoring, recoding, factorId }) => setIn(
+    { ...state, recoding }, ['factors', factorId, 'scoring'], scoring,
   ),
   [UPDATE_SCORING]: (state, { model }) => setIn(state, ['factors', state.current, 'scoring', model.question_id], model),
   [UPDATE_RECODING]: (state, { model }) => {
@@ -105,10 +110,30 @@ function* genLoadScoring () {
     }
   })
 
-  yield put(setCurrentScoringAndRecoding(scoring, recoding))
+  yield put(setCurrentScoringAndRecoding(scoring, recoding, factor.id))
+}
+
+function* genScoringForIndicator ({ factorId, questionId }) {
+  const { survey: { builder } } = yield select()
+  const question = selectedQuestion(builder, questionId)
+  const recoding = _.clone(builder.factors.recoding)
+  const factor = selectedFactor(builder, factorId)
+  const scoring = {}
+  _.each(factor.scoring, (item) => {
+    scoring[item.question_id] = new Scoring(item, factorId)
+  })
+  const serializedQuestion = QuestionSerializer.wrap(question)
+  const module = serializedQuestion.moduleConfig
+  if (!scoring[question.id] && module.scoring
+    && !_.includes(module.scoringFilteredModules, serializedQuestion.props.type)) {
+    scoring[question.id] = new Scoring({ question_id: question.id }, factorId)
+  }
+
+  yield put(setCurrentScoringAndRecoding(scoring, recoding, factorId))
 }
 
 export const watchers = [
   takeEvery(assessmentActions.INIT, genEnsureSelectedFactor),
   takeEvery(SELECT_FACTOR, genLoadScoring),
+  takeEvery(SELECT_INDICATOR, genScoringForIndicator),
 ]

@@ -11,6 +11,43 @@ RSpec.describe Factor, type: :model do
     Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/images/test_image.jpeg'), 'image/jpeg')
   end
 
+  describe '#child_factor_type' do
+    it 'is nil by default when no sub_factors' do
+      new_factor = create(:factor, dimension: dimension)
+      expect(new_factor.child_factor_type).to be_nil
+    end
+
+    it 'syncs to indicator when indicator sub_factor is added' do
+      parent = create(:factor, dimension: dimension)
+      indicator = create(:factor, dimension: dimension, factor_type: :indicator)
+
+      create(:factors_sub_factor, factor: parent, sub_factor: indicator)
+
+      expect(parent.reload.child_factor_type).to eq('indicator')
+    end
+
+    it 'syncs to regular when regular sub_factor is added' do
+      parent = create(:factor, dimension: dimension)
+      regular_child = create(:factor, dimension: dimension, factor_type: :regular)
+
+      create(:factors_sub_factor, factor: parent, sub_factor: regular_child)
+
+      expect(parent.reload.child_factor_type).to eq('regular')
+    end
+
+    it 'resets to nil when all sub_factors are removed' do
+      parent = create(:factor, dimension: dimension)
+      indicator = create(:factor, dimension: dimension, factor_type: :indicator)
+      fsf = create(:factors_sub_factor, factor: parent, sub_factor: indicator)
+
+      expect(parent.reload.child_factor_type).to eq('indicator')
+
+      fsf.destroy
+
+      expect(parent.reload.child_factor_type).to be_nil
+    end
+  end
+
   context '#clone_and_save' do
     before do
       allow_any_instance_of(ActiveStorageAttachable).to receive(:disk_service?).and_return(false)

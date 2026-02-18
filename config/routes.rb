@@ -1388,6 +1388,7 @@ as: :simulation_progress_notification
             end
           end
           jsonapi_resources :idp_settings, only: %i[index update]
+          jsonapi_resources :assessment_assistants, only: %i[show update]
 
           jsonapi_resources :projects do
             jsonapi_resources :webhooks do
@@ -1439,6 +1440,7 @@ only: %i[index create update]
             end
 
             jsonapi_resources :report_approval_settings, only: %i[index create update destroy]
+            jsonapi_resources :ai_scoring_approval_settings, only: %i[index create update destroy]
             jsonapi_resources :campaign_assessor_assessments, only: %i[index create update destroy]
             scope module: :campaigns do
               jsonapi_resources :factor_benchmark_scores do
@@ -1601,6 +1603,17 @@ only: %i[index create update]
               get :search_report
               get :search_user
               get :metadata_for_filters
+            end
+          end
+          jsonapi_resources :ai_score_approvals, only: %i[index show] do
+            collection do
+              post :bulk_approve
+              get :metadata_for_filters
+            end
+            member do
+              post :approve_question
+              post :override_score
+              post :discard_score
             end
           end
           resources :user_report_events, only: %i[index] do

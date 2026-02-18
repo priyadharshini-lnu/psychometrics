@@ -1,0 +1,1 @@
+export { AIScoringApprovalSetting } from './AIScoringApprovalSetting'

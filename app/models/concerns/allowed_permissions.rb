@@ -39,6 +39,7 @@ module AllowedPermissions
       reset_nominations
       report_options
       manage_report_approvals
+      manage_ai_scoring_approval_settings
       view_stats
       manage_factor_benchmark_scores
       view_factor_benchmark_scores
@@ -117,6 +118,7 @@ module AllowedPermissions
       reset_nominations
       report_options
       manage_report_approvals
+      manage_ai_scoring_approval_settings
       view_stats
       manage_factor_benchmark_scores
       view_factor_benchmark_scores
@@ -173,6 +175,7 @@ module AllowedPermissions
       manage_users
       manage_options
       manage_report_approvals
+      manage_ai_scoring_approval_settings
       view_stats
     ],
     'audit_reports' => %w[user_report_events admin_permissions],

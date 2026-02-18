@@ -19,6 +19,7 @@ class ClientFeature < ApplicationRecord
     global_skills
     enhance_with_ai
     idp
+    ai_content_analysis
   ].freeze
 
   def update_project_feature

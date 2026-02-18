@@ -60,7 +60,8 @@ module UsersResults
         current_element: nil,
         current_page: nil,
         prev_pages: [],
-        progress: 0
+        progress: 0,
+        ai_scoring_status: nil
       )
     end
 

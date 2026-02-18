@@ -45,6 +45,20 @@ FactoryBot.define do
       block
     end
 
+    trait :ai_scored do
+      after(:build) do |question|
+        question.props ||= {}
+        question.props['scoreWithAIEnabled'] = true
+      end
+    end
+
+    trait :transcription_enabled do
+      after(:build) do |question|
+        question.props ||= {}
+        question.props['enableTranscription'] = true
+      end
+    end
+
     after(:create) do |question, _evaluator|
       question.block.update_column(:assessment_id, question.assessment_id)
     end

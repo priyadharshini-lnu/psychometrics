@@ -1,0 +1,64 @@
+.video {
+  padding: 8px;
+  border: 1px solid #f5f5f5;
+  background: #000;
+  height: 300px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  :global {
+    .col {
+      width: 390px;
+    }
+  }
+}
+
+.rawResult {
+  border: 1px solid #ddd;
+  padding: 16px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  height: 300px;
+  overflow-y: scroll;
+}
+
+.rawTextResult {
+  padding: 16px;
+  border: 1px solid #ddd;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.evidenceCard {
+  padding: 8px;
+
+}
+
+.score {
+  font-weight: 500;
+}
+
+.opacity50 {
+  opacity: 0.5;
+}
+
+.overralScore {
+  min-width: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--ant-color-border);
+  padding: 8px;
+  border-radius: 6px;
+  .score {
+    color: var(--ant-primary-color);
+    font-weight: bold;
+  }
+}

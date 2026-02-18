@@ -1,13 +1,19 @@
 import React, { useEffect } from 'react'
 import {
-  Switch, Form, Button, Spin,
-  Col,
-  Row,
+  Switch, Form, Button, Spin, Card, Row, Col, Typography, Tooltip, Space, Flex, theme,
 } from 'antd'
 import { useParams } from 'react-router-dom'
+import {
+  QuestionCircleOutlined,
+  MessageOutlined,
+  AppstoreOutlined,
+  InfoCircleOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
+import { AIEditorIcon } from '~/glint/icons/AIEditorIcon'
 import { useResources } from '~/hooks/useResources'
 import ResourceForm from '~/components/ResourceForm'
 
+const { Text } = Typography
 const { I18n } = window
 
 interface ProjectFeatures {
@@ -19,6 +25,7 @@ interface ProjectFeatures {
   idp: boolean;
   id: string;
   aiTranslation: boolean;
+  aiContentAnalysis: boolean;
 }
 
 interface ClientFeatures {
@@ -30,6 +37,7 @@ interface ClientFeatures {
   idp: boolean;
   id: string;
   aiTranslation: boolean;
+  aiContentAnalysis: boolean;
 }
 
 interface Project {
@@ -37,10 +45,76 @@ interface Project {
   id: string;
 }
 
+interface FeatureCardProps {
+  title: string;
+  icon: React.ReactNode;
+  children: React.ReactNode;
+}
+
+const FeatureCard: React.FC<FeatureCardProps> = ({ title, icon, children }) => (
+  <Card
+    size="small"
+    className="mb-4"
+    title={(
+      <Flex align="center" gap={8}>
+        {icon}
+        <Text strong>{title}</Text>
+      </Flex>
+    )}
+  >
+    {children}
+  </Card>
+)
+
+interface FeatureToggleProps {
+  name: string;
+  label: string;
+  tooltip?: string;
+  help?: string;
+  disabled?: boolean;
+  isLast?: boolean;
+}
+
+const FeatureToggle: React.FC<FeatureToggleProps> = ({
+  name, label, tooltip, help, disabled = false, isLast = false,
+}) => (
+  <Form.Item
+    name={name}
+    label={(
+      <Space size={4}>
+        <span>{label}</span>
+        {tooltip && (
+          <Tooltip title={tooltip}>
+            <span
+              role="button"
+              tabIndex={0}
+              className="cursor-help"
+              onClick={(e) => { e.preventDefault(); e.stopPropagation() }}
+              onKeyDown={(e) => { e.stopPropagation() }}
+            >
+              <QuestionCircleOutlined style={{ color: '#8c8c8c' }} />
+            </span>
+          </Tooltip>
+        )}
+      </Space>
+    )}
+    help={help && (
+      <Text type="secondary" style={{ fontSize: 12 }}>
+        <InfoCircleOutlined style={{ marginRight: 4 }} />
+        {help}
+      </Text>
+    )}
+    className={isLast ? 'mb-0' : undefined}
+  >
+    <Switch disabled={disabled} />
+  </Form.Item>
+)
+
 export const Features: React.FC = () => {
   const { projectId } = useParams() as { projectId: string }
   const [form] = Form.useForm()
   const aiAssistants = Form.useWatch('aiAssistants', form)
+  const { token } = theme.useToken()
 
   // First fetch project data to get clientId
   const {
@@ -98,6 +172,7 @@ export const Features: React.FC = () => {
     enhanceWithAi: false,
     idp: false,
     aiTranslation: false,
+    aiContentAnalysis: false,
   }
 
   const clientFeatures = clientFeaturesData[0] || {
@@ -108,6 +183,7 @@ export const Features: React.FC = () => {
     enhanceWithAi: false,
     idp: false,
     aiTranslation: false,
+    aiContentAnalysis: false,
   }
 
   useEffect(() => {
@@ -163,11 +239,24 @@ export const Features: React.FC = () => {
       enhanceWithAi: !clientFeatures.enhanceWithAi ? false : values.enhanceWithAi || false,
       globalSkills: !clientFeatures.globalSkills ? false : values.globalSkills || false,
       aiTranslation: !clientFeatures.aiTranslation ? false : values.aiTranslation || false,
+      aiContentAnalysis: !clientFeatures.aiContentAnalysis ? false : values.aiContentAnalysis || false,
     }
     return {
       ...transformedValues,
     }
   }
+
+  const aiAssistedIdpDisabledReason = (() => {
+    if (!clientFeatures.aiAssistedIdp) {
+      return I18n.t('admin.ai_assisted_idp_disabled_by_client')
+    }
+
+    if (!clientFeatures.aiAssistants || !aiAssistants) {
+      return I18n.t('administration.client_features.form.ai_assisted_idp_requires_ai_assistants')
+    }
+
+    return undefined
+  })()
 
   const enhanceWithAiDisabledReason = (() => {
     if (!clientFeatures.enhanceWithAi) {
@@ -182,130 +271,146 @@ export const Features: React.FC = () => {
   })()
 
   return (
-    <Row className="pl">
-      <Col span={24}>
-        { isFetchLoading ? (
-          <div className="flex justify-center">
-            <Spin />
-          </div>
-        )
-          : (
-            <ResourceForm
-              resourceName="project_features"
-              readableResourceName={I18n.t('administration.project_features.project_features')}
-              resource={features}
-              storeManager={{ form }}
-              request={{ updateResource }}
-              scrollToFirstError
-              showSuccessMessages
-              formProps={{
-                layout: 'horizontal',
-                labelCol: {
-                  sm: 24, md: 10, lg: 8, xl: 8,
-                },
-                labelAlign: 'left',
-              }}
-              transformValues={transformValues}
-            >
-              {() => (
-                <>
-                  <Form.Item
-                    name="smsNotification"
-                    label={I18n.t('administration.client_features.form.sms_notification')}
-                    help={
-                    !clientFeatures.smsNotification
-                      ? I18n.t('administration.client_features.form.sms_notification_disabled_by_client')
-                      : undefined
-                  }
-                  >
-                    <Switch disabled={!clientFeatures.smsNotification} />
-                  </Form.Item>
-
-                  <Form.Item
+    <div className="p-6">
+      {isFetchLoading ? (
+        <div className="flex justify-center mt-8">
+          <Spin />
+        </div>
+      ) : (
+        <ResourceForm
+          resourceName="project_features"
+          readableResourceName={I18n.t('administration.project_features.project_features')}
+          resource={features}
+          storeManager={{ form }}
+          request={{ updateResource }}
+          scrollToFirstError
+          showSuccessMessages
+          formProps={{
+            layout: 'horizontal',
+            labelCol: {
+              sm: 24, md: 12, lg: 10, xl: 10,
+            },
+            labelAlign: 'left',
+          }}
+          transformValues={transformValues}
+        >
+          {() => (
+            <Row gutter={[16, 0]}>
+              <Col xs={24} lg={12}>
+                <FeatureCard
+                  title={I18n.t('admin.feature_flags_ai_group')}
+                  icon={<AIEditorIcon style={{ width: 18, height: 18 }} />}
+                >
+                  <FeatureToggle
                     name="aiAssistants"
                     label={I18n.t('administration.client_features.form.ai_assistants')}
-                    help={
-                    !clientFeatures.aiAssistants
+                    tooltip={I18n.t('admin.feature_ai_assistants_description')}
+                    help={!clientFeatures.aiAssistants
                       ? I18n.t('administration.client_features.form.ai_assistants_disabled_by_client')
-                      : undefined
-                  }
+                      : undefined}
+                    disabled={!clientFeatures.aiAssistants}
+                  />
+                  <div
+                    className="ms-4 ps-4"
+                    style={{
+                      borderLeft: `2px solid ${token.colorBorder}`,
+                      display: aiAssistants ? 'block' : 'none',
+                    }}
                   >
-                    <Switch disabled={!clientFeatures.aiAssistants} />
-                  </Form.Item>
+                    <FeatureToggle
+                      name="aiAssistedIdp"
+                      label={I18n.t('administration.client_features.form.ai_assisted_idp')}
+                      tooltip={I18n.t('admin.feature_ai_assisted_idp_description')}
+                      help={aiAssistedIdpDisabledReason}
+                      disabled={!clientFeatures.aiAssistedIdp || !clientFeatures.aiAssistants || !aiAssistants}
+                    />
+                    <FeatureToggle
+                      name="enhanceWithAi"
+                      label={I18n.t('admin.feature_enhance_with_ai')}
+                      tooltip={I18n.t('admin.feature_enhance_with_ai_description')}
+                      help={enhanceWithAiDisabledReason}
+                      disabled={!clientFeatures.enhanceWithAi || !clientFeatures.aiAssistants || !aiAssistants}
+                    />
+                    <FeatureToggle
+                      name="aiTranslation"
+                      label={I18n.t('administration.client_features.form.ai_translation')}
+                      tooltip={I18n.t('admin.feature_ai_translation_description')}
+                      help={!clientFeatures.aiTranslation
+                        ? I18n.t('administration.client_features.form.ai_translation_disabled_by_client')
+                        : undefined}
+                      disabled={!clientFeatures.aiTranslation}
+                    />
+                    <FeatureToggle
+                      name="aiContentAnalysis"
+                      label={I18n.t('administration.client_features.form.ai_content_analysis')}
+                      tooltip={I18n.t('admin.feature_ai_content_analysis_description')}
+                      help={!clientFeatures.aiContentAnalysis
+                        ? I18n.t('administration.client_features.form.ai_content_analysis_disabled_by_client')
+                        : undefined}
+                      disabled={!clientFeatures.aiContentAnalysis}
+                      isLast
+                    />
+                  </div>
+                </FeatureCard>
+              </Col>
 
-                  <Form.Item
-                    name="aiAssistedIdp"
-                    label={I18n.t('administration.client_features.form.ai_assisted_idp')}
-                    help={
-                    (!clientFeatures.aiAssistants || !aiAssistants)
-                      ? I18n.t('administration.client_features.form.ai_assisted_idp_requires_ai_assistants')
-                      : undefined
-                  }
-                  >
-                    <Switch disabled={!clientFeatures.aiAssistants || !aiAssistants} />
-                  </Form.Item>
+              <Col xs={24} lg={12}>
+                <FeatureCard
+                  title={I18n.t('admin.feature_flags_communication_group')}
+                  icon={<MessageOutlined />}
+                >
+                  <FeatureToggle
+                    name="smsNotification"
+                    label={I18n.t('administration.client_features.form.sms_notification')}
+                    tooltip={I18n.t('admin.feature_sms_notification_description')}
+                    help={!clientFeatures.smsNotification
+                      ? I18n.t('administration.client_features.form.sms_notification_disabled_by_client')
+                      : undefined}
+                    disabled={!clientFeatures.smsNotification}
+                    isLast
+                  />
+                </FeatureCard>
 
-                  <Form.Item
+                <FeatureCard
+                  title={I18n.t('admin.feature_flags_platform_group')}
+                  icon={<AppstoreOutlined />}
+                >
+                  <FeatureToggle
                     name="idp"
                     label={I18n.t('administration.client_features.form.idp')}
-                    help={
-                    !clientFeatures.idp
+                    tooltip={I18n.t('admin.feature_idp_description')}
+                    help={!clientFeatures.idp
                       ? I18n.t('administration.client_features.form.idp_disabled_by_client')
-                      : undefined
-                  }
-                  >
-                    <Switch disabled={!clientFeatures.idp} />
-                  </Form.Item>
-
-                  <Form.Item
-                    name="enhanceWithAi"
-                    label={I18n.t('admin.feature_enhance_with_ai')}
-                    help={enhanceWithAiDisabledReason}
-                  >
-                    <Switch
-                      disabled={!clientFeatures.enhanceWithAi
-                          || !clientFeatures.aiAssistants
-                          || !aiAssistants
-                        }
-                    />
-                  </Form.Item>
-
-                  <Form.Item
+                      : undefined}
+                    disabled={!clientFeatures.idp}
+                  />
+                  <FeatureToggle
                     name="globalSkills"
                     label={I18n.t('administration.client_features.form.global_skills')}
-                    help={
-                    !clientFeatures.globalSkills
+                    tooltip={I18n.t('admin.feature_global_skills_description')}
+                    help={!clientFeatures.globalSkills
                       ? I18n.t('administration.client_features.form.global_skills_disabled_by_client')
-                      : undefined
-                  }
-                  >
-                    <Switch disabled={!clientFeatures.globalSkills} />
-                  </Form.Item>
-                  <Form.Item
-                    name="aiTranslation"
-                    label={I18n.t('administration.client_features.form.ai_translation')}
-                    help={
-                    !clientFeatures.aiTranslation
-                      ? I18n.t('administration.client_features.form.ai_translation_disabled_by_client')
-                      : undefined
-                  }
-                  >
-                    <Switch disabled={!clientFeatures.aiTranslation} />
-                  </Form.Item>
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    className="mb-16"
-                    loading={isLoading(`update@${featuresData[0]?.id}`)}
-                  >
-                    {I18n.t('common.actions.update')}
-                  </Button>
-                </>
-              )}
-            </ResourceForm>
-          )
-      }
-      </Col>
-    </Row>
+                      : undefined}
+                    disabled={!clientFeatures.globalSkills}
+                    isLast
+                  />
+                </FeatureCard>
+              </Col>
+
+              <Col span={24}>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  size="large"
+                  loading={isLoading(`update@${featuresData[0]?.id}`)}
+                >
+                  {I18n.t('common.actions.update')}
+                </Button>
+              </Col>
+            </Row>
+          )}
+        </ResourceForm>
+      )}
+    </div>
   )
 }

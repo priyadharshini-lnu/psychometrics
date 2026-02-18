@@ -7,16 +7,25 @@ en:
     add: Add
     advanced: Advanced
     agree_and_continue: Agree & Continue
+    approvers_list: Approvers List
     archive: Archive
     archived: Archived
+    assessment: Assessment
+    assessment_id: Assessment ID
+    assessment_list: Assessment List
+    assessment_name: Assessment Name
+    assessors_list: Assessors List
     asset_not_present: Asset not present
     audio: Audio
     authentication_failed: Authentication failed. Please try again.
+    back: Back
     basic: Basic
+    campaign: Campaign
     campaign_id: Campaign ID
     cancel: Cancel
     change_password: Change Password
     clear_filters: Clear Filters
+    client: Client
     collaborative_learning: Collaborative Learning
     completed: Completed
     configurations: Configurations
@@ -63,6 +72,7 @@ en:
     ok: Ok
     pending: Pending
     processing: Processing
+    project: Project
     question_id: Question ID
     question_transcription_disabled: Transcription is disabled for this question
     recording_consent_notice: This meeting session will be recorded. Your participation in this meeting constitutes your consent to be recorded.
@@ -79,6 +89,8 @@ en:
     send_email: Send Email
     show_more: Show More
     something_wrong: Something went wrong. Contact your administrator
+    subject: Subject
+    submit: Submit
     table:
       entries:
         selected:

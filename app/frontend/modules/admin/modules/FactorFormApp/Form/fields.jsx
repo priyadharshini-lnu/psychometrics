@@ -35,6 +35,13 @@ const FIELDS = [
     type: 'TextArea',
   },
   {
+    label: I18n.t('admin.what_to_look_for'),
+    name: 'what_to_look_for',
+    type: 'TextArea',
+    required: false,
+    placeholder: I18n.t('admin.what_to_look_for_placeholder'),
+  },
+  {
     label: <ScoringStrategyLabel />,
     name: 'scoring_strategy',
     type: 'Select',

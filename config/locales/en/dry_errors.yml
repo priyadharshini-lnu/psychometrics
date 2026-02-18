@@ -12,6 +12,9 @@ en:
         user_not_found: User not found or not part of the same project
       admin:
         already_added: Admin with email already added.
+      ai_scoring_approval_settings:
+        assessment_exists: AI Scoring approval setting for this assessment already exists.
+        validates_admins: Admins don't have access to the campaign.
       already_assigned?: Cannot link this assessment - it is already assigned to '%{linked_assessor_form_name}'.
       already_invited: This user already exists in the assessment centre you are attempting to add.
       assessor_assessment:

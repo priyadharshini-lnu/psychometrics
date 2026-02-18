@@ -46,6 +46,13 @@ CREATE SCHEMA c_10542;
 
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -455,7 +462,13 @@ CREATE TABLE public.factors (
     scale_max double precision,
     custom_formula character varying,
     "precision" integer,
-    skill_id bigint
+    skill_id bigint,
+    factor_type integer DEFAULT 0 NOT NULL,
+    score_min integer,
+    score_max integer,
+    score_definitions jsonb DEFAULT '[]'::jsonb,
+    what_to_look_for text,
+    child_factor_type integer
 );
 
 
@@ -522,7 +535,13 @@ CREATE TABLE public.user_assessments (
     evaluation_session_id character varying,
     score_calculated boolean DEFAULT false,
     score_calculated_at timestamp(6) without time zone,
-    prework boolean DEFAULT false NOT NULL
+    prework boolean DEFAULT false NOT NULL,
+    approval_status character varying DEFAULT 'pending'::character varying,
+    approval_status_updated_at timestamp(6) without time zone,
+    score_assessed_by_id bigint,
+    score_approved_by_id bigint,
+    score_assessed_at timestamp(6) without time zone,
+    score_approved_at timestamp(6) without time zone
 );
 
 
@@ -1353,7 +1372,9 @@ CREATE TABLE public.ai_assisted_user_sessions (
     meta jsonb DEFAULT '{}'::jsonb,
     content_checksum character varying,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    resource_type character varying,
+    resource_id bigint
 );
 
 
@@ -1374,6 +1395,48 @@ CREATE SEQUENCE public.ai_assisted_user_sessions_id_seq
 --
 
 ALTER SEQUENCE public.ai_assisted_user_sessions_id_seq OWNED BY public.ai_assisted_user_sessions.id;
+
+
+--
+-- Name: ai_factor_scores; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.ai_factor_scores (
+    id bigint NOT NULL,
+    users_result_id bigint NOT NULL,
+    question_id bigint,
+    factor_id bigint NOT NULL,
+    score double precision,
+    override_score double precision,
+    confidence double precision,
+    citations jsonb,
+    rationale text,
+    status integer DEFAULT 0,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    parent_factor_id bigint,
+    scoring_type integer DEFAULT 0,
+    not_applicable boolean DEFAULT false
+);
+
+
+--
+-- Name: ai_factor_scores_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.ai_factor_scores_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: ai_factor_scores_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.ai_factor_scores_id_seq OWNED BY public.ai_factor_scores.id;
 
 
 --
@@ -1416,6 +1479,51 @@ CREATE SEQUENCE public.ai_model_registries_id_seq
 --
 
 ALTER SEQUENCE public.ai_model_registries_id_seq OWNED BY public.ai_model_registries.id;
+
+
+--
+-- Name: ai_scoring_approval_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.ai_scoring_approval_settings (
+    id bigint NOT NULL,
+    assessor_ids bigint[] DEFAULT '{}'::bigint[],
+    approver_ids bigint[] DEFAULT '{}'::bigint[],
+    allow_bulk_approve boolean DEFAULT false,
+    allow_bulk_approve_scores boolean DEFAULT false,
+    send_digest_emails boolean DEFAULT false,
+    digest_frequency character varying DEFAULT 'daily'::character varying,
+    digest_time time without time zone DEFAULT '21:00:00'::time without time zone,
+    digest_weekdays integer[] DEFAULT '{}'::integer[],
+    digest_timezone character varying DEFAULT 'Asia/Dubai'::character varying,
+    digest_delivery_mode character varying DEFAULT 'immediate'::character varying,
+    last_digest_sent_at timestamp(6) without time zone,
+    digest_emails_enabled_at timestamp(6) without time zone,
+    assessment_id bigint NOT NULL,
+    campaign_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    allow_one_level_approve boolean DEFAULT false
+);
+
+
+--
+-- Name: ai_scoring_approval_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.ai_scoring_approval_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: ai_scoring_approval_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.ai_scoring_approval_settings_id_seq OWNED BY public.ai_scoring_approval_settings.id;
 
 
 --
@@ -1500,6 +1608,39 @@ CREATE TABLE public.ar_internal_metadata (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
+
+
+--
+-- Name: assessment_assistants; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.assessment_assistants (
+    id bigint NOT NULL,
+    assessment_id bigint NOT NULL,
+    ai_assistant_id bigint NOT NULL,
+    assessment_prompt text,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: assessment_assistants_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.assessment_assistants_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: assessment_assistants_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.assessment_assistants_id_seq OWNED BY public.assessment_assistants.id;
 
 
 --
@@ -2657,7 +2798,8 @@ CREATE TABLE public.client_features (
     global_skills boolean DEFAULT false NOT NULL,
     idp boolean DEFAULT false NOT NULL,
     enhance_with_ai boolean DEFAULT false NOT NULL,
-    ai_translation boolean DEFAULT false NOT NULL
+    ai_translation boolean DEFAULT false NOT NULL,
+    ai_content_analysis boolean DEFAULT false NOT NULL
 );
 
 
@@ -3730,7 +3872,8 @@ CREATE TABLE public.factors_scoring (
     factor_id integer,
     assessment_id integer,
     question_id integer,
-    scoring_strategy integer DEFAULT 0
+    scoring_strategy integer DEFAULT 0,
+    ai_scoring_config jsonb
 );
 
 
@@ -5829,7 +5972,8 @@ CREATE TABLE public.project_features (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     enhance_with_ai boolean DEFAULT false NOT NULL,
-    ai_translation boolean DEFAULT false NOT NULL
+    ai_translation boolean DEFAULT false NOT NULL,
+    ai_content_analysis boolean DEFAULT false NOT NULL
 );
 
 
@@ -8604,7 +8748,8 @@ CREATE TABLE public.users_results (
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
-    progress integer
+    progress integer,
+    ai_scoring_status integer
 );
 
 
@@ -8708,7 +8853,8 @@ CREATE TABLE public.versions (
     event character varying NOT NULL,
     object jsonb,
     object_changes jsonb,
-    transaction_id bigint
+    transaction_id bigint,
+    meta json
 );
 
 
@@ -9342,10 +9488,24 @@ ALTER TABLE ONLY public.ai_assisted_user_sessions ALTER COLUMN id SET DEFAULT ne
 
 
 --
+-- Name: ai_factor_scores id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_factor_scores ALTER COLUMN id SET DEFAULT nextval('public.ai_factor_scores_id_seq'::regclass);
+
+
+--
 -- Name: ai_model_registries id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.ai_model_registries ALTER COLUMN id SET DEFAULT nextval('public.ai_model_registries_id_seq'::regclass);
+
+
+--
+-- Name: ai_scoring_approval_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_scoring_approval_settings ALTER COLUMN id SET DEFAULT nextval('public.ai_scoring_approval_settings_id_seq'::regclass);
 
 
 --
@@ -9360,6 +9520,13 @@ ALTER TABLE ONLY public.ai_translation_results ALTER COLUMN id SET DEFAULT nextv
 --
 
 ALTER TABLE ONLY public.api_keys ALTER COLUMN id SET DEFAULT nextval('public.api_keys_id_seq'::regclass);
+
+
+--
+-- Name: assessment_assistants id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_assistants ALTER COLUMN id SET DEFAULT nextval('public.assessment_assistants_id_seq'::regclass);
 
 
 --
@@ -10973,11 +11140,27 @@ ALTER TABLE ONLY public.ai_assisted_user_sessions
 
 
 --
+-- Name: ai_factor_scores ai_factor_scores_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_factor_scores
+    ADD CONSTRAINT ai_factor_scores_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: ai_model_registries ai_model_registries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.ai_model_registries
     ADD CONSTRAINT ai_model_registries_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ai_scoring_approval_settings ai_scoring_approval_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_scoring_approval_settings
+    ADD CONSTRAINT ai_scoring_approval_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -11002,6 +11185,14 @@ ALTER TABLE ONLY public.api_keys
 
 ALTER TABLE ONLY public.ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: assessment_assistants assessment_assistants_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_assistants
+    ADD CONSTRAINT assessment_assistants_pkey PRIMARY KEY (id);
 
 
 --
@@ -12776,6 +12967,20 @@ CREATE INDEX email_histories_email_schedule ON public.threesixty_email_histories
 
 
 --
+-- Name: idx_ai_factor_scores_unique_aggregated; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX idx_ai_factor_scores_unique_aggregated ON public.ai_factor_scores USING btree (users_result_id, factor_id) WHERE (question_id IS NULL);
+
+
+--
+-- Name: idx_ai_factor_scores_unique_with_question; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX idx_ai_factor_scores_unique_with_question ON public.ai_factor_scores USING btree (users_result_id, factor_id, question_id) WHERE (question_id IS NOT NULL);
+
+
+--
 -- Name: idx_on_ai_assistant_id_key_1d1a169fc1; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12801,6 +13006,13 @@ CREATE INDEX idx_on_campaign_ai_artifact_id_aaea21b6d6 ON public.campaign_ai_art
 --
 
 CREATE INDEX idx_on_campaign_assessment_group_id_b2579ac76b ON public.campaign_assessor_assessments USING btree (campaign_assessment_group_id);
+
+
+--
+-- Name: idx_on_campaign_id_assessment_id_53807fc1b9; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX idx_on_campaign_id_assessment_id_53807fc1b9 ON public.ai_scoring_approval_settings USING btree (campaign_id, assessment_id);
 
 
 --
@@ -13147,6 +13359,13 @@ CREATE INDEX index_ai_assisted_user_sessions_on_assistable ON public.ai_assisted
 
 
 --
+-- Name: index_ai_assisted_user_sessions_on_resource; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assisted_user_sessions_on_resource ON public.ai_assisted_user_sessions USING btree (resource_type, resource_id);
+
+
+--
 -- Name: index_ai_assisted_user_sessions_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -13158,6 +13377,34 @@ CREATE INDEX index_ai_assisted_user_sessions_on_user_id ON public.ai_assisted_us
 --
 
 CREATE INDEX index_ai_assisted_user_sessions_on_user_id_and_type ON public.ai_assisted_user_sessions USING btree (user_id, type);
+
+
+--
+-- Name: index_ai_factor_scores_on_factor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_factor_scores_on_factor_id ON public.ai_factor_scores USING btree (factor_id);
+
+
+--
+-- Name: index_ai_factor_scores_on_parent_factor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_factor_scores_on_parent_factor_id ON public.ai_factor_scores USING btree (parent_factor_id);
+
+
+--
+-- Name: index_ai_factor_scores_on_question_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_factor_scores_on_question_id ON public.ai_factor_scores USING btree (question_id);
+
+
+--
+-- Name: index_ai_factor_scores_on_users_result_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_factor_scores_on_users_result_id ON public.ai_factor_scores USING btree (users_result_id);
 
 
 --
@@ -13193,6 +13440,34 @@ CREATE INDEX index_ai_model_registries_on_provider ON public.ai_model_registries
 --
 
 CREATE UNIQUE INDEX index_ai_model_registries_on_provider_and_model_id ON public.ai_model_registries USING btree (provider, model_id);
+
+
+--
+-- Name: index_ai_scoring_approval_settings_on_approver_ids; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_scoring_approval_settings_on_approver_ids ON public.ai_scoring_approval_settings USING gin (approver_ids);
+
+
+--
+-- Name: index_ai_scoring_approval_settings_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_scoring_approval_settings_on_assessment_id ON public.ai_scoring_approval_settings USING btree (assessment_id);
+
+
+--
+-- Name: index_ai_scoring_approval_settings_on_assessor_ids; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_scoring_approval_settings_on_assessor_ids ON public.ai_scoring_approval_settings USING gin (assessor_ids);
+
+
+--
+-- Name: index_ai_scoring_approval_settings_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_scoring_approval_settings_on_campaign_id ON public.ai_scoring_approval_settings USING btree (campaign_id);
 
 
 --
@@ -13242,6 +13517,20 @@ CREATE INDEX index_api_keys_on_updated_by_id ON public.api_keys USING btree (upd
 --
 
 CREATE INDEX index_api_keys_on_user_id ON public.api_keys USING btree (user_id);
+
+
+--
+-- Name: index_assessment_assistants_on_ai_assistant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessment_assistants_on_ai_assistant_id ON public.assessment_assistants USING btree (ai_assistant_id);
+
+
+--
+-- Name: index_assessment_assistants_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessment_assistants_on_assessment_id ON public.assessment_assistants USING btree (assessment_id);
 
 
 --
@@ -14264,6 +14553,13 @@ CREATE INDEX index_factors_norms_on_norm_id ON public.factors_norms USING btree 
 --
 
 CREATE INDEX index_factors_on_dimension_id ON public.factors USING btree (dimension_id);
+
+
+--
+-- Name: index_factors_on_factor_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factors_on_factor_type ON public.factors USING btree (factor_type);
 
 
 --
@@ -16838,6 +17134,14 @@ ALTER TABLE ONLY public.sms_records
 
 
 --
+-- Name: ai_factor_scores fk_rails_0020bf4fc6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_factor_scores
+    ADD CONSTRAINT fk_rails_0020bf4fc6 FOREIGN KEY (question_id) REFERENCES public.questions(id);
+
+
+--
 -- Name: campaign_idp_dependencies fk_rails_00704dede9; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17190,6 +17494,14 @@ ALTER TABLE ONLY public.campaign_reports
 
 
 --
+-- Name: ai_factor_scores fk_rails_204568e44d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_factor_scores
+    ADD CONSTRAINT fk_rails_204568e44d FOREIGN KEY (factor_id) REFERENCES public.factors(id);
+
+
+--
 -- Name: campaign_assessment_groups fk_rails_20a5099c5a; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17299,6 +17611,14 @@ ALTER TABLE ONLY public.threesixty_subjects
 
 ALTER TABLE ONLY public.workshop_subjects
     ADD CONSTRAINT fk_rails_29528926c0 FOREIGN KEY (workshop_id) REFERENCES public.workshops(id) ON DELETE CASCADE;
+
+
+--
+-- Name: assessment_assistants fk_rails_29a8207386; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_assistants
+    ADD CONSTRAINT fk_rails_29a8207386 FOREIGN KEY (ai_assistant_id) REFERENCES public.ai_assistants(id);
 
 
 --
@@ -17814,6 +18134,14 @@ ALTER TABLE ONLY public.user_report_pdfs
 
 
 --
+-- Name: ai_factor_scores fk_rails_5bbde41351; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_factor_scores
+    ADD CONSTRAINT fk_rails_5bbde41351 FOREIGN KEY (users_result_id) REFERENCES public.users_results(id);
+
+
+--
 -- Name: user_idp_plans fk_rails_5bddf269aa; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17827,6 +18155,14 @@ ALTER TABLE ONLY public.user_idp_plans
 
 ALTER TABLE ONLY public.communication_emails
     ADD CONSTRAINT fk_rails_5c47ebbe76 FOREIGN KEY (workshop_id) REFERENCES public.workshops(id);
+
+
+--
+-- Name: ai_scoring_approval_settings fk_rails_5d3d4a6d03; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_scoring_approval_settings
+    ADD CONSTRAINT fk_rails_5d3d4a6d03 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id);
 
 
 --
@@ -17851,6 +18187,14 @@ ALTER TABLE ONLY public.workshop_invite_logs
 
 ALTER TABLE ONLY public.user_assessments
     ADD CONSTRAINT fk_rails_60c2fd6734 FOREIGN KEY (subject_id) REFERENCES public.users(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: ai_factor_scores fk_rails_60d20d0f4f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_factor_scores
+    ADD CONSTRAINT fk_rails_60d20d0f4f FOREIGN KEY (parent_factor_id) REFERENCES public.factors(id);
 
 
 --
@@ -19030,6 +19374,14 @@ ALTER TABLE ONLY public.assessments_clients
 
 
 --
+-- Name: ai_scoring_approval_settings fk_rails_cc75bf0bd2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_scoring_approval_settings
+    ADD CONSTRAINT fk_rails_cc75bf0bd2 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id);
+
+
+--
 -- Name: skill_translations fk_rails_cf44d9c794; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -19574,6 +19926,14 @@ ALTER TABLE ONLY public.reports_campaign_ai_artifacts
 
 
 --
+-- Name: assessment_assistants fk_rails_efe6237df0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_assistants
+    ADD CONSTRAINT fk_rails_efe6237df0 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id);
+
+
+--
 -- Name: communications fk_rails_efeba527b3; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -19772,21 +20132,38 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20260209114529'),
-('20260210130000'),
+('20260218075116'),
+('20260213140414'),
+('20260213112719'),
+('20260213095708'),
+('20260212093958'),
 ('20260212060354'),
+('20260210130000'),
+('20260210084851'),
 ('20260209123134'),
+('20260209114529'),
 ('20260209112420'),
 ('20260209020330'),
+('20260204083410'),
+('20260203070450'),
+('20260203060658'),
+('20260124061828'),
+('20260123131309'),
+('20260123090109'),
 ('20260123071239'),
+('20260122074311'),
 ('20260122034210'),
 ('20260119144024'),
 ('20260119122705'),
 ('20260119063943'),
 ('20260119052541'),
 ('20260119030942'),
+('20260115095847'),
+('20260113191036'),
 ('20260113120000'),
 ('20260113071404'),
+('20260112091820'),
+('20260112072559'),
 ('20260109141947'),
 ('20260106133315'),
 ('20260102064238'),
