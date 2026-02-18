@@ -19,6 +19,7 @@ en:
     admin_updated_successfully: Admin '%{name}' was updated successfully
     admins: Admins
     agile: AGILE
+    ai_artifact_result_generation_admin_job_failed: Artifact '%{artifact_name}' cannot be generated for User '%{user_email}'
     ai_artifacts: AI Artifacts
     ai_artifacts_output_schema_key_constraint: Key must start with a lowercase letter and can only contain lowercase letters, numbers, and underscores
     ai_assistant_model_id_label: Model ID

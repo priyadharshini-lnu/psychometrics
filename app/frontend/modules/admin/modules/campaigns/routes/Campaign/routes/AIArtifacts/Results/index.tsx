@@ -38,6 +38,7 @@ export const Result = () => {
     isLoading,
     changeFilter,
     getFilteredValue,
+    setData,
   } = useResources<CampaignAiArtifactResult>('ai_artifact_results', {
     basePath: `/campaigns/${campaignId}`,
   })
@@ -290,8 +291,10 @@ export const Result = () => {
           close={() => {
             setSelectedAIArtifact(null)
           }}
-          artifact={selectedAIArtifact}
+          userArtifactsResults={selectedAIArtifact}
           campaignId={campaignId}
+          rawTableData={aiArtifact}
+          updateRawTableData={setData}
         />
       ) : null}
     </div>
