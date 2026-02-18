@@ -65,6 +65,10 @@ class MediaResponse < ApplicationRecord
     transcription_record.update!(status: status)
   end
 
+  def transcription_not_requested?
+    transcription.nil? || transcription.not_requested?
+  end
+
   private
 
   def assign_key_to_blob(action, attribute, filename)
