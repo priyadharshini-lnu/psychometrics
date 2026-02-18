@@ -14,8 +14,8 @@ module AdminJobs
 
     def headers
       base_headers = base_record_headers
-      final_headers = insert_campaign_headers(base_headers)
-      titleize_headers(final_headers)
+      titleize_base_headers = titleize_headers(base_headers)
+      insert_campaign_headers(titleize_base_headers)
     end
 
     def titleize_headers(headers)
@@ -23,7 +23,7 @@ module AdminJobs
     end
 
     def campaign_headers
-      ['Campaign Id', 'Campaign Name']
+      ['Campaign ID', 'Campaign Name']
     end
 
     def base_record_headers
