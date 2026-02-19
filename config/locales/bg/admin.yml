@@ -143,6 +143,7 @@ bg:
     feature_flags: Флагове за функции
     fill_empty_score_msg: Запълнете всички крайни резултати преди да запазите.
     final_score_empty_err_msg: Крайният резултат на „%{factor_name}“ не може да бъде празен.
+    final_score_empty_msg: Крайната сметка не може да бъде празна.
     fix_grammar: Поправи граматиката
     formal: Официален
     generate_transcription: Генериране на транскрипция
@@ -198,6 +199,7 @@ bg:
     mhs_report_id: Идентификационен номер на доклада на MHS
     mhs_session_id: Mhs сесиен идентификатор
     min_value: Минимална стойност
+    minimum_10_words: Минимум 10 думи
     missing_min_max_values: Минималните и максималните стойности са задължителни.
     name_required: Задължително е име
     no_file_selected: Няма избран файл

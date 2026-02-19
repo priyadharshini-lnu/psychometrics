@@ -143,6 +143,7 @@ cs:
     feature_flags: Příznaky funkcí
     fill_empty_score_msg: Vyplňte všechny konečné skóre před uložením.
     final_score_empty_err_msg: Konečné skóre hry „%{factor_name}“ nesmí být prázdné.
+    final_score_empty_msg: Konečný účet nemůže být prázdný.
     fix_grammar: Opravit gramatiku
     formal: Formální
     generate_transcription: Vytvořit přepis
@@ -198,6 +199,7 @@ cs:
     mhs_report_id: ID zprávy MHS
     mhs_session_id: ID relace Mhs
     min_value: Minimální hodnota
+    minimum_10_words: Minimálně 10 slov
     missing_min_max_values: Minimální a maximální hodnoty jsou povinné.
     name_required: Jméno je vyžadováno
     no_file_selected: Žádný soubor nebyl vybrán

@@ -143,6 +143,7 @@ hu:
     feature_flags: Feature flags
     fill_empty_score_msg: Töltsd ki az összes végső pontszámot mentés előtt.
     final_score_empty_err_msg: "%{factor_name} végső pontszáma nem lehet üres."
+    final_score_empty_msg: A végösszeg nem lehet üres.
     fix_grammar: Helyesírás javítása
     formal: Hivatalos
     generate_transcription: Átírás létrehozása
@@ -198,6 +199,7 @@ hu:
     mhs_report_id: MHS jelentés azonosítója
     mhs_session_id: Mhs munkamenet azonosító
     min_value: Minimális érték
+    minimum_10_words: Legalább 10 szó
     missing_min_max_values: A minimális és maximális értékek megadása kötelező.
     name_required: Név szükséges
     no_file_selected: Fájl nem volt kiválasztva

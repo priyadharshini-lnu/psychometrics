@@ -143,6 +143,7 @@ vi:
     feature_flags: Cờ tính năng
     fill_empty_score_msg: Điền vào tất cả các điểm cuối cùng trước khi lưu.
     final_score_empty_err_msg: Kết quả cuối cùng của "%{factor_name}" không được để trống.
+    final_score_empty_msg: Tổng số tiền không thể để trống.
     fix_grammar: Sửa lỗi ngữ pháp
     formal: Chính thức
     generate_transcription: Tạo bản chép lời
@@ -198,6 +199,7 @@ vi:
     mhs_report_id: Mã báo cáo MHS
     mhs_session_id: ID phiên làm việc MHS
     min_value: Giá trị nhỏ nhất
+    minimum_10_words: Tối thiểu 10 từ
     missing_min_max_values: Giá trị tối thiểu và tối đa là bắt buộc.
     name_required: Tên là bắt buộc
     no_file_selected: Không có tệp nào được chọn

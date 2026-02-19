@@ -143,6 +143,7 @@ de:
     feature_flags: Merkmalskennzeichen
     fill_empty_score_msg: Füllen Sie alle Endpunktzahlen aus, bevor Sie speichern.
     final_score_empty_err_msg: Das Endergebnis von „%{factor_name}“ darf nicht leer sein.
+    final_score_empty_msg: Die Endabrechnung darf nicht leer sein.
     fix_grammar: Grammatik korrigieren
     formal: Formell
     generate_transcription: Transkription erstellen
@@ -198,6 +199,7 @@ de:
     mhs_report_id: MHS-Bericht-ID
     mhs_session_id: Mhs-Sitzungs-ID
     min_value: Minimalwert
+    minimum_10_words: Mindestens 10 Wörter
     missing_min_max_values: Mindest- und Höchstwerte sind erforderlich.
     name_required: Name ist erforderlich
     no_file_selected: Keine Datei ausgewählt

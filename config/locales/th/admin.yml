@@ -143,6 +143,7 @@ th:
     feature_flags: แฟล็กคุณสมบัติ
     fill_empty_score_msg: กรอกคะแนนสุดท้ายทั้งหมดก่อนบันทึก
     final_score_empty_err_msg: คะแนนสุดท้ายของ %{factor_name} ไม่สามารถเป็นค่าว่างได้
+    final_score_empty_msg: ยอดรวมสุดท้ายต้องไม่ว่างเปล่า
     fix_grammar: แก้ไขไวยากรณ์
     formal: ทางการ
     generate_transcription: สร้างการถอดความ
@@ -198,6 +199,7 @@ th:
     mhs_report_id: รหัสรายงาน MHS
     mhs_session_id: รหัสเซสชันของนักศึกษา
     min_value: ค่าต่ำสุด
+    minimum_10_words: อย่างน้อย 10 คำ
     missing_min_max_values: จำเป็นต้องระบุค่าต่ำสุดและค่าสูงสุด
     name_required: ต้องระบุชื่อ
     no_file_selected: ไม่มีไฟล์ที่เลือก

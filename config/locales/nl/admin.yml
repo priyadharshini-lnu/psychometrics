@@ -143,6 +143,7 @@ nl:
     feature_flags: Functie Vlaggen
     fill_empty_score_msg: Vul alle eindscores in voordat je opslaat.
     final_score_empty_err_msg: De eindscore van %{factor_name} mag niet leeg zijn.
+    final_score_empty_msg: Het eindresultaat mag niet leeg zijn.
     fix_grammar: Grammatica corrigeren
     formal: Formeel
     generate_transcription: Transcriptie genereren
@@ -198,6 +199,7 @@ nl:
     mhs_report_id: MHS-rapport-ID
     mhs_session_id: Mhs-sessie-ID
     min_value: Minimale waarde
+    minimum_10_words: Minimaal 10 woorden
     missing_min_max_values: Minimale en maximale waarden zijn vereist.
     name_required: Naam is vereist
     no_file_selected: Geen bestand geselecteerd

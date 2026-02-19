@@ -143,6 +143,7 @@ ko:
     feature_flags: 기능 플래그
     fill_empty_score_msg: 저장하기 전에 모든 최종 점수를 입력하세요.
     final_score_empty_err_msg: "%{factor_name}의 최종 점수는 비어 있을 수 없습니다."
+    final_score_empty_msg: 최종 계정은 비어 있을 수 없습니다.
     fix_grammar: 문법 수정
     formal: 공식적인
     generate_transcription: 자막 생성
@@ -198,6 +199,7 @@ ko:
     mhs_report_id: MHS 보고서 ID
     mhs_session_id: Mhs 세션 ID
     min_value: 최소값
+    minimum_10_words: 최소 10단어
     missing_min_max_values: 최소값과 최대값이 필요합니다.
     name_required: 이름은 필수입니다
     no_file_selected: 선택된 파일이 없습니다

@@ -143,6 +143,7 @@ fr:
     feature_flags: Drapeaux de caractéristiques
     fill_empty_score_msg: Remplissez tous les scores finaux avant de sauvegarder.
     final_score_empty_err_msg: Le score final d'%{factor_name} ne peut pas être vide.
+    final_score_empty_msg: Le compte final ne peut pas être vide.
     fix_grammar: Corriger la grammaire
     formal: Formel
     generate_transcription: Générer une transcription
@@ -198,6 +199,7 @@ fr:
     mhs_report_id: Identifiant du rapport MHS
     mhs_session_id: Identifiant de session Mhs
     min_value: Valeur minimale
+    minimum_10_words: 10 mots minimum
     missing_min_max_values: Les valeurs minimales et maximales sont obligatoires.
     name_required: Le nom est requis
     no_file_selected: Aucun fichier sélectionné

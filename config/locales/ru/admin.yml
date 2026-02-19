@@ -199,6 +199,7 @@ ru:
     mhs_report_id: Идентификатор отчета MHS
     mhs_session_id: Идентификатор сеанса Mhs
     min_value: Минимальное значение
+    minimum_10_words: Минимум 10 слов
     missing_min_max_values: Требуются минимальные и максимальные значения.
     name_required: Имя обязательно
     no_file_selected: Файл не выбран

@@ -143,6 +143,7 @@ hi:
     feature_flags: फ़ीचर फ़्लैग्स
     fill_empty_score_msg: सहेजने से पहले सभी अंतिम स्कोर भरें।
     final_score_empty_err_msg: "%{factor_name} का अंतिम स्कोर शून्य नहीं हो सकता।"
+    final_score_empty_msg: अंतिम स्कोर खाली नहीं हो सकता।
     fix_grammar: व्याकरण ठीक करें
     formal: औपचारिक
     generate_transcription: प्रतिलेखन उत्पन्न करें
@@ -198,6 +199,7 @@ hi:
     mhs_report_id: एमएचएस रिपोर्ट आईडी
     mhs_session_id: एमएचएस सत्र आईडी
     min_value: न्यूनतम मान
+    minimum_10_words: न्यूनतम 10 शब्द
     missing_min_max_values: न्यूनतम और अधिकतम मान आवश्यक हैं।
     name_required: नाम आवश्यक है
     no_file_selected: कोई फ़ाइल चयनित नहीं है

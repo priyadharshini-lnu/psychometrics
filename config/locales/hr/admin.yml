@@ -143,6 +143,7 @@ hr:
     feature_flags: Značajne zastavice
     fill_empty_score_msg: Popunite sve konačne rezultate prije spremanja.
     final_score_empty_err_msg: Konačni rezultat utakmice %{factor_name} ne može biti prazan.
+    final_score_empty_msg: Konačni rezultat ne može biti prazan.
     fix_grammar: Popravite gramatiku
     formal: Službeno
     generate_transcription: Generiraj transkripciju
@@ -198,6 +199,7 @@ hr:
     mhs_report_id: ID izvještaja MHS
     mhs_session_id: ID sesije Mhs
     min_value: Minimalna vrijednost
+    minimum_10_words: Minimalno 10 riječi
     missing_min_max_values: Potrebne su minimalne i maksimalne vrijednosti.
     name_required: Ime je potrebno
     no_file_selected: Nijedna datoteka nije odabrana

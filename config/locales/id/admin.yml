@@ -143,6 +143,7 @@ id:
     feature_flags: Bendera Fitur
     fill_empty_score_msg: Isi semua skor akhir sebelum menyimpan.
     final_score_empty_err_msg: Skor akhir dari %{factor_name} tidak boleh kosong.
+    final_score_empty_msg: Saldo akhir tidak boleh kosong.
     fix_grammar: Perbaiki Tata Bahasa
     formal: Formal
     generate_transcription: Buat Transkrip
@@ -198,6 +199,7 @@ id:
     mhs_report_id: Laporan MHS ID
     mhs_session_id: ID Sesi Mhs
     min_value: Nilai minimum
+    minimum_10_words: Minimal 10 kata
     missing_min_max_values: Nilai minimum dan maksimum diharuskan.
     name_required: Nama diperlukan
     no_file_selected: Tidak ada file yang dipilih

@@ -143,6 +143,7 @@ pt:
     feature_flags: Sinalizadores de caraterísticas
     fill_empty_score_msg: Preencha todas as pontuações finais antes de salvar.
     final_score_empty_err_msg: A pontuação final de %{factor_name} não pode estar vazia.
+    final_score_empty_msg: A conta final não pode estar vazia.
     fix_grammar: Corrigir gramática
     formal: Formal
     generate_transcription: Gerar transcrição
@@ -198,6 +199,7 @@ pt:
     mhs_report_id: ID do relatório MHS
     mhs_session_id: ID da sessão Mhs
     min_value: Valor mínimo
+    minimum_10_words: Mínimo de 10 palavras
     missing_min_max_values: Os valores mínimo e máximo são obrigatórios.
     name_required: O nome é necessário
     no_file_selected: Nenhum arquivo selecionado

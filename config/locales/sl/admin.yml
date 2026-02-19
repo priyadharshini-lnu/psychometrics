@@ -143,6 +143,7 @@ sl:
     feature_flags: Zastavice funkcij
     fill_empty_score_msg: Pred shranjevanjem izpolnite vse končne rezultate.
     final_score_empty_err_msg: Končni rezultat igre »%{factor_name}« ne sme biti prazen.
+    final_score_empty_msg: Končni račun ne sme biti prazen.
     fix_grammar: Popravi slovnico
     formal: Formalno
     generate_transcription: Ustvari transkripcijo
@@ -198,6 +199,7 @@ sl:
     mhs_report_id: ID poročila MHS
     mhs_session_id: Mhs ID seje
     min_value: Najmanjša vrednost
+    minimum_10_words: Najmanj 10 besed
     missing_min_max_values: Zahtevane so minimalne in maksimalne vrednosti.
     name_required: Ime je potrebno
     no_file_selected: Izbrana ni bila izbrana datoteka

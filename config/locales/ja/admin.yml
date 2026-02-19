@@ -143,6 +143,7 @@ ja:
     feature_flags: フィーチャー・フラッグ
     fill_empty_score_msg: 保存する前にすべての最終スコアを記入してください。
     final_score_empty_err_msg: "%{factor_name}の最終スコアは空欄であってはならない。"
+    final_score_empty_msg: 合計金額は空欄にできません。
     fix_grammar: 文法修正
     formal: 正式
     generate_transcription: 文字起こしを生成する
@@ -198,6 +199,7 @@ ja:
     mhs_report_id: MHSレポートID
     mhs_session_id: Mhs セッション ID
     min_value: 最小値
+    minimum_10_words: 最低10語
     missing_min_max_values: 最小値と最大値が必要です。
     name_required: 名前が必要です
     no_file_selected: ファイルが選択されていない

@@ -199,6 +199,7 @@ en-US:
     mhs_report_id: MHS Report ID
     mhs_session_id: Mhs Session ID
     min_value: Min value
+    minimum_10_words: Minimum 10 words
     missing_min_max_values: Minimum and Maximum values are required.
     name_required: Name is required
     no_file_selected: No file selected

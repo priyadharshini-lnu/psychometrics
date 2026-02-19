@@ -143,6 +143,7 @@ pl:
     feature_flags: Flagi funkcji
     fill_empty_score_msg: Wypełnij wszystkie końcowe wyniki przed zapisem.
     final_score_empty_err_msg: Ostateczny wynik gry „%{factor_name}” nie może być pusty.
+    final_score_empty_msg: Rachunek końcowy nie może być pusty.
     fix_grammar: Popraw gramatykę
     formal: Formalny
     generate_transcription: Wygeneruj transkrypcję
@@ -198,6 +199,7 @@ pl:
     mhs_report_id: Numer raportu MHS
     mhs_session_id: Identyfikator sesji Mhs
     min_value: Wartość minimalna
+    minimum_10_words: Minimum 10 słów
     missing_min_max_values: Wymagane są wartości minimalne i maksymalne.
     name_required: Wymagane jest imię
     no_file_selected: Nie wybrano żadnego pliku

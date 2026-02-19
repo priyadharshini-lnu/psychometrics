@@ -143,6 +143,7 @@ ar:
     feature_flags: أعلام الميزات
     fill_empty_score_msg: املأ جميع الدرجات النهائية قبل الحفظ.
     final_score_empty_err_msg: لا يمكن أن تكون النتيجة النهائية لـ %{factor_name} فارغة.
+    final_score_empty_msg: لا يمكن أن يكون الحساب النهائي فارغًا.
     fix_grammar: تصحيح القواعد النحوية
     formal: رسمي
     generate_transcription: إنشاء نسخة مكتوبة
@@ -198,6 +199,7 @@ ar:
     mhs_report_id: رقم تقرير MHS
     mhs_session_id: معرف جلسة Mhs
     min_value: القيمة الدنيا
+    minimum_10_words: 10 كلمات على الأقل
     missing_min_max_values: القيم الدنيا والقصوى مطلوبة.
     name_required: الاسم مطلوب
     no_file_selected: لم يتم اختيار ملف

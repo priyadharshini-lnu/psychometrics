@@ -143,6 +143,7 @@ ro:
     feature_flags: Steaguri de caracteristici
     fill_empty_score_msg: Completează toate scorurile finale înainte de a salva.
     final_score_empty_err_msg: Scorul final al jocului „%{factor_name}” nu poate fi gol.
+    final_score_empty_msg: Suma finală nu poate fi goală.
     fix_grammar: Corectează gramatica
     formal: Formal
     generate_transcription: Generați transcrierea
@@ -198,6 +199,7 @@ ro:
     mhs_report_id: ID raport MHS
     mhs_session_id: ID sesiune Mhs
     min_value: Valoarea minimă
+    minimum_10_words: Minimum 10 cuvinte
     missing_min_max_values: Sunt necesare valorile minime și maxime.
     name_required: Este necesar numele
     no_file_selected: Niciun fișier selectat

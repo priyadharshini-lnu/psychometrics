@@ -143,6 +143,7 @@ zh:
     feature_flags: 功能标志
     fill_empty_score_msg: 保存前填写所有最终分数。
     final_score_empty_err_msg: "%{factor_name}的最终得分不能为空。"
+    final_score_empty_msg: 最终账单不能为空。
     fix_grammar: 修正语法
     formal: 正式
     generate_transcription: 生成转录文本
@@ -198,6 +199,7 @@ zh:
     mhs_report_id: MHS报告编号
     mhs_session_id: Mhs 会话标识符
     min_value: 最小值
+    minimum_10_words: 至少10个单词
     missing_min_max_values: 必须提供最小值和最大值。
     name_required: 需要命名
     no_file_selected: 未选择文件
