@@ -125,7 +125,10 @@ it:
     edit_threesixty_campaign_admin: Modifica dell'amministrazione della campagna
     empty_csv_file: Il file CSV non contiene alcun dato.
     enable_enhance_with_ai_client_level: Abilita la funzione Migliora con l'IA a livello client
+    enable_maintenance: Abilita manutenzione
     enable_transcription: Abilita trascrizione
+    end_time: Ora di fine
+    end_time_must_be_after_start_time: L'ora di fine deve essere successiva all'ora di inizio
     enhance_with_ai: Migliora con l'AI
     enhance_with_ai_requires_ai_assistants: Per migliorare con l'IA è necessario che la funzione Assistenti IA sia abilitata.
     error: Errore
@@ -180,6 +183,9 @@ it:
     libraries: Biblioteca multimediale
     library_invalid_type: Voce della biblioteca invalida
     licenses: Licenze
+    maintenance: Manutenzione
+    maintenance_settings: Impostazioni di manutenzione
+    maintenance_settings_description: Gestire le finestre di manutenzione del sistema e le impostazioni
     manager_approval_required: Report for %{user} richiede l'approvazione del manager prima del download
     max_value: Valore massimo
     messages: Messaggi
@@ -635,6 +641,7 @@ it:
     permissions_360_campaigns: Autorizzazioni specifiche per le campagne 360
     piped_text: Testo incorniciato
     privacy: La privacy
+    proctoring: Sorveglianza
     professional: Professionale
     proficiency: Competenza
     proficiency_level: Chiavi API
@@ -723,8 +730,10 @@ it:
     search_admins: Cerca amministratori
     search_job_role: Cerca ruolo lavorativo
     select_admin_role: Selezionare il ruolo di amministratore
+    select_end_time: Seleziona ora di fine
     select_language_to_translate: Seleziona la lingua da tradurre
     select_level: Seleziona livello
+    select_start_time: Seleziona l'ora di inizio
     send_email: Inviare l'e-mail
     settings: Impostazioni
     show_original: Mostra originale
@@ -737,12 +746,14 @@ it:
     slot_name: Nome della Slot
     sms_histories: Storie di SMS
     sms_invites: Inviti via SMS
+    start_time: Ora di inizio
     stats: Statistiche
     status_details: Dettagli di stato
     structured_learning: Apprendimento Formale [10]
     subdomain: Sottodominio
     subject_part_of_other_invite: Il soggetto con indirizzo e-mail %{user_email} è già stato invitato a "%{workshop_invite_name}".
     target_job_role: Ruolo lavorativo target
+    timezone: Fuso orario
     tone: Tono
     toolbar_ai_insight: Approfondimento sull'intelligenza artificiale
     toolbar_ai_suggestion: Suggerimento AI

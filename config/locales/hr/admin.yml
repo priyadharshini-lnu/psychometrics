@@ -125,7 +125,10 @@ hr:
     edit_threesixty_campaign_admin: Uredi administratora kampanje
     empty_csv_file: CSV datoteka ne sadrži nikakve podatke.
     enable_enhance_with_ai_client_level: Molimo omogućite značajku Enhance with AI na razini klijenta.
+    enable_maintenance: Omogući održavanje
     enable_transcription: Omogući transkripciju
+    end_time: Kraj vremena
+    end_time_must_be_after_start_time: Krajnje vrijeme mora biti nakon početnog vremena.
     enhance_with_ai: Unaprijedite pomoću umjetne inteligencije
     enhance_with_ai_requires_ai_assistants: Za poboljšanje pomoću AI-ja potrebna je omogućena značajka AI asistenti.
     error: Greška
@@ -180,6 +183,9 @@ hr:
     libraries: Medijska biblioteka
     library_invalid_type: Nevažeća knjižnična stavka
     licenses: Licence
+    maintenance: Održavanje
+    maintenance_settings: Postavke održavanja
+    maintenance_settings_description: Upravljajte prozorima i postavkama za održavanje sustava
     manager_approval_required: Izvještaj za %{user} zahtijeva odobrenje menadžera prije preuzimanja
     max_value: Najveća vrijednost
     messages: Poruke
@@ -635,6 +641,7 @@ hr:
     permissions_360_campaigns: Dopuštenja specifična za kampanje višesmjerne procjene
     piped_text: Tekst u cijevima
     privacy: Privatnost
+    proctoring: Nadzor
     professional: Stručan
     proficiency: Sposobnost
     proficiency_level: API ključevi
@@ -723,8 +730,10 @@ hr:
     search_admins: Pretraživanje administratora
     search_job_role: Pretraži radnu poziciju
     select_admin_role: Odaberite administratorsku ulogu
+    select_end_time: Odaberite vrijeme završetka
     select_language_to_translate: Molimo odaberite jezik za prijevod
     select_level: Odabir razine
+    select_start_time: Odaberite vrijeme početka
     send_email: Pošalji e-poštu
     settings: Postavke
     show_original: Prikaži izvorno
@@ -737,12 +746,14 @@ hr:
     slot_name: Naziv utora
     sms_histories: Povijest SMS-a
     sms_invites: SMS pozivnice
+    start_time: Vrijeme početka
     stats: Statistika
     status_details: Detalji o statusu
     structured_learning: Formalno učenje [10]
     subdomain: Poddomena
     subject_part_of_other_invite: Subjekt s e-poštom %{user_email} već je pozvan na '%{workshop_invite_name}'
     target_job_role: Ciljana radna uloga
+    timezone: Vremenska zona
     tone: Ton
     toolbar_ai_insight: Uvid u umjetnu inteligenciju
     toolbar_ai_suggestion: Prijedlog AI-a

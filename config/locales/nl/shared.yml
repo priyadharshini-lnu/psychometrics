@@ -50,6 +50,14 @@ nl:
     last_name: Achternaam
     learning_on_the_job_label: Leren op de werkvloer
     login: Inloggen
+    maintenance_in_hours: "%{hours} uren"
+    maintenance_in_minutes: "%{minutes} notulen"
+    maintenance_in_progress_description: We voeren momenteel systeemonderhoud uit om optimale platformprestaties te garanderen en uw ervaring te verbeteren. Bedankt voor uw begrip.
+    maintenance_in_progress_title: Gepland onderhoud bezig
+    maintenance_time_remaining: Resterende tijd
+    maintenance_upcoming_description: We voeren gepland onderhoud uit op %{date} gedurende ongeveer %{duration} om uw ervaring te verbeteren. Gedurende deze periode kunt u geen toegang krijgen tot toegewezen taken en deze ook niet voltooien. Wij danken u voor uw geduld.
+    maintenance_upcoming_title: Aankomend onderhoud
+    media_question_transcriptions: Transcripties van vragen van de media
     media_responses: Reacties in de media
     modified_by: Gewijzigd door
     modified_date: Gewijzigde datum
@@ -63,6 +71,8 @@ nl:
     ok: Ok
     pending: In behandeling
     processing: Verwerking
+    proctoring_maintenance_active: Proctoring wordt momenteel onderhouden van %{start_time} naar %{end_time}. Probeer het opnieuw na de onderhoudsperiode.
+    proctoring_maintenance_upcoming: Proctoring zal worden onderhouden van %{start_time} tot %{end_time}.
     question_id: Vraag-ID
     question_transcription_disabled: Transcriptie is uitgeschakeld voor deze vraag.
     recording_consent_notice: Deze bijeenkomst zal worden opgenomen. Uw deelname aan deze bijeenkomst betekent dat u toestemming geeft om opgenomen te worden.

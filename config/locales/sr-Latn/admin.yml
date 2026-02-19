@@ -125,7 +125,10 @@ sr-Latn:
     edit_threesixty_campaign_admin: Uredi administratora kampanje
     empty_csv_file: CSV datoteka ne sadrži nikakve podatke.
     enable_enhance_with_ai_client_level: Молимо омогућите функцију Enhance with AI на нивоу клијента.
+    enable_maintenance: Омогући одржавање
     enable_transcription: Омогући транскрипцију
+    end_time: Кrajње време
+    end_time_must_be_after_start_time: Крајње време мора бити након почетног времена
     enhance_with_ai: Унапредите помоћу вештачке интелигенције
     enhance_with_ai_requires_ai_assistants: Побољшање помоћу вештачке интелигенције захтева да је омогућена функција AI Assistants.
     error: Грешка
@@ -180,6 +183,9 @@ sr-Latn:
     libraries: Biblioteka medija
     library_invalid_type: Neispravna stavka biblioteke
     licenses: Licence
+    maintenance: Одрживање
+    maintenance_settings: Подешавања одржавања
+    maintenance_settings_description: Управљајте прозорима и подешавањама за одржавање система
     manager_approval_required: Izveštaj za %{user} zahteva odobrenje menadžera pre preuzimanja
     max_value: Максимална вредност
     messages: Poruke
@@ -635,6 +641,7 @@ sr-Latn:
     permissions_360_campaigns: Dozvole specifične za 360 kampanje
     piped_text: Текст у цевководу
     privacy: Privatnosti
+    proctoring: Надгледање
     professional: Професионални
     proficiency: Владање
     proficiency_level: API ključevi
@@ -723,8 +730,10 @@ sr-Latn:
     search_admins: Pretraga administratora
     search_job_role: Претражи улогу посла
     select_admin_role: Izaberite ulogu administratora
+    select_end_time: Изаберите време завршетка
     select_language_to_translate: Молимо изаберите језик за превод
     select_level: Изабери ниво
+    select_start_time: Изаберите време почетка
     send_email: Pošalji imejl
     settings: Podešavanja
     show_original: Прикажи оригинал
@@ -737,12 +746,14 @@ sr-Latn:
     slot_name: Ime slota
     sms_histories: SMS istorije
     sms_invites: SMS pozivnice
+    start_time: Време почетка
     stats: Statistike
     status_details: Detalji o statusu
     structured_learning: Formalno učenje [10]
     subdomain: Poddomen
     subject_part_of_other_invite: Корисник са адресом електронске поште %{user_email} већ је позван на '%{workshop_invite_name}'
     target_job_role: Циљна радна улога
+    timezone: Временска зона
     tone: Тон
     toolbar_ai_insight: Увид вештачке интелигенције
     toolbar_ai_suggestion: Предлог вештачке интелигенције

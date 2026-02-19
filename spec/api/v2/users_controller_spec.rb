@@ -113,6 +113,7 @@ RSpec.describe Api::V2::Administration::UsersController, type: :request do
             'developmentActions' => '/admin/development_actions',
             'dimensions' => '/administration/dimensions',
             'libraries' => '/administration/libraries',
+            'settings' => '/admin/settings',
             'norms' => '/admin/norms',
             'profile' => '/admin/profile',
             'profileDetails' => '/admin/profile/details',

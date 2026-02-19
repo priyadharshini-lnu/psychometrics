@@ -50,6 +50,14 @@ pl:
     last_name: Nazwisko
     learning_on_the_job_label: Nauka w pracy
     login: Logowanie
+    maintenance_in_hours: "%{hours} godziny"
+    maintenance_in_minutes: "%{minutes} protokoły"
+    maintenance_in_progress_description: Obecnie przeprowadzamy konserwację systemu, aby zapewnić optymalną wydajność platformy i poprawić komfort użytkowania. Dziękujemy za zrozumienie.
+    maintenance_in_progress_title: Trwa planowa konserwacja
+    maintenance_time_remaining: Pozostały czas
+    maintenance_upcoming_description: W celu poprawy jakości usług serwis %{date} będzie poddany planowej konserwacji przez około %{duration}. W tym czasie nie będzie można uzyskać dostępu do serwisu ani wykonać żadnych przypisanych zadań. Dziękujemy za cierpliwość.
+    maintenance_upcoming_title: Nadchodząca konserwacja
+    media_question_transcriptions: Transkrypcje pytań mediów
     media_responses: Reakcje mediów
     modified_by: Zmodyfikowane przez
     modified_date: Data modyfikacji
@@ -63,6 +71,8 @@ pl:
     ok: Ok
     pending: W toku
     processing: Przetwarzanie
+    proctoring_maintenance_active: Serwis Proctoring jest obecnie w trakcie konserwacji i nie jest dostępny pod adresem %{start_time} oraz %{end_time}. Prosimy spróbować ponownie po zakończeniu konserwacji.
+    proctoring_maintenance_upcoming: Serwis Proctoring będzie poddany konserwacji od godziny %{start_time} do godziny %{end_time}.
     question_id: Numer pytania
     question_transcription_disabled: Transkrypcja jest wyłączona dla tego pytania.
     recording_consent_notice: Sesja tego spotkania będzie nagrywana. Udział w tym spotkaniu oznacza zgodę na nagrywanie.

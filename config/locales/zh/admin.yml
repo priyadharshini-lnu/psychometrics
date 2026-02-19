@@ -125,7 +125,10 @@ zh:
     edit_threesixty_campaign_admin: 编辑活动管理
     empty_csv_file: CSV 文件不包含任何数据。
     enable_enhance_with_ai_client_level: 请在客户端级别启用AI增强功能
+    enable_maintenance: 启用维护
     enable_transcription: 启用转录功能
+    end_time: 终结时刻
+    end_time_must_be_after_start_time: 结束时间必须晚于开始时间
     enhance_with_ai: 增强AI
     enhance_with_ai_requires_ai_assistants: 增强AI功能需启用AI助手功能
     error: 错误
@@ -180,6 +183,9 @@ zh:
     libraries: 媒体图书馆
     library_invalid_type: 无效的图书馆项目
     licenses: 许可证
+    maintenance: 维护
+    maintenance_settings: 维护设置
+    maintenance_settings_description: 管理系统维护窗口和设置
     manager_approval_required: "%{user}报告下载前需要经理批准"
     max_value: 最大值
     messages: 信息
@@ -635,6 +641,7 @@ zh:
     permissions_360_campaigns: 360 活动的特定权限
     piped_text: 管道文本
     privacy: 隐私权
+    proctoring: 监考
     professional: 专业人士
     proficiency: 熟练程度
     proficiency_level: API 密钥
@@ -723,8 +730,10 @@ zh:
     search_admins: 搜索管理员
     search_job_role: 搜索职位
     select_admin_role: 选择管理员角色
+    select_end_time: 选择结束时间
     select_language_to_translate: 请选择要翻译的语言
     select_level: 选择级别
+    select_start_time: 选择开始时间
     send_email: 发送电子邮件
     settings: 设置
     show_original: 显示原文
@@ -737,12 +746,14 @@ zh:
     slot_name: 车位名称
     sms_histories: 短信历史
     sms_invites: 短信邀请
+    start_time: 开始时间
     stats: 统计数据
     status_details: 状态详情
     structured_learning: 正规学习 [10]
     subdomain: 子域
     subject_part_of_other_invite: 邮箱地址为 %{user_email} 的用户已获邀加入 '%{workshop_invite_name}' 群组。
     target_job_role: 目标职位
+    timezone: 时区
     tone: 语调
     toolbar_ai_insight: 人工智能洞察
     toolbar_ai_suggestion: AI建议

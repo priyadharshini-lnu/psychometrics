@@ -1,3 +1,4 @@
+import SettingsRoutes from '~/modules/admin/modules/Settings/routes'
 import UserRoutes from '~/modules/admin/modules/Users/routes'
 import ClientRoutes from '~/modules/admin/modules/client/routes'
 import ProfileRoutes from '~/modules/admin/modules/Profile/routes'
@@ -32,6 +33,7 @@ const routes = [
   ...Skills,
   ...DevelopmentActionRoutes,
   ...AiAssitantRoutes,
+  ...SettingsRoutes,
 ]
 
 export default routes

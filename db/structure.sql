@@ -4698,6 +4698,41 @@ ALTER SEQUENCE public.lti_oauth2_access_tokens_id_seq OWNED BY public.lti_oauth2
 
 
 --
+-- Name: maintenance_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.maintenance_settings (
+    id bigint NOT NULL,
+    sub_system integer NOT NULL,
+    maintenance_window_enabled boolean DEFAULT false NOT NULL,
+    time_zone character varying NOT NULL,
+    start_time timestamp(6) without time zone NOT NULL,
+    end_time timestamp(6) without time zone NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: maintenance_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.maintenance_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: maintenance_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.maintenance_settings_id_seq OWNED BY public.maintenance_settings.id;
+
+
+--
 -- Name: media_responses; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -9958,6 +9993,13 @@ ALTER TABLE ONLY public.lti_oauth2_access_tokens ALTER COLUMN id SET DEFAULT nex
 
 
 --
+-- Name: maintenance_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.maintenance_settings ALTER COLUMN id SET DEFAULT nextval('public.maintenance_settings_id_seq'::regclass);
+
+
+--
 -- Name: media_responses id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -11690,6 +11732,14 @@ ALTER TABLE ONLY public.licenses
 
 ALTER TABLE ONLY public.lti_oauth2_access_tokens
     ADD CONSTRAINT lti_oauth2_access_tokens_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: maintenance_settings maintenance_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.maintenance_settings
+    ADD CONSTRAINT maintenance_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -14712,6 +14762,13 @@ CREATE INDEX index_lti_oauth2_access_tokens_on_project_id_and_expires_at ON publ
 --
 
 CREATE UNIQUE INDEX index_lti_oauth2_access_tokens_on_token_hash ON public.lti_oauth2_access_tokens USING btree (token_hash);
+
+
+--
+-- Name: index_maintenance_settings_on_sub_system; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_maintenance_settings_on_sub_system ON public.maintenance_settings USING btree (sub_system);
 
 
 --
@@ -19778,6 +19835,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260209123134'),
 ('20260209112420'),
 ('20260209020330'),
+('20260217103234'),
+('20260211083300'),
 ('20260123071239'),
 ('20260122034210'),
 ('20260119144024'),

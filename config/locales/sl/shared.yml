@@ -50,6 +50,14 @@ sl:
     last_name: Priimek
     learning_on_the_job_label: Učenje na delovnem mestu
     login: Prijava
+    maintenance_in_hours: "%{hours} ure"
+    maintenance_in_minutes: "%{minutes} zapisniki"
+    maintenance_in_progress_description: Trenutno izvajamo vzdrževanje sistema, da bi zagotovili optimalno delovanje platforme in izboljšali vašo izkušnjo. Hvala za razumevanje.
+    maintenance_in_progress_title: Načrtovano vzdrževanje v teku
+    maintenance_time_remaining: Preostali čas
+    maintenance_upcoming_description: Na spletni strani %{date} bomo izvedli redno vzdrževanje, ki bo trajalo približno %{duration}, da bi izboljšali vašo izkušnjo. V tem času ne boste mogli dostopati do dodeljenih nalog ali jih opraviti. Zahvaljujemo se vam za potrpežljivost.
+    maintenance_upcoming_title: Prihajajoče vzdrževanje
+    media_question_transcriptions: Prepisi vprašanj medijev
     media_responses: Odzivi medijev
     modified_by: Spremenil
     modified_date: Datum spremembe
@@ -63,6 +71,8 @@ sl:
     ok: Ok
     pending: V obravnavi
     processing: Obdelava
+    proctoring_maintenance_active: Proctoring je trenutno v vzdrževanju od %{start_time} do %{end_time}. Poskusite ponovno po koncu vzdrževanja.
+    proctoring_maintenance_upcoming: Nadzor bo v vzdrževanju od %{start_time} do %{end_time}.
     question_id: ID vprašanja
     question_transcription_disabled: Prepisovanje je za to vprašanje onemogočeno.
     recording_consent_notice: Ta seja bo posneta. Vaša udeležba na tem sestanku pomeni vaše soglasje za snemanje.

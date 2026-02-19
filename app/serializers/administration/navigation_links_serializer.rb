@@ -49,6 +49,8 @@ module Administration
         if policy(%i[api administration ai assistant]).index? && feature_enabled?(:ai_assistant_enabled)
           links['ai_assistants'] = "#{admin_path}/ai_assistants"
         end
+        links['settings'] = "#{admin_path}/settings" if policy(%i[api administration
+                                                                  maintenance_setting]).index?
       end.transform_keys! { |k| k.camelcase(:lower) }
     end
     # rubocop:enable Metrics/PerceivedComplexity

@@ -125,7 +125,10 @@ en-US:
     edit_threesixty_campaign_admin: Edit Campaign Admin
     empty_csv_file: CSV file does not contain any data.
     enable_enhance_with_ai_client_level: Please enable Enhance with AI feature at client level
+    enable_maintenance: Enable Maintenance
     enable_transcription: Enable Transcription
+    end_time: End Time
+    end_time_must_be_after_start_time: End time must be after start time
     enhance_with_ai: Enhance with AI
     enhance_with_ai_requires_ai_assistants: Enhance with AI requires AI Assistants feature to be enabled
     error: Error
@@ -181,6 +184,9 @@ en-US:
     libraries: Media Library
     library_invalid_type: Invalid Library Item
     licenses: Licenses
+    maintenance: Maintenance
+    maintenance_settings: Maintenance Settings
+    maintenance_settings_description: Manage system maintenance windows and settings
     manager_approval_required: Report for %{user} requires manager approval before download
     max_value: Max value
     messages: Messages
@@ -636,6 +642,7 @@ en-US:
     permissions_360_campaigns: Permissions specific to 360 campaigns
     piped_text: Piped Text
     privacy: Privacy
+    proctoring: Proctoring
     professional: Professional
     proficiency: Proficiency
     proficiency_level: API keys
@@ -724,8 +731,10 @@ en-US:
     search_admins: Search admins
     search_job_role: Search job role
     select_admin_role: Select admin role
+    select_end_time: Select End Time
     select_language_to_translate: Please select language to translate
     select_level: Select level
+    select_start_time: Select Start Time
     send_email: Send email
     settings: Settings
     show_original: Show Original
@@ -738,12 +747,14 @@ en-US:
     slot_name: Slot Name
     sms_histories: SMS Histories
     sms_invites: SMS Invites
+    start_time: Start Time
     stats: Stats
     status_details: Status Details
     structured_learning: Formal Learning [10]
     subdomain: Subdomain
     subject_part_of_other_invite: Subject with email %{user_email} is already invited to '%{workshop_invite_name}'
     target_job_role: Target Job Role
+    timezone: TimeZone
     tone: Tone
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: AI Suggestion

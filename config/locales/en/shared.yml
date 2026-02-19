@@ -50,6 +50,14 @@ en:
     last_name: Last Name
     learning_on_the_job_label: Learning on the Job
     login: Login
+    maintenance_in_hours: "%{hours} hours"
+    maintenance_in_minutes: "%{minutes} minutes"
+    maintenance_in_progress_description: We're currently performing system maintenance to ensure optimal platform performance and enhance your experience. Thank you for your understanding.
+    maintenance_in_progress_title: Scheduled Maintenance in Progress
+    maintenance_time_remaining: Time remaining
+    maintenance_upcoming_description: We'll be performing scheduled maintenance on %{date} for approximately %{duration} to enhance your experience. During this time, you won't be able to access or complete any assigned tasks. We appreciate your patience.
+    maintenance_upcoming_title: Upcoming Maintenance
+    media_question_transcriptions: Media Question Transcriptions
     media_responses: Media Responses
     modified_by: Modified By
     modified_date: Modified Date
@@ -63,6 +71,8 @@ en:
     ok: Ok
     pending: Pending
     processing: Processing
+    proctoring_maintenance_active: Proctoring is currently under maintenance from %{start_time} to %{end_time}. Please try again after the maintenance window.
+    proctoring_maintenance_upcoming: Proctoring will be under maintenance from %{start_time} to %{end_time}.
     question_id: Question ID
     question_transcription_disabled: Transcription is disabled for this question
     recording_consent_notice: This meeting session will be recorded. Your participation in this meeting constitutes your consent to be recorded.

@@ -50,6 +50,14 @@ ru:
     last_name: Фамилия
     learning_on_the_job_label: Обучение на рабочем месте
     login: Вход
+    maintenance_in_hours: "%{hours} часы"
+    maintenance_in_minutes: "%{minutes} протоколы"
+    maintenance_in_progress_description: В настоящее время мы проводим техническое обслуживание системы, чтобы обеспечить оптимальную работу платформы и улучшить качество обслуживания. Благодарим вас за понимание.
+    maintenance_in_progress_title: Плановое техническое обслуживание в процессе
+    maintenance_time_remaining: Оставшееся время
+    maintenance_upcoming_description: Мы будем проводить плановое техническое обслуживание на сайте %{date} в течение примерно %{duration}, чтобы улучшить ваш опыт работы с сайтом. В течение этого времени вы не сможете получить доступ к назначенным задачам или выполнить их. Благодарим вас за терпение.
+    maintenance_upcoming_title: Предстоящее техническое обслуживание
+    media_question_transcriptions: Транскрипции вопросов СМИ
     media_responses: Реакция СМИ
     modified_by: Изменено
     modified_date: Дата изменения
@@ -63,6 +71,8 @@ ru:
     ok: Хорошо
     pending: В ожидании
     processing: Обработка
+    proctoring_maintenance_active: В настоящее время сайт %{start_time} находится на техническом обслуживании и будет доступен по адресу %{end_time}. Пожалуйста, попробуйте снова после завершения технического обслуживания.
+    proctoring_maintenance_upcoming: Процесс проктинга будет находиться на техническом обслуживании с %{start_time} по %{end_time}.
     question_id: Идентификатор вопроса
     question_transcription_disabled: Транскрипция для этого вопроса отключена.
     recording_consent_notice: Эта сессия будет записываться. Ваше участие в этой встрече означает ваше согласие на запись.

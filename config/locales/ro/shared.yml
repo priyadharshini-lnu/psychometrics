@@ -50,6 +50,14 @@ ro:
     last_name: Numele de familie
     learning_on_the_job_label: Învățarea la locul de muncă
     login: Autentificare
+    maintenance_in_hours: "%{hours} ore"
+    maintenance_in_minutes: "%{minutes} minute"
+    maintenance_in_progress_description: În prezent efectuăm lucrări de întreținere a sistemului pentru a asigura performanța optimă a platformei și pentru a vă îmbunătăți experiența. Vă mulțumim pentru înțelegere.
+    maintenance_in_progress_title: Întreținere programată în curs
+    maintenance_time_remaining: Timp rămas
+    maintenance_upcoming_description: Vom efectua lucrări de întreținere programate pe %{date} timp de aproximativ %{duration} pentru a îmbunătăți experiența dvs. În acest interval, nu veți putea accesa sau finaliza niciuna dintre sarcinile atribuite. Vă mulțumim pentru răbdare.
+    maintenance_upcoming_title: Întreținere viitoare
+    media_question_transcriptions: Transcrieri ale întrebărilor adresate de mass-media
     media_responses: Răspunsurile mass-media
     modified_by: Modificat de
     modified_date: Data modificării
@@ -63,6 +71,8 @@ ro:
     ok: Bine
     pending: În așteptare
     processing: Prelucrare
+    proctoring_maintenance_active: Proctoring este în prezent în curs de întreținere, de la %{start_time} la %{end_time}. Vă rugăm să încercați din nou după perioada de întreținere.
+    proctoring_maintenance_upcoming: Proctoring va fi în curs de întreținere de la %{start_time} la %{end_time}.
     question_id: ID întrebare
     question_transcription_disabled: Transcrierea este dezactivată pentru această întrebare.
     recording_consent_notice: Această ședință va fi înregistrată. Participarea ta la această întâlnire constituie consimțământul tău de a fi înregistrat.

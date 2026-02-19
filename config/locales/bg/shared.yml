@@ -50,6 +50,14 @@ bg:
     last_name: Фамилия
     learning_on_the_job_label: Учене на работа
     login: Вход
+    maintenance_in_hours: "%{hours} часа"
+    maintenance_in_minutes: "%{minutes} минути"
+    maintenance_in_progress_description: В момента извършваме системна поддръжка, за да гарантираме оптимална работа на платформата и да подобрим Вашето преживяване. Благодарим Ви за разбирането.
+    maintenance_in_progress_title: Планова поддръжка в процес
+    maintenance_time_remaining: Оставащо време
+    maintenance_upcoming_description: Ще извършваме планова поддръжка на %{date} за приблизително %{duration}, за да подобрим вашето преживяване. По време на тази поддръжка няма да можете да имате достъп до задачите си или да ги изпълнявате. Благодарим ви за търпението.
+    maintenance_upcoming_title: Предстояща поддръжка
+    media_question_transcriptions: Транскрипции на въпроси от медиите
     media_responses: Отговори на медиите
     modified_by: Променено от
     modified_date: Дата на промяна
@@ -63,6 +71,8 @@ bg:
     ok: Добре
     pending: В очакване
     processing: Обработка
+    proctoring_maintenance_active: Proctoring е в процес на поддръжка от %{start_time} до %{end_time}. Моля, опитайте отново след края на поддръжката.
+    proctoring_maintenance_upcoming: Прокторинга ще бъде в процес на поддръжка от %{start_time} до %{end_time}.
     question_id: Идентификационен номер на въпроса
     question_transcription_disabled: Транскрипцията е деактивирана за този въпрос.
     recording_consent_notice: Тази сесия на срещата ще бъде записана. Вашето участие в тази среща представлява вашето съгласие да бъдете записани.

@@ -125,7 +125,10 @@ nl:
     edit_threesixty_campaign_admin: Campagnebeheer bewerken
     empty_csv_file: Het CSV-bestand bevat geen gegevens.
     enable_enhance_with_ai_client_level: Schakel de functie Verbeteren met AI in op klantniveau.
+    enable_maintenance: Onderhoud inschakelen
     enable_transcription: Transcriptie inschakelen
+    end_time: Eindtijd
+    end_time_must_be_after_start_time: De eindtijd moet na de starttijd liggen.
     enhance_with_ai: Verbeter met AI
     enhance_with_ai_requires_ai_assistants: Verbeteren met AI vereist dat de functie AI-assistenten is ingeschakeld.
     error: Fout
@@ -180,6 +183,9 @@ nl:
     libraries: Mediatheek
     library_invalid_type: Ongeldig bibliotheekitem
     licenses: Licenties
+    maintenance: Onderhoud
+    maintenance_settings: Onderhoudsinstellingen
+    maintenance_settings_description: Beheer onderhoudsvensters en instellingen van het systeem
     manager_approval_required: Rapporteer voor %{user} vereist goedkeuring van de manager voordat het wordt gedownload
     max_value: Maximale waarde
     messages: Berichten
@@ -635,6 +641,7 @@ nl:
     permissions_360_campaigns: Rechten specifiek voor 360 campagnes
     piped_text: Tekst in pijpen
     privacy: Privacy
+    proctoring: Toezicht houden
     professional: Professioneel
     proficiency: Vaardigheid
     proficiency_level: API-sleutels
@@ -723,8 +730,10 @@ nl:
     search_admins: Beheerders zoeken
     search_job_role: Zoek functie
     select_admin_role: Selecteer beheerdersrol
+    select_end_time: Eindtijd selecteren
     select_language_to_translate: Selecteer de taal die u wilt vertalen
     select_level: Selecteer niveau
+    select_start_time: Starttijd selecteren
     send_email: Stuur e-mail
     settings: Instellingen
     show_original: Origineel weergeven
@@ -737,12 +746,14 @@ nl:
     slot_name: Slot Name
     sms_histories: SMS-geschiedenis
     sms_invites: SMS Uitnodigingen
+    start_time: Starttijd
     stats: Stats
     status_details: Statusgegevens
     structured_learning: Formeel Leren [10]
     subdomain: Subdomein
     subject_part_of_other_invite: De persoon met e-mailadres %{user_email} is al uitgenodigd voor '%{workshop_invite_name}'.
     target_job_role: Beoogde functie
+    timezone: Tijdzone
     tone: Toon
     toolbar_ai_insight: AI-inzicht
     toolbar_ai_suggestion: AI-suggestie

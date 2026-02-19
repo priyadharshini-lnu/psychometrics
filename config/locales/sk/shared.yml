@@ -50,6 +50,14 @@ sk:
     last_name: Priezvisko
     learning_on_the_job_label: Učenie sa priamo v práci
     login: Prihlásenie
+    maintenance_in_hours: "%{hours} hodiny"
+    maintenance_in_minutes: "%{minutes} minúty"
+    maintenance_in_progress_description: V súčasnosti vykonávame údržbu systému, aby sme zaistili optimálny výkon platformy a zlepšili vaše používateľské skúsenosti. Ďakujeme za pochopenie.
+    maintenance_in_progress_title: Prebieha plánovaná údržba
+    maintenance_time_remaining: Zostávajúci čas
+    maintenance_upcoming_description: Na stránke %{date} budeme vykonávať plánovanú údržbu, ktorá potrvá približne %{duration}, aby sme vám poskytli lepší zážitok. Počas tejto doby nebudete mať prístup k žiadnym prideleným úlohám ani ich nebudete môcť dokončiť. Ďakujeme za trpezlivosť.
+    maintenance_upcoming_title: Nadchádzajúca údržba
+    media_question_transcriptions: Prepisy otázok médií
     media_responses: Reakcie médií
     modified_by: Upravené
     modified_date: Dátum úpravy
@@ -63,6 +71,8 @@ sk:
     ok: Ok
     pending: Čaká na vybavenie
     processing: Spracovanie
+    proctoring_maintenance_active: Služba Proctoring je momentálne v údržbe z %{start_time} na %{end_time}. Skúste to znovu po ukončení údržby.
+    proctoring_maintenance_upcoming: Služba Proctoring bude od %{start_time} do %{end_time} v údržbe.
     question_id: ID otázky
     question_transcription_disabled: Pre túto otázku je prepis vypnutý.
     recording_consent_notice: Toto zasadnutie bude zaznamenané. Vaša účasť na tomto stretnutí znamená váš súhlas s nahrávaním.

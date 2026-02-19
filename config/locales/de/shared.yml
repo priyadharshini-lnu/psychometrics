@@ -50,6 +50,14 @@ de:
     last_name: Familienname, Nachname
     learning_on_the_job_label: Lernen am Arbeitsplatz
     login: Anmelden
+    maintenance_in_hours: "%{hours} Stunden"
+    maintenance_in_minutes: "%{minutes} Protokolle"
+    maintenance_in_progress_description: Wir führen derzeit Systemwartungsarbeiten durch, um eine optimale Plattformleistung zu gewährleisten und Ihr Erlebnis zu verbessern. Vielen Dank für Ihr Verständnis.
+    maintenance_in_progress_title: Geplante Wartungsarbeiten im Gange
+    maintenance_time_remaining: Verbleibende Zeit
+    maintenance_upcoming_description: Wir führen planmäßige Wartungsarbeiten an %{date} für etwa %{duration} durch, um Ihre Benutzererfahrung zu verbessern. Während dieser Zeit können Sie nicht auf zugewiesene Aufgaben zugreifen oder diese erledigen. Wir danken Ihnen für Ihre Geduld.
+    maintenance_upcoming_title: Bevorstehende Wartungsarbeiten
+    media_question_transcriptions: Transkriptionen von Medienfragen
     media_responses: Medienreaktionen
     modified_by: Geändert von
     modified_date: Geändertes Datum
@@ -63,6 +71,8 @@ de:
     ok: Ok
     pending: Ausstehend
     processing: Verarbeitung
+    proctoring_maintenance_active: Die Proctoring-Funktion wird derzeit von %{start_time} auf %{end_time} umgestellt. Bitte versuchen Sie es nach Abschluss der Wartungsarbeiten erneut.
+    proctoring_maintenance_upcoming: Die Überwachung wird von %{start_time} bis %{end_time} gewartet.
     question_id: Fragen-ID
     question_transcription_disabled: Die Transkription ist für diese Frage deaktiviert.
     recording_consent_notice: Diese Sitzung wird aufgezeichnet. Ihre Teilnahme an diesem Treffen stellt Ihre Zustimmung zur Aufnahme dar.
