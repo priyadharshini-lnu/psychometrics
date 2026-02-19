@@ -13,6 +13,7 @@ id:
     audio: Audio
     authentication_failed: Autentikasi gagal. Silakan coba lagi.
     basic: Dasar
+    camera_preview: Pratinjau kamera akan muncul di sini
     campaign_id: ID Kampanye
     cancel: Batal
     change_password: Ubah Kata Sandi
@@ -75,6 +76,7 @@ id:
     proctoring_maintenance_upcoming: Pengawasan ujian akan dalam tahap pemeliharaan dari %{start_time} hingga %{end_time}.
     question_id: ID Pertanyaan
     question_transcription_disabled: Transkripsi dinonaktifkan untuk pertanyaan ini.
+    rec: REC
     recording_consent_notice: Sesi rapat ini akan direkam. Partisipasi Anda dalam pertemuan ini merupakan persetujuan Anda untuk direkam.
     recording_consent_proceed_question: Apakah Anda setuju untuk melanjutkan rekaman rapat?
     recording_consent_title: Merekam Pemberitahuan Persetujuan

@@ -56,9 +56,7 @@ en-US:
       three: Testing, one two three, the sound is clear as can be!.
       two: The quick brown fox jumps over the lazy dog.
     system_check_audio_title: Please speak and repeat the following sentence 3 times.
-    system_check_camera_preview: Camera preview will appear here
     system_check_proceed: Yes, Ok to proceed
-    system_check_rec_text: REC
     system_check_retake: No, I want to retake
     system_check_run_again: Run again
     system_check_start_recording: Start recording

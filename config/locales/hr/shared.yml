@@ -13,6 +13,7 @@ hr:
     audio: Audio
     authentication_failed: Autentifikacija nije uspjela. Molim te, pokušaj ponovno.
     basic: Osnovni
+    camera_preview: Pregled kamere će se pojaviti ovdje
     campaign_id: ID kampanje
     cancel: Otkazati
     change_password: Promijeni lozinku
@@ -75,6 +76,7 @@ hr:
     proctoring_maintenance_upcoming: Održavanje će biti pod nadzorom od %{start_time} do %{end_time}.
     question_id: ID pitanja
     question_transcription_disabled: Transkripcija je onemogućena za ovo pitanje.
+    rec: SNIMITI
     recording_consent_notice: Ova sjednica sjednice bit će snimljena. Vaše sudjelovanje na ovom sastanku znači vaš pristanak za snimanje.
     recording_consent_proceed_question: Slažete li se da nastavite sa snimljenim sastankom?
     recording_consent_title: Obavijest o pristanku za snimanje

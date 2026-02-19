@@ -56,9 +56,7 @@ sr-Cyrl:
       three: Тестирање, један два три, звук је јасан колико год може бити!
       two: Брза смеђа лисица прескаче лењог пса.
     system_check_audio_title: Молим вас, изговорите и поновите следећу реченицу 3 пута.
-    system_check_camera_preview: Преглед камере ће се појавити овде
     system_check_proceed: Да, желим да наставим
-    system_check_rec_text: СНИМАЊЕ
     system_check_retake: Не, желим поново да узмем
     system_check_run_again: Трчи поново
     system_check_start_recording: Почните са снимањем

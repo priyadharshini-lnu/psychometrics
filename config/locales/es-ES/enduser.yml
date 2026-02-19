@@ -56,9 +56,7 @@ es-ES:
       three: Probando, uno dos tres, ¡el sonido es clarísimo!.
       two: El zorro marrón rápido salta sobre el perro perezoso.
     system_check_audio_title: Hable y repita 3 veces las siguientes frases.
-    system_check_camera_preview: La vista previa de la cámara aparecerá aquí
     system_check_proceed: Continuar
-    system_check_rec_text: REC
     system_check_retake: No, quiero retomar
     system_check_run_again: Corre otra vez
     system_check_start_recording: Iniciar grabación

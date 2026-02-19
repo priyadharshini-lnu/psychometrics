@@ -13,6 +13,7 @@ it:
     audio: Audio
     authentication_failed: L'autenticazione è fallita. Per favore, riprova.
     basic: Basico
+    camera_preview: L'anteprima della fotocamera viene visualizzata qui
     campaign_id: ID della campagna elettorale
     cancel: Annulla
     change_password: Modifica la password
@@ -75,6 +76,7 @@ it:
     proctoring_maintenance_upcoming: Il servizio di sorveglianza sarà sottoposto a manutenzione dalle ore %{start_time} alle ore %{end_time}.
     question_id: ID domanda
     question_transcription_disabled: La trascrizione è disabilitata per questa domanda.
+    rec: REC
     recording_consent_notice: Questa sessione di riunione sarà registrata. La tua partecipazione a questa riunione costituisce il tuo consenso a essere registrato.
     recording_consent_proceed_question: Accetti di procedere con l'incontro registrato?
     recording_consent_title: Avviso di Consenso alla Registrazione

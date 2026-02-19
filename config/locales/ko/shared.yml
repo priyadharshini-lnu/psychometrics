@@ -13,6 +13,7 @@ ko:
     audio: 오디오
     authentication_failed: 인증에 실패했습니다. 다시 시도해 주세요.
     basic: 기초의
+    camera_preview: 카메라 미리보기가 여기에 표시됩니다
     campaign_id: 캠페인 ID
     cancel: 취소
     change_password: 비밀번호 변경
@@ -75,6 +76,7 @@ ko:
     proctoring_maintenance_upcoming: "%{start_time}부터 %{end_time}까지 감독 서비스가 유지보수 중입니다."
     question_id: 질문 ID
     question_transcription_disabled: 이 질문에 대해서는 음성 인식 기능이 비활성화되었습니다.
+    rec: REC
     recording_consent_notice: 이 회의 세션은 녹화될 것입니다. 이 회의에 참여하는 것은 녹음에 동의한 것으로 간주됩니다.
     recording_consent_proceed_question: 녹화된 회의를 진행하는 데 동의하십니까?
     recording_consent_title: 동의서 기록 통지

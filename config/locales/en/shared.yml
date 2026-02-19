@@ -13,6 +13,7 @@ en:
     audio: Audio
     authentication_failed: Authentication failed. Please try again.
     basic: Basic
+    camera_preview: Camera preview will appear here
     campaign_id: Campaign ID
     cancel: Cancel
     change_password: Change Password
@@ -75,6 +76,7 @@ en:
     proctoring_maintenance_upcoming: Proctoring will be under maintenance from %{start_time} to %{end_time}.
     question_id: Question ID
     question_transcription_disabled: Transcription is disabled for this question
+    rec: REC
     recording_consent_notice: This meeting session will be recorded. Your participation in this meeting constitutes your consent to be recorded.
     recording_consent_proceed_question: Do you agree to proceed with the recorded meeting?
     recording_consent_title: Recording Consent Notice

@@ -56,9 +56,7 @@ sl:
       three: Test, ena, dve, tri – zvok je povsem jasen!.
       two: Hitra rjava lisica preskoči lenega psa.
     system_check_audio_title: Izgovorite in trikrat ponovite spodnji stavek.
-    system_check_camera_preview: Predogled kamere bo prikazan tukaj
     system_check_proceed: Da, nadaljuj
-    system_check_rec_text: REC
     system_check_retake: Ne, želim poskusiti znova
     system_check_run_again: Začnite znova
     system_check_start_recording: Začni snemati

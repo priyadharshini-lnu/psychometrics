@@ -13,6 +13,7 @@ th:
     audio: เสียง
     authentication_failed: การรับรองความถูกต้องล้มเหลว โปรดลองอีกครั้ง
     basic: พื้นฐาน
+    camera_preview: ตัวอย่างภาพจากกล้องจะแสดงที่นี่
     campaign_id: รหัสแคมเปญ
     cancel: ยกเลิก
     change_password: เปลี่ยนรหัสผ่าน
@@ -75,6 +76,7 @@ th:
     proctoring_maintenance_upcoming: การคุมสอบจะอยู่ระหว่างการบำรุงรักษาตั้งแต่เวลา %{start_time} ถึง %{end_time}
     question_id: รหัสคำถาม
     question_transcription_disabled: การถอดเสียงถูกปิดใช้งานสำหรับคำถามนี้
+    rec: บันทึก
     recording_consent_notice: เซสชั่นการประชุมนี้จะถูกบันทึกไว้ การเข้าร่วมการประชุมนี้ถือเป็นความยินยอมของคุณที่จะบันทึกไว้
     recording_consent_proceed_question: คุณตกลงที่จะดําเนินการประชุมที่บันทึกไว้หรือไม่?
     recording_consent_title: การแจ้งความยินยอมในการบันทึก

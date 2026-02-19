@@ -13,6 +13,7 @@ zh-Hant:
     audio: 音频
     authentication_failed: 驗證失敗。請再試一次。
     basic: 基本
+    camera_preview: 相機預覽將在此出現
     campaign_id: 競選識別碼
     cancel: 取消
     change_password: 變更密碼
@@ -75,6 +76,7 @@ zh-Hant:
     proctoring_maintenance_upcoming: 监考系统将于%{start_time}至%{end_time}期间进行维护。
     question_id: 问题ID
     question_transcription_disabled: 此问题已禁用转录功能
+    rec: REC
     recording_consent_notice: 本次會議將被錄音。您參與本次會議即表示您同意被錄音。
     recording_consent_proceed_question: 你同意繼續錄音會議嗎？
     recording_consent_title: 登記同意書通知

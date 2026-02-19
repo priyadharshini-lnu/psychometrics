@@ -56,9 +56,7 @@ id:
       three: Tes, satu dua tiga, suaranya jernih sekali! (Testing, one two three, the sound is clear as can be!)
       two: Rubah coklat yang cepat melompati anjing yang malas. (The quick brown fox jumps over the lazy dog.)
     system_check_audio_title: Silakan ucapkan dan ulangi kalimat berikut ini sebanyak 3 kali.
-    system_check_camera_preview: Pratinjau kamera akan muncul di sini
     system_check_proceed: Ya, Oke untuk melanjutkan
-    system_check_rec_text: REC
     system_check_retake: Tidak, saya ingin mengulang
     system_check_run_again: Jalankan lagi
     system_check_start_recording: Mulai merekam

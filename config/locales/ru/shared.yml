@@ -13,6 +13,7 @@ ru:
     audio: Аудио
     authentication_failed: Аутентификация не удалась. Повторите попытку.
     basic: Базовый
+    camera_preview: Здесь появится предварительный просмотр камеры
     campaign_id: Идентификатор кампании
     cancel: Отменить
     change_password: Изменить пароль
@@ -75,6 +76,7 @@ ru:
     proctoring_maintenance_upcoming: Процесс проктинга будет находиться на техническом обслуживании с %{start_time} по %{end_time}.
     question_id: Идентификатор вопроса
     question_transcription_disabled: Транскрипция для этого вопроса отключена.
+    rec: REC
     recording_consent_notice: Эта сессия будет записываться. Ваше участие в этой встрече означает ваше согласие на запись.
     recording_consent_proceed_question: Согласны ли вы продолжить запись встречи?
     recording_consent_title: Уведомление о согласии на запись

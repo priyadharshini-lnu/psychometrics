@@ -13,6 +13,7 @@ sl:
     audio: Avdio
     authentication_failed: Avtentikacija ni uspela. Prosim, poskusite znova.
     basic: Osnoven
+    camera_preview: Predogled kamere bo prikazan tukaj
     campaign_id: ID kampanje
     cancel: Prekliči
     change_password: Spremeni geslo
@@ -75,6 +76,7 @@ sl:
     proctoring_maintenance_upcoming: Nadzor bo v vzdrževanju od %{start_time} do %{end_time}.
     question_id: ID vprašanja
     question_transcription_disabled: Prepisovanje je za to vprašanje onemogočeno.
+    rec: REC
     recording_consent_notice: Ta seja bo posneta. Vaša udeležba na tem sestanku pomeni vaše soglasje za snemanje.
     recording_consent_proceed_question: Se strinjate, da nadaljujete s posnetim sestankom?
     recording_consent_title: Obvestilo o snemanju soglasja

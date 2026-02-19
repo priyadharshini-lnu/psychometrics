@@ -13,6 +13,7 @@ fr:
     audio: Audio
     authentication_failed: L’authentification a échoué. Veuillez réessayer.
     basic: Basique
+    camera_preview: L'aperçu de l'appareil photo apparaît ici
     campaign_id: ID de campagne
     cancel: Annuler
     change_password: Modifier le mot de passe
@@ -75,6 +76,7 @@ fr:
     proctoring_maintenance_upcoming: La surveillance sera en maintenance de %{start_time} à %{end_time}.
     question_id: Identifiant de la question
     question_transcription_disabled: La transcription est désactivée pour cette question.
+    rec: REC
     recording_consent_notice: Cette réunion sera enregistrée. Votre participation à cette réunion constitue votre consentement à être enregistré.
     recording_consent_proceed_question: Acceptez-vous de poursuivre la réunion enregistrée ?
     recording_consent_title: Avis de consentement d’enregistrement

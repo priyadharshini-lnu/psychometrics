@@ -13,6 +13,7 @@ de:
     audio: Audio
     authentication_failed: Authentifizierung fehlgeschlagen. Bitte versuchen Sie es erneut.
     basic: Grundlegend
+    camera_preview: Die Kamera-Vorschau wird hier angezeigt
     campaign_id: Wahlkampf-ID
     cancel: Stornieren
     change_password: Passwort ändern
@@ -75,6 +76,7 @@ de:
     proctoring_maintenance_upcoming: Die Überwachung wird von %{start_time} bis %{end_time} gewartet.
     question_id: Fragen-ID
     question_transcription_disabled: Die Transkription ist für diese Frage deaktiviert.
+    rec: REC
     recording_consent_notice: Diese Sitzung wird aufgezeichnet. Ihre Teilnahme an diesem Treffen stellt Ihre Zustimmung zur Aufnahme dar.
     recording_consent_proceed_question: Stimmen Sie zu, mit dem aufgezeichneten Treffen fortzufahren?
     recording_consent_title: Aufzeichnung der Einwilligungsmitteilung

@@ -13,6 +13,7 @@ sk:
     audio: Audio
     authentication_failed: Autentifikácia zlyhala. Prosím, skúste to znova.
     basic: Základný
+    camera_preview: Tu sa zobrazí náhľad fotoaparátu
     campaign_id: Identifikácia kampane
     cancel: Zrušiť
     change_password: Zmeniť heslo
@@ -75,6 +76,7 @@ sk:
     proctoring_maintenance_upcoming: Služba Proctoring bude od %{start_time} do %{end_time} v údržbe.
     question_id: ID otázky
     question_transcription_disabled: Pre túto otázku je prepis vypnutý.
+    rec: REC
     recording_consent_notice: Toto zasadnutie bude zaznamenané. Vaša účasť na tomto stretnutí znamená váš súhlas s nahrávaním.
     recording_consent_proceed_question: Súhlasíte s pokračovaním v nahrávanom stretnutí?
     recording_consent_title: Oznámenie o súhlase s nahrávaním

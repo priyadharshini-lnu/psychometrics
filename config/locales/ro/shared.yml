@@ -13,6 +13,7 @@ ro:
     audio: Audio
     authentication_failed: Autentificarea a eșuat. Vă rog să încercați din nou.
     basic: Bază
+    camera_preview: Previzualizarea camerei va apărea aici
     campaign_id: ID-ul campaniei
     cancel: Anulați
     change_password: Schimbați parola
@@ -75,6 +76,7 @@ ro:
     proctoring_maintenance_upcoming: Proctoring va fi în curs de întreținere de la %{start_time} la %{end_time}.
     question_id: ID întrebare
     question_transcription_disabled: Transcrierea este dezactivată pentru această întrebare.
+    rec: REC
     recording_consent_notice: Această ședință va fi înregistrată. Participarea ta la această întâlnire constituie consimțământul tău de a fi înregistrat.
     recording_consent_proceed_question: Sunteți de acord să continuați cu întâlnirea înregistrată?
     recording_consent_title: Notificare de consimțământ pentru înregistrare

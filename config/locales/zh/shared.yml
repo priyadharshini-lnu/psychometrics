@@ -13,6 +13,7 @@ zh:
     audio: 音频
     authentication_failed: 身份验证失败。请再试一次。
     basic: 基本
+    camera_preview: 此处将显示相机预览
     campaign_id: 竞选标识
     cancel: 取消
     change_password: 更改密码
@@ -75,6 +76,7 @@ zh:
     proctoring_maintenance_upcoming: 监考系统将于%{start_time}至%{end_time}期间进行维护。
     question_id: 问题ID
     question_transcription_disabled: 此问题已禁用转录功能
+    rec: 录制
     recording_consent_notice: 本次会议将被录制。您参与此次会议即表示您同意被录音。
     recording_consent_proceed_question: 你同意继续录音会议吗？
     recording_consent_title: 录音同意通知

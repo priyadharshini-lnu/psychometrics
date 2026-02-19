@@ -13,6 +13,7 @@ vi:
     audio: Âm thanh
     authentication_failed: Xác thực không thành công. Vui lòng thử lại.
     basic: Cơ bản
+    camera_preview: Bản xem trước của máy ảnh sẽ xuất hiện ở đây
     campaign_id: ID chiến dịch
     cancel: Hủy bỏ
     change_password: Thay đổi mật khẩu
@@ -75,6 +76,7 @@ vi:
     proctoring_maintenance_upcoming: Hệ thống giám sát thi sẽ được bảo trì từ %{start_time} đến %{end_time}.
     question_id: ID câu hỏi
     question_transcription_disabled: Chức năng chuyển đổi văn bản đã bị vô hiệu hóa cho câu hỏi này.
+    rec: GHI NHẬN
     recording_consent_notice: Phiên họp này sẽ được ghi lại. Việc bạn tham gia cuộc họp này cấu thành sự đồng ý của bạn để được ghi lại.
     recording_consent_proceed_question: Bạn có đồng ý tiến hành cuộc họp được ghi âm không?
     recording_consent_title: Thông báo đồng ý ghi âm

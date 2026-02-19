@@ -13,6 +13,7 @@ nl:
     audio: Audio
     authentication_failed: Authenticatie mislukt. Probeer het alsjeblieft opnieuw.
     basic: Basisch
+    camera_preview: Hier verschijnt het voorbeeld van de camera
     campaign_id: Campagne-ID
     cancel: Annuleren
     change_password: Wachtwoord wijzigen
@@ -75,6 +76,7 @@ nl:
     proctoring_maintenance_upcoming: Proctoring zal worden onderhouden van %{start_time} tot %{end_time}.
     question_id: Vraag-ID
     question_transcription_disabled: Transcriptie is uitgeschakeld voor deze vraag.
+    rec: REC
     recording_consent_notice: Deze bijeenkomst zal worden opgenomen. Uw deelname aan deze bijeenkomst betekent dat u toestemming geeft om opgenomen te worden.
     recording_consent_proceed_question: Gaat u akkoord met de opgenomen vergadering?
     recording_consent_title: Opname Toestemming Kennisgeving

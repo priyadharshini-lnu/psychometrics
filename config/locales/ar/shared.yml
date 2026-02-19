@@ -13,6 +13,7 @@ ar:
     audio: الصوت
     authentication_failed: فشل المصادقة. يرجى المحاولة مرة أخرى.
     basic: أساسي
+    camera_preview: ستظهر معاينة الكاميرا هنا
     campaign_id: معرف الحملة
     cancel: إلغاء
     change_password: تغيير كلمة المرور
@@ -75,6 +76,7 @@ ar:
     proctoring_maintenance_upcoming: سيتم إجراء صيانة على نظام المراقبة من %{start_time} إلى %{end_time}.
     question_id: رقم السؤال
     question_transcription_disabled: النسخ معطل لهذا السؤال
+    rec: REC
     recording_consent_notice: سيتم تسجيل جلسة الاجتماع هذه. مشاركتك في هذا الاجتماع تعني موافقتك على التسجيل.
     recording_consent_proceed_question: هل توافق على المضي قدما في الاجتماع المسجل؟
     recording_consent_title: تسجيل إشعار الموافقة

@@ -13,6 +13,7 @@ es-ES:
     audio: Audio
     authentication_failed: Fallo de autenticación. Por favor, inténtalo de nuevo.
     basic: Básico
+    camera_preview: La vista previa de la cámara aparecerá aquí
     campaign_id: ID de campaña
     cancel: Cancelar
     change_password: Cambiar contraseña
@@ -75,6 +76,7 @@ es-ES:
     proctoring_maintenance_upcoming: La supervisión estará en mantenimiento desde %{start_time} hasta %{end_time}.
     question_id: ID de la pregunta
     question_transcription_disabled: La transcripción está desactivada para esta pregunta.
+    rec: REC
     recording_consent_notice: Esta sesión de reunión será grabada. Tu participación en esta reunión constituye tu consentimiento para ser grabado.
     recording_consent_proceed_question: "¿Acepta continuar con la reunión grabada?"
     recording_consent_title: Aviso de consentimiento de grabación

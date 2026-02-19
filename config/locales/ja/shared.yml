@@ -13,6 +13,7 @@ ja:
     audio: オーディオ
     authentication_failed: 認証に失敗しました。もう一度お試しください。
     basic: 基本的な
+    camera_preview: カメラのプレビューはここに表示されます
     campaign_id: キャンペーンID
     cancel: キャンセル
     change_password: パスワードの変更
@@ -75,6 +76,7 @@ ja:
     proctoring_maintenance_upcoming: プロクターリングは、%{start_time} から %{end_time} までメンテナンスを行います。
     question_id: 質問ID
     question_transcription_disabled: この質問の文字起こしは無効です
+    rec: REC
     recording_consent_notice: この会議セッションは録画されます。この会議への参加は、記録されることへの同意を意味します。
     recording_consent_proceed_question: 録画された面談を進めることに同意しますか?
     recording_consent_title: 同意書の記録通知

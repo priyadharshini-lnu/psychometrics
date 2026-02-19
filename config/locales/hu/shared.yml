@@ -13,6 +13,7 @@ hu:
     audio: Audio
     authentication_failed: A hitelesítés sikertelen. Kérlek, próbáld meg újra.
     basic: Alapvető
+    camera_preview: A kamera előnézet itt jelenik meg
     campaign_id: Kampányazonosító
     cancel: Törölje
     change_password: Jelszó módosítása
@@ -75,6 +76,7 @@ hu:
     proctoring_maintenance_upcoming: A vizsgafelügyelet karbantartás alatt áll az %{start_time} és az %{end_time} között.
     question_id: Kérdés azonosító
     question_transcription_disabled: A leírás le van tiltva ehhez a kérdéshez.
+    rec: REC
     recording_consent_notice: Ezt az ülést rögzítik. Részvétele ezen a találkozón azt jelenti, hogy beleegyezik a rögzítéshez.
     recording_consent_proceed_question: Beleegyezik a rögzített találkozó folytatásába?
     recording_consent_title: Felvételi beleegyezési értesítés

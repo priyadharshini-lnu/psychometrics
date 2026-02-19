@@ -13,6 +13,7 @@ sr-Latn:
     audio: Аудио
     authentication_failed: Autentifikacija nije uspela. Pokušajte ponovo.
     basic: Osnovne
+    camera_preview: Pregled kamere će se pojaviti ovde
     campaign_id: ID kampanje
     cancel: Otkaži
     change_password: Promeni lozinku
@@ -75,6 +76,7 @@ sr-Latn:
     proctoring_maintenance_upcoming: Прокторинг ће бити у одржавању од %{start_time} до %{end_time}.
     question_id: Идентификациони број питања
     question_transcription_disabled: Транскрипција је онемогућена за ово питање
+    rec: REC
     recording_consent_notice: Ova sesija sastanka će biti snimljena. Vaše učešće na ovom sastanku predstavlja vašu saglasnost da se snima.
     recording_consent_proceed_question: Da li se slažete da nastavite sa snimljenim sastankom?
     recording_consent_title: Obaveštenje o saglasnosti za snimanje

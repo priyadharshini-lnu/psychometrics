@@ -13,6 +13,7 @@ pl:
     audio: Audio
     authentication_failed: Uwierzytelnianie się nie powiodło. Proszę, spróbuj ponownie.
     basic: Podstawowy
+    camera_preview: Podgląd kamery pojawi się tutaj
     campaign_id: Identyfikacja kampanii
     cancel: Anuluj
     change_password: Zmień hasło
@@ -75,6 +76,7 @@ pl:
     proctoring_maintenance_upcoming: Serwis Proctoring będzie poddany konserwacji od godziny %{start_time} do godziny %{end_time}.
     question_id: Numer pytania
     question_transcription_disabled: Transkrypcja jest wyłączona dla tego pytania.
+    rec: REC
     recording_consent_notice: Sesja tego spotkania będzie nagrywana. Udział w tym spotkaniu oznacza zgodę na nagrywanie.
     recording_consent_proceed_question: Czy zgadzasz się na kontynuowanie nagranego spotkania?
     recording_consent_title: Zawiadomienie o zgodzie na nagranie

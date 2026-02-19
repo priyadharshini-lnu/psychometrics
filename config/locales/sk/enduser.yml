@@ -56,9 +56,7 @@ sk:
       three: Testovanie, jeden dva tri, zvuk je jasný ako môže byť!.
       two: Rýchla hnedá líška preskočí lenivého psa.
     system_check_audio_title: Vyslovte a zopakujte 3-krát nasledujúcu vetu.
-    system_check_camera_preview: Tu sa zobrazí náhľad fotoaparátu
     system_check_proceed: Áno, môžete pokračovať
-    system_check_rec_text: REC
     system_check_retake: Nie, chcem si zopakovať
     system_check_run_again: Znovu bežať
     system_check_start_recording: Spustiť nahrávanie

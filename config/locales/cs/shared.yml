@@ -13,6 +13,7 @@ cs:
     audio: Audio
     authentication_failed: Autentizace selhala. Zkuste to prosím znovu.
     basic: Základní
+    camera_preview: Tady se zobrazí náhled fotoaparátu
     campaign_id: Identifikace kampaně
     cancel: Zrušit
     change_password: Změna hesla
@@ -75,6 +76,7 @@ cs:
     proctoring_maintenance_upcoming: Proctoring bude od %{start_time} do %{end_time} v údržbě.
     question_id: ID otázky
     question_transcription_disabled: Přepis je pro tuto otázku zakázán.
+    rec: NAHRÁVÁNÍ
     recording_consent_notice: Toto zasedání bude nahráváno. Vaše účast na tomto setkání znamená váš souhlas s nahráváním.
     recording_consent_proceed_question: Souhlasíte s pokračováním v zaznamenaném setkání?
     recording_consent_title: Oznámení o souhlasu s nahráváním
