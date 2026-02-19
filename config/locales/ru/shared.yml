@@ -13,12 +13,14 @@ ru:
     audio: Аудио
     authentication_failed: Аутентификация не удалась. Повторите попытку.
     basic: Базовый
+    camera_preview: Здесь появится предварительный просмотр камеры
     campaign_id: Идентификатор кампании
     cancel: Отменить
     change_password: Изменить пароль
     clear_filters: Очистить фильтры
     collaborative_learning: Совместное обучение
     completed: Завершено
+    configurations: Конфигурации
     confirm: Подтвердить
     continue: Продолжить
     copy: Копировать
@@ -27,6 +29,9 @@ ru:
     decline: Спад
     description: Описание
     download: Скачать
+    download_audio: Скачать аудио
+    download_transcription: Скачать транскрипцию
+    download_video: Скачать видео
     edit: Редактировать
     edited: Отредактировано
     email: Электронная почта
@@ -54,6 +59,7 @@ ru:
     maintenance_upcoming_description: Мы будем проводить плановое техническое обслуживание на сайте %{date} в течение примерно %{duration}, чтобы улучшить ваш опыт работы с сайтом. В течение этого времени вы не сможете получить доступ к назначенным задачам или выполнить их. Благодарим вас за терпение.
     maintenance_upcoming_title: Предстоящее техническое обслуживание
     media_question_transcriptions: Транскрипции вопросов СМИ
+    media_responses: Реакция СМИ
     modified_by: Изменено
     modified_date: Дата изменения
     more_actions: Дополнительные действия
@@ -69,6 +75,8 @@ ru:
     proctoring_maintenance_active: В настоящее время сайт %{start_time} находится на техническом обслуживании и будет доступен по адресу %{end_time}. Пожалуйста, попробуйте снова после завершения технического обслуживания.
     proctoring_maintenance_upcoming: Процесс проктинга будет находиться на техническом обслуживании с %{start_time} по %{end_time}.
     question_id: Идентификатор вопроса
+    question_transcription_disabled: Транскрипция для этого вопроса отключена.
+    rec: REC
     recording_consent_notice: Эта сессия будет записываться. Ваше участие в этой встрече означает ваше согласие на запись.
     recording_consent_proceed_question: Согласны ли вы продолжить запись встречи?
     recording_consent_title: Уведомление о согласии на запись
@@ -79,6 +87,7 @@ ru:
     rte_paste_content_exceeds_char_limit: Текст превышает ограничение по количеству символов {{maxCharacterLimit}} и не может быть вставлен.
     rte_paste_content_exceeds_word_limit: Текст превышает ограничение по количеству слов {{maxWordLimit}} и не может быть вставлен.
     save: Сохранить
+    saving_video: Сохранение видео... Пожалуйста, не закрывайте и не обновляйте браузер
     search: Поиск
     send_email: Отправить электронное письмо
     show_more: Показать больше
@@ -97,6 +106,7 @@ ru:
     transcription: Транскрипция
     transcription_already_requested: Транскрипция уже заказана или находится в процессе выполнения
     transcription_not_enabled: Транскрипция не включена для медиа-ответа
+    transcription_status: Статус транскрипции
     transcriptions: Транскрипции
     try_again: Попробовать еще раз
     tte_terms_and_condition: Условия и конфиденциальность

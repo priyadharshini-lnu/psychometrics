@@ -58,7 +58,7 @@ export const DetailsDrawer: FC<Props> = ({
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('common.column.dimension')} key="dimension" className="va-t">
             {dimension && (
-              <Space direction="vertical">
+              <Space orientation="vertical">
                 <Typography.Text>
                   {I18n.t('common.column.name')}
                   :

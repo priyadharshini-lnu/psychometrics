@@ -2,15 +2,18 @@
 
 module AI::IdpChat
   class AnalyzeDocument < AsyncResponseRequest::AsyncRequestHandler
+    include AsyncResponseRequest::AIRequestErrorHandler
+
     def call
       file_name = context[:meta][:file_name]
+      options = retry_options
 
-      AI::AssistableService::Idp.call(plan, current_user, "Uploaded file #{file_name}") do
+      AI::AssistableService::Idp.call(plan, current_user, "Uploaded file #{file_name}", **options) do
         on(:ok) do |response|
           async_response.response_data = response
         end
-        on(:error) do |error_message|
-          async_response.response_data = { content: { message: error_message, component: 'Error' } }
+        on(:error) do |error_message, error|
+          handle_error_with_retry(error_message, error)
         end
       end
 

@@ -46,7 +46,7 @@ export const MultipleResponseTable: FC<Props> = ({ assessorAssessments, onView }
 
   return (
     <div className="p-4">
-      <Space className="w-100" direction="vertical">
+      <Space className="w-100" orientation="vertical">
         <Table dataSource={assessorAssessments} columns={columns} pagination={{ pageSize: 25 }} />
         {lastAssessment && !inProgress ? (
           <div className="ta-e">

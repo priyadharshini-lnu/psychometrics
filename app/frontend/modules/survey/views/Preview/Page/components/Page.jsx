@@ -16,6 +16,7 @@ class Page extends Component {
   static propTypes = {
     page: PropTypes.object.isRequired,
     defaultLanguage: PropTypes.string,
+    showEnhanceWithAI: PropTypes.bool,
   }
 
   static contextType = MediaQueryContext
@@ -115,7 +116,7 @@ class Page extends Component {
 
   render () {
     const {
-      page, questions, errors, nextPage, preview, prevPage, hasPrevPage, defaultLanguage,
+      page, questions, errors, nextPage, preview, prevPage, hasPrevPage, defaultLanguage, showEnhanceWithAI,
       block: {
         props: blockProps,
         id: blockId,
@@ -160,6 +161,7 @@ class Page extends Component {
               allErrors={preview.errors}
               focusFirstError={preview.focusFirstError}
               singleQuestionPerPage={preview.enableSingleQuestionPage}
+              showEnhanceWithAI={showEnhanceWithAI}
             />
           </div>
         </div>

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../locale_validator'
+
 module Middlewares
   class SetLocaleMiddleware
     def initialize(app)
@@ -8,7 +10,7 @@ module Middlewares
 
     def call(env)
       request = ActionDispatch::Request.new(env)
-      I18n.locale = request.cookies['locale'] || :en
+      I18n.locale = LocaleValidator.sanitize(request.cookies['locale'])
       @app.call(env)
     end
   end

@@ -28,6 +28,7 @@ ja:
     max_word_limit: 最大%{max}語以内にしてください
     min_word_limit: 最小%{min}語以上にしてください
     my_plan: 私の計画
+    no_audio_warning: 音声が検出されません。マイクが接続され、正常に動作しているかご確認ください。
     profile: プロフィール
     profile_details: 詳細
     question_counter: 質問 %{current} / %{total}
@@ -36,11 +37,31 @@ ja:
     recording: 録音
     reject_idp_plan: 計画を拒否する
     request_retry_message: あなたはオフラインです。回答は保存できませんでしたが、オンラインに戻ったら自動的に保存されます。ページを更新したり閉じたりしないでください。
-    saving_video_text: ビデオ保存中...ブラウザを閉じたり更新したりしないでください
     selected_count: 選択済み
     skill_type: スキルの種類
     start_campaign_message_proctored: これは監督付きキャンペーンです。活動を開始するには「%{buttonText}」ボタンをクリックしてください。
     start_campaign_message_timed: これは時間制限のあるキャンペーンです。アクティビティを開始するには「%{buttonText}」ボタンをクリックしてください。
     start_campaign_message_timed_proctored: このキャンペーンは時間制限付きで監督制です。活動を開始するには「%{buttonText}」ボタンをクリックしてください。
     status_unknown: 状況不明
+    system_check_access: アクセス
+    system_check_audio_random_phrases:
+      eight: あなたのコーヒーが濃く、あなたの一日が生産的でありますように。
+      five: 笑顔でいれば人生はうまくいく。 マイクに向かって笑顔で！
+      four: 彼女は海辺で貝殻を売っている。
+      nine: 迷ったら、このマイクを試してみてください！
+      one: 私は叫ぶ、あなたも叫ぶ、私たちは皆アイスクリームを求めて叫ぶ！
+      seven: 毎日が新たな始まりだ。 大きな声で、誇らしげに！
+      six: ピザかパスタか、決断は難しい。
+      three: テスト、ワン・ツー・スリー、音は限りなくクリアだ！」。
+      two: 素早い茶色の狐は怠け者の犬を飛び越える。
+    system_check_audio_title: 以下の文章を3回繰り返して言ってください。
+    system_check_proceed: 続行
+    system_check_retake: いや、再受験したい
+    system_check_run_again: もう一度走る
+    system_check_start_recording: 録音開始
+    system_check_stop_recording: 録音停止
+    system_check_test_message: お話しできて嬉しいです
+    system_check_upload_again: 再度アップロード
+    system_check_uploading: アップロード
+    system_check_video_random_phrase: 準備はできました。ビデオとマイクが正常に動作していることを確認するためのテスト録画です。
     tasks: タスク

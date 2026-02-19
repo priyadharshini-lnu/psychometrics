@@ -9,6 +9,7 @@ hr:
     add_project: Dodavanje projekta
     add_project_admin: Dodaj administratora projekta
     add_threesixty_campaign_admin: Dodaj administratora kampanje
+    add_word_count: Dodaj broj riječi
     admin_approval_required: Izvještaj za %{user} zahtijeva odobrenje administratora prije preuzimanja
     admin_created_successfully: Administrator '%{name}' je uspješno kreiran
     admin_export_scheduled: Izvoz administratora uspješno je zakazan. Za status provjerite obavijesti.
@@ -24,6 +25,7 @@ hr:
     ai_assistant_model_provider: Dobavljač
     ai_assistant_model_region_label: Regija
     ai_assistant_required: Potreban je AI Assistant
+    ai_assistant_select_dependencies: Odaberite ovisnosti
     ai_assistants: AI pomoćnici
     ai_assistants_advanced_mode_tooltip: Koristite napredni način za predloške promptova koristeći tekući predložak s dostupnim varijablama. Za više detalja pogledajte dokumentaciju.
     ai_assistants_campaign_id_placeholder: Unesite ID kampanje
@@ -35,6 +37,10 @@ hr:
     ai_assistants_test_render: Testni render
     ai_assistants_test_render_tooltip: Testirajte svoj predložak prompta s podacima kampanje kako biste vidjeli što će biti poslano AI asistentu.
     ai_assisted_idp_feature_disabled: Značajka AI Assisted IDP je onemogućena za ovaj projekt.
+    ai_idp_assistant_configure_dependencies: Konfigurirajte ovisnosti o AI-u
+    ai_idp_assistant_configure_dependencies_description: Konfigurirajte koja se podatke o ovisnostima IDP AI asistent može koristiti kao kontekst. Ovo se primjenjuje samo kada je asistent konfiguriran da prihvaća ovisnosti.
+    ai_idp_assistant_dependencies_updated: Ovisnosti uspješno ažurirane
+    ai_idp_assistant_update_dependencies: Ažuriraj ovisnosti
     ai_notice: Istaknuti odlomci su prevedeni pomoću umjetne inteligencije i mogu sadržavati netočnosti.
     ai_translation: AI prijevod
     all_corner_rounded: Svi kutovi zaobljeni
@@ -83,6 +89,8 @@ hr:
     campaign_templates: Predlošci kampanja
     campaign_user_job_roles_cannot_be_same: Ciljana radna pozicija mora biti različita od trenutne radne pozicije.
     campaigns: Kampanje
+    cancellation_and_rescheduling_disabled: Otkazivanje i zakazivanje novog termina su onemogućeni
+    casual: Neformalno
     client: Najam klijenta
     client_admins: Klijenti administratori
     clients: Klijenti
@@ -91,6 +99,7 @@ hr:
     communications: Komunikacije
     completed: Završen
     completed_tooltip: Svi evaluatori su podnijeli evaluaciju
+    concise: Sažeto
     confirm_remove_admin: Jeste li sigurni da želite ukloniti administratora s e-poštom '%{email}'?
     country: Država
     create_client: Kreiraj klijenta
@@ -120,14 +129,24 @@ hr:
     enable_transcription: Omogući transkripciju
     end_time: Kraj vremena
     end_time_must_be_after_start_time: Krajnje vrijeme mora biti nakon početnog vremena.
+    enhance_with_ai: Unaprijedite pomoću umjetne inteligencije
     enhance_with_ai_requires_ai_assistants: Za poboljšanje pomoću AI-ja potrebna je omogućena značajka AI asistenti.
+    error: Greška
     evaluation_status: Status evaluacije
     evaluation_status_not_done: Status evaluacije nije 'Gotovo' za jedan ili više odabranih predmeta. Molimo provjerite jesu li svi odabrani korisnici završili evaluacije ili ih označili kao završeno.
     export_admin_roles_permissions: Izvoz administratorskih uloga i dozvola
+    export_compact_completion_status: Kompaktan
+    export_completion_status: Status dovršetka izvoza
+    export_completion_statuses_scheduled: Izvoz poslova statusa dovršetka uspješno je zakazan
+    export_detailed_completion_status: Detaljan
     feature_enhance_with_ai: Unaprijedite pomoću umjetne inteligencije
     feature_flags: Značajne zastavice
     fill_empty_score_msg: Popunite sve konačne rezultate prije spremanja.
     final_score_empty_err_msg: Konačni rezultat utakmice %{factor_name} ne može biti prazan.
+    final_score_empty_msg: Konačni rezultat ne može biti prazan.
+    fix_grammar: Popravite gramatiku
+    formal: Službeno
+    generate_transcription: Generiraj transkripciju
     idp_plan_reset_success: Plan je uspješno resetiran
     idp_templates: Predlošci IDP-a
     import_ai_artifacts: Uvoz AI artefakata
@@ -153,6 +172,7 @@ hr:
     import_title: Uvozni subjekti iz CSV-a
     import_upload: Otpremanje
     import_users: Uvoz korisnika
+    internal: Unutarnji
     invalid_csv_header: CSV datoteka sadrži nevažeća zaglavlja.
     job_roles: Uloge na poslu
     learning_from_others: Suradničko učenje [20]
@@ -179,6 +199,7 @@ hr:
     mhs_report_id: ID izvještaja MHS
     mhs_session_id: ID sesije Mhs
     min_value: Minimalna vrijednost
+    minimum_10_words: Minimalno 10 riječi
     missing_min_max_values: Potrebne su minimalne i maksimalne vrijednosti.
     name_required: Ime je potrebno
     no_file_selected: Nijedna datoteka nije odabrana
@@ -196,6 +217,7 @@ hr:
     on_the_job: Na poslu [70]
     only_editable_on_create: Ovu opciju je moguće uređivati samo tijekom izrade.
     options: Mogućnosti
+    original_text: Originalni tekst
     participants: Sudionici
     permissions:
       aiArtifacts:
@@ -622,6 +644,8 @@ hr:
     piped_text: Tekst u cijevima
     privacy: Privatnost
     proctoring: Nadzor
+    professional: Stručan
+    proficiency: Sposobnost
     proficiency_level: API ključevi
     proficiency_levels: Razine stručnosti
     profile_details: Detalji profila
@@ -650,6 +674,7 @@ hr:
     reset_idp_plan_confirmation: Jeste li sigurni da želite resetirati plan?
     reset_idp_plan_title: Plan resetiranja
     response_meta: Meta odgovor
+    result: Rezultat
     results: Rezultati
     role: Uloga
     saml_idp_certificate_available: Dostupno (kliknite za kopiranje)
@@ -731,12 +756,17 @@ hr:
     subject_part_of_other_invite: Subjekt s e-poštom %{user_email} već je pozvan na '%{workshop_invite_name}'
     target_job_role: Ciljana radna uloga
     timezone: Vremenska zona
+    tone: Ton
     toolbar_ai_insight: Uvid u umjetnu inteligenciju
     toolbar_ai_suggestion: Prijedlog AI-a
     toolbar_result_generating: Generiranje...
     toolbar_text_copied: Kopirano u međuspremnik
     toolbar_text_replaced: Tekst zamijenjen!
     toolbar_what_changed_and_why: Što se promijenilo i zašto
+    tools: Alati
+    transcription_record_not_found: Zapis transkripcije nije pronađen
+    transcription_schedule_failed: Nije uspjelo zakazati posao transkripcije
+    transcription_scheduled: Zadatak transkripcije je zakazan. Molimo zatvorite modalni prozor i provjerite status obavijesti.
     translate: Prevodi
     translate_to: Prevodi na
     translate_with_ai: Prevodi pomoću umjetne inteligencije
@@ -750,6 +780,7 @@ hr:
     users: Korisnici
     view_licenses: Prikaz licenci
     waiting: Čekajući
+    words: Riječi
     workshops: Radionicama
     writing_assistant_not_configured: Pomoćnik za pisanje nije konfiguriran
     x_axis_interval_label: Interval X-osovine

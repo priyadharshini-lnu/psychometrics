@@ -52,7 +52,7 @@ export const StartsInTimer: FC<Props> = ({ campaign, fetchCampaigns, scheduledFo
   }
 
   return (
-    <Space direction="vertical">
+    <Space orientation="vertical">
       {campaign.timing && (
         <Space size="small">
           {I18n.t('campaigns.card.duration')}
@@ -68,7 +68,7 @@ export const StartsInTimer: FC<Props> = ({ campaign, fetchCampaigns, scheduledFo
           <CountdownTimer
             prefix={<ClockCircleOutlined />}
             seconds={scheduledIn}
-            valueStyle={{ fontWeight: 'bold' }}
+            styles={{ content: { fontWeight: 'bold' } }}
             onFinish={() => setRefreshDelay(0)}
           />
         </Space>

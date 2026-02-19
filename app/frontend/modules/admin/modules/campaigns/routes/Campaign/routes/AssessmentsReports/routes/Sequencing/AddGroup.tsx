@@ -30,7 +30,7 @@ type Props = OwnProps & PropsFromRedux
 
 const AddGroupComponent: FC<Props> = ({ isLoading, addNewGroup }) => (
   <Card className={cs('flex justify-center items-center h-100', styles.minHeightForGroup)}>
-    <Space direction="vertical" className={cs('flex justify-center items-center')}>
+    <Space orientation="vertical" className={cs('flex justify-center items-center')}>
       <Button type="dashed" onClick={() => addNewGroup('regular')} loading={isLoading} disabled={isLoading}>
         <Space>
           <PlusOutlined />

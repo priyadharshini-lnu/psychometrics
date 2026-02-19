@@ -150,7 +150,7 @@ export const GroupedAssessmentContainer = React.forwardRef(
             <>
               <Card.Meta
                 description={(
-                  <Space direction="vertical">
+                  <Space orientation="vertical">
                     <Space>
                       <Switch
                         disabled={!assessmentCount}

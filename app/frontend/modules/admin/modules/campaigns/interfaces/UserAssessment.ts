@@ -1,6 +1,8 @@
 import Norm from './Norm'
 
 import SimulationContentVariation from './SimulationContentVariation'
+import MhsNormRegion from '~/modules/admin/modules/campaigns/interfaces/MhsNormRegion'
+import MhsNormOption from '~/modules/admin/modules/campaigns/interfaces/MhsNormOption'
 
 interface SavilleUserAssessmentDetails {
   dataSeprator: string | null
@@ -37,8 +39,10 @@ interface MhsUserAssessmentDetails {
   dataGatheringId: string | null
   confidenceInterval: number | null
   leadershipBar: number | null
-  normRegion: string | null
-  normOption: string | null
+  normRegion: number | null
+  normOption: number | null
+  normRegions: MhsNormRegion[]
+  normOptions: MhsNormOption[]
 }
 
 export default interface UserAssessment {
@@ -78,6 +82,10 @@ export default interface UserAssessment {
     updateContentVariation: boolean
     updateSimulationTimeExtension: boolean
     markComplete: boolean
+    updateMhsConfidenceInterval: boolean;
+    updateMhsLeadershipBar: boolean;
+    updateMhsNormRegion: boolean;
+    updateMhsNormOption: boolean;
   }
   usersResultId: number
 }

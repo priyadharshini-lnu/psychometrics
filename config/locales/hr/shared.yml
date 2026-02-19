@@ -13,12 +13,14 @@ hr:
     audio: Audio
     authentication_failed: Autentifikacija nije uspjela. Molim te, pokušaj ponovno.
     basic: Osnovni
+    camera_preview: Pregled kamere će se pojaviti ovdje
     campaign_id: ID kampanje
     cancel: Otkazati
     change_password: Promijeni lozinku
     clear_filters: Obriši filtere
     collaborative_learning: Suradničko učenje
     completed: Završeno
+    configurations: Konfiguracije
     confirm: Potvrditi
     continue: Nastaviti
     copy: Kopiraj
@@ -27,6 +29,9 @@ hr:
     decline: Pad
     description: Opis
     download: Preuzmi
+    download_audio: Preuzmi audio
+    download_transcription: Preuzmi transkripciju
+    download_video: Preuzmi video
     edit: Urediti
     edited: Novi
     email: Email
@@ -54,6 +59,7 @@ hr:
     maintenance_upcoming_description: Obavit ćemo planirano održavanje na %{date}u otprilike od %{duration} do  kako bismo poboljšali vaše iskustvo. Tijekom tog razdoblja nećete moći pristupiti niti dovršiti nijedan dodijeljeni zadatak. Cijenimo vaše strpljenje.
     maintenance_upcoming_title: Nadolazeće održavanje
     media_question_transcriptions: Transkripti medijskih pitanja
+    media_responses: Odgovori medija
     modified_by: Autor izmjene
     modified_date: Datum izmjene
     more_actions: Više radnji
@@ -69,6 +75,8 @@ hr:
     proctoring_maintenance_active: Proctoring je trenutno u održavanju s %{start_time} na %{end_time}. Molimo pokušajte ponovno nakon završetka održavanja.
     proctoring_maintenance_upcoming: Održavanje će biti pod nadzorom od %{start_time} do %{end_time}.
     question_id: ID pitanja
+    question_transcription_disabled: Transkripcija je onemogućena za ovo pitanje.
+    rec: SNIMITI
     recording_consent_notice: Ova sjednica sjednice bit će snimljena. Vaše sudjelovanje na ovom sastanku znači vaš pristanak za snimanje.
     recording_consent_proceed_question: Slažete li se da nastavite sa snimljenim sastankom?
     recording_consent_title: Obavijest o pristanku za snimanje
@@ -79,6 +87,7 @@ hr:
     rte_paste_content_exceeds_char_limit: Tekst prelazi ograničenje znakova {{maxCharacterLimit}} i ne može se zalijepiti.
     rte_paste_content_exceeds_word_limit: Tekst prelazi ograničenje broja riječi {{maxWordLimit}} i ne može se zalijepiti.
     save: Spremiti
+    saving_video: Spremanje videa... Molimo vas da ne zatvarate niti osvježavate preglednik
     search: Pretražiti
     send_email: Pošalji e-poštu
     show_more: Pokaži više
@@ -92,6 +101,7 @@ hr:
     transcription: Transkripcija
     transcription_already_requested: Transkripcija je već zatražena ili je u tijeku.
     transcription_not_enabled: Transkripcija nije omogućena za medijski odgovor.
+    transcription_status: Status transkripcije
     transcriptions: Prijepisa
     try_again: Pokušaj ponovno
     tte_terms_and_condition: Uvjeti i privatnost

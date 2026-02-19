@@ -51,7 +51,7 @@ export const DataReportForm: React.FC<Props> = ({
   const [form] = Form.useForm()
 
   return (
-    <Drawer open={show} width="70%" onClose={close} destroyOnClose maskClosable={false}>
+    <Drawer open={show} width="70%" onClose={close} destroyOnHidden maskClosable={false}>
       <ResourceForm
         resourceName="data_reports"
         readableResourceName={I18n.t('administration.data_reports.form.name')}

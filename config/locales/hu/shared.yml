@@ -13,12 +13,14 @@ hu:
     audio: Audio
     authentication_failed: A hitelesítés sikertelen. Kérlek, próbáld meg újra.
     basic: Alapvető
+    camera_preview: A kamera előnézet itt jelenik meg
     campaign_id: Kampányazonosító
     cancel: Törölje
     change_password: Jelszó módosítása
     clear_filters: Szűrők törlése
     collaborative_learning: Együttműködő tanulás
     completed: Befejezett
+    configurations: Konfigurációk
     confirm: Megerősítés
     continue: Folytatódik
     copy: Másolás
@@ -27,6 +29,9 @@ hu:
     decline: Hanyatlás
     description: Leírás
     download: Letöltés
+    download_audio: Audio letöltése
+    download_transcription: Letöltés Átírás
+    download_video: Videó letöltése
     edit: Szerkesztés
     edited: Új
     email: E-mail
@@ -54,6 +59,7 @@ hu:
     maintenance_upcoming_description: A %{date} webhelyen körülbelül %{duration} időtartamra tervezett karbantartási munkálatokat végzünk, hogy javítsuk az Ön felhasználói élményét. Ez idő alatt nem fog tudni hozzáférni a hozzárendelt feladatokhoz, és azokat nem fogja tudni elvégezni. Türelmét köszönjük.
     maintenance_upcoming_title: Közelgő karbantartás
     media_question_transcriptions: Média kérdések átirata
+    media_responses: Média reakciók
     modified_by: Módosította
     modified_date: Módosítás dátuma
     more_actions: További műveletek
@@ -69,6 +75,8 @@ hu:
     proctoring_maintenance_active: A vizsgafelügyelet jelenleg karbantartás alatt áll az %{start_time} és az %{end_time} oldalakon. Kérjük, próbálkozzon újra a karbantartási időszak után.
     proctoring_maintenance_upcoming: A vizsgafelügyelet karbantartás alatt áll az %{start_time} és az %{end_time} között.
     question_id: Kérdés azonosító
+    question_transcription_disabled: A leírás le van tiltva ehhez a kérdéshez.
+    rec: REC
     recording_consent_notice: Ezt az ülést rögzítik. Részvétele ezen a találkozón azt jelenti, hogy beleegyezik a rögzítéshez.
     recording_consent_proceed_question: Beleegyezik a rögzített találkozó folytatásába?
     recording_consent_title: Felvételi beleegyezési értesítés
@@ -79,6 +87,7 @@ hu:
     rte_paste_content_exceeds_char_limit: A szöveg meghaladja a {{maxCharacterLimit}} karakterkorlátját, és nem lehet beilleszteni.
     rte_paste_content_exceeds_word_limit: A szöveg túllépi a {{maxWordLimit}} szóhatárát, és nem lehet beilleszteni.
     save: Mentés
+    saving_video: Videómentés... Kérjük, ne zárja be vagy frissítse a böngészőt
     search: Keresés
     send_email: E-mail küldése
     show_more: Több
@@ -92,6 +101,7 @@ hu:
     transcription: Átírás
     transcription_already_requested: A leírás már megrendelve vagy folyamatban van
     transcription_not_enabled: A transzkripció nem engedélyezett a média válaszokhoz.
+    transcription_status: Átírási állapot
     transcriptions: Átiratok
     try_again: Próbáld újra
     tte_terms_and_condition: Feltételek és adatvédelem

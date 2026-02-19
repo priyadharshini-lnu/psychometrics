@@ -76,7 +76,7 @@ const Properties = ({ questions, modules }) => {
   )
 
   return (
-    <Space direction="vertical" className="w-100">
+    <Space orientation="vertical" className="w-100">
       {renderDataFormat()}
       {render3DOptions()}
       <div>

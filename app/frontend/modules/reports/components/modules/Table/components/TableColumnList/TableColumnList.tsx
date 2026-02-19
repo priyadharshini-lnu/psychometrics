@@ -42,7 +42,7 @@ export const TableColumnList:FC<Props> = ({ model }) => {
 
   if (!allowedTablesForColumnEditing[tableType]) {
     return (
-      <Space direction="vertical" style={{ background: 'white', maxWidth: '400px' }}>
+      <Space orientation="vertical" style={{ background: 'white', maxWidth: '400px' }}>
         <Alert
         // eslint-disable-next-line max-len
           message="Editing table columns is not supported for this Table type. This option is currently available only for below Table types."

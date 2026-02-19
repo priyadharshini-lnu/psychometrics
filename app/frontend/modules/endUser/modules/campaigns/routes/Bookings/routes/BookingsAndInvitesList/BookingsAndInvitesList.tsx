@@ -211,7 +211,7 @@ const Subtitle: FC<SubtitleProps> = ({
   }
 
   return (
-    <Space direction="vertical">
+    <Space orientation="vertical">
       <Space>
         <TimerText
           text={duration ? secondsToDayHoursAndMinutes(duration) : ''}

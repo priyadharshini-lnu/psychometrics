@@ -69,9 +69,9 @@ export const DateRangeSelectorModal: React.FC<Props> = ({
           {I18n.t('common.actions.export')}
         </Button>,
       ]}
-      destroyOnClose
+      destroyOnHidden
     >
-      <Space direction="vertical" size={16} className="mt-4">
+      <Space orientation="vertical" size={16} className="mt-4">
         <Checkbox
           onChange={({ target: { checked } }) => { setIncludeInactiveUsers(checked) }}
           checked={includeInactiveUsers}

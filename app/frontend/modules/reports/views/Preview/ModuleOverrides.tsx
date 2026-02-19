@@ -8,6 +8,7 @@ import { Store } from 'redux'
 import cs from 'classnames'
 import FroalaEditor from 'react-froala-wysiwyg'
 import _ from 'lodash'
+import { AIFroalaWrapper } from '~/components/AIToolbar'
 import {
   EditOutlined, CheckOutlined, CloseOutlined, SaveOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
@@ -144,9 +145,24 @@ const OverrideComponent: FC<Props> = ({
       }
       style={box}
       onClick={() => selectModule(module.id)}
-      {...(enhanceWithAIEnabled && { 'data-ai-enabled': 'true' })}
     >
-      {edit && (
+      {edit && enhanceWithAIEnabled && (
+        <AIFroalaWrapper
+          editorRef={
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            editrRef as unknown as React.RefObject<{ editor: any }>
+          }
+        >
+          <FroalaEditor
+            key="editor"
+            ref={editrRef}
+            config={config}
+            model={content || TextModuleContent.run(module, questions)}
+            onModelChange={content => setContent(content)}
+          />
+        </AIFroalaWrapper>
+      )}
+      {edit && !enhanceWithAIEnabled && (
         <FroalaEditor
           key="editor"
           ref={editrRef}
@@ -218,7 +234,7 @@ const OverrideComponent: FC<Props> = ({
                       Accepted
                     </Button>
                     <Popconfirm
-                      overlayStyle={{ zIndex: 9999 }}
+                      styles={{ root: { zIndex: 9999 } }}
                       title="Are you sure to remove approval for this text?"
                       onConfirm={() => disapproveTextOverride(userReport.campaignId, override.id)}
                       okText="Yes"
@@ -243,7 +259,7 @@ const OverrideComponent: FC<Props> = ({
                 ))}
               {allowEdit && override && (
                 <Popconfirm
-                  overlayStyle={{ zIndex: 9999 }}
+                  styles={{ root: { zIndex: 9999 } }}
                   title="Are you sure to discard this text?"
                   onConfirm={() => removeTextOverride(userReport.campaignId, override.id, userReport.id)}
                   okText="Yes"

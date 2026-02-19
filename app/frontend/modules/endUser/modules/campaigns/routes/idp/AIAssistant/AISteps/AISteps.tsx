@@ -7,7 +7,7 @@ const Icon = ({ children, className }) => <div className={cs(styles.icon, classN
 
 export const AISteps = () => (
   <Steps
-    direction="vertical"
+    orientation="vertical"
     current={1}
     size="small"
     className={styles.steps}

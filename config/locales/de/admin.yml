@@ -9,6 +9,7 @@ de:
     add_project: Projekt hinzufügen
     add_project_admin: Projektverwaltung hinzufügen
     add_threesixty_campaign_admin: Kampagnenverwaltung hinzufügen
+    add_word_count: Wortanzahl hinzufügen
     admin_approval_required: Melden für %{user} vor dem Download eine Genehmigung des Administrators benötigt
     admin_created_successfully: Admin '%{name}' wurde erfolgreich erstellt
     admin_export_scheduled: Admin-Exportauftrag wurde erfolgreich geplant. Bitte prüfen Sie den Status in Ihrer Benachrichtigung.
@@ -24,6 +25,7 @@ de:
     ai_assistant_model_provider: Anbieter
     ai_assistant_model_region_label: Region
     ai_assistant_required: KI-Assistent ist erforderlich
+    ai_assistant_select_dependencies: Abhängigkeiten auswählen
     ai_assistants: AI-Assistenten
     ai_assistants_advanced_mode_tooltip: Nutze den erweiterten Modus für Prompt-Template-Erstellung mit flüssiger Vorlage und verfügbaren Variablen. Weitere Details finden Sie in der Dokumentation.
     ai_assistants_campaign_id_placeholder: Hier kommt die Kampagnen-ID ein
@@ -35,6 +37,10 @@ de:
     ai_assistants_test_render: Testrendering
     ai_assistants_test_render_tooltip: Testen Sie Ihre Prompt-Vorlage mit Kampagnendaten, um zu sehen, was an den KI-Assistenten gesendet wird.
     ai_assisted_idp_feature_disabled: Die KI-unterstützte IDP-Funktion wurde für dieses Projekt deaktiviert.
+    ai_idp_assistant_configure_dependencies: KI-Abhängigkeiten konfigurieren
+    ai_idp_assistant_configure_dependencies_description: Konfigurieren Sie, auf welche Abhängigkeitsdaten der IDP AI Assistant als Kontext zugreifen kann. Dies gilt nur, wenn der Assistent so konfiguriert ist, dass er Abhängigkeiten akzeptiert.
+    ai_idp_assistant_dependencies_updated: Abhängigkeiten erfolgreich aktualisiert
+    ai_idp_assistant_update_dependencies: Abhängigkeiten aktualisieren
     ai_notice: Hervorgehobene Abschnitte wurden maschinell übersetzt und können Ungenauigkeiten enthalten.
     ai_translation: KI-Übersetzung
     all_corner_rounded: Alle Ecken abgerundet
@@ -83,6 +89,8 @@ de:
     campaign_templates: Vorlagen für Kampagnen
     campaign_user_job_roles_cannot_be_same: Die angestrebte Position muss sich von der aktuellen Position unterscheiden.
     campaigns: Kampagnen
+    cancellation_and_rescheduling_disabled: Stornierung und Umbuchung sind deaktiviert.
+    casual: Lässig
     client: Client Mietverhältnis
     client_admins: Client-Admins
     clients: Kunden-Mietverhältnisse
@@ -91,6 +99,7 @@ de:
     communications: Kommunikation
     completed: Abgeschlossen
     completed_tooltip: Alle Gutachter haben die Bewertung eingereicht
+    concise: Prägnant
     confirm_remove_admin: Sind Sie sicher, dass Sie den Admin-Benutzer mit der E-Mail '%{email}' entfernen möchten?
     country: Land
     create_client: Client erstellen
@@ -120,14 +129,24 @@ de:
     enable_transcription: Transkription aktivieren
     end_time: Endzeit
     end_time_must_be_after_start_time: Die Endzeit muss nach der Startzeit liegen.
+    enhance_with_ai: Mit KI verbessern
     enhance_with_ai_requires_ai_assistants: Für „Mit KI verbessern“ muss die Funktion „KI-Assistenten“ aktiviert sein.
+    error: Fehler
     evaluation_status: Bewertungsstatus
     evaluation_status_not_done: Der Bewertungsstatus ist für eine oder mehrere ausgewählte Fächer nicht 'Erledigt'. Bitte stellen Sie sicher, dass alle ausgewählten Nutzer Bewertungen abgeschlossen haben oder als erledigt markiert werden.
     export_admin_roles_permissions: Admin-Rollen und Berechtigungen exportieren
+    export_compact_completion_status: Kompakt
+    export_completion_status: Exportabschlussstatus
+    export_completion_statuses_scheduled: Der Exportauftrag für den Fertigstellungsstatus wurde erfolgreich geplant.
+    export_detailed_completion_status: Ausführlich
     feature_enhance_with_ai: Mit KI verbessern
     feature_flags: Merkmalskennzeichen
     fill_empty_score_msg: Füllen Sie alle Endpunktzahlen aus, bevor Sie speichern.
     final_score_empty_err_msg: Das Endergebnis von „%{factor_name}“ darf nicht leer sein.
+    final_score_empty_msg: Die Endabrechnung darf nicht leer sein.
+    fix_grammar: Grammatik korrigieren
+    formal: Formell
+    generate_transcription: Transkription erstellen
     idp_plan_reset_success: Der Plan wurde erfolgreich zurückgesetzt
     idp_templates: IDP-Vorlagen
     import_ai_artifacts: KI-Artefakte importieren
@@ -153,6 +172,7 @@ de:
     import_title: Importiere Themen aus CSV
     import_upload: Hochladen
     import_users: Benutzer importieren
+    internal: Intern
     invalid_csv_header: CSV-Datei enthält ungültige Header.
     job_roles: Berufsrollen
     learning_from_others: Kollaboratives Lernen [20]
@@ -179,6 +199,7 @@ de:
     mhs_report_id: MHS-Bericht-ID
     mhs_session_id: Mhs-Sitzungs-ID
     min_value: Minimalwert
+    minimum_10_words: Mindestens 10 Wörter
     missing_min_max_values: Mindest- und Höchstwerte sind erforderlich.
     name_required: Name ist erforderlich
     no_file_selected: Keine Datei ausgewählt
@@ -196,6 +217,7 @@ de:
     on_the_job: Im Dienst [70]
     only_editable_on_create: Diese Option kann nur während der Erstellung bearbeitet werden.
     options: Optionen
+    original_text: Originaltext
     participants: Teilnehmer
     permissions:
       aiArtifacts:
@@ -622,6 +644,8 @@ de:
     piped_text: Eingebetteter Text
     privacy: Datenschutz
     proctoring: Aufsicht
+    professional: Fachmann
+    proficiency: Kompetenz
     proficiency_level: API-Schlüssel
     proficiency_levels: Leistungsniveaus
     profile_details: Profil-Details
@@ -650,6 +674,7 @@ de:
     reset_idp_plan_confirmation: Bist du sicher, dass du den Plan zurücksetzen willst?
     reset_idp_plan_title: Plan zurücksetzen
     response_meta: Antwort Meta
+    result: Ergebnis
     results: Ergebnisse
     role: Rolle
     saml_idp_certificate_available: Verfügbar (klicken zum Kopieren)
@@ -731,12 +756,17 @@ de:
     subject_part_of_other_invite: Der Absender der E-Mail %{user_email} wurde bereits zu „%{workshop_invite_name}” eingeladen.
     target_job_role: Zielposition
     timezone: Zeitzone
+    tone: Ton
     toolbar_ai_insight: KI-Einblick
     toolbar_ai_suggestion: KI-Vorschlag
     toolbar_result_generating: Generieren...
     toolbar_text_copied: In die Zwischenablage kopiert
     toolbar_text_replaced: Text ersetzt!
     toolbar_what_changed_and_why: Was hat sich geändert und warum?
+    tools: Werkzeuge
+    transcription_record_not_found: Transkriptionsdatensatz nicht gefunden
+    transcription_schedule_failed: Transkriptionsauftrag konnte nicht geplant werden
+    transcription_scheduled: Die Transkription ist geplant. Bitte schließen Sie das Modalfenster und überprüfen Sie den Benachrichtigungsstatus.
     translate: Übersetzen
     translate_to: Übersetzen in
     translate_with_ai: Mit KI übersetzen
@@ -750,6 +780,7 @@ de:
     users: Benutzer
     view_licenses: Lizenzen anzeigen
     waiting: Warten
+    words: Wörter
     workshops: Werkstätten
     writing_assistant_not_configured: Schreibassistent nicht konfiguriert
     x_axis_interval_label: X-Achsen-Intervall

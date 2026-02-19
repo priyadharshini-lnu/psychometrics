@@ -28,6 +28,7 @@ sr-Cyrl:
     max_word_limit: Мора да буде највише %{max} речи
     min_word_limit: Мора да има најмање %{min} речи
     my_plan: Мој план
+    no_audio_warning: Нема звука. Молимо проверите да ли је ваш микрофон прикључен и да ли исправно ради.
     profile: Профил
     profile_details: Детаљи
     question_counter: Питање %{current}-а из %{total}
@@ -36,11 +37,31 @@ sr-Cyrl:
     recording: снимање
     reject_idp_plan: Одбацити план
     request_retry_message: Ви сте ван мреже. Ваши одговори нису могли да се сачувају, али ће бити аутоматски сачувани чим се поново повежете на интернет. Молимо вас да не освежавате или не затварате страницу.
-    saving_video_text: Сачувај видео... Молимо вас да не затварате или освежавате прегледач.
     selected_count: "%{count} изабрано"
     skill_type: Тип вештине
     start_campaign_message_proctored: Ово је надгледана кампања, кликните на дугме "%{buttonText}" да бисте започели активности.
     start_campaign_message_timed: Ово је временски ограничена кампања, кликните на дугме "%{buttonText}" да бисте започели активности.
     start_campaign_message_timed_proctored: Ово је временски ограничена и надгледана кампања, кликните на дугме "%{buttonText}" да бисте започели активности.
     status_unknown: Статус непознат
+    system_check_access: Приступ
+    system_check_audio_random_phrases:
+      eight: Нека вам кафа буде јака, а дан продуктиван.
+      five: Живот је бољи када се смејеш. Осмехни се за микрофон!
+      four: Она продаје шкољке поред мора.
+      nine: Када сте у недоумици, тестирајте овај микрофон, ради!
+      one: Ја вриштим, ти вриштиш, сви вриштимо за сладолед!
+      seven: Сваки дан је нови почетак. Реците то гласно и поносно!
+      six: Пица или паста? Тешке су одлуке.
+      three: Тестирање, један два три, звук је јасан колико год може бити!
+      two: Брза смеђа лисица прескаче лењог пса.
+    system_check_audio_title: Молим вас, изговорите и поновите следећу реченицу 3 пута.
+    system_check_proceed: Да, желим да наставим
+    system_check_retake: Не, желим поново да узмем
+    system_check_run_again: Трчи поново
+    system_check_start_recording: Почните са снимањем
+    system_check_stop_recording: Заустави снимање
+    system_check_test_message: Драго ми је да разговарам са тобом
+    system_check_upload_again: Отпреми поново
+    system_check_uploading: Отпремање
+    system_check_video_random_phrase: Сем спреман. Ово је тестни снимак да потврдим да ли мој микрофон и камера исправно раде.
     tasks: Задаци

@@ -17,8 +17,8 @@ const CampaignFactorFeedbackComponent = (props) => {
       <div>
         <TextEditor model={model} value={model.props.questionText} onChange={changeText} />
       </div>
-      <Space className="w-100" direction="vertical">
-        <Space size={0} className="w-100" direction="vertical">
+      <Space className="w-100" orientation="vertical">
+        <Space size={0} className="w-100" orientation="vertical">
           <TextEditor
             value={model.props.skillLabel || 'Skill {{index}}'}
             onChange={value => changeLabel('skillLabel', value)}

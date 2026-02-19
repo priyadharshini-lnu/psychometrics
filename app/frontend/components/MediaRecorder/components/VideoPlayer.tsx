@@ -45,43 +45,60 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   onFinish,
   duration = null,
   getMediaStream,
-}) => (
-  <Flex vertical>
-    <Flex className={styles.videoContainer}>
-      <video
-        ref={videoRef}
-        autoPlay={!mediaUrl}
-        playsInline
-        muted={!mediaUrl}
-        controls={!!mediaUrl}
-        className={styles.video}
-        onPlay={onPlay}
-      />
-      {!permissionGranted && !mediaUrl && (
-        <div className={styles.overlay}>
-          <p>{I18n.t('checking_wizard.video_check.camera_preview')}</p>
+}) => {
+  const handleLoadedMetadata = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+    const video = e.currentTarget
+
+    if (mediaUrl) {
+      if (video.duration === Infinity) {
+        // Fix for Chrome/MediaRecorder bug where progress starts from the end
+        video.currentTime = 1e101
+      } else {
+        video.currentTime = 0
+      }
+    }
+  }
+
+  return (
+    <Flex vertical>
+      <Flex className={styles.videoContainer}>
+        <video
+          key={mediaUrl}
+          ref={videoRef}
+          autoPlay={!mediaUrl}
+          playsInline
+          muted={!mediaUrl}
+          controls={!!mediaUrl}
+          className={styles.video}
+          onPlay={onPlay}
+          onLoadedMetadata={handleLoadedMetadata}
+        />
+        {!permissionGranted && !mediaUrl && (
+          <div className={styles.overlay}>
+            <p>{I18n.t('shared.camera_preview')}</p>
+          </div>
+        )}
+        {status === 'recording' ? (
+          <Flex justify="center" align="center" className={styles.recordingIndicator}>
+            <div className={styles.dot} />
+            <Typography.Text className={styles.rec}>
+              {I18n.t('shared.rec')}
+            </Typography.Text>
+            {showCountdownTimer
+            && <CountdownTimer onFinish={onFinish} className={styles.countdownIndicator} seconds={duration} />}
+          </Flex>
+        ) : null}
+      </Flex>
+      {visualizing && status === 'recording' ? (
+        <div className={styles.audioIndicator}>
+          <AudioWaveVisualizer
+            getMediaStream={getMediaStream}
+            audioBlobUrl={mediaUrl}
+          />
         </div>
-      )}
-      {status === 'recording' ? (
-        <Flex justify="center" align="center" className={styles.recordingIndicator}>
-          <div className={styles.dot} />
-          <Typography.Text className={styles.rec}>
-            {I18n.t('checking_wizard.video_check.rec_text')}
-          </Typography.Text>
-          {showCountdownTimer
-          && <CountdownTimer onFinish={onFinish} className={styles.countdownIndicator} seconds={duration} />}
-        </Flex>
       ) : null}
     </Flex>
-    {visualizing && status === 'recording' ? (
-      <div className={styles.audioIndicator}>
-        <AudioWaveVisualizer
-          getMediaStream={getMediaStream}
-          audioBlobUrl={mediaUrl}
-        />
-      </div>
-    ) : null}
-  </Flex>
-)
+  )
+}
 
 export default VideoPlayer

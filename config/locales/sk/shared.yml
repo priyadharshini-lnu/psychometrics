@@ -13,12 +13,14 @@ sk:
     audio: Audio
     authentication_failed: Autentifikácia zlyhala. Prosím, skúste to znova.
     basic: Základný
+    camera_preview: Tu sa zobrazí náhľad fotoaparátu
     campaign_id: Identifikácia kampane
     cancel: Zrušiť
     change_password: Zmeniť heslo
     clear_filters: Vymazať filtre
     collaborative_learning: Kolaboratívne učenie
     completed: Dokončené
+    configurations: Konfigurácie
     confirm: Potvrďte
     continue: Pokračovať
     copy: Kopírovať
@@ -27,6 +29,9 @@ sk:
     decline: Úpadok
     description: Popis
     download: Stiahnuť
+    download_audio: Stiahnuť zvuk
+    download_transcription: Stiahnuť prepis
+    download_video: Stiahnuť video
     edit: Upraviť
     edited: Nové
     email: E-mail
@@ -54,6 +59,7 @@ sk:
     maintenance_upcoming_description: Na stránke %{date} budeme vykonávať plánovanú údržbu, ktorá potrvá približne %{duration}, aby sme vám poskytli lepší zážitok. Počas tejto doby nebudete mať prístup k žiadnym prideleným úlohám ani ich nebudete môcť dokončiť. Ďakujeme za trpezlivosť.
     maintenance_upcoming_title: Nadchádzajúca údržba
     media_question_transcriptions: Prepisy otázok médií
+    media_responses: Reakcie médií
     modified_by: Upravené
     modified_date: Dátum úpravy
     more_actions: Ďalšie akcie
@@ -69,6 +75,8 @@ sk:
     proctoring_maintenance_active: Služba Proctoring je momentálne v údržbe z %{start_time} na %{end_time}. Skúste to znovu po ukončení údržby.
     proctoring_maintenance_upcoming: Služba Proctoring bude od %{start_time} do %{end_time} v údržbe.
     question_id: ID otázky
+    question_transcription_disabled: Pre túto otázku je prepis vypnutý.
+    rec: REC
     recording_consent_notice: Toto zasadnutie bude zaznamenané. Vaša účasť na tomto stretnutí znamená váš súhlas s nahrávaním.
     recording_consent_proceed_question: Súhlasíte s pokračovaním v nahrávanom stretnutí?
     recording_consent_title: Oznámenie o súhlase s nahrávaním
@@ -79,6 +87,7 @@ sk:
     rte_paste_content_exceeds_char_limit: Text prekračuje limit znakov {{maxCharacterLimit}} a nie je možné ho vložiť.
     rte_paste_content_exceeds_word_limit: Text prekračuje limit slov {{maxWordLimit}} a nedá sa vložiť.
     save: Uložiť
+    saving_video: Ukladanie videa... Prosím, nezatvárajte ani neobnovujte prehliadač
     search: Vyhľadávanie
     send_email: Odoslať e-mail
     show_more: Zobraziť viac
@@ -92,6 +101,7 @@ sk:
     transcription: Prepis
     transcription_already_requested: Prepis už bol požiadaný alebo je v procese
     transcription_not_enabled: Pre médiá nie je povolená transkripcia.
+    transcription_status: Stav prepisovania
     transcriptions: Prepisy
     try_again: Skúste to znovu
     tte_terms_and_condition: Podmienky a ochrana osobných údajov

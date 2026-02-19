@@ -3,7 +3,7 @@
 module Administration
   class MhsUserAssessmentSerializer < Panko::Serializer
     attributes :external_assessment_id, :session_id, :data_gatherer_id, :data_gathering_id,
-               :confidence_interval, :leadership_bar, :norm_region, :norm_option
+               :confidence_interval, :leadership_bar, :norm_regions, :norm_region, :norm_options, :norm_option
 
     def external_assessment_id
       object.user_assessment.assessment.external_assessment_id.to_s
@@ -25,14 +25,20 @@ module Administration
 
     delegate :leadership_bar, to: :object
 
+    def norm_regions
+      object.user_assessment.assessment.mhs_settings&.norm_regions || []
+    end
+
     def norm_region
-      regions = object.user_assessment.assessment.mhs_settings&.norm_regions || []
-      regions.find { |region| region['value'].to_i == object.norm_region.to_i }&.label
+      norm_regions.find { |region| region['value'].to_i == object.norm_region.to_i }&.value
+    end
+
+    def norm_options
+      object.user_assessment.assessment.mhs_settings&.norm_options || []
     end
 
     def norm_option
-      options = object.user_assessment.assessment.mhs_settings&.norm_options || []
-      options.find { |option| option['value'].to_i == object.norm_option.to_i }&.label
+      norm_options.find { |option| option['value'].to_i == object.norm_option.to_i }&.value
     end
   end
 end

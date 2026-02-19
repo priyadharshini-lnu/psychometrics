@@ -19,11 +19,23 @@ module Api
 
         def create
           project_license = project.project_licenses.create!(license_params)
+          siem_log_sensitive_operation(
+            context: 'License Creation',
+            action_description: "created license for project #{project.id}",
+            action_type: 'LicenseManagement',
+            resource: 'ProjectLicense'
+          )
           render_license(project_license.license, :created)
         end
 
         def update
           model.update!(license_params.except(:license_id))
+          siem_log_sensitive_operation(
+            context: 'License Update',
+            action_description: "updated license #{model.id} for project #{project.id}",
+            action_type: 'LicenseManagement',
+            resource: 'ProjectLicense'
+          )
           render_license(model.license, :ok)
         end
 

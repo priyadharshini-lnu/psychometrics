@@ -160,7 +160,7 @@ const Properties = ({ modules }) => {
   const { props: { type }, assessment_id } = model
 
   return (
-    <Space size="small" direction="vertical" className="w-100">
+    <Space size="small" orientation="vertical" className="w-100">
       <Typography.Text strong>{I18n.t('reports.modules.common.table_options')}</Typography.Text>
       <div>
         <Typography.Text>{I18n.t('reports.modules.common.table_type')}</Typography.Text>

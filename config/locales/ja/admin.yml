@@ -9,6 +9,7 @@ ja:
     add_project: プロジェクトの追加
     add_project_admin: プロジェクト管理者の追加
     add_threesixty_campaign_admin: キャンペーン管理者の追加
+    add_word_count: 単語数を追加
     admin_approval_required: "%{user}のレポートはダウンロード前に管理者の承認が必要です"
     admin_created_successfully: 管理者 '%{name}' が正常に作成されました。
     admin_export_scheduled: 管理者エクスポートジョブは正常にスケジュールされました。 ステータスについては通知を確認してください。
@@ -24,6 +25,7 @@ ja:
     ai_assistant_model_provider: 供給者
     ai_assistant_model_region_label: 地域
     ai_assistant_required: AIアシスタントが必要です
+    ai_assistant_select_dependencies: 依存関係を選択
     ai_assistants: AIアシスタント
     ai_assistants_advanced_mode_tooltip: リキッドテンプレートと利用可能な変数を使ってプロンプトテンプレートを作成するには、アドバンスドモードを使いましょう。詳細はドキュメントを参照してください。
     ai_assistants_campaign_id_placeholder: キャンペーンIDの登場です
@@ -35,6 +37,10 @@ ja:
     ai_assistants_test_render: テストレンダリング
     ai_assistants_test_render_tooltip: プロンプトテンプレートをキャンペーンデータでテストし、AIアシスタントに送られる内容を確認しましょう。
     ai_assisted_idp_feature_disabled: このプロジェクトではAI支援IDP機能は無効化されています。
+    ai_idp_assistant_configure_dependencies: AI依存関係の設定
+    ai_idp_assistant_configure_dependencies_description: IDP AIアシスタントがコンテキストとしてアクセスできる依存関係データを設定します。これは、アシスタントが依存関係を受け入れるように設定されている場合にのみ適用されます。
+    ai_idp_assistant_dependencies_updated: 依存関係が正常に更新されました
+    ai_idp_assistant_update_dependencies: 依存関係の更新
     ai_notice: ハイライトされた部分はAI翻訳であり、不正確な部分が含まれる可能性があります。
     ai_translation: AI翻訳
     all_corner_rounded: すべての角が丸みを帯びている
@@ -83,6 +89,8 @@ ja:
     campaign_templates: キャンペーンテンプレート
     campaign_user_job_roles_cannot_be_same: 対象となる職務は現在の職務とは異なるものでなければならない
     campaigns: キャンペーン
+    cancellation_and_rescheduling_disabled: キャンセルおよび日程変更は無効です
+    casual: カジュアル
     client: クライアント・テナンシー
     client_admins: クライアント管理者
     clients: 顧客契約
@@ -91,6 +99,7 @@ ja:
     communications: コミュニケーション
     completed: 完了
     completed_tooltip: すべての評価者が評価を提出しました
+    concise: 簡潔
     confirm_remove_admin: メール '%{email}' を持つ管理ユーザーを本当に削除しますか？
     country: 国名
     create_client: クライアント作成
@@ -120,14 +129,24 @@ ja:
     enable_transcription: 文字起こしを有効にする
     end_time: 終末
     end_time_must_be_after_start_time: 終了時刻は開始時刻より後でなければならない
+    enhance_with_ai: AIで強化する
     enhance_with_ai_requires_ai_assistants: AIによる強化には、AIアシスタント機能の有効化が必要です
+    error: エラー
     evaluation_status: 評価状況
     evaluation_status_not_done: 選ばれた1つ以上の被験者の評価状況は「完了」ではありません。選ばれたすべてのユーザーが評価を完了しているか、完了したとマークしてください。
     export_admin_roles_permissions: 管理者の役割と権限のエクスポート
+    export_compact_completion_status: コンパクト
+    export_completion_status: 輸出完了状況
+    export_completion_statuses_scheduled: 完了ステータスのエクスポートジョブが正常にスケジュールされました
+    export_detailed_completion_status: 詳細
     feature_enhance_with_ai: AIで強化する
     feature_flags: フィーチャー・フラッグ
     fill_empty_score_msg: 保存する前にすべての最終スコアを記入してください。
     final_score_empty_err_msg: "%{factor_name}の最終スコアは空欄であってはならない。"
+    final_score_empty_msg: 合計金額は空欄にできません。
+    fix_grammar: 文法修正
+    formal: 正式
+    generate_transcription: 文字起こしを生成する
     idp_plan_reset_success: 計画は正常にリセットされました
     idp_templates: IDPテンプレート
     import_ai_artifacts: AIアーティファクトのインポート
@@ -153,6 +172,7 @@ ja:
     import_title: CSVから主題をインポートする
     import_upload: アップロード
     import_users: インポートユーザー
+    internal: 内部
     invalid_csv_header: CSVファイルには無効なヘッダーが含まれています。
     job_roles: 仕事の役割
     learning_from_others: 協働学習 [20]
@@ -179,6 +199,7 @@ ja:
     mhs_report_id: MHSレポートID
     mhs_session_id: Mhs セッション ID
     min_value: 最小値
+    minimum_10_words: 最低10語
     missing_min_max_values: 最小値と最大値が必要です。
     name_required: 名前が必要です
     no_file_selected: ファイルが選択されていない
@@ -196,6 +217,7 @@ ja:
     on_the_job: オン・ザ・ジョブ [70]
     only_editable_on_create: このオプションは作成時のみ編集可能です。
     options: オプション
+    original_text: 原文
     participants: 参加者
     permissions:
       aiArtifacts:
@@ -622,6 +644,8 @@ ja:
     piped_text: パイプ付きテキスト
     privacy: プライバシー
     proctoring: 試験監督
+    professional: プロフェッショナル
+    proficiency: 習熟度
     proficiency_level: APIキー
     proficiency_levels: 熟練度レベル
     profile_details: プロフィール詳細
@@ -650,6 +674,7 @@ ja:
     reset_idp_plan_confirmation: 本当に計画をリセットしたいの?
     reset_idp_plan_title: リセットプラン
     response_meta: レスポンス・メタ
+    result: 結果
     results: 結果
     role: 役割
     saml_idp_certificate_available: 利用可能(クリックしてコピー)
@@ -731,12 +756,17 @@ ja:
     subject_part_of_other_invite: メールアドレス %{user_email} のユーザーは既に「%{workshop_invite_name}」に招待済みです
     target_job_role: 対象職務
     timezone: タイムゾーン
+    tone: トーン
     toolbar_ai_insight: AIインサイト
     toolbar_ai_suggestion: AI提案
     toolbar_result_generating: 生成中...
     toolbar_text_copied: クリップボードにコピーされました
     toolbar_text_replaced: テキストが置換されました！
     toolbar_what_changed_and_why: 何が変わったのか、そしてその理由
+    tools: ツール
+    transcription_record_not_found: 転写記録が見つかりません
+    transcription_schedule_failed: 文字起こしジョブのスケジュール設定に失敗しました
+    transcription_scheduled: 文字起こし作業がスケジュールされました。モーダルを閉じて通知ステータスをご確認ください。
     translate: 翻訳
     translate_to: 翻訳する
     translate_with_ai: AIで翻訳する
@@ -750,6 +780,7 @@ ja:
     users: ユーザー
     view_licenses: ライセンスを見る
     waiting: 待つこと
+    words: 言葉
     workshops: ワークショップ
     writing_assistant_not_configured: ライティングアシスタントが設定されていません
     x_axis_interval_label: X軸間隔

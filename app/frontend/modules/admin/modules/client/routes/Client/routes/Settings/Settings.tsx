@@ -43,7 +43,7 @@ export const SettingsComponent: React.FC<{ currentUser: User }> = ({ currentUser
   ]
 
   return (
-    <Tabs items={tabItems} tabBarStyle={{ padding: '0 20px' }} destroyInactiveTabPane />
+    <Tabs items={tabItems} tabBarStyle={{ padding: '0 20px' }} destroyOnHidden />
   )
 }
 

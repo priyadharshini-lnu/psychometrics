@@ -3,8 +3,11 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Splitter, Tabs,
 } from 'antd'
+import type { TabsProps } from 'antd'
 import { useParams, useLocation, useNavigate } from 'react-router-dom'
-import _ from 'lodash'
+import {
+  find, last, map, sortBy, compact,
+} from 'lodash'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import store from '~/modules/admin/store'
@@ -18,7 +21,6 @@ import {
   UserAssessment as UserAssessmentType, AssessorAssessment as AssessorAssessmentType,
 } from '../../core/evaluation'
 
-const { TabPane } = Tabs
 const { I18n, x_navigation_minimize } = window
 
 const connector = connect((state: RootState) => ({
@@ -62,9 +64,9 @@ const Evaluation: FC<Props> = ({
     if (tabId && currentAssessorFormId !== +tabId) {
       changeForm(+tabId)
 
-      const assessorForm = _.last(assessorAssessments[tabId])
+      const assessorForm = last(assessorAssessments[tabId])
       if (assessorForm?.linked_assessment_id) {
-        const userAssessment = _.find<UserAssessmentType>(
+        const userAssessment = find<UserAssessmentType>(
           subjectAssessments, { assessment_id: assessorForm.linked_assessment_id },
         )
         if (userAssessment) {
@@ -89,9 +91,9 @@ const Evaluation: FC<Props> = ({
     navigate(`${location.pathname}?${params.toString()}`, { replace: true })
     changeForm(+id)
 
-    const assessorForm = _.last(assessorAssessments[id])
+    const assessorForm = last(assessorAssessments[id])
     if (assessorForm?.linked_assessment_id) {
-      const userAssessment = _.find<UserAssessmentType>(
+      const userAssessment = find<UserAssessmentType>(
         subjectAssessments, { assessment_id: assessorForm.linked_assessment_id },
       )
       if (userAssessment) {
@@ -104,14 +106,46 @@ const Evaluation: FC<Props> = ({
     changeSubjectAssessment(+id)
   }
 
-  const sortedAssessorAssesments = _.sortBy(
-    _.map(assessorAssessments, (assessments, id) => ({ id, assessments })), ({ assessments }) => {
-      const { name, completed_at } = _.last<AssessorAssessmentType>(assessments) || {}
-      // splitting list in two groups completed ant not completed sorted by name
+  const sortedAssessorAssesments = sortBy(
+    map(assessorAssessments, (assessments, id) => ({ id, assessments })), ({ assessments }) => {
+      const { name, completed_at } = last<AssessorAssessmentType>(assessments) || {}
+      // splitting list in two groups completed and not completed sorted by name
       // ÿ - last ascii character puts completed assessments to the right group
       return completed_at ? `ÿ${name}` : name
     },
   )
+
+  const assessorTabItems: TabsProps['items'] = [
+    {
+      key: 'overview',
+      label: I18n.t('administration.assessor.overview'),
+      children: <Overview userInfo={userInfo} />,
+    },
+    ...compact(sortedAssessorAssesments.map(({ assessments, id }) => {
+      const assessment = last<AssessorAssessmentType>(assessments)
+      if (!assessment) return null
+      return {
+        key: id,
+        label: assessment.name,
+        className: 'lh-splitter-fullscreen-wrapper',
+        children: (
+          <AssessorAssessment
+            allowMultipleResponses={assessment.allow_multiple_responses}
+            userAssessmentId={+assessment.id}
+            assessorAssessments={assessments}
+            store={store}
+          />
+        ),
+      }
+    })),
+  ]
+
+  const subjectTabItems: TabsProps['items'] = subjectAssessments.map(assessment => ({
+    key: `${assessment.id}`,
+    label: assessment.name,
+    className: 'lh-splitter-fullscreen-wrapper',
+    children: <UserAssessment subjectAssessmentId={+assessment.id} />,
+  }))
 
   return (
     <div>
@@ -139,40 +173,20 @@ const Evaluation: FC<Props> = ({
             defaultActiveKey="overview"
             onChange={changeAssessorForm}
             className={styles.assessorTabs}
-            destroyInactiveTabPane
-          >
-            <TabPane tab={I18n.t('administration.assessor.overview')} key="overview">
-              <Overview userInfo={userInfo} />
-            </TabPane>
-            {_.map(sortedAssessorAssesments, ({ assessments, id }) => {
-              const assessment = _.last<AssessorAssessmentType>(assessments)
-              return assessment && (
-                <TabPane
-                  destroyInactiveTabPane
-                  tab={assessment.name}
-                  key={id}
-                  className="lh-splitter-fullscreen-wrapper"
-                >
-                  <AssessorAssessment
-                    allowMultipleResponses={assessment.allow_multiple_responses}
-                    userAssessmentId={+assessment.id}
-                    assessorAssessments={assessments}
-                    store={store}
-                  />
-                </TabPane>
-              )
-            })}
-          </Tabs>
+            items={assessorTabItems}
+            animated={false}
+            destroyOnHidden
+          />
         </Splitter.Panel>
         <Splitter.Panel defaultSize="50%" min={300}>
           {subjectAssessments.length > 0 && (
-            <Tabs activeKey={`${currentAssessmentId}`} onChange={changeSubjectForm} className={styles.assessorTabs}>
-              {subjectAssessments.map(assessment => (
-                <TabPane tab={assessment.name} key={assessment.id} className="lh-splitter-fullscreen-wrapper">
-                  {currentAssessmentId === assessment.id && <UserAssessment subjectAssessmentId={+assessment.id} />}
-                </TabPane>
-              ))}
-            </Tabs>
+            <Tabs
+              activeKey={`${currentAssessmentId}`}
+              onChange={changeSubjectForm}
+              className={styles.assessorTabs}
+              items={subjectTabItems}
+              destroyOnHidden
+            />
           )}
         </Splitter.Panel>
       </Splitter>

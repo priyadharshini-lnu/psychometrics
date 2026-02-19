@@ -68,7 +68,7 @@ export const IndividualInvite = () => {
         style={{ paddingInline: '20px' }}
         onTabClick={tab => routeUtils.moveTo(navigate, prefixPath, `/${tab}`, true)}
         activeKey={tabName}
-        destroyInactiveTabPane
+        destroyOnHidden
         type="card"
         items={[
           {

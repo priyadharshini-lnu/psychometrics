@@ -893,6 +893,7 @@ vi:
         export_users: Xuất khẩu của người dùng chiến dịch
         external_assessment_export: Xuất kết quả bên ngoài
         generate_embedding_skills: Tạo nhúng cho các kỹ năng
+        generate_transcription: Tạo bản chép lời
         import_accesssheet: Phụ kiện nhập khẩu
         import_assessment_questions: Câu hỏi đánh giá nhập khẩu
         import_assessment_translations: Bản dịch đánh giá nhập khẩu
@@ -923,6 +924,8 @@ vi:
         import_users: Nhập người dùng
         migrate_assessment_translations: Di chuyển dịch thuật đánh giá
         normalize_factor_scores: Chuẩn hóa điểm số yếu tố
+        project_compact_completion_status_export: Xuất trạng thái hoàn thành gọn nhẹ
+        project_completion_status_export: Tình trạng hoàn thành xuất khẩu
         regenerate_campaign_reports: Tạo lại báo cáo chiến dịch
         regenerate_report: Báo cáo tái tạo
         regenerate_threesixty_report: Báo cáo tái tạo Threesixty
@@ -1711,23 +1714,6 @@ vi:
     title: Thay đổi mật khẩu
     warning_message: 'Quan trọng: Việc thay đổi mật khẩu sẽ đăng xuất bạn.'
   checking_wizard:
-    audio_check:
-      access: Truy cập
-      continue: Vâng, Ok để tiếp tục
-      random_phrases:
-        eight: Chúc bạn có một tách cà phê ngon và một ngày làm việc hiệu quả.
-        five: Cuộc sống sẽ tốt đẹp hơn khi bạn mỉm cười. Hãy mỉm cười trước mic!
-        four: Cô ấy bán vỏ sò ở bờ biển.
-        nine: Nếu còn nghi ngờ, hãy thử xem mic này có hoạt động không!
-        one: Tôi hét lên, bạn hét lên, tất cả chúng ta đều hét lên vì kem!
-        seven: Mỗi ngày là một khởi đầu mới. Hãy nói to và tự hào nhé!
-        six: Pizza hay mì ống? Quyết định thật khó khăn.
-        three: Kiểm tra, một hai ba, âm thanh rõ ràng nhất có thể!.
-        two: Con cáo nâu nhanh nhẹn nhảy qua con chó lười.
-      record_title: Hãy nói và lặp lại câu sau 3 lần.
-      retake: Không, tôi muốn thi lại
-      run_again: Chạy lại
-      test_message: rất vui khi được nói chuyện với bạn
     network_check:
       continue: Tiếp tục
       download: Tải về
@@ -1760,18 +1746,10 @@ vi:
       permissions: Quyền sử dụng Webcam và Âm thanh
       title: Trước khi bắt đầu đánh giá này, hệ thống của bạn cần phải trải qua một số bước kiểm tra.
     video_check:
-      access: Truy cập
-      camera_preview: Bản xem trước của máy ảnh sẽ xuất hiện ở đây
-      continue: Vâng, Ok để tiếp tục
       description: Nhấp vào Bắt đầu ghi âm và tự ghi âm khi đọc đoạn văn bên dưới bằng giọng nói của bạn
       random_phrases:
         one: Sem sẵn sàng. Đây là bài kiểm tra để xác nhận rằng micrô và máy ảnh của tôi hoạt động đúng cách.
-      rec_text: GHI NHẬN
-      retake: Không, tôi muốn thi lại
-      run_again: Chạy lại
       title: Chúng tôi cần đảm bảo hệ thống của bạn có thể ghi lại video
-      upload_again: Tải lên lại
-      uploading: Đang tải lên
   common:
     actions:
       add: Thêm vào

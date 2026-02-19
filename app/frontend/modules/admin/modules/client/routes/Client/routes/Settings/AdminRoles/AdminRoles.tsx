@@ -42,7 +42,7 @@ const AdminRolesList: React.FC<Props> = ({ openModal }) => {
           expandedRowRender: record => (
             <p className="ms-16">
               {_.map(record.permissions, (grants, permission) => (
-                <Space direction="vertical" size="middle" className="w-30">
+                <Space orientation="vertical" size="middle" className="w-30">
                   {_.startCase(permission)}
                   {Array.isArray(grants) && grants.map(grant => (
                     <Checkbox checked value={grant} key={grant as string}>

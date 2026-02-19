@@ -4,13 +4,13 @@ module Faas
   module NotificationHandlers
     class MediaToTranscription < Base
       def call
-        if data['status'] == 'failed'
-          Rails.logger.info("Transcription for #{transcribable_record.class.name}: #{transcribable_record.id} failed")
-          transcribable_record.update!(transcription_status: :failed)
-        end
+        return broadcast :ok unless transcribable_record
 
-        if data['status'] == 'completed'
-          save_transcription
+        case data['status']
+          when 'failed'
+            handle_failed_transcription
+          when 'completed'
+            handle_completed_transcription
         end
 
         broadcast :ok
@@ -24,17 +24,30 @@ module Faas
         )
       end
 
-      def save_transcription
-        if transcribable_record.transcription.present?
-          transcribable_record.transcription.update!(text: data['transcription'])
-        else
-          transcribable_record.create_transcription!(text: data['transcription'])
-        end
+      def admin_job
+        @admin_job ||= AdminJobRecord.find_by(id: data['meta']['admin_job_record_id'])
+      end
 
-        transcribable_record.update!(transcription_status: :completed)
-        Rails.logger.info(
-          "Successfully saved transcription for #{transcribable_record.class.name}: #{transcribable_record.id}"
-        )
+      def handle_failed_transcription
+        error_details = { message: data['error'] }
+        transcribable_record.save_transcription_failed!(error_details)
+        update_admin_job_failed
+      end
+
+      def handle_completed_transcription
+        transcribable_record.save_transcription_completed!(data['transcription'])
+        update_admin_job_progress
+      end
+
+      def update_admin_job_failed
+        admin_job&.update!(status: :failed, error_messages: [data['error']])
+      end
+
+      def update_admin_job_progress
+        return unless data['meta']['admin_job_record_id']
+
+        admin_job&.increment_completed_tasks!
+        admin_job&.complete! if admin_job&.total_tasks == admin_job&.completed_tasks
       end
     end
   end

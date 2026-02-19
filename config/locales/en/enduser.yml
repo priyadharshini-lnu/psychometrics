@@ -28,6 +28,7 @@ en:
     max_word_limit: Must be at most %{max} words
     min_word_limit: Must be at least %{min} words
     my_plan: My Plan
+    no_audio_warning: No audio detected. Please check if your microphone is connected and working properly.
     profile: Profile
     profile_details: Details
     question_counter: Question %{current} of %{total}
@@ -36,11 +37,31 @@ en:
     recording: recording
     reject_idp_plan: Reject Plan
     request_retry_message: You are offline. Your answers could not be saved but will be saved automatically once you are back online. Please do not refresh or close the page.
-    saving_video_text: Saving Video... Please do not close or refresh the browser
     selected_count: "%{count} selected"
     skill_type: Skill Type
     start_campaign_message_proctored: This is a proctored campaign, please click '%{buttonText}' button to start the activities.
     start_campaign_message_timed: This is a timed campaign, please click '%{buttonText}' button to start the activities.
     start_campaign_message_timed_proctored: This is a timed and proctored campaign, please click '%{buttonText}' button to start the activities.
     status_unknown: Status Unknown
+    system_check_access: Access
+    system_check_audio_random_phrases:
+      eight: May your coffee be strong and your day be productive.
+      five: Life is better when you smile. Smile for the mic!
+      four: She sells seashells by the seashore.
+      nine: When in doubt, test it out this mic works!
+      one: I scream, you scream, we all scream for ice cream!
+      seven: Every day is a new beginning. Say it loud and proud!
+      six: Pizza or pasta? Decisions are hard.
+      three: Testing, one two three, the sound is clear as can be!.
+      two: The quick brown fox jumps over the lazy dog.
+    system_check_audio_title: Please speak and repeat the following sentence 3 times.
+    system_check_proceed: Yes, Ok to proceed
+    system_check_retake: No, I want to retake
+    system_check_run_again: Run again
+    system_check_start_recording: Start Recording
+    system_check_stop_recording: Stop Recording
+    system_check_test_message: great to speak with you
+    system_check_upload_again: Upload Again
+    system_check_uploading: Uploading
+    system_check_video_random_phrase: I am ready. This is a test recording to confirm that my video and microphone are working properly.
     tasks: Tasks

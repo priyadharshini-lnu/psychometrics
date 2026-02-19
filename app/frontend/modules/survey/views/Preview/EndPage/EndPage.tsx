@@ -75,7 +75,7 @@ const EndPage: FC<Props> = ({
       <div className={styles.logo}>{/* <img src={Logo} /> */}</div>
       <div className={styles.end}>
         {invalidSession ? (
-          <Space direction="vertical">
+          <Space orientation="vertical">
             <Alert
               style={{ textAlign: 'initial' }}
               message={I18n.t('assessments.page.invalid_session.title')}
@@ -90,7 +90,7 @@ const EndPage: FC<Props> = ({
             )}
           </Space>
         ) : (
-          <Space direction="vertical" align="center">
+          <Space orientation="vertical" align="center">
             {!showScoringOnEndPage && !isAnonymousAssessment && !extra.disable_continue_to_dashboard && (
               <>
                 {otherPendingAssessmentCount > 0 && (

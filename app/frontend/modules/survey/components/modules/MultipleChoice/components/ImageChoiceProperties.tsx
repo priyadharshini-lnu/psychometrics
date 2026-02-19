@@ -38,7 +38,7 @@ export const ImageChoiceProperties: FC<Props> = ({
         )}
       </Checkbox>
       {isEnabled && (
-        <Space direction="vertical" size="small" className="mt-2">
+        <Space orientation="vertical" size="small" className="mt-2">
           <Checkbox
             checked={isPreviewEnabled}
             onChange={onPreviewOptionChange}

@@ -3,10 +3,19 @@
 require 'rails_helper'
 
 describe MediaResponses::Transcriptions::SaveOciSpeechTranscription do
-  subject(:command) { described_class.new(media_response, job_id) }
+  subject(:command) do
+    described_class.new(
+      job_id: job_id,
+      record_id: media_response_id,
+      admin_job_record_id: admin_job_record_id
+    )
+  end
+
+  let(:media_response_id) { 123 }
+  let(:admin_job_record_id) { 456 }
 
   let(:media_response) do
-    instance_double('MediaResponse', transcription: nil, create_transcription!: true, update!: true)
+    instance_double('MediaResponse', transcription: nil)
   end
   let(:job_id) { 'ocid1.aispeechtranscriptionjob.oc1.iad.sample123' }
   let(:task_id) { 'ocid1.aispeechtranscriptiontask.oc1.iad.task123' }
@@ -26,6 +35,7 @@ describe MediaResponses::Transcriptions::SaveOciSpeechTranscription do
   let(:task_details) { double(output_location: output_location) }
   let(:output_location) { double(object_names: [s3_key]) }
   let(:oci_config) { double('OCI Config') }
+  let(:admin_job) { instance_double(AdminJobRecord, total_tasks: 10, completed_tasks: 5) }
 
   before do
     stub_const('Settings', double(
@@ -41,6 +51,11 @@ describe MediaResponses::Transcriptions::SaveOciSpeechTranscription do
                                private_storage_service: :test
                              )
                            ))
+
+    allow(MediaResponse).to receive(:find_by).with(id: media_response_id).and_return(media_response)
+    allow(AdminJobRecord).to receive(:find_by).with(id: admin_job_record_id).and_return(admin_job)
+    allow(admin_job).to receive(:increment_completed_tasks!)
+    allow(admin_job).to receive(:complete!)
 
     allow(Aws::S3::Client).to receive(:new).with(
       access_key_id: 'key',
@@ -59,56 +74,74 @@ describe MediaResponses::Transcriptions::SaveOciSpeechTranscription do
     context 'when no transcription exists and OCI job completes successfully' do
       before do
         allow(media_response).to receive(:transcription).and_return(nil)
+        allow(media_response).to receive(:save_transcription_completed!)
       end
 
       it 'retrieves the S3 key from OCI Speech API' do
         expect(speech_client).to receive(:list_transcription_tasks).with(job_id)
         expect(speech_client).to receive(:get_transcription_task).with(job_id, task_id)
-        subject.call
+        command.call
       end
 
       it 'fetches transcription from S3 using the retrieved key' do
         expect(s3_client).to receive(:get_object).with(bucket: bucket, key: s3_key)
-        subject.call
+        command.call
       end
 
-      it 'creates a new transcription with the extracted text' do
-        expect(media_response).to receive(:create_transcription!).with(text: transcription_text)
-        subject.call
+      it 'saves the transcription as completed with extracted text' do
+        expect(media_response).to receive(:save_transcription_completed!).with(transcription_text)
+        command.call
       end
 
-      it 'updates the media_response transcription_status to completed' do
-        expect(media_response).to receive(:update!).with(transcription_status: :completed)
-        subject.call
+      it 'broadcasts :ok' do
+        expect(command).to receive(:broadcast).with(:ok, anything)
+        command.call
       end
 
-      it 'broadcasts :ok with the media_response' do
-        expect(subject).to receive(:broadcast).with(:ok, true).and_call_original
-        subject.call
+      it 'updates admin job progress' do
+        expect(admin_job).to receive(:increment_completed_tasks!)
+        command.call
       end
 
-      it 'does not raise any errors' do
-        expect { subject.call }.not_to raise_error
+      it 'completes admin job when all tasks are done' do
+        allow(admin_job).to receive(:total_tasks).and_return(6)
+        allow(admin_job).to receive(:completed_tasks).and_return(5)
+        allow(admin_job).to receive(:increment_completed_tasks!) do
+          allow(admin_job).to receive(:completed_tasks).and_return(6)
+        end
+        expect(admin_job).to receive(:complete!)
+        command.call
       end
     end
 
     context 'when transcription already exists' do
-      let(:existing_transcription) { instance_double('Transcription', update!: true) }
+      let(:existing_transcription) { instance_double('Transcription') }
 
       before do
         allow(media_response).to receive(:transcription).and_return(existing_transcription)
-        allow(existing_transcription).to receive(:present?).and_return(true)
+        allow(media_response).to receive(:save_transcription_completed!)
       end
 
-      it 'updates the existing transcription instead of creating new one' do
-        expect(existing_transcription).to receive(:update!).with(text: transcription_text)
-        expect(media_response).not_to receive(:create_transcription!)
-        subject.call
+      it 'saves the transcription using save_transcription_completed!' do
+        expect(media_response).to receive(:save_transcription_completed!).with(transcription_text)
+        command.call
+      end
+    end
+
+    context 'when media_response is not found' do
+      before do
+        allow(MediaResponse).to receive(:find_by).with(id: media_response_id).and_return(nil)
       end
 
-      it 'still updates the transcription_status to completed' do
-        expect(media_response).to receive(:update!).with(transcription_status: :completed)
-        subject.call
+      it 'does not process the transcription' do
+        expect(speech_client).not_to receive(:list_transcription_tasks)
+        expect(s3_client).not_to receive(:get_object)
+        command.call
+      end
+
+      it 'returns nil' do
+        result = command.call
+        expect(result).to be_nil
       end
     end
 
@@ -118,12 +151,12 @@ describe MediaResponses::Transcriptions::SaveOciSpeechTranscription do
       let(:invalid_s3_response) { instance_double(Aws::S3::Types::GetObjectOutput, body: invalid_response_body) }
 
       before do
-        allow(media_response).to receive(:transcription).and_return(nil)
+        allow(media_response).to receive(:save_transcription_completed!)
         allow(s3_client).to receive(:get_object).and_return(invalid_s3_response)
       end
 
       it 'raises an error for invalid format' do
-        expect { subject.call }.to raise_error(/Invalid transcription format/)
+        expect { command.call }.to raise_error(/Invalid transcription format/)
       end
     end
 
@@ -133,12 +166,12 @@ describe MediaResponses::Transcriptions::SaveOciSpeechTranscription do
       let(:empty_s3_response) { instance_double(Aws::S3::Types::GetObjectOutput, body: empty_response_body) }
 
       before do
-        allow(media_response).to receive(:transcription).and_return(nil)
+        allow(media_response).to receive(:save_transcription_completed!)
         allow(s3_client).to receive(:get_object).and_return(empty_s3_response)
       end
 
       it 'raises an error' do
-        expect { subject.call }.to raise_error(/Invalid transcription format/)
+        expect { command.call }.to raise_error(/Invalid transcription format/)
       end
     end
 
@@ -148,12 +181,12 @@ describe MediaResponses::Transcriptions::SaveOciSpeechTranscription do
       let(:malformed_s3_response) { instance_double(Aws::S3::Types::GetObjectOutput, body: malformed_response_body) }
 
       before do
-        allow(media_response).to receive(:transcription).and_return(nil)
+        allow(media_response).to receive(:save_transcription_completed!)
         allow(s3_client).to receive(:get_object).and_return(malformed_s3_response)
       end
 
       it 'raises an error' do
-        expect { subject.call }.to raise_error(/Invalid transcription format/)
+        expect { command.call }.to raise_error(/Invalid transcription format/)
       end
     end
 
@@ -161,12 +194,12 @@ describe MediaResponses::Transcriptions::SaveOciSpeechTranscription do
       let(:empty_tasks_response) { double(data: double(items: [])) }
 
       before do
-        allow(media_response).to receive(:transcription).and_return(nil)
+        allow(media_response).to receive(:save_transcription_completed!)
         allow(speech_client).to receive(:list_transcription_tasks).and_return(empty_tasks_response)
       end
 
       it 'raises an error when trying to access first task' do
-        expect { subject.call }.to raise_error(NoMethodError)
+        expect { command.call }.to raise_error(NoMethodError)
       end
     end
 
@@ -176,22 +209,26 @@ describe MediaResponses::Transcriptions::SaveOciSpeechTranscription do
       let(:empty_task_details_response) { double(data: empty_task_details) }
 
       before do
-        allow(media_response).to receive(:transcription).and_return(nil)
+        allow(media_response).to receive(:save_transcription_completed!)
         allow(speech_client).to receive(:get_transcription_task).and_return(empty_task_details_response)
-        allow(s3_client).to receive(:get_object).with(bucket: bucket, key: nil).and_raise(NoMethodError)
+        allow(s3_client).to receive(:get_object).
+          with(bucket: bucket, key: nil).
+          and_raise(Aws::S3::Errors::NoSuchKey.new(nil, 'Key cannot be nil'))
       end
 
-      it 'raises an error when trying to access first object name' do
-        expect { subject.call }.to raise_error(NoMethodError)
+      it 'raises an error when trying to get object from S3' do
+        expect { command.call }.to raise_error(Aws::S3::Errors::NoSuchKey)
       end
     end
   end
 
   describe 'S3 client initialization' do
-    it 'creates S3 client with correct credentials' do
-      allow(media_response).to receive(:transcription).and_return(nil)
+    before do
+      allow(media_response).to receive(:save_transcription_completed!)
+    end
 
-      subject.call
+    it 'creates S3 client with correct credentials' do
+      command.call
 
       expect(Aws::S3::Client).to have_received(:new).with(
         access_key_id:  'key',
@@ -202,10 +239,12 @@ describe MediaResponses::Transcriptions::SaveOciSpeechTranscription do
   end
 
   describe 'OCI Speech client initialization' do
-    it 'creates OCI client with Psy::Oci config' do
-      allow(media_response).to receive(:transcription).and_return(nil)
+    before do
+      allow(media_response).to receive(:save_transcription_completed!)
+    end
 
-      subject.call
+    it 'creates OCI client with Psy::Oci config' do
+      command.call
 
       expect(OCI::AiSpeech::AIServiceSpeechClient).to have_received(:new).with(config: oci_config)
     end

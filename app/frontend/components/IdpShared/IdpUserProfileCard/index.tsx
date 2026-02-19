@@ -44,9 +44,9 @@ export const IdpUserProfileCard: FC<IdpUserProfileCardProps> = ({ idpUser }) => 
         </Col>
         {getPairedFields(idpUser.fields ?? []).map((fieldPair, i) => (
           <Col flex="auto" className={styles.fieldContainer} key={i}>
-            <Space direction="vertical" size="large">
+            <Space orientation="vertical" size="large">
               {fieldPair.map(fieldObj => (
-                <Space direction="vertical">
+                <Space orientation="vertical">
                   <Typography.Text type="secondary">
                     {fieldObj.name}
                     :

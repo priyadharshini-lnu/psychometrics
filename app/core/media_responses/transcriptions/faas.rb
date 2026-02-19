@@ -3,10 +3,11 @@
 module MediaResponses
   module Transcriptions
     class Faas < BaseCommand
-      private_attr_reader :media_response
+      private_attr_reader :media_response, :admin_job_record_id
 
-      def initialize(media_response)
-        @media_response = media_response
+      def initialize(options)
+        @media_response = options[:media_response]
+        @admin_job_record_id = options[:admin_job_record_id]
       end
 
       def call
@@ -18,7 +19,7 @@ module MediaResponses
       def generate_transcription
         return unless media_response.asset.attached?
 
-        media_response.update!(transcription_status: :processing)
+        media_response.save_transcription_status!(:processing)
         video_url = media_response.asset_url
 
         ::Faas::MediaToTranscription.call!(
@@ -27,7 +28,8 @@ module MediaResponses
           webhook_message: media_response.id,
           meta: {
             record_id: media_response.id,
-            record_type: media_response.class.name
+            record_type: media_response.class.name,
+            admin_job_record_id: admin_job_record_id
           }
         )
         Rails.logger.info("Audio extraction triggered for MediaResponse #{media_response.id}")

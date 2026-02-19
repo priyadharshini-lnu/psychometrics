@@ -893,6 +893,7 @@ sl:
         export_users: Izvoz uporabnikov oglaševalske akcije
         external_assessment_export: Izvoz zunanjih rezultatov
         generate_embedding_skills: Generiranje vdelave za veščine
+        generate_transcription: Ustvari transkripcijo
         import_accesssheet: Uvoz dodatka
         import_assessment_questions: Vprašanja za oceno uvoza
         import_assessment_translations: Prevodi ocenjevanja uvoza
@@ -923,6 +924,8 @@ sl:
         import_users: Uvoz uporabnikov
         migrate_assessment_translations: Ocenjevanje Selitev prevoda
         normalize_factor_scores: Normalizirajte rezultate faktorjev
+        project_compact_completion_status_export: Izvoz stanja zaključka kompaktnega izvoza
+        project_completion_status_export: Izvoz stanja dokončanja
         regenerate_campaign_reports: Vnovična generacija poročil o oglaševalskih akcijah
         regenerate_report: Poročilo o ponovni vzpostavitvi
         regenerate_threesixty_report: Obnovi poročilo Threesixty
@@ -1726,23 +1729,6 @@ sl:
     title: Spremenite geslo
     warning_message: 'Pozor: Če spremenite geslo, boste samodejno odjavljeni.'
   checking_wizard:
-    audio_check:
-      access: Dostop
-      continue: Da, nadaljuj
-      random_phrases:
-        eight: Naj bo vaša kava močna in dan čim bolj produktiven.
-        five: Življenje je lepše, če se nasmehneš. Nasmehnite se za mikrofon!
-        four: Na morski obali prodaja školjke.
-        nine: Niste prepričani? Preizkusite – mikrofon deluje brezhibno!
-        one: Jaz bi sladoled, ti bi sladoled – vsi želimo sladoled!
-        seven: Vsak dan je nova priložnost. Povej ponosno in naglas!
-        six: Pica ali testenine? Včasih so odločitve res težke.
-        three: Test, ena, dve, tri – zvok je povsem jasen!.
-        two: Hitra rjava lisica preskoči lenega psa.
-      record_title: Izgovorite in trikrat ponovite spodnji stavek.
-      retake: Ne, želim poskusiti znova
-      run_again: Začnite znova
-      test_message: V veselje mi je klepetati z vami
     network_check:
       continue: Nadaljuj
       download: Prenesi
@@ -1775,18 +1761,10 @@ sl:
       permissions: Dovoljenja za kamero in zvok
       title: Pred začetkom ocenjevanja moramo preveriti, če vaš sistem brezhibno deluje.
     video_check:
-      access: Dostop
-      camera_preview: Predogled kamere bo prikazan tukaj
-      continue: Da, nadaljuj
       description: Kliknite »Začni snemanje« in se posnemite med branjem spodnjega besedila
       random_phrases:
         one: Sem pripravljen. To je testni posnetek za potrditev, ali moj mikrofon in kamera delujeta pravilno.
-      rec_text: REC
-      retake: Ne, želim poskusiti znova
-      run_again: Začnite znova
       title: Preveriti moramo, ali vaš sistem omogoča snemanje videov
-      upload_again: Znova naloži
-      uploading: Nalaganje
   common:
     actions:
       add: Dodaj

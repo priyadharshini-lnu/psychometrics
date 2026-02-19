@@ -288,7 +288,7 @@ export class Properties extends Component {
     return (
       <div className={styles.fieldset}>
         <span className={styles.label}>Statements</span>
-        <Space direction="vertical">
+        <Space orientation="vertical">
           <ChoicesInput value={props.choices} model={model} onChange={this.changeStatements} />
           <MultilineEdit title="Statements" lines={props.choicesTexts} onChange={this.handleMultiStatementsChange} />
         </Space>
@@ -303,7 +303,7 @@ export class Properties extends Component {
       <div>
         <div className={styles.fieldset}>
           <span className={styles.label}>Scale Points</span>
-          <Space direction="vertical">
+          <Space orientation="vertical">
             <ChoicesInput value={props.scalePoints} model={model} onChange={this.changeScalePoints} />
             <MultilineEdit title="Scale Points" lines={props.scalePointsTexts} onChange={this.handleMultiScaleChange} />
           </Space>
@@ -320,7 +320,7 @@ export class Properties extends Component {
       <div>
         <div className={styles.fieldset}>
           <span className={styles.label}>Labels</span>
-          <Space direction="vertical">
+          <Space orientation="vertical">
             <ChoicesInput value={props.labels} model={model} onChange={this.changeLabels} />
             <MultilineEdit title="Lables" lines={props.labelsTexts} onChange={this.handleMultiLabelChange} />
           </Space>

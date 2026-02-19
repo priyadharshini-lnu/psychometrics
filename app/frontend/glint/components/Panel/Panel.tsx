@@ -46,7 +46,7 @@ export const Panel: React.FC<Props> = ({
         accordion
         defaultActiveKey={defaultOpen ? ['1'] : ''}
         onChange={() => {}}
-        expandIconPosition="end"
+        expandIconPlacement="end"
         expandIcon={() => (collapsible ? <DownOutlined /> : null)}
         bordered={false}
         items={[{

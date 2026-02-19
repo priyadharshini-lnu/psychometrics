@@ -28,6 +28,7 @@ pt:
     max_word_limit: Deve ter no máximo %{max} palavras
     min_word_limit: Deve ter pelo menos %{min} palavras
     my_plan: Meu plano
+    no_audio_warning: Não foi detectado áudio. Verifique se o microfone está conectado e funcionando corretamente.
     profile: Perfil
     profile_details: Detalhes
     question_counter: Pergunta %{current} de %{total}
@@ -36,11 +37,31 @@ pt:
     recording: Gravação
     reject_idp_plan: Rejeitar o Plano
     request_retry_message: Você está offline. Suas respostas não puderam ser salvas, mas serão salvas automaticamente quando você voltar a estar online. Por favor, não atualize nem feche a página.
-    saving_video_text: Salvando vídeo... Por favor, não feche nem atualize o navegador
     selected_count: Selecionado
     skill_type: Tipo de habilidade
     start_campaign_message_proctored: Esta é uma campanha supervisionada, por favor, clique no botão '%{buttonText}' para iniciar as atividades.
     start_campaign_message_timed: Esta é uma campanha cronometrada, por favor clique no botão '%{buttonText}' para iniciar as atividades.
     start_campaign_message_timed_proctored: Esta é uma campanha cronometrada e supervisionada, por favor, clique no botão '%{buttonText}' para iniciar as atividades.
     status_unknown: Status Desconhecido
+    system_check_access: Acesso
+    system_check_audio_random_phrases:
+      eight: Que o seu café seja forte e que o seu dia seja produtivo.
+      five: A vida é melhor quando se sorri. Sorria para o microfone!
+      four: Ela vende conchas à beira-mar.
+      nine: Em caso de dúvida, teste-o. Este microfone funciona!
+      one: Eu grito, tu gritas, todos nós gritamos por gelado!
+      seven: Cada dia é um novo começo, diga-o alto e com orgulho!
+      six: Pizza ou massa? As decisões são difíceis.
+      three: Testando, um, dois, três, o som é claro como pode ser!
+      two: A rápida raposa castanha salta sobre o cão preguiçoso.
+    system_check_audio_title: Diga e repita a seguinte frase 3 vezes.
+    system_check_proceed: Continuar
+    system_check_retake: Não, quero repetir
+    system_check_run_again: Voltar a correr
+    system_check_start_recording: Iniciar a gravação
+    system_check_stop_recording: Parar a gravação
+    system_check_test_message: é ótimo falar consigo
+    system_check_upload_again: Carregar novamente
+    system_check_uploading: Carregamento
+    system_check_video_random_phrase: Estou pronto. Esta é uma gravação de teste para confirmar se o meu microfone e câmara estão a funcionar corretamente.
     tasks: Tarefas

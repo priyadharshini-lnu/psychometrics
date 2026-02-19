@@ -28,6 +28,7 @@ th:
     max_word_limit: ต้องมีไม่เกิน %{max} คำ
     min_word_limit: ต้องมีอย่างน้อย %{min} คำ
     my_plan: แผนของฉัน
+    no_audio_warning: ไม่พบเสียง โปรดตรวจสอบว่าไมโครโฟนของคุณเชื่อมต่อและทำงานอย่างถูกต้อง
     profile: โปรไฟล์
     profile_details: รายละเอียด
     question_counter: Question %{current} of %{total}
@@ -36,11 +37,31 @@ th:
     recording: การบันทึก
     reject_idp_plan: ปฏิเสธแผน
     request_retry_message: คุณออฟไลน์อยู่ ไม่สามารถบันทึกคําตอบของคุณได้ แต่จะถูกบันทึกโดยอัตโนมัติเมื่อคุณกลับมาออนไลน์อีกครั้ง โปรดอย่ารีเฟรชหรือปิดหน้า
-    saving_video_text: กําลังบันทึกวิดีโอ... กรุณาอย่าปิดหรือรีเฟรชเบราว์เซอร์
     selected_count: เลือก
     skill_type: ประเภททักษะ
     start_campaign_message_proctored: นี่คือแคมเปญที่มีผู้คุมสอบ โปรดคลิกปุ่ม '%{buttonText}' เพื่อเริ่มกิจกรรม
     start_campaign_message_timed: นี่เป็นแคมเปญแบบกําหนดเวลา โปรดคลิกปุ่ม '%{buttonText}' เพื่อเริ่มกิจกรรม
     start_campaign_message_timed_proctored: นี่คือแคมเปญแบบกําหนดเวลาและควบคุม โปรดคลิกปุ่ม '%{buttonText}' เพื่อเริ่มกิจกรรม
     status_unknown: ไม่ทราบสถานะ
+    system_check_access: การเข้าถึง
+    system_check_audio_random_phrases:
+      eight: ขอให้กาแฟของคุณเข้มข้น และขอให้เป็นวันที่คุณทำงานได้อย่างมีประสิทธิภาพนะ
+      five: ชีวิตจะดีขึ้นเมื่อคุณยิ้ม ยิ้มให้ไมโครโฟนหน่อย!
+      four: เธอขายเปลือกหอยอยู่ริมชายหาด
+      nine: เมื่อมีข้อสงสัย ให้ทดลองใช้ไมโครโฟนนี้ดู!
+      one: ฉันกรี๊ด คุณกรี๊ด เราก็กรี๊ดเพื่อไอศกรีมกันทั้งนั้น!
+      seven: ทุกวันคือการเริ่มต้นใหม่ จงพูดออกมาดังๆ อย่างภาคภูมิใจ!
+      six: พิซซ่าหรือพาสต้า? การตัดสินใจเป็นเรื่องยาก
+      three: ทดสอบ หนึ่ง สอง สาม เสียงชัดเจนสุดๆ!.
+      two: สุนัขจิ้งจอกสีน้ำตาลกระโดดข้ามสุนัขขี้เกียจ
+    system_check_audio_title: กรุณาพูดประโยคต่อไปนี้ซ้ำ 3 ครั้ง
+    system_check_proceed: ใช่ ตกลงเพื่อดำเนินการต่อ
+    system_check_retake: ไม่ ฉันต้องการสอบใหม่
+    system_check_run_again: ทดสอบอีกครั้ง
+    system_check_start_recording: เริ่มบันทึก
+    system_check_stop_recording: หยุดการบันทึก
+    system_check_test_message: ดีใจที่ได้คุยกับคุณ
+    system_check_upload_again: อัปโหลดอีกครั้ง
+    system_check_uploading: กำลังอัพโหลด
+    system_check_video_random_phrase: เซ็มพร้อม นี่คือการทดสอบเพื่อยืนยันว่าไมโครโฟนและกล้องของฉันทำงานอย่างถูกต้อง
     tasks: งาน

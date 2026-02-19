@@ -13,12 +13,14 @@ zh-HK:
     audio: 音频
     authentication_failed: 驗證失敗。請再試一次。
     basic: 基本
+    camera_preview: 相機預覽將在此出現
     campaign_id: 競選識別碼
     cancel: 銷
     change_password: 更改密碼
     clear_filters: 透明過濾器
     collaborative_learning: 協作學習
     completed: 已完成
+    configurations: 配置
     confirm: 確認
     continue: 續
     copy: 复制
@@ -27,6 +29,9 @@ zh-HK:
     decline: 衰落
     description: 描述
     download: 下载
+    download_audio: 下载音频
+    download_transcription: 下载转录文本
+    download_video: 下载视频
     edit: 編輯
     edited: 編輯
     email: 電子郵件
@@ -54,6 +59,7 @@ zh-HK:
     maintenance_upcoming_description: 我们将对 %{date} 进行计划维护，预计持续约 %{duration}，以提升您的使用体验。在此期间，您将无法访问或完成任何分配的任务。感谢您的耐心等待。
     maintenance_upcoming_title: 即将进行的维护
     media_question_transcriptions: 媒体提问记录
+    media_responses: 媒体反应
     modified_by: 修改者
     modified_date: 修改日期
     more_actions: 更多動作
@@ -69,6 +75,8 @@ zh-HK:
     proctoring_maintenance_active: 监考系统正在进行维护，网址将从 %{start_time} 迁移至 %{end_time}。请在维护窗口结束后再次尝试。
     proctoring_maintenance_upcoming: 监考系统将于%{start_time}至%{end_time}期间进行维护。
     question_id: 问题ID
+    question_transcription_disabled: 此问题已禁用转录功能
+    rec: REC
     recording_consent_notice: 本次會議將被錄音。您參與本次會議即表示您同意被錄音。
     recording_consent_proceed_question: 你同意繼續錄音會議嗎？
     recording_consent_title: 登記同意書通知
@@ -79,6 +87,7 @@ zh-HK:
     rte_paste_content_exceeds_char_limit: 文字超過 {{maxCharacterLimit}} 的字元限制，無法貼上。
     rte_paste_content_exceeds_word_limit: 文字超過 {{maxWordLimit}} 的字數限制，無法貼上。
     save: 存檔
+    saving_video: 正在保存视频... 请勿关闭或刷新浏览器
     search: 尋
     send_email: 發送電子郵件
     show_more: 顯示更多
@@ -97,6 +106,7 @@ zh-HK:
     transcription: 转录
     transcription_already_requested: 转录已请求或正在进行中
     transcription_not_enabled: 媒体响应未启用转录功能
+    transcription_status: 转录状态
     transcriptions: 轉錄
     try_again: 重试
     tte_terms_and_condition: 條款和私隱

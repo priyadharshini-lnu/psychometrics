@@ -135,15 +135,15 @@ class PageFooter extends Component {
           </div>
         )}
         <div className={cs(styles.footer, rtl ? 'rtl' : 'ltr')}>
-          {enableBack && hasPrevPage && (
-            <QuestionInProgressPopConfirm
-              preview={preview}
-              open={popConfirmVisibleFor === BACK}
-              hidePopConfirm={this.hidePopConfirm}
-              onConfirm={this.moveToPreviousPage}
-              popUpContainerRef={this.popUpContainerRef}
-              popUpTriggerRef={this.popUpTriggerRef}
-            >
+          <QuestionInProgressPopConfirm
+            preview={preview}
+            open={popConfirmVisibleFor === BACK || popConfirmVisibleFor === NEXT}
+            hidePopConfirm={this.hidePopConfirm}
+            onConfirm={popConfirmVisibleFor === BACK ? this.moveToPreviousPage : this.moveToNextPage}
+            ref={this.popUpContainerRef}
+            popUpTriggerRef={this.popUpTriggerRef}
+          >
+            {enableBack && hasPrevPage && (
               <FixedWidthButton
                 size="large"
                 type="default"
@@ -155,16 +155,7 @@ class PageFooter extends Component {
                 <span className="mrs mls fa fa-chevron-left rtl-flip" />
                 { page.prevBtn || I18n.t('assessments.page.back', { locale: I18n.uiLocale }) }
               </FixedWidthButton>
-            </QuestionInProgressPopConfirm>
-          )}
-          <QuestionInProgressPopConfirm
-            preview={preview}
-            open={popConfirmVisibleFor === NEXT}
-            hidePopConfirm={this.hidePopConfirm}
-            onConfirm={this.moveToNextPage}
-            popUpContainerRef={this.popUpContainerRef}
-            popUpTriggerRef={this.popUpTriggerRef}
-          >
+            )}
             {!showSubmit && showSave && (
               <FixedWidthButton
                 size="large"
@@ -210,10 +201,12 @@ class PageFooter extends Component {
 }
 
 const QuestionInProgressPopConfirm = forwardRef(({
-  preview, preview: { inProgressQuestions }, open, hidePopConfirm, onConfirm, children, popUpContainerRef,
+  preview, preview: { inProgressQuestions }, open,
+  hidePopConfirm, onConfirm, children,
   popUpTriggerRef,
-}) => {
+}, popUpContainerRef) => {
   const titleTextRef = useRef(null)
+
   useEffect(() => {
     const popUpContainerNode = popUpContainerRef?.current
     if (popUpContainerRef?.current && open) {

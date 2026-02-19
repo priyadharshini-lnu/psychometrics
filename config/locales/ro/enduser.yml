@@ -28,6 +28,7 @@ ro:
     max_word_limit: Trebuie să aibă cel mult %{max} cuvinte
     min_word_limit: Trebuie să aibă cel puțin %{min} cuvinte
     my_plan: Planul meu
+    no_audio_warning: Nu s-a detectat sunet. Verificați dacă microfonul este conectat și funcționează corect.
     profile: Profil
     profile_details: Detalii
     question_counter: Întrebarea %{current} din %{total}
@@ -36,11 +37,31 @@ ro:
     recording: Înregistrare
     reject_idp_plan: Planul de respingere
     request_retry_message: Ești offline. Răspunsurile tale nu au putut fi salvate, dar vor fi salvate automat odată ce vei fi din nou online. Vă rugăm să nu reîmprospătați sau să închideți pagina.
-    saving_video_text: Salvarea video... Vă rugăm să nu închideți sau să nu reîmprospătați browserul
     selected_count: Selectat
     skill_type: Tip de abilitate
     start_campaign_message_proctored: Aceasta este o campanie supravegheată, vă rugăm să apăsați butonul "%{buttonText}" pentru a începe activitățile.
     start_campaign_message_timed: Aceasta este o campanie cu timp limitat, vă rugăm să apăsați butonul "%{buttonText}" pentru a începe activitățile.
     start_campaign_message_timed_proctored: Aceasta este o campanie cronometrată și supravegheată, vă rugăm să apăsați butonul "%{buttonText}" pentru a începe activitățile.
     status_unknown: Stare necunoscută
+    system_check_access: Acces
+    system_check_audio_random_phrases:
+      eight: Fie ca cafeaua ta să fie tare și ziua ta să fie productivă.
+      five: Viața este mai frumoasă atunci când zâmbești. Zâmbește pentru microfon!
+      four: Ea vinde scoici pe malul mării.
+      nine: Atunci când aveți îndoieli, testați acest microfon funcționează!
+      one: Eu strig, tu strigi, toți strigăm după înghețată!
+      seven: Fiecare zi este un nou început. Spune-o tare și mândru!
+      six: Pizza sau paste? Deciziile sunt dificile.
+      three: Testare, unu doi trei, sunetul este cât se poate de clar!.
+      two: Vulpea maro iute sare peste câinele leneș.
+    system_check_audio_title: Vă rugăm să vorbiți și să repetați următoarea propoziție de 3 ori.
+    system_check_proceed: Da, Ok pentru a continua
+    system_check_retake: Nu, vreau să reiau
+    system_check_run_again: Aleargă din nou
+    system_check_start_recording: Începeți înregistrarea
+    system_check_stop_recording: Opriți înregistrarea
+    system_check_test_message: mă bucur să vorbesc cu tine
+    system_check_upload_again: Încarcă din nou
+    system_check_uploading: Încărcare
+    system_check_video_random_phrase: Sunt gata. Aceasta este o înregistrare de test pentru a confirma dacă microfonul și camera mea funcționează corect.
     tasks: Sarcini

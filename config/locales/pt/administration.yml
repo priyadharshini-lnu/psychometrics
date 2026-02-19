@@ -3930,11 +3930,6 @@ pt:
         generate_embedding_failure_msg: Falhei em enfileirar o trabalho de geração de habilidade embedding. Por favor, tente novamente.
         generate_embedding_success_msg: O trabalho de geração de embedding de habilidades foi enfileirado com sucesso. Por favor, verifique o status nas notificações.
         label: Vector DB
-    skills_taxonomy:
-      tabs:
-        job_roles: Funções
-        proficiency: Proficiência
-        skills: Competências
     sms_histories:
       columns:
         first_name: Nome próprio
@@ -4188,13 +4183,15 @@ pt:
       more_actions: Mais acções
     taxonomy:
       import:
+        description: Carregue um arquivo Excel para importar ou atualizar sua taxonomia de habilidades. Isso adicionará novas habilidades, funções de trabalho e níveis de proficiência.
         download_example_file: Descarregar ficheiro de exemplo
+        drag_text: Clique ou arraste o arquivo para esta área para fazer o upload
+        error_title: Falha na importação
+        file_hint: Suporta arquivos .xls e .xlsx
+        import_button: Importar taxonomia
         success_msg: O ficheiro carregado foi colocado em fila de espera para importação. Verifique o estado nas notificações.
       import_action:
         taxonomy: Importar a taxonomia de competências
-      job_roles: Funções
-      proficiency: Proficiência
-      skills: Competências
       title: Taxonomia de competências
     templates:
       blocks:

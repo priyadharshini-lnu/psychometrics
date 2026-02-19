@@ -61,6 +61,12 @@ module Api
       )
 
       if form.valid?
+        siem_log_sensitive_operation(
+          context: 'Development Actions Import',
+          action_description: "initiated development actions import for project #{project&.id}",
+          action_type: 'Import',
+          resource: 'DevelopmentAction'
+        )
         AdminJob.call(
           :import_development_actions,
           { project_id: project.id },
@@ -80,6 +86,12 @@ module Api
       )
 
       if form.valid?
+        siem_log_sensitive_operation(
+          context: 'Global Development Actions Import',
+          action_description: 'initiated global development actions import',
+          action_type: 'Import',
+          resource: 'DevelopmentAction'
+        )
         AdminJob.call(
           :import_development_actions,
           { project_id: nil },

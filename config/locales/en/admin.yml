@@ -9,6 +9,7 @@ en:
     add_project: Add Project
     add_project_admin: Add Project Admin
     add_threesixty_campaign_admin: Add Campaign Admin
+    add_word_count: Add Word Count
     admin_approval_required: Report for %{user} requires admin approval before download
     admin_created_successfully: Admin '%{name}' was created successfully
     admin_export_scheduled: Admin export job was scheduled successfully. Please check your notification for status.
@@ -24,6 +25,7 @@ en:
     ai_assistant_model_provider: Provider
     ai_assistant_model_region_label: Region
     ai_assistant_required: AI Assistant is required
+    ai_assistant_select_dependencies: Select dependencies
     ai_assistants: AI Assistants
     ai_assistants_advanced_mode_tooltip: Use advanced mode for prompt templating using liquid template with available variables. Refer to documentation for more details.
     ai_assistants_campaign_id_placeholder: Enter campaign ID
@@ -35,6 +37,10 @@ en:
     ai_assistants_test_render: Test Render
     ai_assistants_test_render_tooltip: Test your prompt template with campaign data to check what will be sent to the AI assistant.
     ai_assisted_idp_feature_disabled: AI Assisted IDP feature has been disabled for this project.
+    ai_idp_assistant_configure_dependencies: Configure AI Dependencies
+    ai_idp_assistant_configure_dependencies_description: Configure which dependency data the IDP AI Assistant can access as context. This only applies when the assistant is configured to accept dependencies.
+    ai_idp_assistant_dependencies_updated: Dependencies updated successfully
+    ai_idp_assistant_update_dependencies: Update Dependencies
     ai_notice: Highlighted sections AI-translated and may contains innacuracies.
     ai_translation: AI Translation
     all_corner_rounded: All corner rounded
@@ -83,6 +89,8 @@ en:
     campaign_templates: Campaign Templates
     campaign_user_job_roles_cannot_be_same: Target job role must be different from current job role
     campaigns: Campaigns
+    cancellation_and_rescheduling_disabled: Cancellation and Rescheduling is disabled
+    casual: Casual
     client: Client
     client_admins: Client Admins
     clients: Clients
@@ -91,6 +99,7 @@ en:
     communications: Communications
     completed: Completed
     completed_tooltip: All evaluators have submitted the evaluation
+    concise: Concise
     confirm_remove_admin: Are you sure you want to remove admin user with email '%{email}'?
     country: Country
     create_client: Create Client
@@ -120,15 +129,24 @@ en:
     enable_transcription: Enable Transcription
     end_time: End Time
     end_time_must_be_after_start_time: End time must be after start time
+    enhance_with_ai: Enhance with AI
     enhance_with_ai_requires_ai_assistants: Enhance with AI requires AI Assistants feature to be enabled
+    error: Error
     evaluation_status: Evaluation Status
     evaluation_status_not_done: Evaluation status is not 'Done' for one or more selected subjects. Please ensure all selected users have completed evaluations or mark as done.
     export_admin_roles_permissions: Admin Roles and Permissions export
+    export_compact_completion_status: Compact
+    export_completion_status: Export Completion Status
+    export_completion_statuses_scheduled: Completion Statuses export job was scheduled successfully
+    export_detailed_completion_status: Detailed
     feature_enhance_with_ai: Enhance with AI
     feature_flags: Feature Flags
     fill_empty_score_msg: Fill all the final scores before saving.
     final_score_empty_err_msg: Final score of %{factor_name} cannot be empty.
     final_score_empty_msg: Итоговый счет не может быть пустым.
+    fix_grammar: Fix Grammar
+    formal: Formal
+    generate_transcription: Generate Transcription
     idp_plan_reset_success: Plan has been reset successfully
     idp_templates: IDP Templates
     import_ai_artifacts: Import AI Artifacts
@@ -154,6 +172,7 @@ en:
     import_title: Import Subjects from CSV
     import_upload: Upload
     import_users: Import Users
+    internal: Internal
     invalid_csv_header: CSV file contains invalid headers.
     job_roles: Job Roles
     learning_from_others: Collaborative Learning [20]
@@ -180,6 +199,7 @@ en:
     mhs_report_id: MHS Report ID
     mhs_session_id: Mhs Session ID
     min_value: Min value
+    minimum_10_words: Minimum 10 words
     missing_min_max_values: Minimum and Maximum values are required.
     name_required: Name is required
     no_file_selected: No file selected
@@ -197,6 +217,7 @@ en:
     on_the_job: On the Job [70]
     only_editable_on_create: This option is editable only while creating.
     options: Options
+    original_text: Original Text
     participants: Participants
     permissions:
       aiArtifacts:
@@ -623,6 +644,8 @@ en:
     piped_text: Piped Text
     privacy: Privacy
     proctoring: Proctoring
+    professional: Professional
+    proficiency: Proficiency
     proficiency_level: Proficiency Level
     proficiency_levels: Proficiency Levels
     profile_details: Profile Details
@@ -651,6 +674,7 @@ en:
     reset_idp_plan_confirmation: Are you sure you want to reset the plan?
     reset_idp_plan_title: Reset Plan
     response_meta: Response Meta
+    result: Result
     results: Results
     role: Role
     saml_idp_certificate_available: Available (click to copy)
@@ -732,12 +756,17 @@ en:
     subject_part_of_other_invite: Subject with email %{user_email} is already invited to '%{workshop_invite_name}'
     target_job_role: Target Job Role
     timezone: TimeZone
+    tone: Tone
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: AI Suggestion
     toolbar_result_generating: Generating...
     toolbar_text_copied: Copied to clipboard
     toolbar_text_replaced: Text replaced!
     toolbar_what_changed_and_why: What Changed & Why
+    tools: Tools
+    transcription_record_not_found: Transcription record not found
+    transcription_schedule_failed: Failed to schedule transcription job
+    transcription_scheduled: Transcription job is scheduled. Please close the modal and check notification status.
     translate: Translate
     translate_to: Translate To
     translate_with_ai: Translate with AI
@@ -751,6 +780,7 @@ en:
     users: Users
     view_licenses: View Licenses
     waiting: Waiting
+    words: Words
     workshops: Workshops
     writing_assistant_not_configured: Writing Assistant not configured
     x_axis_interval_label: X-Axis Interval

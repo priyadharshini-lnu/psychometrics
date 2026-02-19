@@ -311,14 +311,14 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
             url={workshopSubject?.user?.photoUrl || ''}
             name={workshopSubject?.user?.fullName || ''}
           />
-          <Space size={0} direction="vertical">
+          <Space size={0} orientation="vertical">
             {workshopSubject?.user?.fullName}
             <Text type="secondary">{workshopSubject?.user?.email}</Text>
           </Space>
         </Space>
       </Col>
       <Col span={3}>
-        <Space size="small" align="end" direction="vertical">
+        <Space size="small" align="end" orientation="vertical">
           <Text type="secondary">{I18n.t('administration.scheduling.subjects.language')}</Text>
           <Text className="flex-end">
             {workshopSubject?.language || I18n.t('administration.scheduling.subjects.language_not_selected')}
@@ -326,13 +326,13 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
         </Space>
       </Col>
       <Col span={3}>
-        <Space size="small" align="end" direction="vertical">
+        <Space size="small" align="end" orientation="vertical">
           <Text type="secondary">{I18n.t('administration.scheduling.subjects.preworks')}</Text>
           <Text className="flex-end">{workshopSubject?.preworks}</Text>
         </Space>
       </Col>
       <Col span={6}>
-        <Space size="small" align="end" direction="vertical">
+        <Space size="small" align="end" orientation="vertical">
           <Text type="secondary">{I18n.t('administration.scheduling.subjects.activities')}</Text>
           <Text className="flex-end">{workshopSubject?.workshopActivities}</Text>
         </Space>
@@ -356,7 +356,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
           name="attendanceStatus"
           initialValue={workshopSubject?.attendanceStatus}
         >
-          <Select dropdownStyle={{ minWidth: '120px' }}>
+          <Select styles={{ popup: { root: { minWidth: '120px' } } }}>
             {STATUSES.map(status => (
               <Select.Option
                 key={status.value}
@@ -396,7 +396,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
         title={title}
         open={open}
         onClose={handleClose}
-        destroyOnClose
+        destroyOnHidden
         focusable={{ trap: false }}
         styles={{
           footer: { textAlign: 'end' },
@@ -405,7 +405,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
         {workshopSubjectDetailsLoading ? skeleton : (
           <>
             {statusForm}
-            <Space size="large" direction="vertical" rootClassName="w-100">
+            <Space size="large" orientation="vertical" rootClassName="w-100">
               <Title
                 rootClassName="mb-0"
                 level={5}

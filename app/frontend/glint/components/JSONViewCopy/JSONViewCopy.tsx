@@ -54,7 +54,7 @@ const JSONViewCopy = ({
           (editorRef.current as Editor)?.refresh()
         }
       }}
-      destroyOnClose
+      destroyOnHidden
     >
       <div className={styles.body}>
         <CodeMirror

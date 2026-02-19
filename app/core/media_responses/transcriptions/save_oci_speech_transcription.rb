@@ -3,30 +3,33 @@
 module MediaResponses
   module Transcriptions
     class SaveOciSpeechTranscription < BaseCommand
-      private_attr_reader :media_response, :job_id
+      private_attr_reader :media_response, :job_id, :media_response_id, :admin_job_record_id
 
-      def initialize(media_response, job_id)
-        @media_response = media_response
-        @job_id = job_id
+      def initialize(options)
+        @job_id = options[:job_id]
+        @media_response_id = options[:record_id]
+        @admin_job_record_id = options[:admin_job_record_id]
       end
 
       def call
+        return unless media_response
+
         broadcast :ok, save_transcription
       end
 
       private
 
+      def media_response
+        @media_response ||= MediaResponse.find_by(id: media_response_id)
+      end
+
       def save_transcription
         s3key = get_transcription_s3key
         transcription_text = extract_transcription_text(s3key)
 
-        if media_response.transcription.present?
-          media_response.transcription.update!(text: transcription_text)
-        else
-          media_response.create_transcription!(text: transcription_text)
-        end
+        media_response.save_transcription_completed!(transcription_text)
 
-        media_response.update!(transcription_status: :completed)
+        update_admin_job_progress
       end
 
       def s3_client
@@ -59,6 +62,17 @@ module MediaResponses
         task_id = tasks.first.id
         task_details = speech_client.get_transcription_task(job_id, task_id).data
         task_details.output_location.object_names.first
+      end
+
+      def admin_job
+        @admin_job ||= AdminJobRecord.find_by(id: admin_job_record_id)
+      end
+
+      def update_admin_job_progress
+        return unless admin_job_record_id
+
+        admin_job&.increment_completed_tasks!
+        admin_job&.complete! if admin_job&.total_tasks == admin_job&.completed_tasks
       end
     end
   end

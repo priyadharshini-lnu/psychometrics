@@ -28,6 +28,7 @@ nl:
     max_word_limit: Mag maximaal %{max} woorden bevatten
     min_word_limit: Moet minstens %{min} woorden bevatten
     my_plan: Mijn plan
+    no_audio_warning: Er is geen geluid gedetecteerd. Controleer of uw microfoon is aangesloten en goed werkt.
     profile: Profiel
     profile_details: Details
     question_counter: Vraag %{current} van %{total}
@@ -36,11 +37,31 @@ nl:
     recording: Opname
     reject_idp_plan: Plan afwijzen
     request_retry_message: Je bent offline. Je antwoorden konden niet worden opgeslagen, maar worden automatisch opgeslagen zodra je weer online bent. Vers of sluit de pagina alstublieft niet.
-    saving_video_text: Video opslaan... Sluit of ververs alstublieft de browser niet
     selected_count: Geselecteerd
     skill_type: Type vaardigheid
     start_campaign_message_proctored: Dit is een campagne met toezicht, klik op de knop '%{buttonText}' om de activiteiten te starten.
     start_campaign_message_timed: Dit is een getimede campagne, klik op de knop '%{buttonText}' om de activiteiten te starten.
     start_campaign_message_timed_proctored: Dit is een getimede en toezichthoudende campagne, klik op de knop '%{buttonText}' om de activiteiten te starten.
     status_unknown: Status onbekend
+    system_check_access: Toegang
+    system_check_audio_random_phrases:
+      eight: Moge je koffie sterk zijn en je dag productief.
+      five: Het leven is beter als je lacht. Lach voor de microfoon!
+      four: Ze verkoopt zeeschelpen aan de kust.
+      nine: Bij twijfel, test deze microfoon!
+      one: Ik schreeuw, jij schreeuw, we schreeuwen allemaal om ijs!
+      seven: Elke dag is een nieuw begin. Zeg het luid en trots!
+      six: Pizza of pasta? Beslissingen zijn moeilijk.
+      three: Test, één twee drie, het geluid is zo helder als maar kan!
+      two: De snelle bruine vos springt over de luie hond.
+    system_check_audio_title: Spreek en herhaal de volgende zin 3 keer.
+    system_check_proceed: Ja, oké om door te gaan
+    system_check_retake: Nee, ik wil een herkansing
+    system_check_run_again: Opnieuw rennen
+    system_check_start_recording: Opname starten
+    system_check_stop_recording: Opname stoppen
+    system_check_test_message: leuk om met je te praten
+    system_check_upload_again: Opnieuw uploaden
+    system_check_uploading: Uploaden
+    system_check_video_random_phrase: Ik ben er klaar voor. Dit is een testopname om te controleren of mijn video en microfoon goed werken.
     tasks: Taken

@@ -2,6 +2,7 @@
 
 class DesignSetting < ApplicationRecord
   audited
+  include ApplicationConfigurationLoggable
 
   include ActiveStorageAttachable
 

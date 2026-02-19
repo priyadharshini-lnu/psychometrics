@@ -108,7 +108,7 @@ export const GroupCard = React.forwardRef(
     return (
       <div ref={ref} style={{ ...style, ...dragStyle }}>
         <Card styles={{ body: { background: '#f2f2f2', minWidth: '300px', padding: '12px' } }} title={titleElement}>
-          <Space className="w-100" direction="vertical">
+          <Space className="w-100" orientation="vertical">
             {children}
             {permissions.manageCampaignScoring ? (
               <Button

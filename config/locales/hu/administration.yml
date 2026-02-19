@@ -3929,11 +3929,6 @@ hu:
         generate_embedding_failure_msg: Nem sikerült sorba sorolni a képesség beágyazó generáló feladatot. Kérlek, próbáld meg újra.
         generate_embedding_success_msg: A képességbeágyazású generáló munka sikeresen sorba került. Kérjük, ellenőrizze az állapotot az értesítésekben.
         label: Vektoros DB
-    skills_taxonomy:
-      tabs:
-        job_roles: Munkakörök
-        proficiency: Szakértelem
-        skills: Készségek
     sms_histories:
       columns:
         first_name: Keresztnév
@@ -4182,13 +4177,15 @@ hu:
       more_actions: További műveletek
     taxonomy:
       import:
+        description: Töltsön fel egy Excel fájlt a készségek taxonómiájának importálásához vagy frissítéséhez. Ezzel új készségek, munkakörök és jártassági szintek kerülnek hozzáadásra.
         download_example_file: Példafájl letöltése
+        drag_text: Kattintson vagy húzza a fájlt erre a területre a feltöltéshez
+        error_title: Importálás sikertelen
+        file_hint: Támogatja az .xls és .xlsx fájlokat
+        import_button: Import taxonómia
         success_msg: A feltöltött fájl importálási várólistára került. Kérjük, ellenőrizze az állapotot az értesítésekben.
       import_action:
         taxonomy: Import taxonómia
-      job_roles: Munkakörök
-      proficiency: Szakértelem
-      skills: Készségek
       title: Rendszertan
     templates:
       blocks:

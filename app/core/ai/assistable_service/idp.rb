@@ -9,8 +9,12 @@ module AI
 
       def initialize(plan, current_user, instructions = nil, options = {})
         @locale = options[:locale]
+        @retry_last_request = options[:retry_last_request]
 
-        super(plan, current_user, instructions, options.merge(ignore_user_prompt: true))
+        super(plan, current_user, instructions, options.merge(
+          ignore_user_prompt: true,
+          validate_response_structure: true
+        ))
       end
 
       def call
@@ -28,7 +32,7 @@ module AI
           on(:error) do |error_message, error|
             handle_assistant_service_error(error_message, error)
           end.
-          call
+          then { |service| @retry_last_request ? service.retry_last_request : service.call }
       rescue ServiceConfigurationError => e
         handle_assistant_service_error(e.message, e)
       end
@@ -47,7 +51,7 @@ module AI
       def handle_assistant_service_error(error_message, error = nil)
         error_response, error_meta = handle_assistant_error_response(error_message, error)
         mark_session_failed!(error_response, meta: error_meta)
-        broadcast(:error, error_response)
+        broadcast(:error, error_response, error)
       end
 
       def handle_assistant_service_success(assistant_response)
@@ -68,6 +72,7 @@ module AI
             #{user_dependency.parse}
             #{campaign_user_dependency.parse}
             #{plan_dependency}
+            #{idp_assessment_dependency if assistant_has_assessment_dependency?}
           <session_context>
         CONTEXT
       end
@@ -147,8 +152,25 @@ module AI
         AI::Utils::DependencyParser::CampaignUser.new(campaign_user)
       end
 
+      def idp_assessment_dependency
+        return '' unless campaign_idp&.questions&.any?
+
+        AI::Utils::DependencyParser::Assessment.new(campaign_idp, current_user).parse
+      rescue AI::Utils::DependencyParser::Error => e
+        Rails.logger.warn("Failed to parse IDP assessment dependency: #{e.message}")
+        '<assessment>Response not available</assessment>'
+      end
+
       def campaign_user
         @campaign_user ||= CampaignUser.find_by(user: current_user, campaign: campaign)
+      end
+
+      def campaign_idp
+        @campaign_idp ||= campaign.campaign_idp
+      end
+
+      def assistant_has_assessment_dependency?
+        assistant.dependencies.include?('assessments')
       end
 
       def campaign

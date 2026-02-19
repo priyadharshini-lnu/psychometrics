@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe ObjectStorage::GetSingleSignedUploadUrl do
   let(:user_assessment) { create(:user_assessment) }
-  let(:media) { create(:user_assessment_verification_image, user_assessment: user_assessment) }
+  let(:media) { create(:user_assessment_verification_medium, user_assessment: user_assessment) }
   let(:field) { :file }
   let(:blob_params) do
     { 'filename' => 'file.txt', 'byte_size' => 100, 'checksum' => 'checksum', 'content_type' => 'text/plain' }
@@ -36,7 +36,7 @@ describe ObjectStorage::GetSingleSignedUploadUrl do
 
     it 'sets asset_key to the attachment_storage_path' do
       expect(media).to receive(:attachment_storage_path).with(field, 'file.txt').and_return(
-        'private/projects/1/user_verification_images/1/file/file.txt'
+        'private/projects/1/user_verification_media/1/file/file.txt'
       )
 
       subject.call

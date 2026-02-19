@@ -114,7 +114,8 @@ describe AI::Tools::Idp::SkillGapReportAnalysis do
             ask_params: { with: 'https://example.com/document.pdf', service: :openai_response_api },
             ignore_user_prompt: nil,
             prompt_template_context: nil,
-            params: {}
+            params: {},
+            validate_response_structure: nil
           )
         end
 

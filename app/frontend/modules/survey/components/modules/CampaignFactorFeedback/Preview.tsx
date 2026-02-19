@@ -66,8 +66,8 @@ const PreviewComponent:FC<Props> = ({
               <Form.Item>
                 {fields.map((field, index) => (
                   <React.Fragment key={`${id}-field.name-${index}`}>
-                    <Space size="large" align="start" className="w-100" direction="horizontal">
-                      <Space size={0} className="w-100" direction="vertical">
+                    <Space size="large" align="start" className="w-100" orientation="horizontal">
+                      <Space size={0} className="w-100" orientation="vertical">
                         <label>
                           <Space>
                             <SafeHTML

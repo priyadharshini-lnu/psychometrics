@@ -153,10 +153,10 @@ export const ScheduleAvailability:FC<Props> = ({
       defaultOpen={!collapsed}
       className={className}
     >
-      <Space className="w-100" size="middle" direction="vertical">
+      <Space className="w-100" size="middle" orientation="vertical">
         {errorMessages?.base?.title && <Alert type="error" description={errorMessages.base.title} />}
         <div className={styles.timezone}>
-          <Space direction="vertical" className="w-100">
+          <Space orientation="vertical" className="w-100">
             {I18n.t('glint.schedule_availability.timezone_label')}
             <TimeZoneSelect value={timezone} onChange={setTimezone} />
           </Space>
@@ -178,8 +178,8 @@ export const ScheduleAvailability:FC<Props> = ({
           validateMessages={{ required: I18n.t('glint.schedule_availability.required_error') }}
           onFinish={handleFormFinish}
         >
-          <Space direction="vertical" className="w-100">
-            <Space direction="horizontal" size="small" align="baseline">
+          <Space orientation="vertical" className="w-100">
+            <Space orientation="horizontal" size="small" align="baseline">
               <Form.Item
                 name="startDate"
                 labelAlign="left"
@@ -217,7 +217,7 @@ export const ScheduleAvailability:FC<Props> = ({
               </div>
             )}
             <div className={cs(styles.daysContainer, 'mt-4')}>
-              <Space size="small" direction="vertical">
+              <Space size="small" orientation="vertical">
                 <Checkbox.Group
                   options={dayOptions.filter(day => availableWeekDays.includes(day.value))}
                   value={checkedDayList}

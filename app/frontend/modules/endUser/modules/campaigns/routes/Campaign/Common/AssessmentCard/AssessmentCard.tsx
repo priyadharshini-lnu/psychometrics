@@ -241,7 +241,7 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
     ? secondsToDayHoursAndMinutes(workshopActivityDuration * 60, undefined, 'hr', 'mins') : ''
   const showDuration = timing || isWorkshopActivity
   const subtitleElement = (
-    <Space direction="vertical">
+    <Space orientation="vertical">
       {
         showDuration ? (
 

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Lint/UnderscorePrefixedVariableName
 module Administration
   class MhsUserAssessmentSchema < BaseSchema
     def self.schema(_, _)
@@ -12,9 +13,17 @@ module Administration
         required(:data_gathering_id).filled(:str?)
         required(:confidence_interval).maybe(:int?)
         required(:leadership_bar).maybe(:int?)
-        required(:norm_region).maybe(:str?)
-        required(:norm_option).maybe(:str?)
+        required(:norm_region).maybe(:int?)
+        required(:norm_option).maybe(:int?)
+        required(:norm_regions).maybe do
+          array(MhsNormRegionSchema.schema(_, _))
+        end
+        required(:norm_options).maybe do
+          array(MhsNormOptionSchema.schema(_, _))
+        end
       end
     end
   end
 end
+
+# rubocop:enable Lint/UnderscorePrefixedVariableName

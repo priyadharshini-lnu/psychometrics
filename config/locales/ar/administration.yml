@@ -3930,11 +3930,6 @@ ar:
         generate_embedding_failure_msg: فشل في حجز وظيفة توليد المهارات في قائمة الانتظار. يرجى المحاولة مرة أخرى.
         generate_embedding_success_msg: تم تأسيس وظيفة توليد المهارات بنجاح. يرجى التحقق من الحالة في الإشعارات.
         label: فيكتور DB
-    skills_taxonomy:
-      tabs:
-        job_roles: الأدوار الوظيفية
-        proficiency: الكفاءة
-        skills: المهارات
     sms_histories:
       columns:
         first_name: First Name
@@ -4188,13 +4183,15 @@ ar:
       more_actions: More actions
     taxonomy:
       import:
+        description: قم بتحميل ملف Excel لاستيراد أو تحديث تصنيف مهاراتك. سيؤدي ذلك إلى إضافة مهارات جديدة ووظائف ومستويات كفاءة.
         download_example_file: تنزيل ملف المثال
+        drag_text: انقر أو اسحب الملف إلى هذه المنطقة لتحميله
+        error_title: فشل الاستيراد
+        file_hint: يدعم ملفات .xls و .xlsx
+        import_button: تصنيف الاستيراد
         success_msg: تم وضع الملف الذي تم تحميله في قائمة الانتظار للاستيراد. يرجى التحقق من الحالة في الإشعارات.
       import_action:
         taxonomy: تصنيف مهارات الاستيراد
-      job_roles: الأدوار الوظيفية
-      proficiency: الكفاءة
-      skills: المهارات
       title: تصنيف المهارات
     templates:
       blocks:

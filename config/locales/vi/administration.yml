@@ -3927,11 +3927,6 @@ vi:
         generate_embedding_failure_msg: Không thể xếp hàng công việc tạo nhúng kỹ năng. Vui lòng thử lại.
         generate_embedding_success_msg: Công việc tạo nhúng kỹ năng đã được xếp hàng thành công. Vui lòng kiểm tra trạng thái trong thông báo.
         label: Cơ sở dữ liệu vectơ
-    skills_taxonomy:
-      tabs:
-        job_roles: Vai trò công việc
-        proficiency: Thông thạo
-        skills: Kỹ năng
     sms_histories:
       columns:
         first_name: Tên thánh
@@ -4180,13 +4175,15 @@ vi:
       more_actions: Hành động khác
     taxonomy:
       import:
+        description: Tải lên tệp Excel để nhập hoặc cập nhật hệ thống phân loại kỹ năng của bạn. Điều này sẽ thêm các kỹ năng mới, vị trí công việc và mức độ thành thạo.
         download_example_file: Tải xuống tệp ví dụ
+        drag_text: Nhấp chuột hoặc kéo tệp vào khu vực này để tải lên.
+        error_title: Nhập khẩu thất bại
+        file_hint: Hỗ trợ các tệp .xls và .xlsx.
+        import_button: Nhập khẩu phân loại
         success_msg: Tệp đã tải lên đã được xếp hàng để nhập. Vui lòng kiểm tra trạng thái trong thông báo.
       import_action:
         taxonomy: Phân loại nhập khẩu
-      job_roles: Vai trò công việc
-      proficiency: Thông thạo
-      skills: Kỹ năng
       title: Phân loại học
     templates:
       blocks:

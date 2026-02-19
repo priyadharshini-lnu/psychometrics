@@ -63,6 +63,12 @@ class SamlIdpController < ApplicationController
 
   def handle_invalid_request
     audit_saml_invalid_request
+
+    siem_log_authorization_failure(
+      resource: 'SAML IdP',
+      action: 'process_request'
+    )
+
     respond_to do |format|
       format.html { render plain: 'Forbidden', status: :forbidden }
       format.xml { render plain: 'Forbidden', status: :forbidden }

@@ -140,7 +140,7 @@ class Properties extends Component {
     const { modules } = this.props
     const model = modules[0]
     return (
-      <Space direction="vertical">
+      <Space orientation="vertical">
         <div>
           <span className={styles.label}>Factors</span>
           <Select

@@ -9,6 +9,7 @@ th:
     add_project: เพิ่มโครงการ
     add_project_admin: เพิ่มผู้ดูแลระบบโครงการ
     add_threesixty_campaign_admin: เพิ่มผู้ดูแลแคมเปญ
+    add_word_count: เพิ่มจำนวนคำ
     admin_approval_required: รายงานสําหรับ %{user} ต้องได้รับการอนุมัติจากผู้ดูแลระบบก่อนดาวน์โหลด
     admin_created_successfully: ผู้ดูแลระบบ '%{name}' ถูกสร้างขึ้นเรียบร้อยแล้ว
     admin_export_scheduled: การส่งออกงานของผู้ดูแลระบบถูกตั้งเวลาเรียบร้อยแล้ว กรุณาตรวจสอบสถานะการแจ้งเตือนของคุณ
@@ -24,6 +25,7 @@ th:
     ai_assistant_model_provider: ผู้จัดหา
     ai_assistant_model_region_label: บริเวณ
     ai_assistant_required: จําเป็นต้องมี AI Assistant
+    ai_assistant_select_dependencies: เลือกการพึ่งพา
     ai_assistants: ผู้ช่วย AI
     ai_assistants_advanced_mode_tooltip: ใช้โหมดขั้นสูงสําหรับการสร้างเทมเพลตพร้อมท์โดยใช้เทมเพลตของเหลวที่มีตัวแปรที่มีอยู่ โปรดดูเอกสารประกอบสําหรับรายละเอียดเพิ่มเติม
     ai_assistants_campaign_id_placeholder: ป้อนรหัสแคมเปญ
@@ -35,6 +37,10 @@ th:
     ai_assistants_test_render: ทดสอบการแสดงผล
     ai_assistants_test_render_tooltip: ทดสอบเทมเพลตพร้อมท์ของคุณด้วยข้อมูลแคมเปญเพื่อตรวจสอบว่าอะไรจะถูกส่งไปยังผู้ช่วย AI
     ai_assisted_idp_feature_disabled: คุณลักษณะ AI Assisted IDP ถูกปิดใช้งานสําหรับโครงการนี้
+    ai_idp_assistant_configure_dependencies: กำหนดค่าการพึ่งพา AI
+    ai_idp_assistant_configure_dependencies_description: กำหนดค่าข้อมูลการพึ่งพาที่ผู้ช่วย AI ของ IDP สามารถเข้าถึงเป็นบริบทได้ การตั้งค่านี้ใช้เฉพาะเมื่อผู้ช่วยได้รับการกำหนดค่าให้ยอมรับการพึ่งพาเท่านั้น
+    ai_idp_assistant_dependencies_updated: การอัปเดตการพึ่งพาสำเร็จแล้ว
+    ai_idp_assistant_update_dependencies: อัปเดตการพึ่งพา
     ai_notice: ส่วนที่ถูกเน้นได้รับการแปลโดย AI และอาจมีข้อผิดพลาด
     ai_translation: การแปลโดยปัญญาประดิษฐ์
     all_corner_rounded: มุมทั้งหมดโค้งมน
@@ -83,6 +89,8 @@ th:
     campaign_templates: เทมเพลตแคมเปญ
     campaign_user_job_roles_cannot_be_same: ตำแหน่งงานเป้าหมายต้องแตกต่างจากตำแหน่งงานปัจจุบัน
     campaigns: แคมเปญ
+    cancellation_and_rescheduling_disabled: การยกเลิกและการเลื่อนกำหนดการถูกปิดใช้งาน
+    casual: ลำลอง
     client: การเช่าลูกค้า
     client_admins: ผู้ดูแลระบบไคลเอ็นต์
     clients: บัญชีลูกค้า
@@ -91,6 +99,7 @@ th:
     communications: การสื่อสาร
     completed: เสร็จ สมบูรณ์
     completed_tooltip: ผู้ประเมินทั้งหมดได้ส่งการประเมินแล้ว
+    concise: กระชับ
     confirm_remove_admin: คุณแน่ใจหรือไม่ว่าต้องการลบผู้ดูแลระบบอีเมล '%{email}'
     country: ประเทศ
     create_client: สร้างไคลเอ็นต์
@@ -120,14 +129,24 @@ th:
     enable_transcription: เปิดใช้งานการถอดเสียง
     end_time: เวลาสิ้นสุด
     end_time_must_be_after_start_time: เวลาสิ้นสุดต้องเป็นหลังจากเวลาเริ่มต้น
+    enhance_with_ai: เพิ่มประสิทธิภาพด้วย AI
     enhance_with_ai_requires_ai_assistants: การเพิ่มประสิทธิภาพด้วย AI ต้องเปิดใช้งานฟีเจอร์ผู้ช่วย AI
+    error: ข้อผิดพลาด
     evaluation_status: สถานะการประเมิน
     evaluation_status_not_done: สถานะการประเมินไม่ใช่ "เสร็จสิ้น" สําหรับวิชาที่เลือกอย่างน้อยหนึ่งวิชา โปรดตรวจสอบให้แน่ใจว่าผู้ใช้ที่เลือกทั้งหมดได้ทําการประเมินหรือทําเครื่องหมายว่าเสร็จสิ้น
     export_admin_roles_permissions: ส่งออกหน้าที่และสิทธิ์ของผู้ดูแลระบบ
+    export_compact_completion_status: กะทัดรัด
+    export_completion_status: สถานะการส่งออกเสร็จสมบูรณ์
+    export_completion_statuses_scheduled: งานส่งออกสถานะการเสร็จสิ้นถูกกำหนดเวลาสำเร็จ
+    export_detailed_completion_status: ละเอียด
     feature_enhance_with_ai: เพิ่มประสิทธิภาพด้วย AI
     feature_flags: แฟล็กคุณสมบัติ
     fill_empty_score_msg: กรอกคะแนนสุดท้ายทั้งหมดก่อนบันทึก
     final_score_empty_err_msg: คะแนนสุดท้ายของ %{factor_name} ไม่สามารถเป็นค่าว่างได้
+    final_score_empty_msg: ยอดรวมสุดท้ายต้องไม่ว่างเปล่า
+    fix_grammar: แก้ไขไวยากรณ์
+    formal: ทางการ
+    generate_transcription: สร้างการถอดความ
     idp_plan_reset_success: รีเซ็ตแผนเรียบร้อยแล้ว
     idp_templates: เทมเพลต IDP
     import_ai_artifacts: นําเข้าสิ่งประดิษฐ์ AI
@@ -153,6 +172,7 @@ th:
     import_title: นําเข้าหัวเรื่องจาก CSV
     import_upload: อัปโหลด
     import_users: นําเข้าผู้ใช้
+    internal: ภายใน
     invalid_csv_header: ไฟล์ CSV มีส่วนหัวที่ไม่ถูกต้อง
     job_roles: บทบาทงาน
     learning_from_others: การเรียนรู้ร่วมกัน [20]
@@ -179,6 +199,7 @@ th:
     mhs_report_id: รหัสรายงาน MHS
     mhs_session_id: รหัสเซสชันของนักศึกษา
     min_value: ค่าต่ำสุด
+    minimum_10_words: อย่างน้อย 10 คำ
     missing_min_max_values: จำเป็นต้องระบุค่าต่ำสุดและค่าสูงสุด
     name_required: ต้องระบุชื่อ
     no_file_selected: ไม่มีไฟล์ที่เลือก
@@ -196,6 +217,7 @@ th:
     on_the_job: ในการทํางาน [70]
     only_editable_on_create: ตัวเลือกนี้สามารถแก้ไขได้เฉพาะในขณะสร้างเท่านั้น
     options: ตัวเลือก
+    original_text: ข้อความต้นฉบับ
     participants: ผู้เข้าร่วม
     permissions:
       aiArtifacts:
@@ -622,6 +644,8 @@ th:
     piped_text: ข้อความที่จัดรูปแบบ
     privacy: ความเป็นส่วนตัว
     proctoring: การคุมสอบ
+    professional: มืออาชีพ
+    proficiency: ความชำนาญ
     proficiency_level: กุญแจ API
     proficiency_levels: ระดับความสามารถ
     profile_details: รายละเอียดโปรไฟล์
@@ -650,6 +674,7 @@ th:
     reset_idp_plan_confirmation: คุณแน่ใจหรือไม่ว่าต้องการรีเซ็ตแผน?
     reset_idp_plan_title: รีเซ็ตแผน
     response_meta: ตอบกลับ Meta
+    result: ผลลัพธ์
     results: ผลลัพธ์
     role: บทบาท
     saml_idp_certificate_available: มีจําหน่าย (คลิกเพื่อคัดลอก)
@@ -731,12 +756,17 @@ th:
     subject_part_of_other_invite: หัวข้อพร้อมอีเมล %{user_email} ได้รับเชิญแล้วสำหรับ '%{workshop_invite_name}'
     target_job_role: ตำแหน่งงานเป้าหมาย
     timezone: เขตเวลา
+    tone: โทน
     toolbar_ai_insight: AI อินไซต์
     toolbar_ai_suggestion: คำแนะนำจาก AI
     toolbar_result_generating: กำลังสร้าง...
     toolbar_text_copied: คัดลอกไปยังคลิปบอร์ด
     toolbar_text_replaced: ข้อความถูกแทนที่แล้ว!
     toolbar_what_changed_and_why: อะไรที่เปลี่ยนไป & ทำไม
+    tools: เครื่องมือ
+    transcription_record_not_found: ไม่พบบันทึกการถอดเสียง
+    transcription_schedule_failed: ไม่สามารถกำหนดตารางงานถอดความได้
+    transcription_scheduled: งานถอดเสียงถูกกำหนดเวลาแล้ว กรุณาปิดหน้าต่างป๊อปอัปและตรวจสอบสถานะการแจ้งเตือน
     translate: แปล
     translate_to: แปลเป็น
     translate_with_ai: แปลด้วย AI
@@ -750,6 +780,7 @@ th:
     users: ผู้เข้าร่วม
     view_licenses: ดูใบอนุญาต
     waiting: การรอคอย
+    words: คำ
     workshops: เวิร์กช็อป
     writing_assistant_not_configured: ผู้ช่วยการเขียนยังไม่ได้รับการกำหนดค่า
     x_axis_interval_label: แกน X ช่วง

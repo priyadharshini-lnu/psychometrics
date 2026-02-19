@@ -3930,11 +3930,6 @@ de:
         generate_embedding_failure_msg: Ich habe es nicht geschafft, den Job zur Fähigkeitseinbettung in die Warteschlange zu setzen. Bitte versuchen Sie es erneut.
         generate_embedding_success_msg: Der Job zur Generierung von Fähigkeiten wurde erfolgreich in die Warteschlange gesetzt. Bitte überprüfen Sie den Status in den Benachrichtigungen.
         label: Vector DB
-    skills_taxonomy:
-      tabs:
-        job_roles: Job-Rollen
-        proficiency: Befähigung
-        skills: Fertigkeiten
     sms_histories:
       columns:
         first_name: Vorname
@@ -4188,13 +4183,15 @@ de:
       more_actions: Weitere Aktionen
     taxonomy:
       import:
+        description: Laden Sie eine Excel-Datei hoch, um Ihre Kompetenztaxonomie zu importieren oder zu aktualisieren. Dadurch werden neue Kompetenzen, Berufsrollen und Kompetenzstufen hinzugefügt.
         download_example_file: Beispieldatei herunterladen
+        drag_text: Klicken oder ziehen Sie die Datei in diesen Bereich, um sie hochzuladen.
+        error_title: Import fehlgeschlagen
+        file_hint: Unterstützt .xls- und .xlsx-Dateien
+        import_button: Import-Taxonomie
         success_msg: Die hochgeladene Datei wurde in die Warteschlange für den Import aufgenommen. Bitte überprüfen Sie den Status in den Benachrichtigungen.
       import_action:
         taxonomy: Taxonomie der Fertigkeiten importieren
-      job_roles: Berufsrollen
-      proficiency: Befähigung
-      skills: Fertigkeiten
       title: Taxonomie der Fertigkeiten
     templates:
       blocks:

@@ -13,12 +13,14 @@ en-US:
     audio: Audio
     authentication_failed: Authentication failed. Please try again.
     basic: Basic
+    camera_preview: Camera preview will appear here
     campaign_id: Campaign ID
     cancel: Cancel
     change_password: Change Password
     clear_filters: Clear Filters
     collaborative_learning: Collaborative Learning
     completed: Completed
+    configurations: Configurations
     confirm: Confirm
     continue: Continue
     copy: Copy
@@ -27,6 +29,9 @@ en-US:
     decline: Decline
     description: Description
     download: Download
+    download_audio: Download Audio
+    download_transcription: Download Transcription
+    download_video: Download Video
     edit: Edit
     edited: New
     email: Email
@@ -54,6 +59,7 @@ en-US:
     maintenance_upcoming_description: We'll be performing scheduled maintenance on %{date} for approximately %{duration} to enhance your experience. During this time, you won't be able to access or complete any assigned tasks. We appreciate your patience.
     maintenance_upcoming_title: Upcoming Maintenance
     media_question_transcriptions: Media Question Transcriptions
+    media_responses: Media Responses
     modified_by: Modified By
     modified_date: Modified Date
     more_actions: More actions
@@ -69,6 +75,8 @@ en-US:
     proctoring_maintenance_active: Proctoring is currently under maintenance from %{start_time} to %{end_time}. Please try again after the maintenance window.
     proctoring_maintenance_upcoming: Proctoring will be under maintenance from %{start_time} to %{end_time}.
     question_id: Question ID
+    question_transcription_disabled: Transcription is disabled for this question
+    rec: REC
     recording_consent_notice: This meeting session will be recorded. Your participation in this meeting constitutes your consent to be recorded.
     recording_consent_proceed_question: Do you agree to proceed with the recorded meeting?
     recording_consent_title: Recording Consent Notice
@@ -79,6 +87,7 @@ en-US:
     rte_paste_content_exceeds_char_limit: Text exceeds the character limit of {{maxCharacterLimit}} and cannot be pasted.
     rte_paste_content_exceeds_word_limit: Text exceeds the word limit of {{maxWordLimit}} and cannot be pasted.
     save: Save
+    saving_video: Saving Video... Please do not close or refresh the browser
     search: Search
     send_email: Send email
     show_more: Show More
@@ -92,6 +101,7 @@ en-US:
     transcription: Transcription
     transcription_already_requested: Transcription already requested or in progress
     transcription_not_enabled: Transcription is not enabled for the media response
+    transcription_status: Transcription Status
     transcriptions: Transcriptions
     try_again: Try Again
     tte_terms_and_condition: Terms & Privacy

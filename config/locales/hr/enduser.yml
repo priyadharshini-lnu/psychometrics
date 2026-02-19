@@ -28,6 +28,7 @@ hr:
     max_word_limit: Mora imati najviše %{max} riječi
     min_word_limit: Mora imati najmanje %{min} riječi
     my_plan: Moj plan
+    no_audio_warning: Nije detektiran zvuk. Molimo provjerite je li vaš mikrofon priključen i ispravno radi.
     profile: Profil
     profile_details: Detalji
     question_counter: Pitanje %{current} od %{total}
@@ -36,11 +37,31 @@ hr:
     recording: Snimanje
     reject_idp_plan: Plan odbijanja
     request_retry_message: Offline si. Vaši odgovori nisu mogli biti spremljeni, ali će biti automatski spremljeni čim se vratite online. Molimo vas da ne osvježavate niti zatvarate stranicu.
-    saving_video_text: Spremanje videa... Molimo vas da ne zatvarate niti osvježavate preglednik
     selected_count: Odabrano
     skill_type: Vrsta vještine
     start_campaign_message_proctored: Ovo je nadzirana kampanja, molimo kliknite gumb '%{buttonText}' za pokretanje aktivnosti.
     start_campaign_message_timed: Ovo je vremenski ograničena kampanja, molimo kliknite gumb '%{buttonText}' za pokretanje aktivnosti.
     start_campaign_message_timed_proctored: Ovo je vremenski ograničena i nadzirana kampanja, molimo kliknite gumb '%{buttonText}' za početak aktivnosti.
     status_unknown: Status nepoznat
+    system_check_access: Pristup
+    system_check_audio_random_phrases:
+      eight: Neka vam kava bude jaka, a dan produktivan.
+      five: Život je bolji kad se smijemo. Nasmiješite se za mikrofon!
+      four: Riba ribi grize rep.
+      nine: Kada ste u nedoumici, isprobajte radi li mikrofon!
+      one: Ja volim, ti voliš, svi volimo sladoled!
+      seven: Svaki dan je novi početak. Recite to glasno i ponosno!
+      six: Pizza ili tjestenina? Odluke su teške.
+      three: Testiranje, jedan, dva, tri, zvuk je jasan koliko god može biti!
+      two: Žućkasti đak čita džepnu knjigu s ljubičastim šarenim ćilom.
+    system_check_audio_title: Molimo, ponovite sljedeću rečenicu 3 puta.
+    system_check_proceed: Da, nastaviti
+    system_check_retake: Ne, želim ponovno snimati
+    system_check_run_again: Pokušati ponovno
+    system_check_start_recording: Započnite snimanje
+    system_check_stop_recording: Zaustaviti snimanje
+    system_check_test_message: bilo mi je drago razgovarati s tobom
+    system_check_upload_again: Ponovno učitavanje
+    system_check_uploading: Prenijeti
+    system_check_video_random_phrase: Spreman sam. Ovo je probna snimka kako bih potvrdio da moja video i mikrofon ispravno rade.
     tasks: Zadaci

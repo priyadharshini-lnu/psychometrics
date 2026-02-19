@@ -25,7 +25,7 @@ const CampaignJoinLink = ({
       wrapperCol={{ span: 16 }}
       initialValues={{ expire: 120, text: 'Join Campaign' }}
     >
-      <Space direction="vertical">
+      <Space orientation="vertical">
         <Form.Item name="campaign" label={I18n.t('campaign_join_token.campaign_id')} rules={[{ required: true }]}>
           <InputNumber style={{ width: 200 }} />
         </Form.Item>

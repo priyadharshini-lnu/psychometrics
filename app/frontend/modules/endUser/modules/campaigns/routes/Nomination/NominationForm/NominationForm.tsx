@@ -112,7 +112,7 @@ export const NominationForm = (props) => {
               value={form.attrs.relationshipId}
               onChange={relationshipId => updateForm({ ...form.attrs, relationshipId })}
               placeholder={I18n.t('threesixty.select_relationnship')}
-              dropdownMatchSelectWidth={false}
+              popupMatchSelectWidth={false}
             >
               <Option value="" disabled>{I18n.t('threesixty.select_relationnship')}</Option>
               {relationshipWithoutSelf(relationships, options).map(relation => (

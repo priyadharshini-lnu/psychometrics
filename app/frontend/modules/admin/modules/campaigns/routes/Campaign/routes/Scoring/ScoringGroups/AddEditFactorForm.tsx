@@ -406,7 +406,7 @@ export const AddEditFactorForm: FC<Props> = ({
       open={open}
       width="70%"
       onClose={handleClose}
-      destroyOnClose
+      destroyOnHidden
     >
       <div className={styles.parent}>
         {factorData ? (

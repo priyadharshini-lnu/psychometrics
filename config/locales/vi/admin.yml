@@ -9,6 +9,7 @@ vi:
     add_project: Thêm dự án
     add_project_admin: Thêm quản trị viên dự án
     add_threesixty_campaign_admin: Thêm quản trị viên chiến dịch
+    add_word_count: Thêm số từ
     admin_approval_required: Báo cáo cho %{user} yêu cầu sự chấp thuận của quản trị viên trước khi tải xuống
     admin_created_successfully: Quản trị viên '%{name}' đã được tạo thành công
     admin_export_scheduled: Tác vụ xuất dữ liệu quản trị viên đã được lên lịch thành công. Vui lòng kiểm tra thông báo của bạn để biết trạng thái.
@@ -24,6 +25,7 @@ vi:
     ai_assistant_model_provider: Cung cấp
     ai_assistant_model_region_label: Vùng
     ai_assistant_required: Trợ lý AI là bắt buộc
+    ai_assistant_select_dependencies: Chọn các phụ thuộc
     ai_assistants: Trợ lý AI
     ai_assistants_advanced_mode_tooltip: Sử dụng chế độ nâng cao để tạo mẫu nhanh bằng cách sử dụng mẫu liquid với các biến có sẵn. Tham khảo tài liệu để biết thêm chi tiết.
     ai_assistants_campaign_id_placeholder: Nhập mã chiến dịch
@@ -35,6 +37,10 @@ vi:
     ai_assistants_test_render: Kết xuất thử nghiệm
     ai_assistants_test_render_tooltip: Kiểm tra mẫu lời nhắc của bạn với dữ liệu chiến dịch để kiểm tra nội dung sẽ được gửi đến trợ lý AI.
     ai_assisted_idp_feature_disabled: Tính năng AI Assisted IDP đã bị vô hiệu hóa cho dự án này.
+    ai_idp_assistant_configure_dependencies: Cấu hình các phụ thuộc của AI
+    ai_idp_assistant_configure_dependencies_description: Cấu hình dữ liệu phụ thuộc mà Trợ lý AI của IDP có thể truy cập làm bối cảnh. Điều này chỉ áp dụng khi trợ lý được cấu hình để chấp nhận các phụ thuộc.
+    ai_idp_assistant_dependencies_updated: Các phụ thuộc đã được cập nhật thành công.
+    ai_idp_assistant_update_dependencies: Cập nhật các phụ thuộc
     ai_notice: Các phần được đánh dấu đã được dịch bằng trí tuệ nhân tạo (AI) và có thể chứa sai sót.
     ai_translation: Dịch thuật bằng Trí tuệ nhân tạo
     all_corner_rounded: Tất cả các góc đều được bo tròn.
@@ -83,6 +89,8 @@ vi:
     campaign_templates: Mẫu chiến dịch
     campaign_user_job_roles_cannot_be_same: Vị trí công việc mục tiêu phải khác với vị trí công việc hiện tại.
     campaigns: Chiến dịch
+    cancellation_and_rescheduling_disabled: Chức năng hủy bỏ và thay đổi lịch trình đã bị vô hiệu hóa.
+    casual: Thường ngày
     client: Khách hàng thuê nhà
     client_admins: Quản trị viên khách hàng
     clients: Thuê khách hàng
@@ -91,6 +99,7 @@ vi:
     communications: Truyền thông
     completed: Hoàn thành
     completed_tooltip: Tất cả các đánh giá viên đã gửi đánh giá
+    concise: Ngắn gọn
     confirm_remove_admin: Bạn có chắc chắn muốn xóa người dùng quản trị có email '%{email}' không?
     country: Quốc gia
     create_client: Tạo khách hàng
@@ -120,14 +129,24 @@ vi:
     enable_transcription: Bật tính năng chuyển văn bản
     end_time: Thời gian kết thúc
     end_time_must_be_after_start_time: Thời gian kết thúc phải sau thời gian bắt đầu.
+    enhance_with_ai: Nâng cao với Trí tuệ nhân tạo (AI)
     enhance_with_ai_requires_ai_assistants: Để sử dụng tính năng "Enhance with AI", bạn cần kích hoạt tính năng "AI Assistants".
+    error: Lỗi
     evaluation_status: Trạng thái đánh giá
     evaluation_status_not_done: Trạng thái đánh giá không phải là "Xong" đối với một hoặc nhiều đối tượng được chọn. Hãy đảm bảo rằng tất cả người dùng được chọn đã hoàn thành đánh giá hoặc đánh dấu là xong.
     export_admin_roles_permissions: Xuất vai trò và quyền của quản trị viên
+    export_compact_completion_status: Gọn nhẹ
+    export_completion_status: Tình trạng hoàn thành xuất khẩu
+    export_completion_statuses_scheduled: Công việc xuất trạng thái hoàn thành đã được lên lịch thành công.
+    export_detailed_completion_status: Chi tiết
     feature_enhance_with_ai: Nâng cao với Trí tuệ nhân tạo (AI)
     feature_flags: Cờ tính năng
     fill_empty_score_msg: Điền vào tất cả các điểm cuối cùng trước khi lưu.
     final_score_empty_err_msg: Kết quả cuối cùng của "%{factor_name}" không được để trống.
+    final_score_empty_msg: Tổng số tiền không thể để trống.
+    fix_grammar: Sửa lỗi ngữ pháp
+    formal: Chính thức
+    generate_transcription: Tạo bản chép lời
     idp_plan_reset_success: Kế hoạch đã được đặt lại thành công
     idp_templates: Mẫu IDP
     import_ai_artifacts: Nhập hiện vật AI
@@ -153,6 +172,7 @@ vi:
     import_title: Nhập chủ đề từ CSV
     import_upload: Tải lên
     import_users: Nhập người dùng
+    internal: Nội bộ
     invalid_csv_header: CSV chứa tiêu đề không hợp lệ.
     job_roles: Vai trò công việc
     learning_from_others: Học tập hợp tác [20]
@@ -179,6 +199,7 @@ vi:
     mhs_report_id: Mã báo cáo MHS
     mhs_session_id: ID phiên làm việc MHS
     min_value: Giá trị nhỏ nhất
+    minimum_10_words: Tối thiểu 10 từ
     missing_min_max_values: Giá trị tối thiểu và tối đa là bắt buộc.
     name_required: Tên là bắt buộc
     no_file_selected: Không có tệp nào được chọn
@@ -196,6 +217,7 @@ vi:
     on_the_job: Trong công việc [70]
     only_editable_on_create: Tùy chọn này chỉ có thể chỉnh sửa khi đang tạo.
     options: Tùy chọn
+    original_text: Văn bản gốc
     participants: Tham gia
     permissions:
       aiArtifacts:
@@ -622,6 +644,8 @@ vi:
     piped_text: Văn bản được truyền qua ống
     privacy: Sự riêng tư
     proctoring: Giám sát
+    professional: Chuyên nghiệp
+    proficiency: Năng lực
     proficiency_level: Khóa API
     proficiency_levels: Mức độ thành thạo
     profile_details: Chi tiết hồ sơ
@@ -650,6 +674,7 @@ vi:
     reset_idp_plan_confirmation: Bạn có chắc chắn muốn đặt lại kế hoạch?
     reset_idp_plan_title: Đặt lại kế hoạch
     response_meta: Phản hồi Meta
+    result: Kết quả
     results: Kết quả
     role: Vai trò
     saml_idp_certificate_available: Có sẵn (bấm để sao chép)
@@ -731,12 +756,17 @@ vi:
     subject_part_of_other_invite: Người dùng có địa chỉ email %{user_email} đã được mời tham gia '%{workshop_invite_name}'.
     target_job_role: Vị trí công việc mục tiêu
     timezone: Múi giờ
+    tone: Giọng điệu
     toolbar_ai_insight: Nhận định về Trí tuệ Nhân tạo
     toolbar_ai_suggestion: Đề xuất của Trí tuệ nhân tạo
     toolbar_result_generating: Đang tạo...
     toolbar_text_copied: Đã sao chép vào khay nhớ tạm
     toolbar_text_replaced: Nội dung đã được thay thế!
     toolbar_what_changed_and_why: Điều gì đã thay đổi và tại sao
+    tools: Công cụ
+    transcription_record_not_found: Không tìm thấy bản ghi chép.
+    transcription_schedule_failed: Không thể lên lịch công việc chuyển đổi văn bản
+    transcription_scheduled: Công việc chuyển đổi văn bản đã được lên lịch. Vui lòng đóng cửa sổ pop-up và kiểm tra trạng thái thông báo.
     translate: Dịch
     translate_to: Dịch sang
     translate_with_ai: Dịch bằng trí tuệ nhân tạo
@@ -750,6 +780,7 @@ vi:
     users: Người dùng
     view_licenses: Xem giấy phép
     waiting: Chờ đợi
+    words: Từ
     workshops: Hội thảo
     writing_assistant_not_configured: Trợ lý Viết chưa được cấu hình
     x_axis_interval_label: Khoảng cách trục X

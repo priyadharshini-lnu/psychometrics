@@ -211,7 +211,11 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
         'normalize_factor_scores' => policy.normalize_factor_scores?,
         'update_content_variation' => false,
         'mark_complete' => policy.mark_complete?,
-        'update_simulation_time_extension' => false
+        'update_simulation_time_extension' => false,
+        'update_mhs_confidence_interval' => false,
+        'update_mhs_leadership_bar' => false,
+        'update_mhs_norm_option' => false,
+        'update_mhs_norm_region' => false
       },
       'norm_id' => nil,
       'additional_time' => nil,

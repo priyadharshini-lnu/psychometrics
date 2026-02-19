@@ -13,12 +13,14 @@ vi:
     audio: Âm thanh
     authentication_failed: Xác thực không thành công. Vui lòng thử lại.
     basic: Cơ bản
+    camera_preview: Bản xem trước của máy ảnh sẽ xuất hiện ở đây
     campaign_id: ID chiến dịch
     cancel: Hủy bỏ
     change_password: Thay đổi mật khẩu
     clear_filters: Xóa bộ lọc
     collaborative_learning: Học tập hợp tác
     completed: Hoàn thành
+    configurations: Cấu hình
     confirm: Xác nhận
     continue: Tiếp tục
     copy: Sao chép
@@ -27,6 +29,9 @@ vi:
     decline: Suy giảm
     description: Sự miêu tả
     download: Tải xuống
+    download_audio: Tải xuống âm thanh
+    download_transcription: Tải xuống bản chép lời
+    download_video: Tải video
     edit: Biên tập
     edited: Mới
     email: E-mail
@@ -54,6 +59,7 @@ vi:
     maintenance_upcoming_description: Chúng tôi sẽ tiến hành bảo trì định kỳ trên %{date} trong khoảng thời gian %{duration} để nâng cao trải nghiệm của bạn. Trong thời gian này, bạn sẽ không thể truy cập hoặc hoàn thành bất kỳ tác vụ nào được giao. Chúng tôi xin cảm ơn sự thông cảm của bạn.
     maintenance_upcoming_title: Bảo trì sắp tới
     media_question_transcriptions: Bản ghi chép câu hỏi của truyền thông
+    media_responses: Phản ứng của truyền thông
     modified_by: Sửa đổi bởi
     modified_date: Ngày sửa đổi
     more_actions: Hành động khác
@@ -69,6 +75,8 @@ vi:
     proctoring_maintenance_active: Hệ thống giám sát thi (Proctoring) hiện đang được bảo trì từ %{start_time} đến %{end_time}. Vui lòng thử lại sau khi quá trình bảo trì kết thúc.
     proctoring_maintenance_upcoming: Hệ thống giám sát thi sẽ được bảo trì từ %{start_time} đến %{end_time}.
     question_id: ID câu hỏi
+    question_transcription_disabled: Chức năng chuyển đổi văn bản đã bị vô hiệu hóa cho câu hỏi này.
+    rec: GHI NHẬN
     recording_consent_notice: Phiên họp này sẽ được ghi lại. Việc bạn tham gia cuộc họp này cấu thành sự đồng ý của bạn để được ghi lại.
     recording_consent_proceed_question: Bạn có đồng ý tiến hành cuộc họp được ghi âm không?
     recording_consent_title: Thông báo đồng ý ghi âm
@@ -79,6 +87,7 @@ vi:
     rte_paste_content_exceeds_char_limit: Văn bản vượt quá giới hạn ký tự của {{maxCharacterLimit}} và không thể dán.
     rte_paste_content_exceeds_word_limit: Văn bản vượt quá giới hạn từ {{maxWordLimit}} và không thể dán.
     save: Cứu
+    saving_video: Lưu video... Vui lòng không đóng hoặc làm mới trình duyệt
     search: Tìm kiếm
     send_email: Gửi email
     show_more: Hiển thị nhiều hơn
@@ -92,6 +101,7 @@ vi:
     transcription: Phiên âm
     transcription_already_requested: Phiên âm đã được yêu cầu hoặc đang được thực hiện.
     transcription_not_enabled: Chức năng chuyển đổi văn bản không được kích hoạt cho phản hồi phương tiện.
+    transcription_status: Trạng thái chuyển đổi văn bản
     transcriptions: Phiên âm
     try_again: Thử lại
     tte_terms_and_condition: Điều khoản &amp; Quyền riêng tư

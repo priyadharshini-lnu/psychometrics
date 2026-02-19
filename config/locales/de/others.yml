@@ -893,6 +893,7 @@ de:
         export_users: Kampagnenbenutzer exportieren
         external_assessment_export: Export von externen Ergebnissen
         generate_embedding_skills: Einbettung für Fertigkeiten generieren
+        generate_transcription: Transkription erstellen
         import_accesssheet: Zugangsdatenblatt importieren
         import_assessment_questions: Bewertungsfragen importieren
         import_assessment_translations: Importieren von Assessment-Übersetzungen
@@ -923,6 +924,8 @@ de:
         import_users: Benutzer importieren
         migrate_assessment_translations: Bewertung Übersetzung Migration
         normalize_factor_scores: Faktorwerte normalisieren
+        project_compact_completion_status_export: Kompakter Export des Fertigstellungsstatus
+        project_completion_status_export: Export des Fertigstellungsstatus
         regenerate_campaign_reports: Kampagnenberichte neu generieren
         regenerate_report: Bericht "Regenerieren
         regenerate_threesixty_report: Bericht über die Regenerierung von Threesixty
@@ -1731,23 +1734,6 @@ de:
     title: Passwort ändern
     warning_message: 'Wichtig: Wenn du dein Passwort änderst, wirst du abgemeldet.'
   checking_wizard:
-    audio_check:
-      access: Zugriff
-      continue: fortfahren
-      random_phrases:
-        eight: Möge Ihr Kaffee stark und Ihr Tag produktiv sein.
-        five: Das Leben ist besser, wenn du lächelst. Lächle für das Mikrofon!
-        four: Sie verkauft Muscheln am Meeresufer.
-        nine: Im Zweifelsfall einfach ausprobieren, ob dieses Mikrofon funktioniert!
-        one: Ich schreie, du schreist, wir alle schreien nach Eiscreme!
-        seven: Jeder Tag ist ein neuer Anfang, sagen Sie es laut und stolz!
-        six: Pizza oder Pasta? Die Entscheidung fällt schwer.
-        three: Test, eins, zwei, drei, der Ton ist so klar wie nur möglich!
-        two: Der schnelle braune Fuchs springt über den faulen Hund.
-      record_title: Bitte sprechen Sie und wiederholen Sie den folgenden Satz 3 Mal.
-      retake: Nein, ich möchte die Wiederholung
-      run_again: Wieder laufen
-      test_message: schön, mit Ihnen zu sprechen
     network_check:
       continue: fortfahren
       download: Herunterladen
@@ -1780,18 +1766,10 @@ de:
       permissions: Webcam &amp; Audio Berechtigungen
       title: Bevor Sie mit dieser Bewertung beginnen, muss Ihr System einigen Prüfungen unterzogen werden.
     video_check:
-      access: Zugriff
-      camera_preview: Die Kamera-Vorschau wird hier angezeigt
-      continue: fortfahren
       description: Klicken Sie auf Aufnahme starten und nehmen Sie sich selbst auf, während Sie den folgenden Text mit Ihrer eigenen Stimme lesen
       random_phrases:
         one: Ich bin bereit. Dies ist eine Testaufnahme, um zu bestätigen, dass meine Kamera und mein Mikrofon einwandfrei funktionieren.
-      rec_text: REC
-      retake: Nein, ich möchte die Wiederholung
-      run_again: Wieder laufen
       title: Wir müssen sicherstellen, dass Ihr System das Video aufzeichnen kann
-      upload_again: Erneut hochladen
-      uploading: Hochladen
   common:
     actions:
       add: Hinzufügen

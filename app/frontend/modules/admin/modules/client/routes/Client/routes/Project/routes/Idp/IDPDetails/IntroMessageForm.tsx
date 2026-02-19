@@ -97,7 +97,7 @@ export const IntroMessageForm: FC<Props> = ({ idp, fetch }) => {
         instructions: idp.instructions.content,
       }}
     >
-      <Space direction="vertical">
+      <Space orientation="vertical">
         <Row>
           <Col span={24}>
             <div className="display-flex justify-content-space-between mt8">

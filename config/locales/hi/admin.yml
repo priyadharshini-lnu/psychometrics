@@ -9,6 +9,7 @@ hi:
     add_project: परियोजना जोड़ें
     add_project_admin: परियोजना प्रशासक जोड़ें
     add_threesixty_campaign_admin: अभियान प्रशासक जोड़ें
+    add_word_count: शब्द गणना जोड़ें
     admin_approval_required: "%{user} के लिए रिपोर्ट डाउनलोड करने से पहले व्यवस्थापक की मंजूरी आवश्यक है।"
     admin_created_successfully: प्रशासक '%{name}' सफलतापूर्वक बनाया गया
     admin_export_scheduled: प्रशासन निर्यात कार्य सफलतापूर्वक निर्धारित हो गया है। कृपया स्थिति के लिए अपनी अधिसूचना देखें।
@@ -24,6 +25,7 @@ hi:
     ai_assistant_model_provider: प्रदाता
     ai_assistant_model_region_label: क्षेत्र
     ai_assistant_required: एआई सहायक आवश्यक है
+    ai_assistant_select_dependencies: निर्भरताएँ चुनें
     ai_assistants: एआई सहायक
     ai_assistants_advanced_mode_tooltip: उपलब्ध वेरिएबल्स के साथ लिक्विड टेम्पलेट का उपयोग करके प्रॉम्प्ट टेम्पलेटिंग के लिए एडवांस्ड मोड का उपयोग करें। अधिक जानकारी के लिए दस्तावेज़ीकरण देखें।
     ai_assistants_campaign_id_placeholder: अभियान आईडी दर्ज करें
@@ -35,6 +37,10 @@ hi:
     ai_assistants_test_render: परीक्षण रेंडर
     ai_assistants_test_render_tooltip: यह जांचने के लिए कि AI सहायक को क्या भेजा जाएगा, अपने प्रॉम्प्ट टेम्पलेट को अभियान डेटा के साथ परीक्षण करें।
     ai_assisted_idp_feature_disabled: इस परियोजना के लिए AI-सहायक IDP सुविधा अक्षम कर दी गई है।
+    ai_idp_assistant_configure_dependencies: एआई निर्भरताओं को कॉन्फ़िगर करें
+    ai_idp_assistant_configure_dependencies_description: IDP AI असिस्टेंट संदर्भ के रूप में कौन सा निर्भरता डेटा एक्सेस कर सकता है, उसे कॉन्फ़िगर करें। यह केवल तभी लागू होता है जब असिस्टेंट निर्भरताओं को स्वीकार करने के लिए कॉन्फ़िगर किया गया हो।
+    ai_idp_assistant_dependencies_updated: निर्भरताएँ सफलतापूर्वक अद्यतन हो गईं
+    ai_idp_assistant_update_dependencies: निर्भरताएँ अपडेट करें
     ai_notice: उजागर किए गए खंड एआई द्वारा अनुवादित हैं और इनमें अशुद्धियाँ हो सकती हैं।
     ai_translation: एआई अनुवाद
     all_corner_rounded: सभी कोने गोल
@@ -83,6 +89,8 @@ hi:
     campaign_templates: अभियान टेम्पलेट्स
     campaign_user_job_roles_cannot_be_same: लक्षित नौकरी की भूमिका वर्तमान नौकरी की भूमिका से भिन्न होनी चाहिए।
     campaigns: अभियान
+    cancellation_and_rescheduling_disabled: रद्दीकरण और पुनःनिर्धारण अक्षम है।
+    casual: आकस्मिक
     client: ग्राहक
     client_admins: क्लाइंट एडमिन
     clients: ग्राहक
@@ -91,6 +99,7 @@ hi:
     communications: संचार
     completed: पूर्ण
     completed_tooltip: सभी मूल्यांकनकर्ताओं ने मूल्यांकन जमा कर दिया है।
+    concise: संक्षिप्त
     confirm_remove_admin: क्या आप सुनिश्चित हैं कि आप '%{email}' ईमेल वाले एडमिन उपयोगकर्ता को हटाना चाहते हैं?
     country: देश
     create_client: ग्राहक बनाएँ
@@ -120,14 +129,24 @@ hi:
     enable_transcription: प्रतिलेखन सक्षम करें
     end_time: अंत समय
     end_time_must_be_after_start_time: अंतिम समय प्रारंभ समय के बाद होना चाहिए।
+    enhance_with_ai: एआई से बेहतर बनाएँ
     enhance_with_ai_requires_ai_assistants: AI के साथ बढ़ाएँ के लिए AI सहायक सुविधा सक्षम होना आवश्यक है।
+    error: त्रुटि
     evaluation_status: मूल्यांकन स्थिति
     evaluation_status_not_done: एक या अधिक चयनित विषयों के लिए मूल्यांकन की स्थिति 'Done' नहीं है। कृपया सुनिश्चित करें कि सभी चयनित उपयोगकर्ताओं ने मूल्यांकन पूरे कर लिए हैं या उन्हें 'Done' के रूप में चिह्नित कर दें।
     export_admin_roles_permissions: प्रशासन भूमिकाएँ और अनुमतियाँ निर्यात
+    export_compact_completion_status: संक्षिप्त
+    export_completion_status: निर्यात पूर्णता स्थिति
+    export_completion_statuses_scheduled: पूर्णता स्थितिओं का एक्सपोर्ट जॉब सफलतापूर्वक निर्धारित किया गया
+    export_detailed_completion_status: विस्तृत
     feature_enhance_with_ai: एआई से बेहतर बनाएँ
     feature_flags: फ़ीचर फ़्लैग्स
     fill_empty_score_msg: सहेजने से पहले सभी अंतिम स्कोर भरें।
     final_score_empty_err_msg: "%{factor_name} का अंतिम स्कोर शून्य नहीं हो सकता।"
+    final_score_empty_msg: अंतिम स्कोर खाली नहीं हो सकता।
+    fix_grammar: व्याकरण ठीक करें
+    formal: औपचारिक
+    generate_transcription: प्रतिलेखन उत्पन्न करें
     idp_plan_reset_success: योजना सफलतापूर्वक रीसेट हो गई है।
     idp_templates: आईडीपी टेम्पलेट्स
     import_ai_artifacts: AI कलाकृतियों को आयात करें
@@ -153,6 +172,7 @@ hi:
     import_title: CSV से विषय आयात करें
     import_upload: अपलोड
     import_users: उपयोगकर्ताओं को आयात करें
+    internal: आंतरिक
     invalid_csv_header: CSV फ़ाइल में अमान्य हेडर हैं।
     job_roles: भूमिकाएँ
     learning_from_others: सहयोगात्मक अधिगम [20]
@@ -179,6 +199,7 @@ hi:
     mhs_report_id: एमएचएस रिपोर्ट आईडी
     mhs_session_id: एमएचएस सत्र आईडी
     min_value: न्यूनतम मान
+    minimum_10_words: न्यूनतम 10 शब्द
     missing_min_max_values: न्यूनतम और अधिकतम मान आवश्यक हैं।
     name_required: नाम आवश्यक है
     no_file_selected: कोई फ़ाइल चयनित नहीं है
@@ -196,6 +217,7 @@ hi:
     on_the_job: काम पर [70]
     only_editable_on_create: यह विकल्प केवल निर्माण के दौरान ही संपादित किया जा सकता है।
     options: विकल्प
+    original_text: मूल पाठ
     participants: प्रतिभागी
     permissions:
       aiArtifacts:
@@ -622,6 +644,8 @@ hi:
     piped_text: पाइप्ड टेक्स्ट
     privacy: गोपनीयता
     proctoring: निगरानी
+    professional: पेशेवर
+    proficiency: निपुणता
     proficiency_level: प्रवीणता स्तर
     proficiency_levels: प्रवीणता स्तर
     profile_details: प्रोफ़ाइल विवरण
@@ -650,6 +674,7 @@ hi:
     reset_idp_plan_confirmation: क्या आप योजना को रीसेट करना चाहते हैं?
     reset_idp_plan_title: पुनर्स्थापना योजना
     response_meta: प्रतिक्रिया मेटा
+    result: परिणाम
     results: परिणाम
     role: भूमिका
     saml_idp_certificate_available: उपलब्ध (नकल करने के लिए क्लिक करें)
@@ -731,12 +756,17 @@ hi:
     subject_part_of_other_invite: "%{user_email} ईमेल वाले विषय को पहले ही '%{workshop_invite_name}' में आमंत्रित किया जा चुका है।"
     target_job_role: लक्षित नौकरी की भूमिका
     timezone: समय क्षेत्र
+    tone: स्वर
     toolbar_ai_insight: एआई अंतर्दृष्टि
     toolbar_ai_suggestion: एआई सुझाव
     toolbar_result_generating: उत्पादित हो रहा है...
     toolbar_text_copied: क्लिपबोर्ड पर कॉपी हो गया
     toolbar_text_replaced: टेक्स्ट बदल दिया गया!
     toolbar_what_changed_and_why: क्या बदला और क्यों
+    tools: उपकरण
+    transcription_record_not_found: प्रतिलेखन रिकॉर्ड नहीं मिला
+    transcription_schedule_failed: ट्रांसक्रिप्शन जॉब शेड्यूल करने में विफल
+    transcription_scheduled: ट्रांसक्रिप्शन का काम निर्धारित कर दिया गया है। कृपया मोडल बंद करें और सूचना की स्थिति जांचें।
     translate: अनुवाद करें
     translate_to: अनुवाद करें
     translate_with_ai: एआई से अनुवाद करें
@@ -750,6 +780,7 @@ hi:
     users: उपयोगकर्ता
     view_licenses: लाइसेंस देखें
     waiting: इंतज़ार
+    words: शब्द
     workshops: कार्यशालाएँ
     writing_assistant_not_configured: राइटिंग असिस्टेंट कॉन्फ़िगर नहीं किया गया है
     x_axis_interval_label: एक्स-अक्ष अंतराल

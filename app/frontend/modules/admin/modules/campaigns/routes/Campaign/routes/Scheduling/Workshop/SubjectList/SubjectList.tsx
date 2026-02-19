@@ -223,7 +223,7 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
               >
                 <Space>
                   <ResourceAvatar size="large" key={id} tooltip={fullName} url={photoUrl} name={fullName} />
-                  <Space size={0} direction="vertical">
+                  <Space size={0} orientation="vertical">
                     {user?.fullName}
                     <Text type="secondary" className="fs-12">{user?.email}</Text>
                   </Space>

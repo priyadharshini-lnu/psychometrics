@@ -41,14 +41,19 @@ const SingleAnswerPreview = ({ model, I18n, readOnly }) => {
 
   if (isMobile) {
     return (
-      <Space size={10} direction="vertical" className="w-100">
+      <Space size={10} orientation="vertical" className="w-100">
         {_.times(props.choices, choice => (
           <div key={choice} className={cs(styles.choiceSm, 'pt-1')}>
             <div key={choice} id={`${result.questionId}-choice-${choice}`}>
               {I18n.tQuestion(model, `choicesTexts${choice + 1}`, { choice })
                   || moduleConfig.defaultChoiceText(choice + 1)}
             </div>
-            <Space role="group" aria-labelledby={`${result.questionId}-choice-${choice}`} size={8} direction="vertical">
+            <Space
+              role="group"
+              aria-labelledby={`${result.questionId}-choice-${choice}`}
+              size={8}
+              orientation="vertical"
+            >
               {_.times(props.scalePoints, (scale) => {
                 const object = _.find(result.answers, { scale, choice }) || {}
                 return (

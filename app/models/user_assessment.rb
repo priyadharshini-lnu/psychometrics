@@ -33,6 +33,8 @@ class UserAssessment < ApplicationRecord
   has_many :project_assessments, through: :project
   has_many :user_assessment_factor_scores, dependent: :destroy
   has_many :user_assessment_verification_images, dependent: :destroy
+  has_many :user_assessment_verification_media, dependent: :destroy,
+                                               class_name: 'UserAssessmentVerificationMedium'
 
   has_one :yoodli_user_assessment, -> { where(active: true) }, dependent: :destroy
   has_many :previous_yoodli_user_assessments, lambda {
@@ -395,6 +397,34 @@ class UserAssessment < ApplicationRecord
     return unless simulation?
 
     simulation_user_assessment.update!(content_variation_id: content_variation_id)
+  end
+
+  def update_mhs_confidence_interval!(confidence_interval)
+    return unless not_started?
+    return unless mhs?
+
+    mhs_user_assessment.update!(confidence_interval: confidence_interval)
+  end
+
+  def update_mhs_leadership_bar!(leadership_bar)
+    return unless not_started?
+    return unless mhs?
+
+    mhs_user_assessment.update!(leadership_bar: leadership_bar)
+  end
+
+  def update_mhs_norm_region!(norm_region)
+    return unless not_started?
+    return unless mhs?
+
+    mhs_user_assessment.update!(norm_region: norm_region)
+  end
+
+  def update_mhs_norm_option!(norm_option)
+    return unless not_started?
+    return unless mhs?
+
+    mhs_user_assessment.update!(norm_option: norm_option)
   end
 
   def associated_workshops

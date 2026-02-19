@@ -13,12 +13,14 @@ id:
     audio: Audio
     authentication_failed: Autentikasi gagal. Silakan coba lagi.
     basic: Dasar
+    camera_preview: Pratinjau kamera akan muncul di sini
     campaign_id: ID Kampanye
     cancel: Batal
     change_password: Ubah Kata Sandi
     clear_filters: Hapus Filter
     collaborative_learning: Pembelajaran Kolaboratif
     completed: Selesai
+    configurations: Konfigurasi
     confirm: Konfirmasi
     continue: Terus
     copy: Salin
@@ -27,6 +29,9 @@ id:
     decline: Penurunan
     description: Deskripsi
     download: Unduh
+    download_audio: Unduh Audio
+    download_transcription: Unduh Transkrip
+    download_video: Unduh Video
     edit: Sunting
     edited: Baru
     email: Email
@@ -54,6 +59,7 @@ id:
     maintenance_upcoming_description: Kami akan melakukan pemeliharaan terjadwal pada %{date} selama sekitar %{duration} untuk meningkatkan pengalaman Anda. Selama periode ini, Anda tidak akan dapat mengakses atau menyelesaikan tugas yang telah ditugaskan. Kami menghargai kesabaran Anda.
     maintenance_upcoming_title: Pemeliharaan Mendatang
     media_question_transcriptions: Transkrip Pertanyaan Media
+    media_responses: Tanggapan Media
     modified_by: Dimodifikasi oleh
     modified_date: Tanggal Dimodifikasi
     more_actions: Tindakan lainnya
@@ -69,6 +75,8 @@ id:
     proctoring_maintenance_active: Layanan Proctoring saat ini sedang dalam pemeliharaan dari %{start_time} ke %{end_time}. Silakan coba lagi setelah periode pemeliharaan selesai.
     proctoring_maintenance_upcoming: Pengawasan ujian akan dalam tahap pemeliharaan dari %{start_time} hingga %{end_time}.
     question_id: ID Pertanyaan
+    question_transcription_disabled: Transkripsi dinonaktifkan untuk pertanyaan ini.
+    rec: REC
     recording_consent_notice: Sesi rapat ini akan direkam. Partisipasi Anda dalam pertemuan ini merupakan persetujuan Anda untuk direkam.
     recording_consent_proceed_question: Apakah Anda setuju untuk melanjutkan rekaman rapat?
     recording_consent_title: Merekam Pemberitahuan Persetujuan
@@ -79,6 +87,7 @@ id:
     rte_paste_content_exceeds_char_limit: Teks melebihi batas karakter {{maxCharacterLimit}} dan tidak dapat ditempelkan.
     rte_paste_content_exceeds_word_limit: Teks melebihi batas kata {{maxWordLimit}} dan tidak dapat ditempelkan.
     save: Simpan
+    saving_video: Menyimpan Video... Tolong jangan tutup atau refresh browser
     search: Pencarian
     send_email: Kirim email
     show_more: Tampilkan Lebih Banyak
@@ -92,6 +101,7 @@ id:
     transcription: Transkripsi
     transcription_already_requested: Transkripsi sudah diminta atau sedang dalam proses.
     transcription_not_enabled: Transkripsi tidak diaktifkan untuk respons media.
+    transcription_status: Status Transkripsi
     transcriptions: Transkripsi
     try_again: Coba Lagi
     tte_terms_and_condition: Ketentuan & Privasi

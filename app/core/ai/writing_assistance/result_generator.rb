@@ -3,28 +3,35 @@
 module AI
   module WritingAssistance
     class ResultGenerator < BaseCommand
+      OPERATION_ORDER = {
+        'fix_grammar' => 1,
+        'concise' => 2,
+        'tone' => 3,
+        'translate' => 4
+      }.freeze
+
       OPERATIONS = {
-        'fix_grammar' => 'Fix grammar and spelling in the following text while preserving its original meaning and tone.', # rubocop:disable Layout/LineLength
-        'concise' => 'Make the following text more concise and clear while retaining all key information.',
-        'formal' => 'Rewrite the following text in a professional, formal tone suitable for business or academic communication.', # rubocop:disable Layout/LineLength
-        'translate' => 'Translate the following text into %<language>s while preserving tone and nuance.'
+        'fix_grammar' => 'Fix grammar and spelling while preserving original meaning and tone.',
+        'concise' => 'Make the text more concise and clear while retaining all key information.',
+        'tone' => 'Rewrite in a %<tone>s tone.',
+        'translate' => 'Translate into %<language>s while preserving tone and nuance.'
       }.freeze
 
       MAX_RETRIES = 2
 
-      private_attr_reader :user, :text, :operation, :context, :options, :retry_count
+      private_attr_reader :user, :text, :operations, :retry_count, :user_language
 
-      def initialize(user:, text:, operation:, context: nil, options: {})
+      def initialize(user:, text:, operations:, user_locale: nil)
         @user = user
         @text = text
-        @operation = operation
-        @context = context
-        @options = options
+        @operations = Array(operations)
         @retry_count = 0
+        locale = user_locale.presence || user&.user_profile&.locale
+        @user_language = I18n.t("languages.#{locale}", default: 'English')
       end
 
       def call
-        validate_operation!
+        validate_operations!
         generate_result!
       rescue StandardError => e
         broadcast(:error, e.message)
@@ -32,10 +39,14 @@ module AI
 
       private
 
-      def validate_operation!
-        return if OPERATIONS.key?(operation)
+      def validate_operations!
+        invalid_ops = operations.map { |op| op[:type] }.reject { |type| OPERATIONS.key?(type) }
+        return if invalid_ops.empty?
 
-        raise ArgumentError, I18n.t('admin.assistant_toolbar_not_a_valid_operation', operation: operation)
+        raise ArgumentError, I18n.t(
+          'admin.assistant_toolbar_not_a_valid_operation',
+          operation: invalid_ops.join(', ')
+        )
       end
 
       def generate_result!
@@ -76,33 +87,48 @@ module AI
       end
 
       def prompt
-        instruction = build_instruction
+        <<~PROMPT
+          <text_processing_instructions>
+          #{operation_instructions}
+          Apply these operations in the specified order. Each operation processes the result of the previous one.
+          </text_processing_instructions>
 
-        parts = ['<text_processing_instruction>', instruction]
-        if context.present?
-          parts << <<~CONTEXT
-            <context>
-            #{context}
-            </context>
-          CONTEXT
-        end
-        parts << '</text_processing_instruction>'
-        parts << ''
-        parts << '<text_to_process>'
-        parts << text
-        parts << '</text_to_process>'
-
-        parts.join("\n")
+          <text_to_process>
+          #{text}
+          </text_to_process>
+        PROMPT
       end
 
-      def build_instruction
-        base_instruction = OPERATIONS[operation]
+      def operation_instructions
+        operations.
+          sort_by { |op| OPERATION_ORDER.fetch(op[:type], Float::INFINITY) }.
+          map.with_index(1) do |operation, index|
+            <<~OPERATION.strip
+              <operation order="#{index}">
+              Type: #{operation[:type]}
+              Instruction: #{build_instruction(operation)}
+              </operation>
+            OPERATION
+          end.
+          join("\n\n")
+      end
 
-        if operation == 'translate'
-          language = options[:language] || 'English'
-          base_instruction % { language: language }
-        else
-          base_instruction
+      def build_instruction(operation)
+        base = OPERATIONS[operation[:type]]
+        options = operation[:options] || {}
+
+        case operation[:type]
+          when 'translate'
+            language = options[:language] || 'English'
+            base % { language: language }
+          when 'tone'
+            tone = options[:tone] || 'formal'
+            base % { tone: tone }
+          when 'concise'
+            word_count = options[:target_word_count]
+            word_count ? "#{base} Target approximately #{word_count} words." : base
+          else
+            base
         end
       end
 
@@ -112,7 +138,10 @@ module AI
       end
 
       def chat
-        @chat ||= assistant.for_user(user)
+        @chat ||= assistant.for_user(
+          user,
+          contextual_information: %(The "what_changed_and_why" field must be written in #{@user_language}.)
+        )
       end
     end
   end

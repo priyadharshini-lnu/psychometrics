@@ -28,6 +28,7 @@ zh:
     max_word_limit: 最多不能超过 %{max} 个字
     min_word_limit: 最少需要 %{min} 个字
     my_plan: 我的计划
+    no_audio_warning: 未检测到音频。请检查麦克风是否已连接且工作正常。
     profile: 个人资料
     profile_details: 详细信息
     question_counter: 第 %{current} 题，共 %{total} 题
@@ -36,11 +37,31 @@ zh:
     recording: 录音
     reject_idp_plan: 拒绝计划
     request_retry_message: 你已经离线了。你的答案无法保存，但一旦你重新上线，答案将自动保存。请不要刷新或关闭页面。
-    saving_video_text: 正在保存视频......请不要关闭或刷新浏览器
     selected_count: 已选择
     skill_type: 技能类型
     start_campaign_message_proctored: 这是一个监考活动，请点击“%{buttonText}”按钮开始活动。
     start_campaign_message_timed: 这是一个限时活动，请点击“%{buttonText}”按钮开始活动。
     start_campaign_message_timed_proctored: 这是一个限时监考的活动，请点击“%{buttonText}”按钮开始活动。
     status_unknown: 状态不明
+    system_check_access: 权限
+    system_check_audio_random_phrases:
+      eight: 愿你的咖啡香浓，愿你的一天富有成效。
+      five: 笑一笑，生活会更美好！
+      four: 她在海边卖贝壳。
+      nine: 如果有疑问，请测试一下这个麦克风是否有效！
+      one: 我尖叫，你尖叫，我们都为冰淇淋尖叫！
+      seven: 每一天都是新的开始，大声说出来，自豪地说出来！
+      six: 披萨还是意大利面？这是一个艰难的选择。
+      three: 测试，一二三，声音清晰无比
+      two: 敏捷的棕狐狸跳过了懒惰的狗。
+    system_check_audio_title: 请读出并重复以下句子 3 次。
+    system_check_proceed: 继续
+    system_check_retake: 不，我想重做
+    system_check_run_again: 再来一次
+    system_check_start_recording: 开始录制
+    system_check_stop_recording: 停止录制
+    system_check_test_message: 很高兴与你交谈
+    system_check_upload_again: 再次上传
+    system_check_uploading: 上传
+    system_check_video_random_phrase: 我准备好了。这是一段测试录像，用来确认我的视频和麦克风工作正常。
     tasks: 任务

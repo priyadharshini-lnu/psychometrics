@@ -21,19 +21,37 @@ module AI
       # TODO: Add license check
       ask_assistant
     rescue RubyLLM::Error, AI::Services::OpenaiResponseApi::Error => e
+      mark_last_request_failed(e.message, e)
+      broadcast(:error, e.message, e)
+    end
+
+    def retry_last_request
+      complete_chat_request
+    rescue RubyLLM::Error, AI::Services::OpenaiResponseApi::Error => e
+      mark_last_request_failed(e.message, e)
       broadcast(:error, e.message, e)
     end
 
     private
 
     def ask_assistant
-      active_chat = chat || create_new_chat
       response = active_chat.ask(user_prompt.strip, **ask_params)
+      validate_and_retry_response(response)
+    end
+
+    def complete_chat_request
+      response = active_chat.complete
+      validate_and_retry_response(response)
+    end
+
+    def validate_and_retry_response(response)
       validation_message = nil
 
       max_retry_count.times do
         validation_message = validate_response(response.content)
         break if validation_message.nil?
+
+        mark_last_request_invalid(validation_message)
 
         active_chat.with_instructions(
           "Error: System cannot render the message to user: #{validation_message}"
@@ -46,6 +64,7 @@ module AI
       if validation_message.nil?
         broadcast(:ok, response_chat(response))
       else
+        mark_last_request_invalid(validation_message)
         broadcast(:error, I18n.t('admin.assistant_validation_failed'))
       end
     end
@@ -71,6 +90,10 @@ module AI
       }
     end
 
+    def active_chat
+      @active_chat ||= chat || create_new_chat
+    end
+
     def create_new_chat
       tools = options[:tools] || []
       params = options[:params] # Params for the requests
@@ -93,6 +116,18 @@ module AI
 
     def assistant
       @assistant ||= ::AI::Assistant.find(assistant_id)
+    end
+
+    def mark_last_request_invalid(error_message)
+      last_chat_request&.mark_invalid!(error_message)
+    end
+
+    def mark_last_request_failed(error_message, error = nil)
+      last_chat_request&.mark_failed!(error_message, error: error)
+    end
+
+    def last_chat_request
+      active_chat.messages.last
     end
   end
 end

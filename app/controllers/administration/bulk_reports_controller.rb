@@ -12,6 +12,12 @@ module Administration
       report_blob = @bulk_report.files[index]&.blob
 
       if report_blob&.service&.exist?(report_blob.key)
+        siem_log_sensitive_operation(
+          context: 'Bulk Report Download',
+          action_description: "downloaded bulk report ID #{@bulk_report.id}",
+          action_type: 'Export',
+          resource: 'BulkReport'
+        )
         redirect_to @bulk_report.private_download_url(index)
       else
         redirect_to(admin_path, error: t('.removed'))

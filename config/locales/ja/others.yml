@@ -893,6 +893,7 @@ ja:
         export_users: キャンペーン・ユーザーのエクスポート
         external_assessment_export: 外部結果エクスポート
         generate_embedding_skills: スキルの埋め込み生成
+        generate_transcription: 文字起こしを生成する
         import_accesssheet: アクセスシートのインポート
         import_assessment_questions: 輸入評価に関する質問
         import_assessment_translations: アセスメント翻訳のインポート
@@ -923,6 +924,8 @@ ja:
         import_users: インポートユーザー
         migrate_assessment_translations: アセスメント 翻訳移行
         normalize_factor_scores: 因子スコアを正規化する
+        project_compact_completion_status_export: コンパクト完了状況エクスポート
+        project_completion_status_export: 完了状況のエクスポート
         regenerate_campaign_reports: キャンペーンレポートの再生成
         regenerate_report: リジェネレイト・レポート
         regenerate_threesixty_report: リジェネレイト・スリーシックスティ レポート
@@ -1730,23 +1733,6 @@ ja:
     title: パスワードを変更
     warning_message: 重要：パスワードを変更するとログアウトされます。
   checking_wizard:
-    audio_check:
-      access: アクセス
-      continue: 続行
-      random_phrases:
-        eight: あなたのコーヒーが濃く、あなたの一日が生産的でありますように。
-        five: 笑顔でいれば人生はうまくいく。 マイクに向かって笑顔で！
-        four: 彼女は海辺で貝殻を売っている。
-        nine: 迷ったら、このマイクを試してみてください！
-        one: 私は叫ぶ、あなたも叫ぶ、私たちは皆アイスクリームを求めて叫ぶ！
-        seven: 毎日が新たな始まりだ。 大きな声で、誇らしげに！
-        six: ピザかパスタか、決断は難しい。
-        three: テスト、ワン・ツー・スリー、音は限りなくクリアだ！」。
-        two: 素早い茶色の狐は怠け者の犬を飛び越える。
-      record_title: 以下の文章を3回繰り返して言ってください。
-      retake: いや、再受験したい
-      run_again: もう一度走る
-      test_message: お話しできて嬉しいです
     network_check:
       continue: 続行
       download: ダウンロード
@@ -1779,18 +1765,10 @@ ja:
       permissions: ウェブカメラとオーディオの許可
       title: このアセスメントの開始前に、システムでいくつかのチェックを行う必要があります。
     video_check:
-      access: アクセス
-      camera_preview: カメラのプレビューはここに表示されます
-      continue: 続行
       description: この段階でキャプチャされたビデオや写真は、保存または使用されることはありません。ビデオ録画を必要とする可能性のある今後の質問のために、デバイスでローカルに使用してカメラが機能していることを確認します。
       random_phrases:
         one: 準備はできました。ビデオとマイクが正常に動作していることを確認するためのテスト録画です。
-      rec_text: REC
-      retake: いや、再受験したい
-      run_again: 再実行
       title: お使いのシステムでビデオの録画をできるようにする必要があります
-      upload_again: 再度アップロード
-      uploading: アップロード
   common:
     actions:
       add: 追加

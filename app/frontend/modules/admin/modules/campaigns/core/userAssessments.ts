@@ -30,6 +30,10 @@ export const TOGGLE_REQUIRE_SCHEDULE = 'campaigns/userAssessments/TOGGLE_REQUIRE
 export const TOGGLE_PREWORK = 'campaigns/userAssessments/TOGGLE_PREWORK'
 export const NORMALIZE_FACTOR_SCORES = 'campaigns/userAssessments/NORMALIZE_FACTOR_SCORES'
 export const MARK_USER_ASSESSMENT_COMPLETE = 'campaigns/userAssessments/MARK_USER_ASSESSMENT_COMPLETE'
+export const UPDATE_MHS_CONFIDENCE_INTERVAL = 'campaigns/userAssessments/UPDATE_MHS_CONFIDENCE_INTERVAL'
+export const UPDATE_MHS_LEADERSHIP_BAR = 'campaigns/userAssessments/UPDATE_MHS_LEADERSHIP_BAR'
+export const UPDATE_MHS_NORM_REGION = 'campaigns/userAssessments/UPDATE_MHS_NORM_REGION'
+export const UPDATE_MHS_NORM_OPTION = 'campaigns/userAssessments/UPDATE_MHS_NORM_OPTION'
 
 export const get = (state): State => _.get(state, ['campaigns', 'userAssessments'])
 
@@ -191,6 +195,50 @@ export const normalizeFactorScores = (campaignId: number, userAssessmentId: numb
   },
 })
 
+export const updateMhsConfidenceInterval = (campaignId, campaignAssessmentId: number, body) => ({
+  type: UPDATE_MHS_CONFIDENCE_INTERVAL,
+  request: {
+    method: 'post',
+    // eslint-disable-next-line max-len
+    url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}/update_mhs_confidence_interval`,
+    body: { ...body, campaignAssessmentId },
+    loader: true,
+  },
+})
+
+export const updateMhsLeadershipBar = (campaignId, campaignAssessmentId: number, body) => ({
+  type: UPDATE_MHS_LEADERSHIP_BAR,
+  request: {
+    method: 'post',
+    // eslint-disable-next-line max-len
+    url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}/update_mhs_leadership_bar`,
+    body: { ...body, campaignAssessmentId },
+    loader: true,
+  },
+})
+
+export const updateMhsNormRegion = (campaignId, campaignAssessmentId: number, body) => ({
+  type: UPDATE_MHS_NORM_REGION,
+  request: {
+    method: 'post',
+    // eslint-disable-next-line max-len
+    url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}/update_mhs_norm_region`,
+    body: { ...body, campaignAssessmentId },
+    loader: true,
+  },
+})
+
+export const updateMhsNormOption = (campaignId, campaignAssessmentId: number, body) => ({
+  type: UPDATE_MHS_NORM_OPTION,
+  request: {
+    method: 'post',
+    // eslint-disable-next-line max-len
+    url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}/update_mhs_norm_option`,
+    body: { ...body, campaignAssessmentId },
+    loader: true,
+  },
+})
+
 export interface State {
   list: UserAssessment[]
 }
@@ -198,6 +246,10 @@ export interface State {
 type FetchType = ApiActionResponse<{userAssessments: UserAssessment[]}>
 type UpdateNormType = ApiActionResponse<{normName: string, normType: string}>
 type UpdateMettlScheduleType = ApiActionResponse<{mettlScheduleName: string}>
+type UpdateMhsConfidenceIntervalType = ApiActionResponse<{confidenceInterval: number}>
+type UpdateMhsLeadershipBarType = ApiActionResponse<{leadershipBar: number}>
+type UpdateMhsNormRegionType = ApiActionResponse<{normRegion: number}>
+type UpdateMhsNormOptionType = ApiActionResponse<{normOption: number}>
 
 const HANDLERS = {
   [SET_USER_ASSESSMENTS]: (state, { userAssessments }: CustomAction<{ userAssessments: UserAssessment[] }>) => (
@@ -239,6 +291,90 @@ const HANDLERS = {
         if (assessment.id !== campaignAssessmentId) return assessment
 
         return { ...assessment, simuationTimeExtension: timeExtension, ...response }
+      },
+    ))
+  },
+  [UPDATE_MHS_CONFIDENCE_INTERVAL]: (
+    state, { response, requestAction: { request } }: UpdateMhsConfidenceIntervalType,
+  ) => {
+    const { campaignAssessmentId } = request.body
+
+    return updateIn(state, ['list'], (assessments: UserAssessment[]) => assessments.map(
+      (assessment: UserAssessment) => {
+        if (assessment.id !== campaignAssessmentId) return assessment
+
+        return {
+          ...assessment,
+          mhsUserAssessmentDetails: assessment.mhsUserAssessmentDetails
+            ? {
+              ...assessment.mhsUserAssessmentDetails,
+              confidenceInterval: response.confidenceInterval,
+            }
+            : null,
+        }
+      },
+    ))
+  },
+  [UPDATE_MHS_LEADERSHIP_BAR]: (
+    state, { response, requestAction: { request } }: UpdateMhsLeadershipBarType,
+  ) => {
+    const { campaignAssessmentId } = request.body
+
+    return updateIn(state, ['list'], (assessments: UserAssessment[]) => assessments.map(
+      (assessment: UserAssessment) => {
+        if (assessment.id !== campaignAssessmentId) return assessment
+
+        return {
+          ...assessment,
+          mhsUserAssessmentDetails: assessment.mhsUserAssessmentDetails
+            ? {
+              ...assessment.mhsUserAssessmentDetails,
+              leadershipBar: response.leadershipBar,
+            }
+            : null,
+        }
+      },
+    ))
+  },
+  [UPDATE_MHS_NORM_REGION]: (
+    state, { response, requestAction: { request } }: UpdateMhsNormRegionType,
+  ) => {
+    const { campaignAssessmentId } = request.body
+
+    return updateIn(state, ['list'], (assessments: UserAssessment[]) => assessments.map(
+      (assessment: UserAssessment) => {
+        if (assessment.id !== campaignAssessmentId) return assessment
+
+        return {
+          ...assessment,
+          mhsUserAssessmentDetails: assessment.mhsUserAssessmentDetails
+            ? {
+              ...assessment.mhsUserAssessmentDetails,
+              normRegion: response.normRegion,
+            }
+            : null,
+        }
+      },
+    ))
+  },
+  [UPDATE_MHS_NORM_OPTION]: (
+    state, { response, requestAction: { request } }: UpdateMhsNormOptionType,
+  ) => {
+    const { campaignAssessmentId } = request.body
+
+    return updateIn(state, ['list'], (assessments: UserAssessment[]) => assessments.map(
+      (assessment: UserAssessment) => {
+        if (assessment.id !== campaignAssessmentId) return assessment
+
+        return {
+          ...assessment,
+          mhsUserAssessmentDetails: assessment.mhsUserAssessmentDetails
+            ? {
+              ...assessment.mhsUserAssessmentDetails,
+              normOption: response.normOption,
+            }
+            : null,
+        }
       },
     ))
   },

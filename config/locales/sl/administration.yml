@@ -3927,11 +3927,6 @@ sl:
         generate_embedding_failure_msg: Nisem uspel v vrsti za generiranje veščin v vrsti. Prosim, poskusite znova.
         generate_embedding_success_msg: Delo za generiranje veščin je bilo uspešno uvrščeno v čakalno vrsto. Prosimo, preverite status v obvestilih.
         label: Vector DB
-    skills_taxonomy:
-      tabs:
-        job_roles: Delovna mesta
-        proficiency: Znanje
-        skills: Spretnosti
     sms_histories:
       columns:
         first_name: Ime
@@ -4180,13 +4175,15 @@ sl:
       more_actions: Več dejanj
     taxonomy:
       import:
+        description: Naložite Excelovo datoteko, da uvozite ali posodobite svojo taksonomijo znanj. S tem boste dodali nova znanja, delovna mesta in stopnje usposobljenosti.
         download_example_file: Prenesite vzorčno datoteko
+        drag_text: Kliknite ali povlecite datoteko v to območje, da jo naložite.
+        error_title: Uvoz ni uspel
+        file_hint: Podpira datoteke .xls in .xlsx
+        import_button: Uvoz taksonomije
         success_msg: Naložena datoteka je bila uvrščena v čakalno vrsto za uvoz. Preverite stanje v obvestilih.
       import_action:
         taxonomy: Uvozna taksonomija
-      job_roles: Delovna mesta
-      proficiency: Znanje
-      skills: Spretnosti
       title: Taksonomija
     templates:
       blocks:

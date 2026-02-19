@@ -27,7 +27,7 @@ export const CampaignFactorsModalComponent:FC<Props> = ({ columns, saveCampaignF
     open
     onCancel={closeModal}
     footer={null}
-    destroyOnClose
+    destroyOnHidden
   >
     <CampaignFactorsForm
       factors={columns}

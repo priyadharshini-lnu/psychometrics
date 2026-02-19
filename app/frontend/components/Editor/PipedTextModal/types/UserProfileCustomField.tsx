@@ -27,7 +27,7 @@ const UserProfileCustomField = ({
       initialValues={{ fieldName: '' }}
       className={styles.form}
     >
-      <Space direction="vertical">
+      <Space orientation="vertical">
         <Form.Item
           name="fieldName"
           label={I18n.t('custom_field.field_name')}

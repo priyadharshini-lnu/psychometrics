@@ -46,7 +46,7 @@ export const LanguageSelection: React.FC<Props> = ({
               <Col flex={1}>
                 <div>
                   <Radio.Group onChange={e => setLang(e.target.value)} value={lang}>
-                    <Space direction="vertical">
+                    <Space orientation="vertical">
                       {_.map(locales, locale => (
                         <Radio value={locale}>{I18n.t(`languages.${locale}`)}</Radio>
                       ))}

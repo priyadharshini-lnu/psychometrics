@@ -3927,11 +3927,6 @@ pl:
         generate_embedding_failure_msg: Nie udało się ustawić zadania generowania umiejętności w kolejce. Proszę, spróbuj ponownie.
         generate_embedding_success_msg: Zadanie generowania umiejętności zostało pomyślnie zaksięgowane. Proszę sprawdzić status w powiadomieniach.
         label: Vector DB
-    skills_taxonomy:
-      tabs:
-        job_roles: Role zawodowe
-        proficiency: Biegłość
-        skills: Umiejętności
     sms_histories:
       columns:
         first_name: Imię
@@ -4180,13 +4175,15 @@ pl:
       more_actions: Więcej akcji
     taxonomy:
       import:
+        description: Prześlij plik Excel, aby zaimportować lub zaktualizować swoją taksonomię umiejętności. Spowoduje to dodanie nowych umiejętności, stanowisk i poziomów biegłości.
         download_example_file: Pobierz przykładowy plik
+        drag_text: Kliknij lub przeciągnij plik do tego obszaru, aby go przesłać.
+        error_title: Import nie powiódł się
+        file_hint: Obsługuje pliki .xls i .xlsx
+        import_button: Importuj taksonomię
         success_msg: Przesłany plik został umieszczony w kolejce do importu. Sprawdź status w powiadomieniach.
       import_action:
         taxonomy: Taksonomia importu
-      job_roles: Role zawodowe
-      proficiency: Biegłość
-      skills: Umiejętności
       title: Taksonomia
     templates:
       blocks:

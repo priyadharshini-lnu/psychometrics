@@ -34,7 +34,7 @@ export const RetakeSteps = ({ onAction, aiAssistedIdpHasDocumentAnalysis }) => (
             </div>
             <Typography.Text strong>{I18n.t('idp.ai.retake_steps.start_chat')}</Typography.Text>
             <Popconfirm
-              overlayStyle={{ zIndex: 9999 }}
+              styles={{ root: { zIndex: 9999 } }}
               title={I18n.t('idp.ai.reset_confirmation')}
               onConfirm={() => onAction('retakeChat')}
               okText={I18n.t('common.actions.yes')}

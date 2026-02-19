@@ -7,7 +7,7 @@ import styles from './QuestionList.less'
 
 const QuestionList = ({
   page, questions, readOnly, backButtonPressed = false, defaultLanguage = 'en',
-  allErrors, focusFirstError, singleQuestionPerPage,
+  allErrors, focusFirstError, singleQuestionPerPage, showEnhanceWithAI,
 }) => {
   const questionRef = useRef(null)
   const transition = useTransition(questions, {
@@ -56,6 +56,7 @@ const QuestionList = ({
           defaultLanguage={defaultLanguage}
           questionCount={questions.length}
           focus={firstQuestionWithError && firstQuestionWithError.id === question.id && focusFirstError}
+          showEnhanceWithAI={showEnhanceWithAI}
         />
       </a.div>
     )

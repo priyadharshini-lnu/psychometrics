@@ -10,7 +10,7 @@ const fieldLayout = {
 }
 
 export const Example: React.FC = () => (
-  <Space direction="vertical" size="large" style={{ display: 'flex' }}>
+  <Space orientation="vertical" size="large" style={{ display: 'flex' }}>
     <Panel
       title="Basic Information"
       /* eslint-disable max-len */

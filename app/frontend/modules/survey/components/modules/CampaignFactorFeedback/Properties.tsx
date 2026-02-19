@@ -27,7 +27,7 @@ export function Properties (props) {
 
   return (
     <div>
-      <Space direction="vertical" className="ms-4 me-4">
+      <Space orientation="vertical" className="ms-4 me-4">
         <Typography.Text>
           {I18n.t('frontend.questions.campaign_factor_feedback.min_factors')}
         </Typography.Text>

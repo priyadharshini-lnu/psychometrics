@@ -893,6 +893,7 @@ en-US:
         export_users: Campaign Users Export
         external_assessment_export: External Results Export
         generate_embedding_skills: Generate Embedding for Skills
+        generate_transcription: Generate Transcription
         import_accesssheet: Import Accessheet
         import_assessment_questions: Import Assessment Questions
         import_assessment_translations: Import Assessment Translations
@@ -923,6 +924,8 @@ en-US:
         import_users: Import Users
         migrate_assessment_translations: Assessment Translation migration
         normalize_factor_scores: Normalize Factor Scores
+        project_compact_completion_status_export: Compact Completion Status Export
+        project_completion_status_export: Completion Status Export
         regenerate_campaign_reports: Regenerate Campaign Reports
         regenerate_report: Regenerate Report
         regenerate_threesixty_report: Regenerate Threesixty Report
@@ -1715,23 +1718,6 @@ en-US:
     title: Change Password
     warning_message: 'Important: Changing your password will log you out.'
   checking_wizard:
-    audio_check:
-      access: Access
-      continue: Yes, Ok to proceed
-      random_phrases:
-        eight: May your coffee be strong and your day be productive.
-        five: Life is better when you smile. Smile for the mic!
-        four: She sells seashells by the seashore.
-        nine: When in doubt, test it out this mic works!
-        one: I scream, you scream, we all scream for ice cream!
-        seven: Every day is a new beginning. Say it loud and proud!
-        six: Pizza or pasta? Decisions are hard.
-        three: Testing, one two three, the sound is clear as can be!.
-        two: The quick brown fox jumps over the lazy dog.
-      record_title: Please speak and repeat the following sentence 3 times.
-      retake: No, I want to retake
-      run_again: Run again
-      test_message: great to speak with you
     network_check:
       continue: Continue
       download: Download
@@ -1764,18 +1750,10 @@ en-US:
       permissions: Webcam & Audio Permissions
       title: Before starting this assessment, your system needs to undergo some checks.
     video_check:
-      access: Access
-      camera_preview: Camera preview will appear here
-      continue: Yes, Ok to proceed
       description: Click on Start Recording and Record yourself while reading the below passage in your own voice
       random_phrases:
         one: I am ready. This is a test recording to confirm that my video and microphone are working properly.
-      rec_text: REC
-      retake: No, I want to retake
-      run_again: Run again
       title: We need to ensure your system can record the video
-      upload_again: Upload again
-      uploading: Uploading
   common:
     actions:
       add: Add

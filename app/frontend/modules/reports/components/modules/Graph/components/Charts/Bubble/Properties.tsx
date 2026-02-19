@@ -377,7 +377,7 @@ const FactorsSelect: FC<FactorsSelectProps> = ({
 }) => (
   <Select
     className="w-100"
-    popupClassName="ps-2"
+    classNames={{ popup: { root: 'ps-2' } }}
     showSearch
     filterOption={(searchInput, option) => (
       option?.title?.toLowerCase()?.indexOf(searchInput.toLowerCase()) || -1) >= 0}

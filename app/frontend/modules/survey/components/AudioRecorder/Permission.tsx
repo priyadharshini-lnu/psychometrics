@@ -30,7 +30,7 @@ export const Permission: React.FC<Props> = ({ onAllow, readOnly }) => {
       status="info"
       icon={<Avatar icon={<AudioOutlined />} size="large" aria-hidden="true" />}
       extra={(
-        <Space direction="vertical">
+        <Space orientation="vertical">
           {I18n.t('assessments.audio_response.permission_text')}
           <Button
             type="primary"

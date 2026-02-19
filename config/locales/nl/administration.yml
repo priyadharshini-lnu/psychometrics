@@ -3930,11 +3930,6 @@ nl:
         generate_embedding_failure_msg: Niet in de wachtrij voor vaardigheids-embedding genererende klus. Probeer het alsjeblieft opnieuw.
         generate_embedding_success_msg: De functie voor het genereren van vaardigheden is succesvol in de wachtrij geplaatst. Controleer alstublieft de status in de meldingen.
         label: Vector DB
-    skills_taxonomy:
-      tabs:
-        job_roles: Functierollen
-        proficiency: Vaardigheid
-        skills: Vaardigheden
     sms_histories:
       columns:
         first_name: Voornaam
@@ -4188,13 +4183,15 @@ nl:
       more_actions: Meer acties
     taxonomy:
       import:
+        description: Upload een Excel-bestand om uw vaardigheidstaxonomie te importeren of bij te werken. Hierdoor worden nieuwe vaardigheden, functies en vaardigheidsniveaus toegevoegd.
         download_example_file: Voorbeeldbestand downloaden
+        drag_text: Klik of sleep het bestand naar dit gebied om het te uploaden
+        error_title: Importeren mislukt
+        file_hint: Ondersteunt .xls- en .xlsx-bestanden
+        import_button: Importtaxonomie
         success_msg: Het geüploade bestand is in de wachtrij geplaatst om te worden geïmporteerd. Controleer de status in de meldingen.
       import_action:
         taxonomy: Taxonomie vaardigheden importeren
-      job_roles: Functierollen
-      proficiency: Bekwaamheid
-      skills: Vaardigheden
       title: Taxonomie van vaardigheden
     templates:
       blocks:

@@ -932,6 +932,7 @@ ar:
         export_users: تصدير مستخدمي الحملة
         external_assessment_export: تصدير النتائج الخارجية
         generate_embedding_skills: توليد تضمين للمهارات
+        generate_transcription: إنشاء نسخة مكتوبة
         import_accesssheet: استيراد الحجز
         import_assessment_questions: أسئلة تقييم الاستيراد
         import_assessment_translations: استيراد ترجمات التقييم
@@ -962,6 +963,8 @@ ar:
         import_users: استيراد المستخدمين
         migrate_assessment_translations: ترحيل ترجمة التقييم
         normalize_factor_scores: تطبيع درجات العامل
+        project_compact_completion_status_export: تصدير حالة الإكمال المضغوط
+        project_completion_status_export: حالة الإكمال التصدير
         regenerate_campaign_reports: إعادة إنشاء تقارير الحملة
         regenerate_report: إعادة إنشاء التقرير
         regenerate_threesixty_report: إعادة إنشاء تقرير Threesixty
@@ -1769,23 +1772,6 @@ ar:
     title: غيّر كلمة المرور
     warning_message: 'هام: تغيير كلمة المرور الخاصة بك سيؤدي إلى تسجيل خروجك.'
   checking_wizard:
-    audio_check:
-      access: إذن الدخول
-      continue: نعم موافق للمضي قدما
-      random_phrases:
-        eight: نرجو أن تكون قهوتك قوية ويومك مثمرًا.
-        five: الحياة أفضل عندما تبتسم. ابتسم للميكروفون!
-        four: إنها تبيع الأصداف البحرية على شاطئ البحر.
-        nine: عندما تكون في شك، اختبر أن هذا الميكروفون يعمل!
-        one: أنا أصرخ، أنت تصرخ، كلنا نصرخ من أجل الآيس كريم!
-        seven: كل يوم هو بداية جديدة. قلها بصوت عالٍ وفخور!
-        six: البيتزا أو المعكرونة؟ القرارات صعبة.
-        three: اختبار، واحد اثنان ثلاثة، الصوت واضح قدر الإمكان!.
-        two: يقفز الثعلب البني السريع فوق الكلب الكسول.
-      record_title: الرجاء التحدث وتكرار الجملة التالية 3 مرات
-      retake: لا، أريد أن أستعيد
-      run_again: تشغيل مرة أخرى
-      test_message: سُررت بالتحدث معك
     network_check:
       continue: استمرار
       download: تحميل
@@ -1818,18 +1804,10 @@ ar:
       permissions: أذونات كاميرا الويب والصوت
       title: قبل بدأ هذا التقييم، يحتاج النظام الخاص بك إلى الخضوع لبعض الفحوصات
     video_check:
-      access: الإذن بالدخول
-      camera_preview: ستظهر معاينة الكاميرا هنا
-      continue: نعم موافق للمضي قدما
       description: انقر على "بدء التسجيل" وسجل نفسك أثناء قراءة المقطع التالي بصوتك
       random_phrases:
         one: أنا جاهز. هذا تسجيل تجريبي للتأكد من أن الفيديو والميكروفون يعملان بشكل صحيح.
-      rec_text: REC
-      retake: لا، أريد أن أستعيد
-      run_again: تشغيل مرة أخرى
       title: " نحن بحاجة إلى التأكد من أن النظام الخاص بك يمكنه تسجيل الفيديو"
-      upload_again: تحميل مرة أخرى
-      uploading: جاري التحميل
   common:
     actions:
       add: إضافة

@@ -2,6 +2,7 @@
 
 class ProjectFeature < ApplicationRecord
   belongs_to :project
+  include ApplicationConfigurationLoggable
 
   validates :project, presence: true
 

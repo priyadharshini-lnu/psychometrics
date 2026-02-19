@@ -2,6 +2,7 @@
 
 class SamlServiceProvider < ApplicationRecord
   belongs_to :project, class_name: 'Client'
+  include ApplicationConfigurationLoggable
 
   enum :integration_type, {
     generic: 0,

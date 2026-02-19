@@ -176,7 +176,7 @@ const InitialStepsComponent = ({
               className="pt-4 mb-4"
             >
               <Steps
-                direction="horizontal"
+                orientation="horizontal"
                 responsive={false}
                 current={currentStep === -1 ? 0 : currentStep}
                 items={isMobile || isTablet || isDesktop ? visibleSteps.map(() => ({ title: '' }))

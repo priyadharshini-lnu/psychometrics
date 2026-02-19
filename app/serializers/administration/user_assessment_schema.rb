@@ -22,6 +22,10 @@ module Administration
           required(:push_webhook).filled(:bool?)
           required(:reset_results).filled(:bool?)
           required(:mark_complete).filled(:bool?)
+          required(:update_mhs_confidence_interval).filled(:bool?)
+          required(:update_mhs_leadership_bar).filled(:bool?)
+          required(:update_mhs_norm_region).filled(:bool?)
+          required(:update_mhs_norm_option).filled(:bool?)
           optional(:normalize_factor_scores).maybe(:bool?)
         end
         required(:assessment_id).filled(:int?)

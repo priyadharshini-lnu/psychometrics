@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class UserSkillGapReportSerializer < Panko::Serializer
-  attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :user, :report_url, :report_data
+  attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :user, :report_url, :report_data,
+             :campaign_ai_artifact_results
 
   has_one :report, serializer: ReportSerializer
 
@@ -25,6 +26,17 @@ class UserSkillGapReportSerializer < Panko::Serializer
 
   def report_url
     object.pdf_download_url
+  end
+
+  def campaign_ai_artifact_results
+    results = Campaigns::AIArtifactResultsQuery.new(
+      object.campaign_id, object.user_id
+    ).query
+
+    Panko::ArraySerializer.new(
+      results,
+      each_serializer: AI::CampaignArtifactResultSerializer
+    ).to_a
   end
 
   private

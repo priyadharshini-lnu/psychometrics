@@ -34,6 +34,18 @@ const ToolsDropdown: FC<Props> = ({ permissions, openModal }) => {
     label: I18n.t('administration.project.tools.workshop_status_export'),
   })
 
+  const exportMenuItems = [
+    { key: 'exportCompletion', label: I18n.t('admin.export_detailed_completion_status') },
+    { key: 'exportCompactCompletion', label: I18n.t('admin.export_compact_completion_status') },
+  ]
+
+  permissions.exportCompletionStatus && menuItems.push({
+    type: 'group',
+    key: 'completionGroup',
+    label: I18n.t('admin.export_completion_status'),
+    children: exportMenuItems,
+  })
+
   const exportWorkshopStatus = (id, body): Promise<unknown> => memberAction({
     id,
     action: 'workshop_status_export',
@@ -41,6 +53,19 @@ const ToolsDropdown: FC<Props> = ({ permissions, openModal }) => {
     method: 'get',
   })
 
+  const exportCompletionStatus = (id, body): Promise<unknown> => memberAction({
+    id,
+    action: 'export_completion_status',
+    body,
+    method: 'get',
+  })
+
+  const exportCompactCompletionStatus = (id, body): Promise<unknown> => memberAction({
+    id,
+    action: 'export_compact_completion_status',
+    body,
+    method: 'get',
+  })
 
   const handleMenuClick = ({ key }) => {
     if (key === 'workshopStatusExport') {
@@ -48,6 +73,20 @@ const ToolsDropdown: FC<Props> = ({ permissions, openModal }) => {
         id: projectId,
         action: exportWorkshopStatus,
         onSuccess: () => { message.success(I18n.t('administration.project.tools.workshop_status_export_success')) },
+      })
+    }
+    if (key === 'exportCompletion') {
+      openModal('UserFilterModal', {
+        id: projectId,
+        action: exportCompletionStatus,
+        onSuccess: () => message.success(I18n.t('admin.export_completion_statuses_scheduled')),
+      })
+    }
+    if (key === 'exportCompactCompletion') {
+      openModal('UserFilterModal', {
+        id: projectId,
+        action: exportCompactCompletionStatus,
+        onSuccess: () => message.success(I18n.t('admin.export_completion_statuses_scheduled')),
       })
     }
   }
@@ -64,6 +103,7 @@ const ToolsDropdown: FC<Props> = ({ permissions, openModal }) => {
       innerElement={(
         <Button>
           <ToolOutlined />
+          <span>{I18n.t('administration.users.toolbar.title')}</span>
           <DownOutlined />
         </Button>
       )}

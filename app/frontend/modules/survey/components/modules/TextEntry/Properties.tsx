@@ -145,7 +145,7 @@ interface AnswerTypeSelectProps {
 
 const AnswerTypeSelect: FC<AnswerTypeSelectProps> = ({ value, onSelect }) => (
   <div className="ms-4 me-4">
-    <Space direction="vertical" className="w-100">
+    <Space orientation="vertical" className="w-100">
       <Typography.Text strong>
         {I18n.t('administration.survey_builder.property_panel.answer_type')}
       </Typography.Text>
@@ -172,7 +172,7 @@ const PropertyChoiceInput: FC<PropertyChoiceInputProps> = ({
   onChange,
 }) => (
   <div className="ms-4 me-4 mb-4">
-    <Space direction="vertical">
+    <Space orientation="vertical">
       <Typography.Text strong>{title}</Typography.Text>
       <ChoicesInput model={model} onChange={onChange} />
     </Space>
@@ -206,7 +206,7 @@ interface DateFormatSelectProps {
 
 const DateFormatSelect: FC<DateFormatSelectProps> = ({ value, onSelect }) => (
   <div className="ms-4 me-4 mb-4">
-    <Space direction="vertical" className="w-100">
+    <Space orientation="vertical" className="w-100">
       <Typography.Text strong>
         {I18n.t('administration.survey_builder.property_panel.date_format')}
       </Typography.Text>

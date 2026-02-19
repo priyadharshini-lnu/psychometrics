@@ -12,6 +12,7 @@ module Api
           proc do
             optional(:override_exists).maybe(:bool)
             optional(:automatically_assign_new).maybe(:bool)
+            optional(:dependencies_attributes).maybe(:hash)
           end
         end
 
@@ -19,6 +20,7 @@ module Api
           proc do
             optional(:override_exists).maybe(:bool)
             optional(:automatically_assign_new).maybe(:bool)
+            optional(:dependencies_attributes).maybe(:hash)
           end
         end
 
@@ -26,6 +28,7 @@ module Api
           proc do
             optional(:override_exists).maybe(:bool)
             optional(:automatically_assign_new).maybe(:bool)
+            optional(:dependencies_attributes).maybe(:hash)
           end
         end
 

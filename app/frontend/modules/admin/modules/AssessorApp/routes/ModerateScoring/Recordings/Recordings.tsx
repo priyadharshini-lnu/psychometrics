@@ -64,7 +64,7 @@ const Recordings: React.FC<Props> = ({ userRecordings, fetchRecordings, header }
     <div className={styles.sidebar}>
       {header(I18n.t('administration.assessor.moderate_score.recordings'))}
       <div className={styles.content}>
-        <Space direction="vertical" style={{ width: '100%' }}>
+        <Space orientation="vertical" style={{ width: '100%' }}>
           {userRecordings.map(recording => (
             <div className={styles.group} key={recording.id}>
               <div className={styles.groupTitle}>
@@ -168,7 +168,7 @@ const RecordingUrlColumn: React.FC<{
         footer={null}
         width={800}
         title={`Recording #${serialNo} - ${recordingDate}`}
-        destroyOnClose
+        destroyOnHidden
       >
         <RecordingPlayer url={recordingUrl} />
       </Modal>

@@ -13,12 +13,14 @@ sl:
     audio: Avdio
     authentication_failed: Avtentikacija ni uspela. Prosim, poskusite znova.
     basic: Osnoven
+    camera_preview: Predogled kamere bo prikazan tukaj
     campaign_id: ID kampanje
     cancel: Prekliči
     change_password: Spremeni geslo
     clear_filters: Počistite filtre
     collaborative_learning: Sodelovalno učenje
     completed: Zaključeno
+    configurations: Konfiguracije
     confirm: Potrdi
     continue: Nadaljuj
     copy: Kopiraj
@@ -27,6 +29,9 @@ sl:
     decline: Upad
     description: Opis
     download: Prenesi
+    download_audio: Prenesi avdio
+    download_transcription: Prenesi transkripcijo
+    download_video: Prenesi video
     edit: Uredi
     edited: Novo
     email: E-pošta
@@ -54,6 +59,7 @@ sl:
     maintenance_upcoming_description: Na spletni strani %{date} bomo izvedli redno vzdrževanje, ki bo trajalo približno %{duration}, da bi izboljšali vašo izkušnjo. V tem času ne boste mogli dostopati do dodeljenih nalog ali jih opraviti. Zahvaljujemo se vam za potrpežljivost.
     maintenance_upcoming_title: Prihajajoče vzdrževanje
     media_question_transcriptions: Prepisi vprašanj medijev
+    media_responses: Odzivi medijev
     modified_by: Spremenil
     modified_date: Datum spremembe
     more_actions: Več dejanj
@@ -69,6 +75,8 @@ sl:
     proctoring_maintenance_active: Proctoring je trenutno v vzdrževanju od %{start_time} do %{end_time}. Poskusite ponovno po koncu vzdrževanja.
     proctoring_maintenance_upcoming: Nadzor bo v vzdrževanju od %{start_time} do %{end_time}.
     question_id: ID vprašanja
+    question_transcription_disabled: Prepisovanje je za to vprašanje onemogočeno.
+    rec: REC
     recording_consent_notice: Ta seja bo posneta. Vaša udeležba na tem sestanku pomeni vaše soglasje za snemanje.
     recording_consent_proceed_question: Se strinjate, da nadaljujete s posnetim sestankom?
     recording_consent_title: Obvestilo o snemanju soglasja
@@ -79,6 +87,7 @@ sl:
     rte_paste_content_exceeds_char_limit: Besedilo presega omejitev znakov {{maxCharacterLimit}} in ga ni mogoče prilepiti.
     rte_paste_content_exceeds_word_limit: Besedilo presega omejitev besed {{maxWordLimit}} in ga ni mogoče prilepiti.
     save: Shrani
+    saving_video: Shranjevanje videa... Prosimo, ne zapirajte ali osvežujte brskalnika
     search: Iskanje
     send_email: Pošlji e-pošto
     show_more: Pokaži več
@@ -92,6 +101,7 @@ sl:
     transcription: Transkripcija
     transcription_already_requested: Prepis že zahtevan ali v teku
     transcription_not_enabled: Transkripcija ni omogočena za odziv medijev.
+    transcription_status: Status transkripcije
     transcriptions: Transkripcij
     try_again: Poskusi znova
     tte_terms_and_condition: Pogoji uporabe in politika zasebnosti

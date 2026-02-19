@@ -51,7 +51,7 @@ export const ProctoringSessionList: React.FC<Props> = ({ proctoringSessions }) =
       title={I18n.t('administration.proctoring_sessions.columns.links')}
       key="links"
       render={(_, { archiveUrl, reportUrl }) => (
-        <Space direction="vertical">
+        <Space orientation="vertical">
           {archiveUrl
             && (
               <a href={archiveUrl} target="_blank" rel="noreferrer">

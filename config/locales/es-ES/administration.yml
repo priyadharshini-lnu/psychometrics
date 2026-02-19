@@ -3930,11 +3930,6 @@ es-ES:
         generate_embedding_failure_msg: No se pudo poner en cola el trabajo de generación de incrustación de habilidades. Por favor, inténtalo de nuevo.
         generate_embedding_success_msg: El trabajo de generación de incrustación de habilidades se ha puesto en cola con éxito. Por favor, revisa el estado en las notificaciones.
         label: Vector DB
-    skills_taxonomy:
-      tabs:
-        job_roles: Funciones
-        proficiency: Dominio
-        skills: Habilidades
     sms_histories:
       columns:
         first_name: Nombre
@@ -4188,13 +4183,15 @@ es-ES:
       more_actions: Más acciones
     taxonomy:
       import:
+        description: Sube un archivo Excel para importar o actualizar tu taxonomía de habilidades. Esto añadirá nuevas habilidades, puestos de trabajo y niveles de competencia.
         download_example_file: Descargar archivo de ejemplo
+        drag_text: Haga clic o arrastre el archivo a esta área para cargarlo.
+        error_title: Error al importar
+        file_hint: Admite archivos .xls y .xlsx.
+        import_button: Importar taxonomía
         success_msg: El archivo cargado se ha puesto en cola para su importación. Compruebe el estado en las notificaciones.
       import_action:
         taxonomy: Importar taxonomía de competencias
-      job_roles: Roles de trabajo
-      proficiency: Dominio
-      skills: Habilidades
       title: Taxonomía de competencias
     templates:
       blocks:

@@ -13,12 +13,14 @@ cs:
     audio: Audio
     authentication_failed: Autentizace selhala. Zkuste to prosím znovu.
     basic: Základní
+    camera_preview: Tady se zobrazí náhled fotoaparátu
     campaign_id: Identifikace kampaně
     cancel: Zrušit
     change_password: Změna hesla
     clear_filters: Vymazat filtry
     collaborative_learning: Společné učení
     completed: Dokončeno
+    configurations: Konfigurace
     confirm: Potvrdit
     continue: Pokračovat
     copy: Kopírovat
@@ -27,6 +29,9 @@ cs:
     decline: Úpadek
     description: Popis
     download: Stáhnout
+    download_audio: Stáhnout zvukový soubor
+    download_transcription: Stáhnout přepis
+    download_video: Stáhnout video
     edit: Upravit
     edited: Nové
     email: E-mail
@@ -54,6 +59,7 @@ cs:
     maintenance_upcoming_description: Budeme provádět plánovanou údržbu na %{date} po dobu přibližně %{duration}, abychom vylepšili vaše uživatelské prostředí. Během této doby nebudete moci přistupovat k žádným přiděleným úkolům ani je dokončovat. Děkujeme za vaši trpělivost.
     maintenance_upcoming_title: Nadcházející údržba
     media_question_transcriptions: Přepisy otázek médií
+    media_responses: Reakce médií
     modified_by: Upraveno podle
     modified_date: Datum úpravy
     more_actions: Další akce
@@ -69,6 +75,8 @@ cs:
     proctoring_maintenance_active: Služba Proctoring je momentálně v údržbě z %{start_time} na %{end_time}. Zkuste to znovu po skončení údržby.
     proctoring_maintenance_upcoming: Proctoring bude od %{start_time} do %{end_time} v údržbě.
     question_id: ID otázky
+    question_transcription_disabled: Přepis je pro tuto otázku zakázán.
+    rec: NAHRÁVÁNÍ
     recording_consent_notice: Toto zasedání bude nahráváno. Vaše účast na tomto setkání znamená váš souhlas s nahráváním.
     recording_consent_proceed_question: Souhlasíte s pokračováním v zaznamenaném setkání?
     recording_consent_title: Oznámení o souhlasu s nahráváním
@@ -79,6 +87,7 @@ cs:
     rte_paste_content_exceeds_char_limit: Text překračuje limit znaků {{maxCharacterLimit}} a nelze jej vložit.
     rte_paste_content_exceeds_word_limit: Text překračuje limit slov {{maxWordLimit}} a nelze jej vložit.
     save: Uložit
+    saving_video: Ukládání videa... Prosím, nezavírejte ani neobnovujte prohlížeč
     search: Hledat
     send_email: Odeslat e-mail
     show_more: Zobrazit více
@@ -97,6 +106,7 @@ cs:
     transcription: Přepis
     transcription_already_requested: Přepis již byl vyžádán nebo je v procesu
     transcription_not_enabled: Přepis není pro mediální odezvu povolen.
+    transcription_status: Stav přepisu
     transcriptions: Přepisy
     try_again: Zkusit znovu
     tte_terms_and_condition: Smluvní podmínky a ochrana soukromí

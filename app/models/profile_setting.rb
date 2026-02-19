@@ -2,6 +2,7 @@
 
 class ProfileSetting < ApplicationRecord
   audited
+  include ApplicationConfigurationLoggable
 
   belongs_to :project
   has_many :profile_fields

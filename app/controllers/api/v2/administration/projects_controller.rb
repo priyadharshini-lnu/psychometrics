@@ -18,6 +18,26 @@ module Api
       render json: :ok
     end
 
+    def export_completion_status
+      AdminJob.call(
+        :project_completion_status_export,
+        { project_id: project_id, include_inactive_users: include_inactive_users },
+        current_user
+      )
+
+      render json: :ok
+    end
+
+    def export_compact_completion_status
+      AdminJob.call(
+        :project_compact_completion_status_export,
+        { project_id: project_id, include_inactive_users: include_inactive_users },
+        current_user
+      )
+
+      render json: :ok
+    end
+
     def seach_user
       campaign_id = params[:filter][:campaign_id]
       users = User.where(project_id: project_id).filterable_fields(params[:filter][:search_query])

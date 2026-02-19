@@ -3927,11 +3927,6 @@ sk:
         generate_embedding_failure_msg: Nepodarilo sa mi zaradiť do fronty na generovanie zručností. Prosím, skúste to znova.
         generate_embedding_success_msg: Úloha generovania zručností bola úspešne zaradená do fronty. Prosím, skontrolujte stav v notifikáciách.
         label: Vector DB
-    skills_taxonomy:
-      tabs:
-        job_roles: Pracovné pozície
-        proficiency: Odbornej spôsobilosti
-        skills: Zručnosti
     sms_histories:
       columns:
         first_name: Krstné meno
@@ -4180,13 +4175,15 @@ sk:
       more_actions: Ďalšie akcie
     taxonomy:
       import:
+        description: Nahrajte súbor Excel, aby ste importovali alebo aktualizovali svoju taxonómiu zručností. Tým pridáte nové zručnosti, pracovné pozície a úrovne odbornosti.
         download_example_file: Stiahnuť vzorový súbor
+        drag_text: Kliknite alebo pretiahnite súbor do tejto oblasti, aby ste ho nahrali.
+        error_title: Import sa nepodaril
+        file_hint: Podporuje súbory .xls a .xlsx
+        import_button: Import taxonómie
         success_msg: Nahraný súbor bol zaradený do frontu na import. Skontrolujte stav v upozorneniach.
       import_action:
         taxonomy: Dovozná taxonómia
-      job_roles: Pracovné pozície
-      proficiency: Odbornej spôsobilosti
-      skills: Zručnosti
       title: Taxonómia
     templates:
       blocks:

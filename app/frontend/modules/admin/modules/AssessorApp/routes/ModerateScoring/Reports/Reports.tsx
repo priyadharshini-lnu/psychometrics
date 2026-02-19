@@ -70,7 +70,7 @@ export const ReportsComponent: FC<Props> = ({
             {I18n.t('administration.assessor.moderate_score.reports_count',
               { count: userReports.length })}
           </div>
-          <Space direction="vertical" size={8} style={{ width: '100%' }}>
+          <Space orientation="vertical" size={8} style={{ width: '100%' }}>
             {userReports.map(report => (
               <Card
                 styles={{

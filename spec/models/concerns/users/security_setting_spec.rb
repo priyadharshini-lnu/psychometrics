@@ -3,8 +3,16 @@
 require 'rails_helper'
 
 RSpec.describe Users::SecuritySetting, type: :model do
-  before do
-    allow(Settings.features).to receive(:dont_send_pi_to_siem).and_return(false)
+  let(:security_setting) { create(:security_setting) }
+  let(:project) do
+    create(
+      :project,
+      security_setting: security_setting,
+      number: '12345',
+      country: 'Barbados',
+      year: Time.zone.now.year,
+      project_manager: create(:superadmin)
+    )
   end
 
   describe '#lock_access!' do
@@ -12,6 +20,7 @@ RSpec.describe Users::SecuritySetting, type: :model do
 
     before do
       allow(SiemLogger).to receive(:log_security_event!)
+      allow(Settings.features).to receive(:dont_send_pi_to_siem).and_return(true)
     end
 
     it 'logs AccountLocked security event' do
@@ -19,9 +28,9 @@ RSpec.describe Users::SecuritySetting, type: :model do
 
       expect(SiemLogger).to have_received(:log_security_event!).with(
         'AccountLocked',
-        actor_name: user.email,
-        context: "Account locked for #{user.email}",
-        msg: "Account locked for #{user.email} due to too many failed login attempts",
+        actor_name: user.id.to_s,
+        context: "Account locked for #{user.id}",
+        msg: "Account locked for #{user.id} due to too many failed login attempts",
         authentication_channel: 'Password Login'
       )
     end
@@ -50,12 +59,11 @@ RSpec.describe Users::SecuritySetting, type: :model do
   end
 
   describe '#log_user_provision_event' do
-    let(:security_setting) { create(:security_setting) }
-    let(:project) { create(:project, security_setting: security_setting) }
     let(:creator) { create(:user, email: 'creator@example.com') }
 
     before do
       allow(SiemLogger).to receive(:log_security_event!)
+      allow(Settings.features).to receive(:dont_send_pi_to_siem).and_return(true)
       Current.user = nil
       Current.application_component = nil
     end
@@ -66,9 +74,9 @@ RSpec.describe Users::SecuritySetting, type: :model do
 
         expect(SiemLogger).to have_received(:log_security_event!).with(
           'UserProvision',
-          actor_name: 'creator@example.com',
-          context: "User: #{user.email}",
-          msg: "User account created for #{user.email}"
+          actor_name: creator.id.to_s,
+          context: "User: #{user.id}",
+          msg: "User account created for #{user.id}"
         )
       end
     end
@@ -81,9 +89,9 @@ RSpec.describe Users::SecuritySetting, type: :model do
 
         expect(SiemLogger).to have_received(:log_security_event!).with(
           'UserProvision',
-          actor_name: 'creator@example.com',
-          context: "User: #{user.email}",
-          msg: "User account created for #{user.email}"
+          actor_name: creator.id.to_s,
+          context: "User: #{user.id}",
+          msg: "User account created for #{user.id}"
         )
       end
     end
@@ -97,9 +105,9 @@ RSpec.describe Users::SecuritySetting, type: :model do
 
         expect(SiemLogger).to have_received(:log_security_event!).with(
           'UserProvision',
-          actor_name: 'other@example.com', # Should be Current.user, not creator
-          context: "User: #{user.email}",
-          msg: "User account created for #{user.email}"
+          actor_name: other_user.id.to_s, # Should be Current.user, not creator
+          context: "User: #{user.id}",
+          msg: "User account created for #{user.id}"
         )
       end
     end
@@ -111,8 +119,8 @@ RSpec.describe Users::SecuritySetting, type: :model do
         expect(SiemLogger).to have_received(:log_security_event!).with(
           'UserProvision',
           actor_name: 'System',
-          context: "User: #{user.email}",
-          msg: "User account created for #{user.email}"
+          context: "User: #{user.id}",
+          msg: "User account created for #{user.id}"
         )
       end
     end
@@ -126,21 +134,20 @@ RSpec.describe Users::SecuritySetting, type: :model do
         expect(SiemLogger).to have_received(:log_security_event!).with(
           'UserProvision',
           actor_name: 'System',
-          context: "User: #{user.email}",
-          msg: "User account created for #{user.email}"
+          context: "User: #{user.id}",
+          msg: "User account created for #{user.id}"
         )
       end
     end
   end
 
   describe '#log_user_deprovision_event' do
-    let(:security_setting) { create(:security_setting) }
-    let(:project) { create(:project, security_setting: security_setting) }
     let(:modifier) { create(:user, email: 'modifier@example.com') }
     let!(:user) { create(:user, project: project) }
 
     before do
       allow(SiemLogger).to receive(:log_security_event!)
+      allow(Settings.features).to receive(:dont_send_pi_to_siem).and_return(true)
       Current.user = nil
     end
 
@@ -153,9 +160,9 @@ RSpec.describe Users::SecuritySetting, type: :model do
 
           expect(SiemLogger).to have_received(:log_security_event!).with(
             'UserDeprovision',
-            actor_name: 'modifier@example.com',
-            context: "User: #{user.email}",
-            msg: "User account deleted for #{user.email}"
+            actor_name: modifier.id.to_s,
+            context: "User: #{user.id}",
+            msg: "User account deleted for #{user.id}"
           )
         end
       end
@@ -172,11 +179,294 @@ RSpec.describe Users::SecuritySetting, type: :model do
 
           expect(SiemLogger).to have_received(:log_security_event!).with(
             'UserDeprovision',
-            actor_name: 'other@example.com',
-            context: "User: #{user.email}",
-            msg: "User account deleted for #{user.email}"
+            actor_name: other_user.id.to_s,
+            context: "User: #{user.id}",
+            msg: "User account deleted for #{user.id}"
           )
         end
+      end
+    end
+  end
+
+  describe '#log_security_context_change' do
+    let(:user) { create(:user, role: 'Users::Regular') }
+    let(:modifier) { create(:user, email: 'modifier@example.com') }
+
+    before do
+      allow(SiemLogger).to receive(:log_security_event!)
+      allow(Settings.features).to receive(:dont_send_pi_to_siem).and_return(true)
+      Current.user = modifier
+    end
+
+    context 'when role is changed' do
+      it 'logs UserSecurityContextChange event' do
+        user.update(role: 'Users::Admin')
+
+        expect(SiemLogger).to have_received(:log_security_event!).with(
+          'UserSecurityContextChange',
+          actor_name: modifier.id.to_s,
+          context: "User: #{user.id}",
+          msg: "Security context changed for #{user.id}. Role changed from Users::Regular to Users::Admin"
+        )
+      end
+    end
+
+    context 'when grants are changed' do
+      it 'logs UserSecurityContextChange event' do
+        user.update(grants: { 'projects' => ['view'] })
+
+        expect(SiemLogger).to have_received(:log_security_event!).with(
+          'UserSecurityContextChange',
+          actor_name: modifier.id.to_s,
+          context: "User: #{user.id}",
+          msg: "Security context changed for #{user.id}. Grants modified"
+        )
+      end
+    end
+  end
+
+  describe '#log_alter_user_event' do
+    let(:user) { create(:user) }
+    let(:modifier) { create(:user, email: 'modifier@example.com') }
+
+    before do
+      allow(SiemLogger).to receive(:log_security_event!)
+      allow(Settings.features).to receive(:dont_send_pi_to_siem).and_return(true)
+      Current.user = modifier
+    end
+
+    context 'when user changes first_name' do
+      it 'logs AlterUser event' do
+        user.update(first_name: 'NewName')
+
+        expect(SiemLogger).to have_received(:log_security_event!).with(
+          'AlterUser',
+          actor_name: modifier.id.to_s,
+          context: "User: #{user.id}",
+          msg: "User account changed for #{user.id}. First name changed"
+        )
+      end
+    end
+
+    context 'when user changes email' do
+      it 'logs AlterUser event' do
+        user.update(email: 'newemail@example.com')
+
+        expect(SiemLogger).to have_received(:log_security_event!).with(
+          'AlterUser',
+          actor_name: modifier.id.to_s,
+          context: "User: #{user.id}",
+          msg: "User account changed for #{user.id}. Email changed"
+        )
+      end
+    end
+
+    context 'when account is disabled' do
+      it 'logs AlterUser event' do
+        user.update(disabled: true)
+
+        expect(SiemLogger).to have_received(:log_security_event!).with(
+          'AlterUser',
+          actor_name: modifier.id.to_s,
+          context: "User: #{user.id}",
+          msg: "User account changed for #{user.id}. Disabled changed from 'false' to 'true'"
+        )
+      end
+    end
+
+    context 'when 2FA is enabled' do
+      it 'logs AlterUser event' do
+        user.update(enable_2fa: false) # Default is true via DB column default
+
+        expect(SiemLogger).to have_received(:log_security_event!).with(
+          'AlterUser',
+          actor_name: modifier.id.to_s,
+          context: "User: #{user.id}",
+          msg: "User account changed for #{user.id}. Enable 2fa changed from 'true' to 'false'"
+        )
+      end
+    end
+
+    context 'when force_password_change is set' do
+      it 'logs AlterUser event' do
+        user.update(force_password_change: true)
+
+        expect(SiemLogger).to have_received(:log_security_event!).with(
+          'AlterUser',
+          actor_name: modifier.id.to_s,
+          context: "User: #{user.id}",
+          msg: "User account changed for #{user.id}. Force password change changed from 'false' to 'true'"
+        )
+      end
+    end
+
+    context 'when global_assessor is set' do
+      it 'logs AlterUser event' do
+        user.update(global_assessor: true)
+
+        expect(SiemLogger).to have_received(:log_security_event!).with(
+          'AlterUser',
+          actor_name: modifier.id.to_s,
+          context: "User: #{user.id}",
+          msg: "User account changed for #{user.id}. Global assessor changed from 'false' to 'true'"
+        )
+      end
+    end
+
+    context 'when account is unlocked' do
+      before do
+        user.update_columns(unlock_token: 'token', locked_at: Time.current)
+      end
+
+      it 'logs AlterUser event when unlock_token is cleared' do
+        user.update(unlock_token: nil, locked_at: nil)
+
+        expect(SiemLogger).to have_received(:log_security_event!).with(
+          'AlterUser',
+          actor_name: modifier.id.to_s,
+          context: "User: #{user.id}",
+          msg: "User account changed for #{user.id}. Account unlocked"
+        )
+      end
+    end
+
+    context 'when multiple attributes change' do
+      it 'logs all changes in one event' do
+        user.update(first_name: 'Jane', disabled: true)
+
+        expect(SiemLogger).to have_received(:log_security_event!).with(
+          'AlterUser',
+          actor_name: modifier.id.to_s,
+          context: "User: #{user.id}",
+          msg: match(/First name changed.*Disabled changed/)
+        )
+      end
+    end
+
+    context 'when unrelated attribute changes' do
+      it 'does not log AlterUser event' do
+        user.update(sign_in_count: user.sign_in_count + 1)
+        expect(SiemLogger).not_to have_received(:log_security_event!).with('AlterUser', any_args)
+      end
+    end
+  end
+
+  describe '#log_password_change_event' do
+    let(:user) { create(:user) }
+
+    before do
+      allow(SiemLogger).to receive(:log_security_event!)
+      allow(Settings.features).to receive(:dont_send_pi_to_siem).and_return(true)
+      Current.user = nil
+    end
+
+    context 'when user changes their own password' do
+      before { Current.user = user }
+
+      it 'logs PasswordChange event with user as actor' do
+        user.update(password: 'NewStrongP@ss2026!')
+
+        expect(SiemLogger).to have_received(:log_security_event!).with(
+          'PasswordChange',
+          actor_name: user.id.to_s,
+          context: "User: #{user.id}",
+          msg: "Password changed for #{user.id}"
+        )
+      end
+    end
+
+    context 'when admin changes user password' do
+      let(:admin) { create(:superadmin) }
+      before { Current.user = admin }
+
+      it 'logs PasswordChange event with admin as actor' do
+        user.update(password: 'NewStrongP@ss2026!')
+
+        expect(SiemLogger).to have_received(:log_security_event!).with(
+          'PasswordChange',
+          actor_name: admin.id.to_s,
+          context: "User: #{user.id}",
+          msg: "Password changed for #{user.id}"
+        )
+      end
+    end
+
+    context 'when password is changed with a modifier set (no Current.user)' do
+      let(:modifier) { create(:user) }
+      before { user.update_columns(modified_by_id: modifier.id) }
+
+      it 'logs PasswordChange event with modifier as actor' do
+        user.update(password: 'NewStrongP@ss2026!')
+
+        expect(SiemLogger).to have_received(:log_security_event!).with(
+          'PasswordChange',
+          actor_name: modifier.id.to_s,
+          context: "User: #{user.id}",
+          msg: "Password changed for #{user.id}"
+        )
+      end
+    end
+
+    context 'when password is changed by system (no Current.user, no modifier)' do
+      it 'logs PasswordChange event with System as actor' do
+        user.update(password: 'NewStrongP@ss2026!')
+
+        expect(SiemLogger).to have_received(:log_security_event!).with(
+          'PasswordChange',
+          actor_name: 'System',
+          context: "User: #{user.id}",
+          msg: "Password changed for #{user.id}"
+        )
+      end
+    end
+
+    context 'when unrelated attribute changes' do
+      it 'does not log PasswordChange event' do
+        user.update(first_name: 'NewName')
+        expect(SiemLogger).not_to have_received(:log_security_event!).with('PasswordChange', any_args)
+      end
+    end
+
+    context 'when DONT_SEND_PI_TO_SIEM is false' do
+      before do
+        allow(Settings.features).to receive(:dont_send_pi_to_siem).and_return(false)
+        Current.user = user
+      end
+
+      it 'logs with email in context/msg' do
+        allow(SiemLogger).to receive(:user_identifier).and_call_original
+
+        user.update(password: 'NewStrongP@ss2026!')
+
+        expect(SiemLogger).to have_received(:log_security_event!).with(
+          'PasswordChange',
+          actor_name: user.email, # user_identifier likely returns email when PII allowed
+          context: "User: #{user.email}",
+          msg: "Password changed for #{user.email}"
+        )
+      end
+    end
+
+    context 'when SIEM logger raises an error' do
+      before do
+        allow(SiemLogger).to receive(:log_security_event!).and_raise(StandardError.new('SIEM Error'))
+        allow(Rails.logger).to receive(:error)
+        user.update(password: 'NewStrongP@ss2026!')
+      end
+
+      it 'logs the error to Rails logger and does not crash' do
+        expect(Rails.logger).to have_received(:error).with(/Failed to log PasswordChange event: SIEM Error/)
+      end
+    end
+
+    context 'when password and other attributes change simultaneously' do
+      before { Current.user = user }
+
+      it 'logs both PasswordChange and AlterUser events' do
+        user.update(password: 'NewStrongP@ss2026!', first_name: 'NewName')
+
+        expect(SiemLogger).to have_received(:log_security_event!).with('PasswordChange', any_args)
+        expect(SiemLogger).to have_received(:log_security_event!).with('AlterUser', any_args)
       end
     end
   end

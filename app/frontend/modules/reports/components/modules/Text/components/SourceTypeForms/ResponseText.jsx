@@ -163,7 +163,7 @@ export default class ResponseText extends Component {
     const answerIndexNumber = isNaN(answerIndex) ? null : answerIndex
 
     return (
-      <Space direction="vertical" className="w-100">
+      <Space orientation="vertical" className="w-100">
         <div>Campaign factor feedback</div>
         <label className="font-normal">
           <input
@@ -213,7 +213,7 @@ export default class ResponseText extends Component {
   render () {
     const { props: { question } } = this.props.model
     return (
-      <Space className="w-100" direction="vertical">
+      <Space className="w-100" orientation="vertical">
         <Select
           name="form-field-name"
           value={getValue(this.getFilteredQuestions(), question)}

@@ -18,6 +18,7 @@ class Question extends Component {
     readOnly: PropTypes.bool,
     randomseed: PropTypes.string,
     defaultLanguage: PropTypes.string,
+    showEnhanceWithAI: PropTypes.bool,
   }
 
   state = {
@@ -54,7 +55,7 @@ class Question extends Component {
 
   renderPreview () {
     const {
-      model, result, randomseed,
+      model, result, randomseed, showEnhanceWithAI,
     } = this.props
     const View = Previews[`${model.type}Preview`] || Previews.MultipleChoice
     return (
@@ -62,6 +63,7 @@ class Question extends Component {
         {...this.props}
         model={QuestionSerializer.wrap(model, result.answers, result.not_applicable, randomseed)}
         preview
+        showEnhanceWithAI={showEnhanceWithAI}
       />
     )
   }

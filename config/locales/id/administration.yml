@@ -3927,11 +3927,6 @@ id:
         generate_embedding_failure_msg: Gagal mengantrekan pekerjaan pembuatan penyematan keterampilan. Silakan coba lagi.
         generate_embedding_success_msg: Pekerjaan pembuatan penyematan keterampilan telah berhasil diantri. Silakan periksa status di notifikasi.
         label: DB Vektor
-    skills_taxonomy:
-      tabs:
-        job_roles: Peran Pekerjaan
-        proficiency: Kemampuan
-        skills: Keterampilan
     sms_histories:
       columns:
         first_name: Nama depan
@@ -4180,13 +4175,15 @@ id:
       more_actions: Tindakan lainnya
     taxonomy:
       import:
+        description: Unggah berkas Excel untuk mengimpor atau memperbarui taksonomi keterampilan Anda. Hal ini akan menambahkan keterampilan baru, peran pekerjaan, dan tingkat keahlian.
         download_example_file: Unduh Contoh File
+        drag_text: Klik atau seret file ke area ini untuk mengunggah.
+        error_title: Impor Gagal
+        file_hint: Mendukung file .xls dan .xlsx
+        import_button: Impor Taksonomi
         success_msg: File yang diunggah telah diantrekan untuk impor. Silakan periksa status di notifikasi.
       import_action:
         taxonomy: Taksonomi Impor
-      job_roles: Peran Pekerjaan
-      proficiency: Kemampuan
-      skills: Keterampilan
       title: Taksonomi
     templates:
       blocks:

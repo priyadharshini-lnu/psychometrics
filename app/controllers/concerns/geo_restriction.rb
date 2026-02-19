@@ -22,6 +22,11 @@ module GeoRestriction
   end
 
   def handle_geo_restriction(exception)
+    siem_log_authorization_failure(
+      resource: request.path,
+      action: 'geo_restriction'
+    )
+
     case request.format
       when Mime[:json], Mime[:api_json]
         render json: { error: exception.message }, status: :forbidden

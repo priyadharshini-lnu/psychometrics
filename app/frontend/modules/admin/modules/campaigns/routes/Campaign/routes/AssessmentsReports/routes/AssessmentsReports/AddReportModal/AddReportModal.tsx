@@ -129,7 +129,7 @@ const AddReportModal: React.FC<Props> = ({
             rules={[{ required: true }]}
           >
             <Radio.Group>
-              <Space direction="vertical">
+              <Space orientation="vertical">
                 {operationsOption.map(operation => (
                   <Radio key={operation} value={operation}>
                     {I18n.t(

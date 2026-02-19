@@ -9,6 +9,7 @@ sk:
     add_project: Pridať projekt
     add_project_admin: Pridanie správcu projektu
     add_threesixty_campaign_admin: Pridanie správcu kampane
+    add_word_count: Pridať počet slov
     admin_approval_required: Report for %{user} vyžaduje schválenie administrátora pred stiahnutím
     admin_created_successfully: Správca '%{name}' bol úspešne vytvorený
     admin_export_scheduled: Úloha exportu správcu bola úspešne naplánovaná. Skontrolujte stav svojho oznámenia.
@@ -24,6 +25,7 @@ sk:
     ai_assistant_model_provider: Poskytovateľ
     ai_assistant_model_region_label: Región
     ai_assistant_required: AI Assistant je povinný
+    ai_assistant_select_dependencies: Vyberte závislosti
     ai_assistants: Asistenti AI
     ai_assistants_advanced_mode_tooltip: Použite pokročilý režim na šablónovanie promptov pomocou tekutej šablóny s dostupnými premennými. Viac informácií nájdete v dokumentácii.
     ai_assistants_campaign_id_placeholder: Predstavte ID kampane
@@ -35,6 +37,10 @@ sk:
     ai_assistants_test_render: Testovací render
     ai_assistants_test_render_tooltip: Otestujte šablónu promptu s údajmi o kampani, aby ste zistili, čo bude odoslané AI asistentovi.
     ai_assisted_idp_feature_disabled: Funkcia AI asistovaného IDP bola pre tento projekt deaktivovaná.
+    ai_idp_assistant_configure_dependencies: Konfigurácia závislostí AI
+    ai_idp_assistant_configure_dependencies_description: Nakonfigurujte, ku ktorým údajom o závislostiach má IDP AI Assistant prístup ako kontext. To platí len vtedy, ak je asistent nakonfigurovaný tak, aby akceptoval závislosti.
+    ai_idp_assistant_dependencies_updated: Závislosti boli úspešne aktualizované
+    ai_idp_assistant_update_dependencies: Aktualizácia závislostí
     ai_notice: Zvýraznené časti boli preložené umelou inteligenciou a môžu obsahovať nepresnosti.
     ai_translation: Preklad umelou inteligenciou
     all_corner_rounded: Všetky rohy zaoblené
@@ -83,6 +89,8 @@ sk:
     campaign_templates: Šablóny kampaní
     campaign_user_job_roles_cannot_be_same: Cieľová pracovná pozícia sa musí líšiť od súčasnej pracovnej pozície.
     campaigns: Kampane
+    cancellation_and_rescheduling_disabled: Zrušenie a presunutie termínu je deaktivované
+    casual: Neformálne
     client: Prenájom klienta
     client_admins: Správcovia klientov
     clients: Prenájom klientov
@@ -91,6 +99,7 @@ sk:
     communications: Komunikácia
     completed: Dokončený
     completed_tooltip: Všetci hodnotitelia odovzdali hodnotenie
+    concise: Stručný
     confirm_remove_admin: Naozaj chcete odstrániť správcu používateľa s e-mailom '%{email}'?
     country: Krajina
     create_client: Vytvoriť klienta
@@ -120,14 +129,24 @@ sk:
     enable_transcription: Povoliť prepis
     end_time: Koniec času
     end_time_must_be_after_start_time: Koniec času musí byť po začiatku času
+    enhance_with_ai: Vylepšite pomocou umelej inteligencie
     enhance_with_ai_requires_ai_assistants: Funkcia Vylepšiť pomocou AI vyžaduje, aby bola povolená funkcia AI asistenti.
+    error: Chyba
     evaluation_status: Stav hodnotenia
     evaluation_status_not_done: Status hodnotenia nie je "Dokončený" pre jeden alebo viac vybraných predmetov. Prosím, uistite sa, že všetci vybraní používatelia už dokončili hodnotenia alebo označili ako splnené.
     export_admin_roles_permissions: Export rolí správcu a povolení
+    export_compact_completion_status: Kompaktný
+    export_completion_status: Stav dokončenia exportu
+    export_completion_statuses_scheduled: Úloha exportu stavov dokončenia bola úspešne naplánovaná.
+    export_detailed_completion_status: Podrobné
     feature_enhance_with_ai: Vylepšite pomocou umelej inteligencie
     feature_flags: Príznaky funkcií
     fill_empty_score_msg: Vyplňte všetky konečné skóre pred uložením.
     final_score_empty_err_msg: Konečné skóre hry „%{factor_name}“ nemôže byť prázdne.
+    final_score_empty_msg: Konečný účet nemôže byť prázdny.
+    fix_grammar: Opravte gramatiku
+    formal: Formálne
+    generate_transcription: Vytvoriť prepis
     idp_plan_reset_success: Plán bol úspešne resetovaný
     idp_templates: Šablóny IDP
     import_ai_artifacts: Import AI artefaktov
@@ -153,6 +172,7 @@ sk:
     import_title: Importujte predmety z CSV
     import_upload: Nahrať
     import_users: Importovať používateľov
+    internal: Interný
     invalid_csv_header: CSV súbor obsahuje neplatné hlavičky.
     job_roles: Pracovné pozície
     learning_from_others: Kolaboratívne učenie [20]
@@ -179,6 +199,7 @@ sk:
     mhs_report_id: ID správy MHS
     mhs_session_id: ID relácie Mhs
     min_value: Minimálna hodnota
+    minimum_10_words: Minimálne 10 slov
     missing_min_max_values: Minimálne a maximálne hodnoty sú povinné.
     name_required: Meno je potrebné
     no_file_selected: Žiadny súbor nevybraný
@@ -196,6 +217,7 @@ sk:
     on_the_job: V práci [70]
     only_editable_on_create: Táto možnosť je editovateľná len počas vytvárania.
     options: Možnosti
+    original_text: Pôvodný text
     participants: Účastníkov
     permissions:
       aiArtifacts:
@@ -622,6 +644,8 @@ sk:
     piped_text: Text v potrubí
     privacy: Súkromie
     proctoring: Dohliadanie
+    professional: Profesionálny
+    proficiency: Zručnosť
     proficiency_level: Kľúče API
     proficiency_levels: Úrovne odbornosti
     profile_details: Podrobnosti o profile
@@ -650,6 +674,7 @@ sk:
     reset_idp_plan_confirmation: Si si istý, že chceš plán resetovať?
     reset_idp_plan_title: Plán resetovania
     response_meta: Odpoveď Meta
+    result: Výsledok
     results: Výsledky
     role: Rola
     saml_idp_certificate_available: Dostupné (kliknite pre kopírovanie)
@@ -731,12 +756,17 @@ sk:
     subject_part_of_other_invite: Osoba s e-mailovou adresou %{user_email} je už pozvaná na „%{workshop_invite_name}“.
     target_job_role: Cieľová pracovná pozícia
     timezone: Časové pásmo
+    tone: Tón
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: Návrh umelej inteligencie
     toolbar_result_generating: Generovanie...
     toolbar_text_copied: Kopírované do schránky
     toolbar_text_replaced: Text nahradený!
     toolbar_what_changed_and_why: Čo sa zmenilo a prečo
+    tools: Nástroje
+    transcription_record_not_found: Záznam prepisov nebol nájdený
+    transcription_schedule_failed: Nepodarilo sa naplánovať úlohu prepisovania
+    transcription_scheduled: Úloha prepisovania je naplánovaná. Zatvorte modálne okno a skontrolujte stav oznámenia.
     translate: Preložiť
     translate_to: Preložiť do
     translate_with_ai: Preložiť pomocou umelej inteligencie
@@ -750,6 +780,7 @@ sk:
     users: Používateľov
     view_licenses: Zobraziť licencie
     waiting: Čakanie
+    words: Slová
     workshops: Dielne
     writing_assistant_not_configured: Asistent písania nie je nakonfigurovaný
     x_axis_interval_label: Interval osi X

@@ -13,12 +13,14 @@ nl:
     audio: Audio
     authentication_failed: Authenticatie mislukt. Probeer het alsjeblieft opnieuw.
     basic: Basisch
+    camera_preview: Hier verschijnt het voorbeeld van de camera
     campaign_id: Campagne-ID
     cancel: Annuleren
     change_password: Wachtwoord wijzigen
     clear_filters: Filters wissen
     collaborative_learning: Samenwerkend leren
     completed: Voltooid
+    configurations: Configuraties
     confirm: Bevestig
     continue: Voortzetten
     copy: Kopieer
@@ -27,6 +29,9 @@ nl:
     decline: Neergang
     description: Beschrijving
     download: Downloaden
+    download_audio: Audio downloaden
+    download_transcription: Transcriptie downloaden
+    download_video: Video downloaden
     edit: Bewerk
     edited: Nieuw
     email: E-mail
@@ -54,6 +59,7 @@ nl:
     maintenance_upcoming_description: We voeren gepland onderhoud uit op %{date} gedurende ongeveer %{duration} om uw ervaring te verbeteren. Gedurende deze periode kunt u geen toegang krijgen tot toegewezen taken en deze ook niet voltooien. Wij danken u voor uw geduld.
     maintenance_upcoming_title: Aankomend onderhoud
     media_question_transcriptions: Transcripties van vragen van de media
+    media_responses: Reacties in de media
     modified_by: Gewijzigd door
     modified_date: Gewijzigde datum
     more_actions: Meer acties
@@ -69,6 +75,8 @@ nl:
     proctoring_maintenance_active: Proctoring wordt momenteel onderhouden van %{start_time} naar %{end_time}. Probeer het opnieuw na de onderhoudsperiode.
     proctoring_maintenance_upcoming: Proctoring zal worden onderhouden van %{start_time} tot %{end_time}.
     question_id: Vraag-ID
+    question_transcription_disabled: Transcriptie is uitgeschakeld voor deze vraag.
+    rec: REC
     recording_consent_notice: Deze bijeenkomst zal worden opgenomen. Uw deelname aan deze bijeenkomst betekent dat u toestemming geeft om opgenomen te worden.
     recording_consent_proceed_question: Gaat u akkoord met de opgenomen vergadering?
     recording_consent_title: Opname Toestemming Kennisgeving
@@ -79,6 +87,7 @@ nl:
     rte_paste_content_exceeds_char_limit: Tekst overschrijdt de tekenlimiet van {{maxCharacterLimit}} en kan niet worden geplakt.
     rte_paste_content_exceeds_word_limit: Tekst overschrijdt de woordlimiet van {{maxWordLimit}} en kan niet worden geplakt.
     save: Sla
+    saving_video: Video opslaan... Sluit of ververs alstublieft de browser niet
     search: Zoek op
     send_email: Stuur e-mail
     show_more: Laat meer zien
@@ -97,6 +106,7 @@ nl:
     transcription: Transcriptie
     transcription_already_requested: Transcriptie al aangevraagd of in uitvoering
     transcription_not_enabled: Transcriptie is niet ingeschakeld voor de mediareactie.
+    transcription_status: Transcriptiestatus
     transcriptions: Transcripties
     try_again: Probeer het opnieuw
     tte_terms_and_condition: Voorwaarden en privacy

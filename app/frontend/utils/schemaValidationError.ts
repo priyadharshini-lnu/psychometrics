@@ -1,4 +1,4 @@
-import jsonpath from 'jsonpath/jsonpath.min'
+import { JSONPath } from 'jsonpath-plus'
 import { useExceptionStore } from '~/core/exception'
 
 export const captureSchemaValidationError = (data) => {
@@ -6,7 +6,7 @@ export const captureSchemaValidationError = (data) => {
     return
   }
 
-  const errors = jsonpath.query(data, '$..schema_validation_error')
+  const errors = JSONPath({ path: '$..schema_validation_error', json: data })
   if (errors.length > 0) {
     const { setException } = useExceptionStore.getState()
     setException(JSON.parse(errors[0]))

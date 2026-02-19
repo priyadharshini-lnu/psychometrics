@@ -9,6 +9,7 @@ es-ES:
     add_project: Añadir proyecto
     add_project_admin: Añadir administrador de proyecto
     add_threesixty_campaign_admin: Añadir administrador de campaña
+    add_word_count: Añadir recuento de palabras
     admin_approval_required: Reporte para %{user} requiere aprobación de administrador antes de descargarla
     admin_created_successfully: Admin '%{name}' se ha creado correctamente
     admin_export_scheduled: El trabajo de exportación de Admin se ha programado correctamente. Compruebe el estado en su notificación.
@@ -24,6 +25,7 @@ es-ES:
     ai_assistant_model_provider: Proveedor
     ai_assistant_model_region_label: Región
     ai_assistant_required: El asistente de IA es obligatorio
+    ai_assistant_select_dependencies: Seleccionar dependencias
     ai_assistants: Asistentes de IA
     ai_assistants_advanced_mode_tooltip: Utiliza el modo avanzado para la plantilla de prompts usando la plantilla líquida con variables disponibles. Consulta la documentación para más detalles.
     ai_assistants_campaign_id_placeholder: Introduce el ID de campaña
@@ -35,6 +37,10 @@ es-ES:
     ai_assistants_test_render: Renderizado de prueba
     ai_assistants_test_render_tooltip: Prueba tu plantilla de prompts con datos de campaña para comprobar qué se enviará al asistente de IA.
     ai_assisted_idp_feature_disabled: La función de desplazados internos asistidos por IA ha sido deshabilitada para este proyecto.
+    ai_idp_assistant_configure_dependencies: Configurar dependencias de IA
+    ai_idp_assistant_configure_dependencies_description: Configure a qué datos de dependencia puede acceder el asistente de IA del IDP como contexto. Esto solo se aplica cuando el asistente está configurado para aceptar dependencias.
+    ai_idp_assistant_dependencies_updated: Dependencias actualizadas correctamente
+    ai_idp_assistant_update_dependencies: Actualizar dependencias
     ai_notice: Las secciones resaltadas han sido traducidas por IA y pueden contener imprecisiones.
     ai_translation: Traducción con IA
     all_corner_rounded: Todas las esquinas redondeadas
@@ -83,6 +89,8 @@ es-ES:
     campaign_templates: Plantillas de campaña
     campaign_user_job_roles_cannot_be_same: El puesto de trabajo objetivo debe ser diferente del puesto de trabajo actual.
     campaigns: Campañas
+    cancellation_and_rescheduling_disabled: La cancelación y reprogramación están desactivadas.
+    casual: Informal
     client: Arrendamiento de clientes
     client_admins: Administradores de clientes
     clients: Clientes
@@ -91,6 +99,7 @@ es-ES:
     communications: Comunicaciones
     completed: Completado
     completed_tooltip: Todos los evaluadores han presentado la evaluación
+    concise: Conciso
     confirm_remove_admin: "¿Está seguro de que desea eliminar el usuario administrador con el correo electrónico '%{email}'?"
     country: País
     create_client: Crear cliente
@@ -120,14 +129,24 @@ es-ES:
     enable_transcription: Habilitar transcripción
     end_time: Hora de finalización
     end_time_must_be_after_start_time: La hora de finalización debe ser posterior a la hora de inicio.
+    enhance_with_ai: Mejora con IA
     enhance_with_ai_requires_ai_assistants: Para mejorar con IA, es necesario habilitar la función Asistentes de IA.
+    error: Error
     evaluation_status: Estado de evaluación
     evaluation_status_not_done: El estado de la evaluación no está 'Hecho' para uno o más sujetos seleccionados. Por favor, asegúrese de que todos los usuarios seleccionados hayan completado las evaluaciones o marquen como hechos.
     export_admin_roles_permissions: Exportación de funciones y permisos de administrador
+    export_compact_completion_status: Compacto
+    export_completion_status: Estado de finalización de la exportación
+    export_completion_statuses_scheduled: El trabajo de exportación de estados de finalización se programó correctamente.
+    export_detailed_completion_status: Detallado
     feature_enhance_with_ai: Mejora con IA
     feature_flags: Banderas de características
     fill_empty_score_msg: Rellena todas las puntuaciones finales antes de guardar.
     final_score_empty_err_msg: La puntuación final de %{factor_name} no puede estar vacía.
+    final_score_empty_msg: La cuenta final no puede estar vacía.
+    fix_grammar: Corregir gramática
+    formal: Formal
+    generate_transcription: Generar transcripción
     idp_plan_reset_success: El plan se ha reiniciado con éxito
     idp_templates: Plantillas de PDI
     import_ai_artifacts: Importar artefactos de IA
@@ -153,6 +172,7 @@ es-ES:
     import_title: Temas importados de CSV
     import_upload: Subir
     import_users: Importar usuarios
+    internal: Interno
     invalid_csv_header: CSV contiene cabeceras inválidas.
     job_roles: Roles de trabajo
     learning_from_others: Aprendizaje colaborativo [20]
@@ -179,6 +199,7 @@ es-ES:
     mhs_report_id: Identificación del informe MHS
     mhs_session_id: ID de sesión Mhs
     min_value: Valor mínimo
+    minimum_10_words: Mínimo 10 palabras
     missing_min_max_values: Se requieren valores mínimos y máximos.
     name_required: Se requiere el nombre
     no_file_selected: No se selecciona ningún archivo
@@ -196,6 +217,7 @@ es-ES:
     on_the_job: En el trabajo [70]
     only_editable_on_create: Esta opción solo se puede editar durante la creación.
     options: Opciones
+    original_text: Texto original
     participants: Participantes
     permissions:
       aiArtifacts:
@@ -622,6 +644,8 @@ es-ES:
     piped_text: Texto canalizado
     privacy: Privacidad
     proctoring: Supervisión
+    professional: Profesional
+    proficiency: Competencia
     proficiency_level: Claves API
     proficiency_levels: Niveles de competencia
     profile_details: Detalles del perfil
@@ -650,6 +674,7 @@ es-ES:
     reset_idp_plan_confirmation: "¿Estás seguro de que quieres reiniciar el plan?"
     reset_idp_plan_title: Plan de Reinicio
     response_meta: Respuesta Meta
+    result: Resultado
     results: Resultados
     role: Rol
     saml_idp_certificate_available: Disponible (haz clic para copiar)
@@ -731,12 +756,17 @@ es-ES:
     subject_part_of_other_invite: El destinatario con la dirección de correo electrónico %{user_email} ya ha sido invitado a «%{workshop_invite_name}».
     target_job_role: Puesto de trabajo objetivo
     timezone: Zona horaria
+    tone: Tono
     toolbar_ai_insight: Perspectiva sobre la IA
     toolbar_ai_suggestion: Sugerencia de IA
     toolbar_result_generating: Generando...
     toolbar_text_copied: Copiado al portapapeles
     toolbar_text_replaced: "¡Texto sustituido!"
     toolbar_what_changed_and_why: Qué cambió y por qué
+    tools: Herramientas
+    transcription_record_not_found: No se ha encontrado el registro de transcripción.
+    transcription_schedule_failed: No se ha podido programar el trabajo de transcripción.
+    transcription_scheduled: El trabajo de transcripción está programado. Cierre la ventana modal y compruebe el estado de la notificación.
     translate: Traducir
     translate_to: Traducir a
     translate_with_ai: Traducir con IA
@@ -750,6 +780,7 @@ es-ES:
     users: Usuarios
     view_licenses: Ver licencias
     waiting: Espera
+    words: Palabras
     workshops: Talleres
     writing_assistant_not_configured: Asistente de escritura no configurado
     x_axis_interval_label: Intervalo del eje X

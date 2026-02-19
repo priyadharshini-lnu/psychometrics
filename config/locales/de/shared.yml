@@ -13,12 +13,14 @@ de:
     audio: Audio
     authentication_failed: Authentifizierung fehlgeschlagen. Bitte versuchen Sie es erneut.
     basic: Grundlegend
+    camera_preview: Die Kamera-Vorschau wird hier angezeigt
     campaign_id: Wahlkampf-ID
     cancel: Stornieren
     change_password: Passwort ändern
     clear_filters: Filter löschen
     collaborative_learning: Kollaboratives Lernen
     completed: Abgeschlossen
+    configurations: Konfigurationen
     confirm: bestätigen
     continue: Fortsetzen
     copy: Kopie
@@ -27,6 +29,9 @@ de:
     decline: Ablehnen
     description: Beschreibung
     download: Herunterladen
+    download_audio: Audio herunterladen
+    download_transcription: Transkription herunterladen
+    download_video: Video herunterladen
     edit: Bearbeiten
     edited: Neu
     email: E-Mail
@@ -54,6 +59,7 @@ de:
     maintenance_upcoming_description: Wir führen planmäßige Wartungsarbeiten an %{date} für etwa %{duration} durch, um Ihre Benutzererfahrung zu verbessern. Während dieser Zeit können Sie nicht auf zugewiesene Aufgaben zugreifen oder diese erledigen. Wir danken Ihnen für Ihre Geduld.
     maintenance_upcoming_title: Bevorstehende Wartungsarbeiten
     media_question_transcriptions: Transkriptionen von Medienfragen
+    media_responses: Medienreaktionen
     modified_by: Geändert von
     modified_date: Geändertes Datum
     more_actions: Weitere Aktionen
@@ -69,6 +75,8 @@ de:
     proctoring_maintenance_active: Die Proctoring-Funktion wird derzeit von %{start_time} auf %{end_time} umgestellt. Bitte versuchen Sie es nach Abschluss der Wartungsarbeiten erneut.
     proctoring_maintenance_upcoming: Die Überwachung wird von %{start_time} bis %{end_time} gewartet.
     question_id: Fragen-ID
+    question_transcription_disabled: Die Transkription ist für diese Frage deaktiviert.
+    rec: REC
     recording_consent_notice: Diese Sitzung wird aufgezeichnet. Ihre Teilnahme an diesem Treffen stellt Ihre Zustimmung zur Aufnahme dar.
     recording_consent_proceed_question: Stimmen Sie zu, mit dem aufgezeichneten Treffen fortzufahren?
     recording_consent_title: Aufzeichnung der Einwilligungsmitteilung
@@ -79,6 +87,7 @@ de:
     rte_paste_content_exceeds_char_limit: Der Text überschreitet das Zeichenlimit von {{maxCharacterLimit}} und kann nicht eingefügt werden.
     rte_paste_content_exceeds_word_limit: Der Text überschreitet das Wortlimit von {{maxWordLimit}} und kann nicht eingefügt werden.
     save: speich
+    saving_video: Video speichert... Bitte schließen oder aktualisieren Sie den Browser nicht
     search: Suchen
     send_email: E-Mail senden
     show_more: Mehr anzeigen
@@ -97,6 +106,7 @@ de:
     transcription: Transkription
     transcription_already_requested: Transkription bereits angefordert oder in Bearbeitung
     transcription_not_enabled: Die Transkription ist für die Medienantwort nicht aktiviert.
+    transcription_status: Transkriptionsstatus
     transcriptions: Abschriften
     try_again: Erneut versuchen
     tte_terms_and_condition: TTE – Geschäftsbedingungen und Datenschutzerklärung

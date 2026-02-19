@@ -7,6 +7,12 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
   def reset
     remove_license_usage = current_user.is?(:superadmin) ? params['remove_licence_usage'] : nil
     audit! :reset, resource, campaign: resource.campaign
+    siem_log_sensitive_operation(
+      context: 'Campaign Reset',
+      action_description: "reset campaign #{resource.id}",
+      action_type: 'Reset',
+      resource: 'ThreesixtyCampaign'
+    )
     ::Threesixty::Campaigns::Reset.call(
       threesixty_campaign: resource,
       updater_id: current_user.id,
@@ -17,6 +23,12 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
 
   def export_completion_status
     audit! :export_completion_status, resource, campaign: resource.campaign
+    siem_log_sensitive_operation(
+      context: 'Campaign Completion Status Export',
+      action_description: "exported completion status for campaign #{resource.id}",
+      action_type: 'Export',
+      resource: 'ThreesixtyCampaign'
+    )
     AdminJob.call(
       :threesixty_campaign_export_completion_status,
       { threesixty_campaign_id: resource.id },
@@ -28,6 +40,12 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
 
   def export_threesixty_scores
     audit! :export_threesixty_scores, resource, campaign: resource.campaign
+    siem_log_sensitive_operation(
+      context: 'Campaign Scores Export',
+      action_description: "exported scores for campaign #{resource.id}",
+      action_type: 'Export',
+      resource: 'ThreesixtyCampaign'
+    )
     AdminJob.call(
       :threesixty_campaign_export_scores,
       { campaign_id: resource.campaign_id, export_with_labels: false },
@@ -38,6 +56,12 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
 
   def export_results
     audit! :export_results, resource, campaign: resource.campaign
+    siem_log_sensitive_operation(
+      context: 'Campaign Results Export',
+      action_description: "exported results for campaign #{resource.id}",
+      action_type: 'Export',
+      resource: 'ThreesixtyCampaign'
+    )
     with_labels = params[:with_labels] == 'true'
     AdminJob.call(
       :assessment_raw_result_export,
@@ -60,11 +84,23 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
 
   def reset_nominations
     audit! :reset_nominations, resource, campaign: resource.campaign
+    siem_log_sensitive_operation(
+      context: 'Campaign Nominations Reset',
+      action_description: "reset nominations for campaign #{resource.id}",
+      action_type: 'Reset',
+      resource: 'ThreesixtyCampaign'
+    )
     ::Threesixty::Campaigns::ResetAllNominations.call(resource)
     render json: :ok
   end
 
   def rescore_assessment
+    siem_log_sensitive_operation(
+      context: 'Campaign Rescore',
+      action_description: "rescored campaign #{resource.id}",
+      action_type: 'Rescore',
+      resource: 'ThreesixtyCampaign'
+    )
     AdminJob.call(
       :rescore_assessment, { campaign_id: resource.campaign_id, assessment_id: resource.assessment_id }, current_user
     )
