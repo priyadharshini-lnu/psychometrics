@@ -1,5 +1,5 @@
 import {
-  Col, Row, Tabs, Flex, Button, Descriptions, Space,
+  Col, Row, Tabs, Flex, Button, Descriptions, Space, message,
 } from 'antd'
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
@@ -97,21 +97,38 @@ export const ScoreReview = () => {
     }).then((data: Indicator[]) => {
       updateCompetenciesAndIndicators(scoreApproval, data)
       nextQuestion(questionId)
+    }).catch((error) => {
+      message.error(error?.base?.[0]?.title)
+    })
+  }
+
+  const approveAll = () => {
+    memberAction({
+      id,
+      method: 'post',
+      action: 'approve_all_questions',
+      body: {},
+    }).then((data: Indicator[]) => {
+      updateCompetenciesAndIndicators({ ...scoreApproval, allowApprove: false }, data)
+    }).catch((error) => {
+      message.error(error?.base?.[0]?.title)
     })
   }
 
   const nextQuestion = (questionId) => {
     const index = filteredQuestions.findIndex(q => q.id === questionId)
-    if (filteredQuestions[index + 1].id) {
-      setCurrentTab(filteredQuestions[index + 1].id)
+    const nextQuestionItem = filteredQuestions[index + 1]
+    if (nextQuestionItem?.id) {
+      setCurrentTab(nextQuestionItem.id)
     }
   }
+  const status = scoreApproval.reviewAs === 'assessor' ? 'assessor_approved' : 'approver_approved'
+  const { allowApprove } = scoreApproval
 
   const items = filteredQuestions.map((question, index) => {
-    const status = scoreApproval.reviewAs === 'assessor' ? 'assessor_approved' : 'approver_approved'
-    const approved = scoreApproval.indicators[question.id].every(i => i.status === status)
-      && scoreApproval.competencies.filter(c => c.questionId === question.id)
-        .every(c => c.status === status)
+    const approved = scoreApproval.indicators[question.id]
+      .every(i => i.status === 'approver_approved' || i.status === status) && scoreApproval.competencies
+      .filter(c => c.questionId === question.id && c.scoringType === 'generated').every(c => c.status === status)
 
     return ({
       key: question.id,
@@ -131,6 +148,7 @@ export const ScoreReview = () => {
         discardScore={discardScore}
         approveQuestion={approveQuestion}
         nextQuestion={nextQuestion}
+        allowApprove={allowApprove}
         approved={approved}
         lastQuestion={filteredQuestions.length === index + 1}
       />,
@@ -162,7 +180,11 @@ export const ScoreReview = () => {
               <Button type="text" icon={<ArrowLeftOutlined />} onClick={() => navigate(-1)}>
                 {I18n.t('shared.back')}
               </Button>
-              <Button type="primary">{I18n.t('admin.ai_scoring_appoval_approve_all_questions')}</Button>
+              {allowApprove && (
+                <Button type="primary" onClick={approveAll}>
+                  {I18n.t('admin.ai_scoring_appoval_approve_all_questions')}
+                </Button>
+              )}
             </Flex>
             <Descriptions
               column={2}

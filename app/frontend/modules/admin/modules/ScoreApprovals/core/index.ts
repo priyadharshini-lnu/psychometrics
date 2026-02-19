@@ -33,6 +33,7 @@ export const IndicatorTR = t.type({
   type: t.string,
   status: t.string,
   parentFactorId: t.number,
+  scoringType: t.string,
 })
 
 export const CompetencyTR = t.type({
@@ -41,6 +42,7 @@ export const CompetencyTR = t.type({
   text: t.string,
   type: t.string,
   status: t.string,
+  scoringType: t.string,
 })
 
 export const ScoreApprovalTR = t.type({
@@ -52,6 +54,7 @@ export const ScoreApprovalTR = t.type({
   status: t.string,
   allowBulkApproveScores: t.boolean,
   reviewAs: t.string,
+  allowApprove: t.string,
   questions: t.array(t.type({
     id: t.string,
     text: t.string,

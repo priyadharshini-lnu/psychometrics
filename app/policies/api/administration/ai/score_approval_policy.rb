@@ -16,6 +16,10 @@ module Api
           can_manage_score_approval? # check user is approver
         end
 
+        def approve_all_questions?
+          can_manage_score_approval?
+        end
+
         def override_score?
           can_manage_score_approval? # check user is approver
         end

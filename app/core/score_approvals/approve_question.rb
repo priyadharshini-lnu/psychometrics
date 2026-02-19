@@ -11,6 +11,10 @@ module ScoreApprovals
     end
 
     def call
+      unless allow_to_approve?
+        return broadcast :error, I18n.t('admin.score_approval_not_allowed_to_approve')
+      end
+
       update_question_scores_status
       assessor_approve_user_assessment if all_question_scores_approved_by_assessor?
       approve_user_assessment if all_question_scores_approved_by_approver?
@@ -34,12 +38,20 @@ module ScoreApprovals
       @question_scores ||= users_result.ai_factor_scores.where(question_id: question_id)
     end
 
+    def allow_to_approve?
+      return true if approval_settings.one_level_approve? && approver?
+      return true if assessor? && score_approval.pending?
+      return true if approver? && score_approval.assessor_approved?
+
+      false
+    end
+
     def all_question_scores_approved_by_assessor?
       return false if approval_settings.one_level_approve?
 
       score_approval.pending? && users_result.ai_factor_scores.
         where.not(scoring_type: :aggregated).
-        where.not(status: :pending).
+        where.not(status: :assessor_approved).
         none?
     end
 
@@ -52,10 +64,12 @@ module ScoreApprovals
 
     def assessor_approve_user_assessment
       score_approval.approve!
+      score_approval.update(score_assessed_by_id: current_user.id, score_assessed_at: Time.current)
     end
 
     def approve_user_assessment
       score_approval.approver_approve!
+      score_approval.update(score_approved_by_id: current_user.id, score_approved_at: Time.current)
     end
 
     def users_result

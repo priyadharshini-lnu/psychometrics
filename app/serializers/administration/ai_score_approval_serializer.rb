@@ -2,7 +2,8 @@
 
 module Administration
   class AIScoreApprovalSerializer < Panko::Serializer
-    attributes :id, :questions, :competencies, :indicators, :results, :media_responses, :review_as
+    attributes :id, :questions, :competencies, :indicators, :results, :media_responses, :review_as, :approval_status,
+               :allow_approve
 
     def questions
       object.assessment.scorable_ai_questions
@@ -40,6 +41,14 @@ module Administration
       return 'approver' if approver? || approval_settings.one_level_approve?
 
       'assessor'
+    end
+
+    def allow_approve
+      return true if approval_settings.one_level_approve? && approver? && object.pending?
+      return true if assessor? && object.pending?
+      return true if approver? && object.assessor_approved?
+
+      false
     end
 
     private

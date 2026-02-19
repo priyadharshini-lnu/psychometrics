@@ -25,6 +25,10 @@ class Api::V2::Administration::AIScoreApprovalResource < Api::V2::Administration
     records.merge(AI::ScoringApprovalSetting.user_tasks(options[:context][:user]))
   }
 
+  filter :approved, apply: lambda { |records, _, options|
+    records.merge(AI::ScoringApprovalSetting.approved_for(options[:context][:user]))
+  }
+
   def project_id
     @model.project.id
   end

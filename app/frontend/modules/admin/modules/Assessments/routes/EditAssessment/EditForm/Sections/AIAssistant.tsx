@@ -69,7 +69,7 @@ export const AIAssistant: React.FC<Props> = ({ assessment }) => {
     })
       .then((response) => {
         form.setFieldsValue(response as AssessmentAssistant)
-        message.success(I18n.t('common.text.updated_successfully'))
+        message.success(I18n.t('shared.updated_successfully'))
       })
       .finally(() => setIsUpdating(false))
   }

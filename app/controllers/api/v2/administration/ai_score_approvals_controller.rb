@@ -12,14 +12,33 @@ module Api
     end
 
     def approve_question
-      scores = ScoreApprovals::ApproveQuestion.call!(
-        score_approval, approve_question_params[:question_id], current_user
-      )
-      render json: Panko::ArraySerializer.new(
-        scores,
-        each_serializer: ::Administration::AIFactorScoreSerializer,
-        context: { current_user: current_user }
-      ).to_a
+      ScoreApprovals::ApproveQuestion.call(score_approval, approve_question_params[:question_id], current_user) do
+        on(:ok) do |scores|
+          render json: Panko::ArraySerializer.new(
+            scores,
+            each_serializer: ::Administration::AIFactorScoreSerializer,
+            context: { current_user: current_user }
+          ).to_a
+        end
+        on(:error) do |error|
+          render json: { error: error }, status: :unprocessable_entity
+        end
+      end
+    end
+
+    def approve_all_questions
+      ScoreApprovals::ApproveAllQuestions.call(score_approval, current_user) do
+        on(:ok) do |scores|
+          render json: Panko::ArraySerializer.new(
+            scores,
+            each_serializer: ::Administration::AIFactorScoreSerializer,
+            context: { current_user: current_user }
+          ).to_a
+        end
+        on(:error) do |error|
+          render json: { error: error }, status: :unprocessable_entity
+        end
+      end
     end
 
     def override_score

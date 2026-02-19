@@ -10,7 +10,7 @@ const Approved: React.FC = () => {
     responseType: TaskTR,
     trackUrl: true,
     apiConfig: {
-      include: ['campaign', 'project', 'client', 'assessment', 'subject'],
+      include: ['campaign', 'project', 'client', 'assessment', 'subject', 'score_assessed_by', 'score_approved_by'],
       fields: {
         users: ['name', 'email'],
         campaigns: ['name'],
@@ -19,7 +19,7 @@ const Approved: React.FC = () => {
         assessments: ['name'],
       },
       filter: {
-        approval_status_in: ['assessor_approved'],
+        approved: 'true',
       },
     },
   })

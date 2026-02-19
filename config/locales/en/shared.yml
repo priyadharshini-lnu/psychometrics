@@ -7,6 +7,7 @@ en:
     add: Add
     advanced: Advanced
     agree_and_continue: Agree & Continue
+    approved: Approved
     approvers_list: Approvers List
     archive: Archive
     archived: Archived
@@ -14,6 +15,7 @@ en:
     assessment_id: Assessment ID
     assessment_list: Assessment List
     assessment_name: Assessment Name
+    assessor_approved: Assessor Approved
     assessors_list: Assessors List
     asset_not_present: Asset not present
     audio: Audio
@@ -89,6 +91,7 @@ en:
     send_email: Send Email
     show_more: Show More
     something_wrong: Something went wrong. Contact your administrator
+    status: Status
     subject: Subject
     submit: Submit
     table:
@@ -111,5 +114,6 @@ en:
     tte_terms_and_condition: Terms & Privacy
     type: Type
     update: Update
+    updated_successfully: Updated successfully
     video: Video
     view: View

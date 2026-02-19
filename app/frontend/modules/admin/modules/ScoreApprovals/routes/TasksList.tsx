@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import {
   Table, Space, Pagination, Button, Checkbox, Menu, Input, Flex,
-  message,
+  message, Tag,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import SearchOutlined from '@ant-design/icons/SearchOutlined'
@@ -22,6 +22,12 @@ import styles from './TasksList.less'
 
 const { Column } = Table
 const { I18n } = window
+
+const APPROVAL_STATUS = {
+  pending: <Tag color="blue">{I18n.t('shared.pending')}</Tag>,
+  assessor_approved: <Tag color="orange">{I18n.t('shared.assessor_approved')}</Tag>,
+  approver_approved: <Tag color="green">{I18n.t('shared.approved')}</Tag>,
+}
 
 const connecter = connect(
   (state: RootState) => ({
@@ -380,6 +386,16 @@ const TasksListComponent: React.FC<Props> = ({
           render={({ scoreApprovedBy }) => (
             <>
               <div>{scoreApprovedBy?.name}</div>
+            </>
+          )}
+        />
+        <Column
+          width={150}
+          title={I18n.t('shared.status')}
+          key="approvedBy"
+          render={({ approvalStatus }) => (
+            <>
+              {APPROVAL_STATUS[approvalStatus]}
             </>
           )}
         />

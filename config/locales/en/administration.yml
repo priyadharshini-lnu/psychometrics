@@ -3221,6 +3221,7 @@ en:
         approval_status: Approval Status
         approved_by: Approved By
         assessed_by: Assessed By
+        campaign_name: Campaign Name
         qc_by: QC By
         report_name: Report Name
         subject_email: Subject Email

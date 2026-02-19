@@ -44,5 +44,16 @@ module AI
         user_id: "{#{user.id}}"
       )
     end
+
+    def self.approved_for(user)
+      scoring_approvals(user).where(
+        %{
+          (assessor_ids @> :user_id AND approval_status = 'assessor_approved') OR
+          (approver_ids @> :user_id AND approval_status = 'approver_approved') OR
+          (allow_one_level_approve = true AND approver_ids @> :user_id AND approval_status = 'approver_approved')
+        },
+        user_id: "{#{user.id}}"
+      )
+    end
   end
 end

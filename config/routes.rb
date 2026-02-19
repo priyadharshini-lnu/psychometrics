@@ -1612,6 +1612,7 @@ only: %i[index create update]
             end
             member do
               post :approve_question
+              post :approve_all_questions
               post :override_score
               post :discard_score
             end

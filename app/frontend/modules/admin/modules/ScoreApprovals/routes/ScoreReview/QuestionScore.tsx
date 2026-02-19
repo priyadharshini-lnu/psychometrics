@@ -25,7 +25,7 @@ const QuestionTypes = {
 }
 
 const CollapseHeader = ({
-  factor, overrideScore, discardScore, approved,
+  factor, overrideScore, discardScore, approved, allowApprove,
 }) => {
   const [open, setOpen] = useState(false)
   const overrided = !!factor.overrideScore
@@ -68,7 +68,7 @@ const CollapseHeader = ({
               </>
             )}
           </Space>
-          {overrided && !approved && (
+          {overrided && !approved && allowApprove && (
             <Popconfirm
               trigger="click"
               placement="bottomRight"
@@ -79,7 +79,7 @@ const CollapseHeader = ({
               <Button type="text" icon={<ReloadOutlined />} />
             </Popconfirm>
           )}
-          {!approved && (
+          {!approved && allowApprove && (
             <Popover
               trigger="click"
               placement="bottomRight"
@@ -122,7 +122,7 @@ const CollapseContent = ({ factor }) => (
 )
 
 export const CompetencyRow = ({
-  competency, indicators, overrideScore, discardScore, approved,
+  competency, indicators, overrideScore, discardScore, approved, allowApprove,
 }) => {
   const [open, setOpen] = useState(false)
   const hasIndicators = indicators?.length > 0
@@ -167,7 +167,7 @@ export const CompetencyRow = ({
                           {competency.notApplicable ? I18n.t('shared.na_text') : competency.overrideScore.toFixed(2)}
                         </span>
                       </div>
-                      {!approved && (
+                      {!approved && allowApprove && (
                         <Popconfirm
                           trigger="click"
                           placement="bottomRight"
@@ -180,7 +180,7 @@ export const CompetencyRow = ({
                       )}
                     </>
                   )}
-                  {!approved && (
+                  {!approved && allowApprove && (
                     <Popover
                       trigger="click"
                       placement="bottomRight"
@@ -225,6 +225,7 @@ export const CompetencyRow = ({
                     overrideScore={overrideScore}
                     discardScore={discardScore}
                     approved={approved}
+                    allowApprove={allowApprove}
                   />,
                   children: (
                     <CollapseContent factor={factor} />
@@ -262,7 +263,7 @@ export const CompetencyRow = ({
 
 export const QuestionScore = ({
   question, competencies, indicators, result, mediaResponse, overrideScore, approveQuestion, discardScore,
-  nextQuestion, lastQuestion, approved,
+  nextQuestion, lastQuestion, approved, allowApprove,
 }) => {
   const QuestionPreview = QuestionTypes[question.type]
 
@@ -291,6 +292,7 @@ export const QuestionScore = ({
               overrideScore={overrideScore}
               discardScore={discardScore}
               approved={approved}
+              allowApprove={allowApprove}
             />
           )
         })}
@@ -301,11 +303,12 @@ export const QuestionScore = ({
             overrideScore={overrideScore}
             discardScore={discardScore}
             approved={approved}
+            allowApprove={allowApprove}
           />
         ))}
       </Space>
       <Flex justify="flex-end" gap={12}>
-        {!approved && (
+        {!approved && allowApprove && (
           <Button type="primary" onClick={() => approveQuestion(question.id)}>
             {I18n.t('admin.ai_scoring_appoval_approve_question')}
           </Button>

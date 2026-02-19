@@ -801,6 +801,7 @@ en:
     save_assessment_for_scoring_management: Save Assessment before getting started with Scoring.
     scheduling: Scheduling
     score: Score
+    score_approval_not_allowed_to_approve: You are not allowed to approve this score.
     score_definition_placeholder: Enter the definition for this score level
     score_definitions: Score Definitions
     score_max: Score Max
