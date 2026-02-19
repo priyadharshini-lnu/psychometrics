@@ -87,6 +87,7 @@ id:
     rte_paste_content_exceeds_char_limit: Teks melebihi batas karakter {{maxCharacterLimit}} dan tidak dapat ditempelkan.
     rte_paste_content_exceeds_word_limit: Teks melebihi batas kata {{maxWordLimit}} dan tidak dapat ditempelkan.
     save: Simpan
+    saving_video: Menyimpan Video... Tolong jangan tutup atau refresh browser
     search: Pencarian
     send_email: Kirim email
     show_more: Tampilkan Lebih Banyak

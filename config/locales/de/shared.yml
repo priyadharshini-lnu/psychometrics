@@ -87,6 +87,7 @@ de:
     rte_paste_content_exceeds_char_limit: Der Text überschreitet das Zeichenlimit von {{maxCharacterLimit}} und kann nicht eingefügt werden.
     rte_paste_content_exceeds_word_limit: Der Text überschreitet das Wortlimit von {{maxWordLimit}} und kann nicht eingefügt werden.
     save: speich
+    saving_video: Video speichert... Bitte schließen oder aktualisieren Sie den Browser nicht
     search: Suchen
     send_email: E-Mail senden
     show_more: Mehr anzeigen

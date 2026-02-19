@@ -87,6 +87,7 @@ cs:
     rte_paste_content_exceeds_char_limit: Text překračuje limit znaků {{maxCharacterLimit}} a nelze jej vložit.
     rte_paste_content_exceeds_word_limit: Text překračuje limit slov {{maxWordLimit}} a nelze jej vložit.
     save: Uložit
+    saving_video: Ukládání videa... Prosím, nezavírejte ani neobnovujte prohlížeč
     search: Hledat
     send_email: Odeslat e-mail
     show_more: Zobrazit více

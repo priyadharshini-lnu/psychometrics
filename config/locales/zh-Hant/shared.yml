@@ -87,6 +87,7 @@ zh-Hant:
     rte_paste_content_exceeds_char_limit: 文字超過 {{maxCharacterLimit}} 的字元限制，無法貼上。
     rte_paste_content_exceeds_word_limit: 文字超過 {{maxWordLimit}} 的字數限制，無法貼上。
     save: 節省
+    saving_video: 正在儲存影片......請勿關閉或重新整理瀏覽器
     search: 搜尋
     send_email: 發送電子郵件
     show_more: 顯示更多

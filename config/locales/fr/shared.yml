@@ -87,6 +87,7 @@ fr:
     rte_paste_content_exceeds_char_limit: Le texte dépasse la limite de caractères {{maxCharacterLimit}} et ne peut pas être collé.
     rte_paste_content_exceeds_word_limit: Le texte dépasse la limite de mots {{maxWordLimit}} et ne peut pas être collé.
     save: Économiser
+    saving_video: Sauvegarde vidéo... Merci de ne pas fermer ni rafraîchir le navigateur
     search: Recherche
     send_email: Envoyer un courriel
     show_more: Afficher plus

@@ -87,6 +87,7 @@ bg:
     rte_paste_content_exceeds_char_limit: Текстът надвишава лимита на символите {{maxCharacterLimit}} и не може да бъде поставен.
     rte_paste_content_exceeds_word_limit: Текстът надвишава лимита на думите {{maxWordLimit}} и не може да бъде поставен.
     save: Запазете
+    saving_video: Запазвам видео... Моля, не затваряйте и не обновявайте браузъра
     search: Търсете
     send_email: Изпрати имейл
     show_more: Покажи повече

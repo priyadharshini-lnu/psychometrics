@@ -87,6 +87,7 @@ hu:
     rte_paste_content_exceeds_char_limit: A szöveg meghaladja a {{maxCharacterLimit}} karakterkorlátját, és nem lehet beilleszteni.
     rte_paste_content_exceeds_word_limit: A szöveg túllépi a {{maxWordLimit}} szóhatárát, és nem lehet beilleszteni.
     save: Mentés
+    saving_video: Videómentés... Kérjük, ne zárja be vagy frissítse a böngészőt
     search: Keresés
     send_email: E-mail küldése
     show_more: Több

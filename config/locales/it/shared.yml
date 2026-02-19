@@ -87,6 +87,7 @@ it:
     rte_paste_content_exceeds_char_limit: Il testo supera il limite di caratteri di {{maxCharacterLimit}} e non può essere incollato.
     rte_paste_content_exceeds_word_limit: Il testo supera il limite di parole di {{maxWordLimit}} e non può essere incollato.
     save: Salva
+    saving_video: Salvataggio del video... Per favore, non chiudere né aggiornare il browser
     search: Cerca
     send_email: Inviare l'e-mail
     show_more: Mostra di più

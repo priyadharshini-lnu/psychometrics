@@ -37,7 +37,6 @@ zh-Hant:
     recording: 錄音
     reject_idp_plan: 拒絕計畫
     request_retry_message: 你離線了。你的答案無法被儲存，但一旦你重新上線，答案會自動儲存。請勿重新整理或關閉頁面。
-    saving_video_text: 正在儲存影片......請勿關閉或重新整理瀏覽器
     selected_count: 已選擇
     skill_type: 技能類型
     start_campaign_message_proctored: 這是一個監考活動，請點擊「%{buttonText}」按鈕開始活動。

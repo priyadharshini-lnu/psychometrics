@@ -87,6 +87,7 @@ en:
     rte_paste_content_exceeds_char_limit: Text exceeds the character limit of {{maxCharacterLimit}} and cannot be pasted.
     rte_paste_content_exceeds_word_limit: Text exceeds the word limit of {{maxWordLimit}} and cannot be pasted.
     save: Save
+    saving_video: Saving Video... Please do not close or refresh the browser
     search: Search
     send_email: Send Email
     show_more: Show More

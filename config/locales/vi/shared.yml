@@ -87,6 +87,7 @@ vi:
     rte_paste_content_exceeds_char_limit: Văn bản vượt quá giới hạn ký tự của {{maxCharacterLimit}} và không thể dán.
     rte_paste_content_exceeds_word_limit: Văn bản vượt quá giới hạn từ {{maxWordLimit}} và không thể dán.
     save: Cứu
+    saving_video: Lưu video... Vui lòng không đóng hoặc làm mới trình duyệt
     search: Tìm kiếm
     send_email: Gửi email
     show_more: Hiển thị nhiều hơn

@@ -37,7 +37,6 @@ ro:
     recording: Înregistrare
     reject_idp_plan: Planul de respingere
     request_retry_message: Ești offline. Răspunsurile tale nu au putut fi salvate, dar vor fi salvate automat odată ce vei fi din nou online. Vă rugăm să nu reîmprospătați sau să închideți pagina.
-    saving_video_text: Salvarea video... Vă rugăm să nu închideți sau să nu reîmprospătați browserul
     selected_count: Selectat
     skill_type: Tip de abilitate
     start_campaign_message_proctored: Aceasta este o campanie supravegheată, vă rugăm să apăsați butonul "%{buttonText}" pentru a începe activitățile.

@@ -87,6 +87,7 @@ ja:
     rte_paste_content_exceeds_char_limit: テキストは{{maxCharacterLimit}}の文字数制限を超えており、貼り付けができません。
     rte_paste_content_exceeds_word_limit: テキストは{{maxWordLimit}}のワード制限を超えており、貼り付けができません。
     save: 保存
+    saving_video: ビデオ保存中...ブラウザを閉じたり更新したりしないでください
     search: 検索
     send_email: 電子メールを送信する
     show_more: 続きを表示

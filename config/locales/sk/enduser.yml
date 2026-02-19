@@ -37,7 +37,6 @@ sk:
     recording: Nahrávanie
     reject_idp_plan: Plán odmietnuť
     request_retry_message: Si offline. Vaše odpovede sa nedajú uložiť automaticky, keď sa opäť pripojíte. Prosím, neobnovujte ani nezatvárajte stránku.
-    saving_video_text: Ukladanie videa... Prosím, nezatvárajte ani neobnovujte prehliadač
     selected_count: Vybrané
     skill_type: Typ zručnosti
     start_campaign_message_proctored: Toto je dozorovaná kampaň, kliknite prosím na tlačidlo '%{buttonText}' pre spustenie aktivít.

@@ -37,7 +37,6 @@ it:
     recording: Registrazione
     reject_idp_plan: Rifiuta il piano
     request_retry_message: Sei offline. Le tue risposte non potevano essere salvate, ma lo saranno automaticamente una volta che sarai di nuovo online. Per favore, non aggiornare o chiudere la pagina.
-    saving_video_text: Salvataggio del video... Per favore, non chiudere né aggiornare il browser
     selected_count: Selezionato
     skill_type: Tipo di abilità
     start_campaign_message_proctored: Questa è una campagna sorvegliata, clicca sul pulsante '%{buttonText}' per avviare le attività.

@@ -37,7 +37,6 @@ pl:
     recording: Nagrania
     reject_idp_plan: Plan Odrzucenia
     request_retry_message: Jesteś offline. Twoje odpowiedzi nie mogły zostać zapisane, ale zostaną zapisane automatycznie po powrocie do sieci. Prosimy nie odświeżać ani nie zamykać strony.
-    saving_video_text: Zapisywanie wideo... Prosimy nie zamykać ani nie odświeżać przeglądarki
     selected_count: Wybrane
     skill_type: Typ umiejętności
     start_campaign_message_proctored: To jest kampania nadzorowana, kliknij przycisk '%{buttonText}', aby rozpocząć aktywność.

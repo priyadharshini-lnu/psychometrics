@@ -37,7 +37,6 @@ ar:
     recording: التسجيل
     reject_idp_plan: رفض الخطة
     request_retry_message: أنت غير متصل. لم يكن بالإمكان حفظ إجاباتك لكنها ستحفظ تلقائيا بمجرد عودتك للاتصال. يرجى عدم تحديث الصفحة أو إغلاقها.
-    saving_video_text: حفظ الفيديو... يرجى عدم إغلاق أو تحديث المتصفح
     selected_count: مختارة %{count}
     skill_type: نوع المهارة
     start_campaign_message_proctored: هذه حملة تحت مراقبة، يرجى الضغط على زر '%{buttonText}' لبدء الأنشطة.

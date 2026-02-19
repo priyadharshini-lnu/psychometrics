@@ -37,7 +37,6 @@ cs:
     recording: Nahrávání
     reject_idp_plan: Zamítnout plán
     request_retry_message: Jste offline. Vaše odpovědi nemohly být uloženy, ale automaticky se uloží, jakmile se vrátíte online. Prosím, neobnovujte ani nezavírejte stránku.
-    saving_video_text: Ukládání videa... Prosím, nezavírejte ani neobnovujte prohlížeč
     selected_count: Vybrané stránky
     skill_type: Typ dovednosti
     start_campaign_message_proctored: Toto je dozorovaná kampaň, klikněte prosím na tlačítko '%{buttonText}' pro zahájení aktivit.

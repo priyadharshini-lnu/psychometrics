@@ -87,6 +87,7 @@ nl:
     rte_paste_content_exceeds_char_limit: Tekst overschrijdt de tekenlimiet van {{maxCharacterLimit}} en kan niet worden geplakt.
     rte_paste_content_exceeds_word_limit: Tekst overschrijdt de woordlimiet van {{maxWordLimit}} en kan niet worden geplakt.
     save: Sla
+    saving_video: Video opslaan... Sluit of ververs alstublieft de browser niet
     search: Zoek op
     send_email: Stuur e-mail
     show_more: Laat meer zien

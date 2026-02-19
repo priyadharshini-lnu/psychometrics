@@ -87,6 +87,7 @@ pl:
     rte_paste_content_exceeds_char_limit: Tekst przekracza limit znaków {{maxCharacterLimit}} i nie może być wklejony.
     rte_paste_content_exceeds_word_limit: Tekst przekracza limit słów {{maxWordLimit}} i nie może być wklejony.
     save: Zapisz
+    saving_video: Zapisywanie wideo... Prosimy nie zamykać ani nie odświeżać przeglądarki
     search: Szukaj
     send_email: Wyślij wiadomość e-mail
     show_more: Pokaż więcej

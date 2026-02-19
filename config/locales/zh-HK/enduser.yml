@@ -37,7 +37,6 @@ zh-HK:
     recording: 录音
     reject_idp_plan: 拒绝计划
     request_retry_message: 您当前处于离线状态。您的答案未能保存，但将在您重新上线后自动保存。请勿刷新或关闭页面。
-    saving_video_text: 正在保存视频... 请勿关闭或刷新浏览器
     selected_count: "%{count} 选定"
     skill_type: 技能类型
     start_campaign_message_proctored: 这是一项监考活动，请点击“%{buttonText}”按钮开始活动。

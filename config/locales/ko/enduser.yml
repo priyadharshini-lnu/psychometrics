@@ -37,7 +37,6 @@ ko:
     recording: 녹음
     reject_idp_plan: 계획 거부
     request_retry_message: 당신은 오프라인입니다. 답변은 저장할 수 없었지만, 다시 온라인에 접속하면 자동으로 저장됩니다. 페이지를 새로고침하거나 닫지 말아 주세요.
-    saving_video_text: 비디오 저장 중... 브라우저를 닫거나 새로고침하지 마세요
     selected_count: 선택됨
     skill_type: 스킬 유형
     start_campaign_message_proctored: 이 캠페인은 감독 캠페인입니다. 활동을 시작하려면 '%{buttonText}' 버튼을 클릭해 주세요.

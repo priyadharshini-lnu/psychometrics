@@ -87,6 +87,7 @@ ru:
     rte_paste_content_exceeds_char_limit: Текст превышает ограничение по количеству символов {{maxCharacterLimit}} и не может быть вставлен.
     rte_paste_content_exceeds_word_limit: Текст превышает ограничение по количеству слов {{maxWordLimit}} и не может быть вставлен.
     save: Сохранить
+    saving_video: Сохранение видео... Пожалуйста, не закрывайте и не обновляйте браузер
     search: Поиск
     send_email: Отправить электронное письмо
     show_more: Показать больше

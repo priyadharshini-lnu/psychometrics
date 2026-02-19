@@ -87,6 +87,7 @@ ko:
     rte_paste_content_exceeds_char_limit: 텍스트는 {{maxCharacterLimit}}의 문자 한도를 초과하며, 붙여넣을 수 없습니다.
     rte_paste_content_exceeds_word_limit: 텍스트가 {{maxWordLimit}}의 단어 수를 초과하여 붙여넣을 수 없습니다.
     save: 저장
+    saving_video: 비디오 저장 중... 브라우저를 닫거나 새로고침하지 마세요
     search: 검색
     send_email: 이메일 보내기
     show_more: 더 보기

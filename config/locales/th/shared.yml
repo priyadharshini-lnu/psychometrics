@@ -87,6 +87,7 @@ th:
     rte_paste_content_exceeds_char_limit: ข้อความเกินขีดจํากัดอักขระของ {{maxCharacterLimit}} และไม่สามารถวางได้
     rte_paste_content_exceeds_word_limit: ข้อความเกินขีดจํากัดของคําที่ {{maxWordLimit}} และไม่สามารถวางได้
     save: บันทึก
+    saving_video: กําลังบันทึกวิดีโอ... กรุณาอย่าปิดหรือรีเฟรชเบราว์เซอร์
     search: ค้นหา
     send_email: ส่งอีเมล
     show_more: แสดงเพิ่มเติม

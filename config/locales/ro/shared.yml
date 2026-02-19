@@ -87,6 +87,7 @@ ro:
     rte_paste_content_exceeds_char_limit: Textul depășește limita de caractere {{maxCharacterLimit}} și nu poate fi lipit.
     rte_paste_content_exceeds_word_limit: Textul depășește limita de cuvinte a {{maxWordLimit}} și nu poate fi lipit.
     save: Salvați
+    saving_video: Salvarea video... Vă rugăm să nu închideți sau să nu reîmprospătați browserul
     search: Căutare
     send_email: Trimite e-mail
     show_more: Afișează mai mult

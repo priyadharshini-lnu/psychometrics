@@ -37,7 +37,6 @@ id:
     recording: Rekaman
     reject_idp_plan: Tolak Paket
     request_retry_message: Anda offline. Jawaban Anda tidak dapat disimpan tetapi akan disimpan secara otomatis setelah Anda kembali online. Tolong jangan menyegarkan atau menutup halaman.
-    saving_video_text: Menyimpan Video... Tolong jangan tutup atau refresh browser
     selected_count: Dipilih
     skill_type: Jenis Keterampilan
     start_campaign_message_proctored: Ini adalah kampanye yang diawasi, silakan klik tombol '%{buttonText}' untuk memulai aktivitas.

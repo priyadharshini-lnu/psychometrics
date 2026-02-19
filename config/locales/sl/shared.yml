@@ -87,6 +87,7 @@ sl:
     rte_paste_content_exceeds_char_limit: Besedilo presega omejitev znakov {{maxCharacterLimit}} in ga ni mogoče prilepiti.
     rte_paste_content_exceeds_word_limit: Besedilo presega omejitev besed {{maxWordLimit}} in ga ni mogoče prilepiti.
     save: Shrani
+    saving_video: Shranjevanje videa... Prosimo, ne zapirajte ali osvežujte brskalnika
     search: Iskanje
     send_email: Pošlji e-pošto
     show_more: Pokaži več

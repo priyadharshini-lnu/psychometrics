@@ -87,6 +87,7 @@ hi:
     rte_paste_content_exceeds_char_limit: टेक्स्ट {{maxCharacterLimit}} की वर्ण सीमा से अधिक है और इसे पेस्ट नहीं किया जा सकता।
     rte_paste_content_exceeds_word_limit: टेक्स्ट {{maxWordLimit}} शब्दों की सीमा से अधिक है और इसे पेस्ट नहीं किया जा सकता।
     save: बचाएँ
+    saving_video: वीडियो सहेज रहा है... कृपया ब्राउज़र बंद न करें या रिफ्रेश न करें।
     search: खोजें
     send_email: ईमेल भेजें
     show_more: और दिखाएँ

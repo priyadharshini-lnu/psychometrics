@@ -87,6 +87,7 @@ ar:
     rte_paste_content_exceeds_char_limit: النص يتجاوز حد الأحرف في {{maxCharacterLimit}} ولا يمكن لصقه.
     rte_paste_content_exceeds_word_limit: النص يتجاوز حد الكلمات في {{maxWordLimit}} ولا يمكن لصقه.
     save: حفظ
+    saving_video: حفظ الفيديو... يرجى عدم إغلاق أو تحديث المتصفح
     search: بحث
     send_email: إرسال بريد إلكتروني
     show_more: عرض المزيد
