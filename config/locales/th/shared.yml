@@ -51,6 +51,14 @@ th:
     learning_on_the_job_label: การเรียนรู้ในการทํางาน
     login: เข้าสู่ระบบ
     media_responses: การตอบสนองของสื่อ
+    maintenance_in_hours: "%{hours} ชั่วโมง"
+    maintenance_in_minutes: "%{minutes} นาที"
+    maintenance_in_progress_description: ขณะนี้เรากำลังดำเนินการบำรุงรักษาระบบเพื่อให้แน่ใจว่าระบบมีประสิทธิภาพสูงสุดและเพื่อปรับปรุงประสบการณ์การใช้งานของคุณ ขอขอบคุณสำหรับความเข้าใจของคุณ
+    maintenance_in_progress_title: กำลังดำเนินการบำรุงรักษาตามกำหนด
+    maintenance_time_remaining: เวลาที่เหลืออยู่
+    maintenance_upcoming_description: เราจะทำการบำรุงรักษาตามกำหนดเวลาที่ %{date} เป็นเวลาประมาณ %{duration} เพื่อปรับปรุงประสบการณ์การใช้งานของคุณ ในระหว่างนี้ คุณจะไม่สามารถเข้าถึงหรือดำเนินการงานที่ได้รับมอบหมายใดๆ ได้ เราขอขอบคุณสำหรับความอดทนของคุณ
+    maintenance_upcoming_title: การบำรุงรักษาที่กำลังจะมาถึง
+    media_question_transcriptions: ถอดความคำถามจากสื่อ
     modified_by: แก้ไขโดย
     modified_date: วันที่แก้ไข
     more_actions: การดําเนินการเพิ่มเติม
@@ -63,6 +71,8 @@ th:
     ok: ตกลง
     pending: รอดำเนินการ
     processing: การประมวลผล
+    proctoring_maintenance_active: การคุมสอบกำลังอยู่ในระหว่างการบำรุงรักษาตั้งแต่เวลา %{start_time} ถึง %{end_time} กรุณาลองอีกครั้งหลังจากช่วงเวลาการบำรุงรักษา
+    proctoring_maintenance_upcoming: การคุมสอบจะอยู่ระหว่างการบำรุงรักษาตั้งแต่เวลา %{start_time} ถึง %{end_time}
     question_id: รหัสคำถาม
     question_transcription_disabled: การถอดเสียงถูกปิดใช้งานสำหรับคำถามนี้
     recording_consent_notice: เซสชั่นการประชุมนี้จะถูกบันทึกไว้ การเข้าร่วมการประชุมนี้ถือเป็นความยินยอมของคุณที่จะบันทึกไว้

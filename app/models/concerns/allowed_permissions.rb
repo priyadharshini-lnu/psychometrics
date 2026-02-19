@@ -191,6 +191,7 @@ module AllowedPermissions
       scores
       reset_responses
       rescore_responses
+      reset_progress
       regenerate_report
       bulk_regenerate_reports
       finalize_scores

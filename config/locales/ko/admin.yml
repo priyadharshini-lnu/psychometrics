@@ -125,8 +125,11 @@ ko:
     edit_threesixty_campaign_admin: 캠페인 관리자 편집
     empty_csv_file: CSV 파일에는 데이터가 포함되어 있지 않습니다.
     enable_enhance_with_ai_client_level: 클라이언트 수준에서 AI로 향상 기능을 활성화하십시오
+    enable_maintenance: 유지보수 활성화
     enable_transcription: 자막 활성화
     enhance_with_ai: AI로 향상시키다
+    end_time: 종말
+    end_time_must_be_after_start_time: 종료 시간은 시작 시간 이후여야 합니다
     enhance_with_ai_requires_ai_assistants: AI로 향상시키려면 AI 어시스턴트 기능이 활성화되어 있어야 합니다
     error: 오류
     evaluation_status: 평가 현황
@@ -180,6 +183,9 @@ ko:
     libraries: 미디어 라이브러리
     library_invalid_type: 유효하지 않은 라이브러리 항목
     licenses: 라이선스
+    maintenance: 유지보수
+    maintenance_settings: 유지보수 설정
+    maintenance_settings_description: 시스템 유지보수 시간대와 설정 관리
     manager_approval_required: "%{user} 보고서는 다운로드 전에 관리자의 승인이 필요합니다"
     max_value: 최대값
     messages: 메시지
@@ -637,6 +643,7 @@ ko:
     privacy: 개인정보 보호
     professional: 전문적인
     proficiency: 숙련도
+    proctoring: 감독
     proficiency_level: API 키
     proficiency_levels: 숙련도 수준
     profile_details: 프로필 세부 정보
@@ -723,8 +730,10 @@ ko:
     search_admins: 검색 관리자
     search_job_role: 직무 검색
     select_admin_role: 관리자 역할 선택
+    select_end_time: 종료 시간 선택
     select_language_to_translate: 번역할 언어를 선택해 주세요
     select_level: 레벨 선택
+    select_start_time: 시작 시간 선택
     send_email: 이메일 보내기
     settings: 설정
     show_original: 원문 표시
@@ -737,6 +746,7 @@ ko:
     slot_name: 슬롯 이름
     sms_histories: SMS 기록
     sms_invites: SMS 초대
+    start_time: 시작 시간
     stats: 통계
     status_details: 상태 세부사항
     structured_learning: 정식 학습 [10]
@@ -744,6 +754,7 @@ ko:
     subject_part_of_other_invite: 이메일 주소 %{user_email}을 가진 사용자는 이미 '%{workshop_invite_name}'에 초대되었습니다.
     target_job_role: 목표 직무 역할
     tone: 톤
+    timezone: 타임존
     toolbar_ai_insight: AI 인사이트
     toolbar_ai_suggestion: AI 제안
     toolbar_result_generating: 생성 중...

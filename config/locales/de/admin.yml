@@ -125,8 +125,11 @@ de:
     edit_threesixty_campaign_admin: Kampagnenverwaltung bearbeiten
     empty_csv_file: Die CSV-Datei enthält keine Daten.
     enable_enhance_with_ai_client_level: Bitte aktivieren Sie die Funktion „Mit KI verbessern“ auf Client-Ebene.
+    enable_maintenance: Wartung aktivieren
     enable_transcription: Transkription aktivieren
     enhance_with_ai: Mit KI verbessern
+    end_time: Endzeit
+    end_time_must_be_after_start_time: Die Endzeit muss nach der Startzeit liegen.
     enhance_with_ai_requires_ai_assistants: Für „Mit KI verbessern“ muss die Funktion „KI-Assistenten“ aktiviert sein.
     error: Fehler
     evaluation_status: Bewertungsstatus
@@ -180,6 +183,9 @@ de:
     libraries: Mediathek
     library_invalid_type: Ungültiger Bibliothekseintrag
     licenses: Lizenzen
+    maintenance: Wartung
+    maintenance_settings: Wartungseinstellungen
+    maintenance_settings_description: Systemwartungsfenster und -einstellungen verwalten
     manager_approval_required: Report for %{user} erfordert die Zustimmung des Managers vor dem Download
     max_value: Maximalwert
     messages: Nachrichten
@@ -637,6 +643,7 @@ de:
     privacy: Datenschutz
     professional: Fachmann
     proficiency: Kompetenz
+    proctoring: Aufsicht
     proficiency_level: API-Schlüssel
     proficiency_levels: Leistungsniveaus
     profile_details: Profil-Details
@@ -723,8 +730,10 @@ de:
     search_admins: Admins suchen
     search_job_role: Stelle suchen
     select_admin_role: Admin-Rolle auswählen
+    select_end_time: Endzeit auswählen
     select_language_to_translate: Bitte Sprache für die Übersetzung auswählen
     select_level: Stufe auswählen
+    select_start_time: Startzeit auswählen
     send_email: E-Mail senden
     settings: Einstellungen
     show_original: Original anzeigen
@@ -737,6 +746,7 @@ de:
     slot_name: Slot-Name
     sms_histories: SMS-Geschichten
     sms_invites: SMS-Einladungen
+    start_time: Startzeit
     stats: Statistiken
     status_details: Statusdetails
     structured_learning: Formales Lernen [10]
@@ -744,6 +754,7 @@ de:
     subject_part_of_other_invite: Der Absender der E-Mail %{user_email} wurde bereits zu „%{workshop_invite_name}” eingeladen.
     target_job_role: Zielposition
     tone: Ton
+    timezone: Zeitzone
     toolbar_ai_insight: KI-Einblick
     toolbar_ai_suggestion: KI-Vorschlag
     toolbar_result_generating: Generieren...

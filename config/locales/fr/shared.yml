@@ -51,6 +51,14 @@ fr:
     learning_on_the_job_label: Apprendre sur le terrain
     login: Connexion
     media_responses: Réactions des médias
+    maintenance_in_hours: "%{hours} heures"
+    maintenance_in_minutes: "%{minutes} procès-verbaux"
+    maintenance_in_progress_description: Nous effectuons actuellement une maintenance du système afin d'assurer des performances optimales de la plateforme et d'améliorer votre expérience. Merci de votre compréhension.
+    maintenance_in_progress_title: Maintenance planifiée en cours
+    maintenance_time_remaining: Temps restant
+    maintenance_upcoming_description: Nous effectuerons une maintenance programmée sur %{date} pendant environ %{duration} afin d'améliorer votre expérience. Pendant cette période, vous ne pourrez ni accéder aux tâches qui vous ont été assignées ni les accomplir. Nous vous remercions de votre patience.
+    maintenance_upcoming_title: Maintenance à venir
+    media_question_transcriptions: Transcriptions des questions des médias
     modified_by: Modifié par
     modified_date: Date de modification
     more_actions: Plus d'actions
@@ -63,6 +71,8 @@ fr:
     ok: Ok
     pending: En attente
     processing: Traitement
+    proctoring_maintenance_active: Le service Proctoring est actuellement en maintenance, de l'adresse %{start_time} à l'adresse %{end_time}. Veuillez réessayer après la période de maintenance.
+    proctoring_maintenance_upcoming: La surveillance sera en maintenance de %{start_time} à %{end_time}.
     question_id: Identifiant de la question
     question_transcription_disabled: La transcription est désactivée pour cette question.
     recording_consent_notice: Cette réunion sera enregistrée. Votre participation à cette réunion constitue votre consentement à être enregistré.

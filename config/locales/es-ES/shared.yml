@@ -51,6 +51,14 @@ es-ES:
     learning_on_the_job_label: Aprendizaje sobre el terreno
     login: Iniciar sesión
     media_responses: Respuestas de los medios de comunicación
+    maintenance_in_hours: "%{hours} horas"
+    maintenance_in_minutes: "%{minutes} minutos"
+    maintenance_in_progress_description: Actualmente estamos realizando tareas de mantenimiento del sistema para garantizar un rendimiento óptimo de la plataforma y mejorar su experiencia. Gracias por su comprensión.
+    maintenance_in_progress_title: Mantenimiento programado en curso
+    maintenance_time_remaining: Tiempo restante
+    maintenance_upcoming_description: Realizaremos un mantenimiento programado en %{date} durante aproximadamente %{duration} para mejorar su experiencia. Durante este tiempo, no podrá acceder ni completar ninguna tarea asignada. Agradecemos su paciencia.
+    maintenance_upcoming_title: Próximo mantenimiento
+    media_question_transcriptions: Transcripciones de preguntas de los medios de comunicación
     modified_by: Modificado por
     modified_date: Fecha de modificación
     more_actions: Más acciones
@@ -63,6 +71,8 @@ es-ES:
     ok: De acuerdo
     pending: Pendiente
     processing: Procesamiento
+    proctoring_maintenance_active: El servicio de supervisión está actualmente en mantenimiento, pasando de %{start_time} a %{end_time}. Vuelva a intentarlo una vez finalizado el periodo de mantenimiento.
+    proctoring_maintenance_upcoming: La supervisión estará en mantenimiento desde %{start_time} hasta %{end_time}.
     question_id: ID de la pregunta
     question_transcription_disabled: La transcripción está desactivada para esta pregunta.
     recording_consent_notice: Esta sesión de reunión será grabada. Tu participación en esta reunión constituye tu consentimiento para ser grabado.

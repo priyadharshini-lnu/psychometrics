@@ -51,6 +51,14 @@ vi:
     learning_on_the_job_label: Học tập trong công việc
     login: Đăng nhập
     media_responses: Phản ứng của truyền thông
+    maintenance_in_hours: "%{hours} giờ"
+    maintenance_in_minutes: "%{minutes} phút"
+    maintenance_in_progress_description: Chúng tôi hiện đang thực hiện bảo trì hệ thống để đảm bảo hiệu suất tối ưu của nền tảng và nâng cao trải nghiệm của quý khách. Xin cảm ơn sự thông cảm của quý khách.
+    maintenance_in_progress_title: Bảo trì định kỳ đang được thực hiện
+    maintenance_time_remaining: Thời gian còn lại
+    maintenance_upcoming_description: Chúng tôi sẽ tiến hành bảo trì định kỳ trên %{date} trong khoảng thời gian %{duration} để nâng cao trải nghiệm của bạn. Trong thời gian này, bạn sẽ không thể truy cập hoặc hoàn thành bất kỳ tác vụ nào được giao. Chúng tôi xin cảm ơn sự thông cảm của bạn.
+    maintenance_upcoming_title: Bảo trì sắp tới
+    media_question_transcriptions: Bản ghi chép câu hỏi của truyền thông
     modified_by: Sửa đổi bởi
     modified_date: Ngày sửa đổi
     more_actions: Hành động khác
@@ -63,6 +71,8 @@ vi:
     ok: Được rồi
     pending: Đang chờ xử lý
     processing: Xử lý
+    proctoring_maintenance_active: Hệ thống giám sát thi (Proctoring) hiện đang được bảo trì từ %{start_time} đến %{end_time}. Vui lòng thử lại sau khi quá trình bảo trì kết thúc.
+    proctoring_maintenance_upcoming: Hệ thống giám sát thi sẽ được bảo trì từ %{start_time} đến %{end_time}.
     question_id: ID câu hỏi
     question_transcription_disabled: Chức năng chuyển đổi văn bản đã bị vô hiệu hóa cho câu hỏi này.
     recording_consent_notice: Phiên họp này sẽ được ghi lại. Việc bạn tham gia cuộc họp này cấu thành sự đồng ý của bạn để được ghi lại.

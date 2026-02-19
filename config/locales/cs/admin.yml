@@ -125,8 +125,11 @@ cs:
     edit_threesixty_campaign_admin: Upravit správce kampaně
     empty_csv_file: CSV soubor neobsahuje žádná data.
     enable_enhance_with_ai_client_level: Povolte funkci Vylepšit pomocí AI na úrovni klienta.
+    enable_maintenance: Povolit údržbu
     enable_transcription: Povolit přepis
     enhance_with_ai: Vylepšete pomocí AI
+    end_time: Koncový čas
+    end_time_must_be_after_start_time: Konec musí být po začátku
     enhance_with_ai_requires_ai_assistants: Funkce Vylepšit pomocí AI vyžaduje, aby byla povolena funkce AI asistenti.
     error: Chyba
     evaluation_status: Stav hodnocení
@@ -180,6 +183,9 @@ cs:
     libraries: Knihovna médií
     library_invalid_type: Neplatný knihovní prvek
     licenses: Licence
+    maintenance: Údržba
+    maintenance_settings: Nastavení údržby
+    maintenance_settings_description: Správa časových oken a nastavení údržby systému
     manager_approval_required: Report for %{user} vyžaduje schválení manažera před stažením
     max_value: Maximální hodnota
     messages: Zprávy
@@ -637,6 +643,7 @@ cs:
     privacy: Ochrana osobních údajů
     professional: Profesionální
     proficiency: Znalost
+    proctoring: Dohled
     proficiency_level: Klíče API
     proficiency_levels: Úrovně odborné způsobilosti
     profile_details: Podrobnosti o profilu
@@ -723,8 +730,10 @@ cs:
     search_admins: Vyhledávání administrátorů
     search_job_role: Hledat pracovní pozici
     select_admin_role: Vyberte roli správce
+    select_end_time: Vyberte čas ukončení
     select_language_to_translate: Vyberte jazyk, do kterého chcete překládat
     select_level: Vyberte úroveň
+    select_start_time: Vyberte čas zahájení
     send_email: Odeslat e-mail
     settings: Nastavení
     show_original: Zobrazit originál
@@ -737,6 +746,7 @@ cs:
     slot_name: Název slotu
     sms_histories: Historie SMS
     sms_invites: Pozvánky SMS
+    start_time: Čas zahájení
     stats: Statistiky
     status_details: Podrobnosti o stavu
     structured_learning: Formální učení [10]
@@ -744,6 +754,7 @@ cs:
     subject_part_of_other_invite: Osoba s e-mailovou adresou %{user_email} již byla pozvána do skupiny „%{workshop_invite_name}“.
     target_job_role: Cílová pracovní pozice
     tone: Tón
+    timezone: Časové pásmo
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: Návrh AI
     toolbar_result_generating: Generování...

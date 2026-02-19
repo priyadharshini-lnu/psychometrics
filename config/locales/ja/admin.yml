@@ -125,8 +125,11 @@ ja:
     edit_threesixty_campaign_admin: キャンペーン管理者の編集
     empty_csv_file: CSVファイルにはデータが含まれていません。
     enable_enhance_with_ai_client_level: クライアントレベルで「AIによる強化」機能を有効にしてください
+    enable_maintenance: メンテナンスを有効にする
     enable_transcription: 文字起こしを有効にする
     enhance_with_ai: AIで強化する
+    end_time: 終末
+    end_time_must_be_after_start_time: 終了時刻は開始時刻より後でなければならない
     enhance_with_ai_requires_ai_assistants: AIによる強化には、AIアシスタント機能の有効化が必要です
     error: エラー
     evaluation_status: 評価状況
@@ -180,6 +183,9 @@ ja:
     libraries: メディアライブラリー
     library_invalid_type: 無効なライブラリ項目
     licenses: ライセンス
+    maintenance: 保守
+    maintenance_settings: メンテナンス設定
+    maintenance_settings_description: システムメンテナンスの時間帯と設定を管理する
     manager_approval_required: "%{user}レポートはダウンロード前にマネージャーの承認が必要です"
     max_value: 最大値
     messages: メッセージ
@@ -637,6 +643,7 @@ ja:
     privacy: プライバシー
     professional: プロフェッショナル
     proficiency: 習熟度
+    proctoring: 試験監督
     proficiency_level: APIキー
     proficiency_levels: 熟練度レベル
     profile_details: プロフィール詳細
@@ -723,8 +730,10 @@ ja:
     search_admins: 管理者を検索
     search_job_role: 職種を検索
     select_admin_role: 管理者ロールの選択
+    select_end_time: 終了時間を選択
     select_language_to_translate: 翻訳する言語を選択してください
     select_level: レベルを選択
+    select_start_time: 開始時間を選択
     send_email: 電子メールを送信する
     settings: 設定
     show_original: 原文を表示
@@ -737,6 +746,7 @@ ja:
     slot_name: スロット名
     sms_histories: SMSヒストリー
     sms_invites: SMS招待
+    start_time: 開始時刻
     stats: 統計
     status_details: 状況詳細
     structured_learning: 正式な学習 [10]
@@ -744,6 +754,7 @@ ja:
     subject_part_of_other_invite: メールアドレス %{user_email} のユーザーは既に「%{workshop_invite_name}」に招待済みです
     target_job_role: 対象職務
     tone: トーン
+    timezone: タイムゾーン
     toolbar_ai_insight: AIインサイト
     toolbar_ai_suggestion: AI提案
     toolbar_result_generating: 生成中...

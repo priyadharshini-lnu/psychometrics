@@ -51,6 +51,14 @@ hr:
     learning_on_the_job_label: Učenje na poslu
     login: Prijava
     media_responses: Odgovori medija
+    maintenance_in_hours: "%{hours} sati"
+    maintenance_in_minutes: "%{minutes} minute"
+    maintenance_in_progress_description: Trenutno obavljamo održavanje sustava kako bismo osigurali optimalne performanse platforme i poboljšali vaše iskustvo. Hvala na razumijevanju.
+    maintenance_in_progress_title: Planirano održavanje je u tijeku
+    maintenance_time_remaining: Preostalo vrijeme
+    maintenance_upcoming_description: Obavit ćemo planirano održavanje na %{date}u otprilike od %{duration} do  kako bismo poboljšali vaše iskustvo. Tijekom tog razdoblja nećete moći pristupiti niti dovršiti nijedan dodijeljeni zadatak. Cijenimo vaše strpljenje.
+    maintenance_upcoming_title: Nadolazeće održavanje
+    media_question_transcriptions: Transkripti medijskih pitanja
     modified_by: Autor izmjene
     modified_date: Datum izmjene
     more_actions: Više radnji
@@ -63,6 +71,8 @@ hr:
     ok: U redu
     pending: U čekanju
     processing: Obrada
+    proctoring_maintenance_active: Proctoring je trenutno u održavanju s %{start_time} na %{end_time}. Molimo pokušajte ponovno nakon završetka održavanja.
+    proctoring_maintenance_upcoming: Održavanje će biti pod nadzorom od %{start_time} do %{end_time}.
     question_id: ID pitanja
     question_transcription_disabled: Transkripcija je onemogućena za ovo pitanje.
     recording_consent_notice: Ova sjednica sjednice bit će snimljena. Vaše sudjelovanje na ovom sastanku znači vaš pristanak za snimanje.
