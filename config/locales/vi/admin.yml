@@ -18,7 +18,6 @@ vi:
     admin_roles: Vai trò quản trị viên
     admin_updated_successfully: Quản trị viên '%{name}' đã được cập nhật thành công
     admins: Quản trị viên
-    agile: NHANH NHẸN
     ai_artifacts: Đồ tạo tác AI
     ai_artifacts_output_schema_key_constraint: Khóa phải bắt đầu bằng chữ thường và chỉ có thể chứa chữ thường, số và dấu gạch dưới
     ai_assistant_model_id_label: ID mô hình
@@ -51,7 +50,6 @@ vi:
     assessments_not_mhs: Tất cả các đánh giá phải là loại MHS.
     assessments_reports: Đánh giá & Báo cáo
     assessor_dashboard: Bảng điều khiển đánh giá viên
-    assessor_form: Biểu mẫu đánh giá viên
     assessor_workshops: Trung tâm đánh giá
     assessors: Đánh giá viên
     assistant_toolbar_failed: Không thể tạo ra kết quả hợp lệ sau nhiều lần thử.
@@ -92,14 +90,11 @@ vi:
     campaign_user_job_roles_cannot_be_same: Vị trí công việc mục tiêu phải khác với vị trí công việc hiện tại.
     campaigns: Chiến dịch
     cancellation_and_rescheduling_disabled: Chức năng hủy bỏ và thay đổi lịch trình đã bị vô hiệu hóa.
-    case_study: Nghiên cứu điển hình
     casual: Thường ngày
     client: Khách hàng thuê nhà
     client_admins: Quản trị viên khách hàng
     clients: Thuê khách hàng
     code_required: Mã là bắt buộc
-    common: Đánh giá TTE
-    common_assessment: Đánh giá TTE
     communication_center: Trung tâm truyền thông
     communications: Truyền thông
     completed: Hoàn thành
@@ -148,12 +143,8 @@ vi:
     fix_grammar: Sửa lỗi ngữ pháp
     formal: Chính thức
     generate_transcription: Tạo bản chép lời
-    hogan: Hogan
-    hogan_assessment: NHANH NHẸN
     idp_plan_reset_success: Kế hoạch đã được đặt lại thành công
     idp_templates: Mẫu IDP
-    iiht: IIHT
-    iiht_assessment: Đánh giá IIHT
     import_ai_artifacts: Nhập hiện vật AI
     import_csv_assessment_group_error: 'Dòng %{index}: Người dùng có địa chỉ email %{email} đã được mời tham gia ''%{workshopInviteName}''.'
     import_csv_error: 'Hàng %{index}: người dùng có %{email} email không có trong chiến dịch này'
@@ -180,7 +171,6 @@ vi:
     internal: Nội bộ
     invalid_csv_header: CSV chứa tiêu đề không hợp lệ.
     job_roles: Vai trò công việc
-    lead_assessor_form: Biểu mẫu đánh giá viên chính
     learning_from_others: Học tập hợp tác [20]
     level: Cấp độ
     level_apply: Đăng ký
@@ -192,10 +182,7 @@ vi:
     licenses: Giấy phép
     manager_approval_required: Báo cáo cho %{user} yêu cầu sự chấp thuận của người quản lý trước khi tải xuống
     max_value: Giá trị tối đa
-    meeting: Hội nghị
     messages: Thư
-    mettl: Mettl
-    mettl_assessment: Đánh giá Mettl
     mhs: Trường Trung học MHS
     mhs_assessment: Đánh giá MHS
     mhs_assessment_name: Tên đánh giá MHS
@@ -222,11 +209,8 @@ vi:
     on_the_job: Trong công việc [70]
     only_editable_on_create: Tùy chọn này chỉ có thể chỉnh sửa khi đang tạo.
     options: Tùy chọn
-    organisational: Khảo sát tổ chức
     original_text: Văn bản gốc
     participants: Tham gia
-    pearson: Pearson
-    pearson_assessment: Đánh giá Pearson
     permissions:
       aiArtifacts:
         export: Xuất khẩu
@@ -661,7 +645,6 @@ vi:
     project_number: Số dự án
     project_settings: Cài đặt dự án
     projects: Dự án
-    psychometric: Tâm lý học
     question_center: Trung tâm câu hỏi
     questions: Câu hỏi
     reflection_questions: Câu hỏi suy ngẫm
@@ -733,8 +716,6 @@ vi:
     saml_service_provider_updated_date: Ngày cập nhật
     saml_service_providers: Nhà cung cấp dịch vụ
     saml_settings: Cài đặt SAML
-    saville: Saville
-    saville_assessment: Đánh giá Saville
     scheduling: Lập kế hoạch
     scoring: Ghi
     scoring_value_info: Điểm số phải nằm trong khoảng từ %{min} đến %{max}.
@@ -750,13 +731,9 @@ vi:
     show_submenu: Hiển thị menu phụ
     show_translated: Hiển thị bản dịch
     siem: SIEM
-    simulation: Mô phỏng
-    simulation_assessment: Đánh giá mô phỏng
     skill_aliases: Bí danh kỹ năng
     skills: Kỹ năng
     skills_taxonomy: Phân loại kỹ năng
-    skillvue: Kỹ năng
-    skillvue_assessment: Đánh giá Skillvue
     slot_name: Tên vị trí
     sms_histories: Lịch sử SMS
     sms_invites: Lời mời SMS
@@ -766,7 +743,6 @@ vi:
     subdomain: Tên miền phụ
     subject_part_of_other_invite: Người dùng có địa chỉ email %{user_email} đã được mời tham gia '%{workshop_invite_name}'.
     target_job_role: Vị trí công việc mục tiêu
-    threesixty: Chiến dịch 360
     tone: Giọng điệu
     toolbar_ai_insight: Nhận định về Trí tuệ Nhân tạo
     toolbar_ai_suggestion: Đề xuất của Trí tuệ nhân tạo
@@ -797,8 +773,6 @@ vi:
     x_axis_interval_label: Khoảng cách trục X
     y_axis_interval_label: Khoảng cách trục tung
     year: Quốc gia
-    yoodli: Yoodli
     yoodli_activity_id: ID hoạt động Yoodli
-    yoodli_assessment: Đánh giá Yoodli
     yoodli_email_id: ID email ứng viên Yoodli
     yoodli_external_assessment_id: ID đánh giá Yoodli

@@ -18,7 +18,6 @@ hr:
     admin_roles: Uloge administratora
     admin_updated_successfully: Administrator '%{name}' uspješno je ažuriran
     admins: Administratori
-    agile: OKRETAN
     ai_artifacts: AI artefakti
     ai_artifacts_output_schema_key_constraint: Ključ mora započeti malim slovom i smije sadržavati samo mala slova, brojeve i podcrte
     ai_assistant_model_id_label: ID modela
@@ -51,7 +50,6 @@ hr:
     assessments_not_mhs: Sva procjena mora biti tipa MHS.
     assessments_reports: Procjene i izvješća
     assessor_dashboard: Nadzorna ploča procjenitelja
-    assessor_form: Obrazac procjenitelja
     assessor_workshops: Centar za procjenu
     assessors: Procjenitelji
     assistant_toolbar_failed: Nije uspjelo generirati valjan izlaz nakon više pokušaja
@@ -92,14 +90,11 @@ hr:
     campaign_user_job_roles_cannot_be_same: Ciljana radna pozicija mora biti različita od trenutne radne pozicije.
     campaigns: Kampanje
     cancellation_and_rescheduling_disabled: Otkazivanje i zakazivanje novog termina su onemogućeni
-    case_study: Studije slučaja
     casual: Neformalno
     client: Najam klijenta
     client_admins: Klijenti administratori
     clients: Klijenti
     code_required: Potrebna je koda
-    common: TTE procjena
-    common_assessment: Procjena TTE
     communication_center: Komunikacijski centar
     communications: Komunikacije
     completed: Završen
@@ -148,12 +143,8 @@ hr:
     fix_grammar: Popravite gramatiku
     formal: Službeno
     generate_transcription: Generiraj transkripciju
-    hogan: Hogan
-    hogan_assessment: OKRETAN
     idp_plan_reset_success: Plan je uspješno resetiran
     idp_templates: Predlošci IDP-a
-    iiht: IIHT
-    iiht_assessment: Procjena IIHT-a
     import_ai_artifacts: Uvoz AI artefakata
     import_csv_assessment_group_error: 'Red%{index}: korisnik s e-poštom %{email} već je pozvan u ''%{workshopInviteName}'''
     import_csv_error: 'Red %{index}: korisnik s email %{email} nije u ovoj kampanji'
@@ -180,7 +171,6 @@ hr:
     internal: Unutarnji
     invalid_csv_header: CSV datoteka sadrži nevažeća zaglavlja.
     job_roles: Uloge na poslu
-    lead_assessor_form: Obrazac glavnog procjenitelja
     learning_from_others: Suradničko učenje [20]
     level: Razina
     level_apply: Prijaviti se
@@ -192,10 +182,7 @@ hr:
     licenses: Licence
     manager_approval_required: Izvještaj za %{user} zahtijeva odobrenje menadžera prije preuzimanja
     max_value: Najveća vrijednost
-    meeting: Sastanak
     messages: Poruke
-    mettl: Mettl
-    mettl_assessment: Mettl procjena
     mhs: MHS
     mhs_assessment: MHS procjena
     mhs_assessment_name: Naziv MHS procjene
@@ -222,11 +209,8 @@ hr:
     on_the_job: Na poslu [70]
     only_editable_on_create: Ovu opciju je moguće uređivati samo tijekom izrade.
     options: Mogućnosti
-    organisational: Org ankete
     original_text: Originalni tekst
     participants: Sudionici
-    pearson: Pearson
-    pearson_assessment: Pearsonova procjena
     permissions:
       aiArtifacts:
         export: Izvoz
@@ -661,7 +645,6 @@ hr:
     project_number: Broj projekta
     project_settings: Postavke projekta
     projects: Projekti
-    psychometric: Psihometrijski
     question_center: Centar za pitanja
     questions: Pitanja
     reflection_questions: Pitanja za razmišljanje
@@ -733,8 +716,6 @@ hr:
     saml_service_provider_updated_date: Ažurirani datum
     saml_service_providers: Davatelji usluga
     saml_settings: SAML postavke
-    saville: Saville
-    saville_assessment: Procjena Savillea
     scheduling: Vremensko planiranje
     scoring: Bodovanja
     scoring_value_info: Rezultat mora biti između %{min} i %{max}.
@@ -750,13 +731,9 @@ hr:
     show_submenu: Prikaži podizbornik
     show_translated: Prikaži prevedeno
     siem: SIEM
-    simulation: Simulacija
-    simulation_assessment: Simulacijska procjena
     skill_aliases: Pseudonimi vještina
     skills: Vještine
     skills_taxonomy: Taksonomija vještina
-    skillvue: Skillvue
-    skillvue_assessment: Procjena vještina
     slot_name: Naziv utora
     sms_histories: Povijest SMS-a
     sms_invites: SMS pozivnice
@@ -766,7 +743,6 @@ hr:
     subdomain: Poddomena
     subject_part_of_other_invite: Subjekt s e-poštom %{user_email} već je pozvan na '%{workshop_invite_name}'
     target_job_role: Ciljana radna uloga
-    threesixty: Kampanja 360
     tone: Ton
     toolbar_ai_insight: Uvid u umjetnu inteligenciju
     toolbar_ai_suggestion: Prijedlog AI-a
@@ -797,8 +773,6 @@ hr:
     x_axis_interval_label: Interval X-osovine
     y_axis_interval_label: Y-osni interval
     year: Država
-    yoodli: Yoodli
     yoodli_activity_id: Yoodli ID aktivnosti
-    yoodli_assessment: Yoodli procjena
     yoodli_email_id: Email ID Yoodli kandidata
     yoodli_external_assessment_id: Yoodli Assessment ID

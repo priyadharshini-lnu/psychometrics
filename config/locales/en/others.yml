@@ -1095,9 +1095,36 @@ en:
       title: Assessment Details
     edit: Edit
     fields:
+      category:
+        agile: AGILE
+        assessor_form: Assessor Form
+        case_study: Case Studies
+        hogan: Hogan
+        iiht: IIHT
+        lead_assessor_form: Lead Assessor Form
+        meeting: Meeting
+        mettl: Mettl
+        organisational: Org Surveys
+        pearson: Pearson
+        psychometric: Psychometric
+        saville: Saville
+        simulation: Simulation
+        skillvue: Skillvue
+        threesixty: 360 Campaign
+        yoodli: Yoodli
       status:
         finished: Finished
         in_progress: In Progress
+      type:
+        common: TTE Assessment
+        hogan: Hogan
+        iiht: IIHT Assessment
+        mettl: Mettl Assessment
+        pearson: Pearson Assessment
+        saville: Saville Assessment
+        simulation: Simulation Assessment
+        skillvue: Skillvue Assessment
+        yoodli: Yoodli Assessment
     flow:
       end_assessment_modal:
         custom_message: Custom end of assessment message
@@ -3343,6 +3370,13 @@ en:
     fields:
       provider:
         custom_upload: Custom Upload
+        hogan: Hogan
+        internal: Internal
+        mettl: Mettl
+        pearson: Pearson
+        saville: Saville
+        skillvue: Skillvue
+        yoodli: Yoodli
     form:
       load_from_mettl: Load from Mettl
       load_from_pearson: Load from Pearson

@@ -1095,9 +1095,36 @@ bg:
       title: Подробности за оценката
     edit: Редактирам
     fields:
+      category:
+        agile: ПОДВИЖЕН
+        assessor_form: Формуляр за оценител
+        case_study: Казуси
+        hogan: Хоган
+        iiht: ИИХТ
+        lead_assessor_form: Формуляр за водещ оценител
+        meeting: Събрание
+        mettl: Метл
+        organisational: Организационни проучвания
+        pearson: Пиърсън
+        psychometric: Психометрични
+        saville: Савил
+        simulation: Симулация
+        skillvue: Skillvue
+        threesixty: Кампания 360
+        yoodli: Юдли
       status:
         finished: Завършен
         in_progress: В процес на изпълнение
+      type:
+        common: Оценка на TTE
+        hogan: Хоган
+        iiht: Оценка на IIHT
+        mettl: Оценка на Mettl
+        pearson: Оценка на Пиърсън
+        saville: Оценка на Saville
+        simulation: Оценка на симулацията
+        skillvue: Оценка на Skillvue
+        yoodli: Оценка на Yoodli
     flow:
       end_assessment_modal:
         custom_message: Персонализирано съобщение за края на оценяването
@@ -3264,6 +3291,13 @@ bg:
     fields:
       provider:
         custom_upload: Персонализирано качване
+        hogan: Хоган
+        internal: Вътрешния
+        mettl: Метл
+        pearson: Пиърсън
+        saville: Савил
+        skillvue: Skillvue
+        yoodli: Юдли
     form:
       load_from_mettl: Натоварване от Mettl
       load_from_pearson: Зареждане от Pearson

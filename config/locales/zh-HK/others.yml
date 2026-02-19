@@ -1105,9 +1105,36 @@ zh-HK:
       title: 評估詳情
     edit: 編輯
     fields:
+      category:
+        agile: 敏捷
+        assessor_form: 評估員表格
+        case_study: 案例研究
+        hogan: 霍根
+        iiht: IIHT
+        lead_assessor_form: 首席評估員表格
+        meeting: 會
+        mettl: 梅特爾
+        organisational: 組織調查
+        pearson: 皮爾森
+        psychometric: 心理測量學
+        saville: 薩維爾
+        simulation: 模擬
+        skillvue: Skillvue
+        threesixty: 360 戰役
+        yoodli: 尤德利
       status:
         finished: 已
         in_progress: 進行中
+      type:
+        common: TTE 評量
+        hogan: 霍根
+        iiht: IIHT 評量
+        mettl: Mettl 評估
+        pearson: 皮爾森評估
+        saville: 薩維爾評估
+        simulation: 模擬評估
+        skillvue: Skillvue 評估
+        yoodli: Yoodli 評估
     flow:
       end_assessment_modal:
         custom_message: 自訂評估結束訊息
@@ -3288,6 +3315,13 @@ zh-HK:
     fields:
       provider:
         custom_upload: 自訂上傳
+        hogan: 霍根
+        internal: 國內的
+        mettl: 梅特爾
+        pearson: 皮爾森
+        saville: 薩維爾
+        skillvue: 技能
+        yoodli: 尤德利
     form:
       load_from_mettl: 來自Mettl的貨物
       load_from_pearson: 來自皮爾森的貨物

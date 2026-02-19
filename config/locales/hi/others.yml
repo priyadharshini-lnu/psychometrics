@@ -1095,9 +1095,36 @@ hi:
       title: मूल्यांकन विवरण
     edit: संपादित करें
     fields:
+      category:
+        agile: चपल
+        assessor_form: मूल्यांकनकर्ता प्रपत्र
+        case_study: केस स्टडीज़
+        hogan: होगन
+        iiht: आईआईएचटी
+        lead_assessor_form: प्रमुख मूल्यांकनकर्ता प्रपत्र
+        meeting: बैठक
+        mettl: मेटल
+        organisational: संगठन सर्वेक्षण
+        pearson: पियर्सन
+        psychometric: मनोमापी
+        saville: सैविल
+        simulation: अनुकरण
+        skillvue: स्किलव्यू
+        threesixty: 360 अभियान
+        yoodli: यूडली
       status:
         finished: समाप्त
         in_progress: प्रगति में
+      type:
+        common: टीटीई मूल्यांकन
+        hogan: होगन
+        iiht: आईआईएचटी मूल्यांकन
+        mettl: मेटल असेसमेंट
+        pearson: पियर्सन मूल्यांकन
+        saville: सैविल मूल्यांकन
+        simulation: अनुकरण मूल्यांकन
+        skillvue: स्किलव्यू मूल्यांकन
+        yoodli: यूडली मूल्यांकन
     flow:
       end_assessment_modal:
         custom_message: मूल्यांकन के अंत का अनुकूलित संदेश
@@ -3271,6 +3298,13 @@ hi:
     fields:
       provider:
         custom_upload: कस्टम अपलोड
+        hogan: होगन
+        internal: आंतरिक
+        mettl: मेटल
+        pearson: पियर्सन
+        saville: सैविल
+        skillvue: स्किलव्यू
+        yoodli: यूडली
     form:
       load_from_mettl: Mettl से लोड करें
       load_from_pearson: पिअर्सन से लोड करें

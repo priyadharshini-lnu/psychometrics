@@ -18,7 +18,6 @@ sk:
     admin_roles: Roly správcu
     admin_updated_successfully: Správca "%{name}" bol úspešne aktualizovaný
     admins: Správcovia
-    agile: ŽIVÝ
     ai_artifacts: Artefakty AI
     ai_artifacts_output_schema_key_constraint: Kľúč musí začínať malým písmenom a môže obsahovať len malé písmená, čísla a podčiarknutia
     ai_assistant_model_id_label: Identifikácia modelu
@@ -51,7 +50,6 @@ sk:
     assessments_not_mhs: Všetky hodnotenia musia byť typu MHS.
     assessments_reports: Hodnotenia a správy
     assessor_dashboard: Informačný panel hodnotiteľa
-    assessor_form: Formulár hodnotiteľa
     assessor_workshops: Hodnotiace centrum
     assessors: Hodnotiteľov
     assistant_toolbar_failed: Po viacerých pokusoch sa nepodarilo vygenerovať platný výstup.
@@ -92,14 +90,11 @@ sk:
     campaign_user_job_roles_cannot_be_same: Cieľová pracovná pozícia sa musí líšiť od súčasnej pracovnej pozície.
     campaigns: Kampane
     cancellation_and_rescheduling_disabled: Zrušenie a presunutie termínu je deaktivované
-    case_study: Prípadové štúdie
     casual: Neformálne
     client: Prenájom klienta
     client_admins: Správcovia klientov
     clients: Prenájom klientov
     code_required: Vyžaduje sa kód
-    common: Hodnotenie TTE
-    common_assessment: Hodnotenie TTE
     communication_center: Komunikačné centrum
     communications: Komunikácia
     completed: Dokončený
@@ -148,12 +143,8 @@ sk:
     fix_grammar: Opravte gramatiku
     formal: Formálne
     generate_transcription: Vytvoriť prepis
-    hogan: Hogan
-    hogan_assessment: ŽIVÝ
     idp_plan_reset_success: Plán bol úspešne resetovaný
     idp_templates: Šablóny IDP
-    iiht: IIHT
-    iiht_assessment: Hodnotenie IIHT
     import_ai_artifacts: Import AI artefaktov
     import_csv_assessment_group_error: "%{index} riadku: používateľ s e-mailovou adresou %{email} je už pozvaný do skupiny „%{workshopInviteName}“."
     import_csv_error: 'Riadok %{index}: používateľ s e-mailovým %{email} nie je v tejto kampani'
@@ -180,7 +171,6 @@ sk:
     internal: Interný
     invalid_csv_header: CSV súbor obsahuje neplatné hlavičky.
     job_roles: Pracovné pozície
-    lead_assessor_form: Formulár hlavného hodnotiteľa
     learning_from_others: Kolaboratívne učenie [20]
     level: Úroveň
     level_apply: Použiť
@@ -192,10 +182,7 @@ sk:
     licenses: Licencie
     manager_approval_required: Report for %{user} vyžaduje schválenie manažéra pred stiahnutím
     max_value: Maximálna hodnota
-    meeting: Schôdza
     messages: Správy
-    mettl: Mettl
-    mettl_assessment: Hodnotenie Mettl
     mhs: MHS
     mhs_assessment: Hodnotenie MHS
     mhs_assessment_name: Názov hodnotenia MHS
@@ -222,11 +209,8 @@ sk:
     on_the_job: V práci [70]
     only_editable_on_create: Táto možnosť je editovateľná len počas vytvárania.
     options: Možnosti
-    organisational: Prieskumy organizácie
     original_text: Pôvodný text
     participants: Účastníkov
-    pearson: Pearson
-    pearson_assessment: Pearsonovo hodnotenie
     permissions:
       aiArtifacts:
         export: Vývoz
@@ -661,7 +645,6 @@ sk:
     project_number: Číslo projektu
     project_settings: Nastavenia projektu
     projects: Projekty
-    psychometric: Psychometrické
     question_center: Centrum otázok
     questions: Otázky
     reflection_questions: Otázky na zamyslenie
@@ -733,8 +716,6 @@ sk:
     saml_service_provider_updated_date: Aktualizovaný dátum
     saml_service_providers: Poskytovateľov
     saml_settings: SAML nastavenia
-    saville: Saville
-    saville_assessment: Hodnotenie Saville
     scheduling: Plánovanie
     scoring: Bodovania
     scoring_value_info: Skóre musí byť v rozmedzí %{min} a %{max}.
@@ -750,13 +731,9 @@ sk:
     show_submenu: Zobraziť podmenu
     show_translated: Zobraziť preložené
     siem: SIEM
-    simulation: Simulácia
-    simulation_assessment: Simulačné hodnotenie
     skill_aliases: Aliasy zručností
     skills: Zručnosti
     skills_taxonomy: Taxonómia zručností
-    skillvue: Skillvue
-    skillvue_assessment: Hodnotenie zručností
     slot_name: Názov slotu
     sms_histories: História SMS
     sms_invites: SMS pozvánky
@@ -766,7 +743,6 @@ sk:
     subdomain: Subdoména
     subject_part_of_other_invite: Osoba s e-mailovou adresou %{user_email} je už pozvaná na „%{workshop_invite_name}“.
     target_job_role: Cieľová pracovná pozícia
-    threesixty: 360° Kampaň
     tone: Tón
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: Návrh umelej inteligencie
@@ -797,8 +773,6 @@ sk:
     x_axis_interval_label: Interval osi X
     y_axis_interval_label: Interval osi Y
     year: Krajina
-    yoodli: Yoodli
     yoodli_activity_id: Yoodli Activity ID
-    yoodli_assessment: Yoodli hodnotenie
     yoodli_email_id: E-mailové ID kandidáta Yoodli
     yoodli_external_assessment_id: Yoodli Assessment ID

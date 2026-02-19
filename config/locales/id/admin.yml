@@ -18,7 +18,6 @@ id:
     admin_roles: Peran Admin
     admin_updated_successfully: Admin '%{name}' berhasil diperbarui
     admins: Admin
-    agile: LINCAH
     ai_artifacts: Artefak AI
     ai_artifacts_output_schema_key_constraint: Kunci harus dimulai dengan huruf kecil dan hanya dapat berisi huruf kecil, angka, dan garis bawah
     ai_assistant_model_id_label: Model ID
@@ -51,7 +50,6 @@ id:
     assessments_not_mhs: Semua penilaian harus berupa jenis MHS.
     assessments_reports: Penilaian & Laporan
     assessor_dashboard: Dasbor Penilai
-    assessor_form: Formulir Penilai
     assessor_workshops: Pusat Penilaian
     assessors: Asesor
     assistant_toolbar_failed: Gagal menghasilkan output yang valid setelah beberapa kali percobaan.
@@ -92,14 +90,11 @@ id:
     campaign_user_job_roles_cannot_be_same: Posisi pekerjaan yang ditargetkan harus berbeda dari posisi pekerjaan saat ini.
     campaigns: Kampanye
     cancellation_and_rescheduling_disabled: Pembatalan dan Penjadwalan Ulang dinonaktifkan
-    case_study: Studi Kasus
     casual: Santai
     client: Klien Pengguna
     client_admins: Admin Klien
     clients: Klien Pengguna
     code_required: Kode diperlukan
-    common: Penilaian TTE
-    common_assessment: Penilaian TTE
     communication_center: Pusat Komunikasi
     communications: Komunikasi
     completed: Selesai
@@ -148,12 +143,8 @@ id:
     fix_grammar: Perbaiki Tata Bahasa
     formal: Formal
     generate_transcription: Buat Transkrip
-    hogan: Hogan
-    hogan_assessment: LINCAH
     idp_plan_reset_success: Paket telah berhasil diatur ulang
     idp_templates: Template IDP
-    iiht: IIHT
-    iiht_assessment: Penilaian IIHT
     import_ai_artifacts: Impor Artefak AI
     import_csv_assessment_group_error: 'Baris %{index}: Pengguna dengan alamat email %{email} sudah diundang ke ''%{workshopInviteName}'''
     import_csv_error: 'Baris %{index}: pengguna dengan email %{email} tidak ada dalam kampanye ini'
@@ -180,7 +171,6 @@ id:
     internal: Internal
     invalid_csv_header: File CSV berisi header yang tidak valid.
     job_roles: Peran Pekerjaan
-    lead_assessor_form: Formulir Penilai Utama
     learning_from_others: Pembelajaran Kolaboratif [20]
     level: Tingkat
     level_apply: Ajukan
@@ -192,10 +182,7 @@ id:
     licenses: Lisensi
     manager_approval_required: Laporan untuk %{user} memerlukan persetujuan manajer sebelum diunduh
     max_value: Nilai maksimum
-    meeting: Rapat
     messages: Pesan
-    mettl: Mettl
-    mettl_assessment: Penilaian Mettl
     mhs: MHS
     mhs_assessment: Penilaian MHS
     mhs_assessment_name: Nama Penilaian MHS
@@ -222,11 +209,8 @@ id:
     on_the_job: Di Tempat Kerja [70]
     only_editable_on_create: Opsi ini hanya dapat diedit saat sedang dibuat.
     options: Pilihan
-    organisational: Survei Organisasi
     original_text: Teks Asli
     participants: Peserta
-    pearson: Pearson
-    pearson_assessment: Penilaian Pearson
     permissions:
       aiArtifacts:
         export: Ekspor
@@ -661,7 +645,6 @@ id:
     project_number: Nomor Proyek
     project_settings: Pengaturan Proyek
     projects: Proyek
-    psychometric: Psikometrik
     question_center: Pusat Pertanyaan
     questions: Pertanyaan
     reflection_questions: Pertanyaan Refleksi
@@ -733,8 +716,6 @@ id:
     saml_service_provider_updated_date: Tanggal Diperbarui
     saml_service_providers: Penyedia Layanan
     saml_settings: Pengaturan SAML
-    saville: Saville
-    saville_assessment: Penilaian Saville
     scheduling: Penjadwalan
     scoring: Penilaian
     scoring_value_info: Skor harus berada di antara %{min} dan %{max}.
@@ -750,13 +731,9 @@ id:
     show_submenu: Tampilkan Sub Menu
     show_translated: Tampilkan Terjemahan
     siem: SIEM
-    simulation: Simulasi
-    simulation_assessment: Penilaian Simulasi
     skill_aliases: Alias Keterampilan
     skills: Keterampilan
     skills_taxonomy: Taksonomi Keterampilan
-    skillvue: Keterampilan
-    skillvue_assessment: Penilaian Skillvue
     slot_name: Nama Slot
     sms_histories: Riwayat SMS
     sms_invites: Undangan SMS
@@ -766,7 +743,6 @@ id:
     subdomain: Subdomain
     subject_part_of_other_invite: Subjek dengan alamat email %{user_email} sudah diundang ke '%{workshop_invite_name}'
     target_job_role: Posisi Pekerjaan yang Dituju
-    threesixty: Kampanye 360
     tone: Nada
     toolbar_ai_insight: Wawasan Kecerdasan Buatan
     toolbar_ai_suggestion: Saran AI
@@ -797,8 +773,6 @@ id:
     x_axis_interval_label: Interval Sumbu X
     y_axis_interval_label: Interval Sumbu Y
     year: Negara
-    yoodli: Yoodli
     yoodli_activity_id: ID Aktivitas Yoodli
-    yoodli_assessment: Penilaian Yoodli
     yoodli_email_id: ID Email Kandidat Yoodli
     yoodli_external_assessment_id: ID Penilaian Yoodli

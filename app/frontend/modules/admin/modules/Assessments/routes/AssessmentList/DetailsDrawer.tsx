@@ -78,10 +78,11 @@ export const DetailsDrawer: FC<Props> = ({
             {assessment.owner?.name}
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('common.column.type')} key="type" className="va-t">
-            {I18n.t(`admin.${assessment.type}`)}
+            {assessment.type === 'mhs' ? I18n.t('admin.mhs') : I18n.t(`assessments.fields.type.${assessment.type}`)}
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('common.column.category')} key="category" className="va-t">
-            {I18n.t(`admin.${assessment.category}`)}
+            {assessment.category === 'mhs'
+              ? I18n.t('admin.mhs') : I18n.t(`assessments.fields.category.${assessment.category}`)}
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('common.column.updated_at')} key="updated_at" className="va-t">
             {assessment.updatedAt}

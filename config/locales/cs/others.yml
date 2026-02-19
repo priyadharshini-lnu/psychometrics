@@ -1095,9 +1095,36 @@ cs:
       title: Podrobnosti o hodnocení
     edit: Upravit
     fields:
+      category:
+        agile: AGILE
+        assessor_form: Formulář hodnotitele
+        case_study: Případové studie
+        hogan: Hogan
+        iiht: IIHT
+        lead_assessor_form: Formulář vedoucího hodnotitele
+        meeting: Setkání
+        mettl: Mettl
+        organisational: Org Průzkumy
+        pearson: Pearson
+        psychometric: Psychometrické údaje
+        saville: Saville
+        simulation: Simulace
+        skillvue: Skillvue
+        threesixty: kampaň 360
+        yoodli: Yoodli
       status:
         finished: Dokončeno
         in_progress: Probíhá
+      type:
+        common: Hodnocení TTE
+        hogan: Hogan
+        iiht: Hodnocení IIHT
+        mettl: Hodnocení Mettl
+        pearson: Hodnocení Pearson
+        saville: Hodnocení Saville
+        simulation: Hodnocení simulací
+        skillvue: Hodnocení dovedností
+        yoodli: Yoodliho hodnocení
     flow:
       end_assessment_modal:
         custom_message: Vlastní zpráva o ukončení hodnocení
@@ -3253,6 +3280,13 @@ cs:
     fields:
       provider:
         custom_upload: Vlastní nahrávání
+        hogan: Hogan
+        internal: Interní
+        mettl: Mettl
+        pearson: Pearson
+        saville: Saville
+        skillvue: Skillvue
+        yoodli: Yoodli
     form:
       load_from_mettl: Zatížení od Mettl
       load_from_pearson: Zatížení od společnosti Pearson
