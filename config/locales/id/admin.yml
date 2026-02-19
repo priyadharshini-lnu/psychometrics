@@ -127,9 +127,9 @@ id:
     enable_enhance_with_ai_client_level: Silakan aktifkan fitur "Enhance with AI" di tingkat klien.
     enable_maintenance: Aktifkan Pemeliharaan
     enable_transcription: Aktifkan Transkripsi
-    enhance_with_ai: Perkuat dengan AI
     end_time: Waktu Akhir
     end_time_must_be_after_start_time: Waktu akhir harus setelah waktu mulai.
+    enhance_with_ai: Perkuat dengan AI
     enhance_with_ai_requires_ai_assistants: Untuk menggunakan fitur Peningkatan dengan AI, fitur Asisten AI harus diaktifkan.
     error: Kesalahan
     evaluation_status: Status Evaluasi
@@ -641,9 +641,9 @@ id:
     permissions_360_campaigns: Izin khusus untuk kampanye 360
     piped_text: Teks yang disalurkan
     privacy: Privasi
+    proctoring: Pengawasan
     professional: Profesional
     proficiency: Kemahiran
-    proctoring: Pengawasan
     proficiency_level: Kunci API
     proficiency_levels: Tingkat Kemahiran
     profile_details: Detail profil
@@ -753,8 +753,8 @@ id:
     subdomain: Subdomain
     subject_part_of_other_invite: Subjek dengan alamat email %{user_email} sudah diundang ke '%{workshop_invite_name}'
     target_job_role: Posisi Pekerjaan yang Dituju
-    tone: Nada
     timezone: Zona Waktu
+    tone: Nada
     toolbar_ai_insight: Wawasan Kecerdasan Buatan
     toolbar_ai_suggestion: Saran AI
     toolbar_result_generating: Sedang diproses...

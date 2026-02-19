@@ -127,9 +127,9 @@ nl:
     enable_enhance_with_ai_client_level: Schakel de functie Verbeteren met AI in op klantniveau.
     enable_maintenance: Onderhoud inschakelen
     enable_transcription: Transcriptie inschakelen
-    enhance_with_ai: Verbeter met AI
     end_time: Eindtijd
     end_time_must_be_after_start_time: De eindtijd moet na de starttijd liggen.
+    enhance_with_ai: Verbeter met AI
     enhance_with_ai_requires_ai_assistants: Verbeteren met AI vereist dat de functie AI-assistenten is ingeschakeld.
     error: Fout
     evaluation_status: Evaluatiestatus
@@ -641,9 +641,9 @@ nl:
     permissions_360_campaigns: Rechten specifiek voor 360 campagnes
     piped_text: Tekst in pijpen
     privacy: Privacy
+    proctoring: Toezicht houden
     professional: Professioneel
     proficiency: Vaardigheid
-    proctoring: Toezicht houden
     proficiency_level: API-sleutels
     proficiency_levels: Vaardigheidsniveaus
     profile_details: Profielgegevens
@@ -753,8 +753,8 @@ nl:
     subdomain: Subdomein
     subject_part_of_other_invite: De persoon met e-mailadres %{user_email} is al uitgenodigd voor '%{workshop_invite_name}'.
     target_job_role: Beoogde functie
-    tone: Toon
     timezone: Tijdzone
+    tone: Toon
     toolbar_ai_insight: AI-inzicht
     toolbar_ai_suggestion: AI-suggestie
     toolbar_result_generating: Bezig met genereren...

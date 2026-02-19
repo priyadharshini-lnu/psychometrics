@@ -127,9 +127,9 @@ es-ES:
     enable_enhance_with_ai_client_level: Habilite la función Mejorar con IA a nivel de cliente.
     enable_maintenance: Habilitar mantenimiento
     enable_transcription: Habilitar transcripción
-    enhance_with_ai: Mejora con IA
     end_time: Hora de finalización
     end_time_must_be_after_start_time: La hora de finalización debe ser posterior a la hora de inicio.
+    enhance_with_ai: Mejora con IA
     enhance_with_ai_requires_ai_assistants: Para mejorar con IA, es necesario habilitar la función Asistentes de IA.
     error: Error
     evaluation_status: Estado de evaluación
@@ -641,9 +641,9 @@ es-ES:
     permissions_360_campaigns: Permisos específicos para campañas 360
     piped_text: Texto canalizado
     privacy: Privacidad
+    proctoring: Supervisión
     professional: Profesional
     proficiency: Competencia
-    proctoring: Supervisión
     proficiency_level: Claves API
     proficiency_levels: Niveles de competencia
     profile_details: Detalles del perfil
@@ -753,8 +753,8 @@ es-ES:
     subdomain: Subdominio
     subject_part_of_other_invite: El destinatario con la dirección de correo electrónico %{user_email} ya ha sido invitado a «%{workshop_invite_name}».
     target_job_role: Puesto de trabajo objetivo
-    tone: Tono
     timezone: Zona horaria
+    tone: Tono
     toolbar_ai_insight: Perspectiva sobre la IA
     toolbar_ai_suggestion: Sugerencia de IA
     toolbar_result_generating: Generando...

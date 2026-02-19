@@ -127,9 +127,9 @@ th:
     enable_enhance_with_ai_client_level: โปรดเปิดใช้งานฟีเจอร์เพิ่มประสิทธิภาพด้วย AI ที่ระดับลูกค้า
     enable_maintenance: เปิดใช้งานการบำรุงรักษา
     enable_transcription: เปิดใช้งานการถอดเสียง
-    enhance_with_ai: เพิ่มประสิทธิภาพด้วย AI
     end_time: เวลาสิ้นสุด
     end_time_must_be_after_start_time: เวลาสิ้นสุดต้องเป็นหลังจากเวลาเริ่มต้น
+    enhance_with_ai: เพิ่มประสิทธิภาพด้วย AI
     enhance_with_ai_requires_ai_assistants: การเพิ่มประสิทธิภาพด้วย AI ต้องเปิดใช้งานฟีเจอร์ผู้ช่วย AI
     error: ข้อผิดพลาด
     evaluation_status: สถานะการประเมิน
@@ -641,9 +641,9 @@ th:
     permissions_360_campaigns: สิทธิ์เฉพาะสําหรับแคมเปญ 360 องศา
     piped_text: ข้อความที่จัดรูปแบบ
     privacy: ความเป็นส่วนตัว
+    proctoring: การคุมสอบ
     professional: มืออาชีพ
     proficiency: ความชำนาญ
-    proctoring: การคุมสอบ
     proficiency_level: กุญแจ API
     proficiency_levels: ระดับความสามารถ
     profile_details: รายละเอียดโปรไฟล์
@@ -753,8 +753,8 @@ th:
     subdomain: โดเมนย่อย
     subject_part_of_other_invite: หัวข้อพร้อมอีเมล %{user_email} ได้รับเชิญแล้วสำหรับ '%{workshop_invite_name}'
     target_job_role: ตำแหน่งงานเป้าหมาย
-    tone: โทน
     timezone: เขตเวลา
+    tone: โทน
     toolbar_ai_insight: AI อินไซต์
     toolbar_ai_suggestion: คำแนะนำจาก AI
     toolbar_result_generating: กำลังสร้าง...

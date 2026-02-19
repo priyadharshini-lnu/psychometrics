@@ -50,7 +50,6 @@ ja:
     last_name: 姓
     learning_on_the_job_label: 現場での学び
     login: ログイン
-    media_responses: メディアの反応
     maintenance_in_hours: "%{hours} 時間"
     maintenance_in_minutes: "%{minutes} 議事録"
     maintenance_in_progress_description: プラットフォームの最適なパフォーマンスを確保し、お客様の体験を向上させるため、現在システムメンテナンスを実施しております。ご理解いただきありがとうございます。
@@ -59,6 +58,7 @@ ja:
     maintenance_upcoming_description: "%{date} では、ご利用体験の向上を目的として、約 %{duration} の間、定期メンテナンスを実施いたします。この間、割り当てられたタスクへのアクセスや完了はできません。ご不便をおかけしますが、何卒ご了承ください。"
     maintenance_upcoming_title: 今後のメンテナンス
     media_question_transcriptions: メディア質問の文字起こし
+    media_responses: メディアの反応
     modified_by: 変更者
     modified_date: 変更日
     more_actions: より多くの行動

@@ -127,9 +127,9 @@ de:
     enable_enhance_with_ai_client_level: Bitte aktivieren Sie die Funktion „Mit KI verbessern“ auf Client-Ebene.
     enable_maintenance: Wartung aktivieren
     enable_transcription: Transkription aktivieren
-    enhance_with_ai: Mit KI verbessern
     end_time: Endzeit
     end_time_must_be_after_start_time: Die Endzeit muss nach der Startzeit liegen.
+    enhance_with_ai: Mit KI verbessern
     enhance_with_ai_requires_ai_assistants: Für „Mit KI verbessern“ muss die Funktion „KI-Assistenten“ aktiviert sein.
     error: Fehler
     evaluation_status: Bewertungsstatus
@@ -641,9 +641,9 @@ de:
     permissions_360_campaigns: Spezifische Genehmigungen für 360-Kampagnen
     piped_text: Eingebetteter Text
     privacy: Datenschutz
+    proctoring: Aufsicht
     professional: Fachmann
     proficiency: Kompetenz
-    proctoring: Aufsicht
     proficiency_level: API-Schlüssel
     proficiency_levels: Leistungsniveaus
     profile_details: Profil-Details
@@ -753,8 +753,8 @@ de:
     subdomain: Subdomain
     subject_part_of_other_invite: Der Absender der E-Mail %{user_email} wurde bereits zu „%{workshop_invite_name}” eingeladen.
     target_job_role: Zielposition
-    tone: Ton
     timezone: Zeitzone
+    tone: Ton
     toolbar_ai_insight: KI-Einblick
     toolbar_ai_suggestion: KI-Vorschlag
     toolbar_result_generating: Generieren...

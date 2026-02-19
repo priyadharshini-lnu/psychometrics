@@ -127,9 +127,9 @@ sl:
     enable_enhance_with_ai_client_level: Omogočite funkcijo Izboljšaj z AI na ravni odjemalca.
     enable_maintenance: Omogoči vzdrževanje
     enable_transcription: Omogoči prepis
-    enhance_with_ai: Izboljšajte z umetno inteligenco
     end_time: Konec časa
     end_time_must_be_after_start_time: Končni čas mora biti po začetnem času.
+    enhance_with_ai: Izboljšajte z umetno inteligenco
     enhance_with_ai_requires_ai_assistants: Za izboljšanje z umetno inteligenco je treba omogočiti funkcijo AI Assistants.
     error: Napaka
     evaluation_status: Status ocenjevanja
@@ -641,9 +641,9 @@ sl:
     permissions_360_campaigns: Dovoljenja za oglaševalske akcije 360
     piped_text: Besedilo v cevi
     privacy: Zasebnost
+    proctoring: Nadzorovanje
     professional: Profesionalni
     proficiency: Usposobljenost
-    proctoring: Nadzorovanje
     proficiency_level: Ključi API-ja
     proficiency_levels: Ravni strokovnosti
     profile_details: Podrobnosti profila
@@ -753,8 +753,8 @@ sl:
     subdomain: Poddomena
     subject_part_of_other_invite: Oseba z e-poštnim naslovom %{user_email} je že povabljena na »%{workshop_invite_name}«.
     target_job_role: Ciljna delovna vloga
-    tone: Ton
     timezone: Časovni pas
+    tone: Ton
     toolbar_ai_insight: Vpogled v umetno inteligenco
     toolbar_ai_suggestion: Predlog AI
     toolbar_result_generating: Ustvarjanje...

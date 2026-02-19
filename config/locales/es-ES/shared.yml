@@ -50,7 +50,6 @@ es-ES:
     last_name: Apellido(s)
     learning_on_the_job_label: Aprendizaje sobre el terreno
     login: Iniciar sesión
-    media_responses: Respuestas de los medios de comunicación
     maintenance_in_hours: "%{hours} horas"
     maintenance_in_minutes: "%{minutes} minutos"
     maintenance_in_progress_description: Actualmente estamos realizando tareas de mantenimiento del sistema para garantizar un rendimiento óptimo de la plataforma y mejorar su experiencia. Gracias por su comprensión.
@@ -59,6 +58,7 @@ es-ES:
     maintenance_upcoming_description: Realizaremos un mantenimiento programado en %{date} durante aproximadamente %{duration} para mejorar su experiencia. Durante este tiempo, no podrá acceder ni completar ninguna tarea asignada. Agradecemos su paciencia.
     maintenance_upcoming_title: Próximo mantenimiento
     media_question_transcriptions: Transcripciones de preguntas de los medios de comunicación
+    media_responses: Respuestas de los medios de comunicación
     modified_by: Modificado por
     modified_date: Fecha de modificación
     more_actions: Más acciones

@@ -127,9 +127,9 @@ hi:
     enable_enhance_with_ai_client_level: कृपया क्लाइंट स्तर पर एआई के साथ एनहेंस सुविधा सक्षम करें।
     enable_maintenance: रखरखाव सक्षम करें
     enable_transcription: प्रतिलेखन सक्षम करें
-    enhance_with_ai: एआई से बेहतर बनाएँ
     end_time: अंत समय
     end_time_must_be_after_start_time: अंतिम समय प्रारंभ समय के बाद होना चाहिए।
+    enhance_with_ai: एआई से बेहतर बनाएँ
     enhance_with_ai_requires_ai_assistants: AI के साथ बढ़ाएँ के लिए AI सहायक सुविधा सक्षम होना आवश्यक है।
     error: त्रुटि
     evaluation_status: मूल्यांकन स्थिति
@@ -641,9 +641,9 @@ hi:
     permissions_360_campaigns: 360 अभियानों के लिए विशिष्ट अनुमतियाँ
     piped_text: पाइप्ड टेक्स्ट
     privacy: गोपनीयता
+    proctoring: निगरानी
     professional: पेशेवर
     proficiency: निपुणता
-    proctoring: निगरानी
     proficiency_level: प्रवीणता स्तर
     proficiency_levels: प्रवीणता स्तर
     profile_details: प्रोफ़ाइल विवरण
@@ -753,8 +753,8 @@ hi:
     subdomain: उप-डोमेन
     subject_part_of_other_invite: "%{user_email} ईमेल वाले विषय को पहले ही '%{workshop_invite_name}' में आमंत्रित किया जा चुका है।"
     target_job_role: लक्षित नौकरी की भूमिका
-    tone: स्वर
     timezone: समय क्षेत्र
+    tone: स्वर
     toolbar_ai_insight: एआई अंतर्दृष्टि
     toolbar_ai_suggestion: एआई सुझाव
     toolbar_result_generating: उत्पादित हो रहा है...

@@ -50,7 +50,6 @@ hu:
     last_name: Vezetéknév
     learning_on_the_job_label: Tanulás munka közben
     login: Bejelentkezés
-    media_responses: Média reakciók
     maintenance_in_hours: "%{hours} órák"
     maintenance_in_minutes: "%{minutes} percek"
     maintenance_in_progress_description: Jelenleg rendszerkarbantartást végzünk a platform optimális teljesítményének biztosítása és az Ön felhasználói élményének javítása érdekében. Megértésüket köszönjük.
@@ -59,6 +58,7 @@ hu:
     maintenance_upcoming_description: A %{date} webhelyen körülbelül %{duration} időtartamra tervezett karbantartási munkálatokat végzünk, hogy javítsuk az Ön felhasználói élményét. Ez idő alatt nem fog tudni hozzáférni a hozzárendelt feladatokhoz, és azokat nem fogja tudni elvégezni. Türelmét köszönjük.
     maintenance_upcoming_title: Közelgő karbantartás
     media_question_transcriptions: Média kérdések átirata
+    media_responses: Média reakciók
     modified_by: Módosította
     modified_date: Módosítás dátuma
     more_actions: További műveletek

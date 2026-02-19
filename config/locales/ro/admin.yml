@@ -127,9 +127,9 @@ ro:
     enable_enhance_with_ai_client_level: Vă rugăm să activați funcția Îmbunătățire cu AI la nivel de client.
     enable_maintenance: Activați întreținerea
     enable_transcription: Activați transcrierea
-    enhance_with_ai: Îmbunătățiți cu AI
     end_time: Ora de încheiere
     end_time_must_be_after_start_time: Ora de încheiere trebuie să fie după ora de începere
+    enhance_with_ai: Îmbunătățiți cu AI
     enhance_with_ai_requires_ai_assistants: Pentru a îmbunătăți cu AI, este necesar să fie activată funcția Asistenți AI.
     error: Eroare
     evaluation_status: Stare de evaluare
@@ -641,9 +641,9 @@ ro:
     permissions_360_campaigns: Permisiuni specifice campaniilor 360
     piped_text: Text încadrat
     privacy: Intimitate
+    proctoring: Supravegherea
     professional: Profesional
     proficiency: Competență
-    proctoring: Supravegherea
     proficiency_level: Chei API
     proficiency_levels: Niveluri de competență
     profile_details: Detalii profil
@@ -753,8 +753,8 @@ ro:
     subdomain: Subdomeniu
     subject_part_of_other_invite: Persoana cu adresa de e-mail %{user_email} este deja invitată la „%{workshop_invite_name}”.
     target_job_role: Postul vizat
-    tone: Ton
     timezone: Fus orar
+    tone: Ton
     toolbar_ai_insight: Perspectivă AI
     toolbar_ai_suggestion: Sugestie AI
     toolbar_result_generating: Se generează...

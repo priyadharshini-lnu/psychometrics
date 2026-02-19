@@ -50,7 +50,6 @@ th:
     last_name: นามสกุล
     learning_on_the_job_label: การเรียนรู้ในการทํางาน
     login: เข้าสู่ระบบ
-    media_responses: การตอบสนองของสื่อ
     maintenance_in_hours: "%{hours} ชั่วโมง"
     maintenance_in_minutes: "%{minutes} นาที"
     maintenance_in_progress_description: ขณะนี้เรากำลังดำเนินการบำรุงรักษาระบบเพื่อให้แน่ใจว่าระบบมีประสิทธิภาพสูงสุดและเพื่อปรับปรุงประสบการณ์การใช้งานของคุณ ขอขอบคุณสำหรับความเข้าใจของคุณ
@@ -59,6 +58,7 @@ th:
     maintenance_upcoming_description: เราจะทำการบำรุงรักษาตามกำหนดเวลาที่ %{date} เป็นเวลาประมาณ %{duration} เพื่อปรับปรุงประสบการณ์การใช้งานของคุณ ในระหว่างนี้ คุณจะไม่สามารถเข้าถึงหรือดำเนินการงานที่ได้รับมอบหมายใดๆ ได้ เราขอขอบคุณสำหรับความอดทนของคุณ
     maintenance_upcoming_title: การบำรุงรักษาที่กำลังจะมาถึง
     media_question_transcriptions: ถอดความคำถามจากสื่อ
+    media_responses: การตอบสนองของสื่อ
     modified_by: แก้ไขโดย
     modified_date: วันที่แก้ไข
     more_actions: การดําเนินการเพิ่มเติม

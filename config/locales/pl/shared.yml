@@ -50,7 +50,6 @@ pl:
     last_name: Nazwisko
     learning_on_the_job_label: Nauka w pracy
     login: Logowanie
-    media_responses: Reakcje mediów
     maintenance_in_hours: "%{hours} godziny"
     maintenance_in_minutes: "%{minutes} protokoły"
     maintenance_in_progress_description: Obecnie przeprowadzamy konserwację systemu, aby zapewnić optymalną wydajność platformy i poprawić komfort użytkowania. Dziękujemy za zrozumienie.
@@ -59,6 +58,7 @@ pl:
     maintenance_upcoming_description: W celu poprawy jakości usług serwis %{date} będzie poddany planowej konserwacji przez około %{duration}. W tym czasie nie będzie można uzyskać dostępu do serwisu ani wykonać żadnych przypisanych zadań. Dziękujemy za cierpliwość.
     maintenance_upcoming_title: Nadchodząca konserwacja
     media_question_transcriptions: Transkrypcje pytań mediów
+    media_responses: Reakcje mediów
     modified_by: Zmodyfikowane przez
     modified_date: Data modyfikacji
     more_actions: Więcej akcji

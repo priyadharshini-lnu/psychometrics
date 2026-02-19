@@ -127,9 +127,9 @@ sk:
     enable_enhance_with_ai_client_level: Aktivujte funkciu Vylepšiť pomocou AI na úrovni klienta.
     enable_maintenance: Povoliť údržbu
     enable_transcription: Povoliť prepis
-    enhance_with_ai: Vylepšite pomocou umelej inteligencie
     end_time: Koniec času
     end_time_must_be_after_start_time: Koniec času musí byť po začiatku času
+    enhance_with_ai: Vylepšite pomocou umelej inteligencie
     enhance_with_ai_requires_ai_assistants: Funkcia Vylepšiť pomocou AI vyžaduje, aby bola povolená funkcia AI asistenti.
     error: Chyba
     evaluation_status: Stav hodnotenia
@@ -641,9 +641,9 @@ sk:
     permissions_360_campaigns: Povolenia špecifické pre 360° kampane
     piped_text: Text v potrubí
     privacy: Súkromie
+    proctoring: Dohliadanie
     professional: Profesionálny
     proficiency: Zručnosť
-    proctoring: Dohliadanie
     proficiency_level: Kľúče API
     proficiency_levels: Úrovne odbornosti
     profile_details: Podrobnosti o profile
@@ -753,8 +753,8 @@ sk:
     subdomain: Subdoména
     subject_part_of_other_invite: Osoba s e-mailovou adresou %{user_email} je už pozvaná na „%{workshop_invite_name}“.
     target_job_role: Cieľová pracovná pozícia
-    tone: Tón
     timezone: Časové pásmo
+    tone: Tón
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: Návrh umelej inteligencie
     toolbar_result_generating: Generovanie...

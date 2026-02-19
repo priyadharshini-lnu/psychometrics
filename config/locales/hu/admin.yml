@@ -127,9 +127,9 @@ hu:
     enable_enhance_with_ai_client_level: Kérjük, engedélyezze az AI-vel történő fejlesztés funkciót ügyfélszinten.
     enable_maintenance: Karbantartás engedélyezése
     enable_transcription: Feliratozás engedélyezése
-    enhance_with_ai: Fejlesztés mesterséges intelligenciával
     end_time: Végidő
     end_time_must_be_after_start_time: A befejezési időnek a kezdési idő után kell lennie.
+    enhance_with_ai: Fejlesztés mesterséges intelligenciával
     enhance_with_ai_requires_ai_assistants: Az AI-val történő fejlesztéshez engedélyezni kell az AI-asszisztensek funkciót.
     error: Hiba
     evaluation_status: Értékelési állapot
@@ -641,9 +641,9 @@ hu:
     permissions_360_campaigns: 360°-os kampányokra vonatkozó engedélyek
     piped_text: Csővezetékes szöveg
     privacy: Adatvédelem
+    proctoring: Felügyelet
     professional: Professzionális
     proficiency: Jártasság
-    proctoring: Felügyelet
     proficiency_level: API-kulcsok
     proficiency_levels: Tudásszintek
     profile_details: Profil részletei
@@ -753,8 +753,8 @@ hu:
     subdomain: Aldomain
     subject_part_of_other_invite: Az e-mail címmel %{user_email} rendelkező személy már meghívást kapott a „%{workshop_invite_name}” rendezvényre.
     target_job_role: Célkitűzés
-    tone: Hangszín
     timezone: Időzóna
+    tone: Hangszín
     toolbar_ai_insight: AI betekintés
     toolbar_ai_suggestion: AI javaslat
     toolbar_result_generating: Generálás...

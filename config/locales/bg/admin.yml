@@ -127,9 +127,9 @@ bg:
     enable_enhance_with_ai_client_level: Моля, активирайте функцията „Подобрение с AI“ на ниво клиент.
     enable_maintenance: Активиране на поддръжка
     enable_transcription: Активиране на транскрипция
-    enhance_with_ai: Подобрете с AI
     end_time: Край на времето
     end_time_must_be_after_start_time: Крайното време трябва да е след началната дата
+    enhance_with_ai: Подобрете с AI
     enhance_with_ai_requires_ai_assistants: За да използвате функцията „Подобрение с AI“, трябва да активирате функцията „AI асистенти“.
     error: Грешка
     evaluation_status: Статус на оценката
@@ -641,9 +641,9 @@ bg:
     permissions_360_campaigns: Разрешения, специфични за кампании в 360
     piped_text: Текст в тръба
     privacy: Поверителност
+    proctoring: Прокторант
     professional: Професионален
     proficiency: Умения
-    proctoring: Прокторант
     proficiency_level: API ключове
     proficiency_levels: Нива на владеене
     profile_details: Детайли за профила
@@ -753,8 +753,8 @@ bg:
     subdomain: Поддомейн
     subject_part_of_other_invite: Получателят на имейла %{user_email} вече е поканен на „%{workshop_invite_name}”
     target_job_role: Целева длъжност
-    tone: Тон
     timezone: Часова зона
+    tone: Тон
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: Предложение за изкуствен интелект
     toolbar_result_generating: Генериране...

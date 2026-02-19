@@ -50,7 +50,6 @@ hr:
     last_name: Prezime
     learning_on_the_job_label: Učenje na poslu
     login: Prijava
-    media_responses: Odgovori medija
     maintenance_in_hours: "%{hours} sati"
     maintenance_in_minutes: "%{minutes} minute"
     maintenance_in_progress_description: Trenutno obavljamo održavanje sustava kako bismo osigurali optimalne performanse platforme i poboljšali vaše iskustvo. Hvala na razumijevanju.
@@ -59,6 +58,7 @@ hr:
     maintenance_upcoming_description: Obavit ćemo planirano održavanje na %{date}u otprilike od %{duration} do  kako bismo poboljšali vaše iskustvo. Tijekom tog razdoblja nećete moći pristupiti niti dovršiti nijedan dodijeljeni zadatak. Cijenimo vaše strpljenje.
     maintenance_upcoming_title: Nadolazeće održavanje
     media_question_transcriptions: Transkripti medijskih pitanja
+    media_responses: Odgovori medija
     modified_by: Autor izmjene
     modified_date: Datum izmjene
     more_actions: Više radnji

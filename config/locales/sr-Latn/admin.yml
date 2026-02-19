@@ -127,9 +127,9 @@ sr-Latn:
     enable_enhance_with_ai_client_level: Молимо омогућите функцију Enhance with AI на нивоу клијента.
     enable_maintenance: Омогући одржавање
     enable_transcription: Омогући транскрипцију
-    enhance_with_ai: Унапредите помоћу вештачке интелигенције
     end_time: Кrajње време
     end_time_must_be_after_start_time: Крајње време мора бити након почетног времена
+    enhance_with_ai: Унапредите помоћу вештачке интелигенције
     enhance_with_ai_requires_ai_assistants: Побољшање помоћу вештачке интелигенције захтева да је омогућена функција AI Assistants.
     error: Грешка
     evaluation_status: Status evaluacije
@@ -641,9 +641,9 @@ sr-Latn:
     permissions_360_campaigns: Dozvole specifične za 360 kampanje
     piped_text: Текст у цевководу
     privacy: Privatnosti
+    proctoring: Надгледање
     professional: Професионални
     proficiency: Владање
-    proctoring: Надгледање
     proficiency_level: API ključevi
     proficiency_levels: Nivoi stručnosti
     profile_details: Detalji profila
@@ -753,8 +753,8 @@ sr-Latn:
     subdomain: Poddomen
     subject_part_of_other_invite: Корисник са адресом електронске поште %{user_email} већ је позван на '%{workshop_invite_name}'
     target_job_role: Циљна радна улога
-    tone: Тон
     timezone: Временска зона
+    tone: Тон
     toolbar_ai_insight: Увид вештачке интелигенције
     toolbar_ai_suggestion: Предлог вештачке интелигенције
     toolbar_result_generating: Генерисање...

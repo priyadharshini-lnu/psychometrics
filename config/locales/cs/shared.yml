@@ -50,7 +50,6 @@ cs:
     last_name: Příjmení
     learning_on_the_job_label: Učení se přímo v práci
     login: Přihlášení
-    media_responses: Reakce médií
     maintenance_in_hours: "%{hours} hodiny"
     maintenance_in_minutes: "%{minutes} zápisy"
     maintenance_in_progress_description: V současné době provádíme údržbu systému, abychom zajistili optimální výkon platformy a vylepšili vaše uživatelské zkušenosti. Děkujeme za pochopení.
@@ -59,6 +58,7 @@ cs:
     maintenance_upcoming_description: Budeme provádět plánovanou údržbu na %{date} po dobu přibližně %{duration}, abychom vylepšili vaše uživatelské prostředí. Během této doby nebudete moci přistupovat k žádným přiděleným úkolům ani je dokončovat. Děkujeme za vaši trpělivost.
     maintenance_upcoming_title: Nadcházející údržba
     media_question_transcriptions: Přepisy otázek médií
+    media_responses: Reakce médií
     modified_by: Upraveno podle
     modified_date: Datum úpravy
     more_actions: Další akce

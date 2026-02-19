@@ -127,9 +127,9 @@ hr:
     enable_enhance_with_ai_client_level: Molimo omogućite značajku Enhance with AI na razini klijenta.
     enable_maintenance: Omogući održavanje
     enable_transcription: Omogući transkripciju
-    enhance_with_ai: Unaprijedite pomoću umjetne inteligencije
     end_time: Kraj vremena
     end_time_must_be_after_start_time: Krajnje vrijeme mora biti nakon početnog vremena.
+    enhance_with_ai: Unaprijedite pomoću umjetne inteligencije
     enhance_with_ai_requires_ai_assistants: Za poboljšanje pomoću AI-ja potrebna je omogućena značajka AI asistenti.
     error: Greška
     evaluation_status: Status evaluacije
@@ -641,9 +641,9 @@ hr:
     permissions_360_campaigns: Dopuštenja specifična za kampanje višesmjerne procjene
     piped_text: Tekst u cijevima
     privacy: Privatnost
+    proctoring: Nadzor
     professional: Stručan
     proficiency: Sposobnost
-    proctoring: Nadzor
     proficiency_level: API ključevi
     proficiency_levels: Razine stručnosti
     profile_details: Detalji profila
@@ -753,8 +753,8 @@ hr:
     subdomain: Poddomena
     subject_part_of_other_invite: Subjekt s e-poštom %{user_email} već je pozvan na '%{workshop_invite_name}'
     target_job_role: Ciljana radna uloga
-    tone: Ton
     timezone: Vremenska zona
+    tone: Ton
     toolbar_ai_insight: Uvid u umjetnu inteligenciju
     toolbar_ai_suggestion: Prijedlog AI-a
     toolbar_result_generating: Generiranje...

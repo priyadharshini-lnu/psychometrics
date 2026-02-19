@@ -127,9 +127,9 @@ ru:
     enable_enhance_with_ai_client_level: Пожалуйста, включите функцию «Улучшение с помощью ИИ» на уровне клиента.
     enable_maintenance: Включить обслуживание
     enable_transcription: Включить транскрипцию
-    enhance_with_ai: Улучшайте с помощью ИИ
     end_time: Конец времени
     end_time_must_be_after_start_time: Время окончания должно быть позже времени начала
+    enhance_with_ai: Улучшайте с помощью ИИ
     enhance_with_ai_requires_ai_assistants: Для улучшения с помощью ИИ необходимо включить функцию «ИИ-помощники».
     error: Ошибка
     evaluation_status: Статус оценки
@@ -642,9 +642,9 @@ ru:
     permissions_360_campaigns: Разрешения, специфичные для кампаний 360
     piped_text: Текст в трубе
     privacy: Конфиденциальность
+    proctoring: Прокторинг
     professional: Профессиональный
     proficiency: Профессионализм
-    proctoring: Прокторинг
     proficiency_level: Уровень владения языком
     proficiency_levels: Уровни владения языком
     profile_details: Детали профиля
@@ -754,8 +754,8 @@ ru:
     subdomain: Субдомен
     subject_part_of_other_invite: Участник с адресом электронной почты %{user_email} уже приглашен в «%{workshop_invite_name}».
     target_job_role: Целевая должность
-    tone: Тон
     timezone: Часовой пояс
+    tone: Тон
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: Предложение ИИ
     toolbar_result_generating: Генерирование...

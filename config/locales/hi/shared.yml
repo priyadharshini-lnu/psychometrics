@@ -50,7 +50,6 @@ hi:
     last_name: आखिरी नाम
     learning_on_the_job_label: काम करते हुए सीखना
     login: लॉगिन
-    media_responses: मीडिया की प्रतिक्रियाएँ
     maintenance_in_hours: "%{hours} घंटे"
     maintenance_in_minutes: "%{minutes} मिनट"
     maintenance_in_progress_description: हम वर्तमान में प्लेटफ़ॉर्म के सर्वोत्तम प्रदर्शन को सुनिश्चित करने और आपके अनुभव को बेहतर बनाने के लिए सिस्टम रखरखाव कर रहे हैं। आपकी समझदारी के लिए धन्यवाद।
@@ -59,6 +58,7 @@ hi:
     maintenance_upcoming_description: हम आपके अनुभव को बेहतर बनाने के लिए %{date} पर लगभग %{duration} तक निर्धारित रखरखाव करेंगे। इस दौरान आप किसी भी सौंपे गए कार्य तक पहुँच या उन्हें पूरा नहीं कर पाएँगे। हम आपके धैर्य की सराहना करते हैं।
     maintenance_upcoming_title: आगामी रखरखाव
     media_question_transcriptions: मीडिया प्रश्न प्रतिलेखन
+    media_responses: मीडिया की प्रतिक्रियाएँ
     modified_by: द्वारा संशोधित
     modified_date: संशोधित तिथि
     more_actions: अधिक क्रियाएँ

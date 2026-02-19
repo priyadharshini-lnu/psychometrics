@@ -50,7 +50,6 @@ de:
     last_name: Familienname, Nachname
     learning_on_the_job_label: Lernen am Arbeitsplatz
     login: Anmelden
-    media_responses: Medienreaktionen
     maintenance_in_hours: "%{hours} Stunden"
     maintenance_in_minutes: "%{minutes} Protokolle"
     maintenance_in_progress_description: Wir führen derzeit Systemwartungsarbeiten durch, um eine optimale Plattformleistung zu gewährleisten und Ihr Erlebnis zu verbessern. Vielen Dank für Ihr Verständnis.
@@ -59,6 +58,7 @@ de:
     maintenance_upcoming_description: Wir führen planmäßige Wartungsarbeiten an %{date} für etwa %{duration} durch, um Ihre Benutzererfahrung zu verbessern. Während dieser Zeit können Sie nicht auf zugewiesene Aufgaben zugreifen oder diese erledigen. Wir danken Ihnen für Ihre Geduld.
     maintenance_upcoming_title: Bevorstehende Wartungsarbeiten
     media_question_transcriptions: Transkriptionen von Medienfragen
+    media_responses: Medienreaktionen
     modified_by: Geändert von
     modified_date: Geändertes Datum
     more_actions: Weitere Aktionen

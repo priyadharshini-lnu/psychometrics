@@ -127,9 +127,9 @@ vi:
     enable_enhance_with_ai_client_level: Vui lòng kích hoạt tính năng "Enhance with AI" ở cấp độ khách hàng.
     enable_maintenance: Bật chế độ bảo trì
     enable_transcription: Bật tính năng chuyển văn bản
-    enhance_with_ai: Nâng cao với Trí tuệ nhân tạo (AI)
     end_time: Thời gian kết thúc
     end_time_must_be_after_start_time: Thời gian kết thúc phải sau thời gian bắt đầu.
+    enhance_with_ai: Nâng cao với Trí tuệ nhân tạo (AI)
     enhance_with_ai_requires_ai_assistants: Để sử dụng tính năng "Enhance with AI", bạn cần kích hoạt tính năng "AI Assistants".
     error: Lỗi
     evaluation_status: Trạng thái đánh giá
@@ -641,9 +641,9 @@ vi:
     permissions_360_campaigns: Quyền truy cập dành riêng cho các chiến dịch 360
     piped_text: Văn bản được truyền qua ống
     privacy: Sự riêng tư
+    proctoring: Giám sát
     professional: Chuyên nghiệp
     proficiency: Năng lực
-    proctoring: Giám sát
     proficiency_level: Khóa API
     proficiency_levels: Mức độ thành thạo
     profile_details: Chi tiết hồ sơ
@@ -753,8 +753,8 @@ vi:
     subdomain: Tên miền phụ
     subject_part_of_other_invite: Người dùng có địa chỉ email %{user_email} đã được mời tham gia '%{workshop_invite_name}'.
     target_job_role: Vị trí công việc mục tiêu
-    tone: Giọng điệu
     timezone: Múi giờ
+    tone: Giọng điệu
     toolbar_ai_insight: Nhận định về Trí tuệ Nhân tạo
     toolbar_ai_suggestion: Đề xuất của Trí tuệ nhân tạo
     toolbar_result_generating: Đang tạo...

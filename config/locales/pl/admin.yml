@@ -127,9 +127,9 @@ pl:
     enable_enhance_with_ai_client_level: Włącz funkcję „Ulepsz za pomocą AI” na poziomie klienta.
     enable_maintenance: Włącz konserwację
     enable_transcription: Włącz transkrypcję
-    enhance_with_ai: Wzbogać dzięki sztucznej inteligencji
     end_time: Czas zakończenia
     end_time_must_be_after_start_time: Czas zakończenia musi być późniejszy niż czas rozpoczęcia.
+    enhance_with_ai: Wzbogać dzięki sztucznej inteligencji
     enhance_with_ai_requires_ai_assistants: Funkcja „Wzbogać dzięki AI” wymaga włączenia funkcji asystentów AI.
     error: Błąd
     evaluation_status: Status oceny
@@ -641,9 +641,9 @@ pl:
     permissions_360_campaigns: Uprawnienia specyficzne dla kampanii 360
     piped_text: Tekst z rury
     privacy: Prywatność
+    proctoring: Nadzorowanie
     professional: Profesjonalny
     proficiency: Biegłość
-    proctoring: Nadzorowanie
     proficiency_level: Klucze API
     proficiency_levels: Poziomy biegłości
     profile_details: Szczegóły profilu
@@ -753,8 +753,8 @@ pl:
     subdomain: Subdomena
     subject_part_of_other_invite: Osoba o adresie e-mail %{user_email} została już zaproszona do „%{workshop_invite_name}”.
     target_job_role: Docelowa rola zawodowa
-    tone: Ton
     timezone: Strefa czasowa
+    tone: Ton
     toolbar_ai_insight: Wgląd w sztuczną inteligencję
     toolbar_ai_suggestion: Sugestia AI
     toolbar_result_generating: Generowanie...

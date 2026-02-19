@@ -127,9 +127,9 @@ ja:
     enable_enhance_with_ai_client_level: クライアントレベルで「AIによる強化」機能を有効にしてください
     enable_maintenance: メンテナンスを有効にする
     enable_transcription: 文字起こしを有効にする
-    enhance_with_ai: AIで強化する
     end_time: 終末
     end_time_must_be_after_start_time: 終了時刻は開始時刻より後でなければならない
+    enhance_with_ai: AIで強化する
     enhance_with_ai_requires_ai_assistants: AIによる強化には、AIアシスタント機能の有効化が必要です
     error: エラー
     evaluation_status: 評価状況
@@ -641,9 +641,9 @@ ja:
     permissions_360_campaigns: 360キャンペーンに特化したパーミッション
     piped_text: パイプ付きテキスト
     privacy: プライバシー
+    proctoring: 試験監督
     professional: プロフェッショナル
     proficiency: 習熟度
-    proctoring: 試験監督
     proficiency_level: APIキー
     proficiency_levels: 熟練度レベル
     profile_details: プロフィール詳細
@@ -753,8 +753,8 @@ ja:
     subdomain: サブドメイン
     subject_part_of_other_invite: メールアドレス %{user_email} のユーザーは既に「%{workshop_invite_name}」に招待済みです
     target_job_role: 対象職務
-    tone: トーン
     timezone: タイムゾーン
+    tone: トーン
     toolbar_ai_insight: AIインサイト
     toolbar_ai_suggestion: AI提案
     toolbar_result_generating: 生成中...

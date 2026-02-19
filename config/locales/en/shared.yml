@@ -50,7 +50,6 @@ en:
     last_name: Last Name
     learning_on_the_job_label: Learning on the Job
     login: Login
-    media_responses: Media Responses
     maintenance_in_hours: "%{hours} hours"
     maintenance_in_minutes: "%{minutes} minutes"
     maintenance_in_progress_description: We're currently performing system maintenance to ensure optimal platform performance and enhance your experience. Thank you for your understanding.
@@ -59,6 +58,7 @@ en:
     maintenance_upcoming_description: We'll be performing scheduled maintenance on %{date} for approximately %{duration} to enhance your experience. During this time, you won't be able to access or complete any assigned tasks. We appreciate your patience.
     maintenance_upcoming_title: Upcoming Maintenance
     media_question_transcriptions: Media Question Transcriptions
+    media_responses: Media Responses
     modified_by: Modified By
     modified_date: Modified Date
     more_actions: More actions

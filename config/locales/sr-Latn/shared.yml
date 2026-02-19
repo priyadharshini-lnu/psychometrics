@@ -50,7 +50,6 @@ sr-Latn:
     last_name: Prezime
     learning_on_the_job_label: Učenje na poslu
     login: Prijava
-    media_responses: Реакције медија
     maintenance_in_hours: "%{hours} сати"
     maintenance_in_minutes: "%{minutes} минута"
     maintenance_in_progress_description: Тренутно вршимо одржавање система како бисмо осигурали оптималан рад платформе и унапредили ваше искуство. Хвала вам на разумевању.
@@ -59,6 +58,7 @@ sr-Latn:
     maintenance_upcoming_description: Извршићемо планирани одржавање на %{date} током отприлике %{duration} како бисмо побољшали ваше искуство. Током тог периода нећете моћи да приступите или завршите ниједан додељени задатак. Ценимо ваше стрпљење.
     maintenance_upcoming_title: Предстојеће одржавање
     media_question_transcriptions: Транскрипти медијских питања
+    media_responses: Реакције медија
     modified_by: Modifikovan od strane
     modified_date: Datum izmene
     more_actions: Više akcija

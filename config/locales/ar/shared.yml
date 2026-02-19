@@ -50,7 +50,6 @@ ar:
     last_name: إسم العائلة
     learning_on_the_job_label: التعلم أثناء العمل
     login: تسجيل الدخول
-    media_responses: ردود فعل وسائل الإعلام
     maintenance_in_hours: "%{hours} ساعات"
     maintenance_in_minutes: "%{minutes} دقائق"
     maintenance_in_progress_description: نقوم حاليًا بإجراء صيانة للنظام لضمان الأداء الأمثل للمنصة وتحسين تجربتك. نشكرك على تفهمك.
@@ -59,6 +58,7 @@ ar:
     maintenance_upcoming_description: سنقوم بإجراء صيانة مجدولة على %{date} لمدة تقارب %{duration} لتحسين تجربتك. خلال هذه الفترة، لن تتمكن من الوصول إلى أي مهام مخصصة أو إكمالها. نقدر صبرك.
     maintenance_upcoming_title: الصيانة القادمة
     media_question_transcriptions: نصوص أسئلة وسائل الإعلام
+    media_responses: ردود فعل وسائل الإعلام
     modified_by: تم التعديل بواسطة
     modified_date: تاريخ التعديل
     more_actions: More actions

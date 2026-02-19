@@ -50,7 +50,6 @@ zh-Hant:
     last_name: 姓氏
     learning_on_the_job_label: 邊做邊學
     login: 登入
-    media_responses: 媒体反应
     maintenance_in_hours: "%{hours} 小时"
     maintenance_in_minutes: "%{minutes} 会议记录"
     maintenance_in_progress_description: 我们正在进行系统维护，以确保平台性能达到最佳状态并提升您的使用体验。感谢您的理解。
@@ -59,6 +58,7 @@ zh-Hant:
     maintenance_upcoming_description: 我们将对 %{date} 进行计划维护，预计持续约 %{duration}，以提升您的使用体验。在此期间，您将无法访问或完成任何分配的任务。感谢您的耐心等待。
     maintenance_upcoming_title: 即将进行的维护
     media_question_transcriptions: 媒体提问记录
+    media_responses: 媒体反应
     modified_by: 修改者
     modified_date: 修改日期
     more_actions: 更多行動
