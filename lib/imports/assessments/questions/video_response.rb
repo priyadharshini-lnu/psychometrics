@@ -15,9 +15,9 @@ module Imports
         end
 
         def self.video_answers(data, assign, question)
-          decoded_media_ids = decode_media_ids(data[2])
+          decoded_media_ids = decode_media_ids(data[3])
           MediaResponse.where(id: decoded_media_ids).order(:created_at).each do |media_record|
-            MediaResponses::FindOrCreateMediaResponseByUserResult.call!(media_record, assign, question)
+            MediaResponses::FindOrCreateMediaResponseByUserResult.call!(media_record, assign, question, data[1])
           end
           nil
         end
