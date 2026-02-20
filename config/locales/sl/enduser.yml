@@ -37,7 +37,6 @@ sl:
     recording: Snemanje
     reject_idp_plan: Načrt zavrnitve
     request_retry_message: Si offline. Vaših odgovorov ni bilo mogoče shraniti, bodo pa samodejno shranjeni, ko boste ponovno na spletu. Prosimo, ne osvežujte ali zapirajte strani.
-    saving_video_text: Shranjevanje videa... Prosimo, ne zapirajte ali osvežujte brskalnika
     selected_count: Izbrano
     skill_type: Vrsta spretnosti
     start_campaign_message_proctored: To je nadzorovana kampanja, kliknite gumb '%{buttonText}' za začetek aktivnosti.
@@ -56,9 +55,7 @@ sl:
       three: Test, ena, dve, tri – zvok je povsem jasen!.
       two: Hitra rjava lisica preskoči lenega psa.
     system_check_audio_title: Izgovorite in trikrat ponovite spodnji stavek.
-    system_check_camera_preview: Predogled kamere bo prikazan tukaj
     system_check_proceed: Da, nadaljuj
-    system_check_rec_text: REC
     system_check_retake: Ne, želim poskusiti znova
     system_check_run_again: Začnite znova
     system_check_start_recording: Začni snemati

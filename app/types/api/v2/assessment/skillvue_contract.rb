@@ -22,7 +22,11 @@ module Api
         rule(data: { attributes: { external_settings: :assessment_id } }) do
           next unless value
 
-          existing_assessment = ::Assessment.skillvue.find_by("external_settings->>'assessment_id' = ?", value)
+          scope = ::Assessment.skillvue.where("external_settings->>'assessment_id' = ?", value)
+          current_id = values.dig(:data, :id)
+          scope = scope.where.not(id: current_id) if current_id
+
+          existing_assessment = scope.first
           key.failure(:uniq_skillvue, id: existing_assessment.id) if existing_assessment
         end
       end

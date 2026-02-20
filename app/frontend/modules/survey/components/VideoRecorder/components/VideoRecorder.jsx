@@ -522,7 +522,7 @@ class VideoRecorder extends Component {
               message={(
                 <Space>
                   <LoadingOutlined />
-                  {I18n.t('enduser.saving_video_text')}
+                  {I18n.t('shared.saving_video')}
                 </Space>
               )}
             />

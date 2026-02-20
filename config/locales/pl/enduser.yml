@@ -37,7 +37,6 @@ pl:
     recording: Nagrania
     reject_idp_plan: Plan Odrzucenia
     request_retry_message: Jesteś offline. Twoje odpowiedzi nie mogły zostać zapisane, ale zostaną zapisane automatycznie po powrocie do sieci. Prosimy nie odświeżać ani nie zamykać strony.
-    saving_video_text: Zapisywanie wideo... Prosimy nie zamykać ani nie odświeżać przeglądarki
     selected_count: Wybrane
     skill_type: Typ umiejętności
     start_campaign_message_proctored: To jest kampania nadzorowana, kliknij przycisk '%{buttonText}', aby rozpocząć aktywność.
@@ -56,9 +55,7 @@ pl:
       three: Testowanie, raz dwa trzy, dźwięk jest czysty jak może być!
       two: Szybki brązowy lis przeskakuje leniwego psa.
     system_check_audio_title: Wypowiedz i powtórz poniższe zdanie 3 razy.
-    system_check_camera_preview: Podgląd kamery pojawi się tutaj
     system_check_proceed: Tak, można kontynuować
-    system_check_rec_text: REC
     system_check_retake: Nie, chcę powtórzyć
     system_check_run_again: Uruchom ponownie
     system_check_start_recording: Rozpocznij nagrywanie

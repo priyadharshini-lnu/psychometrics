@@ -37,7 +37,6 @@ hr:
     recording: Snimanje
     reject_idp_plan: Plan odbijanja
     request_retry_message: Offline si. Vaši odgovori nisu mogli biti spremljeni, ali će biti automatski spremljeni čim se vratite online. Molimo vas da ne osvježavate niti zatvarate stranicu.
-    saving_video_text: Spremanje videa... Molimo vas da ne zatvarate niti osvježavate preglednik
     selected_count: Odabrano
     skill_type: Vrsta vještine
     start_campaign_message_proctored: Ovo je nadzirana kampanja, molimo kliknite gumb '%{buttonText}' za pokretanje aktivnosti.
@@ -56,9 +55,7 @@ hr:
       three: Testiranje, jedan, dva, tri, zvuk je jasan koliko god može biti!
       two: Žućkasti đak čita džepnu knjigu s ljubičastim šarenim ćilom.
     system_check_audio_title: Molimo, ponovite sljedeću rečenicu 3 puta.
-    system_check_camera_preview: Pregled kamere će se pojaviti ovdje
     system_check_proceed: Da, nastaviti
-    system_check_rec_text: SNIMITI
     system_check_retake: Ne, želim ponovno snimati
     system_check_run_again: Pokušati ponovno
     system_check_start_recording: Započnite snimanje

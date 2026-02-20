@@ -560,7 +560,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
     } if (isUploading) {
       return {
         percent: Math.round(_.mean(Object.values(percent))),
-        label: I18n.t('enduser.saving_video_text'),
+        label: I18n.t('shared.saving_video'),
         strokeColor: PROGRESS_BAR_SUCCESS,
       }
     }

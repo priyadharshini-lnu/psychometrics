@@ -125,7 +125,10 @@ cs:
     edit_threesixty_campaign_admin: Upravit správce kampaně
     empty_csv_file: CSV soubor neobsahuje žádná data.
     enable_enhance_with_ai_client_level: Povolte funkci Vylepšit pomocí AI na úrovni klienta.
+    enable_maintenance: Povolit údržbu
     enable_transcription: Povolit přepis
+    end_time: Koncový čas
+    end_time_must_be_after_start_time: Konec musí být po začátku
     enhance_with_ai: Vylepšete pomocí AI
     enhance_with_ai_requires_ai_assistants: Funkce Vylepšit pomocí AI vyžaduje, aby byla povolena funkce AI asistenti.
     error: Chyba
@@ -140,6 +143,7 @@ cs:
     feature_flags: Příznaky funkcí
     fill_empty_score_msg: Vyplňte všechny konečné skóre před uložením.
     final_score_empty_err_msg: Konečné skóre hry „%{factor_name}“ nesmí být prázdné.
+    final_score_empty_msg: Konečný účet nemůže být prázdný.
     fix_grammar: Opravit gramatiku
     formal: Formální
     generate_transcription: Vytvořit přepis
@@ -180,6 +184,9 @@ cs:
     libraries: Knihovna médií
     library_invalid_type: Neplatný knihovní prvek
     licenses: Licence
+    maintenance: Údržba
+    maintenance_settings: Nastavení údržby
+    maintenance_settings_description: Správa časových oken a nastavení údržby systému
     manager_approval_required: Report for %{user} vyžaduje schválení manažera před stažením
     max_value: Maximální hodnota
     messages: Zprávy
@@ -192,6 +199,7 @@ cs:
     mhs_report_id: ID zprávy MHS
     mhs_session_id: ID relace Mhs
     min_value: Minimální hodnota
+    minimum_10_words: Minimálně 10 slov
     missing_min_max_values: Minimální a maximální hodnoty jsou povinné.
     name_required: Jméno je vyžadováno
     no_file_selected: Žádný soubor nebyl vybrán
@@ -635,6 +643,7 @@ cs:
     permissions_360_campaigns: Oprávnění specifická pro kampaně 360
     piped_text: Text v potrubí
     privacy: Ochrana osobních údajů
+    proctoring: Dohled
     professional: Profesionální
     proficiency: Znalost
     proficiency_level: Klíče API
@@ -723,8 +732,10 @@ cs:
     search_admins: Vyhledávání administrátorů
     search_job_role: Hledat pracovní pozici
     select_admin_role: Vyberte roli správce
+    select_end_time: Vyberte čas ukončení
     select_language_to_translate: Vyberte jazyk, do kterého chcete překládat
     select_level: Vyberte úroveň
+    select_start_time: Vyberte čas zahájení
     send_email: Odeslat e-mail
     settings: Nastavení
     show_original: Zobrazit originál
@@ -737,12 +748,14 @@ cs:
     slot_name: Název slotu
     sms_histories: Historie SMS
     sms_invites: Pozvánky SMS
+    start_time: Čas zahájení
     stats: Statistiky
     status_details: Podrobnosti o stavu
     structured_learning: Formální učení [10]
     subdomain: Subdoména
     subject_part_of_other_invite: Osoba s e-mailovou adresou %{user_email} již byla pozvána do skupiny „%{workshop_invite_name}“.
     target_job_role: Cílová pracovní pozice
+    timezone: Časové pásmo
     tone: Tón
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: Návrh AI

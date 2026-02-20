@@ -37,7 +37,6 @@ it:
     recording: Registrazione
     reject_idp_plan: Rifiuta il piano
     request_retry_message: Sei offline. Le tue risposte non potevano essere salvate, ma lo saranno automaticamente una volta che sarai di nuovo online. Per favore, non aggiornare o chiudere la pagina.
-    saving_video_text: Salvataggio del video... Per favore, non chiudere né aggiornare il browser
     selected_count: Selezionato
     skill_type: Tipo di abilità
     start_campaign_message_proctored: Questa è una campagna sorvegliata, clicca sul pulsante '%{buttonText}' per avviare le attività.
@@ -56,9 +55,7 @@ it:
       three: Prova, uno due tre, il suono è chiarissimo!
       two: La volpe marrone veloce salta il cane pigro.
     system_check_audio_title: Parlate e ripetete la seguente frase per 3 volte.
-    system_check_camera_preview: L'anteprima della fotocamera viene visualizzata qui
     system_check_proceed: Sì, è possibile procedere
-    system_check_rec_text: REC
     system_check_retake: No, voglio rifare il test
     system_check_run_again: Correre di nuovo
     system_check_start_recording: Avvio della registrazione

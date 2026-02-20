@@ -37,7 +37,6 @@ fr:
     recording: Enregistrement
     reject_idp_plan: Plan de rejet
     request_retry_message: Tu es hors ligne. Vos réponses n’ont pas pu être sauvegardées mais le seront automatiquement une fois que vous serez de nouveau en ligne. Merci de ne pas actualiser ni fermer la page.
-    saving_video_text: Sauvegarde vidéo... Merci de ne pas fermer ni rafraîchir le navigateur
     selected_count: Sélectionné
     skill_type: Type de compétence
     start_campaign_message_proctored: Il s’agit d’une campagne surveillée, veuillez cliquer sur le bouton « %{buttonText} » pour lancer les activités.
@@ -56,9 +55,7 @@ fr:
       three: Test, un deux trois, le son est clair comme de l'eau de roche !
       two: Le renard brun et rapide saute par-dessus le chien paresseux.
     system_check_audio_title: Veuillez prononcer et répéter la phrase suivante trois fois.
-    system_check_camera_preview: L'aperçu de l'appareil photo apparaît ici
     system_check_proceed: Oui, Ok pour continuer
-    system_check_rec_text: REC
     system_check_retake: Non, je veux repasser
     system_check_run_again: Recommencer
     system_check_start_recording: Démarrer l'enregistrement

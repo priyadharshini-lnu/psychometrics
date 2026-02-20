@@ -125,7 +125,10 @@ bg:
     edit_threesixty_campaign_admin: Редактиране на администратора на кампанията
     empty_csv_file: CSV файлът не съдържа никакви данни.
     enable_enhance_with_ai_client_level: Моля, активирайте функцията „Подобрение с AI“ на ниво клиент.
+    enable_maintenance: Активиране на поддръжка
     enable_transcription: Активиране на транскрипция
+    end_time: Край на времето
+    end_time_must_be_after_start_time: Крайното време трябва да е след началната дата
     enhance_with_ai: Подобрете с AI
     enhance_with_ai_requires_ai_assistants: За да използвате функцията „Подобрение с AI“, трябва да активирате функцията „AI асистенти“.
     error: Грешка
@@ -140,6 +143,7 @@ bg:
     feature_flags: Флагове за функции
     fill_empty_score_msg: Запълнете всички крайни резултати преди да запазите.
     final_score_empty_err_msg: Крайният резултат на „%{factor_name}“ не може да бъде празен.
+    final_score_empty_msg: Крайната сметка не може да бъде празна.
     fix_grammar: Поправи граматиката
     formal: Официален
     generate_transcription: Генериране на транскрипция
@@ -180,6 +184,9 @@ bg:
     libraries: Медийна библиотека
     library_invalid_type: Невалиден библиотечен елемент
     licenses: Лицензи
+    maintenance: Поддръжка
+    maintenance_settings: Настройки за поддръжка
+    maintenance_settings_description: Управление на прозорците и настройките за поддръжка на системата
     manager_approval_required: Докладът за %{user} изисква одобрение от мениджъра преди изтегляне
     max_value: Максимална стойност
     messages: Съобщения
@@ -192,6 +199,7 @@ bg:
     mhs_report_id: Идентификационен номер на доклада на MHS
     mhs_session_id: Mhs сесиен идентификатор
     min_value: Минимална стойност
+    minimum_10_words: Минимум 10 думи
     missing_min_max_values: Минималните и максималните стойности са задължителни.
     name_required: Задължително е име
     no_file_selected: Няма избран файл
@@ -635,6 +643,7 @@ bg:
     permissions_360_campaigns: Разрешения, специфични за кампании в 360
     piped_text: Текст в тръба
     privacy: Поверителност
+    proctoring: Прокторант
     professional: Професионален
     proficiency: Умения
     proficiency_level: API ключове
@@ -723,8 +732,10 @@ bg:
     search_admins: Търсене на дминистратори
     search_job_role: Търсене на длъжност
     select_admin_role: Изберете роля на администратор
+    select_end_time: Изберете час на приключване
     select_language_to_translate: Моля, изберете език за превод
     select_level: Изберете ниво
+    select_start_time: Изберете начален час
     send_email: Изпрати имейл
     settings: Настройки
     show_original: Покажи оригинал
@@ -737,12 +748,14 @@ bg:
     slot_name: Име на слот
     sms_histories: История на SMS
     sms_invites: SMS покани
+    start_time: Начален час
     stats: Статистика
     status_details: Детайли за статуса
     structured_learning: Формално обучение [10]
     subdomain: Поддомейн
     subject_part_of_other_invite: Получателят на имейла %{user_email} вече е поканен на „%{workshop_invite_name}”
     target_job_role: Целева длъжност
+    timezone: Часова зона
     tone: Тон
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: Предложение за изкуствен интелект

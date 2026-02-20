@@ -13,6 +13,7 @@ ro:
     audio: Audio
     authentication_failed: Autentificarea a eșuat. Vă rog să încercați din nou.
     basic: Bază
+    camera_preview: Previzualizarea camerei va apărea aici
     campaign_id: ID-ul campaniei
     cancel: Anulați
     change_password: Schimbați parola
@@ -50,6 +51,14 @@ ro:
     last_name: Numele de familie
     learning_on_the_job_label: Învățarea la locul de muncă
     login: Autentificare
+    maintenance_in_hours: "%{hours} ore"
+    maintenance_in_minutes: "%{minutes} minute"
+    maintenance_in_progress_description: În prezent efectuăm lucrări de întreținere a sistemului pentru a asigura performanța optimă a platformei și pentru a vă îmbunătăți experiența. Vă mulțumim pentru înțelegere.
+    maintenance_in_progress_title: Întreținere programată în curs
+    maintenance_time_remaining: Timp rămas
+    maintenance_upcoming_description: Vom efectua lucrări de întreținere programate pe %{date} timp de aproximativ %{duration} pentru a îmbunătăți experiența dvs. În acest interval, nu veți putea accesa sau finaliza niciuna dintre sarcinile atribuite. Vă mulțumim pentru răbdare.
+    maintenance_upcoming_title: Întreținere viitoare
+    media_question_transcriptions: Transcrieri ale întrebărilor adresate de mass-media
     media_responses: Răspunsurile mass-media
     modified_by: Modificat de
     modified_date: Data modificării
@@ -63,8 +72,11 @@ ro:
     ok: Bine
     pending: În așteptare
     processing: Prelucrare
+    proctoring_maintenance_active: Proctoring este în prezent în curs de întreținere, de la %{start_time} la %{end_time}. Vă rugăm să încercați din nou după perioada de întreținere.
+    proctoring_maintenance_upcoming: Proctoring va fi în curs de întreținere de la %{start_time} la %{end_time}.
     question_id: ID întrebare
     question_transcription_disabled: Transcrierea este dezactivată pentru această întrebare.
+    rec: REC
     recording_consent_notice: Această ședință va fi înregistrată. Participarea ta la această întâlnire constituie consimțământul tău de a fi înregistrat.
     recording_consent_proceed_question: Sunteți de acord să continuați cu întâlnirea înregistrată?
     recording_consent_title: Notificare de consimțământ pentru înregistrare
@@ -75,6 +87,7 @@ ro:
     rte_paste_content_exceeds_char_limit: Textul depășește limita de caractere {{maxCharacterLimit}} și nu poate fi lipit.
     rte_paste_content_exceeds_word_limit: Textul depășește limita de cuvinte a {{maxWordLimit}} și nu poate fi lipit.
     save: Salvați
+    saving_video: Salvarea video... Vă rugăm să nu închideți sau să nu reîmprospătați browserul
     search: Căutare
     send_email: Trimite e-mail
     show_more: Afișează mai mult

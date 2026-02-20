@@ -13,6 +13,7 @@ zh:
     audio: 音频
     authentication_failed: 身份验证失败。请再试一次。
     basic: 基本
+    camera_preview: 此处将显示相机预览
     campaign_id: 竞选标识
     cancel: 取消
     change_password: 更改密码
@@ -50,6 +51,14 @@ zh:
     last_name: 姓
     learning_on_the_job_label: 边学边学
     login: 登录
+    maintenance_in_hours: "%{hours} 小时"
+    maintenance_in_minutes: "%{minutes} 会议记录"
+    maintenance_in_progress_description: 我们正在进行系统维护，以确保平台性能达到最佳状态并提升您的使用体验。感谢您的理解。
+    maintenance_in_progress_title: 计划内维护正在进行中
+    maintenance_time_remaining: 剩余时间
+    maintenance_upcoming_description: 我们将对 %{date} 进行计划维护，预计持续约 %{duration}，以提升您的使用体验。在此期间，您将无法访问或完成任何分配的任务。感谢您的耐心等待。
+    maintenance_upcoming_title: 即将进行的维护
+    media_question_transcriptions: 媒体提问实录
     media_responses: 媒体反应
     modified_by: 修改
     modified_date: 修改日期
@@ -63,8 +72,11 @@ zh:
     ok: 确定
     pending: 待定
     processing: 处理中
+    proctoring_maintenance_active: 监考系统正在进行维护，网址将从 %{start_time} 迁移至 %{end_time}。请在维护窗口结束后再次尝试。
+    proctoring_maintenance_upcoming: 监考系统将于%{start_time}至%{end_time}期间进行维护。
     question_id: 问题ID
     question_transcription_disabled: 此问题已禁用转录功能
+    rec: 录制
     recording_consent_notice: 本次会议将被录制。您参与此次会议即表示您同意被录音。
     recording_consent_proceed_question: 你同意继续录音会议吗？
     recording_consent_title: 录音同意通知
@@ -75,6 +87,7 @@ zh:
     rte_paste_content_exceeds_char_limit: 文本超过了{{maxCharacterLimit}}的字符限制，无法粘贴。
     rte_paste_content_exceeds_word_limit: 文本超过{{maxWordLimit}}的字数限制，无法粘贴。
     save: 保存
+    saving_video: 正在保存视频......请不要关闭或刷新浏览器
     search: 搜索
     send_email: 发送电子邮件
     show_more: 显示更多

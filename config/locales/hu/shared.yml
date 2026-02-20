@@ -13,6 +13,7 @@ hu:
     audio: Audio
     authentication_failed: A hitelesítés sikertelen. Kérlek, próbáld meg újra.
     basic: Alapvető
+    camera_preview: A kamera előnézet itt jelenik meg
     campaign_id: Kampányazonosító
     cancel: Törölje
     change_password: Jelszó módosítása
@@ -50,6 +51,14 @@ hu:
     last_name: Vezetéknév
     learning_on_the_job_label: Tanulás munka közben
     login: Bejelentkezés
+    maintenance_in_hours: "%{hours} órák"
+    maintenance_in_minutes: "%{minutes} percek"
+    maintenance_in_progress_description: Jelenleg rendszerkarbantartást végzünk a platform optimális teljesítményének biztosítása és az Ön felhasználói élményének javítása érdekében. Megértésüket köszönjük.
+    maintenance_in_progress_title: Tervezett karbantartás folyamatban
+    maintenance_time_remaining: Maradék idő
+    maintenance_upcoming_description: A %{date} webhelyen körülbelül %{duration} időtartamra tervezett karbantartási munkálatokat végzünk, hogy javítsuk az Ön felhasználói élményét. Ez idő alatt nem fog tudni hozzáférni a hozzárendelt feladatokhoz, és azokat nem fogja tudni elvégezni. Türelmét köszönjük.
+    maintenance_upcoming_title: Közelgő karbantartás
+    media_question_transcriptions: Média kérdések átirata
     media_responses: Média reakciók
     modified_by: Módosította
     modified_date: Módosítás dátuma
@@ -63,8 +72,11 @@ hu:
     ok: Oké
     pending: Függőben
     processing: Feldolgozás
+    proctoring_maintenance_active: A vizsgafelügyelet jelenleg karbantartás alatt áll az %{start_time} és az %{end_time} oldalakon. Kérjük, próbálkozzon újra a karbantartási időszak után.
+    proctoring_maintenance_upcoming: A vizsgafelügyelet karbantartás alatt áll az %{start_time} és az %{end_time} között.
     question_id: Kérdés azonosító
     question_transcription_disabled: A leírás le van tiltva ehhez a kérdéshez.
+    rec: REC
     recording_consent_notice: Ezt az ülést rögzítik. Részvétele ezen a találkozón azt jelenti, hogy beleegyezik a rögzítéshez.
     recording_consent_proceed_question: Beleegyezik a rögzített találkozó folytatásába?
     recording_consent_title: Felvételi beleegyezési értesítés
@@ -75,6 +87,7 @@ hu:
     rte_paste_content_exceeds_char_limit: A szöveg meghaladja a {{maxCharacterLimit}} karakterkorlátját, és nem lehet beilleszteni.
     rte_paste_content_exceeds_word_limit: A szöveg túllépi a {{maxWordLimit}} szóhatárát, és nem lehet beilleszteni.
     save: Mentés
+    saving_video: Videómentés... Kérjük, ne zárja be vagy frissítse a böngészőt
     search: Keresés
     send_email: E-mail küldése
     show_more: Több

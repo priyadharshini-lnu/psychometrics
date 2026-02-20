@@ -37,7 +37,6 @@ nl:
     recording: Opname
     reject_idp_plan: Plan afwijzen
     request_retry_message: Je bent offline. Je antwoorden konden niet worden opgeslagen, maar worden automatisch opgeslagen zodra je weer online bent. Vers of sluit de pagina alstublieft niet.
-    saving_video_text: Video opslaan... Sluit of ververs alstublieft de browser niet
     selected_count: Geselecteerd
     skill_type: Type vaardigheid
     start_campaign_message_proctored: Dit is een campagne met toezicht, klik op de knop '%{buttonText}' om de activiteiten te starten.
@@ -56,9 +55,7 @@ nl:
       three: Test, één twee drie, het geluid is zo helder als maar kan!
       two: De snelle bruine vos springt over de luie hond.
     system_check_audio_title: Spreek en herhaal de volgende zin 3 keer.
-    system_check_camera_preview: Hier verschijnt het voorbeeld van de camera
     system_check_proceed: Ja, oké om door te gaan
-    system_check_rec_text: REC
     system_check_retake: Nee, ik wil een herkansing
     system_check_run_again: Opnieuw rennen
     system_check_start_recording: Opname starten

@@ -125,7 +125,10 @@ ru:
     edit_threesixty_campaign_admin: Редактировать кампанию Администратор
     empty_csv_file: CSV-файл не содержит никаких данных.
     enable_enhance_with_ai_client_level: Пожалуйста, включите функцию «Улучшение с помощью ИИ» на уровне клиента.
+    enable_maintenance: Включить обслуживание
     enable_transcription: Включить транскрипцию
+    end_time: Конец времени
+    end_time_must_be_after_start_time: Время окончания должно быть позже времени начала
     enhance_with_ai: Улучшайте с помощью ИИ
     enhance_with_ai_requires_ai_assistants: Для улучшения с помощью ИИ необходимо включить функцию «ИИ-помощники».
     error: Ошибка
@@ -181,6 +184,9 @@ ru:
     libraries: Медиатека
     library_invalid_type: Недействительный элемент библиотеки
     licenses: Лицензии
+    maintenance: Техническое обслуживание
+    maintenance_settings: Настройки обслуживания
+    maintenance_settings_description: Управление окнами и настройками обслуживания системы
     manager_approval_required: Отчет для %{user} требует утверждения менеджера перед загрузкой
     max_value: Максимальное значение
     messages: Сообщения
@@ -193,6 +199,7 @@ ru:
     mhs_report_id: Идентификатор отчета MHS
     mhs_session_id: Идентификатор сеанса Mhs
     min_value: Минимальное значение
+    minimum_10_words: Минимум 10 слов
     missing_min_max_values: Требуются минимальные и максимальные значения.
     name_required: Имя обязательно
     no_file_selected: Файл не выбран
@@ -636,6 +643,7 @@ ru:
     permissions_360_campaigns: Разрешения, специфичные для кампаний 360
     piped_text: Текст в трубе
     privacy: Конфиденциальность
+    proctoring: Прокторинг
     professional: Профессиональный
     proficiency: Профессионализм
     proficiency_level: Уровень владения языком
@@ -724,8 +732,10 @@ ru:
     search_admins: Администраторы поиска
     search_job_role: Поиск вакансии
     select_admin_role: Выберите роль администратора
+    select_end_time: Выберите время окончания
     select_language_to_translate: Выберите язык для перевода
     select_level: Выберите уровень
+    select_start_time: Выберите время начала
     send_email: Отправить электронное письмо
     settings: Настройки
     show_original: Показать оригинал
@@ -738,12 +748,14 @@ ru:
     slot_name: Название слота
     sms_histories: История SMS-сообщений
     sms_invites: SMS-приглашения
+    start_time: Время начала
     stats: Статистика
     status_details: Детали статуса
     structured_learning: Формальное обучение [10]
     subdomain: Субдомен
     subject_part_of_other_invite: Участник с адресом электронной почты %{user_email} уже приглашен в «%{workshop_invite_name}».
     target_job_role: Целевая должность
+    timezone: Часовой пояс
     tone: Тон
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: Предложение ИИ

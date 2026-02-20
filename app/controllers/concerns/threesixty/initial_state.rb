@@ -77,7 +77,8 @@ module Threesixty::InitialState
         url: Settings.live_chat.base_url,
         token: live_chat_token,
         enabled: @current_project.enable_live_chat
-      }
+      },
+      maintenanceSettings: maintenance_settings
     }
   end
 
@@ -122,6 +123,16 @@ module Threesixty::InitialState
 
   def ai_assisted_idp_has_document_analysis?
     @current_user.active_user_idp_plan&.idp_template&.document_analysis_ai_assistant_id.present?
+  end
+
+  def maintenance_settings
+    settings = MaintenanceSetting.all
+    return nil unless settings.any?
+
+    Panko::ArraySerializer.new(
+      settings,
+      each_serializer: MaintenanceSettingsSerializer
+    ).to_a.map { |setting| setting.deep_transform_keys { |key| key.to_s.camelize(:lower) } }
   end
 end
 # rubocop:enable Metrics/AbcSize

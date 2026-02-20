@@ -83,6 +83,7 @@ const Flow = (props) => {
       closable={false}
       maskClosable={false}
       keyboard={false}
+      focusable={{ trap: false }}
     >
       <div>
         <div className={styles.tree}>

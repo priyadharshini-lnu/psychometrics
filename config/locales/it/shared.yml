@@ -13,6 +13,7 @@ it:
     audio: Audio
     authentication_failed: L'autenticazione è fallita. Per favore, riprova.
     basic: Basico
+    camera_preview: L'anteprima della fotocamera viene visualizzata qui
     campaign_id: ID della campagna elettorale
     cancel: Annulla
     change_password: Modifica la password
@@ -50,6 +51,14 @@ it:
     last_name: Cognome
     learning_on_the_job_label: Imparare sul campo
     login: Accesso
+    maintenance_in_hours: "%{hours} ore"
+    maintenance_in_minutes: "%{minutes} verbali"
+    maintenance_in_progress_description: Stiamo effettuando la manutenzione del sistema per garantire prestazioni ottimali della piattaforma e migliorare la tua esperienza. Grazie per la comprensione.
+    maintenance_in_progress_title: Manutenzione programmata in corso
+    maintenance_time_remaining: Tempo rimanente
+    maintenance_upcoming_description: Effettueremo una manutenzione programmata su %{date} per circa %{duration} al fine di migliorare la tua esperienza. Durante questo periodo, non potrai accedere né completare alcuna attività assegnata. Ti ringraziamo per la pazienza.
+    maintenance_upcoming_title: Manutenzione imminente
+    media_question_transcriptions: Trascrizioni delle domande dei media
     media_responses: Risposte dei media
     modified_by: Modificato da
     modified_date: Data di modifica
@@ -63,8 +72,11 @@ it:
     ok: Ok
     pending: In sospeso
     processing: Elaborazione
+    proctoring_maintenance_active: Il servizio di supervisione è attualmente in fase di manutenzione da %{start_time} a %{end_time}. Riprova dopo la finestra di manutenzione.
+    proctoring_maintenance_upcoming: Il servizio di sorveglianza sarà sottoposto a manutenzione dalle ore %{start_time} alle ore %{end_time}.
     question_id: ID domanda
     question_transcription_disabled: La trascrizione è disabilitata per questa domanda.
+    rec: REC
     recording_consent_notice: Questa sessione di riunione sarà registrata. La tua partecipazione a questa riunione costituisce il tuo consenso a essere registrato.
     recording_consent_proceed_question: Accetti di procedere con l'incontro registrato?
     recording_consent_title: Avviso di Consenso alla Registrazione
@@ -75,6 +87,7 @@ it:
     rte_paste_content_exceeds_char_limit: Il testo supera il limite di caratteri di {{maxCharacterLimit}} e non può essere incollato.
     rte_paste_content_exceeds_word_limit: Il testo supera il limite di parole di {{maxWordLimit}} e non può essere incollato.
     save: Salva
+    saving_video: Salvataggio del video... Per favore, non chiudere né aggiornare il browser
     search: Cerca
     send_email: Inviare l'e-mail
     show_more: Mostra di più

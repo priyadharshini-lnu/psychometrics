@@ -37,7 +37,6 @@ vi:
     recording: Ghi âm
     reject_idp_plan: Kế hoạch từ chối
     request_retry_message: Bạn đang ngoại tuyến. Câu trả lời của bạn không thể được lưu nhưng sẽ được lưu tự động khi bạn trực tuyến trở lại. Vui lòng không làm mới hoặc đóng trang.
-    saving_video_text: Lưu video... Vui lòng không đóng hoặc làm mới trình duyệt
     selected_count: Đã chọn
     skill_type: Loại kỹ năng
     start_campaign_message_proctored: Đây là một chiến dịch có giám sát, vui lòng nhấp vào nút '%{buttonText}' để bắt đầu các hoạt động.
@@ -56,9 +55,7 @@ vi:
       three: Kiểm tra, một hai ba, âm thanh rõ ràng nhất có thể!.
       two: Con cáo nâu nhanh nhẹn nhảy qua con chó lười.
     system_check_audio_title: Hãy nói và lặp lại câu sau 3 lần.
-    system_check_camera_preview: Bản xem trước của máy ảnh sẽ xuất hiện ở đây
     system_check_proceed: Vâng, Ok để tiếp tục
-    system_check_rec_text: GHI NHẬN
     system_check_retake: Không, tôi muốn thi lại
     system_check_run_again: Chạy lại
     system_check_start_recording: Bắt đầu ghi âm

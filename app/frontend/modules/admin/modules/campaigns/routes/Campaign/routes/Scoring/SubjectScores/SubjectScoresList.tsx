@@ -495,7 +495,7 @@ function createSortedTableColumns (
           })
           return (
             <Popover content={content} title={I18n.t('administration.scoring.subject_list.calculation_errors')}>
-              <WarningFilled className={styles.warning} />
+              <span><WarningFilled className={styles.warning} /></span>
             </Popover>
           )
         }

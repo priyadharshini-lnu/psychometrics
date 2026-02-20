@@ -22,6 +22,7 @@ import config from './config'
 import flash from '~/core/flash'
 import errors from '~/core/errors'
 import proctoring from '~/core/proctoring'
+import maintenanceSettings from '~/core/maintenanceSettings'
 
 const rootReducer = () => combineReducers({
   campaigns: combineReducers({
@@ -51,6 +52,7 @@ const rootReducer = () => combineReducers({
   checkingWizard,
   connection,
   liveChat: () => ({}),
+  maintenanceSettings,
   [idpApi.reducerPath]: idpApi.reducer,
   proctoring,
 })

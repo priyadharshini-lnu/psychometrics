@@ -13,6 +13,7 @@ th:
     audio: เสียง
     authentication_failed: การรับรองความถูกต้องล้มเหลว โปรดลองอีกครั้ง
     basic: พื้นฐาน
+    camera_preview: ตัวอย่างภาพจากกล้องจะแสดงที่นี่
     campaign_id: รหัสแคมเปญ
     cancel: ยกเลิก
     change_password: เปลี่ยนรหัสผ่าน
@@ -50,6 +51,14 @@ th:
     last_name: นามสกุล
     learning_on_the_job_label: การเรียนรู้ในการทํางาน
     login: เข้าสู่ระบบ
+    maintenance_in_hours: "%{hours} ชั่วโมง"
+    maintenance_in_minutes: "%{minutes} นาที"
+    maintenance_in_progress_description: ขณะนี้เรากำลังดำเนินการบำรุงรักษาระบบเพื่อให้แน่ใจว่าระบบมีประสิทธิภาพสูงสุดและเพื่อปรับปรุงประสบการณ์การใช้งานของคุณ ขอขอบคุณสำหรับความเข้าใจของคุณ
+    maintenance_in_progress_title: กำลังดำเนินการบำรุงรักษาตามกำหนด
+    maintenance_time_remaining: เวลาที่เหลืออยู่
+    maintenance_upcoming_description: เราจะทำการบำรุงรักษาตามกำหนดเวลาที่ %{date} เป็นเวลาประมาณ %{duration} เพื่อปรับปรุงประสบการณ์การใช้งานของคุณ ในระหว่างนี้ คุณจะไม่สามารถเข้าถึงหรือดำเนินการงานที่ได้รับมอบหมายใดๆ ได้ เราขอขอบคุณสำหรับความอดทนของคุณ
+    maintenance_upcoming_title: การบำรุงรักษาที่กำลังจะมาถึง
+    media_question_transcriptions: ถอดความคำถามจากสื่อ
     media_responses: การตอบสนองของสื่อ
     modified_by: แก้ไขโดย
     modified_date: วันที่แก้ไข
@@ -63,8 +72,11 @@ th:
     ok: ตกลง
     pending: รอดำเนินการ
     processing: การประมวลผล
+    proctoring_maintenance_active: การคุมสอบกำลังอยู่ในระหว่างการบำรุงรักษาตั้งแต่เวลา %{start_time} ถึง %{end_time} กรุณาลองอีกครั้งหลังจากช่วงเวลาการบำรุงรักษา
+    proctoring_maintenance_upcoming: การคุมสอบจะอยู่ระหว่างการบำรุงรักษาตั้งแต่เวลา %{start_time} ถึง %{end_time}
     question_id: รหัสคำถาม
     question_transcription_disabled: การถอดเสียงถูกปิดใช้งานสำหรับคำถามนี้
+    rec: บันทึก
     recording_consent_notice: เซสชั่นการประชุมนี้จะถูกบันทึกไว้ การเข้าร่วมการประชุมนี้ถือเป็นความยินยอมของคุณที่จะบันทึกไว้
     recording_consent_proceed_question: คุณตกลงที่จะดําเนินการประชุมที่บันทึกไว้หรือไม่?
     recording_consent_title: การแจ้งความยินยอมในการบันทึก
@@ -75,6 +87,7 @@ th:
     rte_paste_content_exceeds_char_limit: ข้อความเกินขีดจํากัดอักขระของ {{maxCharacterLimit}} และไม่สามารถวางได้
     rte_paste_content_exceeds_word_limit: ข้อความเกินขีดจํากัดของคําที่ {{maxWordLimit}} และไม่สามารถวางได้
     save: บันทึก
+    saving_video: กําลังบันทึกวิดีโอ... กรุณาอย่าปิดหรือรีเฟรชเบราว์เซอร์
     search: ค้นหา
     send_email: ส่งอีเมล
     show_more: แสดงเพิ่มเติม

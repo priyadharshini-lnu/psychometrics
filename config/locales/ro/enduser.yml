@@ -37,7 +37,6 @@ ro:
     recording: Înregistrare
     reject_idp_plan: Planul de respingere
     request_retry_message: Ești offline. Răspunsurile tale nu au putut fi salvate, dar vor fi salvate automat odată ce vei fi din nou online. Vă rugăm să nu reîmprospătați sau să închideți pagina.
-    saving_video_text: Salvarea video... Vă rugăm să nu închideți sau să nu reîmprospătați browserul
     selected_count: Selectat
     skill_type: Tip de abilitate
     start_campaign_message_proctored: Aceasta este o campanie supravegheată, vă rugăm să apăsați butonul "%{buttonText}" pentru a începe activitățile.
@@ -56,9 +55,7 @@ ro:
       three: Testare, unu doi trei, sunetul este cât se poate de clar!.
       two: Vulpea maro iute sare peste câinele leneș.
     system_check_audio_title: Vă rugăm să vorbiți și să repetați următoarea propoziție de 3 ori.
-    system_check_camera_preview: Previzualizarea camerei va apărea aici
     system_check_proceed: Da, Ok pentru a continua
-    system_check_rec_text: REC
     system_check_retake: Nu, vreau să reiau
     system_check_run_again: Aleargă din nou
     system_check_start_recording: Începeți înregistrarea

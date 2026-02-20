@@ -125,7 +125,10 @@ id:
     edit_threesixty_campaign_admin: Edit Admin Kampanye
     empty_csv_file: CSV tidak berisi data apa pun.
     enable_enhance_with_ai_client_level: Silakan aktifkan fitur "Enhance with AI" di tingkat klien.
+    enable_maintenance: Aktifkan Pemeliharaan
     enable_transcription: Aktifkan Transkripsi
+    end_time: Waktu Akhir
+    end_time_must_be_after_start_time: Waktu akhir harus setelah waktu mulai.
     enhance_with_ai: Perkuat dengan AI
     enhance_with_ai_requires_ai_assistants: Untuk menggunakan fitur Peningkatan dengan AI, fitur Asisten AI harus diaktifkan.
     error: Kesalahan
@@ -140,6 +143,7 @@ id:
     feature_flags: Bendera Fitur
     fill_empty_score_msg: Isi semua skor akhir sebelum menyimpan.
     final_score_empty_err_msg: Skor akhir dari %{factor_name} tidak boleh kosong.
+    final_score_empty_msg: Saldo akhir tidak boleh kosong.
     fix_grammar: Perbaiki Tata Bahasa
     formal: Formal
     generate_transcription: Buat Transkrip
@@ -180,6 +184,9 @@ id:
     libraries: Perpustakaan Media
     library_invalid_type: Item Perpustakaan Tidak Valid
     licenses: Lisensi
+    maintenance: Perawatan
+    maintenance_settings: Pengaturan Pemeliharaan
+    maintenance_settings_description: Mengelola jendela pemeliharaan sistem dan pengaturan
     manager_approval_required: Laporan untuk %{user} memerlukan persetujuan manajer sebelum diunduh
     max_value: Nilai maksimum
     messages: Pesan
@@ -192,6 +199,7 @@ id:
     mhs_report_id: Laporan MHS ID
     mhs_session_id: ID Sesi Mhs
     min_value: Nilai minimum
+    minimum_10_words: Minimal 10 kata
     missing_min_max_values: Nilai minimum dan maksimum diharuskan.
     name_required: Nama diperlukan
     no_file_selected: Tidak ada file yang dipilih
@@ -635,6 +643,7 @@ id:
     permissions_360_campaigns: Izin khusus untuk kampanye 360
     piped_text: Teks yang disalurkan
     privacy: Privasi
+    proctoring: Pengawasan
     professional: Profesional
     proficiency: Kemahiran
     proficiency_level: Kunci API
@@ -723,8 +732,10 @@ id:
     search_admins: Cari Admin
     search_job_role: Cari peran pekerjaan
     select_admin_role: Pilih peran admin
+    select_end_time: Pilih Waktu Berakhir
     select_language_to_translate: Silakan pilih bahasa yang ingin diterjemahkan.
     select_level: Pilih tingkat
+    select_start_time: Pilih Waktu Mulai
     send_email: Kirim email
     settings: Pengaturan
     show_original: Tampilkan Asli
@@ -737,12 +748,14 @@ id:
     slot_name: Nama Slot
     sms_histories: Riwayat SMS
     sms_invites: Undangan SMS
+    start_time: Waktu Mulai
     stats: Statistik
     status_details: Detail Status
     structured_learning: Pembelajaran Formal [10]
     subdomain: Subdomain
     subject_part_of_other_invite: Subjek dengan alamat email %{user_email} sudah diundang ke '%{workshop_invite_name}'
     target_job_role: Posisi Pekerjaan yang Dituju
+    timezone: Zona Waktu
     tone: Nada
     toolbar_ai_insight: Wawasan Kecerdasan Buatan
     toolbar_ai_suggestion: Saran AI

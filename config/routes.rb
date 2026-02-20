@@ -505,6 +505,8 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :maintenance_settings, only: %i[index create update]
+
     ### END CLIENTS
     resources :threesixty_campaigns do
       scope module: 'threesixty_campaigns' do
@@ -1372,6 +1374,7 @@ as: :simulation_progress_notification
               post :import
             end
           end
+          jsonapi_resources :maintenance_settings
           jsonapi_resources :tags
           jsonapi_resources :external_assessments
           jsonapi_resources :external_reports

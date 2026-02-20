@@ -1,5 +1,6 @@
-import { FC, useContext } from 'react'
-
+import {
+  FC, useContext, useState,
+} from 'react'
 import { connect, ConnectedProps, useDispatch } from 'react-redux'
 import _ from 'lodash'
 import {
@@ -37,6 +38,7 @@ import {
   AsyncRequestResponse,
 } from '~/modules/admin/modules/client/core/asyncRequestResponse'
 import styles from './styles.less'
+import { MaintenanceStatus, MaintenanceAlert } from '~/glint/components/MaintenanceAlert'
 
 const connector = connect(
   (state: RootState) => ({
@@ -45,6 +47,7 @@ const connector = connect(
     instructions: state.campaigns.campaign.instructions,
     currentUser: state.currentUser,
     privacyConsentRequired: state.campaigns.campaign?.privacyConsentRequired,
+    maintenanceSettings: state.maintenanceSettings,
   }),
   {
     resetCampaign,
@@ -66,6 +69,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
     campaignUser: { expiryDate },
   },
   resetPracticeCampaign,
+  maintenanceSettings,
 }) => {
   const { modal, message } = App.useApp()
   const { isMobile } = useContext(MediaQueryContext)
@@ -139,6 +143,13 @@ const CommonComponent: FC<CommonComponentProps> = ({
     ua => !_.includes(allCampaignLevelAssessmentIds, ua.assessmentId),
   )
   ungrouped = [...ungrouped, ...ungroupedAssessments]
+
+  const proctoringMaintenanceSetting = maintenanceSettings?.find(
+    ms => ms.subSystem === 'proctoring',
+  )
+
+  const [maintenanceStatus, setMaintenanceStatus] = useState<MaintenanceStatus>('')
+  const proctoringUnderMaintenance = proctoringEnabled && maintenanceStatus === 'inProgress'
 
   const campaignStartInstruction = () => {
     const messages = [I18n.t('campaign.instruction_modal.campaign_start_instruction', { minutes: campaignTime })]
@@ -250,6 +261,14 @@ const CommonComponent: FC<CommonComponentProps> = ({
         && (
           <div>
             <CampaignPageHeader extra={statusElement} activeCampaignId={campaign.id} />
+            {maintenanceStatus !== 'inProgress' && (
+              <MaintenanceAlert
+                maintenanceEnabled={proctoringEnabled}
+                maintenanceSetting={proctoringMaintenanceSetting}
+                maintenanceStatus={maintenanceStatus}
+                onStatusChange={status => setMaintenanceStatus(status)}
+              />
+            )}
             <Row>
               <Col span={24}>
                 {!campaignClosed && allAssessmentsComplete ? (
@@ -271,13 +290,17 @@ const CommonComponent: FC<CommonComponentProps> = ({
                     className={styles.resultContainer}
                   />
                 ) : (
-                  instructionsEnabled && (
-                    <InstructionsPanel
-                      description={<SafeHTML html={instructions} config="adminRichText" />}
-                      title=""
-                      heightLimit={200}
-                    />
-                  )
+                  <>
+                    {instructionsEnabled && (
+                      <>
+                        <InstructionsPanel
+                          description={<SafeHTML html={instructions} config="adminRichText" />}
+                          title=""
+                          heightLimit={200}
+                        />
+                      </>
+                    )}
+                  </>
                 )}
               </Col>
             </Row>
@@ -292,85 +315,107 @@ const CommonComponent: FC<CommonComponentProps> = ({
                 )}
                 <div className={styles.tasksContainer}>
                   {(canBeginCampaign || canContinueCampaign || campaign.practiceCampaign) && (
-                    <AssessmentCardContainer>
-                      <Flash className="mt-2" />
-                      <Row>
-                        <Col span={24} style={{ paddingInlineStart: '14px' }}>
-                          {canBeginCampaign && (
-                            <>
-                              <Alert
-                                type="warning"
-                                message={
-                                  getBeginOrContinueMessage(fixedTimed, proctoringEnabled, I18n.t('campaign.begin'))
-                                }
-                              />
-                              <Title className={styles.beginText} level={4}>
-                                {I18n.t('campaign.begin')}
-                              </Title>
-                              <Button
-                                size="middle"
-                                type="primary"
-                                onClick={handleStartCampaignActivities}
-                                disabled={!allPreworkIsComplete}
-                              >
-                                {I18n.t('campaign.begin')}
-                                {' '}
-                                <DirectionalArrowIcon />
-                              </Button>
-                            </>
-                          )}
-                          {campaign.practiceCampaign && hasStartedCampaign && !isProctored && (
-                            <>
-                              <Title className={styles.beginText} level={4}>
-                                {I18n.t('campaign.restart_practice')}
-                              </Title>
-                              <Button
-                                size="middle"
-                                type="primary"
-                                onClick={() => handleResetPracticeCampaign(campaign.id)}
-                                icon={<ReloadOutlined />}
-                              >
-                                {I18n.t('campaign.restart_practice')}
-                              </Button>
-                            </>
-                          )}
-                          {canContinueCampaign && (
-                            <>
-                              <Alert
-                                type="warning"
-                                message={
-                                  getBeginOrContinueMessage(fixedTimed, proctoringEnabled, I18n.t('campaign.continue'))
-                                }
-                              />
-                              <Title className={styles.beginText} level={4}>
-                                {I18n.t('campaign.continue')}
-                              </Title>
-                              <Button
-                                size="middle"
-                                type="primary"
-                                onClick={handleStartCampaignActivities}
-                                disabled={!allPreworkIsComplete}
-                              >
-                                {I18n.t('campaign.continue')}
-                                {' '}
-                                <DirectionalArrowIcon />
-                              </Button>
+                    <>
+                      {maintenanceStatus === 'inProgress' && (
+                        <MaintenanceAlert
+                          maintenanceEnabled={proctoringEnabled}
+                          maintenanceSetting={proctoringMaintenanceSetting}
+                          maintenanceStatus={maintenanceStatus}
+                          onStatusChange={status => setMaintenanceStatus(status)}
+                        />
+                      )}
+                      <AssessmentCardContainer>
+                        <Flash className="mt-2" />
+                        <Row>
+                          <Col span={24} style={{ paddingInlineStart: '14px' }}>
+                            {canBeginCampaign && (
+                              <>
+                                {maintenanceStatus !== 'inProgress' && (
+                                  <Alert
+                                    type="warning"
+                                    title={
+                                      getBeginOrContinueMessage(
+                                        fixedTimed,
+                                        proctoringEnabled,
+                                        I18n.t('campaign.begin'),
+                                      )
+                                    }
+                                  />
+                                )}
+                                <Title className={styles.beginText} level={4}>
+                                  {I18n.t('campaign.begin')}
+                                </Title>
+                                <Button
+                                  size="middle"
+                                  type="primary"
+                                  onClick={handleStartCampaignActivities}
+                                  disabled={!allPreworkIsComplete || proctoringUnderMaintenance}
+                                >
+                                  {I18n.t('campaign.begin')}
+                                  {' '}
+                                  <DirectionalArrowIcon />
+                                </Button>
+                              </>
+                            )}
+                            {campaign.practiceCampaign && hasStartedCampaign && !isProctored && (
+                              <>
+                                <Title className={styles.beginText} level={4}>
+                                  {I18n.t('campaign.restart_practice')}
+                                </Title>
+                                <Button
+                                  size="middle"
+                                  type="primary"
+                                  onClick={() => handleResetPracticeCampaign(campaign.id)}
+                                  icon={<ReloadOutlined />}
+                                >
+                                  {I18n.t('campaign.restart_practice')}
+                                </Button>
+                              </>
+                            )}
+                            {canContinueCampaign && (
+                              <>
+                                {maintenanceStatus !== 'inProgress' && (
+                                  <Alert
+                                    type="warning"
+                                    title={
+                                      getBeginOrContinueMessage(
+                                        fixedTimed,
+                                        proctoringEnabled,
+                                        I18n.t('campaign.begin'),
+                                      )
+                                    }
+                                  />
+                                )}
+                                <Title className={styles.beginText} level={4}>
+                                  {I18n.t('campaign.continue')}
+                                </Title>
+                                <Button
+                                  size="middle"
+                                  type="primary"
+                                  onClick={handleStartCampaignActivities}
+                                  disabled={!allPreworkIsComplete || proctoringUnderMaintenance}
+                                >
+                                  {I18n.t('campaign.continue')}
+                                  {' '}
+                                  <DirectionalArrowIcon />
+                                </Button>
 
-                            </>
-                          )}
-                          {fixedTimed && !allPreworkIsComplete && (canBeginCampaign || canContinueCampaign) && (
-                            <div className="mt-1">
-                              <Space>
-                                <InfoCircleOutlined />
-                                <Typography.Text type="secondary">
-                                  {I18n.t('campaign.begin_btn_msg_before_prework')}
-                                </Typography.Text>
-                              </Space>
-                            </div>
-                          )}
-                        </Col>
-                      </Row>
-                    </AssessmentCardContainer>
+                              </>
+                            )}
+                            {fixedTimed && !allPreworkIsComplete && (canBeginCampaign || canContinueCampaign) && (
+                              <div className="mt-1">
+                                <Space>
+                                  <InfoCircleOutlined />
+                                  <Typography.Text type="secondary">
+                                    {I18n.t('campaign.begin_btn_msg_before_prework')}
+                                  </Typography.Text>
+                                </Space>
+                              </div>
+                            )}
+                          </Col>
+                        </Row>
+                      </AssessmentCardContainer>
+                    </>
                   )}
                   <AssessmentsContainer
                     groups={groups}
@@ -391,7 +436,11 @@ const CommonComponent: FC<CommonComponentProps> = ({
   )
 }
 
-const getBeginOrContinueMessage = (fixedTimed: boolean, proctoringEnabled: boolean, buttonText: string) => {
+const getBeginOrContinueMessage = (
+  fixedTimed: boolean,
+  proctoringEnabled: boolean,
+  buttonText: string,
+) => {
   if (fixedTimed && proctoringEnabled) {
     return I18n.t('enduser.start_campaign_message_timed_proctored', { buttonText })
   }
@@ -403,5 +452,6 @@ const getBeginOrContinueMessage = (fixedTimed: boolean, proctoringEnabled: boole
   }
   return ''
 }
+
 
 export const Common = connector(CommonComponent)
