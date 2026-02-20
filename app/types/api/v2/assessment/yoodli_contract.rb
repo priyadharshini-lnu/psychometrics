@@ -16,9 +16,13 @@ module Api
 
           project_id = values.dig(:data, :relationships, :project, :data, :id)
 
-          existing_assessment = ::Assessment.yoodli.where(project_id: project_id).find_by(
+          scope = ::Assessment.yoodli.where(project_id: project_id).where(
             "external_settings->>'assessment_id' = ?", value
           )
+          current_id = values.dig(:data, :id)
+          scope = scope.where.not(id: current_id) if current_id
+
+          existing_assessment = scope.first
           key.failure(:uniq_yoodli, id: existing_assessment.id) if existing_assessment
         end
       end

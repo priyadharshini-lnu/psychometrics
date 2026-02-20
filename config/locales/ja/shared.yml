@@ -13,6 +13,7 @@ ja:
     audio: オーディオ
     authentication_failed: 認証に失敗しました。もう一度お試しください。
     basic: 基本的な
+    camera_preview: カメラのプレビューはここに表示されます
     campaign_id: キャンペーンID
     cancel: キャンセル
     change_password: パスワードの変更
@@ -50,6 +51,14 @@ ja:
     last_name: 姓
     learning_on_the_job_label: 現場での学び
     login: ログイン
+    maintenance_in_hours: "%{hours} 時間"
+    maintenance_in_minutes: "%{minutes} 議事録"
+    maintenance_in_progress_description: プラットフォームの最適なパフォーマンスを確保し、お客様の体験を向上させるため、現在システムメンテナンスを実施しております。ご理解いただきありがとうございます。
+    maintenance_in_progress_title: 定期メンテナンス実施中
+    maintenance_time_remaining: 残り時間
+    maintenance_upcoming_description: "%{date} では、ご利用体験の向上を目的として、約 %{duration} の間、定期メンテナンスを実施いたします。この間、割り当てられたタスクへのアクセスや完了はできません。ご不便をおかけしますが、何卒ご了承ください。"
+    maintenance_upcoming_title: 今後のメンテナンス
+    media_question_transcriptions: メディア質問の文字起こし
     media_responses: メディアの反応
     modified_by: 変更者
     modified_date: 変更日
@@ -63,8 +72,11 @@ ja:
     ok: OK
     pending: 保留中
     processing: 処理
+    proctoring_maintenance_active: プロクターリングは現在、%{start_time} から %{end_time} へのメンテナンス中です。メンテナンス終了後、再度お試しください。
+    proctoring_maintenance_upcoming: プロクターリングは、%{start_time} から %{end_time} までメンテナンスを行います。
     question_id: 質問ID
     question_transcription_disabled: この質問の文字起こしは無効です
+    rec: REC
     recording_consent_notice: この会議セッションは録画されます。この会議への参加は、記録されることへの同意を意味します。
     recording_consent_proceed_question: 録画された面談を進めることに同意しますか?
     recording_consent_title: 同意書の記録通知
@@ -75,6 +87,7 @@ ja:
     rte_paste_content_exceeds_char_limit: テキストは{{maxCharacterLimit}}の文字数制限を超えており、貼り付けができません。
     rte_paste_content_exceeds_word_limit: テキストは{{maxWordLimit}}のワード制限を超えており、貼り付けができません。
     save: 保存
+    saving_video: ビデオ保存中...ブラウザを閉じたり更新したりしないでください
     search: 検索
     send_email: 電子メールを送信する
     show_more: 続きを表示

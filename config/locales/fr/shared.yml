@@ -13,6 +13,7 @@ fr:
     audio: Audio
     authentication_failed: L’authentification a échoué. Veuillez réessayer.
     basic: Basique
+    camera_preview: L'aperçu de l'appareil photo apparaît ici
     campaign_id: ID de campagne
     cancel: Annuler
     change_password: Modifier le mot de passe
@@ -50,6 +51,14 @@ fr:
     last_name: Nom de famille
     learning_on_the_job_label: Apprendre sur le terrain
     login: Connexion
+    maintenance_in_hours: "%{hours} heures"
+    maintenance_in_minutes: "%{minutes} procès-verbaux"
+    maintenance_in_progress_description: Nous effectuons actuellement une maintenance du système afin d'assurer des performances optimales de la plateforme et d'améliorer votre expérience. Merci de votre compréhension.
+    maintenance_in_progress_title: Maintenance planifiée en cours
+    maintenance_time_remaining: Temps restant
+    maintenance_upcoming_description: Nous effectuerons une maintenance programmée sur %{date} pendant environ %{duration} afin d'améliorer votre expérience. Pendant cette période, vous ne pourrez ni accéder aux tâches qui vous ont été assignées ni les accomplir. Nous vous remercions de votre patience.
+    maintenance_upcoming_title: Maintenance à venir
+    media_question_transcriptions: Transcriptions des questions des médias
     media_responses: Réactions des médias
     modified_by: Modifié par
     modified_date: Date de modification
@@ -63,8 +72,11 @@ fr:
     ok: Ok
     pending: En attente
     processing: Traitement
+    proctoring_maintenance_active: Le service Proctoring est actuellement en maintenance, de l'adresse %{start_time} à l'adresse %{end_time}. Veuillez réessayer après la période de maintenance.
+    proctoring_maintenance_upcoming: La surveillance sera en maintenance de %{start_time} à %{end_time}.
     question_id: Identifiant de la question
     question_transcription_disabled: La transcription est désactivée pour cette question.
+    rec: REC
     recording_consent_notice: Cette réunion sera enregistrée. Votre participation à cette réunion constitue votre consentement à être enregistré.
     recording_consent_proceed_question: Acceptez-vous de poursuivre la réunion enregistrée ?
     recording_consent_title: Avis de consentement d’enregistrement
@@ -75,6 +87,7 @@ fr:
     rte_paste_content_exceeds_char_limit: Le texte dépasse la limite de caractères {{maxCharacterLimit}} et ne peut pas être collé.
     rte_paste_content_exceeds_word_limit: Le texte dépasse la limite de mots {{maxWordLimit}} et ne peut pas être collé.
     save: Économiser
+    saving_video: Sauvegarde vidéo... Merci de ne pas fermer ni rafraîchir le navigateur
     search: Recherche
     send_email: Envoyer un courriel
     show_more: Afficher plus

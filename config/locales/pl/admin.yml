@@ -125,7 +125,10 @@ pl:
     edit_threesixty_campaign_admin: Edytuj administratora kampanii
     empty_csv_file: Plik CSV nie zawiera żadnych danych.
     enable_enhance_with_ai_client_level: Włącz funkcję „Ulepsz za pomocą AI” na poziomie klienta.
+    enable_maintenance: Włącz konserwację
     enable_transcription: Włącz transkrypcję
+    end_time: Czas zakończenia
+    end_time_must_be_after_start_time: Czas zakończenia musi być późniejszy niż czas rozpoczęcia.
     enhance_with_ai: Wzbogać dzięki sztucznej inteligencji
     enhance_with_ai_requires_ai_assistants: Funkcja „Wzbogać dzięki AI” wymaga włączenia funkcji asystentów AI.
     error: Błąd
@@ -140,6 +143,7 @@ pl:
     feature_flags: Flagi funkcji
     fill_empty_score_msg: Wypełnij wszystkie końcowe wyniki przed zapisem.
     final_score_empty_err_msg: Ostateczny wynik gry „%{factor_name}” nie może być pusty.
+    final_score_empty_msg: Rachunek końcowy nie może być pusty.
     fix_grammar: Popraw gramatykę
     formal: Formalny
     generate_transcription: Wygeneruj transkrypcję
@@ -180,6 +184,9 @@ pl:
     libraries: Biblioteka multimediów
     library_invalid_type: Nieprawidłowy element biblioteczny
     licenses: Licencje
+    maintenance: Konserwacja
+    maintenance_settings: Ustawienia konserwacji
+    maintenance_settings_description: Zarządzanie oknami konserwacji systemu i ustawieniami
     manager_approval_required: Raport %{user} wymaga zgody menedżera przed pobraniem
     max_value: Wartość maksymalna
     messages: Wiadomości
@@ -192,6 +199,7 @@ pl:
     mhs_report_id: Numer raportu MHS
     mhs_session_id: Identyfikator sesji Mhs
     min_value: Wartość minimalna
+    minimum_10_words: Minimum 10 słów
     missing_min_max_values: Wymagane są wartości minimalne i maksymalne.
     name_required: Wymagane jest imię
     no_file_selected: Nie wybrano żadnego pliku
@@ -635,6 +643,7 @@ pl:
     permissions_360_campaigns: Uprawnienia specyficzne dla kampanii 360
     piped_text: Tekst z rury
     privacy: Prywatność
+    proctoring: Nadzorowanie
     professional: Profesjonalny
     proficiency: Biegłość
     proficiency_level: Klucze API
@@ -723,8 +732,10 @@ pl:
     search_admins: Wyszukiwanie administratorów
     search_job_role: Wyszukaj stanowisko
     select_admin_role: Wybierz rolę administratora
+    select_end_time: Wybierz czas zakończenia
     select_language_to_translate: Wybierz język do tłumaczenia
     select_level: Wybierz poziom
+    select_start_time: Wybierz czas rozpoczęcia
     send_email: Wyślij wiadomość e-mail
     settings: Ustawienia
     show_original: Pokaż oryginał
@@ -737,12 +748,14 @@ pl:
     slot_name: Nazwa slotu
     sms_histories: Historie SMS
     sms_invites: Zaproszenia SMS
+    start_time: Czas rozpoczęcia
     stats: Statystyki
     status_details: Szczegóły statusu
     structured_learning: Formalne uczenie się [10]
     subdomain: Subdomena
     subject_part_of_other_invite: Osoba o adresie e-mail %{user_email} została już zaproszona do „%{workshop_invite_name}”.
     target_job_role: Docelowa rola zawodowa
+    timezone: Strefa czasowa
     tone: Ton
     toolbar_ai_insight: Wgląd w sztuczną inteligencję
     toolbar_ai_suggestion: Sugestia AI

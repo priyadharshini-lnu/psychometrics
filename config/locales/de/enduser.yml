@@ -37,7 +37,6 @@ de:
     recording: Aufnahme
     reject_idp_plan: Plan ablehnen
     request_retry_message: Du bist offline. Deine Antworten konnten nicht gespeichert werden, werden aber automatisch gespeichert, sobald du wieder online bist. Bitte aktualisieren oder schließen Sie die Seite nicht.
-    saving_video_text: Video speichert... Bitte schließen oder aktualisieren Sie den Browser nicht
     selected_count: Ausgewählte
     skill_type: Fertigkeitstyp
     start_campaign_message_proctored: Dies ist eine überwachte Kampagne, bitte klicken Sie auf die Schaltfläche '%{buttonText}', um die Aktivitäten zu starten.
@@ -56,9 +55,7 @@ de:
       three: Test, eins, zwei, drei, der Ton ist so klar wie nur möglich!
       two: Der schnelle braune Fuchs springt über den faulen Hund.
     system_check_audio_title: Bitte sprechen Sie und wiederholen Sie den folgenden Satz 3 Mal.
-    system_check_camera_preview: Die Kamera-Vorschau wird hier angezeigt
     system_check_proceed: fortfahren
-    system_check_rec_text: REC
     system_check_retake: Nein, ich möchte die Wiederholung
     system_check_run_again: Wieder laufen
     system_check_start_recording: Aufnahme starten

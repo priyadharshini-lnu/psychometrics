@@ -37,7 +37,6 @@ hi:
     recording: रिकॉर्डिंग
     reject_idp_plan: योजना अस्वीकार करें
     request_retry_message: आप ऑफ़लाइन हैं। आपके उत्तर सहेजे नहीं जा सके, लेकिन आप ऑनलाइन होते ही वे स्वचालित रूप से सहेज लिए जाएँगे। कृपया पेज को रिफ्रेश या बंद न करें।
-    saving_video_text: वीडियो सहेज रहा है... कृपया ब्राउज़र बंद न करें या रिफ्रेश न करें।
     selected_count: "%{count} चयनित"
     skill_type: कौशल का प्रकार
     start_campaign_message_proctored: यह एक पर्यवेक्षित अभियान है, कृपया गतिविधियाँ शुरू करने के लिए '%{buttonText}' बटन पर क्लिक करें।
@@ -56,9 +55,7 @@ hi:
       three: परीक्षण, एक दो तीन, आवाज़ जितनी साफ़ हो सकती है, उतनी ही साफ़ है!
       two: तेज़ भूरा लोमड़ी सुस्त कुत्ते पर कूदता है।
     system_check_audio_title: कृपया बोलें और निम्नलिखित वाक्य को तीन बार दोहराएँ।
-    system_check_camera_preview: कैमरा पूर्वावलोकन यहाँ दिखाई देगा
     system_check_proceed: हाँ, आगे बढ़ने के लिए ठीक है।
-    system_check_rec_text: पुनर्नवीनीकरण योग्य ऊर्जा स्रोत
     system_check_retake: नहीं, मैं दोबारा लेना चाहता हूँ।
     system_check_run_again: फिर से दौड़ो
     system_check_start_recording: रिकॉर्डिंग शुरू करें

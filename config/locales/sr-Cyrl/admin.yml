@@ -125,7 +125,10 @@ sr-Cyrl:
     edit_threesixty_campaign_admin: Уреди администратора кампање
     empty_csv_file: CSV фајл не садржи никакве податке.
     enable_enhance_with_ai_client_level: Молимо омогућите функцију Enhance with AI на нивоу клијента.
+    enable_maintenance: Омогући одржавање
     enable_transcription: Омогући транскрипцију
+    end_time: Кrajње време
+    end_time_must_be_after_start_time: Крајње време мора бити након почетног времена
     enhance_with_ai: Унапредите помоћу вештачке интелигенције
     enhance_with_ai_requires_ai_assistants: Побољшање помоћу вештачке интелигенције захтева да је омогућена функција AI Assistants.
     error: Грешка
@@ -140,6 +143,7 @@ sr-Cyrl:
     feature_flags: Фичер флагс
     fill_empty_score_msg: Попуните све коначне резултате пре сачувања.
     final_score_empty_err_msg: Коначан резултат у %{factor_name}-у не може бити празан.
+    final_score_empty_msg: Коначан резултат не може бити празан.
     fix_grammar: Поправите граматику
     formal: Формално
     generate_transcription: Генеришите транскрипцију
@@ -180,6 +184,9 @@ sr-Cyrl:
     libraries: Медијска библиотека
     library_invalid_type: Неважећи библиотечки предмет
     licenses: Лиценце
+    maintenance: Одрживање
+    maintenance_settings: Подешавања одржавања
+    maintenance_settings_description: Управљајте прозорима и подешавањама за одржавање система
     manager_approval_required: Извештај за %{user} захтева одобрење менаџера пре преузимања.
     max_value: Максимална вредност
     messages: Поруке
@@ -192,6 +199,7 @@ sr-Cyrl:
     mhs_report_id: ИД извештаја МХС
     mhs_session_id: ID сесије Mhs
     min_value: Минимална вредност
+    minimum_10_words: Минимално 10 речи
     missing_min_max_values: Потребне су минималне и максималне вредности.
     name_required: Име је обавезно
     no_file_selected: Није изабрана датотека
@@ -635,6 +643,7 @@ sr-Cyrl:
     permissions_360_campaigns: Дозволе специфичне за 360 кампање
     piped_text: Текст у цевци
     privacy: Приватност
+    proctoring: Надгледање
     professional: Професионални
     proficiency: Владање
     proficiency_level: Ниво владења
@@ -723,8 +732,10 @@ sr-Cyrl:
     search_admins: Претрага администратора
     search_job_role: Претражи пословање улогу
     select_admin_role: Изаберите улогу администратора
+    select_end_time: Изаберите време завршетка
     select_language_to_translate: Молимо изаберите језик за превод
     select_level: Изабери ниво
+    select_start_time: Изаберите време почетка
     send_email: Пошаљи имејл
     settings: Подешавања
     show_original: Прикажи оригинал
@@ -737,12 +748,14 @@ sr-Cyrl:
     slot_name: Назив слота
     sms_histories: СМС историје
     sms_invites: SMS позиви
+    start_time: Време почетка
     stats: Статистика
     status_details: Детаљи статуса
     structured_learning: Формално учење [10]
     subdomain: Поддомен
     subject_part_of_other_invite: Корисник са адресом електронске поште %{user_email} је већ позван на '%{workshop_invite_name}'
     target_job_role: Циљна радна улога
+    timezone: Временска зона
     tone: Тон
     toolbar_ai_insight: Увид вештачке интелигенције
     toolbar_ai_suggestion: Предлог вештачке интелигенције

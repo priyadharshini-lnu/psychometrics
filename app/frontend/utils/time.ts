@@ -130,3 +130,22 @@ export function secondsToDayHoursAndMinutes (
 
   return formattedDaysHoursAndMinutes
 }
+
+export const getTimeRemaining = (endTime?: string | null): string => {
+  if (!endTime) return '00:00'
+  const now = dayjs()
+  const end = dayjs(endTime)
+  const diff = end.diff(now, 'second')
+  if (diff <= 0) return '00:00'
+  const hours = Math.floor(diff / 3600)
+  const minutes = Math.floor((diff % 3600) / 60)
+  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`
+}
+
+export const dateTimeWithZone = (dateString?: string | null, format?: string): string | undefined => {
+  const DEFAULT_FORMAT = 'Do MMM YYYY, h:mm a'
+  if (!dateString) return undefined
+  const dateFormat = format || DEFAULT_FORMAT
+  const dayjsDate = dayjs(dateString)
+  return `${dayjsDate.format(dateFormat)}${dayjsDate.format(' (z)')}`
+}

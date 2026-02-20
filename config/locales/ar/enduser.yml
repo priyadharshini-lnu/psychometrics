@@ -37,7 +37,6 @@ ar:
     recording: التسجيل
     reject_idp_plan: رفض الخطة
     request_retry_message: أنت غير متصل. لم يكن بالإمكان حفظ إجاباتك لكنها ستحفظ تلقائيا بمجرد عودتك للاتصال. يرجى عدم تحديث الصفحة أو إغلاقها.
-    saving_video_text: حفظ الفيديو... يرجى عدم إغلاق أو تحديث المتصفح
     selected_count: مختارة %{count}
     skill_type: نوع المهارة
     start_campaign_message_proctored: هذه حملة تحت مراقبة، يرجى الضغط على زر '%{buttonText}' لبدء الأنشطة.
@@ -56,9 +55,7 @@ ar:
       three: اختبار، واحد اثنان ثلاثة، الصوت واضح قدر الإمكان!.
       two: يقفز الثعلب البني السريع فوق الكلب الكسول.
     system_check_audio_title: الرجاء التحدث وتكرار الجملة التالية 3 مرات
-    system_check_camera_preview: ستظهر معاينة الكاميرا هنا
     system_check_proceed: نعم موافق للمضي قدما
-    system_check_rec_text: REC
     system_check_retake: لا، أريد أن أستعيد
     system_check_run_again: تشغيل مرة أخرى
     system_check_start_recording: بدء التسجيل

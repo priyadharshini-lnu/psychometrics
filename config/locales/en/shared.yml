@@ -22,6 +22,7 @@ en:
     authentication_failed: Authentication failed. Please try again.
     back: Back
     basic: Basic
+    camera_preview: Camera preview will appear here
     campaign: Campaign
     campaign_id: Campaign ID
     cancel: Cancel
@@ -61,6 +62,14 @@ en:
     last_name: Last Name
     learning_on_the_job_label: Learning on the Job
     login: Login
+    maintenance_in_hours: "%{hours} hours"
+    maintenance_in_minutes: "%{minutes} minutes"
+    maintenance_in_progress_description: We're currently performing system maintenance to ensure optimal platform performance and enhance your experience. Thank you for your understanding.
+    maintenance_in_progress_title: Scheduled Maintenance in Progress
+    maintenance_time_remaining: Time remaining
+    maintenance_upcoming_description: We'll be performing scheduled maintenance on %{date} for approximately %{duration} to enhance your experience. During this time, you won't be able to access or complete any assigned tasks. We appreciate your patience.
+    maintenance_upcoming_title: Upcoming Maintenance
+    media_question_transcriptions: Media Question Transcriptions
     media_responses: Media Responses
     modified_by: Modified By
     modified_date: Modified Date
@@ -74,9 +83,12 @@ en:
     ok: Ok
     pending: Pending
     processing: Processing
+    proctoring_maintenance_active: Proctoring is currently under maintenance from %{start_time} to %{end_time}. Please try again after the maintenance window.
+    proctoring_maintenance_upcoming: Proctoring will be under maintenance from %{start_time} to %{end_time}.
     project: Project
     question_id: Question ID
     question_transcription_disabled: Transcription is disabled for this question
+    rec: REC
     recording_consent_notice: This meeting session will be recorded. Your participation in this meeting constitutes your consent to be recorded.
     recording_consent_proceed_question: Do you agree to proceed with the recorded meeting?
     recording_consent_title: Recording Consent Notice
@@ -87,6 +99,7 @@ en:
     rte_paste_content_exceeds_char_limit: Text exceeds the character limit of {{maxCharacterLimit}} and cannot be pasted.
     rte_paste_content_exceeds_word_limit: Text exceeds the word limit of {{maxWordLimit}} and cannot be pasted.
     save: Save
+    saving_video: Saving Video... Please do not close or refresh the browser
     search: Search
     send_email: Send Email
     show_more: Show More

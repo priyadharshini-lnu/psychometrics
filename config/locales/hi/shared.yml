@@ -13,6 +13,7 @@ hi:
     audio: ऑडियो
     authentication_failed: प्रमाणीकरण विफल हो गया। कृपया फिर से प्रयास करें।
     basic: मूलभूत
+    camera_preview: कैमरा पूर्वावलोकन यहाँ दिखाई देगा
     campaign_id: अभियान आईडी
     cancel: रद्द करें
     change_password: पासवर्ड बदलें
@@ -50,6 +51,14 @@ hi:
     last_name: आखिरी नाम
     learning_on_the_job_label: काम करते हुए सीखना
     login: लॉगिन
+    maintenance_in_hours: "%{hours} घंटे"
+    maintenance_in_minutes: "%{minutes} मिनट"
+    maintenance_in_progress_description: हम वर्तमान में प्लेटफ़ॉर्म के सर्वोत्तम प्रदर्शन को सुनिश्चित करने और आपके अनुभव को बेहतर बनाने के लिए सिस्टम रखरखाव कर रहे हैं। आपकी समझदारी के लिए धन्यवाद।
+    maintenance_in_progress_title: नियोजित रखरखाव प्रगति पर है
+    maintenance_time_remaining: शेष समय
+    maintenance_upcoming_description: हम आपके अनुभव को बेहतर बनाने के लिए %{date} पर लगभग %{duration} तक निर्धारित रखरखाव करेंगे। इस दौरान आप किसी भी सौंपे गए कार्य तक पहुँच या उन्हें पूरा नहीं कर पाएँगे। हम आपके धैर्य की सराहना करते हैं।
+    maintenance_upcoming_title: आगामी रखरखाव
+    media_question_transcriptions: मीडिया प्रश्न प्रतिलेखन
     media_responses: मीडिया की प्रतिक्रियाएँ
     modified_by: द्वारा संशोधित
     modified_date: संशोधित तिथि
@@ -63,8 +72,11 @@ hi:
     ok: ठीक है
     pending: लंबित
     processing: प्रसंस्करण
+    proctoring_maintenance_active: प्रॉक्टरिंग वर्तमान में %{start_time} से %{end_time} पर रखरखाव के अधीन है। कृपया रखरखाव विंडो के बाद फिर से प्रयास करें।
+    proctoring_maintenance_upcoming: "%{start_time} से %{end_time} तक रखरखाव के तहत प्रॉक्टरिंग होगी।"
     question_id: प्रश्न आईडी
     question_transcription_disabled: इस प्रश्न के लिए प्रतिलेखन अक्षम है।
+    rec: पुनर्नवीनीकरण योग्य ऊर्जा स्रोत
     recording_consent_notice: इस बैठक सत्र को रिकॉर्ड किया जाएगा। इस बैठक में आपकी भागीदारी रिकॉर्ड किए जाने की आपकी सहमति मानी जाएगी।
     recording_consent_proceed_question: क्या आप रिकॉर्ड की गई बैठक को जारी रखने के लिए सहमत हैं?
     recording_consent_title: रिकॉर्डिंग सहमति सूचना
@@ -75,6 +87,7 @@ hi:
     rte_paste_content_exceeds_char_limit: टेक्स्ट {{maxCharacterLimit}} की वर्ण सीमा से अधिक है और इसे पेस्ट नहीं किया जा सकता।
     rte_paste_content_exceeds_word_limit: टेक्स्ट {{maxWordLimit}} शब्दों की सीमा से अधिक है और इसे पेस्ट नहीं किया जा सकता।
     save: बचाएँ
+    saving_video: वीडियो सहेज रहा है... कृपया ब्राउज़र बंद न करें या रिफ्रेश न करें।
     search: खोजें
     send_email: ईमेल भेजें
     show_more: और दिखाएँ

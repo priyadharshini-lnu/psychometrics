@@ -125,7 +125,10 @@ vi:
     edit_threesixty_campaign_admin: Chỉnh sửa quản trị viên chiến dịch
     empty_csv_file: Tệp CSV không chứa bất kỳ dữ liệu nào.
     enable_enhance_with_ai_client_level: Vui lòng kích hoạt tính năng "Enhance with AI" ở cấp độ khách hàng.
+    enable_maintenance: Bật chế độ bảo trì
     enable_transcription: Bật tính năng chuyển văn bản
+    end_time: Thời gian kết thúc
+    end_time_must_be_after_start_time: Thời gian kết thúc phải sau thời gian bắt đầu.
     enhance_with_ai: Nâng cao với Trí tuệ nhân tạo (AI)
     enhance_with_ai_requires_ai_assistants: Để sử dụng tính năng "Enhance with AI", bạn cần kích hoạt tính năng "AI Assistants".
     error: Lỗi
@@ -140,6 +143,7 @@ vi:
     feature_flags: Cờ tính năng
     fill_empty_score_msg: Điền vào tất cả các điểm cuối cùng trước khi lưu.
     final_score_empty_err_msg: Kết quả cuối cùng của "%{factor_name}" không được để trống.
+    final_score_empty_msg: Tổng số tiền không thể để trống.
     fix_grammar: Sửa lỗi ngữ pháp
     formal: Chính thức
     generate_transcription: Tạo bản chép lời
@@ -180,6 +184,9 @@ vi:
     libraries: Thư viện phương tiện
     library_invalid_type: Mục Thư viện không hợp lệ
     licenses: Giấy phép
+    maintenance: Bảo trì
+    maintenance_settings: Cài đặt bảo trì
+    maintenance_settings_description: Quản lý các khung thời gian bảo trì hệ thống và cài đặt
     manager_approval_required: Báo cáo cho %{user} yêu cầu sự chấp thuận của người quản lý trước khi tải xuống
     max_value: Giá trị tối đa
     messages: Thư
@@ -192,6 +199,7 @@ vi:
     mhs_report_id: Mã báo cáo MHS
     mhs_session_id: ID phiên làm việc MHS
     min_value: Giá trị nhỏ nhất
+    minimum_10_words: Tối thiểu 10 từ
     missing_min_max_values: Giá trị tối thiểu và tối đa là bắt buộc.
     name_required: Tên là bắt buộc
     no_file_selected: Không có tệp nào được chọn
@@ -635,6 +643,7 @@ vi:
     permissions_360_campaigns: Quyền truy cập dành riêng cho các chiến dịch 360
     piped_text: Văn bản được truyền qua ống
     privacy: Sự riêng tư
+    proctoring: Giám sát
     professional: Chuyên nghiệp
     proficiency: Năng lực
     proficiency_level: Khóa API
@@ -723,8 +732,10 @@ vi:
     search_admins: Quản trị viên tìm kiếm
     search_job_role: Tìm kiếm vị trí công việc
     select_admin_role: Chọn vai trò quản trị viên
+    select_end_time: Chọn Thời gian kết thúc
     select_language_to_translate: Vui lòng chọn ngôn ngữ để dịch.
     select_level: Chọn cấp độ
+    select_start_time: Chọn Thời gian bắt đầu
     send_email: Gửi email
     settings: Cài đặt
     show_original: Hiển thị bản gốc
@@ -737,12 +748,14 @@ vi:
     slot_name: Tên vị trí
     sms_histories: Lịch sử SMS
     sms_invites: Lời mời SMS
+    start_time: Thời gian bắt đầu
     stats: Thống kê
     status_details: Chi tiết trạng thái
     structured_learning: Học chính thức [10]
     subdomain: Tên miền phụ
     subject_part_of_other_invite: Người dùng có địa chỉ email %{user_email} đã được mời tham gia '%{workshop_invite_name}'.
     target_job_role: Vị trí công việc mục tiêu
+    timezone: Múi giờ
     tone: Giọng điệu
     toolbar_ai_insight: Nhận định về Trí tuệ Nhân tạo
     toolbar_ai_suggestion: Đề xuất của Trí tuệ nhân tạo

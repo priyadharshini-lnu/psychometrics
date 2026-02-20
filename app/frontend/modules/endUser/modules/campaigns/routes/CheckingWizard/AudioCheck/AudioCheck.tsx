@@ -417,7 +417,7 @@ const RecordCard: React.FC<RecordCardProps> = ({
             <Flex justify="center" align="center" className={styles.recordingIndicator}>
               <div className={styles.dot} />
               <Typography.Text className={styles.rec}>
-                {I18n.t('enduser.system_check_rec_text')}
+                {I18n.t('shared.rec')}
               </Typography.Text>
               <CountdownTimer
                 onFinish={handleStopRecording}

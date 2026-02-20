@@ -125,7 +125,10 @@ hu:
     edit_threesixty_campaign_admin: Kampányadminisztrátor szerkesztése
     empty_csv_file: A CSV fájl nem tartalmaz adatokat.
     enable_enhance_with_ai_client_level: Kérjük, engedélyezze az AI-vel történő fejlesztés funkciót ügyfélszinten.
+    enable_maintenance: Karbantartás engedélyezése
     enable_transcription: Feliratozás engedélyezése
+    end_time: Végidő
+    end_time_must_be_after_start_time: A befejezési időnek a kezdési idő után kell lennie.
     enhance_with_ai: Fejlesztés mesterséges intelligenciával
     enhance_with_ai_requires_ai_assistants: Az AI-val történő fejlesztéshez engedélyezni kell az AI-asszisztensek funkciót.
     error: Hiba
@@ -140,6 +143,7 @@ hu:
     feature_flags: Feature flags
     fill_empty_score_msg: Töltsd ki az összes végső pontszámot mentés előtt.
     final_score_empty_err_msg: "%{factor_name} végső pontszáma nem lehet üres."
+    final_score_empty_msg: A végösszeg nem lehet üres.
     fix_grammar: Helyesírás javítása
     formal: Hivatalos
     generate_transcription: Átírás létrehozása
@@ -180,6 +184,9 @@ hu:
     libraries: Médiatár
     library_invalid_type: Érvénytelen könyvtári tétel
     licenses: Licencek
+    maintenance: Karbantartás
+    maintenance_settings: Karbantartási beállítások
+    maintenance_settings_description: A rendszer karbantartási ablakainak és beállításainak kezelése
     manager_approval_required: A jelentés %{user} letöltése előtt menedzser jóváhagyását igényel
     max_value: Maximális érték
     messages: Üzenetek
@@ -192,6 +199,7 @@ hu:
     mhs_report_id: MHS jelentés azonosítója
     mhs_session_id: Mhs munkamenet azonosító
     min_value: Minimális érték
+    minimum_10_words: Legalább 10 szó
     missing_min_max_values: A minimális és maximális értékek megadása kötelező.
     name_required: Név szükséges
     no_file_selected: Fájl nem volt kiválasztva
@@ -635,6 +643,7 @@ hu:
     permissions_360_campaigns: 360°-os kampányokra vonatkozó engedélyek
     piped_text: Csővezetékes szöveg
     privacy: Adatvédelem
+    proctoring: Felügyelet
     professional: Professzionális
     proficiency: Jártasság
     proficiency_level: API-kulcsok
@@ -723,8 +732,10 @@ hu:
     search_admins: Adminisztrátorok keresése
     search_job_role: Álláskeresés
     select_admin_role: Válassza ki az adminisztrátori szerepkört
+    select_end_time: Végidő kiválasztása
     select_language_to_translate: Kérjük, válassza ki a fordítani kívánt nyelvet
     select_level: Szint kiválasztása
+    select_start_time: Kezdési idő kiválasztása
     send_email: E-mail küldése
     settings: Beállítások
     show_original: Eredeti megjelenítése
@@ -737,12 +748,14 @@ hu:
     slot_name: Nyerő neve
     sms_histories: SMS-előzmények
     sms_invites: SMS-meghívók
+    start_time: Kezdési idő
     stats: Statisztika
     status_details: Állapot részletei
     structured_learning: Formális tanulás [10]
     subdomain: Aldomain
     subject_part_of_other_invite: Az e-mail címmel %{user_email} rendelkező személy már meghívást kapott a „%{workshop_invite_name}” rendezvényre.
     target_job_role: Célkitűzés
+    timezone: Időzóna
     tone: Hangszín
     toolbar_ai_insight: AI betekintés
     toolbar_ai_suggestion: AI javaslat

@@ -26,7 +26,9 @@ module Administration
             current_user,
             nil,
             [
-              %w[reset_evaluation reset]
+              %w[reset_evaluation reset],
+              %w[reset_progress reset_progress],
+              %w[rescore rescore]
             ],
             {
               project_id: context[:project_id],

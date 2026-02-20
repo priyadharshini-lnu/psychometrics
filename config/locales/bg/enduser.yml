@@ -37,7 +37,6 @@ bg:
     recording: Запис
     reject_idp_plan: Отхвърляне на плана
     request_retry_message: Ти си офлайн. Отговорите ви не могат да бъдат запазени, но ще бъдат запазени автоматично, след като сте отново онлайн. Моля, не обновявайте и не затваряйте страницата.
-    saving_video_text: Запазвам видео... Моля, не затваряйте и не обновявайте браузъра
     selected_count: Избран
     skill_type: Тип умение
     start_campaign_message_proctored: Това е кампания с проктор, моля, натиснете бутона '%{buttonText}', за да започнете дейностите.
@@ -56,9 +55,7 @@ bg:
       three: Тестване, едно две три, звукът е толкова ясен, колкото може да бъде!
       two: Бързата кафява лисица прескача мързеливото куче.
     system_check_audio_title: Моля, кажете и повторете 3 пъти следното изречение.
-    system_check_camera_preview: Прегледът на камерата ще се появи тук
     system_check_proceed: Да, може да продължите
-    system_check_rec_text: REC
     system_check_retake: Не, искам да презапиша
     system_check_run_again: Пуснете отново
     system_check_start_recording: Започнете да записвате

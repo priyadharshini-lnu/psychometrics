@@ -37,7 +37,6 @@ ko:
     recording: 녹음
     reject_idp_plan: 계획 거부
     request_retry_message: 당신은 오프라인입니다. 답변은 저장할 수 없었지만, 다시 온라인에 접속하면 자동으로 저장됩니다. 페이지를 새로고침하거나 닫지 말아 주세요.
-    saving_video_text: 비디오 저장 중... 브라우저를 닫거나 새로고침하지 마세요
     selected_count: 선택됨
     skill_type: 스킬 유형
     start_campaign_message_proctored: 이 캠페인은 감독 캠페인입니다. 활동을 시작하려면 '%{buttonText}' 버튼을 클릭해 주세요.
@@ -56,9 +55,7 @@ ko:
       three: 테스트, 하나 둘 셋, 소리가 깨끗하게 들립니다!
       two: 재빠른 갈색 여우가 게으른 개를 뛰어넘습니다.
     system_check_audio_title: 다음 문장을 3번 말하고 반복해 주세요.
-    system_check_camera_preview: 카메라 미리보기가 여기에 표시됩니다
     system_check_proceed: 계속하기
-    system_check_rec_text: REC
     system_check_retake: 아니요, 재응시하고 싶습니다
     system_check_run_again: 다시 실행
     system_check_start_recording: 녹화 시작

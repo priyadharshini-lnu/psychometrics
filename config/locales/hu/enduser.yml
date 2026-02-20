@@ -37,7 +37,6 @@ hu:
     recording: Felvétel
     reject_idp_plan: Elutasít tervet
     request_retry_message: Offline vagy. A válaszaid nem menthetők el, de automatikusan mentődni fognak, amint újra online vagy. Kérjük, ne frissítse vagy zárja be az oldalt.
-    saving_video_text: Videómentés... Kérjük, ne zárja be vagy frissítse a böngészőt
     selected_count: Kiválasztott
     skill_type: Képesség típusa
     start_campaign_message_proctored: Ez egy felügyelt kampány, kérjük, kattintson a '%{buttonText}' gombra a tevékenységek elindításához.
@@ -56,9 +55,7 @@ hu:
       three: Tesztelés, egy kettő három, a hang tiszta, mint lehet!.
       two: A gyors barna róka átugrik a lusta kutyán.
     system_check_audio_title: Kérem, beszéljen és ismételje meg a következő mondatot háromszor.
-    system_check_camera_preview: A kamera előnézet itt jelenik meg
     system_check_proceed: Igen, oké a folytatáshoz
-    system_check_rec_text: REC
     system_check_retake: Nem, újra akarom venni
     system_check_run_again: Fuss újra
     system_check_start_recording: Indítsa el a felvételt

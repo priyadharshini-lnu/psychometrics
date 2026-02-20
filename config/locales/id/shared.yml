@@ -13,6 +13,7 @@ id:
     audio: Audio
     authentication_failed: Autentikasi gagal. Silakan coba lagi.
     basic: Dasar
+    camera_preview: Pratinjau kamera akan muncul di sini
     campaign_id: ID Kampanye
     cancel: Batal
     change_password: Ubah Kata Sandi
@@ -50,6 +51,14 @@ id:
     last_name: Nama belakang
     learning_on_the_job_label: Belajar di Tempat Kerja
     login: Masuk
+    maintenance_in_hours: "%{hours} jam"
+    maintenance_in_minutes: "%{minutes} menit"
+    maintenance_in_progress_description: Kami saat ini sedang melakukan pemeliharaan sistem untuk memastikan kinerja platform yang optimal dan meningkatkan pengalaman Anda. Terima kasih atas pengertian Anda.
+    maintenance_in_progress_title: Pemeliharaan Terjadwal Sedang Dilakukan
+    maintenance_time_remaining: Sisa Waktu
+    maintenance_upcoming_description: Kami akan melakukan pemeliharaan terjadwal pada %{date} selama sekitar %{duration} untuk meningkatkan pengalaman Anda. Selama periode ini, Anda tidak akan dapat mengakses atau menyelesaikan tugas yang telah ditugaskan. Kami menghargai kesabaran Anda.
+    maintenance_upcoming_title: Pemeliharaan Mendatang
+    media_question_transcriptions: Transkrip Pertanyaan Media
     media_responses: Tanggapan Media
     modified_by: Dimodifikasi oleh
     modified_date: Tanggal Dimodifikasi
@@ -63,8 +72,11 @@ id:
     ok: Ok
     pending: Menunggu
     processing: Pengolahan
+    proctoring_maintenance_active: Layanan Proctoring saat ini sedang dalam pemeliharaan dari %{start_time} ke %{end_time}. Silakan coba lagi setelah periode pemeliharaan selesai.
+    proctoring_maintenance_upcoming: Pengawasan ujian akan dalam tahap pemeliharaan dari %{start_time} hingga %{end_time}.
     question_id: ID Pertanyaan
     question_transcription_disabled: Transkripsi dinonaktifkan untuk pertanyaan ini.
+    rec: REC
     recording_consent_notice: Sesi rapat ini akan direkam. Partisipasi Anda dalam pertemuan ini merupakan persetujuan Anda untuk direkam.
     recording_consent_proceed_question: Apakah Anda setuju untuk melanjutkan rekaman rapat?
     recording_consent_title: Merekam Pemberitahuan Persetujuan
@@ -75,6 +87,7 @@ id:
     rte_paste_content_exceeds_char_limit: Teks melebihi batas karakter {{maxCharacterLimit}} dan tidak dapat ditempelkan.
     rte_paste_content_exceeds_word_limit: Teks melebihi batas kata {{maxWordLimit}} dan tidak dapat ditempelkan.
     save: Simpan
+    saving_video: Menyimpan Video... Tolong jangan tutup atau refresh browser
     search: Pencarian
     send_email: Kirim email
     show_more: Tampilkan Lebih Banyak

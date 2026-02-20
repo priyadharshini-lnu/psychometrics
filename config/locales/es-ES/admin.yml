@@ -125,7 +125,10 @@ es-ES:
     edit_threesixty_campaign_admin: Editar administración de campaña
     empty_csv_file: El archivo CSV no contiene ningún dato.
     enable_enhance_with_ai_client_level: Habilite la función Mejorar con IA a nivel de cliente.
+    enable_maintenance: Habilitar mantenimiento
     enable_transcription: Habilitar transcripción
+    end_time: Hora de finalización
+    end_time_must_be_after_start_time: La hora de finalización debe ser posterior a la hora de inicio.
     enhance_with_ai: Mejora con IA
     enhance_with_ai_requires_ai_assistants: Para mejorar con IA, es necesario habilitar la función Asistentes de IA.
     error: Error
@@ -140,6 +143,7 @@ es-ES:
     feature_flags: Banderas de características
     fill_empty_score_msg: Rellena todas las puntuaciones finales antes de guardar.
     final_score_empty_err_msg: La puntuación final de %{factor_name} no puede estar vacía.
+    final_score_empty_msg: La cuenta final no puede estar vacía.
     fix_grammar: Corregir gramática
     formal: Formal
     generate_transcription: Generar transcripción
@@ -180,6 +184,9 @@ es-ES:
     libraries: Mediateca
     library_invalid_type: Elemento inválido de la biblioteca
     licenses: Licencias
+    maintenance: Mantenimiento
+    maintenance_settings: Configuración de mantenimiento
+    maintenance_settings_description: Gestionar las ventanas y la configuración de mantenimiento del sistema.
     manager_approval_required: Informe para %{user} requiere la aprobación del gestor antes de la descarga
     max_value: Valor máximo
     messages: Mensajes
@@ -192,6 +199,7 @@ es-ES:
     mhs_report_id: Identificación del informe MHS
     mhs_session_id: ID de sesión Mhs
     min_value: Valor mínimo
+    minimum_10_words: Mínimo 10 palabras
     missing_min_max_values: Se requieren valores mínimos y máximos.
     name_required: Se requiere el nombre
     no_file_selected: No se selecciona ningún archivo
@@ -635,6 +643,7 @@ es-ES:
     permissions_360_campaigns: Permisos específicos para campañas 360
     piped_text: Texto canalizado
     privacy: Privacidad
+    proctoring: Supervisión
     professional: Profesional
     proficiency: Competencia
     proficiency_level: Claves API
@@ -723,8 +732,10 @@ es-ES:
     search_admins: Buscar administradores
     search_job_role: Buscar puesto de trabajo
     select_admin_role: Seleccione el rol de administrador
+    select_end_time: Seleccionar hora de finalización
     select_language_to_translate: Seleccione el idioma para traducir.
     select_level: Seleccionar nivel
+    select_start_time: Seleccionar hora de inicio
     send_email: Enviar correo electrónico
     settings: Ajustes
     show_original: Mostrar original
@@ -737,12 +748,14 @@ es-ES:
     slot_name: Nombre de la tragamonedas
     sms_histories: Historias de SMS
     sms_invites: Invitaciones por SMS
+    start_time: Hora de inicio
     stats: Estadísticas
     status_details: Detalles de estado
     structured_learning: Aprendizaje formal [10]
     subdomain: Subdominio
     subject_part_of_other_invite: El destinatario con la dirección de correo electrónico %{user_email} ya ha sido invitado a «%{workshop_invite_name}».
     target_job_role: Puesto de trabajo objetivo
+    timezone: Zona horaria
     tone: Tono
     toolbar_ai_insight: Perspectiva sobre la IA
     toolbar_ai_suggestion: Sugerencia de IA

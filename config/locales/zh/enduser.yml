@@ -37,7 +37,6 @@ zh:
     recording: 录音
     reject_idp_plan: 拒绝计划
     request_retry_message: 你已经离线了。你的答案无法保存，但一旦你重新上线，答案将自动保存。请不要刷新或关闭页面。
-    saving_video_text: 正在保存视频......请不要关闭或刷新浏览器
     selected_count: 已选择
     skill_type: 技能类型
     start_campaign_message_proctored: 这是一个监考活动，请点击“%{buttonText}”按钮开始活动。
@@ -56,9 +55,7 @@ zh:
       three: 测试，一二三，声音清晰无比
       two: 敏捷的棕狐狸跳过了懒惰的狗。
     system_check_audio_title: 请读出并重复以下句子 3 次。
-    system_check_camera_preview: 此处将显示相机预览
     system_check_proceed: 继续
-    system_check_rec_text: 录制
     system_check_retake: 不，我想重做
     system_check_run_again: 再来一次
     system_check_start_recording: 开始录制

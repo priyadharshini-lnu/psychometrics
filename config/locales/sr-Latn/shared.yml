@@ -13,6 +13,7 @@ sr-Latn:
     audio: Аудио
     authentication_failed: Autentifikacija nije uspela. Pokušajte ponovo.
     basic: Osnovne
+    camera_preview: Pregled kamere će se pojaviti ovde
     campaign_id: ID kampanje
     cancel: Otkaži
     change_password: Promeni lozinku
@@ -50,6 +51,14 @@ sr-Latn:
     last_name: Prezime
     learning_on_the_job_label: Učenje na poslu
     login: Prijava
+    maintenance_in_hours: "%{hours} сати"
+    maintenance_in_minutes: "%{minutes} минута"
+    maintenance_in_progress_description: Тренутно вршимо одржавање система како бисмо осигурали оптималан рад платформе и унапредили ваше искуство. Хвала вам на разумевању.
+    maintenance_in_progress_title: Планирани прекид рада у току
+    maintenance_time_remaining: Preostalo vreme
+    maintenance_upcoming_description: Извршићемо планирани одржавање на %{date} током отприлике %{duration} како бисмо побољшали ваше искуство. Током тог периода нећете моћи да приступите или завршите ниједан додељени задатак. Ценимо ваше стрпљење.
+    maintenance_upcoming_title: Предстојеће одржавање
+    media_question_transcriptions: Транскрипти медијских питања
     media_responses: Реакције медија
     modified_by: Modifikovan od strane
     modified_date: Datum izmene
@@ -63,8 +72,11 @@ sr-Latn:
     ok: Ok
     pending: Учешће
     processing: Обрада
+    proctoring_maintenance_active: Проктинг је тренутно у одржавању са %{start_time} на %{end_time}. Молимо покушајте поново након завршетка прозора за одржавање.
+    proctoring_maintenance_upcoming: Прокторинг ће бити у одржавању од %{start_time} до %{end_time}.
     question_id: Идентификациони број питања
     question_transcription_disabled: Транскрипција је онемогућена за ово питање
+    rec: REC
     recording_consent_notice: Ova sesija sastanka će biti snimljena. Vaše učešće na ovom sastanku predstavlja vašu saglasnost da se snima.
     recording_consent_proceed_question: Da li se slažete da nastavite sa snimljenim sastankom?
     recording_consent_title: Obaveštenje o saglasnosti za snimanje
@@ -75,6 +87,7 @@ sr-Latn:
     rte_paste_content_exceeds_char_limit: Tekst prelazi ograničenje znakova {{maxCharacterLimit}} i ne može se nalepiti.
     rte_paste_content_exceeds_word_limit: Tekst prelazi ograničenje reči {{maxWordLimit}} i ne može se nalepiti.
     save: Sačuvaj
+    saving_video: Čuvanje video zapisa ... Molimo vas da ne zatvarate ili osvežavate pretraživač
     search: Pretraži
     send_email: Pošalji imejl
     show_more: Prikaži još

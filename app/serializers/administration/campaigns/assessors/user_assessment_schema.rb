@@ -15,6 +15,8 @@ module Administration
             required(:status).filled(:str?)
             required(:permissions).hash do
               required(:reset_evaluation).filled(:bool?)
+              required(:reset_progress).filled(:bool?)
+              required(:rescore).filled(:bool?)
             end
           end
         end

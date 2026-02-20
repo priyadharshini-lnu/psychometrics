@@ -75,14 +75,14 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         />
         {!permissionGranted && !mediaUrl && (
           <div className={styles.overlay}>
-            <p>{I18n.t('enduser.system_check_camera_preview')}</p>
+            <p>{I18n.t('shared.camera_preview')}</p>
           </div>
         )}
         {status === 'recording' ? (
           <Flex justify="center" align="center" className={styles.recordingIndicator}>
             <div className={styles.dot} />
             <Typography.Text className={styles.rec}>
-              {I18n.t('enduser.system_check_rec_text')}
+              {I18n.t('shared.rec')}
             </Typography.Text>
             {showCountdownTimer
             && <CountdownTimer onFinish={onFinish} className={styles.countdownIndicator} seconds={duration} />}

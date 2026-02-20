@@ -125,7 +125,10 @@ ar:
     edit_threesixty_campaign_admin: تعديل مسؤول حملة
     empty_csv_file: ملف CSV لا يحتوي على أي بيانات.
     enable_enhance_with_ai_client_level: يرجى تمكين ميزة "تحسين باستخدام الذكاء الاصطناعي" على مستوى العميل
+    enable_maintenance: تمكين الصيانة
     enable_transcription: تمكين النسخ
+    end_time: نهاية الوقت
+    end_time_must_be_after_start_time: يجب أن يكون وقت الانتهاء بعد وقت البدء
     enhance_with_ai: تعزيز بالذكاء الاصطناعي
     enhance_with_ai_requires_ai_assistants: يتطلب تحسين الأداء باستخدام الذكاء الاصطناعي تمكين ميزة المساعدات الذكية.
     error: خطأ
@@ -140,6 +143,7 @@ ar:
     feature_flags: أعلام الميزات
     fill_empty_score_msg: املأ جميع الدرجات النهائية قبل الحفظ.
     final_score_empty_err_msg: لا يمكن أن تكون النتيجة النهائية لـ %{factor_name} فارغة.
+    final_score_empty_msg: لا يمكن أن يكون الحساب النهائي فارغًا.
     fix_grammar: تصحيح القواعد النحوية
     formal: رسمي
     generate_transcription: إنشاء نسخة مكتوبة
@@ -180,6 +184,9 @@ ar:
     libraries: مكتبة الوسائط
     library_invalid_type: عنصر المكتبة غير الصالح
     licenses: التراخيص
+    maintenance: الصيانة
+    maintenance_settings: إعدادات الصيانة
+    maintenance_settings_description: إدارة نوافذ صيانة النظام والإعدادات
     manager_approval_required: يتطلب الإبلاغ عن %{user} موافقة المدير قبل التحميل
     max_value: القيمة القصوى
     messages: Messages
@@ -192,6 +199,7 @@ ar:
     mhs_report_id: رقم تقرير MHS
     mhs_session_id: معرف جلسة Mhs
     min_value: القيمة الدنيا
+    minimum_10_words: 10 كلمات على الأقل
     missing_min_max_values: القيم الدنيا والقصوى مطلوبة.
     name_required: الاسم مطلوب
     no_file_selected: لم يتم اختيار ملف
@@ -635,6 +643,7 @@ ar:
     permissions_360_campaigns: أذونات خاصة بحملات 360
     piped_text: نص موصول
     privacy: Privacy
+    proctoring: الإشراف
     professional: محترف
     proficiency: الكفاءة
     proficiency_level: مفاتيح API
@@ -723,8 +732,10 @@ ar:
     search_admins: البحث عن المسؤولين
     search_job_role: البحث عن وظيفة
     select_admin_role: اختر دور المسؤول
+    select_end_time: حدد وقت الانتهاء
     select_language_to_translate: يرجى تحديد اللغة المطلوب ترجمتها
     select_level: اختر المستوى
+    select_start_time: حدد وقت البدء
     send_email: إرسال بريد إلكتروني
     settings: الإعدادات
     show_original: عرض الأصل
@@ -737,12 +748,14 @@ ar:
     slot_name: اسم الماكينة
     sms_histories: تواريخ الرسائل النصية القصيرة
     sms_invites: الدعوات عبر الرسائل النصية القصيرة
+    start_time: وقت البدء
     stats: الإحصائيات
     status_details: تفاصيل الحالة
     structured_learning: التعلم الرسمي [10]
     subdomain: المجال الفرعي
     subject_part_of_other_invite: الموضوع مع البريد الإلكتروني %{user_email} تمت دعوته بالفعل إلى "%{workshop_invite_name}"
     target_job_role: الوظيفة المستهدفة
+    timezone: المنطقة الزمنية
     tone: نغمة
     toolbar_ai_insight: رؤية الذكاء الاصطناعي
     toolbar_ai_suggestion: اقتراح الذكاء الاصطناعي

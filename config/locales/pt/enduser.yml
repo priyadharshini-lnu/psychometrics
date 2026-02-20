@@ -37,7 +37,6 @@ pt:
     recording: Gravação
     reject_idp_plan: Rejeitar o Plano
     request_retry_message: Você está offline. Suas respostas não puderam ser salvas, mas serão salvas automaticamente quando você voltar a estar online. Por favor, não atualize nem feche a página.
-    saving_video_text: Salvando vídeo... Por favor, não feche nem atualize o navegador
     selected_count: Selecionado
     skill_type: Tipo de habilidade
     start_campaign_message_proctored: Esta é uma campanha supervisionada, por favor, clique no botão '%{buttonText}' para iniciar as atividades.
@@ -56,9 +55,7 @@ pt:
       three: Testando, um, dois, três, o som é claro como pode ser!
       two: A rápida raposa castanha salta sobre o cão preguiçoso.
     system_check_audio_title: Diga e repita a seguinte frase 3 vezes.
-    system_check_camera_preview: A pré-visualização da câmara aparecerá aqui
     system_check_proceed: Continuar
-    system_check_rec_text: REC
     system_check_retake: Não, quero repetir
     system_check_run_again: Voltar a correr
     system_check_start_recording: Iniciar a gravação
