@@ -2,7 +2,7 @@
 
 module UsersResults
   class CopyMediaResponseJob < ApplicationJob
-    def perform(media_response, to_user_result)
+    def perform(media_response, to_user_result, transcription_text = nil)
       new_media_response = media_response.dup
       begin
         new_media_response.copy_and_upload(media_response.asset, :asset)
@@ -13,6 +13,13 @@ module UsersResults
 
       new_media_response.users_result_id = to_user_result.id
       new_media_response.user_selected = media_response.user_selected
+      if transcription_text.present?
+        new_media_response.build_transcription(
+          text: transcription_text,
+          status: :completed
+        )
+      end
+
       new_media_response.save!
     end
   end
