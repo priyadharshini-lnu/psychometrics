@@ -31,10 +31,10 @@ module Imports
 
         if errors.blank?
           user_results.each do |user_result|
+            user_result.user_assessment.save!
             user_result.save!
-
             if user_result.completed?
-              ::UserAssessments::SaveScoresWithCallbacks.call!(user_result.user_assessment, user_result.user)
+              ::UsersResults::SaveScoringWithCallbacksJob.perform_later(user_result, user_result.user)
             end
           end
         end
