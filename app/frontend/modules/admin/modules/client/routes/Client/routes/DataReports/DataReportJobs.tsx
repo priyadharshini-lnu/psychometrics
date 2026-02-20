@@ -13,13 +13,16 @@ import { Resource } from '~/modules/admin/components/Resource'
 const { I18n } = window
 
 export const DataReportJobs: React.FC<{}> = () => {
-  const { id } = useParams<{id: string}>()
+  const { id, clientId } = useParams<{id: string, clientId: string}>()
 
   const [passwords, setPasswords] = useState<{ [key: string]: string }>({})
 
   const baseApiConfig = {
     include: ['created_by'],
     fields: { users: ['name', 'email'] },
+    filter: {
+      data_report_owner_id_eq: clientId as string,
+    },
   }
 
   const config = {

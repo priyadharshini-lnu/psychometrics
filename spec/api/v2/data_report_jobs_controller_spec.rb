@@ -13,6 +13,7 @@ RSpec.describe Api::V2::Administration::DataReportJobsController, type: :request
   let(:data_report_job_id) { data_report_job.id }
   let!(:api_key) { create(:api_key, user: superadmin) }
   let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
+  let(:client_id) { project.client.id }
 
   describe 'as client admin' do
     before do
@@ -22,7 +23,7 @@ RSpec.describe Api::V2::Administration::DataReportJobsController, type: :request
     describe 'GET /data_reports/:data_report_id/data_report_jobs' do
       it 'returns data report jobs list' do
         get "/api/v2/administration/data_reports/#{data_report_id}/data_report_jobs",
-            params: { include: 'created_by' },
+            params: { include: 'created_by', filter: { data_report_owner_id_eq: client_id } },
             headers: { 'Authorization' => authorization }
 
         expect(response).to have_http_status(:ok)
@@ -35,6 +36,7 @@ RSpec.describe Api::V2::Administration::DataReportJobsController, type: :request
     describe 'GET /data_reports/:data_report_id/data_report_jobs/:data_report_job_id/get_password' do
       it 'returns password for data report job' do
         get "/api/v2/administration/data_reports/#{data_report_id}/data_report_jobs/#{data_report_job_id}/get_password",
+            params: { filter: { data_report_owner_id_eq: client_id } },
             headers: { 'Authorization' => authorization }
 
         expect(response).to have_http_status(:ok)
