@@ -859,8 +859,8 @@ en:
     subdomain: Subdomain
     subject_part_of_other_invite: Subject with email %{user_email} is already invited to '%{workshop_invite_name}'
     target_job_role: Target Job Role
-    timezone: TimeZone
     this_field_is_required: This field is required
+    timezone: TimeZone
     tone: Tone
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: AI Suggestion
