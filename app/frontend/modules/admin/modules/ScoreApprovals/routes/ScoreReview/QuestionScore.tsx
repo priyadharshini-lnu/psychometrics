@@ -284,7 +284,7 @@ export const QuestionScore = ({
       <Space orientation="vertical" separator={<Divider />}>
         <Typography.Title level={4}>
           <Space size="middle">
-            <AIEditorIcon style={{ color: 'var(--ant-primary-color)', width: 22, height: 22 }} />
+            <AIEditorIcon style={{ color: 'var(--ant-primary-color)', fontSize: 22 }} />
             {I18n.t('admin.ai_scoring_appoval_responses')}
           </Space>
         </Typography.Title>
