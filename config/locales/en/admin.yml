@@ -814,6 +814,7 @@ en:
     score_definitions: Score Definitions
     score_max: Score Max
     score_min: Score Min
+    score_must_be_in_between_min_and_max: Score must be in between %{min} and %{max}.
     score_range_info: 'Score Range: %{min} - %{max}'
     score_with_ai: Score with AI
     scoring: Scoring

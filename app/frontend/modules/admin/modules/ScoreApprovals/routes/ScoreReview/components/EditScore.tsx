@@ -7,10 +7,12 @@ import {
 
 const { I18n } = window
 
-export const EditScore = ({ value, onSubmit, onClose }) => {
+export const EditScore = ({
+  value, onSubmit, onClose, notApplicable: initialNA = false,
+}) => {
   const [tempValue, setTempValue] = useState(value)
   const [reason, setReason] = useState('')
-  const [notApplicable, setNotApplicable] = useState(false)
+  const [notApplicable, setNotApplicable] = useState(initialNA)
   const handleChange = (value) => {
     setTempValue(value)
   }

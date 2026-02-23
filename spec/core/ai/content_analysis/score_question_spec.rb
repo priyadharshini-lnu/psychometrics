@@ -34,7 +34,7 @@ describe AI::ContentAnalysis::ScoreQuestion do
   describe '#call' do
     context 'when scoring session does not exist' do
       before do
-        stub_wisper_publisher('AI::AssistantService', :call, :ok, { message: { 'factor_scores' => [] } })
+        stub_wisper_publisher('AI::AssistantService', :call, :ok, { message: { 'indicator_scores' => [] } })
       end
 
       it 'creates a new scoring session' do
@@ -53,7 +53,7 @@ describe AI::ContentAnalysis::ScoreQuestion do
       let!(:existing_session) { create_scoring_session }
 
       before do
-        stub_wisper_publisher('AI::AssistantService', :call, :ok, { message: { 'factor_scores' => [] } })
+        stub_wisper_publisher('AI::AssistantService', :call, :ok, { message: { 'indicator_scores' => [] } })
       end
 
       it 'uses the existing scoring session' do
@@ -102,7 +102,7 @@ describe AI::ContentAnalysis::ScoreQuestion do
 
         it 'regenerates scores' do
           stub_wisper_publisher('AI::AssistantService', :call, :ok, {
-            message: { 'factor_scores' => [{ 'factor_id' => factor.id, 'score' => 4 }] }
+            message: { 'indicator_scores' => [{ 'indicator_id' => factor.id, 'score' => 4 }] }
           })
           described_class.call(question, users_result)
           expect(existing_session.reload.status).to eq('completed')
@@ -128,7 +128,7 @@ describe AI::ContentAnalysis::ScoreQuestion do
 
         it 'regenerates scores' do
           stub_wisper_publisher('AI::AssistantService', :call, :ok, {
-            message: { 'factor_scores' => [{ 'factor_id' => factor.id, 'score' => 4 }] }
+            message: { 'indicator_scores' => [{ 'indicator_id' => factor.id, 'score' => 4 }] }
           })
           described_class.call(question, users_result)
           expect(existing_session.reload.status).to eq('completed')
@@ -151,7 +151,7 @@ describe AI::ContentAnalysis::ScoreQuestion do
       it 'resets the session and regenerates scores' do
         stub_wisper_publisher('AI::AssistantService', :call, :ok, {
           message: {
-            'factor_scores' => [{ 'factor_id' => factor.id, 'score' => 4 }]
+            'indicator_scores' => [{ 'indicator_id' => factor.id, 'score' => 4 }]
           }
         })
         described_class.call(question, users_result, rescore: true)
@@ -166,9 +166,9 @@ describe AI::ContentAnalysis::ScoreQuestion do
       let!(:session) { create_scoring_session }
       let(:ai_response) do
         {
-          'factor_scores' => [
+          'indicator_scores' => [
             {
-              'factor_id' => factor.id,
+              'indicator_id' => factor.id,
               'score' => 8,
               'rationale' => 'Good response'
             }
@@ -208,9 +208,9 @@ describe AI::ContentAnalysis::ScoreQuestion do
 
       it 'demonstrates the expected shape of AI response and parsed output' do
         mocked_raw_ai_message = {
-          'factor_scores' => [
+          'indicator_scores' => [
             {
-              'factor_id' => '99',
+              'indicator_id' => '99',
               'score' => 5,
               'rationale' => 'Evidence found'
             }
@@ -269,10 +269,10 @@ describe AI::ContentAnalysis::ScoreQuestion do
     context 'parsing AI response' do
       let(:service) { described_class.new(question, users_result) }
 
-      it 'correctly parses valid factor scores' do
+      it 'correctly parses valid indicator scores' do
         response = {
-          'factor_scores' => [
-            { 'factor_id' => '1', 'score' => 7, 'rationale' => 'Test' }
+          'indicator_scores' => [
+            { 'indicator_id' => '1', 'score' => 7, 'rationale' => 'Test' }
           ]
         }
 

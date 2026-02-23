@@ -115,9 +115,8 @@ module AI
       end
 
       def build_competency_with_indicators(competency, factor_scorings)
+        indicators_content = factor_scorings.map { |fs| build_indicator(fs) }.join("\n")
         if competency
-          indicators_content = factor_scorings.map { |fs| build_indicator(fs) }.join("\n")
-
           <<~COMPETENCY.strip
             <competency>
               <name>#{competency.name}</name>
@@ -128,8 +127,13 @@ module AI
             </competency>
           COMPETENCY
         else
-          # Handle indicators without a parent competency
-          factor_scorings.map { |fs| build_indicator(fs) }.join("\n")
+          <<~COMPETENCY.strip
+            <competency>
+              <indicators>
+              #{indicators_content}
+              </indicators>
+            </competency>
+          COMPETENCY
         end
       end
 

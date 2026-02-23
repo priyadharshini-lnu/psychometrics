@@ -82,8 +82,17 @@ module AI
           chat: nil,
           contextual_information: payload_parser.assessment_level_instructions,
           validate_response_structure: true,
+          response_validators: [indicator_completeness_validator],
           session: session
         )
+      end
+
+      def indicator_completeness_validator
+        IndicatorCompletenessValidator.new(expected_indicator_ids)
+      end
+
+      def expected_indicator_ids
+        question.factors_scorings.includes(:factor).map { |fs| fs.factor.id }
       end
 
       def payload_parser
@@ -118,13 +127,13 @@ module AI
       end
 
       def parse_ai_response(response)
-        return {} unless response.is_a?(Hash) && response['factor_scores'].is_a?(Array)
+        return {} unless response.is_a?(Hash) && response['indicator_scores'].is_a?(Array)
 
-        response['factor_scores'].each_with_object({}) do |score_data, parsed|
-          factor_id = score_data['factor_id']
-          next if factor_id.blank?
+        response['indicator_scores'].each_with_object({}) do |score_data, parsed|
+          indicator_id = score_data['indicator_id']
+          next if indicator_id.blank?
 
-          parsed[factor_id.to_s] = score_data.except('factor_id')
+          parsed[indicator_id.to_s] = score_data.except('indicator_id')
         end
       end
     end

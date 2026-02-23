@@ -3,7 +3,7 @@
 module AI
   class AssistantService < BaseCommand
     private_attr_reader :assistant_id, :prompt, :current_user, :options, :chat, :ask_params, :ignore_user_prompt,
-                        :max_retry_count, :session
+                        :max_retry_count, :session, :response_validators
 
     def initialize(assistant_id, current_user, prompt = nil, options = {})
       @assistant_id = assistant_id
@@ -15,6 +15,7 @@ module AI
       @ask_params = options[:ask_params] || {} # Parameters for the request api service
       @ignore_user_prompt = options[:ignore_user_prompt] || false
       @validate_response_structure = options[:validate_response_structure] || false
+      @response_validators = options[:response_validators] || []
       @max_retry_count = options[:max_retry_count] || 3
     end
 
@@ -75,6 +76,11 @@ module AI
 
       parsed_response = response.is_a?(String) ? JSON.parse(response) : response
       assistant.output_schema_class.validate_response(parsed_response)
+
+      response_validators.each do |validator|
+        error = validator.validate(parsed_response)
+        raise AI::OutputSchemas::Base::InvalidResponseStructureError, error if error.present?
+      end
 
       nil
     rescue JSON::ParserError => e

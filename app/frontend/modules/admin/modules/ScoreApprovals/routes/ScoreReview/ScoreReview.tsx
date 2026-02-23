@@ -62,8 +62,7 @@ export const ScoreReview = () => {
     setData([newScoreApproval])
   }
 
-
-  const overrideScore = (scoreId, { score, reason, notApplicable }) => {
+  const overrideScore = (scoreId, { score, reason, notApplicable }) => (
     memberAction({
       id,
       method: 'post',
@@ -73,10 +72,12 @@ export const ScoreReview = () => {
       },
     }).then((data) => {
       updateCompetenciesAndIndicators(scoreApproval, data)
+    }).catch((error) => {
+      message.error(error?.error || error?.base?.[0]?.title)
     })
-  }
+  )
 
-  const discardScore = (scoreId) => {
+  const discardScore = scoreId => (
     memberAction({
       id,
       method: 'post',
@@ -86,8 +87,10 @@ export const ScoreReview = () => {
       },
     }).then((data) => {
       updateCompetenciesAndIndicators(scoreApproval, data)
+    }).catch((error) => {
+      message.error(error?.error || error?.base?.[0]?.title)
     })
-  }
+  )
 
   const approveQuestion = (questionId) => {
     memberAction({

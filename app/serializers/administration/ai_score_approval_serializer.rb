@@ -7,7 +7,7 @@ module Administration
                :assessed_by, :approved_by
 
     def questions
-      object.assessment.scorable_ai_questions
+      object.assessment.scorable_ai_questions.order(:position)
     end
 
     def results
@@ -31,11 +31,14 @@ module Administration
     end
 
     def media_responses
-      Panko::ArraySerializer.new(
-        object.users_result.media_responses.where(question_id: scorable_question_ids).
-          order(:created_at),
-        each_serializer: MediaResponseSerializer
-      ).to_a.group_by { |a| a['question_id'] }
+      object.assessment.scorable_ai_questions.to_h do |question|
+        active_response = object.users_result.active_media_response(question)
+        if active_response
+          [question.id, [MediaResponseSerializer.new.serialize(active_response)]]
+        else
+          [question.id, []]
+        end
+      end
     end
 
     def review_as

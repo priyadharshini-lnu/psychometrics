@@ -31,9 +31,9 @@ const CollapseHeader = ({
   const overrided = !!factor.overrideScore
 
   const updateScore = (payload) => {
-    overrideScore(factor.id, payload)
-
-    setOpen(false)
+    overrideScore(factor.id, payload).then(() => {
+      setOpen(false)
+    })
   }
 
   const removeScore = () => {
@@ -87,7 +87,8 @@ const CollapseHeader = ({
               open={open}
               content={(
                 <EditScore
-                  value={factor.score}
+                  value={factor.overrideScore || factor.score}
+                  notApplicable={factor.notApplicable}
                   onSubmit={updateScore}
                   onClose={() => setOpen(false)}
                 />
@@ -129,8 +130,9 @@ export const CompetencyRow = ({
   const overridenScore = !hasIndicators && (competency.overrideScore || competency.notApplicable)
 
   const updateScore = (payload) => {
-    overrideScore(competency.id, payload)
-    setOpen(false)
+    overrideScore(competency.id, payload).then(() => {
+      setOpen(false)
+    })
   }
 
   const removeScore = () => {
@@ -188,7 +190,8 @@ export const CompetencyRow = ({
                       open={open}
                       content={(
                         <EditScore
-                          value={competency.score}
+                          value={competency.overrideScore || competency.score}
+                          notApplicable={competency.notApplicable}
                           onSubmit={updateScore}
                           onClose={() => setOpen(false)}
                         />
