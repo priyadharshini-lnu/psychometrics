@@ -45,6 +45,22 @@ export const CompetencyTR = t.type({
   scoringType: t.string,
 })
 
+export const CampaignTR = t.type({
+  id: t.string,
+  name: t.string,
+})
+
+export const AssessmentTR = t.type({
+  id: t.string,
+  name: t.string,
+})
+
+export const UserTR = t.type({
+  id: t.string,
+  name: t.string,
+  email: t.string,
+})
+
 export const ScoreApprovalTR = t.type({
   id: t.string,
   approvalStatus: t.string,
@@ -64,27 +80,17 @@ export const ScoreApprovalTR = t.type({
   results: t.record(t.string, t.union([t.string, t.number, t.boolean])),
   competencies: t.array(CompetencyTR),
   mediaResponses: t.record(t.string, t.union([t.string, t.number, t.boolean])),
+  campaignName: t.string,
+  projectName: t.string,
+  clientName: t.string,
+  subjectName: t.string,
+  subjectEmail: t.string,
+  assessedBy: t.union([t.string, t.undefined]),
+  approvedBy: t.union([t.string, t.undefined]),
 })
 
 
 export const TasksTR = t.array(TaskTR)
-
-export const CampaignTR = t.type({
-  id: t.string,
-  name: t.string,
-})
-
-export const AssessmentTR = t.type({
-  id: t.string,
-  name: t.string,
-})
-
-export const UserTR = t.type({
-  id: t.string,
-  name: t.string,
-  email: t.string,
-})
-
 
 export type Campaign = t.TypeOf<typeof CampaignTR>
 export type Assessment = t.TypeOf<typeof AssessmentTR>

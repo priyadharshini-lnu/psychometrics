@@ -23,7 +23,7 @@ import styles from './TasksList.less'
 const { Column } = Table
 const { I18n } = window
 
-const APPROVAL_STATUS = {
+export const APPROVAL_STATUS = {
   pending: <Tag color="blue">{I18n.t('shared.pending')}</Tag>,
   assessor_approved: <Tag color="orange">{I18n.t('shared.assessor_approved')}</Tag>,
   approver_approved: <Tag color="green">{I18n.t('shared.approved')}</Tag>,

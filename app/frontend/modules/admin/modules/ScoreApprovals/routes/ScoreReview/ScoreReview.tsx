@@ -1,16 +1,19 @@
 import {
-  Col, Row, Tabs, Flex, Button, Descriptions, Space, message,
+  Col, Row, Tabs, Flex, Button, Space, message, Card,
+  Typography,
 } from 'antd'
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import humps from 'humps'
 import {
-  ArrowLeftOutlined, InfoCircleOutlined, CheckCircleFilled,
+  LeftOutlined, InfoCircleOutlined, CheckCircleFilled,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { QuestionScore } from './QuestionScore'
 import { useResources } from '~/hooks/useResources'
 import { ScoreApproval, Indicator } from '../../core'
+import { APPROVAL_STATUS } from '../TasksList'
+import styles from './ScoreReview.less'
 
 const { I18n } = window
 
@@ -30,7 +33,7 @@ export const ScoreReview = () => {
 
   const scoreApproval = data[0]
 
-  if (!id || isLoading(`fetch@${id}`) || !scoreApproval) {
+  if (!id || isLoading(`fetch@${id}`) || !scoreApproval || !scoreApproval.questions) {
     return
   }
 
@@ -108,8 +111,10 @@ export const ScoreReview = () => {
       method: 'post',
       action: 'approve_all_questions',
       body: {},
-    }).then((data: Indicator[]) => {
-      updateCompetenciesAndIndicators({ ...scoreApproval, allowApprove: false }, data)
+    }).then((data: ScoreApproval) => {
+      const camelizedData = humps.camelizeKeys(data)
+      setData([camelizedData])
+      // updateCompetenciesAndIndicators({ ...scoreApproval, allowApprove: false }, data)
     }).catch((error) => {
       message.error(error?.base?.[0]?.title)
     })
@@ -174,10 +179,10 @@ export const ScoreReview = () => {
       />
 
       <Row justify="center">
-        <Col flex={1} style={{ padding: 16 }}>
+        <Col flex={1} style={{ padding: 16, maxWidth: 1200 }}>
           <Flex vertical gap={12}>
             <Flex justify="space-between">
-              <Button type="text" icon={<ArrowLeftOutlined />} onClick={() => navigate(-1)}>
+              <Button type="text" style={{ padding: 0 }} icon={<LeftOutlined />} onClick={() => navigate(-1)}>
                 {I18n.t('shared.back')}
               </Button>
               {allowApprove && (
@@ -186,15 +191,85 @@ export const ScoreReview = () => {
                 </Button>
               )}
             </Flex>
-            <Descriptions
-              column={2}
-              size="small"
-              style={{ width: '100%' }}
-              bordered
-              items={[]}
-            />
+            <Card classNames={{ body: styles.headerCard }}>
+              <Flex flex={1}>
+                <Flex vertical gap={24} flex={1}>
+                  <Flex vertical>
+                    <Typography.Text className={styles.label}>
+                      {I18n.t('shared.campaign')}
+                    </Typography.Text>
+                    <Typography.Text strong>
+                      {scoreApproval.campaignName}
+                    </Typography.Text>
+                  </Flex>
+                  <Flex vertical>
+                    <Typography.Text className={styles.label}>
+                      {I18n.t('shared.subject')}
+                    </Typography.Text>
+                    <Typography.Text strong>
+                      {scoreApproval.subjectName}
+                    </Typography.Text>
+                  </Flex>
+                </Flex>
+                <Flex vertical gap={24} flex={1}>
+                  <Flex vertical>
+                    <Typography.Text className={styles.label}>
+                      {I18n.t('shared.client')}
+                    </Typography.Text>
+                    <Typography.Text strong>
+                      {scoreApproval.clientName}
+                    </Typography.Text>
+                  </Flex>
+                  <Flex vertical>
+                    <Typography.Text className={styles.label}>
+                      {I18n.t('shared.email')}
+                    </Typography.Text>
+                    <Typography.Text strong copyable>
+                      {scoreApproval.subjectEmail}
+                    </Typography.Text>
+                  </Flex>
+                </Flex>
+                <Flex vertical gap={24} flex={1}>
+                  <Flex vertical>
+                    <Typography.Text className={styles.label}>
+                      {I18n.t('shared.project')}
+                    </Typography.Text>
+                    <Typography.Text strong>
+                      {scoreApproval.projectName}
+                    </Typography.Text>
+                  </Flex>
+                  <Flex vertical>
+                    <Typography.Text className={styles.label}>
+                      {I18n.t('shared.assessed_by')}
+                    </Typography.Text>
+                    <Typography.Text strong>
+                      {scoreApproval.assessedBy}
+                    </Typography.Text>
+                  </Flex>
+                </Flex>
+                <Flex vertical gap={24} flex={1}>
+                  <Flex vertical>
+                    <Typography.Text className={styles.label}>
+                      {I18n.t('shared.approval_status')}
+                    </Typography.Text>
+                    <Typography.Text>
+                      {APPROVAL_STATUS[scoreApproval.approvalStatus]}
+                    </Typography.Text>
+                  </Flex>
+                  <Flex vertical>
+                    <Typography.Text className={styles.label}>
+                      {I18n.t('shared.approved_by')}
+                    </Typography.Text>
+                    <Typography.Text strong>
+                      {scoreApproval.approvedBy}
+                    </Typography.Text>
+                  </Flex>
+                </Flex>
+              </Flex>
+            </Card>
           </Flex>
           <Tabs
+            className={styles.questionTabs}
             items={items}
             defaultActiveKey={items[0]?.key}
             activeKey={currentTab}

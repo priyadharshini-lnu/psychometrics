@@ -282,7 +282,12 @@ export const QuestionScore = ({
       </Flex>
 
       <Space orientation="vertical" separator={<Divider />}>
-        <Typography.Title level={4}>{I18n.t('admin.ai_scoring_appoval_responses')}</Typography.Title>
+        <Typography.Title level={4}>
+          <Space size="middle">
+            <AIEditorIcon style={{ color: 'var(--ant-primary-color)', width: 22, height: 22 }} />
+            {I18n.t('admin.ai_scoring_appoval_responses')}
+          </Space>
+        </Typography.Title>
         {_.map(groupedIndicators, (indicators, competencyFactorId) => {
           const competency = getCompetency(competencyFactorId)
           return (

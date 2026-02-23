@@ -3,35 +3,36 @@
 module Administration
   class AIScoreApprovalSerializer < Panko::Serializer
     attributes :id, :questions, :competencies, :indicators, :results, :media_responses, :review_as, :approval_status,
-               :allow_approve
+               :allow_approve, :campaign_name, :subject_name, :project_name, :client_name, :subject_email,
+               :assessed_by, :approved_by
 
     def questions
       object.assessment.scorable_ai_questions
     end
 
     def results
-      object.as_user_assessment.users_result.answers.select do |question_id|
+      object.users_result.answers.select do |question_id|
         question_id.to_i.in?(scorable_question_ids)
       end
     end
 
     def competencies
       Panko::ArraySerializer.new(
-        object.as_user_assessment.users_result.ai_factor_scores.where(parent_factor_id: nil),
+        object.users_result.ai_factor_scores.where(parent_factor_id: nil),
         each_serializer: Administration::AIFactorScoreSerializer
       ).to_a
     end
 
     def indicators
       Panko::ArraySerializer.new(
-        object.as_user_assessment.users_result.ai_factor_scores.where.not(parent_factor_id: nil),
+        object.users_result.ai_factor_scores.where.not(parent_factor_id: nil),
         each_serializer: Administration::AIFactorScoreSerializer
       ).to_a.group_by { |a| a['question_id'] }
     end
 
     def media_responses
       Panko::ArraySerializer.new(
-        object.as_user_assessment.users_result.media_responses.where(question_id: scorable_question_ids).
+        object.users_result.media_responses.where(question_id: scorable_question_ids).
           order(:created_at),
         each_serializer: MediaResponseSerializer
       ).to_a.group_by { |a| a['question_id'] }
@@ -49,6 +50,34 @@ module Administration
       return true if approver? && object.assessor_approved?
 
       false
+    end
+
+    def campaign_name
+      object.campaign.name
+    end
+
+    def project_name
+      object.project.name
+    end
+
+    def client_name
+      object.client.name
+    end
+
+    def subject_name
+      object.subject.name
+    end
+
+    def subject_email
+      object.subject.email
+    end
+
+    def assessed_by
+      object.score_assessed_by&.name
+    end
+
+    def approved_by
+      object.score_approved_by&.name
     end
 
     private
