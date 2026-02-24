@@ -480,7 +480,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
        coalesce(template.props, props).as('props'),
        coalesce(template.name, name).as('name')]
     end.joining { template.outer }.
-                      includes(:questions_ams).where.has { (template.disabled == false) | (template.id == nil) }
+                      includes(:questions).where.has { (template.disabled == false) | (template.id == nil) }
 
     selected_blocks.each do |block|
       piped_text.merge!(block.generate_piped_text_mapping(piped_text_context))
