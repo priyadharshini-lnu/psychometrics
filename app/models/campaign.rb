@@ -122,7 +122,11 @@ class Campaign < ApplicationRecord
   end
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id name status type start_date end_date]
+    %w[id name status type start_date end_date project_id tte_id]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[project]
   end
 
   def real_status

@@ -13,6 +13,9 @@ const ResourceTypeTR = t.union([
   t.literal(ResourceType.ReportApprovalAll),
   t.literal(ResourceType.ReportApprovalMyTasks),
   t.literal(ResourceType.ReportApprovalApproved),
+  t.literal(ResourceType.ScoreApprovalAll),
+  t.literal(ResourceType.ScoreApprovalMyTasks),
+  t.literal(ResourceType.ScoreApprovalApproved),
 ])
 
 const FilterParamsTR = t.record(

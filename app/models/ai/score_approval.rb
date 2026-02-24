@@ -59,12 +59,15 @@ class AI::ScoreApproval < ApplicationRecord
     setting&.allow_bulk_approve_scores?
   end
 
+  ransack_alias :project_id, :campaign_project_id
+  ransack_alias :client_id, :campaign_project_tte_id
+
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id approval_status campaign_id project_id client_id subject_id assessor_id approver_id]
+    %w[id approval_status campaign_id project_id client_id subject_id assessor_id approver_id assessment_id]
   end
 
   def self.ransackable_associations(_auth_object = nil)
-    %w[campaign project client subject]
+    %w[campaign project client subject assessment]
   end
 
   def self.scoped_by_client(restricted_client_subquery)

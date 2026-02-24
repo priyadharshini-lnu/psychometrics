@@ -11,18 +11,31 @@ export const TaskTR = t.type({
   allowBulkApproveScores: t.boolean,
   campaign: t.type({
     id: t.string,
+    name: t.string,
+  }),
+  project: t.type({
+    id: t.string,
+    name: t.string,
+  }),
+  client: t.type({
+    id: t.string,
+    name: t.string,
   }),
   subject: t.type({
     id: t.string,
+    name: t.string,
   }),
   assessment: t.type({
     id: t.string,
+    name: t.string,
   }),
   scoreAssessedBy: t.union([t.type({
     id: t.string,
+    name: t.string,
   }), t.undefined]),
   scoreApprovedBy: t.union([t.type({
     id: t.string,
+    name: t.string,
   }), t.undefined]),
 })
 

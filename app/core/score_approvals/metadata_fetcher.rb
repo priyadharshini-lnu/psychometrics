@@ -71,7 +71,7 @@ module ScoreApprovals
                            end
 
         if @filter && @filter[:approval_status_in] == 'approved'
-          @score_approvals = @score_approvals.where(approval_status: 'approved')
+          @score_approvals = AI::ScoringApprovalSetting.approved_for(current_user)
         end
 
         @score_approvals

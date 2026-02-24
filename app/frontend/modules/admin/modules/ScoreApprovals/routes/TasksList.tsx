@@ -392,7 +392,15 @@ const TasksListComponent: React.FC<Props> = ({
         <Column
           width={150}
           title={I18n.t('shared.status')}
-          key="approvedBy"
+          key="status"
+          {...filterProps(
+            '', 'approval_status_in', 'approval_status_in',
+            getFilteredValue('approval_status_in'), [
+              { id: 'pending', name: I18n.t('shared.pending') },
+              { id: 'assessor_approved', name: I18n.t('shared.assessor_approved') },
+              { id: 'approver_approved', name: I18n.t('shared.approved') },
+            ],
+          )}
           render={({ approvalStatus }) => (
             <>
               {APPROVAL_STATUS[approvalStatus]}
