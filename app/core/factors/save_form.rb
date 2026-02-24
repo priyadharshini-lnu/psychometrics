@@ -8,6 +8,7 @@ module Factors
     attribute :description, String
     attribute :scoring_strategy, String
     attribute :factors_sub_factors_attributes, Object
+    attribute :new_indicators_attributes, Object
     attribute :factor_type, String
     attribute :icon, Object
     attribute :purge_icon, Boolean
@@ -30,6 +31,8 @@ module Factors
     validate :scale_min_max
     validate :score_min_max
     validates :precision, numericality: { only_integer: true }, allow_blank: true
+
+    validate :validate_indicators
 
     def avoid_cyclic_references
       return true unless id
@@ -56,6 +59,23 @@ module Factors
       return errors.add(:score_min, 'both should be filled or empty') if score_min.blank? ^ score_max.blank?
 
       errors.add(:score_min, 'must be less than score_max') if score_min >= score_max
+    end
+
+    def validate_indicators
+      return true if new_indicators_attributes.blank?
+
+      new_indicators_attributes.each_with_index do |indicator_attrs, _idx|
+        next unless indicator_attrs.is_a?(Hash)
+
+        indicator_form = Factors::SaveForm.new(indicator_attrs)
+        next if indicator_form.valid?
+
+        indicator_form.errors.messages.each do |attr, messages|
+          Array(messages).each do |msg|
+            errors.add(:new_indicators_attributes, "#{indicator_attrs['name']}: #{attr.to_s.humanize} #{msg}")
+          end
+        end
+      end
     end
   end
 end

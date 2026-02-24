@@ -44,9 +44,15 @@ type Props = {
   errors?: {
     factors_sub_factors?: string[]
   }
+  indicatorErrors?: string[]
 }
 
-const IndicatorList: React.FC<Props> = ({ factor, onChange, errors }) => {
+const IndicatorList: React.FC<Props> = ({
+  factor,
+  onChange,
+  errors,
+  indicatorErrors,
+}) => {
   const [indicators, setIndicators] = useState<Indicator[]>(
     factor.factors_sub_factors || [],
   )
@@ -259,6 +265,15 @@ const IndicatorList: React.FC<Props> = ({ factor, onChange, errors }) => {
           {I18n.t('admin.add_indicator')}
         </Button>
       </div>
+
+
+      {indicatorErrors && indicatorErrors.length > 0 && (
+        <div style={{ color: 'red', marginTop: '8px' }}>
+          {indicatorErrors.map((err, idx) => (
+            <div key={idx}>{err}</div>
+          ))}
+        </div>
+      )}
 
       <Table
         columns={columns}

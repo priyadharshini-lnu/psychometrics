@@ -242,7 +242,14 @@ export default function Form (props) {
       {INDICATOR_SUPPORTED_STRATEGIES.includes(resource.scoring_strategy) && childrenFactorType === 'regular'
         && <SubFactorList factors={factors} factor={resource} onChange={onChange} errors={errors} />}
       {INDICATOR_SUPPORTED_STRATEGIES.includes(resource.scoring_strategy) && childrenFactorType === 'indicator'
-        && <IndicatorList factor={resource} onChange={onChange} errors={errors} />}
+        && (
+          <IndicatorList
+            factor={resource}
+            onChange={onChange}
+            errors={errors}
+            indicatorErrors={errors?.new_indicators_attributes}
+          />
+        )}
       {SUB_FACTOR_ONLY_STRATEGIES.includes(resource.scoring_strategy)
         && <SubFactorList factors={factors} factor={resource} onChange={onChange} errors={errors} />}
       {resource.scoring_strategy === 'external_score'
