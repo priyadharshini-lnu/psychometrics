@@ -3,7 +3,6 @@ import {
   Divider, Typography, Select, Space,
 } from 'antd'
 
-import ScoreWithAI from '~/modules/survey/components/ScoreWithAI'
 import { PropertiesModel } from '~/modules/survey/interfaces/questions/AudioResponse'
 
 import useForceUpdate from '~/hooks/useUpdate'
@@ -88,10 +87,6 @@ export const Properties: FC<Props> = ({ model, restricted, showOnlyTranslatable 
         <RequiredValidations model={model} update={forceUpdate} />
       )}
       {!restricted && <ValidationTypes model={model} update={forceUpdate} />}
-      <ScoreWithAI
-        model={model}
-        update={forceUpdate}
-      />
     </>
   )
 }

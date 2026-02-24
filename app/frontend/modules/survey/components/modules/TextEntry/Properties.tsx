@@ -4,7 +4,6 @@ import {
 } from 'antd'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 
-import ScoreWithAI from '~/modules/survey/components/ScoreWithAI'
 import {
   PropertiesModel,
   DateFormat,
@@ -26,7 +25,6 @@ import {
 } from '~/modules/survey/components/modules/TextEntry/constant'
 
 const { I18n } = window
-const { enhance_with_ai_enabled } = window.PsyGlobalState.features
 
 interface Props {
   model: PropertiesModel
@@ -35,11 +33,10 @@ interface Props {
 
 export const Properties: FC<Props> = ({ model, showOnlyTranslatable }) => {
   const forceUpdate = useForceUpdate()
-  const showEnhanceWithAiOption = enhance_with_ai_enabled
 
   const {
     props: {
-      type, allowDictation, dateFormat, enhanceWithAIEnabled = true,
+      type, allowDictation, dateFormat,
     },
   } = model
 
@@ -74,17 +71,6 @@ export const Properties: FC<Props> = ({ model, showOnlyTranslatable }) => {
     forceUpdate()
   }
 
-  const handleEnhanceWithAIChange = (event: CheckboxChangeEvent) => {
-    const {
-      target: { checked },
-    } = event
-
-    model.changeProps({
-      enhanceWithAIEnabled: checked,
-    })
-    forceUpdate()
-  }
-
   const handleDateFormatChange = (selectedDateFormat: DateFormat) => {
     model.changeProps({
       dateFormat: selectedDateFormat,
@@ -112,12 +98,6 @@ export const Properties: FC<Props> = ({ model, showOnlyTranslatable }) => {
           onChange={handleChatAnswerCount}
         />
       )}
-      {showEnhanceWithAiOption && ['MultiLine', 'EssayTextBox', 'SingleLine', 'RichText'].includes(type) && (
-        <EnhanceWithAI
-          checked={enhanceWithAIEnabled}
-          onChange={handleEnhanceWithAIChange}
-        />
-      )}
       {['MultiLine', 'EssayTextBox'].includes(type) && (
         <VoiceDictationCheckbox
           checked={allowDictation}
@@ -135,9 +115,6 @@ export const Properties: FC<Props> = ({ model, showOnlyTranslatable }) => {
 
       <RequiredValidations model={model} update={forceUpdate} />
       <ValidationTypes model={model} update={() => forceUpdate()} />
-      {['MultiLine', 'EssayTextBox', 'SingleLine', 'RichText'].includes(type) && (
-        <ScoreWithAI model={model} update={forceUpdate} />
-      )}
     </>
   )
 }
@@ -188,15 +165,6 @@ const VoiceDictationCheckbox = ({ checked, onChange }) => (
   <div className="ms-4 me-4 mb-4">
     <Checkbox checked={checked} onChange={onChange}>
       {I18n.t('administration.survey_builder.property_panel.voice_dictation')}
-    </Checkbox>
-    <Divider />
-  </div>
-)
-
-const EnhanceWithAI = ({ checked, onChange }) => (
-  <div className="ms-4 me-4 mb-4">
-    <Checkbox checked={checked} onChange={onChange}>
-      Enhance with AI
     </Checkbox>
     <Divider />
   </div>

@@ -2,8 +2,9 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import _ from 'lodash'
 import {
-  Space, Typography, Switch, Alert,
+  Space, Typography, Alert,
 } from 'antd'
+import { FillScoringButton } from '~/modules/survey/components/FillScoringButton'
 import { ArrowsAltOutlined, ShrinkOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { ScoringPromopt } from './ScoringPromopt'
 import { AI_SCORE_CONFIG_TYPES } from '~/modules/survey/constants/scoring.js'
@@ -50,8 +51,8 @@ export const AiScoringConfig: React.FC<AiScoringConfigProps> = ({
     scoringModel.changeAiScoringConfig(...args)
   }
 
-  const handleFillOrRemoveAiConfig = (checked) => {
-    checked ? scoringModel.initializeAiScoringConfig(
+  const handleFillOrRemoveAiConfig = () => {
+    disableScoring ? scoringModel.initializeAiScoringConfig(
       { what_to_look_for: defaultPrompt, score_definitions: [...scoreDefinitionsFromFactor] },
     ) : scoringModel.removeAiScoringConfig()
   }
@@ -69,7 +70,7 @@ export const AiScoringConfig: React.FC<AiScoringConfigProps> = ({
 
   return (
     <Space orientation="vertical" className="w-100">
-      <Switch defaultChecked={!disableScoring} onClick={handleFillOrRemoveAiConfig} />
+      <FillScoringButton hasScore={!disableScoring} onClick={handleFillOrRemoveAiConfig} />
       <ScoringPromopt
         initialPrompt={aiScoringConfig?.[AI_SCORE_CONFIG_TYPES.WHAT_TO_LOOK_FOR] || ''}
         title={<Typography.Title level={5}>{I18n.t('admin.what_to_look_for')}</Typography.Title>}

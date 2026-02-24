@@ -47,6 +47,7 @@ en:
     ai_idp_assistant_dependencies_updated: Dependencies updated successfully
     ai_idp_assistant_update_dependencies: Update Dependencies
     ai_notice: Highlighted sections AI-translated and may contains innacuracies.
+    ai_scored: AI scored
     ai_scoring_appoval_approve_all_questions: Approve All Questions
     ai_scoring_appoval_approve_question: Approve Question
     ai_scoring_appoval_back: Reset Score
@@ -182,6 +183,7 @@ en:
     enable_enhance_with_ai_client_level: Enhance with AI is disabled by client
     enable_maintenance: Enable Maintenance
     enable_transcription: Enable Transcription
+    enable_transcription_msg: Enable Transcription to use AI scoring on video/audio response questions.
     end_time: End Time
     end_time_must_be_after_start_time: End time must be after start time
     enhance_with_ai: Enhance with AI

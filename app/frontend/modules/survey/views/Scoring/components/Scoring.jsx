@@ -59,7 +59,7 @@ export default function Scoring ({ model, type, ...props }) {
         styles: {
           header:
             {
-              background: minAndMaxDefined && indicatorHasAiConfig ? 'var(--ant-success-color-bg)' : '',
+              background: minAndMaxDefined && indicatorHasAiConfig ? 'var(--ant-primary-light-bg)' : '',
               alignItems: 'center',
             },
         },
@@ -80,7 +80,13 @@ export default function Scoring ({ model, type, ...props }) {
                     key="processing"
                     variant="filled"
                     styles={
-                      { root: { backgroundColor: 'var(--ant-primary-light-bg)', color: 'var(--ant-primary-color)' } }
+                      {
+                        root:
+                        {
+                          backgroundColor: indicatorHasAiConfig
+                            ? 'var(--ant-primary-1)' : 'var(--ant-disabled-bg)',
+                        },
+                      }
                     }
                   >
                     {I18n.t('admin.range_min_max', { min: score_min, max: score_max })}
@@ -131,7 +137,21 @@ export default function Scoring ({ model, type, ...props }) {
     <div className={styles.questionContainer}>
       <Space className={styles.infobar}>
         <Typography.Title className="mb-0" level={4}>{model.name}</Typography.Title>
-        {scoreWithAIEnabled && <Tag color="processing" icon={<AIEditorIcon />}>{I18n.t('admin.score_with_ai')}</Tag>}
+        {scoreWithAIEnabled && (
+          <Tag
+            color="processing"
+            icon={<AIEditorIcon />}
+            styles={
+              {
+                icon: {
+                  verticalAlign: 'top',
+                },
+              }
+            }
+          >
+            {I18n.t('admin.ai_scored')}
+          </Tag>
+        )}
       </Space>
       {content}
     </div>
