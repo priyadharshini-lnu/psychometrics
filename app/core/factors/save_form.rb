@@ -25,14 +25,17 @@ module Factors
     attribute :custom_formula, String
 
     validates :name, presence: true
-    validates :name, length: { maximum: 100 }, allow_blank: true
+    validates :name, length: { maximum: lambda { |record|
+      record.factor_type == 'indicator' ? 250 : 100
+    } }, allow_blank: true
+
     validates :code, length: { minimum: 3, maximum: 4 }, allow_blank: true
     validate :avoid_cyclic_references
     validate :scale_min_max
     validate :score_min_max
     validates :precision, numericality: { only_integer: true }, allow_blank: true
 
-    validate :validate_indicators
+    validate :validate_children
 
     def avoid_cyclic_references
       return true unless id
@@ -61,10 +64,11 @@ module Factors
       errors.add(:score_min, 'must be less than score_max') if score_min >= score_max
     end
 
-    def validate_indicators
-      return true if new_indicators_attributes.blank?
+    def validate_children
+      child_factors = (factors_sub_factors_attributes || []) + (new_indicators_attributes || [])
+      return true if child_factors.blank?
 
-      new_indicators_attributes.each_with_index do |indicator_attrs, _idx|
+      child_factors.each_with_index do |indicator_attrs, idx|
         next unless indicator_attrs.is_a?(Hash)
 
         indicator_form = Factors::SaveForm.new(indicator_attrs)
@@ -72,7 +76,7 @@ module Factors
 
         indicator_form.errors.messages.each do |attr, messages|
           Array(messages).each do |msg|
-            errors.add(:new_indicators_attributes, "#{indicator_attrs['name']}: #{attr.to_s.humanize} #{msg}")
+            errors.add(:indicators_attributes, "Indicator ##{idx + 1}: #{attr.to_s.humanize} #{msg}")
           end
         end
       end

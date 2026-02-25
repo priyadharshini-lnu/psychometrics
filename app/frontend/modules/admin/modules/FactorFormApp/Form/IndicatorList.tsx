@@ -166,6 +166,7 @@ const IndicatorList: React.FC<Props> = ({
         updatedIndicators[editingIndex] = {
           ...updatedIndicators[editingIndex],
           ...values,
+          factor_type: 'indicator',
         }
         setIndicators(updatedIndicators)
         onChange({
@@ -189,7 +190,7 @@ const IndicatorList: React.FC<Props> = ({
 
       closeModal()
     } catch (e) {
-      message.error(I18n.t('admin.validation_error') || 'Please fill in all required fields')
+      message.error(e)
       console.error('Validation failed:', e)
     }
   }
@@ -309,7 +310,10 @@ const IndicatorList: React.FC<Props> = ({
           <AntForm.Item
             label={I18n.t('admin.name')}
             name="name"
-            rules={[{ required: true, message: I18n.t('admin.name_required') }]}
+            rules={[
+              { required: true, message: I18n.t('admin.name_required') },
+              { max: 250, message: I18n.t('admin.name_max_length', { length: 250 }) },
+            ]}
           >
             <Input placeholder={I18n.t('admin.enter_name')} />
           </AntForm.Item>

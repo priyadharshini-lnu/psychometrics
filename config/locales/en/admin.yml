@@ -119,6 +119,7 @@ en:
     cancellation_and_rescheduling_disabled: Cancellation and Rescheduling is disabled
     casual: Casual
     characters: characters
+    children_factor_type: Children Factor Type
     client: Client
     client_admins: Client Admins
     clients: Clients
@@ -278,6 +279,7 @@ en:
     model_answer: Model Answer
     model_answer_placeholder: Enter the model answer for AI scoring.
     name: Name
+    name_max_length: Name cannot exceed %{length} characters
     name_required: Name is required
     no_file_selected: No file selected
     no_notifications: No Notifications
@@ -741,6 +743,7 @@ en:
     reflection_questions: Reflection Questions
     registration_codes: Registration codes
     registration_settings: Registration Settings
+    remove_children_to_change_type: Remove all children to change type
     report_approvals: Report Approvals
     report_condition_not_met: Needs %{required} %{relationship} evaluation(s), but only has %{actual}
     report_conditions_not_met_detailed: Report for %{user} does not meet availability conditions. %{conditions}

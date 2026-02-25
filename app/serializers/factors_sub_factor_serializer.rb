@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class FactorsSubFactorSerializer < Panko::Serializer
-  attributes :id, :weight, :name, :sub_factor_id, :predicate, :value, :position, :child_factor_type, :description,
-             :precision, :score_min, :score_max, :score_definitions, :what_to_look_for
+  attributes :id, :weight, :name, :sub_factor_id, :predicate, :value, :position, :factor_type, :description,
+             :precision, :score_min, :score_max, :score_definitions, :what_to_look_for, :factor_type
 
   def name
     object.sub_factor.name
@@ -16,7 +16,7 @@ class FactorsSubFactorSerializer < Panko::Serializer
     object.sub_factor.precision
   end
 
-  def child_factor_type
+  def factor_type
     object.sub_factor.factor_type
   end
 

@@ -223,9 +223,9 @@ export default function Form (props) {
             className="mtm"
           >
             <AntForm.Item
-              label="Children Factor Type"
+              label={I18n.t('admin.children_factor_type')}
               name="children_factor_type"
-              help={hasPersistedChildren ? 'Remove all children to change type' : null}
+              help={hasPersistedChildren ? I18n.t('admin.remove_children_to_change_type') : null}
             >
               <Radio.Group>
                 <Radio value="regular" disabled={hasPersistedChildren && childrenFactorType !== 'regular'}>
@@ -247,7 +247,7 @@ export default function Form (props) {
             factor={resource}
             onChange={onChange}
             errors={errors}
-            indicatorErrors={errors?.new_indicators_attributes}
+            indicatorErrors={errors?.indicators_attributes}
           />
         )}
       {SUB_FACTOR_ONLY_STRATEGIES.includes(resource.scoring_strategy)

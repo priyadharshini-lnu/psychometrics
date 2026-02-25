@@ -148,8 +148,8 @@ class Administration::FactorsController < Administration::BaseController
   def determine_child_factor_type_from_params
     return 'regular' unless params[:resource]
 
-    indicators = extract_params_list(params[:resource][:new_indicators_attributes])
-    indicators.any? ? 'indicator' : 'regular'
+    submitted_sub_factors = build_factors_sub_factors_from_params.pluck(:factor_type)
+    submitted_sub_factors.include?('indicator') ? 'indicator' : 'regular'
   end
 
   def build_factors_sub_factors_from_params
@@ -164,7 +164,7 @@ class Administration::FactorsController < Administration::BaseController
         what_to_look_for: f[:what_to_look_for], precision: f[:precision],
         weight: f[:weight], score_min: f[:score_min], score_max: f[:score_max],
         score_definitions: f[:score_definitions], sub_factor_id: f[:sub_factor_id],
-        position: f[:position], child_factor_type: f[:factor_type] || 'indicator',
+        position: f[:position], factor_type: f[:factor_type] || 'indicator',
         _is_new: f[:_is_new]
       }.compact
     end
@@ -197,6 +197,7 @@ class Administration::FactorsController < Administration::BaseController
                                      score_definitions: %i[score definition],
                                      factors_sub_factors_attributes: [
                                        :id, :weight, :_destroy, :sub_factor_id, :position, :predicate, :value,
+                                       :factor_type,
                                        :name, :description, :precision, :score_min, :score_max, :what_to_look_for,
                                        { score_definitions: %i[score definition] }
                                      ],

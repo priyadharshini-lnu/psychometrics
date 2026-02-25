@@ -29,7 +29,7 @@ class Factor < ApplicationRecord
   has_many :factor_benchmark_scores, dependent: :destroy
 
   validates :name, :dimension, presence: true
-  validates :name, length: { maximum: 100 }, allow_blank: true
+  validates :name, length: { maximum: ->(factor) { factor.indicator? ? 250 : 100 } }, allow_blank: true
   validates :code, length: { minimum: 3, maximum: 4 }, allow_blank: true
   # TODO: remove allow_blank?
 
