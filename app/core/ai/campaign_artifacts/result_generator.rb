@@ -3,6 +3,8 @@
 module AI
   module CampaignArtifacts
     class ResultGenerator < BaseCommand
+      class ResponseError < StandardError; end
+
       private_attr_reader :campaign_ai_artifact, :current_user, :user, :error, :options, :artifact_parser,
                           :force_regenerate, :campaign
 
@@ -36,7 +38,7 @@ module AI
 
         # The generate_artifact_result! method will finish with successful completion signal
         # If it doesn't, this should be considered as an error by assistant service
-        broadcast(:error, error) if error.present?
+        broadcast(:error, error.message, error) if error.present?
       rescue AI::Utils::SuccessfulCompletionSignal => e
         res = e.data
         add_license_usage(res)
@@ -49,8 +51,8 @@ module AI
         }
         broadcast(:ok, response)
       rescue AI::Utils::CampaignArtifactParser::Error, AI::Tools::Errors::MaximumRetryAttemptsExceededError => e
-        handle_artifact_result_error(e.message)
-        broadcast(:error, e.message)
+        handle_artifact_result_error(e)
+        broadcast(:error, e.message, e)
       end
 
       private
@@ -77,10 +79,10 @@ module AI
             # This is the case when assistant didn't choose to use tool
             # which would trigger the completion signal
             # and prompt didn't include what to do in such case
-            handle_artifact_result_error(assistant_response[:message])
+            handle_artifact_result_error(ResponseError.new(assistant_response[:message]))
           end.
-          on(:error) do |error_message|
-            handle_artifact_result_error(error_message)
+          on(:error) do |_error_message, error|
+            handle_artifact_result_error(error)
           end.
           call
       end
@@ -104,14 +106,14 @@ module AI
         end
       end
 
-      def handle_artifact_result_error(error_message)
+      def handle_artifact_result_error(error)
         unless test_mode?
-          artifact_result.error = error_message
+          artifact_result.error = error.message
           artifact_result.save!
           campaign_artifact_assistant_chat.update!(ai_assisted_user_session_id: artifact_result.id)
         end
 
-        @error = error_message
+        @error = error
       end
 
       def artifact_result
@@ -162,7 +164,8 @@ module AI
       end
 
       def campaign_user
-        @campaign_user ||= CampaignUser.find_by(campaign_id: campaign.id, user_id: user.id)
+        # user is not present when doing test generation
+        @campaign_user ||= CampaignUser.find_by(campaign_id: campaign.id, user_id: user&.id)
       end
     end
   end

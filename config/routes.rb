@@ -1543,10 +1543,10 @@ only: %i[index create update]
                 post :bulk_generate
                 post :export
                 post :import
+                post :generate
               end
 
               member do
-                post :generate
                 post :test_generate
               end
             end

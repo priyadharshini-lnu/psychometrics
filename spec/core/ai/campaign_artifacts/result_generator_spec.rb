@@ -180,11 +180,22 @@ describe AI::CampaignArtifacts::ResultGenerator do
         stub_wisper_publisher('AI::AssistantService', :call, :ok, { message: 'assistant response without tool' })
       end
 
+      it 'works with nil user as used in test generation' do
+        parser_instance = spy('AI::Utils::CampaignArtifactParser')
+        allow(AI::Utils::CampaignArtifactParser).to receive(:new).and_return(parser_instance)
+
+        generator = described_class.new(ai_artifact, nil, options)
+
+        expect { generator.call }.not_to raise_error
+
+        expect(parser_instance).not_to have_received(:call!)
+      end
+
       it 'does not trigger AI::Utils::CampaignArtifactParser call! method' do
         parser_instance = spy('AI::Utils::CampaignArtifactParser')
         allow(AI::Utils::CampaignArtifactParser).to receive(:new).and_return(parser_instance)
 
-        generator = described_class.new(ai_artifact, user, options)
+        generator = described_class.new(ai_artifact, nil, options)
 
         generator.call
 
@@ -195,7 +206,7 @@ describe AI::CampaignArtifacts::ResultGenerator do
         allow_any_instance_of(AI::Utils::CampaignArtifactParser).to receive(:parse_campaign_instructions).
           and_return('artifact context')
 
-        generator = described_class.new(ai_artifact, user, options)
+        generator = described_class.new(ai_artifact, nil, options)
 
         parsed_deps = generator.send(:parsed_dependencies)
 
@@ -208,19 +219,26 @@ describe AI::CampaignArtifacts::ResultGenerator do
       it 'does not save errors to artifact result in test mode' do
         stub_wisper_publisher('AI::AssistantService', :call, :error, 'test error')
 
-        generator = described_class.new(ai_artifact, user, options)
+        generator = described_class.new(ai_artifact, nil, options)
 
         # Ensure no artifact result exists
-        expect(ai_artifact.results.where(user: user)).to be_empty
+        expect(ai_artifact.results.where(user: nil)).to be_empty
 
         generator.call
 
         # Should still not create/save artifact result in test mode
-        expect(ai_artifact.results.where(user: user)).to be_empty
+        expect(ai_artifact.results.where(user: nil)).to be_empty
+      end
+
+      it 'does not attempt to update campaign_user when user is nil' do
+        generator = described_class.new(ai_artifact, nil, options)
+
+        # This should not raise an error even though user is nil
+        expect { generator.call }.not_to raise_error
       end
     end
 
-    context 'in non-test mode (production)' do
+    context 'in non-test mode' do
       include_context 'assistant chat setup'
 
       it 'triggers AI::Utils::CampaignArtifactParser call! method' do
@@ -237,8 +255,9 @@ describe AI::CampaignArtifacts::ResultGenerator do
       end
 
       it 'saves errors to the result record when service fails' do
+        error_message = 'service error message'
         allow_any_instance_of(AI::Utils::CampaignArtifactParser).to receive(:call!).and_return('parsed dependencies')
-        stub_wisper_publisher('AI::AssistantService', :call, :error, 'service error message')
+        stub_wisper_publisher('AI::AssistantService', :call, :error, error_message, StandardError.new(error_message))
 
         generator = described_class.new(ai_artifact, user, { current_user: current_user })
 
@@ -246,7 +265,7 @@ describe AI::CampaignArtifacts::ResultGenerator do
 
         artifact_result = ai_artifact.results.find_by(user: user)
         expect(artifact_result).to be_present
-        expect(artifact_result.error).to eq('service error message')
+        expect(artifact_result.error).to eq(error_message)
       end
 
       it 'saves errors when assistant returns ok but no tool was used' do
