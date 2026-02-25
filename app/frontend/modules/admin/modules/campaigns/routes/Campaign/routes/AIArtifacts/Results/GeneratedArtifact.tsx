@@ -28,19 +28,12 @@ type GeneratedArtifactProps={
 
 export const GeneratedArtifact: React.FC<GeneratedArtifactProps> = ({ artifactName, artifactData, generateResult }) => {
   const [isGenerating, setIsGenerating] = React.useState(false)
-  const [error, setError] = React.useState<string>(artifactData.error || '')
   const [showParsedDependenciesModal, setShowParsedDependenciesModal] = React.useState(false)
 
   const handleGenerateResult = async (id:string) => {
     setIsGenerating(true)
-    setError('')
-    try {
-      await generateResult(id)
-    } catch (e) {
-      setError(e.message)
-    } finally {
-      setIsGenerating(false)
-    }
+    await generateResult(id)
+    setIsGenerating(false)
   }
 
   return (
@@ -48,7 +41,7 @@ export const GeneratedArtifact: React.FC<GeneratedArtifactProps> = ({ artifactNa
       <Flex justify="space-between" flex={1} className="mb-1">
         <Flex>
           <Typography.Title level={4}>{artifactName}</Typography.Title>
-          {!error && !isGenerating && (
+          {artifactData.parsedDependencies && !isGenerating && (
             <Tooltip title={I18n.t('administration.ai_artifacts.parsed_dependencies.view')}>
               <Button
                 type="text"
@@ -61,13 +54,14 @@ export const GeneratedArtifact: React.FC<GeneratedArtifactProps> = ({ artifactNa
         <Button
           onClick={() => { handleGenerateResult(artifactData.id.toString()) }}
           type="primary"
+          loading={isGenerating}
         >
           {I18n.t('administration.ai_artifacts.generate')}
         </Button>
       </Flex>
       <ArtifactResults
         isLoading={isGenerating}
-        error={error}
+        error={artifactData.error || ''}
         artifactResults={artifactData.results}
         totalInputTokens={artifactData.totalInputTokens}
         totalOutputTokens={artifactData.totalOutputTokens}

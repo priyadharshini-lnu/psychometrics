@@ -217,7 +217,8 @@ describe AI::CampaignArtifacts::ResultGenerator do
       end
 
       it 'does not save errors to artifact result in test mode' do
-        stub_wisper_publisher('AI::AssistantService', :call, :error, 'test error')
+        error = StandardError.new('test error message')
+        stub_wisper_publisher('AI::AssistantService', :call, :error, error.message, error)
 
         generator = described_class.new(ai_artifact, nil, options)
 

@@ -81,7 +81,11 @@ export const ArtifactResultsDrawer: React.FC<ArtifactResultsDrawerProps> = ({
     updateRawTableData(updatedTableData)
   }
 
-  const handleError = (errorMessage: string, artifactId: string) => {
+  const handleError = ({
+    errorMessage,
+    artifactId,
+    parsedDependencies = null as string | null,
+  }) => {
     // Update drawer state with error for the specific artifact
     setArtifactData((prevData) => {
       const updatedArtifacts = { ...prevData.artifacts }
@@ -90,6 +94,7 @@ export const ArtifactResultsDrawer: React.FC<ArtifactResultsDrawerProps> = ({
           updatedArtifacts[key] = {
             ...updatedArtifacts[key],
             error: errorMessage,
+            parsedDependencies,
           }
         }
       })
@@ -145,15 +150,17 @@ export const ArtifactResultsDrawer: React.FC<ArtifactResultsDrawerProps> = ({
       const responseData = response.responseData as ArtifactResultResponseData
 
       if (responseData.data.attributes.error) {
-        handleError(responseData.data.attributes.error, id)
-        throw new Error(responseData.data.attributes.error)
+        handleError({
+          errorMessage: responseData.data.attributes.error,
+          artifactId: id,
+          parsedDependencies: responseData.data.attributes.parsedDependencies,
+        })
       }
 
       handleSuccess(responseData)
     } catch (e) {
       const errorMessage = e?.message || I18n.t('common.errors.something_wrong')
-      handleError(errorMessage, id)
-      throw new Error(errorMessage)
+      handleError({ errorMessage, artifactId: id })
     }
   }
 

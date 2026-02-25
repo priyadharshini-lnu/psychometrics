@@ -50,7 +50,8 @@ module AI
           output_tokens: chat.output_tokens
         }
         broadcast(:ok, response)
-      rescue AI::Utils::CampaignArtifactParser::Error, AI::Tools::Errors::MaximumRetryAttemptsExceededError => e
+      rescue AI::Utils::CampaignArtifactParser::Error,
+             AI::Tools::Errors::MaximumRetryAttemptsExceededError, AI::Utils::AbortGenerationSignal => e
         handle_artifact_result_error(e)
         broadcast(:error, e.message, e)
       end
@@ -107,8 +108,11 @@ module AI
       end
 
       def handle_artifact_result_error(error)
+        artifact_result.error = error.message
+        artifact_result.parsed_dependencies =
+          error.is_a?(AI::Utils::CampaignArtifactParser::Error) ? nil : parsed_dependencies
+
         unless test_mode?
-          artifact_result.error = error.message
           artifact_result.save!
           campaign_artifact_assistant_chat.update!(ai_assisted_user_session_id: artifact_result.id)
         end
@@ -127,13 +131,16 @@ module AI
       def content_writer_tools
         save_results = !test_mode?
 
-        [AI::Tools::CampaignArtifactResultManager.new(
-          campaign_ai_artifact, user,
-          save_results: save_results,
-          parsed_dependencies: parsed_dependencies,
-          chat: campaign_artifact_assistant_chat,
-          campaign_user: campaign_user
-        )]
+        [
+          AI::Tools::CampaignArtifactResultManager.new(
+            campaign_ai_artifact, user,
+            save_results: save_results,
+            parsed_dependencies: parsed_dependencies,
+            chat: campaign_artifact_assistant_chat,
+            campaign_user: campaign_user
+          ),
+          AI::Tools::AbortArtifactGeneration
+        ]
       end
 
       def should_regenerate?

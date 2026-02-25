@@ -70,7 +70,7 @@ describe AI::Utils::CampaignArtifactParser do
 
         it 'raises DependencyNotConfiguredError' do
           expect { subject }.to raise_error(StandardError) do |error|
-            expect(error.message).to include('Error:')
+            expect(error.message).to include('Parsing error:')
             expect(error.message).to include("Dependency 'datasheet' has the following issues:")
             expect(error.message).to include(
               I18n.t('administration.ai_assistants.artifacts.parsers.datasheet.user_not_found_in_datasheet')
@@ -295,7 +295,7 @@ describe AI::Utils::CampaignArtifactParser do
       context 'when multiple dependencies have configuration issues' do
         it 'collects and reports all errors together' do
           expect { subject }.to raise_error(StandardError) do |error|
-            expect(error.message).to include('Error:')
+            expect(error.message).to include('Parsing error:')
             expect(error.message).to include("Dependency 'datasheet' has the following issues:")
             expect(error.message).to include(
               I18n.t('administration.ai_assistants.artifacts.parsers.datasheet.no_datasheet_configured')
@@ -332,7 +332,7 @@ describe AI::Utils::CampaignArtifactParser do
 
       it 'includes successful dependency output and error for failed dependency' do
         expect { subject }.to raise_error(StandardError) do |error|
-          expect(error.message).to include('Error:')
+          expect(error.message).to include('Parsing error:')
           expect(error.message).to include("Dependency 'Campaign Factors' has the following issues:")
           expect(error.message).to include(
             I18n.t('administration.ai_assistants.artifacts.parsers.campaign_factor.factor_no_value',
