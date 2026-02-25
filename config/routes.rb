@@ -1627,6 +1627,8 @@ only: %i[index create update]
               post :approve_all_questions
               post :override_score
               post :discard_score
+              post :discard_question
+              post :discard_all_questions
             end
           end
           resources :user_report_events, only: %i[index] do

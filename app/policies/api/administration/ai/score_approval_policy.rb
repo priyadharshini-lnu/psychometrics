@@ -9,23 +9,34 @@ module Api
         end
 
         def show?
-          can_manage_score_approval?
+          return true if @user.is?(:superadmin)
+          return false unless approval_setting
+
+          user_is_assessor? || user_is_approver?
         end
 
         def approve_question?
-          can_manage_score_approval? # check user is approver
+          can_perform_approval_action?
+        end
+
+        def discard_question?
+          can_perform_approval_action?
         end
 
         def approve_all_questions?
-          can_manage_score_approval?
+          can_perform_approval_action?
+        end
+
+        def discard_all_questions?
+          can_perform_approval_action?
         end
 
         def override_score?
-          can_manage_score_approval? # check user is approver
+          can_perform_approval_action?
         end
 
         def discard_score?
-          can_manage_score_approval? # check user is approver
+          can_perform_approval_action?
         end
 
         def bulk_approve?
@@ -44,8 +55,38 @@ module Api
 
         private
 
+        def can_perform_approval_action?
+          return true if @user.is?(:superadmin)
+          return false unless approval_setting
+
+          if approval_setting.one_level_approve?
+            user_is_approver?
+          else
+            return true if record.pending? && user_is_assessor?
+            return true if record.assessor_approved? && user_is_approver?
+
+            false
+          end
+        end
+
         def can_manage_score_approval?
           @user.is?(:superadmin, :client_admin, :project_admin, :campaign_admin)
+        end
+
+        def approval_setting
+          @approval_setting ||= record.setting
+        end
+
+        def user_is_approver?
+          approval_setting&.approver_ids&.include?(@user.id)
+        end
+
+        def user_is_assessor?
+          approval_setting&.assessor_ids&.include?(@user.id)
+        end
+
+        def allowed_to_manage?
+          can_manage_score_approval?
         end
       end
     end

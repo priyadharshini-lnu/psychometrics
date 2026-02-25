@@ -4,12 +4,7 @@ import VideoPlayer from '~/modules/survey/components/modules/VideoResponse/Video
 import styles from '../ScoreReview.less'
 
 export const VideoPreview = ({ mediaResponse }) => (
-  <Flex gap={16}>
-    <Flex flex={1} className={styles.video}>
-      <VideoPlayer mediaResponse={mediaResponse} />
-    </Flex>
-    <Flex flex={1} className={styles.rawResult}>
-      {mediaResponse?.transcriptionText}
-    </Flex>
+  <Flex className={styles.video}>
+    <VideoPlayer mediaResponse={mediaResponse} />
   </Flex>
 )

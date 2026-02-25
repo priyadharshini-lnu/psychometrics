@@ -1,12 +1,12 @@
 import {
   Col, Row, Tabs, Flex, Button, Space, message, Card,
-  Typography,
+  Typography, Popconfirm,
 } from 'antd'
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import humps from 'humps'
 import {
-  LeftOutlined, InfoCircleOutlined, CheckCircleFilled,
+  LeftOutlined, InfoCircleOutlined, CheckCircleFilled, ReloadOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { QuestionScore } from './QuestionScore'
@@ -108,6 +108,21 @@ export const ScoreReview = () => {
     })
   }
 
+  const discardQuestion = (questionId) => {
+    memberAction({
+      id,
+      method: 'post',
+      action: 'discard_question',
+      body: {
+        questionId,
+      },
+    }).then((data: Indicator[]) => {
+      updateCompetenciesAndIndicators(scoreApproval, data)
+    }).catch((error) => {
+      message.error(error?.base?.[0]?.title)
+    })
+  }
+
   const approveAll = () => {
     memberAction({
       id,
@@ -118,6 +133,20 @@ export const ScoreReview = () => {
       const camelizedData = humps.camelizeKeys(data)
       setData([camelizedData])
       // updateCompetenciesAndIndicators({ ...scoreApproval, allowApprove: false }, data)
+    }).catch((error) => {
+      message.error(error?.base?.[0]?.title)
+    })
+  }
+
+  const discardAll = () => {
+    memberAction({
+      id,
+      method: 'post',
+      action: 'discard_all_questions',
+      body: {},
+    }).then((data: ScoreApproval) => {
+      const camelizedData = humps.camelizeKeys(data)
+      setData([camelizedData])
     }).catch((error) => {
       message.error(error?.base?.[0]?.title)
     })
@@ -156,6 +185,7 @@ export const ScoreReview = () => {
         discardScore={discardScore}
         approveQuestion={approveQuestion}
         nextQuestion={nextQuestion}
+        discardQuestion={discardQuestion}
         allowApprove={allowApprove}
         approved={approved}
         lastQuestion={filteredQuestions.length === index + 1}
@@ -189,9 +219,22 @@ export const ScoreReview = () => {
                 {I18n.t('shared.back')}
               </Button>
               {allowApprove && (
-                <Button type="primary" onClick={approveAll}>
-                  {I18n.t('admin.ai_scoring_appoval_approve_all_questions')}
-                </Button>
+                <Flex gap={8}>
+                  <Popconfirm
+                    title={I18n.t('admin.ai_scoring_appoval_discard_all_questions_title')}
+                    description={I18n.t('admin.ai_scoring_appoval_discard_all_questions_description')}
+                    onConfirm={discardAll}
+                    okText={I18n.t('shared.ok')}
+                    cancelText={I18n.t('shared.cancel')}
+                  >
+                    <Button icon={<ReloadOutlined />}>
+                      {I18n.t('admin.ai_scoring_appoval_discard_all_questions')}
+                    </Button>
+                  </Popconfirm>
+                  <Button type="primary" onClick={approveAll}>
+                    {I18n.t('admin.ai_scoring_appoval_approve_all_questions')}
+                  </Button>
+                </Flex>
               )}
             </Flex>
             <Card classNames={{ body: styles.headerCard }}>
@@ -271,6 +314,9 @@ export const ScoreReview = () => {
               </Flex>
             </Card>
           </Flex>
+          <Typography.Title level={3} className="mt24">
+            {scoreApproval.assessmentName}
+          </Typography.Title>
           <Tabs
             className={styles.questionTabs}
             items={items}

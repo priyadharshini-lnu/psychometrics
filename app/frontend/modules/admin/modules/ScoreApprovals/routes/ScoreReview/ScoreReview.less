@@ -1,12 +1,11 @@
 .video {
   padding: 8px;
   border: 1px solid #f5f5f5;
-  background: #000;
-  height: 300px;
   border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
   :global {
     .col {
       width: 390px;
@@ -19,8 +18,11 @@
   padding: 16px;
   background-color: #f5f5f5;
   border-radius: 8px;
-  height: 300px;
-  overflow-y: scroll;
+  min-height: 400px;
+  max-height: 600px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .headerCard {
@@ -60,16 +62,90 @@
 }
 
 .overralScore {
-  min-width: 140px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid var(--ant-color-border);
-  padding: 8px;
-  border-radius: 6px;
   .score {
-    color: var(--ant-primary-color);
+    margin-inline-start: 4px;
     font-weight: bold;
+  }
+}
+
+.stickyTranscription {
+  position: sticky;
+  top: 70px;
+  align-self: flex-start;
+  max-height: calc(100vh - 48px);
+}
+
+.transcriptionContainer {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: calc(100vh - 48px);
+}
+
+.transcriptionText {
+  flex: 1;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-top: 8px;
+  padding-right: 8px;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #e0e0e0;
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #999;
+    border-radius: 3px;
+
+    &:hover {
+      background: #777;
+    }
+  }
+}
+
+.indicatorCollapse {
+  :global {
+    .ant-collapse-panel {
+      border-top: none !important;
+    }
+  }
+}
+
+.evidance {
+  border-radius: 6px !important;
+  padding: 12px !important;
+
+  &.positive {
+    border: 1px solid var(--ant-color-success-border);
+    background-color: var(--ant-color-success-bg);
+    &:hover {
+      background-color: var(--ant-color-success-bg-hover);
+    }
+  }
+
+  &.negative {
+    border: 1px solid var(--ant-color-error-border);
+    background-color: var(--ant-color-error-bg);
+    &:hover {
+      background-color: var(--ant-color-error-bg-filled-hover);
+    }
+  }
+
+  .quote {
+    font-size: 52px;
+    margin-top: -16px;
+    height: 40px;
   }
 }

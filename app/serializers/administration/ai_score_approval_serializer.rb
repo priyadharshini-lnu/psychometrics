@@ -4,7 +4,7 @@ module Administration
   class AIScoreApprovalSerializer < Panko::Serializer
     attributes :id, :questions, :competencies, :indicators, :results, :media_responses, :review_as, :approval_status,
                :allow_approve, :campaign_name, :subject_name, :project_name, :client_name, :subject_email,
-               :assessed_by, :approved_by
+               :assessment_name, :assessed_by, :approved_by
 
     def questions
       object.assessment.scorable_ai_questions.order(:position)
@@ -42,17 +42,20 @@ module Administration
     end
 
     def review_as
-      return 'approver' if approver? || approval_settings.one_level_approve?
+      return 'assessor' if superadmin? && object.pending?
+      return 'approver' if superadmin? || approver? || approval_settings.one_level_approve?
 
       'assessor'
     end
 
     def allow_approve
-      return true if approval_settings.one_level_approve? && approver? && object.pending?
-      return true if assessor? && object.pending?
-      return true if approver? && object.assessor_approved?
+      return false if object.approver_approved?
 
-      false
+      policy.approve_question?
+    end
+
+    def assessment_name
+      object.assessment.name
     end
 
     def campaign_name
@@ -89,6 +92,10 @@ module Administration
       context[:current_user]
     end
 
+    def policy
+      @policy ||= Api::Administration::AI::ScoreApprovalPolicy.new(current_user, object) # rubocop:disable CustomRubocops/AvoidUsingMemoizationInSerializers
+    end
+
     def scorable_question_ids
       @scorable_question_ids ||= object.assessment.scorable_ai_questions.ids # rubocop:disable CustomRubocops/AvoidUsingMemoizationInSerializers
     end
@@ -106,6 +113,10 @@ module Administration
 
     def approver?
       approval_settings.approver_ids.include?(current_user.id)
+    end
+
+    def superadmin?
+      current_user.is?(:superadmin)
     end
   end
 end

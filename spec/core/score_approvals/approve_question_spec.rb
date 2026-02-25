@@ -217,5 +217,155 @@ RSpec.describe ScoreApprovals::ApproveQuestion do
         expect(score_approval.approval_status).to eq('approver_approved')
       end
     end
+
+    context 'when user is superadmin' do
+      let(:current_user) { create(:superadmin) }
+
+      context 'with two-level approval settings' do
+        before do
+          approval_settings.update!(allow_one_level_approve: false)
+        end
+
+        context 'when status is pending' do
+          before do
+            score_approval.update!(approval_status: :pending)
+          end
+
+          it 'approves question with assessor_approved status' do
+            service
+
+            indicators.each do |score|
+              expect(score.reload.status).to eq('assessor_approved')
+            end
+          end
+
+          it 'moves to assessor_approved when all questions are approved' do
+            other_question_scores.each { |score| score.update!(status: :assessor_approved) }
+
+            service
+
+            score_approval.reload
+            expect(score_approval.approval_status).to eq('assessor_approved')
+          end
+        end
+
+        context 'when status is assessor_approved' do
+          before do
+            score_approval.update!(approval_status: :assessor_approved)
+            indicators.each { |score| score.update!(status: :assessor_approved) }
+          end
+
+          it 'approves question with approver_approved status' do
+            service
+
+            indicators.each do |score|
+              expect(score.reload.status).to eq('approver_approved')
+            end
+          end
+
+          it 'moves to approver_approved when all questions are approved' do
+            other_question_scores.each { |score| score.update!(status: :approver_approved) }
+
+            service
+
+            score_approval.reload
+            expect(score_approval.approval_status).to eq('approver_approved')
+          end
+        end
+      end
+
+      context 'with one-level approval settings' do
+        before do
+          approval_settings.update!(allow_one_level_approve: true)
+          score_approval.update!(approval_status: :pending)
+        end
+
+        it 'approves question with approver_approved status' do
+          service
+
+          indicators.each do |score|
+            expect(score.reload.status).to eq('approver_approved')
+          end
+        end
+
+        it 'moves to approver_approved when all questions are approved' do
+          other_question_scores.each { |score| score.update!(status: :approver_approved) }
+
+          service
+
+          score_approval.reload
+          expect(score_approval.approval_status).to eq('approver_approved')
+        end
+      end
+
+      context 'when status is already approver_approved' do
+        before do
+          score_approval.update!(approval_status: :approver_approved)
+        end
+
+        it 'returns error and does not update scores' do
+          result = service
+
+          expect(result[:error]).to eq(I18n.t('admin.score_approval_not_allowed_to_approve'))
+          indicators.each do |score|
+            expect(score.reload.status).to eq('pending')
+          end
+        end
+      end
+    end
+
+    context 'when policy denies approval' do
+      let(:current_user) { approver }
+
+      before do
+        score_approval.update!(approval_status: :approver_approved)
+      end
+
+      it 'returns error message' do
+        result = service
+
+        expect(result[:error]).to eq(I18n.t('admin.score_approval_not_allowed_to_approve'))
+        expect(result[:ok]).to be_nil
+      end
+
+      it 'does not update question scores' do
+        service
+
+        indicators.each do |score|
+          expect(score.reload.status).to eq('pending')
+        end
+      end
+    end
+
+    context 'when trying to approve with wrong role for current status' do
+      context 'approver trying to approve pending status in two-level approval' do
+        let(:current_user) { approver }
+
+        before do
+          approval_settings.update!(allow_one_level_approve: false)
+          score_approval.update!(approval_status: :pending)
+        end
+
+        it 'returns error' do
+          result = service
+
+          expect(result[:error]).to eq(I18n.t('admin.score_approval_not_allowed_to_approve'))
+        end
+      end
+
+      context 'assessor trying to approve assessor_approved status' do
+        let(:current_user) { assessor }
+
+        before do
+          score_approval.update!(approval_status: :assessor_approved)
+        end
+
+        it 'returns error' do
+          result = service
+
+          expect(result[:error]).to eq(I18n.t('admin.score_approval_not_allowed_to_approve'))
+        end
+      end
+    end
   end
 end

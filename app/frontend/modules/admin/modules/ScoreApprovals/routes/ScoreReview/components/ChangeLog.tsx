@@ -25,12 +25,16 @@ const OverrideScore = ({
         </Space>
       </Typography.Text>
     </Typography.Text>
-    <Typography.Text strong>
-      {I18n.t('admin.ai_scoring_appoval_change_reason')}
-    </Typography.Text>
-    <Typography.Text>
-      {meta.reason}
-    </Typography.Text>
+    {meta.reason && (
+      <>
+        <Typography.Text strong>
+          {I18n.t('admin.ai_scoring_appoval_change_reason')}
+        </Typography.Text>
+        <Typography.Text>
+          {meta.reason}
+        </Typography.Text>
+      </>
+    )}
   </Flex>
 )
 
@@ -51,6 +55,7 @@ const Approve = () => 'approve'
 const TYPES = {
   override_score: OverrideScore,
   discard_score: DiscardScore,
+  discard_question: DiscardScore,
   approved: Approve,
 }
 

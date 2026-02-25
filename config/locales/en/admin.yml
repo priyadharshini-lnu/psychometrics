@@ -47,6 +47,8 @@ en:
     ai_idp_assistant_dependencies_updated: Dependencies updated successfully
     ai_idp_assistant_update_dependencies: Update Dependencies
     ai_notice: Highlighted sections AI-translated and may contains innacuracies.
+    ai_score_approval_no_answer: Answer is not provided for this question
+    ai_score_approval_no_transcription: Transcription is not available for this question
     ai_scored: AI scored
     ai_scoring_appoval_approve_all_questions: Approve All Questions
     ai_scoring_appoval_approve_question: Approve Question
@@ -54,6 +56,12 @@ en:
     ai_scoring_appoval_change_reason: Change reason
     ai_scoring_appoval_change_score: changed score
     ai_scoring_appoval_change_score_log: Change Score Log
+    ai_scoring_appoval_discard_all_questions: Reset All Questions
+    ai_scoring_appoval_discard_all_questions_description: This will reset all scores for all questions and clear any overrides. This action cannot be undone. Are you sure?
+    ai_scoring_appoval_discard_all_questions_title: Reset All Question Scores?
+    ai_scoring_appoval_discard_question: Reset Question Scores
+    ai_scoring_appoval_discard_question_confirm_description: This will reset all scores for this question and clear any overrides. Are you sure?
+    ai_scoring_appoval_discard_question_confirm_title: Reset Question Scores?
     ai_scoring_appoval_discarded_changes: discarded changes
     ai_scoring_appoval_evidence_from_transcript: Evidence from Transcript
     ai_scoring_appoval_new_score: New Score
@@ -297,6 +305,7 @@ en:
     only_editable_on_create: This option is editable only while creating.
     options: Options
     original_text: Original Text
+    overall: Overral
     overall_score: Overall Score
     participants: Participants
     permissions:
@@ -815,6 +824,7 @@ en:
     scheduling: Scheduling
     score: Score
     score_approval_not_allowed_to_approve: You are not allowed to approve this score.
+    score_approval_not_allowed_to_discard: You are not allowed to discard this score.
     score_definition_placeholder: Enter the definition for this score level
     score_definitions: Score Definitions
     score_max: Score Max

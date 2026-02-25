@@ -60,6 +60,33 @@ module Api
       render json: serialize_factor_scores(result[:ok])
     end
 
+    def discard_question
+      ScoreApprovals::DiscardQuestion.call(score_approval, discard_question_params[:question_id], current_user) do
+        on(:ok) do |scores|
+          render json: Panko::ArraySerializer.new(
+            scores,
+            each_serializer: ::Administration::AIFactorScoreSerializer,
+            context: { current_user: current_user }
+          ).to_a
+        end
+        on(:error) do |error|
+          render json: { error: error }, status: :unprocessable_entity
+        end
+      end
+    end
+
+    def discard_all_questions
+      ScoreApprovals::DiscardAllQuestions.call(score_approval, current_user) do
+        on(:ok) do |_|
+          render json: ::Administration::AIScoreApprovalSerializer.new(context: { current_user: current_user }).
+            serialize(score_approval)
+        end
+        on(:error) do |error|
+          render json: { error: error }, status: :unprocessable_entity
+        end
+      end
+    end
+
     # TODO: complete later
     # def bulk_approve
     #   approvals, meta = ScoreApprovals::BulkApprove.call!(params[:data][:attributes][:ids], current_user)
@@ -93,6 +120,10 @@ module Api
     end
 
     def approve_question_params
+      params.require(:data).require(:attributes).permit(:question_id)
+    end
+
+    def discard_question_params
       params.require(:data).require(:attributes).permit(:question_id)
     end
 

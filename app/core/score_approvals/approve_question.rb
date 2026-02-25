@@ -29,6 +29,7 @@ module ScoreApprovals
     end
 
     def approval_status
+      return superadmin_status if current_user.is?(:superadmin)
       return :approver_approved if approval_settings.one_level_approve? && approver?
 
       approver? ? :approver_approved : :assessor_approved
@@ -39,11 +40,9 @@ module ScoreApprovals
     end
 
     def allow_to_approve?
-      return true if approval_settings.one_level_approve? && approver?
-      return true if assessor? && score_approval.pending?
-      return true if approver? && score_approval.assessor_approved?
+      return false if score_approval.approver_approved?
 
-      false
+      policy.approve_question?
     end
 
     def all_question_scores_approved_by_assessor?
@@ -83,6 +82,10 @@ module ScoreApprovals
       )
     end
 
+    def policy
+      @policy ||= Api::Administration::AI::ScoreApprovalPolicy.new(current_user, score_approval)
+    end
+
     def user_assessment
       @user_assessment ||= score_approval.as_user_assessment
     end
@@ -93,6 +96,14 @@ module ScoreApprovals
 
     def approver?
       approval_settings.approver_ids.include?(current_user.id)
+    end
+
+    def superadmin_status
+      if approval_settings.one_level_approve? || score_approval.assessor_approved?
+        :approver_approved
+      else
+        :assessor_approved
+      end
     end
   end
 end

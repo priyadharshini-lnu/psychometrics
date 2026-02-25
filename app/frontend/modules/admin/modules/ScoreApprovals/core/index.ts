@@ -98,6 +98,7 @@ export const ScoreApprovalTR = t.type({
   clientName: t.string,
   subjectName: t.string,
   subjectEmail: t.string,
+  assessmentName: t.string,
   assessedBy: t.union([t.string, t.undefined]),
   approvedBy: t.union([t.string, t.undefined]),
 })
