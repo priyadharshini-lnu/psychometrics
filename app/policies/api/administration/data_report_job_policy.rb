@@ -16,9 +16,9 @@ module Api
           geo_filtered_scope = @scope.geo_scoped(Current.user_country)
 
           if @user.is?(:superadmin)
-            geo_filtered_scope.joins(:data_report).where(data_report: { owner: filter[:client_id] })
+            geo_filtered_scope.joins(:data_report).where(data_reports: { owner: filter[:client_id] })
           elsif @user.is?(:client_admin)
-            geo_filtered_scope.joins(:data_report).where(data_report: { owner: @user.client_admin_clients })
+            geo_filtered_scope.joins(:data_report).where(data_reports: { owner: @user.client_admin_clients })
           else
             geo_filtered_scope.none
           end

@@ -5805,10 +5805,10 @@ framer-motion@^12.23.26:
     motion-utils "^12.23.6"
     tslib "^2.4.0"
 
-froala-editor@5.0.0:
-  version "5.0.0"
-  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/froala-editor/-/froala-editor-5.0.0.tgz#c196755b9729edef8de89b2da81208da2468491e"
-  integrity sha512-eIjsX+CUBbOFBIKOFN+Dyfo2hstlh2bg+i6nqR11iJWrfSgwlwsL8xmyA9fAjVrRl9zivsoT+Hrdu4mhZQXc3g==
+froala-editor@5.0.1:
+  version "5.0.1"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/froala-editor/-/froala-editor-5.0.1.tgz#f85687ba069f2c30bf6967e6c237b6658f79fac8"
+  integrity sha512-KOiNLQ1X+dAflVsI5qx6+2m3luIVok7DvS/Vx3yIK08SjVfepO02USvrtAdwjPbicMtsk3kw11NwwTawpSSUPQ==
 
 fs-constants@^1.0.0:
   version "1.0.0"
@@ -8874,12 +8874,12 @@ react-flip-move@^3.0.4:
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/react-flip-move/-/react-flip-move-3.0.5.tgz#8b87510ad32ebef01ebca94902b445f456bbc0f7"
   integrity sha512-Mf4XpbkUNZy9eu80iXXFIjToDvw+bnHxmKHVoositbMpV87O/EQswnXUqVovRHoTx/F+4dE+p//PyJnAT7OtPA==
 
-react-froala-wysiwyg@^5.0.0:
-  version "5.0.0"
-  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/react-froala-wysiwyg/-/react-froala-wysiwyg-5.0.0.tgz#983969dda51c56055441393f2338e98bffe66b38"
-  integrity sha512-1pTOXbwDOzP+zOJ0P3fdD1cA24D0VEv+AIh8ofMLOgJyTFMmxqlKiPGCA+cpdM7n9GnC/bKhqjR5MHAtb1fHDA==
+react-froala-wysiwyg@^5.0.1:
+  version "5.0.1"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/react-froala-wysiwyg/-/react-froala-wysiwyg-5.0.1.tgz#d7534586beb2fdb44a00906d2e7ce8367ed5e836"
+  integrity sha512-OoIk0OaxQTB7zLjdzDrnjb20vYSNNeflBa3XfwzAFPG5BKxGN7AqaarOdrnLI0/3lWve2xON5+gv4piAzpggyQ==
   dependencies:
-    froala-editor "5.0.0"
+    froala-editor "5.0.1"
     serialize-javascript "^6.0.2"
 
 react-google-recaptcha@^2.0.0-rc.1:
