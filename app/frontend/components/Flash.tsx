@@ -1,5 +1,5 @@
 import React from 'react'
-import { Alert } from 'antd'
+import { Alert, Space } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import _ from 'lodash'
 import { RootState } from '../core/reducers'
@@ -20,14 +20,15 @@ const connector = connect((state: RootState) => ({
 
 const FlashComponent: React.FC<Props> = ({ className, flash }) => {
   if (!flash.length) { return null }
-
   return (
     <div className={className}>
-      {flash.map((item, i) => (
-        FLASH_TYPES[item.type] && !_.isEmpty(item.value) && (
-          <Alert message={item.value} type={FLASH_TYPES[item.type]} key={i} />
-        )
-      ))}
+      <Space orientation="vertical" className="w-100">
+        {flash.map((item, i) => (
+          FLASH_TYPES[item.type] && !_.isEmpty(item.value) && (
+            <Alert message={item.value} type={FLASH_TYPES[item.type]} key={i} />
+          )
+        ))}
+      </Space>
     </div>
   )
 }
