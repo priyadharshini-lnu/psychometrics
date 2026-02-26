@@ -87,18 +87,6 @@ const AudioCheckComponent: React.FC<Props> = ({
     onStop,
   })
 
-  const getMediaStream = React.useCallback(async (): Promise<MediaStream | null> => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        audio: true,
-      })
-      return stream
-    } catch (error) {
-      console.error('Error accessing media stream:', error)
-      return null
-    }
-  }, [])
-
   const isAccessDone = state.access === CheckListStatus.Done
   const isUploadingInProgress = state.uploading === CheckListStatus.InProgress
 
@@ -346,7 +334,7 @@ const AudioCheckComponent: React.FC<Props> = ({
       <Flex align="center" vertical className={styles.card}>
         <RecordCard
           mediaBlobUrl={mediaBlobUrl}
-          getMediaStream={getMediaStream}
+          stream={mediaStreamRef.current}
           handleStopRecording={handleStopRecording}
           status={status}
           state={state}
@@ -393,7 +381,7 @@ export const AudioCheck = connector(AudioCheckComponent)
 
 type RecordCardProps = {
   mediaBlobUrl: undefined | string;
-  getMediaStream: () => Promise<MediaStream | null>
+  stream: MediaStream | null;
   handleStopRecording : () => void;
   status: StatusMessages
   state: State,
@@ -401,7 +389,7 @@ type RecordCardProps = {
 
 
 const RecordCard: React.FC<RecordCardProps> = ({
-  mediaBlobUrl, getMediaStream, handleStopRecording, state, status,
+  mediaBlobUrl, stream, handleStopRecording, state, status,
 }) => (
   <>
     <h4 className={styles.title}>{I18n.t('enduser.system_check_audio_title')}</h4>
@@ -426,7 +414,7 @@ const RecordCard: React.FC<RecordCardProps> = ({
               />
             </Flex>
             <AudioWaveVisualizer
-              getMediaStream={getMediaStream}
+              stream={stream}
               audioBlobUrl={mediaBlobUrl}
             />
           </>

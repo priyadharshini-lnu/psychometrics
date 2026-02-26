@@ -6,16 +6,11 @@ import {
 } from 'react'
 import { AxiosResponse, AxiosProgressEvent } from 'axios'
 import _ from 'lodash'
-import {
-  Button, Flex, Alert,
-  Select,
-} from 'antd'
+import { Button, Flex, Alert } from 'antd'
 import humps from 'humps'
 import SparkMD5 from 'spark-md5'
 import {
   DeleteOutlined, StopOutlined, VideoCameraOutlined, LoadingOutlined,
-  DownOutlined,
-  AudioOutlined,
   CheckCircleFilled,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { axiosWithRetry } from '~/utils/axiosWithRetry'
@@ -24,7 +19,6 @@ import { useReactMediaRecorder } from './components/MediaRecorder'
 import { useRecording } from '~/context/RecordingContext'
 import VideoPlayer from './components/VideoPlayer'
 import ProgressWithCountdown, { ProgressWithCountdownProps } from './components/ProgressWIthCountdown'
-import styles from './styles.less'
 
 const { I18n } = window
 
@@ -36,7 +30,6 @@ interface MimeType {
 }
 
 const VIDEO_BACKGROUND_COLOR = '#E9F7F6'
-const PLACEHOLDER_BLACK = '#000'
 const PROGRESS_BAR_SUCCESS = '#009C37'
 
 
@@ -109,12 +102,30 @@ const MediaRecorderComponent: React.FC<Props> = ({
   removeQuestionInProgress, isAssessmentTimedOut,
 }) => {
   const { isRecording, startVideoRecording, stopVideoRecording } = useRecording()
+
   const [permissionGranted, setPermissionGranted] = useState<boolean>(false)
   const [devices, setDevices] = useState<DeviceDetails>({ videoDevices: [], audioDevices: [] })
   const [selectedVideoDevice, setSelectedVideoDevice] = useState<string>('')
   const [selectedAudioDevice, setSelectedAudioDevice] = useState<string>('')
+
+
+  useEffect(() => {
+    const getDevices = async () => {
+      const deviceList = await navigator.mediaDevices.enumerateDevices()
+      const videoDevices = deviceList.filter(device => device.kind === 'videoinput')
+      const audioDevices = deviceList.filter(device => device.kind === 'audioinput')
+      setDevices({ videoDevices, audioDevices })
+      if (videoDevices.length > 0 && !selectedVideoDevice) {
+        setSelectedVideoDevice(videoDevices[0].deviceId)
+      }
+      if (audioDevices.length > 0 && !selectedAudioDevice) {
+        setSelectedAudioDevice(audioDevices[0].deviceId)
+      }
+    }
+    getDevices()
+  }, [selectedVideoDevice, selectedAudioDevice])
+
   const [visualizing, setVisualizing] = useState<boolean>(false)
-  const [stream, setStream] = useState<MediaStream | null>(null)
   const [percent, setPercent] = useState<Record<string, number>>({})
   const [recordingState, setRecordingState] = useState<'recording' | 'saved' | 'saving'>('recording')
   const [errors, setErrors] = useState<Record<string, string>>({})
@@ -153,26 +164,6 @@ const MediaRecorderComponent: React.FC<Props> = ({
     })
   }
 
-
-  useEffect(() => {
-    const getDevices = async () => {
-      const devices = await navigator.mediaDevices.enumerateDevices()
-      const videoDevices = devices.filter(device => device.kind === 'videoinput')
-      const audioDevices = devices.filter(device => device.kind === 'audioinput')
-
-      setDevices({ videoDevices, audioDevices })
-
-      if (videoDevices.length > 0) {
-        setSelectedVideoDevice(videoDevices[0].deviceId)
-      }
-
-      if (audioDevices.length > 0) {
-        setSelectedAudioDevice(audioDevices[0].deviceId)
-      }
-    }
-
-    getDevices()
-  }, [])
 
   const getUploadUrl = useCallback(async (): Promise<void> => {
     try {
@@ -297,9 +288,6 @@ const MediaRecorderComponent: React.FC<Props> = ({
 
   const onStop = useCallback(async (blobUrl: string, lastBlob: Blob, completeBlob: Blob) => {
     setVisualizing(false)
-    if (stream) {
-      stream.getTracks().forEach(track => track.stop())
-    }
     setIsUploading(true)
 
     try {
@@ -313,13 +301,14 @@ const MediaRecorderComponent: React.FC<Props> = ({
     } finally {
       setIsUploading(false)
     }
-  }, [stream])
+  }, [])
 
   const {
     status,
     startRecording,
     stopRecording,
     mediaBlobUrl,
+    requestMediaStream,
     clearBlobUrl,
   } = useReactMediaRecorder({
     video: true,
@@ -327,16 +316,26 @@ const MediaRecorderComponent: React.FC<Props> = ({
     onChunkAvailable: handleChunkAvailable,
     onStop,
     chunkSize: UPLOAD_CHUNK_SIZE,
+    stopStreamsOnStop: false,
   })
 
   const handleRequestPermission = useCallback(async () => {
     setIsRequestingPermission(true)
     try {
-      const mediaStream = await window.navigator.mediaDevices.getUserMedia({
-        audio: { deviceId: selectedAudioDevice },
-        video: { deviceId: selectedVideoDevice },
+      // Build constraints dynamically for robust device selection
+      const audioConstraints = selectedAudioDevice
+
+        ? { deviceId: { exact: selectedAudioDevice } }
+        : true
+      const videoConstraints = selectedVideoDevice
+        ? { deviceId: { exact: selectedVideoDevice } }
+        : true
+
+      const mediaStream = await requestMediaStream({
+        audio: audioConstraints,
+        video: videoConstraints,
       })
-      setStream(mediaStream)
+
       mediaStreamRef.current = mediaStream
 
       if (videoRef.current) {
@@ -352,7 +351,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
     } finally {
       setIsRequestingPermission(false)
     }
-  }, [])
+  }, [selectedAudioDevice, selectedVideoDevice])
 
   useEffect(() => {
     if ((mediaBlobUrl || existingMedia) && videoRef.current) {
@@ -364,7 +363,6 @@ const MediaRecorderComponent: React.FC<Props> = ({
   const resetRecorder = useCallback((): void => {
     setPermissionGranted(false)
     setVisualizing(false)
-    setStream(null)
     setRecordingState('recording')
     setErrors({})
     setIsUploading(false)
@@ -386,7 +384,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
     chunkCounterRef.current = 0
     handleRequestPermission()
     getUploadUrl()
-  }, [maxDuration])
+  }, [maxDuration, handleRequestPermission])
 
   const handleDiscard = useCallback(async (): Promise<void> => {
     if (existingMedia) {
@@ -427,18 +425,6 @@ const MediaRecorderComponent: React.FC<Props> = ({
     setRecStopCountdownTime(Date.now() + 1000 * maxDuration)
     setRecStopCountdownRemainingDuration(maxDuration)
   }, [startRecording, maxDuration])
-
-  const getMediaStream = useCallback(async (): Promise<MediaStream | null> => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        audio: true,
-      })
-      return stream
-    } catch (error) {
-      console.error('Error accessing media stream:', error)
-      return null
-    }
-  }, [])
 
   const handleVideoPlay = (): void => {
     setVisualizing(true)
@@ -577,27 +563,11 @@ const MediaRecorderComponent: React.FC<Props> = ({
     }
   }
 
-  const getCameraDevices = () => {
-    const items = devices.videoDevices.map(device => ({
-      value: device.deviceId,
-      label: device.label || `Camera ${device.deviceId}`,
-    }))
-    return items
-  }
-
-  const getMicrophoneDevices = () => {
-    const audioDevices = devices.audioDevices.map(device => ({
-      value: device.deviceId,
-      label: device.label || `Microphone ${device.deviceId}`,
-    }))
-    return audioDevices
-  }
-
-  const handleChangeVideoDevice = (deviceId : string) => {
+  const handleChangeVideoDevice = (deviceId: string) => {
     setSelectedVideoDevice(deviceId)
   }
 
-  const handleChangeAudioDevice = (deviceId : string) => {
+  const handleChangeAudioDevice = (deviceId: string) => {
     setSelectedAudioDevice(deviceId)
   }
 
@@ -609,36 +579,6 @@ const MediaRecorderComponent: React.FC<Props> = ({
       align="center"
       gap={4}
     >
-      <Flex style={{ paddingTop: '16px' }} className={styles.controls} justify="flex-end" align="flex-end">
-        <AudioOutlined style={{ alignSelf: 'center' }} />
-        <Select
-          placeholder={(
-            <p style={{ color: PLACEHOLDER_BLACK, margin: 0 }}>
-              {I18n.t('assessments.video_response.device_selection.mic')}
-            </p>
-            )}
-          onChange={handleChangeAudioDevice}
-          suffixIcon={<DownOutlined style={{ color: PLACEHOLDER_BLACK, pointerEvents: 'none' }} />}
-          variant="borderless"
-          disabled={status === 'recording'}
-          styles={{ popup: { root: { minWidth: '300px' } } }}
-          options={getMicrophoneDevices()}
-        />
-        <VideoCameraOutlined style={{ alignSelf: 'center' }} />
-        <Select
-          disabled={status === 'recording'}
-          placeholder={(
-            <p style={{ color: PLACEHOLDER_BLACK, margin: 0 }}>
-              {I18n.t('assessments.video_response.device_selection.camera')}
-            </p>
-          )}
-          styles={{ popup: { root: { minWidth: '300px' } } }}
-          suffixIcon={<DownOutlined style={{ color: PLACEHOLDER_BLACK, pointerEvents: 'none' }} />}
-          onChange={handleChangeVideoDevice}
-          variant="borderless"
-          options={getCameraDevices()}
-        />
-      </Flex>
       <VideoPlayer
         videoRef={videoRef}
         mediaUrl={existingVideoUrl || mediaBlobUrl}
@@ -646,7 +586,11 @@ const MediaRecorderComponent: React.FC<Props> = ({
         status={status}
         onPlay={handleVideoPlay}
         visualizing={visualizing}
-        getMediaStream={getMediaStream}
+        stream={mediaStreamRef.current}
+        videoDevices={devices.videoDevices}
+        audioDevices={devices.audioDevices}
+        onChangeVideoDevice={handleChangeVideoDevice}
+        onChangeAudioDevice={handleChangeAudioDevice}
       />
       <Flex className={status === 'recording' ? 'mt-16' : 'unset'} vertical justify="center" align="center" gap={4}>
         <ProgressWithCountdown {...getProgressProps()} />

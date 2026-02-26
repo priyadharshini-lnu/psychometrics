@@ -76,7 +76,7 @@ ar:
     proctoring_maintenance_upcoming: سيتم إجراء صيانة على نظام المراقبة من %{start_time} إلى %{end_time}.
     question_id: رقم السؤال
     question_transcription_disabled: النسخ معطل لهذا السؤال
-    rec: REC
+    rec: تسجيل
     recording_consent_notice: سيتم تسجيل جلسة الاجتماع هذه. مشاركتك في هذا الاجتماع تعني موافقتك على التسجيل.
     recording_consent_proceed_question: هل توافق على المضي قدما في الاجتماع المسجل؟
     recording_consent_title: تسجيل إشعار الموافقة

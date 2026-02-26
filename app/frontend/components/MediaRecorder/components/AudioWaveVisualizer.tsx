@@ -2,13 +2,13 @@ import React, { useEffect, useRef, useState } from 'react'
 import SiriWave from 'siriwave'
 
 interface AudioWaveVisualizerProps {
-    getMediaStream: () => Promise<MediaStream | null>;
+    stream: MediaStream | null;
     audioBlobUrl?: string;
     style?: React.CSSProperties;
 }
 
 const AudioWaveVisualizer: React.FC<AudioWaveVisualizerProps> = ({
-  getMediaStream,
+  stream,
   audioBlobUrl,
   style = { height: '22px' },
 }) => {
@@ -42,13 +42,12 @@ const AudioWaveVisualizer: React.FC<AudioWaveVisualizerProps> = ({
       audioWaveRef.current = new SiriWave({
         container: audioContainerRef.current,
         width: 200,
-        height: 120, // Adjust height for better visibility
+        height: 120,
         style: 'ios9',
       })
 
       try {
         if (audioBlobUrl) {
-          // Handle audio from recorded video playback
           const response = await fetch(audioBlobUrl)
           const audioData = await response.arrayBuffer()
 
@@ -63,18 +62,14 @@ const AudioWaveVisualizer: React.FC<AudioWaveVisualizerProps> = ({
           analyser.fftSize = 256
           analyserRef.current = analyser
 
-          // Connect the source to the analyser, but NOT to the destination (so it doesn't play audio)
           source.connect(analyser)
 
-          // We are NOT connecting the analyser to the destination to keep it muted
           source.start()
           source.onended = () => {
-            audioWaveRef.current?.setAmplitude(0) // Stop the wave when playback ends
-            cleanupAudioContext() // Clean up after playback
+            audioWaveRef.current?.setAmplitude(0)
+            cleanupAudioContext()
           }
         } else {
-          // Handle live preview visualization
-          const stream = await getMediaStream()
           if (!stream) return
 
           const AudioContextClass = window.AudioContext || window.webkitAudioContext
@@ -119,7 +114,7 @@ const AudioWaveVisualizer: React.FC<AudioWaveVisualizerProps> = ({
     return () => {
       cleanupAudioContext()
     }
-  }, [getMediaStream, audioBlobUrl])
+  }, [stream, audioBlobUrl])
 
   return <div ref={audioContainerRef} style={style} />
 }

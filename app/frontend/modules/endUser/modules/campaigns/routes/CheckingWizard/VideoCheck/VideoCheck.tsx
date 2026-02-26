@@ -2,7 +2,7 @@ import React, {
   useReducer, useRef, useEffect, useState,
 } from 'react'
 import {
-  Button, Flex, Space, Alert,
+  Button, Flex, Space,
 } from 'antd'
 import { DirectUpload } from '@rails/activestorage'
 import axios from 'axios'
@@ -21,11 +21,7 @@ import styles from './styles.less'
 import { useReactMediaRecorder } from '~/components/MediaRecorder/components/MediaRecorder'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { preSignUrl } from '~/modules/endUser/modules/campaigns/core/checkingWizard'
-import {
-  getRandomVideoTestPhrase,
-  startAudioLevelMonitoring,
-  cleanupAudioMonitoring,
-} from '../services/service'
+import { getRandomVideoTestPhrase } from '../services/service'
 
 
 const { I18n } = window
@@ -48,34 +44,39 @@ type Props = PropsFromRedux & {
 const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
   const videoRef = useRef<HTMLVideoElement>(null)
   const mediaStreamRef = useRef<MediaStream | null>(null)
-  const audioContextRef = useRef<AudioContext | null>(null)
-  const analyserRef = useRef<AnalyserNode | null>(null)
-  const audioCheckIntervalRef = useRef<NodeJS.Timeout | null>(null)
-  const audioDetectedRef = useRef<boolean>(false)
-
   const [state, dispatch] = useReducer(reducer, initialState)
   const [videoBlob, setVideoBlob] = useState<Blob | null>(null)
-  const [stream, setStream] = useState<MediaStream | null>(null)
   const [visualizing, setVisualizing] = useState<boolean>(false)
-  const [showAudioWarning, setShowAudioWarning] = useState<boolean>(false)
+  const [devices, setDevices] = useState<{ videoDevices: MediaDeviceInfo[]; audioDevices: MediaDeviceInfo[] }>(
+    { videoDevices: [], audioDevices: [] },
+  )
+  const [selectedVideoDevice, setSelectedVideoDevice] = useState<string>('')
+  const [selectedAudioDevice, setSelectedAudioDevice] = useState<string>('')
+
+  const getDevices = React.useCallback(async () => {
+    const devices = await navigator.mediaDevices.enumerateDevices()
+    const videoDevices = devices.filter(device => device.kind === 'videoinput')
+    const audioDevices = devices.filter(device => device.kind === 'audioinput')
+
+    setDevices({ videoDevices, audioDevices })
+
+    // Set default devices on first enumeration
+    if (videoDevices.length > 0 && !selectedVideoDevice) {
+      setSelectedVideoDevice(videoDevices[0].deviceId)
+    }
+
+    if (audioDevices.length > 0 && !selectedAudioDevice) {
+      setSelectedAudioDevice(audioDevices[0].deviceId)
+    }
+  }, [selectedVideoDevice, selectedAudioDevice])
 
   const onStop = React.useCallback((blobUrl: string, lastBlob: Blob, completeBlob: Blob) => {
     setVisualizing(false)
-    if (stream) {
-      stream.getTracks().forEach(track => track.stop())
-    }
-    cleanupAudioMonitoring({
-      audioContextRef,
-      analyserRef,
-      audioCheckIntervalRef,
-      audioDetectedRef,
-    })
     setVideoBlob(completeBlob)
-  }, [stream])
+  }, [])
 
   const isAccessDone = state.access === CheckListStatus.Done
   const isUploadingInProgress = state.uploading === CheckListStatus.InProgress
-
 
   const {
     status,
@@ -83,24 +84,17 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
     startRecording,
     stopRecording,
     clearBlobUrl,
+    requestMediaStream,
   } = useReactMediaRecorder({
     video: true,
     audio: true,
     onStop,
+    stopStreamsOnStop: false,
   })
 
-
-  const getMediaStream = React.useCallback(async (): Promise<MediaStream | null> => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        audio: true,
-      })
-      return stream
-    } catch (error) {
-      console.error('Error accessing media stream:', error)
-      return null
-    }
-  }, [])
+  useEffect(() => {
+    getDevices()
+  }, [getDevices])
 
   useEffect(() => {
     if ((mediaBlobUrl) && videoRef.current) {
@@ -120,47 +114,37 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
     }
   }, [videoBlob, status])
 
-
   const requestAccess = async () => {
     if (!videoRef.current) return
 
     try {
-      const mediaStream = await window.navigator.mediaDevices.getUserMedia({
-        audio: true,
-        video: true,
+      const audioConstraints = selectedAudioDevice
+        ? { deviceId: { exact: selectedAudioDevice } }
+        : true
+      const videoConstraints = selectedVideoDevice
+        ? { deviceId: { exact: selectedVideoDevice } }
+        : true
+
+      const mediaStream = await requestMediaStream({
+        audio: audioConstraints,
+        video: videoConstraints,
       })
-      setStream(mediaStream)
+
+      if (!mediaStream) {
+        dispatch(updateAccess(CheckListStatus.Failed))
+        return
+      }
       mediaStreamRef.current = mediaStream
-
-
       if (videoRef.current) {
         videoRef.current.srcObject = mediaStream
       }
       dispatch(updateAccess(CheckListStatus.Done))
-      setVisualizing(true)
-
-      audioDetectedRef.current = false
-
-      startAudioLevelMonitoring(
-        mediaStream,
-        {
-          audioContextRef,
-          analyserRef,
-          audioCheckIntervalRef,
-          audioDetectedRef,
-        },
-        {
-          onAudioDetected: () => setShowAudioWarning(false),
-          onNoAudio: () => setShowAudioWarning(true),
-        },
-      )
-
       startRecording()
+      setVisualizing(true)
     } catch (e) {
       dispatch(updateAccess(CheckListStatus.Failed))
     }
   }
-
 
   const videoUpload = async () => {
     if (!videoBlob) {
@@ -209,13 +193,6 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
       stopRecording()
       setVisualizing(false)
 
-      cleanupAudioMonitoring({
-        audioContextRef,
-        analyserRef,
-        audioCheckIntervalRef,
-        audioDetectedRef,
-      })
-
       if (mediaStreamRef.current) {
         mediaStreamRef.current.getTracks().forEach(track => track.stop())
         mediaStreamRef.current = null
@@ -256,15 +233,7 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
   const rerun = async () => {
     clearBlobUrl()
     setVideoBlob(null)
-    setShowAudioWarning(false)
     dispatch(updateUploading(CheckListStatus.Pending))
-
-    cleanupAudioMonitoring({
-      audioContextRef,
-      analyserRef,
-      audioCheckIntervalRef,
-      audioDetectedRef,
-    })
 
     if (mediaStreamRef.current) {
       mediaStreamRef.current.getTracks().forEach(track => track.stop())
@@ -280,6 +249,14 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
 
   const handleVideoPlay = (): void => {
     setVisualizing(true)
+  }
+
+  const handleChangeVideoDevice = (deviceId: string) => {
+    setSelectedVideoDevice(deviceId)
+  }
+
+  const handleChangeAudioDevice = async (deviceId: string) => {
+    setSelectedAudioDevice(deviceId)
   }
 
   const renderProgressAndChecklist = () => (
@@ -346,7 +323,6 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
     )
   }
 
-
   return (
     <Flex align="center" vertical>
       <h3>{I18n.t('checking_wizard.video_check.title')}</h3>
@@ -373,16 +349,12 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
         onFinish={handleStopRecording}
         onPlay={handleVideoPlay}
         visualizing={visualizing}
-        getMediaStream={getMediaStream}
+        stream={mediaStreamRef.current}
+        videoDevices={devices.videoDevices}
+        audioDevices={devices.audioDevices}
+        onChangeVideoDevice={handleChangeVideoDevice}
+        onChangeAudioDevice={handleChangeAudioDevice}
       />
-
-      {showAudioWarning && status === 'recording' && (
-        <Alert
-          title={I18n.t('enduser.no_audio_warning')}
-          type="warning"
-          className="mt-4"
-        />
-      )}
 
       <Controls />
 

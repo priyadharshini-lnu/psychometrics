@@ -142,17 +142,6 @@ const Recorder = ({
     setStartTime(Date.now())
   }
 
-  const getMediaStream = useCallback(async (): Promise<MediaStream | null> => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        audio: true,
-      })
-      return stream
-    } catch (error) {
-      console.error('Error accessing media stream:', error)
-      return null
-    }
-  }, [])
 
   const renderControls = () => {
     if (status === 'idle') {
@@ -229,7 +218,7 @@ const Recorder = ({
         <Typography.Title level={3} className={styles.title}>{question}</Typography.Title>
         <div className={styles.visualizer}>
           {isRecording
-            ? <AudioWaveVisualizer getMediaStream={getMediaStream} style={{ height: undefined }} />
+            ? <AudioWaveVisualizer stream={mediaStreamRef.current} style={{ height: undefined }} />
             : (
               <Flex vertical justify="center" gap={8}>
                 <Icon style={{ fontSize: 60 }} component={VideoRecordIcon} className={styles.recordIcon} />
