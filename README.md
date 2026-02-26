@@ -9,14 +9,16 @@ Ruby [![Depfu](https://badges.depfu.com/badges/4a586aa5bfb8856ff8fe0641b1a7f82e/
 ## Requisites
 
 Ruby version: 3.4.6
+> Check `.ruby-version` file for the exact version.
 
 Rails version: 7.0.5
 
 Bundler version: 2.3.17
 
-Node version: 18.16.*
+Node version: 22.21.*
+> Check `.node-version` file for the exact version.
 
-Database: PostgresSql@14 (Also [install pgvector extension](docs/pgvector_integration.md))
+Database: PostgresSql@17 (Also [install pgvector extension](docs/pgvector_integration.md))
 
 prevent bundle secure warnings with
 
