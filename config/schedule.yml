@@ -32,7 +32,7 @@ threesixty_send_reminders_job:
   queue_as: cron_tasks
 
 users_results_handle_expire_job:
-  cron: "*/10 * * * *" # At every 10th minute
+  cron: "*/5 * * * *" # At every 5th minute
   class: HandleUserResultExpiryJob
   queue_as: cron_tasks
 
