@@ -9,6 +9,7 @@ import {
   ReloadOutlined,
 
 } from '~/glint/icons/AccessibleIconsAntDesign'
+import { SafeHTML } from '~/components/SafeHTML'
 import { AssistantOutput } from './types'
 
 interface ResultProps {
@@ -79,9 +80,9 @@ const Result: React.FC<ResultProps> = ({
           <Typography.Text strong>
             {I18n.t('admin.original_text')}
           </Typography.Text>
-          <Typography.Paragraph style={{ marginTop: 8 }}>
-            {selectedText}
-          </Typography.Paragraph>
+          <div style={{ marginTop: 8 }}>
+            <SafeHTML html={selectedText} as="div" config="adminRichText" />
+          </div>
         </Card>
         <Card style={{ flex: 1 }}>
           <Typography.Text strong>
@@ -95,9 +96,9 @@ const Result: React.FC<ResultProps> = ({
               </Typography.Text>
             </Typography.Paragraph>
           ) : (
-            <Typography.Paragraph style={{ marginTop: 8 }}>
-              {assistantOutput.result}
-            </Typography.Paragraph>
+            <div style={{ marginTop: 8 }}>
+              <SafeHTML html={assistantOutput.result} as="div" config="adminRichText" />
+            </div>
           )}
         </Card>
       </Flex>

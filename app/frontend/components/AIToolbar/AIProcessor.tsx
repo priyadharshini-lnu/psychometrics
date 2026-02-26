@@ -56,7 +56,8 @@ const AIProcessor: React.FC<AIProcessorProps> = ({
     onProcessingStateChange?.(true)
 
     const payload = {
-      text: selectionData?.selectedText || '',
+      text: isFroalaSelection(selectionData)
+        ? selectionData?.froalaEditor?.selectedHtml : selectionData?.selectedText || '',
       operations: ops,
       context: {},
       user_locale: I18n.currentLocale(),
@@ -136,7 +137,8 @@ const AIProcessor: React.FC<AIProcessorProps> = ({
       visible={visible}
       handleClose={handleClose}
       loading={state.view === 'loading'}
-      selectedText={selectionData?.selectedText || ''}
+      selectedText={isFroalaSelection(selectionData)
+        ? selectionData?.froalaEditor?.selectedHtml || '' : selectionData?.selectedText || ''}
       assistantOutput={state.assistantOutput}
       handleCopy={handleCopy}
       handleReplace={handleReplace}
