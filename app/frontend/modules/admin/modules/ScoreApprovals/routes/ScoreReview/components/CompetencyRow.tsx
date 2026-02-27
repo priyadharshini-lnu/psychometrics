@@ -108,7 +108,7 @@ const CompetencyContent = ({
     ) : (
       <Flex vertical gap={8} style={{ padding: 16 }}>
         <Typography.Text strong>
-          {I18n.t('admin.ai_scoring_appoval_rational')}
+          {I18n.t('admin.ai_scoring_appoval_rationale')}
         </Typography.Text>
         <Typography.Text>
           {competency.rationale}

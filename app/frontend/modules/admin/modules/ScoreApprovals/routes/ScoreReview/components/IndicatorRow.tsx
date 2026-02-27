@@ -92,7 +92,7 @@ const IndicatorHeader = ({
 
 const IndicatorContent = ({ factor }) => (
   <Flex vertical gap={8}>
-    <Typography.Text strong>{I18n.t('admin.ai_scoring_appoval_rational')}</Typography.Text>
+    <Typography.Text strong>{I18n.t('admin.ai_scoring_appoval_rationale')}</Typography.Text>
     <Typography.Text>
       {factor.rationale}
     </Typography.Text>

@@ -66,7 +66,7 @@ en:
     ai_scoring_appoval_evidence_from_transcript: Evidence from Transcript
     ai_scoring_appoval_new_score: New Score
     ai_scoring_appoval_next: Next Question
-    ai_scoring_appoval_rational: Rational
+    ai_scoring_appoval_rationale: Rationale
     ai_scoring_appoval_reason_for_changes: Reason for changes
     ai_scoring_appoval_reset_score: Reset Score
     ai_scoring_appoval_reset_score_description: The score will be reverted to the original AI value.
