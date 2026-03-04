@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
 import {
@@ -11,22 +11,27 @@ import {
   get as getSmtpSetting,
   SAVE_SETTINGS,
   VALIDATE_SETTINGS,
+  FETCH_SETTINGS,
   saveSettings,
   validateSettings,
+  fetchSettings,
   State as SmtpSetting,
-} from '~/modules/admin/modules/client/core/smtpSetting'
-import { FETCH_SINGLE as FETCH_PROJECT } from '~/modules/admin/modules/client/core/projects'
+} from '~/modules/admin/modules/client/core/clientSmtpSetting'
 import { useUpdateEffect } from '~/hooks/useUpdateEffect'
 import ResourceForm from '~/components/ResourceForm'
 import { isRequestInProgress } from '~/core/request'
 import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
-import { TestSettingModal } from './TestSettingModal'
-import { TestEmailModal } from './TestEmailModal'
+import {
+  TestSettingModal,
+} from '~/modules/admin/modules/client/routes/Client/routes/Settings/routes/Smtp/TestSettingModal'
+import {
+  TestEmailModal,
+} from '~/modules/admin/modules/client/routes/Client/routes/Settings/routes/Smtp/TestEmailModal'
 
 const connector = connect(
   (state: RootState) => ({
-    isProjectLoading: isRequestInProgress(state, FETCH_PROJECT),
+    isFetching: isRequestInProgress(state, FETCH_SETTINGS),
     smtpSetting: getSmtpSetting(state),
     isUpdating: isRequestInProgress(state, SAVE_SETTINGS),
     isValidating: isRequestInProgress(state, VALIDATE_SETTINGS),
@@ -35,6 +40,7 @@ const connector = connect(
     openModal,
     saveSettings,
     validateSettings,
+    fetchSettings,
   },
 )
 
@@ -56,13 +62,17 @@ const MODALS = {
 }
 
 const SmtpComponent: React.FC<Props> = ({
-  smtpSetting, isUpdating, isValidating, saveSettings, validateSettings, openModal, isProjectLoading,
+  smtpSetting, isUpdating, isValidating, saveSettings, validateSettings, openModal, isFetching, fetchSettings,
 }) => {
   const [form] = Form.useForm()
-  const { projectId } = useParams() as { projectId: string }
-  const parsedProjectId = parseInt(projectId, 10)
+  const { clientId } = useParams() as { clientId: string }
+  const parsedClientId = parseInt(clientId, 10)
   const { message } = App.useApp()
   const enabled = Form.useWatch('enabled', form)
+
+  useEffect(() => {
+    fetchSettings(parsedClientId)
+  }, [parsedClientId])
 
   enum SubmitFormType {
     None = 'none',
@@ -89,23 +99,23 @@ const SmtpComponent: React.FC<Props> = ({
       fieldsToRemove.forEach(field => delete values[field as keyof typeof values])
     }
     if (submitFormFor === SubmitFormType.Validation) {
-      return validateSettings(parsedProjectId, values).then(() => {
-        openModal('TestSettingModal', { projectId, smtpSetting: form.getFieldsValue(true) })
+      return validateSettings(parsedClientId, values).then(() => {
+        openModal('TestSettingModal', { clientId: parsedClientId, smtpSetting: form.getFieldsValue(true) })
       }).finally(() => setSubmitFormFor(SubmitFormType.None))
     }
 
     if (values.enabled) {
-      return validateSettings(parsedProjectId, values).then(() => {
-        openModal('TestEmailModal', { projectId, smtpSetting: form.getFieldsValue(true) })
+      return validateSettings(parsedClientId, values).then(() => {
+        openModal('TestEmailModal', { clientId: parsedClientId, smtpSetting: form.getFieldsValue(true) })
       }).finally(() => setSubmitFormFor(SubmitFormType.None))
     }
 
-    return saveSettings(parsedProjectId, smtpSetting.id, values).then(() => {
+    return saveSettings(parsedClientId, smtpSetting.id, values).then(() => {
       message.success(I18n.t('administration.smtp_settings.update_success_msg'))
     }).finally(() => setSubmitFormFor(SubmitFormType.None))
   }
 
-  if (isProjectLoading) return <Skeleton />
+  if (isFetching || !smtpSetting) return <Skeleton />
 
   return (
     <Row justify="space-between" className="pl">
@@ -113,7 +123,7 @@ const SmtpComponent: React.FC<Props> = ({
         <ResourceForm
           resourceName="smtpSettings"
           requestScope="campaigns"
-          resourceBaseUrl={`/administration/projects/${projectId}/smtp_settings`}
+          resourceBaseUrl={`/administration/clients/${clientId}/smtp_settings`}
           resource={smtpSetting}
           storeManager={{ form }}
           request={{

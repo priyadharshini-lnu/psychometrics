@@ -25,10 +25,10 @@ module ReportApproving
 
       send_email(
         @user,
-        from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
         subject: 'Reports approved',
         template_path: 'mailer/report_approving',
-        template_name: 'approval_notification_digest'
+        template_name: 'approval_notification_digest',
+        **admin_sender_attributes(@project&.client)
       )
     end
   end

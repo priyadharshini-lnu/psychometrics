@@ -7,10 +7,10 @@ class UserMailer < ApplicationMailer
     @user = user
     send_email(
       user,
-      from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
       subject: I18n.t('mailer.users.warning'),
       template_path: 'mailer/user_management',
-      template_name: 'inactivity_warning'
+      template_name: 'inactivity_warning',
+      **admin_sender_attributes((user.project || user.clients.order(:created_at).first)&.client)
     )
   end
 

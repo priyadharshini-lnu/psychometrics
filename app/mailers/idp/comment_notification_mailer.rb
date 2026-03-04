@@ -12,7 +12,8 @@ module Idp
         @user,
         subject: I18n.t('mailer.idp.manager_unread_comments.subject', campaign_name: @campaign.name),
         template_path: 'mailer/idp/comment_notification',
-        template_name: 'manager_unread_comments'
+        template_name: 'manager_unread_comments',
+        **admin_sender_attributes(@campaign.project&.client)
       )
     end
 
@@ -24,7 +25,8 @@ module Idp
         @user,
         subject: I18n.t('mailer.idp.user_unread_comments.subject', campaign_name: @campaign.name),
         template_path: 'mailer/idp/comment_notification',
-        template_name: 'user_unread_comments'
+        template_name: 'user_unread_comments',
+        **admin_sender_attributes(@campaign.project&.client)
       )
     end
   end

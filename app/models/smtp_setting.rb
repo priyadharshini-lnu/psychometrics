@@ -6,6 +6,8 @@ class SmtpSetting < ApplicationRecord
 
   belongs_to :project, class_name: 'Client'
 
+  before_save :clear_smtp_credentials_if_needed
+
   attr_encrypted :password, key: Base64.decode64(Settings.secrets.encrypted_key.to_s)
 
   enum :encryption, { none: 0, ssl: 1, tls: 2 }, prefix: true
@@ -15,6 +17,13 @@ class SmtpSetting < ApplicationRecord
             numericality: { only_integer: true, greater_than: 0 }
 
   def from_name_and_email
+    no_reply_email = "no-reply@#{Settings.domain}"
+    return "#{I18n.t('mailer.from')} <#{no_reply_email}>" unless enabled?
+
+    "#{from_name} <#{from_email.presence || no_reply_email}>"
+  end
+
+  def admin_sender_from
     no_reply_email = "no-reply@#{Settings.domain}"
     return "#{I18n.t('mailer.from')} <#{no_reply_email}>" unless enabled?
 
@@ -36,5 +45,18 @@ class SmtpSetting < ApplicationRecord
     return options.merge(ssl: true) if encryption_ssl?
 
     options
+  end
+
+  private
+
+  def clear_smtp_credentials_if_needed
+    return unless use_sender_verification?
+
+    self.host = nil
+    self.port = nil
+    self.user_name = nil
+    self.password = nil
+    self.encryption = :none
+    self.authentication_type = :plain
   end
 end

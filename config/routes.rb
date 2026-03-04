@@ -511,6 +511,10 @@ Rails.application.routes.draw do
             to: 'projects/threesixty_campaigns#show', constraints: { all: /.*/ }
         get '/projects/:project_id/threesixty_campaigns/:id/', to: 'projects/threesixty_campaigns#show'
         resources :sheet_rows, except: %i[show edit update]
+        resource :smtp_settings, only: %i[show update] do
+          post :send_test_email
+          post :validate_settings
+        end
       end
     end
 
