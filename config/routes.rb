@@ -664,7 +664,7 @@ Rails.application.routes.draw do
     ### DIMENSIONS
     resources :dimensions do
       member do
-        get :copy
+        post :copy
         get :sidebar
         patch :toggle_status
         get :translations
