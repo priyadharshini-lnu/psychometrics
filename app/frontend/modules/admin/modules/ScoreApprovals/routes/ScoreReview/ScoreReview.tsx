@@ -10,6 +10,7 @@ import {
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { QuestionScore } from './QuestionScore'
+import AllResponsesList, { SubjectAssessment } from './AllResponsesList'
 import { useResources } from '~/hooks/useResources'
 import { ScoreApproval, Indicator } from '../../core'
 import { APPROVAL_STATUS } from '../TasksList'
@@ -21,6 +22,8 @@ export const ScoreReview = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const [currentTab, setCurrentTab] = useState<string>()
+  const [showAllResponsesModal, setShowAllResponsesModal] = useState(false)
+  const [cachedAssessment, setCachedAssessment] = useState<SubjectAssessment | null>(null)
   const {
     fetchSingle, data, isLoading, memberAction, setData,
   } = useResources<ScoreApproval>('ai_score_approvals')
@@ -32,6 +35,22 @@ export const ScoreReview = () => {
   }, [id])
 
   const scoreApproval = data[0]
+
+  const fetchAssessment = (scoreApprovalId: string) => {
+    if (cachedAssessment) {
+      return Promise.resolve(cachedAssessment)
+    }
+
+    return memberAction({
+      id: scoreApprovalId,
+      method: 'get',
+      action: 'subject_assessment',
+    }).then((result) => {
+      const assessmentData = result as SubjectAssessment
+      setCachedAssessment(assessmentData)
+      return assessmentData
+    })
+  }
 
   if (!id || isLoading(`fetch@${id}`) || !scoreApproval || !scoreApproval.questions) {
     return
@@ -314,9 +333,14 @@ export const ScoreReview = () => {
               </Flex>
             </Card>
           </Flex>
-          <Typography.Title level={3} className="mt24">
-            {scoreApproval.assessmentName}
-          </Typography.Title>
+          <Flex justify="space-between" align="center">
+            <Typography.Title level={3} className="mt24">
+              {scoreApproval.assessmentName}
+            </Typography.Title>
+            <Button onClick={() => setShowAllResponsesModal(true)}>
+              {I18n.t('admin.show_all_assessment_responses')}
+            </Button>
+          </Flex>
           <Tabs
             className={styles.questionTabs}
             items={items}
@@ -326,6 +350,13 @@ export const ScoreReview = () => {
           />
         </Col>
       </Row>
+
+      <AllResponsesList
+        scoreApprovalId={id}
+        open={showAllResponsesModal}
+        onClose={() => setShowAllResponsesModal(false)}
+        fetchAssessment={fetchAssessment}
+      />
     </>
   )
 }

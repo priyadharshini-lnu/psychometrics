@@ -97,6 +97,33 @@ module Api
     #   render json: json
     # end
 
+    def subject_assessment
+      user_assessment = score_approval.as_user_assessment
+      user_result = user_assessment.users_result
+      selected_locale = user_assessment.selected_locale
+
+      render json: {
+        result: UsersResultSerializer.new(
+          context: {
+            campaign: user_assessment.campaign,
+            participant: user_assessment,
+            current_user: current_user,
+            locale: selected_locale,
+            piped_text_context: build_piped_context(user_assessment),
+            include: '**'
+          }
+        ).serialize(user_result),
+
+        assessment: AssessmentSerializer.new(
+          context: {
+            selected_locale: selected_locale,
+            piped_text_context: build_piped_context(user_assessment),
+            include: '**'
+          }
+        ).serialize(user_assessment.assessment)
+      }
+    end
+
     def metadata_for_filters
       response = ScoreApprovals::MetadataFetcher.call!(current_user, filter: params[:filter])
 
@@ -129,6 +156,16 @@ module Api
 
     def serialize_factor_scores(scores)
       scores.map { |score| ::Administration::AIFactorScoreSerializer.new(current_user: current_user).serialize(score) }
+    end
+
+    def build_piped_context(user_assessment)
+      {
+        evaluator: user_assessment.evaluator,
+        subject: user_assessment.subject,
+        campaign: user_assessment.campaign,
+        result: user_assessment.users_result,
+        assessment: user_assessment.assessment
+      }
     end
   end
 end

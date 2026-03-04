@@ -305,7 +305,7 @@ en:
     only_editable_on_create: This option is editable only while creating.
     options: Options
     original_text: Original Text
-    overall: Overral
+    overall: Overall
     overall_score: Overall Score
     participants: Participants
     permissions:
@@ -857,6 +857,7 @@ en:
     send_email: Send email
     set_min_max_scores_warning: Please set minimum and maximum scores for this factor to configure AI scoring.
     settings: Settings
+    show_all_assessment_responses: Show All Assessment Responses
     show_middle_scores: Show %{count} more scores (optional)...
     show_original: Show Original
     show_submenu: Show Sub Menu

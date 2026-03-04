@@ -1,10 +1,9 @@
 import {
-  Card, Flex, Space, Tag,
-  Typography,
+  Card, Flex, Tag, Typography,
 } from 'antd'
 import cs from 'classnames'
 import styles from '../ScoreReview.less'
-import { ClockCircleOutlined, CheckCircleOutlined, CloseCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { CheckCircleOutlined, CloseCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 const { I18n } = window
 
@@ -15,12 +14,13 @@ export const Evidence = ({ positive = undefined, children }) => (
   >
     <Flex vertical gap={8}>
       <Flex justify="space-between">
-        <Space>
+        {/* wait for implementation times */}
+        {/* <Space>
           <Typography.Text type="secondary"><ClockCircleOutlined /></Typography.Text>
           <Typography.Text>
             2:55
           </Typography.Text>
-        </Space>
+        </Space> */}
         {/* remove undefined check after implementation */}
         {positive !== undefined && (positive
           ? (

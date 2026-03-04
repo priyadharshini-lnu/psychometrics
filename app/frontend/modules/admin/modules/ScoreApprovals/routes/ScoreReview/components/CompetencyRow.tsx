@@ -26,7 +26,7 @@ const CompetencyHeader = ({
     </Flex>
     <Flex onClick={e => e.stopPropagation()}>
       <Flex align="center">
-        <div className={cs(styles.overralScore, { [styles.opacity50]: overridenScore })}>
+        <div className={cs(styles.overallScore, { [styles.opacity50]: overridenScore })}>
           <Space>
             <AIEditorIcon style={{ color: 'var(--ant-primary-color)' }} />
             {`${I18n.t('admin.overall')}:`}
@@ -38,7 +38,7 @@ const CompetencyHeader = ({
             {overridenScore && (
               <>
                 <Divider orientation="vertical" />
-                <div className={styles.overralScore}>
+                <div className={styles.overallScore}>
                   <Space>
                     <UserOutlined style={{ color: 'var(--ant-primary-color)' }} />
                     {`${I18n.t('admin.overall')}:`}

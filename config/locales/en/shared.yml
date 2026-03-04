@@ -65,6 +65,7 @@ en:
     internet_disconnected_message: Trying to reconnect. Please check your internet connection.
     last_name: Last Name
     learning_on_the_job_label: Learning on the Job
+    loading: Loading...
     login: Login
     maintenance_in_hours: "%{hours} hours"
     maintenance_in_minutes: "%{minutes} minutes"

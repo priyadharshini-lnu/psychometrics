@@ -15,6 +15,10 @@ module Api
           user_is_assessor? || user_is_approver?
         end
 
+        def subject_assessment?
+          show?
+        end
+
         def approve_question?
           can_perform_approval_action?
         end

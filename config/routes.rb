@@ -1633,6 +1633,7 @@ only: %i[index create update]
               post :discard_score
               post :discard_question
               post :discard_all_questions
+              get :subject_assessment
             end
           end
           resources :user_report_events, only: %i[index] do
