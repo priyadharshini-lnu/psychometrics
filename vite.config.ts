@@ -37,6 +37,8 @@ const devPlugins = __DEV__ ? [
 const IGNORE_VENDORS = [
   '@tensorflow/tfjs-core',
   'video.js',
+  'videojs-record',
+  'recordrtc',
   'powerbi-client',
   'react-pdf',
   '@thetalententerprise/interactive-assessments',
