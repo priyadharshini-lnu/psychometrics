@@ -116,10 +116,6 @@ export default defineConfig({
     chunkSizeWarningLimit: 5000,
     reportCompressedSize: false,
     cssCodeSplit: true,
-    commonjsOptions: {
-      include: [/node_modules/],
-      transformMixedEsModules: true,
-    },
     rollupOptions: {
       onwarn(warning, warn) {
         if (warning.code === 'MODULE_LEVEL_DIRECTIVE' || warning.code === 'EVAL') {
