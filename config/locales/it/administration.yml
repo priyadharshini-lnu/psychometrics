@@ -80,7 +80,6 @@ it:
         title: Artefatto AI
       generate: Generare
       generate_result_info_message: I risultati sono in fase di generazione, aggiorna la pagina per vedere i risultati aggiornati.
-      generate_results: Genera risultati
       generated_at: Generato il
       generated_at_time: Generato a %{time}
       generated_value: Valore Generato

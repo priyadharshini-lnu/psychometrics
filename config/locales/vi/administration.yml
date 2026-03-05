@@ -80,7 +80,6 @@ vi:
         title: Tạo tác AI
       generate: Đẻ ra
       generate_result_info_message: Kết quả đang được tạo, vui lòng làm mới trang để xem kết quả cập nhật.
-      generate_results: Tạo kết quả
       generated_at: Được tạo tại
       generated_at_time: Được tạo tại %{time}
       generated_value: Giá trị được tạo ra

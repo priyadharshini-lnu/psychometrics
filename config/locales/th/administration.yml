@@ -80,7 +80,6 @@ th:
         title: สิ่งประดิษฐ์ AI
       generate: ผลิต
       generate_result_info_message: กําลังสร้างผลลัพธ์ โปรดรีเฟรชหน้าเพื่อดูผลลัพธ์ที่อัปเดต
-      generate_results: สร้างผลลัพธ์
       generated_at: สร้างขึ้นเมื่อ
       generated_at_time: สร้างขึ้นที่ %{time}
       generated_value: มูลค่าที่สร้างขึ้น

@@ -22,7 +22,10 @@ en:
     admins: Admins
     ai_artifact_result_generation_admin_job_failed: Artifact '%{artifact_name}' cannot be generated for User '%{user_email}'
     ai_artifacts: AI Artifacts
+    ai_artifacts_generate_results: Generate Results
     ai_artifacts_output_schema_key_constraint: Key must start with a lowercase letter and can only contain lowercase letters, numbers, and underscores
+    ai_artifacts_results_export: Export Results
+    ai_artifacts_results_export_job_scheduled: AI Artifacts results export job was scheduled successfully
     ai_assistant: AI Assistant
     ai_assistant_model_id_label: Model ID
     ai_assistant_model_label: Model
@@ -97,6 +100,7 @@ en:
     back_to_main: Main Menu
     bulk_upload_ai_artifacts: Bulk Upload AI Artifacts
     campaign_ai_artifact_updated_successfully: Campaign AI artifacts updated successfully
+    campaign_ai_artifacts_results_export_details: Campaign AI artifacts generated results
     campaign_assessment_actions_disable_caching: Disable Assessment Caching
     campaign_assessment_actions_enable_caching: Enable Assessment Caching
     campaign_assessment_column_caching_enabled: Assessment Caching Enabled

@@ -1540,7 +1540,11 @@ only: %i[index create update]
             jsonapi_resources :campaign_idps, controller: 'campaigns/campaign_idps', only: %i[index create update]
 
             jsonapi_resources :ai_artifact_results, controller: 'campaigns/ai_artifact_results',
-              only: %i[index show], param: :user_id
+              only: %i[index show], param: :user_id do
+                collection do
+                  post :export
+                end
+              end
 
             jsonapi_resources :ai_artifacts, controller: 'campaigns/ai_artifacts' do
               collection do

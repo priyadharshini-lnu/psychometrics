@@ -80,7 +80,6 @@ hu:
         title: AI műtermék
       generate: Létrehoz
       generate_result_info_message: Az eredmények generálódnak, kérjük, frissítse az oldalt a frissített eredmények megtekintéséhez.
-      generate_results: Eredmények generálása
       generated_at: Generált
       generated_at_time: Generálva %{time}
       generated_value: Generált érték

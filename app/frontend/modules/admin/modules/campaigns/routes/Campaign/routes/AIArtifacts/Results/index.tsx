@@ -13,6 +13,7 @@ import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { useSelectAll } from '~/hooks/useSelectAll'
 import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
 import { ToolsDropdown } from './ToolsDropdown'
+import { ActionsDropdown } from './ActionsDropdown'
 import { ArtifactResultsDrawer } from './ArtifactResultsDrawer'
 import styles from '../styles.less'
 import { AiArtifact, CampaignAiArtifactResult, CampaignAiArtifactDataSource }
@@ -46,6 +47,12 @@ export const Result = () => {
   const {
     collectionAction,
   } = useResources<AiArtifact>('ai_artifacts', {
+    basePath: `/campaigns/${campaignId}`,
+  })
+
+  const {
+    collectionAction: resultsCollectionAction,
+  } = useResources<CampaignAiArtifactResult>('ai_artifact_results', {
     basePath: `/campaigns/${campaignId}`,
   })
 
@@ -203,6 +210,21 @@ export const Result = () => {
     }
   }
 
+  const handleToolConfirmAction = (action: string) => {
+    if (action === 'export_results') {
+      handleExportArtifactsResults()
+    }
+  }
+
+  const handleExportArtifactsResults = () => {
+    resultsCollectionAction({
+      action: 'export',
+      method: 'post',
+    }).then(() => {
+      message.info(I18n.t('admin.ai_artifacts_results_export_job_scheduled'))
+    })
+  }
+
   const handleBulkAction = (action: string) => {
     if (action === 'generate_results') {
       collectionAction({
@@ -240,6 +262,10 @@ export const Result = () => {
             }}
           />
           <ToolsDropdown
+            isBulk
+            onClick={action => handleToolConfirmAction(action)}
+          />
+          <ActionsDropdown
             isBulk
             onClick={action => handleBulkConfirmAction(action)}
             isDisabled={selectedKeys.length === 0}

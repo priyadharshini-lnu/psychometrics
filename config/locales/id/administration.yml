@@ -80,7 +80,6 @@ id:
         title: Artefak AI
       generate: Menghasilkan
       generate_result_info_message: Hasil sedang dibuat, silakan segarkan halaman untuk melihat hasil yang diperbarui.
-      generate_results: Hasilkan Hasil
       generated_at: Dihasilkan Pada
       generated_at_time: Dihasilkan pada %{time}
       generated_value: Nilai yang Dihasilkan

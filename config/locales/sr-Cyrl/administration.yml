@@ -80,7 +80,6 @@ sr-Cyrl:
         title: ВИ вештачки артефакт
       generate: Генериши
       generate_result_info_message: Резултати се генеришу, молимо освежите страницу да бисте видели ажуриране резултате.
-      generate_results: Генериши резултате
       generated_at: Генерисано на
       generated_at_time: Генерисано на %{time}
       generated_value: Генерисана вредност

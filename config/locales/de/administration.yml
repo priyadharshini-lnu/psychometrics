@@ -80,7 +80,6 @@ de:
         title: KI-Artefakt
       generate: Erzeugen
       generate_result_info_message: Ergebnisse werden generiert, bitte aktualisieren Sie die Seite, um die aktualisierten Ergebnisse zu sehen.
-      generate_results: Ergebnisse generieren
       generated_at: Generiert um
       generated_at_time: Generiert bei %{time}
       generated_value: Generierter Wert

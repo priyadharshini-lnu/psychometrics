@@ -80,7 +80,6 @@ en-US:
         title: AI Artifact
       generate: Generate
       generate_result_info_message: Results are being generated, please refresh the page to see the updated results.
-      generate_results: Generate Results
       generated_at: Generated At
       generated_at_time: Generated at %{time}
       generated_value: Generated Value

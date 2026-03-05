@@ -7,16 +7,17 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const { I18n } = window
 
-export const ToolsDropdown: React.FC<{
+export const ActionsDropdown: React.FC<{
   isBulk?: boolean,
   onClick: (action: string) => void,
+  isDisabled?: boolean,
 }> = ({
-  isBulk, onClick,
+  isBulk, onClick, isDisabled,
 }) => {
   const btn = (
-    <Button>
+    <Button disabled={isDisabled}>
       <ToolOutlined />
-      <span>{I18n.t('shared.tools')}</span>
+      <span>{I18n.t('shared.actions')}</span>
       <DownOutlined />
     </Button>
   )
@@ -38,8 +39,8 @@ const getMenuProps = ({ onClick }: {onClick: (action: string) => void}): MenuPro
   const menuItems:MenuItem[] = []
 
   menuItems.push({
-    key: 'export_results',
-    label: <span>{I18n.t('admin.ai_artifacts_results_export')}</span>,
+    key: 'generate_results',
+    label: <span>{I18n.t('admin.ai_artifacts_generate_results')}</span>,
   })
 
   const handleMenuClick = ({ key }) => {

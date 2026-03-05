@@ -80,7 +80,6 @@ sk:
         title: Artefakt AI
       generate: Generovať
       generate_result_info_message: Výsledky sa generujú, obnovte stránku, aby ste videli aktualizované výsledky.
-      generate_results: Generovanie výsledkov
       generated_at: Generované v
       generated_at_time: Generované v %{time}
       generated_value: Vytvorená hodnota
