@@ -255,39 +255,56 @@ export const getHighlightByType = ({ preview },
   resourceType: type,
 }
 
-export const getI18n = ({ locales, instructions, locale }): I18nInterface => ({
-  t (code: string, data: any): string {
-    return I18n.t(code, data)
-  },
-  lookup (code: string): string {
-    return I18n.lookup(code)
-  },
-  tQuestion (question: any, field: string, extraData: any): string {
-    question.isNeedToAddLtrManually = false
-    question.isAnyArabicTranslateExist = true
+export const getI18n = ({
+  locales, instructions, locale, pipedTextMapping,
+}): I18nInterface => {
+  const substituteTextWithPipedData = (text: string, mapping?: Record<string, string>): string => {
+    if (!text || !mapping || Object.keys(mapping).length === 0) return text
+    if (!/\{\{.*?}}/.test(text)) return text
+    let substitutedText = text
+    Object.entries(mapping).forEach(([key, value]) => {
+      substitutedText = substitutedText.replaceAll(key, value)
+    })
+    return substitutedText
+  }
 
-    if (locales?.question?.[question.id] || locale === 'ar') {
+  return {
+    t (code: string, data: any): string {
+      return I18n.t(code, data)
+    },
+    lookup (code: string): string {
+      return I18n.lookup(code)
+    },
+    tQuestion (question: any, field: string, extraData: any): string {
       question.isNeedToAddLtrManually = false
       question.isAnyArabicTranslateExist = true
-      return locales?.question?.[question.id]?.[field] || question.tDefault(field, extraData)
-    }
-    if (question.id) {
-      question.isNeedToAddLtrManually = true
-    }
-    return question.tDefault(field, extraData)
-  },
-  tBlock (block: Block, key: string, path: string[]): string {
-    const propsPath = path || [key]
-    return _.get(locales, ['block', block.id, key]) || _.get(block, ['props', ...propsPath])
-  },
-  tCustomValidation (question: any, message: string, uuid: string): string {
-    return _.get(locales, ['question', question.id, `customValidationText_${uuid}`], message)
-  },
-  tInstructions () {
-    return instructions?.enabled ? _.get(locales, ['instructions', 0, 'content']) || instructions?.content : null
-  },
-  uiLocale: I18n.uiLocale,
-})
+
+      if (locales?.question?.[question.id]?.[field] || locale === 'ar') {
+        question.isNeedToAddLtrManually = false
+        question.isAnyArabicTranslateExist = true
+        const raw = locales?.question?.[question.id]?.[field] || question.tDefault(field, extraData)
+        return substituteTextWithPipedData(raw, pipedTextMapping)
+      }
+
+      if (question.id) {
+        question.isNeedToAddLtrManually = true
+      }
+      return substituteTextWithPipedData(question.tDefault(field, extraData), pipedTextMapping)
+    },
+    tBlock (block: Block, key: string, path: string[]): string {
+      const propsPath = path || [key]
+      const raw = _.get(locales, ['block', block.id, key]) || _.get(block, ['props', ...propsPath])
+      return substituteTextWithPipedData(raw, pipedTextMapping)
+    },
+    tCustomValidation (question: any, message: string, uuid: string): string {
+      return _.get(locales, ['question', question.id, `customValidationText_${uuid}`], message)
+    },
+    tInstructions () {
+      return instructions?.enabled ? _.get(locales, ['instructions', 0, 'content']) || instructions?.content : null
+    },
+    uiLocale: I18n.uiLocale,
+  }
+}
 
 export const getMediaResponsesByQuestionId = createSelector(
   (state: { mediaResponses: MediaResponse[] }, questionId: number) => (
