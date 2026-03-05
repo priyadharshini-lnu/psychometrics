@@ -4,9 +4,6 @@ import cs from 'classnames'
 import _ from 'lodash'
 import styles from './Guidelines.less'
 import Page from '../../Page'
-import jobIcon from '../../../assets/LearningJobWhite.svg'
-import collaborativeIcon from '../../../assets/CollaborativeLearningWhite.svg'
-import learningIcon from '../../../assets/FormalLearningWhite.svg'
 import { useI18n } from '~/modules/idpReport/I18nContext'
 
 
@@ -19,7 +16,7 @@ const Guidelines = ({ rtl }) => {
           <h1 className={styles.header}>
             {I18n.t('idp.pdf.guidelines.title')}
           </h1>
-          <Flex>
+          {/* <Flex>
             <div className={styles.card}>
               <div className={styles.title}>
                 {I18n.t('idp.pdf.guidelines.cards.c1.title')}
@@ -66,7 +63,7 @@ const Guidelines = ({ rtl }) => {
                 <p>{I18n.t('idp.pdf.guidelines.cards.c5.content')}</p>
               </div>
             </div>
-          </Flex>
+          </Flex> */}
           <Flex>
             <div className={styles.text}>
               <p>{I18n.t('idp.pdf.guidelines.content.main')}</p>
@@ -79,6 +76,14 @@ const Guidelines = ({ rtl }) => {
                 </li>
                 <li>
                   <p>{I18n.t('idp.pdf.guidelines.content.list.r3')}</p>
+                  <ol className={cs(styles.list, styles.nestedList)}>
+                    <li>
+                      <p>{I18n.t('idp.pdf.guidelines.content.list.r3a')}</p>
+                    </li>
+                    <li>
+                      <p>{I18n.t('idp.pdf.guidelines.content.list.r3b')}</p>
+                    </li>
+                  </ol>
                 </li>
               </ol>
             </div>
@@ -124,7 +129,7 @@ const Guidelines = ({ rtl }) => {
               </div>
             </div>
           </Flex>
-          <div className={styles.graphic}>
+          {/* <div className={styles.graphic}>
             <div className={cs(styles.panel, styles.job)}>
               <div className={styles.cont}>
                 <img className={styles.icon} src={jobIcon} />
@@ -152,7 +157,7 @@ const Guidelines = ({ rtl }) => {
                 />
               </div>
             </div>
-          </div>
+          </div> */}
         </Flex>
 
       </div>

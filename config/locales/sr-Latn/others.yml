@@ -2772,21 +2772,41 @@ sr-Latn:
           learn: "<strong>10%</strong>Formalno učenje"
         content:
           list:
-            r1: Imajte na umu da je ova lista samo indikativna, a dodatni razvojni putevi mogu se razmotriti za vas na osnovu individualnih težnji, preporuka vašeg menadžera, kao i organizacijskih poslovnih prioriteta.
-            r2: Imajte na umu da će pokretanje nekih od ovih razvojnih puteva zavisiti od organizacione strategije obrazovanja i učenja.
-            r3: Molimo vas da razmotrite preporučene puteve kao što je ukršteno u nastavku, prilikom izrade vašeg individualnog razvojnog plana.
-          main: Ovaj odeljak sadrži kumulativnu listu svih razvojnih puteva, imajući u vidu najbolju praksu učenja, tj. 70-20-10 smernice, koje obezbeđuju progresivno putovanje kombinujući učenje u učionici, treniranje i učenje na radnom mestu. Na osnovu ishoda iskustva u razvoju liderstva i poslovnih prioriteta, preporučeni su mogući razvojni putevi, koji se mogu uzeti u obzir za vaš razvoj.
+            r1: Имајте у виду да је ова листа само оријентациона, и да се за вас могу размотрити додатни путеви развоја на основу ваших појединачних аспирација, препорука вашег менаџера као и пословних приоритета организације.
+            r2: Корисници се подстичу да критички прегледају сав садржај и слободни су да измене, усаврше, замене или додају било које акције или препоруке са којима се не слажу.
+            r3: 'Улази за развој укључени у овај извештај могу бити изведени из једног или оба следећа извора:'
+            r3a: Прилагођена развојна библиотека креирана за вашу организацију
+            r3b: Вештачка интелигенција генерише предлоге за развој
+          main: IDP који је креиран садржи детаљну листу развојних активности које можете предузети, имајући у виду најбоље праксе учења, тј. смерницу 70-20-10, која пружа прогресивно путовање комбинујући учење у учионици, коучинг и учење на радном месту. На основу резултата процеса асесмент центра, ваших одговора у разговорима и спољних извештаја, по потреби, предложене су могуће стазе развоја које се могу размотрити за ваш развој.
         learn_cards:
           collaboration:
-            list: '[SR-LATN] ["Offer to coach or mentor others", "Request to be mentored by an expert in your field", "Attain a coach to support your development", "Set-up a collaborative working group to discuss on going challenges in the business", "Get feedback formally and informally from others", "Play an active role in industry associations and networks", "Build your own external networks"]'
+            list:
+            - Понудите да тренирате или менторишете друге
+            - Захтев за менторство од стране стручњака у вашој области
+            - Добијте ментора који ће подржати ваш развој
+            - Организујте колаборативну радну групу за дискусију о текућим изазовима у пословању.
+            - Добијајте повратне информације формално и неформално од других.
+            - Играјте активну улогу у индустријским удружењима и мрежама
+            - Изградите своје спољне мреже
             title: Kolaborativno učenje (KSNUMKS%) <br/> Razvijanje kroz druge
           job:
-            list: '[SR-LATN] ["Assume leadership positions in stakeholder or management committees", "Volunteer to lead change management projects for the organization", "Consider taking on stretching assignments", "Work cross-collaboratively with other functions", "Consider leading projects outside your organization", "Work closely with external industry experts on joint-projects"]'
+            list:
+            - Преузмите лидерске позиције у одборима заинтересованих страна или у управљачким одборима.
+            - Пријавите се добровољно да водите пројекте управљања променама у организацији.
+            - Размислите о преузимању задатака истезања.
+            - Радите у међуфункционалној сарадњи са другим функцијама
+            - Размотрите вођење пројеката ван ваше организације
+            - Радите блиско са спољним стручњацима из индустрије на заједничким пројектима.
             title: Učenje na poslu (70%) <br/> Razvijanje kroz iskustvo
           learn:
-            list: '[SR-LATN] ["Assume leadership positions in stakeholder or management committees", "Volunteer to lead change management projects for the organization", "Consider taking on stretching assignments", "Work cross-collaboratively with other functions", "Consider leading projects outside your organization", "Work closely with external industry experts on joint-projects"]'
+            list:
+            - Похађајте структурисане програме обуке
+            - Завршите онлајн курсеве е-учења
+            - Читајте књиге, чланке, публикације
+            - Стеците стручне квалификације, сертификате и акредитације
+            - Похађајте курсеве, радионице, семинаре
             title: Formalno učenje (10%) <br/> Razvijanje kroz strukturirano učenje
-        title: Smernice za vođenje vašeg IDP-a
+        title: Водич за ваш IDP
       idp:
         end_date: Datum završetka
         self_rating: Samoocenjivanje

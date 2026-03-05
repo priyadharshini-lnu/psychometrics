@@ -2763,10 +2763,12 @@ de:
           learn: "<strong>10%</strong>Formelles Lernen"
         content:
           list:
-            r1: Bitte beachten Sie, dass diese Liste nur indikativ ist und zusätzliche Entwicklungswege für Sie basierend auf individuellen Bestrebungen, Empfehlungen Ihres Vorgesetzten sowie organisatorischen Geschäftsprioritäten in Betracht gezogen werden können.
-            r2: Bitte beachten Sie, dass die Einführung einiger dieser Entwicklungswege von der organisationsweiten Bildungs- und Lernstrategie abhängt.
-            r3: Bitte berücksichtigen Sie die unten angekreuzten empfohlenen Wege bei der Entwicklung Ihres individuellen Entwicklungsplans.
-          main: Dieser Abschnitt enthält eine umfassende Liste aller Entwicklungswege unter Berücksichtigung bewährter Lernpraktiken, d.h. der 70-20-10-Richtlinie, die eine progressive Reise bietet, die Klassenraumlernen, Coaching und On-the-Job-Lernen kombiniert. Basierend auf den Ergebnissen der Führungsentwicklungserfahrung und den Geschäftsprioritäten wurden mögliche Entwicklungswege empfohlen, die für Ihre Entwicklung in Betracht gezogen werden können.
+            r1: Bitte beachten Sie, dass diese Liste nur als Anhaltspunkt dient und dass je nach Ihren individuellen Zielen, den Empfehlungen Ihres Vorgesetzten sowie den geschäftlichen Prioritäten des Unternehmens weitere Entwicklungswege für Sie in Betracht gezogen werden können.
+            r2: Die Nutzer werden dazu angehalten, alle Inhalte kritisch zu prüfen, und können alle Maßnahmen oder Empfehlungen, mit denen sie nicht einverstanden sind, ändern, verfeinern, ersetzen oder ergänzen.
+            r3: 'Die in diesem Bericht enthaltenen Entwicklungsdaten stammen aus einer oder beiden der folgenden Quellen:'
+            r3a: Eine maßgeschneiderte Entwicklungsbibliothek, die speziell für Ihr Unternehmen erstellt wurde
+            r3b: KI-generierte Entwicklungsvorschläge
+          main: Der erstellte IDP enthält eine detaillierte Liste von Entwicklungsmaßnahmen, die Sie unter Berücksichtigung bewährter Lernmethoden, d. h. der 70-20-10-Richtlinie, durchführen können. Diese Richtlinie sieht einen progressiven Lernprozess vor, der Unterricht im Klassenzimmer, Coaching und Lernen am Arbeitsplatz kombiniert. Auf der Grundlage der Ergebnisse des Assessment-Center-Prozesses, Ihrer Chat-Antworten und gegebenenfalls externer Berichte wurden mögliche Entwicklungswege empfohlen, die für Ihre Entwicklung in Betracht gezogen werden können.
         learn_cards:
           collaboration:
             list:
@@ -2789,14 +2791,13 @@ de:
             title: Lernen am Arbeitsplatz (70%) <br/> Entwicklung durch Erfahrung
           learn:
             list:
-            - Übernehmen Sie Führungspositionen in Stakeholder- oder Managementausschüssen
-            - Melden Sie sich freiwillig, um Veränderungsmanagementprojekte für die Organisation zu leiten
-            - Ziehen Sie in Betracht, herausfordernde Aufgaben zu übernehmen
-            - Arbeiten Sie funktionsübergreifend zusammen
-            - Erwägen Sie, Projekte außerhalb Ihrer Organisation zu leiten
-            - Arbeiten Sie eng mit externen Branchenexperten an gemeinsamen Projekten
+            - An strukturierten Schulungsprogrammen teilnehmen
+            - Komplette Online-E-Learning-Kurse
+            - Bücher, Artikel, Publikationen lesen
+            - Erwerben Sie berufliche Qualifikationen, Zertifizierungen und Akkreditierungen.
+            - Kurse, Workshops und Seminare besuchen
             title: Formelles Lernen (10%) <br/> Entwicklung durch strukturiertes Lernen
-        title: Richtlinien für Ihren IDP
+        title: Leitfaden für Ihren IDP
       idp:
         end_date: Enddatum
         self_rating: Selbstbewertung

@@ -2765,10 +2765,12 @@ en:
           learn: "<strong>10%</strong>Formal Learning"
         content:
           list:
-            r1: Please note that this list is indicative only, and additional development pathways may be considered for you based on individual aspirations, recommendations from your manager as well as organisational business priorities.
-            r2: Please note that the launch of some of these development pathways will depend on the organisational wide education and learning strategy.
-            r3: Please consider the recommended pathways as crossed below, when developing your Individual Development Plan.
-          main: This section includes a cumulative list of all the development pathways, keeping in mind best practice learning i.e., 70-20-10 guideline, which provides a progressive journey combining classroom learning, coaching and on-the job learning. Based on the outcomes from the leadership development experience and business priorities, possible development pathways have been recommended, which can be considered for your development.
+            r1: Please note that this list is indicative only, and additional development pathways may be considered for you based on individual aspirations, recommendations from your manager as well as organizational business priorities.
+            r2: Users are encouraged to critically review all content, and are free to modify, refine, replace or add any actions or recommendations that they do not agree with.
+            r3: 'Development inputs included in this report may be derived from one or both of the following sources:'
+            r3a: A customized development library created for your organisation
+            r3b: AI generated development suggestions
+          main: The IDP created includes a detailed list of developmental actions that you can undertake, keeping in mind best practice learning i.e. 70-20-10 guideline, which provide a progressive journey combining classroom learning, coaching and on-the-job learning. Based on the outcomes from the assessment center process, your chat responses and external reports, as applicable, possible development pathways have been recommended, which can be considered for your development.
         learn_cards:
           collaboration:
             list:
@@ -2791,14 +2793,13 @@ en:
             title: Learning On the Job (70%) <br/> Developing through experience
           learn:
             list:
-            - Assume leadership positions in stakeholder or management committees
-            - Volunteer to lead change management projects for the organization
-            - Consider taking on stretching assignments
-            - Work cross-collaboratively with other functions
-            - Consider leading projects outside your organization
-            - Work closely with external industry experts on joint-projects
+            - Attend structured training programs
+            - Complete online e-learning courses
+            - Read books, article, publications
+            - Obtain professional qualifications, certifications and accreditations
+            - Attend courses, workshops, seminars
             title: Formal Learning (10%) <br/> Developing through structured learning
-        title: Guidelines to Guide your IDP
+        title: Guide to your IDP
       idp:
         end_date: End Date
         self_rating: Self Rating

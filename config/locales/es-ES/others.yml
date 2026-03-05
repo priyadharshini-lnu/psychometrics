@@ -2819,10 +2819,12 @@ es-ES:
           learn: "<strong>10%</strong>Aprendizaje Formal"
         content:
           list:
-            r1: Tenga en cuenta que esta lista es solo indicativa, y se pueden considerar vías de desarrollo adicionales para usted según aspiraciones individuales, recomendaciones de su gerente, así como prioridades comerciales organizacionales.
-            r2: Tenga en cuenta que el lanzamiento de algunas de estas vías de desarrollo dependerá de la estrategia de educación y aprendizaje a nivel organizacional.
-            r3: Por favor, considere las vías recomendadas como se indica a continuación, al desarrollar su Plan de Desarrollo Individual.
-          main: Esta sección incluye una lista acumulativa de todas las vías de desarrollo, teniendo en cuenta las mejores prácticas de aprendizaje, es decir, la directriz 70-20-10, que proporciona un recorrido progresivo que combina el aprendizaje en el aula, el coaching y el aprendizaje en el trabajo. Basado en los resultados de la experiencia de desarrollo de liderazgo y las prioridades comerciales, se han recomendado posibles vías de desarrollo, que pueden considerarse para su desarrollo.
+            r1: Tenga en cuenta que esta lista es meramente indicativa y que se pueden considerar otras vías de desarrollo en función de sus aspiraciones personales, las recomendaciones de su superior y las prioridades empresariales de la organización.
+            r2: Se anima a los usuarios a revisar críticamente todo el contenido y son libres de modificar, perfeccionar, sustituir o añadir cualquier acción o recomendación con la que no estén de acuerdo.
+            r3: 'Los datos sobre desarrollo incluidos en este informe pueden proceder de una o ambas de las siguientes fuentes:'
+            r3a: Una biblioteca de desarrollo personalizada creada para su organización.
+            r3b: Sugerencias de desarrollo generadas por IA
+          main: El IDP creado incluye una lista detallada de acciones de desarrollo que puede llevar a cabo, teniendo en cuenta las mejores prácticas de aprendizaje, es decir, la directriz 70-20-10, que proporciona un recorrido progresivo que combina el aprendizaje en el aula, el coaching y el aprendizaje en el puesto de trabajo. Basándose en los resultados del proceso del centro de evaluación, sus respuestas en el chat y los informes externos, según corresponda, se han recomendado posibles vías de desarrollo que pueden tenerse en cuenta para su desarrollo.
         learn_cards:
           collaboration:
             list:
@@ -2845,14 +2847,13 @@ es-ES:
             title: Aprendizaje en el Trabajo (70%) <br/> Desarrollándose a través de la experiencia
           learn:
             list:
-            - Asuma posiciones de liderazgo en comités de partes interesadas o de gestión
-            - Ofrezca liderar proyectos de gestión de cambio para la organización
-            - Considere asumir tareas desafiantes
-            - Trabaje de forma colaborativa con otras funciones
-            - Considere liderar proyectos fuera de su organización
-            - Trabaje estrechamente con expertos externos de la industria en proyectos conjuntos
+            - Asistir a programas de formación estructurados.
+            - Cursos completos de aprendizaje electrónico en línea
+            - Leer libros, artículos, publicaciones.
+            - Obtener cualificaciones profesionales, certificaciones y acreditaciones.
+            - Asistir a cursos, talleres y seminarios.
             title: Aprendizaje Formal (10%) <br/> Desarrollándose a través del aprendizaje estructurado
-        title: Directrices para Guiar su PDI
+        title: Guía para su IDP
       idp:
         end_date: Fecha de Finalización
         self_rating: Autoevaluación
