@@ -13,7 +13,7 @@ module Api
 
     def query
       query = project.end_users.limit(LIMIT)
-      user_fields = search_params.slice(:first_name, :last_name, :email)
+      user_fields = search_params.slice(:first_name, :last_name, :email, :gender)
       query = query.where(user_fields) if user_fields.present?
       if search_params[:datasheet].present? && project.datasheet.present?
         conditions = []
@@ -31,7 +31,7 @@ module Api
                 group('users.id').
                 having('COUNT(DISTINCT sheet_columns.name) = ?', search_params[:datasheet].size)
       end
-      query.select(:id, :first_name, :last_name, :email, :created_at, :updated_at)
+      query.select(:id, :first_name, :last_name, :email, :gender, :created_at, :updated_at)
     end
 
     def sanitize_string(string)

@@ -13,7 +13,7 @@ module Api
 
           raise Api::Errors::EmailExists.new(
             "Email address #{email} is already taken",
-            existing_user: user.as_json(only: %w[id first_name last_name email created_at])
+            existing_user: user.as_json(only: %w[id first_name last_name gender email created_at])
           )
         end
 
