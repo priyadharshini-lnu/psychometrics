@@ -97,26 +97,58 @@ describe AI::Tools::CampaignArtifactResultManager do
     context 'when validation errors occur' do
       let(:results_json) { '{"invalid_field": "some value"}' }
 
-      it 'returns validation errors without raising success signal' do
-        expect(artifact).to receive(:validate_results_schema).and_return(['Summary field is required'])
+      it 'returns formatted validation error message' do
+        expect(artifact).to receive(:validate_results_schema).
+          and_return(['is missing required keys: \'summary\'', 'contains unexpected keys: \'invalid_field\''])
 
         result = subject.execute(results: results_json)
 
-        expect(result).to eq({ error: ['Summary field is required'] })
+        expect(result[:error]).to be_a(String)
+        expect(result[:error]).to include('Validation failed')
+        expect(result[:error]).to include("results is missing required keys: 'summary'")
+        expect(result[:error]).to include("results contains unexpected keys: 'invalid_field'")
+      end
+
+      it 'returns formatted error even when save_results is false' do
+        expect(artifact).to receive(:validate_results_schema).
+          and_return(['executive_summary should be a string'])
+
+        result = subject.execute(results: results_json)
+
+        expect(result[:error]).to eq('Validation failed: results executive_summary should be a string')
+      end
+    end
+
+    context 'when validation errors occur with save_results true' do
+      let(:save_results) { true }
+      let(:results_json) { '{"executive_summary": null, "data_missing": ""}' }
+
+      it 'returns validation error without attempting to save invalid data' do
+        expect(artifact).to receive(:validate_results_schema).
+          and_return(['executive_summary should be a string'])
+
+        # Ensure save is never attempted
+        expect(artifact).not_to receive(:results)
+
+        result = subject.execute(results: results_json)
+
+        expect(result[:error]).to eq('Validation failed: results executive_summary should be a string')
       end
     end
 
     context 'retry mechanism' do
       let(:results_json) { '{"invalid_field": "some value"}' }
+      let(:validation_error) { 'is missing required keys: \'summary\'' }
+      let(:formatted_error) { 'Validation failed: results is missing required keys: \'summary\'' }
 
       it 'tracks retry attempts and raises error after exceeding max retries of 2' do
-        expect(artifact).to receive(:validate_results_schema).and_return(['Summary field is required']).exactly(3).times
+        expect(artifact).to receive(:validate_results_schema).and_return([validation_error]).exactly(3).times
 
         result1 = subject.execute(results: results_json)
-        expect(result1).to eq({ error: ['Summary field is required'] })
+        expect(result1).to eq({ error: formatted_error })
 
         result2 = subject.execute(results: results_json)
-        expect(result2).to eq({ error: ['Summary field is required'] })
+        expect(result2).to eq({ error: formatted_error })
 
         # Third attempt should raise MaximumRetryAttemptsExceededError
         expect do
@@ -125,16 +157,16 @@ describe AI::Tools::CampaignArtifactResultManager do
           expect(error.tool_name).to eq('AI::Tools::CampaignArtifactResultManager')
           expect(error.attempt_count).to eq(3)
           expect(error.max_retries).to eq(2) # Tool is configured with max_retry_attempts 2
-          expect(error.last_error_message).to eq(['Summary field is required'])
+          expect(error.last_error_message).to eq(formatted_error)
           expect(error.message).to include('exceeded maximum retry attempts')
-          expect(error.message).to include('Last error: ["Summary field is required"]')
+          expect(error.message).to include('Last error:')
         end
       end
 
       it 'resets retry count on successful execution' do
-        expect(artifact).to receive(:validate_results_schema).and_return(['Summary field is required']).once
+        expect(artifact).to receive(:validate_results_schema).and_return([validation_error]).once
         result1 = subject.execute(results: results_json)
-        expect(result1).to eq({ error: ['Summary field is required'] })
+        expect(result1).to eq({ error: formatted_error })
 
         # Succeed should reset retry count
         valid_results_json = '{"summary": "Valid summary"}'
@@ -145,15 +177,15 @@ describe AI::Tools::CampaignArtifactResultManager do
         end.to raise_error(AI::Utils::SuccessfulCompletionSignal)
 
         # Now error again - should start from retry count 0
-        expect(artifact).to receive(:validate_results_schema).and_return(['Summary field is required']).exactly(2).times
+        expect(artifact).to receive(:validate_results_schema).and_return([validation_error]).exactly(2).times
 
         result3 = subject.execute(results: results_json)
-        expect(result3).to eq({ error: ['Summary field is required'] })
+        expect(result3).to eq({ error: formatted_error })
 
         result4 = subject.execute(results: results_json)
-        expect(result4).to eq({ error: ['Summary field is required'] })
+        expect(result4).to eq({ error: formatted_error })
 
-        expect(artifact).to receive(:validate_results_schema).and_return(['Summary field is required']).once
+        expect(artifact).to receive(:validate_results_schema).and_return([validation_error]).once
         expect do
           subject.execute(results: results_json)
         end.to raise_error(AI::Tools::Errors::MaximumRetryAttemptsExceededError)
