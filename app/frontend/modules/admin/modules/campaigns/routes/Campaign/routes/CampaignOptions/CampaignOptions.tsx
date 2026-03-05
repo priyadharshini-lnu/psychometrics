@@ -88,6 +88,7 @@ const CampaignOptions: React.FC<Props> = ({
           fixedTimeDuration: durationValue,
           proctoringEnabled: fixedTimeValue ? options.proctoringEnabled : false,
           proctoringEnabledOnWorkshopActivity: fixedTimeValue ? options.proctoringEnabledOnWorkshopActivity : false,
+          enableMobileProctoring: fixedTimeValue ? options.enableMobileProctoring : false,
         },
       )
     }
@@ -267,6 +268,10 @@ const CampaignOptions: React.FC<Props> = ({
               {...parametersForEnableProctoring('proctoringEnabled')}
             />
             <div style={{ display: options.proctoringEnabled ? 'block' : 'none' }}>
+              <Option
+                label={I18n.t('admin.enable_mobile_proctoring')}
+                {...parametersForField('enableMobileProctoring')}
+              />
               <Option
                 label={I18n.t('administration.campaigns.options.proctoring.allow_on_assessment_center')}
                 {...parametersForField('proctoringEnabledOnWorkshopActivity')}

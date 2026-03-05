@@ -126,6 +126,7 @@ en:
     empty_csv_file: CSV file does not contain any data.
     enable_enhance_with_ai_client_level: Please enable Enhance with AI feature at client level
     enable_maintenance: Enable Maintenance
+    enable_mobile_proctoring: Enable Mobile Proctoring
     enable_transcription: Enable Transcription
     end_time: End Time
     end_time_must_be_after_start_time: End time must be after start time

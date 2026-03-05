@@ -2400,7 +2400,8 @@ CREATE TABLE public.campaign_options (
     watermark_content character varying DEFAULT ''::character varying,
     workshop_invite_requires_prework_completion boolean DEFAULT false,
     proctoring_enabled_on_workshop_activity boolean DEFAULT true,
-    enable_video_call_recording boolean DEFAULT false NOT NULL
+    enable_video_call_recording boolean DEFAULT false NOT NULL,
+    enable_mobile_proctoring boolean DEFAULT false
 );
 
 
@@ -19831,6 +19832,7 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20260209114529'),
 ('20260210130000'),
+('20260228091708'),
 ('20260212060354'),
 ('20260209123134'),
 ('20260209112420'),

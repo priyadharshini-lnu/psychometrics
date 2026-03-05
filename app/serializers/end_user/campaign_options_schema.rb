@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/AbcSize
+# rubocop:disable Metrics/BlockLength
+
 module EndUser
   class CampaignOptionsSchema < BaseSchema
     def self.schema(_, _)
@@ -13,6 +16,7 @@ module EndUser
         required(:instructions).maybe(:str?)
         required(:proctoring_enabled).filled(:bool?)
         required(:proctoring_enabled_on_workshop_activity).filled(:bool?)
+        required(:enable_mobile_proctoring).filled(:bool?)
         required(:identification).filled(:str?)
         required(:rules).hash do
           optional(:allow_voices).maybe(:bool?)
@@ -34,3 +38,6 @@ module EndUser
     end
   end
 end
+
+# rubocop:enable Metrics/AbcSize
+# rubocop:enable Metrics/BlockLength
