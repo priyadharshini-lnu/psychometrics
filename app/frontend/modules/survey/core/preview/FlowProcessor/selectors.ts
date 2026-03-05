@@ -300,7 +300,8 @@ export const getI18n = ({
       return _.get(locales, ['question', question.id, `customValidationText_${uuid}`], message)
     },
     tInstructions () {
-      return instructions?.enabled ? _.get(locales, ['instructions', 0, 'content']) || instructions?.content : null
+      const raw = instructions?.enabled ? _.get(locales, ['instructions', 0, 'content']) || instructions?.content : null
+      return substituteTextWithPipedData(raw, pipedTextMapping)
     },
     uiLocale: I18n.uiLocale,
   }

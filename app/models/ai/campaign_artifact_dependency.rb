@@ -8,4 +8,12 @@ class AI::CampaignArtifactDependency < ApplicationRecord
 
   validates :dependency, presence: true
   validates :campaign_ai_artifact_id, uniqueness: { scope: %i[dependency_type dependency_id] }
+
+  after_commit :update_artifact_checksum, on: %i[create destroy]
+
+  private
+
+  def update_artifact_checksum
+    campaign_ai_artifact.recalculate_dependencies_checksum!
+  end
 end

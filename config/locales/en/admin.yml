@@ -21,6 +21,7 @@ en:
     admin_updated_successfully: Admin '%{name}' was updated successfully
     admins: Admins
     ai_artifact_result_generation_admin_job_failed: Artifact '%{artifact_name}' cannot be generated for User '%{user_email}'
+    ai_artifact_result_stale: Result may be stale as the AI artifact dependencies have changed since the last result was generated. Consider regenerating the artifact to generate with the latest dependencies.
     ai_artifacts: AI Artifacts
     ai_artifacts_generate_results: Generate Results
     ai_artifacts_output_schema_key_constraint: Key must start with a lowercase letter and can only contain lowercase letters, numbers, and underscores

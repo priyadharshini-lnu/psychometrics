@@ -2180,7 +2180,8 @@ CREATE TABLE public.campaign_ai_artifacts (
     include_all_datasheet_columns boolean DEFAULT false,
     instructions text,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    dependencies_checksum character varying
 );
 
 
@@ -20189,6 +20190,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260223114729'),
 ('20260218075116'),
 ('20260213140414'),
 ('20260213112719'),
@@ -21194,4 +21196,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

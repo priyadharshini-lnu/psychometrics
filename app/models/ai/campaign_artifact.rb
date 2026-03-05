@@ -5,6 +5,8 @@ class AI::CampaignArtifact < ApplicationRecord
 
   MAX_CAMPAIGN_AI_ARTIFACTS = 50
 
+  after_save :recalculate_dependencies_checksum!, if: :dependency_attributes_changed?
+
   belongs_to :ai_assistant, class_name: 'AI::Assistant'
   belongs_to :campaign
 
@@ -56,7 +58,40 @@ class AI::CampaignArtifact < ApplicationRecord
     %i[filterable_fields]
   end
 
+  def recalculate_dependencies_checksum!
+    update_column(:dependencies_checksum, generate_dependencies_checksum)
+  end
+
   private
+
+  def dependency_attributes_changed?
+    saved_change_to_instructions? ||
+      saved_change_to_ai_assistant_id?
+  end
+
+  def generate_dependencies_checksum
+    assistant_id = ai_assistant_id.to_s
+    assistant_model = ai_assistant.model_id.to_s
+    assistant_dependencies = ai_assistant.dependencies.sort.join('; ')
+    campaign_instructions = instructions.to_s
+
+    deps = dependencies.order(:dependency_type, :dependency_id).map do |dep|
+      [dep.dependency_type, dep.dependency_id].join('; ')
+    end.join('|')
+
+    system_prompt = ai_assistant.system_prompt.to_s
+    user_prompt = ai_assistant.user_prompt.to_s
+
+    schema_keys = assistant_output_schema_keys.order(:key).map do |osk|
+      [osk.key, osk.key_type, osk.description].join('; ')
+    end.join('|')
+
+    raw_string = [assistant_id, assistant_model, assistant_dependencies,
+                  campaign_instructions, deps, system_prompt, user_prompt,
+                  schema_keys].join('||')
+
+    Digest::MD5.hexdigest(raw_string)
+  end
 
   def validate_results_keys(results, errors)
     expected_keys = assistant_output_schema_keys.pluck(:key).map(&:to_s)
