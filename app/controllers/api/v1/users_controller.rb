@@ -130,7 +130,7 @@ module Api
       end
 
       def search_params
-        params.permit(:id, :email, :first_name, :last_name, :gender, datasheet: {}).to_h
+        params.permit(:id, :email, :first_name, :last_name, datasheet: {}).to_h
       end
 
       def campaign
