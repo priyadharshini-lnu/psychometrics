@@ -11,15 +11,16 @@
 #   translation_branch - Name of the translation branch
 
 def write_output(key, value)
-  github_output = ENV.fetch("GITHUB_OUTPUT", nil)
+  github_output = ENV.fetch('GITHUB_OUTPUT', nil)
   return unless github_output
 
-  File.open(github_output, "a") { |f| f.puts "#{key}=#{value}" }
+  File.open(github_output, 'a') { |f| f.puts "#{key}=#{value}" }
 end
 
 def run(cmd)
   output = `#{cmd}`.strip
   raise "Command failed: #{cmd}" unless $?.success?
+
   output
 end
 
@@ -33,7 +34,7 @@ def configure_git
 end
 
 def has_changes?
-  !system("git diff --quiet && git diff --cached --quiet")
+  !system('git diff --quiet && git diff --cached --quiet')
 end
 
 def create_branch(pr_number)
@@ -42,11 +43,17 @@ def create_branch(pr_number)
   branch_name
 end
 
-def commit_translations(pr_number, head_ref)
-  run "git add config/locales/"
+def protected_branch?(branch_name)
+  %w[develop review master].include?(branch_name)
+end
+
+def commit_translations(pr_number, head_ref, base_ref)
+  run 'git add config/locales/'
+
+  skip_ci_suffix = protected_branch?(base_ref) ? '' : ' [skip ci]'
 
   commit_message = <<~MSG
-    Add translations for PR ##{pr_number} [skip ci]
+    Add translations for PR ##{pr_number}#{skip_ci_suffix}
 
     This commit contains AI generated translations for new English translation keys found in PR ##{pr_number}.
 
@@ -59,12 +66,12 @@ def commit_translations(pr_number, head_ref)
 end
 
 def push_branch(branch_name)
-  puts "→ Pushing branch to remote..."
+  puts '→ Pushing branch to remote...'
   run "git push origin #{branch_name}"
 end
 
 def create_pr(pr_number, head_ref, base_ref, translation_branch)
-  repo = ENV.fetch("GITHUB_REPOSITORY")
+  repo = ENV.fetch('GITHUB_REPOSITORY')
 
   title = "Add translations for PR ##{pr_number}"
 
@@ -82,10 +89,10 @@ def create_pr(pr_number, head_ref, base_ref, translation_branch)
     🤖 This PR was automatically created by the Translation Bot.
   BODY
 
-  puts "→ Creating PR..."
+  puts '→ Creating PR...'
 
   pr_url = run_silent(
-    "gh pr create " \
+    'gh pr create ' \
     "--title '#{title}' " \
     "--body '#{body.gsub("'", "\\'")}' " \
     "--base '#{head_ref}' " \
@@ -114,29 +121,29 @@ def main
   translation_branch = create_branch(pr_number)
 
   unless has_changes?
-    puts "→ No changes to commit"
-    write_output("pr_created", "false")
-    write_output("pr_url", "")
-    write_output("translation_branch", translation_branch)
+    puts '→ No changes to commit'
+    write_output('pr_created', 'false')
+    write_output('pr_url', '')
+    write_output('translation_branch', translation_branch)
     exit 0
   end
 
-  commit_translations(pr_number, head_ref)
+  commit_translations(pr_number, head_ref, base_ref)
   push_branch(translation_branch)
 
   pr_url = create_pr(pr_number, head_ref, base_ref, translation_branch)
 
   if pr_url
     puts "→ PR created successfully: #{pr_url}"
-    write_output("pr_created", "true")
-    write_output("pr_url", pr_url)
+    write_output('pr_created', 'true')
+    write_output('pr_url', pr_url)
   else
-    puts "→ Failed to create PR"
-    write_output("pr_created", "false")
-    write_output("pr_url", "")
+    puts '→ Failed to create PR'
+    write_output('pr_created', 'false')
+    write_output('pr_url', '')
   end
 
-  write_output("translation_branch", translation_branch)
+  write_output('translation_branch', translation_branch)
 end
 
 main
