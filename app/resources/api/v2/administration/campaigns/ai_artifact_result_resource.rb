@@ -3,7 +3,7 @@
 class Api::V2::Administration::Campaigns::AIArtifactResultResource < Api::V2::Administration::BaseResource
   model_name 'AI::CampaignArtifactResult'
 
-  attributes :error, :artifact, :parsed_dependencies, :total_input_tokens, :total_output_tokens
+  attributes :error, :artifact, :parsed_dependencies, :total_input_tokens, :total_output_tokens, :result_stale
   attribute :generated_at, delegate: :updated_at
   attribute :results, delegate: :schema_keys_result
 
@@ -16,6 +16,10 @@ class Api::V2::Administration::Campaigns::AIArtifactResultResource < Api::V2::Ad
       name: campaign_ai_artifact.name,
       code: campaign_ai_artifact.code
     }
+  end
+
+  def result_stale
+    @model.content_checksum != @model.campaign_ai_artifact.dependencies_checksum && @model.results.present?
   end
 
   def id

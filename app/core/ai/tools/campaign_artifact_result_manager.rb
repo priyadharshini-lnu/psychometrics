@@ -23,6 +23,7 @@ module AI
         @campaign_user = context.fetch(:campaign_user, nil)
         @save_results = context.fetch(:save_results, false)
         @parsed_dependencies = context.fetch(:parsed_dependencies, nil)
+        @artifact_checksum = context.fetch(:artifact_checksum, nil)
         @masked_data_resolutions = context.fetch(:masked_data_resolutions, {}) || {}
         @chat = context.fetch(:chat, nil)
       end
@@ -41,6 +42,7 @@ module AI
         @artifact.results.find_or_initialize_by(user: @user).tap do |artifact_result|
           artifact_result.results = final_results
           artifact_result.parsed_dependencies = @parsed_dependencies
+          artifact_result.content_checksum = @artifact_checksum
           artifact_result.save!
           chat.update!(ai_assisted_user_session_id: artifact_result.id)
         end
