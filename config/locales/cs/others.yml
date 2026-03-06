@@ -2741,10 +2741,12 @@ cs:
           learn: "<strong>10%</strong>Formální učení"
         content:
           list:
-            r1: Upozorňujeme, že tento seznam je pouze orientační a na základě individuálních aspirací, doporučení vašeho manažera a také obchodních priorit organizace mohou být zváženy další rozvojové cesty.
-            r2: Upozorňujeme, že zahájení některých těchto rozvojových cest bude záviset na organizační vzdělávací a učební strategii.
-            r3: Při vypracování svého individuálního rozvojového plánu prosím zvažte doporučené cesty, které jsou níže označeny křížkem.
-          main: Tato část obsahuje kumulativní seznam všech rozvojových cest s ohledem na osvědčené postupy učení, tj. směrnici 70-20-10, která poskytuje progresivní cestu kombinující výukové učení, koučování a učení při práci. Na základě výsledků zkušeností s rozvojem vedení a obchodních priorit byly doporučeny možné rozvojové cesty, které lze zvážit pro váš rozvoj.
+            r1: Upozorňujeme, že tento seznam je pouze orientační a na základě individuálních ambicí, doporučení vašeho nadřízeného a obchodních priorit organizace mohou být pro vás zváženy další možnosti rozvoje.
+            r2: Uživatelé jsou vybízeni k kritickému posouzení veškerého obsahu a mohou libovolně upravovat, vylepšovat, nahrazovat nebo přidávat jakékoli akce nebo doporučení, s nimiž nesouhlasí.
+            r3: 'Údaje o vývoji uvedené v této zprávě mohou pocházet z jednoho nebo obou následujících zdrojů:'
+            r3a: Přizpůsobená vývojová knihovna vytvořená pro vaši organizaci
+            r3b: Návrhy vývoje generované umělou inteligencí
+          main: Vytvořený IDP obsahuje podrobný seznam rozvojových aktivit, které můžete podniknout, s ohledem na osvědčené postupy v oblasti vzdělávání, tj. pravidlo 70-20-10, které představuje postupný proces kombinující výuku v učebně, koučování a učení se v praxi. Na základě výsledků procesu hodnotícího centra, vašich odpovědí v chatu a externích zpráv, pokud jsou k dispozici, byly doporučeny možné cesty rozvoje, které můžete zvážit pro svůj rozvoj.
         learn_cards:
           collaboration:
             list:
@@ -2767,14 +2769,13 @@ cs:
             title: Učení při práci (70%) <br/> Rozvoj prostřednictvím zkušeností
           learn:
             list:
-            - Převezměte vedoucí pozice ve výborech zainteresovaných stran nebo managementu
-            - Nabídněte se k vedení projektů změnového řízení pro organizaci
-            - Zvažte převzetí náročnějších úkolů
-            - Pracujte napříč funkcemi v rámci spolupráce
-            - Zvažte vedení projektů mimo vaši organizaci
-            - Úzce spolupracujte s externími odborníky z oboru na společných projektech
+            - Účastnit se strukturovaných vzdělávacích programů
+            - Kompletní online e-learningové kurzy
+            - Čtěte knihy, články, publikace
+            - Získejte odborné kvalifikace, certifikáty a akreditace
+            - Účastnit se kurzů, workshopů, seminářů
             title: Formální učení (10%) <br/> Rozvoj prostřednictvím strukturovaného učení
-        title: Pokyny k tvorbě vašeho IDP
+        title: Průvodce vaším IDP
       idp:
         end_date: Datum ukončení
         self_rating: Sebehodnocení

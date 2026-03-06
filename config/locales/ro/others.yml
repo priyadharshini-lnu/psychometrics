@@ -2752,10 +2752,12 @@ ro:
           learn: "<strong>10%</strong>Învățare formală"
         content:
           list:
-            r1: Vă rugăm să rețineți că această listă este doar orientativă și pot fi luate în considerare căi de dezvoltare suplimentare pe baza aspirațiilor individuale, a recomandărilor managerului dvs., precum și a priorităților de afaceri ale organizației.
-            r2: Vă rugăm să rețineți că lansarea unora dintre aceste căi de dezvoltare va depinde de strategia de educație și învățare la nivel organizațional.
-            r3: Vă rugăm să luați în considerare căile recomandate, așa cum sunt traversate mai jos, atunci când vă dezvoltați planul de dezvoltare individuală.
-          main: Această secțiune include o listă cumulativă a tuturor căilor de dezvoltare, ținând cont de cele mai bune practici de învățare, adică ghidul 70-20-10, care oferă o călătorie progresivă care combină învățarea la clasă, coaching și învățarea la locul de muncă. Pe baza rezultatelor experienței de dezvoltare a leadershipului și a priorităților de afaceri, au fost recomandate posibile căi de dezvoltare, care pot fi luate în considerare pentru dezvoltarea dvs.
+            r1: Vă rugăm să rețineți că această listă este doar orientativă și că pot fi luate în considerare și alte căi de dezvoltare pentru dvs., în funcție de aspirațiile individuale, recomandările managerului dvs. și prioritățile organizaționale ale companiei.
+            r2: Utilizatorii sunt încurajați să analizeze critic întregul conținut și sunt liberi să modifice, să perfecționeze, să înlocuiască sau să adauge orice acțiuni sau recomandări cu care nu sunt de acord.
+            r3: 'Datele privind dezvoltarea incluse în acest raport pot proveni din una sau ambele surse următoare:'
+            r3a: O bibliotecă de dezvoltare personalizată creată pentru organizația dumneavoastră
+            r3b: Sugestii de dezvoltare generate de IA
+          main: IDP-ul creat include o listă detaliată de acțiuni de dezvoltare pe care le puteți întreprinde, ținând cont de cele mai bune practici de învățare, adică ghidul 70-20-10, care oferă un parcurs progresiv combinând învățarea în sala de clasă, coachingul și învățarea la locul de muncă. Pe baza rezultatelor procesului de evaluare, a răspunsurilor dvs. din chat și a rapoartelor externe, după caz, au fost recomandate posibile căi de dezvoltare, care pot fi luate în considerare pentru dezvoltarea dvs.
         learn_cards:
           collaboration:
             list:
@@ -2778,14 +2780,13 @@ ro:
             title: Învățarea la locul de muncă (70%) <br/> Dezvoltarea prin experiență
           learn:
             list:
-            - Preia poziții de conducere în comitete de management sau stakeholderi
-            - Fii voluntar pentru a conduce proiecte de management al schimbării în organizație
-            - Ia în considerare asumarea unor sarcini provocatoare
-            - Lucrează în colaborare cu alte funcții
-            - Condu proiecte în afara organizației tale
-            - Lucrează îndeaproape cu experți externi din industrie la proiecte comune
+            - Participați la programe de formare structurate
+            - Cursuri complete de e-learning online
+            - Citiți cărți, articole, publicații
+            - Obțineți calificări profesionale, certificări și acreditări
+            - Participă la cursuri, ateliere, seminarii
             title: Învățare formală (10%) <br/> Dezvoltarea prin învățare structurată
-        title: Linii directoare pentru a vă ghida IDP-ul
+        title: Ghid pentru permisul de conducere internațional (IDP)
       idp:
         end_date: Data de încheiere
         self_rating: Autoevaluare

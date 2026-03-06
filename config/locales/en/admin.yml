@@ -202,6 +202,7 @@ en:
     empty_csv_file: CSV file does not contain any data.
     enable_enhance_with_ai_client_level: Enhance with AI is disabled by client
     enable_maintenance: Enable Maintenance
+    enable_mobile_proctoring: Enable Mobile Proctoring
     enable_transcription: Enable Transcription
     enable_transcription_msg: Enable Transcription to use AI scoring on video/audio response questions.
     end_time: End Time

@@ -46,6 +46,8 @@ en:
     data_role: Data Role
     decline: Decline
     description: Description
+    desktop_or_laptop_recommended: Desktop or Laptop Recommended
+    desktop_or_laptop_required: Desktop or Laptop Required
     download: Download
     download_audio: Download Audio
     download_transcription: Download Transcription
@@ -80,6 +82,8 @@ en:
     maintenance_upcoming_title: Upcoming Maintenance
     media_question_transcriptions: Media Question Transcriptions
     media_responses: Media Responses
+    mobile_proctoring_disabled_instructions: This assessment requires a desktop or laptop to continue. Please switch to a computer to complete the activity.
+    mobile_proctoring_enabled_instructions: For the best experience, please switch to a desktop or laptop if you have one available. You can continue on your mobile device if needed.
     modified_by: Modified By
     modified_date: Modified Date
     more_actions: More actions
@@ -123,6 +127,7 @@ en:
     status: Status
     subject: Subject
     submit: Submit
+    switch_to_laptop_or_desktop: Switch to Laptop or Desktop
     table:
       entries:
         selected:

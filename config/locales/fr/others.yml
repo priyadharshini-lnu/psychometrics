@@ -2753,10 +2753,12 @@ fr:
           learn: "<strong>10%</strong>Apprentissage formel"
         content:
           list:
-            r1: Veuillez noter que cette liste est uniquement indicative, et des voies de développement supplémentaires peuvent être envisagées pour vous en fonction des aspirations individuelles, des recommandations de votre manager ainsi que des priorités organisationnelles.
-            r2: Veuillez noter que le lancement de certaines de ces voies de développement dépendra de la stratégie d'éducation et d'apprentissage à l'échelle de l'organisation.
-            r3: Veuillez considérer les parcours recommandés comme indiqués ci-dessous, lors de l'élaboration de votre Plan de Développement Individuel.
-          main: Cette section comprend une liste cumulative de toutes les voies de développement, en gardant à l'esprit les meilleures pratiques d'apprentissage, c'est-à-dire la directive 70-20-10, qui fournit un parcours progressif combinant l'apprentissage en classe, le coaching et l'apprentissage sur le terrain. Sur la base des résultats de l'expérience de développement du leadership et des priorités commerciales, des voies de développement possibles ont été recommandées, qui peuvent être envisagées pour votre développement.
+            r1: Veuillez noter que cette liste est fournie à titre indicatif uniquement et que d'autres parcours de développement peuvent être envisagés pour vous en fonction de vos aspirations personnelles, des recommandations de votre responsable et des priorités commerciales de l'organisation.
+            r2: Les utilisateurs sont encouragés à examiner de manière critique tout le contenu et sont libres de modifier, d'affiner, de remplacer ou d'ajouter toute action ou recommandation avec laquelle ils ne sont pas d'accord.
+            r3: 'Les données relatives au développement figurant dans le présent rapport peuvent provenir de l''une ou des deux sources suivantes :'
+            r3a: Une bibliothèque de développement personnalisée créée pour votre organisation
+            r3b: Suggestions de développement générées par l'IA
+          main: Le PDI créé comprend une liste détaillée des mesures de développement que vous pouvez prendre, en gardant à l'esprit les meilleures pratiques d'apprentissage, à savoir la règle des 70-20-10, qui prévoit un parcours progressif combinant apprentissage en classe, coaching et apprentissage sur le terrain. Sur la base des résultats du processus d'évaluation, de vos réponses au chat et des rapports externes, le cas échéant, des parcours de développement possibles ont été recommandés, qui peuvent être pris en considération pour votre développement.
         learn_cards:
           collaboration:
             list:
@@ -2779,14 +2781,13 @@ fr:
             title: Apprentissage sur le terrain (70%) <br/> Se développer par l'expérience
           learn:
             list:
-            - Assumer des positions de leadership dans des comités de parties prenantes ou de direction
-            - Se porter volontaire pour diriger des projets de gestion du changement pour l'organisation
-            - Envisager de prendre des missions stimulantes
-            - Travailler en collaboration avec d'autres fonctions
-            - Envisager de diriger des projets en dehors de votre organisation
-            - Travailler en étroite collaboration avec des experts externes de l'industrie sur des projets conjoints
+            - Suivre des programmes de formation structurés
+            - Suivre des cours en ligne
+            - Lire des livres, des articles, des publications
+            - Obtenir des qualifications professionnelles, des certifications et des accréditations
+            - Assister à des cours, ateliers, séminaires
             title: Apprentissage formel (10%) <br/> Se développer par un apprentissage structuré
-        title: Directives pour guider votre PDI
+        title: Guide pour votre permis de conduire international
       idp:
         end_date: Date de fin
         self_rating: Auto-évaluation
