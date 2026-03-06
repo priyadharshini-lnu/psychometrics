@@ -1534,7 +1534,6 @@
                       "first_name": "John",
                       "last_name": "Doe",
                       "email": "john.doe@example.com",
-                      "gender": "male",
                       "created_at": "2019-03-04T15:47:33.570+04:00",
                       "updated_at": "2019-03-04T15:47:33.950+04:00",
                       "campaign_ids": [
@@ -1614,7 +1613,6 @@
                       "first_name": "John",
                       "last_name": "Doe",
                       "email": "john.doe@example.com",
-                      "gender": "male",
                       "created_at": "2019-03-04T15:47:33.570+04:00",
                       "updated_at": "2019-03-04T15:47:33.950+04:00",
                       "campaign_ids": [
@@ -1646,7 +1644,6 @@
                           "first_name": "John",
                           "last_name": "Doe",
                           "email": "john.doe@example.com",
-                          "gender": "male",
                           "created_at": "2019-10-28T17:00:00.000+04:00"
                         }
                       }
@@ -2890,15 +2887,6 @@
         "email": {
           "type": "string"
         },
-        "gender": {
-          "type": "string",
-          "enum": [
-            "male",
-            "female",
-            "not_disclosed"
-          ],
-          "x-nullable": true
-        },
         "campaign_ids": {
           "type": "array",
           "items": {
@@ -2939,6 +2927,15 @@
         },
         "email": {
           "type": "string",
+          "x-nullable": true
+        },
+        "gender": {
+          "type": "string",
+          "enum": [
+            "male",
+            "female",
+            "not_disclosed"
+          ],
           "x-nullable": true
         },
         "campaigns": {
@@ -3670,13 +3667,27 @@
               "en-US",
               "es-ES",
               "fr",
+              "hi",
               "it",
               "ja",
               "pl",
               "pt",
               "zh",
               "zh-Hant",
-              "zh-HK"
+              "zh-HK",
+              "nl",
+              "ko",
+              "bg",
+              "hr",
+              "hu",
+              "id",
+              "ro",
+              "sk",
+              "sl",
+              "th",
+              "vi",
+              "sr-Cyrl",
+              "sr-Latn"
             ]
           },
           "x-nullable": true
@@ -3780,13 +3791,27 @@
               "en-US",
               "es-ES",
               "fr",
+              "hi",
               "it",
               "ja",
               "pl",
               "pt",
               "zh",
               "zh-Hant",
-              "zh-HK"
+              "zh-HK",
+              "nl",
+              "ko",
+              "bg",
+              "hr",
+              "hu",
+              "id",
+              "ro",
+              "sk",
+              "sl",
+              "th",
+              "vi",
+              "sr-Cyrl",
+              "sr-Latn"
             ]
           },
           "x-nullable": true
