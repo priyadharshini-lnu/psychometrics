@@ -55,7 +55,7 @@ class CampaignUser < ApplicationRecord
                if: proc { status_previously_changed? || saved_change_to_id? },
                on: %i[create update]
 
-  delegate :proctoring_enabled?, :proctoring_enabled_on_workshop_activity?, to: :campaign
+  delegate :proctoring_enabled?, :proctoring_enabled_on_workshop_activity?, :enable_mobile_proctoring?, to: :campaign
   delegate :pending_assessments, to: :user_assessments
 
   enum :level, { apply: 0, guide: 1, shape: 2 }

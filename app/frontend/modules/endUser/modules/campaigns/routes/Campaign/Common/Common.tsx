@@ -7,11 +7,11 @@ import {
 import _ from 'lodash'
 import {
   Row, Col, Alert, Button, Result, Typography, Space, App,
-  Skeleton,
+  Skeleton, theme,
 } from 'antd'
 import cs from 'classnames'
 import {
-  InfoCircleOutlined,
+  InfoCircleOutlined, InfoCircleFilled,
   PlayCircleOutlined, ClockCircleOutlined, CheckCircleOutlined, ReloadOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
@@ -29,6 +29,7 @@ import { acceptPolicy } from '~/modules/endUser/modules/campaigns/core/project'
 
 import { SafeHTML } from '~/components/SafeHTML'
 import { useIsProctored } from '~/hooks/useProctoringState'
+import { useDeviceDetection } from '~/hooks/useDeviceDetection'
 import { ProgressStatus, DirectionalArrowIcon, MediaQueryContext } from '~/glint'
 import { CampaignPageHeader } from './CampaignPageHeader'
 import { AssessmentsContainer } from './AssessmentsContainer'
@@ -64,6 +65,7 @@ type CommonComponentProps = PropsFromRedux
 const { Title } = Typography
 const { I18n } = window
 
+
 const CommonComponent: FC<CommonComponentProps> = ({
   campaign,
   campaign: {
@@ -81,12 +83,14 @@ const CommonComponent: FC<CommonComponentProps> = ({
     campaignsCount,
     campaignOptions: {
       instructionsEnabled, instructions, proctoringEnabled, integrationType, proctoringEnabledOnWorkshopActivity,
+      enableMobileProctoring,
     },
     campaignTime,
   } = campaign
 
   const dispatch = useDispatch()
   const hasFlashMessages = useSelector((state: RootState) => state.flash?.length > 0)
+  const { token } = theme.useToken()
   const { isProctored, proctoringCheckInProgress } = useIsProctored()
   const needsProctoring = proctoringEnabled && !isProctored
   const campaignClosed = campaign.status === STATUSES.CLOSED
@@ -153,6 +157,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
 
   const [maintenanceStatus, setMaintenanceStatus] = useState<MaintenanceStatus>('')
   const proctoringUnderMaintenance = proctoringEnabled && maintenanceStatus === 'inProgress'
+  const { isMobileDevice } = useDeviceDetection()
 
   const campaignStartInstruction = () => {
     const messages = [I18n.t('campaign.instruction_modal.campaign_start_instruction', { minutes: campaignTime })]
@@ -163,7 +168,11 @@ const CommonComponent: FC<CommonComponentProps> = ({
     messages.push(I18n.t('campaign.instruction_modal.campaign_start_final_instructions'))
 
     return (
-      messages.map(message => <Typography.Paragraph><SafeHTML html={message} /></Typography.Paragraph>)
+      messages.map((message, index) => (
+        <Typography.Paragraph key={index}>
+          <SafeHTML html={message} />
+        </Typography.Paragraph>
+      ))
     )
   }
 
@@ -194,9 +203,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
     }
   }
 
-  const handleStartCampaignActivities = () => {
-    if (!fixedTimed) { return startCampaignActivities() }
-
+  const showCampaignStartModal = () => {
     modal.info({
       icon: false,
       title: null,
@@ -208,6 +215,44 @@ const CommonComponent: FC<CommonComponentProps> = ({
         startCampaignActivities()
       },
     })
+  }
+
+  const handleStartCampaignActivities = () => {
+    if (!fixedTimed) { return startCampaignActivities() }
+
+    if (isMobileDevice && proctoringEnabled) {
+      if (enableMobileProctoring) {
+        modal.confirm({
+          icon: <InfoCircleFilled style={{ color: token.colorInfo }} />,
+          title: I18n.t('shared.desktop_or_laptop_recommended'),
+          content: (
+            <Typography.Paragraph>
+              <SafeHTML html={I18n.t('shared.mobile_proctoring_enabled_instructions')} />
+            </Typography.Paragraph>
+          ),
+          closable: true,
+          width: 600,
+          okText: I18n.t('common.actions.continue'),
+          cancelText: I18n.t('shared.switch_to_laptop_or_desktop'),
+          cancelButtonProps: { color: 'primary', variant: 'outlined' },
+          onOk: () => showCampaignStartModal(),
+        })
+      } else {
+        modal.info({
+          icon: false,
+          title: I18n.t('shared.desktop_or_laptop_required'),
+          content: (
+            <Typography.Paragraph>
+              <SafeHTML html={I18n.t('shared.mobile_proctoring_disabled_instructions')} />
+            </Typography.Paragraph>
+          ),
+          closable: true,
+          width: 600,
+        })
+      }
+    } else {
+      showCampaignStartModal()
+    }
 
     return null
   }
