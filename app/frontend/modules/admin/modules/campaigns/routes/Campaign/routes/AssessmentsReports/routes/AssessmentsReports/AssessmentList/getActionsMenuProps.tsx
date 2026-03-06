@@ -23,7 +23,11 @@ export interface ActionMenuData {
   optionsOverrides?: Partial<Options>
   openModal(name: string, data?: {
     ids?: [number, number],
-    action?: ((campaignId: number, assessmentId: number, body?: object) => Promise<{ response: unknown }>) | ((aiRescore?: boolean) => void),
+    action?: (
+      (campaignId: number, assessmentId: number, body?: object) => Promise<{ response: unknown }>
+    ) | (
+      (aiRescore?: boolean) => void
+    ),
     body?: object,
     onSuccess?: () => void,
     name?: string,

@@ -32,7 +32,8 @@ interface OwnProps {
      parentId?: number
      assessmentId?: number
      name?: string
-     action?: (allowAiRescore?: boolean) => void
+     action?: (allowAiRescore: boolean) => void
+     assessment?: UserAssessment
   }): void
 }
 
@@ -244,14 +245,17 @@ interface ActionMenuData {
   markComplete: Props['markComplete']
   remove(): void
   openModal(string, data?: {
-    campaignId: number,
-    userId?: number,
-    campaignAssessmentId?: number,
-    parentId?: number,
+    campaignId?: number
+    userId?: number
+    campaignAssessmentId?: number
+    parentId?: number
     projectId?: number
     parentType?: ParentResourceType
-    testMode?: boolean,
+    testMode?: boolean
     assessmentId?: number
+    name?: string
+    action?: (allowAiRescore: boolean) => void
+    assessment?: UserAssessment
   }): void
   modal: Omit<ModalStaticFunctions, 'warn'>
   message: MessageInstance
@@ -301,7 +305,7 @@ const getActionsMenuProps = ({
           rescoreResponse(allowAiRescore)
           message.info(I18n.t('campaign_assessment.modals.rescore_response.message', { name }))
         },
-      } as any)
+      })
     } else {
       rescoreResponse()
       message.info(I18n.t('campaign_assessment.modals.rescore_response.message', { name }))

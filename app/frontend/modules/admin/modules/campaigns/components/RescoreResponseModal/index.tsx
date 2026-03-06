@@ -26,13 +26,13 @@ const RescoreResponseModal: React.FC<Props> = ({ close, name, action }) => {
     >
       <div style={{ marginTop: 16 }}>
         <p>
-         {I18n.t("admin.rescore_responses_content")}
+          {I18n.t('admin.rescore_responses_content')}
         </p>
         <Checkbox
           checked={allowAiRescore}
-          onChange={(e) => setAllowAiRescore(e.target.checked)}
+          onChange={e => setAllowAiRescore(e.target.checked)}
         >
-         {I18n.t("admin.allow_ai_rescoring")}
+          {I18n.t('admin.allow_ai_rescoring')}
         </Checkbox>
       </div>
     </Modal>
