@@ -92,6 +92,11 @@ export const LayoutComponent = ({ config }) => {
                     { privacy_url: `/privacy-statement?lang=${I18n.currentLocale()}` }),
                 }}
                 />
+                <div dangerouslySetInnerHTML={{
+                  __html: I18n.t('auth.cookies_link',
+                    { cookies_url: `/cookies-statement?lang=${I18n.currentLocale()}` }),
+                }}
+                />
               </Space>
               {config.secondary_logo && <img src={config.secondary_logo} className={styles.footerLogo} />}
             </Layout.Footer>

@@ -1279,6 +1279,7 @@ en:
     record_not_found: Record Not Found
     user_not_authorized: User Not Authorized
   auth:
+    cookies_link: <a href="%{cookies_url}">Cookies Statement</a>
     current_password: Current Password
     current_password_placeholder: Enter Current Password
     email: Email

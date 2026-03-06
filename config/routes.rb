@@ -48,6 +48,8 @@ Rails.application.routes.draw do
   get 'privacy-statement', to: 'home#privacy_statement'
   get 'privacy-statement/:lang', to: 'home#privacy_statement'
   get 'request_inspect', to: 'home#request_inspect'
+  get 'cookies-statement', to: 'home#cookies_statement'
+  get 'privacy-statement/:lang', to: 'home#privacy_statement'
 
   concern :media_uploades do
     member do
