@@ -6,6 +6,7 @@ import { General } from './Sections/General'
 import { Assets } from './Sections/Assets'
 import { Translations } from './Sections/Translations'
 import { AIAssistant } from './Sections/AIAssistant'
+import { DataRole } from './Sections/DataRole'
 import { Panel } from '~/glint'
 
 const { I18n } = window
@@ -31,6 +32,9 @@ export const EditForm: React.FC<Props> = ({ assessment, memberAction }) => (
         </Panel>
         <Panel title={I18n.t('admin.ai_assistant')} collapsible>
           <AIAssistant assessment={assessment} />
+        </Panel>
+        <Panel title={I18n.t('shared.data_role')} collapsible>
+          <DataRole assessment={assessment} />
         </Panel>
       </Space>
     </Col>

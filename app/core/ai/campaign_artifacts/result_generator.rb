@@ -41,7 +41,6 @@ module AI
         broadcast(:error, error.message, error) if error.present?
       rescue AI::Utils::SuccessfulCompletionSignal => e
         res = e.data
-        add_license_usage(res)
         chat = chat_with_context.reload
         response = {
           parsed_dependencies: parsed_dependencies,
@@ -57,10 +56,6 @@ module AI
       end
 
       private
-
-      def add_license_usage(response)
-        # TODO: Add license usage made by the current_user
-      end
 
       def has_enough_license?
         # TODO: Implement license check
@@ -137,7 +132,8 @@ module AI
             save_results: save_results,
             parsed_dependencies: parsed_dependencies,
             chat: campaign_artifact_assistant_chat,
-            campaign_user: campaign_user
+            campaign_user: campaign_user,
+            artifact_checksum: campaign_ai_artifact.dependencies_checksum
           ),
           AI::Tools::AbortArtifactGeneration
         ]
@@ -155,7 +151,7 @@ module AI
         schema_keys_changed = artifact_result.schema_keys_changed?
         parsed_dependencies_changed = artifact_result.parsed_dependencies != campaign_instructions_and_dependencies
 
-        schema_keys_changed || parsed_dependencies_changed
+        (schema_keys_changed || parsed_dependencies_changed) || checksum_changed?
       end
 
       def campaign_artifact_assistant
@@ -173,6 +169,10 @@ module AI
       def campaign_user
         # user is not present when doing test generation
         @campaign_user ||= CampaignUser.find_by(campaign_id: campaign.id, user_id: user&.id)
+      end
+
+      def checksum_changed?
+        artifact_result.content_checksum != campaign_ai_artifact.dependencies_checksum
       end
     end
   end

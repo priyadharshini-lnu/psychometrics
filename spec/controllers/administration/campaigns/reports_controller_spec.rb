@@ -144,13 +144,136 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
     end
   end
 
+  describe 'get_bulk_assets_zip_presigned_upload_url' do
+    let(:campaign_report) { create(:campaign_report, campaign: campaign, report: report) }
+    let(:blob) do
+      double(
+        :blob,
+        as_json: { signed_id: 'signed_id' },
+        service_url_for_direct_upload: 'url',
+        service_headers_for_direct_upload: 'headers'
+      )
+    end
+
+    before do
+      allow(ActiveStorage::Blob).to receive(:create_before_direct_upload!).and_return(blob)
+      allow(blob).to receive(:as_json).and_return(blob.as_json)
+      allow(blob).to receive(:service_url_for_direct_upload).and_return('url')
+      allow(blob).to receive(:service_headers_for_direct_upload).and_return('headers')
+    end
+
+    it 'returns presigned url for bulk asset upload' do
+      post :get_bulk_assets_zip_presigned_upload_url, params: {
+        new_campaign_id: campaign.id,
+        id: campaign_report.id,
+        blob: {
+          content_type: 'application/pdf',
+          byte_size: 1024,
+          checksum: 'abc123',
+          filename: 'test.pdf'
+        }
+      }
+
+      parsed_response = response.parsed_body
+
+      expect(parsed_response).to eq({
+        'signed_id' => 'signed_id',
+        'url' => 'url',
+        'media_id' => campaign_report.id,
+        'direct_upload' => { 'url' => 'url', 'headers' => 'headers' }
+      })
+    end
+  end
+
+  describe 'get_bulk_assets_csv_presigned_upload_url' do
+    let(:campaign_report) { create(:campaign_report, campaign: campaign, report: report) }
+    let(:blob) do
+      double(
+        :blob,
+        as_json: { signed_id: 'signed_id' },
+        service_url_for_direct_upload: 'url',
+        service_headers_for_direct_upload: 'headers'
+      )
+    end
+
+    before do
+      allow(ActiveStorage::Blob).to receive(:create_before_direct_upload!).and_return(blob)
+      allow(blob).to receive(:as_json).and_return(blob.as_json)
+      allow(blob).to receive(:service_url_for_direct_upload).and_return('url')
+      allow(blob).to receive(:service_headers_for_direct_upload).and_return('headers')
+    end
+
+    it 'returns presigned url for bulk asset upload' do
+      post :get_bulk_assets_csv_presigned_upload_url, params: {
+        new_campaign_id: campaign.id,
+        id: campaign_report.id,
+        blob: {
+          content_type: 'text/csv',
+          byte_size: 1024,
+          checksum: 'abc123',
+          filename: 'test.csv'
+        }
+      }
+
+      parsed_response = response.parsed_body
+
+      expect(parsed_response).to eq({
+        'signed_id' => 'signed_id',
+        'url' => 'url',
+        'media_id' => campaign_report.id,
+        'direct_upload' => { 'url' => 'url', 'headers' => 'headers' }
+      })
+    end
+  end
+
+  describe 'attach_bulk_asset' do
+    before do
+      allow_any_instance_of(ActiveStorageAttachable).to receive(:disk_service?).and_return(false)
+      allow(AdminJob).to receive(:call)
+    end
+    let(:campaign_report) { create(:campaign_report, campaign: campaign, report: report) }
+    let(:zip_path) { Rails.root.join('spec/fixtures/files/sample.zip') }
+    let(:zip_blob) do
+      ActiveStorage::Blob.create_and_upload!(
+        io: File.open(zip_path, 'rb'),
+        filename: 'sample.zip',
+        content_type: 'application/zip'
+      )
+    end
+    let(:zip_signed_id) { zip_blob.signed_id }
+    let(:csv_path) { Rails.root.join('spec/fixtures/files/test.csv') }
+    let(:csv_blob) do
+      ActiveStorage::Blob.create_and_upload!(
+        io: File.open(csv_path, 'rb'),
+        filename: 'test.csv',
+        content_type: 'text/csv'
+      )
+    end
+    let(:csv_signed_id) { csv_blob.signed_id }
+
+    it 'attaches uploaded bulk asset to campaign report' do
+      post :attach_bulk_asset_csv_and_zip, params: {
+        new_campaign_id: campaign.id,
+        id: campaign_report.id,
+        zip_signed_id: zip_signed_id,
+        csv_signed_id: csv_signed_id
+      }
+
+      expect(campaign_report.reload.bulk_assets_zip).to be_attached
+      expect(campaign_report.bulk_assets_csv).to be_attached
+      expect(AdminJob).to have_received(:call).with(:campaign_report_extract_and_upload_bulk_assets, {
+        campaign_report_id: campaign_report.id.to_s
+      }, current_user)
+    end
+  end
+
   private
 
   def check_campaign_reports_and_assesment_response(parsed_response)
     report_response = parsed_response['reports'].first
     expect(report_response.keys).to contain_exactly(
       *%w[id report_id name user_access assessor_access report_family_name permissions user_dashboard main_report
-          auto_assign available_languages report_locales effective_default_language internal]
+          auto_assign available_languages report_locales effective_default_language internal custom_upload]
     )
     expect(report_response).to include({
       'name' => report.name,

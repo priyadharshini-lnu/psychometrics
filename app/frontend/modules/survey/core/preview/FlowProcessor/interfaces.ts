@@ -184,6 +184,7 @@ export interface DefaultState {
   extraOptions: {
     enable_copy_content?: boolean
   }
+  pipedTextMapping?: Record<string, string>
 }
 
 export interface MediaResponse {
@@ -288,16 +289,18 @@ export interface Result {
   campaign_options: { fixed_time: boolean }
   campaign_user: { expiry_date: string }
   evaluation_session_id: string
+  piped_text_mapping?: Record<string, string>
 }
 
 interface SaveResponse {
   expired: boolean
-  current_block: Block
+  current_block?: Block
   scoring?: {}
   factors?: [],
-  translations: object
+  translations?: object
   next_assessment_url?: string
   evaluation_session_id: string
+  piped_text_mapping?: object
 }
 
 interface FetchQuestionScoringResponse {

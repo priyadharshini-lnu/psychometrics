@@ -60,7 +60,9 @@ export default function GlobalSection ({
                   />
                 )}
               >
-                <QuestionCircleOutlined className="ms-4" />
+                <span>
+                  <QuestionCircleOutlined className="ms-4" />
+                </span>
               </Tooltip>
             </Col>
           </Row>

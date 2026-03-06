@@ -4,6 +4,7 @@ class AI::Assistant < ApplicationRecord
   audited only: %i[name user_prompt system_prompt assistant_type model_id]
 
   include RansackSearchableFields
+  include ::AI::RecalculatesArtifactDependenciesChecksum
 
   belongs_to :owner, class_name: 'Client', optional: true
   belongs_to :last_modified_by, class_name: 'User', optional: true

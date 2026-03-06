@@ -96,6 +96,7 @@ const defaultState: State = {
   invalidSession: false,
   answersSaved: false,
   extraOptions: {},
+  pipedTextMapping: {},
 }
 
 const HANDLERS = {
@@ -189,6 +190,7 @@ const HANDLERS = {
       evaluationSessionId: data.evaluationSessionId || result.evaluation_session_id,
       extraOptions: data.extra || {},
       campaignFactorList: data.campaign_factors_list || [],
+      pipedTextMapping: result.piped_text_mapping || {},
     }
   },
   [SET_LOCAL_RESULTS]: (state: State, { data }: SetLocalResults) => {
@@ -261,44 +263,39 @@ const HANDLERS = {
   [SAVE_RESULTS_REQUEST]: state => ({ ...state, submissionInProgress: true }),
   [SAVE_RESULTS]: ({ ...state }: State, {
     response: {
-      expired, current_block: currentBlock, factors, scoring, translations, next_assessment_url: nextAssessmentUrl,
-      evaluation_session_id: evaluationSessionId,
+      expired, factors, scoring, next_assessment_url: nextAssessmentUrl,
+      evaluation_session_id: evaluationSessionId, piped_text_mapping: mapping,
     },
   }: SaveResults) => {
-    const blocks = currentBlock
-      ? setIn(state.blocks, currentBlock.id, { ...state.blocks[currentBlock.id], props: currentBlock.props })
-      : state.blocks
+    const { blocks } = state
+    const { questions } = state
     const end = expired || state.end
-    const questions = currentBlock?.questions ? _.keyBy(currentBlock.questions, 'id') : {}
-    const newQuestions = _.reduce(questions, (acc, q, key) => ({
-      ...acc,
-      [key]: { ...state.questions[q.id], ...q },
-    }), state.questions)
-
     const invalidSession = state.evaluationSessionId !== evaluationSessionId
+    const base = {
+      ...state,
+      end,
+      blocks,
+      submissionInProgress: false,
+      nextAssessmentUrl,
+      invalidSession,
+      answersSaved: true,
+      pipedTextMapping: mapping || state.pipedTextMapping,
+    }
 
-    return end && !state.showSubmitPage ? {
-      ...state,
-      end,
-      blocks,
-      currentElement: null,
-      currentPage: null,
-      factors,
-      scoring,
-      submissionInProgress: false,
-      nextAssessmentUrl,
-      invalidSession,
-      answersSaved: true,
-    } : {
-      ...state,
-      end,
-      blocks,
-      locales: translations,
-      questions: newQuestions,
-      submissionInProgress: false,
-      nextAssessmentUrl,
-      invalidSession,
-      answersSaved: true,
+    if (end && !state.showSubmitPage) {
+      return {
+        ...base,
+        currentElement: null,
+        currentPage: null,
+        factors,
+        scoring,
+        questions,
+      }
+    }
+
+    return {
+      ...base,
+      questions,
     }
   },
   [SAVE_RESULTS_FAILURE]: state => ({ ...state, submissionFailed: true, submissionInProgress: false }),

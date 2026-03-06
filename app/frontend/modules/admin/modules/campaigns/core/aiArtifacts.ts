@@ -48,11 +48,13 @@ export const ArtifactResultsAttributesTR = t.type({
   generatedAt: t.union([t.string, t.null]),
   totalInputTokens: t.union([t.number, t.undefined]),
   totalOutputTokens: t.union([t.number, t.undefined]),
+  resultStale: t.boolean,
 })
 
 export const CampaignAiArtifactResultTR = t.type({
   id: t.string,
   generatedAt: t.union([t.string, t.null]),
+  resultStale: t.boolean,
   artifactsResults: t.type({
     data: t.array((t.type({
       id: t.string,
@@ -118,6 +120,7 @@ export type CampaignAiArtifactDataSource = {
       generatedAt: string | null,
       totalInputTokens: number | undefined,
       totalOutputTokens: number | undefined,
+      resultStale: boolean,
     }
   }
   generatedAt: string | null

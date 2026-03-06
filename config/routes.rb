@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   post '/faas_notifications/url_to_pdf'
   post '/faas_notifications/zip_s3_files'
   post '/faas_notifications/media_to_transcription'
+  post '/faas_notifications/extract_and_upload'
 
   # TODO: Can be removed once we update the SNS
   post '/lambda_notifications/url_to_pdf', to: 'faas_notifications#url_to_pdf'
@@ -47,6 +48,8 @@ Rails.application.routes.draw do
   get 'privacy-statement', to: 'home#privacy_statement'
   get 'privacy-statement/:lang', to: 'home#privacy_statement'
   get 'request_inspect', to: 'home#request_inspect'
+  get 'cookies-statement', to: 'home#cookies_statement'
+  get 'privacy-statement/:lang', to: 'home#privacy_statement'
 
   concern :media_uploades do
     member do
@@ -250,6 +253,9 @@ Rails.application.routes.draw do
             patch :toggle_user_dashboard
             patch :toggle_main_report
             patch :update_default_and_available_locales
+            post :get_bulk_assets_zip_presigned_upload_url
+            post :get_bulk_assets_csv_presigned_upload_url
+            put :attach_bulk_asset_csv_and_zip
           end
         end
         resources :user_idp_reports do
@@ -1405,6 +1411,7 @@ as: :simulation_progress_notification
           end
           jsonapi_resources :idp_settings, only: %i[index update]
           jsonapi_resources :assessment_assistants, only: %i[show update]
+          jsonapi_resources :assessment_consent_settings, only: %i[show update]
 
           jsonapi_resources :projects do
             jsonapi_resources :webhooks do

@@ -9,6 +9,7 @@ import {
   toggleMainReport,
   toggleAutoAssign,
 } from '~/modules/admin/modules/campaigns/core/reports'
+import { getFeatures } from '~/core/config'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { openModal } from '~/modules/admin/core/ui/modals'
 
@@ -16,6 +17,7 @@ const connecter = connect(
   (state: RootState) => ({
     reports: getReports(state),
     isReportsLoading: isRequestInProgress(state, FETCH_ASSESSMENTS_AND_REPORTS),
+    features: getFeatures(state),
   }),
   {
     openModal,

@@ -11,4 +11,5 @@ export default interface Report {
   effectiveDefaultLanguage?: string
   availableLanguages?: string[]
   internal: boolean
+  customUpload: boolean
 }

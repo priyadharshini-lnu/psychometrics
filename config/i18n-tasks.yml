@@ -36,6 +36,7 @@ data:
     - ['administration.*', 'config/locales/%{locale}/administration.yml']
     - ['privacy_policy.*', 'config/locales/%{locale}/policy.yml']
     - ['privacy_notice', 'config/locales/%{locale}/privacy_notice.yml']
+    - ['cookies_notice', 'config/locales/%{locale}/cookies_notice.yml']
     - ['dry_errors.*', 'config/locales/%{locale}/dry_errors.yml']
     - ['admin.*', 'config/locales/%{locale}/admin.yml']
     - ['shared.*', 'config/locales/%{locale}/shared.yml']
@@ -101,6 +102,8 @@ ignore_missing:
   - 'privacy_notice'
   - 'privacy_notice.*'
   - 'privacy_policy.*'
+  - 'cookies_notice'
+  - 'cookies_notice.*'
 
 ## Consider these keys used:
 ignore_unused:
@@ -108,6 +111,8 @@ ignore_unused:
   - 'activerecord.errors.*'
   - 'dry_errors.*'
   - 'activemodel.errors.*'
+  - 'cookies_notice'
+  - 'cookies_notice.*'
   - '{devise,kaminari,will_paginate}.*'
   - 'simple_form.{yes,no}'
   - 'simple_form.{placeholders,hints,labels}.*'

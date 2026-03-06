@@ -63,14 +63,21 @@ describe AI::CampaignArtifacts::ResultGenerator do
     context 'when force_regenerate is false and dependencies have not changed' do
       include_context 'assistant chat setup'
 
+      let(:matching_checksum) { 'checksum-123' }
+
       let!(:ai_artifact_result) do
         create(
           :campaign_ai_artifact_result,
           campaign_ai_artifact: ai_artifact,
           user: user,
           results: { 'summary' => 'existing summary', 'feedback' => 'existing feedback' },
-          parsed_dependencies: 'parsed dependencies'
+          parsed_dependencies: 'parsed dependencies',
+          content_checksum: matching_checksum
         )
+      end
+
+      before do
+        ai_artifact.update!(dependencies_checksum: matching_checksum)
       end
 
       it 'does not trigger the service class when dependencies are unchanged' do
@@ -138,6 +145,42 @@ describe AI::CampaignArtifacts::ResultGenerator do
         generator.call
 
         expect(assistant_service_instance).to have_received(:call)
+      end
+
+      it 'triggers service class when checksum has changed' do
+        assistant_service_instance = instance_double(AI::AssistantService)
+        allow(AI::AssistantService).to receive(:new).and_return(assistant_service_instance)
+        allow(assistant_service_instance).to receive(:on).and_return(assistant_service_instance)
+        allow(assistant_service_instance).to receive(:call)
+
+        allow_any_instance_of(AI::Utils::CampaignArtifactParser).to receive(:call!).and_return('parsed dependencies')
+
+        ai_artifact_result.update!(content_checksum: 'old-checksum')
+        ai_artifact.update!(dependencies_checksum: 'new-checksum')
+
+        generator = described_class.new(ai_artifact.reload, user,
+                                        { force_regenerate: false, current_user: current_user })
+
+        generator.call
+
+        expect(assistant_service_instance).to have_received(:call)
+      end
+
+      it 'does not trigger service class when checksum values are identical' do
+        assistant_service_instance = instance_double(AI::AssistantService)
+        allow(AI::AssistantService).to receive(:new).and_return(assistant_service_instance)
+        allow(assistant_service_instance).to receive(:on).and_return(assistant_service_instance)
+        allow(assistant_service_instance).to receive(:call)
+
+        allow_any_instance_of(AI::Utils::CampaignArtifactParser).to receive(:call!).and_return('parsed dependencies')
+
+        ai_artifact_result.update!(content_checksum: 'same-checksum')
+        ai_artifact.update!(dependencies_checksum: 'same-checksum')
+
+        result = described_class.call(ai_artifact.reload, user, { force_regenerate: false, current_user: current_user })
+
+        expect(result[:ok]).to be_present
+        expect(AI::AssistantService).not_to have_received(:new)
       end
     end
 

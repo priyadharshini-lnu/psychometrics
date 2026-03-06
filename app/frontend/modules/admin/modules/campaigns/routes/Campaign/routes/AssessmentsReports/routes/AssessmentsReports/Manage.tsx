@@ -23,6 +23,7 @@ import UpdateAssessorFormModal from './UpdateAssessorFormModal'
 import ImportScoringModal from './ImportScoringModal'
 import ImportExternalScoringModal from './ImportExternalScoringModal'
 import RemoveReportModal from './RemoveReportModal'
+import UploadBulkAssetsModal from './UploadBulkAssetsModal'
 import { AddAssessorAssessmentModal } from './AddAssessorAssessmentModal'
 import RemoveAssessmentModal from './RemoveAssessmentModal'
 import { UpdateExternalConfigModal } from './AssessmentList/UpdateExternalConfigModal'
@@ -65,6 +66,7 @@ const MODALS = {
   ReportsLanguageSelectionModal,
   DownloadReportsModal,
   RescoreResponseModal,
+  UploadBulkAssetsModal,
 }
 
 const { I18n } = window

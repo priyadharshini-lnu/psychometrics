@@ -1343,7 +1343,6 @@ pl:
       title: Stwórz hasło
     sign_out: Zaloguj się jako inny użytkownik
     sign_up: Zapisz się
-    terms_link: <a href="%{terms_url}">Warunki i oświadczenie o ochronie prywatności</a>
     verify_mobile_number:
       error:
         blocked: Ten numer jest zablokowany z powodu zbyt wielu prób.
@@ -2757,10 +2756,12 @@ pl:
           learn: "<strong>10%</strong>Formalna nauka"
         content:
           list:
-            r1: Pamiętaj, że ta lista jest jedynie orientacyjna, a dodatkowe ścieżki rozwoju mogą być rozważane na podstawie indywidualnych aspiracji, zaleceń Twojego menedżera, a także priorytetów biznesowych organizacji.
-            r2: Pamiętaj, że uruchomienie niektórych z tych ścieżek rozwoju będzie zależeć od ogólnoorganizacyjnej strategii edukacji i uczenia się.
-            r3: Rozważ zalecane ścieżki zaznaczone poniżej podczas opracowywania swojego Indywidualnego Planu Rozwoju.
-          main: Ta sekcja zawiera zbiorczą listę wszystkich ścieżek rozwoju, mając na uwadze najlepsze praktyki uczenia się, tj. wytyczne 70-20-10, które zapewniają progresywną podróż łączącą naukę w klasie, coaching i naukę w pracy. Na podstawie wyników doświadczenia w rozwoju przywództwa i priorytetów biznesowych, zalecane zostały możliwe ścieżki rozwoju, które można rozważyć w swoim rozwoju.
+            r1: Należy pamiętać, że lista ta ma charakter wyłącznie orientacyjny i w zależności od indywidualnych aspiracji, rekomendacji przełożonego oraz priorytetów biznesowych organizacji mogą zostać rozważone dodatkowe ścieżki rozwoju.
+            r2: Zachęcamy użytkowników do krytycznego przeglądu wszystkich treści i swobodnego modyfikowania, udoskonalania, zastępowania lub dodawania wszelkich działań lub zaleceń, z którymi się nie zgadzają.
+            r3: 'Informacje dotyczące rozwoju zawarte w niniejszym raporcie mogą pochodzić z jednego lub obu poniższych źródeł:'
+            r3a: Biblioteka programistyczna dostosowana do potrzeb Twojej organizacji
+            r3b: Sugestie dotyczące rozwoju generowane przez sztuczną inteligencję
+          main: Stworzony plan rozwoju zawodowego zawiera szczegółową listę działań rozwojowych, które możesz podjąć, mając na uwadze najlepsze praktyki w zakresie uczenia się, tj. wytyczne 70-20-10, które zapewniają stopniową ścieżkę rozwoju łączącą naukę w sali lekcyjnej, coaching i naukę w miejscu pracy. Na podstawie wyników procesu oceny, odpowiedzi udzielonych podczas rozmowy oraz raportów zewnętrznych, w stosownych przypadkach, zostały zalecone możliwe ścieżki rozwoju, które można rozważyć w celu Twojego rozwoju.
         learn_cards:
           collaboration:
             list:
@@ -2783,14 +2784,13 @@ pl:
             title: Nauka w pracy (70%) <br/> Rozwój poprzez doświadczenie
           learn:
             list:
-            - Przyjmij stanowiska kierownicze w komitetach interesariuszy lub zarządzających
-            - Zgłoś się na ochotnika do prowadzenia projektów zarządzania zmianą dla organizacji
-            - Rozważ podejmowanie wymagających zadań
-            - Współpracuj z innymi działami
-            - Rozważ prowadzenie projektów poza swoją organizacją
-            - Ściśle współpracuj z zewnętrznymi ekspertami branżowymi przy wspólnych projektach
+            - Uczestnictwo w ustrukturyzowanych programach szkoleniowych
+            - Kompletne kursy e-learningowe online
+            - Czytaj książki, artykuły, publikacje
+            - Zdobądź kwalifikacje zawodowe, certyfikaty i akredytacje
+            - Uczestnictwo w kursach, warsztatach, seminariach
             title: Formalna nauka (10%) <br/> Rozwój poprzez zorganizowaną naukę
-        title: Wytyczne do Twojego IDP
+        title: Przewodnik po międzynarodowym prawie jazdy
       idp:
         end_date: Data zakończenia
         self_rating: Samoocena

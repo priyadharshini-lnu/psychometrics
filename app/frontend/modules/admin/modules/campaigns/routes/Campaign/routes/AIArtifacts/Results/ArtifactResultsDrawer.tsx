@@ -43,13 +43,8 @@ export const ArtifactResultsDrawer: React.FC<ArtifactResultsDrawerProps> = ({
     setArtifactData((prevData) => {
       const updatedArtifacts = { ...prevData.artifacts }
       updatedArtifacts[res.artifact.name] = {
-        results: res.results,
-        error: res.error,
+        ...res,
         id: res.artifact.id,
-        parsedDependencies: res.parsedDependencies,
-        generatedAt: res.generatedAt,
-        totalInputTokens: res.totalInputTokens,
-        totalOutputTokens: res.totalOutputTokens,
       }
 
       return {

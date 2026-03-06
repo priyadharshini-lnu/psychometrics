@@ -37,11 +37,18 @@ en:
     configurations: Configurations
     confirm: Confirm
     continue: Continue
+    controller: Controller
+    cookies_statement: Cookies Statement
     copy: Copy
     created_at: Created At
     created_date: Created Date
+    custom_consent_text: Custom Consent Text
+    custom_consent_text_required: Custom consent text is required for controller data role
+    data_role: Data Role
     decline: Decline
     description: Description
+    desktop_or_laptop_recommended: Desktop or Laptop Recommended
+    desktop_or_laptop_required: Desktop or Laptop Required
     download: Download
     download_audio: Download Audio
     download_transcription: Download Transcription
@@ -76,6 +83,8 @@ en:
     maintenance_upcoming_title: Upcoming Maintenance
     media_question_transcriptions: Media Question Transcriptions
     media_responses: Media Responses
+    mobile_proctoring_disabled_instructions: This assessment requires a desktop or laptop to continue. Please switch to a computer to complete the activity.
+    mobile_proctoring_enabled_instructions: For the best experience, please switch to a desktop or laptop if you have one available. You can continue on your mobile device if needed.
     modified_by: Modified By
     modified_date: Modified Date
     more_actions: More actions
@@ -88,8 +97,11 @@ en:
     not_requested: Not Yet Requested
     ok: Ok
     pending: Pending
+    policy_version: Policy Version
+    policy_version_format: Only whole numbers are allowed
     positive: Positive
     processing: Processing
+    processor: Processor
     proctoring_maintenance_active: Proctoring is currently under maintenance from %{start_time} to %{end_time}. Please try again after the maintenance window.
     proctoring_maintenance_upcoming: Proctoring will be under maintenance from %{start_time} to %{end_time}.
     project: Project
@@ -116,6 +128,7 @@ en:
     status: Status
     subject: Subject
     submit: Submit
+    switch_to_laptop_or_desktop: Switch to Laptop or Desktop
     table:
       entries:
         selected:
@@ -137,6 +150,7 @@ en:
     tte_terms_and_condition: Terms & Privacy
     type: Type
     update: Update
+    update_failed: Update failed
     updated_successfully: Updated successfully
     video: Video
     view: View

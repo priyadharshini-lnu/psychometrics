@@ -21,6 +21,7 @@ en:
     admin_updated_successfully: Admin '%{name}' was updated successfully
     admins: Admins
     ai_artifact_result_generation_admin_job_failed: Artifact '%{artifact_name}' cannot be generated for User '%{user_email}'
+    ai_artifact_result_stale: Result may be stale as the AI artifact dependencies have changed since the last result was generated. Consider regenerating the artifact to generate with the latest dependencies.
     ai_artifacts: AI Artifacts
     ai_artifacts_generate_results: Generate Results
     ai_artifacts_output_schema_key_constraint: Key must start with a lowercase letter and can only contain lowercase letters, numbers, and underscores
@@ -99,6 +100,11 @@ en:
     availability: Availability
     available_languages: Report Available in Languages
     back_to_main: Main Menu
+    bulk_assets_modal_choose_csv: Choose CSV File
+    bulk_assets_modal_choose_zip: Choose ZIP File
+    bulk_assets_modal_not_csv_file_error: Only CSV files are allowed for CSV upload. Please upload a valid CSV file.
+    bulk_assets_modal_subtitle: 'Please upload <b>one CSV</b> file (with headers: user_email, file_name) and <b>one ZIP</b> file (containing PDF files matching the file names from csv). Zip file must be under %{max_file_size} MB.'
+    bulk_assets_modal_title: Upload CSV and ZIP files
     bulk_upload_ai_artifacts: Bulk Upload AI Artifacts
     campaign_ai_artifact_updated_successfully: Campaign AI artifacts updated successfully
     campaign_ai_artifacts_results_export_details: Campaign AI artifacts generated results
@@ -125,6 +131,7 @@ en:
     campaign_assessment_modals_enable_caching_successfully: Caching has been enabled for this assessment.
     campaign_assessment_modals_enable_caching_title: Enable Assessment Caching?
     campaign_factors: Campaign Factors
+    campaign_name: Campaign Name
     campaign_templates: Campaign Templates
     campaign_user_job_roles_cannot_be_same: Target job role must be different from current job role
     campaigns: Campaigns
@@ -196,6 +203,7 @@ en:
     empty_csv_file: CSV file does not contain any data.
     enable_enhance_with_ai_client_level: Enhance with AI is disabled by client
     enable_maintenance: Enable Maintenance
+    enable_mobile_proctoring: Enable Mobile Proctoring
     enable_transcription: Enable Transcription
     enable_transcription_msg: Enable Transcription to use AI scoring on video/audio response questions.
     end_time: End Time
@@ -762,6 +770,7 @@ en:
     report_condition_not_met: Needs %{required} %{relationship} evaluation(s), but only has %{actual}
     report_conditions_not_met_detailed: Report for %{user} does not meet availability conditions. %{conditions}
     report_denied: Report for %{user} has been denied
+    report_name: Report Name
     report_no_evaluations: Report for %{user} is not available - no evaluations have been received.
     report_not_generated: Report for %{user} meets availability conditions but has not been generated yet. Please generate the report first.
     report_on_hold: Report for %{user} is currently on hold

@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import AntdIcon, {
   InfoCircleOutlined as AntdInfoCircleOutlined,
+  InfoCircleFilled as AntdInfoCircleFilled,
   PlayCircleOutlined as AntdPlayCircleOutlined,
   ClockCircleOutlined as AntdClockCircleOutlined,
   ClockCircleFilled as AntdClockCircleFilled,
@@ -151,6 +152,7 @@ const withAccessibilityProps = (AntIcon: typeof AntdIcon) => {
 }
 
 export const InfoCircleOutlined = withAccessibilityProps(AntdInfoCircleOutlined)
+export const InfoCircleFilled = withAccessibilityProps(AntdInfoCircleFilled)
 export const PlayCircleOutlined = withAccessibilityProps(AntdPlayCircleOutlined)
 export const ClockCircleOutlined = withAccessibilityProps(AntdClockCircleOutlined)
 export const ClockCircleFilled = withAccessibilityProps(AntdClockCircleFilled)
