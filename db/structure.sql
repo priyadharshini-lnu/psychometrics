@@ -154,7 +154,8 @@ CREATE TABLE public.assessments (
     linked_questions json DEFAULT '{}'::json,
     default_language character varying DEFAULT 'en'::character varying,
     campaign_factors_list jsonb DEFAULT '[]'::jsonb,
-    translations_migrated boolean DEFAULT true
+    translations_migrated boolean DEFAULT true,
+    data_role integer DEFAULT 0 NOT NULL
 );
 
 
@@ -1523,6 +1524,72 @@ CREATE SEQUENCE public.assessment_assistants_id_seq
 --
 
 ALTER SEQUENCE public.assessment_assistants_id_seq OWNED BY public.assessment_assistants.id;
+
+
+--
+-- Name: assessment_consent_setting_translations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.assessment_consent_setting_translations (
+    id bigint NOT NULL,
+    custom_consent_text text,
+    locale character varying NOT NULL,
+    assessment_consent_setting_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: assessment_consent_setting_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.assessment_consent_setting_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: assessment_consent_setting_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.assessment_consent_setting_translations_id_seq OWNED BY public.assessment_consent_setting_translations.id;
+
+
+--
+-- Name: assessment_consent_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.assessment_consent_settings (
+    id bigint NOT NULL,
+    custom_consent_text text,
+    policy_version integer DEFAULT 1 NOT NULL,
+    assessment_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: assessment_consent_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.assessment_consent_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: assessment_consent_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.assessment_consent_settings_id_seq OWNED BY public.assessment_consent_settings.id;
 
 
 --
@@ -5414,7 +5481,10 @@ CREATE TABLE public.privacy_consents (
     policy_type integer DEFAULT 0,
     ip_address character varying,
     user_agent character varying,
-    locale character varying
+    locale character varying,
+    campaign_id bigint,
+    assessment_id bigint,
+    data_role smallint DEFAULT 0 NOT NULL
 );
 
 
@@ -9323,6 +9393,20 @@ ALTER TABLE ONLY public.assessment_assistants ALTER COLUMN id SET DEFAULT nextva
 
 
 --
+-- Name: assessment_consent_setting_translations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_consent_setting_translations ALTER COLUMN id SET DEFAULT nextval('public.assessment_consent_setting_translations_id_seq'::regclass);
+
+
+--
+-- Name: assessment_consent_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_consent_settings ALTER COLUMN id SET DEFAULT nextval('public.assessment_consent_settings_id_seq'::regclass);
+
+
+--
 -- Name: assessment_translations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -10993,6 +11077,22 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 ALTER TABLE ONLY public.assessment_assistants
     ADD CONSTRAINT assessment_assistants_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: assessment_consent_setting_translations assessment_consent_setting_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_consent_setting_translations
+    ADD CONSTRAINT assessment_consent_setting_translations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: assessment_consent_settings assessment_consent_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_consent_settings
+    ADD CONSTRAINT assessment_consent_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -12971,6 +13071,13 @@ CREATE UNIQUE INDEX index_887f45023887ef83411209851cdd913a49fb74dd ON public.thr
 
 
 --
+-- Name: index_acst_setting_t18n_on_consent_setting_id_and_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_acst_setting_t18n_on_consent_setting_id_and_locale ON public.assessment_consent_setting_translations USING btree (assessment_consent_setting_id, locale);
+
+
+--
 -- Name: index_active_storage_attachments_on_blob_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -13339,6 +13446,20 @@ CREATE INDEX index_assessment_assistants_on_ai_assistant_id ON public.assessment
 --
 
 CREATE INDEX index_assessment_assistants_on_assessment_id ON public.assessment_assistants USING btree (assessment_id);
+
+
+--
+-- Name: index_assessment_consent_setting_translations_on_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessment_consent_setting_translations_on_locale ON public.assessment_consent_setting_translations USING btree (locale);
+
+
+--
+-- Name: index_assessment_consent_settings_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessment_consent_settings_on_assessment_id ON public.assessment_consent_settings USING btree (assessment_id);
 
 
 --
@@ -15061,6 +15182,20 @@ CREATE INDEX index_platform_exceptions_on_resource ON public.platform_exceptions
 --
 
 CREATE INDEX index_power_bi_settings_on_project_id ON public.power_bi_settings USING btree (project_id);
+
+
+--
+-- Name: index_privacy_consents_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_privacy_consents_on_assessment_id ON public.privacy_consents USING btree (assessment_id);
+
+
+--
+-- Name: index_privacy_consents_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_privacy_consents_on_campaign_id ON public.privacy_consents USING btree (campaign_id);
 
 
 --
@@ -17653,6 +17788,14 @@ ALTER TABLE ONLY public.highlights
 
 
 --
+-- Name: privacy_consents fk_rails_3bf1289bd9; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_consents
+    ADD CONSTRAINT fk_rails_3bf1289bd9 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id);
+
+
+--
 -- Name: libraries fk_rails_3c26848d46; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18253,6 +18396,14 @@ ALTER TABLE ONLY public.bulk_reports
 
 
 --
+-- Name: assessment_consent_settings fk_rails_7340e6fd68; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_consent_settings
+    ADD CONSTRAINT fk_rails_7340e6fd68 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id);
+
+
+--
 -- Name: reports_accesses fk_rails_74cd2e276f; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18282,6 +18433,14 @@ ALTER TABLE ONLY public.ai_assistant_requests
 
 ALTER TABLE ONLY public.sheet_rows
     ADD CONSTRAINT fk_rails_782a23bcc9 FOREIGN KEY (sheet_id) REFERENCES public.sheets(id) ON DELETE CASCADE;
+
+
+--
+-- Name: privacy_consents fk_rails_78a8331821; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_consents
+    ADD CONSTRAINT fk_rails_78a8331821 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id);
 
 
 --
@@ -18698,6 +18857,14 @@ ALTER TABLE ONLY public.campaign_assessments
 
 ALTER TABLE ONLY public.user_report_comments
     ADD CONSTRAINT fk_rails_9a8fd863c2 FOREIGN KEY (parent_id) REFERENCES public.user_report_comments(id) ON DELETE CASCADE;
+
+
+--
+-- Name: assessment_consent_setting_translations fk_rails_9ad47467cc; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_consent_setting_translations
+    ADD CONSTRAINT fk_rails_9ad47467cc FOREIGN KEY (assessment_consent_setting_id) REFERENCES public.assessment_consent_settings(id);
 
 
 --
@@ -19947,6 +20114,10 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260305110830'),
+('20260225062612'),
+('20260225060929'),
+('20260224071226'),
 ('20260304133958'),
 ('20260223114729'),
 ('20260218075116'),

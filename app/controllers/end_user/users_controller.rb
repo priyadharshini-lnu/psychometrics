@@ -62,7 +62,9 @@ class EndUser::UsersController < ApplicationController
       version: params[:version],
       ip_address: request.remote_ip,
       user_agent: request.user_agent,
-      locale: I18n.locale
+      locale: I18n.locale,
+      campaign_id: params[:campaign_id],
+      assessment_id: params[:assessment_id]
     )
     head :ok
   end

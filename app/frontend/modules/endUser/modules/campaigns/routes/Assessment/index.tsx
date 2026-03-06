@@ -67,7 +67,16 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   }
 
   if (showPolicyAccept && privacyConsentRequired) {
-    return <PrivacyConsent onAccept={() => setShowPolicy(false)} />
+    return (
+      <PrivacyConsent
+        onAccept={() => setShowPolicy(false)}
+        assessmentCustomConsentText={userAssessmentData.customConsentText}
+        isDataController={userAssessmentData.isDataController}
+        assessmentCustomConsentPolicyVersion={userAssessmentData.customConsentPolicyVersion}
+        campaignId={userAssessmentData.campaignId}
+        assessmentId={userAssessmentData.assessmentId}
+      />
+    )
   }
 
   if (userAssessmentData.type === 'Assessments::Hogan') {

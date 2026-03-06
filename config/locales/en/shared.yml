@@ -37,9 +37,13 @@ en:
     configurations: Configurations
     confirm: Confirm
     continue: Continue
+    controller: Controller
     copy: Copy
     created_at: Created At
     created_date: Created Date
+    custom_consent_text: Custom Consent Text
+    custom_consent_text_required: Custom consent text is required for controller data role
+    data_role: Data Role
     decline: Decline
     description: Description
     download: Download
@@ -88,8 +92,11 @@ en:
     not_requested: Not Yet Requested
     ok: Ok
     pending: Pending
+    policy_version: Policy Version
+    policy_version_format: Only whole numbers are allowed
     positive: Positive
     processing: Processing
+    processor: Processor
     proctoring_maintenance_active: Proctoring is currently under maintenance from %{start_time} to %{end_time}. Please try again after the maintenance window.
     proctoring_maintenance_upcoming: Proctoring will be under maintenance from %{start_time} to %{end_time}.
     project: Project
@@ -137,6 +144,7 @@ en:
     tte_terms_and_condition: Terms & Privacy
     type: Type
     update: Update
+    update_failed: Update failed
     updated_successfully: Updated successfully
     video: Video
     view: View
