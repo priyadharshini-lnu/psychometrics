@@ -862,6 +862,7 @@ it:
         bulk_reports: Report di massa
         bulk_rescore_campaign_factors: Fattori della campagna Bulk Rescore
         bulk_update_evaluation_status: Stato di valutazione dell'aggiornamento in blocco
+        campaign_report_extract_and_upload_bulk_assets: Caricamento del report della campagna Risorse in blocco
         compact_completion_status_export: Esporta dello stato di completamento compatto
         completion_status_export: Esporta dello stato di completamento
         copy_as_template_or_campaign: Copiare la campagna come modello
@@ -871,6 +872,7 @@ it:
         export_admin_with_permissions: Esportare l'amministratore con i permessi
         export_assessment_questions: Domande di valutazione sull'esportazione
         export_campaign_ai_artifacts: Artefatti AI della Campagna di Esportazione
+        export_campaign_ai_artifacts_results: Esporta risultati della campagna AI Artifacts
         export_campaign_factors: Fattori della campagna di esportazione
         export_campaign_scorings: Esporta delle Campagne
         export_dashboard_as_file: Esporta dashboard come file
@@ -1274,6 +1276,7 @@ it:
     record_not_found: Record non trovato
     user_not_authorized: Utente non autorizzato
   auth:
+    cookies_link: <a href="%{cookies_url}">Informativa sui cookie</a>
     current_password: Password corrente
     current_password_placeholder: Inserire la password corrente
     email: Email
@@ -1319,6 +1322,7 @@ it:
     password_confirmation: Conferma la password
     password_confirmation_placeholder: Conferma della password
     password_placeholder: Inserire la password
+    privacy_statement_link: <a href="%{privacy_url}">Informativa sulla privacy</a>
     registration:
       description: Compilare i dati sottostanti per registrarsi e creare un nuovo account
       email_hint: Rispettiamo la vostra privacy e non tolleriamo lo spam. Non cederemo mai le vostre informazioni a terzi
@@ -1343,7 +1347,6 @@ it:
       title: Creare la password
     sign_out: Accedere come utente diverso
     sign_up: Iscriviti
-    terms_link: <a href="%{terms_url}">Termini e dichiarazione sulla privacy</a>
     verify_mobile_number:
       error:
         blocked: Questo numero è bloccato a causa di troppi tentativi.
@@ -2754,10 +2757,12 @@ it:
           learn: "<strong>10%</strong>Apprendimento Formale"
         content:
           list:
-            r1: Si noti che questo elenco è solo indicativo, e ulteriori percorsi di sviluppo possono essere considerati per te in base ad aspirazioni individuali, raccomandazioni del tuo manager e priorità aziendali organizzative.
-            r2: Si noti che il lancio di alcuni di questi percorsi di sviluppo dipenderà dalla strategia educativa e di apprendimento dell'intera organizzazione.
-            r3: Si prega di considerare i percorsi raccomandati come indicati di seguito, durante lo sviluppo del tuo Piano di Sviluppo Individuale.
-          main: Questa sezione include un elenco cumulativo di tutti i percorsi di sviluppo, tenendo presente le migliori pratiche di apprendimento, ovvero la linea guida 70-20-10, che fornisce un percorso progressivo che combina apprendimento in aula, coaching e apprendimento sul lavoro. In base ai risultati dell'esperienza di sviluppo della leadership e alle priorità aziendali, sono stati raccomandati possibili percorsi di sviluppo, che possono essere considerati per il tuo sviluppo.
+            r1: Si prega di notare che questo elenco è puramente indicativo e che potrebbero essere presi in considerazione ulteriori percorsi di sviluppo in base alle aspirazioni individuali, alle raccomandazioni del proprio responsabile e alle priorità aziendali dell'organizzazione.
+            r2: Gli utenti sono invitati a esaminare criticamente tutti i contenuti e sono liberi di modificare, perfezionare, sostituire o aggiungere qualsiasi azione o raccomandazione con cui non sono d'accordo.
+            r3: 'I dati relativi allo sviluppo inclusi nel presente rapporto possono provenire da una o entrambe le seguenti fonti:'
+            r3a: Una libreria di sviluppo personalizzata creata appositamente per la tua organizzazione
+            r3b: Suggerimenti di sviluppo generati dall'intelligenza artificiale
+          main: L'IDP creato include un elenco dettagliato delle azioni di sviluppo che puoi intraprendere, tenendo presente le migliori pratiche di apprendimento, ovvero la linea guida 70-20-10, che fornisce un percorso progressivo che combina apprendimento in aula, coaching e apprendimento sul posto di lavoro. Sulla base dei risultati del processo di valutazione, delle tue risposte in chat e delle relazioni esterne, se applicabile, sono stati raccomandati possibili percorsi di sviluppo che possono essere presi in considerazione per la tua crescita professionale.
         learn_cards:
           collaboration:
             list:
@@ -2780,14 +2785,13 @@ it:
             title: Apprendimento Sul Lavoro (70%) <br/> Sviluppo attraverso l'esperienza
           learn:
             list:
-            - Assumi posizioni di leadership nei comitati di stakeholder o di gestione
-            - Offriti volontario per guidare progetti di gestione del cambiamento per l'organizzazione
-            - Considera di assumere incarichi stimolanti
-            - Lavora in modo collaborativo con altre funzioni
-            - Considera di guidare progetti al di fuori della tua organizzazione
-            - Lavora a stretto contatto con esperti esterni del settore su progetti congiunti
+            - Partecipare a programmi di formazione strutturati
+            - Corsi completi di e-learning online
+            - Leggi libri, articoli, pubblicazioni
+            - Ottieni qualifiche professionali, certificazioni e accreditamenti
+            - Frequentare corsi, workshop, seminari
             title: Apprendimento Formale (10%) <br/> Sviluppo attraverso l'apprendimento strutturato
-        title: Linee Guida per il Tuo PSI
+        title: Guida al tuo IDP
       idp:
         end_date: Data di Fine
         self_rating: Autovalutazione

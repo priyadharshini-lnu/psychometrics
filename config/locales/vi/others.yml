@@ -862,6 +862,7 @@ vi:
         bulk_reports: Báo cáo hàng loạt
         bulk_rescore_campaign_factors: Các yếu tố chiến dịch Bulk Rescore
         bulk_update_evaluation_status: Cập nhật hàng loạt trạng thái đánh giá
+        campaign_report_extract_and_upload_bulk_assets: Báo cáo chiến dịch Tải lên tài sản hàng loạt
         compact_completion_status_export: Xuất trạng thái hoàn thành nhỏ gọn
         completion_status_export: Xuất trạng thái hoàn thành
         copy_as_template_or_campaign: Sao chép chiến dịch làm mẫu
@@ -871,6 +872,7 @@ vi:
         export_admin_with_permissions: Xuất quản trị viên có quyền
         export_assessment_questions: Câu hỏi đánh giá xuất khẩu
         export_campaign_ai_artifacts: Xuất hiện vật AI của chiến dịch
+        export_campaign_ai_artifacts_results: Kết quả của Chiến dịch Xuất khẩu Các Tác phẩm Nghệ thuật Trí tuệ Nhân tạo
         export_campaign_factors: Các yếu tố chiến dịch xuất khẩu
         export_campaign_scorings: Xuất chấm điểm chiến dịch
         export_dashboard_as_file: Xuất Bảng điều khiển dưới dạng tệp
@@ -1274,6 +1276,7 @@ vi:
     record_not_found: Không tìm thấy bản ghi
     user_not_authorized: Người dùng không được ủy quyền
   auth:
+    cookies_link: <a href="%{cookies_url}">Chính sách về cookie</a>
     current_password: Mật khẩu hiện tại
     current_password_placeholder: Nhập mật khẩu hiện tại
     email: E-mail
@@ -1319,6 +1322,7 @@ vi:
     password_confirmation: Xác nhận mật khẩu
     password_confirmation_placeholder: Nhập mật khẩu xác nhận
     password_placeholder: Nhập mật khẩu
+    privacy_statement_link: <a href="%{privacy_url}">Chính sách bảo mật</a>
     registration:
       description: Điền thông tin bên dưới để đăng ký và tạo tài khoản mới
       email_hint: Chúng tôi tôn trọng quyền riêng tư của bạn và không chấp nhận thư rác. Chúng tôi sẽ không bao giờ cung cấp thông tin của bạn cho bất kỳ bên thứ ba nào
@@ -1343,7 +1347,6 @@ vi:
       title: Tạo mật khẩu
     sign_out: Đăng nhập với tư cách là người dùng khác
     sign_up: Đăng ký
-    terms_link: <a href="%{terms_url}">Điều khoản và Tuyên bố về quyền riêng tư</a>
     verify_mobile_number:
       error:
         blocked: Số này bị chặn do có quá nhiều lần thử.
@@ -2747,10 +2750,12 @@ vi:
           learn: "<strong>10%</strong>Học tập chính thức"
         content:
           list:
-            r1: Xin lưu ý rằng danh sách này chỉ mang tính chất tham khảo và các lộ trình phát triển bổ sung có thể được xem xét cho bạn dựa trên nguyện vọng cá nhân, đề xuất từ người quản lý của bạn cũng như các ưu tiên kinh doanh của tổ chức.
-            r2: Xin lưu ý rằng việc ra mắt một số lộ trình phát triển này sẽ phụ thuộc vào chiến lược giáo dục và học tập trên toàn tổ chức.
-            r3: Vui lòng xem xét các lộ trình được đề xuất như được gạch chéo dưới đây, khi phát triển Kế hoạch Phát triển Cá nhân của bạn.
-          main: Phần này bao gồm danh sách tích lũy tất cả các lộ trình phát triển, ghi nhớ việc học thực hành tốt nhất, tức là hướng dẫn 70-20-10, cung cấp một hành trình tiến bộ kết hợp học trên lớp, huấn luyện và học tập tại chỗ. Dựa trên kết quả từ kinh nghiệm phát triển lãnh đạo và các ưu tiên kinh doanh, các lộ trình phát triển khả thi đã được đề xuất, có thể được xem xét cho sự phát triển của bạn.
+            r1: Lưu ý rằng danh sách này chỉ mang tính chất tham khảo, và các lộ trình phát triển khác có thể được xem xét cho bạn dựa trên mục tiêu cá nhân, đề xuất từ người quản lý của bạn cũng như ưu tiên kinh doanh của tổ chức.
+            r2: Người dùng được khuyến khích xem xét kỹ lưỡng tất cả nội dung và có quyền sửa đổi, hoàn thiện, thay thế hoặc bổ sung bất kỳ hành động hoặc khuyến nghị nào mà họ không đồng ý.
+            r3: 'Các yếu tố đầu vào phát triển được đề cập trong báo cáo này có thể được lấy từ một hoặc cả hai nguồn sau:'
+            r3a: Thư viện phát triển tùy chỉnh được tạo riêng cho tổ chức của bạn.
+            r3b: Đề xuất phát triển do trí tuệ nhân tạo (AI) tạo ra
+          main: Kế hoạch Phát triển Cá nhân (IDP) được tạo ra bao gồm danh sách chi tiết các hoạt động phát triển mà bạn có thể thực hiện, dựa trên nguyên tắc học tập tốt nhất (70-20-10), kết hợp giữa học tập trong lớp, huấn luyện và học tập trong quá trình làm việc. Dựa trên kết quả từ quá trình đánh giá tại trung tâm đánh giá, phản hồi trong cuộc trò chuyện và báo cáo từ bên ngoài (nếu có), các lộ trình phát triển tiềm năng đã được đề xuất, có thể xem xét cho quá trình phát triển của bạn.
         learn_cards:
           collaboration:
             list:
@@ -2773,14 +2778,13 @@ vi:
             title: Học tập trong công việc (70%) <br/> Phát triển thông qua kinh nghiệm
           learn:
             list:
-            - Đảm nhận vị trí lãnh đạo trong các ủy ban quản lý hoặc các bên liên quan
-            - Tình nguyện dẫn dắt các dự án quản lý thay đổi cho tổ chức
-            - Xem xét nhận các nhiệm vụ thử thách
-            - Làm việc phối hợp với các phòng ban khác
-            - Dẫn dắt các dự án ngoài tổ chức của bạn
-            - Làm việc chặt chẽ với chuyên gia ngành ngoài trong các dự án chung
+            - Tham gia các chương trình đào tạo có cấu trúc.
+            - Hoàn thành các khóa học trực tuyến e-learning.
+            - Đọc sách, bài báo, tài liệu.
+            - Đạt được các bằng cấp chuyên nghiệp, chứng chỉ và chứng nhận.
+            - Tham gia các khóa học, hội thảo, và buổi thuyết trình.
             title: Học tập chính thức (10%) <br/> Phát triển thông qua học tập có cấu trúc
-        title: Hướng dẫn hướng dẫn IDP của bạn
+        title: Hướng dẫn về Giấy phép Lái xe Quốc tế (IDP)
       idp:
         end_date: Ngày kết thúc
         self_rating: Tự đánh giá

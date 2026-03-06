@@ -7,27 +7,48 @@ sr-Latn:
     add: Dodaj
     advanced: Napredne
     agree_and_continue: Slažem se i nastavi
+    approval_status: Статус одобрења
+    approved: Одобрено
+    approved_by: Одобрио
+    approvers_list: Листа одобрених
     archive: Arhiviraj
     archived: Arhiviranih
+    assessed_by: Проценио
+    assessment: Оцењивање
+    assessment_id: Идентификација процене
+    assessment_list: Списак за процену
+    assessment_name: Назив процене
+    assessor_approved: Оцењивач одобрио
+    assessors_list: Списак процењивача
     asset_not_present: Имовина није присутна
     audio: Аудио
     authentication_failed: Autentifikacija nije uspela. Pokušajte ponovo.
+    back: Назад
     basic: Osnovne
     camera_preview: Pregled kamere će se pojaviti ovde
+    campaign: Кампања
     campaign_id: ID kampanje
     cancel: Otkaži
     change_password: Promeni lozinku
     clear_filters: Obriši filtere
+    client: Клијент
     collaborative_learning: Kolaborativno učenje
     completed: Завршено
     configurations: Конфигурације
     confirm: Potvrdi
     continue: Nastavite
+    controller: Контролер
+    cookies_statement: Изјава о колачићима
     copy: Копирај
     created_at: Kreiran u
     created_date: Datum kreiranja
+    custom_consent_text: Прилагођени текст сагласности
+    custom_consent_text_required: За улогу података контролера потребан је прилагођени текст сагласности.
+    data_role: Улога података
     decline: Pretraživanje
     description: Opis
+    desktop_or_laptop_recommended: Препоручује се десктоп или лаптоп
+    desktop_or_laptop_required: Потребан десктоп или лаптоп
     download: Преузми
     download_audio: Преузми аудио
     download_transcription: Преузми транскрипт
@@ -37,6 +58,7 @@ sr-Latn:
     email: Imejl
     export: Izvoz
     failed: Неуспело
+    'false': false
     first_name: Ime
     formal_learning: Formalno učenje
     generate: Генериши
@@ -50,6 +72,7 @@ sr-Latn:
     internet_disconnected_message: Trying to reconnect. Please check your internet connection.
     last_name: Prezime
     learning_on_the_job_label: Učenje na poslu
+    loading: Учитавање...
     login: Prijava
     maintenance_in_hours: "%{hours} сати"
     maintenance_in_minutes: "%{minutes} минута"
@@ -60,20 +83,28 @@ sr-Latn:
     maintenance_upcoming_title: Предстојеће одржавање
     media_question_transcriptions: Транскрипти медијских питања
     media_responses: Реакције медија
+    mobile_proctoring_disabled_instructions: За наставак ове процене потребан је десктоп или лаптоп. Молимо вас да пређете на рачунар како бисте завршили активност.
+    mobile_proctoring_enabled_instructions: За најбоље искуство, пређите на десктоп или лаптоп рачунар ако га имате на располагању. Ако је потребно, можете наставити на мобилном уређају.
     modified_by: Modifikovan od strane
     modified_date: Datum izmene
     more_actions: Više akcija
     mte_logo_alt_text: Mercer Talent Enterprise logo
     na_text: Н/А
     name: Ime
+    negative: Негативно
     new: Novi
     no_results_found: Није пронађено ниједно резултат
     not_requested: Још није затражено
     ok: Ok
     pending: Учешће
+    policy_version: Верзија политике
+    policy_version_format: Дозвољени су само цели бројеви.
+    positive: Позитивно
     processing: Обрада
+    processor: Процесор
     proctoring_maintenance_active: Проктинг је тренутно у одржавању са %{start_time} на %{end_time}. Молимо покушајте поново након завршетка прозора за одржавање.
     proctoring_maintenance_upcoming: Прокторинг ће бити у одржавању од %{start_time} до %{end_time}.
+    project: Пројекат
     question_id: Идентификациони број питања
     question_transcription_disabled: Транскрипција је онемогућена за ово питање
     rec: REC
@@ -84,14 +115,20 @@ sr-Latn:
     removed: Uklonjeno
     replace: Замени
     reset_password: Poništi lozinku
+    response_text: Текст одговора
     rte_paste_content_exceeds_char_limit: Tekst prelazi ograničenje znakova {{maxCharacterLimit}} i ne može se nalepiti.
     rte_paste_content_exceeds_word_limit: Tekst prelazi ograničenje reči {{maxWordLimit}} i ne može se nalepiti.
     save: Sačuvaj
     saving_video: Čuvanje video zapisa ... Molimo vas da ne zatvarate ili osvežavate pretraživač
+    scoring_details: Детаљи бодовања
     search: Pretraži
     send_email: Pošalji imejl
     show_more: Prikaži još
     something_wrong: Nešto je pošlo naopako. Obratite se svom administratoru.
+    status: Статус
+    subject: Предмет
+    submit: Пошаљи
+    switch_to_laptop_or_desktop: Пређите на лаптоп или десктоп
     table:
       entries:
         selected: Izabran 1 red
@@ -103,9 +140,12 @@ sr-Latn:
     transcription_not_enabled: Транскрипција није омогућена за медијски одговор
     transcription_status: Статус транскрипције
     transcriptions: Transkripcije
+    'true': true
     try_again: Покушај поново
     tte_terms_and_condition: Uslovi i privatnost
     type: Tip
     update: Ažuriraj
+    update_failed: Ажурирање није успело
+    updated_successfully: Успешно ажурирано
     video: Видео
     view: Приказ

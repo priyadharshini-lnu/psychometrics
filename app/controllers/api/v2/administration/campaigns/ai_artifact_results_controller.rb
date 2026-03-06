@@ -54,6 +54,20 @@ module Api
       @policy_class ||= Api::Administration::Campaigns::AIArtifactResultPolicy
     end
 
+    def export
+      audit! :campaign_artifacts_results_export, campaign,
+             payload: { campaign_id: campaign.id },
+             campaign: campaign
+
+      AdminJob.call(
+        :export_campaign_ai_artifacts_results,
+        { campaign_id: campaign.id },
+        current_user
+      )
+
+      render json: :ok
+    end
+
     private
 
     def users

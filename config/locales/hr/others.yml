@@ -868,6 +868,7 @@ hr:
         bulk_reports: Skupna izvješća
         bulk_rescore_campaign_factors: Faktori kampanje za skupno ponovno ocjenjivanje
         bulk_update_evaluation_status: Status evaluacije skupnog ažuriranja
+        campaign_report_extract_and_upload_bulk_assets: Učitavanje izvješća kampanje i masovnih resursa
         compact_completion_status_export: Kompaktni izvoz statusa dovršetka
         completion_status_export: Izvoz statusa dovršetka
         copy_as_template_or_campaign: Kopiraj kampanju kao predložak
@@ -877,6 +878,7 @@ hr:
         export_admin_with_permissions: Izvoz administratora s dozvolama
         export_assessment_questions: Pitanja za procjenu izvoza
         export_campaign_ai_artifacts: AI artefakti iz izvozne kampanje
+        export_campaign_ai_artifacts_results: Izvoz rezultata umjetničkih artefakata kampanje AI
         export_campaign_factors: Čimbenici izvozne kampanje
         export_campaign_scorings: Izvozne kampanje
         export_dashboard_as_file: Izvezi nadzornu ploču kao datoteku
@@ -1281,6 +1283,7 @@ hr:
     record_not_found: Zapis nije pronađen
     user_not_authorized: Korisnik nije ovlašten
   auth:
+    cookies_link: <a href="%{cookies_url}">Izjava o kolačićima
     current_password: Trenutna lozinka
     current_password_placeholder: Unesite trenutnu lozinku
     email: Email
@@ -1326,6 +1329,7 @@ hr:
     password_confirmation: Potvrditi lozinku
     password_confirmation_placeholder: Unesite potvrdu lozinke
     password_placeholder: Unijeti lozinku
+    privacy_statement_link: <a href="%{privacy_url}">Izjava o privatnosti
     registration:
       description: Ispunite podatke u nastavku kako biste se registrirali i kreirali novi račun
       email_hint: Poštujemo vašu privatnost i ne toleriramo neželjenu poštu. Nikada nećemo dati Vaše podatke trećim stranama.
@@ -1350,7 +1354,6 @@ hr:
       title: Izraditi lozinku
     sign_out: Prijava kao drugi korisnik
     sign_up: Prijaviti se
-    terms_link: <a href="%{terms_url}">Uvjeti i izjava o privatnosti</a>
     verify_mobile_number:
       error:
         blocked: Ovaj je broj blokiran zbog previše pokušaja.
@@ -2768,10 +2771,12 @@ hr:
           learn: "<strong>10%</strong>Formalno učenje"
         content:
           list:
-            r1: Imajte na umu da je ovaj popis samo indikativan i da se za vas mogu razmotriti dodatni razvojni putevi na temelju individualnih težnji, preporuka vašeg menadžera kao i poslovnih prioriteta organizacije.
-            r2: Imajte na umu da će pokretanje nekih od ovih razvojnih putova ovisiti o strategiji obrazovanja i učenja na razini cijele organizacije.
-            r3: Molimo vas da uzmete u obzir preporučene puteve kako su prijeđeni u nastavku, kada izrađujete svoj Individualni razvojni plan.
-          main: Ovaj odjeljak uključuje kumulativni popis svih razvojnih putova, imajući na umu najbolju praksu učenja, tj. smjernice 70-20-10, koje pružaju progresivno putovanje kombinirajući učenje u učionici, podučavanje i učenje na radnom mjestu. Na temelju ishoda iskustva razvoja vodstva i poslovnih prioriteta preporučeni su mogući razvojni putovi koji se mogu uzeti u obzir za vaš razvoj.
+            r1: Imajte na umu da je ovaj popis samo indikativan te da se za vas mogu razmotriti dodatne razvojne staze na temelju vaših individualnih aspiracija, preporuka vašeg menadžera i poslovnih prioriteta organizacije.
+            r2: Korisnici se potiču da kritički pregledaju sav sadržaj te su slobodni mijenjati, usavršavati, zamijeniti ili dodati bilo koje radnje ili preporuke s kojima se ne slažu.
+            r3: 'Ulazi za razvoj uključeni u ovaj izvještaj mogu biti izvedeni iz jednog ili oba sljedeća izvora:'
+            r3a: Prilagođena razvojna biblioteka stvorena za vašu organizaciju
+            r3b: Prijedlozi za razvoj generirani umjetnom inteligencijom
+          main: IDP koji je izrađen uključuje detaljan popis razvojnih aktivnosti koje možete poduzeti, imajući na umu najbolje prakse učenja, tj. smjernicu 70-20-10, koja pruža progresivno putovanje kombinirajući učenje u učionici, coaching i učenje na radnom mjestu. Na temelju rezultata procesa centra za procjenu, vaših odgovora tijekom razgovora i vanjskih izvještaja, gdje je primjenjivo, preporučene su moguće razvojne staze koje se mogu razmotriti za vaš razvoj.
         learn_cards:
           collaboration:
             list:
@@ -2794,14 +2799,13 @@ hr:
             title: Učenje na poslu (70%) <br/> Razvoj kroz iskustvo
           learn:
             list:
-            - Preuzmite liderske pozicije u odborima ili upravljačkim tijelima
-            - Volontirajte za vođenje projekata upravljanja promjenama u organizaciji
-            - Razmotrite preuzimanje zahtjevnijih zadataka
-            - Radite međufunkcionalno s drugim odjelima
-            - Razmotrite vođenje projekata izvan vaše organizacije
-            - Tijesno surađujte s vanjskim stručnjacima na zajedničkim projektima
+            - Pohađajte strukturirane programe obuke
+            - Završite online e-learning tečajeve
+            - Čitaj knjige, članke, publikacije
+            - Steknite profesionalne kvalifikacije, certifikate i akreditacije
+            - Pohađajte tečajeve, radionice, seminare
             title: Formalno učenje (10%) <br/> Razvoj kroz strukturirano učenje
-        title: Smjernice za usmjeravanje vašeg IDP-a
+        title: Vodič za vašu međunarodnu vozačku dozvolu
       idp:
         end_date: Datum završetka
         self_rating: Samoprocjena

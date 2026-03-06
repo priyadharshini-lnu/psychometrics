@@ -6,6 +6,7 @@ import { Schema as reportSchema } from '~/modules/admin/modules/client/core/repo
 import { Schema as reportBundleReportSchema } from '~/modules/admin/modules/client/core/reportBundleReports'
 import { Schema as dashboardSchema } from '~/modules/admin/modules/campaigns/core/dashboard'
 import { Schema as reportApprovalSchema } from '~/modules/admin/modules/ReportApprovals/core'
+import { Schema as scoringApprovalSettingSchema } from '~/modules/admin/modules/campaigns/core/scoringApprovalSettings'
 import { CommentSchema as commentSchema } from '~/modules/admin/modules/campaigns/core/userReports'
 import { Schema as reportApprovalSettingSchema } from '~/modules/admin/modules/campaigns/core/reportApprovalSettings'
 import { Schema as licensesSchema } from '~/modules/admin/modules/client/core/licenses'
@@ -51,6 +52,7 @@ export const Schema = {
   report_approvals: reportApprovalSchema,
   user_report_comments: commentSchema,
   report_approval_settings: reportApprovalSettingSchema,
+  ai_scoring_approval_settings: scoringApprovalSettingSchema,
   licenses: licensesSchema,
   license_usages: licenseUsagesSchema,
   workshops: workshopsSchema,

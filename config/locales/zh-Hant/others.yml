@@ -862,6 +862,7 @@ zh-Hant:
         bulk_reports: 大量報告
         bulk_rescore_campaign_factors: 大量重新評分活動因素
         bulk_update_evaluation_status: 批量更新評估狀態
+        campaign_report_extract_and_upload_bulk_assets: 活动报告上传批量素材
         compact_completion_status_export: 緊湊型完成狀態匯出
         completion_status_export: 完成狀態匯出
         copy_as_template_or_campaign: 複製活動作為範本
@@ -871,6 +872,7 @@ zh-Hant:
         export_admin_with_permissions: 匯出有權限的管理員
         export_assessment_questions: 出口評估問題
         export_campaign_ai_artifacts: 輸出戰役 AI 工件
+        export_campaign_ai_artifacts_results: 导出活动AI成果
         export_campaign_factors: 出口活動因素
         export_campaign_scorings: 導出活動縮圖
         export_dashboard_as_file: 將 Dashboard 匯出為檔
@@ -1274,6 +1276,7 @@ zh-Hant:
     record_not_found: 未找到記錄
     user_not_authorized: 使用者未經授權
   auth:
+    cookies_link: <a href="%{cookies_url}">Cookies声明</a>
     current_password: 目前的密碼
     current_password_placeholder: 輸入目前的密碼
     email: 電子郵件
@@ -1319,6 +1322,7 @@ zh-Hant:
     password_confirmation: 確認密碼
     password_confirmation_placeholder: 輸入密碼確認
     password_placeholder: 輸入密碼
+    privacy_statement_link: <a href="%{privacy_url}">隐私声明</a>
     registration:
       description: 填寫以下詳細資料註冊並建立新帳戶
       email_hint: 我們尊重您的隱私，絕不容忍垃圾郵件。 我們絕不會將您的資訊提供給任何第三方
@@ -1343,7 +1347,6 @@ zh-Hant:
       title: 建立密碼
     sign_out: 以不同使用者登入
     sign_up: 註冊
-    terms_link: <a href="%{terms_url}">條款與隱私權聲明</a>
     verify_mobile_number:
       error:
         blocked: 由於嘗試太多，此號碼已被攔截。
@@ -2736,10 +2739,12 @@ zh-Hant:
           learn: "<strong>10%</strong>正式學習"
         content:
           list:
-            r1: 請注意，此列表僅供參考，根據個人願望、管理者的建議以及組織業務優先事項，可能會為你考慮額外的發展路徑。
-            r2: 請注意，這些發展路徑中的一些啟動將取決於組織範圍的教育和學習策略。
-            r3: 在制定個人發展計劃時，請考慮以下推薦的路徑。
-          main: 本部分包括所有發展路徑的累積列表，考慮到最佳學習實踐，即70-20-10指南，它提供了結合課堂學習、輔導和在職學習的漸進式旅程。基於領導力發展經驗和業務優先事項的成果，已推薦可能的發展路徑，可以考慮用於你的發展。
+            r1: 请注意，此列表仅供参考，根据个人职业规划、主管建议以及组织业务优先级，您可能还有其他发展路径可供选择。
+            r2: 鼓励用户对所有内容进行批判性审查，并可自由修改、完善、替换或补充任何不同意的操作或建议。
+            r3: 本报告所包含的发展投入可能来源于以下一个或两个来源：
+            r3a: 专为贵组织定制的开发库
+            r3b: 人工智能生成的开发建议
+          main: 该《个人发展计划》包含一份详细的发展行动清单，供您实施。其中遵循最佳实践学习原则——即70-20-10指导方针，该方案通过课堂学习、辅导指导和在职学习的渐进式组合，构建了循序渐进的发展路径。基于评估中心流程结果、您的对话反馈及外部报告（如适用），现已为您推荐若干潜在发展路径，可作为个人发展的参考方向。
         learn_cards:
           collaboration:
             list:
@@ -2762,14 +2767,13 @@ zh-Hant:
             title: 在職學習(70%)<br/>通過經驗發展
           learn:
             list:
-            - 在利益相關者或管理委員會中擔任領導職位
-            - 自願領導組織的變革管理項目
-            - 考慮承擔有挑戰性的任務
-            - 與其他職能部門跨部門協作
-            - 考慮領導組織外的項目
-            - 與外部行業專家在聯合項目上密切合作
+            - 参加结构化培训项目
+            - 完成在线电子学习课程
+            - 阅读书籍、文章、出版物
+            - 获取专业资格、认证及资质认证
+            - 参加课程、工作坊、研讨会
             title: 正式學習(10%)<br/>通過結構化學習發展
-        title: 指導你的IDP的指南
+        title: 国际驾驶许可证指南
       idp:
         end_date: 結束日期
         self_rating: 自我評定

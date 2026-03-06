@@ -70,8 +70,16 @@ const MainMenuComponent: FC<Props> = ({
   const selectedKey = getSelected()
   const rtl = isRtl(I18n.locale)
 
+  let openKeys = ['content']
   const isConfigurationSubMenuOpen = ['skillsTaxonomy',
     'developmentActions', 'aiAssistants', 'campaignTemplates'].includes(selectedKey) || false
+  if (isConfigurationSubMenuOpen) {
+    openKeys.push('configuration')
+  }
+  const isApprovalSubMenuOpen = ['reportApprovals', 'aiScoringApprovals'].includes(selectedKey) || false
+  if (isApprovalSubMenuOpen) {
+    openKeys = ['approvals']
+  }
 
   const menu = (
     <>
@@ -84,7 +92,7 @@ const MainMenuComponent: FC<Props> = ({
         onClick={onSelect}
         className={styles.menu}
         style={{ border: 0 }}
-        defaultOpenKeys={isConfigurationSubMenuOpen ? ['content', 'configuration'] : ['content']}
+        defaultOpenKeys={openKeys}
       />
     </>
   )

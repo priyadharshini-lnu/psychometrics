@@ -12,6 +12,9 @@ pl:
         user_not_found: Nie znaleziono użytkownika lub nie jest on częścią tego samego projektu
       admin:
         already_added: Administrator z już dodanym adresem e-mail.
+      ai_scoring_approval_settings:
+        assessment_exists: Ustawienie zatwierdzania punktacji AI dla tej oceny już istnieje.
+        validates_admins: Administratorzy nie mają dostępu do kampanii.
       already_assigned?: Nie można połączyć tej oceny — jest ona już przypisana do "%{linked_assessor_form_name}".
       already_invited: Ten użytkownik istnieje już w centrum oceny zintegrowanej, które próbujesz dodać.
       assessor_assessment:

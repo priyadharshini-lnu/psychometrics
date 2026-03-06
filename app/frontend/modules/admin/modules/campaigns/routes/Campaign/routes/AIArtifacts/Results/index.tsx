@@ -6,13 +6,16 @@ import {
   Tooltip,
 } from 'antd'
 import * as t from 'io-ts'
-import { AppstoreOutlined, CheckOutlined, WarningFilled } from '~/glint/icons/AccessibleIconsAntDesign'
+import {
+  AppstoreOutlined, CheckOutlined, WarningFilled, InfoCircleFilled,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { formatedDate } from '~/utils/time'
 import { useResources } from '~/hooks/useResources'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { useSelectAll } from '~/hooks/useSelectAll'
 import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
 import { ToolsDropdown } from './ToolsDropdown'
+import { ActionsDropdown } from './ActionsDropdown'
 import { ArtifactResultsDrawer } from './ArtifactResultsDrawer'
 import styles from '../styles.less'
 import { AiArtifact, CampaignAiArtifactResult, CampaignAiArtifactDataSource }
@@ -38,6 +41,7 @@ export const Result = () => {
     isLoading,
     changeFilter,
     getFilteredValue,
+    setData,
   } = useResources<CampaignAiArtifactResult>('ai_artifact_results', {
     basePath: `/campaigns/${campaignId}`,
   })
@@ -45,6 +49,12 @@ export const Result = () => {
   const {
     collectionAction,
   } = useResources<AiArtifact>('ai_artifacts', {
+    basePath: `/campaigns/${campaignId}`,
+  })
+
+  const {
+    collectionAction: resultsCollectionAction,
+  } = useResources<CampaignAiArtifactResult>('ai_artifact_results', {
     basePath: `/campaigns/${campaignId}`,
   })
 
@@ -77,6 +87,7 @@ export const Result = () => {
                 parsedDependencies: artifactResult.parsedDependencies,
                 totalInputTokens: artifactResult.totalInputTokens,
                 totalOutputTokens: artifactResult.totalOutputTokens,
+                resultStale: artifactResult.resultStale,
               }
 
               return {
@@ -120,7 +131,7 @@ export const Result = () => {
                     )}
                 >
                   <span>
-                    <WarningFilled className={styles.warning} />
+                    <WarningFilled className={styles.error} />
                   </span>
                 </Popover>
               )
@@ -128,14 +139,26 @@ export const Result = () => {
             const currentResult = record.artifacts[art].results.find(r => r.key === result.key)
             if (currentResult && currentResult.value) {
               return (
-                <Tooltip
-                  title={I18n.t('administration.ai_artifacts.generated_at_time',
-                    { time: formatedDate(record.artifacts[art].generatedAt) })}
-                >
-                  <span>
-                    <CheckOutlined style={{ color: '#52c41a' }} />
-                  </span>
-                </Tooltip>
+                <>
+                  {record.artifacts[art].resultStale ? (
+                    <Tooltip title={I18n.t('admin.ai_artifact_result_stale')}>
+                      <span>
+                        <InfoCircleFilled className={styles.warning} />
+                      </span>
+                    </Tooltip>
+                  )
+                    : (
+                      <Tooltip
+                        title={I18n.t('administration.ai_artifacts.generated_at_time',
+                          { time: formatedDate(record.artifacts[art].generatedAt) })}
+                      >
+                        <span>
+                          <CheckOutlined style={{ color: '#52c41a' }} />
+                        </span>
+                      </Tooltip>
+                    )
+                }
+                </>
               )
             }
             return '-'
@@ -202,6 +225,21 @@ export const Result = () => {
     }
   }
 
+  const handleToolConfirmAction = (action: string) => {
+    if (action === 'export_results') {
+      handleExportArtifactsResults()
+    }
+  }
+
+  const handleExportArtifactsResults = () => {
+    resultsCollectionAction({
+      action: 'export',
+      method: 'post',
+    }).then(() => {
+      message.info(I18n.t('admin.ai_artifacts_results_export_job_scheduled'))
+    })
+  }
+
   const handleBulkAction = (action: string) => {
     if (action === 'generate_results') {
       collectionAction({
@@ -239,6 +277,10 @@ export const Result = () => {
             }}
           />
           <ToolsDropdown
+            isBulk
+            onClick={action => handleToolConfirmAction(action)}
+          />
+          <ActionsDropdown
             isBulk
             onClick={action => handleBulkConfirmAction(action)}
             isDisabled={selectedKeys.length === 0}
@@ -290,8 +332,10 @@ export const Result = () => {
           close={() => {
             setSelectedAIArtifact(null)
           }}
-          artifact={selectedAIArtifact}
+          userArtifactsResults={selectedAIArtifact}
           campaignId={campaignId}
+          rawTableData={aiArtifact}
+          updateRawTableData={setData}
         />
       ) : null}
     </div>

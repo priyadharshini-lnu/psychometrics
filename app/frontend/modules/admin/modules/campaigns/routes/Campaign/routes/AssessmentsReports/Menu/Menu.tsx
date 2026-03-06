@@ -23,6 +23,9 @@ const Menu: React.FC<OwnProps & PropsFromRedux> = ({
   if (campaignPermissions.manageReportApprovalSettings) {
     menuItems.push({ key: '/report_approval', label: I18n.t('assessments_reports.menu.report_approval') })
   }
+  if (campaignPermissions.manageAiScoringApprovalSettings) {
+    menuItems.push({ key: '/ai_scoring_approval', label: I18n.t('admin.ai_scoring_approval_settings') })
+  }
 
   return (
     <div className="position-relative">

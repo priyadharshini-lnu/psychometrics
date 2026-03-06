@@ -862,6 +862,7 @@ cs:
         bulk_reports: Hromadné zprávy
         bulk_rescore_campaign_factors: Faktory hromadného obnovení kampaně
         bulk_update_evaluation_status: Stav vyhodnocení hromadné aktualizace
+        campaign_report_extract_and_upload_bulk_assets: Nahrání hromadných aktiv kampaně
         compact_completion_status_export: souhrnné informace export stavu dokončení
         completion_status_export: Export stavu dokončení
         copy_as_template_or_campaign: Kopírování kampaně jako šablony
@@ -871,6 +872,7 @@ cs:
         export_admin_with_permissions: Export správce s oprávněními
         export_assessment_questions: Otázky pro posouzení vývozu
         export_campaign_ai_artifacts: AI artefakty exportní kampaně
+        export_campaign_ai_artifacts_results: Výsledky exportu artefaktů AI kampaně
         export_campaign_factors: Faktory vývozní kampaně
         export_campaign_scorings: Výběry pro exportní kampaně
         export_dashboard_as_file: Exportovat řídicí panel jako soubor
@@ -1277,6 +1279,7 @@ cs:
     record_not_found: Záznam nebyl nalezen
     user_not_authorized: Uživatel není oprávněn
   auth:
+    cookies_link: <a href="%{cookies_url}">Prohlášení o souborech cookie</a>
     current_password: Aktuální heslo
     current_password_placeholder: Vložte aktuální heslo
     email: E-mail
@@ -1322,6 +1325,7 @@ cs:
     password_confirmation: Potvrdit heslo
     password_confirmation_placeholder: Zadejte heslo pro potvrzení
     password_placeholder: Zadejte heslo
+    privacy_statement_link: <a href="%{privacy_url}">Prohlášení o ochraně osobních údajů</a>
     registration:
       description: Pro registraci a vytvoření nového účtu vyplňte níže uvedené údaje
       email_hint: Respektujeme vaše soukromí a netolerujeme spam. Vaše údaje nikdy neposkytneme žádné třetí straně.
@@ -1346,7 +1350,6 @@ cs:
       title: Vytvořit heslo
     sign_out: Přihlásit se jako jiný uživatel
     sign_up: Registrace
-    terms_link: <a href="%{terms_url}">Obchodní podmínky a zásady ochrany osobních údajů</a>
     verify_mobile_number:
       error:
         blocked: Toto číslo je zablokováno z důvodu příliš mnoha pokusů.
@@ -2742,10 +2745,12 @@ cs:
           learn: "<strong>10%</strong>Formální učení"
         content:
           list:
-            r1: Upozorňujeme, že tento seznam je pouze orientační a na základě individuálních aspirací, doporučení vašeho manažera a také obchodních priorit organizace mohou být zváženy další rozvojové cesty.
-            r2: Upozorňujeme, že zahájení některých těchto rozvojových cest bude záviset na organizační vzdělávací a učební strategii.
-            r3: Při vypracování svého individuálního rozvojového plánu prosím zvažte doporučené cesty, které jsou níže označeny křížkem.
-          main: Tato část obsahuje kumulativní seznam všech rozvojových cest s ohledem na osvědčené postupy učení, tj. směrnici 70-20-10, která poskytuje progresivní cestu kombinující výukové učení, koučování a učení při práci. Na základě výsledků zkušeností s rozvojem vedení a obchodních priorit byly doporučeny možné rozvojové cesty, které lze zvážit pro váš rozvoj.
+            r1: Upozorňujeme, že tento seznam je pouze orientační a na základě individuálních ambicí, doporučení vašeho nadřízeného a obchodních priorit organizace mohou být pro vás zváženy další možnosti rozvoje.
+            r2: Uživatelé jsou vybízeni k kritickému posouzení veškerého obsahu a mohou libovolně upravovat, vylepšovat, nahrazovat nebo přidávat jakékoli akce nebo doporučení, s nimiž nesouhlasí.
+            r3: 'Údaje o vývoji uvedené v této zprávě mohou pocházet z jednoho nebo obou následujících zdrojů:'
+            r3a: Přizpůsobená vývojová knihovna vytvořená pro vaši organizaci
+            r3b: Návrhy vývoje generované umělou inteligencí
+          main: Vytvořený IDP obsahuje podrobný seznam rozvojových aktivit, které můžete podniknout, s ohledem na osvědčené postupy v oblasti vzdělávání, tj. pravidlo 70-20-10, které představuje postupný proces kombinující výuku v učebně, koučování a učení se v praxi. Na základě výsledků procesu hodnotícího centra, vašich odpovědí v chatu a externích zpráv, pokud jsou k dispozici, byly doporučeny možné cesty rozvoje, které můžete zvážit pro svůj rozvoj.
         learn_cards:
           collaboration:
             list:
@@ -2768,14 +2773,13 @@ cs:
             title: Učení při práci (70%) <br/> Rozvoj prostřednictvím zkušeností
           learn:
             list:
-            - Převezměte vedoucí pozice ve výborech zainteresovaných stran nebo managementu
-            - Nabídněte se k vedení projektů změnového řízení pro organizaci
-            - Zvažte převzetí náročnějších úkolů
-            - Pracujte napříč funkcemi v rámci spolupráce
-            - Zvažte vedení projektů mimo vaši organizaci
-            - Úzce spolupracujte s externími odborníky z oboru na společných projektech
+            - Účastnit se strukturovaných vzdělávacích programů
+            - Kompletní online e-learningové kurzy
+            - Čtěte knihy, články, publikace
+            - Získejte odborné kvalifikace, certifikáty a akreditace
+            - Účastnit se kurzů, workshopů, seminářů
             title: Formální učení (10%) <br/> Rozvoj prostřednictvím strukturovaného učení
-        title: Pokyny k tvorbě vašeho IDP
+        title: Průvodce vaším IDP
       idp:
         end_date: Datum ukončení
         self_rating: Sebehodnocení

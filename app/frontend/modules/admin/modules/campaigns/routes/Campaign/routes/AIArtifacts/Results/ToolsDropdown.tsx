@@ -10,14 +10,13 @@ const { I18n } = window
 export const ToolsDropdown: React.FC<{
   isBulk?: boolean,
   onClick: (action: string) => void,
-  isDisabled?: boolean,
 }> = ({
-  isBulk, onClick, isDisabled,
+  isBulk, onClick,
 }) => {
   const btn = (
-    <Button disabled={isDisabled}>
+    <Button>
       <ToolOutlined />
-      <span>{I18n.t('administration.scoring.subject_list.actions')}</span>
+      <span>{I18n.t('shared.tools')}</span>
       <DownOutlined />
     </Button>
   )
@@ -39,8 +38,8 @@ const getMenuProps = ({ onClick }: {onClick: (action: string) => void}): MenuPro
   const menuItems:MenuItem[] = []
 
   menuItems.push({
-    key: 'generate_results',
-    label: <span>{I18n.t('administration.ai_artifacts.generate_results')}</span>,
+    key: 'export_results',
+    label: <span>{I18n.t('admin.ai_artifacts_results_export')}</span>,
   })
 
   const handleMenuClick = ({ key }) => {

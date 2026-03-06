@@ -7,27 +7,48 @@ sr-Cyrl:
     add: Додати
     advanced: Напредне
     agree_and_continue: Слажем се и настави
+    approval_status: Статус одобрења
+    approved: Одобрено
+    approved_by: Одобрио
+    approvers_list: Листа одобрених
     archive: Архива чланака
     archived: Архивирано
+    assessed_by: Проценио
+    assessment: Оцењивање
+    assessment_id: Идентификација процене
+    assessment_list: Списак процене
+    assessment_name: Назив процене
+    assessor_approved: Оцењивач одобрио
+    assessors_list: Списак процењивача
     asset_not_present: Имовина није присутна
     audio: Аудио
     authentication_failed: Аутентификација није успела. Покушајте поново.
+    back: Назад
     basic: Основне
     camera_preview: Преглед камере ће се појавити овде
+    campaign: Кампања
     campaign_id: ИД кампање
     cancel: Откажи
     change_password: Промена лозинке
     clear_filters: Обриши филтере
+    client: Клијент
     collaborative_learning: Колаборативно учење
     completed: Завршено
     configurations: Конфигурације
     confirm: Потврди
     continue: Наставите
+    controller: Контролер
+    cookies_statement: Изјава о колачићима
     copy: Копирај
     created_at: Креирано у
     created_date: Датум креирања
+    custom_consent_text: Прилагођени текст сагласности
+    custom_consent_text_required: За улогу података контролера потребан је прилагођени текст сагласности.
+    data_role: Улога података
     decline: Претраживање
     description: Опис
+    desktop_or_laptop_recommended: Препоручује се десктоп или лаптоп
+    desktop_or_laptop_required: Потребан десктоп или лаптоп
     download: Преузми
     download_audio: Преузми аудио
     download_transcription: Преузми транскрипт
@@ -37,6 +58,7 @@ sr-Cyrl:
     email: Е-пошта
     export: Извоз
     failed: Неуспело
+    'false': false
     first_name: Презиме
     formal_learning: Формално учење
     generate: Генериши
@@ -50,6 +72,7 @@ sr-Cyrl:
     internet_disconnected_message: Покушавам поновно повезивање. Проверите интернет везу.
     last_name: Презиме
     learning_on_the_job_label: Учење на послу
+    loading: Учитавање...
     login: Пријавите се
     maintenance_in_hours: "%{hours} сати"
     maintenance_in_minutes: "%{minutes} минута"
@@ -60,20 +83,28 @@ sr-Cyrl:
     maintenance_upcoming_title: Предстојеће одржавање
     media_question_transcriptions: Транскрипти медијских питања
     media_responses: Реакције медија
+    mobile_proctoring_disabled_instructions: За наставак ове процене потребан је десктоп или лаптоп. Молимо вас да пређете на рачунар како бисте завршили активност.
+    mobile_proctoring_enabled_instructions: За најбоље искуство, молимо вас да пређете на десктоп или лаптоп рачунар ако га имате на располагању. Ако је потребно, можете наставити на мобилном уређају.
     modified_by: Измењено од стране
     modified_date: Датум измене
     more_actions: Више акција
     mte_logo_alt_text: Мерцер Талент Ентерприсе лого
     na_text: Н/А
     name: Име
+    negative: Негативно
     new: Нови
     no_results_found: Није пронађено ниједно резултат
     not_requested: Још није затражено
     ok: У реду
     pending: У току
+    policy_version: Верзија политике
+    policy_version_format: Дозвољени су само цели бројеви.
+    positive: Позитивно
     processing: Обрада
+    processor: Процесор
     proctoring_maintenance_active: Проктинг је тренутно у одржавању са %{start_time} на %{end_time}. Молимо покушајте поново након завршетка прозора за одржавање.
     proctoring_maintenance_upcoming: Прокторинг ће бити у одржавању од %{start_time} до %{end_time}.
+    project: Пројекат
     question_id: Идентификациони број питања
     question_transcription_disabled: Транскрипција је онемогућена за ово питање
     rec: СНИМАЊЕ
@@ -84,14 +115,20 @@ sr-Cyrl:
     removed: Уклоњена
     replace: Заменити
     reset_password: Поништавање лозинке
+    response_text: Текст одговора
     rte_paste_content_exceeds_char_limit: Текст прелази ограничење знакова {{маxЦхарацтерЛимит}} и не може се налепити.
     rte_paste_content_exceeds_word_limit: Текст прелази ограничење речи {{маxWордЛимит}} и не може се налепити.
     save: Сачувај
     saving_video: Сачувај видео... Молимо вас да не затварате или освежавате прегледач.
+    scoring_details: Детаљи бодовања
     search: Претраге
     send_email: Пошаљи е-пошту
     show_more: Прикажи још
     something_wrong: Нешто је пошло наопако. Контактирајте свог администратора
+    status: Статус
+    subject: Предмет
+    submit: Пошаљи
+    switch_to_laptop_or_desktop: Пређите на лаптоп или десктоп
     table:
       entries:
         selected:
@@ -108,9 +145,12 @@ sr-Cyrl:
     transcription_not_enabled: Транскрипција није омогућена за медијски одговор
     transcription_status: Статус транскрипције
     transcriptions: Транскрипције
+    'true': true
     try_again: Покушај поново
     tte_terms_and_condition: Услови и приватност
     type: Тип
     update: Ажурирање
+    update_failed: Ажурирање није успело
+    updated_successfully: Успешно ажурирано
     video: Видео
     view: Приказ

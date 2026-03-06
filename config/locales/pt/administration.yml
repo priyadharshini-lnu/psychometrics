@@ -80,7 +80,6 @@ pt:
         title: Artefato de IA
       generate: Gerar
       generate_result_info_message: Os resultados estão sendo gerados, atualize a página para ver os resultados atualizados.
-      generate_results: Gerar resultados
       generated_at: Gerado em
       generated_at_time: Gerado em %{time}
       generated_value: Valor Gerado
@@ -736,6 +735,21 @@ pt:
       errors:
         invalid_headers: 'Os seguintes cabeçalhos são inválidos: %{headers}'
     campaign_report:
+      bulk_assets_upload:
+        errors:
+          csv_and_zip_must_exist: Os arquivos CSV e ZIP devem ser carregados antes de iniciar.
+          csv_cannot_be_empty: O arquivo CSV não pode estar vazio.
+          csv_contains_blank_values: O CSV contém valores em branco. Todos os valores user_email e file_name devem estar presentes.
+          csv_file_name_must_be_unique: Os valores do nome do arquivo CSV devem ser únicos.
+          csv_must_contain_two_headers: 'O CSV deve ter exatamente duas colunas com cabeçalhos: %{headers}'
+          csv_user_emails_must_be_unique: Os valores CSV user_email devem ser únicos.
+          failed_to_attach_file: 'Falha ao anexar arquivo para e-mail: %{email}. Erro: %{error_message}'
+          file_names_in_csv_must_be_of_type_pdf: O CSV contém entradas de nome_de_arquivo inválidas. Todos os valores de nome_de_arquivo no CSV devem ter a extensão .pdf.
+          file_processing_error: 'Erros encontrados no processamento do arquivo: %{error_message}'
+          max_emails_in_csv: Máximo de entradas user_email permitidas no CSV (%{max}). Seu CSV contém entradas user_email no formato %{count}.
+          missing_user_reports: 'Relatórios de usuários ausentes para e-mails: %{emails}'
+          no_file_found_in_extracted_zip: Nenhum arquivo encontrado no ZIP extraído
+          user_report_not_found: 'Relatório do usuário não encontrado para o e-mail: %{email}'
       bulk_download:
         data_range_error: Selecione o intervalo de datas
         modal:
@@ -840,6 +854,16 @@ pt:
           report: Relatório
           send_digest_emails: Enviar e-mails de resumo
           settings: Definições
+        scoring_approval:
+          allow_bulk_approve: Permitir aprovação em massa
+          allow_bulk_approve_scores: Permitir aprovação em massa de pontuações
+          approver_users: Usuários aprovadores
+          approvers: Aprovadores
+          assessment: Avaliação
+          assessor_users: Usuários avaliadores
+          modal_title: Configurações de aprovação de pontuação
+          remove_modal_success: 'A configuração de aprovação para o ID de avaliação: %{assessmentId} foi excluída com sucesso.'
+          remove_modal_text: 'Tem certeza de que deseja excluir esta configuração para o ID de avaliação: %{assessmentId}?'
       assessors:
         spoof:
           successfully: O seu login foi efectuado com sucesso como %{name}
@@ -1006,6 +1030,8 @@ pt:
         ai_assistants_disabled_by_client: Os assistentes de IA são desativados pelo cliente
         ai_assisted_idp: PDI assistida por IA
         ai_assisted_idp_requires_ai_assistants: O IDP assistido por IA requer que o recurso AI Assistants seja ativado
+        ai_content_analysis: Análise de conteúdo por IA
+        ai_content_analysis_disabled_by_client: A análise de conteúdo de IA está desativada pelo cliente
         ai_translation: Traduções com IA
         ai_translation_disabled_by_client: As traduções por IA estão desativadas pelo cliente
         global_skills: Competências globais
@@ -2541,6 +2567,7 @@ pt:
     message: Mensagem
     meta_title: Painel de administração
     navigation:
+      approvals: Aprovações
       audit_logs: Registos de auditoria
       availability: Disponibilidade
       configuration: Configuração
@@ -3207,9 +3234,11 @@ pt:
         actions: Acções
         approval_status: Estado de aprovação
         approved_by: Aprovado por
+        assessed_by: Avaliado por
         campaign_name: Nome da campanha
         qc_by: CQ Por
         report_name: Nome do relatório
+        subject_email: Assunto E-mail
         user_email: E-mail do utilizador
         user_name: Nome do utilizador
       dashboard: Painel de controlo
@@ -3774,6 +3803,11 @@ pt:
         tools: Ferramentas
         weightages: Pesos
       weighted_average: Média ponderada
+    scoring_approval:
+      approve_all: Aprovar tudo
+      bulk_approve_success: "%{approved} notas aprovadas."
+      review: Revisão
+      score_approvals: Aprovações de pontuação de IA
     search: Pesquisar
     security_setting:
       180_days: 180 dias

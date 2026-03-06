@@ -12,6 +12,9 @@ hi:
         user_not_found: उपयोगकर्ता नहीं मिला या एक ही परियोजना का हिस्सा नहीं है
       admin:
         already_added: ईमेल पहले से ही जोड़ दिया गया है।
+      ai_scoring_approval_settings:
+        assessment_exists: इस मूल्यांकन के लिए एआई स्कोरिंग अनुमोदन सेटिंग पहले से ही मौजूद है।
+        validates_admins: प्रशासकों के पास अभियान तक पहुंच नहीं है।
       already_assigned?: इस मूल्यांकन को लिंक नहीं किया जा सकता - यह पहले से ही '%{linked_assessor_form_name}' को आवंटित है।
       already_invited: आप जिस मूल्यांकन केंद्र में इस उपयोगकर्ता को जोड़ने का प्रयास कर रहे हैं, वह पहले से ही मौजूद है।
       assessor_assessment:

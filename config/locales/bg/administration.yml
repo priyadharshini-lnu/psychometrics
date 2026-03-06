@@ -80,7 +80,6 @@ bg:
         title: AI артефакт
       generate: Пораждам
       generate_result_info_message: Резултатите се генерират, моля, опреснете страницата, за да видите актуализираните резултати.
-      generate_results: Генериране на резултати
       generated_at: Генерирано в
       generated_at_time: Генерирано в %{time}
       generated_value: Генерирана стойност
@@ -736,6 +735,21 @@ bg:
       errors:
         invalid_headers: 'Следните заглавия са невалидни: %{headers}'
     campaign_report:
+      bulk_assets_upload:
+        errors:
+          csv_and_zip_must_exist: Преди да започнете, трябва да качите CSV и ZIP файловете.
+          csv_cannot_be_empty: CSV файлът не може да бъде празен.
+          csv_contains_blank_values: CSV съдържа празни стойности. Всички стойности за user_email и file_name трябва да са налице.
+          csv_file_name_must_be_unique: Стойностите в CSV файла трябва да са уникални.
+          csv_must_contain_two_headers: CSV файлът трябва да има точно 2 колони със заглавия:%{headers}
+          csv_user_emails_must_be_unique: Стойностите на CSV user_email трябва да са уникални.
+          failed_to_attach_file: 'Не е възможно да се прикачи файл към имейл: %{email}. Грешка: %{error_message}'
+          file_names_in_csv_must_be_of_type_pdf: CSV съдържа невалидни записи за имена на файлове. Всички стойности за имена на файлове в CSV трябва да имат разширение .pdf.
+          file_processing_error: 'Грешки, открити при обработката на файла: %{error_message}'
+          max_emails_in_csv: Максимално допустими записи user_email в CSV файла%{max}. Вашият CSV файл съдържа записи user_email%{count}.
+          missing_user_reports: 'Липсващи потребителски доклади за имейли: %{emails}'
+          no_file_found_in_extracted_zip: Не е намерен файл в извлечения ZIP файл
+          user_report_not_found: 'Не е намерен потребителски доклад за имейл: %{email}'
       bulk_download:
         data_range_error: Моля, изберете диапазон от дати
         modal:
@@ -840,6 +854,16 @@ bg:
           report: Доклад
           send_digest_emails: Изпращайте дайджест имейли
           settings: Настройки
+        scoring_approval:
+          allow_bulk_approve: Разреши масово одобрение
+          allow_bulk_approve_scores: Разреши масово одобряване на резултати
+          approver_users: Потребители с право на одобрение
+          approvers: Одобряващи
+          assessment: Оценка
+          assessor_users: Потребители на оценители
+          modal_title: Настройки за одобрение на оценки
+          remove_modal_success: 'Настройката за одобрение за идентификационен номер на оценката: %{assessmentId} беше успешно изтрита.'
+          remove_modal_text: 'Сигурен ли сте, че искате да изтриете тази настройка за идентификационен номер на оценката: %{assessmentId}?'
       assessors:
         spoof:
           successfully: Вие влязохте успешно като %{name}
@@ -1006,6 +1030,8 @@ bg:
         ai_assistants_disabled_by_client: AI Assistants е деактивиран от клиента
         ai_assisted_idp: Подпомагано от AI IDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP изисква функцията AI Assistants да бъде активирана
+        ai_content_analysis: Анализ на съдържанието с изкуствен интелект
+        ai_content_analysis_disabled_by_client: Анализът на съдържанието с изкуствен интелект е деактивиран от клиента
         ai_translation: Преводи с изкуствен интелект
         ai_translation_disabled_by_client: AI Translations е деактивирана от клиента
         global_skills: Глобални умения
@@ -2541,6 +2567,7 @@ bg:
     message: Съобщение
     meta_title: Административен панел
     navigation:
+      approvals: Одобрения
       audit_logs: Регистрационни файлове за одит
       availability: Наличност
       configuration: Конфигурация
@@ -3207,9 +3234,11 @@ bg:
         actions: Действия
         approval_status: Статус на одобрение
         approved_by: Одобрен от
+        assessed_by: Оценено от
         campaign_name: Име на кампанията
         qc_by: QC от
         report_name: Име на отчета
+        subject_email: Тема на имейла
         user_email: Потребителски имейл
         user_name: Потребителско име
       dashboard: Таблото
@@ -3771,6 +3800,11 @@ bg:
         tools: Инструменти
         weightages: Тежести
       weighted_average: Среднопретеглената
+    scoring_approval:
+      approve_all: Одобри всички
+      bulk_approve_success: "%{approved} одобрени резултати."
+      review: Преглед
+      score_approvals: Одобрения на AI оценки
     search: Търсене
     security_setting:
       180_days: 180 дни

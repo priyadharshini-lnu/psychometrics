@@ -862,6 +862,7 @@ nl:
         bulk_reports: Bulkrapporten
         bulk_rescore_campaign_factors: Bulk Rescore-campagnefactoren
         bulk_update_evaluation_status: Evaluatiestatus bulkupdate
+        campaign_report_extract_and_upload_bulk_assets: Campagnerapport Bulkbestanden uploaden
         compact_completion_status_export: Export van compacte voltooiingsstatus
         completion_status_export: Export van voltooiingsstatus
         copy_as_template_or_campaign: Campagne kopiëren als sjabloon
@@ -871,6 +872,7 @@ nl:
         export_admin_with_permissions: Admin exporteren met machtigingen
         export_assessment_questions: Vragen over exportbeoordeling
         export_campaign_ai_artifacts: Exportcampagne-AI-artefacten
+        export_campaign_ai_artifacts_results: Exporteer resultaten van AI-artefacten van campagnes
         export_campaign_factors: Factoren voor exportcampagnes
         export_campaign_scorings: Campagne scorings exporteren
         export_dashboard_as_file: Dashboard exporteren als bestand
@@ -1274,6 +1276,7 @@ nl:
     record_not_found: Record niet gevonden
     user_not_authorized: Gebruiker niet geautoriseerd
   auth:
+    cookies_link: <a href="%{cookies_url}">Cookiesverklaring</a>
     current_password: Huidig wachtwoord
     current_password_placeholder: Huidig wachtwoord invoeren
     email: E-mail
@@ -1319,6 +1322,7 @@ nl:
     password_confirmation: Wachtwoord bevestigen
     password_confirmation_placeholder: Wachtwoord bevestigen
     password_placeholder: Voer wachtwoord in
+    privacy_statement_link: <a href="%{privacy_url}">Privacyverklaring</a>
     registration:
       description: Vul de onderstaande gegevens in om te registreren en een nieuwe account aan te maken
       email_hint: We respecteren je privacy en tolereren geen spam. We zullen je gegevens nooit doorgeven aan derden
@@ -1343,7 +1347,6 @@ nl:
       title: Wachtwoord aanmaken
     sign_out: Inloggen als andere gebruiker
     sign_up: Aanmelden
-    terms_link: <a href="%{terms_url}">Voorwaarden en privacyverklaring</a>
     verify_mobile_number:
       error:
         blocked: Dit nummer is geblokkeerd vanwege te veel pogingen.
@@ -2748,21 +2751,41 @@ nl:
           learn: "<strong>10%</strong>Formeel leren"
         content:
           list:
-            r1: Houd er rekening mee dat deze lijst slechts indicatief is en dat aanvullende ontwikkelingstrajecten voor u kunnen worden overwogen op basis van individuele ambities, aanbevelingen van uw manager en zakelijke prioriteiten van de organisatie.
-            r2: Houd er rekening mee dat de lancering van sommige van deze ontwikkelingstrajecten afhangt van de organisatiebrede onderwijs- en leerstrategie.
-            r3: Houd bij het ontwikkelen van uw individuele ontwikkelingsplan rekening met de aanbevolen paden zoals hieronder gekruist.
-          main: Dit gedeelte bevat een cumulatieve lijst van alle ontwikkelingstrajecten, rekening houdend met best practice learning, d.w.z. de 70-20-10-richtlijn, die een progressieve reis biedt die klassikaal leren, coaching en on-the-job leren combineert. Op basis van de resultaten van de ervaring met leiderschapsontwikkeling en zakelijke prioriteiten zijn mogelijke ontwikkelingspaden aanbevolen, die in aanmerking kunnen komen voor uw ontwikkeling.
+            r1: Houd er rekening mee dat deze lijst slechts indicatief is en dat er aanvullende ontwikkelingspaden voor u kunnen worden overwogen op basis van individuele ambities, aanbevelingen van uw manager en zakelijke prioriteiten van de organisatie.
+            r2: Gebruikers worden aangemoedigd om alle inhoud kritisch te bekijken en zijn vrij om acties of aanbevelingen waarmee zij het niet eens zijn, te wijzigen, te verfijnen, te vervangen of aan te vullen.
+            r3: 'De ontwikkelingsinputs in dit rapport kunnen afkomstig zijn uit een of beide van de volgende bronnen:'
+            r3a: Een op maat gemaakte ontwikkelingsbibliotheek voor uw organisatie
+            r3b: Door AI gegenereerde ontwikkelingsvoorstellen
+          main: Het opgestelde IDP bevat een gedetailleerde lijst met ontwikkelingsacties die u kunt ondernemen, rekening houdend met best practices op het gebied van leren, d.w.z. de 70-20-10-richtlijn, die een progressief traject biedt waarin klassikaal leren, coaching en leren op de werkplek worden gecombineerd. Op basis van de resultaten van het assessment center-proces, uw chatresponsen en externe rapporten, indien van toepassing, zijn mogelijke ontwikkelingspaden aanbevolen die in aanmerking kunnen worden genomen voor uw ontwikkeling.
         learn_cards:
           collaboration:
-            list: '[NL] ["Offer to coach or mentor others", "Request to be mentored by an expert in your field", "Attain a coach to support your development", "Set-up a collaborative working group to discuss on going challenges in the business", "Get feedback formally and informally from others", "Play an active role in industry associations and networks", "Build your own external networks"]'
+            list:
+            - Aanbod om anderen te coachen of te begeleiden
+            - Verzoek om begeleiding door een expert in uw vakgebied
+            - Zoek een coach om je ontwikkeling te ondersteunen
+            - Een samenwerkingsgroep oprichten om de huidige uitdagingen in het bedrijf te bespreken
+            - Vraag anderen formeel en informeel om feedback.
+            - Speel een actieve rol in brancheorganisaties en netwerken
+            - Bouw uw eigen externe netwerken
             title: Samenwerkend leren (20%) <br/> Ontwikkelen door anderen
           job:
-            list: '[NL] ["Assume leadership positions in stakeholder or management committees", "Volunteer to lead change management projects for the organization", "Consider taking on stretching assignments", "Work cross-collaboratively with other functions", "Consider leading projects outside your organization", "Work closely with external industry experts on joint-projects"]'
+            list:
+            - Leidinggevende functies bekleden in commissies van belanghebbenden of het management
+            - Vrijwilliger om veranderingsmanagementprojecten voor de organisatie te leiden
+            - Overweeg om rekoefeningen te doen
+            - Samenwerken met andere functies
+            - Overweeg om projecten buiten uw organisatie te leiden
+            - Werk nauw samen met externe experts uit de sector aan gezamenlijke projecten.
             title: Leren op de werkplek (70%) <br/> Ontwikkelen door ervaring
           learn:
-            list: '[NL] ["Assume leadership positions in stakeholder or management committees", "Volunteer to lead change management projects for the organization", "Consider taking on stretching assignments", "Work cross-collaboratively with other functions", "Consider leading projects outside your organization", "Work closely with external industry experts on joint-projects"]'
+            list:
+            - Neem deel aan gestructureerde trainingsprogramma's
+            - Volledige online e-learningcursussen
+            - Lees boeken, artikelen, publicaties
+            - Behaal professionele kwalificaties, certificeringen en accreditaties
+            - Cursussen, workshops en seminars bijwonen
             title: Formeel leren (10%) <br/> Ontwikkelen door gestructureerd leren
-        title: Richtlijnen om uw IDP te begeleiden
+        title: Gids voor uw IDP
       idp:
         end_date: Einddatum
         self_rating: Zelf beoordelen

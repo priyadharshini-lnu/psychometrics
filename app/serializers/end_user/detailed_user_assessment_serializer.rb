@@ -6,10 +6,30 @@ module EndUser
 
     attributes :id, :type, :url, :assessment_name, :timing, :assessment_category,
                :assessment_extra, :assessment_id, :available_locales,
-               :selected_locale, :privacy_consent_required, :campaign_id
+               :selected_locale, :privacy_consent_required, :campaign_id,
+               :custom_consent_text, :custom_consent_policy_version, :data_role,
+               :is_data_controller
 
     def privacy_consent_required
+      return true if is_data_controller
+
       context[:current_user].privacy_consent_required?
+    end
+
+    def custom_consent_text
+      object.assessment.custom_consent_text
+    end
+
+    def custom_consent_policy_version
+      object.assessment.policy_version
+    end
+
+    def data_role
+      object.assessment.data_role
+    end
+
+    def is_data_controller
+      object.assessment.data_role_controller?
     end
 
     def url

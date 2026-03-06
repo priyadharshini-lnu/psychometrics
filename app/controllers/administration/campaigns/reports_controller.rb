@@ -6,7 +6,9 @@ module Administration
   module Campaigns
     class ReportsController < Administration::Campaigns::BaseController
       before_action :set_resource, only: %i[destroy toggle_user_access toggle_assessor_access toggle_user_dashboard
-                                            toggle_main_report toggle_auto_assign update_default_and_available_locales]
+                                            toggle_main_report toggle_auto_assign update_default_and_available_locales
+                                            get_bulk_assets_zip_presigned_upload_url attach_bulk_asset_csv_and_zip
+                                            get_bulk_assets_csv_presigned_upload_url]
 
       def create
         audit! :create, resource, payload: resource_params, campaign: campaign
@@ -113,6 +115,40 @@ module Administration
         AdminJob.call(:export_report_data, { report_id: params[:id], campaign_id: campaign.id }, current_user)
 
         head :ok
+      end
+
+      def get_bulk_assets_zip_presigned_upload_url
+        resource.bulk_assets_zip.purge if resource.bulk_assets_zip.attached?
+        result = ObjectStorage::GetSingleSignedUploadUrl.call!(
+          model: resource, field: :bulk_assets_zip, file_name: params[:blob][:filename], blob_params: params[:blob]
+        )
+        render json: result
+      rescue StandardError => e
+        render json: { errors: [e.message] }, status: :unprocessable_entity
+      end
+
+      def get_bulk_assets_csv_presigned_upload_url
+        resource.bulk_assets_csv.purge if resource.bulk_assets_csv.attached?
+        result = ObjectStorage::GetSingleSignedUploadUrl.call!(
+          model: resource, field: :bulk_assets_csv, file_name: params[:blob][:filename], blob_params: params[:blob]
+        )
+        render json: result
+      rescue StandardError => e
+        render json: { errors: [e.message] }, status: :unprocessable_entity
+      end
+
+      def attach_bulk_asset_csv_and_zip
+        resource.bulk_assets_zip = params[:zip_signed_id]
+        resource.bulk_assets_csv = params[:csv_signed_id]
+        if resource.save
+          AdminJob.call(
+            :campaign_report_extract_and_upload_bulk_assets,
+            { campaign_report_id: params[:id] }, current_user
+          )
+          render json: :ok
+        else
+          render json: { errors: resource.errors.full_messages }, status: :unprocessable_entity
+        end
       end
 
       def assessments_and_reports

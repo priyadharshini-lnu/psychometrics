@@ -14,7 +14,8 @@ module AI::IdpChat
           }
         end
         on(:error) do |error_message, error|
-          handle_error_with_retry(error_message, error)
+          error_response = { content: { message: error_message, component: 'Error' } }
+          handle_error_with_retry(error_response, error)
         end
       end
 

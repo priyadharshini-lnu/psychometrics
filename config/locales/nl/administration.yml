@@ -80,7 +80,6 @@ nl:
         title: AI-artefact
       generate: Genereren
       generate_result_info_message: Resultaten worden gegenereerd, vernieuw de pagina om de bijgewerkte resultaten te zien.
-      generate_results: Resultaten genereren
       generated_at: Gegenereerd op
       generated_at_time: Gegenereerd op %{time}
       generated_value: Gegenereerde waarde
@@ -736,6 +735,21 @@ nl:
       errors:
         invalid_headers: 'De volgende headers zijn ongeldig: %{headers}'
     campaign_report:
+      bulk_assets_upload:
+        errors:
+          csv_and_zip_must_exist: Zowel CSV- als ZIP-bestanden moeten worden geüpload voordat u begint.
+          csv_cannot_be_empty: CSV-bestand mag niet leeg zijn.
+          csv_contains_blank_values: CSV bevat lege waarden. Alle user_email- en file_name-waarden moeten aanwezig zijn.
+          csv_file_name_must_be_unique: De waarden in het CSV-bestand moeten uniek zijn.
+          csv_must_contain_two_headers: 'CSV moet precies 2 kolommen met kopteksten bevatten: %{headers}'
+          csv_user_emails_must_be_unique: CSV-waarden voor user_email moeten uniek zijn.
+          failed_to_attach_file: 'Kan bestand niet bij e-mail voegen: %{email}. Fout: %{error_message}'
+          file_names_in_csv_must_be_of_type_pdf: CSV bevat ongeldige file_name-vermeldingen. Alle file_name-waarden in CSV moeten de extensie .pdf hebben.
+          file_processing_error: 'Fouten gevonden bij het verwerken van het bestand: %{error_message}'
+          max_emails_in_csv: Maximaal %{max} user_email vermeldingen toegestaan in CSV. Uw CSV bevat %{count} user_email vermeldingen.
+          missing_user_reports: 'Ontbrekende gebruikersrapporten voor e-mails: %{emails}'
+          no_file_found_in_extracted_zip: Geen bestand gevonden in uitgepakte ZIP
+          user_report_not_found: 'Gebruikersrapport niet gevonden voor e-mail: %{email}'
       bulk_download:
         data_range_error: Selecteer een datumbereik
         modal:
@@ -840,6 +854,16 @@ nl:
           report: Rapporteer
           send_digest_emails: Digest e-mails verzenden
           settings: Instellingen
+        scoring_approval:
+          allow_bulk_approve: Bulk goedkeuren toestaan
+          allow_bulk_approve_scores: Toestaan om scores in bulk goed te keuren
+          approver_users: Goedkeurende gebruikers
+          approvers: Goedkeurders
+          assessment: Beoordeling
+          assessor_users: Beoordelaars Gebruikers
+          modal_title: Instellingen voor goedkeuring van scores
+          remove_modal_success: 'De goedkeuringsinstelling voor beoordelings-id: %{assessmentId} is succesvol verwijderd.'
+          remove_modal_text: 'Weet u zeker dat u deze instelling voor beoordelings-id: %{assessmentId} wilt verwijderen?'
       assessors:
         spoof:
           successfully: U bent succesvol ingelogd als %{name}
@@ -1006,6 +1030,8 @@ nl:
         ai_assistants_disabled_by_client: AI-assistenten is uitgeschakeld door de client
         ai_assisted_idp: AI Geassisteerde IDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP vereist dat de functie AI Assistants is ingeschakeld
+        ai_content_analysis: AI-inhoudsanalyse
+        ai_content_analysis_disabled_by_client: AI-inhoudsanalyse is uitgeschakeld door de klant
         ai_translation: AI-vertalingen
         ai_translation_disabled_by_client: AI-vertalingen zijn uitgeschakeld door de klant
         global_skills: Wereldwijde vaardigheden
@@ -2541,6 +2567,7 @@ nl:
     message: Bericht
     meta_title: Administratiepaneel
     navigation:
+      approvals: Goedkeuringen
       audit_logs: Controlelogboeken
       availability: Beschikbaarheid
       configuration: Configuratie
@@ -3207,9 +3234,11 @@ nl:
         actions: Acties
         approval_status: Goedkeuringsstatus
         approved_by: Goedgekeurd door
+        assessed_by: Beoordeeld door
         campaign_name: Naam campagne
         qc_by: QC door
         report_name: Rapport Naam
+        subject_email: Onderwerp E-mail
         user_email: Gebruiker e-mail
         user_name: Gebruikersnaam
       dashboard: Dashboard
@@ -3774,6 +3803,11 @@ nl:
         tools: Gereedschap
         weightages: Wegingen
       weighted_average: Gewogen gemiddelde
+    scoring_approval:
+      approve_all: Alles goedkeuren
+      bulk_approve_success: "%{approved} scores goedgekeurd."
+      review: Beoordeling
+      score_approvals: AI-scoring goedkeuringen
     search: Zoek op
     security_setting:
       180_days: 180 dagen

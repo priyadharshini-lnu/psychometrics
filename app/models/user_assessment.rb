@@ -28,6 +28,7 @@ class UserAssessment < ApplicationRecord
   has_one :simulation_user_assessment, dependent: :destroy
   has_one :skillvue_user_assessment, dependent: :destroy
   has_one :project, through: :campaign
+  has_one :client, through: :project
   has_one :meeting_room, as: :meetable, dependent: :destroy
   has_one :threesixty_campaign, through: :campaign
   has_many :project_assessments, through: :project
@@ -364,6 +365,14 @@ class UserAssessment < ApplicationRecord
 
   def deemed_completed?
     DEEMED_COMPLETED_STATUS.include?(status)
+  end
+
+  def has_ai_scoring_approval_flow?
+    AI::ScoringApprovalSetting.exists?(campaign_id: campaign_id, assessment_id: assessment_id)
+  end
+
+  def auto_approve_scoring!
+    update!(approval_status: 'auto_approved', approval_status_updated_at: Time.current)
   end
 
   def update_norm!(norm_id)

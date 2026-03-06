@@ -19,6 +19,10 @@ class MediaResponse < ApplicationRecord
 
   before_create :set_user_selected
 
+  def transcription_completed?
+    transcription&.completed?
+  end
+
   def attachment_storage_path(attribute_name, filename)
     project_id = users_result.campaign.project_id
     "private/projects/#{project_id}/media_response/#{users_result_id}/#{question_id}/#{id}/#{attribute_name}/#{filename}" # rubocop:disable Layout/LineLength

@@ -6,9 +6,9 @@ module Imports
       class SingleMediaResponse
         def self.build_answers(data, question, duration, _use_scoring = false, assign)
           return nil if data.compact.blank?
-          return nil if data[1].blank?
+          return nil if data[2].blank?
 
-          media_record = MediaResponse.find_by_encoded_id(data[1]) # rubocop:disable Rails/DynamicFindBy
+          media_record = MediaResponse.find_by_encoded_id(data[2]) # rubocop:disable Rails/DynamicFindBy
           MediaResponses::FindOrCreateMediaResponseByUserResult.call!(media_record, assign, question)
 
           {

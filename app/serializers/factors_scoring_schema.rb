@@ -13,6 +13,15 @@ class FactorsScoringSchema < BaseSchema
         end
       end
       required(:question_id).filled(:str?)
+      required(:ai_scoring_config).hash do
+        optional(:what_to_look_for).maybe(:str?)
+        optional(:score_definitions).array do
+          hash do
+            required(:score).value(:str?)
+            required(:definition).value(:str?)
+          end
+        end
+      end
     end
   end
 end

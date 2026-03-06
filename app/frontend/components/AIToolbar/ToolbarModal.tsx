@@ -1,13 +1,12 @@
 import { useRef, useState, useCallback } from 'react'
-import {
-  Button, Flex, Modal, Typography,
-} from 'antd'
+import { Button, Flex, Modal } from 'antd'
 import { TextSelection } from '~/hooks/useInputsTextSelection'
 import { FroalaTextSelection } from '~/hooks/useFroalaTextSelection'
 import { AIEditorIcon } from '~/glint/icons'
 import {
   EditOutlined, GlobalOutlined, ScissorOutlined, IdcardOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
+import { SafeHTML } from '~/components/SafeHTML'
 import { AIOperation, ToolbarAction } from './types'
 import AIProcessor from './AIProcessor'
 import { ActionRenderer, ActionValue } from './ActionRenderer'
@@ -135,7 +134,12 @@ export function ToolbarModal ({ visible, selection, onCancel }: ToolbarModalProp
       >
         <Flex vertical style={{ width: '100%' }} ref={modalRefContainer}>
           <div style={{ border: '1px solid var(--light-grey-border)', padding: '8px', borderRadius: '4px' }}>
-            <Typography.Text>{selection?.selectedText || ''}</Typography.Text>
+            <SafeHTML
+              html={(selection as FroalaTextSelection)?.froalaEditor?.selectedHtml
+              || selection?.selectedText || ''}
+              as="span"
+              config="adminRichText"
+            />
             <Flex gap={12} wrap="wrap" className="mt24" justify="flex-end">
               {TOOLBAR_ACTIONS.map(action => (
                 <ActionRenderer

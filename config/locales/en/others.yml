@@ -862,6 +862,7 @@ en:
         bulk_reports: Bulk Reports
         bulk_rescore_campaign_factors: Bulk Rescore Campaign Factors
         bulk_update_evaluation_status: Bulk Update Evaluation Status
+        campaign_report_extract_and_upload_bulk_assets: Campaign Report Upload Bulk Assets
         compact_completion_status_export: Compact Completion Status Export
         completion_status_export: Completion Status Export
         copy_as_template_or_campaign: Copy Campaign as Template
@@ -871,6 +872,7 @@ en:
         export_admin_with_permissions: Export Admin With Permissions
         export_assessment_questions: Export Assessment Questions
         export_campaign_ai_artifacts: Export Campaign AI Artifacts
+        export_campaign_ai_artifacts_results: Export Campaign AI Artifacts Results
         export_campaign_factors: Export Campaign Factors
         export_campaign_scorings: Export Campaign Scorings
         export_dashboard_as_file: Export Dashboard as file
@@ -1277,6 +1279,7 @@ en:
     record_not_found: Record Not Found
     user_not_authorized: User Not Authorized
   auth:
+    cookies_link: <a href="%{cookies_url}">Cookies Statement</a>
     current_password: Current Password
     current_password_placeholder: Enter Current Password
     email: Email
@@ -1322,6 +1325,7 @@ en:
     password_confirmation: Confirm Password
     password_confirmation_placeholder: Enter Password Confirmation
     password_placeholder: Enter Password
+    privacy_statement_link: <a href="%{privacy_url}">Privacy Statement</a>
     registration:
       description: Fill in the details below to register and create a new account
       email_hint: We respect your privacy and do not tolerate spam. We will never give away your information to any third party
@@ -1346,7 +1350,6 @@ en:
       title: Create Password
     sign_out: Login as different user
     sign_up: Sign Up
-    terms_link: <a href="%{terms_url}">Terms and Privacy Statement</a>
     verify_mobile_number:
       error:
         blocked: This number is blocked due to too many attempts.
@@ -2765,10 +2768,12 @@ en:
           learn: "<strong>10%</strong>Formal Learning"
         content:
           list:
-            r1: Please note that this list is indicative only, and additional development pathways may be considered for you based on individual aspirations, recommendations from your manager as well as organisational business priorities.
-            r2: Please note that the launch of some of these development pathways will depend on the organisational wide education and learning strategy.
-            r3: Please consider the recommended pathways as crossed below, when developing your Individual Development Plan.
-          main: This section includes a cumulative list of all the development pathways, keeping in mind best practice learning i.e., 70-20-10 guideline, which provides a progressive journey combining classroom learning, coaching and on-the job learning. Based on the outcomes from the leadership development experience and business priorities, possible development pathways have been recommended, which can be considered for your development.
+            r1: Please note that this list is indicative only, and additional development pathways may be considered for you based on individual aspirations, recommendations from your manager as well as organizational business priorities.
+            r2: Users are encouraged to critically review all content, and are free to modify, refine, replace or add any actions or recommendations that they do not agree with.
+            r3: 'Development inputs included in this report may be derived from one or both of the following sources:'
+            r3a: A customized development library created for your organisation
+            r3b: AI generated development suggestions
+          main: The IDP created includes a detailed list of developmental actions that you can undertake, keeping in mind best practice learning i.e. 70-20-10 guideline, which provide a progressive journey combining classroom learning, coaching and on-the-job learning. Based on the outcomes from the assessment center process, your chat responses and external reports, as applicable, possible development pathways have been recommended, which can be considered for your development.
         learn_cards:
           collaboration:
             list:
@@ -2791,14 +2796,13 @@ en:
             title: Learning On the Job (70%) <br/> Developing through experience
           learn:
             list:
-            - Assume leadership positions in stakeholder or management committees
-            - Volunteer to lead change management projects for the organization
-            - Consider taking on stretching assignments
-            - Work cross-collaboratively with other functions
-            - Consider leading projects outside your organization
-            - Work closely with external industry experts on joint-projects
+            - Attend structured training programs
+            - Complete online e-learning courses
+            - Read books, article, publications
+            - Obtain professional qualifications, certifications and accreditations
+            - Attend courses, workshops, seminars
             title: Formal Learning (10%) <br/> Developing through structured learning
-        title: Guidelines to Guide your IDP
+        title: Guide to your IDP
       idp:
         end_date: End Date
         self_rating: Self Rating

@@ -12,6 +12,7 @@ import LogicElement from '~/modules/survey/models/logic/LogicElement'
 import Question from '~/modules/survey/models/Question'
 import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
 import Menu from '~/modules/survey/components/ModulesMenu'
+import { ScoringProperties } from '~/modules/survey/components/ScoringProperties'
 import { Properties } from '~/modules/survey/components/modules'
 import styles from './PropertyPanel.less'
 
@@ -34,9 +35,8 @@ const PropertyPanelComponent = (props) => {
     bottom: isOverflown ? 0 : 'unset',
   }
   const serializedQuestion = QuestionSerializer.wrap(question)
-  const { allowContentCopy, enableTranscription } = serializedQuestion.props
+  const { allowContentCopy } = serializedQuestion.props
   const View = Properties[`${serializedQuestion.type}Properties`]
-  const showEnableTranscription = ['AudioResponse', 'VideoResponse'].includes(serializedQuestion.type)
 
   useEffect(() => {
     const htmlElement = document.getElementsByTagName('html')[0]
@@ -164,17 +164,6 @@ const PropertyPanelComponent = (props) => {
     </div>
   )
 
-  const transcriptionProperties = showEnableTranscription ? (
-    <div className={styles.fieldset}>
-      <Checkbox
-        onChange={({ target: { checked } }) => serializedQuestion.changeProps({ enableTranscription: checked })}
-        defaultChecked={enableTranscription}
-      >
-        {I18n.t('admin.enable_transcription')}
-      </Checkbox>
-    </div>
-  ) : null
-
   return (
     <ConfigProvider componentSize="small">
       <div className={styles.main} style={style}>
@@ -190,7 +179,7 @@ const PropertyPanelComponent = (props) => {
           {questiontypeBtn}
           {customProperties}
           {commonProperties}
-          {transcriptionProperties}
+          <ScoringProperties model={serializedQuestion} />
           {defaultAction}
         </Space>
       </div>

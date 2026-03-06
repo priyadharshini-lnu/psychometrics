@@ -12,6 +12,9 @@ cs:
         user_not_found: Uživatel nebyl nalezen nebo není součástí stejného projektu
       admin:
         already_added: Admin s již přidaným e-mailem.
+      ai_scoring_approval_settings:
+        assessment_exists: Nastavení schválení AI skóre pro toto hodnocení již existuje.
+        validates_admins: Správci nemají přístup ke kampani.
       already_assigned?: Toto hodnocení nelze propojit - je již přiřazeno k '%{linked_assessor_form_name}'.
       already_invited: Tento uživatel již existuje v hodnotícím centru, které se pokoušíte přidat.
       assessor_assessment:

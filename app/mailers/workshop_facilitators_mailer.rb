@@ -16,7 +16,8 @@ class WorkshopFacilitatorsMailer < ApplicationMailer
     send_email(
       @user,
       subject:,
-      template_path: 'mailer/workshop_facilitators'
+      template_path: 'mailer/workshop_facilitators',
+      **admin_sender_attributes(workshop.campaign.project.client)
     )
   end
 
@@ -33,7 +34,8 @@ class WorkshopFacilitatorsMailer < ApplicationMailer
     send_email(
       @user,
       subject:,
-      template_path: 'mailer/workshop_facilitators'
+      template_path: 'mailer/workshop_facilitators',
+      **admin_sender_attributes(workshop.campaign.project)
     )
   end
 end

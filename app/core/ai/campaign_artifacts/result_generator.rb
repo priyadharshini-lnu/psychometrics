@@ -3,6 +3,8 @@
 module AI
   module CampaignArtifacts
     class ResultGenerator < BaseCommand
+      class ResponseError < StandardError; end
+
       private_attr_reader :campaign_ai_artifact, :current_user, :user, :error, :options, :artifact_parser,
                           :force_regenerate, :campaign
 
@@ -36,10 +38,9 @@ module AI
 
         # The generate_artifact_result! method will finish with successful completion signal
         # If it doesn't, this should be considered as an error by assistant service
-        broadcast(:error, error) if error.present?
+        broadcast(:error, error.message, error) if error.present?
       rescue AI::Utils::SuccessfulCompletionSignal => e
         res = e.data
-        add_license_usage(res)
         chat = chat_with_context.reload
         response = {
           parsed_dependencies: parsed_dependencies,
@@ -48,16 +49,13 @@ module AI
           output_tokens: chat.output_tokens
         }
         broadcast(:ok, response)
-      rescue AI::Utils::CampaignArtifactParser::Error, AI::Tools::Errors::MaximumRetryAttemptsExceededError => e
-        handle_artifact_result_error(e.message)
-        broadcast(:error, e.message)
+      rescue AI::Utils::CampaignArtifactParser::Error,
+             AI::Tools::Errors::MaximumRetryAttemptsExceededError, AI::Utils::AbortGenerationSignal => e
+        handle_artifact_result_error(e)
+        broadcast(:error, e.message, e)
       end
 
       private
-
-      def add_license_usage(response)
-        # TODO: Add license usage made by the current_user
-      end
 
       def has_enough_license?
         # TODO: Implement license check
@@ -77,10 +75,10 @@ module AI
             # This is the case when assistant didn't choose to use tool
             # which would trigger the completion signal
             # and prompt didn't include what to do in such case
-            handle_artifact_result_error(assistant_response[:message])
+            handle_artifact_result_error(ResponseError.new(assistant_response[:message]))
           end.
-          on(:error) do |error_message|
-            handle_artifact_result_error(error_message)
+          on(:error) do |_error_message, error|
+            handle_artifact_result_error(error)
           end.
           call
       end
@@ -104,14 +102,17 @@ module AI
         end
       end
 
-      def handle_artifact_result_error(error_message)
+      def handle_artifact_result_error(error)
+        artifact_result.error = error.message
+        artifact_result.parsed_dependencies =
+          error.is_a?(AI::Utils::CampaignArtifactParser::Error) ? nil : parsed_dependencies
+
         unless test_mode?
-          artifact_result.error = error_message
           artifact_result.save!
           campaign_artifact_assistant_chat.update!(ai_assisted_user_session_id: artifact_result.id)
         end
 
-        @error = error_message
+        @error = error
       end
 
       def artifact_result
@@ -125,13 +126,17 @@ module AI
       def content_writer_tools
         save_results = !test_mode?
 
-        [AI::Tools::CampaignArtifactResultManager.new(
-          campaign_ai_artifact, user,
-          save_results: save_results,
-          parsed_dependencies: parsed_dependencies,
-          chat: campaign_artifact_assistant_chat,
-          campaign_user: campaign_user
-        )]
+        [
+          AI::Tools::CampaignArtifactResultManager.new(
+            campaign_ai_artifact, user,
+            save_results: save_results,
+            parsed_dependencies: parsed_dependencies,
+            chat: campaign_artifact_assistant_chat,
+            campaign_user: campaign_user,
+            artifact_checksum: campaign_ai_artifact.dependencies_checksum
+          ),
+          AI::Tools::AbortArtifactGeneration
+        ]
       end
 
       def should_regenerate?
@@ -146,7 +151,7 @@ module AI
         schema_keys_changed = artifact_result.schema_keys_changed?
         parsed_dependencies_changed = artifact_result.parsed_dependencies != campaign_instructions_and_dependencies
 
-        schema_keys_changed || parsed_dependencies_changed
+        (schema_keys_changed || parsed_dependencies_changed) || checksum_changed?
       end
 
       def campaign_artifact_assistant
@@ -162,7 +167,12 @@ module AI
       end
 
       def campaign_user
-        @campaign_user ||= CampaignUser.find_by(campaign_id: campaign.id, user_id: user.id)
+        # user is not present when doing test generation
+        @campaign_user ||= CampaignUser.find_by(campaign_id: campaign.id, user_id: user&.id)
+      end
+
+      def checksum_changed?
+        artifact_result.content_checksum != campaign_ai_artifact.dependencies_checksum
       end
     end
   end

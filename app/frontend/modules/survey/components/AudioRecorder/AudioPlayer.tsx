@@ -65,8 +65,6 @@ export const AudioPlayer: React.FC<Props> = ({
     onComplete()
   }
 
-  const playPercentage = () => Math.round((currentTime / duration) * 100)
-
   const updateProgress = () => {
     hideLoadingIndicator()
     if (playerRef.current) {
@@ -95,6 +93,8 @@ export const AudioPlayer: React.FC<Props> = ({
       setCurrentTime(currentTime)
     }
   }
+
+  const playPercentage = Math.round((currentTime / duration) * 100)
 
   return (
     <div>
@@ -129,7 +129,7 @@ export const AudioPlayer: React.FC<Props> = ({
         </Col>
         <Col flex="1 0 auto">
           <Slider
-            value={playPercentage()}
+            value={playPercentage || 0}
             onChange={changeCurrentTime}
             max={100}
             tooltip={{ open: false }}

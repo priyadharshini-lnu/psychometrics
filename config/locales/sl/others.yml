@@ -862,6 +862,7 @@ sl:
         bulk_reports: Poročila v velikem obsegu
         bulk_rescore_campaign_factors: Dejavniki množične ponovne ocene oglaševalske akcije
         bulk_update_evaluation_status: Status ocenjevanja množične posodobitve
+        campaign_report_extract_and_upload_bulk_assets: Poročilo o kampanji Prenos večjih datotek
         compact_completion_status_export: Izvoz stanja kompaktnega dokončanja
         completion_status_export: Izvoz stanja dokončanja
         copy_as_template_or_campaign: Kopiranje kampanje kot predloge
@@ -871,6 +872,7 @@ sl:
         export_admin_with_permissions: Izvoz skrbnika z dovoljenji
         export_assessment_questions: Vprašanja za oceno izvoza
         export_campaign_ai_artifacts: Artefakti umetne inteligence izvoznih kampanj
+        export_campaign_ai_artifacts_results: Izvoz rezultatov kampanje AI artefaktov
         export_campaign_factors: Dejavniki izvozne oglaševalske akcije
         export_campaign_scorings: Izvozne kampanje
         export_dashboard_as_file: Izvozi nadzorno ploščo kot datoteko
@@ -1274,6 +1276,7 @@ sl:
     record_not_found: Zapisa ni bilo mogoče najti
     user_not_authorized: Uporabnik ni pooblaščen
   auth:
+    cookies_link: <a href="%{cookies_url}">Izjava o piškotkih</a>
     current_password: Trenutno geslo
     current_password_placeholder: Vnesite trenutno geslo
     email: E-pošta
@@ -1319,6 +1322,7 @@ sl:
     password_confirmation: Potrdite geslo
     password_confirmation_placeholder: Za potrditev ponovno vnesite geslo
     password_placeholder: Vnesite geslo
+    privacy_statement_link: <a href="%{privacy_url}">Izjava o zasebnosti</a>
     registration:
       description: Vnesite spodnje podatke, da ustvarite nov račun
       email_hint: Spoštujemo vašo zasebnost in ne dopuščamo pošiljanja neželene pošte. Vaših podatkov ne bomo nikoli razkrili ali posredovali tretjim osebam
@@ -1343,7 +1347,6 @@ sl:
       title: Ustvarjanje gesla
     sign_out: Prijavite se kot drug uporabnik
     sign_up: Prijavite se
-    terms_link: <a href="%{terms_url}">Pogoji uporabe in izjava o zasebnosti</a>
     verify_mobile_number:
       error:
         blocked: Številka je blokirana zaradi prevelikega števila poskusov.
@@ -2762,10 +2765,12 @@ sl:
           learn: "<strong>10%</strong>Formalno učenje"
         content:
           list:
-            r1: Upoštevajte, da je ta seznam le okviren in da lahko razmislite o dodatnih razvojnih poteh na podlagi posameznih želja, priporočil vašega vodje in poslovnih prioritet organizacije.
-            r2: Upoštevajte, da bo uvedba nekaterih od teh razvojnih poti odvisna od strategije izobraževanja in učenja v celotni organizaciji.
-            r3: Prosimo, upoštevajte priporočene poti, kot so prečkane spodaj, pri razvoju vašega individualnega razvojnega načrta.
-          main: Ta razdelek vključuje kumulativni seznam vseh razvojnih poti, pri čemer je treba upoštevati najboljše prakse učenja, tj. smernice 70-20-10, ki zagotavljajo progresivno potovanje, ki združuje učenje v učilnici, coaching in učenje na delovnem mestu. Na podlagi rezultatov izkušenj z razvojem vodstva in poslovnih prioritet so bile priporočene možne razvojne poti, ki jih lahko upoštevate za vaš razvoj.
+            r1: Upoštevajte, da je ta seznam zgolj okviren in da se lahko za vas upoštevajo dodatne možnosti razvoja na podlagi individualnih želja, priporočil vašega nadrejenega ter poslovnih prioritet organizacije.
+            r2: Uporabniki so pozvani, da kritično pregledajo vso vsebino in lahko prosto spreminjajo, izboljšujejo, nadomeščajo ali dodajajo kakršna koli dejanja ali priporočila, s katerimi se ne strinjajo.
+            r3: 'Podatki o razvoju, vključeni v to poročilo, lahko izhajajo iz enega ali obeh naslednjih virov:'
+            r3a: Prilagojena razvojna knjižnica, ustvarjena za vašo organizacijo
+            r3b: Predlogi za razvoj, ustvarjeni z umetno inteligenco
+          main: Ustvarjeni IDP vključuje podroben seznam razvojnih ukrepov, ki jih lahko izvedete, ob upoštevanju najboljših praks učenja, tj. smernic 70-20-10, ki zagotavljajo postopno pot, ki združuje učenje v učilnici, coaching in učenje na delovnem mestu. Na podlagi rezultatov procesa ocenjevalnega centra, vaših odgovorov v klepetu in zunanjih poročil, če je to primerno, so bili priporočeni možni razvojni poti, ki jih lahko upoštevate pri svojem razvoju.
         learn_cards:
           collaboration:
             list:
@@ -2788,14 +2793,13 @@ sl:
             title: Učenje na delovnem mestu (70 %) <br/> Razvoj skozi izkušnje
           learn:
             list:
-            - Prevzemite vodilne položaje v odborih ali upravnih skupinah
-            - Prostovoljno vodite projekte sprememb v organizaciji
-            - Razmislite o zahtevnejših nalogah
-            - Sodelujte z drugimi oddelki
-            - Vodite projekte zunaj vaše organizacije
-            - Sodelujte z zunanjimi strokovnjaki pri skupnih projektih
+            - Udeležite se strukturiranih programov usposabljanja
+            - Opravite spletne tečaje e-učenja
+            - Preberite knjige, članke, publikacije
+            - Pridobite strokovne kvalifikacije, certifikate in akreditacije
+            - Udeležba na tečajih, delavnicah, seminarjih
             title: Formalno učenje (10 %) <br/> Razvoj s strukturiranim učenjem
-        title: Smernice za vodenje vašega IDP
+        title: Vodnik za vaš IDP
       idp:
         end_date: Datum zaključka
         self_rating: Samoocena

@@ -163,6 +163,7 @@ module Swagger
             first_name: { type: 'string', 'x-nullable': true },
             last_name: { type: 'string', 'x-nullable': true },
             email: { type: 'string' },
+            gender: { type: 'string', enum: %w[male female not_disclosed], 'x-nullable': true },
             user_external_id: {
               type: 'string',
               'x-nullable': true,
@@ -212,6 +213,7 @@ module Swagger
             first_name: { type: 'string', 'x-nullable': true },
             last_name: { type: 'string', 'x-nullable': true },
             email: { type: 'string', 'x-nullable': true },
+            gender: { type: 'string', enum: %w[male female not_disclosed], 'x-nullable': true },
             campaigns: { type: 'array', items: { '$ref' => '#/definitions/NewUserCampaign' }, 'x-nullable': true },
             project_datasheet: { '$ref' => '#/definitions/Datasheet', 'x-nullable': true }
           }
@@ -743,6 +745,7 @@ module Swagger
             first_name: { type: 'string' },
             last_name: { type: 'string' },
             email: { type: 'string' },
+            gender: { type: 'string', enum: %w[male female not_disclosed], 'x-nullable': true },
             campaigns: { type: 'array', items: { '$ref': '#/definitions/UserCampaign' } },
             campaign_ids: {
               type: 'array',

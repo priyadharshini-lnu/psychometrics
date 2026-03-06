@@ -8,11 +8,13 @@ class AssessorNotificationMailer < ApplicationMailer
 
     @grouped_subjects = get_grouped_subjects_with_assessments(user_assessments_ids)
 
+    first_project = UserAssessment.where(id: user_assessments_ids).first&.project
     send_email(
       @assessor_user,
       subject: t('administration.assessor.mailer.subject'),
       template_path: 'mailer/assessor_notification',
-      template_name: 'new_assignment'
+      template_name: 'new_assignment',
+      **admin_sender_attributes(first_project&.client)
     )
   end
 

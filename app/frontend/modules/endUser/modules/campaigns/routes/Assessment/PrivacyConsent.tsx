@@ -43,20 +43,39 @@ const connector = connect(
 
 type Props = ConnectedProps<typeof connector> & {
   onAccept: () => void
+  assessmentCustomConsentText?: string
+  isDataController?: boolean
+  assessmentCustomConsentPolicyVersion?: number
+  campaignId?: number
+  assessmentId?: number
 }
 
 export const PrivacyConsentComponent: FC<Props> = ({
-  privacyPolicyVersion, acceptPolicy, fetchPolicy, policy, onAccept, customPrivacyConsentText, privacyText, privacyLink,
-  enablePrivacyLink,
+  privacyPolicyVersion, acceptPolicy, fetchPolicy, policy, onAccept, customPrivacyConsentText,
+  assessmentCustomConsentText, isDataController, assessmentCustomConsentPolicyVersion,
+  privacyText, privacyLink, enablePrivacyLink, campaignId, assessmentId,
 }) => {
   const [accepted, setAccepted] = useState(false)
 
+  const consentText = isDataController
+    ? assessmentCustomConsentText
+    : customPrivacyConsentText
+
   useEffect(() => {
-    !customPrivacyConsentText && fetchPolicy(privacyPolicyVersion)
+    !consentText && fetchPolicy(privacyPolicyVersion)
   }, [])
 
   const accept = () => {
-    acceptPolicy(privacyPolicyVersion).then(() => {
+    const version = isDataController
+      ? assessmentCustomConsentPolicyVersion
+      : privacyPolicyVersion
+    const payload = {
+      version,
+      campaignId,
+      assessmentId,
+    }
+
+    acceptPolicy(payload).then(() => {
       onAccept()
     })
   }
@@ -97,12 +116,12 @@ export const PrivacyConsentComponent: FC<Props> = ({
       </Header>
       <Content className={styles.container}>
         <div className={cs(styles.privacyPageContent)}>
-          {policy?.content || customPrivacyConsentText
+          {policy?.content || consentText
             ? (
               <div className={styles.policyContent}>
                 <Paragraph>
-                  {customPrivacyConsentText
-                    ? <SafeHTML html={customPrivacyConsentText} config="adminRichText" />
+                  {consentText
+                    ? <SafeHTML html={consentText} config="adminRichText" />
                     : (
                       <ReactMarkdown>
                         {processPolicyContent(policy.content, globalLink, privacyLink)}

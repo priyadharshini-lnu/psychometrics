@@ -183,4 +183,86 @@ RSpec.describe AI::CampaignArtifact, type: :model do
       end
     end
   end
+
+  describe 'checksum recalculation' do
+    let(:campaign) { create(:campaign) }
+    let(:campaign_artifact) { create(:campaign_ai_artifact, campaign: campaign, ai_assistant: assistant) }
+    let!(:campaign_factor) { create(:campaign_factor, campaign: campaign) }
+
+    it 'generates dependencies_checksum when a new artifact is created' do
+      artifact = create(:campaign_ai_artifact, campaign: campaign, ai_assistant: assistant, dependencies_checksum: nil)
+      artifact.reload
+      expect(artifact.dependencies_checksum).to be_present
+    end
+
+    it 'updates dependencies_checksum when instructions are updated' do
+      old_checksum = campaign_artifact.dependencies_checksum
+      campaign_artifact.update!(instructions: 'New instructions')
+      campaign_artifact.reload
+      expect(campaign_artifact.dependencies_checksum).not_to eq(old_checksum)
+    end
+
+    it 'updates dependencies_checksum when assistant is changed' do
+      old_checksum = campaign_artifact.dependencies_checksum
+      campaign_artifact.update!(ai_assistant: create(:assistant))
+      campaign_artifact.reload
+      expect(campaign_artifact.dependencies_checksum).not_to eq(old_checksum)
+    end
+
+    context 'when dependencies are modified' do
+      it 'does update dependencies_checksum when a dependency is added through dependencies association' do
+        old_checksum = campaign_artifact.dependencies_checksum
+        campaign_artifact.dependencies.create!(dependency: campaign_factor)
+        campaign_artifact.reload
+        expect(campaign_artifact.dependencies_checksum).not_to eq(old_checksum)
+      end
+
+      it 'does update dependencies_checksum when a dependency is removed through dependencies association' do
+        dep = campaign_artifact.dependencies.create!(dependency: campaign_factor)
+        campaign_artifact.reload
+        old_checksum = campaign_artifact.dependencies_checksum
+        dep.destroy!
+        campaign_artifact.reload
+        expect(campaign_artifact.dependencies_checksum).not_to eq(old_checksum)
+      end
+    end
+
+    context 'when assistant dependency attributes change' do
+      it 'updates dependencies_checksum when assistant system_prompt changes' do
+        old_checksum = campaign_artifact.dependencies_checksum
+        assistant.update!(system_prompt: 'New system prompt')
+        campaign_artifact.reload
+        expect(campaign_artifact.dependencies_checksum).not_to eq(old_checksum)
+      end
+
+      it 'updates dependencies_checksum when assistant user_prompt changes' do
+        old_checksum = campaign_artifact.dependencies_checksum
+        assistant.update!(user_prompt: 'New user prompt')
+        campaign_artifact.reload
+        expect(campaign_artifact.dependencies_checksum).not_to eq(old_checksum)
+      end
+
+      it 'updates dependencies_checksum when assistant output_schema_keys change through nested attributes' do
+        old_checksum = campaign_artifact.dependencies_checksum
+        assistant.update!(
+          assistant_output_schema_keys_attributes: [
+            { key: 'new_key', key_type: 'string', description: 'some description' }
+          ]
+        )
+        assistant.reload
+        campaign_artifact.reload
+        expect(campaign_artifact.dependencies_checksum).not_to eq(old_checksum)
+      end
+
+      it 'updates dependencies_checksum when assistant dependencies changes' do
+        old_checksum = campaign_artifact.dependencies_checksum
+        assistant.update!(
+          dependencies: assistant.dependencies + ['assessments']
+        )
+        assistant.reload
+        campaign_artifact.reload
+        expect(campaign_artifact.dependencies_checksum).not_to eq(old_checksum)
+      end
+    end
+  end
 end

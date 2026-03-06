@@ -2,10 +2,12 @@
 zh-HK:
   admin:
     accept_na_values: 接受 N/A 值
+    actions: 行动
     add_admin: 添加管理员
     add_admin_role: 添加管理员角色
     add_campaign_admin: 添加活动管理员
     add_client_admin: 添加客户管理员
+    add_indicator: 添加指示器
     add_project: 添加项目
     add_project_admin: 添加项目管理员
     add_threesixty_campaign_admin: 添加活动管理员
@@ -18,8 +20,14 @@ zh-HK:
     admin_roles: 管理员角色
     admin_updated_successfully: 管理员 '%{name}' 已成功更新
     admins: 管理员
+    ai_artifact_result_generation_admin_job_failed: 无法为用户 '%{user_email}' 生成工件 '%{artifact_name}'
+    ai_artifact_result_stale: 结果可能已过时，因为自上次生成结果以来，AI工件的依赖项已发生变化。建议重新生成工件以使用最新依赖项进行构建。
     ai_artifacts: 人工智能产物
+    ai_artifacts_generate_results: 生成结果
     ai_artifacts_output_schema_key_constraint: 密钥必须以小写字母开头，且只能包含小写字母、数字和下划线。
+    ai_artifacts_results_export: 导出结果
+    ai_artifacts_results_export_job_scheduled: AI Artifacts结果导出任务已成功排程
+    ai_assistant: 人工智能助手
     ai_assistant_model_id_label: 模型ID
     ai_assistant_model_label: 模型
     ai_assistant_model_provider: 提供者
@@ -36,16 +44,46 @@ zh-HK:
     ai_assistants_template_render_failed: 模板渲染失败
     ai_assistants_test_render: 测试渲染
     ai_assistants_test_render_tooltip: 使用活动数据测试您的提示模板，以确认将发送给AI助手的内容。
+    ai_assisted_idp_disabled_by_client: AI辅助IDP功能已被客户端禁用
     ai_assisted_idp_feature_disabled: 本项目已禁用AI辅助IDP功能。
     ai_idp_assistant_configure_dependencies: 配置 AI 依赖项
     ai_idp_assistant_configure_dependencies_description: 配置IDP AI助手可访问的依赖数据作为上下文。此设置仅在助手配置为接受依赖关系时生效。
     ai_idp_assistant_dependencies_updated: 依赖项更新成功
     ai_idp_assistant_update_dependencies: 更新依赖项
     ai_notice: 标记部分由AI翻译生成，可能存在不准确之处。
+    ai_score_approval_no_answer: 此问题未提供答案
+    ai_score_approval_no_transcription: 此问题暂无转录文本。
+    ai_scored: AI得分
+    ai_scoring_appoval_approve_all_questions: 批准所有问题
+    ai_scoring_appoval_approve_question: 批准问题
+    ai_scoring_appoval_back: 重置分数
+    ai_scoring_appoval_change_reason: 变更原因
+    ai_scoring_appoval_change_score: 更改后的分数
+    ai_scoring_appoval_change_score_log: 变更评分记录
+    ai_scoring_appoval_discard_all_questions: 重置所有问题
+    ai_scoring_appoval_discard_all_questions_description: 这将重置所有问题的分数并清除所有覆盖设置。此操作无法撤销。确定要执行吗？
+    ai_scoring_appoval_discard_all_questions_title: 重置所有问题分数？
+    ai_scoring_appoval_discard_question: 重置问题分数
+    ai_scoring_appoval_discard_question_confirm_description: 这将重置该问题的所有分数并清除所有覆盖设置。确定吗？
+    ai_scoring_appoval_discard_question_confirm_title: 重置问题分数？
+    ai_scoring_appoval_discarded_changes: 已丢弃的更改
+    ai_scoring_appoval_evidence_from_transcript: 笔录证据
+    ai_scoring_appoval_new_score: 新分数
+    ai_scoring_appoval_next: 下一个问题
+    ai_scoring_appoval_rationale: 依据
+    ai_scoring_appoval_reason_for_changes: 变更原因
+    ai_scoring_appoval_reset_score: 重置分数
+    ai_scoring_appoval_reset_score_description: 分数将恢复为原始AI值。
+    ai_scoring_appoval_responses: AI 回应
+    ai_scoring_appoval_score_not_applicable: 分数不适用
+    ai_scoring_approval: AI评分审批
+    ai_scoring_approval_settings: AI评分审批设置
+    ai_scoring_approvals: AI评分审批
     ai_translation: 人工智能翻译
     all_corner_rounded: 所有边角均已圆角处理
     api_keys: API密钥
     apply_to_existing_users: 将此更改应用于此活动中的现有用户
+    assessment_question_not_supported: 此题型目前不支持。
     assessments: 评估
     assessments_not_mhs: 所有评估必须采用MHS类型
     assessments_reports: 评估与报告
@@ -61,8 +99,14 @@ zh-HK:
     availability: 可用性
     available_languages: 报告提供多种语言版本
     back_to_main: 主菜单
+    bulk_assets_modal_choose_csv: 选择CSV文件
+    bulk_assets_modal_choose_zip: 选择ZIP文件
+    bulk_assets_modal_not_csv_file_error: CSV上传仅支持CSV文件格式。请上传有效的CSV文件。
+    bulk_assets_modal_subtitle: 请上传<b>一个CSV文件</b>（包含标题行：user_email, file_name）和<b>一个ZIP文件</b>（内含与CSV文件名对应的PDF文件）。ZIP文件大小必须小于%{max_file_size}MB。
+    bulk_assets_modal_title: 上传CSV和ZIP文件
     bulk_upload_ai_artifacts: 批量上传人工智能艺术品
     campaign_ai_artifact_updated_successfully: 活动AI工件更新成功
+    campaign_ai_artifacts_results_export_details: 活动人工智能生成物产出结果
     campaign_assessment_actions_disable_caching: 禁用评估缓存
     campaign_assessment_actions_enable_caching: 启用评估缓存
     campaign_assessment_column_caching_enabled: 评估缓存已启用
@@ -86,11 +130,15 @@ zh-HK:
     campaign_assessment_modals_enable_caching_successfully: 已为本次评估启用缓存功能。
     campaign_assessment_modals_enable_caching_title: 启用评估缓存？
     campaign_factors: 竞选因素
+    campaign_name: 活动名称
     campaign_templates: 活动模板
     campaign_user_job_roles_cannot_be_same: 目标职位必须与当前职位不同
     campaigns: 活动
+    cancel: 取消
     cancellation_and_rescheduling_disabled: 取消和重新安排功能已禁用
     casual: 休闲
+    characters: 字符
+    children_factor_type: 儿童因素类型
     client: 客户
     client_admins: 客户管理员
     clients: 客户
@@ -100,24 +148,52 @@ zh-HK:
     completed: 已完成
     completed_tooltip: 所有评估员均已提交评估报告。
     concise: 简洁
+    configure_model_answer_title: 配置模型答案和关键词
     confirm_remove_admin: 您确定要删除邮箱为 '%{email}' 的管理员用户吗？
+    copied: 复制
     country: 国家
     create_client: 创建客户
+    create_indicator: 创建指标
     current_job_role: 当前职位
     dashboard: 仪表板
     dashboards: 仪表板
     data_reports: 数据报告
     datasheet: 数据表
     declined: 被拒绝
+    define_max_score_text: 定义%{maxScore}的分数（最高分）
+    define_min_score_text: 定义%{minScore}的得分（最低得分）
+    define_optional_score_range_text: 定义分数 %{minScore} 至 %{maxScore}（可选）
+    define_score_text: 定义%{score}的得分
+    definition: 定义
     delete_ok_text: 是的，删除
     denied: 被拒绝
+    description: 描述
     development_actions: 发展行动
     development_actions_form_tags: 标签
+    digest_delivery_mode:
+      form_label: 摘要交付模式
+      immediate: 立即 - 每当有批量提交时发送
+      scheduled: 定时发送 - 在预定时间发送摘要邮件
+    digest_frequency:
+      daily: 每日
+      form_label: 摘要频率
+      weekdays: 工作日
+      weekly: 每周
+    digest_weekdays:
+      form_label: 摘要 周一至周五
+      friday: 星期五
+      monday: 星期一
+      saturday: 星期六
+      sunday: 星期日
+      thursday: 星期四
+      tuesday: 星期二
+      wednesday: 星期三
     dimensions: 尺寸
     done: 完成
     done_tooltip: 该用户的评估已由 %{marked_by} 标记为完成，因此无法再提交评估。
     edit_campaign_admin: 编辑活动管理
     edit_client_admin: 编辑客户管理
+    edit_indicator: 编辑指示器
     edit_job_roles: 编辑职位角色
     edit_level: 编辑级别
     edit_permission_denied: 您没有权限编辑管理员 '%{name}'
@@ -126,12 +202,17 @@ zh-HK:
     empty_csv_file: CSV文件不包含任何数据。
     enable_enhance_with_ai_client_level: 请在客户端级别启用AI增强功能
     enable_maintenance: 启用维护
+    enable_mobile_proctoring: 启用移动监考
     enable_transcription: 启用转录功能
+    enable_transcription_msg: 启用转录功能，在视频/音频回答问题时使用AI评分。
     end_time: 终结时刻
     end_time_must_be_after_start_time: 结束时间必须晚于开始时间
     enhance_with_ai: 增强AI
     enhance_with_ai_requires_ai_assistants: 增强AI功能需启用AI助手功能
+    enter_description: 输入描述
+    enter_name: 输入姓名
     error: 错误
+    estimated_tokens: 代币（估计值）
     evaluation_status: 评估状态
     evaluation_status_not_done: 所选科目中存在未标记为"已完成"的评估状态。请确保所有选定用户已完成评估或将其标记为完成。
     export_admin_roles_permissions: 管理员角色与权限导出
@@ -139,14 +220,26 @@ zh-HK:
     export_completion_status: 出口完成状态
     export_completion_statuses_scheduled: 完成状态导出作业已成功安排
     export_detailed_completion_status: 详细
+    feature_ai_assistants_description: 启用人工智能驱动的助手，提升用户体验
+    feature_ai_assisted_idp_description: 利用人工智能辅助制定个人发展规划建议
+    feature_ai_content_analysis_description: 启用人工智能驱动的内容分析功能用于评估
+    feature_ai_translation_description: 启用报告中的自动AI驱动内容翻译功能
     feature_enhance_with_ai: 增强AI
+    feature_enhance_with_ai_description: 启用人工智能驱动的内容增强功能
     feature_flags: 功能开关
+    feature_flags_ai_group: 人工智能功能
+    feature_flags_communication_group: 沟通
+    feature_flags_platform_group: 平台功能
+    feature_global_skills_description: 访问全球技能库进行评估
+    feature_idp_description: 为参与者启用个人发展规划
+    feature_sms_notification_description: 为活动邀请和提醒启用短信通知
     fill_empty_score_msg: 在保存前请填写所有最终分数。
     final_score_empty_err_msg: "%{factor_name}的最终得分不能为空。"
     final_score_empty_msg: 最终账单不能为空。
     fix_grammar: 修正语法
     formal: 正式
     generate_transcription: 生成转录文本
+    hide_middle_scores: 隐藏中间分数
     idp_plan_reset_success: 计划已成功重置
     idp_templates: IDP模板
     import_ai_artifacts: 导入人工智能艺术品
@@ -175,6 +268,8 @@ zh-HK:
     internal: 内部
     invalid_csv_header: CSV文件包含无效的标题行。
     job_roles: 职位角色
+    keywords: 关键词
+    keywords_placeholder: 请输入以逗号分隔的关键词。
     learning_from_others: 协作学习 [20]
     level: 等级
     level_apply: 申请
@@ -201,6 +296,10 @@ zh-HK:
     min_value: 最小值
     minimum_10_words: 至少10个单词
     missing_min_max_values: 必须提供最小值和最大值。
+    model_answer: 示范答案
+    model_answer_placeholder: 输入供AI评分的模范答案。
+    name: 名称
+    name_max_length: 名称不能超过%{length}个字符
     name_required: 姓名必填
     no_file_selected: 未选择文件
     no_notifications: 无通知
@@ -218,6 +317,8 @@ zh-HK:
     only_editable_on_create: 此选项仅在创建时可编辑。
     options: 选项
     original_text: 原文
+    overall: 总体而言
+    overall_score: 总分
     participants: 参与者
     permissions:
       aiArtifacts:
@@ -254,6 +355,7 @@ zh-HK:
         bulk_regenerate_reports: 批量再生成报告
         manage: 管理
         manage_admins: 管理管理员
+        manage_ai_scoring_approval_settings: 管理AI评分审批设置
         manage_factor_benchmark_scores: 管理因子基准得分
         manage_messages: 管理消息
         manage_options: 管理选项
@@ -642,6 +744,7 @@ zh-HK:
         view_recordings: 查看录制内容
     permissions_360_campaigns: 360广告活动专属权限
     piped_text: 管道文本
+    precision: 精密
     privacy: 隐私
     proctoring: 监考
     professional: 专业人士
@@ -654,15 +757,19 @@ zh-HK:
     project_number: 项目编号
     project_settings: 项目设置
     projects: 项目
+    prompt: 提示
     question_center: 问题中心
     questions: 问题
+    range_min_max: RANGE %{min} - %{max}
     reflection_questions: 反思问题
     registration_codes: 注册码
     registration_settings: 注册设置
+    remove_children_to_change_type: 移除所有子节点以更改类型
     report_approvals: 报告审批
     report_condition_not_met: 需要%{required}%{relationship}个评价，但仅有%{actual}个评价。
     report_conditions_not_met_detailed: "%{user} 的报告不符合可用性条件。%{conditions}"
     report_denied: "%{user}的报告已被拒绝"
+    report_name: 报告名称
     report_no_evaluations: "%{user}的报告不可用——尚未收到任何评估。"
     report_not_generated: "%{user}的报告满足可用性条件，但尚未生成。请先生成该报告。"
     report_on_hold: "%{user}的报告目前处于暂停状态"
@@ -725,8 +832,32 @@ zh-HK:
     saml_service_provider_updated_date: 更新日期
     saml_service_providers: 服务提供商
     saml_settings: SAML 设置
+    save: 保存
+    save_assessment_for_scoring_management: 在开始评分之前，请先保存评估结果。
     scheduling: 排程
+    score: 得分
+    score_approval_not_allowed_to_approve: 您无权批准此分数。
+    score_approval_not_allowed_to_discard: 你不得丢弃这张记分卡。
+    score_definition_placeholder: 输入此分数等级的定义
+    score_definitions: 分数定义
+    score_max: 得分上限
+    score_min: 得分 最低
+    score_must_be_in_between_min_and_max: 分数必须介于 %{min} 和 %{max} 之间。
+    score_range_info: 分数范围：%{min} - %{max}
+    score_with_ai: 用AI得分
     scoring: 评分
+    scoring_approval_add_settings: 添加设置
+    scoring_approval_allow_bulk_approve: 允许批量批准
+    scoring_approval_allow_bulk_approve_scores: 允许批量批准评分
+    scoring_approval_allow_one_level_approve: 允许一级审批
+    scoring_approval_approver_users: 审批用户
+    scoring_approval_approvers: 审批人
+    scoring_approval_assessment: 评估
+    scoring_approval_assessor_users: 评估师用户
+    scoring_approval_modal_title: 评分审批设置
+    scoring_approval_remove_modal_success: 评估ID为%{assessmentId}的审批设置已成功删除
+    scoring_approval_remove_modal_text: 您确定要删除评估ID为%{assessmentId}的此设置吗？
+    scoring_supported_only_for_ai_questions: 当前选定因素仅允许在启用AI的题目上进行评分。
     scoring_value_info: 分数必须介于 %{min} 和 %{max} 之间。
     scoring_value_out_of_range_err_msg: "%{factor_name} 的评分必须介于 %{min} 与 %{max} 之间。"
     search_admins: 搜索管理员
@@ -737,7 +868,10 @@ zh-HK:
     select_level: 选择级别
     select_start_time: 选择开始时间
     send_email: 发送电子邮件
+    set_min_max_scores_warning: 请为该因素设置最低分和最高分以配置AI评分。
     settings: 设置
+    show_all_assessment_responses: 显示所有评估回复
+    show_middle_scores: 显示更多%{count}的评分（可选）...
     show_original: 显示原文
     show_submenu: 显示子菜单
     show_translated: 显示翻译
@@ -755,6 +889,7 @@ zh-HK:
     subdomain: 子域名
     subject_part_of_other_invite: 邮箱地址为 %{user_email} 的用户已受邀加入 '%{workshop_invite_name}' 群组。
     target_job_role: 目标职位
+    this_field_is_required: 此字段为必填项
     timezone: 时区
     tone: 语调
     toolbar_ai_insight: 人工智能洞察
@@ -778,8 +913,12 @@ zh-HK:
     upload_success: 上传成功
     user_report_events: 用户报告事件
     users: 用户
+    validation_error: 请填写所有必填字段
     view_licenses: 查看许可证
     waiting: 等待
+    weight: 重量
+    what_to_look_for: 需要关注什么
+    what_to_look_for_placeholder: 能够证明该因素的行为、行动或结果的证据
     words: 词语
     workshops: 研讨会
     writing_assistant_not_configured: 写作助手尚未配置

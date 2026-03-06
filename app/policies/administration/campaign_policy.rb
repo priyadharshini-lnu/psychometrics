@@ -219,6 +219,10 @@ module Administration
       has_permission?(:campaigns, :manage_report_approvals)
     end
 
+    def manage_ai_scoring_approval_settings?
+      has_permission?(:campaigns, :manage_ai_scoring_approval_settings)
+    end
+
     def assign_user?
       can_manage_campaign_users?
     end

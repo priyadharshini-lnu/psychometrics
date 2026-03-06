@@ -29,7 +29,8 @@ class EndUser::UserAssessmentsController < ApplicationController
         context: {
           selected_locale: @selected_locale,
           piped_text_context: build_piped_context,
-          include: '**'
+          include: '**',
+          ignore_pipetext_substitution: true
         }
       ).serialize(@user_assessment.assessment)
     end

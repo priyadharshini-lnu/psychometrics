@@ -80,7 +80,6 @@ pl:
         title: Artefakt AI
       generate: Stworzyć
       generate_result_info_message: Wyniki są generowane, odśwież stronę, aby zobaczyć zaktualizowane wyniki.
-      generate_results: Generowanie wyników
       generated_at: Wygenerowane o
       generated_at_time: Wygenerowane w %{time}
       generated_value: Wygenerowana wartość
@@ -736,6 +735,21 @@ pl:
       errors:
         invalid_headers: 'Następujące nagłówki są nieprawidłowe: %{headers}'
     campaign_report:
+      bulk_assets_upload:
+        errors:
+          csv_and_zip_must_exist: Przed rozpoczęciem należy przesłać zarówno pliki CSV, jak i ZIP.
+          csv_cannot_be_empty: Plik CSV nie może być pusty.
+          csv_contains_blank_values: Plik CSV zawiera puste wartości. Wszystkie wartości user_email i file_name muszą być obecne.
+          csv_file_name_must_be_unique: Wartości w pliku CSV muszą być unikalne.
+          csv_must_contain_two_headers: 'Plik CSV musi zawierać dokładnie 2 kolumny z nagłówkami: %{headers}'
+          csv_user_emails_must_be_unique: Wartości CSV user_email muszą być unikalne.
+          failed_to_attach_file: 'Nie udało się załączyć pliku do wiadomości e-mail: %{email}. Błąd: %{error_message}'
+          file_names_in_csv_must_be_of_type_pdf: Plik CSV zawiera nieprawidłowe wpisy file_name. Wszystkie wartości file_name w pliku CSV muszą mieć rozszerzenie .pdf.
+          file_processing_error: 'Błędy wykryte podczas przetwarzania pliku: %{error_message}'
+          max_emails_in_csv: Maksymalna liczba wpisów user_email dozwolona w pliku CSV to %{max}. Twój plik CSV zawiera %{count} wpisów user_email.
+          missing_user_reports: 'Brakujące raporty użytkowników dotyczące wiadomości e-mail: %{emails}'
+          no_file_found_in_extracted_zip: Nie znaleziono pliku w rozpakowanym pliku ZIP.
+          user_report_not_found: 'Nie znaleziono raportu użytkownika dla adresu e-mail: %{email}'
       bulk_download:
         data_range_error: Wybierz zakres dat
         modal:
@@ -840,6 +854,16 @@ pl:
           report: Sprawozdanie
           send_digest_emails: Wysyłanie wiadomości e-mail z podsumowaniem
           settings: Ustawienia
+        scoring_approval:
+          allow_bulk_approve: Zezwól na zbiorcze zatwierdzanie
+          allow_bulk_approve_scores: Zezwól na zbiorcze zatwierdzanie wyników
+          approver_users: Użytkownicy zatwierdzający
+          approvers: Osoby zatwierdzające
+          assessment: Ocena
+          assessor_users: Użytkownicy oceniający
+          modal_title: Ustawienia zatwierdzania punktacji
+          remove_modal_success: 'Ustawienie zatwierdzenia dla identyfikatora oceny: %{assessmentId} zostało pomyślnie usunięte.'
+          remove_modal_text: 'Czy na pewno chcesz usunąć to ustawienie dla identyfikatora oceny: %{assessmentId}?'
       assessors:
         spoof:
           successfully: Udało Ci się zalogować jako %{name}
@@ -1006,6 +1030,8 @@ pl:
         ai_assistants_disabled_by_client: Asystenci AI są wyłączeni przez klienta
         ai_assisted_idp: Dostawca tożsamości wspomagany przez sztuczną inteligencję
         ai_assisted_idp_requires_ai_assistants: Usługa AI Assisted IDP wymaga włączenia funkcji AI Assistants
+        ai_content_analysis: Analiza treści AI
+        ai_content_analysis_disabled_by_client: Analiza treści AI jest wyłączona przez klienta.
         ai_translation: Tłumaczenia AI
         ai_translation_disabled_by_client: Tłumaczenia AI są wyłączone przez klienta.
         global_skills: Umiejętności globalne
@@ -2541,6 +2567,7 @@ pl:
     message: Wiadomość
     meta_title: Panel administracyjny
     navigation:
+      approvals: Zatwierdzenia
       audit_logs: Dzienniki audytu
       availability: Dostępność
       configuration: Konfiguracja
@@ -3207,9 +3234,11 @@ pl:
         actions: Akcje
         approval_status: Stan zatwierdzenia
         approved_by: Zatwierdzone przez
+        assessed_by: Ocenione przez
         campaign_name: Nazwa kampanii
         qc_by: Kontrola jakości według
         report_name: Nazwa raportu
+        subject_email: Temat wiadomości e-mail
         user_email: Adres e-mail użytkownika
         user_name: Nazwa użytkownika
       dashboard: Deska rozdzielcza
@@ -3771,6 +3800,11 @@ pl:
         tools: Narzędzia
         weightages: Wagi
       weighted_average: Średnia ważona
+    scoring_approval:
+      approve_all: Zatwierdź wszystko
+      bulk_approve_success: "%{approved} wyniki zatwierdzone."
+      review: Recenzja
+      score_approvals: Zatwierdzanie wyników AI
     search: Szukać
     security_setting:
       180_days: 180 Dni

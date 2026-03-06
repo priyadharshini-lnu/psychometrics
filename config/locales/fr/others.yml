@@ -862,6 +862,7 @@ fr:
         bulk_reports: Rapports en bloc
         bulk_rescore_campaign_factors: Facteurs de la campagne de réintégration en bloc
         bulk_update_evaluation_status: État de l’évaluation de la mise à jour en bloc
+        campaign_report_extract_and_upload_bulk_assets: Rapport de campagne Télécharger des ressources en masse
         compact_completion_status_export: Exportation de l'état d'achèvement compact
         completion_status_export: Exportation de l'état d'achèvement
         copy_as_template_or_campaign: Copier la campagne comme modèle
@@ -871,6 +872,7 @@ fr:
         export_admin_with_permissions: Exporter l'administrateur avec des autorisations
         export_assessment_questions: Questions d'évaluation des exportations
         export_campaign_ai_artifacts: Artefacts IA des campagnes d’exportation
+        export_campaign_ai_artifacts_results: Exporter les résultats des artefacts IA de la campagne
         export_campaign_factors: Facteurs de la campagne d'exportation
         export_campaign_scorings: Scores de la campagne d'exportation
         export_dashboard_as_file: Exporter le tableau de bord sous forme de fichier
@@ -1274,6 +1276,7 @@ fr:
     record_not_found: Enregistrement introuvable
     user_not_authorized: Utilisateur non autorisé
   auth:
+    cookies_link: <a href="%{cookies_url}">Déclaration relative aux cookies</a>
     current_password: Mot de passe actuel
     current_password_placeholder: Saisir le mot de passe actuel
     email: Courriel
@@ -1319,6 +1322,7 @@ fr:
     password_confirmation: Confirmer le mot de passe
     password_confirmation_placeholder: Confirmation du mot de passe
     password_placeholder: Saisir le mot de passe
+    privacy_statement_link: <a href="%{privacy_url}">Déclaration de confidentialité</a>
     registration:
       description: Remplissez les détails ci-dessous pour vous inscrire et créer un nouveau compte
       email_hint: Nous respectons votre vie privée et ne tolérons pas le spam. Nous ne communiquerons jamais vos informations à des tiers
@@ -1343,7 +1347,6 @@ fr:
       title: Créer un mot de passe
     sign_out: Se connecter en tant qu'utilisateur différent
     sign_up: S'inscrire
-    terms_link: <a href="%{terms_url}">Conditions d'utilisation et déclaration de confidentialité</a>
     verify_mobile_number:
       error:
         blocked: Ce numéro est bloqué en raison d'un trop grand nombre de tentatives.
@@ -2754,10 +2757,12 @@ fr:
           learn: "<strong>10%</strong>Apprentissage formel"
         content:
           list:
-            r1: Veuillez noter que cette liste est uniquement indicative, et des voies de développement supplémentaires peuvent être envisagées pour vous en fonction des aspirations individuelles, des recommandations de votre manager ainsi que des priorités organisationnelles.
-            r2: Veuillez noter que le lancement de certaines de ces voies de développement dépendra de la stratégie d'éducation et d'apprentissage à l'échelle de l'organisation.
-            r3: Veuillez considérer les parcours recommandés comme indiqués ci-dessous, lors de l'élaboration de votre Plan de Développement Individuel.
-          main: Cette section comprend une liste cumulative de toutes les voies de développement, en gardant à l'esprit les meilleures pratiques d'apprentissage, c'est-à-dire la directive 70-20-10, qui fournit un parcours progressif combinant l'apprentissage en classe, le coaching et l'apprentissage sur le terrain. Sur la base des résultats de l'expérience de développement du leadership et des priorités commerciales, des voies de développement possibles ont été recommandées, qui peuvent être envisagées pour votre développement.
+            r1: Veuillez noter que cette liste est fournie à titre indicatif uniquement et que d'autres parcours de développement peuvent être envisagés pour vous en fonction de vos aspirations personnelles, des recommandations de votre responsable et des priorités commerciales de l'organisation.
+            r2: Les utilisateurs sont encouragés à examiner de manière critique tout le contenu et sont libres de modifier, d'affiner, de remplacer ou d'ajouter toute action ou recommandation avec laquelle ils ne sont pas d'accord.
+            r3: 'Les données relatives au développement figurant dans le présent rapport peuvent provenir de l''une ou des deux sources suivantes :'
+            r3a: Une bibliothèque de développement personnalisée créée pour votre organisation
+            r3b: Suggestions de développement générées par l'IA
+          main: Le PDI créé comprend une liste détaillée des mesures de développement que vous pouvez prendre, en gardant à l'esprit les meilleures pratiques d'apprentissage, à savoir la règle des 70-20-10, qui prévoit un parcours progressif combinant apprentissage en classe, coaching et apprentissage sur le terrain. Sur la base des résultats du processus d'évaluation, de vos réponses au chat et des rapports externes, le cas échéant, des parcours de développement possibles ont été recommandés, qui peuvent être pris en considération pour votre développement.
         learn_cards:
           collaboration:
             list:
@@ -2780,14 +2785,13 @@ fr:
             title: Apprentissage sur le terrain (70%) <br/> Se développer par l'expérience
           learn:
             list:
-            - Assumer des positions de leadership dans des comités de parties prenantes ou de direction
-            - Se porter volontaire pour diriger des projets de gestion du changement pour l'organisation
-            - Envisager de prendre des missions stimulantes
-            - Travailler en collaboration avec d'autres fonctions
-            - Envisager de diriger des projets en dehors de votre organisation
-            - Travailler en étroite collaboration avec des experts externes de l'industrie sur des projets conjoints
+            - Suivre des programmes de formation structurés
+            - Suivre des cours en ligne
+            - Lire des livres, des articles, des publications
+            - Obtenir des qualifications professionnelles, des certifications et des accréditations
+            - Assister à des cours, ateliers, séminaires
             title: Apprentissage formel (10%) <br/> Se développer par un apprentissage structuré
-        title: Directives pour guider votre PDI
+        title: Guide pour votre permis de conduire international
       idp:
         end_date: Date de fin
         self_rating: Auto-évaluation

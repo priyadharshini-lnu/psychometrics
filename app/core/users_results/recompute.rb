@@ -2,16 +2,17 @@
 
 module UsersResults
   class Recompute < BaseCommand
-    private_attr_reader :user_result, :user_assessment, :current_user
+    private_attr_reader :user_result, :user_assessment, :current_user, :admin_job_record_id
 
-    def initialize(user_result, current_user)
+    def initialize(user_result, current_user, admin_job_record_id: nil)
       @user_result = user_result
       @user_assessment = user_result.user_assessment
       @current_user = current_user
+      @admin_job_record_id = admin_job_record_id
     end
 
     def call
-      return broadcast :ok, user_result unless user_assessment.completed?
+      return broadcast :ok unless user_assessment.completed?
 
       recompute_saville_assessment if user_assessment.saville?
       recompute_pearson_assessment if user_assessment.pearson?
@@ -21,9 +22,13 @@ module UsersResults
       recompute_yoodli_assessment if user_assessment.yoodli?
       recompute_mhs_assessment if user_assessment.mhs?
 
-      UserAssessments::SaveScores.call!(user_assessment)
-
-      broadcast :ok, user_result
+      save_scores = UserAssessments::SaveScores.new(
+        user_assessment, current_user,
+        rescore: true, admin_job_record_id: admin_job_record_id
+      )
+      save_scores.on(:ok)      { broadcast :ok }
+      save_scores.on(:waiting) { broadcast :waiting }
+      save_scores.call
     end
 
     private

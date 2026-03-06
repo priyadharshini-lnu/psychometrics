@@ -3,8 +3,15 @@
 module AdminJobs
   class RescoreUserAssessment < AdminJobs::Base
     def call
-      ::UsersResults::Recompute.call!(user_result, owner)
-      broadcast :ok
+      record.update(total_tasks: 1)
+
+      recompute = ::UsersResults::Recompute.new(user_result, owner, admin_job_record_id: record.id)
+      recompute.on(:ok) do
+        record.increment_completed_tasks!
+        broadcast :ok
+      end
+      recompute.on(:waiting) { broadcast :waiting }
+      recompute.call
     end
 
     def generate_title_link

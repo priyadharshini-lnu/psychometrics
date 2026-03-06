@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   post '/faas_notifications/url_to_pdf'
   post '/faas_notifications/zip_s3_files'
   post '/faas_notifications/media_to_transcription'
+  post '/faas_notifications/extract_and_upload'
 
   # TODO: Can be removed once we update the SNS
   post '/lambda_notifications/url_to_pdf', to: 'faas_notifications#url_to_pdf'
@@ -28,6 +29,15 @@ Rails.application.routes.draw do
   post '/lambda_notifications/media_to_transcription', to: 'faas_notifications#media_to_transcription'
 
   get '/maintenance', to: 'maintenance#index', as: :maintenance
+
+  scope module: :end_user do
+    get 'speed_test/download/:size', to: 'speed_test#download', constraints: { size: /\d+/ }
+    post 'speed_test/upload', to: 'speed_test#upload'
+    get 'speed_test/ping', to: 'speed_test#ping'
+    get 'speed_test/s3/download_url', to: 'speed_test#s3_download_url'
+    get 'speed_test/s3/upload_url', to: 'speed_test#s3_upload_url'
+    get 'speed_test/s3/ping_url', to: 'speed_test#s3_ping_url'
+  end
 
   get '/admin', to: 'administration/app#dashboard', as: :admin
   get '/admin/meet/:room_id', to: 'administration/app#dashboard', as: :admin_meeting
@@ -38,6 +48,8 @@ Rails.application.routes.draw do
   get 'privacy-statement', to: 'home#privacy_statement'
   get 'privacy-statement/:lang', to: 'home#privacy_statement'
   get 'request_inspect', to: 'home#request_inspect'
+  get 'cookies-statement', to: 'home#cookies_statement'
+  get 'privacy-statement/:lang', to: 'home#privacy_statement'
 
   concern :media_uploades do
     member do
@@ -241,6 +253,9 @@ Rails.application.routes.draw do
             patch :toggle_user_dashboard
             patch :toggle_main_report
             patch :update_default_and_available_locales
+            post :get_bulk_assets_zip_presigned_upload_url
+            post :get_bulk_assets_csv_presigned_upload_url
+            put :attach_bulk_asset_csv_and_zip
           end
         end
         resources :user_idp_reports do
@@ -502,6 +517,10 @@ Rails.application.routes.draw do
             to: 'projects/threesixty_campaigns#show', constraints: { all: /.*/ }
         get '/projects/:project_id/threesixty_campaigns/:id/', to: 'projects/threesixty_campaigns#show'
         resources :sheet_rows, except: %i[show edit update]
+        resource :smtp_settings, only: %i[show update] do
+          post :send_test_email
+          post :validate_settings
+        end
       end
     end
 
@@ -651,7 +670,7 @@ Rails.application.routes.draw do
     ### DIMENSIONS
     resources :dimensions do
       member do
-        get :copy
+        post :copy
         get :sidebar
         patch :toggle_status
         get :translations
@@ -1391,6 +1410,8 @@ as: :simulation_progress_notification
             end
           end
           jsonapi_resources :idp_settings, only: %i[index update]
+          jsonapi_resources :assessment_assistants, only: %i[show update]
+          jsonapi_resources :assessment_consent_settings, only: %i[show update]
 
           jsonapi_resources :projects do
             jsonapi_resources :webhooks do
@@ -1442,6 +1463,7 @@ only: %i[index create update]
             end
 
             jsonapi_resources :report_approval_settings, only: %i[index create update destroy]
+            jsonapi_resources :ai_scoring_approval_settings, only: %i[index create update destroy]
             jsonapi_resources :campaign_assessor_assessments, only: %i[index create update destroy]
             scope module: :campaigns do
               jsonapi_resources :factor_benchmark_scores do
@@ -1525,17 +1547,21 @@ only: %i[index create update]
             jsonapi_resources :campaign_idps, controller: 'campaigns/campaign_idps', only: %i[index create update]
 
             jsonapi_resources :ai_artifact_results, controller: 'campaigns/ai_artifact_results',
-              only: %i[index show], param: :user_id
+              only: %i[index show], param: :user_id do
+                collection do
+                  post :export
+                end
+              end
 
             jsonapi_resources :ai_artifacts, controller: 'campaigns/ai_artifacts' do
               collection do
                 post :bulk_generate
                 post :export
                 post :import
+                post :generate
               end
 
               member do
-                post :generate
                 post :test_generate
               end
             end
@@ -1604,6 +1630,21 @@ only: %i[index create update]
               get :search_report
               get :search_user
               get :metadata_for_filters
+            end
+          end
+          jsonapi_resources :ai_score_approvals, only: %i[index show] do
+            collection do
+              post :bulk_approve
+              get :metadata_for_filters
+            end
+            member do
+              post :approve_question
+              post :approve_all_questions
+              post :override_score
+              post :discard_score
+              post :discard_question
+              post :discard_all_questions
+              get :subject_assessment
             end
           end
           resources :user_report_events, only: %i[index] do

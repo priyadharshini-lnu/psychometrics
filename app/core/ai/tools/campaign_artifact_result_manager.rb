@@ -3,6 +3,7 @@
 module AI
   module Tools
     class CampaignArtifactResultManager < AI::Tools::Base
+      class SchemaValidationError < StandardError; end
       interrupt_on_success_with_signal
       raise_error_on_maximum_retry
       max_retry_attempts 2
@@ -22,6 +23,7 @@ module AI
         @campaign_user = context.fetch(:campaign_user, nil)
         @save_results = context.fetch(:save_results, false)
         @parsed_dependencies = context.fetch(:parsed_dependencies, nil)
+        @artifact_checksum = context.fetch(:artifact_checksum, nil)
         @masked_data_resolutions = context.fetch(:masked_data_resolutions, {}) || {}
         @chat = context.fetch(:chat, nil)
       end
@@ -29,7 +31,7 @@ module AI
       def execute(results:)
         results = JSON.parse(results)
 
-        validated_results = validate_schema(results)
+        validated_results = validate_schema!(results)
 
         final_results = resolve_masked_information(validated_results)
 
@@ -40,6 +42,7 @@ module AI
         @artifact.results.find_or_initialize_by(user: @user).tap do |artifact_result|
           artifact_result.results = final_results
           artifact_result.parsed_dependencies = @parsed_dependencies
+          artifact_result.content_checksum = @artifact_checksum
           artifact_result.save!
           chat.update!(ai_assisted_user_session_id: artifact_result.id)
         end
@@ -48,18 +51,19 @@ module AI
 
         final_results
       rescue ActiveRecord::RecordInvalid, ActiveRecord::StatementInvalid,
-             JSON::ParserError => e
+             JSON::ParserError, SchemaValidationError => e
         { error: e.message }
       end
 
       private
 
-      def validate_schema(results)
+      def validate_schema!(results)
         validation_errors = @artifact.validate_results_schema(results)
 
-        return { error: validation_errors } if validation_errors.any?
+        return results if validation_errors.empty?
 
-        results
+        formatted_errors = validation_errors.map { |e| "results #{e}" }.join(', ')
+        raise SchemaValidationError, "Validation failed: #{formatted_errors}"
       end
 
       def resolve_masked_information(results)

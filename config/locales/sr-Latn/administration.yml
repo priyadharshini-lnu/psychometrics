@@ -80,7 +80,6 @@ sr-Latn:
         title: AI artefakt
       generate: Generisanje
       generate_result_info_message: Rezultati se generišu, molimo vas da osvežite stranicu da biste videli ažurirane rezultate.
-      generate_results: Generišite rezultate
       generated_at: Generisano u
       generated_at_time: Generisano u %{time}
       generated_value: Generisana vrednost
@@ -736,6 +735,21 @@ sr-Latn:
       errors:
         invalid_headers: 'Sledeća zaglavlja su nevažeća: %{headers}'
     campaign_report:
+      bulk_assets_upload:
+        errors:
+          csv_and_zip_must_exist: Пре почетка обавезно отпремите и CSV и ZIP датотеке.
+          csv_cannot_be_empty: CSV фајл не може бити празан.
+          csv_contains_blank_values: CSV садржи празне вредности. Све вредности user_email и file_name морају бити присутне.
+          csv_file_name_must_be_unique: Вредности назива CSV фајлова морају бити јединствене.
+          csv_must_contain_two_headers: 'CSV мора да има тачно две колоне са насловима: %{headers}'
+          csv_user_emails_must_be_unique: Вредности CSV user_email морају бити јединствене.
+          failed_to_attach_file: 'Није успело да се приложи фајл уз имејл: %{email}. Грешка: %{error_message}'
+          file_names_in_csv_must_be_of_type_pdf: CSV садржи неважеће уносе file_name. Све вредности file_name у CSV-у морају имати екстензију .pdf.
+          file_processing_error: 'Грешке пронађене у обради датотека: %{error_message}'
+          max_emails_in_csv: Максимално је дозвољено %{max} записа user_email у CSV-у. Ваш CSV садржи %{count} записа user_email.
+          missing_user_reports: 'Недостају извештаји корисника за имејлове: %{emails}'
+          no_file_found_in_extracted_zip: У извученом ZIP-у није пронађен ниједан фајл.
+          user_report_not_found: 'Извештај корисника није пронађен за имејл: %{email}'
       bulk_download:
         data_range_error: Molimo izaberite opseg datuma
         modal:
@@ -840,6 +854,16 @@ sr-Latn:
           report: Izveštaj
           send_digest_emails: Pošalji Digest e-poštu
           settings: Podešavanja
+        scoring_approval:
+          allow_bulk_approve: Дозволи масовно одобравање
+          allow_bulk_approve_scores: Дозволите масовно одобравање резултата
+          approver_users: Корисници одобравача
+          approvers: Одобриоци
+          assessment: Оцењивање
+          assessor_users: Корисници процењивача
+          modal_title: Подешавања за одобравање бодовања
+          remove_modal_success: 'Подешавање одобрења за ИД процене: %{assessmentId} је успешно избрисан'
+          remove_modal_text: 'Да ли сте сигурни да желите да избришете ову поставку за идентификациони број процене: %{assessmentId}?'
       assessors:
         spoof:
           successfully: Uspešno ste se prijavili kao %{name}
@@ -1006,6 +1030,8 @@ sr-Latn:
         ai_assistants_disabled_by_client: AI asistenti je onemogućen od strane klijenta
         ai_assisted_idp: AI asistirani IDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP zahteva da AI Assistants funkcija bude omogućena
+        ai_content_analysis: Анализа садржаја вештачке интелигенције
+        ai_content_analysis_disabled_by_client: АИ анализа садржаја је онемогућена од стране клијента
         ai_translation: Преводи вештачке интелигенције
         ai_translation_disabled_by_client: Превођење вештачком интелигенцијом је онемогућено од стране клијента.
         global_skills: Globalne veštine
@@ -2541,6 +2567,7 @@ sr-Latn:
     message: Poruka
     meta_title: Administrativni panel
     navigation:
+      approvals: Одобрења
       audit_logs: Evidencije revizije
       availability: Raspoloživost
       configuration: Konfiguracija
@@ -3207,9 +3234,11 @@ sr-Latn:
         actions: Radnje
         approval_status: Status odobrenja
         approved_by: Odobreno od strane
+        assessed_by: Проценио
         campaign_name: Ime kampanje
         qc_by: QC od strane
         report_name: Naziv izveštaja
+        subject_email: Предмет е-поште
         user_email: Imejl korisnika
         user_name: Korisničko ime
       dashboard: Dashboard
@@ -3771,6 +3800,11 @@ sr-Latn:
         tools: Alatke
         weightages: Ponderi
       weighted_average: Ponderisani prosek
+    scoring_approval:
+      approve_all: Одобри све
+      bulk_approve_success: "%{approved} Резултати одобрени."
+      review: Рецензија
+      score_approvals: АИ оцењивање одобрења
     search: Pretraži
     security_setting:
       180_days: 180 dana

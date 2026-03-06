@@ -19,7 +19,10 @@ class UserSavedFilter < ApplicationRecord
   enum :resource_type, {
     report_approvals_all: 'report_approvals_all',
     report_approvals_my_tasks: 'report_approvals_my_tasks',
-    report_approvals_approved: 'report_approvals_approved'
+    report_approvals_approved: 'report_approvals_approved',
+    score_approvals_all: 'score_approvals_all',
+    score_approvals_my_tasks: 'score_approvals_my_tasks',
+    score_approvals_approved: 'score_approvals_approved'
   }
 
   def self.ransackable_attributes(_auth_object = nil)

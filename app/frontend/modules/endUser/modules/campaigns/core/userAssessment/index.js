@@ -118,6 +118,7 @@ export const defaultState = {
   loaded: false,
   error: false,
   invalidated: false,
+  pipedTextMapping: {},
 }
 
 const HANDLERS = {
@@ -128,7 +129,7 @@ const HANDLERS = {
     ...state,
     results: action.response,
     loaded: true,
-    assessment: substitutePipedText(state.assessment, action.response.piped_text_mapping),
+    pipedTextMapping: action.response.piped_text_mapping,
   }),
   [SET_INVALIDATED]: state => ({
     ...state, invalidated: true,

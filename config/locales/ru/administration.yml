@@ -80,7 +80,6 @@ ru:
         title: Искусственный интеллект
       generate: Генерировать
       generate_result_info_message: Результаты обрабатываются, пожалуйста, обновите страницу, чтобы увидеть обновленные результаты.
-      generate_results: Генерировать результаты
       generated_at: Создано в
       generated_at_time: Создано на сайте %{time}
       generated_value: Созданная стоимость
@@ -736,6 +735,21 @@ ru:
       errors:
         invalid_headers: 'Следующие заголовки являются недействительными: %{headers}'
     campaign_report:
+      bulk_assets_upload:
+        errors:
+          csv_and_zip_must_exist: Перед началом необходимо загрузить файлы CSV и ZIP.
+          csv_cannot_be_empty: CSV-файл не может быть пустым.
+          csv_contains_blank_values: CSV содержит пустые значения. Все значения user_email и file_name должны быть указаны.
+          csv_file_name_must_be_unique: Значения в файле CSV должны быть уникальными.
+          csv_must_contain_two_headers: 'CSV-файл должен содержать ровно 2 столбца с заголовками: %{headers}'
+          csv_user_emails_must_be_unique: Значения CSV user_email должны быть уникальными.
+          failed_to_attach_file: 'Не удалось прикрепить файл к электронному письму: %{email}. Ошибка: %{error_message}'
+          file_names_in_csv_must_be_of_type_pdf: CSV содержит недопустимые записи file_name. Все значения file_name в CSV должны иметь расширение .pdf.
+          file_processing_error: 'Ошибки, обнаруженные при обработке файла: %{error_message}'
+          max_emails_in_csv: Максимально допустимое количество записей user_email в CSV-файле%{max}. Ваш CSV-файл содержит записей user_email%{count}.
+          missing_user_reports: 'Отсутствующие отчеты пользователей по электронной почте: %{emails}'
+          no_file_found_in_extracted_zip: Файл не найден в извлеченном ZIP-архиве
+          user_report_not_found: 'Отчет пользователя не найден для адреса электронной почты: %{email}'
       bulk_download:
         data_range_error: Выберите диапазон дат
         modal:
@@ -840,6 +854,16 @@ ru:
           report: Отчет
           send_digest_emails: Отправлять дайджест по электронной почте
           settings: Настройки
+        scoring_approval:
+          allow_bulk_approve: Разрешить массовое утверждение
+          allow_bulk_approve_scores: Разрешить массовое утверждение оценок
+          approver_users: Пользователи-утвердители
+          approvers: Утверждающие лица
+          assessment: Оценка
+          assessor_users: Пользователи-оценщики
+          modal_title: Настройки утверждения оценки
+          remove_modal_success: 'Настройка утверждения для идентификатора оценки: %{assessmentId} была успешно удалена.'
+          remove_modal_text: 'Вы уверены, что хотите удалить эту настройку для идентификатора оценки: %{assessmentId}?'
       assessors:
         spoof:
           successfully: Вы успешно вошли в систему как %{name}
@@ -1006,6 +1030,8 @@ ru:
         ai_assistants_disabled_by_client: AI Assistants отключен клиентом
         ai_assisted_idp: ИИ-поддерживаемая IDP
         ai_assisted_idp_requires_ai_assistants: Для использования AI Assisted IDP необходимо включить функцию AI Assistants.
+        ai_content_analysis: Анализ контента с помощью искусственного интеллекта
+        ai_content_analysis_disabled_by_client: Анализ контента с помощью искусственного интеллекта отключен клиентом
         ai_translation: AI Переводы
         ai_translation_disabled_by_client: AI Translations отключено клиентом
         global_skills: Глобальные навыки
@@ -2541,6 +2567,7 @@ ru:
     message: Сообщение
     meta_title: Панель управления
     navigation:
+      approvals: Утверждения
       audit_logs: Журналы аудита
       availability: Доступность
       configuration: Конфигурация
@@ -3207,9 +3234,11 @@ ru:
         actions: Действия
         approval_status: Статус утверждения
         approved_by: Утверждено
+        assessed_by: Оценка
         campaign_name: Название кампании
         qc_by: QC By
         report_name: Название отчета
+        subject_email: Тема письма
         user_email: Электронная почта пользователя
         user_name: Имя пользователя
       dashboard: Панель управления
@@ -3774,6 +3803,11 @@ ru:
         tools: Инструменты
         weightages: Весовые коэффициенты
       weighted_average: Средневзвешенное
+    scoring_approval:
+      approve_all: Утвердить все
+      bulk_approve_success: "%{approved} одобренные результаты."
+      review: Обзор
+      score_approvals: Утверждение оценок ИИ
     search: Поиск
     security_setting:
       180_days: 180 дней

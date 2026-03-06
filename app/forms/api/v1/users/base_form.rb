@@ -4,7 +4,7 @@ module Api
   module V1
     module Users
       class BaseForm < Rectify::Form
-        attribute %i[first_name last_name email], String
+        attribute %i[first_name last_name email gender], String
         attribute :campaigns, Array
         attribute :project_datasheet, Hash, default: {}
         attribute :user_external_id, String

@@ -9,6 +9,7 @@ import { DataReportsRoutes } from '~/modules/admin/modules/DataReports/routes'
 import AuditLogRoutes from '~/modules/admin/modules/AuditLog/routes'
 import AssessmentRoutes from '~/modules/admin/modules/Assessments/routes'
 import ReportApprovalsRoutes from '~/modules/admin/modules/ReportApprovals/routes'
+import ScoreApprovalsRoutes from '~/modules/admin/modules/ScoreApprovals/routes'
 import CampaignRoutes from '~/modules/admin/modules/CampaignTemplates/routes'
 import DashboardRoutes from '~/modules/admin/modules/Dashboard/routes'
 import NormsRoutes from '~/modules/admin/modules/Norms/routes'
@@ -23,6 +24,7 @@ const routes = [
   ...UserRoutes,
   ...ReportRoutes,
   ...ReportApprovalsRoutes,
+  ...ScoreApprovalsRoutes,
   ...UserAvailabilityRoutes,
   ...DataReportsRoutes,
   ...AuditLogRoutes,

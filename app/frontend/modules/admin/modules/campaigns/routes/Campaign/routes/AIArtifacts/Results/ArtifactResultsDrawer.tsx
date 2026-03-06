@@ -3,70 +3,161 @@ import {
   Drawer, Flex, Typography, Divider,
 
 } from 'antd'
-import { useResources } from '~/hooks/useResources'
+import useAsyncRequestResponse from '~/hooks/useAsyncRequestResponse'
 import styles from '../styles.less'
-import { AiArtifact, CampaignAiArtifactDataSource, ArtifactResultsAttributes }
+import {
+  CampaignAiArtifactDataSource,
+  CampaignAiArtifactResult,
+  AsyncArtifactResultResponseTR,
+  ArtifactResultResponseData,
+}
   from '~/modules/admin/modules/campaigns/core/aiArtifacts'
 import { GeneratedArtifact } from './GeneratedArtifact'
 
 export interface ArtifactResultsDrawerProps {
   close: () => void
-  artifact: CampaignAiArtifactDataSource
+  userArtifactsResults: CampaignAiArtifactDataSource
   campaignId: string | undefined
+  rawTableData: CampaignAiArtifactResult[]
+  updateRawTableData: (data: CampaignAiArtifactResult[]) => void
 }
 
 const { I18n } = window
 
 export const ArtifactResultsDrawer: React.FC<ArtifactResultsDrawerProps> = ({
   close,
-  artifact,
+  userArtifactsResults,
   campaignId,
+  rawTableData,
+  updateRawTableData,
 }) => {
-  if (!artifact) {
+  if (!userArtifactsResults) {
     return null
   }
 
-  const [artifactData, setArtifactData] = React.useState<CampaignAiArtifactDataSource>(artifact)
+  const [artifactData, setArtifactData] = React.useState<CampaignAiArtifactDataSource>(userArtifactsResults)
 
-  const {
-    memberAction: memberActionAIArtifactResults,
-  } = useResources<AiArtifact>('ai_artifacts', {
-    basePath: `campaigns/${campaignId}`,
-  })
+  const handleSuccess = (responseData: ArtifactResultResponseData) => {
+    const res = responseData.data.attributes
 
-  const generateResult = async (id: string) => memberActionAIArtifactResults({
-    id,
-    action: 'generate',
-    method: 'post',
-    apiConfig: {
-      query: {
-        user_id: artifact.id,
-        save_results: true,
-      },
-    },
-  })
-    .then((res: ArtifactResultsAttributes) => {
-      setArtifactData((prevData) => {
-        const updatedArtifacts = { ...prevData.artifacts }
-        updatedArtifacts[res.artifact.name] = {
-          results: res.results,
-          error: res.error,
-          id: res.artifact.id,
-          parsedDependencies: res.parsedDependencies,
-          generatedAt: res.generatedAt,
-          totalInputTokens: res.totalInputTokens,
-          totalOutputTokens: res.totalOutputTokens,
-        }
+    setArtifactData((prevData) => {
+      const updatedArtifacts = { ...prevData.artifacts }
+      updatedArtifacts[res.artifact.name] = {
+        ...res,
+        id: res.artifact.id,
+      }
 
+      return {
+        ...prevData,
+        artifacts: updatedArtifacts,
+      }
+    })
+
+    // Update listing page's local state
+    const updatedTableData = rawTableData.map((record) => {
+      if (record.user.data.id === userArtifactsResults.participantId) {
         return {
-          ...prevData,
-          artifacts: updatedArtifacts,
+          ...record,
+          artifactsResults: {
+            ...record.artifactsResults,
+            data: record.artifactsResults.data.map((item) => {
+              if (item.attributes.artifact.id === res.artifact.id) {
+                return { ...item, attributes: res }
+              }
+              return item
+            }),
+          },
+          generatedAt: res.generatedAt,
+        }
+      }
+      return record
+    })
+
+    updateRawTableData(updatedTableData)
+  }
+
+  const handleError = ({
+    errorMessage,
+    artifactId,
+    parsedDependencies = null as string | null,
+  }) => {
+    // Update drawer state with error for the specific artifact
+    setArtifactData((prevData) => {
+      const updatedArtifacts = { ...prevData.artifacts }
+      Object.keys(updatedArtifacts).forEach((key) => {
+        if (updatedArtifacts[key].id.toString() === artifactId) {
+          updatedArtifacts[key] = {
+            ...updatedArtifacts[key],
+            error: errorMessage,
+            parsedDependencies,
+          }
         }
       })
+
+      return {
+        ...prevData,
+        artifacts: updatedArtifacts,
+      }
     })
-    .catch((e) => {
-      throw new Error(e.base[0].detail)
+
+    // Update listing page's local state
+    const updatedTableData = rawTableData.map((record) => {
+      if (record.user.data.id === userArtifactsResults.participantId) {
+        return {
+          ...record,
+          artifactsResults: {
+            ...record.artifactsResults,
+            data: record.artifactsResults.data.map((item) => {
+              if (item.attributes.artifact.id.toString() === artifactId) {
+                return {
+                  ...item,
+                  attributes: {
+                    ...item.attributes,
+                    error: errorMessage,
+                  },
+                }
+              }
+              return item
+            }),
+          },
+        }
+      }
+      return record
     })
+
+    updateRawTableData(updatedTableData)
+  }
+
+  const { makeAsyncRequest } = useAsyncRequestResponse({
+    url: `/api/v2/administration/campaigns/${campaignId}/ai_artifacts/generate`,
+    responseType: AsyncArtifactResultResponseTR,
+    pollingInterval: 3,
+    numberOfTimesToPoll: 60,
+  })
+
+  const generateResult = async (id: string) => {
+    try {
+      const response = await makeAsyncRequest({
+        artifact_id: id,
+        user_id: userArtifactsResults.id,
+      })
+
+      const responseData = response.responseData as ArtifactResultResponseData
+
+      if (responseData.data.attributes.error) {
+        handleError({
+          errorMessage: responseData.data.attributes.error,
+          artifactId: id,
+          parsedDependencies: responseData.data.attributes.parsedDependencies,
+        })
+      }
+
+      handleSuccess(responseData)
+    } catch (e) {
+      const errorMessage = e?.message || I18n.t('common.errors.something_wrong')
+      handleError({ errorMessage, artifactId: id })
+    }
+  }
 
   return (
     <Drawer
@@ -75,7 +166,7 @@ export const ArtifactResultsDrawer: React.FC<ArtifactResultsDrawerProps> = ({
       closable
       onClose={close}
       open
-      width="40%"
+      size="large"
       className={styles.artifactResultsDrawer}
     >
       <Flex vertical>

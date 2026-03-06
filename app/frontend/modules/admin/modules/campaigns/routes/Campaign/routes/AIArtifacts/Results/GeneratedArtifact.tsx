@@ -3,9 +3,11 @@ import React from 'react'
 import {
   Flex, Typography, Button, Tooltip,
 } from 'antd'
-import { FileTextOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { formatedDate } from '~/utils/time'
+import { FileTextOutlined, InfoCircleFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 import ParsedDependenciesModal from './ParsedDependenciesModal'
 import { ArtifactResults } from './ArtifactResults'
+import styles from '../styles.less'
 
 const { I18n } = window
 
@@ -22,25 +24,20 @@ type GeneratedArtifactProps={
       parsedDependencies: string | null
       totalInputTokens: number | undefined
       totalOutputTokens: number | undefined
+      generatedAt: string | null
+      resultStale: boolean
   }
     generateResult: (id: string) => Promise<void>
 }
 
 export const GeneratedArtifact: React.FC<GeneratedArtifactProps> = ({ artifactName, artifactData, generateResult }) => {
   const [isGenerating, setIsGenerating] = React.useState(false)
-  const [error, setError] = React.useState<string>(artifactData.error || '')
   const [showParsedDependenciesModal, setShowParsedDependenciesModal] = React.useState(false)
 
   const handleGenerateResult = async (id:string) => {
     setIsGenerating(true)
-    setError('')
-    try {
-      await generateResult(id)
-    } catch (e) {
-      setError(e.message)
-    } finally {
-      setIsGenerating(false)
-    }
+    await generateResult(id)
+    setIsGenerating(false)
   }
 
   return (
@@ -48,7 +45,14 @@ export const GeneratedArtifact: React.FC<GeneratedArtifactProps> = ({ artifactNa
       <Flex justify="space-between" flex={1} className="mb-1">
         <Flex>
           <Typography.Title level={4}>{artifactName}</Typography.Title>
-          {!error && !isGenerating && (
+          {!isGenerating && artifactData.resultStale && (
+            <Tooltip title={I18n.t('admin.ai_artifact_result_stale')}>
+              <span>
+                <InfoCircleFilled className={styles.warning} />
+              </span>
+            </Tooltip>
+          )}
+          {artifactData.parsedDependencies && !isGenerating && (
             <Tooltip title={I18n.t('administration.ai_artifacts.parsed_dependencies.view')}>
               <Button
                 type="text"
@@ -61,13 +65,20 @@ export const GeneratedArtifact: React.FC<GeneratedArtifactProps> = ({ artifactNa
         <Button
           onClick={() => { handleGenerateResult(artifactData.id.toString()) }}
           type="primary"
+          loading={isGenerating}
         >
           {I18n.t('administration.ai_artifacts.generate')}
         </Button>
       </Flex>
+      {!isGenerating && (
+        <Typography.Text type="secondary">
+          {I18n.t('administration.ai_artifacts.generated_at_time',
+            { time: formatedDate(artifactData.generatedAt) })}
+        </Typography.Text>
+      )}
       <ArtifactResults
         isLoading={isGenerating}
-        error={error}
+        error={artifactData.error || ''}
         artifactResults={artifactData.results}
         totalInputTokens={artifactData.totalInputTokens}
         totalOutputTokens={artifactData.totalOutputTokens}

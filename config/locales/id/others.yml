@@ -862,6 +862,7 @@ id:
         bulk_reports: Laporan Massal
         bulk_rescore_campaign_factors: Faktor Kampanye Rescore Massal
         bulk_update_evaluation_status: Status Evaluasi Pembaruan Massal
+        campaign_report_extract_and_upload_bulk_assets: Laporan Kampanye Unggah Aset Massal
         compact_completion_status_export: Ekspor Status Penyelesaian Kompak
         completion_status_export: Ekspor Status Penyelesaian
         copy_as_template_or_campaign: Salin Kampanye sebagai Templat
@@ -871,6 +872,7 @@ id:
         export_admin_with_permissions: Ekspor Admin Dengan Izin
         export_assessment_questions: Pertanyaan Penilaian Ekspor
         export_campaign_ai_artifacts: Ekspor Artefak AI Kampanye
+        export_campaign_ai_artifacts_results: Hasil Kampanye Ekspor Artefak AI
         export_campaign_factors: Faktor Kampanye Ekspor
         export_campaign_scorings: Ekspor Kampanye Scorings
         export_dashboard_as_file: Ekspor Dasbor sebagai file
@@ -1277,6 +1279,7 @@ id:
     record_not_found: Catatan Tidak Ditemukan
     user_not_authorized: Pengguna Tidak Berwenang
   auth:
+    cookies_link: <a href="%{cookies_url}">Pernyataan Cookie</a>
     current_password: Kata Sandi Saat Ini
     current_password_placeholder: Masukkan Kata Sandi Saat Ini
     email: Email
@@ -1322,6 +1325,7 @@ id:
     password_confirmation: Konfirmasi Kata Sandi
     password_confirmation_placeholder: Masukkan Konfirmasi Kata Sandi
     password_placeholder: Masukkan Kata Sandi
+    privacy_statement_link: <a href="%{privacy_url}">Pernyataan Privasi</a>
     registration:
       description: Isi detail di bawah ini untuk mendaftar dan membuat akun baru
       email_hint: Kami menghormati privasi Anda dan tidak mentolerir spam. Kami tidak akan pernah memberikan informasi Anda kepada pihak ketiga mana pun
@@ -1346,7 +1350,6 @@ id:
       title: Buat Kata Sandi
     sign_out: Masuk sebagai pengguna yang berbeda
     sign_up: Daftar
-    terms_link: <a href="%{terms_url}">Ketentuan dan Pernyataan Privasi</a>
     verify_mobile_number:
       error:
         blocked: Nomor ini diblokir karena terlalu banyak percobaan.
@@ -2757,10 +2760,12 @@ id:
           learn: "<strong>10%</strong>Pembelajaran Formal"
         content:
           list:
-            r1: Harap dicatat bahwa daftar ini hanya bersifat indikatif, dan jalur pengembangan tambahan dapat dipertimbangkan untuk Anda berdasarkan aspirasi individu, rekomendasi dari manajer Anda, serta prioritas bisnis organisasi.
-            r2: Harap dicatat bahwa peluncuran beberapa jalur pengembangan ini akan bergantung pada strategi pendidikan dan pembelajaran di seluruh organisasi.
-            r3: Harap pertimbangkan jalur yang direkomendasikan seperti yang dilintasi di bawah ini, saat mengembangkan Rencana Pengembangan Individu Anda.
-          main: Bagian ini mencakup daftar kumulatif dari semua jalur pengembangan, dengan mengingat pembelajaran praktik terbaik yaitu, pedoman 70-20-10, yang memberikan perjalanan progresif yang menggabungkan pembelajaran di kelas, pembinaan, dan pembelajaran di tempat kerja. Berdasarkan hasil dari pengalaman pengembangan kepemimpinan dan prioritas bisnis, kemungkinan jalur pengembangan telah direkomendasikan, yang dapat dipertimbangkan untuk pengembangan Anda.
+            r1: Harap diperhatikan bahwa daftar ini hanya bersifat indikatif, dan jalur pengembangan tambahan dapat dipertimbangkan untuk Anda berdasarkan aspirasi pribadi, rekomendasi dari atasan Anda, serta prioritas bisnis organisasi.
+            r2: Pengguna didorong untuk meninjau secara kritis semua konten, dan bebas untuk memodifikasi, menyempurnakan, mengganti, atau menambahkan tindakan atau rekomendasi apa pun yang tidak mereka setujui.
+            r3: 'Masukan pengembangan yang tercantum dalam laporan ini dapat berasal dari salah satu atau kedua sumber berikut:'
+            r3a: Perpustakaan pengembangan yang disesuaikan yang dibuat khusus untuk organisasi Anda.
+            r3b: Saran pengembangan yang dihasilkan oleh kecerdasan buatan (AI)
+          main: IDP yang dibuat mencakup daftar rinci tindakan pengembangan yang dapat Anda lakukan, dengan mempertimbangkan pedoman praktik terbaik pembelajaran, yaitu pedoman 70-20-10, yang menyediakan perjalanan progresif yang menggabungkan pembelajaran di kelas, bimbingan, dan pembelajaran di tempat kerja. Berdasarkan hasil dari proses pusat penilaian, tanggapan obrolan Anda, dan laporan eksternal, jika berlaku, jalur pengembangan yang mungkin telah direkomendasikan, yang dapat dipertimbangkan untuk pengembangan Anda.
         learn_cards:
           collaboration:
             list:
@@ -2783,14 +2788,13 @@ id:
             title: Belajar Di Tempat Kerja (70%) <br/> Berkembang melalui pengalaman
           learn:
             list:
-            - Mengambil posisi kepemimpinan dalam komite pemangku kepentingan atau manajemen
-            - Menjadi sukarelawan untuk memimpin proyek manajemen perubahan untuk organisasi
-            - Pertimbangkan untuk mengambil tugas yang menantang
-            - Bekerja lintas fungsi dengan departemen lain
-            - Pertimbangkan untuk memimpin proyek di luar organisasi Anda
-            - Bekerja sama dengan pakar industri eksternal dalam proyek bersama
+            - Ikuti program pelatihan terstruktur.
+            - Ikuti kursus e-learning online secara lengkap.
+            - Bacalah buku, artikel, dan publikasi.
+            - Peroleh kualifikasi profesional, sertifikasi, dan akreditasi.
+            - Ikuti kursus, lokakarya, dan seminar.
             title: Pembelajaran Formal (10%) <br/> Berkembang melalui pembelajaran terstruktur
-        title: Pedoman untuk Memandu IDP Anda
+        title: Panduan untuk IDP Anda
       idp:
         end_date: Tanggal Berakhir
         self_rating: Peringkat Diri
