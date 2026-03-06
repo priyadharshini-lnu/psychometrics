@@ -12,6 +12,9 @@ bg:
         user_not_found: Потребител не е намерен или не е част от един и същ проект
       admin:
         already_added: Администратор с вече добавен имейл.
+      ai_scoring_approval_settings:
+        assessment_exists: Настройката за одобрение на AI Scoring за тази оценка вече съществува.
+        validates_admins: Администраторите нямат достъп до кампанията.
       already_assigned?: Не може да се свърже тази оценка - тя вече е присвоена на "%{linked_assessor_form_name}".
       already_invited: Този потребител вече съществува в центъра за оценяване, който се опитвате да добавите.
       assessor_assessment:

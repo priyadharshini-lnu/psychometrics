@@ -12,6 +12,9 @@ ko:
         user_not_found: 사용자를 찾을 수 없거나 동일한 프로젝트에 속하지 않은 사용자
       admin:
         already_added: 이메일이 이미 추가된 관리자입니다.
+      ai_scoring_approval_settings:
+        assessment_exists: 이 평가에 대한 AI 채점 승인 설정이 이미 존재합니다.
+        validates_admins: 관리자는 캠페인에 접근할 수 없습니다.
       already_assigned?: 이 평가를 연결할 수 없습니다. 이 평가는 이미 '%{linked_assessor_form_name}'에 할당되어 있습니다.
       already_invited: 이 사용자는 추가하려는 평가 센터에 이미 존재합니다.
       assessor_assessment:

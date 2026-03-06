@@ -862,6 +862,7 @@ hu:
         bulk_reports: Tömeges jelentések
         bulk_rescore_campaign_factors: Tömeges újrapontozási kampánytényezők
         bulk_update_evaluation_status: Tömeges frissítés kiértékelési állapota
+        campaign_report_extract_and_upload_bulk_assets: Kampányjelentés Tömeges eszközök feltöltése
         compact_completion_status_export: Kompakt teljesítési állapot exportálása
         completion_status_export: Teljesítési állapotok exportálása
         copy_as_template_or_campaign: Kampány másolása sablonként
@@ -871,6 +872,7 @@ hu:
         export_admin_with_permissions: Rendszergazda exportálása engedélyekkel
         export_assessment_questions: Exportértékelési kérdések
         export_campaign_ai_artifacts: Export kampány AI tárgyak
+        export_campaign_ai_artifacts_results: Exportálás Kampány AI-artefaktumok Eredmények
         export_campaign_factors: Kampánytényezők exportálása
         export_campaign_scorings: Kampánypontozások exportálása
         export_dashboard_as_file: Irányítópult exportálása fájlként
@@ -1274,6 +1276,7 @@ hu:
     record_not_found: A rekord nem található
     user_not_authorized: A felhasználó nem engedélyezett
   auth:
+    cookies_link: <a href="%{cookies_url}">Sütikre vonatkozó nyilatkozat</a>
     current_password: Jelenlegi jelszó
     current_password_placeholder: Jelenlegi jelszó megadása
     email: E-mail
@@ -1319,6 +1322,7 @@ hu:
     password_confirmation: Jelszó megerősítése
     password_confirmation_placeholder: Jelszó megerősítése
     password_placeholder: Jelszó megadása
+    privacy_statement_link: <a href="%{privacy_url}">Adatvédelmi nyilatkozat</a>
     registration:
       description: Töltse ki az alábbi adatokat a regisztrációhoz és egy új fiók létrehozásához
       email_hint: Tiszteletben tartjuk a magánéletét, és nem toleráljuk a spameket. Soha nem adjuk ki az adatait harmadik félnek

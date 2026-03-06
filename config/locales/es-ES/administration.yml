@@ -735,6 +735,21 @@ es-ES:
       errors:
         invalid_headers: 'Las siguientes cabeceras no son válidas: %{headers}'
     campaign_report:
+      bulk_assets_upload:
+        errors:
+          csv_and_zip_must_exist: Los archivos CSV y ZIP deben cargarse antes de comenzar.
+          csv_cannot_be_empty: El archivo CSV no puede estar vacío.
+          csv_contains_blank_values: El CSV contiene valores en blanco. Todos los valores de user_email y file_name deben estar presentes.
+          csv_file_name_must_be_unique: Los valores del nombre de archivo CSV deben ser únicos.
+          csv_must_contain_two_headers: 'El CSV debe tener exactamente 2 columnas con encabezados: %{headers}'
+          csv_user_emails_must_be_unique: Los valores de user_email del CSV deben ser únicos.
+          failed_to_attach_file: 'No se ha podido adjuntar el archivo al correo electrónico: %{email}. Error: %{error_message}'
+          file_names_in_csv_must_be_of_type_pdf: El CSV contiene entradas de nombre_de_archivo no válidas. Todos los valores de nombre_de_archivo en el CSV deben tener la extensión .pdf.
+          file_processing_error: 'Errores encontrados en el procesamiento del archivo: %{error_message}'
+          max_emails_in_csv: Máximo de entradas user_email permitidas en CSV (%{max}). Su CSV contiene entradas user_email de %{count}.
+          missing_user_reports: 'Informes de usuarios perdidos para correos electrónicos: %{emails}'
+          no_file_found_in_extracted_zip: No se ha encontrado ningún archivo en el ZIP extraído.
+          user_report_not_found: 'No se ha encontrado ningún informe de usuario para el correo electrónico: %{email}'
       bulk_download:
         data_range_error: Seleccione un intervalo de fechas
         modal:
@@ -839,6 +854,16 @@ es-ES:
           report: Informe
           send_digest_emails: Enviar correos electrónicos de resumen
           settings: Ajustes
+        scoring_approval:
+          allow_bulk_approve: Permitir aprobación masiva
+          allow_bulk_approve_scores: Permitir la aprobación masiva de puntuaciones
+          approver_users: Usuarios aprobadores
+          approvers: Aprobadores
+          assessment: Evaluación
+          assessor_users: Usuarios evaluadores
+          modal_title: Configuración de aprobación de puntuación
+          remove_modal_success: 'La configuración de aprobación para el ID de evaluación: %{assessmentId} se ha eliminado correctamente.'
+          remove_modal_text: "¿Está seguro de que desea eliminar esta configuración para el ID de evaluación: %{assessmentId}?"
       assessors:
         spoof:
           successfully: Ha iniciado sesión correctamente como %{name}
@@ -1005,6 +1030,8 @@ es-ES:
         ai_assistants_disabled_by_client: El cliente deshabilita AI Assistants
         ai_assisted_idp: AI PDI asistido
         ai_assisted_idp_requires_ai_assistants: El IDP asistido por IA requiere que la función de asistentes de IA esté habilitada
+        ai_content_analysis: Análisis de contenido con IA
+        ai_content_analysis_disabled_by_client: El análisis de contenido de IA está desactivado por el cliente.
         ai_translation: Traducciones con IA
         ai_translation_disabled_by_client: Las traducciones con IA están desactivadas por el cliente.
         global_skills: Habilidades globales
@@ -2540,6 +2567,7 @@ es-ES:
     message: Mensaje
     meta_title: Panel de administración
     navigation:
+      approvals: Aprobaciones
       audit_logs: Registros de auditoría
       availability: Disponibilidad
       configuration: Configuración
@@ -3206,9 +3234,11 @@ es-ES:
         actions: Acciones
         approval_status: Estado de aprobación
         approved_by: Aprobado por
+        assessed_by: Evaluado por
         campaign_name: Nombre de la campaña
         qc_by: Revisado por
         report_name: Nombre del informe
+        subject_email: Asunto Correo electrónico
         user_email: Correo electrónico del usuario
         user_name: Nombre de usuario
       dashboard: Cuadro de mandos
@@ -3773,6 +3803,11 @@ es-ES:
         tools: Herramientas
         weightages: Ponderaciones
       weighted_average: Media ponderada
+    scoring_approval:
+      approve_all: Aprobar todo
+      bulk_approve_success: "%{approved} puntuaciones aprobadas."
+      review: Revisión
+      score_approvals: Aprobaciones de puntuación de IA
     search: Buscar en
     security_setting:
       180_days: 180 días

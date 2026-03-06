@@ -7,27 +7,48 @@ hi:
     add: जोड़ें
     advanced: उन्नत
     agree_and_continue: सहमत हूँ और जारी रखें
+    approval_status: अनुमोदन की स्थिति
+    approved: स्वीकृत
+    approved_by: द्वारा अनुमोदित
+    approvers_list: अनुमोदक सूची
     archive: संग्रह
     archived: संचित
+    assessed_by: द्वारा आकलित
+    assessment: मूल्यांकन
+    assessment_id: मूल्यांकन आईडी
+    assessment_list: मूल्यांकन सूची
+    assessment_name: मूल्यांकन का नाम
+    assessor_approved: मूल्यांकनकर्ता अनुमोदित
+    assessors_list: मूल्यांकनकर्ताओं की सूची
     asset_not_present: संपत्ति मौजूद नहीं है
     audio: ऑडियो
     authentication_failed: प्रमाणीकरण विफल हो गया। कृपया फिर से प्रयास करें।
+    back: वापस
     basic: मूलभूत
     camera_preview: कैमरा पूर्वावलोकन यहाँ दिखाई देगा
+    campaign: अभियान
     campaign_id: अभियान आईडी
     cancel: रद्द करें
     change_password: पासवर्ड बदलें
     clear_filters: फ़िल्टर साफ़ करें
+    client: ग्राहक
     collaborative_learning: सहयोगात्मक अधिगम
     completed: पूर्ण
     configurations: संरचनाएँ
     confirm: पुष्टि करें
     continue: जारी रखें
+    controller: नियंत्रक
+    cookies_statement: कुकीज़ कथन
     copy: प्रतिलिपि
     created_at: पर बनाया गया
     created_date: निर्मित तिथि
+    custom_consent_text: अनुकूलित सहमति पाठ
+    custom_consent_text_required: कंट्रोलर डेटा भूमिका के लिए अनुकूलित सहमति पाठ आवश्यक है।
+    data_role: डेटा भूमिका
     decline: पतन
     description: विवरण
+    desktop_or_laptop_recommended: डेस्कटॉप या लैपटॉप अनुशंसित
+    desktop_or_laptop_required: डेस्कटॉप या लैपटॉप आवश्यक है
     download: डाउनलोड
     download_audio: ऑडियो डाउनलोड करें
     download_transcription: प्रतिलिपि डाउनलोड करें
@@ -37,6 +58,7 @@ hi:
     email: ईमेल
     export: निर्यात
     failed: असफल
+    'false': false
     first_name: पहला नाम
     formal_learning: औपचारिक अधिगम
     generate: उत्पन्न करें
@@ -50,6 +72,7 @@ hi:
     internet_disconnected_message: फिर से जुड़ने की कोशिश कर रहा हूँ। कृपया अपना इंटरनेट कनेक्शन जांचें।
     last_name: आखिरी नाम
     learning_on_the_job_label: काम करते हुए सीखना
+    loading: लोड हो रहा है...
     login: लॉगिन
     maintenance_in_hours: "%{hours} घंटे"
     maintenance_in_minutes: "%{minutes} मिनट"
@@ -60,20 +83,28 @@ hi:
     maintenance_upcoming_title: आगामी रखरखाव
     media_question_transcriptions: मीडिया प्रश्न प्रतिलेखन
     media_responses: मीडिया की प्रतिक्रियाएँ
+    mobile_proctoring_disabled_instructions: इस मूल्यांकन को जारी रखने के लिए डेस्कटॉप या लैपटॉप आवश्यक है। कृपया गतिविधि पूरी करने के लिए कंप्यूटर पर स्विच करें।
+    mobile_proctoring_enabled_instructions: बेहतर अनुभव के लिए, यदि आपके पास डेस्कटॉप या लैपटॉप उपलब्ध है तो कृपया उसका उपयोग करें। यदि आवश्यक हो तो आप अपने मोबाइल डिवाइस पर जारी रख सकते हैं।
     modified_by: द्वारा संशोधित
     modified_date: संशोधित तिथि
     more_actions: अधिक क्रियाएँ
     mte_logo_alt_text: मर्सर टैलेंट एंटरप्राइज लोगो
     na_text: लागू नहीं
     name: नाम
+    negative: नकारात्मक
     new: नया
     no_results_found: कोई परिणाम नहीं मिला
     not_requested: अभी तक अनुरोध नहीं किया गया
     ok: ठीक है
     pending: लंबित
+    policy_version: नीति संस्करण
+    policy_version_format: केवल पूर्ण संख्याएँ ही अनुमत हैं।
+    positive: सकारात्मक
     processing: प्रसंस्करण
+    processor: प्रोसेसर
     proctoring_maintenance_active: प्रॉक्टरिंग वर्तमान में %{start_time} से %{end_time} पर रखरखाव के अधीन है। कृपया रखरखाव विंडो के बाद फिर से प्रयास करें।
     proctoring_maintenance_upcoming: "%{start_time} से %{end_time} तक रखरखाव के तहत प्रॉक्टरिंग होगी।"
+    project: परियोजना
     question_id: प्रश्न आईडी
     question_transcription_disabled: इस प्रश्न के लिए प्रतिलेखन अक्षम है।
     rec: पुनर्नवीनीकरण योग्य ऊर्जा स्रोत
@@ -84,14 +115,20 @@ hi:
     removed: हटाया गया
     replace: बदलें
     reset_password: पासवर्ड रीसेट करें
+    response_text: प्रतिक्रिया पाठ
     rte_paste_content_exceeds_char_limit: टेक्स्ट {{maxCharacterLimit}} की वर्ण सीमा से अधिक है और इसे पेस्ट नहीं किया जा सकता।
     rte_paste_content_exceeds_word_limit: टेक्स्ट {{maxWordLimit}} शब्दों की सीमा से अधिक है और इसे पेस्ट नहीं किया जा सकता।
     save: बचाएँ
     saving_video: वीडियो सहेज रहा है... कृपया ब्राउज़र बंद न करें या रिफ्रेश न करें।
+    scoring_details: स्कोरिंग विवरण
     search: खोजें
     send_email: ईमेल भेजें
     show_more: और दिखाएँ
     something_wrong: कुछ गलत हो गया। अपने व्यवस्थापक से संपर्क करें।
+    status: स्थिति
+    subject: विषय
+    submit: सबमिट करें
+    switch_to_laptop_or_desktop: लैपटॉप या डेस्कटॉप पर स्विच करें
     table:
       entries:
         selected:
@@ -108,9 +145,12 @@ hi:
     transcription_not_enabled: मीडिया प्रतिक्रिया के लिए प्रतिलेखन सक्षम नहीं है।
     transcription_status: प्रतिलिपि स्थिति
     transcriptions: प्रतिलिपियाँ
+    'true': true
     try_again: फिर से कोशिश करें
     tte_terms_and_condition: शर्तें और गोपनीयता
     type: प्रकार
     update: अपडेट
+    update_failed: अपडेट विफल हो गया
+    updated_successfully: सफलतापूर्वक अद्यतन किया गया
     video: वीडियो
     view: देखें

@@ -735,6 +735,21 @@ ar:
       errors:
         invalid_headers: 'الرؤوس التالية غير صالحة: %{headers}'
     campaign_report:
+      bulk_assets_upload:
+        errors:
+          csv_and_zip_must_exist: يجب تحميل ملفات CSV و ZIP قبل البدء.
+          csv_cannot_be_empty: لا يمكن أن يكون ملف CSV فارغًا.
+          csv_contains_blank_values: يحتوي ملف CSV على قيم فارغة. يجب أن تكون جميع قيم user_email و file_name موجودة.
+          csv_file_name_must_be_unique: يجب أن تكون قيم اسم الملف CSV فريدة.
+          csv_must_contain_two_headers: 'يجب أن يحتوي ملف CSV على عمودين فقط مع العناوين التالية: %{headers}'
+          csv_user_emails_must_be_unique: يجب أن تكون قيم CSV user_email فريدة.
+          failed_to_attach_file: 'فشل إرفاق الملف بالبريد الإلكتروني: %{email}. الخطأ: %{error_message}'
+          file_names_in_csv_must_be_of_type_pdf: يحتوي ملف CSV على إدخالات file_name غير صالحة. يجب أن تكون جميع قيم file_name في ملف CSV بامتداد .pdf.
+          file_processing_error: 'أخطاء تم العثور عليها في معالجة الملف: %{error_message}'
+          max_emails_in_csv: الحد الأقصى المسموح به لإدخالات user_email في ملف CSV هو %{max}. يحتوي ملف CSV الخاص بك على إدخالات user_email %{count}.
+          missing_user_reports: 'تقارير المستخدمين المفقودة للبريد الإلكتروني: %{emails}'
+          no_file_found_in_extracted_zip: لم يتم العثور على ملف في ملف ZIP المستخرج
+          user_report_not_found: 'لم يتم العثور على تقرير المستخدم للبريد الإلكتروني: %{email}'
       bulk_download:
         data_range_error: يرجى تحديد نطاق التاريخ
         modal:
@@ -839,6 +854,16 @@ ar:
           report: تقرير
           send_digest_emails: إرسال رسائل البريد الإلكتروني الملخصة
           settings: الإعدادات
+        scoring_approval:
+          allow_bulk_approve: السماح بالموافقة الجماعية
+          allow_bulk_approve_scores: السماح بالموافقة الجماعية على الدرجات
+          approver_users: المستخدمون المعتمدون
+          approvers: الموافقون
+          assessment: التقييم
+          assessor_users: مستخدمو المقيّم
+          modal_title: إعدادات الموافقة على التقييم
+          remove_modal_success: 'تم حذف إعداد الموافقة لمعرف التقييم: %{assessmentId} بنجاح'
+          remove_modal_text: 'هل أنت متأكد من أنك تريد حذف هذا الإعداد الخاص برقم التقييم: %{assessmentId}؟'
       assessors:
         spoof:
           successfully: تم تسجيل الدخول بنجاح كمستخدم %{name}
@@ -1005,6 +1030,8 @@ ar:
         ai_assistants_disabled_by_client: تم تعطيل مساعدي الذكاء الاصطناعي بواسطة العميل
         ai_assisted_idp: المشردون داخلياً بمساعدة الذكاء الاصطناعي
         ai_assisted_idp_requires_ai_assistants: يتطلب IDP المدعوم من الذكاء الاصطناعي تمكين ميزة مساعدي الذكاء الاصطناعي
+        ai_content_analysis: تحليل محتوى الذكاء الاصطناعي
+        ai_content_analysis_disabled_by_client: تم تعطيل تحليل محتوى الذكاء الاصطناعي من قبل العميل
         ai_translation: ترجمة بالذكاء الاصطناعي
         ai_translation_disabled_by_client: تم تعطيل AI Translations من قبل العميل
         global_skills: المهارات العالمية
@@ -2540,6 +2567,7 @@ ar:
     message: الرسالة
     meta_title: Administration panel
     navigation:
+      approvals: الموافقات
       audit_logs: سجلات التدقيق
       availability: التوفر
       configuration: تكوين
@@ -3206,9 +3234,11 @@ ar:
         actions: Actions
         approval_status: Approval Status
         approved_by: Approved By
+        assessed_by: تم تقييمه بواسطة
         campaign_name: Campaign Name
         qc_by: QC By
         report_name: Report Name
+        subject_email: موضوع البريد الإلكتروني
         user_email: User Email
         user_name: User Name
       dashboard: Dashboard
@@ -3773,6 +3803,11 @@ ar:
         tools: Tools
         weightages: Weightages
       weighted_average: Weighted Average
+    scoring_approval:
+      approve_all: الموافقة على الكل
+      bulk_approve_success: "%{approved} النتائج المعتمدة."
+      review: مراجعة
+      score_approvals: الموافقات على التقييمات باستخدام الذكاء الاصطناعي
     search: Search
     security_setting:
       180_days: 180 Days

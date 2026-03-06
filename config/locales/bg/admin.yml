@@ -2,10 +2,12 @@
 bg:
   admin:
     accept_na_values: Приеми N/A стойности
+    actions: Действия
     add_admin: Добавяне на администратор
     add_admin_role: Добавяне на администраторска роля
     add_campaign_admin: Добавяне на администратор на кампанията
     add_client_admin: Добавяне на клиентски администратор
+    add_indicator: Добави индикатор
     add_project: Добавяне на проект
     add_project_admin: Добавяне на администратор на проекта
     add_threesixty_campaign_admin: Добавяне на администратор на кампанията
@@ -18,8 +20,14 @@ bg:
     admin_roles: Администраторски роли
     admin_updated_successfully: Администраторът '%{name}' е актуализиран успешно
     admins: Администратори
+    ai_artifact_result_generation_admin_job_failed: Артефактът „%{artifact_name}” не може да бъде генериран за потребителя „%{user_email}”.
+    ai_artifact_result_stale: Резултатът може да е неактуален, тъй като зависимостите на AI артефакта са се променили от момента на генериране на последния резултат. Обмислете да генерирате артефакта отново, за да използвате най-новите зависимости.
     ai_artifacts: Артефакти с изкуствен интелект
+    ai_artifacts_generate_results: Генериране на резултати
     ai_artifacts_output_schema_key_constraint: Ключът трябва да започва с малка буква и може да съдържа само малки букви, цифри и подчертавания
+    ai_artifacts_results_export: Експортиране на резултати
+    ai_artifacts_results_export_job_scheduled: Задачата за експортиране на резултатите от AI Artifacts беше успешно планирана.
+    ai_assistant: AI асистент
     ai_assistant_model_id_label: Модел ID
     ai_assistant_model_label: Модел
     ai_assistant_model_provider: Доставчик
@@ -36,16 +44,46 @@ bg:
     ai_assistants_template_render_failed: Не успях да рендерирам шаблона
     ai_assistants_test_render: Тестов рендер
     ai_assistants_test_render_tooltip: Тествайте шаблона за подсказки с данни от кампанията, за да проверите какво ще бъде изпратено на AI асистента.
+    ai_assisted_idp_disabled_by_client: AI Assisted IDP е деактивиран от клиента
     ai_assisted_idp_feature_disabled: Функцията AI Assisted IDP е деактивирана за този проект.
     ai_idp_assistant_configure_dependencies: Конфигуриране на AI зависимости
     ai_idp_assistant_configure_dependencies_description: Конфигурирайте кои данни за зависимости IDP AI Assistant може да използва като контекст. Това важи само когато асистентът е конфигуриран да приема зависимости.
     ai_idp_assistant_dependencies_updated: Зависимостите са актуализирани успешно
     ai_idp_assistant_update_dependencies: Актуализиране на зависимости
     ai_notice: Подчертаните части са преведени с изкуствен интелект и може да съдържат неточности.
+    ai_score_approval_no_answer: Отговорът на този въпрос не е предоставен.
+    ai_score_approval_no_transcription: Транскрипция за този въпрос не е налична.
+    ai_scored: AI отбеляза
+    ai_scoring_appoval_approve_all_questions: Одобри всички въпроси
+    ai_scoring_appoval_approve_question: Одобри въпрос
+    ai_scoring_appoval_back: Нулиране на резултата
+    ai_scoring_appoval_change_reason: Причина за промяната
+    ai_scoring_appoval_change_score: променен резултат
+    ai_scoring_appoval_change_score_log: Регистър на промените в резултатите
+    ai_scoring_appoval_discard_all_questions: Изчисти всички въпроси
+    ai_scoring_appoval_discard_all_questions_description: Това ще нулира всички резултати за всички въпроси и ще изчисти всички промени. Тази действие не може да бъде отменено. Сигурен ли сте?
+    ai_scoring_appoval_discard_all_questions_title: Да се нулират всички резултати от въпросите?
+    ai_scoring_appoval_discard_question: Нулиране на резултатите от въпросите
+    ai_scoring_appoval_discard_question_confirm_description: Това ще нулира всички резултати за този въпрос и ще изчисти всички презаписвания. Сигурен ли сте?
+    ai_scoring_appoval_discard_question_confirm_title: Да се нулират резултатите от въпросите?
+    ai_scoring_appoval_discarded_changes: отхвърлени промени
+    ai_scoring_appoval_evidence_from_transcript: Доказателства от стенограмата
+    ai_scoring_appoval_new_score: Нов резултат
+    ai_scoring_appoval_next: Следващ въпрос
+    ai_scoring_appoval_rationale: Обосновка
+    ai_scoring_appoval_reason_for_changes: Причина за промените
+    ai_scoring_appoval_reset_score: Нулиране на резултата
+    ai_scoring_appoval_reset_score_description: Резултатът ще бъде върнат към първоначалната стойност на AI.
+    ai_scoring_appoval_responses: Отговори на AI
+    ai_scoring_appoval_score_not_applicable: Резултатът не се прилага
+    ai_scoring_approval: Одобрение на AI оценка
+    ai_scoring_approval_settings: Настройки за одобрение на AI оценката
+    ai_scoring_approvals: Одобрения на AI оценки
     ai_translation: AI превод
     all_corner_rounded: Всички ъгли са заоблени
     api_keys: API ключове
     apply_to_existing_users: Приложи тази промяна към съществуващите потребители в тази кампания
+    assessment_question_not_supported: Този тип въпрос понастоящем не се поддържа.
     assessments: Оценки
     assessments_not_mhs: Всички оценки трябва да бъдат от тип MHS.
     assessments_reports: Оценки и отчети
@@ -61,8 +99,14 @@ bg:
     availability: Наличност
     available_languages: Докладът е наличен на езици
     back_to_main: Главно меню
+    bulk_assets_modal_choose_csv: Изберете CSV файл
+    bulk_assets_modal_choose_zip: Изберете ZIP файл
+    bulk_assets_modal_not_csv_file_error: За качване на CSV файлове се допускат само CSV файлове. Моля, качете валиден CSV файл.
+    bulk_assets_modal_subtitle: 'Моля, качи <b>един CSV</b> файл (с заглавия: user_email, file_name) и <b>един ZIP</b> файл (съдържащ PDF файлове, съответстващи на имената на файловете от csv). ZIP файлът трябва да е с размер под %{max_file_size} MB.'
+    bulk_assets_modal_title: Качване на CSV и ZIP файлове
     bulk_upload_ai_artifacts: Масово качване на AI артефакти
     campaign_ai_artifact_updated_successfully: AI артефакти в кампанията са успешно обновени
+    campaign_ai_artifacts_results_export_details: Резултати, генерирани от артефакти на кампанията AI
     campaign_assessment_actions_disable_caching: Кеширане за изключване на оценката
     campaign_assessment_actions_enable_caching: Enable Assessment Caching
     campaign_assessment_column_caching_enabled: Възможно е кеширане на оценка
@@ -86,11 +130,15 @@ bg:
     campaign_assessment_modals_enable_caching_successfully: Кеширането е активирано за тази оценка.
     campaign_assessment_modals_enable_caching_title: Да активирам кеширането на оценката?
     campaign_factors: Фактори на кампанията
+    campaign_name: Име на кампанията
     campaign_templates: Шаблони за кампании
     campaign_user_job_roles_cannot_be_same: Целевата длъжност трябва да е различна от настоящата длъжност.
     campaigns: Кампании
+    cancel: Отмени
     cancellation_and_rescheduling_disabled: Отмяната и пренасрочването са деактивирани
     casual: Неформален
+    characters: герои
+    children_factor_type: Тип фактор „Деца“
     client: Наемане на клиенти
     client_admins: Администратори на клиенти
     clients: Наеми на клиенти
@@ -100,24 +148,52 @@ bg:
     completed: Завършен
     completed_tooltip: Всички оценители са подали оценката
     concise: Кратък
+    configure_model_answer_title: Конфигуриране на моделни отговори и ключови думи
     confirm_remove_admin: Сигурни ли сте, че искате да премахнете администратор с имейл '%{email}'?
+    copied: Копирано
     country: Държава
     create_client: Създайте клиент
+    create_indicator: Създаване на индикатор
     current_job_role: Текуща длъжност
     dashboard: Таблото
     dashboards: Табла
     data_reports: Отчети за данни
     datasheet: Лист с данни
     declined: Намалял
+    define_max_score_text: Определете резултат от %{maxScore} (максимален резултат)
+    define_min_score_text: Определете резултат от %{minScore} (минимален резултат)
+    define_optional_score_range_text: Дефиниране на резултати %{minScore} до %{maxScore} (по избор)
+    define_score_text: Определете резултат за „%{score}“
+    definition: Определение
     delete_ok_text: Да, изтрий
     denied: Отказан
+    description: Описание
     development_actions: Действия за развитие
     development_actions_form_tags: Тагове
+    digest_delivery_mode:
+      form_label: Режим на доставка на обобщение
+      immediate: Незабавно - Изпращайте винаги, когато има масова подаване
+      scheduled: Планирано - Изпращане на обобщаващо имейл съобщение в планирано време
+    digest_frequency:
+      daily: Ежедневно
+      form_label: Честота на преработката
+      weekdays: Делнични дни
+      weekly: Седмично
+    digest_weekdays:
+      form_label: Обобщение на работните дни
+      friday: петък
+      monday: понеделник
+      saturday: събота
+      sunday: неделя
+      thursday: четвъртък
+      tuesday: вторник
+      wednesday: сряда
     dimensions: Размери
     done: Направи
     done_tooltip: Не може да се подава повече оценка за този потребител, тъй като оценката му се маркира като извършена от %{marked_by}
     edit_campaign_admin: Редактиране на администратора на кампанията
     edit_client_admin: Редактиране на администратор на клиента
+    edit_indicator: Редактиране на индикатор
     edit_job_roles: Редактиране на работни роли
     edit_level: Редактиране на ниво
     edit_permission_denied: Нямате разрешение да редактирате администраторски '%{name}'
@@ -126,12 +202,17 @@ bg:
     empty_csv_file: CSV файлът не съдържа никакви данни.
     enable_enhance_with_ai_client_level: Моля, активирайте функцията „Подобрение с AI“ на ниво клиент.
     enable_maintenance: Активиране на поддръжка
+    enable_mobile_proctoring: Активиране на мобилно наблюдение
     enable_transcription: Активиране на транскрипция
+    enable_transcription_msg: Активирайте транскрипцията, за да използвате AI оценяване на въпросите с видео/аудио отговор.
     end_time: Край на времето
     end_time_must_be_after_start_time: Крайното време трябва да е след началната дата
     enhance_with_ai: Подобрете с AI
     enhance_with_ai_requires_ai_assistants: За да използвате функцията „Подобрение с AI“, трябва да активирате функцията „AI асистенти“.
+    enter_description: Въведете описание
+    enter_name: Въведете име
     error: Грешка
+    estimated_tokens: жетони (оценка)
     evaluation_status: Статус на оценката
     evaluation_status_not_done: Статусът на оценяване не е "Завършен" за един или повече избрани предмети. Моля, уверете се, че всички избрани потребители са завършили оценките или са оценили като изпълнени.
     export_admin_roles_permissions: Експортиране на администраторски роли и разрешения
@@ -139,14 +220,26 @@ bg:
     export_completion_status: Статус на завършване на експорта
     export_completion_statuses_scheduled: Задачата за експортиране на статусите на завършеност беше успешно планирана.
     export_detailed_completion_status: Подробно
+    feature_ai_assistants_description: Активирайте AI-базирани асистенти за подобрено потребителско преживяване
+    feature_ai_assisted_idp_description: Използвайте изкуствен интелект, за да подпомогнете препоръките за индивидуално планиране на развитието
+    feature_ai_content_analysis_description: Активиране на анализ на съдържанието, базиран на изкуствен интелект, за оценки
+    feature_ai_translation_description: Активиране на автоматичен превод на съдържание с изкуствен интелект в отчетите
     feature_enhance_with_ai: Подобрете с AI
+    feature_enhance_with_ai_description: Активиране на функции за подобряване на съдържанието, базирани на изкуствен интелект
     feature_flags: Флагове за функции
+    feature_flags_ai_group: Функции на изкуствения интелект
+    feature_flags_communication_group: Комуникация
+    feature_flags_platform_group: Характеристики на платформата
+    feature_global_skills_description: Достъп до глобалната библиотека с умения за оценки
+    feature_idp_description: Активиране на индивидуално планиране на развитието за участниците
+    feature_sms_notification_description: Активиране на SMS известия за покани и напомняния за кампании
     fill_empty_score_msg: Запълнете всички крайни резултати преди да запазите.
     final_score_empty_err_msg: Крайният резултат на „%{factor_name}“ не може да бъде празен.
     final_score_empty_msg: Крайната сметка не може да бъде празна.
     fix_grammar: Поправи граматиката
     formal: Официален
     generate_transcription: Генериране на транскрипция
+    hide_middle_scores: Скриване на средните резултати
     idp_plan_reset_success: Планът беше успешно рестартиран
     idp_templates: Шаблони за индивидуален план за развитие
     import_ai_artifacts: Импортиране на AI артефакти
@@ -175,6 +268,8 @@ bg:
     internal: Вътрешен
     invalid_csv_header: CSV файлът съдържа невалидни заглавия.
     job_roles: Работни роли
+    keywords: Ключови думи
+    keywords_placeholder: Въведете ключови думи, разделени със запетаи.
     learning_from_others: Съвместно обучение [20]
     level: Ниво
     level_apply: Кандидатствай
@@ -201,6 +296,10 @@ bg:
     min_value: Минимална стойност
     minimum_10_words: Минимум 10 думи
     missing_min_max_values: Минималните и максималните стойности са задължителни.
+    model_answer: Модел на отговор
+    model_answer_placeholder: Въведете моделния отговор за AI оценяване.
+    name: Име
+    name_max_length: Името не може да надвишава %{length} символа
     name_required: Задължително е име
     no_file_selected: Няма избран файл
     no_notifications: Няма известия
@@ -218,6 +317,8 @@ bg:
     only_editable_on_create: Тази опция може да се редактира само по време на създаването.
     options: Опции
     original_text: Оригинален текст
+    overall: Общо
+    overall_score: Общ резултат
     participants: Участниците
     permissions:
       aiArtifacts:
@@ -254,6 +355,7 @@ bg:
         bulk_regenerate_reports: Групово регенериране на отчети
         manage: Управлявам
         manage_admins: Управление на администратори
+        manage_ai_scoring_approval_settings: Управление на настройките за одобрение на AI оценката
         manage_factor_benchmark_scores: Управление на резултатите от Factor Benchmark
         manage_messages: Управление на съобщенията
         manage_options: Управление на опциите
@@ -642,6 +744,7 @@ bg:
         view_recordings: Преглед на записи
     permissions_360_campaigns: Разрешения, специфични за кампании в 360
     piped_text: Текст в тръба
+    precision: Прецизност
     privacy: Поверителност
     proctoring: Прокторант
     professional: Професионален
@@ -654,15 +757,19 @@ bg:
     project_number: Номер на проекта
     project_settings: Настройки на проекта
     projects: Проекти
+    prompt: Подсказка
     question_center: Център за въпроси
     questions: Въпроси
+    range_min_max: ДИАПАЗОН%{min} - %{max}
     reflection_questions: Въпроси за размисъл
     registration_codes: Регистрационни кодове
     registration_settings: Настройки за регистрация
+    remove_children_to_change_type: Премахнете всички деца, за да промените типа
     report_approvals: Докладване на одобрения
     report_condition_not_met: Нуждае се %{required} %{relationship} оценка(и), но има само %{actual}
     report_conditions_not_met_detailed: Докладът за %{user} не отговаря на условията за наличност. %{conditions}
     report_denied: Докладът за %{user} е отхвърлен
+    report_name: Име на доклада
     report_no_evaluations: Докладът за %{user} не е наличен – не са получени оценки.
     report_not_generated: Докладът за %{user} отговаря на условията за наличност, но все още не е генериран. Моля, генерирайте доклада първо.
     report_on_hold: Докладът за %{user} в момента е на пауза
@@ -725,8 +832,32 @@ bg:
     saml_service_provider_updated_date: Актуализирана дата
     saml_service_providers: Доставчици
     saml_settings: SAML настройки
+    save: Запази
+    save_assessment_for_scoring_management: Запазете оценката, преди да започнете с точкуването.
     scheduling: Планиране
+    score: Резултат
+    score_approval_not_allowed_to_approve: Не е позволено да одобрявате този резултат.
+    score_approval_not_allowed_to_discard: Не е позволено да изхвърляте този резултат.
+    score_definition_placeholder: Въведете определението за това ниво на оценка
+    score_definitions: Определения на резултатите
+    score_max: Максимален резултат
+    score_min: Резултат Мин
+    score_must_be_in_between_min_and_max: Резултатът трябва да е между %{min} и %{max}.
+    score_range_info: 'Диапазон на резултатите: %{min} - %{max}'
+    score_with_ai: Резултат с AI
     scoring: Точкуване
+    scoring_approval_add_settings: Добави настройки
+    scoring_approval_allow_bulk_approve: Разреши масово одобрение
+    scoring_approval_allow_bulk_approve_scores: Разреши масово одобряване на резултати
+    scoring_approval_allow_one_level_approve: Разреши едно ниво Одобри
+    scoring_approval_approver_users: Потребители с право на одобрение
+    scoring_approval_approvers: Одобряващи
+    scoring_approval_assessment: Оценка
+    scoring_approval_assessor_users: Потребители на оценители
+    scoring_approval_modal_title: Настройки за одобрение на оценки
+    scoring_approval_remove_modal_success: 'Настройката за одобрение за идентификационен номер на оценката: %{assessmentId} беше успешно изтрита.'
+    scoring_approval_remove_modal_text: 'Сигурен ли сте, че искате да изтриете тази настройка за идентификационен номер на оценката: %{assessmentId}?'
+    scoring_supported_only_for_ai_questions: Оценяването е разрешено само за въпроси с активирана AI за текущо избрания фактор.
     scoring_value_info: Резултатът трябва да е между %{min} и %{max}.
     scoring_value_out_of_range_err_msg: Резултатът за „%{factor_name}“ трябва да е между %{min} и %{max}.
     search_admins: Търсене на дминистратори
@@ -737,7 +868,10 @@ bg:
     select_level: Изберете ниво
     select_start_time: Изберете начален час
     send_email: Изпрати имейл
+    set_min_max_scores_warning: Моля, задайте минимални и максимални резултати за този фактор, за да конфигурирате AI оценяването.
     settings: Настройки
+    show_all_assessment_responses: Покажи всички отговори на оценката
+    show_middle_scores: Покажи още резултати за „%{count}“ (по избор)...
     show_original: Покажи оригинал
     show_submenu: Покажи подменюто
     show_translated: Покажи преведеното
@@ -755,6 +889,7 @@ bg:
     subdomain: Поддомейн
     subject_part_of_other_invite: Получателят на имейла %{user_email} вече е поканен на „%{workshop_invite_name}”
     target_job_role: Целева длъжност
+    this_field_is_required: Това поле е задължително
     timezone: Часова зона
     tone: Тон
     toolbar_ai_insight: AI Insight
@@ -778,8 +913,12 @@ bg:
     upload_success: Качено успешно
     user_report_events: Събития с потребителски отчет
     users: Потребители
+    validation_error: Моля, попълнете всички задължителни полета
     view_licenses: Преглед на лицензи
     waiting: Чакат
+    weight: Тегло
+    what_to_look_for: Какво да търсите
+    what_to_look_for_placeholder: Доказателства за поведение, действия или резултати, които демонстрират този фактор
     words: Думи
     workshops: Семинари
     writing_assistant_not_configured: Писателският асистент не е конфигуриран

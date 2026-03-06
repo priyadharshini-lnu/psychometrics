@@ -12,6 +12,9 @@ nl:
         user_not_found: Gebruiker niet gevonden of maakt geen deel uit van hetzelfde project
       admin:
         already_added: Admin met e-mail al toegevoegd.
+      ai_scoring_approval_settings:
+        assessment_exists: De instelling voor AI-scoring voor deze beoordeling bestaat al.
+        validates_admins: Beheerders hebben geen toegang tot de campagne.
       already_assigned?: Kan deze beoordeling niet koppelen - ze is al toegewezen aan '%{linked_assessor_form_name}'.
       already_invited: Deze gebruiker bestaat al in het beoordelingscentrum dat u probeert toe te voegen.
       assessor_assessment:

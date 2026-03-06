@@ -12,6 +12,9 @@ de:
         user_not_found: Benutzer nicht gefunden oder nicht Teil desselben Projekts
       admin:
         already_added: Admin mit E-Mail bereits hinzugefügt.
+      ai_scoring_approval_settings:
+        assessment_exists: Die Einstellung für die KI-Bewertung für diese Beurteilung ist bereits vorhanden.
+        validates_admins: Administratoren haben keinen Zugriff auf die Kampagne.
       already_assigned?: Diese Bewertung kann nicht verknüpft werden - sie ist bereits '%{linked_assessor_form_name}' zugewiesen.
       already_invited: Dieser Benutzer existiert bereits in dem Assessment Center, das Sie hinzufügen möchten.
       assessor_assessment:

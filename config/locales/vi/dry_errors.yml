@@ -12,6 +12,9 @@ vi:
         user_not_found: Không tìm thấy người dùng hoặc không phải là một phần của cùng một dự án
       admin:
         already_added: Quản trị viên đã thêm email.
+      ai_scoring_approval_settings:
+        assessment_exists: Cài đặt phê duyệt điểm số AI cho bài đánh giá này đã tồn tại.
+        validates_admins: Quản trị viên không có quyền truy cập vào chiến dịch.
       already_assigned?: Không thể liên kết đánh giá này - nó đã được gán cho '%{linked_assessor_form_name}'.
       already_invited: Người dùng này đã tồn tại trong trung tâm đánh giá mà bạn đang cố gắng thêm.
       assessor_assessment:

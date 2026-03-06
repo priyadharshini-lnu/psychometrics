@@ -2,10 +2,12 @@
 pt:
   admin:
     accept_na_values: Aceitar valores N/A
+    actions: Ações
     add_admin: Adicionar administrador
     add_admin_role: Adicionar função de administrador
     add_campaign_admin: Adicionar administrador da campanha
     add_client_admin: Adicionar administrador de cliente
+    add_indicator: Adicionar indicador
     add_project: Adicionar projeto
     add_project_admin: Adicionar administrador de projeto
     add_threesixty_campaign_admin: Adicionar administrador da campanha
@@ -18,8 +20,14 @@ pt:
     admin_roles: Funções de administrador
     admin_updated_successfully: O administrador '%{name}' foi atualizado com êxito
     admins: Administradores
+    ai_artifact_result_generation_admin_job_failed: O artefato "%{artifact_name}" não pode ser gerado para o usuário "%{user_email}".
+    ai_artifact_result_stale: O resultado pode estar desatualizado, pois as dependências do artefato de IA foram alteradas desde que o último resultado foi gerado. Considere regenerar o artefato para gerá-lo com as dependências mais recentes.
     ai_artifacts: Artefatos de IA
+    ai_artifacts_generate_results: Gerar resultados
     ai_artifacts_output_schema_key_constraint: A tonalidade deve começar com uma letra minúscula e só pode conter letras minúsculas, números e sublinhados
+    ai_artifacts_results_export: Exportar resultados
+    ai_artifacts_results_export_job_scheduled: A tarefa de exportação dos resultados dos artefatos de IA foi agendada com sucesso.
+    ai_assistant: Assistente de IA
     ai_assistant_model_id_label: ID do modelo
     ai_assistant_model_label: Modelo
     ai_assistant_model_provider: Provedor
@@ -36,16 +44,46 @@ pt:
     ai_assistants_template_render_failed: Falhou ao renderizar o template
     ai_assistants_test_render: Renderização de Teste
     ai_assistants_test_render_tooltip: Teste seu modelo de prompt com dados de campanha para verificar o que será enviado ao assistente de IA.
+    ai_assisted_idp_disabled_by_client: O IDP assistido por IA está desativado pelo cliente
     ai_assisted_idp_feature_disabled: O recurso de IDP assistido por IA foi desativado para este projeto.
     ai_idp_assistant_configure_dependencies: Configurar dependências de IA
     ai_idp_assistant_configure_dependencies_description: Configure quais dados de dependência o Assistente de IA do IDP pode acessar como contexto. Isso só se aplica quando o assistente está configurado para aceitar dependências.
     ai_idp_assistant_dependencies_updated: Dependências atualizadas com sucesso
     ai_idp_assistant_update_dependencies: Atualizar dependências
     ai_notice: Seções destacadas traduzidas por IA e podem conter imprecisões.
+    ai_score_approval_no_answer: Não há resposta para esta pergunta.
+    ai_score_approval_no_transcription: A transcrição não está disponível para esta pergunta.
+    ai_scored: Pontuação da IA
+    ai_scoring_appoval_approve_all_questions: Aprovar todas as perguntas
+    ai_scoring_appoval_approve_question: Aprovar pergunta
+    ai_scoring_appoval_back: Redefinir pontuação
+    ai_scoring_appoval_change_reason: Motivo da alteração
+    ai_scoring_appoval_change_score: pontuação alterada
+    ai_scoring_appoval_change_score_log: Alterar registro de pontuação
+    ai_scoring_appoval_discard_all_questions: Redefinir todas as perguntas
+    ai_scoring_appoval_discard_all_questions_description: Isso irá redefinir todas as pontuações de todas as perguntas e limpar quaisquer substituições. Esta ação não pode ser desfeita. Tem certeza?
+    ai_scoring_appoval_discard_all_questions_title: Redefinir todas as pontuações das perguntas?
+    ai_scoring_appoval_discard_question: Redefinir pontuações das perguntas
+    ai_scoring_appoval_discard_question_confirm_description: Isso irá redefinir todas as pontuações para esta questão e limpar quaisquer substituições. Tem certeza?
+    ai_scoring_appoval_discard_question_confirm_title: Redefinir pontuações das perguntas?
+    ai_scoring_appoval_discarded_changes: alterações descartadas
+    ai_scoring_appoval_evidence_from_transcript: Provas da transcrição
+    ai_scoring_appoval_new_score: Nova pontuação
+    ai_scoring_appoval_next: Próxima pergunta
+    ai_scoring_appoval_rationale: Fundamentação
+    ai_scoring_appoval_reason_for_changes: Motivo das alterações
+    ai_scoring_appoval_reset_score: Redefinir pontuação
+    ai_scoring_appoval_reset_score_description: A pontuação será revertida para o valor original da IA.
+    ai_scoring_appoval_responses: Respostas da IA
+    ai_scoring_appoval_score_not_applicable: Pontuação não aplicável
+    ai_scoring_approval: Aprovação da pontuação da IA
+    ai_scoring_approval_settings: Configurações de aprovação de pontuação de IA
+    ai_scoring_approvals: Aprovações de pontuação de IA
     ai_translation: Tradução por IA
     all_corner_rounded: Todos os cantos arredondados
     api_keys: Chaves API
     apply_to_existing_users: Aplicar esta alteração aos usuários existentes nesta campanha
+    assessment_question_not_supported: Este tipo de pergunta não é suportado atualmente.
     assessments: Avaliações
     assessments_not_mhs: Todas as avaliações devem ser do tipo MHS.
     assessments_reports: Avaliações e relatórios
@@ -61,8 +99,14 @@ pt:
     availability: Disponibilidade
     available_languages: Relatório disponível em idiomas
     back_to_main: Menu principal
+    bulk_assets_modal_choose_csv: Escolha o arquivo CSV
+    bulk_assets_modal_choose_zip: Escolha o arquivo ZIP
+    bulk_assets_modal_not_csv_file_error: Apenas arquivos CSV são permitidos para upload CSV. Faça o upload de um arquivo CSV válido.
+    bulk_assets_modal_subtitle: 'Faça o upload de <b>um arquivo CSV</b> (com os cabeçalhos: user_email, file_name) e <b>um arquivo ZIP</b> (contendo arquivos PDF correspondentes aos nomes dos arquivos do csv). O arquivo zip deve ter menos de %{max_file_size} MB.'
+    bulk_assets_modal_title: Carregar arquivos CSV e ZIP
     bulk_upload_ai_artifacts: Artefatos de IA por Upload em Massa
     campaign_ai_artifact_updated_successfully: Artefatos de IA da campanha atualizados com sucesso
+    campaign_ai_artifacts_results_export_details: Artefatos de IA da campanha geraram resultados
     campaign_assessment_actions_disable_caching: Desativar o cache de avaliação
     campaign_assessment_actions_enable_caching: Habilitar o cache de avaliação
     campaign_assessment_column_caching_enabled: Cache de Avaliação Ativado
@@ -86,11 +130,15 @@ pt:
     campaign_assessment_modals_enable_caching_successfully: O cache foi ativado para essa avaliação.
     campaign_assessment_modals_enable_caching_title: Habilitar o cache de avaliação?
     campaign_factors: Fatores da campanha
+    campaign_name: Nome da campanha
     campaign_templates: Modelos de campanha
     campaign_user_job_roles_cannot_be_same: A função alvo deve ser diferente da função atual.
     campaigns: Campanhas
+    cancel: Cancelar
     cancellation_and_rescheduling_disabled: O cancelamento e o reagendamento estão desativados.
     casual: Casual
+    characters: personagens
+    children_factor_type: Tipo de fator infantil
     client: Locação de clientes
     client_admins: Administradores de clientes
     clients: Clientes
@@ -100,24 +148,52 @@ pt:
     completed: Concluído
     completed_tooltip: Todos os avaliadores enviaram a avaliação
     concise: Conciso
+    configure_model_answer_title: Configurar resposta modelo e palavras-chave
     confirm_remove_admin: Tem a certeza de que pretende remover o utilizador administrativo com o e-mail '%{email}'?
+    copied: Copiado
     country: País
     create_client: Criar cliente
+    create_indicator: Criar indicador
     current_job_role: Função atual
     dashboard: Painel de controlo
     dashboards: Painéis de controlo
     data_reports: Relatórios de dados
     datasheet: Ficha Técnica
     declined: Recusou
+    define_max_score_text: Defina uma pontuação de %{maxScore} (pontuação máxima)
+    define_min_score_text: Defina uma pontuação de %{minScore} (pontuação mínima)
+    define_optional_score_range_text: Defina pontuações %{minScore} para %{maxScore} (opcional)
+    define_score_text: Defina uma pontuação de %{score}
+    definition: Definição
     delete_ok_text: Sim, Delete
     denied: Negado
+    description: Descrição
     development_actions: Acções de desenvolvimento
     development_actions_form_tags: Tags
+    digest_delivery_mode:
+      form_label: Modo de entrega do resumo
+      immediate: Imediato - Enviar sempre que houver um envio em massa
+      scheduled: Programado - Enviar um e-mail resumido em um horário programado
+    digest_frequency:
+      daily: Diariamente
+      form_label: Frequência de digestão
+      weekdays: Dias da semana
+      weekly: Semanal
+    digest_weekdays:
+      form_label: Resumo Dias da semana
+      friday: sexta-feira
+      monday: Segunda-feira
+      saturday: Sábado
+      sunday: domingo
+      thursday: quinta-feira
+      tuesday: terça-feira
+      wednesday: Quarta-feira
     dimensions: Dimensões
     done: Terminado
     done_tooltip: Nenhuma avaliação adicional pode ser submetida para esse usuário, pois a avaliação desse usuário é marcada como feita por %{marked_by}
     edit_campaign_admin: Editar administração da campanha
     edit_client_admin: Editar administrador de clientes
+    edit_indicator: Editar indicador
     edit_job_roles: Editar funções de trabalho
     edit_level: Editar nível
     edit_permission_denied: Você não tem permissão para editar o '%{name}' de administrador
@@ -126,12 +202,17 @@ pt:
     empty_csv_file: CSV não contém nenhum dado.
     enable_enhance_with_ai_client_level: Ative o recurso Aprimorar com IA no nível do cliente.
     enable_maintenance: Ativar manutenção
+    enable_mobile_proctoring: Ativar supervisão móvel
     enable_transcription: Ativar transcrição
+    enable_transcription_msg: Habilite a transcrição para usar a pontuação de IA em perguntas de resposta em vídeo/áudio.
     end_time: Hora do fim
     end_time_must_be_after_start_time: A hora de término deve ser posterior à hora de início.
     enhance_with_ai: Aprimore com IA
     enhance_with_ai_requires_ai_assistants: Para melhorar com IA, é necessário ativar o recurso Assistentes de IA.
+    enter_description: Insira a descrição
+    enter_name: Insira o nome
     error: Erro
+    estimated_tokens: tokens (estimativa)
     evaluation_status: Status de Avaliação
     evaluation_status_not_done: O status de avaliação não é 'Concluído' para um ou mais sujeitos selecionados. Por favor, certifique-se de que todos os usuários selecionados tenham concluído as avaliações ou marquem como concluídos.
     export_admin_roles_permissions: Exportação de funções e permissões de administrador
@@ -139,14 +220,26 @@ pt:
     export_completion_status: Status de conclusão da exportação
     export_completion_statuses_scheduled: A tarefa de exportação dos status de conclusão foi agendada com sucesso.
     export_detailed_completion_status: Detalhado
+    feature_ai_assistants_description: Habilite assistentes com tecnologia de IA para melhorar a experiência do usuário
+    feature_ai_assisted_idp_description: Use a IA para auxiliar nas recomendações do Planejamento de Desenvolvimento Individual
+    feature_ai_content_analysis_description: Habilite a análise de conteúdo com tecnologia de IA para avaliações
+    feature_ai_translation_description: Habilitar tradução automática de conteúdo com tecnologia de IA em relatórios
     feature_enhance_with_ai: Aprimore com IA
+    feature_enhance_with_ai_description: Ativar recursos de aprimoramento de conteúdo com tecnologia de IA
     feature_flags: Sinalizadores de caraterísticas
+    feature_flags_ai_group: Recursos de IA
+    feature_flags_communication_group: Comunicação
+    feature_flags_platform_group: Recursos da plataforma
+    feature_global_skills_description: Acesse a biblioteca global de habilidades para avaliações
+    feature_idp_description: Habilitar o Planejamento de Desenvolvimento Individual para os participantes
+    feature_sms_notification_description: Ativar notificações por SMS para convites e lembretes de campanhas
     fill_empty_score_msg: Preencha todas as pontuações finais antes de salvar.
     final_score_empty_err_msg: A pontuação final de %{factor_name} não pode estar vazia.
     final_score_empty_msg: A conta final não pode estar vazia.
     fix_grammar: Corrigir gramática
     formal: Formal
     generate_transcription: Gerar transcrição
+    hide_middle_scores: Ocultar pontuações médias
     idp_plan_reset_success: O plano foi reiniciado com sucesso
     idp_templates: Modelos de PDI
     import_ai_artifacts: Importar artefatos de IA
@@ -175,6 +268,8 @@ pt:
     internal: Interno
     invalid_csv_header: CSV contém cabeçalhos inválidos.
     job_roles: Funções
+    keywords: Palavras-chave
+    keywords_placeholder: Insira palavras-chave separadas por vírgulas.
     learning_from_others: Aprendizagem Colaborativa [20]
     level: Nível
     level_apply: Aplicar
@@ -201,6 +296,10 @@ pt:
     min_value: Valor mínimo
     minimum_10_words: Mínimo de 10 palavras
     missing_min_max_values: Os valores mínimo e máximo são obrigatórios.
+    model_answer: Resposta modelo
+    model_answer_placeholder: Insira a resposta modelo para pontuação da IA.
+    name: Nome
+    name_max_length: O nome não pode exceder %{length} caracteres
     name_required: O nome é necessário
     no_file_selected: Nenhum arquivo selecionado
     no_notifications: Sem notificações
@@ -218,6 +317,8 @@ pt:
     only_editable_on_create: Esta opção só pode ser editada durante a criação.
     options: Opções
     original_text: Texto original
+    overall: No geral
+    overall_score: Pontuação geral
     participants: Participantes
     permissions:
       aiArtifacts:
@@ -254,6 +355,7 @@ pt:
         bulk_regenerate_reports: Regenerar relatórios em massa
         manage: Gerenciar
         manage_admins: Gerenciar administradores
+        manage_ai_scoring_approval_settings: Gerenciar configurações de aprovação de pontuação de IA
         manage_factor_benchmark_scores: Gerenciar pontuações de referência de factores
         manage_messages: Gerenciar mensagens
         manage_options: Gerenciar opções
@@ -642,6 +744,7 @@ pt:
         view_recordings: Ver gravações
     permissions_360_campaigns: Permissões específicas para campanhas 360
     piped_text: Texto canalizado
+    precision: Precisão
     privacy: Privacidade
     proctoring: Supervisão
     professional: Profissional
@@ -654,15 +757,19 @@ pt:
     project_number: Número do projeto
     project_settings: Definições do projeto
     projects: Projectos
+    prompt: Prompt
     question_center: Centro de perguntas
     questions: Perguntas
+    range_min_max: GAMA %{min} - %{max}
     reflection_questions: Perguntas de reflexão
     registration_codes: Códigos de registo
     registration_settings: Definições de registo
+    remove_children_to_change_type: Remova todas as crianças para alterar o tipo
     report_approvals: Aprovações de relatórios
     report_condition_not_met: Precisa de avaliação %{required} %{relationship}, mas só tem %{actual}
     report_conditions_not_met_detailed: Reporte para %{user} não atende às condições de disponibilidade. %{conditions}
     report_denied: O relatório de %{user} foi negado
+    report_name: Nome do relatório
     report_no_evaluations: O relatório para %{user} não está disponível – nenhuma avaliação foi recebida.
     report_not_generated: Relatório de %{user} atende às condições de disponibilidade, mas ainda não foi gerado. Por favor, gere o relatório primeiro.
     report_on_hold: Relatório para %{user} está atualmente em espera
@@ -725,8 +832,32 @@ pt:
     saml_service_provider_updated_date: Data de Atualização
     saml_service_providers: Provedores de Serviços
     saml_settings: Configurações SAML
+    save: Salvar
+    save_assessment_for_scoring_management: Salve a avaliação antes de começar a pontuação.
     scheduling: Programação
+    score: Pontuação
+    score_approval_not_allowed_to_approve: Você não tem permissão para aprovar esta pontuação.
+    score_approval_not_allowed_to_discard: Você não tem permissão para descartar essa pontuação.
+    score_definition_placeholder: Insira a definição para este nível de pontuação
+    score_definitions: Definições de pontuação
+    score_max: Pontuação máxima
+    score_min: Pontuação mínima
+    score_must_be_in_between_min_and_max: A pontuação deve estar entre %{min} e %{max}.
+    score_range_info: 'Intervalo de pontuação: %{min} - %{max}'
+    score_with_ai: Pontuação com IA
     scoring: Pontuação
+    scoring_approval_add_settings: Adicionar configurações
+    scoring_approval_allow_bulk_approve: Permitir aprovação em massa
+    scoring_approval_allow_bulk_approve_scores: Permitir aprovação em massa de pontuações
+    scoring_approval_allow_one_level_approve: Permitir aprovação de um nível
+    scoring_approval_approver_users: Usuários aprovadores
+    scoring_approval_approvers: Aprovadores
+    scoring_approval_assessment: Avaliação
+    scoring_approval_assessor_users: Usuários avaliadores
+    scoring_approval_modal_title: Configurações de aprovação de pontuação
+    scoring_approval_remove_modal_success: 'A configuração de aprovação para o ID de avaliação: %{assessmentId} foi excluída com sucesso.'
+    scoring_approval_remove_modal_text: 'Tem certeza de que deseja excluir esta configuração para o ID de avaliação: %{assessmentId}?'
+    scoring_supported_only_for_ai_questions: A pontuação é permitida apenas em perguntas habilitadas para IA para o fator selecionado atualmente.
     scoring_value_info: A pontuação deve estar entre %{min} e %{max}.
     scoring_value_out_of_range_err_msg: A pontuação para %{factor_name} deve estar entre %{min} e %{max}.
     search_admins: Pesquisar administradores
@@ -737,7 +868,10 @@ pt:
     select_level: Selecione o nível
     select_start_time: Selecione a hora de início
     send_email: Enviar e-mail
+    set_min_max_scores_warning: Defina as pontuações mínima e máxima para este fator para configurar a pontuação da IA.
     settings: Definições
+    show_all_assessment_responses: Mostrar todas as respostas da avaliação
+    show_middle_scores: Mostrar mais pontuações de %{count} (opcional)...
     show_original: Mostrar original
     show_submenu: Mostrar submenu
     show_translated: Mostrar traduzido
@@ -755,6 +889,7 @@ pt:
     subdomain: Subdomínio
     subject_part_of_other_invite: O destinatário com o e-mail %{user_email} já foi convidado para o "%{workshop_invite_name}".
     target_job_role: Função alvo
+    this_field_is_required: Este campo é obrigatório
     timezone: Fuso horário
     tone: Tom
     toolbar_ai_insight: Visão sobre IA
@@ -778,8 +913,12 @@ pt:
     upload_success: Carregado com sucesso
     user_report_events: Eventos do relatório do utilizador
     users: Utilizadores
+    validation_error: Preencha todos os campos obrigatórios
     view_licenses: Ver licenças
     waiting: Espera
+    weight: Peso
+    what_to_look_for: O que procurar
+    what_to_look_for_placeholder: Evidências de comportamentos, ações ou resultados que demonstram esse fator
     words: Palavras
     workshops: Workshops
     writing_assistant_not_configured: Assistente de escrita não configurado

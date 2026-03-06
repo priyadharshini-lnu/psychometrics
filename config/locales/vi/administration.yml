@@ -735,6 +735,21 @@ vi:
       errors:
         invalid_headers: 'Các tiêu đề sau không hợp lệ: %{headers}'
     campaign_report:
+      bulk_assets_upload:
+        errors:
+          csv_and_zip_must_exist: Cả hai tệp CSV và ZIP đều phải được tải lên trước khi bắt đầu.
+          csv_cannot_be_empty: Tệp CSV không được để trống.
+          csv_contains_blank_values: Tệp CSV chứa các giá trị trống. Tất cả các giá trị user_email và file_name phải có mặt.
+          csv_file_name_must_be_unique: Các giá trị trong tệp CSV phải là duy nhất.
+          csv_must_contain_two_headers: 'Tệp CSV phải có chính xác 2 cột với tiêu đề: %{headers}'
+          csv_user_emails_must_be_unique: Giá trị email của người dùng trong tệp CSV phải là duy nhất.
+          failed_to_attach_file: 'Không thể đính kèm tệp cho email: %{email}. Lỗi: %{error_message}'
+          file_names_in_csv_must_be_of_type_pdf: Tệp CSV chứa các mục tên tệp không hợp lệ. Tất cả các giá trị tên tệp trong CSV phải có phần mở rộng .pdf.
+          file_processing_error: 'Lỗi phát hiện trong quá trình xử lý tệp: %{error_message}'
+          max_emails_in_csv: Số lượng tối đa các mục user_email được phép trong tệp CSV. Tệp CSV của bạn chứa %{count} mục user_email.
+          missing_user_reports: 'Thiếu báo cáo người dùng cho email: %{emails}'
+          no_file_found_in_extracted_zip: Không tìm thấy tệp trong tệp ZIP đã giải nén.
+          user_report_not_found: 'Không tìm thấy báo cáo người dùng cho địa chỉ email: %{email}'
       bulk_download:
         data_range_error: Vui lòng chọn khoảng thời gian.
         modal:
@@ -839,6 +854,16 @@ vi:
           report: Báo cáo
           send_digest_emails: Gửi email thông báo
           settings: Cài đặt
+        scoring_approval:
+          allow_bulk_approve: Cho phép phê duyệt hàng loạt
+          allow_bulk_approve_scores: Cho phép phê duyệt điểm hàng loạt
+          approver_users: Người phê duyệt
+          approvers: Người phê duyệt
+          assessment: Đánh giá
+          assessor_users: Người dùng đánh giá
+          modal_title: Cài đặt phê duyệt điểm số
+          remove_modal_success: 'Cài đặt phê duyệt cho ID đánh giá: %{assessmentId} đã được xóa thành công.'
+          remove_modal_text: 'Bạn có chắc chắn muốn xóa cài đặt này cho ID đánh giá: %{assessmentId}?'
       assessors:
         spoof:
           successfully: Bạn đã đăng nhập thành công dưới dạng %{name}
@@ -1005,6 +1030,8 @@ vi:
         ai_assistants_disabled_by_client: Trợ lý AI bị vô hiệu hóa bởi khách hàng
         ai_assisted_idp: IDP hỗ trợ AI
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP yêu cầu bật tính năng Trợ lý AI
+        ai_content_analysis: Phân tích nội dung bằng trí tuệ nhân tạo (AI)
+        ai_content_analysis_disabled_by_client: Phân tích nội dung AI đã bị vô hiệu hóa bởi khách hàng.
         ai_translation: Dịch thuật bằng Trí tuệ nhân tạo
         ai_translation_disabled_by_client: Chức năng dịch thuật AI đã bị vô hiệu hóa bởi khách hàng.
         global_skills: Kỹ năng toàn cầu
@@ -2540,6 +2567,7 @@ vi:
     message: Thông điệp
     meta_title: Bảng điều khiển
     navigation:
+      approvals: Phê duyệt
       audit_logs: Nhật ký kiểm tra
       availability: Sẵn sàng
       configuration: Cấu hình
@@ -3206,9 +3234,11 @@ vi:
         actions: Hành động
         approval_status: Trạng thái phê duyệt
         approved_by: Được chấp thuận bởi
+        assessed_by: Được đánh giá bởi
         campaign_name: Tên chiến dịch
         qc_by: QC Bởi
         report_name: Tên báo cáo
+        subject_email: Tiêu đề email
         user_email: Email người dùng
         user_name: Tên người dùng
       dashboard: Bảng điều khiển
@@ -3770,6 +3800,11 @@ vi:
         tools: Công cụ
         weightages: Trọng số
       weighted_average: Trung bình gia quyền
+    scoring_approval:
+      approve_all: Chấp thuận tất cả
+      bulk_approve_success: "%{approved} Điểm đã được phê duyệt."
+      review: Đánh giá
+      score_approvals: Ứng dụng đánh giá và phê duyệt bằng trí tuệ nhân tạo (AI)
     search: Tìm kiếm
     security_setting:
       180_days: 180 ngày

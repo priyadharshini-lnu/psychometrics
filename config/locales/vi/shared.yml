@@ -7,27 +7,48 @@ vi:
     add: Thêm vào
     advanced: Tiên tiến
     agree_and_continue: Đồng ý và tiếp tục
+    approval_status: Tình trạng phê duyệt
+    approved: Được phê duyệt
+    approved_by: Được phê duyệt bởi
+    approvers_list: Danh sách người phê duyệt
     archive: Lưu trữ
     archived: Lưu trữ
+    assessed_by: Được đánh giá bởi
+    assessment: Đánh giá
+    assessment_id: Mã đánh giá
+    assessment_list: Danh sách đánh giá
+    assessment_name: Tên đánh giá
+    assessor_approved: Được phê duyệt bởi chuyên gia đánh giá
+    assessors_list: Danh sách các đánh giá viên
     asset_not_present: Tài sản không có sẵn
     audio: Âm thanh
     authentication_failed: Xác thực không thành công. Vui lòng thử lại.
+    back: Quay lại
     basic: Cơ bản
     camera_preview: Bản xem trước của máy ảnh sẽ xuất hiện ở đây
+    campaign: Chiến dịch
     campaign_id: ID chiến dịch
     cancel: Hủy bỏ
     change_password: Thay đổi mật khẩu
     clear_filters: Xóa bộ lọc
+    client: Khách hàng
     collaborative_learning: Học tập hợp tác
     completed: Hoàn thành
     configurations: Cấu hình
     confirm: Xác nhận
     continue: Tiếp tục
+    controller: Bộ điều khiển
+    cookies_statement: Thông báo về Cookie
     copy: Sao chép
     created_at: Được tạo ra tại
     created_date: Ngày tạo
+    custom_consent_text: Nội dung đồng ý tùy chỉnh
+    custom_consent_text_required: Văn bản đồng ý tùy chỉnh là bắt buộc cho vai trò dữ liệu của bộ điều khiển.
+    data_role: Vai trò dữ liệu
     decline: Suy giảm
     description: Sự miêu tả
+    desktop_or_laptop_recommended: Máy tính để bàn hoặc laptop được khuyến nghị
+    desktop_or_laptop_required: Máy tính để bàn hoặc laptop là bắt buộc.
     download: Tải xuống
     download_audio: Tải xuống âm thanh
     download_transcription: Tải xuống bản chép lời
@@ -37,6 +58,7 @@ vi:
     email: E-mail
     export: Xuất khẩu
     failed: Thất bại
+    'false': false
     first_name: Tên đầu tiên
     formal_learning: Học chính thức
     generate: Tạo ra
@@ -50,6 +72,7 @@ vi:
     internet_disconnected_message: Đang cố gắng kết nối lại. Vui lòng kiểm tra kết nối internet của bạn.
     last_name: Họ
     learning_on_the_job_label: Học tập trong công việc
+    loading: Đang tải...
     login: Đăng nhập
     maintenance_in_hours: "%{hours} giờ"
     maintenance_in_minutes: "%{minutes} phút"
@@ -60,20 +83,28 @@ vi:
     maintenance_upcoming_title: Bảo trì sắp tới
     media_question_transcriptions: Bản ghi chép câu hỏi của truyền thông
     media_responses: Phản ứng của truyền thông
+    mobile_proctoring_disabled_instructions: Đánh giá này yêu cầu sử dụng máy tính để bàn hoặc laptop để tiếp tục. Vui lòng chuyển sang máy tính để hoàn thành hoạt động.
+    mobile_proctoring_enabled_instructions: Để có trải nghiệm tốt nhất, vui lòng chuyển sang sử dụng máy tính để bàn hoặc laptop nếu bạn có sẵn. Bạn có thể tiếp tục sử dụng thiết bị di động nếu cần thiết.
     modified_by: Sửa đổi bởi
     modified_date: Ngày sửa đổi
     more_actions: Hành động khác
     mte_logo_alt_text: Logo Mercer Talent Enterprise
     na_text: Không áp dụng
     name: Tên
+    negative: Tiêu cực
     new: Mới
     no_results_found: Không tìm thấy kết quả nào.
     not_requested: Chưa được yêu cầu
     ok: Được rồi
     pending: Đang chờ xử lý
+    policy_version: Phiên bản chính sách
+    policy_version_format: Chỉ cho phép các số nguyên.
+    positive: Tích cực
     processing: Xử lý
+    processor: Bộ xử lý
     proctoring_maintenance_active: Hệ thống giám sát thi (Proctoring) hiện đang được bảo trì từ %{start_time} đến %{end_time}. Vui lòng thử lại sau khi quá trình bảo trì kết thúc.
     proctoring_maintenance_upcoming: Hệ thống giám sát thi sẽ được bảo trì từ %{start_time} đến %{end_time}.
+    project: Dự án
     question_id: ID câu hỏi
     question_transcription_disabled: Chức năng chuyển đổi văn bản đã bị vô hiệu hóa cho câu hỏi này.
     rec: GHI NHẬN
@@ -84,14 +115,20 @@ vi:
     removed: Gỡ bỏ
     replace: Thay thế
     reset_password: Đặt lại mật khẩu
+    response_text: Nội dung phản hồi
     rte_paste_content_exceeds_char_limit: Văn bản vượt quá giới hạn ký tự của {{maxCharacterLimit}} và không thể dán.
     rte_paste_content_exceeds_word_limit: Văn bản vượt quá giới hạn từ {{maxWordLimit}} và không thể dán.
     save: Cứu
     saving_video: Lưu video... Vui lòng không đóng hoặc làm mới trình duyệt
+    scoring_details: Chi tiết điểm số
     search: Tìm kiếm
     send_email: Gửi email
     show_more: Hiển thị nhiều hơn
     something_wrong: Có điều gì đó không ổn. Liên hệ với quản trị viên của bạn.
+    status: Trạng thái
+    subject: Chủ đề
+    submit: Gửi
+    switch_to_laptop_or_desktop: Chuyển sang máy tính xách tay hoặc máy tính để bàn
     table:
       entries:
         selected: 1 hàng đã chọn
@@ -103,9 +140,12 @@ vi:
     transcription_not_enabled: Chức năng chuyển đổi văn bản không được kích hoạt cho phản hồi phương tiện.
     transcription_status: Trạng thái chuyển đổi văn bản
     transcriptions: Phiên âm
+    'true': true
     try_again: Thử lại
     tte_terms_and_condition: Điều khoản &amp; Quyền riêng tư
     type: Kiểu
     update: Cập nhật
+    update_failed: Cập nhật không thành công
+    updated_successfully: Đã cập nhật thành công
     video: Video
     view: Xem

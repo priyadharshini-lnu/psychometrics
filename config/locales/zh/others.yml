@@ -862,6 +862,7 @@ zh:
         bulk_reports: 批量报告
         bulk_rescore_campaign_factors: 批量重新评分活动因素
         bulk_update_evaluation_status: 批量更新评估状态
+        campaign_report_extract_and_upload_bulk_assets: 活动报告上传批量素材
         compact_completion_status_export: 简要完成状态
         completion_status_export: 详细完成状态
         copy_as_template_or_campaign: 复制活动作为模板
@@ -871,6 +872,7 @@ zh:
         export_admin_with_permissions: 带权限的导出管理员
         export_assessment_questions: 出口评估问题
         export_campaign_ai_artifacts: 出口战役AI工件
+        export_campaign_ai_artifacts_results: 导出活动AI成果
         export_campaign_factors: 出口活动因素
         export_campaign_scorings: 出口活动扫描
         export_dashboard_as_file: 将 Dashboard 导出为文件
@@ -1277,6 +1279,7 @@ zh:
     record_not_found: 未找到记录
     user_not_authorized: 未经授权的用户
   auth:
+    cookies_link: <a href="%{cookies_url}">Cookies声明</a>
     current_password: 当前密码
     current_password_placeholder: 输入当前密码
     email: 电子邮箱
@@ -1322,6 +1325,7 @@ zh:
     password_confirmation: 确认密码
     password_confirmation_placeholder: 输入密码确认
     password_placeholder: 输入密码
+    privacy_statement_link: <a href="%{privacy_url}">隐私声明</a>
     registration:
       description: 填写以下详细信息以注册并创建新账户
       email_hint: 我们尊重你的私隐，绝不容忍垃圾信息。我们绝不会将你的信息提供给任何第三方

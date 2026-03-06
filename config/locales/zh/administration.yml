@@ -735,6 +735,21 @@ zh:
       errors:
         invalid_headers: 以下标头无效： %{headers}
     campaign_report:
+      bulk_assets_upload:
+        errors:
+          csv_and_zip_must_exist: 在开始之前，必须上传CSV和ZIP文件。
+          csv_cannot_be_empty: CSV文件不能为空。
+          csv_contains_blank_values: CSV文件包含空值。所有user_email和file_name字段必须完整填写。
+          csv_file_name_must_be_unique: CSV文件中的名称值必须唯一。
+          csv_must_contain_two_headers: CSV文件必须包含两个列，且带有标题：%{headers}
+          csv_user_emails_must_be_unique: CSV文件中的user_email字段值必须唯一。
+          failed_to_attach_file: 未能为电子邮件附加文件：%{email}。错误：%{error_message}
+          file_names_in_csv_must_be_of_type_pdf: CSV文件包含无效的文件名条目。CSV文件中的所有文件名值必须带有.pdf扩展名。
+          file_processing_error: 在文件处理中发现错误：%{error_message}
+          max_emails_in_csv: CSV文件中允许的%{max}用户邮箱条目数量上限为X条。您的CSV文件包含%{count}条用户邮箱条目。
+          missing_user_reports: 邮件用户报告缺失：%{emails}
+          no_file_found_in_extracted_zip: 在解压后的ZIP文件中未找到文件
+          user_report_not_found: 未找到用户报告，邮箱地址：%{email}
       bulk_download:
         data_range_error: 请选择日期范围
         modal:
@@ -839,6 +854,16 @@ zh:
           report: 报告
           send_digest_emails: 发送摘要电子邮件
           settings: 设置
+        scoring_approval:
+          allow_bulk_approve: 允许批量批准
+          allow_bulk_approve_scores: 允许批量批准评分
+          approver_users: 审批用户
+          approvers: 审批人
+          assessment: 评估
+          assessor_users: 评估师用户
+          modal_title: 评分审批设置
+          remove_modal_success: 评估ID为%{assessmentId}的审批设置已成功删除
+          remove_modal_text: 您确定要删除评估ID为%{assessmentId}的此设置吗？
       assessors:
         spoof:
           successfully: 您已成功登录 %{name}
@@ -1005,6 +1030,8 @@ zh:
         ai_assistants_disabled_by_client: 客户端禁用了 AI 助手
         ai_assisted_idp: AI 援助的境内流离失所者
         ai_assisted_idp_requires_ai_assistants: AI 辅助 IDP 需要启用 AI 助手功能
+        ai_content_analysis: 人工智能内容分析
+        ai_content_analysis_disabled_by_client: AI内容分析功能已被客户端禁用
         ai_translation: AI翻译
         ai_translation_disabled_by_client: AI 翻译功能已被客户端禁用
         global_skills: 全球技能
@@ -2540,6 +2567,7 @@ zh:
     message: 留言
     meta_title: 管理面板
     navigation:
+      approvals: 批准
       audit_logs: 审计日志
       availability: 可用性
       configuration: 配置
@@ -3206,9 +3234,11 @@ zh:
         actions: 行动
         approval_status: 批准状态
         approved_by: 批准人
+        assessed_by: 经评估
         campaign_name: 活动名称
         qc_by: 质量控制
         report_name: 报告名称
+        subject_email: 主题 邮件
         user_email: 用户电子邮件
         user_name: 用户名
       dashboard: 仪表板
@@ -3773,6 +3803,11 @@ zh:
         tools: 工具
         weightages: 权重
       weighted_average: 加权平均
+    scoring_approval:
+      approve_all: 全部批准
+      bulk_approve_success: "%{approved} 分数已批准。"
+      review: 评论
+      score_approvals: AI评分审批
     search: 搜索
     security_setting:
       180_days: 180 天

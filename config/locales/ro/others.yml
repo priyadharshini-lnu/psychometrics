@@ -862,6 +862,7 @@ ro:
         bulk_reports: Rapoarte în bloc
         bulk_rescore_campaign_factors: Factorii campaniei de reevaluare în bloc
         bulk_update_evaluation_status: Stare evaluare actualizare în bloc
+        campaign_report_extract_and_upload_bulk_assets: Raport de campanie Încărcare active în bloc
         compact_completion_status_export: Exportați compact al stării de finalizare
         completion_status_export: Exportul stării de finalizare
         copy_as_template_or_campaign: Copiați campania ca șablon
@@ -871,6 +872,7 @@ ro:
         export_admin_with_permissions: Exportați administratorul cu permisiuni
         export_assessment_questions: Întrebări de evaluare a exporturilor
         export_campaign_ai_artifacts: Artefacte AI din campaniile de export
+        export_campaign_ai_artifacts_results: Exportați rezultatele campaniei AI Artifacts
         export_campaign_factors: Factorii campaniei de export
         export_campaign_scorings: Exportați scorurile campaniei
         export_dashboard_as_file: Exportați tabloul de bord ca fișier
@@ -1274,6 +1276,7 @@ ro:
     record_not_found: Înregistrare nu a fost găsită
     user_not_authorized: Utilizator neautorizat
   auth:
+    cookies_link: <a href="%{cookies_url}">Declarație privind cookie-urile</a>
     current_password: Parolă curentă
     current_password_placeholder: Introduceți parola curentă
     email: E-mail
@@ -1319,6 +1322,7 @@ ro:
     password_confirmation: Confirmați parola
     password_confirmation_placeholder: Introduceți confirmarea parolei
     password_placeholder: Introduceți parola
+    privacy_statement_link: <a href="%{privacy_url}">Declarație de confidențialitate</a>
     registration:
       description: Completați datele de mai jos pentru a vă înregistra și a crea un cont nou
       email_hint: Vă respectăm confidențialitatea și nu tolerăm spam-ul. Nu vom da niciodată informațiile dvs. unei terțe părți

@@ -7,27 +7,48 @@ zh-HK:
     add: 加
     advanced: 進階
     agree_and_continue: 同意並繼續
+    approval_status: 审批状态
+    approved: 已批准
+    approved_by: 经批准
+    approvers_list: 审批人列表
     archive: 檔案
     archived: 已存檔
+    assessed_by: 经评估
+    assessment: 评估
+    assessment_id: 评估ID
+    assessment_list: 评估清单
+    assessment_name: 评估名称
+    assessor_approved: 评估师批准
+    assessors_list: 评估员名单
     asset_not_present: 资产不存在
     audio: 音频
     authentication_failed: 驗證失敗。請再試一次。
+    back: 返回
     basic: 基本
     camera_preview: 相機預覽將在此出現
+    campaign: 活动
     campaign_id: 競選識別碼
     cancel: 銷
     change_password: 更改密碼
     clear_filters: 透明過濾器
+    client: 客户
     collaborative_learning: 協作學習
     completed: 已完成
     configurations: 配置
     confirm: 確認
     continue: 續
+    controller: 控制器
+    cookies_statement: Cookies声明
     copy: 复制
     created_at: 創立於
     created_date: 創建日期
+    custom_consent_text: 自定义同意文本
+    custom_consent_text_required: 控制器数据角色需要自定义同意文本
+    data_role: 数据角色
     decline: 衰落
     description: 描述
+    desktop_or_laptop_recommended: 推荐使用台式机或笔记本电脑
+    desktop_or_laptop_required: 需要台式机或笔记本电脑
     download: 下载
     download_audio: 下载音频
     download_transcription: 下载转录文本
@@ -37,6 +58,7 @@ zh-HK:
     email: 電子郵件
     export: 出口
     failed: 失败
+    'false': false
     first_name: 名字
     formal_learning: 正式學習
     generate: 生成
@@ -50,6 +72,7 @@ zh-HK:
     internet_disconnected_message: 正在嘗試重新連接。請檢查您的互聯網連接。
     last_name: 姓氏
     learning_on_the_job_label: 邊做邊學
+    loading: 正在加载...
     login: 登入
     maintenance_in_hours: "%{hours} 小时"
     maintenance_in_minutes: "%{minutes} 会议记录"
@@ -60,20 +83,28 @@ zh-HK:
     maintenance_upcoming_title: 即将进行的维护
     media_question_transcriptions: 媒体提问记录
     media_responses: 媒体反应
+    mobile_proctoring_disabled_instructions: 本次评估需要使用台式机或笔记本电脑才能继续。请切换至计算机以完成此项活动。
+    mobile_proctoring_enabled_instructions: 为获得最佳体验，请切换至台式机或笔记本电脑（如有可用）。如需继续，您也可使用移动设备。
     modified_by: 修改者
     modified_date: 修改日期
     more_actions: 更多動作
     mte_logo_alt_text: 默瑟人才企業標誌
     na_text: 不适用
     name: 名字
+    negative: 负面
     new: 新
     no_results_found: 未找到任何结果
     not_requested: 尚未请求
     ok: 好
     pending: 待定
+    policy_version: 政策版本
+    policy_version_format: 仅允许整数
+    positive: 积极
     processing: 处理中
+    processor: 处理器
     proctoring_maintenance_active: 监考系统正在进行维护，网址将从 %{start_time} 迁移至 %{end_time}。请在维护窗口结束后再次尝试。
     proctoring_maintenance_upcoming: 监考系统将于%{start_time}至%{end_time}期间进行维护。
+    project: 项目
     question_id: 问题ID
     question_transcription_disabled: 此问题已禁用转录功能
     rec: REC
@@ -84,14 +115,20 @@ zh-HK:
     removed: 已移除
     replace: 替换
     reset_password: 重設密碼
+    response_text: 响应文本
     rte_paste_content_exceeds_char_limit: 文字超過 {{maxCharacterLimit}} 的字元限制，無法貼上。
     rte_paste_content_exceeds_word_limit: 文字超過 {{maxWordLimit}} 的字數限制，無法貼上。
     save: 存檔
     saving_video: 正在保存视频... 请勿关闭或刷新浏览器
+    scoring_details: 计分详情
     search: 尋
     send_email: 發送電子郵件
     show_more: 顯示更多
     something_wrong: 出了問題。請聯絡您的管理員
+    status: 状态
+    subject: 主题
+    submit: 提交
+    switch_to_laptop_or_desktop: 切换至笔记本电脑或台式机
     table:
       entries:
         selected:
@@ -108,9 +145,12 @@ zh-HK:
     transcription_not_enabled: 媒体响应未启用转录功能
     transcription_status: 转录状态
     transcriptions: 轉錄
+    'true': true
     try_again: 重试
     tte_terms_and_condition: 條款和私隱
     type: 型
     update: 更新
+    update_failed: 更新失败
+    updated_successfully: 更新成功
     video: 视频
     view: 查看
