@@ -410,7 +410,6 @@ const MediaRecorderComponent: React.FC<Props> = ({
 
   const handleStopRecording = useCallback((): void => {
     stopVideoRecording()
-    removeQuestionInProgress(questionId)
     stopRecording()
     if (mediaStreamRef.current) {
       mediaStreamRef.current.getTracks().forEach(track => track.stop())
