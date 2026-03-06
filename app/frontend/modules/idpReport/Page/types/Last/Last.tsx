@@ -17,7 +17,7 @@ const Last = ({ rtl }) => {
     <Page rtl={rtl}>
       <div className={cs(styles.content)}>
         <div
-          className={cs(styles.background, { [styles.flipped]: rtl })}
+          className={cs(styles.background)}
           style={{ backgroundImage: `url(${background || bg})` }}
         />
         {(logo_type === 'both' || logo_type === 'mercer_only') && (

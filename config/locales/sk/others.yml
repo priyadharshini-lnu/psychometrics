@@ -2752,10 +2752,12 @@ sk:
           learn: "<strong>10%</strong>Formálne vzdelávanie"
         content:
           list:
-            r1: Upozorňujeme, že tento zoznam je len orientačný a na základe individuálnych ambícií, odporúčaní vášho manažéra, ako aj obchodných priorít organizácie sa môžu zvážiť ďalšie cesty rozvoja.
-            r2: Upozorňujeme, že spustenie niektorých z týchto spôsobov rozvoja bude závisieť od celoorganizačnej stratégie vzdelávania a vzdelávania.
-            r3: Pri vypracúvaní individuálneho plánu rozvoja zvážte odporúčané cesty, ktoré sú uvedené nižšie.
-          main: Táto časť obsahuje kumulatívny zoznam všetkých vývojových ciest, pričom treba mať na pamäti učenie sa s osvedčenými postupmi, tj usmernenie 70-20-10, ktoré poskytuje progresívnu cestu kombinujúcu učenie sa v triede, koučing a učenie sa na pracovisku. Na základe výsledkov skúseností s rozvojom vedenia a obchodných priorít boli odporúčané možné cesty rozvoja, ktoré je možné zvážiť pre váš rozvoj.
+            r1: Upozorňujeme, že tento zoznam je iba orientačný a na základe individuálnych ambícií, odporúčaní vášho nadriadeného, ako aj priorít organizácie môžu byť pre vás zvážené ďalšie možnosti rozvoja.
+            r2: Používatelia sú vyzývaní, aby kriticky posudzovali celý obsah a môžu voľne upravovať, vylepšovať, nahrádzať alebo pridávať akékoľvek kroky alebo odporúčania, s ktorými nesúhlasia.
+            r3: 'Údaje o vývoji uvedené v tejto správe môžu pochádzať z jedného alebo oboch nasledujúcich zdrojov:'
+            r3a: Knižnica na mieru vytvorená pre vašu organizáciu
+            r3b: Návrhy vývoja generované umelou inteligenciou
+          main: Vytvorený IDP obsahuje podrobný zoznam rozvojových aktivít, ktoré môžete podniknúť, pričom sa zohľadňujú osvedčené postupy v oblasti vzdelávania, t. j. smernica 70-20-10, ktorá poskytuje postupný proces kombinujúci vzdelávanie v triede, koučing a vzdelávanie priamo na pracovisku. Na základe výsledkov procesu hodnotiaceho centra, vašich odpovedí v chate a externých správ, podľa potreby, boli odporučené možné cesty rozvoja, ktoré môžete zvážiť pre svoj rozvoj.
         learn_cards:
           collaboration:
             list:
@@ -2778,14 +2780,13 @@ sk:
             title: Učenie sa v práci (70 %) <br/> Rozvoj prostredníctvom skúseností
           learn:
             list:
-            - Prevezmite vedúce pozície v komisiách alebo manažérskych výboroch
-            - Dobrovoľne veďte projekty riadenia zmien pre organizáciu
-            - Zvážte prijatie náročných úloh
-            - Spolupracujte s inými oddeleniami
-            - Veďte projekty mimo vašej organizácie
-            - Spolupracujte s externými odborníkmi na spoločných projektoch
+            - Zúčastnite sa štruktúrovaných vzdelávacích programov
+            - Kompletné online e-learningové kurzy
+            - Čítajte knihy, články, publikácie
+            - Získajte odborné kvalifikácie, certifikáty a akreditácie
+            - Účasť na kurzoch, workshopoch, seminároch
             title: Formálne vzdelávanie (10 %) <br/> Rozvoj prostredníctvom štruktúrovaného učenia
-        title: Pokyny na usmernenie vášho IDP
+        title: Sprievodca vaším IDP
       idp:
         end_date: Dátum ukončenia
         self_rating: Vlastné hodnotenie

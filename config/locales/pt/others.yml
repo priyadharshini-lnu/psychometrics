@@ -2766,10 +2766,12 @@ pt:
           learn: "<strong>10%</strong>Aprendizagem Formal"
         content:
           list:
-            r1: Note que esta lista é apenas indicativa, e percursos de desenvolvimento adicionais podem ser considerados para si com base em aspirações individuais, recomendações do seu gestor, bem como prioridades organizacionais de negócios.
-            r2: Note que o lançamento de alguns destes percursos de desenvolvimento dependerá da estratégia de educação e aprendizagem de toda a organização.
-            r3: Por favor, considere os percursos recomendados como cruzados abaixo, ao desenvolver o seu Plano de Desenvolvimento Individual.
-          main: Esta secção inclui uma lista cumulativa de todos os percursos de desenvolvimento, tendo em mente a melhor prática de aprendizagem, ou seja, a diretriz 70-20-10, que fornece uma jornada progressiva combinando aprendizagem em sala de aula, coaching e aprendizagem no trabalho. Com base nos resultados da experiência de desenvolvimento de liderança e prioridades de negócios, percursos de desenvolvimento possíveis foram recomendados, que podem ser considerados para o seu desenvolvimento.
+            r1: Observe que esta lista é meramente indicativa, e outros caminhos de desenvolvimento podem ser considerados para você com base em suas aspirações individuais, recomendações do seu gerente e prioridades comerciais da organização.
+            r2: Os usuários são incentivados a revisar criticamente todo o conteúdo e são livres para modificar, refinar, substituir ou adicionar quaisquer ações ou recomendações com as quais não concordem.
+            r3: 'As informações sobre desenvolvimento incluídas neste relatório podem ser derivadas de uma ou ambas as seguintes fontes:'
+            r3a: Uma biblioteca de desenvolvimento personalizada criada para a sua organização
+            r3b: Sugestões de desenvolvimento geradas por IA
+          main: O IDP criado inclui uma lista detalhada de ações de desenvolvimento que você pode realizar, tendo em mente as melhores práticas de aprendizagem, ou seja, a diretriz 70-20-10, que proporciona uma jornada progressiva combinando aprendizagem em sala de aula, coaching e aprendizagem no trabalho. Com base nos resultados do processo do centro de avaliação, suas respostas no chat e relatórios externos, conforme aplicável, foram recomendados possíveis caminhos de desenvolvimento, que podem ser considerados para o seu desenvolvimento.
         learn_cards:
           collaboration:
             list:
@@ -2792,14 +2794,13 @@ pt:
             title: Aprendizagem no Trabalho (70%) <br/> Desenvolvimento através da experiência
           learn:
             list:
-            - Assuma posições de liderança em comitês de partes interessadas ou de gestão
-            - Voluntarie-se para liderar projetos de gestão de mudança para a organização
-            - Considere assumir tarefas desafiadoras
-            - Trabalhe de forma colaborativa com outras funções
-            - Considere liderar projetos fora da sua organização
-            - Trabalhe em estreita colaboração com especialistas da indústria externa em projetos conjuntos
+            - Participe de programas de treinamento estruturados
+            - Conclua cursos de e-learning online
+            - Leia livros, artigos, publicações
+            - Obtenha qualificações profissionais, certificações e acreditações
+            - Participe de cursos, workshops, seminários
             title: Aprendizagem Formal (10%) <br/> Desenvolvimento através da aprendizagem estruturada
-        title: Diretrizes para Orientar o seu PDI
+        title: Guia para o seu IDP
       idp:
         end_date: Data de Fim
         self_rating: Autoavaliação

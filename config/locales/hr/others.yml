@@ -2767,10 +2767,12 @@ hr:
           learn: "<strong>10%</strong>Formalno učenje"
         content:
           list:
-            r1: Imajte na umu da je ovaj popis samo indikativan i da se za vas mogu razmotriti dodatni razvojni putevi na temelju individualnih težnji, preporuka vašeg menadžera kao i poslovnih prioriteta organizacije.
-            r2: Imajte na umu da će pokretanje nekih od ovih razvojnih putova ovisiti o strategiji obrazovanja i učenja na razini cijele organizacije.
-            r3: Molimo vas da uzmete u obzir preporučene puteve kako su prijeđeni u nastavku, kada izrađujete svoj Individualni razvojni plan.
-          main: Ovaj odjeljak uključuje kumulativni popis svih razvojnih putova, imajući na umu najbolju praksu učenja, tj. smjernice 70-20-10, koje pružaju progresivno putovanje kombinirajući učenje u učionici, podučavanje i učenje na radnom mjestu. Na temelju ishoda iskustva razvoja vodstva i poslovnih prioriteta preporučeni su mogući razvojni putovi koji se mogu uzeti u obzir za vaš razvoj.
+            r1: Imajte na umu da je ovaj popis samo indikativan te da se za vas mogu razmotriti dodatne razvojne staze na temelju vaših individualnih aspiracija, preporuka vašeg menadžera i poslovnih prioriteta organizacije.
+            r2: Korisnici se potiču da kritički pregledaju sav sadržaj te su slobodni mijenjati, usavršavati, zamijeniti ili dodati bilo koje radnje ili preporuke s kojima se ne slažu.
+            r3: 'Ulazi za razvoj uključeni u ovaj izvještaj mogu biti izvedeni iz jednog ili oba sljedeća izvora:'
+            r3a: Prilagođena razvojna biblioteka stvorena za vašu organizaciju
+            r3b: Prijedlozi za razvoj generirani umjetnom inteligencijom
+          main: IDP koji je izrađen uključuje detaljan popis razvojnih aktivnosti koje možete poduzeti, imajući na umu najbolje prakse učenja, tj. smjernicu 70-20-10, koja pruža progresivno putovanje kombinirajući učenje u učionici, coaching i učenje na radnom mjestu. Na temelju rezultata procesa centra za procjenu, vaših odgovora tijekom razgovora i vanjskih izvještaja, gdje je primjenjivo, preporučene su moguće razvojne staze koje se mogu razmotriti za vaš razvoj.
         learn_cards:
           collaboration:
             list:
@@ -2793,14 +2795,13 @@ hr:
             title: Učenje na poslu (70%) <br/> Razvoj kroz iskustvo
           learn:
             list:
-            - Preuzmite liderske pozicije u odborima ili upravljačkim tijelima
-            - Volontirajte za vođenje projekata upravljanja promjenama u organizaciji
-            - Razmotrite preuzimanje zahtjevnijih zadataka
-            - Radite međufunkcionalno s drugim odjelima
-            - Razmotrite vođenje projekata izvan vaše organizacije
-            - Tijesno surađujte s vanjskim stručnjacima na zajedničkim projektima
+            - Pohađajte strukturirane programe obuke
+            - Završite online e-learning tečajeve
+            - Čitaj knjige, članke, publikacije
+            - Steknite profesionalne kvalifikacije, certifikate i akreditacije
+            - Pohađajte tečajeve, radionice, seminare
             title: Formalno učenje (10%) <br/> Razvoj kroz strukturirano učenje
-        title: Smjernice za usmjeravanje vašeg IDP-a
+        title: Vodič za vašu međunarodnu vozačku dozvolu
       idp:
         end_date: Datum završetka
         self_rating: Samoprocjena

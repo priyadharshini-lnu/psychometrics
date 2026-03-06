@@ -26,10 +26,10 @@ const IdpReport = () => (
     }}
   >
     <Cover rtl={isRtl()} />
+    <Guidelines rtl={isRtl()} />
     <ReportSummary rtl={isRtl()} />
     <IDP rtl={isRtl()} />
     <Reflections rtl={isRtl()} />
-    <Guidelines rtl={isRtl()} />
     <Last rtl={isRtl()} />
   </DefaultAntThemeWrapper>
 )

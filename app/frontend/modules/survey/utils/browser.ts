@@ -10,10 +10,10 @@ export const convertToUserAgentBrowserName = (
   if (browserName === 'Safari') {
     return isMobile ? UA_BROWSERS.SafariMobile : UA_BROWSERS.Safari
   }
-  if (browserName === 'Chrome') {
+  if (browserName === 'Chrome' || browserName === 'Mobile Chrome') {
     return isMobile ? UA_BROWSERS.ChromeMobile : UA_BROWSERS.Chrome
   }
-  if (browserName === 'Firefox') {
+  if (browserName === 'Firefox' || browserName === 'Mobile Firefox') {
     return isMobile ? UA_BROWSERS.FirefoxMobile : UA_BROWSERS.Firefox
   }
   if (browserName === 'Edge') {

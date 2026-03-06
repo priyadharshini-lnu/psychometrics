@@ -165,7 +165,7 @@
     "siriwave": "^2.4.0",
     "sms-segments-calculator": "^1.1.1",
     "type-fest": "^2.12.2",
-    "ua-parser-js": "0.7.33",
+    "ua-parser-js": "2.0.9",
     "use-debounce": "^9.0.4",
     "use-eye-dropper": "^1.6.1",
     "use-media": "^1.5.0",
