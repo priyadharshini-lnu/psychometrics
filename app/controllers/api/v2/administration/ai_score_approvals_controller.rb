@@ -12,6 +12,7 @@ module Api
     end
 
     def approve_question
+      audit! :approve_question, score_approval, payload: approve_question_params, campaign: score_approval.campaign
       ScoreApprovals::ApproveQuestion.call(score_approval, approve_question_params[:question_id], current_user) do
         on(:ok) do |scores|
           render json: Panko::ArraySerializer.new(
@@ -27,6 +28,7 @@ module Api
     end
 
     def approve_all_questions
+      audit! :approve_all_questions, score_approval, campaign: score_approval.campaign
       ScoreApprovals::ApproveAllQuestions.call(score_approval, current_user) do
         on(:ok) do |_|
           render json: ::Administration::AIScoreApprovalSerializer.new(context: { current_user: current_user }).
@@ -44,6 +46,8 @@ module Api
 
       result = ScoreApprovals::OverrideScore.call(factor_score, override_score_params, current_user)
 
+      audit! :override_score, score_approval, payload: override_score_params, campaign: score_approval.campaign
+
       return render json: { error: result[:error] }, status: :unprocessable_entity if result[:error]
 
       render json: serialize_factor_scores(result[:ok])
@@ -55,12 +59,16 @@ module Api
 
       result = ScoreApprovals::DiscardScore.call(factor_score, current_user)
 
+      audit! :discard_score, score_approval, payload: { factor_score_id: override_score_params[:factor_score_id] },
+                                              campaign: score_approval.campaign
+
       return render json: { error: result[:error] }, status: :unprocessable_entity if result[:error]
 
       render json: serialize_factor_scores(result[:ok])
     end
 
     def discard_question
+      audit! :discard_question, score_approval, payload: discard_question_params, campaign: score_approval.campaign
       ScoreApprovals::DiscardQuestion.call(score_approval, discard_question_params[:question_id], current_user) do
         on(:ok) do |scores|
           render json: Panko::ArraySerializer.new(
@@ -76,6 +84,7 @@ module Api
     end
 
     def discard_all_questions
+      audit! :discard_all_questions, score_approval, campaign: score_approval.campaign
       ScoreApprovals::DiscardAllQuestions.call(score_approval, current_user) do
         on(:ok) do |_|
           render json: ::Administration::AIScoreApprovalSerializer.new(context: { current_user: current_user }).
