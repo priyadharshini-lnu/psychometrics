@@ -88,17 +88,31 @@ const ProductUsageLinks: FC<ProductsUsageLinksProps> = ({
   }
 
   return (
-    <Space size="large">
-      <Button
-        className="ps-0 pe-0 white-space-normal"
-        type="link"
-        href={`/privacy-statement?lang=${I18n.currentLocale()}`}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {I18n.t('shared.terms_conditions_privacy')}
-      </Button>
-      {privacyLink}
+    <Space>
+      <Space size="large">
+        <Button
+          className="ps-0 pe-0 white-space-normal"
+          type="link"
+          href={`/privacy-statement?lang=${I18n.currentLocale()}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {I18n.t('shared.terms_conditions_privacy')}
+        </Button>
+        {privacyLink}
+      </Space>
+      <Space size="large">
+        <Button
+          className="ps-0 pe-0 white-space-normal"
+          type="link"
+          href={`/cookies-statement?lang=${I18n.currentLocale()}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {I18n.t('shared.cookies_statement')}
+        </Button>
+        {privacyLink}
+      </Space>
     </Space>
   )
 }

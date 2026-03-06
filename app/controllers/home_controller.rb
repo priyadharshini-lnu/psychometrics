@@ -4,11 +4,11 @@ class HomeController < ApplicationController
   include SetCurrentCountry
 
   before_action :set_current_country, only: :request_inspect
-  skip_before_action :authenticate_user!, only: %I[identify upgrade privacy_statement]
-  skip_before_action :set_client_by_subdomain, only: %i[privacy_statement request_inspect]
+  skip_before_action :authenticate_user!, only: %I[identify upgrade privacy_statement cookies_statement]
+  skip_before_action :set_client_by_subdomain, only: %i[privacy_statement request_inspect cookies_statement]
 
   AVAILABLE_POLICY_LANGS = %w[en fr de it es-ES bg hr cs hu pl ro sr-Cyrl sk sl vi nl pt id zh zh-Hant ja ko th
-                              ar].freeze
+                              ar hi ru sr-Latn zh-HK].freeze
 
   def survey_instructions
     render layout: 'users_new'
@@ -64,6 +64,12 @@ class HomeController < ApplicationController
     locale = params[:lang]
     I18n.locale = AVAILABLE_POLICY_LANGS.include?(locale) ? locale.to_sym : I18n.default_locale
     render html: nil, layout: 'policy'
+  end
+
+  def cookies_statement
+    locale = params[:lang]
+    I18n.locale = AVAILABLE_POLICY_LANGS.include?(locale) ? locale.to_sym : I18n.default_locale
+    render html: nil, layout: 'cookies_policy'
   end
 
   def request_inspect
