@@ -1343,7 +1343,6 @@ sk:
       title: Vytvoriť heslo
     sign_out: Prihlásenie ako iný používateľ
     sign_up: Zaregistrujte sa
-    terms_link: <a href="%{terms_url}">Podmienky a vyhlásenie o ochrane osobných údajov</a>
     verify_mobile_number:
       error:
         blocked: Toto číslo je zablokované z dôvodu príliš veľkého počtu pokusov.

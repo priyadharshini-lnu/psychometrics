@@ -1343,7 +1343,6 @@ pl:
       title: Stwórz hasło
     sign_out: Zaloguj się jako inny użytkownik
     sign_up: Zapisz się
-    terms_link: <a href="%{terms_url}">Warunki i oświadczenie o ochronie prywatności</a>
     verify_mobile_number:
       error:
         blocked: Ten numer jest zablokowany z powodu zbyt wielu prób.

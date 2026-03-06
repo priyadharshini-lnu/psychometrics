@@ -1347,7 +1347,6 @@ pt:
       title: Criar palavra-passe
     sign_out: Iniciar a sessão como utilizador diferente
     sign_up: Registrar-se
-    terms_link: <a href="%{terms_url}">Termos e Declaração de Privacidade</a>
     verify_mobile_number:
       error:
         blocked: Este número está bloqueado devido a demasiadas tentativas.

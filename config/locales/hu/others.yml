@@ -1343,7 +1343,6 @@ hu:
       title: Jelszó létrehozása
     sign_out: Bejelentkezés más felhasználóként
     sign_up: Feliratkozás
-    terms_link: <a href="%{terms_url}">Feltételek és adatvédelmi nyilatkozat</a>
     verify_mobile_number:
       error:
         blocked: Ez a szám túl sok próbálkozás miatt blokkolva van.

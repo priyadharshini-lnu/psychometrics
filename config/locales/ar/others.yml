@@ -1386,7 +1386,6 @@ ar:
       title: أنشئ كلمة مرور
     sign_out: تسجيل خروج
     sign_up: تسجيل
-    terms_link: <a href="%{terms_url}"> بيان الخصوصية</a>
     verify_mobile_number:
       error:
         blocked: تم حظر رقم الجوال بسبب كثرة المحاولات.

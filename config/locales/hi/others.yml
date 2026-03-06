@@ -1346,7 +1346,6 @@ hi:
       title: पासवर्ड बनाएँ
     sign_out: एक अलग उपयोगकर्ता के रूप में लॉगिन करें
     sign_up: साइन अप करें
-    terms_link: <a href="%{terms_url}">नियम और गोपनीयता कथन
     verify_mobile_number:
       error:
         blocked: यह नंबर बहुत अधिक प्रयासों के कारण अवरुद्ध है।

@@ -1343,7 +1343,6 @@ ko:
       title: 비밀번호 만들기
     sign_out: 다른 사용자로 로그인
     sign_up: 가입하기
-    terms_link: <a href="%{terms_url}">약관 및 개인정보 처리방침</a>
     verify_mobile_number:
       error:
         blocked: 이 번호는 너무 많은 시도로 인해 차단되었습니다.

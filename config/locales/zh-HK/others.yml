@@ -1358,7 +1358,6 @@ zh-HK:
       title: 創立密碼
     sign_out: 以其他用戶登入
     sign_up: 註冊
-    terms_link: <a href="%{terms_url}">條款和私隱聲明</a>
     verify_mobile_number:
       error:
         blocked: 由於嘗試太多，此號碼已被攔截。

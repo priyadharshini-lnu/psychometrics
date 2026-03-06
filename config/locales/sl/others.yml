@@ -1343,7 +1343,6 @@ sl:
       title: Ustvarjanje gesla
     sign_out: Prijavite se kot drug uporabnik
     sign_up: Prijavite se
-    terms_link: <a href="%{terms_url}">Pogoji uporabe in izjava o zasebnosti</a>
     verify_mobile_number:
       error:
         blocked: Številka je blokirana zaradi prevelikega števila poskusov.
