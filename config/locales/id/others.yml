@@ -1346,7 +1346,6 @@ id:
       title: Buat Kata Sandi
     sign_out: Masuk sebagai pengguna yang berbeda
     sign_up: Daftar
-    terms_link: <a href="%{terms_url}">Ketentuan dan Pernyataan Privasi</a>
     verify_mobile_number:
       error:
         blocked: Nomor ini diblokir karena terlalu banyak percobaan.

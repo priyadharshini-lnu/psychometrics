@@ -1348,7 +1348,6 @@ de:
       title: Passwort erstellen
     sign_out: Anmeldung als anderer Benutzer
     sign_up: Anmeldung
-    terms_link: <a href="%{terms_url}">Bedingungen und Datenschutzbestimmungen</a>
     verify_mobile_number:
       error:
         blocked: Diese Nummer ist wegen zu vieler Versuche gesperrt.

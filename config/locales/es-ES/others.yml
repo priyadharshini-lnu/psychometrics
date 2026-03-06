@@ -1349,7 +1349,6 @@ es-ES:
       title: Crear contraseña
     sign_out: Iniciar sesión como otro usuario
     sign_up: Registrarse
-    terms_link: <a href="%{terms_url}">Términos y declaración de privacidad</a>
     verify_mobile_number:
       error:
         blocked: Este número está bloqueado debido a demasiados intentos.

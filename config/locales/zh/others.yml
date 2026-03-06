@@ -1346,7 +1346,6 @@ zh:
       title: 创建密码
     sign_out: 以其他用户身份登录
     sign_up: 注册
-    terms_link: <a href="%{terms_url}">条款和隐私声明</a>
     verify_mobile_number:
       error:
         blocked: 该号码因尝试次数过多而被阻止。

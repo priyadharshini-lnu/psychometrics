@@ -1343,7 +1343,6 @@ nl:
       title: Wachtwoord aanmaken
     sign_out: Inloggen als andere gebruiker
     sign_up: Aanmelden
-    terms_link: <a href="%{terms_url}">Voorwaarden en privacyverklaring</a>
     verify_mobile_number:
       error:
         blocked: Dit nummer is geblokkeerd vanwege te veel pogingen.

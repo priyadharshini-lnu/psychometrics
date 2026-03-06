@@ -1346,7 +1346,6 @@ cs:
       title: Vytvořit heslo
     sign_out: Přihlásit se jako jiný uživatel
     sign_up: Registrace
-    terms_link: <a href="%{terms_url}">Obchodní podmínky a zásady ochrany osobních údajů</a>
     verify_mobile_number:
       error:
         blocked: Toto číslo je zablokováno z důvodu příliš mnoha pokusů.
