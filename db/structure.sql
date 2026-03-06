@@ -18,41 +18,6 @@ CREATE SCHEMA bi_models;
 
 
 --
--- Name: c_10313; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10313;
-
-
---
--- Name: c_10463; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10463;
-
-
---
--- Name: c_10501; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10501;
-
-
---
--- Name: c_10542; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10542;
-
-
---
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
--- *not* creating schema, since initdb creates it
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -198,9 +163,9 @@ CREATE TABLE public.assessments (
 --
 
 CREATE VIEW bi_models.assessments AS
- SELECT id,
-    name,
-    category
+ SELECT assessments.id,
+    assessments.name,
+    assessments.category
    FROM public.assessments;
 
 
@@ -223,10 +188,10 @@ CREATE TABLE public.campaign_factor_groups (
 --
 
 CREATE VIEW bi_models.campaign_factor_group AS
- SELECT id,
-    campaign_id,
-    name,
-    "position"
+ SELECT campaign_factor_groups.id,
+    campaign_factor_groups.campaign_id,
+    campaign_factor_groups.name,
+    campaign_factor_groups."position"
    FROM public.campaign_factor_groups;
 
 
@@ -349,9 +314,9 @@ CREATE VIEW bi_models.campaign_factors AS
 --
 
 CREATE VIEW bi_models.campaigns AS
- SELECT id,
-    name,
-    project_id
+ SELECT campaigns.id,
+    campaigns.name,
+    campaigns.project_id
    FROM public.campaigns;
 
 
@@ -477,8 +442,8 @@ CREATE TABLE public.factors (
 --
 
 CREATE VIEW bi_models.factors AS
- SELECT id,
-    name
+ SELECT factors.id,
+    factors.name
    FROM public.factors;
 
 
@@ -805,95 +770,12 @@ CREATE TABLE public.users (
 --
 
 CREATE VIEW bi_models.users AS
- SELECT id,
-    project_id,
-    first_name,
-    last_name,
-    email
+ SELECT users.id,
+    users.project_id,
+    users.first_name,
+    users.last_name,
+    users.email
    FROM public.users;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10313; Owner: -
---
-
-CREATE VIEW c_10313.datasheet AS
- SELECT id,
-    email AS "Email",
-    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
-    (data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position",
-    (data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
-    (data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 69)
-  ORDER BY id;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10463; Owner: -
---
-
-CREATE VIEW c_10463.datasheet AS
- SELECT id,
-    email AS "Email",
-    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 65)
-  ORDER BY id;
-
-
---
--- Name: accesssheet; Type: VIEW; Schema: c_10501; Owner: -
---
-
-CREATE VIEW c_10501.accesssheet AS
- SELECT id,
-    email AS "Email",
-    (data_deprecated_on_11_07_2025 ->> 'First Name'::text) AS "First Name",
-    (data_deprecated_on_11_07_2025 ->> 'full name'::text) AS "full name",
-    (data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
-    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
-    (data_deprecated_on_11_07_2025 ->> 'roll number'::text) AS "roll number",
-    (data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position",
-    (data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department",
-    (data_deprecated_on_11_07_2025 ->> 'sample'::text) AS sample
-   FROM public.sheet_rows
-  WHERE (sheet_id = 61)
-  ORDER BY id;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10501; Owner: -
---
-
-CREATE VIEW c_10501.datasheet AS
- SELECT id,
-    email AS "Email",
-    (data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department",
-    (data_deprecated_on_11_07_2025 ->> 'First Name'::text) AS "First Name",
-    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
-    (data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
-    (data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 62)
-  ORDER BY id;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10542; Owner: -
---
-
-CREATE VIEW c_10542.datasheet AS
- SELECT id,
-    email AS "Email",
-    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
-    (data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position",
-    (data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
-    (data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department",
-    (data_deprecated_on_11_07_2025 ->> 'First Name'::text) AS "First Name"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 70)
-  ORDER BY id;
 
 
 --
@@ -2055,82 +1937,6 @@ CREATE SEQUENCE public.bulk_reports_id_seq
 --
 
 ALTER SEQUENCE public.bulk_reports_id_seq OWNED BY public.bulk_reports.id;
-
-
---
--- Name: c_10313_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10313_datasheet AS
- SELECT id,
-    email AS "Email",
-    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
-    (data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position",
-    (data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
-    (data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 69)
-  ORDER BY id;
-
-
---
--- Name: c_10463_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10463_datasheet AS
- SELECT id,
-    email AS "Email",
-    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 65)
-  ORDER BY id;
-
-
---
--- Name: c_10501_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10501_datasheet AS
- SELECT id,
-    email AS "Email",
-    (data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department",
-    (data_deprecated_on_11_07_2025 ->> 'First Name'::text) AS "First Name",
-    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
-    (data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
-    (data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 62)
-  ORDER BY id;
-
-
---
--- Name: c_10542_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10542_datasheet AS
- SELECT id,
-    email AS "Email",
-    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
-    (data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position",
-    (data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
-    (data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department",
-    (data_deprecated_on_11_07_2025 ->> 'First Name'::text) AS "First Name"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 70)
-  ORDER BY id;
-
-
---
--- Name: c_10543_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10543_datasheet AS
- SELECT id,
-    email AS "Email",
-    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade"
-   FROM public.sheet_rows
-  WHERE (sheet_id = 72)
-  ORDER BY id;
 
 
 --
@@ -5228,55 +5034,17 @@ ALTER SEQUENCE public.mhs_user_assessments_id_seq OWNED BY public.mhs_user_asses
 
 
 --
--- Name: normalized_campaign_accessheets; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.normalized_campaign_accessheets AS
- SELECT sheets.campaign_id,
-    sheet_rows.email,
-    sheet_columns.name AS field,
-    sheet_row_data.numeric_value,
-    sheet_row_data.string_value
-   FROM (((public.sheet_row_data
-     JOIN public.sheet_rows ON ((sheet_rows.id = sheet_row_data.sheet_row_id)))
-     JOIN public.sheets ON ((sheets.id = sheet_rows.sheet_id)))
-     JOIN public.sheet_columns ON (((sheet_columns.sheet_id = sheets.id) AND (sheet_columns.id = sheet_row_data.sheet_column_id))))
-  WHERE ((sheets.campaign_id IS NOT NULL) AND ((sheets.type)::text = 'Accesssheet'::text));
-
-
---
--- Name: normalized_campaign_datasheets; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.normalized_campaign_datasheets AS
- SELECT sheets.campaign_id,
-    campaign_users.id AS campaign_user_id,
-    users.id AS user_id,
-    sheet_rows.email,
-    sheet_columns.name AS field,
-    sheet_row_data.numeric_value,
-    sheet_row_data.string_value
-   FROM (((((public.sheet_row_data
-     JOIN public.sheet_rows ON ((sheet_rows.id = sheet_row_data.sheet_row_id)))
-     JOIN public.sheets ON ((sheets.id = sheet_rows.sheet_id)))
-     JOIN public.sheet_columns ON ((sheet_columns.sheet_id = sheets.id)))
-     JOIN public.campaign_users ON ((campaign_users.campaign_id = sheets.campaign_id)))
-     JOIN public.users ON (((users.id = campaign_users.user_id) AND (users.email OPERATOR(public.=) sheet_rows.email))))
-  WHERE ((sheets.campaign_id IS NOT NULL) AND ((sheets.type)::text = 'Datasheet'::text));
-
-
---
 -- Name: normalized_factor_scores; Type: VIEW; Schema: public; Owner: -
 --
 
 CREATE VIEW public.normalized_factor_scores AS
- SELECT id,
-    factor_id,
-    user_assessment_id,
-    ((scores ->> 'norm_score'::text))::double precision AS norm_score,
-    ((scores ->> 'score'::text))::double precision AS score,
-    ((scores ->> 'zscore'::text))::double precision AS zscore,
-    ((scores ->> 'percentage'::text))::double precision AS percentage
+ SELECT user_assessment_factor_scores.id,
+    user_assessment_factor_scores.factor_id,
+    user_assessment_factor_scores.user_assessment_id,
+    ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
+    ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
+    ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
+    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
    FROM public.user_assessment_factor_scores;
 
 
@@ -5348,32 +5116,6 @@ CREATE SEQUENCE public.notifications_id_seq
 --
 
 ALTER SEQUENCE public.notifications_id_seq OWNED BY public.notifications.id;
-
-
---
--- Name: oracle_credentials; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.oracle_credentials (
-    id bigint NOT NULL,
-    idcs_user_id character varying NOT NULL,
-    idcs_user_name character varying NOT NULL,
-    user_id bigint,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
-    last_accessed_at timestamp(6) without time zone
-);
-
-
---
--- Name: oac_users; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.oac_users AS
- SELECT oracle_credentials.idcs_user_name AS user_name,
-    users.email
-   FROM (public.oracle_credentials
-     JOIN public.users ON ((users.id = oracle_credentials.user_id)));
 
 
 --
@@ -5489,6 +5231,21 @@ CREATE SEQUENCE public.old_passwords_id_seq
 --
 
 ALTER SEQUENCE public.old_passwords_id_seq OWNED BY public.old_passwords.id;
+
+
+--
+-- Name: oracle_credentials; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.oracle_credentials (
+    id bigint NOT NULL,
+    idcs_user_id character varying NOT NULL,
+    idcs_user_name character varying NOT NULL,
+    user_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    last_accessed_at timestamp(6) without time zone
+);
 
 
 --
@@ -20190,21 +19947,22 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260304133958'),
 ('20260223114729'),
 ('20260218075116'),
+('20260217103234'),
 ('20260213140414'),
 ('20260213112719'),
 ('20260213095708'),
 ('20260212093958'),
 ('20260212060354'),
+('20260211083300'),
 ('20260210130000'),
 ('20260210084851'),
 ('20260209123134'),
 ('20260209114529'),
 ('20260209112420'),
 ('20260209020330'),
-('20260217103234'),
-('20260211083300'),
 ('20260204083410'),
 ('20260203070450'),
 ('20260203060658'),
@@ -21196,3 +20954,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

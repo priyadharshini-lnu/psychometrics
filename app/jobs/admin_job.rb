@@ -107,6 +107,7 @@ class AdminJob < ApplicationJob
     import_campaign_ai_artifacts: AdminJobs::ImportCampaignAIArtifactsJob,
     generate_embedding_skills: AdminJobs::GenerateEmbeddingSkillsJob,
     import_external_scoring_data: AdminJobs::ImportExternalScoringData,
+    campaign_report_extract_and_upload_bulk_assets: AdminJobs::CampaignReportExtractAndUploadZipBulkAssets,
     generate_transcription: AdminJobs::GenerateTranscriptionJob,
     project_completion_status_export: AdminJobs::ProjectCompletionStatusExport,
     project_compact_completion_status_export: AdminJobs::ProjectCompactCompletionStatusExport,

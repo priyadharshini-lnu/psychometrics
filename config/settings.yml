@@ -77,6 +77,7 @@ features:
   dont_send_pi_to_siem: <%= ENV.fetch('DONT_SEND_PI_TO_SIEM', 'false') == 'true' %>
   enhance_with_ai_enabled: <%= ENV.fetch('ENHANCE_WITH_AI_ENABLED', 'false') == 'true' %>
   enable_webspellchecker: <%= ENV.fetch('ENABLE_WEBSPELLCHECKER', 'false') == 'true' %>
+  upload_bulk_assets_enabled: <%= ENV.fetch('UPLOAD_BULK_ASSETS_ENABLED', 'false') == 'true' %>
   ai_content_analysis_enabled: <%= ENV.fetch('AI_CONTENT_ANALYSIS_ENABLED', 'false') == 'true' %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>

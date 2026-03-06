@@ -735,6 +735,21 @@ en:
       errors:
         invalid_headers: 'Following headers are invalid: %{headers}'
     campaign_report:
+      bulk_assets_upload:
+        errors:
+          csv_and_zip_must_exist: Both CSV and ZIP files must be uploaded before starting.
+          csv_cannot_be_empty: CSV file cannot be empty.
+          csv_contains_blank_values: CSV contains blank values. All user_email and file_name values must be present.
+          csv_file_name_must_be_unique: CSV file_name values must be unique.
+          csv_must_contain_two_headers: 'CSV must have exactly 2 columns with headers: %{headers}'
+          csv_user_emails_must_be_unique: CSV user_email values must be unique.
+          failed_to_attach_file: 'Failed to attach file for email: %{email}. Error: %{error_message}'
+          file_names_in_csv_must_be_of_type_pdf: CSV contains invalid file_name entries. All file_name values in CSV must have a .pdf extension.
+          file_processing_error: 'Errors found in file processing: %{error_message}'
+          max_emails_in_csv: Maximum %{max} user_email entries allowed in CSV. Your CSV contains %{count} user_email entries.
+          missing_user_reports: 'Missing user reports for emails: %{emails}'
+          no_file_found_in_extracted_zip: No file found in extracted ZIP
+          user_report_not_found: 'User report not found for email: %{email}'
       bulk_download:
         data_range_error: Please select date range
         modal:

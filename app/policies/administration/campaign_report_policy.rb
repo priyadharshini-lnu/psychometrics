@@ -63,5 +63,20 @@ module Administration
     def can_manage_campaign_and_users?
       has_permission?(:campaigns, :manage) && has_permission?(:campaigns, :manage_users)
     end
+
+    def get_bulk_assets_zip_presigned_upload_url?
+      has_permission?(:campaigns, :manage) && has_permission?(:campaigns, :manage_users) &&
+        has_permission?(:results, :report_file_upload)
+    end
+
+    def get_bulk_assets_csv_presigned_upload_url?
+      has_permission?(:campaigns, :manage) && has_permission?(:campaigns, :manage_users) &&
+        has_permission?(:results, :report_file_upload)
+    end
+
+    def attach_bulk_asset_csv_and_zip?
+      has_permission?(:campaigns, :manage) && has_permission?(:campaigns, :manage_users) &&
+        has_permission?(:results, :report_file_upload)
+    end
   end
 end

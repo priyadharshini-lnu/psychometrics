@@ -862,6 +862,7 @@ en:
         bulk_reports: Bulk Reports
         bulk_rescore_campaign_factors: Bulk Rescore Campaign Factors
         bulk_update_evaluation_status: Bulk Update Evaluation Status
+        campaign_report_extract_and_upload_bulk_assets: Campaign Report Upload Bulk Assets
         compact_completion_status_export: Compact Completion Status Export
         completion_status_export: Completion Status Export
         copy_as_template_or_campaign: Copy Campaign as Template
