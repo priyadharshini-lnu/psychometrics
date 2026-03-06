@@ -2824,6 +2824,15 @@
         "email": {
           "type": "string"
         },
+        "gender": {
+          "type": "string",
+          "enum": [
+            "male",
+            "female",
+            "not_disclosed"
+          ],
+          "x-nullable": true
+        },
         "user_external_id": {
           "type": "string",
           "x-nullable": true,
@@ -2919,6 +2928,15 @@
         },
         "email": {
           "type": "string",
+          "x-nullable": true
+        },
+        "gender": {
+          "type": "string",
+          "enum": [
+            "male",
+            "female",
+            "not_disclosed"
+          ],
           "x-nullable": true
         },
         "campaigns": {
@@ -3886,6 +3904,15 @@
         },
         "email": {
           "type": "string"
+        },
+        "gender": {
+          "type": "string",
+          "enum": [
+            "male",
+            "female",
+            "not_disclosed"
+          ],
+          "x-nullable": true
         },
         "campaigns": {
           "type": "array",

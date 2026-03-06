@@ -201,7 +201,7 @@ assessments and reports.'
           first_name: 'John',
           last_name: 'Doe',
           email: 'john.doe@example.com',
-          gender: "male",
+          gender: 'male',
           created_at: '2019-03-04T15:47:33.570+04:00',
           updated_at: '2019-03-04T15:47:33.950+04:00',
           campaign_ids: [
