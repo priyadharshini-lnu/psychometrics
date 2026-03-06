@@ -56,6 +56,7 @@ class UserAssessment < ApplicationRecord
 
   delegate :saville?, :iiht?, :pearson?, :mettl?, :simulation?, :hogan?, :skillvue?, :yoodli?,
            :mhs?, :assessor_form?,
+           :has_ai_questions?,
            :external?, :external_settings, :combined_hogan_assessment?, to: :assessment
   delegate :workshop_activity?, :workshop_activity, :workshop_activity_duration,
            to: :campaign_assessment, allow_nil: true
