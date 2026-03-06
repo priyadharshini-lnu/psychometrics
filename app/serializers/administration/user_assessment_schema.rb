@@ -17,6 +17,7 @@ module Administration
           required(:update_content_variation).filled(:bool?)
           required(:update_simulation_time_extension).filled(:bool?)
           required(:rescore_response).filled(:bool?)
+          required(:rescore_ai_response).filled(:bool?)
           required(:remove).filled(:bool?)
           required(:reset_progress).filled(:bool?)
           required(:push_webhook).filled(:bool?)

@@ -33,6 +33,7 @@ module Administration
           required(:export_normed_results).filled(:bool?)
           required(:export_external_results).filled(:bool?)
           required(:rescore_responses).filled(:bool?)
+          required(:rescore_ai_responses).filled(:bool?)
           required(:update_external_config).filled(:bool?)
           required(:remove).filled(:bool?)
           required(:schedule_assessment).filled(:bool?)
