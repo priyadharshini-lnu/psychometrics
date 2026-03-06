@@ -165,6 +165,7 @@ assessments and reports.'
           id: 14_602,
           first_name: 'John',
           last_name: 'Doe',
+          gender: 'male',
           email: 'john.doe@example.com',
           created_at: '2019-03-04T15:47:33.570+04:00',
           updated_at: '2019-03-04T15:47:33.950+04:00',
@@ -188,6 +189,7 @@ assessments and reports.'
           user = JSON.parse(response.body)
           expect(user).to have_key('first_name')
           expect(user).to have_key('last_name')
+          expect(user).to have_key('gender')
           expect(user['campaigns'].pluck('id')).to contain_exactly(campaign.id, campaign_two.id)
         end
       end
@@ -199,6 +201,7 @@ assessments and reports.'
           first_name: 'John',
           last_name: 'Doe',
           email: 'john.doe@example.com',
+          gender: "male",
           created_at: '2019-03-04T15:47:33.570+04:00',
           updated_at: '2019-03-04T15:47:33.950+04:00',
           campaign_ids: [
@@ -226,6 +229,7 @@ assessments and reports.'
 
           expect(user).to have_key('first_name')
           expect(user).to have_key('last_name')
+          expect(user).to have_key('gender')
           expect(user['campaigns'].pluck('id')).to contain_exactly(campaign.id, campaign_two.id)
 
           expect(campaign_user.active).to eq campaigns[0]['active']
