@@ -4,7 +4,7 @@ module Administration
   class CampaignReportSerializer < Panko::Serializer
     attributes :id, :report_id, :name, :user_access, :assessor_access, :report_family_name, :permissions,
                :effective_default_language, :user_dashboard, :main_report, :auto_assign, :available_languages,
-               :report_locales, :internal
+               :report_locales, :internal, :custom_upload
 
     delegate :name, to: :report
     delegate :name, to: :report_family, prefix: true
@@ -23,6 +23,10 @@ module Administration
           campaign_id: context[:campaign_id]
         }
       )
+    end
+
+    def custom_upload
+      report.provider_custom_upload?
     end
 
     private

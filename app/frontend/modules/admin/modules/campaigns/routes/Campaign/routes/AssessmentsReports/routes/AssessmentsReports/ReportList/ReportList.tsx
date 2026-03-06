@@ -31,6 +31,7 @@ const ReportList: React.FC<Props> = ({
   toggleAutoAssign,
   toggleUserDashboard,
   toggleMainReport,
+  features,
 }) => {
   const { campaignId } = useParams() as { campaignId: string }
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -156,8 +157,10 @@ const ReportList: React.FC<Props> = ({
                     reportId: report.reportId,
                     reportName: report.name,
                     permissions: report.permissions,
+                    customUpload: report.customUpload,
                     openModal,
                     exportData: handleExportData,
+                    uploadBulkAssetsEnabled: features.upload_bulk_assets_enabled,
                   })
                 }
                 innerElement={(
@@ -181,6 +184,8 @@ interface ActionMenuData {
   reportId: number
   campaignReportId: number
   reportName: string
+  customUpload: boolean
+  uploadBulkAssetsEnabled: boolean
   openModal(name: string, data?: { campaignId: number, campaignReportId: number, reportName: string }): void
   permissions: {
     export: boolean
@@ -190,7 +195,8 @@ interface ActionMenuData {
 }
 
 const getActionsMenuProps = ({
-  campaignId, reportId, campaignReportId, reportName, openModal, permissions, exportData,
+  campaignId, reportId, campaignReportId, reportName, openModal, permissions, exportData, customUpload,
+  uploadBulkAssetsEnabled,
 }: ActionMenuData): MenuProps => {
   const menuItems: MenuItem[] = []
   permissions.export && menuItems.push({
@@ -201,6 +207,10 @@ const getActionsMenuProps = ({
     key: 'remove',
     label: I18n.t('common.actions.remove'),
   })
+  customUpload && uploadBulkAssetsEnabled && menuItems.push({
+    key: 'upload_bulk_assets',
+    label: 'Upload Bulk Assets',
+  })
 
   const handleMenuClick = ({ key }) => {
     if (key === 'export') {
@@ -208,6 +218,13 @@ const getActionsMenuProps = ({
     }
     if (key === 'remove') {
       openModal('RemoveReportModal', { campaignId, campaignReportId, reportName })
+    }
+    if (key === 'upload_bulk_assets') {
+      openModal('UploadBulkAssetsModal', {
+        campaignReportId,
+        campaignId,
+        reportName: '',
+      })
     }
   }
 

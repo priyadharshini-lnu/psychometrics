@@ -23,6 +23,7 @@ module Administration
         required(:report_locales).array(:str?)
         required(:effective_default_language).filled(:str?)
         required(:internal).filled(:bool?)
+        required(:custom_upload).filled(:bool?)
       end
     end
   end
