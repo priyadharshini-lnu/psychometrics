@@ -142,7 +142,6 @@ import AntdIcon, {
   TableOutlined as AntdTableOutlined,
   ArrowsAltOutlined as AntdArrowsAltOutlined,
   ShrinkOutlined as AntdShrinkOutlined,
-  InfoCircleFilled as AntdInfoCircleFilled,
 } from '@ant-design/icons'
 import type { IconComponentProps } from '@ant-design/icons/lib/components/Icon'
 
@@ -295,6 +294,5 @@ export const TranslationOutlined = withAccessibilityProps(AntdTranslationOutline
 export const TableOutlined = withAccessibilityProps(AntdTableOutlined)
 export const ArrowsAltOutlined = withAccessibilityProps(AntdArrowsAltOutlined)
 export const ShrinkOutlined = withAccessibilityProps(AntdShrinkOutlined)
-export const InfoCircleFilled = withAccessibilityProps(AntdInfoCircleFilled)
 
 export default withAccessibilityProps(AntdIcon)
