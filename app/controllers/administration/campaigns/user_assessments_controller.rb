@@ -132,6 +132,7 @@ module Administration
         user_result = resource.users_result
         AdminJob.call(:rescore_user_assessment, {
           user_result_id: user_result.id,
+          allow_ai_rescore: params[:allow_ai_rescore].to_s == 'true',
           campaign_id: campaign.id
         }, current_user)
         audit! :rescore_results, resource, campaign: resource.campaign

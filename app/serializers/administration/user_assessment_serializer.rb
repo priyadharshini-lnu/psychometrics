@@ -101,6 +101,7 @@ module Administration
           'update_content_variation',
           'update_simulation_time_extension',
           'rescore_response',
+          'rescore_ai_response',
           %w[remove destroy],
           'reset_progress',
           'push_webhook',

@@ -51,6 +51,12 @@ module Administration
         )
       end
 
+      def rescore_ai_responses?
+        @record.has_ai_questions? && (@user.is?(:superadmin) || @user.has_permission?(
+          :results, :rescore_responses, project_id: project_id, campaign_id: campaign_id
+        ))
+      end
+
       def schedule_assessment?
         !@record.assessor_form? && can_manage_campaign_and_users?
       end
