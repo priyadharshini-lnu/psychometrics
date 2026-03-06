@@ -23,14 +23,15 @@ export interface ActionMenuData {
   optionsOverrides?: Partial<Options>
   openModal(name: string, data?: {
     ids?: [number, number],
-    action?: (campaignId: number, assessmentId: number, body?: object) => Promise<{ response: unknown }>,
+    action?: ((campaignId: number, assessmentId: number, body?: object) => Promise<{ response: unknown }>) | ((aiRescore?: boolean) => void),
     body?: object,
     onSuccess?: () => void,
+    name?: string,
     projectId?: number, assessment?: Assessment, update?: Assessment,
     updateExternalConfig?: AssessmentListProps['updateExternalConfig'],
     campaignId?: number, campaignAssessmentId?: number
   }): void
-  rescoreResponses(): void
+  rescoreResponses(aiRescore?: boolean): void
   exportRawResults: AssessmentListProps['exportRawResults']
   exportScoringResults: AssessmentListProps['exportScoringResults']
   exportNormedResults: AssessmentListProps['exportNormedResults']
@@ -50,8 +51,18 @@ export const getActionsMenuProps = ({
   const actions = { ...DEFAULT_OPTIONS, ...optionsOverrides || {} }
 
   const handleRescoreResponse = () => {
-    rescoreResponses()
-    message.info(I18n.t('campaign_assessment.modals.rescore_response.message', { name }))
+    if (permissions.rescoreAiResponses) {
+      openModal('RescoreResponseModal', {
+        name,
+        action: (allowAiRescore = false) => {
+          rescoreResponses(allowAiRescore)
+          message.info(I18n.t('campaign_assessment.modals.rescore_response.message', { name }))
+        },
+      })
+    } else {
+      rescoreResponses()
+      message.info(I18n.t('campaign_assessment.modals.rescore_response.message', { name }))
+    }
   }
 
   const handleRawExport = (with_labels: boolean) => {

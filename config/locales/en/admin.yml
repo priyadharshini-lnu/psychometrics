@@ -80,6 +80,7 @@ en:
     ai_scoring_approvals: AI Scoring Approvals
     ai_translation: AI Translation
     all_corner_rounded: All corner rounded
+    allow_ai_rescoring: Allow AI Rescoring
     api_keys: API keys
     apply_to_existing_users: Apply this change to existing users in this campaign
     assessment_question_not_supported: This question type is not currently supported.
@@ -768,6 +769,7 @@ en:
     reports: Reports
     reports_limit_exceeded: Bulk download is limited to 1000 report files. If you have selected many languages, please reduce it.
     reports_not_found: No reports found. Please generate the reports before downloading.
+    rescore_responses_content: This will recalculate the scores for this subjects responses. Enable Allow AI Rescoring to re-evaluate responses using AI for Score with AI questions.
     reset_idp_plan: Reset Plan
     reset_idp_plan_confirmation: Are you sure you want to reset the plan?
     reset_idp_plan_title: Reset Plan

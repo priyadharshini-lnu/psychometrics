@@ -238,7 +238,7 @@ const AssessmentList: React.FC<Props> = ({
                     campaignId: parsedCampaignId,
                     projectId: parsedProjectId,
                     openModal,
-                    rescoreResponses: () => rescoreResponses(parsedCampaignId, assessment.id),
+                    rescoreResponses: (aiRescore = false) => rescoreResponses(parsedCampaignId, assessment.id, aiRescore),
                     exportRawResults,
                     exportScoringResults,
                     exportNormedResults,

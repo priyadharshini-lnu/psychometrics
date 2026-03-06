@@ -23,13 +23,16 @@ const { I18n } = window
 interface OwnProps {
   assessments: UserAssessmentState
   openModal(name: string, data?: {
-     projectId: number
+     projectId?: number
      userId?: number
-     campaignId: number
+     campaignId?: number
      campaignAssessmentId?: number
      testMode?: boolean
      parentType?: ParentResourceType
      parentId?: number
+     assessmentId?: number
+     name?: string
+     action?: (allowAiRescore?: boolean) => void
   }): void
 }
 
@@ -186,7 +189,7 @@ const AssessmentList: React.FC<Props> = ({
               <ConditionalDropdown
                 menu={
                   getActionsMenuProps({
-                    rescoreResponse: () => rescoreResponse(parsedCampaignId, assessment.id),
+                    rescoreResponse: (aiRescore = false) => rescoreResponse(parsedCampaignId, assessment.id, aiRescore),
                     openModal,
                     reset,
                     campaignId: parsedCampaignId,
@@ -234,7 +237,7 @@ interface ActionMenuData {
   userId: number
   campaignId: number
   projectId: number
-  rescoreResponse(): void
+  rescoreResponse(aiRescore?: boolean): void
   reset(campaignId: number, assessmentId: number): Promise<unknown>
   normalizeFactorScores: Props['normalizeFactorScores']
   resetProgress: Props['resetProgress']
@@ -291,10 +294,19 @@ const getActionsMenuProps = ({
   }
 
   const handleRescoreResponse = () => {
-    rescoreResponse()
-    message.info(I18n.t('campaign_assessment.modals.rescore_response.message', { name }))
+    if (permissions.rescoreAiResponse) {
+      openModal('RescoreResponseModal', {
+        name,
+        action: (allowAiRescore = false) => {
+          rescoreResponse(allowAiRescore)
+          message.info(I18n.t('campaign_assessment.modals.rescore_response.message', { name }))
+        },
+      } as any)
+    } else {
+      rescoreResponse()
+      message.info(I18n.t('campaign_assessment.modals.rescore_response.message', { name }))
+    }
   }
-
   const handleDelete = () => {
     modal.confirm({
       title: I18n.t('common.text.confirm'),

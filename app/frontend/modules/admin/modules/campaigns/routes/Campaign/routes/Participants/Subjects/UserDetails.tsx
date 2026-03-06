@@ -42,6 +42,7 @@ import { EditJobRoleFormModal } from './EditJobRoleFormModal'
 import ReportsLanguageSelectionModal from '~/modules/admin/components/ReportsLanguageSelectionModal'
 import DownloadIndividualReportModal from '~/components/DownloadIndividualReportModal'
 import { Recordings } from './Recordings'
+import RescoreResponseModal from '~/modules/admin/modules/campaigns/components/RescoreResponseModal'
 
 const { I18n } = window
 
@@ -59,6 +60,7 @@ const MODALS = {
   DownloadIndividualReportModal,
   EditLevelFormModal,
   EditJobRoleFormModal,
+  RescoreResponseModal,
 }
 
 export const connecter = connect(
