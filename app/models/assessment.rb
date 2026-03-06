@@ -112,6 +112,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   has_one :campaign, through: :threesixty_campaign
   has_one :assessment_assistant, dependent: :destroy
   has_one :ai_assistant, through: :assessment_assistant
+  has_one :assessment_consent_setting, dependent: :destroy
 
   has_many :blocks, -> { order(position: :asc) }, dependent: :destroy
   has_many :questions, dependent: :destroy
@@ -174,6 +175,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   enum :category, CATEGORIES
   enum :status, STATUSES
+  enum :data_role, { processor: 0, controller: 1 }, prefix: true
 
   store_accessor :extra, %i[timer icon_color enable_video_check enable_audio_check enable_network_check]
 
@@ -190,6 +192,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   acts_as_taggable_tenant :owner_id
 
   delegate :config, :translations, to: :agile, prefix: true
+  delegate :custom_consent_text, to: :assessment_consent_setting, allow_nil: true
+  delegate :policy_version, to: :assessment_consent_setting, allow_nil: true
 
   # TODO: (nest):
   # Creating scope :hogan. Overwriting existing method Assessment.hogan.

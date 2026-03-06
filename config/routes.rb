@@ -1409,6 +1409,7 @@ as: :simulation_progress_notification
           end
           jsonapi_resources :idp_settings, only: %i[index update]
           jsonapi_resources :assessment_assistants, only: %i[show update]
+          jsonapi_resources :assessment_consent_settings, only: %i[show update]
 
           jsonapi_resources :projects do
             jsonapi_resources :webhooks do
