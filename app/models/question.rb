@@ -40,6 +40,10 @@ class Question < ApplicationRecord
 
   scope :deleted, -> { where.not(deleted_at: nil) }
   scope :not_deleted, -> { where(deleted_at: nil) }
+  scope :ai_scored, lambda {
+    not_deleted.where("questions.props ->> 'scoreWithAIEnabled' = 'true'")
+  }
+
   scope :ams, lambda {
     selecting do
       ['questions.*',

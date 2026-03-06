@@ -80,7 +80,6 @@ en-US:
         title: AI Artifact
       generate: Generate
       generate_result_info_message: Results are being generated, please refresh the page to see the updated results.
-      generate_results: Generate Results
       generated_at: Generated At
       generated_at_time: Generated at %{time}
       generated_value: Generated Value
@@ -1985,7 +1984,7 @@ en-US:
           sub_factors_conditional_average: Conditional Weighted Average of Factors
           sub_factors_sum: Weighted Sum of Factors
         scoring_strategy: Scoring strategy
-        sub_factors: Sub factors
+        sub_factors: Sub factors / Indicators
         title: Factors
       list:
         active: Active

@@ -80,7 +80,6 @@ ro:
         title: Artefact AI
       generate: Genera
       generate_result_info_message: Rezultatele sunt în curs de generare, vă rugăm să reîmprospătați pagina pentru a vedea rezultatele actualizate.
-      generate_results: Generați rezultate
       generated_at: Generat la
       generated_at_time: Generat la %{time}
       generated_value: Valoare generată

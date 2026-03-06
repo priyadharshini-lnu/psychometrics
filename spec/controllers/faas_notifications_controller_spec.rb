@@ -25,6 +25,17 @@ describe FaasNotificationsController, type: :controller do
     end
   end
 
+  describe 'POST extract_and_upload' do
+    it 'calls Faas::NotificationHandlers::ProcessCampaignReportBulkAssets and returns 200 status response' do
+      some_data = { 'id' => 1 }
+      expect(Faas::NotificationHandlers::ProcessCampaignReportBulkAssets).to receive(:call!).with(some_data)
+
+      post :extract_and_upload, body: encode_faas_message(some_data)
+
+      expect(response.status).to eq(200)
+    end
+  end
+
   private
 
   def encode_faas_message(message)

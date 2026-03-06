@@ -16,6 +16,8 @@ module Api
             attribute[:global_skills].maybe(:bool)
             attribute[:idp].maybe(:bool)
             attribute[:ai_translation].maybe(:bool)
+            attribute[:enhance_with_ai].maybe(:bool)
+            attribute[:ai_content_analysis].maybe(:bool)
           end
         end
       end

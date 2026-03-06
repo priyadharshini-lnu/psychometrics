@@ -15,21 +15,20 @@ module AsyncResponseRequest
       retry? ? { retry_last_request: true, start_new_chat: false } : {}
     end
 
-    def handle_error_with_retry(error_message, error)
+    def handle_error_with_retry(error_response, error)
       # For time being, retrying on all assistant errors,
       # TODO: This can be extended to specific error types like rate limit error
       if error.is_a?(RubyLLM::Error)
-        async_response.response_data = { content: { message: error_message, component: 'Error' } }
+        async_response.response_data = error_response
 
-        # Raise to trigger job retry with exponential backoff
         raise AsyncResponseRequest::AsyncRequestError.new(
-          error_message,
+          error_response,
           async_response: async_response,
           error: error
         )
       end
 
-      async_response.response_data = { content: { message: error_message, component: 'Error' } }
+      async_response.response_data = error_response
     end
   end
 end

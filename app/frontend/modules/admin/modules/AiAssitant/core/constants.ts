@@ -29,6 +29,10 @@ export const ASSISTANT_TYPES = {
     name: 'Translation Assistant',
     supportedDependencies: [],
   },
+  content_analysis_assistant: {
+    id: 'content_analysis_assistant',
+    name: 'Content Analysis Assistant',
+  },
 }
 
 export const DEPENDENCY_TYPES = {

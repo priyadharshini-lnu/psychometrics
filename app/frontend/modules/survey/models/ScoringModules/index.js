@@ -4,6 +4,8 @@ import Slider from './Slider'
 import MatrixTable from './MatrixTable'
 import SideBySide from './SideBySide'
 import PickGroupRank from './PickGroupRank'
+import AudioResponse from './AudioResponse'
+import VideoResponse from './VideoResponse'
 
 export default {
   MultipleChoice,
@@ -12,4 +14,6 @@ export default {
   MatrixTable,
   SideBySide,
   PickGroupRank,
+  AudioResponse,
+  VideoResponse,
 }

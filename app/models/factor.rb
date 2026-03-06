@@ -29,7 +29,7 @@ class Factor < ApplicationRecord
   has_many :factor_benchmark_scores, dependent: :destroy
 
   validates :name, :dimension, presence: true
-  validates :name, length: { maximum: 100 }, allow_blank: true
+  validates :name, length: { maximum: ->(factor) { factor.indicator? ? 250 : 100 } }, allow_blank: true
   validates :code, length: { minimum: 3, maximum: 4 }, allow_blank: true
   # TODO: remove allow_blank?
 
@@ -51,6 +51,16 @@ class Factor < ApplicationRecord
     custom_formula: 9
   }, suffix: :strategy
 
+  enum :factor_type, {
+    regular: 0,
+    indicator: 1
+  }
+
+  enum :child_factor_type, {
+    regular: 0,
+    indicator: 1
+  }, prefix: :child
+
   has_one_image_attachment :icon, variants: %i[icon medium]
 
   def attachment_storage_path(attribute_name, filename)
@@ -58,6 +68,36 @@ class Factor < ApplicationRecord
   end
 
   accepts_nested_attributes_for :factors_sub_factors, allow_destroy: true
+
+  def create_indicators_from_attributes(factors_sub_factors_attrs)
+    return if factors_sub_factors_attrs.blank?
+
+    factors_sub_factors_attrs.each do |raw_attrs|
+      next if raw_attrs.blank? || raw_attrs.is_a?(String)
+
+      attrs = raw_attrs.with_indifferent_access
+      next if attrs[:_is_new].blank? || attrs[:_destroy].present?
+
+      indicator = Factor.create!(
+        dimension: dimension,
+        name: attrs[:name],
+        description: attrs[:description],
+        precision: attrs[:precision],
+        factor_type: :indicator,
+        score_min: attrs[:score_min],
+        score_max: attrs[:score_max],
+        score_definitions: attrs[:score_definitions] || [],
+        what_to_look_for: attrs[:what_to_look_for]
+      )
+
+      FactorsSubFactor.create!(
+        factor: self,
+        sub_factor: indicator,
+        weight: attrs[:weight] || 1,
+        position: attrs[:position]
+      )
+    end
+  end
 
   # factor types constant
   FACTOR_TYPES = %w[factors sub_factors].freeze
@@ -93,6 +133,8 @@ class Factor < ApplicationRecord
   scope :with_dimension, lambda { |dimension_id|
     where(dimension_id: dimension_id)
   }
+
+  scope :without_indicators, -> { where(factor_type: :regular) }
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name scoring_strategy dimension_id created_at updated_at]

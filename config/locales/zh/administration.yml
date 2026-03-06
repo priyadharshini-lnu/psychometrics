@@ -80,7 +80,6 @@ zh:
         title: AI神器
       generate: 生成
       generate_result_info_message: 结果正在生成中，请刷新页面以查看更新的结果。
-      generate_results: 生成结果
       generated_at: 生成时间
       generated_at_time: 生成时间%{time}
       generated_value: 产生的价值

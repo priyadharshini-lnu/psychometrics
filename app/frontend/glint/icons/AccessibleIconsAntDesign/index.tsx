@@ -140,6 +140,8 @@ import AntdIcon, {
   PartitionOutlined as AntdPartitionOutlined,
   TranslationOutlined as AntdTranslationOutlined,
   TableOutlined as AntdTableOutlined,
+  ArrowsAltOutlined as AntdArrowsAltOutlined,
+  ShrinkOutlined as AntdShrinkOutlined,
 } from '@ant-design/icons'
 import type { IconComponentProps } from '@ant-design/icons/lib/components/Icon'
 
@@ -290,5 +292,7 @@ export const SwapOutlined = withAccessibilityProps(AntdSwapOutlined)
 export const PartitionOutlined = withAccessibilityProps(AntdPartitionOutlined)
 export const TranslationOutlined = withAccessibilityProps(AntdTranslationOutlined)
 export const TableOutlined = withAccessibilityProps(AntdTableOutlined)
+export const ArrowsAltOutlined = withAccessibilityProps(AntdArrowsAltOutlined)
+export const ShrinkOutlined = withAccessibilityProps(AntdShrinkOutlined)
 
 export default withAccessibilityProps(AntdIcon)

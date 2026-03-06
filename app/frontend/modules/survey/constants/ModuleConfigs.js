@@ -181,6 +181,7 @@ const ModuleConfigs = {
     moduleName: 'Video Response',
     icon: 'video-camera',
     randomization: false,
+    scoring: true,
   },
 
   FileUpload: {
@@ -195,6 +196,7 @@ const ModuleConfigs = {
     moduleName: 'AudioResponse',
     icon: 'microphone',
     randomization: false,
+    scoring: true,
   },
   CampaignFactorFeedback: {
     moduleName: 'Campaign Factor Feedback',

@@ -2,7 +2,8 @@
 
 class FactorSerializer < Panko::Serializer
   attributes :id, :name, :code, :description, :icon, :scoring_strategy, :use_percentage, :use_sub_factor_norm_score,
-             :external_scoring, :scale_min, :scale_max, :custom_formula, :precision
+             :external_scoring, :scale_min, :scale_max, :custom_formula, :precision,
+             :score_min, :score_max, :score_definitions, :what_to_look_for, :child_factor_type, :factor_type
 
   has_many :factors_sub_factors, each_serializer: FactorsSubFactorSerializer, key: :factors_sub_factors
 

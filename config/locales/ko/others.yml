@@ -1343,7 +1343,6 @@ ko:
       title: 비밀번호 만들기
     sign_out: 다른 사용자로 로그인
     sign_up: 가입하기
-    terms_link: <a href="%{terms_url}">약관 및 개인정보 처리방침</a>
     verify_mobile_number:
       error:
         blocked: 이 번호는 너무 많은 시도로 인해 차단되었습니다.
@@ -2736,21 +2735,41 @@ ko:
           learn: "<strong>10%</strong>공식 학습"
         content:
           list:
-            r1: 이 목록은 참고용일 뿐이며, 개인의 포부, 관리자의 권장 사항 및 조직의 비즈니스 우선 순위에 따라 추가 개발 경로를 고려할 수 있습니다.
-            r2: 이러한 개발 경로 중 일부의 출시는 조직 전체의 교육 및 학습 전략에 따라 달라질 것입니다.
-            r3: 개인 개발 계획을 개발할 때 아래에 설명된 권장 경로를 고려하십시오.
-          main: '이 섹션에는 교실 학습, 코칭 및 현장 학습을 결합한 점진적인 여정을 제공하는 모범 사례 학습(예: 70-20-10 지침)을 염두에 두고 모든 개발 경로의 누적 목록이 포함되어 있습니다. 리더십 개발 경험과 비즈니스 우선 순위의 결과를 기반으로 개발을 위해 고려할 수 있는 가능한 개발 경로가 권장되었습니다.'
+            r1: 본 목록은 참고용으로만 제공되며, 개인의 목표, 관리자의 추천 및 조직의 비즈니스 우선순위에 따라 추가적인 경력 개발 경로가 고려될 수 있음을 유의하시기 바랍니다.
+            r2: 사용자들은 모든 콘텐츠를 비판적으로 검토할 것을 권장받으며, 동의하지 않는 행동이나 권고사항을 수정, 개선, 교체 또는 추가할 수 있습니다.
+            r3: '본 보고서에 포함된 개발 정보는 다음 출처 중 하나 또는 둘 모두에서 유래되었을 수 있습니다:'
+            r3a: 귀사를 위해 맞춤 제작된 개발 라이브러리
+            r3b: AI가 생성한 개발 제안
+          main: 본 IDP에는 70-20-10 가이드라인과 같은 모범 학습 사례를 고려하여 수행할 수 있는 상세한 발전 활동 목록이 포함되어 있습니다. 이는 교실 학습, 코칭 및 현장 학습을 결합한 단계적 여정을 제공합니다. 평가 센터 프로세스 결과, 채팅 응답 및 해당되는 경우 외부 보고서를 바탕으로 가능한 발전 경로가 권장되었으며, 귀하의 발전을 위해 고려해 볼 수 있습니다.
         learn_cards:
           collaboration:
-            list: '[KO] ["Offer to coach or mentor others", "Request to be mentored by an expert in your field", "Attain a coach to support your development", "Set-up a collaborative working group to discuss on going challenges in the business", "Get feedback formally and informally from others", "Play an active role in industry associations and networks", "Build your own external networks"]'
+            list:
+            - 다른 사람들을 코치하거나 멘토링해 주겠다고 제안하다
+            - 해당 분야의 전문가에게 멘토링을 요청합니다
+            - 개발을 지원해 줄 코치를 확보하세요
+            - 협업 작업 그룹을 구성하여 비즈니스에서 지속적으로 발생하는 과제에 대해 논의하십시오.
+            - 다른 사람들로부터 공식적·비공식적으로 피드백을 받다
+            - 산업 협회 및 네트워크에서 적극적인 역할을 수행한다
+            - 자신만의 외부 네트워크를 구축하세요
             title: 협업 학습(20%) <br/> 다른 사람들을 통해 발전
           job:
-            list: '[KO] ["Assume leadership positions in stakeholder or management committees", "Volunteer to lead change management projects for the organization", "Consider taking on stretching assignments", "Work cross-collaboratively with other functions", "Consider leading projects outside your organization", "Work closely with external industry experts on joint-projects"]'
+            list:
+            - 이해관계자 또는 경영 위원회에서 리더십 직책을 맡는다
+            - 조직을 위한 변화 관리 프로젝트를 주도할 자원봉사자 모집
+            - 신규 업무를 맡아 보세요
+            - 다른 부서와 교차 협업합니다
+            - 조직 외부에서 프로젝트를 주도하는 것을 고려해 보십시오
+            - 외부 산업 전문가들과 공동 프로젝트를 위해 긴밀히 협력한다
             title: 직장에서 배우기(70%) <br/> 경험을 통한 발전
           learn:
-            list: '[KO] ["Assume leadership positions in stakeholder or management committees", "Volunteer to lead change management projects for the organization", "Consider taking on stretching assignments", "Work cross-collaboratively with other functions", "Consider leading projects outside your organization", "Work closely with external industry experts on joint-projects"]'
+            list:
+            - 체계적인 교육 프로그램에 참여하십시오
+            - 온라인 e-러닝 과정을 완료하세요
+            - 책, 기사, 출판물을 읽다
+            - 전문 자격증, 인증 및 인가를 취득하십시오.
+            - 강좌, 워크숍, 세미나에 참석하다
             title: 공식 학습(10%) <br/> 구조화된 학습을 통한 개발
-        title: IDP를 안내하기 위한 지침
+        title: 국제운전면허증(IDP) 안내서
       idp:
         end_date: 종료 날짜
         self_rating: 자체 평가

@@ -80,7 +80,6 @@ ar:
         title: قطعة أثرية الذكاء الاصطناعي
       generate: ولد
       generate_result_info_message: يتم إنشاء النتائج ، يرجى تحديث الصفحة لرؤية النتائج المحدثة.
-      generate_results: توليد النتائج
       generated_at: تم إنشاؤه في
       generated_at_time: تم إنشاؤه في %{time}
       generated_value: القيمة المولدة

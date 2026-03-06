@@ -110,6 +110,9 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   has_one :threesixty_campaign, class_name: 'Threesixty::Campaign'
   has_one :campaign, through: :threesixty_campaign
+  has_one :assessment_assistant, dependent: :destroy
+  has_one :ai_assistant, through: :assessment_assistant
+  has_one :assessment_consent_setting, dependent: :destroy
 
   has_many :blocks, -> { order(position: :asc) }, dependent: :destroy
   has_many :questions, dependent: :destroy
@@ -148,6 +151,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   # HABTM Clients
   has_many :clients, through: :reports
 
+  has_many :ai_score_approvals, dependent: :destroy, class_name: 'AI::ScoreApproval'
+
   has_one :agile
 
   has_one :linked_assessor_form, foreign_key: :linked_assessment_id, class_name: 'Assessment'
@@ -170,6 +175,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   enum :category, CATEGORIES
   enum :status, STATUSES
+  enum :data_role, { processor: 0, controller: 1 }, prefix: true
 
   store_accessor :extra, %i[timer icon_color enable_video_check enable_audio_check enable_network_check]
 
@@ -186,6 +192,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   acts_as_taggable_tenant :owner_id
 
   delegate :config, :translations, to: :agile, prefix: true
+  delegate :custom_consent_text, to: :assessment_consent_setting, allow_nil: true
+  delegate :policy_version, to: :assessment_consent_setting, allow_nil: true
 
   # TODO: (nest):
   # Creating scope :hogan. Overwriting existing method Assessment.hogan.
@@ -251,6 +259,16 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   def has_external_norm?
     saville? || pearson?
+  end
+
+  def has_ai_questions?
+    scorable_ai_questions.present?
+  end
+
+  def scorable_ai_questions
+    questions.ai_scored.
+      where('EXISTS (SELECT 1 FROM factors_scoring WHERE factors_scoring.question_id = questions.id)').
+      preload(:factors_scorings)
   end
 
   def external_assessment_name # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity,  Metrics/AbcSize
@@ -466,7 +484,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
        coalesce(template.props, props).as('props'),
        coalesce(template.name, name).as('name')]
     end.joining { template.outer }.
-                      includes(:questions_ams).where.has { (template.disabled == false) | (template.id == nil) }
+                      includes(:questions).where.has { (template.disabled == false) | (template.id == nil) }
 
     selected_blocks.each do |block|
       piped_text.merge!(block.generate_piped_text_mapping(piped_text_context))

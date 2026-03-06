@@ -96,7 +96,7 @@ const ProductUsageLinks: FC<ProductsUsageLinksProps> = ({
         target="_blank"
         rel="noopener noreferrer"
       >
-        {I18n.t('shared.tte_terms_and_condition')}
+        {I18n.t('shared.terms_conditions_privacy')}
       </Button>
       {privacyLink}
     </Space>

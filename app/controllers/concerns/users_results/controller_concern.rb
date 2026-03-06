@@ -20,7 +20,6 @@ module UsersResults::ControllerConcern
       progress_was_reseted = user_assessment.progress_reseted
       ::UsersResults::UpdateUsersResult.call(form, @users_result, current_user)
     end
-
     campaign_user = CampaignUser.find_by(campaign_id: @users_result.campaign_id, user_id: user_assessment.subject_id)
 
     render json: UsersResultUpdateSerializer.new(
@@ -31,9 +30,14 @@ module UsersResults::ControllerConcern
         campaign: @users_result.campaign,
         locale: current_user.locale,
         progress_was_reseted: progress_was_reseted,
-        campaign_user: campaign_user
+        campaign_user: campaign_user,
+        missing_piped_text: params[:missing_piped_text]
       }
     ).serialize(@users_result)
+  end
+
+  def fetch_missing_piped_text
+    @user_assessment.assessment.generate_piped_text_mapping(piped_text_context)
   end
 
   def update_meta_data

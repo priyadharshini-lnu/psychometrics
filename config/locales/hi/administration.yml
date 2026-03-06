@@ -80,7 +80,6 @@ hi:
         title: एआई कलाकृति
       generate: उत्पन्न करें
       generate_result_info_message: परिणाम तैयार हो रहे हैं, कृपया अपडेटेड परिणाम देखने के लिए पेज रिफ्रेश करें।
-      generate_results: परिणाम उत्पन्न करें
       generated_at: पर उत्पन्न
       generated_at_time: "%{time} पर उत्पन्न"
       generated_value: उत्पन्न मूल्य

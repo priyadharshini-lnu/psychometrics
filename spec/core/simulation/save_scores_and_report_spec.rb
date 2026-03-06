@@ -80,8 +80,8 @@ RSpec.describe Simulation::SaveScoresAndReport, type: :service do
         service.call
       end
 
-      it 'calls generate_internal_reports' do
-        expect(service).to receive(:generate_internal_reports)
+      it 'calls UserAssessments::SaveScores' do
+        expect(UserAssessments::SaveScores).to receive(:call!).with(user_assessment)
 
         service.call
       end

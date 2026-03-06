@@ -1343,7 +1343,6 @@ hu:
       title: Jelszó létrehozása
     sign_out: Bejelentkezés más felhasználóként
     sign_up: Feliratkozás
-    terms_link: <a href="%{terms_url}">Feltételek és adatvédelmi nyilatkozat</a>
     verify_mobile_number:
       error:
         blocked: Ez a szám túl sok próbálkozás miatt blokkolva van.
@@ -2753,10 +2752,12 @@ hu:
           learn: "<strong>10%</strong>Formális tanulás"
         content:
           list:
-            r1: Felhívjuk figyelmét, hogy ez a lista csak tájékoztató jellegű, és további fejlődési utakat is fontolóra vehetünk az Ön számára az egyéni törekvések, a felettes ajánlásai, valamint a szervezeti üzleti prioritások alapján.
-            r2: Felhívjuk figyelmét, hogy e fejlesztési utak némelyikének elindítása a szervezeti szintű oktatási és tanulási stratégiától függ.
-            r3: Kérjük, vegye figyelembe az alábbiakban átlépett ajánlott utakat az egyéni fejlesztési terv kidolgozásakor.
-          main: Ez a szakasz tartalmazza az összes fejlesztési út összesített listáját, szem előtt tartva a legjobb gyakorlatok tanulását, azaz a 70-20-10 irányelvet, amely progresszív utat biztosít az osztálytermi tanulás, a coaching és a munkahelyi tanulás ötvözésével. A vezetőfejlesztési tapasztalatok és az üzleti prioritások eredményei alapján lehetséges fejlődési utakat javasoltunk, amelyek figyelembe vehetők az Ön fejlődése szempontjából.
+            r1: Felhívjuk figyelmét, hogy ez a lista csak tájékoztató jellegű, és az Ön egyéni törekvései, vezetője ajánlásai, valamint a szervezet üzleti prioritásai alapján további fejlődési lehetőségek is szóba jöhetnek az Ön esetében.
+            r2: A felhasználókat arra ösztönözzük, hogy minden tartalmat kritikus szemmel vizsgáljanak meg, és szabadon módosítsák, finomítsák, cseréljék ki vagy egészítsék ki azokat a tevékenységeket vagy ajánlásokat, amelyekkel nem értenek egyet.
+            r3: 'A jelentésben szereplő fejlesztési adatok az alábbi források egyikéből vagy mindkettőből származhatnak:'
+            r3a: Az Ön szervezetének igényeihez igazított fejlesztői könyvtár
+            r3b: AI által generált fejlesztési javaslatok
+          main: Az elkészített IDP tartalmazza a végrehajtható fejlesztési intézkedések részletes listáját, figyelembe véve a bevált gyakorlatokat, azaz a 70-20-10 irányelvet, amely az osztálytermi tanulást, a coachingot és a munkahelyi tanulást ötvöző, fokozatos fejlődési utat biztosít. Az értékelő központ folyamatának eredményei, a csevegési válaszok és a külső jelentések alapján, adott esetben, lehetséges fejlesztési útvonalakat javasoltunk, amelyeket figyelembe vehet a fejlődése érdekében.
         learn_cards:
           collaboration:
             list: '[HU] ["Offer to coach or mentor others", "Request to be mentored by an expert in your field", "Attain a coach to support your development", "Set-up a collaborative working group to discuss on going challenges in the business", "Get feedback formally and informally from others", "Play an active role in industry associations and networks", "Build your own external networks"]'
@@ -2765,9 +2766,14 @@ hu:
             list: '[HU] ["Assume leadership positions in stakeholder or management committees", "Volunteer to lead change management projects for the organization", "Consider taking on stretching assignments", "Work cross-collaboratively with other functions", "Consider leading projects outside your organization", "Work closely with external industry experts on joint-projects"]'
             title: Munkahelyi tanulás (70%) <br/> Fejlődés tapasztalaton keresztül
           learn:
-            list: '[HU] ["Assume leadership positions in stakeholder or management committees", "Volunteer to lead change management projects for the organization", "Consider taking on stretching assignments", "Work cross-collaboratively with other functions", "Consider leading projects outside your organization", "Work closely with external industry experts on joint-projects"]'
+            list:
+            - Vegyen részt strukturált képzési programokban
+            - Teljes online e-learning tanfolyamok
+            - Olvasson könyveket, cikkeket, kiadványokat
+            - Szerezzen szakmai képesítéseket, tanúsítványokat és akkreditációkat
+            - Vegyen részt tanfolyamokon, műhelyeken, szemináriumokon
             title: Formális tanulás (10%) <br/> Fejlődés strukturált tanulással
-        title: Útmutató az IDP irányításához
+        title: Útmutató az IDP-hez
       idp:
         end_date: Befejezés dátuma
         self_rating: Önértékelés

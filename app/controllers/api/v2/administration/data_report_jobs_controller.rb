@@ -9,14 +9,21 @@ module Api
       render json: { password: model.password }
     end
 
+    def model
+      @model ||= policy_class::Scope.new(
+        current_user, model_class,
+        filter: { client_id: params[:filter][:data_report_owner_id_eq] }
+      ).resolve.find(model_id)
+    end
+
     def pundit_authorize
       data_report = DataReport.find(params[:data_report_id] || params[:id])
-
       authorize(
         data_report,
         nil,
         policy_class: Api::Administration::DataReportJobPolicy,
-        project_id: data_report&.owner_id
+        project_id: data_report&.owner_id,
+        filter: { client_id: params[:filter][:data_report_owner_id_eq] }
       )
     end
   end

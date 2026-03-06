@@ -7,25 +7,43 @@ en:
     add: Add
     advanced: Advanced
     agree_and_continue: Agree & Continue
+    approval_status: Approval Status
+    approved: Approved
+    approved_by: Approved By
+    approvers_list: Approvers List
     archive: Archive
     archived: Archived
+    assessed_by: Assessed By
+    assessment: Assessment
+    assessment_id: Assessment ID
+    assessment_list: Assessment List
+    assessment_name: Assessment Name
+    assessor_approved: Assessor Approved
+    assessors_list: Assessors List
     asset_not_present: Asset not present
     audio: Audio
     authentication_failed: Authentication failed. Please try again.
+    back: Back
     basic: Basic
     camera_preview: Camera preview will appear here
+    campaign: Campaign
     campaign_id: Campaign ID
     cancel: Cancel
     change_password: Change Password
     clear_filters: Clear Filters
+    client: Client
     collaborative_learning: Collaborative Learning
     completed: Completed
     configurations: Configurations
     confirm: Confirm
     continue: Continue
+    controller: Controller
     copy: Copy
     created_at: Created At
     created_date: Created Date
+    custom_consent_text: Custom Consent Text
+    custom_consent_text_required: Custom consent text is required for controller data role
+    data_role: Data Role
     decline: Decline
     description: Description
     desktop_or_laptop_recommended: Desktop or Laptop Recommended
@@ -39,6 +57,7 @@ en:
     email: Email
     export: Export
     failed: Failed
+    'false': false
     first_name: First Name
     formal_learning: Formal Learning
     generate: Generate
@@ -52,6 +71,7 @@ en:
     internet_disconnected_message: Trying to reconnect. Please check your internet connection.
     last_name: Last Name
     learning_on_the_job_label: Learning on the Job
+    loading: Loading...
     login: Login
     maintenance_in_hours: "%{hours} hours"
     maintenance_in_minutes: "%{minutes} minutes"
@@ -70,14 +90,20 @@ en:
     mte_logo_alt_text: Mercer Talent Enterprise logo
     na_text: N/A
     name: Name
+    negative: Negative
     new: New
     no_results_found: No results found
     not_requested: Not Yet Requested
     ok: Ok
     pending: Pending
+    policy_version: Policy Version
+    policy_version_format: Only whole numbers are allowed
+    positive: Positive
     processing: Processing
+    processor: Processor
     proctoring_maintenance_active: Proctoring is currently under maintenance from %{start_time} to %{end_time}. Please try again after the maintenance window.
     proctoring_maintenance_upcoming: Proctoring will be under maintenance from %{start_time} to %{end_time}.
+    project: Project
     question_id: Question ID
     question_transcription_disabled: Transcription is disabled for this question
     rec: REC
@@ -88,14 +114,19 @@ en:
     removed: Removed
     replace: Replace
     reset_password: Reset Password
+    response_text: Response Text
     rte_paste_content_exceeds_char_limit: Text exceeds the character limit of {{maxCharacterLimit}} and cannot be pasted.
     rte_paste_content_exceeds_word_limit: Text exceeds the word limit of {{maxWordLimit}} and cannot be pasted.
     save: Save
     saving_video: Saving Video... Please do not close or refresh the browser
+    scoring_details: Scoring Details
     search: Search
     send_email: Send Email
     show_more: Show More
     something_wrong: Something went wrong. Contact your administrator
+    status: Status
+    subject: Subject
+    submit: Submit
     switch_to_laptop_or_desktop: Switch to Laptop or Desktop
     table:
       entries:
@@ -113,9 +144,12 @@ en:
     transcription_not_enabled: Transcription is not enabled for the media response
     transcription_status: Transcription Status
     transcriptions: Transcriptions
+    'true': true
     try_again: Try Again
     tte_terms_and_condition: Terms & Privacy
     type: Type
     update: Update
+    update_failed: Update failed
+    updated_successfully: Updated successfully
     video: Video
     view: View

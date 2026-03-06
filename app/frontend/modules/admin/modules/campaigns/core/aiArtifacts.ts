@@ -48,11 +48,13 @@ export const ArtifactResultsAttributesTR = t.type({
   generatedAt: t.union([t.string, t.null]),
   totalInputTokens: t.union([t.number, t.undefined]),
   totalOutputTokens: t.union([t.number, t.undefined]),
+  resultStale: t.boolean,
 })
 
 export const CampaignAiArtifactResultTR = t.type({
   id: t.string,
   generatedAt: t.union([t.string, t.null]),
+  resultStale: t.boolean,
   artifactsResults: t.type({
     data: t.array((t.type({
       id: t.string,
@@ -118,7 +120,44 @@ export type CampaignAiArtifactDataSource = {
       generatedAt: string | null,
       totalInputTokens: number | undefined,
       totalOutputTokens: number | undefined,
+      resultStale: boolean,
     }
   }
   generatedAt: string | null
 }
+
+export const ArtifactResultResponseDataTR = t.type({
+  data: t.type({
+    id: t.string,
+    type: t.string,
+    attributes: ArtifactResultsAttributesTR,
+  }),
+  meta: t.type({
+    user: t.type({
+      data: t.type({
+        id: t.string,
+        type: t.string,
+        attributes: t.type({
+          name: t.string,
+          email: t.string,
+        }),
+      }),
+    }),
+  }),
+})
+
+export const AsyncArtifactResultResponseTR = t.type({
+  status: t.string,
+  response: t.type({
+    asyncRequestUuid: t.string,
+    processingStatus: t.string,
+    responseType: t.string,
+    responseData: t.union([
+      ArtifactResultResponseDataTR,
+      t.type({}),
+      t.null,
+    ]),
+  }),
+})
+
+export type ArtifactResultResponseData = t.TypeOf<typeof ArtifactResultResponseDataTR>

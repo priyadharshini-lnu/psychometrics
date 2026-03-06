@@ -23,6 +23,20 @@ describe SmtpSetting, type: :model do
     end
   end
 
+  describe 'admin_sender_from' do
+    it 'returns default from name and no-reply email if smtp_setting is disabled' do
+      smtp_setting = build(:smtp_setting, enabled: false, from_name: 'James')
+
+      expect(smtp_setting.admin_sender_from).to eq('The Talent Enterprise <no-reply@localhost>')
+    end
+
+    it 'returns from_name and from_email if enabled' do
+      smtp_setting = build(:smtp_setting, enabled: true, from_name: 'Admin Custom', from_email: 'custom@cc.com')
+
+      expect(smtp_setting.admin_sender_from).to eq('Admin Custom <custom@cc.com>')
+    end
+  end
+
   describe 'settings_for_email' do
     it 'returns nil if smtp_setting is not enabled' do
       smtp_setting = build(:smtp_setting, enabled: false)
@@ -72,6 +86,48 @@ describe SmtpSetting, type: :model do
         authentication: smtp_setting.authentication_type,
         tls: true
       })
+    end
+  end
+
+  describe '#clear_smtp_credentials_if_needed' do
+    it 'clears sensitive SMTP credentials when use_sender_verification is true' do
+      smtp_setting = create(:smtp_setting,
+                            project: create(:project),
+                            host: 'mail.example.com',
+                            port: 587,
+                            user_name: 'user',
+                            password: 'password',
+                            encryption: 'tls',
+                            authentication_type: 'plain',
+                            use_sender_verification: false)
+
+      smtp_setting.update!(use_sender_verification: true)
+
+      expect(smtp_setting.host).to be_nil
+      expect(smtp_setting.port).to be_nil
+      expect(smtp_setting.user_name).to be_nil
+      expect(smtp_setting.password).to be_nil
+      expect(smtp_setting.encryption).to eq('none')
+      expect(smtp_setting.authentication_type).to eq('plain')
+    end
+
+    it 'retains credentials when use_sender_verification is false' do
+      smtp_setting = create(:smtp_setting,
+                            project: create(:project),
+                            host: 'mail.example.com',
+                            port: 587,
+                            user_name: 'user',
+                            password: 'password',
+                            encryption: 'tls',
+                            authentication_type: 'plain',
+                            use_sender_verification: false)
+
+      smtp_setting.update!(from_name: 'New Name')
+
+      expect(smtp_setting.host).to eq('mail.example.com')
+      expect(smtp_setting.port).to eq(587)
+      expect(smtp_setting.password).to eq('password')
+      expect(smtp_setting.encryption).to eq('tls')
     end
   end
 end

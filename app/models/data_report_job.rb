@@ -26,6 +26,14 @@ class DataReportJob < ApplicationRecord
       )
   end
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[owner_id]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[data_reports]
+  end
+
   def attachment_storage_path(attribute_name, filename)
     "private/data_reports/#{id}/#{attribute_name}/#{filename}"
   end

@@ -80,7 +80,6 @@ pt:
         title: Artefato de IA
       generate: Gerar
       generate_result_info_message: Os resultados estão sendo gerados, atualize a página para ver os resultados atualizados.
-      generate_results: Gerar resultados
       generated_at: Gerado em
       generated_at_time: Gerado em %{time}
       generated_value: Valor Gerado

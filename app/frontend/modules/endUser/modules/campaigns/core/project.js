@@ -28,12 +28,12 @@ export const fetchPolicy = (version = '2') => ({
   },
 })
 
-export const acceptPolicy = version => ({
+export const acceptPolicy = payload => ({
   type: ACCEPT_POLICY,
   request: {
     method: 'POST',
     url: '/accept_privacy',
-    body: { version },
+    body: payload,
   },
 })
 

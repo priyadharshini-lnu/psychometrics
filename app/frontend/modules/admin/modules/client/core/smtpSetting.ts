@@ -19,7 +19,7 @@ export interface State {
   enabled: boolean
   fromName: string
   fromEmail: string
-  useSenderAuthentication: boolean
+  useSenderVerification: boolean
   testEmailId?: string
 }
 
