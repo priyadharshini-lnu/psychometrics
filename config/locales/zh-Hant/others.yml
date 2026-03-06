@@ -1343,7 +1343,6 @@ zh-Hant:
       title: 建立密碼
     sign_out: 以不同使用者登入
     sign_up: 註冊
-    terms_link: <a href="%{terms_url}">條款與隱私權聲明</a>
     verify_mobile_number:
       error:
         blocked: 由於嘗試太多，此號碼已被攔截。

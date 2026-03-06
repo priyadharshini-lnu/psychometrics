@@ -1343,7 +1343,6 @@ en-US:
       title: Create Password
     sign_out: Login as different user
     sign_up: Sign Up
-    terms_link: <a href="%{terms_url}">Terms and Privacy Statement</a>
     verify_mobile_number:
       error:
         blocked: This number is blocked due to too many attempts.

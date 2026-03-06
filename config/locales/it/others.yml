@@ -1343,7 +1343,6 @@ it:
       title: Creare la password
     sign_out: Accedere come utente diverso
     sign_up: Iscriviti
-    terms_link: <a href="%{terms_url}">Termini e dichiarazione sulla privacy</a>
     verify_mobile_number:
       error:
         blocked: Questo numero è bloccato a causa di troppi tentativi.

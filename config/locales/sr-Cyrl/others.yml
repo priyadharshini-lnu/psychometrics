@@ -1343,7 +1343,6 @@ sr-Cyrl:
       title: Креирај лозинку
     sign_out: Пријавите се као други корисник
     sign_up: Региструј се
-    terms_link: <a href="%{terms_url}">Услови и изјава о приватности</a>
     verify_mobile_number:
       error:
         blocked: Овај број је блокиран због превише покушаја.

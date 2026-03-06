@@ -1343,7 +1343,6 @@ vi:
       title: Tạo mật khẩu
     sign_out: Đăng nhập với tư cách là người dùng khác
     sign_up: Đăng ký
-    terms_link: <a href="%{terms_url}">Điều khoản và Tuyên bố về quyền riêng tư</a>
     verify_mobile_number:
       error:
         blocked: Số này bị chặn do có quá nhiều lần thử.

@@ -1354,7 +1354,6 @@ sr-Latn:
       title: Kreirajte lozinku
     sign_out: Prijavi se kao drugi korisnik
     sign_up: Prijavi se
-    terms_link: <a href="%{terms_url}">Izjava o uslovima i privatnosti</a>
     verify_mobile_number:
       error:
         blocked: Ovaj broj je blokiran zbog previše pokušaja.

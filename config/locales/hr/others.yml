@@ -1350,7 +1350,6 @@ hr:
       title: Izraditi lozinku
     sign_out: Prijava kao drugi korisnik
     sign_up: Prijaviti se
-    terms_link: <a href="%{terms_url}">Uvjeti i izjava o privatnosti</a>
     verify_mobile_number:
       error:
         blocked: Ovaj je broj blokiran zbog previše pokušaja.

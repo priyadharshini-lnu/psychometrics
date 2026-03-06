@@ -1343,7 +1343,6 @@ ro:
       title: Crearea parolei
     sign_out: Conectați-vă ca utilizator diferit
     sign_up: Înregistrare
-    terms_link: <a href="%{terms_url}">Termenii de utilizare și Politica de confidențialitate</a>
     verify_mobile_number:
       error:
         blocked: Acest număr este blocat din cauza prea multor încercări.
