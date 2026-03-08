@@ -12,6 +12,7 @@ module Api
         validates :first_name, presence: true
         validates :last_name, presence: true
         validates :email, presence: true
+        validates :gender, inclusion: { in: UserProfile.genders.keys }, allow_blank: true
         validates :email, format: { with: Devise.email_regexp }
 
         validate :verify_campaign_ids

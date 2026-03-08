@@ -29,6 +29,7 @@ describe Api::Campaigns::Users::Upsert do
       email: form.email,
       first_name: form.first_name,
       last_name: form.last_name,
+      gender: form.gender,
       campaign_user_external_id: form.campaigns.first[:campaign_user_external_id],
       user_external_id: nil,
       operation: form.campaigns.first[:existing_record],
@@ -56,6 +57,7 @@ describe Api::Campaigns::Users::Upsert do
       email: form.email,
       first_name: form.first_name,
       last_name: form.last_name,
+      gender: form.gender,
       campaign_user_external_id: form.campaigns.first[:campaign_user_external_id],
       user_external_id: nil,
       operation: form.campaigns.first[:existing_record],
@@ -147,5 +149,25 @@ describe Api::Campaigns::Users::Upsert do
 
     user.reload
     expect(user.external_id).to eq(form.user_external_id)
+  end
+
+  it 'creates user with gender on user profile' do
+    form.gender = 'male'
+    expect do
+      described_class.call!(form, current_user, params: form.attributes, project: campaign.project)
+    end.to change { User.count }.by(1)
+
+    user = User.find_by(email: form.email)
+    expect(user.user_profile.gender).to eq('male')
+  end
+
+  it "updates user's gender on user profile" do
+    user = create(:user, project: campaign.project)
+    form.email = user.email
+    form.gender = 'male'
+
+    described_class.call!(form, current_user, params: form.attributes, project: campaign.project, user: user)
+    user.reload
+    expect(user.user_profile.gender).to eq('male')
   end
 end

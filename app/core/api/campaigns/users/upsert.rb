@@ -30,6 +30,7 @@ module Api
                   email: form.email,
                   first_name: form.first_name,
                   last_name: form.last_name,
+                  gender: form.gender,
                   operation: campaign_attrs[:existing_record],
                   active: campaign_attrs[:active],
                   schedule_start_date: campaign_attrs[:schedule_start_date],
@@ -71,6 +72,7 @@ module Api
             email: form.email,
             external_id: form.try(:user_external_id) || user.external_id
           )
+          user.user_profile.update!(gender: form.gender) if form.gender.present?
         end
 
         def create_or_update_project_datasheet

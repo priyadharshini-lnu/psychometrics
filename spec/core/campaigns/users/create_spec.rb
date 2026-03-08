@@ -25,6 +25,23 @@ describe Campaigns::Users::Create do
     expect(User.last.locale).to eq('en')
   end
 
+  it 'stores user profile gender for new user' do
+    form.gender = 'male'
+    described_class.call!(form, campaign, current_user)
+
+    expect(User.last.user_profile.gender).to eq('male')
+  end
+
+  it 'updates user profile gender for existing user' do
+    user = create(:user, project_id: campaign.project_id, email: form.email)
+    user.user_profile.update!(gender: 'female')
+    form.gender = 'not_disclosed'
+    described_class.call!(form, campaign, current_user, user: user)
+
+    user.reload
+    expect(user.user_profile.gender).to eq('not_disclosed')
+  end
+
   it "doesn't create user record if user already exists in the project" do
     create(:user, email: form.email, project_id: campaign.project_id)
     expect do
