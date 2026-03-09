@@ -13,7 +13,7 @@ module Imports
         #     "index": 0,
         #     "value": true
         #   }, ...]
-        def self.build_answers(data, question, duration, use_scoring = false, _assign)
+        def self.build_answers(data, question, duration, use_scoring = false, _assign, **) # rubocop:disable Metrics/ParameterLists
           return nil if data.compact.blank?
 
           factors_scoring = question.detect_specified_scoring.

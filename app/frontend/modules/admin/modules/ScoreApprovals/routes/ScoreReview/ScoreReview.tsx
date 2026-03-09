@@ -256,7 +256,10 @@ export const ScoreReview = () => {
                 </Flex>
               )}
             </Flex>
-            <Card classNames={{ body: styles.headerCard }}>
+            <Card
+              classNames={{ body: styles.headerCard }}
+              styles={{ root: { borderRadius: 8, border: '1px solid #e8e8e8' } }}
+            >
               <Flex flex={1}>
                 <Flex vertical gap={24} flex={1}>
                   <Flex vertical>

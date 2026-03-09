@@ -2,7 +2,7 @@
 
 class Api::V2::Administration::MediaResponseResource < Api::V2::Administration::BaseResource
   attributes :id, :question_id, :transcription_text, :question_type, :transcription_status,
-             :transcription_enabled, :asset_url
+             :transcription_enabled, :asset_url, :media_id, :question_text
 
   def self.records(opts = {})
     user_assessment_id = opts[:context][:user_assessment_id]
@@ -35,5 +35,20 @@ class Api::V2::Administration::MediaResponseResource < Api::V2::Administration::
 
   def transcription_enabled
     @model.question&.props&.[]('enableTranscription') || false
+  end
+
+  def media_id
+    @model.id
+  end
+
+  def question_text
+    question = @model.question
+    return nil unless question
+
+    props = question.props
+    raw_text = props&.[]('questionText')
+    return nil if raw_text.blank?
+
+    ActionController::Base.helpers.strip_tags(raw_text)
   end
 end

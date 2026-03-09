@@ -8,7 +8,7 @@ module Imports
         #   [5]
         # TO:
         #   [{"value": 5}]
-        def self.build_answers(data, question, duration, _use_scoring = false, _assign)
+        def self.build_answers(data, question, duration, _use_scoring = false, _assign, **) # rubocop:disable Metrics/ParameterLists
           return nil if data.compact.blank?
 
           {
