@@ -5,12 +5,9 @@ import type { SpeedTestResult, SpeedTestProgress, LatencyResult } from '~/utils/
 import {
   SpeedTestResultTR,
   SpeedTestProgressTypeTR,
-  testRailsDownloadSpeed,
-  testRailsUploadSpeed,
-  testRailsLatency,
-  testS3DownloadSpeed,
-  testS3UploadSpeed,
-  testS3Latency,
+  testDownloadSpeed,
+  testUploadSpeed,
+  testLatency,
   runComprehensiveSpeedTest,
   formatSpeed,
 } from '~/utils/speedTest'
@@ -76,12 +73,9 @@ export function useNetworkTest (options: UseNetworkTestOptions = {}) {
     if (isTestingRef.current) return null
 
     const testFunctions: Record<TestType, () => Promise<number | LatencyResult>> = {
-      rails_download: () => testRailsDownloadSpeed(testFileSize, handleProgress),
-      rails_upload: () => testRailsUploadSpeed(testFileSize, handleProgress),
-      rails_latency: () => testRailsLatency(latencySamples, handleProgress),
-      s3_download: () => testS3DownloadSpeed(testFileSize, handleProgress),
-      s3_upload: () => testS3UploadSpeed(testFileSize, handleProgress),
-      s3_latency: () => testS3Latency(latencySamples, handleProgress),
+      download: () => testDownloadSpeed(testFileSize, handleProgress),
+      upload: () => testUploadSpeed(testFileSize, handleProgress),
+      latency: () => testLatency(latencySamples, handleProgress),
     }
 
     isTestingRef.current = true
@@ -99,33 +93,18 @@ export function useNetworkTest (options: UseNetworkTestOptions = {}) {
     }
   }, [testFileSize, latencySamples, handleProgress, updateState])
 
-  const runRailsDownloadTest = useCallback(
-    () => runSingleTest<number>('rails_download'),
+  const runDownloadTest = useCallback(
+    () => runSingleTest<number>('download'),
     [runSingleTest],
   )
 
-  const runRailsUploadTest = useCallback(
-    () => runSingleTest<number>('rails_upload'),
+  const runUploadTest = useCallback(
+    () => runSingleTest<number>('upload'),
     [runSingleTest],
   )
 
-  const runRailsLatencyTest = useCallback(
-    () => runSingleTest<LatencyResult>('rails_latency'),
-    [runSingleTest],
-  )
-
-  const runS3DownloadTest = useCallback(
-    () => runSingleTest<number>('s3_download'),
-    [runSingleTest],
-  )
-
-  const runS3UploadTest = useCallback(
-    () => runSingleTest<number>('s3_upload'),
-    [runSingleTest],
-  )
-
-  const runS3LatencyTest = useCallback(
-    () => runSingleTest<LatencyResult>('s3_latency'),
+  const runLatencyTest = useCallback(
+    () => runSingleTest<LatencyResult>('latency'),
     [runSingleTest],
   )
 
@@ -164,12 +143,9 @@ export function useNetworkTest (options: UseNetworkTestOptions = {}) {
     state,
     isRunning: state.status === 'testing',
     runTest: runFullTest,
-    runRailsDownloadTest,
-    runRailsUploadTest,
-    runRailsLatencyTest,
-    runS3DownloadTest,
-    runS3UploadTest,
-    runS3LatencyTest,
+    runDownloadTest,
+    runUploadTest,
+    runLatencyTest,
     reset,
     formatSpeed,
   }

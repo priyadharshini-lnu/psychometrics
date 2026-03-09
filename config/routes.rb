@@ -31,12 +31,9 @@ Rails.application.routes.draw do
   get '/maintenance', to: 'maintenance#index', as: :maintenance
 
   scope module: :end_user do
-    get 'speed_test/download/:size', to: 'speed_test#download', constraints: { size: /\d+/ }
-    post 'speed_test/upload', to: 'speed_test#upload'
-    get 'speed_test/ping', to: 'speed_test#ping'
-    get 'speed_test/s3/download_url', to: 'speed_test#s3_download_url'
-    get 'speed_test/s3/upload_url', to: 'speed_test#s3_upload_url'
-    get 'speed_test/s3/ping_url', to: 'speed_test#s3_ping_url'
+    get 'speed_test/download_url', to: 'speed_test#download_url'
+    get 'speed_test/upload_url', to: 'speed_test#upload_url'
+    get 'speed_test/ping_url', to: 'speed_test#ping_url'
   end
 
   get '/admin', to: 'administration/app#dashboard', as: :admin
