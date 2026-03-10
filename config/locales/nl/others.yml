@@ -862,6 +862,7 @@ nl:
         bulk_reports: Bulkrapporten
         bulk_rescore_campaign_factors: Bulk Rescore-campagnefactoren
         bulk_update_evaluation_status: Evaluatiestatus bulkupdate
+        campaign_report_extract_and_upload_bulk_assets: Campagnerapport Bulkbestanden uploaden
         compact_completion_status_export: Export van compacte voltooiingsstatus
         completion_status_export: Export van voltooiingsstatus
         copy_as_template_or_campaign: Campagne kopiëren als sjabloon
@@ -871,6 +872,7 @@ nl:
         export_admin_with_permissions: Admin exporteren met machtigingen
         export_assessment_questions: Vragen over exportbeoordeling
         export_campaign_ai_artifacts: Exportcampagne-AI-artefacten
+        export_campaign_ai_artifacts_results: Exporteer resultaten van AI-artefacten van campagnes
         export_campaign_factors: Factoren voor exportcampagnes
         export_campaign_scorings: Campagne scorings exporteren
         export_dashboard_as_file: Dashboard exporteren als bestand
@@ -1274,6 +1276,7 @@ nl:
     record_not_found: Record niet gevonden
     user_not_authorized: Gebruiker niet geautoriseerd
   auth:
+    cookies_link: <a href="%{cookies_url}">Cookiesverklaring</a>
     current_password: Huidig wachtwoord
     current_password_placeholder: Huidig wachtwoord invoeren
     email: E-mail
@@ -1319,6 +1322,7 @@ nl:
     password_confirmation: Wachtwoord bevestigen
     password_confirmation_placeholder: Wachtwoord bevestigen
     password_placeholder: Voer wachtwoord in
+    privacy_statement_link: <a href="%{privacy_url}">Privacyverklaring</a>
     registration:
       description: Vul de onderstaande gegevens in om te registreren en een nieuwe account aan te maken
       email_hint: We respecteren je privacy en tolereren geen spam. We zullen je gegevens nooit doorgeven aan derden

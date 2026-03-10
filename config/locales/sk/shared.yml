@@ -7,27 +7,48 @@ sk:
     add: Pridať
     advanced: Pokročilý
     agree_and_continue: Súhlasím a pokračujte
+    approval_status: Stav schválenia
+    approved: Schválené
+    approved_by: Schválené
+    approvers_list: Zoznam schvaľovateľov
     archive: Archív
     archived: Archivované
+    assessed_by: Hodnotené podľa
+    assessment: Hodnotenie
+    assessment_id: Identifikačný kód hodnotenia
+    assessment_list: Zoznam hodnotení
+    assessment_name: Názov hodnotenia
+    assessor_approved: Schválený posudzovateľ
+    assessors_list: Zoznam hodnotiteľov
     asset_not_present: Aktívum nie je prítomné
     audio: Audio
     authentication_failed: Autentifikácia zlyhala. Prosím, skúste to znova.
+    back: Späť
     basic: Základný
     camera_preview: Tu sa zobrazí náhľad fotoaparátu
+    campaign: Kampaň
     campaign_id: Identifikácia kampane
     cancel: Zrušiť
     change_password: Zmeniť heslo
     clear_filters: Vymazať filtre
+    client: Klient
     collaborative_learning: Kolaboratívne učenie
     completed: Dokončené
     configurations: Konfigurácie
     confirm: Potvrďte
     continue: Pokračovať
+    controller: Ovládač
+    cookies_statement: Vyhlásenie o súboroch cookie
     copy: Kopírovať
     created_at: Vytvorené v
     created_date: Dátum vytvorenia
+    custom_consent_text: Vlastný text súhlasu
+    custom_consent_text_required: Pre rolu správcu údajov je potrebný vlastný text súhlasu.
+    data_role: Úloha údajov
     decline: Úpadok
     description: Popis
+    desktop_or_laptop_recommended: Odporúča sa stolný počítač alebo notebook
+    desktop_or_laptop_required: Požadovaný stolný počítač alebo notebook
     download: Stiahnuť
     download_audio: Stiahnuť zvuk
     download_transcription: Stiahnuť prepis
@@ -37,6 +58,7 @@ sk:
     email: E-mail
     export: Vývoz
     failed: Neúspešný
+    'false': false
     first_name: Kresťanské meno
     formal_learning: Formálne učenie
     generate: Generovať
@@ -50,6 +72,7 @@ sk:
     internet_disconnected_message: Pokúšam sa znovu pripojiť. Skontrolujte, prosím, svoje internetové pripojenie.
     last_name: Priezvisko
     learning_on_the_job_label: Učenie sa priamo v práci
+    loading: Načítava sa...
     login: Prihlásenie
     maintenance_in_hours: "%{hours} hodiny"
     maintenance_in_minutes: "%{minutes} minúty"
@@ -60,20 +83,28 @@ sk:
     maintenance_upcoming_title: Nadchádzajúca údržba
     media_question_transcriptions: Prepisy otázok médií
     media_responses: Reakcie médií
+    mobile_proctoring_disabled_instructions: Na pokračovanie v tomto hodnotení je potrebný stolný počítač alebo notebook. Prejdite na počítač, aby ste mohli aktivitu dokončiť.
+    mobile_proctoring_enabled_instructions: Pre najlepší zážitok prejdite na stolný počítač alebo notebook, ak máte k dispozícii. V prípade potreby môžete pokračovať na mobilnom zariadení.
     modified_by: Upravené
     modified_date: Dátum úpravy
     more_actions: Ďalšie akcie
     mte_logo_alt_text: Logo Mercer Talent Enterprise
     na_text: N/A
     name: Meno
+    negative: Negatívny
     new: Nové
     no_results_found: Nenašli sa žiadne výsledky
     not_requested: Ešte nebolo požiadané
     ok: Ok
     pending: Čaká na vybavenie
+    policy_version: Verzia politiky
+    policy_version_format: Povolené sú iba celé čísla
+    positive: Pozitívne
     processing: Spracovanie
+    processor: Procesor
     proctoring_maintenance_active: Služba Proctoring je momentálne v údržbe z %{start_time} na %{end_time}. Skúste to znovu po ukončení údržby.
     proctoring_maintenance_upcoming: Služba Proctoring bude od %{start_time} do %{end_time} v údržbe.
+    project: Projekt
     question_id: ID otázky
     question_transcription_disabled: Pre túto otázku je prepis vypnutý.
     rec: REC
@@ -84,14 +115,20 @@ sk:
     removed: Odstránený
     replace: Nahradiť
     reset_password: Obnovenie hesla
+    response_text: Text odpovede
     rte_paste_content_exceeds_char_limit: Text prekračuje limit znakov {{maxCharacterLimit}} a nie je možné ho vložiť.
     rte_paste_content_exceeds_word_limit: Text prekračuje limit slov {{maxWordLimit}} a nedá sa vložiť.
     save: Uložiť
     saving_video: Ukladanie videa... Prosím, nezatvárajte ani neobnovujte prehliadač
+    scoring_details: Podrobnosti o bodovaní
     search: Vyhľadávanie
     send_email: Odoslať e-mail
     show_more: Zobraziť viac
     something_wrong: Niečo sa pokazilo. Obráťte sa na správcu.
+    status: Stav
+    subject: Predmet
+    submit: Odoslať
+    switch_to_laptop_or_desktop: Prejsť na notebook alebo stolný počítač
     table:
       entries:
         selected: Vybraný 1 riadok
@@ -103,9 +140,12 @@ sk:
     transcription_not_enabled: Pre médiá nie je povolená transkripcia.
     transcription_status: Stav prepisovania
     transcriptions: Prepisy
+    'true': true
     try_again: Skúste to znovu
     tte_terms_and_condition: Podmienky a ochrana osobných údajov
     type: Typ
     update: Aktualizácia
+    update_failed: Aktualizácia sa nepodarila
+    updated_successfully: Úspešne aktualizované
     video: Video
     view: Zobraziť

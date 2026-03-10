@@ -862,6 +862,7 @@ id:
         bulk_reports: Laporan Massal
         bulk_rescore_campaign_factors: Faktor Kampanye Rescore Massal
         bulk_update_evaluation_status: Status Evaluasi Pembaruan Massal
+        campaign_report_extract_and_upload_bulk_assets: Laporan Kampanye Unggah Aset Massal
         compact_completion_status_export: Ekspor Status Penyelesaian Kompak
         completion_status_export: Ekspor Status Penyelesaian
         copy_as_template_or_campaign: Salin Kampanye sebagai Templat
@@ -871,6 +872,7 @@ id:
         export_admin_with_permissions: Ekspor Admin Dengan Izin
         export_assessment_questions: Pertanyaan Penilaian Ekspor
         export_campaign_ai_artifacts: Ekspor Artefak AI Kampanye
+        export_campaign_ai_artifacts_results: Hasil Kampanye Ekspor Artefak AI
         export_campaign_factors: Faktor Kampanye Ekspor
         export_campaign_scorings: Ekspor Kampanye Scorings
         export_dashboard_as_file: Ekspor Dasbor sebagai file
@@ -1277,6 +1279,7 @@ id:
     record_not_found: Catatan Tidak Ditemukan
     user_not_authorized: Pengguna Tidak Berwenang
   auth:
+    cookies_link: <a href="%{cookies_url}">Pernyataan Cookie</a>
     current_password: Kata Sandi Saat Ini
     current_password_placeholder: Masukkan Kata Sandi Saat Ini
     email: Email
@@ -1322,6 +1325,7 @@ id:
     password_confirmation: Konfirmasi Kata Sandi
     password_confirmation_placeholder: Masukkan Konfirmasi Kata Sandi
     password_placeholder: Masukkan Kata Sandi
+    privacy_statement_link: <a href="%{privacy_url}">Pernyataan Privasi</a>
     registration:
       description: Isi detail di bawah ini untuk mendaftar dan membuat akun baru
       email_hint: Kami menghormati privasi Anda dan tidak mentolerir spam. Kami tidak akan pernah memberikan informasi Anda kepada pihak ketiga mana pun

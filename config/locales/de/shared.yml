@@ -7,27 +7,48 @@ de:
     add: Hinzufügen
     advanced: Fortgeschritten
     agree_and_continue: Zustimmen und fortfahren
+    approval_status: Genehmigungsstatus
+    approved: Genehmigt
+    approved_by: Genehmigt durch
+    approvers_list: Genehmigungsliste
     archive: Archiv
     archived: Archiviert
+    assessed_by: Bewertet von
+    assessment: Bewertung
+    assessment_id: Bewertungs-ID
+    assessment_list: Bewertungsliste
+    assessment_name: Bezeichnung der Bewertung
+    assessor_approved: Von der Prüfstelle genehmigt
+    assessors_list: Liste der Gutachter
     asset_not_present: Asset nicht vorhanden
     audio: Audio
     authentication_failed: Authentifizierung fehlgeschlagen. Bitte versuchen Sie es erneut.
+    back: Zurück
     basic: Grundlegend
     camera_preview: Die Kamera-Vorschau wird hier angezeigt
+    campaign: Kampagne
     campaign_id: Wahlkampf-ID
     cancel: Stornieren
     change_password: Passwort ändern
     clear_filters: Filter löschen
+    client: Kunde
     collaborative_learning: Kollaboratives Lernen
     completed: Abgeschlossen
     configurations: Konfigurationen
     confirm: bestätigen
     continue: Fortsetzen
+    controller: Steuergerät
+    cookies_statement: Cookie-Erklärung
     copy: Kopie
     created_at: Erstellt am
     created_date: Erstellt am
+    custom_consent_text: Benutzerdefinierter Einwilligungstext
+    custom_consent_text_required: Für die Datenrolle des Verantwortlichen ist ein benutzerdefinierter Einwilligungstext erforderlich.
+    data_role: Datenrolle
     decline: Ablehnen
     description: Beschreibung
+    desktop_or_laptop_recommended: Desktop oder Laptop empfohlen
+    desktop_or_laptop_required: Desktop-PC oder Laptop erforderlich
     download: Herunterladen
     download_audio: Audio herunterladen
     download_transcription: Transkription herunterladen
@@ -37,6 +58,7 @@ de:
     email: E-Mail
     export: Exportieren
     failed: Fehlgeschlagen
+    'false': false
     first_name: Vorname
     formal_learning: Formales Lernen
     generate: Generieren
@@ -50,6 +72,7 @@ de:
     internet_disconnected_message: Bitte überprüfen Sie Ihre Internet-Verbindung.
     last_name: Familienname, Nachname
     learning_on_the_job_label: Lernen am Arbeitsplatz
+    loading: Wird geladen...
     login: Anmelden
     maintenance_in_hours: "%{hours} Stunden"
     maintenance_in_minutes: "%{minutes} Protokolle"
@@ -60,20 +83,28 @@ de:
     maintenance_upcoming_title: Bevorstehende Wartungsarbeiten
     media_question_transcriptions: Transkriptionen von Medienfragen
     media_responses: Medienreaktionen
+    mobile_proctoring_disabled_instructions: Für diese Bewertung benötigen Sie einen Desktop-PC oder Laptop. Bitte wechseln Sie zu einem Computer, um die Aktivität abzuschließen.
+    mobile_proctoring_enabled_instructions: Für ein optimales Erlebnis wechseln Sie bitte zu einem Desktop- oder Laptop-Computer, falls Sie einen zur Verfügung haben. Bei Bedarf können Sie auch auf Ihrem Mobilgerät fortfahren.
     modified_by: Geändert von
     modified_date: Geändertes Datum
     more_actions: Weitere Aktionen
     mte_logo_alt_text: Mercer Talent Enterprise Logo
     na_text: Nicht zutreffend
     name: Name
+    negative: Negativ
     new: Neu
     no_results_found: Keine Ergebnisse gefunden
     not_requested: Noch nicht angefordert
     ok: Ok
     pending: Ausstehend
+    policy_version: Richtlinienversion
+    policy_version_format: Es sind nur ganze Zahlen zulässig.
+    positive: Positiv
     processing: Verarbeitung
+    processor: Prozessor
     proctoring_maintenance_active: Die Proctoring-Funktion wird derzeit von %{start_time} auf %{end_time} umgestellt. Bitte versuchen Sie es nach Abschluss der Wartungsarbeiten erneut.
     proctoring_maintenance_upcoming: Die Überwachung wird von %{start_time} bis %{end_time} gewartet.
+    project: Projekt
     question_id: Fragen-ID
     question_transcription_disabled: Die Transkription ist für diese Frage deaktiviert.
     rec: REC
@@ -84,14 +115,20 @@ de:
     removed: Entfernt
     replace: Ersetzen
     reset_password: Passwort zurücksetzen
+    response_text: Antworttext
     rte_paste_content_exceeds_char_limit: Der Text überschreitet das Zeichenlimit von {{maxCharacterLimit}} und kann nicht eingefügt werden.
     rte_paste_content_exceeds_word_limit: Der Text überschreitet das Wortlimit von {{maxWordLimit}} und kann nicht eingefügt werden.
     save: speich
     saving_video: Video speichert... Bitte schließen oder aktualisieren Sie den Browser nicht
+    scoring_details: Punktestand-Details
     search: Suchen
     send_email: E-Mail senden
     show_more: Mehr anzeigen
     something_wrong: Es ist etwas schief gelaufen, wenden Sie sich an Ihren Administrator.
+    status: Status
+    subject: Betreff
+    submit: Einreichen
+    switch_to_laptop_or_desktop: Wechseln Sie zu Laptop oder Desktop
     table:
       entries:
         selected:
@@ -108,9 +145,12 @@ de:
     transcription_not_enabled: Die Transkription ist für die Medienantwort nicht aktiviert.
     transcription_status: Transkriptionsstatus
     transcriptions: Abschriften
+    'true': true
     try_again: Erneut versuchen
     tte_terms_and_condition: TTE – Geschäftsbedingungen und Datenschutzerklärung
     type: Typ
     update: Aktualisieren
+    update_failed: Aktualisierung fehlgeschlagen
+    updated_successfully: Erfolgreich aktualisiert
     video: Video
     view: Ansicht

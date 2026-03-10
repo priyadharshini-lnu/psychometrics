@@ -7,7 +7,7 @@ module Imports
         include ImportExportConst
 
         # Parse RESULT data for XLSX
-        def self.build_answers(data, question, duration, use_scoring = false, _assign) # rubocop:disable Metrics/PerceivedComplexity
+        def self.build_answers(data, question, duration, use_scoring = false, _assign, **) # rubocop:disable Metrics/ParameterLists, Metrics/PerceivedComplexity
           return nil if data.compact.blank?
 
           answers = []

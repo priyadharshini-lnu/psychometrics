@@ -7,27 +7,48 @@ ar:
     add: إضافة
     advanced: متقدم
     agree_and_continue: موافق واستمر
+    approval_status: حالة الموافقة
+    approved: موافق عليه
+    approved_by: تمت الموافقة عليه من قبل
+    approvers_list: قائمة المصادقين
     archive: أرشيف
     archived: المؤرشفه
+    assessed_by: تم تقييمه بواسطة
+    assessment: التقييم
+    assessment_id: رقم التقييم
+    assessment_list: قائمة التقييم
+    assessment_name: اسم التقييم
+    assessor_approved: المقيم المعتمد
+    assessors_list: قائمة المقيمين
     asset_not_present: الأصل غير موجود
     audio: الصوت
     authentication_failed: فشل المصادقة. يرجى المحاولة مرة أخرى.
+    back: العودة
     basic: أساسي
     camera_preview: ستظهر معاينة الكاميرا هنا
+    campaign: حملة
     campaign_id: معرف الحملة
     cancel: إلغاء
     change_password: تغيير كلمة المرور
     clear_filters: امسح المُرشحات
+    client: العميل
     collaborative_learning: التعلم التعاوني
     completed: مكتمل
     configurations: التكوينات
     confirm: تأكيد
     continue: استمر
+    controller: وحدة التحكم
+    cookies_statement: بيان ملفات تعريف الارتباط
     copy: نسخ
     created_at: تم إنشاؤها في
     created_date: تاريخ الإنشاء
+    custom_consent_text: نص الموافقة المخصص
+    custom_consent_text_required: نص الموافقة المخصص مطلوب لدور بيانات وحدة التحكم
+    data_role: دور البيانات
     decline: الانحدار
     description: وصف
+    desktop_or_laptop_recommended: يوصى باستخدام جهاز كمبيوتر مكتبي أو محمول
+    desktop_or_laptop_required: يلزم وجود جهاز كمبيوتر مكتبي أو محمول
     download: تنزيل
     download_audio: تنزيل الصوت
     download_transcription: تنزيل النص
@@ -37,6 +58,7 @@ ar:
     email: البريد الإلكتروني
     export: تصدير
     failed: فشل
+    'false': false
     first_name: الاسم الاول
     formal_learning: التعلم الرسمي
     generate: توليد
@@ -50,6 +72,7 @@ ar:
     internet_disconnected_message: نحاول إعادة الاتصال بالإنترنت. يرجى التحقق من اتصالك بالإنترنت الخاص بك.
     last_name: إسم العائلة
     learning_on_the_job_label: التعلم أثناء العمل
+    loading: جاري التحميل...
     login: تسجيل الدخول
     maintenance_in_hours: "%{hours} ساعات"
     maintenance_in_minutes: "%{minutes} دقائق"
@@ -60,23 +83,31 @@ ar:
     maintenance_upcoming_title: الصيانة القادمة
     media_question_transcriptions: نصوص أسئلة وسائل الإعلام
     media_responses: ردود فعل وسائل الإعلام
+    mobile_proctoring_disabled_instructions: يتطلب هذا التقييم جهاز كمبيوتر مكتبي أو محمول لمتابعة العملية. يرجى التبديل إلى جهاز كمبيوتر لإكمال النشاط.
+    mobile_proctoring_enabled_instructions: للحصول على أفضل تجربة، يرجى التبديل إلى جهاز كمبيوتر مكتبي أو محمول إذا كان متاحًا لديك. يمكنك الاستمرار على جهازك المحمول إذا لزم الأمر.
     modified_by: تم التعديل بواسطة
     modified_date: تاريخ التعديل
     more_actions: More actions
     mte_logo_alt_text: شعار Mercer Talent Enterprise
     na_text: غير متوفر
     name: اسم
+    negative: سلبي
     new: جديد
     no_results_found: لم يتم العثور على نتائج
     not_requested: لم يتم طلبه بعد
     ok: موافق
     pending: قيد الانتظار
+    policy_version: إصدار السياسة
+    policy_version_format: يُسمح فقط بالأرقام الصحيحة
+    positive: إيجابي
     processing: المعالجة
+    processor: المعالج
     proctoring_maintenance_active: يخضع نظام Proctoring حاليًا للصيانة من %{start_time} إلى %{end_time}. يرجى المحاولة مرة أخرى بعد انتهاء فترة الصيانة.
     proctoring_maintenance_upcoming: سيتم إجراء صيانة على نظام المراقبة من %{start_time} إلى %{end_time}.
+    project: المشروع
     question_id: رقم السؤال
     question_transcription_disabled: النسخ معطل لهذا السؤال
-    rec: REC
+    rec: تسجيل
     recording_consent_notice: سيتم تسجيل جلسة الاجتماع هذه. مشاركتك في هذا الاجتماع تعني موافقتك على التسجيل.
     recording_consent_proceed_question: هل توافق على المضي قدما في الاجتماع المسجل؟
     recording_consent_title: تسجيل إشعار الموافقة
@@ -84,14 +115,20 @@ ar:
     removed: تمت الإزالة
     replace: استبدال
     reset_password: إعادة تعيين كلمة المرور
+    response_text: نص الرد
     rte_paste_content_exceeds_char_limit: النص يتجاوز حد الأحرف في {{maxCharacterLimit}} ولا يمكن لصقه.
     rte_paste_content_exceeds_word_limit: النص يتجاوز حد الكلمات في {{maxWordLimit}} ولا يمكن لصقه.
     save: حفظ
     saving_video: حفظ الفيديو... يرجى عدم إغلاق أو تحديث المتصفح
+    scoring_details: تفاصيل النقاط
     search: بحث
     send_email: إرسال بريد إلكتروني
     show_more: عرض المزيد
     something_wrong: حدث خطأ ما. اتصل بالمشرف.
+    status: الحالة
+    subject: الموضوع
+    submit: إرسال
+    switch_to_laptop_or_desktop: التبديل إلى الكمبيوتر المحمول أو المكتبي
     table:
       entries:
         selected:
@@ -108,9 +145,12 @@ ar:
     transcription_not_enabled: النسخ غير ممكّن لرد وسائل الإعلام
     transcription_status: حالة النسخ
     transcriptions: تدوين
+    'true': true
     try_again: حاول مرة أخرى
     tte_terms_and_condition: " الشروط والأحكام وبيان الخصوصية الخاص بشركة"
     type: نوع
     update: تحديث
+    update_failed: فشل التحديث
+    updated_successfully: تم التحديث بنجاح
     video: فيديو
     view: عرض

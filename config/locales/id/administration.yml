@@ -735,6 +735,21 @@ id:
       errors:
         invalid_headers: 'Header berikut tidak valid: %{headers}'
     campaign_report:
+      bulk_assets_upload:
+        errors:
+          csv_and_zip_must_exist: Baik berkas CSV maupun ZIP harus diunggah sebelum memulai.
+          csv_cannot_be_empty: Berkas CSV tidak boleh kosong.
+          csv_contains_blank_values: CSV berisi nilai kosong. Semua nilai user_email dan file_name harus ada.
+          csv_file_name_must_be_unique: Nilai dalam file CSV harus unik.
+          csv_must_contain_two_headers: 'CSV harus memiliki tepat 2 kolom dengan header: %{headers}'
+          csv_user_emails_must_be_unique: Nilai user_email dalam file CSV harus unik.
+          failed_to_attach_file: 'Gagal melampirkan file untuk email: %{email}. Kesalahan: %{error_message}'
+          file_names_in_csv_must_be_of_type_pdf: CSV mengandung entri nama file yang tidak valid. Semua nilai nama file dalam CSV harus memiliki ekstensi .pdf.
+          file_processing_error: 'Kesalahan yang ditemukan dalam pemrosesan file: %{error_message}'
+          max_emails_in_csv: Jumlah maksimum entri user_email yang diizinkan dalam CSV adalah %{max}. CSV Anda mengandung %{count} entri user_email.
+          missing_user_reports: 'Laporan pengguna yang hilang untuk email: %{emails}'
+          no_file_found_in_extracted_zip: Tidak ditemukan file dalam arsip ZIP yang diekstrak.
+          user_report_not_found: 'Laporan pengguna tidak ditemukan untuk alamat email: %{email}'
       bulk_download:
         data_range_error: Pilih rentang tanggal
         modal:
@@ -839,6 +854,16 @@ id:
           report: Lapor
           send_digest_emails: Kirim Email Ringkasan
           settings: Pengaturan
+        scoring_approval:
+          allow_bulk_approve: Izinkan Persetujuan Massal
+          allow_bulk_approve_scores: Izinkan Persetujuan Massal Skor
+          approver_users: Pengguna yang Berwenang untuk Menyetujui
+          approvers: Pihak yang menyetujui
+          assessment: Penilaian
+          assessor_users: Pengguna Penilai
+          modal_title: Pengaturan Persetujuan Penilaian
+          remove_modal_success: 'Pengaturan persetujuan untuk ID penilaian: %{assessmentId} telah dihapus dengan sukses.'
+          remove_modal_text: 'Apakah Anda yakin ingin menghapus pengaturan ini untuk ID penilaian: %{assessmentId}?'
       assessors:
         spoof:
           successfully: Anda berhasil masuk sebagai %{name}
@@ -1005,6 +1030,8 @@ id:
         ai_assistants_disabled_by_client: Asisten AI dinonaktifkan oleh klien
         ai_assisted_idp: IDP yang Dibantu AI
         ai_assisted_idp_requires_ai_assistants: IDP Berbantuan AI memerlukan fitur Asisten AI untuk diaktifkan
+        ai_content_analysis: Analisis Konten Berbasis Kecerdasan Buatan
+        ai_content_analysis_disabled_by_client: Analisis Konten AI dinonaktifkan oleh klien.
         ai_translation: Terjemahan AI
         ai_translation_disabled_by_client: Fitur Terjemahan AI dinonaktifkan oleh klien.
         global_skills: Keterampilan Global
@@ -2540,6 +2567,7 @@ id:
     message: Pesan
     meta_title: Panel administrasi
     navigation:
+      approvals: Persetujuan
       audit_logs: Log Audit
       availability: Ketersediaan
       configuration: Konfigurasi
@@ -3206,9 +3234,11 @@ id:
         actions: Tindakan
         approval_status: Status Persetujuan
         approved_by: Disetujui oleh
+        assessed_by: Dievaluasi oleh
         campaign_name: Nama Kampanye
         qc_by: QC Oleh
         report_name: Nama Laporan
+        subject_email: Subjek Email
         user_email: Email Pengguna
         user_name: Nama pengguna
       dashboard: Dashboard
@@ -3770,6 +3800,11 @@ id:
         tools: Perkakas
         weightages: Bobot
       weighted_average: Rata-rata Tertimbang
+    scoring_approval:
+      approve_all: Setujui Semua
+      bulk_approve_success: "%{approved} Skor telah disetujui."
+      review: Ulasan
+      score_approvals: Persetujuan Penilaian AI
     search: Mencari
     security_setting:
       180_days: 180 Hari

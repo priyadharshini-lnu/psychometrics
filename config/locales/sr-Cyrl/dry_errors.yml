@@ -12,6 +12,9 @@ sr-Cyrl:
         user_not_found: Корисник није пронађен или није део истог пројекта
       admin:
         already_added: Администратор са е-поштом већ додат.
+      ai_scoring_approval_settings:
+        assessment_exists: Поставка за одобрење AI бодовања за ову процену већ постоји.
+        validates_admins: Администратори немају приступ кампањи.
       already_assigned?: Не могу повезати ову процену - она је већ додељена 'ИНТЕРПОЛАТИОН_ВАР_0'.
       already_invited: Овај корисник већ постоји у центру за процену који покушавате да додате.
       assessor_assessment:

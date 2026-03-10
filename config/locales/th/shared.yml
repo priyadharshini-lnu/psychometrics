@@ -7,27 +7,48 @@ th:
     add: เพิ่ม
     advanced: ดึก
     agree_and_continue: ตกลงและดําเนินการต่อ
+    approval_status: สถานะการอนุมัติ
+    approved: อนุมัติแล้ว
+    approved_by: อนุมัติโดย
+    approvers_list: รายชื่อผู้อนุมัติ
     archive: เก็บถาวร
     archived: เก็บเข้าคลัง
+    assessed_by: ประเมินโดย
+    assessment: การประเมิน
+    assessment_id: รหัสการประเมิน
+    assessment_list: รายการประเมิน
+    assessment_name: ชื่อการประเมิน
+    assessor_approved: ผู้ประเมินอนุมัติ
+    assessors_list: รายชื่อผู้ประเมิน
     asset_not_present: ไม่มีสินทรัพย์
     audio: เสียง
     authentication_failed: การรับรองความถูกต้องล้มเหลว โปรดลองอีกครั้ง
+    back: กลับ
     basic: พื้นฐาน
     camera_preview: ตัวอย่างภาพจากกล้องจะแสดงที่นี่
+    campaign: แคมเปญ
     campaign_id: รหัสแคมเปญ
     cancel: ยกเลิก
     change_password: เปลี่ยนรหัสผ่าน
     clear_filters: เคลียร์ตัวกรอง
+    client: ลูกค้า
     collaborative_learning: การเรียนรู้ร่วมกัน
     completed: เสร็จสมบูรณ์
     configurations: การกำหนดค่า
     confirm: ยืนยัน
     continue: ต่อเนื่อง
+    controller: คอนโทรลเลอร์
+    cookies_statement: นโยบายการใช้คุกกี้
     copy: คัดลอก
     created_at: สร้างเมื่อ
     created_date: วันที่สร้าง
+    custom_consent_text: ข้อความยินยอมที่กำหนดเอง
+    custom_consent_text_required: จำเป็นต้องมีข้อความยินยอมที่กำหนดเองสำหรับบทบาทผู้ควบคุมข้อมูล
+    data_role: บทบาทด้านข้อมูล
     decline: ปฏิเสธ
     description: คำอธิบาย
+    desktop_or_laptop_recommended: แนะนำใช้คอมพิวเตอร์ตั้งโต๊ะหรือแล็ปท็อป
+    desktop_or_laptop_required: จำเป็นต้องใช้คอมพิวเตอร์ตั้งโต๊ะหรือแล็ปท็อป
     download: ดาวน์โหลด
     download_audio: ดาวน์โหลดเสียง
     download_transcription: ดาวน์โหลดการถอดความ
@@ -37,6 +58,7 @@ th:
     email: อีเมล
     export: ส่งออก
     failed: ล้มเหลว
+    'false': false
     first_name: ชื่อจริง
     formal_learning: การเรียนรู้อย่างเป็นทางการ
     generate: สร้าง
@@ -50,6 +72,7 @@ th:
     internet_disconnected_message: กำลังพยายามเชื่อมต่อใหม่ โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ
     last_name: นามสกุล
     learning_on_the_job_label: การเรียนรู้ในการทํางาน
+    loading: กำลังโหลด...
     login: เข้าสู่ระบบ
     maintenance_in_hours: "%{hours} ชั่วโมง"
     maintenance_in_minutes: "%{minutes} นาที"
@@ -60,20 +83,28 @@ th:
     maintenance_upcoming_title: การบำรุงรักษาที่กำลังจะมาถึง
     media_question_transcriptions: ถอดความคำถามจากสื่อ
     media_responses: การตอบสนองของสื่อ
+    mobile_proctoring_disabled_instructions: การประเมินนี้ต้องใช้คอมพิวเตอร์ตั้งโต๊ะหรือแล็ปท็อปเพื่อดำเนินการต่อ กรุณาเปลี่ยนไปใช้คอมพิวเตอร์เพื่อทำกิจกรรมให้เสร็จสมบูรณ์
+    mobile_proctoring_enabled_instructions: เพื่อประสบการณ์ที่ดีที่สุด กรุณาเปลี่ยนไปใช้เดสก์ท็อปหรือแล็ปท็อปหากคุณมีอยู่ คุณสามารถใช้โทรศัพท์มือถือของคุณต่อไปได้หากจำเป็น
     modified_by: แก้ไขโดย
     modified_date: วันที่แก้ไข
     more_actions: การดําเนินการเพิ่มเติม
     mte_logo_alt_text: โลโก้ Mercer Talent Enterprise
     na_text: ไม่เกี่ยวข้อง
     name: ชื่อ
+    negative: เชิงลบ
     new: ใหม่
     no_results_found: ไม่พบผลลัพธ์
     not_requested: ยังไม่ได้ร้องขอ
     ok: ตกลง
     pending: รอดำเนินการ
+    policy_version: นโยบายเวอร์ชัน
+    policy_version_format: อนุญาตเฉพาะจำนวนเต็มเท่านั้น
+    positive: บวก
     processing: การประมวลผล
+    processor: โปรเซสเซอร์
     proctoring_maintenance_active: การคุมสอบกำลังอยู่ในระหว่างการบำรุงรักษาตั้งแต่เวลา %{start_time} ถึง %{end_time} กรุณาลองอีกครั้งหลังจากช่วงเวลาการบำรุงรักษา
     proctoring_maintenance_upcoming: การคุมสอบจะอยู่ระหว่างการบำรุงรักษาตั้งแต่เวลา %{start_time} ถึง %{end_time}
+    project: โครงการ
     question_id: รหัสคำถาม
     question_transcription_disabled: การถอดเสียงถูกปิดใช้งานสำหรับคำถามนี้
     rec: บันทึก
@@ -84,14 +115,20 @@ th:
     removed: ถูก เอา ออก
     replace: แทนที่
     reset_password: รีเซ็ตรหัสผ่าน
+    response_text: ข้อความตอบกลับ
     rte_paste_content_exceeds_char_limit: ข้อความเกินขีดจํากัดอักขระของ {{maxCharacterLimit}} และไม่สามารถวางได้
     rte_paste_content_exceeds_word_limit: ข้อความเกินขีดจํากัดของคําที่ {{maxWordLimit}} และไม่สามารถวางได้
     save: บันทึก
     saving_video: กําลังบันทึกวิดีโอ... กรุณาอย่าปิดหรือรีเฟรชเบราว์เซอร์
+    scoring_details: รายละเอียดการให้คะแนน
     search: ค้นหา
     send_email: ส่งอีเมล
     show_more: แสดงเพิ่มเติม
     something_wrong: มีบางอย่างผิดพลาด ติดต่อผู้ดูแลระบบ
+    status: สถานะ
+    subject: เรื่อง
+    submit: ส่ง
+    switch_to_laptop_or_desktop: เปลี่ยนไปใช้แล็ปท็อปหรือเดสก์ท็อป
     table:
       entries:
         selected: เลือก 1 แถว
@@ -103,9 +140,12 @@ th:
     transcription_not_enabled: การถอดเสียงไม่ได้รับการเปิดใช้งานสำหรับการตอบสนองของสื่อ
     transcription_status: สถานะการถอดความ
     transcriptions: การถอดความ
+    'true': true
     try_again: ลองอีกครั้ง
     tte_terms_and_condition: เงื่อนไขและความเป็นส่วนตัว
     type: ประเภท
     update: อัปเดต
+    update_failed: การอัปเดตล้มเหลว
+    updated_successfully: อัปเดตสำเร็จ
     video: วิดีโอ
     view: มุมมอง

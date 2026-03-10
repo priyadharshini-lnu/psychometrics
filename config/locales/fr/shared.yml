@@ -7,27 +7,48 @@ fr:
     add: Ajouter
     advanced: Avancé
     agree_and_continue: Acceptez et continuez
+    approval_status: Statut d'approbation
+    approved: Approuvé
+    approved_by: Approuvé par
+    approvers_list: Liste des approbateurs
     archive: Archives
     archived: Archivé
+    assessed_by: Évalué par
+    assessment: Évaluation
+    assessment_id: Identifiant de l'évaluation
+    assessment_list: Liste d'évaluation
+    assessment_name: Nom de l'évaluation
+    assessor_approved: Évaluateur approuvé
+    assessors_list: Liste des évaluateurs
     asset_not_present: Actif non présent
     audio: Audio
     authentication_failed: L’authentification a échoué. Veuillez réessayer.
+    back: Retour
     basic: Basique
     camera_preview: L'aperçu de l'appareil photo apparaît ici
+    campaign: Campagne
     campaign_id: ID de campagne
     cancel: Annuler
     change_password: Modifier le mot de passe
     clear_filters: Effacer les filtres
+    client: Client
     collaborative_learning: Apprentissage collaboratif
     completed: Terminé
     configurations: Configurations
     confirm: Confirmer
     continue: Continuer
+    controller: Contrôleur
+    cookies_statement: Déclaration relative aux cookies
     copy: Copier
     created_at: Créé à
     created_date: Date de création
+    custom_consent_text: Texte de consentement personnalisé
+    custom_consent_text_required: Un texte de consentement personnalisé est requis pour le rôle de contrôleur des données.
+    data_role: Rôle des données
     decline: Déclin
     description: Description
+    desktop_or_laptop_recommended: Ordinateur de bureau ou portable recommandé
+    desktop_or_laptop_required: Ordinateur de bureau ou portable requis
     download: Télécharger
     download_audio: Télécharger l'audio
     download_transcription: Télécharger la transcription
@@ -37,6 +58,7 @@ fr:
     email: Courriel
     export: Exportation
     failed: Échec
+    'false': false
     first_name: Prénom
     formal_learning: Apprentissage formel
     generate: Générer
@@ -50,6 +72,7 @@ fr:
     internet_disconnected_message: Essayez de vous reconnecter. Veuillez vérifier votre connexion internet.
     last_name: Nom de famille
     learning_on_the_job_label: Apprendre sur le terrain
+    loading: Chargement...
     login: Connexion
     maintenance_in_hours: "%{hours} heures"
     maintenance_in_minutes: "%{minutes} procès-verbaux"
@@ -60,20 +83,28 @@ fr:
     maintenance_upcoming_title: Maintenance à venir
     media_question_transcriptions: Transcriptions des questions des médias
     media_responses: Réactions des médias
+    mobile_proctoring_disabled_instructions: Cette évaluation nécessite un ordinateur de bureau ou portable pour continuer. Veuillez passer à un ordinateur pour terminer l'activité.
+    mobile_proctoring_enabled_instructions: Pour une expérience optimale, veuillez passer à un ordinateur de bureau ou portable si vous en avez un à disposition. Vous pouvez continuer sur votre appareil mobile si nécessaire.
     modified_by: Modifié par
     modified_date: Date de modification
     more_actions: Plus d'actions
     mte_logo_alt_text: Logo Mercer Talent Enterprise
     na_text: Sans objet
     name: Nom
+    negative: Négatif
     new: Nouveau
     no_results_found: Aucun résultat trouvé
     not_requested: Pas encore demandé
     ok: Ok
     pending: En attente
+    policy_version: Version de la politique
+    policy_version_format: Seuls les nombres entiers sont autorisés.
+    positive: Positif
     processing: Traitement
+    processor: Processeur
     proctoring_maintenance_active: Le service Proctoring est actuellement en maintenance, de l'adresse %{start_time} à l'adresse %{end_time}. Veuillez réessayer après la période de maintenance.
     proctoring_maintenance_upcoming: La surveillance sera en maintenance de %{start_time} à %{end_time}.
+    project: Projet
     question_id: Identifiant de la question
     question_transcription_disabled: La transcription est désactivée pour cette question.
     rec: REC
@@ -84,14 +115,20 @@ fr:
     removed: Supprimé
     replace: Remplacer
     reset_password: Réinitialiser le mot de passe
+    response_text: Texte de réponse
     rte_paste_content_exceeds_char_limit: Le texte dépasse la limite de caractères {{maxCharacterLimit}} et ne peut pas être collé.
     rte_paste_content_exceeds_word_limit: Le texte dépasse la limite de mots {{maxWordLimit}} et ne peut pas être collé.
     save: Économiser
     saving_video: Sauvegarde vidéo... Merci de ne pas fermer ni rafraîchir le navigateur
+    scoring_details: Détails du score
     search: Recherche
     send_email: Envoyer un courriel
     show_more: Afficher plus
     something_wrong: Contactez votre administrateur.
+    status: Statut
+    subject: Objet
+    submit: Soumettre
+    switch_to_laptop_or_desktop: Passer à un ordinateur portable ou de bureau
     table:
       entries:
         selected:
@@ -108,9 +145,12 @@ fr:
     transcription_not_enabled: La transcription n'est pas activée pour la réponse multimédia.
     transcription_status: Statut de la transcription
     transcriptions: Transcriptions
+    'true': true
     try_again: Réessayer
     tte_terms_and_condition: Conditions d'utilisation et protection de la vie privée
     type: Type
     update: Mettre à jour
+    update_failed: Échec de la mise à jour
+    updated_successfully: Mise à jour réussie
     video: Vidéo
     view: Afficher

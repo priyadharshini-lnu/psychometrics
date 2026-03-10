@@ -745,6 +745,21 @@ sr-Cyrl:
       errors:
         invalid_headers: 'Следећи заглавља су неважећи: %{headers}'
     campaign_report:
+      bulk_assets_upload:
+        errors:
+          csv_and_zip_must_exist: Пре почетка обавезно отпремите и CSV и ZIP датотеке.
+          csv_cannot_be_empty: CSV фајл не може бити празан.
+          csv_contains_blank_values: CSV садржи празне вредности. Све вредности user_email и file_name морају бити присутне.
+          csv_file_name_must_be_unique: Вредности назива CSV фајлова морају бити јединствене.
+          csv_must_contain_two_headers: 'CSV мора да има тачно две колоне са насловима: %{headers}'
+          csv_user_emails_must_be_unique: Вредности CSV user_email морају бити јединствене.
+          failed_to_attach_file: 'Није успело да се приложи фајл уз имејл: %{email}. Грешка: %{error_message}'
+          file_names_in_csv_must_be_of_type_pdf: CSV садржи неважеће уносе file_name. Све вредности file_name у CSV-у морају имати екстензију .pdf.
+          file_processing_error: 'Грешке пронађене у обради датотека: %{error_message}'
+          max_emails_in_csv: Максимално је дозвољено %{max} записа user_email у CSV-у. Ваш CSV садржи %{count} записа user_email.
+          missing_user_reports: 'Недостају извештаји корисника за имејлове: %{emails}'
+          no_file_found_in_extracted_zip: У извученом ZIP-у није пронађен ниједан фајл.
+          user_report_not_found: 'Извештај корисника није пронађен за имејл: %{email}'
       bulk_download:
         data_range_error: Молимо изаберите распон датума
         modal:
@@ -851,6 +866,16 @@ sr-Cyrl:
           report: Извештај
           send_digest_emails: Пошаљите дигест имејлове
           settings: Подешавања
+        scoring_approval:
+          allow_bulk_approve: Дозволи масовно одобравање
+          allow_bulk_approve_scores: Дозволите масовно одобравање резултата
+          approver_users: Корисници одобравача
+          approvers: Одобриоци
+          assessment: Оцењивање
+          assessor_users: Корисници процењивача
+          modal_title: Подешавања за одобравање бодовања
+          remove_modal_success: 'Подешавање за одобрење ИД процене: %{assessmentId} је успешно избрисано'
+          remove_modal_text: 'Да ли сте сигурни да желите да избришете ову поставку за идентификациони број процене: %{assessmentId}?'
       assessors:
         spoof:
           successfully: Успешно сте се пријавили као %{name}
@@ -1017,6 +1042,8 @@ sr-Cyrl:
         ai_assistants_disabled_by_client: АИ асистенти су онемогућени од стране клијента
         ai_assisted_idp: ИДП уз помоћ вештачке интелигенције
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP захтева да је омогућена функција AI Assistants.
+        ai_content_analysis: Анализа садржаја вештачке интелигенције
+        ai_content_analysis_disabled_by_client: АИ анализа садржаја је онемогућена од стране клијента
         ai_translation: Преводи вештачке интелигенције
         ai_translation_disabled_by_client: Превођење вештачком интелигенцијом је онемогућено од стране клијента.
         global_skills: Глобалне вештине
@@ -2574,6 +2601,7 @@ sr-Cyrl:
     message: Порука
     meta_title: Панел администрације
     navigation:
+      approvals: Одобрења
       audit_logs: Логови ревизије
       availability: Доступност
       configuration: Конфигурација
@@ -3250,9 +3278,11 @@ sr-Cyrl:
         actions: Акције
         approval_status: Статус одобрења
         approved_by: Одобрио
+        assessed_by: Проценио
         campaign_name: Назив кампање
         qc_by: QC од
         report_name: Назив извештаја
+        subject_email: Предмет е-поште
         user_email: Имејл корисника
         user_name: Име корисника
       dashboard: Табла
@@ -3831,6 +3861,11 @@ sr-Cyrl:
         tools: Алати
         weightages: Тежинe
       weighted_average: Утежена просечна вредност
+    scoring_approval:
+      approve_all: Одобри све
+      bulk_approve_success: "%{approved} Резултати одобрени."
+      review: Рецензија
+      score_approvals: АИ оцењивање одобрења
     search: Претрага
     security_setting:
       180_days: 180 дана

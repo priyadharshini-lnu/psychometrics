@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
-  Flex, Typography,
+  Flex, Typography, Alert, Select,
 } from 'antd'
+import { AudioOutlined, VideoCameraOutlined, DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { CountdownTimer } from '~/glint/components/CountdownTimer'
 import AudioWaveVisualizer from './AudioWaveVisualizer'
+import { useAudioLevelMonitoring } from '~/hooks/useAudioLevelMonitoring'
 import styles from '../styles.less'
+
+const { I18n } = window
 
 interface BaseVideoPlayerProps {
   videoRef: React.RefObject<HTMLVideoElement>;
@@ -13,7 +17,11 @@ interface BaseVideoPlayerProps {
   status: string;
   onPlay: () => void;
   visualizing: boolean;
-  getMediaStream: () => Promise<MediaStream | null>;
+  stream: MediaStream | null;
+  videoDevices: MediaDeviceInfo[];
+  audioDevices: MediaDeviceInfo[];
+  onChangeVideoDevice: (deviceId: string) => void;
+  onChangeAudioDevice: (deviceId: string) => void;
 }
 
 interface VideoPlayerPropsWithCountdown extends BaseVideoPlayerProps {
@@ -30,10 +38,6 @@ interface VideoPlayerPropsWithoutCountdown extends BaseVideoPlayerProps {
 
 type VideoPlayerProps = VideoPlayerPropsWithCountdown | VideoPlayerPropsWithoutCountdown;
 
-
-const { I18n } = window
-
-
 const VideoPlayer: React.FC<VideoPlayerProps> = ({
   videoRef,
   mediaUrl,
@@ -44,11 +48,27 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   showCountdownTimer = false,
   onFinish,
   duration = null,
-  getMediaStream,
+  stream,
+  videoDevices,
+  audioDevices,
+  onChangeVideoDevice,
+  onChangeAudioDevice,
 }) => {
+  const { startMonitoring, cleanupMonitoring, showAudioWarning } = useAudioLevelMonitoring()
+
+  useEffect(() => {
+    if (stream && status === 'recording') {
+      startMonitoring(stream)
+    } else {
+      cleanupMonitoring()
+    }
+    return () => {
+      cleanupMonitoring()
+    }
+  }, [stream, status, startMonitoring, cleanupMonitoring])
+
   const handleLoadedMetadata = (e: React.SyntheticEvent<HTMLVideoElement>) => {
     const video = e.currentTarget
-
     if (mediaUrl) {
       if (video.duration === Infinity) {
         // Fix for Chrome/MediaRecorder bug where progress starts from the end
@@ -59,8 +79,54 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     }
   }
 
+  const getCameraDevices = () => {
+    const items = videoDevices.map(device => ({
+      value: device.deviceId,
+      label: device.label || `Camera ${device.deviceId}`,
+    }))
+    return items
+  }
+
+  const getMicrophoneDevices = () => {
+    const items = audioDevices.map(device => ({
+      value: device.deviceId,
+      label: device.label || `Microphone ${device.deviceId}`,
+    }))
+    return items
+  }
+
   return (
     <Flex vertical>
+      <Flex style={{ paddingTop: '16px' }} className={styles.controls} justify="flex-end" align="flex-end">
+        <AudioOutlined style={{ alignSelf: 'center' }} />
+        <Select
+          placeholder={(
+            <p style={{ color: 'var(--ant-text-color)', margin: 0 }}>
+              {I18n.t('assessments.video_response.device_selection.mic')}
+            </p>
+          )}
+          onChange={onChangeAudioDevice}
+          suffixIcon={<DownOutlined style={{ color: 'var(--ant-text-color)', pointerEvents: 'none' }} />}
+          variant="borderless"
+          disabled={status === 'recording'}
+          styles={{ popup: { root: { minWidth: '300px' } } }}
+          options={getMicrophoneDevices()}
+        />
+        <VideoCameraOutlined style={{ alignSelf: 'center' }} />
+        <Select
+          disabled={status === 'recording'}
+          placeholder={(
+            <p style={{ color: 'var(--ant-text-color)', margin: 0 }}>
+              {I18n.t('assessments.video_response.device_selection.camera')}
+            </p>
+          )}
+          styles={{ popup: { root: { minWidth: '300px' } } }}
+          suffixIcon={<DownOutlined style={{ color: 'var(--ant-text-color)', pointerEvents: 'none' }} />}
+          onChange={onChangeVideoDevice}
+          variant="borderless"
+          options={getCameraDevices()}
+        />
+      </Flex>
       <Flex className={styles.videoContainer}>
         <video
           key={mediaUrl}
@@ -92,11 +158,18 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       {visualizing && status === 'recording' ? (
         <div className={styles.audioIndicator}>
           <AudioWaveVisualizer
-            getMediaStream={getMediaStream}
+            stream={stream}
             audioBlobUrl={mediaUrl}
           />
         </div>
       ) : null}
+      {showAudioWarning && status === 'recording' && (
+        <Alert
+          title={I18n.t('enduser.no_audio_warning')}
+          type="warning"
+          className="mt-4"
+        />
+      )}
     </Flex>
   )
 }

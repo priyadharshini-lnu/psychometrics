@@ -10,7 +10,7 @@ const { I18n } = window
 export const Evidence = ({ positive = undefined, children }) => (
   <Card
     classNames={{ body: cs(styles.evidance) }}
-    styles={{ root: { borderRadius: 6 } }}
+    styles={{ root: { borderRadius: 8 } }}
   >
     <Flex vertical gap={8}>
       <Flex justify="space-between">

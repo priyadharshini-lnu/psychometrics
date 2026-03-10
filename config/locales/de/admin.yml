@@ -2,10 +2,12 @@
 de:
   admin:
     accept_na_values: N/A-Werte akzeptieren
+    actions: Maßnahmen
     add_admin: Admin hinzufügen
     add_admin_role: Admin-Rolle hinzufügen
     add_campaign_admin: Kampagnenverwaltung hinzufügen
     add_client_admin: Kundenverwaltung hinzufügen
+    add_indicator: Indikator hinzufügen
     add_project: Projekt hinzufügen
     add_project_admin: Projektverwaltung hinzufügen
     add_threesixty_campaign_admin: Kampagnenverwaltung hinzufügen
@@ -18,8 +20,14 @@ de:
     admin_roles: Admin-Rollen
     admin_updated_successfully: Admin '%{name}' wurde erfolgreich aktualisiert
     admins: Admins
+    ai_artifact_result_generation_admin_job_failed: Das Artefakt „%{artifact_name}“ kann für den Benutzer „%{user_email}“ nicht generiert werden.
+    ai_artifact_result_stale: Das Ergebnis kann veraltet sein, da sich die Abhängigkeiten des KI-Artefakts seit der letzten Ergebnisgenerierung geändert haben. Erwägen Sie, das Artefakt neu zu generieren, um es mit den neuesten Abhängigkeiten zu erstellen.
     ai_artifacts: KI-Artefakte
+    ai_artifacts_generate_results: Ergebnisse generieren
     ai_artifacts_output_schema_key_constraint: Die Tonart muss mit einem Kleinbuchstaben beginnen und darf nur Kleinbuchstaben, Zahlen und Unterstriche enthalten
+    ai_artifacts_results_export: Exportieren der Ergebnisse
+    ai_artifacts_results_export_job_scheduled: Der Exportauftrag für AI-Artefakte wurde erfolgreich geplant.
+    ai_assistant: KI-Assistent
     ai_assistant_model_id_label: Modell-ID
     ai_assistant_model_label: Modell
     ai_assistant_model_provider: Anbieter
@@ -36,16 +44,46 @@ de:
     ai_assistants_template_render_failed: Vorlage wurde nicht gerendert
     ai_assistants_test_render: Testrendering
     ai_assistants_test_render_tooltip: Testen Sie Ihre Prompt-Vorlage mit Kampagnendaten, um zu sehen, was an den KI-Assistenten gesendet wird.
+    ai_assisted_idp_disabled_by_client: AI Assisted IDP wird vom Client deaktiviert
     ai_assisted_idp_feature_disabled: Die KI-unterstützte IDP-Funktion wurde für dieses Projekt deaktiviert.
     ai_idp_assistant_configure_dependencies: KI-Abhängigkeiten konfigurieren
     ai_idp_assistant_configure_dependencies_description: Konfigurieren Sie, auf welche Abhängigkeitsdaten der IDP AI Assistant als Kontext zugreifen kann. Dies gilt nur, wenn der Assistent so konfiguriert ist, dass er Abhängigkeiten akzeptiert.
     ai_idp_assistant_dependencies_updated: Abhängigkeiten erfolgreich aktualisiert
     ai_idp_assistant_update_dependencies: Abhängigkeiten aktualisieren
     ai_notice: Hervorgehobene Abschnitte wurden maschinell übersetzt und können Ungenauigkeiten enthalten.
+    ai_score_approval_no_answer: Auf diese Frage wird keine Antwort gegeben.
+    ai_score_approval_no_transcription: Für diese Frage ist keine Transkription verfügbar.
+    ai_scored: KI-Punktzahl
+    ai_scoring_appoval_approve_all_questions: Alle Fragen genehmigen
+    ai_scoring_appoval_approve_question: Frage genehmigen
+    ai_scoring_appoval_back: Punktestand zurücksetzen
+    ai_scoring_appoval_change_reason: Änderungsgrund
+    ai_scoring_appoval_change_score: geänderte Punktzahl
+    ai_scoring_appoval_change_score_log: Änderungsprotokoll
+    ai_scoring_appoval_discard_all_questions: Alle Fragen zurücksetzen
+    ai_scoring_appoval_discard_all_questions_description: Dadurch werden alle Punktestände für alle Fragen zurückgesetzt und alle Überschreibungen gelöscht. Diese Aktion kann nicht rückgängig gemacht werden. Sind Sie sicher?
+    ai_scoring_appoval_discard_all_questions_title: Alle Fragen zurücksetzen?
+    ai_scoring_appoval_discard_question: Fragenbewertungen zurücksetzen
+    ai_scoring_appoval_discard_question_confirm_description: Dadurch werden alle Ergebnisse für diese Frage zurückgesetzt und alle Überschreibungen gelöscht. Sind Sie sicher?
+    ai_scoring_appoval_discard_question_confirm_title: Fragenbewertungen zurücksetzen?
+    ai_scoring_appoval_discarded_changes: verworfene Änderungen
+    ai_scoring_appoval_evidence_from_transcript: Beweismaterial aus dem Protokoll
+    ai_scoring_appoval_new_score: Neue Punktzahl
+    ai_scoring_appoval_next: Nächste Frage
+    ai_scoring_appoval_rationale: Begründung
+    ai_scoring_appoval_reason_for_changes: Grund für die Änderungen
+    ai_scoring_appoval_reset_score: Punktestand zurücksetzen
+    ai_scoring_appoval_reset_score_description: Die Punktzahl wird auf den ursprünglichen KI-Wert zurückgesetzt.
+    ai_scoring_appoval_responses: KI-Antworten
+    ai_scoring_appoval_score_not_applicable: Punktzahl nicht zutreffend
+    ai_scoring_approval: AI-Bewertung Genehmigung
+    ai_scoring_approval_settings: Einstellungen für die Genehmigung von KI-Bewertungen
+    ai_scoring_approvals: AI-Bewertungsgenehmigungen
     ai_translation: KI-Übersetzung
     all_corner_rounded: Alle Ecken abgerundet
     api_keys: API-Schlüssel
     apply_to_existing_users: Diese Änderung auf bestehende Benutzer in dieser Kampagne anwenden
+    assessment_question_not_supported: Dieser Fragetyp wird derzeit nicht unterstützt.
     assessments: Beurteilungen
     assessments_not_mhs: Alle Bewertungen müssen vom Typ MHS sein.
     assessments_reports: Beurteilungen und Berichte
@@ -61,8 +99,14 @@ de:
     availability: Verfügbarkeit
     available_languages: Bericht in Sprachen verfügbar
     back_to_main: Hauptmenü
+    bulk_assets_modal_choose_csv: CSV-Datei auswählen
+    bulk_assets_modal_choose_zip: ZIP-Datei auswählen
+    bulk_assets_modal_not_csv_file_error: Für den CSV-Upload sind nur CSV-Dateien zulässig. Bitte laden Sie eine gültige CSV-Datei hoch.
+    bulk_assets_modal_subtitle: 'Bitte laden Sie <b>eine CSV-Datei</b> (mit den Spaltenüberschriften: user_email, file_name) und <b>eine ZIP-Datei</b> (mit PDF-Dateien, deren Namen mit den Dateinamen aus der CSV-Datei übereinstimmen) hoch. Die ZIP-Datei darf nicht größer als %{max_file_size} MB sein.'
+    bulk_assets_modal_title: CSV- und ZIP-Dateien hochladen
     bulk_upload_ai_artifacts: Bulk-Upload KI-Artefakte
     campaign_ai_artifact_updated_successfully: Kampagnen-KI-Artefakte wurden erfolgreich aktualisiert
+    campaign_ai_artifacts_results_export_details: Kampagne KI-Artefakte generierten Ergebnisse
     campaign_assessment_actions_disable_caching: Assessment-Caching deaktivieren
     campaign_assessment_actions_enable_caching: Ermöglichen Sie das Bewertungs-Caching
     campaign_assessment_column_caching_enabled: Assessment Caching aktiviert
@@ -86,11 +130,15 @@ de:
     campaign_assessment_modals_enable_caching_successfully: Für diese Bewertung wurde Caching aktiviert.
     campaign_assessment_modals_enable_caching_title: Assessment Caching ermöglichen?
     campaign_factors: Faktoren der Kampagne
+    campaign_name: Kampagnenname
     campaign_templates: Vorlagen für Kampagnen
     campaign_user_job_roles_cannot_be_same: Die angestrebte Position muss sich von der aktuellen Position unterscheiden.
     campaigns: Kampagnen
+    cancel: Abbrechen
     cancellation_and_rescheduling_disabled: Stornierung und Umbuchung sind deaktiviert.
     casual: Lässig
+    characters: Zeichen
+    children_factor_type: Kinderfaktor-Typ
     client: Client Mietverhältnis
     client_admins: Client-Admins
     clients: Kunden-Mietverhältnisse
@@ -100,24 +148,52 @@ de:
     completed: Abgeschlossen
     completed_tooltip: Alle Gutachter haben die Bewertung eingereicht
     concise: Prägnant
+    configure_model_answer_title: Modellantwort und Schlüsselwörter konfigurieren
     confirm_remove_admin: Sind Sie sicher, dass Sie den Admin-Benutzer mit der E-Mail '%{email}' entfernen möchten?
+    copied: Kopiert
     country: Land
     create_client: Client erstellen
+    create_indicator: Indikator erstellen
     current_job_role: Aktuelle berufliche Position
     dashboard: Dashboard
     dashboards: Dashboards
     data_reports: Datenberichte
     datasheet: Datenblatt
     declined: Abgelehnt
+    define_max_score_text: Legen Sie eine Punktzahl für „%{maxScore}“ (maximale Punktzahl) fest.
+    define_min_score_text: Legen Sie eine Punktzahl für „%{minScore}“ (Mindestpunktzahl) fest.
+    define_optional_score_range_text: Punktzahlen definieren %{minScore} bis %{maxScore} (optional)
+    define_score_text: Definieren Sie eine Punktzahl für „%{score}“
+    definition: Definition
     delete_ok_text: Ja, löschen
     denied: Verweigert
+    description: Beschreibung
     development_actions: Entwicklungspolitische Maßnahmen
     development_actions_form_tags: Schilder
+    digest_delivery_mode:
+      form_label: Digest-Zustellungsmodus
+      immediate: Sofort – Bei jeder Massenübermittlung senden
+      scheduled: Geplant – Senden Sie eine Zusammenfassungs-E-Mail zu einem festgelegten Zeitpunkt.
+    digest_frequency:
+      daily: Täglich
+      form_label: Verdauungsfrequenz
+      weekdays: Wochentage
+      weekly: Wöchentlich
+    digest_weekdays:
+      form_label: Digest Wochentage
+      friday: Freitag
+      monday: Montag
+      saturday: Samstag
+      sunday: Sonntag
+      thursday: Donnerstag
+      tuesday: Dienstag
+      wednesday: Mittwoch
     dimensions: Abmessungen
     done: Fertig
     done_tooltip: Für diesen Benutzer kann keine weitere Bewertung eingereicht werden, da die Bewertung als von %{marked_by}
     edit_campaign_admin: Kampagnenverwaltung bearbeiten
     edit_client_admin: Kundenverwaltung bearbeiten
+    edit_indicator: Indikator bearbeiten
     edit_job_roles: Jobrollen bearbeiten
     edit_level: Bearbeiten Ebene
     edit_permission_denied: Du hast keine Berechtigung, Admin-'%{name}' zu bearbeiten
@@ -126,12 +202,17 @@ de:
     empty_csv_file: Die CSV-Datei enthält keine Daten.
     enable_enhance_with_ai_client_level: Bitte aktivieren Sie die Funktion „Mit KI verbessern“ auf Client-Ebene.
     enable_maintenance: Wartung aktivieren
+    enable_mobile_proctoring: Mobile Proctoring aktivieren
     enable_transcription: Transkription aktivieren
+    enable_transcription_msg: Aktivieren Sie die Transkription, um KI-Bewertungen für Video-/Audio-Antwortfragen zu verwenden.
     end_time: Endzeit
     end_time_must_be_after_start_time: Die Endzeit muss nach der Startzeit liegen.
     enhance_with_ai: Mit KI verbessern
     enhance_with_ai_requires_ai_assistants: Für „Mit KI verbessern“ muss die Funktion „KI-Assistenten“ aktiviert sein.
+    enter_description: Beschreibung eingeben
+    enter_name: Name eingeben
     error: Fehler
+    estimated_tokens: Token (geschätzt)
     evaluation_status: Bewertungsstatus
     evaluation_status_not_done: Der Bewertungsstatus ist für eine oder mehrere ausgewählte Fächer nicht 'Erledigt'. Bitte stellen Sie sicher, dass alle ausgewählten Nutzer Bewertungen abgeschlossen haben oder als erledigt markiert werden.
     export_admin_roles_permissions: Admin-Rollen und Berechtigungen exportieren
@@ -139,14 +220,26 @@ de:
     export_completion_status: Exportabschlussstatus
     export_completion_statuses_scheduled: Der Exportauftrag für den Fertigstellungsstatus wurde erfolgreich geplant.
     export_detailed_completion_status: Ausführlich
+    feature_ai_assistants_description: Aktivieren Sie KI-gestützte Assistenten für eine verbesserte Benutzererfahrung.
+    feature_ai_assisted_idp_description: Nutzen Sie KI, um Empfehlungen für die individuelle Entwicklungsplanung zu unterstützen.
+    feature_ai_content_analysis_description: Aktivieren Sie die KI-gestützte Inhaltsanalyse für Bewertungen.
+    feature_ai_translation_description: Aktivieren Sie die automatische KI-gestützte Übersetzung von Inhalten in Berichten.
     feature_enhance_with_ai: Mit KI verbessern
+    feature_enhance_with_ai_description: KI-gestützte Funktionen zur Inhaltsverbesserung aktivieren
     feature_flags: Merkmalskennzeichen
+    feature_flags_ai_group: KI-Funktionen
+    feature_flags_communication_group: Kommunikation
+    feature_flags_platform_group: Plattformfunktionen
+    feature_global_skills_description: Greifen Sie auf die globale Kompetenzbibliothek für Bewertungen zu.
+    feature_idp_description: Individuelle Entwicklungsplanung für Teilnehmer aktivieren
+    feature_sms_notification_description: SMS-Benachrichtigungen für Kampagnen-Einladungen und Erinnerungen aktivieren
     fill_empty_score_msg: Füllen Sie alle Endpunktzahlen aus, bevor Sie speichern.
     final_score_empty_err_msg: Das Endergebnis von „%{factor_name}“ darf nicht leer sein.
     final_score_empty_msg: Die Endabrechnung darf nicht leer sein.
     fix_grammar: Grammatik korrigieren
     formal: Formell
     generate_transcription: Transkription erstellen
+    hide_middle_scores: Mittlere Punktzahlen ausblenden
     idp_plan_reset_success: Der Plan wurde erfolgreich zurückgesetzt
     idp_templates: IDP-Vorlagen
     import_ai_artifacts: KI-Artefakte importieren
@@ -175,6 +268,8 @@ de:
     internal: Intern
     invalid_csv_header: CSV-Datei enthält ungültige Header.
     job_roles: Berufsrollen
+    keywords: Schlüsselwörter
+    keywords_placeholder: Geben Sie die Suchbegriffe durch Kommas getrennt ein.
     learning_from_others: Kollaboratives Lernen [20]
     level: Stufe
     level_apply: Bewerben
@@ -201,6 +296,10 @@ de:
     min_value: Minimalwert
     minimum_10_words: Mindestens 10 Wörter
     missing_min_max_values: Mindest- und Höchstwerte sind erforderlich.
+    model_answer: Musterlösung
+    model_answer_placeholder: Geben Sie die Musterantwort für die KI-Bewertung ein.
+    name: Name
+    name_max_length: Der Name darf nicht länger als %{length} Zeichen sein.
     name_required: Name ist erforderlich
     no_file_selected: Keine Datei ausgewählt
     no_notifications: Keine Benachrichtigungen
@@ -218,6 +317,8 @@ de:
     only_editable_on_create: Diese Option kann nur während der Erstellung bearbeitet werden.
     options: Optionen
     original_text: Originaltext
+    overall: Insgesamt
+    overall_score: Gesamtpunktzahl
     participants: Teilnehmer
     permissions:
       aiArtifacts:
@@ -254,6 +355,7 @@ de:
         bulk_regenerate_reports: Berichte massenweise neu generieren
         manage: Verwalten Sie
         manage_admins: Verwalten von Admins
+        manage_ai_scoring_approval_settings: Einstellungen für die Genehmigung von KI-Bewertungen verwalten
         manage_factor_benchmark_scores: Verwalten von Faktor-Benchmark-Werten
         manage_messages: Verwalten von Nachrichten
         manage_options: Optionen verwalten
@@ -642,6 +744,7 @@ de:
         view_recordings: Aufzeichnungen ansehen
     permissions_360_campaigns: Spezifische Genehmigungen für 360-Kampagnen
     piped_text: Eingebetteter Text
+    precision: Präzision
     privacy: Datenschutz
     proctoring: Aufsicht
     professional: Fachmann
@@ -654,15 +757,19 @@ de:
     project_number: Projektnummer
     project_settings: Projekt-Einstellungen
     projects: Projekte
+    prompt: Aufforderung
     question_center: Fragen-Center
     questions: FRAGEN
+    range_min_max: REICHWEITE %{min} - %{max}
     reflection_questions: Fragen zur Reflexion
     registration_codes: Registrierungscodes
     registration_settings: Einstellungen für die Registrierung
+    remove_children_to_change_type: Alle Kinder entfernen, um den Typ zu ändern
     report_approvals: Bericht Genehmigungen
     report_condition_not_met: Benötigt %{required} %{relationship} Bewertung(en), hat aber nur %{actual}
     report_conditions_not_met_detailed: Der Bericht für %{user} entspricht nicht den Verfügbarkeitsbedingungen. %{conditions}
     report_denied: Meldung für %{user} wurde abgelehnt
+    report_name: Name des Berichts
     report_no_evaluations: Der Bericht für %{user} ist nicht verfügbar – es wurden keine Bewertungen eingegangen.
     report_not_generated: Der Bericht für %{user} die Verfügbarkeitsbedingungen erfüllt, aber noch nicht erstellt wurde. Bitte erstelle zuerst den Bericht.
     report_on_hold: Der Bericht für %{user} ist derzeit auf Eis gelegt
@@ -725,8 +832,32 @@ de:
     saml_service_provider_updated_date: Aktualisiertes Datum
     saml_service_providers: Dienstleister
     saml_settings: SAML-Einstellungen
+    save: Speichern
+    save_assessment_for_scoring_management: Speichern Sie die Bewertung, bevor Sie mit der Benotung beginnen.
     scheduling: Terminplanung
+    score: Punktzahl
+    score_approval_not_allowed_to_approve: Sie dürfen diese Bewertung nicht genehmigen.
+    score_approval_not_allowed_to_discard: Sie dürfen diese Punktzahl nicht verwerfen.
+    score_definition_placeholder: Geben Sie die Definition für diese Punktzahl ein.
+    score_definitions: Punktedefinitionen
+    score_max: Maximale Punktzahl
+    score_min: Punktzahl Min
+    score_must_be_in_between_min_and_max: Die Punktzahl muss zwischen %{min} und %{max} liegen.
+    score_range_info: 'Punktespannweite: %{min} - %{max}'
+    score_with_ai: Mit KI punkten
     scoring: Punktevergabe
+    scoring_approval_add_settings: Einstellungen hinzufügen
+    scoring_approval_allow_bulk_approve: Massenfreigabe zulassen
+    scoring_approval_allow_bulk_approve_scores: Bulk-Genehmigung von Bewertungen zulassen
+    scoring_approval_allow_one_level_approve: Eine Ebene genehmigen
+    scoring_approval_approver_users: Genehmigende Benutzer
+    scoring_approval_approvers: Genehmigende
+    scoring_approval_assessment: Bewertung
+    scoring_approval_assessor_users: Benutzer von Assessor
+    scoring_approval_modal_title: Einstellungen für die Genehmigung von Bewertungen
+    scoring_approval_remove_modal_success: 'Die Genehmigungseinstellung für die Bewertungs-ID: %{assessmentId} wurde erfolgreich gelöscht.'
+    scoring_approval_remove_modal_text: Sind Sie sicher, dass Sie diese Einstellung für die Bewertungs-ID „%{assessmentId}“ löschen möchten?
+    scoring_supported_only_for_ai_questions: Die Bewertung ist nur bei KI-aktivierten Fragen für den aktuell ausgewählten Faktor zulässig.
     scoring_value_info: Die Punktzahl muss zwischen %{min} und %{max} liegen.
     scoring_value_out_of_range_err_msg: Die Punktzahl für „%{factor_name}“ muss zwischen %{min} und %{max} liegen.
     search_admins: Admins suchen
@@ -737,7 +868,10 @@ de:
     select_level: Stufe auswählen
     select_start_time: Startzeit auswählen
     send_email: E-Mail senden
+    set_min_max_scores_warning: Bitte legen Sie Mindest- und Höchstwerte für diesen Faktor fest, um die KI-Bewertung zu konfigurieren.
     settings: Einstellungen
+    show_all_assessment_responses: Alle Bewertungsantworten anzeigen
+    show_middle_scores: "%{count}e weitere Ergebnisse anzeigen (optional)..."
     show_original: Original anzeigen
     show_submenu: Untermenü anzeigen
     show_translated: Übersetzt anzeigen
@@ -755,6 +889,7 @@ de:
     subdomain: Subdomain
     subject_part_of_other_invite: Der Absender der E-Mail %{user_email} wurde bereits zu „%{workshop_invite_name}” eingeladen.
     target_job_role: Zielposition
+    this_field_is_required: Dieses Feld ist erforderlich.
     timezone: Zeitzone
     tone: Ton
     toolbar_ai_insight: KI-Einblick
@@ -778,8 +913,12 @@ de:
     upload_success: Erfolgreich hochgeladen
     user_report_events: Benutzerbericht Ereignisse
     users: Benutzer
+    validation_error: Bitte füllen Sie alle erforderlichen Felder aus.
     view_licenses: Lizenzen anzeigen
     waiting: Warten
+    weight: Gewicht
+    what_to_look_for: Was Sie beachten sollten
+    what_to_look_for_placeholder: Nachweis von Verhaltensweisen, Handlungen oder Ergebnissen, die diesen Faktor belegen
     words: Wörter
     workshops: Werkstätten
     writing_assistant_not_configured: Schreibassistent nicht konfiguriert

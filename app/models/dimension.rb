@@ -15,6 +15,7 @@ class Dimension < ApplicationRecord
   has_many :norms, dependent: :destroy
   has_many :innovation_styles, dependent: :destroy
   has_many :innovation_styles_factors, through: :innovation_styles
+  has_many :factors_sub_factors, through: :all_factors
   has_many :occupations_factors, through: :occupations
   belongs_to :created_by, class_name: 'User'
   belongs_to :updated_by, class_name: 'User'

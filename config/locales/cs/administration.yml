@@ -735,6 +735,21 @@ cs:
       errors:
         invalid_headers: 'Následující hlavičky jsou neplatné: %{headers}'
     campaign_report:
+      bulk_assets_upload:
+        errors:
+          csv_and_zip_must_exist: Před spuštěním je nutné nahrát soubory CSV i ZIP.
+          csv_cannot_be_empty: Soubor CSV nesmí být prázdný.
+          csv_contains_blank_values: CSV obsahuje prázdné hodnoty. Musí být uvedeny všechny hodnoty user_email a file_name.
+          csv_file_name_must_be_unique: Hodnoty v souboru CSV musí být jedinečné.
+          csv_must_contain_two_headers: 'CSV musí mít přesně 2 sloupce s hlavičkami: %{headers}'
+          csv_user_emails_must_be_unique: Hodnoty CSV user_email musí být jedinečné.
+          failed_to_attach_file: 'Nepodařilo se připojit soubor k e-mailu: %{email}. Chyba: %{error_message}'
+          file_names_in_csv_must_be_of_type_pdf: CSV obsahuje neplatné položky file_name. Všechny hodnoty file_name v CSV musí mít příponu .pdf.
+          file_processing_error: 'Chyby nalezené při zpracování souboru: %{error_message}'
+          max_emails_in_csv: Maximální počet položek user_email povolených v CSV (%{max}). Váš CSV obsahuje položky user_email.
+          missing_user_reports: 'Chybějící uživatelské zprávy pro e-maily: %{emails}'
+          no_file_found_in_extracted_zip: V extrahovaném souboru ZIP nebyl nalezen žádný soubor.
+          user_report_not_found: 'Uživatelská zpráva nebyla nalezena pro e-mail: %{email}'
       bulk_download:
         data_range_error: Vyberte prosím rozsah dat
         modal:
@@ -839,6 +854,16 @@ cs:
           report: Nahlásit
           send_digest_emails: Odesílání přehledových e-mailů
           settings: Nastavení
+        scoring_approval:
+          allow_bulk_approve: Povolit hromadné schválení
+          allow_bulk_approve_scores: Povolit hromadné schvalování skóre
+          approver_users: Schvalující uživatelé
+          approvers: Schvalovatelé
+          assessment: Hodnocení
+          assessor_users: Uživatelé hodnotitelů
+          modal_title: Nastavení schvalování bodování
+          remove_modal_success: 'Nastavení schválení pro identifikační číslo hodnocení: %{assessmentId} bylo úspěšně smazáno.'
+          remove_modal_text: 'Opravdu chcete smazat toto nastavení pro identifikační číslo hodnocení: %{assessmentId}?'
       assessors:
         spoof:
           successfully: Byl jste úspěšně přihlášen jako %{name}
@@ -1005,6 +1030,8 @@ cs:
         ai_assistants_disabled_by_client: AI Assistants je klientem deaktivován
         ai_assisted_idp: IDP s asistencí AI
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP vyžaduje povolení funkce AI Assistants
+        ai_content_analysis: Analýza obsahu pomocí umělé inteligence
+        ai_content_analysis_disabled_by_client: Analýza obsahu AI je deaktivována klientem
         ai_translation: Překlady pomocí umělé inteligence
         ai_translation_disabled_by_client: AI překlady jsou klientem zakázány
         global_skills: Globální dovednosti
@@ -2540,6 +2567,7 @@ cs:
     message: Zpráva
     meta_title: Administrativní panel
     navigation:
+      approvals: Schválení
       audit_logs: Protokoly o auditu
       availability: Dostupnost
       configuration: Konfigurace
@@ -3206,9 +3234,11 @@ cs:
         actions: Akce
         approval_status: Stav schválení
         approved_by: Schváleno
+        assessed_by: Hodnoceno
         campaign_name: Název kampaně
         qc_by: QC Podle
         report_name: Název zprávy
+        subject_email: Předmět e-mailu
         user_email: E-mail uživatele
         user_name: Uživatelské jméno
       dashboard: Přístrojová deska
@@ -3773,6 +3803,11 @@ cs:
         tools: Nástroje
         weightages: Vážení
       weighted_average: Vážený průměr
+    scoring_approval:
+      approve_all: Schválit vše
+      bulk_approve_success: "%{approved} schválené skóre."
+      review: Recenze
+      score_approvals: Schvalování bodování AI
     search: Vyhledávání
     security_setting:
       180_days: 180 dní

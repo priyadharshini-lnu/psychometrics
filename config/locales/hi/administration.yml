@@ -745,6 +745,21 @@ hi:
       errors:
         invalid_headers: 'निम्नलिखित हेडर अमान्य हैं: %{headers}'
     campaign_report:
+      bulk_assets_upload:
+        errors:
+          csv_and_zip_must_exist: शुरू करने से पहले CSV और ZIP दोनों फ़ाइलों को अपलोड करना अनिवार्य है।
+          csv_cannot_be_empty: CSV फ़ाइल खाली नहीं हो सकती।
+          csv_contains_blank_values: CSV में रिक्त मान शामिल हैं। सभी user_email और file_name मान मौजूद होने चाहिए।
+          csv_file_name_must_be_unique: CSV फ़ाइल_नाम मान अद्वितीय होने चाहिए।
+          csv_must_contain_two_headers: 'CSV में सटीक रूप से 2 कॉलम होने चाहिए, जिनके हेडर हैं: %{headers}'
+          csv_user_emails_must_be_unique: CSV user_email मान अनूठे होने चाहिए।
+          failed_to_attach_file: 'ईमेल के लिए फ़ाइल संलग्न करने में विफल: %{email}। त्रुटि: %{error_message}'
+          file_names_in_csv_must_be_of_type_pdf: CSV में अमान्य फ़ाइल_नाम प्रविष्टियाँ हैं। CSV में सभी फ़ाइल_नाम मानों में .pdf एक्सटेंशन होना चाहिए।
+          file_processing_error: 'फ़ाइल प्रसंस्करण में पाई गई त्रुटियाँ: %{error_message}'
+          max_emails_in_csv: CSV में अधिकतम %{max} user_email प्रविष्टियाँ अनुमत हैं।  आपकी CSV में %{count} user_email प्रविष्टियाँ हैं।
+          missing_user_reports: 'ईमेल के लिए उपयोगकर्ता रिपोर्ट्स अनुपस्थित हैं: %{emails}'
+          no_file_found_in_extracted_zip: अनज़िप की गई ज़िप में कोई फ़ाइल नहीं मिली।
+          user_report_not_found: 'ईमेल: %{email} के लिए उपयोगकर्ता रिपोर्ट नहीं मिली।'
       bulk_download:
         data_range_error: कृपया दिनांक सीमा चुनें
         modal:
@@ -851,6 +866,16 @@ hi:
           report: रिपोर्ट
           send_digest_emails: सारांश ईमेल भेजें
           settings: सेटिंग्स
+        scoring_approval:
+          allow_bulk_approve: थोक अनुमोदन की अनुमति दें
+          allow_bulk_approve_scores: बल्क में स्कोर स्वीकृत करने की अनुमति दें
+          approver_users: अनुमोदक उपयोगकर्ता
+          approvers: अनुमोदक
+          assessment: मूल्यांकन
+          assessor_users: मूल्यांकनकर्ता उपयोगकर्ता
+          modal_title: स्कोरिंग अनुमोदन सेटिंग्स
+          remove_modal_success: 'मूल्यांकन आईडी के लिए अनुमोदन सेटिंग: %{assessmentId} सफलतापूर्वक हटा दी गई'
+          remove_modal_text: 'क्या आप सुनिश्चित हैं कि आप मूल्यांकन आईडी: %{assessmentId} के लिए इस सेटिंग को हटाना चाहते हैं?'
       assessors:
         spoof:
           successfully: आप सफलतापूर्वक %{name} के रूप में लॉगिन हो गए।
@@ -1017,6 +1042,8 @@ hi:
         ai_assistants_disabled_by_client: एआई सहायक ग्राहक द्वारा अक्षम कर दिए गए हैं।
         ai_assisted_idp: एआई-सहायित आईडीपी
         ai_assisted_idp_requires_ai_assistants: एआई-सहायक आईडीपी के लिए एआई सहायक सुविधा सक्षम होना आवश्यक है।
+        ai_content_analysis: एआई सामग्री विश्लेषण
+        ai_content_analysis_disabled_by_client: क्लाइंट द्वारा एआई सामग्री विश्लेषण अक्षम कर दिया गया है।
         ai_translation: एआई अनुवाद
         ai_translation_disabled_by_client: AI अनुवाद ग्राहक द्वारा अक्षम कर दिए गए हैं।
         global_skills: वैश्विक कौशल
@@ -2574,6 +2601,7 @@ hi:
     message: संदेश
     meta_title: प्रशासन पैनल
     navigation:
+      approvals: अनुमोदन
       audit_logs: ऑडिट लॉग्स
       availability: उपलब्धता
       configuration: संरचना
@@ -3250,9 +3278,11 @@ hi:
         actions: क्रियाएँ
         approval_status: अनुमोदन स्थिति
         approved_by: द्वारा अनुमोदित
+        assessed_by: द्वारा आकलित
         campaign_name: अभियान का नाम
         qc_by: द्वारा QC
         report_name: रिपोर्ट का नाम
+        subject_email: विषय ईमेल
         user_email: उपयोगकर्ता ईमेल
         user_name: उपयोगकर्ता नाम
       dashboard: डैशबोर्ड
@@ -3831,6 +3861,11 @@ hi:
         tools: उपकरण
         weightages: भार
       weighted_average: भारित औसत
+    scoring_approval:
+      approve_all: सभी को अनुमोदित करें
+      bulk_approve_success: "%{approved} स्कोर स्वीकृत।"
+      review: समीक्षा
+      score_approvals: एआई स्कोरिंग अनुमोदन
     search: खोजें
     security_setting:
       180_days: १८० दिन

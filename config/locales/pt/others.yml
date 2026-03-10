@@ -862,6 +862,7 @@ pt:
         bulk_reports: Relatórios em massa
         bulk_rescore_campaign_factors: Factores da campanha de reescalonamento em massa
         bulk_update_evaluation_status: Status da avaliação de atualização em massa
+        campaign_report_extract_and_upload_bulk_assets: Relatório da campanha Carregar ativos em massa
         compact_completion_status_export: Exportação do estado de conclusão compacto
         completion_status_export: Exportação do estado de conclusão
         copy_as_template_or_campaign: Copiar campanha como modelo
@@ -871,6 +872,7 @@ pt:
         export_admin_with_permissions: Exportar administrador com permissões
         export_assessment_questions: Perguntas de avaliação das exportações
         export_campaign_ai_artifacts: Artefatos de IA da Campanha de Exportação
+        export_campaign_ai_artifacts_results: Exportar resultados da campanha de artefatos de IA
         export_campaign_factors: Factores da campanha de exportação
         export_campaign_scorings: Pontuações de campanhas de exportação
         export_dashboard_as_file: Exportar painel como arquivo
@@ -1278,6 +1280,7 @@ pt:
     record_not_found: Registo não encontrado
     user_not_authorized: Utilizador não autorizado
   auth:
+    cookies_link: <a href="%{cookies_url}">Declaração sobre cookies</a>
     current_password: Palavra-passe atual
     current_password_placeholder: Insira a palavra-passe atual
     email: E-mail
@@ -1323,6 +1326,7 @@ pt:
     password_confirmation: Confirmar a palavra-passe
     password_confirmation_placeholder: Insira a confirmação da palavra-passe
     password_placeholder: Insira a palavra-passe
+    privacy_statement_link: <a href="%{privacy_url}">Declaração de Privacidade</a>
     registration:
       description: Preencha os dados abaixo para se registrar e criar uma nova conta
       email_hint: Respeitamos a sua privacidade e não toleramos spam. Nunca forneceremos as suas informações a terceiros

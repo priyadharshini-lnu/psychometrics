@@ -862,6 +862,7 @@ th:
         bulk_reports: รายงานจํานวนมาก
         bulk_rescore_campaign_factors: ให้คะแนนปัจจัยแคมเปญใหม่จำนวนมาก
         bulk_update_evaluation_status: สถานะการประเมินการอัปเดตจํานวนมาก
+        campaign_report_extract_and_upload_bulk_assets: รายงานแคมเปญ อัปโหลดสินทรัพย์จำนวนมาก
         compact_completion_status_export: การส่งออกสถานะการเสร็จสมบูรณ์แบบกะทัดรัด
         completion_status_export: การส่งออกสถานะการเสร็จสมบูรณ์
         copy_as_template_or_campaign: คัดลอกแคมเปญเป็นเทมเพลต
@@ -871,6 +872,7 @@ th:
         export_admin_with_permissions: ส่งออกผู้ดูแลระบบที่มีสิทธิ์
         export_assessment_questions: คําถามการประเมินการส่งออก
         export_campaign_ai_artifacts: ส่งออกสิ่งประดิษฐ์ AI ของแคมเปญ
+        export_campaign_ai_artifacts_results: ผลลัพธ์ของแคมเปญส่งออก AI อาร์ติแฟกต์
         export_campaign_factors: ปัจจัยแคมเปญการส่งออก
         export_campaign_scorings: ส่งออกการให้คะแนนแคมเปญ
         export_dashboard_as_file: ส่งออกแดชบอร์ดเป็นไฟล์
@@ -1274,6 +1276,7 @@ th:
     record_not_found: ไม่พบระเบียน
     user_not_authorized: ผู้ใช้ไม่ได้รับอนุญาต
   auth:
+    cookies_link: <a href="%{cookies_url}">นโยบายการใช้คุกกี้</a>
     current_password: รหัสผ่านปัจจุบัน
     current_password_placeholder: กรอกรหัสผ่านปัจจุบัน
     email: อีเมล
@@ -1319,6 +1322,7 @@ th:
     password_confirmation: ยืนยันรหัสผ่าน
     password_confirmation_placeholder: กรอกยืนยันรหัสผ่าน
     password_placeholder: กรอกรหัสผ่าน
+    privacy_statement_link: <a href="%{privacy_url}">นโยบายความเป็นส่วนตัว</a>
     registration:
       description: กรอกรายละเอียดด้านล่างเพื่อลงทะเบียนและสร้างบัญชีใหม่
       email_hint: เราให้ความสำคัญกับความเป็นส่วนตัวของคุณ และจะไม่เปิดเผยข้อมูลของคุณแก่บุคคลที่สาม

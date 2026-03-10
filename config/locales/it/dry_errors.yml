@@ -12,6 +12,9 @@ it:
         user_not_found: Utente non trovato o non facente parte dello stesso progetto
       admin:
         already_added: Admin con e-mail già aggiunto.
+      ai_scoring_approval_settings:
+        assessment_exists: L'impostazione di approvazione del punteggio AI per questa valutazione esiste già.
+        validates_admins: Gli amministratori non hanno accesso alla campagna.
       already_assigned?: 'Non è possibile collegare questa valutazione: è già assegnata a ''%{linked_assessor_form_name}''.'
       already_invited: Questo utente esiste già nel centro di valutazione che si sta cercando di aggiungere.
       assessor_assessment:

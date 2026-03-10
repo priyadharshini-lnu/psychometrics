@@ -7,27 +7,48 @@ ko:
     add: 추가
     advanced: 고급
     agree_and_continue: 동의하고 계속하세요
+    approval_status: 승인 상태
+    approved: 승인됨
+    approved_by: 승인자
+    approvers_list: 승인자 목록
     archive: 아카이브
     archived: 아카이브
+    assessed_by: 평가자
+    assessment: 평가
+    assessment_id: 평가 ID
+    assessment_list: 평가 목록
+    assessment_name: 평가명
+    assessor_approved: 심사관 승인
+    assessors_list: 평가자 명단
     asset_not_present: 자산이 존재하지 않습니다
     audio: 오디오
     authentication_failed: 인증에 실패했습니다. 다시 시도해 주세요.
+    back: 뒤로
     basic: 기초의
     camera_preview: 카메라 미리보기가 여기에 표시됩니다
+    campaign: 캠페인
     campaign_id: 캠페인 ID
     cancel: 취소
     change_password: 비밀번호 변경
     clear_filters: 필터 지우기
+    client: 클라이언트
     collaborative_learning: 협력 학습
     completed: 완료됨
     configurations: 구성
     confirm: 확인
     continue: 계속하다
+    controller: 컨트롤러
+    cookies_statement: 쿠키 정책
     copy: 복사
     created_at: 만든 곳
     created_date: 생성 날짜
+    custom_consent_text: 사용자 지정 동의 텍스트
+    custom_consent_text_required: 컨트롤러 데이터 역할에 대한 사용자 지정 동의 텍스트가 필요합니다.
+    data_role: 데이터 역할
     decline: 쇠퇴
     description: 묘사
+    desktop_or_laptop_recommended: 데스크톱 또는 노트북 권장
+    desktop_or_laptop_required: 데스크톱 또는 노트북 필요
     download: 다운로드
     download_audio: 오디오 다운로드
     download_transcription: 다운로드 트랜스크립션
@@ -37,6 +58,7 @@ ko:
     email: 이메일
     export: 내보내기
     failed: 실패함
+    'false': false
     first_name: 이름
     formal_learning: 정식 학습
     generate: 생성
@@ -50,6 +72,7 @@ ko:
     internet_disconnected_message: 다시 연결하려고 합니다. 인터넷 연결을 확인하세요.
     last_name: 성
     learning_on_the_job_label: 현장에서 배우기
+    loading: 로딩 중...
     login: 로그인
     maintenance_in_hours: "%{hours} 시간"
     maintenance_in_minutes: "%{minutes} 분"
@@ -60,20 +83,28 @@ ko:
     maintenance_upcoming_title: 예정된 점검
     media_question_transcriptions: 미디어 질문 전문
     media_responses: 미디어 반응
+    mobile_proctoring_disabled_instructions: 이 평가를 계속하려면 데스크톱 또는 노트북이 필요합니다. 활동을 완료하려면 컴퓨터로 전환해 주세요.
+    mobile_proctoring_enabled_instructions: 최상의 경험을 위해 사용 가능한 데스크톱이나 노트북으로 전환해 주십시오. 필요한 경우 모바일 기기에서 계속 이용하실 수 있습니다.
     modified_by: 수정자
     modified_date: 수정된 날짜
     more_actions: 더 많은 작업
     mte_logo_alt_text: 머서 탤런트 엔터프라이즈 로고
     na_text: 해당 없음
     name: 이름
+    negative: 부정적
     new: 새로 만들기
     no_results_found: 검색 결과 없음
     not_requested: 아직 요청되지 않음
     ok: 확인
     pending: 보류 중
+    policy_version: 정책 버전
+    policy_version_format: 정수만 허용됩니다
+    positive: 긍정적인
     processing: 처리
+    processor: 프로세서
     proctoring_maintenance_active: 프로크터링 서비스는 현재 %{start_time}에서 %{end_time}으로 이전 중입니다. 유지보수 기간이 끝난 후 다시 시도해 주십시오.
     proctoring_maintenance_upcoming: "%{start_time}부터 %{end_time}까지 감독 서비스가 유지보수 중입니다."
+    project: 프로젝트
     question_id: 질문 ID
     question_transcription_disabled: 이 질문에 대해서는 음성 인식 기능이 비활성화되었습니다.
     rec: REC
@@ -84,14 +115,20 @@ ko:
     removed: 제거됨
     replace: 교체
     reset_password: 비밀번호 재설정
+    response_text: 응답 텍스트
     rte_paste_content_exceeds_char_limit: 텍스트는 {{maxCharacterLimit}}의 문자 한도를 초과하며, 붙여넣을 수 없습니다.
     rte_paste_content_exceeds_word_limit: 텍스트가 {{maxWordLimit}}의 단어 수를 초과하여 붙여넣을 수 없습니다.
     save: 저장
     saving_video: 비디오 저장 중... 브라우저를 닫거나 새로고침하지 마세요
+    scoring_details: 점수 내역
     search: 검색
     send_email: 이메일 보내기
     show_more: 더 보기
     something_wrong: 문제가 발생했습니다. 관리자에게 문의하세요.
+    status: 상태
+    subject: 제목
+    submit: 제출
+    switch_to_laptop_or_desktop: 노트북 또는 데스크톱으로 전환
     table:
       entries:
         selected:
@@ -108,9 +145,12 @@ ko:
     transcription_not_enabled: 미디어 응답에 대한 트랜스크립션이 활성화되지 않았습니다.
     transcription_status: 전사 상태
     transcriptions: 사본
+    'true': true
     try_again: 다시 시도해 보세요
     tte_terms_and_condition: 약관 및 개인정보 보호
     type: 유형
     update: 업데이트
+    update_failed: 업데이트에 실패했습니다
+    updated_successfully: 성공적으로 업데이트되었습니다
     video: 영상
     view: 보기

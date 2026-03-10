@@ -2,10 +2,12 @@
 nl:
   admin:
     accept_na_values: N.v.t.-waarden accepteren
+    actions: Acties
     add_admin: Beheerder toevoegen
     add_admin_role: Beheerdersrol toevoegen
     add_campaign_admin: Campagne-admin toevoegen
     add_client_admin: Client-admin toevoegen
+    add_indicator: Indicator toevoegen
     add_project: Project toevoegen
     add_project_admin: Projectbeheerder toevoegen
     add_threesixty_campaign_admin: Campagne-admin toevoegen
@@ -18,8 +20,14 @@ nl:
     admin_roles: Beheerdersrollen
     admin_updated_successfully: Admin '%{name}' is succesvol bijgewerkt
     admins: Admins
+    ai_artifact_result_generation_admin_job_failed: Het artefact '%{artifact_name}' kan niet worden gegenereerd voor gebruiker '%{user_email}'.
+    ai_artifact_result_stale: Het resultaat kan verouderd zijn, aangezien de afhankelijkheden van het AI-artefact zijn gewijzigd sinds het laatste resultaat werd gegenereerd. Overweeg het artefact opnieuw te genereren met de nieuwste afhankelijkheden.
     ai_artifacts: AI-artefacten
+    ai_artifacts_generate_results: Resultaten genereren
     ai_artifacts_output_schema_key_constraint: De toonsoort moet beginnen met een kleine letter en mag alleen kleine letters, cijfers en onderstreepjes bevatten
+    ai_artifacts_results_export: Resultaten exporteren
+    ai_artifacts_results_export_job_scheduled: De exporttaak voor AI-artefacten is succesvol gepland.
+    ai_assistant: AI-assistent
     ai_assistant_model_id_label: Model-ID
     ai_assistant_model_label: Model
     ai_assistant_model_provider: Aanbieder
@@ -36,16 +44,46 @@ nl:
     ai_assistants_template_render_failed: Sjabloon niet kunnen renderen
     ai_assistants_test_render: Testrendering
     ai_assistants_test_render_tooltip: Test je prompttemplate met campagnedata om te zien wat er naar de AI-assistent wordt gestuurd.
+    ai_assisted_idp_disabled_by_client: AI Assisted IDP is uitgeschakeld door de klant
     ai_assisted_idp_feature_disabled: De AI-ondersteunde IDP-functie is voor dit project uitgeschakeld.
     ai_idp_assistant_configure_dependencies: AI-afhankelijkheden configureren
     ai_idp_assistant_configure_dependencies_description: Configureer welke afhankelijkheidsgegevens de IDP AI-assistent als context kan gebruiken. Dit is alleen van toepassing wanneer de assistent is geconfigureerd om afhankelijkheden te accepteren.
     ai_idp_assistant_dependencies_updated: Afhankelijkheden succesvol bijgewerkt
     ai_idp_assistant_update_dependencies: Afhankelijkheden bijwerken
     ai_notice: Gemarkeerde secties zijn door AI vertaald en kunnen onnauwkeurigheden bevatten.
+    ai_score_approval_no_answer: Er is geen antwoord gegeven op deze vraag.
+    ai_score_approval_no_transcription: Er is geen transcriptie beschikbaar voor deze vraag.
+    ai_scored: AI scoorde
+    ai_scoring_appoval_approve_all_questions: Alle vragen goedkeuren
+    ai_scoring_appoval_approve_question: Vraag goedkeuren
+    ai_scoring_appoval_back: Score resetten
+    ai_scoring_appoval_change_reason: Reden voor wijziging
+    ai_scoring_appoval_change_score: gewijzigde score
+    ai_scoring_appoval_change_score_log: Wijzigingslogboek
+    ai_scoring_appoval_discard_all_questions: Alle vragen resetten
+    ai_scoring_appoval_discard_all_questions_description: Hiermee worden alle scores voor alle vragen gereset en worden alle overschrijvingen gewist. Deze actie kan niet ongedaan worden gemaakt. Weet u het zeker?
+    ai_scoring_appoval_discard_all_questions_title: Alle vragen scores resetten?
+    ai_scoring_appoval_discard_question: Vragen scores resetten
+    ai_scoring_appoval_discard_question_confirm_description: Hiermee worden alle scores voor deze vraag gereset en worden alle overschrijvingen gewist. Weet u het zeker?
+    ai_scoring_appoval_discard_question_confirm_title: Vragen scores resetten?
+    ai_scoring_appoval_discarded_changes: verworpen wijzigingen
+    ai_scoring_appoval_evidence_from_transcript: Bewijs uit transcriptie
+    ai_scoring_appoval_new_score: Nieuwe score
+    ai_scoring_appoval_next: Volgende vraag
+    ai_scoring_appoval_rationale: Rationale
+    ai_scoring_appoval_reason_for_changes: Reden voor wijzigingen
+    ai_scoring_appoval_reset_score: Score resetten
+    ai_scoring_appoval_reset_score_description: De score wordt teruggezet naar de oorspronkelijke AI-waarde.
+    ai_scoring_appoval_responses: AI-reacties
+    ai_scoring_appoval_score_not_applicable: Score niet van toepassing
+    ai_scoring_approval: Goedkeuring van AI-scores
+    ai_scoring_approval_settings: Instellingen voor goedkeuring van AI-scores
+    ai_scoring_approvals: AI-scoring goedkeuringen
     ai_translation: AI-vertaling
     all_corner_rounded: Alle hoeken afgerond
     api_keys: API-sleutels
     apply_to_existing_users: Pas deze wijziging toe op bestaande gebruikers in deze campagne
+    assessment_question_not_supported: Dit type vraag wordt momenteel niet ondersteund.
     assessments: Beoordeling
     assessments_not_mhs: Alle beoordelingen moeten van het type MHS zijn.
     assessments_reports: Beoordelingen en rapporten
@@ -61,8 +99,14 @@ nl:
     availability: Beschikbaarheid
     available_languages: Rapport beschikbaar in talen
     back_to_main: Hoofdmenu
+    bulk_assets_modal_choose_csv: Kies CSV-bestand
+    bulk_assets_modal_choose_zip: Kies ZIP-bestand
+    bulk_assets_modal_not_csv_file_error: Alleen CSV-bestanden zijn toegestaan voor CSV-upload. Upload een geldig CSV-bestand.
+    bulk_assets_modal_subtitle: 'Upload <b>één CSV-bestand</b> (met kopteksten: user_email, file_name) en <b>één ZIP-bestand</b> (met PDF-bestanden die overeenkomen met de bestandsnamen uit het CSV-bestand). Het ZIP-bestand mag niet groter zijn dan %{max_file_size} MB.'
+    bulk_assets_modal_title: CSV- en ZIP-bestanden uploaden
     bulk_upload_ai_artifacts: Bulk upload AI-artefacten
     campaign_ai_artifact_updated_successfully: Campagne-AI-artefacten worden succesvol bijgewerkt
+    campaign_ai_artifacts_results_export_details: Campagne AI-artefacten hebben resultaten opgeleverd
     campaign_assessment_actions_disable_caching: Uitschakel beoordelingscaching
     campaign_assessment_actions_enable_caching: Mogelijk maken van beoordelingscachen mogelijk
     campaign_assessment_column_caching_enabled: Assessment Caching ingeschakeld
@@ -86,11 +130,15 @@ nl:
     campaign_assessment_modals_enable_caching_successfully: Caching is ingeschakeld voor deze beoordeling.
     campaign_assessment_modals_enable_caching_title: Assessment caching mogelijk maken?
     campaign_factors: Campagne factoren
+    campaign_name: Campagnenaam
     campaign_templates: Campagnesjablonen
     campaign_user_job_roles_cannot_be_same: De beoogde functie moet verschillen van de huidige functie.
     campaigns: Campagnes
+    cancel: Annuleren
     cancellation_and_rescheduling_disabled: Annuleren en verzetten is uitgeschakeld
     casual: Casual
+    characters: tekens
+    children_factor_type: Kinderen Factor Type
     client: Huurder
     client_admins: Klanten-admins
     clients: Huurcontracten voor klanten
@@ -100,24 +148,52 @@ nl:
     completed: Volbracht
     completed_tooltip: Alle beoordelaars hebben de evaluatie ingediend
     concise: Beknopt
+    configure_model_answer_title: Modelantwoord en trefwoorden configureren
     confirm_remove_admin: Weet je zeker dat je admin gebruiker met e-mail '%{email}' wilt verwijderen?
+    copied: Gekopieerd
     country: Land
     create_client: Klant maken
+    create_indicator: Indicator aanmaken
     current_job_role: Huidige functie
     dashboard: Dashboard
     dashboards: Dashboards
     data_reports: Gegevensrapporten
     datasheet: Technische fiche
     declined: Daalde
+    define_max_score_text: Definieer een score van %{maxScore} (maximale score)
+    define_min_score_text: Definieer een score van %{minScore} (minimumscore)
+    define_optional_score_range_text: Definieer scores %{minScore} tot %{maxScore} (optioneel)
+    define_score_text: Definieer een score van %{score}
+    definition: Definitie
     delete_ok_text: Ja, verwijder
     denied: Geweigerd
+    description: Beschrijving
     development_actions: Ontwikkelingsacties
     development_actions_form_tags: Tags
+    digest_delivery_mode:
+      form_label: Digest-bezorgingsmodus
+      immediate: Onmiddellijk - Verzenden wanneer er een bulkverzending is
+      scheduled: Gepland - Stuur een overzichtse-mail op een gepland tijdstip
+    digest_frequency:
+      daily: Dagelijks
+      form_label: Verteringsfrequentie
+      weekdays: Weekdagen
+      weekly: Wekelijks
+    digest_weekdays:
+      form_label: Digest Weekdagen
+      friday: vrijdag
+      monday: Maandag
+      saturday: zaterdag
+      sunday: Zondag
+      thursday: donderdag
+      tuesday: dinsdag
+      wednesday: woensdag
     dimensions: Afmetingen
     done: Klaar
     done_tooltip: Er kan geen verdere evaluatie worden ingediend voor deze gebruiker omdat de evaluatie van deze gebruiker als uitgevoerd door %{marked_by}
     edit_campaign_admin: Campagnebeheer bewerken
     edit_client_admin: Klantbeheer bewerken
+    edit_indicator: Indicator bewerken
     edit_job_roles: Functies bewerken
     edit_level: Bewerk niveau
     edit_permission_denied: Je hebt geen toestemming om admin-'%{name}' te bewerken
@@ -126,12 +202,17 @@ nl:
     empty_csv_file: Het CSV-bestand bevat geen gegevens.
     enable_enhance_with_ai_client_level: Schakel de functie Verbeteren met AI in op klantniveau.
     enable_maintenance: Onderhoud inschakelen
+    enable_mobile_proctoring: Mobiel toezicht inschakelen
     enable_transcription: Transcriptie inschakelen
+    enable_transcription_msg: Schakel transcriptie in om AI-scores te gebruiken voor vragen met video-/audio-antwoorden.
     end_time: Eindtijd
     end_time_must_be_after_start_time: De eindtijd moet na de starttijd liggen.
     enhance_with_ai: Verbeter met AI
     enhance_with_ai_requires_ai_assistants: Verbeteren met AI vereist dat de functie AI-assistenten is ingeschakeld.
+    enter_description: Beschrijving invoeren
+    enter_name: Naam invoeren
     error: Fout
+    estimated_tokens: tokens (geschat)
     evaluation_status: Evaluatiestatus
     evaluation_status_not_done: De evaluatiestatus is niet 'Klaar' voor één of meer geselecteerde proefpersonen. Zorg ervoor dat alle geselecteerde gebruikers evaluaties hebben afgerond of markeer als voltooid.
     export_admin_roles_permissions: Beheerdersrollen en -rechten exporteren
@@ -139,14 +220,26 @@ nl:
     export_completion_status: Status van voltooiing van export
     export_completion_statuses_scheduled: De exporttaak voor voltooiingsstatussen is succesvol gepland.
     export_detailed_completion_status: Gedetailleerd
+    feature_ai_assistants_description: Schakel AI-aangedreven assistenten in voor een verbeterde gebruikerservaring
+    feature_ai_assisted_idp_description: Gebruik AI om te helpen bij aanbevelingen voor individuele ontwikkelingsplannen
+    feature_ai_content_analysis_description: AI-gestuurde inhoudsanalyse inschakelen voor beoordelingen
+    feature_ai_translation_description: Automatische AI-aangedreven inhoudsvertaling in rapporten inschakelen
     feature_enhance_with_ai: Verbeteren met AI
+    feature_enhance_with_ai_description: AI-aangedreven functies voor contentverbetering inschakelen
     feature_flags: Functie Vlaggen
+    feature_flags_ai_group: AI-functies
+    feature_flags_communication_group: Communicatie
+    feature_flags_platform_group: Platformfuncties
+    feature_global_skills_description: Toegang tot de wereldwijde vaardighedenbibliotheek voor beoordelingen
+    feature_idp_description: Individuele ontwikkelingsplanning voor deelnemers inschakelen
+    feature_sms_notification_description: SMS-meldingen inschakelen voor campagne-uitnodigingen en herinneringen
     fill_empty_score_msg: Vul alle eindscores in voordat je opslaat.
     final_score_empty_err_msg: De eindscore van %{factor_name} mag niet leeg zijn.
     final_score_empty_msg: Het eindresultaat mag niet leeg zijn.
     fix_grammar: Grammatica corrigeren
     formal: Formeel
     generate_transcription: Transcriptie genereren
+    hide_middle_scores: Verberg middelste scores
     idp_plan_reset_success: Het plan is succesvol gereset.
     idp_templates: IDP-sjablonen
     import_ai_artifacts: AI-artefacten importeren
@@ -175,6 +268,8 @@ nl:
     internal: Intern
     invalid_csv_header: CSV-bestand bevat ongeldige headers.
     job_roles: Functierollen
+    keywords: Sleutelwoorden
+    keywords_placeholder: Voer trefwoorden in, gescheiden door komma's.
     learning_from_others: Samenwerkend leren [20]
     level: Niveau
     level_apply: Toepassen
@@ -201,6 +296,10 @@ nl:
     min_value: Minimale waarde
     minimum_10_words: Minimaal 10 woorden
     missing_min_max_values: Minimale en maximale waarden zijn vereist.
+    model_answer: Modelantwoord
+    model_answer_placeholder: Voer het modelantwoord in voor AI-scoring.
+    name: Naam
+    name_max_length: De naam mag niet langer zijn dan %{length} tekens.
     name_required: Naam is vereist
     no_file_selected: Geen bestand geselecteerd
     no_notifications: Geen meldingen
@@ -218,6 +317,8 @@ nl:
     only_editable_on_create: Deze optie kan alleen tijdens het aanmaken worden bewerkt.
     options: Opties
     original_text: Oorspronkelijke tekst
+    overall: Totaal
+    overall_score: Totale score
     participants: Deelnemers
     permissions:
       aiArtifacts:
@@ -254,6 +355,7 @@ nl:
         bulk_regenerate_reports: Bulk rapporten opnieuw genereren
         manage: Beheer
         manage_admins: Beheer administrators
+        manage_ai_scoring_approval_settings: Instellingen voor goedkeuring van AI-scores beheren
         manage_factor_benchmark_scores: Beheer Factor Benchmark Scores
         manage_messages: Berichten beheren
         manage_options: Opties beheren
@@ -642,6 +744,7 @@ nl:
         view_recordings: Opnames bekijken
     permissions_360_campaigns: Rechten specifiek voor 360 campagnes
     piped_text: Tekst in pijpen
+    precision: Precisie
     privacy: Privacy
     proctoring: Toezicht houden
     professional: Professioneel
@@ -654,15 +757,19 @@ nl:
     project_number: Projectnummer
     project_settings: Projectinstellingen
     projects: Projecten
+    prompt: Prompt
     question_center: Vragencentrum
     questions: Vragen
+    range_min_max: ASSORTIMENT %{min} - %{max}
     reflection_questions: Reflectie vragen
     registration_codes: Registratiecodes
     registration_settings: Registratie-instellingen
+    remove_children_to_change_type: Verwijder alle kinderen om het type te wijzigen
     report_approvals: Goedkeuringen
     report_condition_not_met: Heeft %{required} %{relationship} evaluatie(s) nodig, maar heeft alleen %{actual}
     report_conditions_not_met_detailed: Rapport voor %{user} voldoet niet aan de beschikbaarheidsvoorwaarden. %{conditions}
     report_denied: Melding voor %{user} is afgewezen
+    report_name: Naam van het rapport
     report_no_evaluations: Rapport voor %{user} is niet beschikbaar - er zijn geen evaluaties ontvangen.
     report_not_generated: Rapport voor %{user} voldoet aan de beschikbaarheidsvoorwaarden maar nog niet is opgesteld. Wilt u eerst het rapport genereren.
     report_on_hold: Rapport voor %{user} is momenteel in de wacht gezet
@@ -725,8 +832,32 @@ nl:
     saml_service_provider_updated_date: Bijgewerkte datum
     saml_service_providers: Dienstverleners
     saml_settings: SAML-instellingen
+    save: Opslaan
+    save_assessment_for_scoring_management: Sla de beoordeling op voordat u begint met scoren.
     scheduling: Planning
+    score: Score
+    score_approval_not_allowed_to_approve: Je mag deze score niet goedkeuren.
+    score_approval_not_allowed_to_discard: Je mag deze score niet weggooien.
+    score_definition_placeholder: Voer de definitie voor dit score niveau in
+    score_definitions: Score definities
+    score_max: Maximale score
+    score_min: Score Min
+    score_must_be_in_between_min_and_max: De score moet tussen %{min} en %{max} liggen.
+    score_range_info: 'Scorebereik: %{min} - %{max}'
+    score_with_ai: Scoor met AI
     scoring: Scoren
+    scoring_approval_add_settings: Instellingen toevoegen
+    scoring_approval_allow_bulk_approve: Bulk goedkeuren toestaan
+    scoring_approval_allow_bulk_approve_scores: Toestaan om scores in bulk goed te keuren
+    scoring_approval_allow_one_level_approve: Eén niveau goedkeuren toestaan
+    scoring_approval_approver_users: Goedkeurende gebruikers
+    scoring_approval_approvers: Goedkeurders
+    scoring_approval_assessment: Beoordeling
+    scoring_approval_assessor_users: Beoordelaars Gebruikers
+    scoring_approval_modal_title: Instellingen voor goedkeuring van scores
+    scoring_approval_remove_modal_success: 'De goedkeuringsinstelling voor beoordelings-id: %{assessmentId} is succesvol verwijderd.'
+    scoring_approval_remove_modal_text: 'Weet u zeker dat u deze instelling voor beoordelings-id: %{assessmentId} wilt verwijderen?'
+    scoring_supported_only_for_ai_questions: Scoren is alleen toegestaan op AI-vragen voor de momenteel geselecteerde factor.
     scoring_value_info: De score moet tussen %{min} en %{max} liggen.
     scoring_value_out_of_range_err_msg: De score voor %{factor_name} moet tussen %{min} en %{max} liggen.
     search_admins: Beheerders zoeken
@@ -737,7 +868,10 @@ nl:
     select_level: Selecteer niveau
     select_start_time: Starttijd selecteren
     send_email: Stuur e-mail
+    set_min_max_scores_warning: Stel de minimum- en maximumscores voor deze factor in om de AI-scoring te configureren.
     settings: Instellingen
+    show_all_assessment_responses: Alle beoordelingsreacties weergeven
+    show_middle_scores: "%{count}e scores weergeven (optioneel)..."
     show_original: Origineel weergeven
     show_submenu: Submenu weergeven
     show_translated: Vertaling weergeven
@@ -755,6 +889,7 @@ nl:
     subdomain: Subdomein
     subject_part_of_other_invite: De persoon met e-mailadres %{user_email} is al uitgenodigd voor '%{workshop_invite_name}'.
     target_job_role: Beoogde functie
+    this_field_is_required: Dit veld is verplicht
     timezone: Tijdzone
     tone: Toon
     toolbar_ai_insight: AI-inzicht
@@ -778,8 +913,12 @@ nl:
     upload_success: Succesvol geüpload
     user_report_events: Gebeurtenissen gebruikersrapport
     users: Gebruikers
+    validation_error: Vul alle verplichte velden in.
     view_licenses: Licenties bekijken
     waiting: Wachten
+    weight: Gewicht
+    what_to_look_for: Waar u op moet letten
+    what_to_look_for_placeholder: Bewijs van gedragingen, handelingen of resultaten die deze factor aantonen
     words: Woorden
     workshops: Workshops
     writing_assistant_not_configured: Schrijfhulp niet geconfigureerd

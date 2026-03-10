@@ -735,6 +735,21 @@ sk:
       errors:
         invalid_headers: 'Nasledujúce hlavičky sú neplatné: %{headers}'
     campaign_report:
+      bulk_assets_upload:
+        errors:
+          csv_and_zip_must_exist: Pred spustením je potrebné nahrať súbory CSV aj ZIP.
+          csv_cannot_be_empty: Súbor CSV nemôže byť prázdny.
+          csv_contains_blank_values: CSV obsahuje prázdne hodnoty. Musia byť prítomné všetky hodnoty user_email a file_name.
+          csv_file_name_must_be_unique: Hodnoty CSV súboru_názov musia byť jedinečné.
+          csv_must_contain_two_headers: 'CSV musí mať presne 2 stĺpce s hlavičkami: %{headers}'
+          csv_user_emails_must_be_unique: Hodnoty CSV user_email musia byť jedinečné.
+          failed_to_attach_file: 'Nepodarilo sa priložiť súbor k e-mailu: %{email}. Chyba: %{error_message}'
+          file_names_in_csv_must_be_of_type_pdf: CSV obsahuje neplatné položky file_name. Všetky hodnoty file_name v CSV musia mať príponu .pdf.
+          file_processing_error: 'Chyby zistené pri spracovaní súboru: %{error_message}'
+          max_emails_in_csv: Maximálny počet položiek user_email povolených v CSV súbore%{max}. Váš CSV súbor obsahuje položiek%{count}user_email.
+          missing_user_reports: 'Chýbajúce správy používateľov pre e-maily: %{emails}'
+          no_file_found_in_extracted_zip: V extrahovanom súbore ZIP nebol nájdený žiadny súbor.
+          user_report_not_found: 'Správa používateľa nebola nájdená pre e-mail: %{email}'
       bulk_download:
         data_range_error: Prosím, vyberte rozsah dátumov
         modal:
@@ -839,6 +854,16 @@ sk:
           report: Správa
           send_digest_emails: Odosielanie súhrnných e-mailov
           settings: Nastavenia
+        scoring_approval:
+          allow_bulk_approve: Povoliť hromadné schvaľovanie
+          allow_bulk_approve_scores: Povoliť hromadné schvaľovanie skóre
+          approver_users: Schvaľujúci používatelia
+          approvers: Schvaľovatelia
+          assessment: Hodnotenie
+          assessor_users: Používatelia hodnotiteľov
+          modal_title: Nastavenia schvaľovania bodovania
+          remove_modal_success: 'Nastavenie schválenia pre identifikátor hodnotenia: %{assessmentId} bolo úspešne odstránené.'
+          remove_modal_text: 'Naozaj chcete odstrániť toto nastavenie pre identifikačný kód hodnotenia: %{assessmentId}?'
       assessors:
         spoof:
           successfully: Úspešne ste sa prihlásili ako %{name}
@@ -1005,6 +1030,8 @@ sk:
         ai_assistants_disabled_by_client: AI Assistants je zakázaný klientom
         ai_assisted_idp: IDP s pomocou AI
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP vyžaduje povolenie funkcie AI Assistants
+        ai_content_analysis: Analýza obsahu umelej inteligencie
+        ai_content_analysis_disabled_by_client: Analýza obsahu AI je deaktivovaná klientom
         ai_translation: Preklady pomocou umelej inteligencie
         ai_translation_disabled_by_client: Preklady AI sú klientom zakázané
         global_skills: Globálne zručnosti
@@ -2540,6 +2567,7 @@ sk:
     message: Správa
     meta_title: Panel správy
     navigation:
+      approvals: Schválenia
       audit_logs: Protokoly auditu
       availability: Dostupnosť
       configuration: Konfigurácia
@@ -3206,9 +3234,11 @@ sk:
         actions: Akcie
         approval_status: Stav schválenia
         approved_by: Schválené
+        assessed_by: Hodnotené podľa
         campaign_name: Názov kampane
         qc_by: QC podľa
         report_name: Názov zostavy
+        subject_email: Predmet e-mailu
         user_email: E-mail používateľa
         user_name: Používateľské meno
       dashboard: Tabuľu
@@ -3770,6 +3800,11 @@ sk:
         tools: Náradie
         weightages: Váhy
       weighted_average: Vážený priemer
+    scoring_approval:
+      approve_all: Schváliť všetko
+      bulk_approve_success: "%{approved} schválené skóre."
+      review: Recenzia
+      score_approvals: Schvaľovanie bodovania umelou inteligenciou
     search: Hľadať
     security_setting:
       180_days: 180 dní

@@ -14,7 +14,7 @@ module Imports
         #     "value": 'Value'
         #   }, ...]
 
-        def self.build_answers(data, question, duration, use_scoring = false, _assign)
+        def self.build_answers(data, question, duration, use_scoring = false, _assign, **) # rubocop:disable Metrics/ParameterLists
           return nil if data.compact.blank? || data.all?(&:blank?)
 
           answers = case question.props['type']

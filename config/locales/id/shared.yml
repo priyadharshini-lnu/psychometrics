@@ -7,27 +7,48 @@ id:
     add: Menambahkan
     advanced: Maju
     agree_and_continue: Setuju & Lanjutkan
+    approval_status: Status Persetujuan
+    approved: Disetujui
+    approved_by: Disetujui oleh
+    approvers_list: Daftar Persetujuan
     archive: Arsip
     archived: Diarsipkan
+    assessed_by: Dievaluasi oleh
+    assessment: Penilaian
+    assessment_id: Nomor Identifikasi Penilaian
+    assessment_list: Daftar Penilaian
+    assessment_name: Nama Penilaian
+    assessor_approved: Disetujui oleh Penilai
+    assessors_list: Daftar Penilai
     asset_not_present: Aset tidak tersedia
     audio: Audio
     authentication_failed: Autentikasi gagal. Silakan coba lagi.
+    back: Kembali
     basic: Dasar
     camera_preview: Pratinjau kamera akan muncul di sini
+    campaign: Kampanye
     campaign_id: ID Kampanye
     cancel: Batal
     change_password: Ubah Kata Sandi
     clear_filters: Hapus Filter
+    client: Klien
     collaborative_learning: Pembelajaran Kolaboratif
     completed: Selesai
     configurations: Konfigurasi
     confirm: Konfirmasi
     continue: Terus
+    controller: Pengendali
+    cookies_statement: Pernyataan tentang Cookie
     copy: Salin
     created_at: Dibuat di
     created_date: Tanggal Dibuat
+    custom_consent_text: Teks Persetujuan Khusus
+    custom_consent_text_required: Teks persetujuan khusus diperlukan untuk peran data pengontrol.
+    data_role: Peran Data
     decline: Penurunan
     description: Deskripsi
+    desktop_or_laptop_recommended: Desktop atau Laptop yang Direkomendasikan
+    desktop_or_laptop_required: Diperlukan komputer desktop atau laptop.
     download: Unduh
     download_audio: Unduh Audio
     download_transcription: Unduh Transkrip
@@ -37,6 +58,7 @@ id:
     email: Email
     export: Ekspor
     failed: Gagal
+    'false': false
     first_name: Nama depan
     formal_learning: Pembelajaran Formal
     generate: Generate
@@ -50,6 +72,7 @@ id:
     internet_disconnected_message: Mencoba menyambung kembali, periksa koneksi internet Anda.
     last_name: Nama belakang
     learning_on_the_job_label: Belajar di Tempat Kerja
+    loading: Muat...
     login: Masuk
     maintenance_in_hours: "%{hours} jam"
     maintenance_in_minutes: "%{minutes} menit"
@@ -60,20 +83,28 @@ id:
     maintenance_upcoming_title: Pemeliharaan Mendatang
     media_question_transcriptions: Transkrip Pertanyaan Media
     media_responses: Tanggapan Media
+    mobile_proctoring_disabled_instructions: Penilaian ini memerlukan komputer desktop atau laptop untuk dilanjutkan. Silakan beralih ke komputer untuk menyelesaikan aktivitas ini.
+    mobile_proctoring_enabled_instructions: Untuk pengalaman terbaik, silakan beralih ke komputer desktop atau laptop jika Anda memiliki yang tersedia. Anda dapat melanjutkan menggunakan perangkat seluler jika diperlukan.
     modified_by: Dimodifikasi oleh
     modified_date: Tanggal Dimodifikasi
     more_actions: Tindakan lainnya
     mte_logo_alt_text: Logo Mercer Talent Enterprise
     na_text: Tidak tersedia
     name: Nama
+    negative: Negatif
     new: Baru
     no_results_found: Tidak ditemukan hasil
     not_requested: Belum Diminta
     ok: Ok
     pending: Menunggu
+    policy_version: Versi Kebijakan
+    policy_version_format: Hanya bilangan bulat yang diperbolehkan.
+    positive: Positif
     processing: Pengolahan
+    processor: Prosesor
     proctoring_maintenance_active: Layanan Proctoring saat ini sedang dalam pemeliharaan dari %{start_time} ke %{end_time}. Silakan coba lagi setelah periode pemeliharaan selesai.
     proctoring_maintenance_upcoming: Pengawasan ujian akan dalam tahap pemeliharaan dari %{start_time} hingga %{end_time}.
+    project: Proyek
     question_id: ID Pertanyaan
     question_transcription_disabled: Transkripsi dinonaktifkan untuk pertanyaan ini.
     rec: REC
@@ -84,14 +115,20 @@ id:
     removed: Dihapus
     replace: Ganti
     reset_password: Atur Ulang Kata Sandi
+    response_text: Teks Tanggapan
     rte_paste_content_exceeds_char_limit: Teks melebihi batas karakter {{maxCharacterLimit}} dan tidak dapat ditempelkan.
     rte_paste_content_exceeds_word_limit: Teks melebihi batas kata {{maxWordLimit}} dan tidak dapat ditempelkan.
     save: Simpan
     saving_video: Menyimpan Video... Tolong jangan tutup atau refresh browser
+    scoring_details: Rincian Skor
     search: Pencarian
     send_email: Kirim email
     show_more: Tampilkan Lebih Banyak
     something_wrong: Ada yang tidak beres. Hubungi administrator Anda.
+    status: Status
+    subject: Subjek
+    submit: Kirim
+    switch_to_laptop_or_desktop: Beralih ke Laptop atau Desktop
     table:
       entries:
         selected: 1 baris dipilih
@@ -103,9 +140,12 @@ id:
     transcription_not_enabled: Transkripsi tidak diaktifkan untuk respons media.
     transcription_status: Status Transkripsi
     transcriptions: Transkripsi
+    'true': true
     try_again: Coba Lagi
     tte_terms_and_condition: Ketentuan & Privasi
     type: Jenis
     update: Memperbarui
+    update_failed: Pembaruan gagal
+    updated_successfully: Pembaruan berhasil
     video: Video
     view: Lihat

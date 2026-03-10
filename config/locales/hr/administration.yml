@@ -735,6 +735,21 @@ hr:
       errors:
         invalid_headers: 'Sljedeća zaglavlja su nevažeća: %{headers}'
     campaign_report:
+      bulk_assets_upload:
+        errors:
+          csv_and_zip_must_exist: Obje CSV i ZIP datoteke moraju biti prenesene prije početka.
+          csv_cannot_be_empty: CSV datoteka ne može biti prazna.
+          csv_contains_blank_values: CSV sadrži prazne vrijednosti. Sve vrijednosti user_email i file_name moraju biti prisutne.
+          csv_file_name_must_be_unique: Vrijednosti naziva CSV datoteke moraju biti jedinstvene.
+          csv_must_contain_two_headers: 'CSV mora imati točno dvije stupca s naslovima: %{headers}'
+          csv_user_emails_must_be_unique: CSV vrijednosti user_email moraju biti jedinstvene.
+          failed_to_attach_file: 'Nije uspjelo priložiti datoteku za e-poštu: %{email}. Greška: %{error_message}'
+          file_names_in_csv_must_be_of_type_pdf: CSV sadrži neispravne unose file_name. Sve vrijednosti file_name u CSV-u moraju imati ekstenziju .pdf.
+          file_processing_error: 'Pogreške pronađene pri obradi datoteke: %{error_message}'
+          max_emails_in_csv: U CSV-u je dopušteno najviše %{max} unosa user_email. Vaš CSV sadrži %{count} unosa user_email.
+          missing_user_reports: 'Nedostaju izvještaji korisnika za e-poštu: %{emails}'
+          no_file_found_in_extracted_zip: U izvađenom ZIP-u nije pronađena datoteka.
+          user_report_not_found: 'Izvješće korisnika nije pronađeno za e-poštu: %{email}'
       bulk_download:
         data_range_error: Molimo odaberite raspon datuma
         modal:
@@ -839,6 +854,16 @@ hr:
           report: Izvješće
           send_digest_emails: Slanje sažetaka e-pošte
           settings: Postavke
+        scoring_approval:
+          allow_bulk_approve: Omogući masovno odobravanje
+          allow_bulk_approve_scores: Omogućite masovno odobravanje bodova
+          approver_users: Korisnici odobravatelja
+          approvers: Odobravatelji
+          assessment: Procjena
+          assessor_users: Korisnici procjenitelja
+          modal_title: Postavke odobravanja bodovanja
+          remove_modal_success: 'Postavka odobrenja za ID procjene: %{assessmentId} uspješno je izbrisana'
+          remove_modal_text: 'Jeste li sigurni da želite izbrisati ovo podešavanje za ID procjene: %{assessmentId}?'
       assessors:
         spoof:
           successfully: Uspješno ste prijavljeni kao %{name}
@@ -1005,6 +1030,8 @@ hr:
         ai_assistants_disabled_by_client: AI pomoćnike onemogućuje klijent
         ai_assisted_idp: IDP potpomognut umjetnom inteligencijom
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP zahtijeva omogućavanje značajke AI Assistants
+        ai_content_analysis: Analiza sadržaja umjetne inteligencije
+        ai_content_analysis_disabled_by_client: AI analiza sadržaja je onemogućena od strane klijenta
         ai_translation: AI prijevodi
         ai_translation_disabled_by_client: AI prijevodi su onemogućeni od strane klijenta.
         global_skills: Globalne vještine
@@ -2540,6 +2567,7 @@ hr:
     message: Poruka
     meta_title: Administrativna ploča
     navigation:
+      approvals: Odobrenja
       audit_logs: Zapisnici revizije
       availability: Raspoloživost
       configuration: Konfiguracija
@@ -3206,9 +3234,11 @@ hr:
         actions: Statusi
         approval_status: Status odobrenja
         approved_by: Odobrio
+        assessed_by: Procijenio
         campaign_name: Naziv kampanje
         qc_by: Autor
         report_name: Naziv izvješća
+        subject_email: Predmet e-pošte
         user_email: Email adresa korisnika
         user_name: Korisničko ime
       dashboard: Nadzorna ploča
@@ -3770,6 +3800,11 @@ hr:
         tools: Alati
         weightages: Ponderi
       weighted_average: Ponderirani prosjek
+    scoring_approval:
+      approve_all: Odobri sve
+      bulk_approve_success: "%{approved} Rezultati odobreni."
+      review: Recenzija
+      score_approvals: AI ocjenjivanje odobrenja
     search: Pretraživanje
     security_setting:
       180_days: 180 dana

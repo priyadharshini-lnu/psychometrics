@@ -735,6 +735,21 @@ fr:
       errors:
         invalid_headers: 'Les en-têtes suivants ne sont pas valides : %{headers}'
     campaign_report:
+      bulk_assets_upload:
+        errors:
+          csv_and_zip_must_exist: Les fichiers CSV et ZIP doivent être téléchargés avant de commencer.
+          csv_cannot_be_empty: Le fichier CSV ne peut pas être vide.
+          csv_contains_blank_values: Le fichier CSV contient des valeurs vides. Toutes les valeurs user_email et file_name doivent être présentes.
+          csv_file_name_must_be_unique: Les valeurs du fichier CSV doivent être uniques.
+          csv_must_contain_two_headers: 'Le fichier CSV doit comporter exactement deux colonnes avec les en-têtes suivants : %{headers}'
+          csv_user_emails_must_be_unique: Les valeurs CSV user_email doivent être uniques.
+          failed_to_attach_file: 'Échec de la pièce jointe pour l''e-mail : %{email}. Erreur : %{error_message}'
+          file_names_in_csv_must_be_of_type_pdf: Le fichier CSV contient des entrées file_name non valides. Toutes les valeurs file_name dans le fichier CSV doivent avoir l'extension .pdf.
+          file_processing_error: 'Erreurs détectées lors du traitement du fichier : %{error_message}'
+          max_emails_in_csv: 'Nombre maximal d''entrées user_email autorisées dans le fichier CSV : %{max}. Votre fichier CSV contient %{count} entrées user_email.'
+          missing_user_reports: 'Rapports d''utilisateurs manquants pour les e-mails : %{emails}'
+          no_file_found_in_extracted_zip: Aucun fichier trouvé dans le fichier ZIP extrait
+          user_report_not_found: 'Aucun rapport d''utilisateur trouvé pour l''adresse e-mail : %{email}'
       bulk_download:
         data_range_error: Veuillez sélectionner une période
         modal:
@@ -839,6 +854,16 @@ fr:
           report: Rapport
           send_digest_emails: Envoyer des e-mails de synthèse
           settings: Paramètres
+        scoring_approval:
+          allow_bulk_approve: Autoriser l'approbation groupée
+          allow_bulk_approve_scores: Autoriser l'approbation groupée des scores
+          approver_users: Utilisateurs approbateurs
+          approvers: Approbateurs
+          assessment: Évaluation
+          assessor_users: Utilisateurs évaluateurs
+          modal_title: Paramètres d'approbation des notes
+          remove_modal_success: 'Le paramètre d''approbation pour l''identifiant d''évaluation : %{assessmentId} a été supprimé avec succès.'
+          remove_modal_text: 'Êtes-vous sûr de vouloir supprimer ce paramètre pour l''identifiant d''évaluation : %{assessmentId} ?'
       assessors:
         spoof:
           successfully: Vous vous êtes connecté avec succès en tant que %{name}
@@ -1005,6 +1030,8 @@ fr:
         ai_assistants_disabled_by_client: AI Assistants est désactivé par le client
         ai_assisted_idp: AI assistée PDI
         ai_assisted_idp_requires_ai_assistants: L’IDP assisté par l’IA nécessite l’activation de la fonctionnalité d’assistants IA
+        ai_content_analysis: Analyse de contenu par IA
+        ai_content_analysis_disabled_by_client: L'analyse de contenu par IA est désactivée par le client.
         ai_translation: Traductions IA
         ai_translation_disabled_by_client: Les traductions IA sont désactivées par le client.
         global_skills: Compétences globales
@@ -2540,6 +2567,7 @@ fr:
     message: Message
     meta_title: Panneau d'administration
     navigation:
+      approvals: Approbations
       audit_logs: Journaux d'audit
       availability: Disponibilité
       configuration: Configuration
@@ -3206,9 +3234,11 @@ fr:
         actions: Actions
         approval_status: Statut d'approbation
         approved_by: Approuvé par
+        assessed_by: Évalué par
         campaign_name: Nom de la campagne
         qc_by: QC Par
         report_name: Nom du rapport
+        subject_email: Objet E-mail
         user_email: Courriel de l'utilisateur
         user_name: Nom de l'utilisateur
       dashboard: Tableau de bord
@@ -3773,6 +3803,11 @@ fr:
         tools: Outils
         weightages: Poids
       weighted_average: Moyenne pondérée
+    scoring_approval:
+      approve_all: Tout approuver
+      bulk_approve_success: "%{approved} résultats approuvés."
+      review: Révision
+      score_approvals: Approbations des scores IA
     search: Recherche
     security_setting:
       180_days: 180 jours

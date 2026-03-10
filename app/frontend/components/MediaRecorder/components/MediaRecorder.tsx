@@ -21,7 +21,8 @@ export type ReactMediaRecorderRenderProps = {
     isAudioMuted: boolean;
     previewStream: MediaStream | null;
     previewAudioStream: MediaStream | null;
-    clearBlobUrl: () => void;
+  clearBlobUrl: () => void;
+  requestMediaStream: (constraints?: MediaStreamConstraints) => Promise<MediaStream | null>;
 };
 
 export type ReactMediaRecorderHookProps = {
@@ -117,9 +118,9 @@ export function useReactMediaRecorder ({
     setInit(true)
   }, [])
 
-  const getMediaStream = useCallback(async () => {
+  const getMediaStream = useCallback(async (overrideConstraints?: MediaStreamConstraints) => {
     setStatus('acquiring_media')
-    const requiredMedia: MediaStreamConstraints = {
+    const requiredMedia: MediaStreamConstraints = overrideConstraints || {
       audio: typeof audio === 'boolean' ? !!audio : audio,
       video: typeof video === 'boolean' ? !!video : video,
     }
@@ -154,6 +155,7 @@ export function useReactMediaRecorder ({
       setError(error.name)
       setStatus('idle')
     }
+    return mediaStream.current
   }, [audio, video, screen])
 
   useEffect(() => {
@@ -361,6 +363,7 @@ export function useReactMediaRecorder ({
       setMediaBlobUrl(undefined)
       setStatus('idle')
     },
+    requestMediaStream: getMediaStream,
   }
 }
 

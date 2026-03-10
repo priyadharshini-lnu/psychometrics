@@ -862,6 +862,7 @@ zh-Hant:
         bulk_reports: 大量報告
         bulk_rescore_campaign_factors: 大量重新評分活動因素
         bulk_update_evaluation_status: 批量更新評估狀態
+        campaign_report_extract_and_upload_bulk_assets: 活动报告上传批量素材
         compact_completion_status_export: 緊湊型完成狀態匯出
         completion_status_export: 完成狀態匯出
         copy_as_template_or_campaign: 複製活動作為範本
@@ -871,6 +872,7 @@ zh-Hant:
         export_admin_with_permissions: 匯出有權限的管理員
         export_assessment_questions: 出口評估問題
         export_campaign_ai_artifacts: 輸出戰役 AI 工件
+        export_campaign_ai_artifacts_results: 导出活动AI成果
         export_campaign_factors: 出口活動因素
         export_campaign_scorings: 導出活動縮圖
         export_dashboard_as_file: 將 Dashboard 匯出為檔
@@ -1274,6 +1276,7 @@ zh-Hant:
     record_not_found: 未找到記錄
     user_not_authorized: 使用者未經授權
   auth:
+    cookies_link: <a href="%{cookies_url}">Cookies声明</a>
     current_password: 目前的密碼
     current_password_placeholder: 輸入目前的密碼
     email: 電子郵件
@@ -1319,6 +1322,7 @@ zh-Hant:
     password_confirmation: 確認密碼
     password_confirmation_placeholder: 輸入密碼確認
     password_placeholder: 輸入密碼
+    privacy_statement_link: <a href="%{privacy_url}">隐私声明</a>
     registration:
       description: 填寫以下詳細資料註冊並建立新帳戶
       email_hint: 我們尊重您的隱私，絕不容忍垃圾郵件。 我們絕不會將您的資訊提供給任何第三方

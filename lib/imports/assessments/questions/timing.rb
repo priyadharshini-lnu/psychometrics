@@ -4,7 +4,7 @@ module Imports
   module Assessments
     module Questions
       class Timing
-        def self.build_answers(values, question, duration, _use_scoring = false, _assign)
+        def self.build_answers(values, question, duration, _use_scoring = false, _assign, **) # rubocop:disable Metrics/ParameterLists
           return nil if values.compact.blank?
 
           {

@@ -12,6 +12,9 @@ th:
         user_not_found: ไม่พบผู้ใช้หรือไม่ได้เป็นส่วนหนึ่งของโครงการเดียวกัน
       admin:
         already_added: ผู้ดูแลระบบที่มีการเพิ่มอีเมลแล้ว
+      ai_scoring_approval_settings:
+        assessment_exists: การตั้งค่าการอนุมัติการให้คะแนนโดย AI สำหรับการประเมินนี้มีอยู่แล้ว
+        validates_admins: ผู้ดูแลระบบไม่มีสิทธิ์เข้าถึงแคมเปญ
       already_assigned?: ไม่สามารถเชื่อมโยงการประเมินนี้ - มีการกําหนดให้กับ '%{linked_assessor_form_name}' แล้ว
       already_invited: ผู้ใช้นี้มีอยู่แล้วในศูนย์ประเมินที่คุณพยายามเพิ่ม
       assessor_assessment:

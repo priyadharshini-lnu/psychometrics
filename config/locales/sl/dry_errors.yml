@@ -12,6 +12,9 @@ sl:
         user_not_found: Uporabnik ni bil najden ali ni del istega projekta
       admin:
         already_added: Skrbnik z že dodanim e-poštnim sporočilom.
+      ai_scoring_approval_settings:
+        assessment_exists: Nastavitev odobritve AI Scoring za to oceno že obstaja.
+        validates_admins: Skrbniki nimajo dostopa do kampanje.
       already_assigned?: Te ocene ni mogoče povezati - že je dodeljena '%{linked_assessor_form_name}'.
       already_invited: Ta uporabnik že obstaja v ocenjevalnem centru, ki ga poskušate dodati.
       assessor_assessment:

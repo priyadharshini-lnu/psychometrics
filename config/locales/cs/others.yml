@@ -862,6 +862,7 @@ cs:
         bulk_reports: Hromadné zprávy
         bulk_rescore_campaign_factors: Faktory hromadného obnovení kampaně
         bulk_update_evaluation_status: Stav vyhodnocení hromadné aktualizace
+        campaign_report_extract_and_upload_bulk_assets: Nahrání hromadných aktiv kampaně
         compact_completion_status_export: souhrnné informace export stavu dokončení
         completion_status_export: Export stavu dokončení
         copy_as_template_or_campaign: Kopírování kampaně jako šablony
@@ -871,6 +872,7 @@ cs:
         export_admin_with_permissions: Export správce s oprávněními
         export_assessment_questions: Otázky pro posouzení vývozu
         export_campaign_ai_artifacts: AI artefakty exportní kampaně
+        export_campaign_ai_artifacts_results: Výsledky exportu artefaktů AI kampaně
         export_campaign_factors: Faktory vývozní kampaně
         export_campaign_scorings: Výběry pro exportní kampaně
         export_dashboard_as_file: Exportovat řídicí panel jako soubor
@@ -1277,6 +1279,7 @@ cs:
     record_not_found: Záznam nebyl nalezen
     user_not_authorized: Uživatel není oprávněn
   auth:
+    cookies_link: <a href="%{cookies_url}">Prohlášení o souborech cookie</a>
     current_password: Aktuální heslo
     current_password_placeholder: Vložte aktuální heslo
     email: E-mail
@@ -1322,6 +1325,7 @@ cs:
     password_confirmation: Potvrdit heslo
     password_confirmation_placeholder: Zadejte heslo pro potvrzení
     password_placeholder: Zadejte heslo
+    privacy_statement_link: <a href="%{privacy_url}">Prohlášení o ochraně osobních údajů</a>
     registration:
       description: Pro registraci a vytvoření nového účtu vyplňte níže uvedené údaje
       email_hint: Respektujeme vaše soukromí a netolerujeme spam. Vaše údaje nikdy neposkytneme žádné třetí straně.

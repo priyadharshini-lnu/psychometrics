@@ -862,6 +862,7 @@ fr:
         bulk_reports: Rapports en bloc
         bulk_rescore_campaign_factors: Facteurs de la campagne de réintégration en bloc
         bulk_update_evaluation_status: État de l’évaluation de la mise à jour en bloc
+        campaign_report_extract_and_upload_bulk_assets: Rapport de campagne Télécharger des ressources en masse
         compact_completion_status_export: Exportation de l'état d'achèvement compact
         completion_status_export: Exportation de l'état d'achèvement
         copy_as_template_or_campaign: Copier la campagne comme modèle
@@ -871,6 +872,7 @@ fr:
         export_admin_with_permissions: Exporter l'administrateur avec des autorisations
         export_assessment_questions: Questions d'évaluation des exportations
         export_campaign_ai_artifacts: Artefacts IA des campagnes d’exportation
+        export_campaign_ai_artifacts_results: Exporter les résultats des artefacts IA de la campagne
         export_campaign_factors: Facteurs de la campagne d'exportation
         export_campaign_scorings: Scores de la campagne d'exportation
         export_dashboard_as_file: Exporter le tableau de bord sous forme de fichier
@@ -1274,6 +1276,7 @@ fr:
     record_not_found: Enregistrement introuvable
     user_not_authorized: Utilisateur non autorisé
   auth:
+    cookies_link: <a href="%{cookies_url}">Déclaration relative aux cookies</a>
     current_password: Mot de passe actuel
     current_password_placeholder: Saisir le mot de passe actuel
     email: Courriel
@@ -1319,6 +1322,7 @@ fr:
     password_confirmation: Confirmer le mot de passe
     password_confirmation_placeholder: Confirmation du mot de passe
     password_placeholder: Saisir le mot de passe
+    privacy_statement_link: <a href="%{privacy_url}">Déclaration de confidentialité</a>
     registration:
       description: Remplissez les détails ci-dessous pour vous inscrire et créer un nouveau compte
       email_hint: Nous respectons votre vie privée et ne tolérons pas le spam. Nous ne communiquerons jamais vos informations à des tiers

@@ -2,10 +2,12 @@
 hu:
   admin:
     accept_na_values: N/A értékek elfogadása
+    actions: Műveletek
     add_admin: Adminisztrátor hozzáadása
     add_admin_role: Adminisztrátori szerepkör hozzáadása
     add_campaign_admin: Kampányadminisztrátor hozzáadása
     add_client_admin: Ügyfél-adminisztrátor hozzáadása
+    add_indicator: Indikátor hozzáadása
     add_project: Projekt hozzáadása
     add_project_admin: Projektadminisztrátor hozzáadása
     add_threesixty_campaign_admin: Kampányadminisztrátor hozzáadása
@@ -18,8 +20,14 @@ hu:
     admin_roles: Adminisztrátori szerepkörök
     admin_updated_successfully: Az adminisztrátori '%{name}' frissítése sikeresen megtörtént
     admins: Adminisztrátorok
+    ai_artifact_result_generation_admin_job_failed: A „%{artifact_name}” műtárgy nem hozható létre a „%{user_email}” felhasználó számára.
+    ai_artifact_result_stale: Az eredmény elavult lehet, mivel az AI-artefaktum függőségei az utolsó eredmény generálása óta megváltoztak. Fontolja meg az artefaktum újragenerálását a legfrissebb függőségekkel.
     ai_artifacts: AI-összetevők
+    ai_artifacts_generate_results: Eredmények generálása
     ai_artifacts_output_schema_key_constraint: A kulcsnak kisbetűvel kell kezdődnie, és csak kisbetűket, számokat és aláhúzásokat tartalmazhat
+    ai_artifacts_results_export: Eredmények exportálása
+    ai_artifacts_results_export_job_scheduled: Az AI Artifacts eredmények exportálási feladata sikeresen ütemezésre került.
+    ai_assistant: AI asszisztens
     ai_assistant_model_id_label: Model ID
     ai_assistant_model_label: Modell
     ai_assistant_model_provider: Szolgáltató
@@ -36,16 +44,46 @@ hu:
     ai_assistants_template_render_failed: Nem sikerült megjeleníteni sablont
     ai_assistants_test_render: Tesztrender
     ai_assistants_test_render_tooltip: Teszteld a prompt sablonodat kampányadatokkal, hogy megbizonyosodj arról, mi fog elküldeni az AI asszisztensnek.
+    ai_assisted_idp_disabled_by_client: Az AI-támogatott IDP az ügyfél által letiltva van
     ai_assisted_idp_feature_disabled: Az AI Assisted IDP funkciót letiltották ehhez a projekthez.
     ai_idp_assistant_configure_dependencies: AI-függőségek konfigurálása
     ai_idp_assistant_configure_dependencies_description: Állítsa be, hogy az IDP AI Assistant mely függőségi adatokhoz férhet hozzá kontextusként. Ez csak akkor érvényes, ha az asszisztens úgy van beállítva, hogy elfogadja a függőségeket.
     ai_idp_assistant_dependencies_updated: A függőségek frissítése sikeresen megtörtént
     ai_idp_assistant_update_dependencies: Függőségek frissítése
     ai_notice: Kiemelt szakaszok AI-fordításúak és pontatlanságokat tartalmazhatnak.
+    ai_score_approval_no_answer: Erre a kérdésre nem adunk választ.
+    ai_score_approval_no_transcription: Ehhez a kérdéshez nincs átírás.
+    ai_scored: AI pontszám
+    ai_scoring_appoval_approve_all_questions: Minden kérdés jóváhagyása
+    ai_scoring_appoval_approve_question: Kérdés jóváhagyása
+    ai_scoring_appoval_back: Pontszám visszaállítása
+    ai_scoring_appoval_change_reason: Változás oka
+    ai_scoring_appoval_change_score: módosított pontszám
+    ai_scoring_appoval_change_score_log: Pontszám-napló módosítása
+    ai_scoring_appoval_discard_all_questions: Minden kérdés visszaállítása
+    ai_scoring_appoval_discard_all_questions_description: Ezzel az összes kérdés pontszáma visszaáll, és minden felülírás törlődik. Ez a művelet nem vonható vissza. Biztosan ezt szeretné?
+    ai_scoring_appoval_discard_all_questions_title: Az összes kérdés pontszámát visszaállítani?
+    ai_scoring_appoval_discard_question: Kérdések pontszámainak visszaállítása
+    ai_scoring_appoval_discard_question_confirm_description: Ezzel az összes pontszámot visszaállítjuk erre a kérdésre, és töröljük az összes felülírásokat. Biztosan ezt szeretné?
+    ai_scoring_appoval_discard_question_confirm_title: Kérdések pontszámainak visszaállítása?
+    ai_scoring_appoval_discarded_changes: elvetett változtatások
+    ai_scoring_appoval_evidence_from_transcript: A jegyzőkönyvből származó bizonyíték
+    ai_scoring_appoval_new_score: Új pontszám
+    ai_scoring_appoval_next: Következő kérdés
+    ai_scoring_appoval_rationale: Indoklás
+    ai_scoring_appoval_reason_for_changes: A változások oka
+    ai_scoring_appoval_reset_score: Pontszám visszaállítása
+    ai_scoring_appoval_reset_score_description: A pontszám visszaáll az eredeti AI értékre.
+    ai_scoring_appoval_responses: AI válaszok
+    ai_scoring_appoval_score_not_applicable: Pontszám nem alkalmazható
+    ai_scoring_approval: AI pontszám jóváhagyás
+    ai_scoring_approval_settings: AI pontozás jóváhagyási beállítások
+    ai_scoring_approvals: AI pontszámok jóváhagyása
     ai_translation: AI fordítás
     all_corner_rounded: Minden sarok lekerekített
     api_keys: API-kulcsok
     apply_to_existing_users: Alkalmazzuk ezt a változást a kampányban szereplő meglévő felhasználókra
+    assessment_question_not_supported: Ez a kérdés típus jelenleg nem támogatott.
     assessments: Értékelések
     assessments_not_mhs: Minden értékelésnek MHS típusúnak kell lennie.
     assessments_reports: Felmérések és jelentések
@@ -61,8 +99,14 @@ hu:
     availability: Elérhetőség
     available_languages: Jelentés elérhető nyelveken
     back_to_main: Főmenü
+    bulk_assets_modal_choose_csv: CSV fájl kiválasztása
+    bulk_assets_modal_choose_zip: ZIP fájl kiválasztása
+    bulk_assets_modal_not_csv_file_error: CSV-fájlok feltöltésére csak CSV-fájlok használhatók. Kérjük, töltse fel az érvényes CSV-fájlt.
+    bulk_assets_modal_subtitle: 'Kérjük, töltsön fel <b>egy CSV</b> fájlt (a következő fejlécekkel: user_email, file_name) és <b>egy ZIP</b> fájlt (amely a csv fájl nevével megegyező PDF fájlokat tartalmaz). A ZIP fájl mérete nem haladhatja meg a %{max_file_size} MB-ot.'
+    bulk_assets_modal_title: CSV és ZIP fájlok feltöltése
     bulk_upload_ai_artifacts: Tömeges feltöltési AI tárgyak
     campaign_ai_artifact_updated_successfully: Kampány MI tárgyak sikeresen frissítették
+    campaign_ai_artifacts_results_export_details: A kampány AI-artefaktumai eredményeket hoztak
     campaign_assessment_actions_disable_caching: Letiltott értékelési gyorsítótár
     campaign_assessment_actions_enable_caching: Engedélyezze az értékelési gyorsítótár használatát
     campaign_assessment_column_caching_enabled: Értékelési gyorsítótár engedélyezve
@@ -86,11 +130,15 @@ hu:
     campaign_assessment_modals_enable_caching_successfully: A gyorsítótározás lehetővé vált ehhez az értékeléshez.
     campaign_assessment_modals_enable_caching_title: Engedélyezni az értékelési gyorsítótárat?
     campaign_factors: Kampány tényezők
+    campaign_name: Kampány neve
     campaign_templates: Kampány sablonok
     campaign_user_job_roles_cannot_be_same: A célpozíció nem lehet azonos a jelenlegi pozícióval.
     campaigns: Kampányok
+    cancel: Mégse
     cancellation_and_rescheduling_disabled: A lemondás és az átütemezés funkció le van tiltva.
     casual: Alkalmi
+    characters: szereplők
+    children_factor_type: Gyermekek tényező típusa
     client: Ügyfél bérleti joga
     client_admins: Ügyféladminisztrátorok
     clients: Ügyfélcsoportok
@@ -100,24 +148,52 @@ hu:
     completed: Befejezett
     completed_tooltip: Minden értékelő benyújtotta az értékelést
     concise: Tömör
+    configure_model_answer_title: Modellválasz és kulcsszavak konfigurálása
     confirm_remove_admin: Biztosan el akarja távolítani az a(z) '%{email}' e-mail címmel rendelkező adminisztrátori felhasználót ?
+    copied: Másolva
     country: Ország
     create_client: Ügyfél létrehozása
+    create_indicator: Indikátor létrehozása
     current_job_role: Jelenlegi munkakör
     dashboard: Irányítópult
     dashboards: Irányítópultok
     data_reports: Adatjelentések
     datasheet: Adatlap
     declined: Csökkent
+    define_max_score_text: Határozza meg a „%{maxScore}” (maximális pontszám) pontszámot.
+    define_min_score_text: Határozza meg a „%{minScore}” (minimális pontszám) pontszámot.
+    define_optional_score_range_text: Pontszámok meghatározása %{minScore} és %{maxScore} (opcionális)
+    define_score_text: "%{score} pontszám meghatározása"
+    definition: Meghatározás
     delete_ok_text: Igen, töröld
     denied: Tagadás
+    description: Leírás
     development_actions: Fejlesztési tevékenységek
     development_actions_form_tags: Címkék
+    digest_delivery_mode:
+      form_label: Emésztés szállítási mód
+      immediate: Azonnali - Küldés, ha tömeges beküldés történik
+      scheduled: Ütemezett - Összefoglaló e-mail küldése ütemezett időpontban
+    digest_frequency:
+      daily: Napi
+      form_label: Emésztési gyakoriság
+      weekdays: Hétköznapok
+      weekly: Heti
+    digest_weekdays:
+      form_label: Digest Hétköznapok
+      friday: péntek
+      monday: hétfő
+      saturday: szombat
+      sunday: vasárnap
+      thursday: csütörtök
+      tuesday: kedd
+      wednesday: Szerda
     dimensions: Dimenziók
     done: Kész
     done_tooltip: Több értékelést nem lehet benyújtani erre a felhasználóra, mivel az értékelést a %{marked_by}
     edit_campaign_admin: Kampányadminisztrátor szerkesztése
     edit_client_admin: Ügyfél-adminisztrátor szerkesztése
+    edit_indicator: Jelzőszerkesztés
     edit_job_roles: Munkakörök szerkesztése
     edit_level: Szinten szerkesztés
     edit_permission_denied: Nincs engedélyed az admin '%{name}' szerkesztésére
@@ -126,12 +202,17 @@ hu:
     empty_csv_file: A CSV fájl nem tartalmaz adatokat.
     enable_enhance_with_ai_client_level: Kérjük, engedélyezze az AI-vel történő fejlesztés funkciót ügyfélszinten.
     enable_maintenance: Karbantartás engedélyezése
+    enable_mobile_proctoring: Mobil felügyelet engedélyezése
     enable_transcription: Feliratozás engedélyezése
+    enable_transcription_msg: Engedélyezze a Transcription számára az AI-pontozás használatát a videó/audio válaszok kérdéseinél.
     end_time: Végidő
     end_time_must_be_after_start_time: A befejezési időnek a kezdési idő után kell lennie.
     enhance_with_ai: Fejlesztés mesterséges intelligenciával
     enhance_with_ai_requires_ai_assistants: Az AI-val történő fejlesztéshez engedélyezni kell az AI-asszisztensek funkciót.
+    enter_description: Írja be a leírást
+    enter_name: Írja be a nevet
     error: Hiba
+    estimated_tokens: jelzők (becsült)
     evaluation_status: Értékelési állapot
     evaluation_status_not_done: Az értékelési státusz nem 'Kész' egy vagy több kiválasztott tantárgy esetében. Kérjük, minden kiválasztott felhasználó elvégezte az értékeléseket vagy jelölje meg.
     export_admin_roles_permissions: Adminisztrátori szerepkörök és engedélyek exportálása
@@ -139,14 +220,26 @@ hu:
     export_completion_status: Exportálás befejezési állapota
     export_completion_statuses_scheduled: A befejezési állapotok exportálási feladata sikeresen ütemezésre került.
     export_detailed_completion_status: Részletes
+    feature_ai_assistants_description: Az AI-alapú asszisztensek engedélyezése a felhasználói élmény javítása érdekében
+    feature_ai_assisted_idp_description: Használja az AI-t az egyéni fejlesztési terv ajánlásainak kidolgozásához
+    feature_ai_content_analysis_description: Engedélyezze az AI-alapú tartalomelemzést az értékelésekhez
+    feature_ai_translation_description: Engedélyezze az automatikus, AI-alapú tartalomfordítást a jelentésekben
     feature_enhance_with_ai: Fejlesztés mesterséges intelligenciával
+    feature_enhance_with_ai_description: Az AI-alapú tartalomjavító funkciók engedélyezése
     feature_flags: Feature flags
+    feature_flags_ai_group: AI funkciók
+    feature_flags_communication_group: Kommunikáció
+    feature_flags_platform_group: A platform jellemzői
+    feature_global_skills_description: Hozzáférés a globális készségek könyvtárához az értékelésekhez
+    feature_idp_description: Engedélyezze az egyéni fejlesztési terv készítését a résztvevők számára
+    feature_sms_notification_description: SMS-értesítések engedélyezése kampánymeghívók és emlékeztetők esetén
     fill_empty_score_msg: Töltsd ki az összes végső pontszámot mentés előtt.
     final_score_empty_err_msg: "%{factor_name} végső pontszáma nem lehet üres."
     final_score_empty_msg: A végösszeg nem lehet üres.
     fix_grammar: Helyesírás javítása
     formal: Hivatalos
     generate_transcription: Átírás létrehozása
+    hide_middle_scores: Középső pontszámok elrejtése
     idp_plan_reset_success: A tervet sikeresen újraindították
     idp_templates: IDP-sablonok
     import_ai_artifacts: MI tárgyak importálása
@@ -175,6 +268,8 @@ hu:
     internal: Belső
     invalid_csv_header: A CSV fájl érvénytelen fejléceket tartalmaz.
     job_roles: Munkakörök
+    keywords: Kulcsszavak
+    keywords_placeholder: Írja be a kulcsszavakat vesszővel elválasztva.
     learning_from_others: Együttműködő tanulás [20]
     level: Szint
     level_apply: Jelentkezés
@@ -201,6 +296,10 @@ hu:
     min_value: Minimális érték
     minimum_10_words: Legalább 10 szó
     missing_min_max_values: A minimális és maximális értékek megadása kötelező.
+    model_answer: Minta válasz
+    model_answer_placeholder: Írja be a modellválaszt az AI pontozáshoz.
+    name: Név
+    name_max_length: A név nem haladhatja meg a %{length} karaktert.
     name_required: Név szükséges
     no_file_selected: Fájl nem volt kiválasztva
     no_notifications: Nincs értesítés
@@ -218,6 +317,8 @@ hu:
     only_editable_on_create: Ez az opció csak létrehozáskor szerkeszthető.
     options: Beállítások
     original_text: Eredeti szöveg
+    overall: Összességében
+    overall_score: Összes pontszám
     participants: Résztvevők
     permissions:
       aiArtifacts:
@@ -254,6 +355,7 @@ hu:
         bulk_regenerate_reports: Jelentések tömeges újragenerálása
         manage: Kezel
         manage_admins: Adminisztrátorok kezelése
+        manage_ai_scoring_approval_settings: AI pontozás jóváhagyási beállítások kezelése
         manage_factor_benchmark_scores: Tényező benchmark pontszámainak kezelése
         manage_messages: Üzenetek kezelése
         manage_options: Beállítások kezelése
@@ -642,6 +744,7 @@ hu:
         view_recordings: Felvételek megtekintése
     permissions_360_campaigns: 360°-os kampányokra vonatkozó engedélyek
     piped_text: Csővezetékes szöveg
+    precision: Precíziós
     privacy: Adatvédelem
     proctoring: Felügyelet
     professional: Professzionális
@@ -654,15 +757,19 @@ hu:
     project_number: Projekt száma
     project_settings: Projekt beállításai
     projects: Projektek
+    prompt: Prompt
     question_center: Kérdésközpont
     questions: Kérdések
+    range_min_max: RANGE %{min} - %{max}
     reflection_questions: Reflexiós kérdések
     registration_codes: Regisztrációs kódok
     registration_settings: Regisztrációs beállítások
+    remove_children_to_change_type: Az összes gyermeket eltávolítani a típus megváltoztatásához
     report_approvals: Jelentés jóváhagyása
     report_condition_not_met: Értékelésre %{required} %{relationship} szüksége, de csak %{actual}
     report_conditions_not_met_detailed: A jelentés %{user} nem felel meg a rendelkezésre állási feltételeknek. %{conditions}
     report_denied: A %{user} jelentését elutasították
+    report_name: Jelentés neve
     report_no_evaluations: A %{user} jelentése nem érhető el – értékelések nem érkeztek.
     report_not_generated: Jelentés %{user} megfelel a rendelkezésre állási feltételeknek, de még nem készült el. Kérem, előbb készítsd el a jelentést.
     report_on_hold: A %{user} jelentése jelenleg szünetben van
@@ -725,8 +832,32 @@ hu:
     saml_service_provider_updated_date: Frissített dátum
     saml_service_providers: Szolgáltatók
     saml_settings: SAML beállítások
+    save: Mentés
+    save_assessment_for_scoring_management: Mentsd el az értékelést, mielőtt elkezdenéd a pontozást.
     scheduling: Ütemezés
+    score: Pontszám
+    score_approval_not_allowed_to_approve: Nem engedélyezheti ezt az eredményt.
+    score_approval_not_allowed_to_discard: Ezt a pontszámot nem szabad eldobni.
+    score_definition_placeholder: Írja be a pontszám szintjének meghatározását
+    score_definitions: Pontszámok meghatározása
+    score_max: Pontszám Max
+    score_min: Pontszám Min
+    score_must_be_in_between_min_and_max: A pontszámnak %{min} és %{max} között kell lennie.
+    score_range_info: 'Pontszámtartomány: %{min} - %{max}'
+    score_with_ai: Pontszám az AI segítségével
     scoring: Pontozás
+    scoring_approval_add_settings: Beállítások hozzáadása
+    scoring_approval_allow_bulk_approve: Tömeges jóváhagyás engedélyezése
+    scoring_approval_allow_bulk_approve_scores: Tömeges pontszámok jóváhagyásának engedélyezése
+    scoring_approval_allow_one_level_approve: Egy szintű jóváhagyás engedélyezése
+    scoring_approval_approver_users: Jóváhagyó felhasználók
+    scoring_approval_approvers: Jóváhagyók
+    scoring_approval_assessment: Értékelés
+    scoring_approval_assessor_users: Értékelő felhasználók
+    scoring_approval_modal_title: Pontszám jóváhagyási beállítások
+    scoring_approval_remove_modal_success: 'Az értékelés azonosítószámának jóváhagyási beállítása: %{assessmentId} sikeresen törölve.'
+    scoring_approval_remove_modal_text: 'Biztosan törölni szeretné ezt a beállítást az értékelési azonosítóhoz: %{assessmentId}?'
+    scoring_supported_only_for_ai_questions: Pontszám csak az aktuálisan kiválasztott tényező AI-kompatibilis kérdéseinél adható.
     scoring_value_info: A pontszámnak %{min} és %{max} között kell lennie.
     scoring_value_out_of_range_err_msg: "%{factor_name} pontszáma %{min} és %{max} között kell lennie."
     search_admins: Adminisztrátorok keresése
@@ -737,7 +868,10 @@ hu:
     select_level: Szint kiválasztása
     select_start_time: Kezdési idő kiválasztása
     send_email: E-mail küldése
+    set_min_max_scores_warning: Kérjük, állítsa be a minimális és maximális pontszámokat ehhez a tényezőhöz az AI pontozás konfigurálásához.
     settings: Beállítások
+    show_all_assessment_responses: Az összes értékelési válasz megjelenítése
+    show_middle_scores: "%{count}-nak további pontszámok megjelenítése (opcionális)..."
     show_original: Eredeti megjelenítése
     show_submenu: Almenü megjelenítése
     show_translated: Fordítás megjelenítése
@@ -755,6 +889,7 @@ hu:
     subdomain: Aldomain
     subject_part_of_other_invite: Az e-mail címmel %{user_email} rendelkező személy már meghívást kapott a „%{workshop_invite_name}” rendezvényre.
     target_job_role: Célkitűzés
+    this_field_is_required: Ez a mező kötelező
     timezone: Időzóna
     tone: Hangszín
     toolbar_ai_insight: AI betekintés
@@ -778,8 +913,12 @@ hu:
     upload_success: Sikeresen feltöltve
     user_report_events: Felhasználói jelentés eseményei
     users: Felhasználók
+    validation_error: Kérjük, töltse ki az összes kötelező mezőt!
     view_licenses: Licencek megtekintése
     waiting: Várakozás
+    weight: Súly
+    what_to_look_for: Mit kell keresni
+    what_to_look_for_placeholder: Ezt a tényezőt bizonyító magatartások, cselekvések vagy eredmények
     words: Szavak
     workshops: Workshopok
     writing_assistant_not_configured: Írási asszisztens nincs konfigurálva

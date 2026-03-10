@@ -12,6 +12,9 @@ zh-Hant:
         user_not_found: 使用者未找到或不屬於同一專案
       admin:
         already_added: 已加入電子郵件的管理員。
+      ai_scoring_approval_settings:
+        assessment_exists: 该评估的AI评分审批设置已存在。
+        validates_admins: 管理员无法访问该活动。
       already_assigned?: 無法連結此評估 - 評估已指定給「%{linked_assessor_form_name}」。
       already_invited: 此使用者已存在於您嘗試新增的評估中心。
       assessor_assessment:

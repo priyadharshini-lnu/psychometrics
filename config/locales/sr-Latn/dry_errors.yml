@@ -12,6 +12,9 @@ sr-Latn:
         user_not_found: Korisnik nije pronađen ili nije deo istog projekta
       admin:
         already_added: Admin sa već dodat e-poštom.
+      ai_scoring_approval_settings:
+        assessment_exists: Поставка за одобрење AI скоринга за ову процену већ постоји.
+        validates_admins: Администратори немају приступ кампањи.
       already_assigned?: Ne mogu povezati ovu procenu - već je dodeljena '%{linked_assessor_form_name}'.
       already_invited: Ovaj korisnik već postoji u centru za procenu koji pokušavate da dodate.
       assessor_assessment:

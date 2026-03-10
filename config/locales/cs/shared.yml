@@ -7,27 +7,48 @@ cs:
     add: Přidat
     advanced: Pokročilý
     agree_and_continue: Souhlasím a pokračujte
+    approval_status: Stav schválení
+    approved: Schváleno
+    approved_by: Schváleno
+    approvers_list: Seznam schvalovatelů
     archive: Archivovat
     archived: Archivováno
+    assessed_by: Hodnoceno
+    assessment: Hodnocení
+    assessment_id: ID hodnocení
+    assessment_list: Seznam hodnocení
+    assessment_name: Název hodnocení
+    assessor_approved: Schváleno hodnotitelem
+    assessors_list: Seznam hodnotitelů
     asset_not_present: Aktivum není k dispozici
     audio: Audio
     authentication_failed: Autentizace selhala. Zkuste to prosím znovu.
+    back: Zpět
     basic: Základní
     camera_preview: Tady se zobrazí náhled fotoaparátu
+    campaign: Kampaň
     campaign_id: Identifikace kampaně
     cancel: Zrušit
     change_password: Změna hesla
     clear_filters: Vymazat filtry
+    client: Klient
     collaborative_learning: Společné učení
     completed: Dokončeno
     configurations: Konfigurace
     confirm: Potvrdit
     continue: Pokračovat
+    controller: Řídicí jednotka
+    cookies_statement: Prohlášení o souborech cookie
     copy: Kopírovat
     created_at: Vytvořeno v
     created_date: Datum vytvoření
+    custom_consent_text: Vlastní text souhlasu
+    custom_consent_text_required: Pro roli správce dat je vyžadován vlastní text souhlasu.
+    data_role: Role dat
     decline: Úpadek
     description: Popis
+    desktop_or_laptop_recommended: Doporučeno pro stolní počítače nebo notebooky
+    desktop_or_laptop_required: Požadován stolní počítač nebo notebook
     download: Stáhnout
     download_audio: Stáhnout zvukový soubor
     download_transcription: Stáhnout přepis
@@ -37,6 +58,7 @@ cs:
     email: E-mail
     export: Export
     failed: Neúspěšný
+    'false': false
     first_name: Jméno
     formal_learning: Formální učení
     generate: Generovat
@@ -50,6 +72,7 @@ cs:
     internet_disconnected_message: Probíhá pokus o opětovné připojení. Zkontrolujte připojení k internetu.
     last_name: Příjmení
     learning_on_the_job_label: Učení se přímo v práci
+    loading: Načítání...
     login: Přihlášení
     maintenance_in_hours: "%{hours} hodiny"
     maintenance_in_minutes: "%{minutes} zápisy"
@@ -60,20 +83,28 @@ cs:
     maintenance_upcoming_title: Nadcházející údržba
     media_question_transcriptions: Přepisy otázek médií
     media_responses: Reakce médií
+    mobile_proctoring_disabled_instructions: K pokračování v tomto hodnocení je zapotřebí stolní počítač nebo notebook. Přepněte se prosím na počítač, abyste mohli aktivitu dokončit.
+    mobile_proctoring_enabled_instructions: Pro nejlepší zážitek přejděte na stolní počítač nebo notebook, pokud je máte k dispozici. V případě potřeby můžete pokračovat na svém mobilním zařízení.
     modified_by: Upraveno podle
     modified_date: Datum úpravy
     more_actions: Další akce
     mte_logo_alt_text: Logo Mercer Talent Enterprise
     na_text: N/A
     name: Název
+    negative: Negativní
     new: Nové
     no_results_found: Nenalezeny žádné výsledky
     not_requested: Dosud nepožadováno
     ok: OK
     pending: Čeká na vyřízení
+    policy_version: Verze politiky
+    policy_version_format: Povolena jsou pouze celá čísla.
+    positive: Pozitivní
     processing: Zpracování
+    processor: Procesor
     proctoring_maintenance_active: Služba Proctoring je momentálně v údržbě z %{start_time} na %{end_time}. Zkuste to znovu po skončení údržby.
     proctoring_maintenance_upcoming: Proctoring bude od %{start_time} do %{end_time} v údržbě.
+    project: Projekt
     question_id: ID otázky
     question_transcription_disabled: Přepis je pro tuto otázku zakázán.
     rec: NAHRÁVÁNÍ
@@ -84,14 +115,20 @@ cs:
     removed: Odstraněno
     replace: Nahradit
     reset_password: Obnovit heslo
+    response_text: Odpověď
     rte_paste_content_exceeds_char_limit: Text překračuje limit znaků {{maxCharacterLimit}} a nelze jej vložit.
     rte_paste_content_exceeds_word_limit: Text překračuje limit slov {{maxWordLimit}} a nelze jej vložit.
     save: Uložit
     saving_video: Ukládání videa... Prosím, nezavírejte ani neobnovujte prohlížeč
+    scoring_details: Podrobnosti o bodování
     search: Hledat
     send_email: Odeslat e-mail
     show_more: Zobrazit více
     something_wrong: Něco se pokazilo. Kontaktujte správce.
+    status: Stav
+    subject: Předmět
+    submit: Odeslat
+    switch_to_laptop_or_desktop: Přepnout na notebook nebo stolní počítač
     table:
       entries:
         selected:
@@ -108,9 +145,12 @@ cs:
     transcription_not_enabled: Přepis není pro mediální odezvu povolen.
     transcription_status: Stav přepisu
     transcriptions: Přepisy
+    'true': true
     try_again: Zkusit znovu
     tte_terms_and_condition: Smluvní podmínky a ochrana soukromí
     type: Typ
     update: Aktualizovat
+    update_failed: Aktualizace se nezdařila
+    updated_successfully: Aktualizace úspěšně dokončena
     video: Video
     view: Zobrazit

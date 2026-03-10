@@ -862,6 +862,7 @@ hi:
         bulk_reports: थोक रिपोर्टें
         bulk_rescore_campaign_factors: थोक पुनः स्कोर अभियान कारक
         bulk_update_evaluation_status: बल्क अपडेट मूल्यांकन स्थिति
+        campaign_report_extract_and_upload_bulk_assets: अभियान रिपोर्ट अपलोड करें, थोक संपत्तियाँ
         compact_completion_status_export: संक्षिप्त समापन स्थिति निर्यात
         completion_status_export: पूर्णता स्थिति निर्यात
         copy_as_template_or_campaign: अभियान को टेम्पलेट के रूप में कॉपी करें
@@ -871,6 +872,7 @@ hi:
         export_admin_with_permissions: अनुमतिओं के साथ निर्यात प्रशासक
         export_assessment_questions: निर्यात मूल्यांकन प्रश्न
         export_campaign_ai_artifacts: निर्यात अभियान एआई कलाकृतियाँ
+        export_campaign_ai_artifacts_results: निर्यात अभियान एआई कलाकृतियों के परिणाम
         export_campaign_factors: निर्यात अभियान कारक
         export_campaign_scorings: अभियान स्कोरिंग्स का निर्यात करें
         export_dashboard_as_file: डैशबोर्ड को फ़ाइल के रूप में निर्यात करें
@@ -1277,6 +1279,7 @@ hi:
     record_not_found: रिकॉर्ड नहीं मिला
     user_not_authorized: उपयोगकर्ता अधिकृत नहीं है
   auth:
+    cookies_link: <a href="%{cookies_url}">कुकीज़ स्टेटमेंट
     current_password: वर्तमान पासवर्ड
     current_password_placeholder: वर्तमान पासवर्ड दर्ज करें
     email: ईमेल
@@ -1322,6 +1325,7 @@ hi:
     password_confirmation: पासवर्ड की पुष्टि करें
     password_confirmation_placeholder: पासवर्ड पुष्टि दर्ज करें
     password_placeholder: पासवर्ड दर्ज करें
+    privacy_statement_link: <a href="%{privacy_url}">गोपनीयता कथन
     registration:
       description: पंजीकरण करने और नया खाता बनाने के लिए नीचे दिए गए विवरण भरें।
       email_hint: हम आपकी गोपनीयता का सम्मान करते हैं और स्पैम को बर्दाश्त नहीं करते। हम कभी भी आपकी जानकारी किसी तीसरे पक्ष को नहीं देंगे।

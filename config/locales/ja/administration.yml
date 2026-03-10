@@ -735,6 +735,21 @@ ja:
       errors:
         invalid_headers: '以下のヘッダは無効です: %{headers}.'
     campaign_report:
+      bulk_assets_upload:
+        errors:
+          csv_and_zip_must_exist: 開始前に、CSVファイルとZIPファイルの両方をアップロードする必要があります。
+          csv_cannot_be_empty: CSVファイルは空であってはなりません。
+          csv_contains_blank_values: CSVには空白値が含まれています。すべてのuser_emailおよびfile_name値が存在する必要があります。
+          csv_file_name_must_be_unique: CSVファイルのファイル名値は一意である必要があります。
+          csv_must_contain_two_headers: CSVにはヘッダー付きの列が正確に2列存在する必要があります：%{headers}
+          csv_user_emails_must_be_unique: CSVのuser_email値は一意でなければなりません。
+          failed_to_attach_file: 'メールへのファイル添付に失敗しました: %{email}。エラー: %{error_message}'
+          file_names_in_csv_must_be_of_type_pdf: CSVに無効なファイル名エントリが含まれています。CSV内のすべてのファイル名値は.pdf拡張子を持つ必要があります。
+          file_processing_error: 'ファイル処理中にエラーが検出されました: %{error_message}'
+          max_emails_in_csv: CSVファイルに許可される%{max}のuser_emailエントリの最大数を超えています。お使いのCSVファイルには%{count}のuser_emailエントリが含まれています。
+          missing_user_reports: 'メールに関するユーザー報告の不足: %{emails}'
+          no_file_found_in_extracted_zip: 解凍したZIPファイル内にファイルが見つかりません
+          user_report_not_found: メールアドレス %{email} に対応するユーザーレポートが見つかりません
       bulk_download:
         data_range_error: 日付を選択してください
         modal:
@@ -839,6 +854,16 @@ ja:
           report: レポート
           send_digest_emails: ダイジェストメールの送信
           settings: 設定
+        scoring_approval:
+          allow_bulk_approve: 一括承認を許可する
+          allow_bulk_approve_scores: 一括承認スコアを許可する
+          approver_users: 承認者ユーザー
+          approvers: 承認者
+          assessment: 評価
+          assessor_users: 査定者ユーザー
+          modal_title: スコア承認設定
+          remove_modal_success: '評価ID: %{assessmentId} の承認設定が正常に削除されました'
+          remove_modal_text: '評価ID: %{assessmentId} の設定を削除してもよろしいですか？'
       assessors:
         spoof:
           successfully: "%{name} としてログインしました"
@@ -1005,6 +1030,8 @@ ja:
         ai_assistants_disabled_by_client: AI アシスタントはクライアントによって無効になっています
         ai_assisted_idp: AIアシストIDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP では、AI アシスタント機能を有効にする必要があります
+        ai_content_analysis: AIコンテンツ分析
+        ai_content_analysis_disabled_by_client: AIコンテンツ分析はクライアントによって無効化されています
         ai_translation: AI翻訳
         ai_translation_disabled_by_client: クライアントによりAI翻訳が無効化されています
         global_skills: グローバル・スキル
@@ -2540,6 +2567,7 @@ ja:
     message: メッセージ
     meta_title: 管理パネル
     navigation:
+      approvals: 承認
       audit_logs: 監査ログ
       availability: 空室状況
       configuration: 構成
@@ -3206,9 +3234,11 @@ ja:
         actions: 行動
         approval_status: 承認状況
         approved_by: 承認者
+        assessed_by: 評価者
         campaign_name: キャンペーン名
         qc_by: QC By
         report_name: レポート名
+        subject_email: 件名 メール
         user_email: ユーザーEメール
         user_name: ユーザー名
       dashboard: ダッシュボード
@@ -3773,6 +3803,11 @@ ja:
         tools: ツール
         weightages: ウエイト
       weighted_average: 加重平均
+    scoring_approval:
+      approve_all: すべて承認
+      bulk_approve_success: "%{approved} スコア承認済み。"
+      review: レビュー
+      score_approvals: AIスコアリング承認
     search: 検索
     security_setting:
       180_days: 180日

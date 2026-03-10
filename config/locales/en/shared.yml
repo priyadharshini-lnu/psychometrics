@@ -39,6 +39,7 @@ en:
     continue: Continue
     controller: Controller
     cookies_statement: Cookies Statement
+    copied_to_clipboard: Copied to clipboard
     copy: Copy
     created_at: Created At
     created_date: Created Date
@@ -81,6 +82,8 @@ en:
     maintenance_time_remaining: Time remaining
     maintenance_upcoming_description: We'll be performing scheduled maintenance on %{date} for approximately %{duration} to enhance your experience. During this time, you won't be able to access or complete any assigned tasks. We appreciate your patience.
     maintenance_upcoming_title: Upcoming Maintenance
+    media_id: Media ID
+    media_preview: Media Preview
     media_question_transcriptions: Media Question Transcriptions
     media_responses: Media Responses
     mobile_proctoring_disabled_instructions: This assessment requires a desktop or laptop to continue. Please switch to a computer to complete the activity.
@@ -105,6 +108,7 @@ en:
     proctoring_maintenance_active: Proctoring is currently under maintenance from %{start_time} to %{end_time}. Please try again after the maintenance window.
     proctoring_maintenance_upcoming: Proctoring will be under maintenance from %{start_time} to %{end_time}.
     project: Project
+    question: Question
     question_id: Question ID
     question_transcription_disabled: Transcription is disabled for this question
     rec: REC
@@ -154,3 +158,6 @@ en:
     updated_successfully: Updated successfully
     video: Video
     view: View
+    view_audio: View Audio
+    view_transcription: View Transcription
+    view_video: View Video
