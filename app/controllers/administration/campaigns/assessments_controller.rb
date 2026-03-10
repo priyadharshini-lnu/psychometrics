@@ -101,7 +101,12 @@ module Administration
       end
 
       def rescore_responses
-        AdminJob.call(:rescore_assessment, { campaign_id: campaign.id, assessment_id: assessment.id }, current_user)
+        AdminJob.call(
+          :rescore_assessment,
+          { campaign_id: campaign.id, assessment_id: assessment.id,
+            allow_ai_rescore: params[:allow_ai_rescore].to_s == 'true' },
+          current_user
+        )
         render json: :ok
       end
 

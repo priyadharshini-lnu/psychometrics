@@ -223,7 +223,9 @@ const AssessmentList: React.FC<Props> = ({
               <Switch
                 checked={assessment.prework}
                 disabled={!permissions.updatePrework}
-                onChange={checked => handleTogglePrework(assessment, parsedCampaignId, checked)}
+                onChange={
+                  checked => handleTogglePrework(assessment, parsedCampaignId, checked)
+                }
               />
             )}
           />
@@ -238,13 +240,17 @@ const AssessmentList: React.FC<Props> = ({
                     campaignId: parsedCampaignId,
                     projectId: parsedProjectId,
                     openModal,
-                    rescoreResponses: () => rescoreResponses(parsedCampaignId, assessment.id),
+                    rescoreResponses: (
+                      aiRescore = false,
+                    ) => rescoreResponses(parsedCampaignId, assessment.id, aiRescore),
                     exportRawResults,
                     exportScoringResults,
                     exportNormedResults,
                     exportRawFactorScores,
                     exportOccupations,
-                    normalizeFactorScores: () => normalizeFactorScores(parsedCampaignId, assessment.id),
+                    normalizeFactorScores: (
+                      () => normalizeFactorScores(parsedCampaignId, assessment.id)
+                    ),
                     exportExternalResults,
                     updateExternalConfig,
                     message,

@@ -3,11 +3,12 @@
 module UsersResults
   module Scoring
     class MergeAIScores < BaseCommand
-      private_attr_reader :users_result, :rescore, :user_assessment
+      private_attr_reader :users_result, :rescore, :user_assessment, :skip_post_scoring_tasks
 
-      def initialize(users_result, rescore: false)
+      def initialize(users_result, rescore: false, skip_post_scoring_tasks: false)
         @users_result = users_result
         @rescore = rescore
+        @skip_post_scoring_tasks = skip_post_scoring_tasks
         @user_assessment = users_result.user_assessment
       end
 
@@ -16,7 +17,7 @@ module UsersResults
         return broadcast :ok, scoring if ai_scores.empty?
 
         merge_scores!
-        handle_post_scoring_tasks!
+        handle_post_scoring_tasks! unless skip_post_scoring_tasks
 
         broadcast :ok, users_result.scoring
       rescue StandardError => e

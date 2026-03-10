@@ -43,21 +43,36 @@ describe UserAssessments::SaveScores do
           rescore: true
         )
       end
-    end
 
-    context 'when it is an AI assessment' do
-      before do
-        allow_any_instance_of(Assessment).to receive(:has_ai_questions?).and_return(true)
-      end
+      context 'when assessment has AI questions' do
+        before do
+          allow_any_instance_of(Assessment).to receive(:has_ai_questions?).and_return(true)
+        end
 
-      it 'calls TriggerAIScoringJob' do
-        expect(AI::ContentAnalysis::TriggerAIScoringJob).to receive(:perform_later).with(
-          kind_of(Integer),
-          rescore: false,
-          admin_job_record_id: nil
-        )
+        context 'when allow_ai_rescore is false' do
+          it 'merges AI scores and does NOT trigger AI job' do
+            expect(UsersResults::Scoring::MergeAIScores).to receive(:call!).with(
+              user_result,
+              skip_post_scoring_tasks: true
+            )
+            expect(AI::ContentAnalysis::TriggerAIScoringJob).not_to receive(:perform_later)
 
-        described_class.call!(user_assessment, current_user)
+            described_class.call!(user_assessment, current_user, rescore: true, allow_ai_rescore: false)
+          end
+        end
+
+        context 'when allow_ai_rescore is true' do
+          it 'triggers AI job and does NOT merge scores (manually)' do
+            expect(UsersResults::Scoring::MergeAIScores).not_to receive(:call!)
+            expect(AI::ContentAnalysis::TriggerAIScoringJob).to receive(:perform_later).with(
+              user_result.id,
+              rescore: true,
+              admin_job_record_id: nil
+            )
+
+            described_class.call!(user_assessment, current_user, rescore: true, allow_ai_rescore: true)
+          end
+        end
       end
     end
   end
