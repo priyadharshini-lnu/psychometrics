@@ -372,6 +372,10 @@ class UserAssessment < ApplicationRecord
     AI::ScoringApprovalSetting.exists?(campaign_id: campaign_id, assessment_id: assessment_id)
   end
 
+  def ai_scoring_approved?
+    %w[assessor_approved approver_approved].include?(approval_status)
+  end
+
   def auto_approve_scoring!
     update!(approval_status: 'auto_approved', approval_status_updated_at: Time.current)
   end

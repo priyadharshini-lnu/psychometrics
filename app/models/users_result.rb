@@ -58,7 +58,7 @@ class UsersResult < ApplicationRecord
   delegate :subject_id, :evaluator_id, :assessment_id, :campaign_id, :norm_id, :status, :real_status,
            :norm_data, :completed_at, :started_at, :completion_reason, :available_locales,
            :user_reports, :user, :user_id, :campaign_user, :deemed_completed?, :completion_status_code,
-           :score_calculated, :score_calculated_at,
+           :score_calculated, :score_calculated_at, :ai_scoring_approved?,
            to: :user_assessment, allow_nil: true
   delegate(*UserAssessment.statuses.keys.map { |status| [:"#{status}?", :"#{status}!"] }.flatten,
            to: :user_assessment, allow_nil: true)

@@ -46,6 +46,7 @@ module UserAssessments
     def should_trigger_ai_scoring?
       return false unless user_result.assessment.has_ai_questions?
       return false if rescore && !allow_ai_rescore
+      return false if user_assessment.ai_scoring_approved?
 
       true
     end
