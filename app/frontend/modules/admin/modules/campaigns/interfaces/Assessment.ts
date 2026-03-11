@@ -47,6 +47,7 @@ export default interface Assessment {
     importResults: boolean
     remove: boolean
     rescoreResponses: boolean
+    rescoreAiResponses: boolean
     updateExternalConfig: boolean
     scheduleAssessment: boolean
     toggleAutoAssign: boolean

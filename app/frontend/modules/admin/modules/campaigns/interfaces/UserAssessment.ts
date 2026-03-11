@@ -75,6 +75,7 @@ export default interface UserAssessment {
     updateNorm: boolean
     remove: boolean
     rescoreResponse: boolean
+    rescoreAiResponse: boolean
     resetProgress: boolean
     pushWebhook: boolean
     updateMettlSchedule: boolean

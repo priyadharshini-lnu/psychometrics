@@ -66,6 +66,10 @@ module Administration
       has_permission?(:results, :rescore_responses)
     end
 
+    def rescore_ai_response?
+      record&.assessment&.has_ai_questions? && has_permission?(:results, :rescore_responses)
+    end
+
     def toggle_require_scheduling?
       @user.is?(:superadmin) || @user.has_permission?(
         :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id

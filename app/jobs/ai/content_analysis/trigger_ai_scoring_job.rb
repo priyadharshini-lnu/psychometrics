@@ -3,6 +3,8 @@
 module AI
   module ContentAnalysis
     class TriggerAIScoringJob < ApplicationJob
+      include AdminJobs::Concerns::Syncable
+
       queue_as :default
 
       private attr_reader :users_result, :admin_job_record_id
@@ -12,10 +14,17 @@ module AI
         @admin_job_record_id = admin_job_record_id
 
         return unless users_result.assessment.has_ai_questions?
-        return unless should_process?(rescore)
+
+        unless should_process?(rescore)
+          complete_admin_job!
+          return
+        end
 
         mark_as_pending!
-        return unless users_result.ready_for_ai_scoring?
+        unless users_result.ready_for_ai_scoring?
+          complete_admin_job!
+          return
+        end
 
         scorable_questions.find_each do |question|
           ScoreQuestionJob.perform_later(
@@ -38,6 +47,7 @@ module AI
         return false unless users_result.completed?
         return false if users_result.ai_scoring_processing? && !rescore
         return false if users_result.ai_scoring_completed? && !rescore
+        return false if users_result.ai_scoring_approved?
 
         true
       end

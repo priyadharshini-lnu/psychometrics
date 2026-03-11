@@ -17,7 +17,8 @@ module AdminJobs
         recompute = ::UsersResults::Recompute.new(
           res,
           owner,
-          admin_job_record_id: record.id
+          admin_job_record_id: record.id,
+          allow_ai_rescore: record.data['allow_ai_rescore']
         )
         recompute.on(:ok) { record.increment_completed_tasks! }
         recompute.on(:waiting) { nil }

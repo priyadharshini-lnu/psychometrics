@@ -33,6 +33,7 @@ import DownloadReportsModal from './DownloadReportsModal'
 import UpdateLocalesModal from './UpdateLocalesModal'
 import { PropsFromRedux } from './connect'
 import styles from './styles.less'
+import RescoreResponseModal from '~/modules/admin/modules/campaigns/components/RescoreResponseModal'
 import { useResources } from '~/hooks/useResources'
 import {
   CampaignAssessorAssessments, useCampaignAssessorAssessmentsStore,
@@ -64,6 +65,7 @@ const MODALS = {
   AssessorCampaignAssessmentGroupModal,
   ReportsLanguageSelectionModal,
   DownloadReportsModal,
+  RescoreResponseModal,
   UploadBulkAssetsModal,
 }
 

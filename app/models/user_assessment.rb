@@ -56,6 +56,7 @@ class UserAssessment < ApplicationRecord
 
   delegate :saville?, :iiht?, :pearson?, :mettl?, :simulation?, :hogan?, :skillvue?, :yoodli?,
            :mhs?, :assessor_form?,
+           :has_ai_questions?,
            :external?, :external_settings, :combined_hogan_assessment?, to: :assessment
   delegate :workshop_activity?, :workshop_activity, :workshop_activity_duration,
            to: :campaign_assessment, allow_nil: true
@@ -369,6 +370,10 @@ class UserAssessment < ApplicationRecord
 
   def has_ai_scoring_approval_flow?
     AI::ScoringApprovalSetting.exists?(campaign_id: campaign_id, assessment_id: assessment_id)
+  end
+
+  def ai_scoring_approved?
+    %w[assessor_approved approver_approved].include?(approval_status)
   end
 
   def auto_approve_scoring!

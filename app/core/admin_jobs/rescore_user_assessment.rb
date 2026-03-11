@@ -5,7 +5,11 @@ module AdminJobs
     def call
       record.update(total_tasks: 1)
 
-      recompute = ::UsersResults::Recompute.new(user_result, owner, admin_job_record_id: record.id)
+      recompute = ::UsersResults::Recompute.new(
+        user_result, owner,
+        admin_job_record_id: record.id,
+        allow_ai_rescore: record.data['allow_ai_rescore']
+      )
       recompute.on(:ok) do
         record.increment_completed_tasks!
         broadcast :ok

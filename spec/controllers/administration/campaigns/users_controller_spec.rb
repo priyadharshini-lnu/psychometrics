@@ -204,6 +204,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
         'update_additional_time' => policy.update_additional_time?,
         'update_norm' => policy.update_norm?,
         'rescore_response' => policy.rescore_response?,
+        'rescore_ai_response' => policy.rescore_ai_response?,
         'remove' => policy.destroy?,
         'reset_progress' => policy.reset_progress?,
         'push_webhook' => true,

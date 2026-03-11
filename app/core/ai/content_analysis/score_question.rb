@@ -100,6 +100,7 @@ module AI
       end
 
       def should_regenerate?
+        return false if user_assessment.ai_scoring_approved?
         return true if rescore
         return true if session.failed? || session.scores.blank?
 
