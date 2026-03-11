@@ -152,6 +152,7 @@ en:
     configure_model_answer_title: Configure Model Answer and Keywords
     confirm_remove_admin: Are you sure you want to remove admin user with email '%{email}'?
     copied: Copied
+    copy_ai_artifacts: Copy AI Artifacts
     country: Country
     create_client: Create Client
     create_indicator: Create Indicator
