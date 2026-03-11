@@ -13,7 +13,7 @@ module AdminJobs
     end
 
     def valid?
-      campaign_report.present? && campaign_report.bulk_assets_zip.attached?
+      campaign_report.present?
     end
 
     def generate_title_link
