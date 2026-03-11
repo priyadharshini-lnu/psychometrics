@@ -61,6 +61,7 @@ module Builders
       }
       FactorsScoring.where("props::text = '[]' AND (ai_scoring_config IS NULL OR ai_scoring_config::text = '{}')").
         delete_all
+      delete_factors_scorings_associated_with_parent_factors
     end
 
     def save_question_recoding!
@@ -83,6 +84,15 @@ module Builders
         conflict_target: %i[question_id assessment_id], columns: [:props]
       }
       QuestionRecoding.where("props::text = '[]'").delete_all
+    end
+
+    private
+
+    def delete_factors_scorings_associated_with_parent_factors
+      parent_factor_ids = assessment.dimension.factors.where.not(child_factor_type: nil).pluck(:id)
+      return if parent_factor_ids.blank?
+
+      FactorsScoring.where(factor_id: parent_factor_ids, assessment: assessment).delete_all
     end
   end
 end
