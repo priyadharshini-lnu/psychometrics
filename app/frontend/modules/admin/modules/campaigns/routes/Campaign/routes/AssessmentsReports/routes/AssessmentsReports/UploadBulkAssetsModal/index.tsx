@@ -7,7 +7,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import axios from 'axios'
 import { DirectUpload } from '@rails/activestorage'
 
-import { CheckOutlined, LoadingOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { CheckOutlined, LoadingOutlined, CloudDownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 const { I18n, $ } = window
 
@@ -146,6 +146,14 @@ const UploadBulkAssetsModal: React.FC<Props> = ({
             ),
           }}
         />
+      </div>
+      <div className="mbl" style={{ fontSize: '16px' }}>
+        <a href="/example_csv/bulk_assets_upload_example.csv" target="_blank">
+          <CloudDownloadOutlined />
+          <span className="mls">
+            {I18n.t('admin.download_bulk_asset_download_example_csv')}
+          </span>
+        </a>
       </div>
       <div style={{ marginBottom: 16 }}>
         <Upload
