@@ -121,7 +121,7 @@ export const SheetSettingsComponent: FC<PropsFromRedux> = ({
                        placement="top"
                        title={I18n.t('administration.sheets.column.not_allowed_for_dashboard_use')}
                      >
-                       <InfoCircleOutlined />
+                       <span><InfoCircleOutlined /></span>
                      </Tooltip>
                    )}
                  </>
