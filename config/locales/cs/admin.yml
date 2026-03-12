@@ -81,6 +81,7 @@ cs:
     ai_scoring_approvals: Schvalování bodování AI
     ai_translation: Překlad pomocí umělé inteligence
     all_corner_rounded: Všechny rohy zaoblené
+    allow_ai_rescoring: Povolit přehodnocení AI
     api_keys: Klíče API
     apply_to_existing_users: Použít tuto změnu na stávající uživatele v této kampani
     assessment_question_not_supported: Tento typ otázky není v současné době podporován.
@@ -191,6 +192,7 @@ cs:
     dimensions: Rozměry
     done: Hotový
     done_tooltip: Již nelze podat žádné další hodnocení tohoto uživatele, protože hodnocení tohoto uživatele je označeno jako provedené %{marked_by}
+    download_bulk_asset_download_example_csv: Stáhnout příklad CSV.
     edit_campaign_admin: Upravit správce kampaně
     edit_client_admin: Upravit správce klienta
     edit_indicator: Upravit indikátor
@@ -777,6 +779,7 @@ cs:
     reports: Zprávy
     reports_limit_exceeded: Hromadné stažení je omezeno na 1000 souborů zpráv. Pokud jste vybrali mnoho jazyků, prosím, omezte to.
     reports_not_found: Žádné hlášení nenalezeny. Před stažením prosím vygenerujte zprávy.
+    rescore_responses_content: Tím se přepočítají skóre za odpovědi v tomto předmětu. Povolte možnost Povolit přepočítání skóre pomocí AI, aby se odpovědi u otázek typu Skóre pomocí AI přehodnotily pomocí umělé inteligence.
     reset_idp_plan: Plán resetu
     reset_idp_plan_confirmation: Jste si jistý, že chcete plán resetovat?
     reset_idp_plan_title: Plán resetu

@@ -81,6 +81,7 @@ id:
     ai_scoring_approvals: Persetujuan Penilaian AI
     ai_translation: Terjemahan AI
     all_corner_rounded: Semua sudut bulat
+    allow_ai_rescoring: Izinkan Penilaian Ulang oleh AI
     api_keys: Kunci API
     apply_to_existing_users: Terapkan perubahan ini kepada pengguna yang sudah ada dalam kampanye ini.
     assessment_question_not_supported: Jenis pertanyaan ini saat ini tidak didukung.
@@ -191,6 +192,7 @@ id:
     dimensions: Dimensi
     done: Selesai
     done_tooltip: Tidak ada lagi evaluasi yang dapat diajukan untuk pengguna ini karena evaluasi pengguna ini ditandai sebagai dilakukan oleh %{marked_by}
+    download_bulk_asset_download_example_csv: Unduh Contoh CSV.
     edit_campaign_admin: Edit Admin Kampanye
     edit_client_admin: Edit Admin Klien
     edit_indicator: Edit Indikator
@@ -777,6 +779,7 @@ id:
     reports: Laporan
     reports_limit_exceeded: Unduhan massal dibatasi hingga 1000 file laporan. Jika Anda telah memilih banyak bahasa, harap kurangi.
     reports_not_found: Tidak ada laporan yang ditemukan. Silakan buat laporan sebelum mengunduh.
+    rescore_responses_content: Ini akan menghitung ulang skor untuk jawaban pada mata pelajaran ini. Aktifkan "Izinkan Penilaian Ulang AI" untuk mengevaluasi ulang jawaban menggunakan AI pada pertanyaan yang menggunakan AI untuk penilaian.
     reset_idp_plan: Atur Ulang Paket
     reset_idp_plan_confirmation: Apakah Anda yakin ingin mengatur ulang paket?
     reset_idp_plan_title: Atur Ulang Paket

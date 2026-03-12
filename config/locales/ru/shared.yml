@@ -39,6 +39,7 @@ ru:
     continue: Продолжить
     controller: Контроллер
     cookies_statement: Заявление о файлах cookie
+    copied_to_clipboard: Скопировано в буфер обмена
     copy: Копировать
     created_at: Создано в
     created_date: Дата создания
@@ -81,6 +82,8 @@ ru:
     maintenance_time_remaining: Оставшееся время
     maintenance_upcoming_description: Мы будем проводить плановое техническое обслуживание на сайте %{date} в течение примерно %{duration}, чтобы улучшить ваш опыт работы с сайтом. В течение этого времени вы не сможете получить доступ к назначенным задачам или выполнить их. Благодарим вас за терпение.
     maintenance_upcoming_title: Предстоящее техническое обслуживание
+    media_id: Идентификатор СМИ
+    media_preview: Предварительный просмотр для СМИ
     media_question_transcriptions: Транскрипции вопросов СМИ
     media_responses: Реакция СМИ
     mobile_proctoring_disabled_instructions: Для продолжения этой оценки требуется настольный компьютер или ноутбук. Пожалуйста, перейдите на компьютер, чтобы завершить задание.
@@ -105,6 +108,7 @@ ru:
     proctoring_maintenance_active: В настоящее время сайт %{start_time} находится на техническом обслуживании и будет доступен по адресу %{end_time}. Пожалуйста, попробуйте снова после завершения технического обслуживания.
     proctoring_maintenance_upcoming: Процесс проктинга будет находиться на техническом обслуживании с %{start_time} по %{end_time}.
     project: Проект
+    question: Вопрос
     question_id: Идентификатор вопроса
     question_transcription_disabled: Транскрипция для этого вопроса отключена.
     rec: REC
@@ -154,3 +158,6 @@ ru:
     updated_successfully: Обновление успешно завершено
     video: Видео
     view: Просмотр
+    view_audio: Просмотр аудио
+    view_transcription: Просмотреть транскрипцию
+    view_video: Посмотреть видео

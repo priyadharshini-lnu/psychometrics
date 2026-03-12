@@ -39,6 +39,7 @@ de:
     continue: Fortsetzen
     controller: Steuergerät
     cookies_statement: Cookie-Erklärung
+    copied_to_clipboard: In die Zwischenablage kopiert
     copy: Kopie
     created_at: Erstellt am
     created_date: Erstellt am
@@ -81,6 +82,8 @@ de:
     maintenance_time_remaining: Verbleibende Zeit
     maintenance_upcoming_description: Wir führen planmäßige Wartungsarbeiten an %{date} für etwa %{duration} durch, um Ihre Benutzererfahrung zu verbessern. Während dieser Zeit können Sie nicht auf zugewiesene Aufgaben zugreifen oder diese erledigen. Wir danken Ihnen für Ihre Geduld.
     maintenance_upcoming_title: Bevorstehende Wartungsarbeiten
+    media_id: Medien-ID
+    media_preview: Medienvorschau
     media_question_transcriptions: Transkriptionen von Medienfragen
     media_responses: Medienreaktionen
     mobile_proctoring_disabled_instructions: Für diese Bewertung benötigen Sie einen Desktop-PC oder Laptop. Bitte wechseln Sie zu einem Computer, um die Aktivität abzuschließen.
@@ -105,6 +108,7 @@ de:
     proctoring_maintenance_active: Die Proctoring-Funktion wird derzeit von %{start_time} auf %{end_time} umgestellt. Bitte versuchen Sie es nach Abschluss der Wartungsarbeiten erneut.
     proctoring_maintenance_upcoming: Die Überwachung wird von %{start_time} bis %{end_time} gewartet.
     project: Projekt
+    question: Frage
     question_id: Fragen-ID
     question_transcription_disabled: Die Transkription ist für diese Frage deaktiviert.
     rec: REC
@@ -154,3 +158,6 @@ de:
     updated_successfully: Erfolgreich aktualisiert
     video: Video
     view: Ansicht
+    view_audio: Audio anzeigen
+    view_transcription: Transkription anzeigen
+    view_video: Video ansehen

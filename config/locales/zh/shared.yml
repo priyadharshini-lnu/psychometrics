@@ -39,6 +39,7 @@ zh:
     continue: 继续
     controller: 控制器
     cookies_statement: Cookies声明
+    copied_to_clipboard: 已复制到剪贴板
     copy: 复制
     created_at: 创建时间
     created_date: 创建日期
@@ -81,6 +82,8 @@ zh:
     maintenance_time_remaining: 剩余时间
     maintenance_upcoming_description: 我们将对 %{date} 进行计划维护，预计持续约 %{duration}，以提升您的使用体验。在此期间，您将无法访问或完成任何分配的任务。感谢您的耐心等待。
     maintenance_upcoming_title: 即将进行的维护
+    media_id: 媒体ID
+    media_preview: 媒体预览
     media_question_transcriptions: 媒体提问实录
     media_responses: 媒体反应
     mobile_proctoring_disabled_instructions: 本次评估需要使用台式机或笔记本电脑才能继续。请切换至计算机以完成此项活动。
@@ -105,6 +108,7 @@ zh:
     proctoring_maintenance_active: 监考系统正在进行维护，网址将从 %{start_time} 迁移至 %{end_time}。请在维护窗口结束后再次尝试。
     proctoring_maintenance_upcoming: 监考系统将于%{start_time}至%{end_time}期间进行维护。
     project: 项目
+    question: 问题
     question_id: 问题ID
     question_transcription_disabled: 此问题已禁用转录功能
     rec: 录制
@@ -154,3 +158,6 @@ zh:
     updated_successfully: 更新成功
     video: 视频
     view: 查看
+    view_audio: 查看音频
+    view_transcription: 查看转录文本
+    view_video: 观看视频

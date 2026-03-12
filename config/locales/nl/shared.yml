@@ -39,6 +39,7 @@ nl:
     continue: Voortzetten
     controller: Controller
     cookies_statement: Cookiesverklaring
+    copied_to_clipboard: Gekopieerd naar klembord
     copy: Kopieer
     created_at: Gemaakt op
     created_date: Datum aangemaakt
@@ -81,6 +82,8 @@ nl:
     maintenance_time_remaining: Resterende tijd
     maintenance_upcoming_description: We voeren gepland onderhoud uit op %{date} gedurende ongeveer %{duration} om uw ervaring te verbeteren. Gedurende deze periode kunt u geen toegang krijgen tot toegewezen taken en deze ook niet voltooien. Wij danken u voor uw geduld.
     maintenance_upcoming_title: Aankomend onderhoud
+    media_id: Media-ID
+    media_preview: Media Preview
     media_question_transcriptions: Transcripties van vragen van de media
     media_responses: Reacties in de media
     mobile_proctoring_disabled_instructions: Voor deze beoordeling is een desktop of laptop nodig. Ga naar een computer om de activiteit te voltooien.
@@ -105,6 +108,7 @@ nl:
     proctoring_maintenance_active: Proctoring wordt momenteel onderhouden van %{start_time} naar %{end_time}. Probeer het opnieuw na de onderhoudsperiode.
     proctoring_maintenance_upcoming: Proctoring zal worden onderhouden van %{start_time} tot %{end_time}.
     project: Project
+    question: Vraag
     question_id: Vraag-ID
     question_transcription_disabled: Transcriptie is uitgeschakeld voor deze vraag.
     rec: REC
@@ -154,3 +158,6 @@ nl:
     updated_successfully: Succesvol bijgewerkt
     video: Video
     view: Bekijken
+    view_audio: Audio bekijken
+    view_transcription: Transcriptie bekijken
+    view_video: Bekijk video

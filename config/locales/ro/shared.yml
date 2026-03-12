@@ -39,6 +39,7 @@ ro:
     continue: Continua
     controller: Controler
     cookies_statement: Declarație privind cookie-urile
+    copied_to_clipboard: Copiată în clipboard
     copy: Copiere
     created_at: Creat la
     created_date: Data creării
@@ -81,6 +82,8 @@ ro:
     maintenance_time_remaining: Timp rămas
     maintenance_upcoming_description: Vom efectua lucrări de întreținere programate pe %{date} timp de aproximativ %{duration} pentru a îmbunătăți experiența dvs. În acest interval, nu veți putea accesa sau finaliza niciuna dintre sarcinile atribuite. Vă mulțumim pentru răbdare.
     maintenance_upcoming_title: Întreținere viitoare
+    media_id: ID media
+    media_preview: Previzualizare media
     media_question_transcriptions: Transcrieri ale întrebărilor adresate de mass-media
     media_responses: Răspunsurile mass-media
     mobile_proctoring_disabled_instructions: Pentru a continua această evaluare, aveți nevoie de un computer desktop sau laptop. Vă rugăm să treceți la un computer pentru a finaliza activitatea.
@@ -105,6 +108,7 @@ ro:
     proctoring_maintenance_active: Proctoring este în prezent în curs de întreținere, de la %{start_time} la %{end_time}. Vă rugăm să încercați din nou după perioada de întreținere.
     proctoring_maintenance_upcoming: Proctoring va fi în curs de întreținere de la %{start_time} la %{end_time}.
     project: Proiect
+    question: Întrebare
     question_id: ID întrebare
     question_transcription_disabled: Transcrierea este dezactivată pentru această întrebare.
     rec: REC
@@ -149,3 +153,6 @@ ro:
     updated_successfully: Actualizat cu succes
     video: Video
     view: Vizualizare
+    view_audio: Vizualizați audio
+    view_transcription: Vizualizați transcrierea
+    view_video: Vizualizați videoclipul

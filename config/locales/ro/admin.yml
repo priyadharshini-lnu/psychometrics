@@ -81,6 +81,7 @@ ro:
     ai_scoring_approvals: Aprobări de scoruri AI
     ai_translation: Traducere AI
     all_corner_rounded: Toate colțurile rotunjite
+    allow_ai_rescoring: Permiteți reevaluarea AI
     api_keys: Chei API
     apply_to_existing_users: Aplică această modificare utilizatorilor existenți din această campanie
     assessment_question_not_supported: Acest tip de întrebare nu este acceptat în prezent.
@@ -191,6 +192,7 @@ ro:
     dimensions: Dimensiuni
     done: Făcut
     done_tooltip: Nu se mai poate trimite nicio evaluare pentru acest utilizator, deoarece evaluarea acestuia este marcată ca fiind făcută de %{marked_by}
+    download_bulk_asset_download_example_csv: Descărcați exemplul CSV.
     edit_campaign_admin: Editați administratorul campaniei
     edit_client_admin: Editați administratorul clientului
     edit_indicator: Editare indicator
@@ -777,6 +779,7 @@ ro:
     reports: Rapoarte
     reports_limit_exceeded: Descărcarea în masă este limitată la 1000 de fișiere de raport. Dacă ați selectat multe limbi, vă rugăm să reduceți această opinie.
     reports_not_found: Nu s-au găsit rapoarte. Vă rugăm să generați rapoartele înainte de descărcare.
+    rescore_responses_content: Aceasta va recalcula punctajele pentru răspunsurile la aceste subiecte. Activați opțiunea „Permiteți recalcularea punctajelor cu AI” pentru a reevalua răspunsurile folosind AI pentru întrebările cu punctaj AI.
     reset_idp_plan: Planul de Resetare
     reset_idp_plan_confirmation: Ești sigur că vrei să resetezi planul?
     reset_idp_plan_title: Planul de Resetare

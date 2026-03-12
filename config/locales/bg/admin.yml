@@ -81,6 +81,7 @@ bg:
     ai_scoring_approvals: Одобрения на AI оценки
     ai_translation: AI превод
     all_corner_rounded: Всички ъгли са заоблени
+    allow_ai_rescoring: Разреши AI преоценка
     api_keys: API ключове
     apply_to_existing_users: Приложи тази промяна към съществуващите потребители в тази кампания
     assessment_question_not_supported: Този тип въпрос понастоящем не се поддържа.
@@ -191,6 +192,7 @@ bg:
     dimensions: Размери
     done: Направи
     done_tooltip: Не може да се подава повече оценка за този потребител, тъй като оценката му се маркира като извършена от %{marked_by}
+    download_bulk_asset_download_example_csv: Изтеглете пример за CSV.
     edit_campaign_admin: Редактиране на администратора на кампанията
     edit_client_admin: Редактиране на администратор на клиента
     edit_indicator: Редактиране на индикатор
@@ -777,6 +779,7 @@ bg:
     reports: Доклади
     reports_limit_exceeded: Масовото изтегляне е ограничено до 1000 отчетни файла. Ако сте избрали много езици, моля, намалете ги.
     reports_not_found: Не са намерени доклади. Моля, генерирайте докладите преди изтегляне.
+    rescore_responses_content: Това ще преизчисли резултатите за отговорите на този предмет. Активирайте „Разреши AI преоценка“, за да преоцените отговорите, използвайки AI за въпроси с AI оценка.
     reset_idp_plan: План за нулиране
     reset_idp_plan_confirmation: Сигурен ли си, че искаш да нулираш плана?
     reset_idp_plan_title: План за нулиране

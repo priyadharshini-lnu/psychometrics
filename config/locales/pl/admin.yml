@@ -81,6 +81,7 @@ pl:
     ai_scoring_approvals: Zatwierdzanie wyników AI
     ai_translation: Tłumaczenie AI
     all_corner_rounded: Wszystkie rogi zaokrąglone
+    allow_ai_rescoring: Zezwól na ponowne ocenianie przez sztuczną inteligencję
     api_keys: Klucze API
     apply_to_existing_users: Zastosuj tę zmianę do obecnych użytkowników w tej kampanii
     assessment_question_not_supported: Ten typ pytania nie jest obecnie obsługiwany.
@@ -191,6 +192,7 @@ pl:
     dimensions: Wymiary
     done: Gotowy
     done_tooltip: Nie można już zgłosić oceny tego użytkownika, ponieważ jest oznaczana jako przeprowadzona przez %{marked_by}
+    download_bulk_asset_download_example_csv: Pobierz przykładowy plik CSV.
     edit_campaign_admin: Edytuj administratora kampanii
     edit_client_admin: Edytowanie administratora klienta
     edit_indicator: Edytuj wskaźnik
@@ -777,6 +779,7 @@ pl:
     reports: Raporty
     reports_limit_exceeded: Pobieranie hurtowe jest ograniczone do 1000 plików raportów. Jeśli wybrałeś wiele języków, proszę, ogranicz to.
     reports_not_found: Nie znaleziono żadnych raportów. Prosimy o wygenerowanie raportów przed pobraniem.
+    rescore_responses_content: Spowoduje to ponowne obliczenie wyników dla odpowiedzi udzielonych przez tego uczestnika. Włącz opcję Zezwalaj na ponowne ocenianie przez AI, aby ponownie ocenić odpowiedzi przy użyciu sztucznej inteligencji w przypadku pytań ocenianych przez AI.
     reset_idp_plan: Plan Resetu
     reset_idp_plan_confirmation: Jesteś pewien, że chcesz zresetować plan?
     reset_idp_plan_title: Plan Resetu
