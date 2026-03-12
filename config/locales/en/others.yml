@@ -862,6 +862,7 @@ en:
         bulk_reports: Bulk Reports
         bulk_rescore_campaign_factors: Bulk Rescore Campaign Factors
         bulk_update_evaluation_status: Bulk Update Evaluation Status
+        campaign_report_extract_and_upload_bulk_assets: Campaign Report Upload Bulk Assets
         compact_completion_status_export: Compact Completion Status Export
         completion_status_export: Completion Status Export
         copy_as_template_or_campaign: Copy Campaign as Template
@@ -871,6 +872,7 @@ en:
         export_admin_with_permissions: Export Admin With Permissions
         export_assessment_questions: Export Assessment Questions
         export_campaign_ai_artifacts: Export Campaign AI Artifacts
+        export_campaign_ai_artifacts_results: Export Campaign AI Artifacts Results
         export_campaign_factors: Export Campaign Factors
         export_campaign_scorings: Export Campaign Scorings
         export_dashboard_as_file: Export Dashboard as file
@@ -1277,6 +1279,7 @@ en:
     record_not_found: Record Not Found
     user_not_authorized: User Not Authorized
   auth:
+    cookies_link: <a href="%{cookies_url}">Cookies Statement</a>
     current_password: Current Password
     current_password_placeholder: Enter Current Password
     email: Email
@@ -1322,6 +1325,7 @@ en:
     password_confirmation: Confirm Password
     password_confirmation_placeholder: Enter Password Confirmation
     password_placeholder: Enter Password
+    privacy_statement_link: <a href="%{privacy_url}">Privacy Statement</a>
     registration:
       description: Fill in the details below to register and create a new account
       email_hint: We respect your privacy and do not tolerate spam. We will never give away your information to any third party
@@ -1346,7 +1350,6 @@ en:
       title: Create Password
     sign_out: Login as different user
     sign_up: Sign Up
-    terms_link: <a href="%{terms_url}">Terms and Privacy Statement</a>
     verify_mobile_number:
       error:
         blocked: This number is blocked due to too many attempts.

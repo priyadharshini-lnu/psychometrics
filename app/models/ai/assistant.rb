@@ -4,6 +4,7 @@ class AI::Assistant < ApplicationRecord
   audited only: %i[name user_prompt system_prompt assistant_type model_id]
 
   include RansackSearchableFields
+  include ::AI::RecalculatesArtifactDependenciesChecksum
 
   belongs_to :owner, class_name: 'Client', optional: true
   belongs_to :last_modified_by, class_name: 'User', optional: true
@@ -11,6 +12,8 @@ class AI::Assistant < ApplicationRecord
   has_many :assistant_output_schema_keys,
            class_name: 'AI::AssistantOutputSchemaKey', foreign_key: 'ai_assistant_id', dependent: :destroy
   has_many :campaign_ai_artifacts, class_name: 'AI::CampaignArtifact', foreign_key: 'ai_assistant_id'
+  has_many :assessment_assistants, foreign_key: :ai_assistant_id, dependent: :restrict_with_error
+  has_many :assessments, through: :assessment_assistants
 
   accepts_nested_attributes_for :assistant_output_schema_keys, allow_destroy: true
 
@@ -25,7 +28,8 @@ class AI::Assistant < ApplicationRecord
     assistant_tool: 2,
     development_actions_assistant: 3,
     writing_assistant: 4,
-    translation_assistant: 5
+    translation_assistant: 5,
+    content_analysis_assistant: 6
   }
 
   enum :status, {
@@ -40,7 +44,7 @@ class AI::Assistant < ApplicationRecord
   end
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[assistant_type]
+    %w[assistant_type model_id]
   end
 
   def for_user(user, options = {})
@@ -67,6 +71,7 @@ class AI::Assistant < ApplicationRecord
 
   def configure_chat(chat, options)
     chat.to_llm.with_context(ruby_llm_context)
+
     chat.with_schema(output_schema_class) if output_schema_class
 
     chat.with_tools(*options[:tools], replace: true) if options[:tools].present?

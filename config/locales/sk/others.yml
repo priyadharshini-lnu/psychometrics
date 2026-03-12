@@ -862,6 +862,7 @@ sk:
         bulk_reports: Hromadné správy
         bulk_rescore_campaign_factors: Faktory kampane hromadného prehodnotenia
         bulk_update_evaluation_status: Stav vyhodnotenia hromadnej aktualizácie
+        campaign_report_extract_and_upload_bulk_assets: Správa o kampani Nahrať hromadné aktíva
         compact_completion_status_export: Export stavu kompaktného dokončenia
         completion_status_export: Export stavu dokončenia
         copy_as_template_or_campaign: Kopírovanie kampane ako šablóny
@@ -871,6 +872,7 @@ sk:
         export_admin_with_permissions: Exportovať správcu s povoleniami
         export_assessment_questions: Otázky na hodnotenie exportu
         export_campaign_ai_artifacts: AI artefakty exportnej kampane
+        export_campaign_ai_artifacts_results: Exportovať výsledky kampane AI artefaktov
         export_campaign_factors: Export faktorov kampane
         export_campaign_scorings: Prieskumy exportných kampaní
         export_dashboard_as_file: Exportovať tabuľu ako súbor
@@ -1274,6 +1276,7 @@ sk:
     record_not_found: Záznam sa nenašiel
     user_not_authorized: Používateľ nie je oprávnený
   auth:
+    cookies_link: <a href="%{cookies_url}">Vyhlásenie o súboroch cookie</a>
     current_password: Aktuálne heslo
     current_password_placeholder: Zadajte aktuálne heslo
     email: E-mail
@@ -1319,6 +1322,7 @@ sk:
     password_confirmation: Potvrdenie hesla
     password_confirmation_placeholder: Zadajte potvrdenie hesla
     password_placeholder: Zadajte heslo
+    privacy_statement_link: <a href="%{privacy_url}">Vyhlásenie o ochrane osobných údajov</a>
     registration:
       description: Vyplňte údaje nižšie a zaregistrujte sa a vytvorte si nové konto
       email_hint: Rešpektujeme vaše súkromie a netolerujeme spam. Nikdy neposkytneme vaše informácie žiadnej tretej strane
@@ -1343,7 +1347,6 @@ sk:
       title: Vytvoriť heslo
     sign_out: Prihlásenie ako iný používateľ
     sign_up: Zaregistrujte sa
-    terms_link: <a href="%{terms_url}">Podmienky a vyhlásenie o ochrane osobných údajov</a>
     verify_mobile_number:
       error:
         blocked: Toto číslo je zablokované z dôvodu príliš veľkého počtu pokusov.

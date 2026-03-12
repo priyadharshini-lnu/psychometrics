@@ -106,11 +106,12 @@ export const updateAdditionalTime = (campaignId: number, campaignAssessmentId: n
   },
 })
 
-export const rescoreResponse = (campaignId: number, campaignAssessmentId: number) => ({
+export const rescoreResponse = (campaignId: number, campaignAssessmentId: number, allowAiRescore: boolean = false) => ({
   type: RESCORE_RESPONSE,
   request: {
     method: 'post',
     url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}/rescore_response`,
+    body: { allow_ai_rescore: allowAiRescore },
   },
 })
 

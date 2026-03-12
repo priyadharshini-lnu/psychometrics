@@ -5,6 +5,8 @@ module ImportExportConst
   EMAIL_QUESTION_FIELDS = %w[to cc bcc subject message].freeze
   EMAIL_QUESTION_TEXT_FIELDS = %w[subject message].freeze
   SINGLE_MEDIA_IMPORT_EXPORT_FIELDS = %w[file_url transcription media_id duration].freeze
+
+  IMPORT_MEDIA_FROM_URL_COLUMN = 'import_media_from_url'
   VIDEO_IMPORT_EXPORT_FIELDS = %w[selected_video_url selected_transcription non_selected_video_urls media_id
                                   duration].freeze
   DURATION = 'duration'

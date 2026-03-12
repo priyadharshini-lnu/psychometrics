@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    meta content="IE=edge" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1" name="viewport"
+    title = Settings.project_name
+    = csrf_meta_tags
+    = stylesheet_link_tag    'policy', media: 'all'
+    = render 'layouts/favicons'
+  body data-locale="#{I18n.locale}"
+    header
+      .container-fluid
+        .logo
+          = link_to root_path
+            = image_tag 'mercer_lighthouseLogoTall.png', class: 'img-responsive center-block headerLogo', alt: 'The Talent Enterprise logo'
+    .container-fluid
+      .content
+        = t('cookies_notice').html_safe
+
+    = render partial: 'layouts/consent_banner'

@@ -2,10 +2,12 @@
 cs:
   admin:
     accept_na_values: Přijmout hodnoty N/A
+    actions: Akce
     add_admin: Přidat správce
     add_admin_role: Přidání role správce
     add_campaign_admin: Přidání správce kampaně
     add_client_admin: Přidání správce klienta
+    add_indicator: Přidat indikátor
     add_project: Přidat projekt
     add_project_admin: Přidání správce projektu
     add_threesixty_campaign_admin: Přidání správce kampaně
@@ -18,8 +20,14 @@ cs:
     admin_roles: Role správce
     admin_updated_successfully: Admin '%{name}' byl úspěšně aktualizován
     admins: Administrátoři
+    ai_artifact_result_generation_admin_job_failed: Artefakt „%{artifact_name}“ nelze vygenerovat pro uživatele „%{user_email}“.
+    ai_artifact_result_stale: Výsledek může být zastaralý, protože závislosti artefaktu AI se od posledního vygenerování výsledku změnily. Zvažte opětovné vygenerování artefaktu s nejnovějšími závislostmi.
     ai_artifacts: Artefakty AI
+    ai_artifacts_generate_results: Generovat výsledky
     ai_artifacts_output_schema_key_constraint: Klíč musí začínat malým písmenem a může obsahovat pouze malá písmena, čísla a podtržítka
+    ai_artifacts_results_export: Výsledky exportu
+    ai_artifacts_results_export_job_scheduled: Úloha exportu výsledků AI Artifacts byla úspěšně naplánována.
+    ai_assistant: AI asistent
     ai_assistant_model_id_label: Identifikace modelu
     ai_assistant_model_label: Model
     ai_assistant_model_provider: Poskytovatel
@@ -36,16 +44,47 @@ cs:
     ai_assistants_template_render_failed: Nepodařilo se vykreslit šablonu
     ai_assistants_test_render: Testovací vykreslování
     ai_assistants_test_render_tooltip: Vyzkoušejte šablonu promptu s daty kampaně, abyste zjistili, co bude AI asistentovi odesláno.
+    ai_assisted_idp_disabled_by_client: AI Assisted IDP je deaktivováno klientem
     ai_assisted_idp_feature_disabled: Funkce AI asistovaného IDP byla pro tento projekt deaktivována.
     ai_idp_assistant_configure_dependencies: Konfigurace závislostí AI
     ai_idp_assistant_configure_dependencies_description: Nakonfigurujte, ke kterým závislostním datům má IDP AI Assistant přístup jako kontext. To platí pouze v případě, že je asistent nakonfigurován tak, aby přijímal závislosti.
     ai_idp_assistant_dependencies_updated: Závislosti byly úspěšně aktualizovány
     ai_idp_assistant_update_dependencies: Aktualizovat závislosti
     ai_notice: Zvýrazněné části byly přeloženy pomocí umělé inteligence a mohou obsahovat nepřesnosti.
+    ai_score_approval_no_answer: Na tuto otázku není poskytnuta odpověď.
+    ai_score_approval_no_transcription: Pro tuto otázku není k dispozici přepis.
+    ai_scored: AI skórovala
+    ai_scoring_appoval_approve_all_questions: Schválit všechny otázky
+    ai_scoring_appoval_approve_question: Schválit otázku
+    ai_scoring_appoval_back: Vynulovat skóre
+    ai_scoring_appoval_change_reason: Důvod změny
+    ai_scoring_appoval_change_score: změněné skóre
+    ai_scoring_appoval_change_score_log: Změnit záznam skóre
+    ai_scoring_appoval_discard_all_questions: Vynulovat všechny otázky
+    ai_scoring_appoval_discard_all_questions_description: Tím se vynulují všechny skóre u všech otázek a vymažou se všechna přepsaná data. Tuto akci nelze vrátit zpět. Jste si jisti?
+    ai_scoring_appoval_discard_all_questions_title: Vynulovat všechny skóre otázek?
+    ai_scoring_appoval_discard_question: Obnovit skóre otázek
+    ai_scoring_appoval_discard_question_confirm_description: Tím se resetují všechna skóre pro tuto otázku a vymažou se všechna přepsaná data. Opravdu chcete pokračovat?
+    ai_scoring_appoval_discard_question_confirm_title: Obnovit skóre otázek?
+    ai_scoring_appoval_discarded_changes: odmítnuté změny
+    ai_scoring_appoval_evidence_from_transcript: Důkazy z přepisu
+    ai_scoring_appoval_new_score: Nové skóre
+    ai_scoring_appoval_next: Další otázka
+    ai_scoring_appoval_rationale: Odůvodnění
+    ai_scoring_appoval_reason_for_changes: Důvod změn
+    ai_scoring_appoval_reset_score: Vynulovat skóre
+    ai_scoring_appoval_reset_score_description: Skóre se vrátí na původní hodnotu AI.
+    ai_scoring_appoval_responses: Odpovědi AI
+    ai_scoring_appoval_score_not_applicable: Skóre se nevztahuje
+    ai_scoring_approval: Schválení bodování AI
+    ai_scoring_approval_settings: Nastavení schvalování bodování AI
+    ai_scoring_approvals: Schvalování bodování AI
     ai_translation: Překlad pomocí umělé inteligence
     all_corner_rounded: Všechny rohy zaoblené
+    allow_ai_rescoring: Povolit přehodnocení AI
     api_keys: Klíče API
     apply_to_existing_users: Použít tuto změnu na stávající uživatele v této kampani
+    assessment_question_not_supported: Tento typ otázky není v současné době podporován.
     assessments: Hodnocení
     assessments_not_mhs: Všechna hodnocení musí být typu MHS.
     assessments_reports: Hodnocení a zprávy
@@ -61,8 +100,14 @@ cs:
     availability: Dostupnost
     available_languages: Zpráva dostupná v jazycích
     back_to_main: Hlavní nabídka
+    bulk_assets_modal_choose_csv: Vyberte soubor CSV
+    bulk_assets_modal_choose_zip: Vyberte soubor ZIP
+    bulk_assets_modal_not_csv_file_error: Pro nahrávání CSV souborů jsou povoleny pouze soubory CSV. Nahrajte prosím platný soubor CSV.
+    bulk_assets_modal_subtitle: 'Nahrajte prosím <b>jeden soubor CSV</b> (s hlavičkami: user_email, file_name) a <b>jeden soubor ZIP</b> (obsahující soubory PDF odpovídající názvům souborů z csv). Soubor ZIP musí mít velikost menší než %{max_file_size} MB.'
+    bulk_assets_modal_title: Nahrát soubory CSV a ZIP
     bulk_upload_ai_artifacts: Hromadné AI artefakty
     campaign_ai_artifact_updated_successfully: Artefakty AI kampaně byly úspěšně aktualizovány
+    campaign_ai_artifacts_results_export_details: Výsledky generované artefakty AI kampaně
     campaign_assessment_actions_disable_caching: Vypnout cache hodnocení
     campaign_assessment_actions_enable_caching: Povolit cache hodnocení
     campaign_assessment_column_caching_enabled: Zapnuto cache hodnocení
@@ -86,11 +131,15 @@ cs:
     campaign_assessment_modals_enable_caching_successfully: Pro toto hodnocení bylo zapnuto ukládání do mezipaměti.
     campaign_assessment_modals_enable_caching_title: Povolit cache hodnocení?
     campaign_factors: Faktory kampaně
+    campaign_name: Název kampaně
     campaign_templates: Šablony kampaní
     campaign_user_job_roles_cannot_be_same: Cílová pracovní pozice se musí lišit od současné pracovní pozice.
     campaigns: Kampaně
+    cancel: Zrušit
     cancellation_and_rescheduling_disabled: Zrušení a změna termínu jsou zakázány.
     casual: Neformální
+    characters: postavy
+    children_factor_type: Typ faktoru dětí
     client: Nájem klienta
     client_admins: Správci klientů
     clients: Nájemní smlouvy klientů
@@ -100,24 +149,53 @@ cs:
     completed: Hotový
     completed_tooltip: Všichni hodnotitelé již podali hodnocení
     concise: Stručný
+    configure_model_answer_title: Nakonfigurujte vzorovou odpověď a klíčová slova
     confirm_remove_admin: Jste si jisti, že chcete odstranit uživatele s e-mailem '%{email}'?
+    copied: Zkopírováno
     country: Země
     create_client: Vytvořit klienta
+    create_indicator: Vytvořit indikátor
     current_job_role: Současná pracovní pozice
     dashboard: Přístrojová deska
     dashboards: Přístrojové panely
     data_reports: Datové zprávy
     datasheet: Datový list
     declined: Nepřijatý
+    define_max_score_text: Definujte skóre „%{maxScore}“ (maximální skóre)
+    define_min_score_text: Definujte skóre „%{minScore}“ (minimální skóre)
+    define_optional_score_range_text: Definujte skóre %{minScore} až %{maxScore} (volitelné)
+    define_score_text: Definujte skóre „%{score}“
+    definition: Definice
     delete_ok_text: Ano, Smazat
     denied: Popíral
+    description: Popis
     development_actions: Vývojové akce
     development_actions_form_tags: Štítky
+    digest_delivery_mode:
+      form_label: Režim doručování souhrnu
+      immediate: Okamžitě – odeslat vždy, když dojde k hromadnému odeslání
+      scheduled: Naplánováno – Odeslat souhrnný e-mail v naplánovaném čase
+    digest_frequency:
+      daily: Denně
+      form_label: Frekvence trávení
+      weekdays: Pracovní dny
+      weekly: Týdenní
+    digest_weekdays:
+      form_label: Digest Pracovní dny(s)
+      friday: pátek
+      monday: pondělí
+      saturday: Sobota
+      sunday: neděle
+      thursday: čtvrtek
+      tuesday: úterý
+      wednesday: středa
     dimensions: Rozměry
     done: Hotový
     done_tooltip: Již nelze podat žádné další hodnocení tohoto uživatele, protože hodnocení tohoto uživatele je označeno jako provedené %{marked_by}
+    download_bulk_asset_download_example_csv: Stáhnout příklad CSV.
     edit_campaign_admin: Upravit správce kampaně
     edit_client_admin: Upravit správce klienta
+    edit_indicator: Upravit indikátor
     edit_job_roles: Upravit pracovní role
     edit_level: Úroveň úprav
     edit_permission_denied: Nemáte oprávnění upravovat administrátorské '%{name}'
@@ -126,12 +204,17 @@ cs:
     empty_csv_file: CSV soubor neobsahuje žádná data.
     enable_enhance_with_ai_client_level: Povolte funkci Vylepšit pomocí AI na úrovni klienta.
     enable_maintenance: Povolit údržbu
+    enable_mobile_proctoring: Povolit mobilní dohled
     enable_transcription: Povolit přepis
+    enable_transcription_msg: Povolit přepis pro použití AI skórování u otázek s video/audio odpověďmi.
     end_time: Koncový čas
     end_time_must_be_after_start_time: Konec musí být po začátku
     enhance_with_ai: Vylepšete pomocí AI
     enhance_with_ai_requires_ai_assistants: Funkce Vylepšit pomocí AI vyžaduje, aby byla povolena funkce AI asistenti.
+    enter_description: Zadejte popis
+    enter_name: Zadejte jméno
     error: Chyba
+    estimated_tokens: tokeny (odhad)
     evaluation_status: Stav hodnocení
     evaluation_status_not_done: Status hodnocení není "Hotovo" u jednoho nebo více vybraných předmětů. Prosím, ujistěte se, že všichni vybraní uživatelé dokončili hodnocení nebo označili jako splněné.
     export_admin_roles_permissions: Export rolí a oprávnění správce
@@ -139,14 +222,26 @@ cs:
     export_completion_status: Stav dokončení exportu
     export_completion_statuses_scheduled: Úloha exportu stavů dokončení byla úspěšně naplánována.
     export_detailed_completion_status: Podrobný
+    feature_ai_assistants_description: Aktivujte asistenty využívající umělou inteligenci pro lepší uživatelský zážitek
+    feature_ai_assisted_idp_description: Využijte AI k podpoře doporučení pro individuální rozvojové plány
+    feature_ai_content_analysis_description: Povolit analýzu obsahu pomocí umělé inteligence pro hodnocení
+    feature_ai_translation_description: Povolit automatický překlad obsahu v reportech pomocí umělé inteligence
     feature_enhance_with_ai: Vylepšete pomocí AI
+    feature_enhance_with_ai_description: Povolit funkce vylepšení obsahu založené na umělé inteligenci
     feature_flags: Příznaky funkcí
+    feature_flags_ai_group: Funkce AI
+    feature_flags_communication_group: Komunikace
+    feature_flags_platform_group: Funkce platformy
+    feature_global_skills_description: Přístup k globální knihovně dovedností pro hodnocení
+    feature_idp_description: Povolit individuální plánování rozvoje pro účastníky
+    feature_sms_notification_description: Povolit SMS oznámení pro pozvánky a připomenutí kampaní
     fill_empty_score_msg: Vyplňte všechny konečné skóre před uložením.
     final_score_empty_err_msg: Konečné skóre hry „%{factor_name}“ nesmí být prázdné.
     final_score_empty_msg: Konečný účet nemůže být prázdný.
     fix_grammar: Opravit gramatiku
     formal: Formální
     generate_transcription: Vytvořit přepis
+    hide_middle_scores: Skrýt střední skóre
     idp_plan_reset_success: Plán byl úspěšně resetován
     idp_templates: Šablony IDP
     import_ai_artifacts: Import AI artefaktů
@@ -175,6 +270,8 @@ cs:
     internal: Interní
     invalid_csv_header: CSV soubor obsahuje neplatné hlavičky.
     job_roles: Pracovní role
+    keywords: Klíčová slova
+    keywords_placeholder: Zadejte klíčová slova oddělená čárkami.
     learning_from_others: Společné učení [20]
     level: Úroveň
     level_apply: Použít
@@ -201,6 +298,10 @@ cs:
     min_value: Minimální hodnota
     minimum_10_words: Minimálně 10 slov
     missing_min_max_values: Minimální a maximální hodnoty jsou povinné.
+    model_answer: Vzorová odpověď
+    model_answer_placeholder: Zadejte vzorovou odpověď pro hodnocení AI.
+    name: Jméno
+    name_max_length: Název nesmí překročit %{length} znaků.
     name_required: Jméno je vyžadováno
     no_file_selected: Žádný soubor nebyl vybrán
     no_notifications: Žádná oznámení
@@ -218,6 +319,8 @@ cs:
     only_editable_on_create: Tuto možnost lze upravit pouze při vytváření.
     options: Možnosti
     original_text: Původní text
+    overall: Celkově
+    overall_score: Celkové skóre
     participants: Účastníci
     permissions:
       aiArtifacts:
@@ -254,6 +357,7 @@ cs:
         bulk_regenerate_reports: Hromadné přegenerování sestav
         manage: Správa
         manage_admins: Správa správců
+        manage_ai_scoring_approval_settings: Správa nastavení schvalování bodování AI
         manage_factor_benchmark_scores: Srovnávací skóre faktorů správy
         manage_messages: Správa zpráv
         manage_options: Správa možností
@@ -642,6 +746,7 @@ cs:
         view_recordings: Zobrazit nahrávky
     permissions_360_campaigns: Oprávnění specifická pro kampaně 360
     piped_text: Text v potrubí
+    precision: Přesnost
     privacy: Ochrana osobních údajů
     proctoring: Dohled
     professional: Profesionální
@@ -654,15 +759,19 @@ cs:
     project_number: Číslo projektu
     project_settings: Nastavení projektu
     projects: Projekty
+    prompt: Výzva
     question_center: Centrum otázek
     questions: Otázky
+    range_min_max: ROZSAH%{min} - %{max}
     reflection_questions: Otázky k zamyšlení
     registration_codes: Registrační kódy
     registration_settings: Nastavení registrace
+    remove_children_to_change_type: Odebrat všechny děti pro změnu typu
     report_approvals: Schvalování zpráv
     report_condition_not_met: Potřebuje %{required} %{relationship} hodnocení, ale má jen %{actual}
     report_conditions_not_met_detailed: Report for %{user} nesplňuje podmínky dostupnosti. %{conditions}
     report_denied: Zpráva o %{user} byla zamítnuta
+    report_name: Název zprávy
     report_no_evaluations: Zpráva o %{user} není k dispozici – nebyla přijata žádná hodnocení.
     report_not_generated: Report pro %{user} splňuje podmínky dostupnosti, ale ještě nebyl vytvořen. Prosím, nejprve vygenerujte zprávu.
     report_on_hold: Zpráva pro %{user} je momentálně pozastavena
@@ -670,6 +779,7 @@ cs:
     reports: Zprávy
     reports_limit_exceeded: Hromadné stažení je omezeno na 1000 souborů zpráv. Pokud jste vybrali mnoho jazyků, prosím, omezte to.
     reports_not_found: Žádné hlášení nenalezeny. Před stažením prosím vygenerujte zprávy.
+    rescore_responses_content: Tím se přepočítají skóre za odpovědi v tomto předmětu. Povolte možnost Povolit přepočítání skóre pomocí AI, aby se odpovědi u otázek typu Skóre pomocí AI přehodnotily pomocí umělé inteligence.
     reset_idp_plan: Plán resetu
     reset_idp_plan_confirmation: Jste si jistý, že chcete plán resetovat?
     reset_idp_plan_title: Plán resetu
@@ -725,8 +835,32 @@ cs:
     saml_service_provider_updated_date: Datum aktualizace
     saml_service_providers: Poskytovatelé služeb
     saml_settings: SAML nastavení
+    save: Uložit
+    save_assessment_for_scoring_management: Před zahájením bodování uložte hodnocení.
     scheduling: Plánování
+    score: Skóre
+    score_approval_not_allowed_to_approve: Toto skóre nesmíte schválit.
+    score_approval_not_allowed_to_discard: Tento výsledek nesmíte zahodit.
+    score_definition_placeholder: Zadejte definici pro tuto úroveň skóre.
+    score_definitions: Definice skóre
+    score_max: Skóre Max
+    score_min: Skóre Min
+    score_must_be_in_between_min_and_max: Skóre musí být mezi %{min} a %{max}.
+    score_range_info: 'Rozsah skóre: %{min} - %{max}'
+    score_with_ai: Skórujte s AI
     scoring: Bodování
+    scoring_approval_add_settings: Přidat nastavení
+    scoring_approval_allow_bulk_approve: Povolit hromadné schválení
+    scoring_approval_allow_bulk_approve_scores: Povolit hromadné schvalování skóre
+    scoring_approval_allow_one_level_approve: Povolit schválení na jedné úrovni
+    scoring_approval_approver_users: Schvalující uživatelé
+    scoring_approval_approvers: Schvalovatelé
+    scoring_approval_assessment: Hodnocení
+    scoring_approval_assessor_users: Uživatelé hodnotitelů
+    scoring_approval_modal_title: Nastavení schvalování bodování
+    scoring_approval_remove_modal_success: 'Nastavení schválení pro identifikační číslo hodnocení: %{assessmentId} bylo úspěšně smazáno.'
+    scoring_approval_remove_modal_text: 'Opravdu chcete smazat toto nastavení pro identifikační číslo hodnocení: %{assessmentId}?'
+    scoring_supported_only_for_ai_questions: Bodování je povoleno pouze u otázek s podporou AI pro aktuálně vybraný faktor.
     scoring_value_info: Skóre musí být mezi %{min} a %{max}.
     scoring_value_out_of_range_err_msg: Skóre pro %{factor_name} musí být mezi %{min} a %{max}.
     search_admins: Vyhledávání administrátorů
@@ -737,7 +871,10 @@ cs:
     select_level: Vyberte úroveň
     select_start_time: Vyberte čas zahájení
     send_email: Odeslat e-mail
+    set_min_max_scores_warning: Nastavte minimální a maximální skóre pro tento faktor, abyste nakonfigurovali bodování AI.
     settings: Nastavení
+    show_all_assessment_responses: Zobrazit všechny odpovědi na hodnocení
+    show_middle_scores: Zobrazit další skóre %{count} (volitelné)...
     show_original: Zobrazit originál
     show_submenu: Zobrazit dílčí nabídku
     show_translated: Zobrazit překlad
@@ -755,6 +892,7 @@ cs:
     subdomain: Subdoména
     subject_part_of_other_invite: Osoba s e-mailovou adresou %{user_email} již byla pozvána do skupiny „%{workshop_invite_name}“.
     target_job_role: Cílová pracovní pozice
+    this_field_is_required: Toto pole je povinné
     timezone: Časové pásmo
     tone: Tón
     toolbar_ai_insight: AI Insight
@@ -778,8 +916,12 @@ cs:
     upload_success: Úspěšně nahráno
     user_report_events: Hlášení uživatele Události
     users: Uživatelé
+    validation_error: Vyplňte prosím všechna povinná pole.
     view_licenses: Zobrazit licence
     waiting: Čekání
+    weight: Hmotnost
+    what_to_look_for: Co hledat
+    what_to_look_for_placeholder: Důkazy o chování, činnostech nebo výsledcích, které tento faktor dokládají
     words: Slova
     workshops: Workshopy
     writing_assistant_not_configured: Asistent psaní není nakonfigurován

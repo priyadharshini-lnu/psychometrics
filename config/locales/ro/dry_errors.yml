@@ -12,6 +12,9 @@ ro:
         user_not_found: Utilizatorul nu a fost găsit sau nu face parte din același proiect
       admin:
         already_added: Administrator cu e-mail deja adăugat.
+      ai_scoring_approval_settings:
+        assessment_exists: Setarea de aprobare a punctajului AI pentru această evaluare există deja.
+        validates_admins: Administratorii nu au acces la campanie.
       already_assigned?: Nu se poate lega această evaluare - este deja atribuită la '%{linked_assessor_form_name}'.
       already_invited: Acest utilizator există deja în centrul de evaluare pe care încercați să-l adăugați.
       assessor_assessment:

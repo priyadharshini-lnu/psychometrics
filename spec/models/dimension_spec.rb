@@ -5,15 +5,32 @@ require 'rails_helper'
 RSpec.describe Dimension, type: :model do
   let!(:user) { create(:user) }
   let!(:dimension) { create(:dimension, :with_occupation) }
-  let!(:factor) { create(:factor, sub_factors: [create(:factor)], dimension: dimension) }
+  let!(:factor) { create(:factor, dimension: dimension) }
+  let!(:sub_factor) { create(:factor, dimension: dimension, parent_id: factor.id) }
   let!(:active_record_audit) { ActiveRecordAudit.where(auditable_id: dimension.id) }
+
+  before { factor.sub_factors << sub_factor }
 
   context '#clone_and_save' do
     it 'should be copy all relative factors, sub-factors and occupation' do
       cloned_dimension = dimension.clone_and_save(user_id: user.id)
+
       expect(cloned_dimension.factors.count).to be 1
-      expect(cloned_dimension.factors.first.sub_factors.count).to be 1
+      expect(cloned_dimension.all_factors.count).to be 2
       expect(cloned_dimension.occupations.count).to be 1
+    end
+
+    it 'remaps sub_factor_ids and parent_ids to the cloned factors' do
+      cloned_dimension = dimension.clone_and_save(user_id: user.id)
+      cloned_parent = cloned_dimension.factors.first
+      cloned_sub = (cloned_dimension.all_factors - [cloned_parent]).first
+
+      expect(cloned_sub.parent_id).to eq(cloned_parent.id)
+      expect(cloned_sub.parent_id).not_to eq(factor.id)
+
+      expect(cloned_parent.sub_factor_ids).to include(cloned_sub.id)
+      expect(cloned_parent.sub_factor_ids).not_to include(sub_factor.id)
+      expect(cloned_sub.dimension_id).to eq(cloned_dimension.id)
     end
   end
 

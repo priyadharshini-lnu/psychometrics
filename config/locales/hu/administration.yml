@@ -80,7 +80,6 @@ hu:
         title: AI műtermék
       generate: Létrehoz
       generate_result_info_message: Az eredmények generálódnak, kérjük, frissítse az oldalt a frissített eredmények megtekintéséhez.
-      generate_results: Eredmények generálása
       generated_at: Generált
       generated_at_time: Generálva %{time}
       generated_value: Generált érték
@@ -736,6 +735,21 @@ hu:
       errors:
         invalid_headers: 'A következő fejlécek érvénytelenek: %{headers}'
     campaign_report:
+      bulk_assets_upload:
+        errors:
+          csv_and_zip_must_exist: A CSV és ZIP fájlokat is fel kell tölteni a kezdés előtt.
+          csv_cannot_be_empty: A CSV fájl nem lehet üres.
+          csv_contains_blank_values: A CSV üres értékeket tartalmaz. Minden user_email és file_name értéknek szerepelnie kell.
+          csv_file_name_must_be_unique: A CSV fájlnév értékei egyediaknak kell lenniük.
+          csv_must_contain_two_headers: 'A CSV-fájlnak pontosan 2 oszlopot kell tartalmaznia, fejlécvel: %{headers}'
+          csv_user_emails_must_be_unique: A CSV user_email értékeknek egyediaknak kell lenniük.
+          failed_to_attach_file: 'Nem sikerült csatolni a fájlt az e-mailhez: %{email}. Hiba: %{error_message}'
+          file_names_in_csv_must_be_of_type_pdf: A CSV érvénytelen file_name bejegyzéseket tartalmaz. A CSV-ben minden file_name értéknek .pdf kiterjesztéssel kell rendelkeznie.
+          file_processing_error: 'A fájl feldolgozása során talált hibák: %{error_message}'
+          max_emails_in_csv: 'A CSV-fájlban megengedett maximális user_email bejegyzések száma: %{max}. A CSV-fájl %{count} user_email bejegyzést tartalmaz.'
+          missing_user_reports: 'Hiányzó felhasználói jelentések az e-mailekről: %{emails}'
+          no_file_found_in_extracted_zip: Nincs fájl a kibontott ZIP-ben
+          user_report_not_found: 'A felhasználói jelentés nem található az e-mail címhez: %{email}'
       bulk_download:
         data_range_error: Kérjük, válassza ki a dátumtartományt
         modal:
@@ -840,6 +854,16 @@ hu:
           report: Jelentés
           send_digest_emails: Kivonatoló e-mailek küldése
           settings: Beállítások
+        scoring_approval:
+          allow_bulk_approve: Tömeges jóváhagyás engedélyezése
+          allow_bulk_approve_scores: Tömeges pontszámok jóváhagyásának engedélyezése
+          approver_users: Jóváhagyó felhasználók
+          approvers: Jóváhagyók
+          assessment: Értékelés
+          assessor_users: Értékelő felhasználók
+          modal_title: Pontszám jóváhagyási beállítások
+          remove_modal_success: 'Az értékelés azonosítószámának jóváhagyási beállítása: %{assessmentId} sikeresen törölve.'
+          remove_modal_text: 'Biztosan törölni szeretné ezt a beállítást az értékelési azonosítóhoz: %{assessmentId}?'
       assessors:
         spoof:
           successfully: Sikeresen bejelentkezett a(z) %{name} néven
@@ -1006,6 +1030,8 @@ hu:
         ai_assistants_disabled_by_client: Az AI Assistants le van tiltva az ügyfél által
         ai_assisted_idp: AI által támogatott IDP
         ai_assisted_idp_requires_ai_assistants: Az AI-asszisztált IDP-hez engedélyezni kell az AI Assistants funkciót
+        ai_content_analysis: AI tartalomelemzés
+        ai_content_analysis_disabled_by_client: Az AI tartalomelemzés ügyfél által letiltva
         ai_translation: AI fordítások
         ai_translation_disabled_by_client: Az AI fordítások az ügyfél által letiltva vannak
         global_skills: Globális készségek
@@ -2543,6 +2569,7 @@ hu:
     message: Üzenet
     meta_title: Adminisztrációs panel
     navigation:
+      approvals: Jóváhagyások
       audit_logs: Auditnaplók
       availability: Elérhetőség
       configuration: Konfiguráció
@@ -3209,9 +3236,11 @@ hu:
         actions: Műveletek
         approval_status: Jóváhagyási állapot
         approved_by: Jóváhagyta
+        assessed_by: Értékelte
         campaign_name: Kampány neve
         qc_by: A minőségellenőrzést végezte
         report_name: Jelentés neve
+        subject_email: Tárgy E-mail
         user_email: Felhasználói e-mail cím
         user_name: Felhasználónév
       dashboard: Irányítópult
@@ -3773,6 +3802,11 @@ hu:
         tools: Eszközök
         weightages: Súlyok
       weighted_average: Súlyozott átlag
+    scoring_approval:
+      approve_all: Összes jóváhagyása
+      bulk_approve_success: "%{approved} pontszámok jóváhagyva."
+      review: Áttekintés
+      score_approvals: AI pontszámok jóváhagyása
     search: Keresés
     security_setting:
       180_days: 180 nap

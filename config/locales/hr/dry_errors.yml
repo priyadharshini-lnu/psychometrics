@@ -12,6 +12,9 @@ hr:
         user_not_found: Korisnik nije pronađen ili nije dio istog projekta
       admin:
         already_added: Administrator s već dodanom e-poštom.
+      ai_scoring_approval_settings:
+        assessment_exists: Postavka za odobrenje AI ocjenjivanja za ovu procjenu već postoji.
+        validates_admins: Administratori nemaju pristup kampanji.
       already_assigned?: Ne mogu povezati ovu procjenu - već je dodijeljena '%{linked_assessor_form_name}'.
       already_invited: Taj korisnik već postoji u centru za procjenu koji pokušavate dodati.
       assessor_assessment:

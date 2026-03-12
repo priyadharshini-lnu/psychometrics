@@ -13,6 +13,7 @@ const Scoring = function (attrs = {}, factorId) {
   this.factorId = factorId
   this.type = attrs.type || 'factor'
   this.scoring_strategy = attrs.scoring_strategy
+  this.ai_scoring_config = attrs.ai_scoring_config || {}
 }
 
 Scoring.prototype = new EventEmitter()
@@ -25,6 +26,7 @@ _.extend(Scoring.prototype, {
       question_id: this.question_id,
       props: this.props,
       scoring_strategy: this.scoring_strategy,
+      ai_scoring_config: this.ai_scoring_config || {},
     }
   },
 
@@ -108,6 +110,21 @@ _.extend(Scoring.prototype, {
       return this.engine.isEmptyValues()
     }
     return !_.some(this.props, object => (object.value || object.value === 0))
+  },
+
+  changeAiScoringConfig (...args) {
+    this.engine.changeAiScoringConfig(...args)
+    this.update()
+  },
+
+  removeAiScoringConfig () {
+    this.engine.removeAiScoringConfig()
+    this.update()
+  },
+
+  initializeAiScoringConfig (defaultValue) {
+    this.engine.initializeAiScoringConfig(defaultValue)
+    this.update()
   },
 })
 

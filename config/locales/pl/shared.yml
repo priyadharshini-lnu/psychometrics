@@ -7,27 +7,49 @@ pl:
     add: Dodaj
     advanced: Zaawansowany
     agree_and_continue: Zgadzam się i kontynuuj
+    approval_status: Status zatwierdzenia
+    approved: Zatwierdzone
+    approved_by: Zatwierdzone przez
+    approvers_list: Lista osób zatwierdzających
     archive: Archiwuj
     archived: Archiwizowane
+    assessed_by: Ocenione przez
+    assessment: Ocena
+    assessment_id: Numer identyfikacyjny oceny
+    assessment_list: Lista ocen
+    assessment_name: Nazwa oceny
+    assessor_approved: Oceniony przez rzeczoznawcę
+    assessors_list: Lista oceniających
     asset_not_present: Brak zasobów
     audio: Audio
     authentication_failed: Uwierzytelnianie się nie powiodło. Proszę, spróbuj ponownie.
+    back: Powrót
     basic: Podstawowy
     camera_preview: Podgląd kamery pojawi się tutaj
+    campaign: Kampania
     campaign_id: Identyfikacja kampanii
     cancel: Anuluj
     change_password: Zmień hasło
     clear_filters: Wyczyść filtry
+    client: Klient
     collaborative_learning: Uczenie się zespołowe
     completed: Ukończone
     configurations: Konfiguracje
     confirm: Potwierdź
     continue: Kontynuować
+    controller: Kontroler
+    cookies_statement: Oświadczenie dotyczące plików cookie
+    copied_to_clipboard: Skopiowano do schowka
     copy: Kopiuj
     created_at: Utworzono w
     created_date: Data utworzenia
+    custom_consent_text: Tekst zgody niestandardowej
+    custom_consent_text_required: Wymagany jest niestandardowy tekst zgody dla roli administratora danych.
+    data_role: Rola danych
     decline: Upadek
     description: Opis
+    desktop_or_laptop_recommended: Zalecany komputer stacjonarny lub laptop
+    desktop_or_laptop_required: Wymagany komputer stacjonarny lub laptop
     download: Pobierz
     download_audio: Pobierz plik audio
     download_transcription: Pobierz transkrypcję
@@ -37,6 +59,7 @@ pl:
     email: E-mail
     export: Eksport
     failed: Niepowodzenie
+    'false': false
     first_name: Imię
     formal_learning: Uczenie się formalne
     generate: Generuj
@@ -50,6 +73,7 @@ pl:
     internet_disconnected_message: Próba ponownego połączenia. Sprawdź połączenie internetowe.
     last_name: Nazwisko
     learning_on_the_job_label: Nauka w pracy
+    loading: Ładowanie...
     login: Logowanie
     maintenance_in_hours: "%{hours} godziny"
     maintenance_in_minutes: "%{minutes} protokoły"
@@ -58,22 +82,33 @@ pl:
     maintenance_time_remaining: Pozostały czas
     maintenance_upcoming_description: W celu poprawy jakości usług serwis %{date} będzie poddany planowej konserwacji przez około %{duration}. W tym czasie nie będzie można uzyskać dostępu do serwisu ani wykonać żadnych przypisanych zadań. Dziękujemy za cierpliwość.
     maintenance_upcoming_title: Nadchodząca konserwacja
+    media_id: Identyfikator mediów
+    media_preview: Zapowiedź medialna
     media_question_transcriptions: Transkrypcje pytań mediów
     media_responses: Reakcje mediów
+    mobile_proctoring_disabled_instructions: Aby kontynuować tę ocenę, potrzebny jest komputer stacjonarny lub laptop. Przejdź do komputera, aby zakończyć zadanie.
+    mobile_proctoring_enabled_instructions: Aby uzyskać najlepsze wrażenia, przejdź na komputer stacjonarny lub laptop, jeśli masz taki dostępny. W razie potrzeby możesz kontynuować korzystanie z urządzenia mobilnego.
     modified_by: Zmodyfikowane przez
     modified_date: Data modyfikacji
     more_actions: Więcej akcji
     mte_logo_alt_text: Logo Mercer Talent Enterprise
     na_text: Nie dotyczy
     name: Nazwa
+    negative: Negatywny
     new: Nowy
     no_results_found: Nie znaleziono żadnych wyników
     not_requested: Jeszcze nie zgłoszone
     ok: Ok
     pending: W toku
+    policy_version: Wersja polityki
+    policy_version_format: Dopuszczalne są tylko liczby całkowite.
+    positive: Pozytywny
     processing: Przetwarzanie
+    processor: Procesor
     proctoring_maintenance_active: Serwis Proctoring jest obecnie w trakcie konserwacji i nie jest dostępny pod adresem %{start_time} oraz %{end_time}. Prosimy spróbować ponownie po zakończeniu konserwacji.
     proctoring_maintenance_upcoming: Serwis Proctoring będzie poddany konserwacji od godziny %{start_time} do godziny %{end_time}.
+    project: Projekt
+    question: Pytanie
     question_id: Numer pytania
     question_transcription_disabled: Transkrypcja jest wyłączona dla tego pytania.
     rec: REC
@@ -84,14 +119,20 @@ pl:
     removed: Usunięte
     replace: Zastąp
     reset_password: Zresetuj hasło
+    response_text: Tekst odpowiedzi
     rte_paste_content_exceeds_char_limit: Tekst przekracza limit znaków {{maxCharacterLimit}} i nie może być wklejony.
     rte_paste_content_exceeds_word_limit: Tekst przekracza limit słów {{maxWordLimit}} i nie może być wklejony.
     save: Zapisz
     saving_video: Zapisywanie wideo... Prosimy nie zamykać ani nie odświeżać przeglądarki
+    scoring_details: Szczegóły punktacji
     search: Szukaj
     send_email: Wyślij wiadomość e-mail
     show_more: Pokaż więcej
     something_wrong: Coś poszło nie tak. Skontaktuj się z administratorem.
+    status: Status
+    subject: Temat
+    submit: Prześlij
+    switch_to_laptop_or_desktop: Przejdź do laptopa lub komputera stacjonarnego
     table:
       entries:
         selected: Wybrano 1 wiersz
@@ -103,9 +144,15 @@ pl:
     transcription_not_enabled: Transkrypcja nie jest włączona dla odpowiedzi mediów.
     transcription_status: Status transkrypcji
     transcriptions: Transkrypcje
+    'true': true
     try_again: Spróbuj ponownie
     tte_terms_and_condition: Warunki i prywatność
     type: Typ
     update: Odarchiwizuj
+    update_failed: Aktualizacja nie powiodła się
+    updated_successfully: Aktualizacja zakończona sukcesem
     video: Wideo
     view: Widok
+    view_audio: Wyświetl audio
+    view_transcription: Wyświetl transkrypcję
+    view_video: Obejrzyj film

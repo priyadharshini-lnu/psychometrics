@@ -1,14 +1,18 @@
 import { FC, useEffect, useState } from 'react'
 import {
   Table, Button, Divider, Modal, MenuProps,
-  message,
+  message, Tooltip,
 } from 'antd'
-import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import {
+  MoreOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { TableSkeleton } from '~/glint'
 import { downloadTextFile } from '~/utils/downloadTextFile'
 import { useResources } from '~/hooks/useResources'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { MenuItem } from '~/interfaces/Antd'
+import MediaPreviewModal from './MediaPreviewModal'
+import TranscriptionPreviewModal from './TranscriptionPreviewModal'
 
 const { I18n } = window
 
@@ -23,7 +27,9 @@ interface Props {
 
 interface MediaResponse {
   id: string
+  mediaId: number
   questionId: number
+  questionText: string | null
   transcriptionText: string | null
   questionType: string
   transcriptionStatus: string
@@ -40,6 +46,11 @@ const TranscriptionDetails: FC<Props> = ({
   const [loading, setLoading] = useState<boolean>(true)
   const [confirmModalVisible, setConfirmModalVisible] = useState<boolean>(false)
   const [selectedMediaResponseId, setSelectedMediaResponseId] = useState<string | null>(null)
+  const [mediaPreviewOpen, setMediaPreviewOpen] = useState<boolean>(false)
+  const [selectedMediaUrl, setSelectedMediaUrl] = useState<string>('')
+  const [selectedMediaForPreview, setSelectedMediaForPreview] = useState<MediaResponse | null>(null)
+  const [showTranscription, setShowTranscription] = useState<boolean>(false)
+  const [transcriptionText, setTranscriptionText] = useState<string>('')
 
   useEffect(() => {
     if (assessment?.id) {
@@ -102,6 +113,29 @@ const TranscriptionDetails: FC<Props> = ({
     }
   }
 
+  const openMediaPreview = (record: MediaResponse) => {
+    setSelectedMediaUrl(record.assetUrl)
+    setSelectedMediaForPreview(record)
+    setMediaPreviewOpen(true)
+  }
+
+  const closeMediaPreview = () => {
+    setMediaPreviewOpen(false)
+    setSelectedMediaUrl('')
+    setSelectedMediaForPreview(null)
+  }
+
+  const openTranscriptionPreview = (record: MediaResponse) => {
+    setTranscriptionText(record.transcriptionText || '')
+    setSelectedMediaForPreview(record)
+    setShowTranscription(true)
+  }
+
+  const closeTranscriptionPreview = () => {
+    setShowTranscription(false)
+    setTranscriptionText('')
+  }
+
   const getActionsMenuProps = (record: MediaResponse): MenuProps => {
     const {
       id, questionType, transcriptionEnabled, transcriptionText, questionId, assetUrl,
@@ -110,6 +144,10 @@ const TranscriptionDetails: FC<Props> = ({
     const menuItems: MenuItem[] = []
 
     if (assetUrl) {
+      menuItems.push({
+        key: 'viewMedia',
+        label: I18n.t(`shared.view_${questionType}`),
+      })
       menuItems.push({
         key: 'downloadMedia',
         label: (
@@ -121,6 +159,10 @@ const TranscriptionDetails: FC<Props> = ({
     }
 
     if (transcriptionEnabled && transcriptionText) {
+      menuItems.push({
+        key: 'viewTranscription',
+        label: I18n.t('shared.view_transcription'),
+      })
       menuItems.push({
         key: 'downloadTranscription',
         label: I18n.t('shared.download_transcription'),
@@ -135,6 +177,12 @@ const TranscriptionDetails: FC<Props> = ({
     }
 
     const handleMenuClick = ({ key }) => {
+      if (key === 'viewMedia') {
+        openMediaPreview(record)
+      }
+      if (key === 'viewTranscription' && transcriptionText) {
+        openTranscriptionPreview(record)
+      }
       if (key === 'downloadTranscription') {
         handleDownloadTranscription(transcriptionText, questionId)
       }
@@ -148,20 +196,44 @@ const TranscriptionDetails: FC<Props> = ({
 
   const columns = [
     {
+      title: I18n.t('shared.media_id'),
+      dataIndex: 'mediaId',
+      key: 'mediaId',
+      width: 90,
+    },
+    {
       title: I18n.t('shared.question_id'),
       dataIndex: 'questionId',
       key: 'questionId',
+      width: 110,
+    },
+    {
+      title: I18n.t('shared.question'),
+      key: 'questionText',
+      ellipsis: true,
+      render: (_: unknown, record: MediaResponse) => {
+        const { questionText } = record
+        if (!questionText) return I18n.t('common.text.na')
+
+        return (
+          <Tooltip title={questionText} placement="topLeft">
+            <span style={{ cursor: 'pointer' }}>{questionText}</span>
+          </Tooltip>
+        )
+      },
     },
     {
       title: I18n.t('common.column.type'),
       dataIndex: 'questionType',
       key: 'questionType',
+      width: 80,
       render: (type: string) => (type ? I18n.t(`shared.${type}`) : I18n.t('common.text.na')),
     },
     {
       title: I18n.t('shared.transcription_status'),
       key: 'transcriptionStatus',
-      render: (record: MediaResponse) => {
+      width: 140,
+      render: (_: unknown, record: MediaResponse) => {
         const { transcriptionStatus, transcriptionEnabled } = record
 
         return (
@@ -178,6 +250,7 @@ const TranscriptionDetails: FC<Props> = ({
     {
       title: I18n.t('common.column.action'),
       key: 'action',
+      width: 80,
       render: (record: MediaResponse) => {
         const menu = getActionsMenuProps(record)
 
@@ -238,6 +311,18 @@ const TranscriptionDetails: FC<Props> = ({
       >
         <p>{I18n.t('shared.generate_transcription_confirm_content')}</p>
       </Modal>
+      <MediaPreviewModal
+        open={mediaPreviewOpen}
+        onClose={closeMediaPreview}
+        mediaUrl={selectedMediaUrl}
+        mediaResponse={selectedMediaForPreview}
+      />
+      <TranscriptionPreviewModal
+        open={showTranscription}
+        onClose={closeTranscriptionPreview}
+        transcriptionText={transcriptionText}
+        mediaResponse={selectedMediaForPreview}
+      />
     </>
   )
 }

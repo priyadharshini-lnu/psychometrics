@@ -335,10 +335,10 @@ export const SettingsForm = forwardRef<SettingsFormRef, Props>(({ aiArtifact, on
                 <Flex align="center" gap={4}>
                   {I18n.t('administration.ai_artifacts.playground')}
                   <Tooltip title={I18n.t('administration.ai_artifacts.playground_info')}>
-                    <InfoCircleOutlined />
+                    <span><InfoCircleOutlined /></span>
                   </Tooltip>
                 </Flex>
-                          )}
+              )}
               styles={{
                 body: {
                   height: '100%',

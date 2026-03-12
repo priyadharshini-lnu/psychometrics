@@ -168,7 +168,7 @@ const AddFieldDrawerComponent: FC<Props> = ({
                 <Switch disabled={!allowedForDashboardUse} checked={allowedForDashboardUse} />
                 {!allowedForDashboardUse && (
                   <Tooltip placement="top" title={I18n.t('administration.sheets.column.not_allowed_for_dashboard_use')}>
-                    <InfoCircleOutlined className="ms-2" />
+                    <span><InfoCircleOutlined className="ms-2" /></span>
                   </Tooltip>
                 )}
               </Form.Item>

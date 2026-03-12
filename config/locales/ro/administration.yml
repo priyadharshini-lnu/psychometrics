@@ -80,7 +80,6 @@ ro:
         title: Artefact AI
       generate: Genera
       generate_result_info_message: Rezultatele sunt în curs de generare, vă rugăm să reîmprospătați pagina pentru a vedea rezultatele actualizate.
-      generate_results: Generați rezultate
       generated_at: Generat la
       generated_at_time: Generat la %{time}
       generated_value: Valoare generată
@@ -736,6 +735,21 @@ ro:
       errors:
         invalid_headers: 'Următoarele anteturi sunt nevalide: %{headers}'
     campaign_report:
+      bulk_assets_upload:
+        errors:
+          csv_and_zip_must_exist: Atât fișierele CSV, cât și cele ZIP trebuie încărcate înainte de a începe.
+          csv_cannot_be_empty: Fișierul CSV nu poate fi gol.
+          csv_contains_blank_values: CSV conține valori goale. Toate valorile user_email și file_name trebuie să fie prezente.
+          csv_file_name_must_be_unique: Valorile din fișierul CSV trebuie să fie unice.
+          csv_must_contain_two_headers: 'CSV trebuie să aibă exact 2 coloane cu anteturi: %{headers}'
+          csv_user_emails_must_be_unique: Valorile CSV user_email trebuie să fie unice.
+          failed_to_attach_file: 'Nu s-a putut atașa fișierul la e-mail: %{email}. Eroare: %{error_message}'
+          file_names_in_csv_must_be_of_type_pdf: CSV conține intrări file_name nevalide. Toate valorile file_name din CSV trebuie să aibă extensia .pdf.
+          file_processing_error: 'Erori găsite în procesarea fișierului: %{error_message}'
+          max_emails_in_csv: Numărul maxim de intrări user_email permise în CSV este de %{max}. Fișierul CSV conține %{count} intrări user_email.
+          missing_user_reports: 'Rapoarte de utilizatori lipsă pentru e-mailuri: %{emails}'
+          no_file_found_in_extracted_zip: Nu s-a găsit niciun fișier în ZIP-ul extras
+          user_report_not_found: 'Raportul utilizatorului nu a fost găsit pentru adresa de e-mail: %{email}'
       bulk_download:
         data_range_error: Vă rugăm să selectați intervalul de date
         modal:
@@ -840,6 +854,16 @@ ro:
           report: Raport
           send_digest_emails: Trimiteți e-mailuri de rezumat
           settings: Setări
+        scoring_approval:
+          allow_bulk_approve: Permiteți aprobarea în bloc
+          allow_bulk_approve_scores: Permiteți aprobarea în bloc a scorurilor
+          approver_users: Utilizatori aprobatori
+          approvers: Persoane care aprobă
+          assessment: Evaluare
+          assessor_users: Utilizatori evaluatori
+          modal_title: Setări de aprobare a punctajului
+          remove_modal_success: 'Setarea de aprobare pentru ID-ul evaluării: %{assessmentId} a fost șters cu succes.'
+          remove_modal_text: 'Sunteți sigur că doriți să ștergeți această setare pentru ID-ul de evaluare: %{assessmentId}?'
       assessors:
         spoof:
           successfully: V-ați autentificat cu succes ca %{name}
@@ -1006,6 +1030,8 @@ ro:
         ai_assistants_disabled_by_client: AI Assistants este dezactivat de client
         ai_assisted_idp: IDP asistat de AI
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP necesită activarea funcției AI Assistants
+        ai_content_analysis: Analiza conținutului AI
+        ai_content_analysis_disabled_by_client: Analiza conținutului AI este dezactivată de client
         ai_translation: Traduceri AI
         ai_translation_disabled_by_client: Traducerile AI sunt dezactivate de client
         global_skills: Competențe globale
@@ -2541,6 +2567,7 @@ ro:
     message: Mesaj
     meta_title: Panou de administrare
     navigation:
+      approvals: Aprobări
       audit_logs: Jurnale de audit
       availability: Disponibilitate
       configuration: Configurație
@@ -3207,9 +3234,11 @@ ro:
         actions: Acțiuni
         approval_status: Starea aprobării
         approved_by: Aprobat de
+        assessed_by: Evaluare realizată de
         campaign_name: Numele campaniei
         qc_by: QC de
         report_name: Numele raportului
+        subject_email: Subiect E-mail
         user_email: E-mail utilizator
         user_name: Nume de utilizator
       dashboard: Tablou
@@ -3771,6 +3800,11 @@ ro:
         tools: Instrumente
         weightages: Ponderi
       weighted_average: Ponderată
+    scoring_approval:
+      approve_all: Aprobe toate
+      bulk_approve_success: "%{approved} rezultate aprobate."
+      review: Recenzie
+      score_approvals: Aprobări de scoruri AI
     search: Căutare
     security_setting:
       180_days: 180 de zile

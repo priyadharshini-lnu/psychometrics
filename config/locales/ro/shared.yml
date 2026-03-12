@@ -7,27 +7,49 @@ ro:
     add: Adăugați
     advanced: Avansat
     agree_and_continue: Acceptă și continuă
+    approval_status: Starea aprobării
+    approved: Aprobat
+    approved_by: Aprobat de
+    approvers_list: Lista aprobatorilor
     archive: Arhivă
     archived: Arhivate
+    assessed_by: Evaluare realizată de
+    assessment: Evaluare
+    assessment_id: ID evaluare
+    assessment_list: Lista de evaluare
+    assessment_name: Denumirea evaluării
+    assessor_approved: Evaluator aprobat
+    assessors_list: Lista evaluatorilor
     asset_not_present: Activul nu este prezent
     audio: Audio
     authentication_failed: Autentificarea a eșuat. Vă rog să încercați din nou.
+    back: Înapoi
     basic: Bază
     camera_preview: Previzualizarea camerei va apărea aici
+    campaign: Campanie
     campaign_id: ID-ul campaniei
     cancel: Anulați
     change_password: Schimbați parola
     clear_filters: Ștergeți filtrele
+    client: Client
     collaborative_learning: Învățare colaborativă
     completed: Finalizat
     configurations: Configurații
     confirm: Confirmați
     continue: Continua
+    controller: Controler
+    cookies_statement: Declarație privind cookie-urile
+    copied_to_clipboard: Copiată în clipboard
     copy: Copiere
     created_at: Creat la
     created_date: Data creării
+    custom_consent_text: Text personalizat pentru consimțământ
+    custom_consent_text_required: Este necesar un text personalizat de consimțământ pentru rolul de controlor de date
+    data_role: Rolul datelor
     decline: Declin
     description: Descriere
+    desktop_or_laptop_recommended: Recomandat pentru desktop sau laptop
+    desktop_or_laptop_required: Este necesar un computer desktop sau laptop
     download: Descărcare
     download_audio: Descărcați fișierul audio
     download_transcription: Descărcați transcrierea
@@ -37,6 +59,7 @@ ro:
     email: E-mail
     export: Exportați
     failed: Eșuat
+    'false': false
     first_name: Prenumele
     formal_learning: Învățământ formal
     generate: Generați
@@ -50,6 +73,7 @@ ro:
     internet_disconnected_message: Încercați să vă reconectați. Vă rugăm să verificați conexiunea la internet.
     last_name: Numele de familie
     learning_on_the_job_label: Învățarea la locul de muncă
+    loading: Se încarcă...
     login: Autentificare
     maintenance_in_hours: "%{hours} ore"
     maintenance_in_minutes: "%{minutes} minute"
@@ -58,22 +82,33 @@ ro:
     maintenance_time_remaining: Timp rămas
     maintenance_upcoming_description: Vom efectua lucrări de întreținere programate pe %{date} timp de aproximativ %{duration} pentru a îmbunătăți experiența dvs. În acest interval, nu veți putea accesa sau finaliza niciuna dintre sarcinile atribuite. Vă mulțumim pentru răbdare.
     maintenance_upcoming_title: Întreținere viitoare
+    media_id: ID media
+    media_preview: Previzualizare media
     media_question_transcriptions: Transcrieri ale întrebărilor adresate de mass-media
     media_responses: Răspunsurile mass-media
+    mobile_proctoring_disabled_instructions: Pentru a continua această evaluare, aveți nevoie de un computer desktop sau laptop. Vă rugăm să treceți la un computer pentru a finaliza activitatea.
+    mobile_proctoring_enabled_instructions: Pentru o experiență optimă, vă rugăm să utilizați un computer desktop sau laptop, dacă aveți unul la dispoziție. Puteți continua pe dispozitivul mobil, dacă este necesar.
     modified_by: Modificat de
     modified_date: Data modificării
     more_actions: Mai multe acțiuni
     mte_logo_alt_text: Sigla Mercer Talent Enterprise
     na_text: Nu se aplică
     name: Nume
+    negative: Negativ
     new: Nou
     no_results_found: Nu s-au găsit rezultate
     not_requested: Nu a fost încă solicitat
     ok: Bine
     pending: În așteptare
+    policy_version: Versiunea politicii
+    policy_version_format: Sunt permise numai numere întregi
+    positive: Pozitiv
     processing: Prelucrare
+    processor: Procesor
     proctoring_maintenance_active: Proctoring este în prezent în curs de întreținere, de la %{start_time} la %{end_time}. Vă rugăm să încercați din nou după perioada de întreținere.
     proctoring_maintenance_upcoming: Proctoring va fi în curs de întreținere de la %{start_time} la %{end_time}.
+    project: Proiect
+    question: Întrebare
     question_id: ID întrebare
     question_transcription_disabled: Transcrierea este dezactivată pentru această întrebare.
     rec: REC
@@ -84,14 +119,20 @@ ro:
     removed: Scos
     replace: Înlocuiți
     reset_password: Resetați parola
+    response_text: Textul răspunsului
     rte_paste_content_exceeds_char_limit: Textul depășește limita de caractere {{maxCharacterLimit}} și nu poate fi lipit.
     rte_paste_content_exceeds_word_limit: Textul depășește limita de cuvinte a {{maxWordLimit}} și nu poate fi lipit.
     save: Salvați
     saving_video: Salvarea video... Vă rugăm să nu închideți sau să nu reîmprospătați browserul
+    scoring_details: Detalii privind punctajul
     search: Căutare
     send_email: Trimite e-mail
     show_more: Afișează mai mult
     something_wrong: Ceva nu a mers bine. Contactați administratorul.
+    status: Stare
+    subject: Subiect
+    submit: Trimite
+    switch_to_laptop_or_desktop: Comutați la laptop sau desktop
     table:
       entries:
         selected: 1 rând selectat
@@ -103,9 +144,15 @@ ro:
     transcription_not_enabled: Transcrierea nu este activată pentru răspunsul media.
     transcription_status: Starea transcrierii
     transcriptions: Transcrieri
+    'true': true
     try_again: Încercați din nou
     tte_terms_and_condition: Termeni și confidențialitate
     type: Tip
     update: Actualizați
+    update_failed: Actualizarea a eșuat
+    updated_successfully: Actualizat cu succes
     video: Video
     view: Vizualizare
+    view_audio: Vizualizați audio
+    view_transcription: Vizualizați transcrierea
+    view_video: Vizualizați videoclipul

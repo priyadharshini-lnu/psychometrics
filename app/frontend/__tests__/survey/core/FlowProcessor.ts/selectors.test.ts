@@ -3,7 +3,8 @@ import {
   getElementIdByBlockId, getBlockIds, getQuestionsCount,
   getPrevBlockIds, getPrevQuestionsCount, getProgress,
   lookForEndOfAssessment, getPossibleBlocks, getPossibleQuestionsCount,
-  getAllAnsweredQuestions
+  getAllAnsweredQuestions,
+  getI18n,
 } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 
 const state = {
@@ -407,4 +408,101 @@ test('getAllAnsweredQuestions', () => {
     {id: 11}, {id: 12}, {id: 9}, {id: 10},
     {id: 5}, {id: 6}, {id: 7}, {id: 8},
   ])
+})
+
+
+describe('getI18n substituteTextWithPipedData', () => {
+  test('returns input text when mapping is empty', () => {
+    const i18n = getI18n({
+      locales: {},
+      instructions: {},
+      locale: 'en',
+      pipedTextMapping: undefined,
+    })
+
+    const question = {
+      id: 1,
+      tDefault: () => 'Hello {{e://Field/Name}}',
+    }
+
+    expect(i18n.tQuestion(question as any, 'label', {})).toStrictEqual('Hello {{e://Field/Name}}')
+
+    const i18nEmpty = getI18n({
+      locales: {},
+      instructions: {},
+      locale: 'en',
+      pipedTextMapping: {},
+    })
+
+    expect(i18nEmpty.tQuestion(question as any, 'label', {})).toStrictEqual('Hello {{e://Field/Name}}')
+  })
+
+  test("doesn't attempt replacement when no pipedText regex exists", () => {
+    const i18n = getI18n({
+      locales: {},
+      instructions: {},
+      locale: 'en',
+      pipedTextMapping: {
+        '{{e://Field/Name}}': 'Sample Name',
+      },
+    })
+
+    const question = {
+      id: 1,
+      tDefault: () => 'Hello World',
+    }
+
+    expect(i18n.tQuestion(question as any, 'label', {})).toStrictEqual('Hello World')
+  })
+
+  test('replaces tokens using pipedTextMapping for question locale text', () => {
+    const i18n = getI18n({
+      locales: {
+        question: {
+          123: {
+            label: 'Hello {{e://Field/Name}} {{e://Field/Email}}',
+          },
+        },
+      },
+      instructions: {},
+      locale: 'en',
+      pipedTextMapping: {
+        '{{e://Field/Name}}': 'Sample Name',
+        '{{e://Field/Email}}': 'e@mail.com',
+      },
+    })
+
+    const question = {
+      id: 123,
+      tDefault: () => 'fallback',
+    }
+
+    expect(i18n.tQuestion(question as any, 'label', {})).toStrictEqual('Hello Sample Name e@mail.com')
+  })
+
+  test('replaces tokens using pipedTextMapping for tBlock', () => {
+    const i18n = getI18n({
+      locales: {
+        block: {
+          9: {
+            headline: 'Welcome {{e://Field/Name}}',
+          },
+        },
+      },
+      instructions: {},
+      locale: 'en',
+      pipedTextMapping: {
+        '{{e://Field/Name}}': 'Sample Name',
+      },
+    })
+
+    const block = {
+      id: 9,
+      props: {
+        headline: 'fallback headline',
+      },
+    }
+
+    expect(i18n.tBlock(block as any, 'headline', [])).toStrictEqual('Welcome Sample Name')
+  })
 })

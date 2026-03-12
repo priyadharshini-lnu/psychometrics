@@ -47,6 +47,7 @@ module Administration
             required(:view_audit_reports).filled(:bool?)
             required(:view_assessments_and_reports).filled(:bool?)
             required(:manage_report_approval_settings).filled(:bool?)
+            required(:manage_ai_scoring_approval_settings).filled(:bool?)
             required(:export_dashboard_to_file).filled(:bool?)
             required(:convert_to_template).filled(:bool?)
           end

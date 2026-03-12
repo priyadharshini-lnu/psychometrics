@@ -81,7 +81,9 @@ class Campaign < ApplicationRecord
   has_many :memberships
   has_many :relationships, dependent: :destroy
   has_many :report_approval_settings, dependent: :destroy
+  has_many :ai_scoring_approval_settings, dependent: :destroy, class_name: 'AI::ScoringApprovalSetting'
   has_many :report_approvals, dependent: :destroy
+  has_many :ai_score_approvals, dependent: :destroy, class_name: 'AI::ScoreApproval'
   has_many :communications, dependent: :destroy
   has_many :user_idp_plans
 
@@ -121,7 +123,11 @@ class Campaign < ApplicationRecord
   end
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id name status type start_date end_date]
+    %w[id name status type start_date end_date project_id tte_id]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[project]
   end
 
   def real_status

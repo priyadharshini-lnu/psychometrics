@@ -80,7 +80,6 @@ de:
         title: KI-Artefakt
       generate: Erzeugen
       generate_result_info_message: Ergebnisse werden generiert, bitte aktualisieren Sie die Seite, um die aktualisierten Ergebnisse zu sehen.
-      generate_results: Ergebnisse generieren
       generated_at: Generiert um
       generated_at_time: Generiert bei %{time}
       generated_value: Generierter Wert
@@ -736,6 +735,21 @@ de:
       errors:
         invalid_headers: 'Folgende Header sind ungültig: %{headers}'
     campaign_report:
+      bulk_assets_upload:
+        errors:
+          csv_and_zip_must_exist: Sowohl CSV- als auch ZIP-Dateien müssen vor dem Start hochgeladen werden.
+          csv_cannot_be_empty: Die CSV-Datei darf nicht leer sein.
+          csv_contains_blank_values: Die CSV-Datei enthält leere Werte. Alle Werte für „user_email“ und „file_name“ müssen vorhanden sein.
+          csv_file_name_must_be_unique: Die Werte in der CSV-Datei müssen eindeutig sein.
+          csv_must_contain_two_headers: 'Die CSV-Datei muss genau zwei Spalten mit den folgenden Überschriften enthalten: %{headers}'
+          csv_user_emails_must_be_unique: Die Werte in der CSV-Datei „user_email“ müssen eindeutig sein.
+          failed_to_attach_file: 'Datei konnte nicht an E-Mail angehängt werden: %{email}. Fehler: %{error_message}'
+          file_names_in_csv_must_be_of_type_pdf: Die CSV-Datei enthält ungültige Einträge für Dateinamen. Alle Dateinamen in der CSV-Datei müssen die Erweiterung .pdf haben.
+          file_processing_error: 'Fehler bei der Dateiverarbeitung gefunden: %{error_message}'
+          max_emails_in_csv: Maximal %{max} user_email Einträge in CSV erlaubt. Ihre CSV-Datei enthält %{count} user_email Einträge.
+          missing_user_reports: 'Fehlende Benutzerberichte für E-Mails: %{emails}'
+          no_file_found_in_extracted_zip: Keine Datei in extrahierter ZIP-Datei gefunden
+          user_report_not_found: 'Benutzerbericht für E-Mail nicht gefunden: %{email}'
       bulk_download:
         data_range_error: Bitte wählen Sie einen Datumsbereich
         modal:
@@ -840,6 +854,16 @@ de:
           report: Bericht
           send_digest_emails: Digest-E-Mails senden
           settings: Einstellungen
+        scoring_approval:
+          allow_bulk_approve: Massenfreigabe zulassen
+          allow_bulk_approve_scores: Bulk-Genehmigung von Bewertungen zulassen
+          approver_users: Genehmigende Benutzer
+          approvers: Genehmigende
+          assessment: Bewertung
+          assessor_users: Benutzer von Assessor
+          modal_title: Einstellungen für die Genehmigung von Bewertungen
+          remove_modal_success: 'Die Genehmigungseinstellung für die Bewertungs-ID: %{assessmentId} wurde erfolgreich gelöscht.'
+          remove_modal_text: Sind Sie sicher, dass Sie diese Einstellung für die Bewertungs-ID „%{assessmentId}“ löschen möchten?
       assessors:
         spoof:
           successfully: Sie wurden erfolgreich als %{name} angemeldet
@@ -1006,6 +1030,8 @@ de:
         ai_assistants_disabled_by_client: AI Assistants ist vom Client deaktiviert
         ai_assisted_idp: AI-unterstützte IDP
         ai_assisted_idp_requires_ai_assistants: Für AI Assisted IDP muss die Funktion AI Assistants aktiviert sein
+        ai_content_analysis: KI-Inhaltsanalyse
+        ai_content_analysis_disabled_by_client: Die KI-Inhaltsanalyse ist vom Kunden deaktiviert.
         ai_translation: KI-Übersetzungen
         ai_translation_disabled_by_client: KI-Übersetzungen sind vom Kunden deaktiviert.
         global_skills: Globale Fertigkeiten
@@ -2541,6 +2567,7 @@ de:
     message: Nachricht
     meta_title: Verwaltungs-Panel
     navigation:
+      approvals: Genehmigungen
       audit_logs: Audit-Protokolle
       availability: Verfügbarkeit
       configuration: Konfiguration
@@ -3207,9 +3234,11 @@ de:
         actions: Aktionen
         approval_status: Zulassungsstatus
         approved_by: Genehmigt von
+        assessed_by: Bewertet von
         campaign_name: Name der Kampagne
         qc_by: QC von
         report_name: Bericht Name
+        subject_email: Betreff E-Mail
         user_email: Benutzer-E-Mail
         user_name: Name des Benutzers
       dashboard: Dashboard
@@ -3774,6 +3803,11 @@ de:
         tools: Werkzeuge
         weightages: Berichtigungskoeffizienten
       weighted_average: Gewichteter Durchschnitt
+    scoring_approval:
+      approve_all: Alle genehmigen
+      bulk_approve_success: "%{approved} Ergebnisse genehmigt."
+      review: Überprüfung
+      score_approvals: AI-Bewertungsgenehmigungen
     search: Suche
     security_setting:
       180_days: 180 Tage

@@ -71,5 +71,22 @@ describe PortableData::Exports::Resources::DimensionExportDefinition do
         :updated_at
       )
     end
+
+    context 'with indicators' do
+      let!(:factor) { create(:factor, dimension: dimension, factor_type: :regular) }
+      let!(:indicator) { create(:factor, dimension: dimension, factor_type: :indicator) }
+      let!(:association) { create(:factors_sub_factor, factor: factor, sub_factor: indicator) }
+
+      it 'exports factor_type and factors_sub_factors' do
+        result = subject.serialize
+
+        expect(result[:resources][:factors][:data].pluck(:factor_type)).to include('regular', 'indicator')
+        expect(result[:resources]).to include(:factors_sub_factors)
+        expect(result[:resources][:factors_sub_factors][:data].first).to include(
+          factor_id: factor.id,
+          sub_factor_id: indicator.id
+        )
+      end
+    end
   end
 end

@@ -11,7 +11,7 @@ const ScoringStrategyLabel = () => (
         <SafeHTML html={I18n.t('administration.factors.form.scoring_strategies_tip')} />
       )}
     >
-      <QuestionCircleOutlined />
+      <span><QuestionCircleOutlined /></span>
     </Tooltip>
   </span>
 )
@@ -33,6 +33,13 @@ const FIELDS = [
     label: 'Description',
     name: 'description',
     type: 'TextArea',
+  },
+  {
+    label: I18n.t('admin.what_to_look_for'),
+    name: 'what_to_look_for',
+    type: 'TextArea',
+    required: false,
+    placeholder: I18n.t('admin.what_to_look_for_placeholder'),
   },
   {
     label: <ScoringStrategyLabel />,

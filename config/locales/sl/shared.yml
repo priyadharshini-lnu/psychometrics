@@ -7,27 +7,49 @@ sl:
     add: Dodaj
     advanced: Napreden
     agree_and_continue: Strinjam se in nadaljujte
+    approval_status: Status odobritve
+    approved: Odobreno
+    approved_by: Odobreno s strani
+    approvers_list: Seznam odobriteljev
     archive: Arhiv
     archived: Arhivirani
+    assessed_by: Ocenjeno s strani
+    assessment: Ocena
+    assessment_id: ID ocene
+    assessment_list: Seznam ocen
+    assessment_name: Ime ocene
+    assessor_approved: Ocenjevalec odobril
+    assessors_list: Seznam ocenjevalcev
     asset_not_present: Sredstvo ni prisotno
     audio: Avdio
     authentication_failed: Avtentikacija ni uspela. Prosim, poskusite znova.
+    back: Nazaj
     basic: Osnoven
     camera_preview: Predogled kamere bo prikazan tukaj
+    campaign: Kampanja
     campaign_id: ID kampanje
     cancel: Prekliči
     change_password: Spremeni geslo
     clear_filters: Počistite filtre
+    client: Stranka
     collaborative_learning: Sodelovalno učenje
     completed: Zaključeno
     configurations: Konfiguracije
     confirm: Potrdi
     continue: Nadaljuj
+    controller: Krmilnik
+    cookies_statement: Izjava o piškotkih
+    copied_to_clipboard: Kopirano v odložišče
     copy: Kopiraj
     created_at: Ustvarjeno
     created_date: Ustvarjeno dne
+    custom_consent_text: Besedilo soglasja po meri
+    custom_consent_text_required: Za vlogo upravljavca podatkov je potrebno prilagojeno besedilo soglasja.
+    data_role: Vloga podatkov
     decline: Upad
     description: Opis
+    desktop_or_laptop_recommended: Priporočljiv namizni ali prenosni računalnik
+    desktop_or_laptop_required: Potreben namizni ali prenosni računalnik
     download: Prenesi
     download_audio: Prenesi avdio
     download_transcription: Prenesi transkripcijo
@@ -37,6 +59,7 @@ sl:
     email: E-pošta
     export: Izvoz
     failed: Neuspelo
+    'false': false
     first_name: Ime
     formal_learning: Formalno učenje
     generate: Ustvari
@@ -50,6 +73,7 @@ sl:
     internet_disconnected_message: Ponovno vzpostavljamo povezavo. Preverite internetno povezavo.
     last_name: Priimek
     learning_on_the_job_label: Učenje na delovnem mestu
+    loading: Nalaganje...
     login: Prijava
     maintenance_in_hours: "%{hours} ure"
     maintenance_in_minutes: "%{minutes} zapisniki"
@@ -58,22 +82,33 @@ sl:
     maintenance_time_remaining: Preostali čas
     maintenance_upcoming_description: Na spletni strani %{date} bomo izvedli redno vzdrževanje, ki bo trajalo približno %{duration}, da bi izboljšali vašo izkušnjo. V tem času ne boste mogli dostopati do dodeljenih nalog ali jih opraviti. Zahvaljujemo se vam za potrpežljivost.
     maintenance_upcoming_title: Prihajajoče vzdrževanje
+    media_id: Medijska identifikacijska številka
+    media_preview: Predogled za medije
     media_question_transcriptions: Prepisi vprašanj medijev
     media_responses: Odzivi medijev
+    mobile_proctoring_disabled_instructions: Za nadaljevanje te ocene potrebujete namizni ali prenosni računalnik. Preklopite na računalnik, da dokončate dejavnost.
+    mobile_proctoring_enabled_instructions: Za najboljšo izkušnjo preklopite na namizni ali prenosni računalnik, če ga imate na voljo. Po potrebi lahko nadaljujete na mobilni napravi.
     modified_by: Spremenil
     modified_date: Datum spremembe
     more_actions: Več dejanj
     mte_logo_alt_text: Logotip Mercer Talent Enterprise
     na_text: Ni podatka
     name: Ime
+    negative: Negativno
     new: Novo
     no_results_found: Ni bilo najdenih rezultatov
     not_requested: Še ni zahtevano
     ok: Ok
     pending: V obravnavi
+    policy_version: Različica politike
+    policy_version_format: Dovoljena so samo cela števila.
+    positive: Pozitivno
     processing: Obdelava
+    processor: Procesor
     proctoring_maintenance_active: Proctoring je trenutno v vzdrževanju od %{start_time} do %{end_time}. Poskusite ponovno po koncu vzdrževanja.
     proctoring_maintenance_upcoming: Nadzor bo v vzdrževanju od %{start_time} do %{end_time}.
+    project: Projekt
+    question: Vprašanje
     question_id: ID vprašanja
     question_transcription_disabled: Prepisovanje je za to vprašanje onemogočeno.
     rec: REC
@@ -84,14 +119,20 @@ sl:
     removed: Odstranjen
     replace: Zamenjaj
     reset_password: Ponastavitev gesla
+    response_text: Odgovor
     rte_paste_content_exceeds_char_limit: Besedilo presega omejitev znakov {{maxCharacterLimit}} in ga ni mogoče prilepiti.
     rte_paste_content_exceeds_word_limit: Besedilo presega omejitev besed {{maxWordLimit}} in ga ni mogoče prilepiti.
     save: Shrani
     saving_video: Shranjevanje videa... Prosimo, ne zapirajte ali osvežujte brskalnika
+    scoring_details: Podrobnosti o točkovanju
     search: Iskanje
     send_email: Pošlji e-pošto
     show_more: Pokaži več
     something_wrong: Nekaj je šlo narobe. Obrnite se na skrbnika.
+    status: Status
+    subject: Predmet
+    submit: Pošlji
+    switch_to_laptop_or_desktop: Preklopite na prenosni ali namizni računalnik
     table:
       entries:
         selected: Izbrana 1 vrstica
@@ -103,9 +144,15 @@ sl:
     transcription_not_enabled: Transkripcija ni omogočena za odziv medijev.
     transcription_status: Status transkripcije
     transcriptions: Transkripcij
+    'true': true
     try_again: Poskusi znova
     tte_terms_and_condition: Pogoji uporabe in politika zasebnosti
     type: Vrsta
     update: Posodobitev
+    update_failed: Posodobitev ni uspela
+    updated_successfully: Posodobljeno uspešno
     video: Video
     view: Pogled
+    view_audio: Poglej avdio
+    view_transcription: Poglej transkripcijo
+    view_video: Oglejte si video

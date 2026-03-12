@@ -14,6 +14,7 @@ const AssessmentPreview = ({
   end, initialized, assessmentCategory, agileAssignUrl, agileAssetsUrl, showSubmitPage, showAsSinglePage,
   started, type, isAnonymousAssessment, showErrorWarning, fixedTimed, instructions, submissionInProgress,
   submissionFailed, submitRequired, defaultLanguage, invalidSession, answersSaved, showEnhanceWithAI,
+  preventOverflow,
 }) => {
   const isAgile = () => assessmentCategory === 'agile'
 
@@ -61,7 +62,7 @@ const AssessmentPreview = ({
   }
 
   if (showAsSinglePage) {
-    return <SinglePage showEnhanceWithAI={showEnhanceWithAI} />
+    return <SinglePage showEnhanceWithAI={showEnhanceWithAI} preventOverflow={preventOverflow} />
   }
 
   if (showErrorWarning) {

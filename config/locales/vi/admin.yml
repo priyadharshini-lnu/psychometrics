@@ -2,10 +2,12 @@
 vi:
   admin:
     accept_na_values: Chấp nhận giá trị N/A
+    actions: Các hành động
     add_admin: Thêm quản trị viên
     add_admin_role: Thêm vai trò quản trị viên
     add_campaign_admin: Thêm quản trị viên chiến dịch
     add_client_admin: Thêm quản trị viên khách hàng
+    add_indicator: Thêm chỉ báo
     add_project: Thêm dự án
     add_project_admin: Thêm quản trị viên dự án
     add_threesixty_campaign_admin: Thêm quản trị viên chiến dịch
@@ -18,8 +20,14 @@ vi:
     admin_roles: Vai trò quản trị viên
     admin_updated_successfully: Quản trị viên '%{name}' đã được cập nhật thành công
     admins: Quản trị viên
+    ai_artifact_result_generation_admin_job_failed: Không thể tạo đối tượng '%{artifact_name}' cho người dùng '%{user_email}'
+    ai_artifact_result_stale: Kết quả có thể đã lỗi thời vì các phụ thuộc của mô hình AI đã thay đổi kể từ lần tạo kết quả gần nhất. Hãy xem xét việc tạo lại mô hình để sử dụng các phụ thuộc mới nhất.
     ai_artifacts: Đồ tạo tác AI
+    ai_artifacts_generate_results: Tạo kết quả
     ai_artifacts_output_schema_key_constraint: Khóa phải bắt đầu bằng chữ thường và chỉ có thể chứa chữ thường, số và dấu gạch dưới
+    ai_artifacts_results_export: Xuất kết quả
+    ai_artifacts_results_export_job_scheduled: Công việc xuất kết quả của AI Artifacts đã được lên lịch thành công.
+    ai_assistant: Trợ lý Trí tuệ Nhân tạo
     ai_assistant_model_id_label: ID mô hình
     ai_assistant_model_label: Mẫu
     ai_assistant_model_provider: Cung cấp
@@ -36,16 +44,47 @@ vi:
     ai_assistants_template_render_failed: Không thể hiển thị mẫu
     ai_assistants_test_render: Kết xuất thử nghiệm
     ai_assistants_test_render_tooltip: Kiểm tra mẫu lời nhắc của bạn với dữ liệu chiến dịch để kiểm tra nội dung sẽ được gửi đến trợ lý AI.
+    ai_assisted_idp_disabled_by_client: Chức năng AI Assisted IDP đã bị vô hiệu hóa bởi khách hàng.
     ai_assisted_idp_feature_disabled: Tính năng AI Assisted IDP đã bị vô hiệu hóa cho dự án này.
     ai_idp_assistant_configure_dependencies: Cấu hình các phụ thuộc của AI
     ai_idp_assistant_configure_dependencies_description: Cấu hình dữ liệu phụ thuộc mà Trợ lý AI của IDP có thể truy cập làm bối cảnh. Điều này chỉ áp dụng khi trợ lý được cấu hình để chấp nhận các phụ thuộc.
     ai_idp_assistant_dependencies_updated: Các phụ thuộc đã được cập nhật thành công.
     ai_idp_assistant_update_dependencies: Cập nhật các phụ thuộc
     ai_notice: Các phần được đánh dấu đã được dịch bằng trí tuệ nhân tạo (AI) và có thể chứa sai sót.
+    ai_score_approval_no_answer: Câu trả lời không được cung cấp cho câu hỏi này.
+    ai_score_approval_no_transcription: Không có bản chép lời cho câu hỏi này.
+    ai_scored: AI đã ghi bàn
+    ai_scoring_appoval_approve_all_questions: Chấp thuận tất cả các câu hỏi
+    ai_scoring_appoval_approve_question: Xác nhận câu hỏi
+    ai_scoring_appoval_back: Đặt lại điểm số
+    ai_scoring_appoval_change_reason: Lý do thay đổi
+    ai_scoring_appoval_change_score: Điểm số đã thay đổi
+    ai_scoring_appoval_change_score_log: Nhật ký thay đổi điểm số
+    ai_scoring_appoval_discard_all_questions: Đặt lại tất cả câu hỏi
+    ai_scoring_appoval_discard_all_questions_description: Điều này sẽ đặt lại tất cả điểm số cho tất cả câu hỏi và xóa bỏ bất kỳ thay đổi nào đã được áp dụng. Hành động này không thể hoàn tác. Bạn có chắc chắn không?
+    ai_scoring_appoval_discard_all_questions_title: Đặt lại điểm của tất cả các câu hỏi?
+    ai_scoring_appoval_discard_question: Đặt lại điểm câu hỏi
+    ai_scoring_appoval_discard_question_confirm_description: Điều này sẽ đặt lại tất cả điểm số cho câu hỏi này và xóa bỏ bất kỳ thay đổi nào đã được áp dụng. Bạn có chắc chắn không?
+    ai_scoring_appoval_discard_question_confirm_title: Đặt lại điểm câu hỏi?
+    ai_scoring_appoval_discarded_changes: Các thay đổi đã bị loại bỏ
+    ai_scoring_appoval_evidence_from_transcript: Bằng chứng từ bản ghi âm
+    ai_scoring_appoval_new_score: Điểm mới
+    ai_scoring_appoval_next: Câu hỏi tiếp theo
+    ai_scoring_appoval_rationale: Lý do
+    ai_scoring_appoval_reason_for_changes: Lý do thay đổi
+    ai_scoring_appoval_reset_score: Đặt lại điểm số
+    ai_scoring_appoval_reset_score_description: Điểm số sẽ được khôi phục về giá trị AI ban đầu.
+    ai_scoring_appoval_responses: Phản hồi của Trí tuệ nhân tạo
+    ai_scoring_appoval_score_not_applicable: Điểm không áp dụng
+    ai_scoring_approval: Phê duyệt điểm số AI
+    ai_scoring_approval_settings: Cài đặt phê duyệt điểm số AI
+    ai_scoring_approvals: Ứng dụng đánh giá và phê duyệt bằng trí tuệ nhân tạo (AI)
     ai_translation: Dịch thuật bằng Trí tuệ nhân tạo
     all_corner_rounded: Tất cả các góc đều được bo tròn.
+    allow_ai_rescoring: Cho phép đánh giá lại bằng AI
     api_keys: Khóa API
     apply_to_existing_users: Áp dụng thay đổi này cho các người dùng hiện có trong chiến dịch này.
+    assessment_question_not_supported: Loại câu hỏi này hiện tại chưa được hỗ trợ.
     assessments: Đánh giá
     assessments_not_mhs: Tất cả các đánh giá phải là loại MHS.
     assessments_reports: Đánh giá & Báo cáo
@@ -61,8 +100,14 @@ vi:
     availability: Sẵn sàng
     available_languages: Báo cáo có sẵn bằng ngôn ngữ
     back_to_main: Menu chính
+    bulk_assets_modal_choose_csv: Chọn tệp CSV
+    bulk_assets_modal_choose_zip: Chọn tệp ZIP
+    bulk_assets_modal_not_csv_file_error: Chỉ chấp nhận các tệp CSV cho việc tải lên CSV. Vui lòng tải lên một tệp CSV hợp lệ.
+    bulk_assets_modal_subtitle: 'Vui lòng tải lên <b>một tệp CSV</b> (với các tiêu đề: user_email, file_name) và <b>một tệp ZIP</b> (chứa các tệp PDF có tên trùng khớp với tên tệp trong CSV). Tệp ZIP phải có dung lượng dưới %{max_file_size} MB.'
+    bulk_assets_modal_title: Tải lên các tệp CSV và ZIP
     bulk_upload_ai_artifacts: Tải lên hàng loạt hiện vật AI
     campaign_ai_artifact_updated_successfully: Chiến dịch AI hiện vật được cập nhật thành công
+    campaign_ai_artifacts_results_export_details: Các sản phẩm trí tuệ nhân tạo (AI) của chiến dịch đã tạo ra kết quả.
     campaign_assessment_actions_disable_caching: Tắt bộ nhớ đệm đánh giá
     campaign_assessment_actions_enable_caching: Bật bộ nhớ đệm đánh giá
     campaign_assessment_column_caching_enabled: Đã bật bộ nhớ đệm đánh giá
@@ -86,11 +131,15 @@ vi:
     campaign_assessment_modals_enable_caching_successfully: Bộ nhớ đệm đã được bật cho đánh giá này.
     campaign_assessment_modals_enable_caching_title: Bật bộ nhớ đệm đánh giá?
     campaign_factors: Các yếu tố chiến dịch
+    campaign_name: Tên chiến dịch
     campaign_templates: Mẫu chiến dịch
     campaign_user_job_roles_cannot_be_same: Vị trí công việc mục tiêu phải khác với vị trí công việc hiện tại.
     campaigns: Chiến dịch
+    cancel: Hủy
     cancellation_and_rescheduling_disabled: Chức năng hủy bỏ và thay đổi lịch trình đã bị vô hiệu hóa.
     casual: Thường ngày
+    characters: nhân vật
+    children_factor_type: Yếu tố liên quan đến trẻ em
     client: Khách hàng thuê nhà
     client_admins: Quản trị viên khách hàng
     clients: Thuê khách hàng
@@ -100,24 +149,53 @@ vi:
     completed: Hoàn thành
     completed_tooltip: Tất cả các đánh giá viên đã gửi đánh giá
     concise: Ngắn gọn
+    configure_model_answer_title: Cấu hình câu trả lời mẫu và từ khóa
     confirm_remove_admin: Bạn có chắc chắn muốn xóa người dùng quản trị có email '%{email}' không?
+    copied: Đã sao chép
     country: Quốc gia
     create_client: Tạo khách hàng
+    create_indicator: Tạo chỉ báo
     current_job_role: Vị trí công việc hiện tại
     dashboard: Bảng điều khiển
     dashboards: Dashboards
     data_reports: Báo cáo dữ liệu
     datasheet: Bảng dữ liệu
     declined: Từ chối
+    define_max_score_text: Xác định điểm số của "%{maxScore}" (điểm số tối đa)
+    define_min_score_text: Xác định điểm số tối thiểu (%{minScore}).
+    define_optional_score_range_text: Định nghĩa điểm số từ %{minScore} đến %{maxScore} (tùy chọn)
+    define_score_text: Định nghĩa điểm số "%{score}"
+    definition: Định nghĩa
     delete_ok_text: Có, xóa
     denied: Bị từ chối
+    description: Mô tả
     development_actions: Hành động phát triển
     development_actions_form_tags: thẻ
+    digest_delivery_mode:
+      form_label: Chế độ giao hàng tóm tắt
+      immediate: Ngay lập tức - Gửi ngay khi có đơn hàng số lượng lớn.
+      scheduled: Đã lên lịch - Gửi email tóm tắt vào thời gian đã lên lịch
+    digest_frequency:
+      daily: Hàng ngày
+      form_label: Tần suất tiêu hóa
+      weekdays: Các ngày trong tuần
+      weekly: Hàng tuần
+    digest_weekdays:
+      form_label: Tóm tắt các ngày trong tuần
+      friday: Thứ Sáu
+      monday: Thứ Hai
+      saturday: Thứ Bảy
+      sunday: Chủ nhật
+      thursday: Thứ Năm
+      tuesday: Thứ Ba
+      wednesday: Thứ Tư
     dimensions: Kích thước
     done: Thực hiện
     done_tooltip: Không thể gửi thêm đánh giá cho người dùng này vì đánh giá của người dùng này được đánh dấu là đã thực hiện bởi %{marked_by}
+    download_bulk_asset_download_example_csv: Tải xuống tệp CSV mẫu.
     edit_campaign_admin: Chỉnh sửa quản trị viên chiến dịch
     edit_client_admin: Chỉnh sửa quản trị viên khách hàng
+    edit_indicator: Chỉnh sửa chỉ báo
     edit_job_roles: Chỉnh sửa vai trò công việc
     edit_level: Chỉnh sửa cấp độ
     edit_permission_denied: Bạn không có quyền chỉnh sửa quản trị viên '%{name}'
@@ -126,12 +204,17 @@ vi:
     empty_csv_file: Tệp CSV không chứa bất kỳ dữ liệu nào.
     enable_enhance_with_ai_client_level: Vui lòng kích hoạt tính năng "Enhance with AI" ở cấp độ khách hàng.
     enable_maintenance: Bật chế độ bảo trì
+    enable_mobile_proctoring: Bật Chế độ Giám sát Trực tuyến trên Thiết bị Di động
     enable_transcription: Bật tính năng chuyển văn bản
+    enable_transcription_msg: Bật tính năng Chuyển văn bản để sử dụng đánh giá bằng trí tuệ nhân tạo (AI) cho các câu hỏi trả lời bằng video/âm thanh.
     end_time: Thời gian kết thúc
     end_time_must_be_after_start_time: Thời gian kết thúc phải sau thời gian bắt đầu.
     enhance_with_ai: Nâng cao với Trí tuệ nhân tạo (AI)
     enhance_with_ai_requires_ai_assistants: Để sử dụng tính năng "Enhance with AI", bạn cần kích hoạt tính năng "AI Assistants".
+    enter_description: Nhập mô tả
+    enter_name: Nhập tên
     error: Lỗi
+    estimated_tokens: token (ước tính)
     evaluation_status: Trạng thái đánh giá
     evaluation_status_not_done: Trạng thái đánh giá không phải là "Xong" đối với một hoặc nhiều đối tượng được chọn. Hãy đảm bảo rằng tất cả người dùng được chọn đã hoàn thành đánh giá hoặc đánh dấu là xong.
     export_admin_roles_permissions: Xuất vai trò và quyền của quản trị viên
@@ -139,14 +222,26 @@ vi:
     export_completion_status: Tình trạng hoàn thành xuất khẩu
     export_completion_statuses_scheduled: Công việc xuất trạng thái hoàn thành đã được lên lịch thành công.
     export_detailed_completion_status: Chi tiết
+    feature_ai_assistants_description: Kích hoạt trợ lý ảo được hỗ trợ bởi trí tuệ nhân tạo (AI) để nâng cao trải nghiệm người dùng.
+    feature_ai_assisted_idp_description: Sử dụng trí tuệ nhân tạo (AI) để hỗ trợ đưa ra các đề xuất cho Kế hoạch Phát triển Cá nhân.
+    feature_ai_content_analysis_description: Kích hoạt phân tích nội dung được hỗ trợ bởi trí tuệ nhân tạo (AI) cho các bài đánh giá.
+    feature_ai_translation_description: Bật tính năng dịch nội dung tự động bằng trí tuệ nhân tạo (AI) trong báo cáo.
     feature_enhance_with_ai: Nâng cao với Trí tuệ nhân tạo (AI)
+    feature_enhance_with_ai_description: Bật các tính năng nâng cao nội dung được hỗ trợ bởi trí tuệ nhân tạo (AI)
     feature_flags: Cờ tính năng
+    feature_flags_ai_group: Tính năng Trí tuệ Nhân tạo
+    feature_flags_communication_group: Giao tiếp
+    feature_flags_platform_group: Tính năng của nền tảng
+    feature_global_skills_description: Truy cập thư viện kỹ năng toàn cầu để thực hiện đánh giá.
+    feature_idp_description: Kích hoạt Kế hoạch Phát triển Cá nhân cho các thành viên tham gia.
+    feature_sms_notification_description: Bật thông báo SMS cho lời mời và nhắc nhở chiến dịch.
     fill_empty_score_msg: Điền vào tất cả các điểm cuối cùng trước khi lưu.
     final_score_empty_err_msg: Kết quả cuối cùng của "%{factor_name}" không được để trống.
     final_score_empty_msg: Tổng số tiền không thể để trống.
     fix_grammar: Sửa lỗi ngữ pháp
     formal: Chính thức
     generate_transcription: Tạo bản chép lời
+    hide_middle_scores: Ẩn điểm số trung bình
     idp_plan_reset_success: Kế hoạch đã được đặt lại thành công
     idp_templates: Mẫu IDP
     import_ai_artifacts: Nhập hiện vật AI
@@ -175,6 +270,8 @@ vi:
     internal: Nội bộ
     invalid_csv_header: CSV chứa tiêu đề không hợp lệ.
     job_roles: Vai trò công việc
+    keywords: Từ khóa
+    keywords_placeholder: Nhập các từ khóa cách nhau bằng dấu phẩy.
     learning_from_others: Học tập hợp tác [20]
     level: Cấp độ
     level_apply: Đăng ký
@@ -201,6 +298,10 @@ vi:
     min_value: Giá trị nhỏ nhất
     minimum_10_words: Tối thiểu 10 từ
     missing_min_max_values: Giá trị tối thiểu và tối đa là bắt buộc.
+    model_answer: Câu trả lời mẫu
+    model_answer_placeholder: Nhập câu trả lời mẫu để đánh giá bằng AI.
+    name: Tên
+    name_max_length: Tên không được vượt quá %{length} ký tự.
     name_required: Tên là bắt buộc
     no_file_selected: Không có tệp nào được chọn
     no_notifications: Không có thông báo
@@ -218,6 +319,8 @@ vi:
     only_editable_on_create: Tùy chọn này chỉ có thể chỉnh sửa khi đang tạo.
     options: Tùy chọn
     original_text: Văn bản gốc
+    overall: Tổng thể
+    overall_score: Điểm tổng cộng
     participants: Tham gia
     permissions:
       aiArtifacts:
@@ -254,6 +357,7 @@ vi:
         bulk_regenerate_reports: Tái tạo hàng loạt báo cáo
         manage: Điều khiển
         manage_admins: Quản lý quản trị viên
+        manage_ai_scoring_approval_settings: Quản lý cài đặt phê duyệt điểm số AI
         manage_factor_benchmark_scores: Quản lý điểm chuẩn theo yếu tố
         manage_messages: Quản lý tin nhắn
         manage_options: Quản lý tùy chọn
@@ -642,6 +746,7 @@ vi:
         view_recordings: Xem bản ghi
     permissions_360_campaigns: Quyền truy cập dành riêng cho các chiến dịch 360
     piped_text: Văn bản được truyền qua ống
+    precision: Độ chính xác
     privacy: Sự riêng tư
     proctoring: Giám sát
     professional: Chuyên nghiệp
@@ -654,15 +759,19 @@ vi:
     project_number: Số dự án
     project_settings: Cài đặt dự án
     projects: Dự án
+    prompt: Gợi ý
     question_center: Trung tâm câu hỏi
     questions: Câu hỏi
+    range_min_max: Dải sản phẩm%{min} - %{max}
     reflection_questions: Câu hỏi suy ngẫm
     registration_codes: Mã đăng ký
     registration_settings: Cài đặt đăng ký
+    remove_children_to_change_type: Xóa tất cả các phần tử con để thay đổi loại.
     report_approvals: Phê duyệt báo cáo
     report_condition_not_met: Cần %{required} %{relationship} đánh giá, nhưng chỉ có %{actual}
     report_conditions_not_met_detailed: Báo cáo cho %{user} không đáp ứng các điều kiện sẵn có. %{conditions}
     report_denied: Báo cáo cho %{user} đã bị từ chối
+    report_name: Tên báo cáo
     report_no_evaluations: Báo cáo cho %{user} không có sẵn - không nhận được đánh giá.
     report_not_generated: Báo cáo cho %{user} đáp ứng các điều kiện khả dụng nhưng chưa được tạo. Vui lòng tạo báo cáo trước.
     report_on_hold: Báo cáo cho %{user} hiện đang bị tạm dừng
@@ -670,6 +779,7 @@ vi:
     reports: Báo cáo
     reports_limit_exceeded: Tải xuống hàng loạt được giới hạn ở 1000 tệp báo cáo. Nếu bạn đã chọn nhiều ngôn ngữ, vui lòng giảm bớt nó.
     reports_not_found: Không tìm thấy báo cáo. Vui lòng tạo báo cáo trước khi tải xuống.
+    rescore_responses_content: Điều này sẽ tính lại điểm cho các câu trả lời của môn học này. Bật tùy chọn "Cho phép đánh giá lại bằng AI" để đánh giá lại các câu trả lời bằng AI cho các câu hỏi sử dụng AI.
     reset_idp_plan: Đặt lại kế hoạch
     reset_idp_plan_confirmation: Bạn có chắc chắn muốn đặt lại kế hoạch?
     reset_idp_plan_title: Đặt lại kế hoạch
@@ -725,8 +835,32 @@ vi:
     saml_service_provider_updated_date: Ngày cập nhật
     saml_service_providers: Nhà cung cấp dịch vụ
     saml_settings: Cài đặt SAML
+    save: Lưu
+    save_assessment_for_scoring_management: Lưu đánh giá trước khi bắt đầu chấm điểm.
     scheduling: Lập kế hoạch
+    score: Điểm
+    score_approval_not_allowed_to_approve: Bạn không được phép phê duyệt điểm số này.
+    score_approval_not_allowed_to_discard: Bạn không được phép loại bỏ điểm số này.
+    score_definition_placeholder: Nhập định nghĩa cho mức điểm này.
+    score_definitions: Định nghĩa điểm số
+    score_max: Điểm tối đa
+    score_min: Điểm tối thiểu
+    score_must_be_in_between_min_and_max: Điểm số phải nằm trong khoảng từ %{min} đến %{max}.
+    score_range_info: 'Phạm vi điểm: %{min} - %{max}'
+    score_with_ai: Đạt điểm cao với Trí tuệ nhân tạo
     scoring: Ghi
+    scoring_approval_add_settings: Thêm cài đặt
+    scoring_approval_allow_bulk_approve: Cho phép phê duyệt hàng loạt
+    scoring_approval_allow_bulk_approve_scores: Cho phép phê duyệt điểm hàng loạt
+    scoring_approval_allow_one_level_approve: Cho phép phê duyệt một cấp
+    scoring_approval_approver_users: Người phê duyệt
+    scoring_approval_approvers: Người phê duyệt
+    scoring_approval_assessment: Đánh giá
+    scoring_approval_assessor_users: Người dùng đánh giá
+    scoring_approval_modal_title: Cài đặt phê duyệt điểm số
+    scoring_approval_remove_modal_success: 'Cài đặt phê duyệt cho ID đánh giá: %{assessmentId} đã được xóa thành công.'
+    scoring_approval_remove_modal_text: 'Bạn có chắc chắn muốn xóa cài đặt này cho ID đánh giá: %{assessmentId}?'
+    scoring_supported_only_for_ai_questions: Điểm số chỉ được tính cho các câu hỏi có hỗ trợ trí tuệ nhân tạo (AI) đối với yếu tố hiện đang được chọn.
     scoring_value_info: Điểm số phải nằm trong khoảng từ %{min} đến %{max}.
     scoring_value_out_of_range_err_msg: Điểm số cho "%{factor_name}" phải nằm trong khoảng từ %{min} đến %{max}.
     search_admins: Quản trị viên tìm kiếm
@@ -737,7 +871,10 @@ vi:
     select_level: Chọn cấp độ
     select_start_time: Chọn Thời gian bắt đầu
     send_email: Gửi email
+    set_min_max_scores_warning: Vui lòng thiết lập điểm tối thiểu và tối đa cho yếu tố này để cấu hình điểm số AI.
     settings: Cài đặt
+    show_all_assessment_responses: Hiển thị tất cả phản hồi đánh giá
+    show_middle_scores: Hiển thị thêm điểm số của "%{count}" (tùy chọn)...
     show_original: Hiển thị bản gốc
     show_submenu: Hiển thị menu phụ
     show_translated: Hiển thị bản dịch
@@ -755,6 +892,7 @@ vi:
     subdomain: Tên miền phụ
     subject_part_of_other_invite: Người dùng có địa chỉ email %{user_email} đã được mời tham gia '%{workshop_invite_name}'.
     target_job_role: Vị trí công việc mục tiêu
+    this_field_is_required: Trường này là bắt buộc.
     timezone: Múi giờ
     tone: Giọng điệu
     toolbar_ai_insight: Nhận định về Trí tuệ Nhân tạo
@@ -778,8 +916,12 @@ vi:
     upload_success: Tải lên thành công
     user_report_events: Sự kiện báo cáo người dùng
     users: Người dùng
+    validation_error: Vui lòng điền đầy đủ các trường thông tin bắt buộc.
     view_licenses: Xem giấy phép
     waiting: Chờ đợi
+    weight: Cân nặng
+    what_to_look_for: Những điều cần lưu ý
+    what_to_look_for_placeholder: Bằng chứng về hành vi, hành động hoặc kết quả thể hiện yếu tố này.
     words: Từ
     workshops: Hội thảo
     writing_assistant_not_configured: Trợ lý Viết chưa được cấu hình

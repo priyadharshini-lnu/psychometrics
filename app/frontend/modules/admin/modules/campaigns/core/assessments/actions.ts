@@ -134,11 +134,12 @@ export const importRawResults = (campaignId: number, assessmentId: number, body:
   },
 })
 
-export const rescoreResponses = (campaignId: number, assessmentId: number) => ({
+export const rescoreResponses = (campaignId: number, assessmentId: number, allowAiRescore: boolean = false) => ({
   type: RESCORE_RESPONSES,
   request: {
     method: 'post',
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/rescore_responses`,
+    body: { allow_ai_rescore: allowAiRescore },
   },
 })
 

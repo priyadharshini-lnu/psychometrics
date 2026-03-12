@@ -32,9 +32,9 @@ module Imports
         if errors.blank?
           user_results.each do |user_result|
             user_result.save!
-
             if user_result.completed?
-              ::UserAssessments::SaveScoresWithCallbacks.call!(user_result.user_assessment, user_result.user)
+              user_result.user_assessment.save!
+              ::UsersResults::SaveScoringWithCallbacksJob.perform_later(user_result, user_result.user)
             end
           end
         end
@@ -101,6 +101,7 @@ module Imports
           parsed_questions = {}
           new_results = {}
           duration = {}
+          import_media_from_url = data[IMPORT_MEDIA_FROM_URL_COLUMN].to_s.downcase == 'true'
 
           # Parse answers
           data.each do |key, value|
@@ -125,7 +126,8 @@ module Imports
               Rails.logger.error("#{question.type} - #{e}")
               next
             end
-            parsed_value = parser.build_answers(values, question, duration[qid], scoring, user_result)
+            parsed_value = parser.build_answers(values, question, duration[qid], scoring, user_result,
+                                                import_media_from_url: import_media_from_url)
             new_results[qid] = parsed_value if parsed_value
           end
           user_result.answers = new_results

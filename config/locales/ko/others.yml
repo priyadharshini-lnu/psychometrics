@@ -862,6 +862,7 @@ ko:
         bulk_reports: 대량 보고서
         bulk_rescore_campaign_factors: 대량 리스코어 캠페인 요소
         bulk_update_evaluation_status: 평가 상태 대량 업데이트
+        campaign_report_extract_and_upload_bulk_assets: 캠페인 보고서 대량 자산 업로드
         compact_completion_status_export: 컴팩트 완료 상태 내보내기
         completion_status_export: 완료 상태 내보내기
         copy_as_template_or_campaign: 캠페인을 템플릿으로 복사
@@ -871,6 +872,7 @@ ko:
         export_admin_with_permissions: 권한이 있는 관리자 내보내기
         export_assessment_questions: 수출 평가 질문
         export_campaign_ai_artifacts: 수출 캠페인 AI 아티팩트
+        export_campaign_ai_artifacts_results: 캠페인 AI 아티팩트 결과 내보내기
         export_campaign_factors: 수출 캠페인 요소
         export_campaign_scorings: 내보내기 캠페인 점수
         export_dashboard_as_file: 대시보드를 파일로 내보내기
@@ -1274,6 +1276,7 @@ ko:
     record_not_found: 레코드를 찾을 수 없음
     user_not_authorized: 권한이 없는 사용자
   auth:
+    cookies_link: <a href="%{cookies_url}">쿠키 정책</a>
     current_password: 현재 비밀번호
     current_password_placeholder: 현재 비밀번호 입력
     email: 이메일
@@ -1319,6 +1322,7 @@ ko:
     password_confirmation: 비밀번호 확인
     password_confirmation_placeholder: 비밀번호 확인 입력
     password_placeholder: 비밀번호 입력
+    privacy_statement_link: <a href="%{privacy_url}">개인정보 처리방침</a>
     registration:
       description: 설명
       email_hint: 당사는 사용자의 개인정보를 존중하며 스팸을 용납하지 않습니다. 당사는 사용자의 정보를 제3자에게 절대 제공하지 않습니다
@@ -1343,7 +1347,6 @@ ko:
       title: 비밀번호 만들기
     sign_out: 다른 사용자로 로그인
     sign_up: 가입하기
-    terms_link: <a href="%{terms_url}">약관 및 개인정보 처리방침</a>
     verify_mobile_number:
       error:
         blocked: 이 번호는 너무 많은 시도로 인해 차단되었습니다.

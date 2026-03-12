@@ -2,10 +2,12 @@
 sl:
   admin:
     accept_na_values: Sprejmi vrednosti N/A
+    actions: Ukrepi
     add_admin: Dodajanje skrbnika
     add_admin_role: Dodajanje skrbniške vloge
     add_campaign_admin: Dodajanje skrbnika oglaševalske akcije
     add_client_admin: Dodajanje skrbnika odjemalca
+    add_indicator: Dodaj indikator
     add_project: Dodajanje projekta
     add_project_admin: Dodajanje skrbnika projekta
     add_threesixty_campaign_admin: Dodajanje skrbnika oglaševalske akcije
@@ -18,8 +20,14 @@ sl:
     admin_roles: Skrbniške vloge
     admin_updated_successfully: Skrbnik '%{name}' je bil uspešno posodobljen
     admins: Skrbniki
+    ai_artifact_result_generation_admin_job_failed: Artefakt »%{artifact_name}« ni mogoče ustvariti za uporabnika »%{user_email}«.
+    ai_artifact_result_stale: Rezultat je lahko zastarel, saj so se odvisnosti AI artefakta spremenile od zadnjega rezultata. Razmislite o ponovni generaciji artefakta, da se generira z najnovejšimi odvisnostmi.
     ai_artifacts: Artefakti umetne inteligence
+    ai_artifacts_generate_results: Ustvarjanje rezultatov
     ai_artifacts_output_schema_key_constraint: Ključ mora začeti z majhno črko in lahko vsebuje le male črke, številke in podčrte
+    ai_artifacts_results_export: Izvoz rezultatov
+    ai_artifacts_results_export_job_scheduled: Izvoz rezultatov AI Artifacts je bil uspešno načrtovan.
+    ai_assistant: Pomočnik AI
     ai_assistant_model_id_label: ID modela
     ai_assistant_model_label: Model
     ai_assistant_model_provider: Ponudnik
@@ -36,16 +44,47 @@ sl:
     ai_assistants_template_render_failed: Predloga ni uspela izrisati
     ai_assistants_test_render: Testni upodabljanje
     ai_assistants_test_render_tooltip: Preizkusite predlogo za poziv s podatki o kampanji, da preverite, kaj bo poslano AI asistentu.
+    ai_assisted_idp_disabled_by_client: AI Assisted IDP je onemogočen s strani stranke
     ai_assisted_idp_feature_disabled: Funkcija AI Assisted IDP je bila za ta projekt onemogočena.
     ai_idp_assistant_configure_dependencies: Konfigurirajte odvisnosti AI
     ai_idp_assistant_configure_dependencies_description: Konfigurirajte, do katerih podatkov o odvisnostih ima IDP AI Assistant dostop kot kontekst. To velja samo, če je pomočnik konfiguriran tako, da sprejema odvisnosti.
     ai_idp_assistant_dependencies_updated: Odvisnosti so bile uspešno posodobljene.
     ai_idp_assistant_update_dependencies: Posodobite odvisnosti
     ai_notice: Poudarjene dele je prevedel AI in lahko vsebujejo netočnosti.
+    ai_score_approval_no_answer: Odgovor na to vprašanje ni na voljo.
+    ai_score_approval_no_transcription: Za to vprašanje transkripcija ni na voljo.
+    ai_scored: AI je dosegel
+    ai_scoring_appoval_approve_all_questions: Odobri vsa vprašanja
+    ai_scoring_appoval_approve_question: Odobri vprašanje
+    ai_scoring_appoval_back: Ponastavi rezultat
+    ai_scoring_appoval_change_reason: Razlog za spremembo
+    ai_scoring_appoval_change_score: spremenjena ocena
+    ai_scoring_appoval_change_score_log: Dnevnik sprememb
+    ai_scoring_appoval_discard_all_questions: Ponastavi vsa vprašanja
+    ai_scoring_appoval_discard_all_questions_description: S tem boste ponastavili vse ocene za vsa vprašanja in izbrisali vse prekrivanja. Te akcije ni mogoče razveljaviti. Ste prepričani?
+    ai_scoring_appoval_discard_all_questions_title: Ponastaviti vse ocene vprašanj?
+    ai_scoring_appoval_discard_question: Ponastavi ocene vprašanj
+    ai_scoring_appoval_discard_question_confirm_description: S tem boste ponastavili vse ocene za to vprašanje in izbrisali vse prekrivanja. Ste prepričani?
+    ai_scoring_appoval_discard_question_confirm_title: Ponastaviti ocene vprašanj?
+    ai_scoring_appoval_discarded_changes: zavrnjene spremembe
+    ai_scoring_appoval_evidence_from_transcript: Dokazi iz prepisa
+    ai_scoring_appoval_new_score: Nova ocena
+    ai_scoring_appoval_next: Naslednje vprašanje
+    ai_scoring_appoval_rationale: Utemeljitev
+    ai_scoring_appoval_reason_for_changes: Razlog za spremembe
+    ai_scoring_appoval_reset_score: Ponastavi rezultat
+    ai_scoring_appoval_reset_score_description: Rezultat bo vrnjen na prvotno vrednost AI.
+    ai_scoring_appoval_responses: Odgovori AI
+    ai_scoring_appoval_score_not_applicable: Rezultat ni veljaven
+    ai_scoring_approval: Odobritev AI točkovanja
+    ai_scoring_approval_settings: Nastavitve odobritve AI-točkovanja
+    ai_scoring_approvals: Odobritve AI točkovanja
     ai_translation: Prevod z umetno inteligenco
     all_corner_rounded: Vsi koti so zaobljeni
+    allow_ai_rescoring: Dovoli ponovno ocenjevanje AI
     api_keys: Ključi API-ja
     apply_to_existing_users: Uporabi to spremembo za obstoječe uporabnike v tej kampanji
+    assessment_question_not_supported: Ta vrsta vprašanja trenutno ni podprta.
     assessments: Ocenjevanja
     assessments_not_mhs: Vse ocene morajo biti tipa MHS.
     assessments_reports: Ocenjevanja in poročila
@@ -61,8 +100,14 @@ sl:
     availability: Razpoložljivost
     available_languages: Poročilo je na voljo v jezikih
     back_to_main: Glavni meni
+    bulk_assets_modal_choose_csv: Izberite CSV datoteko
+    bulk_assets_modal_choose_zip: Izberite ZIP datoteko
+    bulk_assets_modal_not_csv_file_error: Za nalaganje CSV datotek so dovoljene samo CSV datoteke. Naložite veljavno CSV datoteko.
+    bulk_assets_modal_subtitle: 'Prosimo, naložite <b>eno CSV</b> datoteko (z naslovi: user_email, file_name) in <b>eno ZIP</b> datoteko (ki vsebuje PDF datoteke, ki ustrezajo imenom datotek iz csv). Zip datoteka mora biti manjša od %{max_file_size} MB.'
+    bulk_assets_modal_title: Naložite CSV in ZIP datoteke
     bulk_upload_ai_artifacts: Artefakti umetne inteligence za množično nalaganje
     campaign_ai_artifact_updated_successfully: Artefakti AI kampanje so uspešno posodobljeni
+    campaign_ai_artifacts_results_export_details: Rezultati, ki so jih ustvarili artefakti kampanje AI
     campaign_assessment_actions_disable_caching: Onemogoči predpomnjenje ocenjevanja
     campaign_assessment_actions_enable_caching: Omogočite predpomnjenje ocenjevanja
     campaign_assessment_column_caching_enabled: Omogočeno predpomnjenje ocenjevanja
@@ -86,11 +131,15 @@ sl:
     campaign_assessment_modals_enable_caching_successfully: Za to oceno je omogočeno predpomnjenje.
     campaign_assessment_modals_enable_caching_title: Omogočiti predpomnjenje ocenjevanja?
     campaign_factors: Dejavniki oglaševalske akcije
+    campaign_name: Ime kampanje
     campaign_templates: Predloge oglaševalskih akcij
     campaign_user_job_roles_cannot_be_same: Ciljna delovna vloga mora biti drugačna od trenutne delovne vloge.
     campaigns: Kampanje
+    cancel: Prekliči
     cancellation_and_rescheduling_disabled: Preklic in sprememba termina sta onemogočena.
     casual: Površno
+    characters: znaki
+    children_factor_type: Tip otroškega faktorja
     client: Najem stranke
     client_admins: Skrbniki odjemalcev
     clients: Spletno okolje naročnika
@@ -100,24 +149,53 @@ sl:
     completed: Dokončan
     completed_tooltip: Vsi ocenjevalci so oddali oceno
     concise: Kratek
+    configure_model_answer_title: Konfigurirajte vzorčni odgovor in ključne besede
     confirm_remove_admin: Ali ste prepričani, da želite odstraniti skrbniškega uporabnika z e-poštnim sporočilom '%{email}'?
+    copied: Kopirano
     country: Država
     create_client: Ustvari odjemalca
+    create_indicator: Ustvari indikator
     current_job_role: Trenutna delovna vloga
     dashboard: Nadzorna plošča
     dashboards: Namizij
     data_reports: Poročila o podatkih
     datasheet: Podatkovni list
     declined: Zmanjšala
+    define_max_score_text: Določite oceno »%{maxScore}« (najvišja ocena)
+    define_min_score_text: Določite oceno „%{minScore}“ (minimalna ocena)
+    define_optional_score_range_text: Opredelite ocene %{minScore} do %{maxScore} (neobvezno)
+    define_score_text: Opredelite rezultat%{score}
+    definition: Opredelitev
     delete_ok_text: Da, Izbriši
     denied: Zavrnjen
+    description: Opis
     development_actions: Razvojni ukrepi
     development_actions_form_tags: Oznake
+    digest_delivery_mode:
+      form_label: Način dostave prebavnega sistema
+      immediate: Takojšnje - Pošlji, kadar koli pride do množičnega pošiljanja
+      scheduled: Načrtovano – Pošlji povzetek e-pošte ob načrtovanem času
+    digest_frequency:
+      daily: Dnevno
+      form_label: Pogostost prebave
+      weekdays: delovni dnevi
+      weekly: Tedensko
+    digest_weekdays:
+      form_label: Povzetek delovnih dni
+      friday: petek
+      monday: ponedeljek
+      saturday: sobota
+      sunday: nedelja
+      thursday: četrtek
+      tuesday: torek
+      wednesday: sreda
     dimensions: Dimenzije
     done: Storiti
     done_tooltip: Za tega uporabnika ni mogoče več opraviti ocene, saj je ocena označena kot opravljena s strani %{marked_by}
+    download_bulk_asset_download_example_csv: Prenesi primer CSV.
     edit_campaign_admin: Urejanje skrbnika oglaševalske akcije
     edit_client_admin: Urejanje skrbnika odjemalca
+    edit_indicator: Uredi indikator
     edit_job_roles: Uredi delovna mesta
     edit_level: Uredi raven
     edit_permission_denied: Nimate dovoljenja za urejanje administratorskega '%{name}'
@@ -126,12 +204,17 @@ sl:
     empty_csv_file: CSV datoteka ne vsebuje nobenih podatkov.
     enable_enhance_with_ai_client_level: Omogočite funkcijo Izboljšaj z AI na ravni odjemalca.
     enable_maintenance: Omogoči vzdrževanje
+    enable_mobile_proctoring: Omogoči mobilno nadzorovanje
     enable_transcription: Omogoči prepis
+    enable_transcription_msg: Omogoči Transcription, da uporabi AI ocenjevanje pri vprašanjih z odgovori v obliki videa/avdio.
     end_time: Konec časa
     end_time_must_be_after_start_time: Končni čas mora biti po začetnem času.
     enhance_with_ai: Izboljšajte z umetno inteligenco
     enhance_with_ai_requires_ai_assistants: Za izboljšanje z umetno inteligenco je treba omogočiti funkcijo AI Assistants.
+    enter_description: Vnesite opis
+    enter_name: Vnesite ime
     error: Napaka
+    estimated_tokens: žetoni (ocena)
     evaluation_status: Status ocenjevanja
     evaluation_status_not_done: Status ocenjevanja ni 'končan' za enega ali več izbranih predmetov. Prosimo, poskrbite, da so vsi izbrani uporabniki opravili ocene ali označili kot opravljeno.
     export_admin_roles_permissions: Izvoz skrbniških vlog in dovoljenj
@@ -139,14 +222,26 @@ sl:
     export_completion_status: Stanje zaključka izvoza
     export_completion_statuses_scheduled: Izvoz stanja dokončanja je bil uspešno načrtovan.
     export_detailed_completion_status: Podrobno
+    feature_ai_assistants_description: Omogočite pomočnike na podlagi umetne inteligence za izboljšano uporabniško izkušnjo
+    feature_ai_assisted_idp_description: Uporabite umetno inteligenco za pomoč pri priporočilih za individualno razvojno načrtovanje.
+    feature_ai_content_analysis_description: Omogoči analizo vsebin na podlagi umetne inteligence za ocenjevanje
+    feature_ai_translation_description: Omogoči samodejno prevajanje vsebin v poročilih s pomočjo umetne inteligence
     feature_enhance_with_ai: Izboljšajte z umetno inteligenco
+    feature_enhance_with_ai_description: Omogoči funkcije izboljšanja vsebine na podlagi umetne inteligence
     feature_flags: Zastavice funkcij
+    feature_flags_ai_group: Značilnosti umetne inteligence
+    feature_flags_communication_group: Komunikacija
+    feature_flags_platform_group: Značilnosti platforme
+    feature_global_skills_description: Dostop do globalne knjižnice znanj za ocenjevanje
+    feature_idp_description: Omogočite individualno načrtovanje razvoja za udeležence
+    feature_sms_notification_description: Omogoči SMS obvestila za vabila in opomnike kampanj
     fill_empty_score_msg: Pred shranjevanjem izpolnite vse končne rezultate.
     final_score_empty_err_msg: Končni rezultat igre »%{factor_name}« ne sme biti prazen.
     final_score_empty_msg: Končni račun ne sme biti prazen.
     fix_grammar: Popravi slovnico
     formal: Formalno
     generate_transcription: Ustvari transkripcijo
+    hide_middle_scores: Skrij srednje ocene
     idp_plan_reset_success: Načrt je bil uspešno ponastavljen
     idp_templates: Predloge IDP
     import_ai_artifacts: Uvoz AI artefaktov
@@ -175,6 +270,8 @@ sl:
     internal: Notranji
     invalid_csv_header: CSV datoteka vsebuje neveljavne glave.
     job_roles: Delovna mesta
+    keywords: Ključne besede
+    keywords_placeholder: Vnesite ključne besede, ločene z vejicami.
     learning_from_others: Sodelovalno učenje [20]
     level: Raven
     level_apply: Prijavi se
@@ -201,6 +298,10 @@ sl:
     min_value: Najmanjša vrednost
     minimum_10_words: Najmanj 10 besed
     missing_min_max_values: Zahtevane so minimalne in maksimalne vrednosti.
+    model_answer: Vzorec odgovora
+    model_answer_placeholder: Vnesite vzorčni odgovor za ocenjevanje AI.
+    name: Ime
+    name_max_length: Ime ne sme biti daljše od %{length} znakov.
     name_required: Ime je potrebno
     no_file_selected: Izbrana ni bila izbrana datoteka
     no_notifications: Brez obvestil
@@ -218,6 +319,8 @@ sl:
     only_editable_on_create: Ta možnost je urejljiva samo med ustvarjanjem.
     options: Možnosti
     original_text: Izvirno besedilo
+    overall: Na splošno
+    overall_score: Skupna ocena
     participants: Udeleženci
     permissions:
       aiArtifacts:
@@ -254,6 +357,7 @@ sl:
         bulk_regenerate_reports: Množična ponovna generiranje poročil
         manage: Upravljanje
         manage_admins: Upravljanje skrbnikov
+        manage_ai_scoring_approval_settings: Upravljanje nastavitev odobritve AI-točkovanja
         manage_factor_benchmark_scores: Upravljanje rezultatov primerjalnih vrednosti faktorjev
         manage_messages: Upravljanje sporočil
         manage_options: Upravljanje možnosti
@@ -642,6 +746,7 @@ sl:
         view_recordings: Ogled posnetkov
     permissions_360_campaigns: Dovoljenja za oglaševalske akcije 360
     piped_text: Besedilo v cevi
+    precision: Natančnost
     privacy: Zasebnost
     proctoring: Nadzorovanje
     professional: Profesionalni
@@ -654,15 +759,19 @@ sl:
     project_number: Številka projekta
     project_settings: Nastavitve projekta
     projects: Projekti
+    prompt: Spodbuda
     question_center: Središče za vprašanja
     questions: Vprašanja
+    range_min_max: RANGE %{min} - %{max}
     reflection_questions: Vprašanja za razmislek
     registration_codes: Registracijske kode
     registration_settings: Nastavitve registracije
+    remove_children_to_change_type: Odstrani vse otroke, da spremeniš tip
     report_approvals: Odobritve poročil
     report_condition_not_met: Potrebna je %{required} %{relationship} ocena, a ima le %{actual}
     report_conditions_not_met_detailed: Poročilo za %{user} ne izpolnjuje pogojev razpoložljivosti. %{conditions}
     report_denied: Poročilo za %{user} je bilo zavrnjeno
+    report_name: Ime poročila
     report_no_evaluations: Poročilo za %{user} ni na voljo – ocen niso bile prejete.
     report_not_generated: Poročilo za %{user} izpolnjuje pogoje razpoložljivosti, vendar še ni bilo ustvarjeno. Prosimo, najprej ustvarite poročilo.
     report_on_hold: Poročilo za %{user} je trenutno na čakanju
@@ -670,6 +779,7 @@ sl:
     reports: Poročila
     reports_limit_exceeded: Množični prenos je omejen na 1000 poročil. Če ste izbrali veliko jezikov, jih prosim zmanjšajte.
     reports_not_found: Ni bilo najdenih poročil. Pred prenosom prosimo ustvarite poročila.
+    rescore_responses_content: S tem se bodo ponovno izračunale ocene za odgovore na ta vprašanja. Omogočite možnost »Dovoli ponovno ocenjevanje z AI«, da se odgovori ponovno ocenijo z uporabo AI za vprašanja »Oceni z AI«.
     reset_idp_plan: Načrt za ponastavitev
     reset_idp_plan_confirmation: Ste prepričani, da želite ponastaviti načrt?
     reset_idp_plan_title: Načrt za ponastavitev
@@ -725,8 +835,32 @@ sl:
     saml_service_provider_updated_date: Datum posodobitve
     saml_service_providers: Ponudniki storitev
     saml_settings: SAML nastavitve
+    save: Shrani
+    save_assessment_for_scoring_management: Shranite oceno, preden začnete z ocenjevanjem.
     scheduling: Razporejanje
+    score: Rezultat
+    score_approval_not_allowed_to_approve: Te ocene ne smete odobriti.
+    score_approval_not_allowed_to_discard: Te ocene ne smete zavreči.
+    score_definition_placeholder: Vnesite definicijo za to stopnjo ocene.
+    score_definitions: Opredelitve točk
+    score_max: Najvišji rezultat
+    score_min: Rezultat Min
+    score_must_be_in_between_min_and_max: Rezultat mora biti med %{min} in %{max}.
+    score_range_info: 'Ocenjevalna lestvica: %{min} - %{max}'
+    score_with_ai: Zmagajte z umetno inteligenco
     scoring: Točkovanja
+    scoring_approval_add_settings: Dodaj nastavitve
+    scoring_approval_allow_bulk_approve: Dovoli množično odobritev
+    scoring_approval_allow_bulk_approve_scores: Dovoli množično odobravanje ocen
+    scoring_approval_allow_one_level_approve: Dovoli eno stopnjo odobritve
+    scoring_approval_approver_users: Potrjevalci
+    scoring_approval_approvers: Odobritelji
+    scoring_approval_assessment: Ocena
+    scoring_approval_assessor_users: Uporabniki ocenjevalcev
+    scoring_approval_modal_title: Nastavitve odobritve točkovanja
+    scoring_approval_remove_modal_success: 'Nastavitev odobritve za identifikacijsko številko ocene: %{assessmentId} je bila uspešno izbrisana.'
+    scoring_approval_remove_modal_text: 'Ali ste prepričani, da želite izbrisati to nastavitev za identifikacijsko številko ocene: %{assessmentId}?'
+    scoring_supported_only_for_ai_questions: Točkovanje je dovoljeno samo za vprašanja z umetno inteligenco za trenutno izbrani dejavnik.
     scoring_value_info: Rezultat mora biti med %{min} in %{max}.
     scoring_value_out_of_range_err_msg: Ocena za %{factor_name} mora biti med %{min} in %{max}.
     search_admins: Skrbniki za iskanje
@@ -737,7 +871,10 @@ sl:
     select_level: Izberite raven
     select_start_time: Izberite čas začetka
     send_email: Pošlji e-pošto
+    set_min_max_scores_warning: Za konfiguracijo AI-ocenjevanja nastavite minimalno in maksimalno število točk za ta dejavnik.
     settings: Nastavitve
+    show_all_assessment_responses: Pokaži vse odgovore na oceno
+    show_middle_scores: Pokaži več rezultatov za %{count} (neobvezno)...
     show_original: Pokaži izvirnik
     show_submenu: Pokaži podmeni
     show_translated: Pokaži prevedeno
@@ -755,6 +892,7 @@ sl:
     subdomain: Poddomena
     subject_part_of_other_invite: Oseba z e-poštnim naslovom %{user_email} je že povabljena na »%{workshop_invite_name}«.
     target_job_role: Ciljna delovna vloga
+    this_field_is_required: To polje je obvezno
     timezone: Časovni pas
     tone: Ton
     toolbar_ai_insight: Vpogled v umetno inteligenco
@@ -778,8 +916,12 @@ sl:
     upload_success: Uspešno naloženo
     user_report_events: Dogodki uporabniškega poročila
     users: Uporabniki
+    validation_error: Izpolnite vsa obvezna polja
     view_licenses: Ogled licenc
     waiting: Čaka
+    weight: Teža
+    what_to_look_for: Kaj iskati
+    what_to_look_for_placeholder: Dokazi o vedenju, dejanjih ali rezultatih, ki kažejo na ta dejavnik
     words: Besede
     workshops: Delavnice
     writing_assistant_not_configured: Pomočnik za pisanje ni nastavljen

@@ -9,6 +9,7 @@ module PortableData
         all_attributes
         mappable_attribute :owner_id
         related_resource :all_factors, model: Factor
+        related_resource :factors_sub_factors, model: FactorsSubFactor
         related_resource :occupations, model: Occupation
         related_resource :occupations_factors, model: OccupationsFactor
         related_resource :innovation_styles, model: InnovationStyle
@@ -17,6 +18,7 @@ module PortableData
         import_order %i[
           dimensions
           factors
+          factors_sub_factors
           innovation_styles
           occupations
           innovation_styles_factors

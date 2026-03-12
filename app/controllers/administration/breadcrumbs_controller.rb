@@ -2,17 +2,20 @@
 
 module Administration
   class BreadcrumbsController < Administration::BaseController
+    ALLOWED_FIELDS = %w[campaign threesixty project client].freeze
+
     skip_before_action :enforce_geo_restriction
     skip_after_action :verify_policy_scoped
     before_action :pundit_authorize, except: %i[index]
     skip_before_action :init_state
 
     def index
-      object = params[:fields].index_with { |field| send(field) }
+      fields = Array(params[:fields]).select { |field| ALLOWED_FIELDS.include?(field) }
+      object = fields.index_with { |field| send(field) }
       render json: BreadcrumbSerializer.new(
-        only: params[:fields].map(&:to_sym),
+        only: fields.map(&:to_sym),
         context: {
-          fields: params[:fields]
+          fields: fields
         }
       ).serialize(object)
     end

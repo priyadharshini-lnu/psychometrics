@@ -862,6 +862,7 @@ ja:
         bulk_reports: 一括レポート
         bulk_rescore_campaign_factors: キャンペーン要因
         bulk_update_evaluation_status: 一括更新の評価ステータス
+        campaign_report_extract_and_upload_bulk_assets: キャンペーンレポートのアップロード（一括アセット）
         compact_completion_status_export: コンパクト完成状況エクスポート
         completion_status_export: 完成状況のエクスポート
         copy_as_template_or_campaign: キャンペーンをテンプレートとしてコピーする
@@ -871,6 +872,7 @@ ja:
         export_admin_with_permissions: 権限を持つ管理者のエクスポート
         export_assessment_questions: 輸出評価に関する質問
         export_campaign_ai_artifacts: エクスポートキャンペーンAIアーティファクト
+        export_campaign_ai_artifacts_results: キャンペーンAIアーティファクト結果のエクスポート
         export_campaign_factors: 輸出キャンペーンの要因
         export_campaign_scorings: エクスポート・キャンペーン・スコアリング
         export_dashboard_as_file: ダッシュボードをファイルとしてエクスポート
@@ -1279,6 +1281,7 @@ ja:
     record_not_found: レコードが見つかりません
     user_not_authorized: ユーザー未承認
   auth:
+    cookies_link: <a href="%{cookies_url}">クッキーに関する声明</a>
     current_password: 現在のパスワード
     current_password_placeholder: 現在のパスワードを入力してください
     email: Eメール
@@ -1324,6 +1327,7 @@ ja:
     password_confirmation: パスワードを確認
     password_confirmation_placeholder: パスワードを再入力してください
     password_placeholder: パスワードを入力してください
+    privacy_statement_link: <a href="%{privacy_url}">プライバシーに関する声明</a>
     registration:
       description: 登録して新規アカウントを作成するには、以下の詳細を入力してください
       email_hint: 当社は利用者のプライバシーを尊重し、スパムを容認しません。当社が利用者の情報を第三者に提供することはありません
@@ -1348,7 +1352,6 @@ ja:
       title: パスワードを作成
     sign_out: 別のユーザーでログイン
     sign_up: 新規登録
-    terms_link: "<a href='%{terms_url}'>利用規約とプライバシーに関する声明</a>"
     verify_mobile_number:
       error:
         blocked: この番号は試行回数が多すぎるためブロックされています。

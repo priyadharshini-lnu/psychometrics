@@ -25,7 +25,7 @@ export const MarkdownEditor: FC<Props> = ({ value, onChange }) => (
             )}
           </Typography.Text>
           <Tooltip title="Markdown help">
-            <InfoCircleOutlined />
+            <span><InfoCircleOutlined /></span>
           </Tooltip>
         </Row>
       </Col>

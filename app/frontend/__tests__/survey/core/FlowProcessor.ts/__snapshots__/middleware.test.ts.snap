@@ -258,6 +258,7 @@ exports[`initializing base assessment > init action should init assessment data 
     },
     "options": {},
     "otherPendingAssessmentCount": undefined,
+    "pipedTextMapping": {},
     "prevPages": [],
     "questions": {
       "1": {
@@ -544,6 +545,7 @@ exports[`initializing base assessment > middleware should call next if is not NE
     "normalizedTree": {},
     "options": {},
     "otherPendingAssessmentCount": 0,
+    "pipedTextMapping": {},
     "prevPages": [],
     "questions": {},
     "readOnly": false,

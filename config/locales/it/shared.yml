@@ -7,27 +7,49 @@ it:
     add: Aggiungi
     advanced: Avanzato
     agree_and_continue: Accetta e continua
+    approval_status: Stato di approvazione
+    approved: Approvato
+    approved_by: Approvato da
+    approvers_list: Elenco degli approvatori
     archive: Archivio
     archived: Archiviati
+    assessed_by: Valutato da
+    assessment: Valutazione
+    assessment_id: ID valutazione
+    assessment_list: Elenco di valutazione
+    assessment_name: Nome della valutazione
+    assessor_approved: Approvato dal valutatore
+    assessors_list: Elenco dei valutatori
     asset_not_present: Risorsa non presente
     audio: Audio
     authentication_failed: L'autenticazione è fallita. Per favore, riprova.
+    back: Indietro
     basic: Basico
     camera_preview: L'anteprima della fotocamera viene visualizzata qui
+    campaign: Campagna
     campaign_id: ID della campagna elettorale
     cancel: Annulla
     change_password: Modifica la password
     clear_filters: Cancella i filtri
+    client: Cliente
     collaborative_learning: Apprendimento collaborativo
     completed: Completato
     configurations: Configurazioni
     confirm: Confermare
     continue: Continuare
+    controller: Controller
+    cookies_statement: Informativa sui cookie
+    copied_to_clipboard: Copiato negli appunti
     copy: Copia
     created_at: Creato il
     created_date: Data di creazione
+    custom_consent_text: Testo di consenso personalizzato
+    custom_consent_text_required: È necessario un testo di consenso personalizzato per il ruolo dei dati del controller
+    data_role: Ruolo dei dati
     decline: Declino
     description: Descrizione
+    desktop_or_laptop_recommended: Desktop o laptop consigliato
+    desktop_or_laptop_required: È necessario un computer desktop o portatile
     download: Scarica
     download_audio: Scarica audio
     download_transcription: Scarica la trascrizione
@@ -37,6 +59,7 @@ it:
     email: Email
     export: Esporta
     failed: Fallito
+    'false': false
     first_name: Nome
     formal_learning: Apprendimento Formale
     generate: Generare
@@ -50,6 +73,7 @@ it:
     internet_disconnected_message: Si prega di controllare la connessione a Internet.
     last_name: Cognome
     learning_on_the_job_label: Imparare sul campo
+    loading: Caricamento in corso...
     login: Accesso
     maintenance_in_hours: "%{hours} ore"
     maintenance_in_minutes: "%{minutes} verbali"
@@ -58,22 +82,33 @@ it:
     maintenance_time_remaining: Tempo rimanente
     maintenance_upcoming_description: Effettueremo una manutenzione programmata su %{date} per circa %{duration} al fine di migliorare la tua esperienza. Durante questo periodo, non potrai accedere né completare alcuna attività assegnata. Ti ringraziamo per la pazienza.
     maintenance_upcoming_title: Manutenzione imminente
+    media_id: ID media
+    media_preview: Anteprima per i media
     media_question_transcriptions: Trascrizioni delle domande dei media
     media_responses: Risposte dei media
+    mobile_proctoring_disabled_instructions: Per continuare questa valutazione è necessario un computer desktop o portatile. Passa a un computer per completare l'attività.
+    mobile_proctoring_enabled_instructions: Per un'esperienza ottimale, passa a un computer desktop o portatile, se ne hai uno a disposizione. Se necessario, puoi continuare a utilizzare il tuo dispositivo mobile.
     modified_by: Modificato da
     modified_date: Data di modifica
     more_actions: Altre azioni
     mte_logo_alt_text: Logo Mercer Talent Enterprise
     na_text: N/A
     name: Nome
+    negative: Negativo
     new: Nuove
     no_results_found: Nessun risultato trovato
     not_requested: Non ancora richiesto
     ok: Ok
     pending: In sospeso
+    policy_version: Versione della politica
+    policy_version_format: Sono ammessi solo numeri interi
+    positive: Positivo
     processing: Elaborazione
+    processor: Processore
     proctoring_maintenance_active: Il servizio di supervisione è attualmente in fase di manutenzione da %{start_time} a %{end_time}. Riprova dopo la finestra di manutenzione.
     proctoring_maintenance_upcoming: Il servizio di sorveglianza sarà sottoposto a manutenzione dalle ore %{start_time} alle ore %{end_time}.
+    project: Progetto
+    question: Domanda
     question_id: ID domanda
     question_transcription_disabled: La trascrizione è disabilitata per questa domanda.
     rec: REC
@@ -84,14 +119,20 @@ it:
     removed: Rimosso
     replace: Sostituisci
     reset_password: Reimpostare la password
+    response_text: Testo di risposta
     rte_paste_content_exceeds_char_limit: Il testo supera il limite di caratteri di {{maxCharacterLimit}} e non può essere incollato.
     rte_paste_content_exceeds_word_limit: Il testo supera il limite di parole di {{maxWordLimit}} e non può essere incollato.
     save: Salva
     saving_video: Salvataggio del video... Per favore, non chiudere né aggiornare il browser
+    scoring_details: Dettagli del punteggio
     search: Cerca
     send_email: Inviare l'e-mail
     show_more: Mostra di più
     something_wrong: Qualcosa è andato storto. Contattare l'amministratore.
+    status: Stato
+    subject: Oggetto
+    submit: Invia
+    switch_to_laptop_or_desktop: Passa al laptop o al desktop
     table:
       entries:
         selected:
@@ -108,9 +149,15 @@ it:
     transcription_not_enabled: La trascrizione non è abilitata per la risposta multimediale.
     transcription_status: Stato della trascrizione
     transcriptions: Trascrizioni
+    'true': true
     try_again: Riprova
     tte_terms_and_condition: Condizioni e privacy
     type: Tipo
     update: Aggiorna
+    update_failed: Aggiornamento non riuscito
+    updated_successfully: Aggiornamento completato con successo
     video: Video
     view: Visualizza
+    view_audio: Visualizza audio
+    view_transcription: Visualizza trascrizione
+    view_video: Guarda il video

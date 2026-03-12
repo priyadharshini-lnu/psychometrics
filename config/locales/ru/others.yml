@@ -862,6 +862,7 @@ ru:
         bulk_reports: Массовые отчеты
         bulk_rescore_campaign_factors: Факторы массовой кампании по переоценке
         bulk_update_evaluation_status: Массовое обновление статуса оценки
+        campaign_report_extract_and_upload_bulk_assets: Отчет о кампании Загрузка массовых активов
         compact_completion_status_export: Экспорт статуса завершения компактного формата
         completion_status_export: Статус завершения Экспорт
         copy_as_template_or_campaign: Копировать кампанию в качестве шаблона
@@ -871,6 +872,7 @@ ru:
         export_admin_with_permissions: Администратор экспорта с правами доступа
         export_assessment_questions: Вопросы по оценке экспорта
         export_campaign_ai_artifacts: Экспорт артефактов искусственного интеллекта кампании
+        export_campaign_ai_artifacts_results: Экспорт результатов кампании по искусственному интеллекту
         export_campaign_factors: Факторы экспортной кампании
         export_campaign_scorings: Оценки экспортных кампаний
         export_dashboard_as_file: Экспорт панели инструментов в файл
@@ -1277,6 +1279,7 @@ ru:
     record_not_found: Запись не найдена
     user_not_authorized: Пользователь не авторизован
   auth:
+    cookies_link: <a href="%{cookies_url}">Политика использования файлов cookie</a>
     current_password: Текущий пароль
     current_password_placeholder: Введите текущий пароль
     email: Электронная почта
@@ -1322,6 +1325,7 @@ ru:
     password_confirmation: Подтвердить пароль
     password_confirmation_placeholder: Введите подтверждение пароля
     password_placeholder: Введите пароль
+    privacy_statement_link: <a href="%{privacy_url}">Политика конфиденциальности</a>
     registration:
       description: Заполните форму ниже, чтобы зарегистрироваться и создать новую учетную запись.
       email_hint: Мы уважаем вашу конфиденциальность и не терпим спам. Мы никогда не передадим вашу информацию третьим лицам.
@@ -1346,7 +1350,6 @@ ru:
       title: Создать пароль
     sign_out: Войти под другим пользователем
     sign_up: Зарегистрироваться
-    terms_link: <a href="%{terms_url}">Условия и заявление о конфиденциальности</a>
     verify_mobile_number:
       error:
         blocked: Этот номер заблокирован из-за слишком большого количества попыток.

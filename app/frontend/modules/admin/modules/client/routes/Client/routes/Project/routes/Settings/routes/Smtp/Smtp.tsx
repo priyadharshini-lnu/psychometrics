@@ -44,7 +44,7 @@ type Props = PropsFromRedux
 
 const { I18n } = window
 
-const ENCRYPTION_TO_PORT_MAPPIN = {
+const ENCRYPTION_TO_PORT_MAPPING = {
   none: 25,
   ssl: 465,
   tls: 465,
@@ -77,13 +77,16 @@ const SmtpComponent: React.FC<Props> = ({
   }, [submitFormFor])
 
   const handleEncryptionChange = (encryption: string) => {
-    const port = ENCRYPTION_TO_PORT_MAPPIN[encryption]
+    const port = ENCRYPTION_TO_PORT_MAPPING[encryption]
     form.setFieldsValue({ port })
   }
 
-  const formSubmitRequest = (values: Partial<SmtpSetting>) => {
-    if (values.useSenderAuthentication) {
-      values = { fromName: values.fromName, fromEmail: values.fromEmail }
+  const formSubmitRequest = (values: Partial<SmtpSetting> & { authentication?: boolean }) => {
+    if (values.useSenderVerification) {
+      const fieldsToRemove: Array<keyof SmtpSetting | 'authentication'> = [
+        'host', 'port', 'userName', 'password', 'encryption', 'authenticationType', 'authentication',
+      ]
+      fieldsToRemove.forEach(field => delete values[field as keyof typeof values])
     }
     if (submitFormFor === SubmitFormType.Validation) {
       return validateSettings(parsedProjectId, values).then(() => {

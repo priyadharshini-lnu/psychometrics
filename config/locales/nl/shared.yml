@@ -7,27 +7,49 @@ nl:
     add: Voeg  toe
     advanced: Geavanceerd
     agree_and_continue: Akkoord en Ga Door.
+    approval_status: Goedkeuringsstatus
+    approved: Goedgekeurd
+    approved_by: Goedgekeurd door
+    approvers_list: Lijst met goedkeurders
     archive: Archief
     archived: Gearchiveerd
+    assessed_by: Beoordeeld door
+    assessment: Beoordeling
+    assessment_id: Beoordelings-ID
+    assessment_list: Beoordelingslijst
+    assessment_name: Naam van de beoordeling
+    assessor_approved: Beoordelaar goedgekeurd
+    assessors_list: Lijst van beoordelaars
     asset_not_present: Asset niet aanwezig
     audio: Audio
     authentication_failed: Authenticatie mislukt. Probeer het alsjeblieft opnieuw.
+    back: Terug
     basic: Basisch
     camera_preview: Hier verschijnt het voorbeeld van de camera
+    campaign: Campagne
     campaign_id: Campagne-ID
     cancel: Annuleren
     change_password: Wachtwoord wijzigen
     clear_filters: Filters wissen
+    client: Klant
     collaborative_learning: Samenwerkend leren
     completed: Voltooid
     configurations: Configuraties
     confirm: Bevestig
     continue: Voortzetten
+    controller: Controller
+    cookies_statement: Cookiesverklaring
+    copied_to_clipboard: Gekopieerd naar klembord
     copy: Kopieer
     created_at: Gemaakt op
     created_date: Datum aangemaakt
+    custom_consent_text: Aangepaste toestemmingstekst
+    custom_consent_text_required: Aangepaste toestemmingstekst is vereist voor de gegevensrol van de verwerkingsverantwoordelijke
+    data_role: Gegevensrol
     decline: Neergang
     description: Beschrijving
+    desktop_or_laptop_recommended: Desktop of laptop aanbevolen
+    desktop_or_laptop_required: Desktop of laptop vereist
     download: Downloaden
     download_audio: Audio downloaden
     download_transcription: Transcriptie downloaden
@@ -37,6 +59,7 @@ nl:
     email: E-mail
     export: Exporteer
     failed: Mislukt
+    'false': false
     first_name: Voornaam
     formal_learning: Formeel Leren
     generate: Genereren
@@ -50,6 +73,7 @@ nl:
     internet_disconnected_message: Probeer opnieuw verbinding te maken. Controleer uw internetverbinding.
     last_name: Achternaam
     learning_on_the_job_label: Leren op de werkvloer
+    loading: Bezig met laden...
     login: Inloggen
     maintenance_in_hours: "%{hours} uren"
     maintenance_in_minutes: "%{minutes} notulen"
@@ -58,22 +82,33 @@ nl:
     maintenance_time_remaining: Resterende tijd
     maintenance_upcoming_description: We voeren gepland onderhoud uit op %{date} gedurende ongeveer %{duration} om uw ervaring te verbeteren. Gedurende deze periode kunt u geen toegang krijgen tot toegewezen taken en deze ook niet voltooien. Wij danken u voor uw geduld.
     maintenance_upcoming_title: Aankomend onderhoud
+    media_id: Media-ID
+    media_preview: Media Preview
     media_question_transcriptions: Transcripties van vragen van de media
     media_responses: Reacties in de media
+    mobile_proctoring_disabled_instructions: Voor deze beoordeling is een desktop of laptop nodig. Ga naar een computer om de activiteit te voltooien.
+    mobile_proctoring_enabled_instructions: Voor de beste ervaring raden we u aan om over te schakelen naar een desktop of laptop als u die beschikbaar heeft. Indien nodig kunt u doorgaan op uw mobiele apparaat.
     modified_by: Gewijzigd door
     modified_date: Gewijzigde datum
     more_actions: Meer acties
     mte_logo_alt_text: Mercer logo voor talentondernemingen
     na_text: N.v.t.
     name: Naam
+    negative: Negatief
     new: Nieuw
     no_results_found: Geen resultaten gevonden
     not_requested: Nog niet aangevraagd
     ok: Ok
     pending: In behandeling
+    policy_version: Beleidsversie
+    policy_version_format: Alleen hele getallen zijn toegestaan.
+    positive: Positief
     processing: Verwerking
+    processor: Processor
     proctoring_maintenance_active: Proctoring wordt momenteel onderhouden van %{start_time} naar %{end_time}. Probeer het opnieuw na de onderhoudsperiode.
     proctoring_maintenance_upcoming: Proctoring zal worden onderhouden van %{start_time} tot %{end_time}.
+    project: Project
+    question: Vraag
     question_id: Vraag-ID
     question_transcription_disabled: Transcriptie is uitgeschakeld voor deze vraag.
     rec: REC
@@ -84,14 +119,20 @@ nl:
     removed: Verwijderd
     replace: Vervangen
     reset_password: Wachtwoord opnieuw instellen
+    response_text: Antwoordtekst
     rte_paste_content_exceeds_char_limit: Tekst overschrijdt de tekenlimiet van {{maxCharacterLimit}} en kan niet worden geplakt.
     rte_paste_content_exceeds_word_limit: Tekst overschrijdt de woordlimiet van {{maxWordLimit}} en kan niet worden geplakt.
     save: Sla
     saving_video: Video opslaan... Sluit of ververs alstublieft de browser niet
+    scoring_details: Scoredetails
     search: Zoek op
     send_email: Stuur e-mail
     show_more: Laat meer zien
     something_wrong: Er is iets misgegaan. Neem contact op met uw beheerder.
+    status: Status
+    subject: Onderwerp
+    submit: Verzenden
+    switch_to_laptop_or_desktop: Overschakelen naar laptop of desktop
     table:
       entries:
         selected:
@@ -108,9 +149,15 @@ nl:
     transcription_not_enabled: Transcriptie is niet ingeschakeld voor de mediareactie.
     transcription_status: Transcriptiestatus
     transcriptions: Transcripties
+    'true': true
     try_again: Probeer het opnieuw
     tte_terms_and_condition: Voorwaarden en privacy
     type: Type
     update: Update
+    update_failed: Update mislukt
+    updated_successfully: Succesvol bijgewerkt
     video: Video
     view: Bekijken
+    view_audio: Audio bekijken
+    view_transcription: Transcriptie bekijken
+    view_video: Bekijk video

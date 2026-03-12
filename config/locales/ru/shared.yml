@@ -7,27 +7,49 @@ ru:
     add: Добавить
     advanced: Продвинутый
     agree_and_continue: Согласен и продолжить
+    approval_status: Статус утверждения
+    approved: Утверждено
+    approved_by: Утверждено
+    approvers_list: Список утверждающих лиц
     archive: Архив
     archived: Архив
+    assessed_by: Оценка
+    assessment: Оценка
+    assessment_id: Идентификатор оценки
+    assessment_list: Список оценок
+    assessment_name: Название оценки
+    assessor_approved: Одобрено оценщиком
+    assessors_list: Список оценщиков
     asset_not_present: Актив отсутствует
     audio: Аудио
     authentication_failed: Аутентификация не удалась. Повторите попытку.
+    back: Назад
     basic: Базовый
     camera_preview: Здесь появится предварительный просмотр камеры
+    campaign: Кампания
     campaign_id: Идентификатор кампании
     cancel: Отменить
     change_password: Изменить пароль
     clear_filters: Очистить фильтры
+    client: Клиент
     collaborative_learning: Совместное обучение
     completed: Завершено
     configurations: Конфигурации
     confirm: Подтвердить
     continue: Продолжить
+    controller: Контроллер
+    cookies_statement: Заявление о файлах cookie
+    copied_to_clipboard: Скопировано в буфер обмена
     copy: Копировать
     created_at: Создано в
     created_date: Дата создания
+    custom_consent_text: Текст согласия пользователя
+    custom_consent_text_required: Для роли контроллера данных требуется индивидуальный текст согласия
+    data_role: Роль данных
     decline: Спад
     description: Описание
+    desktop_or_laptop_recommended: Рекомендуется использовать настольный компьютер или ноутбук
+    desktop_or_laptop_required: Требуется настольный компьютер или ноутбук
     download: Скачать
     download_audio: Скачать аудио
     download_transcription: Скачать транскрипцию
@@ -37,6 +59,7 @@ ru:
     email: Электронная почта
     export: Экспорт
     failed: Неудача
+    'false': false
     first_name: Имя
     formal_learning: Формальное обучение
     generate: Генерировать
@@ -50,6 +73,7 @@ ru:
     internet_disconnected_message: Попытка восстановить соединение. Проверьте подключение к Интернету.
     last_name: Фамилия
     learning_on_the_job_label: Обучение на рабочем месте
+    loading: Загрузка...
     login: Вход
     maintenance_in_hours: "%{hours} часы"
     maintenance_in_minutes: "%{minutes} протоколы"
@@ -58,22 +82,33 @@ ru:
     maintenance_time_remaining: Оставшееся время
     maintenance_upcoming_description: Мы будем проводить плановое техническое обслуживание на сайте %{date} в течение примерно %{duration}, чтобы улучшить ваш опыт работы с сайтом. В течение этого времени вы не сможете получить доступ к назначенным задачам или выполнить их. Благодарим вас за терпение.
     maintenance_upcoming_title: Предстоящее техническое обслуживание
+    media_id: Идентификатор СМИ
+    media_preview: Предварительный просмотр для СМИ
     media_question_transcriptions: Транскрипции вопросов СМИ
     media_responses: Реакция СМИ
+    mobile_proctoring_disabled_instructions: Для продолжения этой оценки требуется настольный компьютер или ноутбук. Пожалуйста, перейдите на компьютер, чтобы завершить задание.
+    mobile_proctoring_enabled_instructions: Для оптимального просмотра переключитесь на настольный компьютер или ноутбук, если у вас есть такой. При необходимости вы можете продолжить просмотр на мобильном устройстве.
     modified_by: Изменено
     modified_date: Дата изменения
     more_actions: Дополнительные действия
     mte_logo_alt_text: Логотип Mercer Talent Enterprise
     na_text: Неприменимо
     name: Имя
+    negative: Отрицательный
     new: Новый
     no_results_found: Результаты не найдены
     not_requested: Еще не запрошено
     ok: Хорошо
     pending: В ожидании
+    policy_version: Версия политики
+    policy_version_format: Допускаются только целые числа
+    positive: Положительный
     processing: Обработка
+    processor: Процессор
     proctoring_maintenance_active: В настоящее время сайт %{start_time} находится на техническом обслуживании и будет доступен по адресу %{end_time}. Пожалуйста, попробуйте снова после завершения технического обслуживания.
     proctoring_maintenance_upcoming: Процесс проктинга будет находиться на техническом обслуживании с %{start_time} по %{end_time}.
+    project: Проект
+    question: Вопрос
     question_id: Идентификатор вопроса
     question_transcription_disabled: Транскрипция для этого вопроса отключена.
     rec: REC
@@ -84,14 +119,20 @@ ru:
     removed: Удалено
     replace: Заменить
     reset_password: Сбросить пароль
+    response_text: Текст ответа
     rte_paste_content_exceeds_char_limit: Текст превышает ограничение по количеству символов {{maxCharacterLimit}} и не может быть вставлен.
     rte_paste_content_exceeds_word_limit: Текст превышает ограничение по количеству слов {{maxWordLimit}} и не может быть вставлен.
     save: Сохранить
     saving_video: Сохранение видео... Пожалуйста, не закрывайте и не обновляйте браузер
+    scoring_details: Детали подсчета очков
     search: Поиск
     send_email: Отправить электронное письмо
     show_more: Показать больше
     something_wrong: Что-то пошло не так. Обратитесь к администратору.
+    status: Статус
+    subject: Тема
+    submit: Отправить
+    switch_to_laptop_or_desktop: Переключиться на ноутбук или настольный компьютер
     table:
       entries:
         selected:
@@ -108,9 +149,15 @@ ru:
     transcription_not_enabled: Транскрипция не включена для медиа-ответа
     transcription_status: Статус транскрипции
     transcriptions: Транскрипции
+    'true': true
     try_again: Попробовать еще раз
     tte_terms_and_condition: Условия и конфиденциальность
     type: Тип
     update: Обновление
+    update_failed: Ошибка обновления
+    updated_successfully: Обновление успешно завершено
     video: Видео
     view: Просмотр
+    view_audio: Просмотр аудио
+    view_transcription: Просмотреть транскрипцию
+    view_video: Посмотреть видео

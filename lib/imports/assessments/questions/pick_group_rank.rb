@@ -13,7 +13,7 @@ module Imports
         #     "value": 0,  - Rank in Group
         #     "choice": 0  - Item ID
         #   }, ...]
-        def self.build_answers(data, question, duration, use_scoring = false, _assign)
+        def self.build_answers(data, question, duration, use_scoring = false, _assign, **) # rubocop:disable Metrics/ParameterLists
           return nil if data.compact.blank?
 
           answers = []

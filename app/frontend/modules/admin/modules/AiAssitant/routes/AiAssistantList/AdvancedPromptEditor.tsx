@@ -96,7 +96,7 @@ export const AdvancedPromptEditor: React.FC<AdvancedPromptEditorProps> = ({
               <Tooltip
                 title={I18n.t('admin.ai_assistants_test_render_tooltip')}
               >
-                <InfoCircleOutlined style={{ cursor: 'pointer', color: '#1890ff' }} />
+                <span><InfoCircleOutlined style={{ cursor: 'pointer', color: '#1890ff' }} /></span>
               </Tooltip>
             </Col>
           </Row>

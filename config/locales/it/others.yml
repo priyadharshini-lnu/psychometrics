@@ -862,6 +862,7 @@ it:
         bulk_reports: Report di massa
         bulk_rescore_campaign_factors: Fattori della campagna Bulk Rescore
         bulk_update_evaluation_status: Stato di valutazione dell'aggiornamento in blocco
+        campaign_report_extract_and_upload_bulk_assets: Caricamento del report della campagna Risorse in blocco
         compact_completion_status_export: Esporta dello stato di completamento compatto
         completion_status_export: Esporta dello stato di completamento
         copy_as_template_or_campaign: Copiare la campagna come modello
@@ -871,6 +872,7 @@ it:
         export_admin_with_permissions: Esportare l'amministratore con i permessi
         export_assessment_questions: Domande di valutazione sull'esportazione
         export_campaign_ai_artifacts: Artefatti AI della Campagna di Esportazione
+        export_campaign_ai_artifacts_results: Esporta risultati della campagna AI Artifacts
         export_campaign_factors: Fattori della campagna di esportazione
         export_campaign_scorings: Esporta delle Campagne
         export_dashboard_as_file: Esporta dashboard come file
@@ -1274,6 +1276,7 @@ it:
     record_not_found: Record non trovato
     user_not_authorized: Utente non autorizzato
   auth:
+    cookies_link: <a href="%{cookies_url}">Informativa sui cookie</a>
     current_password: Password corrente
     current_password_placeholder: Inserire la password corrente
     email: Email
@@ -1319,6 +1322,7 @@ it:
     password_confirmation: Conferma la password
     password_confirmation_placeholder: Conferma della password
     password_placeholder: Inserire la password
+    privacy_statement_link: <a href="%{privacy_url}">Informativa sulla privacy</a>
     registration:
       description: Compilare i dati sottostanti per registrarsi e creare un nuovo account
       email_hint: Rispettiamo la vostra privacy e non tolleriamo lo spam. Non cederemo mai le vostre informazioni a terzi
@@ -1343,7 +1347,6 @@ it:
       title: Creare la password
     sign_out: Accedere come utente diverso
     sign_up: Iscriviti
-    terms_link: <a href="%{terms_url}">Termini e dichiarazione sulla privacy</a>
     verify_mobile_number:
       error:
         blocked: Questo numero è bloccato a causa di troppi tentativi.

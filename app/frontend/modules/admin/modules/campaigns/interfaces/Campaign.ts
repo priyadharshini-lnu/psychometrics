@@ -32,6 +32,7 @@ export interface CommonCampaignPermissions {
   viewAiArtifacts: boolean
   viewCampaign: boolean
   manageIdpPlans: boolean
+  manageAiScoringApprovalSettings: boolean
 }
 
 export default interface Campaign {

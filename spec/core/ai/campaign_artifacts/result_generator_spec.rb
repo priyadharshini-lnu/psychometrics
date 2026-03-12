@@ -63,14 +63,21 @@ describe AI::CampaignArtifacts::ResultGenerator do
     context 'when force_regenerate is false and dependencies have not changed' do
       include_context 'assistant chat setup'
 
+      let(:matching_checksum) { 'checksum-123' }
+
       let!(:ai_artifact_result) do
         create(
           :campaign_ai_artifact_result,
           campaign_ai_artifact: ai_artifact,
           user: user,
           results: { 'summary' => 'existing summary', 'feedback' => 'existing feedback' },
-          parsed_dependencies: 'parsed dependencies'
+          parsed_dependencies: 'parsed dependencies',
+          content_checksum: matching_checksum
         )
+      end
+
+      before do
+        ai_artifact.update!(dependencies_checksum: matching_checksum)
       end
 
       it 'does not trigger the service class when dependencies are unchanged' do
@@ -139,6 +146,42 @@ describe AI::CampaignArtifacts::ResultGenerator do
 
         expect(assistant_service_instance).to have_received(:call)
       end
+
+      it 'triggers service class when checksum has changed' do
+        assistant_service_instance = instance_double(AI::AssistantService)
+        allow(AI::AssistantService).to receive(:new).and_return(assistant_service_instance)
+        allow(assistant_service_instance).to receive(:on).and_return(assistant_service_instance)
+        allow(assistant_service_instance).to receive(:call)
+
+        allow_any_instance_of(AI::Utils::CampaignArtifactParser).to receive(:call!).and_return('parsed dependencies')
+
+        ai_artifact_result.update!(content_checksum: 'old-checksum')
+        ai_artifact.update!(dependencies_checksum: 'new-checksum')
+
+        generator = described_class.new(ai_artifact.reload, user,
+                                        { force_regenerate: false, current_user: current_user })
+
+        generator.call
+
+        expect(assistant_service_instance).to have_received(:call)
+      end
+
+      it 'does not trigger service class when checksum values are identical' do
+        assistant_service_instance = instance_double(AI::AssistantService)
+        allow(AI::AssistantService).to receive(:new).and_return(assistant_service_instance)
+        allow(assistant_service_instance).to receive(:on).and_return(assistant_service_instance)
+        allow(assistant_service_instance).to receive(:call)
+
+        allow_any_instance_of(AI::Utils::CampaignArtifactParser).to receive(:call!).and_return('parsed dependencies')
+
+        ai_artifact_result.update!(content_checksum: 'same-checksum')
+        ai_artifact.update!(dependencies_checksum: 'same-checksum')
+
+        result = described_class.call(ai_artifact.reload, user, { force_regenerate: false, current_user: current_user })
+
+        expect(result[:ok]).to be_present
+        expect(AI::AssistantService).not_to have_received(:new)
+      end
     end
 
     context 'when force_regenerate is true' do
@@ -180,11 +223,22 @@ describe AI::CampaignArtifacts::ResultGenerator do
         stub_wisper_publisher('AI::AssistantService', :call, :ok, { message: 'assistant response without tool' })
       end
 
+      it 'works with nil user as used in test generation' do
+        parser_instance = spy('AI::Utils::CampaignArtifactParser')
+        allow(AI::Utils::CampaignArtifactParser).to receive(:new).and_return(parser_instance)
+
+        generator = described_class.new(ai_artifact, nil, options)
+
+        expect { generator.call }.not_to raise_error
+
+        expect(parser_instance).not_to have_received(:call!)
+      end
+
       it 'does not trigger AI::Utils::CampaignArtifactParser call! method' do
         parser_instance = spy('AI::Utils::CampaignArtifactParser')
         allow(AI::Utils::CampaignArtifactParser).to receive(:new).and_return(parser_instance)
 
-        generator = described_class.new(ai_artifact, user, options)
+        generator = described_class.new(ai_artifact, nil, options)
 
         generator.call
 
@@ -195,7 +249,7 @@ describe AI::CampaignArtifacts::ResultGenerator do
         allow_any_instance_of(AI::Utils::CampaignArtifactParser).to receive(:parse_campaign_instructions).
           and_return('artifact context')
 
-        generator = described_class.new(ai_artifact, user, options)
+        generator = described_class.new(ai_artifact, nil, options)
 
         parsed_deps = generator.send(:parsed_dependencies)
 
@@ -206,21 +260,29 @@ describe AI::CampaignArtifacts::ResultGenerator do
       end
 
       it 'does not save errors to artifact result in test mode' do
-        stub_wisper_publisher('AI::AssistantService', :call, :error, 'test error')
+        error = StandardError.new('test error message')
+        stub_wisper_publisher('AI::AssistantService', :call, :error, error.message, error)
 
-        generator = described_class.new(ai_artifact, user, options)
+        generator = described_class.new(ai_artifact, nil, options)
 
         # Ensure no artifact result exists
-        expect(ai_artifact.results.where(user: user)).to be_empty
+        expect(ai_artifact.results.where(user: nil)).to be_empty
 
         generator.call
 
         # Should still not create/save artifact result in test mode
-        expect(ai_artifact.results.where(user: user)).to be_empty
+        expect(ai_artifact.results.where(user: nil)).to be_empty
+      end
+
+      it 'does not attempt to update campaign_user when user is nil' do
+        generator = described_class.new(ai_artifact, nil, options)
+
+        # This should not raise an error even though user is nil
+        expect { generator.call }.not_to raise_error
       end
     end
 
-    context 'in non-test mode (production)' do
+    context 'in non-test mode' do
       include_context 'assistant chat setup'
 
       it 'triggers AI::Utils::CampaignArtifactParser call! method' do
@@ -237,8 +299,9 @@ describe AI::CampaignArtifacts::ResultGenerator do
       end
 
       it 'saves errors to the result record when service fails' do
+        error_message = 'service error message'
         allow_any_instance_of(AI::Utils::CampaignArtifactParser).to receive(:call!).and_return('parsed dependencies')
-        stub_wisper_publisher('AI::AssistantService', :call, :error, 'service error message')
+        stub_wisper_publisher('AI::AssistantService', :call, :error, error_message, StandardError.new(error_message))
 
         generator = described_class.new(ai_artifact, user, { current_user: current_user })
 
@@ -246,7 +309,7 @@ describe AI::CampaignArtifacts::ResultGenerator do
 
         artifact_result = ai_artifact.results.find_by(user: user)
         expect(artifact_result).to be_present
-        expect(artifact_result.error).to eq('service error message')
+        expect(artifact_result.error).to eq(error_message)
       end
 
       it 'saves errors when assistant returns ok but no tool was used' do

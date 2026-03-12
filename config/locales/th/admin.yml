@@ -2,10 +2,12 @@
 th:
   admin:
     accept_na_values: ยอมรับค่า N/A
+    actions: การกระทำ
     add_admin: เพิ่มผู้ดูแลระบบ
     add_admin_role: เพิ่มบทบาทผู้ดูแลระบบ
     add_campaign_admin: เพิ่มผู้ดูแลแคมเปญ
     add_client_admin: เพิ่มผู้ดูแลระบบลูกค้า
+    add_indicator: เพิ่มตัวชี้วัด
     add_project: เพิ่มโครงการ
     add_project_admin: เพิ่มผู้ดูแลระบบโครงการ
     add_threesixty_campaign_admin: เพิ่มผู้ดูแลแคมเปญ
@@ -18,8 +20,14 @@ th:
     admin_roles: บทบาทผู้ดูแลระบบ
     admin_updated_successfully: ผู้ดูแลระบบ '%{name}' อัปเดตเรียบร้อยแล้ว
     admins: ผู้ดูแลระบบ
+    ai_artifact_result_generation_admin_job_failed: ไม่สามารถสร้างวัตถุ '%{artifact_name}' สำหรับผู้ใช้ '%{user_email}' ได้
+    ai_artifact_result_stale: ผลลัพธ์อาจล้าสมัยเนื่องจากความพึ่งพาของ AI artifact ได้เปลี่ยนแปลงไปตั้งแต่ผลลัพธ์ครั้งล่าสุดถูกสร้างขึ้น โปรดพิจารณาการสร้าง artifact ใหม่เพื่อสร้างด้วย dependency ล่าสุด
     ai_artifacts: สิ่งประดิษฐ์ AI
+    ai_artifacts_generate_results: สร้างผลลัพธ์
     ai_artifacts_output_schema_key_constraint: คีย์ต้องขึ้นต้นด้วยตัวพิมพ์เล็ก และสามารถมีได้เฉพาะตัวพิมพ์เล็ก ตัวเลข และขีดล่างเท่านั้น
+    ai_artifacts_results_export: ผลลัพธ์การส่งออก
+    ai_artifacts_results_export_job_scheduled: งานส่งออกผลลัพธ์ของ AI Artifacts ได้รับการกำหนดเวลาเรียบร้อยแล้ว
+    ai_assistant: ผู้ช่วยปัญญาประดิษฐ์
     ai_assistant_model_id_label: รหัสรุ่น
     ai_assistant_model_label: แบบ
     ai_assistant_model_provider: ผู้จัดหา
@@ -36,16 +44,47 @@ th:
     ai_assistants_template_render_failed: แสดงเทมเพลตไม่สําเร็จ
     ai_assistants_test_render: ทดสอบการแสดงผล
     ai_assistants_test_render_tooltip: ทดสอบเทมเพลตพร้อมท์ของคุณด้วยข้อมูลแคมเปญเพื่อตรวจสอบว่าอะไรจะถูกส่งไปยังผู้ช่วย AI
+    ai_assisted_idp_disabled_by_client: ระบบช่วยเหลือ IDP โดย AI ถูกปิดใช้งานโดยลูกค้า
     ai_assisted_idp_feature_disabled: คุณลักษณะ AI Assisted IDP ถูกปิดใช้งานสําหรับโครงการนี้
     ai_idp_assistant_configure_dependencies: กำหนดค่าการพึ่งพา AI
     ai_idp_assistant_configure_dependencies_description: กำหนดค่าข้อมูลการพึ่งพาที่ผู้ช่วย AI ของ IDP สามารถเข้าถึงเป็นบริบทได้ การตั้งค่านี้ใช้เฉพาะเมื่อผู้ช่วยได้รับการกำหนดค่าให้ยอมรับการพึ่งพาเท่านั้น
     ai_idp_assistant_dependencies_updated: การอัปเดตการพึ่งพาสำเร็จแล้ว
     ai_idp_assistant_update_dependencies: อัปเดตการพึ่งพา
     ai_notice: ส่วนที่ถูกเน้นได้รับการแปลโดย AI และอาจมีข้อผิดพลาด
+    ai_score_approval_no_answer: ไม่มีคำตอบสำหรับคำถามนี้
+    ai_score_approval_no_transcription: ไม่มีคำบรรยายสำหรับคำถามนี้
+    ai_scored: AI ได้คะแนน
+    ai_scoring_appoval_approve_all_questions: อนุมัติคำถามทั้งหมด
+    ai_scoring_appoval_approve_question: อนุมัติคำถาม
+    ai_scoring_appoval_back: รีเซ็ตคะแนน
+    ai_scoring_appoval_change_reason: เหตุผลในการเปลี่ยนแปลง
+    ai_scoring_appoval_change_score: คะแนนเปลี่ยนแปลง
+    ai_scoring_appoval_change_score_log: บันทึกการเปลี่ยนแปลงคะแนน
+    ai_scoring_appoval_discard_all_questions: รีเซ็ตคำถามทั้งหมด
+    ai_scoring_appoval_discard_all_questions_description: นี่จะรีเซ็ตคะแนนทั้งหมดสำหรับทุกคำถามและล้างการตั้งค่าทับทั้งหมด การดำเนินการนี้ไม่สามารถย้อนกลับได้ คุณแน่ใจหรือไม่?
+    ai_scoring_appoval_discard_all_questions_title: รีเซ็ตคะแนนคำถามทั้งหมด?
+    ai_scoring_appoval_discard_question: รีเซ็ตคะแนนคำถาม
+    ai_scoring_appoval_discard_question_confirm_description: นี่จะรีเซ็ตคะแนนทั้งหมดสำหรับคำถามนี้และล้างการตั้งค่าทับทั้งหมด คุณแน่ใจหรือไม่?
+    ai_scoring_appoval_discard_question_confirm_title: รีเซ็ตคะแนนคำถาม?
+    ai_scoring_appoval_discarded_changes: การเปลี่ยนแปลงที่ถูกยกเลิก
+    ai_scoring_appoval_evidence_from_transcript: หลักฐานจากบันทึกการสนทนา
+    ai_scoring_appoval_new_score: คะแนนใหม่
+    ai_scoring_appoval_next: คำถามถัดไป
+    ai_scoring_appoval_rationale: เหตุผล
+    ai_scoring_appoval_reason_for_changes: เหตุผลของการเปลี่ยนแปลง
+    ai_scoring_appoval_reset_score: รีเซ็ตคะแนน
+    ai_scoring_appoval_reset_score_description: คะแนนจะถูกคืนกลับไปยังค่าเริ่มต้นของ AI
+    ai_scoring_appoval_responses: คำตอบจาก AI
+    ai_scoring_appoval_score_not_applicable: คะแนนไม่สามารถนำมาใช้ได้
+    ai_scoring_approval: การอนุมัติคะแนนโดย AI
+    ai_scoring_approval_settings: การตั้งค่าการอนุมัติคะแนน AI
+    ai_scoring_approvals: การอนุมัติคะแนนด้วยระบบปัญญาประดิษฐ์
     ai_translation: การแปลโดยปัญญาประดิษฐ์
     all_corner_rounded: มุมทั้งหมดโค้งมน
+    allow_ai_rescoring: อนุญาตให้ AI คะแนนใหม่
     api_keys: กุญแจ API
     apply_to_existing_users: นำการเปลี่ยนแปลงนี้ไปใช้กับผู้ใช้ที่มีอยู่ในแคมเปญนี้
+    assessment_question_not_supported: ประเภทคำถามนี้ยังไม่รองรับในขณะนี้
     assessments: การประเมิน
     assessments_not_mhs: การประเมินทั้งหมดต้องเป็นประเภท MHS
     assessments_reports: การประเมินและรายงาน
@@ -61,8 +100,14 @@ th:
     availability: กำหนดการ
     available_languages: รายงานมีให้บริการในภาษาต่างๆ
     back_to_main: เมนูหลัก
+    bulk_assets_modal_choose_csv: เลือกไฟล์ CSV
+    bulk_assets_modal_choose_zip: เลือกไฟล์ ZIP
+    bulk_assets_modal_not_csv_file_error: อนุญาตให้อัปโหลดไฟล์ CSV เท่านั้น กรุณาอัปโหลดไฟล์ CSV ที่ถูกต้อง
+    bulk_assets_modal_subtitle: 'กรุณาอัปโหลดไฟล์ <b>CSV</b> หนึ่งไฟล์ (พร้อมหัวข้อ: user_email, file_name) และไฟล์ <b>ZIP</b> หนึ่งไฟล์ (ภายในมีไฟล์ PDF ที่ตรงกับชื่อไฟล์จากไฟล์ CSV) ไฟล์ ZIP ต้องมีขนาดไม่เกิน %{max_file_size} MB'
+    bulk_assets_modal_title: อัปโหลดไฟล์ CSV และ ZIP
     bulk_upload_ai_artifacts: อัปโหลดสิ่งประดิษฐ์ AI จํานวนมาก
     campaign_ai_artifact_updated_successfully: อัปเดตสิ่งประดิษฐ์ AI ของแคมเปญเรียบร้อยแล้ว
+    campaign_ai_artifacts_results_export_details: แคมเปญ AI สร้างผลลัพธ์
     campaign_assessment_actions_disable_caching: ปิดใช้งานการแคชการประเมิน
     campaign_assessment_actions_enable_caching: เปิดใช้งานการแคชการประเมิน
     campaign_assessment_column_caching_enabled: เปิดใช้งานการแคชการประเมิน
@@ -86,11 +131,15 @@ th:
     campaign_assessment_modals_enable_caching_successfully: เปิดใช้งานการแคชสําหรับการประเมินนี้
     campaign_assessment_modals_enable_caching_title: เปิดใช้งานการแคชการประเมิน?
     campaign_factors: ปัจจัยของแคมเปญ
+    campaign_name: ชื่อแคมเปญ
     campaign_templates: เทมเพลตแคมเปญ
     campaign_user_job_roles_cannot_be_same: ตำแหน่งงานเป้าหมายต้องแตกต่างจากตำแหน่งงานปัจจุบัน
     campaigns: แคมเปญ
+    cancel: ยกเลิก
     cancellation_and_rescheduling_disabled: การยกเลิกและการเลื่อนกำหนดการถูกปิดใช้งาน
     casual: ลำลอง
+    characters: ตัวอักษร
+    children_factor_type: ประเภทปัจจัยของเด็ก
     client: การเช่าลูกค้า
     client_admins: ผู้ดูแลระบบไคลเอ็นต์
     clients: บัญชีลูกค้า
@@ -100,24 +149,53 @@ th:
     completed: เสร็จ สมบูรณ์
     completed_tooltip: ผู้ประเมินทั้งหมดได้ส่งการประเมินแล้ว
     concise: กระชับ
+    configure_model_answer_title: กำหนดค่าคำตอบแบบจำลองและคำสำคัญ
     confirm_remove_admin: คุณแน่ใจหรือไม่ว่าต้องการลบผู้ดูแลระบบอีเมล '%{email}'
+    copied: คัดลอกแล้ว
     country: ประเทศ
     create_client: สร้างไคลเอ็นต์
+    create_indicator: สร้างตัวชี้วัด
     current_job_role: บทบาทงานปัจจุบัน
     dashboard: แดชบอร์ด
     dashboards: แด ชบอร์ด
     data_reports: รายงานข้อมูล
     datasheet: เอกสารข้อมูลสินค้า
     declined: ปฏิเสธ
+    define_max_score_text: กำหนดคะแนน %{maxScore} (คะแนนสูงสุด)
+    define_min_score_text: กำหนดคะแนน %{minScore} (คะแนนขั้นต่ำ)
+    define_optional_score_range_text: กำหนดคะแนน %{minScore} ถึง %{maxScore} (ไม่บังคับ)
+    define_score_text: กำหนดคะแนนของ %{score}
+    definition: คำนิยาม
     delete_ok_text: ใช่ ลบ
     denied: ถูก ปฏิเสธ
+    description: คำอธิบาย
     development_actions: การดําเนินการพัฒนา
     development_actions_form_tags: แท็ก
+    digest_delivery_mode:
+      form_label: โหมดการส่งข้อมูลแบบย่อย
+      immediate: ทันที - ส่งเมื่อมีการส่งข้อมูลจำนวนมาก
+      scheduled: กำหนดเวลา - ส่งอีเมลสรุปตามเวลาที่กำหนด
+    digest_frequency:
+      daily: รายวัน
+      form_label: ความถี่ในการสรุป
+      weekdays: วันธรรมดา
+      weekly: รายสัปดาห์
+    digest_weekdays:
+      form_label: สรุป วันธรรมดา
+      friday: วันศุกร์
+      monday: วันจันทร์
+      saturday: วันเสาร์
+      sunday: วันอาทิตย์
+      thursday: วันพฤหัสบดี
+      tuesday: วันอังคาร
+      wednesday: วันพุธ
     dimensions: มิติ
     done: เสร็จแล้ว
     done_tooltip: ไม่สามารถส่งการประเมินสําหรับผู้ใช้รายนี้ได้อีก เนื่องจากการประเมินของผู้ใช้รายนี้ถูกทําเครื่องหมายว่าเสร็จสิ้นโดย %{marked_by}
+    download_bulk_asset_download_example_csv: ดาวน์โหลดตัวอย่าง CSV
     edit_campaign_admin: แก้ไขผู้ดูแลระบบแคมเปญ
     edit_client_admin: แก้ไขผู้ดูแลระบบลูกค้า
+    edit_indicator: แก้ไขตัวบ่งชี้
     edit_job_roles: แก้ไขบทบาทงาน
     edit_level: แก้ไขระดับ
     edit_permission_denied: คุณไม่มีสิทธิ์แก้ไขผู้ดูแลระบบ '%{name}'
@@ -126,12 +204,17 @@ th:
     empty_csv_file: ไฟล์ CSV ไม่มีข้อมูลใดๆ
     enable_enhance_with_ai_client_level: โปรดเปิดใช้งานฟีเจอร์เพิ่มประสิทธิภาพด้วย AI ที่ระดับลูกค้า
     enable_maintenance: เปิดใช้งานการบำรุงรักษา
+    enable_mobile_proctoring: เปิดใช้งานการตรวจสอบการสอบผ่านมือถือ
     enable_transcription: เปิดใช้งานการถอดเสียง
+    enable_transcription_msg: เปิดใช้งานการถอดเสียงเพื่อใช้การให้คะแนนด้วย AI สำหรับคำถามที่ตอบด้วยวิดีโอ/เสียง
     end_time: เวลาสิ้นสุด
     end_time_must_be_after_start_time: เวลาสิ้นสุดต้องเป็นหลังจากเวลาเริ่มต้น
     enhance_with_ai: เพิ่มประสิทธิภาพด้วย AI
     enhance_with_ai_requires_ai_assistants: การเพิ่มประสิทธิภาพด้วย AI ต้องเปิดใช้งานฟีเจอร์ผู้ช่วย AI
+    enter_description: กรอกคำอธิบาย
+    enter_name: กรุณากรอกชื่อ
     error: ข้อผิดพลาด
+    estimated_tokens: โทเค็น (ประมาณการ)
     evaluation_status: สถานะการประเมิน
     evaluation_status_not_done: สถานะการประเมินไม่ใช่ "เสร็จสิ้น" สําหรับวิชาที่เลือกอย่างน้อยหนึ่งวิชา โปรดตรวจสอบให้แน่ใจว่าผู้ใช้ที่เลือกทั้งหมดได้ทําการประเมินหรือทําเครื่องหมายว่าเสร็จสิ้น
     export_admin_roles_permissions: ส่งออกหน้าที่และสิทธิ์ของผู้ดูแลระบบ
@@ -139,14 +222,26 @@ th:
     export_completion_status: สถานะการส่งออกเสร็จสมบูรณ์
     export_completion_statuses_scheduled: งานส่งออกสถานะการเสร็จสิ้นถูกกำหนดเวลาสำเร็จ
     export_detailed_completion_status: ละเอียด
+    feature_ai_assistants_description: เปิดใช้งานผู้ช่วยอัจฉริยะด้วย AI เพื่อประสบการณ์ผู้ใช้ที่ดียิ่งขึ้น
+    feature_ai_assisted_idp_description: ใช้ AI เพื่อช่วยในการให้คำแนะนำสำหรับการวางแผนพัฒนาบุคคล
+    feature_ai_content_analysis_description: เปิดใช้งานการวิเคราะห์เนื้อหาด้วย AI สำหรับการประเมินผล
+    feature_ai_translation_description: เปิดใช้งานการแปลเนื้อหาอัตโนมัติด้วย AI ในรายงาน
     feature_enhance_with_ai: เพิ่มประสิทธิภาพด้วย AI
+    feature_enhance_with_ai_description: เปิดใช้งานฟีเจอร์การปรับปรุงเนื้อหาด้วยปัญญาประดิษฐ์
     feature_flags: แฟล็กคุณสมบัติ
+    feature_flags_ai_group: คุณสมบัติของ AI
+    feature_flags_communication_group: การสื่อสาร
+    feature_flags_platform_group: คุณสมบัติของแพลตฟอร์ม
+    feature_global_skills_description: เข้าถึงคลังทักษะระดับโลกสำหรับการประเมิน
+    feature_idp_description: เปิดใช้งานการวางแผนพัฒนาบุคคลสำหรับผู้เข้าร่วม
+    feature_sms_notification_description: เปิดใช้งานการแจ้งเตือนทาง SMS สำหรับคำเชิญและคำเตือนของแคมเปญ
     fill_empty_score_msg: กรอกคะแนนสุดท้ายทั้งหมดก่อนบันทึก
     final_score_empty_err_msg: คะแนนสุดท้ายของ %{factor_name} ไม่สามารถเป็นค่าว่างได้
     final_score_empty_msg: ยอดรวมสุดท้ายต้องไม่ว่างเปล่า
     fix_grammar: แก้ไขไวยากรณ์
     formal: ทางการ
     generate_transcription: สร้างการถอดความ
+    hide_middle_scores: ซ่อนคะแนนกลาง
     idp_plan_reset_success: รีเซ็ตแผนเรียบร้อยแล้ว
     idp_templates: เทมเพลต IDP
     import_ai_artifacts: นําเข้าสิ่งประดิษฐ์ AI
@@ -175,6 +270,8 @@ th:
     internal: ภายใน
     invalid_csv_header: ไฟล์ CSV มีส่วนหัวที่ไม่ถูกต้อง
     job_roles: บทบาทงาน
+    keywords: คำสำคัญ
+    keywords_placeholder: กรุณากรอกคำค้นหาโดยคั่นด้วยเครื่องหมายจุลภาค
     learning_from_others: การเรียนรู้ร่วมกัน [20]
     level: ระดับ
     level_apply: สมัคร
@@ -201,6 +298,10 @@ th:
     min_value: ค่าต่ำสุด
     minimum_10_words: อย่างน้อย 10 คำ
     missing_min_max_values: จำเป็นต้องระบุค่าต่ำสุดและค่าสูงสุด
+    model_answer: คำตอบตัวอย่าง
+    model_answer_placeholder: กรุณากรอกคำตอบตัวอย่างสำหรับการให้คะแนนโดย AI
+    name: ชื่อ
+    name_max_length: ชื่อไม่สามารถเกิน %{length} ตัวอักษร
     name_required: ต้องระบุชื่อ
     no_file_selected: ไม่มีไฟล์ที่เลือก
     no_notifications: ไม่มีการแจ้งเตือน
@@ -218,6 +319,8 @@ th:
     only_editable_on_create: ตัวเลือกนี้สามารถแก้ไขได้เฉพาะในขณะสร้างเท่านั้น
     options: ตัวเลือก
     original_text: ข้อความต้นฉบับ
+    overall: โดยรวม
+    overall_score: คะแนนรวม
     participants: ผู้เข้าร่วม
     permissions:
       aiArtifacts:
@@ -254,6 +357,7 @@ th:
         bulk_regenerate_reports: สร้างรายงานใหม่ทั้งหมด
         manage: จัดการ
         manage_admins: จัดการผู้ดูแลระบบ
+        manage_ai_scoring_approval_settings: จัดการการตั้งค่าการอนุมัติคะแนน AI
         manage_factor_benchmark_scores: จัดการคะแนนเกณฑ์มาตรฐานของปัจจัย
         manage_messages: จัดการข้อความ
         manage_options: จัดการตัวเลือก
@@ -642,6 +746,7 @@ th:
         view_recordings: ดูการบันทึก
     permissions_360_campaigns: สิทธิ์เฉพาะสําหรับแคมเปญ 360 องศา
     piped_text: ข้อความที่จัดรูปแบบ
+    precision: ความแม่นยำ
     privacy: ความเป็นส่วนตัว
     proctoring: การคุมสอบ
     professional: มืออาชีพ
@@ -654,15 +759,19 @@ th:
     project_number: หมายเลขโครงการ
     project_settings: การตั้งค่าโครงการ
     projects: โครงการ
+    prompt: คำสั่ง
     question_center: ศูนย์คําถาม
     questions: คำถาม
+    range_min_max: ระยะทาง%{min} - %{max}
     reflection_questions: คําถามไตร่ตรอง
     registration_codes: รหัสการลงทะเบียน
     registration_settings: การตั้งค่าการลงทะเบียน
+    remove_children_to_change_type: นำเด็กทั้งหมดออกเพื่อเปลี่ยนประเภท
     report_approvals: การอนุมัติรายงาน
     report_condition_not_met: ต้องการ %{required} %{relationship} การประเมิน แต่มีเพียง %{actual}
     report_conditions_not_met_detailed: รายงานสําหรับ %{user} ไม่ตรงตามเงื่อนไขความพร้อมใช้งาน %{conditions}
     report_denied: รายงานสําหรับ %{user} ถูกปฏิเสธ
+    report_name: ชื่อรายงาน
     report_no_evaluations: ไม่มีรายงานสําหรับ %{user} - ไม่ได้รับการประเมิน
     report_not_generated: รายงานสําหรับ %{user} ตรงตามเงื่อนไขความพร้อมใช้งานแต่ยังไม่ได้สร้าง โปรดสร้างรายงานก่อน
     report_on_hold: รายงานสําหรับ %{user} ถูกระงับในขณะนี้
@@ -670,6 +779,7 @@ th:
     reports: รายงาน
     reports_limit_exceeded: การดาวน์โหลดจํานวนมากจํากัดไว้ที่ 1,000 ไฟล์รายงาน หากคุณเลือกหลายภาษา โปรดลดภาษาลง
     reports_not_found: ไม่พบรายงาน โปรดสร้างรายงานก่อนดาวน์โหลด
+    rescore_responses_content: นี่จะคำนวณคะแนนใหม่สำหรับการตอบคำถามในวิชานี้ เปิดใช้งาน อนุญาตให้ AI ประเมินคะแนนใหม่ เพื่อประเมินคำตอบใหม่โดยใช้ AI สำหรับคำถามที่มี AI
     reset_idp_plan: รีเซ็ตแผน
     reset_idp_plan_confirmation: คุณแน่ใจหรือไม่ว่าต้องการรีเซ็ตแผน?
     reset_idp_plan_title: รีเซ็ตแผน
@@ -725,8 +835,32 @@ th:
     saml_service_provider_updated_date: วันที่อัพเดท
     saml_service_providers: บริการ
     saml_settings: การตั้งค่า SAML
+    save: บันทึก
+    save_assessment_for_scoring_management: บันทึกการประเมินก่อนเริ่มต้นการให้คะแนน
     scheduling: กำหนดการ
+    score: คะแนน
+    score_approval_not_allowed_to_approve: คุณไม่ได้รับอนุญาตให้อนุมัติคะแนนนี้
+    score_approval_not_allowed_to_discard: คุณไม่สามารถทิ้งคะแนนนี้ได้
+    score_definition_placeholder: ป้อนคำจำกัดความสำหรับระดับคะแนนนี้
+    score_definitions: คำจำกัดความของคะแนน
+    score_max: คะแนนสูงสุด
+    score_min: คะแนนขั้นต่ำ
+    score_must_be_in_between_min_and_max: คะแนนต้องอยู่ระหว่าง %{min} ถึง %{max}
+    score_range_info: 'ช่วงคะแนน: %{min} - %{max}'
+    score_with_ai: ทำคะแนนด้วย AI
     scoring: การให้คะแนน
+    scoring_approval_add_settings: เพิ่มการตั้งค่า
+    scoring_approval_allow_bulk_approve: อนุญาตให้อนุมัติแบบกลุ่ม
+    scoring_approval_allow_bulk_approve_scores: อนุญาตให้อนุมัติคะแนนแบบกลุ่ม
+    scoring_approval_allow_one_level_approve: อนุญาตให้อนุมัติในระดับเดียว
+    scoring_approval_approver_users: ผู้ใช้ผู้อนุมัติ
+    scoring_approval_approvers: ผู้อนุมัติ
+    scoring_approval_assessment: การประเมิน
+    scoring_approval_assessor_users: ผู้ใช้ผู้ประเมิน
+    scoring_approval_modal_title: การตั้งค่าการให้คะแนนการอนุมัติ
+    scoring_approval_remove_modal_success: 'การตั้งค่าการอนุมัติสำหรับรหัสการประเมินผล: %{assessmentId} ถูก삭제สำเร็จ'
+    scoring_approval_remove_modal_text: 'คุณแน่ใจหรือไม่ว่าต้องการลบการตั้งค่านี้สำหรับรหัสการประเมิน: %{assessmentId}?'
+    scoring_supported_only_for_ai_questions: การให้คะแนนอนุญาตเฉพาะคำถามที่เปิดใช้งาน AI สำหรับปัจจัยที่เลือกในปัจจุบันเท่านั้น
     scoring_value_info: คะแนนต้องอยู่ระหว่าง %{min} ถึง %{max}
     scoring_value_out_of_range_err_msg: คะแนนสำหรับ %{factor_name} ต้องอยู่ระหว่าง %{min} ถึง %{max}
     search_admins: ค้นหาผู้ดูแลระบบ
@@ -737,7 +871,10 @@ th:
     select_level: เลือกระดับ
     select_start_time: เลือกเวลาเริ่มต้น
     send_email: ส่งอีเมล
+    set_min_max_scores_warning: กรุณาตั้งค่าคะแนนต่ำสุดและสูงสุดสำหรับปัจจัยนี้เพื่อกำหนดค่าการให้คะแนน AI
     settings: การตั้งค่า
+    show_all_assessment_responses: แสดงคำตอบการประเมินทั้งหมด
+    show_middle_scores: แสดงคะแนนเพิ่มเติมของ%{count} (ไม่บังคับ)...
     show_original: แสดงต้นฉบับ
     show_submenu: แสดงเมนูย่อย
     show_translated: แสดงคำแปล
@@ -755,6 +892,7 @@ th:
     subdomain: โดเมนย่อย
     subject_part_of_other_invite: หัวข้อพร้อมอีเมล %{user_email} ได้รับเชิญแล้วสำหรับ '%{workshop_invite_name}'
     target_job_role: ตำแหน่งงานเป้าหมาย
+    this_field_is_required: ฟิลด์นี้จำเป็นต้องกรอก
     timezone: เขตเวลา
     tone: โทน
     toolbar_ai_insight: AI อินไซต์
@@ -778,8 +916,12 @@ th:
     upload_success: อัปโหลดสําเร็จ
     user_report_events: เหตุการณ์รายงานผู้ใช้
     users: ผู้เข้าร่วม
+    validation_error: กรุณากรอกข้อมูลในทุกช่องที่จำเป็น
     view_licenses: ดูใบอนุญาต
     waiting: การรอคอย
+    weight: น้ำหนัก
+    what_to_look_for: สิ่งที่ควรสังเกต
+    what_to_look_for_placeholder: หลักฐานของพฤติกรรม การกระทำ หรือผลลัพธ์ที่แสดงให้เห็นถึงปัจจัยนี้
     words: คำ
     workshops: เวิร์กช็อป
     writing_assistant_not_configured: ผู้ช่วยการเขียนยังไม่ได้รับการกำหนดค่า

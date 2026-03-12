@@ -12,7 +12,7 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
       = link_to [:edit, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm edit', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
         span.fa.fa-pencil
     - if policy(resource, { project_id: resource.owner_id }).copy?
-      = link_to [:copy, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm copy', data: { toggle: 'tooltip', title: t('.tooltips.copy'), disable_with: t('.in_progress.copying') }
+      = link_to [:copy, :administration, resource], method: :post, remote: true, class: 'btn btn-default btn-rounded btn-sm copy', data: { toggle: 'tooltip', title: t('.tooltips.copy'), disable_with: t('.in_progress.copying') }
         span.fa.fa-copy
     - if policy(resource, { project_id: resource.owner_id }).destroy?
       = link_to [:administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm delete', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete'), disable_with: t('.in_progress.deleting')}

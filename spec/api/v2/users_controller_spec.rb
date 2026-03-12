@@ -103,6 +103,7 @@ RSpec.describe Api::V2::Administration::UsersController, type: :request do
         expect(parsed_response['attributes']['navigation_links']['links']).to eq(
           {
             'aiAssistants' => '/admin/ai_assistants',
+            'aiScoringApprovals' => '/admin/ai_scoring_approvals',
             'assessments' => '/admin/assessments',
             'auditLogs' => '/admin/audit_logs',
             'campaignTemplates' => '/admin/campaign_templates',

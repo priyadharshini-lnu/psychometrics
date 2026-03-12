@@ -63,7 +63,7 @@ module AI
 
         # If there are any errors, raise them all together
         if dependency_errors.any?
-          error_message = "Error:\n#{dependency_errors.join("\n")}"
+          error_message = "Parsing error:\n#{dependency_errors.join("\n")}"
           raise Error, error_message
         end
 

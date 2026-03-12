@@ -218,7 +218,7 @@ class Client < ApplicationRecord
   end
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id name applicable_level disabled]
+    %w[id name applicable_level disabled tte_id]
   end
 
   def self.ransackable_scopes(_auth_object = nil)

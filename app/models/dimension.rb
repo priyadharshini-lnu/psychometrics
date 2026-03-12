@@ -15,6 +15,7 @@ class Dimension < ApplicationRecord
   has_many :norms, dependent: :destroy
   has_many :innovation_styles, dependent: :destroy
   has_many :innovation_styles_factors, through: :innovation_styles
+  has_many :factors_sub_factors, through: :all_factors
   has_many :occupations_factors, through: :occupations
   belongs_to :created_by, class_name: 'User'
   belongs_to :updated_by, class_name: 'User'
@@ -42,13 +43,14 @@ class Dimension < ApplicationRecord
   end
 
   def clone_and_save(user_id:)
+    dictionary = {}
     @cloned_dimension = deep_clone(
       include: [
         { all_factors: :factors_sub_factors },
         { occupations: { occupations_factors: :factor } },
         { innovation_styles: { innovation_styles_factors: :factor } }
       ],
-      use_dictionary: true
+      dictionary: dictionary
     ) do |original, copied|
       original.class.reflect_on_all_attachments.map(&:name).each do |attachment_name|
         attachment = original.public_send(attachment_name)
@@ -61,11 +63,12 @@ class Dimension < ApplicationRecord
       end
     end
 
+    factor_id_mapping = build_factor_id_mapping(dictionary)
+
     @cloned_dimension.gen_uniq_name
     @cloned_dimension.created_by_id = @cloned_dimension.updated_by_id = user_id
     if @cloned_dimension.save
-      # SubFactors have link to original dimension.
-      Factor.where(parent_id: @cloned_dimension.factor_ids).update_all(dimension_id: @cloned_dimension.id)
+      remap_factors_relationships_post_save(factor_id_mapping)
       @cloned_dimension
     end
   end
@@ -88,6 +91,27 @@ class Dimension < ApplicationRecord
     ).tap do |dimension|
       dimension.name = "#{project.name} - Skill Rater"
       dimension.save!
+    end
+  end
+
+  private
+
+  def build_factor_id_mapping(dictionary)
+    factor_entries = dictionary[:factors] || {}
+    factor_entries.transform_keys(&:id)
+  end
+
+  def remap_factors_relationships_post_save(factor_id_mapping)
+    @cloned_dimension.all_factors.each do |factor|
+      factor.factors_sub_factors.each do |fs|
+        new_sub_factor = factor_id_mapping[fs.sub_factor_id]
+        fs.update_column(:sub_factor_id, new_sub_factor.id) if new_sub_factor
+      end
+
+      if factor.parent_id
+        new_parent = factor_id_mapping[factor.parent_id]
+        factor.update_column(:parent_id, new_parent.id) if new_parent
+      end
     end
   end
 end

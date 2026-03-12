@@ -2,8 +2,16 @@
 
 module Api
   class V2::Administration::Campaigns::AIArtifactsController < Api::V2::Administration::BaseController
-    before_action :load_user, only: %i[generate]
-    before_action :load_ai_artifact, only: %i[generate test_generate]
+    include AsyncRequestHandler
+
+    before_action :load_ai_artifact, only: %i[test_generate]
+
+    async_request :generate, handler: AI::CampaignArtifacts::GenerateArtifactRequestHandler,
+                             permit_params: lambda { |params|
+                               params.permit(:artifact_id, :user_id).merge(
+                                 campaign_id: campaign.id
+                               )
+                             }
 
     def meta_details
       {
@@ -20,28 +28,6 @@ module Api
           )
         }
       }
-    end
-
-    def generate
-      artifact_result_generator = AI::CampaignArtifacts::ResultGenerator.new(@artifact, @user,
-                                                                             current_user: current_user)
-
-      artifact_result_generator.
-        on(:ok) do |_assistant_response|
-          artifact_result = @artifact.results.find_by!(user: @user)
-
-          jsonapi_response = jsonapi_format(artifact_result,
-                                            resource: Api::V2::Administration::Campaigns::AIArtifactResultResource)
-          jsonapi_response[:meta] = {
-            user: jsonapi_format(@user, resource: Api::V2::Administration::UserResource)
-          }
-
-          render json: jsonapi_response
-        end.
-        on(:error) do |error|
-          jsonapi_render_errors [{ detail: error }], status: :unprocessable_entity
-        end.
-        call
     end
 
     def test_generate
@@ -132,10 +118,6 @@ module Api
     end
 
     private
-
-    def load_user
-      @user = campaign.users.find(params.dig(:query, :user_id))
-    end
 
     def load_ai_artifact
       @artifact = campaign.campaign_ai_artifacts.find(params[:id])

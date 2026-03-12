@@ -33,6 +33,7 @@ class CampaignAssessment < ApplicationRecord
            :dimension,
            :pearson?,
            :mhs?,
+           :has_ai_questions?,
            to: :assessment
 
   delegate :normalize_factor_scores?, to: :project_assessment, allow_nil: true

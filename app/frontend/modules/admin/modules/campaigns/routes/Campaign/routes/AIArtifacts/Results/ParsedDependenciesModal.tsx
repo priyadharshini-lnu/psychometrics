@@ -23,7 +23,7 @@ const ParsedDependenciesModal: React.FC<ParsedDependenciesModalProps> = ({
         {I18n.t('administration.ai_artifacts.parsed_dependencies.title')}
         {' '}
         <Tooltip title={I18n.t('administration.ai_artifacts.parsed_dependencies.help')}>
-          <InfoCircleOutlined style={{ color: '#1890ff' }} />
+          <span><InfoCircleOutlined style={{ color: '#1890ff' }} /></span>
         </Tooltip>
       </span>
       )}

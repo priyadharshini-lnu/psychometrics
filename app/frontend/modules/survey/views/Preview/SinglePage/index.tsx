@@ -16,11 +16,12 @@ const { I18n } = window
 interface Props extends PropsFromRedux {
   questions: []
   showEnhanceWithAI?: boolean
+  preventOverflow?: boolean
 }
 let divScrollTop = 0
 
 const SinglePage: React.FC<Props> = ({
-  questions, blocks, preview, showEnhanceWithAI,
+  questions, blocks, preview, showEnhanceWithAI, preventOverflow,
 }) => {
   const [visibleQuestions, setVisibleQuestions] = useState<number[]>([])
   const ref = useRef<HTMLDivElement>(null)
@@ -71,7 +72,7 @@ const SinglePage: React.FC<Props> = ({
   }
 
   return (
-    <div ref={ref} className={styles.page}>
+    <div ref={ref} className={styles.page} style={{ overflow: preventOverflow ? undefined : 'scroll' }}>
       {visibleQuestions.length > 0 && (
         <div className={styles.message}>
           {I18n.t('assessments.single_page.display_linked_questions')}

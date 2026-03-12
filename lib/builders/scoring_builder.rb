@@ -31,30 +31,37 @@ module Builders
       end
     end
 
-    def save_factor_scoring!
+    def save_factor_scoring! # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
       rows = []
       scoring_list.each do |scoring|
         existing_scoring = factor_scoring_map[[scoring[:factor_id], scoring[:question_id]]]
         next if existing_scoring &&
-                existing_scoring.props == scoring[:props].map(&:to_h) &&
-                existing_scoring.scoring_strategy == scoring[:scoring_strategy]
-        next if scoring[:props].empty? && !existing_scoring
+                existing_scoring.props == scoring[:props]&.map(&:to_h) &&
+                existing_scoring.scoring_strategy == scoring[:scoring_strategy] &&
+                existing_scoring.ai_scoring_config == scoring[:ai_scoring_config].to_h
+
+        empty_props_and_config = scoring[:props].present? && scoring[:ai_scoring_config].present?
+
+        next if empty_props_and_config && !existing_scoring
 
         factors_scoring = {
           factor_id: scoring[:factor_id],
           question_id: scoring[:question_id],
           assessment_id: assessment.id,
-          props: scoring[:props].map(&:to_h),
-          scoring_strategy: scoring[:scoring_strategy]
+          props: scoring[:props]&.map(&:to_h) || [],
+          scoring_strategy: scoring[:scoring_strategy],
+          ai_scoring_config: scoring[:ai_scoring_config].to_h
         }
         rows << factors_scoring
       end
       # TODO: Remove this by fixing duplicate scoring on frontend
       rows.uniq! { |r| "#{r[:factor_id]}-#{r[:question_id]}" }
       FactorsScoring.import rows, on_duplicate_key_update: {
-        conflict_target: %i[factor_id question_id assessment_id], columns: %i[props scoring_strategy]
+        conflict_target: %i[factor_id question_id assessment_id], columns: %i[props scoring_strategy ai_scoring_config]
       }
-      FactorsScoring.where("props::text = '[]'").delete_all
+      FactorsScoring.where("props::text = '[]' AND (ai_scoring_config IS NULL OR ai_scoring_config::text = '{}')").
+        delete_all
+      delete_factors_scorings_associated_with_parent_factors
     end
 
     def save_question_recoding!
@@ -77,6 +84,15 @@ module Builders
         conflict_target: %i[question_id assessment_id], columns: [:props]
       }
       QuestionRecoding.where("props::text = '[]'").delete_all
+    end
+
+    private
+
+    def delete_factors_scorings_associated_with_parent_factors
+      parent_factor_ids = assessment.dimension.factors.where.not(child_factor_type: nil).pluck(:id)
+      return if parent_factor_ids.blank?
+
+      FactorsScoring.where(factor_id: parent_factor_ids, assessment: assessment).delete_all
     end
   end
 end

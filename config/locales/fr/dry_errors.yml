@@ -12,6 +12,9 @@ fr:
         user_not_found: Utilisateur introuvable ou ne faisant pas partie du même projet
       admin:
         already_added: Admin avec email déjà ajouté.
+      ai_scoring_approval_settings:
+        assessment_exists: Le paramètre d'approbation de la notation IA pour cette évaluation existe déjà.
+        validates_admins: Les administrateurs n'ont pas accès à la campagne.
       already_assigned?: Impossible de lier cette évaluation - elle est déjà attribuée à "%{linked_assessor_form_name}".
       already_invited: Cet utilisateur existe déjà dans le centre d'évaluation que vous essayez d'ajouter.
       assessor_assessment:

@@ -901,6 +901,7 @@ ar:
         bulk_reports: تقارير مجمعة
         bulk_rescore_campaign_factors: عوامل حملة إعادة النقاط المجمعة
         bulk_update_evaluation_status: حالة تقييم التحديث المجمع
+        campaign_report_extract_and_upload_bulk_assets: تقرير الحملة تحميل الأصول المجمعة
         compact_completion_status_export: تصدير حالة الاكتمال المدمجة
         completion_status_export: تصدير حالة الإنجاز
         copy_as_template_or_campaign: نسخ الحملة كقالب
@@ -910,6 +911,7 @@ ar:
         export_admin_with_permissions: تصدير المسؤول مع الأذونات
         export_assessment_questions: أسئلة تقييم التصدير
         export_campaign_ai_artifacts: قطع أثرية لحملة التصدير الذكاء الاصطناعي
+        export_campaign_ai_artifacts_results: تصدير نتائج حملة AI Artifacts
         export_campaign_factors: عوامل حملة التصدير
         export_campaign_scorings: حملات التصدير
         export_dashboard_as_file: تصدير لوحة المعلومات كملف
@@ -1317,6 +1319,7 @@ ar:
     record_not_found: لم يتم العثور على السجل
     user_not_authorized: المستخدم غير مصرح له
   auth:
+    cookies_link: <a href="%{cookies_url}">بيان ملفات تعريف الارتباط</a>
     current_password: كلمة المرور الحالية
     current_password_placeholder: إدخل كلمة السر الحالية
     email: البريد الإلكتروني
@@ -1362,6 +1365,7 @@ ar:
     password_confirmation: تأكيد كلمة المرور
     password_confirmation_placeholder: أدخل كلمة المرور الجديدة مرة أخرى
     password_placeholder: أدخل كلمة المرور
+    privacy_statement_link: <a href="%{privacy_url}">بيان الخصوصية</a>
     registration:
       description: ".الرجاء قم بتعبئة بيانتك الشخصية لأنشاء حساب جديد"
       email_hint: نحن نحترم خصوصيتكم و لا نتهاون مع البريد غير المرغوب فيه. لن نعطي معلوماتك لأي طرف ثالث.
@@ -1386,7 +1390,6 @@ ar:
       title: أنشئ كلمة مرور
     sign_out: تسجيل خروج
     sign_up: تسجيل
-    terms_link: <a href="%{terms_url}"> بيان الخصوصية</a>
     verify_mobile_number:
       error:
         blocked: تم حظر رقم الجوال بسبب كثرة المحاولات.

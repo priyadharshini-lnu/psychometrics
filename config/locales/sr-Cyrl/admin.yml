@@ -2,10 +2,12 @@
 sr-Cyrl:
   admin:
     accept_na_values: Прихватити вредности N/A
+    actions: Акције
     add_admin: Додај администратора
     add_admin_role: Додајте улогу администратора
     add_campaign_admin: Додај администратора кампање
     add_client_admin: Додај администратора клијента
+    add_indicator: Додај индикатор
     add_project: Додај пројекат
     add_project_admin: Додај администратора пројекта
     add_threesixty_campaign_admin: Додај администратора кампање
@@ -18,8 +20,14 @@ sr-Cyrl:
     admin_roles: Администраторске улоге
     admin_updated_successfully: Админ '%{name}' је успешно ажуриран
     admins: Администратори
+    ai_artifact_result_generation_admin_job_failed: Артифакт "%{artifact_name}" не може да се генерише за корисника "%{user_email}"
+    ai_artifact_result_stale: Резултат може бити застарео јер су се зависности АИ артефакта промениле од последњег генерисања резултата. Размотрите поновно генерисање артефакта како бисте користили најновије зависности.
     ai_artifacts: АИ артефакти
+    ai_artifacts_generate_results: Генериши резултате
     ai_artifacts_output_schema_key_constraint: Кључ мора да почне малим словом и може да садржи само мала слова, бројеве и подвлаке.
+    ai_artifacts_results_export: Извези резултате
+    ai_artifacts_results_export_job_scheduled: Задатак за извоз резултата AI Artifacts успешно је заказан.
+    ai_assistant: АИ асистент
     ai_assistant_model_id_label: ИД модела
     ai_assistant_model_label: Модел
     ai_assistant_model_provider: Пружалац
@@ -36,16 +44,47 @@ sr-Cyrl:
     ai_assistants_template_render_failed: Неуспело приказивање шаблона
     ai_assistants_test_render: Тест рендеровања
     ai_assistants_test_render_tooltip: Тестирајте шаблон упитa са подацима о кампањи да бисте проверили шта ће бити послато АИ асистенту.
+    ai_assisted_idp_disabled_by_client: AI Assisted IDP је онемогућен од стране клијента
     ai_assisted_idp_feature_disabled: Функција AI Assisted IDP је онемогућена за овај пројекат.
     ai_idp_assistant_configure_dependencies: Конфигуришите зависности вештачке интелигенције
     ai_idp_assistant_configure_dependencies_description: Конфигуришите које податке о зависностима IDP AI асистент може да користи као контекст. Ово важи само када је асистент конфигурисан да прихвата зависности.
     ai_idp_assistant_dependencies_updated: Зависности су успешно ажуриране
     ai_idp_assistant_update_dependencies: Ажурирај зависности
     ai_notice: Истакнуте секције су преведене вештачком интелигенцијом и могу садржати нетачности.
+    ai_score_approval_no_answer: Одговор на ово питање није обезбеђен.
+    ai_score_approval_no_transcription: Транскрипција за ово питање није доступна.
+    ai_scored: АИ је постигла
+    ai_scoring_appoval_approve_all_questions: Одобри сва питања
+    ai_scoring_appoval_approve_question: Одобри питање
+    ai_scoring_appoval_back: Ресетовање резултата
+    ai_scoring_appoval_change_reason: Промени разлог
+    ai_scoring_appoval_change_score: измењена оцена
+    ai_scoring_appoval_change_score_log: Промени лог оцена
+    ai_scoring_appoval_discard_all_questions: Ресетовати сва питања
+    ai_scoring_appoval_discard_all_questions_description: Ово ће ресетовати све резултате за сва питања и обрисати све прекорачења. Ова акција се не може поништити. Јесте ли сигурни?
+    ai_scoring_appoval_discard_all_questions_title: Ресетовати све резултате питања?
+    ai_scoring_appoval_discard_question: Ресетовање резултата питања
+    ai_scoring_appoval_discard_question_confirm_description: Ово ће ресетовати све резултате за ово питање и обрисати све прекорачења. Јесте ли сигурни?
+    ai_scoring_appoval_discard_question_confirm_title: Ресетовати резултате питања?
+    ai_scoring_appoval_discarded_changes: одбачене измене
+    ai_scoring_appoval_evidence_from_transcript: Докази из транскрипта
+    ai_scoring_appoval_new_score: Нова оцена
+    ai_scoring_appoval_next: Следеће питање
+    ai_scoring_appoval_rationale: Оправдање
+    ai_scoring_appoval_reason_for_changes: Разлог за промене
+    ai_scoring_appoval_reset_score: Ресетовање резултата
+    ai_scoring_appoval_reset_score_description: Резултат ће бити враћен на првобитну вредност AI.
+    ai_scoring_appoval_responses: Одговори вештачке интелигенције
+    ai_scoring_appoval_score_not_applicable: Резултат није примењив
+    ai_scoring_approval: Одобрење вештачке интелигенције
+    ai_scoring_approval_settings: Подешавања за одобравање бодовања вештачке интелигенције
+    ai_scoring_approvals: АИ оцењивање одобрења
     ai_translation: Превод вештачке интелигенције
     all_corner_rounded: Сви углови заобљени
+    allow_ai_rescoring: Дозволите поновно бодовање вештачке интелигенције
     api_keys: АПИ кључеви
     apply_to_existing_users: Примени ову промену на постојеће кориснике у овој кампањи.
+    assessment_question_not_supported: Ова врста питања тренутно није подржана.
     assessments: Оцењивања
     assessments_not_mhs: Свака процена мора бити типа MHS.
     assessments_reports: Процене и извештаји
@@ -61,8 +100,14 @@ sr-Cyrl:
     availability: Доступност
     available_languages: Извештај доступан на језицима
     back_to_main: Главно мени
+    bulk_assets_modal_choose_csv: Изаберите CSV фајл
+    bulk_assets_modal_choose_zip: Изаберите ZIP фајл
+    bulk_assets_modal_not_csv_file_error: За учитавање CSV фајлова дозвољени су само CSV фајлови. Молимо вас да отпремите важећи CSV фајл.
+    bulk_assets_modal_subtitle: 'Молимо отпремите <b>један CSV фајл</b> (са насловницама: user_email, file_name) и <b>један ZIP фајл</b> (који садржи PDF фајлове који одговарају именима из CSV фајла). ZIP фајл мора бити мањи од %{max_file_size} MB.'
+    bulk_assets_modal_title: Отпремите CSV и ZIP датотеке
     bulk_upload_ai_artifacts: Масовни унос АИ артефаката
     campaign_ai_artifact_updated_successfully: Артифакти вештачке интелигенције кампање успешно ажурирани
+    campaign_ai_artifacts_results_export_details: 'Кампања: АИ артефакти генерисали резултате'
     campaign_assessment_actions_disable_caching: Онемогући кеширање процене
     campaign_assessment_actions_enable_caching: Омогући кеширање процене
     campaign_assessment_column_caching_enabled: Омогућено кеширање процена
@@ -86,11 +131,15 @@ sr-Cyrl:
     campaign_assessment_modals_enable_caching_successfully: За ово оцењивање омогућено је кеширање.
     campaign_assessment_modals_enable_caching_title: Омогући кеширање процене?
     campaign_factors: Фактори кампање
+    campaign_name: Назив кампање
     campaign_templates: Шаблони кампања
     campaign_user_job_roles_cannot_be_same: Циљна радна улога мора бити различита од тренутне радне улоге.
     campaigns: Кампање
+    cancel: Откажи
     cancellation_and_rescheduling_disabled: Отказивање и поновно заказивање су онемогућени
     casual: Неформално
+    characters: ликови
+    children_factor_type: Тип деце
     client: Клијент
     client_admins: Администратори клијената
     clients: Клијенти
@@ -100,24 +149,53 @@ sr-Cyrl:
     completed: Завршено
     completed_tooltip: Сви оцењивачи су доставили оцењивање.
     concise: Сажето
+    configure_model_answer_title: Конфигуришите модел одговора и кључне речи
     confirm_remove_admin: Да ли сте сигурни да желите да уклоните администраторског корисника са е-поштом '%{email}'?
+    copied: Копирано
     country: Земља
     create_client: Креирај клијента
+    create_indicator: Креирај индикатор
     current_job_role: Тренутна радна улога
     dashboard: Табла
     dashboards: Крме
     data_reports: Извештаји о подацима
     datasheet: Лист са подацима
     declined: Одбијено
+    define_max_score_text: Дефинишите резултат од %{maxScore} (максимални резултат)
+    define_min_score_text: Дефинишите резултат од %{minScore} (минимални резултат)
+    define_optional_score_range_text: Дефинишите резултате %{minScore} на %{maxScore} (опционално)
+    define_score_text: Дефинишите резултат од %{score}
+    definition: Дефиниција
     delete_ok_text: Да, обриши
     denied: Одбијено
+    description: Опис
     development_actions: Развојне акције
     development_actions_form_tags: Ознаке
+    digest_delivery_mode:
+      form_label: Начин испоруке дигеста
+      immediate: Тренутно - шаљите кад год дође до масовне пријаве
+      scheduled: Закажено - Пошаљите дигест имејл у заказано време
+    digest_frequency:
+      daily: Свакодневно
+      form_label: Честота варења
+      weekdays: Радним данима
+      weekly: Недељно
+    digest_weekdays:
+      form_label: Сажетак радних дана
+      friday: Петак
+      monday: Понедељак
+      saturday: Субота
+      sunday: Недеља
+      thursday: Четвртак
+      tuesday: Уторак
+      wednesday: Среда
     dimensions: Димензије
     done: Готово
     done_tooltip: За овог корисника више не могу бити поднете оцене јер је његова оцена означена као завршена од стране %{marked_by}
+    download_bulk_asset_download_example_csv: Преузмите пример CSV-а.
     edit_campaign_admin: Уреди администратора кампање
     edit_client_admin: Уреди администратора клијента
+    edit_indicator: Уреди индикатор
     edit_job_roles: Уређивање улога посла
     edit_level: Уреди ниво
     edit_permission_denied: Немате дозволу да уређујете администратора "%{name}"
@@ -126,12 +204,17 @@ sr-Cyrl:
     empty_csv_file: CSV фајл не садржи никакве податке.
     enable_enhance_with_ai_client_level: Молимо омогућите функцију Enhance with AI на нивоу клијента.
     enable_maintenance: Омогући одржавање
+    enable_mobile_proctoring: Омогући мобилно надгледање
     enable_transcription: Омогући транскрипцију
+    enable_transcription_msg: Омогућите транскрипцију за коришћење АИ бодовања на видео/аудио питањима са одговорима.
     end_time: Кrajње време
     end_time_must_be_after_start_time: Крајње време мора бити након почетног времена
     enhance_with_ai: Унапредите помоћу вештачке интелигенције
     enhance_with_ai_requires_ai_assistants: Побољшање помоћу вештачке интелигенције захтева да је омогућена функција AI Assistants.
+    enter_description: Унесите опис
+    enter_name: Унесите име
     error: Грешка
+    estimated_tokens: токенс (процењено)
     evaluation_status: Статус процене
     evaluation_status_not_done: Статус евалуације није "Завршено" за једног или више изабраних субјеката. Молимо вас да обезбедите да су сви изабрани корисници завршили евалуације или их означите као завршене.
     export_admin_roles_permissions: Извоз улога и дозвола администратора
@@ -139,14 +222,26 @@ sr-Cyrl:
     export_completion_status: Статус завршетка извоза
     export_completion_statuses_scheduled: Извоз задатака за статусе завршетка је успешно заказан
     export_detailed_completion_status: Детаљно
+    feature_ai_assistants_description: Омогућите асистенте покретане вештачком интелигенцијом за унапређено корисничко искуство
+    feature_ai_assisted_idp_description: Користите вештачку интелигенцију за помоћ при препорукама за индивидуално планирање развоја.
+    feature_ai_content_analysis_description: Омогућите анализу садржаја засновану на вештачкој интелигенцији за процене
+    feature_ai_translation_description: Омогућите аутоматски превод садржаја у извештајима помоћу вештачке интелигенције
     feature_enhance_with_ai: Унапредите помоћу вештачке интелигенције
+    feature_enhance_with_ai_description: Омогућите функције за унапређење садржаја покретане вештачком интелигенцијом
     feature_flags: Фичер флагс
+    feature_flags_ai_group: АИ функције
+    feature_flags_communication_group: Комуникација
+    feature_flags_platform_group: Карактеристике платформе
+    feature_global_skills_description: Приступите глобалној библиотеци вештина за процене
+    feature_idp_description: Омогућите појединачно планирање развоја за учеснике
+    feature_sms_notification_description: Омогућите СМС обавештења за позиве и подсетнике кампање
     fill_empty_score_msg: Попуните све коначне резултате пре сачувања.
     final_score_empty_err_msg: Коначан резултат у %{factor_name}-у не може бити празан.
     final_score_empty_msg: Коначан резултат не може бити празан.
     fix_grammar: Поправите граматику
     formal: Формално
     generate_transcription: Генеришите транскрипцију
+    hide_middle_scores: Сакриј средње оцене
     idp_plan_reset_success: План је успешно ресетован
     idp_templates: Шаблони ИДП
     import_ai_artifacts: Увоз АИ артефаката
@@ -175,6 +270,8 @@ sr-Cyrl:
     internal: Унутрашњи
     invalid_csv_header: CSV фајл садржи неважеће заглавља.
     job_roles: Радне улоге
+    keywords: Кључне речи
+    keywords_placeholder: Унесите кључне речи раздвојене зарезима.
     learning_from_others: Колаборативно учење [20]
     level: Ниво
     level_apply: Примени
@@ -201,6 +298,10 @@ sr-Cyrl:
     min_value: Минимална вредност
     minimum_10_words: Минимално 10 речи
     missing_min_max_values: Потребне су минималне и максималне вредности.
+    model_answer: Узорни одговор
+    model_answer_placeholder: Унесите моделски одговор за оцењивање вештачке интелигенције.
+    name: Име
+    name_max_length: Име не смеје бити дуže од %{length} карактера
     name_required: Име је обавезно
     no_file_selected: Није изабрана датотека
     no_notifications: Нема обавештења
@@ -218,6 +319,8 @@ sr-Cyrl:
     only_editable_on_create: Ову опцију је могуће уређивати само током креирања.
     options: Опције
     original_text: Оригинални текст
+    overall: У целини
+    overall_score: Укупна оцена
     participants: Учесници
     permissions:
       aiArtifacts:
@@ -254,6 +357,7 @@ sr-Cyrl:
         bulk_regenerate_reports: Масовна регенерација извештаја
         manage: Управљај
         manage_admins: Управљај администраторима
+        manage_ai_scoring_approval_settings: Управљајте подешавања за одобрење бодовања вештачке интелигенције
         manage_factor_benchmark_scores: Управљање оценама референтног фактора
         manage_messages: Управљање порукама
         manage_options: Управљање опцијама
@@ -642,6 +746,7 @@ sr-Cyrl:
         view_recordings: Погледајте снимке
     permissions_360_campaigns: Дозволе специфичне за 360 кампање
     piped_text: Текст у цевци
+    precision: Прецизност
     privacy: Приватност
     proctoring: Надгледање
     professional: Професионални
@@ -654,15 +759,19 @@ sr-Cyrl:
     project_number: Број пројекта
     project_settings: Подешавања пројекта
     projects: Пројекти
+    prompt: Напомена
     question_center: Центар за питања
     questions: Питања
+    range_min_max: Домeн %{min} - %{max}
     reflection_questions: Питања за размишљање
     registration_codes: Кодови за регистрацију
     registration_settings: Подешавања регистрације
+    remove_children_to_change_type: Уклоните све децу да бисте променили тип
     report_approvals: Извештаји о одобрењима
     report_condition_not_met: Потребне су евалуације за %{required} и %{relationship}, али има само %{actual}
     report_conditions_not_met_detailed: Извештај за %{user} не испуњава услове доступности. %{conditions}
     report_denied: Извештај за %{user} је одбијен
+    report_name: Назив извештаја
     report_no_evaluations: Извештај за "%{user}" није доступан – нису примљене никакве оцене.
     report_not_generated: Извештај за "%{user}" испуњава услове доступности, али још није генерисан. Молимо вас да прво генеришете извештај.
     report_on_hold: Извештај за "%{user}" је тренутно обустављен.
@@ -670,6 +779,7 @@ sr-Cyrl:
     reports: Извештаји
     reports_limit_exceeded: Масовно преузимање је ограничено на 1000 извештаја. Ако сте изабрали много језика, смањите тај број.
     reports_not_found: Није пронађен ниједан извештај. Молимо генеришите извештаје пре преузимања.
+    rescore_responses_content: Ово ће поново израчунати резултате за одговоре овог субјекта. Омогућите опцију "Дозволи прерачунавање резултата помоћу вештачке интелигенције" да бисте поново оценили одговоре користећи вештачку интелигенцију за питања са оцењивањем помоћу вештачке интелигенције.
     reset_idp_plan: Ресетовање плана
     reset_idp_plan_confirmation: Да ли сте сигурни да желите да ресетујете план?
     reset_idp_plan_title: Ресетовање плана
@@ -725,8 +835,32 @@ sr-Cyrl:
     saml_service_provider_updated_date: Датум ажурирања
     saml_service_providers: Пружаоци услуга
     saml_settings: SAML подешавања
+    save: Сачувај
+    save_assessment_for_scoring_management: Сачувајте процену пре него што започнете са бодовањем.
     scheduling: Распоређивање
+    score: Резултат
+    score_approval_not_allowed_to_approve: Немате дозволу да одобрите овај резултат.
+    score_approval_not_allowed_to_discard: Није вам дозвољено да одбаците овај резултат.
+    score_definition_placeholder: Унесите дефиницију за овај ниво бодовања
+    score_definitions: Дефиниције бодова
+    score_max: Постигни максимум
+    score_min: Минимални резултат
+    score_must_be_in_between_min_and_max: Резултат мора бити између %{min} и %{max}.
+    score_range_info: 'Опсег бодова: %{min} - %{max}'
+    score_with_ai: Постигни са ВИ
     scoring: Поентирање
+    scoring_approval_add_settings: Додај подешавања
+    scoring_approval_allow_bulk_approve: Дозволи масовно одобравање
+    scoring_approval_allow_bulk_approve_scores: Дозволите масовно одобравање резултата
+    scoring_approval_allow_one_level_approve: Дозволи један ниво одобрења
+    scoring_approval_approver_users: Корисници одобравача
+    scoring_approval_approvers: Одобриоци
+    scoring_approval_assessment: Оцењивање
+    scoring_approval_assessor_users: Корисници процењивача
+    scoring_approval_modal_title: Подешавања за одобравање бодовања
+    scoring_approval_remove_modal_success: 'Подешавање одобрења за ИД процене: %{assessmentId} је успешно избрисан'
+    scoring_approval_remove_modal_text: 'Да ли сте сигурни да желите да избришете ову поставку за ИД процене: %{assessmentId}?'
+    scoring_supported_only_for_ai_questions: Додељивање бодова је дозвољено само на питањима са укљученом вештачком интелигенцијом за тренутно изабрани фактор.
     scoring_value_info: Резултат мора бити између %{min} и %{max}.
     scoring_value_out_of_range_err_msg: Резултат за %{factor_name} мора бити између %{min} и %{max}.
     search_admins: Претрага администратора
@@ -737,7 +871,10 @@ sr-Cyrl:
     select_level: Изабери ниво
     select_start_time: Изаберите време почетка
     send_email: Пошаљи имејл
+    set_min_max_scores_warning: Молимо подесите минималне и максималне бодове за овај фактор како бисте конфигурисали бодовање вештачке интелигенције.
     settings: Подешавања
+    show_all_assessment_responses: Прикажи све одговоре на процену
+    show_middle_scores: Прикажи још резултата за %{count} (опционо)...
     show_original: Прикажи оригинал
     show_submenu: Прикажи подмени
     show_translated: Прикажи превод
@@ -755,6 +892,7 @@ sr-Cyrl:
     subdomain: Поддомен
     subject_part_of_other_invite: Корисник са адресом електронске поште %{user_email} је већ позван на '%{workshop_invite_name}'
     target_job_role: Циљна радна улога
+    this_field_is_required: Ово поље је обавезно
     timezone: Временска зона
     tone: Тон
     toolbar_ai_insight: Увид вештачке интелигенције
@@ -778,8 +916,12 @@ sr-Cyrl:
     upload_success: Успешно отпремљено
     user_report_events: Извештај корисника о догађајима
     users: Корисници
+    validation_error: Молимо вас да попуните сва обавезна поља.
     view_licenses: Прикажи лиценце
     waiting: Чекање
+    weight: Тежина
+    what_to_look_for: На шта обратити пажњу
+    what_to_look_for_placeholder: Докази понашања, радњи или исхода који показују овај фактор
     words: Речи
     workshops: Радионице
     writing_assistant_not_configured: Асистент за писање није конфигурисан

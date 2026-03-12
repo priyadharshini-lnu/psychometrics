@@ -2,7 +2,7 @@
 
 class Api::V2::Administration::ProjectFeatureResource < Api::V2::Administration::BaseResource
   attributes :sms_notification, :ai_assistants, :ai_assisted_idp, :global_skills, :idp, :enhance_with_ai,
-             :ai_translation
+             :ai_translation, :ai_content_analysis
 
   ransack_filters %i[project_id_eq]
 

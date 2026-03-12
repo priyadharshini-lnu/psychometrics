@@ -12,10 +12,10 @@ module ReportApproving
       ) + "/user_reports/#{@user_report.id}"
       send_email(
         user,
-        from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
         subject: 'Report approved',
         template_path: 'mailer/report_approving',
-        template_name: 'approval_notification'
+        template_name: 'approval_notification',
+        **admin_sender_attributes(@user_report.project&.client)
       )
     end
   end

@@ -7,27 +7,49 @@ hu:
     add: Add
     advanced: Haladó
     agree_and_continue: Egyetértek és folytatjuk
+    approval_status: Jóváhagyási állapot
+    approved: Jóváhagyva
+    approved_by: Jóváhagyta
+    approvers_list: Jóváhagyók listája
     archive: Archívum
     archived: Archivált
+    assessed_by: Értékelte
+    assessment: Értékelés
+    assessment_id: Értékelés azonosítója
+    assessment_list: Értékelési lista
+    assessment_name: Értékelés neve
+    assessor_approved: Értékelő által jóváhagyva
+    assessors_list: Értékelők listája
     asset_not_present: Az eszköz nincs jelen
     audio: Audio
     authentication_failed: A hitelesítés sikertelen. Kérlek, próbáld meg újra.
+    back: Vissza
     basic: Alapvető
     camera_preview: A kamera előnézet itt jelenik meg
+    campaign: Kampány
     campaign_id: Kampányazonosító
     cancel: Törölje
     change_password: Jelszó módosítása
     clear_filters: Szűrők törlése
+    client: Ügyfél
     collaborative_learning: Együttműködő tanulás
     completed: Befejezett
     configurations: Konfigurációk
     confirm: Megerősítés
     continue: Folytatódik
+    controller: Vezérlő
+    cookies_statement: Sütikre vonatkozó nyilatkozat
+    copied_to_clipboard: Másolva a vágólapra
     copy: Másolás
     created_at: Létrehozva
     created_date: Létrehozás dátuma
+    custom_consent_text: Egyéni hozzájárulási szöveg
+    custom_consent_text_required: Az adatkezelő adatkezelői szerepköréhez egyéni hozzájárulási szöveg szükséges.
+    data_role: Adat szerep
     decline: Hanyatlás
     description: Leírás
+    desktop_or_laptop_recommended: Asztali vagy laptop számítógép ajánlott
+    desktop_or_laptop_required: Asztali vagy laptop számítógép szükséges
     download: Letöltés
     download_audio: Audio letöltése
     download_transcription: Letöltés Átírás
@@ -37,6 +59,7 @@ hu:
     email: E-mail
     export: Kivitel
     failed: Sikertelen
+    'false': false
     first_name: Keresztnév
     formal_learning: Formális tanulás
     generate: Generálás
@@ -50,6 +73,7 @@ hu:
     internet_disconnected_message: Próbálok újra kapcsolódni. Kérjük, ellenőrizze az internetkapcsolatát.
     last_name: Vezetéknév
     learning_on_the_job_label: Tanulás munka közben
+    loading: Betöltés...
     login: Bejelentkezés
     maintenance_in_hours: "%{hours} órák"
     maintenance_in_minutes: "%{minutes} percek"
@@ -58,22 +82,33 @@ hu:
     maintenance_time_remaining: Maradék idő
     maintenance_upcoming_description: A %{date} webhelyen körülbelül %{duration} időtartamra tervezett karbantartási munkálatokat végzünk, hogy javítsuk az Ön felhasználói élményét. Ez idő alatt nem fog tudni hozzáférni a hozzárendelt feladatokhoz, és azokat nem fogja tudni elvégezni. Türelmét köszönjük.
     maintenance_upcoming_title: Közelgő karbantartás
+    media_id: Média azonosító
+    media_preview: Média előzetes
     media_question_transcriptions: Média kérdések átirata
     media_responses: Média reakciók
+    mobile_proctoring_disabled_instructions: A felmérés folytatásához asztali vagy hordozható számítógépre van szükség. Kérjük, váltson számítógépre a feladat befejezéséhez.
+    mobile_proctoring_enabled_instructions: A legjobb élmény érdekében kérjük, váltson át asztali vagy hordozható számítógépre, ha rendelkezik ilyennel. Szükség esetén folytathatja a mobil eszközén is.
     modified_by: Módosította
     modified_date: Módosítás dátuma
     more_actions: További műveletek
     mte_logo_alt_text: Mercer Talent Enterprise logó
     na_text: N/A
     name: Név
+    negative: Negatív
     new: Új
     no_results_found: Nincs találat
     not_requested: Még nem kért
     ok: Oké
     pending: Függőben
+    policy_version: Politika verzió
+    policy_version_format: Csak egész számok megengedettek
+    positive: Pozitív
     processing: Feldolgozás
+    processor: Processzor
     proctoring_maintenance_active: A vizsgafelügyelet jelenleg karbantartás alatt áll az %{start_time} és az %{end_time} oldalakon. Kérjük, próbálkozzon újra a karbantartási időszak után.
     proctoring_maintenance_upcoming: A vizsgafelügyelet karbantartás alatt áll az %{start_time} és az %{end_time} között.
+    project: Projekt
+    question: Kérdés
     question_id: Kérdés azonosító
     question_transcription_disabled: A leírás le van tiltva ehhez a kérdéshez.
     rec: REC
@@ -84,14 +119,20 @@ hu:
     removed: Eltávolított
     replace: Cserélje ki
     reset_password: Jelszó visszaállítása
+    response_text: Válasz szöveg
     rte_paste_content_exceeds_char_limit: A szöveg meghaladja a {{maxCharacterLimit}} karakterkorlátját, és nem lehet beilleszteni.
     rte_paste_content_exceeds_word_limit: A szöveg túllépi a {{maxWordLimit}} szóhatárát, és nem lehet beilleszteni.
     save: Mentés
     saving_video: Videómentés... Kérjük, ne zárja be vagy frissítse a böngészőt
+    scoring_details: Pontszámok részletei
     search: Keresés
     send_email: E-mail küldése
     show_more: Több
     something_wrong: Valami elromlott. Forduljon a rendszergazdához.
+    status: Állapot
+    subject: Tárgy
+    submit: Beküldés
+    switch_to_laptop_or_desktop: Váltás laptopra vagy asztali számítógépre
     table:
       entries:
         selected: 1 sor kiválasztva
@@ -103,9 +144,15 @@ hu:
     transcription_not_enabled: A transzkripció nem engedélyezett a média válaszokhoz.
     transcription_status: Átírási állapot
     transcriptions: Átiratok
+    'true': true
     try_again: Próbáld újra
     tte_terms_and_condition: Feltételek és adatvédelem
     type: Típus
     update: Frissítés
+    update_failed: A frissítés sikertelen volt
+    updated_successfully: Sikeresen frissítve
     video: Videó
     view: Megtekintés
+    view_audio: Audio megtekintése
+    view_transcription: Transzkripció megtekintése
+    view_video: Videó megtekintése

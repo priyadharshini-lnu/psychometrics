@@ -862,6 +862,7 @@ de:
         bulk_reports: Bulk-Berichte
         bulk_rescore_campaign_factors: Faktoren für Massenwiederholungskampagnen
         bulk_update_evaluation_status: Evaluierungsstatus der Massenaktualisierung
+        campaign_report_extract_and_upload_bulk_assets: Kampagnenbericht Hochladen von Massen-Assets
         compact_completion_status_export: Kompakter Export des Fertigstellungsstatus
         completion_status_export: Fertigstellungsstatus Export
         copy_as_template_or_campaign: Kampagne als Vorlage kopieren
@@ -871,6 +872,7 @@ de:
         export_admin_with_permissions: Admin mit Berechtigungen exportieren
         export_assessment_questions: Fragen zur Exportbewertung
         export_campaign_ai_artifacts: Export-Kampagnen-KI-Artefakte
+        export_campaign_ai_artifacts_results: Exportieren Sie die Ergebnisse der KI-Artefakte der Kampagne
         export_campaign_factors: Faktoren der Exportkampagne
         export_campaign_scorings: Kampagnenscorings exportieren
         export_dashboard_as_file: Dashboard als Datei exportieren
@@ -1279,6 +1281,7 @@ de:
     record_not_found: Datensatz nicht gefunden
     user_not_authorized: Benutzer nicht autorisiert
   auth:
+    cookies_link: <a href="%{cookies_url}">Erklärung zu Cookies</a>
     current_password: Aktuelles Passwort
     current_password_placeholder: Aktuelles Passwort eingeben
     email: E-Mail
@@ -1324,6 +1327,7 @@ de:
     password_confirmation: Bestätigen Sie Ihr Passwort
     password_confirmation_placeholder: Passwortbestätigung eingeben
     password_placeholder: Passwort eingeben
+    privacy_statement_link: <a href="%{privacy_url}">Datenschutzerklärung</a>
     registration:
       description: Füllen Sie die nachstehenden Angaben aus, um sich zu registrieren und ein neues Konto zu erstellen
       email_hint: Wir respektieren Ihre Privatsphäre und tolerieren keinen Spam. Wir werden Ihre Daten niemals an Dritte weitergeben
@@ -1348,7 +1352,6 @@ de:
       title: Passwort erstellen
     sign_out: Anmeldung als anderer Benutzer
     sign_up: Anmeldung
-    terms_link: <a href="%{terms_url}">Bedingungen und Datenschutzbestimmungen</a>
     verify_mobile_number:
       error:
         blocked: Diese Nummer ist wegen zu vieler Versuche gesperrt.

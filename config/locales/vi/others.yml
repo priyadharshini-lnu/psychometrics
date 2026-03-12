@@ -862,6 +862,7 @@ vi:
         bulk_reports: Báo cáo hàng loạt
         bulk_rescore_campaign_factors: Các yếu tố chiến dịch Bulk Rescore
         bulk_update_evaluation_status: Cập nhật hàng loạt trạng thái đánh giá
+        campaign_report_extract_and_upload_bulk_assets: Báo cáo chiến dịch Tải lên tài sản hàng loạt
         compact_completion_status_export: Xuất trạng thái hoàn thành nhỏ gọn
         completion_status_export: Xuất trạng thái hoàn thành
         copy_as_template_or_campaign: Sao chép chiến dịch làm mẫu
@@ -871,6 +872,7 @@ vi:
         export_admin_with_permissions: Xuất quản trị viên có quyền
         export_assessment_questions: Câu hỏi đánh giá xuất khẩu
         export_campaign_ai_artifacts: Xuất hiện vật AI của chiến dịch
+        export_campaign_ai_artifacts_results: Kết quả của Chiến dịch Xuất khẩu Các Tác phẩm Nghệ thuật Trí tuệ Nhân tạo
         export_campaign_factors: Các yếu tố chiến dịch xuất khẩu
         export_campaign_scorings: Xuất chấm điểm chiến dịch
         export_dashboard_as_file: Xuất Bảng điều khiển dưới dạng tệp
@@ -1274,6 +1276,7 @@ vi:
     record_not_found: Không tìm thấy bản ghi
     user_not_authorized: Người dùng không được ủy quyền
   auth:
+    cookies_link: <a href="%{cookies_url}">Chính sách về cookie</a>
     current_password: Mật khẩu hiện tại
     current_password_placeholder: Nhập mật khẩu hiện tại
     email: E-mail
@@ -1319,6 +1322,7 @@ vi:
     password_confirmation: Xác nhận mật khẩu
     password_confirmation_placeholder: Nhập mật khẩu xác nhận
     password_placeholder: Nhập mật khẩu
+    privacy_statement_link: <a href="%{privacy_url}">Chính sách bảo mật</a>
     registration:
       description: Điền thông tin bên dưới để đăng ký và tạo tài khoản mới
       email_hint: Chúng tôi tôn trọng quyền riêng tư của bạn và không chấp nhận thư rác. Chúng tôi sẽ không bao giờ cung cấp thông tin của bạn cho bất kỳ bên thứ ba nào
@@ -1343,7 +1347,6 @@ vi:
       title: Tạo mật khẩu
     sign_out: Đăng nhập với tư cách là người dùng khác
     sign_up: Đăng ký
-    terms_link: <a href="%{terms_url}">Điều khoản và Tuyên bố về quyền riêng tư</a>
     verify_mobile_number:
       error:
         blocked: Số này bị chặn do có quá nhiều lần thử.

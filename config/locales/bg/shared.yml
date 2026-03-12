@@ -7,27 +7,49 @@ bg:
     add: Добавете
     advanced: Напреднал
     agree_and_continue: Съгласен и продължи
+    approval_status: Статус на одобрение
+    approved: Одобрено
+    approved_by: Одобрено от
+    approvers_list: Списък с одобряващи лица
     archive: Архивирайте
     archived: Архивирани
+    assessed_by: Оценено от
+    assessment: Оценка
+    assessment_id: Идентификационен номер на оценката
+    assessment_list: Списък за оценка
+    assessment_name: Наименование на оценката
+    assessor_approved: Одобрен от оценителя
+    assessors_list: Списък на оценителите
     asset_not_present: Активът не е наличен
     audio: Аудио
     authentication_failed: Автентикацията не беше успешна. Моля, опитайте отново.
+    back: Назад
     basic: Основен
     camera_preview: Прегледът на камерата ще се появи тук
+    campaign: Кампания
     campaign_id: Идентификация на кампанията
     cancel: Отменете
     change_password: Промяна на паролата
     clear_filters: Изчистете филтрите
+    client: Клиент
     collaborative_learning: Съвместно обучение
     completed: Завършено
     configurations: Конфигурации
     confirm: Потвърдете
     continue: Продължавам
+    controller: Контролер
+    cookies_statement: Декларация за бисквитките
+    copied_to_clipboard: Копирано в клипборда
     copy: Копиране
     created_at: Създаден в
     created_date: Дата на създаване
+    custom_consent_text: Персонализиран текст за съгласие
+    custom_consent_text_required: Необходим е персонализиран текст за съгласие за ролята на контролера на данни
+    data_role: Роля на данните
     decline: Упадък
     description: Описание
+    desktop_or_laptop_recommended: Препоръчва се настолен или преносим компютър
+    desktop_or_laptop_required: Необходим настолен или преносим компютър
     download: Изтегляне
     download_audio: Изтегли аудио
     download_transcription: Изтегли транскрипция
@@ -37,6 +59,7 @@ bg:
     email: Имейл
     export: Износ
     failed: Неуспешен
+    'false': false
     first_name: Първо име
     formal_learning: Формално обучение
     generate: Генериране
@@ -50,6 +73,7 @@ bg:
     internet_disconnected_message: Опитвам се да възстановя връзката. Моля, проверете интернет връзката си.
     last_name: Фамилия
     learning_on_the_job_label: Учене на работа
+    loading: Зареждане...
     login: Вход
     maintenance_in_hours: "%{hours} часа"
     maintenance_in_minutes: "%{minutes} минути"
@@ -58,22 +82,33 @@ bg:
     maintenance_time_remaining: Оставащо време
     maintenance_upcoming_description: Ще извършваме планова поддръжка на %{date} за приблизително %{duration}, за да подобрим вашето преживяване. По време на тази поддръжка няма да можете да имате достъп до задачите си или да ги изпълнявате. Благодарим ви за търпението.
     maintenance_upcoming_title: Предстояща поддръжка
+    media_id: Идентификационен номер на медията
+    media_preview: Предварителна преглед за медиите
     media_question_transcriptions: Транскрипции на въпроси от медиите
     media_responses: Отговори на медиите
+    mobile_proctoring_disabled_instructions: За да продължите с тази оценка, е необходим настолен или преносим компютър. Моля, превключете на компютър, за да завършите дейността.
+    mobile_proctoring_enabled_instructions: За най-добро преживяване, моля, превключете на настолен или преносим компютър, ако имате такъв на разположение. При необходимост можете да продължите на мобилното си устройство.
     modified_by: Променено от
     modified_date: Дата на промяна
     more_actions: Още действия
     mte_logo_alt_text: Логото на Mercer Talent Enterprise
     na_text: Н/Д
     name: Име
+    negative: Отрицателен
     new: Нов
     no_results_found: Няма намерени резултати
     not_requested: Все още не е поискано
     ok: Добре
     pending: В очакване
+    policy_version: Версия на политиката
+    policy_version_format: Допускат се само цели числа
+    positive: Положителен
     processing: Обработка
+    processor: Процесор
     proctoring_maintenance_active: Proctoring е в процес на поддръжка от %{start_time} до %{end_time}. Моля, опитайте отново след края на поддръжката.
     proctoring_maintenance_upcoming: Прокторинга ще бъде в процес на поддръжка от %{start_time} до %{end_time}.
+    project: Проект
+    question: Въпрос
     question_id: Идентификационен номер на въпроса
     question_transcription_disabled: Транскрипцията е деактивирана за този въпрос.
     rec: REC
@@ -84,14 +119,20 @@ bg:
     removed: Отстранени
     replace: Замени
     reset_password: Възстановете на паролата
+    response_text: Текст на отговора
     rte_paste_content_exceeds_char_limit: Текстът надвишава лимита на символите {{maxCharacterLimit}} и не може да бъде поставен.
     rte_paste_content_exceeds_word_limit: Текстът надвишава лимита на думите {{maxWordLimit}} и не може да бъде поставен.
     save: Запазете
     saving_video: Запазвам видео... Моля, не затваряйте и не обновявайте браузъра
+    scoring_details: Подробности за точковата система
     search: Търсете
     send_email: Изпрати имейл
     show_more: Покажи повече
     something_wrong: Нещо се обърка. Свържете се с администратора си.
+    status: Статус
+    subject: Тема
+    submit: Изпрати
+    switch_to_laptop_or_desktop: Преминаване към лаптоп или настолен компютър
     table:
       entries:
         selected: Избран е 1 ред
@@ -103,9 +144,15 @@ bg:
     transcription_not_enabled: Транскрипцията не е активирана за медийния отговор
     transcription_status: Статус на транскрипцията
     transcriptions: Транскрипции
+    'true': true
     try_again: Опитайте отново
     tte_terms_and_condition: Условия и поверителност
     type: Вид
     update: Актуализирайте
+    update_failed: Актуализацията се провали
+    updated_successfully: Актуализирано успешно
     video: Видео
     view: Преглед
+    view_audio: Виж аудио
+    view_transcription: Виж транскрипцията
+    view_video: Вижте видеото

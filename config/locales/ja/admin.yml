@@ -2,10 +2,12 @@
 ja:
   admin:
     accept_na_values: N/A値を受け入れる
+    actions: アクション
     add_admin: 管理者を追加する
     add_admin_role: 管理者ロールの追加
     add_campaign_admin: キャンペーン管理者の追加
     add_client_admin: クライアント管理者の追加
+    add_indicator: インジケーターを追加
     add_project: プロジェクトの追加
     add_project_admin: プロジェクト管理者の追加
     add_threesixty_campaign_admin: キャンペーン管理者の追加
@@ -18,8 +20,14 @@ ja:
     admin_roles: 管理者の役割
     admin_updated_successfully: 管理者 '%{name}' は正常に更新されました。
     admins: 管理者
+    ai_artifact_result_generation_admin_job_failed: アーティファクト '%{artifact_name}' はユーザー '%{user_email}' に対して生成できません
+    ai_artifact_result_stale: AIアーティファクトの依存関係が前回結果生成時から変更されているため、結果が古くなっている可能性があります。最新の依存関係で生成するため、アーティファクトの再生成をご検討ください。
     ai_artifacts: AIアーティファクト
+    ai_artifacts_generate_results: 結果を生成する
     ai_artifacts_output_schema_key_constraint: キーは小文字で始まらず、小文字、数字、アンダースコアのみを含めます
+    ai_artifacts_results_export: 結果をエクスポート
+    ai_artifacts_results_export_job_scheduled: AIアーティファクト結果のエクスポートジョブが正常にスケジュールされました
+    ai_assistant: AIアシスタント
     ai_assistant_model_id_label: モデルID
     ai_assistant_model_label: モデル
     ai_assistant_model_provider: 供給者
@@ -36,16 +44,47 @@ ja:
     ai_assistants_template_render_failed: テンプレートのレンダリングに失敗しました
     ai_assistants_test_render: テストレンダリング
     ai_assistants_test_render_tooltip: プロンプトテンプレートをキャンペーンデータでテストし、AIアシスタントに送られる内容を確認しましょう。
+    ai_assisted_idp_disabled_by_client: クライアントによりAI支援型IDPが無効化されています
     ai_assisted_idp_feature_disabled: このプロジェクトではAI支援IDP機能は無効化されています。
     ai_idp_assistant_configure_dependencies: AI依存関係の設定
     ai_idp_assistant_configure_dependencies_description: IDP AIアシスタントがコンテキストとしてアクセスできる依存関係データを設定します。これは、アシスタントが依存関係を受け入れるように設定されている場合にのみ適用されます。
     ai_idp_assistant_dependencies_updated: 依存関係が正常に更新されました
     ai_idp_assistant_update_dependencies: 依存関係の更新
     ai_notice: ハイライトされた部分はAI翻訳であり、不正確な部分が含まれる可能性があります。
+    ai_score_approval_no_answer: この質問に対する回答は提供されていません
+    ai_score_approval_no_transcription: この質問の文字起こしは利用できません
+    ai_scored: AIが得点した
+    ai_scoring_appoval_approve_all_questions: すべての質問を承認する
+    ai_scoring_appoval_approve_question: 質問を承認する
+    ai_scoring_appoval_back: スコアをリセット
+    ai_scoring_appoval_change_reason: 変更理由
+    ai_scoring_appoval_change_score: 変更されたスコア
+    ai_scoring_appoval_change_score_log: 変更スコアログ
+    ai_scoring_appoval_discard_all_questions: すべての質問をリセット
+    ai_scoring_appoval_discard_all_questions_description: すべての問題のスコアをリセットし、上書き設定をすべて解除します。この操作は元に戻せません。本当に実行しますか？
+    ai_scoring_appoval_discard_all_questions_title: すべての問題の得点をリセットしますか？
+    ai_scoring_appoval_discard_question: 質問のスコアをリセットする
+    ai_scoring_appoval_discard_question_confirm_description: この操作により、この問題の全スコアがリセットされ、上書き設定が解除されます。本当に実行しますか？
+    ai_scoring_appoval_discard_question_confirm_title: 質問のスコアをリセットしますか？
+    ai_scoring_appoval_discarded_changes: 破棄された変更
+    ai_scoring_appoval_evidence_from_transcript: 記録からの証拠
+    ai_scoring_appoval_new_score: 新スコア
+    ai_scoring_appoval_next: 次の質問
+    ai_scoring_appoval_rationale: 根拠
+    ai_scoring_appoval_reason_for_changes: 変更の理由
+    ai_scoring_appoval_reset_score: スコアをリセット
+    ai_scoring_appoval_reset_score_description: スコアは元のAI値に戻されます。
+    ai_scoring_appoval_responses: AI応答
+    ai_scoring_appoval_score_not_applicable: スコアは適用されません
+    ai_scoring_approval: AIスコアリング承認
+    ai_scoring_approval_settings: AIスコアリング承認設定
+    ai_scoring_approvals: AIスコアリング承認
     ai_translation: AI翻訳
     all_corner_rounded: すべての角が丸みを帯びている
+    allow_ai_rescoring: AIによる再採点を許可する
     api_keys: APIキー
     apply_to_existing_users: この変更をこのキャンペーンの既存ユーザーに適用する
+    assessment_question_not_supported: この質問タイプは現在サポートされていません。
     assessments: アセスメント
     assessments_not_mhs: すべての評価はMHSタイプでなければならない
     assessments_reports: アセスメント＆レポート
@@ -61,8 +100,14 @@ ja:
     availability: 空室状況
     available_languages: 報告書は言語で提供可能
     back_to_main: メインメニュー
+    bulk_assets_modal_choose_csv: CSVファイルを選択
+    bulk_assets_modal_choose_zip: ZIPファイルを選択
+    bulk_assets_modal_not_csv_file_error: CSVアップロードではCSVファイルのみが許可されています。有効なCSVファイルをアップロードしてください。
+    bulk_assets_modal_subtitle: "<b>1つのCSVファイル</b>（ヘッダー：user_email, file_name）と、<b>1つのZIPファイル</b>（CSVのファイル名と一致するPDFファイルを含む）をアップロードしてください。ZIPファイルは%{max_file_size}MB未満である必要があります。"
+    bulk_assets_modal_title: CSVファイルとZIPファイルをアップロード
     bulk_upload_ai_artifacts: 大量アップロードAIアーティファクト
     campaign_ai_artifact_updated_successfully: キャンペーンAIアーティファクトが正常に更新されました
+    campaign_ai_artifacts_results_export_details: キャンペーンAIアーティファクトが生成した結果
     campaign_assessment_actions_disable_caching: 評価キャッシュを無効にする
     campaign_assessment_actions_enable_caching: 評価キャッシュの有効化
     campaign_assessment_column_caching_enabled: 評価キャッシュ有効
@@ -86,11 +131,15 @@ ja:
     campaign_assessment_modals_enable_caching_successfully: この評価のためにキャッシュが有効化されています。
     campaign_assessment_modals_enable_caching_title: 評価キャッシュを有効にする?
     campaign_factors: キャンペーン要因
+    campaign_name: キャンペーン名
     campaign_templates: キャンペーンテンプレート
     campaign_user_job_roles_cannot_be_same: 対象となる職務は現在の職務とは異なるものでなければならない
     campaigns: キャンペーン
+    cancel: キャンセル
     cancellation_and_rescheduling_disabled: キャンセルおよび日程変更は無効です
     casual: カジュアル
+    characters: 文字
+    children_factor_type: 児童要因タイプ
     client: クライアント・テナンシー
     client_admins: クライアント管理者
     clients: 顧客契約
@@ -100,24 +149,53 @@ ja:
     completed: 完了
     completed_tooltip: すべての評価者が評価を提出しました
     concise: 簡潔
+    configure_model_answer_title: 模範解答とキーワードを設定する
     confirm_remove_admin: メール '%{email}' を持つ管理ユーザーを本当に削除しますか？
+    copied: コピーされました
     country: 国名
     create_client: クライアント作成
+    create_indicator: インジケーターを作成する
     current_job_role: 現在の職務内容
     dashboard: ダッシュボード
     dashboards: ダッシュボード
     data_reports: データレポート
     datasheet: データシート
     declined: 減少
+    define_max_score_text: "%{maxScore}（最高得点）のスコアを定義する"
+    define_min_score_text: "%{minScore}（最低スコア）のスコアを定義する"
+    define_optional_score_range_text: スコアを定義する %{minScore} から %{maxScore} (オプション)
+    define_score_text: "%{score} のスコアを定義する"
+    definition: 定義
     delete_ok_text: はい、削除してください
     denied: 拒否
+    description: 説明
     development_actions: 開発アクション
     development_actions_form_tags: タグ
+    digest_delivery_mode:
+      form_label: ダイジェスト配信モード
+      immediate: 即時 - 一括送信があるたびに送信する
+      scheduled: スケジュール済み - 指定した時間にダイジェストメールを送信する
+    digest_frequency:
+      daily: 毎日
+      form_label: 消化頻度
+      weekdays: 平日
+      weekly: 週刊
+    digest_weekdays:
+      form_label: ダイジェスト 平日(s)
+      friday: 金曜日
+      monday: 月曜日
+      saturday: 土曜日
+      sunday: 日曜日
+      thursday: 木曜日
+      tuesday: 火曜日
+      wednesday: 水曜日
     dimensions: 寸法
     done: 完成です
     done_tooltip: このユーザーの評価は%{marked_by}によって行われたとマークされているため、これ以上の評価は提出できません
+    download_bulk_asset_download_example_csv: サンプルCSVをダウンロード
     edit_campaign_admin: キャンペーン管理者の編集
     edit_client_admin: クライアント管理者の編集
+    edit_indicator: 編集インジケーター
     edit_job_roles: 職務内容の編集
     edit_level: 編集レベル
     edit_permission_denied: 管理者の「%{name}」を編集する権限はありません
@@ -126,12 +204,17 @@ ja:
     empty_csv_file: CSVファイルにはデータが含まれていません。
     enable_enhance_with_ai_client_level: クライアントレベルで「AIによる強化」機能を有効にしてください
     enable_maintenance: メンテナンスを有効にする
+    enable_mobile_proctoring: モバイル試験監督を有効にする
     enable_transcription: 文字起こしを有効にする
+    enable_transcription_msg: 動画/音声応答問題でAIスコアリングを使用するには、文字起こし機能を有効にしてください。
     end_time: 終末
     end_time_must_be_after_start_time: 終了時刻は開始時刻より後でなければならない
     enhance_with_ai: AIで強化する
     enhance_with_ai_requires_ai_assistants: AIによる強化には、AIアシスタント機能の有効化が必要です
+    enter_description: 説明を入力してください
+    enter_name: 名前を入力してください
     error: エラー
+    estimated_tokens: トークン（推定）
     evaluation_status: 評価状況
     evaluation_status_not_done: 選ばれた1つ以上の被験者の評価状況は「完了」ではありません。選ばれたすべてのユーザーが評価を完了しているか、完了したとマークしてください。
     export_admin_roles_permissions: 管理者の役割と権限のエクスポート
@@ -139,14 +222,26 @@ ja:
     export_completion_status: 輸出完了状況
     export_completion_statuses_scheduled: 完了ステータスのエクスポートジョブが正常にスケジュールされました
     export_detailed_completion_status: 詳細
+    feature_ai_assistants_description: AI搭載アシスタントを有効化し、ユーザー体験を向上させる
+    feature_ai_assisted_idp_description: AIを活用して個人開発計画の提案を支援する
+    feature_ai_content_analysis_description: 評価のためのAIを活用したコンテンツ分析を有効にする
+    feature_ai_translation_description: レポートでAIを活用したコンテンツの自動翻訳を有効にする
     feature_enhance_with_ai: AIで強化する
+    feature_enhance_with_ai_description: AIを活用したコンテンツ強化機能を有効にする
     feature_flags: フィーチャー・フラッグ
+    feature_flags_ai_group: AI機能
+    feature_flags_communication_group: コミュニケーション
+    feature_flags_platform_group: プラットフォーム機能
+    feature_global_skills_description: グローバルスキルライブラリにアクセスして評価を実施する
+    feature_idp_description: 参加者のための個人開発計画を有効にする
+    feature_sms_notification_description: キャンペーンの招待状とリマインダーのSMS通知を有効にする
     fill_empty_score_msg: 保存する前にすべての最終スコアを記入してください。
     final_score_empty_err_msg: "%{factor_name}の最終スコアは空欄であってはならない。"
     final_score_empty_msg: 合計金額は空欄にできません。
     fix_grammar: 文法修正
     formal: 正式
     generate_transcription: 文字起こしを生成する
+    hide_middle_scores: 中間スコアを非表示にする
     idp_plan_reset_success: 計画は正常にリセットされました
     idp_templates: IDPテンプレート
     import_ai_artifacts: AIアーティファクトのインポート
@@ -175,6 +270,8 @@ ja:
     internal: 内部
     invalid_csv_header: CSVファイルには無効なヘッダーが含まれています。
     job_roles: 仕事の役割
+    keywords: キーワード
+    keywords_placeholder: キーワードをコンマで区切って入力してください。
     learning_from_others: 協働学習 [20]
     level: レベル
     level_apply: 適用する
@@ -201,6 +298,10 @@ ja:
     min_value: 最小値
     minimum_10_words: 最低10語
     missing_min_max_values: 最小値と最大値が必要です。
+    model_answer: 模範解答
+    model_answer_placeholder: AI採点用の模範解答を入力してください。
+    name: 名前
+    name_max_length: 名前は%{length}文字を超えてはいけません
     name_required: 名前が必要です
     no_file_selected: ファイルが選択されていない
     no_notifications: 通知はありません
@@ -218,6 +319,8 @@ ja:
     only_editable_on_create: このオプションは作成時のみ編集可能です。
     options: オプション
     original_text: 原文
+    overall: 全体的に
+    overall_score: 総合スコア
     participants: 参加者
     permissions:
       aiArtifacts:
@@ -254,6 +357,7 @@ ja:
         bulk_regenerate_reports: レポートの一括再生成
         manage: 管理
         manage_admins: 管理者の管理
+        manage_ai_scoring_approval_settings: AIスコアリング承認設定の管理
         manage_factor_benchmark_scores: ファクター・ベンチマーク・スコアの管理
         manage_messages: メッセージの管理
         manage_options: オプションの管理
@@ -642,6 +746,7 @@ ja:
         view_recordings: 録画の表示
     permissions_360_campaigns: 360キャンペーンに特化したパーミッション
     piped_text: パイプ付きテキスト
+    precision: 精密
     privacy: プライバシー
     proctoring: 試験監督
     professional: プロフェッショナル
@@ -654,15 +759,19 @@ ja:
     project_number: プロジェクト番号
     project_settings: プロジェクト設定
     projects: プロジェクト
+    prompt: プロンプト
     question_center: 質問センター
     questions: 質問
+    range_min_max: 範囲 %{min} - %{max}
     reflection_questions: 振り返りの質問
     registration_codes: 登録コード
     registration_settings: 登録設定
+    remove_children_to_change_type: すべての子要素を削除して型を変更する
     report_approvals: レポートの承認
     report_condition_not_met: 評価%{required} %{relationship}必要ですが、持っているのは%{actual}
     report_conditions_not_met_detailed: "%{user}の報告は利用可能条件を満たしていません。%{conditions}"
     report_denied: "%{user}の報告は却下されました"
+    report_name: レポート名
     report_no_evaluations: "%{user}の報告書は入手できず、評価は受け取っていません。"
     report_not_generated: "%{user}のレポートは可用性条件を満たしていますが、まだ生成されていません。まずレポートを作成してください。"
     report_on_hold: "%{user}のレポートは現在保留中です"
@@ -670,6 +779,7 @@ ja:
     reports: レポート
     reports_limit_exceeded: 一括ダウンロードはレポートファイル1000件に制限されています。多くの言語を選択している場合は、その範囲を減らしてください。
     reports_not_found: 報告は見つかりませんでした。ダウンロード前にレポートを作成してください。
+    rescore_responses_content: これにより、この科目の回答の得点が再計算されます。「AIによる採点」を有効にすると、AI採点対象問題の回答をAIを用いて再評価します。
     reset_idp_plan: リセットプラン
     reset_idp_plan_confirmation: 本当に計画をリセットしたいの?
     reset_idp_plan_title: リセットプラン
@@ -725,8 +835,32 @@ ja:
     saml_service_provider_updated_date: 更新日
     saml_service_providers: サービスプロバイダー
     saml_settings: SAML設定
+    save: 保存
+    save_assessment_for_scoring_management: 採点を開始する前に評価を保存してください。
     scheduling: スケジューリング
+    score: スコア
+    score_approval_not_allowed_to_approve: このスコアを承認することはできません。
+    score_approval_not_allowed_to_discard: このスコアを破棄することはできません。
+    score_definition_placeholder: このスコアレベルの定義を入力してください
+    score_definitions: スコアの定義
+    score_max: スコア・マックス
+    score_min: スコア最小値
+    score_must_be_in_between_min_and_max: スコアは%{min}と%{max}の間でなければなりません。
+    score_range_info: スコア範囲：%{min} - %{max}
+    score_with_ai: AIで得点する
     scoring: 採点
+    scoring_approval_add_settings: 設定を追加
+    scoring_approval_allow_bulk_approve: 一括承認を許可する
+    scoring_approval_allow_bulk_approve_scores: 一括承認スコアを許可する
+    scoring_approval_allow_one_level_approve: 1段階承認を許可する
+    scoring_approval_approver_users: 承認者ユーザー
+    scoring_approval_approvers: 承認者
+    scoring_approval_assessment: 評価
+    scoring_approval_assessor_users: 査定者ユーザー
+    scoring_approval_modal_title: スコア承認設定
+    scoring_approval_remove_modal_success: '評価ID: %{assessmentId} の承認設定が正常に削除されました'
+    scoring_approval_remove_modal_text: '評価ID: %{assessmentId} の設定を削除してもよろしいですか？'
+    scoring_supported_only_for_ai_questions: 現在選択されている要素について、AI対応問題でのみ採点が許可されます。
     scoring_value_info: スコアは%{min}から%{max}の間でなければなりません。
     scoring_value_out_of_range_err_msg: "%{factor_name} のスコアは、%{min} と %{max} の間でなければなりません。"
     search_admins: 管理者を検索
@@ -737,7 +871,10 @@ ja:
     select_level: レベルを選択
     select_start_time: 開始時間を選択
     send_email: 電子メールを送信する
+    set_min_max_scores_warning: この要素のAIスコアリングを設定するには、最低点と最高点を設定してください。
     settings: 設定
+    show_all_assessment_responses: すべての評価回答を表示
+    show_middle_scores: "%{count}のスコアをさらに表示（任意）..."
     show_original: 原文を表示
     show_submenu: サブメニューを表示する
     show_translated: 翻訳を表示
@@ -755,6 +892,7 @@ ja:
     subdomain: サブドメイン
     subject_part_of_other_invite: メールアドレス %{user_email} のユーザーは既に「%{workshop_invite_name}」に招待済みです
     target_job_role: 対象職務
+    this_field_is_required: この項目は必須です
     timezone: タイムゾーン
     tone: トーン
     toolbar_ai_insight: AIインサイト
@@ -778,8 +916,12 @@ ja:
     upload_success: アップロード成功
     user_report_events: ユーザーレポートイベント
     users: ユーザー
+    validation_error: すべての必須項目にご記入ください
     view_licenses: ライセンスを見る
     waiting: 待つこと
+    weight: 重量
+    what_to_look_for: 何に注目すべきか
+    what_to_look_for_placeholder: この要素を示す行動、行為、または結果の証拠
     words: 言葉
     workshops: ワークショップ
     writing_assistant_not_configured: ライティングアシスタントが設定されていません

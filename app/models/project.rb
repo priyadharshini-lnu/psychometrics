@@ -7,10 +7,10 @@ class Project < Client
   default_scope -> { where(ancestry_depth: HIERARCHY_LEVEL[:project]) }
 
   def self.ransackable_associations(_auth_object = nil)
-    ['skills']
+    %w[skills campaign]
   end
 
   def self.ransackable_attributes(_auth_object = nil)
-    ['id']
+    %w[id name tte_id]
   end
 end

@@ -284,26 +284,30 @@ const IntegrationsComponent: React.FC<Props> = ({
                   {integration.name === 'mettl' && (
                     <>
                       <Tooltip title={I18n.t('administration.integrations.actions.load_mettl_catalog')}>
-                        <SyncOutlined onClick={handleMettlLoad} />
+                        <span><SyncOutlined onClick={handleMettlLoad} /></span>
                       </Tooltip>
                       <Tooltip title={I18n.t('administration.integrations.view_all_schedules')}>
-                        <EyeOutlined onClick={() => handleTabChange('integrations/mettl_schedule_records')} />
+                        <span>
+                          <EyeOutlined onClick={() => handleTabChange('integrations/mettl_schedule_records')} />
+                        </span>
                       </Tooltip>
                     </>
                   )}
                   {integration.name === 'skillvue' && (
                     <>
                       <Tooltip title={I18n.t('administration.integrations.actions.load_skillvue_catalog')}>
-                        <SyncOutlined onClick={handleSkillvueLoad} />
+                        <span><SyncOutlined onClick={handleSkillvueLoad} /></span>
                       </Tooltip>
                     </>
                   )}
                   <Tooltip title={I18n.t('common.actions.edit')}>
-                    <EditOutlined onClick={() => openModal('IntegrationFormModal', { integration })} />
+                    <span><EditOutlined onClick={() => openModal('IntegrationFormModal', { integration })} /></span>
                   </Tooltip>
                   <Tooltip title={I18n.t('common.actions.delete')}>
-                    {isDeleteRequestInProgress ? <LoadingOutlined />
-                      : <DeleteOutlined onClick={() => remove(projectId, integration.id)} />}
+                    <span>
+                      {isDeleteRequestInProgress ? <LoadingOutlined />
+                        : <DeleteOutlined onClick={() => remove(projectId, integration.id)} />}
+                    </span>
                   </Tooltip>
                 </Space>
 

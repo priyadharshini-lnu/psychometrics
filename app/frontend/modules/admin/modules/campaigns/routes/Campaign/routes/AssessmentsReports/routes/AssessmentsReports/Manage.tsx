@@ -23,6 +23,7 @@ import UpdateAssessorFormModal from './UpdateAssessorFormModal'
 import ImportScoringModal from './ImportScoringModal'
 import ImportExternalScoringModal from './ImportExternalScoringModal'
 import RemoveReportModal from './RemoveReportModal'
+import UploadBulkAssetsModal from './UploadBulkAssetsModal'
 import { AddAssessorAssessmentModal } from './AddAssessorAssessmentModal'
 import RemoveAssessmentModal from './RemoveAssessmentModal'
 import { UpdateExternalConfigModal } from './AssessmentList/UpdateExternalConfigModal'
@@ -32,6 +33,7 @@ import DownloadReportsModal from './DownloadReportsModal'
 import UpdateLocalesModal from './UpdateLocalesModal'
 import { PropsFromRedux } from './connect'
 import styles from './styles.less'
+import RescoreResponseModal from '~/modules/admin/modules/campaigns/components/RescoreResponseModal'
 import { useResources } from '~/hooks/useResources'
 import {
   CampaignAssessorAssessments, useCampaignAssessorAssessmentsStore,
@@ -63,6 +65,8 @@ const MODALS = {
   AssessorCampaignAssessmentGroupModal,
   ReportsLanguageSelectionModal,
   DownloadReportsModal,
+  RescoreResponseModal,
+  UploadBulkAssetsModal,
 }
 
 const { I18n } = window

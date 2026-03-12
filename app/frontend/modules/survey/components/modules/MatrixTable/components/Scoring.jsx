@@ -2,7 +2,7 @@ import _ from 'lodash'
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Space } from 'antd'
-import FillingScoring from '~/modules/survey/components/FillingScoring'
+import { FillScoringButton } from '~/modules/survey/components/FillScoringButton'
 import ScoringCell from '~/modules/survey/components/ScoringCell'
 import ScoringLabelAdvanced from '~/modules/survey/components/ScoringLabelAdvanced'
 import Utils from '~/modules/survey/utils'
@@ -91,7 +91,7 @@ export class Scoring extends Component {
     return (
       <div>
         <Space>
-          <FillingScoring scoring={scoring} onChange={this.fillScoring} />
+          <FillScoringButton hasScore={scoring && !scoring.isEmpty()} onClick={this.fillScoring} />
           <MultilineScoring
             cols={props.scalePoints}
             rows={props.choices}

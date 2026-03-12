@@ -44,10 +44,12 @@ import campaignAssessments from '../modules/threeSixtyCampaign/core/campaignAsse
 import assessorsReducers from '../modules/AssessorApp/core'
 import sheetReducers from '../modules/SheetManagement/core'
 import { reducer as integrationsReducer } from '../modules/client/core/integrations'
+import { reducer as clientSmtpSettingReducer } from '../modules/client/core/clientSmtpSetting'
 import auditLogs from '../modules/AuditLog/core'
 import errors from '~/core/errors'
 
 const createRootReducer = () => combineReducers({
+  clientSmtpSetting: clientSmtpSettingReducer,
   socket,
   threeSixtyCampaign: combineReducers({
     subjects,

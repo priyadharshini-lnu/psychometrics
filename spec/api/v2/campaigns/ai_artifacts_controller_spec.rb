@@ -380,57 +380,33 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactsController, type: 
     end
   end
 
-  describe 'POST /api/v2/administration/campaigns/:campaign_id/ai_artifacts/:id/generate' do
-    it 'generates AI artifact results successfully' do
+  describe 'POST /api/v2/administration/campaigns/:campaign_id/ai_artifacts/generate' do
+    it 'queues AI artifact generation request and returns async_request_uuid' do
       body = {
-        query: {
-          user_id: user.id.to_s
-        }
-      }
-      results = {
-        results: { 'summary' => 'This is latest generated', 'feedback' => 'Average' },
-        parsed_dependencies: 'Some dependencies'
+        artifact_id: ai_artifact.id.to_s,
+        user_id: user.id.to_s
       }
 
-      stub_wisper_publisher('AI::CampaignArtifacts::ResultGenerator', :call, :ok, results)
-      ai_artifact.results.find_by(user: user).update!(results: results[:results],
-                                                      parsed_dependencies: results[:parsed_dependencies])
-
-      post "/api/v2/administration/campaigns/#{campaign_id}/ai_artifacts/#{ai_artifact.id}/generate",
+      post "/api/v2/administration/campaigns/#{campaign_id}/ai_artifacts/generate",
            params: body.to_json,
            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/json' }
 
       expect(response).to have_http_status(:ok)
-      d = JSON.parse(response.body)['data']
-      expect(d).to have_key('id')
-      expect(d).to have_key('type')
-      expect(d['type']).to eq('campaign_ai_artifact_results')
-      expect(d['attributes']).to have_key('results')
-      expect(d['attributes']['results']).to be_an(Array)
-      expect(d['attributes']['results']).to contain_exactly(
-        { 'key' => 'summary', 'type' => 'string', 'value' => 'This is latest generated' },
-        { 'key' => 'feedback', 'type' => 'string', 'value' => 'Average' }
+      response_body = JSON.parse(response.body)
+      expect(response_body).to have_key('async_request_uuid')
+      expect(response_body['async_request_uuid']).to be_present
+      expect(AsyncRequestHandlerJob).to have_been_enqueued.with(
+        hash_including(
+          context: hash_including(
+            params: hash_including(
+              'artifact_id' => ai_artifact.id.to_s,
+              'user_id' => user.id.to_s,
+              'campaign_id' => campaign.id
+            )
+          ),
+          handler: AI::CampaignArtifacts::GenerateArtifactRequestHandler
+        )
       )
-      expect(d['attributes']['parsed_dependencies']).to eq(results[:parsed_dependencies])
-    end
-
-    it 'returns error when AI artifact results generation fails' do
-      body = {
-        query: {
-          user_id: user.id.to_s
-        }
-      }
-
-      stub_wisper_publisher('AI::CampaignArtifacts::ResultGenerator', :call, :error, 'There was an error')
-
-      post "/api/v2/administration/campaigns/#{campaign_id}/ai_artifacts/#{ai_artifact.id}/generate",
-           params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/json' }
-
-      expect(response).to have_http_status(:unprocessable_entity)
-      errors = JSON.parse(response.body)['errors']
-      expect(errors).to be_an(Array)
-      expect(errors.first['detail']).to eq('There was an error')
     end
   end
 

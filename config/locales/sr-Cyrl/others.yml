@@ -862,6 +862,7 @@ sr-Cyrl:
         bulk_reports: Булк Извештаји
         bulk_rescore_campaign_factors: Фактори кампање Булк Ресцоре
         bulk_update_evaluation_status: Статус евалуације масовног ажурирања
+        campaign_report_extract_and_upload_bulk_assets: Повезивање извештаја кампање и масовни унос средстава
         compact_completion_status_export: Извоз статуса завршетка компакта
         completion_status_export: Завршетак статуса Извоз
         copy_as_template_or_campaign: Копирај кампању као шаблон
@@ -871,6 +872,7 @@ sr-Cyrl:
         export_admin_with_permissions: Извоз администратора са дозволама
         export_assessment_questions: Питања за процену извоза
         export_campaign_ai_artifacts: Извозна кампања АИ артефаката
+        export_campaign_ai_artifacts_results: Извези резултате АИ артефаката кампање
         export_campaign_factors: Фактори извозне кампање
         export_campaign_scorings: Резултати извозне кампање
         export_dashboard_as_file: Извози контролну таблу као датотеку
@@ -1274,6 +1276,7 @@ sr-Cyrl:
     record_not_found: Запис није пронађен
     user_not_authorized: Корисник није овлашћен
   auth:
+    cookies_link: <a href="%{cookies_url}">Изјава о колачићима
     current_password: Тренутна лозинка
     current_password_placeholder: Унесите тренутну лозинку
     email: Е-пошта
@@ -1319,6 +1322,7 @@ sr-Cyrl:
     password_confirmation: Потврдите лозинку
     password_confirmation_placeholder: Унесите потврду лозинке
     password_placeholder: Унесите лозинку
+    privacy_statement_link: <a href="%{privacy_url}">Изјава о приватности
     registration:
       description: Попуните податке испод да бисте се регистровали и креирали нови налог
       email_hint: Поштујемо вашу приватност и не толеришемо спам. Никада нећемо дати ваше податке трећим лицима.
@@ -1343,7 +1347,6 @@ sr-Cyrl:
       title: Креирај лозинку
     sign_out: Пријавите се као други корисник
     sign_up: Региструј се
-    terms_link: <a href="%{terms_url}">Услови и изјава о приватности</a>
     verify_mobile_number:
       error:
         blocked: Овај број је блокиран због превише покушаја.

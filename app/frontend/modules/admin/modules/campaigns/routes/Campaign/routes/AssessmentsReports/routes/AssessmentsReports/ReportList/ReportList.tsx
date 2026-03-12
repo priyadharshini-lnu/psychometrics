@@ -3,6 +3,7 @@ import {
   Table, MenuProps, Row, Col, Switch, App,
 } from 'antd'
 import { useParams } from 'react-router-dom'
+import { camelizeKeys } from '~/utils/object'
 import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -31,10 +32,12 @@ const ReportList: React.FC<Props> = ({
   toggleAutoAssign,
   toggleUserDashboard,
   toggleMainReport,
+  features,
 }) => {
   const { campaignId } = useParams() as { campaignId: string }
   const parsedCampaignId = parseInt(campaignId, 10)
   const { message } = App.useApp()
+  const { uploadBulkAssetsEnabled } = camelizeKeys(features)
 
   const handleExportData = (campaignId: number, reportId: number) => {
     exportData(campaignId, reportId).then(() => {
@@ -156,8 +159,10 @@ const ReportList: React.FC<Props> = ({
                     reportId: report.reportId,
                     reportName: report.name,
                     permissions: report.permissions,
+                    customUpload: report.customUpload,
                     openModal,
                     exportData: handleExportData,
+                    uploadBulkAssetsEnabled,
                   })
                 }
                 innerElement={(
@@ -181,6 +186,8 @@ interface ActionMenuData {
   reportId: number
   campaignReportId: number
   reportName: string
+  customUpload: boolean
+  uploadBulkAssetsEnabled: boolean
   openModal(name: string, data?: { campaignId: number, campaignReportId: number, reportName: string }): void
   permissions: {
     export: boolean
@@ -190,7 +197,8 @@ interface ActionMenuData {
 }
 
 const getActionsMenuProps = ({
-  campaignId, reportId, campaignReportId, reportName, openModal, permissions, exportData,
+  campaignId, reportId, campaignReportId, reportName, openModal, permissions, exportData, customUpload,
+  uploadBulkAssetsEnabled,
 }: ActionMenuData): MenuProps => {
   const menuItems: MenuItem[] = []
   permissions.export && menuItems.push({
@@ -201,6 +209,10 @@ const getActionsMenuProps = ({
     key: 'remove',
     label: I18n.t('common.actions.remove'),
   })
+  customUpload && uploadBulkAssetsEnabled && menuItems.push({
+    key: 'upload_bulk_assets',
+    label: 'Upload Bulk Assets',
+  })
 
   const handleMenuClick = ({ key }) => {
     if (key === 'export') {
@@ -208,6 +220,13 @@ const getActionsMenuProps = ({
     }
     if (key === 'remove') {
       openModal('RemoveReportModal', { campaignId, campaignReportId, reportName })
+    }
+    if (key === 'upload_bulk_assets') {
+      openModal('UploadBulkAssetsModal', {
+        campaignReportId,
+        campaignId,
+        reportName: '',
+      })
     }
   }
 

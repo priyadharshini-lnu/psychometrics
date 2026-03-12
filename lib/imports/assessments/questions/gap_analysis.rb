@@ -12,7 +12,7 @@ module Imports
         #   choice: 0,
         #   values: [0,1]
         # }
-        def self.build_answers(data, question, duration, _use_scoring = false, _assign)
+        def self.build_answers(data, question, duration, _use_scoring = false, _assign, **) # rubocop:disable Metrics/ParameterLists
           answers = []
           data.each_slice(2).with_index do |batch, choice|
             scale, values = batch # contain scale and values

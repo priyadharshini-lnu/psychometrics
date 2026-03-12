@@ -255,7 +255,7 @@ const CampaignOptions: React.FC<Props> = ({
                   </Col>
                   <Col>
                     <Tooltip title={I18n.t('administration.components.input_duration.placeholder')}>
-                      <QuestionCircleOutlined className="ms-4" />
+                      <span><QuestionCircleOutlined className="ms-4" /></span>
                     </Tooltip>
                   </Col>
                 </Row>
@@ -420,9 +420,11 @@ const CampaignOptions: React.FC<Props> = ({
                     <SafeHTML
                       html={I18n.lookup('administration.campaigns.options.watermark_info')}
                     />
-                )}
+                  )}
                 >
-                  <QuestionCircleOutlined className="ms-4" />
+                  <span>
+                    <QuestionCircleOutlined className="ms-4" />
+                  </span>
                 </Tooltip>
               </Col>
             </Row>

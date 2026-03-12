@@ -80,7 +80,6 @@ sl:
         title: Artefakt umetne inteligence
       generate: Ustvariti
       generate_result_info_message: Rezultati se ustvarjajo, prosimo, osvežite stran, da si ogledate posodobljene rezultate.
-      generate_results: Ustvarjanje rezultatov
       generated_at: Ustvarjeno pri
       generated_at_time: Ustvarjeno ob %{time}
       generated_value: Ustvarjena vrednost
@@ -736,6 +735,21 @@ sl:
       errors:
         invalid_headers: 'Naslednje glave so neveljavne: %{headers}'
     campaign_report:
+      bulk_assets_upload:
+        errors:
+          csv_and_zip_must_exist: Pred začetkom je treba naložiti datoteke CSV in ZIP.
+          csv_cannot_be_empty: CSV datoteka ne sme biti prazna.
+          csv_contains_blank_values: CSV vsebuje prazne vrednosti. Vse vrednosti user_email in file_name morajo biti navedene.
+          csv_file_name_must_be_unique: Vrednosti CSV datoteke_ime morajo biti edinstvene.
+          csv_must_contain_two_headers: 'CSV mora imeti natanko 2 stolpca z naslovi: %{headers}'
+          csv_user_emails_must_be_unique: Vrednosti CSV user_email morajo biti edinstvene.
+          failed_to_attach_file: 'Pritrditev datoteke za e-pošto ni uspela: %{email}. Napaka: %{error_message}'
+          file_names_in_csv_must_be_of_type_pdf: CSV vsebuje neveljavne vnose file_name. Vse vrednosti file_name v CSV morajo imeti končnico .pdf.
+          file_processing_error: 'Napake, najdene pri obdelavi datoteke: %{error_message}'
+          max_emails_in_csv: Največje dovoljeno število vnosov user_email v CSV datoteki je%{max}. Vaša CSV datoteka vsebuje %{count} vnosov user_email.
+          missing_user_reports: 'Manjkajoča poročila uporabnikov za e-pošto: %{emails}'
+          no_file_found_in_extracted_zip: V izpisani datoteki ZIP ni bilo najdenih datotek.
+          user_report_not_found: 'Poročilo uporabnika ni bilo najdeno za e-poštni naslov: %{email}'
       bulk_download:
         data_range_error: Prosimo, izberite razpon datumov
         modal:
@@ -840,6 +854,16 @@ sl:
           report: Poročilo
           send_digest_emails: Pošljite e-poštna sporočila s povzetkom
           settings: Nastavitve
+        scoring_approval:
+          allow_bulk_approve: Dovoli množično odobritev
+          allow_bulk_approve_scores: Dovoli množično odobravanje ocen
+          approver_users: Potrjevalci
+          approvers: Odobritelji
+          assessment: Ocena
+          assessor_users: Uporabniki ocenjevalcev
+          modal_title: Nastavitve odobritve točkovanja
+          remove_modal_success: 'Nastavitev odobritve za identifikacijsko številko ocene: %{assessmentId} je bila uspešno izbrisana.'
+          remove_modal_text: 'Ali ste prepričani, da želite izbrisati to nastavitev za identifikacijsko številko ocene: %{assessmentId}?'
       assessors:
         spoof:
           successfully: Uspešno ste bili prijavljeni kot %{name}
@@ -1006,6 +1030,8 @@ sl:
         ai_assistants_disabled_by_client: Odjemalec onemogoči AI Assistants
         ai_assisted_idp: IDP s pomočjo AI
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP zahteva, da je omogočena funkcija AI Assistants
+        ai_content_analysis: Analiza vsebine z umetno inteligenco
+        ai_content_analysis_disabled_by_client: Analiza vsebine AI je onemogočena s strani stranke
         ai_translation: Prevodi z umetno inteligenco
         ai_translation_disabled_by_client: AI prevajanje je onemogočeno s strani stranke
         global_skills: Globalne spretnosti
@@ -2541,6 +2567,7 @@ sl:
     message: Sporočilo
     meta_title: Upravna plošča
     navigation:
+      approvals: Odobritve
       audit_logs: Dnevniki nadzora
       availability: Razpoložljivost
       configuration: Konfiguracijo
@@ -3207,9 +3234,11 @@ sl:
         actions: Aktivnosti
         approval_status: Status odobritve
         approved_by: Odobril
+        assessed_by: Ocenjeno s strani
         campaign_name: Ime kampanje
         qc_by: Izvajalec preverjanja kakovosti
         report_name: Ime poročila
+        subject_email: Zadeva E-pošta
         user_email: Uporabniški e-poštni naslov
         user_name: Uporabniško ime
       dashboard: Nadzorna plošča
@@ -3771,6 +3800,11 @@ sl:
         tools: Orodja
         weightages: Uteži
       weighted_average: Tehtano povprečje
+    scoring_approval:
+      approve_all: Odobri vse
+      bulk_approve_success: "%{approved} odobreni rezultati."
+      review: Pregled
+      score_approvals: Odobritve AI točkovanja
     search: Iskanje
     security_setting:
       180_days: 180 dni

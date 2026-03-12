@@ -862,6 +862,7 @@ bg:
         bulk_reports: Групови отчети
         bulk_rescore_campaign_factors: Фактори на кампанията за групово преоценяване
         bulk_update_evaluation_status: Състояние на оценка на групово актуализиране
+        campaign_report_extract_and_upload_bulk_assets: Кампания Доклад Качване на масивно количество активи
         compact_completion_status_export: Компактен износ на състоянието на завършване
         completion_status_export: Експортиране на състоянието на завършване
         copy_as_template_or_campaign: Копиране на кампанията като шаблон
@@ -871,6 +872,7 @@ bg:
         export_admin_with_permissions: Експортиране на администратор с разрешения
         export_assessment_questions: Въпроси за оценка на износа
         export_campaign_ai_artifacts: Изкуствени артефакти от Експортната кампания
+        export_campaign_ai_artifacts_results: Експортиране на резултатите от AI артефактите на кампанията
         export_campaign_factors: Фактори на експортната кампания
         export_campaign_scorings: Експортиране на оценки на кампании
         export_dashboard_as_file: Експортиране на табло като файл
@@ -1274,6 +1276,7 @@ bg:
     record_not_found: Записът не е намерен
     user_not_authorized: Потребителят не е упълномощен
   auth:
+    cookies_link: <a href="%{cookies_url}">Декларация за бисквитките</a>
     current_password: Текуща парола
     current_password_placeholder: Въведете текущата парола
     email: Имейл
@@ -1319,6 +1322,7 @@ bg:
     password_confirmation: Потвърдете паролата
     password_confirmation_placeholder: Въведете парола за потвърждение
     password_placeholder: Въведете парола
+    privacy_statement_link: <a href="%{privacy_url}">Декларация за поверителност</a>
     registration:
       description: Попълнете данните по-долу, за да се регистрирате и да създадете нов акаунт
       email_hint: Уважаваме поверителността Ви и не толерираме спам. Никога няма да предоставим информацията Ви на трета страна
@@ -1343,7 +1347,6 @@ bg:
       title: Създайте парола
     sign_out: Влезте като различен потребител
     sign_up: Регистрирайте се
-    terms_link: <a href="%{terms_url}">Условия и декларация за поверителност</a>
     verify_mobile_number:
       error:
         blocked: Този номер е блокиран поради твърде много опити.

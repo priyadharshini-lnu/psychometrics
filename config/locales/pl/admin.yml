@@ -2,10 +2,12 @@
 pl:
   admin:
     accept_na_values: Akceptuj wartości N/A
+    actions: Działania
     add_admin: Dodaj administratora
     add_admin_role: Dodawanie roli administratora
     add_campaign_admin: Dodaj administratora kampanii
     add_client_admin: Dodawanie administratora klienta
+    add_indicator: Dodaj wskaźnik
     add_project: Dodaj projekt
     add_project_admin: Dodawanie administratora projektu
     add_threesixty_campaign_admin: Dodaj administratora kampanii
@@ -18,8 +20,14 @@ pl:
     admin_roles: Role administratora
     admin_updated_successfully: Administrator "%{name}" został pomyślnie zaktualizowany
     admins: Administratorzy
+    ai_artifact_result_generation_admin_job_failed: Nie można wygenerować artefaktu „%{artifact_name}” dla użytkownika „%{user_email}”.
+    ai_artifact_result_stale: Wynik może być nieaktualny, ponieważ zależności artefaktu AI uległy zmianie od czasu wygenerowania ostatniego wyniku. Rozważ ponowne wygenerowanie artefaktu, aby uwzględnić najnowsze zależności.
     ai_artifacts: Artefakty SI
+    ai_artifacts_generate_results: Generuj wyniki
     ai_artifacts_output_schema_key_constraint: Klucz musi zaczynać się od małej litery i może zawierać tylko małe litery, cyfry i podkreślenia
+    ai_artifacts_results_export: Eksportuj wyniki
+    ai_artifacts_results_export_job_scheduled: Zadanie eksportu wyników AI Artifacts zostało pomyślnie zaplanowane.
+    ai_assistant: Asystent AI
     ai_assistant_model_id_label: Identyfikacja modelu
     ai_assistant_model_label: Model
     ai_assistant_model_provider: Dostawca
@@ -36,16 +44,47 @@ pl:
     ai_assistants_template_render_failed: Nie udało się wyrenderować szablonu
     ai_assistants_test_render: Renderowanie testowe
     ai_assistants_test_render_tooltip: Przetestuj szablon promptu z danymi kampanii, aby sprawdzić, co zostanie wysłane do asystenta AI.
+    ai_assisted_idp_disabled_by_client: AI Assisted IDP jest wyłączone przez klienta
     ai_assisted_idp_feature_disabled: Funkcja wspomaganego IDP przez AI została wyłączona w tym projekcie.
     ai_idp_assistant_configure_dependencies: Skonfiguruj zależności AI
     ai_idp_assistant_configure_dependencies_description: Skonfiguruj, do których danych zależności asystent AI IDP może uzyskać dostęp jako kontekst. Dotyczy to wyłącznie sytuacji, gdy asystent jest skonfigurowany tak, aby akceptować zależności.
     ai_idp_assistant_dependencies_updated: Zależności zaktualizowane pomyślnie
     ai_idp_assistant_update_dependencies: Zaktualizuj zależności
     ai_notice: Podświetlone fragmenty zostały przetłumaczone przez sztuczną inteligencję i mogą zawierać nieścisłości.
+    ai_score_approval_no_answer: Nie podano odpowiedzi na to pytanie.
+    ai_score_approval_no_transcription: Transkrypcja nie jest dostępna dla tego pytania.
+    ai_scored: AI zdobyła punkty
+    ai_scoring_appoval_approve_all_questions: Zatwierdź wszystkie pytania
+    ai_scoring_appoval_approve_question: Zatwierdź pytanie
+    ai_scoring_appoval_back: Zresetuj wynik
+    ai_scoring_appoval_change_reason: Powód zmiany
+    ai_scoring_appoval_change_score: zmieniony wynik
+    ai_scoring_appoval_change_score_log: Dziennik zmian wyników
+    ai_scoring_appoval_discard_all_questions: Resetuj wszystkie pytania
+    ai_scoring_appoval_discard_all_questions_description: Spowoduje to zresetowanie wszystkich wyników dla wszystkich pytań i usunięcie wszelkich zmian. Tego działania nie można cofnąć. Czy na pewno chcesz to zrobić?
+    ai_scoring_appoval_discard_all_questions_title: Zresetować wszystkie wyniki pytań?
+    ai_scoring_appoval_discard_question: Zresetuj wyniki pytań
+    ai_scoring_appoval_discard_question_confirm_description: Spowoduje to zresetowanie wszystkich wyników dla tego pytania i usunięcie wszelkich zmian. Czy na pewno chcesz to zrobić?
+    ai_scoring_appoval_discard_question_confirm_title: Resetować wyniki pytań?
+    ai_scoring_appoval_discarded_changes: odrzucone zmiany
+    ai_scoring_appoval_evidence_from_transcript: Dowody z transkrypcji
+    ai_scoring_appoval_new_score: Nowy wynik
+    ai_scoring_appoval_next: Następne pytanie
+    ai_scoring_appoval_rationale: Uzasadnienie
+    ai_scoring_appoval_reason_for_changes: Powód zmian
+    ai_scoring_appoval_reset_score: Zresetuj wynik
+    ai_scoring_appoval_reset_score_description: Wynik zostanie przywrócony do pierwotnej wartości AI.
+    ai_scoring_appoval_responses: Odpowiedzi AI
+    ai_scoring_appoval_score_not_applicable: Wynik nie ma zastosowania
+    ai_scoring_approval: Zatwierdzanie wyników AI
+    ai_scoring_approval_settings: Ustawienia zatwierdzania wyników AI
+    ai_scoring_approvals: Zatwierdzanie wyników AI
     ai_translation: Tłumaczenie AI
     all_corner_rounded: Wszystkie rogi zaokrąglone
+    allow_ai_rescoring: Zezwól na ponowne ocenianie przez sztuczną inteligencję
     api_keys: Klucze API
     apply_to_existing_users: Zastosuj tę zmianę do obecnych użytkowników w tej kampanii
+    assessment_question_not_supported: Ten typ pytania nie jest obecnie obsługiwany.
     assessments: Oceny
     assessments_not_mhs: Wszystkie oceny muszą być typu MHS.
     assessments_reports: Oceny i raporty
@@ -61,8 +100,14 @@ pl:
     availability: Dostępność
     available_languages: Raport dostępny w językach
     back_to_main: Menu główne
+    bulk_assets_modal_choose_csv: Wybierz plik CSV
+    bulk_assets_modal_choose_zip: Wybierz plik ZIP
+    bulk_assets_modal_not_csv_file_error: Do przesyłania plików CSV dopuszczalne są wyłącznie pliki CSV. Proszę przesłać prawidłowy plik CSV.
+    bulk_assets_modal_subtitle: 'Proszę przesłać <b>jeden plik CSV</b> (z nagłówkami: user_email, file_name) oraz <b>jeden plik ZIP</b> (zawierający pliki PDF o nazwach zgodnych z nazwami plików z pliku csv). Plik ZIP musi mieć rozmiar poniżej %{max_file_size} MB.'
+    bulk_assets_modal_title: Prześlij pliki CSV i ZIP
     bulk_upload_ai_artifacts: Artefakty AI do masowego przesyłania
     campaign_ai_artifact_updated_successfully: Artefakty AI kampanii zaktualizowane pomyślnie
+    campaign_ai_artifacts_results_export_details: Wyniki generowane przez artefakty sztucznej inteligencji kampanii
     campaign_assessment_actions_disable_caching: Wyłącz buforowanie oceny
     campaign_assessment_actions_enable_caching: Włącz buforowanie oceny
     campaign_assessment_column_caching_enabled: Włączone buforowanie oceny
@@ -86,11 +131,15 @@ pl:
     campaign_assessment_modals_enable_caching_successfully: Do tej oceny włączono buforowanie.
     campaign_assessment_modals_enable_caching_title: Włączyć cache oceny (Assessment)?
     campaign_factors: Czynniki kampanii
+    campaign_name: Nazwa kampanii
     campaign_templates: Szablony kampanii
     campaign_user_job_roles_cannot_be_same: Docelowe stanowisko musi różnić się od obecnego stanowiska.
     campaigns: Kampanie
+    cancel: Anuluj
     cancellation_and_rescheduling_disabled: Anulowanie i zmiana terminu są wyłączone.
     casual: Nieformalny
+    characters: postacie
+    children_factor_type: Typ czynnika dziecięcego
     client: Dzierżawa klienta
     client_admins: Administratorzy klienta
     clients: Umowy najmu dla klientów
@@ -100,24 +149,53 @@ pl:
     completed: Zakończone
     completed_tooltip: Wszyscy oceniający złożyli ocenę
     concise: Zwięzły
+    configure_model_answer_title: Skonfiguruj modelową odpowiedź i słowa kluczowe
     confirm_remove_admin: Czy na pewno chcesz usunąć administratora za pomocą adresu e-mail "%{email}"?
+    copied: Skopiowano
     country: Kraj
     create_client: Utwórz klienta
+    create_indicator: Utwórz wskaźnik
     current_job_role: Obecna rola zawodowa
     dashboard: Deska rozdzielcza
     dashboards: Pulpity nawigacyjne
     data_reports: Raporty danych
     datasheet: Arkusz danych
     declined: Odrzucona
+    define_max_score_text: Zdefiniuj wynik „%{maxScore}” (maksymalny wynik)
+    define_min_score_text: Zdefiniuj wynik „%{minScore}” (minimalny wynik)
+    define_optional_score_range_text: Zdefiniuj wyniki %{minScore} do %{maxScore} (opcjonalnie)
+    define_score_text: Zdefiniuj wynik %{score}
+    definition: Definicja
     delete_ok_text: Tak, usuń
     denied: Odmówiony
+    description: Opis
     development_actions: Działania rozwojowe
     development_actions_form_tags: Tagi
+    digest_delivery_mode:
+      form_label: Tryb dostarczania skrótu
+      immediate: Natychmiastowe – wysyłaj zawsze, gdy pojawia się zbiorcze zgłoszenie
+      scheduled: Zaplanowane — wysyłanie podsumowania e-mailowego o określonej porze
+    digest_frequency:
+      daily: Codziennie
+      form_label: Częstotliwość trawienia
+      weekdays: Dni powszednie
+      weekly: Cotygodniowy
+    digest_weekdays:
+      form_label: Podsumowanie dni powszednich
+      friday: piątek
+      monday: poniedziałek
+      saturday: Sobota
+      sunday: Niedziela
+      thursday: czwartek
+      tuesday: wtorek
+      wednesday: Środa
     dimensions: Wymiary
     done: Gotowy
     done_tooltip: Nie można już zgłosić oceny tego użytkownika, ponieważ jest oznaczana jako przeprowadzona przez %{marked_by}
+    download_bulk_asset_download_example_csv: Pobierz przykładowy plik CSV.
     edit_campaign_admin: Edytuj administratora kampanii
     edit_client_admin: Edytowanie administratora klienta
+    edit_indicator: Edytuj wskaźnik
     edit_job_roles: Edytuj role stanowisk
     edit_level: Poziom edycji
     edit_permission_denied: Nie masz uprawnień do edycji administratora '%{name}'
@@ -126,12 +204,17 @@ pl:
     empty_csv_file: Plik CSV nie zawiera żadnych danych.
     enable_enhance_with_ai_client_level: Włącz funkcję „Ulepsz za pomocą AI” na poziomie klienta.
     enable_maintenance: Włącz konserwację
+    enable_mobile_proctoring: Włącz nadzór mobilny
     enable_transcription: Włącz transkrypcję
+    enable_transcription_msg: Włącz transkrypcję, aby korzystać z oceny AI w pytaniach z odpowiedziami wideo/audio.
     end_time: Czas zakończenia
     end_time_must_be_after_start_time: Czas zakończenia musi być późniejszy niż czas rozpoczęcia.
     enhance_with_ai: Wzbogać dzięki sztucznej inteligencji
     enhance_with_ai_requires_ai_assistants: Funkcja „Wzbogać dzięki AI” wymaga włączenia funkcji asystentów AI.
+    enter_description: Wprowadź opis
+    enter_name: Wpisz nazwę
     error: Błąd
+    estimated_tokens: tokeny (szacunkowo)
     evaluation_status: Status oceny
     evaluation_status_not_done: Status oceny nie jest "Zakończony" dla jednego lub więcej wybranych przedmiotów. Prosimy o to, by wszyscy wybrani użytkownicy ukończyli oceny lub oznaczyli je jako ukończone.
     export_admin_roles_permissions: Eksport ról i uprawnień administratora
@@ -139,14 +222,26 @@ pl:
     export_completion_status: Status zakończenia eksportu
     export_completion_statuses_scheduled: Zadanie eksportu statusów ukończenia zostało pomyślnie zaplanowane.
     export_detailed_completion_status: Szczegółowy
+    feature_ai_assistants_description: Włącz asystentów opartych na sztucznej inteligencji, aby poprawić komfort użytkowania.
+    feature_ai_assisted_idp_description: Wykorzystaj sztuczną inteligencję do pomocy w tworzeniu zaleceń dotyczących indywidualnych planów rozwoju.
+    feature_ai_content_analysis_description: Włącz analizę treści opartą na sztucznej inteligencji do celów oceny
+    feature_ai_translation_description: Włącz automatyczne tłumaczenie treści w raportach oparte na sztucznej inteligencji
     feature_enhance_with_ai: Wzbogać dzięki sztucznej inteligencji
+    feature_enhance_with_ai_description: Włącz funkcje ulepszania treści oparte na sztucznej inteligencji
     feature_flags: Flagi funkcji
+    feature_flags_ai_group: Funkcje AI
+    feature_flags_communication_group: Komunikacja
+    feature_flags_platform_group: Funkcje platformy
+    feature_global_skills_description: Uzyskaj dostęp do globalnej biblioteki umiejętności do celów oceny
+    feature_idp_description: Włącz indywidualne planowanie rozwoju dla uczestników
+    feature_sms_notification_description: Włącz powiadomienia SMS dotyczące zaproszeń i przypomnień dotyczących kampanii
     fill_empty_score_msg: Wypełnij wszystkie końcowe wyniki przed zapisem.
     final_score_empty_err_msg: Ostateczny wynik gry „%{factor_name}” nie może być pusty.
     final_score_empty_msg: Rachunek końcowy nie może być pusty.
     fix_grammar: Popraw gramatykę
     formal: Formalny
     generate_transcription: Wygeneruj transkrypcję
+    hide_middle_scores: Ukryj wyniki średnie
     idp_plan_reset_success: Plan został pomyślnie zresetowany
     idp_templates: Szablony IDP
     import_ai_artifacts: Import artefaktów AI
@@ -175,6 +270,8 @@ pl:
     internal: Wewnętrzny
     invalid_csv_header: Plik CSV zawiera nieprawidłowe nagłówki.
     job_roles: Role zawodowe
+    keywords: Słowa kluczowe
+    keywords_placeholder: Wpisz słowa kluczowe oddzielone przecinkami.
     learning_from_others: Uczenie się zespołowe [20]
     level: Poziom
     level_apply: Zastosuj
@@ -201,6 +298,10 @@ pl:
     min_value: Wartość minimalna
     minimum_10_words: Minimum 10 słów
     missing_min_max_values: Wymagane są wartości minimalne i maksymalne.
+    model_answer: Odpowiedź modelowa
+    model_answer_placeholder: Wprowadź wzorcową odpowiedź do oceny przez sztuczną inteligencję.
+    name: Nazwa
+    name_max_length: Nazwa nie może przekraczać %{length} znaków
     name_required: Wymagane jest imię
     no_file_selected: Nie wybrano żadnego pliku
     no_notifications: Brak powiadomień
@@ -218,6 +319,8 @@ pl:
     only_editable_on_create: Ta opcja jest edytowalna tylko podczas tworzenia.
     options: Opcje
     original_text: Oryginalny tekst
+    overall: Ogólnie
+    overall_score: Ogólna ocena
     participants: Uczestników
     permissions:
       aiArtifacts:
@@ -254,6 +357,7 @@ pl:
         bulk_regenerate_reports: Zbiorcze ponowne generowanie raportów
         manage: Zarządzać
         manage_admins: Zarządzanie administratorami
+        manage_ai_scoring_approval_settings: Zarządzaj ustawieniami zatwierdzania ocen AI
         manage_factor_benchmark_scores: Zarządzanie wynikami testów porównawczych czynników
         manage_messages: Zarządzanie wiadomościami
         manage_options: Zarządzanie opcjami
@@ -642,6 +746,7 @@ pl:
         view_recordings: Wyświetlanie nagrań
     permissions_360_campaigns: Uprawnienia specyficzne dla kampanii 360
     piped_text: Tekst z rury
+    precision: Precyzja
     privacy: Prywatność
     proctoring: Nadzorowanie
     professional: Profesjonalny
@@ -654,15 +759,19 @@ pl:
     project_number: Numer projektu
     project_settings: Ustawienia projektu
     projects: Projekty
+    prompt: Monit
     question_center: Centrum pytań
     questions: Pytania
+    range_min_max: ZAKRES %{min} - %{max}
     reflection_questions: Pytania do refleksji
     registration_codes: Kody rejestracyjne
     registration_settings: Ustawienia rejestracji
+    remove_children_to_change_type: Usuń wszystkie dzieci, aby zmienić typ
     report_approvals: Zatwierdzanie raportów
     report_condition_not_met: Potrzebuje %{required} %{relationship} oceny, ale ma tylko %{actual}
     report_conditions_not_met_detailed: Raport dla %{user} nie spełnia warunków dostępności. %{conditions}
     report_denied: Raport %{user} został odrzucony
+    report_name: Nazwa raportu
     report_no_evaluations: Raport %{user} nie jest dostępny – nie otrzymano żadnych ocen.
     report_not_generated: Raport za %{user} spełnia warunki dostępności, ale nie został jeszcze wygenerowany. Proszę najpierw wygenerować raport.
     report_on_hold: Raport %{user} jest obecnie wstrzymany
@@ -670,6 +779,7 @@ pl:
     reports: Raporty
     reports_limit_exceeded: Pobieranie hurtowe jest ograniczone do 1000 plików raportów. Jeśli wybrałeś wiele języków, proszę, ogranicz to.
     reports_not_found: Nie znaleziono żadnych raportów. Prosimy o wygenerowanie raportów przed pobraniem.
+    rescore_responses_content: Spowoduje to ponowne obliczenie wyników dla odpowiedzi udzielonych przez tego uczestnika. Włącz opcję Zezwalaj na ponowne ocenianie przez AI, aby ponownie ocenić odpowiedzi przy użyciu sztucznej inteligencji w przypadku pytań ocenianych przez AI.
     reset_idp_plan: Plan Resetu
     reset_idp_plan_confirmation: Jesteś pewien, że chcesz zresetować plan?
     reset_idp_plan_title: Plan Resetu
@@ -725,8 +835,32 @@ pl:
     saml_service_provider_updated_date: Data aktualizacji
     saml_service_providers: Usługodawców
     saml_settings: Ustawienia SAML
+    save: Zapisz
+    save_assessment_for_scoring_management: Zapisz ocenę przed rozpoczęciem punktacji.
     scheduling: Planowania
+    score: Wynik
+    score_approval_not_allowed_to_approve: Nie wolno zatwierdzać tego wyniku.
+    score_approval_not_allowed_to_discard: Nie wolno odrzucać tego wyniku.
+    score_definition_placeholder: Wprowadź definicję dla tego poziomu punktacji.
+    score_definitions: Definicje wyników
+    score_max: Maksymalna liczba punktów
+    score_min: Wynik min.
+    score_must_be_in_between_min_and_max: Wynik musi mieścić się w przedziale od %{min} do %{max}.
+    score_range_info: 'Zakres wyników: %{min} - %{max}'
+    score_with_ai: Zdobądź punkty dzięki sztucznej inteligencji
     scoring: Punktacji
+    scoring_approval_add_settings: Dodaj ustawienia
+    scoring_approval_allow_bulk_approve: Zezwól na zbiorcze zatwierdzanie
+    scoring_approval_allow_bulk_approve_scores: Zezwól na zbiorcze zatwierdzanie wyników
+    scoring_approval_allow_one_level_approve: Zezwól na zatwierdzanie na jednym poziomie
+    scoring_approval_approver_users: Użytkownicy zatwierdzający
+    scoring_approval_approvers: Osoby zatwierdzające
+    scoring_approval_assessment: Ocena
+    scoring_approval_assessor_users: Użytkownicy oceniający
+    scoring_approval_modal_title: Ustawienia zatwierdzania punktacji
+    scoring_approval_remove_modal_success: 'Ustawienie zatwierdzenia dla identyfikatora oceny: %{assessmentId} zostało pomyślnie usunięte.'
+    scoring_approval_remove_modal_text: 'Czy na pewno chcesz usunąć to ustawienie dla identyfikatora oceny: %{assessmentId}?'
+    scoring_supported_only_for_ai_questions: Punktowanie jest dozwolone tylko w przypadku pytań z włączoną sztuczną inteligencją dla aktualnie wybranego czynnika.
     scoring_value_info: Wynik musi mieścić się w przedziale od %{min} do %{max}.
     scoring_value_out_of_range_err_msg: Wynik dla „%{factor_name}” musi mieścić się w przedziale od %{min} do %{max}.
     search_admins: Wyszukiwanie administratorów
@@ -737,7 +871,10 @@ pl:
     select_level: Wybierz poziom
     select_start_time: Wybierz czas rozpoczęcia
     send_email: Wyślij wiadomość e-mail
+    set_min_max_scores_warning: Proszę ustawić minimalną i maksymalną liczbę punktów dla tego czynnika, aby skonfigurować punktację AI.
     settings: Ustawienia
+    show_all_assessment_responses: Pokaż wszystkie odpowiedzi z oceny
+    show_middle_scores: Pokaż więcej wyników dla „%{count}” (opcjonalnie)...
     show_original: Pokaż oryginał
     show_submenu: Pokaż podmenu
     show_translated: Pokaż przetłumaczone
@@ -755,6 +892,7 @@ pl:
     subdomain: Subdomena
     subject_part_of_other_invite: Osoba o adresie e-mail %{user_email} została już zaproszona do „%{workshop_invite_name}”.
     target_job_role: Docelowa rola zawodowa
+    this_field_is_required: To pole jest wymagane.
     timezone: Strefa czasowa
     tone: Ton
     toolbar_ai_insight: Wgląd w sztuczną inteligencję
@@ -778,8 +916,12 @@ pl:
     upload_success: Przesłanie pomyślnie
     user_report_events: Zdarzenia zgłaszane przez użytkownika
     users: Użytkowników
+    validation_error: Proszę wypełnić wszystkie wymagane pola.
     view_licenses: Zobacz licencje
     waiting: Czekanie
+    weight: Waga
+    what_to_look_for: Na co zwrócić uwagę
+    what_to_look_for_placeholder: Dowody zachowań, działań lub wyników, które świadczą o tym czynniku
     words: Słowa
     workshops: Warsztaty
     writing_assistant_not_configured: Asystent pisania nie został skonfigurowany

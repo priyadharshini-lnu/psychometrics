@@ -12,6 +12,9 @@ hu:
         user_not_found: A felhasználó nem található, vagy nem része ugyanannak a projektnek
       admin:
         already_added: Rendszergazda már hozzáadott e-mail-címmel.
+      ai_scoring_approval_settings:
+        assessment_exists: Az értékeléshez már létezik AI pontozási jóváhagyási beállítás.
+        validates_admins: Az adminisztrátorok nem férnek hozzá a kampányhoz.
       already_assigned?: Nem lehet összekapcsolni ezt az értékelést - már hozzá van rendelve a(z) %{linked_assessor_form_name}'-hoz.
       already_invited: Ez a felhasználó már létezik a hozzáadni kívánt értékelőközpontban.
       assessor_assessment:

@@ -80,7 +80,6 @@ th:
         title: สิ่งประดิษฐ์ AI
       generate: ผลิต
       generate_result_info_message: กําลังสร้างผลลัพธ์ โปรดรีเฟรชหน้าเพื่อดูผลลัพธ์ที่อัปเดต
-      generate_results: สร้างผลลัพธ์
       generated_at: สร้างขึ้นเมื่อ
       generated_at_time: สร้างขึ้นที่ %{time}
       generated_value: มูลค่าที่สร้างขึ้น
@@ -736,6 +735,21 @@ th:
       errors:
         invalid_headers: 'ส่วนหัวต่อไปนี้ไม่ถูกต้อง: %{headers}'
     campaign_report:
+      bulk_assets_upload:
+        errors:
+          csv_and_zip_must_exist: ไฟล์ CSV และ ZIP ต้องถูกอัปโหลดก่อนเริ่ม
+          csv_cannot_be_empty: ไฟล์ CSV ไม่สามารถว่างเปล่าได้
+          csv_contains_blank_values: ไฟล์ CSV มีค่าว่างอยู่ ค่า user_email และ file_name ทุกค่าต้องมีอยู่
+          csv_file_name_must_be_unique: ค่าในไฟล์ CSV ต้องไม่ซ้ำกัน
+          csv_must_contain_two_headers: 'CSV ต้องมีคอลัมน์ทั้งหมด 2 คอลัมน์ โดยมีหัวข้อคอลัมน์ดังนี้: %{headers}'
+          csv_user_emails_must_be_unique: ค่าของผู้ใช้_อีเมลในไฟล์ CSV ต้องไม่ซ้ำกัน
+          failed_to_attach_file: 'ไม่สามารถแนบไฟล์สำหรับอีเมล: %{email}. ข้อผิดพลาด: %{error_message}'
+          file_names_in_csv_must_be_of_type_pdf: CSV มีรายการ file_name ที่ไม่ถูกต้อง ค่า file_name ทั้งหมดใน CSV ต้องมีนามสกุล .pdf
+          file_processing_error: 'พบข้อผิดพลาดในการประมวลผลไฟล์: %{error_message}'
+          max_emails_in_csv: จำนวนรายการ user_email ของ %{max} ที่อนุญาตใน CSV สูงสุดคือ รายการ CSV ของคุณมีรายการ user_email ของ %{count}
+          missing_user_reports: 'รายงานผู้ใช้ที่หายไปสำหรับอีเมล: %{emails}'
+          no_file_found_in_extracted_zip: ไม่พบไฟล์ในไฟล์ ZIP ที่ถูกแยกออกมา
+          user_report_not_found: 'ไม่พบรายงานผู้ใช้สำหรับอีเมล: %{email}'
       bulk_download:
         data_range_error: กรุณาเลือกช่วงวันที่
         modal:
@@ -840,6 +854,16 @@ th:
           report: รายงาน
           send_digest_emails: ส่งอีเมลสรุป
           settings: การตั้งค่า
+        scoring_approval:
+          allow_bulk_approve: อนุญาตให้อนุมัติแบบกลุ่ม
+          allow_bulk_approve_scores: อนุญาตให้อนุมัติคะแนนแบบกลุ่ม
+          approver_users: ผู้ใช้ผู้อนุมัติ
+          approvers: ผู้อนุมัติ
+          assessment: การประเมิน
+          assessor_users: ผู้ใช้ผู้ประเมิน
+          modal_title: การตั้งค่าการให้คะแนนการอนุมัติ
+          remove_modal_success: 'การตั้งค่าการอนุมัติสำหรับรหัสการประเมินผล: %{assessmentId} ถูก삭제สำเร็จ'
+          remove_modal_text: 'คุณแน่ใจหรือไม่ว่าต้องการลบการตั้งค่านี้สำหรับรหัสการประเมิน: %{assessmentId}?'
       assessors:
         spoof:
           successfully: คุณเข้าสู่ระบบเป็น %{name} เรียบร้อยแล้ว
@@ -1006,6 +1030,8 @@ th:
         ai_assistants_disabled_by_client: ผู้ช่วย AI ถูกปิดใช้งานโดยไคลเอ็นต์
         ai_assisted_idp: AI ช่วยเหลือ IDP
         ai_assisted_idp_requires_ai_assistants: AI Assisted IDP ต้องการคุณสมบัติ AI Assistants เพื่อเปิดใช้งาน
+        ai_content_analysis: การวิเคราะห์เนื้อหาด้วยปัญญาประดิษฐ์
+        ai_content_analysis_disabled_by_client: การวิเคราะห์เนื้อหาด้วย AI ถูกปิดใช้งานโดยลูกค้า
         ai_translation: การแปลโดยปัญญาประดิษฐ์
         ai_translation_disabled_by_client: การแปลด้วย AI ถูกปิดใช้งานโดยลูกค้า
         global_skills: ทักษะระดับโลก
@@ -2541,6 +2567,7 @@ th:
     message: ข้อความ
     meta_title: แผงการดูแลระบบ
     navigation:
+      approvals: การอนุมัติ
       audit_logs: บันทึกการตรวจสอบ
       availability: กำหนดการ
       configuration: องค์ประกอบ
@@ -3207,9 +3234,11 @@ th:
         actions: การดําเนินการ
         approval_status: สถานะการอนุมัติ
         approved_by: อนุมัติโดย
+        assessed_by: ประเมินโดย
         campaign_name: ชื่อแคมเปญ
         qc_by: ตรวจสอบโดย
         report_name: ชื่อรายงาน
+        subject_email: หัวข้ออีเมล
         user_email: อีเมลผู้ใช้
         user_name: ชื่อผู้ใช้
       dashboard: แดชบอร์ด
@@ -3771,6 +3800,11 @@ th:
         tools: เครื่องมือ
         weightages: น้ําหนัก
       weighted_average: ค่าเฉลี่ยถ่วงน้ําหนัก
+    scoring_approval:
+      approve_all: อนุมัติทั้งหมด
+      bulk_approve_success: "%{approved} คะแนนได้รับการอนุมัติแล้ว"
+      review: รีวิว
+      score_approvals: การอนุมัติคะแนนด้วยระบบปัญญาประดิษฐ์
     search: ค้น
     security_setting:
       180_days: 180 วัน

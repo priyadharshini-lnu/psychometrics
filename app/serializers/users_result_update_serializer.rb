@@ -3,8 +3,8 @@
 class UsersResultUpdateSerializer < Panko::Serializer
   include Rails.application.routes.url_helpers
 
-  attributes :expired, :current_block, :translations, :progress_was_reseted, :factors, :next_assessment_url, :scoring,
-             :evaluation_session_id
+  attributes :expired, :progress_was_reseted, :factors, :next_assessment_url, :scoring,
+             :evaluation_session_id, :piped_text_mapping
 
   def scoring
     return unless context[:current_user]&.assessor? && object.completed?
@@ -33,34 +33,21 @@ class UsersResultUpdateSerializer < Panko::Serializer
     ).to_a
   end
 
+  def piped_text_mapping
+    fetched_piped_text
+  end
+
   def expired
     object.user_assessment.expired?
   end
 
-  def current_block
-    block = Block.find_by(id: context[:current_block_id])
-    if block
-      BlockSerializer.new(
-        context: {
-          piped_text_context: piped_text_context,
-          selected_locale: object.user_assessment.selected_locale || context[:locale],
-          translations: translations,
-          campaign_user: context[:campaign_user]
-        }
-      ).serialize(block)
-    end
-  end
-
-  def translations
-    Assessments::GetTranslationWithPipetextReplaced.call!(
-      object.assessment,
-      piped_text_context: piped_text_context,
-      locale: object.user_assessment.selected_locale || context[:locale]
-    )
-  end
-
   def progress_was_reseted
     context[:progress_was_reseted]
+  end
+
+  def fetched_piped_text
+    assessment = object.user_assessment&.assessment
+    assessment&.generate_piped_text_mapping(piped_text_context)
   end
 
   def piped_text_context
@@ -72,5 +59,9 @@ class UsersResultUpdateSerializer < Panko::Serializer
       result: object,
       assessment: object.assessment
     }
+  end
+
+  def missing_piped_text
+    context[:missing_piped_text] || []
   end
 end

@@ -12,6 +12,9 @@ id:
         user_not_found: Pengguna tidak ditemukan atau bukan bagian dari proyek yang sama
       admin:
         already_added: Admin dengan email sudah ditambahkan.
+      ai_scoring_approval_settings:
+        assessment_exists: Pengaturan persetujuan penilaian AI untuk penilaian ini sudah ada.
+        validates_admins: Administrator tidak memiliki akses ke kampanye.
       already_assigned?: Tidak dapat menautkan penilaian ini - sudah ditetapkan ke '%{linked_assessor_form_name}'.
       already_invited: Pengguna ini sudah ada di pusat penilaian yang ingin Anda tambahkan.
       assessor_assessment:

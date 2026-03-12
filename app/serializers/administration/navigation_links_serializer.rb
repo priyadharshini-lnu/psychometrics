@@ -39,6 +39,9 @@ module Administration
         if policy(%i[administration report_approval]).index?
           links['report_approvals'] = "#{admin_path}/report_approvals/my_tasks"
         end
+        if policy(%i[administration ai_scoring_approval]).index?
+          links['ai_scoring_approvals'] = "#{admin_path}/ai_scoring_approvals"
+        end
         if policy(%i[administration data_reports]).index?
           links['data_reports'] = "#{admin_path}/data_reports"
         end

@@ -3,7 +3,7 @@
 module AI
   class AssistantService < BaseCommand
     private_attr_reader :assistant_id, :prompt, :current_user, :options, :chat, :ask_params, :ignore_user_prompt,
-                        :max_retry_count
+                        :max_retry_count, :session, :response_validators
 
     def initialize(assistant_id, current_user, prompt = nil, options = {})
       @assistant_id = assistant_id
@@ -11,9 +11,11 @@ module AI
       @current_user = current_user
       @options = options
       @chat = options[:chat]
+      @session = options[:session]
       @ask_params = options[:ask_params] || {} # Parameters for the request api service
       @ignore_user_prompt = options[:ignore_user_prompt] || false
       @validate_response_structure = options[:validate_response_structure] || false
+      @response_validators = options[:response_validators] || []
       @max_retry_count = options[:max_retry_count] || 3
     end
 
@@ -75,6 +77,11 @@ module AI
       parsed_response = response.is_a?(String) ? JSON.parse(response) : response
       assistant.output_schema_class.validate_response(parsed_response)
 
+      response_validators.each do |validator|
+        error = validator.validate(parsed_response)
+        raise AI::OutputSchemas::Base::InvalidResponseStructureError, error if error.present?
+      end
+
       nil
     rescue JSON::ParserError => e
       "#{e.message}, Response is not a valid JSON"
@@ -98,7 +105,16 @@ module AI
       tools = options[:tools] || []
       params = options[:params] # Params for the requests
       prompt_template_context = options[:prompt_template_context] || {}
-      assistant.for_user(current_user, tools: tools, params: params, prompt_template_context: prompt_template_context)
+      chat = assistant.for_user(
+        current_user,
+        tools: tools,
+        params: params,
+        prompt_template_context: prompt_template_context,
+        contextual_information: options[:contextual_information]
+      )
+      chat.update!(ai_assisted_user_session: session) if session.present?
+
+      chat
     end
 
     def user_prompt

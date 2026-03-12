@@ -872,6 +872,7 @@ zh-HK:
         bulk_reports: 批量報告
         bulk_rescore_campaign_factors: 大規模重新評分活動因素
         bulk_update_evaluation_status: 批量更新評估狀態
+        campaign_report_extract_and_upload_bulk_assets: 活动报告上传批量素材
         compact_completion_status_export: 緊湊完工狀態匯出
         completion_status_export: 完工狀態匯出
         copy_as_template_or_campaign: 複製活動作為範本
@@ -881,6 +882,7 @@ zh-HK:
         export_admin_with_permissions: 帶權限的 Export 管理員
         export_assessment_questions: 出口評估問題
         export_campaign_ai_artifacts: 輸出戰役 AI 工件
+        export_campaign_ai_artifacts_results: 导出活动AI成果
         export_campaign_factors: 出動因素
         export_campaign_scorings: 出口運動得分
         export_dashboard_as_file: 將儀表板匯出為檔案
@@ -1289,6 +1291,7 @@ zh-HK:
     record_not_found: 未找到紀錄
     user_not_authorized: 使用者未授權
   auth:
+    cookies_link: <a href="%{cookies_url}">Cookies声明</a>
     current_password: 目前密碼
     current_password_placeholder: 輸入目前密碼
     email: 電郵
@@ -1334,6 +1337,7 @@ zh-HK:
     password_confirmation: 確認密碼
     password_confirmation_placeholder: 輸入密碼確認
     password_placeholder: 輸入密碼
+    privacy_statement_link: <a href="%{privacy_url}">隐私声明</a>
     registration:
       description: 填寫以下詳情註冊並建立新帳戶
       email_hint: 我們尊重您的私隱，絕不容忍垃圾郵件。我們絕不會將您的資料提供給任何第三方
@@ -1358,7 +1362,6 @@ zh-HK:
       title: 創立密碼
     sign_out: 以其他用戶登入
     sign_up: 註冊
-    terms_link: <a href="%{terms_url}">條款和私隱聲明</a>
     verify_mobile_number:
       error:
         blocked: 由於嘗試太多，此號碼已被攔截。

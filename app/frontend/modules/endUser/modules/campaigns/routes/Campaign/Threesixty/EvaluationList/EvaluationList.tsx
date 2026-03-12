@@ -115,13 +115,13 @@ const EvaluationListComponent = ({
 
         {options.global.disableAllEvaluations && (
           <Tooltip placement="top" title={I18n.t('threesixty.evaluation_all_closed_message')}>
-            <InfoCircleOutlined />
+            <span><InfoCircleOutlined /></span>
           </Tooltip>
         )}
 
         {!options.global.disableAllEvaluations && subjectEvaluationClosed && (
           <Tooltip placement="top" title={I18n.t('threesixty.evaluation_closed_message')}>
-            <InfoCircleOutlined />
+            <span><InfoCircleOutlined /></span>
           </Tooltip>
         )}
 

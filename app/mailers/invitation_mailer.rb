@@ -25,8 +25,8 @@ class InvitationMailer < ApplicationMailer
     @token = token
     send_email(
       @resource,
-      from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
-      subject: I18n.t('devise.mailer.admin_invitation_instructions.subject')
+      subject: I18n.t('devise.mailer.admin_invitation_instructions.subject'),
+      **admin_sender_attributes((@resource.project || @resource.clients.first)&.client)
     ) do |format|
       format.html { render(template: '/devise/mailer/admin_invitation_instructions', layout: 'admin_email') }
     end
@@ -47,8 +47,8 @@ class InvitationMailer < ApplicationMailer
 
     send_email(
       @resource,
-      from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
-      subject: I18n.t('devise.mailer.invitation_instructions.subject')
+      subject: I18n.t('devise.mailer.invitation_instructions.subject'),
+      **admin_sender_attributes(membership.client&.client)
     ) do |format|
       format.html { render(template: '/devise/mailer/link_to_client', layout: 'admin_email') }
     end
