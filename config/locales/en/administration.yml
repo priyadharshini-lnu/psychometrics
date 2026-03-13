@@ -2735,6 +2735,7 @@ en:
       assessment_center: Assessment Center
       assessment_id: Assessment ID
       campaign_id: Campaign ID
+      campaign_link: Campaign Link
       campaign_name: Campaign Name
       campaigns: Campaigns
       description: Description

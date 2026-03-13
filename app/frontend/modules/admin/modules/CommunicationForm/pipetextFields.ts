@@ -132,6 +132,13 @@ const FIELDS: FieldConfig[] = [
         type: 'link',
         value: '${c://Campaign/Field}',
       },
+      {
+        name: I18n.t('administration.piped_text_modal.campaign_link'),
+        type: 'campaign_link',
+        getValue: (campaignId, text) => (
+          `\${c://Campaign/CampaignLink?campaign_id=${campaignId}&text=${text}}`
+        ),
+      },
     ],
   },
   {
