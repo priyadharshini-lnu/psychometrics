@@ -96,7 +96,7 @@ module Campaigns
           @user.save!
           AuditLogModule.audit!(:update, @user, user: current_user, campaign: campaign, payload: changes)
         end
-        @user.user_profile.update!(gender: form.gender) if form.gender.present?
+        @user.user_profile.update!(gender: form.gender) if form.try(:gender).present?
       end
 
       def assign_idp_plan

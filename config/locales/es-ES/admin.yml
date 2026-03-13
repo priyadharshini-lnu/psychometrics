@@ -81,6 +81,7 @@ es-ES:
     ai_scoring_approvals: Aprobaciones de puntuación de IA
     ai_translation: Traducción con IA
     all_corner_rounded: Todas las esquinas redondeadas
+    allow_ai_rescoring: Permitir la reevaluación mediante IA
     api_keys: Claves API
     apply_to_existing_users: Aplicar este cambio a los usuarios existentes en esta campaña.
     assessment_question_not_supported: Este tipo de pregunta no está disponible actualmente.
@@ -191,6 +192,7 @@ es-ES:
     dimensions: Dimensiones
     done: Hecho
     done_tooltip: No se puede enviar más evaluación para este usuario, ya que la evaluación de este usuario se marca como realizada por %{marked_by}
+    download_bulk_asset_download_example_csv: Descargar ejemplo CSV.
     edit_campaign_admin: Editar administración de campaña
     edit_client_admin: Editar Client Admin
     edit_indicator: Editar indicador
@@ -777,6 +779,7 @@ es-ES:
     reports: Informes
     reports_limit_exceeded: La descarga masiva está limitada a 1000 archivos de informe. Si has seleccionado muchos idiomas, por favor redúcelo.
     reports_not_found: No se encontraron informes. Por favor, genera los informes antes de descargarlos.
+    rescore_responses_content: Esto recalculará las puntuaciones de las respuestas de este alumno. Habilita Permitir recalcular puntuación con IA para reevaluar las respuestas utilizando IA para las preguntas puntuadas con IA.
     reset_idp_plan: Plan de Reinicio
     reset_idp_plan_confirmation: "¿Estás seguro de que quieres reiniciar el plan?"
     reset_idp_plan_title: Plan de Reinicio

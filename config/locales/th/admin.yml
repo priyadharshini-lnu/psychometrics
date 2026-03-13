@@ -81,6 +81,7 @@ th:
     ai_scoring_approvals: การอนุมัติคะแนนด้วยระบบปัญญาประดิษฐ์
     ai_translation: การแปลโดยปัญญาประดิษฐ์
     all_corner_rounded: มุมทั้งหมดโค้งมน
+    allow_ai_rescoring: อนุญาตให้ AI คะแนนใหม่
     api_keys: กุญแจ API
     apply_to_existing_users: นำการเปลี่ยนแปลงนี้ไปใช้กับผู้ใช้ที่มีอยู่ในแคมเปญนี้
     assessment_question_not_supported: ประเภทคำถามนี้ยังไม่รองรับในขณะนี้
@@ -191,6 +192,7 @@ th:
     dimensions: มิติ
     done: เสร็จแล้ว
     done_tooltip: ไม่สามารถส่งการประเมินสําหรับผู้ใช้รายนี้ได้อีก เนื่องจากการประเมินของผู้ใช้รายนี้ถูกทําเครื่องหมายว่าเสร็จสิ้นโดย %{marked_by}
+    download_bulk_asset_download_example_csv: ดาวน์โหลดตัวอย่าง CSV
     edit_campaign_admin: แก้ไขผู้ดูแลระบบแคมเปญ
     edit_client_admin: แก้ไขผู้ดูแลระบบลูกค้า
     edit_indicator: แก้ไขตัวบ่งชี้
@@ -777,6 +779,7 @@ th:
     reports: รายงาน
     reports_limit_exceeded: การดาวน์โหลดจํานวนมากจํากัดไว้ที่ 1,000 ไฟล์รายงาน หากคุณเลือกหลายภาษา โปรดลดภาษาลง
     reports_not_found: ไม่พบรายงาน โปรดสร้างรายงานก่อนดาวน์โหลด
+    rescore_responses_content: นี่จะคำนวณคะแนนใหม่สำหรับการตอบคำถามในวิชานี้ เปิดใช้งาน อนุญาตให้ AI ประเมินคะแนนใหม่ เพื่อประเมินคำตอบใหม่โดยใช้ AI สำหรับคำถามที่มี AI
     reset_idp_plan: รีเซ็ตแผน
     reset_idp_plan_confirmation: คุณแน่ใจหรือไม่ว่าต้องการรีเซ็ตแผน?
     reset_idp_plan_title: รีเซ็ตแผน

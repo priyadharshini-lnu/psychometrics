@@ -339,7 +339,9 @@ const UserList: React.FC<Props> = ({
                       aria-controls={`menu_campaign-subjects-${user.email}`}
                       aria-haspopup
                     >
-                      <Tooltip title={I18n.t('administration.table.more_actions')}><MoreOutlined /></Tooltip>
+                      <Tooltip title={I18n.t('administration.table.more_actions')}>
+                        <span><MoreOutlined /></span>
+                      </Tooltip>
                     </Button>
                   )}
                 />

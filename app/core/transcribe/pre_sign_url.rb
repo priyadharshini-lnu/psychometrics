@@ -5,7 +5,8 @@ module Transcribe
     LOCALES = {
       en: 'en-US',
       fr: 'fr-FR',
-      es: 'es-US'
+      es: 'es-US',
+      ar: 'ar-AE'
     }.freeze
 
     def call

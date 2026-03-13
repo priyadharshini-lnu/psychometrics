@@ -81,6 +81,7 @@ zh-Hant:
     ai_scoring_approvals: AI评分审批
     ai_translation: 人工智能翻译
     all_corner_rounded: 所有边角均已圆角处理
+    allow_ai_rescoring: 允许AI重新评分
     api_keys: API 金鑰
     apply_to_existing_users: 将此更改应用于此活动中的现有用户
     assessment_question_not_supported: 此题型目前不支持。
@@ -191,6 +192,7 @@ zh-Hant:
     dimensions: 尺寸
     done: 熟
     done_tooltip: 此用戶無法再提交評估，因為該用戶的評估已被標記為已完成%{marked_by}
+    download_bulk_asset_download_example_csv: 下载示例 CSV 文件。
     edit_campaign_admin: 編輯活動管理
     edit_client_admin: 編輯用戶端管理員
     edit_indicator: 编辑指示器
@@ -777,6 +779,7 @@ zh-Hant:
     reports: 報告
     reports_limit_exceeded: 批量下載限制為 1000 個報告檔案。如果你選擇了許多語言，請減少。
     reports_not_found: 沒有發現任何報告。請在下載前先產生報告。
+    rescore_responses_content: 这将重新计算该科目答案的分数。启用"允许AI重新评分"功能，即可对AI评分题使用人工智能重新评估答案。
     reset_idp_plan: 重置計畫
     reset_idp_plan_confirmation: 你確定要重置計畫嗎？
     reset_idp_plan_title: 重置計畫

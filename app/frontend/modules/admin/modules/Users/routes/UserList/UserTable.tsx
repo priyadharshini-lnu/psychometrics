@@ -74,7 +74,7 @@ export const UserTableComponent: React.FC<Props> = ({
           <span>{user.email}</span>
           {user.accessLocked && (
             <Tooltip placement="top" title={I18n.t('users.actions.unlock_user_access.tooltip')}>
-              <LockOutlined />
+              <span><LockOutlined /></span>
             </Tooltip>
           )}
         </div>

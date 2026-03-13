@@ -81,6 +81,7 @@ zh:
     ai_scoring_approvals: AI评分审批
     ai_translation: 人工智能翻译
     all_corner_rounded: 所有边角均已圆角处理
+    allow_ai_rescoring: 允许AI重新评分
     api_keys: API 密钥
     apply_to_existing_users: 将此更改应用于此活动中的现有用户
     assessment_question_not_supported: 此题型目前不支持。
@@ -191,6 +192,7 @@ zh:
     dimensions: 尺寸
     done: 做
     done_tooltip: 该用户无法提交更多评估，因为该用户的评估已被标记为已完成%{marked_by}
+    download_bulk_asset_download_example_csv: 下载示例 CSV 文件。
     edit_campaign_admin: 编辑活动管理
     edit_client_admin: 编辑客户管理员
     edit_indicator: 编辑指示器
@@ -777,6 +779,7 @@ zh:
     reports: 报告
     reports_limit_exceeded: 批量下载限制为1000份报告文件。如果你选择了许多语言，请减少。
     reports_not_found: 未发现报告。请在下载前生成报告。
+    rescore_responses_content: 这将重新计算该科目答案的评分。启用"允许AI重新评分"功能，即可对AI评分题使用人工智能重新评估答案。
     reset_idp_plan: 重置计划
     reset_idp_plan_confirmation: 你确定要重置计划吗？
     reset_idp_plan_title: 重置计划

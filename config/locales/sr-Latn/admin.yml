@@ -81,6 +81,7 @@ sr-Latn:
     ai_scoring_approvals: АИ оцењивање одобрења
     ai_translation: Превод вештачке интелигенције
     all_corner_rounded: Сви углови заобљени
+    allow_ai_rescoring: Дозволите поновно бодовање вештачке интелигенције
     api_keys: API ključevi
     apply_to_existing_users: Примени ову промену на постојеће кориснике у овој кампањи
     assessment_question_not_supported: Ова врста питања тренутно није подржана.
@@ -191,6 +192,7 @@ sr-Latn:
     dimensions: Dimenzije
     done: Uradio
     done_tooltip: Za ovog korisnika se više ne može dostaviti evaluacija jer je evaluacija ovog korisnika označena kao urađeno od strane %{marked_by}
+    download_bulk_asset_download_example_csv: Преузмите пример CSV-а.
     edit_campaign_admin: Uredi administratora kampanje
     edit_client_admin: Uredi administratora klijenta
     edit_indicator: Уреди индикатор
@@ -777,6 +779,7 @@ sr-Latn:
     reports: Izveštaji
     reports_limit_exceeded: Masovno preuzimanje je ograničeno na 1000 fajlova izveštaja. Ako ste izabrali mnogo jezika, molimo vas da ga smanjite.
     reports_not_found: Nije pronađen nijedan izveštaj. Molimo Vas da generišete izveštaje pre preuzimanja.
+    rescore_responses_content: Ово ће поново израчунати резултате за одговоре овог субјекта. Омогућите опцију "Дозволи прерачунавање резултата помоћу вештачке интелигенције" да бисте поново оценили одговоре користећи вештачку интелигенцију за питања са оцењивањем помоћу вештачке интелигенције.
     reset_idp_plan: Plan resetovanja
     reset_idp_plan_confirmation: Da li ste sigurni da želite da resetujete plan?
     reset_idp_plan_title: Plan resetovanja

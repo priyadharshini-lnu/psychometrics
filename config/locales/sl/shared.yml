@@ -39,6 +39,7 @@ sl:
     continue: Nadaljuj
     controller: Krmilnik
     cookies_statement: Izjava o piškotkih
+    copied_to_clipboard: Kopirano v odložišče
     copy: Kopiraj
     created_at: Ustvarjeno
     created_date: Ustvarjeno dne
@@ -81,6 +82,8 @@ sl:
     maintenance_time_remaining: Preostali čas
     maintenance_upcoming_description: Na spletni strani %{date} bomo izvedli redno vzdrževanje, ki bo trajalo približno %{duration}, da bi izboljšali vašo izkušnjo. V tem času ne boste mogli dostopati do dodeljenih nalog ali jih opraviti. Zahvaljujemo se vam za potrpežljivost.
     maintenance_upcoming_title: Prihajajoče vzdrževanje
+    media_id: Medijska identifikacijska številka
+    media_preview: Predogled za medije
     media_question_transcriptions: Prepisi vprašanj medijev
     media_responses: Odzivi medijev
     mobile_proctoring_disabled_instructions: Za nadaljevanje te ocene potrebujete namizni ali prenosni računalnik. Preklopite na računalnik, da dokončate dejavnost.
@@ -105,6 +108,7 @@ sl:
     proctoring_maintenance_active: Proctoring je trenutno v vzdrževanju od %{start_time} do %{end_time}. Poskusite ponovno po koncu vzdrževanja.
     proctoring_maintenance_upcoming: Nadzor bo v vzdrževanju od %{start_time} do %{end_time}.
     project: Projekt
+    question: Vprašanje
     question_id: ID vprašanja
     question_transcription_disabled: Prepisovanje je za to vprašanje onemogočeno.
     rec: REC
@@ -149,3 +153,6 @@ sl:
     updated_successfully: Posodobljeno uspešno
     video: Video
     view: Pogled
+    view_audio: Poglej avdio
+    view_transcription: Poglej transkripcijo
+    view_video: Oglejte si video

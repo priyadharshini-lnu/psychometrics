@@ -60,7 +60,7 @@ export const Factor = React.forwardRef(
                 {factor.ranked
                   ? (
                     <Tooltip title={I18n.t('administration.scoring.ranked')}>
-                      <StarOutlined />
+                      <span><StarOutlined /></span>
                     </Tooltip>
                   )
                   : null}

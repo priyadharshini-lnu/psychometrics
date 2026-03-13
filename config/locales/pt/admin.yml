@@ -81,6 +81,7 @@ pt:
     ai_scoring_approvals: Aprovações de pontuação de IA
     ai_translation: Tradução por IA
     all_corner_rounded: Todos os cantos arredondados
+    allow_ai_rescoring: Permitir nova pontuação por IA
     api_keys: Chaves API
     apply_to_existing_users: Aplicar esta alteração aos usuários existentes nesta campanha
     assessment_question_not_supported: Este tipo de pergunta não é suportado atualmente.
@@ -191,6 +192,7 @@ pt:
     dimensions: Dimensões
     done: Terminado
     done_tooltip: Nenhuma avaliação adicional pode ser submetida para esse usuário, pois a avaliação desse usuário é marcada como feita por %{marked_by}
+    download_bulk_asset_download_example_csv: Baixar exemplo CSV.
     edit_campaign_admin: Editar administração da campanha
     edit_client_admin: Editar administrador de clientes
     edit_indicator: Editar indicador
@@ -777,6 +779,7 @@ pt:
     reports: Relatórios
     reports_limit_exceeded: O download em massa é limitado a 1000 arquivos de relatório. Se você selecionou muitos idiomas, por favor, reduza essa informação.
     reports_not_found: Nenhum relatório encontrado. Por favor, gere os relatórios antes de baixar.
+    rescore_responses_content: Isso recalculará as pontuações das respostas para essas disciplinas. Habilite Permitir recálculo de pontuação por IA para reavaliar as respostas usando IA para pontuação com perguntas de IA.
     reset_idp_plan: Plano de Reinício
     reset_idp_plan_confirmation: Tem certeza de que quer resetar o plano?
     reset_idp_plan_title: Plano de Reinício

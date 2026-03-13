@@ -74,7 +74,7 @@ const Compose = ({ selected, disabled, onSend }) => {
         onKeyUp={keydown}
         suffix={disabled ? (
           <Tooltip title={I18n.t('administration.reports.preview.info_to_select_module')}>
-            <SendOutlined className={styles.send} />
+            <span><SendOutlined className={styles.send} /></span>
           </Tooltip>
         ) : (
           <SendOutlined className={styles.send} onClick={submit} />

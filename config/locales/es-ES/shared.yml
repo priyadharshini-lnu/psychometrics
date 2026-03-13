@@ -39,6 +39,7 @@ es-ES:
     continue: Continuar
     controller: Controlador
     cookies_statement: Declaración sobre cookies
+    copied_to_clipboard: Copiado al portapapeles
     copy: Copiar
     created_at: Creado/a el
     created_date: Fecha de creación
@@ -81,6 +82,8 @@ es-ES:
     maintenance_time_remaining: Tiempo restante
     maintenance_upcoming_description: Realizaremos un mantenimiento programado en %{date} durante aproximadamente %{duration} para mejorar su experiencia. Durante este tiempo, no podrá acceder ni completar ninguna tarea asignada. Agradecemos su paciencia.
     maintenance_upcoming_title: Próximo mantenimiento
+    media_id: Identificador de medio
+    media_preview: Preestreno para los medios de comunicación
     media_question_transcriptions: Transcripciones de preguntas de los medios de comunicación
     media_responses: Respuestas de los medios de comunicación
     mobile_proctoring_disabled_instructions: Para continuar con esta evaluación, es necesario utilizar un ordenador de sobremesa o portátil. Por favor, utilice un ordenador para completar la actividad.
@@ -105,6 +108,7 @@ es-ES:
     proctoring_maintenance_active: El servicio de supervisión está actualmente en mantenimiento, pasando de %{start_time} a %{end_time}. Vuelva a intentarlo una vez finalizado el periodo de mantenimiento.
     proctoring_maintenance_upcoming: La supervisión estará en mantenimiento desde %{start_time} hasta %{end_time}.
     project: Proyecto
+    question: Pregunta
     question_id: ID de la pregunta
     question_transcription_disabled: La transcripción está desactivada para esta pregunta.
     rec: REC
@@ -154,3 +158,6 @@ es-ES:
     updated_successfully: Actualizado correctamente
     video: Vídeo
     view: Ver
+    view_audio: Ver audio
+    view_transcription: Ver transcripción
+    view_video: Ver vídeo

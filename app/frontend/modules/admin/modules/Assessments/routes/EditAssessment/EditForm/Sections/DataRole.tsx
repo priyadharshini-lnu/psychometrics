@@ -48,6 +48,12 @@ export const DataRole: React.FC<Props> = ({ assessment }) => {
     }
   }, [assessment?.id])
 
+  useEffect(() => {
+    if (dataRole === 'controller') {
+      updateSelectedLocale(selectedLocale)
+    }
+  }, [dataRole])
+
   const fetchConsentDetails = async () => {
     if (!assessment?.id) return
     try {
@@ -130,7 +136,7 @@ export const DataRole: React.FC<Props> = ({ assessment }) => {
             <Row>
               <Col span={24}>
                 <Select
-                  defaultValue="en"
+                  value={selectedLocale}
                   className="mb8 width150px"
                   onChange={value => updateSelectedLocale(value)}
                 >

@@ -167,7 +167,7 @@ const SettingsModalComponent = ({
             </Col>
             <Col span={2}>
               <Tooltip title={I18n.t('administration.components.input_duration.placeholder')}>
-                <QuestionCircleOutlined className="ms-4" />
+                <span><QuestionCircleOutlined className="ms-4" /></span>
               </Tooltip>
             </Col>
           </>

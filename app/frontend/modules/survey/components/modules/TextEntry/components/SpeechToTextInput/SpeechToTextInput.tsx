@@ -321,7 +321,9 @@ export const SpeechToTextInput: FC<Props> = ({
             trigger={['focus', 'hover']}
             title={tooltipText}
           >
-            <InfoCircleOutlined aria-describedby={tooltipId} tabIndex={0} aria-label="Information: Dictation" />
+            <span>
+              <InfoCircleOutlined aria-describedby={tooltipId} tabIndex={0} aria-label="Information: Dictation" />
+            </span>
           </Tooltip>
           <Button
             type="primary"

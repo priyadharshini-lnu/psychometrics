@@ -81,6 +81,7 @@ sl:
     ai_scoring_approvals: Odobritve AI točkovanja
     ai_translation: Prevod z umetno inteligenco
     all_corner_rounded: Vsi koti so zaobljeni
+    allow_ai_rescoring: Dovoli ponovno ocenjevanje AI
     api_keys: Ključi API-ja
     apply_to_existing_users: Uporabi to spremembo za obstoječe uporabnike v tej kampanji
     assessment_question_not_supported: Ta vrsta vprašanja trenutno ni podprta.
@@ -191,6 +192,7 @@ sl:
     dimensions: Dimenzije
     done: Storiti
     done_tooltip: Za tega uporabnika ni mogoče več opraviti ocene, saj je ocena označena kot opravljena s strani %{marked_by}
+    download_bulk_asset_download_example_csv: Prenesi primer CSV.
     edit_campaign_admin: Urejanje skrbnika oglaševalske akcije
     edit_client_admin: Urejanje skrbnika odjemalca
     edit_indicator: Uredi indikator
@@ -777,6 +779,7 @@ sl:
     reports: Poročila
     reports_limit_exceeded: Množični prenos je omejen na 1000 poročil. Če ste izbrali veliko jezikov, jih prosim zmanjšajte.
     reports_not_found: Ni bilo najdenih poročil. Pred prenosom prosimo ustvarite poročila.
+    rescore_responses_content: S tem se bodo ponovno izračunale ocene za odgovore na ta vprašanja. Omogočite možnost »Dovoli ponovno ocenjevanje z AI«, da se odgovori ponovno ocenijo z uporabo AI za vprašanja »Oceni z AI«.
     reset_idp_plan: Načrt za ponastavitev
     reset_idp_plan_confirmation: Ste prepričani, da želite ponastaviti načrt?
     reset_idp_plan_title: Načrt za ponastavitev
