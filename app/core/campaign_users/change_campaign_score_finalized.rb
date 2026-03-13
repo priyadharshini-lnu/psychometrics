@@ -17,11 +17,21 @@ module CampaignUsers
       if user_ids.present?
         campaign_users = exclude ? campaign_users.where.not(user_id: user_ids) : campaign_users.where(user_id: user_ids)
       end
+
+      users_to_publish = if campaign_score_finalized
+                           campaign_users.where(campaign_scores_finalized: [false, nil]).pluck(:id)
+                         else
+                           []
+                         end
+
       campaign_users.update_all(
         campaign_scores_finalized: campaign_score_finalized,
         campaign_scores_finalized_date: campaign_score_finalized ? Time.current : nil
       )
       if campaign_score_finalized
+        ::CampaignUser.includes(:user, campaign: %i[project]).
+          where(id: users_to_publish).find_each(&:publish_campaign_results_available)
+
         UserReports::GenerateAndSavePdfJob.perform_later(
           campaign_factor_dependent_user_reports.pluck(:id), current_user
         )
