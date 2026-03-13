@@ -81,6 +81,7 @@ nl:
     ai_scoring_approvals: AI-scoring goedkeuringen
     ai_translation: AI-vertaling
     all_corner_rounded: Alle hoeken afgerond
+    allow_ai_rescoring: AI-herbeoordeling toestaan
     api_keys: API-sleutels
     apply_to_existing_users: Pas deze wijziging toe op bestaande gebruikers in deze campagne
     assessment_question_not_supported: Dit type vraag wordt momenteel niet ondersteund.
@@ -191,6 +192,7 @@ nl:
     dimensions: Afmetingen
     done: Klaar
     done_tooltip: Er kan geen verdere evaluatie worden ingediend voor deze gebruiker omdat de evaluatie van deze gebruiker als uitgevoerd door %{marked_by}
+    download_bulk_asset_download_example_csv: Voorbeeld CSV downloaden.
     edit_campaign_admin: Campagnebeheer bewerken
     edit_client_admin: Klantbeheer bewerken
     edit_indicator: Indicator bewerken
@@ -777,6 +779,7 @@ nl:
     reports: Rapporten
     reports_limit_exceeded: Bulkdownload is beperkt tot 1000 rapportbestanden. Als je veel talen hebt geselecteerd, verkort het dan alsjeblieft.
     reports_not_found: Geen meldingen gevonden. Genereer de rapporten alstublieft voordat u ze downloadt.
+    rescore_responses_content: Hierdoor worden de scores voor de antwoorden op deze vragen opnieuw berekend. Schakel 'AI-herberekening toestaan' in om antwoorden opnieuw te evalueren met behulp van AI voor vragen met AI-scores.
     reset_idp_plan: Resetplan
     reset_idp_plan_confirmation: Weet je zeker dat je het plan wilt resetten?
     reset_idp_plan_title: Resetplan

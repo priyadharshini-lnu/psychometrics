@@ -39,6 +39,7 @@ sr-Cyrl:
     continue: Наставите
     controller: Контролер
     cookies_statement: Изјава о колачићима
+    copied_to_clipboard: Копирано у међуспречник
     copy: Копирај
     created_at: Креирано у
     created_date: Датум креирања
@@ -81,6 +82,8 @@ sr-Cyrl:
     maintenance_time_remaining: Преостало време
     maintenance_upcoming_description: Извршићемо планирани одржавање на %{date} током отприлике %{duration} како бисмо побољшали ваше искуство. Током тог периода нећете моћи да приступите или завршите ниједан додељени задатак. Ценимо ваше стрпљење.
     maintenance_upcoming_title: Предстојеће одржавање
+    media_id: ИД медија
+    media_preview: Преглед за медије
     media_question_transcriptions: Транскрипти медијских питања
     media_responses: Реакције медија
     mobile_proctoring_disabled_instructions: За наставак ове процене потребан је десктоп или лаптоп. Молимо вас да пређете на рачунар како бисте завршили активност.
@@ -105,6 +108,7 @@ sr-Cyrl:
     proctoring_maintenance_active: Проктинг је тренутно у одржавању са %{start_time} на %{end_time}. Молимо покушајте поново након завршетка прозора за одржавање.
     proctoring_maintenance_upcoming: Прокторинг ће бити у одржавању од %{start_time} до %{end_time}.
     project: Пројекат
+    question: Питање
     question_id: Идентификациони број питања
     question_transcription_disabled: Транскрипција је онемогућена за ово питање
     rec: СНИМАЊЕ
@@ -154,3 +158,6 @@ sr-Cyrl:
     updated_successfully: Успешно ажурирано
     video: Видео
     view: Приказ
+    view_audio: Погледај аудио
+    view_transcription: Погледај транскрипт
+    view_video: Погледајте видео

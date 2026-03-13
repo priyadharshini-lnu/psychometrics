@@ -39,6 +39,7 @@ hi:
     continue: जारी रखें
     controller: नियंत्रक
     cookies_statement: कुकीज़ कथन
+    copied_to_clipboard: क्लिपबोर्ड पर कॉपी हो गया
     copy: प्रतिलिपि
     created_at: पर बनाया गया
     created_date: निर्मित तिथि
@@ -81,6 +82,8 @@ hi:
     maintenance_time_remaining: शेष समय
     maintenance_upcoming_description: हम आपके अनुभव को बेहतर बनाने के लिए %{date} पर लगभग %{duration} तक निर्धारित रखरखाव करेंगे। इस दौरान आप किसी भी सौंपे गए कार्य तक पहुँच या उन्हें पूरा नहीं कर पाएँगे। हम आपके धैर्य की सराहना करते हैं।
     maintenance_upcoming_title: आगामी रखरखाव
+    media_id: मीडिया आईडी
+    media_preview: मीडिया पूर्वावलोकन
     media_question_transcriptions: मीडिया प्रश्न प्रतिलेखन
     media_responses: मीडिया की प्रतिक्रियाएँ
     mobile_proctoring_disabled_instructions: इस मूल्यांकन को जारी रखने के लिए डेस्कटॉप या लैपटॉप आवश्यक है। कृपया गतिविधि पूरी करने के लिए कंप्यूटर पर स्विच करें।
@@ -105,6 +108,7 @@ hi:
     proctoring_maintenance_active: प्रॉक्टरिंग वर्तमान में %{start_time} से %{end_time} पर रखरखाव के अधीन है। कृपया रखरखाव विंडो के बाद फिर से प्रयास करें।
     proctoring_maintenance_upcoming: "%{start_time} से %{end_time} तक रखरखाव के तहत प्रॉक्टरिंग होगी।"
     project: परियोजना
+    question: प्रश्न
     question_id: प्रश्न आईडी
     question_transcription_disabled: इस प्रश्न के लिए प्रतिलेखन अक्षम है।
     rec: पुनर्नवीनीकरण योग्य ऊर्जा स्रोत
@@ -154,3 +158,6 @@ hi:
     updated_successfully: सफलतापूर्वक अद्यतन किया गया
     video: वीडियो
     view: देखें
+    view_audio: ऑडियो देखें
+    view_transcription: प्रतिलिपि देखें
+    view_video: वीडियो देखें

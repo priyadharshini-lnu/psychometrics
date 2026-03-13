@@ -39,6 +39,7 @@ bg:
     continue: Продължавам
     controller: Контролер
     cookies_statement: Декларация за бисквитките
+    copied_to_clipboard: Копирано в клипборда
     copy: Копиране
     created_at: Създаден в
     created_date: Дата на създаване
@@ -81,6 +82,8 @@ bg:
     maintenance_time_remaining: Оставащо време
     maintenance_upcoming_description: Ще извършваме планова поддръжка на %{date} за приблизително %{duration}, за да подобрим вашето преживяване. По време на тази поддръжка няма да можете да имате достъп до задачите си или да ги изпълнявате. Благодарим ви за търпението.
     maintenance_upcoming_title: Предстояща поддръжка
+    media_id: Идентификационен номер на медията
+    media_preview: Предварителна преглед за медиите
     media_question_transcriptions: Транскрипции на въпроси от медиите
     media_responses: Отговори на медиите
     mobile_proctoring_disabled_instructions: За да продължите с тази оценка, е необходим настолен или преносим компютър. Моля, превключете на компютър, за да завършите дейността.
@@ -105,6 +108,7 @@ bg:
     proctoring_maintenance_active: Proctoring е в процес на поддръжка от %{start_time} до %{end_time}. Моля, опитайте отново след края на поддръжката.
     proctoring_maintenance_upcoming: Прокторинга ще бъде в процес на поддръжка от %{start_time} до %{end_time}.
     project: Проект
+    question: Въпрос
     question_id: Идентификационен номер на въпроса
     question_transcription_disabled: Транскрипцията е деактивирана за този въпрос.
     rec: REC
@@ -149,3 +153,6 @@ bg:
     updated_successfully: Актуализирано успешно
     video: Видео
     view: Преглед
+    view_audio: Виж аудио
+    view_transcription: Виж транскрипцията
+    view_video: Вижте видеото

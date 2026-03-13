@@ -81,6 +81,7 @@ it:
     ai_scoring_approvals: Approvazioni dei punteggi AI
     ai_translation: Traduzione AI
     all_corner_rounded: Tutti gli angoli arrotondati
+    allow_ai_rescoring: Consenti il ricontrollo AI
     api_keys: Chiavi API
     apply_to_existing_users: Applica questa modifica agli utenti esistenti in questa campagna
     assessment_question_not_supported: Questo tipo di domanda non è attualmente supportato.
@@ -191,6 +192,7 @@ it:
     dimensions: Dimensioni
     done: Fatto
     done_tooltip: Non è possibile sottoporre ulteriori valutazioni per questo utente poiché la valutazione di quest'utente viene contrassegnata come effettuata da %{marked_by}
+    download_bulk_asset_download_example_csv: Scarica esempio CSV.
     edit_campaign_admin: Modifica dell'amministrazione della campagna
     edit_client_admin: Modifica dell'amministrazione del cliente
     edit_indicator: Modifica indicatore
@@ -777,6 +779,7 @@ it:
     reports: Report
     reports_limit_exceeded: Il download in massa è limitato a 1000 file di report. Se avete selezionato molte lingue, vi preghiamo di ridurlo.
     reports_not_found: Nessuna segnalazione trovata. Si prega di generare i report prima del download.
+    rescore_responses_content: Questo ricalcolerà i punteggi per le risposte a questa materia. Abilita Consenti ricontrollo punteggio AI per rivalutare le risposte utilizzando l'intelligenza artificiale per le domande con punteggio AI.
     reset_idp_plan: Piano di Reset
     reset_idp_plan_confirmation: Sei sicuro di voler resettare il piano?
     reset_idp_plan_title: Piano di Reset

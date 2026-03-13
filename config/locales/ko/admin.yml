@@ -81,6 +81,7 @@ ko:
     ai_scoring_approvals: AI 채점 승인
     ai_translation: 인공지능 번역
     all_corner_rounded: 모든 모서리가 둥글게 처리됨
+    allow_ai_rescoring: AI 재채점 허용
     api_keys: API 키
     apply_to_existing_users: 이 캠페인의 기존 사용자에게 이 변경 사항을 적용하십시오
     assessment_question_not_supported: 이 질문 유형은 현재 지원되지 않습니다.
@@ -191,6 +192,7 @@ ko:
     dimensions: 치수
     done: 수행
     done_tooltip: 이 사용자의 평가는 %{marked_by}에 의해 완료된 것으로 표시되어 있어 더 이상 평가를 제출할 수 없습니다
+    download_bulk_asset_download_example_csv: 예제 CSV 다운로드.
     edit_campaign_admin: 캠페인 관리자 편집
     edit_client_admin: 클라이언트 관리자 편집
     edit_indicator: 편집 표시기
@@ -777,6 +779,7 @@ ko:
     reports: 보고서
     reports_limit_exceeded: 대량 다운로드는 보고서 파일 1000개로 제한됩니다. 여러 언어를 선택하셨다면 줄여 주세요.
     reports_not_found: 보고는 발견되지 않았습니다. 다운로드 전에 보고서를 생성해 주세요.
+    rescore_responses_content: 이 기능은 해당 과목 응답에 대한 점수를 재계산합니다. AI 채점 가능 질문의 응답을 AI를 사용하여 재평가하려면 'AI 재채점 허용'을 활성화하세요.
     reset_idp_plan: 리셋 플랜
     reset_idp_plan_confirmation: 정말 계획을 다시 세우고 싶은 거야?
     reset_idp_plan_title: 리셋 플랜

@@ -39,6 +39,7 @@ hr:
     continue: Nastaviti
     controller: Kontrolor
     cookies_statement: Izjava o kolačićima
+    copied_to_clipboard: Kopirano u međuspremnik
     copy: Kopiraj
     created_at: Kreirano u
     created_date: Datum izrade
@@ -81,6 +82,8 @@ hr:
     maintenance_time_remaining: Preostalo vrijeme
     maintenance_upcoming_description: Obavit ćemo planirano održavanje na %{date}u otprilike od %{duration} do  kako bismo poboljšali vaše iskustvo. Tijekom tog razdoblja nećete moći pristupiti niti dovršiti nijedan dodijeljeni zadatak. Cijenimo vaše strpljenje.
     maintenance_upcoming_title: Nadolazeće održavanje
+    media_id: ID medija
+    media_preview: Pregled za medije
     media_question_transcriptions: Transkripti medijskih pitanja
     media_responses: Odgovori medija
     mobile_proctoring_disabled_instructions: Za nastavak ove procjene potreban je stolno ili prijenosno računalo. Molimo prebacite se na računalo kako biste dovršili aktivnost.
@@ -105,6 +108,7 @@ hr:
     proctoring_maintenance_active: Proctoring je trenutno u održavanju s %{start_time} na %{end_time}. Molimo pokušajte ponovno nakon završetka održavanja.
     proctoring_maintenance_upcoming: Održavanje će biti pod nadzorom od %{start_time} do %{end_time}.
     project: Projekt
+    question: Pitanje
     question_id: ID pitanja
     question_transcription_disabled: Transkripcija je onemogućena za ovo pitanje.
     rec: SNIMITI
@@ -149,3 +153,6 @@ hr:
     updated_successfully: Uspješno ažurirano
     video: Video
     view: Pregled
+    view_audio: Pregledaj audio
+    view_transcription: Pregledaj transkripciju
+    view_video: Pogledajte video

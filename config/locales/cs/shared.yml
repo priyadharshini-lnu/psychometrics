@@ -39,6 +39,7 @@ cs:
     continue: Pokračovat
     controller: Řídicí jednotka
     cookies_statement: Prohlášení o souborech cookie
+    copied_to_clipboard: Zkopírováno do schránky
     copy: Kopírovat
     created_at: Vytvořeno v
     created_date: Datum vytvoření
@@ -81,6 +82,8 @@ cs:
     maintenance_time_remaining: Zbývající čas
     maintenance_upcoming_description: Budeme provádět plánovanou údržbu na %{date} po dobu přibližně %{duration}, abychom vylepšili vaše uživatelské prostředí. Během této doby nebudete moci přistupovat k žádným přiděleným úkolům ani je dokončovat. Děkujeme za vaši trpělivost.
     maintenance_upcoming_title: Nadcházející údržba
+    media_id: Identifikátor média
+    media_preview: Náhled pro média
     media_question_transcriptions: Přepisy otázek médií
     media_responses: Reakce médií
     mobile_proctoring_disabled_instructions: K pokračování v tomto hodnocení je zapotřebí stolní počítač nebo notebook. Přepněte se prosím na počítač, abyste mohli aktivitu dokončit.
@@ -105,6 +108,7 @@ cs:
     proctoring_maintenance_active: Služba Proctoring je momentálně v údržbě z %{start_time} na %{end_time}. Zkuste to znovu po skončení údržby.
     proctoring_maintenance_upcoming: Proctoring bude od %{start_time} do %{end_time} v údržbě.
     project: Projekt
+    question: Otázka
     question_id: ID otázky
     question_transcription_disabled: Přepis je pro tuto otázku zakázán.
     rec: NAHRÁVÁNÍ
@@ -154,3 +158,6 @@ cs:
     updated_successfully: Aktualizace úspěšně dokončena
     video: Video
     view: Zobrazit
+    view_audio: Zobrazit zvuk
+    view_transcription: Zobrazit přepis
+    view_video: Zobrazit video

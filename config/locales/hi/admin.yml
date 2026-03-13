@@ -81,6 +81,7 @@ hi:
     ai_scoring_approvals: एआई स्कोरिंग अनुमोदन
     ai_translation: एआई अनुवाद
     all_corner_rounded: सभी कोने गोल
+    allow_ai_rescoring: एआई पुनः स्कोरिंग की अनुमति दें
     api_keys: एपीआई कुंजी
     apply_to_existing_users: इस अभियान में मौजूदा उपयोगकर्ताओं पर यह परिवर्तन लागू करें।
     assessment_question_not_supported: यह प्रश्न प्रकार वर्तमान में समर्थित नहीं है।
@@ -191,6 +192,7 @@ hi:
     dimensions: आयाम
     done: हो गया
     done_tooltip: इस उपयोगकर्ता के लिए कोई और मूल्यांकन प्रस्तुत नहीं किया जा सकता क्योंकि इस उपयोगकर्ता का मूल्यांकन %{marked_by} द्वारा पूरा किया हुआ चिह्नित है।
+    download_bulk_asset_download_example_csv: उदाहरण CSV डाउनलोड करें।
     edit_campaign_admin: अभियान प्रशासक संपादित करें
     edit_client_admin: क्लाइंट एडमिन संपादित करें
     edit_indicator: संकेतक संपादित करें
@@ -777,6 +779,7 @@ hi:
     reports: रिपोर्टें
     reports_limit_exceeded: थोक डाउनलोड 1000 रिपोर्ट फ़ाइलों तक सीमित है। यदि आपने कई भाषाएँ चुनी हैं, तो कृपया उन्हें कम करें।
     reports_not_found: कोई रिपोर्ट नहीं मिली। कृपया डाउनलोड करने से पहले रिपोर्टें उत्पन्न करें।
+    rescore_responses_content: यह इस विषय की प्रतिक्रियाओं के लिए स्कोर फिर से गणना करेगा। स्कोर के साथ AI प्रश्नों के लिए प्रतिक्रियाओं का पुनर्मूल्यांकन करने हेतु 'AI पुनःस्कोरिंग की अनुमति दें' सक्षम करें।
     reset_idp_plan: पुनर्स्थापना योजना
     reset_idp_plan_confirmation: क्या आप योजना को रीसेट करना चाहते हैं?
     reset_idp_plan_title: पुनर्स्थापना योजना

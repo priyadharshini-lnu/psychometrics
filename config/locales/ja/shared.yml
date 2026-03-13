@@ -39,6 +39,7 @@ ja:
     continue: 続ける
     controller: コントローラー
     cookies_statement: クッキーに関する声明
+    copied_to_clipboard: クリップボードにコピーされました
     copy: コピー
     created_at: 作成日時：
     created_date: 作成日
@@ -81,6 +82,8 @@ ja:
     maintenance_time_remaining: 残り時間
     maintenance_upcoming_description: "%{date} では、ご利用体験の向上を目的として、約 %{duration} の間、定期メンテナンスを実施いたします。この間、割り当てられたタスクへのアクセスや完了はできません。ご不便をおかけしますが、何卒ご了承ください。"
     maintenance_upcoming_title: 今後のメンテナンス
+    media_id: メディアID
+    media_preview: メディア向けプレビュー
     media_question_transcriptions: メディア質問の文字起こし
     media_responses: メディアの反応
     mobile_proctoring_disabled_instructions: この評価を続けるにはデスクトップまたはノートパソコンが必要です。活動を完了するにはコンピューターに切り替えてください。
@@ -105,6 +108,7 @@ ja:
     proctoring_maintenance_active: プロクターリングは現在、%{start_time} から %{end_time} へのメンテナンス中です。メンテナンス終了後、再度お試しください。
     proctoring_maintenance_upcoming: プロクターリングは、%{start_time} から %{end_time} までメンテナンスを行います。
     project: プロジェクト
+    question: 質問
     question_id: 質問ID
     question_transcription_disabled: この質問の文字起こしは無効です
     rec: REC
@@ -154,3 +158,6 @@ ja:
     updated_successfully: 更新に成功しました
     video: 動画
     view: 表示
+    view_audio: 音声を見る
+    view_transcription: 文字起こしを表示
+    view_video: 動画を見る

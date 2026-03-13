@@ -108,7 +108,7 @@ export const TextEntryCounter: FC<Props> = ({ model }) => {
       <Col span={12} offset={12} className="ta-e">
         <Space>
           <Tooltip title={tooltipText}>
-            <InfoCircleOutlined />
+            <span><InfoCircleOutlined /></span>
           </Tooltip>
           <Typography.Text>{label}</Typography.Text>
           <Badge

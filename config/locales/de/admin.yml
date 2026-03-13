@@ -81,6 +81,7 @@ de:
     ai_scoring_approvals: AI-Bewertungsgenehmigungen
     ai_translation: KI-Übersetzung
     all_corner_rounded: Alle Ecken abgerundet
+    allow_ai_rescoring: KI-Neubewertung zulassen
     api_keys: API-Schlüssel
     apply_to_existing_users: Diese Änderung auf bestehende Benutzer in dieser Kampagne anwenden
     assessment_question_not_supported: Dieser Fragetyp wird derzeit nicht unterstützt.
@@ -191,6 +192,7 @@ de:
     dimensions: Abmessungen
     done: Fertig
     done_tooltip: Für diesen Benutzer kann keine weitere Bewertung eingereicht werden, da die Bewertung als von %{marked_by}
+    download_bulk_asset_download_example_csv: Beispiel-CSV herunterladen.
     edit_campaign_admin: Kampagnenverwaltung bearbeiten
     edit_client_admin: Kundenverwaltung bearbeiten
     edit_indicator: Indikator bearbeiten
@@ -777,6 +779,7 @@ de:
     reports: Berichte
     reports_limit_exceeded: Der Massendownload ist auf 1000 Berichtsdateien beschränkt. Wenn Sie viele Sprachen ausgewählt haben, bitte reduzieren Sie es.
     reports_not_found: Keine Berichte gefunden. Bitte erstellen Sie die Berichte vor dem Herunterladen.
+    rescore_responses_content: Dadurch werden die Punktzahlen für die Antworten zu diesem Thema neu berechnet. Aktivieren Sie „AI-Neubewertung zulassen“, um Antworten mithilfe von KI für Fragen mit KI-Bewertung neu zu bewerten.
     reset_idp_plan: Plan zurücksetzen
     reset_idp_plan_confirmation: Bist du sicher, dass du den Plan zurücksetzen willst?
     reset_idp_plan_title: Plan zurücksetzen

@@ -81,6 +81,7 @@ sk:
     ai_scoring_approvals: Schvaľovanie bodovania umelou inteligenciou
     ai_translation: Preklad umelou inteligenciou
     all_corner_rounded: Všetky rohy zaoblené
+    allow_ai_rescoring: Povoliť prehodnotenie umelou inteligenciou
     api_keys: Kľúče API
     apply_to_existing_users: Túto zmenu aplikujte na existujúcich používateľov v tejto kampani.
     assessment_question_not_supported: Tento typ otázky momentálne nie je podporovaný.
@@ -191,6 +192,7 @@ sk:
     dimensions: Rozmery
     done: Robené
     done_tooltip: Pre tohto používateľa už nie je možné vykonať ďalšie hodnotenie, pretože hodnotenie je označené ako vykonané %{marked_by}
+    download_bulk_asset_download_example_csv: Stiahnuť príklad CSV.
     edit_campaign_admin: Upraviť správcu kampane
     edit_client_admin: Upraviť správcu klienta
     edit_indicator: Upraviť indikátor
@@ -777,6 +779,7 @@ sk:
     reports: Správy
     reports_limit_exceeded: Hromadné sťahovanie je obmedzené na 1000 súborov správ. Ak ste si vybrali veľa jazykov, prosím, znížte to.
     reports_not_found: Nenašli sa žiadne hlásenia. Prosím, vygenerujte správy pred stiahnutím.
+    rescore_responses_content: Týmto sa prepočítajú skóre za odpovede na tieto otázky. Aktivujte možnosť Povoliť prehodnotenie skóre pomocou umelej inteligencie, aby sa odpovede na otázky typu Skóre s umelou inteligenciou prehodnotili pomocou umelej inteligencie.
     reset_idp_plan: Plán resetovania
     reset_idp_plan_confirmation: Si si istý, že chceš plán resetovať?
     reset_idp_plan_title: Plán resetovania

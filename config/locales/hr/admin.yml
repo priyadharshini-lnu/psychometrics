@@ -81,6 +81,7 @@ hr:
     ai_scoring_approvals: AI ocjenjivanje odobrenja
     ai_translation: AI prijevod
     all_corner_rounded: Svi kutovi zaobljeni
+    allow_ai_rescoring: Omogući ponovno bodovanje umjetne inteligencije
     api_keys: API ključevi
     apply_to_existing_users: Primijeni ovu promjenu na postojeće korisnike u ovoj kampanji.
     assessment_question_not_supported: Ova vrsta pitanja trenutno nije podržana.
@@ -191,6 +192,7 @@ hr:
     dimensions: Dimenzije
     done: Učinjeno
     done_tooltip: Za ovog korisnika više se ne može podnijeti evaluacija jer je evaluacija označena kao %{marked_by}
+    download_bulk_asset_download_example_csv: Preuzmi primjer CSV-a.
     edit_campaign_admin: Uredi administratora kampanje
     edit_client_admin: Uredi klijenta administratora
     edit_indicator: Uredi pokazivač
@@ -777,6 +779,7 @@ hr:
     reports: Izvješća
     reports_limit_exceeded: Masovno preuzimanje ograničeno je na 1000 datoteka izvještaja. Ako ste odabrali mnogo jezika, molimo vas da ih smanjite.
     reports_not_found: Nema pronađenih izvještaja. Molimo generirajte izvještaje prije preuzimanja.
+    rescore_responses_content: Ovo će ponovno izračunati rezultate za odgovore na ovim pitanjima. Omogućite opciju "Dopusti AI ponovno bodovanje" kako biste ponovno ocijenili odgovore koristeći AI za pitanja s bodovanjem pomoću AI.
     reset_idp_plan: Plan resetiranja
     reset_idp_plan_confirmation: Jeste li sigurni da želite resetirati plan?
     reset_idp_plan_title: Plan resetiranja

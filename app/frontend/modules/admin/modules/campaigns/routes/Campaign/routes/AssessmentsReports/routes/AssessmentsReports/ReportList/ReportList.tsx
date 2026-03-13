@@ -3,6 +3,7 @@ import {
   Table, MenuProps, Row, Col, Switch, App,
 } from 'antd'
 import { useParams } from 'react-router-dom'
+import { camelizeKeys } from '~/utils/object'
 import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -36,6 +37,7 @@ const ReportList: React.FC<Props> = ({
   const { campaignId } = useParams() as { campaignId: string }
   const parsedCampaignId = parseInt(campaignId, 10)
   const { message } = App.useApp()
+  const { uploadBulkAssetsEnabled } = camelizeKeys(features)
 
   const handleExportData = (campaignId: number, reportId: number) => {
     exportData(campaignId, reportId).then(() => {
@@ -160,7 +162,7 @@ const ReportList: React.FC<Props> = ({
                     customUpload: report.customUpload,
                     openModal,
                     exportData: handleExportData,
-                    uploadBulkAssetsEnabled: features.upload_bulk_assets_enabled,
+                    uploadBulkAssetsEnabled,
                   })
                 }
                 innerElement={(

@@ -81,6 +81,7 @@ ja:
     ai_scoring_approvals: AIスコアリング承認
     ai_translation: AI翻訳
     all_corner_rounded: すべての角が丸みを帯びている
+    allow_ai_rescoring: AIによる再採点を許可する
     api_keys: APIキー
     apply_to_existing_users: この変更をこのキャンペーンの既存ユーザーに適用する
     assessment_question_not_supported: この質問タイプは現在サポートされていません。
@@ -191,6 +192,7 @@ ja:
     dimensions: 寸法
     done: 完成です
     done_tooltip: このユーザーの評価は%{marked_by}によって行われたとマークされているため、これ以上の評価は提出できません
+    download_bulk_asset_download_example_csv: サンプルCSVをダウンロード
     edit_campaign_admin: キャンペーン管理者の編集
     edit_client_admin: クライアント管理者の編集
     edit_indicator: 編集インジケーター
@@ -777,6 +779,7 @@ ja:
     reports: レポート
     reports_limit_exceeded: 一括ダウンロードはレポートファイル1000件に制限されています。多くの言語を選択している場合は、その範囲を減らしてください。
     reports_not_found: 報告は見つかりませんでした。ダウンロード前にレポートを作成してください。
+    rescore_responses_content: これにより、この科目の回答の得点が再計算されます。「AIによる採点」を有効にすると、AI採点対象問題の回答をAIを用いて再評価します。
     reset_idp_plan: リセットプラン
     reset_idp_plan_confirmation: 本当に計画をリセットしたいの?
     reset_idp_plan_title: リセットプラン

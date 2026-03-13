@@ -81,6 +81,7 @@ vi:
     ai_scoring_approvals: Ứng dụng đánh giá và phê duyệt bằng trí tuệ nhân tạo (AI)
     ai_translation: Dịch thuật bằng Trí tuệ nhân tạo
     all_corner_rounded: Tất cả các góc đều được bo tròn.
+    allow_ai_rescoring: Cho phép đánh giá lại bằng AI
     api_keys: Khóa API
     apply_to_existing_users: Áp dụng thay đổi này cho các người dùng hiện có trong chiến dịch này.
     assessment_question_not_supported: Loại câu hỏi này hiện tại chưa được hỗ trợ.
@@ -191,6 +192,7 @@ vi:
     dimensions: Kích thước
     done: Thực hiện
     done_tooltip: Không thể gửi thêm đánh giá cho người dùng này vì đánh giá của người dùng này được đánh dấu là đã thực hiện bởi %{marked_by}
+    download_bulk_asset_download_example_csv: Tải xuống tệp CSV mẫu.
     edit_campaign_admin: Chỉnh sửa quản trị viên chiến dịch
     edit_client_admin: Chỉnh sửa quản trị viên khách hàng
     edit_indicator: Chỉnh sửa chỉ báo
@@ -777,6 +779,7 @@ vi:
     reports: Báo cáo
     reports_limit_exceeded: Tải xuống hàng loạt được giới hạn ở 1000 tệp báo cáo. Nếu bạn đã chọn nhiều ngôn ngữ, vui lòng giảm bớt nó.
     reports_not_found: Không tìm thấy báo cáo. Vui lòng tạo báo cáo trước khi tải xuống.
+    rescore_responses_content: Điều này sẽ tính lại điểm cho các câu trả lời của môn học này. Bật tùy chọn "Cho phép đánh giá lại bằng AI" để đánh giá lại các câu trả lời bằng AI cho các câu hỏi sử dụng AI.
     reset_idp_plan: Đặt lại kế hoạch
     reset_idp_plan_confirmation: Bạn có chắc chắn muốn đặt lại kế hoạch?
     reset_idp_plan_title: Đặt lại kế hoạch

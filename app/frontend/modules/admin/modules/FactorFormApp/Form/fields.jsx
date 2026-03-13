@@ -11,7 +11,7 @@ const ScoringStrategyLabel = () => (
         <SafeHTML html={I18n.t('administration.factors.form.scoring_strategies_tip')} />
       )}
     >
-      <QuestionCircleOutlined />
+      <span><QuestionCircleOutlined /></span>
     </Tooltip>
   </span>
 )

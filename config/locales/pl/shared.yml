@@ -39,6 +39,7 @@ pl:
     continue: Kontynuować
     controller: Kontroler
     cookies_statement: Oświadczenie dotyczące plików cookie
+    copied_to_clipboard: Skopiowano do schowka
     copy: Kopiuj
     created_at: Utworzono w
     created_date: Data utworzenia
@@ -81,6 +82,8 @@ pl:
     maintenance_time_remaining: Pozostały czas
     maintenance_upcoming_description: W celu poprawy jakości usług serwis %{date} będzie poddany planowej konserwacji przez około %{duration}. W tym czasie nie będzie można uzyskać dostępu do serwisu ani wykonać żadnych przypisanych zadań. Dziękujemy za cierpliwość.
     maintenance_upcoming_title: Nadchodząca konserwacja
+    media_id: Identyfikator mediów
+    media_preview: Zapowiedź medialna
     media_question_transcriptions: Transkrypcje pytań mediów
     media_responses: Reakcje mediów
     mobile_proctoring_disabled_instructions: Aby kontynuować tę ocenę, potrzebny jest komputer stacjonarny lub laptop. Przejdź do komputera, aby zakończyć zadanie.
@@ -105,6 +108,7 @@ pl:
     proctoring_maintenance_active: Serwis Proctoring jest obecnie w trakcie konserwacji i nie jest dostępny pod adresem %{start_time} oraz %{end_time}. Prosimy spróbować ponownie po zakończeniu konserwacji.
     proctoring_maintenance_upcoming: Serwis Proctoring będzie poddany konserwacji od godziny %{start_time} do godziny %{end_time}.
     project: Projekt
+    question: Pytanie
     question_id: Numer pytania
     question_transcription_disabled: Transkrypcja jest wyłączona dla tego pytania.
     rec: REC
@@ -149,3 +153,6 @@ pl:
     updated_successfully: Aktualizacja zakończona sukcesem
     video: Wideo
     view: Widok
+    view_audio: Wyświetl audio
+    view_transcription: Wyświetl transkrypcję
+    view_video: Obejrzyj film

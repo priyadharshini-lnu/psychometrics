@@ -103,7 +103,15 @@ en:
     bulk_assets_modal_choose_csv: Choose CSV File
     bulk_assets_modal_choose_zip: Choose ZIP File
     bulk_assets_modal_not_csv_file_error: Only CSV files are allowed for CSV upload. Please upload a valid CSV file.
-    bulk_assets_modal_subtitle: 'Please upload <b>one CSV</b> file (with headers: user_email, file_name) and <b>one ZIP</b> file (containing PDF files matching the file names from csv). Zip file must be under %{max_file_size} MB.'
+    bulk_assets_modal_subtitle: |
+      <ul>
+        <li>Please upload a <b>CSV</b> file with headers exactly as: <b>user_email, file_name</b>.</li>
+        <li>Ensure that all records under <b>user_email</b> and <b>file_name</b> are unique.</li>
+        <li>Place all PDF files inside a new folder and compress that folder into a ZIP file.</li>
+        <li>Each PDF filename must match exactly the value present under the <b>file_name</b> column in the CSV (including the <b>.pdf</b> extension).</li>
+        <li>The maximum allowed ZIP size is <b>250 MB</b>.</li>
+        <li>Upload both the CSV and ZIP files below.</li>
+      </ul>
     bulk_assets_modal_title: Upload CSV and ZIP files
     bulk_upload_ai_artifacts: Bulk Upload AI Artifacts
     campaign_ai_artifact_updated_successfully: Campaign AI artifacts updated successfully
@@ -193,6 +201,7 @@ en:
     dimensions: Dimensions
     done: Done
     done_tooltip: No more evaluation can be submitted for this user as this user's evaluation is marked as done by %{marked_by}
+    download_bulk_asset_download_example_csv: Download Example CSV.
     edit_campaign_admin: Edit Campaign Admin
     edit_client_admin: Edit Client Admin
     edit_indicator: Edit Indicator

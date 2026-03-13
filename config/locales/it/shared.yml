@@ -39,6 +39,7 @@ it:
     continue: Continuare
     controller: Controller
     cookies_statement: Informativa sui cookie
+    copied_to_clipboard: Copiato negli appunti
     copy: Copia
     created_at: Creato il
     created_date: Data di creazione
@@ -81,6 +82,8 @@ it:
     maintenance_time_remaining: Tempo rimanente
     maintenance_upcoming_description: Effettueremo una manutenzione programmata su %{date} per circa %{duration} al fine di migliorare la tua esperienza. Durante questo periodo, non potrai accedere né completare alcuna attività assegnata. Ti ringraziamo per la pazienza.
     maintenance_upcoming_title: Manutenzione imminente
+    media_id: ID media
+    media_preview: Anteprima per i media
     media_question_transcriptions: Trascrizioni delle domande dei media
     media_responses: Risposte dei media
     mobile_proctoring_disabled_instructions: Per continuare questa valutazione è necessario un computer desktop o portatile. Passa a un computer per completare l'attività.
@@ -105,6 +108,7 @@ it:
     proctoring_maintenance_active: Il servizio di supervisione è attualmente in fase di manutenzione da %{start_time} a %{end_time}. Riprova dopo la finestra di manutenzione.
     proctoring_maintenance_upcoming: Il servizio di sorveglianza sarà sottoposto a manutenzione dalle ore %{start_time} alle ore %{end_time}.
     project: Progetto
+    question: Domanda
     question_id: ID domanda
     question_transcription_disabled: La trascrizione è disabilitata per questa domanda.
     rec: REC
@@ -154,3 +158,6 @@ it:
     updated_successfully: Aggiornamento completato con successo
     video: Video
     view: Visualizza
+    view_audio: Visualizza audio
+    view_transcription: Visualizza trascrizione
+    view_video: Guarda il video

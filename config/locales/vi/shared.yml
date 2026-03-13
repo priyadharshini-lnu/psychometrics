@@ -39,6 +39,7 @@ vi:
     continue: Tiếp tục
     controller: Bộ điều khiển
     cookies_statement: Thông báo về Cookie
+    copied_to_clipboard: Đã sao chép vào khay nhớ tạm
     copy: Sao chép
     created_at: Được tạo ra tại
     created_date: Ngày tạo
@@ -81,6 +82,8 @@ vi:
     maintenance_time_remaining: Thời gian còn lại
     maintenance_upcoming_description: Chúng tôi sẽ tiến hành bảo trì định kỳ trên %{date} trong khoảng thời gian %{duration} để nâng cao trải nghiệm của bạn. Trong thời gian này, bạn sẽ không thể truy cập hoặc hoàn thành bất kỳ tác vụ nào được giao. Chúng tôi xin cảm ơn sự thông cảm của bạn.
     maintenance_upcoming_title: Bảo trì sắp tới
+    media_id: Mã định danh phương tiện truyền thông
+    media_preview: Xem trước truyền thông
     media_question_transcriptions: Bản ghi chép câu hỏi của truyền thông
     media_responses: Phản ứng của truyền thông
     mobile_proctoring_disabled_instructions: Đánh giá này yêu cầu sử dụng máy tính để bàn hoặc laptop để tiếp tục. Vui lòng chuyển sang máy tính để hoàn thành hoạt động.
@@ -105,6 +108,7 @@ vi:
     proctoring_maintenance_active: Hệ thống giám sát thi (Proctoring) hiện đang được bảo trì từ %{start_time} đến %{end_time}. Vui lòng thử lại sau khi quá trình bảo trì kết thúc.
     proctoring_maintenance_upcoming: Hệ thống giám sát thi sẽ được bảo trì từ %{start_time} đến %{end_time}.
     project: Dự án
+    question: Câu hỏi
     question_id: ID câu hỏi
     question_transcription_disabled: Chức năng chuyển đổi văn bản đã bị vô hiệu hóa cho câu hỏi này.
     rec: GHI NHẬN
@@ -149,3 +153,6 @@ vi:
     updated_successfully: Đã cập nhật thành công
     video: Video
     view: Xem
+    view_audio: Xem video âm thanh
+    view_transcription: Xem bản chép lời
+    view_video: Xem video

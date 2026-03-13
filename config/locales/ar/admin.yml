@@ -81,6 +81,7 @@ ar:
     ai_scoring_approvals: الموافقات على التقييمات باستخدام الذكاء الاصطناعي
     ai_translation: ترجمة بالذكاء الاصطناعي
     all_corner_rounded: جميع الزوايا مستديرة
+    allow_ai_rescoring: السماح بإعادة تقييم الذكاء الاصطناعي
     api_keys: مفاتيح API
     apply_to_existing_users: تطبيق هذا التغيير على المستخدمين الحاليين في هذه الحملة
     assessment_question_not_supported: هذا النوع من الأسئلة غير مدعوم حاليًا.
@@ -191,6 +192,7 @@ ar:
     dimensions: الأبعاد
     done: منجز
     done_tooltip: لا يمكن تقديم تقييم إضافي لهذا المستخدم لأن تقييمه تم تصنيفه على أنه تم بواسطة %{marked_by}
+    download_bulk_asset_download_example_csv: تنزيل مثال CSV.
     edit_campaign_admin: تعديل مسؤول حملة
     edit_client_admin: تعديل مسؤول عميل
     edit_indicator: تحرير المؤشر
@@ -777,6 +779,7 @@ ar:
     reports: التقارير
     reports_limit_exceeded: التحميل الجماعي محدود ب 1000 ملف تقرير. إذا اخترت العديد من اللغات، يرجى تقليل العدد من الاستخدام.
     reports_not_found: لم يتم العثور على أي تقارير. يرجى إنشاء التقارير قبل التحميل.
+    rescore_responses_content: سيؤدي ذلك إلى إعادة حساب الدرجات الخاصة بإجابات هذا الموضوع. قم بتمكين "السماح بإعادة تقييم الدرجات باستخدام الذكاء الاصطناعي" لإعادة تقييم الإجابات باستخدام الذكاء الاصطناعي للأسئلة التي يتم تقييمها باستخدام الذكاء الاصطناعي.
     reset_idp_plan: خطة إعادة التعيين
     reset_idp_plan_confirmation: هل أنت متأكد أنك تريد إعادة ضبط الخطة؟
     reset_idp_plan_title: خطة إعادة التعيين

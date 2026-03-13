@@ -81,6 +81,7 @@ fr:
     ai_scoring_approvals: Approbations des scores IA
     ai_translation: Traduction par IA
     all_corner_rounded: Tous les coins arrondis
+    allow_ai_rescoring: Autoriser la réévaluation par l'IA
     api_keys: Clés API
     apply_to_existing_users: Appliquer cette modification aux utilisateurs existants dans cette campagne
     assessment_question_not_supported: Ce type de question n'est actuellement pas pris en charge.
@@ -191,6 +192,7 @@ fr:
     dimensions: Dimensions
     done: Fait
     done_tooltip: Aucune autre évaluation ne peut être soumise pour cet utilisateur, car celle-ci est marquée comme effectuée par %{marked_by}
+    download_bulk_asset_download_example_csv: Télécharger l'exemple CSV.
     edit_campaign_admin: Modifier l'administration de la campagne
     edit_client_admin: Modifier l'administration du client
     edit_indicator: Modifier l'indicateur
@@ -777,6 +779,7 @@ fr:
     reports: Rapports
     reports_limit_exceeded: Le téléchargement en masse est limité à 1000 fichiers de rapport. Si vous avez sélectionné de nombreuses langues, veuillez le réduire.
     reports_not_found: Aucun rapport trouvé. Veuillez générer les rapports avant de les télécharger.
+    rescore_responses_content: Cela recalculera les notes attribuées aux réponses de ce sujet. Activez l'option « Autoriser la réévaluation par l'IA » pour réévaluer les réponses à l'aide de l'IA pour les questions notées par l'IA.
     reset_idp_plan: Plan de réinitialisation
     reset_idp_plan_confirmation: Tu es sûr de vouloir réinitialiser le plan ?
     reset_idp_plan_title: Plan de réinitialisation

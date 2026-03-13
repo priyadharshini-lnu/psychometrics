@@ -81,6 +81,7 @@ hu:
     ai_scoring_approvals: AI pontszámok jóváhagyása
     ai_translation: AI fordítás
     all_corner_rounded: Minden sarok lekerekített
+    allow_ai_rescoring: AI újrapontszámítás engedélyezése
     api_keys: API-kulcsok
     apply_to_existing_users: Alkalmazzuk ezt a változást a kampányban szereplő meglévő felhasználókra
     assessment_question_not_supported: Ez a kérdés típus jelenleg nem támogatott.
@@ -191,6 +192,7 @@ hu:
     dimensions: Dimenziók
     done: Kész
     done_tooltip: Több értékelést nem lehet benyújtani erre a felhasználóra, mivel az értékelést a %{marked_by}
+    download_bulk_asset_download_example_csv: Példa CSV letöltése.
     edit_campaign_admin: Kampányadminisztrátor szerkesztése
     edit_client_admin: Ügyfél-adminisztrátor szerkesztése
     edit_indicator: Jelzőszerkesztés
@@ -777,6 +779,7 @@ hu:
     reports: Jelentések
     reports_limit_exceeded: A tömeges letöltés 1000 jelentésfájlra korlátozott. Ha sok nyelvet választottál, kérlek, csökkentsd a használatát.
     reports_not_found: Nem találtak jelentést. Kérjük, készítsd a jelentéseket letöltés előtt.
+    rescore_responses_content: Ezzel újraszámolja az adott tantárgy válaszainak pontszámait. Engedélyezze az AI-alapú újrapontszámítás funkciót, hogy az AI-alapú kérdések esetében az AI segítségével újraértékelje a válaszokat.
     reset_idp_plan: Reset terv
     reset_idp_plan_confirmation: Biztos vagy benne, hogy újraindítanod a tervet?
     reset_idp_plan_title: Reset terv

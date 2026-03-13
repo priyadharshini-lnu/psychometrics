@@ -39,6 +39,7 @@ ar:
     continue: استمر
     controller: وحدة التحكم
     cookies_statement: بيان ملفات تعريف الارتباط
+    copied_to_clipboard: نسخ إلى الحافظة
     copy: نسخ
     created_at: تم إنشاؤها في
     created_date: تاريخ الإنشاء
@@ -81,6 +82,8 @@ ar:
     maintenance_time_remaining: الوقت المتبقي
     maintenance_upcoming_description: سنقوم بإجراء صيانة مجدولة على %{date} لمدة تقارب %{duration} لتحسين تجربتك. خلال هذه الفترة، لن تتمكن من الوصول إلى أي مهام مخصصة أو إكمالها. نقدر صبرك.
     maintenance_upcoming_title: الصيانة القادمة
+    media_id: معرف الوسائط
+    media_preview: معاينة وسائل الإعلام
     media_question_transcriptions: نصوص أسئلة وسائل الإعلام
     media_responses: ردود فعل وسائل الإعلام
     mobile_proctoring_disabled_instructions: يتطلب هذا التقييم جهاز كمبيوتر مكتبي أو محمول لمتابعة العملية. يرجى التبديل إلى جهاز كمبيوتر لإكمال النشاط.
@@ -105,6 +108,7 @@ ar:
     proctoring_maintenance_active: يخضع نظام Proctoring حاليًا للصيانة من %{start_time} إلى %{end_time}. يرجى المحاولة مرة أخرى بعد انتهاء فترة الصيانة.
     proctoring_maintenance_upcoming: سيتم إجراء صيانة على نظام المراقبة من %{start_time} إلى %{end_time}.
     project: المشروع
+    question: السؤال
     question_id: رقم السؤال
     question_transcription_disabled: النسخ معطل لهذا السؤال
     rec: تسجيل
@@ -154,3 +158,6 @@ ar:
     updated_successfully: تم التحديث بنجاح
     video: فيديو
     view: عرض
+    view_audio: عرض الصوت
+    view_transcription: عرض النص
+    view_video: شاهد الفيديو

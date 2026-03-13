@@ -39,6 +39,7 @@ hu:
     continue: Folytatódik
     controller: Vezérlő
     cookies_statement: Sütikre vonatkozó nyilatkozat
+    copied_to_clipboard: Másolva a vágólapra
     copy: Másolás
     created_at: Létrehozva
     created_date: Létrehozás dátuma
@@ -81,6 +82,8 @@ hu:
     maintenance_time_remaining: Maradék idő
     maintenance_upcoming_description: A %{date} webhelyen körülbelül %{duration} időtartamra tervezett karbantartási munkálatokat végzünk, hogy javítsuk az Ön felhasználói élményét. Ez idő alatt nem fog tudni hozzáférni a hozzárendelt feladatokhoz, és azokat nem fogja tudni elvégezni. Türelmét köszönjük.
     maintenance_upcoming_title: Közelgő karbantartás
+    media_id: Média azonosító
+    media_preview: Média előzetes
     media_question_transcriptions: Média kérdések átirata
     media_responses: Média reakciók
     mobile_proctoring_disabled_instructions: A felmérés folytatásához asztali vagy hordozható számítógépre van szükség. Kérjük, váltson számítógépre a feladat befejezéséhez.
@@ -105,6 +108,7 @@ hu:
     proctoring_maintenance_active: A vizsgafelügyelet jelenleg karbantartás alatt áll az %{start_time} és az %{end_time} oldalakon. Kérjük, próbálkozzon újra a karbantartási időszak után.
     proctoring_maintenance_upcoming: A vizsgafelügyelet karbantartás alatt áll az %{start_time} és az %{end_time} között.
     project: Projekt
+    question: Kérdés
     question_id: Kérdés azonosító
     question_transcription_disabled: A leírás le van tiltva ehhez a kérdéshez.
     rec: REC
@@ -149,3 +153,6 @@ hu:
     updated_successfully: Sikeresen frissítve
     video: Videó
     view: Megtekintés
+    view_audio: Audio megtekintése
+    view_transcription: Transzkripció megtekintése
+    view_video: Videó megtekintése
