@@ -57,6 +57,18 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   const { startMonitoring, cleanupMonitoring, showAudioWarning } = useAudioLevelMonitoring()
 
   useEffect(() => {
+    if (!videoRef.current) return
+
+    if (mediaUrl) {
+      videoRef.current.srcObject = null
+      videoRef.current.src = mediaUrl
+    } else if (stream) {
+      videoRef.current.src = ''
+      videoRef.current.srcObject = stream
+    }
+  }, [stream, mediaUrl])
+
+  useEffect(() => {
     if (stream && status === 'recording') {
       startMonitoring(stream)
     } else {
@@ -167,7 +179,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         <Alert
           title={I18n.t('enduser.no_audio_warning')}
           type="warning"
-          className="mt-4"
+          className={styles.controls}
         />
       )}
     </Flex>
