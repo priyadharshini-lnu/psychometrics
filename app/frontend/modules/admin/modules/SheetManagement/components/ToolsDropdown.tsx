@@ -43,6 +43,10 @@ const ToolsDropdown: FC<Props> = ({
       e.preventDefault()
     }
   }
+  const isProjectDatasheetExport = parentType === ParentResourceType.Project && sheetType === SheetType.Datasheet
+  const singleExportUrl = `/administration/${pluralize(parentType)}/${parentId}/sheet_rows/export.xlsx`
+    + `?type=${sheetType}`
+
   const menuItems:MenuItem[] = []
   permissions.import && menuItems.push({
     key: 'import',
@@ -50,20 +54,30 @@ const ToolsDropdown: FC<Props> = ({
   })
   permissions.export && menuItems.push({
     key: 'export',
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={handleExport}
-        href={`/administration/${pluralize(parentType)}/${parentId}/sheet_rows/export.xlsx?type=${sheetType}`}
-      >
-        {I18n.t('sheet.menu.export')}
-      </a>
-    ),
+    label: isProjectDatasheetExport
+      ? I18n.t('sheet.menu.export')
+      : (
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={handleExport}
+          href={singleExportUrl}
+        >
+          {I18n.t('sheet.menu.export')}
+        </a>
+      ),
   })
+
   const handleMenuClick = ({ key }) => {
     if (key === 'import') {
       openModal('ImportSheetModal', { parentType, parentId, sheetType })
+    }
+    if (key === 'export' && isProjectDatasheetExport) {
+      const projectExportUrl = `/administration/${pluralize(parentType)}/${parentId}/sheet_rows/export`
+        + `?type=${sheetType}&include_campaigns=true`
+      fetch(projectExportUrl, {
+        method: 'GET',
+      }).then(() => message.success(I18n.t('admin.export_campaigns_queued')))
     }
   }
 
@@ -74,9 +88,10 @@ const ToolsDropdown: FC<Props> = ({
       innerElement={(
         <Button>
           <ToolOutlined />
+          <span>{I18n.t('shared.tools')}</span>
           <DownOutlined />
         </Button>
-      )}
+          )}
     />
   )
 }

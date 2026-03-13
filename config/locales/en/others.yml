@@ -873,6 +873,7 @@ en:
         export_assessment_questions: Export Assessment Questions
         export_campaign_ai_artifacts: Export Campaign AI Artifacts
         export_campaign_ai_artifacts_results: Export Campaign AI Artifacts Results
+        export_campaign_datasheet: Export Campaign Datasheet
         export_campaign_factors: Export Campaign Factors
         export_campaign_scorings: Export Campaign Scorings
         export_dashboard_as_file: Export Dashboard as file

@@ -94,11 +94,10 @@ module Administration
     end
 
     def export
-      sheet = parent_resource.sheets.find_by(type: params[:type])
-      results = ::Sheets::Export.call!(sheet)
-      audit! :export, sheet, **audit_resources
-      respond_to do |format|
-        format.xlsx { send_data results.to_stream.read, filename: "datasheet-export-for-#{parent_resource.name}.xlsx" }
+      if params[:include_campaigns] == 'true'
+        export_all_campaign_datasheets
+      else
+        export_single_sheet
       end
     end
 
@@ -138,6 +137,25 @@ module Administration
 
     def set_resource_class
       @_resource_class ||= SheetRow # rubocop:disable Naming/MemoizedInstanceVariableName
+    end
+
+    def export_all_campaign_datasheets
+      parent_resource.project_campaigns.each do |campaign|
+        next if campaign.sheets.find_by(type: params[:type]).nil?
+
+        AdminJob.call(:export_campaign_datasheet, { campaign_id: campaign.id, sheet_type: params[:type] }, current_user)
+      end
+      audit! :export, parent_resource, **audit_resources
+      head :ok
+    end
+
+    def export_single_sheet
+      sheet = parent_resource.sheets.find_by(type: params[:type])
+      results = ::Sheets::Export.call!(sheet)
+      audit! :export, sheet, **audit_resources
+      respond_to do |format|
+        format.xlsx { send_data results.to_stream.read, filename: "datasheet-export-for-#{parent_resource.name}.xlsx" }
+      end
     end
   end
 end

@@ -227,6 +227,7 @@ en:
     evaluation_status: Evaluation Status
     evaluation_status_not_done: Evaluation status is not 'Done' for one or more selected subjects. Please ensure all selected users have completed evaluations or mark as done.
     export_admin_roles_permissions: Admin Roles and Permissions export
+    export_campaigns_queued: Export jobs have been queued. Check your notifications for download links.
     export_compact_completion_status: Compact
     export_completion_status: Export Completion Status
     export_completion_statuses_scheduled: Completion Statuses export job was scheduled successfully
