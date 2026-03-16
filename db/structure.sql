@@ -1141,7 +1141,13 @@ CREATE TABLE public.ai_assistant_requests (
     ai_assistant_tool_call_id bigint,
     ai_model_registry_id bigint,
     request_status integer DEFAULT 0 NOT NULL,
-    meta jsonb
+    meta jsonb,
+    cached_tokens integer,
+    cache_creation_tokens integer,
+    content_raw json,
+    thinking_text text,
+    thinking_signature text,
+    thinking_tokens integer
 );
 
 
@@ -1175,7 +1181,8 @@ CREATE TABLE public.ai_assistant_tool_calls (
     name character varying NOT NULL,
     arguments jsonb DEFAULT '{}'::jsonb,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    thought_signature character varying
 );
 
 
@@ -20115,6 +20122,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260306090626'),
 ('20260305110830'),
 ('20260225062612'),
 ('20260225060929'),
@@ -21127,4 +21135,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

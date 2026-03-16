@@ -55,10 +55,9 @@ module AI
 
         mark_last_request_invalid(validation_message)
 
-        active_chat.with_instructions(
+        response = active_chat.ask_for_correction(
           "Error: System cannot render the message to user: #{validation_message}"
         )
-        response = active_chat.complete
 
         validation_message = validate_response(response.content)
       end

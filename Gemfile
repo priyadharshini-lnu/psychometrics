@@ -274,11 +274,12 @@ gem 'oci', '~> 2.22.0'
 gem 'sidekiq-throttled', '~> 1.5.2'
 
 gem 'recaptcha', require: 'recaptcha/rails'
+
 # To integrate with LLMs
-gem 'ruby_llm', '~> 1.7.1'
+gem 'ruby_llm', git: 'https://github.com/crmne/ruby_llm', tag: '1.13.2'
 
 # TO handle structured data in LLM responses
-gem 'ruby_llm-schema', '~> 0.1.6'
+gem 'ruby_llm-schema', '~> 0.2.1'
 
 # Pure Ruby GeoIP2 MaxMind DB reader
 gem 'maxminddb'

@@ -122,8 +122,7 @@ user_prompt: 'How can I help you?')
         allow(output_schema_class).to receive(:validate_response).
           and_raise(AI::OutputSchemas::Base::InvalidResponseStructureError.new('Validation error'))
         allow(chat).to receive(:ask).and_return(invalid_llm_response)
-        allow(chat).to receive(:with_instructions)
-        allow(chat).to receive(:complete).and_return(invalid_llm_response)
+        allow(chat).to receive(:ask_for_correction).and_return(invalid_llm_response)
 
         result = described_class.call(assistant_with_validation.id, user, nil, validate_response_structure: true,
                                       max_retry_count: 3)
@@ -138,14 +137,11 @@ user_prompt: 'How can I help you?')
         call_count = 0
         allow(output_schema_class).to receive(:validate_response) do
           call_count += 1
-          if call_count == 1
-            raise AI::OutputSchemas::Base::InvalidResponseStructureError, 'Validation error'
-          end
+          raise AI::OutputSchemas::Base::InvalidResponseStructureError, 'Validation error' if call_count == 1
         end
 
         allow(chat).to receive(:ask).and_return(invalid_llm_response)
-        allow(chat).to receive(:with_instructions)
-        allow(chat).to receive(:complete).and_return(valid_llm_response)
+        allow(chat).to receive(:ask_for_correction).and_return(valid_llm_response)
 
         result = described_class.call!(assistant_with_validation.id, user, nil, validate_response_structure: true,
                                        max_retry_count: 3)
@@ -153,6 +149,22 @@ user_prompt: 'How can I help you?')
         expect(result[:message]).to eq(valid_llm_response.content)
         expect(result[:input_tokens]).to eq(valid_llm_response.input_tokens)
         expect(result[:output_tokens]).to eq(valid_llm_response.output_tokens)
+      end
+    end
+
+    context 'when validation fails and a correction is sent' do
+      it 'calls ask_for_correction with the validation error message' do
+        validation_error = 'must be valid JSON'
+        allow(output_schema_class).to receive(:validate_response).
+          and_raise(AI::OutputSchemas::Base::InvalidResponseStructureError.new(validation_error))
+        allow(chat).to receive(:ask).and_return(invalid_llm_response)
+        allow(chat).to receive(:ask_for_correction).and_return(valid_llm_response)
+
+        described_class.call(assistant_with_validation.id, user, nil, validate_response_structure: true,
+                             max_retry_count: 1)
+
+        expect(chat).to have_received(:ask_for_correction).
+          with("Error: System cannot render the message to user: #{validation_error}")
       end
     end
   end
