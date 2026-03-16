@@ -19,6 +19,8 @@ module Faas
       private
 
       def transcribable_record
+        return unless data['meta']
+
         @transcribable_record ||= data['meta']['record_type'].constantize.find_by(
           id: data['meta']['record_id']
         )

@@ -4,7 +4,7 @@ import {
   message, Tooltip,
 } from 'antd'
 import {
-  MoreOutlined,
+  MoreOutlined, InfoCircleOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { TableSkeleton } from '~/glint'
 import { downloadTextFile } from '~/utils/downloadTextFile'
@@ -35,6 +35,7 @@ interface MediaResponse {
   transcriptionStatus: string
   transcriptionEnabled: boolean
   assetUrl: string
+  errorDetails?: { message: string }
 }
 
 const TranscriptionDetails: FC<Props> = ({
@@ -234,15 +235,22 @@ const TranscriptionDetails: FC<Props> = ({
       key: 'transcriptionStatus',
       width: 140,
       render: (_: unknown, record: MediaResponse) => {
-        const { transcriptionStatus, transcriptionEnabled } = record
+        const { transcriptionStatus, transcriptionEnabled, errorDetails } = record
+
+        if (!transcriptionEnabled) {
+          return <span>{I18n.t('shared.question_transcription_disabled')}</span>
+        }
 
         return (
           <span>
-            {
-              transcriptionEnabled
-                ? I18n.t(`shared.${transcriptionStatus}`)
-                : I18n.t('shared.question_transcription_disabled')
-            }
+            {I18n.t(`shared.${transcriptionStatus}`)}
+            {transcriptionStatus === 'failed' && errorDetails?.message && (
+              <Tooltip title={errorDetails.message}>
+                <span className="ms-1">
+                  <InfoCircleOutlined style={{ cursor: 'pointer' }} />
+                </span>
+              </Tooltip>
+            )}
           </span>
         )
       },
