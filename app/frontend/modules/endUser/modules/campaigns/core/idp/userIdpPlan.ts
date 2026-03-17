@@ -80,6 +80,8 @@ interface UserIdpPlan {
   summary: {}
   reviewNote: string
   isPlanDirty: boolean
+  chatInstructions: string
+  showChatInstructions: boolean
 }
 
 export interface UserIdpComment {
@@ -443,6 +445,8 @@ export const HANDLERS = {
       userIdpCommentsBySkillIdTotalCount: {},
       showCommentsForSkillId: null,
       reviewNote: userIdpPlan.reviewNote,
+      chatInstructions: userIdpPlan.chatInstructions.content,
+      showChatInstructions: userIdpPlan.showChatInstructions,
     }
   },
   [FETCH_DIRECT_REPORTS]: (state, action) => ({
@@ -770,6 +774,8 @@ export const defaultState: UserIdpPlan = {
   unreadCommentsCount: 0,
   userIdpComments: [],
   introMessage: '',
+  chatInstructions: '',
+  showChatInstructions: false,
   userIdpCommentsTotalCount: null,
   showCommentsForSkillId: null,
   userIdpCommentsBySkillId: {},

@@ -147,6 +147,7 @@ en:
     cancellation_and_rescheduling_disabled: Cancellation and Rescheduling is disabled
     casual: Casual
     characters: characters
+    chat_instructions_success: Chat Instructions were saved successfully
     children_factor_type: Children Factor Type
     client: Client
     client_admins: Client Admins

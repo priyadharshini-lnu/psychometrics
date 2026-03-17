@@ -137,6 +137,9 @@ export const AIChat = () => {
   const aiAssistedIdpHasDocumentAnalysis = useSelector(
     (state: RootState) => state.config.idp.aiAssistedIdpHasDocumentAnalysis,
   )
+  const showChatInstructions = useSelector((state: RootState) => state.campaigns.idp.showChatInstructions)
+  const skillGapReportAvailable = useSelector((state: RootState) => state.campaigns.idp.skillGapReportAvailable)
+
 
   const changeValue = (value: string) => {
     setUserPrompt(value)
@@ -505,6 +508,16 @@ export const AIChat = () => {
     />
   )
 
+  const handlePrev = () => {
+    if (showChatInstructions) {
+      navigate('/idp/ai_assistant/chat_instructions')
+    } else if (skillGapReportAvailable) {
+      navigate('/idp/ai_assistant/skill_gap_report')
+    } else {
+      navigate('/idp/ai_assistant/start')
+    }
+  }
+
   const showResetChat = (messages.length > 1 && !resetInProgress)
                           || (messages.length > 0 && messages[messages.length - 1].error)
 
@@ -529,7 +542,7 @@ export const AIChat = () => {
                   size="small"
                   type="text"
                   aria-label={I18n.t('common.actions.go_back')}
-                  onClick={() => navigate('/idp/ai_assistant/start')}
+                  onClick={handlePrev}
                 >
                   <DirectionalNavigateBackIcon className={styles.backIcon} />
                 </Button>

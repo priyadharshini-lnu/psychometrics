@@ -22,6 +22,7 @@ import { DirectReportDetails } from './idp/DirectReportees/Details'
 import { AIStartPage } from './idp/AIAssistant/AIStartPage'
 import { AIChat } from './idp/AIAssistant/AIChat'
 import { SkillGapReport } from './idp/AIAssistant/SkillGapReport'
+import { ChatInstructions } from './idp/AIAssistant/ChatInstructions'
 
 const CWizard = () => {
   const { assessmentId, id } = useParams() as { assessmentId: string, id: string }
@@ -104,6 +105,10 @@ const routes = [
   {
     path: '/idp/ai_assistant/skill_gap_report',
     component: <SkillGapReport />,
+  },
+  {
+    path: '/idp/ai_assistant/chat_instructions',
+    component: <ChatInstructions />,
   },
   {
     path: '/idp/ai_assistant/chat',

@@ -2100,8 +2100,8 @@ en:
       development_actions:
         add_from_library: Add from Library
         completion: Completion
-        create_development_actions_with_ai: Create development actions with AI for
-        create_from_ai: Create from AI
+        create_development_actions_with_ai: Preparing development actions for
+        create_from_ai: Create with AI
         create_my_own: Create my own
         custom: Custom
         date_range: Start Date - End Date

@@ -1322,6 +1322,7 @@ as: :simulation_progress_notification
                 post :update_reflection_questions, on: :member
                 post :update_interview_questions, on: :member
                 post :update_instructions, on: :member
+                post :update_chat_instructions, on: :member
               end
             jsonapi_resources :reflection_questions, controller: 'projects/reflection_questions' do
               post :uploads, on: :member

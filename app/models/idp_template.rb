@@ -6,7 +6,7 @@ class IdpTemplate < ApplicationRecord
   include RansackSearchableFields
   include ActiveStorageAttachable
 
-  translates :instructions, :title_text, :subtitle_text
+  translates :instructions, :title_text, :subtitle_text, :chat_instructions
   belongs_to :project, class_name: 'Client'
   belongs_to :report
   belongs_to :one_click_ai_assistant, class_name: 'AI::Assistant', optional: true

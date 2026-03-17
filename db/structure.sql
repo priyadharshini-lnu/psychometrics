@@ -18,6 +18,13 @@ CREATE SCHEMA bi_models;
 
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -164,9 +171,9 @@ CREATE TABLE public.assessments (
 --
 
 CREATE VIEW bi_models.assessments AS
- SELECT assessments.id,
-    assessments.name,
-    assessments.category
+ SELECT id,
+    name,
+    category
    FROM public.assessments;
 
 
@@ -189,10 +196,10 @@ CREATE TABLE public.campaign_factor_groups (
 --
 
 CREATE VIEW bi_models.campaign_factor_group AS
- SELECT campaign_factor_groups.id,
-    campaign_factor_groups.campaign_id,
-    campaign_factor_groups.name,
-    campaign_factor_groups."position"
+ SELECT id,
+    campaign_id,
+    name,
+    "position"
    FROM public.campaign_factor_groups;
 
 
@@ -315,9 +322,9 @@ CREATE VIEW bi_models.campaign_factors AS
 --
 
 CREATE VIEW bi_models.campaigns AS
- SELECT campaigns.id,
-    campaigns.name,
-    campaigns.project_id
+ SELECT id,
+    name,
+    project_id
    FROM public.campaigns;
 
 
@@ -443,8 +450,8 @@ CREATE TABLE public.factors (
 --
 
 CREATE VIEW bi_models.factors AS
- SELECT factors.id,
-    factors.name
+ SELECT id,
+    name
    FROM public.factors;
 
 
@@ -771,11 +778,11 @@ CREATE TABLE public.users (
 --
 
 CREATE VIEW bi_models.users AS
- SELECT users.id,
-    users.project_id,
-    users.first_name,
-    users.last_name,
-    users.email
+ SELECT id,
+    project_id,
+    first_name,
+    last_name,
+    email
    FROM public.users;
 
 
@@ -4164,7 +4171,8 @@ CREATE TABLE public.idp_template_translations (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     title_text character varying,
-    subtitle_text character varying
+    subtitle_text character varying,
+    chat_instructions jsonb DEFAULT '{"content": ""}'::jsonb
 );
 
 
@@ -4224,7 +4232,9 @@ CREATE TABLE public.idp_templates (
     one_click_ai_assistant_id bigint,
     skill_source_preference integer DEFAULT 0,
     document_analysis_ai_assistant_id bigint,
-    skill_gap_report_analysis_ai_assistant_id bigint
+    skill_gap_report_analysis_ai_assistant_id bigint,
+    chat_instructions jsonb DEFAULT '{"content": ""}'::jsonb,
+    show_chat_instructions boolean DEFAULT false
 );
 
 
@@ -5113,13 +5123,13 @@ ALTER SEQUENCE public.mhs_user_assessments_id_seq OWNED BY public.mhs_user_asses
 --
 
 CREATE VIEW public.normalized_factor_scores AS
- SELECT user_assessment_factor_scores.id,
-    user_assessment_factor_scores.factor_id,
-    user_assessment_factor_scores.user_assessment_id,
-    ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
-    ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
-    ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
-    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
+ SELECT id,
+    factor_id,
+    user_assessment_id,
+    ((scores ->> 'norm_score'::text))::double precision AS norm_score,
+    ((scores ->> 'score'::text))::double precision AS score,
+    ((scores ->> 'zscore'::text))::double precision AS zscore,
+    ((scores ->> 'percentage'::text))::double precision AS percentage
    FROM public.user_assessment_factor_scores;
 
 
@@ -20122,12 +20132,14 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260311085954'),
 ('20260306090626'),
 ('20260305110830'),
+('20260304133958'),
+('20260228091708'),
 ('20260225062612'),
 ('20260225060929'),
 ('20260224071226'),
-('20260304133958'),
 ('20260223114729'),
 ('20260218075116'),
 ('20260217103234'),
@@ -20135,7 +20147,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260213112719'),
 ('20260213095708'),
 ('20260212093958'),
-('20260228091708'),
 ('20260212060354'),
 ('20260211083300'),
 ('20260210130000'),
