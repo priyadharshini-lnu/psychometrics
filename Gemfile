@@ -37,11 +37,9 @@ gem 'saml_idp', '~> 1.0.0'
 gem 'dotiw', '~> 5.3.3'
 gem 'icalendar', '~> 2.9.0'
 
-# two_factor_authentication should be before devise-security, so that 2fa is required before changing expired password
-# rubocop:disable Bundler/OrderedGems, Lint/RedundantCopDisableDirective
-gem 'two_factor_authentication', git: 'https://github.com/TheTalentEnterprise/two_factor_authentication',
-  branch: 'fix_deprecated_methods'
-# rubocop:enable Bundler/OrderedGems, Lint/RedundantCopDisableDirective
+# Two factor authentication (inlined from gem into lib/two_factor_authentication)
+gem 'rotp', '~> 6.3'
+
 gem 'devise-security', '~> 0.18.0'
 
 gem 'pundit', '~> 2.1.1'

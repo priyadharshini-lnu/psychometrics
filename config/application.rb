@@ -34,7 +34,7 @@ module Psychometrics
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     config.time_zone = Settings.timezone
-    config.autoload_lib(ignore: %w[assets tasks])
+    config.autoload_lib(ignore: %w[assets tasks two_factor_authentication])
 
     # Load all translates inside folders
     #

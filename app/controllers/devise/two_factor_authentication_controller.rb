@@ -8,6 +8,8 @@ class Devise::TwoFactorAuthenticationController < DeviseController
 
   layout :select_layout
 
+  def show; end
+
   def update
     return render(:show) if params[:code].blank?
 
