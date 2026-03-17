@@ -58,8 +58,6 @@ module AI
         response = active_chat.ask_for_correction(
           "Error: System cannot render the message to user: #{validation_message}"
         )
-
-        validation_message = validate_response(response.content)
       end
 
       if validation_message.nil?

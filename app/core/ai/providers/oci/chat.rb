@@ -93,7 +93,8 @@ module AI
 
         def extract_text_content(content)
           if content.is_a?(RubyLLM::Content::Raw)
-            content.value.to_s
+            value = content.value
+            value.is_a?(Hash) || value.is_a?(Array) ? JSON.generate(value) : value.to_s
           elsif content.is_a?(RubyLLM::Content)
             content.text.to_s
           else

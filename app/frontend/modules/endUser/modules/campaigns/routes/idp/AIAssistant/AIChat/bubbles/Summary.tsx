@@ -1,11 +1,11 @@
 import {
-  Card, Button,
+  Card, Button, Popconfirm,
   Flex, Space, Typography, Divider,
   Avatar,
 } from 'antd'
 import { Bubble, Attachments } from '@ant-design/x'
 import ReactMarkdown from 'react-markdown'
-import { CheckOutlined, CloseOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { CheckOutlined, RedoOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { BotIcon } from './BotIcon'
 import styles from './styles.less'
 
@@ -75,16 +75,13 @@ export const Summary = ({
         <Flex vertical justify="center" align="center" gap={16} className={styles.completionBubble}>
           <Flex vertical justify="center" align="center">
             <Typography.Text strong style={{ margin: 0 }}>
-              {I18n.t('idp.ai.summary.title')}
-            </Typography.Text>
-            <Typography.Text strong style={{ margin: 0 }}>
               {aiAssistedIdpHasDocumentAnalysis
                 ? I18n.t('idp.ai.summary.hint') : I18n.t('enduser.ai_idp_summary_hint_no_document')}
             </Typography.Text>
           </Flex>
           {isCurrent && (
             <Space size={16}>
-              <Button
+              {/* <Button
                 style={{ boxShadow: 'none' }}
                 onClick={() => onAction('changeAnswers')}
                 type="primary"
@@ -93,7 +90,24 @@ export const Summary = ({
                 icon={<CloseOutlined />}
               >
                 {I18n.t('frontend.no')}
-              </Button>
+              </Button> */}
+              <Popconfirm
+                styles={{ root: { zIndex: 9999 } }}
+                title={I18n.t('idp.ai.reset_confirmation')}
+                onConfirm={() => onAction('retakeChat')}
+                okText={I18n.t('common.actions.yes')}
+                cancelText={I18n.t('common.actions.no')}
+              >
+                <Button
+                  style={{ boxShadow: 'none' }}
+                  type="primary"
+                  size="small"
+                  danger
+                  icon={<RedoOutlined />}
+                >
+                  {I18n.t('enduser.idp_reset_chat')}
+                </Button>
+              </Popconfirm>
               <Button
                 style={{ boxShadow: 'none' }}
                 onClick={() => onAction('complete')}
@@ -101,7 +115,7 @@ export const Summary = ({
                 size="small"
                 icon={<CheckOutlined />}
               >
-                {I18n.t('frontend.yes')}
+                {I18n.t('enduser.idp_proceed_with_plan_creation')}
               </Button>
             </Space>
           )}
