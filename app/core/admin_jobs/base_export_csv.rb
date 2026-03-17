@@ -15,7 +15,9 @@ module AdminJobs
       write_csv
       record.file.attach(
         io: File.open(file_path),
-        filename: File.basename(file_path)
+        filename: File.basename(file_path),
+        content_type: 'text/csv',
+        identify: false
       )
       job_record.complete!
       FileUtils.rm_f(file_path)
