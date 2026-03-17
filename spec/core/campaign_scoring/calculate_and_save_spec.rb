@@ -19,6 +19,35 @@ describe CampaignScoring::CalculateAndSave do
     )
   end
 
+  it 'handles concurrent calls without duplicate key errors' do
+    create(:campaign_user, campaign: campaign, user: user)
+    cf_factor = create(
+      :campaign_factor, code: 'factor1', campaign: campaign, assessment: assessment, factor: factor1,
+      factor_type: 'assessment', assessment_score_type: 'score'
+    )
+
+    CampaignFactorValue.where(campaign: campaign, user: user).destroy_all
+
+    errors = []
+    barrier = Concurrent::CyclicBarrier.new(3) # All 3 threads wait until all are ready
+
+    threads = Array.new(3) do
+      Thread.new do
+        ActiveRecord::Base.connection_pool.with_connection do
+          barrier.wait # Force all threads to start simultaneously
+          described_class.call!(campaign.reload, user.reload)
+        end
+      rescue ActiveRecord::RecordNotUnique => e
+        errors << e
+      end
+    end
+
+    threads.each(&:join)
+
+    expect(errors).to be_empty, "Race condition occurred: #{errors.map(&:message).join(', ')}"
+    expect(CampaignFactorValue.where(campaign: campaign, user: user, campaign_factor: cf_factor).count).to eq(1)
+  end
+
   it 'saves campaign factor values' do
     create(:campaign_user, campaign: campaign, user: user)
     datasheet = create(:datasheet, campaign: campaign)
