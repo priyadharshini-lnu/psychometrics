@@ -175,7 +175,6 @@ gem 'addressable', '~> 2.7'
 gem 'rails_autoscale_agent', '~> 0.10.2'
 gem 'shortener', '~> 1.0.1'
 gem 'twilio-ruby', '~> 7.8.3'
-gem 'webhook_system', git: 'https://github.com/TheTalentEnterprise/webhook_system.git', branch: 'tte-master'
 gem 'workflow-activerecord', '~> 4.1.2'
 
 group :development, :test do
@@ -287,3 +286,9 @@ gem 'neighbor'
 
 # for prompt templating and other templating
 gem 'liquid'
+
+# webhook_system dependencies
+gem 'faraday-encoding'
+gem 'oauth2', '~> 2.0'
+gem 'ph_model'
+gem 'validate_url', '~> 1.0'
