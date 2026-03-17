@@ -1,5 +1,5 @@
 import {
-  FC, useState, useEffect, Fragment,
+  FC, useState, useEffect, Fragment, ReactNode,
 } from 'react'
 import {
   Drawer,
@@ -92,7 +92,8 @@ const AddEditDrawerComponent: FC<Props> = ({
   const [selected, setSelected] = useState([])
   const [notFromList, setNotFromList] = useState(true)
   const [adminRolesOpen, setAdminRolesOpen] = useState(false)
-  const [open, setUserSelectOpen] = useState(true)
+  const [open, setUserSelectOpen] = useState(false)
+  const [userSearchTerm, setUserSearchTerm] = useState('')
   const [availablePermissions, setAvailablePermissions] = useState<AvailablePermissions>({})
   const [selectedUser, setSelectedUser] = useState<Omit<UserDetails, 'enable_2fa'> | null>(
     {
@@ -287,6 +288,13 @@ const AddEditDrawerComponent: FC<Props> = ({
     </Space>
   )
 
+  let userSelectNotFoundContent: ReactNode = null
+  if (isUserLoading('fetch')) {
+    userSelectNotFoundContent = <Spin size="small" />
+  } else if (userSearchTerm.trim()) {
+    userSelectNotFoundContent = I18n.t('shared.no_results_found')
+  }
+
   return (
     <Drawer
       title={<Typography.Title level={4}>{drawerTitle}</Typography.Title>}
@@ -370,6 +378,7 @@ const AddEditDrawerComponent: FC<Props> = ({
                       },
                       onSearch: (value) => {
                         setUserSelectOpen(true)
+                        setUserSearchTerm(value)
                         fetchUsers({
                           apiConfig: {
                             filter: { search_query: value, admins: 'true' },
@@ -378,7 +387,7 @@ const AddEditDrawerComponent: FC<Props> = ({
                         })
                       },
                     }}
-                    notFoundContent={isUserLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
+                    notFoundContent={userSelectNotFoundContent}
                   >
                     {users.map(({ id, email }) => (
                       <Option key={id} value={id}>
