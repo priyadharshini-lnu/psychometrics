@@ -28,7 +28,7 @@ en:
     idp_reset_chat: Reset Chat
     idp_retake_steps_continue_with_this_information: Continue with this information
     insights: Insights
-    lighthouse_assistant: Lighthouse Assistant
+    lighthouse_assistant: Your Development Guide
     max_word_limit: Must be at most %{max} words
     min_word_limit: Must be at least %{min} words
     my_plan: My Plan

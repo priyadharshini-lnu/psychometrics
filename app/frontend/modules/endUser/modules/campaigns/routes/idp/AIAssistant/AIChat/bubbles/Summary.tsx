@@ -23,22 +23,22 @@ export const Summary = ({
     content={(
       <Flex vertical justify="center" className={styles.completedBubble} gap={12}>
         <Flex justify="space-between">
-          <Typography.Paragraph>
+          <Typography.Paragraph className="mb-0">
             {message}
           </Typography.Paragraph>
         </Flex>
-        <Divider />
-        <Typography.Title level={3}>{I18n.t('idp.ai.summary.chat_title')}</Typography.Title>
+        <Divider className="mt-2 mb-0" />
+        <Typography.Title className="mt-0" level={3}>{I18n.t('idp.ai.summary.chat_title')}</Typography.Title>
         <Card className={styles.card}>
           <ReactMarkdown>
             {data.chatSummary}
           </ReactMarkdown>
         </Card>
-        <Divider />
+        <Divider className="mt-2 mb-0" />
         {aiAssistedIdpHasDocumentAnalysis && data.documentSummary && (
           <>
             <Flex justify="space-between">
-              <Typography.Title level={3}>{I18n.t('idp.ai.summary.file_title')}</Typography.Title>
+              <Typography.Title className="mt-0" level={3}>{I18n.t('idp.ai.summary.file_title')}</Typography.Title>
             </Flex>
             <Card className={styles.card}>
               <ReactMarkdown>
@@ -56,23 +56,28 @@ export const Summary = ({
                 />
               </Flex>
             </Card>
-            <Divider />
+            <Divider className="mt-2 mb-0" />
           </>
         )}
         {data.skillGapReportAnalysis && (
           <>
             <Flex justify="space-between">
-              <Typography.Title level={3}>{I18n.t('idp.ai.summary.gap_report_title')}</Typography.Title>
+              <Typography.Title
+                className="mt-0 mb-2"
+                level={3}
+              >
+                {I18n.t('idp.ai.summary.gap_report_title')}
+              </Typography.Title>
             </Flex>
             <Card className={styles.card}>
               <ReactMarkdown>
                 {data.skillGapReportAnalysis}
               </ReactMarkdown>
             </Card>
-            <Divider />
+            <Divider className="mt-2 mb-0" />
           </>
         )}
-        <Flex vertical justify="center" align="center" gap={16} className={styles.completionBubble}>
+        <Flex vertical justify="center" align="center" gap={12} className={styles.completionBubble}>
           <Flex vertical justify="center" align="center">
             <Typography.Text strong style={{ margin: 0 }}>
               {aiAssistedIdpHasDocumentAnalysis
