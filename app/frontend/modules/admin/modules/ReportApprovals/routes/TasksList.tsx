@@ -67,7 +67,7 @@ const TasksListComponent: React.FC<Props> = ({
   const {
     handleFilterChange,
     FilterComponent,
-  } = useSavedFilter(changeFilter, changeUrlQuery, resourceType)
+  } = useSavedFilter(changeFilter, changeUrlQuery, resourceType, filterOptions)
 
 
   useEffect(() => {
