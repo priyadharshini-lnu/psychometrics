@@ -2,7 +2,6 @@
 
 # Ref: https://docs.oracle.com/en-us/iaas/api/#/en/generative-ai-inference/20231130/datatypes/CohereChatRequest
 
-# NOTE: This is used by the gem, please reload the server after making changes to this file
 # rubocop:disable Metrics/ModuleLength
 module AI
   module Providers
@@ -343,16 +342,15 @@ module AI
         end
 
         def format_schema_for_oci(schema)
-          # Remove unsupported fields and convert symbol keys to strings
-          # OCI doesn't support 'strict', '$defs', and other OpenAI-specific fields
-          cleaned_schema = schema.dup
+          # RubyLLM wraps the schema as {name:, schema:, strict:}
+          # OCI's CohereResponseJsonFormat expects just the inner JSON Schema object
+          schema_def = schema[:schema] || schema['schema'] || schema
 
-          cleaned_schema.delete(:strict)
-          cleaned_schema.delete('strict')
-          cleaned_schema.delete(:$defs)
-          cleaned_schema.delete('$defs')
+          cleaned = schema_def.dup
+          cleaned.delete(:$defs)
+          cleaned.delete('$defs')
 
-          stringify_keys_recursively(cleaned_schema)
+          stringify_keys_recursively(cleaned)
         end
 
         def stringify_keys_recursively(obj)
@@ -361,6 +359,8 @@ module AI
               obj.transform_keys(&:to_s).transform_values { |v| stringify_keys_recursively(v) }
             when Array
               obj.map { |item| stringify_keys_recursively(item) }
+            when Symbol
+              obj.to_s
             else
               obj
           end
