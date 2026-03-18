@@ -7522,7 +7522,7 @@ min-indent@^1.0.0:
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/min-indent/-/min-indent-1.0.1.tgz#a63f681673b30571fbe8bc25686ae746eefa9869"
   integrity sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==
 
-minimatch@>=3.0.5, minimatch@^3.0.4:
+minimatch@>=3.0.5:
   version "10.2.4"
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/minimatch/-/minimatch-10.2.4.tgz#465b3accbd0218b8281f5301e27cedc697f96fde"
   integrity sha512-oRjTw/97aTBN0RHbYCdtF1MQfvusSIBQM0IZEgzl6426+8jSC0nF1a/GmnVLpfB9yyr6g6FTqWqiZVbxrtaCIg==
@@ -8811,9 +8811,10 @@ react-bootstrap@^0.33.1:
     uncontrollable "^7.0.2"
     warning "^3.0.0"
 
-"react-codemirror2@https://github.com/TheTalentEnterprise/react-codemirror2#28f83ce":
-  version "7.2.1"
-  resolved "https://github.com/TheTalentEnterprise/react-codemirror2#28f83ce00becc44257747a8dbff8b43635501973"
+react-codemirror2@^9.0.1:
+  version "9.0.1"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/react-codemirror2/-/react-codemirror2-9.0.1.tgz#1f1adf0801e47fae0295d4aeb6daa63b42006e21"
+  integrity sha512-JqTQg8NxTyU1RgJdPNIHqSg5loIp2Y4KEocKVJBzhRrWzVX7At3wWGUUCfulSe3f4bSbRmDIv9iwzQ31r/ny3w==
 
 react-colorful@^5.6.1:
   version "5.6.1"
