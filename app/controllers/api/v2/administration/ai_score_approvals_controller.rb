@@ -96,15 +96,17 @@ module Api
       end
     end
 
-    # TODO: complete later
-    # def bulk_approve
-    #   approvals, meta = ScoreApprovals::BulkApprove.call!(params[:data][:attributes][:ids], current_user)
+    def bulk_approve
+      approvals, meta = ScoreApprovals::BulkApprove.call!(params[:data][:attributes][:ids], current_user)
 
-    #   json = serialize_resources(approvals, ::Api::V2::Administration::AIScoreApprovalResource)
-    #   json[:meta] = meta
+      audit! :bulk_approve, score_approval,
+             payload: { ids: params[:data][:attributes][:ids] }, campaign: score_approval.campaign
 
-    #   render json: json
-    # end
+      json = serialize_resources(approvals, ::Api::V2::Administration::AIScoreApprovalResource)
+      json[:meta] = meta
+
+      render json: json
+    end
 
     def subject_assessment
       user_assessment = score_approval.as_user_assessment

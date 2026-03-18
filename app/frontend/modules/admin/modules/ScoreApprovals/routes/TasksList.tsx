@@ -36,7 +36,9 @@ const connecter = connect(
   {},
 )
 type PropsFromRedux = ConnectedProps<typeof connecter>
-type Props = PropsFromRedux & Omit<ReturnType<typeof useResources<Task>>, 'fetch'> & { type?: 'myTasks' | 'approved' }
+type Props = PropsFromRedux
+  & ReturnType<typeof useResources<Task>>
+  & { type?: 'myTasks' | 'approved', fetch: (args?: Record<string, unknown>) => Promise<unknown> }
 
 type FilterOption = {id: string, name: string}
 type FilterOptions = {
@@ -50,8 +52,8 @@ type FilterOptions = {
 const searchFilters = ['subject_full_name_cont', 'subject_email_cont']
 
 const TasksListComponent: React.FC<Props> = ({
-  data, setData, meta, isLoading, getSortOrder, handleTableChange, changePage, type,
-  currentPage, pageSize, changeFilter, getFilteredValue, requests, changeUrlQuery, collectionAction,
+  data, meta, isLoading, getSortOrder, handleTableChange, changePage, type,
+  currentPage, pageSize, changeFilter, getFilteredValue, requests, changeUrlQuery, collectionAction, fetch,
 }) => {
   const tableLoading = isLoading('fetch')
   const { collectionAction: search } = useResources<Campaign>('ai_score_approvals')
@@ -253,9 +255,6 @@ const TasksListComponent: React.FC<Props> = ({
         },
       },
     }).then((response: (Task[] & {responseMeta: { approved: number, ignored: number, qc_completed: number } })) => {
-      const newData = data.map(scoreApproval => response.find(ra => ra.id === scoreApproval.id) || scoreApproval)
-        .filter(scoreApproval => scoreApproval.approvalStatus !== 'approved')
-      setData(newData)
       const { responseMeta } = response
       message.success(I18n.t('administration.scoring_approval.bulk_approve_success',
         {
@@ -263,6 +262,7 @@ const TasksListComponent: React.FC<Props> = ({
         }))
 
       setSelected([])
+      fetch({})
     })
   }
 

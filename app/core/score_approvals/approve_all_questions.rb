@@ -11,6 +11,10 @@ module ScoreApprovals
 
     private
 
+    def allow_to_approve?
+      policy.approve_all_questions?
+    end
+
     def question_scores
       @question_scores ||= users_result.ai_factor_scores.where.not(scoring_type: :aggregated)
     end
