@@ -50,21 +50,21 @@ const ToolsDropdown: FC<Props> = ({ permissions, openModal }) => {
     id,
     action: 'workshop_status_export',
     body,
-    method: 'get',
+    method: 'post',
   })
 
   const exportCompletionStatus = (id, body): Promise<unknown> => memberAction({
     id,
     action: 'export_completion_status',
     body,
-    method: 'get',
+    method: 'post',
   })
 
   const exportCompactCompletionStatus = (id, body): Promise<unknown> => memberAction({
     id,
     action: 'export_compact_completion_status',
     body,
-    method: 'get',
+    method: 'post',
   })
 
   const handleMenuClick = ({ key }) => {
