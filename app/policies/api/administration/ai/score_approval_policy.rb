@@ -28,11 +28,11 @@ module Api
         end
 
         def approve_all_questions?
-          can_perform_approval_action?
+          can_perform_approval_action? && approval_setting&.allow_bulk_approve_scores?
         end
 
         def discard_all_questions?
-          can_perform_approval_action?
+          can_perform_approval_action? && approval_setting&.allow_bulk_approve_scores?
         end
 
         def override_score?

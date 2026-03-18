@@ -16,7 +16,8 @@ import { Evidence } from './Evidence'
 const { I18n } = window
 
 const CompetencyHeader = ({
-  competency, hasIndicators, overridenScore, approved, allowApprove, updateScore, removeScore, open, setOpen,
+  competency, hasIndicators, aggregatedScore, overridenScore,
+  approved, allowApprove, updateScore, removeScore, open, setOpen,
 }) => (
   <Flex align="center" justify="space-between" gap={8}>
     <Flex flex={1} style={{ minWidth: 0 }}>
@@ -26,22 +27,28 @@ const CompetencyHeader = ({
     </Flex>
     <Flex onClick={e => e.stopPropagation()}>
       <Flex align="center">
-        <div className={cs(styles.overallScore, { [styles.opacity50]: overridenScore })}>
-          <Space>
-            <AIEditorIcon style={{ color: 'var(--ant-primary-color)' }} />
-            {`${I18n.t('admin.overall')}:`}
-          </Space>
-          <span className={styles.score}>{competency.score.toFixed(2)}</span>
-        </div>
-        {!hasIndicators && (
+        {hasIndicators ? (
+          <div className={styles.overallScore}>
+            <Space>
+              {`${I18n.t('admin.overall')}:`}
+            </Space>
+            <span className={styles.score}>{competency.score.toFixed(2)}</span>
+          </div>
+        ) : (
           <>
+            <div className={cs(styles.overallScore, { [styles.opacity50]: overridenScore })}>
+              <Space>
+                <AIEditorIcon style={{ color: 'var(--ant-primary-color)' }} />
+              </Space>
+              <span className={styles.score}>{competency.score.toFixed(2)}</span>
+            </div>
             {overridenScore && (
               <>
                 <Divider orientation="vertical" />
                 <div className={styles.overallScore}>
                   <Space>
                     <UserOutlined style={{ color: 'var(--ant-primary-color)' }} />
-                    {`${I18n.t('admin.overall')}:`}
+                    {`${I18n.t('admin.score')}:`}
                   </Space>
                   <span className={styles.score}>
                     {competency.notApplicable ? I18n.t('shared.na_text') : competency.overrideScore.toFixed(2)}
@@ -68,7 +75,8 @@ const CompetencyHeader = ({
                 open={open}
                 content={(
                   <EditScore
-                    value={competency.score}
+                    value={competency.overrideScore ?? competency.score}
+                    notApplicable={competency.notApplicable}
                     onSubmit={updateScore}
                     onClose={() => setOpen(false)}
                   />
@@ -77,6 +85,17 @@ const CompetencyHeader = ({
               >
                 <Button type="text" icon={<EditOutlined />} />
               </Popover>
+            )}
+            {aggregatedScore && (
+              <>
+                <Divider orientation="vertical" />
+                <div className={styles.overallScore}>
+                  <Space>
+                    {`${I18n.t('admin.overall')}:`}
+                  </Space>
+                  <span className={styles.score}>{aggregatedScore.score.toFixed(2)}</span>
+                </div>
+              </>
             )}
           </>
         )}
@@ -129,7 +148,7 @@ const CompetencyContent = ({
 )
 
 export const CompetencyRow = ({
-  competency, indicators, overrideScore, discardScore, approved, allowApprove, isFirst = false,
+  competency, indicators, aggregatedScore = null, overrideScore, discardScore, approved, allowApprove, isFirst = false,
 }) => {
   const [open, setOpen] = useState(false)
   const hasIndicators = indicators?.length > 0
@@ -171,6 +190,7 @@ export const CompetencyRow = ({
           <CompetencyHeader
             competency={competency}
             hasIndicators={hasIndicators}
+            aggregatedScore={aggregatedScore}
             overridenScore={overridenScore}
             approved={approved}
             allowApprove={allowApprove}

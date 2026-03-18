@@ -305,10 +305,10 @@ Rails.application.routes.draw do
           collection do
             post :import
             post :assign_reports_and_assessments
-            get :export_reports_and_assessments
-            get :export
-            get :export_completion_status
-            get :export_compact_completion_status
+            post :export_reports_and_assessments
+            post :export
+            post :export_completion_status
+            post :export_compact_completion_status
             post :search
             post :bulk_download_idp_reports
           end
@@ -347,12 +347,12 @@ Rails.application.routes.draw do
         end
         resources :assessments, only: %i[create destroy] do
           member do
-            get :export_raw_results
-            get :export_scoring_results
-            get :export_normed_results
-            get :export_raw_factor_scores
-            get :export_external_results
-            get :export_occupations
+            post :export_raw_results
+            post :export_scoring_results
+            post :export_normed_results
+            post :export_raw_factor_scores
+            post :export_external_results
+            post :export_occupations
             post :import_results
             post :import_external_scoring_results
             get :norms
@@ -604,10 +604,10 @@ Rails.application.routes.draw do
         end
       end
       member do
-        get :export_threesixty_scores
-        get :export_results
+        post :export_threesixty_scores
+        post :export_results
         post :import_results
-        get :export_completion_status
+        post :export_completion_status
         delete :reset
         delete :reset_nominations
         delete :remove_user
@@ -675,7 +675,7 @@ Rails.application.routes.draw do
         post :export_translations
         post :import_translations
         post :import_factors
-        get :export_json
+        post :export_json
       end
 
       collection do
@@ -1335,11 +1335,11 @@ as: :simulation_progress_notification
             end
             jsonapi_resources :privacy_settings, only: %i[index update]
             member do
-              get :workshop_status_export
+              post :workshop_status_export
               get :seach_user
               put :add_manager
-              get :export_completion_status
-              get :export_compact_completion_status
+              post :export_completion_status
+              post :export_compact_completion_status
             end
           end
           jsonapi_resources :memberships, only: %i[index create update show destroy] do
@@ -1377,10 +1377,10 @@ as: :simulation_progress_notification
             scope module: :assessments do
               resource :uploads, only: %i[update]
             end
-            get :export_raw_factor_scores
-            get :export_raw_results
-            get :export_normed_results
-            get :external_scores
+            post :export_raw_factor_scores
+            post :export_raw_results
+            post :export_normed_results
+            post :external_scores
           end
           jsonapi_resources :dimensions
           jsonapi_resources :norms do
@@ -1573,7 +1573,7 @@ only: %i[index create update]
             jsonapi_resources :campaign_factors, only: %i[index create update destroy] do
               collection do
                 post :update_positions
-                get  :export
+                post :export
                 post :import
                 post :bulk_update
                 post :remove_all
@@ -1587,7 +1587,7 @@ only: %i[index create update]
               end
               collection do
                 get :campaign_scores
-                get :export_scorings
+                post :export_scorings
                 post :rescore_bulk
                 post :change_finalized_campaign_score_bulk
                 post :import_external_campaign_scorings
@@ -1647,7 +1647,7 @@ only: %i[index create update]
           end
           resources :user_report_events, only: %i[index] do
             collection do
-              get :export
+              post :export
             end
           end
           resources :workshop_facilitators, only: %i[] do

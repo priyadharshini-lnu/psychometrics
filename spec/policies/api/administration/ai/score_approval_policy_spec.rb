@@ -23,7 +23,8 @@ RSpec.describe Api::Administration::AI::ScoreApprovalPolicy do
            assessment_id: assessment.id,
            assessor_ids: [assessor.id],
            approver_ids: [approver.id],
-           allow_one_level_approve: false)
+           allow_one_level_approve: false,
+           allow_bulk_approve_scores: true)
   end
 
   describe '#show?' do
@@ -227,10 +228,28 @@ RSpec.describe Api::Administration::AI::ScoreApprovalPolicy do
 
     describe '#approve_all_questions?' do
       it_behaves_like 'approval action', :approve_all_questions?
+
+      context 'when allow_bulk_approve_scores is false' do
+        before { approval_setting.update!(allow_bulk_approve_scores: false) }
+        let(:user) { superadmin }
+
+        it 'denies the action even for superadmin' do
+          expect(policy.approve_all_questions?).to be false
+        end
+      end
     end
 
     describe '#discard_all_questions?' do
       it_behaves_like 'approval action', :discard_all_questions?
+
+      context 'when allow_bulk_approve_scores is false' do
+        before { approval_setting.update!(allow_bulk_approve_scores: false) }
+        let(:user) { superadmin }
+
+        it 'denies the action even for superadmin' do
+          expect(policy.discard_all_questions?).to be false
+        end
+      end
     end
 
     describe '#override_score?' do

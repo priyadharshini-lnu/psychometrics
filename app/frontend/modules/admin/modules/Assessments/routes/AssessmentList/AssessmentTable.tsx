@@ -273,7 +273,7 @@ const getActionsMenuProps = ({
   const exportRawFactorScore = () => resource.memberAction({
     id: assessment.id,
     action: 'export_raw_factor_scores',
-    method: 'get',
+    method: 'post',
   }).then(() => {
     message.success(I18n.t('assessments.messages.raw_factor_export_scheduled'))
   })
@@ -281,7 +281,7 @@ const getActionsMenuProps = ({
   const exportNormedResults = () => resource.memberAction({
     id: assessment.id,
     action: 'export_normed_results',
-    method: 'get',
+    method: 'post',
   }).then(() => {
     message.success(I18n.t('assessments.messages.norm_results_export_scheduled'))
   })
@@ -289,7 +289,7 @@ const getActionsMenuProps = ({
   const exportRawResult = (with_labels: boolean) => resource.memberAction({
     id: assessment.id,
     action: 'export_raw_results',
-    method: 'get',
+    method: 'post',
     body: { with_lables: with_labels },
   }).then(() => {
     message.success(I18n.t('assessments.messages.raw_results_export_scheduled'))
@@ -298,7 +298,7 @@ const getActionsMenuProps = ({
   const exportExternalScores = () => resource.memberAction({
     id: assessment.id,
     action: 'external_scores',
-    method: 'get',
+    method: 'post',
   }).then(() => {
     message.success(I18n.t('assessments.messages.external_scores_export_scheduled'))
   })

@@ -11,6 +11,10 @@ module ScoreApprovals
 
     private
 
+    def allow_to_discard?
+      policy.discard_all_questions?
+    end
+
     def question_scores
       @question_scores ||= users_result.ai_factor_scores.where.not(scoring_type: :aggregated)
     end

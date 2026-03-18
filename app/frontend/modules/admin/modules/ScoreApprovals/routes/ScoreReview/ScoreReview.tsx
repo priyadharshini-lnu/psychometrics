@@ -69,16 +69,31 @@ export const ScoreReview = () => {
 
     camelizedData.forEach((factor) => {
       if (factor.parentFactorId) {
-        newScoreApproval.indicators[factor.questionId] = scoreApproval.indicators[factor.questionId].map(
+        newScoreApproval.indicators[factor.questionId] = newScoreApproval.indicators[factor.questionId].map(
           c => (c.id === factor.id ? factor : c),
         )
       } else {
-        newScoreApproval.competencies = scoreApproval.competencies.map(
+        newScoreApproval.competencies = newScoreApproval.competencies.map(
           c => (c.id === factor.id ? factor : c),
         )
       }
     })
     setData([newScoreApproval])
+    return newScoreApproval
+  }
+
+  const allQuestionsReachedStatus = (updatedApproval: ScoreApproval) => {
+    const requiredStatus = updatedApproval.reviewAs === 'assessor' ? 'assessor_approved' : 'approver_approved'
+
+    const allIndicatorsApproved = Object.values(updatedApproval.indicators)
+      .flat()
+      .every(i => i.status === 'approver_approved' || i.status === requiredStatus)
+
+    const allCompetenciesApproved = updatedApproval.competencies
+      .filter(c => c.scoringType === 'ai')
+      .every(c => c.status === 'approver_approved' || c.status === requiredStatus)
+
+    return allIndicatorsApproved && allCompetenciesApproved
   }
 
   const overrideScore = (scoreId, { score, reason, notApplicable }) => (
@@ -120,7 +135,10 @@ export const ScoreReview = () => {
         questionId,
       },
     }).then((data: Indicator[]) => {
-      updateCompetenciesAndIndicators(scoreApproval, data)
+      const updatedApproval = updateCompetenciesAndIndicators(scoreApproval, data)
+      if (allQuestionsReachedStatus(updatedApproval)) {
+        fetchSingle({ id })
+      }
       nextQuestion(questionId)
     }).catch((error) => {
       message.error(error?.base?.[0]?.title)
@@ -136,7 +154,10 @@ export const ScoreReview = () => {
         questionId,
       },
     }).then((data: Indicator[]) => {
-      updateCompetenciesAndIndicators(scoreApproval, data)
+      const updatedApproval = updateCompetenciesAndIndicators(scoreApproval, data)
+      if (allQuestionsReachedStatus(updatedApproval)) {
+        fetchSingle({ id })
+      }
     }).catch((error) => {
       message.error(error?.base?.[0]?.title)
     })
@@ -183,8 +204,7 @@ export const ScoreReview = () => {
 
   const items = filteredQuestions.map((question, index) => {
     const approved = scoreApproval.indicators[question.id]
-      .every(i => i.status === 'approver_approved' || i.status === status) && scoreApproval.competencies
-      .filter(c => c.questionId === question.id && c.scoringType === 'generated').every(c => c.status === status)
+      ?.every(i => i.status === 'approver_approved' || i.status === status)
 
     return ({
       key: question.id,
@@ -237,7 +257,7 @@ export const ScoreReview = () => {
               <Button type="text" style={{ padding: 0 }} icon={<LeftOutlined />} onClick={() => navigate(-1)}>
                 {I18n.t('shared.back')}
               </Button>
-              {allowApprove && (
+              {allowApprove && scoreApproval.allowBulkApproveScores && (
                 <Flex gap={8}>
                   <Popconfirm
                     title={I18n.t('admin.ai_scoring_appoval_discard_all_questions_title')}

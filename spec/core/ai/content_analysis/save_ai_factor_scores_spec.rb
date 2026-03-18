@@ -53,7 +53,7 @@ describe AI::ContentAnalysis::SaveAIFactorScores do
       end
 
       it 'creates AI factor scores for child factors' do
-        expect { described_class.call!(users_result) }.to change(AI::FactorScore, :count).by(5)
+        expect { described_class.call!(users_result) }.to change(AI::FactorScore, :count).by(3)
 
         child_score1 = AI::FactorScore.find_by(
           users_result: users_result,
@@ -218,6 +218,146 @@ describe AI::ContentAnalysis::SaveAIFactorScores do
     context 'when no sessions exist' do
       it 'returns ok without creating scores' do
         expect { described_class.call!(users_result) }.not_to change(AI::FactorScore, :count)
+      end
+    end
+
+    context 'when scoring mappings changed after previous scoring' do
+      let(:obsolete_factor) { create(:factor, dimension: dimension, scoring_strategy: :questions) }
+
+      before do
+        create(:ai_factor_score,
+               users_result: users_result,
+               factor: factor1,
+               question_id: question1.id,
+               score: 2.0,
+               parent_factor: parent_factor,
+               scoring_type: :ai)
+
+        create(:ai_factor_score,
+               users_result: users_result,
+               factor: factor1,
+               question_id: nil,
+               score: 2.0,
+               scoring_type: :aggregated)
+
+        create(:ai_factor_score,
+               users_result: users_result,
+               factor: obsolete_factor,
+               question_id: question1.id,
+               score: 1.5,
+               scoring_type: :ai)
+
+        create(:ai_factor_score,
+               users_result: users_result,
+               factor: obsolete_factor,
+               question_id: nil,
+               score: 1.5,
+               scoring_type: :aggregated)
+
+        FactorsScoring.where(factor: factor1, question: question1).delete_all
+        create(:factors_scoring, factor: factor1, question: question2)
+
+        create(:ai_question_scoring_session,
+               user: users_result.user,
+               question: question2,
+               user_assessment: user_assessment,
+               checkpoint: {
+                 factor1.id.to_s => {
+                   'score' => 4.0,
+                   'confidence' => 0.85,
+                   'citations' => ['New mapping evidence'],
+                   'rationale' => 'Rescored after factor mapping change'
+                 }
+               })
+      end
+
+      it 'cleans up abandoned AI and aggregated rows while keeping current scores' do
+        described_class.call!(users_result, rescore: true)
+
+        expect(AI::FactorScore.find_by(users_result: users_result, factor: factor1,
+                                       question_id: question1.id)).to be_nil
+        expect(AI::FactorScore.where(users_result: users_result, factor: obsolete_factor)).to be_empty
+
+        active_ai_score = AI::FactorScore.find_by(users_result: users_result, factor: factor1,
+                                                  question_id: question2.id)
+        expect(active_ai_score).to be_present
+        expect(active_ai_score.score).to eq(4.0)
+        expect(active_ai_score).to be_scoring_type_ai
+
+        # factor1 is an indicator (has parent_factor), so no aggregated record is created for it
+        expect(AI::FactorScore.find_by(users_result: users_result, factor: factor1, question_id: nil)).to be_nil
+
+        # parent_factor aggregated record should exist
+        parent_aggregated = AI::FactorScore.find_by(users_result: users_result, factor: parent_factor, question_id: nil)
+        expect(parent_aggregated).to be_present
+        expect(parent_aggregated).to be_scoring_type_aggregated
+      end
+    end
+
+    context 'when rescoring with existing override score' do
+      before do
+        create(:ai_factor_score,
+               users_result: users_result,
+               factor: factor1,
+               question_id: question1.id,
+               score: 4.0,
+               override_score: 5.0,
+               parent_factor: parent_factor,
+               scoring_type: :ai)
+
+        create(:ai_factor_score,
+               users_result: users_result,
+               factor: factor2,
+               question_id: question2.id,
+               score: 3.0,
+               parent_factor: parent_factor,
+               scoring_type: :ai)
+
+        create(:ai_factor_score,
+               users_result: users_result,
+               factor: parent_factor,
+               question_id: nil,
+               score: 3.5,
+               scoring_type: :aggregated)
+
+        create(:ai_question_scoring_session,
+               user: users_result.user,
+               question: question1,
+               user_assessment: user_assessment,
+               checkpoint: {
+                 factor1.id.to_s => {
+                   'score' => 1.0,
+                   'confidence' => 0.9,
+                   'citations' => ['Rescore evidence 1'],
+                   'rationale' => 'Rescored value for factor 1'
+                 }
+               })
+
+        create(:ai_question_scoring_session,
+               user: users_result.user,
+               question: question2,
+               user_assessment: user_assessment,
+               checkpoint: {
+                 factor2.id.to_s => {
+                   'score' => 2.0,
+                   'confidence' => 0.8,
+                   'citations' => ['Rescore evidence 2'],
+                   'rationale' => 'Rescored value for factor 2'
+                 }
+               })
+      end
+
+      it 'calculates aggregated competency score using override score' do
+        described_class.call!(users_result, rescore: true)
+
+        parent_score = AI::FactorScore.find_by(
+          users_result: users_result,
+          factor: parent_factor,
+          question_id: nil
+        )
+
+        # Uses override 5.0 for factor1 + rescored ai 2.0 for factor2 => 3.5 average
+        expect(parent_score.score).to eq(3.5)
       end
     end
 

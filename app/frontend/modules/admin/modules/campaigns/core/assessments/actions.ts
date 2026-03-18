@@ -293,7 +293,7 @@ export const updateAvailableLocales = (
 export const exportRawResults = (campaignId: number, assessmentId: number, body: object = {}) => ({
   type: EXPORT_RAW_RESULTS,
   request: {
-    method: 'get',
+    method: 'post',
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/export_raw_results`,
     body,
     loader: true,
@@ -303,7 +303,7 @@ export const exportRawResults = (campaignId: number, assessmentId: number, body:
 export const exportScoringResults = (campaignId: number, assessmentId: number, body: object = {}) => ({
   type: EXPORT_SCORING_RESULTS,
   request: {
-    method: 'get',
+    method: 'post',
     body,
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/export_scoring_results`,
     loader: true,
@@ -313,7 +313,7 @@ export const exportScoringResults = (campaignId: number, assessmentId: number, b
 export const exportNormedResults = (campaignId: number, assessmentId: number, body: object = {}) => ({
   type: EXPORT_NORMED_RESULTS,
   request: {
-    method: 'get',
+    method: 'post',
     body,
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/export_normed_results`,
     loader: true,
@@ -323,7 +323,7 @@ export const exportNormedResults = (campaignId: number, assessmentId: number, bo
 export const exportRawFactorScores = (campaignId: number, assessmentId: number, body: object = {}) => ({
   type: EXPORT_RAW_FACTOR_SCORES,
   request: {
-    method: 'get',
+    method: 'post',
     body,
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/export_raw_factor_scores`,
     loader: true,
@@ -333,7 +333,7 @@ export const exportRawFactorScores = (campaignId: number, assessmentId: number, 
 export const exportExternalResults = (campaignId: number, assessmentId: number) => ({
   type: EXPORT_EXTERNAL_RESULTS,
   request: {
-    method: 'get',
+    method: 'post',
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/export_external_results`,
     loader: true,
   },
@@ -342,7 +342,7 @@ export const exportExternalResults = (campaignId: number, assessmentId: number) 
 export const exportOccupations = (campaignId: number, assessmentId: number) => ({
   type: EXPORT_OCCUPATIONS,
   request: {
-    method: 'get',
+    method: 'post',
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/export_occupations`,
     loader: true,
   },
