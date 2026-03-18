@@ -12,8 +12,6 @@ import {
 
 import { SafeHTML } from '~/components/SafeHTML'
 
-import { toReadableString } from '~/modules/admin/modules/SheetManagement/utils'
-
 const { I18n } = window
 
 interface HeaderSectionProps {
@@ -85,7 +83,7 @@ export const DetailsSection: FC<DetailsSectionProps> = ({
         >
           {dataRecord.map(record => (
             <Descriptions.Item
-              label={toReadableString(record.name)}
+              label={record.name}
               key={record.name}
               className="va-t"
             >
