@@ -36,7 +36,6 @@ import { isRequestInProgress } from '~/core/request'
 
 import { COLUMN_ID_EMAIL } from '~/modules/admin/modules/SheetManagement/constants'
 
-import { toReadableString } from '~/modules/admin/modules/SheetManagement/utils'
 import { InputField, EmailField } from './FormFields'
 
 const { I18n } = window
