@@ -1391,6 +1391,11 @@ as: :simulation_progress_notification
               post :import
             end
           end
+          jsonapi_resources :factors_norms do
+            collection do
+              post :update_cell
+            end
+          end
           jsonapi_resources :maintenance_settings
           jsonapi_resources :tags
           jsonapi_resources :external_assessments

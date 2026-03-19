@@ -15,6 +15,7 @@ module Api
             attribute[:created_at].filled(:string)
             attribute[:updated_at].filled(:string)
             attribute[:disabled].filled(:bool)
+            attribute[:factors_norms_props].maybe(:array_of, :hash)
           end
         end
 

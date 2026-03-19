@@ -11,6 +11,8 @@ import { openModal } from '~/modules/admin/core/ui/modals'
 import { RemoveResource, UpdateResource, MemberAction } from '~/hooks/useResources/interfaces'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { get as getCurrentUser } from '~/core/currentUser'
+import { getFeatures } from '~/core/config'
+import { camelizeKeys } from '~/utils/object'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { RemoveNormModal } from './RemoveNormModal'
 import { NormsFormModal } from './NormsFormModal'
@@ -27,9 +29,16 @@ const MODALS = {
   NormImportModal,
 }
 
+const getNormEditorUrl = (normId: string, features: Record<string, boolean>) => (
+  camelizeKeys(features ?? {})?.normEditorNewUi
+    ? `/admin/norms/${normId}/editor`
+    : `/administration/norms/${normId}/editor`
+)
+
 const connecter = connect(
   (state: RootState) => ({
     currentUser: getCurrentUser(state),
+    features: getFeatures(state),
   }),
   {
     openModal,
@@ -38,7 +47,7 @@ const connecter = connect(
 type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
-const NormTable: React.FC<Props> = ({ openModal }) => {
+const NormTable: React.FC<Props> = ({ openModal, features }) => {
   const { resource } = useResourceContext<Norm>()
   const {
     getSortOrder, updateResource, removeResource, memberAction,
@@ -55,6 +64,7 @@ const NormTable: React.FC<Props> = ({ openModal }) => {
           id="id"
           sorter
           sortOrder={getSortOrder('id')}
+          render={norm => <a href={getNormEditorUrl(norm.id, features)}>{norm.id}</a>}
           width={150}
         />
         <Resource.Column<Norm>
@@ -120,6 +130,7 @@ const NormTable: React.FC<Props> = ({ openModal }) => {
                       removeResource,
                       openModal,
                       memberAction,
+                      features,
                     })
                 }
             />
@@ -143,10 +154,11 @@ interface ActionMenuData {
     removeResource: RemoveResource
     openModal: (modalName: string, modalProps: unknown) => void
     memberAction: MemberAction
+    features: Record<string, boolean>
 }
 
 const getActionMenuProps = ({
-  norm, removeResource, openModal, memberAction,
+  norm, removeResource, openModal, memberAction, features,
 }: ActionMenuData): MenuProps => {
   const {
     id, name, meta: { permissions }, normType,
@@ -171,7 +183,7 @@ const getActionMenuProps = ({
     permissions.editor && {
       key: 'norm_editor',
       label: (
-        <a href={`/administration/norms/${norm.id}/editor`}>
+        <a href={getNormEditorUrl(norm.id, features)}>
           {I18n.t('administration.norms.sidebar.editor')}
         </a>
       ),
