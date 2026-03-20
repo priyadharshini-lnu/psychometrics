@@ -4,6 +4,8 @@ module MediaResponses
   class AddTranscriptionJob < ApplicationJob
     queue_as :default
 
+    retry_on OCI::Errors::ServiceError, wait: :polynomially_longer, attempts: 5
+
     def perform(media_response_id)
       media_response = MediaResponse.find(media_response_id)
 
