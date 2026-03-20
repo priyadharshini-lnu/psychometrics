@@ -16180,6 +16180,13 @@ CREATE INDEX index_transcriptions_on_transcribable ON public.transcriptions USIN
 
 
 --
+-- Name: index_transcriptions_on_transcribable_unique; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_transcriptions_on_transcribable_unique ON public.transcriptions USING btree (transcribable_type, transcribable_id);
+
+
+--
 -- Name: index_translations_on_resource_type_and_resource_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -20115,6 +20122,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260320102153'),
 ('20260305110830'),
 ('20260225062612'),
 ('20260225060929'),

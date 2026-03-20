@@ -80,13 +80,8 @@ class MediaResponse < ApplicationRecord
   end
 
   def transcription_record
-    transcription || find_or_create_transcription
-  end
-
-  def find_or_create_transcription
     Transcription.find_or_create_by!(transcribable: self)
   rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique
-    association(:transcription).reload
-    transcription
+    Transcription.find_by!(transcribable: self)
   end
 end
