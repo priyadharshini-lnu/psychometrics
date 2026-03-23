@@ -36,7 +36,6 @@ const devPlugins = __DEV__ ? [
 // Ignore all the files from vendor if it is big and is required just for specific entry point
 const IGNORE_VENDORS = [
   '@tensorflow/tfjs-core',
-  'video.js',
   'powerbi-client',
   'react-pdf',
   '@thetalententerprise/interactive-assessments',
@@ -135,7 +134,12 @@ export default defineConfig({
           return 'chunks/chunk-[hash].js'
         },
         manualChunks(id) {
+          // Bundle video.js, videojs-record, and RecordRTC together in a specific chunk
           if (id.includes('node_modules')) {
+            if (id.includes('video.js/') || id.includes('videojs-record/') || id.includes('recordrtc/')) {
+              return 'videojs-bundle'
+            }
+
             for (let i = 0; i < IGNORE_VENDORS.length; i++) {
               if (id.includes(IGNORE_VENDORS[i])) {
                 return
@@ -157,6 +161,7 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: ['react-csv'],
+    exclude: __DEV__ ? ['video.js', 'recordrtc'] : ['videojs-record', 'video.js', 'recordrtc'],
     esbuildOptions: {
       loader: {
         '.js': 'jsx',
@@ -171,6 +176,7 @@ export default defineConfig({
       WaveSurfer: 'wavesurfer.js',
       RecordRTC: 'recordrtc',
       'window.RecordRTC': 'recordrtc',
+      ...(__PROD__ ? { 'videojs-record/dist/videojs.record': 'videojs-record/dist/videojs.record.min.js' } : {}),
     },
     extensions: ['.cjs', '.mjs', '.js', '.ts', '.jsx', '.tsx']
   },
