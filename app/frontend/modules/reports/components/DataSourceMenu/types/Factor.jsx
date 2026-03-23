@@ -121,7 +121,9 @@ class Factor extends Component {
             hideSelectedOptions={false}
             isMulti={!singleChoice}
             onChange={this.onChange}
+            menuPortalTarget={document.body}
             styles={{
+              menuPortal: base => ({ ...base, zIndex: 99999 }),
               multiValueLabel: (baseStyles) => ({
                 ...baseStyles,
                 whiteSpace: 'normal',
