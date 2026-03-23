@@ -116,9 +116,9 @@ send_idp_comments_notifications:
   class: SendIdpCommentsNotificationsJob
   queue_as: cron_tasks
 
-disable_expired_webhook_job:
+disable_unreachable_webhook_job:
   cron: "0 2 * * *" # Runs daily at 2 AM
-  class: DisableExpiredWebhookJob
+  class: DisableUnreachableWebhooksJob
   queue: cron_tasks
 
 delete_expired_meeting_recordings_job:
