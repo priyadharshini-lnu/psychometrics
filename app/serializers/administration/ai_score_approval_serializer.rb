@@ -4,7 +4,7 @@ module Administration
   class AIScoreApprovalSerializer < Panko::Serializer
     attributes :id, :questions, :competencies, :indicators, :results, :media_responses, :review_as, :approval_status,
                :allow_approve, :allow_bulk_approve_scores, :campaign_name, :subject_name, :project_name, :client_name,
-               :subject_email, :assessment_name, :assessed_by, :approved_by
+               :subject_email, :assessment_name, :assessed_by, :approved_by, :result_stale
 
     def questions
       object.assessment.scorable_ai_questions.order(:position)
@@ -88,6 +88,10 @@ module Administration
 
     def approved_by
       object.score_approved_by&.name
+    end
+
+    def result_stale
+      AI::ContentAnalysis::StaleChecker.new(object).stale?
     end
 
     private

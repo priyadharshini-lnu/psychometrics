@@ -43,6 +43,10 @@ module Api
           can_perform_approval_action?
         end
 
+        def rescore?
+          can_perform_approval_action?
+        end
+
         def bulk_approve?
           can_manage_score_approval?
         end

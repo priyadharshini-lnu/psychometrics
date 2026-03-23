@@ -96,11 +96,23 @@ module Api
       end
     end
 
+    def rescore
+      AdminJob.call(:rescore_ai_scoring, {
+        users_result_id: score_approval.users_result.id,
+        campaign_id: score_approval.campaign_id
+      }, current_user)
+
+      audit! :rescore, score_approval, campaign: score_approval.campaign
+
+      render json: :ok
+    end
+
     def bulk_approve
       approvals, meta = ScoreApprovals::BulkApprove.call!(params[:data][:attributes][:ids], current_user)
 
-      audit! :bulk_approve, score_approval,
-             payload: { ids: params[:data][:attributes][:ids] }, campaign: score_approval.campaign
+      audit! :bulk_approve, nil,
+             record_type: AI::ScoreApproval,
+             payload: { ids: params[:data][:attributes][:ids] }
 
       json = serialize_resources(approvals, ::Api::V2::Administration::AIScoreApprovalResource)
       json[:meta] = meta

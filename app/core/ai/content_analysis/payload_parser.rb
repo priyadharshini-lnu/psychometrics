@@ -34,10 +34,16 @@ module AI
 
       def dependencies
         [
-          ai_assistant&.model_id,
+          ai_assistant.model_id,
+          ai_assistant.system_prompt,
+          ai_assistant.user_prompt,
           assessment_assistant_prompt,
           scoring_context
         ].join("\n")
+      end
+
+      def dependencies_checksum
+        Digest::MD5.hexdigest(dependencies)
       end
 
       private

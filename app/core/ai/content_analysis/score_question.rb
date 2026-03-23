@@ -6,15 +6,16 @@ module AI
       include Concerns::TransientErrorHandler
 
       private_attr_reader :question, :users_result, :ai_assistant, :assessment,
-                          :user_assessment, :rescore
+                          :user_assessment, :rescore, :force_regenerate
 
-      def initialize(question, users_result, rescore: false)
+      def initialize(question, users_result, rescore: false, force_regenerate: false)
         @question = question
         @users_result = users_result
         @user_assessment = users_result.user_assessment
         @assessment = users_result.assessment
         @ai_assistant = assessment.ai_assistant
         @rescore = rescore
+        @force_regenerate = force_regenerate
       end
 
       def call
@@ -35,7 +36,7 @@ module AI
 
       def prepare_session!
         @session = find_or_create_session
-        session.reset_for_rescore! if rescore && session.persisted?
+        session.reset_for_rescore! if force_regenerate && session.persisted?
       end
 
       def generate_scores!
@@ -56,7 +57,8 @@ module AI
         session.update!(
           checkpoint: parsed_scores,
           status: :completed,
-          parsed_dependencies: current_dependencies
+          parsed_dependencies: current_dependencies,
+          content_checksum: current_dependencies_checksum
         )
         broadcast(:ok, parsed_scores)
       end
@@ -101,14 +103,18 @@ module AI
 
       def should_regenerate?
         return false if user_assessment.ai_scoring_approved?
-        return true if rescore
+        return true if force_regenerate
         return true if session.failed? || session.scores.blank?
 
         dependencies_changed?
       end
 
       def dependencies_changed?
-        session.parsed_dependencies != current_dependencies
+        session.content_checksum != current_dependencies_checksum
+      end
+
+      def current_dependencies_checksum
+        @current_dependencies_checksum ||= payload_parser.dependencies_checksum
       end
 
       def current_dependencies

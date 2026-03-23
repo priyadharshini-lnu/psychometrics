@@ -118,7 +118,8 @@ class AdminJobRecord < ApplicationRecord
     project_compact_completion_status_export: 94,
     export_campaign_ai_artifacts_results: 95,
     campaign_report_extract_and_upload_bulk_assets: 96,
-    export_campaign_datasheet: 97
+    export_campaign_datasheet: 97,
+    rescore_ai_scoring: 98
   }
 
   enum :status, { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }

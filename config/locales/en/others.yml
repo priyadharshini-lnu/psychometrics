@@ -933,6 +933,7 @@ en:
         regenerate_report: Regenerate Report
         regenerate_threesixty_report: Regenerate Threesixty Report
         remap_report_assessment: Remap Report Assessment
+        rescore_ai_scoring: AI Rescoring
         rescore_assessment: Rescore Assessment
         rescore_user_assessment: Rescore User Assessment
         send_sms_invites: Send SMS invites

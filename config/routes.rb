@@ -1647,6 +1647,7 @@ only: %i[index create update]
               post :discard_score
               post :discard_question
               post :discard_all_questions
+              post :rescore
               get :subject_assessment
             end
           end

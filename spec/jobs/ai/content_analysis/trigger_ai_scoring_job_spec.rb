@@ -78,6 +78,7 @@ RSpec.describe AI::ContentAnalysis::TriggerAIScoringJob, type: :job do
             users_result.id,
             question.id,
             rescore: false,
+            force_regenerate: false,
             admin_job_record_id: nil
           )
           perform_job
@@ -132,9 +133,32 @@ transcription_status: :processing)
           users_result.id,
           question.id,
           rescore: true,
+          force_regenerate: false,
           admin_job_record_id: nil
         )
         described_class.new.perform(users_result.id, rescore: true)
+      end
+    end
+
+    context 'when rescore is true with force_regenerate' do
+      let!(:question) { create_scorable_question }
+
+      before do
+        allow(Settings.features).to receive(:ai_content_analysis_enabled).and_return(true)
+        project.project_feature&.update(ai_content_analysis: true)
+        users_result.ai_scoring_completed!
+      end
+
+      it 'passes the force_regenerate flag through to ScoreQuestionJob' do
+        expect(AI::ContentAnalysis::ScoreQuestionJob).to receive(:perform_later).with(
+          users_result.id,
+          question.id,
+          rescore: true,
+          force_regenerate: true,
+          admin_job_record_id: nil
+        )
+
+        described_class.new.perform(users_result.id, rescore: true, force_regenerate: true)
       end
     end
   end

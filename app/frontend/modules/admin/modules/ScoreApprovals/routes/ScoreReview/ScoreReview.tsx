@@ -1,12 +1,13 @@
 import {
   Col, Row, Tabs, Flex, Button, Space, message, Card,
-  Typography, Popconfirm,
+  Typography, Popconfirm, Alert,
 } from 'antd'
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import humps from 'humps'
 import {
   LeftOutlined, InfoCircleOutlined, CheckCircleFilled, ReloadOutlined,
+  SyncOutlined, ExclamationCircleFilled,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { QuestionScore } from './QuestionScore'
@@ -192,6 +193,21 @@ export const ScoreReview = () => {
     })
   }
 
+  const handleRescore = () => {
+    memberAction({
+      id,
+      method: 'post',
+      action: 'rescore',
+      body: {},
+    }).then(() => {
+      message.success(I18n.t('admin.ai_scoring_rescore_queued'))
+    }).catch((error) => {
+      message.error(error?.error || error?.base?.[0]?.title)
+    })
+  }
+
+  const showStaleBanner = scoreApproval.resultStale
+
   const nextQuestion = (questionId) => {
     const index = filteredQuestions.findIndex(q => q.id === questionId)
     const nextQuestionItem = filteredQuestions[index + 1]
@@ -356,6 +372,29 @@ export const ScoreReview = () => {
               </Flex>
             </Card>
           </Flex>
+          {showStaleBanner && (
+            <Alert
+              type="warning"
+              showIcon
+              icon={<ExclamationCircleFilled className={styles.staleBannerIcon} />}
+              message={<Typography.Text strong>{I18n.t('admin.ai_scoring_approval_stale_title')}</Typography.Text>}
+              description={I18n.t('admin.ai_scoring_approval_stale_description')}
+              action={(
+                <Popconfirm
+                  title={I18n.t('admin.ai_scoring_refresh_score_confirm_title')}
+                  description={I18n.t('admin.ai_scoring_refresh_score_confirm_description')}
+                  onConfirm={handleRescore}
+                  okText={I18n.t('shared.ok')}
+                  cancelText={I18n.t('shared.cancel')}
+                >
+                  <Button size="small" icon={<SyncOutlined />}>
+                    {I18n.t('admin.ai_scoring_refresh_score')}
+                  </Button>
+                </Popconfirm>
+              )}
+              className={styles.staleBanner}
+            />
+          )}
           <Flex justify="space-between" align="center">
             <Typography.Title level={3} className="mt24">
               {scoreApproval.assessmentName}

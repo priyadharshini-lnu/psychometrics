@@ -78,7 +78,13 @@ en:
     ai_scoring_appoval_score_not_applicable: Score not applicable
     ai_scoring_approval: AI Scoring Approval
     ai_scoring_approval_settings: AI Scoring Approval Settings
+    ai_scoring_approval_stale_description: Configuration updates since the last run may have changed the score. Rescore to update it using the latest settings.
+    ai_scoring_approval_stale_title: Score May Be Outdated
     ai_scoring_approvals: AI Scoring Approvals
+    ai_scoring_refresh_score: Refresh Score
+    ai_scoring_refresh_score_confirm_description: This will re-run AI scoring for this assessment using the latest configuration. Are you sure?
+    ai_scoring_refresh_score_confirm_title: Refresh AI Scores?
+    ai_scoring_rescore_queued: AI rescoring has been queued. Please refresh after a few moments.
     ai_translation: AI Translation
     all_corner_rounded: All corner rounded
     allow_ai_rescoring: Allow AI Rescoring
