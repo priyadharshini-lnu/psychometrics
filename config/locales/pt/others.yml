@@ -1280,7 +1280,7 @@ pt:
     record_not_found: Registo não encontrado
     user_not_authorized: Utilizador não autorizado
   auth:
-    cookies_link: <a href="%{cookies_url}">Declaração sobre cookies</a>
+    cookie_notice_link: <a href="%{cookies_url}">Aviso sobre cookies
     current_password: Palavra-passe atual
     current_password_placeholder: Insira a palavra-passe atual
     email: E-mail
@@ -1326,7 +1326,7 @@ pt:
     password_confirmation: Confirmar a palavra-passe
     password_confirmation_placeholder: Insira a confirmação da palavra-passe
     password_placeholder: Insira a palavra-passe
-    privacy_statement_link: <a href="%{privacy_url}">Declaração de Privacidade</a>
+    privacy_notice_link: <a href="%{privacy_url}">Aviso de Privacidade
     registration:
       description: Preencha os dados abaixo para se registrar e criar uma nova conta
       email_hint: Respeitamos a sua privacidade e não toleramos spam. Nunca forneceremos as suas informações a terceiros
@@ -2775,6 +2775,7 @@ pt:
             r3: 'As informações sobre desenvolvimento incluídas neste relatório podem ser derivadas de uma ou ambas as seguintes fontes:'
             r3a: Uma biblioteca de desenvolvimento personalizada criada para a sua organização
             r3b: Sugestões de desenvolvimento geradas por IA
+            r4: Este relatório IDP foi gerado com o auxílio de tecnologia de IA e pode conter imprecisões. As informações e recomendações fornecidas devem ser interpretadas com cautela e utilizadas exclusivamente como uma ferramenta para o seu desenvolvimento pessoal e profissional. O relatório é válido por um período de 12 a 18 meses.
           main: O IDP criado inclui uma lista detalhada de ações de desenvolvimento que você pode realizar, tendo em mente as melhores práticas de aprendizagem, ou seja, a diretriz 70-20-10, que proporciona uma jornada progressiva combinando aprendizagem em sala de aula, coaching e aprendizagem no trabalho. Com base nos resultados do processo do centro de avaliação, suas respostas no chat e relatórios externos, conforme aplicável, foram recomendados possíveis caminhos de desenvolvimento, que podem ser considerados para o seu desenvolvimento.
         learn_cards:
           collaboration:

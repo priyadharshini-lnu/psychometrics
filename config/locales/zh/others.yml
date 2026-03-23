@@ -1279,7 +1279,7 @@ zh:
     record_not_found: 未找到记录
     user_not_authorized: 未经授权的用户
   auth:
-    cookies_link: <a href="%{cookies_url}">Cookies声明</a>
+    cookie_notice_link: <a href="%{cookies_url}">Cookie 声明
     current_password: 当前密码
     current_password_placeholder: 输入当前密码
     email: 电子邮箱
@@ -1325,7 +1325,7 @@ zh:
     password_confirmation: 确认密码
     password_confirmation_placeholder: 输入密码确认
     password_placeholder: 输入密码
-    privacy_statement_link: <a href="%{privacy_url}">隐私声明</a>
+    privacy_notice_link: <a href="%{privacy_url}">隐私声明
     registration:
       description: 填写以下详细信息以注册并创建新账户
       email_hint: 我们尊重你的私隐，绝不容忍垃圾信息。我们绝不会将你的信息提供给任何第三方
@@ -2754,6 +2754,7 @@ zh:
             r3: 本报告所包含的发展投入可能来源于以下一个或两个来源：
             r3a: 专为贵组织定制的开发库
             r3b: 人工智能生成的开发建议
+            r4: 本IDP报告是在人工智能技术的辅助下生成的，可能存在不准确之处。报告中提供的见解和建议应谨慎解读，仅作为您个人和职业发展的参考工具。本报告的有效期为12至18个月。
           main: 该《个人发展计划》包含一份详细的发展行动清单，供您实施。其中遵循最佳实践学习原则——即70-20-10指导方针，通过课堂学习、辅导指导和在职学习相结合的方式，构建渐进式发展路径。基于评估中心流程结果、您的对话反馈及外部报告（如适用），现已推荐若干潜在发展路径，可供您规划个人发展时参考。
         learn_cards:
           collaboration:

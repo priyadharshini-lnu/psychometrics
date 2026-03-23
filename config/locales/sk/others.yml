@@ -1276,7 +1276,7 @@ sk:
     record_not_found: Záznam sa nenašiel
     user_not_authorized: Používateľ nie je oprávnený
   auth:
-    cookies_link: <a href="%{cookies_url}">Vyhlásenie o súboroch cookie</a>
+    cookie_notice_link: <a href="%{cookies_url}">Oznámenie o súboroch cookie
     current_password: Aktuálne heslo
     current_password_placeholder: Zadajte aktuálne heslo
     email: E-mail
@@ -1322,7 +1322,7 @@ sk:
     password_confirmation: Potvrdenie hesla
     password_confirmation_placeholder: Zadajte potvrdenie hesla
     password_placeholder: Zadajte heslo
-    privacy_statement_link: <a href="%{privacy_url}">Vyhlásenie o ochrane osobných údajov</a>
+    privacy_notice_link: <a href="%{privacy_url}">Oznámenie o ochrane osobných údajov
     registration:
       description: Vyplňte údaje nižšie a zaregistrujte sa a vytvorte si nové konto
       email_hint: Rešpektujeme vaše súkromie a netolerujeme spam. Nikdy neposkytneme vaše informácie žiadnej tretej strane
@@ -2761,6 +2761,7 @@ sk:
             r3: 'Údaje o vývoji uvedené v tejto správe môžu pochádzať z jedného alebo oboch nasledujúcich zdrojov:'
             r3a: Knižnica na mieru vytvorená pre vašu organizáciu
             r3b: Návrhy vývoja generované umelou inteligenciou
+            r4: Táto správa IDP bola vygenerovaná s využitím technológie umelej inteligencie a môže obsahovať nepresnosti. Uvedené postrehy a odporúčania by ste mali vyhodnocovať s rozvahou a využívať ich výlučne ako nástroj pre váš osobný a profesionálny rozvoj. Platnosť správy je 12 až 18 mesiacov.
           main: Vytvorený IDP obsahuje podrobný zoznam rozvojových aktivít, ktoré môžete podniknúť, pričom sa zohľadňujú osvedčené postupy v oblasti vzdelávania, t. j. smernica 70-20-10, ktorá poskytuje postupný proces kombinujúci vzdelávanie v triede, koučing a vzdelávanie priamo na pracovisku. Na základe výsledkov procesu hodnotiaceho centra, vašich odpovedí v chate a externých správ, podľa potreby, boli odporučené možné cesty rozvoja, ktoré môžete zvážiť pre svoj rozvoj.
         learn_cards:
           collaboration:

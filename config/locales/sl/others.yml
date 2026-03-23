@@ -1276,7 +1276,7 @@ sl:
     record_not_found: Zapisa ni bilo mogoče najti
     user_not_authorized: Uporabnik ni pooblaščen
   auth:
-    cookies_link: <a href="%{cookies_url}">Izjava o piškotkih</a>
+    cookie_notice_link: <a href="%{cookies_url}">Obvestilo o piškotkih
     current_password: Trenutno geslo
     current_password_placeholder: Vnesite trenutno geslo
     email: E-pošta
@@ -1322,7 +1322,7 @@ sl:
     password_confirmation: Potrdite geslo
     password_confirmation_placeholder: Za potrditev ponovno vnesite geslo
     password_placeholder: Vnesite geslo
-    privacy_statement_link: <a href="%{privacy_url}">Izjava o zasebnosti</a>
+    privacy_notice_link: <a href="%{privacy_url}">Obvestilo o varstvu osebnih podatkov
     registration:
       description: Vnesite spodnje podatke, da ustvarite nov račun
       email_hint: Spoštujemo vašo zasebnost in ne dopuščamo pošiljanja neželene pošte. Vaših podatkov ne bomo nikoli razkrili ali posredovali tretjim osebam
@@ -2770,6 +2770,7 @@ sl:
             r3: 'Podatki o razvoju, vključeni v to poročilo, lahko izhajajo iz enega ali obeh naslednjih virov:'
             r3a: Prilagojena razvojna knjižnica, ustvarjena za vašo organizacijo
             r3b: Predlogi za razvoj, ustvarjeni z umetno inteligenco
+            r4: To poročilo IDP je bilo pripravljeno s pomočjo tehnologije umetne inteligence in lahko vsebuje netočnosti. Predstavljene ugotovitve in priporočila je treba razlagati z zadržkom ter jih uporabljati izključno kot orodje za vaš osebni in poklicni razvoj. Poročilo velja za obdobje 12–18 mesecev.
           main: Ustvarjeni IDP vključuje podroben seznam razvojnih ukrepov, ki jih lahko izvedete, ob upoštevanju najboljših praks učenja, tj. smernic 70-20-10, ki zagotavljajo postopno pot, ki združuje učenje v učilnici, coaching in učenje na delovnem mestu. Na podlagi rezultatov procesa ocenjevalnega centra, vaših odgovorov v klepetu in zunanjih poročil, če je to primerno, so bili priporočeni možni razvojni poti, ki jih lahko upoštevate pri svojem razvoju.
         learn_cards:
           collaboration:

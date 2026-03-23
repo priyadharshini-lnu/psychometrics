@@ -1279,7 +1279,7 @@ cs:
     record_not_found: Záznam nebyl nalezen
     user_not_authorized: Uživatel není oprávněn
   auth:
-    cookies_link: <a href="%{cookies_url}">Prohlášení o souborech cookie</a>
+    cookie_notice_link: <a href="%{cookies_url}">Informace o souborech cookie
     current_password: Aktuální heslo
     current_password_placeholder: Vložte aktuální heslo
     email: E-mail
@@ -1325,7 +1325,7 @@ cs:
     password_confirmation: Potvrdit heslo
     password_confirmation_placeholder: Zadejte heslo pro potvrzení
     password_placeholder: Zadejte heslo
-    privacy_statement_link: <a href="%{privacy_url}">Prohlášení o ochraně osobních údajů</a>
+    privacy_notice_link: <a href="%{privacy_url}">Zásady ochrany osobních údajů
     registration:
       description: Pro registraci a vytvoření nového účtu vyplňte níže uvedené údaje
       email_hint: Respektujeme vaše soukromí a netolerujeme spam. Vaše údaje nikdy neposkytneme žádné třetí straně.
@@ -2750,6 +2750,7 @@ cs:
             r3: 'Údaje o vývoji uvedené v této zprávě mohou pocházet z jednoho nebo obou následujících zdrojů:'
             r3a: Přizpůsobená vývojová knihovna vytvořená pro vaši organizaci
             r3b: Návrhy vývoje generované umělou inteligencí
+            r4: Tato zpráva IDP byla vygenerována s využitím technologie umělé inteligence a může obsahovat nepřesnosti. Uvedené poznatky a doporučení je třeba vykládat s rozvahou a používat je výhradně jako nástroj pro váš osobní a profesní rozvoj. Platnost zprávy je 12–18 měsíců.
           main: Vytvořený IDP obsahuje podrobný seznam rozvojových aktivit, které můžete podniknout, s ohledem na osvědčené postupy v oblasti vzdělávání, tj. pravidlo 70-20-10, které představuje postupný proces kombinující výuku v učebně, koučování a učení se v praxi. Na základě výsledků procesu hodnotícího centra, vašich odpovědí v chatu a externích zpráv, pokud jsou k dispozici, byly doporučeny možné cesty rozvoje, které můžete zvážit pro svůj rozvoj.
         learn_cards:
           collaboration:

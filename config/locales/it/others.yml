@@ -1276,7 +1276,7 @@ it:
     record_not_found: Record non trovato
     user_not_authorized: Utente non autorizzato
   auth:
-    cookies_link: <a href="%{cookies_url}">Informativa sui cookie</a>
+    cookie_notice_link: <a href="%{cookies_url}">Informativa sui cookie
     current_password: Password corrente
     current_password_placeholder: Inserire la password corrente
     email: Email
@@ -1322,7 +1322,7 @@ it:
     password_confirmation: Conferma la password
     password_confirmation_placeholder: Conferma della password
     password_placeholder: Inserire la password
-    privacy_statement_link: <a href="%{privacy_url}">Informativa sulla privacy</a>
+    privacy_notice_link: <a href="%{privacy_url}">Informativa sulla privacy
     registration:
       description: Compilare i dati sottostanti per registrarsi e creare un nuovo account
       email_hint: Rispettiamo la vostra privacy e non tolleriamo lo spam. Non cederemo mai le vostre informazioni a terzi
@@ -2762,6 +2762,7 @@ it:
             r3: 'I dati relativi allo sviluppo inclusi nel presente rapporto possono provenire da una o entrambe le seguenti fonti:'
             r3a: Una libreria di sviluppo personalizzata creata appositamente per la tua organizzazione
             r3b: Suggerimenti di sviluppo generati dall'intelligenza artificiale
+            r4: Il presente rapporto IDP è stato generato con l'ausilio della tecnologia di intelligenza artificiale e potrebbe contenere imprecisioni. Le informazioni e i consigli forniti devono essere interpretati con cautela e utilizzati esclusivamente come strumento per il vostro sviluppo personale e professionale. Il rapporto ha una validità di 12-18 mesi.
           main: L'IDP creato include un elenco dettagliato delle azioni di sviluppo che puoi intraprendere, tenendo presente le migliori pratiche di apprendimento, ovvero la linea guida 70-20-10, che fornisce un percorso progressivo che combina apprendimento in aula, coaching e apprendimento sul posto di lavoro. Sulla base dei risultati del processo di valutazione, delle tue risposte in chat e delle relazioni esterne, se applicabile, sono stati raccomandati possibili percorsi di sviluppo che possono essere presi in considerazione per la tua crescita professionale.
         learn_cards:
           collaboration:

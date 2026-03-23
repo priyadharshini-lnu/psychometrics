@@ -88,12 +88,12 @@ export const LayoutComponent = ({ config }) => {
               <Space>
                 <img src={footerLogo} className={styles.footerLogo} alt={I18n.t('auth.lighthouse_logo_alt_text')} />
                 <div dangerouslySetInnerHTML={{
-                  __html: I18n.t('auth.privacy_statement_link',
+                  __html: I18n.t('auth.privacy_notice_link',
                     { privacy_url: `/privacy-statement?lang=${I18n.currentLocale()}` }),
                 }}
                 />
                 <div dangerouslySetInnerHTML={{
-                  __html: I18n.t('auth.cookies_link',
+                  __html: I18n.t('auth.cookie_notice_link',
                     { cookies_url: `/cookies-statement?lang=${I18n.currentLocale()}` }),
                 }}
                 />

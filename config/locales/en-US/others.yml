@@ -1276,7 +1276,7 @@ en-US:
     record_not_found: Record Not Found
     user_not_authorized: User Not Authorized
   auth:
-    cookies_link: <a href="%{cookies_url}">Cookies Statement</a>
+    cookie_notice_link: <a href="%{cookies_url}">Cookie Notice</a>
     current_password: Current Password
     current_password_placeholder: Enter Current Password
     email: Email
@@ -1322,7 +1322,7 @@ en-US:
     password_confirmation: Confirm Password
     password_confirmation_placeholder: Enter Password Confirmation
     password_placeholder: Enter Password
-    privacy_statement_link: <a href="%{privacy_url}">Privacy Statement</a>
+    privacy_notice_link: <a href="%{privacy_url}">Privacy Notice</a>
     registration:
       description: Fill in the details below to register and create a new account
       email_hint: We respect your privacy and do not tolerate spam. We will never give away your information to any third party
@@ -2759,6 +2759,7 @@ en-US:
             r3: 'Development inputs included in this report may be derived from one or both of the following sources:'
             r3a: A customized development library created for your organisation
             r3b: AI generated development suggestions
+            r4: This IDP report has been generated with the assistance of AI technology and may contain inaccuracies. The insights and recommendations provided should be interpreted with discretion and used solely as a tool for your personal and professional development. The report is valid for a period of 12-18 months.
           main: The IDP created includes a detailed list of developmental actions that you can undertake, keeping in mind best practice learning i.e. 70-20-10 guideline, which provide a progressive journey combining classroom learning, coaching and on-the-job learning. Based on the outcomes from the assessment center process, your chat responses and external reports, as applicable, possible development pathways have been recommended, which can be considered for your development.
         learn_cards:
           collaboration:

@@ -1276,7 +1276,7 @@ hu:
     record_not_found: A rekord nem található
     user_not_authorized: A felhasználó nem engedélyezett
   auth:
-    cookies_link: <a href="%{cookies_url}">Sütikre vonatkozó nyilatkozat</a>
+    cookie_notice_link: <a href="%{cookies_url}">Sütikre vonatkozó tájékoztató
     current_password: Jelenlegi jelszó
     current_password_placeholder: Jelenlegi jelszó megadása
     email: E-mail
@@ -1322,7 +1322,7 @@ hu:
     password_confirmation: Jelszó megerősítése
     password_confirmation_placeholder: Jelszó megerősítése
     password_placeholder: Jelszó megadása
-    privacy_statement_link: <a href="%{privacy_url}">Adatvédelmi nyilatkozat</a>
+    privacy_notice_link: <a href="%{privacy_url}">Adatvédelmi nyilatkozat
     registration:
       description: Töltse ki az alábbi adatokat a regisztrációhoz és egy új fiók létrehozásához
       email_hint: Tiszteletben tartjuk a magánéletét, és nem toleráljuk a spameket. Soha nem adjuk ki az adatait harmadik félnek
@@ -2761,6 +2761,7 @@ hu:
             r3: 'A jelentésben szereplő fejlesztési adatok az alábbi források egyikéből vagy mindkettőből származhatnak:'
             r3a: Az Ön szervezetének igényeihez igazított fejlesztői könyvtár
             r3b: AI által generált fejlesztési javaslatok
+            r4: Ez az IDP-jelentés mesterséges intelligencia segítségével készült, ezért pontatlanságokat tartalmazhat. A jelentésben szereplő megállapításokat és ajánlásokat körültekintéssel kell értelmezni, és kizárólag személyes és szakmai fejlődésének elősegítésére szabad felhasználni. A jelentés 12–18 hónapig érvényes.
           main: Az elkészített IDP tartalmazza a végrehajtható fejlesztési intézkedések részletes listáját, figyelembe véve a bevált gyakorlatokat, azaz a 70-20-10 irányelvet, amely az osztálytermi tanulást, a coachingot és a munkahelyi tanulást ötvöző, fokozatos fejlődési utat biztosít. Az értékelő központ folyamatának eredményei, a csevegési válaszok és a külső jelentések alapján, adott esetben, lehetséges fejlesztési útvonalakat javasoltunk, amelyeket figyelembe vehet a fejlődése érdekében.
         learn_cards:
           collaboration:

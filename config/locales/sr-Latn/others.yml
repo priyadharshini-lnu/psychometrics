@@ -1287,7 +1287,7 @@ sr-Latn:
     record_not_found: Zapis nije pronađen
     user_not_authorized: Korisnik nije ovlašćen
   auth:
-    cookies_link: <a href="%{cookies_url}">Изјава о колачићима
+    cookie_notice_link: <a href="%{cookies_url}">Обавештење о колачићима
     current_password: Trenutna lozinka
     current_password_placeholder: Unesite trenutnu lozinku
     email: Imejl
@@ -1333,7 +1333,7 @@ sr-Latn:
     password_confirmation: Potvrdi lozinku
     password_confirmation_placeholder: Unesi potvrđenu lozinku
     password_placeholder: Unesite lozinku
-    privacy_statement_link: <a href="%{privacy_url}">Изјава о приватности
+    privacy_notice_link: <a href="%{privacy_url}">Извештај о приватности
     registration:
       description: Popunite podatke ispod da biste se registrovali i kreirali novi nalog
       email_hint: Poštujemo vašu privatnost i ne tolerišemo spam. Nikada nećemo dati vaše podatke bilo kojoj trećoj strani
@@ -2780,6 +2780,7 @@ sr-Latn:
             r3: 'Улази за развој укључени у овај извештај могу бити изведени из једног или оба следећа извора:'
             r3a: Прилагођена развојна библиотека креирана за вашу организацију
             r3b: Вештачка интелигенција генерише предлоге за развој
+            r4: Овај IDP извештај је генерисан уз помоћ вештачке интелигенције и може садржати нетачности. Увиди и препоруке које се пружају треба тумачити с опрезом и користити их искључиво као алат за ваш лични и професионални развој. Извештај важи у периоду од 12 до 18 месеци.
           main: IDP који је креиран садржи детаљну листу развојних активности које можете предузети, имајући у виду најбоље праксе учења, тј. смерницу 70-20-10, која пружа прогресивно путовање комбинујући учење у учионици, коучинг и учење на радном месту. На основу резултата процеса асесмент центра, ваших одговора у разговорима и спољних извештаја, по потреби, предложене су могуће стазе развоја које се могу размотрити за ваш развој.
         learn_cards:
           collaboration:

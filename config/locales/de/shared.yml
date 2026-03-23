@@ -38,6 +38,7 @@ de:
     confirm: bestätigen
     continue: Fortsetzen
     controller: Steuergerät
+    cookie_notice: Hinweis zu Cookies
     cookies_statement: Cookie-Erklärung
     copied_to_clipboard: In die Zwischenablage kopiert
     copy: Kopie
@@ -103,6 +104,7 @@ de:
     policy_version: Richtlinienversion
     policy_version_format: Es sind nur ganze Zahlen zulässig.
     positive: Positiv
+    privacy_notice: Datenschutzerklärung
     processing: Verarbeitung
     processor: Prozessor
     proctoring_maintenance_active: Die Proctoring-Funktion wird derzeit von %{start_time} auf %{end_time} umgestellt. Bitte versuchen Sie es nach Abschluss der Wartungsarbeiten erneut.
