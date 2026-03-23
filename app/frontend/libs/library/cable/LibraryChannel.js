@@ -1,6 +1,5 @@
-import { Cable } from 'action-cable-react'
 import SocketDispatcher from '~/modules/survey/dispatchers/SocketDispatcher'
-import actionCable from './Cable'
+import consumer from '~/core/consumer'
 
 let cable
 let count = 1
@@ -16,20 +15,27 @@ export default {
       RequestsPool[reqId] = onResponce
       metaData.request_id = reqId
     }
-    cable.channel('LibraryChannel').perform(action, metaData)
+    cable.perform(action, metaData)
   },
 
   RequestsPool,
 
   init () {
     if (!cable) {
-      cable = new Cable({
-        LibraryChannel: actionCable.subscriptions.create({ channel: 'Libraries::Channel' }),
+      cable = consumer().subscriptions.create({ channel: 'Libraries::Channel' }, {
+        connected () {
+          SocketDispatcher.connect()
+        },
+        disconnected () {
+          SocketDispatcher.disconnect()
+        },
+        rejected () {
+          SocketDispatcher.rejected()
+        },
+        received (data) {
+          SocketDispatcher.received(data)
+        },
       })
-      cable.channel('LibraryChannel').on('connected', SocketDispatcher.connect)
-      cable.channel('LibraryChannel').on('disconnected', SocketDispatcher.disconnect)
-      cable.channel('LibraryChannel').on('rejected', SocketDispatcher.rejected)
-      cable.channel('LibraryChannel').on('received', SocketDispatcher.received)
     }
   },
 }

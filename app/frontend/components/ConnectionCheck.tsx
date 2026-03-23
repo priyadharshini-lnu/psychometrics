@@ -2,8 +2,9 @@
 import { useEffect, useRef } from 'react'
 import { message } from 'antd'
 import { MessageType } from 'antd/lib/message/interface'
+import consumer from '~/core/consumer'
 
-const { App, I18n } = window
+const { I18n } = window
 
 interface Props {
   onConnected?(): void
@@ -33,7 +34,7 @@ export default function ConnectionCheck (props: Props = {}) {
   }
 
   useEffect(() => {
-    const subscription = App.cable?.subscriptions.create({ channel: 'ConnectionCheckChannel' }, {
+    const subscription = consumer()?.subscriptions.create({ channel: 'ConnectionCheckChannel' }, {
       connected () {
         if (timerRef.current) { clearTimeout(timerRef.current) }
         handleConnection()

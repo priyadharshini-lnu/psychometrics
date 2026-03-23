@@ -1500,6 +1500,11 @@
     unbzip2-stream "^1.4.3"
     yargs "^17.7.2"
 
+"@rails/actioncable@^8.1.200":
+  version "8.1.200"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/@rails/actioncable/-/actioncable-8.1.200.tgz#acecf74ab4846144eefdbc16618786df0cebedf9"
+  integrity sha512-on0DSb7AFUkq1ocxivDNQhhGW/RQpY91zvRVyyaEWP4gOOZWy33P/UyxjQk74IENWNrTqs8+zOGHwTjiiFruRw==
+
 "@rails/activestorage@^7.1.2":
   version "7.1.3"
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/@rails/activestorage/-/activestorage-7.1.3.tgz#e83ece6c5fd94b3ddf30a8cf3b8f78cad049e596"
@@ -2606,11 +2611,6 @@
     mkdirp "^1.0.4"
     path-browserify "^1.0.1"
 
-"@types/actioncable@^5.2.11":
-  version "5.2.11"
-  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/@types/actioncable/-/actioncable-5.2.11.tgz#4b563cec68f00973dc0c5e2cc6c3810d6169a38b"
-  integrity sha512-aGzv5JS3razLvv4ZJW+wlDuNS5y1IFFVlm1EkZq3ZHs6txju7/2iee1e6sdK6DE4zsz8cIREs1K4BtfF5RMESQ==
-
 "@types/argparse@1.0.38":
   version "1.0.38"
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/@types/argparse/-/argparse-1.0.38.tgz#a81fd8606d481f873a3800c6ebae4f1d768a56a9"
@@ -2812,6 +2812,11 @@
   version "15.7.5"
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/@types/prop-types/-/prop-types-15.7.5.tgz#5f19d2b85a98e9558036f6a3cacc8819420f05cf"
   integrity sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==
+
+"@types/rails__actioncable@^8.0.3":
+  version "8.0.3"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/@types/rails__actioncable/-/rails__actioncable-8.0.3.tgz#5f94793e6c56b73ac4a1259a39d68c60784bfea4"
+  integrity sha512-y46MOTYorVQVwlHUyaZYbrh3nIkXsRYNuPna32lb3RngLVBlndNbIPvAUywFfhivftNhYg+vW5sZKWYCVIX2lA==
 
 "@types/react-csv@^1.1.10":
   version "1.1.10"
@@ -3271,13 +3276,6 @@ acorn@^8.9.0:
   version "8.9.0"
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/acorn/-/acorn-8.9.0.tgz#78a16e3b2bcc198c10822786fa6679e245db5b59"
   integrity sha512-jaVNAFBHNLXspO543WnNNPZFRtavh3skAkITqD0/2aeMkKZTN+254PyhwxFYrk3vQ1xfY+2wbesJMs/JC8/PwQ==
-
-"action-cable-react@git+https://github.com/TheTalentEnterprise/action-cable-react.git":
-  version "0.1.1"
-  resolved "git+https://github.com/TheTalentEnterprise/action-cable-react.git#8f6d3dffc9759d58de41ab7663d5aca2b6d11203"
-  dependencies:
-    eventemitter3 "^1.1.1"
-    lodash.capitalize "^3.0.0"
 
 advanced-cropper@~0.18.0:
   version "0.18.0"
@@ -5521,11 +5519,6 @@ event-target-shim@^5.0.0:
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/event-target-shim/-/event-target-shim-5.0.1.tgz#5d4d3ebdf9583d63a5333ce2deb7480ab2b05789"
   integrity sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==
 
-eventemitter3@^1.1.1:
-  version "1.2.0"
-  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/eventemitter3/-/eventemitter3-1.2.0.tgz#1c86991d816ad1e504750e73874224ecf3bec508"
-  integrity sha512-DOFqA1MF46fmZl2xtzXR3MPCRsXqgoFqdXcrCVYM3JNnfUeHTm/fh/v/iU7gBFpwkuBmoJPAm5GuhdDfSEJMJA==
-
 events@^3.1.0, events@^3.3.0:
   version "3.3.0"
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/events/-/events-3.3.0.tgz#31a95ad0a924e2d2c419a813aeb2c4e878ea7400"
@@ -7209,22 +7202,10 @@ lodash-es@^4.17.22:
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.23.tgz#58c4360fd1b5d33afc6c0bbd3d1149349b1138e0"
   integrity sha512-kVI48u3PZr38HdYz98UmfPnXl2DXrpdctLrFLCd3kOx1xUkOmpFPx7gCWWM5MPkL/fD8zb+Ph0QzjGFs4+hHWg==
 
-lodash._basetostring@^3.0.0:
-  version "3.0.1"
-  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/lodash._basetostring/-/lodash._basetostring-3.0.1.tgz#d1861d877f824a52f669832dcaf3ee15566a07d5"
-  integrity sha512-mTzAr1aNAv/i7W43vOR/uD/aJ4ngbtsRaCubp2BfZhlGU/eORUjg/7F6X0orNMdv33JOrdgGybtvMN/po3EWrA==
-
 lodash.camelcase@^4.3.0:
   version "4.3.0"
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
   integrity sha512-TwuEnCnxbc3rAvhf/LbG7tJUDzhqXyFnv3dtzLOPgCG/hODL7WFnsbwktkD7yUV0RrreP/l1PALq/YSg6VvjlA==
-
-lodash.capitalize@^3.0.0:
-  version "3.1.2"
-  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/lodash.capitalize/-/lodash.capitalize-3.1.2.tgz#5ba8108491b4c9e04464e01c5fd0355ae391aa10"
-  integrity sha512-uS80nBAbntMYYW2r66FgRN3uuilWq6ucKsbveGPL/GIUz+/JGbovxli8RVVar0cztcVmphQ920IQ9ivqRoYd/w==
-  dependencies:
-    lodash._basetostring "^3.0.0"
 
 lodash.get@^4.4.2:
   version "4.4.2"

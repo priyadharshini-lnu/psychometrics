@@ -1,4 +1,4 @@
-import { ActionCable } from 'action-cable-react'
+import { createConsumer as railsCreateConsumer } from '@rails/actioncable'
 
 let host = `${location.host.split(':')[0]}:${location.port}`
 let protocol = 'ws:'
@@ -14,7 +14,7 @@ let consumer
 
 const createConsumer = () => {
   if (consumer) { return consumer }
-  consumer = ActionCable.createConsumer(`${protocol}//${host}/cable`)
+  consumer = railsCreateConsumer(`${protocol}//${host}/cable`)
   return consumer
 }
 
