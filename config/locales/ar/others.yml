@@ -2641,7 +2641,7 @@ ar:
       add_development_action: إضافة إجراء تطويري
       add_development_actions_from_below_options: أضف إجراءات التطوير من الخيارات أدناه.
       add_development_actions_modal_title: مكتبة إجراءات التطوير
-      add_from_library: اختر من مكتبة التطوير الخاصة بنا
+      add_from_library: الاختيار من مكتبة خطط التطوير الخاصة بنا
       add_more: إضافة المزيد من إجراءات التطوير
       add_selected_development_actions: إضافة إجراءات تطوير محددة
       all: الكل
@@ -2652,9 +2652,9 @@ ar:
         not_started: لم يبدأ بعد
       completion: الإنجاز
       create_custom_development_action_title: إنشاء إجراء التطوير الخاص بي
-      create_development_actions_with_ai: إعداد إجراءات التنمية لـ
-      create_from_ai: أنشئ باستخدام الذكاء الاصطناعي
-      create_my_own: إنشاء خاص بي
+      create_development_actions_with_ai: جاري إعداد الإجراءات التطويرية لِـ
+      create_from_ai: إعداد خطتي باستخدام الذكاء الاصطناعي
+      create_my_own: إعداد خطتي الخاصة
       custom: إنشائي
       custom_da_description: قم بإنشاء إجراء تطوير مخصص لتلبية احتياجات التطوير الفريدة.
       date_range: تاريخ البداية - تاريخ النهاية
@@ -2670,10 +2670,10 @@ ar:
       generate_by_ai: توليد بواسطة الذكاء الاصطناعي
       generate_more: توليد المزيد
       generating_development_actions: جاري توليد إجراءات التطوير...
-      generative_ai: مدرب الذكاء الاصطناعي
+      generative_ai: المدرّب الذكي
       generative_ai_description_msg: دع الذكاء الاصطناعي ينشئ إجراء تطوير مخصصا لك فقط
       heading: إجراءات التطوير
-      idp_library: مكتبة التطوير
+      idp_library: مكتبة خطط التطوير
       idp_library_description: حدد إجراء تطويري مثبت من مكتبتنا المنسقة من قبل الخبراء.
       incomplete_error: إجراءات تطويرية غير مكتملة
       incomplete_error_message: بعض إجراءات التطوير غير مكتملة. يرجى إكمالها قبل تقديم خطة التطوير الفردية الخاصة بك.
@@ -2711,8 +2711,8 @@ ar:
       write_here: اكتب هنا...
     direct_reportee_details: تفاصيل المبلغين المباشرين
     download:
-      description: قم بتنزيله باستخدام هذا الرابط <a href='%{url}' target='_blank'>الرابط</a>. سينتهي صلاحية هذا الرابط خلال 10 دقائق.
-      title: تقريرك جاهز!
+      description: يمكنك تحميله من خلال هذا <a href='%{url}' target='_blank'>الرابط</a> ، علمًا بأنه صلاحية هذا الرابط ستنتهي خلال 10 دقائق
+      title: أصبح تقريرك جاهز !
     download_plan: تحميل الخطة
     edit_plan: تعديل الخطة
     edit_plan_and_add_skills: قم بتحرير الخطة وانقر فوق إدارة المهارات لإضافة المهارات.
@@ -2872,7 +2872,7 @@ ar:
         pending_approval: قيد المراجعة
         rejected: نبيذ
       summary:
-        ai_count: مدرب الذكاء الاصطناعي
+        ai_count: المدرّب الذكي
         collaborative_learn: التعلم التعاوني
         created_by: أنشئ بواسطة
         current_status: الحالة الحالية لخطة التطوير الفردية
@@ -2880,11 +2880,11 @@ ar:
         custom_count: إنشائي
         da_count: عدد إجراءات التطوير
         formal_learn: التعلم الرسمي
-        generated_ai: مدرب الذكاء الاصطناعي
+        generated_ai: المدرّب الذكي
         learn_on_job: التعلم أثناء العمل
         learn_pathway: مسار التعلم
-        lib_count: مكتبة التطوير
-        library: مكتبة التطوير
+        lib_count: مكتبة خطط التطوير
+        library: مكتبة خطط التطوير
         skills_count: عدد المهارات
         title: ملخص التقرير
     plan: خطة

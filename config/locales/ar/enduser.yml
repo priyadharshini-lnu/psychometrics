@@ -7,7 +7,7 @@ ar:
     ai_idp_assistant_response_upload_different_document: أريد رفع مستند مختلف.
     ai_idp_assistant_response_yes_proceed_with_plan_creation: نعم، تابع في وضع الخطة.
     ai_idp_retake_step_chat_hint_no_document: يمكنك إعادة تشغيل الدردشة لمشاركة المزيد من التفاصيل، وسأبذل قصارى جهدي لمساعدتك.
-    ai_idp_summary_hint_no_document: بإذنك، إذا قلت نعم، يمكنني إعداد خطة تطوير لك. إذا لم يكن كذلك، يمكنك إعادة تشغيل الدردشة لمشاركة المزيد من التفاصيل.
+    ai_idp_summary_hint_no_document: يمكنني الآن إعداد خطة تطويرية مخصّصة تتضمن خطوات عمليّة لدعم نمو مسيرتك المهنية. كما يمكنك إعادة بدء المحادثة لتعديل مدخلاتك عند الحاجة.
     approve_idp_plan: الموافقة على الخطة
     bookings: الحجوزات
     campaign: الحملة
@@ -17,13 +17,15 @@ ar:
     download_pdf: تحميل ملف PDF
     home: لوحة التحكم
     idp_loading_fifth_step: جلب إجراءات التطوير من القالب
-    idp_loading_first_step: أنا مشغول بتحليل أفكارك. انتظر قليلاً! ستكون خطتك جاهزة قريباً
-    idp_loading_fourth_step: خطتك جاهزة تقريبًا! سأضيف بعض الأنشطة وأعدلها وفقًا لتفضيلاتك
+    idp_loading_first_step: جاري تحليل مدخلاتك. يُرجى الانتظار، ستكون خطتك جاهزة قريبًا
+    idp_loading_fourth_step: خطّتك على وشك الاكتمال! أقوم حالياً بإضافة بعض الأنشطة وتعديلها بما يتناسب مع تفضيلاتك
     idp_loading_second_step: تحديد تفضيلاتك المذكورة في الدردشة
     idp_loading_secondary_text: يمكنك اخذ استراحة الان،خطتك ستكون جاهزة عند عودتك
     idp_loading_sixth_step: إنشاء إجراءات التطوير
     idp_plan_approval_note: مذكرة الموافقة
-    idp_report_being_generated: نعمل على تقريرك
+    idp_proceed_with_plan_creation: نعم، تابع عملية إنشاء الخطة
+    idp_report_being_generated: جاري إعداد تقريرك
+    idp_reset_chat: إعادة ضبط الدردشة
     idp_retake_steps_continue_with_this_information: تابع هذه المعلومات
     insights: البصائر
     lighthouse_assistant: دليل التطوير الخاص بك
