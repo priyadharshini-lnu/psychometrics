@@ -47,6 +47,19 @@ describe UserReports::GenerateAndSavePdf do
     end
   end
 
+  context 'Skillvue Report' do
+    it 'calls Skillvue::SaveScoresAndReport if report is a skillvue report' do
+      report = create(:report, :skillvue)
+      users_result = create(:users_result)
+      user_report = create(:user_report, report: report)
+      expect(user_report).to receive(:generatable?).and_return(true)
+      expect(user_report).to receive(:user_results).and_return(UsersResult.where(id: users_result.id))
+      expect(Skillvue::SaveScoresAndReport).to receive(:call!).with(users_result.user_assessment)
+
+      described_class.call!(user_report, current_user)
+    end
+  end
+
   context 'when force regenerate is true' do
     let!(:user_report_pdf) { create(:user_report_pdf, :with_pdf, user_report: user_report, locale: 'en') }
 
