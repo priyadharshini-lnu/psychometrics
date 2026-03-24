@@ -124,7 +124,7 @@ const AdvancedSettingsForm = ({
         newCheckedIds.add(`${factor.id}`)
       }
       if (isParentFactors) {
-        factor.parent_factors.forEach((parentFactor) => {
+        factor.parent_factors?.forEach((parentFactor) => {
           const parentFactorId = `${parentFactor.id}`
           const parentData = modifiedDataForFactorsTree(factorsAndParentFactorsMap.get(parentFactorId))
           if (!factor.parent) {
@@ -497,7 +497,7 @@ const sortFactors = (factors: Factor[]) => factors.sort((a, b) => {
   if (!a.parent && b.parent) {
     return 1
   }
-  return a.name.localeCompare(b.name)
+  return (a.name ?? '').localeCompare(b.name ?? '')
 })
 
 

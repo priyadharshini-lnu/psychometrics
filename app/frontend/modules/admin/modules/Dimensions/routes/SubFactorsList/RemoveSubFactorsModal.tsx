@@ -1,0 +1,56 @@
+import React from 'react'
+import { message } from 'antd'
+import { useParams } from 'react-router-dom'
+import AnswerableConfirmationModal from '~/components/AnswerableConfirmationModal'
+import { SubFactors, SubFactorsTR } from '~/modules/admin/modules/client/core/subFactors'
+import { SafeHTML } from '~/components/SafeHTML'
+import { useResources } from '~/hooks/useResources'
+
+const { I18n } = window
+
+export interface Props {
+  close(): void
+  subFact: SubFactors
+  slug: string
+}
+
+const getResourceName = (slug: string) => {
+  if (slug === 'occupations') return 'occupations_factors'
+  if (slug === 'innovation_styles') return 'innovation_styles_factors'
+  return 'factors'
+}
+
+export const RemoveSubFactorsModal: React.FC<Props> = ({ close, subFact, slug }) => {
+  const { dimensionId, tagId } = useParams() as { dimensionId: string, tagId: string }
+
+  const resourceName = getResourceName(slug)
+
+  const resource = useResources<SubFactors>(
+    resourceName,
+    {
+      basePath: `dimensions/${dimensionId}/${slug}/${tagId}/`,
+      responseType: SubFactorsTR,
+    },
+  )
+
+  const { id, name } = subFact
+
+  const displayName = slug === 'occupations' ? (subFact.factorName || '') : (name || '')
+
+  const handleOnConfirm = () => resource.removeResource(id).then(() => {
+    message.info(I18n.t('frontend.clients.actions.remove.success', { clientName: displayName }))
+    close()
+  }).catch((error) => {
+    message.error(error)
+  })
+
+  return (
+    <AnswerableConfirmationModal
+      requiredAnswer={displayName}
+      warningMessage={<SafeHTML html={I18n.t('administration.factors.resource.confirmations.delete.body')} />}
+      confirmationMessage={I18n.t('administration.scoring.factor_removal_confirmation')}
+      onConfirm={handleOnConfirm}
+      onCancel={close}
+    />
+  )
+}

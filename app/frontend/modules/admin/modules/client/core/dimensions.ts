@@ -3,7 +3,28 @@ import * as t from 'io-ts'
 export const DimensionTR = t.type({
   id: t.string,
   name: t.string,
+  disabled: t.boolean,
+  owner: t.union([
+    t.type({
+      id: t.string,
+      name: t.string,
+    }),
+    t.undefined,
+  ]),
+  occupationsEnabled: t.boolean,
+  innovationStylesEnabled: t.boolean,
+  createdAt: t.union([t.string, t.undefined]),
+  updatedAt: t.union([t.string, t.undefined]),
 })
+
+export const Schema = {
+  type: 'dimensions',
+  relationships: {
+    owner: {
+      type: 'clients',
+    },
+  },
+}
 
 
 export type Dimension = t.TypeOf<typeof DimensionTR>

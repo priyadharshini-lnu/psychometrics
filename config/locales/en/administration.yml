@@ -1871,6 +1871,8 @@ en:
       form:
         enable_innovation_styles: Enable Innovation Styles
         enable_occupations: Enable Occupations
+        name: Name
+        title: Dimensions
       import_factors:
         import: Import
         sample_file: Sample File
@@ -1918,6 +1920,7 @@ en:
         confirmations:
           delete:
             body: "<p>Are you sure you want to delete this Dimension?</p>\n"
+            message: Enter dimension name given below in text box to confirm
             title: Delete <strong>Dimension</strong> ?
           toggle_status:
             body: "<p>Are you sure you want to %{status} this Dimension?</p>\n"
@@ -1982,6 +1985,7 @@ en:
                 score: Score
                 zscore: Z Score
             title: JSON Paths for Scores
+        predicate: Predicate
         scoring_strategies:
           custom_formula: Custom Formula
           external_score: External Score
@@ -1995,10 +1999,13 @@ en:
           sub_factors_sum: Weighted Sum of Factors
         scoring_strategies_tip: " <strong>Questions (Average):</strong> This is like current scoring method when there are questions linked to a factor. <br /> <br /> <strong>Questions (SUM):</strong> This is like Questions (Average), but using SUM <br /> <br /> <strong>Questions of Other Factors (Average):</strong> This is like current scoring method when there are sub-factors for a factor, only change is the addition of weight. <br /> <br /> <strong>Questions of Other Factors (SUM):</strong> This is like Other Factors (Average), but using SUM <br /> <br /> <strong>Weighted Sum of Factors:</strong> Here the scores of the selected other factors are multiplied by their weights are added."
         scoring_strategy: Scoring strategy
+        search_factors: Search factors
         use_sub_factor_norm_score: Use Factors norm score
+        value: Value
       index:
         icon: Icon
         new: Add
+        precision: Precision
         scoring_strategies:
           custom_formula: Custom Formula
           external_score: External Score
@@ -2292,6 +2299,7 @@ en:
       edit:
         header: Edit Innovation Style
       form:
+        full_description: Full description
         no_icon: No icon
       index:
         new: Add
@@ -2663,8 +2671,12 @@ en:
       edit:
         header: Edit occupation
       form:
+        alternative_icon: Alternative icon
+        color: Color
         hint:
           key_career_tracks: '"+" - list, "*" - bold. Example: + *Biology* - some description...'
+        indicative_roles_image: Indicative roles image
+        key_career_tracks_image: Key career tracks image
         no_icon: No icon
       index:
         new: Add
@@ -3736,8 +3748,10 @@ en:
       id: ID
       import:
         factors: Import Campaign Factors
+      innovation_style_removal_confirmation: Enter innovation style name given below in text box to confirm
       name: Name
       no_groups: No groups present
+      occupation_removal_confirmation: Enter occupation name given below in text box to confirm
       output_type: Output Type
       pattern_error: Only alphanumeric characters, spaces and dashes are allowed.
       profile:

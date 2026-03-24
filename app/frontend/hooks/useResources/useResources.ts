@@ -274,12 +274,12 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     })
   }
 
-  const uploadFileAction = (action: string, body: FormData) => new Promise(async (resolve, reject) => {
+  const uploadFileAction = (action: string, body: FormData, method = 'post') => new Promise(async (resolve, reject) => {
     const requestKey: RequestType = `upload/${action}`
     try {
       setRequests({ ...requests, [requestKey]: { status: RequestStatus.Loading } })
       const response = await window.fetch(`${resourceUrl}/${action}`, {
-        method: 'post',
+        method,
         body,
       })
 

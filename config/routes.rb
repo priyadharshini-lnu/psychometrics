@@ -1382,7 +1382,25 @@ as: :simulation_progress_notification
             post :export_normed_results
             post :external_scores
           end
-          jsonapi_resources :dimensions
+          jsonapi_resources :dimensions do
+            scope module: :dimensions do
+              jsonapi_resources :factors do
+                resource :uploads, only: %i[update], controller: 'factors/uploads'
+              end
+              jsonapi_resources :occupations do
+                scope module: :occupations do
+                  jsonapi_resources :occupations_factors
+                  resource :uploads, only: %i[update], controller: 'uploads'
+                end
+              end
+              jsonapi_resources :innovation_styles do
+                scope module: :innovation_styles do
+                  jsonapi_resources :innovation_styles_factors
+                  resource :uploads, only: %i[update], controller: 'uploads'
+                end
+              end
+            end
+          end
           jsonapi_resources :norms do
             post :copy
             post :editor
