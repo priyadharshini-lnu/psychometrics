@@ -125,7 +125,6 @@ const AssessorList: React.FC<Props> = ({
               sorter
               sortOrder={getSortOrder('id')}
               render={({ id }) => (
-                // eslint-disable-next-line max-len
                 <Link to={`/admin/projects/${projectId}/new_campaigns/${campaignId}/participants/assessors/${id}`}>
                   {id}
                 </Link>

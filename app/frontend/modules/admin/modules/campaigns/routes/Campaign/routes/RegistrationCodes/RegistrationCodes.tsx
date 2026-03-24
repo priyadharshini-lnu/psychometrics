@@ -225,7 +225,6 @@ const getQRCodeMenuProps = ({
       label: (
         <a
           download
-        // eslint-disable-next-line max-len
           href={`/administration/new_campaigns/${campaignId}/registration_codes/${id}/download_qrcode.png`}
         >
           PNG
@@ -238,7 +237,6 @@ const getQRCodeMenuProps = ({
       label: (
         <a
           download
-        // eslint-disable-next-line max-len
           href={`/administration/new_campaigns/${campaignId}/registration_codes/${id}/download_qrcode.svg`}
         >
           SVG

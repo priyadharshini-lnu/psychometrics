@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import * as t from 'io-ts'
 
 import ApiAction from 'interfaces/ApiAction'

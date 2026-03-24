@@ -1,5 +1,4 @@
 /* eslint-disable prefer-spread */
-/* eslint-disable prefer-rest-params */
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
 import { getStore } from '~/modules/survey/store/StoreWatchman'

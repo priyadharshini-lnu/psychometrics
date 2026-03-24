@@ -1,4 +1,3 @@
-/* eslint-disable implicit-arrow-linebreak */
 import lodashGet from 'lodash/get'
 import * as t from 'io-ts'
 

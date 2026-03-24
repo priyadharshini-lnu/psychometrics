@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-
 import React, { useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {

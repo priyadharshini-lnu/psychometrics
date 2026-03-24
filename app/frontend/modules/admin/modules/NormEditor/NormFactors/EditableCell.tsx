@@ -58,7 +58,6 @@ export const EditableCell: React.FC<EditableCellProps> = ({
       await handleSave(field, { ...record, ...values })
       if (editNext) editNextColumn(record.key, field, editNext)
     } catch (errInfo) {
-      // eslint-disable-next-line no-console
       console.error('Save failed: ', errInfo)
     }
   }

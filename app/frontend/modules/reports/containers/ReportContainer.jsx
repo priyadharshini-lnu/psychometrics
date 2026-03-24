@@ -1,4 +1,3 @@
-/* eslint-disable react/no-find-dom-node */
 import { Component } from 'react'
 import { Provider } from 'react-redux'
 import _ from 'lodash'

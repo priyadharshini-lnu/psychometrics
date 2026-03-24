@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 import { Component } from 'react'
 import videojs from 'videojs'
 
@@ -19,7 +18,6 @@ export class VideoPlayer extends Component {
 
     const options = {
       sources: [{
-        // eslint-disable-next-line max-len
         src: mediaResponse ? mediaResponse.url : undefined,
         type: 'video/mp4',
       }],

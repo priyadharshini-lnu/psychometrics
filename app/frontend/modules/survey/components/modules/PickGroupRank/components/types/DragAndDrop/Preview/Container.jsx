@@ -1,5 +1,4 @@
 /* eslint-disable react/no-will-update-set-state */
-/* eslint-disable react/no-access-state-in-setstate */
 import _ from 'lodash'
 import { Component } from 'react'
 import PropTypes from 'prop-types'

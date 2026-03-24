@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import _ from 'lodash'
 import ResultStore from '~/modules/reports/store/ResultStore'
 import { getSavilleFactorsScore } from '~/modules/reports/commands/getSavilleFactorsScore'

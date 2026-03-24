@@ -21,7 +21,6 @@ export default function ChartOptions (model) {
       tickWidth: 0,
       tickAmount: 0,
       tickInterval: model.props.hideMarkers ? 0 : Math.round(maxValue / 6),
-      // eslint-disable-next-line no-nested-ternary
       tickPositions: model.props.hideMarkers ? '' : [..._.times(Math.round(maxValue / 6), i => i * 6), maxValue],
       labels: {
         y: 16,

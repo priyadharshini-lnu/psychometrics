@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import _ from 'lodash'
 import { denormalize } from 'normalizr'
 import { camelizeKeys } from '~/utils/object'

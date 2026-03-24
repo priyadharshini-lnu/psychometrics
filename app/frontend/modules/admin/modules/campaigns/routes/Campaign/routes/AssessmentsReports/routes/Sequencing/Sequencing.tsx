@@ -48,7 +48,6 @@ import { AddGroup } from './AddGroup'
 import { Assessment } from './Assessment'
 import { GroupedAssessmentContainer } from './GroupedAssessmentContainer'
 import { getGroupById, getItemIdFromSortingId, updateArrayItemsPositionOnIndices } from '~/utils/dnd'
-// eslint-disable-next-line max-len
 import { AddWorkshopActivityDurationModal } from './AddWorkshopActivityDurationModal'
 import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'

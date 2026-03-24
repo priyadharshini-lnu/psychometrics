@@ -65,7 +65,6 @@ const EvaluationListComponent = ({
       label: userPresenter.getFullNameWithEmail(evaluator.user),
     })),
     onClick: ({ key }) => {
-      // eslint-disable-next-line max-len
       navigate(`/threesixty_campaigns/${subject.campaignId}/evaluations/${key}?approve_evaluation=true&read=true`)
     },
   })
