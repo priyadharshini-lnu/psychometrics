@@ -137,4 +137,155 @@ describe Campaign, type: :model do
       expect(campaign.datasheet_data('james@cc.com')).to eq({ 'Name' => 'Smith', 'Id' => 1, 'Title' => 'Developer' })
     end
   end
+
+  describe 'system check option helpers' do
+    context 'for common campaigns' do
+      describe '#system_check_enabled?' do
+        it 'returns false by default' do
+          expect(campaign.system_check_enabled?).to be false
+        end
+
+        it 'returns true when enabled in campaign_options' do
+          campaign.campaign_options.update!(system_check_enabled: true)
+
+          expect(campaign.system_check_enabled?).to be true
+        end
+      end
+
+      describe '#system_check_validity' do
+        it 'returns 86400 by default' do
+          expect(campaign.system_check_validity).to eq(86_400)
+        end
+
+        it 'returns the configured validity period' do
+          campaign.campaign_options.update!(system_check_validity: 3600)
+
+          expect(campaign.system_check_validity).to eq(3600)
+        end
+      end
+
+      describe '#allow_continue_with_warning?' do
+        it 'returns false by default' do
+          expect(campaign.allow_continue_with_warning?).to be false
+        end
+
+        it 'returns true when enabled in campaign_options' do
+          campaign.campaign_options.update!(allow_continue_with_warning: true)
+
+          expect(campaign.allow_continue_with_warning?).to be true
+        end
+      end
+
+      describe '#minimum_upload_speed' do
+        it 'returns nil when not configured' do
+          expect(campaign.minimum_upload_speed).to be_nil
+        end
+
+        it 'returns the configured minimum upload speed when set' do
+          campaign.campaign_options.update!(minimum_upload_speed: 25)
+
+          expect(campaign.minimum_upload_speed).to eq(25)
+        end
+      end
+
+      describe '#minimum_download_speed' do
+        it 'returns nil when not configured' do
+          expect(campaign.minimum_download_speed).to be_nil
+        end
+
+        it 'returns the configured minimum download speed when set' do
+          campaign.campaign_options.update!(minimum_download_speed: 50)
+
+          expect(campaign.minimum_download_speed).to eq(50)
+        end
+      end
+
+      describe '#calculated_minimum_upload_speed' do
+        it 'returns base upload speed when no relevant questions' do
+          expect(campaign.calculated_minimum_upload_speed).to eq(1)
+        end
+
+        it 'returns video upload speed when campaign has video questions' do
+          user = create(:user)
+          campaign_user = create(:campaign_user, campaign: campaign, user: user)
+          assessment = create(:assessment)
+          create(:campaign_assessment, campaign: campaign, assessment: assessment)
+          create(:user_assessment, campaign: campaign, assessment: assessment, subject: user)
+          create(:question, assessment: assessment, type: 'VideoResponse')
+
+          expect(campaign.calculated_minimum_upload_speed(campaign_user)).to eq(5)
+        end
+      end
+    end
+
+    context 'for 360 campaigns' do
+      let(:threesixty_campaign) { create(:threesixty_campaign, campaign: campaign) }
+      let(:threesixty_option) { create(:threesixty_option, threesixty_campaign: threesixty_campaign) }
+
+      before do
+        threesixty_option
+        campaign.reload
+      end
+
+      describe '#system_check_enabled?' do
+        it 'returns value from threesixty_option participants global when set' do
+          threesixty_option.update!(participants: { 'global' => { 'system_check_enabled' => true } })
+
+          expect(campaign.system_check_enabled?).to be true
+        end
+
+        it 'returns default value when not set in threesixty_option (does not fallback to campaign_options)' do
+          expect(campaign.system_check_enabled?).to be false
+        end
+      end
+
+      describe '#system_check_validity' do
+        it 'returns value from threesixty_option participants global when set' do
+          threesixty_option.update!(participants: { 'global' => { 'system_check_validity' => 7200 } })
+
+          expect(campaign.system_check_validity).to eq(7200)
+        end
+
+        it 'returns default (86400) when not set in threesixty_option' do
+          expect(campaign.system_check_validity).to eq(86_400)
+        end
+      end
+
+      describe '#allow_continue_with_warning?' do
+        it 'returns value from threesixty_option participants global when set' do
+          threesixty_option.update!(participants: { 'global' => { 'allow_continue_with_warning' => true } })
+
+          expect(campaign.allow_continue_with_warning?).to be true
+        end
+
+        it 'returns default value when not set in threesixty_option (does not fallback to campaign_options)' do
+          expect(campaign.allow_continue_with_warning?).to be false
+        end
+      end
+
+      describe '#minimum_upload_speed' do
+        it 'returns value from threesixty_option participants global when set' do
+          threesixty_option.update!(participants: { 'global' => { 'minimum_upload_speed' => 30 } })
+
+          expect(campaign.minimum_upload_speed).to eq(30)
+        end
+
+        it 'returns nil when not set in threesixty_option' do
+          expect(campaign.minimum_upload_speed).to be_nil
+        end
+      end
+
+      describe '#minimum_download_speed' do
+        it 'returns value from threesixty_option participants global when set' do
+          threesixty_option.update!(participants: { 'global' => { 'minimum_download_speed' => 100 } })
+
+          expect(campaign.minimum_download_speed).to eq(100)
+        end
+
+        it 'returns nil when not set in threesixty_option' do
+          expect(campaign.minimum_download_speed).to be_nil
+        end
+      end
+    end
+  end
 end

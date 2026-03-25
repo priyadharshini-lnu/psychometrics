@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
-import { Row, Col, Tooltip } from 'antd'
+import {
+  Row, Col, Tooltip,
+} from 'antd'
 import { QuestionCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
-
 import { SafeHTML } from '~/components/SafeHTML'
 import OptionSection from '~/modules/admin/components/Options/Section'
 import ExpandableOption from '~/modules/admin/components/Options/Expandable'
@@ -15,6 +16,7 @@ export default function GlobalSection ({
 }) {
   const [watermarkContent, setWatermarkContent] = useState(options.watermarkContent)
   const OBJECT_KEY = 'global'
+  // const inputDurationRef = useRef(null)
 
   useEffect(() => {
     setWatermarkContent(options.watermarkContent || '')
@@ -24,6 +26,14 @@ export default function GlobalSection ({
     value: options[name],
     onChange: updateParticipantOptions([OBJECT_KEY, name]),
   })
+
+  // const parametersForSystemCheckValidity = ({
+  //   value: options.systemCheckValidity ? options.systemCheckValidity : '1d',
+  //   onChange: (value) => {
+  //     updateParticipantOptions([OBJECT_KEY, 'systemCheckValidity'], value)
+  //   },
+  //   ref: inputDurationRef,
+  // })
 
   return (
     <OptionSection label={I18n.t('administration.threesixty_campaigns.menu.participants.options.global')}>
@@ -68,6 +78,64 @@ export default function GlobalSection ({
           </Row>
         )
       }
+      {/* <ExpandableOption
+        label={I18n.t('admin.enable_system_check')}
+        {...parametersForSwitch('systemCheckEnabled')}
+      /> */}
+      {/* {
+                          options.systemCheckEnabled
+                       && (
+                         <>
+
+                           <Row align="middle">
+                             <Col offset={2}>
+                               <label>{I18n.t('admin.validity')}</label>
+                             </Col>
+                             <Col offset={1}>
+                               <InputDuration
+                                 masked
+                                 placeholder={I18n.t('administration.components.input_duration.placeholder')}
+                                 {...parametersForSystemCheckValidity}
+                               />
+                             </Col>
+                           </Row>
+                           <Row className="mbl" gutter={16} align="middle">
+                             <Col offset={2} span={22}>
+                               <ExpandableOption
+                                 label={I18n.t('admin.allow_continue_with_warning_system_check')}
+                                 {...parametersForSwitch('allowContinueWithWarning')}
+                               />
+                             </Col>
+                           </Row>
+
+                           <Row className="mbl" align="middle">
+                             <Col offset={2}>
+                               <label>{I18n.t('admin.minimum_download_speed')}</label>
+                             </Col>
+                             <Col offset={1}>
+                               <Input
+                                 value={options.minimumDownloadSpeed ? options.minimumDownloadSpeed : 0}
+                                 onChange={e => updateParticipantOptions([OBJECT_KEY,
+                                   'minimumDownloadSpeed'], Number(e.target.value))}
+                               />
+                             </Col>
+                           </Row>
+
+                           <Row className="mbl" align="middle">
+                             <Col offset={2}>
+                               <label>{I18n.t('admin.minimum_upload_speed')}</label>
+                             </Col>
+                             <Col offset={1}>
+                               <Input
+                                 value={options.minimumUploadSpeed ? options.minimumUploadSpeed : 0}
+                                 onChange={e => updateParticipantOptions([OBJECT_KEY,
+                                   'minimumUploadSpeed'], Number(e.target.value))}
+                               />
+                             </Col>
+                           </Row>
+                         </>
+
+                       )} */}
     </OptionSection>
   )
 }

@@ -2430,6 +2430,11 @@ CREATE TABLE public.campaign_options (
     workshop_invite_requires_prework_completion boolean DEFAULT false,
     proctoring_enabled_on_workshop_activity boolean DEFAULT true,
     enable_video_call_recording boolean DEFAULT false NOT NULL,
+    system_check_enabled boolean DEFAULT false NOT NULL,
+    system_check_validity integer,
+    allow_continue_with_warning boolean DEFAULT false NOT NULL,
+    minimum_upload_speed integer,
+    minimum_download_speed integer,
     enable_mobile_proctoring boolean DEFAULT false
 );
 
@@ -7352,6 +7357,73 @@ ALTER SEQUENCE public.smtp_settings_id_seq OWNED BY public.smtp_settings.id;
 
 
 --
+-- Name: system_check_records; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.system_check_records (
+    id bigint NOT NULL,
+    system_check_session_id bigint NOT NULL,
+    check_type character varying NOT NULL,
+    passed boolean DEFAULT false NOT NULL,
+    data jsonb,
+    finished_at timestamp(6) without time zone,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: system_check_records_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.system_check_records_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: system_check_records_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.system_check_records_id_seq OWNED BY public.system_check_records.id;
+
+
+--
+-- Name: system_check_sessions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.system_check_sessions (
+    id bigint NOT NULL,
+    finished_at timestamp(6) without time zone,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    user_id bigint NOT NULL
+);
+
+
+--
+-- Name: system_check_sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.system_check_sessions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: system_check_sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.system_check_sessions_id_seq OWNED BY public.system_check_sessions.id;
+
+
+--
 -- Name: taggings; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -10545,6 +10617,20 @@ ALTER TABLE ONLY public.smtp_settings ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: system_check_records id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.system_check_records ALTER COLUMN id SET DEFAULT nextval('public.system_check_records_id_seq'::regclass);
+
+
+--
+-- Name: system_check_sessions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.system_check_sessions ALTER COLUMN id SET DEFAULT nextval('public.system_check_sessions_id_seq'::regclass);
+
+
+--
 -- Name: taggings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -12415,6 +12501,22 @@ ALTER TABLE ONLY public.sms_records
 
 ALTER TABLE ONLY public.smtp_settings
     ADD CONSTRAINT smtp_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: system_check_records system_check_records_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.system_check_records
+    ADD CONSTRAINT system_check_records_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: system_check_sessions system_check_sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.system_check_sessions
+    ADD CONSTRAINT system_check_sessions_pkey PRIMARY KEY (id);
 
 
 --
@@ -15952,6 +16054,20 @@ CREATE INDEX index_smtp_settings_on_project_id ON public.smtp_settings USING btr
 
 
 --
+-- Name: index_system_check_records_on_system_check_session_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_system_check_records_on_system_check_session_id ON public.system_check_records USING btree (system_check_session_id);
+
+
+--
+-- Name: index_system_check_sessions_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_system_check_sessions_on_user_id ON public.system_check_sessions USING btree (user_id);
+
+
+--
 -- Name: index_taggings_on_context; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -17685,6 +17801,14 @@ ALTER TABLE ONLY public.client_features
 
 
 --
+-- Name: system_check_records fk_rails_31829aa176; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.system_check_records
+    ADD CONSTRAINT fk_rails_31829aa176 FOREIGN KEY (system_check_session_id) REFERENCES public.system_check_sessions(id);
+
+
+--
 -- Name: license_usages fk_rails_3268c52319; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -19125,6 +19249,14 @@ ALTER TABLE ONLY public.factor_benchmark_scores
 
 
 --
+-- Name: system_check_sessions fk_rails_b07f269d86; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.system_check_sessions
+    ADD CONSTRAINT fk_rails_b07f269d86 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
 -- Name: innovation_styles_factors fk_rails_b0b768b7ef; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -20157,8 +20289,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260212093958'),
 ('20260212060354'),
 ('20260211083300'),
+('20260211000144'),
+('20260210181932'),
 ('20260210130000'),
 ('20260210084851'),
+('20260209204914'),
 ('20260209123134'),
 ('20260209114529'),
 ('20260209112420'),

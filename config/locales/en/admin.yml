@@ -88,6 +88,7 @@ en:
     ai_translation: AI Translation
     all_corner_rounded: All corner rounded
     allow_ai_rescoring: Allow AI Rescoring
+    allow_continue_with_warning_system_check: Allow users to continue with warnings when system check fails
     api_keys: API keys
     apply_to_existing_users: Apply this change to existing users in this campaign
     assessment_center_activity: Activity
@@ -238,6 +239,7 @@ en:
     enable_enhance_with_ai_client_level: Enhance with AI is disabled by client
     enable_maintenance: Enable Maintenance
     enable_mobile_proctoring: Enable Mobile Proctoring
+    enable_system_check: Enable System Check
     enable_transcription: Enable Transcription
     enable_transcription_msg: Enable Transcription to use AI scoring on video/audio response questions.
     end_time: End Time
@@ -337,6 +339,8 @@ en:
     mhs_session_id: Mhs Session ID
     min_value: Min value
     minimum_10_words: Minimum 10 words
+    minimum_download_speed: Minimum Download Speed (in Mbps)
+    minimum_upload_speed: Minimum Upload Speed (in Mbps)
     missing_min_max_values: Minimum and Maximum values are required.
     model_answer: Model Answer
     model_answer_placeholder: Enter the model answer for AI scoring.
@@ -973,6 +977,7 @@ en:
     user_report_events: User Report Events
     users: Users
     validation_error: Please fill in all required fields
+    validity: Validity
     very_high: Very High
     very_low: Very Low
     view_licenses: View Licenses

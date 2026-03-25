@@ -15,6 +15,7 @@ import autocomplete from './ui/autocomplete'
 import project from '../modules/campaigns/core/project'
 import idp from '../modules/campaigns/core/idp/userIdpPlan'
 import { idpApi } from '../modules/campaigns/core/idp/api'
+import { systemChecksAPI } from '../modules/campaigns/core/systemChecks/api'
 import idpRtk from '../modules/campaigns/core/idp/idpPlanRtk'
 import anonym from '../modules/campaigns/core/anonym'
 import workshop from '~/modules/endUser/modules/campaigns/core/workshops'
@@ -23,6 +24,7 @@ import flash from '~/core/flash'
 import errors from '~/core/errors'
 import proctoring from '~/core/proctoring'
 import maintenanceSettings from '~/core/maintenanceSettings'
+import systemCheck from '../modules/campaigns/core/systemChecks/systemCheckRTK'
 
 const rootReducer = () => combineReducers({
   campaigns: combineReducers({
@@ -36,6 +38,7 @@ const rootReducer = () => combineReducers({
     project,
     userAssessment,
     workshop,
+    systemCheck,
   }),
   ui: combineReducers({
     autocomplete,
@@ -54,6 +57,7 @@ const rootReducer = () => combineReducers({
   liveChat: () => ({}),
   maintenanceSettings,
   [idpApi.reducerPath]: idpApi.reducer,
+  [systemChecksAPI.reducerPath]: systemChecksAPI.reducer,
   proctoring,
 })
 

@@ -1,12 +1,14 @@
 import React, { FC } from 'react'
 import {
-  Card, Col, Typography, Progress, Row, Tooltip, Space,
+  Card, Col, Typography, Progress, Row, Tooltip, Space, Button, Popover, Flex,
 } from 'antd'
 import cs from 'classnames'
-
 import { DirectionalArrowIcon, ScrollToViewOnFocusButton } from '~/glint'
 
 import styles from './styles.less'
+import {
+  InfoCircleOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 
 const { Title } = Typography
 type DetailsCardProps = {
@@ -31,7 +33,11 @@ type DetailsCardProps = {
   footer?: React.ReactNode
   className?: string
   hideTitleHighlighter?: boolean
+  showReadinessCheck? :boolean
+  onReadinessCheckClick?: () => void
 }
+
+const { I18n } = window
 
 export const DetailsCard: FC<DetailsCardProps> = ({
   title,
@@ -55,10 +61,13 @@ export const DetailsCard: FC<DetailsCardProps> = ({
   footer,
   className,
   hideTitleHighlighter,
+  showReadinessCheck,
+  onReadinessCheckClick,
 }) => {
   const handleClick = () => {
     onButtonClick && onButtonClick()
   }
+
 
   const titleElement = (
     <Title
@@ -109,49 +118,95 @@ export const DetailsCard: FC<DetailsCardProps> = ({
             />
           )}
         </Col>
-        {buttonText && (
+        {showReadinessCheck ? (
           <Col
             lg={24 - progressBarSpanLg}
             md={16}
             xs={24 - progressBarSpanXs}
             className={cs({ [styles.buttonCol]: true, [styles.withFooter]: footer })}
           >
-            <Space>
-              {secondaryBtnText && (
-                <ButtonWrapper wrapText={actionDisabled ? actionDisabledText : undefined}>
-                  <ScrollToViewOnFocusButton
-                    id={secondaryBtnId}
-                    size="small"
-                    type="primary"
-                    disabled={actionDisabled}
-                    ghost
-                    onClick={onSecondaryBtnClick}
-                    className={styles.actionButton}
-                    aria-labelledby={`${secondaryBtnId} ${titleId}`}
-                  >
-                    {secondaryBtnText}
-                    <DirectionalArrowIcon aria-label="" className={styles.buttonIcon} />
-                  </ScrollToViewOnFocusButton>
-                </ButtonWrapper>
-              )}
-              <ButtonWrapper wrapText={actionDisabled ? actionDisabledText : undefined}>
-                <ScrollToViewOnFocusButton
-                  id={buttonId}
-                  loading={actionLoading}
-                  type="primary"
-                  disabled={actionDisabled}
-                  size="small"
-                  onClick={handleClick}
-                  className={styles.actionButton}
-                  aria-labelledby={`${buttonId} ${titleId}`}
-                >
-                  {buttonText}
-                  <DirectionalArrowIcon aria-label="" className={styles.buttonIcon} />
-                </ScrollToViewOnFocusButton>
-              </ButtonWrapper>
-            </Space>
+            <Flex justify="end">
+              <ScrollToViewOnFocusButton
+                type="primary"
+                size="small"
+                onClick={onReadinessCheckClick}
+                style={{
+                  marginInlineEnd: '0.25rem',
+                }}
+              >
+                {I18n.t('enduser.start_readiness_check')}
+                <DirectionalArrowIcon aria-label="" className={styles.buttonIcon} />
+              </ScrollToViewOnFocusButton>
+              <Popover
+                placement="top"
+                trigger={['click', 'hover']}
+                content={(
+                  <section style={{ maxWidth: '200px' }}>
+                    {I18n.t('enduser.begin_message')}
+                  </section>
+                )}
+              >
+                <Button
+                  style={{
+                    height: '1.4rem',
+                    width: '1rem',
+                  }}
+                  type="link"
+                  className="p-0 mb-1"
+                  icon={<InfoCircleOutlined />}
+                />
+              </Popover>
+            </Flex>
           </Col>
+
+        ) : (
+          <>
+            {buttonText && (
+              <Col
+                lg={24 - progressBarSpanLg}
+                md={16}
+                xs={24 - progressBarSpanXs}
+                className={cs({ [styles.buttonCol]: true, [styles.withFooter]: footer })}
+              >
+                <Space>
+                  {secondaryBtnText && (
+                    <ButtonWrapper wrapText={actionDisabled ? actionDisabledText : undefined}>
+                      <ScrollToViewOnFocusButton
+                        id={secondaryBtnId}
+                        size="small"
+                        type="primary"
+                        disabled={actionDisabled}
+                        ghost
+                        onClick={onSecondaryBtnClick}
+                        className={styles.actionButton}
+                        aria-labelledby={`${secondaryBtnId} ${titleId}`}
+                      >
+                        {secondaryBtnText}
+                        <DirectionalArrowIcon aria-label="" className={styles.buttonIcon} />
+                      </ScrollToViewOnFocusButton>
+                    </ButtonWrapper>
+                  )}
+                  <ButtonWrapper wrapText={actionDisabled ? actionDisabledText : undefined}>
+                    <ScrollToViewOnFocusButton
+                      id={buttonId}
+                      loading={actionLoading}
+                      type="primary"
+                      disabled={actionDisabled}
+                      size="small"
+                      onClick={handleClick}
+                      className={styles.actionButton}
+                      aria-labelledby={`${buttonId} ${titleId}`}
+                    >
+                      {buttonText}
+                      <DirectionalArrowIcon aria-label="" className={styles.buttonIcon} />
+                    </ScrollToViewOnFocusButton>
+                  </ButtonWrapper>
+                </Space>
+              </Col>
+            )}
+          </>
         )}
+
         {footer ? <Col className={cs('w-100', 'ta-c', styles.footer)}>{footer}</Col> : null}
       </Row>
     </Card>

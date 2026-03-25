@@ -17,6 +17,7 @@ import {
   fetchAssessment, FETCH_RESULTS,
 } from '~/modules/endUser/modules/campaigns/core/userAssessment'
 import styles from './styles.less'
+import { fetchCampaigns } from '~/modules/endUser/modules/campaigns/core/campaigns'
 
 const InteractiveAssessmentsModule = () => import('@thetalententerprise/interactive-assessments')
 
@@ -32,6 +33,7 @@ const connector = connect(
   }),
   {
     fetchAssessment,
+    fetchCampaigns,
   },
 )
 
@@ -61,6 +63,7 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
   fetchAssessment,
   campaignOptions,
   resultsLoading,
+  fetchCampaigns,
 }) => {
   const campaignId = agileCampaign || userAssessment.campaignId
   const params = useParams() as Params
@@ -93,12 +96,25 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
     })
   }
 
+  const getCampaignSystemCheckDetails = async (campaignId) => {
+    if (!campaignId) {
+      return
+    }
+    const { response } = await fetchCampaigns()
+    const currentCampaign = response.filter(campaign => campaign.id === campaignId)[0]
+
+    if (currentCampaign?.isSystemCheckEnabled
+        && !currentCampaign.systemCheckStatus?.isValid && currentCampaign.progressStatus !== 'completed') {
+      window.location.href = '/dashboard'
+    } else { setAssessmentLoading(false) }
+  }
+
   useEffect(() => {
     const { edit } = qs.parse(location.search.substr(1))
     const assessmentId = params.userAssessmentId ?? agileUserAssessmentId
 
     fetchAssessment(assessmentId, edit).then(() => {
-      setAssessmentLoading(false)
+      getCampaignSystemCheckDetails(campaignId)
     })
   }, [])
 

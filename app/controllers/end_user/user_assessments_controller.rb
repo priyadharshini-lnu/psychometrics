@@ -30,7 +30,8 @@ class EndUser::UserAssessmentsController < ApplicationController
           selected_locale: @selected_locale,
           piped_text_context: build_piped_context,
           include: '**',
-          ignore_pipetext_substitution: true
+          ignore_pipetext_substitution: true,
+          campaign_id: @user_assessment.campaign_id
         }
       ).serialize(@user_assessment.assessment)
     end

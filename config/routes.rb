@@ -942,6 +942,22 @@ as: :simulation_progress_notification
         get :insights
         put :reset_practice_campaign
         post :mark_meeting_assessment_complete
+
+        resources :system_check_sessions, only: %i[show create] do
+          collection do
+            get :requirements_status
+            get :results
+            post :add_record
+            post :complete
+          end
+        end
+
+        resources :system_check_records, only: [], controller: 'system_check_sessions' do
+          member do
+            post :upload_video_url
+            put :complete_multipart_upload
+          end
+        end
       end
       get 'assessment_centers/:id', to: 'workshops#show', as: :workshop_page
       get :dashboard, to: 'users#dashboard'
@@ -1193,6 +1209,7 @@ as: :simulation_progress_notification
     get 'invites/:id/details', to: 'end_user/users#dashboard'
     get 'idp/*path', to: 'end_user/users#dashboard'
     get 'evaluation_session_exists', to: 'end_user/users#dashboard'
+    get 'campaign_system_check/:campaign_id/:step', to: 'end_user/users#dashboard'
 
     namespace :lti do
       get 'jwks', to: 'jwks#index'

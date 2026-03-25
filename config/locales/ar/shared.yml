@@ -36,7 +36,7 @@ ar:
     completed: مكتمل
     configurations: التكوينات
     confirm: تأكيد
-    continue: استمر
+    continue: يكمل
     controller: وحدة التحكم
     cookie_notice: إشعار بشأن ملفات تعريف الارتباط
     cookies_statement: بيان ملفات تعريف الارتباط
@@ -97,6 +97,7 @@ ar:
     name: اسم
     negative: سلبي
     new: جديد
+    next: التالي
     no_results_found: لم يتم العثور على نتائج
     not_requested: لم يتم طلبه بعد
     ok: موافق
