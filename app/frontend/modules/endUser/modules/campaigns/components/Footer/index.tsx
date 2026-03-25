@@ -99,7 +99,6 @@ const ProductUsageLinks: FC<ProductsUsageLinksProps> = ({
         >
           {I18n.t('shared.privacy_notice')}
         </Button>
-        {privacyLink}
       </Space>
       <Space size="large">
         <Button
