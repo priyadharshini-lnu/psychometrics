@@ -26,7 +26,7 @@ export const getPageModules = (state: any, pageId: number): ModuleInterface[] =>
 }
 
 export const getModulesShowOnAll = (state: any): ModuleInterface[] => _.filter(
-  state.modules, m => m.props.showOnAllPages && !m.removed,
+  state.modules, m => m.props?.showOnAllPages && !m.removed,
 )
 
 export const getSelected = (state: any) => state.selected
