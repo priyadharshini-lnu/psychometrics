@@ -38,6 +38,7 @@ nl:
     confirm: Bevestig
     continue: Voortzetten
     controller: Controller
+    cookie_notice: Kennisgeving inzake cookies
     cookies_statement: Cookiesverklaring
     copied_to_clipboard: Gekopieerd naar klembord
     copy: Kopieer
@@ -103,6 +104,7 @@ nl:
     policy_version: Beleidsversie
     policy_version_format: Alleen hele getallen zijn toegestaan.
     positive: Positief
+    privacy_notice: Privacyverklaring
     processing: Verwerking
     processor: Processor
     proctoring_maintenance_active: Proctoring wordt momenteel onderhouden van %{start_time} naar %{end_time}. Probeer het opnieuw na de onderhoudsperiode.

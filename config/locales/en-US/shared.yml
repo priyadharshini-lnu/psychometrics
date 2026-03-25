@@ -38,6 +38,7 @@ en-US:
     confirm: Confirm
     continue: Continue
     controller: Controller
+    cookie_notice: Cookie Notice
     cookies_statement: Cookies Statement
     copied_to_clipboard: Copied to clipboard
     copy: Copy
@@ -103,6 +104,7 @@ en-US:
     policy_version: Policy Version
     policy_version_format: Only whole numbers are allowed
     positive: Positive
+    privacy_notice: Privacy Notice
     processing: Processing
     processor: Processor
     proctoring_maintenance_active: Proctoring is currently under maintenance from %{start_time} to %{end_time}. Please try again after the maintenance window.

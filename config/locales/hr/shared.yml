@@ -38,6 +38,7 @@ hr:
     confirm: Potvrditi
     continue: Nastaviti
     controller: Kontrolor
+    cookie_notice: Obavijest o kolačićima
     cookies_statement: Izjava o kolačićima
     copied_to_clipboard: Kopirano u međuspremnik
     copy: Kopiraj
@@ -103,6 +104,7 @@ hr:
     policy_version: Verzija politike
     policy_version_format: Dopušteni su samo cijeli brojevi.
     positive: Pozitivno
+    privacy_notice: Obavijest o privatnosti
     processing: Obrada
     processor: Procesor
     proctoring_maintenance_active: Proctoring je trenutno u održavanju s %{start_time} na %{end_time}. Molimo pokušajte ponovno nakon završetka održavanja.

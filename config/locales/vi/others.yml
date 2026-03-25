@@ -1276,7 +1276,7 @@ vi:
     record_not_found: Không tìm thấy bản ghi
     user_not_authorized: Người dùng không được ủy quyền
   auth:
-    cookies_link: <a href="%{cookies_url}">Chính sách về cookie</a>
+    cookie_notice_link: <a href="%{cookies_url}">Thông báo về cookie
     current_password: Mật khẩu hiện tại
     current_password_placeholder: Nhập mật khẩu hiện tại
     email: E-mail
@@ -1322,7 +1322,7 @@ vi:
     password_confirmation: Xác nhận mật khẩu
     password_confirmation_placeholder: Nhập mật khẩu xác nhận
     password_placeholder: Nhập mật khẩu
-    privacy_statement_link: <a href="%{privacy_url}">Chính sách bảo mật</a>
+    privacy_notice_link: <a href="%{privacy_url}">Thông báo về quyền riêng tư
     registration:
       description: Điền thông tin bên dưới để đăng ký và tạo tài khoản mới
       email_hint: Chúng tôi tôn trọng quyền riêng tư của bạn và không chấp nhận thư rác. Chúng tôi sẽ không bao giờ cung cấp thông tin của bạn cho bất kỳ bên thứ ba nào
@@ -2755,6 +2755,7 @@ vi:
             r3: 'Các yếu tố đầu vào phát triển được đề cập trong báo cáo này có thể được lấy từ một hoặc cả hai nguồn sau:'
             r3a: Thư viện phát triển tùy chỉnh được tạo riêng cho tổ chức của bạn.
             r3b: Đề xuất phát triển do trí tuệ nhân tạo (AI) tạo ra
+            r4: Báo cáo IDP này được tạo ra với sự hỗ trợ của công nghệ trí tuệ nhân tạo (AI) và có thể chứa một số thông tin chưa chính xác. Các phân tích và khuyến nghị được cung cấp trong báo cáo cần được xem xét một cách thận trọng và chỉ nên được sử dụng như một công cụ hỗ trợ cho sự phát triển cá nhân và nghề nghiệp của bạn. Báo cáo có hiệu lực trong khoảng thời gian từ 12 đến 18 tháng.
           main: Kế hoạch Phát triển Cá nhân (IDP) được tạo ra bao gồm danh sách chi tiết các hoạt động phát triển mà bạn có thể thực hiện, dựa trên nguyên tắc học tập tốt nhất (70-20-10), kết hợp giữa học tập trong lớp, huấn luyện và học tập trong quá trình làm việc. Dựa trên kết quả từ quá trình đánh giá tại trung tâm đánh giá, phản hồi trong cuộc trò chuyện và báo cáo từ bên ngoài (nếu có), các lộ trình phát triển tiềm năng đã được đề xuất, có thể xem xét cho quá trình phát triển của bạn.
         learn_cards:
           collaboration:

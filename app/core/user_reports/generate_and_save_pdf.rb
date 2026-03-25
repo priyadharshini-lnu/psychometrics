@@ -21,17 +21,22 @@ module UserReports
           next
         end
 
-        user_report.update!(status: :generating) unless report.hogan? || report.provider_mhs?
+        user_report.update!(status: :generating) unless skip_status_update?(report)
 
         generate_hogan_report(user_report) if report.hogan?
         generate_saville_report(user_report) if report.provider_saville?
         generate_pearson_report(user_report) if report.provider_pearson?
         generate_internal_report(user_report) if report.provider_internal?
         generate_mhs_report(user_report) if report.provider_mhs?
+        generate_skillvue_report(user_report) if report.provider_skillvue?
         job_record&.increment_completed_tasks! unless async_report_generation?(report)
       end
 
       broadcast :ok
+    end
+
+    def skip_status_update?(report)
+      report.hogan? || report.provider_mhs?
     end
 
     def generate_internal_report(user_report)
@@ -88,6 +93,12 @@ module UserReports
     def generate_mhs_report(user_report)
       user_report.user_results.includes(:user_assessment).find_each do |ur|
         Mhs::SaveReportsAndScoresJob.perform_later(ur.user_assessment, [user_report])
+      end
+    end
+
+    def generate_skillvue_report(user_report)
+      user_report.user_results.includes(:user_assessment).find_each do |ur|
+        Skillvue::SaveScoresAndReport.call!(ur.user_assessment)
       end
     end
 

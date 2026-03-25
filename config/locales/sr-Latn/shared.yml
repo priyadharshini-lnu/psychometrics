@@ -38,6 +38,7 @@ sr-Latn:
     confirm: Potvrdi
     continue: Nastavite
     controller: Контролер
+    cookie_notice: Обавештење о колачићима
     cookies_statement: Изјава о колачићима
     copied_to_clipboard: Копирано у међуспречник
     copy: Копирај
@@ -103,6 +104,7 @@ sr-Latn:
     policy_version: Верзија политике
     policy_version_format: Дозвољени су само цели бројеви.
     positive: Позитивно
+    privacy_notice: Извештај о приватности
     processing: Обрада
     processor: Процесор
     proctoring_maintenance_active: Проктинг је тренутно у одржавању са %{start_time} на %{end_time}. Молимо покушајте поново након завршетка прозора за одржавање.

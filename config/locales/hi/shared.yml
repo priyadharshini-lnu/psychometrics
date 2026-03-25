@@ -38,6 +38,7 @@ hi:
     confirm: पुष्टि करें
     continue: जारी रखें
     controller: नियंत्रक
+    cookie_notice: कुकी सूचना
     cookies_statement: कुकीज़ कथन
     copied_to_clipboard: क्लिपबोर्ड पर कॉपी हो गया
     copy: प्रतिलिपि
@@ -103,6 +104,7 @@ hi:
     policy_version: नीति संस्करण
     policy_version_format: केवल पूर्ण संख्याएँ ही अनुमत हैं।
     positive: सकारात्मक
+    privacy_notice: गोपनीयता सूचना
     processing: प्रसंस्करण
     processor: प्रोसेसर
     proctoring_maintenance_active: प्रॉक्टरिंग वर्तमान में %{start_time} से %{end_time} पर रखरखाव के अधीन है। कृपया रखरखाव विंडो के बाद फिर से प्रयास करें।

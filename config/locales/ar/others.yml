@@ -1319,7 +1319,7 @@ ar:
     record_not_found: لم يتم العثور على السجل
     user_not_authorized: المستخدم غير مصرح له
   auth:
-    cookies_link: <a href="%{cookies_url}">بيان ملفات تعريف الارتباط</a>
+    cookie_notice_link: <a href="%{cookies_url}">إشعار ملفات تعريف الارتباط
     current_password: كلمة المرور الحالية
     current_password_placeholder: إدخل كلمة السر الحالية
     email: البريد الإلكتروني
@@ -1365,7 +1365,7 @@ ar:
     password_confirmation: تأكيد كلمة المرور
     password_confirmation_placeholder: أدخل كلمة المرور الجديدة مرة أخرى
     password_placeholder: أدخل كلمة المرور
-    privacy_statement_link: <a href="%{privacy_url}">بيان الخصوصية</a>
+    privacy_notice_link: <a href="%{privacy_url}">إشعار الخصوصية
     registration:
       description: ".الرجاء قم بتعبئة بيانتك الشخصية لأنشاء حساب جديد"
       email_hint: نحن نحترم خصوصيتكم و لا نتهاون مع البريد غير المرغوب فيه. لن نعطي معلوماتك لأي طرف ثالث.

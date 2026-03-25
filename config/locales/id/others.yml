@@ -1279,7 +1279,7 @@ id:
     record_not_found: Catatan Tidak Ditemukan
     user_not_authorized: Pengguna Tidak Berwenang
   auth:
-    cookies_link: <a href="%{cookies_url}">Pernyataan Cookie</a>
+    cookie_notice_link: <a href="%{cookies_url}">Pemberitahuan Cookie
     current_password: Kata Sandi Saat Ini
     current_password_placeholder: Masukkan Kata Sandi Saat Ini
     email: Email
@@ -1325,7 +1325,7 @@ id:
     password_confirmation: Konfirmasi Kata Sandi
     password_confirmation_placeholder: Masukkan Konfirmasi Kata Sandi
     password_placeholder: Masukkan Kata Sandi
-    privacy_statement_link: <a href="%{privacy_url}">Pernyataan Privasi</a>
+    privacy_notice_link: <a href="%{privacy_url}">Pernyataan Privasi
     registration:
       description: Isi detail di bawah ini untuk mendaftar dan membuat akun baru
       email_hint: Kami menghormati privasi Anda dan tidak mentolerir spam. Kami tidak akan pernah memberikan informasi Anda kepada pihak ketiga mana pun
@@ -2765,6 +2765,7 @@ id:
             r3: 'Masukan pengembangan yang tercantum dalam laporan ini dapat berasal dari salah satu atau kedua sumber berikut:'
             r3a: Perpustakaan pengembangan yang disesuaikan yang dibuat khusus untuk organisasi Anda.
             r3b: Saran pengembangan yang dihasilkan oleh kecerdasan buatan (AI)
+            r4: Laporan IDP ini disusun dengan bantuan teknologi kecerdasan buatan (AI) dan mungkin mengandung ketidakakuratan. Wawasan dan rekomendasi yang disajikan harus ditafsirkan dengan bijaksana dan digunakan semata-mata sebagai alat untuk pengembangan pribadi dan profesional Anda. Laporan ini berlaku untuk jangka waktu 12–18 bulan.
           main: IDP yang dibuat mencakup daftar rinci tindakan pengembangan yang dapat Anda lakukan, dengan mempertimbangkan pedoman praktik terbaik pembelajaran, yaitu pedoman 70-20-10, yang menyediakan perjalanan progresif yang menggabungkan pembelajaran di kelas, bimbingan, dan pembelajaran di tempat kerja. Berdasarkan hasil dari proses pusat penilaian, tanggapan obrolan Anda, dan laporan eksternal, jika berlaku, jalur pengembangan yang mungkin telah direkomendasikan, yang dapat dipertimbangkan untuk pengembangan Anda.
         learn_cards:
           collaboration:

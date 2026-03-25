@@ -50,4 +50,51 @@ RSpec.describe MediaResponse, type: :model do
 
     expect { media_response.users_result.delete }.to change(described_class, :count).by(-1)
   end
+
+  describe 'transcription methods with stale association cache' do
+    let(:media_response) { create(:media_response, question: question, users_result: users_result) }
+
+    it 'handles stale association when transcription was created externally' do
+      loaded_media_response = MediaResponse.find(media_response.id)
+      expect(loaded_media_response.transcription).to be_nil
+
+      Transcription.create!(transcribable: media_response, status: :pending)
+
+      expect { loaded_media_response.save_transcription_status!(:processing) }.not_to raise_error
+
+      expect(media_response.reload.transcription.status).to eq('processing')
+    end
+
+    it 'handles stale association when calling save_transcription_completed!' do
+      loaded_media_response = MediaResponse.find(media_response.id)
+      Transcription.create!(transcribable: media_response, status: :pending)
+
+      expect { loaded_media_response.save_transcription_completed!('test text') }.not_to raise_error
+
+      transcription = media_response.reload.transcription
+      expect(transcription.status).to eq('completed')
+      expect(transcription.text).to eq('test text')
+    end
+
+    it 'handles stale association when calling save_transcription_failed!' do
+      loaded_media_response = MediaResponse.find(media_response.id)
+      Transcription.create!(transcribable: media_response, status: :pending)
+
+      error_details = { message: 'Test error' }
+      expect { loaded_media_response.save_transcription_failed!(error_details) }.not_to raise_error
+
+      transcription = media_response.reload.transcription
+      expect(transcription.status).to eq('failed')
+      expect(transcription.error_details).to eq({ 'message' => 'Test error' })
+    end
+
+    it 'creates transcription when none exists' do
+      expect(media_response.transcription).to be_nil
+
+      media_response.save_transcription_status!(:pending)
+
+      expect(media_response.reload.transcription).to be_present
+      expect(media_response.transcription.status).to eq('pending')
+    end
+  end
 end

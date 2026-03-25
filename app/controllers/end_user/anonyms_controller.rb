@@ -3,6 +3,7 @@
 module EndUser
   class AnonymsController < ActionController::Base
     include ::Threesixty::InitialState
+    include CookieNotice
     include SetLocale
     include ControllerUtilities
     include AuthenticateAnonymousUser

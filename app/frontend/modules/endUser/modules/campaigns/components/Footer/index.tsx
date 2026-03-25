@@ -97,7 +97,7 @@ const ProductUsageLinks: FC<ProductsUsageLinksProps> = ({
           target="_blank"
           rel="noopener noreferrer"
         >
-          {I18n.t('shared.terms_conditions_privacy')}
+          {I18n.t('shared.privacy_notice')}
         </Button>
         {privacyLink}
       </Space>
@@ -109,7 +109,7 @@ const ProductUsageLinks: FC<ProductsUsageLinksProps> = ({
           target="_blank"
           rel="noopener noreferrer"
         >
-          {I18n.t('shared.cookies_statement')}
+          {I18n.t('shared.cookie_notice')}
         </Button>
         {privacyLink}
       </Space>

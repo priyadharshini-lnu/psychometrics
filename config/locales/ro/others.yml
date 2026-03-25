@@ -1276,7 +1276,7 @@ ro:
     record_not_found: Înregistrare nu a fost găsită
     user_not_authorized: Utilizator neautorizat
   auth:
-    cookies_link: <a href="%{cookies_url}">Declarație privind cookie-urile</a>
+    cookie_notice_link: <a href="%{cookies_url}">Notificare privind cookie-urile
     current_password: Parolă curentă
     current_password_placeholder: Introduceți parola curentă
     email: E-mail
@@ -1322,7 +1322,7 @@ ro:
     password_confirmation: Confirmați parola
     password_confirmation_placeholder: Introduceți confirmarea parolei
     password_placeholder: Introduceți parola
-    privacy_statement_link: <a href="%{privacy_url}">Declarație de confidențialitate</a>
+    privacy_notice_link: <a href="%{privacy_url}">Politica de confidențialitate
     registration:
       description: Completați datele de mai jos pentru a vă înregistra și a crea un cont nou
       email_hint: Vă respectăm confidențialitatea și nu tolerăm spam-ul. Nu vom da niciodată informațiile dvs. unei terțe părți
@@ -2761,6 +2761,7 @@ ro:
             r3: 'Datele privind dezvoltarea incluse în acest raport pot proveni din una sau ambele surse următoare:'
             r3a: O bibliotecă de dezvoltare personalizată creată pentru organizația dumneavoastră
             r3b: Sugestii de dezvoltare generate de IA
+            r4: Acest raport IDP a fost generat cu ajutorul tehnologiei de inteligență artificială și poate conține inexactități. Informațiile și recomandările furnizate trebuie interpretate cu prudență și utilizate exclusiv ca instrument pentru dezvoltarea dumneavoastră personală și profesională. Raportul este valabil pentru o perioadă de 12-18 luni.
           main: IDP-ul creat include o listă detaliată de acțiuni de dezvoltare pe care le puteți întreprinde, ținând cont de cele mai bune practici de învățare, adică ghidul 70-20-10, care oferă un parcurs progresiv combinând învățarea în sala de clasă, coachingul și învățarea la locul de muncă. Pe baza rezultatelor procesului de evaluare, a răspunsurilor dvs. din chat și a rapoartelor externe, după caz, au fost recomandate posibile căi de dezvoltare, care pot fi luate în considerare pentru dezvoltarea dvs.
         learn_cards:
           collaboration:

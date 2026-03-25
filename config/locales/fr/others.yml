@@ -1276,7 +1276,7 @@ fr:
     record_not_found: Enregistrement introuvable
     user_not_authorized: Utilisateur non autorisé
   auth:
-    cookies_link: <a href="%{cookies_url}">Déclaration relative aux cookies</a>
+    cookie_notice_link: ''
     current_password: Mot de passe actuel
     current_password_placeholder: Saisir le mot de passe actuel
     email: Courriel
@@ -1322,7 +1322,7 @@ fr:
     password_confirmation: Confirmer le mot de passe
     password_confirmation_placeholder: Confirmation du mot de passe
     password_placeholder: Saisir le mot de passe
-    privacy_statement_link: <a href="%{privacy_url}">Déclaration de confidentialité</a>
+    privacy_notice_link: <a href="%{privacy_url}">Politique de confidentialité
     registration:
       description: Remplissez les détails ci-dessous pour vous inscrire et créer un nouveau compte
       email_hint: Nous respectons votre vie privée et ne tolérons pas le spam. Nous ne communiquerons jamais vos informations à des tiers
@@ -2762,6 +2762,7 @@ fr:
             r3: 'Les données relatives au développement figurant dans le présent rapport peuvent provenir de l''une ou des deux sources suivantes :'
             r3a: Une bibliothèque de développement personnalisée créée pour votre organisation
             r3b: Suggestions de développement générées par l'IA
+            r4: Ce rapport IDP a été généré à l'aide d'une technologie d'intelligence artificielle et peut contenir des inexactitudes. Les analyses et recommandations fournies doivent être interprétées avec discernement et utilisées uniquement comme un outil au service de votre développement personnel et professionnel. Le rapport est valable pour une période de 12 à 18 mois.
           main: Le PDI créé comprend une liste détaillée des mesures de développement que vous pouvez prendre, en gardant à l'esprit les meilleures pratiques d'apprentissage, à savoir la règle des 70-20-10, qui prévoit un parcours progressif combinant apprentissage en classe, coaching et apprentissage sur le terrain. Sur la base des résultats du processus d'évaluation, de vos réponses au chat et des rapports externes, le cas échéant, des parcours de développement possibles ont été recommandés, qui peuvent être pris en considération pour votre développement.
         learn_cards:
           collaboration:

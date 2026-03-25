@@ -38,6 +38,7 @@ ja:
     confirm: 確認
     continue: 続ける
     controller: コントローラー
+    cookie_notice: クッキーに関するお知らせ
     cookies_statement: クッキーに関する声明
     copied_to_clipboard: クリップボードにコピーされました
     copy: コピー
@@ -103,6 +104,7 @@ ja:
     policy_version: ポリシーバージョン
     policy_version_format: 整数のみが許可されます
     positive: 肯定的
+    privacy_notice: プライバシーに関するお知らせ
     processing: 処理
     processor: プロセッサ
     proctoring_maintenance_active: プロクターリングは現在、%{start_time} から %{end_time} へのメンテナンス中です。メンテナンス終了後、再度お試しください。

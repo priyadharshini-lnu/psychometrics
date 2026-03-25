@@ -38,6 +38,7 @@ fr:
     confirm: Confirmer
     continue: Continuer
     controller: Contrôleur
+    cookie_notice: Avis relatif aux cookies
     cookies_statement: Déclaration relative aux cookies
     copied_to_clipboard: Copié dans le presse-papiers
     copy: Copier
@@ -103,6 +104,7 @@ fr:
     policy_version: Version de la politique
     policy_version_format: Seuls les nombres entiers sont autorisés.
     positive: Positif
+    privacy_notice: Politique de confidentialité
     processing: Traitement
     processor: Processeur
     proctoring_maintenance_active: Le service Proctoring est actuellement en maintenance, de l'adresse %{start_time} à l'adresse %{end_time}. Veuillez réessayer après la période de maintenance.
