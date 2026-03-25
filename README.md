@@ -295,3 +295,30 @@ bundle exec i18n-tasks normalize -p
 
 # Production build setup on local
  Check following wiki https://github.com/TheTalentEnterprise/psychometrics/wiki/Production-build-setup-on-localhost
+
+# Contribution Guidelines
+
+Before contributing, ensure you are familiar with the relevant coding guidelines:
+
+- [Frontend Coding Guidelines](docs/frontend_coding_guidelines.md)
+- [Backend Coding Guidelines](https://github.com/TheTalentEnterprise/psychometrics/wiki/Backend-Coding-Standards-&-Guidelines)
+- [Repository Wiki](https://github.com/TheTalentEnterprise/psychometrics/wiki) — contains additional context, patterns, and team-agreed decisions
+
+## PR Guidelines
+
+- Use the PR description template and fill in all relevant sections. This gives reviewers the context they need to evaluate the changes effectively.
+- Ensure all CI checks pass before requesting a review.
+
+### Code Review Guidelines
+
+#### Resolving Review Comments
+
+**Only the author of a review comment may mark it as resolved.**
+
+PR authors must not resolve comments left by reviewers, even after addressing them. The correct flow is:
+
+1. The PR author addresses the comment and replies to it explaining the change or decision made.
+2. The reviewer, upon re-review, determines whether their concern has been adequately addressed.
+3. The reviewer marks the comment as resolved once satisfied.
+
+**Rationale:** Resolved comments are hidden by default. If the PR author resolves a comment after replying, the reviewer must manually expand hidden comments to see the response — increasing the risk of missed context. The reviewer is best positioned to judge whether their original concern has been met.
