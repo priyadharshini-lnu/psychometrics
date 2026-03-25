@@ -275,9 +275,7 @@ headers: headers
             assistant_id.to_s,
             superadmin,
             nil,
-            params: {
-              tool_choice: nil
-            }
+            skip_default_params: true
           ).
           and_return({ ok: { message: 'This is a test AI response' } })
       end
@@ -301,9 +299,7 @@ headers: headers
             'non-existent-id',
             superadmin,
             nil,
-            params: {
-              tool_choice: nil
-            }
+            skip_default_params: true
           ).
           and_raise(ActiveRecord::RecordNotFound.new)
       end
@@ -328,9 +324,7 @@ headers: headers
             assistant_id.to_s,
             superadmin,
             nil,
-            params: {
-              tool_choice: nil
-            }
+            skip_default_params: true
           ).
           and_raise(StandardError.new('AI provider error'))
       end
