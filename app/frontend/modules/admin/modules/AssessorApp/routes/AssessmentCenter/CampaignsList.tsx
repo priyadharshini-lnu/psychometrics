@@ -1,0 +1,100 @@
+import React from 'react'
+import { Radio, Typography } from 'antd'
+import { DateTimeWithZone } from '~/glint'
+import dayjs from '~/utils/dayjs'
+import { Workshop, WorkshopTR } from '~/modules/admin/modules/campaigns/core/assessors/workshop'
+import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import styles from './styles.less'
+
+const { I18n } = window
+
+
+const DateFilters = () => {
+  const { resource } = useResourceContext()
+  const filter = resource.getFilteredValue('date_filter') || 'current'
+
+  return (
+    <div className="mb-4">
+      <Radio.Group
+        onChange={e => resource.changeFilter('date_filter', e.target.value)}
+        value={filter}
+      >
+        <Radio.Button value="current">{I18n.t('administration.assessment_center.current')}</Radio.Button>
+        <Radio.Button value="upcoming">{I18n.t('administration.assessment_center.upcoming')}</Radio.Button>
+        <Radio.Button value="past">{I18n.t('administration.assessment_center.past')}</Radio.Button>
+      </Radio.Group>
+    </div>
+  )
+}
+
+export const CampaignsList: React.FC = () => {
+  const config = {
+    trackUrl: true,
+    responseType: WorkshopTR,
+    initialFilter: { date_filter: 'current' },
+    apiConfig: {
+      include: ['campaign', 'workshop_subjects'],
+      fields: {
+        workshops: ['start_time', 'duration', 'name', 'campaign'],
+        campaign: ['name'],
+        workshop_subjects: ['id', 'full_name', 'photo_url', 'email'],
+      },
+    },
+  }
+
+  return (
+    <Resource config={config} name="workshops">
+      <Resource.Filter hideSearch placeholder="" name="" />
+      <DateFilters />
+      <Resource.Table
+        onRowChange={record => ({
+          onClick: () => {
+            const workshop = record as Workshop
+            const { projectId, id: campaignId } = workshop?.campaign
+            const workshopId = record.id
+            const basePath = `/admin/projects/${projectId}/new_campaigns/${campaignId}`
+            const url = `${basePath}/scheduling/assessment_center/${workshopId}`
+            window.location.href = url
+          },
+          className: styles.clickableRow,
+        })}
+        pagination
+      >
+        <Resource.Column<Workshop>
+          title={I18n.t('common.column.id')}
+          id="id"
+          width="10%"
+          render={(_, { id }) => (
+            <Typography.Link>
+              {id}
+            </Typography.Link>
+          )}
+        />
+        <Resource.Column<Workshop>
+          title={I18n.t('administration.scheduling.columns.start_time')}
+          id="startTime"
+          width="15%"
+          render={(_, { startTime }) => <DateTimeWithZone dateString={startTime} format="lll" />}
+        />
+        <Resource.Column<Workshop>
+          title={I18n.t('admin.slot_name')}
+          id="slot_name"
+          width="15%"
+          render={(_, { name }) => name}
+        />
+        <Resource.Column<Workshop>
+          title={I18n.t('administration.scheduling.columns.duration')}
+          id="duration"
+          width="10%"
+          render={(_, { duration }) => dayjs.duration(duration, 'seconds').humanize()}
+        />
+        <Resource.Column<Workshop>
+          title={I18n.t('administration.scheduling.columns.campaign_name')}
+          id="campaignName"
+          render={(_, { campaign }) => campaign.name}
+          width="10%"
+        />
+      </Resource.Table>
+    </Resource>
+  )
+}

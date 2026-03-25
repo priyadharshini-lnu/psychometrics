@@ -1632,6 +1632,12 @@ only: %i[index create update]
             jsonapi_relationships
           end
 
+          jsonapi_resources :workshop_subjects, only: %i[index] do
+            collection do
+              get :metadata_for_filters
+            end
+          end
+
           jsonapi_resources :user_availability_dates, only: %i[index create update destroy]
 
           jsonapi_resources :reports, concerns: :taggable do

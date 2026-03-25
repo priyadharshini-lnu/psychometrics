@@ -90,6 +90,19 @@ en:
     allow_ai_rescoring: Allow AI Rescoring
     api_keys: API keys
     apply_to_existing_users: Apply this change to existing users in this campaign
+    assessment_center_activity: Activity
+    assessment_center_assessor: Assessor
+    assessment_center_attendance: Attendance
+    assessment_center_attendance_status: Attendance status
+    assessment_center_campaigns_tab: Campaigns
+    assessment_center_date_and_time: Date & Time
+    assessment_center_join_room: Join Room
+    assessment_center_meeting_link: Meeting Link
+    assessment_center_participants_tab: Participants
+    assessment_center_prework: Prework
+    assessment_center_schedule_time: Schedule Time
+    assessment_center_scheduling_status: Scheduling status
+    assessment_center_search_participants: Search Participants...
     assessment_question_not_supported: This question type is not currently supported.
     assessments: Assessments
     assessments_not_mhs: All Assessment must be a MHS type
@@ -211,6 +224,7 @@ en:
     done: Done
     done_tooltip: No more evaluation can be submitted for this user as this user's evaluation is marked as done by %{marked_by}
     download_bulk_asset_download_example_csv: Download Example CSV.
+    duration: Duration
     edit_campaign_admin: Edit Campaign Admin
     edit_client_admin: Edit Client Admin
     edit_indicator: Edit Indicator
@@ -331,6 +345,7 @@ en:
     name_required: Name is required
     no_file_selected: No file selected
     no_notifications: No Notifications
+    no_status: No Status
     norms: Norms
     not_completed: Not Completed
     not_completed_tooltip: "%{completed} evaluators are assigned but only %{submitted} have completed the evaluations"
