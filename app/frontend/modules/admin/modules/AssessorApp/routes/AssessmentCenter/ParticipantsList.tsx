@@ -262,7 +262,6 @@ const ParticipantsTable: React.FC = () => {
           const workshop = record as ParticipantSubject
           const { projectId, id: campaignId } = workshop?.campaign
           const { workshopId } = record
-          // eslint-disable-next-line max-len
           const basePath = `/admin/projects/${projectId}/new_campaigns/${campaignId}`
           const url = `${basePath}/scheduling/assessment_center/${workshopId}`
           window.location.href = url
