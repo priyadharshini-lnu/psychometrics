@@ -95,7 +95,8 @@ module Imports
             norm_id: norm_data[:id],
             status: status,
             completion_reason: completion_reason,
-            started_at: started_at
+            started_at: started_at,
+            selected_locale: data['user_selected_locale']
           )
 
           parsed_questions = {}

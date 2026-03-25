@@ -12,7 +12,8 @@ module AdminJobs
     def headers
       result_details_header = [
         'Result ID', 'Subject Name', 'Subject Email', 'Evaluator Name', 'Evaluator Email',
-        'Relationship', 'Started At', 'Completed At', 'Completion Code', 'Norm', 'Status', 'Completion Reason'
+        'Relationship', 'Started At', 'Completed At', 'Completion Code', 'Norm', 'Status', 'Completion Reason',
+        'User Selected Locale'
       ]
       question_name_header = [''] * result_details_header.count
       question_text_header = question_name_header.clone
@@ -65,6 +66,7 @@ module AdminJobs
         user_result.norm&.name,
         I18n.t("activerecord.attributes.users_result.statuses.#{user_result.real_status}"),
         completion_reason,
+        user_result.user_assessment.selected_locale,
         *answers
       ]
     end

@@ -44,8 +44,7 @@ module MediaResponses
     def enqueue_transcription_if_needed(media_response)
       return if media_response.transcription&.text.present?
 
-      user_assessment = user_result.user_assessment&.reload
-      user_assessment&.enqueue_media_response_transcriptions if user_assessment&.completed?
+      MediaResponses::AddTranscriptionJob.perform_later(media_response.id)
     end
 
     def build_media_response

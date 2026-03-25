@@ -8,7 +8,7 @@ module UsersResults
 
       assign_basic_attributes(new_media_response, media_response, to_user_result)
       build_transcription_if_needed(new_media_response, media_response, transcription_text)
-      handle_post_save_actions(new_media_response, to_user_result)
+      handle_post_save_actions(new_media_response)
 
       new_media_response
     end
@@ -40,10 +40,9 @@ module UsersResults
       end
     end
 
-    def handle_post_save_actions(new_media_response, to_user_result)
+    def handle_post_save_actions(new_media_response)
       if new_media_response.save! && new_media_response.transcription&.text.blank?
-        user_assessment = to_user_result.user_assessment.reload
-        user_assessment.enqueue_media_response_transcriptions if user_assessment.completed?
+        MediaResponses::AddTranscriptionJob.perform_later(new_media_response.id)
       end
     end
   end
