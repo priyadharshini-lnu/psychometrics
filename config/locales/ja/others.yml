@@ -1281,7 +1281,7 @@ ja:
     record_not_found: レコードが見つかりません
     user_not_authorized: ユーザー未承認
   auth:
-    cookies_link: <a href="%{cookies_url}">クッキーに関する声明</a>
+    cookie_notice_link: <a href="%{cookies_url}">クッキーに関するお知らせ
     current_password: 現在のパスワード
     current_password_placeholder: 現在のパスワードを入力してください
     email: Eメール
@@ -1327,7 +1327,7 @@ ja:
     password_confirmation: パスワードを確認
     password_confirmation_placeholder: パスワードを再入力してください
     password_placeholder: パスワードを入力してください
-    privacy_statement_link: <a href="%{privacy_url}">プライバシーに関する声明</a>
+    privacy_notice_link: <a href="%{privacy_url}">プライバシーポリシー
     registration:
       description: 登録して新規アカウントを作成するには、以下の詳細を入力してください
       email_hint: 当社は利用者のプライバシーを尊重し、スパムを容認しません。当社が利用者の情報を第三者に提供することはありません
@@ -2751,6 +2751,7 @@ ja:
             r3: 本報告書に含まれる開発インプットは、以下のいずれか一方または両方の情報源から得られたものである可能性があります：
             r3a: 貴組織向けにカスタマイズされた開発ライブラリ
             r3b: AIが生成した開発提案
+            r4: このIDPレポートはAI技術を用いて作成されたものであり、不正確な情報が含まれている可能性があります。記載されている洞察や提言については、ご自身の判断で解釈し、あくまで個人的および職業的な成長のためのツールとしてご利用ください。本レポートの有効期間は12～18ヶ月です。
           main: 作成されたIDPには、ベストプラクティス学習（70-20-10ガイドライン）を踏まえた詳細な開発行動リストが含まれています。これは、教室学習、コーチング、OJTを組み合わせた段階的な成長プロセスを提供します。アセスメントセンターの結果、チャット対応内容、および該当する場合は外部レポートに基づき、開発の道筋として検討可能な複数の開発パスが提案されています。
         learn_cards:
           collaboration:

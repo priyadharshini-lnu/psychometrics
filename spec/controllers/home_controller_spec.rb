@@ -19,4 +19,18 @@ RSpec.describe HomeController, type: :controller do
       expect(response).to redirect_to(user_assessment_path(user_assessment))
     end
   end
+
+  describe 'GET cookies_statement' do
+    it 'redirects to locale specific cookie notice url' do
+      get :cookies_statement, params: { lang: 'fr-CA' }
+
+      expect(response).to redirect_to('https://www.mercer.com/fr-ca/regulatory/mercer-cookie-notice/')
+    end
+
+    it 'redirects to global english cookie notice url for unknown locale' do
+      get :cookies_statement, params: { lang: 'xx-YY' }
+
+      expect(response).to redirect_to('https://www.mercer.com/regulatory/mercer-cookie-notice/')
+    end
+  end
 end

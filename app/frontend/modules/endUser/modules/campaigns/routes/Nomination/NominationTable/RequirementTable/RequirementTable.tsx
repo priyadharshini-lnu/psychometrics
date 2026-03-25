@@ -206,7 +206,7 @@ export const RequirementTable = (props) => {
                   title={I18n.t('threesixty.confirmation_for_nomination_removal')}
                   onConfirm={() => removeNomination({ campaignId, nominationId, evaluator: value })}
                 >
-                  <DeleteOutlined />
+                  <Button icon={<DeleteOutlined />} type="text" />
                 </Popconfirm>
               </div>
             )

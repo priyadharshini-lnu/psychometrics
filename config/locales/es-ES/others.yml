@@ -1282,7 +1282,7 @@ es-ES:
     record_not_found: Registro no encontrado
     user_not_authorized: Usuario no autorizado
   auth:
-    cookies_link: <a href="%{cookies_url}">Declaración sobre cookies</a>
+    cookie_notice_link: ''
     current_password: Contraseña actual
     current_password_placeholder: Introduzca la contraseña actual
     email: Correo electrónico
@@ -1328,7 +1328,7 @@ es-ES:
     password_confirmation: Confirme la contraseña
     password_confirmation_placeholder: Introduzca la confirmación de la contraseña
     password_placeholder: Introduzca la contraseña
-    privacy_statement_link: <a href="%{privacy_url}">Declaración de privacidad</a>
+    privacy_notice_link: ''
     registration:
       description: Introduzca a continuación la información necesaria para registrarse y crear una cuenta nueva
       email_hint: Respetamos su privacidad y no toleramos el correo no deseado. En ningún caso facilitaremos su información a terceros
@@ -2827,6 +2827,7 @@ es-ES:
             r3: 'Los datos sobre desarrollo incluidos en este informe pueden proceder de una o ambas de las siguientes fuentes:'
             r3a: Una biblioteca de desarrollo personalizada creada para su organización.
             r3b: Sugerencias de desarrollo generadas por IA
+            r4: Este informe IDP se ha elaborado con la ayuda de tecnología de inteligencia artificial y puede contener imprecisiones. Las conclusiones y recomendaciones que se ofrecen deben interpretarse con cautela y utilizarse únicamente como herramienta para su desarrollo personal y profesional. El informe tiene una validez de entre 12 y 18 meses.
           main: El IDP creado incluye una lista detallada de acciones de desarrollo que puede llevar a cabo, teniendo en cuenta las mejores prácticas de aprendizaje, es decir, la directriz 70-20-10, que proporciona un recorrido progresivo que combina el aprendizaje en el aula, el coaching y el aprendizaje en el puesto de trabajo. Basándose en los resultados del proceso del centro de evaluación, sus respuestas en el chat y los informes externos, según corresponda, se han recomendado posibles vías de desarrollo que pueden tenerse en cuenta para su desarrollo.
         learn_cards:
           collaboration:

@@ -1276,7 +1276,7 @@ nl:
     record_not_found: Record niet gevonden
     user_not_authorized: Gebruiker niet geautoriseerd
   auth:
-    cookies_link: <a href="%{cookies_url}">Cookiesverklaring</a>
+    cookie_notice_link: <a href="%{cookies_url}">Cookieverklaring
     current_password: Huidig wachtwoord
     current_password_placeholder: Huidig wachtwoord invoeren
     email: E-mail
@@ -1322,7 +1322,7 @@ nl:
     password_confirmation: Wachtwoord bevestigen
     password_confirmation_placeholder: Wachtwoord bevestigen
     password_placeholder: Voer wachtwoord in
-    privacy_statement_link: <a href="%{privacy_url}">Privacyverklaring</a>
+    privacy_notice_link: <a href="%{privacy_url}">Privacyverklaring
     registration:
       description: Vul de onderstaande gegevens in om te registreren en een nieuwe account aan te maken
       email_hint: We respecteren je privacy en tolereren geen spam. We zullen je gegevens nooit doorgeven aan derden
@@ -2756,6 +2756,7 @@ nl:
             r3: 'De ontwikkelingsinputs in dit rapport kunnen afkomstig zijn uit een of beide van de volgende bronnen:'
             r3a: Een op maat gemaakte ontwikkelingsbibliotheek voor uw organisatie
             r3b: Door AI gegenereerde ontwikkelingsvoorstellen
+            r4: Dit IDP-rapport is opgesteld met behulp van AI-technologie en kan onnauwkeurigheden bevatten. De verstrekte inzichten en aanbevelingen dienen met de nodige voorzichtigheid te worden geïnterpreteerd en mogen uitsluitend worden gebruikt als hulpmiddel voor uw persoonlijke en professionele ontwikkeling. Het rapport is 12 tot 18 maanden geldig.
           main: Het opgestelde IDP bevat een gedetailleerde lijst met ontwikkelingsacties die u kunt ondernemen, rekening houdend met best practices op het gebied van leren, d.w.z. de 70-20-10-richtlijn, die een progressief traject biedt waarin klassikaal leren, coaching en leren op de werkplek worden gecombineerd. Op basis van de resultaten van het assessment center-proces, uw chatresponsen en externe rapporten, indien van toepassing, zijn mogelijke ontwikkelingspaden aanbevolen die in aanmerking kunnen worden genomen voor uw ontwikkeling.
         learn_cards:
           collaboration:

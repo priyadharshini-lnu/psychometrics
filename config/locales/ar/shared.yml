@@ -38,6 +38,7 @@ ar:
     confirm: تأكيد
     continue: استمر
     controller: وحدة التحكم
+    cookie_notice: إشعار بشأن ملفات تعريف الارتباط
     cookies_statement: بيان ملفات تعريف الارتباط
     copied_to_clipboard: نسخ إلى الحافظة
     copy: نسخ
@@ -103,6 +104,7 @@ ar:
     policy_version: إصدار السياسة
     policy_version_format: يُسمح فقط بالأرقام الصحيحة
     positive: إيجابي
+    privacy_notice: إشعار الخصوصية
     processing: المعالجة
     processor: المعالج
     proctoring_maintenance_active: يخضع نظام Proctoring حاليًا للصيانة من %{start_time} إلى %{end_time}. يرجى المحاولة مرة أخرى بعد انتهاء فترة الصيانة.

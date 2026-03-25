@@ -1276,7 +1276,7 @@ pl:
     record_not_found: Nie znaleziono rekordu
     user_not_authorized: Użytkownik nie jest autoryzowany
   auth:
-    cookies_link: <a href="%{cookies_url}">Oświadczenie dotyczące plików cookie</a>
+    cookie_notice_link: <a href="%{cookies_url}">Informacja o plikach cookie
     current_password: Aktualne hasło
     current_password_placeholder: Wprowadź bieżące hasło
     email: E-mail
@@ -1322,7 +1322,7 @@ pl:
     password_confirmation: Potwierdź hasło
     password_confirmation_placeholder: Wprowadź potwierdzenie hasła
     password_placeholder: Wprowadź hasło
-    privacy_statement_link: <a href="%{privacy_url}">Oświadczenie o ochronie prywatności</a>
+    privacy_notice_link: <a href="%{privacy_url}">Polityka prywatności
     registration:
       description: Wypełnij poniższe dane, aby się zarejestrować i utworzyć nowe konto
       email_hint: Szanujemy twoją prywatność i nie tolerujemy spamu. Nigdy nie udostępnimy Twoich danych osobom trzecim
@@ -2765,6 +2765,7 @@ pl:
             r3: 'Informacje dotyczące rozwoju zawarte w niniejszym raporcie mogą pochodzić z jednego lub obu poniższych źródeł:'
             r3a: Biblioteka programistyczna dostosowana do potrzeb Twojej organizacji
             r3b: Sugestie dotyczące rozwoju generowane przez sztuczną inteligencję
+            r4: Niniejszy raport IDP został sporządzony przy pomocy technologii sztucznej inteligencji i może zawierać nieścisłości. Przedstawione w nim spostrzeżenia i zalecenia należy traktować z rezerwą i wykorzystywać wyłącznie jako narzędzie służące rozwojowi osobistemu i zawodowemu. Raport zachowuje ważność przez okres 12–18 miesięcy.
           main: Stworzony plan rozwoju zawodowego zawiera szczegółową listę działań rozwojowych, które możesz podjąć, mając na uwadze najlepsze praktyki w zakresie uczenia się, tj. wytyczne 70-20-10, które zapewniają stopniową ścieżkę rozwoju łączącą naukę w sali lekcyjnej, coaching i naukę w miejscu pracy. Na podstawie wyników procesu oceny, odpowiedzi udzielonych podczas rozmowy oraz raportów zewnętrznych, w stosownych przypadkach, zostały zalecone możliwe ścieżki rozwoju, które można rozważyć w celu Twojego rozwoju.
         learn_cards:
           collaboration:

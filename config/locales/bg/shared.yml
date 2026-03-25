@@ -38,6 +38,7 @@ bg:
     confirm: Потвърдете
     continue: Продължавам
     controller: Контролер
+    cookie_notice: Уведомление за бисквитките
     cookies_statement: Декларация за бисквитките
     copied_to_clipboard: Копирано в клипборда
     copy: Копиране
@@ -103,6 +104,7 @@ bg:
     policy_version: Версия на политиката
     policy_version_format: Допускат се само цели числа
     positive: Положителен
+    privacy_notice: Декларация за поверителност
     processing: Обработка
     processor: Процесор
     proctoring_maintenance_active: Proctoring е в процес на поддръжка от %{start_time} до %{end_time}. Моля, опитайте отново след края на поддръжката.
