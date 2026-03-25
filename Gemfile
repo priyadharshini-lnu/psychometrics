@@ -35,7 +35,7 @@ gem 'devise_saml_authenticatable', '~> 1.9.1'
 gem 'saml_idp', '~> 1.0.0'
 
 gem 'dotiw', '~> 5.3.3'
-gem 'icalendar', '~> 2.9.0'
+gem 'icalendar', '~> 2.12.2'
 
 # Two factor authentication (inlined from gem into lib/two_factor_authentication)
 gem 'rotp', '~> 6.3'

@@ -526,8 +526,11 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.8, >= 1.8.1)
       terminal-table (>= 1.5.1)
-    icalendar (2.9.0)
+    icalendar (2.12.2)
+      base64
       ice_cube (~> 0.16)
+      logger
+      ostruct
     ice_cube (0.17.0)
     ice_nine (0.11.2)
     image_processing (1.14.0)
@@ -1209,7 +1212,7 @@ DEPENDENCIES
   hirb
   i18n-js (~> 3.9.2)
   i18n-tasks (~> 1.0.15)
-  icalendar (~> 2.9.0)
+  icalendar (~> 2.12.2)
   image_processing (~> 1.2)
   inky-rb (~> 1.4.2.1)
   interactor (~> 3.1.2)
