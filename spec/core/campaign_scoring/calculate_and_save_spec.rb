@@ -20,6 +20,8 @@ describe CampaignScoring::CalculateAndSave do
   end
 
   it 'handles concurrent calls without duplicate key errors' do
+    Redlock::Client.testing_mode = :run
+
     create(:campaign_user, campaign: campaign, user: user)
     cf_factor = create(
       :campaign_factor, code: 'factor1', campaign: campaign, assessment: assessment, factor: factor1,
@@ -43,6 +45,8 @@ describe CampaignScoring::CalculateAndSave do
     end
 
     threads.each(&:join)
+
+    Redlock::Client.testing_mode = :bypass
 
     expect(errors).to be_empty, "Race condition occurred: #{errors.map(&:message).join(', ')}"
     expect(CampaignFactorValue.where(campaign: campaign, user: user, campaign_factor: cf_factor).count).to eq(1)
