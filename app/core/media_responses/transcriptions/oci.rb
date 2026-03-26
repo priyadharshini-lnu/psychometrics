@@ -44,6 +44,7 @@ module MediaResponses
         compartment_id = Settings.secrets.oci.compartment_id
         namespace = Settings.secrets.oci.namespace
         bucket_name = Settings.secrets.s3_compatible_storage.private_bucket
+        language_code = WhisperLocale.resolve(media_response.users_result.user_assessment.selected_locale)
         input_object_name = media_response.asset.key
 
         OCI::AiSpeech::Models::CreateTranscriptionJobDetails.new(
@@ -65,7 +66,7 @@ module MediaResponses
           ),
           model_details: OCI::AiSpeech::Models::TranscriptionModelDetails.new(
             model_type: Settings.ai_transcription_provider.model,
-            language_code: 'auto'
+            language_code: language_code
           ),
           normalization: OCI::AiSpeech::Models::TranscriptionNormalization.new(
             is_punctuation_enabled: true,

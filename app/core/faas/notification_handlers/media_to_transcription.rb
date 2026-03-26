@@ -37,7 +37,10 @@ module Faas
       end
 
       def handle_completed_transcription
-        transcribable_record.save_transcription_completed!(data['transcription'])
+        transcribable_record.save_transcription_completed!(
+          data['text'],
+          metadata: data['metadata'] || {}
+        )
         update_admin_job_progress
       end
 

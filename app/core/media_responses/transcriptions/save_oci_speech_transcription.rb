@@ -5,6 +5,10 @@ module MediaResponses
     class SaveOciSpeechTranscription < BaseCommand
       private_attr_reader :media_response, :job_id, :media_response_id, :admin_job_record_id
 
+      HALLUCINATION_THRESHOLDS = {
+        min_overall_confidence: 0.4
+      }.freeze
+
       def initialize(options)
         @job_id = options[:job_id]
         @media_response_id = options[:record_id]
@@ -25,9 +29,12 @@ module MediaResponses
 
       def save_transcription
         s3key = get_transcription_s3key
-        transcription_text = extract_transcription_text(s3key)
+        transcription_data = extract_transcription_data(s3key)
 
-        media_response.save_transcription_completed!(transcription_text)
+        media_response.save_transcription_completed!(
+          transcription_data[:text],
+          metadata: transcription_data[:metadata]
+        )
 
         update_admin_job_progress
       end
@@ -40,18 +47,48 @@ module MediaResponses
         )
       end
 
-      def extract_transcription_text(s3key)
+      def extract_transcription_data(s3key)
         bucket = Settings.secrets.s3_compatible_storage[:private_bucket]
 
         response = s3_client.get_object(bucket: bucket, key: s3key)
         json_data = JSON.parse(response.body.read)
 
-        # Extract from OCI format: transcriptions[0].transcription
-        if json_data['transcriptions'].is_a?(Array) && json_data['transcriptions'].first
-          json_data['transcriptions'].first['transcription']
-        else
-          raise "Invalid transcription format: #{json_data.inspect}"
+        transcriptions = json_data['transcriptions']
+        transcription_entry = transcriptions.is_a?(Array) ? transcriptions.first : nil
+        raise "Invalid transcription format: #{json_data.inspect}" unless transcription_entry
+
+        original_text = transcription_entry['transcription']
+        hallucination_reason = detect_hallucination(transcription_entry)
+        tokens = hallucination_reason ? [] : (transcription_entry['tokens'] || [])
+
+        {
+          text: hallucination_reason ? '' : original_text,
+          metadata: build_metadata(json_data, transcription_entry, hallucination_reason, original_text),
+          tokens: tokens
+        }
+      end
+
+      def detect_hallucination(transcription_entry)
+        confidence = transcription_entry['confidence'].to_f
+        return 'low_confidence' if confidence < HALLUCINATION_THRESHOLDS[:min_overall_confidence]
+
+        nil
+      end
+
+      def build_metadata(json_data, transcription_entry, hallucination_reason, original_text)
+        metadata = {
+          provider: 'oci',
+          overall_confidence: transcription_entry['confidence'].to_f,
+          model_type: json_data.dig('modelDetails', 'modelType'),
+          language_code: json_data.dig('modelDetails', 'languageCode')
+        }
+
+        if hallucination_reason
+          metadata[:hallucination_reason] = hallucination_reason
+          metadata[:original_text] = original_text
         end
+
+        metadata
       end
 
       def get_transcription_s3key

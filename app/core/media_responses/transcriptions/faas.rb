@@ -30,9 +30,16 @@ module MediaResponses
             record_id: media_response.id,
             record_type: media_response.class.name,
             admin_job_record_id: admin_job_record_id
+          },
+          transcriptionParams: {
+            **({ language: whisper_language_code } if whisper_language_code)
           }
         )
         Rails.logger.info("Audio extraction triggered for MediaResponse #{media_response.id}")
+      end
+
+      def whisper_language_code
+        WhisperLocale.resolve(media_response.users_result.user_assessment.selected_locale, fallback: nil)
       end
     end
   end

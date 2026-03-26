@@ -20,7 +20,7 @@ module Faas
     end
 
     def request_body
-      body = options.slice(:mediaUrl, :audioFormat, :meta).
+      body = options.slice(:mediaUrl, :audioFormat, :meta, :transcriptionParams).
              merge(
                webhookMessage: webhook_message
              )

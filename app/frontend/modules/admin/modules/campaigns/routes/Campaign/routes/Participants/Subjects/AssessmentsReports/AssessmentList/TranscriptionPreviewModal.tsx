@@ -57,7 +57,7 @@ const TranscriptionPreviewModal: FC<Props> = ({
       destroyOnHidden
     >
       <pre style={{ whiteSpace: 'pre-wrap', maxHeight: 400, overflow: 'auto' }}>
-        {transcriptionText}
+        {transcriptionText || "''"}
       </pre>
     </Modal>
   )
