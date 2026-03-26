@@ -12,20 +12,26 @@ module ScoreApprovals
     def call
       @meta = initialize_meta
       @approved_approvals = []
-      score_approvals.each do |score_approval|
-        if score_approval.allow_bulk_approve?
-          ScoreApprovals::ApproveAllQuestions.call(score_approval, current_user)
-          @approved_approvals << score_approval
-          @meta[:approved] += 1
-        else
-          @meta[:ignored] += 1
-        end
-      end
-
+      score_approvals.each { |score_approval| process_approval(score_approval) }
       broadcast :ok, @approved_approvals, @meta
     end
 
     private
+
+    def process_approval(score_approval)
+      unless score_approval.allow_bulk_approve?
+        @meta[:ignored] += 1
+        return
+      end
+
+      result = ScoreApprovals::ApproveAllQuestions.call(score_approval, current_user, bulk_scoring_approval: true)
+      if result[:ok].present?
+        @approved_approvals << score_approval
+        @meta[:approved] += 1
+      else
+        @meta[:ignored] += 1
+      end
+    end
 
     def score_approvals
       ::AI::ScoringApprovalSetting.user_tasks(current_user).

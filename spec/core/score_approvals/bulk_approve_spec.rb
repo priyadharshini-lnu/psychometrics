@@ -15,8 +15,7 @@ RSpec.describe ScoreApprovals::BulkApprove, type: :command do
                campaign: campaign,
                assessment: assessment,
                assessor_ids: [assessor_user.id],
-               allow_bulk_approve: false,
-               allow_bulk_approve_scores: true)
+               allow_bulk_approve: false)
       end
 
       let!(:sa1) do
@@ -44,8 +43,7 @@ RSpec.describe ScoreApprovals::BulkApprove, type: :command do
                campaign: campaign,
                assessment: assessment,
                assessor_ids: [assessor_user.id],
-               allow_bulk_approve: true,
-               allow_bulk_approve_scores: true)
+               allow_bulk_approve: true)
       end
 
       let!(:sa1) do
