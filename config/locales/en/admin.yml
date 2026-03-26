@@ -23,7 +23,15 @@ en:
     ai_artifact_result_generation_admin_job_failed: Artifact '%{artifact_name}' cannot be generated for User '%{user_email}'
     ai_artifact_result_stale: Result may be stale as the AI artifact dependencies have changed since the last result was generated. Consider regenerating the artifact to generate with the latest dependencies.
     ai_artifacts: AI Artifacts
+    ai_artifacts_finalized_at: Finalized At
+    ai_artifacts_generate_result_confirm: Generating artifact results for user '%{email}' will remove the existing report which depends on this AI artifact. Are you sure you want to proceed?
     ai_artifacts_generate_results: Generate Results
+    ai_artifacts_mark_finalized: Mark Finalized
+    ai_artifacts_mark_finalized_bulk_confirm: Finalizing artifact results for all selected users will generate the reports which use AI artifacts. Are you sure you want to proceed?
+    ai_artifacts_mark_finalized_confirm: Finalizing artifact results for user '%{email}' will generate the report which uses AI artifact for the user. Are you sure you want to proceed?
+    ai_artifacts_mark_not_finalized: Mark Not Finalized
+    ai_artifacts_mark_not_finalized_bulk_confirm: Removing finalize from all selected users will remove the generated reports which use AI artifacts. Are you sure you want to proceed?
+    ai_artifacts_mark_not_finalized_confirm: Removing finalize from the user '%{email}' will remove the generated report which uses AI artifact for the user. Are you sure you want to proceed?
     ai_artifacts_output_schema_key_constraint: Key must start with a lowercase letter and can only contain lowercase letters, numbers, and underscores
     ai_artifacts_results_export: Export Results
     ai_artifacts_results_export_job_scheduled: AI Artifacts results export job was scheduled successfully

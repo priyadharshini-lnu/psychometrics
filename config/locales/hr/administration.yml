@@ -80,7 +80,6 @@ hr:
         title: AI artefakt
       generate: Generirati
       generate_result_info_message: Rezultati se generiraju, osvježite stranicu da biste vidjeli ažurirane rezultate.
-      generated_at: Generirano u
       generated_at_time: Generirano u %{time}
       generated_value: Generirana vrijednost
       id: ID

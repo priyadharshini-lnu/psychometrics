@@ -80,7 +80,6 @@ nl:
         title: AI-artefact
       generate: Genereren
       generate_result_info_message: Resultaten worden gegenereerd, vernieuw de pagina om de bijgewerkte resultaten te zien.
-      generated_at: Gegenereerd op
       generated_at_time: Gegenereerd op %{time}
       generated_value: Gegenereerde waarde
       id: LEGITIMATIEBEWIJS

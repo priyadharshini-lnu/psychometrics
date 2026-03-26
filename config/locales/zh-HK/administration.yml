@@ -80,7 +80,6 @@ zh-HK:
         title: 人工智能产物
       generate: 生成
       generate_result_info_message: 正在生成结果，请刷新页面查看最新结果。
-      generated_at: 生成于
       generated_at_time: 生成于 %{time}
       generated_value: 创造的价值
       id: ID

@@ -80,7 +80,6 @@ es-ES:
         title: Artefacto de IA
       generate: Generar
       generate_result_info_message: Se están generando resultados, actualice la página para ver los resultados actualizados.
-      generated_at: Generado en
       generated_at_time: Generado en %{time}
       generated_value: Valor generado
       id: IDENTIFICACIÓN

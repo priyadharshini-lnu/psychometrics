@@ -80,7 +80,6 @@ ja:
         title: AIアーティファクト
       generate: 生成する
       generate_result_info_message: 結果が生成されていますので、ページを更新して更新された結果を確認してください。
-      generated_at: 生成時間
       generated_at_time: "%{time}で生成"
       generated_value: 生成された価値
       id: 身分証明書

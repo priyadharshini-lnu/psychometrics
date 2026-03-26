@@ -80,7 +80,6 @@ zh-Hant:
         title: AI神器
       generate: 產生
       generate_result_info_message: 結果正在產生中，請重新整理頁面以查看更新的結果。
-      generated_at: 產生時間
       generated_at_time: 生成於%{time}
       generated_value: 產生的價值
       id: ID

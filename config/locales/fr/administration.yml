@@ -80,7 +80,6 @@ fr:
         title: Artéfact IA
       generate: Générer
       generate_result_info_message: Les résultats sont en cours de génération, veuillez actualiser la page pour voir les résultats mis à jour.
-      generated_at: Généré à
       generated_at_time: Généré à %{time}
       generated_value: Valeur générée
       id: ID

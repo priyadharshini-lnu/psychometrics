@@ -80,7 +80,6 @@ sl:
         title: Artefakt umetne inteligence
       generate: Ustvariti
       generate_result_info_message: Rezultati se ustvarjajo, prosimo, osvežite stran, da si ogledate posodobljene rezultate.
-      generated_at: Ustvarjeno pri
       generated_at_time: Ustvarjeno ob %{time}
       generated_value: Ustvarjena vrednost
       id: ID

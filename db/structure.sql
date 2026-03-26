@@ -2560,7 +2560,8 @@ CREATE TABLE public.campaign_users (
     current_job_role_id bigint,
     target_job_role_id bigint,
     campaign_artifact_results_finalized boolean DEFAULT false,
-    level integer
+    level integer,
+    campaign_artifact_results_finalized_at timestamp(6) without time zone
 );
 
 
@@ -20271,6 +20272,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260323084342'),
 ('20260311085954'),
 ('20260306090626'),
 ('20260320102153'),

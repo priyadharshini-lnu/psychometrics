@@ -80,7 +80,6 @@ bg:
         title: AI артефакт
       generate: Пораждам
       generate_result_info_message: Резултатите се генерират, моля, опреснете страницата, за да видите актуализираните резултати.
-      generated_at: Генерирано в
       generated_at_time: Генерирано в %{time}
       generated_value: Генерирана стойност
       id: Документ за самоличност

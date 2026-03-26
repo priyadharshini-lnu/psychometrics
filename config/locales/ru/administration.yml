@@ -80,7 +80,6 @@ ru:
         title: Искусственный интеллект
       generate: Генерировать
       generate_result_info_message: Результаты обрабатываются, пожалуйста, обновите страницу, чтобы увидеть обновленные результаты.
-      generated_at: Создано в
       generated_at_time: Создано на сайте %{time}
       generated_value: Созданная стоимость
       id: ID

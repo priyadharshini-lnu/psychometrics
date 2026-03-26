@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Drawer, Flex, Typography, Divider,
+  Drawer, Flex, Typography, Divider, App,
 
 } from 'antd'
 import useAsyncRequestResponse from '~/hooks/useAsyncRequestResponse'
@@ -35,6 +35,8 @@ export const ArtifactResultsDrawer: React.FC<ArtifactResultsDrawerProps> = ({
     return null
   }
 
+  const { modal } = App.useApp()
+
   const [artifactData, setArtifactData] = React.useState<CampaignAiArtifactDataSource>(userArtifactsResults)
 
   const handleSuccess = (responseData: ArtifactResultResponseData) => {
@@ -68,6 +70,7 @@ export const ArtifactResultsDrawer: React.FC<ArtifactResultsDrawerProps> = ({
             }),
           },
           generatedAt: res.generatedAt,
+          artifactResultsFinalizedAt: responseData.meta.artifactResultsFinalizedAt,
         }
       }
       return record
@@ -159,6 +162,17 @@ export const ArtifactResultsDrawer: React.FC<ArtifactResultsDrawerProps> = ({
     }
   }
 
+  const generateResultWithConfirm = (id: string, setIsGenerating: (value: boolean) => void) => {
+    modal.confirm({
+      title: I18n.t('admin.ai_artifacts_generate_results'),
+      content: I18n.t('admin.ai_artifacts_generate_result_confirm', { email: userArtifactsResults.email }),
+      onOk: () => {
+        setIsGenerating(true)
+        generateResult(id).finally(() => setIsGenerating(false))
+      },
+    })
+  }
+
   return (
     <Drawer
       title={I18n.t('administration.ai_artifacts.artifact_results')}
@@ -181,7 +195,7 @@ export const ArtifactResultsDrawer: React.FC<ArtifactResultsDrawerProps> = ({
               key={artifactName}
               artifactName={artifactName}
               artifactData={artifactData.artifacts[artifactName]}
-              generateResult={generateResult}
+              generateResult={generateResultWithConfirm}
             />
           ))}
       </Flex>

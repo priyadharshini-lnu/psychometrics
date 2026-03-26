@@ -1588,6 +1588,10 @@ only: %i[index create update]
               only: %i[index show], param: :user_id do
                 collection do
                   post :export
+                  post :change_finalized_artifact_results_bulk
+                end
+                member do
+                  post :change_finalized_artifact_results
                 end
               end
 

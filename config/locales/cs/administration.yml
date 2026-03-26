@@ -80,7 +80,6 @@ cs:
         title: Artefakt umělé inteligence
       generate: Generovat
       generate_result_info_message: Výsledky se generují, aktualizujte stránku a podívejte se na aktualizované výsledky.
-      generated_at: Generováno dne
       generated_at_time: Generováno v %{time}
       generated_value: Vytvořená hodnota
       id: ID

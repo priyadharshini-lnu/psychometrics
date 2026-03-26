@@ -80,7 +80,6 @@ ko:
         title: AI 아티팩트
       generate: 창조하다
       generate_result_info_message: 결과가 생성되고 있으니 페이지를 새로 고쳐 업데이트된 결과를 확인하세요.
-      generated_at: 생성 날짜
       generated_at_time: "%{time}에 생성됨"
       generated_value: 생성된 가치
       id: 아이디
