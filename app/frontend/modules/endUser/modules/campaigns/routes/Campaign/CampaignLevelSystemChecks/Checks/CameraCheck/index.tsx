@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import {
-  useState, useEffect, useMemo, useContext,
+  useState, useEffect, useMemo, useContext, useRef,
 } from 'react'
 import { useSelector, useDispatch, connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
@@ -22,7 +22,7 @@ import { PermissionDenied } from './PermissionDenied'
 import { fetchCampaign } from '~/modules/endUser/modules/campaigns/core/campaign'
 import { SystemCheckAddedRecord } from '~/modules/endUser/modules/campaigns/core/systemChecks/interfaces'
 import commonStyles from '../../common-styles.less'
-import { CountdownButton } from '../../components/CountdownButton'
+import { CountdownButton, CountdownButtonRef } from '../../components/CountdownButton'
 import { SuccessTag, FailureTag, PendingTag } from '../../components/StatusTags'
 
 const { I18n } = window
@@ -50,6 +50,8 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
   const { campaignId } = useParams() as { campaignId: string}
 
   const { isMobile } = useContext(MediaQueryContext)
+
+  const countDownButtonRef = useRef<CountdownButtonRef>(null)
 
   const [addSystemCheckRecord] = useAddSystemCheckRecordMutation()
   const {
@@ -197,7 +199,7 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
                 }}
               >
                 <ExclamationCircleOutlined style={{ fontSize: '2rem', color: 'var(--ant-error-color)' }} className="mb-2" />
-                <h4>
+                <h4 className="mt-0">
                   {I18n.t('enduser.error_uploading_video')}
                 </h4>
               </Flex>
@@ -210,6 +212,7 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
               </Button>
               <Flex justify="end" gap={4} className="mt-2">
                 <Button onClick={() => {
+                  countDownButtonRef.current?.reset()
                   setCheckStatus(CHECK_STATUS.pending)
                 }}
                 >
@@ -220,6 +223,7 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
                   disabled={!campaignOptions?.allowContinueWithWarning}
                   label={I18n.t('shared.continue')}
                   handleContinue={handleNext}
+                  ref={countDownButtonRef}
                 />
               </Flex>
             </Flex>

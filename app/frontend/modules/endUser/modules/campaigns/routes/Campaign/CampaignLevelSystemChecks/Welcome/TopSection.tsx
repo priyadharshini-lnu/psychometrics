@@ -13,6 +13,7 @@ import {
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { secondsToDuration } from '~/utils/time'
 import styles from './styles.less'
+import { CHECK_TYPE } from '../common'
 
 const { I18n } = window
 
@@ -120,23 +121,29 @@ export const TopSection = () => {
               </Col>
 
               <Col>
-                <Row align="middle" gutter={[8, 8]}>
-                  <Col>
-                    <WifiOutlined style={{ fontSize: '1rem' }} />
-                  </Col>
-                  <Col>
-                    <Typography.Text>{I18n.t('enduser.internet_speed')}</Typography.Text>
-                  </Col>
-                </Row>
+                {requiredSystemChecks?.includes(CHECK_TYPE.network) ? (
+                  <Row align="middle" gutter={[8, 8]}>
+                    <Col>
+                      <WifiOutlined style={{ fontSize: '1rem' }} />
+                    </Col>
+                    <Col>
+                      <Typography.Text>{I18n.t('enduser.internet_speed')}</Typography.Text>
+                    </Col>
+                  </Row>
+                ) : (
+                  <Row align="middle" gutter={[8, 8]}>
+                    <Col style={{ height: '1.5rem' }} />
+                    <Col />
+                  </Row>
+                )}
               </Col>
-
             </Row>
           </Col>
 
           <Col span={24}>
             <Row justify="space-between" gutter={[16, 16]}>
               <Col>
-                {requiredSystemChecks?.includes('video') ? (
+                {requiredSystemChecks?.includes(CHECK_TYPE.video) ? (
                   <Row align="middle" gutter={[8, 8]}>
                     <Col>
                       <VideoCameraOutlined style={{ fontSize: '1rem' }} />

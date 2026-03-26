@@ -1,4 +1,6 @@
-import { useState, useEffect, useContext } from 'react'
+import {
+  useState, useEffect, useContext, useRef,
+} from 'react'
 import { useDispatch, useSelector, connect } from 'react-redux'
 import {
   Flex, Spin, Typography, Button,
@@ -20,7 +22,7 @@ import { CHECK_STATUS, CHECK_TYPE } from '../../common'
 import { MIN_BROWSER_VERSIONS, BrowserCheckType, browserCheckErrorMessage } from './constants'
 import { fetchCampaign } from '~/modules/endUser/modules/campaigns/core/campaign'
 import commonStyles from '../../common-styles.less'
-import { CountdownButton } from '../../components/CountdownButton'
+import { CountdownButton, CountdownButtonRef } from '../../components/CountdownButton'
 import { AlertNotification } from '../../components/AlertNotification'
 import { SuccessTag, FailureTag, PendingTag } from '../../components/StatusTags'
 
@@ -61,6 +63,8 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
   const dispatch = useDispatch()
 
   const { isMobile } = useContext(MediaQueryContext)
+
+  const countDownButtonRef = useRef<CountdownButtonRef>(null)
 
   const checkBrowserSupportForWebGLAPI = () => {
     const canvas = document.createElement('canvas')
@@ -241,10 +245,14 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
                           className={commonStyles['primary-icon']}
                         />
                       ) : <ExclamationCircleOutlined className={commonStyles['error-icon']} />}
-                      <Flex gap={4} vertical>
-                        <h4 className="mt-0">{check.title}</h4>
+                      <Flex gap={2} vertical>
+                        <h4 className="mt-0 mb-0">{check.title}</h4>
                         {!check.supported
-                        && <Typography.Text>{browserCheckErrorMessage[check.type].title}</Typography.Text>}
+                        && (
+                          <Typography.Text className="mb-2">
+                            {browserCheckErrorMessage[check.type].title}
+                          </Typography.Text>
+                        )}
                       </Flex>
                     </Flex>
                     <Typography.Text>
@@ -270,7 +278,15 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
           {I18n.t('enduser.back')}
         </Button>
         <Flex justify="end" gap={12}>
-          <Button icon={<RedoOutlined />} onClick={checkBrowserForFeatureCompatibility}>
+          <Button
+            icon={<RedoOutlined />}
+            onClick={() => {
+              checkBrowserForFeatureCompatibility()
+              if (countDownButtonRef.current) {
+                countDownButtonRef.current.reset()
+              }
+            }}
+          >
             {I18n.t('enduser.rerun_check')}
           </Button>
           <CountdownButton
@@ -280,6 +296,7 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
             }
             label={I18n.t('shared.continue')}
             handleContinue={handleNext}
+            ref={countDownButtonRef}
           />
         </Flex>
       </Flex>

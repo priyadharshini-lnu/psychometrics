@@ -450,6 +450,8 @@ const VideoCheckComponent: React.FC<Props> = ({
 
   return (
     <Flex align="center" vertical gap={4}>
+      <h3>{I18n.t('checking_wizard.video_check.title')}</h3>
+      <p>{I18n.t('checking_wizard.video_check.description')}</p>
       {
          ['idle', 'recording'].includes(status)
         && (

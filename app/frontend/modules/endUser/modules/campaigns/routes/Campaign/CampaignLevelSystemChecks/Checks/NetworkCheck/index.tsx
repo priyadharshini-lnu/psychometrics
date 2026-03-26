@@ -1,4 +1,6 @@
-import { useEffect, useState, useContext } from 'react'
+import {
+  useEffect, useState, useContext, useRef,
+} from 'react'
 import {
   Flex, Typography, Skeleton, Button, Divider,
 } from 'antd'
@@ -24,7 +26,7 @@ import { CHECK_STATUS, CHECK_TYPE } from '../../common'
 import { errorMessageList } from './constants'
 import { fetchCampaign } from '~/modules/endUser/modules/campaigns/core/campaign'
 import commonStyles from '../../common-styles.less'
-import { CountdownButton } from '../../components/CountdownButton'
+import { CountdownButton, CountdownButtonRef } from '../../components/CountdownButton'
 import { AlertNotification } from '../../components/AlertNotification'
 import { SuccessTag, FailureTag, PendingTag } from '../../components/StatusTags'
 
@@ -41,6 +43,7 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
   const [speed, setSpeed] = useState<{ download: string; upload: string } | null>(null)
   const { isMobile } = useContext(MediaQueryContext)
   const isOnline = useOnlineStatus()
+  const countDownButtonRef = useRef<CountdownButtonRef>(null)
 
   const [checkStatus, setCheckStatus] = useState(CHECK_STATUS.pending)
 
@@ -348,7 +351,12 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
                   ? (
                     <ExclamationCircleOutlined className={commonStyles['error-icon']} />
                   ) : <CheckCircleOutlined className={commonStyles['success-icon']} />}
-                <p className="mb-0">{I18n.t('enduser.internet_speed_slow')}</p>
+                <Typography.Text
+                  style={{ fontWeight: 500 }}
+                  className="mb-0"
+                >
+                  {I18n.t('enduser.internet_speed_slow')}
+                </Typography.Text>
               </Flex>
               <FailureTag
                 style={{ height: 'fit-content' }}
@@ -366,7 +374,14 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
         <Flex justify="end" gap={12}>
           {checkStatus !== CHECK_STATUS.pending && (
-            <Button icon={<RedoOutlined />} onClick={() => { setCheckStatus(CHECK_STATUS.pending); runNetworkTest() }}>
+            <Button
+              icon={<RedoOutlined />}
+              onClick={() => {
+                countDownButtonRef.current?.reset()
+                setCheckStatus(CHECK_STATUS.pending)
+                runNetworkTest()
+              }}
+            >
               {I18n.t('enduser.rerun_check')}
             </Button>
           )}
@@ -375,6 +390,7 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
               && !campaignOptions?.allowContinueWithWarning)}
             label={I18n.t('shared.continue')}
             handleContinue={handleNext}
+            ref={countDownButtonRef}
           />
         </Flex>
       </Flex>
