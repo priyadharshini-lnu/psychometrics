@@ -16,12 +16,12 @@ describe Skillvue::SubscribeToWebhook do
       'error' => nil,
       'data' => [
         {
-          'event_type' => 'assessment.completed',
-          'url' => completion_url
+          'event' => 'assessment.completed',
+          'callback_url' => completion_url
         },
         {
-          'event_type' => 'report.ready',
-          'url' => results_url
+          'event' => 'report.ready',
+          'callback_url' => results_url
         }
       ]
     }

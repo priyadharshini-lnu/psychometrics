@@ -31,8 +31,8 @@ module Skillvue
 
       data = result['data'] || []
 
-      completion_url = data.find { |sub| sub['event_type'] == 'assessment.completed' }&.dig('url')
-      results_url = data.find { |sub| sub['event_type'] == 'report.ready' }&.dig('url')
+      completion_url = data.find { |sub| sub['event'] == 'assessment.completed' }&.dig('callback_url')
+      results_url = data.find { |sub| sub['event'] == 'report.ready' }&.dig('callback_url')
 
       config = integration.config.dup
       config['assessment_completion_notification_url'] = completion_url if completion_url
