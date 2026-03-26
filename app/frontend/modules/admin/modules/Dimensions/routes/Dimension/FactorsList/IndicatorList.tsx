@@ -93,13 +93,23 @@ export const IndicatorList: React.FC<Props> = ({ form: parentForm }) => {
   }
 
   const handleScoreRangeChange = (_: unknown, values: Partial<Indicator>) => {
+    if (values.scoreDefinitions) {
+      setEditingIndicator((prev) => {
+        if (prev) {
+          return { ...prev, scoreDefinitions: values.scoreDefinitions }
+        }
+        return null
+      })
+    }
+
     const newMin = values.scoreMin
     const newMax = values.scoreMax
     if (newMin !== undefined && newMax !== undefined && newMin !== null && newMax !== null) {
+      const currentDefinitions = indicatorForm.getFieldValue('scoreDefinitions') || []
       const newDefinitions = generateScoreDefinitionsFromRange(
         newMin,
         newMax,
-        editingIndicator?.scoreDefinitions || [],
+        currentDefinitions,
       )
       setEditingIndicator((prev) => {
         if (prev) {
@@ -112,6 +122,7 @@ export const IndicatorList: React.FC<Props> = ({ form: parentForm }) => {
         }
         return null
       })
+      indicatorForm.setFieldValue('scoreDefinitions', newDefinitions)
     }
   }
 
@@ -126,7 +137,6 @@ export const IndicatorList: React.FC<Props> = ({ form: parentForm }) => {
 
       const currentIndicators = [...indicators]
       if (editingIndex !== null) {
-        // Editing existing indicator - preserve id, subFactorId, factorsSubFactorId and position
         const existingIndicator = currentIndicators[editingIndex]
         currentIndicators[editingIndex] = {
           ...existingIndicator, // Preserves id, subFactorId, factorsSubFactorId, position, etc.
@@ -134,7 +144,6 @@ export const IndicatorList: React.FC<Props> = ({ form: parentForm }) => {
           factorType: 'indicator',
         }
       } else {
-        // New indicator - no id means modificationType will be CREATE
         const newIndicator: Indicator = {
           ...values,
           position: indicators.length,
@@ -298,31 +307,25 @@ export const IndicatorList: React.FC<Props> = ({ form: parentForm }) => {
               <InputNumber min={1} max={10} disabled />
             </Form.Item>
             <Form.Item
-              label={I18n.t('admin.score_min')}
-              name="score_min"
-            >
-              <InputNumber min={1} max={10} disabled />
-            </Form.Item>
-            <Form.Item
               label={I18n.t('admin.score_max')}
-              name="score_max"
+              name="scoreMax"
             >
               <InputNumber min={1} max={10} disabled />
             </Form.Item>
           </Flex>
-        </Form>
 
-        {editingIndicator?.scoreMin !== null
-          && editingIndicator?.scoreMax !== null
-          && editingIndicator?.scoreMin !== undefined
-          && editingIndicator?.scoreMax !== undefined
-          && (
-            <ScoreDefinitions
-              scoreDefinitions={editingIndicator.scoreDefinitions || []}
-              form={indicatorForm}
-            />
-          )
-        }
+          {editingIndicator?.scoreMin !== null
+            && editingIndicator?.scoreMax !== null
+            && editingIndicator?.scoreMin !== undefined
+            && editingIndicator?.scoreMax !== undefined
+            && (
+              <ScoreDefinitions
+                scoreDefinitions={editingIndicator.scoreDefinitions || []}
+                form={indicatorForm}
+              />
+            )
+          }
+        </Form>
       </Modal>
     </div>
   )
