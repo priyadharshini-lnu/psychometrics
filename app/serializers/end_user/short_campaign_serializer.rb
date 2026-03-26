@@ -6,7 +6,7 @@ module EndUser
 
     attributes :id, :name, :type, :status, :completion_percentage, :progress_status, :user_reports_available,
                :description, :timing, :scheduled_at, :scheduled_in, :is_system_check_enabled,
-               :allow_continue_with_warning, :system_check_status
+               :allow_continue_with_warning, :system_check_validity, :system_check_status
 
     delegate :scheduled_at, :scheduled_in, to: :campaign_user, allow_nil: true
     delegate :system_check_validity, to: :object

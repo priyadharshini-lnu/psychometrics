@@ -16,10 +16,10 @@ const CommonCampaignTR = t.type({
   description: t.union([t.null, t.string]),
   isSystemCheckEnabled: t.boolean,
   allowContinueWithWarning: t.boolean,
-  systemCheckValidity: t.number,
-  systemCheckStatus: t.type({
+  systemCheckValidity: t.union([t.null, t.number]),
+  systemCheckStatus: t.union([t.null, t.type({
     isValid: t.boolean,
-  }),
+  })]),
 })
 const ThreesixtyCampaignTR = t.type({
   id: t.number,
@@ -27,10 +27,10 @@ const ThreesixtyCampaignTR = t.type({
   assessmentName: t.string,
   isSystemCheckEnabled: t.boolean,
   allowContinueWithWarning: t.boolean,
-  systemCheckValidity: t.number,
-  systemCheckStatus: t.type({
+  systemCheckValidity: t.union([t.null, t.number]),
+  systemCheckStatus: t.union([t.null, t.type({
     isValid: t.boolean,
-  }),
+  })]),
   progressStatus: t.string,
   evaluationsCounters: t.type({
     totalEvaluators: t.number,
