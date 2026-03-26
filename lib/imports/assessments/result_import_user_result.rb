@@ -54,11 +54,11 @@ module Imports
         # Remove support row
         SUPPORT_ROWS.times { rows.shift }
         questions = Question.
-                    joining { block }.
+                    joins(:block).
                     not_deleted.
-                    selecting { [id, type, props, validation] }.
-                    where.has { |q| q.block.assessment_id == assessment.id }.
-                    ordering { [block.position.asc, position.asc] }.
+                    select(:id, :type, :props, :validation).
+                    where(blocks: { assessment_id: assessment.id }).
+                    order('blocks.position ASC', 'questions.position ASC').
                     group_by(&:id)
         # rubocop:disable Metrics/BlockLength
         rows.each_with_index.map do |row, index|
@@ -121,8 +121,14 @@ module Imports
             question = questions[qid].try(:first)
             next unless question
 
+            question_parser_class = "Imports::Assessments::Questions::#{question.type}"
+            unless Question::QUESTIONS_WITH_EXPORTABLE_ANSWERS.include?(question.type)
+              Rails.logger.warn("Skipping unsupported question type: #{question.type}")
+              next
+            end
+
             begin
-              parser = "Imports::Assessments::Questions::#{question.type}".constantize
+              parser = question_parser_class.constantize
             rescue NameError => e
               Rails.logger.error("#{question.type} - #{e}")
               next
@@ -200,12 +206,20 @@ module Imports
       def parse_norm_data(norm_name, assessment_id)
         return {} if norm_name.blank?
 
+        assessments_table = Assessment.arel_table.alias('assessments')
+        dimensions_table = Dimension.arel_table
+
+        assessments_join = dimensions_table.
+                           join(assessments_table).
+                           on(
+                             assessments_table[:dimension_id].eq(dimensions_table[:id]).
+                             and(assessments_table[:id].eq(assessment_id))
+                           ).
+                           join_sources
+
         norm_ids = Norm.
-                   joining { dimension }.
-                   joining do
-          dimension.assessments.alias('assessments').
-            on((dimension.assessments.dimension_id == dimension.id) & (dimension.assessments.id == assessment_id))
-        end.
+                   joins(:dimension).
+                   joins(assessments_join).
                    where(name: norm_name).
                    pluck(:id)
         { id: norm_ids.try(:first) }

@@ -341,25 +341,25 @@
     {
       "warning_type": "Remote Code Execution",
       "warning_code": 24,
-      "fingerprint": "baa92cd5b40a906f5d69d7611b810a56c294e539398ab387e5e885b679d5a66f",
+      "fingerprint": "2744836ccf5125bdd2ccdb48d4c993178c4f01bd275fb233c063e242a6647bc8",
       "check_name": "UnsafeReflection",
       "message": "Unsafe reflection method `constantize` called on model attribute",
       "file": "lib/imports/assessments/result_import_user_result.rb",
-      "line": 122,
+      "line": 130,
       "link": "https://brakemanscanner.org/docs/warning_types/remote_code_execution/",
-      "code": "\"Imports::Assessments::Questions::#{Question.joining do\n block\n end.not_deleted.selecting do\n [id, type, props, validation]\n end.where.has do\n (q.block.assessment_id == assessment.id)\n end.ordering do\n [block.position.asc, position.asc]\n end.group_by(&:id)[qid].first.type}\".constantize",
+      "code": "\"Imports::Assessments::Questions::#{Question.joins(:block).not_deleted.select(:id, :type, :props, :validation).where(:blocks => ({ :assessment_id => assessment.id })).order(\"blocks.position ASC\", \"questions.position ASC\").group_by(&:id)[qid].first.type}\".constantize",
       "render_path": null,
       "location": {
         "type": "method",
         "class": "Imports::Assessments::ResultImportUserResult",
         "method": "load_imported_items"
       },
-      "user_input": "Question.joining",
+      "user_input": "Question.joins(:block).not_deleted",
       "confidence": "Medium",
       "cwe_id": [
         470
       ],
-      "note": ""
+      "note": "Safe: question.type is validated against Question::QUESTIONS_WITH_EXPORTABLE_ANSWERS whitelist before constantize"
     },
     {
       "warning_type": "SQL Injection",

@@ -185,7 +185,7 @@ class Client < ApplicationRecord
   scope :resource_disabled, ->(value) { where(disabled: value) }
   scope :not_archived, -> { where.not(archived: true) }
   scope :tenancies, ->(*_p) { roots }
-  scope :not_retails, -> { where.has { type.not_eq(:retail) } }
+  scope :not_retails, -> { where.not(type: :retail) }
   scope :by_report_family_assessment, lambda { |assessment|
                                         joins(:report_families).
                                           where(report_families: { id: assessment.report_family_ids })

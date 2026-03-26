@@ -92,12 +92,12 @@ module AdminJobs
 
       def questions
         @questions ||= Question.
-                       joining { block }.
+                       joins(:block).
                        not_deleted.
                        includes(:factors_scorings).
-                       selecting { [id, name, type, props] }.
-                       where.has { |q| q.block.assessment_id == assessment.id }.
-                       ordering { [block.position.asc, position.asc] }
+                       select(:id, :name, :type, :props).
+                       where(blocks: { assessment_id: assessment.id }).
+                       order('blocks.position ASC', 'questions.position ASC')
       end
 
       def file_name

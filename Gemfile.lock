@@ -1,13 +1,4 @@
 GIT
-  remote: https://github.com/TheTalentEnterprise/baby_squeel
-  revision: 64f64012f7bb9049d88bbc5401733e429802beea
-  branch: master
-  specs:
-    baby_squeel (3.0.0)
-      activerecord (>= 7.1.5, < 8.1)
-      ransack (~> 4.1)
-
-GIT
   remote: https://github.com/TheTalentEnterprise/rectify.git
   revision: 5053eac2233ff388f42393c868ac501b3ce4f2de
   branch: tte-master
@@ -1155,7 +1146,6 @@ DEPENDENCIES
   aws-sdk-s3 (~> 1)
   aws-sdk-sqs (~> 1.38.0)
   aws-sigv4 (~> 1)
-  baby_squeel!
   barnes (~> 0.0.7)
   better_errors
   bh (~> 1.3)

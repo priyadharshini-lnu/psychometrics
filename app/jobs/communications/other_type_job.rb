@@ -4,7 +4,8 @@ module Communications
   class OtherTypeJob < ApplicationJob
     def perform
       communications = Communication.other.specific_datetime.
-                       joining { emails.outer }.where.has { emails.id.eq(nil) & (delivery_at <= Time.current) }.
+                       where.missing(:emails).
+                       where('communications.delivery_at <= ?', Time.current).
                        group(:id)
       communications.find_each(batch_size: 10, &:emails_creating)
     end
