@@ -32,13 +32,27 @@ module MediaResponses
       downloaded_file = download_file_from_url
       return nil unless downloaded_file
 
-      media_response = build_media_response
+      media_response = find_or_build_media_response
       attach_file_to_media_response(media_response, downloaded_file)
-      build_transcription(media_response) if transcription_text.present?
-
       media_response.save!
+
+      save_transcription(media_response) if transcription_text.present?
       enqueue_transcription_if_needed(media_response)
       media_response
+    end
+
+    def find_or_build_media_response
+      existing = existing_media_response
+      if existing
+        existing.user_selected = user_selected
+        existing
+      else
+        build_media_response
+      end
+    end
+
+    def existing_media_response
+      MediaResponse.find_by(users_result: user_result, question: question)
     end
 
     def enqueue_transcription_if_needed(media_response)
@@ -104,11 +118,8 @@ module MediaResponses
       content_types[extension] || 'application/octet-stream'
     end
 
-    def build_transcription(media_response)
-      media_response.build_transcription(
-        text: transcription_text,
-        status: :completed
-      )
+    def save_transcription(media_response)
+      media_response.save_transcription_completed!(transcription_text)
     end
   end
 end

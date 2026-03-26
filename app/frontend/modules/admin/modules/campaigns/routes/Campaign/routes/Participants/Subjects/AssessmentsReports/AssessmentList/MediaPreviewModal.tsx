@@ -41,13 +41,16 @@ const MediaPreviewModal: FC<Props> = ({
     }
   }, [open])
 
+  const modalTitle = mediaResponse
+    && `${I18n.t(`shared.${mediaResponse.questionType}`)} - ${I18n.t('shared.question_id')}:${mediaResponse.questionId}`
+
   return (
     <Modal
       open={open}
       onCancel={onClose}
       footer={null}
       width={800}
-      title={mediaResponse && I18n.t(`shared.${mediaResponse.questionType}`)}
+      title={modalTitle}
       destroyOnHidden
     >
       {mediaResponse?.questionText && (
