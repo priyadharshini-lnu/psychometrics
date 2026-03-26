@@ -1,6 +1,8 @@
 ---
 sk:
   enduser:
+    ack_subtitle: Prečítal som si a porozumel som vyššie uvedeným pokynom a som pripravený pokračovať v kontrole systému.
+    ack_title: Beriem na vedomie a rozumiem
     add_idp_plan_note: Pridať poznámku...
     add_idp_plan_rejection_reason: Pridať dôvod...
     ai_idp_assistant_response_no: Nie
@@ -8,13 +10,43 @@ sk:
     ai_idp_assistant_response_yes_proceed_with_plan_creation: Áno, pokračujte v tvorbe plánu.
     ai_idp_retake_step_chat_hint_no_document: Môžeš začať chat, aby si zdieľal viac detailov, a ja sa budem snažiť ti pomôcť.
     ai_idp_summary_hint_no_document: S vaším dovolením, ak poviete áno, môžem pre vás vytvoriť plán rozvoja. Ak nie, môžete chat reštartovať a zdieľať viac detailov.
+    all_checks_must_pass: Všetky kontroly musia prebehnúť úspešne, aby ste mohli pokračovať.
     approve_idp_plan: Schváliť plán
+    back: Späť
+    before_you_begin: Než začnete
+    begin_message: Než začnete s aktivitami v rámci tejto kampane, je potrebné spustiť kontrolu pripravenosti, ktorá overí kompatibilitu vášho zariadenia
     bookings: Rezervácie
+    browser: Prehliadač
+    browser_and_device: Prehliadač a zariadenie
+    browser_compatbility_step: Krok týkajúci sa kompatibility prehliadačov
+    browser_compatibility: 'Kompatibilita s prehliadačmi:'
+    browser_compatibility_check: Test kompatibility prehliadačov
+    browser_compatibility_check_description: Overenie, či váš prehliadač podporuje všetky potrebné funkcie
+    browser_compatibility_result: Kompatibilita s prehliadačmi
+    browser_version_fix_description_first: 'Použite niektorý z podporovaných prehliadačov: Chrome, Firefox, Edge alebo Safari'
+    browser_version_fix_description_second: Aktualizujte svoj prehliadač na najnovšiu verziu, aby ste zaistili kompatibilitu.
+    browser_version_fix_description_third: Skúste použiť okno v režime inkognito/súkromného prehliadania
+    browser_version_fix_title: Vaša verzia prehliadača nie je podporovaná.
+    camera: Video a audio
+    camera_access_blocked: Váš prehliadač zamietol alebo zablokoval prístup k kamere. Skontrolujte prosím oprávnenia vo vašom prehliadači.
+    camera_check: Test kamery a mikrofónu
+    camera_check_description: Skontrolujte, či vaša kamera a mikrofón správne fungujú na účely nahrávania
+    camera_test_step: Krok na otestovanie obrazu a zvuku
     campaign: Kampaň
+    chat_instructions: Pokyny pre chat
+    check: Skontrolujte
+    check_video_recording: Skontrolujte si prosím svoj videozáznam jeho prehrávaním.
+    checking_browser_compatibility: Overovanie kompatibility prehliadača...
     development: Vývoj
     direct_reportees: Priami podriadení
+    download: Stiahnuť
     download_pdf: Stiahnuť PDF
+    environment_setup: Nastavenie prostredia
+    error_uploading_video: Chyba pri nahrávaní videa
+    fail: Neúspech
+    follow_these_steps: Postupujte podľa týchto krokov, aby ste vyriešili problémy zistené pri kontrole systému
     home: Domov
+    how_to_fix: 'Ako to napraviť:'
     idp_loading_fifth_step: Načítanie vývojových akcií zo šablóny
     idp_loading_first_step: Analýza vašej hodnotiacej správy
     idp_loading_fourth_step: Výber relevantných zručností
@@ -22,13 +54,43 @@ sk:
     idp_loading_secondary_text: Kľudne sa vzdialte. Tvoj plán bude pripravený, keď sa vrátiš.
     idp_loading_sixth_step: Vytváranie rozvojových akcií
     idp_plan_approval_note: Poznámka k schváleniu
+    idp_proceed_with_plan_creation: Áno, pokračujte vo vytváraní plánu
+    idp_report_being_generated: Pracujeme na vašej správe
+    idp_reset_chat: Vynulovať konverzáciu
     idp_retake_steps_continue_with_this_information: Pokračujte s týmito informáciami
     insights: Postrehy
+    instruction: Uistite sa, že vy aj vaše okolie ste na to dokonale pripravení
+    internet_speed: Rýchlosť internetu
+    internet_speed_optimal: Rýchlosť vášho pripojenia je optimálna
+    internet_speed_slow: Rýchlosť internetu je nižšia, ako je potrebné pre kampaň
+    less_than_five_minutes: Menej ako 5 minút
     lighthouse_assistant: Asistent majáka
+    localstorage_fix_description_first: Uistite sa, že nepoužívate súkromný režim ani režim inkognito, pretože v týchto režimoch je funkcia localStorage často deaktivovaná.
+    localstorage_fix_title: V tvojom prehliadači nie je povolené lokálne ukladanie
+    localstorage_support: Funkcia LocalStorage je povolená
     max_word_limit: Musí mať najviac %{max} slov
+    media_recorder_api_fix_description_first: V nastaveniach prehliadača povolte JavaScript
+    media_recorder_api_fix_description_second: Skontrolujte, či váš prehliadač podporuje rozhranie MediaRecorder API, a v prípade potreby ho aktualizujte na najnovšiu verziu.
+    media_recorder_api_fix_description_third: Skúste iný moderný prehliadač, napríklad Chrome alebo Firefox
+    media_recorder_api_fix_title: Váš prehliadač nepodporuje rozhranie Media Recorder API.
+    media_recorder_api_support: Podpora rozhrania API MediaRecorder
     min_word_limit: Musí mať najmenej %{min} slov
     my_plan: Môj plán
+    network: Sieť
+    network_check: Test rýchlosti internetu
+    network_check_description: Testujeme kvalitu vášho internetového pripojenia medzi našimi servermi a vaším zariadením.
+    network_check_fix_fifth: Ak problém pretrváva, obráťte sa na svojho poskytovateľa internetových služieb s prosbou o pomoc
+    network_check_fix_first: Zatvorte ostatné aplikácie, ktoré môžu využívať šírku pásma (prehrávanie videa, sťahovanie)
+    network_check_fix_fourth: Skúste použiť iné sieťové pripojenie, ak je k dispozícii
+    network_check_fix_second: Presuňte sa bližšie k Wi-Fi routeru alebo sa pripojte pomocou ethernetového kábla
+    network_check_fix_third: Reštartujte router/modem a skúste to znova
+    network_test_step: Krok testovania siete
     no_audio_warning: Nebol zaznamenaný žiadny zvuk. Skontrolujte, či je mikrofón pripojený a funguje správne.
+    pass: Preskočiť
+    pending: V riešení
+    personal_readiness: Osobná pripravenosť
+    plan_text: Naplánujte si celú dobu trvania. Po začatí sa prestávky nemusia povoliť, v závislosti od typu hodnotenia.
+    please_check_your_internet_connection: Skontrolujte si pripojenie k internetu a skúste to znovu.
     profile: Profil
     profile_details: Podrobnosti profilu
     question_counter: Otázka %{current} z %{total}
@@ -37,12 +99,29 @@ sk:
     recording: Nahrávanie
     reject_idp_plan: Plán odmietnuť
     request_retry_message: Si offline. Vaše odpovede sa nedajú uložiť automaticky, keď sa opäť pripojíte. Prosím, neobnovujte ani nezatvárajte stránku.
+    required_download_in_mbps: Požadovaná rýchlosť sťahovania v Mbps
+    required_upload_in_mbps: Požadovaná rýchlosť odosielania v Mbps
+    rerun_check: Opätovná kontrola
+    rerun_checks: Opakované kontroly
+    result: Výsledok
+    results: Výsledok
     selected_count: Vybrané
     skill_type: Typ zručnosti
     start_campaign_message_proctored: Toto je dozorovaná kampaň, kliknite prosím na tlačidlo '%{buttonText}' pre spustenie aktivít.
     start_campaign_message_timed: Toto je časovo obmedzená kampaň, kliknite prosím na tlačidlo '%{buttonText}' pre spustenie aktivít.
     start_campaign_message_timed_proctored: Ide o časovo obmedzenú a dozorovanú kampaň, kliknite prosím na tlačidlo '%{buttonText}' pre spustenie aktivít.
+    start_readiness_check: Spustiť kontrolu pripravenosti
+    start_system_check: Spustiť kontrolu systému
     status_unknown: Stav neznámy
+    subinstruction_eight: Vyhraďte si na kompletné posúdenie čas bez prerušenia
+    subinstruction_five: Ste pripravení zdieľať svoju obrazovku počas celej relácie?
+    subinstruction_four: Funkčná webová kamera a mikrofón
+    subinstruction_one: Tichá, dobre osvetlená miestnosť, v ktorej sa nenachádzajú žiadne ďalšie osoby
+    subinstruction_seven: Uistite sa, že je vaše zariadenie úplne nabité alebo zapojené do zásuvky
+    subinstruction_six: Zatvorte všetky nepotrebné aplikácie a karty prehliadača
+    subinstruction_three: Stabilné pripojenie k internetu (minimálne 1 Mbps)
+    subinstruction_two: Čistý stôl bez cudzích predmetov
+    system_check: Kontrola systému
     system_check_access: Prístup
     system_check_audio_random_phrases:
       eight: Nech je vaša káva silná a váš deň produktívny.
@@ -55,6 +134,13 @@ sk:
       three: Testovanie, jeden dva tri, zvuk je jasný ako môže byť!.
       two: Rýchla hnedá líška preskočí lenivého psa.
     system_check_audio_title: Vyslovte a zopakujte 3-krát nasledujúcu vetu.
+    system_check_complete: Kontrola systému bola dokončená
+    system_check_failed: Kontrola systému zlyhala
+    system_check_failed_description: Prosím, vyriešte tieto problémy a znovu spustite kontrolu systému.
+    system_check_failed_message: Niektoré systémové kontroly zlyhali. Skontrolujte podrobnosti a skúste to znovu.
+    system_check_failed_title: Nemôžete pokračovať, kým neprejdú všetky požadované kontroly.
+    system_check_not_enabled: Pre túto kampaň nie je povolená kontrola systému
+    system_check_passed_successfully: Všetky kontroly systému prebehli úspešne!
     system_check_proceed: Áno, môžete pokračovať
     system_check_retake: Nie, chcem si zopakovať
     system_check_run_again: Znovu bežať
@@ -64,4 +150,41 @@ sk:
     system_check_upload_again: Znova nahrať
     system_check_uploading: Nahrávanie
     system_check_video_random_phrase: Som pripravený. Toto je testovací záznam na potvrdenie, či môj mikrofón a kamera fungujú správne.
+    system_check_warning: Upozornenie na kontrolu systému
+    system_check_warning_message: Prípadné poruchy systému môžu ovplyvniť výsledky hodnotenia – pokračujte až po úspešnom absolvovaní všetkých kontrol.
+    system_checks: Kontroly systému
+    task_duration: Trvanie úlohy
     tasks: Úlohy
+    time_commitment: Časová náročnosť
+    troubleshooting_guide: Príručka na riešenie problémov
+    troubleshooting_guide_browser_fifth: Uistite sa, že máte v nastaveniach prehliadača povolenú funkciu LocalStorage
+    troubleshooting_guide_browser_first: 'Použite niektorý z podporovaných prehliadačov: Chrome, Firefox, Edge alebo Safari (najnovšie verzie)'
+    troubleshooting_guide_browser_fourth: V nastaveniach prehliadača povolte JavaScript a súbory cookie
+    troubleshooting_guide_browser_second: Vymažte vyrovnávaciu pamäť prehliadača a súbory cookie
+    troubleshooting_guide_browser_sixth: 'Skúste použiť okno v režime inkognito/súkromného prehliadania (Poznámka: Funkcia LocalStorage môže byť v režime inkognito/súkromného prehliadania obmedzená alebo vôbec nefungovať)'
+    troubleshooting_guide_browser_third: Deaktivujte rozšírenia prehliadača, ktoré by mohli brániť prístupu k multimediálnemu obsahu
+    troubleshooting_guide_network_fifth: Ak problém pretrváva, obráťte sa na svojho poskytovateľa internetových služieb s prosbou o pomoc
+    troubleshooting_guide_network_first: Zatvorte ostatné aplikácie, ktoré môžu využívať šírku pásma (prehrávanie videa, sťahovanie atď.)
+    troubleshooting_guide_network_fourth: Skúste použiť iné sieťové pripojenie, ak je k dispozícii
+    troubleshooting_guide_network_second: Presuňte sa bližšie k Wi-Fi routeru alebo sa pripojte pomocou ethernetového kábla
+    troubleshooting_guide_network_third: Reštartujte router/modem a skúste to znova
+    troubleshooting_guide_video_fifth: 'V systéme Windows: Skontrolujte nastavenia ochrany osobných údajov > Prístup k kamere/mikrofónu'
+    troubleshooting_guide_video_first: Kliknite na ikonu zámku/informácií v adresnom riadku prehliadača
+    troubleshooting_guide_video_fourth: Ak sa stránka nezobrazuje, môže byť potrebné obnoviť oprávnenia v nastaveniach prehliadača
+    troubleshooting_guide_video_second: Vyhľadajte nastavenia „Fotoaparát“ a „Mikrofón“ a nastavte ich na „Povoliť“
+    troubleshooting_guide_video_sixth: 'V systéme Mac: Prejdite do časti Systémové nastavenia > Bezpečnosť a súkromie > Kamera/Mikrofón'
+    troubleshooting_guide_video_third: Po zmene oprávnení obnovte stránku
+    untimed: Bez časového obmedzenia
+    upload: Nahrať
+    video_and_audio: Video a audio
+    video_and_audio_recording: Nahrávanie videa a zvuku
+    video_check_fix_fifth: Ak máte externý fotoaparát, skúste ho odpojiť a znovu pripojiť
+    video_check_fix_first: Keď vás prehliadač požiada o povolenie na používanie kamery, kliknite na „Povoliť“
+    video_check_fix_fourth: Skontrolujte, či je vaša kamera pripojená a zapnutá
+    video_check_fix_second: Prejdite do nastavení prehliadača a povolte tejto stránke prístup k kamere
+    video_check_fix_sixth: Reštartujte prehliadač a skúste to znova
+    video_check_fix_third: Zatvorte ostatné aplikácie, ktoré používajú kameru (Zoom, Teams atď.)
+    webgl_api_fix_description_first: Uistite sa, že váš prehliadač podporuje WebGL a že je táto funkcia v nastaveniach zapnutá
+    webgl_api_fix_description_second: Aktualizujte ovládače grafickej karty na najnovšiu verziu
+    webgl_api_fix_title: Váš prehliadač nepodporuje alebo nemá povolenú technológiu WebGL
+    webgl_api_support: Podpora rozhrania WebGL API

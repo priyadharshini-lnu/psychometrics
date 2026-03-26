@@ -1,6 +1,8 @@
 ---
 zh:
   enduser:
+    ack_subtitle: 我已阅读并理解上述说明，并准备进行系统检查。
+    ack_title: 我确认并理解
     add_idp_plan_note: 添加备注...
     add_idp_plan_rejection_reason: 添加原因...
     ai_idp_assistant_response_no: 不
@@ -8,13 +10,43 @@ zh:
     ai_idp_assistant_response_yes_proceed_with_plan_creation: 是的，继续制定计划。
     ai_idp_retake_step_chat_hint_no_document: 你可以重新开始聊天分享更多细节，我会尽力协助你。
     ai_idp_summary_hint_no_document: 如果你同意，我可以为你制定开发计划。如果没有，你可以重新开始聊天，分享更多细节。
+    all_checks_must_pass: 所有检查都必须通过后，您才能继续。
     approve_idp_plan: 批准计划
+    back: 返回
+    before_you_begin: 开始之前
+    begin_message: 在开始参与本次活动的各项内容之前，您需要先进行一次准备情况检查，以确认您的设备是否兼容
     bookings: 预订
+    browser: 浏览器
+    browser_and_device: 浏览器与设备
+    browser_compatbility_step: 浏览器兼容性步骤
+    browser_compatibility: 浏览器兼容性：
+    browser_compatibility_check: 浏览器兼容性测试
+    browser_compatibility_check_description: 检查您的浏览器是否支持所有必需的功能
+    browser_compatibility_result: 浏览器兼容性
+    browser_version_fix_description_first: 请使用支持的浏览器：Chrome、Firefox、Edge 或 Safari
+    browser_version_fix_description_second: 请将浏览器更新至最新版本，以确保兼容性。
+    browser_version_fix_description_third: 请尝试使用无痕/隐私浏览窗口
+    browser_version_fix_title: 您的浏览器版本不受支持。
+    camera: 视频和音频
+    camera_access_blocked: 您的浏览器拒绝或阻止了摄像头访问。请检查浏览器权限。
+    camera_check: 摄像头和麦克风测试
+    camera_check_description: 请确认您的摄像头和麦克风能否正常工作，以便进行录制
+    camera_test_step: 视频和音频测试步骤
     campaign: 活动
+    chat_instructions: 聊天指南
+    check: 检查
+    check_video_recording: 请播放视频以检查录制效果。
+    checking_browser_compatibility: 正在检查浏览器兼容性...
     development: 发展
     direct_reportees: 直接下属
+    download: 下载
     download_pdf: 下载PDF
+    environment_setup: 环境设置
+    error_uploading_video: 上传视频时出错
+    fail: 失败
+    follow_these_steps: 请按照以下步骤解决系统检查中发现的问题
     home: 仪表板
+    how_to_fix: 解决方法：
     idp_loading_fifth_step: 从模板中获取开发动作
     idp_loading_first_step: 分析你的评估报告
     idp_loading_fourth_step: 选择相关技能
@@ -22,13 +54,43 @@ zh:
     idp_loading_secondary_text: 请随意离开。你的计划会在你回来时准备好。
     idp_loading_sixth_step: 创建开发行动
     idp_plan_approval_note: 批准备注
+    idp_proceed_with_plan_creation: 是的，开始制定计划
+    idp_report_being_generated: 我们正在处理您的报告
+    idp_reset_chat: 重置聊天
     idp_retake_steps_continue_with_this_information: 请继续获取这些信息
     insights: 洞察
+    instruction: 请确保您和周围环境都已做好充分准备
+    internet_speed: 网速
+    internet_speed_optimal: 您的连接速度处于最佳状态
+    internet_speed_slow: 网速低于活动要求
+    less_than_five_minutes: 不到5分钟
     lighthouse_assistant: 灯塔助理
+    localstorage_fix_description_first: 请确保您未处于隐私/无痕浏览模式，因为在这些模式下 localStorage 通常会被禁用。
+    localstorage_fix_title: 您的浏览器未启用本地存储
+    localstorage_support: 已启用 LocalStorage
     max_word_limit: 最多不能超过 %{max} 个字
+    media_recorder_api_fix_description_first: 请在浏览器设置中启用 JavaScript
+    media_recorder_api_fix_description_second: 请确认您的浏览器是否支持 MediaRecorder API，如有必要，请更新至最新版本。
+    media_recorder_api_fix_description_third: 请尝试使用其他现代浏览器，例如 Chrome 或 Firefox
+    media_recorder_api_fix_title: 您的浏览器不支持 Media Recorder API。
+    media_recorder_api_support: MediaRecorder API 支持
     min_word_limit: 最少需要 %{min} 个字
     my_plan: 我的计划
+    network: 网络
+    network_check: 网速测试
+    network_check_description: 正在测试您设备与我们的服务器之间的网络连接质量。
+    network_check_fix_fifth: 如果问题仍然存在，请联系您的互联网服务提供商以获取进一步帮助
+    network_check_fix_first: 关闭其他可能占用带宽的应用程序（如视频流媒体、下载任务）
+    network_check_fix_fourth: 如果可能，请尝试使用其他网络连接
+    network_check_fix_second: 请靠近您的 Wi-Fi 路由器，或通过网线连接
+    network_check_fix_third: 请重启路由器/调制解调器，然后重试
+    network_test_step: 网络测试步骤
     no_audio_warning: 未检测到音频。请检查麦克风是否已连接且工作正常。
+    pass: 跳过
+    pending: 待定
+    personal_readiness: 个人准备情况
+    plan_text: 请为整个考试时长做好准备。考试开始后，根据考试类型的不同，可能不允许中途休息。
+    please_check_your_internet_connection: 请检查您的网络连接，然后重试。
     profile: 个人资料
     profile_details: 详细信息
     question_counter: 第 %{current} 题，共 %{total} 题
@@ -37,12 +99,29 @@ zh:
     recording: 录音
     reject_idp_plan: 拒绝计划
     request_retry_message: 你已经离线了。你的答案无法保存，但一旦你重新上线，答案将自动保存。请不要刷新或关闭页面。
+    required_download_in_mbps: 所需下载速度（Mbps）
+    required_upload_in_mbps: 所需上传速率（Mbps）
+    rerun_check: 重新运行检查
+    rerun_checks: 重新运行检查
+    result: 结果
+    results: 结果
     selected_count: 已选择
     skill_type: 技能类型
     start_campaign_message_proctored: 这是一个监考活动，请点击“%{buttonText}”按钮开始活动。
     start_campaign_message_timed: 这是一个限时活动，请点击“%{buttonText}”按钮开始活动。
     start_campaign_message_timed_proctored: 这是一个限时监考的活动，请点击“%{buttonText}”按钮开始活动。
+    start_readiness_check: 开始就绪检查
+    start_system_check: 开始系统检查
     status_unknown: 状态不明
+    subinstruction_eight: 请预留一段不受打扰的时间，以便进行全面评估
+    subinstruction_five: 准备好在整个会议期间共享屏幕了吗
+    subinstruction_four: 可正常使用的网络摄像头和麦克风
+    subinstruction_one: 一个安静、光线充足且没有其他人的房间
+    subinstruction_seven: 请确保您的设备已充满电或已连接电源插座
+    subinstruction_six: 关闭所有不必要的应用程序和浏览器标签页
+    subinstruction_three: 稳定的互联网连接（最低1 Mbps）
+    subinstruction_two: 保持桌面整洁，不得放置未经许可的物品
+    system_check: 系统检查
     system_check_access: 权限
     system_check_audio_random_phrases:
       eight: 愿你的咖啡香浓，愿你的一天富有成效。
@@ -55,6 +134,13 @@ zh:
       three: 测试，一二三，声音清晰无比
       two: 敏捷的棕狐狸跳过了懒惰的狗。
     system_check_audio_title: 请读出并重复以下句子 3 次。
+    system_check_complete: 系统检查完成
+    system_check_failed: 系统检查失败
+    system_check_failed_description: 请解决这些问题，然后重新运行系统检查。
+    system_check_failed_message: 某些系统检查未通过。请查看详细信息并重试。
+    system_check_failed_title: 在所有必要检查通过之前，您无法继续操作。
+    system_check_not_enabled: 此活动未启用系统检查
+    system_check_passed_successfully: 所有系统检查均已通过！
     system_check_proceed: 继续
     system_check_retake: 不，我想重做
     system_check_run_again: 再来一次
@@ -64,4 +150,41 @@ zh:
     system_check_upload_again: 再次上传
     system_check_uploading: 上传
     system_check_video_random_phrase: 我准备好了。这是一段测试录像，用来确认我的视频和麦克风工作正常。
+    system_check_warning: 系统检查警告
+    system_check_warning_message: 系统可能出现故障，这可能会影响评估结果——请确保所有检查均通过后再继续操作。
+    system_checks: 系统检查
+    task_duration: 任务时长
     tasks: 任务
+    time_commitment: 时间投入
+    troubleshooting_guide: 故障排除指南
+    troubleshooting_guide_browser_fifth: 请确保在浏览器设置中启用了 LocalStorage
+    troubleshooting_guide_browser_first: 请使用支持的浏览器：Chrome、Firefox、Edge 或 Safari（最新版本）
+    troubleshooting_guide_browser_fourth: 请在浏览器设置中启用 JavaScript 和 Cookie
+    troubleshooting_guide_browser_second: 清除浏览器缓存和Cookie
+    troubleshooting_guide_browser_sixth: 请尝试使用无痕/隐私浏览窗口（注意：无痕/隐私模式下可能无法支持或仅有限支持 LocalStorage）
+    troubleshooting_guide_browser_third: 禁用可能干扰媒体访问的浏览器扩展程序
+    troubleshooting_guide_network_fifth: 如果问题仍然存在，请联系您的互联网服务提供商以获取进一步帮助
+    troubleshooting_guide_network_first: 关闭其他可能占用带宽的应用程序（如视频流媒体、下载等）
+    troubleshooting_guide_network_fourth: 如果可能，请尝试使用其他网络连接
+    troubleshooting_guide_network_second: 请靠近您的 Wi-Fi 路由器，或通过网线连接
+    troubleshooting_guide_network_third: 请重启路由器/调制解调器，然后重试
+    troubleshooting_guide_video_fifth: 在 Windows 上：检查“隐私设置” > “相机/麦克风访问权限”
+    troubleshooting_guide_video_first: 点击浏览器地址栏中的锁形/信息图标
+    troubleshooting_guide_video_fourth: 如果被拦截，您可能需要在浏览器设置中重置权限
+    troubleshooting_guide_video_second: 找到“相机”和“麦克风”设置，并将它们设为“允许”
+    troubleshooting_guide_video_sixth: 在 Mac 上：请前往“系统偏好设置” > “安全与隐私” > “摄像头/麦克风”
+    troubleshooting_guide_video_third: 更改权限后请刷新页面
+    untimed: 不限时
+    upload: 上传
+    video_and_audio: 视频与音频
+    video_and_audio_recording: 视频和音频录制
+    video_check_fix_fifth: 如果相机是外接的，请尝试将其拔下再重新连接
+    video_check_fix_first: 当浏览器请求相机权限时，请点击“允许”
+    video_check_fix_fourth: 请检查相机是否已连接并已开启电源
+    video_check_fix_second: 请进入浏览器设置，并为该网站启用摄像头访问权限
+    video_check_fix_sixth: 请重新启动浏览器，然后重试
+    video_check_fix_third: 关闭其他正在使用摄像头的应用程序（如Zoom、Teams等）
+    webgl_api_fix_description_first: 请确保您的浏览器支持 WebGL，并且已在设置中启用该功能
+    webgl_api_fix_description_second: 将显卡驱动程序更新至最新版本
+    webgl_api_fix_title: 您的浏览器不支持或未启用 WebGL
+    webgl_api_support: WebGL API 支持

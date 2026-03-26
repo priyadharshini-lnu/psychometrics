@@ -912,6 +912,7 @@ ar:
         export_assessment_questions: أسئلة تقييم التصدير
         export_campaign_ai_artifacts: قطع أثرية لحملة التصدير الذكاء الاصطناعي
         export_campaign_ai_artifacts_results: تصدير نتائج حملة AI Artifacts
+        export_campaign_datasheet: ورقة بيانات حملة التصدير
         export_campaign_factors: عوامل حملة التصدير
         export_campaign_scorings: حملات التصدير
         export_dashboard_as_file: تصدير لوحة المعلومات كملف
@@ -971,6 +972,7 @@ ar:
         regenerate_report: إعادة إنشاء التقرير
         regenerate_threesixty_report: إعادة إنشاء تقرير Threesixty
         remap_report_assessment: إعادة تعيين تقييم التقرير
+        rescore_ai_scoring: إعادة تقييم النتائج باستخدام الذكاء الاصطناعي
         rescore_assessment: تقييم إعادة التسجيل
         rescore_user_assessment: إعادة تسجيل تقييم المستخدم
         send_sms_invites: إرسال دعوات عبر الرسائل النصية القصيرة

@@ -1870,6 +1870,8 @@ ro:
       form:
         enable_innovation_styles: Activați stilurile de inovare
         enable_occupations: Activați ocupațiile
+        name: Nume
+        title: Dimensiuni
       import_factors:
         import: Importa
         sample_file: Fișier eșantion
@@ -1917,6 +1919,7 @@ ro:
         confirmations:
           delete:
             body: "<p>Sigur doriți să ștergeți această dimensiune?</p>\n"
+            message: Introduceți numele dimensiunii indicat mai jos în caseta de text pentru a confirma
             title: Ștergeți <strong>dimensiunea</strong> ?
           toggle_status:
             body: "<p>Sunteți sigur că doriți să %{status} acest Parametru?</p>\n"
@@ -1981,6 +1984,7 @@ ro:
                 score: Scor
                 zscore: Scorul Z
             title: Căi JSON pentru scoruri
+        predicate: Predicat
         scoring_strategies:
           custom_formula: Formulă personalizată
           external_score: Scor extern
@@ -1994,10 +1998,13 @@ ro:
           sub_factors_sum: Suma ponderată a factorilor
         scoring_strategies_tip: "<strong>Întrebări (medie):</strong> Aceasta este ca metoda actuală de notare atunci când există întrebări legate de un factor.<br /> <br /><strong>Întrebări (SUM):</strong> Este ca Întrebări (medie), dar folosind SUM<br /> <br /><strong>Întrebări despre alți factori (medie):</strong> Aceasta este ca metoda actuală de notare atunci când există subfactori pentru un factor, singura schimbare este adăugarea de greutate.<br /> <br /><strong>Întrebări despre alți factori (SUM):</strong> Acest lucru este ca Alți factori (medie), dar folosind SUM<br /> <br /><strong>Suma ponderată a factorilor:</strong> Aici scorurile celorlalți factori selectați sunt înmulțite cu ponderile lor."
         scoring_strategy: Strategia de punctaj
+        search_factors: Factori de căutare
         use_sub_factor_norm_score: Utilizați scorul normei factorilor
+        value: Valoare
       index:
         icon: Icoană
         new: Adăugați
+        precision: Precizie
         scoring_strategies:
           custom_formula: Formulă personalizată
           external_score: Scor extern
@@ -2291,6 +2298,7 @@ ro:
       edit:
         header: Editează stilul inovației
       form:
+        full_description: Descriere completă
         no_icon: Fără pictogramă
       index:
         new: Adăugați
@@ -2662,8 +2670,12 @@ ro:
       edit:
         header: Editează ocupația
       form:
+        alternative_icon: Pictogramă alternativă
+        color: Culoare
         hint:
           key_career_tracks: '"+" - listă, "*" - îngroșat. Exemplu: + *Biologie* - o descriere...'
+        indicative_roles_image: Imagine cu exemple de roluri
+        key_career_tracks_image: Imagine cu principalele parcursuri profesionale
         no_icon: Fără pictogramă
       index:
         new: Adăugați
@@ -2734,6 +2746,7 @@ ro:
       assessment_center: Centrul de evaluare
       assessment_id: ID evaluare
       campaign_id: Codul campaniei
+      campaign_link: Link către campanie
       campaign_name: Numele campaniei
       campaigns: Campanii
       description: Descriere
@@ -3731,8 +3744,10 @@ ro:
       id: ID
       import:
         factors: Importați factori de campanie
+      innovation_style_removal_confirmation: Introduceți numele stilului de inovație indicat mai jos în caseta de text pentru a confirma
       name: Nume
       no_groups: Nu există grupuri prezente
+      occupation_removal_confirmation: Introduceți denumirea profesiei indicată mai jos în câmpul de text pentru a confirma
       output_type: Tip de ieșire
       pattern_error: Sunt permise doar caractere alfanumerice, spații și liniuțe.
       profile:

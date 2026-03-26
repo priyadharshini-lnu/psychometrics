@@ -1870,6 +1870,8 @@ sr-Latn:
       form:
         enable_innovation_styles: Omogući stilove inovacija
         enable_occupations: Omogući zanimanja
+        name: Име
+        title: Димензије
       import_factors:
         import: Uvezi
         sample_file: Primer datoteke
@@ -1917,6 +1919,7 @@ sr-Latn:
         confirmations:
           delete:
             body: "<p>Da li ste sigurni da želite da izbrišete ovu dimenziju?</p>\n"
+            message: Унесите назив димензије наведен у текстуалном пољу да бисте потврдили
             title: Izbriši <strong>dimenziju</strong> ?
           toggle_status:
             body: "<p>Da li ste sigurni da želite da %{status} ovu dimenziju?</p>\n"
@@ -1981,6 +1984,7 @@ sr-Latn:
                 score: Skor
                 zscore: Z skor
             title: JSON path za rezultate
+        predicate: Предикат
         scoring_strategies:
           custom_formula: Prilagođena formula
           external_score: Spoljni skor
@@ -1994,10 +1998,13 @@ sr-Latn:
           sub_factors_sum: Ponderisana suma faktora
         scoring_strategies_tip: "<strong>Pitanja (prosek):</strong> Ovo je kao trenutna metoda bodovanja kada postoje pitanja vezana za faktor.<br /> <br /><strong>Pitanja (SUM):</strong> Ovo je kao pitanja (prosek), ali koristeći SUM<br /> <br /><strong>Pitanja drugih faktora (prosek):</strong> Ovo je kao trenutna metoda bodovanja kada postoje pod-faktori za faktor, jedina promena je dodavanje pondera.<br /> <br /><strong>Pitanja drugih faktora (SUM):</strong> Ovo je kao drugi faktori (prosek), ali koristeći SUM<br /> <br /><strong>Ponderisani zbir faktora:</strong> Ovde se dodaju skorovi odabranih drugih faktora sa njihovim ponderima."
         scoring_strategy: Strategija bodovanja
+        search_factors: Фактори претраге
         use_sub_factor_norm_score: Koristite normirani skor faktora
+        value: Вредност
       index:
         icon: Ikona
         new: Dodaj
+        precision: Прецизност
         scoring_strategies:
           custom_formula: Prilagođena formula
           external_score: Spoljni rezultat
@@ -2291,6 +2298,7 @@ sr-Latn:
       edit:
         header: Uredi stil inovacija
       form:
+        full_description: Цео опис
         no_icon: Nema ikone
       index:
         new: Dodaj
@@ -2662,8 +2670,12 @@ sr-Latn:
       edit:
         header: Uredi zanimanje
       form:
+        alternative_icon: Алтернативна икона
+        color: Боја
         hint:
           key_career_tracks: '"+" - lista, "*" - podebljano. Primer: + *Biologija* - neki opis...'
+        indicative_roles_image: Индикативне улоге слика
+        key_career_tracks_image: Кључне каријерне путање
         no_icon: Nema ikone
       index:
         new: Dodaj
@@ -2734,6 +2746,7 @@ sr-Latn:
       assessment_center: Centar za procenu
       assessment_id: Procena ID
       campaign_id: ID kampanje
+      campaign_link: Линк кампање
       campaign_name: Naziv kampanje
       campaigns: Kampanje
       description: Opis
@@ -3731,8 +3744,10 @@ sr-Latn:
       id: ID
       import:
         factors: Uvezi faktore kampanje
+      innovation_style_removal_confirmation: Унесите назив стила иновација наведеног у тексту у поље за унос да бисте потврдили
       name: Ime
       no_groups: Nema prisutnih grupa
+      occupation_removal_confirmation: Унесите назив занимања наведен у тексту у поље за унос да бисте потврдили
       output_type: Tip autputa
       pattern_error: Dozvoljeni su samo alfanumerički znakovi, razmaci i crtice.
       profile:

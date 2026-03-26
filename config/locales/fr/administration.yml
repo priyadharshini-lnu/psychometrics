@@ -1870,6 +1870,8 @@ fr:
       form:
         enable_innovation_styles: Favoriser les styles d'innovation
         enable_occupations: Activer les professions
+        name: Nom
+        title: Dimensions
       import_factors:
         import: Importation
         sample_file: Exemple de fichier
@@ -1917,6 +1919,7 @@ fr:
         confirmations:
           delete:
             body: "<p>Êtes-vous sûr de vouloir supprimer cette dimension ?</p>\n"
+            message: Saisissez le nom de la dimension indiqué ci-dessous dans le champ de texte pour confirmer
             title: Supprimer une <strong>dimension</strong>?
           toggle_status:
             body: "<p>Êtes-vous sûr de vouloir %{status} cette dimension ?</p>\n"
@@ -1981,6 +1984,7 @@ fr:
                 score: Score
                 zscore: Score Z
             title: Chemins JSON pour les notes
+        predicate: prédicat
         scoring_strategies:
           custom_formula: Formule personnalisée
           external_score: Score externe
@@ -1994,10 +1998,13 @@ fr:
           sub_factors_sum: Somme pondérée des facteurs
         scoring_strategies_tip: "<strong>questions (moyenne) :</strong> cette méthode est similaire à la méthode de notation actuelle lorsqu'il y a des questions liées à un facteur. <br /> <br /><strong>questions (SOMME) :</strong> Cette méthode est identique à celle des questions (moyenne), mais utilise la SOMME <br /> <br /><strong>questions d'autres facteurs (moyenne) :</strong> cette méthode est identique à la méthode de notation actuelle lorsqu'il existe des sous-facteurs pour un facteur, le seul changement étant l'ajout d'un poids. <br /> <br /><strong>questions d'autres facteurs (SOMME) :</strong> cette méthode est identique à celle des autres facteurs (moyenne), mais elle utilise la SOMME <br /> <br /><strong>somme pondérée des facteurs :</strong> les scores des autres facteurs sélectionnés sont multipliés par leur poids et additionnés."
         scoring_strategy: Stratégie de notation
+        search_factors: Critères de recherche
         use_sub_factor_norm_score: Utilisation du score normalisé des facteurs
+        value: Valeur
       index:
         icon: Icône
         new: Ajouter
+        precision: Précision
         scoring_strategies:
           custom_formula: Formule personnalisée
           external_score: Score externe
@@ -2291,6 +2298,7 @@ fr:
       edit:
         header: Éditer le style de l'innovation
       form:
+        full_description: Description complète
         no_icon: Pas d'icône
       index:
         new: Ajouter
@@ -2662,8 +2670,12 @@ fr:
       edit:
         header: Editer l'occupation
       form:
+        alternative_icon: Autre icône
+        color: Couleur
         hint:
           key_career_tracks: '"+" - liste, "*" - gras. Exemple : + *Biologie* - une description...'
+        indicative_roles_image: Image illustrant les rôles
+        key_career_tracks_image: Image des principaux parcours professionnels
         no_icon: Pas d'icône
       index:
         new: Ajouter
@@ -2734,6 +2746,7 @@ fr:
       assessment_center: Centre d'évaluation
       assessment_id: ID de l'évaluation
       campaign_id: ID de la campagne
+      campaign_link: Lien vers la campagne
       campaign_name: Nom de la campagne
       campaigns: Campagnes
       description: Description
@@ -3734,8 +3747,10 @@ fr:
       id: ID
       import:
         factors: Facteurs de la campagne d'importation
+      innovation_style_removal_confirmation: Saisissez le nom du style d'innovation indiqué ci-dessous dans la zone de texte pour confirmer
       name: Nom
       no_groups: Aucun groupe présent
+      occupation_removal_confirmation: Saisissez le nom de la profession indiqué ci-dessous dans le champ de texte pour confirmer
       output_type: Type de sortie
       pattern_error: Seuls les caractères alphanumériques, les espaces et les tirets sont autorisés.
       profile:

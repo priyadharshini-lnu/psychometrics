@@ -1,6 +1,8 @@
 ---
 ro:
   enduser:
+    ack_subtitle: Am citit și am înțeles instrucțiunile de mai sus și sunt gata să continui cu verificarea sistemului.
+    ack_title: Recunosc și înțeleg
     add_idp_plan_note: Adaugă notă...
     add_idp_plan_rejection_reason: Adaugă motiv...
     ai_idp_assistant_response_no: Nu
@@ -8,13 +10,43 @@ ro:
     ai_idp_assistant_response_yes_proceed_with_plan_creation: Da, continuă cu crearea planului.
     ai_idp_retake_step_chat_hint_no_document: Poți reporni chatul pentru a împărtăși mai multe detalii, iar eu voi face tot posibilul să te ajut.
     ai_idp_summary_hint_no_document: Cu permisiunea dumneavoastră, dacă spuneți da, pot crea un plan de dezvoltare pentru dumneavoastră. Dacă nu, poți reporni chatul pentru a împărtăși mai multe detalii.
+    all_checks_must_pass: Toate verificările trebuie să fie efectuate cu succes înainte de a putea continua.
     approve_idp_plan: Aprobă planul
+    back: Înapoi
+    before_you_begin: Înainte de a începe
+    begin_message: Înainte de a începe activitățile din cadrul acestei campanii, trebuie să efectuați o verificare a pregătirii, care va verifica compatibilitatea dispozitivului dumneavoastră
     bookings: Rezervări
+    browser: Browser
+    browser_and_device: Browser și dispozitiv
+    browser_compatbility_step: Etapa de compatibilitate cu browserele
+    browser_compatibility: 'Compatibilitate cu browserele:'
+    browser_compatibility_check: Test de compatibilitate cu browserele
+    browser_compatibility_check_description: Verificarea compatibilității browserului tău cu toate funcțiile necesare
+    browser_compatibility_result: Compatibilitate cu browserele
+    browser_version_fix_description_first: 'Folosește un browser compatibil: Chrome, Firefox, Edge sau Safari'
+    browser_version_fix_description_second: Actualizați-vă browserul la cea mai recentă versiune pentru a asigura compatibilitatea.
+    browser_version_fix_description_third: Încearcă să folosești o fereastră de navigare incognito/privată
+    browser_version_fix_title: Versiunea browserului dumneavoastră nu este acceptată.
+    camera: Video și audio
+    camera_access_blocked: Accesul la cameră a fost refuzat sau blocat de browserul dumneavoastră. Vă rugăm să verificați permisiunile browserului.
+    camera_check: Testare cameră și microfon
+    camera_check_description: Verificați dacă camera și microfonul funcționează corect pentru înregistrare
+    camera_test_step: Etapa de testare video și audio
     campaign: Campanie
+    chat_instructions: Instrucțiuni pentru chat
+    check: Verificați
+    check_video_recording: Vă rugăm să verificați înregistrarea video redând-o.
+    checking_browser_compatibility: Se verifică compatibilitatea browserului...
     development: Dezvoltare
     direct_reportees: Raportări directe
+    download: Descărcați
     download_pdf: Descarcă PDF
+    environment_setup: Configurarea mediului
+    error_uploading_video: Eroare la încărcarea videoclipului
+    fail: Eșec
+    follow_these_steps: Urmați acești pași pentru a remedia problemele detectate în timpul verificării sistemului
     home: Tablou
+    how_to_fix: 'Cum se remediază:'
     idp_loading_fifth_step: Preluarea acțiunilor de dezvoltare din șablon
     idp_loading_first_step: Analizarea raportului tău de evaluare
     idp_loading_fourth_step: Selectarea abilităților relevante
@@ -22,13 +54,43 @@ ro:
     idp_loading_secondary_text: Simte-te liber să te retragi. Planul tău va fi gata când te întorci.
     idp_loading_sixth_step: Crearea acțiunilor de dezvoltare
     idp_plan_approval_note: Notă de aprobare
+    idp_proceed_with_plan_creation: Da, continuați cu crearea planului
+    idp_report_being_generated: Lucrăm la raportul dumneavoastră
+    idp_reset_chat: Resetează chatul
     idp_retake_steps_continue_with_this_information: Continuați cu aceste informații
     insights: Perspective
+    instruction: Asigură-te că tu și cei din jurul tău sunteți pe deplin pregătiți
+    internet_speed: Viteza internetului
+    internet_speed_optimal: Viteza conexiunii tale este optimă
+    internet_speed_slow: Viteza conexiunii la internet este mai mică decât cea necesară pentru campanie
+    less_than_five_minutes: Mai puțin de 5 minute
     lighthouse_assistant: Asistent de far
+    localstorage_fix_description_first: Asigură-te că nu te afli în modul privat/incognito, deoarece localStorage este adesea dezactivat în aceste moduri.
+    localstorage_fix_title: Funcția de stocare locală nu este activată în browserul dumneavoastră
+    localstorage_support: LocalStorage activat
     max_word_limit: Trebuie să aibă cel mult %{max} cuvinte
+    media_recorder_api_fix_description_first: Activează JavaScript în setările browserului tău
+    media_recorder_api_fix_description_second: Verificați dacă browserul dvs. acceptă API-ul MediaRecorder și, dacă este necesar, actualizați-l la cea mai recentă versiune.
+    media_recorder_api_fix_description_third: Încearcă un alt browser modern, cum ar fi Chrome sau Firefox
+    media_recorder_api_fix_title: API-ul Media Recorder nu este acceptat de browserul dumneavoastră.
+    media_recorder_api_support: Suport pentru API-ul MediaRecorder
     min_word_limit: Trebuie să aibă cel puțin %{min} cuvinte
     my_plan: Planul meu
+    network: Rețea
+    network_check: Test de viteză internet
+    network_check_description: Verificăm calitatea conexiunii tale la internet între serverele noastre și dispozitivul tău.
+    network_check_fix_fifth: Dacă problema persistă, contactați furnizorul de servicii de internet pentru asistență suplimentară
+    network_check_fix_first: Închideți celelalte aplicații care ar putea consuma lățime de bandă (redare video în flux, descărcări)
+    network_check_fix_fourth: Încearcă să folosești o altă conexiune de rețea, dacă este disponibilă
+    network_check_fix_second: Apropie-te de routerul Wi-Fi sau conectează-te prin cablu Ethernet
+    network_check_fix_third: Reporniți routerul/modemul și încercați din nou
+    network_test_step: Etapa de testare a rețelei
     no_audio_warning: Nu s-a detectat sunet. Verificați dacă microfonul este conectat și funcționează corect.
+    pass: Treci
+    pending: În așteptare
+    personal_readiness: Pregătirea personală
+    plan_text: Planificați-vă pentru întreaga durată. Odată ce ați început, este posibil să nu vi se permită pauze, în funcție de tipul de evaluare.
+    please_check_your_internet_connection: Vă rugăm să verificați conexiunea la internet și să încercați din nou.
     profile: Profil
     profile_details: Detalii
     question_counter: Întrebarea %{current} din %{total}
@@ -37,12 +99,29 @@ ro:
     recording: Înregistrare
     reject_idp_plan: Planul de respingere
     request_retry_message: Ești offline. Răspunsurile tale nu au putut fi salvate, dar vor fi salvate automat odată ce vei fi din nou online. Vă rugăm să nu reîmprospătați sau să închideți pagina.
+    required_download_in_mbps: Viteză de descărcare necesară (Mbps)
+    required_upload_in_mbps: Viteză de încărcare necesară (Mbps)
+    rerun_check: Verificare repetată
+    rerun_checks: Verificări repetate
+    result: Rezultat
+    results: Rezultat
     selected_count: Selectat
     skill_type: Tip de abilitate
     start_campaign_message_proctored: Aceasta este o campanie supravegheată, vă rugăm să apăsați butonul "%{buttonText}" pentru a începe activitățile.
     start_campaign_message_timed: Aceasta este o campanie cu timp limitat, vă rugăm să apăsați butonul "%{buttonText}" pentru a începe activitățile.
     start_campaign_message_timed_proctored: Aceasta este o campanie cronometrată și supravegheată, vă rugăm să apăsați butonul "%{buttonText}" pentru a începe activitățile.
+    start_readiness_check: Începe verificarea pregătirii
+    start_system_check: Pornește verificarea sistemului
     status_unknown: Stare necunoscută
+    subinstruction_eight: Rezervați-vă un interval de timp neîntrerupt pentru evaluarea completă
+    subinstruction_five: Ești gata să îți partajezi ecranul pe durata sesiunii
+    subinstruction_four: Cameră web și microfon funcționale
+    subinstruction_one: O cameră liniștită și bine luminată, în care nu se află alte persoane
+    subinstruction_seven: Asigurați-vă că dispozitivul este complet încărcat sau conectat la priză
+    subinstruction_six: Închideți toate aplicațiile și filele de browser care nu sunt necesare
+    subinstruction_three: Conexiune stabilă la internet (minimum 1 Mbps)
+    subinstruction_two: Birou curat, fără materiale neautorizate
+    system_check: Verificare sistem
     system_check_access: Acces
     system_check_audio_random_phrases:
       eight: Fie ca cafeaua ta să fie tare și ziua ta să fie productivă.
@@ -55,6 +134,13 @@ ro:
       three: Testare, unu doi trei, sunetul este cât se poate de clar!.
       two: Vulpea maro iute sare peste câinele leneș.
     system_check_audio_title: Vă rugăm să vorbiți și să repetați următoarea propoziție de 3 ori.
+    system_check_complete: Verificarea sistemului s-a încheiat
+    system_check_failed: Verificarea sistemului a eșuat
+    system_check_failed_description: Vă rugăm să remediați problemele și să rulați din nou verificările de sistem.
+    system_check_failed_message: Unele verificări ale sistemului au eșuat. Te rugăm să verifici detaliile și să încerci din nou.
+    system_check_failed_title: Nu puteți continua până când nu sunt îndeplinite toate verificările necesare.
+    system_check_not_enabled: Verificarea sistemului nu este activată pentru această campanie
+    system_check_passed_successfully: Toate verificările sistemului au fost efectuate cu succes!
     system_check_proceed: Da, Ok pentru a continua
     system_check_retake: Nu, vreau să reiau
     system_check_run_again: Aleargă din nou
@@ -64,4 +150,41 @@ ro:
     system_check_upload_again: Încarcă din nou
     system_check_uploading: Încărcare
     system_check_video_random_phrase: Sunt gata. Aceasta este o înregistrare de test pentru a confirma dacă microfonul și camera mea funcționează corect.
+    system_check_warning: Avertisment privind verificarea sistemului
+    system_check_warning_message: Eventualele defecțiuni ale sistemului pot afecta evaluările — vă rugăm să continuați numai după ce toate verificările au fost efectuate cu succes.
+    system_checks: Verificări ale sistemului
+    task_duration: Durata sarcinii
     tasks: Sarcini
+    time_commitment: Timpul necesar
+    troubleshooting_guide: Ghid de depanare
+    troubleshooting_guide_browser_fifth: Asigură-te că opțiunea LocalStorage este activată în setările browserului tău
+    troubleshooting_guide_browser_first: 'Folosiți un browser compatibil: Chrome, Firefox, Edge sau Safari (cele mai recente versiuni)'
+    troubleshooting_guide_browser_fourth: Activează JavaScript și cookie-urile din setările browserului
+    troubleshooting_guide_browser_second: Ștergeți memoria cache și cookie-urile din browser
+    troubleshooting_guide_browser_sixth: 'Încearcă să folosești o fereastră de navigare incognito/privată (Notă: este posibil ca LocalStorage să fie compatibil doar parțial sau deloc în modul incognito/privat)'
+    troubleshooting_guide_browser_third: Dezactivați extensiile browserului care ar putea afecta accesul la fișiere media
+    troubleshooting_guide_network_fifth: Dacă problema persistă, contactați furnizorul de servicii de internet pentru asistență suplimentară
+    troubleshooting_guide_network_first: Închideți celelalte aplicații care ar putea consuma lățime de bandă (redare video în flux, descărcări etc.)
+    troubleshooting_guide_network_fourth: Încearcă să folosești o altă conexiune de rețea, dacă este disponibilă
+    troubleshooting_guide_network_second: Apropie-te de routerul Wi-Fi sau conectează-te prin cablu Ethernet
+    troubleshooting_guide_network_third: Reporniți routerul/modemul și încercați din nou
+    troubleshooting_guide_video_fifth: 'În Windows: Verificați setările de confidențialitate > Acces la cameră/microfon'
+    troubleshooting_guide_video_first: Faceți clic pe pictograma cu lacătul/informații din bara de adrese a browserului
+    troubleshooting_guide_video_fourth: Dacă accesul este blocat, poate fi necesar să resetați permisiunile din setările browserului
+    troubleshooting_guide_video_second: Găsește setările pentru „Cameră” și „Microfon” și setează-le pe „Permite”
+    troubleshooting_guide_video_sixth: 'Pe Mac: accesează Preferințe sistem > Securitate și confidențialitate > Cameră foto/microfon'
+    troubleshooting_guide_video_third: Reîmprospătează pagina după ce modifici permisiunile
+    untimed: Fără limită de timp
+    upload: Încărcare
+    video_and_audio: Video și audio
+    video_and_audio_recording: Înregistrare video și audio
+    video_check_fix_fifth: Încearcă să deconectezi și să reconectezi camera, dacă aceasta este externă
+    video_check_fix_first: Dă clic pe „Permite” când browserul îți cere permisiunea de a accesa camera
+    video_check_fix_fourth: Verificați dacă camera este conectată și pornită
+    video_check_fix_second: Accesează setările browserului și activează accesul la cameră pentru acest site
+    video_check_fix_sixth: Reporniți browserul și încercați din nou
+    video_check_fix_third: Închideți celelalte aplicații care utilizează camera (Zoom, Teams etc.)
+    webgl_api_fix_description_first: Asigură-te că browserul tău acceptă WebGL și că această funcție este activată în setări
+    webgl_api_fix_description_second: Actualizați driverele grafice la cea mai recentă versiune
+    webgl_api_fix_title: WebGL nu este acceptat sau activat în browserul dumneavoastră
+    webgl_api_support: Compatibilitate cu API-ul WebGL

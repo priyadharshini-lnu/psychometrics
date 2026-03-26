@@ -23,7 +23,15 @@ sl:
     ai_artifact_result_generation_admin_job_failed: Artefakt »%{artifact_name}« ni mogoče ustvariti za uporabnika »%{user_email}«.
     ai_artifact_result_stale: Rezultat je lahko zastarel, saj so se odvisnosti AI artefakta spremenile od zadnjega rezultata. Razmislite o ponovni generaciji artefakta, da se generira z najnovejšimi odvisnostmi.
     ai_artifacts: Artefakti umetne inteligence
+    ai_artifacts_finalized_at: Dokončano dne
+    ai_artifacts_generate_result_confirm: Ustvarjanje rezultatov artefakta za uporabnika »%{email}« bo odstranilo obstoječe poročilo, ki je odvisno od tega AI-artefakta. Ali ste prepričani, da želite nadaljevati?
     ai_artifacts_generate_results: Ustvarjanje rezultatov
+    ai_artifacts_mark_finalized: Označi kot dokončano
+    ai_artifacts_mark_finalized_bulk_confirm: Ob dokončnem oblikovanju rezultatov artefaktov za vse izbrane uporabnike bodo ustvarjena poročila, ki uporabljajo artefakte umetne inteligence. Ali ste prepričani, da želite nadaljevati?
+    ai_artifacts_mark_finalized_confirm: Ob dokončanju rezultatov artefakta za uporabnika »%{email}« se bo ustvarilo poročilo, ki uporablja umetno inteligenco za tega uporabnika. Ali res želite nadaljevati?
+    ai_artifacts_mark_not_finalized: Oznaka ni dokončna
+    ai_artifacts_mark_not_finalized_bulk_confirm: Če iz vseh izbranih uporabnikov odstranite status »finalize«, bodo odstranjena tudi ustvarjena poročila, ki uporabljajo artefakte umetne inteligence. Ali ste prepričani, da želite nadaljevati?
+    ai_artifacts_mark_not_finalized_confirm: Če iz uporabnika »%{email}« odstranite oznako »finalize«, bo to povzročilo odstranitev ustvarjenega poročila, ki uporablja AI-artefakt za tega uporabnika. Ali ste prepričani, da želite nadaljevati?
     ai_artifacts_output_schema_key_constraint: Ključ mora začeti z majhno črko in lahko vsebuje le male črke, številke in podčrte
     ai_artifacts_results_export: Izvoz rezultatov
     ai_artifacts_results_export_job_scheduled: Izvoz rezultatov AI Artifacts je bil uspešno načrtovan.
@@ -78,12 +86,32 @@ sl:
     ai_scoring_appoval_score_not_applicable: Rezultat ni veljaven
     ai_scoring_approval: Odobritev AI točkovanja
     ai_scoring_approval_settings: Nastavitve odobritve AI-točkovanja
+    ai_scoring_approval_stale_description: Posodobitve nastavitev od zadnjega izvajanja so morda spremenile rezultat. Izvedite ponovno ocenjevanje, da ga posodobite z najnovejšimi nastavitvami.
+    ai_scoring_approval_stale_title: Rezultat je morda zastarel
     ai_scoring_approvals: Odobritve AI točkovanja
+    ai_scoring_refresh_score: Osveži rezultat
+    ai_scoring_refresh_score_confirm_description: S tem se bo ponovno izvedlo ocenjevanje z umetno inteligenco za to oceno, in sicer z najnovejšo konfiguracijo. Ste prepričani?
+    ai_scoring_refresh_score_confirm_title: Osvežiti ocene AI?
+    ai_scoring_rescore_queued: Ponovno ocenjevanje z umetno inteligenco je bilo dodano v čakalno vrsto. Prosimo, po nekaj trenutkih osvežite stran.
     ai_translation: Prevod z umetno inteligenco
     all_corner_rounded: Vsi koti so zaobljeni
     allow_ai_rescoring: Dovoli ponovno ocenjevanje AI
+    allow_continue_with_warning_system_check: Uporabnikom omogoči, da nadaljujejo kljub opozorilom, če sistemski pregled ni uspešen
     api_keys: Ključi API-ja
     apply_to_existing_users: Uporabi to spremembo za obstoječe uporabnike v tej kampanji
+    assessment_center_activity: Dejavnost
+    assessment_center_assessor: ocenjevalec
+    assessment_center_attendance: Prisotnost
+    assessment_center_attendance_status: Stanje prisotnosti
+    assessment_center_campaigns_tab: Kampanje
+    assessment_center_date_and_time: Datum in ura
+    assessment_center_join_room: Pridruži se sobi
+    assessment_center_meeting_link: Povezava do sestanka
+    assessment_center_participants_tab: Udeleženci
+    assessment_center_prework: Priprava
+    assessment_center_schedule_time: Časovni razpored
+    assessment_center_scheduling_status: Stanje načrtovanja
+    assessment_center_search_participants: Iskanje udeležencev...
     assessment_question_not_supported: Ta vrsta vprašanja trenutno ni podprta.
     assessments: Ocenjevanja
     assessments_not_mhs: Vse ocene morajo biti tipa MHS.
@@ -99,6 +127,7 @@ sl:
     auto_placeholder: Avto
     availability: Razpoložljivost
     available_languages: Poročilo je na voljo v jezikih
+    average: Povprečje
     back_to_main: Glavni meni
     bulk_assets_modal_choose_csv: Izberite CSV datoteko
     bulk_assets_modal_choose_zip: Izberite ZIP datoteko
@@ -138,7 +167,9 @@ sl:
     cancel: Prekliči
     cancellation_and_rescheduling_disabled: Preklic in sprememba termina sta onemogočena.
     casual: Površno
+    cell_save_msg: Veljavne spremembe se samodejno shranijo, ko po urejanju zapustite celico.
     characters: znaki
+    chat_instructions_success: Navodila za klepet so bila uspešno shranjena
     children_factor_type: Tip otroškega faktorja
     client: Najem stranke
     client_admins: Skrbniki odjemalcev
@@ -152,6 +183,7 @@ sl:
     configure_model_answer_title: Konfigurirajte vzorčni odgovor in ključne besede
     confirm_remove_admin: Ali ste prepričani, da želite odstraniti skrbniškega uporabnika z e-poštnim sporočilom '%{email}'?
     copied: Kopirano
+    copy_ai_artifacts: Kopiraj AI-ustvarjene artefakte
     country: Država
     create_client: Ustvari odjemalca
     create_indicator: Ustvari indikator
@@ -193,6 +225,7 @@ sl:
     done: Storiti
     done_tooltip: Za tega uporabnika ni mogoče več opraviti ocene, saj je ocena označena kot opravljena s strani %{marked_by}
     download_bulk_asset_download_example_csv: Prenesi primer CSV.
+    duration: Trajanje
     edit_campaign_admin: Urejanje skrbnika oglaševalske akcije
     edit_client_admin: Urejanje skrbnika odjemalca
     edit_indicator: Uredi indikator
@@ -201,10 +234,12 @@ sl:
     edit_permission_denied: Nimate dovoljenja za urejanje administratorskega '%{name}'
     edit_project_admin: Urejanje skrbnika projekta
     edit_threesixty_campaign_admin: Urejanje skrbnika oglaševalske akcije
+    empty: Prazno
     empty_csv_file: CSV datoteka ne vsebuje nobenih podatkov.
     enable_enhance_with_ai_client_level: Omogočite funkcijo Izboljšaj z AI na ravni odjemalca.
     enable_maintenance: Omogoči vzdrževanje
     enable_mobile_proctoring: Omogoči mobilno nadzorovanje
+    enable_system_check: Omogoči preverjanje sistema
     enable_transcription: Omogoči prepis
     enable_transcription_msg: Omogoči Transcription, da uporabi AI ocenjevanje pri vprašanjih z odgovori v obliki videa/avdio.
     end_time: Konec časa
@@ -218,10 +253,12 @@ sl:
     evaluation_status: Status ocenjevanja
     evaluation_status_not_done: Status ocenjevanja ni 'končan' za enega ali več izbranih predmetov. Prosimo, poskrbite, da so vsi izbrani uporabniki opravili ocene ali označili kot opravljeno.
     export_admin_roles_permissions: Izvoz skrbniških vlog in dovoljenj
+    export_campaigns_queued: Naloge za izvoz so bile dodane v čakalno vrsto. V obvestilih preverite povezave za prenos.
     export_compact_completion_status: Kompakten
     export_completion_status: Stanje zaključka izvoza
     export_completion_statuses_scheduled: Izvoz stanja dokončanja je bil uspešno načrtovan.
     export_detailed_completion_status: Podrobno
+    factors: Dejavniki
     feature_ai_assistants_description: Omogočite pomočnike na podlagi umetne inteligence za izboljšano uporabniško izkušnjo
     feature_ai_assisted_idp_description: Uporabite umetno inteligenco za pomoč pri priporočilih za individualno razvojno načrtovanje.
     feature_ai_content_analysis_description: Omogoči analizo vsebin na podlagi umetne inteligence za ocenjevanje
@@ -240,8 +277,12 @@ sl:
     final_score_empty_msg: Končni račun ne sme biti prazen.
     fix_grammar: Popravi slovnico
     formal: Formalno
+    from: Od
     generate_transcription: Ustvari transkripcijo
     hide_middle_scores: Skrij srednje ocene
+    high: Visoko
+    hogan: Hogan
+    hogan_assessment: Ocena Hogana
     idp_plan_reset_success: Načrt je bil uspešno ponastavljen
     idp_templates: Predloge IDP
     import_ai_artifacts: Uvoz AI artefaktov
@@ -281,6 +322,7 @@ sl:
     libraries: Medijska knjižnica
     library_invalid_type: Neveljaven knjižnični element
     licenses: Licence
+    low: Nizka
     maintenance: Vzdrževanje
     maintenance_settings: Nastavitve vzdrževanja
     maintenance_settings_description: Upravljanje časovnih okvirjev in nastavitev za vzdrževanje sistema
@@ -297,6 +339,8 @@ sl:
     mhs_session_id: Mhs ID seje
     min_value: Najmanjša vrednost
     minimum_10_words: Najmanj 10 besed
+    minimum_download_speed: Najmanjša hitrost prenosa (v Mbps)
+    minimum_upload_speed: Najmanjša hitrost prenosa (v Mbps)
     missing_min_max_values: Zahtevane so minimalne in maksimalne vrednosti.
     model_answer: Vzorec odgovora
     model_answer_placeholder: Vnesite vzorčni odgovor za ocenjevanje AI.
@@ -305,6 +349,7 @@ sl:
     name_required: Ime je potrebno
     no_file_selected: Izbrana ni bila izbrana datoteka
     no_notifications: Brez obvestil
+    no_status: Brez statusa
     norms: Norme
     not_completed: Ni dokončano
     not_completed_tooltip: Dodeljeni so %{completed} ocenjevalci, vendar so ocene zaključili le %{submitted}
@@ -837,6 +882,19 @@ sl:
     saml_settings: SAML nastavitve
     save: Shrani
     save_assessment_for_scoring_management: Shranite oceno, preden začnete z ocenjevanjem.
+    saved_filter_label:
+      approval_status_in: Stanje odobritve
+      approver_user_id_in: Odobritelj
+      assessment_id_in: Ocena
+      campaign_id_in: Kampanja
+      client_id_in: Stranka
+      project_id_in: Projekt
+      qc_user_id_in: Uporabnik QC
+      report_id_in: Poročilo
+      subject_email_cont: Zadeva E-pošta
+      subject_full_name_cont: Ime predmeta
+      user_email_cont: E-poštni naslov uporabnika
+      user_full_name_cont: Uporabniško ime
     scheduling: Razporejanje
     score: Rezultat
     score_approval_not_allowed_to_approve: Te ocene ne smete odobriti.
@@ -893,7 +951,9 @@ sl:
     subject_part_of_other_invite: Oseba z e-poštnim naslovom %{user_email} je že povabljena na »%{workshop_invite_name}«.
     target_job_role: Ciljna delovna vloga
     this_field_is_required: To polje je obvezno
+    threesixty: Kampanja 360
     timezone: Časovni pas
+    to: Za
     tone: Ton
     toolbar_ai_insight: Vpogled v umetno inteligenco
     toolbar_ai_suggestion: Predlog AI
@@ -917,6 +977,9 @@ sl:
     user_report_events: Dogodki uporabniškega poročila
     users: Uporabniki
     validation_error: Izpolnite vsa obvezna polja
+    validity: Veljavnost
+    very_high: Zelo visoka
+    very_low: Zelo nizka
     view_licenses: Ogled licenc
     waiting: Čaka
     weight: Teža

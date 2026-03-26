@@ -1870,6 +1870,8 @@ zh:
       form:
         enable_innovation_styles: 实现创新风格
         enable_occupations: 启用职业
+        name: 姓名
+        title: 尺寸
       import_factors:
         import: 进口
         sample_file: 样本文件
@@ -1917,6 +1919,7 @@ zh:
         confirmations:
           delete:
             body: "<p>您确定要删除此维度吗？</p>\n"
+            message: 请在文本框中输入下方的维度名称以确认
             title: 删除<strong>尺寸</strong>？
           toggle_status:
             body: "<p>您确定要 %{status} 这个维度吗？</p>\n"
@@ -1981,6 +1984,7 @@ zh:
                 score: 得分
                 zscore: Z 分数
             title: 分数的 JSON 路径
+        predicate: 谓语
         scoring_strategies:
           custom_formula: 自定义公式
           external_score: 外部评分
@@ -1994,10 +1998,13 @@ zh:
           sub_factors_sum: 系数加权和
         scoring_strategies_tip: "<strong>问题（平均值）：</strong>当有问题与某一因素相关联时，这与当前的计分方法相同。 <br /> <br /><strong>问题（SUM）：</strong>与问题（平均）类似，但使用 SUM。 <br /> <br /><strong>其他因素的问题（平均值）：</strong>当一个因素有子因素时，这与当前的计分方法相同，唯一的变化是增加了权重。 <br /> <br /><strong>其他因素的问题（SUM）：</strong>这与其他因素（平均值）类似，但使用的是 SUM。 <br /> <br /><strong>加权因素总和：</strong>将所选其他因素的得分乘以权重相加。"
         scoring_strategy: 计分策略
+        search_factors: 搜索因素
         use_sub_factor_norm_score: 使用因素标准分
+        value: 值
       index:
         icon: 图标
         new: 添加
+        precision: 精度
         scoring_strategies:
           custom_formula: 自定义公式
           external_score: 外部评分
@@ -2291,6 +2298,7 @@ zh:
       edit:
         header: 编辑创新风格
       form:
+        full_description: 完整描述
         no_icon: 无图标
       index:
         new: 添加
@@ -2662,8 +2670,12 @@ zh:
       edit:
         header: 编辑职业
       form:
+        alternative_icon: 备用图标
+        color: 颜色
         hint:
           key_career_tracks: '"+"--列表，"*"--粗体。 示例： + *Biology* - 一些描述...'
+        indicative_roles_image: 角色示意图
+        key_career_tracks_image: 主要职业发展路径图
         no_icon: 无图标
       index:
         new: 添加
@@ -2734,6 +2746,7 @@ zh:
       assessment_center: 评估中心
       assessment_id: 评估 ID
       campaign_id: 活动 ID
+      campaign_link: 活动链接
       campaign_name: 活动名称
       campaigns: 活动
       description: 说明
@@ -3734,8 +3747,10 @@ zh:
       id: ID
       import:
         factors: 导入活动因素
+      innovation_style_removal_confirmation: 请在文本框中输入下方的创新风格名称以确认
       name: 名称
       no_groups: 无小组出席
+      occupation_removal_confirmation: 请在文本框中输入下方的职业名称以确认
       output_type: 输出类型
       pattern_error: 只允许使用字母数字字符、空格和破折号。
       profile:

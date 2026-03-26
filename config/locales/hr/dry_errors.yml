@@ -41,6 +41,12 @@ hr:
         skills_not_belong_to_project: Odabrane vještine moraju pripadati navedenom projektu.
         skills_required: Odaberite barem jednu vještinu.
       exceeded_subjects_count: Možete dodati samo %{count} ispitanika po pozivnici
+      factors_norms:
+        invalid_field_name: Naziv polja mora biti ili 'score_from' ili 'score_to'.
+        invalid_float: Vrijednost mora biti valjana decimalna brojka.
+        invalid_level: Neispravna razina. Valjane razine su %{levels}
+        score_from_less_than_score_to: score_from mora biti manji od score_to
+        score_to_greater_than_score_from: score_to mora biti veće od score_from
       filled?: ne može biti prazan
       idp_template:
         content_required: Sadržaj je potreban za upute

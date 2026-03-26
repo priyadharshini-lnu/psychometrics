@@ -41,6 +41,12 @@ ar:
         skills_not_belong_to_project: يجب أن تنتمي المهارات المحددة إلى المشروع المحدد.
         skills_required: يُرجى تحديد مهارة واحدة على الأقل.
       exceeded_subjects_count: يمكنك فقط إضافة %{count} مواضيع لكل دعوة
+      factors_norms:
+        invalid_field_name: يجب أن يكون اسم الحقل إما "score_from" أو "score_to".
+        invalid_float: يجب أن تكون القيمة عددًا عائمًا صالحًا.
+        invalid_level: مستوى غير صالح. المستويات الصالحة هي%{levels}
+        score_from_less_than_score_to: يجب أن تكون القيمة «score_from» أقل من القيمة «score_to»
+        score_to_greater_than_score_from: يجب أن تكون القيمة النهائية أكبر من القيمة الأولية
       filled?: لا يمكن أن تكون فارغة
       idp_template:
         content_required: المحتوى مطلوب للتعليمات

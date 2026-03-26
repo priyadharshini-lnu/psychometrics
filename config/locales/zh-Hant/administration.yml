@@ -1870,6 +1870,8 @@ zh-Hant:
       form:
         enable_innovation_styles: 啟用創新風格
         enable_occupations: 啟用職業
+        name: 姓名
+        title: 尺寸
       import_factors:
         import: 進口
         sample_file: 樣本檔案
@@ -1917,6 +1919,7 @@ zh-Hant:
         confirmations:
           delete:
             body: "<p>您確定要刪除此維度嗎？</p>\n"
+            message: 请在文本框中输入下方的维度名称以确认
             title: 刪除<strong>尺寸</strong>？
           toggle_status:
             body: "<p>您確定要 %{status} 這個維度嗎？</p>\n"
@@ -1981,6 +1984,7 @@ zh-Hant:
                 score: 得分
                 zscore: Z 得分
             title: 分數的 JSON 路徑
+        predicate: 谓语
         scoring_strategies:
           custom_formula: 自訂公式
           external_score: 外部評分
@@ -1994,10 +1998,13 @@ zh-Hant:
           sub_factors_sum: 因子的加權總和
         scoring_strategies_tip: "<strong>問題 (平均值)：</strong>當有問題與一個因素連結時，這就像目前的計分方法。 <br /> <br /><strong>問題 (SUM)：</strong>與問題 (平均) 相似，但使用 SUM。 <br /> <br /><strong>其他因素的問題 (平均)：</strong>當一個因素有子因素時，這就像目前的計分方法，唯一的改變是增加權重。 <br /> <br /><strong>其他因素的問題 (SUM)：</strong>這與其他因素 (平均值) 相似，但使用 SUM。 <br /> <br /><strong>加權因素總和：</strong>將選定的其他因素的分數乘以其權重相加。"
         scoring_strategy: 計分策略
+        search_factors: 搜索因素
         use_sub_factor_norm_score: 使用因子標準分數
+        value: 值
       index:
         icon: 圖示
         new: 新增
+        precision: 精度
         scoring_strategies:
           custom_formula: 自訂公式
           external_score: 外部評分
@@ -2291,6 +2298,7 @@ zh-Hant:
       edit:
         header: 編輯創新風格
       form:
+        full_description: 完整描述
         no_icon: 沒有圖示
       index:
         new: 新增
@@ -2662,8 +2670,12 @@ zh-Hant:
       edit:
         header: 編輯職業
       form:
+        alternative_icon: 备用图标
+        color: 颜色
         hint:
           key_career_tracks: '"+「 - 清單，」*" - 粗體。 例如： + *Biology* - 一些描述...'
+        indicative_roles_image: 角色示意图
+        key_career_tracks_image: 主要职业发展路径图
         no_icon: 沒有圖示
       index:
         new: 新增
@@ -2734,6 +2746,7 @@ zh-Hant:
       assessment_center: 評估中心
       assessment_id: 評估 ID
       campaign_id: 活動 ID
+      campaign_link: 活动链接
       campaign_name: 活動名稱
       campaigns: 活動
       description: 說明
@@ -3734,8 +3747,10 @@ zh-Hant:
       id: 同上
       import:
         factors: 匯入活動因素
+      innovation_style_removal_confirmation: 请在文本框中输入下方的创新风格名称以确认
       name: 名稱
       no_groups: 無團體出席
+      occupation_removal_confirmation: 请在文本框中输入下方的职业名称以确认
       output_type: 輸出類型
       pattern_error: 只允許使用字母數字字符、空格和破折號。
       profile:

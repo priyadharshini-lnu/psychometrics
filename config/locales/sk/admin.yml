@@ -23,7 +23,15 @@ sk:
     ai_artifact_result_generation_admin_job_failed: Artefakt „%{artifact_name}“ nemožno vygenerovať pre používateľa „%{user_email}“.
     ai_artifact_result_stale: Výsledok môže byť neaktuálny, pretože závislosti artefaktu AI sa od posledného vygenerovania výsledku zmenili. Zvážte regenerovanie artefaktu, aby sa vygeneroval s najnovšími závislosťami.
     ai_artifacts: Artefakty AI
+    ai_artifacts_finalized_at: 'Dátum dokončenia:'
+    ai_artifacts_generate_result_confirm: Vytvorenie výsledkov artefaktu pre používateľa „%{email}“ spôsobí odstránenie existujúcej správy, ktorá závisí od tohto artefaktu umelej inteligencie. Naozaj chcete pokračovať?
     ai_artifacts_generate_results: Generovať výsledky
+    ai_artifacts_mark_finalized: Označiť ako dokončené
+    ai_artifacts_mark_finalized_bulk_confirm: Po dokončení výsledkov artefaktov pre všetkých vybraných používateľov sa vygenerujú správy, ktoré využívajú artefakty umelej inteligencie. Naozaj chcete pokračovať?
+    ai_artifacts_mark_finalized_confirm: Dokončením výsledkov artefaktu pre používateľa „%{email}“ sa vygeneruje správa, ktorá využíva artefakt umelej inteligencie pre daného používateľa. Naozaj chcete pokračovať?
+    ai_artifacts_mark_not_finalized: Značka nie je definitívna
+    ai_artifacts_mark_not_finalized_bulk_confirm: Odstránenie finalizácie u všetkých vybraných používateľov spôsobí odstránenie vygenerovaných správ, ktoré využívajú artefakty umelej inteligencie. Naozaj chcete pokračovať?
+    ai_artifacts_mark_not_finalized_confirm: Odstránením položky „finalize“ z účtu používateľa „%{email}“ sa odstráni vygenerovaná správa, ktorá využíva artefakt umelej inteligencie pre daného používateľa. Naozaj chcete pokračovať?
     ai_artifacts_output_schema_key_constraint: Kľúč musí začínať malým písmenom a môže obsahovať len malé písmená, čísla a podčiarknutia
     ai_artifacts_results_export: Výsledky exportu
     ai_artifacts_results_export_job_scheduled: Úloha exportu výsledkov AI Artifacts bola úspešne naplánovaná.
@@ -78,12 +86,32 @@ sk:
     ai_scoring_appoval_score_not_applicable: Skóre sa neuplatňuje
     ai_scoring_approval: Schválenie bodovania AI
     ai_scoring_approval_settings: Nastavenia schvaľovania bodovania AI
+    ai_scoring_approval_stale_description: Zmeny v konfigurácii od posledného spustenia mohli ovplyvniť výsledok. Vykonajte nové vyhodnotenie, aby sa výsledok aktualizoval na základe najnovších nastavení.
+    ai_scoring_approval_stale_title: Výsledok môže byť neaktuálny
     ai_scoring_approvals: Schvaľovanie bodovania umelou inteligenciou
+    ai_scoring_refresh_score: Aktualizovať skóre
+    ai_scoring_refresh_score_confirm_description: Týmto sa pre toto hodnotenie opäť spustí vyhodnocovanie umelou inteligenciou s použitím najnovšej konfigurácie. Naozaj to chcete urobiť?
+    ai_scoring_refresh_score_confirm_title: Obnoviť skóre AI?
+    ai_scoring_rescore_queued: Prepočet výsledkov pomocou umelej inteligencie bol zaradený do fronty. Po chvíli stránku obnovte.
     ai_translation: Preklad umelou inteligenciou
     all_corner_rounded: Všetky rohy zaoblené
     allow_ai_rescoring: Povoliť prehodnotenie umelou inteligenciou
+    allow_continue_with_warning_system_check: Umožniť používateľom pokračovať aj napriek varovaniam v prípade zlyhania kontroly systému
     api_keys: Kľúče API
     apply_to_existing_users: Túto zmenu aplikujte na existujúcich používateľov v tejto kampani.
+    assessment_center_activity: Aktivita
+    assessment_center_assessor: Hodnotiteľ
+    assessment_center_attendance: Účasť
+    assessment_center_attendance_status: Stav účasti
+    assessment_center_campaigns_tab: Kampane
+    assessment_center_date_and_time: Dátum a čas
+    assessment_center_join_room: Vstúpiť do miestnosti
+    assessment_center_meeting_link: Odkaz na stretnutie
+    assessment_center_participants_tab: Účastníci
+    assessment_center_prework: Prípravné úlohy
+    assessment_center_schedule_time: Naplánovať čas
+    assessment_center_scheduling_status: Stav plánovania
+    assessment_center_search_participants: Vyhľadávať účastníkov...
     assessment_question_not_supported: Tento typ otázky momentálne nie je podporovaný.
     assessments: Hodnotenia
     assessments_not_mhs: Všetky hodnotenia musia byť typu MHS.
@@ -99,6 +127,7 @@ sk:
     auto_placeholder: Auto
     availability: Dostupnosť
     available_languages: Správa dostupná v jazykoch
+    average: Priemer
     back_to_main: Hlavné menu
     bulk_assets_modal_choose_csv: Vyberte súbor CSV
     bulk_assets_modal_choose_zip: Vyberte súbor ZIP
@@ -138,7 +167,9 @@ sk:
     cancel: Zrušiť
     cancellation_and_rescheduling_disabled: Zrušenie a presunutie termínu je deaktivované
     casual: Neformálne
+    cell_save_msg: Platné zmeny sa automaticky uložia hneď, ako po úprave opustíte bunku.
     characters: postavy
+    chat_instructions_success: Pokyny pre chat boli úspešne uložené
     children_factor_type: Typ faktora detí
     client: Prenájom klienta
     client_admins: Správcovia klientov
@@ -152,6 +183,7 @@ sk:
     configure_model_answer_title: Nakonfigurujte vzorové odpovede a kľúčové slová
     confirm_remove_admin: Naozaj chcete odstrániť správcu používateľa s e-mailom '%{email}'?
     copied: Kopírované
+    copy_ai_artifacts: Kopírovať umelecké diela vytvorené umelou inteligenciou
     country: Krajina
     create_client: Vytvoriť klienta
     create_indicator: Vytvoriť indikátor
@@ -193,6 +225,7 @@ sk:
     done: Robené
     done_tooltip: Pre tohto používateľa už nie je možné vykonať ďalšie hodnotenie, pretože hodnotenie je označené ako vykonané %{marked_by}
     download_bulk_asset_download_example_csv: Stiahnuť príklad CSV.
+    duration: Trvanie
     edit_campaign_admin: Upraviť správcu kampane
     edit_client_admin: Upraviť správcu klienta
     edit_indicator: Upraviť indikátor
@@ -201,10 +234,12 @@ sk:
     edit_permission_denied: Nemáte povolenie upravovať administrátorský '%{name}'
     edit_project_admin: Upraviť správcu projektu
     edit_threesixty_campaign_admin: Upraviť správcu kampane
+    empty: Prázdne
     empty_csv_file: CSV súbor neobsahuje žiadne údaje.
     enable_enhance_with_ai_client_level: Aktivujte funkciu Vylepšiť pomocou AI na úrovni klienta.
     enable_maintenance: Povoliť údržbu
     enable_mobile_proctoring: Aktivovať mobilné monitorovanie
+    enable_system_check: Zapnúť kontrolu systému
     enable_transcription: Povoliť prepis
     enable_transcription_msg: Povoliť prepisovanie s využitím umelej inteligencie na hodnotenie otázok s video/audio odpoveďami.
     end_time: Koniec času
@@ -218,10 +253,12 @@ sk:
     evaluation_status: Stav hodnotenia
     evaluation_status_not_done: Status hodnotenia nie je "Dokončený" pre jeden alebo viac vybraných predmetov. Prosím, uistite sa, že všetci vybraní používatelia už dokončili hodnotenia alebo označili ako splnené.
     export_admin_roles_permissions: Export rolí správcu a povolení
+    export_campaigns_queued: Úlohy na export boli zaradené do fronty. Odkazy na stiahnutie nájdete vo svojich oznámeniach.
     export_compact_completion_status: Kompaktný
     export_completion_status: Stav dokončenia exportu
     export_completion_statuses_scheduled: Úloha exportu stavov dokončenia bola úspešne naplánovaná.
     export_detailed_completion_status: Podrobné
+    factors: Faktory
     feature_ai_assistants_description: Aktivujte asistenty s umelou inteligenciou pre lepší používateľský zážitok
     feature_ai_assisted_idp_description: Využite umelú inteligenciu na pomoc pri odporúčaniach týkajúcich sa individuálneho rozvoja
     feature_ai_content_analysis_description: Aktivujte analýzu obsahu pomocou umelej inteligencie pre hodnotenie
@@ -240,8 +277,12 @@ sk:
     final_score_empty_msg: Konečný účet nemôže byť prázdny.
     fix_grammar: Opravte gramatiku
     formal: Formálne
+    from: Od
     generate_transcription: Vytvoriť prepis
     hide_middle_scores: Skryť stredné skóre
+    high: Vysoká
+    hogan: Hogan
+    hogan_assessment: Hoganovo hodnotenie
     idp_plan_reset_success: Plán bol úspešne resetovaný
     idp_templates: Šablóny IDP
     import_ai_artifacts: Import AI artefaktov
@@ -281,6 +322,7 @@ sk:
     libraries: Knižnica médií
     library_invalid_type: Neplatný knižničný predmet
     licenses: Licencie
+    low: Nízka
     maintenance: Údržba
     maintenance_settings: Nastavenia údržby
     maintenance_settings_description: Správa okien a nastavení údržby systému
@@ -297,6 +339,8 @@ sk:
     mhs_session_id: ID relácie Mhs
     min_value: Minimálna hodnota
     minimum_10_words: Minimálne 10 slov
+    minimum_download_speed: Minimálna rýchlosť sťahovania (v Mbps)
+    minimum_upload_speed: Minimálna rýchlosť odosielania (v Mbps)
     missing_min_max_values: Minimálne a maximálne hodnoty sú povinné.
     model_answer: Vzorová odpoveď
     model_answer_placeholder: Zadajte vzorovú odpoveď pre hodnotenie umelou inteligenciou.
@@ -305,6 +349,7 @@ sk:
     name_required: Meno je potrebné
     no_file_selected: Žiadny súbor nevybraný
     no_notifications: Žiadne upozornenia
+    no_status: Bez stavu
     norms: Normy
     not_completed: Nedokončené
     not_completed_tooltip: "%{completed} hodnotiteľov je pridelených, ale len %{submitted} dokončili hodnotenia"
@@ -837,6 +882,19 @@ sk:
     saml_settings: SAML nastavenia
     save: Uložiť
     save_assessment_for_scoring_management: Pred začatím bodovania uložte hodnotenie.
+    saved_filter_label:
+      approval_status_in: Stav schválenia
+      approver_user_id_in: Schvaľovateľ
+      assessment_id_in: Hodnotenie
+      campaign_id_in: Kampaň
+      client_id_in: Klient
+      project_id_in: Projekt
+      qc_user_id_in: Používateľ QC
+      report_id_in: Správa
+      subject_email_cont: Predmet e-mailu
+      subject_full_name_cont: Názov predmetu
+      user_email_cont: E-mail používateľa
+      user_full_name_cont: Používateľské meno
     scheduling: Plánovanie
     score: Skóre
     score_approval_not_allowed_to_approve: Toto skóre nemôžete schváliť.
@@ -893,7 +951,9 @@ sk:
     subject_part_of_other_invite: Osoba s e-mailovou adresou %{user_email} je už pozvaná na „%{workshop_invite_name}“.
     target_job_role: Cieľová pracovná pozícia
     this_field_is_required: Toto pole je povinné
+    threesixty: Kampaň 360
     timezone: Časové pásmo
+    to: Do
     tone: Tón
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: Návrh umelej inteligencie
@@ -917,6 +977,9 @@ sk:
     user_report_events: Udalosti v hlásení používateľa
     users: Používateľov
     validation_error: Vyplňte všetky povinné polia
+    validity: Platnosť
+    very_high: Veľmi vysoká
+    very_low: Veľmi nízka
     view_licenses: Zobraziť licencie
     waiting: Čakanie
     weight: Hmotnosť

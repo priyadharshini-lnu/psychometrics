@@ -97,6 +97,7 @@ th:
     name: ชื่อ
     negative: เชิงลบ
     new: ใหม่
+    next: ถัดไป
     no_results_found: ไม่พบผลลัพธ์
     not_requested: ยังไม่ได้ร้องขอ
     ok: ตกลง

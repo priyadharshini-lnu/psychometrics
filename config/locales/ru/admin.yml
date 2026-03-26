@@ -23,7 +23,15 @@ ru:
     ai_artifact_result_generation_admin_job_failed: Артефакт «%{artifact_name}» не может быть сгенерирован для пользователя «%{user_email}».
     ai_artifact_result_stale: Результат может быть устаревшим, поскольку зависимости артефакта ИИ изменились с момента генерации последнего результата. Рассмотрите возможность повторной генерации артефакта с использованием последних зависимостей.
     ai_artifacts: Артефакты искусственного интеллекта
+    ai_artifacts_finalized_at: Утверждено
+    ai_artifacts_generate_result_confirm: Создание результатов артефакта для пользователя «%{email}» приведет к удалению существующего отчета, который зависит от этого артефакта ИИ. Вы действительно хотите продолжить?
     ai_artifacts_generate_results: Генерировать результаты
+    ai_artifacts_mark_finalized: Марк завершил работу
+    ai_artifacts_mark_finalized_bulk_confirm: При завершении обработки результатов для всех выбранных пользователей будут сгенерированы отчеты, в которых используются артефакты ИИ. Вы действительно хотите продолжить?
+    ai_artifacts_mark_finalized_confirm: Окончательная обработка результатов по артефакту для пользователя «%{email}» приведет к созданию отчета, в котором будет использован артефакт искусственного интеллекта для этого пользователя. Вы действительно хотите продолжить?
+    ai_artifacts_mark_not_finalized: Отметка не утверждена
+    ai_artifacts_mark_not_finalized_bulk_confirm: Удаление статуса «Завершено» у всех выбранных пользователей приведет к удалению сгенерированных отчетов, в которых используются артефакты ИИ. Вы действительно хотите продолжить?
+    ai_artifacts_mark_not_finalized_confirm: Удаление статуса «Завершено» у пользователя «%{email}» приведет к удалению сгенерированного отчета, в котором используется артефакт ИИ для этого пользователя. Вы действительно хотите продолжить?
     ai_artifacts_output_schema_key_constraint: Ключ должен начинаться с строчной буквы и может содержать только строчные буквы, цифры и символы подчеркивания.
     ai_artifacts_results_export: Экспорт результатов
     ai_artifacts_results_export_job_scheduled: Задание экспорта результатов AI Artifacts было успешно запланировано.
@@ -78,12 +86,32 @@ ru:
     ai_scoring_appoval_score_not_applicable: Оценка не применима
     ai_scoring_approval: Утверждение оценки ИИ
     ai_scoring_approval_settings: Настройки утверждения оценки ИИ
+    ai_scoring_approval_stale_description: Изменения в настройках, внесенные после последнего запуска, могли повлиять на результат. Выполните повторный расчет, чтобы обновить результат с учетом последних настроек.
+    ai_scoring_approval_stale_title: Результат может быть устаревшим
     ai_scoring_approvals: Утверждение оценок ИИ
+    ai_scoring_refresh_score: Обновить оценку
+    ai_scoring_refresh_score_confirm_description: Это приведет к повторному расчету оценки с помощью ИИ для данного теста с использованием последней конфигурации. Вы уверены?
+    ai_scoring_refresh_score_confirm_title: Обновить оценки ИИ?
+    ai_scoring_rescore_queued: Запрос на пересчёт результатов с помощью ИИ поставлен в очередь. Пожалуйста, обновите страницу через несколько секунд.
     ai_translation: Перевод с помощью искусственного интеллекта
     all_corner_rounded: Все углы закруглены
     allow_ai_rescoring: Разрешить переоценку ИИ
+    allow_continue_with_warning_system_check: Разрешить пользователям продолжить работу с отображением предупреждений в случае сбоя проверки системы
     api_keys: API-ключи
     apply_to_existing_users: Применить это изменение к существующим пользователям в этой кампании
+    assessment_center_activity: Деятельность
+    assessment_center_assessor: Эксперт
+    assessment_center_attendance: Посещаемость
+    assessment_center_attendance_status: Статус посещаемости
+    assessment_center_campaigns_tab: Кампании
+    assessment_center_date_and_time: Дата и время
+    assessment_center_join_room: Войти в чат
+    assessment_center_meeting_link: Ссылка на встречу
+    assessment_center_participants_tab: Участники
+    assessment_center_prework: Подготовительная работа
+    assessment_center_schedule_time: Запланировать время
+    assessment_center_scheduling_status: Статус планирования
+    assessment_center_search_participants: Поиск участников...
     assessment_question_not_supported: Этот тип вопроса в настоящее время не поддерживается.
     assessments: Оценки
     assessments_not_mhs: Все оценки должны быть типа MHS.
@@ -99,6 +127,7 @@ ru:
     auto_placeholder: Авто
     availability: Доступность
     available_languages: Отчет доступен на следующих языках
+    average: Среднее
     back_to_main: Главное меню
     bulk_assets_modal_choose_csv: Выбрать файл CSV
     bulk_assets_modal_choose_zip: Выбрать ZIP-файл
@@ -138,7 +167,9 @@ ru:
     cancel: Отменить
     cancellation_and_rescheduling_disabled: Отмена и перенос заказа отключены
     casual: Повседневный
+    cell_save_msg: Допустимые изменения сохраняются автоматически, как только вы выходите из ячейки после редактирования.
     characters: символы
+    chat_instructions_success: Инструкции по использованию чата успешно сохранены
     children_factor_type: Тип фактора «Дети»
     client: Клиент
     client_admins: Администраторы клиентов
@@ -152,6 +183,7 @@ ru:
     configure_model_answer_title: Настройте образец ответа и ключевые слова
     confirm_remove_admin: Вы уверены, что хотите удалить администратора с адресом электронной почты «%{email}»?
     copied: Скопировано
+    copy_ai_artifacts: Копировать артефакты искусственного интеллекта
     country: Страна
     create_client: Создать клиента
     create_indicator: Создать индикатор
@@ -193,6 +225,7 @@ ru:
     done: Готово
     done_tooltip: Для этого пользователя больше не может быть отправлена оценка, так как оценка этого пользователя помечена как выполненная %{marked_by}
     download_bulk_asset_download_example_csv: Скачать пример CSV.
+    duration: Продолжительность
     edit_campaign_admin: Редактировать кампанию Администратор
     edit_client_admin: Редактировать клиентский админ
     edit_indicator: Редактировать индикатор
@@ -201,10 +234,12 @@ ru:
     edit_permission_denied: У вас нет прав на редактирование администратора «%{name}»
     edit_project_admin: Редактировать проект Администратор
     edit_threesixty_campaign_admin: Редактировать кампанию Администратор
+    empty: Пусто
     empty_csv_file: CSV-файл не содержит никаких данных.
     enable_enhance_with_ai_client_level: Пожалуйста, включите функцию «Улучшение с помощью ИИ» на уровне клиента.
     enable_maintenance: Включить обслуживание
     enable_mobile_proctoring: Включить мобильный контроль
+    enable_system_check: Включить проверку системы
     enable_transcription: Включить транскрипцию
     enable_transcription_msg: Включите транскрипцию, чтобы использовать оценку ИИ для вопросов с видео/аудио ответами.
     end_time: Конец времени
@@ -218,10 +253,12 @@ ru:
     evaluation_status: Статус оценки
     evaluation_status_not_done: Статус оценки для одного или нескольких выбранных предметов не является «Выполнено». Убедитесь, что все выбранные пользователи завершили оценки, или пометьте их как выполненные.
     export_admin_roles_permissions: Экспорт ролей и разрешений администратора
+    export_campaigns_queued: Задания на экспорт помещены в очередь. Проверьте свои уведомления, чтобы найти ссылки для скачивания.
     export_compact_completion_status: Компактный
     export_completion_status: Статус завершения экспорта
     export_completion_statuses_scheduled: Задание экспорта статусов завершения успешно запланировано
     export_detailed_completion_status: Подробно
+    factors: Факторы
     feature_ai_assistants_description: Включите помощников на базе искусственного интеллекта для улучшения пользовательского опыта
     feature_ai_assisted_idp_description: Используйте ИИ для помощи в составлении рекомендаций по индивидуальному плану развития
     feature_ai_content_analysis_description: Включить анализ контента на основе искусственного интеллекта для оценок
@@ -240,8 +277,12 @@ ru:
     final_score_empty_msg: Итоговый счет не может быть пустым.
     fix_grammar: Исправить грамматику
     formal: Формальный
+    from: От
     generate_transcription: Создать транскрипцию
     hide_middle_scores: Скрыть средние оценки
+    high: Высокий
+    hogan: Хоган
+    hogan_assessment: Оценка Хогана
     idp_plan_reset_success: План был успешно сброшен
     idp_templates: Шаблоны IDP
     import_ai_artifacts: Импорт артефактов искусственного интеллекта
@@ -281,6 +322,7 @@ ru:
     libraries: Медиатека
     library_invalid_type: Недействительный элемент библиотеки
     licenses: Лицензии
+    low: Низкий
     maintenance: Техническое обслуживание
     maintenance_settings: Настройки обслуживания
     maintenance_settings_description: Управление окнами и настройками обслуживания системы
@@ -297,6 +339,8 @@ ru:
     mhs_session_id: Идентификатор сеанса Mhs
     min_value: Минимальное значение
     minimum_10_words: Минимум 10 слов
+    minimum_download_speed: Минимальная скорость загрузки (в Мбит/с)
+    minimum_upload_speed: Минимальная скорость загрузки (в Мбит/с)
     missing_min_max_values: Требуются минимальные и максимальные значения.
     model_answer: Типовой ответ
     model_answer_placeholder: Введите образец ответа для оценки искусственным интеллектом.
@@ -305,6 +349,7 @@ ru:
     name_required: Имя обязательно
     no_file_selected: Файл не выбран
     no_notifications: Нет уведомлений
+    no_status: Без статуса
     norms: Нормы
     not_completed: Не завершено
     not_completed_tooltip: "%{completed} оценщики назначены, но только %{submitted} завершили оценки"
@@ -837,6 +882,19 @@ ru:
     saml_settings: Настройки SAML
     save: Сохранить
     save_assessment_for_scoring_management: Сохраните оценку, прежде чем приступать к подсчету баллов.
+    saved_filter_label:
+      approval_status_in: Статус утверждения
+      approver_user_id_in: Утверждающий
+      assessment_id_in: Оценка
+      campaign_id_in: Кампания
+      client_id_in: Клиент
+      project_id_in: Проект
+      qc_user_id_in: Пользователь QC
+      report_id_in: Отчет
+      subject_email_cont: Тема письма
+      subject_full_name_cont: Название предмета
+      user_email_cont: Электронная почта пользователя
+      user_full_name_cont: Имя пользователя
     scheduling: Планирование
     score: Счет
     score_approval_not_allowed_to_approve: Вы не имеете права утверждать эту оценку.
@@ -893,7 +951,9 @@ ru:
     subject_part_of_other_invite: Участник с адресом электронной почты %{user_email} уже приглашен в «%{workshop_invite_name}».
     target_job_role: Целевая должность
     this_field_is_required: Это поле является обязательным для заполнения
+    threesixty: Кампания «360»
     timezone: Часовой пояс
+    to: К
     tone: Тон
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: Предложение ИИ
@@ -917,6 +977,9 @@ ru:
     user_report_events: Сообщения пользователей о событиях
     users: Пользователи
     validation_error: Пожалуйста, заполните все обязательные поля
+    validity: Срок действия
+    very_high: Очень высокий
+    very_low: Очень низкий
     view_licenses: Просмотр лицензий
     waiting: Ожидание
     weight: Вес

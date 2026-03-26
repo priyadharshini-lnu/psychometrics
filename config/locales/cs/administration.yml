@@ -1870,6 +1870,8 @@ cs:
       form:
         enable_innovation_styles: Umožnit inovační styly
         enable_occupations: Umožnit povolání
+        name: Jméno
+        title: Rozměry
       import_factors:
         import: Import
         sample_file: Ukázkový soubor
@@ -1917,6 +1919,7 @@ cs:
         confirmations:
           delete:
             body: "<p>Opravdu chcete tuto dimenzi odstranit?</p>\n"
+            message: Do textového pole zadejte níže uvedený název dimenze pro potvrzení
             title: Smazat <strong>rozměr</strong>?
           toggle_status:
             body: "<p>Jste si jisti, že chcete %{status} tento rozměr?</p>\n"
@@ -1981,6 +1984,7 @@ cs:
                 score: Skóre
                 zscore: Skóre Z
             title: Cesty JSON pro skóre
+        predicate: Predikát
         scoring_strategies:
           custom_formula: Vlastní vzorec
           external_score: Externí skóre
@@ -1994,10 +1998,13 @@ cs:
           sub_factors_sum: Vážený součet faktorů
         scoring_strategies_tip: "<strong>otázky (průměr):</strong> Jedná se o podobnou metodu bodování jako v současnosti, kdy jsou s faktorem spojeny otázky. <br /> <br /><strong>otázky (Součet):</strong> Tato metoda je stejná jako metoda Otázky (Průměr), ale používá součet <br /> <br /><strong>otázky ostatních faktorů (Průměr</strong> ): Jedná se o stejnou metodu bodování jako v současné době, kdy jsou k faktoru přiřazeny dílčí faktory, jedinou změnou je přidání váhy. <br /> <br /><strong>otázky ostatních faktorů (SUM):</strong> Jedná se o stejnou metodu jako u ostatních faktorů (průměr), ale používá se součet <br /> <br /><strong>vážený součet faktorů</strong>: Zde se body vybraných ostatních faktorů vynásobí jejich váhami a sečtou."
         scoring_strategy: Bodovací strategie
+        search_factors: Faktory pro vyhledávání
         use_sub_factor_norm_score: Použití Faktory normované skóre
+        value: Hodnota
       index:
         icon: Ikona
         new: Přidat
+        precision: Přesnost
         scoring_strategies:
           custom_formula: Vlastní vzorec
           external_score: Externí skóre
@@ -2291,6 +2298,7 @@ cs:
       edit:
         header: Upravit styl inovace
       form:
+        full_description: Úplný popis
         no_icon: Žádná ikona
       index:
         new: Přidat
@@ -2662,8 +2670,12 @@ cs:
       edit:
         header: Upravit povolání
       form:
+        alternative_icon: Alternativní ikona
+        color: Barva
         hint:
           key_career_tracks: '"+" - seznam, "*" - tučně. Příklad: + *Biologie* - nějaký popis...'
+        indicative_roles_image: Ilustrační obrázek rolí
+        key_career_tracks_image: Obrázek hlavních kariérních směrů
         no_icon: Žádná ikona
       index:
         new: Přidat
@@ -2734,6 +2746,7 @@ cs:
       assessment_center: Hodnotící centrum
       assessment_id: ID hodnocení
       campaign_id: ID kampaně
+      campaign_link: Odkaz na kampaň
       campaign_name: Název kampaně
       campaigns: Kampaně
       description: Popis
@@ -3734,8 +3747,10 @@ cs:
       id: ID
       import:
         factors: Faktory importní kampaně
+      innovation_style_removal_confirmation: Do textového pole zadejte níže uvedený název stylu inovace pro potvrzení
       name: Název
       no_groups: Žádné přítomné skupiny
+      occupation_removal_confirmation: Do textového pole zadejte níže uvedený název povolání pro potvrzení
       output_type: Typ výstupu
       pattern_error: Povoleny jsou pouze alfanumerické znaky, mezery a pomlčky.
       profile:

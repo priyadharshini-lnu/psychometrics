@@ -139,6 +139,7 @@ ar:
     system_check_failed_description: يرجى حل المشكلات وإعادة تشغيل فحص النظام
     system_check_failed_message: فشلت بعض اختبارات النظام، يرجى مراجعة التفاصيل والمحاولة مرة أخرى
     system_check_failed_title: لا يمكنك المتابعة حتى يتم اجتياز جميع الفحوصات المطلوبة
+    system_check_not_enabled: لم يتم تمكين فحص النظام لهذه الحملة
     system_check_passed_successfully: تم اجتياز جميع الفحوصات بنجاح!
     system_check_proceed: نعم موافق للمضي قدما
     system_check_retake: لا، أريد أن أستعيد

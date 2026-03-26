@@ -1870,6 +1870,8 @@ sk:
       form:
         enable_innovation_styles: Umožnite štýly inovácií
         enable_occupations: Povoliť povolania
+        name: Meno
+        title: Rozmery
       import_factors:
         import: Import
         sample_file: Vzorový súbor
@@ -1917,6 +1919,7 @@ sk:
         confirmations:
           delete:
             body: "<p>Naozaj chcete túto dimenziu odstrániť?</p>\n"
+            message: Do textového poľa zadajte nižšie uvedený názov rozmeru na potvrdenie
             title: Odstrániť <strong>dimenziu</strong> ?
           toggle_status:
             body: "<p>Naozaj chcete %{status} túto dimenziu?</p>\n"
@@ -1981,6 +1984,7 @@ sk:
                 score: Skóre
                 zscore: Skóre Z
             title: Cesty JSON pre skóre
+        predicate: Predikát
         scoring_strategies:
           custom_formula: Vlastný vzorec
           external_score: Externé skóre
@@ -1994,10 +1998,13 @@ sk:
           sub_factors_sum: Vážený súčet faktorov
         scoring_strategies_tip: "<strong>Otázky (priemer):</strong> Je to ako súčasná metóda hodnotenia, keď existujú otázky spojené s faktorom.<br /> <br /><strong>Otázky (SUM):</strong> Je to ako otázky (priemer), ale pomocou funkcie SUM<br /> <br /><strong>Otázky iných faktorov (priemer):</strong> Je to ako súčasná metóda hodnotenia, keď existujú čiastkové faktory pre faktor, jedinou zmenou je pridanie váhy.<br /> <br /><strong>Otázky iných faktorov (SUM):</strong> Je to ako iné faktory (priemer), ale pomocou funkcie SUM<br /> <br /><strong>Vážený súčet faktorov:</strong> Tu sa spočítajú skóre vybraných ďalších faktorov ich váhami."
         scoring_strategy: Bodovacia stratégia
+        search_factors: Faktory vyhľadávania
         use_sub_factor_norm_score: Skóre normy Faktory použitia
+        value: Hodnota
       index:
         icon: Ikona
         new: Sčítať
+        precision: Presnosť
         scoring_strategies:
           custom_formula: Vlastný vzorec
           external_score: Externé skóre
@@ -2291,6 +2298,7 @@ sk:
       edit:
         header: Upraviť štýl inovácie
       form:
+        full_description: Úplný popis
         no_icon: Žiadna ikona
       index:
         new: Sčítať
@@ -2662,8 +2670,12 @@ sk:
       edit:
         header: Upraviť povolanie
       form:
+        alternative_icon: Alternatívna ikona
+        color: Farba
         hint:
           key_career_tracks: '"+" - zoznam, "*" - tučné. Príklad: + *Biológia* - nejaký popis...'
+        indicative_roles_image: Ilustračný obrázok rolí
+        key_career_tracks_image: Obrázok hlavných kariérnych dráh
         no_icon: Žiadna ikona
       index:
         new: Sčítať
@@ -2734,6 +2746,7 @@ sk:
       assessment_center: Hodnotiace centrum
       assessment_id: Identifikátor hodnotenia
       campaign_id: Identifikátor kampane
+      campaign_link: Odkaz na kampaň
       campaign_name: Názov kampane
       campaigns: Kampane
       description: Popis
@@ -3731,8 +3744,10 @@ sk:
       id: ID
       import:
         factors: Importovať faktory kampane
+      innovation_style_removal_confirmation: Do textového poľa zadajte názov štýlu inovácie uvedený nižšie na potvrdenie
       name: Meno
       no_groups: Nie sú prítomné žiadne skupiny
+      occupation_removal_confirmation: Do textového poľa zadajte názov povolania uvedený nižšie na potvrdenie
       output_type: Typ výstupu
       pattern_error: Povolené sú iba alfanumerické znaky, medzery a pomlčky.
       profile:

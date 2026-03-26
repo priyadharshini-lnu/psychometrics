@@ -97,6 +97,7 @@ ko:
     name: 이름
     negative: 부정적
     new: 새로 만들기
+    next: 다음
     no_results_found: 검색 결과 없음
     not_requested: 아직 요청되지 않음
     ok: 확인

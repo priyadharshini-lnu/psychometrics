@@ -1892,6 +1892,8 @@ sr-Cyrl:
       form:
         enable_innovation_styles: Омогући стилове иновација
         enable_occupations: Омогућите занимања
+        name: Име
+        title: Димензије
       import_factors:
         import: Увоз
         sample_file: Узорни фајл
@@ -1941,6 +1943,7 @@ sr-Cyrl:
             body: 'Јесте ли сигурни да желите да избришете ову димензију?
 
               '
+            message: Унесите назив димензије наведен испод у поље за текст да бисте потврдили
             title: Избриши Димензију?
           toggle_status:
             body: 'Да ли сте сигурни да желите да %{status}-ујете ову димензију?
@@ -2007,6 +2010,7 @@ sr-Cyrl:
                 score: Резултат
                 zscore: З резултат
             title: ЈСОН путеви за резултате
+        predicate: Предикат
         scoring_strategies:
           custom_formula: Прилагођена формула
           external_score: Спољни резултат
@@ -2020,10 +2024,13 @@ sr-Cyrl:
           sub_factors_sum: Пондерисани збир фактора
         scoring_strategies_tip: " **Питања (просек):** Ово је као тренутни метод бодовања када постоје питања повезана са фактором. <br /> <br /> Питања (SUM): Ово је као Питања (Average), али се користи SUM <br /> <br /> Питања других фактора (Average): Ово је као тренутни метод бодовања када постоје под-фактори за неки фактор, једина разлика је додавање тежине. <br /> <br /> Питања других фактора (СУМ): Ово је као Питања других фактора (просек), али се користи СУМ <br /> <br /> Утежни сабир фактора: Овде се резултати изабраних других фактора множе њиховим тежинама и сабирају."
         scoring_strategy: Стратегија бодовања
+        search_factors: Фактори претраге
         use_sub_factor_norm_score: Користите нормирани резултат фактора
+        value: Вредност
       index:
         icon: Икона
         new: Додај
+        precision: Прецизност
         scoring_strategies:
           custom_formula: Прилагођена формула
           external_score: Спољни резултат
@@ -2321,6 +2328,7 @@ sr-Cyrl:
       edit:
         header: Уреди стил иновација
       form:
+        full_description: Цео опис
         no_icon: Нема иконе
       index:
         new: Додај
@@ -2700,8 +2708,12 @@ sr-Cyrl:
       edit:
         header: Уреди занимање
       form:
+        alternative_icon: Алтернативна икона
+        color: Боја
         hint:
           key_career_tracks: '"+" - листа, "*" - подебљано. Пример: + *Биологија* - неки опис...'
+        indicative_roles_image: Индикативне улоге слика
+        key_career_tracks_image: Кључне каријерне путање
         no_icon: Нема иконе
       index:
         new: Додај
@@ -2774,6 +2786,7 @@ sr-Cyrl:
       assessment_center: Центар за процену
       assessment_id: Идентификација процене
       campaign_id: ИД кампање
+      campaign_link: Линк кампање
       campaign_name: Назив кампање
       campaigns: Кампање
       description: Опис
@@ -3792,8 +3805,10 @@ sr-Cyrl:
       id: ИД
       import:
         factors: Увоз фактора кампање
+      innovation_style_removal_confirmation: Унесите назив стила иновација наведеног у тексту у поље за унос да бисте потврдили
       name: Име
       no_groups: Ниједна група није присутна
+      occupation_removal_confirmation: Унесите назив занимања наведен у тексту у поље за унос да бисте потврдили
       output_type: Тип излаза
       pattern_error: Дозвољени су само алфанумерички знакови, размаци и цртице.
       profile:

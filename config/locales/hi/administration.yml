@@ -1892,6 +1892,8 @@ hi:
       form:
         enable_innovation_styles: नवाचार शैलियों को सक्षम करें
         enable_occupations: व्यवसाय सक्षम करें
+        name: नाम
+        title: आयाम
       import_factors:
         import: आयात
         sample_file: नमूना फ़ाइल
@@ -1941,6 +1943,7 @@ hi:
             body: 'क्या आप इस डायमेंशन को हटाना चाहते हैं?
 
               '
+            message: पुष्टि करने के लिए नीचे टेक्स्ट बॉक्स में दिए गए आयाम का नाम दर्ज करें।
             title: डिमेन्शन हटाएँ?
           toggle_status:
             body: 'क्या आप इस डायमेंशन को %{status} करना चाहते हैं?
@@ -2007,6 +2010,7 @@ hi:
                 score: स्कोर
                 zscore: Z स्कोर
             title: स्कोर के लिए JSON पथ
+        predicate: क्रियापद
         scoring_strategies:
           custom_formula: अनुकूलित सूत्र
           external_score: बाहरी स्कोर
@@ -2020,10 +2024,13 @@ hi:
           sub_factors_sum: गुणकों का भारित योग
         scoring_strategies_tip: " **प्रश्न (औसत):** यह वर्तमान स्कोरिंग विधि के समान है जब प्रश्न किसी कारक से जुड़े होते हैं। <br /> <br /> प्रश्न (SUM): यह प्रश्न (औसत) की तरह है, लेकिन SUM का उपयोग करता है <br /> <br /> अन्य कारकों के प्रश्न (औसत): यह वर्तमान स्कोरिंग विधि की तरह है जब किसी कारक के लिए उप-कारक होते हैं, केवल अंतर वज़न का जोड़ है। <br /> <br /> अन्य कारकों के प्रश्न (SUM): यह अन्य कारक (औसत) के समान है, लेकिन SUM का उपयोग करता है <br /> <br /> कारकों का भारित योग: यहां चयनित अन्य कारकों के स्कोर को उनके भारों से गुणा करके जोड़ा जाता है।"
         scoring_strategy: स्कोरिंग रणनीति
+        search_factors: खोज कारक
         use_sub_factor_norm_score: कारक मानक स्कोर का उपयोग करें
+        value: मूल्य
       index:
         icon: चिह्न
         new: जोड़ें
+        precision: सूक्ष्मता
         scoring_strategies:
           custom_formula: अनुकूलित सूत्र
           external_score: बाहरी स्कोर
@@ -2321,6 +2328,7 @@ hi:
       edit:
         header: नवाचार शैली संपादित करें
       form:
+        full_description: पूर्ण विवरण
         no_icon: कोई आइकन नहीं
       index:
         new: जोड़ें
@@ -2700,8 +2708,12 @@ hi:
       edit:
         header: व्यवसाय संपादित करें
       form:
+        alternative_icon: वैकल्पिक आइकन
+        color: रंग
         hint:
           key_career_tracks: '"+" - सूची, "*" - बोल्ड। उदाहरण: + *जीवविज्ञान* - कुछ विवरण...'
+        indicative_roles_image: संकेतात्मक भूमिकाओं की छवि
+        key_career_tracks_image: मुख्य करियर मार्गों की छवि
         no_icon: कोई आइकन नहीं
       index:
         new: जोड़ें
@@ -2774,6 +2786,7 @@ hi:
       assessment_center: मूल्यांकन केंद्र
       assessment_id: मूल्यांकन आईडी
       campaign_id: अभियान आईडी
+      campaign_link: अभियान लिंक
       campaign_name: अभियान का नाम
       campaigns: अभियान
       description: विवरण
@@ -3792,8 +3805,10 @@ hi:
       id: आईडी
       import:
         factors: अभियान कारक आयात करें
+      innovation_style_removal_confirmation: पुष्टि करने के लिए नीचे टेक्स्ट बॉक्स में नवाचार शैली का नाम दर्ज करें।
       name: नाम
       no_groups: कोई समूह उपस्थित नहीं है
+      occupation_removal_confirmation: पुष्टि करने के लिए नीचे टेक्स्ट बॉक्स में व्यवसाय का नाम दर्ज करें।
       output_type: आउटपुट प्रकार
       pattern_error: केवल अल्फान्यूमेरिक वर्ण, रिक्त स्थान और डैश की अनुमति है।
       profile:

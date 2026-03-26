@@ -23,7 +23,15 @@ id:
     ai_artifact_result_generation_admin_job_failed: Artefak '%{artifact_name}' tidak dapat dihasilkan untuk Pengguna '%{user_email}'
     ai_artifact_result_stale: Hasil mungkin sudah tidak relevan karena dependensi artefak AI telah berubah sejak hasil terakhir dihasilkan. Pertimbangkan untuk menghasilkan ulang artefak tersebut dengan dependensi terbaru.
     ai_artifacts: Artefak AI
+    ai_artifacts_finalized_at: Diselesaikan pada
+    ai_artifacts_generate_result_confirm: Membuat hasil artefak untuk pengguna '%{email}' akan menghapus laporan yang ada yang bergantung pada artefak AI ini. Apakah Anda yakin ingin melanjutkan?
     ai_artifacts_generate_results: Hasilkan Hasil
+    ai_artifacts_mark_finalized: Mark Telah Diselesaikan
+    ai_artifacts_mark_finalized_bulk_confirm: Menyelesaikan hasil artefak untuk semua pengguna yang dipilih akan menghasilkan laporan yang menggunakan artefak AI. Apakah Anda yakin ingin melanjutkan?
+    ai_artifacts_mark_finalized_confirm: Menyelesaikan hasil artefak untuk pengguna '%{email}' akan menghasilkan laporan yang menggunakan artefak AI untuk pengguna tersebut. Apakah Anda yakin ingin melanjutkan?
+    ai_artifacts_mark_not_finalized: Tanda Belum Final
+    ai_artifacts_mark_not_finalized_bulk_confirm: Menghapus status "finalize" dari semua pengguna yang dipilih akan menghapus laporan yang dihasilkan yang menggunakan artefak AI. Apakah Anda yakin ingin melanjutkan?
+    ai_artifacts_mark_not_finalized_confirm: Menghapus status "finalize" dari pengguna '%{email}' akan menghapus laporan yang dihasilkan yang menggunakan artefak AI untuk pengguna tersebut. Apakah Anda yakin ingin melanjutkan?
     ai_artifacts_output_schema_key_constraint: Kunci harus dimulai dengan huruf kecil dan hanya dapat berisi huruf kecil, angka, dan garis bawah
     ai_artifacts_results_export: Hasil Ekspor
     ai_artifacts_results_export_job_scheduled: Pekerjaan ekspor hasil AI Artifacts telah dijadwalkan dengan sukses.
@@ -78,12 +86,32 @@ id:
     ai_scoring_appoval_score_not_applicable: Skor tidak berlaku
     ai_scoring_approval: Persetujuan Penilaian AI
     ai_scoring_approval_settings: Pengaturan Persetujuan Penilaian AI
+    ai_scoring_approval_stale_description: Pembaruan konfigurasi sejak eksekusi terakhir mungkin telah mengubah skor. Lakukan perhitungan ulang untuk memperbarui skor menggunakan pengaturan terbaru.
+    ai_scoring_approval_stale_title: Skor Mungkin Sudah Tidak Aktual
     ai_scoring_approvals: Persetujuan Penilaian AI
+    ai_scoring_refresh_score: Perbarui Skor
+    ai_scoring_refresh_score_confirm_description: Ini akan menjalankan kembali penilaian AI untuk penilaian ini menggunakan konfigurasi terbaru. Apakah Anda yakin?
+    ai_scoring_refresh_score_confirm_title: Memperbarui Skor AI?
+    ai_scoring_rescore_queued: Proses penilaian ulang AI sedang diproses. Silakan segarkan halaman setelah beberapa saat.
     ai_translation: Terjemahan AI
     all_corner_rounded: Semua sudut bulat
     allow_ai_rescoring: Izinkan Penilaian Ulang oleh AI
+    allow_continue_with_warning_system_check: Izinkan pengguna untuk melanjutkan meskipun muncul peringatan saat pemeriksaan sistem gagal
     api_keys: Kunci API
     apply_to_existing_users: Terapkan perubahan ini kepada pengguna yang sudah ada dalam kampanye ini.
+    assessment_center_activity: Kegiatan
+    assessment_center_assessor: Penilai
+    assessment_center_attendance: Kehadiran
+    assessment_center_attendance_status: Status kehadiran
+    assessment_center_campaigns_tab: Kampanye
+    assessment_center_date_and_time: Tanggal & Waktu
+    assessment_center_join_room: Masuk ke Ruang
+    assessment_center_meeting_link: Tautan Rapat
+    assessment_center_participants_tab: Peserta
+    assessment_center_prework: Tugas awal
+    assessment_center_schedule_time: Jadwalkan Waktu
+    assessment_center_scheduling_status: Status penjadwalan
+    assessment_center_search_participants: Cari Peserta...
     assessment_question_not_supported: Jenis pertanyaan ini saat ini tidak didukung.
     assessments: Penilaian
     assessments_not_mhs: Semua penilaian harus berupa jenis MHS.
@@ -99,6 +127,7 @@ id:
     auto_placeholder: Otomatis
     availability: Ketersediaan
     available_languages: Laporan tersedia dalam bahasa
+    average: Rata-rata
     back_to_main: Menu Utama
     bulk_assets_modal_choose_csv: Pilih Berkas CSV
     bulk_assets_modal_choose_zip: Pilih Berkas ZIP
@@ -138,7 +167,9 @@ id:
     cancel: Batalkan
     cancellation_and_rescheduling_disabled: Pembatalan dan Penjadwalan Ulang dinonaktifkan
     casual: Santai
+    cell_save_msg: Perubahan yang valid akan disimpan secara otomatis begitu Anda keluar dari sel setelah mengedit.
     characters: karakter
+    chat_instructions_success: Petunjuk obrolan telah disimpan dengan sukses
     children_factor_type: Jenis Faktor Anak
     client: Klien Pengguna
     client_admins: Admin Klien
@@ -152,6 +183,7 @@ id:
     configure_model_answer_title: Konfigurasikan Jawaban Model dan Kata Kunci
     confirm_remove_admin: Apakah Anda yakin ingin menghapus pengguna admin dengan email '%{email}'?
     copied: Dicopy
+    copy_ai_artifacts: Salin Artefak AI
     country: Negara
     create_client: Buat Klien
     create_indicator: Buat Indikator
@@ -193,6 +225,7 @@ id:
     done: Selesai
     done_tooltip: Tidak ada lagi evaluasi yang dapat diajukan untuk pengguna ini karena evaluasi pengguna ini ditandai sebagai dilakukan oleh %{marked_by}
     download_bulk_asset_download_example_csv: Unduh Contoh CSV.
+    duration: Durasi
     edit_campaign_admin: Edit Admin Kampanye
     edit_client_admin: Edit Admin Klien
     edit_indicator: Edit Indikator
@@ -201,10 +234,12 @@ id:
     edit_permission_denied: Anda tidak memiliki izin untuk mengedit '%{name}' admin
     edit_project_admin: Mengedit Admin Proyek
     edit_threesixty_campaign_admin: Edit Admin Kampanye
+    empty: Kosong
     empty_csv_file: CSV tidak berisi data apa pun.
     enable_enhance_with_ai_client_level: Silakan aktifkan fitur "Enhance with AI" di tingkat klien.
     enable_maintenance: Aktifkan Pemeliharaan
     enable_mobile_proctoring: Aktifkan Pengawasan Ujian Mobile
+    enable_system_check: Aktifkan Pemeriksaan Sistem
     enable_transcription: Aktifkan Transkripsi
     enable_transcription_msg: Aktifkan Transkripsi untuk menggunakan penilaian AI pada pertanyaan respons video/audio.
     end_time: Waktu Akhir
@@ -218,10 +253,12 @@ id:
     evaluation_status: Status Evaluasi
     evaluation_status_not_done: Status evaluasi tidak 'Selesai' untuk satu atau lebih mata pelajaran yang dipilih. Pastikan semua pengguna yang dipilih telah menyelesaikan evaluasi atau menandai sebagai selesai.
     export_admin_roles_permissions: Ekspor Peran dan Izin Admin
+    export_campaigns_queued: Pekerjaan ekspor telah dimasukkan ke dalam antrian. Silakan periksa notifikasi Anda untuk tautan unduhan.
     export_compact_completion_status: Kompak
     export_completion_status: Status Penyelesaian Ekspor
     export_completion_statuses_scheduled: Tugas ekspor status penyelesaian telah dijadwalkan dengan sukses.
     export_detailed_completion_status: Rinci
+    factors: Faktor-faktor
     feature_ai_assistants_description: Aktifkan asisten yang didukung kecerdasan buatan (AI) untuk pengalaman pengguna yang lebih baik.
     feature_ai_assisted_idp_description: Gunakan kecerdasan buatan (AI) untuk membantu dalam memberikan rekomendasi terkait Perencanaan Pengembangan Pribadi.
     feature_ai_content_analysis_description: Aktifkan analisis konten yang didukung oleh kecerdasan buatan (AI) untuk penilaian.
@@ -240,8 +277,12 @@ id:
     final_score_empty_msg: Saldo akhir tidak boleh kosong.
     fix_grammar: Perbaiki Tata Bahasa
     formal: Formal
+    from: Dari
     generate_transcription: Buat Transkrip
     hide_middle_scores: Sembunyikan skor tengah
+    high: Tinggi
+    hogan: Hogan
+    hogan_assessment: Penilaian Hogan
     idp_plan_reset_success: Paket telah berhasil diatur ulang
     idp_templates: Template IDP
     import_ai_artifacts: Impor Artefak AI
@@ -281,6 +322,7 @@ id:
     libraries: Perpustakaan Media
     library_invalid_type: Item Perpustakaan Tidak Valid
     licenses: Lisensi
+    low: Rendah
     maintenance: Perawatan
     maintenance_settings: Pengaturan Pemeliharaan
     maintenance_settings_description: Mengelola jendela pemeliharaan sistem dan pengaturan
@@ -297,6 +339,8 @@ id:
     mhs_session_id: ID Sesi Mhs
     min_value: Nilai minimum
     minimum_10_words: Minimal 10 kata
+    minimum_download_speed: Kecepatan Unduh Minimum (dalam Mbps)
+    minimum_upload_speed: Kecepatan Unggah Minimum (dalam Mbps)
     missing_min_max_values: Nilai minimum dan maksimum diharuskan.
     model_answer: Jawaban Contoh
     model_answer_placeholder: Masukkan jawaban contoh untuk penilaian AI.
@@ -305,6 +349,7 @@ id:
     name_required: Nama diperlukan
     no_file_selected: Tidak ada file yang dipilih
     no_notifications: Tidak ada pemberitahuan
+    no_status: Tanpa Status
     norms: Norma
     not_completed: Belum Selesai
     not_completed_tooltip: "%{completed} evaluator ditugaskan tetapi hanya %{submitted} yang telah menyelesaikan evaluasi"
@@ -837,6 +882,19 @@ id:
     saml_settings: Pengaturan SAML
     save: Simpan
     save_assessment_for_scoring_management: Simpan Penilaian sebelum memulai proses Penilaian.
+    saved_filter_label:
+      approval_status_in: Status Persetujuan
+      approver_user_id_in: Pemberi Persetujuan
+      assessment_id_in: Penilaian
+      campaign_id_in: Kampanye
+      client_id_in: Klien
+      project_id_in: Proyek
+      qc_user_id_in: Pengguna QC
+      report_id_in: Laporan
+      subject_email_cont: Subjek Email
+      subject_full_name_cont: Nama Mata Kuliah
+      user_email_cont: Alamat Email Pengguna
+      user_full_name_cont: Nama Pengguna
     scheduling: Penjadwalan
     score: Skor
     score_approval_not_allowed_to_approve: Anda tidak diizinkan untuk menyetujui skor ini.
@@ -893,7 +951,9 @@ id:
     subject_part_of_other_invite: Subjek dengan alamat email %{user_email} sudah diundang ke '%{workshop_invite_name}'
     target_job_role: Posisi Pekerjaan yang Dituju
     this_field_is_required: Kolom ini wajib diisi.
+    threesixty: Kampanye 360
     timezone: Zona Waktu
+    to: Kepada
     tone: Nada
     toolbar_ai_insight: Wawasan Kecerdasan Buatan
     toolbar_ai_suggestion: Saran AI
@@ -917,6 +977,9 @@ id:
     user_report_events: Peristiwa Laporan Pengguna
     users: Pengguna
     validation_error: Silakan isi semua kolom yang wajib diisi.
+    validity: Masa berlaku
+    very_high: Sangat Tinggi
+    very_low: Sangat Rendah
     view_licenses: Lihat Lisensi
     waiting: Menunggu
     weight: Berat

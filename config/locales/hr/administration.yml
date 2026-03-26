@@ -1870,6 +1870,8 @@ hr:
       form:
         enable_innovation_styles: Omogućite stilove inovacija
         enable_occupations: Omogućite zanimanja
+        name: Ime
+        title: Dimenzije
       import_factors:
         import: Uvoz
         sample_file: Uzorak datoteke
@@ -1917,6 +1919,7 @@ hr:
         confirmations:
           delete:
             body: "<p>Jeste li sigurni da želite izbrisati ovu dimenziju?</p>\n"
+            message: Unesite naziv dimenzije naveden u tekstualnom okviru za potvrdu.
             title: Izbrisati <strong>dimenziju</strong> ?
           toggle_status:
             body: "<p>Jeste li sigurni da želite %{status} ovu dimenziju?</p>\n"
@@ -1981,6 +1984,7 @@ hr:
                 score: Rezultat
                 zscore: Z rezultat
             title: JSON staze za rezultate
+        predicate: Predikat
         scoring_strategies:
           custom_formula: Prilagođena formula
           external_score: Vanjski rezultat
@@ -1994,10 +1998,13 @@ hr:
           sub_factors_sum: Ponderirani zbroj čimbenika
         scoring_strategies_tip: "<strong>Pitanja (prosjek):</strong> Ovo je poput trenutne metode bodovanja kada postoje pitanja povezana s faktorom.<br /> <br /><strong>Pitanja (SUM):</strong> To je kao Pitanja (prosjek), ali pomoću SUM-a<br /> <br /><strong>Pitanja drugih čimbenika (prosjek):</strong> To je poput trenutne metode bodovanja kada postoje podfaktori za faktor, jedina promjena je dodavanje težine.<br /> <br /><strong>Pitanja drugih čimbenika (SUM):</strong> To je kao i Ostali čimbenici (prosjek), ali pomoću SUM-a<br /> <br /><strong>Ponderirani zbroj čimbenika:</strong> Ovdje se dodaju rezultati odabranih drugih čimbenika s njihovim težinama."
         scoring_strategy: Strategija bodovanja
+        search_factors: Čimbenici pretraživanja
         use_sub_factor_norm_score: Upotreba normativne ocjene faktora
+        value: Vrijednost
       index:
         icon: Ikona
         new: Dodavanje
+        precision: Preciznost
         scoring_strategies:
           custom_formula: Prilagođena formula
           external_score: Vanjski rezultat
@@ -2291,6 +2298,7 @@ hr:
       edit:
         header: Uredi stil inovacije
       form:
+        full_description: Cjeloviti opis
         no_icon: Nema ikone
       index:
         new: Dodavanje
@@ -2662,8 +2670,12 @@ hr:
       edit:
         header: Uredi zanimanje
       form:
+        alternative_icon: Alternativna ikona
+        color: Boja
         hint:
           key_career_tracks: '"+" - popis, "*" - podebljano. Primjer: + *Biologija* - neki opis...'
+        indicative_roles_image: Indikativne uloge slika
+        key_career_tracks_image: Slika ključnih karijernih puteva
         no_icon: Nema ikone
       index:
         new: Dodavanje
@@ -2734,6 +2746,7 @@ hr:
       assessment_center: Centar za procjenu
       assessment_id: ID procjene
       campaign_id: ID kampanje
+      campaign_link: Poveznica kampanje
       campaign_name: Naziv kampanje
       campaigns: Kampanje
       description: Opis
@@ -3731,8 +3744,10 @@ hr:
       id: ID
       import:
         factors: Faktori uvozne kampanje
+      innovation_style_removal_confirmation: Unesite naziv stila inovacije naveden u tekstualnom okviru da biste potvrdili
       name: Ime
       no_groups: Nema prisutnih grupa
+      occupation_removal_confirmation: Unesite naziv zanimanja naveden u nastavku u tekstualno polje za potvrdu.
       output_type: Vrsta izlaza
       pattern_error: Dopušteni su samo alfanumerički znakovi, razmaci i crtice.
       profile:

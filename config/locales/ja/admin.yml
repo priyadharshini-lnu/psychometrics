@@ -23,7 +23,15 @@ ja:
     ai_artifact_result_generation_admin_job_failed: アーティファクト '%{artifact_name}' はユーザー '%{user_email}' に対して生成できません
     ai_artifact_result_stale: AIアーティファクトの依存関係が前回結果生成時から変更されているため、結果が古くなっている可能性があります。最新の依存関係で生成するため、アーティファクトの再生成をご検討ください。
     ai_artifacts: AIアーティファクト
+    ai_artifacts_finalized_at: 確定日
+    ai_artifacts_generate_result_confirm: ユーザー「%{email}」のアーティファクト結果を生成すると、このAIアーティファクトに依存している既存のレポートが削除されます。本当に続行しますか？
     ai_artifacts_generate_results: 結果を生成する
+    ai_artifacts_mark_finalized: マーク完了
+    ai_artifacts_mark_finalized_bulk_confirm: 選択したすべてのユーザーについてアーティファクトの結果を確定すると、AIアーティファクトを使用したレポートが生成されます。本当に続行しますか？
+    ai_artifacts_mark_finalized_confirm: ユーザー「%{email}」のアーティファクト結果を確定すると、そのユーザー向けのAIアーティファクトを使用したレポートが生成されます。本当に続行しますか？
+    ai_artifacts_mark_not_finalized: マークは確定していません
+    ai_artifacts_mark_not_finalized_bulk_confirm: 選択したすべてのユーザーから「finalize」を削除すると、AIアーティファクトを使用した生成済みレポートが削除されます。本当に続行しますか？
+    ai_artifacts_mark_not_finalized_confirm: ユーザー「%{email}」から「finalize」を削除すると、そのユーザー向けにAIアーティファクトを使用して生成されたレポートが削除されます。本当に続行しますか？
     ai_artifacts_output_schema_key_constraint: キーは小文字で始まらず、小文字、数字、アンダースコアのみを含めます
     ai_artifacts_results_export: 結果をエクスポート
     ai_artifacts_results_export_job_scheduled: AIアーティファクト結果のエクスポートジョブが正常にスケジュールされました
@@ -78,12 +86,32 @@ ja:
     ai_scoring_appoval_score_not_applicable: スコアは適用されません
     ai_scoring_approval: AIスコアリング承認
     ai_scoring_approval_settings: AIスコアリング承認設定
+    ai_scoring_approval_stale_description: 前回の実行以降の設定変更により、スコアが変動している可能性があります。最新の設定で再計算して、スコアを更新してください。
+    ai_scoring_approval_stale_title: スコアは古い可能性があります
     ai_scoring_approvals: AIスコアリング承認
+    ai_scoring_refresh_score: スコアを更新
+    ai_scoring_refresh_score_confirm_description: これにより、最新の設定を使用してこの評価のAI採点が再実行されます。本当に実行しますか？
+    ai_scoring_refresh_score_confirm_title: AIスコアを更新しますか？
+    ai_scoring_rescore_queued: AIによる再採点が処理待ちの状態です。しばらくしてからページを更新してください。
     ai_translation: AI翻訳
     all_corner_rounded: すべての角が丸みを帯びている
     allow_ai_rescoring: AIによる再採点を許可する
+    allow_continue_with_warning_system_check: システムチェックに失敗した場合でも、警告を表示した上で操作を続行できるようにする
     api_keys: APIキー
     apply_to_existing_users: この変更をこのキャンペーンの既存ユーザーに適用する
+    assessment_center_activity: アクティビティ
+    assessment_center_assessor: 査定員
+    assessment_center_attendance: 出席状況
+    assessment_center_attendance_status: 出席状況
+    assessment_center_campaigns_tab: キャンペーン
+    assessment_center_date_and_time: 日時
+    assessment_center_join_room: ルームに参加する
+    assessment_center_meeting_link: 会議のリンク
+    assessment_center_participants_tab: 参加者
+    assessment_center_prework: 事前準備
+    assessment_center_schedule_time: スケジュールを設定する
+    assessment_center_scheduling_status: スケジュール状況
+    assessment_center_search_participants: 参加者を検索...
     assessment_question_not_supported: この質問タイプは現在サポートされていません。
     assessments: アセスメント
     assessments_not_mhs: すべての評価はMHSタイプでなければならない
@@ -99,6 +127,7 @@ ja:
     auto_placeholder: 自動車
     availability: 空室状況
     available_languages: 報告書は言語で提供可能
+    average: 平均
     back_to_main: メインメニュー
     bulk_assets_modal_choose_csv: CSVファイルを選択
     bulk_assets_modal_choose_zip: ZIPファイルを選択
@@ -138,7 +167,9 @@ ja:
     cancel: キャンセル
     cancellation_and_rescheduling_disabled: キャンセルおよび日程変更は無効です
     casual: カジュアル
+    cell_save_msg: 編集後にセルからカーソルを移動させると、有効な変更は自動的に保存されます。
     characters: 文字
+    chat_instructions_success: チャットの指示が正常に保存されました
     children_factor_type: 児童要因タイプ
     client: クライアント・テナンシー
     client_admins: クライアント管理者
@@ -152,6 +183,7 @@ ja:
     configure_model_answer_title: 模範解答とキーワードを設定する
     confirm_remove_admin: メール '%{email}' を持つ管理ユーザーを本当に削除しますか？
     copied: コピーされました
+    copy_ai_artifacts: AI生成のアートワークをコピー
     country: 国名
     create_client: クライアント作成
     create_indicator: インジケーターを作成する
@@ -193,6 +225,7 @@ ja:
     done: 完成です
     done_tooltip: このユーザーの評価は%{marked_by}によって行われたとマークされているため、これ以上の評価は提出できません
     download_bulk_asset_download_example_csv: サンプルCSVをダウンロード
+    duration: 期間
     edit_campaign_admin: キャンペーン管理者の編集
     edit_client_admin: クライアント管理者の編集
     edit_indicator: 編集インジケーター
@@ -201,10 +234,12 @@ ja:
     edit_permission_denied: 管理者の「%{name}」を編集する権限はありません
     edit_project_admin: プロジェクト管理者の編集
     edit_threesixty_campaign_admin: キャンペーン管理者の編集
+    empty: 空
     empty_csv_file: CSVファイルにはデータが含まれていません。
     enable_enhance_with_ai_client_level: クライアントレベルで「AIによる強化」機能を有効にしてください
     enable_maintenance: メンテナンスを有効にする
     enable_mobile_proctoring: モバイル試験監督を有効にする
+    enable_system_check: システムチェックを有効にする
     enable_transcription: 文字起こしを有効にする
     enable_transcription_msg: 動画/音声応答問題でAIスコアリングを使用するには、文字起こし機能を有効にしてください。
     end_time: 終末
@@ -218,10 +253,12 @@ ja:
     evaluation_status: 評価状況
     evaluation_status_not_done: 選ばれた1つ以上の被験者の評価状況は「完了」ではありません。選ばれたすべてのユーザーが評価を完了しているか、完了したとマークしてください。
     export_admin_roles_permissions: 管理者の役割と権限のエクスポート
+    export_campaigns_queued: エクスポート処理がキューに登録されました。ダウンロードリンクについては、通知をご確認ください。
     export_compact_completion_status: コンパクト
     export_completion_status: 輸出完了状況
     export_completion_statuses_scheduled: 完了ステータスのエクスポートジョブが正常にスケジュールされました
     export_detailed_completion_status: 詳細
+    factors: 要因
     feature_ai_assistants_description: AI搭載アシスタントを有効化し、ユーザー体験を向上させる
     feature_ai_assisted_idp_description: AIを活用して個人開発計画の提案を支援する
     feature_ai_content_analysis_description: 評価のためのAIを活用したコンテンツ分析を有効にする
@@ -240,8 +277,12 @@ ja:
     final_score_empty_msg: 合計金額は空欄にできません。
     fix_grammar: 文法修正
     formal: 正式
+    from: 差出人
     generate_transcription: 文字起こしを生成する
     hide_middle_scores: 中間スコアを非表示にする
+    high: 高い
+    hogan: ホーガン
+    hogan_assessment: ホーガン・アセスメント
     idp_plan_reset_success: 計画は正常にリセットされました
     idp_templates: IDPテンプレート
     import_ai_artifacts: AIアーティファクトのインポート
@@ -281,6 +322,7 @@ ja:
     libraries: メディアライブラリー
     library_invalid_type: 無効なライブラリ項目
     licenses: ライセンス
+    low: 低
     maintenance: 保守
     maintenance_settings: メンテナンス設定
     maintenance_settings_description: システムメンテナンスの時間帯と設定を管理する
@@ -297,6 +339,8 @@ ja:
     mhs_session_id: Mhs セッション ID
     min_value: 最小値
     minimum_10_words: 最低10語
+    minimum_download_speed: 最低ダウンロード速度（Mbps）
+    minimum_upload_speed: 最低アップロード速度（Mbps）
     missing_min_max_values: 最小値と最大値が必要です。
     model_answer: 模範解答
     model_answer_placeholder: AI採点用の模範解答を入力してください。
@@ -305,6 +349,7 @@ ja:
     name_required: 名前が必要です
     no_file_selected: ファイルが選択されていない
     no_notifications: 通知はありません
+    no_status: ステータスなし
     norms: 規範
     not_completed: 未完成
     not_completed_tooltip: "%{completed}評価者が割り当てられますが、評価を完了したのは%{submitted}だけです"
@@ -837,6 +882,19 @@ ja:
     saml_settings: SAML設定
     save: 保存
     save_assessment_for_scoring_management: 採点を開始する前に評価を保存してください。
+    saved_filter_label:
+      approval_status_in: 承認状況
+      approver_user_id_in: 承認者
+      assessment_id_in: 評価
+      campaign_id_in: キャンペーン
+      client_id_in: クライアント
+      project_id_in: プロジェクト
+      qc_user_id_in: QCユーザー
+      report_id_in: レポート
+      subject_email_cont: 件名メール
+      subject_full_name_cont: 科目名
+      user_email_cont: ユーザーのメールアドレス
+      user_full_name_cont: ユーザー名
     scheduling: スケジューリング
     score: スコア
     score_approval_not_allowed_to_approve: このスコアを承認することはできません。
@@ -893,7 +951,9 @@ ja:
     subject_part_of_other_invite: メールアドレス %{user_email} のユーザーは既に「%{workshop_invite_name}」に招待済みです
     target_job_role: 対象職務
     this_field_is_required: この項目は必須です
+    threesixty: 360キャンペーン
     timezone: タイムゾーン
+    to: 宛てに
     tone: トーン
     toolbar_ai_insight: AIインサイト
     toolbar_ai_suggestion: AI提案
@@ -917,6 +977,9 @@ ja:
     user_report_events: ユーザーレポートイベント
     users: ユーザー
     validation_error: すべての必須項目にご記入ください
+    validity: 有効期間
+    very_high: 非常に高い
+    very_low: 極めて低い
     view_licenses: ライセンスを見る
     waiting: 待つこと
     weight: 重量

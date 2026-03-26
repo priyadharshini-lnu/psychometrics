@@ -873,6 +873,7 @@ pl:
         export_assessment_questions: Pytania oceniające eksport
         export_campaign_ai_artifacts: Artefakty AI kampanii eksportowej
         export_campaign_ai_artifacts_results: Eksportuj wyniki kampanii AI Artefakty
+        export_campaign_datasheet: Arkusz danych kampanii eksportowej
         export_campaign_factors: Czynniki kampanii eksportowej
         export_campaign_scorings: Eksport kampanii Scorings
         export_dashboard_as_file: Eksportuj pulpit nawigacyjny jako plik
@@ -932,6 +933,7 @@ pl:
         regenerate_report: Ponowne generowanie raportu
         regenerate_threesixty_report: Raport Regenerate Threesixty
         remap_report_assessment: Ponowne mapowanie oceny raportu
+        rescore_ai_scoring: Ponowna ocena wyników przy użyciu sztucznej inteligencji
         rescore_assessment: Ponowna ocena wyniku
         rescore_user_assessment: Oceń ponownie ocenę użytkownika
         send_sms_invites: Wysyłanie zaproszeń SMS
@@ -2664,6 +2666,7 @@ pl:
     direct_reportee_details: Szczegółowe informacje o bezpośrednich podwładnych
     download:
       description: 'Aby pobrać raport, kliknij link: <a href=''%{url}'' target=''_blank''>Pobierz</a>. Link jest ważny tylko przez 10 minut'
+      title: Twój raport jest gotowy!
     download_plan: Pobierz plan
     edit_plan: Edytuj plan
     edit_plan_and_add_skills: Edytuj plan i kliknij Zarządzaj umiejętnościami, aby dodać umiejętności.

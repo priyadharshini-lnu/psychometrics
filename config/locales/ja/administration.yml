@@ -1870,6 +1870,8 @@ ja:
       form:
         enable_innovation_styles: イノベーションのスタイルを可能にする
         enable_occupations: 職業を可能にする
+        name: 名前
+        title: 寸法
       import_factors:
         import: 輸入
         sample_file: サンプルファイル
@@ -1917,6 +1919,7 @@ ja:
         confirmations:
           delete:
             body: "<p>本当にこのディメンションを削除しますか？</p>\n"
+            message: 確認のため、以下の次元名をテキストボックスに入力してください
             title: "<strong>ディメンションを</strong>削除しますか？"
           toggle_status:
             body: "<p>本当にこのディメンションを%{status}にしますか？</p>\n"
@@ -1981,6 +1984,7 @@ ja:
                 score: スコア
                 zscore: Zスコア
             title: スコアのJSONパス
+        predicate: 述語
         scoring_strategies:
           custom_formula: カスタム・フォーミュラ
           external_score: 外部スコア
@@ -1994,10 +1998,13 @@ ja:
           sub_factors_sum: 要因の加重和
         scoring_strategies_tip: "<strong>質問 (平均):</strong>これは、ある要素に関連する質問がある場合の現在の採点方法のようなものです。 <br /> <br /><strong>質問 (合計):</strong>これは質問 (平均) のようなものですが、合計を使用します。 <br /> <br /><strong>他のファクターの質問（平均）</strong>：これは、ファクターにサブファクターがある場合の現在の採点方法と同じです。 <br /> <br /><strong>その他の要因の質問(合計):</strong>これはその他の要因(平均)と同じですが、合計を使用します。 <br /> <br /><strong>加重合計(Weighted Sum of Factors)：</strong>選択された他要素の得点に加重を乗じたものが加算される。"
         scoring_strategy: 得点戦略
+        search_factors: 検索要素
         use_sub_factor_norm_score: 因子規範スコアを使用
+        value: 値
       index:
         icon: アイコン
         new: 追加
+        precision: 精度
         scoring_strategies:
           custom_formula: カスタム・フォーミュラ
           external_score: 外部スコア
@@ -2291,6 +2298,7 @@ ja:
       edit:
         header: イノベーション・スタイルの編集
       form:
+        full_description: 詳細説明
         no_icon: アイコンなし
       index:
         new: 追加
@@ -2662,8 +2670,12 @@ ja:
       edit:
         header: 編集職業
       form:
+        alternative_icon: 別のアイコン
+        color: 色
         hint:
           key_career_tracks: '"+"-リスト、"*"-太字 例： + *生物学* - いくつかの説明...'
+        indicative_roles_image: 役割のイメージ図
+        key_career_tracks_image: 主なキャリアパス（画像）
         no_icon: アイコンなし
       index:
         new: 追加
@@ -2734,6 +2746,7 @@ ja:
       assessment_center: アセスメント・センター
       assessment_id: アセスメントID
       campaign_id: キャンペーンID
+      campaign_link: キャンペーンリンク
       campaign_name: キャンペーン名
       campaigns: キャンペーン
       description: 説明
@@ -3734,8 +3747,10 @@ ja:
       id: アイド
       import:
         factors: インポート・キャンペーン要因
+      innovation_style_removal_confirmation: 確認のため、以下のテキストボックスに「イノベーション・スタイル」の名前を入力してください
       name: 名称
       no_groups: グループなし
+      occupation_removal_confirmation: 確認のため、以下の職業名をテキストボックスに入力してください
       output_type: 出力タイプ
       pattern_error: 使用できる文字は英数字、スペース、ダッシュのみです。
       profile:

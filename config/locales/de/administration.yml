@@ -1870,6 +1870,8 @@ de:
       form:
         enable_innovation_styles: Ermöglichung von Innovationsstilen
         enable_occupations: Berufe freischalten
+        name: Name
+        title: Abmessungen
       import_factors:
         import: Importieren
         sample_file: Musterdatei
@@ -1917,6 +1919,7 @@ de:
         confirmations:
           delete:
             body: "<p>Sind Sie sicher, dass Sie diese Dimension löschen wollen?</p>\n"
+            message: Geben Sie den unten angegebenen Dimensionsnamen in das Textfeld ein, um zu bestätigen
             title: "<strong>Dimension</strong> löschen ?"
           toggle_status:
             body: "<p>Sind Sie sicher, dass Sie diese Dimension %{status} wollen?</p>\n"
@@ -1981,6 +1984,7 @@ de:
                 score: Ergebnis
                 zscore: Z-Wert
             title: JSON-Pfade für Partituren
+        predicate: Prädikat
         scoring_strategies:
           custom_formula: Benutzerdefinierte Formel
           external_score: Externe Bewertung
@@ -1994,10 +1998,13 @@ de:
           sub_factors_sum: Gewichtete Summe der Faktoren
         scoring_strategies_tip: "<strong>fragen (Durchschnitt):</strong> Dies entspricht der aktuellen Bewertungsmethode, wenn es Fragen gibt, die mit einem Faktor verbunden sind. <br /> <br /><strong>fragen (SUM):</strong> Dies ist wie Fragen (Durchschnitt), aber mit SUM <br /> <br /><strong>fragen anderer Faktoren (Durchschnitt):</strong> Dies entspricht der aktuellen Bewertungsmethode, wenn es Unterfaktoren für einen Faktor gibt, die einzige Änderung ist das Hinzufügen der Gewichtung. <br /> <br /><strong>fragen anderer Faktoren (SUM):</strong> Dies entspricht der Methode Andere Faktoren (Durchschnitt), aber mit SUMME <br /> <br /><strong>gewichtete Summe der Faktoren:</strong> Hier werden die Punktzahlen der ausgewählten anderen Faktoren mit deren Gewichtung multipliziert und addiert."
         scoring_strategy: Strategie der Punktevergabe
+        search_factors: Suchkriterien
         use_sub_factor_norm_score: Verwendung Faktoren Normwert
+        value: Wert
       index:
         icon: Icon
         new: Hinzufügen
+        precision: Präzision
         scoring_strategies:
           custom_formula: Benutzerdefinierte Formel
           external_score: Externe Bewertung
@@ -2291,6 +2298,7 @@ de:
       edit:
         header: Innovationsstil bearbeiten
       form:
+        full_description: Ausführliche Beschreibung
         no_icon: Kein Symbol
       index:
         new: Hinzufügen
@@ -2662,8 +2670,12 @@ de:
       edit:
         header: Beruf bearbeiten
       form:
+        alternative_icon: Alternatives Symbol
+        color: Farbe
         hint:
           key_career_tracks: '"+" - Liste, "*" - fett. Beispiel: + *Biologie* - eine Beschreibung...'
+        indicative_roles_image: Beispielbild für Rollen
+        key_career_tracks_image: 'Bild: Wichtige Karrierewege'
         no_icon: Kein Symbol
       index:
         new: Hinzufügen
@@ -2734,6 +2746,7 @@ de:
       assessment_center: Assessment Center
       assessment_id: Bewertung ID
       campaign_id: Kampagnen-ID
+      campaign_link: Link zur Kampagne
       campaign_name: Name der Kampagne
       campaigns: Kampagnen
       description: Beschreibung
@@ -3734,8 +3747,10 @@ de:
       id: ID
       import:
         factors: Faktoren der Kampagne importieren
+      innovation_style_removal_confirmation: Geben Sie den unten angegebenen Namen des Innovationsstils in das Textfeld ein, um zu bestätigen
       name: Name
       no_groups: Keine Gruppen anwesend
+      occupation_removal_confirmation: Geben Sie den unten angegebenen Berufsbezeichnung in das Textfeld ein, um zu bestätigen
       output_type: Ausgangstyp
       pattern_error: Es sind nur alphanumerische Zeichen, Leerzeichen und Bindestriche erlaubt.
       profile:

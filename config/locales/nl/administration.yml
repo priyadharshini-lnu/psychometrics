@@ -1870,6 +1870,8 @@ nl:
       form:
         enable_innovation_styles: Innovatiestijlen mogelijk maken
         enable_occupations: Beroepen mogelijk maken
+        name: Naam
+        title: Afmetingen
       import_factors:
         import: Importeren
         sample_file: Voorbeeldbestand
@@ -1917,6 +1919,7 @@ nl:
         confirmations:
           delete:
             body: "<p>Weet je zeker dat je deze dimensie wilt verwijderen?</p>\n"
+            message: Voer de hieronder vermelde dimensienaam in het tekstvak in om te bevestigen
             title: "<strong>Dimensie</strong> verwijderen?"
           toggle_status:
             body: "<p>Weet je zeker dat je deze dimensie wilt %{status}?</p>\n"
@@ -1981,6 +1984,7 @@ nl:
                 score: Score
                 zscore: Z Score
             title: JSON-paden voor scores
+        predicate: Predikaat
         scoring_strategies:
           custom_formula: Aangepaste formule
           external_score: Externe score
@@ -1994,10 +1998,13 @@ nl:
           sub_factors_sum: Gewogen som van factoren
         scoring_strategies_tip: "<strong>vragen (Gemiddelde):</strong> Dit is zoals de huidige scoremethode als er vragen gekoppeld zijn aan een factor. <br /> <br /><strong>vragen (SUM):</strong> Dit is zoals Vragen (Gemiddelde), maar dan met SUM <br /> <br /><strong>vragen van Andere Factoren (Gemiddeld):</strong> Dit is zoals de huidige scoremethode wanneer er subfactoren zijn voor een factor, de enige verandering is de toevoeging van gewicht. <br /> <br /><strong>vragen van Andere Factoren (SUM)</strong>: Dit is zoals Andere Factoren (Gemiddelde), maar met SUM <br /> <br /><strong>gewogen som van factoren:</strong> Hier worden de scores van de geselecteerde andere factoren vermenigvuldigd met hun gewichten en opgeteld."
         scoring_strategy: Scoringsstrategie
+        search_factors: Zoekcriteria
         use_sub_factor_norm_score: Gebruik Factoren normscore
+        value: Waarde
       index:
         icon: Pictogram
         new: Voeg  toe
+        precision: Nauwkeurigheid
         scoring_strategies:
           custom_formula: Aangepaste formule
           external_score: Externe score
@@ -2291,6 +2298,7 @@ nl:
       edit:
         header: Innovatiestijl bewerken
       form:
+        full_description: Volledige beschrijving
         no_icon: Geen pictogram
       index:
         new: Voeg  toe
@@ -2662,8 +2670,12 @@ nl:
       edit:
         header: Bewerk bezetting
       form:
+        alternative_icon: Alternatief pictogram
+        color: Kleur
         hint:
           key_career_tracks: '"+" - lijst, "*" - vet. Voorbeeld: + *Biologie* - enige beschrijving...'
+        indicative_roles_image: Afbeelding met voorbeeldfuncties
+        key_career_tracks_image: Afbeelding van belangrijke loopbaantrajecten
         no_icon: Geen pictogram
       index:
         new: Voeg  toe
@@ -2734,6 +2746,7 @@ nl:
       assessment_center: Beoordelingscentrum
       assessment_id: Beoordeling ID
       campaign_id: Campagne-ID
+      campaign_link: Link naar de campagne
       campaign_name: Naam campagne
       campaigns: Campagnes
       description: Beschrijving
@@ -3734,8 +3747,10 @@ nl:
       id: ID
       import:
         factors: Campagnefactoren importeren
+      innovation_style_removal_confirmation: Voer de hieronder vermelde naam van de innovatiestijl in het tekstvak in om te bevestigen
       name: Naam
       no_groups: Geen groepen aanwezig
+      occupation_removal_confirmation: Typ de hieronder vermelde beroepsnaam in het tekstvak om te bevestigen
       output_type: Type uitvoer
       pattern_error: Alleen alfanumerieke tekens, spaties en streepjes zijn toegestaan.
       profile:

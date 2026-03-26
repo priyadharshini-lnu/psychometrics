@@ -1870,6 +1870,8 @@ vi:
       form:
         enable_innovation_styles: Cho phép các phong cách đổi mới
         enable_occupations: Kích hoạt nghề nghiệp
+        name: Tên
+        title: Kích thước
       import_factors:
         import: Nhập khẩu
         sample_file: Tệp mẫu
@@ -1917,6 +1919,7 @@ vi:
         confirmations:
           delete:
             body: "<p>Bạn có chắc chắn muốn xóa Thứ nguyên này không?</p>\n"
+            message: Hãy nhập tên chiều được nêu dưới đây vào ô văn bản để xác nhận
             title: Xóa <strong>kích thước</strong> ?
           toggle_status:
             body: "<p>Bạn có chắc chắn muốn %{status} Thứ nguyên này không?</p>\n"
@@ -1981,6 +1984,7 @@ vi:
                 score: Điểm
                 zscore: Điểm Z
             title: Đường dẫn JSON cho điểm số
+        predicate: Động từ
         scoring_strategies:
           custom_formula: Công thức tùy chỉnh
           external_score: Điểm số bên ngoài
@@ -1994,10 +1998,13 @@ vi:
           sub_factors_sum: Tổng các yếu tố có trọng số
         scoring_strategies_tip: "<strong>Câu hỏi (Trung bình):</strong> Điều này giống như phương pháp chấm điểm hiện tại khi có các câu hỏi liên quan đến một yếu tố.<br /> <br /><strong>Câu hỏi (SUM):</strong> Điều này giống như Câu hỏi (Trung bình), nhưng sử dụng SUM<br /> <br /><strong>Câu hỏi về các yếu tố khác (trung bình):</strong> Điều này giống như phương pháp chấm điểm hiện tại khi có các yếu tố phụ cho một yếu tố, chỉ thay đổi là thêm trọng số.<br /> <br /><strong>Câu hỏi về các yếu tố khác (SUM):</strong> Điều này giống như các yếu tố khác (Trung bình), nhưng sử dụng SUM<br /> <br />Tổng <strong>các yếu tố có trọng số:</strong> Tại đây, điểm số của các yếu tố khác được chọn được nhân với trọng số của chúng được cộng lại."
         scoring_strategy: Chiến lược tính điểm
+        search_factors: Các yếu tố tìm kiếm
         use_sub_factor_norm_score: Sử dụng điểm định mức Yếu tố
+        value: Giá trị
       index:
         icon: Biểu tượng
         new: Thêm
+        precision: Độ chính xác
         scoring_strategies:
           custom_formula: Công thức tùy chỉnh
           external_score: Điểm số bên ngoài
@@ -2291,6 +2298,7 @@ vi:
       edit:
         header: Chỉnh sửa phong cách đổi mới
       form:
+        full_description: Mô tả chi tiết
         no_icon: Không có biểu tượng
       index:
         new: Thêm
@@ -2662,8 +2670,12 @@ vi:
       edit:
         header: Chỉnh sửa nghề nghiệp
       form:
+        alternative_icon: Biểu tượng thay thế
+        color: Màu sắc
         hint:
           key_career_tracks: '"+" - danh sách, "*" - in đậm. Ví dụ: + * Sinh học * - một số mô tả...'
+        indicative_roles_image: Hình ảnh minh họa các vai trò
+        key_career_tracks_image: Hình ảnh các lộ trình nghề nghiệp chính
         no_icon: Không có biểu tượng
       index:
         new: Thêm
@@ -2734,6 +2746,7 @@ vi:
       assessment_center: Trung tâm Đánh giá
       assessment_id: ID đánh giá
       campaign_id: ID chiến dịch
+      campaign_link: Liên kết chiến dịch
       campaign_name: Tên chiến dịch
       campaigns: Chiến dịch
       description: Mô tả
@@ -3731,8 +3744,10 @@ vi:
       id: ID
       import:
         factors: Các yếu tố chiến dịch nhập khẩu
+      innovation_style_removal_confirmation: Hãy nhập tên kiểu sáng tạo được nêu dưới đây vào ô văn bản để xác nhận
       name: Tên
       no_groups: Không có nhóm nào có mặt
+      occupation_removal_confirmation: Hãy nhập tên nghề nghiệp được liệt kê bên dưới vào ô văn bản để xác nhận
       output_type: Loại đầu ra
       pattern_error: Chỉ cho phép ký tự chữ và số, dấu cách và dấu gạch ngang.
       profile:
