@@ -67,6 +67,7 @@ describe UserAssessments::SaveScores do
             expect(AI::ContentAnalysis::TriggerAIScoringJob).to receive(:perform_later).with(
               user_result.id,
               rescore: true,
+              force_regenerate: false,
               admin_job_record_id: nil
             )
 

@@ -38,6 +38,7 @@ id:
     confirm: Konfirmasi
     continue: Terus
     controller: Pengendali
+    cookie_notice: Pemberitahuan tentang Cookie
     cookies_statement: Pernyataan tentang Cookie
     copied_to_clipboard: Disalin ke clipboard
     copy: Salin
@@ -96,6 +97,7 @@ id:
     name: Nama
     negative: Negatif
     new: Baru
+    next: Selanjutnya
     no_results_found: Tidak ditemukan hasil
     not_requested: Belum Diminta
     ok: Ok
@@ -103,6 +105,7 @@ id:
     policy_version: Versi Kebijakan
     policy_version_format: Hanya bilangan bulat yang diperbolehkan.
     positive: Positif
+    privacy_notice: Pernyataan Privasi
     processing: Pengolahan
     processor: Prosesor
     proctoring_maintenance_active: Layanan Proctoring saat ini sedang dalam pemeliharaan dari %{start_time} ke %{end_time}. Silakan coba lagi setelah periode pemeliharaan selesai.

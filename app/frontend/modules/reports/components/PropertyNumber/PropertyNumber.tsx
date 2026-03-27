@@ -9,7 +9,6 @@ interface Props extends InputNumberProps {
   label: string
 }
 
-// eslint-disable-next-line arrow-body-style
 const PropertyNumber: React.FC<Props> = (props) => {
   const { label, ...rest } = props
   return (

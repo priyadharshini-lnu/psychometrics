@@ -41,6 +41,12 @@ ru:
         skills_not_belong_to_project: Выбранные навыки должны относиться к указанному проекту.
         skills_required: Пожалуйста, выберите хотя бы один навык.
       exceeded_subjects_count: Вы можете добавить только %{count} предметов на одно приглашение.
+      factors_norms:
+        invalid_field_name: Имя поля должно быть либо «score_from», либо «score_to».
+        invalid_float: Значение должно быть действительным числом типа float.
+        invalid_level: 'Недопустимый уровень. Допустимые уровни: %{levels}'
+        score_from_less_than_score_to: значение score_from должно быть меньше, чем значение score_to
+        score_to_greater_than_score_from: значение score_to должно быть больше, чем значение score_from
       filled?: не может быть пустым
       idp_template:
         content_required: Для инструкций требуется содержание

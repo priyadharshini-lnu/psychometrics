@@ -32,6 +32,14 @@ module Api
           feature_enabled? && can_view?
         end
 
+        def change_finalized_artifact_results?
+          feature_enabled? && can_manage?
+        end
+
+        def change_finalized_artifact_results_bulk?
+          feature_enabled? && can_manage?
+        end
+
         class Scope < Administration::BasePolicy::Scope
           def resolve
             scope.where(campaign_id: campaign_id)

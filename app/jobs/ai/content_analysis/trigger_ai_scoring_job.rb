@@ -9,7 +9,7 @@ module AI
 
       private attr_reader :users_result, :admin_job_record_id
 
-      def perform(users_result_id, rescore: false, admin_job_record_id: nil)
+      def perform(users_result_id, rescore: false, force_regenerate: false, admin_job_record_id: nil)
         @users_result = UsersResult.find(users_result_id)
         @admin_job_record_id = admin_job_record_id
 
@@ -31,6 +31,7 @@ module AI
             users_result.id,
             question.id,
             rescore: rescore,
+            force_regenerate: force_regenerate,
             admin_job_record_id: admin_job_record_id
           )
         end

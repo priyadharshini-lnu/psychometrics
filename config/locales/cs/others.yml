@@ -873,6 +873,7 @@ cs:
         export_assessment_questions: Otázky pro posouzení vývozu
         export_campaign_ai_artifacts: AI artefakty exportní kampaně
         export_campaign_ai_artifacts_results: Výsledky exportu artefaktů AI kampaně
+        export_campaign_datasheet: Technický list exportní kampaně
         export_campaign_factors: Faktory vývozní kampaně
         export_campaign_scorings: Výběry pro exportní kampaně
         export_dashboard_as_file: Exportovat řídicí panel jako soubor
@@ -932,6 +933,7 @@ cs:
         regenerate_report: Zpráva o regeneraci
         regenerate_threesixty_report: Zpráva o regeneraci Threesixty
         remap_report_assessment: Posouzení zprávy Remap
+        rescore_ai_scoring: Přehodnocení pomocí umělé inteligence
         rescore_assessment: Hodnocení Rescore
         rescore_user_assessment: Hodnocení uživatelů Rescore
         send_sms_invites: Odesílání pozvánek SMS
@@ -1279,7 +1281,7 @@ cs:
     record_not_found: Záznam nebyl nalezen
     user_not_authorized: Uživatel není oprávněn
   auth:
-    cookies_link: <a href="%{cookies_url}">Prohlášení o souborech cookie</a>
+    cookie_notice_link: <a href="%{cookies_url}">Informace o souborech cookie
     current_password: Aktuální heslo
     current_password_placeholder: Vložte aktuální heslo
     email: E-mail
@@ -1325,7 +1327,7 @@ cs:
     password_confirmation: Potvrdit heslo
     password_confirmation_placeholder: Zadejte heslo pro potvrzení
     password_placeholder: Zadejte heslo
-    privacy_statement_link: <a href="%{privacy_url}">Prohlášení o ochraně osobních údajů</a>
+    privacy_notice_link: <a href="%{privacy_url}">Zásady ochrany osobních údajů
     registration:
       description: Pro registraci a vytvoření nového účtu vyplňte níže uvedené údaje
       email_hint: Respektujeme vaše soukromí a netolerujeme spam. Vaše údaje nikdy neposkytneme žádné třetí straně.
@@ -2649,6 +2651,7 @@ cs:
     direct_reportee_details: Detail přímých reportérů
     download:
       description: 'Zprávu si můžete stáhnout pomocí následujícího odkazu: <a href=''%{url}'' target=''_blank''>Stáhnout</a>. Odkaz je platný pouze po dobu 10 minut'
+      title: Vaše zpráva je hotová!
     download_plan: Stáhnout plán
     edit_plan: Upravit plán
     edit_plan_and_add_skills: Upravit plán a kliknutím na možnost Spravovat dovednosti přidejte dovednosti.
@@ -2750,6 +2753,7 @@ cs:
             r3: 'Údaje o vývoji uvedené v této zprávě mohou pocházet z jednoho nebo obou následujících zdrojů:'
             r3a: Přizpůsobená vývojová knihovna vytvořená pro vaši organizaci
             r3b: Návrhy vývoje generované umělou inteligencí
+            r4: Tato zpráva IDP byla vygenerována s využitím technologie umělé inteligence a může obsahovat nepřesnosti. Uvedené poznatky a doporučení je třeba vykládat s rozvahou a používat je výhradně jako nástroj pro váš osobní a profesní rozvoj. Platnost zprávy je 12–18 měsíců.
           main: Vytvořený IDP obsahuje podrobný seznam rozvojových aktivit, které můžete podniknout, s ohledem na osvědčené postupy v oblasti vzdělávání, tj. pravidlo 70-20-10, které představuje postupný proces kombinující výuku v učebně, koučování a učení se v praxi. Na základě výsledků procesu hodnotícího centra, vašich odpovědí v chatu a externích zpráv, pokud jsou k dispozici, byly doporučeny možné cesty rozvoje, které můžete zvážit pro svůj rozvoj.
         learn_cards:
           collaboration:

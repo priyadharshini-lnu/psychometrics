@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Modal, Button, Input, message,
   Form, DatePicker, Select, Checkbox,
@@ -12,6 +12,7 @@ const { I18n } = window
 
 export interface OwnProps {
   close(): void
+  onSuccess(): void
   campaign: {
     id: number
     name: string
@@ -25,18 +26,23 @@ const format = 'YYYY-MM-DD HH:mm'
 // Can not select days before today
 const disabledDate = current => current && current < dayjs().startOf('day')
 
-const RemoveCampaignModal: React.FC<Props> = ({
-  campaign, copy, projectId, close,
+const CopyCampaignModal: React.FC<Props> = ({
+  campaign, copy, projectId, close, onSuccess,
 }) => {
   const [form] = Form.useForm()
+  const [isLoading, setIsLoading] = useState(false)
   const handleOnConfirm = () => {
     const values = form.getFieldsValue()
+    setIsLoading(true)
     copy(campaign.id, projectId, { resource: values }).then(() => {
       message.info(I18n.t('frontend.campaign.actions.copy.success', { campaignName: campaign.name }))
+      onSuccess()
+      close()
     }).catch((error) => {
       message.error(error)
+    }).finally(() => {
+      setIsLoading(false)
     })
-    close()
   }
 
   return (
@@ -53,12 +59,13 @@ const RemoveCampaignModal: React.FC<Props> = ({
           key="submit"
           type="primary"
           onClick={handleOnConfirm}
+          loading={isLoading}
         >
           {I18n.t('threesixty.save')}
         </Button>,
       ]}
     >
-      <Form form={form} layout="vertical" initialValues={{ copyCampaignFactors: true }}>
+      <Form form={form} layout="vertical" initialValues={{ copyCampaignFactors: true, copyCampaignAiArtifacts: true }}>
         <Form.Item
           name="name"
           label={I18n.t('common.column.name')}
@@ -97,9 +104,17 @@ const RemoveCampaignModal: React.FC<Props> = ({
             {I18n.t('administration.campaigns.form.copy_factors')}
           </Checkbox>
         </Form.Item>
+        <Form.Item
+          name="copyCampaignAiArtifacts"
+          valuePropName="checked"
+        >
+          <Checkbox defaultChecked>
+            {I18n.t('admin.copy_ai_artifacts')}
+          </Checkbox>
+        </Form.Item>
       </Form>
     </Modal>
   )
 }
 
-export default RemoveCampaignModal
+export default CopyCampaignModal

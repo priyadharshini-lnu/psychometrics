@@ -99,6 +99,9 @@ export const IdpTR = t.intersection([
     instructions: t.type({
       content: t.string,
     }),
+    chatInstructions: t.type({
+      content: t.string,
+    }),
     availableLocales: t.array(t.string),
     reflectionQuestions: t.array(ReflectionQuestionTR),
     interviewQuestions: t.array(InterviewQuestionTR),
@@ -134,10 +137,17 @@ export const IdpTR = t.intersection([
       AssistantTR,
       t.undefined,
     ]),
+    showChatInstructions: t.boolean,
   })])
 
 export const IntroMessageTR = t.type({
   instructions: t.union([t.type({}), t.type({
+    content: t.string,
+  })]),
+})
+
+export const ChatInstructionsTR = t.type({
+  chatInstructions: t.union([t.type({}), t.type({
     content: t.string,
   })]),
 })

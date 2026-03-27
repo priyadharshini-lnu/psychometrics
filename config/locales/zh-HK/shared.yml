@@ -38,6 +38,7 @@ zh-HK:
     confirm: 確認
     continue: 續
     controller: 控制器
+    cookie_notice: Cookie 声明
     cookies_statement: Cookies声明
     copied_to_clipboard: 已复制到剪贴板
     copy: 复制
@@ -96,6 +97,7 @@ zh-HK:
     name: 名字
     negative: 负面
     new: 新
+    next: 下一页
     no_results_found: 未找到任何结果
     not_requested: 尚未请求
     ok: 好
@@ -103,6 +105,7 @@ zh-HK:
     policy_version: 政策版本
     policy_version_format: 仅允许整数
     positive: 积极
+    privacy_notice: 隐私声明
     processing: 处理中
     processor: 处理器
     proctoring_maintenance_active: 监考系统正在进行维护，网址将从 %{start_time} 迁移至 %{end_time}。请在维护窗口结束后再次尝试。

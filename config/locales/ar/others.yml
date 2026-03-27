@@ -912,6 +912,7 @@ ar:
         export_assessment_questions: أسئلة تقييم التصدير
         export_campaign_ai_artifacts: قطع أثرية لحملة التصدير الذكاء الاصطناعي
         export_campaign_ai_artifacts_results: تصدير نتائج حملة AI Artifacts
+        export_campaign_datasheet: ورقة بيانات حملة التصدير
         export_campaign_factors: عوامل حملة التصدير
         export_campaign_scorings: حملات التصدير
         export_dashboard_as_file: تصدير لوحة المعلومات كملف
@@ -971,6 +972,7 @@ ar:
         regenerate_report: إعادة إنشاء التقرير
         regenerate_threesixty_report: إعادة إنشاء تقرير Threesixty
         remap_report_assessment: إعادة تعيين تقييم التقرير
+        rescore_ai_scoring: إعادة تقييم النتائج باستخدام الذكاء الاصطناعي
         rescore_assessment: تقييم إعادة التسجيل
         rescore_user_assessment: إعادة تسجيل تقييم المستخدم
         send_sms_invites: إرسال دعوات عبر الرسائل النصية القصيرة
@@ -1319,7 +1321,7 @@ ar:
     record_not_found: لم يتم العثور على السجل
     user_not_authorized: المستخدم غير مصرح له
   auth:
-    cookies_link: <a href="%{cookies_url}">بيان ملفات تعريف الارتباط</a>
+    cookie_notice_link: <a href="%{cookies_url}">إشعار ملفات تعريف الارتباط
     current_password: كلمة المرور الحالية
     current_password_placeholder: إدخل كلمة السر الحالية
     email: البريد الإلكتروني
@@ -1365,7 +1367,7 @@ ar:
     password_confirmation: تأكيد كلمة المرور
     password_confirmation_placeholder: أدخل كلمة المرور الجديدة مرة أخرى
     password_placeholder: أدخل كلمة المرور
-    privacy_statement_link: <a href="%{privacy_url}">بيان الخصوصية</a>
+    privacy_notice_link: <a href="%{privacy_url}">إشعار الخصوصية
     registration:
       description: ".الرجاء قم بتعبئة بيانتك الشخصية لأنشاء حساب جديد"
       email_hint: نحن نحترم خصوصيتكم و لا نتهاون مع البريد غير المرغوب فيه. لن نعطي معلوماتك لأي طرف ثالث.
@@ -2641,7 +2643,7 @@ ar:
       add_development_action: إضافة إجراء تطويري
       add_development_actions_from_below_options: أضف إجراءات التطوير من الخيارات أدناه.
       add_development_actions_modal_title: مكتبة إجراءات التطوير
-      add_from_library: إضافة من المكتبة
+      add_from_library: الاختيار من مكتبة خطط التطوير الخاصة بنا
       add_more: إضافة المزيد من إجراءات التطوير
       add_selected_development_actions: إضافة إجراءات تطوير محددة
       all: الكل
@@ -2652,9 +2654,9 @@ ar:
         not_started: لم يبدأ بعد
       completion: الإنجاز
       create_custom_development_action_title: إنشاء إجراء التطوير الخاص بي
-      create_development_actions_with_ai: إنشاء إجراءات التطوير باستخدام الذكاء الاصطناعي
-      create_from_ai: الإنشاء من الذكاء الاصطناعي
-      create_my_own: إنشاء خاص بي
+      create_development_actions_with_ai: جاري إعداد الإجراءات التطويرية لِـ
+      create_from_ai: إعداد خطتي باستخدام الذكاء الاصطناعي
+      create_my_own: إعداد خطتي الخاصة
       custom: إنشائي
       custom_da_description: قم بإنشاء إجراء تطوير مخصص لتلبية احتياجات التطوير الفريدة.
       date_range: تاريخ البداية - تاريخ النهاية
@@ -2670,7 +2672,7 @@ ar:
       generate_by_ai: توليد بواسطة الذكاء الاصطناعي
       generate_more: توليد المزيد
       generating_development_actions: جاري توليد إجراءات التطوير...
-      generative_ai: الذكاء الاصطناعي التوليدي
+      generative_ai: المدرّب الذكي
       generative_ai_description_msg: دع الذكاء الاصطناعي ينشئ إجراء تطوير مخصصا لك فقط
       heading: إجراءات التطوير
       idp_library: مكتبة خطط التطوير
@@ -2711,7 +2713,8 @@ ar:
       write_here: اكتب هنا...
     direct_reportee_details: تفاصيل المبلغين المباشرين
     download:
-      description: 'لتنزيل التقرير ، يرجى اتباع الرابط: <a href = ''%{url}'' target = ''_blank'' > تنزيل</a>. الرابط صالح لمدة 10 دقائق فقط'
+      description: يمكنك تحميله من خلال هذا <a href='%{url}' target='_blank'>الرابط</a> ، علمًا بأنه صلاحية هذا الرابط ستنتهي خلال 10 دقائق
+      title: أصبح تقريرك جاهز !
     download_plan: تحميل الخطة
     edit_plan: تعديل الخطة
     edit_plan_and_add_skills: قم بتحرير الخطة وانقر فوق إدارة المهارات لإضافة المهارات.
@@ -2813,6 +2816,7 @@ ar:
             r3: قد تكون مدخلات التطوير المدرجة في هذا التقرير مُستخلصة من أحد المصادر التالية أو كليهما
             r3a: مكتبة تطوير مخصصة تم إعدادها لجهة عملكم
             r3b: مقترحات تطوير مولّدة بواسطة الذكاء الاصطناعي
+            r4: تم إعداد تقرير خطة التطوير الفردية بمساعدة تقنية الذكاء الاصطناعي، وقد يحتوي على بعض الأخطاء. لذا، يُرجى التعامل مع المعلومات والتوصيات الواردة فيه بحذر، واستخدامها فقط كأداة للتطوير الشخصي والمهني الخاص بكم. تتراوح صلاحية التقرير ما بين ١٢ و١٨ شهرًا.
           main: تتضمن خطة التطوير الفردية التي تم إعدادها قائمة مفصلة بالإجراءات التطويرية التي يمكنك تنفيذها، مع مراعاة أفضل ممارسات التعلم مثل نموذج 70-20-10، الذي يوفّر مسارًا تدريجيًا يجمع بين التعلم الصفّي، والتوجيه، والتعلم أثناء العمل. واستنادًا إلى نتائج عملية مركز التقييم، وإجاباتك في المحادثة، والتقارير الخارجية (حسب الاقتضاء)، تم اقتراح مسارات تطوير محتملة يمكن النظر فيها لدعم تطوّرك
         learn_cards:
           collaboration:
@@ -2870,7 +2874,7 @@ ar:
         pending_approval: قيد المراجعة
         rejected: نبيذ
       summary:
-        ai_count: الذكاء الاصطناعي التوليدي
+        ai_count: المدرّب الذكي
         collaborative_learn: التعلم التعاوني
         created_by: أنشئ بواسطة
         current_status: الحالة الحالية لخطة التطوير الفردية
@@ -2878,7 +2882,7 @@ ar:
         custom_count: إنشائي
         da_count: عدد إجراءات التطوير
         formal_learn: التعلم الرسمي
-        generated_ai: الذكاء الاصطناعي التوليدي
+        generated_ai: المدرّب الذكي
         learn_on_job: التعلم أثناء العمل
         learn_pathway: مسار التعلم
         lib_count: مكتبة خطط التطوير

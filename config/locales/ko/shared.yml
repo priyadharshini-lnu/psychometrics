@@ -38,6 +38,7 @@ ko:
     confirm: 확인
     continue: 계속하다
     controller: 컨트롤러
+    cookie_notice: 쿠키 안내
     cookies_statement: 쿠키 정책
     copied_to_clipboard: 클립보드에 복사됨
     copy: 복사
@@ -96,6 +97,7 @@ ko:
     name: 이름
     negative: 부정적
     new: 새로 만들기
+    next: 다음
     no_results_found: 검색 결과 없음
     not_requested: 아직 요청되지 않음
     ok: 확인
@@ -103,6 +105,7 @@ ko:
     policy_version: 정책 버전
     policy_version_format: 정수만 허용됩니다
     positive: 긍정적인
+    privacy_notice: 개인정보 처리방침
     processing: 처리
     processor: 프로세서
     proctoring_maintenance_active: 프로크터링 서비스는 현재 %{start_time}에서 %{end_time}으로 이전 중입니다. 유지보수 기간이 끝난 후 다시 시도해 주십시오.

@@ -1,0 +1,22 @@
+
+.emptyCell {
+    color: var(--ant-error-color);
+    font-style: italic;
+}
+
+.editable-row .editable-cell-value-wrap {
+    border: 1px solid transparent;
+    border-radius: 2px;
+    padding: 4px 11px;
+}
+
+.editable-row:hover .editable-cell-value-wrap {
+    border: 1px solid var(--light-grey-border);
+    border-radius: 2px;
+    padding: 4px 11px;
+}
+.editable-cell-value-wrap:focus-visible {
+    outline: 3px solid var(--ant-color-primary-border);
+    outline-offset: 1px;
+    padding: 4px 11px;
+}

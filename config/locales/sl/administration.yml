@@ -80,7 +80,6 @@ sl:
         title: Artefakt umetne inteligence
       generate: Ustvariti
       generate_result_info_message: Rezultati se ustvarjajo, prosimo, osvežite stran, da si ogledate posodobljene rezultate.
-      generated_at: Ustvarjeno pri
       generated_at_time: Ustvarjeno ob %{time}
       generated_value: Ustvarjena vrednost
       id: ID
@@ -1871,6 +1870,8 @@ sl:
       form:
         enable_innovation_styles: Omogočanje inovacijskih stilov
         enable_occupations: Omogočite poklice
+        name: Ime
+        title: Dimenzije
       import_factors:
         import: Uvoz
         sample_file: Vzorčna datoteka
@@ -1918,6 +1919,7 @@ sl:
         confirmations:
           delete:
             body: "<p>Ali ste prepričani, da želite izbrisati to dimenzijo?</p>\n"
+            message: Vnesite ime dimenzije, navedeno spodaj, v tekstovno polje, da potrdite
             title: Izbriši <strong>dimenzijo</strong> ?
           toggle_status:
             body: "<p>Ali ste prepričani, da želite %{status} to dimenzijo?</p>\n"
@@ -1982,6 +1984,7 @@ sl:
                 score: Partitura
                 zscore: Ocena Z
             title: JSON poti za rezultate
+        predicate: Predikat
         scoring_strategies:
           custom_formula: Formula po meri
           external_score: Zunanja ocena
@@ -1995,10 +1998,13 @@ sl:
           sub_factors_sum: Tehtana vsota dejavnikov
         scoring_strategies_tip: "<strong>Vprašanja (povprečje):</strong> To je kot trenutna metoda točkovanja, ko obstajajo vprašanja, povezana z dejavnikom.<br /> <br /><strong>Vprašanja (SUM):</strong> To je podobno vprašanjem (povprečje), vendar z uporabo funkcije SUM<br /> <br /><strong>Vprašanja drugih dejavnikov (povprečje):</strong> To je kot trenutna metoda točkovanja, ko obstajajo podfaktorji za faktor, edina sprememba je seštevanje teže.<br /> <br /><strong>Vprašanja drugih dejavnikov (SUM):</strong> To je podobno kot drugi dejavniki (povprečje), vendar z uporabo funkcije SUM<br /> <br /><strong>Tehtana vsota dejavnikov:</strong> Tu se seštejejo rezultati izbranih drugih dejavnikov z njihovimi utežmi."
         scoring_strategy: Strategija točkovanja
+        search_factors: Dejavniki iskanja
         use_sub_factor_norm_score: Uporaba normativne ocene faktorjev
+        value: Vrednost
       index:
         icon: Ikona
         new: Dodati
+        precision: Natančnost
         scoring_strategies:
           custom_formula: Formula po meri
           external_score: Zunanja ocena
@@ -2292,6 +2298,7 @@ sl:
       edit:
         header: Urejanje sloga inovacij
       form:
+        full_description: Celoten opis
         no_icon: Brez ikone
       index:
         new: Dodati
@@ -2663,8 +2670,12 @@ sl:
       edit:
         header: Uredi poklic
       form:
+        alternative_icon: Nadomestna ikona
+        color: Barva
         hint:
           key_career_tracks: '"+" - seznam, "*" - krepko. Primer: + *Biologija* - nekaj opisov ...'
+        indicative_roles_image: Primer slike vlog
+        key_career_tracks_image: Slika ključnih poklicnih poti
         no_icon: Brez ikone
       index:
         new: Dodati
@@ -2735,6 +2746,7 @@ sl:
       assessment_center: Center za ocenjevanje
       assessment_id: ID ocenjevanja
       campaign_id: ID oglaševalske akcije
+      campaign_link: Povezava do kampanje
       campaign_name: Ime kampanje
       campaigns: Kampanje
       description: Opis
@@ -3732,8 +3744,10 @@ sl:
       id: ID
       import:
         factors: Uvoz dejavnikov oglaševalske akcije
+      innovation_style_removal_confirmation: Vnesite ime sloga inovacije, navedeno spodaj, v polje za vnos besedila, da potrdite
       name: Ime
       no_groups: Ni prisotnih skupin
+      occupation_removal_confirmation: Vnesite ime poklica, navedeno spodaj, v polje za vnos besedila, da potrdite
       output_type: Vrsta izhoda
       pattern_error: Dovoljeni so samo alfanumerični znaki, presledki in pomišljaji.
       profile:

@@ -29,20 +29,26 @@ class EndUser::UsersController < ApplicationController
         campaigns = ::Campaign.where(id: user_campaigns).visible_to_end_user.
                     includes(:threesixty_campaign, { campaign_options: :translations }).group_by(&:type)
 
+        serializer_context = {
+          current_user: current_user,
+          system_check_session_id: session[:system_check_session_id]
+        }
+
         json = []
         if campaigns['common']
           json.concat(
             Panko::ArraySerializer.new(
               campaigns['common'],
               each_serializer: ::EndUser::ShortCampaignSerializer,
-              context: { current_user: current_user }
+              context: serializer_context
             ).to_a
           )
         end
 
         if campaigns['threesixty']
           json.concat(serializer_campaign(campaigns['threesixty'].map(&:threesixty_campaign),
-                                          Threesixty::EndUser::ShortCampaignSerializer))
+                                          Threesixty::EndUser::ShortCampaignSerializer,
+                                          serializer_context))
         end
 
         render json: json
@@ -150,13 +156,13 @@ class EndUser::UsersController < ApplicationController
     end
   end
 
-  def serializer_campaign(campaigns, serializer)
+  def serializer_campaign(campaigns, serializer, context = {})
     Panko::ArraySerializer.new(
       campaigns,
       each_serializer: serializer,
       context: {
         current_user: current_user, include: '**'
-      }
+      }.merge(context)
     ).to_a
   end
 

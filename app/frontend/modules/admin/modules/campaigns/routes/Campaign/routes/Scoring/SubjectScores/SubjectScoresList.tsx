@@ -299,7 +299,7 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
           <ExportScoringsModal
             exportScorings={params => collectionAction({
               action: 'export_scorings',
-              method: 'get',
+              method: 'post',
               body: {
                 filters: params.filters,
               },

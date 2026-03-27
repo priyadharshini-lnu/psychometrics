@@ -9,6 +9,8 @@ module Api
     end
 
     def call
+      params[:gender] = params[:gender].downcase if params[:gender].present?
+
       if params[:campaigns].present? && params[:campaigns].is_a?(Array)
         params[:campaigns] = params[:campaigns].map do |campaign|
           campaign.merge(existing_record: normalize_existing_record(campaign[:existing_record]))
@@ -39,6 +41,7 @@ module Api
         :first_name,
         :last_name,
         :email,
+        :gender,
         :user_external_id,
         :existing_record,
         :project_id,

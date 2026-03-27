@@ -263,7 +263,6 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles, projectName }) =
               listType="picture"
               maxCount={1}
               onRemove={file => removeFile(file, 'background')}
-              // eslint-disable-next-line max-len
               accept=".jpeg, .jpg, .png, .svg, .gif, image/jpeg, image/png, image/svg+xml, image/gif"
               fileList={background && typeof background === 'string' ? [{
                 uid: '1', name: 'background', status: 'done', url: background,
@@ -291,7 +290,6 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles, projectName }) =
               listType="picture"
               maxCount={1}
               onRemove={file => removeFile(file, 'backgroundOverlay')}
-              // eslint-disable-next-line max-len
               accept=".jpeg, .jpg, .png, .svg, .mp4, .gif, image/jpeg, image/png, image/svg+xml, image/gif"
               fileList={backgroundOverlay && typeof backgroundOverlay === 'string' ? [{
                 uid: '1', name: 'background_overlay', status: 'done', url: backgroundOverlay,

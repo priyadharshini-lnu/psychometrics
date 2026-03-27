@@ -41,6 +41,12 @@ en:
         skills_not_belong_to_project: The selected skills must belong to the specified project.
         skills_required: Please select at least one skill.
       exceeded_subjects_count: You can only add %{count} subjects per invite
+      factors_norms:
+        invalid_field_name: Field name must be either 'score_from' or 'score_to'.
+        invalid_float: Value must be a valid float.
+        invalid_level: Invalid level. Valid levels are %{levels}
+        score_from_less_than_score_to: score_from must be less than score_to
+        score_to_greater_than_score_from: score_to must be greater than score_from
       filled?: can't be blank
       idp_template:
         content_required: Content is required for instructions

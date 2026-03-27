@@ -18,7 +18,8 @@ module AdminJobs
           res,
           owner,
           admin_job_record_id: record.id,
-          allow_ai_rescore: record.data['allow_ai_rescore']
+          allow_ai_rescore: record.data['allow_ai_rescore'],
+          force_ai_regenerate: false
         )
         recompute.on(:ok) { record.increment_completed_tasks! }
         recompute.on(:waiting) { nil }

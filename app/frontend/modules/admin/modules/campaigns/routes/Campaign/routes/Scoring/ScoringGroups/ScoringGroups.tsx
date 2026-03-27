@@ -509,7 +509,7 @@ const ScoringGroupsComponent = (props: Props) => {
   const handleExportFactors = () => {
     collectionAction({
       action: 'export',
-      method: 'get',
+      method: 'post',
       responseType: t.literal('ok'),
     }).then(() => {
       message.success(I18n.t('administration.scoring.factors_exported_successfully'))

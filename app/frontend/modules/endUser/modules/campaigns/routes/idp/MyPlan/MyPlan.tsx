@@ -230,14 +230,14 @@ const MyPlanComponent = ({
   })
 
   const handleDownloadReport = (includeReflectiveQuestions: boolean) => {
-    message.success(I18n.t('threesixty.report_generation_in_progress'), 3)
+    message.success(I18n.t('enduser.idp_report_being_generated'), 3)
 
     makeAsyncRequest({
       lang: I18n.currentLocale(),
       includeReflectiveQuestions,
     }).then((response) => {
       const config = {
-        message: I18n.t('jobs.threesixty.reports.download.message'),
+        message: I18n.t('idp.download.title'),
         description: <SafeHTML html={
             I18n.t('idp.download.description', { url: response.responseData })}
         />,

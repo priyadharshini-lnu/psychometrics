@@ -1,5 +1,5 @@
 import {
-  FC, useState, useEffect, Fragment,
+  FC, useState, useEffect, Fragment, ReactNode,
 } from 'react'
 import {
   Drawer,
@@ -31,6 +31,7 @@ import {
   ThreeSixtySpecificGrants,
 } from './constants'
 import { AvailablePermissions } from './core'
+import { extractFieldRequestErrors } from '~/utils/requestErrors'
 
 
 const { I18n } = window
@@ -63,6 +64,11 @@ interface OwnProps {
 
 type Props = PropsFromRedux & OwnProps
 
+const extractRequestErrors = (errors: unknown): string[] => extractFieldRequestErrors(errors, {
+  pointerIncludes: ['user.email', 'email'],
+  fallbackPaths: ['email', 'user.email', 'userId'],
+})
+
 const AddEditDrawerComponent: FC<Props> = ({
   isOpen,
   isEditMode,
@@ -80,19 +86,15 @@ const AddEditDrawerComponent: FC<Props> = ({
   requestErrors,
 }) => {
   const [form] = Form.useForm()
+  const [submissionErrors, setSubmissionErrors] = useState<string[]>([])
 
-  const errors = _.compact(
-    [
-      requestErrors && _.get(requestErrors[0], ['email', 'title']),
-      requestErrors && _.get(requestErrors[0], ['userId', 'title']),
-      requestErrors && _.get(requestErrors[0], ['projectId', 'title']),
-    ],
-  )
+  const errors = submissionErrors.length > 0 ? submissionErrors : extractRequestErrors(requestErrors)
 
   const [selected, setSelected] = useState([])
   const [notFromList, setNotFromList] = useState(true)
   const [adminRolesOpen, setAdminRolesOpen] = useState(false)
-  const [open, setUserSelectOpen] = useState(true)
+  const [open, setUserSelectOpen] = useState(false)
+  const [userSearchTerm, setUserSearchTerm] = useState('')
   const [availablePermissions, setAvailablePermissions] = useState<AvailablePermissions>({})
   const [selectedUser, setSelectedUser] = useState<Omit<UserDetails, 'enable_2fa'> | null>(
     {
@@ -110,6 +112,7 @@ const AddEditDrawerComponent: FC<Props> = ({
 
 
   const showRequestSuccessMessage = (response) => {
+    setSubmissionErrors([])
     if (isEditMode) {
       message.success(
         I18n.t('admin.admin_updated_successfully', {
@@ -222,6 +225,10 @@ const AddEditDrawerComponent: FC<Props> = ({
     handleClose()
   }
 
+  const handleFailedSubmission = (_values, error) => {
+    setSubmissionErrors(extractRequestErrors(error))
+  }
+
   const transformValues = (values) => {
     if (isEditMode) {
       return values
@@ -238,6 +245,7 @@ const AddEditDrawerComponent: FC<Props> = ({
   }
 
   const setRequiredStates = (value) => {
+    setSubmissionErrors([])
     setNotFromList(!(_.includes(_.map(users, 'id'), value[0])))
     setSelectedUser(_.find(users, { id: value[0] }) || {
       firstName: '', lastName: '', name: '', email: value[0], id: value[0],
@@ -287,6 +295,13 @@ const AddEditDrawerComponent: FC<Props> = ({
     </Space>
   )
 
+  let userSelectNotFoundContent: ReactNode = null
+  if (isUserLoading('fetch')) {
+    userSelectNotFoundContent = <Spin size="small" />
+  } else if (userSearchTerm.trim()) {
+    userSelectNotFoundContent = I18n.t('shared.no_results_found')
+  }
+
   return (
     <Drawer
       title={<Typography.Title level={4}>{drawerTitle}</Typography.Title>}
@@ -315,6 +330,7 @@ const AddEditDrawerComponent: FC<Props> = ({
           updateResource: updateAdmin,
         }}
         onSuccessfulSubmission={showRequestSuccessMessage}
+        onFailedSubmission={handleFailedSubmission}
         transformValues={transformValues}
       >
         {() => (
@@ -347,8 +363,14 @@ const AddEditDrawerComponent: FC<Props> = ({
                   name="userId"
                   label={I18n.t('shared.email')}
                   rules={[{ required: true }]}
-                  validateStatus={errors.length > 0 ? 'error' : 'success'}
-                  help={errors.length ? errors : null}
+                  validateStatus={errors.length > 0 ? 'error' : undefined}
+                  help={errors.length ? (
+                    <>
+                      {errors.map((error, index) => (
+                        <div key={index}>{error}</div>
+                      ))}
+                    </>
+                  ) : null}
                 >
                   <Select
                     mode="tags"
@@ -370,6 +392,7 @@ const AddEditDrawerComponent: FC<Props> = ({
                       },
                       onSearch: (value) => {
                         setUserSelectOpen(true)
+                        setUserSearchTerm(value)
                         fetchUsers({
                           apiConfig: {
                             filter: { search_query: value, admins: 'true' },
@@ -378,7 +401,7 @@ const AddEditDrawerComponent: FC<Props> = ({
                         })
                       },
                     }}
-                    notFoundContent={isUserLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
+                    notFoundContent={userSelectNotFoundContent}
                   >
                     {users.map(({ id, email }) => (
                       <Option key={id} value={id}>

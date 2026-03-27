@@ -24,7 +24,7 @@ import { USER_IDP_PLAN_STATUS } from './constants'
 import { useSearchSkills } from './AdminAddSkills/useSearchSkills'
 import { SkillGapReportTab } from './SkillGapReportTab'
 import { SKILL_TYPE } from '~/components/IdpShared/constants'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 import styles from './Plan.less'
 
 const { I18n } = window

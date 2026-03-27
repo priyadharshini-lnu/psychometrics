@@ -149,3 +149,22 @@ export const dateTimeWithZone = (dateString?: string | null, format?: string): s
   const dayjsDate = dayjs(dateString)
   return `${dayjsDate.format(dateFormat)}${dayjsDate.format(' (z)')}`
 }
+export const secondsToDuration = (totalSeconds: number): string => {
+  const SECONDS_IN_DAY = 86400
+  const SECONDS_IN_HOUR = 3600
+  const SECONDS_IN_MINUTE = 60
+  const safeSeconds = Math.max(0, Math.floor(totalSeconds))
+
+  if (safeSeconds >= SECONDS_IN_DAY) {
+    const days = Math.floor(safeSeconds / SECONDS_IN_DAY)
+    return `${days} day${days === 1 ? '' : 's'}`
+  }
+
+  if (safeSeconds >= SECONDS_IN_HOUR) {
+    const hours = Math.floor(safeSeconds / SECONDS_IN_HOUR)
+    return `${hours} hour${hours === 1 ? '' : 's'}`
+  }
+
+  const minutes = Math.floor(safeSeconds / SECONDS_IN_MINUTE)
+  return `${minutes} minute${minutes === 1 ? '' : 's'}`
+}

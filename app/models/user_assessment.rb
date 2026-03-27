@@ -116,6 +116,8 @@ class UserAssessment < ApplicationRecord
   scope :deemed_incomplete, -> { where.not(status: DEEMED_COMPLETED_STATUS) }
 
   before_save :set_default_relationship
+  after_destroy :reset_user_report_approval_status
+
   after_save -> { create_meeting_room! }, if: -> { meeting_internal? && meeting_room.blank? }
   after_commit -> { set_campaign_user_completion_status }, on: %i[create destroy]
   after_commit -> { set_campaign_user_completion_status }, if: proc { status_previously_changed? }, on: %i[update]
@@ -502,6 +504,17 @@ class UserAssessment < ApplicationRecord
       next unless media_response.asset.attached?
 
       MediaResponses::AddTranscriptionJob.perform_later(media_response.id)
+    end
+  end
+
+  def reset_user_report_approval_status
+    return unless completed?
+    return if self_assessment?
+
+    user_reports.each do |user_report|
+      next if user_report.not_ready?
+
+      user_report.update!(approval_status: :not_ready) unless user_report.all_assessments_are_scored?
     end
   end
 end

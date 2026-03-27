@@ -38,6 +38,7 @@ es-ES:
     confirm: Confirmar
     continue: Continuar
     controller: Controlador
+    cookie_notice: Aviso sobre cookies
     cookies_statement: Declaración sobre cookies
     copied_to_clipboard: Copiado al portapapeles
     copy: Copiar
@@ -96,6 +97,7 @@ es-ES:
     name: Nombre
     negative: Negativo
     new: Nuevo/a
+    next: Siguiente
     no_results_found: No se han encontrado resultados.
     not_requested: Aún no solicitado
     ok: De acuerdo
@@ -103,6 +105,7 @@ es-ES:
     policy_version: Versión de la política
     policy_version_format: Solo se permiten números enteros.
     positive: Positivo
+    privacy_notice: Aviso de privacidad
     processing: Procesamiento
     processor: Procesador
     proctoring_maintenance_active: El servicio de supervisión está actualmente en mantenimiento, pasando de %{start_time} a %{end_time}. Vuelva a intentarlo una vez finalizado el periodo de mantenimiento.

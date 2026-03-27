@@ -7,7 +7,6 @@ import setLocale from '~/utils/setLocale'
 setLocale()
 const MenuApp = () => (
   <div className="ms" style={{ background: 'white' }}>
-    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
     <Provider store={store}>
       <PortalMenu />
     </Provider>

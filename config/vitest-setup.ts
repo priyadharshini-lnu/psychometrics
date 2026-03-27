@@ -6,12 +6,9 @@ import React from 'react'
 global.I18n = I18n
 global.React = React
 
-const modules = import.meta.glob('../app/assets/javascripts/administration/i18n/*.js');
+const modules = import.meta.glob('../app/assets/javascripts/administration/i18n/*.js')
 
-await Promise.all(Object.values(modules).map(loader => loader()));
-
-vi.mock('~/modules/reports/cable/Cable.js')
-vi.mock('~/modules/survey/cable/Cable.js')
+await Promise.all(Object.values(modules).map(loader => loader()))
 
 // ref : https://jestjs.io/docs/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom
 Object.defineProperty(window, 'I18n', {

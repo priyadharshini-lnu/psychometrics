@@ -142,6 +142,11 @@ import AntdIcon, {
   TableOutlined as AntdTableOutlined,
   ArrowsAltOutlined as AntdArrowsAltOutlined,
   ShrinkOutlined as AntdShrinkOutlined,
+  WifiOutlined as AntdWifiOutlined,
+  DesktopOutlined as AntDesktopOutlined,
+  BulbOutlined as AntdBulbOutlined,
+  CloudOutlined as AntdCloudOutlined,
+  SafetyOutlined as AntdSafetyOutlined,
 } from '@ant-design/icons'
 import type { IconComponentProps } from '@ant-design/icons/lib/components/Icon'
 
@@ -294,5 +299,10 @@ export const TranslationOutlined = withAccessibilityProps(AntdTranslationOutline
 export const TableOutlined = withAccessibilityProps(AntdTableOutlined)
 export const ArrowsAltOutlined = withAccessibilityProps(AntdArrowsAltOutlined)
 export const ShrinkOutlined = withAccessibilityProps(AntdShrinkOutlined)
+export const WifiOutlined = withAccessibilityProps(AntdWifiOutlined)
+export const DesktopOutlined = withAccessibilityProps(AntDesktopOutlined)
+export const BulbOutlined = withAccessibilityProps(AntdBulbOutlined)
+export const CloudOutlined = withAccessibilityProps(AntdCloudOutlined)
+export const SafetyOutlined = withAccessibilityProps(AntdSafetyOutlined)
 
 export default withAccessibilityProps(AntdIcon)

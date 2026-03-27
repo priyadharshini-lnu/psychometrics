@@ -1,0 +1,58 @@
+@import '~/styles/antv4.variable.less';
+@import '~/styles/spacing.less';
+
+@headerHeight: 3rem;
+@footerHeight: 50px;
+
+.main {
+  height: calc(100vh - @footerHeight);
+}
+
+.content {
+  background-color: @white;
+}
+
+.header {
+  height: @headerHeight;
+  line-height: @headerHeight;
+  top: 0;
+  z-index: 11;
+  background-color: @white;
+  border: none;
+  border-inline-start: none;
+  padding-inline: @space-5;
+}
+
+.sider {
+  background: transparent;
+  padding: @space-4;
+}
+
+.pageContent {
+  background-color: @white;
+  padding: 0 @space-8;
+  margin: 0 0 @space-8 0;
+  // max-height:  calc(100vh - @footerHeight);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-block: 3rem;
+}
+
+@media (max-width: @screen-lg) {
+  .header:global(.ant-layout-header) {
+    border-inline: none;
+    padding: 0 @space-4;
+  }
+}
+@media (max-width: @screen-xs) {
+  .header:global(.ant-layout-header) {
+    height: auto;
+    min-height: @headerHeight;
+  }
+
+  .pageContent {
+    padding: 0 @space-4;
+  }
+}

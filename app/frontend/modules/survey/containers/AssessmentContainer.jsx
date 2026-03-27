@@ -1,4 +1,3 @@
-/* eslint-disable react/no-find-dom-node */
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import { ConfigProvider } from 'antd'

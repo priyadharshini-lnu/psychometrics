@@ -23,7 +23,15 @@ hi:
     ai_artifact_result_generation_admin_job_failed: उपयोगकर्ता '%{user_email}' के लिए कलाकृति '%{artifact_name}' उत्पन्न नहीं की जा सकती।
     ai_artifact_result_stale: परिणाम पुराना हो सकता है क्योंकि एआई आर्टिफैक्ट की निर्भरताएँ अंतिम परिणाम उत्पन्न होने के बाद बदल गई हैं। नवीनतम निर्भरताओं के साथ आर्टिफैक्ट को पुनः उत्पन्न करने पर विचार करें।
     ai_artifacts: एआई कलाकृतियाँ
+    ai_artifacts_finalized_at: पर अंतिम रूप दिया गया
+    ai_artifacts_generate_result_confirm: उपयोगकर्ता '%{email}' के लिए आर्टिफैक्ट परिणाम उत्पन्न करने से इस AI आर्टिफैक्ट पर निर्भर मौजूदा रिपोर्ट हटा दी जाएगी। क्या आप वास्तव में आगे बढ़ना चाहते हैं?
     ai_artifacts_generate_results: परिणाम उत्पन्न करें
+    ai_artifacts_mark_finalized: मार्क अंतिम रूप दिया गया
+    ai_artifacts_mark_finalized_bulk_confirm: सभी चयनित उपयोगकर्ताओं के लिए आर्टिफैक्ट परिणामों को अंतिम रूप देने पर वे रिपोर्टें उत्पन्न होंगी जिनमें एआई आर्टिफैक्ट्स का उपयोग होता है। क्या आप सुनिश्चित हैं कि आप आगे बढ़ना चाहते हैं?
+    ai_artifacts_mark_finalized_confirm: उपयोगकर्ता '%{email}' के लिए आर्टिफैक्ट परिणामों को अंतिम रूप देने पर उस उपयोगकर्ता के लिए AI आर्टिफैक्ट का उपयोग करने वाली रिपोर्ट तैयार हो जाएगी। क्या आप वास्तव में आगे बढ़ना चाहते हैं?
+    ai_artifacts_mark_not_finalized: चिह्न अंतिम नहीं
+    ai_artifacts_mark_not_finalized_bulk_confirm: सभी चयनित उपयोगकर्ताओं से फाइनलाइज़ हटाने पर वे उत्पन्न रिपोर्टें हटा दी जाएँगी जो एआई आर्टिफैक्ट्स का उपयोग करती हैं। क्या आप वास्तव में आगे बढ़ना चाहते हैं?
+    ai_artifacts_mark_not_finalized_confirm: उपयोगकर्ता '%{email}' से finalize हटाने से उस उपयोगकर्ता के लिए AI आर्टिफैक्ट का उपयोग करके तैयार की गई रिपोर्ट हटा दी जाएगी। क्या आप वास्तव में आगे बढ़ना चाहते हैं?
     ai_artifacts_output_schema_key_constraint: की एक छोटे अक्षर से शुरू होनी चाहिए और इसमें केवल छोटे अक्षर, अंक और अंडरस्कोर हो सकते हैं।
     ai_artifacts_results_export: निर्यात परिणाम
     ai_artifacts_results_export_job_scheduled: AI आर्टिफैक्ट्स परिणाम निर्यात जॉब सफलतापूर्वक निर्धारित किया गया था।
@@ -78,12 +86,32 @@ hi:
     ai_scoring_appoval_score_not_applicable: स्कोर लागू नहीं
     ai_scoring_approval: एआई स्कोरिंग अनुमोदन
     ai_scoring_approval_settings: एआई स्कोरिंग अनुमोदन सेटिंग्स
+    ai_scoring_approval_stale_description: पिछली रन के बाद कॉन्फ़िगरेशन अपडेट्स ने स्कोर बदल दिया हो सकता है। नवीनतम सेटिंग्स का उपयोग करके इसे अपडेट करने के लिए पुनः स्कोर करें।
+    ai_scoring_approval_stale_title: स्कोर पुराना हो सकता है
     ai_scoring_approvals: एआई स्कोरिंग अनुमोदन
+    ai_scoring_refresh_score: स्कोर ताज़ा करें
+    ai_scoring_refresh_score_confirm_description: यह नवीनतम कॉन्फ़िगरेशन का उपयोग करके इस मूल्यांकन के लिए एआई स्कोरिंग को फिर से चलाएगा। क्या आप सुनिश्चित हैं?
+    ai_scoring_refresh_score_confirm_title: AI स्कोर रिफ्रेश करें?
+    ai_scoring_rescore_queued: एआई पुनः स्कोरिंग कतार में है। कृपया कुछ क्षणों बाद पुनः ताज़ा करें।
     ai_translation: एआई अनुवाद
     all_corner_rounded: सभी कोने गोल
     allow_ai_rescoring: एआई पुनः स्कोरिंग की अनुमति दें
+    allow_continue_with_warning_system_check: सिस्टम जाँच विफल होने पर चेतावनियों के साथ जारी रखने की अनुमति दें
     api_keys: एपीआई कुंजी
     apply_to_existing_users: इस अभियान में मौजूदा उपयोगकर्ताओं पर यह परिवर्तन लागू करें।
+    assessment_center_activity: गतिविधि
+    assessment_center_assessor: मूल्यांकनकर्ता
+    assessment_center_attendance: उपस्थिति
+    assessment_center_attendance_status: उपस्थिति की स्थिति
+    assessment_center_campaigns_tab: अभियान
+    assessment_center_date_and_time: दिनांक और समय
+    assessment_center_join_room: कमरे में शामिल हों
+    assessment_center_meeting_link: मीटिंग लिंक
+    assessment_center_participants_tab: प्रतिभागी
+    assessment_center_prework: पूर्व तैयारी
+    assessment_center_schedule_time: समय निर्धारित करें
+    assessment_center_scheduling_status: अनुसूचीकरण की स्थिति
+    assessment_center_search_participants: प्रतिभागियों को खोजें...
     assessment_question_not_supported: यह प्रश्न प्रकार वर्तमान में समर्थित नहीं है।
     assessments: मूल्यांकन
     assessments_not_mhs: सभी मूल्यांकन एमएचएस प्रकार के होने चाहिए।
@@ -99,6 +127,7 @@ hi:
     auto_placeholder: स्वचालित
     availability: उपलब्धता
     available_languages: रिपोर्ट भाषाओं में उपलब्ध है
+    average: औसत
     back_to_main: मुख्य मेनू
     bulk_assets_modal_choose_csv: CSV फ़ाइल चुनें
     bulk_assets_modal_choose_zip: ज़िप फ़ाइल चुनें
@@ -138,7 +167,9 @@ hi:
     cancel: रद्द करें
     cancellation_and_rescheduling_disabled: रद्दीकरण और पुनःनिर्धारण अक्षम है।
     casual: आकस्मिक
+    cell_save_msg: संपादन के बाद सेल से बाहर निकलते ही मान्य परिवर्तन स्वचालित रूप से सहेजे जाते हैं।
     characters: चरित्र
+    chat_instructions_success: चैट निर्देश सफलतापूर्वक सहेजे गए।
     children_factor_type: बच्चों का फैक्टर प्रकार
     client: ग्राहक
     client_admins: क्लाइंट एडमिन
@@ -152,6 +183,7 @@ hi:
     configure_model_answer_title: मॉडल उत्तर और कीवर्ड्स कॉन्फ़िगर करें
     confirm_remove_admin: क्या आप सुनिश्चित हैं कि आप '%{email}' ईमेल वाले एडमिन उपयोगकर्ता को हटाना चाहते हैं?
     copied: नकल किया गया
+    copy_ai_artifacts: एआई कलाकृतियों की प्रतिलिपि बनाएँ
     country: देश
     create_client: ग्राहक बनाएँ
     create_indicator: सूचक बनाएँ
@@ -193,6 +225,7 @@ hi:
     done: हो गया
     done_tooltip: इस उपयोगकर्ता के लिए कोई और मूल्यांकन प्रस्तुत नहीं किया जा सकता क्योंकि इस उपयोगकर्ता का मूल्यांकन %{marked_by} द्वारा पूरा किया हुआ चिह्नित है।
     download_bulk_asset_download_example_csv: उदाहरण CSV डाउनलोड करें।
+    duration: अवधि
     edit_campaign_admin: अभियान प्रशासक संपादित करें
     edit_client_admin: क्लाइंट एडमिन संपादित करें
     edit_indicator: संकेतक संपादित करें
@@ -201,10 +234,12 @@ hi:
     edit_permission_denied: आपके पास एडमिन '%{name}' को संपादित करने की अनुमति नहीं है।
     edit_project_admin: परियोजना प्रशासक संपादित करें
     edit_threesixty_campaign_admin: अभियान प्रशासक संपादित करें
+    empty: खाली
     empty_csv_file: CSV फ़ाइल में कोई डेटा नहीं है।
     enable_enhance_with_ai_client_level: कृपया क्लाइंट स्तर पर एआई के साथ एनहेंस सुविधा सक्षम करें।
     enable_maintenance: रखरखाव सक्षम करें
     enable_mobile_proctoring: मोबाइल प्रॉक्टरिंग सक्षम करें
+    enable_system_check: सिस्टम जाँच सक्षम करें
     enable_transcription: प्रतिलेखन सक्षम करें
     enable_transcription_msg: वीडियो/ऑडियो प्रतिक्रिया प्रश्नों पर एआई स्कोरिंग का उपयोग करने के लिए ट्रांसक्रिप्शन सक्षम करें।
     end_time: अंत समय
@@ -218,10 +253,12 @@ hi:
     evaluation_status: मूल्यांकन स्थिति
     evaluation_status_not_done: एक या अधिक चयनित विषयों के लिए मूल्यांकन की स्थिति 'Done' नहीं है। कृपया सुनिश्चित करें कि सभी चयनित उपयोगकर्ताओं ने मूल्यांकन पूरे कर लिए हैं या उन्हें 'Done' के रूप में चिह्नित कर दें।
     export_admin_roles_permissions: प्रशासन भूमिकाएँ और अनुमतियाँ निर्यात
+    export_campaigns_queued: निर्यात नौकरियाँ कतार में हैं। डाउनलोड लिंक के लिए अपनी सूचनाओं की जाँच करें।
     export_compact_completion_status: संक्षिप्त
     export_completion_status: निर्यात पूर्णता स्थिति
     export_completion_statuses_scheduled: पूर्णता स्थितिओं का एक्सपोर्ट जॉब सफलतापूर्वक निर्धारित किया गया
     export_detailed_completion_status: विस्तृत
+    factors: तत्व
     feature_ai_assistants_description: बेहतर उपयोगकर्ता अनुभव के लिए एआई-संचालित सहायकों को सक्षम करें।
     feature_ai_assisted_idp_description: व्यक्तिगत विकास योजना सिफारिशों में सहायता के लिए एआई का उपयोग करें
     feature_ai_content_analysis_description: मूल्यांकन के लिए एआई-संचालित सामग्री विश्लेषण सक्षम करें
@@ -240,8 +277,12 @@ hi:
     final_score_empty_msg: अंतिम स्कोर खाली नहीं हो सकता।
     fix_grammar: व्याकरण ठीक करें
     formal: औपचारिक
+    from: से
     generate_transcription: प्रतिलेखन उत्पन्न करें
     hide_middle_scores: मध्य स्कोर छिपाएँ
+    high: उच्च
+    hogan: होगन
+    hogan_assessment: होगन मूल्यांकन
     idp_plan_reset_success: योजना सफलतापूर्वक रीसेट हो गई है।
     idp_templates: आईडीपी टेम्पलेट्स
     import_ai_artifacts: AI कलाकृतियों को आयात करें
@@ -281,6 +322,7 @@ hi:
     libraries: मीडिया पुस्तकालय
     library_invalid_type: अमान्य पुस्तकालय आइटम
     licenses: लाइसेंस
+    low: कम
     maintenance: रखरखाव
     maintenance_settings: रखरखाव सेटिंग्स
     maintenance_settings_description: सिस्टम रखरखाव विंडो और सेटिंग्स प्रबंधित करें
@@ -297,6 +339,8 @@ hi:
     mhs_session_id: एमएचएस सत्र आईडी
     min_value: न्यूनतम मान
     minimum_10_words: न्यूनतम 10 शब्द
+    minimum_download_speed: न्यूनतम डाउनलोड गति (एमबीपीएस में)
+    minimum_upload_speed: न्यूनतम अपलोड गति (एमबीपीएस में)
     missing_min_max_values: न्यूनतम और अधिकतम मान आवश्यक हैं।
     model_answer: आदर्श उत्तर
     model_answer_placeholder: AI स्कोरिंग के लिए मॉडल उत्तर दर्ज करें।
@@ -305,6 +349,7 @@ hi:
     name_required: नाम आवश्यक है
     no_file_selected: कोई फ़ाइल चयनित नहीं है
     no_notifications: कोई सूचना नहीं
+    no_status: कोई स्थिति नहीं
     norms: मानदंड
     not_completed: पूर्ण नहीं
     not_completed_tooltip: "%{completed} मूल्यांकनकर्ता नियुक्त कर दिए गए हैं, लेकिन केवल %{submitted} ने ही मूल्यांकन पूरे किए हैं।"
@@ -837,6 +882,19 @@ hi:
     saml_settings: SAML सेटिंग्स
     save: बचाएँ
     save_assessment_for_scoring_management: स्कोरिंग शुरू करने से पहले मूल्यांकन सहेजें।
+    saved_filter_label:
+      approval_status_in: अनुमोदन की स्थिति
+      approver_user_id_in: अनुमोदक
+      assessment_id_in: मूल्यांकन
+      campaign_id_in: अभियान
+      client_id_in: ग्राहक
+      project_id_in: परियोजना
+      qc_user_id_in: क्यूसी यूज़र
+      report_id_in: रिपोर्ट
+      subject_email_cont: विषय ईमेल
+      subject_full_name_cont: विषय नाम
+      user_email_cont: उपयोगकर्ता ईमेल
+      user_full_name_cont: उपयोगकर्ता नाम
     scheduling: अनुसूचीकरण
     score: स्कोर
     score_approval_not_allowed_to_approve: आपको इस स्कोर को मंजूरी देने की अनुमति नहीं है।
@@ -893,7 +951,9 @@ hi:
     subject_part_of_other_invite: "%{user_email} ईमेल वाले विषय को पहले ही '%{workshop_invite_name}' में आमंत्रित किया जा चुका है।"
     target_job_role: लक्षित नौकरी की भूमिका
     this_field_is_required: यह फ़ील्ड अनिवार्य है
+    threesixty: 360 अभियान
     timezone: समय क्षेत्र
+    to: के लिए
     tone: स्वर
     toolbar_ai_insight: एआई अंतर्दृष्टि
     toolbar_ai_suggestion: एआई सुझाव
@@ -917,6 +977,9 @@ hi:
     user_report_events: उपयोगकर्ता रिपोर्ट घटनाएँ
     users: उपयोगकर्ता
     validation_error: कृपया सभी आवश्यक फ़ील्ड भरें।
+    validity: वैधता
+    very_high: बहुत अधिक
+    very_low: बहुत कम
     view_licenses: लाइसेंस देखें
     waiting: इंतज़ार
     weight: वजन

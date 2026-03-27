@@ -22,6 +22,8 @@ class Administration::DimensionPolicy < Administration::BasePolicy
   end
 
   def copy?
+    return false if record.is_a?(Dimension) && record.skill_rater?
+
     @user.is?(:superadmin) || @user.has_permission?(:dimensions, :manage, project_id: project_id)
   end
 

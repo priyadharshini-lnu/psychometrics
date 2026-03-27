@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import SerializeReport from './SerializeReport'
 import PageInterface from '../interfaces/Page'
@@ -118,7 +117,7 @@ export const changeSize = (size: {width: number, height: number}) => ({ type: CH
 export const changeSkipLogic = value => ({ type: CHANGE_SKIP_LOGIC, value })
 export const setReportLoading = value => ({ type: SET_REPORT_LOADING, value })
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const save = (report: any) => {
   const builder = {
     report: SerializeReport.run(report),

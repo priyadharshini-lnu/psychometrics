@@ -109,18 +109,16 @@ class Membership < ApplicationRecord
     end
   }
   scope :join_user, lambda {
-    joining { user }.selecting do
-      [
-        'memberships.*',
-        user.disabled,
-        user.first_name,
-        user.last_name,
-        user.email,
-        user.role.as('user_role'),
-        user.is_anonym,
-        disabled.as('membership_disabled')
-      ]
-    end
+    joins(:user).select(
+      'memberships.*',
+      'users.disabled',
+      'users.first_name',
+      'users.last_name',
+      'users.email',
+      'users.role AS user_role',
+      'users.is_anonym',
+      'memberships.disabled AS membership_disabled'
+    )
   }
   scope :hris_data_cont, lambda { |data|
     data = JSON.parse(data) if data.is_a?(String)

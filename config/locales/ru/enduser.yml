@@ -1,6 +1,8 @@
 ---
 ru:
   enduser:
+    ack_subtitle: Я прочитал(а) и понял(а) приведенные выше инструкции и готов(а) приступить к проверке системы.
+    ack_title: Я подтверждаю и понимаю
     add_idp_plan_note: Добавить примечание...
     add_idp_plan_rejection_reason: Добавить причину...
     ai_idp_assistant_response_no: Нет
@@ -8,13 +10,43 @@ ru:
     ai_idp_assistant_response_yes_proceed_with_plan_creation: Да, приступайте к созданию плана.
     ai_idp_retake_step_chat_hint_no_document: Вы можете возобновить чат, чтобы поделиться более подробной информацией, и я сделаю все возможное, чтобы вам помочь.
     ai_idp_summary_hint_no_document: С вашего разрешения, если вы согласитесь, я могу составить для вас план развития. Если нет, вы можете перезапустить чат, чтобы поделиться более подробной информацией.
+    all_checks_must_pass: Прежде чем продолжить, необходимо пройти все проверки.
     approve_idp_plan: Утвердить план
+    back: Назад
+    before_you_begin: Прежде чем начать
+    begin_message: Прежде чем приступить к мероприятиям в рамках этой кампании, необходимо запустить проверку готовности, которая определит совместимость вашего устройства
     bookings: Бронирование
+    browser: Браузер
+    browser_and_device: Браузер и устройство
+    browser_compatbility_step: Этап проверки совместимости с браузерами
+    browser_compatibility: 'Совместимость с браузерами:'
+    browser_compatibility_check: Тест на совместимость с браузерами
+    browser_compatibility_check_description: Проверка поддержки всех необходимых функций вашим браузером
+    browser_compatibility_result: Совместимость с браузерами
+    browser_version_fix_description_first: 'Используйте один из поддерживаемых браузеров: Chrome, Firefox, Edge или Safari'
+    browser_version_fix_description_second: Обновите браузер до последней версии, чтобы обеспечить совместимость.
+    browser_version_fix_description_third: Попробуйте воспользоваться окном анонимного просмотра
+    browser_version_fix_title: Ваша версия браузера не поддерживается.
+    camera: Видео и аудио
+    camera_access_blocked: Доступ к камере был запрещен или заблокирован вашим браузером. Проверьте настройки разрешений в браузере.
+    camera_check: Проверка камеры и микрофона
+    camera_check_description: Убедитесь, что ваша камера и микрофон работают исправно для записи
+    camera_test_step: Этап проверки видео и аудио
     campaign: Кампания
+    chat_instructions: Инструкции по использованию чата
+    check: Проверить
+    check_video_recording: Пожалуйста, проверьте видеозапись, воспроизведя её.
+    checking_browser_compatibility: Проверка совместимости браузеров...
     development: Разработка
     direct_reportees: Непосредственные подчиненные
+    download: Скачать
     download_pdf: Скачать PDF
+    environment_setup: Настройка среды
+    error_uploading_video: Ошибка при загрузке видео
+    fail: Неудача
+    follow_these_steps: Выполните следующие действия, чтобы устранить проблемы, обнаруженные в ходе проверки системы
     home: Главная
+    how_to_fix: 'Как исправить:'
     idp_loading_fifth_step: Извлечение действий разработки из шаблона
     idp_loading_first_step: Анализ вашего отчета об оценке
     idp_loading_fourth_step: Выбор соответствующих навыков
@@ -22,13 +54,43 @@ ru:
     idp_loading_secondary_text: Не стесняйтесь уйти. Ваш план будет готов, когда вы вернетесь.
     idp_loading_sixth_step: Создание действий по развитию
     idp_plan_approval_note: Примечание об утверждении
+    idp_proceed_with_plan_creation: Да, приступить к созданию плана
+    idp_report_being_generated: Мы работаем над вашим отчетом
+    idp_reset_chat: Сбросить чат
     idp_retake_steps_continue_with_this_information: Продолжить с этой информацией
     insights: Инсайты
+    instruction: Убедитесь, что вы и ваше окружение полностью готовы
+    internet_speed: Скорость интернета
+    internet_speed_optimal: Скорость вашего подключения оптимальна
+    internet_speed_slow: Скорость интернета ниже, чем требуется для проведения кампании
+    less_than_five_minutes: Менее 5 минут
     lighthouse_assistant: Помощник маяка
+    localstorage_fix_description_first: Убедитесь, что вы не находитесь в режиме приватного просмотра или инкогнито, так как в этих режимах localStorage часто отключено.
+    localstorage_fix_title: В вашем браузере не включено локальное хранилище
+    localstorage_support: LocalStorage включено
     max_word_limit: Должно быть не более %{max} слов
+    media_recorder_api_fix_description_first: Включите JavaScript в настройках браузера
+    media_recorder_api_fix_description_second: Убедитесь, что ваш браузер поддерживает API MediaRecorder, и при необходимости обновите его до последней версии.
+    media_recorder_api_fix_description_third: Попробуйте другой современный браузер, например Chrome или Firefox
+    media_recorder_api_fix_title: API Media Recorder не поддерживается в вашем браузере.
+    media_recorder_api_support: Поддержка API MediaRecorder
     min_word_limit: Должно быть не менее %{min} слов
     my_plan: Мой план
+    network: Сеть
+    network_check: Тест скорости интернета
+    network_check_description: Проверка качества вашего интернет-соединения между нашими серверами и вашим устройством.
+    network_check_fix_fifth: Если проблема не устраняется, обратитесь к своему интернет-провайдеру за дополнительной помощью
+    network_check_fix_first: Закройте другие приложения, которые могут использовать пропускную способность сети (потоковое видео, загрузки)
+    network_check_fix_fourth: Попробуйте воспользоваться другим сетевым подключением, если оно доступно
+    network_check_fix_second: Переместитесь поближе к роутеру Wi-Fi или подключитесь с помощью кабеля Ethernet
+    network_check_fix_third: Перезагрузите роутер/модем и попробуйте ещё раз
+    network_test_step: Этап тестирования сети
     no_audio_warning: Аудио не обнаружено. Проверьте, подключен ли микрофон и работает ли он правильно.
+    pass: Пропустить
+    pending: В процессе рассмотрения
+    personal_readiness: Личная готовность
+    plan_text: Планируйте время на весь период. После начала тестирования перерывы могут быть запрещены в зависимости от типа тестирования.
+    please_check_your_internet_connection: Проверьте подключение к Интернету и попробуйте ещё раз.
     profile: Профиль
     profile_details: Подробности
     question_counter: Вопрос %{current} из %{total}
@@ -37,12 +99,29 @@ ru:
     recording: запись
     reject_idp_plan: Отклонить план
     request_retry_message: Вы не подключены к Интернету. Ваши ответы не могут быть сохранены, но будут сохранены автоматически, как только вы снова подключитесь к Интернету. Пожалуйста, не обновляйте и не закрывайте страницу.
+    required_download_in_mbps: Требуемая скорость загрузки (Мбит/с)
+    required_upload_in_mbps: Требуемая скорость загрузки в Мбит/с
+    rerun_check: Повторная проверка
+    rerun_checks: Повторная проверка
+    result: Результат
+    results: Результат
     selected_count: "%{count} выбранный"
     skill_type: Тип навыка
     start_campaign_message_proctored: Это контролируемая кампания, пожалуйста, нажмите кнопку «%{buttonText}» (Начать), чтобы приступить к выполнению заданий.
     start_campaign_message_timed: Это ограниченная по времени кампания, пожалуйста, нажмите кнопку «%{buttonText}», чтобы начать участие в мероприятиях.
     start_campaign_message_timed_proctored: Это кампания с ограниченным временем и под наблюдением, пожалуйста, нажмите кнопку «%{buttonText}» (Начать кампанию), чтобы приступить к действиям.
+    start_readiness_check: Начать проверку готовности
+    start_system_check: Запустить проверку системы
     status_unknown: Статус неизвестен
+    subinstruction_eight: Выделите достаточно времени для проведения полной оценки
+    subinstruction_five: Готовы ли вы открыть доступ к своему экрану на время сеанса?
+    subinstruction_four: Работающая веб-камера и микрофон
+    subinstruction_one: Тихая, хорошо освещенная комната, в которой нет посторонних людей
+    subinstruction_seven: Убедитесь, что ваше устройство полностью заряжено или подключено к розетке
+    subinstruction_six: Закройте все ненужные приложения и вкладки браузера
+    subinstruction_three: Стабильное подключение к Интернету (не менее 1 Мбит/с)
+    subinstruction_two: Чистый стол без посторонних предметов
+    system_check: Проверка системы
     system_check_access: Доступ
     system_check_audio_random_phrases:
       eight: Пусть ваш кофе будет крепким, а день — продуктивным.
@@ -55,6 +134,13 @@ ru:
       three: Проверка, раз, два, три, звук чистый, как только может быть!
       two: Быстрая коричневая лиса прыгает через ленивую собаку.
     system_check_audio_title: Пожалуйста, произнесите и повторите следующее предложение 3 раза.
+    system_check_complete: Проверка системы завершена
+    system_check_failed: Проверка системы завершилась сбоем
+    system_check_failed_description: Пожалуйста, устраните неполадки и запустите проверку системы заново.
+    system_check_failed_message: Некоторые системные проверки завершились с ошибкой. Ознакомьтесь с подробностями и попробуйте ещё раз.
+    system_check_failed_title: Вы не сможете продолжить, пока не будут выполнены все необходимые проверки.
+    system_check_not_enabled: Для этой кампании проверка системы не включена
+    system_check_passed_successfully: Все системные проверки прошли успешно!
     system_check_proceed: Да, можно продолжать
     system_check_retake: Нет, я хочу пересдать
     system_check_run_again: Запустить снова
@@ -64,4 +150,41 @@ ru:
     system_check_upload_again: Загрузить снова
     system_check_uploading: Загрузка
     system_check_video_random_phrase: Поднимите руку, если вы меня слышите, или просто помашите рукой в камеру!
+    system_check_warning: Предупреждение о проверке системы
+    system_check_warning_message: Возможные сбои в работе системы могут повлиять на результаты оценки — пожалуйста, продолжайте только после успешного прохождения всех проверок.
+    system_checks: Проверка системы
+    task_duration: Продолжительность задачи
     tasks: Задачи
+    time_commitment: Время, которое необходимо уделить
+    troubleshooting_guide: Руководство по устранению неисправностей
+    troubleshooting_guide_browser_fifth: Убедитесь, что в настройках браузера включена функция LocalStorage
+    troubleshooting_guide_browser_first: 'Используйте один из поддерживаемых браузеров: Chrome, Firefox, Edge или Safari (последние версии)'
+    troubleshooting_guide_browser_fourth: Включите JavaScript и файлы cookie в настройках браузера
+    troubleshooting_guide_browser_second: Очистите кэш браузера и файлы cookie
+    troubleshooting_guide_browser_sixth: 'Попробуйте воспользоваться окном анонимного просмотра (Примечание: в режиме анонимного просмотра поддержка LocalStorage может быть ограничена или отсутствовать)'
+    troubleshooting_guide_browser_third: Отключите расширения браузера, которые могут мешать доступу к мультимедиа
+    troubleshooting_guide_network_fifth: Если проблема не устраняется, обратитесь к своему интернет-провайдеру за дополнительной помощью
+    troubleshooting_guide_network_first: Закройте другие приложения, которые могут использовать пропускную способность сети (потоковое видео, загрузки и т. д.)
+    troubleshooting_guide_network_fourth: Попробуйте воспользоваться другим сетевым подключением, если оно доступно
+    troubleshooting_guide_network_second: Переместитесь поближе к роутеру Wi-Fi или подключитесь с помощью кабеля Ethernet
+    troubleshooting_guide_network_third: Перезагрузите роутер/модем и попробуйте ещё раз
+    troubleshooting_guide_video_fifth: 'В Windows: проверьте настройки конфиденциальности > доступ к камере/микрофону'
+    troubleshooting_guide_video_first: Нажмите на значок замка/сведения в адресной строке браузера
+    troubleshooting_guide_video_fourth: Если доступ заблокирован, возможно, вам потребуется сбросить настройки прав доступа в настройках браузера
+    troubleshooting_guide_video_second: Найдите настройки «Камера» и «Микрофон» и установите для них значение «Разрешить»
+    troubleshooting_guide_video_sixth: 'На Mac: перейдите в «Системные настройки» > «Безопасность и конфиденциальность» > «Камера/Микрофон»'
+    troubleshooting_guide_video_third: Обновите страницу после изменения прав доступа
+    untimed: Без ограничения по времени
+    upload: Загрузить
+    video_and_audio: Видео и аудио
+    video_and_audio_recording: Запись видео и аудио
+    video_check_fix_fifth: Если камера подключена внешне, попробуйте отключить её от источника питания и подключить заново
+    video_check_fix_first: Нажмите «Разрешить», когда браузер запросит разрешение на использование камеры
+    video_check_fix_fourth: Убедитесь, что камера подключена и включена
+    video_check_fix_second: Перейдите в настройки браузера и разрешите этому сайту доступ к камере
+    video_check_fix_sixth: Перезапустите браузер и попробуйте ещё раз
+    video_check_fix_third: Закройте другие приложения, использующие камеру (Zoom, Teams и т. д.)
+    webgl_api_fix_description_first: Убедитесь, что ваш браузер поддерживает WebGL и что эта функция включена в настройках
+    webgl_api_fix_description_second: Обновите драйверы графической карты до последней версии
+    webgl_api_fix_title: WebGL не поддерживается или не включен в вашем браузере
+    webgl_api_support: Поддержка API WebGL

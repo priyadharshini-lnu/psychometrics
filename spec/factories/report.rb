@@ -26,5 +26,10 @@ FactoryBot.define do
       assessments { build_list(:assessment, 1, :mhs) }
       external_settings { { report_id: 'reportId' } }
     end
+
+    trait :skillvue do
+      provider { 'skillvue' }
+      assessments { build_list(:assessment, 1, :skillvue) }
+    end
   end
 end

@@ -5,6 +5,7 @@ class BaseController < ActionController::Base
   include SetLocale
   include AddCookie
   include ControllerUtilities
+  include CookieNotice
   prepend AuditLogModule::ControllerHelper
   include SiemLogger::ControllerHelper
 

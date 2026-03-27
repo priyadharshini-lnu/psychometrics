@@ -9,13 +9,14 @@ module Administration
       append_before_action :pundit_authorize
 
       def participant_options
-        render(json: threesixty_campaign.option.participants.tap do |data|
-          data[:relationships] = Panko::ArraySerializer.new(
-            Relationships::ByCampaign.
-            new(threesixty_campaign.campaign),
-            each_serializer: RelationshipSerializer
-          ).to_a
-        end)
+        participants = threesixty_campaign.option.participants
+        participants[:relationships] = Panko::ArraySerializer.new(
+          Relationships::ByCampaign.new(threesixty_campaign.campaign),
+          each_serializer: RelationshipSerializer
+        ).to_a
+        participants['global'] = global_with_resolved_speeds(participants['global'])
+
+        render json: participants
       end
 
       def message_options
@@ -83,6 +84,14 @@ module Administration
       def load_campaign_report!
         @campaign_report = CampaignReport.includes(:report).find_by!(report_id: threesixty_campaign.report_id,
                                                                      campaign_id: threesixty_campaign.campaign_id)
+      end
+
+      def global_with_resolved_speeds(global)
+        campaign = threesixty_campaign.campaign
+        (global || {}).merge(
+          'calculated_minimum_download_speed' => campaign.calculated_minimum_download_speed,
+          'calculated_minimum_upload_speed' => campaign.calculated_minimum_upload_speed
+        )
       end
     end
   end

@@ -80,7 +80,6 @@ hu:
         title: AI műtermék
       generate: Létrehoz
       generate_result_info_message: Az eredmények generálódnak, kérjük, frissítse az oldalt a frissített eredmények megtekintéséhez.
-      generated_at: Generált
       generated_at_time: Generálva %{time}
       generated_value: Generált érték
       id: AZONOSÍTÓ
@@ -1873,6 +1872,8 @@ hu:
       form:
         enable_innovation_styles: Innovációs stílusok engedélyezése
         enable_occupations: Foglalkozások engedélyezése
+        name: Név
+        title: Méretek
       import_factors:
         import: Importál
         sample_file: Minta fájl
@@ -1920,6 +1921,7 @@ hu:
         confirmations:
           delete:
             body: "<p>Biztosan törölni akarod ezt a dimenziót?</p>\n"
+            message: A megerősítéshez írja be az alábbi dimenziónevet a szövegmezőbe
             title: "<strong>Dimenzió</strong> törlése?"
           toggle_status:
             body: "<p>Biztos vagy benne, hogy %{status} akarod ezt a dimenziót?</p>\n"
@@ -1984,6 +1986,7 @@ hu:
                 score: Pontszám
                 zscore: Z pontszám
             title: JSON-elérési utak pontszámokhoz
+        predicate: Predikátum
         scoring_strategies:
           custom_formula: Szokásos képlet
           external_score: Külső pontszám
@@ -1997,10 +2000,13 @@ hu:
           sub_factors_sum: A tényezők súlyozott összege
         scoring_strategies_tip: "<strong>Kérdések (átlagos):</strong> Ez olyan, mint a jelenlegi pontozási módszer, amikor egy tényezőhöz kapcsolódó kérdések vannak.<br /> <br /><strong>Kérdések (SUM):</strong> Ez olyan, mint a Kérdések (átlag), de a SUM függvényt használja<br /> <br /><strong>Egyéb tényezők kérdései (átlag):</strong> Ez olyan, mint a jelenlegi pontozási módszer, amikor egy tényezőnek vannak altényezői, csak a változás a súlyozás hozzáadása.<br /> <br /><strong>Egyéb tényezők kérdései (SUM):</strong> Ez olyan, mint az Egyéb tényezők (átlag), de a SUM függvényt használja<br /> <br />A <strong>tényezők súlyozott összege:</strong> Itt a kiválasztott egyéb tényezők pontszámait megszorozzuk a súlyukkal."
         scoring_strategy: Pontozási stratégia
+        search_factors: Keresési szempontok
         use_sub_factor_norm_score: Használja a Tényezők normapontszámát
+        value: Érték
       index:
         icon: Ikon
         new: Hozzáad
+        precision: Pontosság
         scoring_strategies:
           custom_formula: Szokásos képlet
           external_score: Külső pontszám
@@ -2294,6 +2300,7 @@ hu:
       edit:
         header: Innovációs stílus szerkesztése
       form:
+        full_description: Részletes leírás
         no_icon: Nincs ikon
       index:
         new: Hozzáad
@@ -2665,8 +2672,12 @@ hu:
       edit:
         header: Foglalkozás szerkesztése
       form:
+        alternative_icon: Alternatív ikon
+        color: Szín
         hint:
           key_career_tracks: '"+" - lista, "*" - félkövér. Példa: + *Biológia* - némi leírás...'
+        indicative_roles_image: Példakénti szerepek képe
+        key_career_tracks_image: A főbb karrierpályák ábrája
         no_icon: Nincs ikon
       index:
         new: Hozzáad
@@ -2737,6 +2748,7 @@ hu:
       assessment_center: Értékelő központ
       assessment_id: Értékelési azonosító
       campaign_id: Kampány azonosítója
+      campaign_link: Kampány link
       campaign_name: Kampány neve
       campaigns: Kampányok
       description: Leírás
@@ -3734,8 +3746,10 @@ hu:
       id: Azonosító
       import:
         factors: Kampánytényezők importálása
+      innovation_style_removal_confirmation: Írja be az alábbi innovációs stílus nevét a szövegmezőbe a megerősítéshez
       name: Név
       no_groups: Nincsenek csoportok
+      occupation_removal_confirmation: Írja be az alábbi foglalkozás nevét a szövegmezőbe a megerősítéshez
       output_type: Kimenet típusa
       pattern_error: Csak alfanumerikus karakterek, szóközök és kötőjelek engedélyezettek.
       profile:

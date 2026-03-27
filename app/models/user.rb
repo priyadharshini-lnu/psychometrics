@@ -117,6 +117,7 @@ class User < ApplicationRecord
   has_many :evaluated_results, through: :evaluated_assessments, source: :users_result
   has_many :evaluation_results, through: :evaluation_assessments, source: :users_result
   has_many :campaign_users, dependent: :destroy
+  has_many :system_check_sessions, dependent: :destroy
   has_many :reminder_histories, class_name: 'Threesixty::ReminderHistory', dependent: :delete_all
   has_one :hogan_credential, -> { active }, dependent: :destroy
   has_one :oracle_credential, dependent: :destroy
@@ -404,21 +405,20 @@ class User < ApplicationRecord
     end
 
     def find_user_with_membership(project, subdomain, warden_conditions)
-      Users::Regular.enabled.identified.joins(:clients).
-        where.has do
-        project_id.eq(project.id) &
-          email.eq(warden_conditions[:email]&.downcase) &
-          clients.subdomain.eq(subdomain) &
-          clients.disabled.not_eq(true)
-      end.first
+      Users::Regular.enabled.identified.
+        joins(:clients).
+        where(project_id: project.id).
+        where(email: warden_conditions[:email]&.downcase).
+        where(clients: { subdomain: subdomain }).
+        where.not(clients: { disabled: true }).
+        first
     end
 
     def find_user_for_new_campaign(project, warden_conditions)
       Users::Regular.enabled.identified.
-        where.has do
-        project_id.eq(project.id) &
-          email.eq(warden_conditions[:email]&.downcase)
-      end.first
+        where(project_id: project.id).
+        where(email: warden_conditions[:email]&.downcase).
+        first
     end
 
     # Try find User in Subdomain scope

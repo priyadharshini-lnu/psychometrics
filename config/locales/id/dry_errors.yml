@@ -41,6 +41,12 @@ id:
         skills_not_belong_to_project: Keahlian yang dipilih harus sesuai dengan proyek yang ditentukan.
         skills_required: Pilihlah setidaknya satu keterampilan.
       exceeded_subjects_count: Anda hanya dapat menambahkan %{count} subjek per undangan
+      factors_norms:
+        invalid_field_name: Nama kolom harus 'score_from' atau 'score_to'.
+        invalid_float: Nilai harus berupa bilangan desimal yang sah.
+        invalid_level: Tingkat tidak valid. Tingkat yang valid adalah%{levels}
+        score_from_less_than_score_to: nilai_awal harus lebih kecil dari nilai_akhir
+        score_to_greater_than_score_from: nilai_tujuan harus lebih besar dari nilai_awal
       filled?: tidak bisa kosong
       idp_template:
         content_required: Konten diperlukan untuk instruksi

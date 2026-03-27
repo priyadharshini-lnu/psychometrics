@@ -31,12 +31,9 @@ Rails.application.routes.draw do
   get '/maintenance', to: 'maintenance#index', as: :maintenance
 
   scope module: :end_user do
-    get 'speed_test/download/:size', to: 'speed_test#download', constraints: { size: /\d+/ }
-    post 'speed_test/upload', to: 'speed_test#upload'
-    get 'speed_test/ping', to: 'speed_test#ping'
-    get 'speed_test/s3/download_url', to: 'speed_test#s3_download_url'
-    get 'speed_test/s3/upload_url', to: 'speed_test#s3_upload_url'
-    get 'speed_test/s3/ping_url', to: 'speed_test#s3_ping_url'
+    get 'speed_test/download_url', to: 'speed_test#download_url'
+    get 'speed_test/upload_url', to: 'speed_test#upload_url'
+    get 'speed_test/ping_url', to: 'speed_test#ping_url'
   end
 
   get '/admin', to: 'administration/app#dashboard', as: :admin
@@ -308,10 +305,10 @@ Rails.application.routes.draw do
           collection do
             post :import
             post :assign_reports_and_assessments
-            get :export_reports_and_assessments
-            get :export
-            get :export_completion_status
-            get :export_compact_completion_status
+            post :export_reports_and_assessments
+            post :export
+            post :export_completion_status
+            post :export_compact_completion_status
             post :search
             post :bulk_download_idp_reports
           end
@@ -350,12 +347,12 @@ Rails.application.routes.draw do
         end
         resources :assessments, only: %i[create destroy] do
           member do
-            get :export_raw_results
-            get :export_scoring_results
-            get :export_normed_results
-            get :export_raw_factor_scores
-            get :export_external_results
-            get :export_occupations
+            post :export_raw_results
+            post :export_scoring_results
+            post :export_normed_results
+            post :export_raw_factor_scores
+            post :export_external_results
+            post :export_occupations
             post :import_results
             post :import_external_scoring_results
             get :norms
@@ -607,10 +604,10 @@ Rails.application.routes.draw do
         end
       end
       member do
-        get :export_threesixty_scores
-        get :export_results
+        post :export_threesixty_scores
+        post :export_results
         post :import_results
-        get :export_completion_status
+        post :export_completion_status
         delete :reset
         delete :reset_nominations
         delete :remove_user
@@ -678,7 +675,7 @@ Rails.application.routes.draw do
         post :export_translations
         post :import_translations
         post :import_factors
-        get :export_json
+        post :export_json
       end
 
       collection do
@@ -945,6 +942,22 @@ as: :simulation_progress_notification
         get :insights
         put :reset_practice_campaign
         post :mark_meeting_assessment_complete
+
+        resources :system_check_sessions, only: %i[show create] do
+          collection do
+            get :requirements_status
+            get :results
+            post :add_record
+            post :complete
+          end
+        end
+
+        resources :system_check_records, only: [], controller: 'system_check_sessions' do
+          member do
+            post :upload_video_url
+            put :complete_multipart_upload
+          end
+        end
       end
       get 'assessment_centers/:id', to: 'workshops#show', as: :workshop_page
       get :dashboard, to: 'users#dashboard'
@@ -1196,6 +1209,7 @@ as: :simulation_progress_notification
     get 'invites/:id/details', to: 'end_user/users#dashboard'
     get 'idp/*path', to: 'end_user/users#dashboard'
     get 'evaluation_session_exists', to: 'end_user/users#dashboard'
+    get 'campaign_system_check/:campaign_id/:step', to: 'end_user/users#dashboard'
 
     namespace :lti do
       get 'jwks', to: 'jwks#index'
@@ -1325,6 +1339,7 @@ as: :simulation_progress_notification
                 post :update_reflection_questions, on: :member
                 post :update_interview_questions, on: :member
                 post :update_instructions, on: :member
+                post :update_chat_instructions, on: :member
               end
             jsonapi_resources :reflection_questions, controller: 'projects/reflection_questions' do
               post :uploads, on: :member
@@ -1337,11 +1352,11 @@ as: :simulation_progress_notification
             end
             jsonapi_resources :privacy_settings, only: %i[index update]
             member do
-              get :workshop_status_export
+              post :workshop_status_export
               get :seach_user
               put :add_manager
-              get :export_completion_status
-              get :export_compact_completion_status
+              post :export_completion_status
+              post :export_compact_completion_status
             end
           end
           jsonapi_resources :memberships, only: %i[index create update show destroy] do
@@ -1379,18 +1394,41 @@ as: :simulation_progress_notification
             scope module: :assessments do
               resource :uploads, only: %i[update]
             end
-            get :export_raw_factor_scores
-            get :export_raw_results
-            get :export_normed_results
-            get :external_scores
+            post :export_raw_factor_scores
+            post :export_raw_results
+            post :export_normed_results
+            post :external_scores
           end
-          jsonapi_resources :dimensions
+          jsonapi_resources :dimensions do
+            scope module: :dimensions do
+              jsonapi_resources :factors do
+                resource :uploads, only: %i[update], controller: 'factors/uploads'
+              end
+              jsonapi_resources :occupations do
+                scope module: :occupations do
+                  jsonapi_resources :occupations_factors
+                  resource :uploads, only: %i[update], controller: 'uploads'
+                end
+              end
+              jsonapi_resources :innovation_styles do
+                scope module: :innovation_styles do
+                  jsonapi_resources :innovation_styles_factors
+                  resource :uploads, only: %i[update], controller: 'uploads'
+                end
+              end
+            end
+          end
           jsonapi_resources :norms do
             post :copy
             post :editor
             post :export
             collection do
               post :import
+            end
+          end
+          jsonapi_resources :factors_norms do
+            collection do
+              post :update_cell
             end
           end
           jsonapi_resources :maintenance_settings
@@ -1550,6 +1588,10 @@ only: %i[index create update]
               only: %i[index show], param: :user_id do
                 collection do
                   post :export
+                  post :change_finalized_artifact_results_bulk
+                end
+                member do
+                  post :change_finalized_artifact_results
                 end
               end
 
@@ -1575,7 +1617,7 @@ only: %i[index create update]
             jsonapi_resources :campaign_factors, only: %i[index create update destroy] do
               collection do
                 post :update_positions
-                get  :export
+                post :export
                 post :import
                 post :bulk_update
                 post :remove_all
@@ -1589,7 +1631,7 @@ only: %i[index create update]
               end
               collection do
                 get :campaign_scores
-                get :export_scorings
+                post :export_scorings
                 post :rescore_bulk
                 post :change_finalized_campaign_score_bulk
                 post :import_external_campaign_scorings
@@ -1609,6 +1651,12 @@ only: %i[index create update]
           end
           jsonapi_resources :workshops, only: %i[index] do
             jsonapi_relationships
+          end
+
+          jsonapi_resources :workshop_subjects, only: %i[index] do
+            collection do
+              get :metadata_for_filters
+            end
           end
 
           jsonapi_resources :user_availability_dates, only: %i[index create update destroy]
@@ -1644,12 +1692,13 @@ only: %i[index create update]
               post :discard_score
               post :discard_question
               post :discard_all_questions
+              post :rescore
               get :subject_assessment
             end
           end
           resources :user_report_events, only: %i[index] do
             collection do
-              get :export
+              post :export
             end
           end
           resources :workshop_facilitators, only: %i[] do

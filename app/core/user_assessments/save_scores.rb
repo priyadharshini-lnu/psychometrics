@@ -2,16 +2,17 @@
 
 module UserAssessments
   class SaveScores < BaseCommand
-    attr_reader :user_assessment, :user_result, :current_user, :allow_ai_rescore, :rescore, :admin_job_record_id
+    attr_reader :user_assessment, :user_result, :current_user, :rescore, :allow_ai_rescore, :admin_job_record_id,
+                :force_ai_regenerate
 
-    def initialize(user_assessment, current_user = nil, rescore: false, allow_ai_rescore: false,
-                   admin_job_record_id: nil)
+    def initialize(user_assessment, current_user = nil, **options)
       @user_assessment = user_assessment
       @user_result = user_assessment.users_result
       @current_user = current_user
-      @rescore = rescore
-      @allow_ai_rescore = allow_ai_rescore
-      @admin_job_record_id = admin_job_record_id
+      @rescore = options.fetch(:rescore, false)
+      @allow_ai_rescore = options.fetch(:allow_ai_rescore, false)
+      @admin_job_record_id = options[:admin_job_record_id]
+      @force_ai_regenerate = options.fetch(:force_ai_regenerate, false)
     end
 
     def call
@@ -55,6 +56,7 @@ module UserAssessments
       AI::ContentAnalysis::TriggerAIScoringJob.perform_later(
         user_result.id,
         rescore: rescore,
+        force_regenerate: force_ai_regenerate,
         admin_job_record_id: admin_job_record_id
       )
       broadcast :waiting

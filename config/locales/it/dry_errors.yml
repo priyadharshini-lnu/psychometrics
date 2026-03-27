@@ -41,6 +41,12 @@ it:
         skills_not_belong_to_project: Le competenze selezionate devono appartenere al progetto specificato.
         skills_required: Selezionare almeno un'abilità.
       exceeded_subjects_count: È possibile aggiungere solo %{count} soggetti per ogni invito
+      factors_norms:
+        invalid_field_name: Il nome del campo deve essere "score_from" oppure "score_to".
+        invalid_float: Il valore deve essere un numero decimale valido.
+        invalid_level: Livello non valido. I livelli validi sono%{levels}
+        score_from_less_than_score_to: score_from deve essere inferiore a score_to
+        score_to_greater_than_score_from: score_to deve essere maggiore di score_from
       filled?: non può essere vuoto
       idp_template:
         content_required: Il contenuto è richiesto per le istruzioni

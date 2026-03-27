@@ -873,6 +873,7 @@ nl:
         export_assessment_questions: Vragen over exportbeoordeling
         export_campaign_ai_artifacts: Exportcampagne-AI-artefacten
         export_campaign_ai_artifacts_results: Exporteer resultaten van AI-artefacten van campagnes
+        export_campaign_datasheet: Gegevensblad exportcampagne
         export_campaign_factors: Factoren voor exportcampagnes
         export_campaign_scorings: Campagne scorings exporteren
         export_dashboard_as_file: Dashboard exporteren als bestand
@@ -932,6 +933,7 @@ nl:
         regenerate_report: Regenereren Rapport
         regenerate_threesixty_report: Regenereren Drieënzestig Verslag
         remap_report_assessment: Beoordeling Remap-rapport
+        rescore_ai_scoring: Herbeoordeling met behulp van AI
         rescore_assessment: Rescore-beoordeling
         rescore_user_assessment: Rescore gebruikersbeoordeling
         send_sms_invites: SMS-uitnodigingen versturen
@@ -1276,7 +1278,7 @@ nl:
     record_not_found: Record niet gevonden
     user_not_authorized: Gebruiker niet geautoriseerd
   auth:
-    cookies_link: <a href="%{cookies_url}">Cookiesverklaring</a>
+    cookie_notice_link: <a href="%{cookies_url}">Cookieverklaring
     current_password: Huidig wachtwoord
     current_password_placeholder: Huidig wachtwoord invoeren
     email: E-mail
@@ -1322,7 +1324,7 @@ nl:
     password_confirmation: Wachtwoord bevestigen
     password_confirmation_placeholder: Wachtwoord bevestigen
     password_placeholder: Voer wachtwoord in
-    privacy_statement_link: <a href="%{privacy_url}">Privacyverklaring</a>
+    privacy_notice_link: <a href="%{privacy_url}">Privacyverklaring
     registration:
       description: Vul de onderstaande gegevens in om te registreren en een nieuwe account aan te maken
       email_hint: We respecteren je privacy en tolereren geen spam. We zullen je gegevens nooit doorgeven aan derden
@@ -2655,6 +2657,7 @@ nl:
     direct_reportee_details: Details van directe verslaggevers
     download:
       description: 'Volg de link om het rapport te downloaden: <a href=''%{url}'' target=''_blank''>Download</a>. Link is slechts 10 minuten geldig'
+      title: Uw rapport is klaar!
     download_plan: Abonnement downloaden
     edit_plan: Plan bewerken
     edit_plan_and_add_skills: Bewerk Plan en en klik op Vaardigheden beheren om Vaardigheden toe te voegen.
@@ -2756,6 +2759,7 @@ nl:
             r3: 'De ontwikkelingsinputs in dit rapport kunnen afkomstig zijn uit een of beide van de volgende bronnen:'
             r3a: Een op maat gemaakte ontwikkelingsbibliotheek voor uw organisatie
             r3b: Door AI gegenereerde ontwikkelingsvoorstellen
+            r4: Dit IDP-rapport is opgesteld met behulp van AI-technologie en kan onnauwkeurigheden bevatten. De verstrekte inzichten en aanbevelingen dienen met de nodige voorzichtigheid te worden geïnterpreteerd en mogen uitsluitend worden gebruikt als hulpmiddel voor uw persoonlijke en professionele ontwikkeling. Het rapport is 12 tot 18 maanden geldig.
           main: Het opgestelde IDP bevat een gedetailleerde lijst met ontwikkelingsacties die u kunt ondernemen, rekening houdend met best practices op het gebied van leren, d.w.z. de 70-20-10-richtlijn, die een progressief traject biedt waarin klassikaal leren, coaching en leren op de werkplek worden gecombineerd. Op basis van de resultaten van het assessment center-proces, uw chatresponsen en externe rapporten, indien van toepassing, zijn mogelijke ontwikkelingspaden aanbevolen die in aanmerking kunnen worden genomen voor uw ontwikkeling.
         learn_cards:
           collaboration:

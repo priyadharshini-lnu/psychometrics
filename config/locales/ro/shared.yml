@@ -38,6 +38,7 @@ ro:
     confirm: Confirmați
     continue: Continua
     controller: Controler
+    cookie_notice: Notificare privind cookie-urile
     cookies_statement: Declarație privind cookie-urile
     copied_to_clipboard: Copiată în clipboard
     copy: Copiere
@@ -96,6 +97,7 @@ ro:
     name: Nume
     negative: Negativ
     new: Nou
+    next: Următorul
     no_results_found: Nu s-au găsit rezultate
     not_requested: Nu a fost încă solicitat
     ok: Bine
@@ -103,6 +105,7 @@ ro:
     policy_version: Versiunea politicii
     policy_version_format: Sunt permise numai numere întregi
     positive: Pozitiv
+    privacy_notice: Politica de confidențialitate
     processing: Prelucrare
     processor: Procesor
     proctoring_maintenance_active: Proctoring este în prezent în curs de întreținere, de la %{start_time} la %{end_time}. Vă rugăm să încercați din nou după perioada de întreținere.

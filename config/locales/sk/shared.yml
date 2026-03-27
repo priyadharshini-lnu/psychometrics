@@ -38,6 +38,7 @@ sk:
     confirm: Potvrďte
     continue: Pokračovať
     controller: Ovládač
+    cookie_notice: Oznámenie o súboroch cookie
     cookies_statement: Vyhlásenie o súboroch cookie
     copied_to_clipboard: Kopírované do schránky
     copy: Kopírovať
@@ -96,6 +97,7 @@ sk:
     name: Meno
     negative: Negatívny
     new: Nové
+    next: Ďalej
     no_results_found: Nenašli sa žiadne výsledky
     not_requested: Ešte nebolo požiadané
     ok: Ok
@@ -103,6 +105,7 @@ sk:
     policy_version: Verzia politiky
     policy_version_format: Povolené sú iba celé čísla
     positive: Pozitívne
+    privacy_notice: Oznámenie o ochrane osobných údajov
     processing: Spracovanie
     processor: Procesor
     proctoring_maintenance_active: Služba Proctoring je momentálne v údržbe z %{start_time} na %{end_time}. Skúste to znovu po ukončení údržby.

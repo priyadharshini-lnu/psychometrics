@@ -12,7 +12,7 @@ describe Faas::NotificationHandlers::MediaToTranscription do
         'record_id' => 42,
         'record_type' => 'MediaResponse'
       },
-      'transcription' => transcription
+      'text' => transcription
     }
   end
 
@@ -49,7 +49,8 @@ describe Faas::NotificationHandlers::MediaToTranscription do
       end
 
       it 'saves transcription, updates status, logs, and broadcasts :ok' do
-        expect(media_response).to receive(:save_transcription_completed!).with('This is the transcription text.')
+        expect(media_response).to receive(:save_transcription_completed!).with('This is the transcription text.',
+                                                                               metadata: {})
         expect(subject).to receive(:broadcast).with(:ok).once
         subject.call
       end

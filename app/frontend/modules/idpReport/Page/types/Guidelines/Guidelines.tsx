@@ -85,6 +85,9 @@ const Guidelines = ({ rtl }) => {
                     </li>
                   </ol>
                 </li>
+                <li>
+                  <p>{I18n.t('idp.pdf.guidelines.content.list.r4')}</p>
+                </li>
               </ol>
             </div>
           </Flex>

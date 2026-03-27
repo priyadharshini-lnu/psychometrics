@@ -1,10 +1,11 @@
 import { Component } from 'react'
 import { notification } from 'antd'
 import { SafeHTML } from '~/components/SafeHTML'
+import consumer from '~/core/consumer'
 
 export default class NotificationCenter extends Component {
   componentDidMount () {
-    window.App.notifications = window.App.cable.subscriptions.create('NotificationChannel', {
+    consumer().subscriptions.create('NotificationChannel', {
       received: (data) => {
         const config = {
           message: data.message,

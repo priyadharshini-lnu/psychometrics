@@ -1,0 +1,141 @@
+# frozen_string_literal: true
+
+module EndUser
+  class SystemCheckSessionsController < ApplicationController
+    skip_before_action :verify_authenticity_token
+
+    before_action :set_campaign_user
+    before_action :set_system_check_session,
+                  only: %i[show add_record complete results upload_video_url complete_multipart_upload]
+    before_action :set_system_check_record,
+                  only: %i[upload_video_url complete_multipart_upload]
+    before_action :validate_system_check_enabled, only: %i[create requirements_status]
+
+    def requirements_status
+      session = find_valid_session
+      requirements = SystemCheckSessions::RequirementsCalculator.call!(@campaign_user)
+      status = SystemCheckSessions::GetSystemCheckStatus.call!(session: session, requirements: requirements)
+      is_valid = compute_is_valid(status, session)
+
+      render json: {
+        session_id: session&.id,
+        is_valid: is_valid,
+        requirements: requirements
+      }
+    end
+
+    def show
+      render json: serialize_session(@system_check_session)
+    end
+
+    def create
+      system_check_session = current_user.system_check_sessions.create!
+      store_session_id(system_check_session.id)
+      render json: serialize_session(system_check_session), status: :created
+    end
+
+    def add_record
+      record = @system_check_session.system_check_records.create!(record_params)
+      render json: serialize_record(record), status: :created
+    end
+
+    def complete
+      @system_check_session.finish!
+
+      render json: serialize_session(@system_check_session)
+    end
+
+    def results
+      records = @system_check_session.latest_records_by_check_type
+
+      render json: {
+        session: serialize_session(@system_check_session),
+        records: records.transform_values { |record| serialize_record(record) }
+      }
+    end
+
+    def upload_video_url
+      file_name = "#{SecureRandom.uuid}_video.webm"
+      duration = params[:duration].to_i
+      SystemCheckRecords::GetMultipartUploadUrls.call(@system_check_record, file_name, duration: duration) do
+        on(:ok) { |data| render json: data }
+        on(:error) { |error| render json: { error: error }, status: :unprocessable_entity }
+      end
+    end
+
+    def complete_multipart_upload
+      SystemCheckRecords::CompleteMultipartUpload.call(@system_check_record, {
+        asset_key: params[:asset_key],
+        upload_id: params[:upload_id],
+        parts: params[:parts],
+        file_size: params[:file_size],
+        content_type: params[:content_type],
+        checksum: params[:checksum]
+      }) do
+        on(:ok) { |record| render json: serialize_record(record) }
+        on(:error) { |error| render json: { error: error }, status: :unprocessable_entity }
+      end
+    end
+
+    private
+
+    def campaign
+      @campaign ||= Campaign.visible_to_end_user.find(params[:campaign_id])
+    end
+
+    def set_campaign_user
+      @campaign_user = current_user.campaign_users.find_by!(campaign: campaign)
+    end
+
+    def set_system_check_session
+      @system_check_session = current_user.system_check_sessions.find(stored_session_id)
+    end
+
+    def set_system_check_record
+      @system_check_record = @system_check_session.system_check_records.find(params[:id])
+    end
+
+    def validate_system_check_enabled
+      return if campaign.system_check_enabled?
+
+      render json: { error: I18n.t('enduser.system_check_not_enabled') }, status: :unprocessable_entity
+    end
+
+    def record_params
+      params.permit(:check_type, :passed, data: {})
+    end
+
+    def compute_is_valid(status, system_check_session)
+      return false if system_check_session.blank?
+
+      all_satisfied = status&.none? { |_check, result| result == :unsatisfied } || false
+      all_satisfied || campaign.allow_continue_with_warning?
+    end
+
+    def serialize_session(session)
+      EndUser::SystemCheckSessionSerializer.new.serialize(session)
+    end
+
+    def serialize_record(record)
+      EndUser::SystemCheckRecordSerializer.new(context: { campaign_user: @campaign_user }).serialize(record)
+    end
+
+    def store_session_id(session_id)
+      session[:system_check_session_id] = session_id
+    end
+
+    def stored_session_id
+      session[:system_check_session_id]
+    end
+
+    def find_valid_session
+      session_id = stored_session_id
+      return nil if session_id.blank?
+
+      system_check_session = SystemCheckSession.find_by(id: session_id, user: current_user)
+      return nil unless system_check_session&.valid_for_campaign?(campaign)
+
+      system_check_session
+    end
+  end
+end

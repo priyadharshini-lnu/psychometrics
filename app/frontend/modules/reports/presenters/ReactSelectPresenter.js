@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import _ from 'lodash'
 
 export const getValue = (options, value, key = 'value') => {

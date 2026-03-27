@@ -81,7 +81,6 @@ const getMenuItems = ({
     { label: I18n.t('enduser.insights'), key: 'insights' },
   ] : [{ label: I18n.t('enduser.tasks'), key: 'tasks' }],
 }] : [],
-// eslint-disable-next-line no-constant-condition
 ...((idpEnabled && projectIdpEnabled) && (userHasActiveIdp || userHasDirectReporteesWithActiveIdp)) ? [{
   key: 'idp',
   label: I18n.t('enduser.development'),

@@ -25,6 +25,10 @@ export const QuestionScore = ({
 
   const getCompetency = factorId => competencies.find(c => c.factorId.toString() === factorId)
 
+  const getAggregatedScore = factorId => competencies.find(
+    c => c.factorId === factorId && c.scoringType === 'aggregated',
+  )
+
   const groupedIndicators = _.groupBy(indicators, 'parentFactorId')
 
   const questionCompetencis = competencies.filter(c => c.questionId === question.id)
@@ -77,6 +81,7 @@ export const QuestionScore = ({
                 key={competency.id}
                 competency={competency}
                 indicators={[]}
+                aggregatedScore={getAggregatedScore(competency.factorId)}
                 overrideScore={overrideScore}
                 discardScore={discardScore}
                 approved={approved}

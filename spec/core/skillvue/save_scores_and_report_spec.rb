@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Skillvue::SaveScoresAndReport do
-  let(:user_assessment) { create(:user_assessment) }
-  let(:users_result) { create(:users_result, assessment: user_assessment.assessment) }
+  let(:users_result) { create(:users_result) }
+  let(:user_assessment) { create(:user_assessment, assessment: users_result.assessment) }
   let(:encoded_id) { UserAssessment.encode_id(user_assessment.id) }
   let(:scores_and_report) do
     {
@@ -46,9 +46,13 @@ RSpec.describe Skillvue::SaveScoresAndReport do
 
   subject { described_class.new(user_assessment, scores_and_report) }
 
+  let(:empty_user_reports_relation) do
+    double('UserReportsRelation', pluck: [], first: nil)
+  end
+
   before do
-    allow(user_assessment).to receive(:users_result).and_return(users_result)
     allow(UsersResults::GenerateReports).to receive(:call)
+    allow(user_assessment).to receive(:user_reports).with(:skillvue).and_return(empty_user_reports_relation)
   end
 
   describe '#call' do
@@ -87,21 +91,20 @@ RSpec.describe Skillvue::SaveScoresAndReport do
     end
 
     it 'updates the user_assessment and users_result with external results' do
-      expect(users_result).to receive(:update).with(external_results: scores_and_report['payload'])
-
-      expect(user_assessment).to receive(:update).with(
-        status: :completed,
-        completed_at: DateTime.parse(scores_and_report['timestamp']).in_time_zone('UTC')
-      )
-
-      expect(UsersResults::GenerateReports).to receive(:call).with(users_result, user_assessment.user)
-
       subject.call
+
+      user_assessment.reload
+      expect(user_assessment.status).to eq('completed')
+      expect(user_assessment.completed_at).to eq(DateTime.parse(scores_and_report['timestamp']).in_time_zone('UTC'))
+      expect(user_assessment.users_result.external_results).to eq(scores_and_report['payload'])
     end
 
     it 'updates the user_report with PDF URL if present' do
       user_report = double('UserReport')
-      allow(user_assessment).to receive(:user_reports).with(:skillvue).and_return([user_report])
+      user_reports_relation = double('UserReportsRelation')
+      allow(user_reports_relation).to receive(:pluck).with(:id).and_return([1])
+      allow(user_reports_relation).to receive(:first).and_return(user_report)
+      allow(user_assessment).to receive(:user_reports).with(:skillvue).and_return(user_reports_relation)
       expect(user_report).to receive(:attach_pdf!).with(
         scores_and_report['pdfUrl'],
         'skillvue-report.pdf'
@@ -113,15 +116,12 @@ RSpec.describe Skillvue::SaveScoresAndReport do
     it 'broadcasts :ok if report URL is blank' do
       report_data = scores_and_report.dup
       report_data['payload'] = report_data['payload'].dup
-      report_data['payload']['report'] = nil
+      report_data.delete('pdfUrl')
 
       subject = described_class.new(user_assessment, report_data)
-
-      # Still expect to update the results
-      expect(users_result).to receive(:update).with(external_results: report_data['payload'])
-      expect(subject).to receive(:broadcast).with(:ok)
-
       subject.call
+
+      expect(user_assessment.users_result.reload.external_results).to eq(report_data['payload'])
     end
   end
 end

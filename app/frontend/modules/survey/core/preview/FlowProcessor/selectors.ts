@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import _ from 'lodash'
 import { createSelector } from 'reselect'
 import { denormalize } from 'normalizr'

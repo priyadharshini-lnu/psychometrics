@@ -3,8 +3,7 @@
 module AI
   module AssistantTypeConfigurations
     class Default < Base
-      # Default parameters for all assistants
-      def default_params
+      def base_params
         # A default value is added so that
         # assistants will have somewhat similar behaviour irrespective of model used
         {

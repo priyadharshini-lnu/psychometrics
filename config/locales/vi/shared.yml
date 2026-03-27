@@ -38,6 +38,7 @@ vi:
     confirm: Xác nhận
     continue: Tiếp tục
     controller: Bộ điều khiển
+    cookie_notice: Thông báo về cookie
     cookies_statement: Thông báo về Cookie
     copied_to_clipboard: Đã sao chép vào khay nhớ tạm
     copy: Sao chép
@@ -96,6 +97,7 @@ vi:
     name: Tên
     negative: Tiêu cực
     new: Mới
+    next: Tiếp theo
     no_results_found: Không tìm thấy kết quả nào.
     not_requested: Chưa được yêu cầu
     ok: Được rồi
@@ -103,6 +105,7 @@ vi:
     policy_version: Phiên bản chính sách
     policy_version_format: Chỉ cho phép các số nguyên.
     positive: Tích cực
+    privacy_notice: Thông báo về quyền riêng tư
     processing: Xử lý
     processor: Bộ xử lý
     proctoring_maintenance_active: Hệ thống giám sát thi (Proctoring) hiện đang được bảo trì từ %{start_time} đến %{end_time}. Vui lòng thử lại sau khi quá trình bảo trì kết thúc.

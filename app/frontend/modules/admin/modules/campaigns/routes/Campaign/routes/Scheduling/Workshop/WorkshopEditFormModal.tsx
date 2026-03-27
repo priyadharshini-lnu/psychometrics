@@ -127,7 +127,6 @@ export const WorkshopEditFormModal: FC<Props> = ({
       request={{
         updateResource: (data: { workshopManagersIds: string[], workshopAssessorsIds: string[],
           date: string, time: string, name?: string }) => {
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const {
             date, time, name, ...cleanedData
           } = data

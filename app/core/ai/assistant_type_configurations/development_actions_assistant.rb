@@ -3,8 +3,7 @@
 module AI
   module AssistantTypeConfigurations
     class DevelopmentActionsAssistant < Base
-      # Default parameters for Development Actions Assistant
-      def default_params
+      def base_params
         {
           response_format: { type: 'json_schema' },
           max_tokens: 1500

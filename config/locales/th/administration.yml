@@ -80,7 +80,6 @@ th:
         title: สิ่งประดิษฐ์ AI
       generate: ผลิต
       generate_result_info_message: กําลังสร้างผลลัพธ์ โปรดรีเฟรชหน้าเพื่อดูผลลัพธ์ที่อัปเดต
-      generated_at: สร้างขึ้นเมื่อ
       generated_at_time: สร้างขึ้นที่ %{time}
       generated_value: มูลค่าที่สร้างขึ้น
       id: รหัส
@@ -1871,6 +1870,8 @@ th:
       form:
         enable_innovation_styles: เปิดใช้งานรูปแบบนวัตกรรม
         enable_occupations: เปิดใช้งานอาชีพ
+        name: ชื่อ
+        title: ขนาด
       import_factors:
         import: นําเข้า
         sample_file: ไฟล์ตัวอย่าง
@@ -1918,6 +1919,7 @@ th:
         confirmations:
           delete:
             body: "<p>คุณแน่ใจหรือไม่ว่าต้องการลบมิตินี้?</p>\n"
+            message: กรุณากรอกชื่อมิติที่ให้ไว้ด้านล่างในช่องข้อความเพื่อยืนยัน
             title: ลบ <strong>มิติ</strong> ?
           toggle_status:
             body: "<p>คุณแน่ใจหรือไม่ว่าคุณต้องการ %{status} มิตินี้?</p>\n"
@@ -1982,6 +1984,7 @@ th:
                 score: คะแนน
                 zscore: คะแนน Z
             title: เส้นทาง JSON สําหรับคะแนน
+        predicate: กริยาวิเศษณ์
         scoring_strategies:
           custom_formula: สูตรที่กําหนดเอง
           external_score: คะแนนภายนอก
@@ -1995,10 +1998,13 @@ th:
           sub_factors_sum: ผลรวมถ่วงน้ําหนักของปัจจัย
         scoring_strategies_tip: "<strong>คําถาม (เฉลี่ย):</strong> นี่เหมือนกับวิธีการให้คะแนนปัจจุบันเมื่อมีคําถามที่เชื่อมโยงกับปัจจัย<br /> <br /><strong>คําถาม (SUM):</strong> นี่เหมือนกับคําถาม (เฉลี่ย) แต่ใช้ SUM<br /> <br /><strong>คําถามเกี่ยวกับปัจจัยอื่น ๆ (บรรทัดฐาน):</strong> นี่เหมือนกับวิธีการให้คะแนนปัจจุบันเมื่อมีปัจจัยย่อยสําหรับปัจจัยการเปลี่ยนแปลงเพียงอย่างเดียวคือการเพิ่มน้ําหนัก<br /> <br /><strong>คําถามเกี่ยวกับปัจจัยอื่น ๆ (SUM):</strong> นี่เหมือนกับปัจจัยอื่น ๆ (บรรทัดฐาน) แต่ใช้ SUM<br /> <br />ผล <strong>รวมถ่วงน้ําหนักของปัจจัย:</strong> ที่นี่คะแนนของปัจจัยอื่น ๆ ที่เลือกจะถูกคูณด้วยน้ําหนักจะถูกเพิ่มเข้ามา"
         scoring_strategy: กลยุทธ์การให้คะแนน
+        search_factors: ปัจจัยการค้นหา
         use_sub_factor_norm_score: ใช้คะแนนปัจจัยค่ามาตรฐาน
+        value: มูลค่า
       index:
         icon: ไอคอน
         new: เพิ่ม
+        precision: ความแม่นยำ
         scoring_strategies:
           custom_formula: สูตรที่กําหนดเอง
           external_score: คะแนนภายนอก
@@ -2292,6 +2298,7 @@ th:
       edit:
         header: แก้ไขรูปแบบนวัตกรรม
       form:
+        full_description: คำอธิบายอย่างละเอียด
         no_icon: ไม่มีไอคอน
       index:
         new: เพิ่ม
@@ -2663,8 +2670,12 @@ th:
       edit:
         header: แก้ไขอาชีพ
       form:
+        alternative_icon: ไอคอนทางเลือก
+        color: สี
         hint:
           key_career_tracks: '"+" - รายการ "*" - ตัวหนา ตัวอย่าง: + *ชีววิทยา* - คําอธิบายบางอย่าง...'
+        indicative_roles_image: ภาพแสดงบทบาทเชิงบ่งชี้
+        key_career_tracks_image: เส้นทางอาชีพหลัก
         no_icon: ไม่มีไอคอน
       index:
         new: เพิ่ม
@@ -2735,6 +2746,7 @@ th:
       assessment_center: ศูนย์ประเมินผล
       assessment_id: รหัสการประเมิน
       campaign_id: รหัสแคมเปญ
+      campaign_link: ลิงก์แคมเปญ
       campaign_name: ชื่อแคมเปญ
       campaigns: แคมเปญ
       description: คำอธิบาย
@@ -3732,8 +3744,10 @@ th:
       id: รหัส
       import:
         factors: นําเข้าปัจจัยแคมเปญ
+      innovation_style_removal_confirmation: กรุณากรอกชื่อสไตล์นวัตกรรมที่ให้ไว้ด้านล่างในช่องข้อความเพื่อยืนยัน
       name: ชื่อ
       no_groups: ไม่มีกลุ่มอยู่
+      occupation_removal_confirmation: กรุณากรอกชื่ออาชีพที่ให้ไว้ด้านล่างในช่องข้อความเพื่อยืนยัน
       output_type: ประเภทเอาต์พุต
       pattern_error: อนุญาตให้ใช้เฉพาะอักขระที่เป็นตัวอักษรและตัวเลข ช่องว่าง และขีดกลางเท่านั้น
       profile:

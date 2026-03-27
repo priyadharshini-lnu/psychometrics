@@ -873,6 +873,7 @@ de:
         export_assessment_questions: Fragen zur Exportbewertung
         export_campaign_ai_artifacts: Export-Kampagnen-KI-Artefakte
         export_campaign_ai_artifacts_results: Exportieren Sie die Ergebnisse der KI-Artefakte der Kampagne
+        export_campaign_datasheet: Datenblatt zur Exportkampagne
         export_campaign_factors: Faktoren der Exportkampagne
         export_campaign_scorings: Kampagnenscorings exportieren
         export_dashboard_as_file: Dashboard als Datei exportieren
@@ -932,6 +933,7 @@ de:
         regenerate_report: Bericht "Regenerieren
         regenerate_threesixty_report: Bericht über die Regenerierung von Threesixty
         remap_report_assessment: Remap-Bericht Bewertung
+        rescore_ai_scoring: Neubewertung durch KI
         rescore_assessment: Wiederholungsprüfung
         rescore_user_assessment: Bewertung der Benutzer neu bewerten
         send_sms_invites: SMS-Einladungen versenden
@@ -1281,7 +1283,7 @@ de:
     record_not_found: Datensatz nicht gefunden
     user_not_authorized: Benutzer nicht autorisiert
   auth:
-    cookies_link: <a href="%{cookies_url}">Erklärung zu Cookies</a>
+    cookie_notice_link: <a href="%{cookies_url}">Hinweis zu Cookies
     current_password: Aktuelles Passwort
     current_password_placeholder: Aktuelles Passwort eingeben
     email: E-Mail
@@ -1327,7 +1329,7 @@ de:
     password_confirmation: Bestätigen Sie Ihr Passwort
     password_confirmation_placeholder: Passwortbestätigung eingeben
     password_placeholder: Passwort eingeben
-    privacy_statement_link: <a href="%{privacy_url}">Datenschutzerklärung</a>
+    privacy_notice_link: <a href="%{privacy_url}">Datenschutzerklärung
     registration:
       description: Füllen Sie die nachstehenden Angaben aus, um sich zu registrieren und ein neues Konto zu erstellen
       email_hint: Wir respektieren Ihre Privatsphäre und tolerieren keinen Spam. Wir werden Ihre Daten niemals an Dritte weitergeben
@@ -2669,6 +2671,7 @@ de:
     direct_reportee_details: Detail der direkt unterstellten Mitarbeiter
     download:
       description: 'Um den Bericht herunterzuladen, folgen Sie bitte dem Link: <a href=''%{url}'' target=''_blank''>Download</a>. Der Link ist nur 10 Minuten gültig'
+      title: Ihr Bericht ist fertig!
     download_plan: Plan herunterladen
     edit_plan: Plan bearbeiten
     edit_plan_and_add_skills: Plan bearbeiten und klicken Sie auf Fertigkeiten verwalten, um Fertigkeiten hinzuzufügen.
@@ -2771,6 +2774,7 @@ de:
             r3: 'Die in diesem Bericht enthaltenen Entwicklungsdaten stammen aus einer oder beiden der folgenden Quellen:'
             r3a: Eine maßgeschneiderte Entwicklungsbibliothek, die speziell für Ihr Unternehmen erstellt wurde
             r3b: KI-generierte Entwicklungsvorschläge
+            r4: Dieser IDP-Bericht wurde unter Einsatz von KI-Technologie erstellt und kann Ungenauigkeiten enthalten. Die darin enthaltenen Erkenntnisse und Empfehlungen sollten mit Bedacht interpretiert und ausschließlich als Hilfsmittel für Ihre persönliche und berufliche Weiterentwicklung genutzt werden. Der Bericht ist für einen Zeitraum von 12 bis 18 Monaten gültig.
           main: Der erstellte IDP enthält eine detaillierte Liste von Entwicklungsmaßnahmen, die Sie unter Berücksichtigung bewährter Lernmethoden, d. h. der 70-20-10-Richtlinie, durchführen können. Diese Richtlinie sieht einen progressiven Lernprozess vor, der Unterricht im Klassenzimmer, Coaching und Lernen am Arbeitsplatz kombiniert. Auf der Grundlage der Ergebnisse des Assessment-Center-Prozesses, Ihrer Chat-Antworten und gegebenenfalls externer Berichte wurden mögliche Entwicklungswege empfohlen, die für Ihre Entwicklung in Betracht gezogen werden können.
         learn_cards:
           collaboration:

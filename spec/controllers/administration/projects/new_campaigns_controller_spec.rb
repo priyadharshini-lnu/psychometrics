@@ -48,4 +48,31 @@ RSpec.describe Administration::Projects::NewCampaignsController, type: :controll
       )
     end
   end
+
+  describe 'update_campaign_options' do
+    it 'updates minimum upload and download speeds and returns serialized options' do
+      campaign_option = campaign.campaign_options
+
+      patch :update_campaign_options,
+            params: {
+              id: campaign.id,
+              project_id: campaign.project_id,
+              resource: {
+                minimum_upload_speed: 123,
+                minimum_download_speed: 456
+              }
+            }
+
+      expect(response).to have_http_status(:ok)
+
+      campaign_option.reload
+
+      expect(campaign_option.minimum_upload_speed).to eq(123)
+      expect(campaign_option.minimum_download_speed).to eq(456)
+
+      parsed = response.parsed_body
+      expect(parsed['minimum_upload_speed']).to eq(123)
+      expect(parsed['minimum_download_speed']).to eq(456)
+    end
+  end
 end

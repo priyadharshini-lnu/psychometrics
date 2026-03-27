@@ -80,7 +80,6 @@ pl:
         title: Artefakt AI
       generate: Stworzyć
       generate_result_info_message: Wyniki są generowane, odśwież stronę, aby zobaczyć zaktualizowane wyniki.
-      generated_at: Wygenerowane o
       generated_at_time: Wygenerowane w %{time}
       generated_value: Wygenerowana wartość
       id: ID
@@ -1871,6 +1870,8 @@ pl:
       form:
         enable_innovation_styles: Włączanie stylów innowacji
         enable_occupations: Włącz zawody
+        name: Imię
+        title: Wymiary
       import_factors:
         import: Import
         sample_file: Przykładowy plik
@@ -1918,6 +1919,7 @@ pl:
         confirmations:
           delete:
             body: "<p>Czy na pewno chcesz usunąć ten wymiar?</p>\n"
+            message: Wpisz w polu tekstowym nazwę wymiaru podaną poniżej, aby potwierdzić
             title: Usunąć <strong>wymiar</strong> ?
           toggle_status:
             body: "<p>Czy na pewno chcesz %{status} ten wymiar?</p>\n"
@@ -1982,6 +1984,7 @@ pl:
                 score: Wynik
                 zscore: Wynik Z
             title: Ścieżki JSON dla wyników
+        predicate: Orzeczenie
         scoring_strategies:
           custom_formula: Formuła niestandardowa
           external_score: Wynik zewnętrzny
@@ -1995,10 +1998,13 @@ pl:
           sub_factors_sum: Ważona suma czynników
         scoring_strategies_tip: "<strong>Pytania (średnie):</strong> Jest to jak obecna metoda oceniania, gdy istnieją pytania związane z czynnikiem.<br /> <br /><strong>Pytania (SUM):</strong> Jest to podobne do pytań (średnia), ale przy użyciu funkcji SUMA<br /> <br /><strong>Pytania o inne czynniki (średnia):</strong> Jest to jak obecna metoda oceniania, w której istnieją czynniki cząstkowe dla czynnika, jedyną zmianą jest dodanie wagi.<br /> <br /><strong>Pytania dotyczące innych czynników (SUM):</strong> Jest to podobne do innych czynników (średnia), ale przy użyciu funkcji SUMA<br /> <br /><strong>Ważona suma czynników:</strong> Tutaj wyniki wybranych innych czynników są mnożone przez ich wagi, są dodawane."
         scoring_strategy: Strategia punktacji
+        search_factors: Czynniki wyszukiwania
         use_sub_factor_norm_score: Użyj wyniku normy czynników
+        value: Wartość
       index:
         icon: Ikona
         new: Dodawać
+        precision: Precyzja
         scoring_strategies:
           custom_formula: Formuła niestandardowa
           external_score: Wynik zewnętrzny
@@ -2292,6 +2298,7 @@ pl:
       edit:
         header: Edytuj styl innowacji
       form:
+        full_description: Pełny opis
         no_icon: Brak ikony
       index:
         new: Dodawać
@@ -2663,8 +2670,12 @@ pl:
       edit:
         header: Edytuj zawód
       form:
+        alternative_icon: Alternatywna ikona
+        color: Kolor
         hint:
           key_career_tracks: '"+" - lista, "*" - pogrubienie. Przykład: + *Biologia* - jakiś opis...'
+        indicative_roles_image: Przykładowe role – ilustracja
+        key_career_tracks_image: Ilustracja przedstawiająca główne ścieżki kariery
         no_icon: Brak ikony
       index:
         new: Dodawać
@@ -2735,6 +2746,7 @@ pl:
       assessment_center: Centrum oceny
       assessment_id: Identyfikator oceny
       campaign_id: Identyfikator kampanii
+      campaign_link: Link do kampanii
       campaign_name: Nazwa kampanii
       campaigns: Kampanie
       description: Opis
@@ -3732,8 +3744,10 @@ pl:
       id: ID
       import:
         factors: Importowanie czynników kampanii
+      innovation_style_removal_confirmation: Wpisz nazwę stylu innowacji podaną poniżej w polu tekstowym, aby potwierdzić
       name: Nazwa
       no_groups: Brak grup
+      occupation_removal_confirmation: Wpisz nazwę zawodu podaną poniżej w polu tekstowym, aby potwierdzić
       output_type: Typ wyjścia
       pattern_error: Dozwolone są tylko znaki alfanumeryczne, spacje i myślniki.
       profile:

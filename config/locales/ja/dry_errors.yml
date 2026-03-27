@@ -41,6 +41,12 @@ ja:
         skills_not_belong_to_project: 選択されたスキルは、指定されたプロジェクトに属していなければならない。
         skills_required: 少なくとも1つのスキルを選択してください。
       exceeded_subjects_count: 1回の招待で追加できる被写体は %{count} だけです。
+      factors_norms:
+        invalid_field_name: フィールド名は「score_from」または「score_to」のいずれかでなければなりません。
+        invalid_float: 値は有効な浮動小数点数でなければなりません。
+        invalid_level: 無効なレベルです。有効なレベルは次のとおりです：%{levels}
+        score_from_less_than_score_to: score_from は score_to より小さくなければなりません
+        score_to_greater_than_score_from: score_to は score_from より大きくなければなりません
       filled?: 空白は許されない
       idp_template:
         content_required: 指示にはコンテンツが必要です

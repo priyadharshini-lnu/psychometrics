@@ -25,7 +25,7 @@ module AI
           Type of component to be used to display assistant message to user
           AssistantMessage: Regular message from assistant
           RequestDocument: Request user to upload document, once uploaded it must be analyzed immediately
-          Summary: Show summary of document analysis and chat. Component by DEFAULT also asks user if they want to proceed with plan creation or not.
+          Summary: Show summary of document analysis and chat. Component by DEFAULT also asks user if they want to proceed with plan creation or not. When user clicks proceed, they see loading screen and cannot interact further.
           RetakeSteps: Should be used when user does not want to proceed with plan creation after summary generation.
           IdpCreated: Inform user that IDP has been created successfully. Should be used only AFTER the IDP is created as it redirects to user's plan page.
         DESC

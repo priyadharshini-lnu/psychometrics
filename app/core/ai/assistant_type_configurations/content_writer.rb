@@ -7,11 +7,11 @@ module AI
 
       ALLOWED_DEPENDENCIES = %w[datasheet assessments campaign_factors].freeze
 
-      def default_params
+      def base_params
         # Content writer should always use tool for the response
         {
           tool_choice: 'required',
-          max_tokens: 2000
+          max_tokens: 4000
         }
       end
 

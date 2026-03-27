@@ -128,7 +128,6 @@ class PotentialKeyCareerTracks extends Component {
     try {
       this.keyCareerTracks = yaml.safeLoad(I18nStore.tOccupation(this.occupationData, 'keyCareerTracks'))
     } catch (e) {
-      // eslint-disable-next-line no-console
       console.error(e)
     }
   }

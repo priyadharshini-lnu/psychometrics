@@ -13,8 +13,6 @@ html dir=dir lang="#{I18n.locale}"
     = render 'shared/locales'
     = render 'layouts/pys_global_state'
     = javascript_include_tag :threesixty
-    = vite_client_tag
-
     = stylesheet_link_tag 'threesixty_dependencies', media: 'all'
     - if Settings.enduser_locales.include?(ui_locale)
       = javascript_include_tag "i18n/#{ui_locale}.js"

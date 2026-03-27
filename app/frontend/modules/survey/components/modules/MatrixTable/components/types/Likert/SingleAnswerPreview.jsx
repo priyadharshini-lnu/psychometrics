@@ -64,7 +64,6 @@ const SingleAnswerPreview = ({ model, I18n, readOnly }) => {
                         disabled={readOnly}
                         checked={object.value || false}
                         onChange={e => changeValue(scale, choice, e)}
-                        // eslint-disable-next-line max-len
                         aria-labelledby={`${result.questionId}-scalepoint-${scale}`}
                       />
                       <span

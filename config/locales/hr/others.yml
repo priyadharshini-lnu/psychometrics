@@ -879,6 +879,7 @@ hr:
         export_assessment_questions: Pitanja za procjenu izvoza
         export_campaign_ai_artifacts: AI artefakti iz izvozne kampanje
         export_campaign_ai_artifacts_results: Izvoz rezultata umjetničkih artefakata kampanje AI
+        export_campaign_datasheet: Izvezi podatkovni list kampanje
         export_campaign_factors: Čimbenici izvozne kampanje
         export_campaign_scorings: Izvozne kampanje
         export_dashboard_as_file: Izvezi nadzornu ploču kao datoteku
@@ -938,6 +939,7 @@ hr:
         regenerate_report: Ponovno generiraj izvješće
         regenerate_threesixty_report: Ponovno generiraj izvješće Threesixty
         remap_report_assessment: Procjena izvješća o ponovnom mapiranju
+        rescore_ai_scoring: Punjenje bodova umjetne inteligencije
         rescore_assessment: Procjena ponovnog rezultata
         rescore_user_assessment: Procjena korisnika za ponovnu ocjenu
         send_sms_invites: Slanje SMS pozivnica
@@ -1283,7 +1285,7 @@ hr:
     record_not_found: Zapis nije pronađen
     user_not_authorized: Korisnik nije ovlašten
   auth:
-    cookies_link: <a href="%{cookies_url}">Izjava o kolačićima
+    cookie_notice_link: <a href="%{cookies_url}">Obavijest o kolačićima
     current_password: Trenutna lozinka
     current_password_placeholder: Unesite trenutnu lozinku
     email: Email
@@ -1329,7 +1331,7 @@ hr:
     password_confirmation: Potvrditi lozinku
     password_confirmation_placeholder: Unesite potvrdu lozinke
     password_placeholder: Unijeti lozinku
-    privacy_statement_link: <a href="%{privacy_url}">Izjava o privatnosti
+    privacy_notice_link: <a href="%{privacy_url}">Obavijest o privatnosti
     registration:
       description: Ispunite podatke u nastavku kako biste se registrirali i kreirali novi račun
       email_hint: Poštujemo vašu privatnost i ne toleriramo neželjenu poštu. Nikada nećemo dati Vaše podatke trećim stranama.
@@ -2675,6 +2677,7 @@ hr:
     direct_reportee_details: Detalji izravnih izvješćivanja
     download:
       description: 'Da biste preuzeli izvješće, slijedite poveznicu: <a href=''%{url}'' target=''_blank''>Download</a>. Link vrijedi samo 10 minuta'
+      title: Vaše izvješće je spremno!
     download_plan: Preuzmite plan
     edit_plan: Uredi plan
     edit_plan_and_add_skills: Uredite plan i kliknite na Upravljanje vještinama da biste dodali vještine.
@@ -2776,6 +2779,7 @@ hr:
             r3: 'Ulazi za razvoj uključeni u ovaj izvještaj mogu biti izvedeni iz jednog ili oba sljedeća izvora:'
             r3a: Prilagođena razvojna biblioteka stvorena za vašu organizaciju
             r3b: Prijedlozi za razvoj generirani umjetnom inteligencijom
+            r4: Ovo IDP izvješće generirano je uz pomoć AI tehnologije i može sadržavati netočnosti. Dobivene uvide i preporuke treba tumačiti s razboritošću i koristiti isključivo kao alat za vaš osobni i profesionalni razvoj. Izvješće je važeće u razdoblju od 12 do 18 mjeseci.
           main: IDP koji je izrađen uključuje detaljan popis razvojnih aktivnosti koje možete poduzeti, imajući na umu najbolje prakse učenja, tj. smjernicu 70-20-10, koja pruža progresivno putovanje kombinirajući učenje u učionici, coaching i učenje na radnom mjestu. Na temelju rezultata procesa centra za procjenu, vaših odgovora tijekom razgovora i vanjskih izvještaja, gdje je primjenjivo, preporučene su moguće razvojne staze koje se mogu razmotriti za vaš razvoj.
         learn_cards:
           collaboration:

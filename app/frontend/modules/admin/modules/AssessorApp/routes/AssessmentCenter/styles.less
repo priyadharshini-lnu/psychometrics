@@ -1,0 +1,49 @@
+.clickableRow {
+  transition: box-shadow 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.participantsTable {
+    .ant-table-expanded-row > td {
+      padding: 0;
+    }
+}
+
+.activitiesTable {
+  :global {
+    .ant-table {
+      margin: 0 !important;
+    }
+  }
+  .activityLabel {
+    font-size: 16px;
+  }
+}
+
+.statusTag {
+  text-transform: capitalize;
+}
+
+.expandIconWrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+  }
+}

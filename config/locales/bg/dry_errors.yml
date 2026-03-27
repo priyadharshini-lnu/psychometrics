@@ -41,6 +41,12 @@ bg:
         skills_not_belong_to_project: Избраните умения трябва да принадлежат към посочения проект.
         skills_required: Моля, изберете поне едно умение.
       exceeded_subjects_count: Можете да добавяте само %{count} теми на покана
+      factors_norms:
+        invalid_field_name: Името на полето трябва да бъде или „score_from“, или „score_to“.
+        invalid_float: Стойността трябва да бъде валидно число от тип float.
+        invalid_level: Невалидно ниво. Валидните нива са%{levels}
+        score_from_less_than_score_to: score_from трябва да е по-малко от score_to
+        score_to_greater_than_score_from: score_to трябва да е по-голямо от score_from
       filled?: не може да бъде празен
       idp_template:
         content_required: Съдържанието е необходимо за инструкции

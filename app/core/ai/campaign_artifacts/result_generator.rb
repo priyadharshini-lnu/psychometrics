@@ -31,7 +31,10 @@ module AI
         end
 
         unless test_mode?
-          campaign_user.update!(campaign_artifact_results_finalized: false)
+          campaign_user.update!(
+            campaign_artifact_results_finalized: false,
+            campaign_artifact_results_finalized_at: nil
+          )
         end
 
         generate_artifact_result!

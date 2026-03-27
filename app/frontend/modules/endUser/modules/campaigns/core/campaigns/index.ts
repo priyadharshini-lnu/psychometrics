@@ -14,11 +14,24 @@ const CommonCampaignTR = t.type({
   progressStatus: t.string,
   userReportsAvailable: t.boolean,
   description: t.union([t.null, t.string]),
+  isSystemCheckEnabled: t.boolean,
+  allowContinueWithWarning: t.boolean,
+  systemCheckValidity: t.union([t.null, t.number]),
+  systemCheckStatus: t.union([t.null, t.type({
+    isValid: t.boolean,
+  })]),
 })
 const ThreesixtyCampaignTR = t.type({
   id: t.number,
   timing: t.union([t.string, t.null]),
   assessmentName: t.string,
+  isSystemCheckEnabled: t.boolean,
+  allowContinueWithWarning: t.boolean,
+  systemCheckValidity: t.union([t.null, t.number]),
+  systemCheckStatus: t.union([t.null, t.type({
+    isValid: t.boolean,
+  })]),
+  progressStatus: t.string,
   evaluationsCounters: t.type({
     totalEvaluators: t.number,
     totalEvaluations: t.number,

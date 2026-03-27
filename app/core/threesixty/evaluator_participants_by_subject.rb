@@ -11,9 +11,10 @@ module Threesixty
       # TODO: (atanych): should be used statuses
       Threesixty::Participant.
         joins(:evaluator).
-        selecting { ['*', 'users.email as evaluator_email'] }.
+        select('*', 'users.email as evaluator_email').
         active.
-        where(subject_id: subject_id, campaign_id: campaign_id).includes(:relationship, :users_result)
+        where(subject_id: subject_id, campaign_id: campaign_id).
+        includes(:relationship, :users_result)
     end
 
     private

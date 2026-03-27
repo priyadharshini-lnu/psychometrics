@@ -37,7 +37,6 @@ FE.PLUGINS.audio = function (editor) {
     editor.popups.get(id).css('z-index', 9999999)
   }
 
-  /* eslint-disable camelcase */
   const initInsertPopup = function () {
     editor.popups.onRefresh('audio.insert', refreshInsertPopup)
 
@@ -69,7 +68,6 @@ FE.PLUGINS.audio = function (editor) {
             </div></div>`
     return editor.popups.create('audio.edit', { buttons })
   }
-  /* eslint-enable camelcase */
 
 
   const addNewAudio = function (src, data = {}) {

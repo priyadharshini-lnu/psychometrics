@@ -14,9 +14,10 @@ const { I18n } = window
 
 const connector = connect((state: RootState) => ({
   skillGapReportAvailable: state.campaigns.idp.skillGapReportAvailable,
+  showChatInstructions: state.campaigns.idp.showChatInstructions,
 }), { fetchUserIdpPlan })
 
-export const AIStartPageComponent = ({ fetchUserIdpPlan, skillGapReportAvailable }) => {
+export const AIStartPageComponent = ({ fetchUserIdpPlan, skillGapReportAvailable, showChatInstructions }) => {
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(true)
   const currentUser = useSelector((state: RootState) => state.currentUser)
@@ -29,9 +30,9 @@ export const AIStartPageComponent = ({ fetchUserIdpPlan, skillGapReportAvailable
   const handleNext = () => {
     if (skillGapReportAvailable) {
       navigate('/idp/ai_assistant/skill_gap_report')
-    } else {
-      navigate('/idp/ai_assistant/chat')
-    }
+    } else if (showChatInstructions) {
+      navigate('/idp/ai_assistant/chat_instructions')
+    } else navigate('/idp/ai_assistant/chat')
   }
 
   return (

@@ -80,7 +80,6 @@ ru:
         title: Искусственный интеллект
       generate: Генерировать
       generate_result_info_message: Результаты обрабатываются, пожалуйста, обновите страницу, чтобы увидеть обновленные результаты.
-      generated_at: Создано в
       generated_at_time: Создано на сайте %{time}
       generated_value: Созданная стоимость
       id: ID
@@ -1871,6 +1870,8 @@ ru:
       form:
         enable_innovation_styles: Включить стили инноваций
         enable_occupations: Включить профессии
+        name: Имя
+        title: Размеры
       import_factors:
         import: Импорт
         sample_file: Пример файла
@@ -1918,6 +1919,7 @@ ru:
         confirmations:
           delete:
             body: "<p>Вы уверены, что хотите удалить это измерение?</p>\n"
+            message: Введите в текстовое поле название измерения, указанное ниже, для подтверждения
             title: Удалить <strong>Размер</strong> ?
           toggle_status:
             body: "<p>Вы уверены, что хотите удалить это измерение (%{status})?</p>\n"
@@ -1982,6 +1984,7 @@ ru:
                 score: Счет
                 zscore: Z-показатель
             title: JSON-пути для оценок
+        predicate: предикат
         scoring_strategies:
           custom_formula: Индивидуальная формула
           external_score: Внешний балл
@@ -1995,10 +1998,13 @@ ru:
           sub_factors_sum: Взвешенная сумма факторов
         scoring_strategies_tip: " <strong>Вопросы (среднее значение):</strong> это похоже на текущий метод оценки, когда есть вопросы, связанные с фактором. <br /> <br /> <strong>Вопросы (СУММА):</strong> Это похоже на «Вопросы (среднее значение)», но с использованием СУММЫ. <br /> <br /> <strong>Вопросы других факторов (среднее значение):</strong> Это похоже на текущий метод подсчета баллов, когда для фактора есть подфакторы, единственное изменение — добавление веса. <br /> <br /> <strong>Вопросы других факторов (СУММА):</strong> Это похоже на Другие факторы (Среднее), но с использованием СУММЫ <br /> <br /> <strong>Взвешенная сумма факторов:</strong> Здесь баллы выбранных других факторов умножаются на их веса и суммируются."
         scoring_strategy: Стратегия подсчета очков
+        search_factors: Факторы поиска
         use_sub_factor_norm_score: Использовать нормативный балл факторов
+        value: Значение
       index:
         icon: Икона
         new: Добавить
+        precision: Точность
         scoring_strategies:
           custom_formula: Индивидуальная формула
           external_score: Внешний балл
@@ -2292,6 +2298,7 @@ ru:
       edit:
         header: Редактировать стиль инноваций
       form:
+        full_description: Полное описание
         no_icon: Нет значка
       index:
         new: Добавить
@@ -2663,8 +2670,12 @@ ru:
       edit:
         header: Изменить профессию
       form:
+        alternative_icon: Альтернативная иконка
+        color: Цвет
         hint:
           key_career_tracks: "«+» — список, «*» — жирный шрифт. Пример: + *Биология* — некоторое описание..."
+        indicative_roles_image: Иллюстрация типичных ролей
+        key_career_tracks_image: Изображение основных направлений карьерного роста
         no_icon: Нет значка
       index:
         new: Добавить
@@ -2735,6 +2746,7 @@ ru:
       assessment_center: Центр оценки
       assessment_id: Идентификатор оценки
       campaign_id: Идентификатор кампании
+      campaign_link: Ссылка на кампанию
       campaign_name: Название кампании
       campaigns: Кампании
       description: Описание
@@ -3735,8 +3747,10 @@ ru:
       id: ID
       import:
         factors: Импорт факторов кампании
+      innovation_style_removal_confirmation: Введите название стиля инновации, указанное ниже, в текстовое поле для подтверждения
       name: Имя
       no_groups: Групп нет
+      occupation_removal_confirmation: Введите название профессии, указанное ниже, в текстовое поле для подтверждения
       output_type: Тип вывода
       pattern_error: Допускаются только буквенно-цифровые символы, пробелы и тире.
       profile:

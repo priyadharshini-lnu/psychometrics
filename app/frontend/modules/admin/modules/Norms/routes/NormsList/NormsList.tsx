@@ -12,6 +12,7 @@ const NormsList: React.FC = () => {
     responseType: NormTR,
     apiConfig: {
       include: ['dimension', 'updated_by', 'owner'],
+      include_meta: ['permissions'],
       fields: { dimensions: ['name'], users: ['name'] },
       include_resource_meta: ['permissions'],
     },

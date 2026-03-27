@@ -43,7 +43,7 @@ module Campaigns
         else
           ActiveRecord::Base.transaction do
             user_attributes = form.to_h.except(
-              :operation, :campaign_ids, :active, :locale,
+              :operation, :campaign_ids, :active, :locale, :gender,
               :schedule_start_date, :schedule_start_date, :schedule_end_date, :user_external_id,
               :campaign_user_external_id, :datasheet, :current_job_role, :target_job_role, :level
             ).merge(
@@ -54,7 +54,7 @@ module Campaigns
               external_id: form.try(:user_external_id)
             )
             @user = User.create!(user_attributes)
-            @user.user_profile.update(locale: form.locale)
+            @user.user_profile.update(locale: form.locale, gender: form.try(:gender))
             AuditLogModule.audit!(
               :create, user, user: current_user, campaign: campaign, payload: form.attributes
             )
@@ -96,6 +96,7 @@ module Campaigns
           @user.save!
           AuditLogModule.audit!(:update, @user, user: current_user, campaign: campaign, payload: changes)
         end
+        @user.user_profile.update!(gender: form.gender) if form.try(:gender).present?
       end
 
       def assign_idp_plan

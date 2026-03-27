@@ -30,7 +30,7 @@ const MyTasks: React.FC = () => {
 
   return (
     <div>
-      <TasksList {...args} type="myTasks" />
+      <TasksList {...args} type="myTasks" fetch={fetch} />
     </div>
   )
 }

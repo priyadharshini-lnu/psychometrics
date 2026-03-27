@@ -158,10 +158,23 @@ module Imports
         @parsed_norm_id ||= {}
 
         if @parsed_norm_id[norm_name].blank?
-          norm_ids = Norm.joining { dimension }.joining do
-            dimension.assessments.alias('assessments').
-              on((dimension.assessments.dimension_id == dimension.id) & (dimension.assessments.id == assessment_id))
-          end.where(name: norm_name).pluck(:id)
+          assessments_table = Assessment.arel_table.alias('assessments')
+          dimensions_table = Dimension.arel_table
+
+          assessments_join = dimensions_table.
+                             join(assessments_table).
+                             on(
+                               assessments_table[:dimension_id].eq(dimensions_table[:id]).
+                               and(assessments_table[:id].eq(assessment_id))
+                             ).
+                             join_sources
+
+          norm_ids = Norm.
+                     joins(:dimension).
+                     joins(assessments_join).
+                     where(name: norm_name).
+                     pluck(:id)
+
           @parsed_norm_id[norm_name] = norm_ids.try(:first)
         end
         @parsed_norm_id[norm_name]

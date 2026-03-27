@@ -873,6 +873,7 @@ hu:
         export_assessment_questions: Exportértékelési kérdések
         export_campaign_ai_artifacts: Export kampány AI tárgyak
         export_campaign_ai_artifacts_results: Exportálás Kampány AI-artefaktumok Eredmények
+        export_campaign_datasheet: Kampányadatlap exportálása
         export_campaign_factors: Kampánytényezők exportálása
         export_campaign_scorings: Kampánypontozások exportálása
         export_dashboard_as_file: Irányítópult exportálása fájlként
@@ -932,6 +933,7 @@ hu:
         regenerate_report: Jelentés újragenerálása
         regenerate_threesixty_report: Újra generálás a Threesixty jelentést
         remap_report_assessment: Jelentés értékelésének újratervezése
+        rescore_ai_scoring: Mesterséges intelligencia általi újraértékelés
         rescore_assessment: Pontozás újraértékelése
         rescore_user_assessment: Felhasználói értékelés újrapontozása
         send_sms_invites: SMS-meghívók küldése
@@ -1276,7 +1278,7 @@ hu:
     record_not_found: A rekord nem található
     user_not_authorized: A felhasználó nem engedélyezett
   auth:
-    cookies_link: <a href="%{cookies_url}">Sütikre vonatkozó nyilatkozat</a>
+    cookie_notice_link: <a href="%{cookies_url}">Sütikre vonatkozó tájékoztató
     current_password: Jelenlegi jelszó
     current_password_placeholder: Jelenlegi jelszó megadása
     email: E-mail
@@ -1322,7 +1324,7 @@ hu:
     password_confirmation: Jelszó megerősítése
     password_confirmation_placeholder: Jelszó megerősítése
     password_placeholder: Jelszó megadása
-    privacy_statement_link: <a href="%{privacy_url}">Adatvédelmi nyilatkozat</a>
+    privacy_notice_link: <a href="%{privacy_url}">Adatvédelmi nyilatkozat
     registration:
       description: Töltse ki az alábbi adatokat a regisztrációhoz és egy új fiók létrehozásához
       email_hint: Tiszteletben tartjuk a magánéletét, és nem toleráljuk a spameket. Soha nem adjuk ki az adatait harmadik félnek
@@ -2660,6 +2662,7 @@ hu:
     direct_reportee_details: Közvetlen beosztottak részletei
     download:
       description: 'A jelentés letöltéséhez kövesse a következő linket: <a href=''%{url}'' target=''_blank''>Letöltés</a>. A link csak 10 percig érvényes'
+      title: Kész a jelentésed!
     download_plan: Terv letöltése
     edit_plan: Terv szerkesztése
     edit_plan_and_add_skills: Szerkessze a tervet, majd kattintson a Készségek kezelése gombra a készségek hozzáadásához.
@@ -2761,6 +2764,7 @@ hu:
             r3: 'A jelentésben szereplő fejlesztési adatok az alábbi források egyikéből vagy mindkettőből származhatnak:'
             r3a: Az Ön szervezetének igényeihez igazított fejlesztői könyvtár
             r3b: AI által generált fejlesztési javaslatok
+            r4: Ez az IDP-jelentés mesterséges intelligencia segítségével készült, ezért pontatlanságokat tartalmazhat. A jelentésben szereplő megállapításokat és ajánlásokat körültekintéssel kell értelmezni, és kizárólag személyes és szakmai fejlődésének elősegítésére szabad felhasználni. A jelentés 12–18 hónapig érvényes.
           main: Az elkészített IDP tartalmazza a végrehajtható fejlesztési intézkedések részletes listáját, figyelembe véve a bevált gyakorlatokat, azaz a 70-20-10 irányelvet, amely az osztálytermi tanulást, a coachingot és a munkahelyi tanulást ötvöző, fokozatos fejlődési utat biztosít. Az értékelő központ folyamatának eredményei, a csevegési válaszok és a külső jelentések alapján, adott esetben, lehetséges fejlesztési útvonalakat javasoltunk, amelyeket figyelembe vehet a fejlődése érdekében.
         learn_cards:
           collaboration:

@@ -38,6 +38,7 @@ ru:
     confirm: Подтвердить
     continue: Продолжить
     controller: Контроллер
+    cookie_notice: Уведомление об использовании файлов cookie
     cookies_statement: Заявление о файлах cookie
     copied_to_clipboard: Скопировано в буфер обмена
     copy: Копировать
@@ -96,6 +97,7 @@ ru:
     name: Имя
     negative: Отрицательный
     new: Новый
+    next: Далее
     no_results_found: Результаты не найдены
     not_requested: Еще не запрошено
     ok: Хорошо
@@ -103,6 +105,7 @@ ru:
     policy_version: Версия политики
     policy_version_format: Допускаются только целые числа
     positive: Положительный
+    privacy_notice: Политика конфиденциальности
     processing: Обработка
     processor: Процессор
     proctoring_maintenance_active: В настоящее время сайт %{start_time} находится на техническом обслуживании и будет доступен по адресу %{end_time}. Пожалуйста, попробуйте снова после завершения технического обслуживания.

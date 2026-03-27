@@ -84,6 +84,7 @@ export const ScoreApprovalTR = t.type({
   allowBulkApproveScores: t.boolean,
   reviewAs: t.string,
   allowApprove: t.string,
+  resultStale: t.boolean,
   questions: t.array(t.type({
     id: t.string,
     text: t.string,

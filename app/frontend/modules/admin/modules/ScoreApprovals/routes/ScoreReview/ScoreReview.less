@@ -49,6 +49,42 @@
   margin-top: 24px;
 }
 
+.staleBanner {
+  margin-top: 12px;
+  border-radius: 8px;
+  border: 1px solid #f4d7a0;
+  background: #fff9ec;
+
+  :global {
+    .ant-alert-with-description {
+      padding: 14px 16px;
+    }
+
+    .ant-alert-message {
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .ant-alert-description {
+      color: var(--ant-color-text-secondary);
+    }
+
+    .ant-alert-action {
+      margin-left: 16px;
+    }
+
+    .ant-alert-icon {
+      margin-top: 1px;
+      font-size: 16px;
+      line-height: 1;
+    }
+  }
+}
+
+.staleBannerIcon {
+  color: var(--ant-color-warning);
+}
+
 .rawTextResult {
   padding: 16px;
   border: 1px solid #ddd;

@@ -13,6 +13,8 @@ import {
 } from '~/modules/admin/modules/AiAssitant/core/aiAssistant'
 import styles from './styles.less'
 
+type ComputedDiffs = { name?: string; systemPrompt?: string; userPrompt?: string }
+
 type Props = {
   aiAssistantId: string
   onSelect: (data: { name?: string; systemPrompt?: string; userPrompt?: string }) => void
@@ -39,6 +41,24 @@ export const AiAssistantRevisions: React.FC<Props> = ({ aiAssistantId, onSelect 
 
   const [list, setList] = useState<AIAssistantRevision[]>([])
   const [showDiff, setShowDiff] = useState<AIAssistantRevision | null>(null)
+  const [computedDiffs, setComputedDiffs] = useState<ComputedDiffs | null>(null)
+
+  useEffect(() => {
+    setComputedDiffs(null)
+    let timer: ReturnType<typeof setTimeout>
+
+    if (showDiff) {
+      timer = setTimeout(() => {
+        const diffs: ComputedDiffs = {}
+        if (showDiff.changes.name) diffs.name = getDiff(showDiff.changes.name)
+        if (showDiff.changes.userPrompt) diffs.userPrompt = getDiff(showDiff.changes.userPrompt)
+        if (showDiff.changes.systemPrompt) diffs.systemPrompt = getDiff(showDiff.changes.systemPrompt)
+        setComputedDiffs(diffs)
+      }, 0)
+    }
+
+    return () => clearTimeout(timer)
+  }, [showDiff])
 
   useEffect(() => {
     resource.memberAction({
@@ -80,7 +100,12 @@ export const AiAssistantRevisions: React.FC<Props> = ({ aiAssistantId, onSelect 
             {revisionName(revision)}
           </Typography.Text>
           <Flex gap={4}>
-            <Button type="link" icon={<EyeOutlined />} onClick={() => setShowDiff(revision)} />
+            <Button
+              type="link"
+              icon={<EyeOutlined />}
+              loading={showDiff?.id === revision.id && !computedDiffs}
+              onClick={() => setShowDiff(revision)}
+            />
             <Tooltip title={I18n.t('administration.ai_assistants.revisions.load')}>
               <Button icon={<ReloadOutlined />} onClick={() => editRevision(revision)} />
             </Tooltip>
@@ -90,7 +115,8 @@ export const AiAssistantRevisions: React.FC<Props> = ({ aiAssistantId, onSelect 
 
       <Modal
         open={!!showDiff}
-        onOk={() => setShowDiff(null)}
+        okText={I18n.t('administration.ai_assistants.revisions.load')}
+        onOk={() => { editRevision(showDiff); setShowDiff(null) }}
         onCancel={() => setShowDiff(null)}
         closable
         width="80vw"
@@ -99,34 +125,34 @@ export const AiAssistantRevisions: React.FC<Props> = ({ aiAssistantId, onSelect 
 
         {showDiff && (
           <>
-            {showDiff.changes.name
+            {computedDiffs?.name
               && (
                 <Card title={I18n.t('administration.ai_assistants.revisions.name')}>
                   <SafeHTML
                     className={cs(styles.editor, { [styles.diff]: showDiff })}
-                    html={getDiff(showDiff.changes.name)}
+                    html={computedDiffs.name}
                     config="adminRichText"
                   />
                 </Card>
               )}
 
-            {showDiff.changes.userPrompt
+            {computedDiffs?.userPrompt
               && (
                 <Card title={I18n.t('administration.ai_assistants.revisions.user_prompt')}>
                   <SafeHTML
                     className={cs(styles.editor, { [styles.diff]: showDiff })}
-                    html={getDiff(showDiff.changes.userPrompt)}
+                    html={computedDiffs.userPrompt}
                     config="adminRichText"
                   />
                 </Card>
               )}
 
-            {showDiff.changes.systemPrompt
+            {computedDiffs?.systemPrompt
               && (
                 <Card title={I18n.t('administration.ai_assistants.revisions.system_prompt')}>
                   <SafeHTML
                     className={cs(styles.editor, { [styles.diff]: showDiff })}
-                    html={getDiff(showDiff.changes.systemPrompt)}
+                    html={computedDiffs.systemPrompt}
                     config="adminRichText"
                   />
                 </Card>

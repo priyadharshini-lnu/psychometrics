@@ -78,6 +78,8 @@ export interface CampaignOptions {
   proctoringEnabledOnWorkshopActivity: boolean
   enableMobileProctoring: boolean
   rules: object
+  systemCheckEnabled: boolean
+  systemCheckValidity: number | null
   identification: string
   proctoringType: string
   availableInstructionLocales: string[]
@@ -87,4 +89,7 @@ export interface CampaignOptions {
   trial: boolean
   enableVideoCallRecording?: boolean;
   allowVideoCallRecording?: boolean;
+  minimumUploadSpeed?: number | null;
+  minimumDownloadSpeed?: number | null;
+  allowContinueWithWarning: boolean;
 }

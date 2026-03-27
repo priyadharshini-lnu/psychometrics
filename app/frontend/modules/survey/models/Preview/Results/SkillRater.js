@@ -1,4 +1,3 @@
-/* eslint-disable prefer-spread */
 import _ from 'lodash'
 
 const SkillRater = function (result) {

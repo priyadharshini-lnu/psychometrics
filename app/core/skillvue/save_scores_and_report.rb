@@ -39,7 +39,11 @@ module Skillvue
     end
 
     def generate_internal_reports
-      ::UsersResults::GenerateReports.call(user_assessment.users_result, user_assessment.user)
+      ::UsersResults::GenerateReports.call(
+        user_assessment.users_result,
+        user_assessment.user,
+        exceptUserReportIds: user_assessment.user_reports(:skillvue).pluck(:id)
+      )
     end
 
     def scores_and_report

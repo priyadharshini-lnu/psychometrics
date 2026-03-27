@@ -77,7 +77,8 @@ class AI::Assistant < ApplicationRecord
     chat.with_tools(*options[:tools], replace: true) if options[:tools].present?
 
     # Use provided params or fall back to default params for this type
-    params_to_use = default_params.merge(options[:params] || {})
+    default_assistant_params = options[:skip_default_params] ? {} : default_params
+    params_to_use = default_assistant_params.merge(options[:params] || {})
     chat.with_params(**params_to_use) if params_to_use.any?
     chat.with_headers(**ai_provider_for_model['headers']) if ai_provider_for_model['headers']
   end

@@ -203,7 +203,7 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
                         </Descriptions>
             )}
                     >
-                      <InfoCircleOutlined style={{ cursor: 'pointer' }} />
+                      <span><InfoCircleOutlined style={{ cursor: 'pointer' }} /></span>
                     </Popover>
                   </Col>
                 )}

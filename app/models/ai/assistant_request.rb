@@ -37,7 +37,8 @@ class AI::AssistantRequest < ApplicationRecord
   enum :request_status, {
     success: 0,
     invalid: 1,
-    failed: 2
+    failed: 2,
+    correction: 3
   }, prefix: true
 
   def mark_invalid!(error_message, error: nil)
@@ -54,6 +55,13 @@ class AI::AssistantRequest < ApplicationRecord
 
   def last_error_message
     error_history.last&.dig('message')
+  end
+
+  # Override content getter to return content_raw if content is not present, for backward compatibility
+  def content
+    return self[:content] if self[:content].present?
+
+    content_raw.is_a?(Hash) ? content_raw.to_json : content_raw
   end
 
   private
