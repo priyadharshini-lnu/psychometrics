@@ -5,4 +5,20 @@ class Api::V2::Administration::DimensionResource < Api::V2::Administration::Base
 
   has_one :owner
   ransack_filters %i[filterable_fields]
+
+  def meta_details
+    {
+      permissions: lambda {
+        GetPermissionsHash.call!(
+          Api::Administration::DimensionPolicy,
+          context[:user],
+          @model,
+          %w[copy],
+          {
+            project_id: @model.owner_id
+          }
+        )
+      }
+    }
+  end
 end

@@ -15,6 +15,14 @@ export const DimensionTR = t.type({
   innovationStylesEnabled: t.boolean,
   createdAt: t.union([t.string, t.undefined]),
   updatedAt: t.union([t.string, t.undefined]),
+  meta: t.union([
+    t.type({
+      permissions: t.type({
+        copy: t.boolean,
+      }),
+    }),
+    t.undefined,
+  ]),
 })
 
 export const Schema = {

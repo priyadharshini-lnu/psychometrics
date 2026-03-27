@@ -31,6 +31,7 @@ const DimensionList: React.FC<PropsFromRedux> = ({ openModal }) => {
     responseType: DimensionTR,
     apiConfig: {
       include: ['owner'],
+      include_resource_meta: ['permissions'],
     },
   }
 

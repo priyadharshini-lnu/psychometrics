@@ -117,6 +117,8 @@ const Dropdown: React.FC<DropDownProps> = ({ dimension, openModal }) => (
 )
 
 const getActionsMenuProps = ({ dimension, openModal }: DropDownProps): MenuProps => {
+  const canCopy = dimension?.meta?.permissions?.copy
+
   const menuItems = [
     dimension && {
       key: 'edit',
@@ -140,7 +142,7 @@ const getActionsMenuProps = ({ dimension, openModal }: DropDownProps): MenuProps
           {I18n.t('common.actions.remove')}
         </Button>),
     },
-    {
+    canCopy && {
       key: 'copy',
       label: (
         <Button
