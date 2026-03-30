@@ -280,7 +280,7 @@ export const UserDetails: React.FC<Props> = ({
             <Descriptions.Item label={I18n.t('campaign_users.details.manager')}>
               <Space align="center">
                 <span>
-                  {user.manager.name && (
+                  {user.manager?.name && (
                     <>
                       {user.manager.name}
                       {' '}
