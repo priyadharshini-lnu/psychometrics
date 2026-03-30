@@ -26,7 +26,7 @@ export type CategorizedSkills = {
 
 type OptionsType = {
   id: string
-  name: string
+  name?: string
 }
 
 type IDPDetailsFormProps = {

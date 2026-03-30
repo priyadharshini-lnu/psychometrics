@@ -291,6 +291,29 @@ en:
     high: High
     hogan: Hogan
     hogan_assessment: Hogan Assessment
+    idp_appearance_body: Body
+    idp_appearance_color: Color
+    idp_appearance_cover: Cover
+    idp_appearance_dynamic_content: Dynamic Content
+    idp_appearance_flip_background: Flip background image on Cover and Last pages
+    idp_appearance_font_family: Font Family
+    idp_appearance_guideline_position: Guideline Page Position
+    idp_appearance_guideline_position_second: Second page (after Cover)
+    idp_appearance_guideline_position_second_last: Second last page (before Last)
+    idp_appearance_guidelines: Guidelines
+    idp_appearance_idp_skills: IDP Skills
+    idp_appearance_last: Last
+    idp_appearance_per_page_font_settings: Per-Page Font Settings
+    idp_appearance_reflections: Reflections
+    idp_appearance_report_summary: Report Summary
+    idp_appearance_section_body: Section Body
+    idp_appearance_section_subtitle: Section Subtitle
+    idp_appearance_section_title: Section Title
+    idp_appearance_select_font: Select font
+    idp_appearance_show_guidelines: Show Guidelines Page
+    idp_appearance_size: Size
+    idp_appearance_subtitle: Subtitle
+    idp_appearance_title: Title
     idp_plan_reset_success: Plan has been reset successfully
     idp_templates: IDP Templates
     import_ai_artifacts: Import AI Artifacts

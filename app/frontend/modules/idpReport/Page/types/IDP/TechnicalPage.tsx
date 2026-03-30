@@ -10,6 +10,7 @@ import techicalIcon from '../../../assets/Technical.svg'
 import { Skill } from './DevelopmentAction'
 import { useI18n } from '~/modules/idpReport/I18nContext'
 import { useSkillPagination, getPaginatedSkills, Pagination } from './useSkillPagination'
+import { usePageFontStyles } from '~/modules/idpReport/hooks/usePageFontStyles'
 
 const { I18n } = window
 I18n.locale = document.body.getAttribute('data-locale')
@@ -19,6 +20,9 @@ const CONTAINER_HEIGHT = 630
 const Technical = ({ skills, rtl, status }) => {
   const container = useRef<HTMLDivElement>(null)
   const I18n = useI18n()
+  const {
+    titleStyle, subtitleStyle, bodyStyle, sectionTitleStyle, sectionSubtitleStyle, sectionBodyStyle,
+  } = usePageFontStyles('idp')
 
   const [pages] = useSkillPagination(skills, container)
 
@@ -36,17 +40,17 @@ const Technical = ({ skills, rtl, status }) => {
                     <Flex gap={12}>
                       <img src={techicalIcon} className={styles.icon} />
                       <Flex vertical justify="space-between">
-                        <h1 className={styles.title}>
+                        <h1 className={styles.title} style={titleStyle}>
                           {I18n.t('idp.pdf.idp.title')}
                         </h1>
-                        <div className={styles.subtitle}>
+                        <div className={styles.subtitle} style={subtitleStyle}>
                           {I18n.t('idp.pdf.idp.subtitle.technical')}
                         </div>
                       </Flex>
                     </Flex>
                     <Flex>
                       <Flex vertical gap={8}>
-                        <Flex gap={16} align="center">
+                        <Flex gap={16} align="center" style={bodyStyle}>
                           {I18n.t('idp.status')}
                           <div className={cs(styles.statusBox, styles.active)}>
                             {I18n.t(`idp.pdf.statuses.${status}`)}
@@ -57,7 +61,14 @@ const Technical = ({ skills, rtl, status }) => {
                   </Flex>
                   <Flex vertical ref={container} gap={20} style={{ height: CONTAINER_HEIGHT }}>
                     {selectedSkills.map((skill, i) => (
-                      <Skill key={i} skill={skill} developmentActions={skill.user_idp_development_actions} />
+                      <Skill
+                        key={i}
+                        skill={skill}
+                        developmentActions={skill.user_idp_development_actions}
+                        sectionTitleStyle={sectionTitleStyle}
+                        sectionSubtitleStyle={sectionSubtitleStyle}
+                        sectionBodyStyle={sectionBodyStyle}
+                      />
                     ))}
                   </Flex>
                 </Flex>

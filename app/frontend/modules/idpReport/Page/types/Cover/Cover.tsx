@@ -5,7 +5,8 @@ import bg from '../../../assets/MainBackground.png'
 import mercer from '../../../assets/MercerLogo.svg'
 import Page from '../../Page'
 import styles from './Cover.less'
-import { useAppSelector } from '~/modules/idpReport/hooks/redux'
+import { useTemplate, useUserIdp } from '~/modules/idpReport/hooks/useIdpData'
+import { usePageFontStyles } from '~/modules/idpReport/hooks/usePageFontStyles'
 import { useI18n } from '~/modules/idpReport/I18nContext'
 
 const FIELDS = [
@@ -31,12 +32,16 @@ const FIELD_TO_DATA = {
 }
 
 const Cover = ({ rtl }) => {
-  const template = useAppSelector(state => state.idp.template)
-  const userIdp = useAppSelector(state => state.idp.userIdp)
+  const template = useTemplate()
+  const userIdp = useUserIdp()
   const I18n = useI18n()
   const {
     background, client_logo, logo_type, title_text, subtitle_text,
   } = template
+
+  const { titleStyle, subtitleStyle, bodyStyle } = usePageFontStyles('cover')
+
+  const shouldFlip = template.flip_background ?? rtl
 
   const fieldsToRender = FIELDS.filter(field => template.fields.includes(field))
 
@@ -50,7 +55,7 @@ const Cover = ({ rtl }) => {
     <Page rtl={rtl}>
       <div className={cs(styles.content)}>
         <div
-          className={cs(styles.background)}
+          className={cs(styles.background, { [styles.flipped]: shouldFlip })}
           style={{ backgroundImage: `url(${background || bg})` }}
         />
         {(logo_type === 'both' || logo_type === 'mercer_only') && (
@@ -64,7 +69,7 @@ const Cover = ({ rtl }) => {
           </div>
         )}
         <Flex className={styles.main} justify="center" vertical style={{ height: '100%' }}>
-          <h1 className={styles.title}>
+          <h1 className={styles.title} style={titleStyle}>
             {title_text || (
               <>
                 Individual
@@ -74,7 +79,7 @@ const Cover = ({ rtl }) => {
               </>
             )}
           </h1>
-          <h2 className={styles.subtitle}>
+          <h2 className={styles.subtitle} style={subtitleStyle}>
             {subtitle_text}
           </h2>
         </Flex>
@@ -86,10 +91,10 @@ const Cover = ({ rtl }) => {
                 <div className={styles.col}>
                   {column.map(item => (
                     <div className={styles.item} key={item}>
-                      <div className={styles.label}>
+                      <div className={styles.label} style={bodyStyle}>
                         {I18n.t(`idp.pdf.cover.fields.${item}`)}
                       </div>
-                      <div className={styles.value}>
+                      <div className={styles.value} style={bodyStyle}>
                         {userIdp[FIELD_TO_DATA[item]] || ''}
                       </div>
                     </div>

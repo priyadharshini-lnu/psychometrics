@@ -7,7 +7,8 @@ class IdpTemplateSerializer < Panko::Serializer
              :behavioural_global_tags, :behavioural_client_tags,
              :technical_global_tags, :technical_client_tags,
              :logo_type, :title_text, :subtitle_text, :fields,
-             :background, :client_logo, :show_reflections
+             :background, :client_logo, :show_reflections,
+             :guideline_position, :flip_background, :page_styles, :show_guidelines
 
   def background
     object.background_url
