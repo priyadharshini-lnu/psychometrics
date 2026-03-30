@@ -126,7 +126,8 @@ module Api
     def appearance_params
       params.required(:data).required(:attributes).permit(:title_text, :subtitle_text, :logo_type,
                                                           :show_reflections, :show_reflection_questions,
-                                                          fields: [], translations: {})
+                                                          :show_guidelines, :guideline_position, :flip_background,
+                                                          fields: [], translations: {}, page_styles: {})
     end
 
     def uploads_params

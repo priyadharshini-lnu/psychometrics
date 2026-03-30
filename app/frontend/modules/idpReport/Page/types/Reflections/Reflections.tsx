@@ -1,7 +1,8 @@
 import { Flex } from 'antd'
 import cs from 'classnames'
 import { SafeHTML } from '~/components/SafeHTML'
-import { useAppSelector } from '~/modules/idpReport/hooks/redux'
+import { useUserIdp } from '~/modules/idpReport/hooks/useIdpData'
+import { usePageFontStyles } from '~/modules/idpReport/hooks/usePageFontStyles'
 import styles from './Reflections.less'
 import Page from '../../Page'
 import { useI18n } from '~/modules/idpReport/I18nContext'
@@ -9,9 +10,11 @@ import { useI18n } from '~/modules/idpReport/I18nContext'
 
 const Reflections = ({ rtl }) => {
   const I18n = useI18n()
-  const reflectionQuestions = useAppSelector(state => state.idp.userIdp.reflection_questions)
-  const includeQuestions = window.location.search.includes('include_reflective_questions=true')
-  if (!includeQuestions) { return null }
+  const { reflection_questions: reflectionQuestions } = useUserIdp()
+  const {
+    titleStyle, subtitleStyle, sectionTitleStyle, sectionBodyStyle,
+  } = usePageFontStyles('reflections')
+  if (!reflectionQuestions.length) { return null }
 
   return (
     <Page rtl={rtl}>
@@ -21,10 +24,10 @@ const Reflections = ({ rtl }) => {
             <Flex className={styles.header} justify="space-between" align="center">
               <Flex gap={12}>
                 <Flex vertical justify="space-between">
-                  <h1 className={styles.title}>
+                  <h1 className={styles.title} style={titleStyle}>
                     {I18n.t('idp.pdf.reflections.title')}
                   </h1>
-                  <div className={styles.subtitle}>
+                  <div className={styles.subtitle} style={subtitleStyle}>
                     {I18n.t('idp.pdf.reflections.subtitle')}
                   </div>
                 </Flex>
@@ -34,10 +37,10 @@ const Reflections = ({ rtl }) => {
               <Flex wrap="wrap" gap={20} align="flex-start">
                 {reflectionQuestions.map(question => (
                   <Flex key={question.id} vertical className={styles.reflection} gap={12}>
-                    <div className={styles.title}>
+                    <div className={styles.title} style={sectionTitleStyle}>
                       {question.question}
                     </div>
-                    <div className={styles.text}>
+                    <div className={styles.text} style={sectionBodyStyle}>
                       <SafeHTML html={question.answer || ''} />
                     </div>
                   </Flex>

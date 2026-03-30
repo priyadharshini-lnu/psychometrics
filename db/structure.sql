@@ -4240,7 +4240,11 @@ CREATE TABLE public.idp_templates (
     document_analysis_ai_assistant_id bigint,
     skill_gap_report_analysis_ai_assistant_id bigint,
     chat_instructions jsonb DEFAULT '{"content": ""}'::jsonb,
-    show_chat_instructions boolean DEFAULT false
+    show_chat_instructions boolean DEFAULT false,
+    guideline_position integer DEFAULT 0,
+    flip_background boolean DEFAULT false,
+    page_styles jsonb DEFAULT '{}'::jsonb NOT NULL,
+    show_guidelines boolean DEFAULT true
 );
 
 
@@ -20276,6 +20280,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260325000001'),
 ('20260323084342'),
 ('20260311085954'),
+('20260306120000'),
 ('20260306090626'),
 ('20260320102153'),
 ('20260305110830'),

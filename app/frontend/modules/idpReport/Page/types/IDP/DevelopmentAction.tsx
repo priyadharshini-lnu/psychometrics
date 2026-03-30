@@ -31,33 +31,56 @@ const TYPE_ICONS = {
 }
 
 
-export const Skill = ({ skill, developmentActions }) => {
+export const Skill = ({
+  skill, developmentActions, sectionTitleStyle, sectionSubtitleStyle, sectionBodyStyle,
+}) => {
   const das = _.groupBy(developmentActions, da => da.learning_style)
   const I18n = useI18n()
   return (
     <div className={styles.skill} data-skill-id={skill.id}>
       <Flex vertical gap={16}>
         <Flex className={styles.header} justify="space-between" align="center">
-          <h2 className={styles.title}>
+          <h2 className={styles.title} style={sectionTitleStyle}>
             {skill.name}
           </h2>
           <Flex gap={12} align="center">
-            <div className={styles.subtitle}>
+            <div className={styles.subtitle} style={sectionBodyStyle}>
               {I18n.t('idp.pdf.idp.self_rating')}
             </div>
             <Rate allowHalf value={skill.initial_rating} style={{ fontSize: 18 }} />
           </Flex>
         </Flex>
-        {das.on_the_job?.map((da, i) => <DevelopmentAction key={i} developmentAction={da} />)}
-        {das.learning_from_others?.map((da, i) => <DevelopmentAction key={i} developmentAction={da} />)}
-        {das.structured_learning?.map((da, i) => <DevelopmentAction key={i} developmentAction={da} />)}
+        {das.on_the_job?.map((da, i) => (
+          <DevelopmentAction
+            key={i}
+            developmentAction={da}
+            sectionSubtitleStyle={sectionSubtitleStyle}
+            sectionBodyStyle={sectionBodyStyle}
+          />
+        ))}
+        {das.learning_from_others?.map((da, i) => (
+          <DevelopmentAction
+            key={i}
+            developmentAction={da}
+            sectionSubtitleStyle={sectionSubtitleStyle}
+            sectionBodyStyle={sectionBodyStyle}
+          />
+        ))}
+        {das.structured_learning?.map((da, i) => (
+          <DevelopmentAction
+            key={i}
+            developmentAction={da}
+            sectionSubtitleStyle={sectionSubtitleStyle}
+            sectionBodyStyle={sectionBodyStyle}
+          />
+        ))}
       </Flex>
     </div>
   )
 }
 
 
-const DevelopmentAction = ({ developmentAction }) => {
+const DevelopmentAction = ({ developmentAction, sectionSubtitleStyle, sectionBodyStyle }) => {
   const I18n = useI18n()
 
   const learnStyle = developmentAction.learning_style
@@ -68,26 +91,34 @@ const DevelopmentAction = ({ developmentAction }) => {
   return (
     <Flex className={styles.developAction} align="center" data-development-action-id={developmentAction.id}>
 
-      <div className={cs(styles.description)} style={{ borderColor: color }}>
-        <div className={styles.name}>{developmentAction.name}</div>
+      <div className={cs(styles.description)} style={{ borderColor: color, ...sectionBodyStyle }}>
+        <div className={styles.name} style={sectionSubtitleStyle}>{developmentAction.name}</div>
         {developmentAction.description}
       </div>
 
       <Flex vertical flex={1} gap={8}>
         <Flex justify="space-between">
-          <div className={styles.date}>
+          <div className={styles.date} style={sectionBodyStyle}>
             {I18n.t('idp.pdf.idp.start_date')}
             {' '}
             {developmentAction.start_date_time
-              ? <strong>{dayjs(developmentAction.start_date_time).format('DD MMM YYYY')}</strong>
+              ? (
+                <strong style={sectionBodyStyle}>
+                  {dayjs(developmentAction.start_date_time).format('DD MMM YYYY')}
+                </strong>
+              )
               : null
             }
           </div>
-          <div className={styles.date}>
+          <div className={styles.date} style={sectionBodyStyle}>
             {I18n.t('idp.pdf.idp.end_date')}
             {' '}
             {developmentAction.end_date_time
-              ? <strong>{dayjs(developmentAction.end_date_time).format('DD MMM YYYY')}</strong>
+              ? (
+                <strong style={sectionBodyStyle}>
+                  {dayjs(developmentAction.end_date_time).format('DD MMM YYYY')}
+                </strong>
+              )
               : null
             }
           </div>
@@ -103,7 +134,7 @@ const DevelopmentAction = ({ developmentAction }) => {
             percent={developmentAction.progress}
             strokeColor="#0B0B0B"
           />
-          <div className={styles.progressInfo}>
+          <div className={styles.progressInfo} style={sectionBodyStyle}>
             {developmentAction.progress}
             %
           </div>

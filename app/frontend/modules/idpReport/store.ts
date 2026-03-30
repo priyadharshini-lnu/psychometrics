@@ -5,14 +5,43 @@ import {
 import {
   createApi, fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react'
+import humps from 'humps'
 
-interface Template {
+interface FontStyle {
+  fontFamily?: string
+  fontSize?: string
+  fontColor?: string
+}
+
+interface PageStyle {
+  title?: FontStyle
+  subtitle?: FontStyle
+  body?: FontStyle
+  sectionTitle?: FontStyle
+  sectionSubtitle?: FontStyle
+  sectionBody?: FontStyle
+}
+
+export interface PageStyles {
+  cover?: PageStyle
+  guidelines?: PageStyle
+  report_summary?: PageStyle
+  idp?: PageStyle
+  reflections?: PageStyle
+  last?: PageStyle
+}
+
+export interface Template {
   background?: string
   client_logo?: string
   logo_type?: string
   title_text?: string
   subtitle_text?: string
   fields: string[]
+  guideline_position?: string
+  flip_background?: boolean
+  show_guidelines?: boolean
+  page_styles?: PageStyles
 }
 
 interface Skill {
@@ -25,7 +54,7 @@ interface DevelopmentAction {
   learning_style?: string
 }
 
-interface UserIdp {
+export interface UserIdp {
   user_idp_skills: Skill[]
   reflection_questions: ReflectionQuestion[]
   status: string
@@ -91,6 +120,15 @@ export const idpApi = createApi({
       }) => ({
         url: `administration/new_campaigns/${campaignId}/user_idp_reports/${id}.json`,
         params: { report_lang: lang },
+      }),
+      transformResponse: (response: IdpReportResponse) => ({
+        ...response,
+        template: {
+          ...response.template,
+          page_styles: response.template.page_styles
+            ? humps.camelizeKeys(response.template.page_styles) as PageStyles
+            : undefined,
+        },
       }),
     }),
   }),

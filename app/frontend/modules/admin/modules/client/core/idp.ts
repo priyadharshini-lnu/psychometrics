@@ -15,7 +15,7 @@ export const ReportTR = t.type({
 
 export const AssistantTR = t.type({
   id: t.string,
-  name: t.string,
+  name: t.union([t.string, t.undefined]),
 })
 
 export const OneClickAIAssistantTR = t.type({
@@ -96,6 +96,10 @@ export const IdpTR = t.intersection([
     clientLogo: t.union([t.string, t.null]),
     logoType: t.string,
     showReflections: t.boolean,
+    showGuidelines: t.union([t.boolean, t.undefined]),
+    guidelinePosition: t.union([t.string, t.null, t.undefined]),
+    flipBackground: t.union([t.boolean, t.undefined]),
+    pageStyles: t.union([t.record(t.string, t.unknown), t.undefined]),
     instructions: t.type({
       content: t.string,
     }),

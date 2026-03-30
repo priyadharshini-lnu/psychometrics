@@ -29,6 +29,7 @@ class IdpTemplate < ApplicationRecord
 
   enum :status, { draft: 0, published: 1 }, prefix: true
   enum :skill_source_preference, { from_template: 0, from_ai: 1 }, prefix: true
+  enum :guideline_position, { second: 0, second_last: 1 }, prefix: true
 
   store_accessor :skill_settings, %i[behavioral_global behavioral_client], suffix: true
   store_accessor :skill_settings, %i[technical_global technical_client], suffix: true
