@@ -11,17 +11,27 @@ module CampaignScoring
     end
 
     def call
-      campaign_user.update!(campaign_scores_finalized: false, campaign_scores_finalized_date: nil)
+      lock_manager.lock!(lock_key, 1.minute.in_milliseconds) do
+        campaign_user.update!(campaign_scores_finalized: false, campaign_scores_finalized_date: nil)
 
-      campaign_factor_values, = transaction do
-        ::CampaignFactorValue.joins(:campaign_factor).where(campaign: campaign, user: user).
-          where(calculation_type: :auto).destroy_all
+        campaign_factor_values, = transaction do
+          ::CampaignFactorValue.joins(:campaign_factor).where(campaign: campaign, user: user).
+            where(calculation_type: :auto).destroy_all
 
-        score_values = ::CampaignScoring::CalculateAndSave.call!(campaign, user)
-        score_values
+          score_values = ::CampaignScoring::CalculateAndSave.call!(campaign, user)
+          score_values
+        end
+
+        broadcast :ok, campaign_factor_values
       end
+    end
 
-      broadcast :ok, campaign_factor_values
+    def lock_key
+      "locks/rescore/#{campaign.id}/#{campaign_user.id}"
+    end
+
+    def lock_manager
+      @lock_manager ||= Redlock::Client.new([$redis]) # rubocop:disable Style/GlobalVars
     end
   end
 end
