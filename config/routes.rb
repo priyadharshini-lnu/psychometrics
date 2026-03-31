@@ -1420,6 +1420,12 @@ as: :simulation_progress_notification
               end
             end
           end
+          jsonapi_resources :dimensions
+          jsonapi_resources :libraries do
+            collection do
+              post :create_from_upload
+            end
+          end
           jsonapi_resources :norms do
             post :copy
             post :editor
@@ -1435,6 +1441,7 @@ as: :simulation_progress_notification
           end
           jsonapi_resources :maintenance_settings
           jsonapi_resources :tags
+          resources :direct_uploads, only: %i[create]
           jsonapi_resources :external_assessments
           jsonapi_resources :external_reports
           jsonapi_resources :external_norms

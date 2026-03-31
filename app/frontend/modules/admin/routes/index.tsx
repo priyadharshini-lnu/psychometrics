@@ -17,6 +17,7 @@ import Skills from '~/modules/admin/modules/SkillsTaxonomy/routes'
 import DevelopmentActionRoutes from '~/modules/admin/modules/DevelopmentActions/routes'
 import DimensionsRoutes from '~/modules/admin/modules/Dimensions/routes'
 import AiAssitantRoutes from '~/modules/admin/modules/AiAssitant/routes'
+import MediaLibraryRoutes from '~/modules/admin/modules/MediaLibrary/routes'
 
 const routes = [
   ...ProfileRoutes,
@@ -38,6 +39,7 @@ const routes = [
   ...AiAssitantRoutes,
   ...DimensionsRoutes,
   ...SettingsRoutes,
+  ...MediaLibraryRoutes,
 ]
 
 export default routes

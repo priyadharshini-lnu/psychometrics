@@ -8,6 +8,7 @@ en:
     add_campaign_admin: Add Campaign Admin
     add_client_admin: Add Client Admin
     add_indicator: Add Indicator
+    add_new_folder: Add New Folder
     add_project: Add Project
     add_project_admin: Add Project Admin
     add_threesixty_campaign_admin: Add Campaign Admin
@@ -191,7 +192,9 @@ en:
     configure_model_answer_title: Configure Model Answer and Keywords
     confirm_remove_admin: Are you sure you want to remove admin user with email '%{email}'?
     copied: Copied
+    copied_url_success: URL is copied to clipboard successfully
     copy_ai_artifacts: Copy AI Artifacts
+    copy_image_url: Copy Image URL
     country: Country
     create_client: Create Client
     create_indicator: Create Indicator
@@ -236,9 +239,11 @@ en:
     duration: Duration
     edit_campaign_admin: Edit Campaign Admin
     edit_client_admin: Edit Client Admin
+    edit_folder: Edit Folder
     edit_indicator: Edit Indicator
     edit_job_roles: Edit Job Roles
     edit_level: Edit Level
+    edit_media: Edit Media
     edit_permission_denied: You do not have permission to edit admin '%{name}'
     edit_project_admin: Edit Project Admin
     edit_threesixty_campaign_admin: Edit Campaign Admin
@@ -280,6 +285,8 @@ en:
     feature_global_skills_description: Access the global skills library for assessments
     feature_idp_description: Enable Individual Development Planning for participants
     feature_sms_notification_description: Enable SMS notifications for campaign invitations and reminders
+    file_size_must_be_less_than_mb: File {{name}} exceeds the maximum size of {{max_size_mb}} MB
+    file_upload_failed: Failed to upload {{name}}
     fill_empty_score_msg: Fill all the final scores before saving.
     final_score_empty_err_msg: Final score of %{factor_name} cannot be empty.
     final_score_empty_msg: Итоговый счет не может быть пустым.
@@ -359,6 +366,8 @@ en:
     maintenance_settings_description: Manage system maintenance windows and settings
     manager_approval_required: Report for %{user} requires manager approval before download
     max_value: Max value
+    media_files_label: Files
+    media_library: Media Library
     messages: Messages
     mhs: MHS
     mhs_assessment: MHS Assessment
@@ -378,6 +387,7 @@ en:
     name: Name
     name_max_length: Name cannot exceed %{length} characters
     name_required: Name is required
+    new_folder: New folder
     no_file_selected: No file selected
     no_notifications: No Notifications
     no_status: No Status
@@ -843,6 +853,8 @@ en:
     registration_codes: Registration codes
     registration_settings: Registration Settings
     remove_children_to_change_type: Remove all children to change type
+    remove_confirmation: Are you sure you want to remove this item?
+    remove_successfully: Media Item was removed successfully.
     report_approvals: Report Approvals
     report_condition_not_met: Needs %{required} %{relationship} evaluation(s), but only has %{actual}
     report_conditions_not_met_detailed: Report for %{user} does not meet availability conditions. %{conditions}
@@ -1004,6 +1016,9 @@ en:
     translated_with_ai_notice: AI Translated
     translation_assistant_not_configured: Translation Assistant not configured
     update_success: "%{readableResourceName} was updated successfully"
+    upload: Upload
+    upload_media: Upload Media
+    upload_required: Please add at least one file to upload
     upload_success: Uploaded successfully
     user_report_events: User Report Events
     users: Users
@@ -1012,6 +1027,7 @@ en:
     very_high: Very High
     very_low: Very Low
     view_licenses: View Licenses
+    wait_for_upload_completion: Please wait for all files to finish uploading
     waiting: Waiting
     weight: Weight
     what_to_look_for: What to Look For
