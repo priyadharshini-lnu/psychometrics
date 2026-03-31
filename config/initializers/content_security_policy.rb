@@ -59,6 +59,7 @@ unless Rails.env.test?
       connect_src = [
         :self, :blob, 'https://chatwoot.tte-work.com', 'https://*.amazonaws.com',
         'https://cmp.osano.com', 'https://disclosure.osano.com',
+        'https://*.osano.com',
         'https://*.sentry.io',
         'wss://*.amazonaws.com:8443', Settings.oac.base_embed_url, Settings.secrets.s3_compatible_storage.endpoint,
         'https://www.google.com', 'https://www.gstatic.com', 'https://svc.webspellchecker.net'
