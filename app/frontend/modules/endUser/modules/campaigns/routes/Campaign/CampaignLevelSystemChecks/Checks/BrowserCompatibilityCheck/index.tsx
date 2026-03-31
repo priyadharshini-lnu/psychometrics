@@ -7,13 +7,13 @@ import {
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { RootState } from '~/modules/endUser/core/rootReducers'
-import { MediaQueryContext } from '~/glint'
+import { MediaQueryContext, DirectionalBackArrowIcon } from '~/glint'
 import { BROWSER_FEATURES } from '~/modules/survey/constants/browser'
 import { BROWSER_NAME, BROWSER_VERSION, checkBrowserSupportForFeature } from '~/utils/uaParser'
 import { actions } from '~/modules/endUser/modules/campaigns/core/systemChecks/systemCheckRTK'
 import {
   CheckCircleOutlined,
-  GlobalOutlined, ExclamationCircleOutlined, RedoOutlined, ArrowLeftOutlined,
+  GlobalOutlined, ExclamationCircleOutlined, RedoOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import {
   useAddSystemCheckRecordMutation, useFetchSystemCheckRequirementsStatusQuery,
@@ -274,7 +274,7 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
       )}
 
       <Flex style={{ width: '100%' }} justify="space-between">
-        <Button icon={<ArrowLeftOutlined />} onClick={onPrev}>
+        <Button icon={<DirectionalBackArrowIcon />} onClick={onPrev}>
           {I18n.t('enduser.back')}
         </Button>
         <Flex justify="end" gap={12}>

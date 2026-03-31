@@ -13,6 +13,7 @@ ar:
     all_checks_must_pass: يجب اجتياز جميع عمليات الفحص قبل أن تتمكن من المتابعة
     approve_idp_plan: الموافقة على الخطة
     back: خلف
+    back_to_dashboard: العودة إلى لوحة التحكم
     before_you_begin: قبل أن تبدأ
     begin_message: قبل المتابعة في أنشطة هذا التقييم، يجب بدء فحص الجاهزية للتحقق من توافق جهازك
     bookings: الحجوزات

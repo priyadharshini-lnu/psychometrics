@@ -36,6 +36,7 @@ type CampaignDetailsForSystemCheck = {
   campaignUser: {
     id: number
   }
+  campaignName: string
 }
 
 type CurrentCampaignForSystemCheck = CampaignDetailsForSystemCheck & {
@@ -71,6 +72,7 @@ const systemCheck = createSlice({
         campaignTime: payload.campaignTime,
         campaignUser: payload.campaignUser,
         systemCheckSessionId: null,
+        campaignName: payload.name,
         checksArray: [],
         isSystemCheckEnabled: false,
         isSystemCheckCompleted: false,
