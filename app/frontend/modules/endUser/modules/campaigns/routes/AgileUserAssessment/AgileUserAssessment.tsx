@@ -104,7 +104,8 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
     const currentCampaign = response.filter(campaign => campaign.id === campaignId)[0]
 
     if (currentCampaign?.isSystemCheckEnabled
-        && !currentCampaign.systemCheckStatus?.isValid && currentCampaign.progressStatus !== 'completed') {
+        && !currentCampaign.systemCheckStatus?.isValid
+        && currentCampaign?.progressStatus !== 'completed') {
       window.location.href = '/dashboard'
     } else { setAssessmentLoading(false) }
   }
