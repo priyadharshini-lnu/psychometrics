@@ -15,6 +15,7 @@ module Api
             attribute[:scoring_strategy].filled(:string)
             optional(:description).maybe(:string)
             optional(:precision).maybe(:integer)
+            optional(:disabled).maybe(:bool) if type == :update
             optional(:factors_sub_factors).maybe(:array).each do
               schema do
                 optional(:id).maybe(:string)
@@ -28,10 +29,16 @@ module Api
           end
         end
 
-        def self.relationships(_)
+        def self.relationships(type)
           [
             { name: :parent_factors, resource: :factors, relationship: :many, required: false, allowed_blank: true },
-            { name: :dimension, resource: :dimensions, relationship: :one, required: true, allowed_blank: false }
+            {
+              name: :dimension,
+              resource: :dimensions,
+              relationship: :one,
+              required: type == :create,
+              allowed_blank: false
+            }
           ]
         end
       end

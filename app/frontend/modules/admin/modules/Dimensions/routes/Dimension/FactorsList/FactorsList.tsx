@@ -34,6 +34,7 @@ const FactorsList: React.FC<PropsFromRedux> = ({ openModal }) => {
     responseType: FactorTR,
     apiConfig: {
       include: ['sub_factors'],
+      include_resource_meta: ['permissions'],
     },
   }
 

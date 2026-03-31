@@ -4,7 +4,7 @@ import {
   Switch,
 } from 'antd'
 import { ItemType } from 'antd/lib/menu/interface'
-import { Dimension } from '~/modules/admin/modules/client/core/dimensions'
+import { Dimension, DimensionTR } from '~/modules/admin/modules/client/core/dimensions'
 import dayjs from '~/utils/dayjs'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -51,7 +51,7 @@ export const DimensionsTable: FC<Props> = ({ openModal }) => {
         />
         <Resource.Column<Dimension>
           title={I18n.t('common.column.active')}
-          id="id"
+          id="disabled"
           sorter
           render={dimension => <ActiveSwitch dimension={dimension} />}
           width={100}
@@ -66,7 +66,6 @@ export const DimensionsTable: FC<Props> = ({ openModal }) => {
         <Resource.Column<Dimension>
           title={I18n.t('common.column.owner')}
           id="owner"
-          sorter
           render={dimension => (
             dimension.owner?.name
           )}
@@ -76,6 +75,7 @@ export const DimensionsTable: FC<Props> = ({ openModal }) => {
           title={I18n.t('common.column.created_at')}
           id="created_at"
           dataIndex="createdAt"
+          sorter
           render={createdAt => (
             dayjs(createdAt).format('lll')
           )}
@@ -85,6 +85,7 @@ export const DimensionsTable: FC<Props> = ({ openModal }) => {
           title={I18n.t('common.column.updated_at')}
           id="updated_at"
           dataIndex="updatedAt"
+          sorter
           render={updatedAt => (
             dayjs(updatedAt).format('lll')
           )}
@@ -110,15 +111,33 @@ type DropDownProps = {
   dimension: Dimension,
   openModal: (modalName: string, modalProps?: unknown) => void
 }
-const Dropdown: React.FC<DropDownProps> = ({ dimension, openModal }) => (
-  <ConditionalDropdown
-    menu={getActionsMenuProps({ dimension, openModal })}
-  />
-)
 
-const getActionsMenuProps = ({ dimension, openModal }: DropDownProps): MenuProps => {
+const Dropdown: React.FC<DropDownProps> = ({ dimension, openModal }) => {
+  const { resource } = useResourceContext<Dimension>()
+
+  const copyDimension = async () => {
+    await resource.memberAction({
+      id: dimension.id,
+      action: 'copy',
+      method: 'post',
+      updateStore: true,
+      responseType: DimensionTR,
+    })
+  }
+
+  return (
+    <ConditionalDropdown
+      menu={getActionsMenuProps({ dimension, openModal, copyDimension })}
+    />
+  )
+}
+
+const getActionsMenuProps = ({
+  dimension,
+  openModal,
+  copyDimension,
+}: DropDownProps & { copyDimension: () => Promise<void> }): MenuProps => {
   const canCopy = dimension?.meta?.permissions?.copy
-
   const menuItems = [
     dimension && {
       key: 'edit',
@@ -147,6 +166,7 @@ const getActionsMenuProps = ({ dimension, openModal }: DropDownProps): MenuProps
       label: (
         <Button
           type="link"
+          onClick={copyDimension}
           className="ps-0"
         >
           {I18n.t('common.actions.copy')}

@@ -8,6 +8,7 @@ export const FactorTR = t.type({
   id: t.string,
   name: t.union([t.string, t.undefined]),
   parent: t.union([t.boolean, t.undefined]),
+  disabled: t.union([t.boolean, t.undefined]),
   active: t.union([t.boolean, t.undefined]),
   subFactors: t.union([t.array(t.type({
     id: t.string,
@@ -26,6 +27,14 @@ export const FactorTR = t.type({
   scoringStrategy: t.union([t.string, t.undefined]),
   createdAt: t.union([t.string, t.undefined]),
   updatedAt: t.union([t.string, t.undefined]),
+  meta: t.union([
+    t.type({
+      permissions: t.type({
+        copy: t.boolean,
+      }),
+    }),
+    t.undefined,
+  ]),
 })
 
 
@@ -33,6 +42,7 @@ export const FactorSearchTR = t.type({
   id: t.string,
   name: t.string,
   parent: t.boolean,
+  disabled: t.boolean,
 })
 
 export type Factor = t.TypeOf<typeof FactorTR>

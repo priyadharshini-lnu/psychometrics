@@ -1400,8 +1400,10 @@ as: :simulation_progress_notification
             post :external_scores
           end
           jsonapi_resources :dimensions do
+            post :copy
             scope module: :dimensions do
               jsonapi_resources :factors do
+                post :copy
                 resource :uploads, only: %i[update], controller: 'factors/uploads'
               end
               jsonapi_resources :occupations do
