@@ -10,8 +10,11 @@ module Administration
     skip_before_action :init_state
 
     def index
-      fields = Array(params[:fields]).select { |field| ALLOWED_FIELDS.include?(field) }
-      object = fields.index_with { |field| send(field) }
+      request_fields = Array(params[:fields])
+      object = request_fields.index_with do |field|
+        sanitized_field = sanitize_field(field)
+        send(sanitized_field) if sanitized_field
+      end
       render json: BreadcrumbSerializer.new(
         only: fields.map(&:to_sym),
         context: {
@@ -34,6 +37,14 @@ module Administration
 
     def client
       @client ||= params[:data][:client_id] ? Client.find_by(id: params[:data][:client_id]) : project.client
+    end
+
+    private
+
+    def sanitize_field(request_field)
+      return nil unless ALLOWED_FIELDS.include?(request_field)
+
+      request_field
     end
   end
 end
