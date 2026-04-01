@@ -8,6 +8,7 @@ module Administration
 
         def index
           user_assessments = assessor.user_assessments.where(campaign_id: assessor.campaign_id).
+                             includes(:assessment).
                              ransack(params[:filters]).result
           serialized_user_assessments = Panko::ArraySerializer.new(
             user_assessments.page(params[:page]),

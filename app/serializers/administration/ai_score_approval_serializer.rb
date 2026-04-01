@@ -18,14 +18,14 @@ module Administration
 
     def competencies
       Panko::ArraySerializer.new(
-        object.users_result.ai_factor_scores.where(parent_factor_id: nil),
+        object.users_result.ai_factor_scores.includes(factor: :translations).where(parent_factor_id: nil),
         each_serializer: Administration::AIFactorScoreSerializer
       ).to_a
     end
 
     def indicators
       Panko::ArraySerializer.new(
-        object.users_result.ai_factor_scores.where.not(parent_factor_id: nil),
+        object.users_result.ai_factor_scores.includes(factor: :translations).where.not(parent_factor_id: nil),
         each_serializer: Administration::AIFactorScoreSerializer
       ).to_a.group_by { |a| a['question_id'] }
     end

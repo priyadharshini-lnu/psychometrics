@@ -41,6 +41,7 @@ class Api::V2::Administration::ReportApprovalResource < Api::V2::Administration:
   end
 
   def self.records(_)
-    super.select('user_reports.*', 'qc_user_ids', 'approver_user_ids', 'allow_qc_bulk_submit', 'allow_bulk_approve')
+    super.includes(:campaign).
+      select('user_reports.*', 'qc_user_ids', 'approver_user_ids', 'allow_qc_bulk_submit', 'allow_bulk_approve')
   end
 end
