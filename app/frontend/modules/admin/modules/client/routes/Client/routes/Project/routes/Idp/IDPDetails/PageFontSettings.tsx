@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import {
-  Col, Row, Form, InputNumber, Card, Divider, Select, Space,
+  Col, Row, Form, InputNumber, Card, Divider, Select,
 } from 'antd'
 import type { GetRef } from 'antd'
 import { ColorPicker } from '~/glint/components/ColorPicker/ColorPicker'
@@ -44,15 +44,13 @@ const FontStyleField: FC<FontStyleFieldProps> = ({ label, namePrefix, form }) =>
             return val
           }}
         >
-          <Space.Compact style={{ width: '100%' }}>
-            <InputNumber
-              style={{ width: '100%' }}
-              size="small"
-              min={8}
-              max={120}
-            />
-            <span style={{ padding: '0 8px', lineHeight: '24px' }}>px</span>
-          </Space.Compact>
+          <InputNumber
+            style={{ width: '100%' }}
+            size="small"
+            min={8}
+            max={120}
+            addonAfter="px"
+          />
         </Form.Item>
       </Col>
       <Col span={12}>
