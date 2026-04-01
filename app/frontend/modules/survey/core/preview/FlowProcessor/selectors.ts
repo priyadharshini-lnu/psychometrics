@@ -315,7 +315,7 @@ export const getMediaResponsesByQuestionId = createSelector(
 )
 
 export const getMediaResponseByQuestionId = (state, questionId: number) => (
-  getMediaResponsesByQuestionId(state, questionId)[0]
+  _.last(getMediaResponsesByQuestionId(state, questionId))
 )
 
 export const getQuestionScoring = (
