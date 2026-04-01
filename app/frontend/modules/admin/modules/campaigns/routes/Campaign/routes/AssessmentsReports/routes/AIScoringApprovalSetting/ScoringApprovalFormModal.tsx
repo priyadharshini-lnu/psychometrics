@@ -19,6 +19,7 @@ import dayjs from '~/utils/dayjs'
 import { getFeatures } from '~/core/config'
 import { camelizeKeys } from '~/utils/object'
 
+const { Option } = Select
 const { I18n } = window
 
 interface Props {
@@ -85,7 +86,7 @@ export const ScoringApprovalFormModal: React.FC<Props> = ({
 
   const fetchAssessmentDebounce = useCallback(_.debounce((value) => {
     fetchAssessments({
-      apiConfig: { filter: { name_cont: value } },
+      apiConfig: { filter: { name_cont: value, with_ai_questions: 'true' } },
     })
   }, 300), [])
 
@@ -164,16 +165,18 @@ export const ScoringApprovalFormModal: React.FC<Props> = ({
             rules={[{ required: true }]}
           >
             <Select
-              showSearch
+              showSearch={{ filterOption: false, onSearch: fetchAssessmentDebounce }}
               disabled={!!scoringApprovalSettings}
-              onSearch={fetchAssessmentDebounce}
-              notFoundContent={isAssessmentsLoading('fetch') ? <Spin size="small" /> : null}
-              filterOption={false}
-              options={assessmentOpts.map(({ id, name }) => ({
-                label: name,
-                value: id,
-              }))}
-            />
+              notFoundContent={
+                isAssessmentsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')
+              }
+            >
+              {assessmentOpts.map(({ id, name }) => (
+                <Option key={id} value={id}>
+                  {name}
+                </Option>
+              ))}
+            </Select>
           </Form.Item>
           <Collapse
             className="mb24"
@@ -329,15 +332,21 @@ export const ScoringApprovalFormModal: React.FC<Props> = ({
             >
               <Select
                 mode="multiple"
-                showSearch
-                onSearch={fetchAssessorDebounce}
-                notFoundContent={isAssessorUsersLoading('fetch') ? <Spin size="small" /> : null}
-                filterOption={false}
-                options={assessorOpts.map(({ id, name, email }) => ({
-                  label: `${name} (${email})`,
-                  value: id,
-                }))}
-              />
+                showSearch={{ filterOption: false, onSearch: fetchAssessorDebounce }}
+                notFoundContent={
+                  isAssessorUsersLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')
+                }
+              >
+                {assessorOpts.map(({ id, name, email }) => (
+                  <Option key={id} value={id}>
+                    {name}
+                    {' '}
+                    (
+                    {email}
+                    )
+                  </Option>
+                ))}
+              </Select>
             </Form.Item>
           )}
 
@@ -348,15 +357,21 @@ export const ScoringApprovalFormModal: React.FC<Props> = ({
           >
             <Select
               mode="multiple"
-              showSearch
-              onSearch={fetchApproverDebounce}
-              notFoundContent={isApproverUsersLoading('fetch') ? <Spin size="small" /> : null}
-              filterOption={false}
-              options={approversOpts.map(({ id, name, email }) => ({
-                label: `${name} (${email})`,
-                value: id,
-              }))}
-            />
+              showSearch={{ filterOption: false, onSearch: fetchApproverDebounce }}
+              notFoundContent={
+                isApproverUsersLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')
+              }
+            >
+              {approversOpts.map(({ id, name, email }) => (
+                <Option key={id} value={id}>
+                  {name}
+                  {' '}
+                  (
+                  {email}
+                  )
+                </Option>
+              ))}
+            </Select>
           </Form.Item>
         </>
       )}

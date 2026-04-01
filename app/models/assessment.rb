@@ -217,6 +217,13 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   scope :with_category, lambda { |category|
     where(category: category)
   }
+  scope :with_ai_questions, lambda { |_value = true|
+    where(
+      id: Question.ai_scored.
+        where('EXISTS (SELECT 1 FROM factors_scoring WHERE factors_scoring.question_id = questions.id)').
+        select(:assessment_id)
+    )
+  }
   scope :owned_by_client_or_tte, lambda { |client_id|
     where('owner_id IS NULL OR owner_id = ?', client_id)
   }
@@ -226,7 +233,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   end
 
   def self.ransackable_scopes(_)
-    super.push(:owned_by_client_or_tte)
+    super.push(:owned_by_client_or_tte, :with_ai_questions)
   end
 
   def self.ransackable_associations(_auth_object = nil)
