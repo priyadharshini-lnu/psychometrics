@@ -4,11 +4,12 @@ module Assessments
   class CacheService
     CACHE_EXPIRY = 30.days
 
-    def initialize(assessment, selected_locale = nil, piped_text_context = {})
+    def initialize(assessment, selected_locale = nil, piped_text_context = {}, campaign_id = nil)
       @assessment = assessment
       @selected_locale = selected_locale
       @cache_key = assessment.assessment_data_serializer_key(selected_locale)
       @piped_text_context = piped_text_context
+      @campaign_id = campaign_id
     end
 
     def fetch_serialized_assessment
@@ -40,7 +41,8 @@ module Assessments
           selected_locale: @selected_locale,
           piped_text_context: ignore_pipetext_substitution ? {} : piped_text_context,
           include: '**',
-          ignore_pipetext_substitution: ignore_pipetext_substitution
+          ignore_pipetext_substitution: ignore_pipetext_substitution,
+          campaign_id: @campaign_id
         }
       ).serialize(@assessment)
     end
