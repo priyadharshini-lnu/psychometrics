@@ -42,10 +42,12 @@ module Api
         :last_name,
         :email,
         :gender,
+        :locale,
         :user_external_id,
         :existing_record,
         :project_id,
         project_datasheet: {},
+        custom_profile_fields: {},
         campaign_ids: [],
         user: %i[
           first_name
