@@ -115,6 +115,8 @@ hi:
     question_id: प्रश्न आईडी
     question_transcription_disabled: इस प्रश्न के लिए प्रतिलेखन अक्षम है।
     rec: पुनर्नवीनीकरण योग्य ऊर्जा स्रोत
+    recorded: रिकॉर्ड किया गया
+    recording: रिकॉर्डिंग
     recording_consent_notice: इस बैठक सत्र को रिकॉर्ड किया जाएगा। इस बैठक में आपकी भागीदारी रिकॉर्ड किए जाने की आपकी सहमति मानी जाएगी।
     recording_consent_proceed_question: क्या आप रिकॉर्ड की गई बैठक को जारी रखने के लिए सहमत हैं?
     recording_consent_title: रिकॉर्डिंग सहमति सूचना
@@ -133,6 +135,7 @@ hi:
     show_more: और दिखाएँ
     something_wrong: कुछ गलत हो गया। अपने व्यवस्थापक से संपर्क करें।
     status: स्थिति
+    status_unknown: स्थिति अज्ञात
     subject: विषय
     submit: सबमिट करें
     switch_to_laptop_or_desktop: लैपटॉप या डेस्कटॉप पर स्विच करें

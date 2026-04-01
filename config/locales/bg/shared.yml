@@ -115,6 +115,8 @@ bg:
     question_id: Идентификационен номер на въпроса
     question_transcription_disabled: Транскрипцията е деактивирана за този въпрос.
     rec: REC
+    recorded: Записан
+    recording: Запис
     recording_consent_notice: Тази сесия на срещата ще бъде записана. Вашето участие в тази среща представлява вашето съгласие да бъдете записани.
     recording_consent_proceed_question: Съгласяваш ли се да продължиш с записаната среща?
     recording_consent_title: Уведомление за съгласие за записване
@@ -133,6 +135,7 @@ bg:
     show_more: Покажи повече
     something_wrong: Нещо се обърка. Свържете се с администратора си.
     status: Статус
+    status_unknown: Статус неизвестен
     subject: Тема
     submit: Изпрати
     switch_to_laptop_or_desktop: Преминаване към лаптоп или настолен компютър

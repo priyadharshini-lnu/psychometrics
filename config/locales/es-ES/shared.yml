@@ -115,6 +115,8 @@ es-ES:
     question_id: ID de la pregunta
     question_transcription_disabled: La transcripción está desactivada para esta pregunta.
     rec: REC
+    recorded: Grabado
+    recording: Grabación
     recording_consent_notice: Esta sesión de reunión será grabada. Tu participación en esta reunión constituye tu consentimiento para ser grabado.
     recording_consent_proceed_question: "¿Acepta continuar con la reunión grabada?"
     recording_consent_title: Aviso de consentimiento de grabación
@@ -133,6 +135,7 @@ es-ES:
     show_more: Mostrar más
     something_wrong: Algo ha ido mal. Póngase en contacto con su administrador.
     status: Estado
+    status_unknown: Estado desconocido
     subject: Asunto
     submit: Enviar
     switch_to_laptop_or_desktop: Cambiar a ordenador portátil o de sobremesa

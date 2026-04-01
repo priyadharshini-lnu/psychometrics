@@ -95,8 +95,6 @@ es-ES:
     profile_details: Datos
     question_counter: Pregunta %{current} de %{total}
     reason_for_idp_plan_rejection: Motivo del rechazo
-    recorded: Grabado
-    recording: Grabación
     reject_idp_plan: Plan de rechazo
     request_retry_message: Estás desconectado. Tus respuestas no pudieron guardarse, pero se guardarán automáticamente cuando vuelvas a estar en línea. Por favor, no actualices ni cierres la página.
     required_download_in_mbps: Velocidad de descarga necesaria en Mbps
@@ -112,7 +110,6 @@ es-ES:
     start_campaign_message_timed_proctored: Esta es una campaña cronometrada y supervisada, por favor haz clic en el botón '%{buttonText}' para iniciar las actividades.
     start_readiness_check: Iniciar comprobación de preparación
     start_system_check: Iniciar comprobación del sistema
-    status_unknown: Estado desconocido
     subinstruction_eight: Reserva un tiempo sin interrupciones para realizar la evaluación completa
     subinstruction_five: "¿Estás listo para compartir tu pantalla durante toda la sesión?"
     subinstruction_four: Cámara web y micrófono que funcionan

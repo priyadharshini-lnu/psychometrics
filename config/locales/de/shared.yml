@@ -115,6 +115,8 @@ de:
     question_id: Fragen-ID
     question_transcription_disabled: Die Transkription ist für diese Frage deaktiviert.
     rec: REC
+    recorded: Aufgenommen
+    recording: Aufnahme
     recording_consent_notice: Diese Sitzung wird aufgezeichnet. Ihre Teilnahme an diesem Treffen stellt Ihre Zustimmung zur Aufnahme dar.
     recording_consent_proceed_question: Stimmen Sie zu, mit dem aufgezeichneten Treffen fortzufahren?
     recording_consent_title: Aufzeichnung der Einwilligungsmitteilung
@@ -133,6 +135,7 @@ de:
     show_more: Mehr anzeigen
     something_wrong: Es ist etwas schief gelaufen, wenden Sie sich an Ihren Administrator.
     status: Status
+    status_unknown: Status unbekannt
     subject: Betreff
     submit: Einreichen
     switch_to_laptop_or_desktop: Wechseln Sie zu Laptop oder Desktop

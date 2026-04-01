@@ -95,8 +95,6 @@ ru:
     profile_details: Подробности
     question_counter: Вопрос %{current} из %{total}
     reason_for_idp_plan_rejection: Причина отказа
-    recorded: записанный
-    recording: запись
     reject_idp_plan: Отклонить план
     request_retry_message: Вы не подключены к Интернету. Ваши ответы не могут быть сохранены, но будут сохранены автоматически, как только вы снова подключитесь к Интернету. Пожалуйста, не обновляйте и не закрывайте страницу.
     required_download_in_mbps: Требуемая скорость загрузки (Мбит/с)
@@ -112,7 +110,6 @@ ru:
     start_campaign_message_timed_proctored: Это кампания с ограниченным временем и под наблюдением, пожалуйста, нажмите кнопку «%{buttonText}» (Начать кампанию), чтобы приступить к действиям.
     start_readiness_check: Начать проверку готовности
     start_system_check: Запустить проверку системы
-    status_unknown: Статус неизвестен
     subinstruction_eight: Выделите достаточно времени для проведения полной оценки
     subinstruction_five: Готовы ли вы открыть доступ к своему экрану на время сеанса?
     subinstruction_four: Работающая веб-камера и микрофон

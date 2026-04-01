@@ -95,8 +95,6 @@ it:
     profile_details: Dettagli
     question_counter: Domanda %{current} di %{total}
     reason_for_idp_plan_rejection: Motivo del rifiuto
-    recorded: Registrato
-    recording: Registrazione
     reject_idp_plan: Rifiuta il piano
     request_retry_message: Sei offline. Le tue risposte non potevano essere salvate, ma lo saranno automaticamente una volta che sarai di nuovo online. Per favore, non aggiornare o chiudere la pagina.
     required_download_in_mbps: Velocità di download richiesta in Mbps
@@ -112,7 +110,6 @@ it:
     start_campaign_message_timed_proctored: Questa è una campagna a tempo e sorvegliata, clicca sul pulsante '%{buttonText}' per avviare le attività.
     start_readiness_check: Avvia il controllo di preparazione
     start_system_check: Avvia il controllo del sistema
-    status_unknown: Stato sconosciuto
     subinstruction_eight: Riservatevi un po' di tempo senza interruzioni per la valutazione completa
     subinstruction_five: Sei pronto a condividere lo schermo per tutta la durata della sessione
     subinstruction_four: Webcam e microfono funzionanti

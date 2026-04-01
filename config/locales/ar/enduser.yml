@@ -96,8 +96,6 @@ ar:
     profile_details: تفاصيل
     question_counter: السؤال %{current} من %{total}
     reason_for_idp_plan_rejection: سبب الرفض
-    recorded: تم التسجيل
-    recording: التسجيل
     reject_idp_plan: رفض الخطة
     request_retry_message: أنت غير متصل. لم يكن بالإمكان حفظ إجاباتك لكنها ستحفظ تلقائيا بمجرد عودتك للاتصال. يرجى عدم تحديث الصفحة أو إغلاقها.
     required_download_in_mbps: سرعة التنزيل المطلوبة (Mbps)
@@ -113,7 +111,6 @@ ar:
     start_campaign_message_timed_proctored: هذه حملة محددة بالوقت وتحت المراقبة، يرجى الضغط على زر '%{buttonText}' لبدء الأنشطة.
     start_readiness_check: بدء التحقق من الجاهزية
     start_system_check: بدء فحص النظام
-    status_unknown: الحالة غير معروفة
     subinstruction_eight: خصّص وقت كافي لإجراء التقييم بالكامل دون انقطاع
     subinstruction_five: كن مستعداً لمشاركة شاشتك طوال مدة الجلسة
     subinstruction_four: تأكد من أن الكاميرا والميكروفون يعملات بشكل صحيح

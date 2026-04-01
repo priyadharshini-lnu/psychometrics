@@ -95,8 +95,6 @@ hu:
     profile_details: Részletek
     question_counter: Kérdés %{current} / %{total}
     reason_for_idp_plan_rejection: Az elutasítás oka
-    recorded: Felvétel
-    recording: Felvétel
     reject_idp_plan: Elutasít tervet
     request_retry_message: Offline vagy. A válaszaid nem menthetők el, de automatikusan mentődni fognak, amint újra online vagy. Kérjük, ne frissítse vagy zárja be az oldalt.
     required_download_in_mbps: Szükséges letöltési sebesség (Mbps)
@@ -112,7 +110,6 @@ hu:
     start_campaign_message_timed_proctored: Ez egy időzített és felügyelt kampány, kérjük, kattints a '%{buttonText}' gombra a tevékenységek elindításához.
     start_readiness_check: Indítsa el az indulás előtti ellenőrzést
     start_system_check: Rendszerellenőrzés indítása
-    status_unknown: Állapot ismeretlen
     subinstruction_eight: Szánjon rá zavartalan időt a teljes értékelésre
     subinstruction_five: Készen állsz a képernyő megosztására a munkamenet során?
     subinstruction_four: Működő webkamera és mikrofon
