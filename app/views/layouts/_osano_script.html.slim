@@ -1,1 +1,9 @@
-script src="https://cmp.osano.com/16CFuWSuPfE35eNP/8292079f-6816-474d-acf8-0a6feed3b869/osano.js"
+javascript [nonce=content_security_policy_nonce]:
+  (function(w, o, d) {
+    w[o] = w[o] || function() { w[o][d].push(arguments); };
+    w[o][d] = w[o][d] || [];
+  })(window, 'Osano', 'data');
+  window.Osano('onInitialized', function() {
+    Osano.cm.locale = '#{I18n.locale}';
+  });
+script src="https://cmp.osano.com/16CFuWSuPfE35eNP/8292079f-6816-474d-acf8-0a6feed3b869/osano.js" nonce=content_security_policy_nonce
