@@ -20,6 +20,7 @@ import { useRecording } from '~/context/RecordingContext'
 import VideoPlayer from './components/VideoPlayer'
 import ProgressWithCountdown, { ProgressWithCountdownProps } from './components/ProgressWIthCountdown'
 import { useMediaPreview, VIDEO_RESOLUTION } from '~/hooks/useMediaPreview'
+import styles from './styles.less'
 
 const { I18n } = window
 
@@ -112,6 +113,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
   const urlDetailsRef = useRef<UrlDetails | null>(null)
   const mediaStreamRef = useRef<MediaStream | null>(null)
   const isRerunningRef = useRef<boolean>(false)
+  const [isDiscarding, setIsDiscarding] = useState<boolean>(false)
 
   const [recStopCountdownRemainingDuration, setRecStopCountdownRemainingDuration] = useState<number>(
     maxDuration,
@@ -387,26 +389,32 @@ const MediaRecorderComponent: React.FC<Props> = ({
   }, [maxDuration, handleRequestPermission, getUploadUrl])
 
   const handleDiscard = useCallback(async (): Promise<void> => {
-    if (existingMedia) {
-      try {
-        await axiosInstance.delete(`${mediaUrl}/remove_media`, {
-          headers: { 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') },
-          data: { media_id: existingMedia?.id },
-        })
-        setExistingVideoUrl(null)
-        clearBlobUrl()
-        onDeleteMedia()
-      } catch (error) {
-        console.error('Error discarding existing video:', error)
-        setError('discard')(I18n.t('assessments.video_response.error_while_discarding'))
-        return
-      }
-    } else {
-      clearBlobUrl()
-    }
+    if (isDiscarding) return
+    setIsDiscarding(true)
 
-    await resetRecorder()
-  }, [mediaUrl, existingMedia, clearBlobUrl, resetRecorder])
+    try {
+      if (existingMedia) {
+        try {
+          await axiosInstance.delete(`${mediaUrl}/remove_media`, {
+            headers: { 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') },
+            data: { media_id: existingMedia.id },
+          })
+          setExistingVideoUrl(null)
+          clearBlobUrl()
+          onDeleteMedia()
+        } catch (error) {
+          console.error('Error discarding existing video:', error)
+          setError('discard')(I18n.t('assessments.video_response.error_while_discarding'))
+          return
+        }
+      } else {
+        clearBlobUrl()
+      }
+      await resetRecorder()
+    } finally {
+      setIsDiscarding(false)
+    }
+  }, [mediaUrl, existingMedia, isDiscarding, clearBlobUrl, resetRecorder])
 
   const handleStopRecording = useCallback((): void => {
     stopVideoRecording()
@@ -465,7 +473,13 @@ const MediaRecorderComponent: React.FC<Props> = ({
   }
 
   const renderDiscardButton = () => (
-    <Button disabled={isRecording} onClick={handleDiscard} type="primary" icon={<DeleteOutlined />}>
+    <Button
+      disabled={isRecording || isDiscarding}
+      loading={isDiscarding}
+      onClick={handleDiscard}
+      type="primary"
+      icon={<DeleteOutlined />}
+    >
       {I18n.t('assessments.video_response.discard_record_again')}
     </Button>
   )
@@ -574,20 +588,22 @@ const MediaRecorderComponent: React.FC<Props> = ({
       align="center"
       gap={4}
     >
-      <VideoPlayer
-        videoRef={videoRef}
-        mediaUrl={existingVideoUrl || mediaBlobUrl}
-        permissionGranted={permissionGranted}
-        status={status}
-        onPlay={handleVideoPlay}
-        visualizing={visualizing}
-        stream={previewStream || mediaStreamRef.current}
-        videoDevices={devices.videoDevices}
-        audioDevices={devices.audioDevices}
-        onChangeVideoDevice={setSelectedVideoDevice}
-        onChangeAudioDevice={setSelectedAudioDevice}
-      />
-      <Flex className={status === 'recording' ? 'mt-16' : 'unset'} vertical justify="center" align="center" gap={4}>
+      <div className={styles.videoPlayerWrapper}>
+        <VideoPlayer
+          videoRef={videoRef}
+          mediaUrl={existingVideoUrl || mediaBlobUrl}
+          permissionGranted={permissionGranted}
+          status={status}
+          onPlay={handleVideoPlay}
+          visualizing={visualizing}
+          stream={previewStream || mediaStreamRef.current}
+          videoDevices={devices.videoDevices}
+          audioDevices={devices.audioDevices}
+          onChangeVideoDevice={setSelectedVideoDevice}
+          onChangeAudioDevice={setSelectedAudioDevice}
+        />
+      </div>
+      <Flex className={status === 'recording' ? 'mt-16' : 'mt-4'} vertical justify="center" align="center" gap={4}>
         <ProgressWithCountdown {...getProgressProps()} />
         {controls}
       </Flex>
