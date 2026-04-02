@@ -115,6 +115,8 @@ zh-Hant:
     question_id: 问题ID
     question_transcription_disabled: 此问题已禁用转录功能
     rec: REC
+    recorded: 錄製
+    recording: 錄音
     recording_consent_notice: 本次會議將被錄音。您參與本次會議即表示您同意被錄音。
     recording_consent_proceed_question: 你同意繼續錄音會議嗎？
     recording_consent_title: 登記同意書通知
@@ -133,6 +135,7 @@ zh-Hant:
     show_more: 顯示更多
     something_wrong: 出錯了，請聯絡您的管理員。
     status: 状态
+    status_unknown: 狀態不明
     subject: 主题
     submit: 提交
     switch_to_laptop_or_desktop: 切换至笔记本电脑或台式机

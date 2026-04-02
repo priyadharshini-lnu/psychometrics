@@ -56,6 +56,7 @@ module Threesixty::InitialState
         privacyPolicyVersion: @current_project.current_privacy_policy_version,
         customPrivacyConsentText: custom_privacy_consent_text,
         showBookings: show_bookings?,
+        showMaintenanceAlert: helpers.show_maintenance_alert?,
         idp: {
           managerApprovesIdp: @idp_setting&.manager_approves_idp || false,
           managerCanEditIdp: @idp_setting&.manager_can_edit_idp || false,

@@ -95,8 +95,6 @@ zh:
     profile_details: 详细信息
     question_counter: 第 %{current} 题，共 %{total} 题
     reason_for_idp_plan_rejection: 拒绝原因
-    recorded: 录制
-    recording: 录音
     reject_idp_plan: 拒绝计划
     request_retry_message: 你已经离线了。你的答案无法保存，但一旦你重新上线，答案将自动保存。请不要刷新或关闭页面。
     required_download_in_mbps: 所需下载速度（Mbps）
@@ -112,7 +110,6 @@ zh:
     start_campaign_message_timed_proctored: 这是一个限时监考的活动，请点击“%{buttonText}”按钮开始活动。
     start_readiness_check: 开始就绪检查
     start_system_check: 开始系统检查
-    status_unknown: 状态不明
     subinstruction_eight: 请预留一段不受打扰的时间，以便进行全面评估
     subinstruction_five: 准备好在整个会议期间共享屏幕了吗
     subinstruction_four: 可正常使用的网络摄像头和麦克风

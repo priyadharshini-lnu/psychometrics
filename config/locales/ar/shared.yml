@@ -115,6 +115,8 @@ ar:
     question_id: رقم السؤال
     question_transcription_disabled: النسخ معطل لهذا السؤال
     rec: تسجيل
+    recorded: تم التسجيل
+    recording: التسجيل
     recording_consent_notice: سيتم تسجيل جلسة الاجتماع هذه. مشاركتك في هذا الاجتماع تعني موافقتك على التسجيل.
     recording_consent_proceed_question: هل توافق على المضي قدما في الاجتماع المسجل؟
     recording_consent_title: تسجيل إشعار الموافقة
@@ -133,6 +135,7 @@ ar:
     show_more: عرض المزيد
     something_wrong: حدث خطأ ما. اتصل بالمشرف.
     status: الحالة
+    status_unknown: الحالة غير معروفة
     subject: الموضوع
     submit: إرسال
     switch_to_laptop_or_desktop: التبديل إلى الكمبيوتر المحمول أو المكتبي

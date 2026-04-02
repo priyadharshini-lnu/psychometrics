@@ -95,8 +95,6 @@ hr:
     profile_details: Detalji
     question_counter: Pitanje %{current} od %{total}
     reason_for_idp_plan_rejection: Razlog odbijanja
-    recorded: snimljeno
-    recording: Snimanje
     reject_idp_plan: Plan odbijanja
     request_retry_message: Offline si. Vaši odgovori nisu mogli biti spremljeni, ali će biti automatski spremljeni čim se vratite online. Molimo vas da ne osvježavate niti zatvarate stranicu.
     required_download_in_mbps: Potrebno preuzimanje u Mbps
@@ -112,7 +110,6 @@ hr:
     start_campaign_message_timed_proctored: Ovo je vremenski ograničena i nadzirana kampanja, molimo kliknite gumb '%{buttonText}' za početak aktivnosti.
     start_readiness_check: Pokreni provjeru spremnosti
     start_system_check: Pokreni provjeru sustava
-    status_unknown: Status nepoznat
     subinstruction_eight: Ostavite neprekinuto vrijeme za cjelovitu procjenu.
     subinstruction_five: Spremni dijeliti svoj zaslon tijekom cijele sesije
     subinstruction_four: Funkcionalna web-kamera i mikrofon

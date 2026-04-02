@@ -95,8 +95,6 @@ bg:
     profile_details: Подробности
     question_counter: Въпрос %{current} от %{total}
     reason_for_idp_plan_rejection: Причина за отказ на плана
-    recorded: Записан
-    recording: Запис
     reject_idp_plan: Отхвърляне на плана
     request_retry_message: Ти си офлайн. Отговорите ви не могат да бъдат запазени, но ще бъдат запазени автоматично, след като сте отново онлайн. Моля, не обновявайте и не затваряйте страницата.
     required_download_in_mbps: Необходима скорост на изтегляне в Mbps
@@ -112,7 +110,6 @@ bg:
     start_campaign_message_timed_proctored: Това е кампания с ограничено време и наблюдение, моля, натиснете бутона '%{buttonText}', за да започнете дейностите.
     start_readiness_check: Започнете проверка на готовността
     start_system_check: Започни проверка на системата
-    status_unknown: Статус неизвестен
     subinstruction_eight: Отделете достатъчно време, без да ви прекъсват, за да се извърши пълната оценка
     subinstruction_five: Готови ли сте да споделите екрана си по време на сесията?
     subinstruction_four: Работеща уеб камера и микрофон

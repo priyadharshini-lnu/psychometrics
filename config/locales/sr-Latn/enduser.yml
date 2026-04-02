@@ -95,8 +95,6 @@ sr-Latn:
     profile_details: Detalji
     question_counter: Питање %{current} од %{total}
     reason_for_idp_plan_rejection: Razlog za odbijanje
-    recorded: snimljeno
-    recording: snimanje
     reject_idp_plan: Odbaci plan
     request_retry_message: Vi ste offline. Vaši odgovori se ne mogu sačuvati, ali će biti automatski sačuvani kada se vratite na mrežu. Molimo vas da ne osvežavate ili zatvarate stranicu.
     required_download_in_mbps: Потребно преузимање у Mbps
@@ -112,7 +110,6 @@ sr-Latn:
     start_campaign_message_timed_proctored: Ovo je vremenska i nadzorovana kampanja, kliknite na dugme "%{buttonText}" da biste započeli aktivnosti.
     start_readiness_check: Покрените проверу спремности
     start_system_check: Покрени проверу система
-    status_unknown: Status Nepoznat
     subinstruction_eight: Одвојте непрекидан временски период за потпуну процену.
     subinstruction_five: Спремни да делите свој екран током целе сесије
     subinstruction_four: Радна веб-камера и микрофон

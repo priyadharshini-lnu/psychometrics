@@ -115,6 +115,8 @@ pl:
     question_id: Numer pytania
     question_transcription_disabled: Transkrypcja jest wyłączona dla tego pytania.
     rec: REC
+    recorded: Nagranie
+    recording: Nagrania
     recording_consent_notice: Sesja tego spotkania będzie nagrywana. Udział w tym spotkaniu oznacza zgodę na nagrywanie.
     recording_consent_proceed_question: Czy zgadzasz się na kontynuowanie nagranego spotkania?
     recording_consent_title: Zawiadomienie o zgodzie na nagranie
@@ -133,6 +135,7 @@ pl:
     show_more: Pokaż więcej
     something_wrong: Coś poszło nie tak. Skontaktuj się z administratorem.
     status: Status
+    status_unknown: Status nieznany
     subject: Temat
     submit: Prześlij
     switch_to_laptop_or_desktop: Przejdź do laptopa lub komputera stacjonarnego

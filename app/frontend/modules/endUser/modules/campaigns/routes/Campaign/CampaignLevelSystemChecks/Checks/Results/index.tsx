@@ -13,9 +13,9 @@ import {
 } from '~/modules/endUser/modules/campaigns/core/systemChecks/api'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
-  ArrowLeftOutlined,
+  RedoOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
-import { ButtonWithArrow, MediaQueryContext } from '~/glint'
+import { ButtonWithArrow, MediaQueryContext, DirectionalBackArrowIcon } from '~/glint'
 import { fetchCampaign } from '~/modules/endUser/modules/campaigns/core/campaign'
 import { actions } from '~/modules/endUser/modules/campaigns/core/systemChecks/systemCheckRTK'
 import { ResultHeader } from './ResultHeader'
@@ -175,21 +175,23 @@ const ResultsComponent = ({ onPrev, onNext, fetchCampaign }) => {
             ) }
             <ResultDetails resultsData={resultsData} />
             <Flex style={{ width: '100%' }} justify="space-between">
-              <Button className="mt-2" icon={<ArrowLeftOutlined />} onClick={onPrev}>
+              <Button className="mt-2" icon={<DirectionalBackArrowIcon />} onClick={onPrev}>
                 {I18n.t('enduser.back')}
               </Button>
               <Flex gap={4} style={{ width: '100%' }} justify="end">
                 {(systemCheckStatusPassed || (!systemCheckStatusPassed
             && campaignDetailsForSystemCheck?.campaignOptions.allowContinueWithWarning)) && (
-              <ButtonWithArrow
-                style={{ alignSelf: 'flex-end' }}
-                label={I18n.t('enduser.rerun_checks')}
+              <Button
+                className="mt-2"
+                icon={<RedoOutlined />}
                 onClick={
                   () => {
                     navigate(`/campaign_system_check/${campaignId}/welcome`)
                   }
                 }
-              />
+              >
+                {I18n.t('enduser.rerun_checks')}
+              </Button>
                 )}
                 <ButtonWithArrow
                   style={{ alignSelf: 'flex-end' }}

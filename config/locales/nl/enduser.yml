@@ -95,8 +95,6 @@ nl:
     profile_details: Details
     question_counter: Vraag %{current} van %{total}
     reason_for_idp_plan_rejection: Reden voor afwijzing
-    recorded: Opgenomen
-    recording: Opname
     reject_idp_plan: Plan afwijzen
     request_retry_message: Je bent offline. Je antwoorden konden niet worden opgeslagen, maar worden automatisch opgeslagen zodra je weer online bent. Vers of sluit de pagina alstublieft niet.
     required_download_in_mbps: Vereiste downloadsnelheid in Mbps
@@ -112,7 +110,6 @@ nl:
     start_campaign_message_timed_proctored: Dit is een getimede en toezichthoudende campagne, klik op de knop '%{buttonText}' om de activiteiten te starten.
     start_readiness_check: Start de gereedheidscontrole
     start_system_check: Systeemcontrole starten
-    status_unknown: Status onbekend
     subinstruction_eight: Reserveer voldoende aaneengesloten tijd voor de volledige beoordeling
     subinstruction_five: Klaar om je scherm gedurende de hele sessie te delen
     subinstruction_four: Werkende webcam en microfoon

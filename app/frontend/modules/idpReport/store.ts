@@ -152,12 +152,26 @@ const idpReportSlice = createSlice({
 
 const { __INITIAL_STATE__, __DEV__ } = window
 
+const camelizePageStyles = (state: typeof __INITIAL_STATE__) => {
+  if (!state?.idp?.template?.page_styles) return state
+  return {
+    ...state,
+    idp: {
+      ...state.idp,
+      template: {
+        ...state.idp.template,
+        page_styles: humps.camelizeKeys(state.idp.template.page_styles) as PageStyles,
+      },
+    },
+  }
+}
+
 const store = configureStore({
   reducer: combineSlices({
     idp: idpReportSlice.reducer,
     [idpApi.reducerPath]: idpApi.reducer,
   }),
-  preloadedState: __INITIAL_STATE__,
+  preloadedState: camelizePageStyles(__INITIAL_STATE__),
   devTools: __DEV__,
   middleware: getDefaultMiddleware => getDefaultMiddleware({
     serializableCheck: false,

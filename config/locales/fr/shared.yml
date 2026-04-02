@@ -115,6 +115,8 @@ fr:
     question_id: Identifiant de la question
     question_transcription_disabled: La transcription est désactivée pour cette question.
     rec: REC
+    recorded: Enregistré
+    recording: Enregistrement
     recording_consent_notice: Cette réunion sera enregistrée. Votre participation à cette réunion constitue votre consentement à être enregistré.
     recording_consent_proceed_question: Acceptez-vous de poursuivre la réunion enregistrée ?
     recording_consent_title: Avis de consentement d’enregistrement
@@ -133,6 +135,7 @@ fr:
     show_more: Afficher plus
     something_wrong: Contactez votre administrateur.
     status: Statut
+    status_unknown: Statut inconnu
     subject: Objet
     submit: Soumettre
     switch_to_laptop_or_desktop: Passer à un ordinateur portable ou de bureau

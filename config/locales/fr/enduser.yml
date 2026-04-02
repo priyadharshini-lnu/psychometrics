@@ -95,8 +95,6 @@ fr:
     profile_details: Détails
     question_counter: Question %{current} sur %{total}
     reason_for_idp_plan_rejection: Raison du rejet
-    recorded: Enregistré
-    recording: Enregistrement
     reject_idp_plan: Plan de rejet
     request_retry_message: Tu es hors ligne. Vos réponses n’ont pas pu être sauvegardées mais le seront automatiquement une fois que vous serez de nouveau en ligne. Merci de ne pas actualiser ni fermer la page.
     required_download_in_mbps: Débit de téléchargement requis en Mbps
@@ -112,7 +110,6 @@ fr:
     start_campaign_message_timed_proctored: Il s’agit d’une campagne chronométrée et surveillée, veuillez cliquer sur le bouton « %{buttonText} » pour lancer les activités.
     start_readiness_check: Lancer la vérification de l'état de préparation
     start_system_check: Lancer la vérification du système
-    status_unknown: Statut inconnu
     subinstruction_eight: Prévoyez du temps sans interruption pour réaliser l'évaluation dans son intégralité
     subinstruction_five: Prêt à partager votre écran pendant toute la session
     subinstruction_four: Webcam et microphone en état de marche

@@ -115,6 +115,8 @@ ro:
     question_id: ID întrebare
     question_transcription_disabled: Transcrierea este dezactivată pentru această întrebare.
     rec: REC
+    recorded: înregistrat
+    recording: Înregistrare
     recording_consent_notice: Această ședință va fi înregistrată. Participarea ta la această întâlnire constituie consimțământul tău de a fi înregistrat.
     recording_consent_proceed_question: Sunteți de acord să continuați cu întâlnirea înregistrată?
     recording_consent_title: Notificare de consimțământ pentru înregistrare
@@ -133,6 +135,7 @@ ro:
     show_more: Afișează mai mult
     something_wrong: Ceva nu a mers bine. Contactați administratorul.
     status: Stare
+    status_unknown: Stare necunoscută
     subject: Subiect
     submit: Trimite
     switch_to_laptop_or_desktop: Comutați la laptop sau desktop

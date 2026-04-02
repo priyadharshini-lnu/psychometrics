@@ -95,8 +95,6 @@ sk:
     profile_details: Podrobnosti profilu
     question_counter: Otázka %{current} z %{total}
     reason_for_idp_plan_rejection: Dôvod odmietnutia
-    recorded: Nahrané
-    recording: Nahrávanie
     reject_idp_plan: Plán odmietnuť
     request_retry_message: Si offline. Vaše odpovede sa nedajú uložiť automaticky, keď sa opäť pripojíte. Prosím, neobnovujte ani nezatvárajte stránku.
     required_download_in_mbps: Požadovaná rýchlosť sťahovania v Mbps
@@ -112,7 +110,6 @@ sk:
     start_campaign_message_timed_proctored: Ide o časovo obmedzenú a dozorovanú kampaň, kliknite prosím na tlačidlo '%{buttonText}' pre spustenie aktivít.
     start_readiness_check: Spustiť kontrolu pripravenosti
     start_system_check: Spustiť kontrolu systému
-    status_unknown: Stav neznámy
     subinstruction_eight: Vyhraďte si na kompletné posúdenie čas bez prerušenia
     subinstruction_five: Ste pripravení zdieľať svoju obrazovku počas celej relácie?
     subinstruction_four: Funkčná webová kamera a mikrofón

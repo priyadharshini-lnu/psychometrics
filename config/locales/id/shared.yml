@@ -115,6 +115,8 @@ id:
     question_id: ID Pertanyaan
     question_transcription_disabled: Transkripsi dinonaktifkan untuk pertanyaan ini.
     rec: REC
+    recorded: direkam
+    recording: Rekaman
     recording_consent_notice: Sesi rapat ini akan direkam. Partisipasi Anda dalam pertemuan ini merupakan persetujuan Anda untuk direkam.
     recording_consent_proceed_question: Apakah Anda setuju untuk melanjutkan rekaman rapat?
     recording_consent_title: Merekam Pemberitahuan Persetujuan
@@ -133,6 +135,7 @@ id:
     show_more: Tampilkan Lebih Banyak
     something_wrong: Ada yang tidak beres. Hubungi administrator Anda.
     status: Status
+    status_unknown: Status Tidak Diketahui
     subject: Subjek
     submit: Kirim
     switch_to_laptop_or_desktop: Beralih ke Laptop atau Desktop

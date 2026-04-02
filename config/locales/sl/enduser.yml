@@ -95,8 +95,6 @@ sl:
     profile_details: Podrobnosti profila
     question_counter: Vprašanje %{current} od %{total}
     reason_for_idp_plan_rejection: Razlog za zavrnitev
-    recorded: Posneto
-    recording: Snemanje
     reject_idp_plan: Načrt zavrnitve
     request_retry_message: Si offline. Vaših odgovorov ni bilo mogoče shraniti, bodo pa samodejno shranjeni, ko boste ponovno na spletu. Prosimo, ne osvežujte ali zapirajte strani.
     required_download_in_mbps: Zahtevana hitrost prenosa v Mbps
@@ -112,7 +110,6 @@ sl:
     start_campaign_message_timed_proctored: To je časovno omejena in nadzorovana kampanja, za začetek aktivnosti kliknite gumb '%{buttonText}'.
     start_readiness_check: Začni s preverjanjem pripravljenosti
     start_system_check: Začni preverjanje sistema
-    status_unknown: Status neznan
     subinstruction_eight: Za celotno ocenjevanje si rezervirajte čas, ko vas ne bo nihče motil
     subinstruction_five: Ste pripravljeni deliti svoj zaslon med celotnim srečanjem?
     subinstruction_four: Delujoča spletna kamera in mikrofon

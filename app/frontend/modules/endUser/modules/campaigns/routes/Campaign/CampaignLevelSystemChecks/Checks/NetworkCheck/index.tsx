@@ -12,14 +12,14 @@ import {
 import { useOnlineStatus } from './useOnlineStatus'
 import { useNetworkTest } from '~/hooks/useNetworkTest'
 import { RootState } from '~/modules/endUser/core/rootReducers'
-import { MediaQueryContext } from '~/glint'
+import { MediaQueryContext, DirectionalBackArrowIcon } from '~/glint'
 import { actions } from '~/modules/endUser/modules/campaigns/core/systemChecks/systemCheckRTK'
 import {
   useAddSystemCheckRecordMutation, useCompleteSystemCheckSessionMutation, useFetchSystemCheckRequirementsStatusQuery,
 } from '~/modules/endUser/modules/campaigns/core/systemChecks/api'
 import {
   CheckCircleOutlined,
-  WifiOutlined, ExclamationCircleOutlined, RedoOutlined, ArrowLeftOutlined,
+  WifiOutlined, ExclamationCircleOutlined, RedoOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { WifiLoader } from './WifiLoader/WifiLoader'
 import { CHECK_STATUS, CHECK_TYPE } from '../../common'
@@ -368,7 +368,7 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
       </Flex>
 
       <Flex style={{ width: '100%' }} justify="space-between">
-        <Button icon={<ArrowLeftOutlined />} onClick={onPrev}>
+        <Button icon={<DirectionalBackArrowIcon />} onClick={onPrev}>
           {I18n.t('enduser.back')}
         </Button>
 

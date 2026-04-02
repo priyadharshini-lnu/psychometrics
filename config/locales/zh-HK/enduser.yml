@@ -95,8 +95,6 @@ zh-HK:
     profile_details: 详情
     question_counter: 问题 %{current} 来自 %{total}
     reason_for_idp_plan_rejection: 拒绝原因
-    recorded: 记录
-    recording: 录音
     reject_idp_plan: 拒绝计划
     request_retry_message: 您当前处于离线状态。您的答案未能保存，但将在您重新上线后自动保存。请勿刷新或关闭页面。
     required_download_in_mbps: 所需下载速度（Mbps）
@@ -112,7 +110,6 @@ zh-HK:
     start_campaign_message_timed_proctored: 这是一项限时且受监考的活动，请点击“%{buttonText}”按钮开始参与。
     start_readiness_check: 开始就绪检查
     start_system_check: 开始系统检查
-    status_unknown: 状态未知
     subinstruction_eight: 请预留一段不受打扰的时间，以便进行全面评估
     subinstruction_five: 准备好在整个会议期间共享屏幕了吗
     subinstruction_four: 可正常使用的网络摄像头和麦克风

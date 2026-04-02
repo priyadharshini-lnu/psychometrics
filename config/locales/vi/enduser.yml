@@ -95,8 +95,6 @@ vi:
     profile_details: Chi tiết
     question_counter: Câu hỏi %{current} trong tổng số %{total}
     reason_for_idp_plan_rejection: Lý do từ chối
-    recorded: được ghi lại
-    recording: Ghi âm
     reject_idp_plan: Kế hoạch từ chối
     request_retry_message: Bạn đang ngoại tuyến. Câu trả lời của bạn không thể được lưu nhưng sẽ được lưu tự động khi bạn trực tuyến trở lại. Vui lòng không làm mới hoặc đóng trang.
     required_download_in_mbps: Tốc độ tải xuống yêu cầu (Mbps)
@@ -112,7 +110,6 @@ vi:
     start_campaign_message_timed_proctored: Đây là một chiến dịch có thời gian và giám sát, vui lòng nhấp vào nút '%{buttonText}' để bắt đầu các hoạt động.
     start_readiness_check: Bắt đầu kiểm tra sự sẵn sàng
     start_system_check: Bắt đầu kiểm tra hệ thống
-    status_unknown: Trạng thái không xác định
     subinstruction_eight: Hãy dành ra một khoảng thời gian không bị gián đoạn để tiến hành đánh giá toàn diện
     subinstruction_five: Bạn đã sẵn sàng chia sẻ màn hình trong suốt buổi họp chưa?
     subinstruction_four: Webcam và micrô hoạt động bình thường

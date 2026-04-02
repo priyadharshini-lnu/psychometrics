@@ -115,6 +115,8 @@ en-US:
     question_id: Question ID
     question_transcription_disabled: Transcription is disabled for this question
     rec: REC
+    recorded: recorded
+    recording: recording
     recording_consent_notice: This meeting session will be recorded. Your participation in this meeting constitutes your consent to be recorded.
     recording_consent_proceed_question: Do you agree to proceed with the recorded meeting?
     recording_consent_title: Recording Consent Notice
@@ -133,6 +135,7 @@ en-US:
     show_more: Show More
     something_wrong: Something went wrong. Contact your administrator.
     status: Status
+    status_unknown: Status Unknown
     subject: Subject
     submit: Submit
     switch_to_laptop_or_desktop: Switch to Laptop or Desktop

@@ -7,14 +7,14 @@ import { useParams } from 'react-router-dom'
 import {
   Flex, Spin, Typography, Button,
 } from 'antd'
-import { MediaQueryContext } from '~/glint'
+import { MediaQueryContext, DirectionalBackArrowIcon } from '~/glint'
 import { VideoCheck } from './VideoCheck'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
   useAddSystemCheckRecordMutation, useFetchSystemCheckRequirementsStatusQuery,
 } from '~/modules/endUser/modules/campaigns/core/systemChecks/api'
 import {
-  VideoCameraOutlined, ExclamationCircleOutlined, ArrowLeftOutlined,
+  VideoCameraOutlined, ExclamationCircleOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { actions } from '~/modules/endUser/modules/campaigns/core/systemChecks/systemCheckRTK'
 import { CHECK_STATUS, CHECK_TYPE } from '../../common'
@@ -207,7 +207,7 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
             </Flex>
 
             <Flex style={{ width: '100%' }} justify="space-between">
-              <Button className="mt-2" icon={<ArrowLeftOutlined />} onClick={onPrev}>
+              <Button className="mt-2" icon={<DirectionalBackArrowIcon />} onClick={onPrev}>
                 {I18n.t('enduser.back')}
               </Button>
               <Flex justify="end" gap={4} className="mt-2">

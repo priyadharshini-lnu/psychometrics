@@ -95,8 +95,6 @@ en-US:
     profile_details: Details
     question_counter: Question %{current} of %{total}
     reason_for_idp_plan_rejection: Reason for Rejection
-    recorded: recorded
-    recording: recording
     reject_idp_plan: Reject Plan
     request_retry_message: You are offline. Your answers could not be saved but will be saved automatically once you are back online. Please do not refresh or close the page.
     required_download_in_mbps: Required Download in Mbps
@@ -112,7 +110,6 @@ en-US:
     start_campaign_message_timed_proctored: This is a timed and proctored campaign, please click '%{buttonText}' button to start the activities.
     start_readiness_check: Start Readiness Check
     start_system_check: Start System Check
-    status_unknown: Status Unknown
     subinstruction_eight: Set aside uninterrupted time for the full assessment
     subinstruction_five: Ready to share your screen throughout the session
     subinstruction_four: Working webcam and microphone

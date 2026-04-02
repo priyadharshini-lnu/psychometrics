@@ -23,7 +23,7 @@ class StatusText extends videojs.getComponent('Component') {
 
   updateTextContent (text) {
     if (typeof text !== 'string') {
-      text = I18n.t('enduser.status_unknown')
+      text = I18n.t('shared.status_unknown')
     }
 
     const oldNode = this.textNode
@@ -64,9 +64,9 @@ class StatusText extends videojs.getComponent('Component') {
 
     let translatedStatus = detail.status
     if (detail.status === 'recording') {
-      translatedStatus = I18n.t('enduser.recording')
+      translatedStatus = I18n.t('shared.recording')
     } else if (detail.status === 'recorded') {
-      translatedStatus = I18n.t('enduser.recorded')
+      translatedStatus = I18n.t('shared.recorded')
     }
 
     this.updateTextContent(translatedStatus)

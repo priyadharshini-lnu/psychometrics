@@ -1,5 +1,5 @@
 import React, {
-  useContext, FC, useState,
+  useContext, FC, useState, useEffect,
 } from 'react'
 import {
   Layout, Drawer, Button, GetProp, MenuProps,
@@ -37,6 +37,7 @@ type PageSiderProps = {
   onOpenChange?: (openKeys: string[]) => void
   openKeys?: string[]
   onSiderCollapse?: (collapsed: boolean) => void
+  showMaintenanceAlert?: boolean
 }
 
 export const PageSider: FC<PageSiderProps> = ({
@@ -50,10 +51,25 @@ export const PageSider: FC<PageSiderProps> = ({
   onSiderCollapse,
   onOpenChange,
   logoLinkUrl,
+  showMaintenanceAlert = false,
 }) => {
   const [menuCollapsed, setMenuCollapsed] = useState(false)
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const [bannerHeight, setBannerHeight] = useState(0)
   const { isMobile, isTablet } = useContext(MediaQueryContext)
+
+  useEffect(() => {
+    if (!showMaintenanceAlert) return
+
+    const banner = document.getElementById('maintenance-alert-banner')
+    if (!banner) return
+
+    const updateHeight = () => setBannerHeight(banner.offsetHeight)
+    updateHeight()
+
+    window.addEventListener('resize', updateHeight)
+    return () => window.removeEventListener('resize', updateHeight)
+  }, [showMaintenanceAlert])
 
   const handleTrigger = () => {
     setMenuCollapsed(!menuCollapsed)
@@ -88,9 +104,16 @@ export const PageSider: FC<PageSiderProps> = ({
       </Link>
     </div>
   )
+  const triggerTopStyle = bannerHeight
+    ? { top: `calc(${bannerHeight}px + 0.5rem)` } : undefined
+
   const siderTrigger = (
     <div
-      className={cs({ [styles['sider-trigger']]: true, [styles['sider-trigger--collapsed']]: menuCollapsed })}
+      className={cs({
+        [styles['sider-trigger']]: true,
+        [styles['sider-trigger--collapsed']]: menuCollapsed,
+      })}
+      style={triggerTopStyle}
       onClick={handleTrigger}
     >
       <Button
@@ -102,8 +125,15 @@ export const PageSider: FC<PageSiderProps> = ({
     </div>
   )
 
+  const drawerTopStyle = bannerHeight
+    ? { top: `calc(${bannerHeight}px + 8px)` } : undefined
+
   const drawerTrigger = (
-    <div className={styles['drawer-trigger']} onClick={handleDrawerVisibility}>
+    <div
+      className={styles['drawer-trigger']}
+      style={drawerTopStyle}
+      onClick={handleDrawerVisibility}
+    >
       <Button
         aria-label={menuCollapsed ? I18n.t('frontend.aria.expand_menu') : I18n.t('frontend.aria.collapse_menu')}
         type="link"
