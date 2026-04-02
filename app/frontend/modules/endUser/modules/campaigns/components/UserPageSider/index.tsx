@@ -21,6 +21,7 @@ import {
 } from '~/modules/endUser/modules/campaigns/core/project'
 import {
   getShowBookings,
+  getShowMaintenanceAlert,
 } from '~/modules/endUser/core/config'
 
 import { CampaignIcon } from '~/glint/icons'
@@ -32,6 +33,7 @@ const connector = connect((state: RootState) => ({
   logo: getProjectLogo(state),
   projectName: getProjectName(state),
   showBookings: getShowBookings(state),
+  showMaintenanceAlert: getShowMaintenanceAlert(state),
   features: getFeatures(state),
   projectIdpEnabled: state.config.idp.idpEnabled,
   userHasActiveIdp: state.config.idp.userHasActiveIdp,
@@ -107,7 +109,8 @@ const getMenuItems = ({
 }])
 
 const UserPageSiderComponent: FC<UserPageSiderProps> = ({
-  showInsights, siderFooter, logo, projectName, updateProfileRequired, showBookings, features, logoAltText,
+  showInsights, siderFooter, logo, projectName, updateProfileRequired,
+  showBookings, showMaintenanceAlert, features, logoAltText,
   projectIdpEnabled,
   userHasDirectReporteesWithActiveIdp,
   userHasActiveIdp,
@@ -214,6 +217,7 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
         siderFooter={siderFooter}
         openKeys={openKey}
         onOpenChange={handleOpenChange}
+        showMaintenanceAlert={showMaintenanceAlert}
       />
     ) : null
   )

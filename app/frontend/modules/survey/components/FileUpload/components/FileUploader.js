@@ -44,7 +44,8 @@ const onUploadDone = (blob, context) => {
     dispatch({ type: SET_UPLOAD_STATE, payload: { uploadState: UPLOAD_STATES.SAVED } })
     onSuccessUpload(humps.camelizeKeys(data))
   }).fail((data) => {
-    dispatch({ type: SET_ERRORS, payload: { errorMessages: [data.responseJSON.error_message] } })
+    const errorMessage = data.responseJSON?.error_message || 'An error occurred while uploading the file'
+    dispatch({ type: SET_ERRORS, payload: { errorMessages: [errorMessage] } })
     context.onFail && context.onFail()
   })
 }
