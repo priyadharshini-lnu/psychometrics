@@ -115,6 +115,8 @@ hr:
     question_id: ID pitanja
     question_transcription_disabled: Transkripcija je onemogućena za ovo pitanje.
     rec: SNIMITI
+    recorded: snimljeno
+    recording: Snimanje
     recording_consent_notice: Ova sjednica sjednice bit će snimljena. Vaše sudjelovanje na ovom sastanku znači vaš pristanak za snimanje.
     recording_consent_proceed_question: Slažete li se da nastavite sa snimljenim sastankom?
     recording_consent_title: Obavijest o pristanku za snimanje
@@ -133,6 +135,7 @@ hr:
     show_more: Pokaži više
     something_wrong: Nešto je pošlo po zlu. Obratite se administratoru.
     status: Status
+    status_unknown: Status nepoznat
     subject: Predmet
     submit: Pošalji
     switch_to_laptop_or_desktop: Prebacite na prijenosno ili stolno računalo

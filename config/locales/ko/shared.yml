@@ -115,6 +115,8 @@ ko:
     question_id: 질문 ID
     question_transcription_disabled: 이 질문에 대해서는 음성 인식 기능이 비활성화되었습니다.
     rec: REC
+    recorded: 녹음
+    recording: 녹음
     recording_consent_notice: 이 회의 세션은 녹화될 것입니다. 이 회의에 참여하는 것은 녹음에 동의한 것으로 간주됩니다.
     recording_consent_proceed_question: 녹화된 회의를 진행하는 데 동의하십니까?
     recording_consent_title: 동의서 기록 통지
@@ -133,6 +135,7 @@ ko:
     show_more: 더 보기
     something_wrong: 문제가 발생했습니다. 관리자에게 문의하세요.
     status: 상태
+    status_unknown: 상태 미상
     subject: 제목
     submit: 제출
     switch_to_laptop_or_desktop: 노트북 또는 데스크톱으로 전환

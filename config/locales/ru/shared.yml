@@ -115,6 +115,8 @@ ru:
     question_id: Идентификатор вопроса
     question_transcription_disabled: Транскрипция для этого вопроса отключена.
     rec: REC
+    recorded: записанный
+    recording: запись
     recording_consent_notice: Эта сессия будет записываться. Ваше участие в этой встрече означает ваше согласие на запись.
     recording_consent_proceed_question: Согласны ли вы продолжить запись встречи?
     recording_consent_title: Уведомление о согласии на запись
@@ -133,6 +135,7 @@ ru:
     show_more: Показать больше
     something_wrong: Что-то пошло не так. Обратитесь к администратору.
     status: Статус
+    status_unknown: Статус неизвестен
     subject: Тема
     submit: Отправить
     switch_to_laptop_or_desktop: Переключиться на ноутбук или настольный компьютер

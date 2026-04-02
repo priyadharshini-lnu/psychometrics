@@ -27,10 +27,15 @@ module AdminJobs
     end
 
     def base_record_headers
-      first_record = records_for_export(1, 0).first
-      record_keys = first_record&.dig(:record)&.keys
+      all_campaign_record_keys.presence || Campaigns::CompactCompletionStatusQuery::DEFAULT_COLUMN_NAMES
+    end
 
-      record_keys || Campaigns::CompactCompletionStatusQuery::DEFAULT_COLUMN_NAMES
+    def all_campaign_record_keys
+      @all_campaign_record_keys ||= project_campaigns.flat_map do |campaign|
+        Campaigns::CompactCompletionStatusQuery.new(
+          campaign.id, limit: 1, offset: 0, include_inactive_users: include_inactive_users
+        ).query.to_a.first&.keys || []
+      end.uniq
     end
 
     def insert_campaign_headers(base_headers)
@@ -67,19 +72,17 @@ module AdminJobs
     end
 
     def build_data_rows(record_data)
-      campaign_id = record_data[:campaign_id]
-      campaign_name = record_data[:campaign_name]
-      record_values = record_data[:record].values
-
-      base_rows = record_values.first.is_a?(Array) ? record_values : [record_values]
-      base_rows.map { |row| insert_campaign_data(row, campaign_id, campaign_name) }
+      record = record_data[:record]
+      aligned_values = all_campaign_record_keys.map { |key| record[key] }
+      row = insert_campaign_data(aligned_values, record_data[:campaign_id], record_data[:campaign_name])
+      [row]
     end
 
-    def insert_campaign_data(row, campaign_id, campaign_name)
-      user_data = row.take(USER_COLUMN_COUNT)
-      remaining_data = row.drop(USER_COLUMN_COUNT)
+    def insert_campaign_data(aligned_values, campaign_id, campaign_name)
+      user_data = aligned_values.take(USER_COLUMN_COUNT)
+      assessment_data = aligned_values.drop(USER_COLUMN_COUNT)
 
-      user_data + [campaign_id, campaign_name] + remaining_data
+      user_data + [campaign_id, campaign_name] + assessment_data
     end
 
     def update_job_progress(csv, completed_record_count)

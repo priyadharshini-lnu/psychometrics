@@ -95,8 +95,6 @@ th:
     profile_details: รายละเอียด
     question_counter: Question %{current} of %{total}
     reason_for_idp_plan_rejection: เหตุผลในการปฏิเสธ
-    recorded: บันทึก
-    recording: การบันทึก
     reject_idp_plan: ปฏิเสธแผน
     request_retry_message: คุณออฟไลน์อยู่ ไม่สามารถบันทึกคําตอบของคุณได้ แต่จะถูกบันทึกโดยอัตโนมัติเมื่อคุณกลับมาออนไลน์อีกครั้ง โปรดอย่ารีเฟรชหรือปิดหน้า
     required_download_in_mbps: จำเป็นต้องดาวน์โหลดใน Mbps
@@ -112,7 +110,6 @@ th:
     start_campaign_message_timed_proctored: นี่คือแคมเปญแบบกําหนดเวลาและควบคุม โปรดคลิกปุ่ม '%{buttonText}' เพื่อเริ่มกิจกรรม
     start_readiness_check: เริ่มการตรวจสอบความพร้อม
     start_system_check: เริ่มการตรวจสอบระบบ
-    status_unknown: ไม่ทราบสถานะ
     subinstruction_eight: จัดสรรเวลาที่ไม่มีการรบกวนสำหรับการประเมินอย่างเต็มรูปแบบ
     subinstruction_five: พร้อมที่จะแชร์หน้าจอของคุณตลอดการประชุม
     subinstruction_four: เว็บแคมและไมโครโฟนที่ใช้งานได้

@@ -95,8 +95,6 @@ ro:
     profile_details: Detalii
     question_counter: Întrebarea %{current} din %{total}
     reason_for_idp_plan_rejection: Motivul respingerii
-    recorded: înregistrat
-    recording: Înregistrare
     reject_idp_plan: Planul de respingere
     request_retry_message: Ești offline. Răspunsurile tale nu au putut fi salvate, dar vor fi salvate automat odată ce vei fi din nou online. Vă rugăm să nu reîmprospătați sau să închideți pagina.
     required_download_in_mbps: Viteză de descărcare necesară (Mbps)
@@ -112,7 +110,6 @@ ro:
     start_campaign_message_timed_proctored: Aceasta este o campanie cronometrată și supravegheată, vă rugăm să apăsați butonul "%{buttonText}" pentru a începe activitățile.
     start_readiness_check: Începe verificarea pregătirii
     start_system_check: Pornește verificarea sistemului
-    status_unknown: Stare necunoscută
     subinstruction_eight: Rezervați-vă un interval de timp neîntrerupt pentru evaluarea completă
     subinstruction_five: Ești gata să îți partajezi ecranul pe durata sesiunii
     subinstruction_four: Cameră web și microfon funcționale

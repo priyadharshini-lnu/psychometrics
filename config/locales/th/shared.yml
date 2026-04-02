@@ -115,6 +115,8 @@ th:
     question_id: รหัสคำถาม
     question_transcription_disabled: การถอดเสียงถูกปิดใช้งานสำหรับคำถามนี้
     rec: บันทึก
+    recorded: บันทึก
+    recording: การบันทึก
     recording_consent_notice: เซสชั่นการประชุมนี้จะถูกบันทึกไว้ การเข้าร่วมการประชุมนี้ถือเป็นความยินยอมของคุณที่จะบันทึกไว้
     recording_consent_proceed_question: คุณตกลงที่จะดําเนินการประชุมที่บันทึกไว้หรือไม่?
     recording_consent_title: การแจ้งความยินยอมในการบันทึก
@@ -133,6 +135,7 @@ th:
     show_more: แสดงเพิ่มเติม
     something_wrong: มีบางอย่างผิดพลาด ติดต่อผู้ดูแลระบบ
     status: สถานะ
+    status_unknown: ไม่ทราบสถานะ
     subject: เรื่อง
     submit: ส่ง
     switch_to_laptop_or_desktop: เปลี่ยนไปใช้แล็ปท็อปหรือเดสก์ท็อป

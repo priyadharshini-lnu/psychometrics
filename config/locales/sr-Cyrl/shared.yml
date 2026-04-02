@@ -115,6 +115,8 @@ sr-Cyrl:
     question_id: Идентификациони број питања
     question_transcription_disabled: Транскрипција је онемогућена за ово питање
     rec: СНИМАЊЕ
+    recorded: снимано
+    recording: снимање
     recording_consent_notice: Ова сесија састанка ће бити снимљена. Ваше учешће на овом састанку представља вашу сагласност да се снима.
     recording_consent_proceed_question: Да ли се слажете да наставите са снимљеним састанком?
     recording_consent_title: Обавештење о сагласности за снимање
@@ -133,6 +135,7 @@ sr-Cyrl:
     show_more: Прикажи још
     something_wrong: Нешто је пошло наопако. Контактирајте свог администратора
     status: Статус
+    status_unknown: Статус непознат
     subject: Предмет
     submit: Пошаљи
     switch_to_laptop_or_desktop: Пређите на лаптоп или десктоп

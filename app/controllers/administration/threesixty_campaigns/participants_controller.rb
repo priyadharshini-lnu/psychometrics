@@ -13,10 +13,10 @@ module Administration
         participants = policy_scope(::Threesixty::Participant).
                        includes(:subject, :evaluator, :relationship).
                        actual_by_options(threesixty_campaign.option).
-                       where.
-                       has do
-          (campaign_id == sql_campaign_id) & ((subject_id == sql_user_id) | (evaluator_id == sql_user_id))
-        end.includes(:users_result)
+                       where(campaign_id: sql_campaign_id).
+                       where('user_assessments.subject_id = :user_id OR user_assessments.evaluator_id = :user_id',
+                             user_id: sql_user_id).
+                       includes(:users_result)
 
         render json: Panko::ArraySerializer.new(
           participants,

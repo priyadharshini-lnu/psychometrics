@@ -95,8 +95,6 @@ sr-Cyrl:
     profile_details: Детаљи
     question_counter: Питање %{current}-а из %{total}
     reason_for_idp_plan_rejection: Разлог за одбијање
-    recorded: снимано
-    recording: снимање
     reject_idp_plan: Одбацити план
     request_retry_message: Ви сте ван мреже. Ваши одговори нису могли да се сачувају, али ће бити аутоматски сачувани чим се поново повежете на интернет. Молимо вас да не освежавате или не затварате страницу.
     required_download_in_mbps: Потребно преузимање у Mbps
@@ -112,7 +110,6 @@ sr-Cyrl:
     start_campaign_message_timed_proctored: Ово је временски ограничена и надгледана кампања, кликните на дугме "%{buttonText}" да бисте започели активности.
     start_readiness_check: Покрените проверу спремности
     start_system_check: Покрени проверу система
-    status_unknown: Статус непознат
     subinstruction_eight: Одвојите непрекидан временски период за потпуну процену.
     subinstruction_five: Спремни да делите свој екран током целе сесије
     subinstruction_four: Радна веб-камера и микрофон

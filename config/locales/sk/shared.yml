@@ -115,6 +115,8 @@ sk:
     question_id: ID otázky
     question_transcription_disabled: Pre túto otázku je prepis vypnutý.
     rec: REC
+    recorded: Nahrané
+    recording: Nahrávanie
     recording_consent_notice: Toto zasadnutie bude zaznamenané. Vaša účasť na tomto stretnutí znamená váš súhlas s nahrávaním.
     recording_consent_proceed_question: Súhlasíte s pokračovaním v nahrávanom stretnutí?
     recording_consent_title: Oznámenie o súhlase s nahrávaním
@@ -133,6 +135,7 @@ sk:
     show_more: Zobraziť viac
     something_wrong: Niečo sa pokazilo. Obráťte sa na správcu.
     status: Stav
+    status_unknown: Stav neznámy
     subject: Predmet
     submit: Odoslať
     switch_to_laptop_or_desktop: Prejsť na notebook alebo stolný počítač

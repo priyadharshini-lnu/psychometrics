@@ -6,6 +6,9 @@ export const getlighthousePrivacyUrl = (state: RootState) => _.get(state, ['conf
 export const getprivacyPolicyVersion = (state: RootState) => _.get(state, ['config', 'privacyPolicyVersion'])
 export const getCustomPrivacyConsentText = (state: RootState) => _.get(state, ['config', 'customPrivacyConsentText'])
 export const getShowBookings = (state: RootState) => _.get(state, ['config', 'showBookings'])
+export const getShowMaintenanceAlert = (state: RootState): boolean => (
+  _.get(state, ['config', 'showMaintenanceAlert'], false)
+)
 export const getIdpSettings = (state: RootState) => _.get(state, ['config', 'idp'])
 export const getSecuritySettings = (state: RootState) => _.get(state, ['config', 'securitySettings'])
 
@@ -39,6 +42,7 @@ export const defaultState = {
   securitySettings: {
     enableRecaptcha: false,
   },
+  showMaintenanceAlert: false,
 }
 
 export default function reducer (state = defaultState) {

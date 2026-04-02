@@ -33,7 +33,7 @@ class CampaignOptions < ApplicationRecord
 
     return unless privacy_setting
 
-    if privacy_setting.enable_video_call_recording_for_all_new_campaigns
+    if privacy_setting.allow_video_call_recording && privacy_setting.enable_video_call_recording_for_all_new_campaigns
       self.enable_video_call_recording = true
     end
   end

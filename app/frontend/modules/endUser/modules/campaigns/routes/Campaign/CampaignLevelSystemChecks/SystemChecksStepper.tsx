@@ -10,6 +10,7 @@ import { MediaQueryContext } from '~/glint'
 import {
   BrowserCompatibility, NetworkCheck, CameraCheck, Results,
 } from './Checks'
+import { CampaignNameComponent } from './components/CampaignNameComponent'
 
 const { I18n } = window
 
@@ -114,6 +115,7 @@ const SystemChecksStepperCompnent = () => {
   return (
     <LayoutWrapper>
       <Layout.Content style={{ ...(isMobile || isTablet || isDesktop ? { width: '100%' } : { width: '50%' }) }}>
+        <CampaignNameComponent campaignName={campaignDetailsForSystemCheck?.campaignName ?? ''} />
         <Flex
           justify="center"
           className="mb-2"

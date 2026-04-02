@@ -17,6 +17,7 @@ import { fetchCampaign } from '~/modules/endUser/modules/campaigns/core/campaign
 import { RequirementStatus } from '~/modules/endUser/modules/campaigns/core/systemChecks/interfaces'
 import commonStyles from '../common-styles.less'
 import { TopSection } from './TopSection'
+import { CampaignNameComponent } from '../components/CampaignNameComponent'
 import { MiddleSection } from './MiddleSection'
 
 const { I18n } = window
@@ -29,7 +30,7 @@ const WelcomeComponent = ({ fetchCampaign }) => {
     (state: RootState) => state.campaigns.systemCheck.currentCampaignForSystemCheck,
   )
 
-  const { requiredSystemChecks = [] } = campaignDetailsForSystemCheck || {}
+  const { requiredSystemChecks = [], campaignName = '' } = campaignDetailsForSystemCheck || {}
   const navigate = useNavigate()
 
   const dispatch = useDispatch()
@@ -77,6 +78,7 @@ const WelcomeComponent = ({ fetchCampaign }) => {
   return (
     <LayoutWrapper>
       <Layout.Content>
+        <CampaignNameComponent campaignName={campaignName} />
         <Flex
           justify="center"
           className="mb-2"

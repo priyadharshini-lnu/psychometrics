@@ -31,7 +31,7 @@ const ThreesixtyCampaignTR = t.type({
   systemCheckStatus: t.union([t.null, t.type({
     isValid: t.boolean,
   })]),
-  progressStatus: t.string,
+  progressStatus: t.union([t.string, t.null, t.undefined]),
   evaluationsCounters: t.type({
     totalEvaluators: t.number,
     totalEvaluations: t.number,

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import {
   Flex, Typography, Alert, Select,
 } from 'antd'
@@ -7,6 +7,7 @@ import { CountdownTimer } from '~/glint/components/CountdownTimer'
 import AudioWaveVisualizer from './AudioWaveVisualizer'
 import { useAudioLevelMonitoring } from '~/hooks/useAudioLevelMonitoring'
 import styles from '../styles.less'
+import { MediaQueryContext } from '~/glint'
 
 const { I18n } = window
 
@@ -55,6 +56,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   onChangeAudioDevice,
 }) => {
   const { startMonitoring, cleanupMonitoring, showAudioWarning } = useAudioLevelMonitoring()
+  const { isMobile } = useContext(MediaQueryContext)
 
   useEffect(() => {
     if (!videoRef.current) return
@@ -108,7 +110,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   }
 
   return (
-    <Flex vertical>
+    <Flex vertical className={styles.videoPlayerContainer}>
       <Flex style={{ paddingTop: '16px' }} className={styles.controls} justify="flex-end" align="flex-end">
         <AudioOutlined style={{ alignSelf: 'center' }} />
         <Select
@@ -121,8 +123,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
           suffixIcon={<DownOutlined style={{ color: 'var(--ant-text-color)', pointerEvents: 'none' }} />}
           variant="borderless"
           disabled={status === 'recording'}
-          styles={{ popup: { root: { minWidth: '300px' } } }}
+          styles={{ popup: { root: { minWidth: '300px', ...(isMobile ? { left: 'calc(-100% - 75px)' } : {}) } } }}
           options={getMicrophoneDevices()}
+          getPopupContainer={trigger => trigger}
         />
         <VideoCameraOutlined style={{ alignSelf: 'center' }} />
         <Select

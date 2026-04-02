@@ -95,8 +95,6 @@ ja:
     profile_details: 詳細
     question_counter: 質問 %{current} / %{total}
     reason_for_idp_plan_rejection: 拒否理由
-    recorded: 録音
-    recording: 録音
     reject_idp_plan: 計画を拒否する
     request_retry_message: あなたはオフラインです。回答は保存できませんでしたが、オンラインに戻ったら自動的に保存されます。ページを更新したり閉じたりしないでください。
     required_download_in_mbps: 必要なダウンロード速度（Mbps）
@@ -112,7 +110,6 @@ ja:
     start_campaign_message_timed_proctored: このキャンペーンは時間制限付きで監督制です。活動を開始するには「%{buttonText}」ボタンをクリックしてください。
     start_readiness_check: 準備チェックを開始
     start_system_check: システムチェックを開始
-    status_unknown: 状況不明
     subinstruction_eight: 評価を最後まで行うために、中断されない時間を確保してください
     subinstruction_five: セッション中、いつでも画面を共有できます
     subinstruction_four: 正常に動作するウェブカメラとマイク

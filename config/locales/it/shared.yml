@@ -115,6 +115,8 @@ it:
     question_id: ID domanda
     question_transcription_disabled: La trascrizione è disabilitata per questa domanda.
     rec: REC
+    recorded: Registrato
+    recording: Registrazione
     recording_consent_notice: Questa sessione di riunione sarà registrata. La tua partecipazione a questa riunione costituisce il tuo consenso a essere registrato.
     recording_consent_proceed_question: Accetti di procedere con l'incontro registrato?
     recording_consent_title: Avviso di Consenso alla Registrazione
@@ -133,6 +135,7 @@ it:
     show_more: Mostra di più
     something_wrong: Qualcosa è andato storto. Contattare l'amministratore.
     status: Stato
+    status_unknown: Stato sconosciuto
     subject: Oggetto
     submit: Invia
     switch_to_laptop_or_desktop: Passa al laptop o al desktop

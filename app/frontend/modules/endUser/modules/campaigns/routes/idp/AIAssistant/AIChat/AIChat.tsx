@@ -177,7 +177,7 @@ export const AIChat = () => {
     url: '/ai_assisted_idp_chats/ask',
     data: {},
     pollingInterval: 3,
-    numberOfTimesToPoll: 30,
+    numberOfTimesToPoll: 60,
     responseType: AsyncChatTR,
   })
 
@@ -355,7 +355,8 @@ export const AIChat = () => {
         navigate('/idp/my_plan')
         return
       }
-      if (status === 'completed' && lastMessage.component !== 'UserMessage') {
+      const isUserMessage = lastMessage.role === 'user' || lastMessage.component === 'UserMessage'
+      if (status === 'completed' && !isUserMessage) {
         setStatus('confirmation')
       }
     }
@@ -387,8 +388,9 @@ export const AIChat = () => {
     }
     setRequestProcessing(true)
     fetchMessages().then(({ response }) => {
-      const { messages: fetchedMessages, error: aiSessionError } = response
-      const messages = parseMessages(fetchedMessages)
+      const { messages: fetchedMessages, error: aiSessionError, status: sessionStatus } = response
+      const validMessages = fetchedMessages.filter(msg => msg.content !== null)
+      const messages = parseMessages(validMessages)
 
       if (aiSessionError) {
         if (messages.length > 0) {
@@ -407,6 +409,17 @@ export const AIChat = () => {
 
       setRequestProcessing(false)
       setMessages(messages)
+
+      const lastUserMessage = [...validMessages].reverse().find(msg => msg.role === 'user')
+      const proceedWithPlanMessage = I18n.t('enduser.ai_idp_assistant_response_yes_proceed_with_plan_creation')
+      const isPlanCreationInProgress = sessionStatus === 'in_progress'
+        && lastUserMessage?.content === proceedWithPlanMessage
+
+      if (isPlanCreationInProgress) {
+        setStatus('completed')
+        return
+      }
+
       scrollToBottom(false)
     }).catch((error) => {
       message.error(error || I18n.t('ai.errors.generic'))

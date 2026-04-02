@@ -22,7 +22,8 @@ class EndUser::UserAssessmentsController < ApplicationController
 
     if @user_assessment.caching_enabled?
       serialized = Assessments::CacheService.new(@user_assessment.assessment,
-                                                 @selected_locale, build_piped_context).fetch_serialized_assessment
+                                                 @selected_locale, build_piped_context,
+                                                 @user_assessment.campaign_id).fetch_serialized_assessment
       render json: serialized
     else
       render json: AssessmentSerializer.new(

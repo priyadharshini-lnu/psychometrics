@@ -95,8 +95,6 @@ id:
     profile_details: Detail
     question_counter: Pertanyaan %{current} dari %{total}
     reason_for_idp_plan_rejection: Alasan Penolakan
-    recorded: direkam
-    recording: Rekaman
     reject_idp_plan: Tolak Paket
     request_retry_message: Anda offline. Jawaban Anda tidak dapat disimpan tetapi akan disimpan secara otomatis setelah Anda kembali online. Tolong jangan menyegarkan atau menutup halaman.
     required_download_in_mbps: Kecepatan Unduh yang Diperlukan dalam Mbps
@@ -112,7 +110,6 @@ id:
     start_campaign_message_timed_proctored: Ini adalah kampanye berjangka waktu dan diawasi, silakan klik tombol '%{buttonText}' untuk memulai aktivitas.
     start_readiness_check: Mulai Pemeriksaan Kesiapan
     start_system_check: Mulai Pemeriksaan Sistem
-    status_unknown: Status Tidak Diketahui
     subinstruction_eight: Sisihkan waktu yang tidak terganggu untuk penilaian menyeluruh
     subinstruction_five: Siap untuk membagikan layar Anda selama sesi berlangsung
     subinstruction_four: Webcam dan mikrofon berfungsi dengan baik
