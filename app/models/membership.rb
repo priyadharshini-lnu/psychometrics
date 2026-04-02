@@ -238,7 +238,7 @@ class Membership < ApplicationRecord
               when MANAGER_ROLE, MEMBER_ROLE
                 client.end_level? || (project? && client.project?)
               when CAMPAIGN_ADMIN_ROLE
-                true
+                campaign.present?
               else
                 false
             end
