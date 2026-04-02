@@ -84,6 +84,9 @@ commands:
             - gem-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum ".ruby-version" }}-{{ checksum "Gemfile.lock" }}
             - gem-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum ".ruby-version" }}
       - run:
+          name: Configure Git for private GitHub repos
+          command: git config --global url."https://x-access-token:${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"
+      - run:
           name: Disable Gem Docs
           command: "echo 'gem: --no-document' > ~/.gemrc"
       - run:
@@ -119,6 +122,9 @@ commands:
             else
               echo "No registry replacement parameters provided; skipping registry rewrite."
             fi
+      - run:
+          name: Configure Git for private GitHub repos
+          command: git config --global url."https://x-access-token:${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"
       - run:
           name: Yarn
           command: yarn install --pure-lockfile

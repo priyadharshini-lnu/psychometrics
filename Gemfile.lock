@@ -1048,7 +1048,7 @@ GEM
     statistics (1.0.0)
     statsd-ruby (1.5.0)
     stringio (3.1.7)
-    strscan (3.1.5)
+    strscan (3.1.7)
     sync (0.5.0)
     syslog (0.3.0)
       logger
