@@ -68,6 +68,8 @@ ENV BUNDLER_VERSION=2.3.17
 ENV RAILS_ENV=production
 ENV BUNDLE_WITHOUT 'development test'
 
+ARG GITHUB_TOKEN=""
+
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN update-ca-certificates
@@ -79,11 +81,12 @@ RUN echo 'gem: --no-document' > ~/.gemrc
 # leverage the build cache (everything above this point will not be rebuilt).
 #
 COPY Gemfile Gemfile.lock ./
-RUN bundle check || (jobs="$(nproc)"; \
+RUN git config --global url."https://x-access-token:${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/" \
+    && (bundle check || (jobs="$(nproc)"; \
     set -x; \
     bundle config build.nokogiri --use-system-libraries \
     && bundle install --jobs "$jobs" \
-    && find /usr/local/bundle/ -name "*.gem" -delete)
+    && find /usr/local/bundle/ -name "*.gem" -delete))
 
 
 FROM ruby-base as yarn-deps
