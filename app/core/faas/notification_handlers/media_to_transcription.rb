@@ -37,9 +37,14 @@ module Faas
       end
 
       def handle_completed_transcription
+        full_text = data['text']
+        words = data['words'] || []
+        segments = MediaResponses::Transcriptions::SegmentParser.from_azure_words(words, full_text)
+
         transcribable_record.save_transcription_completed!(
-          data['text'],
-          metadata: data['metadata'] || {}
+          full_text,
+          metadata: data['metadata'] || {},
+          segments: segments
         )
         update_admin_job_progress
       end

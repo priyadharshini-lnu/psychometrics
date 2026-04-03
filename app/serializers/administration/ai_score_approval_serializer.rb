@@ -2,12 +2,13 @@
 
 module Administration
   class AIScoreApprovalSerializer < Panko::Serializer
-    attributes :id, :questions, :competencies, :indicators, :results, :media_responses, :review_as, :approval_status,
-               :allow_approve, :allow_bulk_approve_scores, :campaign_name, :subject_name, :project_name, :client_name,
-               :subject_email, :assessment_name, :assessed_by, :approved_by, :result_stale
+    attributes :id, :questions, :competencies, :indicators, :results, :media_responses, :highlight_anchors,
+               :review_as, :approval_status, :allow_approve, :allow_bulk_approve_scores, :campaign_name,
+               :subject_name, :project_name, :client_name, :subject_email,
+               :assessment_name, :assessed_by, :approved_by, :result_stale
 
     def questions
-      object.assessment.scorable_ai_questions.order(:position)
+      scorable_questions
     end
 
     def results
@@ -18,26 +19,35 @@ module Administration
 
     def competencies
       Panko::ArraySerializer.new(
-        object.users_result.ai_factor_scores.includes(factor: :translations).where(parent_factor_id: nil),
+        all_factor_scores.select { |fs| fs.parent_factor_id.nil? },
         each_serializer: Administration::AIFactorScoreSerializer
       ).to_a
     end
 
     def indicators
       Panko::ArraySerializer.new(
-        object.users_result.ai_factor_scores.includes(factor: :translations).where.not(parent_factor_id: nil),
+        all_factor_scores.select { |fs| fs.parent_factor_id.present? },
         each_serializer: Administration::AIFactorScoreSerializer
       ).to_a.group_by { |a| a['question_id'] }
     end
 
     def media_responses
-      object.assessment.scorable_ai_questions.to_h do |question|
-        active_response = object.users_result.active_media_response(question)
-        if active_response
-          [question.id, [MediaResponseSerializer.new.serialize(active_response)]]
+      scorable_questions.to_h do |question|
+        response = active_media_responses_by_question[question.id]
+        if response
+          [question.id, [MediaResponseSerializer.new.serialize(response)]]
         else
           [question.id, []]
         end
+      end
+    end
+
+    def highlight_anchors
+      scorable_questions.to_h do |question|
+        segments = active_media_responses_by_question[question.id]&.transcription&.segments
+        citations = citations_by_question[question.id] || []
+        anchors = AI::ContentAnalysis::HighlightAnchorBuilder.call(citations, segments)
+        [question.id, anchors]
       end
     end
 
@@ -104,8 +114,29 @@ module Administration
       @policy ||= Api::Administration::AI::ScoreApprovalPolicy.new(current_user, object) # rubocop:disable CustomRubocops/AvoidUsingMemoizationInSerializers
     end
 
+    def scorable_questions
+      @scorable_questions ||= object.assessment.scorable_ai_questions.order(:position).to_a # rubocop:disable CustomRubocops/AvoidUsingMemoizationInSerializers
+    end
+
     def scorable_question_ids
-      @scorable_question_ids ||= object.assessment.scorable_ai_questions.ids # rubocop:disable CustomRubocops/AvoidUsingMemoizationInSerializers
+      @scorable_question_ids ||= scorable_questions.map(&:id) # rubocop:disable CustomRubocops/AvoidUsingMemoizationInSerializers
+    end
+
+    def all_factor_scores
+      @all_factor_scores ||= object.users_result.ai_factor_scores.order(:id).includes(:factor, :versions).to_a # rubocop:disable CustomRubocops/AvoidUsingMemoizationInSerializers
+    end
+
+    def active_media_responses_by_question
+      @active_media_responses_by_question ||= scorable_questions.to_h do |question| # rubocop:disable CustomRubocops/AvoidUsingMemoizationInSerializers
+        [question.id, object.users_result.active_media_response(question)]
+      end
+    end
+
+    def citations_by_question
+      @citations_by_question ||= all_factor_scores. # rubocop:disable CustomRubocops/AvoidUsingMemoizationInSerializers
+                                 select { |fs| fs.question_id.present? }.
+                                 group_by(&:question_id).
+                                 transform_values { |scores| scores.flat_map { |s| s.citations || [] } }
     end
 
     def approval_settings

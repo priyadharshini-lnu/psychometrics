@@ -8048,6 +8048,7 @@ CREATE TABLE public.transcriptions (
     updated_at timestamp(6) without time zone NOT NULL,
     error_details jsonb DEFAULT '{}'::jsonb NOT NULL,
     status integer DEFAULT 0 NOT NULL,
+    segments jsonb DEFAULT '[]'::jsonb NOT NULL,
     metadata jsonb DEFAULT '{}'::jsonb NOT NULL
 );
 
@@ -20353,6 +20354,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260320100000'),
 ('20260325000001'),
 ('20260323084342'),
 ('20260311085954'),

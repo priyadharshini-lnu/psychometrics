@@ -89,7 +89,8 @@ describe MediaResponses::Transcriptions::SaveOciSpeechTranscription do
       end
 
       it 'saves the transcription as completed with extracted text' do
-        expect(media_response).to receive(:save_transcription_completed!).with(transcription_text, metadata: anything)
+        expect(media_response).to receive(:save_transcription_completed!).with(transcription_text,
+                                                                               metadata: anything, segments: [])
         command.call
       end
 
@@ -123,7 +124,8 @@ describe MediaResponses::Transcriptions::SaveOciSpeechTranscription do
       end
 
       it 'saves the transcription using save_transcription_completed!' do
-        expect(media_response).to receive(:save_transcription_completed!).with(transcription_text, metadata: anything)
+        expect(media_response).to receive(:save_transcription_completed!).with(transcription_text,
+                                                                               metadata: anything, segments: [])
         command.call
       end
     end

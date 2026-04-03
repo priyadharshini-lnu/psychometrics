@@ -61,8 +61,8 @@ class MediaResponse < ApplicationRecord
     transcription_record.update!(error_details: error_details, status: :failed, text: '')
   end
 
-  def save_transcription_completed!(text, metadata: {})
-    transcription_record.update!(text: text, metadata: metadata, status: :completed)
+  def save_transcription_completed!(text, metadata: {}, segments: [])
+    transcription_record.update!(text: text, metadata: metadata, segments: segments, status: :completed)
   end
 
   def save_transcription_status!(status)
