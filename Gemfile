@@ -5,6 +5,7 @@ ruby '3.4.6'
 
 gem 'bootsnap',                   '~> 1.18.0', require: false
 gem 'bundler',                    '~> 2.3.17'
+gem 'erb',                        '< 5.0' # Pin to avoid frozen string issues in ERB 6.0+ with Ruby 3.4
 gem 'rack',                       '~> 2.2.22'
 
 gem 'barnes',                     '~> 0.0.7'

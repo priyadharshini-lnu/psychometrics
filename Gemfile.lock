@@ -263,6 +263,7 @@ GEM
     caxlsx_rails (0.6.4)
       actionpack (>= 3.1)
       caxlsx (>= 3.0)
+    cgi (0.4.2)
     chronic (0.10.2)
     chunky_png (1.4.0)
     circuitbox (2.0.0)
@@ -397,7 +398,8 @@ GEM
       activesupport (>= 3.0.0)
     enumerable-statistics (2.0.8)
     equalizer (0.0.11)
-    erb (6.0.2)
+    erb (4.0.4)
+      cgi (>= 0.3.3)
     erubi (1.13.1)
     et-orbi (1.4.0)
       tzinfo
@@ -1193,6 +1195,7 @@ DEPENDENCIES
   dry-validation (~> 1.10)
   encryptor (~> 3.0.0)
   enum_help (~> 0.0.17)
+  erb (< 5.0)
   factory_bot_rails
   faker (~> 2.21)
   faraday (~> 1.10.5)
