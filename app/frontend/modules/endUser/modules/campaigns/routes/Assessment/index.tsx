@@ -71,6 +71,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
       <PrivacyConsent
         onAccept={() => setShowPolicy(false)}
         assessmentCustomConsentText={userAssessmentData.customConsentText}
+        assessmentCustomAcknowledgmentText={userAssessmentData.customAcknowledgmentText}
         isDataController={userAssessmentData.isDataController}
         assessmentCustomConsentPolicyVersion={userAssessmentData.customConsentPolicyVersion}
         campaignId={userAssessmentData.campaignId}

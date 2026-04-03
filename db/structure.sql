@@ -1550,7 +1550,8 @@ CREATE TABLE public.assessment_consent_setting_translations (
     locale character varying NOT NULL,
     assessment_consent_setting_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    custom_acknowledgment_text text
 );
 
 
@@ -1583,7 +1584,8 @@ CREATE TABLE public.assessment_consent_settings (
     policy_version integer DEFAULT 1 NOT NULL,
     assessment_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    custom_acknowledgment_text text
 );
 
 
@@ -5578,7 +5580,8 @@ CREATE TABLE public.privacy_setting_translations (
     locale character varying NOT NULL,
     privacy_setting_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    custom_privacy_acknowledgment_text text
 );
 
 
@@ -5627,7 +5630,8 @@ CREATE TABLE public.privacy_settings (
     enable_video_call_recording_for_all_new_campaigns boolean DEFAULT false NOT NULL,
     video_call_recording_expiry_in_seconds integer,
     mask_identity_for_yoodli boolean DEFAULT false,
-    mask_identity_for_mhs boolean DEFAULT false NOT NULL
+    mask_identity_for_mhs boolean DEFAULT false NOT NULL,
+    custom_privacy_acknowledgment_text text
 );
 
 
@@ -20354,6 +20358,10 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260401053041'),
+('20260401045303'),
+('20260401031414'),
+('20260401030425'),
 ('20260320100000'),
 ('20260325000001'),
 ('20260323084342'),

@@ -55,6 +55,7 @@ module Threesixty::InitialState
         lighthousePrivacyUrl: Settings.privacy_url,
         privacyPolicyVersion: @current_project.current_privacy_policy_version,
         customPrivacyConsentText: custom_privacy_consent_text,
+        customPrivacyAcknowledgmentText: custom_privacy_acknowledgment_text,
         showBookings: show_bookings?,
         showMaintenanceAlert: helpers.show_maintenance_alert?,
         idp: {
@@ -91,6 +92,12 @@ module Threesixty::InitialState
     return unless @current_project.privacy_setting.custom_privacy_consent
 
     @current_project.privacy_setting.custom_privacy_consent_text
+  end
+
+  def custom_privacy_acknowledgment_text
+    return unless @current_project.privacy_setting.custom_privacy_consent
+
+    @current_project.privacy_setting.custom_privacy_acknowledgment_text
   end
 
   def live_chat_token

@@ -9,6 +9,7 @@ import cs from 'classnames'
 import ReactMarkdown from 'react-markdown'
 import {
   getlighthousePrivacyUrl, getCustomPrivacyConsentText, getprivacyPolicyVersion,
+  getCustomPrivacyAcknowledgmentText,
 } from '~/modules/endUser/core/config'
 import {
   getPrivacyText,
@@ -30,6 +31,7 @@ const connector = connect(
     lighthousePrivacyUrl: getlighthousePrivacyUrl(state),
     privacyPolicyVersion: getprivacyPolicyVersion(state),
     customPrivacyConsentText: getCustomPrivacyConsentText(state),
+    customPrivacyAcknowledgmentText: getCustomPrivacyAcknowledgmentText(state),
     policy: state.project.policy,
     privacyText: getPrivacyText(state),
     privacyLink: privacyPageLink(state),
@@ -44,6 +46,7 @@ const connector = connect(
 type Props = ConnectedProps<typeof connector> & {
   onAccept: () => void
   assessmentCustomConsentText?: string
+  assessmentCustomAcknowledgmentText?: string
   isDataController?: boolean
   assessmentCustomConsentPolicyVersion?: number
   campaignId?: number
@@ -52,7 +55,8 @@ type Props = ConnectedProps<typeof connector> & {
 
 export const PrivacyConsentComponent: FC<Props> = ({
   privacyPolicyVersion, acceptPolicy, fetchPolicy, policy, onAccept, customPrivacyConsentText,
-  assessmentCustomConsentText, isDataController, assessmentCustomConsentPolicyVersion,
+  customPrivacyAcknowledgmentText, assessmentCustomConsentText, assessmentCustomAcknowledgmentText,
+  isDataController, assessmentCustomConsentPolicyVersion,
   privacyText, privacyLink, enablePrivacyLink, campaignId, assessmentId,
 }) => {
   const [accepted, setAccepted] = useState(false)
@@ -60,6 +64,14 @@ export const PrivacyConsentComponent: FC<Props> = ({
   const consentText = isDataController
     ? assessmentCustomConsentText
     : customPrivacyConsentText
+
+  const defaultCheckboxText = enablePrivacyLink
+    ? I18n.t('threesixty.accept_privacy_modal.checkbox_with_client_link')
+    : I18n.t('threesixty.accept_privacy_modal.checkbox')
+
+  const acknowledgmentText = isDataController
+    ? assessmentCustomAcknowledgmentText || defaultCheckboxText
+    : customPrivacyAcknowledgmentText || defaultCheckboxText
 
   useEffect(() => {
     !consentText && fetchPolicy(privacyPolicyVersion)
@@ -141,9 +153,7 @@ export const PrivacyConsentComponent: FC<Props> = ({
                   onChange={e => setAccepted(e.target.checked)}
                 />
                 <span className={styles.checkboxText}>
-                  {enablePrivacyLink
-                    ? I18n.t('threesixty.accept_privacy_modal.checkbox_with_client_link')
-                    : I18n.t('threesixty.accept_privacy_modal.checkbox')}
+                  <SafeHTML html={acknowledgmentText} config="adminRichText" />
                 </span>
               </Flex>
               <div className={styles.buttonContainer}>

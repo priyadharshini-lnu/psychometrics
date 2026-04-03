@@ -194,6 +194,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   delegate :config, :translations, to: :agile, prefix: true
   delegate :custom_consent_text, to: :assessment_consent_setting, allow_nil: true
   delegate :policy_version, to: :assessment_consent_setting, allow_nil: true
+  delegate :custom_acknowledgment_text, to: :assessment_consent_setting, allow_nil: true
 
   # TODO: (nest):
   # Creating scope :hogan. Overwriting existing method Assessment.hogan.

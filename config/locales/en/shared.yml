@@ -44,6 +44,8 @@ en:
     copy: Copy
     created_at: Created At
     created_date: Created Date
+    custom_acknowledgment_text: Custom Acknowledgment Text
+    custom_acknowledgment_text_required: Custom acknowledgment text is required for controller data role
     custom_consent_text: Custom Consent Text
     custom_consent_text_required: Custom consent text is required for controller data role
     data_role: Data Role

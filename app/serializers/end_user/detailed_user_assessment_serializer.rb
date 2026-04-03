@@ -8,7 +8,7 @@ module EndUser
                :assessment_extra, :assessment_id, :available_locales,
                :selected_locale, :privacy_consent_required, :campaign_id,
                :custom_consent_text, :custom_consent_policy_version, :data_role,
-               :is_data_controller
+               :is_data_controller, :custom_acknowledgment_text
 
     def privacy_consent_required
       return true if is_data_controller
@@ -17,7 +17,15 @@ module EndUser
     end
 
     def custom_consent_text
+      return unless is_data_controller
+
       object.assessment.custom_consent_text
+    end
+
+    def custom_acknowledgment_text
+      return unless is_data_controller
+
+      object.assessment.custom_acknowledgment_text
     end
 
     def custom_consent_policy_version
