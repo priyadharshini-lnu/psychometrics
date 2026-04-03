@@ -4059,9 +4059,11 @@ en-US:
       import_reports: Import Reports and Assessments
   user_assessment:
     column:
+      completed_at: Completed At
       dimension_id: Dimension ID
       id: User Assessment ID
       norm_id: Norm ID
+      started_at: Started At
     drawer:
       copied: "%{name} copied to clipboard."
       copy: Copy to Clipboard

@@ -17,7 +17,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
 
   describe 'create' do
     let!(:license) do
-      create(:license, report_family: report_family, client: campaign.client, start_date: 2.days.ago,
+      create(:license, report_family: report_family, client: campaign.project.parent, start_date: 2.days.ago,
         end_date: 2.days.since)
     end
     it 'returns error if wrong params are passed' do
@@ -747,6 +747,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
     expect(assessment_response.keys).to contain_exactly(
       *%w[
         id permissions assessment_id name category norm_name status norms norm_id
+        started_at completed_at
         additional_time is_expired is_external has_external_norm schedule_time require_scheduling
         mettl_schedule_name mettl_schedule_record_id dimension_id
         simulation_content_variations hogan_participant_id users_result_id prework
@@ -762,7 +763,9 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       'norms' => [],
       'status' => 'not_started',
       'has_external_norm' => false,
-      'schedule_time' => nil
+      'schedule_time' => nil,
+      'started_at' => nil,
+      'completed_at' => nil
     })
   end
 end

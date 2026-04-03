@@ -232,6 +232,8 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'dimension_id' => assessment.dimension_id,
       'simulation_content_variations' => [],
       'hogan_participant_id' => nil,
+      'started_at' => nil,
+      'completed_at' => nil,
       'pearson_user_assessment_details' => nil,
       'simulation_user_assessment_details' => nil,
       'saville_user_assessment_details' => nil,
