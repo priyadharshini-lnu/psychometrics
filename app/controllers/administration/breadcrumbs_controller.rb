@@ -15,10 +15,11 @@ module Administration
         sanitized_field = sanitize_field(field)
         send(sanitized_field) if sanitized_field
       end
+
       render json: BreadcrumbSerializer.new(
-        only: fields.map(&:to_sym),
+        only: request_fields.map(&:to_sym),
         context: {
-          fields: fields
+          fields: request_fields
         }
       ).serialize(object)
     end
