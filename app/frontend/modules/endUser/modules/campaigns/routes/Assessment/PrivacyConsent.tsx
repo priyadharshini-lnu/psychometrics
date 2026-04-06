@@ -147,13 +147,13 @@ export const PrivacyConsentComponent: FC<Props> = ({
           }
           <div className={styles.privacyPageFooterButtons}>
             <Space orientation="vertical">
-              <Flex gap={8}>
+              <Flex gap={8} align="flex-start">
                 <Checkbox
                   checked={accepted}
                   onChange={e => setAccepted(e.target.checked)}
                 />
                 <span className={styles.checkboxText}>
-                  <SafeHTML html={acknowledgmentText} config="adminRichText" />
+                  {acknowledgmentText}
                 </span>
               </Flex>
               <div className={styles.buttonContainer}>
