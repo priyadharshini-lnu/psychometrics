@@ -1678,6 +1678,9 @@ only: %i[index create update]
             end
           end
           resources :user_reports, only: [] do
+            member do
+              get :availability_details
+            end
             jsonapi_resources :user_report_comments, only: %i[index create update destroy]
           end
           jsonapi_resources :report_approvals, only: %i[index] do

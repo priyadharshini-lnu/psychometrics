@@ -723,7 +723,8 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
     expect(report_response.keys).to contain_exactly(
       *%w[id permissions report_id name user_access report_family_name
           status internal custom_upload report_provider report_download_urls
-          comments_count edits_count hogan_participant_id available_languages effective_default_language]
+          comments_count edits_count hogan_participant_id available_languages effective_default_language
+          campaign_id approval_status assessment_ids external_settings]
     )
     expect(report_response).to include({
       'report_id' => report.id,

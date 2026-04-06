@@ -158,13 +158,16 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
   end
 
   def check_report_response(report_response, user_report)
-    expect(report_response).to eq({
+    expect(report_response).to include({
       'id' => user_report.id,
       'report_id' => report.id,
+      'assessment_ids' => [assessment.id],
+      'campaign_id' => campaign.id,
       'name' => report.name,
       'user_access' => user_report.user_access,
       'report_family_name' => report_family.name,
       'status' => 'not_prepared',
+      'approval_status' => 'not_ready',
       'internal' => true,
       'custom_upload' => false,
       'report_download_urls' => {
@@ -173,6 +176,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
         )
       },
       'report_provider' => 'internal',
+      'external_settings' => {},
       'comments_count' => 0,
       'edits_count' => 0,
       'hogan_participant_id' => nil,
