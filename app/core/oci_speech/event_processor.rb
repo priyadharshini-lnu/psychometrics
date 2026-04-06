@@ -70,7 +70,17 @@ module OciSpeech
     end
 
     def update_admin_job_failed(error_message)
-      admin_job&.update!(status: :failed, error_messages: [error_message])
+      return unless admin_job
+
+      formatted_error = "MediaResponse ##{record&.id}: #{error_message}"
+      admin_job.with_lock do
+        current_errors = admin_job.error_messages || []
+        admin_job.update!(
+          status: :failed,
+          error_messages: current_errors + [formatted_error]
+        )
+      end
+      admin_job.increment_completed_tasks!
     end
 
     def record

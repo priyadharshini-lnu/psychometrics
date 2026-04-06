@@ -273,6 +273,11 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     scorable_ai_questions.present?
   end
 
+  def has_transcription_enabled_questions?
+    questions.where(type: %w[VideoResponse AudioResponse]).
+      exists?(["props ->> 'enableTranscription' = ?", 'true'])
+  end
+
   def scorable_ai_questions
     questions.ai_scored.
       where('EXISTS (SELECT 1 FROM factors_scoring WHERE factors_scoring.question_id = questions.id)').

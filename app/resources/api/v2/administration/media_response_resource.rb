@@ -2,7 +2,7 @@
 
 class Api::V2::Administration::MediaResponseResource < Api::V2::Administration::BaseResource
   attributes :id, :question_id, :transcription_text, :question_type, :transcription_status,
-             :transcription_enabled, :asset_url, :media_id, :question_text, :error_details
+             :transcription_enabled, :asset_url, :media_id, :question_text, :question_name, :error_details
 
   def self.records(opts = {})
     user_assessment_id = opts[:context][:user_assessment_id]
@@ -12,8 +12,8 @@ class Api::V2::Administration::MediaResponseResource < Api::V2::Administration::
     return MediaResponse.none if users_result.blank?
 
     users_result.media_responses.
-      joins(:asset_attachment).
-      order(:created_at)
+      joins(:asset_attachment, :question).
+      order('questions.position ASC')
   end
 
   def transcription_text
@@ -54,5 +54,9 @@ class Api::V2::Administration::MediaResponseResource < Api::V2::Administration::
     return nil if raw_text.blank?
 
     ActionController::Base.helpers.strip_tags(raw_text)
+  end
+
+  def question_name
+    @model.question&.name
   end
 end

@@ -12,6 +12,7 @@ export const FETCH_NORMS = 'campaigns/assessments/FETCH_NORMS'
 export const UPDATE_NORM = 'campaigns/assessments/UPDATE_NORM'
 export const UPDATE_ASSESSOR_FORM = 'campaigns/assessments/UPDATE_ASSESSOR_FORM'
 export const RESCORE_RESPONSES = 'campaigns/assessments/RESCORE_RESPONSES'
+export const REGENERATE_TRANSCRIPTIONS = 'campaigns/assessments/REGENERATE_TRANSCRIPTIONS'
 export const REMOVE = 'campaigns/assessments/REMOVE'
 export const UPDATE_AVAILABLE_LOCALES = 'campaigns/userAssessments/UPDATE_AVAILABLE_LOCALES'
 
@@ -140,6 +141,14 @@ export const rescoreResponses = (campaignId: number, assessmentId: number, allow
     method: 'post',
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/rescore_responses`,
     body: { allow_ai_rescore: allowAiRescore },
+  },
+})
+
+export const regenerateTranscriptions = (campaignId: number, assessmentId: number) => ({
+  type: REGENERATE_TRANSCRIPTIONS,
+  request: {
+    method: 'post',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/regenerate_transcriptions`,
   },
 })
 

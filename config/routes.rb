@@ -367,6 +367,7 @@ Rails.application.routes.draw do
             put :update_assessor_form
             put :update_available_locales
             post :rescore_responses
+            post :regenerate_transcriptions
             put :update_prework
             put :update_workshop_activity
             put :toggle_require_scheduling

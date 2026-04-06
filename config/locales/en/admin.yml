@@ -868,6 +868,10 @@ en:
     questions: Questions
     range_min_max: RANGE %{min} - %{max}
     reflection_questions: Reflection Questions
+    regenerate_transcriptions_action: Regenerate Transcriptions
+    regenerate_transcriptions_confirm_content: Are you sure you want to regenerate transcriptions for this assessment? This will re-process all incomplete transcriptions.
+    regenerate_transcriptions_confirm_title: Regenerate Transcriptions
+    regenerate_transcriptions_scheduled: Regenerate transcriptions job was scheduled successfully
     registration_codes: Registration codes
     registration_settings: Registration Settings
     remove_children_to_change_type: Remove all children to change type
