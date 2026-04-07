@@ -145,6 +145,7 @@ en:
     bulk_assets_modal_title: Upload CSV and ZIP files
     bulk_upload_ai_artifacts: Bulk Upload AI Artifacts
     campaign_ai_artifact_updated_successfully: Campaign AI artifacts updated successfully
+    campaign_ai_artifacts_instruction_templating_tooltip: You can use advanced instructions using prompt templating with liquid template syntax and available variables. Refer to documentation for more details.
     campaign_ai_artifacts_results_export_details: Campaign AI artifacts generated results
     campaign_assessment_actions_disable_caching: Disable Assessment Caching
     campaign_assessment_actions_enable_caching: Enable Assessment Caching

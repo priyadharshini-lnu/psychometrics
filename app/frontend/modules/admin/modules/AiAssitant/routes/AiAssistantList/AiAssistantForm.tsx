@@ -126,8 +126,7 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
     return Promise.resolve()
   }
 
-  // Only allow advanced prompting for idp assistant type for now
-  const allowAdvancedPrompting = assistantType === ASSISTANT_TYPES.idp_assistant.id
+  const allowAdvancedPrompting = currentAssistantTypeConfig?.advancedPromptingEnabled ?? false
 
   if (isLoading) {
     return <Spin size="large" />
