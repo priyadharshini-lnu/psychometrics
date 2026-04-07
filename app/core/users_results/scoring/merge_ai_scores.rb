@@ -27,7 +27,9 @@ module UsersResults
       private
 
       def user_assessment_approved?
-        user_assessment.approval_status == 'approver_approved'
+        return true if user_assessment.approval_status == 'approver_approved'
+
+        user_assessment.approval_status == 'auto_approved' && !user_assessment.has_ai_scoring_approval_flow?
       end
 
       def handle_post_scoring_tasks!
